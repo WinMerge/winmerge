@@ -129,8 +129,7 @@ BOOL CMergeEditView::PrimeListWithFile()
 
 	SetWordWrapping(FALSE);
 	ResetView();
-	// RecalcVertScrollBar is done during ScrollToLine
-	//RecalcVertScrollBar();
+	RecalcVertScrollBar();
 	SetTabSize(mf->m_nTabSize);
 
 	ScrollToLine(nResumeTopLine);

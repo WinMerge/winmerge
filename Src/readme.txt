@@ -1,3 +1,7 @@
+2003-07-15 Laoran
+ PATCH: [ 771625 ] regression for patch [765399]
+  WinMerge: MergeEditView.cpp 
+
 2003-07-15 Perry
  PATCH: [ 770361 ] Slovak translation
   Languages: New Slovak subdirectory
