@@ -1,3 +1,7 @@
+2005-01-24 Kimmo
+ Add support for Merge7z414
+  InnoSetup: WinMerge Localized.iss
+
 2005-01-17 Kimmo
  BUG: [ 1053545 ] iss doesn't create start menu item for WinMerge.exe on NT
   InnoSetup: WinMerge Localized.iss
