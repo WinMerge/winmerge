@@ -33,6 +33,8 @@ DATE:		BY:					DESCRIPTION:
 2003/10/05	J.Tucht				allow calls from other threads through HWND
 2003/11/04	J.Tucht				more explicit error messages, SEH
 2003/11/06	NOBODY@ALL			incredible number of changes for unknown reasons
+2003/11/18	Laoran				CreateDispatchBySource : avoid crash if loading dll fails
+2003/11/18	Laoran				CreateDispatchBySource, cosmetic : move dll load&object creation after the CLSID search (= less indentations)
 */
 // RCS ID line follows -- this is updated by CVS
 // $Id$
@@ -152,12 +154,16 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 	}
 	else if (PathMatchSpec(source, _T("*.ocx")) || PathMatchSpec(source, _T("*.dll")))
 	{
+		CLSID objectGUID = {0};
+		BOOL bGUIDFound = FALSE;
+
+		// search in the interface of the dll for the CLSID of progid
 		ITypeLib *piTypeLib;
 		mycpyt2w(source, wc, DIMOF(wc));
 		if SUCCEEDED(sc=LoadTypeLib(wc, &piTypeLib))
 		{
 			UINT count = piTypeLib->lpVtbl->GetTypeInfoCount(piTypeLib);
-			while (SUCCEEDED(sc) && pv == 0 && count--)
+			while (SUCCEEDED(sc) && !bGUIDFound && count--)
 			{
 				ITypeInfo *piTypeInfo;
 				if SUCCEEDED(sc=piTypeLib->lpVtbl->GetTypeInfo(piTypeLib, count, &piTypeInfo))
@@ -170,17 +176,8 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 						{
 							if (pTypeAttr->typekind == TKIND_COCLASS && StrCmpIW(bstrName, progid) == 0)
 							{
-								IClassFactory *piClassFactory;
-								EXPORT_DLLPROXY
-								(
-									Dll, "",
-									HRESULT(NTAPI*DllGetClassObject)(REFCLSID,REFIID,IClassFactory**);
-								);
-								mycpyt2a(source, Dll.SIG+strlen(Dll.SIG), sizeof(Dll.SIG)-strlen(Dll.SIG));
-								if SUCCEEDED(sc=DLLPROXY(Dll)->DllGetClassObject(&pTypeAttr->guid, &IID_IClassFactory, &piClassFactory))
-								{
-									sc=piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
-								}
+								memcpy(&objectGUID, &pTypeAttr->guid, sizeof(CLSID));
+								bGUIDFound = TRUE;
 							}
 							SysFreeString(bstrName);
 						}
@@ -191,15 +188,30 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 			}
 			piTypeLib->lpVtbl->Release(piTypeLib);
 		}
-		else
+	
+		if (bGUIDFound)
 		{
-			// no error if no interface (normal dll)
-			if (PathMatchSpec(source, _T("*.dll")) && sc == TYPE_E_CANTLOADLIBRARY)
-				sc = 0;
-			// no error if the format is too old
-			if (sc == TYPE_E_UNSUPFORMAT)
-				sc = 0;
+			// we have found the CLSID, so this is really a COM dll for WinMerge
+			// now try to load the dll and to create an instance of the object
+			IClassFactory *piClassFactory;
+			EXPORT_DLLPROXY
+			(
+				Dll, "",
+				HRESULT(NTAPI*DllGetClassObject)(REFCLSID,REFIID,IClassFactory**);
+			);
+			mycpyt2a(source, Dll.SIG+strlen(Dll.SIG), sizeof(Dll.SIG)-strlen(Dll.SIG));
+			if ((FARPROC)DLLPROXY(Dll)->DllGetClassObject != DllProxy_ModuleState.Unresolved)
+				if SUCCEEDED(sc=DLLPROXY(Dll)->DllGetClassObject(&objectGUID, &IID_IClassFactory, &piClassFactory))
+				{
+					sc=piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
+				}
 		}
+		// don't display an error message if no interface (normal dll)
+		if (PathMatchSpec(source, _T("*.dll")) && sc == TYPE_E_CANTLOADLIBRARY)
+			sc = 0;
+		// don't display an error message if the format is too old
+		if (sc == TYPE_E_UNSUPFORMAT)
+			sc = 0;
 	}
 	else 
 	{

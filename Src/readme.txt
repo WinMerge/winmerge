@@ -1,3 +1,8 @@
+2003-11-18 Laoran
+ BUG: [ 840759 ] Failed to load library UnpackDFM.dll
+ fix proposed by Jochen
+  common: lwdisp.c
+
 2003-11-17 Perry
  [ 843526 ] cosmetic changes from the archives patch
   WinMerge: DirDoc.cpp DirDoc.h MainFrm.cpp
