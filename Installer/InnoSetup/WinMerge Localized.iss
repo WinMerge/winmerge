@@ -143,8 +143,8 @@ SetupIconFile=..\src\res\Merge.ico
 ;Please note while Compression=lzma/ultra and InternalCompressLevel=Ultra are better than max
 ;they also require 320 MB of memory for compression. If you're system has at least 256MB RAM then by all
 ;means set it to ultra before compilation
-Compression=LZMA/Ultra
-InternalCompressLevel=Ultra
+Compression=none
+InternalCompressLevel=none
 SolidCompression=True
 
 
@@ -197,59 +197,60 @@ Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Type
 
 ;Language components, please note that whatever language you chose to install in will be installed in addition to any of the language components you've
 ;selected.  This is to make it easier for users that have a working localization of Inno Setup.
-Name: Bulgarian_Language; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Bulgarian)
-Name: Bulgarian_Language; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Bulgarian
+Name: Languages; Description: {cm:XYZ}; Flags: disablenouninstallwarning
+Name: Languages\Bulgarian; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Bulgarian)
+Name: Languages\Bulgarian; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Bulgarian
 
-Name: Catalan_Language; Description: {cm:CatalanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Catalan)
-Name: Catalan_Language; Description: {cm:CatalanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Catalan
+Name: Languages\Catalan; Description: {cm:CatalanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Catalan)
+Name: Languages\Catalan; Description: {cm:CatalanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Catalan
 
-Name: Chinese_Simplified_Language; Description: {cm:ChineseSimplifiedLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Chinese_Simplified)
-Name: Chinese_Simplified_Language; Description: {cm:ChineseSimplifiedLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Chinese_Simplified
+Name: Languages\Chinese_Simplified; Description: {cm:ChineseSimplifiedLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Chinese_Simplified)
+Name: Languages\Chinese_Simplified; Description: {cm:ChineseSimplifiedLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Chinese_Simplified
 
-Name: Chinese_Traditional_Language; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Chinese_Traditional)
-Name: Chinese_Traditional_Language; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Chinese_Traditional
+Name: Languages\Chinese_Traditional; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Chinese_Traditional)
+Name: Languages\Chinese_Traditional; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Chinese_Traditional
 
-Name: Czech_Language; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Czech)
-Name: Czech_Language; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Czech
+Name: Languages\Czech; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Czech)
+Name: Languages\Czech; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Czech
 
-Name: Danish_Language; Description: {cm:DanishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Danish)
-Name: Danish_Language; Description: {cm:DanishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Danish
+Name: Languages\Danish; Description: {cm:DanishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Danish)
+Name: Languages\Danish; Description: {cm:DanishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Danish
 
-Name: Dutch_Language; Description: {cm:DutchLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Dutch)
-Name: Dutch_Language; Description: {cm:DutchLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Dutch
+Name: Languages\Dutch; Description: {cm:DutchLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Dutch)
+Name: Languages\Dutch; Description: {cm:DutchLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Dutch
 
-Name: French_Language; Description: {cm:FrenchLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(French)
-Name: French_Language; Description: {cm:FrenchLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: French
+Name: Languages\French; Description: {cm:FrenchLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(French)
+Name: Languages\French; Description: {cm:FrenchLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: French
 
-Name: German_Language; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(German)
-Name: German_Language; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: German
+Name: Languages\German; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(German)
+Name: Languages\German; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: German
 
-Name: Italian_Language; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Italian)
-Name: Italian_Language; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Italian
+Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Italian)
+Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Italian
 
-Name: Korean_Language; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Korean)
-Name: Korean_Language; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Korean
+Name: Languages\Korean; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Korean)
+Name: Languages\Korean; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Korean
 
-Name: Norwegian_Language; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Norwegian)
-Name: Norwegian_Language; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Norwegian
+Name: Languages\Norwegian; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Norwegian)
+Name: Languages\Norwegian; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Norwegian
 
-Name: Polish_Language; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Polish)
-Name: Polish_Language; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Polish
+Name: Languages\Polish; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Polish)
+Name: Languages\Polish; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Polish
 
-Name: Portuguese_Language; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Portuguese)
-Name: Portuguese_Language; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Portuguese
+Name: Languages\Portuguese; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Portuguese)
+Name: Languages\Portuguese; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Portuguese
 
-Name: Russian_Language; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Russian)
-Name: Russian_Language; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Russian
+Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Russian)
+Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Russian
 
-Name: Slovak_Language; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Slovak)
-Name: Slovak_Language; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Slovak
+Name: Languages\Slovak; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Slovak)
+Name: Languages\Slovak; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Slovak
 
-Name: Spanish_Language; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Spanish)
-Name: Spanish_Language; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Spanish
+Name: Languages\Spanish; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Spanish)
+Name: Languages\Spanish; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Spanish
 
-Name: Swedish_Language; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Swedish)
-Name: Swedish_Language; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Swedish
+Name: Languages\Swedish; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Swedish)
+Name: Languages\Swedish; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Swedish
 
 [Tasks]
 Name: ShellExtension; Description: {cm:ExplorerContextMenu}; GroupDescription: Optional Features:
@@ -358,24 +359,24 @@ Name: {app}\Merge7z313U.dll; Type: files; MinVersion: 0, 4
 ;This won't work, because the file has to be unregistered, and explorer closed, first.
 ;Name: {app}\ShellExtension.dll; Type: files; Check: TaskDisabled('ShellExtension')
 
-Name: {app}\MergeBulgarian.lang; Type: files; Check: ComponentDisabled('Bulgarian_Language')
-Name: {app}\MergeBrazilian.lang; Type: files; Check: ComponentDisabled('Portuguese_Language')
-Name: {app}\MergeCatalan.lang; Type: files; Check: ComponentDisabled('Catalan_Language')
-Name: {app}\MergeChineseSimplified.lang; Type: files; Check: ComponentDisabled('Chinese_Simplified_Language')
-Name: {app}\MergeChineseTraditional.lang; Type: files; Check: ComponentDisabled('Chinese_Traditional_Language')
-Name: {app}\MergeCzech.lang; Type: files; Check: ComponentDisabled('Czech_Language')
-Name: {app}\MergeDanish.lang; Type: files; Check: ComponentDisabled('Danish_Language')
-Name: {app}\MergeDutch.lang; Type: files; Check: ComponentDisabled('Dutch_Language')
-Name: {app}\MergeFrench.lang; Type: files; Check: ComponentDisabled('French_Language')
-Name: {app}\MergeGerman.lang; Type: files; Check: ComponentDisabled('German_Language')
-Name: {app}\MergeItalian.lang; Type: files; Check: ComponentDisabled('Italian_Language')
-Name: {app}\MergeKorean.lang; Type: files; Check: ComponentDisabled('Korean_Language')
-Name: {app}\MergeNorwegian.lang; Type: files; Check: ComponentDisabled('Norwegian_Language')
-Name: {app}\MergePolish.lang; Type: files; Check: ComponentDisabled('Polish_Language')
-Name: {app}\MergeSlovak.lang; Type: files; Check: ComponentDisabled('Slovak_Language')
-Name: {app}\MergeSpanish.lang; Type: files; Check: ComponentDisabled('Spanish_Language')
-Name: {app}\MergeRussian.lang; Type: files; Check: ComponentDisabled('Rusian_Language')
-Name: {app}\MergeSwedish.lang; Type: files; Check: ComponentDisabled('Swedish_Language')
+Name: {app}\MergeBulgarian.lang; Type: files; Check: ComponentDisabled('Bulgarian')
+Name: {app}\MergeBrazilian.lang; Type: files; Check: ComponentDisabled('Portuguese')
+Name: {app}\MergeCatalan.lang; Type: files; Check: ComponentDisabled('Catalan')
+Name: {app}\MergeChineseSimplified.lang; Type: files; Check: ComponentDisabled('Chinese_Simplified')
+Name: {app}\MergeChineseTraditional.lang; Type: files; Check: ComponentDisabled('Chinese_Traditional')
+Name: {app}\MergeCzech.lang; Type: files; Check: ComponentDisabled('Czech')
+Name: {app}\MergeDanish.lang; Type: files; Check: ComponentDisabled('Danish')
+Name: {app}\MergeDutch.lang; Type: files; Check: ComponentDisabled('Dutch')
+Name: {app}\MergeFrench.lang; Type: files; Check: ComponentDisabled('French')
+Name: {app}\MergeGerman.lang; Type: files; Check: ComponentDisabled('German')
+Name: {app}\MergeItalian.lang; Type: files; Check: ComponentDisabled('Italian')
+Name: {app}\MergeKorean.lang; Type: files; Check: ComponentDisabled('Korean')
+Name: {app}\MergeNorwegian.lang; Type: files; Check: ComponentDisabled('Norwegian')
+Name: {app}\MergePolish.lang; Type: files; Check: ComponentDisabled('Polish')
+Name: {app}\MergeSlovak.lang; Type: files; Check: ComponentDisabled('Slovak')
+Name: {app}\MergeSpanish.lang; Type: files; Check: ComponentDisabled('Spanish')
+Name: {app}\MergeRussian.lang; Type: files; Check: ComponentDisabled('Rusian')
+Name: {app}\MergeSwedish.lang; Type: files; Check: ComponentDisabled('Swedish')
 Name: {app}\MergePlugins\list.txt; Type: files; Check: ComponentDisabled('Plugins')
 
 
@@ -451,24 +452,24 @@ Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: promptifold
 
 Source: ..\Plugins\dlls\UnpackDFM.dll; DestDir: {app}\MergePlugins; Tasks: Delphi4Viewer; Flags: promptifolder
 
-Source: ..\Src\Languages\DLL\MergeBulgarian.lang; DestDir: {app}; Components: Bulgarian_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Components: Catalan_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: Chinese_Simplified_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: Chinese_Traditional_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: Czech_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: Danish_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: Dutch_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: French_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: German_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: Italian_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: Korean_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Components: Norwegian_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Components: Polish_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: Portuguese_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}; Components: Russian_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: Slovak_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Swedish_Language; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeBulgarian.lang; DestDir: {app}; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: Languages\Chinese_Simplified; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: Languages\Chinese_Traditional; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: Languages\French; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: Languages\German; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
 
 Source: ..\Docs\Users\Guide\*.htm*; DestDir: {app}\Docs\User's Guide\; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: docs
 Source: ..\Docs\Users\Guide\*.css; DestDir: {app}\Docs\User's Guide\; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: docs
