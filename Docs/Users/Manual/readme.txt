@@ -1,6 +1,8 @@
 2004-09-03 Kimmo
  PATCH: [ 1021456 ] Docs: Updates to installation part
   Manual: Install.xml
+ PATCH: [ 1021482 ] Docs: Add authors, version, copyright etc
+  Manual: WinMerge_help.xml
 
 2004-08-19 Kimmo
  PATCH: [ 1011283 ] Docs: Copy locale documentation from 2.0 docs
