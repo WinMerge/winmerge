@@ -1,3 +1,7 @@
+2004-05-07 Laoran
+ update for MergeSwedish.rc ; contribution from Hans Ericson
+  Language/Swedish: MergeSwedish.rc
+
 2004-05-07 Kimmo
  PATCH: [ 949428 ] Show VSS dialogs only once
   Src: DirActions.cpp MainFrm.cpp MainFrm.h Merge.rc resource.h
