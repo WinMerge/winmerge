@@ -102,17 +102,17 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 void FixPath()
 {
 	CString strPath(getenv(_T("PATH")));
-	TCHAR path[MAX_PATH];
+	CString spath;
 	if (gbVerbose)
 		_tprintf(_T("Initial path: %s\r\n"), strPath);
 
 	strPath = _T("PATH=") + strPath;
-	split_filename(gsRCExe, path, NULL, NULL);
+	SplitFilename(gsRCExe, &spath, NULL, NULL);
 	strPath += _T(";");
-	strPath += path;
-	split_filename(gsLinkExe, path, NULL, NULL);
+	strPath += spath;
+	SplitFilename(gsLinkExe, &spath, NULL, NULL);
 	strPath += _T(";");
-	strPath += path;
+	strPath += spath;
 	strPath += _T(";");
 	putenv(strPath);
 	if (gbVerbose)
@@ -249,8 +249,8 @@ BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, C
 	CString strOutFolder(pszOutputPath);
 	CString strStem(pszOutputStem);
 
-	TCHAR szScriptDir[MAX_PATH];
-	split_filename(pszRCPath, szScriptDir, NULL, NULL);
+	CString sScriptDir;
+	SplitFilename(pszRCPath, &sScriptDir, NULL, NULL);
 
 	Status(IDS_CREATE_OUTDIR);
 	MkDirEx(strOutFolder);
@@ -412,7 +412,6 @@ void InitModulePaths()
 	if (gsVcBaseFolder.IsEmpty()
 		&& reg.Open(HKEY_CURRENT_USER, _T("Software\\Microsoft\\DevStudio\\6.0\\Directories")) == ERROR_SUCCESS)
 	{
-		TCHAR path[MAX_PATH], path2[MAX_PATH], path3[MAX_PATH], name[MAX_PATH];
 		gsVcBaseFolder = reg.ReadString(_T("Install Dirs"), _T(""));
 		reg.Close();
 		if (!gsVcBaseFolder.IsEmpty())
@@ -420,12 +419,13 @@ void InitModulePaths()
 			if (gsRCExe.IsEmpty())
 				gsRCExe.Format(_T("%s\\rc.exe"), gsVcBaseFolder);
 
-			split_filename(gsVcBaseFolder, path, name, NULL);
-			split_filename(path, path2, name, NULL);
-			split_filename(path2, path3, name, NULL);
-			gsVcBaseFolder = path3;
+			CString spath, spath2, spath3, sname;
+			SplitFilename(gsVcBaseFolder, &spath, &sname, NULL);
+			SplitFilename(spath, &spath2, &sname, NULL);
+			SplitFilename(spath2, &spath3, &sname, NULL);
+			gsVcBaseFolder = spath3;
 			if (gsLinkExe.IsEmpty())
-				gsLinkExe.Format(_T("%s\\vc98\\bin\\link.exe"), path3);
+				gsLinkExe.Format(_T("%s\\vc98\\bin\\link.exe"), spath3);
 		}
 	}
 
