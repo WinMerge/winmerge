@@ -3,7 +3,9 @@
   WinMerge: MergeDoc.cpp
  PATCH: [ 779005 ] No temp files when saving local temp files
   WinMerge: MergeDoc.cpp
-
+ Fix Register.bat comments. Batch files use ":" for comments...
+  ShellExtension: Register.bat
+  
 2003-07-29 Perry
  Some fixes to MergeChineseTraditional.rc from Koko
   Languages\ChineseTraditional\MergeChineseTraditional.rc
