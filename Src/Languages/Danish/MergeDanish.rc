@@ -326,23 +326,30 @@ BEGIN
                     7,279,84
 END
 
-IDD_VSS DIALOG DISCARDABLE  0, 0, 258, 149
+IDD_VSS DIALOGEX 0, 0, 257, 159
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Visual SourceSafe"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "",IDC_STATIC,7,7,244,47,SS_SUNKEN
+    LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    DEFPUSHBUTTON   "Check Out",IDOK,33,121,50,14
-    PUSHBUTTON      "Afbryd",IDCANCEL,173,121,50,14
-    PUSHBUTTON      "Gem som...",IDSAVEAS,103,121,50,14
-    LTEXT           "Projekt:",IDC_STATIC,9,61,25,8
-    COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN |
+    DEFPUSHBUTTON   "Check Out",IDOK,53,132,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,193,132,50,14
+    PUSHBUTTON      "Save As...",IDSAVEAS,123,132,50,14
+    LTEXT           "Project:",IDC_STATIC,9,81,25,8
+    COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Bruger:",IDC_STATIC,7,82,24,8
-    EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
-    LTEXT           "Password:",IDC_STATIC,127,79,34,8
-    EDITTEXT        IDC_PASSWORD,162,78,70,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "User:",IDC_STATIC,10,99,18,8
+    EDITTEXT        IDC_USER,48,96,58,14,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_STATIC,127,99,34,8
+    EDITTEXT        IDC_PASSWORD,162,97,70,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Database:",IDC_STATIC,9,64,33,13
+    COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,49,117,65,8
+    CONTROL         "Link to Destination VSS project",IDC_VCPROJ_SYNC,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,125,115,118,12
 END
 
 IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
@@ -1213,6 +1220,8 @@ BEGIN
     IDS_LINE_STATUS_INFO_EOL "Line: %s Column: %d Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH 
+                            "The VSS Working Folder and the location of the current file do not match. Continue?"
 END
 
 STRINGTABLE DISCARDABLE

@@ -124,9 +124,12 @@ public:
 	CString m_sPattern;
 	UINT m_nTabSize;
 	CString m_strVssPath;
-	CString m_strVssProject;
+	CString m_strVssProjectBase;
 	CString m_strVssUser;      // BSP - Visual Source Safe User ID
 	CString m_strVssPassword;      // BSP - Visual Source Safe Password
+	CString m_strVssDatabase;
+	CString m_strVssProjectFull;
+
 	int m_nVerSys;
 	BOOL m_bHideBak;
 	BOOL m_bScrollToFirst;
@@ -134,6 +137,8 @@ public:
 	BOOL m_bViewWhitespace;
 	CString m_strLeftDesc;
 	CString m_strRightDesc;
+	BOOL m_CheckOutMulti;
+	BOOL m_bVCProjSync;
 
 // Implementation data
 protected:
@@ -208,6 +213,8 @@ private:
 	void RedisplayAllDirDocs();
 	CMergeDoc * GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew);
 	CDirDoc * GetDirDocToShow(BOOL * pNew);
+	BOOL GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset = NULL);
+	BOOL ReLinkVCProj(CString strSavePath,CString * psError);
 };
 
 extern CMainFrame *mf;

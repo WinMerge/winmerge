@@ -26,6 +26,7 @@
 #define IDR_POPUP_EDITOR_HEADERBAR      115
 #define IDD_GENERATE_PATCH              116
 #define IDD_DIRCOLS                     117
+#define ID_FILE_VSSDATABASE             118
 #define IDS_VERSION_FMT                 130
 #define IDS_ALLFILES                    131
 #define IDS_CONFIRM_ALL_LEFT            132
@@ -224,11 +225,16 @@
 #define IDC_TRIVIAL_DIFF_COLOR          1078
 #define IDC_TRIVIAL_DIFF_DELETED_COLOR  1079
 #define IDC_FILES_DIRS_GROUP            1080
+#define IDC_DATABASE_LIST               1081
+#define IDC_MULTI_CHECKOUT              1082
+#define IDC_CHECK2                      1083
+#define IDC_VCPROJ_SYNC                 1084
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
 #define IDS_EMPTY_LINE_STATUS_INFO      8504
 #define IDS_LINE_STATUS_INFO            8505
+#define IDS_VSSFOLDER_AND_FILE_NOMATCH  8506
 #define IDD_EDIT_FIND                   8601
 #define IDD_EDIT_REPLACE                8602
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -457,7 +463,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        118
 #define _APS_NEXT_COMMAND_VALUE         32848
-#define _APS_NEXT_CONTROL_VALUE         1081
+#define _APS_NEXT_CONTROL_VALUE         1085
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

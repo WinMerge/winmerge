@@ -1,3 +1,9 @@
+2003-10-13 Kimmo
+ PATCH: [ 797502 ] Bugfix and new options for SourceSafe
+  WinMerge: DirActions.cpp MainFrm.h MainFrm.cpp Merge.rc resource.h
+   VssPrompt.h VssPrompt.cpp
+  Languages: resource.h *.rc
+
 2003-10-12 Kimmo
  PATCH: [ 817079 ] New Copy to Left/Right icons
   WinMerge/res: Toolbar.bmp

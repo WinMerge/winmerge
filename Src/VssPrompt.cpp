@@ -18,12 +18,18 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// VssPrompt.cpp : implementation file
-//
+/** 
+ * @file  VssPrompt.cpp
+ *
+ * @brief Code for CVssPrompt class
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "merge.h"
 #include "VssPrompt.h"
+#include "RegKey.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -37,6 +43,9 @@ static char THIS_FILE[] = __FILE__;
 
 CVssPrompt::CVssPrompt(CWnd* pParent /*=NULL*/)
 	: CDialog(CVssPrompt::IDD, pParent)
+	, m_strSelectedDatabase(_T(""))
+	, m_bMultiCheckouts(FALSE)
+	, m_bVCProjSync(FALSE)
 {
 	//{{AFX_DATA_INIT(CVssPrompt)
 	m_strProject = _T("");
@@ -57,6 +66,11 @@ void CVssPrompt::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_PASSWORD, m_strPassword);
 	DDX_Text(pDX, IDC_MESSAGE, m_strMessage);
 	//}}AFX_DATA_MAP
+	DDX_CBString(pDX, IDC_DATABASE_LIST, m_strSelectedDatabase);
+	DDX_Control(pDX, IDC_DATABASE_LIST, m_ctlDBCombo);
+	DDX_Check(pDX, IDC_MULTI_CHECKOUT, m_bMultiCheckouts);
+	DDX_Control(pDX, IDC_MULTI_CHECKOUT, m_ctlMultiCheckouts);
+	DDX_Check(pDX, IDC_VCPROJ_SYNC, m_bVCProjSync);
 }
 
 
@@ -75,6 +89,33 @@ BOOL CVssPrompt::OnInitDialog()
 	
 	m_ctlProject.LoadState(_T("Vss"));
 	
+	int i = 0;
+	int j = 0;
+	TCHAR cName[MAX_PATH];
+	TCHAR cString[MAX_PATH];
+	DWORD cssize = MAX_PATH;
+	DWORD csize = MAX_PATH;
+	CRegKeyEx reg;
+
+	ZeroMemory(&cName, MAX_PATH * sizeof(TCHAR));
+	ZeroMemory(&cString, MAX_PATH * sizeof(TCHAR));
+
+	reg.Open(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\Microsoft\\SourceSafe\\Databases"));
+	HKEY hreg = reg.GetKey();
+	LONG retval = ERROR_SUCCESS;	
+	while (retval == ERROR_SUCCESS || retval == ERROR_MORE_DATA)
+	{
+		if (_tcslen(cString) > 0 && _tcslen(cName) > 0)
+		{
+			m_ctlDBCombo.InsertString(j, (LPCTSTR)cString);		
+			j++;
+		}
+		retval = RegEnumValue(hreg, i, (LPTSTR)&cName, &csize, NULL, 
+				NULL, (LPBYTE)&cString, &cssize);		
+		cssize = MAX_PATH;
+		csize = MAX_PATH;
+		i++;
+	}
 	return TRUE;  
 }
 
@@ -89,7 +130,6 @@ void CVssPrompt::OnOK()
 	}
 
 	m_ctlProject.SaveState(_T("Vss"));
-	
 	CDialog::OnOK();
 }
 

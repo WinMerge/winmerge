@@ -1,16 +1,40 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  VssPrompt.h
+ *
+ * @brief Declaration file for CVssPrompt
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #if !defined(AFX_VSSPROMPT_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_)
 #define AFX_VSSPROMPT_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_
 
 #if _MSC_VER >= 1000
 #pragma once
 #endif // _MSC_VER >= 1000
-// VssPrompt.h : header file
-//
+
 #include "SuperComboBox.h"
+#include "afxwin.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CVssPrompt dialog
-
+/**
+ * @brief Class for VSS dialog
+ */
 class CVssPrompt : public CDialog
 {
 // Construction
@@ -45,6 +69,12 @@ protected:
 	afx_msg void OnSaveas();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	CString m_strSelectedDatabase;
+	CComboBox m_ctlDBCombo;
+	BOOL m_bMultiCheckouts;
+	CButton m_ctlMultiCheckouts;
+	BOOL m_bVCProjSync;
 };
 
 //{{AFX_INSERT_LOCATION}}

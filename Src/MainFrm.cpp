@@ -144,10 +144,11 @@ CMainFrame::CMainFrame()
 	m_bScrollToFirst = theApp.GetProfileInt(_T("Settings"), _T("ScrollToFirst"), FALSE)!=0;
 	m_bHideBak = theApp.GetProfileInt(_T("Settings"), _T("HideBak"), TRUE)!=0;
 	m_nVerSys = theApp.GetProfileInt(_T("Settings"), _T("VersionSystem"), 0);
-	m_strVssProject = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
+	m_strVssProjectBase = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
 	m_strVssUser = theApp.GetProfileString(_T("Settings"), _T("VssUser"), _T(""));
 	m_strVssPassword = theApp.GetProfileString(_T("Settings"), _T("VssPassword"), _T(""));
 	m_strVssPath = theApp.GetProfileString(_T("Settings"), _T("VssPath"), _T(""));
+	m_strVssDatabase = theApp.GetProfileString(_T("Settings"), _T("VssDatabase"),_T(""));
 	m_nTabSize = theApp.GetProfileInt(_T("Settings"), _T("TabSize"), 4);
 	m_nTabType = theApp.GetProfileInt(_T("Settings"), _T("TabType"), 0);
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
@@ -451,6 +452,116 @@ void CMainFrame::OnHelpGnulicense()
 }
 
 /**
+ * @brief Reads words from a file deliminated by charset
+ *
+ * Reads words from a file deliminated by charset with one slight twist.
+ * If the next char in the file to be read is one of the characters inside the delimator,
+ * then the word returned will be a word consisting only of delimators.
+ * 
+ * @note pfile is not incremented past the word returned
+ */
+BOOL CMainFrame::GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset)
+{
+	TCHAR cbuffer[1024];
+	TCHAR ctemp = '\0';
+	TCHAR * pcharset;
+	int buffercount = 0;
+	DWORD numread = sizeof(ctemp);
+	BOOL delimword = FALSE;
+	BOOL FirstRead = FALSE;
+	BOOL delimMatch = FALSE;
+
+	ZeroMemory(&cbuffer, sizeof(cbuffer));
+	
+	while (numread == sizeof(ctemp) && pfile != INVALID_HANDLE_VALUE && buffercount < sizeof(cbuffer))
+	{
+		if (ReadFile(pfile, (LPVOID)&ctemp, sizeof(ctemp), &numread, NULL) == TRUE)
+		{
+			//first read:
+			if (!FirstRead && charset)
+			{
+				for (pcharset = charset; *pcharset; pcharset++)
+				{
+					if (ctemp == *pcharset)
+						break;
+				}
+				if (*pcharset != NULL)//means that cbuffer[0] is a delimator character
+					delimword = TRUE;
+				FirstRead = TRUE;
+			}
+
+			if (numread == sizeof(ctemp))
+			{
+				if (!charset)
+				{
+					if (ctemp != ' ' && ctemp != '\n' && ctemp != '\t' && ctemp != '\r')
+					{
+						cbuffer[buffercount] = ctemp;
+						buffercount++;
+					}
+					else
+					{
+						SetFilePointer(pfile,-1,NULL,FILE_CURRENT);
+						break;
+					}
+				}
+				else if (delimword == FALSE)
+				{
+					for (pcharset = charset;*pcharset;pcharset++)
+					{						
+						//if next char is equal to a delimator or we want delimwords stop the adding
+						if (ctemp == *pcharset)
+						{
+							SetFilePointer(pfile,-1,NULL,FILE_CURRENT);
+							break;
+						}
+					}
+					if (*pcharset == NULL)
+					{
+						cbuffer[buffercount] = ctemp;
+						buffercount++;
+					}
+					else
+						break;
+				}
+				else if (delimword == TRUE)
+				{
+					delimMatch = FALSE;
+					for (pcharset = charset;*pcharset;pcharset++)
+					{						
+						//if next char is equal to a delimator or we want delimwords stop the adding
+						if (ctemp == *pcharset)
+						{
+							delimMatch = TRUE;
+							break;
+						}
+					}
+					if (delimMatch == TRUE)
+					{
+						cbuffer[buffercount] = ctemp;
+						buffercount++;
+					}
+					else
+					{
+                        SetFilePointer(pfile,-1,NULL,FILE_CURRENT);
+						break;
+					}
+				}
+			}
+		}
+		else
+		{
+			DWORD err = GetLastError();
+			return FALSE;
+		}
+	}
+	_tcscpy(buffer, cbuffer);
+	if (pfile == INVALID_HANDLE_VALUE || buffercount >= sizeof(cbuffer) || numread == 0)
+		return FALSE;
+	return TRUE;
+}
+
+/**
 * @brief Check if file is read-only and save to version control if one is used.
 *
 *
@@ -544,16 +655,16 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			// prompt for user choice
 		CVssPrompt dlg;
 			dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
-		dlg.m_strProject = m_strVssProject;
+		dlg.m_strProject = m_strVssProjectBase;
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
 		dlg.m_strPassword = m_strVssPassword;
 		userChoice = dlg.DoModal();
 		// process versioning system specific action
-		if(userChoice==IDOK)
+		if (userChoice==IDOK)
 		{
 			CWaitCursor wait;
-			m_strVssProject = dlg.m_strProject;
-			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), mf->m_strVssProject);
+			m_strVssProjectBase = dlg.m_strProject;
+			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), mf->m_strVssProjectBase);
 			CString spath, sname;
 			SplitFilename(strSavePath, &spath, &sname, 0);
 			if (!spath.IsEmpty())
@@ -562,7 +673,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				_tchdir(spath);
 			}
 			CString args;
-			args.Format(_T("checkout %s/%s"), m_strVssProject, sname);
+			args.Format(_T("checkout \"%s/%s\""), m_strVssProjectBase, sname);
 			HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
 			if (hVss!=INVALID_HANDLE_VALUE)
 			{
@@ -588,20 +699,41 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 	{
 		// prompt for user choice
 		CVssPrompt dlg;
+		CRegKeyEx reg;
+		CString spath, sname;
+
 		dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
-		dlg.m_strProject = m_strVssProject;
+		dlg.m_strProject = m_strVssProjectBase;
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
 		dlg.m_strPassword = m_strVssPassword;
-		userChoice = dlg.DoModal();
+		dlg.m_strSelectedDatabase = m_strVssDatabase;
+		dlg.m_bVCProjSync = TRUE;
+
+		if (!m_CheckOutMulti)
+		{											
+			dlg.m_bMultiCheckouts = FALSE;
+			//this is when we get the multicheck variable
+			userChoice = dlg.DoModal();
+			m_CheckOutMulti = dlg.m_bMultiCheckouts;
+		}
+		else//skip
+		{
+			userChoice = IDOK;
+		}
+
 		// process versioning system specific action
-		if(userChoice==IDOK)
+		if (userChoice == IDOK)
 		{
 			CWaitCursor wait;
-			m_strVssProject = dlg.m_strProject;
+			BOOL bOpened = FALSE;
+			m_strVssProjectBase = dlg.m_strProject;
 			m_strVssUser = dlg.m_strUser;
 			m_strVssPassword = dlg.m_strPassword;
+			m_strVssDatabase = dlg.m_strSelectedDatabase;
+			m_bVCProjSync = dlg.m_bVCProjSync;					
 
-			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_strVssProject);
+			theApp.WriteProfileString(_T("Settings"), _T("VssDatabase"), m_strVssDatabase);
+			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_strVssProjectBase);
 			theApp.WriteProfileString(_T("Settings"), _T("VssUser"), m_strVssUser);
 			theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword);
 
@@ -621,14 +753,75 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				eOleException->Delete();
 			}
 
-            // BSP - Open the specific VSS data file  using info from VSS dialog box
-			vssdb.Open(m_strVssPath, m_strVssUser, m_strVssPassword);
+			//check if m_strVSSDatabase is specified:
+			if (m_strVssDatabase.GetLength() > 0)
+			{
+				CString iniPath = m_strVssDatabase + _T("\\srcsafe.ini");
+	            // BSP - Open the specific VSS data file  using info from VSS dialog box
+					vssdb.Open(iniPath, m_strVssUser, m_strVssPassword);														
+					bOpened = TRUE;
+			}
+			
+			if (bOpened == FALSE)
+			{
+				// BSP - Open the specific VSS data file  using info from VSS dialog box
+				//let vss try to find one if not specified
+				vssdb.Open(NULL, m_strVssUser, m_strVssPassword);
+			}
 
-			CString spath, sname;
 			SplitFilename(strSavePath, &spath, &sname, 0);
 
+			//check if m_strVssProjectBase has leading $\\, if not put them in:
+			if ((m_strVssProjectBase[0] != '$' && m_strVssProjectBase[1] != '\\') ||
+				(m_strVssProjectBase[0] != '$' && m_strVssProjectBase[1] != '/'))
+			{
+				CString temp = _T("$\\") + m_strVssProjectBase;
+				m_strVssProjectBase = temp;
+			}
+
             // BSP - Combine the project entered on the dialog box with the file name...
-			CString strItem = m_strVssProject + '/' + sname;
+			const UINT nBufferSize = 1024;
+			static TCHAR buffer[nBufferSize];
+			static TCHAR buffer1[nBufferSize];
+			static TCHAR buffer2[nBufferSize];
+
+			_tcscpy(buffer1, strSavePath);
+			_tcscpy(buffer2, m_strVssProjectBase);
+			_tcslwr(buffer1);
+			_tcslwr(buffer2);
+
+			//make sure they both have \\ instead of /
+			for (int k = 0; k < nBufferSize; k++)
+			{
+				if (buffer1[k] == '/')
+					buffer1[k] = '\\';
+				if (buffer2[k] == '/')
+					buffer2[k] = '\\';
+			}
+			
+			//take out last '\\'
+			int strlb2 = _tcslen(buffer2);
+			if (buffer2[strlb2-1] == '\\')
+				buffer2[strlb2-1] = '\0';
+			m_strVssProjectBase = buffer2;
+			TCHAR * pbuf2 = &buffer2[2];//skip the $/
+			TCHAR * pdest =  _tcsstr(buffer1, pbuf2);
+			if (pdest)
+			{
+				int index  = (int)(pdest - buffer1 + 1);
+			
+				_tcscpy(buffer, buffer1);
+				TCHAR * fp = &buffer[int(index + _tcslen(pbuf2))];
+				sname = fp;
+
+				if (sname[0] == ':')
+				{
+					_tcscpy(buffer2, sname);
+					_tcscpy(buffer, (TCHAR*)&buffer2[2]);
+					sname = buffer;
+				}
+			}
+			CString strItem = m_strVssProjectBase + '\\' + sname;
 
             //  BSP - ...to get the specific source safe item to be checked out
 			m_vssi = vssdb.GetVSSItem( strItem, 0 );
@@ -640,10 +833,13 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			if (strLocalSpec.CompareNoCase(strSavePath))
 			{
 			   // BSP - if the directories are different, let the user confirm the CheckOut
-				int iRes = AfxMessageBox(_T("The VSS Working Folder and the location of the current file do not match.  Continue?"), MB_YESNO);
+				int iRes = AfxMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, MB_YESNO);
 
 				if (iRes != IDYES)
+				{
+					m_CheckOutMulti = FALSE;//reset, we don't want 100 of the same errors
 					return FALSE;   // BSP - if not Yes, bail.
+				}
 			}
 
             // BSP - Finally! Check out the file!
@@ -657,7 +853,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		CCCPrompt dlg;
 		userChoice = dlg.DoModal();
 		// process versioning system specific action
-		if(userChoice == IDOK)
+		if (userChoice == IDOK)
 		{
 			CWaitCursor wait;
 			CString spath, sname;
@@ -1203,10 +1399,241 @@ BOOL CMainFrame::DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
 		return FALSE;
 	}
 	
-	// tell the dir view to update itself
-	return TRUE;
+	// If VC project opened from VSS sync first
+	if (m_bVCProjSync)
+		return ReLinkVCProj(strSavePath, psError);
+	else
+		return TRUE;
 }
 
+BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
+{
+	const UINT nBufferSize = 1024;
+	static TCHAR buffer[nBufferSize];
+	static TCHAR buffer1[nBufferSize];
+	static TCHAR buffer2[nBufferSize];
+	TCHAR tempPath[MAX_PATH] = {0};
+	TCHAR tempFile[MAX_PATH] = {0};
+	CString spath;
+	BOOL bVCPROJ = FALSE;
+
+	if (::GetTempPath(MAX_PATH, tempPath))
+	{
+		if (!::GetTempFileName(tempPath, _T ("_LT"), 0, tempFile))
+			return FALSE;
+	}
+	else
+	{
+		return FALSE;
+	}
+
+	_tsplitpath((LPCTSTR)strSavePath, NULL, NULL, NULL, buffer);
+	if (!_tcscmp(buffer, _T(".vcproj")) || !_tcscmp(buffer, _T(".sln")))
+	{
+		if (!_tcscmp(buffer,_T(".vcproj")))
+			bVCPROJ = TRUE;
+		SplitFilename(strSavePath, &spath, NULL, NULL);
+		
+		//check if m_strVssProjectBase has leading $\\, if not put them in:
+		if ((m_strVssProjectBase[0] != '$' && m_strVssProjectBase[1] != '\\') ||
+			(m_strVssProjectBase[0] != '$' && m_strVssProjectBase[1] != '/'))
+		{
+			CString temp = _T("$/") + m_strVssProjectBase;
+			m_strVssProjectBase = temp;
+		}
+		_tcscpy(buffer1, strSavePath);
+		_tcscpy(buffer2, m_strVssProjectBase);
+		_tcslwr(buffer1);
+		_tcslwr(buffer2);
+
+		//make sure they both have \\ instead of /
+		for (int k = 0; k < nBufferSize; k++)
+		{
+			if (buffer1[k] == '\\')
+				buffer1[k] = '/';
+			if (buffer2[k] == '\\')
+				buffer2[k] = '/';
+		}
+		
+		//take out last '\\'
+		int strlb2 = _tcslen(buffer2);
+		if (buffer2[strlb2-1] == '/')
+			buffer2[strlb2-1] = '\0';
+		m_strVssProjectBase  =buffer2;
+
+		TCHAR * pbuf2 = &buffer2[2];//skip the $/
+		TCHAR * pdest = _tcsstr(buffer1, pbuf2);
+
+		if (pdest)
+		{
+			int index  = (int)(pdest - buffer1 + 1);
+		
+			_tcscpy(buffer,buffer1);
+			TCHAR * fp = &buffer[int(index + _tcslen(pbuf2))];
+			m_strVssProjectFull = fp;
+
+			if (m_strVssProjectFull[0] == ':')
+			{
+				_tcscpy(buffer2,m_strVssProjectFull);
+				_tcscpy(buffer, (TCHAR*)&buffer2[2]);
+				m_strVssProjectFull = buffer;
+			}
+		}
+
+		SplitFilename(m_strVssProjectFull, &spath, NULL, NULL);
+		if (!(m_strVssProjectBase[m_strVssProjectBase.GetLength()-1] == '\\' ||
+			m_strVssProjectBase[m_strVssProjectBase.GetLength()-1] == '/'))
+		{
+			m_strVssProjectBase += "/";
+		}
+
+		m_strVssProjectFull = m_strVssProjectBase + spath;
+		
+		//if sln file, we need to replace ' '  with _T("\\u0020")
+		if (!bVCPROJ)
+		{
+			_tcscpy(buffer, m_strVssProjectFull);
+			ZeroMemory(&buffer1, nBufferSize * sizeof(TCHAR));
+			ZeroMemory(&buffer2, nBufferSize * sizeof(TCHAR));
+			for (TCHAR * pc = buffer; *pc; pc++)
+			{
+				if (*pc == ' ')//insert \\u0020
+				{
+					_stprintf(buffer1, _T("%s\\u0020"), buffer2);
+					_tcscpy(buffer2, buffer1);
+				}
+				else
+				{
+					int slb2 = _tcslen(buffer2);
+					buffer2[slb2] = *pc;
+					buffer2[slb2+1] = '\0';
+				}
+			}
+			m_strVssProjectFull = buffer2;
+		}
+
+		HANDLE hfile;
+		HANDLE tfile;
+		SetFileAttributes(strSavePath, FILE_ATTRIBUTE_NORMAL);
+		
+		hfile = CreateFile(strSavePath,
+                GENERIC_ALL,              // open for writing
+                FILE_SHARE_READ,           // share for reading 
+                NULL,                      // no security 
+                OPEN_EXISTING,             // existing file only 
+                FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN,     // normal file 
+                NULL);
+		tfile = CreateFile(tempFile,
+                GENERIC_ALL,              // open for writing
+                FILE_SHARE_READ,           // share for reading 
+                NULL,                      // no security 
+                CREATE_ALWAYS,             // existing file only 
+                FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN,     // normal file 
+                NULL);  
+		static TCHAR charset[] = _T(" \t\n\r=");
+		DWORD numwritten = 0;
+	
+		ZeroMemory(&buffer2, nBufferSize * sizeof(TCHAR));
+		while (GetWordFile(hfile, buffer, charset))
+		{
+			WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
+			if (bVCPROJ)
+			{
+				if (!_tcscmp(buffer, _T("SccProjectName")))
+				{
+					//nab the equals sign
+					GetWordFile(hfile, buffer, _T("="));
+					WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
+					CString stemp = _T("\"&quot;") + m_strVssProjectFull + 
+						_T("&quot;");
+					WriteFile(tfile, stemp, stemp.GetLength(),
+						&numwritten, NULL);
+					GetWordFile(hfile, buffer, _T(",\n"));//for junking
+					GetWordFile(hfile, buffer, _T(",\n"));//get the next delimator
+					if (!_tcscmp(buffer, _T("\n")))
+					{
+						WriteFile(tfile, _T("\""), 1, &numwritten, NULL);						
+					}
+					WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
+				}
+			}
+			else
+			{//sln file
+				//find sccprojectname inside this string
+				if (_tcsstr(buffer, _T("SccProjectUniqueName")) == buffer)
+				{
+					//nab until next no space, and no =
+					GetWordFile(hfile, buffer, _T(" ="));
+					WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
+					//nab word
+					GetWordFile(hfile, buffer, _T("\\\n."));
+					while (!_tcsstr(buffer, _T(".")))
+					{						
+						if (buffer[0] != '\\')
+						{
+							_stprintf(buffer1, _T("%s/%s"), buffer2, buffer);//put append word to file
+							_tcscpy(buffer2,buffer1);
+						}
+						WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
+						GetWordFile(hfile, buffer, _T("\\\n."));
+					}
+					WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
+				}
+				else if (_tcsstr(buffer, _T("SccProjectName")) == buffer)
+				{
+					
+					//buffer2 appends
+					CString capp;
+					if (buffer2[0] != '\\' && !_tcsstr(buffer2, _T(".")))
+					{
+						//write out \\u0020s for every space in buffer2
+						ZeroMemory(&buffer1, nBufferSize * sizeof(TCHAR));
+						ZeroMemory(&buffer, nBufferSize * sizeof(TCHAR));
+						for (TCHAR * pc = buffer2; *pc; pc++)
+						{
+							if (*pc == ' ')//insert \\u0020
+							{
+								_stprintf(buffer, _T("%s\\u0020"), buffer1);
+								_tcscpy(buffer1, buffer);
+							}
+							else
+							{
+								int slb2 = _tcslen(buffer1);
+								buffer1[slb2] = *pc;
+								buffer1[slb2+1] = '\0';
+							}
+						}
+						_tcslwr(buffer1);
+						capp = buffer1;
+						
+						//nab until the no space, and no =
+						GetWordFile(hfile, buffer, _T(" ="));
+						WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
+						CString stemp =  _T("\\u0022") + m_strVssProjectFull + capp + _T("\\u0022");
+						WriteFile(tfile, stemp, stemp.GetLength(),
+							&numwritten, NULL);
+						
+						//nab until the first backslash
+						GetWordFile(hfile, buffer, _T(","));
+						ZeroMemory(&buffer2, nBufferSize * sizeof(TCHAR));						
+					}
+				}
+			}
+		}
+		CloseHandle(hfile);
+		CloseHandle(tfile);
+		if (!CopyFile(tempFile, strSavePath, FALSE))
+		{
+			*psError = GetSysError(GetLastError());
+			return FALSE;
+		}
+		else
+		{
+			DeleteFile(tempFile);
+		}
+	}
+	return TRUE;
+}
 
 void CMainFrame::OnViewSelectfont() 
 {

@@ -82,15 +82,15 @@ BEGIN
         MENUITEM "KopÌrovaù na druh˙ stranu",   ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "KopÌrovaù z druhej strany",   ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "KopÌrovaù vöetky rozdiely na druh˙ stranu...",
+        MENUITEM "KopÌrovaù v?etky rozdiely na druh˙ stranu...",
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
 
-        MENUITEM "KopÌrovaù vöetky rozdiely z druhej strany...",
+        MENUITEM "KopÌrovaù v?etky rozdiely z druhej strany...",
                                                 ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
         MENUITEM SEPARATOR
         MENUITEM "Sp‰ù",                        ID_UNDO
         MENUITEM SEPARATOR
-        MENUITEM "Uloûiù zmeny...",             ID_POPUP_SAVE
+        MENUITEM "Ulo?iù zmeny...",             ID_POPUP_SAVE
     END
 END
 
@@ -99,7 +99,7 @@ BEGIN
     POPUP "&S˙bor"
     BEGIN
         MENUITEM "&Otvoriù...\tCtrl+O",         ID_FILE_OPEN
-        MENUITEM "&Uloûiù\tCtrl+S",             ID_FILE_SAVE
+        MENUITEM "&Ulo?iù\tCtrl+S",             ID_FILE_SAVE
         POPUP "Save &Left"
         BEGIN
             MENUITEM "&Save",                       ID_FILE_SAVE_LEFT
@@ -130,7 +130,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "V&ystrihn˙ù\tCtrl+X",         ID_EDIT_CUT
         MENUITEM "&KopÌrovaù\tCtrl+C",          ID_EDIT_COPY
-        MENUITEM "V&loûiù\tCtrl+V",             ID_EDIT_PASTE
+        MENUITEM "V&lo?iù\tCtrl+V",             ID_EDIT_PASTE
         MENUITEM SEPARATOR
         MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
@@ -152,7 +152,7 @@ BEGIN
         MENUITEM "Skryù s˙bory s prÌponou *.&BAK", ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "&Zvoliù pÌsmo...",            ID_VIEW_SELECTFONT
-        MENUITEM "Pouûiù z·kladnÈ pÌsm&o",      ID_VIEW_USEDEFAULTFONT
+        MENUITEM "Pou?iù z·kladnÈ pÌsm&o",      ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "&Zobraz pr·zdne miesto",      ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
@@ -177,8 +177,8 @@ BEGIN
         MENUITEM "Copy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
         MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
         MENUITEM SEPARATOR
-        MENUITEM "KopÌrovaù vöetko vpravo",     ID_ALL_RIGHT
-        MENUITEM "KopÌrovaù vöetko væavo",      ID_ALL_LEFT
+        MENUITEM "KopÌrovaù v?etko vpravo",     ID_ALL_RIGHT
+        MENUITEM "KopÌrovaù v?etko væavo",      ID_ALL_LEFT
     END
     POPUP "&Tools"
     BEGIN
@@ -189,8 +189,8 @@ BEGIN
     BEGIN
         MENUITEM "Zavrieù",                     ID_FILE_CLOSE
         MENUITEM SEPARATOR
-        MENUITEM "Dlaûdice &vodorovne",         ID_WINDOW_TILE_HORZ
-        MENUITEM "Dlaûdice &zvislo",            ID_WINDOW_TILE_VERT
+        MENUITEM "Dla?dice &vodorovne",         ID_WINDOW_TILE_HORZ
+        MENUITEM "Dla?dice &zvislo",            ID_WINDOW_TILE_VERT
         MENUITEM "&Kask·da",                    ID_WINDOW_CASCADE
     END
     POPUP "Po&moc"
@@ -289,8 +289,8 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
     LTEXT           "Verzia 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
-    LTEXT           "Vöetky pr·va vyhradenÈ.",IDC_STATIC,7,60,170,8
-    LTEXT           "NavötÌvte www str·nku programu WinMerge!",IDC_WWW,7,107,
+    LTEXT           "V?etky pr·va vyhradenÈ.",IDC_STATIC,7,60,170,8
+    LTEXT           "Nav?tÌvte www str·nku programu WinMerge!",IDC_WWW,7,107,
                     184,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
     LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
@@ -326,23 +326,30 @@ BEGIN
                     303,84
 END
 
-IDD_VSS DIALOG DISCARDABLE  0, 0, 258, 149
+IDD_VSS DIALOGEX 0, 0, 257, 159
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Visual SourceSafe"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "",IDC_STATIC,7,7,244,47,SS_SUNKEN
+    LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    DEFPUSHBUTTON   "Skontrolovaù",IDOK,33,121,50,14
-    PUSHBUTTON      "Storno",IDCANCEL,173,121,50,14
-    PUSHBUTTON      "Uloûiù ako...",IDSAVEAS,103,121,50,14
-    LTEXT           "Projekt:",IDC_STATIC,9,61,25,8
-    COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN |
+    DEFPUSHBUTTON   "Check Out",IDOK,53,132,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,193,132,50,14
+    PUSHBUTTON      "Save As...",IDSAVEAS,123,132,50,14
+    LTEXT           "Project:",IDC_STATIC,9,81,25,8
+    COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Login:",IDC_STATIC,9,80,20,8
-    EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
-    LTEXT           "Password:",IDC_STATIC,127,80,34,8
-    EDITTEXT        IDC_PASSWORD,162,78,70,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "User:",IDC_STATIC,10,99,18,8
+    EDITTEXT        IDC_USER,48,96,58,14,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_STATIC,127,99,34,8
+    EDITTEXT        IDC_PASSWORD,162,97,70,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Database:",IDC_STATIC,9,64,33,13
+    COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,49,117,65,8
+    CONTROL         "Link to Destination VSS project",IDC_VCPROJ_SYNC,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,125,115,118,12
 END
 
 IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
@@ -373,7 +380,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,41,108,10
     CONTROL         "Ignorovaù m&alÈ/VEºK…",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,52,108,10
-    CONTROL         "&Nezobrazuj sp˙öùacÌ banner",IDC_DISABLE_SPLASH,"Button",
+    CONTROL         "&Nezobrazuj sp˙?ùacÌ banner",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,63,105,10
     CONTROL         "AutomatickÈ p&reskenovanie",IDC_AUTOMRESCAN_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,74,101,10
@@ -420,7 +427,7 @@ BEGIN
                     WS_TABSTOP
     CONTROL         "Iba celÈ &slov·",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
-    CONTROL         "Rozliöuj &veækÈ/malÈ",IDC_EDIT_MATCH_CASE,"Button",
+    CONTROL         "Rozli?uj &veækÈ/malÈ",IDC_EDIT_MATCH_CASE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,40,99,12
     CONTROL         "&Regul·rny v˝raz",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,54,77,12
@@ -428,7 +435,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,111,36,59,12
     CONTROL         "Na&dol",IDC_EDIT_DIRECTION_DOWN,"Button",
                     BS_AUTORADIOBUTTON,111,48,59,12
-    DEFPUSHBUTTON   "&N·jdi ÔalöÌ",IDOK,182,5,50,14,WS_GROUP
+    DEFPUSHBUTTON   "&N·jdi Ôal?Ì",IDOK,182,5,50,14,WS_GROUP
     PUSHBUTTON      "Storno",IDCANCEL,182,23,50,14
     LTEXT           "&Hæadaj:",IDC_STATIC,4,8,36,8
     GROUPBOX        "Smer hæadania",IDC_STATIC,107,26,68,38,WS_GROUP
@@ -445,7 +452,7 @@ BEGIN
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Iba celÈ slov·",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
-    CONTROL         "Rozliöuj veækÈ/malÈ",IDC_EDIT_MATCH_CASE,"Button",
+    CONTROL         "Rozli?uj veækÈ/malÈ",IDC_EDIT_MATCH_CASE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,60,88,12
     CONTROL         "Regul·rny v˝raz",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,74,86,12
@@ -453,9 +460,9 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,102,57,59,10
     CONTROL         "Celom s˙bore",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
                     BS_AUTORADIOBUTTON,102,70,58,10
-    DEFPUSHBUTTON   "N·jdi ÔalöÌ",IDC_EDIT_SKIP,174,4,52,14,WS_GROUP
+    DEFPUSHBUTTON   "N·jdi Ôal?Ì",IDC_EDIT_SKIP,174,4,52,14,WS_GROUP
     PUSHBUTTON      "NahraÔ",IDC_EDIT_REPLACE,174,21,52,14
-    PUSHBUTTON      "NahraÔ vöetko",IDC_EDIT_REPLACE_ALL,174,38,52,14
+    PUSHBUTTON      "NahraÔ v?etko",IDC_EDIT_REPLACE_ALL,174,38,52,14
     PUSHBUTTON      "Storno",IDCANCEL,174,55,52,14
     LTEXT           "&Hæadaj:",IDC_STATIC,4,9,48,8
     LTEXT           "Nahradiù:",IDC_STATIC,4,26,48,8
@@ -880,9 +887,9 @@ END
 STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDS_VERSION_FMT         "Verzia %1 - Slovensk˝ preklad"
-    IDS_ALLFILES            "Vöetky s˙bory (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "Naozaj chcete skopÌrovaù vöetky rozdiely do s˙boru væavo?"
-    IDS_CONFIRM_ALL_RIGHT   "Naozaj chcete skopÌrovaù vöetky rozdiely do s˙boru vpravo?"
+    IDS_ALLFILES            "V?etky s˙bory (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "Naozaj chcete skopÌrovaù v?etky rozdiely do s˙boru væavo?"
+    IDS_CONFIRM_ALL_RIGHT   "Naozaj chcete skopÌrovaù v?etky rozdiely do s˙boru vpravo?"
     IDS_ERRORS_TITLE        "%1 ch˝b"
     IDS_CONFIRM_COPY2DIR    "Naozaj chcete kopÌrovaù vybran˝ s˙bor do %1?"
     IDS_FONT_CHANGE         "Zvolen· zmena pÌsma sa neprejavÌ v pr·ve zobrazen˝ch paneloch."
@@ -892,7 +899,7 @@ BEGIN
     IDS_BIN_FILES_DIFF      "Bin·rne s˙bory s˙ rozdielne"
     IDS_ONLY_IN_FMT         "Iba v %1"
     IDS_IDENTICAL           "IdentickÈ"
-    IDS_CANT_COMPARE_FILES  "Nemoûno porovnaù s˙bory"
+    IDS_CANT_COMPARE_FILES  "Nemo?no porovnaù s˙bory"
 END
 
 STRINGTABLE PRELOAD DISCARDABLE
@@ -917,8 +924,8 @@ BEGIN
     ID_FILE_NEW             "Vytvoriù nov˝ dokument\nNov˝ dokument"
     ID_FILE_OPEN            "Otvoriù existuj˙ci dokument\nOtvor"
     ID_FILE_CLOSE           "Zatvoriù aktÌvny dokument\nZatvor"
-    ID_FILE_SAVE            "Uloûiù aktÌvny dokument\nUloû"
-    ID_FILE_SAVE_AS         "Uloûiù aktÌvny dokument pod nov˝m menom\nUloû ako"
+    ID_FILE_SAVE            "Ulo?iù aktÌvny dokument\nUlo?"
+    ID_FILE_SAVE_AS         "Ulo?iù aktÌvny dokument pod nov˝m menom\nUlo? ako"
     ID_FILE_PAGE_SETUP      "Zmeniù parametre tlaËe\nNastavenie tlaËe"
     ID_FILE_PRINT_SETUP     "Zmeniù tlaËiareÚ a parametre tlaËe\nNastavenie tlaËiarne"
     ID_FILE_PRINT           "VytlaËiù aktÌvny dokument\nTlaË"
@@ -929,7 +936,7 @@ END
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_APP_ABOUT            "Zobraziù inform·cie o programe\nO programe"
-    ID_APP_EXIT             "UkonËiù program s ot·zkou na uloûenie s˙borov\nKoniec"
+    ID_APP_EXIT             "UkonËiù program s ot·zkou na ulo?enie s˙borov\nKoniec"
 END
 
 STRINGTABLE DISCARDABLE
@@ -955,17 +962,17 @@ END
 // ID_NEXT_PANE SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_NEXT_PANE            "Peepn˙ù na Ôalöie okno\nœalöie okno"
+    ID_NEXT_PANE            "Peepn˙ù na Ôal?ie okno\nœal?ie okno"
     ID_PREV_PANE            "Prepn˙ù na predch·dzaj˙ce okno\nPredch·dzaj˙ce okno"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_WINDOW_NEW           "Otvoriù Ôalöie okno s aktu·lnym dokumentom\nNovÈ okno"
+    ID_WINDOW_NEW           "Otvoriù Ôal?ie okno s aktu·lnym dokumentom\nNovÈ okno"
     ID_WINDOW_ARRANGE       "Uspoiadaù ikony na spodnom okraji okna\nUsporiadaj ikony"
     ID_WINDOW_CASCADE       "Kask·da\nKask·da"
-    ID_WINDOW_TILE_HORZ     "Dlaûdice vodorovne\nDlaûdice"
-    ID_WINDOW_TILE_VERT     "Dlaûdice zvislo\nDlaûdice"
+    ID_WINDOW_TILE_HORZ     "Dla?dice vodorovne\nDla?dice"
+    ID_WINDOW_TILE_VERT     "Dla?dice zvislo\nDla?dice"
     ID_WINDOW_SPLIT         "Rozdeliù aktÌvne okno\nRozdeliù"
 END
 
@@ -973,14 +980,14 @@ END
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_EDIT_CLEAR           "Vymazaù v˝ber\nZmazaù"
-    ID_EDIT_CLEAR_ALL       "Zmazaù vöetko\nZmazaù vöetko"
+    ID_EDIT_CLEAR_ALL       "Zmazaù v?etko\nZmazaù v?etko"
     ID_EDIT_COPY            "KopÌrovaù v˝ber do schr·nky\nKopÌrovaù"
     ID_EDIT_CUT             "Presun˙ù v˝ber do schr·nky\nVystrihn˙ù"
     ID_EDIT_FIND            "N·jsù text\nN·jdi"
-    ID_EDIT_PASTE           "Vloûiù obsah schr·nky\nVloûiù"
+    ID_EDIT_PASTE           "Vlo?iù obsah schr·nky\nVlo?iù"
     ID_EDIT_REPEAT          "Opakovaù posledn˙ akciu\nOpakuj"
     ID_EDIT_REPLACE         "Nahradiù text\nNahradiù"
-    ID_EDIT_SELECT_ALL      "Vybraù vöetko\nVybraù vöetko"
+    ID_EDIT_SELECT_ALL      "Vybraù v?etko\nVybraù v?etko"
     ID_EDIT_UNDO            "Odvolaù posledn˙ akciu\nUndo"
     ID_EDIT_REDO            "Obnoviù posledn˙ odvolan˙ akciu\nRedo"
 END
@@ -996,10 +1003,10 @@ BEGIN
     AFX_IDS_SCSIZE          "Zmeniù veækosù okna"
     AFX_IDS_SCMOVE          "Zmeniù pozÌciu okna"
     AFX_IDS_SCMINIMIZE      "Minimalizovaù okno"
-    AFX_IDS_SCMAXIMIZE      "Zv‰Ëöiù okno na pÙvodn˙ veækosù"
-    AFX_IDS_SCNEXTWINDOW    "Prepn˙ù na Ôalöie okno"
+    AFX_IDS_SCMAXIMIZE      "Zv‰Ë?iù okno na pÙvodn˙ veækosù"
+    AFX_IDS_SCNEXTWINDOW    "Prepn˙ù na Ôal?ie okno"
     AFX_IDS_SCPREVWINDOW    "Prepn˙ù na predch·dzaj˙ce okno"
-    AFX_IDS_SCCLOSE         "Zatvoriù aktÌvne okno s moûnosùou uloûenia dokumentov"
+    AFX_IDS_SCCLOSE         "Zatvoriù aktÌvne okno s mo?nosùou ulo?enia dokumentov"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1011,7 +1018,7 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "Zatvoriù n·hæad tlaËe\nZruö n·hæad"
+    AFX_IDS_PREVIEW_CLOSE   "Zatvoriù n·hæad tlaËe\nZru? n·hæad"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1022,8 +1029,8 @@ BEGIN
     ID_OPTIONS_SHOWDIFFERENT "Zobraziù rozdielne s˙bory"
     ID_OPTIONS_SHOWUNIQUE   "Zobraziù s˙bory exist˙jce iba v jednom adres·ri"
     ID_PREVDIFF             "SkoËiù na predch·dzaj˙ci rozdiel\nPrev Diff (Shift+Tab)"
-    ID_NEXTDIFF             "SkoËiù na ÔalöÌ rozdiel\nNext Diff (Tab)"
-    ID_OPTIONS_BACKUPORIGINALFILE "Uloûiù z·loûn˙ kÛpiu s˙boru\nBackup"
+    ID_NEXTDIFF             "SkoËiù na Ôal?Ì rozdiel\nNext Diff (Tab)"
+    ID_OPTIONS_BACKUPORIGINALFILE "Ulo?iù z·lo?n˙ kÛpiu s˙boru\nBackup"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1033,32 +1040,32 @@ BEGIN
     ID_OPTIONS_IGNOREWHITESPACE "Pri porovnanÌ neberie do ˙vahy pr·zdne mÌsto"
     ID_HIDE_BACKUP_FILES    "Skryù s˙bory s prÌponou BAK"
     ID_HELP_GNULICENSE      "Zobraziù GNU licenciu"
-    ID_USEVSS               "Sk˙öa skontrolovaù read-only s˙bory zo sourcesafe"
-    ID_OPTIONS              "Nastaviù moûnosti programu\nMoûnosti"
-    ID_ALL_LEFT             "SkopÌrovaù vöetky rozdiely do s˙boru væavo\nVöetko væavo"
-    ID_ALL_RIGHT            "SkopÌrovaù vöetky rozdiely do s˙boru vpravo\nVöetko vpravo"
+    ID_USEVSS               "Sk˙?a skontrolovaù read-only s˙bory zo sourcesafe"
+    ID_OPTIONS              "Nastaviù mo?nosti programu\nMo?nosti"
+    ID_ALL_LEFT             "SkopÌrovaù v?etky rozdiely do s˙boru væavo\nV?etko væavo"
+    ID_ALL_RIGHT            "SkopÌrovaù v?etky rozdiely do s˙boru vpravo\nV?etko vpravo"
     ID_VIEW_SELECTFONT      "Nastavenie pÌsma pre zobrazenie porovn·van˝ch dokumentov\nNastav font pre rozdiely"
-    ID_VIEW_USEDEFAULTFONT  "Pouûiù systÈmovÈ pÌsmo pre zobrazenie porovn·van˝ch dokumentov\nNastav font pre norm·lny text"
+    ID_VIEW_USEDEFAULTFONT  "Pou?iù systÈmovÈ pÌsmo pre zobrazenie porovn·van˝ch dokumentov\nNastav font pre norm·lny text"
     ID_DIR_COPY_FILE_TO_LEFT "KopÌrovaù vybranÈ s˙bory do inÈho adres·ra"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_DIR_COPY_FILE_TO_RIGHT "KopÌrovaù vybranÈ s˙bory do inÈho adres·ra"
-    ID_VIEW_LANGUAGE        "Zvoliù jazyk uûivateæskÈho rozhrania\nJazyk"
+    ID_VIEW_LANGUAGE        "Zvoliù jazyk u?ivateæskÈho rozhrania\nJazyk"
     ID_HELP_CONTENTS        "Zobraziù help pre program WinMerge\nPomoc"
     ID_FIRSTDIFF            "Presun˙ù na prv˝ rozdiel\nFirst Diff (Alt+Home)"
     ID_CURDIFF              "Presun˙ù na aktu·lny rozdiel\nCurrent Diff (Alt+Enter)"
     ID_LASTDIFF             "Presun˙ù na posledn˝ rozdiel\nLast Diff (Alt+End)"
     ID_DIFFNUM              "placeholder"
-    ID_DIR_DEL_LEFT         "Zmaû vybranÈ poloûky væavo"
-    ID_DIR_DEL_RIGHT        "Zmaû vybranÈ poloûky vpravo"
+    ID_DIR_DEL_LEFT         "Zma? vybranÈ polo?ky væavo"
+    ID_DIR_DEL_RIGHT        "Zma? vybranÈ polo?ky vpravo"
     ID_DIFFSTATUS           "placeholder for status count"
     ID_OPTIONS_SHOWUNIQUELEFT
                             "Zobraz s˙bory, ktorÈ existuj˙ iba na æavej strane"
     ID_OPTIONS_SHOWUNIQUERIGHT
                             "Zobraz s˙bory, ktorÈ existuj˙ iba na pravej strane"
-    ID_DIR_DEL_BOTH         "Zmaû vybranÈ poloûky na oboch stran·ch"
+    ID_DIR_DEL_BOTH         "Zma? vybranÈ polo?ky na oboch stran·ch"
     ID_DIR_OPEN_LEFT        "Otvor æav˝ s˙bor"
     ID_DIR_OPEN_LEFT_WITH   "Otovr æav˝ s˙bor s..."
     ID_DIR_OPEN_RIGHT       "Otvor prav˝ s˙bor"
@@ -1068,9 +1075,9 @@ END
 // IDS_SAVE_AS_TITLE SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_SAVE_AS_TITLE       "Uloûiù jako"
+    IDS_SAVE_AS_TITLE       "Ulo?iù jako"
     IDS_SELECT_FILES_OR_FOLDERS "MusÌte zvoliù buÔ s˙bory alebo len adres·re."
-    IDS_BACKUP_FAILED_PROMPT "Nemoûno z·lohovaù pÙvodny s˙bor.\nPokraËovaù?"
+    IDS_BACKUP_FAILED_PROMPT "Nemo?no z·lohovaù pÙvodny s˙bor.\nPokraËovaù?"
     IDS_OPTIONS_TITLE       "Vlastnosti"
     IDS_OPEN_TITLE          "Otvoriù"
     IDS_CONFIRM_DELETE_FILE "Zmazaù s˙bor %1?"
@@ -1079,10 +1086,10 @@ BEGIN
     IDS_FILEUNIQUE          "Vybran˝ s˙bor neexistuje v oboch adres·roch, ned· sa porovnaù."
     IDS_FILEERROR           "PoËas porovn·vania sa vyskytla chyba."
     IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-    IDS_SAVE_FMT            "Uloûiù zmeny do %1?"
-    IDS_FILEBINARY          "Bin·rne s˙bory nemoûno porovnaù."
-    IDS_SAVEVSS_FMT         "%1 je oznaËen˝ len na ËÌtanie. Chcete ho skontrolovaù pomocou SourceSafe alebo uloûiù pod in˝m menom?"
-    IDS_VSSERROR            "SourceSafe vr·til chybu pri pokuse skontrolovaù s˙bor. Nemoûno pokraËovaù..."
+    IDS_SAVE_FMT            "Ulo?iù zmeny do %1?"
+    IDS_FILEBINARY          "Bin·rne s˙bory nemo?no porovnaù."
+    IDS_SAVEVSS_FMT         "%1 je oznaËen˝ len na ËÌtanie. Chcete ho skontrolovaù pomocou SourceSafe alebo ulo?iù pod in˝m menom?"
+    IDS_VSSERROR            "SourceSafe vr·til chybu pri pokuse skontrolovaù s˙bor. Nemo?no pokraËovaù..."
     IDS_NOPROJECT           "MusÌte nastaviù cestu k projektu SourceSafe (napr.: $/MojProjekt)"
 END
 
@@ -1095,37 +1102,37 @@ BEGIN
     IDS_FILE_COMPARISON_TITLE "Porovn·nie s˙borov"
     IDS_DIFF_NUMBER_STATUS_FMT "Rozdiel %1 z %2"
     IDS_NO_DIFF_SEL_FMT     "N·jden˝ch %1 rozdielov"
-    IDS_FILEISDIR           "S˙bory v adres·ry nemÙûu byù vizu·lne porovnanÈ."
+    IDS_FILEISDIR           "S˙bory v adres·ry nemÙ?u byù vizu·lne porovnanÈ."
     IDS_CC_CMD              "&Cesta ku cleartool.exe :"
     IDS_VSS_CMD             "&Cesta ku SS.EXE :"
-    IDS_VSS_RUN_ERROR       "Chyba pri sp˙öùanÌ prÌkazu zo SystÈmu VerziÌ (CVS a pod)."
+    IDS_VSS_RUN_ERROR       "Chyba pri sp˙?ùanÌ prÌkazu zo SystÈmu VerziÌ (CVS a pod)."
     IDS_DIFF_OPEN_NO_SET_PROPS
                             "Nastali zmeny v aktu·lnom s˙bore. NiektorÈ nastavenia sa neuplatnia, pokiaæ porovnanie aktu·lneho s˙boru sa nezaËne odznova."
     IDS_COLHDR_LTIMEM       "D·tum væavo"
     IDS_COLHDR_RTIMEM       "D·tum vpravo"
     IDS_COLHDR_EXTENSION    "PrÌpona"
     IDS_CONFIRM_DELETE_ITEMS
-                            "Chcete naozaj zmazaù %1 z %2 vybran˝ch poloûiek?"
-    IDS_DEL_LEFT_FMT        "Zmaû %1 z %2 vybran˝ch poloûiek z æavej strany"
+                            "Chcete naozaj zmazaù %1 z %2 vybran˝ch polo?iek?"
+    IDS_DEL_LEFT_FMT        "Zma? %1 z %2 vybran˝ch polo?iek z æavej strany"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_DEL_RIGHT_FMT       "Zmaû %1 z %2 vybran˝ch poloûiek z pravej strany"
+    IDS_DEL_RIGHT_FMT       "Zma? %1 z %2 vybran˝ch polo?iek z pravej strany"
     IDS_DELETE_FILE_FAILED  "Mazanie s˙boru %1 zlyhalo: %2"
     IDS_CONFIRM_DELETE_DIR  "Zmazaù adres·r %1?"
     IDS_REMOVE_DIR_FAILED   "OdstraÚovanie adres·ru zlyhalo: %1"
-    IDS_COPY_TO_LEFT        "KopÌruj do æavej strany %1 z %2 vybran˝ch poloûiek"
-    IDS_DEL_BOTH_FMT        "Zmazaù z oboch str·n %1 z %2 vybran˝ch poloûiek"
-    IDS_COPY_TO_RIGHT       "KopÌruj do pravej strany %1 z %2 vybran˝ch poloûiek"
+    IDS_COPY_TO_LEFT        "KopÌruj do æavej strany %1 z %2 vybran˝ch polo?iek"
+    IDS_DEL_BOTH_FMT        "Zmazaù z oboch str·n %1 z %2 vybran˝ch polo?iek"
+    IDS_COPY_TO_RIGHT       "KopÌruj do pravej strany %1 z %2 vybran˝ch polo?iek"
     IDS_COLHDR_LSIZE        "Left Size"
     IDS_DELETE_DIR_FAILED   "Mazanie adres·ru %1 zlyhalo: %s"
     IDS_COPY_FILE_FAILED    "Mazanie s˙boru %1 zlyhalo: %2"
     IDS_COPY_DIR_FAILED     "KopÌrovanie adres·ra %1 zlyhalo: %2"
-    IDS_ERROR_FILE_WRITEABLE "Chyba pri zisùovanÌ moûnosti z·pisu"
+    IDS_ERROR_FILE_WRITEABLE "Chyba pri zisùovanÌ mo?nosti z·pisu"
     IDS_ERROR_BACKUP        "Chyba pri z·lohovanÌ s˙boru"
-    IDS_CONFIRM_COPY_SINGLE "Chceö naozaj kopÌrovaù %1 do %2?"
-    IDS_CONFIRM_DELETE_SINGLE "Chceö naozaj zmazaù%1?"
+    IDS_CONFIRM_COPY_SINGLE "Chce? naozaj kopÌrovaù %1 do %2?"
+    IDS_CONFIRM_DELETE_SINGLE "Chce? naozaj zmazaù%1?"
     IDS_BIN_FILES_SAME      "Bin·rne s˙bory s˙ identickÈ"
 END
 
@@ -1153,15 +1160,15 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_FILESAVE_FAILED     "Z·pis %1 ne˙speön˝. Chceö uloûiù s˙bor pod in˝m menom?"
+    IDS_FILESAVE_FAILED     "Z·pis %1 ne˙spe?n˝. Chce? ulo?iù s˙bor pod in˝m menom?"
     IDS_ERROR_FILE_NOT_FOUND "S˙bor nen·jden˝: %1"
     IDS_ERROR_INCOMPARABLE  "Vyber 2 existuj˙ce s˙bory alebo adres·re na porovnanie"
     IDS_STATUS_RESCANNING   "Prehæad·vam s˙bory..."
     IDS_STATUS_OPENING_SELECTION "Otv·ranie v˝beru"
     IDS_STATUS_COPYL2R      "KopÌrujem æav˝ do pravÈho"
     IDS_STATUS_COPYR2L      "KopÌrujem prav˝ do æavÈho"
-    IDS_STATUS_COPYALL2L    "KopÌrujem vöetko do æavÈho"
-    IDS_STATUS_COPYALL2R    "KopÌrujem vöetko do pravÈho"
+    IDS_STATUS_COPYALL2L    "KopÌrujem v?etko do æavÈho"
+    IDS_STATUS_COPYALL2R    "KopÌrujem v?etko do pravÈho"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_COLHDR_RSIZE        "Right Size"
     IDS_COLHDR_LTIMEC       "Left Creation Time"
@@ -1211,10 +1218,12 @@ END
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "Nahraden˝ch %1 reùazcov (strings)."
-    IDS_EDIT_TEXT_NOT_FOUND "NemÙûem n·jsù reùazec ""%s"""
+    IDS_EDIT_TEXT_NOT_FOUND "NemÙ?em n·jsù reùazec ""%s"""
     IDS_LINE_STATUS_INFO_EOL "Line: %s Column: %d Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH 
+                            "The VSS Working Folder and the location of the current file do not match. Continue?"
 END
 
 STRINGTABLE DISCARDABLE

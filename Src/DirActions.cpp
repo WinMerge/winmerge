@@ -248,6 +248,10 @@ BOOL CDirView::ConfirmActionList(const ActionList & actionList)
 // Perform an array of actions
 void CDirView::PerformActionList(ActionList & actionList)
 {
+	// Set mainframe variable (VSS):
+	mf->m_CheckOutMulti = FALSE;
+	mf->m_bVCProjSync = TRUE;
+
 	while (actionList.GetCount()>0)
 	{
 		PerformAndRemoveTopAction(actionList);
