@@ -1,0 +1,6 @@
+Please leave "Contributors.rtf" in RTF format this is necessary for compatiblity with our Inno Setup installer.  "Contributors.rtf" is used by the installer on the "information" page during installation.  Please do not add tables or bullets to this file, neither seem to display correctly inside of Inno Setup which has its own bug-ridden engine for displaying RTF files.  Also please leave the font choice, sizes, and color schemes as they are, or ask me for permission to do otherwise providing your reasoning.  
+
+Thanks,
+Seier Blackburn
+MyPurchases@Yahoo.com 
+(All e-mail should contain WinMerge in the title)
