@@ -1175,6 +1175,12 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
 }
 //END SW
 
+class IntArray : public CArray<int, int>
+{
+public:
+	explicit IntArray(int len) { SetSize(len); }
+};
+
 void CCrystalTextView::
 DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 {
@@ -1227,10 +1233,10 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 	int nActualItem = 0;
 
 	// Wrap the line
-	int *anBreaks = new int[nLength];
+	IntArray anBreaks(nLength);
 	int	nBreaks = 0;
 
-	WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
+	WrapLineCached( nLineIndex, GetScreenChars(), anBreaks.GetData(), nBreaks );
 	//END SW
 
   //  Draw the line text
@@ -1332,7 +1338,6 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 	}
 	*/
 	//END SW
-	delete[] anBreaks;
 	delete[] pBuf;
 }
 

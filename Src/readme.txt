@@ -1,3 +1,7 @@
+2003-04-20 Perry
+ Changed dynamic array to be CArray based
+  editlib: ccrystaltextview.cpp
+
 2003-04-19 Perry
  [ 724280 ] Could use wait cursors at OpenSelection calls
   WinMerge: DirView.cpp
