@@ -1491,6 +1491,7 @@ BEGIN
     IDS_BINFILES_IDENTICAL   "%1\n%2\n\när identiska binära filer."
     IDS_BINFILES_DIFFERENT   "%1\n%2\n\när olika binära filer."
     IDS_OTHER_IS_BINARY      "%1\n\när en binär fil. Kan inte jämföra binära och textfiler."
+    IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
 END
 
 // SAVING FILE

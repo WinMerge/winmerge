@@ -1492,6 +1492,7 @@ BEGIN
     IDS_BINFILES_IDENTICAL   "%1\n%2\n\nare identical binary files."
     IDS_BINFILES_DIFFERENT   "%1\n%2\n\nare different binary files."
     IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
+    IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
 END
 
 // SAVING FILE (+ VERSION CONTROL)

@@ -1395,6 +1395,7 @@ BEGIN
     IDS_BINFILES_IDENTICAL   "%1\n%2\n\nsón fitxers binaris idèntics."
     IDS_BINFILES_DIFFERENT   "%1\n%2\n\nsón fitxers binaris diferents."
     IDS_OTHER_IS_BINARY      "%1\n\nés un fitxer binari. No es poden comparar fitxers de text i binaris."
+    IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
 END
 
 // SAVING FILE
