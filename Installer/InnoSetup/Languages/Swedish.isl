@@ -63,7 +63,7 @@ ErrorTooManyFilesInDir=Kunde inte skapa en fil i mappen "%1" därför att den inne
 
 ; *** Setup common messages
 ExitSetupTitle=Avsluta installationen
-ExitSetupMessage=Installationen är inte färdig. Om du avslutar nu, kommer programmet inte att installeras.%n%nDu kan köra installationsprogrammet vid ett senare tillfälle för att avsluta installationen.%n%nVill du avbryta installationen?
+ExitSetupMessage=Installationen är inte färdig. Om du avslutar nu, kommer programmet inte att installeras.%n%nDu kan köra installationsprogrammet vid ett senare tillfälle för att slutföra installationen.%n%nVill du avbryta installationen?
 AboutSetupMenuItem=&Om installationsprogrammet...
 AboutSetupTitle=Om installationsprogrammet
 AboutSetupMessage=%1 version %2%n%3%n%n%1 hemsida:%n%4
@@ -90,7 +90,7 @@ SelectLanguageLabel=Välj språk som skall användas under installationen:
 ClickNext=Klicka på Nästa för att fortsätta eller på Avbryt för att avsluta installationen.
 BeveledLabel=
 BrowseDialogTitle=Bläddra mapp
-BrowseDialogLabel=Välj en mapp i listan nedan, klicka sedan OK.
+BrowseDialogLabel=Välj en mapp i listan nedan, klicka sedan på OK.
 NewFolderName=Ny mapp
 
 ; *** "Welcome" wizard page
@@ -228,7 +228,7 @@ SelectDirectoryLabel=Var god ange sökvägen för nästa diskett.
 
 ; *** Installation phase messages
 SetupAborted=Installationen slutfördes inte.%n%nVar god rätta till felet och kör installationen igen.
-EntryAbortRetryIgnore=Välj Försök igen eller Ignorera för att fortsätta i alla fall, Avbryt för att avbryta installationen.
+EntryAbortRetryIgnore=Välj Försök igen eller Ignorera för att fortsätta ändå, eller välj Avbryt för att avbryta installationen.
 
 ; *** Installation status messages
 StatusCreateDirs=Skapar mappar...
@@ -257,11 +257,11 @@ ErrorRegWriteKey=Kan ej skriva till registernyckel:%n%1\%2
 ErrorIniEntry=Kan inte skriva nytt INI-värde i filen "%1".
 
 ; *** File copying errors
-FileAbortRetryIgnore=Välj Försök igen eller Ignorera för hoppa över denna fil (ej rekommenderat), eller Avbryt installationen.
-FileAbortRetryIgnore2=Välj Försök igen eller Ignorera och fortsätt ändå (ej rekommenderat), eller Avbryt installationen.
+FileAbortRetryIgnore=Välj Försök igen eller Ignorera för att hoppa över denna fil (ej rekommenderat), eller välj Avbryt installationen.
+FileAbortRetryIgnore2=Välj Försök igen eller Ignorera och fortsätt ändå (ej rekommenderat), eller välj Avbryt installationen.
 SourceIsCorrupted=Källfilen är felaktig
 SourceDoesntExist=Källfilen "%1" finns inte
-ExistingFileReadOnly=Den nuvarande filen är skrivskyddad.%n%nVälj Försök igen för att ta bort skrivskyddet, Ignorera för att hoppa över denna fil, eller Avbryt installationen.
+ExistingFileReadOnly=Den nuvarande filen är skrivskyddad.%n%nVälj Försök igen för att ta bort skrivskyddet, Ignorera för att hoppa över denna fil, eller välj Avbryt installationen.
 ErrorReadingExistingDest=Ett fel uppstod vid försök att läsa den befintliga filen:
 FileExists=Filen finns redan.%n%nVill du skriva över den?
 ExistingFileNewer=Den befintliga filen är nyare än den som ska installeras. Du rekommenderas att behålla den befintliga filen. %n%nVill Du behålla den befintliga filen?
@@ -352,14 +352,14 @@ SwedishLanguage=Svenska menyer och dialoger
 ;Tasks
 ExplorerContextMenu=&Möjliggör integration med Explorers menyer
 IntegrateTortoiseCVS=Integrera med &TortoiseCVS
-IntegrateDelphi4=Stöd Borland Delphi4 Binära filer
-UpdatingCommonControls=Updatera Systemets Vanliga Kontroller
+IntegrateDelphi4=Stöd Borland® Delphi4 Binära filer
+UpdatingCommonControls=Uppdatera Systemets Vanliga Kontroller
 
 ;Icon Labels
 ReadMe=Läs Mig
 UsersGuide=Användarguide
-UpdatingCommonControls=Updatera Systemets Vanliga Kontroller
-ViewStartMenuFolder=Visa Winmerges startkatalog
+UpdatingCommonControls=Uppdatera Systemets Vanliga Kontroller
+ViewStartMenuFolder=Visa WinMerges startkatalog
 
 ;Code Dialogs
 DeletePreviousStartMenu=Installationsprogrammet har upptäckt att du har ändrat sökvägen till din startmeny från "%s" till "%s". Vill du ta bort den tidigare startmenymappen?
