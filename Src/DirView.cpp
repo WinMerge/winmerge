@@ -478,6 +478,8 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	while ((i = m_pList->GetNextItem(i, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(i);
+		if (di.diffcode == 0) // Invalid value, this must be special item
+			continue;
 		if (IsItemCopyableToLeft(di))
 			++nCopyableToLeft;
 		if (IsItemCopyableToRight(di))

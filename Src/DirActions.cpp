@@ -754,19 +754,28 @@ CString CDirView::GetSelectedFileName(SIDE_TYPE stype) const
 	if (!GetSelectedFileNames(left, right)) return _T("");
 	return stype==SIDE_LEFT ? left : right;
 }
-
-/// get the file names on both sides for specified item
+/**
+ * @brief Get the file names on both sides for specified item.
+ * @note Return empty strings if item is special item.
+ */
 void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) const
 {
 	CString name, pathex;
 
 	POSITION diffpos = GetItemKey(sel);
-	const CDiffContext * ctxt = GetDiffContext();
-	const DIFFITEM & di = ctxt->GetDiffAt(diffpos);
-
-	CString relpath = paths_ConcatPath(di.sSubdir, di.sfilename);
-	strLeft = paths_ConcatPath(ctxt->m_strLeft, relpath);
-	strRight = paths_ConcatPath(ctxt->m_strRight, relpath);
+	if (diffpos == (POSITION)-1)
+	{
+		strLeft.Empty();
+		strRight.Empty();
+	}
+	else
+	{
+		const CDiffContext * ctxt = GetDiffContext();
+		const DIFFITEM & di = ctxt->GetDiffAt(diffpos);
+		CString relpath = paths_ConcatPath(di.sSubdir, di.sfilename);
+		strLeft = paths_ConcatPath(ctxt->m_strLeft, relpath);
+		strRight = paths_ConcatPath(ctxt->m_strRight, relpath);
+	}
 }
 
 /// Open selected file on specified side

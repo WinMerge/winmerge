@@ -1,3 +1,7 @@
+2004-05-25 Kimmo
+ PATCH: [ 959627 ] Fix crash when opening context menu for '..' item in dirview
+  Src: DirActions.cpp DirView.cpp
+
 2004-05-25 Perry
  PATCH: [ 950243 ] 2 minor updates to developers docs
   Docs/Developers: readme-developers.html
