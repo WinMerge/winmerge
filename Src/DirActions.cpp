@@ -31,6 +31,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+extern CLogFile gLog;
+
 // Prompt user to confirm a multiple item copy
 static BOOL ConfirmMultipleCopy(int count, int total)
 {
@@ -353,6 +355,7 @@ void CDirView::PerformActionList(ActionList & actionList)
 		{
 			sText += actionList.errors.RemoveHead() + _T("\r\n\r\n");
 		}
+		gLog.Write(LOGLEVEL::LERROR, sText);
 		OutputBox(sTitle, sText);
 	}
 }

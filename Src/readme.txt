@@ -3,6 +3,11 @@
   Src: DirActions.cpp
  PATCH: [ 889115 ] Delete transformed temp files in file compare
   Src: DiffWrapper.cpp
+ PATCH: [ 889334 ] Improve and enable logging
+  Logging is now enabled for debug builds, written to $temp/WinMerge.log
+  Common: LogFile.cpp LogFile.h
+  Src: DiffWrapper.cpp DirActions.cpp DirDoc.cpp DirScan.cpp
+   MainFrm.cpp MergeDoc.cpp StdAfx.cpp
 
 2004-02-01 Perry
  Cosmetic: fix copy&paste error in UniFile.cpp comment.

@@ -71,8 +71,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+extern CLogFile gLog;
 CMainFrame *mf = NULL;
-CLogFile gLog(_T("WinMerge.log"), NULL, TRUE);
 
 // add a 
 static void add_regexp PARAMS((struct regexp_list **, char const*));
@@ -141,6 +141,18 @@ static UINT indicators[] =
  */
 CMainFrame::CMainFrame()
 {
+#if defined (_DEBUG) || defined (ENABLE_LOG)
+	gLog.SetFile(_T("WinMerge.log"));
+	gLog.EnableLogging(TRUE);
+	// Not interested about compare data (very noisy!)
+	gLog.SetMaskLevel(LOGLEVEL::LALL & ~LOGLEVEL::LCOMPAREDATA);
+#endif
+
+// Only log errors and warnings for release!
+//#ifndef _DEBUG
+//	gLog.SetMaskLevel(LOGLEVEL::LERROR | LOGLEVEL::LWARNING);
+//#endif
+
 	m_bFontSpecified=FALSE;
 	m_strSaveAsPath = _T("");
 	m_bFirstTime = TRUE;
@@ -1182,7 +1194,13 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 					break;
 				if (strLeft.Find(path) == 0)
 				{
-					DeleteFile(strLeft);
+					if (!::DeleteFile(strLeft))
+					{
+						LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+							strLeft, GetSysError(GetLastError())));
+						gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
+							strLeft, GetSysError(GetLastError()));
+					}
 				}
 				strLeft.Delete(0, strLeft.ReverseFind('\\'));
 				int dot = strLeft.ReverseFind('.');
@@ -1207,7 +1225,13 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 						break;;
 					if (strRight.Find(path) == 0)
 					{
-						DeleteFile(strRight);
+						if (!::DeleteFile(strRight))
+						{
+							LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+								strRight, GetSysError(GetLastError())));
+							gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
+								strRight, GetSysError(GetLastError()));
+						}
 					}
 					strRight.Delete(0, strRight.ReverseFind('\\'));
 					int dot = strRight.ReverseFind('.');
@@ -1252,6 +1276,9 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			CDiffContext *pCtxt = new CDiffContext(strLeft, strRight);
 			if (pCtxt != NULL)
 			{
+				gLog.Write(LOGLEVEL::LNOTICE, _T("Open dirs: Left: %s\n\tRight: %s."),
+					strLeft, strRight);
+
 				pDirDoc->SetReadOnly(TRUE, bROLeft);
 				pDirDoc->SetReadOnly(FALSE, bRORight);
 				pDirDoc->SetRecursive(bRecurse);
@@ -1279,6 +1306,9 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		if (files_isFileReadOnly(strRight))
 			bRORight = TRUE;
 	
+		gLog.Write(LOGLEVEL::LNOTICE, _T("Open files: Left: %s\n\tRight: %s."),
+			strLeft, strRight);
+		
 		ShowMergeDoc(pDirDoc, strLeft, strRight, bROLeft, bRORight,
 			cpleft, cpright, &infoUnpacker);
 	}
@@ -2267,6 +2297,9 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 		files[1] = files[0];
 	}
 
+	gLog.Write(LOGLEVEL::LNOTICE, _T("D&D open: Left: %s\n\tRight: %s."),
+		files[0], files[1]);
+
 	DoFileOpen(files[0], files[1], FFILEOPEN_NONE, FFILEOPEN_NONE, ctrlKey);
 }
 
@@ -2415,5 +2448,4 @@ void CMainFrame::OnFileNew()
 	VERIFY(m_strRightDesc.LoadString(IDS_EMPTY_RIGHT_FILE));
 	ShowMergeDoc(pDirDoc, _T(""), _T(""), FALSE, FALSE, 0, 0);
 }
-
 

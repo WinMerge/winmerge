@@ -23,6 +23,10 @@
 //	stdafx.obj will contain the pre-compiled type information
 
 #include "stdafx.h"
+#include "LogFile.h"
+
+// Logging
+CLogFile gLog;
 
 // fix any nonascii characters
 // which got sign-extended to become negative integers
@@ -109,3 +113,4 @@ int GetClipTcharTextFormat()
 	return CF_TEXT;
 #endif // _UNICODE
 }
+

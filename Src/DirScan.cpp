@@ -236,7 +236,7 @@ prepAndCompareTwoFiles(const fentry & lent, const fentry & rent,
 	// based on file date, it could be done here, with the same caveat
 	// as above
 
-	gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s")
+	gLog.Write(LOGLEVEL::LCOMPAREDATA, _T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s")
 		, lent.name, rent.name, sLeftDir, sRightDir);
 	CString filepath1 = paths_ConcatPath(sLeftDir, lent.name);
 	CString filepath2 = paths_ConcatPath(sRightDir, rent.name);
@@ -457,7 +457,7 @@ static void StoreDiffResult(const CString & sDir, const fentry * lent, const fen
 		name = rent->name;
 		rattrs = rent->attrs;
 	}
-	gLog.Write(_T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d")
+	gLog.Write(LOGLEVEL::LCOMPAREDATA,_T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d")
 		, (LPCTSTR)name, (LPCTSTR)leftdir, (LPCTSTR)rightdir, code);
 	pCtxt->AddDiff(name, sDir, leftdir, rightdir
 		, lmtime, rmtime, lctime, rctime, lsize, rsize, code, lattrs, rattrs

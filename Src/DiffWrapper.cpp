@@ -29,8 +29,10 @@
 #include "diffwrapper.h"
 #include "diff.h"
 #include "FileTransform.h"
+#include "LogFile.h"
 
 extern int recursive;
+extern CLogFile gLog;
 
 CDiffWrapper::CDiffWrapper()
 {
@@ -372,6 +374,8 @@ BOOL CDiffWrapper::RunFileDiff()
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
 				strFile1Temp, GetSysError(GetLastError())));
+			gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
+				strFile1Temp, GetSysError(GetLastError()));
 		}
 		strFile1Temp.Empty();
 	}
@@ -381,6 +385,8 @@ BOOL CDiffWrapper::RunFileDiff()
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
 				strFile2Temp, GetSysError(GetLastError())));
+			gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
+				strFile2Temp, GetSysError(GetLastError()));
 		}
 		strFile2Temp.Empty();
 	}

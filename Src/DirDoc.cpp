@@ -217,7 +217,7 @@ void CDirDoc::Rescan()
 
 	m_statusCursor = new CustomStatusCursor(0, IDC_APPSTARTING, LoadResString(IDS_STATUS_RESCANNING));
 
-	gLog.Write(_T("Starting directory scan:\r\n\tLeft: %s\r\n\tRight: %s\r\n"),
+	gLog.Write(LOGLEVEL::LNOTICE, _T("Starting directory scan:\n\tLeft: %s\n\tRight: %s\n"),
 			m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
 	pf->clearStatus();
 	pf->ShowProcessingBar(TRUE);
@@ -576,7 +576,7 @@ void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unifie
  */
 void CDirDoc::CompareReady()
 {
-	gLog.Write(_T("Directory scan complete\r\n"));
+	gLog.Write(LOGLEVEL::LNOTICE, _T("Directory scan complete\n"));
 
 	// finish the cursor (the hourglass/pointer combo) we had open during display
 	delete m_statusCursor;
@@ -787,6 +787,7 @@ BOOL CDirDoc::SaveModified()
  */
 void CDirDoc::AbortCurrentScan()
 {
+	gLog.Write(LOGLEVEL::LNOTICE, _T("Dircompare aborted!"));
 	m_diffThread.Abort();
 }
 
@@ -809,3 +810,4 @@ void CDirDoc::SetDescriptions(CString strLeftDesc, CString strRightDesc)
 	m_strLeftDesc = strLeftDesc;
 	m_strRightDesc = strRightDesc;
 }
+

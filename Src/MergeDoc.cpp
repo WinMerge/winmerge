@@ -56,6 +56,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+extern CLogFile gLog;
 
 /**
  * @brief EOL types
@@ -1357,7 +1358,13 @@ LoadFromFileExit:
 
 	// delete the file that unpacking may have created
 	if (_tcscmp(pszFileNameInit, pszFileName) != 0)
-		::DeleteFile(pszFileName);
+		if (!::DeleteFile(pszFileName))
+		{
+			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+				pszFileName, GetSysError(GetLastError())));
+			gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
+				pszFileName, GetSysError(GetLastError()));
+		}
 
 	return nRetVal;
 }
@@ -1450,21 +1457,39 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		infoUnpacker->subcode = unpackerSubcode;
 		if (!FileTransform_Packing(csTempFileName, *infoUnpacker))
 		{
-			::DeleteFile(sIntermediateFilename);
+			if (!::DeleteFile(sIntermediateFilename))
+			{
+				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+					sIntermediateFilename, GetSysError(GetLastError())));
+				gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
+					sIntermediateFilename, GetSysError(GetLastError()));
+			}
 			// returns now, don't overwrite the original file
 			return SAVE_PACK_FAILED;
 		}
 		// the temp filename may have changed during packing
 		if (csTempFileName != sIntermediateFilename)
 		{
-			::DeleteFile(sIntermediateFilename);
+			if (!::DeleteFile(sIntermediateFilename))
+			{
+				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+					sIntermediateFilename, GetSysError(GetLastError())));
+				gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
+					sIntermediateFilename, GetSysError(GetLastError()));
+			}
 			sIntermediateFilename = csTempFileName;
 		}
 
 		// Write tempfile over original file
 		if (::CopyFile(sIntermediateFilename, pszFileName, FALSE))
 		{
-			::DeleteFile(sIntermediateFilename);
+			if (!::DeleteFile(sIntermediateFilename))
+			{
+				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+					sIntermediateFilename, GetSysError(GetLastError())));
+				gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
+					sIntermediateFilename, GetSysError(GetLastError()));
+			}
 			if (bClearModifiedFlag)
 			{
 				SetModified(FALSE);
@@ -1586,16 +1611,24 @@ void CMergeDoc::CleanupTempFiles()
 		if (::DeleteFile(m_strTempLeftFile))
 			m_strTempLeftFile = _T("");
 		else
-			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
-				, m_strTempLeftFile, GetSysError(GetLastError())));
+		{
+			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+				m_strTempLeftFile, GetSysError(GetLastError())));
+			gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
+				m_strTempLeftFile, GetSysError(GetLastError()));
+		}
 	}
 	if (!m_strTempRightFile.IsEmpty())
 	{
 		if (::DeleteFile(m_strTempRightFile))
 			m_strTempRightFile = _T("");
 		else
-			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
-				, m_strTempRightFile, GetSysError(GetLastError())));
+		{
+			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+				m_strTempRightFile, GetSysError(GetLastError())));
+			gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
+				m_strTempRightFile, GetSysError(GetLastError()));
+		}
 	}
 }
 
@@ -2552,5 +2585,4 @@ void CMergeDoc::UpdateHeaderActivity(BOOL bLeft, BOOL bActivate)
 	int nPane = (bLeft) ? 0 : 1;
 	pf->GetHeaderInterface()->SetActive(nPane, bActivate);
 }
-
 
