@@ -1,0 +1,69 @@
+To create the WinMerge setup program, install InnoSetup and the QuickStart pack, and then copy or move the files to be distributed into the following layout:
+
+<ul>
+ <li>
+  Build/
+  <ul>
+   <li>
+    MergeRelease/
+    <ul>
+     <li>
+      Manual/
+      <ul>
+       <li>
+        (Copy the entire manual directory to here)
+       </li>
+      </ul>
+     </li><li>
+      Merge7z*.dll
+      </li><li>
+      WinMerge.exe
+     </li>
+    </ul>
+   </li><li>
+    MergeUnicodeRelease/
+    <ul>
+     <li>
+      Merge7z*U.dll
+     </li><li>
+      WinMergeU.exe
+     </li><li>
+      WinMergeU.exe.Manifest
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li><li>
+  InnoSetup/
+  <ul>
+   <li>
+    (Copy the entire InnoSetup source directory to here)
+   </li>
+  </ul>
+ </li><li>
+  ShellExtension/
+  <ul>
+   <li>
+    ShellExtension.dll
+   </li>
+  </ul>
+ </li><li>
+  Src/
+   <ul>
+    <li>
+     Languages/
+     <ul>
+      <li>
+       DLL/
+       <ul>
+        <li>
+         *.lang
+        </li>
+       </ul>
+      </li>
+     </ul>
+    </li>
+   </ul>
+ </li>
+</ul>
+

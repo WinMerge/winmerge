@@ -1,3 +1,7 @@
+2004-11-09 Perry
+ PATCH: [ 1050329 ] readme-developers-InnoSetup.html
+  Docs/Developers: readme-developers-InnoSetup.html
+
 2004-11-07 Kimmo
  BUG: [ 828065 ] More overlapping letters in Dansk/Norsk
   Fix from Christian
