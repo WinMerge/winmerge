@@ -1,3 +1,7 @@
+2003-10-20 Laoran
+ Format for (eol type) must set the asterisk (sign for modified file)
+  WinMerge: MergeEditView.cpp
+
 2003-10-20 WinMerge experimental release 2.1.3.3 (patch demo)
 
 2003-10-20 Laoran

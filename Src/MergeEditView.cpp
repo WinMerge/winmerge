@@ -1542,6 +1542,7 @@ void CMergeEditView::OnConvertEolTo(UINT nID )
 	{
 		CMergeDoc *pd = GetDocument();
 		ASSERT(pd);
+		pd->UpdateHeaderPath(m_bIsLeft);
 		pd->FlushAndRescan(TRUE);
 	}
 }
