@@ -315,6 +315,10 @@ SOURCE=.\ChildFrm.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\common\CMoveConstraint.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\CMPBUF.C
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -404,6 +408,10 @@ SOURCE=.\CONTEXT.C
 # Begin Source File
 
 SOURCE=..\common\coretools.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\common\CSubclass.cpp
 # End Source File
 # Begin Source File
 
@@ -1398,6 +1406,10 @@ SOURCE=.\ChildFrm.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\common\CMoveConstraint.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\CMPBUF.H
 # End Source File
 # Begin Source File
@@ -1411,6 +1423,10 @@ SOURCE=.\CONFIG.H
 # Begin Source File
 
 SOURCE=..\common\coretools.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\common\CSubclass.h
 # End Source File
 # Begin Source File
 
@@ -2039,10 +2055,10 @@ SOURCE=.\stampver.inf
 # End Source File
 # End Target
 # End Project
-# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
-# 	1:19:IDR_POPUP_ABOUT_DLG:104
-# End Section
 # Section Merge : {6F747475-446E-6C62-436C-6B0000003100}
 # 	1:10:IDB_SPLASH:103
 # 	2:21:SplashScreenInsertKey:4.0
+# End Section
+# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
+# 	1:19:IDR_POPUP_ABOUT_DLG:104
 # End Section

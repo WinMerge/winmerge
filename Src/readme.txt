@@ -1,6 +1,10 @@
 2003-10-11 Perry
  PATCH: [ 821532 ] Fix CmpResults After Delete
   WinMerge: DiffContext.h DirActions.cpp
+ PATCH: [ 817875 ] Resizable open dialog
+  common: CSubclass.h CMoveConstraint.h CSubclass.cpp CMoveConstraint.cpp
+  Languages: UpdateAll_resource_h.bat *.rc
+  WinMerge: Merge.rc OpenDlg.cpp OpenDlg.h resource.h
 
 2003-10-11 Laoran
  PATCH: [ 820742 ] use extension filter during Rescan in 2.1

@@ -198,10 +198,25 @@ void COpenDlg::OnOK()
 	CDialog::OnOK();
 }
 
+/** @brief Handler for WM_INITDIALOG; conventional location to initialize controls */
 BOOL COpenDlg::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
 	
+	// setup handler for resizing this dialog	
+	m_constraint.InitializeCurrentSize(this);
+	// configure how individual controls adjust when dialog resizes
+	m_constraint.ConstrainItem(IDC_LEFT_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_RIGHT_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_EXT_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_LEFT_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_RIGHT_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
+	m_constraint.DisallowHeightGrowth();
+	m_constraint.SubclassWnd(); // install subclassing
+	m_constraint.LoadPosition(_T("OpenDlg"), true); // persist size & location via registry
 	
 	m_ctlLeft.LoadState(_T("Files\\Left"));
 	m_ctlRight.LoadState(_T("Files\\Right"));

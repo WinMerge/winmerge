@@ -303,7 +303,7 @@ BEGIN
 END
 
 IDD_OPEN DIALOGEX 0, 0, 359, 98
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Dateien oder Verzeichnisse auswählen..."
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
@@ -324,7 +324,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,63,74,119,10
     DEFPUSHBUTTON   "OK",IDOK,302,11,50,14
     PUSHBUTTON      "Abbrechen",IDCANCEL,302,28,50,14
-    GROUPBOX        "Zu vergleichende Dateien oder Verzeichnisse",IDC_STATIC,
+    GROUPBOX        "Zu vergleichende Dateien oder Verzeichnisse",IDC_FILES_DIRS_GROUP,
                     7,7,286,84
 END
 

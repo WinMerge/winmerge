@@ -301,7 +301,7 @@ BEGIN
 END
 
 IDD_OPEN DIALOGEX 0, 0, 352, 98
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Vælg filer eller mapper..."
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
@@ -322,7 +322,7 @@ BEGIN
                     WS_TABSTOP,35,77,46,10
     DEFPUSHBUTTON   "OK",IDOK,295,11,50,14
     PUSHBUTTON      "Afbryd",IDCANCEL,295,28,50,14
-    GROUPBOX        "Filer eller mapper der skal sammenlignes",IDC_STATIC,7,
+    GROUPBOX        "Filer eller mapper der skal sammenlignes",IDC_FILES_DIRS_GROUP,7,
                     7,279,84
 END
 

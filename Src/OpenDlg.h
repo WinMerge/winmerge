@@ -17,19 +17,27 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  OpenDlg.h
+ *
+ * @brief Declaration file for COpenDlg dialog
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 #if !defined(AFX_OPENDLG_H__69FB0D77_2A05_11D1_BA92_00A024706EDC__INCLUDED_)
 #define AFX_OPENDLG_H__69FB0D77_2A05_11D1_BA92_00A024706EDC__INCLUDED_
-
-#if _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
-// OpenDlg.h : header file
-//
 
 /////////////////////////////////////////////////////////////////////////////
 // COpenDlg dialog
 #include "SuperComboBox.h"
 
+#ifndef CMoveConstraint_h
+#include "CMoveConstraint.h"
+#endif
+
+/** @brief File open dialog displayed for user to choose directories or files */
 class COpenDlg : public CDialog
 {
 // Construction
@@ -56,6 +64,9 @@ public:
 // other public data
 	CString m_strParsedExt;
 	int m_pathsType; // enum from PATH_EXISTENCE in paths.h
+// Implementation data
+private:
+	prdlg::CMoveConstraint m_constraint; 
 
 
 // Overrides
