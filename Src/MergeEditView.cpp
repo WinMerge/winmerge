@@ -300,6 +300,7 @@ BOOL CMergeEditView::PrimeListWithFile(LPCTSTR szFilename)
 	pBuf->SetReadOnly(FALSE);
 	SetWordWrapping(FALSE);
 	ResetView();
+	RecalcVertScrollBar();
 
 	return TRUE;
 }
