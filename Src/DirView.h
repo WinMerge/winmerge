@@ -91,8 +91,11 @@ protected:
 	afx_msg void OnDirCopyFileToRight();
 	afx_msg void OnUpdateDirCopyFileToRight(CCmdUI* pCmdUI);
 	afx_msg void OnDestroy();
+	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+private:
+	void OpenSelection();
 };
 
 #ifndef _DEBUG  // debug version in DirView.cpp

@@ -61,6 +61,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_L2R, OnDirCopyFileToRight)
 	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateDirCopyFileToRight)
 	ON_WM_DESTROY()
+	ON_WM_CHAR()
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 END_MESSAGE_MAP()
@@ -173,60 +174,7 @@ void CDirView::OnInitialUpdate()
 
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel != -1)
-	{
-		CDirDoc *pd = GetDocument();
-		POSITION pos = reinterpret_cast<POSITION>(m_pList->GetItemData(sel));
-		DIFFITEM di = pd->m_pCtxt->m_dirlist.GetAt(pos);
-		switch(di.code)
-		{
-		case FILE_DIFF:
-			{
-				CString left, right;
-				if (GetSelectedFileNames(left, right))
-					mf->ShowMergeDoc(left, right);
-			}
-			break;
-		case FILE_SAME:
-			{
-				CString s;
-				VERIFY(s.LoadString(IDS_FILESSAME));
-				AfxMessageBox(s, MB_ICONINFORMATION);
-			}
-			break;
-		case FILE_LDIRUNIQUE:
-		case FILE_RDIRUNIQUE:
-			{
-				CString s;
-				VERIFY(s.LoadString(IDS_FILEISDIR));
-				AfxMessageBox(s, MB_ICONINFORMATION);
-			}
-			break;
-		case FILE_LUNIQUE:
-		case FILE_RUNIQUE:
-			{
-				CString s;
-				VERIFY(s.LoadString(IDS_FILEUNIQUE));
-				AfxMessageBox(s, MB_ICONINFORMATION);
-			}
-			break;
-		case FILE_BINDIFF:
-			{
-				CString s;
-				VERIFY(s.LoadString(IDS_FILEBINARY));
-				AfxMessageBox(s, MB_ICONSTOP);
-			}
-			break;
-		default:
-			{
-				CString s;
-				VERIFY(s.LoadString(IDS_FILEERROR));
-				AfxMessageBox(s, MB_ICONSTOP);
-			}
-			break;
-		}
-	}
+	OpenSelection();
 	CListViewEx::OnLButtonDblClk(nFlags, point);
 }
 
@@ -564,3 +512,71 @@ void CDirView::OnDestroy()
 }
 
 
+
+void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
+{
+	if(nChar==VK_RETURN)
+	{
+		OpenSelection();
+	}
+	CListViewEx::OnChar(nChar, nRepCnt, nFlags);
+}
+
+void CDirView::OpenSelection()
+{
+	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
+	if (sel != -1)
+	{
+		CDirDoc *pd = GetDocument();
+		POSITION pos = reinterpret_cast<POSITION>(m_pList->GetItemData(sel));
+		DIFFITEM di = pd->m_pCtxt->m_dirlist.GetAt(pos);
+		switch(di.code)
+		{
+		case FILE_DIFF:
+			{
+				CString left, right;
+				if (GetSelectedFileNames(left, right))
+					mf->ShowMergeDoc(left, right);
+			}
+			break;
+		case FILE_SAME:
+			{
+				CString s;
+				VERIFY(s.LoadString(IDS_FILESSAME));
+				AfxMessageBox(s, MB_ICONINFORMATION);
+			}
+			break;
+		case FILE_LDIRUNIQUE:
+		case FILE_RDIRUNIQUE:
+			{
+				CString s;
+				VERIFY(s.LoadString(IDS_FILEISDIR));
+				AfxMessageBox(s, MB_ICONINFORMATION);
+			}
+			break;
+		case FILE_LUNIQUE:
+		case FILE_RUNIQUE:
+			{
+				CString s;
+				VERIFY(s.LoadString(IDS_FILEUNIQUE));
+				AfxMessageBox(s, MB_ICONINFORMATION);
+			}
+			break;
+		case FILE_BINDIFF:
+			{
+				CString s;
+				VERIFY(s.LoadString(IDS_FILEBINARY));
+				AfxMessageBox(s, MB_ICONSTOP);
+			}
+			break;
+		default:
+			{
+				CString s;
+				VERIFY(s.LoadString(IDS_FILEERROR));
+				AfxMessageBox(s, MB_ICONSTOP);
+			}
+			break;
+		}
+	}
+
+}
