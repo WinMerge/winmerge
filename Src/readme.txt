@@ -2,7 +2,12 @@
  PATCH: [ 776525 ] Close doc after failed load
   WinMerge: MainFrm.cpp
  PATCH: [ 766287 ] Use our own dir traversal (instead of diff's)
-  WinMerge: Diff.cpp DiffContext.h DiffThread.cpp DirDoc.cpp Merge.dsp DirScan.h DirScan.cpp
+  WinMerge: Diff.cpp DiffContext.h DiffThread.cpp DirDoc.cpp Merge.dsp 
+   DirScan.h DirScan.cpp
+ PATCH: [ 773981 ] Modify language build process to eliminate msgboxes
+  (also added a version resource to MakeResDll, as it lacked one)
+  Languages: BuildAll.bat BuildDll.bat
+  MakeResDll: MakeResDll.cpp MakeResDll.rc
 
 2003-07-23 Perry
  PATCH: [ 776046 ] Fixes for <Highlight Line Diff> menu item

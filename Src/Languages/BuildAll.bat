@@ -9,3 +9,8 @@ Call BuildDll Italian
 Call BuildDll Korean
 Call BuildDll Slovak
 Call BuildDll Spanish
+
+Echo "Press ctrl-z <enter>"
+COPY CON TEMP$$$$.$$$ > nul
+DEL TEMP$$$$.$$$
+

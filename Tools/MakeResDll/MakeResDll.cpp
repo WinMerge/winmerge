@@ -27,6 +27,7 @@ CString gsRCScript;
 CString gsOutPath;
 CString gsVcBaseFolder;
 BOOL gbPause=FALSE;
+BOOL gbBatch=FALSE;
 BOOL gbSilent=FALSE;
 BOOL gbVerbose=FALSE;
 
@@ -82,7 +83,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 
 		CString s, strOutFile;
 		if (BuildDll(gsRCScript, gsOutPath, sname, strOutFile)
-			&& !gbSilent)
+			&& !gbSilent && !gbBatch)
 		{
 			AfxFormatString1(s, IDS_SUCCESS_FMT, strOutFile);
 			AfxMessageBox(s, MB_ICONINFORMATION);
@@ -139,6 +140,12 @@ BOOL ProcessArgs(int argc, TCHAR* argv[])
 			|| !_tcsicmp(argv[i], _T("/p")))
 		{
 			gbPause=TRUE;
+		}
+		else if (!_tcsicmp(argv[i], _T("-b"))
+			|| !_tcsicmp(argv[i], _T("/b")))
+		{
+			if (!gbBatch)
+				gbBatch=TRUE;
 		}
 		else if (!_tcsicmp(argv[i], _T("-s"))
 			|| !_tcsicmp(argv[i], _T("/s")))
@@ -229,6 +236,7 @@ void Usage()
 	_putts(_T("OPTIONS:\r\n"));
 	_putts(_T("\t/p : Pause after build\r\n"));
 	_putts(_T("\t/s : Run silently\r\n"));
+	_putts(_T("\t/b : Batch mode (no message boxes on success)\r\n"));
 	_putts(_T("\t/v : Verbose output\r\n"));
 	_putts(_T("\t/o <output path>: Specify the output directory for the language DLL\r\n"));
 	_putts(_T("\t/r <path to rc.exe>: Specify the path to the resource compiler executable\r\n"));
