@@ -1205,7 +1205,6 @@ BEGIN
     IDS_OPTIONS_TITLE       "Настройки"
     IDS_OPEN_TITLE          "Открыть"
     IDS_CONFIRM_DELETE_FILE "Удалить файл %1?"
-    IDS_EDIT_WINDOW_TITLE_FMT "Редактировать %1"
     IDS_FILESSAME           "Выбранные файлы не имеют отличий"
     IDS_FILEUNIQUE          "Выбранный файл существует только в одном каталоге. Поэтому сравнение провести невозможно."
     IDS_FILEERROR           "При сравнении файлов произошла ошибка."

@@ -2,10 +2,6 @@
 // Microsoft Developer Studio generated include file.
 // Used by Merge.rc
 //
-#define IDC_CUT                         3
-#define IDC_COPY                        4
-#define IDC_PASTE                       5
-#define IDC_UNDO                        6
 #define IDSAVEAS                        7
 #define IDD_ABOUTBOX                    100
 #define IDR_POPUP_MERGEVIEW             101
@@ -15,7 +11,6 @@
 #define IDR_MERGETYPE                   105
 #define IDD_OPEN                        106
 #define IDS_WINMERGE_THIS_DIRECTORY     106
-#define IDD_EDITFILE                    107
 #define IDS_UNKNOWN_ARCHIVE_FORMAT      107
 #define IDD_VSS                         108
 #define IDS_ELAPSED_TIME                108
@@ -57,7 +52,6 @@
 #define IDS_OPEN_TITLE                  148
 #define IDS_CONFIRM_DELETE              149
 #define IDS_CONFIRM_DELETE_FILE         149
-#define IDS_EDIT_WINDOW_TITLE_FMT       150
 #define IDS_FILESSAME                   151
 #define IDS_FILEUNIQUE                  152
 #define IDS_FILEERROR                   153

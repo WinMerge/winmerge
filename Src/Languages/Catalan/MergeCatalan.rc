@@ -1318,7 +1318,6 @@ BEGIN
     IDS_OPTIONS_TITLE       "Opcions"
     IDS_OPEN_TITLE          "Obre"
     IDS_CONFIRM_DELETE_FILE "Esteu segur que voleu suprimir el fitxer %1?"
-    IDS_EDIT_WINDOW_TITLE_FMT "Edita %1"
     IDS_FILESSAME           "Els fitxers seleccionats són idèntics."
     IDS_FILEUNIQUE          "El fitxer seleccionat no existeix a tots dos directories i per tant no es pot comparar."
     IDS_FILEERROR           "S'ha produït un error en comparar els fitxers."

@@ -1303,7 +1303,6 @@ BEGIN
     IDS_OPTIONS_TITLE       "Options"
     IDS_OPEN_TITLE          "Ouvrir"
     IDS_CONFIRM_DELETE_FILE "Voulez-vous vraiment supprimer le fichier %1?"
-    IDS_EDIT_WINDOW_TITLE_FMT "Modifier %1"
     IDS_FILESSAME           "Les fichiers sélectionnés sont identiques."
     IDS_FILEUNIQUE          "Le fichier sélectionné n'existe pas dans les deux répertoires et ne peut donc pas être comparé."
     IDS_FILEERROR           "Erreur lors de la comparaison des fichiers."

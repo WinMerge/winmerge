@@ -1174,7 +1174,6 @@ BEGIN
     IDS_OPTIONS_TITLE       "选项"
     IDS_OPEN_TITLE          "打开"
     IDS_CONFIRM_DELETE      "删除文件 %1？"
-    IDS_EDIT_WINDOW_TITLE_FMT "编辑 %1"
     IDS_FILESSAME           "选择的文件完全相同。"
     IDS_FILEUNIQUE          "选择的文件不存在于两边的文件夹，因此无法比对。"
     IDS_FILEERROR           "一个错误发生于比对文件时。"

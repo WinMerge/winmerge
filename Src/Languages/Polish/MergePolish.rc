@@ -1302,7 +1302,6 @@ BEGIN
     IDS_OPTIONS_TITLE       "Opcje"
     IDS_OPEN_TITLE          "Otwórz"
     IDS_CONFIRM_DELETE_FILE "Usunac plik %1?"
-    IDS_EDIT_WINDOW_TITLE_FMT "Edycja %1"
     IDS_FILESSAME           "Wybrane pliki sa identyczne."
     IDS_FILEUNIQUE          "Wybrany plik nie istnieje w obu katalogach i nie podlega porównaniu."
     IDS_FILEERROR           "Blad podczas porównywania plików."

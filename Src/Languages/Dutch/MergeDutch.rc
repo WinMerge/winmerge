@@ -1305,7 +1305,6 @@ BEGIN
     IDS_OPTIONS_TITLE       "Eigenschappen"
     IDS_OPEN_TITLE          "Open"
     IDS_CONFIRM_DELETE_FILE "Delete file %1?"
-    IDS_EDIT_WINDOW_TITLE_FMT "Bewerken %1"
     IDS_FILESSAME           "De geselecteerde bestanden zijn identiek"
     IDS_FILEUNIQUE          "Het geselecteerde bestand bestaat slechts in een map en kon daarom niet vergeleken woren"
     IDS_FILEERROR           "Fout opgetreden tijdens het vergelijken van de bestanden"

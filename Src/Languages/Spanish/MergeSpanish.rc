@@ -1302,7 +1302,6 @@ BEGIN
     IDS_OPTIONS_TITLE       "Página de Propiedades"
     IDS_OPEN_TITLE          "Comparar"
     IDS_CONFIRM_DELETE_FILE "Delete file %1?"
-    IDS_EDIT_WINDOW_TITLE_FMT "Editar a %1"
     IDS_FILESSAME           "Los archivos indicados son iguales"
     IDS_FILEUNIQUE          "El archivo indicado no se existe en los dos directorios y por eso, no se puede comparar."
     IDS_FILEERROR           "Se ocurrió un error cuando estaba comparando los archivos"

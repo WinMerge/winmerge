@@ -1302,7 +1302,6 @@ BEGIN
     IDS_OPTIONS_TITLE       "Vlastnosti"
     IDS_OPEN_TITLE          "Otevrít"
     IDS_CONFIRM_DELETE_FILE "Delete file %1?"
-    IDS_EDIT_WINDOW_TITLE_FMT "Upravit %1"
     IDS_FILESSAME           "Vybrané soubory jsou shodné."
     IDS_FILEUNIQUE          "Vybraný soubor neexistuje v obou adresárích a nelze provést porovnání."
     IDS_FILEERROR           "Behem porovnávání se vyskytla chyba."

@@ -1301,7 +1301,6 @@ BEGIN
     IDS_OPTIONS_TITLE       "Egenskaber"
     IDS_OPEN_TITLE          "Åben"
     IDS_CONFIRM_DELETE_FILE "Slet fil %1?"
-    IDS_EDIT_WINDOW_TITLE_FMT "Rediger %1"
     IDS_FILESSAME           "De valgte filer er identiske."
     IDS_FILEUNIQUE          "Den valgte fil eksistere ikke i begge mapper og kan derfor ikke sammenlignes"
     IDS_FILEERROR           "Der skete en fejl under sammenligning af filerne."

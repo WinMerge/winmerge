@@ -1266,7 +1266,6 @@ BEGIN
     IDS_OPTIONS_TITLE       "옵션"
     IDS_OPEN_TITLE          "열기"
     IDS_CONFIRM_DELETE_FILE "%1 을 삭제하시겠습니까?"
-    IDS_EDIT_WINDOW_TITLE_FMT "%1 을 수정합니다."
     IDS_FILESSAME           "선택하신 파일들은 동일한 내용의 파일들입니다.."
     IDS_FILEUNIQUE          "선택하신 파일은 양쪽 디렉토리에 모두 존재하는 파일이 아닙니다."
     IDS_FILEERROR           "파일 비교 도중 에러가 발생했습니다."

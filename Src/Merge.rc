@@ -1187,7 +1187,6 @@ BEGIN
     IDS_OPTIONS_TITLE       "Options"
     IDS_OPEN_TITLE          "Open"
     IDS_CONFIRM_DELETE_FILE "Delete file %1?"
-    IDS_EDIT_WINDOW_TITLE_FMT "Edit %1"
     IDS_FILESSAME           "The selected files are identical."
     IDS_FILEUNIQUE          "The selected file didn't exist in both directories and therefore couldn't be compared."
     IDS_FILEERROR           "An error occurred while comparing the files."

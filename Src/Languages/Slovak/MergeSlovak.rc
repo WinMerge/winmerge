@@ -1301,7 +1301,6 @@ BEGIN
     IDS_OPTIONS_TITLE       "Vlastnosti"
     IDS_OPEN_TITLE          "Otvoriù"
     IDS_CONFIRM_DELETE_FILE "Zmazaù s˙bor %1?"
-    IDS_EDIT_WINDOW_TITLE_FMT "Upraviù %1"
     IDS_FILESSAME           "VybranÈ s˙bory s˙ rovnakÈ."
     IDS_FILEUNIQUE          "Vybran˝ s˙bor neexistuje v oboch adres·roch, ned· sa porovnaù."
     IDS_FILEERROR           "PoËas porovn·vania sa vyskytla chyba."

@@ -1586,10 +1586,6 @@ SOURCE=.\dllver.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\EditFile.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\EditorFilepathBar.h
 # End Source File
 # Begin Source File

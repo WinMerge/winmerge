@@ -1,3 +1,9 @@
+2004-05-04 Laoran
+ PATCH: [ 947599 ] Remove EditFile.cpp EditFile.h
+  Src remove: EditFile.cpp EditFile.h
+  Src: Merge.dsp Merge.rc resource.h
+  Languages: *.rc resource.h
+
 2004-05-03 Kimmo
  PATCH: [ 942565 ] Option for closing windows with ESC
   Src: DirDoc.cpp DirView.cpp DirView.h MainFrm.cpp Merge.rc MergeEditView.cpp
