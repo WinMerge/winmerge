@@ -8,10 +8,12 @@
 <p>One of the reasons WinMerge is on SourceForge is so other
 developers can get involved. If you have some free time, are
 proficient with DeveloperStudio 6 and MFC, and would like to contribute,
-then <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216" target="_top">check
-out the list of items to be done</a>. If you see something in there that you think
+then check out the list of items to be done from the
+<a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216" target="_blank">Bugs</a> and
+<a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216" target="_blank">RFE</a> lists.
+If you see something in there that you think
 you can handle, <a href="mailto:winmerge-support@lists.sourceforge.net">let us know</a>
-and we'll assign the item to you.</p>
+or leave a comment at the item.</p>
 
 <p>Then grab a copy of the WinMerge source from
 <a href="http://sourceforge.net/cvs/?group_id=13216" target="_top">anonymous CVS</a>

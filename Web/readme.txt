@@ -1,3 +1,7 @@
+2004-11-10 Tim
+ BUG: [ 1028252 ] [homepage] Help needed page refers to only bug list
+  Web\developer: needed.php
+
 2004-11-09 Tim
  BUG: [ 1061682 ] Links to 2.0 in 2.2 changelist page don't work
   Web\2.0: changes.php
