@@ -205,7 +205,7 @@ DoHighlightText ( BOOL bNotifyIfNotFound )
       {
         CString prompt;
         prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, m_sText);
-        AfxMessageBox (prompt);
+        AfxMessageBox (prompt, MB_ICONINFORMATION);
       }
       if (m_nScope == 0)
         m_ptCurrentPos = m_ptBlockBegin;
@@ -245,7 +245,7 @@ DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
     {
       CString prompt;
       prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, m_sText);
-      AfxMessageBox (prompt);
+      AfxMessageBox (prompt, MB_ICONINFORMATION);
       if (m_nScope == 0)
         m_ptCurrentPos = m_ptBlockBegin;
       return FALSE;

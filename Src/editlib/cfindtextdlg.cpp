@@ -46,7 +46,6 @@ CFindTextDlg::CFindTextDlg (CCrystalTextView * pBuddy):CDialog (CFindTextDlg::ID
   m_bMatchCase = FALSE;
   m_bWholeWord = FALSE;
   m_bRegExp = FALSE;
-  m_sText = _T ("");
   //}}AFX_DATA_INIT
   m_ptCurrentPos = CPoint (0, 0);
 }
@@ -114,7 +113,7 @@ void CFindTextDlg::OnOK ()
         {
           CString prompt;
           prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, m_sText);
-          AfxMessageBox (prompt);
+          AfxMessageBox (prompt, MB_ICONINFORMATION);
           m_ptCurrentPos = CPoint (0, 0);
           return;
         }

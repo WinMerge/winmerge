@@ -6,6 +6,8 @@
   Src: DirDoc.cpp DirDoc.h
  PATCH: [ 1000308 ] Add GotoLine() to CMergeEditView and use it
   Src: LocationView.cpp LocationView.h MergeEditView.cpp MergeEditView.h
+ Add icons to Find and Replace result messageboxes.
+  Src/editlib: ceditreplacedlg.cpp cfindtextdlg.cpp
 
 2004-07-29 Kimmo
  PATCH: [ 999681 ] Accept filter name from commandline
