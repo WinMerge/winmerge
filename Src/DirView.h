@@ -29,17 +29,6 @@
 #if !defined(AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_)
 #define AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_
 
-// TODO delete
-/*
-#define DV_NAME     0
-#define DV_PATH     1
-#define DV_STATUS   2
-#define DV_LTIME    3
-#define DV_RTIME    4
-#define DV_EXT      5
-*/
-
-
 /////////////////////////////////////////////////////////////////////////////
 // CDirView view
 #include <afxcview.h>

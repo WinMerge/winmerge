@@ -1,3 +1,7 @@
+2004-01-23 Perry
+ PATCH: [ 880006 ] Code cleanup--old commented out lines in DirView.h
+  src: DirView.h
+
 2004-01-23 Kimmo
  PATCH: [ 848159 ] RFE 826652 : Compare by modified date
   Submitted by Tim Musschoot - some modifications by Kimmo
