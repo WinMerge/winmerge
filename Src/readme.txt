@@ -1,3 +1,8 @@
+2003-12-14 Kimmo
+ BUG: [ 833096 ] Left/right-only status overwrites skipped-status
+  Apply fix for long result too
+  WinMerge: DirViewColItems.cpp
+
 2003-12-11 Kimmo
  Adding 2.2 plan
   Docs: Planning_2_2.txt

@@ -101,6 +101,13 @@ static CString ColStatusGet(const DIFFITEM & di)
 	{
 		VERIFY(s.LoadString(IDS_CANT_COMPARE_FILES));
 	}
+	else if (di.isResultSkipped())
+	{
+		if (di.isDirectory())
+			VERIFY(s.LoadString(IDS_DIR_SKIPPED));
+		else
+			VERIFY(s.LoadString(IDS_FILE_SKIPPED));
+	}
 	else if (di.isSideLeft())
 	{
 		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getLeftFilepath());
@@ -108,13 +115,6 @@ static CString ColStatusGet(const DIFFITEM & di)
 	else if (di.isSideRight())
 	{
 		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getRightFilepath());
-	}
-	else if (di.isResultSkipped())
-	{
-		if (di.isDirectory())
-			VERIFY(s.LoadString(IDS_DIR_SKIPPED));
-		else
-			VERIFY(s.LoadString(IDS_FILE_SKIPPED));
 	}
 	else if (di.isResultSame())
 	{
@@ -211,6 +211,9 @@ static CString ColStatusAbbrGet(const DIFFITEM & di)
 {
 	int id;
 
+	// Note that order of items does matter. We must check for
+	// skipped items before unique items, for example, so that
+	// skipped unique items are labeled as skipped, not unique.
 	if (di.isResultError())
 	{
 		id = IDS_CANT_COMPARE_FILES;
