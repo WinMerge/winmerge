@@ -255,7 +255,6 @@ Name: Languages\Swedish; Description: {cm:SwedishLanguage}; Flags: disablenounin
 [Tasks]
 Name: ShellExtension; Description: {cm:ExplorerContextMenu}; GroupDescription: Optional Features:
 Name: TortoiseCVS; Description: {cm:IntegrateTortoiseCVS}; GroupDescription: Optional Features:; Check: TortoiseCVSInstalled
-Name: Delphi4Viewer; Description: {cm:IntegrateDelphi4}; GroupDescription: Optional Features:; Flags: unchecked
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
 Name: quicklaunchicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription: {cm:AdditionalIcons}
 
@@ -473,7 +472,7 @@ Source: ..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: promptifold
 Source: ..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Check: Install7ZipDll(312)
 Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Check: Install7ZipDll(311)
 
-Source: ..\Plugins\dlls\UnpackDFM.dll; DestDir: {app}\MergePlugins; Tasks: Delphi4Viewer; Flags: promptifolder
+Source: ..\Plugins\dlls\UnpackDFM.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 
 Source: ..\Src\Languages\DLL\MergeBulgarian.lang; DestDir: {app}; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
@@ -1122,13 +1121,11 @@ Begin
 
 End;
 
-{The following function determines whether or not the plugins.txt file needs to be copied.  There are two conditions where this is true
-If the user chooses to install the main plugins or selects the Delphi 4 Binary File Support.  The reason being that the Delphi 4 Binary
-File Support is actually a plugin, but is so uncommon that it is a separate option.  The plugins.txt file covers it too.}
+{Install Plugins.txt if plugins are installed}
 Function InstallPluginsText(): Boolean;
 Begin
-    {If either the Delphi 4 Binary File Viewer or Plugins are to be installed then...}
-    If (TaskDisabled('Delphi4Viewer') = False) Or (ComponentDisabled('Plugins') = False) Then
+    {If Plugins are to be installed then...}
+    If (ComponentDisabled('Plugins') = False) Then
         {We should install the Plugins.txt File}
         Result := True
     Else

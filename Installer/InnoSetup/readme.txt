@@ -4,6 +4,8 @@
   InnoSetup: WinMerge Localized.iss
  BUG: [ 1044896 ] Error creating INI entry...
   InnoSetup: WinMerge Localized.iss
+ PATCH: [ 1045491 ] Remove delphi binary file support item from installer
+  InnoSetup: WinMerge Localized.iss
 
 2004-10-15 Kimmo
  PATCH: [ 1046583 ] Improved 48x48 icon
