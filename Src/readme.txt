@@ -1,3 +1,9 @@
+2005-03-16 Jochen
+ Widen controls to display Merge7z plugin names (unicode names got chopped off)
+  Src: Merge.rc
+ BUG: [ 1154551 ] Merge7zInstaller download link focus issue
+  Src: 7zCommon.cpp
+
 2005-03-15 Jochen
  Add Merge7z415(U).dll to Merge7zInstaller
   Merge7zInstaller: Files.rc2
