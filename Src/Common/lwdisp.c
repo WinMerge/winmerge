@@ -31,6 +31,8 @@ DATE:		BY:					DESCRIPTION:
 2003/08/05	J.Tucht				change some names for use with MFC
 
 */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 //#define _WIN32_IE		0x0300
 //#define _WIN32_WINNT	0x0400	
@@ -95,6 +97,12 @@ void mycpyt2a(LPCTSTR tsz, char * adest, int limit)
 #endif
 }
 
+/**
+ * 
+ * @Note We can use this code with unregistered COM DLL
+ * For VC++ DLL, we need a custom CComTypeInfoHolder as the default one search the registry
+ * For VB DLL, instance can not be shared accross thread, one must be created for each thread
+ */
 LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 {
 	void *pv = 0;
@@ -109,7 +117,7 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 			sc=CoCreateInstance(&clsid, 0, CLSCTX_ALL, &IID_IDispatch, &pv);
 		}
 	}
-	else if (PathMatchSpec(source, _T("*.ocx")))
+	else if (PathMatchSpec(source, _T("*.ocx")) || PathMatchSpec(source, _T("*.dll")))
 	{
 		ITypeLib *piTypeLib;
 		mycpyt2w(source, wc, DIMOF(wc));
@@ -128,7 +136,7 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 						if SUCCEEDED(sc=piTypeInfo->lpVtbl->GetDocumentation(piTypeInfo, MEMBERID_NIL, &bstrName, 0, 0, 0))
 						{
 							LPCTSTR name = B2T(bstrName);
-							if (pTypeAttr->typekind == TKIND_COCLASS && lstrcmp(name, progid) == 0)
+							if (pTypeAttr->typekind == TKIND_COCLASS && lstrcmpi(name, progid) == 0)
 							{
 								IClassFactory *piClassFactory;
 								EXPORT_DLLPROXY
@@ -136,7 +144,7 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 									Dll, "",
 									HRESULT(NTAPI*DllGetClassObject)(REFCLSID,REFIID,IClassFactory**);
 								);
-								mycpyt2a(source, Dll.SIG, sizeof(Dll.SIG));
+								mycpyt2a(source, Dll.SIG+strlen(Dll.SIG), sizeof(Dll.SIG)-strlen(Dll.SIG));
 								if SUCCEEDED(sc=DLLPROXY(Dll)->DllGetClassObject(&pTypeAttr->guid, &IID_IClassFactory, &piClassFactory))
 								{
 									sc=piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
@@ -164,7 +172,6 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 		if (PathMatchSpec(source, _T("*.sct")))
 		{
 			MultiByteToWideChar(CP_ACP, 0, "script:", -1, wc, DIMOF(wc));
-
 			mycpyt2w(source, wc+wcslen(wc), DIMOF(wc)-wcslen(wc));
 		}
 		else
@@ -198,7 +205,7 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 	if FAILED(sc)
 	{
 		pv = 0;
-//		ReportError(sc, MB_ICONSTOP|MB_TASKMODAL);
+		ReportError(sc, MB_ICONSTOP|MB_TASKMODAL);
 	}
 	return (LPDISPATCH)pv;
 }
@@ -210,7 +217,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 	WORD wFlags = HIBYTE((UINT_PTR)op);
 	DISPPARAMS dispparams;
 	UINT nArgErr = (UINT)-1;
-	EXCEPINFO excepInfo;
+	EXCEPINFO excepInfo = {0};
 	dispparams.cArgs = LOBYTE((UINT_PTR)op);
 	dispparams.cNamedArgs = 0;
 	if (wFlags & (DISPATCH_PROPERTYPUT|DISPATCH_PROPERTYPUTREF))

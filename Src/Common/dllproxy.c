@@ -38,6 +38,8 @@ DATE:		BY:					DESCRIPTION:
 								rely on _alloca(); may also work with GCC
 
 */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #if defined(_MSC_VER)&&!defined(NO_ALLOCA_RECOVERY)||defined(ALLOCA_RECOVERY)
 #undef ALLOCA_RECOVERY

@@ -1,3 +1,6 @@
+#ifndef __LWDISP_H__
+#define __LWDISP_H__
+
 #ifdef __cplusplus
 extern "C"{
 #endif 
@@ -236,3 +239,5 @@ struct LWRet: public VARIANT
 // Sorry, no extra support for plain old C...
 
 #endif
+
+#endif //__LWDISP_H__
