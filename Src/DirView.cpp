@@ -207,6 +207,12 @@ void CDirView::OnInitialUpdate()
 	VERIFY (bm.LoadBitmap (IDB_RFOLDER));
 	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
 	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_FILESKIP));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_FOLDERSKIP));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
 
 	// Restore column orders as they had them last time they ran

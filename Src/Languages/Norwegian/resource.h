@@ -131,6 +131,8 @@
 #define IDB_LFOLDER                     223
 #define IDB_BINARYDIFF                  224
 #define IDS_PRIVATEBUILD_FMT            225
+#define IDB_FOLDERSKIP                  226
+#define IDB_FILESKIP                    227
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

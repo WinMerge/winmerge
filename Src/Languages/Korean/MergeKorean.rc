@@ -68,7 +68,7 @@ BEGIN
         MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
         MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "Format for "
+        POPUP "Format for"
         BEGIN
             MENUITEM "DOS (CRLF)",                  ID_EOL_TO_DOS
             MENUITEM "UNIX (LF)",                   ID_EOL_TO_UNIX
@@ -730,6 +730,9 @@ IDB_BINARYSAME          BITMAP                  "res\\binary.bmp"
 IDB_LFILE               BITMAP                  "res\\lfile.bmp"
 IDB_RFILE               BITMAP                  "res\\rfile.bmp"
 IDB_BINARYDIFF          BITMAP                  "res\\binarydiff.bmp"
+IDB_FOLDERSKIP          BITMAP                  "res\\folderskip.bmp"
+IDB_FILESKIP            BITMAP                  "res\\fileskip.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

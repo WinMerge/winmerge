@@ -1,5 +1,7 @@
 //Microsoft Developer Studio generated resource script.
 //
+// $Id$
+
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -103,7 +105,7 @@ BEGIN
         MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
         MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "Format for "
+        POPUP "Format for"
         BEGIN
             MENUITEM "DOS (CRLF)",                  ID_EOL_TO_DOS
             MENUITEM "UNIX (LF)",                   ID_EOL_TO_UNIX
@@ -759,6 +761,9 @@ IDB_BINARYSAME          BITMAP  DISCARDABLE     "res\\binary.bmp"
 IDB_LFILE               BITMAP  DISCARDABLE     "res\\lfile.bmp"
 IDB_RFILE               BITMAP  DISCARDABLE     "res\\rfile.bmp"
 IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
+IDB_FOLDERSKIP          BITMAP  DISCARDABLE     "res\\folderskip.bmp"
+IDB_FILESKIP            BITMAP  DISCARDABLE     "res\\fileskip.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -1,3 +1,10 @@
+2003-09-15 Kimmo
+ BUG [ 806552 ] DirView icons missing?
+  Adding icons for skipped files and folders
+  WinMerge: DirView.cpp Merge.rc resource.h
+  WinMerge/res: new files fileskip.bmp folderskip.bmp
+  Languages: resource.h *.rc new files /res fileskip.bmp folderskip.bmp
+
 2003-09-14 Perry
  PATCH: [ 805875 ] Switch to diffcode flags
   WinMerge: DiffContext.cpp DiffContext.h DirActions.cpp DirDoc.cpp DirDoc.h
