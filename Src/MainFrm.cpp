@@ -139,10 +139,10 @@ CMainFrame::CMainFrame()
 		CRegKeyEx reg;
 		if (reg.Open(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\Microsoft\\SourceSafe")) == ERROR_SUCCESS)
 		{
-			TCHAR temp[MAX_PATH],path[MAX_PATH];
-			reg.ReadChars(_T("SCCServerPath"), temp, MAX_PATH, _T(""));
-			split_filename(temp, path, NULL, NULL);
-			m_strVssPath.Format(_T("%s\\Ss.exe"), path);
+			TCHAR temp[_MAX_PATH] = {0};
+			reg.ReadChars(_T("SCCServerPath"), temp, _MAX_PATH, _T(""));
+			CString spath = GetPathOnly(temp);
+			m_strVssPath = spath + _T("\\Ss.exe");
 		}
 	}
 }
@@ -284,11 +284,12 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 			}
 
 			// set the document types
-			TCHAR name[MAX_PATH],ext[MAX_PATH];
-			split_filename(szLeft, NULL, name, ext);
-			m_pLeft->SetTextType(ext);
-			split_filename(szRight, NULL, name, ext);
-			m_pRight->SetTextType(ext);
+			CString sname, sext;
+			SplitFilename(szLeft, 0, &sname, &sext);
+			m_pLeft->SetTextType(sext);
+			SplitFilename(szRight, 0, &sname, &sext);
+			m_pRight->SetTextType(sext);
+
 			
 			// SetTextType will revert to language dependent defaults for tab
 			m_pLeft->SetTabSize(mf->m_nTabSize);
@@ -390,16 +391,14 @@ void CMainFrame::OnUpdateHideBackupFiles(CCmdUI* pCmdUI)
 
 void CMainFrame::OnHelpGnulicense() 
 {
-	TCHAR path[MAX_PATH], temp[MAX_PATH];
-	GetModuleFileName(NULL, temp, MAX_PATH);
-	split_filename(temp, path, NULL, NULL);
-	_tcscat(path, _T("\\Copying"));
-
+	CString spath = GetModulePath() + _T("\\Copying");
+	CString url = _T("http://www.gnu.org/copyleft/gpl.html");
+	
 	CFileStatus status;
-	if (CFile::GetStatus(path, status))
-		ShellExecute(m_hWnd, _T("open"), _T("notepad.exe"),path, NULL, SW_SHOWNORMAL);
+	if (CFile::GetStatus(spath, status))
+		ShellExecute(m_hWnd, _T("open"), _T("notepad.exe"), spath, NULL, SW_SHOWNORMAL);
 	else
-		ShellExecute(NULL, _T("open"), _T("http://www.gnu.org/copyleft/gpl.html"), NULL, NULL, SW_SHOWNORMAL);
+		ShellExecute(NULL, _T("open"), url, NULL, NULL, SW_SHOWNORMAL);
 }
 
 BOOL CMainFrame::CheckSavePath(CString& strSavePath)
@@ -443,17 +442,20 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 							CWaitCursor wait;
 							m_strVssProject = dlg.m_strProject;
 							theApp.WriteProfileString(_T("Settings"), _T("VssProject"), mf->m_strVssProject);
-							TCHAR args[1024];
-							TCHAR path[MAX_PATH],name[MAX_PATH];
-							split_filename(strSavePath,path,name,NULL);
-							_chdrive(toupper(path[0])-'A'+1);
-							_chdir(path);
-							DWORD code;
-							_stprintf(args,_T("checkout %s/%s"), m_strVssProject,name);
+							CString spath, sname;
+							SplitFilename(strSavePath, &spath, &sname, 0);
+							if (!spath.IsEmpty())
+							{
+								_chdrive(toupper(spath[0])-'A'+1);
+								_chdir(spath);
+							}
+							CString args;
+							args.Format(_T("checkout %s/%s"), m_strVssProject, sname);
 							HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
 							if (hVss!=INVALID_HANDLE_VALUE)
 							{
 								WaitForSingleObject(hVss, INFINITE);
+								DWORD code;
 								GetExitCodeProcess(hVss, &code);
 								CloseHandle(hVss);
 								if (code != 0)
@@ -510,12 +512,12 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 
                         // BSP - Open the specific VSS data file  using info from VSS dialog box
 						vssdb.Open(m_strVssPath, m_strVssUser, m_strVssPassword);
-						
-						TCHAR path[MAX_PATH],name[MAX_PATH];
-						split_filename(strSavePath,path,name,NULL);
+
+						CString spath, sname;
+						SplitFilename(strSavePath, &spath, &sname, 0);
 
                         // BSP - Combine the project entered on the dialog box with the file name...
-						CString strItem = m_strVssProject+"/"+name; 
+						CString strItem = m_strVssProject + '/' + sname;
 
                         //  BSP - ...to get the specific source safe item to be checked out
 						m_vssi = vssdb.GetVSSItem( strItem, 0 );
@@ -547,13 +549,16 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 						if(userChoice == IDOK)
 						{
 							CWaitCursor wait;
-							TCHAR args[1024];
-							TCHAR path[MAX_PATH],name[MAX_PATH];
-							split_filename(strSavePath,path,name,NULL);
-							_chdrive(toupper(path[0])-'A'+1);
-							_chdir(path);
+							CString spath, sname;
+							SplitFilename(strSavePath, &spath, &sname, 0);
+							if (!spath.IsEmpty())
+							{
+								_chdrive(toupper(spath[0])-'A'+1);
+								_chdir(spath);
+							}
 							DWORD code;
-							_stprintf(args,_T("checkout -c \"%s\" %s"), dlg.m_comments, name);
+							CString args;
+							args.Format(_T("checkout -c \"%s\" %s"), dlg.m_comments, sname);
 							HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
 							if (hVss!=INVALID_HANDLE_VALUE)
 							{
@@ -794,25 +799,25 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	}
 
 	// check to make sure they are same type
-	TCHAR name[MAX_PATH];
+	CString sname;
 	BOOL bLeftIsDir = GetFileAttributes(strLeft)&FILE_ATTRIBUTE_DIRECTORY;
 	BOOL bRightIsDir = GetFileAttributes(strRight)&FILE_ATTRIBUTE_DIRECTORY;
 	if (bLeftIsDir && !bRightIsDir)
 	{
-		split_filename(strRight, NULL, name, NULL);
+		SplitFilename(strRight, 0, &sname, 0);
 		strLeft += _T("\\");
-		strLeft += name;
+		strLeft += sname;
 		bLeftIsDir = FALSE;
 	}
 	else if (!bLeftIsDir && bRightIsDir)
 	{
-		split_filename(strLeft, NULL, name, NULL);
+		SplitFilename(strLeft, 0, &sname, 0);
 		strRight += _T("\\");
-		strRight += name;
+		strRight += sname;
 		bRightIsDir = FALSE;
 	}
 
-	if (gWriteLog)
+	if (1)
 	{
 		gLog.Write(_T("### Begin Comparison Parameters #############################\r\n")
 				  _T("\tLeft: %s\r\n")
@@ -880,15 +885,14 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 	if (m_bBackup
 		&& CFile::GetStatus(pszPath, status))
 	{
-		TCHAR path[MAX_PATH], name[_MAX_FNAME], ext[_MAX_EXT];
-		CString s;
-
 		// build the backup filename
-		split_filename(pszPath, path, name, ext);
-		if (*ext != _T('\0'))
-			s.Format(_T("%s\\%s.%s") BACKUP_FILE_EXT, path, name, ext);
+		CString spath, sname, sext;
+		SplitFilename(pszPath, &spath, &sname, &sext);
+		CString s;
+		if (!sext.IsEmpty())
+			s.Format(_T("%s\\%s.%s") BACKUP_FILE_EXT, spath, sname, sext);
 		else
-			s.Format(_T("%s\\%s")  BACKUP_FILE_EXT, path, name);
+			s.Format(_T("%s\\%s")  BACKUP_FILE_EXT, spath, sname);
 
 		// get rid of the dest file
 		DeleteFile(s); // (errors are handled from MoveFile below)
@@ -1142,16 +1146,14 @@ void CMainFrame::UpdateResources()
 
 void CMainFrame::OnHelpContents() 
 {
-	TCHAR path[MAX_PATH], temp[MAX_PATH];
-	GetModuleFileName(NULL, temp, MAX_PATH);
-	split_filename(temp, path, NULL, NULL);
-	_tcscat(path, _T("\\Docs\\index.html"));
+	CString spath = GetModulePath(0) + _T("\\Docs\\index.html");
+	CString url = _T("http://winmerge.sourceforge.net/docs/index.html");
 
 	CFileStatus status;
-	if (CFile::GetStatus(path, status))
-		ShellExecute(NULL, _T("open"), path, NULL, NULL, SW_SHOWNORMAL);
+	if (CFile::GetStatus(spath, status))
+		ShellExecute(NULL, _T("open"), spath, NULL, NULL, SW_SHOWNORMAL);
 	else
-		ShellExecute(NULL, _T("open"), _T("http://winmerge.sourceforge.net/docs/index.html"), NULL, NULL, SW_SHOWNORMAL);
+		ShellExecute(NULL, _T("open"), url, NULL, NULL, SW_SHOWNORMAL);
 
 }
 
@@ -1240,7 +1242,7 @@ void CMainFrame::FreeRegExpList()
 
 void CMainFrame::RebuildRegExpList()
 {
-	_TCHAR tmp[MAX_PATH];
+	_TCHAR tmp[_MAX_PATH] = {0};
 	_TCHAR* token;
 	_TCHAR sep[] = "\r\n";
 	

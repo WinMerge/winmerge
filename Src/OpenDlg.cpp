@@ -91,21 +91,21 @@ END_MESSAGE_MAP()
 void COpenDlg::OnLeftButton() 
 {
 	CString s;
-	TCHAR folder[MAX_PATH]=_T(""), name[MAX_PATH];
+	CString sfolder, sname;
 	CFileStatus status;
 	UpdateData(TRUE); 
 
 	if (CFile::GetStatus(m_strLeft, status)
 		&& (status.m_attribute & CFile::Attribute::directory))
-			_tcscpy(folder, m_strLeft);
+			sfolder = m_strLeft;
 	else
-		split_filename(m_strLeft, folder, NULL, NULL);
-	if (SelectFile(s, folder))
+		sfolder = GetPathOnly(m_strLeft);
+	if (SelectFile(s, sfolder))
 	{
-		split_filename(s, folder, name, NULL);
-		if (!_tcscmp(name, DIRSEL_TAG))
+		SplitFilename(s, &sfolder, &sname, 0);
+		if (sname == DIRSEL_TAG)
 		{
-			m_strLeft = folder;
+			m_strLeft = sfolder;
 		}
 		else
 			m_strLeft = s;
@@ -117,20 +117,20 @@ void COpenDlg::OnLeftButton()
 void COpenDlg::OnRightButton() 
 {
 	CString s;
-	TCHAR folder[MAX_PATH]=_T(""), name[MAX_PATH];
+	CString sfolder, sname;
 	CFileStatus status;
 	UpdateData(TRUE);
 
 	if (CFile::GetStatus(m_strRight, status)
 		&& (status.m_attribute & CFile::Attribute::directory))
-			_tcscpy(folder, m_strRight);
+			sfolder = m_strRight;
 	else 
-		split_filename(m_strRight, folder, NULL, NULL);
-	if (SelectFile(s, folder))
+		sfolder = GetPathOnly(m_strRight);
+	if (SelectFile(s, sfolder))
 	{
-		split_filename(s, folder, name, NULL);
-		if (!_tcscmp(name, DIRSEL_TAG))
-			m_strRight = folder;
+		SplitFilename(s, &sfolder, &sname, 0);
+		if (sname == DIRSEL_TAG)
+			m_strRight = sfolder;
 		else
 			m_strRight = s;
 		UpdateData(FALSE);
@@ -222,8 +222,8 @@ BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder)
 	CString s;           
                    
 	VERIFY(s.LoadString(IDS_ALLFILES) );
-	CFileDialog pdlg(TRUE, NULL, DIRSEL_TAG, 
-				    OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST, s);
+	DWORD flags = OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+	CFileDialog pdlg(TRUE, NULL, DIRSEL_TAG, flags, s);
 	CString title;
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	pdlg.m_ofn.lpstrTitle = (LPCTSTR)title;

@@ -401,12 +401,6 @@ void CDirDoc::SetDiffContext(CDiffContext *pCtxt)
 BOOL CDirDoc::UpdateItemStatus(LPCTSTR pathLeft, LPCTSTR pathRight,
 							   UINT status)
 {
-	TCHAR path1[_MAX_PATH] = {0};
-	TCHAR path2[_MAX_PATH] = {0};
-	TCHAR file1[_MAX_PATH] = {0};
-	TCHAR file2[_MAX_PATH] = {0};
-	TCHAR ext1[_MAX_PATH] = {0};
-	TCHAR ext2[_MAX_PATH] = {0};
 	POSITION pos = m_pCtxt->GetFirstDiffPosition();
 	POSITION currentPos;
 	DIFFITEM current;
@@ -414,28 +408,18 @@ BOOL CDirDoc::UpdateItemStatus(LPCTSTR pathLeft, LPCTSTR pathRight,
 	int i = 0;
 	BOOL found = FALSE;
 
-	split_filename(pathLeft, path1, file1, ext1);
-	split_filename(pathRight, path2, file2, ext2);
+	CString path1, file1;
+	SplitFilename(pathLeft, &path1, &file1, 0);
+	CString path2, file2;
+	SplitFilename(pathRight, &path2, &file2, 0);
 
 	// Path can contain (because of difftools?) '/' and '\'
-	// so for comparing purposes, convert whole path to use '/'
-	mf->ConvertPathToSlashes(path1);
-	mf->ConvertPathToSlashes(path2);
-
-	// Add extensions back
-	if (ext1 != NULL)
-	{
-		_tcscat(file1, ".");
-		_tcscat(file1, ext1);
-	}
-	if (ext2 != NULL)
-	{
-		_tcscat(file2, ".");
-		_tcscat(file2, ext2);
-	}
+	// so for comparing purposes, convert whole path to use '\\'
+	path1.Replace('/', '\\');
+	path2.Replace('/', '\\');
 
 	// Filenames must be identical
-	if (_tcsicmp( file1, file2) != 0)
+	if (file1 != file2)
 		return FALSE;
 
 	// Get first item
@@ -449,12 +433,12 @@ BOOL CDirDoc::UpdateItemStatus(LPCTSTR pathLeft, LPCTSTR pathRight,
 
 		// Path can contain (because of difftools?) '/' and '\'
 		// so for comparing purposes, convert whole path to use '/'
-		mf->ConvertPathToSlashes(current.rpath);
-		mf->ConvertPathToSlashes(current.lpath);
+		replace_char(current.rpath, '/', '\\');
+		replace_char(current.lpath, '/', '\\');
 
-		if ( (_tcsicmp(current.lpath, path1) == 0) &&
-			(_tcsicmp(current.rpath, path2) == 0) &&
-			(_tcsicmp(current.filename, file1) == 0) )
+		if (path1 == current.lpath &&
+			path2 == current.rpath &&
+			file1 == current.filename)
 		{
 			// Right item found!
 			// Get index at view, update status to context

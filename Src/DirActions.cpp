@@ -368,12 +368,8 @@ BOOL CDirView::GetSelectedDirNames(CString& strLeft, CString& strRight) const
 
 	if (bResult)
 	{
-		TCHAR path[MAX_PATH];
-		split_filename(strLeft, path, NULL, NULL);
-		strLeft = path;
-
-		split_filename(strRight, path, NULL, NULL);
-		strRight = path;
+		strLeft = GetPathOnly(strLeft);
+		strRight = GetPathOnly(strRight);
 	}
 	return bResult;
 }

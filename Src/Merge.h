@@ -80,7 +80,7 @@ extern CMergeApp theApp;
 CMergeDoc *GetDoc();
 BOOL SelectFile(CString& path, LPCTSTR root_path = NULL, 
 			 LPCTSTR title = _T("Open"), 
-			 UINT filter =0,
+			 UINT filterid =0,
 			 BOOL is_open =TRUE);
 
 //{{AFX_INSERT_LOCATION}}

@@ -300,20 +300,10 @@ BOOL CAboutDlg::OnInitDialog()
 
 BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/, 
 			 LPCTSTR title /*= _T("Open")*/, 
-			 UINT filter /*=0*/,
+			 UINT filterid /*=0*/,
 			 BOOL is_open /*=TRUE*/) 
 {
-	CString s;        
-	TCHAR buf[MAX_PATH*2] = _T("Directory Selection");;
-                   
-	if (filter != 0)
-		VERIFY(s.LoadString(filter)); 
-	else
-		VERIFY(s.LoadString(IDS_ALLFILES)); 
-	CFileDialog dlg(is_open, NULL, NULL, 
-				    OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST, s);
-	dlg.m_ofn.lpstrTitle = (LPCTSTR)title;
-	dlg.m_ofn.lpstrInitialDir = (LPTSTR)root_path;
+	CString sfile = _T("Directory Selection");
 
 	// check if specified path is a file
 	if (root_path!=NULL)
@@ -322,20 +312,26 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 		if (CFile::GetStatus(root_path,status)
 			&& (status.m_attribute!=CFile::Attribute::directory))
 		{
-			split_filename(root_path, NULL, buf, NULL);
+			SplitFilename(root_path, 0, &sfile, 0);
 		}
 	}
-
-
 	
-	dlg.m_ofn.lpstrFile = buf;
-	dlg.m_ofn.nMaxFile = MAX_PATH*2;
+	CString filters;
+	if (filterid != 0)
+		VERIFY(filters.LoadString(filterid)); 
+	else
+		VERIFY(filters.LoadString(IDS_ALLFILES)); 
+	DWORD flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+	CFileDialog dlg(is_open, NULL, sfile, flags, filters);
+	dlg.m_ofn.lpstrTitle = (LPCTSTR)title;
+	dlg.m_ofn.lpstrInitialDir = (LPTSTR)root_path;
+
 	if (dlg.DoModal()==IDOK)
 	{
 	 	path = dlg.GetPathName(); 
 	 	return TRUE;
 	}
-	path.Empty();
+	path = _T("");
 	return FALSE;	   
 }
 
@@ -365,7 +361,7 @@ void CMergeApp::OnViewLanguage()
 #include "direct.h"
 
 typedef BOOL (*RecursiveFindCallback)(WIN32_FIND_DATA &fd, LPCTSTR pszPath, LPVOID pUserData);
-TCHAR recurse_dir_regex[MAX_PATH];
+TCHAR recurse_dir_regex[_MAX_PATH] = {0};
 
 BOOL MyRecursiveFindCallback(WIN32_FIND_DATA &fd, LPCTSTR pszPath, LPVOID pUserData)
 {
@@ -465,16 +461,16 @@ BOOL RecursiveFindRegex(LPCTSTR szRegex,
 
 void SillyTestCrap()
 {
-	TCHAR teststring[][MAX_PATH] = {
-		"test.cpp",
-			"test.c",
-			"test.h",
-			"test.x",
-			"test.cpp2",
-			".cpp",
-			"cpp",
-			"acpp",
-			""
+	TCHAR teststring[][_MAX_PATH] = {
+		_T("test.cpp"),
+			_T("test.c"),
+			_T("test.h"),
+			_T("test.x"),
+			_T("test.cpp2"),
+			_T(".cpp"),
+			_T("cpp"),
+			_T("acpp"),
+			_T("")
 	};
 	TCHAR ext[] = _T("*.cpp;*.h;*.c");
 	LPTSTR p;

@@ -1,3 +1,6 @@
+2003-02-09  Perry
+ [ 683120 ] splitfilename changed to CStrings
+
 2003-02-08  Perry
  DirDoc.*: Changed from strftime to COleDateTime::Format (respects user prefs).
  First half of [ 679692 ] Update after editing (with code combination).

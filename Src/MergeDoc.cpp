@@ -199,7 +199,7 @@ void CMergeDoc::Dump(CDumpContext& dc) const
 // CMergeDoc commands
 
 // remove lines with flags==deleteflags, and clear all others
-static PrepareBufferForRescan(CMergeDoc::CDiffTextBuffer * buf, DWORD deleteflags)
+static void PrepareBufferForRescan(CMergeDoc::CDiffTextBuffer * buf, DWORD deleteflags)
 {
 	for(int ct=buf->GetLineCount()-1; ct>=0; --ct)
 	{
@@ -233,7 +233,7 @@ BOOL CMergeDoc::Rescan()
 	// perform rescan
 	struct file_data inf[2];
 	char *free0=NULL,*free1=NULL;
-	char dir0[MAX_PATH],dir1[MAX_PATH], name0[MAX_PATH], name1[MAX_PATH];
+	CString sdir0, sdir1, sname0, sname1;
 	int val,failed=0, depth=0;
 	bool same_files=FALSE;
 	struct change *e, *p;
@@ -260,8 +260,8 @@ BOOL CMergeDoc::Rescan()
 	m_nDiffs=0;
 	m_nCurDiff=-1;
 	
-	split_filename(m_strTempLeftFile, dir0, name0, NULL);
-	split_filename(m_strTempRightFile, dir1, name1, NULL); 
+	SplitFilename(m_strTempLeftFile, &sdir0, &sname0, 0);
+	SplitFilename(m_strTempRightFile, &sdir1, &sname1, 0);
 	memset(&inf[0], 0,sizeof(inf[0]));
 	memset(&inf[1], 0,sizeof(inf[1]));
 	
@@ -269,9 +269,15 @@ BOOL CMergeDoc::Rescan()
 	int o_binary = always_text_flag ? 0:O_BINARY;
 	
 	/* Open the files and record their descriptors.  */
-	inf[0].name = *dir0 == 0 ? name0 : (free0 = dir_file_pathname (dir0, name0));
+	if (sdir0.IsEmpty())
+		inf[0].name = sname0;
+	else
+		inf[0].name = free0 = dir_file_pathname (sdir0, sname0);
 	inf[0].desc = -2;
-	inf[1].name = *dir1 == 0 ? name1 : (free1 = dir_file_pathname (dir1, name1));
+	if (sdir1.IsEmpty())
+		inf[1].name = sname1;
+	else
+		inf[1].name = free1 = dir_file_pathname (sdir1, sname1);
 	inf[1].desc = -2;
 	if (inf[0].desc == -2)
 	{
@@ -666,12 +672,12 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL bLeft)
 			&& (status.m_attribute & CFile::Attribute::directory))
 		{
 			// third arg was a directory, so get append the filename
-			TCHAR name[MAX_PATH];
-			split_filename(szPath, NULL, name, NULL);
+			CString sname;
+			SplitFilename(szPath, 0, &sname, 0);
 			strSavePath = mf->m_strSaveAsPath;
 			if (mf->m_strSaveAsPath.Right(1) != _T('\\'))
 				strSavePath += _T('\\');
-			strSavePath += name;
+			strSavePath += sname;
 		}
 		else
 			strSavePath = mf->m_strSaveAsPath;	
