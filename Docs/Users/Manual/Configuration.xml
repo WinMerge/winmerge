@@ -32,27 +32,24 @@
       <para>When disabled: Open-dialog enabled "OK" button by default and lets user to try to open all paths. However error message is shown if path is not valid. This is faster to use, there is no any delay in enabling "OK". But user must look at error-dialogs.</para>
     </sect3>
     <sect3>
-      <title>Use codepage info (html, rc) for Load/save</title>
-      <important>
-        <para>Uncheck this option in WinMerge.exe. Characters conversions can result in lossy conversions and the risk is very high. WinMerge.exe can display files only with your current codepage.</para>
-      </important>
-      <para>This option is interesting when your documents use a codepage different from your current codepage (your current codepage is the codepage of your Windows configuration). </para>
-      <para>For example, you may merge two slovak or two japanese files in an english environment. With the required fonts, and this option set, your slovak, or japanese, files will be displayed with slovak, or japanese, characters. </para>
-      <para>Actually, WinMerge detects the codepage for these extensions : .html and .rc (resource files for VC++). </para>
-      <para>WinMerge also detects a codepage difference between the left/right files. To avoid lossy conversions during merge/copy/paste, WinMerges proposes you to ignore the codepage information. </para>
-      <caution>
-        <para>When you paste/copy text to an external application, the external application must use the same codepage as WinMerge does. If your external editor does not support custom codepages, disable this option. Refer to the documentation for your external editor (for copying to WinMerge, Internet Explorer offers codepage selection).</para>
-      </caution>
+      <title>Reset messageboxes (Reset-button)</title>
+      <para>WinMerge allows user to hide (suppress) some common messageboxes. For example if user doesn't want to see "The files are identical" messagebox every time two identical files are opened user can check checkbox in that messagebox and close messagebox. Then that messagebox will not be shown again.</para>
+      <para>However sometimes user may want to see again those hidden messageboxes. Selecting "Reset" button makes all messageboxes visible again.</para>
+      <note>
+        <para>It is recommended to reset messageboxes when updating to newer version of WinMerge. Installer does that automatically but if installer is not used then it should be done using this "Reset" button.</para>
+      </note>
     </sect3>
   </sect2>
   <sect2>
     <title>Compare options</title>
+    <para>Several compare options allow to ignore some specific type of differences. This is useful in reducing insignificant differences for review purposes.</para>
+    <para>Ignored difference is shown with different color and it cannot be merged. Difference counts do not include ignored differences. So if files contains only ignored differences they are shown as identical in directory compare.</para>
+    <important>
+      <para>Ignoring differences affects merging! If user ignores whitespace changes, then e.g. indentation changes in source code files are ignored. That means file's indentation gets messed up when merging. It is strongly recommended to turn off all difference ignore options before merging files!</para>
+    </important>
     <sect3>
       <title>Whitespace</title>
       <para>Compare Whitespace, Ignore whitespace change and Ignore all whitespace are three different levels for comparing/ignoring whitespace characters.</para>
-      <important>
-        <para>Ignoring whitespaces affects merging! If user ignores whitespace changes, then e.g. indentation changes in source code files are ignored. That means file's indentation gets messed up when merging. It is strongly recommended to set whitespace option to "Compare All" before merging files.</para>
-      </important>
       <para>"Ignore whitespace change" ignores changes in whitespace chars. First three lines in example below illustrate this, those three lines are detected as identical if this option is set. However change between zero and more whitespace characters is NOT ignored. So fourth line is different from first two lines<example>
           <title>Ignore whitespace change</title>
           <para>One space between words:<screen format="linespecific">Two Words</screen></para>
@@ -69,7 +66,7 @@
     </sect3>
     <sect3>
       <title>Ignore blank lines</title>
-      <para>Ignores differences consisting only of blank lines in files. Blank lines are shown in file view, but difference is not shown as mergeable difference.</para>
+      <para>Ignores differences that have only blank (empty) lines. Blank lines are shown in file view, but difference is shown with ignored difference colors and it cannot be merged.</para>
     </sect3>
     <sect3>
       <title>Ignore case</title>
@@ -160,6 +157,27 @@ EOL differences.</screen>
       <title>External editor</title>
       <para>WinMerge has pretty good editor for most basic editing needs. But its not nowhere near comparable to many other editors in functionality. So WinMerge allows user to define ones personally preferred editor to external editor. Files can be opened to external editor from directory compare's context menu.</para>
       <para>Notepad is used as default, because it is found from all Windows machines. Commandline parameters can be given, in format: &lt;path to .exe&gt; -option1 -option2 ...</para>
+    </sect3>
+  </sect2>
+  <sect2>
+    <title>Codepage options</title>
+    <para>These options allow selecting codepage WinMerge uses for ANSI files and if codepage should be read from file contents for specific file formats.</para>
+    <sect3>
+      <title>Default codepage for ANSI files</title>
+      <para>These three radiobuttons can be used to select default codepage WinMerge uses when handling ANSI files. Usually default choise of "System codepage" is best choise. However if user knows that files are not in same codepage than system uses then user can choose different codepage selecting "Custom codepage" and typing codepage number to textbox next to it.</para>
+    </sect3>
+    <sect3>
+      <title>Detect codepage info for these files: .html .rc</title>
+      <important>
+        <para>Uncheck this option in WinMerge.exe. Characters conversions can result in lossy conversions and the risk is very high. WinMerge.exe can display files only with your current codepage.</para>
+      </important>
+      <para>This option is interesting when your documents use a codepage different from your current codepage (your current codepage is the codepage of your Windows configuration).</para>
+      <para>For example, you may merge two slovak or two japanese files in an english environment. With the required fonts, and this option set, your slovak, or japanese, files will be displayed with slovak, or japanese, characters.</para>
+      <para>Actually, WinMerge detects the codepage for these extensions : .html and .rc (resource files for VC++).</para>
+      <para>WinMerge also detects a codepage difference between the left/right files. To avoid lossy conversions during merge/copy/paste, WinMerges proposes you to ignore the codepage information.</para>
+      <caution>
+        <para>When you paste/copy text to an external application, the external application must use the same codepage as WinMerge does. If your external editor does not support custom codepages, disable this option. Refer to the documentation for your external editor (for copying to WinMerge, Internet Explorer offers codepage selection).</para>
+      </caution>
     </sect3>
   </sect2>
 </sect1>
