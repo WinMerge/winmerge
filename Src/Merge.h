@@ -17,8 +17,14 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// Merge.h : main header file for the MERGE application
-//
+/** 
+ * @file  Merge.h
+ *
+ * @brief main header file for the MERGE application
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #if !defined(AFX_MERGE_H__BBCD4F88_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_MERGE_H__BBCD4F88_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
@@ -38,6 +44,7 @@
 class FileFilterMgr;
 struct FileFilter;
 class StringPairArray;
+class CMainFrame;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -46,6 +53,9 @@ class StringPairArray;
 
 enum { IDLE_TIMER = 9754 };
 
+/** 
+ * @brief WinMerge application class
+ */
 class CMergeApp : public CWinApp
 {
 public:
@@ -101,7 +111,8 @@ protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void InitializeFileFilters();
 	void LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int, int> & patternsLoaded, const CString & sPattern);
-	void ParseArgs(CStringArray & files, UINT & nFiles, BOOL & recurse, DWORD & dwLeftFlags, DWORD & dwRightFlags);
+	void ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
+		DWORD & dwLeftFlags, DWORD & dwRightFlags);
 
 
 	//{{AFX_MSG(CMergeApp)

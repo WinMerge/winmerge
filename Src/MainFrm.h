@@ -131,6 +131,8 @@ public:
 	BOOL m_bScrollToFirst;
 	UINT m_nTabType;
 	BOOL m_bViewWhitespace;
+	CString m_strLeftDesc;
+	CString m_strRightDesc;
 
 // Implementation data
 protected:

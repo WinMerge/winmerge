@@ -2258,13 +2258,19 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 
 	if (bLeft)
 	{
-		sText = m_strLeftFile;
+		if (!mf->m_strLeftDesc.IsEmpty())
+			sText = mf->m_strLeftDesc;
+		else
+			sText = m_strLeftFile;
 		bChanges = m_ltBuf.IsModified();
 		nPane = 0;
 	}
 	else
 	{
-		sText = m_strRightFile;
+		if (!mf->m_strRightDesc.IsEmpty())
+			sText = mf->m_strRightDesc;
+		else
+			sText = m_strRightFile;
 		bChanges = m_rtBuf.IsModified();
 		nPane = 1;
 	}

@@ -239,7 +239,7 @@ BOOL CMergeApp::InitInstance()
 	DWORD dwLeftFlags = 0;
 	DWORD dwRightFlags = 0;
 	// Split commandline arguments into files & flags & recursive flag
-	ParseArgs(files, nFiles, recurse, dwLeftFlags, dwRightFlags);
+	ParseArgs(pMainFrame, files, nFiles, recurse, dwLeftFlags, dwRightFlags);
 
 	if (nFiles>2)
 	{
@@ -263,7 +263,8 @@ BOOL CMergeApp::InitInstance()
 }
 
 /// Process commandline arguments
-void CMergeApp::ParseArgs(CStringArray & files, UINT & nFiles, BOOL & recurse, DWORD & dwLeftFlags, DWORD & dwRightFlags)
+void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
+		DWORD & dwLeftFlags, DWORD & dwRightFlags)
 {
 	for (int i = 1; i < __argc; i++)
 	{
@@ -275,7 +276,7 @@ void CMergeApp::ParseArgs(CStringArray & files, UINT & nFiles, BOOL & recurse, D
 
 			// -r to compare recursively
 			if (!_tcsicmp(pszParam, _T("r")))
-				recurse=TRUE;
+				recurse = TRUE;
 
 			// -e to allow closing with single esc press
 			if (!_tcsicmp(pszParam, _T("e")))
@@ -296,6 +297,29 @@ void CMergeApp::ParseArgs(CStringArray & files, UINT & nFiles, BOOL & recurse, D
 				dwRightFlags |= FFILEOPEN_NOMRU;
 			}
 
+			// -dl "desc" - description for left file
+			// Shown instead of filename
+			if (!_tcsicmp(pszParam, _T("dl")))
+			{
+				if (i < (__argc - 1))
+				{
+					LPCTSTR pszDesc = __targv[i+1];
+					pMainFrame->m_strLeftDesc = pszDesc;
+					i++;	// Just read next parameter
+				}
+			}
+
+			// -dr "desc" - description for left file
+			// Shown instead of filename
+			if (!_tcsicmp(pszParam, _T("dr")))
+			{
+				if (i < (__argc - 1))
+				{
+					LPCTSTR pszDesc = __targv[i+1];
+					pMainFrame->m_strRightDesc = pszDesc;
+					i++;	// Just read next parameter
+				}
+			}
 		}
 		else
 		{

@@ -1,3 +1,8 @@
+2003-10-02 Kimmo
+ PATCH: [ 815138 ] Commandline filedescriptors
+  Usage: -dl "description" for left and -dr "description" for right
+  WinMerge: MainFrm.h Merge.h Merge.cpp MergeDoc.cpp
+
 2003-10-02 Perry
  PATCH: [ 815483 ] Fix file stat structure (lost in dirscan patch)
   WinMerge: Diff.cpp DirScan.cpp
