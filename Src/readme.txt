@@ -1,6 +1,8 @@
 2004-01-31 Perry
  BUG: [ 887957 ] Some builds of ShellExtension need include dir fixed
   ShellExtension: ShellExtension.dsp
+ PATCH: [ 882650 ] Move temp build files out of Build into BuildTmp (more)
+  ShellExtension: ShellExtension.dsp
 
 2004-01-30 WinMerge experimental release 2.1.5.8 (cvs)
 
