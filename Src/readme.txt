@@ -1,6 +1,8 @@
 2003-09-30 Perry
  PATCH: [ 814829 ] Fix handle bad utf8
   WinMerge: files.cpp
+ PATCH: [ 813847 ] Fix Unicode double copy
+  WinMerge: MergeDoc.cpp
 
 2003-09-30 Kimmo
  PATCH: [ 814830 ] Prevent rescan of scanning dirdoc

@@ -233,6 +233,31 @@ void CMergeDoc::Dump(CDumpContext& dc) const
 // CMergeDoc commands
 
 /**
+ * @brief Save an editor text buffer to a file for diff'ing (make UTF-8 if appropriate)
+ */
+static void SaveBuffForDiff(CMergeDoc::CDiffTextBuffer & buf, const CString & filepath)
+{
+	// we subvert the buffer's memory of the original file encoding
+	int temp=buf.m_nSourceEncoding;
+
+	if (sizeof(TCHAR)>1 
+		|| buf.m_nSourceEncoding==-20 // source file was UCS-2LE
+		|| buf.m_nSourceEncoding==-21 // source file was UCS-2BE
+		|| buf.m_nSourceEncoding==-22) // source file was UTF-8
+	{
+		buf.m_nSourceEncoding = -22; // write as UTF-8
+	}
+
+	// write buffer out to temporary file
+	BOOL bTempFile = TRUE;
+	BOOL bClearModifiedFlag = FALSE;
+	buf.SaveToFile(filepath, bTempFile, CRLF_STYLE_AUTOMATIC, bClearModifiedFlag);
+	
+	// restore memory of encoding of original file
+	buf.m_nSourceEncoding = temp;
+}
+
+/**
 * @brief Save files to temp files & compare again.
 *
 * @param bForced If TRUE, suppressing is ignored and rescan is done always
@@ -279,16 +304,9 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 			return RESCAN_FILE_ERR;
 	}
 
-	// output to temp file
-	m_ltBuf.SaveToFile(m_strTempLeftFile, TRUE, CRLF_STYLE_AUTOMATIC, FALSE);
-	m_rtBuf.SaveToFile(m_strTempRightFile, TRUE, CRLF_STYLE_AUTOMATIC, FALSE);
-
-	// Transform file to UTF-8 if needed
-	// TODO: temp file leak: We're orphaning a set of temp files here ?
-	int attrs=0;
-	unidiff_PrepFile(m_strTempLeftFile, &attrs);
-	attrs=0;
-	unidiff_PrepFile(m_strTempRightFile, &attrs);
+	// output buffers to temp files (in UTF-8 if TCHAR=wchar_t or buffer was Unicode)
+	SaveBuffForDiff(m_ltBuf, m_strTempLeftFile);
+	SaveBuffForDiff(m_rtBuf, m_strTempRightFile);
 
 	// Set up DiffWrapper
 	m_diffWrapper.SetCompareFiles(m_strTempLeftFile, m_strTempRightFile);
