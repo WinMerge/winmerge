@@ -1,3 +1,7 @@
+2004-03-19 Kimmo
+ BUG: [ 919090 ] Memory leak in DiffFileData
+  Src: DiffWrapper.cpp
+
 2004-03-18 Perry
  BUG: [ 919160 ] Cannot execute notepad.exe
   Fix OpenFileToExternalEditor to prepend space before quoted filename.

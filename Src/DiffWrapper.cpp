@@ -720,7 +720,7 @@ DiffFileData::DiffFileData(LPCTSTR szFilepath1, LPCTSTR szFilepath2)
 DiffFileData::~DiffFileData()
 {
 	Reset();
-	delete m_inf;
+	delete [] m_inf;
 	m_inf = 0;
 }
 
