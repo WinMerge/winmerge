@@ -1,3 +1,7 @@
+2005-04-04 Tim
+ RFE: [ 1061015 ] Offline build system for manual
+  Docs/Users/Manual: new directory build
+
 2005-03-03 Perry
  Fix typo ("for" => "four")
   Manual: Text_encoding.xml

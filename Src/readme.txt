@@ -1,7 +1,3 @@
-2005-04-04 Tim
- RFE: [ 1061015 ] Offline build system for manual
-  Docs/Users/Manual: new directory build
-
 2005-04-03 Kimmo
  PATCH: [ 1175319 ] Dutch translation update
   Submitted by Michel Coene
