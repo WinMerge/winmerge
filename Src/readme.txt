@@ -1,3 +1,7 @@
+2003-10-04 Perry
+ Update dll copy batch file for 4 new build targets
+ Languages/CopyAll.bat
+
 2003-10-04 Laoran
  Undo last changes related to PATCH: [ 813794 ] Fix "ignore blank lines"
  Back as of 2003-10-02 23:59
