@@ -1,4 +1,10 @@
 2004-07-08 Kimmo
+ PATCH: [ 987122 ] Horizontal scroll for dirview columns dialog listboxes
+  Src: DirColsDlg.cpp DirColsDlg.h Merge.dsp Merge.rc
+  Src/Common new files: HScrollListBox.cpp HScrollListBox.h
+  Src/Languages: *.rc
+
+2004-07-08 Kimmo
  PATCH: [ 986794 ] Hide 'Apply' button from filters dialog
   Src: MainFrm.cpp
  PATCH: [ 986785 ] Improve location pane with short files
@@ -9,6 +15,8 @@
 2004-07-07 Kimmo
  PATCH: [ 983265 ] Italian translation updated for latest experimental version
   Src/Languages/Italian: MergeItalian.rc
+
+2004-07-04 WinMerge experimental release 2.1.7.9 (cvs)
 
 2004-07-04 Perry
  Add lost piece of PATCH: [ 982960 ] Rescan when saving to update dir compare status

@@ -122,7 +122,7 @@ int __cdecl CDirColsDlg::cmpcols(const void * el1, const void * el2)
  */
 void CDirColsDlg::OnUp()
 {
-	CListBox * list = &m_list_show;
+	CHScrollListBox * list = &m_list_show;
 	// find the first item not selected
 	for (int i=0; i<list->GetCount(); ++i)
 	{
@@ -157,7 +157,7 @@ void CDirColsDlg::OnUp()
  */
 void CDirColsDlg::OnDown() 
 {
-	CListBox * list = &m_list_show;
+	CHScrollListBox * list = &m_list_show;
 	// find the lst item not selected
 	for (int i=list->GetCount()-1; i>=0; --i)
 	{
@@ -206,7 +206,7 @@ void CDirColsDlg::OnRemove()
 /**
  * @brief Move selected items from list1 to list2, putting at top if top==true
  */
-void CDirColsDlg::MoveItems(CListBox * list1, CListBox * list2, bool top)
+void CDirColsDlg::MoveItems(CHScrollListBox * list1, CHScrollListBox * list2, bool top)
 {
 	for (int i=0; i<list1->GetCount(); ++i)
 	{

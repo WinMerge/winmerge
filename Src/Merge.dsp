@@ -576,6 +576,10 @@ SOURCE=.\diffutils\GnuVersion.c
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\HScrollListBox.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\diffutils\src\IFDEF.C
 
 !IF  "$(CFG)" == "Merge - Win32 Debug"
@@ -1280,6 +1284,10 @@ SOURCE=.\GhostTextBuffer.h
 # Begin Source File
 
 SOURCE=.\GhostTextView.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\HScrollListBox.h
 # End Source File
 # Begin Source File
 

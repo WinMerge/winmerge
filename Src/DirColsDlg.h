@@ -13,6 +13,7 @@
 #define AFX_DIRCOLSDLG_H__2FCB576C_C609_4623_8C55_F3870F22CA0B__INCLUDED_
 #pragma once
 
+#include "HScrollListBox.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirColsDlg dialog
@@ -46,8 +47,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CDirColsDlg)
 	enum { IDD = IDD_DIRCOLS };
-	CListBox	m_list_show;
-	CListBox	m_list_hide;
+	CHScrollListBox m_list_show;
+	CHScrollListBox m_list_hide;
 	BOOL		m_bReset;
 	//}}AFX_DATA
 
@@ -64,7 +65,7 @@ public:
 protected:
 	void LoadLists();
 	void LoadDefLists();
-	void MoveItems(CListBox * list1, CListBox * list2, bool top);
+	void MoveItems(CHScrollListBox * list1, CHScrollListBox * list2, bool top);
 	void UpdateEnables();
 	void SortArrayToLogicalOrder();
 	static int cmpcols(const void * el1, const void * el2);
