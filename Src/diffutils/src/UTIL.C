@@ -19,6 +19,12 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "diff.h"
 
+// reduce some noise produced with the MSVC compiler
+#if defined (_AFXDLL)
+#pragma warning(disable : 4131 4127)
+#endif
+
+
 /* Queue up one-line messages to be printed at the end,
    when -l is specified.  Each message is recorded with a `struct msg'.  */
 
@@ -367,9 +373,9 @@ line_cmp (s1, len1, s2, len2)
 	  if (ignore_case_flag)
 	    {
 	      if (islower (c1))
-		c1 = toupper (c1);
+		c1 = (unsigned char)toupper (c1);
 	      if (islower (c2))
-		c2 = toupper (c2);
+		c2 = (unsigned char)toupper (c2);
 	    }
 
 	  if (c1 != c2)
@@ -571,7 +577,7 @@ translate_range (file, a, b, aptr, bptr)
 
 void
 print_number_range (sepchar, file, a, b)
-     char sepchar;
+     int sepchar;
      struct file_data *file;
      int a, b;
 {

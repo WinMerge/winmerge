@@ -23,6 +23,12 @@ Cambridge, MA 02139, USA.  */
 #include <fnmatch.h>
 #include <ctype.h>
 
+// reduce some noise produced with the MSVC compiler
+#if defined (_AFXDLL)
+#pragma warning(disable : 4131)
+#endif
+
+
 
 /* Comment out all this code if we are using the GNU C Library, and are not
    actually compiling the library itself.  This code is part of the GNU C
@@ -51,7 +57,7 @@ fnmatch (pattern, string, flags)
   register char c;
 
 /* Note that this evalutes C many times.  */
-#define FOLD(c)	((flags & FNM_CASEFOLD) && isupper (c) ? tolower (c) : (c))
+#define FOLD(c)	(char)(((flags & FNM_CASEFOLD) && isupper (c)) ? tolower (c) : (c))
 
   while ((c = *p++) != '\0')
     {
@@ -93,7 +99,7 @@ fnmatch (pattern, string, flags)
 	    return 0;
 
 	  {
-	    char c1 = (!(flags & FNM_NOESCAPE) && c == '\\') ? *p : c;
+	    char c1 = (char)((!(flags & FNM_NOESCAPE) && c == '\\') ? *p : c);
 	    c1 = FOLD (c1);
 	    for (--p; *n != '\0'; ++n)
 	      if ((c == '[' || FOLD (*n) == c1) &&

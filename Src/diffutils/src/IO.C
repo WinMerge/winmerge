@@ -19,6 +19,12 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "diff.h"
 
+// reduce some noise produced with the MSVC compiler
+#if defined (_AFXDLL)
+#pragma warning(disable : 4131 4013 4090)
+#endif
+
+
 /* Rotate a value n bits to the left. */
 #define UINT_BIT (sizeof (unsigned) * CHAR_BIT)
 #define ROL(v, n) ((v) << (n) | (v) >> (UINT_BIT - (n)))
@@ -331,7 +337,7 @@ find_and_hash_each_line (current)
 	  /* Double (alloc_lines - linbuf_base) by adding to alloc_lines.  */
 	  alloc_lines = 2 * alloc_lines - linbuf_base;
 	  cureqs = (int *) xrealloc (cureqs, alloc_lines * sizeof (*cureqs));
-	  linbuf = (char const HUGE **) xrealloc (linbuf + linbuf_base,
+	  linbuf = (char const HUGE **) xrealloc ((void *)(linbuf + linbuf_base),
 					     (alloc_lines - linbuf_base)
 					     * sizeof (*linbuf))
 		   - linbuf_base;
@@ -352,7 +358,7 @@ find_and_hash_each_line (current)
 	{
 	  /* Double (alloc_lines - linbuf_base) by adding to alloc_lines.  */
 	  alloc_lines = 2 * alloc_lines - linbuf_base;
-	  linbuf = (char const HUGE **) xrealloc (linbuf + linbuf_base,
+	  linbuf = (char const HUGE **) xrealloc ((void *)(linbuf + linbuf_base),
 					     (alloc_lines - linbuf_base)
 					     * sizeof (*linbuf))
 		   - linbuf_base;
@@ -456,9 +462,9 @@ find_identical_ends (filevec)
 	 to make the equality test false, and thus terminate the loop.  */
 
       if (n0 < n1)
-	p0[n0] = ~p1[n0];
+	p0[n0] = (char)(~p1[n0]);
       else
-	p1[n1] = ~p0[n1];
+	p1[n1] = (char)(~p0[n1]);
 
       /* Loop until first mismatch, or to the sentinel characters.  */
 
@@ -584,8 +590,8 @@ find_identical_ends (filevec)
       while (p0 != end0)
 	{
 	  int l = lines++ & prefix_mask;
-	  if (l == alloc_lines0)
-	    linbuf0 = (char const HUGE **) xrealloc (linbuf0, (alloc_lines0 *= 2)
+	  if ((FSIZE)l == alloc_lines0)
+	    linbuf0 = (char const HUGE **) xrealloc ((void *)linbuf0, (alloc_lines0 *= 2)
 							 * sizeof(*linbuf0));
 	  linbuf0[l] = p0;
 	  while (*p0++ != '\n')

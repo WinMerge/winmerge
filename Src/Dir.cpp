@@ -105,7 +105,7 @@ dir_sort (LPCTSTR pszDir, struct dirdata *dirdata, CRegExp& rgx)
 	/* Create the `names' table from the `data' table.  */
 	dirdata->names = names = (char const **) xmalloc (sizeof (char *)
 		* (nnames + 1));
-	for (i = 0;  i < nnames;  i++)
+	for (i = 0;  (unsigned int)i < nnames;  i++)
     {
 		names[i] = data;
 		data += strlen (data) + 1;

@@ -19,6 +19,12 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "diff.h"
 
+// reduce some noise produced with the MSVC compiler
+#if defined (_AFXDLL)
+#pragma warning(disable : 4131)
+#endif
+
+
 static void print_ed_hunk PARAMS((struct change *));
 static void print_rcs_hunk PARAMS((struct change *));
 static void pr_forward_ed_hunk PARAMS((struct change *));

@@ -19,6 +19,12 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #include "diff.h"
 
+// reduce some noise produced with the MSVC compiler
+#if defined (_AFXDLL)
+#pragma warning(disable : 4131)
+#endif
+
+
 static struct change *find_hunk PARAMS((struct change *));
 static void find_function PARAMS((struct file_data const *, int, char const HUGE **, size_t *));
 static void mark_ignorable PARAMS((struct change *));
@@ -132,7 +138,7 @@ pr_context_hunk (hunk)
   struct change *next;
   char const *prefix;
   char const HUGE *function;
-  size_t function_length;
+  size_t function_length=0;
   FILE *out;
 
   /* Determine range of line numbers involved in each file.  */
@@ -265,7 +271,7 @@ pr_unidiff_hunk (hunk)
   int first0, last0, first1, last1, show_from, show_to, i, j, k;
   struct change *next;
   char const HUGE *function;
-  size_t function_length;
+  size_t function_length=0;
   FILE *out;
 
   /* Determine range of line numbers involved in each file.  */
@@ -411,7 +417,7 @@ mark_ignorable (script)
       script->link = next;
 
       /* If the change is ignorable, mark it.  */
-      script->ignore = (!deletes && !inserts);
+      script->ignore = (char)(!deletes && !inserts);
 
       /* Advance to the following change.  */
       script = next;

@@ -30,6 +30,12 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
    "Algorithms for Approximate String Matching", E. Ukkonen,
    Information and Control Vol. 64, 1985, pp. 100-118.  */
 
+// reduce some noise produced with the MSVC compiler
+#if defined (_AFXDLL)
+#pragma warning(disable : 4131 4127 4013 4090)
+#endif
+
+
 #include "diff.h"
 #include "cmpbuf.h"
 
@@ -429,9 +435,9 @@ discard_confusing_lines (struct file_data filevec[])
   equiv_count[1] = p + filevec[0].equiv_max;
   bzero (p, filevec[0].equiv_max * (2 * sizeof (int)));
 
-  for (i = 0; i < filevec[0].buffered_lines; ++i)
+  for (i = 0; i < (unsigned int)filevec[0].buffered_lines; ++i)
     ++equiv_count[0][filevec[0].equivs[i]];
-  for (i = 0; i < filevec[1].buffered_lines; ++i)
+  for (i = 0; i < (unsigned int)filevec[1].buffered_lines; ++i)
     ++equiv_count[1][filevec[1].equivs[i]];
 
   /* Set up tables of which lines are going to be discarded.  */
@@ -468,7 +474,7 @@ discard_confusing_lines (struct file_data filevec[])
 	  nmatch = counts[equivs[i]];
 	  if (nmatch == 0)
 	    discards[i] = 1;
-	  else if (nmatch > many)
+	  else if (nmatch > (int)many)
 	    discards[i] = 2;
 	}
     }
@@ -496,7 +502,7 @@ discard_confusing_lines (struct file_data filevec[])
 
 	      /* Find end of this run of discardable lines.
 		 Count how many are provisionally discardable.  */
-	      for (j = i; j < end; j++)
+	      for (j = (int)i; (unsigned int)j < end; j++)
 		{
 		  if (discards[j] == 0)
 		    break;
@@ -505,7 +511,7 @@ discard_confusing_lines (struct file_data filevec[])
 		}
 
 	      /* Cancel provisional discards at end, and shrink the run.  */
-	      while (j > i && discards[j - 1] == 2)
+	      while (j > (int)i && discards[j - 1] == 2)
 		discards[--j] = 0, --provisional;
 
 	      /* Now we have the length of a run of discardable lines
@@ -516,7 +522,7 @@ discard_confusing_lines (struct file_data filevec[])
 		 cancel discarding of all provisional lines in the run.  */
 	      if (provisional * 4 > length)
 		{
-		  while (j > i)
+		  while (j > (int)i)
 		    if (discards[--j] == 2)
 		      discards[j] = 0;
 		}
@@ -536,7 +542,7 @@ discard_confusing_lines (struct file_data filevec[])
 
 		  /* Cancel any subrun of MINIMUM or more provisionals
 		     within the larger run.  */
-		  for (j = 0, consec = 0; j < length; j++)
+		  for (j = 0, consec = 0; (unsigned int)j < length; j++)
 		    if (discards[i + j] != 2)
 		      consec = 0;
 		    else if (minimum == ++consec)
@@ -549,7 +555,7 @@ discard_confusing_lines (struct file_data filevec[])
 		     until we find 3 or more nonprovisionals in a row
 		     or until the first nonprovisional at least 8 lines in.
 		     Until that point, cancel any provisionals.  */
-		  for (j = 0, consec = 0; j < length; j++)
+		  for (j = 0, consec = 0; (unsigned int)j < length; j++)
 		    {
 		      if (j >= 8 && discards[i + j] == 1)
 			break;
@@ -567,7 +573,7 @@ discard_confusing_lines (struct file_data filevec[])
 		  i += length - 1;
 
 		  /* Same thing, from end.  */
-		  for (j = 0, consec = 0; j < length; j++)
+		  for (j = 0, consec = 0; (unsigned int)j < length; j++)
 		    {
 		      if (j >= 8 && discards[i - j] == 1)
 			break;
@@ -1104,7 +1110,7 @@ void cleanup_file_buffers(struct file_data fd[])
 		free (fd[i].equivs);
 	
 	for (i = 0; i < 2; ++i)
-		free (fd[i].linbuf + fd[i].linbuf_base);
+		free ((void *)(fd[i].linbuf + fd[i].linbuf_base));
 
 	if (fd[0].buffer != fd[1].buffer)
 		free (fd[0].buffer);

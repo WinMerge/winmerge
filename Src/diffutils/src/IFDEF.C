@@ -21,6 +21,12 @@ and this notice must be preserved on all copies.  */
 
 #include "diff.h"
 
+// reduce some noise produced with the MSVC compiler
+#if defined (_AFXDLL)
+#pragma warning(disable : 4131)
+#endif
+
+
 struct group
 {
   struct file_data const *file;

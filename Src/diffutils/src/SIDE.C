@@ -21,6 +21,12 @@ and this notice must be preserved on all copies.  */
 
 #include "diff.h"
 
+// reduce some noise produced with the MSVC compiler
+#if defined (_AFXDLL)
+#pragma warning(disable : 4131)
+#endif
+
+
 static unsigned print_half_line PARAMS((char const HUGE * const *, unsigned, unsigned));
 static unsigned tab_from_to PARAMS((unsigned, unsigned));
 static void print_1sdiff_line PARAMS((char const HUGE * const *, int, char const HUGE * const *));
