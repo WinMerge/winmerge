@@ -206,6 +206,9 @@ CMainFrame::CMainFrame()
 		m_options.SaveOption(OPT_CLR_SELECTED_DIFF, RGB(239,119,116));
 
 	m_bShowErrors = TRUE;
+	m_CheckOutMulti = FALSE;
+	m_bVCProjSync = FALSE;
+
 	m_nVerSys = theApp.GetProfileInt(_T("Settings"), _T("VersionSystem"), 0);
 	m_strVssProjectBase = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
 	m_strVssUser = theApp.GetProfileString(_T("Settings"), _T("VssUser"), _T(""));

@@ -12,6 +12,9 @@
  BUG: [ 909796 ] Uninitialised variable on OnSelchangeUnpackerName()
   Fix submitted by Laoran
   Src: SelectUnpackerDlg.cpp
+ BUG: [ 909090 ] MainFrm::m_CheckOutMulti not initialized
+  Also m_bVCProjSync was unitilialised.
+  Src: MainFrm.cpp
 
 2004-03-07 Kimmo
  PATCH: [ 911114 ] DiffOptions to new system
