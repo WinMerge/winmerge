@@ -1,3 +1,8 @@
+2005-02-22 Kimmo
+ PATCH: [ 1145522 ] fix crash on search
+  Submitted by Takashi Sawanaka
+  Src/editlib: ccrystaltextview.cpp
+
 2005-02-21 Kimmo
  Update Docbook instructions in devel doc (path changed in sf.net)
   Docs/Developers: readme-developers.html

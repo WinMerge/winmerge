@@ -4123,7 +4123,10 @@ HighlightText (const CPoint & ptStartPos, int nLength, BOOL bReverse /*= FALSE*/
   int nScreenLines = GetScreenLines();
   if (ptStartPos.y < m_nTopLine || ptEndPos.y > m_nTopLine + nScreenLines)
     {
-      ScrollToLine(ptStartPos.y - nScreenLines / 2);
+      if (ptStartPos.y > nScreenLines / 2)
+        ScrollToLine(ptStartPos.y - nScreenLines / 2);
+      else
+        ScrollToLine(ptStartPos.y);
       UpdateSiblingScrollPos (FALSE);
     }
   EnsureVisible (ptStartPos, ptEndPos);
