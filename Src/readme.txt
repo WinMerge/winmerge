@@ -4,6 +4,8 @@
  PATCH: [ 1025443 ] Add '1 Difference Found' text
   Src: Merge.rc MergeDoc.cpp resource.h
   Src/Languages: *.rc resource.h
+ Add instructions for compiling lang files (using MakeResDll.exe)
+  Docs/Developers: readme-developers.html
 
 2004-09-09 Kimmo
  PATCH: [ 1025052 ] Italian translation updated for latest experimental version

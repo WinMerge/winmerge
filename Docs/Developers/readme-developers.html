@@ -319,12 +319,9 @@ It is recommended to put a tag in CVS when you make a file release, because that
 <a name="Localization : resources files"></a>
 <h3>Localization : resources files</h3>
 
-For end users : WinMerge.exe and WinMergeU.exe are always compiled with the english resources. Custom languages are in separate dll files with extension lang, to be placed in WinMerge directory. Language may be changed dynamically through the menu.
-
+WinMerge.exe and WinMergeU.exe are always compiled with the english resources. Custom languages are in separate dll files with extension lang, to be placed in WinMerge directory. Language may be changed dynamically through the menu.
 <p>
-
-For developers and translators : WinMerge localization is achieved through localization of resources (files with extension rc). Actually there is only one rc file in the project, Merge.rc. Localized versions for this file are to be stored in the Languages/ directory, in the subdirectory created for that language.
-
+WinMerge localization is achieved through localization of resources (files with extension rc). Actually there is only one rc file in the project, Merge.rc. Localized versions for this file are to be stored in the Languages/ directory, in the subdirectory created for that language.
 <p>
 
 Tips for developers :
@@ -360,6 +357,26 @@ first translation : the order of blocks is different in 2.0 and 2.1 (bug). You h
 </li><li>
 you may localize the layout. Avoid to localize the alignment flag, rather change coordinates.
 </li></ul>
+
+<h4>Compiling</h4>
+We have a customised tool for compiling language files. Project for it is in CVS:<br>
+<code>/WinMerge/MakeResDll</code>
+<p>
+When that project is compiled, it produces <b><code>MakeResDll.exe</code></b>. Copy that executable
+to <code>/WinMerge/Src/Languages/</code>. In that directory there are already some batch-files
+which can now be used to compile language files:
+<ul><li>
+<b><code>BuildAll.bat</code></b> : compiles all languages in <code>/WinMerge/Src/Languages/</code>
+</li><li>
+<b><code>BuildDll.bat &lt;lang&gt;</code></b> : compiles given language
+</li><li>
+<b><code>CopyAll.bat</code></b> : copies compiled lang files to build directories
+</li><li>
+<b><code>UpdateAll_resource_h.bat</code></b> : copies <code>resource.h</code> file from
+<code>/WinMerge/Src/</code> to language directories. Handy when merging language changes.
+</li></ul>
+
+Compiled language files (*.lang) are placed in <code>/WinMerge/Src/Languages/Dll</code> .
 
 <a name="Localization : merging and scheduling"></a>
 <h3>Localization : merging and scheduling</h3>
