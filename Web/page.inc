@@ -70,6 +70,7 @@
       $temp .= "  <meta name=\"description\" content=\"" . $this->_description . "\">\n";
       $temp .= "  <meta name=\"keywords\" content=\"" . $this->_keywords . "\">\n";
       $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" href=\"/winmerge.css\">\n";
+      $temp .= "  <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n";
       $temp .= "</head>\n\n";
       $temp .= "<body>\n";
       $temp .= "<table border=\"0\" cellpadding=\"4\">\n";
