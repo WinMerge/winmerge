@@ -1631,6 +1631,7 @@ BEGIN
     ID_FILE_SAVE_RIGHT      "Speichert die rechte Datei."
     ID_FILE_SAVEAS_LEFT     "Speichert die linke Datei unter..."
     ID_FILE_SAVEAS_RIGHT    "Speichert die rechte Datei unter..."
+    ID_TOOLS_CUSTOMIZECOLUMNS "Select and reorder directory compare columns"
     ID_R2LNEXT              "Kopiere Unterschied nach Links und springe zum nächsten Unterschied.\nNach links kopieren und fortschreiten (Strg+Alt+Links)"
     ID_L2RNEXT              "Kopiere Unterschied nach Rechts und springe zum nächsten Unterschied.\nNach rechts kopieren und fortschreiten (Strg+Alt+Rechts)"
 END
@@ -1644,12 +1645,14 @@ BEGIN
     ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
     ID_DIR_OPEN_LEFT_WITHEDITOR "Öffnet die linke Datei im externen Editor."
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Öffnet die rechte Datei im externen Editor."
+    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
     ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
     ID_EDIT_WMGOTO          "Geht zur Zeile oder zum Unterschied.\nGehe nach (Strg+G)"
 END
 
 STRINGTABLE 
 BEGIN
+    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
     ID_NO_EDIT_SCRIPTS      "< Leer >"
     ID_RELOAD_PLUGINS       "Entlädt alle Plugins und lädt sie neu (für Entwickler)."
     ID_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
@@ -1657,7 +1660,7 @@ BEGIN
     ID_PREDIFF_MANUAL       "No prediffer"
     ID_PREDIFF_AUTO         "Prediff if possible"
     ID_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-    ID_VIEW_LOCATION_BAR    "Location bar shows overall picture from files"
+    ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
     ID_SUGGESTED_PLUGINS    "Vorgeschlagene Plugins."
     ID_NOT_SUGGESTED_PLUGINS "Andere Plugins."
     ID_NO_PREDIFFER         "No prediffer (normal)"

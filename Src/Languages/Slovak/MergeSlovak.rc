@@ -1618,6 +1618,7 @@ BEGIN
     ID_FILE_SAVE_RIGHT      "Save the right file"
     ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
     ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
+    ID_TOOLS_CUSTOMIZECOLUMNS "Select and reorder directory compare columns"
     ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
     ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and Advance (Ctrl+Alt+Right)"
 END
@@ -1631,20 +1632,22 @@ BEGIN
     ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
     ID_DIR_OPEN_LEFT_WITHEDITOR "Open the left file to external editor"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
+    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
     ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
     ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
 END
 
 STRINGTABLE 
 BEGIN
+    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
     ID_NO_EDIT_SCRIPTS      "< Empty >"
-    ID_RELOAD_PLUGINS       "&Unload all plugins and reload them (for developpers)"
+    ID_RELOAD_PLUGINS       "Unload all plugins and reload them (for developpers)"
     ID_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
     ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
     ID_PREDIFF_MANUAL       "No prediffer"
     ID_PREDIFF_AUTO         "Prediff if possible"
     ID_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-    ID_VIEW_LOCATION_BAR    "Location bar shows overall picture from files"
+    ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
     ID_SUGGESTED_PLUGINS    "Suggested plugins"
     ID_NOT_SUGGESTED_PLUGINS "Others plugins"
     ID_NO_PREDIFFER         "No prediffer (normal)"

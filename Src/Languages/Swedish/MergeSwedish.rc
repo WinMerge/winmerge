@@ -1633,20 +1633,22 @@ BEGIN
     ID_UNPACK_AUTO          "Den valda uppackaren används för båda filerna (bara en fil behöver ha filändelsen)"
     ID_DIR_OPEN_LEFT_WITHEDITOR "Öppna den vänstra filen med en extern editor"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Öppna den högra filen med en extern editor"
+    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
     ID_WINDOW_CHANGE_PANE   "Aktiverar så att nästa fil syns\nAktivera nästa fil"
     ID_EDIT_WMGOTO          "Gå till rad eller skillnad\nGå till (Ctrl+G)"
 END
 
 STRINGTABLE 
 BEGIN
+    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
     ID_NO_EDIT_SCRIPTS      "< Tom >"
-    ID_RELOAD_PLUGINS       "&Stäng alla plugins och öppna dem igen (för utvecklare)"
+    ID_RELOAD_PLUGINS       "Stäng alla plugins och öppna dem igen (för utvecklare)"
     ID_MESSAGE_BOX_ARE_RESET "Alla meddelanderutor visas nu igen."
     ID_NO_SCT_SCRIPTS       "WSH hittades inte - .sct script är avstängda"
     ID_PREDIFF_MANUAL       "Ingen prediffer"
     ID_PREDIFF_AUTO         "Prediff om möjligt"
     ID_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
-    ID_VIEW_LOCATION_BAR    "Location bar visar en övergripande bild av filerna"
+    ID_VIEW_LOCATION_BAR    "Location pane visar en övergripande bild av filerna"
     ID_SUGGESTED_PLUGINS    "Suggested plugins"
     ID_NOT_SUGGESTED_PLUGINS "Others plugins"
     ID_NO_PREDIFFER         "No prediffer (normal)"

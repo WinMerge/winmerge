@@ -4,6 +4,9 @@
   Languages: *.rc resource.h
  BUG: [ 947121 ] ShellExtension does not compile with Visual Studio 2003
   ShellExtension: ShellExtension.dsp
+ BUG: [ 941335 ] RC file missing strings and errors
+  Src: Merge.rc
+  Languages: *.rc
 
 2004-05-07 Laoran
  PATCH: [ 948366 ] clear moved blocks before Rescan
