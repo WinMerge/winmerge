@@ -585,7 +585,7 @@ BOOL CLanguageSelect::OnInitDialog()
 			m_ctlLangList.SetItemData(idx, i);
 			
 			if ( m_wCurLanguage == m_wLangIds[i])
-				iSel = i;
+				iSel = idx;
 		}
 	}
 	

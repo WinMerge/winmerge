@@ -12,6 +12,8 @@
   Src: Merge.rc
   Src/Common: LanguageSelect.cpp LanguageSelect.h
   Src/Languages: *.rc
+ PATCH: [ 950212 ] wrong language shown in LanguageSelect
+  Src/Common: LanguageSelect.cpp
 
 2004-05-12 Kimmo
  PATCH: [ 948448 ] Remove WinMerge.exe path from system options
