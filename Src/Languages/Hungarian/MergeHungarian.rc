@@ -1040,6 +1040,7 @@ BEGIN
     BEGIN
         BLOCK "040E04e2"
         BEGIN
+            VALUE "Comments", "Fordította: Márton Balázs\0"
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"

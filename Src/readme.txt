@@ -1,3 +1,8 @@
+2004-10-30 Perry
+ PATCH: [ 1055624 ] The finished hungarian language file
+  (translation credit in versioninfo)
+ Src/Languages: Hungarian/MergeHungarian.rc
+
 2004-10-29 Jochen
  Add Merge7z410.dsp
   Merge7z: Merge7z410.dsp
