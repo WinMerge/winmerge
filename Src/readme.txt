@@ -1,3 +1,7 @@
+2004-05-29 Perry
+ Updated WinMerge Localized.iss from seier (manifest & plugins.txt changes)
+  InnoSetup: WinMerge Localized.iss
+
 2004-05-29 WinMerge experimental release 2.1.7.5 (cvs)
 
 2004-05-28 Kimmo
@@ -1823,7 +1827,7 @@
  PATCH: [ 841889 ] Make long path in CConfigLog::WriteLogFile
   Submitted by Perry
   WinMerge: ConfigLog.cpp
- PATCH: [ 841039 ] Green "binary.bmp"´(New binary item icons for dir compare)
+ PATCH: [ 841039 ] Green "binary.bmp"?New binary item icons for dir compare)
   Submitted by Tim Gerundt
   WinMerge/res: binary.bmp binarydiff.bmp
   Languages/res: binary.bmp binarydiff.bmp

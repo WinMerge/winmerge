@@ -1,3 +1,7 @@
+2004-05-29 Perry
+ Updated WinMerge Localized.iss from seier (manifest & plugins.txt changes)
+  WinMerge Localized.iss
+
 2004-05-21 Perry
  Updated WinMerge Localized.iss from seier (add Swedish Readme after install)
   WinMerge Localized.iss

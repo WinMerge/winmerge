@@ -260,8 +260,8 @@ Name: Languages\Swedish; Description: {cm:SwedishLanguage}; Flags: disablenounin
 Name: ShellExtension; Description: {cm:ExplorerContextMenu}; GroupDescription: Optional Features:
 Name: TortoiseCVS; Description: {cm:IntegrateTortoiseCVS}; GroupDescription: Optional Features:; Check: TortoiseCVSInstalled
 Name: Delphi4Viewer; Description: {cm:IntegrateDelphi4}; GroupDescription: Optional Features:; Flags: unchecked
-Name: desktopicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
-Name: quicklaunchicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}
+Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
+Name: quicklaunchicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription: {cm:AdditionalIcons}
 
 [InstallDelete]
 ;Experimental Versions 2.1.5.10 - WinMerge.2.1.5.13 shipped with the default behavior of creating a folder by the same name
@@ -351,6 +351,18 @@ Type: files; Name: {app}\MergeChineseTraditionalBIG5.lang
 Name: {app}\WinMerge.exe; Type: files; MinVersion: 4, 0
 Name: {app}\WinMergeU.exe; Type: files; MinVersion: 0, 4
 
+;Per the following document:
+;http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dv_vstechart/html/vbtchUsingWindowsXPVisualStylesWithControlsOnWindowsForms.asp
+; the only way to use a manifest file is to have the Comctl32.dll v6.0 or higher and the only way to get it is to have
+;an operating system that ships with this file.  Microsoft does not allow the distribution of the updated ComCtl32.dll.  So either users have Windows XP
+;or higher and would need the WinMergeU.manifest or they don't need any .manifest at all.
+;Since this manifest file is absolutely pointless it should be deleted 100% of the time.
+Name: {app}\WinMerge.exe.manifest; Type: files;
+
+;The other manifest file is legitimate, but is only valid on windows XP or higher, so if the operating system isn't at least windows XP the
+;Manifest file is indeed removed.
+Name: {app}\WinMergeU.exe.manifest; Type: files; OnlyBelowVersion: 0, 5.01
+
 Name: {app}\Merge7z311.dll; Type: files; MinVersion: 4, 0
 Name: {app}\Merge7z311U.dll; Type: files; MinVersion: 0, 4
 
@@ -387,7 +399,6 @@ Name: {app}\MergePlugins\list.txt; Type: files; Check: ComponentDisabled('Plugin
 Name: {group}\{cm:UsersGuide}.lnk; Type: files; Check: componentDisabled('Docs')
 
 
-
 ;Removes misplaced Files
 Name: {app}\WinMerge.url; Type: files
 Name: {app}\Read Me.rtf; Type: files
@@ -406,7 +417,7 @@ Name: {app}\Docs; Type: filesandordirs; Check: ComponentDisabled('Docs')
 
 Name: {app}\MergePlugins\editor addin.sct; Type: Files; Check: ComponentDisabled('Plugins')
 Name: {app}\MergePlugins\insert datetime.sct; Type: Files; Check: ComponentDisabled('Plugins')
-Name: {app}\Docs\Plugins.txt; Type: Files; Check: ComponentDisabled('Plugins')
+Name: {app}\Docs\Plugins.txt; Type: Files; Check: DontInstallPluginsText
 Name: {app}\MergePlugins; Type: DirIfEmpty; Check: ComponentDisabled('Plugins')
 
 ;Removes a CVS ignore record created by TortoiseCVS on Seier's System, I'm hoping this was never let
@@ -431,6 +442,9 @@ Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promp
 
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running Win9X platform system
 Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Components: Core
+
+;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
+Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe.manifest; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 5.01; Components: Core
 
 ;Installs the ComCtl32.dll update on any system where its DLLs are more recent
 Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall; Check: InstallComCtlUpdate
@@ -499,16 +513,18 @@ Source: ..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp 
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
 Source: ..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
-Source: ..\Plugins\dlls\list.txt; DestDir: {app}\Docs; DestName: Plugins.txt; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
+Source: ..\Plugins\dlls\list.txt; DestDir: {app}\Docs; DestName: Plugins.txt; Flags: IgnoreVersion CompareTimeStamp; Check: InstallPluginsText
 
 
 [INI]
 Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; Key: URL; String: http://WinMerge.org/
 
+
 [Icons]
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; HotKey: Ctrl+Alt+M
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\Read Me.rtf; IconFileName: {win}\NOTEPAD.EXE
+Name: {group}\Plugins.txt; Filename: {app}\Docs\Plugins.txt; Check: InstallPluginsText
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\User's Guide\Index.html; IconFileName: {app}\Docs\User's Guide\Art\User's Guide.ico; Components: docs
 Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
 
@@ -517,6 +533,9 @@ Name: {userdesktop}\WinMerge; Filename: {app}\{code:ExeName}; Tasks: desktopicon
 
 ;Quick Launch Icon
 Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge; Filename: {app}\{code:ExeName}; Tasks: quicklaunchicon
+
+;Documentation Shortcuts
+Name: {app}\MergePlugins\Plugins.txt; Filename: {app}\Docs\Plugins.txt; Check: InstallPluginsText
 
 
 [Registry]
@@ -1102,6 +1121,34 @@ Begin
         Msgbox('ComponentDisabled(' + strComponent + ')=False', mbInformation, mb_OK); }
 
 
+End;
+
+{The following function determines whether or not the plugins.txt file needs to be copied.  There are two conditions where this is true
+If the user chooses to install the main plugins or selects the Delphi 4 Binary File Support.  The reason being that the Delphi 4 Binary
+File Support is actually a plugin, but is so uncommon that it is a separate option.  The plugins.txt file covers it too.}
+Function InstallPluginsText(): Boolean;
+Begin
+    {If either the Delphi 4 Binary File Viewer or Plugins are to be installed then...}
+    If (TaskDisabled('Delphi4Viewer') = False) Or (ComponentDisabled('Plugins') = False) Then
+        {We should install the Plugins.txt File}
+        Result := True
+    Else
+        {The Plugins.txt file should not be installed}
+        Result := False;
+End;
+
+{This function is needed as a check parameter in the [InstallDelete] section unfortunately there's not yet a way to get the Check: parameter to check
+for a false value and respond accordingly}
+Function DontInstallPluginsText(): Boolean;
+Begin
+    {If the Plugins.txt file shouldn't be installed then...}
+    If InstallPluginsText() = False Then
+
+        {This function returns True}
+        Result := True
+    Else
+        {This function returns False}
+        Result := False;
 End;
 
 {Determines whether or not TortoiseCVS is installed}
