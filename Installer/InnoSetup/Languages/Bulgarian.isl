@@ -11,7 +11,7 @@
 ;
 
 [LangOptions]
-LanguageName=<x0411><044A><043B><0433><0430><0440><0441><043A><0438>
+LanguageName=<0411><044A><043B><0433><0430><0440><0441><043A><0438>
 LanguageID=$0402
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.

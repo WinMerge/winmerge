@@ -1,4 +1,8 @@
-2004-10-14 Perry
+2004-10-28 Kimmo
+ BUG: [ 1053431 ] typo in Bulgarian LanguageName
+  InnoSetup/Languages: Bulgarian.isl
+
+2004-10-24 Perry
  PATCH: [ 1053278 ] Fix three non-ASCII LanguageNames in InnoSetup languages
   InnoSetup/Languages: Bulgarian.isl Slovak.isl Spanish.isl
 
