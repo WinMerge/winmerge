@@ -1,3 +1,7 @@
+2003-08-16 Kimmo
+ PATCH: [ 789204 ] Color dir compare based on left/right newer
+  WinMerge: DirView.h DirView.cpp
+
 2003-08-12 Christian
  PATCH: [ 786618 ] Brazilian Portuguese translation
   Languages: BuilAll.bat and resurrected directory Brazilian

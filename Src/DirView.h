@@ -17,6 +17,9 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
+//
+// $Id$
+
 #if !defined(AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_)
 #define AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_
 
@@ -218,6 +221,7 @@ protected:
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
 	BOOL OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
 	afx_msg void OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult);
+	afx_msg void OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult);
 
 private:
 	void OpenSelection();

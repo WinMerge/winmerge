@@ -20,6 +20,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // DirView.cpp : implementation file
 //
+// $Id$
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -104,6 +105,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
+	ON_NOTIFY_REFLECT(NM_CUSTOMDRAW, OnCustomDraw)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -801,8 +803,10 @@ DIFFITEM CDirView::GetItemAt(int ind)
 
 // Go to first diff
 // If none or one item selected select found item
+// This is used for scrolling to first diff too
 void CDirView::OnFirstdiff()
 {
+	ASSERT(m_pList);
 	DIFFITEM di;
 	const int count = m_pList->GetItemCount();
 	BOOL found = FALSE;
@@ -853,8 +857,6 @@ void CDirView::OnLastdiff()
 		i--;
 	}
 }
-
-
 
 void CDirView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 {
@@ -1346,8 +1348,60 @@ void CDirView::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
 	}
 }
 
+/// Track mouse position for showing tooltips
 void CDirView::OnMouseMove(UINT nFlags, CPoint point) 
 {
 	m_ptLastMousePos = point;
 	CListViewEx::OnMouseMove(nFlags, point);
+}
+
+/// Implement custom draw for DirView items
+void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMLVCUSTOMDRAW lplvcd = (LPNMLVCUSTOMDRAW)pNMHDR;
+	DIFFITEM ditem;
+
+	switch (lplvcd->nmcd.dwDrawStage)
+	{
+	case CDDS_PREPAINT:	// Request prepaint notifications for each item.
+		*pResult = CDRF_NOTIFYITEMDRAW;
+		break;
+
+	case CDDS_ITEMPREPAINT: //Before an item is drawn
+		// Add code here to customise whole line and return:
+		// *pResult = CDRF_NEWFONT;			// If no subitems customised
+		*pResult = CDRF_NOTIFYSUBITEMDRAW;	// To customise subitems
+		break;
+
+	case CDDS_SUBITEM | CDDS_ITEMPREPAINT: //Before a subitem is drawn
+  		ditem = GetDiffItem(lplvcd->nmcd.dwItemSpec);
+		
+		// Set text color for filename colum
+		if (m_colorder[0] == lplvcd->iSubItem)
+		{
+			// Set text color based on timestamps
+			// Do not color unique items
+			if (ditem.ltime == 0 || ditem.rtime == 0)
+				lplvcd->clrText = GetSysColor(COLOR_WINDOWTEXT);
+			else
+			{
+				if (ditem.ltime < ditem.rtime)
+					lplvcd->clrText = RGB(53, 164, 34);
+				else if (ditem.ltime > ditem.rtime)
+					lplvcd->clrText = RGB(234, 21, 64);
+				else
+					// Make sure we use default color for ident. items
+					lplvcd->clrText = GetSysColor(COLOR_WINDOWTEXT);
+			}
+		}
+		// Set text color for other colums
+		else
+			lplvcd->clrText = GetSysColor(COLOR_WINDOWTEXT);
+
+		*pResult = CDRF_NEWFONT;
+		break;
+
+	default:
+		*pResult = CDRF_DODEFAULT;
+	}
 }
