@@ -417,10 +417,8 @@ Source: ..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension co
 
 ;Documentation
 Source: ..\Docs\Users\Read Me.rtf; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-
 Source: ..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-
-Source: ..\Build\MergeRelease\Manual\*; DestDir: {app}\Docs\Manual\; Flags: overwritereadonly recursesubdirs uninsremovereadonly sortfilesbyextension; Components: docs
+Source: ..\Build\Manual\*; DestDir: {app}\Docs\Manual\; Flags: overwritereadonly recursesubdirs uninsremovereadonly sortfilesbyextension; Components: docs
 
 ;Plugins
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
