@@ -4,6 +4,9 @@
  BUG: [ 986708 ] Wrong EOL character
   DOS EOL was inserted when editing unix or mac files
   Src/editlib: ccrystaleditview.cpp
+ PATCH: [ 1021478 ] Korean Resource file update
+  Submitted by Lee Jae-Hong
+  Src/Languages/Korean: MergeKorean.rc
 
 2004-09-02 Kimmo
  PATCH: [ 1020403 ] Allow WinMerge to open files write-locked by another app
