@@ -817,7 +817,7 @@ void CMainFrame::OnOptions()
 			if (pMergeDoc->SaveHelper())
 			{
 				int nRescanResult = RESCAN_OK;
-				nRescanResult = pMergeDoc->Rescan();
+				nRescanResult = pMergeDoc->Rescan(TRUE);
 				if (nRescanResult != RESCAN_OK)
 					pMergeDoc->ShowRescanError(nRescanResult);
 			}

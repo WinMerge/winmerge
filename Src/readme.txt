@@ -1,3 +1,7 @@
+2003-06-29 Kimmo
+ PATCH: [ 762749 ] Forced rescan after options changed
+  WinMerge: MainFrm.cpp
+
 2003-06-28 Kimmo
  PATCH: [ 761874 ] Fix unlocalisable acceskeys
   WinMerge: Merge.rc
