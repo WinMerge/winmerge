@@ -113,6 +113,10 @@ public :
 
       };
 
+// End declaration of CMergeDoc::CDiffTextBuffer
+
+// Begin declaration of CMergeDoc
+
     CDiffTextBuffer m_ltBuf;
     CDiffTextBuffer m_rtBuf;
 
@@ -130,6 +134,8 @@ public:
 	int m_nCurDiff;
 	CString m_strLeftFile, m_strRightFile;
 
+	void SetNeedRescan();
+	void RescanIfNeeded();
 	BOOL Rescan();
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
@@ -177,6 +183,10 @@ protected:
 protected:
 	CString m_strTempRightFile;
 	CString m_strTempLeftFile;
+	BOOL m_bEnableRescan;
+	BOOL m_bNeedIdleRescan;
+	COleDateTime m_LastRescan;
+	friend class RescanSuppress;
 	//{{AFX_MSG(CMergeDoc)
 	afx_msg void OnFileSave();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);

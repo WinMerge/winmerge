@@ -331,7 +331,6 @@ void CMergeEditView::OnUpdateEditCopy(CCmdUI* pCmdUI)
 void CMergeEditView::OnEditCut()
 {
 	CCrystalEditViewEx::Cut();
-	GetDocument()->FlushAndRescan();
 	m_pTextBuffer->SetModified(TRUE);
 }
 
@@ -343,7 +342,6 @@ void CMergeEditView::OnUpdateEditCut(CCmdUI* pCmdUI)
 void CMergeEditView::OnEditPaste()
 {
 	CCrystalEditViewEx::Paste();
-	GetDocument()->FlushAndRescan();
 	m_pTextBuffer->SetModified(TRUE);
 }
 
@@ -720,8 +718,24 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 
 void CMergeEditView::OnTimer(UINT nIDEvent) 
 {
+	// We get two kinds of timers
+	// IDT_RESCAN means it has been a while since the user last made a change
+	// so we'd like to do a rescan as soon as feasible
+	// IDLE_TIMER means the application is idling, so now it is feasible to rescan
+	// If we get the idle timer, we pass the buck to the document (ie, it may
+	// still skip the rescan if it just did one recently).
+
 	if (nIDEvent == IDT_RESCAN)
-		GetDocument()->FlushAndRescan();
+	{
+		KillTimer(IDT_RESCAN);
+		GetDocument()->SetNeedRescan();
+		theApp.SetNeedIdleTimer();
+	}
+	else if (nIDEvent == IDLE_TIMER)
+	{
+		GetDocument()->RescanIfNeeded();
+	}
 
 	CWnd::OnTimer(nIDEvent);
 }
+

@@ -71,11 +71,18 @@ static void AddEnglishResourceHook();
 // CMergeApp construction
 
 CMergeApp::CMergeApp()
-: m_lang(IDR_MAINFRAME, IDR_MAINFRAME), m_clrDiff(RGB(255,255,92)), m_clrSelDiff(RGB(255,0,92))
+: m_bHiliteSyntax(TRUE)
+, m_bDisableSplash(FALSE)
+, m_clrDiff(RGB(255,255,92))
+, m_clrSelDiff(RGB(255,0,92))
+, m_bNeedIdleTimer(FALSE)
+, m_pDiffTemplate(0)
+, m_pDirTemplate(0)
+, m_lang(IDR_MAINFRAME, IDR_MAINFRAME)
+, m_bEscCloses(FALSE)
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
-	m_bEscCloses = FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -532,13 +539,13 @@ void SillyTestCrap()
 #endif
 
 
-void CMergeApp::SetDiffColor( COLORREF clrValue )
+void CMergeApp::SetDiffColor(COLORREF clrValue)
 {
 	m_clrDiff = clrValue;
 }
 
 
-void CMergeApp::SetSelDiffColor( COLORREF clrValue )
+void CMergeApp::SetSelDiffColor(COLORREF clrValue)
 {
 	m_clrSelDiff = clrValue;
 }
@@ -581,3 +588,30 @@ static void AddEnglishResourceHook()
 	new CDynLinkLibrary(FakeEnglishDLL); // hook into MFC extension DLL chain
 }
 
+
+int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt) 
+{
+	// This is just a convenient point for breakpointing
+	return CWinApp::DoMessageBox(lpszPrompt, nType, nIDPrompt);
+}
+
+// Set flag so that application will broadcast notification at next
+// idle time (via WM_TIMER id=IDLE_TIMER)
+void CMergeApp::SetNeedIdleTimer()
+{
+	m_bNeedIdleTimer = TRUE; 
+}
+
+BOOL CMergeApp::OnIdle(LONG lCount) 
+{
+	if (CWinApp::OnIdle(lCount))
+		return TRUE;
+
+	// If anyone has requested notification when next idle occurs, send it
+	if (m_bNeedIdleTimer)
+	{
+		m_bNeedIdleTimer = FALSE;
+		m_pMainWnd->SendMessageToDescendants(WM_TIMER, IDLE_TIMER, lCount, TRUE, FALSE);
+	}
+	return FALSE;
+}

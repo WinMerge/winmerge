@@ -1,3 +1,7 @@
+2003-03-23 Perry
+ PATCH: [ 706006 ] Suppress Rescan during Merge
+  Merge.cpp Merge.h MergeDoc.cpp MergeDoc.h MergeEditView.cpp
+
 2003-03-23 Kimmo
  PATCH: [ 707753 ] Delayed rescan - fix
   WinMerge: MergeEditView.cpp

@@ -69,6 +69,9 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	m_nCurDiff=-1;
 	m_strTempLeftFile=_T("");
 	m_strTempRightFile=_T("");
+	m_bEnableRescan = TRUE;
+	m_bNeedIdleRescan = FALSE;
+	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
 }
 #pragma warning(default:4355)
@@ -214,6 +217,10 @@ static void PrepareBufferForRescan(CMergeDoc::CDiffTextBuffer * buf, DWORD delet
 
 BOOL CMergeDoc::Rescan()
 {
+	if (!m_bEnableRescan) return TRUE; // What return value ?
+	m_bNeedIdleRescan = FALSE;
+	m_LastRescan = COleDateTime::GetCurrentTime();
+
 	// store modified status
 	BOOL ltMod = m_ltBuf.IsModified();
 	BOOL rtMod = m_rtBuf.IsModified();
@@ -550,9 +557,42 @@ BOOL CMergeDoc::Undo()
 	return FALSE;
 }
 
+// An instance of RescanSuppress prevents rescan during its lifetime
+// (or until its Clear method is called, which ends its effect).
+class RescanSuppress
+{
+public:
+	RescanSuppress(CMergeDoc & doc) : m_doc(doc)
+	{
+		m_bSuppress = TRUE;
+		m_bPrev = doc.m_bEnableRescan;
+		doc.m_bEnableRescan = FALSE;
+	}
+	void Clear() 
+	{
+		if (m_bSuppress)
+		{
+			m_bSuppress = FALSE;
+			m_doc.m_bEnableRescan = m_bPrev;
+		}
+	}
+	~RescanSuppress()
+	{
+		Clear();
+	}
+private:
+	CMergeDoc & m_doc;
+	BOOL m_bPrev;
+	BOOL m_bSuppress;
+};
 
 void CMergeDoc::ListCopy(bool bSrcLeft)
 {
+	// suppress Rescan during this method
+	// (Not only do we not want to rescan a lot of times, but
+	// it will wreck the line status array to rescan as we merge)
+	RescanSuppress suppressRescan(*this);
+
 	// make sure we're on a diff
 	int curDiff = GetCurrentDiff();
 	if (curDiff!=-1)
@@ -666,6 +706,8 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 	}
 	// what does this do?
 //	pDestList->AddMod();
+	suppressRescan.Clear(); // done suppress Rescan
+	FlushAndRescan();
 }
 
 // Return false when saving fails, so we can ask again
@@ -1129,6 +1171,8 @@ BOOL CMergeDoc::TempFilesExist()
 
 void CMergeDoc::FlushAndRescan()
 {
+	if (!m_bEnableRescan) return;
+
 	CMDIFrameWnd* mainWnd = dynamic_cast<CMDIFrameWnd*>(AfxGetMainWnd());
 	CMDIChildWnd* diffWnd = dynamic_cast<CMDIChildWnd*>(mainWnd->MDIGetActive());
 	CCrystalEditView* curView = dynamic_cast<CCrystalEditView*>(diffWnd->GetActiveView());
@@ -1401,5 +1445,24 @@ BOOL CMergeDoc::SaveHelper()
 		}
 	}
 	return result;
+}
+
+// View requests we rescan when convenient
+void CMergeDoc::SetNeedRescan()
+{
+	m_bNeedIdleRescan = TRUE;
+}
+
+void CMergeDoc::RescanIfNeeded()
+{
+	// Rescan if we were asked for a rescan when convenient
+	// AND if we've not rescanned in at least a second
+	if (m_bNeedIdleRescan)
+	{
+		m_bNeedIdleRescan = FALSE;
+		COleDateTimeSpan elapsed = COleDateTime::GetCurrentTime() - m_LastRescan;
+		if (elapsed.GetTotalSeconds() > 1)
+			FlushAndRescan();
+	}
 }
 

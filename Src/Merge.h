@@ -40,6 +40,8 @@
 // See Merge.cpp for the implementation of this class
 //
 
+enum { IDLE_TIMER = 9754 };
+
 class CMergeApp : public CWinApp
 {
 public:
@@ -47,25 +49,32 @@ public:
 	BOOL m_bDisableSplash;
 	COLORREF	m_clrDiff;		// The difference color
 	COLORREF	m_clrSelDiff;	// The selected difference color
-
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	CLanguageSelect m_lang;
-	CMergeApp();
+	BOOL m_bNeedIdleTimer;
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
-	COLORREF	GetDiffColor	( void ) const { return m_clrDiff; }
-	COLORREF	GetSelDiffColor	( void ) const { return m_clrSelDiff; }
-	void	SetDiffColor	( COLORREF clrValue );
-	void	SetSelDiffColor	( COLORREF clrValue );
+	CLanguageSelect m_lang;
+
+	CMergeApp();
+	COLORREF GetDiffColor() const { return m_clrDiff; }
+	COLORREF GetSelDiffColor() const { return m_clrSelDiff; }
+	void SetDiffColor(COLORREF clrValue) ;
+	void SetSelDiffColor(COLORREF clrValue);
+	void SetNeedIdleTimer();
+
+// Implementation
+protected:
+
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMergeApp)
 	public:
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
+	virtual int DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt);
+	virtual BOOL OnIdle(LONG lCount);
 	//}}AFX_VIRTUAL
 
-// Implementation
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 
 	//{{AFX_MSG(CMergeApp)
 	afx_msg void OnAppAbout();
