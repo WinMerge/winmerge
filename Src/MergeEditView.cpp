@@ -319,7 +319,23 @@ void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnEditCopy()
 {
-	CCrystalEditViewEx::Copy();
+	CMergeDoc * pDoc = GetDocument();
+	CPoint ptSelStart, ptSelEnd;
+	GetSelection(ptSelStart, ptSelEnd);
+	
+	// Nothing selected
+	if (ptSelStart == ptSelEnd)
+		return;
+
+	CString text;
+	if (m_bIsLeft)
+		pDoc->m_ltBuf.GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
+			ptSelEnd.y, ptSelEnd.x, text, m_bIsLeft);
+	else
+		pDoc->m_rtBuf.GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
+			ptSelEnd.y, ptSelEnd.x, text, m_bIsLeft);
+
+	PutToClipboard(text);
 }
 
 void CMergeEditView::OnUpdateEditCopy(CCmdUI* pCmdUI)
@@ -329,7 +345,37 @@ void CMergeEditView::OnUpdateEditCopy(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnEditCut()
 {
-	CCrystalEditViewEx::Cut();
+	CPoint ptSelStart, ptSelEnd;
+	CMergeDoc * pDoc = GetDocument();
+	GetSelection(ptSelStart, ptSelEnd);
+
+	if ( ptSelStart == ptSelEnd )
+		return;
+
+	CString text;
+	if (m_bIsLeft)
+		pDoc->m_ltBuf.GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
+			ptSelEnd.y, ptSelEnd.x, text, m_bIsLeft);
+	else
+		pDoc->m_rtBuf.GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
+			ptSelEnd.y, ptSelEnd.x, text, m_bIsLeft);
+
+	PutToClipboard(text);
+
+	CPoint ptCursorPos = ptSelStart;
+	ASSERT_VALIDTEXTPOS(ptCursorPos);
+	SetAnchor(ptCursorPos);
+	SetSelection(ptCursorPos, ptCursorPos);
+	SetCursorPos(ptCursorPos);
+	EnsureVisible(ptCursorPos);
+
+	if (m_bIsLeft)
+		pDoc->m_ltBuf.DeleteText(this, ptSelStart.y, ptSelStart.x, ptSelEnd.y,
+			ptSelEnd.x, CE_ACTION_CUT);
+	else
+		pDoc->m_rtBuf.DeleteText(this, ptSelStart.y, ptSelStart.x, ptSelEnd.y,
+			ptSelEnd.x, CE_ACTION_CUT);
+
 	m_pTextBuffer->SetModified(TRUE);
 }
 

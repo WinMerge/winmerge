@@ -1,3 +1,7 @@
+2003-03-31 Kimmo
+ PATCH: [ 711437 ] Don't copy/cut removed lines
+ WinMerge: MergeDoc.h MergeDoc.cpp MergeEditView.h MergeEditView.cpp
+
 2003-03-31 Perry
  PATCH: [ 712429 ] Fix UpdateItemStatus bug 712093
  WinMerge: DirActions.cpp DirView.cpp paths.cpp paths.h

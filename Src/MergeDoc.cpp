@@ -970,6 +970,119 @@ void CMergeDoc::SetCurrentDiff(int nDiff)
 		m_nCurDiff = -1;
 }
 
+BOOL CMergeDoc::CDiffTextBuffer::FlagIsSet(UINT line, DWORD flag)
+{
+	return ((m_aLines[line].m_dwFlags & flag) == flag);
+}
+
+// Get text ignoring removed lines
+// CrystalTextBuffer::GetText() returns text including removed lines
+UINT CMergeDoc::CDiffTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
+								 int nEndLine, int nEndChar, 
+								 CString &text, BOOL bLeft, int nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
+{
+	int lines = m_aLines.GetSize();
+	ASSERT(nStartLine >= 0 && nStartLine < lines);
+	ASSERT(nStartChar >= 0 && nStartChar <= m_aLines[nStartLine].m_nLength);
+	ASSERT(nEndLine >= 0 && nEndLine < lines);
+	ASSERT(nEndChar >= 0 && nEndChar <= m_aLines[nEndLine].m_nLength);
+	ASSERT(nStartLine < nEndLine || nStartLine == nEndLine && 
+		nStartChar < nEndChar);
+	
+	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+		nCrlfStyle = GetCRLFMode();
+		
+	ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
+	LPCTSTR pszCRLF = crlfs[nCrlfStyle];
+	
+	int nCRLFLength = _tcslen(pszCRLF);
+	ASSERT(nCRLFLength > 0);
+	
+	int nBufSize = 0;
+	
+	// Count text length (incl. linefeeds)
+	for (int i = nStartLine; i <= nEndLine; i++)
+	{
+		// Skip blank diff lines
+		if ((!m_bIsLeft && !FlagIsSet(i, LF_LEFT_ONLY)) ||
+					( m_bIsLeft && !FlagIsSet(i, LF_RIGHT_ONLY)))
+		{
+			nBufSize += m_aLines[i].m_nLength;
+			nBufSize += nCRLFLength;
+		}
+	}
+	
+	LPTSTR pszBuf = text.GetBuffer(nBufSize);
+	
+	// Multiple lines
+	if (nStartLine < nEndLine)
+	{
+		// Skip blank diff lines
+		if ((!m_bIsLeft && !FlagIsSet(nStartLine, LF_LEFT_ONLY)) ||
+				(m_bIsLeft && !FlagIsSet(nStartLine, LF_RIGHT_ONLY)))
+		{
+			// Copy (part of) first line
+			int nCount = m_aLines[nStartLine].m_nLength - nStartChar;
+			if (nCount > 0)
+			{
+				CopyMemory(pszBuf, m_aLines[nStartLine].m_pcLine + nStartChar,
+					nCount * sizeof(TCHAR));
+				pszBuf += nCount;
+			}
+			CopyMemory(pszBuf, pszCRLF, nCRLFLength * sizeof(TCHAR));
+			pszBuf += nCRLFLength;
+		}
+		
+		// Other lines
+		for (i = nStartLine + 1; i < nEndLine; i++)
+		{
+			// Skip blank diff lines
+			if ((!m_bIsLeft && !FlagIsSet(i, LF_LEFT_ONLY)) ||
+					(m_bIsLeft && !FlagIsSet(i, LF_RIGHT_ONLY)))
+			{
+				int nCount = m_aLines[i].m_nLength;
+				if (nCount > 0)
+				{
+					CopyMemory(pszBuf, m_aLines[i].m_pcLine,
+						nCount * sizeof(TCHAR));
+					pszBuf += nCount;
+				}
+				CopyMemory(pszBuf, pszCRLF, nCRLFLength * sizeof(TCHAR));
+				pszBuf += nCRLFLength;
+			}
+		}
+		
+		// Last line
+		if (nEndChar > 0)
+		{
+			// Skip blank diff lines
+			if ((!m_bIsLeft && !FlagIsSet(nEndLine, LF_LEFT_ONLY)) ||
+					(m_bIsLeft && !FlagIsSet(nEndLine, LF_RIGHT_ONLY)))
+			{
+				CopyMemory(pszBuf, m_aLines[nEndLine].m_pcLine,
+					nEndChar * sizeof(TCHAR));
+				pszBuf += nEndChar;
+			}
+		}
+	}
+	else
+	{
+		// Skip blank diff lines
+		if ((!m_bIsLeft && !FlagIsSet(nStartLine, LF_LEFT_ONLY)) ||
+				(m_bIsLeft && !FlagIsSet(nStartLine, LF_RIGHT_ONLY)))
+		{
+			int nCount = nEndChar - nStartChar;
+			CopyMemory(pszBuf, m_aLines[nStartLine].m_pcLine + nStartChar,
+				nCount * sizeof(TCHAR));
+			pszBuf += nCount;
+		}
+	}
+	pszBuf[0] = 0;
+	text.ReleaseBuffer();
+	text.FreeExtra();
+	return nBufSize;
+}
+
 BOOL CMergeDoc::CDiffTextBuffer::SafeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength)
 {
 	DWORD dwWrittenBytes = 0;

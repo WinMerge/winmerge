@@ -70,11 +70,15 @@ friend class CMergeDoc;
 private :
         CMergeDoc * m_pOwnerDoc;
 		BOOL m_bIsLeft;
+		BOOL FlagIsSet(UINT line, DWORD flag);
+
 	    BOOL SafeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength);
 		BOOL SafeReplaceFile(LPCTSTR pszReplaced, LPCTSTR pszReplacement);
 public :
 	      bool curUndoGroup();
 	      void ReplaceLine(int nLine, const CString& strText);
+		UINT GetTextWithoutEmptys(int nStartLine, int nStartChar, int nEndLine, int nEndChar, 
+				CString &text, BOOL bLeft, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
 		BOOL SaveToFile (LPCTSTR pszFileName, 
 											 int nCrlfStyle = CRLF_STYLE_AUTOMATIC , 
 											 BOOL bClearModifiedFlag = TRUE );
