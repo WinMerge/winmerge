@@ -1,10 +1,10 @@
+2003-11-19 WinMerge beta 2.1.4.0 released
+
 2003-11-19 Laoran
  BUG: [ 845196 ] UTF-8 files not correctly compared
   WinMerge: MergeDoc.cpp MergeDoc.h 
  BUG: [ 845012 ] SaveToFile does not write BOM
   WinMerge: MergeDoc.cpp
-
-2003-11-18 WinMerge beta 2.1.4.0 released
 
 2003-11-18 Laoran
  PATCH: [ 842817 ] Initialize OpenDlg extension filter to blank
