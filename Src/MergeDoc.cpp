@@ -465,8 +465,8 @@ void CMergeDoc::ShowRescanError(int nRescanResult)
 		break;
 	
 	case RESCAN_TEMP_ERR:
-		VERIFY(msg.LoadString(IDS_TEMP_FILEERROR));
-		AfxMessageBox(msg, MB_ICONSTOP);
+		VERIFY(s.LoadString(IDS_TEMP_FILEERROR));
+		AfxMessageBox(s, MB_ICONSTOP);
 		break;
 	}
 }

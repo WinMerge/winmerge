@@ -1,3 +1,7 @@
+2004-04-18 Perry
+ BUG: [ 937435 ] cvs doesn't compile -- typo in CMergeDoc::ShowRescanError(
+  Src: MergeDoc.cpp
+
 2004-04-18 Kimmo
  PATCH: [ 934738 ] CopyLeftTo/CopyRightTo Including Common Subdirectories
   Submitted by Ben (?) - some modifications by Kimmo
