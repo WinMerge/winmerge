@@ -1625,11 +1625,12 @@ void CMainFrame::OnViewSelectfont()
 		theApp.WriteProfileInt(_T("Font"), _T("PitchAndFamily"), m_lfDiff.lfPitchAndFamily);
 		theApp.WriteProfileString(_T("Font"), _T("FaceName"), m_lfDiff.lfFaceName);
 
-		AfxMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FONT_CHANGE);
-
 		MergeEditViewList editViews;
 		GetAllViews(&editViews, NULL, NULL);
-		
+
+		if (editViews.GetCount() > 0)
+			AfxMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FONT_CHANGE);
+
 		// TODO: Update document fonts
 		/*
 		for (POSITION pos = editViews.GetHeadPosition(); pos; editViews.GetNext(pos))

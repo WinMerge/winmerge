@@ -1,3 +1,7 @@
+2004-10-09 Kimmo
+ BUG: [ 1035227 ] Selected font change won't be applied... when not needed
+  Src: MainFrm.cpp
+
 2004-10-06 Kimmo
  PATCH: [ 1040041 ] [ 1039640 ] reproducible tooltip ASSERT in debug
   Submitted by Takashi Sawanaka
