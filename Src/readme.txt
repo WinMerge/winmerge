@@ -302,6 +302,8 @@
  PATCH: [ 780359 ] Open identical files
   WinMerge: DirView.cpp MainFrm.cpp
 
+2003-08-03 WinMerge release 2.0
+
 2003-07-31 Laoran
  PATCH: [ 780827 ] Tooltips for DirView
   Submitted by Kimmo
