@@ -1,3 +1,7 @@
+2003-11-16 Kimmo
+ BUG: [ 818416 ] is stat population missing from RunFileDiff ?
+  WinMerge: DiffWrapper.cpp
+
 2003-11-16 Laoran 
  BUG: [ 842746 ] Highlight diff tool button lacks tooltip
   WinMerge: Merge.rc

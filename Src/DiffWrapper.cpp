@@ -229,6 +229,12 @@ BOOL CDiffWrapper::RunFileDiff()
 				perror_with_name (inf[1].name);
 				failed = 1;
 			}
+
+			for (int i = 0; i < 2; ++i)
+			{
+				if (stat(inf[i].name, &inf[i].stat) != 0)
+					return false;
+			}
 			
 			/* Compare the files, if no error was found.  */
 			int diff_flag = 0;
@@ -277,15 +283,6 @@ BOOL CDiffWrapper::RunFileDiff()
 							T2CA(switches), inf[0].name , inf[1].name);
 					}
 
-					// Read timestamps for files
-					for (int i=0; i<2; ++i)
-					{
-						if (stat(inf[i].name, &inf[i].stat) != 0)
-						{
-							return false;
-						}
-					}
-					
 					// Output patchfile
 					switch (output_style)
 					{
