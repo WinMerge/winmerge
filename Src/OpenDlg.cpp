@@ -33,9 +33,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
-#define DIRSEL_TAG   _T("Directory Selection")
-
+const LPCTSTR DIRSEL_TAG = _T("Directory Selection");
 
 /////////////////////////////////////////////////////////////////////////////
 // COpenDlg dialog
@@ -223,29 +221,23 @@ BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder)
 {
 	CString s;           
                    
-	s.LoadString(IDS_ALLFILES); 
-	CFileDialog *pdlg = new CFileDialog(TRUE, NULL, NULL, 
-				    OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST, s);
-	if (NULL != pdlg)
-	{
-		TCHAR buf[MAX_PATH] = DIRSEL_TAG;
-		CString title;
-		VERIFY(title.LoadString(IDS_OPEN_TITLE));
-		pdlg->m_ofn.lpstrTitle = (LPCTSTR)title;
-		pdlg->m_ofn.lpstrInitialDir = (LPSTR)pszFolder;
-		pdlg->m_ofn.nMaxFile = MAX_PATH;
-		pdlg->m_ofn.lpstrFile = buf;
+	VERIFY(s.LoadString(IDS_ALLFILES) );
+	CFileDialog pdlg(TRUE, NULL, DIRSEL_TAG, 
+				    OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST, s);
+	CString title;
+	VERIFY(title.LoadString(IDS_OPEN_TITLE));
+	pdlg.m_ofn.lpstrTitle = (LPCTSTR)title;
+	pdlg.m_ofn.lpstrInitialDir = (LPSTR)pszFolder;
 
-		if (pdlg->DoModal()==IDOK)
-		{
-	 		path = pdlg->GetPathName(); 
-			delete pdlg;
-	 		return TRUE;
-		}
-		path.Empty();
-		delete pdlg;
+	if (pdlg.DoModal()==IDOK)
+	{
+	 	path = pdlg.GetPathName(); 
+	 	return TRUE;
 	}
-	return FALSE;	   
+	else
+	{
+		return FALSE;
+	}
 }
 
 void COpenDlg::OnSelchangeLeftCombo() 
