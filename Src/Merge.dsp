@@ -259,19 +259,6 @@ SOURCE=.\ED.C
 # End Source File
 # Begin Source File
 
-SOURCE=.\EditFile.cpp
-
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
 SOURCE=.\FNMATCH.C
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -508,6 +495,10 @@ SOURCE=..\common\SplitterWndEx.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ssapi.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\common\StatLink.cpp
 # End Source File
 # Begin Source File
@@ -710,6 +701,10 @@ SOURCE=.\Splash.h
 # Begin Source File
 
 SOURCE=..\common\SplitterWndEx.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ssapi.h
 # End Source File
 # Begin Source File
 
