@@ -2824,3 +2824,60 @@ void CMergeDoc::UpdateHeaderActivity(BOOL bLeft, BOOL bActivate)
 	int nPane = (bLeft) ? 0 : 1;
 	pf->GetHeaderInterface()->SetActive(nPane, bActivate);
 }
+
+/**
+ * @brief Return next diff from given line.
+ * @param nLine [in] First line searched.
+ * @param nDiff [out] Index of diff found.
+ * @return TRUE if line is inside diff, FALSE otherwise.
+ */
+BOOL CMergeDoc::GetNextDiff(int nLine, int &nDiff)
+{
+	BOOL bInDiff = TRUE;
+	int numDiff = LineToDiff(nLine);
+
+	// Line not inside diff
+	if (numDiff == -1)
+	{
+		bInDiff = FALSE;
+		for (UINT i = 0; i < m_nDiffs; i++)
+		{
+			if ((int)m_diffs[i].dbegin0 >= nLine)
+			{
+				numDiff = i;
+				break;
+			}
+		}
+	}
+	nDiff = numDiff;
+	return bInDiff;
+}
+
+/**
+ * @brief Returns copy of DIFFITEM from diff-list.
+ * @param nDiff [in] Index of DIFFITEM to return.
+ * @param di [out] DIFFITEM returned (empty if error)
+ * @return TRUE if DIFFITEM found from given index.
+ */
+BOOL CMergeDoc::GetDiff(int nDiff, DIFFRANGE &di) const
+{
+	DIFFRANGE diff = {0};
+	if (nDiff >= 0 && nDiff < m_nDiffs)
+	{
+		di = m_diffs[nDiff];
+		return TRUE;
+	}
+	else
+	{
+		di = diff;
+		return FALSE;
+	}
+}
+
+/**
+ * @brief Return linecount from left/right buffer
+ */
+int CMergeDoc::GetLineCount(BOOL bLeft) const
+{
+	return bLeft ? m_ltBuf.GetLineCount() : m_rtBuf.GetLineCount();
+}

@@ -34,6 +34,7 @@
 #include "MainFrm.h"
 #include "MergeEditView.h"
 #include "MergeDiffDetailView.h"
+#include "LocationView.h"
 #include "DiffViewBar.h"
 
 #ifdef _DEBUG
@@ -60,6 +61,8 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	ON_WM_TIMER()
 	ON_UPDATE_COMMAND_UI(ID_VIEW_DETAIL_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
+	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -139,6 +142,18 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	}
 	m_wndSplitter.ResizablePanes(TRUE);
 
+	// Merge frame has also a dockable bar at the very left
+	// This is not the client area, but we create it now because we want
+	// to use the CCreateContext
+	if (!m_wndLocationBar.Create(this, _T(""), WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
+	{
+		TRACE0("Failed to create LocationBar\n");
+		return FALSE;
+	}
+
+	CWnd* pWnd = new CLocationView;
+	DWORD dwStyle = AFX_WS_DEFAULT_VIEW ;// & ~WS_BORDER;
+	pWnd->Create(NULL, NULL, dwStyle, CRect(0,0,40,100), &m_wndLocationBar, 152, pContext);
 
 	// Merge frame has also a dockable bar at the very bottom
 	// This is not the client area, but we create it now because we want
@@ -238,7 +253,7 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CMDIChildWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	EnableDocking(CBRS_ALIGN_TOP|CBRS_ALIGN_BOTTOM);
+	EnableDocking(CBRS_ALIGN_TOP|CBRS_ALIGN_BOTTOM|CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
 
 //	ModifyStyle(WS_THICKFRAME,0); // this is necessary to prevent the sizing tab on right
 
@@ -247,9 +262,16 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	{
 		TRACE0("Failed to create dialog bar\n");
 		return -1;      // fail to create
-	}	
+	}
 
 //	ModifyStyle(0,WS_THICKFRAME);
+
+	// Merge frame also has a dockable bar at the very left
+	// created in OnCreateClient 
+	m_wndLocationBar.SetBarStyle(m_wndLocationBar.GetBarStyle() |
+		CBRS_SIZE_DYNAMIC | CBRS_ALIGN_LEFT);
+	m_wndLocationBar.EnableDocking(CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+	DockControlBar(&m_wndLocationBar, AFX_IDW_DOCKBAR_LEFT);
 
 	// Merge frame also has a dockable bar at the very bottom
 	// created in OnCreateClient 
@@ -342,7 +364,8 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 	m_pDockState.LoadState(_T("Settings"));
 	if (EnsureValidDockState(m_pDockState)) // checks for valid so won't ASSERT
 		SetDockState(m_pDockState);
-	// for the dimensions of the diff pane, use the CSizingControlBar loader
+	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
+	m_wndLocationBar.LoadState(_T("Settings"));
 	m_wndDetailBar.LoadState(_T("Settings"));
 }
 
@@ -383,6 +406,7 @@ void CChildFrame::SavePosition()
 	GetDockState(m_pDockState);
 	m_pDockState.SaveState(_T("Settings"));
 	// for the dimensions of the diff pane, use the CSizingControlBar save
+	m_wndLocationBar.SaveState(_T("Settings"));
 	m_wndDetailBar.SaveState(_T("Settings"));
 }
 

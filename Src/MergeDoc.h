@@ -207,6 +207,7 @@ public:
 	/// String of concatenated filenames as text to apply plugins filter to
 	CString m_strBothFilenames;
 
+	int GetLineCount(BOOL bLeft) const;
 	void UpdateHeaderPath(BOOL bLeft);
 	void UpdateHeaderActivity(BOOL bLeft, BOOL bActivate);
 	void RefreshOptions();
@@ -280,10 +281,12 @@ public:
 	UINT CountPrevBlanks(UINT nCurLine, BOOL bLeft);
 	virtual ~CMergeDoc();
 	virtual void OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName);
+	BOOL GetNextDiff(int nLine, int &nDiff);
+	BOOL GetDiff(int nDiff, DIFFRANGE &di) const;
 
 // Implementation data
 protected:
-	int m_nCurDiff; /**< 0-based index, -1 if no diff selected */
+	int m_nCurDiff; /**< Selected diff, 0-based index, -1 if no diff selected */
 	CString m_strTempRightFile; /**< Left buffer temp file for diffengine */
 	CString m_strTempLeftFile; /**< Right buffer temp file for diffengine */
 	CMergeEditView * m_pLeftView; /**< Pointer to left view */

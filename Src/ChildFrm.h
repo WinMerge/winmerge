@@ -33,6 +33,7 @@
 #include "MergeEditStatus.h"
 #include "EditorFilepathBar.h"
 #include "DiffViewBar.h"
+#include "LocationBar.h"
 
 
 class CChildFrame : public CMDIChildWnd
@@ -49,6 +50,7 @@ protected:
 	CDiffViewBar m_wndDetailBar;
 	CSplitterWndEx m_wndDetailSplitter;
 	CStatusBar m_wndStatusBar;
+	CLocationBar m_wndLocationBar;
 	// Object that displays status line info for one side of a merge view
 	class MergeStatus : public IMergeEditStatus
 	{

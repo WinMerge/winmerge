@@ -38,6 +38,7 @@
 #include "OpenDlg.h"
 #include "MergeEditView.h"
 #include "MergeDiffDetailView.h"
+#include "LocationView.h"
 
 #include "diff.h"
 #include "coretools.h"
@@ -2163,6 +2164,9 @@ void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, MergeDetailViewList
 			for (POSITION pos3 = pDoc->GetFirstViewPosition(); pos3; )
 			{
 				CView * pView = pDoc->GetNextView(pos3);
+				// Don't get Location View (font don't change for this view)
+				if (pView->IsKindOf(RUNTIME_CLASS(CLocationView)))
+					continue;
 				if (pMergeDoc)
 				{
 					if (pEditViews || pDetailViews)

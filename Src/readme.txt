@@ -1,3 +1,11 @@
+2004-04-17 Kimmo
+ PATCH: [ 910557 ] Location Bar
+  Submitted by Vincent Osele
+  Src: ChildFrm.cpp ChildFrm.h MainFrm.cpp Merge.dsp Merge.rc
+   MergeDoc.cpp MergeDoc.h MergeEditView.h resource.h
+  Src new files: LocationBar.cpp LocationBar.h LocationView.h LocationView.cpp
+  Languages: *.rc resource.h
+
 2004-04-17 Laoran
  PATCH: [ 929001 ] Delete commented out "diff_dirs2"
   Src: DirDoc.cpp

@@ -171,6 +171,7 @@ BEGIN
         MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
+        MENUITEM "Location &Pane",              ID_VIEW_LOCATION_BAR
         MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "&Language...",                ID_VIEW_LANGUAGE
@@ -689,12 +690,12 @@ CAPTION "Display Columns"
 FONT 8, "MS Sans Serif"
 BEGIN
     GROUPBOX        "Show columns",IDC_GROUP_SHOW,7,7,129,109
-    LISTBOX         IDC_LIST_SHOW,48,19,80,90,LBS_NOINTEGRALHEIGHT | 
+    LISTBOX         IDC_LIST_SHOW,48,19,80,90,LBS_NOINTEGRALHEIGHT |
                     LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&Up",IDC_UP,14,45,27,14
     PUSHBUTTON      "&Down",IDC_DOWN,14,63,27,14
     GROUPBOX        "Hide columns",IDC_GROUP_HIDE,180,7,96,109
-    LISTBOX         IDC_LIST_HIDE,188,19,80,90,LBS_NOINTEGRALHEIGHT | 
+    LISTBOX         IDC_LIST_HIDE,188,19,80,90,LBS_NOINTEGRALHEIGHT |
                     LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "<==",IDC_ADD,143,45,29,14
     PUSHBUTTON      "==>",IDC_REMOVE,143,63,29,14
@@ -1620,6 +1621,7 @@ BEGIN
     ID_PREDIFF_MANUAL       "No prediffer"
     ID_PREDIFF_AUTO         "Prediff if possible"
     ID_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+    ID_VIEW_LOCATION_BAR    "Location bar shows overall picture from files"
 END
 
 #endif    // English (U.S.) resources

@@ -855,6 +855,14 @@ SOURCE=.\locality.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\LocationBar.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\LocationView.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\LogFile.cpp
 # End Source File
 # Begin Source File
@@ -1623,6 +1631,14 @@ SOURCE=.\Common\listvwex.h
 # Begin Source File
 
 SOURCE=.\locality.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\LocationBar.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\LocationView.h
 # End Source File
 # Begin Source File
 

@@ -154,7 +154,9 @@ public:
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
 	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 	virtual void UpdateSiblingScrollPos (BOOL bHorz);
-	
+	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
+			COLORREF & crText, BOOL & bDrawWhitespace);
+
 	// to customize the mergeview menu
 	static HMENU createScriptsSubmenu(HMENU hMenu);
 
@@ -172,8 +174,6 @@ public:
 // Implementation
 protected:
 	virtual ~CMergeEditView();
-    virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
-                                COLORREF & crText, BOOL & bDrawWhitespace);
 	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz);
 	virtual void OnUpdateCaret();
 
