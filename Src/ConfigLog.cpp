@@ -364,7 +364,6 @@ BOOL CConfigLog::WriteLogFile(CString &sError)
 	WriteItemYesNo(file, 2, _T("Right Unique files"), m_viewSettings.bShowUniqueRight);
 	WriteItemYesNo(file, 2, _T("Binary files"), m_viewSettings.bShowBinaries);
 	WriteItemYesNo(file, 2, _T("Skipped files"), m_viewSettings.bShowSkipped);
-	WriteItemYesNo(file, 2, _T("*.bak files"), !m_viewSettings.bHideBak);
 
 	file.WriteString(_T("\n"));
 	WriteItemYesNo(file, 1, _T("View Whitespace"), m_miscSettings.bViewWhitespace);

@@ -1,3 +1,7 @@
+2005-02-20 Kimmo
+ PATCH: [ 1144588 ] Remove show bak files setting from configlog
+  Src: ConfigLog.cpp ConfigLog.h
+
 2005-02-19 Kimmo
  PATCH: [ 1144059 ] Allow getting filestatus from open file in UniXXXFile
   Common: UniFile.cpp UniFile.h
