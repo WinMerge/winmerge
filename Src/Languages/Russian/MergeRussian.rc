@@ -82,8 +82,10 @@ BEGIN
         MENUITEM "Скопировать на &правую панель", ID_L2R
         MENUITEM "Скопировать на &левую панель", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
-        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
+        MENUITEM "&Подсветить словарные отличия в линии", 
+                                                ID_SHOWLINEWORDDIFF
+        MENUITEM "Подсветить с&имвольные отличия в линии", 
+                                                ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Отмена",                     ID_EDIT_UNDO
         MENUITEM "В&ернуть",                    ID_EDIT_REDO
@@ -102,7 +104,7 @@ BEGIN
     BEGIN
         MENUITEM "Новый\tCtrl+N",               ID_FILE_NEW
         MENUITEM "&Открыть...\tCtrl+O",         ID_FILE_OPEN
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Открыть проект...\tCtrl+J",   ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Сохранить\tCtrl+S",          ID_FILE_SAVE
         POPUP "Сохранить файл с&лева"
@@ -126,7 +128,7 @@ BEGIN
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "Merge Mode\tF9",              ID_FILE_MERGINGMODE
+        MENUITEM "Режим слияния\tF9",           ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "В&ыход",                      ID_APP_EXIT
     END
@@ -141,8 +143,10 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "В&ыбрать Все\tCtrl+A",        ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
+        MENUITEM "&Подсветить словарные отличия в линии\tF4", 
+                                                ID_SHOWLINEWORDDIFF
+        MENUITEM "Подсветить с&имвольные отличия в линии\tShift+F4", 
+                                                ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Найти...\tCtrl+F",           ID_EDIT_FIND
         MENUITEM "&Заменить...\tCtrl+H",        ID_EDIT_REPLACE
@@ -152,9 +156,9 @@ BEGIN
             MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
-        POPUP "Advanced"
+        POPUP "&Дополнительно"
         BEGIN
-            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
+            MENUITEM "&Копировать с нумерацией строк\tCtrl+Shift+C", 
                                                     ID_EDIT_COPY_LINENUMBERS
         END
         MENUITEM "Перейти к строке...\tCtrl+G", ID_EDIT_WMGOTO
@@ -176,13 +180,13 @@ BEGIN
         MENUITEM "Использовать шрифт по &умолчанию", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "Показы&вать невидимые",       ID_VIEW_WHITESPACE
-        MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
+        MENUITEM "Показывать отличия в строках", ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
         MENUITEM "Па&нель инструментов",        ID_VIEW_TOOLBAR
         MENUITEM "&Строка состояния",           ID_VIEW_STATUS_BAR
         MENUITEM "Пане&ль сравнения",           ID_VIEW_DETAIL_BAR
-        MENUITEM "Location &Pane",              ID_VIEW_LOCATION_BAR
-        MENUITEM "С&равнить Statepane",         ID_VIEW_DIR_STATEPANE
+        MENUITEM "Панель лока&ций",             ID_VIEW_LOCATION_BAR
+        MENUITEM "Статусная панель",            ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "&Язык...",                    ID_VIEW_LANGUAGE
     END
@@ -214,7 +218,7 @@ BEGIN
     POPUP "&Инструменты"
     BEGIN
         MENUITEM "&Настроить колонки...",       ID_TOOLS_CUSTOMIZECOLUMNS
-        MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Фильтры...",                 ID_TOOLS_FILTERS
         MENUITEM "&Создать патч...",            ID_TOOLS_GENERATEPATCH
     END
     POPUP "&Плагины"
@@ -225,7 +229,7 @@ BEGIN
         MENUITEM "Редактировать с распаковщиком",
                                                 ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "&Prediffer"
+        POPUP "&Предсравнение"
         BEGIN
             MENUITEM SEPARATOR
         END
@@ -247,7 +251,7 @@ BEGIN
         MENUITEM "&Содержание...\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "Конфигурация...",             ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "&Поддержка архивов отключена...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "GNU Public License...",       ID_HELP_GNULICENSE
         MENUITEM "&О программе WinMerge...",    ID_APP_ABOUT
@@ -265,10 +269,10 @@ BEGIN
             MENUITEM "Справа налево",               ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "Справа на ...",               ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "&Move"
+        POPUP "&Переместить"
         BEGIN
-            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
-            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+            MENUITEM "&Слева в...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "&Справа в...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
         POPUP "Удалить"
         BEGIN
@@ -276,7 +280,7 @@ BEGIN
             MENUITEM "Справа",                      ID_DIR_DEL_RIGHT
             MENUITEM "Оба",                         ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "&Скрыть файлы",               ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Открыть левый файл"
         BEGIN
@@ -297,7 +301,7 @@ BEGIN
             MENUITEM "&Right (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
             MENUITEM "&Both (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
         END
-        MENUITEM "Copy &Filenames",                 ID_DIR_COPY_FILENAMES
+        MENUITEM "Скопировать &имена файлов",   ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
@@ -324,10 +328,10 @@ END
 
 IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
-    POPUP "Prediffer Settings"
+    POPUP "Параметры предсравнения"
     BEGIN
-        MENUITEM "&No prediffer",               ID_PREDIFF_MANUAL
-        MENUITEM "Auto prediffer",              ID_PREDIFF_AUTO
+        MENUITEM "&Нет предсравнения",          ID_PREDIFF_MANUAL
+        MENUITEM "&Автопредсравнение",          ID_PREDIFF_AUTO
     END
 END
 
@@ -335,7 +339,7 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "G&oto Diff"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "Перейти к &отличию",          ID_LOCBAR_GOTODIFF
         MENUITEM "Перейти к строке...",         ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
@@ -415,9 +419,9 @@ BEGIN
                     209,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,113,209,1
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
-    LTEXT           "Contributors are listed in",IDC_STATIC,7,81,208,8
+    LTEXT           "Участники проекта указаны в",IDC_STATIC,7,81,208,8
     LTEXT           "Contributors.txt",IDC_STATIC,7,91,153,8
-    PUSHBUTTON      "Show...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
+    PUSHBUTTON      "Показать...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
 END
 
 IDD_OPEN DIALOGEX 0, 0, 370, 126
@@ -436,22 +440,22 @@ BEGIN
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "Об&зор...",IDC_RIGHT_BUTTON,249,38,50,12
-    RTEXT           "&Filter:",IDC_STATIC,13,56,47,8
+    RTEXT           "&Фильтр:",IDC_STATIC,13,56,47,8
     COMBOBOX        IDC_EXT_COMBO,64,54,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Select...",IDC_SELECT_FILTER,242,54,50,12
+    PUSHBUTTON      "Выбрать...",IDC_SELECT_FILTER,242,54,50,12
     RTEXT           "&Распаковщик:",IDC_STATIC,13,72,49,8
     EDITTEXT        IDC_UNPACKER_EDIT,64,70,181,12,ES_AUTOHSCROLL |
                     ES_READONLY
     PUSHBUTTON      "Выбрать...",IDC_SELECT_UNPACKER,249,70,50,12
-    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",
+    CONTROL         "&Включая подпапки",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,64,86,181,10
-    LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
+    LTEXT           "Статус:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "OK",IDOK,310,11,50,14
     PUSHBUTTON      "Отмена",IDCANCEL,310,28,50,14
     GROUPBOX        "Файлы или каталоги для сравнивания",
                     IDC_FILES_DIRS_GROUP,7,7,298,111
-    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
+    PUSHBUTTON      "Сохр. проект",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -506,17 +510,17 @@ BEGIN
                     17,206,10
     CONTROL         "Отключить &заставку",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
-    CONTROL         "&Закрывать Statepane автоматически",
+    CONTROL         "&Закрывать панель состояния автоматически",
                     IDC_CMPPANE_AUTOCLOSE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,37,206,10
-    CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",
+    CONTROL         "За&крывать окна клавишей",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
-    CONTROL         "Automatically verify paths in Open-dialog",
+    CONTROL         "Автоматически проверять пути в диалоге отрытия файлов",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,206,10
     PUSHBUTTON      "Сброс",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press button to make all messageboxes visible again.",
+    LTEXT           "WinMerge позволяет скрывать некоторые общие сообщения. Нажмите кнопку ""Сброс"", чтобы все сообщения снова стали видны.",
                     IDC_STATIC,7,79,168,31
 END
 
@@ -605,7 +609,7 @@ END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Linefilters"
+CAPTION "Строковые фильтры"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Пропускать строки, удовлетворяющие следующим шаблонам",
@@ -658,7 +662,7 @@ BEGIN
     CONTROL         "Dif",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Moved:",IDC_STATIC,7,89,90,8
+    RTEXT           "Перемещенные:",IDC_STATIC,7,89,90,8
     CONTROL         "Dif",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -668,21 +672,21 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Moved:",IDC_STATIC,7,109,90,8
+    RTEXT           "Выбранные перемещенные:",IDC_STATIC,7,109,90,16
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Word Difference:",IDC_STATIC,7,129,90,8
+    RTEXT           "Словарное отличие:",IDC_STATIC,7,129,90,8
     CONTROL         "Dif",IDC_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_WORDDIFFERENCE_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Word Diff:",IDC_STATIC,7,149,90,8
+    RTEXT           "Выделенное словарное отличие:",IDC_STATIC,7,149,90,16
     CONTROL         "Dif",IDC_SEL_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,149,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -713,7 +717,7 @@ BEGIN
     CONTROL         "Добавить в &контекстное меню проводника",
                     IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,17,222,10
-    CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",
+    CONTROL         "В&ключить расширенное меню",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
     LTEXT           "Внешний редактор:",IDC_STATIC,7,44,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
@@ -764,7 +768,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
     CONTROL         "Открыть во внешем редакторе",IDC_DIFF_OPENTOEDITOR,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,155,145,170,10
-    PUSHBUTTON      "Defaults",IDC_DIFF_DEFAULTS,7,159,50,14
+    PUSHBUTTON      "По умолчанию",IDC_DIFF_DEFAULTS,7,159,50,14
     DEFPUSHBUTTON   "OK",IDOK,230,159,50,14
     PUSHBUTTON      "Отмена",IDCANCEL,283,159,50,14
 END
@@ -798,7 +802,7 @@ BEGIN
     PUSHBUTTON      "<==",IDC_ADD,143,45,29,14
     PUSHBUTTON      "==>",IDC_REMOVE,143,63,29,14
     EDITTEXT        IDC_COLDLG_DESC,7,122,269,22,ES_MULTILINE | ES_READONLY
-    PUSHBUTTON      "Defaults",IDC_COLDLG_DEFAULTS,7,149,50,14
+    PUSHBUTTON      "Сбросить",IDC_COLDLG_DEFAULTS,7,149,50,14
     DEFPUSHBUTTON   "OK",IDOK,172,149,50,14
     PUSHBUTTON      "Отмены",IDCANCEL,226,149,50,14
 END
@@ -914,7 +918,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Сравнение"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Whitespace",IDC_STATIC,7,7,221,50
+    GROUPBOX        "Невидимые",IDC_STATIC,7,7,221,50
     CONTROL         "Учитывать &невидимые",IDC_WHITESPACE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,19,206,10
     CONTROL         "Игнорировать измененные невидимые",IDC_WHITE_CHANGE,
@@ -925,7 +929,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
     CONTROL         "Игнорировать р&егистр",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
-    CONTROL         "Igno&re carriage return differences (DOS/UNIX/MAC)",
+    CONTROL         "Иг&норировать различия возвратов каретки (DOS/UNIX/MAC)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,80,221,10
     CONTROL         "Обнаружение переме&щенных блоков",IDC_MOVED_BLOCKS,
@@ -943,7 +947,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Подсвечивать синтаксис",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
-    CONTROL         "Apply to &unrecognized side",
+    CONTROL         "Применять к &неопределенной стороне",
                     IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,18,18,204,10
     CONTROL         "Авто&пересканирование",IDC_AUTOMRESCAN_CHECK,"Button",
@@ -969,103 +973,103 @@ END
 
 IDD_FILEFILTERS DIALOGEX 0, 0, 356, 135
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "Filefilters"
+CAPTION "Фильтры файлов"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,188,114,50,14
-    PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "Новый...",IDC_FILTERFILE_NEWBTN,188,114,50,14
+    PUSHBUTTON      "Изменить...",IDC_FILTERFILE_EDITBTN,244,114,50,14
+    PUSHBUTTON      "Удалить...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Save modified files?"
+CAPTION "Сохранить изменения в файлах"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Left side file",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
+    GROUPBOX        "Файл с левой стороны",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
     EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "&Save changes",IDC_SAVECLOSING_SAVELEFT,"Button",
+    CONTROL         "&Сохранить изменения",IDC_SAVECLOSING_SAVELEFT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
-    CONTROL         "&Discard changes",IDC_SAVECLOSING_DISCARDLEFT,"Button",
+    CONTROL         "&Отклонить изменения",IDC_SAVECLOSING_DISCARDLEFT,"Button",
                     BS_AUTORADIOBUTTON,16,46,230,10
-    GROUPBOX        "Right side file",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
+    GROUPBOX        "Файл с правой стороны",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
     EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "S&ave changes",IDC_SAVECLOSING_SAVERIGHT,"Button",
+    CONTROL         "Со&хранить изменения",IDC_SAVECLOSING_SAVERIGHT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
-    CONTROL         "Dis&card changes",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
+    CONTROL         "О&тклонить изменения",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
-    DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,205,133,50,14
+    DEFPUSHBUTTON   "ОК",IDOK,149,133,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,205,133,50,14
 END
 
 IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Codepage"
+CAPTION "Кодовая страница"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Detect codepage info for these files : .html, .rc \nneed to restart session",
+    CONTROL         "Определять кодовую страницу для файлов : .html, .rc \nнеобходим перезапуск сессии",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
-    CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
+    CONTROL         "Системная кодовая страница",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
-    CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",
+    CONTROL         "В зависимости от интерфейса пользователя WinMerge",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,33,210,10
-    CONTROL         "Custom codepage :",IDC_CP_CUSTOM,"Button",
+    CONTROL         "Другая кодовая страница:",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,46,77,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Default codepage for ANSI files",IDC_STATIC,7,7,221,58
+    GROUPBOX        "Кодовая страница для ANSI-файлов (по умолчанию)",IDC_STATIC,7,7,221,58
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245
 STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_NOPARENTNOTIFY
-CAPTION "WinMerge - Archive support disabled"
+CAPTION "WinMerge - Поддержка архивов отключена"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Unable to detect 7-Zip version (not installed?)",107,2,
-                    2,296,18
+    LTEXT           "Невозможно определить версию 7-Zip (не установлен?)",
+                    107,2,2,296,18
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,22,296,1
-    LTEXT           "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\nessential components to be copied to the program directory for standalone operation.",
+    LTEXT           "Для работы с архивами, требуется установленный на вашей машине 7-Zip версий 3.11 и выше, или неотъемлемые компоненты должны быть скопированы в папку с программой для независимых операций.",
                     IDC_STATIC,2,26,296,26
-    LTEXT           "There must also be an appropriate interface plugin (Merge7z*.dll) on the path.",
+    LTEXT           "А так же, любым способом должен быть доступен интерфейсный плагин (Merge7z*.dll)",
                     IDC_STATIC,2,52,296,18
-    LTEXT           "Please use the version of 7-Zip recommended below until interface plugins for later\nversions become available.",
+    LTEXT           "Пожалуйста, используйте рекомендуемую ниже версию 7-Zip пока не появяться интерфейсные плагины для свежих версий",
                     IDC_STATIC,2,70,296,26
-    CTEXT           "Version",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE | 
+    CTEXT           "Версия",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE |
                     SS_SUNKEN
-    CTEXT           "Plugin required\n(dllbuild %04u)",102,204,98,94,20,
+    CTEXT           "Требуемый плагин\n(dllbuild %04u)",102,204,98,94,20,
                     SS_SUNKEN
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,120,142,10,
+    LTEXT           "Рекомендуемая версия 7-Zip:",IDC_STATIC,2,120,142,10,
                     SS_CENTERIMAGE
     CTEXT           "0.00",110,146,120,20,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "present",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "Merge7z000U.dll",111,204,120,58,10,SS_CENTERIMAGE | 
+    CTEXT           "имеется",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "Merge7z000U.dll",111,204,120,58,10,SS_CENTERIMAGE |
                     SS_SUNKEN
-    CTEXT           "present",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "7-Zip software installed on your computer:",IDC_STATIC,
-                    2,132,142,10,SS_CENTERIMAGE
-    CTEXT           "none",120,146,132,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "имеется",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Версия 7-Zip на вашей машине:",IDC_STATIC,2,132,142,10,
+                    SS_CENTERIMAGE
+    CTEXT           "пусто",120,146,132,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",121,204,132,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "missing",122,264,132,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "7-Zip components for standalone operation:",IDC_STATIC,
-                    2,144,142,10,SS_CENTERIMAGE
-    CTEXT           "none",130,146,144,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "отсутств.",122,264,132,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Компоненты 7-Zip для самостоятельных операций:",
+                    IDC_STATIC,2,144,142,16
+    CTEXT           "пусто",130,146,144,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",131,204,144,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "outdated",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "Plugins on path:",9001,2,160,100,8
-    CONTROL         "Don't display this &message again.\n(You can always recall this message from help menu.)",
-                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
+    CTEXT           "устарел",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Доступные плагины:",9001,2,160,100,8
+    CONTROL         "Больше не показывать это &сообщение.\n(Вы всегда можете вернуть его через меню помощи.)",
+                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
-    CONTROL         "Plugin Download",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
+    CONTROL         "Скачать плагины",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
                     236,160,62,10
-    LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+    LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1076,8 +1080,8 @@ CAPTION "Options"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,187,237,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,241,237,50,14
-    PUSHBUTTON      "Help",IDC_TREEOPT_HELP,295,237,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,241,237,50,14
+    PUSHBUTTON      "Помощь",IDC_TREEOPT_HELP,295,237,50,14
     CONTROL         "Tree1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
@@ -1316,7 +1320,7 @@ END
 STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Показать или спрятать панель инструментов\nToggle ToolBar"
-    ID_VIEW_STATUS_BAR      "Показать или спрятать панель статуса\nToggle StatusBar"
+    ID_VIEW_STATUS_BAR      "Показать или спрятать строку состояний\nToggle StatusBar"
 END
 
 STRINGTABLE
@@ -1452,19 +1456,19 @@ END
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
-    IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    IDS_COMPMETHOD_FULL_CONTENTS "Полный поиск по содержимому"
+    IDS_COMPMETHOD_QUICK_CONTENTS "Быстрый поиск по содержимому"
     IDS_COMPMETHOD_MODDATE  "По различиям в дате"
 END
 
 // FILTER OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_FILTERFILE_NAMETITLE "Name"
-    IDS_FILTERFILE_PATHTITLE "Location"
-    IDS_FILTER_TITLE        "Filters"
+    IDS_FILTERFILE_NAMETITLE "Имя"
+    IDS_FILTERFILE_PATHTITLE "Местоположение"
+    IDS_FILTER_TITLE        "Фильтры"
     IDS_FILTER_PREFIX       "[F] "
-    IDS_FILTERFILE_DESCTITLE "Description"
+    IDS_FILTERFILE_DESCTITLE "Описание"
     IDS_FILEFILTER_SAVENEW  "Select filename for new filter"
     IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 END
@@ -1494,9 +1498,9 @@ BEGIN
     IDS_STATUS_COPYR2L      "Копирование Справа Налево"
     IDS_STATUS_COPYALL2L    "Копирование всех файлов налево"
     IDS_STATUS_COPYALL2R    "Копирование всех файлов направо"
-    IDS_STATUS_COPYFILES    "Copying files..."
-    IDS_STATUS_DELETEFILES  "Deleting files..."
-    IDS_STATUS_MOVEFILES    "Moving files..."
+    IDS_STATUS_COPYFILES    "Копирование файлов..."
+    IDS_STATUS_DELETEFILES  "Удаление файлов..."
+    IDS_STATUS_MOVEFILES    "Перемещение файлов..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1505,24 +1509,24 @@ BEGIN
     IDS_LINE_STATUS_INFO_EOL "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Строка: %s"
     IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
-    IDS_MERGEMODE_MERGING   "Merge"
-    IDS_DIFF_NUMBER_STATUS_FMT "Отличие %1 от %2"
+    IDS_MERGEMODE_MERGING   "Объединение"
+    IDS_DIFF_NUMBER_STATUS_FMT "Отличие %1 из %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Отличий найдено"
-    IDS_1_DIFF_FOUND        "1 Difference Found"
+    IDS_1_DIFF_FOUND        "Найдено всего одно отличие"
     IDS_STATUSBAR_READONLY  "RO"
 END
 
 // OPEN DIALOG
 STRINGTABLE
 BEGIN
-    IDS_ERROR_INCOMPARABLE  "Выберите два существующих каталога или файла для сравнивания"
+    IDS_ERROR_INCOMPARABLE  "Выберите два СУЩЕСТВУЮЩИХ каталога или файла для сравнения"
     IDS_DIRSEL_TAG          "Выбор папки"
-    IDS_OPEN_FILESDIRS      "Select two directories or two files to compare."
-    IDS_OPEN_LEFTINVALID    "Left path is invalid!"
-    IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
-    IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
+    IDS_OPEN_FILESDIRS      "Выберите для сравнения два каталога или файла"
+    IDS_OPEN_LEFTINVALID    "Путь слева указан неверно"
+    IDS_OPEN_RIGHTINVALID   "Путь справа указан неверно"
+    IDS_OPEN_BOTHINVALID    "Оба пути указаны неверно"
     IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
-    IDS_OPEN_MISMATCH       "Cannot compare file and directory!"
+    IDS_OPEN_MISMATCH       "Невозможно сравнения файла и каталога!"
 END
 
 // LOADING FILE
@@ -1530,10 +1534,10 @@ STRINGTABLE
 BEGIN
     IDS_ERROR_FILE_NOT_FOUND "Файл не найден: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "Файл не распакован: %1"
-    IDS_BINFILES_IDENTICAL   "%1\n%2\n\nare identical binary files."
-    IDS_BINFILES_DIFFERENT   "%1\n%2\n\nare different binary files."
-    IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
-    IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
+    IDS_BINFILES_IDENTICAL  "%1\n%2\n\nодинаковые бинарные файлы"
+    IDS_BINFILES_DIFFERENT  "%1\n%2\n\nотличающиеся бинарные файлы"
+    IDS_OTHER_IS_BINARY     "%1\n\nявляется бинарным файлом. Невозможно сравнение бинарных и текстовых файлов."
+    IDS_ERROR_FILEOPEN      "Невозможно открыть файл\n%1\n\n%2"
 END
 
 // SAVING FILE
@@ -1549,8 +1553,8 @@ BEGIN
     IDS_FILEPACK_FAILED_LEFT "Плагин '%2' не может запаковать ваши изменения обратно в файл слева '%1'.\n\nОригинал останется не измененным.\n\nХотите сохранить распакованную версию в другой файл?"
     IDS_FILEPACK_FAILED_RIGHT "Плагин '%2' не может запаковать ваши изменения обратно в файл справа '%1'.\n\nОригинал останется не измененным.\n\nХотите сохранить распакованную версию в другой файл?"
     IDS_FILECHANGED_ONDISK  "Другое приложение изменило файл\n%1\nуже загруженный в WinMerge .\n\nПерезаписать измененный файл?"
-    IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
-    IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nIf you want to refresh files close current file compare and load files again."
+    IDS_SAVEREADONLY_MULTI  "%1 помечен как ""только для чтения"". Согласны ли вы заменить этот файл ? "
+    IDS_FILECHANGED_RESCAN  "Другое приложение обновило файл\n%1\nсо времени последнего открытия в WinMerge.\n\nЕсли вы хотите обновить файлы, то закройте текущее сравнение и загрузите файлы снова."
     IDS_SAVE_LEFT_AS        "Save Left File As"
     IDS_SAVE_RIGHT_AS       "Save Right File As"
 END
@@ -1586,7 +1590,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "Удалить выбранный элемент слева"
     ID_DIR_DEL_RIGHT        "Удалить выбранный элемент справа"
     ID_DIR_DEL_BOTH         "Удалить выбранные элементы с обоих сторон"
-    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
+    ID_DIR_HIDE_FILENAMES   "Скрыть выбранные элементы (быстрый фильтр)"
     IDS_COPY_TO_LEFT        "Скопировать на левую сторону %1 из %2 выбранных элементов"
     IDS_COPY_TO_RIGHT       "Скопировать на правую сторону %1 из %2 выбранных элементов"
     IDS_COPY_TO_LEFT2       "Справа налево (%1 из %2)"
@@ -1635,7 +1639,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Открыть файл справа во внешнем редакторе"
     ID_DIR_OPEN_RIGHT_WITH  "Открыть файл справа с помощью..."
     IDS_CANNOT_EXECUTE_FILE "Невозможно выполнить %1"
-    ID_DIR_COPY_FILENAMES   "Copy filenames to clipboard"
+    ID_DIR_COPY_FILENAMES   "Скопировать имена файлов в буфер обмена"
     ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
     ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
     ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
@@ -1650,9 +1654,9 @@ BEGIN
     ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
     ID_DIR_MOVE_LEFT_TO_BROWSE 
-                            "Move selected file on left to custom directory"
+                            "Переместить выбранные слева файлы в другую папку"
     ID_DIR_MOVE_RIGHT_TO_BROWSE 
-                            "Move selected file on right to custom directory"
+                            "Переместить выбранные справа файлы в другую папку"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
@@ -1742,27 +1746,22 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Left side encoding."
     IDS_COLDESC_RENCODING   "Right side encoding."
-    IDS_COLDESC_NDIFFS      "Number of total differences."
+    IDS_COLDESC_NDIFFS      "Общее число отличий"
     IDS_COLDESC_NSDIFFS     "Number of differences not counting ignored ones."
-    IDS_COLDESC_BINARY      "Shows asterisk (*) if file is binary."
+    IDS_COLDESC_BINARY      "Показать звездочку (*) если файл бинарный."
 END
 
 // FILE COMPARISON RESULT : MESSAGES
 STRINGTABLE
 BEGIN
-    IDS_FILE_TO_ITSELF      "The same file is opened in both panels."
+    IDS_FILE_TO_ITSELF      "На обоих панелях открыт один и тот же файл"
     IDS_FILESSAME           "Выбранные файлы не имеют отличий"
     IDS_FILEUNIQUE          "Выбранный файл существует только в одном каталоге. Поэтому сравнение провести невозможно."
     IDS_FILEERROR           "При сравнении файлов произошла ошибка."
     IDS_FILEBINARY          "Бинарные файлы не могут быть сравнены визуально"
     IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
     IDS_FILEISDIR           "Файлы каталогов не могут быть сравнены визуально"
-    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
-                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
-                            Note: If you always want to treat all carriage return types \
-                            as equivalent, set the option 'Ignore carriage return \
-                            differences..' in the Compare tab of the options dialog\
-                            (available under Edit/Options)."
+    IDS_SUGGEST_IGNOREEOL   "Эти файлы имеют различные типы меток конца строки.\n\nХотите, чтобы в этом сравнении они игнорировались (считались равнозначными) ?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog(available under Edit/Options)."
     IDS_SUGGEST_PRESERVEEOL "В файле '%1' символы EOL разных типов (DOS/UNIX/MAC).\nС текущими настройками, они будут преобразованы ко главному типу.\n Хотите ли вы изменить ваши настройки так, чтобы сохранить различные EOL ?"
     IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
     IDS_SUGGEST_IGNORECODEPAGE "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to force both into the default codepage (recommended)?"
@@ -1795,7 +1794,7 @@ BEGIN
     IDS_DIFF_SUCCEEDED      "Патч успешно записан."
     IDS_DIFF_ITEM1NOTFOUND  "1. Элемент не найден или это каталог"
     IDS_DIFF_ITEM2NOTFOUND  "2. Элемент не найден или это каталог"
-    IDS_DIFF_FILEOVERWRITE  "The patch file already exists. Do you want to overwrite it?"
+    IDS_DIFF_FILEOVERWRITE  "Патч уже существует. Хотите перезаписать его ?"
     IDS_DIFF_SELECTEDFILES  "[%1 файлов выбрано]"
     IDS_DIFF_NORMAL         "Нормальный"
     IDS_DIFF_CONTEXT        "Контекст"
@@ -1809,27 +1808,25 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIR_RESULTS_EMPTIED "Current directory comparison results will be cleared."
-    IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\n
-                            All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.
-                            See manual for more info about archive support and how to enable it."
+    IDS_NO_ZIP_SUPPORT      "Поддержка архивов не включена.\n \nНе найдены все необходимые компоненты (7-zip и/или Merge7z*.dll) . \nПосмотрите инструкцию, что бы узнать больше про поддержку архивов и как ее включить."
 END
 
 // Regular expression errors
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_ERROR        "Regular expression error"
-    IDS_REGEXP_NOMATCH      "No match"
-    IDS_REGEXP_INVALID      "Invalid regular expression"
+    IDS_REGEXP_ERROR        "Ошибка в регулярном выражении"
+    IDS_REGEXP_NOMATCH      "Совпадений нет"
+    IDS_REGEXP_INVALID      "Неверное регулярное выражение"
     IDS_REGEXP_COLL_CHAR    "Invalid collation character"
     IDS_REGEXP_CHAR_CLASS   "Invalid character class name"
-    IDS_REGEXP_TRAILING_BS  "Trailing backslash"
+    IDS_REGEXP_TRAILING_BS  "Замыкающий обратный слэш"
     IDS_REGEXP_INVALID_BACKREF "Invalid back reference"
     IDS_REGEXP_UNMATCHED_BRACK "Unmatched [ or [^"
     IDS_REGEXP_UNMATCHED_PAREN "Unmatched ( or \\("
     IDS_REGEXP_UNMATCHED_BRACE "Unmatched \\{"
     IDS_REGEXP_INVALID_BRACE "Invalid content of \\{\\}"
     IDS_REGEXP_RANGE_END    "Invalid range end"
-    IDS_REGEXP_OUTOFMEM     "Out of memory"
+    IDS_REGEXP_OUTOFMEM     "Не хватает памяти"
     IDS_REGEXP_INVALID_PREV_EXP "Invalid preceding regular expression"
     IDS_REGEXP_PREMATURE_END "Premature end of regular expression"
     IDS_REGEXP_TOO_BIG      "Regular expression too big"
@@ -1956,8 +1953,8 @@ BEGIN
     IDS_PORTUGUESE          "португальский"
     IDS_PORTUGUESE_BRAZILIAN "бразильский португальский"
     IDS_ROMANIAN            "румынский"
-    IDS_RUSSIAN             "русский"
-    IDS_SANSKRIT            "Sanskrit"
+    IDS_RUSSIAN             "Русский (Russian)"
+    IDS_SANSKRIT            "Санскрит"
     IDS_SERBIAN_LATIN       "cербский (Latin)"
     IDS_SERBIAN_CYRILLIC    "cербский (Cyrillic)"
     IDS_SINDHI              "Sindhi"
@@ -2125,18 +2122,19 @@ BEGIN
     ID_EOL_TO_DOS           "Преобразовать EOL к стандарту DOS"
     ID_EOL_TO_UNIX          "Преобразовать EOL к стандарту UNIX"
     ID_EOL_TO_MAC           "Преобразовать EOL к стандарту MAC"
-    ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
+    ID_FILE_MERGINGMODE     "Переключение между режимами редактирования и слияния"
 END
 
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
-    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
+    ID_SHOWLINEWORDDIFF     "Подсветить словарные отличия в текущей строке\nСловарное отличие в текущей строке (F4)"
+    ID_SHOWLINECHARDIFF     "Подсветить символьные отличия в текущей строке\nСимвольное отличие в текущей строке (Shift+F4)"
     ID_EDIT_WMGOTO          "Перейти на строку или отличие\nGo to (Ctrl+G)"
     ID_OPTIONS              "Установить программные настройки\nНастройки"
     ID_REFRESH              "Обновить экран\nRefresh (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS 
+                            "Скопировать выбранные строки в буфер обмена, добавляя в начале строки ее номер"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2153,14 +2151,14 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
-    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
+    ID_VIEW_SELECTFONT      "Выбрать шрифт для отображения отличий\nSelect Diff Font"
+    ID_VIEW_USEDEFAULTFONT  "Использовать системный шрифт по умолчанию для отображения отличий \nDefault Font"
     ID_VIEW_WHITESPACE      "Показывать невидимые знаки разметки"
     ID_VIEW_DETAIL_BAR      "Переключить панель отличий"
-    ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
-    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
+    ID_VIEW_LOCATION_BAR    "Панель локаций показывает полную картину отличий между файлами"
+    ID_VIEW_DIR_STATEPANE   "Показать статусную панель сравнения каталогов"
     ID_VIEW_LANGUAGE        "Выбор языка пользователя\nLanguage"
-    ID_VIEW_LINEDIFFS       "Shows differences inside lines with different color\nShow Line Diff"
+    ID_VIEW_LINEDIFFS       "Выделить отличия в строках разными цветами\nShow Line Diff"
 END
 
 // MERGE MENU
@@ -2184,9 +2182,9 @@ END
 // TOOLS MENU
 STRINGTABLE
 BEGIN
-    ID_TOOLS_CUSTOMIZECOLUMNS "Select and reorder directory compare columns"
+    ID_TOOLS_CUSTOMIZECOLUMNS "Выбрать и переставить местами колонки сравнения каталогов"
     ID_TOOLS_GENERATEPATCH  "Создать патч"
-    ID_TOOLS_FILTERS        "Select and modify filters"
+    ID_TOOLS_FILTERS        "Выбор и редактирование фильтров"
 END
 
 // PLUGINS MENU
@@ -2211,7 +2209,7 @@ END
 STRINGTABLE
 BEGIN
     ID_HELP_CONTENTS        "Показать справку пользователя WinMerge\nHelp"
-    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
+    ID_HELP_GETCONFIG       "Вывести информацию о текущей версии WinMerge и настройках в текстовый файл"
     ID_HELP_GNULICENSE      "Показать лицензию GNU public"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
 END
@@ -2220,8 +2218,8 @@ END
 STRINGTABLE
 BEGIN
     ID_TITLE_PLUGINS_SETTINGS "Plugin Settings"
-    ID_PREDIFF_MANUAL       "No prediffer"
-    ID_PREDIFF_AUTO         "Prediff if possible"
+    ID_PREDIFF_MANUAL       "Предсравнение отсутствует"
+    ID_PREDIFF_AUTO         "Если возможно, то предсравнение будет произведено"
     ID_NO_EDIT_SCRIPTS      "< Пусто >"
     ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
     IDS_USERCHOICE_NONE     "<Нет>"
@@ -2234,7 +2232,7 @@ BEGIN
     ID_DISPLAY_MOVED_NONE   "Do not display moved blocks"
     ID_DISPLAY_MOVED_ALL    "Display all moved blacks"
     ID_DISPLAY_MOVED_FOLLOW_DIFF "Display moved blocks only from current diff"
-    ID_LOCBAR_GOTODIFF      "Go to diff under cursor"
+    ID_LOCBAR_GOTODIFF      "Перейти к отличию под курсором"
     ID_LOCBAR_GOTODIFF_FMT  "G&oto Diff %1 of %2"
     ID_LOCBAR_GOTOLINE_FMT  "G&oto Line %1"
 END
