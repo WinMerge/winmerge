@@ -785,8 +785,9 @@ BOOL UniStdioFile::WriteString(const CString & line)
 	if (m_unicoding == ucr::NONE && m_codepage == ucr::getDefaultCodepage())
 #endif
 	{
-		unsigned int wbytes = fwrite((LPCTSTR)line, line.GetLength(), 1, m_fp);
-		if (wbytes != line.GetLength() * sizeof(TCHAR))
+		unsigned int bytes = line.GetLength() * sizeof(TCHAR);
+		unsigned int wbytes = fwrite((LPCTSTR)line, 1, bytes, m_fp);
+		if (wbytes != bytes)
 			return FALSE;
 		return TRUE;
 	}

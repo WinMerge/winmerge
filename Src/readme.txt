@@ -1,3 +1,7 @@
+2004-01-11 Perry
+ Fix byte count and argument order when UniStdioFile::WriteString calls fwrite.
+ common: UniFile.cpp
+
 2004-01-11 WinMerge experimental release 2.1.5.5 (cvs)
 
 2004-01-11 Perry
