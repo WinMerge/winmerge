@@ -1,3 +1,8 @@
+2004-06-01 Kimmo
+ BUG: [ 963820 ] Cutting off trailing chars in opendlg
+  Submitted by Perry
+  Src/Common: CoreTools.cpp
+
 2004-06-01 Laoran
  PATCH: [ 960455 ] Clip text in DrawLineHelperImpl
   Src/editlib: crystaltextview.cpp
