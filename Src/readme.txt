@@ -1,3 +1,6 @@
+2003-02-08  Perry
+ DirDoc.*: Changed from strftime to COleDateTime::Format (respects user prefs).
+ 
 2003-02-07
  Added 24 missing languages
  Fixed duplicated strings in Italian rc.

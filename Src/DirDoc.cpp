@@ -316,6 +316,24 @@ static void UpdateTimes(DIFFITEM * pdi)
 	pdi->rtime = GetModTime(sRight);
 }
 
+static CString
+TimeString(const time_t * tim)
+{
+	if (!tim) return _T("---");
+	// _tcsftime does not respect user date customizations from
+	// Regional Options/Configuration Regional; COleDateTime::Format does so.
+	COleDateTime odt = *tim;
+	return odt.Format();
+}
+
+void CDirDoc::SetItemStatus(UINT nIdx, LPCTSTR szStatus, int image, const time_t * ltime, const time_t * rtime)
+{
+	m_pView->AddItem(nIdx, DV_STATUS, szStatus);
+	m_pView->SetImage(nIdx, image);
+	m_pView->AddItem(nIdx, DV_LTIME, TimeString(ltime));
+	m_pView->AddItem(nIdx, DV_RTIME, TimeString(rtime));
+}
+
 void CDirDoc::UpdateItemStatus(UINT nIdx)
 {
 	CString s,s2;
@@ -325,7 +343,6 @@ void CDirDoc::UpdateItemStatus(UINT nIdx)
 //	int rlen = m_pCtxt->m_strRight.GetLength();
 	POSITION diffpos = m_pView->GetItemKey(nIdx);
 	DIFFITEM di = m_pCtxt->GetDiffAt(diffpos);
-	TCHAR sTime[80];
 
 	UpdateTimes(&di); // in case just copied (into existence) or modified
 
@@ -333,66 +350,33 @@ void CDirDoc::UpdateItemStatus(UINT nIdx)
 	{
 	case FILE_DIFF:
 		VERIFY(s.LoadString(IDS_FILES_ARE_DIFFERENT));
-		m_pView->AddItem(nIdx, DV_STATUS, s);
-		m_pView->SetImage(nIdx, FILE_DIFF);
-		_tcsftime(sTime, 80, _T("%c"), localtime(&di.ltime));
-		m_pView->AddItem(nIdx, DV_LTIME, sTime);
-		_tcsftime(sTime, 80, _T("%c"), localtime(&di.rtime));
-		m_pView->AddItem(nIdx, DV_RTIME, sTime);
+		SetItemStatus(nIdx, s, FILE_DIFF, &di.ltime, &di.rtime);
 		break;
 	case FILE_BINDIFF:
 		VERIFY(s.LoadString(IDS_BIN_FILES_DIFF));
-		m_pView->AddItem(nIdx, DV_STATUS, s);
-		m_pView->SetImage(nIdx, FILE_BINDIFF);
-		_tcsftime(sTime, 80, _T("%c"), localtime(&di.ltime));
-		m_pView->AddItem(nIdx, DV_LTIME, sTime);
-		_tcsftime(sTime, 80, _T("%c"), localtime(&di.rtime));
-		m_pView->AddItem(nIdx, DV_RTIME, sTime);
+		SetItemStatus(nIdx, s, FILE_BINDIFF, &di.ltime, &di.rtime);
 		break;
 	case FILE_LUNIQUE:
 	case FILE_LDIRUNIQUE:
 		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.lpath);
-		m_pView->AddItem(nIdx, DV_STATUS, s);
-		m_pView->SetImage(nIdx, di.code);
-		_tcsftime(sTime, 80, _T("%c"), localtime(&di.ltime));
-		m_pView->AddItem(nIdx, DV_LTIME, sTime);
-		m_pView->AddItem(nIdx, DV_RTIME, _T("---"));
+		SetItemStatus(nIdx, s, di.code, &di.ltime, NULL);
 		break;
 	case FILE_RUNIQUE:
 	case FILE_RDIRUNIQUE:
 		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.rpath);
-		m_pView->AddItem(nIdx, DV_STATUS, s);
-		m_pView->SetImage(nIdx, di.code);
-		m_pView->AddItem(nIdx, DV_LTIME, _T("---"));
-		_tcsftime(sTime, 80, _T("%c"), localtime(&di.rtime));
-		m_pView->AddItem(nIdx, DV_RTIME, sTime);
+		SetItemStatus(nIdx, s, di.code, NULL, &di.rtime);
 		break;
 	case FILE_SAME:
 		VERIFY(s.LoadString(IDS_IDENTICAL));
-		m_pView->AddItem(nIdx, DV_STATUS,s);
-		m_pView->SetImage(nIdx, FILE_SAME);
-		_tcsftime(sTime, 80, _T("%c"), localtime(&di.ltime));
-		m_pView->AddItem(nIdx, DV_LTIME, sTime);
-		_tcsftime(sTime, 80, _T("%c"), localtime(&di.rtime));
-		m_pView->AddItem(nIdx, DV_RTIME, sTime);
+		SetItemStatus(nIdx, s, FILE_SAME, &di.ltime, &di.rtime);
 		break;
 	default: // error
 		VERIFY(s.LoadString(IDS_CANT_COMPARE_FILES));
-		m_pView->AddItem(nIdx, DV_STATUS, s);
-		m_pView->SetImage(nIdx, FILE_ERROR);
-		if (di.ltime>0)
-			_tcsftime(sTime, 80, _T("%c"), localtime(&di.ltime));
-		else
-			*sTime = _T('\0');
-		m_pView->AddItem(nIdx, DV_LTIME, sTime);
-		if (di.rtime>0)
-			_tcsftime(sTime, 80, _T("%c"), localtime(&di.rtime));
-		else
-			*sTime = _T('\0');
-		m_pView->AddItem(nIdx, DV_RTIME, sTime);
+		SetItemStatus(nIdx, s, FILE_ERROR, (di.ltime>0 ? &di.ltime : NULL), (di.rtime>0 ? &di.rtime : NULL));
 		break;
 	}
 }
+
 
 void CDirDoc::InitStatusStrings()
 {

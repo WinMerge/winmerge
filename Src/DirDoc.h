@@ -61,6 +61,7 @@ public:
 	void UpdateResources();
 	void InitStatusStrings();
 	void UpdateItemStatus(UINT nIdx);
+	void SetItemStatus(UINT nIdx, LPCTSTR szStatus, int image, const time_t * ltime, const time_t * rtime);
 	void Redisplay();
 	void Rescan();
 	CDiffContext *m_pCtxt;
