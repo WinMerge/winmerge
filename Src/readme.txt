@@ -2,6 +2,10 @@
  [ 668654 ] Tabtype selection feature
  [ 672554 ] Update DirView after individual merge
  Fixed [ 225571 ] After individual merge, dirView not updated
+ [ 672879 ] Propose clarifying change in ccrystaleditview.cpp
+ [ 672885 ] Fix for ASSERT from CChildFrame::UpdateHeaderSizes
+ [ 673063 ] Modification check before close
+ [ 675526 ] Waitcursors and merging all
 
 2003-01-21
  [ 671037 ] Changes for MSVC.NET
