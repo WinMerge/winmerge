@@ -2,7 +2,7 @@
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2003-12-14 (Perry)
+ *  @date   Edited:  2004-01-19 (Perry)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -624,6 +624,14 @@ bool UniStdioFile::OpenReadOnly(LPCTSTR filename)
 bool UniStdioFile::OpenCreate(LPCTSTR filename)
 {
 	return Open(filename, _T("w+b"));
+}
+bool UniStdioFile::OpenCreateUtf8(LPCTSTR filename)
+{
+	if (!OpenCreate(filename)) 
+		return false;
+	SetUnicoding(ucr::UTF8);
+	return true;
+	
 }
 bool UniStdioFile::Open(LPCTSTR filename, LPCTSTR mode)
 {

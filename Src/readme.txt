@@ -1,6 +1,8 @@
 2004-01-19 Perry
  PATCH: [ 880046 ] Save every line including last one in SaveToFile
   src: MergeDoc.cpp
+ UniStdioFile::OpenCreateUtf8 (shortcut for creating UTF-8 file)
+  src/Common: UniFile.cpp UnFile.h
 
 2004-01-19 Kimmo
  PATCH: 876875 Go To -Dialog

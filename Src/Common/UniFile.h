@@ -2,7 +2,7 @@
  *  @file   UniFile.h
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2003-11-10 (Perry)
+ *  @date   Edited:  2004-01-19 (Perry)
  *
  *  @brief  Declaration of Memory-Mapped Unicode enabled file class
  */
@@ -165,6 +165,7 @@ public:
 
 	virtual bool OpenReadOnly(LPCTSTR filename);
 	virtual bool OpenCreate(LPCTSTR filename);
+	virtual bool OpenCreateUtf8(LPCTSTR filename);
 	virtual bool Open(LPCTSTR filename, LPCTSTR mode);
 
 	void Close();
