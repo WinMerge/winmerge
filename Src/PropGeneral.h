@@ -3,6 +3,8 @@
  *
  * @brief Declaration of CPropGeneral class
  */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #if !defined(AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_)
 #define AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_
@@ -11,6 +13,9 @@
 /////////////////////////////////////////////////////////////////////////////
 // CPropGeneral dialog
 
+/**
+ * @brief Class for General options -propertypage.
+ */
 class CPropGeneral : public CPropertyPage
 {
 	DECLARE_DYNCREATE(CPropGeneral)
@@ -27,6 +32,7 @@ public:
 	BOOL	m_bScroll;
 	BOOL	m_bDisableSplash;
 	BOOL	m_bAutoCloseCmpPane;
+	BOOL	m_bCloseWindowWithEsc;
 	//}}AFX_DATA
 
 

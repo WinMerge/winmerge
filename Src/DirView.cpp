@@ -76,6 +76,7 @@ CDirView::CDirView()
 , m_pHeaderPopup(NULL)
 {
 	m_pList = NULL;
+	m_bEscCloses = mf->m_options.GetInt(OPT_CLOSE_WITH_ESC);
 }
 
 CDirView::~CDirView()
@@ -1525,10 +1526,13 @@ void CDirView::OnRefresh()
 BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 {
 	// Check if we got 'ESC pressed' -message
-	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE)) 
+	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{
-		AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
-		return FALSE;
+		if (m_bEscCloses)
+		{
+			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+			return FALSE;
+		}
 	}
 	return CListViewEx::PreTranslateMessage(pMsg);
 }
@@ -2131,5 +2135,13 @@ void CDirView::ResetColumnWidths()
 			theApp.WriteProfileInt(_T("DirView"), sWidthKey, DefColumnWidth);
 		}
 	}
+}
+
+/**
+ * @brief Refresh cached options.
+ */
+void CDirView::RefreshOptions()
+{
+	m_bEscCloses = mf->m_options.GetInt(OPT_CLOSE_WITH_ESC);
 }
 

@@ -606,6 +606,7 @@ void CDirDoc::RefreshOptions()
 	options.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
 
 	m_diffWrapper.SetOptions(&options);
+	m_pDirView->RefreshOptions();
 }
 
 /**

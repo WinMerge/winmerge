@@ -65,6 +65,7 @@ CMergeEditView::CMergeEditView()
 	SetParser(&m_xParser);
 	m_bAutomaticRescan = FALSE;
 	fTimerWaitingForIdle = 0;
+	m_bCloseWithEsc = mf->m_options.GetInt(OPT_CLOSE_WITH_ESC);
 
 	m_bSyntaxHighlight = mf->m_options.GetInt(OPT_SYNTAX_HIGHLIGHT);
 	m_cachedColors.clrDiff = mf->m_options.GetInt(OPT_CLR_DIFF);
@@ -1461,6 +1462,9 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 		// Check if we got 'ESC pressed' -message
 		if (pMsg->wParam == VK_ESCAPE)
 		{
+			if (!m_bCloseWithEsc)
+				return CCrystalEditViewEx::PreTranslateMessage(pMsg);
+
 			// Ask about saving unsaved document, allow to cancel closing
 			CMergeDoc *pd = GetDocument();
 			if (pd->SaveHelper(TRUE))
@@ -2055,6 +2059,8 @@ void CMergeEditView::OnUpdateWMGoto(CCmdUI* pCmdUI)
  */
 void CMergeEditView::RefreshOptions()
 { 
+	m_bCloseWithEsc = mf->m_options.GetInt(OPT_CLOSE_WITH_ESC);
+
 	m_bSyntaxHighlight = mf->m_options.GetInt(OPT_SYNTAX_HIGHLIGHT);
 	m_cachedColors.clrDiff = mf->m_options.GetInt(OPT_CLR_DIFF);
 	m_cachedColors.clrSelDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF);

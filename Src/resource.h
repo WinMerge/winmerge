@@ -351,6 +351,7 @@
 #define IDC_OPEN_STATUS                 1128
 #define IDC_FILTERFILE_EDITBTN          1129
 #define IDC_FILTERFILE_LIST             1130
+#define IDC_ESC_CLOSES_WINDOW           1131
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -634,7 +635,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        126
 #define _APS_NEXT_COMMAND_VALUE         32880
-#define _APS_NEXT_CONTROL_VALUE         1131
+#define _APS_NEXT_CONTROL_VALUE         1132
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

@@ -1,3 +1,9 @@
+2004-05-03 Kimmo
+ PATCH: [ 942565 ] Option for closing windows with ESC
+  Src: DirDoc.cpp DirView.cpp DirView.h MainFrm.cpp Merge.rc MergeEditView.cpp
+   MergeEditView.h OptionsDef.h PropGeneral.cpp PropGeneral.h resource.h
+  Languages: *.rc resource.h
+
 2004-05-03 Laoran
  PATCH: [ 946091 ] Fix for GetLineActualLength
   Src/editlib: ccrystaltextview.cpp

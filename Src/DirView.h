@@ -92,6 +92,7 @@ public:
 	void GotoFirstDiff() { OnFirstdiff(); };
 	int AddSpecialItems();
 	void AddParentFolderItem();
+	void RefreshOptions();
 
 // Implementation types
 private:
@@ -215,6 +216,7 @@ protected:
 	CArray<int, int> m_invcolorder; /**< invcolorder[physical]=logical# */
 	CPoint m_ptLastMousePos;
 	CMenu * m_pHeaderPopup;
+	BOOL m_bEscCloses; /**< Cached value for option for ESC closing window */
 	
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);

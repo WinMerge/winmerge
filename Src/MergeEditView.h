@@ -128,6 +128,7 @@ private:
 	BOOL fTimerWaitingForIdle;
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 	BOOL m_bSyntaxHighlight; /**< Cached setting for syntax highlight */
+	BOOL m_bCloseWithEsc; /**< Cached setting for closing windows with ESC */
 
 	/// active prediffer ID : helper to check the radio button
 	int m_CurrentPredifferID;
