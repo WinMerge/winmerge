@@ -1,6 +1,9 @@
 2004-10-23 Kimmo
  PATCH: [ 1051593 ] Install XP manifest file for Ansi build
   InnoSetup: WinMerge Localized.iss
+ Remove unused ISS files
+  InnoSetup removed files: WinMerge Alpha.iss WinMerge Beta.iss
+   WinMerge.iss scraps.iss
 
 2004-10-21 Kimmo
  PATCH: [ 1050231 ] Installer must not delete files it hasn't copied
