@@ -272,8 +272,8 @@ BEGIN
             MENUITEM "プログラムの選択(&W)...",     ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "Cop&y Pathnames"                  ID_DIR_COPY_PATHNAMES
-        MENUITEM "Copy &Filenames"                  ID_DIR_COPY_FILENAMES
+        MENUITEM "パス名をコピー(&Y)"               ID_DIR_COPY_PATHNAMES
+        MENUITEM "ファイル名をコピー(&F)"           ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "圧縮(&Z)"
         BEGIN
@@ -316,12 +316,12 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "G&oto Diff"                   ID_LOCBAR_GOTODIFF
-        MENUITEM "&Goto...",                    ID_EDIT_WMGOTO
+        MENUITEM "差異へ移動(&O)"               ID_LOCBAR_GOTODIFF
+        MENUITEM "移動(&G)...",                 ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
-        MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
-        MENUITEM "Moved Block for &Current Diff", ID_DISPLAY_MOVED_FOLLOW_DIFF
+        MENUITEM "移動ブロック表示なし(&N)",    ID_DISPLAY_MOVED_NONE
+        MENUITEM "全移動ブロック表示(&A)",ID_DISPLAY_MOVED_ALL
+        MENUITEM "現在差異の移動ブロックのみ表示(&C)", ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
 END
 
@@ -399,7 +399,7 @@ IDD_OPEN DIALOGEX 0, 0, 364, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU |
     WS_THICKFRAME
 CAPTION "ファイルまたはディレクトリの選択..."
-FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+FONT 8, "MS Shell Dlg"
 BEGIN
     RTEXT           "左(&L):",IDC_STATIC,13,24,55,8
     COMBOBOX        IDC_LEFT_COMBO,71,22,167,94,CBS_DROPDOWN |
@@ -472,7 +472,7 @@ END
 IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "一般"
-FONT 9, "ＭＳ Ｐゴシック"
+FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "元ファイルをバックアップ(&B)",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
@@ -486,10 +486,10 @@ BEGIN
                     WS_TABSTOP,7,37,206,10
     CONTROL         "ESCキーでウインドウを閉じる(&O)",IDC_ESC_CLOSES_WINDOW,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,208,10
-    CONTROL         "Automatically verify paths in Open-dialog",
+    CONTROL         "開くダイアログで自動的にパスを検査する",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,143,10
-    CONTROL         "Use codepage info (html,rc) for Load/Save - need to restart session",
+    CONTROL         "読込/保存でコードページ情報(html,rc)を使用する(セッションの再起動が必要)",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,67,240,10
     PUSHBUTTON      "リセット",IDC_RESET_ALL_MESSAGE_BOXES,167,87,49,13,NOT
@@ -549,12 +549,12 @@ BEGIN
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "単語単位で探す(&W)",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
-    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,60,59,12
+    CONTROL         "大文字と小文字を区別する(&C)",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,60,105,12
     CONTROL         "正規表現(&E)",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,74,77,12
-    CONTROL         "ファイルの終端で折り返さない",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,88,105,12
+    CONTROL         "ファイルの終端で折り返さない(&D)",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,88,135,12
     CONTROL         "選択範囲(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,115,57,59,10
     CONTROL         "ファイル全体(&O)",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
@@ -635,7 +635,7 @@ BEGIN
     CONTROL         "Dif",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,98,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Moved:",IDC_STATIC,7,89,75,8
+    RTEXT           "移動ブロック:",IDC_STATIC,7,89,75,8
     CONTROL         "Dif",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,141,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -645,7 +645,7 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,98,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Moved:",IDC_STATIC,7,109,75,8
+    RTEXT           "選択された移動ブロック:",IDC_STATIC,7,109,75,8
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,141,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -656,10 +656,10 @@ BEGIN
 END
 
 IDD_OUTPUT DIALOGEX 0, 0, 278, 157
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
 CAPTION "ダイアログ"
-FONT 9, "ＭＳ Ｐゴシック"
+FONT 8, "MS Shell Dlg"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,106,136,50,14
     EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY |
@@ -675,7 +675,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,134,10
     CONTROL         "エクスプローラーコンテキストメニューに追加(&A)",IDC_EXPLORER_CONTEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,167,10
-    CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",
+    CONTROL         "拡張メニューを有効にする(&N)",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
     LTEXT           "外部エディタ(&E):",IDC_STATIC,7,44,167,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
@@ -768,7 +768,7 @@ IDD_SELECTUNPACKER DIALOGEX 0, 0, 293, 126
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "展開プラグインの選択"
-FONT 9, "ＭＳ Ｐゴシック"
+FONT 8, "MS Shell Dlg"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,87,99,50,14
     PUSHBUTTON      "キャンセル",IDCANCEL,156,99,50,14
@@ -900,7 +900,7 @@ END
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
 CAPTION "エディタ"
-FONT 9, "ＭＳ Ｐゴシック"
+FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "シンタックスハイライト(&H)",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
@@ -1072,16 +1072,16 @@ IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 IDD_PROP_VSS DLGINIT
 BEGIN
     IDC_VER_SYS, 0x403, 5, 0
-0x6f4e, 0x656e, "\000" 
+0x6f4e, 0x656e, "\000"
     IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029, 
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029,
     IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029, 
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029,
     IDC_VER_SYS, 0x403, 19, 0
-0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
-"\000" 
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573,
+"\000"
     0
 END
 
@@ -1382,10 +1382,10 @@ STRINGTABLE
 BEGIN
     IDS_ERROR_FILE_NOT_FOUND "ファイルが見つかりません: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "ファイルが展開されていません: %1"
-    IDS_BINFILES_IDENTICAL   "%1\n%2\n\nare identical binary files."
-    IDS_BINFILES_DIFFERENT   "%1\n%2\n\nare different binary files."
-    IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
-    IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
+    IDS_BINFILES_IDENTICAL   "%1\n%2\n\nは、同一なバイナリファイルです。"
+    IDS_BINFILES_DIFFERENT   "%1\n%2\n\nは、差異のあるバイナリファイルです。"
+    IDS_OTHER_IS_BINARY      "%1\n\nは、バイナリファイルです。バイナリファイルとテキストファイルを比較できません。"
+    IDS_ERROR_FILEOPEN       "ファイルが開けません\n%1\n\n%2"
 END
 
 // SAVING FILE
@@ -1412,7 +1412,7 @@ BEGIN
     IDS_VSSERROR            "ファイルのチェックアウトでエラーが発生しました。  継続できません..."
     IDS_VSS_RUN_ERROR       "バージョンシステムコマンドの実行エラー。"
     IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS作業フォルダと現在のファイル位置は一致していません。続行しますか?"
-    IDS_VSS_NODATABASES     "No VSS database(s) found!"
+    IDS_VSS_NODATABASES     "VSSのデータベースがみつかりません!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
@@ -1469,18 +1469,18 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "外部エディタで右のファイルを開きます"
     ID_DIR_OPEN_RIGHT_WITH  "右のファイルを選択したアプリケーションで開きます..."
     IDS_CANNOT_EXECUTE_FILE "%1を実行できません"
-    ID_DIR_COPY_PATHNAMES   "Copy pathnames to clipboard"
-    ID_DIR_COPY_FILENAMES   "Copy filenames to clipboard"
+    ID_DIR_COPY_PATHNAMES   "クリップボードにパス名をコピー"
+    ID_DIR_COPY_FILENAMES   "クリップボードにファイル名をコピー"
 END
 
 // DIRECTORY DIFFING : 7ZIP
 STRINGTABLE
 BEGIN
-    IDS_UNKNOWN_ARCHIVE_FORMAT "未知の書庫形式です"
-    ID_DIR_ZIP_LEFT         "Add items from left side to archive"
-    ID_DIR_ZIP_RIGHT        "Add items from right side to archive"
-    ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
-    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
+    IDS_UNKNOWN_ARCHIVE_FORMAT "未知のアーカイブ形式です"
+    ID_DIR_ZIP_LEFT         "アーカイブに左側の項目を追加"
+    ID_DIR_ZIP_RIGHT        "アーカイブに右側の項目を追加"
+    ID_DIR_ZIP_BOTH         "アーカイブに両側の項目を追加"
+    ID_DIR_ZIP_BOTH_DIFFS_ONLY "アーカイブに差異のある両側の項目を追加"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
@@ -1545,32 +1545,32 @@ END
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_FILENAME    "Filename or directory name."
-    IDS_COLDESC_DIR         "Subdirectory name when subdirectories are included."
-    IDS_COLDESC_RESULT      "Comparison result, long form."
-    IDS_COLDESC_LTIMEM      "Left side modification date."
-    IDS_COLDESC_RTIMEM      "Right side modification date."
-    IDS_COLDESC_EXTENSION   "File's extension."
-    IDS_COLDESC_LSIZE       "Left file size in bytes."
-    IDS_COLDESC_RSIZE       "Right file size in bytes."
-    IDS_COLDESC_LTIMEC      "Left side creation time."
-    IDS_COLDESC_RTIMEC      "Right side creation time."
-    IDS_COLDESC_NEWER       "Tells which side has newer modification date."
-    IDS_COLDESC_LVERSION    "Left side file version, only for some filetypes."
-    IDS_COLDESC_RVERSION    "Right side file version, only for some filetypes."
-    IDS_COLDESC_RESULT_ABBR "Short comparison result."
-    IDS_COLDESC_LATTRIBUTES "Left side attributes."
-    IDS_COLDESC_RATTRIBUTES "Right side attributes."
+    IDS_COLDESC_FILENAME    "ファイル名または、ディレクトリ名"
+    IDS_COLDESC_DIR         "サブディレクトリが含まれたときのサブディレクトリ名"
+    IDS_COLDESC_RESULT      "長い形式の比較結果表示"
+    IDS_COLDESC_LTIMEM      "左側の更新日付"
+    IDS_COLDESC_RTIMEM      "右側の更新日付"
+    IDS_COLDESC_EXTENSION   "ファイル拡張子"
+    IDS_COLDESC_LSIZE       "左側ファイルのバイト数"
+    IDS_COLDESC_RSIZE       "右側ファイルのバイト数"
+    IDS_COLDESC_LTIMEC      "左側の作成時刻"
+    IDS_COLDESC_RTIMEC      "右側の作成時刻"
+    IDS_COLDESC_NEWER       "どちらが最新の変更日付かを示します。"
+    IDS_COLDESC_LVERSION    "左側ファイルのバージョン, 限られたファイルタイプのみ"
+    IDS_COLDESC_RVERSION    "右側ファイルのバージョン, 限られたファイルタイプのみ"
+    IDS_COLDESC_RESULT_ABBR "短い形式の比較結果表示"
+    IDS_COLDESC_LATTRIBUTES "左側の属性"
+    IDS_COLDESC_RATTRIBUTES "右側の属性"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_LENCODING   "Left side encoding."
-    IDS_COLDESC_RENCODING   "Right side encoding."
-    IDS_COLDESC_NDIFFS      "Number of total differences."
-    IDS_COLDESC_NSDIFFS     "Number of differences not counting ignored ones."
-    IDS_COLDESC_BINARY      "Shows asterisk (*) if file is binary."
+    IDS_COLDESC_LENCODING   "左側エンコーディング"
+    IDS_COLDESC_RENCODING   "右側エンコーディング"
+    IDS_COLDESC_NDIFFS      "差異の合計"
+    IDS_COLDESC_NSDIFFS     "差異の合計数から無視できる差異数を差し引いた数です。"
+    IDS_COLDESC_BINARY      "もし、バイナリファイルならアスタリスク(*)を表示します。"
 END
 
 // FILE COMPARISON RESULT : MESSAGES
@@ -1914,12 +1914,12 @@ END
 // LOCATIONBAR CONTEXT MENU
 STRINGTABLE 
 BEGIN
-    ID_DISPLAY_MOVED_NONE   "Do not display moved blocks"
-    ID_DISPLAY_MOVED_ALL    "Display all moved blacks"
-    ID_DISPLAY_MOVED_FOLLOW_DIFF "Display moved blocks only from current diff"
-    ID_LOCBAR_GOTODIFF      "Go to diff under cursor"
-    ID_LOCBAR_GOTODIFF_FMT  "G&oto Diff %1 of %2"
-    ID_LOCBAR_GOTOLINE_FMT  "G&oto Line %1"
+    ID_DISPLAY_MOVED_NONE   "移動ブロックを表示しません"
+    ID_DISPLAY_MOVED_ALL    "全ての移動ブロックを表示します"
+    ID_DISPLAY_MOVED_FOLLOW_DIFF "現在の差異に対応する移動ブロックのみを表示します"
+    ID_LOCBAR_GOTODIFF      "カーソル直下の差異へ移動します"
+    ID_LOCBAR_GOTODIFF_FMT  "差異%1/%2に移動(&O)"
+    ID_LOCBAR_GOTOLINE_FMT  "行%1に移動(&O)"
 END
 
 // END STRINGS SYNCHRO

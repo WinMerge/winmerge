@@ -9,6 +9,7 @@ copy ..\resource.h Dutch
 copy ..\resource.h French
 copy ..\resource.h German
 copy ..\resource.h Italian
+copy ..\resource.h Japanese
 copy ..\resource.h Korean
 copy ..\resource.h Norwegian
 copy ..\resource.h Polish

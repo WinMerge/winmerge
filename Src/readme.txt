@@ -1,4 +1,7 @@
 2004-06-13 Laoran
+ PATCH: [ 972007 ] Japanese translation update(2) ; submitted by Takashi Sawanaka
+  Src/Languages: UpdateAll_resource_h.bat
+  Src/Languages/Japanese: MergeJapanese.rc
  PATCH: [ 971862 ] Various Updates in German Translation ; submitter : Tim Gerundt
   Src/Languages/German: MergeGerman.rc
 
