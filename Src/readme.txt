@@ -1,3 +1,7 @@
+2003-05-29 Kimmo
+ Made new folder \Filters for filter files.  Added Perry's original filter files
+ working with beta 1.9.2.2
+
 2003-05-28 Kimmo
  PATCH: [ 744872 ] Use CopyFile()
   WinMerge: files.h files.cpp MergeDoc.cpp
