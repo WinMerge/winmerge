@@ -248,18 +248,27 @@ void CMergeDoc::Dump(CDumpContext& dc) const
 // CMergeDoc commands
 
 /**
- * @brief Save an editor text buffer to a file for preprocessing (make UCS-2LE if appropriate)
+ * @brief Save an editor text buffer to a file for prediffing (make UCS-2LE if appropriate)
+ *
+ * @note 
+ * original file is Ansi : 
+ *   buffer  -> save as Ansi -> Ansi plugins -> diffutils
+ * original file is Unicode (UCS2-LE, UCS2-BE, UTF-8) :
+ *   buffer  -> save as UCS2-LE -> Unicode plugins -> convert to UTF-8 -> diffutils
+ * (the plugins are optional, not the conversion)
  */
 static void SaveBuffForDiff(CMergeDoc::CDiffTextBuffer & buf, const CString & filepath)
 {
-	// we subvert the buffer's memory of the original file encoding
-	int temp=buf.m_nSourceEncoding;
-	int unicoding = buf.getUnicoding();
+	ASSERT(buf.m_nSourceEncoding == buf.m_nDefaultEncoding);  
+	int orig_codepage = buf.getCodepage();
+	int orig_unicoding = buf.getUnicoding();	
 
-	// If Unicode build, or file was in Unicode
-	if (sizeof(TCHAR)>1 || unicoding!=ucr::NONE)
+	// If file was in Unicode
+	if (orig_unicoding!=ucr::NONE)
 	{
-		buf.m_nSourceEncoding = -20; // write as UCS-2LE (for preprocessing)
+	// we subvert the buffer's memory of the original file encoding
+		buf.setUnicoding(ucr::UCS2LE);  // write as UCS-2LE (for preprocessing)
+		buf.setCodepage(0); // should not matter
 	}
 
 	// and we don't repack the file
@@ -271,7 +280,8 @@ static void SaveBuffForDiff(CMergeDoc::CDiffTextBuffer & buf, const CString & fi
 	buf.SaveToFile(filepath, bTempFile, tempPacker, CRLF_STYLE_AUTOMATIC, bClearModifiedFlag);
 	
 	// restore memory of encoding of original file
-	buf.m_nSourceEncoding = temp;
+	buf.setUnicoding(orig_unicoding);
+	buf.setCodepage(orig_codepage);
 }
 
 /**

@@ -108,7 +108,17 @@ private :
 		BOOL FlagIsSet(UINT line, DWORD flag);
 		CString m_strTempPath;
 		int unpackerSubcode;
-		int m_unicoding; /**< Unicode encoding from ucr::UNICODESET */
+		/* 
+		 * @brief Unicode encoding from ucr::UNICODESET 
+		 *
+		 * @note m_unicoding and m_codepage are indications of how the buffer is supposed to be saved on disk
+		 * In memory, it is invariant, depending on build:
+		 * ANSI:
+		 *   in memory it is CP_ACP/CP_THREAD_ACP 8-bit characters
+		 * Unicode:
+		 *   in memory it is wchars
+		 */
+		int m_unicoding; 
 		int m_codepage; /**< @brief 8-bit codepage, if relevant m_unicoding==ucr::NONE */
 
 		int NoteCRLFStyleFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
@@ -125,6 +135,9 @@ public :
 		BOOL SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, PackingInfo * infoUnpacker = NULL,
 				int nCrlfStyle = CRLF_STYLE_AUTOMATIC, BOOL bClearModifiedFlag = TRUE );
 		int getUnicoding() const { return m_unicoding; }
+		void setUnicoding(int value) { m_unicoding = value; }
+		int getCodepage() const { return m_codepage; }
+		void setCodepage(int value) { m_codepage = value; }
 
 		CDiffTextBuffer (CMergeDoc * pDoc, BOOL bLeft)
 		{
