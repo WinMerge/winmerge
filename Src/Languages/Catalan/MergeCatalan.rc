@@ -327,23 +327,23 @@ STYLE WS_POPUP | WS_CAPTION | WS_THICKFRAME
 CAPTION "Tria de fitxers o directoris..."
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "&Esquerra:",IDC_STATIC,16,24,37,8
-    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN | 
+    RTEXT           "&Esquerra:",IDC_STATIC,13,24,60,8
+    COMBOBOX        IDC_LEFT_COMBO,76,22,162,94,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "&Navega...",IDC_LEFT_BUTTON,241,22,38,12
-    LTEXT           "&Dreta:",IDC_STATIC,16,40,37,8
-    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | 
+    RTEXT           "&Dreta:",IDC_STATIC,13,40,60,8
+    COMBOBOX        IDC_RIGHT_COMBO,76,38,162,95,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "N&avega...",IDC_RIGHT_BUTTON,241,38,38,12
-    LTEXT           "E&xtensions:",IDC_STATIC,16,56,37,8
-    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN | 
+    RTEXT           "E&xtensions:",IDC_STATIC,13,56,60,8
+    COMBOBOX        IDC_EXT_COMBO,76,54,131,95,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Re&cursiu",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,35,72,48,10
-    LTEXT           "Desem&paquetador:",IDC_STATIC,16,88,58,8
-    EDITTEXT        IDC_UNPACKER_EDIT,78,86,160,12,ES_AUTOHSCROLL |
+    RTEXT           "Desem&paquetador:",IDC_STATIC,13,88,60,8
+    EDITTEXT        IDC_UNPACKER_EDIT,76,86,140,12,ES_AUTOHSCROLL |
                     ES_READONLY
     PUSHBUTTON      "&Tria...",IDC_SELECT_UNPACKER,241,86,38,12
     DEFPUSHBUTTON   "D'acord",IDOK,295,11,50,14
@@ -539,16 +539,16 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Colors"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    LTEXT           "Diferència:",IDC_STATIC,17,29,79,8
+    RTEXT           "Diferència:",IDC_STATIC,13,29,79,8
     CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,98,29,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    LTEXT           "Diferència seleccionada:",IDC_STATIC,17,49,79,8
+    RTEXT           "Diferència seleccionada:",IDC_STATIC,13,49,79,8
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,98,49,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    LTEXT           "Fons",IDC_STATIC,98,15,16,8
-    LTEXT           "Línia absent",IDC_STATIC,140,15,20,8
+    CTEXT           "Fons",IDC_STATIC,81,15,50,8
+    CTEXT           "Línia absent",IDC_STATIC,130,15,38,8
     CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
@@ -561,11 +561,11 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    LTEXT           "Text",IDC_STATIC,184,15,15,8
+    CTEXT           "Text",IDC_STATIC,178,15,29,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    LTEXT           "Diferència ignorada:",IDC_STATIC,17,69,79,8
+    RTEXT           "Diferència ignorada:",IDC_STATIC,13,69,79,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,141,69,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE

@@ -326,22 +326,22 @@ STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Selecteer bestanden of mappen"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    LTEXT           "&Links:",IDC_STATIC,33,24,20,8
+    RTEXT           "&Links:",IDC_STATIC,13,24,40,8
     COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "&Zoeken",IDC_LEFT_BUTTON,241,22,38,12
-    LTEXT           "&Rechts:",IDC_STATIC,27,40,26,8
+    RTEXT           "&Rechts:",IDC_STATIC,13,40,40,8
     COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "Zoe&ken",IDC_RIGHT_BUTTON,241,38,38,12
-    LTEXT           "E&xtenties:",IDC_STATIC,21,56,32,8
+    RTEXT           "E&xtenties:",IDC_STATIC,13,56,40,8
     COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Re&cursief",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,35,72,48,10
-    LTEXT           "&Unpacker:",IDC_STATIC,19,88,34,8
+    RTEXT           "&Unpacker:",IDC_STATIC,13,88,40,8
     EDITTEXT        IDC_UNPACKER_EDIT,56,86,182,12,ES_AUTOHSCROLL |
                     ES_READONLY
     PUSHBUTTON      "Select...",IDC_SELECT_UNPACKER,241,86,38,12
@@ -539,16 +539,16 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Colors"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    LTEXT           "Difference:",IDC_STATIC,43,29,36,8
+    RTEXT           "Difference:",IDC_STATIC,13,29,66,8
     CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,98,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    LTEXT           "Selected Difference:",IDC_STATIC,13,49,66,8
+    RTEXT           "Selected Difference:",IDC_STATIC,13,49,66,8
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,98,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    LTEXT           "Background",IDC_STATIC,86,15,40,8
-    LTEXT           "Deleted",IDC_STATIC,137,15,26,8
+    CTEXT           "Background",IDC_STATIC,81,15,50,8
+    CTEXT           "Deleted",IDC_STATIC,130,15,38,8
     CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -561,11 +561,11 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    LTEXT           "Text",IDC_STATIC,184,15,15,8
+    CTEXT           "Text",IDC_STATIC,178,15,29,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    LTEXT           "Ignored Difference:",IDC_STATIC,17,69,62,8
+    RTEXT           "Ignored Difference:",IDC_STATIC,13,69,66,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,141,69,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
