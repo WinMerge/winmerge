@@ -90,7 +90,11 @@ BOOL CMergeApp::InitInstance()
 	SillyTestCrap();
 #endif
 
-	::CoInitialize(NULL);
+	// CCrystalEdit Drag and Drop functionality needs AfxOleInit.
+	if(!AfxOleInit())
+	{
+		TRACE(_T("AfxOleInitFailed. OLE functionality disabled"));
+	}
 
 	// CG: The following block was added by the Splash Screen component.
 	{
