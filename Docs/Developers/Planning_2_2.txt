@@ -382,7 +382,5 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
    - At least for dirview (column) settings and compare settings (color too?)
    - Compare options must default to strict set so that no differences
      are ignored
-   - Kimmo submitted and applied patches for compare options and
-     color options
-   - Directory columns widths need to be still reset
-   - For 2.2
+   - Kimmo submitted and applied patches for options and dirview columns
+   *** DONE ***
