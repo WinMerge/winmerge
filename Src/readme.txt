@@ -3,6 +3,8 @@
   Src: ChildFrm.cpp
  PATCH: [ 1149365 ] Check linenumber to goto for upper limit
   Src: MergeEditView.cpp
+ PATCH: [ 1149388 ] Check for previous compare text before find again
+  Src/editlib: ccrystaltextview.cpp
 
 2005-02-22 Kimmo
  PATCH: [ 1145522 ] fix crash on search

@@ -4559,6 +4559,9 @@ void CCrystalTextView::
 OnEditRepeat ()
 {
   BOOL bEnable = m_bLastSearch;
+  // Show dialog if no last find text
+  if (m_pszLastFindWhat == NULL || _tcslen(m_pszLastFindWhat) == 0)
+    bEnable = FALSE;
   CString sText;
   if (bEnable)
     sText = m_pszLastFindWhat;
