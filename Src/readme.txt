@@ -7,6 +7,8 @@
   Docs/Users/Languages: Read Me-Swedish.rtf
  Updated all non-localized language versions of Read Me*.rtf to current Read Me.rtf
   Docs\Users\Languages: Read Me*.rtf (except Swedish)
+ Remove all localization Contributors*.rtf
+  Docs\Users\Languages: removed Contributors*.rtf
 
 2004-05-21 Kimmo
  PATCH: [ 957740 ] Tell if two binary files are different/identical
