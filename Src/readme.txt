@@ -1,3 +1,7 @@
+2005-01-28 Perry
+  Src/Common: unicoder.cpp
+   cosmetic: add comments to get_unicode_char
+
 2005-01-27 Kimmo
  PATCH: [ 946600 ] Copy lines with linenumbers
   Src: Merge.rc MergeEditView.cpp MergeEditView.h resource.h

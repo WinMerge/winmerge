@@ -2,7 +2,7 @@
  *  @file   unicoder.cpp
  *  @author Perry Rapp, Creator, 2003-2004
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-12-28 (Perry Rapp)
+ *  @date   Edited:  2005-01-28 (Perry Rapp)
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
@@ -445,7 +445,9 @@ writeBom(LPVOID dest, UNICODESET unicoding)
 }
 
 /**
- * @brief Extract character from pointer, handling UCS-2 codesets (doesn't handle UTF-8)
+ * @brief Extract character from pointer, handling UCS-2 codesets
+ *  This does not handle MBCS or UTF-8 codepages correctly!
+ *  Client should not use this except for Unicode or SBCS codepages.
  */
 UINT
 get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codepage)
