@@ -1,3 +1,7 @@
+2004-05-05 Kimmo
+ PATCH: [ 947232 ] Add primary path to WinMerge.exe for ShellExtension
+  ShellExtension: ShellExtension.rc WinMergeShell.cpp
+
 2004-05-04 Laoran
  PATCH: [ 947599 ] Remove EditFile.cpp EditFile.h
   Src remove: EditFile.cpp EditFile.h

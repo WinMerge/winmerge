@@ -12,6 +12,10 @@
 //   defines if context menu is shown (extension enabled)
 //  HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Executable
 //   contains path to program to run (can be batch file too)
+//
+//  HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\PriExecutable
+//   overwrites 'Executable' if defined. Useful to overwrite
+//   option set from UI when debugging/testing.
 /////////////////////////////////////////////////////////////////////////////
 /** 
  * @file  WinMergeShell.cpp
@@ -27,12 +31,20 @@
 #include "RegKey.h"
 #include "coretools.h"
 
-// Registry path to WinMerge 
+/// Registry path to WinMerge 
 static LPCTSTR f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
 
-// Registry values
-static LPCTSTR f_RegValueEnabled = _T("ContextMenuEnabled");
-static LPCTSTR f_RegValuePath = _T("Executable");
+/**
+ * @name Registry valuenames.
+ */
+/*@{*/ 
+/** Shell context menuitem enabled/disabled */
+static const TCHAR f_RegValueEnabled[] = _T("ContextMenuEnabled");
+/** Path to WinMerge[U].exe */
+static const TCHAR f_RegValuePath[] = _T("Executable");
+/** Path to WinMerge[U].exe, overwrites f_RegValuePath if present. */
+static const TCHAR f_RegValuePriPath[] = _T("PriExecutable");
+/*@}*/
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeShell
@@ -245,14 +257,17 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 BOOL CWinMergeShell::GetWinMergeDir(CString &strDir)
 {
 	CRegKeyEx reg;
-	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
-		// TODO: Ask location from user?
+	if (!reg.QueryRegUser(f_RegDir))
 		return FALSE;
 	
-	strDir = reg.ReadString(f_RegValuePath, _T(""));
+	// Try first reading debug/test value
+	strDir = reg.ReadString(f_RegValuePriPath, _T(""));
 	if (strDir.IsEmpty())
-		// TODO: Ask location from user?
-		return FALSE;
+	{
+		strDir = reg.ReadString(f_RegValuePath, _T(""));
+		if (strDir.IsEmpty())
+			return FALSE;
+	}	
 
 	return TRUE;
 }
