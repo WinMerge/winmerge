@@ -1,4 +1,10 @@
 2003-11-04 Laoran
+ adapt plugins filters to the syntax of regular expressions
+  Plugins\dlls: RCLocalizationHelper.dll
+  Plugins\src\HideFirstLetter: WinMergeScript.cpp
+  Plugins\src\HideLastLetter: WinMergeScript.cls
+  Plugins\src\IgnoreTwoFirstCharsOrder: WinMergeScript.cls
+  Plugins\src\RCLocalizationHelper: WinMergeScript.cpp
  fix to test plugin filter with left & right filenames (instead of just right one)
   WinMerge: Plugins.cpp
  PATCH: [ 833961 ] Swedish translation 2.1
