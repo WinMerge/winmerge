@@ -1,4 +1,7 @@
 2004-06-17 Laoran
+ PATCH: [ 973029 ] Scroll when more than 65536 characters
+  Src/Common: SplitterWndEx.cpp
+  Src/editlib: ccrystaltextview.cpp
  widen labels in colors dialog
   Src: Merge.rc
   Src/Languages: *.rc

@@ -2831,7 +2831,7 @@ OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz)
 void CCrystalTextView::
 RecalcVertScrollBar (BOOL bPositionOnly /*= FALSE*/ )
 {
-  SCROLLINFO si;
+  SCROLLINFO si = {0};
   si.cbSize = sizeof (si);
   if (bPositionOnly)
     {
@@ -2921,10 +2921,10 @@ OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 void CCrystalTextView::
 RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
 {
-  //  Again, we cannot use nPos because it's 16-bit
-  SCROLLINFO si = {0};
   const int nScreenChars = GetScreenChars();
   const int nMaxLineLen = GetMaxLineLength ();
+
+  SCROLLINFO si = {0};
   si.cbSize = sizeof (si);
   if (bPositionOnly)
     {
@@ -2955,6 +2955,8 @@ OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 {
   // Default handler not needed
   //CView::OnHScroll (nSBCode, nPos, pScrollBar);
+
+  //  Again, we cannot use nPos because it's 16-bit
   SCROLLINFO si = {0};
   si.cbSize = sizeof (si);
   si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE | SIF_TRACKPOS;
@@ -2999,11 +3001,11 @@ OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
       break;
 
     case SB_THUMBPOSITION:    // Scroll to absolute position. The current position is 
-      nCurPos = nPos;         // specified by the nPos parameter.
+      nCurPos = si.nTrackPos; // specified by the nPos parameter.
       break;
 
     case SB_THUMBTRACK:       // Drag scroll box to specified position. The current 
-      nCurPos = nPos;         // position is specified by the nPos parameter
+      nCurPos = si.nTrackPos; // position is specified by the nPos parameter
                               // The SB_THUMBTRACK scroll-bar code typically is used by applications that give 
                               // some feedback while the scroll box is being dragged.
       break;

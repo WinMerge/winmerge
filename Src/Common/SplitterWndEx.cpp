@@ -53,7 +53,7 @@ int CSplitterWndEx::HitTest(CPoint pt) const
 
 void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
-	// maintain original synchronization functionality
+	// maintain original synchronization functionality (all panes above the scrollbar)
 	CSplitterWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 
 	// only sync if shared horizontal bars
@@ -67,7 +67,8 @@ void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 
 	ASSERT(m_nRows > 0);
 	const int oldLimit = pScrollBar->GetScrollLimit();
-	// broadcast to all panes
+
+	// broadcast to all panes (other horizontal scrollbars and other panes)
 	for (int col = 0; col < m_nCols; col++)
 	{
 		// for current column, already handled in base OnHScroll
@@ -75,13 +76,21 @@ void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 			continue;
 
 		CScrollBar* curBar = GetPane(0, col)->GetScrollBarCtrl(SB_HORZ);
-		register int temp = pScrollBar->GetScrollPos() * curBar->GetScrollLimit() + oldLimit/2;
-		int newPos = temp/oldLimit;
+		double temp = ((double) pScrollBar->GetScrollPos()) * curBar->GetScrollLimit() + oldLimit/2;
+		int newPos = (int) (temp/oldLimit);
+
+		// Set the scrollbar info using SetScrollInfo(), limited to 2.000.000.000 characters,
+		// better than the 32.768 characters (signed short) of SendMessage(WM_HSCROLL,...) 
+		SCROLLINFO si;
+		si.nPos = newPos;
+		si.nTrackPos = newPos;
+		si.fMask = SIF_POS | SIF_TRACKPOS;
+		curBar->SetScrollInfo(&si, FALSE);
 
 		// iterate through all rows
 		for (int row = 0; row < m_nRows; row++)
 		{
-			// broadcast to all rows
+			// repaint all rows
 			GetPane(row, col)->SendMessage(WM_HSCROLL,
 				MAKELONG(SB_THUMBPOSITION, newPos), (LPARAM)curBar->m_hWnd);
 		}
@@ -92,7 +101,7 @@ void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 
 void CSplitterWndEx::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
-	// maintain original synchronization functionality
+	// maintain original synchronization functionality (all panes left from the scrollbar)
 	CSplitterWnd::OnVScroll(nSBCode, nPos, pScrollBar);
 
 	// only sync if shared vertical bars
@@ -106,7 +115,8 @@ void CSplitterWndEx::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 
 	ASSERT(m_nCols > 0);
 	const int oldLimit = pScrollBar->GetScrollLimit();
-	// broadcast to all panes
+
+	// broadcast to all panes (other vertical scrollbars and other panes)
 	for (int row = 0; row < m_nRows; row++)
 	{
 		// for current row, already handled in base OnHScroll
@@ -114,13 +124,21 @@ void CSplitterWndEx::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 			continue;
 
 		CScrollBar* curBar = GetPane(0, curRow)->GetScrollBarCtrl(SB_VERT);
-		register int temp = pScrollBar->GetScrollPos() * curBar->GetScrollLimit() + oldLimit/2;
-		int newPos = temp/oldLimit;
+		double temp = ((double) pScrollBar->GetScrollPos()) * curBar->GetScrollLimit() + oldLimit/2;
+		int newPos = (int) (temp/oldLimit);
+
+		// Set the scrollbar info using SetScrollInfo(), limited to 2.000.000.000 characters,
+		// better than the 32.768 characters (signed short) of SendMessage(WM_HSCROLL,...) 
+		SCROLLINFO si;
+		si.nPos = newPos;
+		si.nTrackPos = newPos;
+		si.fMask = SIF_POS | SIF_TRACKPOS;
+		curBar->SetScrollInfo(&si, FALSE);
 
 		// iterate through all columns
 		for (int col = 0; col < m_nCols; col++)
 		{
-			// broadcast to all rows
+			// repaint all columns
 			GetPane(row, col)->SendMessage(WM_VSCROLL,
 				MAKELONG(SB_THUMBPOSITION, newPos), (LPARAM)curBar->m_hWnd);
 		}
