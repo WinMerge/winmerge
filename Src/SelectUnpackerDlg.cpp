@@ -143,8 +143,6 @@ const PackingInfo CSelectUnpackerDlg::GetInfoHandler()
 	{
 		// build a real plugin unpacker
 		PackingInfo infoHandler;
-		infoHandler.fncPack = NULL;
-		infoHandler.fncUnpack = NULL;
 		infoHandler.bToBeScanned = FALSE;
 		infoHandler.pluginName = m_strPluginName;
 		int i;

@@ -958,6 +958,10 @@ SOURCE=.\MergeEditView.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\common\multiformatText.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\NORMAL.C
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -1614,6 +1618,10 @@ SOURCE=.\MergeEditView.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\common\multiformatText.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\multimon.h
 # End Source File
 # Begin Source File
@@ -2123,10 +2131,10 @@ SOURCE=.\stampver.inf
 # End Source File
 # End Target
 # End Project
-# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
-# 	1:19:IDR_POPUP_ABOUT_DLG:104
-# End Section
 # Section Merge : {6F747475-446E-6C62-436C-6B0000003100}
 # 	1:10:IDB_SPLASH:103
 # 	2:21:SplashScreenInsertKey:4.0
+# End Section
+# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
+# 	1:19:IDR_POPUP_ABOUT_DLG:104
 # End Section

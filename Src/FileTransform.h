@@ -67,19 +67,6 @@ extern LPCWSTR TransformationCategories[];
 
 
 
-typedef int (*packingInternalFnc)				 (char *& pszBuf, UINT & nBufSize, int & nChanged, int handlerSubcode);
-typedef int (*unpackingInternalFnc)			 (char *& pszBuf, UINT & nBufSize, int & nChanged, int & handlerSubcode);
-typedef BOOL (*checkHeaderInternalFnc)	 (const char * pszBuf, DWORD dwSize);
-/** 
- * @brief Do nothing packer
- */
-int PackPass (char *& pszBuf, UINT & nBufSize, int & nChanged, int handlerSubcode);
-/** 
- * @brief Do nothing unpacker
- */
-int UnpackPass (char *& pszBuf, UINT & nBufSize, int & nChanged, int & handlerSubcode);
-
-
 /**
  * @brief Unpacking info kept during merge session to use the correct packer
  *
@@ -91,8 +78,7 @@ public:
 	void Initialize(BOOL bLocalUnpackerMode)
 	{
 		// init functions as a valid "do nothing" unpacker
-		fncPack = PackPass;
-		fncUnpack = UnpackPass;
+		pluginName = _T("");
 		// and init bAutomatic flag and name according to global variable
 		if (bLocalUnpackerMode == UNPACK_MANUAL)
 		{			
@@ -116,8 +102,6 @@ public:
   operator=(PackingInfo * newInfo) 
 	{
 		bToBeScanned = newInfo->bToBeScanned;
-		fncPack = newInfo->fncPack;
-		fncUnpack = newInfo->fncUnpack;
 		pluginName = newInfo->pluginName;
 		subcode = newInfo->subcode;
 		bWithFile = newInfo->bWithFile;
@@ -125,8 +109,6 @@ public:
 
 public:
 	BOOL										bToBeScanned;
-	packingInternalFnc			fncPack;
-	unpackingInternalFnc		fncUnpack;
 	CString									pluginName;
 	int											subcode;
 	BOOL										bWithFile;
@@ -144,12 +126,6 @@ public:
  *
  * @param filepath : [in, out] Most plugins change this filename
  * @param handler : unpacking handler, to keep to pack again
- * @param attrs : return some info about the Unicode type
- * @param bDoUnicodeJob : flag because loading for DirScan or for MergeDoc differ
- * FALSE : loading into the editor, MergeDoc will do the Unicode conversion
- * just look for handler
- * TRUE : if Unicode BOM (utf-8, ucs-2)  convert it to standard unicode ucs-2 LE
- * no Unicode BOM, look for handler ; if no handler, check that the file is ANSI
  *
  * @return Tells if WinMerge handles this file
  *
@@ -176,37 +152,48 @@ BOOL FileTransform_Unpacking(CString & filepath, PackingInfo handler, int * hand
 BOOL FileTransform_Packing(CString & filepath, PackingInfo handler);
 
 /**
- * @brief Transform formats UCS-2BE and UTF-8 to UCS-2LE (standard OLECHAR in Windows)
+ * @brief Normalize Unicode files to OLECHAR
  *
- * @param filepath : path of file to be prepared. Must be ANSI or UCS-2LE
+ * @param filepath : [in,out] path of file to be prepared. This filename is updated if bMayOverwrite is FALSE
  * @param bMayOverwrite : [in] True only if the filepath points out a temp file
- * @param filepath : [in, out] Plugins change this filename if bMayOverwrite is FALSE
  *
- * @return Tells if we can go on with diffutils
+ * @return Tells if we succeed
  *
- * The output format depends on the input format (we trust the BOM)
- * UCS-2LE, UCS-2BE, UTF-8      -->    UCS-2LE
- * ANSI                         -->    ANSI
+ * @note Ansi files are not changed
  */
-BOOL FileTransform_NormalizeUnicode(CString & filepath, CString filteredText, int bMayOverwrite);
+BOOL FileTransform_NormalizeUnicode(CString & filepath, BOOL bMayOverwrite);
 
 /**
- * @brief Prepare one file for diffutils, scan all available plugins (events+filename filtering) 
+ * @brief Prepare one file for diffing, scan all available plugins (events+filename filtering) 
  *
- * @param filepath : path of file to be prepared. 
- * Input file must be ANSI or UCS-2LE, output file is UTF-8 without BOM.
+ * @param filepath : [in, out] Most plugins change this filename
+ * @param handler : unpacking handler, to keep to pack again
+ *
+ * @return Tells if WinMerge handles this file
+ *
+ * @note Event FILE_PREDIFF BUFFER_PREDIFF
+ * Apply only the first correct handler
+ */
+BOOL FileTransform_Prediffing(CString & filepath, CString filteredText, PackingInfo * handler, BOOL bMayOverwrite);
+/**
+ * @brief Prepare one file for diffing, known handler
+ *
+ * @param filepath : [in, out] Most plugins change this filename
+ */
+BOOL FileTransform_Prediffing(CString & filepath, PackingInfo handler, BOOL bMayOverwrite);
+
+
+/**
+ * @brief Transform OLECHAR files to UTF8
+ *
+ * @param filepath : [in,out] path of file to be prepared. This filename is updated if bMayOverwrite is FALSE
  * @param bMayOverwrite : [in] True only if the filepath points out a temp file
- * @param filepath : [in, out] Plugins change this filename if bMayOverwrite is FALSE
  *
  * @return Tells if we can go on with diffutils
  *
- * @note Event PREDIFFING
- * Optimization try : call the A or W plugin method according to the status of the file
- * Unicode file                            -> call W (mandatory), fast
- * ANSI file and A plugins available       -> call A, fast
- * ANSI file and A plugins not available   -> convert and call W, slow
+ * @todo Convert Ansi files to UTF8 if other file is unicode or uses a different codepage
  */
-BOOL FileTransform_Preprocess(CString & filepath, CString filteredText, int bMayOverwrite);
+BOOL FileTransform_UCS2ToUTF8(CString & filepath, BOOL bMayOverwrite);
 
 
 

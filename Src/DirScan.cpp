@@ -242,13 +242,14 @@ prepAndCompareTwoFiles(const fentry & lent, const fentry & rent,
 	// Transformation happens here
 	// text used for automatic mode : plugin filter must match it
 	CString filteredFilenames = filepath1 + "|" + filepath2;
-	// the creation of infoHandler initializes the bAutomatic flag
-	PackingInfo infoUnpacker;
+	// Use temporary plugins info
+	PackingInfo infoUnpacker(m_bUnpackerMode);
+	PackingInfo infoPrediffer(m_bPredifferMode);
 	// plugin may alter filepaths to temp copies
 	CString filepathTransformed1 = filepath1;
 	CString filepathTransformed2 = filepath2;
 
-	// first step : unpack
+	// first step : unpack (plugins)
 	if (infoUnpacker.bToBeScanned)
 		compareok = FileTransform_Unpacking(filepathTransformed1, filteredFilenames, &infoUnpacker, &infoUnpacker.subcode);
 	else
@@ -256,27 +257,35 @@ prepAndCompareTwoFiles(const fentry & lent, const fentry & rent,
 	// second step : normalize Unicode to OLECHAR (most of time, do nothing) (OLECHAR = UCS-2LE in Windows)
 	BOOL bMayOverwrite1 = (filepathTransformed1 != filepath1);
 	if (compareok)
-		compareok = FileTransform_NormalizeUnicode(filepathTransformed1, filteredFilenames, bMayOverwrite1);
-	// third step : preprocess for diffing
+		compareok = FileTransform_NormalizeUnicode(filepathTransformed1, bMayOverwrite1);
+	// third step : prediff (plugins)
 	bMayOverwrite1 = (filepathTransformed1 != filepath1);
 	if (compareok)
-		compareok = FileTransform_Preprocess(filepathTransformed1, filteredFilenames, bMayOverwrite1);
-
-	// first step : unpack
+		compareok = FileTransform_Prediffing(filepathTransformed1, filteredFilenames, &infoPrediffer, bMayOverwrite1);
+	// fourth step : prepare for diffing
+	bMayOverwrite1 = (filepathTransformed1 != filepath1);
 	if (compareok)
-	{
-		// we use the same unpacker for both files, so it must be defined before second file
-		ASSERT(infoUnpacker.bToBeScanned == FALSE);
+		compareok = FileTransform_UCS2ToUTF8(filepathTransformed1, bMayOverwrite1);
+
+	// we use the same plugins for both files, so they must be defined before second file
+	ASSERT(infoUnpacker.bToBeScanned == FALSE);
+	ASSERT(infoPrediffer.bToBeScanned == FALSE);
+
+	// first step : unpack (plugins)
+	if (compareok)
 		compareok = FileTransform_Unpacking(filepathTransformed2, infoUnpacker, &infoUnpacker.subcode);
-	}
 	// second step : normalize Unicode to OLECHAR (most of time, do nothing)
 	BOOL bMayOverwrite2 = (filepathTransformed2 != filepath2);
 	if (compareok)
-		compareok = FileTransform_NormalizeUnicode(filepathTransformed2, filteredFilenames, bMayOverwrite2);
-	// third step : preprocess for diffing
+		compareok = FileTransform_NormalizeUnicode(filepathTransformed2, bMayOverwrite2);
+	// third step : prediff (plugins)
 	bMayOverwrite2 = (filepathTransformed2 != filepath2);
 	if (compareok)
-		compareok = FileTransform_Preprocess(filepathTransformed2, filteredFilenames, bMayOverwrite2);
+		compareok = FileTransform_Prediffing(filepathTransformed2, infoPrediffer, bMayOverwrite2);
+	// fourth step : prepare for diffing
+	bMayOverwrite1 = (filepathTransformed1 != filepath1);
+	if (compareok)
+		compareok = FileTransform_UCS2ToUTF8(filepathTransformed1, bMayOverwrite1);
 
 	// Actually compare the files
 	// just_compare_files is a fairly thin front-end to diffutils

@@ -1368,7 +1368,7 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	else if (m_unicoding == ucr::UTF8)
 	{
 		// UTF-8 (+ 3 byte BOM)
-		nbytes = ucr::Utf8len_of_string(text) + 3;
+		nbytes = ucr::Utf8len_of_string(text, text.GetLength()) + 3;
 	}
 	else
 	{

@@ -160,17 +160,58 @@ Utf8len_fromCodepoint(UINT ch)
 /**
  * @brief How many bytes will it take to write string as UTF-8 ? 
  *
+ * @param size size argument as filemapping are not 0 terminated
+ *
  * @bug Fails for files larger than 2gigs
  */
 UINT
-Utf8len_of_string(const CString & text)
+Utf8len_of_string(LPCSTR text, int size)
 {
 	UINT len=0;
-	for (int i=0; i<text.GetLength(); ++i)
+	for (int i=0; i<size; ++i)
 	{
 		int chlen = Utf8len_fromCodepoint(text[i]);
 		if (chlen < 1) chlen = 1;
 		len += chlen;
+	}
+	return len;
+}
+/**
+ * @brief How many bytes will it take to write string as UTF-8 ? 
+ *
+ * @param size size argument as filemapping are not 0 terminated
+ *
+ * @bug Fails for files larger than 2gigs
+ */
+UINT
+Utf8len_of_string(LPCWSTR text, int size)
+{
+	UINT len=0;
+	for (int i=0; i<size; ++i)
+	{
+		int chlen = Utf8len_fromCodepoint(text[i]);
+		if (chlen < 1) chlen = 1;
+		len += chlen;
+	}
+	return len;
+}
+/**
+ * @brief How many chars in this UTF-8 string ? 
+ *
+ * @param size size argument as filemapping are not 0 terminated
+ *
+ * @bug Fails for files larger than 2gigs
+ */
+UINT
+stringlen_of_utf8(LPCSTR text, int size)
+{
+	UINT len=0;
+	for (int i=0; i<size; )
+	{
+		int chlen = Utf8len_fromLeadByte(text[i]);
+		if (chlen < 1) chlen = 1;
+		i += chlen;
+		len ++;
 	}
 	return len;
 }

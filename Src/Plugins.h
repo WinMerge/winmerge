@@ -155,17 +155,11 @@ BOOL SearchScriptForFunctionName(LPDISPATCH piDispatch, WCHAR * functionName);
 // Wrappers to call plugins methods
 
 /**
- * @brief Call the plugin "DiffingPreprocessA" method, events PREDIFFING
- *
- * @param arrayBuf Overwrite/realloc this buffer
- */
-BOOL InvokePrediffingSimpleA(SAFEARRAY* & arrayBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript);
-/**
- * @brief Call the plugin "DiffingPreprocessW" method, events PREDIFFING
+ * @brief Call the plugin "PrediffBufferW" method, events PREDIFFING
  *
  * @param bstrBuf Overwrite/realloc this buffer
  */
-BOOL InvokePrediffingSimpleW(BSTR & bstrBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript);
+BOOL InvokePrediffBuffer(BSTR & bstrBuf, int & nChanged, LPDISPATCH piScript);
 
 /** 
  * @brief Call custom plugin functions : text transformation
@@ -178,14 +172,14 @@ BOOL InvokeTransformText(CString & text, int & changed, LPDISPATCH piScript, int
  * @param pszBuf has unknown format, so a simple char*
  * never owervrites this source buffer
  */
-BOOL InvokeUnpackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript, int & subcode);
+BOOL InvokeUnpackBuffer(COleSafeArray & array, int & nChanged, LPDISPATCH piScript, int & subcode);
 /**
  * @brief Call the plugin "PackBufferA" method, event BUFFER_PACK_UNPACK
  *
  * @param pszBuf has unknown format, so a simple char*
  * never owervrites this source buffer
  */
-BOOL InvokePackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript, int subCode);
+BOOL InvokePackBuffer(COleSafeArray & array, int & nChanged, LPDISPATCH piScript, int subcode);
 /**
  * @brief Call the plugin "UnpackFile" method, event FILE_PACK_UNPACK
  */
@@ -194,6 +188,10 @@ BOOL InvokeUnpackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDI
  * @brief Call the plugin "PackFile" method, event FILE_PACK_UNPACK
  */
 BOOL InvokePackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISPATCH piScript, int subCode);
+/**
+ * @brief Call the plugin "PrediffFile" method, event FILE_PREDIFF
+ */
+BOOL InvokePrediffFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISPATCH piScript);
 
 
 #endif //__PLUGINS_H__

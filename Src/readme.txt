@@ -1,3 +1,10 @@
+2003-12-11 Laoran
+[ 853147 ] New class for text conversion in plugins
+  common: unicoder.cpp unicoder.h
+  common add: multiformatText.cpp multiformatText.h
+  WinMerge: DiffWrapper.cpp DirScan.cpp FileTransform.cpp FileTransform.h Merge.dsp MergeDoc.cpp 
+   Plugins.cpp Plugins.h SelectUnpackerDlg.cpp
+
 2003-12-10 Perry
  Add comment inside CMergeDoc::CDiffTextBuffer::SaveToFile about existing buggy code.
   WinMerge: MergeDoc.cpp

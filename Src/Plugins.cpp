@@ -542,7 +542,6 @@ PluginInfo * CScriptsOfThread::GetPluginByName(LPCWSTR transformationEvent, LPCT
 			if (m_aPluginsByEvent[i] == NULL)
 				m_aPluginsByEvent[i] = ::GetAvailableScripts(transformationEvent, bInMainThread());
 
-			BOOL bUnicodeMode = 0xFFFFFFFF;
 			for (int j = 0 ; j <  m_aPluginsByEvent[i]->GetSize() ; j++)
 				if (_tcscmp(m_aPluginsByEvent[i]->GetAt(j).name, name) == 0)
 					return &(m_aPluginsByEvent[i]->ElementAt(j));
@@ -708,9 +707,24 @@ static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, .
 ////////////////////////////////////////////////////////////////////////////////
 // invoke for plugins
 
+/*
+ * ----- about VariantClear -----
+ * VariantClear is done in safeInvokeW/safeInvokeA except for :
+ * - the returned value
+ * - BYREF arguments
+ * note : BYREF arguments don't need VariantClear if the refered value
+ * is deleted in the function destructor. Example :
+ * {
+ *   int Value;
+ *   VARIANT vValue;
+ *   vValue.plVal = &vValue;
+ *   ...
+ */
 
-BOOL InvokePrediffingSimpleW(BSTR & bstrBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript)
+BOOL InvokePrediffBuffer(BSTR & bstrBuf, int & nChanged, LPDISPATCH piScript)
 {
+	UINT nBufSize = SysStringLen(bstrBuf);
+
 	// prepare the arguments
 	// argument text buffer by reference
 	VARIANT vpbstrBuf;
@@ -735,83 +749,33 @@ BOOL InvokePrediffingSimpleW(BSTR & bstrBuf, UINT & nBufSize, int & nChanged, LP
 	// it must free the old buffer with SysFreeString
 	// VB does it automatically
 	// VARIANT_BOOL DiffingPreprocessW(BSTR * buffer, UINT * nSize, VARIANT_BOOL * bChanged)
-	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"DiffingPreprocessW", opFxn[3], 
+	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"PrediffBufferW", opFxn[3], 
                             vpboolChanged, vpiSize, vpbstrBuf);
-
-	if (! FAILED(h) && vboolHandled.boolVal && changed)
+	int bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+	if (bSuccess && changed)
 	{
-		nChanged ++;
+		// remove trailing charracters in the rare case that bstrBuf was not resized 
+		if (SysStringLen(bstrBuf) != nBufSize)
+			bSuccess = !FAILED(SysReAllocStringLen(&bstrBuf, bstrBuf, nBufSize));
+		if (bSuccess)
+			nChanged ++;
 	}
 
-	return 	(! FAILED(h) && vboolHandled.boolVal);
+	// clear the returned variant
+	VariantClear(&vboolHandled);
+
+	return 	(bSuccess);
 }
 
-
-
-
-
-
-BOOL InvokePrediffingSimpleA(SAFEARRAY* & arrayBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript)
+BOOL InvokeUnpackBuffer(COleSafeArray & array, int & nChanged, LPDISPATCH piScript, int & subcode)
 {
-	// prepare the arguments
-	// argument text buffer by reference
-	VARIANT vparrayBuf;
-	vparrayBuf.vt = VT_BYREF | VT_ARRAY | VT_UI1;
-	vparrayBuf.pparray = &arrayBuf;
-	// argument buffer size by reference
-	VARIANT vpiSize;
-	vpiSize.vt = VT_BYREF | VT_I4;
-	vpiSize.plVal = (long*) &nBufSize;
-	// argument flag changed (VT_BOOL is short)
-	VARIANT_BOOL changed = 0;
-	VARIANT vpboolChanged;
-	vpboolChanged.vt = VT_BYREF | VT_BOOL;
-	vpboolChanged.pboolVal = &changed;
-	// argument return value (VT_BOOL is short)
-	VARIANT vboolHandled;
-	vboolHandled.vt = VT_BOOL;
-	vboolHandled.boolVal = FALSE;
-
-	// invoke method by name, reverse order for arguments
-	// for VC, if the invoked function changes the buffer address, 
-	// it must free the old buffer with SysFreeString
-	// VB does it automatically
-	// VARIANT_BOOL DiffingPreprocessA(BSTR * buffer, UINT * nSize, VARIANT_BOOL * bChanged)
-	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"DiffingPreprocessA", opFxn[3], 
-                            vpboolChanged, vpiSize, vparrayBuf);
-
-	if (! FAILED(h) && vboolHandled.boolVal && changed)
-	{
-		nChanged ++;
-	}
-
-	return 	(! FAILED(h) && vboolHandled.boolVal);
-}
-
-
-
-
-
-BOOL InvokeUnpackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript, int & subcode)
-{
-	// pszBuf : copy the buffer into a SAFEARRAY
-	SAFEARRAY * fileArray;
-	UINT nArraySize = nBufSize;
-	// Now call SafeArrayCreate with type, dimension, and pointer to vector of dimension descriptors 
-	SAFEARRAYBOUND rgb = { nArraySize, 0 };		
-	fileArray = SafeArrayCreate(VT_UI1, 1, &rgb);
-	// Now lock the array for editing and get a pointer to the raw elements
-	char *rgelems; 
-	SafeArrayAccessData(fileArray, (void**)&rgelems);
-	CopyMemory(rgelems, pszBuf, nArraySize);
-	// Unlock the array
-	SafeArrayUnaccessData(fileArray);
+	UINT nArraySize = array.GetOneDimSize();
 
 	// prepare the arguments
-	// argument text header
+	// argument file buffer
 	VARIANT vparrayBuf;
 	vparrayBuf.vt = VT_BYREF | VT_ARRAY | VT_UI1;
-	vparrayBuf.pparray = &fileArray;
+	vparrayBuf.pparray = &(LPVARIANT(array)->parray);
 	// argument buffer size by reference
 	VARIANT vpiSize;
 	vpiSize.vt = VT_BYREF | VT_I4;
@@ -834,54 +798,30 @@ BOOL InvokeUnpackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPA
 	// VARIANT_BOOL UnpackBufferA(SAFEARRAY * array, UINT * nSize, VARIANT_BOOL * bChanged, UINT * subcode)
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"UnpackBufferA", opFxn[4], 
                             viSubcode, vpboolChanged, vpiSize, vparrayBuf);
-	// Error if the plugin destroyed the original data, and could not build new data
-	ASSERT(vboolHandled.boolVal || changed == 0);
-
-	if (! FAILED(h) && vboolHandled.boolVal && changed)
+	int bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+	if (bSuccess && changed)
 	{
-		// copy the unpacked data
-		char *rgelems; 
-		SafeArrayAccessData(fileArray, (void**)&rgelems);
-
-		// never overwrite the source buffer
-		reallocBuffer(pszBuf, nBufSize, nArraySize, FALSE);
-		CopyMemory(pszBuf, rgelems, nBufSize);
-
-		SafeArrayUnaccessData(fileArray);
-
+		// remove trailing charracters if the array was not resized
+		if (array.GetOneDimSize() != nArraySize)
+			array.ResizeOneDim(nArraySize);
 		nChanged ++;
 	}
 
-	// free the BYREF BSTR/ BYREF ARRAY variants
-	SafeArrayDestroy(fileArray);
+	// clear the returned variant
+	VariantClear(&vboolHandled);
 
-	return 	(! FAILED(h) && vboolHandled.boolVal);
+	return 	(bSuccess);
 }
 
-
-BOOL InvokePackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript, int subcode)
+BOOL InvokePackBuffer(COleSafeArray & array, int & nChanged, LPDISPATCH piScript, int subcode)
 {
-	// pszBuf : copy the buffer into a SAFEARRAY
-	SAFEARRAY * fileArray;
-	UINT nArraySize;
-
-	// "just" build a safeArray
-	nArraySize = nBufSize;
-	// Now call SafeArrayCreate with type, dimension, and pointer to vector of dimension descriptors 
-	SAFEARRAYBOUND rgb = { nArraySize, 0 };		
-	fileArray = SafeArrayCreate(VT_UI1, 1, &rgb);
-	// Now lock the array for editing and get a pointer to the raw elements
-	char *rgelems; 
-	SafeArrayAccessData(fileArray, (void**)&rgelems);
-	CopyMemory(rgelems, pszBuf, nArraySize);
-	// Unlock the array
-	SafeArrayUnaccessData(fileArray);
+	UINT nArraySize = array.GetOneDimSize();
 
 	// prepare the arguments
 	// argument file buffer
 	VARIANT vparrayBuf;
 	vparrayBuf.vt = VT_BYREF | VT_ARRAY | VT_UI1;
-	vparrayBuf.pparray = &fileArray;
+	vparrayBuf.pparray = &(LPVARIANT(array)->parray);
 	// argument buffer size by reference
 	VARIANT vpiSize;
 	vpiSize.vt = VT_BYREF | VT_I4;
@@ -904,30 +844,20 @@ BOOL InvokePackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPATC
 	// VARIANT_BOOL PackBufferA(SAFEARRAY * array, UINT * nSize, VARIANT_BOOL * bChanged, UINT subcode)
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"PackBufferA", opFxn[4], 
                             viSubcode, vpboolChanged, vpiSize, vparrayBuf);
-	// Error if the plugin destroyed the original data, and could not build new data
-	ASSERT(vboolHandled.boolVal || changed == 0);
-
-	if (! FAILED(h)	&& vboolHandled.boolVal && changed)
+	int bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+	if (bSuccess && changed)
 	{
-		// copy the packed data
-		char *rgelems; 
-		SafeArrayAccessData(fileArray, (void**)&rgelems);
-
-		// never overwrite the source buffer
-		reallocBuffer(pszBuf, nBufSize, nArraySize, FALSE);
-		CopyMemory(pszBuf, rgelems, nBufSize);
-
-		SafeArrayUnaccessData(fileArray);
-
+		// remove trailing charracters if the array was not resized
+		if (array.GetOneDimSize() != nArraySize)
+			array.ResizeOneDim(nArraySize);
 		nChanged ++;
 	}
 
-	// free the BYREF BSTR / BYREF ARRAY 
-	SafeArrayDestroy(fileArray);
+	// clear the returned variant
+	VariantClear(&vboolHandled);
 
-	return 	(! FAILED(h) && vboolHandled.boolVal);
+	return 	(bSuccess);
 }
-
 
 
 BOOL InvokeUnpackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISPATCH piScript, int & subCode)
@@ -959,15 +889,14 @@ BOOL InvokeUnpackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDI
 	// VARIANT_BOOL UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL * bChanged, INT * bSubcode)
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"UnpackFile", opFxn[4], 
                             vpiSubcode, vpboolChanged, vbstrDst, vbstrSrc);
-	// Error if the plugin destroyed the original data, and could not build new data
-	ASSERT(vboolHandled.boolVal || changed == 0);
-
-	if (! FAILED(h) && vboolHandled.boolVal && changed)
-	{
+	int bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+	if (bSuccess && changed)
 		nChanged ++;
-	}
 
-	return 	(! FAILED(h) && vboolHandled.boolVal);
+	// clear the returned variant
+	VariantClear(&vboolHandled);
+
+	return 	(bSuccess);
 }
 
 BOOL InvokePackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISPATCH piScript, int subCode)
@@ -999,15 +928,49 @@ BOOL InvokePackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISP
 	// VARIANT_BOOL PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL * bChanged, INT bSubcode)
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"PackFile", opFxn[4], 
                             viSubcode, vpboolChanged, vbstrDst, vbstrSrc);
-	// Error if the plugin destroyed the original data, and could not build new 
-	ASSERT(vboolHandled.boolVal || changed == 0);
-
-	if (! FAILED(h) && vboolHandled.boolVal && changed)
-	{
+	int bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+	if (bSuccess && changed)
 		nChanged ++;
-	}
 
-	return 	(! FAILED(h) && vboolHandled.boolVal);
+	// clear the returned variant
+	VariantClear(&vboolHandled);
+
+	return 	(bSuccess);
+}
+
+BOOL InvokePrediffFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISPATCH piScript)
+{
+	USES_CONVERSION;
+	// argument text  
+	VARIANT vbstrSrc;
+	vbstrSrc.vt = VT_BSTR;
+	vbstrSrc.bstrVal = T2BSTR(fileSource);
+	// argument transformed text 
+	VARIANT vbstrDst;
+	vbstrDst.vt = VT_BSTR;
+	vbstrDst.bstrVal = T2BSTR(fileDest);
+	// argument flag changed (VT_BOOL is short)
+	VARIANT_BOOL changed = 0;
+	VARIANT vpboolChanged;
+	vpboolChanged.vt = VT_BYREF | VT_BOOL;
+	vpboolChanged.pboolVal = &changed;
+	// argument return value (VT_BOOL is short)
+	VARIANT vboolHandled;
+	vboolHandled.vt = VT_BOOL;
+	vboolHandled.boolVal = FALSE;
+
+	// invoke method by name, reverse order for arguments
+	// VARIANT_BOOL PrediffFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL * bChanged)
+	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"PrediffFile", opFxn[3], 
+                            vpboolChanged, vbstrDst, vbstrSrc);
+	int bSuccess = ! FAILED(h) && vboolHandled.boolVal;
+	if (bSuccess && changed)
+		nChanged ++;
+
+	// clear the returned variant
+	VariantClear(&vboolHandled);
+
+	return 	(bSuccess);
 }
 
 
@@ -1037,8 +1000,8 @@ BOOL InvokeTransformText(CString & text, int & changed, LPDISPATCH piScript, int
 	else
 		changed = FALSE;
 
-	// free the returned BSTR / BYREF BSTR / BYREF ARRAY 
-	SysFreeString(vTransformed.bstrVal);
+	// clear the returned variant
+	VariantClear(&vTransformed);
 
 	return (! FAILED(h));
 }
