@@ -1,6 +1,9 @@
 2003-10-24 Perry
  BUG: [ 829437 ] Can't compare two files with unicode filenames
   WinMerge: Diff.cpp
+ Fix typo & mistake, both in comments.
+  common: SuperComboBox.cpp
+  WinMerge: DirScan.cpp
 
 2003-10-24 Laoran
  BUG: [ 829453 ] dropping file in a SuperComboBox, Unicode build

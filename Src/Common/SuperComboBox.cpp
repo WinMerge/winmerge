@@ -284,7 +284,7 @@ void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 	// get all file names. but we'll only need the first one.
 	for (WORD x = 0 ; x < wNumFilesDropped; x++) {
 
-		// Get the number of bytes required by the file's full pathname
+		// Get the number of characters required by the file's full pathname
 		UINT wPathnameSize = DragQueryFile(dropInfo, x, NULL, 0);
 
 		// Allocate memory to contain full pathname & zero byte

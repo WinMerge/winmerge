@@ -188,7 +188,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 				// returns info, but can not use file dependent information.
 
 				// Transformation happens here
-				// text used for automatic mode : plugin filter must mach it
+				// text used for automatic mode : plugin filter must match it
 				CString filteredFilenames = filepath1 + "|" + filepath2;
 				// the creation of infoHandler initializes the bAutomatic flag
 				PackingInfo infoUnpacker;
