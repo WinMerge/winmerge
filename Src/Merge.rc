@@ -29,18 +29,18 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE MOVEABLE PURE
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE MOVEABLE PURE
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE MOVEABLE PURE
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
@@ -67,8 +67,8 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Merge.ico"
-IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
+IDR_MAINFRAME           ICON                    "res\\Merge.ico"
+IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -95,7 +95,7 @@ BEGIN
     END
 END
 
-IDR_MAINFRAME MENU DISCARDABLE
+IDR_MAINFRAME MENU 
 BEGIN
     POPUP "&File"
     BEGIN
@@ -231,7 +231,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_DIRVIEW MENU DISCARDABLE
+IDR_POPUP_DIRVIEW MENU 
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
@@ -287,7 +287,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_EDITOR_HEADERBAR MENU DISCARDABLE
+IDR_POPUP_EDITOR_HEADERBAR MENU 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -302,7 +302,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS MOVEABLE PURE
+IDR_MAINFRAME ACCELERATORS 
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
@@ -454,7 +454,7 @@ BEGIN
                     59,157,8
 END
 
-IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
+IDD_LANGUAGE_SELECT DIALOG  0, 0, 213, 111
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Language"
 FONT 8, "MS Sans Serif"
@@ -466,7 +466,7 @@ BEGIN
     LTEXT           "Available languages:",IDC_STATIC,7,7,66,8
 END
 
-IDD_EDIT_FIND DIALOG DISCARDABLE  30, 73, 236, 68
+IDD_EDIT_FIND DIALOG  30, 73, 236, 68
 STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Find"
 FONT 8, "MS Shell Dlg"
@@ -489,7 +489,7 @@ BEGIN
     GROUPBOX        "Direction",IDC_STATIC,107,26,68,38,WS_GROUP
 END
 
-IDD_EDIT_REPLACE DIALOG DISCARDABLE  36, 44, 230, 103
+IDD_EDIT_REPLACE DIALOG 36, 44, 230, 103
 STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Replace"
 FONT 8, "MS Shell Dlg"
@@ -519,7 +519,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,88,84,12
 END
 
-IDD_CLEARCASE DIALOG DISCARDABLE  0, 0, 279, 111
+IDD_CLEARCASE DIALOG  0, 0, 279, 111
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Rational Clearcase"
 FONT 8, "MS Sans Serif"
@@ -532,7 +532,7 @@ BEGIN
     LTEXT           "Comments",IDC_STATIC,18,7,34,10
 END
 
-IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
+IDD_PROPPAGE_FILTER DIALOG 0, 0, 235, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Filter"
 FONT 8, "MS Sans Serif"
@@ -588,7 +588,7 @@ BEGIN
     PUSHBUTTON      "Defaults",IDC_COLORDEFAULTS_BTN,151,90,50,14
 END
 
-IDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
+IDD_OUTPUT DIALOG  0, 0, 278, 157
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
 FONT 8, "MS Sans Serif"
@@ -598,7 +598,7 @@ BEGIN
                     WS_VSCROLL
 END
 
-IDD_PROPPAGE_REGISTRY DIALOG DISCARDABLE  0, 0, 235, 156
+IDD_PROPPAGE_REGISTRY DIALOG  0, 0, 235, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "System"
 FONT 8, "MS Sans Serif"
@@ -615,7 +615,7 @@ BEGIN
     PUSHBUTTON      "B&rowse...",IDC_EXT_EDITOR_BROWSE,179,71,50,14
 END
 
-IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 340, 180
+IDD_GENERATE_PATCH DIALOG  0, 0, 340, 180
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Patch Generator"
 FONT 8, "MS Sans Serif"
@@ -674,7 +674,7 @@ BEGIN
                     WS_TABSTOP,WS_EX_STATICEDGE
 END
 
-IDD_DIRCOLS DIALOG DISCARDABLE  0, 0, 283, 143
+IDD_DIRCOLS DIALOG  0, 0, 283, 143
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Display Columns"
 FONT 8, "MS Sans Serif"
@@ -693,7 +693,7 @@ BEGIN
     PUSHBUTTON      "==>",IDC_REMOVE,143,63,29,14
 END
 
-IDD_SELECTUNPACKER DIALOG DISCARDABLE  0, 0, 293, 126
+IDD_SELECTUNPACKER DIALOG  0, 0, 293, 126
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Select Unpacker"
 FONT 8, "MS Sans Serif"
@@ -773,7 +773,7 @@ BEGIN
     DEFPUSHBUTTON   "Stop",IDC_COMPARISON_STOP,327,17,83,14
 END
 
-IDD_WMGOTO DIALOG DISCARDABLE  0, 0, 189, 70
+IDD_WMGOTO DIALOG  0, 0, 189, 70
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Go To"
 FONT 8, "MS Sans Serif"
@@ -893,7 +893,7 @@ END
 // Toolbar
 //
 
-IDR_MAINFRAME TOOLBAR MOVEABLE PURE  16, 15
+IDR_MAINFRAME TOOLBAR  16, 15
 BEGIN
     BUTTON      ID_FILE_NEW
     BUTTON      ID_FILE_OPEN
@@ -995,13 +995,13 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Ready"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -1011,7 +1011,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
     ID_FILE_OPEN            "Open an existing document\nOpen (Ctrl+O)"
@@ -1024,13 +1024,13 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
     ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_FILE_MRU_FILE1       "Open this document"
     ID_FILE_MRU_FILE2       "Open this document"
@@ -1050,13 +1050,13 @@ BEGIN
     ID_FILE_MRU_FILE16      "Open this document"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
     ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
     ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
@@ -1066,7 +1066,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_EDIT_CLEAR           "Erase the selection\nErase"
     ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
@@ -1081,13 +1081,13 @@ BEGIN
     ID_EDIT_REDO            "Redo the previously undone action\nRedo (Ctrl+Y)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
     ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "Change the window size"
     AFX_IDS_SCMOVE          "Change the window position"
@@ -1098,19 +1098,19 @@ BEGIN
     AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     AFX_IDS_SCRESTORE       "Restore the window to normal size"
     AFX_IDS_SCTASKLIST      "Activate Task List"
     AFX_IDS_MDICHILD        "Activate this window"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
@@ -1119,7 +1119,7 @@ BEGIN
     IDS_ELAPSED_TIME        "Elapsed time: %ld ms"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_VERSION_FMT         "Version %1"
     IDS_ALLFILES            "All Files (*.*)|*.*||"
@@ -1137,7 +1137,7 @@ BEGIN
     IDS_CANT_COMPARE_FILES  "Unable to compare files"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_SAVE_AS_TITLE       "Save As"
     IDS_SELECT_FILES_OR_FOLDERS
@@ -1159,7 +1159,7 @@ BEGIN
     IDS_NOPROJECT           "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_COLHDR_FILENAME     "Filename"
     IDS_COLHDR_DIR          "Directory"
@@ -1181,7 +1181,7 @@ BEGIN
     IDS_DEL_LEFT_FMT        "Left (%1)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_DEL_RIGHT_FMT       "Right (%1)"
     IDS_DELETE_FILE_FAILED  "Delete file %1 failed: %2"
@@ -1201,7 +1201,7 @@ BEGIN
     IDS_BIN_FILES_SAME      "Binary files are identical"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_FILESAVE_FAILED     "Saving %1 failed. Would you like to save the file under a different name?"
     IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
@@ -1221,7 +1221,7 @@ BEGIN
     IDS_COLHDR_RVERSION     "Right File Version"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_LEFTONLY            "Left Only"
     IDS_RIGHTONLY           "Right Only"
@@ -1236,7 +1236,7 @@ BEGIN
     IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDC_COMPARISON_STOP     "Stop"
     IDC_COMPARISON_CLOSE    "Press any key"
@@ -1244,7 +1244,7 @@ BEGIN
     IDS_COLHDR_NSDIFFS      "#sig. differences"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
     IDS_FILEWRITE_ERROR     "Could not write to file %1."
@@ -1263,7 +1263,7 @@ BEGIN
     IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:\n /? or -? displays this help\n /r or -r tells winmerge to compare directories recursively\n /e or -e allows WinMerge to be closed with a single esc keypress\n /ul or -ul tells winmerge to not add left path to MRU\n /ur or -ur tells winmerge to not add right path to MRU\n /ub or -ub tells winmerge to not add both paths to MRU\n /dl or -dl adds a description for left side shown instead of directory/filename\n /dr or -dr adds a description for right side shown instead of directory/filename\n leftpath is the directory or filename to open on the left side\n rightpath is the directory or filename to open on the right side\n outputpath is an optional output directory where you want merged files to be \n saved\n \n Note: leftpath and rightpath both has to be files or both has to be \n directories\n"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_LINEDIFF_NODIFF     "No difference"
     IDS_LINEDIFF_NODIFF_CAPTION "Line difference"
@@ -1282,7 +1282,7 @@ BEGIN
     IDS_DIRSEL_TAG          "Directory Selection"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_COPY_LEFT_TO        "Left to... (%1)"
     IDS_COPY_LEFT_TO2       "Left to... (%1 of %2)"
@@ -1295,18 +1295,18 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDC_MIXED_EOL           "Preserve original EOL chars"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_NUM_REPLACED        "Replaced %1 string(s)."
     IDS_EDIT_TEXT_NOT_FOUND "Cannot find string""%s"""
@@ -1342,7 +1342,7 @@ BEGIN
     IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_AFRIKAANS           "Afrikaans"
     IDS_ALBANIAN            "Albanian"
@@ -1359,7 +1359,7 @@ BEGIN
     IDS_ARABIC_JORDAN       "Arabic (Jordan)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_ARABIC_LEBANON      "Arabic (Lebanon)"
     IDS_ARABIC_KUWAIT       "Arabic (Kuwait)"
@@ -1379,7 +1379,7 @@ BEGIN
     IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_CHINESE_MACAU       "Chinese (Macau SAR)"
     IDS_CROATIAN            "Croatian"
@@ -1399,7 +1399,7 @@ BEGIN
     IDS_ENGLISH_BELIZE      "English (Belize)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_ENGLISH_TRINIDAD    "English (Trinidad)"
     IDS_ENGLISH_ZIMBABWE    "English (Zimbabwe)"
@@ -1419,7 +1419,7 @@ BEGIN
     IDS_GERMAN_SWISS        "Deutsch (Schweiz)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_GERMAN_AUSTRIAN     "Deutsch (Österreich)"
     IDS_GERMAN_LUXEMBOURG   "Deutsch (Luxemburg)"
@@ -1439,7 +1439,7 @@ BEGIN
     IDS_KOREAN_JOHAB        "Korean (Johab)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_LATVIAN             "Latvian"
     IDS_LITHUANIAN          "Lithuanian"
@@ -1459,7 +1459,7 @@ BEGIN
     IDS_SINDHI              "Sindhi"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_SLOVAK              "Slovak"
     IDS_SLOVENIAN           "Slovensko"
@@ -1479,7 +1479,7 @@ BEGIN
     IDS_SPANISH_URUGUAY     "Espanol (Uruguay)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_SPANISH_PARAGUAY    "Espanol (Paraguay)"
     IDS_SPANISH_BOLIVIA     "Espanol (Bolivia)"
@@ -1499,14 +1499,14 @@ BEGIN
     IDS_URDU_INDIA          "Urdu (India)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_UZBEK_LATIN         "Uzbek (Latin)"
     IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
     IDS_VIETNAMESE          "Vietnamese"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_L2R                  "Copy the selected text to the right file\nCopy Right (Alt+Right)"
     ID_R2L                  "Copy the selected text to the left file\nCopy Left (Alt+Left)"
@@ -1518,7 +1518,7 @@ BEGIN
                             "Save a copy of the original as *.bak\nBackup"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
                             "Automatically scrolls to the first difference\nScroll First"
@@ -1534,7 +1534,7 @@ BEGIN
     ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected file to named directory"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected file to named directory"
     ID_VIEW_LANGUAGE        "Select the current user interfacce language\nLanguage"
@@ -1555,7 +1555,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "Open right file"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
     ID_OPTIONS_SHOWBINARIES "Displays binary files"
@@ -1569,7 +1569,7 @@ BEGIN
     ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_EOL_TO_DOS           "Convert EOL to DOS mode"
     ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
@@ -1584,7 +1584,7 @@ BEGIN
     ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and Advance (Ctrl+Alt+Right)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
     ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
@@ -1597,7 +1597,7 @@ BEGIN
     ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_NO_EDIT_SCRIPTS      "< Empty >"
     ID_RELOAD_PLUGINS       "&Unload all plugins and reload them (for developpers)"

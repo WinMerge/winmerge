@@ -1,3 +1,7 @@
+2004-04-01 Perry
+ Remove most of obsolete keywords in rc file (a la Merge.rc 1.149, which didn't have them)
+  Src: Merge.rc
+
 2004-03-31 Kimmo
  PATCH: [ 924521 ] Add context menu for file compare
   Src: DirView.cpp FilePathEdit.cpp Merge.rc MergeEditView.cpp resource.h
