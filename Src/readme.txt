@@ -1,3 +1,7 @@
+2004-06-07 Perry
+ Updated Catalan translation from Jordi Vilar
+  Src/Languages: Catalan/MergeCatalan.rc
+
 2004-06-06 Kimmo
  BUG: [ 959729 ] View menu show-items disabled in mergeview
   Second try, renumber items in editlib/editcmd.h
