@@ -15,26 +15,25 @@ releases.</p>
 <h3>Maintained or unmaintained?</h3>
 <p>Translations are divided to four categories:</p>
 <ul>
-  <li><b><a name="actively">Actively maintained</a></b> - translator(s) send frequent
+  <li><strong class="actively"><a id="actively" name="actively">Actively maintained</a></strong> - translator(s) send frequent
   updates</li>
-  <li><b><a name="maintained">Maintained</a></b> - translator(s) (we hope) send updates
+  <li><strong class="maintained"><a id="maintained" name="maintained">Maintained</a></strong> - translator(s) (we hope) send updates
   when we ask</li>
-  <li><b><a name="unmaintained">Unmaintained</a></b> - we haven't heard anything from
+  <li><strong class="unmaintained"><a id="unmaintained" name="unmaintained">Unmaintained</a></strong> - we haven't heard anything from
   translator(s)</li>
-  <li><b><a name="unknown">Unknown</a></b> - we got update to latest stable but don't
+  <li><strong class="unknown"><a id="unknown" name="unknown">Unknown</a></strong> - we got update to latest stable but don't
   know if translator is still interested</li>
 </ul>
 
 <?php
   $status = $page->convertXml2Array('status.xml');
 
-  print("<div align=\"center\">\n");
-  print("<table border=\"1\" cellpadding=\"3\" cellspacing=\"0\">\n");
+  print("<table id=\"status\">\n");
   print("  <tr>\n");
-  print("    <th>Language</th>\n");
-  print("    <th>Status</th>\n");
-  print("    <th>Author</th>\n");
-  print("    <th colspan=\"4\">Versions</th>\n");
+  print("    <th class=\"left\">Language</th>\n");
+  print("    <th class=\"left\">Status</th>\n");
+  print("    <th class=\"left\">Author</th>\n");
+  print("    <th class=\"center\" colspan=\"4\">Versions</th>\n");
   print("  </tr>\n");
   $languages = $status['L10N'][0]['LANGUAGE'];
   for ($i = 0; $i < count($languages); $i++) { //For all languages...
@@ -44,23 +43,29 @@ releases.</p>
     $authors = $language['AUTHORS'][0]['AUTHOR'];
     $versions = $language['VERSIONS'][0]['VERSION'];
 
-    print("  <tr>\n");
-    print("    <td>" . $language_name . "</td>\n");
     switch ($language_status) {
       case 1: //Actively maintained
-        print("    <td><a href=\"#actively\">Actively maintained</a></td>\n");
+        print("  <tr class=\"actively\">\n");
+        print("    <td class=\"left\">" . $language_name . "</td>\n");
+        print("    <td class=\"left\"><a href=\"#actively\" title=\"translator(s) send frequent updates\">Actively maintained</a></td>\n");
         break;
       case 2: //Maintained
-        print("    <td><a href=\"#maintained\">Maintained</a></td>\n");
+        print("  <tr class=\"maintained\">\n");
+        print("    <td class=\"left\">" . $language_name . "</td>\n");
+        print("    <td class=\"left\"><a href=\"#maintained\" title=\"translator(s) (we hope) send updates when we ask\">Maintained</a></td>\n");
         break;
       case 3: //Unmaintained
-        print("    <td><a href=\"#unmaintained\">Unmaintained</a></td>\n");
+        print("  <tr class=\"unmaintained\">\n");
+        print("    <td class=\"left\">" . $language_name . "</td>\n");
+        print("    <td class=\"left\"><a href=\"#unmaintained\" title=\"we haven't heard anything from translator(s)\">Unmaintained</a></td>\n");
         break;
       case 4: //Unknown
-        print("    <td><a href=\"#unknown\">Unknown</a></td>\n");
+        print("  <tr class=\"unknown\">\n");
+        print("    <td class=\"left\">" . $language_name . "</td>\n");
+        print("    <td class=\"left\"><a href=\"#unknown\" title=\"we got update to latest stable but don't know if translator is still interested\">Unknown</a></td>\n");
         break;
     }
-    print("    <td>");
+    print("    <td class=\"left\">");
     for ($j = 0; $j < count($authors); $j++) { //For all authors...
       $author = $authors[$j];
       $author_name = $author['NAME'][0]['VALUE'];
@@ -68,11 +73,11 @@ releases.</p>
       $author_comment = $author['COMMENT'][0]['VALUE'];
 
       if ($author_email != '')
-        print("<a href=\"mailto:" . $author_email . "\">" . $author_name . "</a>");
+        print("<a href=\"mailto:" . $author_email . "\" title=\"" . htmlentities($author_name) . " &lt;" . $author_email . "&gt;\">" . htmlentities($author_name) . "</a>");
       else
         print($author_name);
-      if ($author_comment != '') print(" (" . $author_comment . ")");
-      print("<br>");
+      if ($author_comment != '') print(" (" . htmlentities($author_comment) . ")");
+      print("<br />");
     }
     print("</td>\n");
 
@@ -85,30 +90,29 @@ releases.</p>
       
       switch ($version) {
         case '2.2':
-          $version_22 = '2.2';
+          $version_22 = '<strong title="latest stable version">2.2</strong>';
           break;
         case '2.1':
-          $version_21 = '2.1';
+          $version_21 = '<span title="older development version">2.1</span>';
           break;
         case '2.0':
-          $version_20 = '2.0';
+          $version_20 = '<span title="older stable version">2.0</span>';
           break;
         case '1.7':
-          $version_17 = '1.7';
+          $version_17 = '<span title="much older stable version">1.7</span>';
           break;
       }
     }
-    print("    <td>" . $version_22 . "</td>\n");
-    print("    <td>" . $version_21 . "</td>\n");
-    print("    <td>" . $version_20 . "</td>\n");
-    print("    <td>" . $version_17 . "</td>\n");
+    print("    <td class=\"center\">" . $version_22 . "</td>\n");
+    print("    <td class=\"center\">" . $version_21 . "</td>\n");
+    print("    <td class=\"center\">" . $version_20 . "</td>\n");
+    print("    <td class=\"center\">" . $version_17 . "</td>\n");
     print("  </tr>\n");
   }
   print("</table>\n");
-  print("</div>\n");
 ?>
 
-<p>Release 2.0 language versions also works with release 2.0.2.<br>
+<p>Release 2.0 language versions also works with release 2.0.2.<br />
 Release 1.4 language versions also works with release 1.7.</p>
 
 <p>If you would like to update any of these translations or add another translation, then please follow <a href="instructions.php">these instructions</a>.</p>

@@ -1,3 +1,8 @@
+2004-12-31 Tim
+ PATCH: [ 1092760 ] Web: Status of translations with colors
+  Web\css: all.css print.css
+  Web\developer\l10n: status.php
+
 2004-12-15 Tim
  PATCH: [ 1084670 ] Web: Use winmerge.org at PAD file
   Web: WinMergePAD.xml

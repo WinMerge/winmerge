@@ -50,3 +50,27 @@ pre.code {
 	background-color: #EEEEEE;
 	border: 1px solid black;
 }
+
+/* Status of translations */
+#status {
+	border-collapse: collapse;
+}
+
+#status th {
+	padding: 3px;
+	border: 1px solid black;
+}
+
+#status td {
+	padding: 3px;
+	border: 1px solid black;
+}
+
+.left { text-align: left; }
+.center { text-align: center; }
+.right { text-align: right; }
+
+.actively { background-color: #CCFFCC; }
+.maintained { background-color: #CCCCFF; }
+.unmaintained { background-color: #FFCCCC; }
+.unknown { background-color: #FFFFCC; }
