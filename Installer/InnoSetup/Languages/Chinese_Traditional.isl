@@ -326,9 +326,10 @@ AppCoreFiles=WinMerge Core Files
 ApplicationRuntimes=Application Runtimes
 UsersGuide=User's Guide
 Filters=Filters
-Plugins=Plugins (enhance core behavior)
+Plugins=Plugins (See Plugins.txt)
 
 ;Localization Components
+
 BulgarianLanguage=Bulgarian menus and dialogs
 CatalanLanguage=Catalan menus and dialogs
 ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
