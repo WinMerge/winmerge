@@ -1,3 +1,8 @@
+2004-08-23 Kimmo
+ PATCH: [ 1013715 ] Catalan translation update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
+
 2004-08-20 Kimmo
  PATCH: [ 1012291 ] Open Find-dialog for F3 if no previous find
   Src/editlib: ccrystaltextview.cpp

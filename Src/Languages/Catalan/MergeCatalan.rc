@@ -250,10 +250,10 @@ BEGIN
             MENUITEM "De &dreta a esquerra",    ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "De d&reta a...",            ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "&Move"
+        POPUP "&Mou"
         BEGIN
-            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
-            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+            MENUITEM "D'&esquerra a...",            ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "De &dreta a...",              ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
         POPUP "&Suprimeix"
         BEGIN
@@ -262,13 +262,13 @@ BEGIN
             MENUITEM "D'&ambdós",                   ID_DIR_DEL_BOTH
         END
         MENUITEM SEPARATOR
-        POPUP "Obre l'&esquerre"
+        POPUP "Obre l'&esquerra"
         BEGIN
             MENUITEM "amb l'&aplicació registrada", ID_DIR_OPEN_LEFT
             MENUITEM "amb l'&editor extern",        ID_DIR_OPEN_LEFT_WITHEDITOR
             MENUITEM "&amb...",                     ID_DIR_OPEN_LEFT_WITH
         END
-        POPUP "Obre el &dret"
+        POPUP "Obre la &dreta"
         BEGIN
             MENUITEM "amb l'&aplicació registrada", ID_DIR_OPEN_RIGHT
             MENUITEM "amb l'&editor extern",        ID_DIR_OPEN_RIGHT_WITHEDITOR
@@ -288,7 +288,6 @@ BEGIN
                                                     ID_DIR_ZIP_BOTH
             MENUITEM "Comprimeix %1 fitxer(s) diferent(s) entre ambdós costats de %2 de %3 element(s) seleccionat(s)",
                                                     ID_DIR_ZIP_BOTH_DIFFS_ONLY
-
         END
     END
     POPUP "_HDR_POPUP_"
@@ -310,8 +309,8 @@ IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
     POPUP "Ajustos de prediferenciació"
     BEGIN
-        MENUITEM "&No prediferenciïs",          ID_PREDIFF_MANUAL
-        MENUITEM "Prediferencia automàticament", ID_PREDIFF_AUTO
+        MENUITEM "&Sense prediferenciació",     ID_PREDIFF_MANUAL
+        MENUITEM "Prediferenciació &automàtica", ID_PREDIFF_AUTO
     END
 END
 
@@ -427,7 +426,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,76,86,161,10
     LTEXT           "Estat:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "D'acord",IDOK,306,11,50,14
-    PUSHBUTTON      "Anul·la",IDCANCEL,306,28,50,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,306,28,50,14
     GROUPBOX        "Fitxers o directoris a comparar",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
 END
@@ -456,7 +455,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
     DEFPUSHBUTTON   "&Extreu",IDOK,47,145,62,14
     PUSHBUTTON      "&Anomena i desa...",IDC_SAVE_AS,116,145,62,14
-    PUSHBUTTON      "Anul·la",IDCANCEL,187,145,62,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,187,145,62,14
 END
 
 IDD_PROP_VSS DIALOGEX 0, 0, 259, 157
@@ -505,13 +504,13 @@ CAPTION "Idioma"
 FONT 8, "MS Shell Dlg"
 BEGIN
     PUSHBUTTON      "D'acord",IDOK,154,16,52,14
-    PUSHBUTTON      "Anul·la",IDCANCEL,154,33,52,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,154,33,52,14
     LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT |
                     WS_VSCROLL | WS_TABSTOP | LBS_SORT
     LTEXT           "Idiomes disponibles:",IDC_STATIC,7,7,66,8
 END
 
-IDD_EDIT_FIND DIALOGEX 30, 73, 283, 74
+IDD_EDIT_FIND DIALOGEX 30, 73, 283, 66
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Cerca"
@@ -521,11 +520,11 @@ BEGIN
     COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "N&omés paraules senceres",IDC_EDIT_WHOLE_WORD,"Button",
-                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,12
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,10
     CONTROL         "&Distingeix entre majúscules i minúscules",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,37,135,18
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,140,10
     CONTROL         "&Expressió regular",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,55,135,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "Direcció",IDC_STATIC,148,23,70,36,WS_GROUP
     CONTROL         "A&munt",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,154,34,57,10
@@ -535,7 +534,7 @@ BEGIN
     PUSHBUTTON      "Cancel·la",IDCANCEL,226,24,50,14
 END
 
-IDD_EDIT_REPLACE DIALOGEX 36, 44, 317, 98
+IDD_EDIT_REPLACE DIALOGEX 36, 44, 317, 90
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Substitueix"
@@ -550,11 +549,11 @@ BEGIN
     CONTROL         "N&omés paraules senceres",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
     CONTROL         "&Distingeix entre majúscules i minúscules",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,54,135,16
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,54,140,14
     CONTROL         "&Expressió regular",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,72,135,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
     CONTROL         "No facis la &volta al final del fitxer",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,82,135,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
     GROUPBOX        "Substitueix a",IDC_STATIC,149,40,90,36,WS_GROUP
     CONTROL         "&Selecció",IDC_EDIT_SCOPE_SELECTION,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
@@ -573,7 +572,7 @@ CAPTION "Rational Clearcase"
 FONT 8, "MS Shell Dlg"
 BEGIN
     DEFPUSHBUTTON   "&Extreu",IDOK,27,90,67,14
-    PUSHBUTTON      "Anul·la",IDCANCEL,186,90,67,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,186,90,67,14
     PUSHBUTTON      "Anomena i &desa...",IDC_SAVE_AS,106,90,67,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
@@ -727,7 +726,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,155,145,170,10
     PUSHBUTTON      "Predeterminats",IDC_DIFF_DEFAULTS,7,159,62,14
     DEFPUSHBUTTON   "D'acord",IDOK,230,159,50,14
-    PUSHBUTTON      "Anul·la",IDCANCEL,283,159,50,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,283,159,50,14
 END
 
 IDD_EDITOR_HEADERBAR DIALOGEX 0, 0, 373, 12
@@ -761,7 +760,7 @@ BEGIN
     EDITTEXT        IDC_COLDLG_DESC,7,122,269,22,ES_MULTILINE | ES_READONLY
     PUSHBUTTON      "Predeterminats",IDC_COLDLG_DEFAULTS,7,149,63,14
     DEFPUSHBUTTON   "D'acord",IDOK,172,149,50,14
-    PUSHBUTTON      "Anul·la",IDCANCEL,226,149,50,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,226,149,50,14
 END
 
 IDD_SELECTUNPACKER DIALOGEX 0, 0, 293, 126
@@ -771,7 +770,7 @@ CAPTION "Tria el desempaquetador"
 FONT 8, "MS Shell Dlg"
 BEGIN
     DEFPUSHBUTTON   "D'acord",IDOK,87,99,50,14
-    PUSHBUTTON      "Anul·la",IDCANCEL,156,99,50,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,156,99,50,14
     LTEXT           "&Desempaquetador de fitxer:",IDC_STATIC,7,18,91,10
     COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
@@ -867,7 +866,7 @@ BEGIN
     CONTROL         "&Diferència",IDC_WMGOTO_TODIFF,"Button",
                     BS_AUTORADIOBUTTON,68,48,49,10
     DEFPUSHBUTTON   "&Vés-hi",IDOK,132,7,50,14
-    PUSHBUTTON      "Anul·la",IDCANCEL,132,24,50,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,132,24,50,14
 END
 
 IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 235, 156
@@ -911,7 +910,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Preserva els caracters de salt de línia originals",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
-    GROUPBOX        "Tabulacions",IDC_STATIC,7,54,285,30,WS_GROUP
+    GROUPBOX        "Tabulacions",IDC_STATIC,7,54,221,33,WS_GROUP
     LTEXT           "&Tamany de les tabulacions:",IDC_STATIC,15,68,30,8
     EDITTEXT        IDC_TAB_EDIT,47,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
@@ -945,41 +944,41 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Save modified files?"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    GROUPBOX        "Left side file",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
+    GROUPBOX        "Fitxer del costat esquerre",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
     EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "&Save changes",IDC_SAVECLOSING_SAVELEFT,"Button",
+    CONTROL         "&Desa els canvis",IDC_SAVECLOSING_SAVELEFT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
-    CONTROL         "&Discard changes",IDC_SAVECLOSING_DISCARDLEFT,"Button",
+    CONTROL         "D&escarta els canvis",IDC_SAVECLOSING_DISCARDLEFT,"Button",
                     BS_AUTORADIOBUTTON,16,46,230,10
-    GROUPBOX        "Right side file",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
+    GROUPBOX        "Fitxer del costat dret",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
     EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "S&ave changes",IDC_SAVECLOSING_SAVERIGHT,"Button",
+    CONTROL         "De&sa els canvis",IDC_SAVECLOSING_SAVERIGHT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
-    CONTROL         "Dis&card changes",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
+    CONTROL         "Des&carta els canvis",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
-    DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,205,133,50,14
+    DEFPUSHBUTTON   "D'acord",IDOK,149,133,50,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,205,133,50,14
 END
 
 IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Codepage"
+CAPTION "Pàgina de codis"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Detect codepage info for these files : .html, .rc \nneed to restart session",
+    CONTROL         "Detecta la informació de pàgina de codis per a fitxers:\n.html i .rc\nCal reiniciar la sessió",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | 
-                    BS_MULTILINE | WS_TABSTOP,13,74,210,19
-    CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
+                    BS_MULTILINE | WS_TABSTOP,13,74,220,22
+    CONTROL         "Pàgina de codis del sistema",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
-    CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",
+    CONTROL         "En funció de l'idioma de l'interfície d'usuari del WinMerge",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,33,210,10
-    CONTROL         "Custom codepage :",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,46,77,10
+    CONTROL         "Pàgina de codis personalitzada:",IDC_CP_CUSTOM,"Button",
+                    BS_AUTORADIOBUTTON,13,46,110,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Default codepage for ANSI files",IDC_STATIC,7,7,221,58
+    GROUPBOX        "Pàgina de codis predefinida per a fitxers ANSI",IDC_STATIC,7,7,221,58
 END
 
 #ifndef _MAC
@@ -1304,8 +1303,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "&D'acord"
-    IDS_MESSAGEBOX_CANCEL   "&Anul·la"
-    IDS_MESSAGEBOX_ABORT    "&Aborta"
+    IDS_MESSAGEBOX_CANCEL   "&Cancel·la"
+    IDS_MESSAGEBOX_ABORT    "&Avorta"
     IDS_MESSAGEBOX_RETRY    "&Reintenta"
     IDS_MESSAGEBOX_IGNORE   "&Ignora"
     IDS_MESSAGEBOX_IGNOREALL "Ignora-ho &tot"
@@ -1332,11 +1331,11 @@ STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge aquest directori"
     IDS_VERSION_FMT         "Versió %1 - Català"
-    IDS_QUICKHELP           "Sintaxi : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/dl descesq] [/dr descdreta] camiesq camidreta [camisortida]\n\non:
+    IDS_QUICKHELP           "Sintaxi : WinMerge [/r] [/e] [/f màscara/nom] [/ul] [/ur] [/ub] [/dl descesq] [/dr descdreta] camiesq camidreta [camisortida]\n\non:
       /? o -? mostra aquesta ajuda
       /r o -r diu al WinMerge que compari directoris recursivament
       /e o -e permet tancar el WinMerge amb una única polsació d'esc
-      /f or -f sets filemask or filtername for compare
+      /f o -f especifica la màscara de fitxers o el nom del filtre per a comparar
       /ul o -ul diu al WinMerge que no afegeixi el camí de l'esquerra a la llista de recents (MRU)
       /ur o -ur diu al WinMerge que no afegeixi el camí de la dreta a la llista de recents (MRU)
       /ub o -ub diu al WinMerge que no afegeixi cap dels dos camins a la llista de recents (MRU)
@@ -1394,8 +1393,8 @@ STRINGTABLE
 BEGIN
     IDS_DIRECTORY_WINDOW_TITLE "Resultats de la comparació dels directoris"
     IDS_FILE_COMPARISON_TITLE "Comparació de fitxers"
-    IDS_EMPTY_LEFT_FILE     "Esquerre sense títol"
-    IDS_EMPTY_RIGHT_FILE    "Dret sense títol"
+    IDS_EMPTY_LEFT_FILE     "Fitxer esquerre sense títol"
+    IDS_EMPTY_RIGHT_FILE    "Fitxer dret sense títol"
 END
 
 // STATUS BAR : CURRENT OPERATION STATUS
@@ -1409,7 +1408,7 @@ BEGIN
     IDS_STATUS_COPYALL2R    "S'està copiant tot a la dreta"
     IDS_STATUS_COPYFILES    "S'estan copiant els fitxers..."
     IDS_STATUS_DELETEFILES  "S'estan suprimint els fitxers..."
-    IDS_STATUS_MOVEFILES    "Moving files..."
+    IDS_STATUS_MOVEFILES    "S'estan movent els fitxers..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1506,10 +1505,10 @@ BEGIN
     IDS_DEL_RIGHT_FMT2      "Dreta (%1 de %2)"
     IDS_DEL_BOTH_FMT2       "Ambdós (%1 de %2)"
     IDS_SELECT_DESTFOLDER   "Selecciona la carpeta de destinació"
-    IDS_MOVE_LEFT_TO        "Left to... (%1)"
-    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
-    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
-    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
+    IDS_MOVE_LEFT_TO        "D'esquerra a... (%1)"
+    IDS_MOVE_RIGHT_TO       "De dreta a... (%1)"
+    IDS_MOVE_LEFT_TO2       "D'esquerra a... (%1 de %2)"
+    IDS_MOVE_RIGHT_TO2      "De dreta a... (%1 de %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1547,9 +1546,9 @@ BEGIN
     ID_DIR_ZIP_BOTH         "Afegeix els elements d'ambdós costats a l'arxiu"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Afegeix els elements diferents a l'arxiu (d'ambdós costats)"
     ID_DIR_MOVE_LEFT_TO_BROWSE 
-                            "Move selected file on left to custom directory"
+                            "Mou els fitxers seleccionats de l'esquerra al directori especificat"
     ID_DIR_MOVE_RIGHT_TO_BROWSE 
-                            "Move selected file on right to custom directory"
+                            "Mou els fitxers seleccionats de la dreta al directori especificat"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
@@ -1609,8 +1608,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_ELAPSED_TIME        "Temps transcorregut: %ld ms"
-    IDS_STATUS_SELITEM1     "1 item selected"
-    IDS_STATUS_SELITEMS     "%1 items selected"
+    IDS_STATUS_SELITEM1     "1 element seleccionat"
+    IDS_STATUS_SELITEMS     "%1 elements seleccionats"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
@@ -1677,7 +1676,7 @@ END
 // EDITOR : FILENAME BAR POPUP
 STRINGTABLE
 BEGIN
-    ID_EDITOR_COPY_PATH     "Copia el camí sencer al fitxer"
+    ID_EDITOR_COPY_PATH     "Copia el camí sencer del fitxer"
     ID_EDITOR_COPY_FILENAME "Copia el nom del fixer"
 END
 
@@ -1694,8 +1693,8 @@ BEGIN
     IDS_DIFF_UNIFIED        "Unificat"
     IDS_FILEWRITE_ERROR     "No s'ha pogut escriure al fitxer  %1."
     IDS_PATH_NOT_ABSOLUTE   "%1\n no és pas un camí absolut!"
-    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
-    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
+    IDS_CANNOT_CREATE_BINARYPATCH "No es pot crear un pedaç de fitxers binaris."
+    IDS_CANNOT_CREATE_DIRPATCH "No es pot crear un pedaç de directoris."
 END
 
 STRINGTABLE
@@ -1707,7 +1706,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_AFRIKAANS           "Afrikaans"
-    IDS_ALBANIAN            "Albanè"
+    IDS_ALBANIAN            "Albanès"
     IDS_ARABIC_SAUDI        "Àrab (Aràbia Saudita)"
     IDS_ARABIC_IRAQ         "Àrab (Iraq)"
     IDS_ARABIC_EGYPT        "Àrab (Egipte)"
@@ -1726,7 +1725,7 @@ STRINGTABLE
 BEGIN
     IDS_ARABIC_LEBANON      "Àrab (Líban)"
     IDS_ARABIC_KUWAIT       "Àrab (Kuwait)"
-    IDS_ARABIC_UAE          "Àrab (UAE)"
+    IDS_ARABIC_UAE          "Àrab (Unió dels Emirats Àrabs)"
     IDS_ARABIC_BAHRAIN      "Àrab (Bahrain)"
     IDS_ARABIC_QATAR        "Àrab (Qatar)"
     IDS_ARMENIAN            "Armeni"
