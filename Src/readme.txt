@@ -1,3 +1,5 @@
+2003-10-22 WinMerge experimental release 2.1.3.4 (cvs)
+
 2003-10-22 Kimmo
  BUG: [ 826969 ] Wrong Open-dialog icon
   Load WinMerge icon to Open-dialog too
