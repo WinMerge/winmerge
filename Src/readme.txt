@@ -23,6 +23,10 @@
   Submitted by jtuc
   WinMerge: DirFrame.cpp
 
+2003-06-30 Laoran
+ [ 762394 ] update german language
+  Languages: German\MergeGerman.rc
+
 2003-06-30 Perry
  PATCH: [ 762835 ] Display line number etc beneath editor
   WinMerge: ChildFrm.cpp ChildFrm.h DirFrame.cpp Merge.cpp Merge.dsp 
