@@ -231,7 +231,7 @@ BOOL CMergeDoc::Rescan()
 	memset(&inf[1], 0,sizeof(inf[1]));
 	
 	/* Both exist and neither is a directory.  */
-	int o_binary = always_text_flag ? O_BINARY : 0;
+	int o_binary = always_text_flag ? 0:O_BINARY;
 	
 	/* Open the files and record their descriptors.  */
 	inf[0].name = *dir0 == 0 ? name0 : (free0 = dir_file_pathname (dir0, name0));
@@ -256,8 +256,6 @@ BOOL CMergeDoc::Rescan()
 			}
 			
 			/* Compare the files, if no error was found.  */
-			BOOL b1 = FileIsBinary(inf[0].desc);
-			BOOL b2 = FileIsBinary(inf[1].desc);
 			int diff_flag=0;
 
 			script = diff_2_files (inf, depth, &diff_flag);
