@@ -57,6 +57,8 @@
 #include "paths.h"
 #include "WaitStatusCursor.h"
 #include "PatchTool.h"
+#include "FileTransform.h"
+#include "SelectUnpackerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -107,6 +109,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_DROPFILES()
 	ON_MESSAGE(MSG_STAT_UPDATE, OnUpdateStatusMessage)
 	ON_WM_SETCURSOR()
+	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnUpdatePluginUnpackMode)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -297,7 +301,7 @@ void CMainFrame::OnFileOpen()
 }
 
 /// Creates new MergeDoc instance and shows documents
-void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft, BOOL bRORight)
+void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft, BOOL bRORight, PackingInfo * infoUnpacker /*= NULL*/)
 {
 	BOOL docNull;
 	BOOL bOpenSuccess = FALSE;
@@ -306,6 +310,9 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 
 	ASSERT(pMergeDoc);		// must ASSERT to get an answer to the question below ;-)
 	if (!pMergeDoc) return; // when does this happen ?
+
+	// if an unpacker is selected, it must be used during LoadFromFile
+	pMergeDoc->SetUnpacker(infoUnpacker);
 
 	bOpenSuccess = pMergeDoc->OpenDocs(szLeft, szRight,
 			bROLeft, bRORight);
@@ -545,7 +552,7 @@ BOOL CMainFrame::GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset)
 					}
 					else
 					{
-                        SetFilePointer(pfile,-1,NULL,FILE_CURRENT);
+						SetFilePointer(pfile,-1,NULL,FILE_CURRENT);
 						break;
 					}
 				}
@@ -712,7 +719,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		dlg.m_bVCProjSync = TRUE;
 
 		if (!m_CheckOutMulti)
-		{											
+		{
 			dlg.m_bMultiCheckouts = FALSE;
 			//this is when we get the multicheck variable
 			userChoice = dlg.DoModal();
@@ -759,9 +766,9 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			if (m_strVssDatabase.GetLength() > 0)
 			{
 				CString iniPath = m_strVssDatabase + _T("\\srcsafe.ini");
-	            // BSP - Open the specific VSS data file  using info from VSS dialog box
-					vssdb.Open(iniPath, m_strVssUser, m_strVssPassword);														
-					bOpened = TRUE;
+				// BSP - Open the specific VSS data file  using info from VSS dialog box
+				vssdb.Open(iniPath, m_strVssUser, m_strVssPassword);														
+				bOpened = TRUE;
 			}
 			
 			if (bOpened == FALSE)
@@ -781,7 +788,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				m_strVssProjectBase = temp;
 			}
 
-            // BSP - Combine the project entered on the dialog box with the file name...
+			// BSP - Combine the project entered on the dialog box with the file name...
 			const UINT nBufferSize = 1024;
 			static TCHAR buffer[nBufferSize];
 			static TCHAR buffer1[nBufferSize];
@@ -825,16 +832,16 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			}
 			CString strItem = m_strVssProjectBase + '\\' + sname;
 
-            //  BSP - ...to get the specific source safe item to be checked out
+			//  BSP - ...to get the specific source safe item to be checked out
 			m_vssi = vssdb.GetVSSItem( strItem, 0 );
 
-            // BSP - Get the working directory where VSS will put the file...
+			// BSP - Get the working directory where VSS will put the file...
 			CString strLocalSpec = m_vssi.GetLocalSpec();
 
-            // BSP - ...and compare it to the directory WinMerge is using.
+			// BSP - ...and compare it to the directory WinMerge is using.
 			if (strLocalSpec.CompareNoCase(strSavePath))
 			{
-			   // BSP - if the directories are different, let the user confirm the CheckOut
+				// BSP - if the directories are different, let the user confirm the CheckOut
 				int iRes = AfxMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, MB_YESNO);
 
 				if (iRes != IDYES)
@@ -844,7 +851,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				}
 			}
 
-            // BSP - Finally! Check out the file!
+			// BSP - Finally! Check out the file!
 			m_vssi.Checkout(_T(""), strSavePath, 0);
 		}
 	}
@@ -1150,6 +1157,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	CString strLeft(pszLeft);
 	CString strRight(pszRight);
 	CString strExt;
+	PackingInfo infoUnpacker;
 
 	BOOL docNull;
 	CDirDoc * pDirDoc = GetDirDocToShow(&docNull);
@@ -1182,6 +1190,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		strRight = dlg.m_strRight;
 		bRecurse = dlg.m_bRecurse;
 		strExt = dlg.m_strParsedExt;
+		infoUnpacker = dlg.m_infoHandler;
 		pathsType = static_cast<PATH_EXISTENCE>(dlg.m_pathsType);
 	}
 	else
@@ -1251,7 +1260,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	}
 	else
 	{
-		ShowMergeDoc(pDirDoc, strLeft, strRight);
+		ShowMergeDoc(pDirDoc, strLeft, strRight, FALSE, FALSE, &infoUnpacker);
 	}
 	return TRUE;
 }
@@ -2236,4 +2245,25 @@ BOOL CMainFrame::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 		return TRUE;
 	}
 	return CMDIFrameWnd::OnSetCursor(pWnd, nHitTest, message);
+}
+
+void CMainFrame::OnPluginUnpackMode(UINT nID )
+{
+	switch (nID)
+	{
+	case ID_UNPACK_MANUAL:
+		bUnpackerMode = UNPACK_MANUAL;
+		break;
+	case ID_UNPACK_AUTO:
+		bUnpackerMode = UNPACK_AUTO;
+		break;
+	}
+}
+
+void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI) 
+{
+	if (pCmdUI->m_nID == ID_UNPACK_MANUAL)
+		pCmdUI->SetCheck(UNPACK_MANUAL == bUnpackerMode);
+	if (pCmdUI->m_nID == ID_UNPACK_AUTO)
+		pCmdUI->SetCheck(UNPACK_AUTO == bUnpackerMode);
 }

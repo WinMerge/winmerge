@@ -36,6 +36,7 @@
 #ifndef CMoveConstraint_h
 #include "CMoveConstraint.h"
 #endif
+#include "FileTransform.h"
 
 /** @brief File open dialog displayed for user to choose directories or files */
 class COpenDlg : public CDialog
@@ -50,6 +51,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(COpenDlg)
 	enum { IDD = IDD_OPEN };
+	CButton	m_ctlSelectUnpacker;
+	CEdit	m_ctlUnpacker;
 	CSuperComboBox	m_ctlExt;
 	CButton	m_ctlOk;
 	CButton	m_ctlRecurse;
@@ -59,11 +62,14 @@ public:
 	CString	m_strRight;
 	BOOL	m_bRecurse;
 	CString	m_strExt;
+	CString	m_strUnpacker;
 	//}}AFX_DATA
 
 // other public data
 	CString m_strParsedExt;
 	int m_pathsType; // enum from PATH_EXISTENCE in paths.h
+	/// unpacker info
+	PackingInfo m_infoHandler;
 // Implementation data
 private:
 	prdlg::CMoveConstraint m_constraint; 
@@ -90,6 +96,7 @@ protected:
 	afx_msg void OnSelchangeRightCombo();
 	afx_msg void OnEditEvent();
 	afx_msg void OnTimer(UINT nIDEvent);
+	afx_msg void OnSelectUnpacker();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

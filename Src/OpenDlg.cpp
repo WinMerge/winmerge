@@ -27,6 +27,7 @@
 #include "OpenDlg.h"
 #include "coretools.h"
 #include "paths.h"
+#include "SelectUnpackerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -52,8 +53,9 @@ COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
 	m_strRight = _T("");
 	m_bRecurse = FALSE;
 	m_strExt = _T("*.*");
+	m_strUnpacker = _T("");
 	//}}AFX_DATA_INIT
-	
+
 	m_strParsedExt = _T(".*");
 	m_pathsType = DOES_NOT_EXIST;
 }
@@ -63,6 +65,8 @@ void COpenDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(COpenDlg)
+	DDX_Control(pDX, IDC_SELECT_UNPACKER, m_ctlSelectUnpacker);
+	DDX_Control(pDX, IDC_UNPACKER_EDIT, m_ctlUnpacker);
 	DDX_Control(pDX, IDC_EXT_COMBO, m_ctlExt);
 	DDX_Control(pDX, IDOK, m_ctlOk);
 	DDX_Control(pDX, IDC_RECURS_CHECK, m_ctlRecurse);
@@ -72,6 +76,7 @@ void COpenDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_CBStringExact(pDX, IDC_RIGHT_COMBO, m_strRight);
 	DDX_Check(pDX, IDC_RECURS_CHECK, m_bRecurse);
 	DDX_CBStringExact(pDX, IDC_EXT_COMBO, m_strExt);
+	DDX_Text(pDX, IDC_UNPACKER_EDIT, m_strUnpacker);
 	//}}AFX_DATA_MAP
 }
 
@@ -83,6 +88,7 @@ BEGIN_MESSAGE_MAP(COpenDlg, CDialog)
 	ON_CBN_SELCHANGE(IDC_LEFT_COMBO, OnSelchangeLeftCombo)
 	ON_CBN_SELCHANGE(IDC_RIGHT_COMBO, OnSelchangeRightCombo)
 	ON_CBN_EDITCHANGE(IDC_LEFT_COMBO, OnEditEvent)
+	ON_BN_CLICKED(IDC_SELECT_UNPACKER, OnSelectUnpacker)
 	ON_CBN_SELENDCANCEL(IDC_LEFT_COMBO, UpdateButtonStates)
 	ON_CBN_EDITCHANGE(IDC_RIGHT_COMBO, OnEditEvent)
 	ON_CBN_SELENDCANCEL(IDC_RIGHT_COMBO, UpdateButtonStates)
@@ -194,8 +200,6 @@ void COpenDlg::OnOK()
 	m_ctlExt.SaveState(_T("Files\\Ext"));
 
 	theApp.WriteProfileInt(_T("Settings"), _T("Recurse"), m_bRecurse);
-
-	CDialog::OnOK();
 }
 
 /** @brief Handler for WM_INITDIALOG; conventional location to initialize controls */
@@ -209,9 +213,11 @@ BOOL COpenDlg::OnInitDialog()
 	m_constraint.ConstrainItem(IDC_LEFT_COMBO, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_RIGHT_COMBO, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_EXT_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_UNPACKER_EDIT, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_LEFT_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_RIGHT_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
 	m_constraint.DisallowHeightGrowth();
@@ -225,6 +231,7 @@ BOOL COpenDlg::OnInitDialog()
 	UpdateButtonStates();
 
 	m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0)==1;
+	m_strUnpacker = m_infoHandler.pluginName;
 	UpdateData(FALSE);
 	return TRUE;  
 }
@@ -238,6 +245,8 @@ void COpenDlg::UpdateButtonStates()
 	PATH_EXISTENCE pathsType = GetPairComparability(m_strLeft, m_strRight);
 	m_ctlOk.EnableWindow(pathsType != DOES_NOT_EXIST);
 	m_ctlRecurse.EnableWindow(pathsType == IS_EXISTING_DIR); 
+	m_ctlUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
+	m_ctlSelectUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
 }
 
 BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder) 
@@ -313,3 +322,27 @@ void COpenDlg::OnTimer(UINT nIDEvent)
 
 	CDialog::OnTimer(nIDEvent);
 }
+
+void COpenDlg::OnSelectUnpacker() 
+{
+	UpdateData(TRUE);
+
+	m_pathsType = GetPairComparability(m_strLeft, m_strRight);
+
+	if (m_pathsType != IS_EXISTING_FILE) 
+		return;
+
+	// let the user select a handler
+	CSelectUnpackerDlg dlg(m_strLeft, m_strRight, this);
+	dlg.SetInitialInfoHandler(&m_infoHandler);
+
+	if (dlg.DoModal() == IDOK)
+	{
+		m_infoHandler = dlg.GetInfoHandler();
+
+		m_strUnpacker = m_infoHandler.pluginName;
+
+		UpdateData(FALSE);
+	}
+}
+

@@ -27,6 +27,7 @@
 #include "diffthread.h"
 #include "diff.h"
 #include "DirScan.h"
+#include "Plugins.h"
 
 /**
  * @brief Static structure for sharing data with thread
@@ -111,6 +112,10 @@ UINT DiffThread(LPVOID lpParam)
 	DiffFuncStruct *myStruct = (DiffFuncStruct *) lpParam;
 	HWND hWnd = myStruct->hWindow;
 	UINT msgID = myStruct->msgUIUpdate;
+
+	// keep the scripts alive during the Rescan
+	// when we exit the thread, we delete this and release the scripts
+	CScriptsOfThread scriptsForRescan;
 
 	bool casesensitive = false;
 	int depth = myStruct->bRecursive ? -1 : 0;

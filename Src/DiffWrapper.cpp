@@ -28,6 +28,7 @@
 #include "coretools.h"
 #include "diffwrapper.h"
 #include "diff.h"
+#include "FileTransform.h"
 
 extern int recursive;
 
@@ -100,6 +101,15 @@ void CDiffWrapper::SetOptions(DIFFOPTIONS *options)
 {
 	ASSERT(options);
 	InternalSetOptions(options);
+}
+
+/**
+ * @brief Set text tested to find the unpacker automatically.
+ * Most probably a concatenated string of both filenames.
+ */
+void CDiffWrapper::SetTextForAutomaticUnpack(CString text)
+{
+	m_sToFindUnpacker = text;
 }
 
 /**
@@ -179,6 +189,10 @@ BOOL CDiffWrapper::RunFileDiff()
 	bool same_files = FALSE;
 	struct change *e, *p;
 	struct change *script = NULL;
+
+	// do the preprocessing now, overwrite the temp files
+	FileTransform_Preprocess(m_sFile1, m_sToFindUnpacker, TRUE);
+	FileTransform_Preprocess(m_sFile2, m_sToFindUnpacker, TRUE);
 
 	SplitFilename(m_sFile1, &sdir0, &sname0, NULL);
 	SplitFilename(m_sFile2, &sdir1, &sname1, NULL);

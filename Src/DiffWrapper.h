@@ -166,6 +166,7 @@ public:
 	void SetDiffList(CArray<DIFFRANGE,DIFFRANGE> *diffs);
 	void GetOptions(DIFFOPTIONS *options);
 	void SetOptions(DIFFOPTIONS *options);
+	void SetTextForAutomaticUnpack(CString text);
 	void GetPatchOptions(PATCHOPTIONS *options);
 	void SetPatchOptions(PATCHOPTIONS *options);
 	BOOL GetUseDiffList() const;
@@ -197,6 +198,7 @@ private:
 	CString m_sFile1;
 	CString m_sFile2;
 	CString m_sPatchFile;
+	CString m_sToFindUnpacker;
 	BOOL m_bUseDiffList;
 	BOOL m_bCreatePatchFile;
 	BOOL m_bAddCmdLine;

@@ -680,6 +680,10 @@ SOURCE=.\files.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\FileTransform.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\FNMATCH.C
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -1030,6 +1034,10 @@ SOURCE=.\paths.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Plugins.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropColors.cpp
 # End Source File
 # Begin Source File
@@ -1153,6 +1161,10 @@ SOURCE=..\common\RegExp.cpp
 # Begin Source File
 
 SOURCE=..\common\RegKey.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\SelectUnpackerDlg.cpp
 # End Source File
 # Begin Source File
 
@@ -1306,7 +1318,7 @@ SOURCE=..\common\unicoder.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\unidiff.cpp
+SOURCE=.\UnicodeUtf8.cpp
 # End Source File
 # Begin Source File
 
@@ -1510,6 +1522,10 @@ SOURCE=.\files.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\FileTransform.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\FNMATCH.H
 # End Source File
 # Begin Source File
@@ -1590,6 +1606,10 @@ SOURCE=.\paths.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Plugins.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropColors.h
 # End Source File
 # Begin Source File
@@ -1627,6 +1647,10 @@ SOURCE=..\common\RegKey.h
 # Begin Source File
 
 SOURCE=.\Resource.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SelectUnpackerDlg.h
 # End Source File
 # Begin Source File
 
@@ -1678,7 +1702,7 @@ SOURCE=..\common\unicoder.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\unidiff.h
+SOURCE=.\UnicodeUtf8.h
 # End Source File
 # Begin Source File
 

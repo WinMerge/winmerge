@@ -57,8 +57,19 @@ enum
 	RESCAN_FILE_ERR
 };
 
+/**
+ * @brief Return code of SaveToFile 
+ */
+enum
+{
+	SAVE_DONE = 0,
+	SAVE_FAILED,
+	SAVE_PACK_FAILED
+};
+
 class CMergeEditView;
 class CMergeDiffDetailView;
+class PackingInfo;
 
 //<jtuc 2003-06-28>
 /*
@@ -96,6 +107,7 @@ private :
 		BOOL m_bIsLeft;
 		BOOL FlagIsSet(UINT line, DWORD flag);
 		CString m_strTempPath;
+		int unpackerSubcode;
 
 		int NoteCRLFStyleFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
 		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineNum, DWORD dwLineLen = 0);
@@ -107,10 +119,9 @@ public :
 		void ReplaceLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 		void ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 
-		BOOL LoadFromFile2(LPCTSTR pszFileName, BOOL & readOnly, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
-		BOOL SaveToFile (LPCTSTR pszFileName, BOOL bTempFile,
-				int nCrlfStyle = CRLF_STYLE_AUTOMATIC, 
-											 BOOL bClearModifiedFlag = TRUE );
+		BOOL LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker, CString filteredFilenames, BOOL & readOnly, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
+		BOOL SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, PackingInfo * infoUnpacker = NULL,
+				int nCrlfStyle = CRLF_STYLE_AUTOMATIC, BOOL bClearModifiedFlag = TRUE );
 
 		CDiffTextBuffer (CMergeDoc * pDoc, BOOL bLeft)
 		{
@@ -199,7 +210,7 @@ public:
 	void CopyAllList(bool bSrcLeft);
 	void CopyMultipleList(bool bSrcLeft, int firstDiff, int lastDiff);
 	void ListCopy(bool bSrcLeft);
-	BOOL TrySaveAs(CString &strPath, BOOL &bSaveSuccess, BOOL bLeft);
+	BOOL TrySaveAs(CString &strPath, BOOL &bSaveSuccess, BOOL bLeft, PackingInfo * pInfoTempUnpacker);
 	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
 	//CString ExpandTabs(LPCTSTR szText);
 	//CString Tabify(LPCTSTR szText);
@@ -210,6 +221,7 @@ public:
 	void Showlinediff(CMergeDiffDetailView * pView);
 	RECT Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther);
 	
+	void SetUnpacker(PackingInfo * infoUnpacker);
 	void SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight);
 	void SetMergeDetailViews(CMergeDiffDetailView * pLeft, CMergeDiffDetailView * pRight);
 	void SetDirDoc(CDirDoc * pDirDoc);
@@ -265,6 +277,10 @@ protected:
 	BOOL m_bEnableRescan;
 	COleDateTime m_LastRescan;
 	CDiffWrapper m_diffWrapper;
+	/// information about the file packer/unpacker
+	PackingInfo * m_pInfoUnpacker;
+	/// String of concatenated filenames as text to apply plugins filter to
+	CString m_strBothFilenames;
 
 // friend access
 	friend class RescanSuppress;

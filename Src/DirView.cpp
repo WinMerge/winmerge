@@ -36,6 +36,8 @@
 #include "WaitStatusCursor.h"
 #include "dllver.h"
 #include "locality.h"
+#include "FileTransform.h"
+#include "SelectUnpackerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -92,6 +94,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT, OnUpdateCtxtDirOpenRight)
 	ON_COMMAND(ID_DIR_OPEN_RIGHT_WITH, OnCtxtDirOpenRightWith)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT_WITH, OnUpdateCtxtDirOpenRightWith)
+	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
+	ON_UPDATE_COMMAND_UI(ID_POPUP_OPEN_WITH_UNPACKER, OnUpdateCtxtOpenWithUnpacker)
 	ON_WM_DESTROY()
 	ON_WM_CHAR()
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
@@ -595,7 +599,7 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 // TODO: This just opens first selected item
 // should it do something different when multiple items are selected ?
 // (Perry, 2002-12-04)
-void CDirView::OpenSelection()
+void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 {
 	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
 	if (sel != -1)
@@ -615,7 +619,7 @@ void CDirView::OpenSelection()
 			GetItemFileNames(sel, left, right);
 			mf->ShowMergeDoc(GetDocument(), left, right,
 				GetDocument()->GetReadOnly(TRUE),
-				GetDocument()->GetReadOnly(FALSE));
+				GetDocument()->GetReadOnly(FALSE), infoUnpacker);
 		}
 	}
 }
@@ -1538,3 +1542,40 @@ void CDirView::OnCustomizeColumns()
 }
 
 
+void CDirView::OnCtxtOpenWithUnpacker() 
+{
+	int sel = -1;
+	sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
+	if (sel != -1)
+	{
+		// let the user choose a handler
+		CSelectUnpackerDlg dlg(GetDiffItem(sel).sfilename, this);
+		// create now a new infoUnpacker to initialize the manual/automatic flag
+		PackingInfo infoUnpacker;
+		dlg.SetInitialInfoHandler(&infoUnpacker);
+
+		if (dlg.DoModal() == IDOK)
+		{
+			infoUnpacker = dlg.GetInfoHandler();
+			OpenSelection(&infoUnpacker);
+		}
+	}
+
+}
+
+void CDirView::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI) 
+{
+	// we need one selected file, existing on both side
+	if (m_pList->GetSelectedCount() != 1)
+		pCmdUI->Enable(FALSE);
+	else
+	{
+		int sel=-1;
+		sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (IsItemDeletableOnBoth(di))
+			pCmdUI->Enable(TRUE);
+		else
+			pCmdUI->Enable(FALSE);
+	}
+}

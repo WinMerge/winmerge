@@ -11,7 +11,7 @@
 #include "DiffContext.h"
 #include "logfile.h"
 #include "paths.h"
-#include "unidiff.h"
+#include "FileTransform.h"
 
 extern bool just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin);
 extern CLogFile gLog;
@@ -180,18 +180,63 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 				CString filepath1 = paths_ConcatPath(sLeftDir, leftFiles[i].name);
 				CString filepath2 = paths_ConcatPath(sRightDir, rightFiles[j].name);
 
-				// Do any needed transformations
-				// Primarily we convert UCS-2 to UTF-8
-				// because diffutils can do UTF-8
-				// and the line numbers are the same (unlike byte offsets)
-				// TODO: temp file leak: We're orphaning a set of temp files here ?
-				unidiff_PrepFile(filepath1, &leftFiles[i].attrs);
-				unidiff_PrepFile(filepath2, &rightFiles[j].attrs);
+				// compareok equals true as long as everything is fine
+				BOOL compareok = TRUE;
+
+				// For user chosen plugins, define bAutomaticUnpacker as false and use the chosen infoHandler
+				// but how can we receive the infoHandler ? DirScan actually only 
+				// returns info, but can not use file dependent information.
+
+				// Transformation happens here
+				// text used for automatic mode : plugin filter must mach it
+				CString filteredFilenames = filepath1 + "|" + filepath2;
+				// the creation of infoHandler initializes the bAutomatic flag
+				PackingInfo infoUnpacker;
+				// plugin may alter filepaths to temp copies
+				CString filepathTransformed1 = filepath1;
+				CString filepathTransformed2 = filepath2;
+
+				// first step : unpack
+				if (infoUnpacker.bToBeScanned)
+					compareok = FileTransform_Unpacking(filepathTransformed1, filteredFilenames, &infoUnpacker, &infoUnpacker.subcode);
+				else
+					compareok = FileTransform_Unpacking(filepathTransformed1, infoUnpacker, &infoUnpacker.subcode);
+				// second step : normalize Unicode to OLECHAR (most of time, do nothing) (OLECHAR = UCS-2LE in Windows)
+				BOOL bMayOverwrite1 = (filepathTransformed1 != filepath1);
+				if (compareok)
+					compareok = FileTransform_NormalizeUnicode(filepathTransformed1, filteredFilenames, bMayOverwrite1);
+				// third step : preprocess for diffing
+				bMayOverwrite1 = (filepathTransformed1 != filepath1);
+				if (compareok)
+					compareok = FileTransform_Preprocess(filepathTransformed1, filteredFilenames, bMayOverwrite1);
+
+				// first step : unpack
+				if (compareok)
+				{
+					// we use the same unpacker for both files, so it must be defined before second file
+					ASSERT(infoUnpacker.bToBeScanned == FALSE);
+					compareok = FileTransform_Unpacking(filepathTransformed2, infoUnpacker, &infoUnpacker.subcode);
+				}
+				// second step : normalize Unicode to OLECHAR (most of time, do nothing)
+				BOOL bMayOverwrite2 = (filepathTransformed2 != filepath2);
+				if (compareok)
+					compareok = FileTransform_NormalizeUnicode(filepathTransformed2, filteredFilenames, bMayOverwrite2);
+				// third step : preprocess for diffing
+				bMayOverwrite2 = (filepathTransformed2 != filepath2);
+				if (compareok)
+					compareok = FileTransform_Preprocess(filepathTransformed2, filteredFilenames, bMayOverwrite2);
 
 				// Actually compare the files
 				// just_compare_files is a fairly thin front-end to diffutils
 				bool diff=false, bin=false;
-				bool compareok = just_compare_files (filepath1, filepath2, 0, &diff, &bin);
+				if (compareok)
+					compareok = just_compare_files (filepathTransformed1, filepathTransformed2, 0, &diff, &bin);
+
+				// delete the temp files after comparison
+				if (filepathTransformed1 != filepath1)
+					::DeleteFile(filepathTransformed1);
+				if (filepathTransformed2 != filepath2)
+					::DeleteFile(filepathTransformed2);
 
 				// assemble bit flags for result code
 				int code = DIFFCODE::FILE;

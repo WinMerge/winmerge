@@ -45,7 +45,7 @@
 #include "dirdoc.h"
 #include "files.h"
 #include "WaitStatusCursor.h"
-#include "unidiff.h"
+#include "FileTransform.h"
 #include "unicoder.h"
 
 #ifdef _DEBUG
@@ -101,6 +101,7 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	m_pLeftDetailView=NULL;
 	m_pRightDetailView=NULL;
 	m_pDirDoc=NULL;
+	m_pInfoUnpacker = new PackingInfo;
 }
 #pragma warning(default:4355)
 
@@ -118,6 +119,11 @@ CMergeDoc::~CMergeDoc()
 	{
 		m_pDirDoc->MergeDocClosing(this);
 		m_pDirDoc = 0;
+	}
+	if (m_pInfoUnpacker) 
+	{
+		delete m_pInfoUnpacker;
+		m_pInfoUnpacker = 0;
 	}
 }
 
@@ -198,6 +204,13 @@ BOOL CMergeDoc::OnNewDocument()
 }
 
 
+void CMergeDoc::SetUnpacker(PackingInfo * infoNewHandler)
+{
+	if (infoNewHandler)
+	{
+		*m_pInfoUnpacker = *infoNewHandler;
+	}
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc serialization
@@ -233,7 +246,7 @@ void CMergeDoc::Dump(CDumpContext& dc) const
 // CMergeDoc commands
 
 /**
- * @brief Save an editor text buffer to a file for diff'ing (make UTF-8 if appropriate)
+ * @brief Save an editor text buffer to a file for preprocessing (make UCS-2LE if appropriate)
  */
 static void SaveBuffForDiff(CMergeDoc::CDiffTextBuffer & buf, const CString & filepath)
 {
@@ -245,13 +258,16 @@ static void SaveBuffForDiff(CMergeDoc::CDiffTextBuffer & buf, const CString & fi
 		|| buf.m_nSourceEncoding==-21 // source file was UCS-2BE
 		|| buf.m_nSourceEncoding==-22) // source file was UTF-8
 	{
-		buf.m_nSourceEncoding = -22; // write as UTF-8
+		buf.m_nSourceEncoding = -20; // write as UCS-2LE (for preprocessing)
 	}
+
+	// and we don't repack the file
+	PackingInfo * tempPacker = NULL;
 
 	// write buffer out to temporary file
 	BOOL bTempFile = TRUE;
 	BOOL bClearModifiedFlag = FALSE;
-	buf.SaveToFile(filepath, bTempFile, CRLF_STYLE_AUTOMATIC, bClearModifiedFlag);
+	buf.SaveToFile(filepath, bTempFile, tempPacker, CRLF_STYLE_AUTOMATIC, bClearModifiedFlag);
 	
 	// restore memory of encoding of original file
 	buf.m_nSourceEncoding = temp;
@@ -310,6 +326,7 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 
 	// Set up DiffWrapper
 	m_diffWrapper.SetCompareFiles(m_strTempLeftFile, m_strTempRightFile);
+	m_diffWrapper.SetTextForAutomaticUnpack(m_strBothFilenames);
 	m_diffWrapper.SetDiffList(&m_diffs);
 	m_diffWrapper.SetUseDiffList(TRUE);		// Add diffs to list
 	m_diffWrapper.GetOptions(&diffOptions);
@@ -645,15 +662,27 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
  * @param bSaveSuccess Returns if saving itself succeeded/failed
  * @return False when saving fails, so we can ask again
  */
-BOOL CMergeDoc::TrySaveAs(CString &strPath, BOOL &bSaveSuccess, BOOL bLeft)
+BOOL CMergeDoc::TrySaveAs(CString &strPath, BOOL &bSaveSuccess, BOOL bLeft, PackingInfo * pInfoTempUnpacker)
 {
 	BOOL result = TRUE;
 	CString s;
 	CString strSavePath;
 	CString title;
 
-	bSaveSuccess = FALSE;
-	AfxFormatString1(s, IDS_FILESAVE_FAILED, strPath);
+	if (bSaveSuccess == SAVE_PACK_FAILED)
+	{
+		// display an error message
+
+		AfxFormatString2(s, bLeft ? IDS_FILEPACK_FAILED_LEFT : IDS_FILEPACK_FAILED_RIGHT, strPath, pInfoTempUnpacker->pluginName);
+		// replace the unpacker with a "do nothing" unpacker
+		pInfoTempUnpacker->Initialize(UNPACK_MANUAL);
+	}
+	else
+	{
+		// display an error message
+		AfxFormatString1(s, IDS_FILESAVE_FAILED, strPath);
+	}
+
 	switch(AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION))
 	{
 	case IDYES:
@@ -662,11 +691,11 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, BOOL &bSaveSuccess, BOOL bLeft)
 		{
 			strSavePath = s;
 			if (bLeft)
-				bSaveSuccess = m_ltBuf.SaveToFile(strSavePath, FALSE);
+				bSaveSuccess = m_ltBuf.SaveToFile(strSavePath, FALSE, pInfoTempUnpacker);
 			else
-				bSaveSuccess = m_rtBuf.SaveToFile(strSavePath, FALSE);
+				bSaveSuccess = m_rtBuf.SaveToFile(strSavePath, FALSE, pInfoTempUnpacker);
 
-			if (bSaveSuccess)
+			if (bSaveSuccess == SAVE_DONE)
 			{
 				strPath = strSavePath;
 				UpdateHeaderPath(bLeft);
@@ -703,6 +732,11 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 {
 	CString strSavePath(szPath);
 
+	// use a temp packer
+	// first copy the m_pInfoUnpacker
+	// if an error arises during packing, change and take a "do nothing" packer
+	PackingInfo infoTempUnpacker = *m_pInfoUnpacker;
+
 	bSaveSuccess = FALSE;
 	if (!mf->m_strSaveAsPath.IsEmpty())
 	{
@@ -731,12 +765,12 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	BOOL result;
 	if(bLeft)
 	{
-		result = m_ltBuf.SaveToFile(strSavePath, FALSE);
-		if(result)
+		bSaveSuccess = m_ltBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
+		if(bSaveSuccess == SAVE_DONE)
 		{
-			bSaveSuccess = TRUE;
 			m_strLeftFile = strSavePath;
 			UpdateHeaderPath(TRUE);
+			result = TRUE;
 		}
 		else
 		{
@@ -744,19 +778,20 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 			// TODO: proper fix for handling save success here;
 			// problem is we cannot return bSaveSuccess because callers use
 			// it to determine if file statuses should be changed.
-			BOOL bSaveAsSuccess;
-			while (!result)
-				result = TrySaveAs(strSavePath, bSaveAsSuccess, bLeft);
+			BOOL bSaveAsSuccess = bSaveSuccess;
+			do
+				result = TrySaveAs(strSavePath, bSaveAsSuccess, bLeft, &infoTempUnpacker);
+			while (!result);
 		}
 	}
 	else
 	{
-		result = m_rtBuf.SaveToFile(strSavePath, FALSE);
-		if(result)
+		bSaveSuccess = m_rtBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
+		if(bSaveSuccess == SAVE_DONE)
 		{
-			bSaveSuccess = TRUE;
 			m_strRightFile = strSavePath;
 			UpdateHeaderPath(FALSE);
+			result = TRUE;
 		}
 		else
 		{
@@ -764,9 +799,10 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 			// TODO: proper fix for handling save success here;
 			// problem is we cannot return bSaveSuccess because callers use
 			// it to determine if file statuses should be changed.
-			BOOL bSaveAsSuccess;
-			while (!result)
-				result = TrySaveAs(strSavePath, bSaveAsSuccess, bLeft);
+			BOOL bSaveAsSuccess = bSaveSuccess;
+			do
+				result = TrySaveAs(strSavePath, bSaveAsSuccess, bLeft, &infoTempUnpacker);
+			while (!result);
 		}
 	}
 	return result;
@@ -1030,11 +1066,30 @@ int GetTextFileStyle(const ParsedTextFile & parsedTextFile)
 }
 
 /// Loads file from disk to buffer
-int CMergeDoc::CDiffTextBuffer::LoadFromFile2(LPCTSTR pszFileName, BOOL & readOnly,
+int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInfo * infoUnpacker, CString sToFindUnpacker, BOOL & readOnly,
 		int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/)
 {
-	ASSERT(!m_bInit);
-	ASSERT(m_aLines.GetSize() == 0);
+	// Unpacking the file here, save the result in a temporary file
+	CString sFileName = pszFileNameInit;
+	int attrs=0;		// don't care about it, it is for DirScan
+	if (infoUnpacker->bToBeScanned)
+	{
+		if (!FileTransform_Unpacking(sFileName, sToFindUnpacker, infoUnpacker, &unpackerSubcode))
+			return FRESULT_ERROR;
+	}
+	else
+	{
+		if (!FileTransform_Unpacking(sFileName, *infoUnpacker, &unpackerSubcode))
+			return FRESULT_ERROR;
+	}
+	// we use the same unpacker for both files, so it must be defined after first file
+	ASSERT(infoUnpacker->bToBeScanned == FALSE);
+	// we will load the transformed file
+	LPCTSTR pszFileName = sFileName;
+
+//	We call FreeAll just before reading m_aLines
+//	ASSERT(!m_bInit);
+//	ASSERT(m_aLines.GetSize() == 0);
 	MAPPEDFILEDATA fileData = {0};
 	CString sExt;
 	BOOL bSuccess = FALSE;
@@ -1070,6 +1125,9 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile2(LPCTSTR pszFileName, BOOL & readOn
 	
 	if (nRetVal == FRESULT_OK)
 	{
+		// FreeAll() is needed before loading (this is complicated)
+		FreeAll();
+
 		m_aLines.SetSize(parsedTextFile.lines.GetSize(), 4096);
 		
 		DWORD dwBytesRead = 0;
@@ -1136,6 +1194,11 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile2(LPCTSTR pszFileName, BOOL & readOn
 	}
 	
 	files_closeFileMapped(&fileData, 0xFFFFFFFF, FALSE);
+
+	// delete the file that unpacking may have created
+	if (_tcscmp(pszFileNameInit, pszFileName) != 0)
+		::DeleteFile(pszFileName);
+
 	return nRetVal;
 }
 
@@ -1143,7 +1206,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile2(LPCTSTR pszFileName, BOOL & readOn
 // NOTE: bTempFile is FALSE if we are saving user files and
 // TRUE if we are saving workin-temp-files for diff-engine
 BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
-		BOOL bTempFile, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ ,
+		BOOL bTempFile, PackingInfo * infoUnpacker /*= NULL*/, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ ,
 		BOOL bClearModifiedFlag /*= TRUE*/ )
 {
 	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
@@ -1226,12 +1289,12 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	}
 	
 	if (!pszFileName)
-		return FALSE;	// No filename, cannot save...
+		return SAVE_FAILED;	// No filename, cannot save...
 
 	if (!bTempFile)
 	{
 		if (!::GetTempFileName(m_strTempPath, _T("MRG"), 0, szTempFileName))
-			return FALSE;  //Nothing to do if even tempfile name fails
+			return SAVE_FAILED;  //Nothing to do if even tempfile name fails
 	}
 
 	// Init filedata struct and open file as memory mapped 
@@ -1290,6 +1353,25 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		
 		if (!bTempFile)
 		{
+			// If we are saving user files
+			// we need an unpacker/packer, at least a "do nothing" one
+			ASSERT(infoUnpacker != NULL);
+			// repack the file here, overwrite the temporary file we did save in
+			CString csTempFileName = szTempFileName;
+			infoUnpacker->subcode = unpackerSubcode;
+			if (!FileTransform_Packing(csTempFileName, *infoUnpacker))
+			{
+				::DeleteFile(szTempFileName);
+				// returns now, don't overwrite the original file
+				return SAVE_PACK_FAILED;
+			}
+			// the temp filename may have changed during packing
+			if (csTempFileName != szTempFileName)
+			{
+				::DeleteFile(szTempFileName);
+				_tcscpy(szTempFileName, csTempFileName);
+			}
+
 			// Write tempfile over original file
 			if (::CopyFile(szTempFileName, pszFileName, FALSE))
 			{
@@ -1312,7 +1394,10 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			bSaveSuccess = TRUE;
 		}
 	}
-	return bSaveSuccess;
+	if (bSaveSuccess)
+		return SAVE_DONE;
+	else
+		return SAVE_FAILED;
 }
 
 /// Replace text of line (no change to eol)
@@ -1562,15 +1647,22 @@ void CMergeDoc::OnFileSaveAsLeft()
 	CString title;
 	BOOL bSaveSuccess = FALSE;
 	
+	// use a temp packer
+	// first copy the m_pInfoUnpacker
+	// if an error arises during packing, change and take a "do nothing" packer
+	PackingInfo infoTempUnpacker = *m_pInfoUnpacker;
+
 	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
 	if (SelectFile(s, m_strLeftFile, title, NULL, FALSE))
 	{
-		bSaveSuccess = m_ltBuf.SaveToFile(s, FALSE);
-		if (!bSaveSuccess)
+		bSaveSuccess = m_ltBuf.SaveToFile(s, FALSE, &infoTempUnpacker);
+		if(bSaveSuccess != SAVE_DONE)
 		{
+			BOOL bSaveAsSuccess = bSaveSuccess;
 			// Saving failed, user may save to another location if wants to
-			while (!result)
-				result = TrySaveAs(s, bSaveSuccess, TRUE);
+			do
+				result = TrySaveAs(s, bSaveAsSuccess, TRUE, &infoTempUnpacker);
+			while (!result);
 		}
 		else
 		{
@@ -1591,15 +1683,22 @@ void CMergeDoc::OnFileSaveAsRight()
 	CString title;
 	BOOL bSaveSuccess = FALSE;
 	
+	// use a temp packer
+	// first copy the m_pInfoUnpacker
+	// if an error arises during packing, change and take a "do nothing" packer
+	PackingInfo infoTempUnpacker = *m_pInfoUnpacker;
+
 	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
 	if (SelectFile(s, m_strRightFile, title, NULL, FALSE))
 	{
 		bSaveSuccess = m_rtBuf.SaveToFile(s, FALSE);
-		if (!bSaveSuccess)
+		if(bSaveSuccess != SAVE_DONE)
 		{
+			BOOL bSaveAsSuccess = bSaveSuccess;
 			// Saving failed, user may save to another location if wants to
-			while (!result)
-				result = TrySaveAs(s, bSaveSuccess, FALSE);
+			do
+				result = TrySaveAs(s, bSaveAsSuccess, FALSE, &infoTempUnpacker);
+			while (!result);
 		}
 		else
 		{
@@ -2171,9 +2270,7 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly)
 		m_strRightFile = sFileName;
 	}
 
-	// FreeAll() is needed before loading (this is complicated)
-	pBuf->FreeAll();
-	retVal = pBuf->LoadFromFile2(sFileName, readOnly);
+	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker, m_strBothFilenames, readOnly);
 
 	if (retVal != FRESULT_OK)
 	{
@@ -2221,6 +2318,9 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	m_rtBuf.SetEolSensitivity(diffOptions.bEolSensitive);
 	undoTgt.clear();
 	curUndo = undoTgt.begin();
+
+	// build the text being filtered, "|" separates files as it is forbidden in filenames
+	m_strBothFilenames = sLeftFile + "|" + sRightFile;
 
 	// Load left side file
 	int nLeftSuccess = LoadFile(sLeftFile, TRUE, bROLeft);

@@ -43,6 +43,7 @@
 #include "coretools.h"
 #include "paths.h"
 #include "FileFilterMgr.h"
+#include "Plugins.h"
 
 #include "MergeEditView.h"
 #ifdef _DEBUG
@@ -187,6 +188,8 @@ BOOL CMergeApp::InitInstance()
 	AddEnglishResourceHook(); // Use English string when l10n (foreign) string missing
 
 	InitializeFileFilters();
+
+	m_mainThreadScripts = new CScriptsOfThread;
 
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views.
@@ -660,6 +663,8 @@ int CMergeApp::ExitInstance()
 	WriteProfileInt(_T("Settings"), _T("TrivialDifferenceDeletedColor"), m_clrTrivialDeleted);
 	
 	delete m_fileFilterMgr;
+
+	delete m_mainThreadScripts;
 
 	return CWinApp::ExitInstance();
 }

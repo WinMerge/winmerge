@@ -60,6 +60,8 @@ typedef enum { eMain, eContext } eMenuType;
 class CDirDoc;
 class CDirFrame;
 
+class PackingInfo;
+
 /** View displaying results of a diff, one row per file */
 class CDirView : public CListViewEx
 {
@@ -261,6 +263,8 @@ protected:
 	afx_msg void OnUpdateStatusLeftRO(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusRightRO(CCmdUI* pCmdUI);
 	afx_msg void OnCustomizeColumns();
+	afx_msg void OnCtxtOpenWithUnpacker();
+	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
@@ -269,7 +273,7 @@ protected:
 	afx_msg void OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult);
 
 private:
-	void OpenSelection();
+	void OpenSelection(PackingInfo * infoUnpacker = NULL);
 	void DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI, eMenuType menuType);
 	void DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI, eMenuType menuType);
 	void ModifyPopup(CMenu * pPopup, int nStringResource, int nMenuId, LPCTSTR szPath);

@@ -1,4 +1,12 @@
 2003-10-17 Laoran
+ PATCH: [ 807263 ] Preprocessing patch
+  common: dllproxy.c dllproxy.h lwdisp.c lwdisp.h
+  WinMerge: DiffThread.cpp DiffWrapper.cpp DiffWrapper.h DirScan.cpp DirView.cpp DirView.h FileFilterMgr.cpp
+   FileFilterMgr.h MainFrm.cpp MainFrm.h Merge.cpp Merge.dsp Merge.h Merge.rc MergeDoc.cpp MergeDoc.h
+   MergeEditView.cpp OpenDlg.cpp OpenDlg.h resource.h
+  WinMerge Add: FileTransform.cpp FileTransform.h Plugins.cpp Plugins.h SelectUnpackerDlg.cpp 
+   SelectUnpackerDlg.h UnicodeUtf8.cpp UnicodeUtf8.h
+  WinMerge Remove: unidiff.cpp unidiff.h
  PATCH: [ 823556 ] CF_UNICODETEXT format for OLE in unicode build
   WinMerge: FilepathEdit.cpp StdAfx.cpp StdAfx.h 
   editlib: ccrystaleditview.cpp ccrystaltextview2.cpp

@@ -31,6 +31,8 @@ public:
 	void LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt);
 	// Reload an edited filter
 	void ReloadFilterFromDisk(FileFilter * pfilter);
+	// Load a filter from a string
+	void LoadFilterString(LPCTSTR szFilterString);
 
 	// access to array of filters
 	int GetFilterCount() const { return m_filters.GetSize(); }
@@ -55,6 +57,16 @@ protected:
 private:
 	CTypedPtrArray<CPtrArray, FileFilter *> m_filters;
 };
+
+
+// I think that CRegExp doesn't copy correctly (I get heap corruption in CRegList::program)
+// so I'm using pointers to avoid its copy constructor
+// Perry, 2003-05-18
+
+class CRegExp;
+typedef CTypedPtrList<CPtrList, CRegExp*>RegList;
+BOOL TestAgainstRegList(const RegList & reglist, LPCTSTR szTest);
+void DeleteRegList(RegList & reglist);
 
 
 #endif // FileFilter_h_included

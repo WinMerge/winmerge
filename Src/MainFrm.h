@@ -94,7 +94,7 @@ public:
 	BOOL DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
 		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE);
-	void ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft = FALSE, BOOL bRORight = FALSE);
+	void ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft = FALSE, BOOL bRORight = FALSE, PackingInfo * infoUnpacker = NULL);
 	void UpdateResources();
 	HMENU NewDefaultMenu();
 	BOOL CreateBackup(LPCTSTR pszPath);
@@ -197,6 +197,8 @@ protected:
 	afx_msg void OnDropFiles(HDROP dropInfo);
 	afx_msg LRESULT OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam);
 	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
+	afx_msg void OnPluginUnpackMode(UINT nID);
+	afx_msg void OnUpdatePluginUnpackMode(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
