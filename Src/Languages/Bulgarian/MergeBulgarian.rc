@@ -151,6 +151,11 @@ BEGIN
             MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
+        POPUP "Advanced"
+        BEGIN
+            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
+                                                    ID_EDIT_COPY_LINENUMBERS
+        END
         MENUITEM "От&иди на...\tCtrl+И",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Настройки...",                 ID_OPTIONS
@@ -342,6 +347,8 @@ IDR_MAINFRAME ACCELERATORS
 BEGIN
     "В",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "О",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL,
+                                                    NOINVERT
     "А",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "Т",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
@@ -2057,6 +2064,7 @@ BEGIN
     ID_EDIT_WMGOTO          "Отиди на графа или разлика\nОтиди на (Ctrl+G)"
     ID_OPTIONS              "Нагласяне на програмните настроики\nНастроики"
     ID_REFRESH              "Refresh display\nRefresh (F5)"
+    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to cliboard adding linenumbers to line begin"
 END
 
 // VIEW MENU (FILE TYPE)

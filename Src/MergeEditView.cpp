@@ -168,6 +168,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
 	ON_COMMAND(ID_FILE_CLOSE, OnWindowClose)
 	ON_WM_VSCROLL ()
+	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2382,4 +2384,51 @@ void CMergeEditView::OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar
 	}
 
 	m_pLocationView->UpdateVisiblePos(nCurPos);
+}
+
+/**
+ * @brief Copy selected lines adding linenumbers.
+ */
+void CMergeEditView::OnEditCopyLineNumbers()
+{
+	CPoint ptStart;
+	CPoint ptEnd;
+	CString strText;
+	CString strLine;
+	CString strNum;
+	CString strNumLine;
+	UINT line = 0;
+	int nNumWidth = 0;
+
+	CMergeDoc *pDoc = GetDocument();
+	GetSelection(ptStart, ptEnd);
+
+	// Get last selected line (having widest linenumber)
+	line = pDoc->m_rtBuf.ComputeRealLine(ptEnd.y);
+	strNum.Format(_T("%d"), line + 1);
+	nNumWidth = strNum.GetLength();
+	
+	for (int i = ptStart.y; i <= ptEnd.y; i++)
+	{
+		// We need to convert to real linenumbers
+		if (m_bIsLeft)
+			line = pDoc->m_ltBuf.ComputeRealLine(i);
+		else
+			line = pDoc->m_rtBuf.ComputeRealLine(i);
+
+		// Insert spaces to align different width linenumbers (99, 100)
+		strLine = GetLineText(i);
+		strNum.Format(_T("%d"), line + 1);
+		CString sSpaces(' ', nNumWidth - strNum.GetLength());
+		
+		strText += sSpaces;
+		strNumLine.Format(_T("%d: %s"), line + 1, strLine);
+		strText += strNumLine;
+ 	}
+	PutToClipboard(strText);
+}
+
+void CMergeEditView::OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI)
+{
+	CCrystalEditViewEx::OnUpdateEditCopy(pCmdUI);
 }

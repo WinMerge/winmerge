@@ -742,6 +742,7 @@
 #define ID_EDIT_WMGOTO                  32785
 #define ID_OPTIONS                      32786
 #define ID_REFRESH                      32787
+#define ID_EDIT_COPY_LINENUMBERS        32788
 
 #define ID_OPTIONS_SHOWIDENTICAL        32800
 #define ID_OPTIONS_SHOWDIFFERENT        32801

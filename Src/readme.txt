@@ -1,3 +1,8 @@
+2005-01-27 Kimmo
+ PATCH: [ 946600 ] Copy lines with linenumbers
+  Src: Merge.rc MergeEditView.cpp MergeEditView.h resource.h
+  Languages: *.rc resource.h
+
 2005-01-24 WinMerge experimental release 2.3.1.3 (cvs)
 
 2005-01-23 Perry
