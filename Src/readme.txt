@@ -1,3 +1,5 @@
+2004-09-03 WinMerge experimental release 2.1.7.13 (cvs)
+
 2004-09-03 Kimmo
  PATCH: [ 1021153 ] Fix ansi files EOL detection in unicode builds
   Src/Common: UniFile.cpp
