@@ -1,3 +1,7 @@
+2004-10-27 Kimmo
+ PATCH: [ 1054861 ] Docs: Explain archive menuitems in dircompare
+  Src: Compare_dirs.xml
+
 2004-10-26 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations
   Submitted by Tim Gerundt

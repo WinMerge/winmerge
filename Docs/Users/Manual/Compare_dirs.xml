@@ -228,11 +228,30 @@
     </sect3>
     <sect3>
       <title>Archiving</title>
-      <para>Selected items or different items from selection can be added to archive file.</para>
+      <para><guimenu>Zip</guimenu>-menu in directory compare context menu allows adding selected items to archive file.</para>
       <note>
         <para>Archive support requires that compatible version of <ulink url="http://www.7-zip.org/">7-zip</ulink> is installed to system.</para>
       </note>
-      <para>After selecting archive item dialog pops up asking filename and archive type from user.</para>
+      <para>Zip-submenumenu has four items:</para>
+      <itemizedlist>
+        <listitem>
+          <para><guimenuitem>Left...</guimenuitem> : Adds left-side files and folders (recursively) to the archive file</para>
+        </listitem>
+        <listitem>
+          <para><guimenuitem>Right...</guimenuitem> : Adds right-side files and folders (recursively) to the archive file</para>
+        </listitem>
+        <listitem>
+          <para><guimenuitem>Both...</guimenuitem> : Adds files and folders (recursively) from both sides to the archive file. Because filenames are same, files must be put to subfolders inside archive. Left-side files are put to subfolder <filename class="directory">Original/</filename> and right-side files are put to subfolder <filename class="directory">Altered/</filename>.</para>
+        </listitem>
+        <listitem>
+          <para><guimenuitem>Differences...</guimenuitem> : This is like above <guimenuitem>Both</guimenuitem>, but this item adds only different files (including unique files) from both sides.</para>
+        </listitem>
+      </itemizedlist>
+      <para>After selecting one of <guimenu>Zip</guimenu>-menu items dialog pops up asking filename and archive type from user. WinMerge cannot add files to existing archive files but it always creates new archive file.</para>
+      <tip>
+        <para>WinMerge looks for subfolders <filename class="directory">Original/</filename> and <filename class="directory">Altered/</filename> in archive files. If archive file contains these subfolders and same filename is given to both sides WinMerge compares contents of those two folders.</para>
+      </tip>
+      <para>If directory compare shows contents of archive files WinMerge updates changes done to files in file compare into original archive file. But WinMerge does not update archive contents for files added/deleted/copied. User can create a new archive file using above menuitems instead.</para>
     </sect3>
   </sect2>
   <sect2>
