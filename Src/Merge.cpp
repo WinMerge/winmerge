@@ -74,6 +74,7 @@ CMergeApp::CMergeApp()
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
+	m_bEscCloses = FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -193,6 +194,9 @@ BOOL CMergeApp::InitInstance()
 
 			if (!_tcsicmp(pszParam, _T("r")))
 				recurse=TRUE;
+
+			if (!_tcsicmp(pszParam, _T("e")))
+				m_bEscCloses = TRUE;
 		}
 		else
 		{
@@ -337,6 +341,16 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 
 BOOL CMergeApp::PreTranslateMessage(MSG* pMsg)
 {
+	// Check if we got 'ESC pressed' -message
+	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE)) 
+	{
+		if (m_bEscCloses)
+		{
+			AfxGetMainWnd()->PostMessage(WM_CLOSE);
+			return FALSE;
+		}
+	}
+
 	// CG: The following lines were added by the Splash Screen component.
 	if (CSplashWnd::PreTranslateAppMessage(pMsg))
 		return TRUE;

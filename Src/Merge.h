@@ -72,6 +72,8 @@ public:
 	afx_msg void OnViewLanguage();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+private:
+	BOOL m_bEscCloses;
 };
 
 extern CMergeApp theApp;

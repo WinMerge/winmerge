@@ -5,6 +5,13 @@
  [ 687574 ] Navigate in directory view
   WinMerge:
    DirView.cpp DirView.h
+ [ 690176 ] Cmdline param for ESC closing
+   (and updated all obsolete French & German accelerators as well)
+  WinMerge:
+   Merge.cpp Merge.h Merge.rc
+  Languages:
+   Czech\MergeCzech.rc Dutch\MergeDutch.rc French\MergeFrench.rc
+   German\MergeGerman.rc Italian\MergeItalian.rc Spanish\MergeSpanish.rc
 
 2003-02-18 Christian
   Removed annoying SourceSafe path from Merge.dsp
