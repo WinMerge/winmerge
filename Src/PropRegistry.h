@@ -21,6 +21,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CPropRegistry)
 	enum { IDD = IDD_PROPPAGE_REGISTRY };
+	BOOL m_bContextAdded;
+	CString m_strPath;
 	//}}AFX_DATA
 
 	// Overrides
@@ -35,11 +37,15 @@ protected:
 	bool IsRegisteredForDirectory() const;
 	void UpdateButton();
 	void EnableContextHandler(bool enabling);
+	void GetContextRegValues();
 
 	// Generated message map functions
 	//{{AFX_MSG(CPropRegistry)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnAssocDirectory();
+	afx_msg void OnAddToExplorer();
+	afx_msg void OnSavePath();
+	afx_msg void OnBrowsePath();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

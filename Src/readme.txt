@@ -1,3 +1,9 @@
+2003-07-25 Kimmo
+ PATCH: [ 773296 ] Add shell integration
+  Added new module ShellExtension
+  WinMerge: Merge.rc PropRegistry.h PropRegistry.cpp resource.h
+  Languages: all *.rc and resource.h files
+
 2003-07-24 Kimmo
  PATCH: [ 776106 ] Fix for TEMP dir error
   Submitted by Laoran
