@@ -1,6 +1,8 @@
 2003-07-27 Kimmo
  PATCH: [ 778144 ] Use CopyFile instead of DeleteFile() and MoveFile()
   WinMerge: MainFrm.cpp
+ PATCH: [ 778384 ] Sync OnDropFiles() from MainFrame to SuperComboBox
+  common: SuperComboBox.cpp
 
 2003-07-27 Perry
  PATCH: [ 778290 ] Typo in comment

@@ -279,7 +279,7 @@ void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 	// Get the number of pathnames that have been dropped
 	UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
 
-	CString firstFile="";
+	CString firstFile;
 
 	// get all file names. but we'll only need the first one.
 	for (WORD x = 0 ; x < wNumFilesDropped; x++) {
@@ -288,10 +288,12 @@ void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 		UINT wPathnameSize = DragQueryFile(dropInfo, x, NULL, 0);
 
 		// Allocate memory to contain full pathname & zero byte
-		char * npszFile = (char *) LocalAlloc(LPTR, wPathnameSize += 1);
+		wPathnameSize += 1;
+		LPTSTR npszFile = (TCHAR *) new TCHAR[wPathnameSize];
 
 		// If not enough memory, skip this one
-		if (npszFile == NULL) continue;
+		if (npszFile == NULL)
+			continue;
 
 		// Copy the pathname into the buffer
 		DragQueryFile(dropInfo, x, npszFile, wPathnameSize);
@@ -301,7 +303,7 @@ void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 			firstFile=npszFile;
 
 		// clean up
-		LocalFree(npszFile);
+		delete[] npszFile;
 	}
 
 	// Free the memory block containing the dropped-file information
