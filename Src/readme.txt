@@ -1,3 +1,8 @@
+2003-09-26 Laoran
+ PATCH: [ 811371 ] Replace lines when pasting text to ghost lines
+  WinMerge: GhostTextBuffer.cpp GhostTextBuffer.h
+  editlib: ccrystaltextbuffer.cpp
+
 2003-09-25 Perry
  fix BUG: [ 812547 ] copy to clipboard crash in WinMergeU.exe
   WinMerge/editlib: ccrystaltextview2.cpp

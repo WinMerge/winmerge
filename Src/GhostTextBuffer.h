@@ -198,6 +198,7 @@ private:
 	// Operations
 private:
 	BOOL InternalInsertGhostLine (CCrystalTextView * pSource, int nLine);
+	BOOL InternalDeleteGhostLine (CCrystalTextView * pSource, int nLine, int nCount);
 public :
 	// Construction/destruction code
 	CGhostTextBuffer ();

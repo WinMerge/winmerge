@@ -1124,7 +1124,6 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
 
   int nInsertedLines = 0;
   int nCurrentLine = nLine;
-  BOOL bNewLines = FALSE;
   int nTextPos;
   for (;;)
     {
@@ -1150,14 +1149,11 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
       if (nCurrentLine == nLine)
         {
           AppendLine (nLine, pszText, nTextPos);
-          if (haseol)
-            bNewLines = TRUE;
         }
       else
         {
           InsertLine (pszText, nTextPos, nCurrentLine);
           nInsertedLines ++;
-          bNewLines = TRUE;
         }
 
 
@@ -1183,14 +1179,14 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
                 nInsertedLines ++;
               }
               else
-                AppendLine (nCurrentLine, sTail, nRestCount);
+                AppendLine (nEndLine, sTail, nRestCount);
             }
           if (nEndLine == GetLineCount())
             {
-                 // We left cursor after last screen line
-                 // which is an illegal cursor position
-                 // so manufacture a new trailing ghost line
-       InsertLine(_T(""));
+              // We left cursor after last screen line
+              // which is an illegal cursor position
+              // so manufacture a new trailing line
+              InsertLine(_T(""));
               nInsertedLines ++;
             }
           break;
@@ -1200,14 +1196,15 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
       pszText += nTextPos;
     }
 
-  // if we insert in a ghost line, with a pszText which is EOL finished,
-  // we create just (nEndLine-nLine-1) lines and not (nEndLine-nLine) lines
-  // the cursor, because of EOL terminated pszText, falls one line below,
-  // but the real text limit is (nEndLine-1, GetFullLineLength(nEndLine-1))
+  // Compute the context : all positions after context.m_ptBegin are
+  // shifted accordingly to (context.m_ptEnd - context.m_ptBegin)
+  // The begin point is the insertion point.
+  // The end point is more tedious : if we insert in a ghost line, we reuse it, 
+  // so we insert fewer lines than the number of lines in the text buffer
   if (nEndLine - nLine != nInsertedLines)
     {
-      context.m_ptEnd.y = nEndLine-1;
-      context.m_ptEnd.x = GetFullLineLength(nEndLine-1);
+      context.m_ptEnd.y = nLine + nInsertedLines;
+      context.m_ptEnd.x = GetFullLineLength(context.m_ptEnd.y);
     }
   else
     {
@@ -1218,7 +1215,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
 
   if (pSource!=NULL)
     {
-      if (bNewLines)
+      if (nInsertedLines > 0)
         UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nLine);
       else
         UpdateViews (pSource, &context, UPDATE_SINGLELINE | UPDATE_HORZRANGE, nLine);

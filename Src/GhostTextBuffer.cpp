@@ -94,6 +94,50 @@ InternalInsertGhostLine (CCrystalTextView * pSource, int nLine)
 }
 
 
+/** InternalDeleteGhostLine accepts only apparent line numbers */
+BOOL CGhostTextBuffer::
+InternalDeleteGhostLine (CCrystalTextView * pSource, int nLine, int nCount)
+{
+	ASSERT (m_bInit);             //  Text buffer not yet initialized.
+	//  You must call InitNew() or LoadFromFile() first!
+
+	ASSERT (nLine >= 0 && nLine <= m_aLines.GetSize ());
+	if (m_bReadOnly)
+		return FALSE;
+
+	if (nCount == 0)
+		return TRUE;
+
+	CDeleteContext context;
+	context.m_ptStart.y = nLine;
+	context.m_ptStart.x = 0;
+	context.m_ptEnd.y = nLine+nCount;
+	context.m_ptEnd.x = 0;
+
+	for (int L = nLine ; L < nLine+nCount; L++)
+	{
+		ASSERT (GetLineFlags(L) & LF_GHOST);
+		delete[] m_aLines[L].m_pcLine;
+	}
+	m_aLines.RemoveAt (nLine, nCount);
+
+	if (pSource!=NULL)
+	{
+		// the last parameter is just for speed : don't recompute lines before this one
+		// it must be a valid line number, so if we delete the last lines, we give the last of the remaining lines
+		if (nLine == GetLineCount())
+			UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, GetLineCount()-1);
+		else
+			UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nLine);
+	}
+
+	if (!m_bModified)
+		SetModified (TRUE);
+
+	return TRUE;
+}
+
+
 
 
 /**
@@ -148,7 +192,7 @@ UINT CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 			// copy the EOL of the requested type
 			if (i!=ApparentLastRealLine())
 			{
-				CopyMemory(pszBuf, sEol, sEol.GetLength() * sizeof(TCHAR));
+				CopyMemory(pszBuf, sEol, sEol.GetLength());
 				pszBuf += sEol.GetLength();
 			}
 		}
@@ -618,6 +662,23 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 	if (bDiscrepancyInInsertedLines == 0)
 		OnNotifyLineHasBeenEdited(i);
 
+	// when inserting into a ghost line block, we want to replace ghost lines
+	// with our text, so delete some ghost lines below the inserted text
+	if (bFirstLineGhost)
+	{
+		// where is the first line after the inserted text ?
+		int nInsertedTextLinesCount = nEndLine - nLine + (bDiscrepancyInInsertedLines ? 0 : 1);
+		int nLineAfterInsertedBlock = nLine + nInsertedTextLinesCount;
+		// delete at most nInsertedTextLinesCount - 1 ghost lines
+		// as the first ghost line has been reused
+		int nMaxGhostLineToDelete = min(nInsertedTextLinesCount - 1, GetLineCount()-nLineAfterInsertedBlock);
+		for (i = 0 ; i < nMaxGhostLineToDelete ; i++)
+			if ((GetLineFlags(nLineAfterInsertedBlock+i) & LF_GHOST) == 0)
+				break;
+		InternalDeleteGhostLine(pSource, nLineAfterInsertedBlock, i);
+	}
+
+	// update the ghost flag of the inserted lines
 	int bCursorLineAfterUndoIsGhost;
 	if (bDiscrepancyInInsertedLines)
 		// if there is a discrepancy, the final cursor line didn't change during insertion
