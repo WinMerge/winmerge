@@ -274,20 +274,15 @@ BEGIN
             MENUITEM "&med...",                    ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "Kop&iera Sökvägar"                  ID_DIR_COPY_PATHNAMES
-        MENUITEM "Kopiera &Filnamn"                  ID_DIR_COPY_FILENAMES
+        MENUITEM "Kop&iera Sökvägar",               ID_DIR_COPY_PATHNAMES
+        MENUITEM "Kopiera &Filnamn",                ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
-            MENUITEM "Zippa &vänster sida %1 Fil(er) från %2 valda Item(s)",
-                                                    ID_DIR_ZIP_LEFT
-            MENUITEM "Zippa &höger Sida %1 Fil(er) från %2 valda Item(s)",
-                                                    ID_DIR_ZIP_RIGHT
-            MENUITEM "Zippa &båda sidornas %1 Fil(er) från %2 valda Item(s)",
-                                                    ID_DIR_ZIP_BOTH
-            MENUITEM "Zippa båda &sidornas skillnader bara %1 Fil(er) från %2 av %3 valda Item(s)",
-                                                    ID_DIR_ZIP_BOTH_DIFFS_ONLY
-
+            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
+            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
+            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
+            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
     END
     POPUP "_HDR_POPUP_"

@@ -275,19 +275,15 @@ BEGIN
             MENUITEM "&amb...",                     ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "C&opia els camins"                ID_DIR_COPY_PATHNAMES
-        MENUITEM "Co&pia els noms"                  ID_DIR_COPY_FILENAMES
+        MENUITEM "C&opia els camins",               ID_DIR_COPY_PATHNAMES
+        MENUITEM "Co&pia els noms",                 ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Co&mpressió"
         BEGIN
-            MENUITEM "Comprimeix %1 fitxer(s) de l'esquerra de %2 element(s) seleccionat(s)",
-                                                    ID_DIR_ZIP_LEFT
-            MENUITEM "Comprimeix %1 fitxer(s) de la dreta de %2 element(s) seleccionat(s)",
-                                                    ID_DIR_ZIP_RIGHT
-            MENUITEM "Comprimeix %1 fitxer(s) d'ambdós costats de %2 element(s) seleccionat(s)",
-                                                    ID_DIR_ZIP_BOTH
-            MENUITEM "Comprimeix %1 fitxer(s) diferent(s) entre ambdós costats de %2 de %3 element(s) seleccionat(s)",
-                                                    ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
+            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
+            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
+            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
     END
     POPUP "_HDR_POPUP_"

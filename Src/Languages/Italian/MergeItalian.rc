@@ -275,20 +275,15 @@ BEGIN
             MENUITEM "&con...",                    ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "Cop&ia percorsi"              ID_DIR_COPY_PATHNAMES
-        MENUITEM "Copia nomi dei &file"         ID_DIR_COPY_FILENAMES
+        MENUITEM "Cop&ia percorsi",             ID_DIR_COPY_PATHNAMES
+        MENUITEM "Copia nomi dei &file",        ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Zippa"
         BEGIN
-            MENUITEM "Zippa lato &sinistro %1 file su %2 voci selezionate",
-                                                    ID_DIR_ZIP_LEFT
-            MENUITEM "Zippa lato &destro %1 file su %2 voci selezionate",
-                                                    ID_DIR_ZIP_RIGHT
-            MENUITEM "Zippa &entrambi i lati %1 file su %2 voci selezionate",
-                                                    ID_DIR_ZIP_BOTH
-            MENUITEM "Zippa entrambi i &lati solo differenze %1 file da %2 voci selezionate su %3",
-                                                    ID_DIR_ZIP_BOTH_DIFFS_ONLY
-
+            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
+            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
+            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
+            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
     END
     POPUP "_HDR_POPUP_"

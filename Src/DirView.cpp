@@ -485,9 +485,9 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	int nOpenableOnLeftWith = 0;
 	int nOpenableOnRightWith = 0;
 	int nDiffItems = 0;
-	int nDiffFiles = 0;
 	int nPredifferYes = 0;
 	int nPredifferNo = 0;
+	int nBothZipItems = 0;
 	int i = -1;
 	while ((i = m_pList->GetNextItem(i, LVNI_SELECTED)) != -1)
 	{
@@ -517,13 +517,9 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 			++nOpenableOnRightWith;
 
 		if (IsItemNavigableDiff(di))
-		{
 			++nDiffItems;
-			if (IsItemOpenableOnLeftWith(di))
-				++nDiffFiles;
-			if (IsItemOpenableOnRightWith(di))
-				++nDiffFiles;
-		}
+		if (IsItemOpenableOnLeft(di) || IsItemOpenableOnRight(di))
+			++nBothZipItems;
 		++nTotal;
 
 		// note the prediffer flag for 'files present on both sides and not skipped'
@@ -544,8 +540,8 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 
 	FormatContextMenu(pPopup, ID_DIR_ZIP_LEFT, nOpenableOnLeft, nTotal);
 	FormatContextMenu(pPopup, ID_DIR_ZIP_RIGHT, nOpenableOnRight, nTotal);
-	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH, nOpenableOnLeft, nOpenableOnRight, nTotal);
-	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH_DIFFS_ONLY, nDiffFiles, nDiffItems, nTotal);
+	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH, nBothZipItems, nTotal);
+	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH_DIFFS_ONLY, nDiffItems, nTotal);
 
 	CheckContextMenu(pPopup, ID_PREDIFF_AUTO, (nPredifferYes > 0));
 	CheckContextMenu(pPopup, ID_PREDIFF_MANUAL, (nPredifferNo > 0));

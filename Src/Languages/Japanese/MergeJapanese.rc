@@ -276,20 +276,15 @@ BEGIN
             MENUITEM "プログラムの選択(&W)...",     ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "パス名をコピー(&Y)"               ID_DIR_COPY_PATHNAMES
-        MENUITEM "ファイル名をコピー(&F)"           ID_DIR_COPY_FILENAMES
+        MENUITEM "パス名をコピー(&Y)",              ID_DIR_COPY_PATHNAMES
+        MENUITEM "ファイル名をコピー(&F)",          ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "圧縮(&Z)"
         BEGIN
-            MENUITEM "選択された%2個の項目の内、左側 %1個のファイルを圧縮します(&L)",
-                                                    ID_DIR_ZIP_LEFT
-            MENUITEM "選択された%2個の項目の内、右側 %1個のファイルを圧縮します(&R)",
-                                                    ID_DIR_ZIP_RIGHT
-            MENUITEM "選択された%2個の項目の内、両側 %1個のファイルを圧縮します(&B)",
-                                                    ID_DIR_ZIP_BOTH
-            MENUITEM "選択された%3個の項目から差異のある%2個の項目の内、両側 %1個のファイルのみを圧縮します(&S)",
-                                                    ID_DIR_ZIP_BOTH_DIFFS_ONLY
-
+            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
+            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
+            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
+            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
     END
     POPUP "_HDR_POPUP_"

@@ -275,20 +275,15 @@ BEGIN
             MENUITEM "&с...",                    ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "Cop&y Pathnames"                  ID_DIR_COPY_PATHNAMES
-        MENUITEM "Copy &Filenames"                  ID_DIR_COPY_FILENAMES
+        MENUITEM "Cop&y Pathnames",                 ID_DIR_COPY_PATHNAMES
+        MENUITEM "Copy &Filenames",                 ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
-            MENUITEM "Zip &лявата страна %1 файл(а) от %2 избрания обект(и)",
-                                                    ID_DIR_ZIP_LEFT
-            MENUITEM "Zip &дясната страна %1 файл(а) от %2 избрания обект(и)",
-                                                    ID_DIR_ZIP_RIGHT
-            MENUITEM "Zip &двете страни %1 файл(а) от %2 избрания обект(и)",
-                                                    ID_DIR_ZIP_BOTH
-            MENUITEM "Zip двете &страни само разликите %1 файл(а) от %2 на %3 избрания обект(и)",
-                                                    ID_DIR_ZIP_BOTH_DIFFS_ONLY
-
+            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
+            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
+            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
+            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
     END
     POPUP "_HDR_POPUP_"

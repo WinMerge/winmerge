@@ -4,6 +4,9 @@
   Src/Languages/Catalan: MergeCatalan.rc
  Check path length in VSS integration
   Src: VSSHelper.cpp
+ PATCH: [ 1012328 ] Simpler Zip* menuitems
+  Src: DirView.cpp Merge.rc
+  Src/Languages: *.rc
 
 2004-08-20 Kimmo
  PATCH: [ 1012291 ] Open Find-dialog for F3 if no previous find
