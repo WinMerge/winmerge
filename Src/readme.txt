@@ -1,3 +1,8 @@
+2004-03-22 Laoran
+ PATCH: [ 909672 ] Undo makes marker messy
+  Src: MergeEditView.cpp
+  Src/editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h
+
 2004-03-21 Seier
   -The Installer now also installs WinMerge as the merging application in addition being the differencing application.  
   -I compressed Splash1.bmp using RLE (Run Length Encoding [Lossless compression]) and named it as Splash2.bmp.  I only modified the English version.  Please

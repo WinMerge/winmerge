@@ -659,6 +659,12 @@ void CMergeEditView::OnEditUndo()
 			--pDoc->curUndo;
 			pDoc->UpdateHeaderPath(m_bIsLeft);
 			pDoc->FlushAndRescan();
+
+			int nAction;
+			m_pTextBuffer->GetRedoActionCode(nAction);
+			if (nAction == CE_ACTION_MERGE)
+				// select the diff so we may just merge it again
+				OnCurdiff();
 		}
 	}
 	else

@@ -333,6 +333,8 @@ public :
 
 
     //  Browse undo sequence
+    POSITION GetUndoActionCode (int & nAction, POSITION pos = NULL);
+    POSITION GetRedoActionCode (int & nAction, POSITION pos = NULL);
     POSITION GetUndoDescription (CString & desc, POSITION pos = NULL);
     POSITION GetRedoDescription (CString & desc, POSITION pos = NULL);
 

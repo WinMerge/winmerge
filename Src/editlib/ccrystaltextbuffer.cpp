@@ -1298,7 +1298,7 @@ CanRedo ()
 }
 
 POSITION CCrystalTextBuffer::
-GetUndoDescription (CString & desc, POSITION pos /*= NULL*/ )
+GetUndoActionCode (int & nAction, POSITION pos /*= NULL*/ )
 {
   ASSERT (CanUndo ());          //  Please call CanUndo() first
 
@@ -1322,9 +1322,8 @@ GetUndoDescription (CString & desc, POSITION pos /*= NULL*/ )
   while ((m_aUndoBuf[nPosition].m_dwFlags & UNDO_BEGINGROUP) == 0)
     nPosition--;
 
-  //  Read description
-  if (!GetActionDescription (m_aUndoBuf[nPosition].m_nAction, desc))
-    desc.Empty ();              //  Use empty string as description
+  //  Get description
+  nAction = m_aUndoBuf[nPosition].m_nAction;
 
   //  Now, if we stop at zero position, this will be the last action,
   //  since we return (POSITION) nPosition
@@ -1332,7 +1331,7 @@ GetUndoDescription (CString & desc, POSITION pos /*= NULL*/ )
 }
 
 POSITION CCrystalTextBuffer::
-GetRedoDescription (CString & desc, POSITION pos /*= NULL*/ )
+GetRedoActionCode (int & nAction, POSITION pos /*= NULL*/ )
 {
   ASSERT (CanRedo ());          //  Please call CanRedo() before!
 
@@ -1352,9 +1351,8 @@ GetRedoDescription (CString & desc, POSITION pos /*= NULL*/ )
       ASSERT ((m_aUndoBuf[nPosition].m_dwFlags & UNDO_BEGINGROUP) != 0);
     }
 
-  //  Read description
-  if (!GetActionDescription (m_aUndoBuf[nPosition].m_nAction, desc))
-    desc.Empty ();              //  Use empty string as description
+  //  Get description
+  nAction = m_aUndoBuf[nPosition].m_nAction;
 
   //  Advance to next undo group
   nPosition++;
@@ -1366,6 +1364,32 @@ GetRedoDescription (CString & desc, POSITION pos /*= NULL*/ )
     return NULL;                //  No more redo actions!
 
   return (POSITION) nPosition;
+}
+
+POSITION CCrystalTextBuffer::
+GetUndoDescription (CString & desc, POSITION pos /*= NULL*/ )
+{
+  int nAction;
+  POSITION retValue = GetUndoActionCode(nAction, pos);
+
+  //  Read description
+  if (!GetActionDescription (nAction, desc))
+    desc.Empty ();              //  Use empty string as description
+
+  return retValue;
+}
+
+POSITION CCrystalTextBuffer::
+GetRedoDescription (CString & desc, POSITION pos /*= NULL*/ )
+{
+  int nAction;
+  POSITION retValue = GetRedoActionCode(nAction, pos);
+
+  //  Read description
+  if (!GetActionDescription (nAction, desc))
+    desc.Empty ();              //  Use empty string as description
+
+  return retValue;
 }
 
 BOOL CCrystalTextBuffer::
