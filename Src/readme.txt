@@ -1,3 +1,7 @@
+2004-04-17 Laoran
+ BUG: [ 936524 ] Cannot compare/Cancel,Retry,Continue
+  Src: DirView.cpp
+
 2004-04-17 Kimmo
  Fix for unicode build after patch #935048 -- add _T() around string
   Src: DirView.cpp
