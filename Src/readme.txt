@@ -3,6 +3,9 @@
   Src: EditorFilepathBar.cpp EditorFilepathBar.h
  PATCH: [ 1158484 ] Fix assert from headerbar-setactive() when closing views
   Src: EditorFilepathBar.cpp EditorFilepathBar.h
+ PATCH: [ 1159112 ] Swedish translation revision
+  Submitted by Hans Eriksson
+  Languages/Swedish: MergeSwedish.rc
 
 2005-03-07 Perry
  PATCH: [ 1157859 ] Add LVS_SHOWSELALWAYS style to dirview
