@@ -1,6 +1,8 @@
 2003-06-29 Perry
  PATCH: [ 758912 ] Combine duplicated code in CMergeEditView::OnEditCopy
   WinMerge: MergeEditView.cpp
+ PATCH: [ 762533 ] Stdafx.h has dublicated and unneeded includes
+   WinMerge: StdAfx.h
 
 2003-06-29 Kimmo
  PATCH: [ 762749 ] Forced rescan after options changed

@@ -20,12 +20,8 @@
 
 #include <afxtempl.h>
 #include <afxsock.h>
-#include <afxole.h>
-#include <afxtempl.h>
 #include <afxpriv.h>
 #include <afxole.h>
-#include <afxmt.h>
-#include <afxrich.h>
 
 #ifndef countof
 #define countof(array)  (sizeof(array)/sizeof((array)[0]))
