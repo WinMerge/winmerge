@@ -48,6 +48,17 @@ public:
 	int		m_nRFolder;
 	int		m_nUnknown;
 	CButton	m_ctlStop;
+	CStatic m_ctlLFolder;
+	CStatic m_ctlRFolder;
+	CStatic m_ctlEqual;
+	CStatic m_ctlNotEqual;
+	CStatic m_ctlBinarySame;
+	CStatic m_ctlBinaryDiff;
+	CStatic m_ctlLFile;
+	CStatic m_ctlRFile;
+	CStatic m_ctlFolderSkip;
+	CStatic m_ctlLFileSkip;
+	CStatic m_ctlLUnknown;
 	//}}AFX_DATA
 
 	CString strAbort;
@@ -82,3 +93,4 @@ private:
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_DIRCOMPSTATEDLG_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_)
+

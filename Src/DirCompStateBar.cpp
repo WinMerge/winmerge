@@ -77,6 +77,17 @@ void CDirCompStateBar::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_COUNT_RFOLDER, m_nRFolder);
 	DDX_Text(pDX, IDC_COUNT_UNKNOWN, m_nUnknown);
 	DDX_Control(pDX, IDC_COMPARISON_STOP, m_ctlStop);
+	DDX_Control(pDX, IDC_COUNT_BINARYDIFF, m_ctlBinaryDiff);
+	DDX_Control(pDX, IDC_COUNT_BINARYSAME, m_ctlBinarySame);
+	DDX_Control(pDX, IDC_COUNT_EQUAL, m_ctlEqual);
+	DDX_Control(pDX, IDC_COUNT_FILESKIP, m_ctlLFileSkip);
+	DDX_Control(pDX, IDC_COUNT_FOLDERSKIP, m_ctlFolderSkip);
+	DDX_Control(pDX, IDC_COUNT_LFILE, m_ctlLFile);
+	DDX_Control(pDX, IDC_COUNT_LFOLDER, m_ctlLFolder);
+	DDX_Control(pDX, IDC_COUNT_NOTEQUAL, m_ctlNotEqual);
+	DDX_Control(pDX, IDC_COUNT_RFILE, m_ctlRFile);
+	DDX_Control(pDX, IDC_COUNT_RFOLDER, m_ctlRFolder);
+	DDX_Control(pDX, IDC_COUNT_UNKNOWN, m_ctlLUnknown);
 	//}}AFX_DATA_MAP
 }
 
@@ -180,14 +191,12 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		if (di.isDirectory())
 		{
 			++m_nLFolder;
-			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_LFOLDER);
-			UpdateText(pCtrl, m_nLFolder);
+			UpdateText(&m_ctlLFolder, m_nLFolder);
 		}
 		else
 		{
 			++m_nLFile;
-			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_LFILE);
-			UpdateText(pCtrl, m_nLFile);
+			UpdateText(&m_ctlLFile, m_nLFile);
 		}
 	}
 	else if (di.isSideRight())
@@ -196,12 +205,12 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		if (di.isDirectory())
 		{
 			++m_nRFolder;
-			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_RFOLDER);
-			UpdateText(pCtrl, m_nRFolder);
+			UpdateText(&m_ctlRFolder, m_nRFolder);
 		}
 		else
 		{
 			++m_nRFile;
+			UpdateText(&m_ctlRFile, m_nRFile);
 		}
 	}
 	else if (di.isResultSkipped())
@@ -210,22 +219,19 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		if (di.isDirectory())
 		{
 			++m_nFolderSkip;
-			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_FOLDERSKIP);
-			UpdateText(pCtrl, m_nFolderSkip);
+			UpdateText(&m_ctlFolderSkip, m_nFolderSkip);
 		}
 		else
 		{
 			++m_nFileSkip;
-			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_FILESKIP);
-			UpdateText(pCtrl, m_nFileSkip);
+			UpdateText(&m_ctlLFileSkip, m_nFileSkip);
 		}
 	}
 	else if (di.isResultError())
 	{
 		// could be directory error ?
 		++m_nUnknown;
-		CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_UNKNOWN);
-		UpdateText(pCtrl, m_nUnknown);
+		UpdateText(&m_ctlLUnknown, m_nUnknown);
 	}
 	// Now we know it was on both sides & compared!
 	else if (di.isResultSame())
@@ -234,14 +240,12 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		if (di.isBin())
 		{
 			++m_nBinarySame;
-			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_BINARYSAME);
-			UpdateText(pCtrl, m_nBinarySame);
+			UpdateText(&m_ctlBinarySame, m_nBinarySame);
 		}
 		else
 		{
 			++m_nEqual;
-			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_EQUAL);
-			UpdateText(pCtrl, m_nEqual);
+			UpdateText(&m_ctlEqual, m_nEqual);
 		}
 	}
 	else
@@ -257,19 +261,21 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 			if (di.isBin())
 			{
 				++m_nBinaryDiff;
-				CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_BINARYDIFF);
-				UpdateText(pCtrl, m_nBinaryDiff);
+				UpdateText(&m_ctlBinaryDiff, m_nBinaryDiff);
 			}
 			else
 			{
 				++m_nNotEqual;
-				CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_NOTEQUAL);
-				UpdateText(pCtrl, m_nNotEqual);
+				UpdateText(&m_ctlNotEqual, m_nNotEqual);
 			}
 		}
 	}
 }
 
+/**
+ * @brief Handle WM_KEYDOWN messages before normal processing
+ * to allow any key close statebar.
+ */
 BOOL CDirCompStateBar::PreTranslateMessage(MSG* pMsg)
 {
 	// When the scan is finished, any key will hide the bar
@@ -301,6 +307,9 @@ void CDirCompStateBar::OnWindowPosChanging( WINDOWPOS* lpwndpos )
 	}
 }
 
+/**
+ * @brief Set number to given static control
+ */
 void CDirCompStateBar::UpdateText(CStatic * ctrl, int num) const
 {
 	ASSERT(ctrl != NULL);
@@ -310,8 +319,12 @@ void CDirCompStateBar::UpdateText(CStatic * ctrl, int num) const
 	ctrl->SetWindowText(strNum);
 }
 
+/**
+ * @brief Updates all controls in statebar
+ */
 void CDirCompStateBar::FirstUpdate()
 {
 	m_bFirstUpdate = TRUE;
 	UpdateData(FALSE);
 }
+

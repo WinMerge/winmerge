@@ -8,6 +8,9 @@
   Common: LogFile.cpp LogFile.h
   Src: DiffWrapper.cpp DirActions.cpp DirDoc.cpp DirScan.cpp
    MainFrm.cpp MergeDoc.cpp StdAfx.cpp
+ PATCH: [ 887800 ] Add frames around items in dircompare statusbar
+  Src: DirCompStateBar.cpp DirCompStateBar.h Merge.rc
+  Languages: *.rc
 
 2004-02-01 Perry
  Cosmetic: fix copy&paste error in UniFile.cpp comment.
