@@ -1018,41 +1018,44 @@ EXSTYLE WS_EX_NOPARENTNOTIFY
 CAPTION "WinMerge - Suport d'arxivament inhabilitat"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "No es pot detectat la versió del 7-Zip (potser no està instal·lat?)",107,2,2,296,20
-    CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,26,296,1
-    LTEXT           "El suport d'arxivament requereix que el 7-Zip 3.11 o posterior estigui instal·lat al vostre\nordinador, o els seus components essencials estiguin copiats al directori del programa per a\nun funcionament independent. També cal un connector d'enllaç adient (Merge7z*.dll) al camí.",
-                    IDC_STATIC,2,30,296,28
+    LTEXT           "No es pot detectat la versió del 7-Zip (potser no està instal·lat?)",107,2,
+                    2,296,18
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,22,296,1
+    LTEXT           "El suport d'arxivament requereix que el 7-Zip 3.11 o posterior estigui instal·lat al vostre\nordinador, o els seus components essencials estiguin copiats al directori del programa per a\nun funcionament independent.",
+                    IDC_STATIC,2,26,296,26
+    LTEXT           "També cal un connector d'enllaç adient (Merge7z*.dll) al camí.",
+                    IDC_STATIC,2,52,296,18
     LTEXT           "Useu la versió del 7-Zip recomanada a continuació fins que hi hagi connectors d'enllaç\ndisponibles per a versions posteriors.",
-                    IDC_STATIC,2,58,296,18
-    CTEXT           "Versió",IDC_STATIC,146,78,56,20,SS_CENTERIMAGE |
+                    IDC_STATIC,2,70,296,26
+    CTEXT           "Versió",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    CTEXT           "Connector requerit\n(dllbuild %04u)",102,204,78,94,20,
+    CTEXT           "Connector requerit\n(dllbuild %04u)",102,204,98,94,20,
                     SS_SUNKEN
-    LTEXT           "Versió recomanada del 7-Zip:",IDC_STATIC,2,100,142,10,
+    LTEXT           "Versió recomanada del 7-Zip:",IDC_STATIC,2,120,142,10,
                     SS_CENTERIMAGE
-    CTEXT           "0.00",110,146,100,20,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "present",109,168,100,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "Merge7z000U.dll",111,204,100,58,10,SS_CENTERIMAGE | 
+    CTEXT           "0.00",110,146,120,20,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "present",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "Merge7z000U.dll",111,204,120,58,10,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    CTEXT           "present",112,264,100,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "present",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
     LTEXT           "Programari del 7-Zip instal·lada al vostre ordinador:",IDC_STATIC,
-                    2,112,142,10,SS_CENTERIMAGE
-    CTEXT           "cap",120,146,112,56,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "",121,204,112,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "absent",122,264,112,34,10,SS_CENTERIMAGE | SS_SUNKEN
+                    2,132,142,10,SS_CENTERIMAGE
+    CTEXT           "cap",120,146,132,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",121,204,132,58,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "absent",122,264,132,34,10,SS_CENTERIMAGE | SS_SUNKEN
     LTEXT           "Components del 7-Zip per a funcionament independent:",IDC_STATIC,
-                    2,124,142,10,SS_CENTERIMAGE
-    CTEXT           "cap",130,146,124,56,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "",131,204,124,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "antiquat",132,264,124,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "Camí als connectors:",9001,2,140,100,8
+                    2,144,142,10,SS_CENTERIMAGE
+    CTEXT           "cap",130,146,144,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",131,204,144,58,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "antiquat",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Camí als connectors:",9001,2,160,100,8
     CONTROL         "&No tornis a mostrar aquest missatge.\n(Sempre podeu recuperar aquest missatge des de l'ajuda)",
-                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
+                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "D'acord",IDOK,236,226,50,14,WS_GROUP
     CONTROL         "Baixada del connector",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
-                    224,140,74,10
-    LISTBOX         105,2,150,296,72,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
+                    236,160,62,10
+    LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
 
