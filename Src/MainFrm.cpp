@@ -1514,7 +1514,7 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 		if (s.GetLength() >= (MAX_PATH - _tcslen(BACKUP_FILE_EXT)))
 			success = FALSE;
 		else
-			s.Append(BACKUP_FILE_EXT);	
+			s += BACKUP_FILE_EXT;
 
 		if (success)
 			success = CopyFile(pszPath, s, FALSE);
