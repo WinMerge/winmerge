@@ -8,6 +8,7 @@ copy ..\resource.h Danish
 copy ..\resource.h Dutch
 copy ..\resource.h French
 copy ..\resource.h German
+copy ..\resource.h Hungarian
 copy ..\resource.h Italian
 copy ..\resource.h Japanese
 copy ..\resource.h Korean

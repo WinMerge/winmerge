@@ -1,3 +1,7 @@
+2005-01-10 Kimmo
+ Add Hungarian to resource.h updates in UpdateAll_resource_h.bat
+  Src/Languages: UpdateAll_resource_h.bat
+
 2005-01-09 Kimmo
  PATCH: [ 1019445 ] IDS_WINMERGE_THIS_DIRECTORY is unused
   Src: Merge.rc resource.h
