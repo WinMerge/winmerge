@@ -71,7 +71,7 @@
 #include "FileFiltersDlg.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
-#include "UniFile.h"
+#include "codepage_detect.h"
 #include "unicoder.h"
 #include "VSSHelper.h"
 #include "codepage.h"

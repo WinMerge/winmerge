@@ -1,3 +1,9 @@
+2005-03-19 Perry
+ PATCH: [ 1157769 ] Move GuessEncoding functions into one file
+  Src: DiffContext.cpp DiffContext.cpp MainFrm.cpp Merge.dsp
+  Src/Common: UniFile.cpp UniFile.h
+  Src new: codepage_detect.cpp codepage_detect.h
+
 2005-03-18 Perry
  PATCH: [ 1155977 ] Log scriptlet plugin errors
   Src: Plugins.cpp

@@ -215,6 +215,10 @@ SOURCE=.\codepage.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\codepage_detect.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\ColorButton.cpp
 # End Source File
 # Begin Source File
@@ -836,6 +840,10 @@ SOURCE=.\Common\CMoveConstraint.h
 # Begin Source File
 
 SOURCE=.\codepage.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\codepage_detect.h
 # End Source File
 # Begin Source File
 

@@ -205,7 +205,5 @@ private:
 };
 
 
-void GuessCodepageEncoding(const CString & filepath, int * unicoding, int * codepage, 
-                           BOOL bGuessEncoding);
 
 #endif // UniFile_h_included

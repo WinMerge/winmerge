@@ -36,6 +36,7 @@
 #include "codepage.h"
 #include <shlwapi.h>
 #include "ByteComparator.h"
+#include "codepage_detect.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -908,78 +909,15 @@ void DiffFileData::Reset()
 }
 
 /**
- * @brief Parser for rc files to find encoding information
- *
- * To be removed when plugin event added for this
- */
-static bool demoGuessEncoding_rc(const char **data, int count, int * cp)
-{
-	if (count > 30)
-		count = 30;
-	while (count--)
-	{
-		const char *line = *data++;
-		static const char prefix[] = "#pragma code_page(";
-		if (StrIsIntlEqualA(FALSE, line, prefix, sizeof prefix - 1))
-		{
-			*cp = StrToIntA(line + sizeof prefix - 1);
-			return true;
-		}
-	}
-	return false;
-}
-
-/**
- * @brief Parser for HTML files to find encoding information
- *
- * To be removed when plugin event added for this
- */
-static bool demoGuessEncoding_html(const char **data, int count, int * cp)
-{
-	if (count > 30)
-		count = 30;
-	while (count--)
-	{
-		const char *line = *data++;
-		static const char prefix[] = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=";
-		if (StrIsIntlEqualA(FALSE, line, prefix, sizeof prefix - 1))
-		{
-			// TODO: Map ISO-8859-1 pages to codenumbers (is this possible ?)
-			*cp = StrToIntA(line + sizeof prefix - 1);
-			return true;
-		}
-	}
-	return false;
-}
-
-/**
- * @brief Is specified codepage number valid on this system?
- */
-static bool isValidCodepage(int cp)
-{
-	return isCodepageSupported(cp);
-}
-
-/**
  * @brief Try to deduce encoding for this file
  */
 void DiffFileData::FilepathWithEncoding::GuessEncoding(const char **data, int count)
 {
 	if (unicoding == 0)
 	{
-		LPCTSTR ext = PathFindExtension(*this);
-		if (lstrcmpi(ext, _T(".rc")) ==  0)
-		{
-			int cp=0;
-			if (demoGuessEncoding_rc(data, count, &cp) && isValidCodepage(cp))
-				codepage = cp;
-		}
-		else if (lstrcmpi(ext, _T(".htm")) == 0 || lstrcmpi(ext, _T(".html")) == 0)
-		{
-			int cp=0;
-			if (demoGuessEncoding_html(data, count, &cp) && isValidCodepage(cp))
-				codepage = cp;
-		}
+		const CString & filepath = *this;
+		CString sExt = PathFindExtension(filepath);
+		GuessEncoding_from_bytes(sExt, data, count, &codepage);
 	}
 }
 

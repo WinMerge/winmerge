@@ -33,7 +33,7 @@
 #include "DiffContext.h"
 #include "paths.h"
 #include "coretools.h"
-#include "UniFile.h"
+#include "codepage_detect.h"
 #include "DiffFileInfo.h"
 #include <shlwapi.h>
 
