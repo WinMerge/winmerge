@@ -7,6 +7,9 @@
   Src/Languages/Catalan: MergeCatalan.rc
  Add note about changed commandline when using docbook2html in SF.net
   Docs/Developers: readme-developers.html
+ PATCH: [ 1027183 ] Swedish Translation Update
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2004-09-12 Kimmo
  Fix Italian lang file build error and remove unneeded \n

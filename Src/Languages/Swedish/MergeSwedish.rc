@@ -116,11 +116,11 @@ BEGIN
         MENUITEM "V&änster fil skrivskyddad",   ID_FILE_LEFT_READONLY
         MENUITEM "Hö&ger fil skrivskyddad",     ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "Radslut (DOS,UNIX,MAC)"
+        POPUP "Radslut (DOS, UNIX, MAC)"
         BEGIN
-            MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
-            MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
-            MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
+            MENUITEM "&DOS  (CRLF)",                 ID_EOL_TO_DOS
+            MENUITEM "&UNIX  (LF)",                  ID_EOL_TO_UNIX
+            MENUITEM "&MAC  (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
         MENUITEM "Merge Mode\tF7",              ID_FILE_MERGINGMODE
@@ -232,7 +232,7 @@ BEGIN
         MENUITEM "&Innehåll...\tF1",            ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "K&onfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "A&rkivstöd avstängt...",ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "GNU General Public License...", ID_HELP_GNULICENSE
         MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
@@ -280,10 +280,10 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
-            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
-            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
-            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
-            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "&Vänster... (%1 av %2)",    ID_DIR_ZIP_LEFT
+            MENUITEM "&Höger... (%1 av %2)",      ID_DIR_ZIP_RIGHT
+            MENUITEM "&Båda... (%1 av %2)",       ID_DIR_ZIP_BOTH
+            MENUITEM "&Skillnader... (%1 av %2)", ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
     END
     POPUP "_HDR_POPUP_"
@@ -462,7 +462,7 @@ BEGIN
     LTEXT           "&Versionsstyringssystem:",IDC_STATIC,7,7,221,10
     COMBOBOX        IDC_VER_SYS,7,18,166,98,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
-    LTEXT           "&Sökväg till cleartool.exe:",IDC_VSS_L1,7,37,221,10
+    LTEXT           "&Sökväg till Cleartool.exe:",IDC_VSS_L1,7,37,221,10
     EDITTEXT        IDC_PATH_EDIT,7,48,166,14,ES_AUTOHSCROLL
     PUSHBUTTON      "&Bläddra...",IDC_BROWSE_BUTTON,178,48,50,14
 END
@@ -483,7 +483,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "St&äng fönster med ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,90,10
-    CONTROL         "Verifiera Automatiskt sökvägar i Öppna-dialogen",
+    CONTROL         "Verifiera sökvägar i Öppna-dialogen",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,143,10
     PUSHBUTTON      "Återstarta",IDC_RESET_ALL_MESSAGE_BOXES,167,77,49,13,NOT
@@ -518,7 +518,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,10
     CONTROL         "Mat&cha VERSALER och gemener",IDC_EDIT_MATCH_CASE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
-    CONTROL         "&Reguljärt utryck",IDC_EDIT_REGEXP,"Button",
+    CONTROL         "&Reguljärt uttryck",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "Riktning",IDC_STATIC,148,23,70,36,WS_GROUP
     CONTROL         "&Upp",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
@@ -963,17 +963,17 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Detect codepage info for these files : .html, .rc \nneed to restart session",
+    CONTROL         "Detektera codepage information för dessa filer : .html, .rc \nkräver omstart av programmet",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | 
                     BS_MULTILINE | WS_TABSTOP,13,74,210,19
     CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
-    CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",
+    CONTROL         "Enligt WinMerges Användargränssnitt",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,33,210,10
-    CONTROL         "Custom codepage :",IDC_CP_CUSTOM,"Button",
+    CONTROL         "Anpassad codepage :",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,46,77,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Default codepage for ANSI files",IDC_STATIC,7,7,221,58
+    GROUPBOX        "Standard codepage för ANSI filer",IDC_STATIC,7,7,221,58
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 276, 186
@@ -982,29 +982,29 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "WinMerge"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "Archive support is disabled. In order to enable archive support, please install a version of 7-Zip that WinMerge can interface, and place a copy of the appropriate interface plugin (Merge7z*.dll) in your WinMerge directory.",
+    LTEXT           "Arkivstöd är avstängt. För att starta arkivstöd, var god och installera en version av 7-Zip som WinMerge kan använda, och kopiera en kopia av det lämpliga gränssnitts-pluginet (Merge7z*.dll) i din WinMerge katalog.",
                     IDC_STATIC,2,2,272,32
-    LTEXT           "WinMerge can interface 7-Zip 3.11 and above, provided the appropriate interface plugin is available. Please use the version of 7-Zip recommended below until interface plugins for later versions become available.",
+    LTEXT           "WinMerge kan använda 7-Zip 3.11 och högre, förutsatt att lämpligt gränssnitts-plugin finns. Var god och använd den version av 7-Zip som rekommenderas nedan tills gränssnitts-plugins för senare versioner blir tillgängliga.",
                     IDC_STATIC,2,34,272,32
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,70,131,8
+    LTEXT           "Rekommenderad version av 7-Zip:",IDC_STATIC,2,70,131,8
     EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugin required:",IDC_STATIC,2,82,86,8
+    LTEXT           "WinMerge plugin krävd:",IDC_STATIC,2,82,86,8
     EDITTEXT        102,214,82,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of 7-Zip currently installed on your computer:",
+    LTEXT           "Version av 7-Zip nu installerad i din dator:",
                     IDC_STATIC,2,98,208,8
     EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of local 7-Zip components found in WinMerge directory:",
+    LTEXT           "Version av lokala 7-Zip komponenter hittades i WinMerge katalog:",
                     IDC_STATIC,2,110,208,8
     EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugins found in WinMerge directory:",
+    LTEXT           "WinMerge plugins hittades i WinMerge katalog:",
                     IDC_STATIC,2,130,168,28
     LISTBOX         105,174,130,100,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
                     WS_VSCROLL | WS_GROUP
-    CONTROL         "Don't display this &message again.\n(You can allways recall this message from help menu.)",
+    CONTROL         "Visa inte detta &meddelande igen.\n(Du kan alltid få tillbaka detta meddelande från hjälpmenyn.)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_TABSTOP,2,164,202,20
     DEFPUSHBUTTON   "OK",IDOK,208,170,50,14,WS_GROUP
@@ -1546,7 +1546,7 @@ BEGIN
     IDS_MERGEMODE_MERGING   "Merge mode"
     IDS_DIFF_NUMBER_STATUS_FMT "Skillnad %1 av %2"
     IDS_NO_DIFF_SEL_FMT     "%1 skillnader funna"
-    IDS_1_DIFF_FOUND        "1 Difference Found"
+    IDS_1_DIFF_FOUND        "1 skillnad funnen"
     IDS_STATUSBAR_READONLY  "Skrivskyddad"
 END
 
@@ -1583,12 +1583,12 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Kontrollera skrivbarhet på destinationen!"
     IDS_ERROR_BACKUP        "Fel under backup av filen"
     IDS_BACKUP_FAILED_PROMPT "Kan inte ta backup på originalfilen.\nVill du fortsätta i alla fall?"
-    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
+    IDS_FILESAVE_FAILED     "Spara fil misslyckades.\n%1\n%2\nVill du spara filen med ett annat namn?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' kan inte packa dina förändringar av den vänstra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kan inte packa dina förändringar av den högra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
     IDS_SAVEREADONLY_MULTI  "%1\när markerad bara läsbar. Vill du ändå ändra i den?"
-    IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nIf you want to refresh files close current file compare and load files again."
+    IDS_FILECHANGED_RESCAN  "Ett annat program har uppdaterat filen\n%1\nsedan WinMerge undersökte den sist.\n\nOm du vill uppdatera filer stäng aktuell filjämförelse och öppna filer igen."
 END
 
 // VSS
@@ -1736,8 +1736,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_ELAPSED_TIME        "Förfluten tid: %ld ms"
-    IDS_STATUS_SELITEM1     "1 item selected"
-    IDS_STATUS_SELITEMS     "%1 items selected"
+    IDS_STATUS_SELITEM1     "1 sak vald"
+    IDS_STATUS_SELITEMS     "%1 saker valda"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
@@ -1782,7 +1782,7 @@ BEGIN
     IDS_TEMP_FILEERROR      "Temporära filer kunde inte skapas. Kontrollera inställningarna för dina temporära sökvägar."
     IDS_FILEISDIR           "Mappar kan inte jämföras visuellt."
     IDS_SUGGEST_IGNOREEOL   "Filerna har olika EOL typer.\nMed de aktuella inställningarna , kommer alla rader att vara olika.\nVill du ignorera EOL skillnader för dessa filer ?\n\nAvancerad användare : om EOL inte är lika i dina filer,\n kan du hellre ställa in inställningen '%1'."
-    IDS_SUGGEST_PRESERVEEOL "EOL är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika EOL ?"
+    IDS_SUGGEST_PRESERVEEOL "Radsluten är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika radsluten ?"
     IDS_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
     IDS_SUGGEST_IGNORECODEPAGE "Vänster och höger fil har inte samma codepage. \nAtt visa varje fil i dess egen codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer codepage informationen. Önskar du detta ?"
 END
@@ -1828,182 +1828,182 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIR_RESULTS_EMPTIED "Aktuella katalogjämförelseresultat kommer att tas bort."
-    IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\n
-                            All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.
-                            See manual for more info about archive support and how to enable it."
+    IDS_NO_ZIP_SUPPORT      "Arkivstöd är inte startat.\n
+                            Alla krävda komponenter (7-zip och/eller Merge7z*.dll) för arkivstöd kan inte hittas.
+                            Se manualen för mer information om arkivstöd och hur man startar det."
 END
 
 // LANGAGE NAMES #1
 STRINGTABLE
 BEGIN
     IDS_AFRIKAANS           "Afrikaans"
-    IDS_ALBANIAN            "Albanian"
-    IDS_ARABIC_SAUDI        "Arabic (Saudi Arabian)"
-    IDS_ARABIC_IRAQ         "Arabic (Iraq)"
-    IDS_ARABIC_EGYPT        "Arabic (Egyptian)"
-    IDS_ARABIC_LIBYA        "Arabic (Libyan)"
-    IDS_ARABIC_ALGERIA      "Arabic (Algerian)"
-    IDS_ARABIC_MOROCCO      "Arabic (Moroccan)"
-    IDS_ARABIC_TUNISIA      "Arabic (Tunisian)"
-    IDS_ARABIC_OMAN         "Arabic (Oman)"
-    IDS_ARABIC_YEMEN        "Arabic (Yemen)"
-    IDS_ARABIC_SYRIA        "Arabic (Syrian)"
-    IDS_ARABIC_JORDAN       "Arabic (Jordan)"
+    IDS_ALBANIAN            "Albanska"
+    IDS_ARABIC_SAUDI        "Arabiska (Saudiarabien)"
+    IDS_ARABIC_IRAQ         "Arabiska (Iraq)"
+    IDS_ARABIC_EGYPT        "Arabiska (Egypten)"
+    IDS_ARABIC_LIBYA        "Arabiska (Libyen)"
+    IDS_ARABIC_ALGERIA      "Arabiska (Algeriet)"
+    IDS_ARABIC_MOROCCO      "Arabiska (Marocko)"
+    IDS_ARABIC_TUNISIA      "Arabiska (Tunisien)"
+    IDS_ARABIC_OMAN         "Arabiska (Oman)"
+    IDS_ARABIC_YEMEN        "Arabiska (Jemen)"
+    IDS_ARABIC_SYRIA        "Arabiska (Syrien)"
+    IDS_ARABIC_JORDAN       "Arabiska (Jordanien)"
 END
 
 // LANGAGE NAMES #2
 STRINGTABLE
 BEGIN
-    IDS_ARABIC_LEBANON      "Arabic (Lebanon)"
-    IDS_ARABIC_KUWAIT       "Arabic (Kuwait)"
-    IDS_ARABIC_UAE          "Arabic (UAE)"
-    IDS_ARABIC_BAHRAIN      "Arabic (Bahrain)"
-    IDS_ARABIC_QATAR        "Arabic (Qatar)"
-    IDS_ARMENIAN            "Armenian"
-    IDS_AZERI_LATIN         "Azeri (Latin)"
-    IDS_AZERI_CYRILLIC      "Azeri (Cyrillic)"
-    IDS_BASQUE              "Basque"
-    IDS_BELARUSIAN          "Belarusian"
-    IDS_BULGARIAN           "Bulgarian"
-    IDS_CATALAN             "Catalan"
-    IDS_CHINESE_TRADITIONAL "Chinese (Traditional)"
-    IDS_CHINESE_SIMPLIFIED  "Chinese (Simplified)"
-    IDS_CHINESE_HONGKONG    "Chinese (Hong Kong)"
-    IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
+    IDS_ARABIC_LEBANON      "Arabiska (Libanon)"
+    IDS_ARABIC_KUWAIT       "Arabiska (Kuwait)"
+    IDS_ARABIC_UAE          "Arabiska (Förenade Arabemiraten)"
+    IDS_ARABIC_BAHRAIN      "Arabiska (Bahrain)"
+    IDS_ARABIC_QATAR        "Arabiska (Qatar)"
+    IDS_ARMENIAN            "Armeniska"
+    IDS_AZERI_LATIN         "Azerbajdzjanska (Latinsk)"
+    IDS_AZERI_CYRILLIC      "Azerbajdzjanska (Cyrillisk)"
+    IDS_BASQUE              "Baskiska"
+    IDS_BELARUSIAN          "Vitryska"
+    IDS_BULGARIAN           "Bulgariska"
+    IDS_CATALAN             "Katalanska"
+    IDS_CHINESE_TRADITIONAL "Kinesiska (Traditionell)"
+    IDS_CHINESE_SIMPLIFIED  "Kinesiska (Förenklad)"
+    IDS_CHINESE_HONGKONG    "Kinesiska (Hong Kong)"
+    IDS_CHINESE_SINGAPORE   "Kinesiska (Singapore)"
 END
 
 // LANGAGE NAMES #3
 STRINGTABLE
 BEGIN
-    IDS_CHINESE_MACAU       "Chinese (Macau SAR)"
-    IDS_CROATIAN            "Croatian"
-    IDS_CZECH               "Czech"
-    IDS_DANISH              "Dansk"
-    IDS_DUTCH               "Dutch"
-    IDS_DUTCH_BELGIAN       "Dutch (Belgium)"
-    IDS_ENGLISH_US          "English (US)"
-    IDS_ENGLISH_UK          "English (UK)"
-    IDS_ENGLISH_AUS         "English (Australian)"
-    IDS_ENGLISH_CAN         "English (Canadian)"
-    IDS_ENGLISH_NZ          "English (New Zealand)"
-    IDS_ENGLISH_EIRE        "English (Irish)"
-    IDS_ENGLISH_SOUTH_AFRICA "English (So. African)"
-    IDS_ENGLISH_JAMAICA     "English (Jamaican)"
-    IDS_ENGLISH_CARIBBEAN   "English (Caribbean)"
-    IDS_ENGLISH_BELIZE      "English (Belize)"
+    IDS_CHINESE_MACAU       "Kinesiska (Macau SAR)"
+    IDS_CROATIAN            "Kroatiska"
+    IDS_CZECH               "Tjeckiska"
+    IDS_DANISH              "Danska"
+    IDS_DUTCH               "Nederländska"
+    IDS_DUTCH_BELGIAN       "Nederländska (Belgien)"
+    IDS_ENGLISH_US          "Engelska (USA)"
+    IDS_ENGLISH_UK          "Engelska (Storbritannien)"
+    IDS_ENGLISH_AUS         "Engelska (Australien)"
+    IDS_ENGLISH_CAN         "Engelska (Kanada)"
+    IDS_ENGLISH_NZ          "Engelska (Nya Zeeland)"
+    IDS_ENGLISH_EIRE        "Engelska (Irland)"
+    IDS_ENGLISH_SOUTH_AFRICA "Engelska (So. African)"
+    IDS_ENGLISH_JAMAICA     "Engelska (Jamaica)"
+    IDS_ENGLISH_CARIBBEAN   "Engelska (Karibien)"
+    IDS_ENGLISH_BELIZE      "Engelska (Belize)"
 END
 
 // LANGAGE NAMES #4
 STRINGTABLE
 BEGIN
-    IDS_ENGLISH_TRINIDAD    "English (Trinidad)"
-    IDS_ENGLISH_ZIMBABWE    "English (Zimbabwe)"
-    IDS_ENGLISH_PHILIPPINES "English (Philippines)"
-    IDS_ESTONIAN            "Eesti"
-    IDS_FAEROESE            "Faeroese"
-    IDS_FARSI               "Farsi"
-    IDS_FINNISH             "Suomi"
-    IDS_FRENCH              "French"
-    IDS_FRENCH_BELGIAN      "French (Belgique)"
-    IDS_FRENCH_CANADIAN     "French (Canada)"
-    IDS_FRENCH_SWISS        "French (Switzerland)"
-    IDS_FRENCH_LUXEMBOURG   "French (Luxembourg)"
-    IDS_FRENCH_MONACO       "French (Monaco)"
-    IDS_GEORGIAN            "Georgian"
-    IDS_GERMAN              "German (Germany)"
-    IDS_GERMAN_SWISS        "German (Switzerland)"
+    IDS_ENGLISH_TRINIDAD    "Engelska (Trinidad)"
+    IDS_ENGLISH_ZIMBABWE    "Engelska (Zimbabwe)"
+    IDS_ENGLISH_PHILIPPINES "Engelska (Filippinerna)"
+    IDS_ESTONIAN            "Estniska"
+    IDS_FAEROESE            "Färöiska"
+    IDS_FARSI               "Persiska"
+    IDS_FINNISH             "Finska"
+    IDS_FRENCH              "Franska"
+    IDS_FRENCH_BELGIAN      "Franska (Belgien)"
+    IDS_FRENCH_CANADIAN     "Franska (Canada)"
+    IDS_FRENCH_SWISS        "Franska (Schweiz)"
+    IDS_FRENCH_LUXEMBOURG   "Franska (Luxemburg)"
+    IDS_FRENCH_MONACO       "Franska (Monaco)"
+    IDS_GEORGIAN            "Georgiska"
+    IDS_GERMAN              "Tyska (Tyskland)"
+    IDS_GERMAN_SWISS        "Tyska (Schweiz)"
 END
 
 // LANGAGE NAMES #5
 STRINGTABLE
 BEGIN
-    IDS_GERMAN_AUSTRIAN     "German (Austria)"
-    IDS_GERMAN_LUXEMBOURG   "German (Luxembourg)"
-    IDS_GERMAN_LIECHTENSTEIN "German (Liechtenstein)"
-    IDS_GREEK               "Greek"
-    IDS_HEBREW              "Hebrew"
+    IDS_GERMAN_AUSTRIAN     "Tyska (Österrike)"
+    IDS_GERMAN_LUXEMBOURG   "Tyska (Luxemburg)"
+    IDS_GERMAN_LIECHTENSTEIN "Tyska (Liechtenstein)"
+    IDS_GREEK               "Grekiska"
+    IDS_HEBREW              "Hebriska"
     IDS_HINDI               "Hindi"
-    IDS_HUNGARIAN           "Hungarian"
-    IDS_ICELANDIC           "Icelandic"
-    IDS_INDONESIAN          "Indonesian"
-    IDS_ITALIAN             "Italian"
-    IDS_ITALIAN_SWISS       "Italian (Swiss)"
-    IDS_JAPANESE            "Japanese"
-    IDS_KASHMIRI            "Kashmiri (India)"
-    IDS_KAZAK               "Kazakh"
-    IDS_KOREAN              "Korean"
-    IDS_KOREAN_JOHAB        "Korean (Johab)"
+    IDS_HUNGARIAN           "Ungerska"
+    IDS_ICELANDIC           "Isländska"
+    IDS_INDONESIAN          "Indonesiska"
+    IDS_ITALIAN             "Italienska"
+    IDS_ITALIAN_SWISS       "Italienska (Schweiz)"
+    IDS_JAPANESE            "Japanska"
+    IDS_KASHMIRI            "Kashmiri (Indien)"
+    IDS_KAZAK               "Kazakiska"
+    IDS_KOREAN              "Koreanska"
+    IDS_KOREAN_JOHAB        "Koreanska (Johab)"
 END
 
 // LANGAGE NAMES #6
 STRINGTABLE
 BEGIN
-    IDS_LATVIAN             "Latvian"
-    IDS_LITHUANIAN          "Lithuanian"
-    IDS_MALAY_MALAYSIA      "Malay (Malaysian)"
-    IDS_MALAY_BRUNEI_DARUSSALAM "Malay (Brunei Darussalam)"
+    IDS_LATVIAN             "Lettiska"
+    IDS_LITHUANIAN          "Litauiska"
+    IDS_MALAY_MALAYSIA      "Malajiska (Malaysia)"
+    IDS_MALAY_BRUNEI_DARUSSALAM "Malajiska (Brunei Darussalam)"
     IDS_MANIPURI            "Manipuri"
-    IDS_NORWEGIAN_BOKMAL    "Norwegian (Bokmal)"
-    IDS_NORWEGIAN_NYNORSK   "Norwegian (Nynorsk)"
-    IDS_POLISH              "Polski"
-    IDS_PORTUGUESE          "Portugese"
-    IDS_PORTUGUESE_BRAZILIAN "Portugese (Brazil)"
-    IDS_ROMANIAN            "Romanian"
-    IDS_RUSSIAN             "Russian"
+    IDS_NORWEGIAN_BOKMAL    "Norska (Bokmål)"
+    IDS_NORWEGIAN_NYNORSK   "Norska (Nynorsk)"
+    IDS_POLISH              "Polska"
+    IDS_PORTUGUESE          "Portugisiska"
+    IDS_PORTUGUESE_BRAZILIAN "Portugisiska (Brasilien)"
+    IDS_ROMANIAN            "Rumänska"
+    IDS_RUSSIAN             "Ryska"
     IDS_SANSKRIT            "Sanskrit"
-    IDS_SERBIAN_LATIN       "Serbian (Latin)"
-    IDS_SERBIAN_CYRILLIC    "Serbian (Cyrillic)"
+    IDS_SERBIAN_LATIN       "Serbiska (Latinsk)"
+    IDS_SERBIAN_CYRILLIC    "Serbiska (Cyrillisk)"
     IDS_SINDHI              "Sindhi"
 END
 
 // LANGAGE NAMES #7
 STRINGTABLE
 BEGIN
-    IDS_SLOVAK              "Slovak"
-    IDS_SLOVENIAN           "Slovenian"
-    IDS_SPANISH             "Spanish"
-    IDS_SPANISH_MEXICAN     "Spanish (Mexican)"
-    IDS_SPANISH_MODERN      "Spanish (Modern)"
-    IDS_SPANISH_GUATEMALA   "Spanish (Guatemala)"
-    IDS_SPANISH_COSTA_RICA  "Spanish (Costa Rica)"
-    IDS_SPANISH_PANAMA      "Spanish (Panama)"
-    IDS_SPANISH_DOMINICAN   "Spanish (Dominican)"
-    IDS_SPANISH_VENEZUELA   "Spanish (Venezuela)"
-    IDS_SPANISH_COLOMBIA    "Spanish (Colombia)"
-    IDS_SPANISH_PERU        "Spanish (Peru)"
-    IDS_SPANISH_ARGENTINA   "Spanish (Argentina)"
-    IDS_SPANISH_ECUADOR     "Spanish (Ecuador)"
-    IDS_SPANISH_CHILE       "Spanish (Chile)"
-    IDS_SPANISH_URUGUAY     "Spanish (Uruguay)"
+    IDS_SLOVAK              "Slovakiska"
+    IDS_SLOVENIAN           "Slovenska"
+    IDS_SPANISH             "Spanska"
+    IDS_SPANISH_MEXICAN     "Spanska (Mexiko)"
+    IDS_SPANISH_MODERN      "Spanska (Modern)"
+    IDS_SPANISH_GUATEMALA   "Spanska (Guatemala)"
+    IDS_SPANISH_COSTA_RICA  "Spanska (Costa Rica)"
+    IDS_SPANISH_PANAMA      "Spanska (Panama)"
+    IDS_SPANISH_DOMINICAN   "Spanska (Dominikanska repuplik)"
+    IDS_SPANISH_VENEZUELA   "Spanska (Venezuela)"
+    IDS_SPANISH_COLOMBIA    "Spanska (Colombia)"
+    IDS_SPANISH_PERU        "Spanska (Peru)"
+    IDS_SPANISH_ARGENTINA   "Spanska (Argentina)"
+    IDS_SPANISH_ECUADOR     "Spanska (Ecuador)"
+    IDS_SPANISH_CHILE       "Spanska (Chile)"
+    IDS_SPANISH_URUGUAY     "Spanska (Uruguay)"
 END
 
 // LANGAGE NAMES #8
 STRINGTABLE
 BEGIN
-    IDS_SPANISH_PARAGUAY    "Spanish (Paraguay)"
-    IDS_SPANISH_BOLIVIA     "Spanish (Bolivia)"
-    IDS_SPANISH_EL_SALVADOR "Spanish (El Salvador)"
-    IDS_SPANISH_HONDURAS    "Spanish (Honduras)"
-    IDS_SPANISH_NICARAGUA   "Spanish (Nicaragua)"
-    IDS_SPANISH_PUERTO_RICO "Spanish (Puerto Rico)"
+    IDS_SPANISH_PARAGUAY    "Spanska (Paraguay)"
+    IDS_SPANISH_BOLIVIA     "Spanska (Bolivia)"
+    IDS_SPANISH_EL_SALVADOR "Spanska (El Salvador)"
+    IDS_SPANISH_HONDURAS    "Spanska (Honduras)"
+    IDS_SPANISH_NICARAGUA   "Spanska (Nicaragua)"
+    IDS_SPANISH_PUERTO_RICO "Spanska (Puerto Rico)"
     IDS_SWAHILI             "Swahili (Kenya)"
-    IDS_SWEDISH             "Swedish"
-    IDS_SWEDISH_FINLAND     "Swedish (Finland)"
-    IDS_TAMIL               "Tamil"
-    IDS_TATAR               "Tatar (Tatarstan)"
-    IDS_THAI                "Thai"
-    IDS_TURKISH             "Turkish"
-    IDS_UKRANIAN            "Ukranian"
+    IDS_SWEDISH             "Svenska"
+    IDS_SWEDISH_FINLAND     "Svenska (Finland)"
+    IDS_TAMIL               "Tamilska"
+    IDS_TATAR               "Tatariska (Tatarstan)"
+    IDS_THAI                "Thailändska"
+    IDS_TURKISH             "Turkiska"
+    IDS_UKRANIAN            "Ukraniska"
     IDS_URDU_PAKISTAN       "Urdu (Pakistan)"
-    IDS_URDU_INDIA          "Urdu (India)"
+    IDS_URDU_INDIA          "Urdu (Indien)"
 END
 
 // LANGAGE NAMES #9
 STRINGTABLE
 BEGIN
-    IDS_UZBEK_LATIN         "Uzbek (Latin)"
-    IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
-    IDS_VIETNAMESE          "Vietnamese"
+    IDS_UZBEK_LATIN         "Uzbekiska (Latinsk)"
+    IDS_UZBEK_CYRILLIC      "Uzbekiska (Cyrillisk)"
+    IDS_VIETNAMESE          "Vietnamesiska"
 END
 
 // MENU STRINGS
@@ -2089,7 +2089,7 @@ BEGIN
     ID_NO_PREDIFFER         "Ingen prediffer (standard)"
     ID_SUGGESTED_PLUGINS    "Föreslagna plugins"
     ID_NOT_SUGGESTED_PLUGINS "Andra plugins"
-    ID_RELOAD_PLUGINS       "&Stäng alla plugins och öppna dem igen (för utvecklare)"
+    ID_RELOAD_PLUGINS       "Stäng alla plugins och öppna dem igen (för utvecklare)"
 END
 
 // WINDOW MENU
