@@ -21,7 +21,7 @@
 ; #  Create instructions and a sample language file using the Inno Setup Translator Tool (http://www2.arnes.si/~sopjsimo/translator.html)
 ; #  Seier will need to apply this {#AppVersion} directive to all localizations:
 ;        English.SetupAppTitle=Setup - WinMerge {#AppVersion}
-; #  Get Read Me.rtf translated into 18 other languages
+; #  Get "Read Me.rtf" translated into 18 other languages
 ;
 ; Bugs & Other Priority Items:
 ; #  Get All Inno Setup .ISLs localized
@@ -145,26 +145,26 @@ SetupIconFile=..\src\res\Merge.ico
 ;means set it to ultra before compilation
 Compression=none
 InternalCompressLevel=none
-SolidCompression=False
+SolidCompression=True
 
 
 [Languages]
 ;Inno Setup's Native Language
-Name: English; MessagesFile: compiler:Default.isl
+Name: English; MessagesFile: Languages\English.isl
 
 ;Localizations:
 Name: Bulgarian; MessagesFile: Languages\Bulgarian.isl
 Name: Catalan; MessagesFile: Languages\Catalan.isl
-Name: Chinese_Standard; MessagesFile: Languages\Chinese_Simplified.isl
+Name: Chinese_Simplified; MessagesFile: Languages\Chinese_Simplified.isl
 Name: Chinese_Traditional; MessagesFile: Languages\Chinese_Traditional.isl
-Name: Czech; MessagesFile: compiler:Languages\Czech.isl
+Name: Czech; MessagesFile: Languages\Czech.isl
 Name: Danish; MessagesFile: Languages\Danish.isl
-Name: Dutch; MessagesFile: compiler:Languages\Dutch.isl
-Name: French; MessagesFile: compiler:Languages\French.isl
-Name: German; MessagesFile: compiler:Languages\German.isl
+Name: Dutch; MessagesFile: Languages\Dutch.isl
+Name: French; MessagesFile: Languages\French.isl
+Name: German; MessagesFile: Languages\German.isl
 Name: Italian; MessagesFile: Languages\Italian.isl
 Name: Korean; MessagesFile: Languages\Korean.isl
-Name: Norwegian; MessagesFile: compiler:Languages\Norwegian.isl
+Name: Norwegian; MessagesFile: Languages\Norwegian.isl
 Name: Polish; MessagesFile: Languages\Polish.isl
 Name: Portuguese; MessagesFile: Languages\Brazilian_Portuguese.isl
 Name: Russian; MessagesFile: Languages\Russian.isl
@@ -176,72 +176,87 @@ Name: Swedish; MessagesFile: Languages\Swedish.isl
 [Messages]
 English.FinishedLabel=Setup has finished installing [Name] on your computer.
 English.SetupAppTitle=Setup - WinMerge {#AppVersion}
-English.WizardInfoBefore=GNU General Public License
+English.WizardInfoBefore=License Agreement
+English.InfoBeforeLabel=GNU General Public License
 
 
 [Types]
-Name: typical; Description: Typical installation
-Name: full; Description: Full installation
-Name: compact; Description: Compact installation
-Name: custom; Description: Custom installation; Flags: iscustom
+Name: typical; Description: {cm:TypicalInstallation}
+Name: full; Description: {cm:FullInstallation}
+Name: compact; Description: {cm:CompactInstallation}
+Name: custom; Description: {cm:CustomInstallation}; Flags: iscustom
 
 
 [Components]
-Name: main; Description: WinMerge Core Files; Types: full custom typical compact; Flags: fixed
-Name: Runtimes; Description: Application Runtimes; Types: full custom typical compact; Flags: fixed
+Name: Core; Description: {cm:AppCoreFiles}; Types: full custom typical compact; Flags: fixed
+Name: Runtimes; Description: {cm:ApplicationRuntimes}; Types: full custom typical compact; Flags: fixed
 
-Name: docs; Description: User's Guide; Flags: disablenouninstallwarning; Types: full typical
-Name: filters; Description: Filters; Flags: disablenouninstallwarning; Types: full typical compact
-Name: Plugins; Description: Plug-Ins (enhance core behavior); Flags: disablenouninstallwarning; Types: full typical compact
+Name: docs; Description: {cm:UsersGuide}; Flags: disablenouninstallwarning; Types: full typical
+Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical compact
+Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full typical compact
 
 ;Language components, please note that whatever language you chose to install in will be installed in addition to any of the language components you've
 ;selected.  This is to make it easier for users that have a working localization of Inno Setup.
-Name: Bulgarian_Language; Description: Bulgarian menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Catalan_Language; Description: Catalan menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Chinese_Standard_Language; Description: Chinese (Standard) menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Chinese_Traditional_Language; Description: Chinese (Traditional) menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Czech_Language; Description: Czech menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Danish_Language; Description: Danish menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Dutch_Language; Description: Dutch menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: French_Language; Description: French menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: German_Language; Description: German menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Italian_Language; Description: Italian menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Korean_Language; Description: Korean menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Norwegian_Language; Description: Norwegian menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Polish_Language; Description: Polish menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Portuguese_Language; Description: Portuguese (Brazilian) menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Russian_Language; Description: Russian menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Slovak_Language; Description: Slovak menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Spanish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning; Types: full
-Name: Swedish_Language; Description: Swedish menus and dialogs; Flags: disablenouninstallwarning; Types: full
+Name: Bulgarian_Language; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Bulgarian)
+Name: Bulgarian_Language; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Bulgarian
 
-;If the user selected a particular language at startup then...
-Name: Bulgarian_Language; Description: Bulgarian menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Bulgarian
-Name: Catalan_Language; Description: Catalan menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Catalan
-Name: Chinese_Standard_Language; Description: Chinese (Standard) menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Chinese_Standard
-Name: Chinese_Traditional_Language; Description: Chinese (Traditional) menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Chinese_Traditional
-Name: Czech_Language; Description: Czech menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Czech
-Name: Danish_Language; Description: Danish menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Danish
-Name: Dutch_Language; Description: Dutch menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Dutch
-Name: French_Language; Description: French menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: French
-Name: German_Language; Description: German menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: German
-Name: Italian_Language; Description: Italian menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Italian
-Name: Korean_Language; Description: Korean menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Korean
-Name: Norwegian_Language; Description: Norwegian menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Norwegian
-Name: Polish_Language; Description: Polish menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Polish
-Name: Russian_Language; Description: Russian menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Russian
-Name: Slovak_Language; Description: Slovak menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Slovak
-Name: Spanish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Spanish
-Name: Swedish_Language; Description: Swedish menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Swedish
+Name: Catalan_Language; Description: {cm:CatalanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Catalan)
+Name: Catalan_Language; Description: {cm:CatalanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Catalan
 
+Name: Chinese_Simplified_Language; Description: {cm:ChineseSimplifiedLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Chinese_Simplified)
+Name: Chinese_Simplified_Language; Description: {cm:ChineseSimplifiedLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Chinese_Simplified
+
+Name: Chinese_Traditional_Language; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Chinese_Traditional)
+Name: Chinese_Traditional_Language; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Chinese_Traditional
+
+Name: Czech_Language; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Czech)
+Name: Czech_Language; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Czech
+
+Name: Danish_Language; Description: {cm:DanishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Danish)
+Name: Danish_Language; Description: {cm:DanishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Danish
+
+Name: Dutch_Language; Description: {cm:DutchLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Dutch)
+Name: Dutch_Language; Description: {cm:DutchLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Dutch
+
+Name: French_Language; Description: {cm:FrenchLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(French)
+Name: French_Language; Description: {cm:FrenchLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: French
+
+Name: German_Language; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(German)
+Name: German_Language; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: German
+
+Name: Italian_Language; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Italian)
+Name: Italian_Language; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Italian
+
+Name: Korean_Language; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Korean)
+Name: Korean_Language; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Korean
+
+Name: Norwegian_Language; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Norwegian)
+Name: Norwegian_Language; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Norwegian
+
+Name: Polish_Language; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Polish)
+Name: Polish_Language; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Polish
+
+Name: Portuguese_Language; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Portuguese)
+Name: Portuguese_Language; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Portuguese
+
+Name: Russian_Language; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Russian)
+Name: Russian_Language; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Russian
+
+Name: Slovak_Language; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Slovak)
+Name: Slovak_Language; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Slovak
+
+Name: Spanish_Language; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Spanish)
+Name: Spanish_Language; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Spanish
+
+Name: Swedish_Language; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Swedish)
+Name: Swedish_Language; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Swedish
 
 [Tasks]
-Name: ShellExtension; Description: &Enable Explorer context menu integration; GroupDescription: Optional Features:
-Name: TortoiseCVS; Description: Integrate with &TortoiseCVS; GroupDescription: Optional Features:; Check: TortoiseCVSInstalled
-Name: Delphi4Viewer; Description: Borland® Delphi &4 Binary File Support; GroupDescription: Optional Features:; Flags: unchecked
-Name: desktopicon; Description: Create a &Desktop Icon; GroupDescription: Additional Icons:; Flags: unchecked
-Name: quicklaunchicon; Description: Create a &Quick Launch Icon; GroupDescription: Additional Icons:
-
+Name: ShellExtension; Description: {cm:ExplorerContextMenu}; GroupDescription: Optional Features:
+Name: TortoiseCVS; Description: {cm:IntegrateTortoiseCVS}; GroupDescription: Optional Features:; Check: TortoiseCVSInstalled
+Name: Delphi4Viewer; Description: {cm:IntegrateDelphi4}; GroupDescription: Optional Features:; Flags: unchecked
+Name: desktopicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
+Name: quicklaunchicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}
 
 [InstallDelete]
 ;Experimental Versions 2.1.5.10 - WinMerge.2.1.5.13 shipped with the default behavior of creating a folder by the same name
@@ -346,7 +361,7 @@ Name: {app}\Merge7z313U.dll; Type: files; MinVersion: 0, 4
 Name: {app}\MergeBulgarian.lang; Type: files; Check: ComponentDisabled('Bulgarian_Language')
 Name: {app}\MergeBrazilian.lang; Type: files; Check: ComponentDisabled('Portuguese_Language')
 Name: {app}\MergeCatalan.lang; Type: files; Check: ComponentDisabled('Catalan_Language')
-Name: {app}\MergeChineseSimplified.lang; Type: files; Check: ComponentDisabled('Chinese_Standard_Language')
+Name: {app}\MergeChineseSimplified.lang; Type: files; Check: ComponentDisabled('Chinese_Simplified_Language')
 Name: {app}\MergeChineseTraditional.lang; Type: files; Check: ComponentDisabled('Chinese_Traditional_Language')
 Name: {app}\MergeCzech.lang; Type: files; Check: ComponentDisabled('Czech_Language')
 Name: {app}\MergeDanish.lang; Type: files; Check: ComponentDisabled('Danish_Language')
@@ -364,7 +379,8 @@ Name: {app}\MergeSwedish.lang; Type: files; Check: ComponentDisabled('Swedish_La
 Name: {app}\MergePlugins\list.txt; Type: files; Check: ComponentDisabled('Plugins')
 
 
-
+;Removes misplaced Files
+Name: {app}\WinMerge.url; Type: files
 Name: {app}\Read Me.rtf; Type: files
 Name: {app}\Contributors.rtf; Type: files
 
@@ -376,18 +392,19 @@ Name: {userdesktop}\WinMerge.lnk; Type: files; Check: TaskDisabled('DesktopIcon'
 
 Name: {app}\Docs; Type: filesandordirs; Check: ComponentDisabled('Docs')
 
-Name: {app}\MergePlugins\editor addin.sct; Type: Files; Check: TaskDisabled('Plugins')
-Name: {app}\MergePlugins\insert datetime.sct; Type: Files; Check: TaskDisabled('Plugins')
-Name: {app}\Docs\Plugins.txt; Type: Files; Check: TaskDisabled('Plugins')
-Name: {app}\MergePlugins; Type: DirIfEmpty; Check: TaskDisabled('Plugins')
+Name: {app}\MergePlugins\editor addin.sct; Type: Files; Check: ComponentDisabled('Plugins')
+Name: {app}\MergePlugins\insert datetime.sct; Type: Files; Check: ComponentDisabled('Plugins')
+Name: {app}\Docs\Plugins.txt; Type: Files; Check: ComponentDisabled('Plugins')
+Name: {app}\MergePlugins; Type: DirIfEmpty; Check: ComponentDisabled('Plugins')
 
 ;Removes a CVS ignore record created by TortoiseCVS on Seier's System, I'm hoping this was never let
 ;out into the wild, but it could have been
 Name: {app}\Filters\.cvsignore; TYpe: Files
-Name: {app}\Filters\Merge_GnuC_loose.flt; Type: Files; Check: TaskDisabled('Filters')
-Name: {app}\Filters\Merge_VC_loose.flt; Type: Files; Check: TaskDisabled('Filters')
-Name: {app}\Filters\XML_html.flt; Type: Files; Check: TaskDisabled('Filters')
-Name: {app}\Filters; Type: DirIfEmpty; Check: TaskDisabled('Filters')
+Name: {app}\Filters\Merge_GnuC_loose.flt; Type: Files; Check: ComponentDisabled('Filters')
+Name: {app}\Filters\Merge_VC_loose.flt; Type: Files; Check: ComponentDisabled('Filters')
+Name: {app}\Filters\XML_html.flt; Type: Files; Check: ComponentDisabled('Filters')
+Name: {app}\Filters; Type: DirIfEmpty; Check: ComponentDisabled('Filters')
+
 
 
 [Dirs]
@@ -397,10 +414,13 @@ Name: {app}; Flags: uninsalwaysuninstall
 
 [Files]
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
-Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Components: main
+Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Components: Core
 
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running Win9X platform system
-Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Components: main
+Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Components: Core
+
+;Installs the ComCtl32.dll update on any system where its DLLs are more recent
+Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall; Check: InstallComCtlUpdate
 
 ; We still need APPHelp.dll!
 
@@ -409,10 +429,6 @@ Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder
 ;Atl.dll
 Source: Runtimes\Atla.dll; DestDir: {sys}; Destname: Atl.dll; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 4, 0; Components: Runtimes
 Source: Runtimes\Atlu.dll; DestDir: {sys}; Destname: Atl.dll; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 0, 4; Components: Runtimes
-
-;ComCtl32.dll
-Source: Runtimes\comc95.dll; DestDir: {sys}; Destname: ComCtl32.dll; Flags: restartreplace uninsneveruninstall sharedfile allowunsafefiles; MinVersion: 4, 0; Components: Runtimes
-Source: Runtimes\comcNT.dll; DestDir: {sys}; Destname: ComCtl32.dll; Flags: restartreplace uninsneveruninstall sharedfile allowunsafefiles; MinVersion: 0, 4; Components: Runtimes
 
 Source: Runtimes\mfc42.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; Components: Runtimes
 Source: Runtimes\mfc42u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 0, 4; Components: Runtimes
@@ -437,7 +453,7 @@ Source: ..\Plugins\dlls\UnpackDFM.dll; DestDir: {app}\MergePlugins; Tasks: Delph
 
 Source: ..\Src\Languages\DLL\MergeBulgarian.lang; DestDir: {app}; Components: Bulgarian_Language; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Components: Catalan_Language; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: Chinese_Standard_Language; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: Chinese_Simplified_Language; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: Chinese_Traditional_Language; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: Czech_Language; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: Danish_Language; Flags: ignoreversion comparetimestamp
@@ -462,9 +478,9 @@ Source: ..\Docs\Users\Guide\Art\*.png; DestDir: {app}\Docs\User's Guide\Art; Fla
 Source: ..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 
 ;Documentation
-Source: ..\Docs\Users\Read Me.rtf; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: main
+Source: ..\Docs\Users\Read Me.rtf; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 
-Source: ..\Docs\Users\Contributors.rtf; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: main
+Source: ..\Docs\Users\Contributors.rtf; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 
 ;Plugins
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
@@ -474,16 +490,14 @@ Source: ..\Plugins\dlls\list.txt; DestDir: {app}\Docs; DestName: Plugins.txt; Fl
 
 
 [INI]
-Filename: {app}\WinMerge.url; Section: InternetShortcut; Key: URL; String: http://WinMerge.org/
-
+Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; Key: URL; String: http://WinMerge.org/
 
 [Icons]
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; HotKey: Ctrl+Alt+M
-Name: {group}\Read Me; Filename: {app}\Docs\Read Me.rtf; IconFileName: {win}\NOTEPAD.EXE
-Name: {group}\User's Guide; Filename: {app}\Docs\User's Guide\Index.html; IconFileName: {app}\Docs\User's Guide\Art\User's Guide.ico; Components: docs
-Name: {group}\WinMerge on the Web; Filename: {app}\WinMerge.url
-Name: {group}\Uninstall WinMerge; Filename: {uninstallexe}
+Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\Read Me.rtf; IconFileName: {win}\NOTEPAD.EXE
+Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\User's Guide\Index.html; IconFileName: {app}\Docs\User's Guide\Art\User's Guide.ico; Components: docs
+Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
 
 ;Desktop Icon
 Name: {userdesktop}\WinMerge; Filename: {app}\{code:ExeName}; Tasks: desktopicon
@@ -557,7 +571,7 @@ Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: MergeAsUn
 ;(unless the user already has a startup language specified)
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000402; Flags: deletevalue; Languages: Bulgarian
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000403; Flags: deletevalue; Languages: Catalan
-Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000804; Flags: deletevalue; Languages: Chinese_Standard
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000804; Flags: deletevalue; Languages: Chinese_Simplified
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000404; Flags: deletevalue; Languages: Chinese_Traditional
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000405; Flags: deletevalue; Languages: Czech
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000406; Flags: deletevalue; Languages: Danish
@@ -577,16 +591,17 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; 
 
 [Run]
 ;Installs the Microsoft Common Controls Update
-Filename: {tmp}\50comupd.exe; Parameters: /r:n /q:1; StatusMsg: Updating the System's Common Controls; Check: InstallComCtlUpdate
+Filename: {tmp}\50comupd.exe; Parameters: /r:n /q:1; StatusMsg: {cm:UpdatingCommonControls}; Check: InstallComCtlUpdate
 
 ;This will no longer appear unless the user chose to make a start menu group in the first place
-Filename: {win}\Explorer.exe; Description: &View the WinMerge Start Menu Folder; Parameters: """{group}"""; Flags: waituntilidle postinstall skipifsilent; Check: GroupCreated
+Filename: {win}\Explorer.exe; Description: {cm:ViewStartMenuFolder}; Parameters: """{group}"""; Flags: waituntilidle postinstall skipifsilent; Check: GroupCreated
 
-Filename: {app}\{code:ExeName}; Description: &Launch WinMerge; Flags: nowait postinstall skipifsilent runmaximized
+Filename: {app}\{code:ExeName}; Description: {cm:LaunchProgram, WinMerge}; Flags: nowait postinstall skipifsilent runmaximized
 
 
 [UninstallDelete]
 Name: {app}; Type: dirifempty
+
 
 
 [Code]
@@ -1028,7 +1043,7 @@ end;
 {Returns true or false based on whether the specified task is disabled}
 Function TaskDisabled(strTask: string): boolean;
 Begin
-    Case ShouldProcessEntry('main', strTask) of
+    Case ShouldProcessEntry('core', strTask) of
         srNo:
             Result := True;
         srYes:
@@ -1073,9 +1088,10 @@ Begin
 
 End;
 
-
+{Determines whether or not TortoiseCVS is installed}
 Function TortoiseCVSInstalled(): boolean;
 Begin
+	{This absolutely must remain as \CustomIcons, because our application used to create some TortoiseCVS keys even if the application wasn't installed!}
     Result := RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\TortoiseCVS\CustomIcons');
 End;
 
@@ -1123,6 +1139,17 @@ Begin
 		              {end; }
 		        end;
         end;
+End;
+
+{Returns True if the installer isn't running in a particular language.
+Inputs: The Internal Name of the Language (These are all defined in the [Languages] section}
+Function LanguageDisabled(strCheck_Language: string): boolean;
+Begin
+    if strCheck_Language <> ExpandConstant('{language}') Then
+        Result := True
+    Else
+        Result := False;
+
 End;
 
 {This event procedure is queed each time the user changes pages within the installer}
