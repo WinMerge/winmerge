@@ -283,9 +283,9 @@ prepAndCompareTwoFiles(const fentry & lent, const fentry & rent,
 	if (compareok)
 		compareok = FileTransform_Prediffing(filepathTransformed2, infoPrediffer, bMayOverwrite2);
 	// fourth step : prepare for diffing
-	bMayOverwrite1 = (filepathTransformed1 != filepath1);
+	bMayOverwrite1 = (filepathTransformed2 != filepath2);
 	if (compareok)
-		compareok = FileTransform_UCS2ToUTF8(filepathTransformed1, bMayOverwrite1);
+		compareok = FileTransform_UCS2ToUTF8(filepathTransformed2, bMayOverwrite2);
 
 	// Actually compare the files
 	// just_compare_files is a fairly thin front-end to diffutils

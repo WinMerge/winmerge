@@ -1,3 +1,7 @@
+2003-12-22 Laoran
+ BUG: [ 860043 ] binary file detection broken
+  WinMerge: DiffWrapper.cpp DirScan.cpp
+
 2003-12-19 Kimmo
  PATCH: [ 861099 ] Dirview context menu cleanup
   WinMerge: DirView.cpp Merge.rc resource.h

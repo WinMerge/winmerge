@@ -197,7 +197,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	FileTransform_Prediffing(m_sFile1, m_sToFindUnpacker, &infoPrediffer, TRUE);
 	FileTransform_UCS2ToUTF8(m_sFile1, TRUE);
 	FileTransform_Prediffing(m_sFile2, infoPrediffer, TRUE);
-	FileTransform_UCS2ToUTF8(m_sFile1, TRUE);
+	FileTransform_UCS2ToUTF8(m_sFile2, TRUE);
 
 	SplitFilename(m_sFile1, &sdir0, &sname0, NULL);
 	SplitFilename(m_sFile2, &sdir1, &sname1, NULL);
