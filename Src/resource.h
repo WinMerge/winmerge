@@ -218,6 +218,9 @@
 #define ID_DIR_COPY_FILE_TO_RIGHT       32800
 #define ID_VIEW_LANGUAGE                32801
 #define ID_HELP_CONTENTS                32802
+#define ID_FIRSTDIFF                    32803
+#define ID_CURDIFF                      32804
+#define ID_LASTDIFF                     32805
 
 // Next default values for new objects
 // 
@@ -225,7 +228,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        134
-#define _APS_NEXT_COMMAND_VALUE         32803
+#define _APS_NEXT_COMMAND_VALUE         32809
 #define _APS_NEXT_CONTROL_VALUE         1017
 #define _APS_NEXT_SYMED_VALUE           105
 #endif
