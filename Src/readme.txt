@@ -1,3 +1,8 @@
+2004-05-27 Perry
+ PATCH: [ 959843 ] Fix codepage initialization to thread default
+  Src: DiffWrapper.cpp DiffWrapper.h DirScan.cpp DirScan.h Merge.cpp
+  Src/Common: unicoder.cpp
+
 2004-05-26 Perry
  Added a few more native or ASCII language names (Albanian, Arabic, Armenian
   Belarusian, Croatian, Estonian, Farsi, Georgian, Greek, Urdu)

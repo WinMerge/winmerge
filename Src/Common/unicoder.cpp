@@ -2,7 +2,7 @@
  *  @file   unicoder.cpp
  *  @author Perry Rapp, Creator, 2003-2004
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-03-26 (Laurent)
+ *  @date   Edited:  2004-05-26 (Perry Rapp)
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
@@ -643,7 +643,13 @@ CString maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
 	if (codepage == defcodepage)
 	{
 		// trivial case, they want the bytes in the file interpreted in our current codepage
-		return lpd;
+		// Only caveat is that input (lpd) is not zero-terminated
+		CString str;
+		LPTSTR strbuff = str.GetBuffer(len+1);
+		_tcsncpy(strbuff, lpd, len);
+		strbuff[len] = 0; // Cannot call str.SetAt(...) until after ReleaseBuffer call
+		str.ReleaseBuffer();
+		return str;
 	}
 
 	CString str = CrossConvertToStringA(lpd, len, codepage, defcodepage, lossy);

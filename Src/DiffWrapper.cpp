@@ -36,6 +36,7 @@
 
 extern int recursive;
 extern CLogFile gLog;
+static int f_defcp = 0; // default codepage
 
 /**
  * @brief Default constructor
@@ -765,6 +766,13 @@ void CDiffWrapper::ClearMovedLists()
 	m_moved1.RemoveAll(); 
 }
 
+/** @brief Allow caller to specify codepage to assume for all unknown files */
+void // static
+DiffFileData::SetDefaultCodepage(int defcp)
+{
+	f_defcp = defcp;
+}
+
 /** @brief Simple initialization of DiffFileData */
 DiffFileData::DiffFileData()
 {
@@ -775,6 +783,11 @@ DiffFileData::DiffFileData()
 	m_ndiffs = 0;
 	m_ntrivialdiffs = 0;
 	Reset();
+	// Set default codepages
+	for (i=0; i<sizeof(m_sFilepath)/sizeof(m_sFilepath[0]); ++i)
+	{
+		m_sFilepath[i].codepage = f_defcp;
+	}
 }
 
 /** @brief deallocate member data */

@@ -418,3 +418,14 @@ static void StoreDiffResult(const CString & sDir, const fentry * lent, const fen
 	);
 	pCtxt->AddDiff(di);
 }
+
+
+void // static
+DirScan_InitializeDefaultCodepage()
+{
+	// Set thread default codepage
+	// This is application-wide initialization
+	// but neither MainFrame nor MergeApp included the needed headers
+	DiffFileData::SetDefaultCodepage(ucr::getDefaultCodepage());
+}
+

@@ -241,6 +241,12 @@ class PrediffingInfo;
  */
 struct DiffFileData
 {
+// class interface
+
+	static void SetDefaultCodepage(int defcp); // set codepage to assume for all unknown files
+
+// instance interface
+
 	DiffFileData();
 	~DiffFileData();
 

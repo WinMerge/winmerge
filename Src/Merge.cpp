@@ -44,6 +44,7 @@
 #include "paths.h"
 #include "FileFilterMgr.h"
 #include "Plugins.h"
+#include "DirScan.h" // for DirScan_InitializeDefaultCodepage
 
 #include "MergeEditView.h"
 #ifdef _DEBUG
@@ -136,9 +137,11 @@ BOOL CMergeApp::InitInstance()
 	Enable3dControlsStatic();	// Call this when linking to MFC statically
 #endif
 
-	// Change the registry key under which our settings are stored.
-	// You should modify this string to be something appropriate
-	// such as the name of your company or organization.
+	// Set default codepage
+	DirScan_InitializeDefaultCodepage();
+
+	// WinMerge registry settings are stored under HKEY_CURRENT_USER/Software/Thingamahoochie
+	// This is the name of the company of the original author (Dean Grimm)
 	SetRegistryKey(_T("Thingamahoochie"));
 
 	LoadStdProfileSettings(0);  // Load standard INI file options (including MRU)

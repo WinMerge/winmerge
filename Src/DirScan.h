@@ -21,5 +21,6 @@ public:
 int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 	int depth, IAbortable * piAbortable);
 
+void DirScan_InitializeDefaultCodepage();
 
 #endif // DirScan_h_included
