@@ -672,7 +672,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "System"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    CONTROL         "&Put deleted files to Recycle Bin",IDC_USE_RECYCLE_BIN,
+    CONTROL         "&Send deleted files to Recycle Bin",IDC_USE_RECYCLE_BIN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,114,10
     CONTROL         "&Add to explorer context menu",IDC_EXPLORER_CONTEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,167,10

@@ -2,6 +2,8 @@
  PATCH: [ 1030490 ] Updated Swedish Translation
   Submitted by Hans Eriksson
   Src/Languages/Swedish: MergeSwedish.rc
+ BUG: [ 1029644 ] (English) Options/System wording fix
+  Src: Merge.rc
 
 2004-09-17 Kimmo
  PATCH: [ 1029538 ] Reverse 'Ignore carriage return differences' when resetting
