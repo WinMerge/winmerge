@@ -1,3 +1,7 @@
+2004-10-21 Kimmo
+ PATCH: [ 1050231 ] Installer must not delete files it hasn't copied
+  InnoSetup: WinMerge Localized.iss
+
 2004-10-20 Kimmo
  PATCH: [ 1050322 ] Installer: Don't open start-menu folder by default
   InnoSetup: WinMerge Localized.iss
