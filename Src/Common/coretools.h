@@ -15,7 +15,7 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  Coretools.h
+ * @file  coretools.h
  *
  * @brief Declaration file for Coretools.cpp
  */
@@ -160,4 +160,7 @@ BOOL GetUserProfilePath(CString &sAppDataPath);
 BOOL PutToClipboard(LPCTSTR pszText, HWND currentWindowHandle);
 BOOL GetFromClipboard(CString & text, HWND currentWindowHandle);
 BOOL TextInClipboard();
+
+void GetDecoratedCmdLine(CString sCmdLine, CString &sDecoratedCmdLine,
+	CString &sExecutable);
 #endif

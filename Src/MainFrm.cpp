@@ -2280,23 +2280,25 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 {
 	CString sExtEditor;
 	CString ext;
+	CString sExecutable;
+	CString sCmd;
 	
 	sExtEditor = m_options.GetString(OPT_EXT_EDITOR_CMD);
-	SplitFilename(sExtEditor, NULL, NULL, &ext);
+	GetDecoratedCmdLine(sExtEditor, sCmd, sExecutable);
+
+	SplitFilename(sExecutable, NULL, NULL, &ext);
 	ext.MakeLower();
 
 	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
 	{
-		// Format command line
-		CString strCommandLine = _T("\"") + sExtEditor + _T("\" \"") +
-			file + _T("\"");
+		sCmd += _T("\"") + file + _T("\"");
 
 		BOOL retVal = FALSE;
 		STARTUPINFO stInfo = {0};
 		stInfo.cb = sizeof(STARTUPINFO);
 		PROCESS_INFORMATION processInfo;
 
-		retVal = CreateProcess(NULL, (LPTSTR)(LPCTSTR) strCommandLine,
+		retVal = CreateProcess(NULL, (LPTSTR)(LPCTSTR) sCmd,
 			NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
 			&stInfo, &processInfo);
 

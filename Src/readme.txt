@@ -1,3 +1,8 @@
+2004-03-02 Kimmo
+ PATCH: [ 907087 ] Allow commandline switches for external editor
+  Common: coretools.cpp coretools.h
+  Src: MainFrm.cpp
+
 2004-03-01 Kimmo
  PATCH: [ 906180 ] Use SHBrowseForFolder() to select folder
   Src: Merge.cpp Merge.h

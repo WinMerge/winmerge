@@ -15,7 +15,7 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  Coretools.cpp
+ * @file  coretools.cpp
  *
  * @brief Common routines
  *
@@ -1302,4 +1302,91 @@ BOOL TextInClipboard()
 {
 	UINT fmt = GetClipTcharTextFormat();
 	return IsClipboardFormatAvailable(fmt);
+}
+
+/**
+ * @brief Decorates commandline for giving to CreateProcess() or
+ * ShellExecute().
+ *
+ * Adds quotation marks around executable path if needed, but not
+ * around commandline switches. For example (C:\p ath\ex.exe -p -o)
+ * becomes ("C:\p ath\ex.exe" -p -o)
+ * @param [in] sCmdLine commandline to decorate
+ * @param [out] sDecoratedCmdLine decorated commandline
+ * @param [out] sExecutable Executable for validating file extension etc
+ */
+void GetDecoratedCmdLine(CString sCmdLine, CString &sDecoratedCmdLine,
+	CString &sExecutable)
+{
+	BOOL pathEndFound = FALSE;
+	BOOL addQuote = FALSE;
+	int pos = 0;
+	int prevPos = 0;
+	pos = sCmdLine.Find(_T(" "), 0);
+
+	sCmdLine.TrimLeft();
+	sCmdLine.TrimRight();
+	sDecoratedCmdLine.Empty();
+	sExecutable.Empty();
+
+	if (pos > -1)
+	{
+		// First space was before switch, we don't need "s
+		// (executable path didn't contain spaces)
+		if (sCmdLine[pos + 1] == '/' || sCmdLine[pos + 1] == '-')
+		{
+			pathEndFound = TRUE;
+		}
+		else
+		{
+			addQuote = TRUE;
+			sDecoratedCmdLine = _T("\"");
+		}
+
+		// Loop until executable path end (first switch) is found
+		while (pathEndFound == FALSE)
+		{
+			prevPos = pos;
+			pos = sCmdLine.Find(_T(" "), prevPos + 1);
+			
+			if (pos > -1)
+			{
+				if (sCmdLine[pos + 1] == '/' || sCmdLine[pos + 1] == '-')
+				{
+					pathEndFound = TRUE;
+				}
+			}
+			else
+			{
+				pathEndFound = TRUE;
+			}
+		}
+
+		if (addQuote)
+		{
+			if (pos > -1)
+			{
+				sExecutable = sCmdLine.Left(pos);
+				sDecoratedCmdLine += sExecutable;
+				sDecoratedCmdLine += _T("\"");
+				sDecoratedCmdLine += sCmdLine.Right(sCmdLine.GetLength() - pos);
+			}
+			else
+			{
+				sExecutable = sCmdLine;
+				sDecoratedCmdLine += sCmdLine;
+				sDecoratedCmdLine += _T("\"");
+			}
+		}
+		else
+		{
+			sDecoratedCmdLine = sCmdLine;
+			sExecutable = sCmdLine;
+		}
+	}
+	else
+	{
+		sDecoratedCmdLine = sCmdLine;
+		sExecutable = sCmdLine;
+	}
 }
