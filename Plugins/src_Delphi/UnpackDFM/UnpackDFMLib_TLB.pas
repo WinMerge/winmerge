@@ -24,7 +24,8 @@ unit UnpackDFMLib_TLB;
 
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleCtrls, StdVCL;
+uses
+  Windows{, ActiveX, Classes, Graphics, OleCtrls, StdVCL};
 
 // *********************************************************************//
 // GUIDS declared in the TypeLibrary. Following prefixes are used:      //

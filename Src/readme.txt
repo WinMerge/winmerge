@@ -3,6 +3,11 @@
   src new files: WMGotoDlg.h WMGotoDlg.cpp
   src: Merge.dsp Merge.rc MergeEditView.h MergeEditView.cpp resource.h
   src/Languages: *.rc resource.h
+ PATCH: [ 872413 ] UnpackDFM TestStreamFormat
+  Submitted by Michael Richter
+  Plugins/Delphi/UnpackFDM: UnpackFDM.dpr UnpackFDMLib_TLB.pas
+   WinMergeUnit.pas
+  Plugins/dlls: UnpackFDM.dll
 
 2004-01-17 Kimmo
  PATCH: [ 871789 ] Add "Copy to..." items to dirview context menu
