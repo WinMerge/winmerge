@@ -294,6 +294,8 @@ protected:
 	afx_msg void OnUpdateSelectAll(CCmdUI* pCmdUI);
 	afx_msg void OnPluginPredifferMode(UINT nID);
 	afx_msg void OnUpdatePluginPredifferMode(CCmdUI* pCmdUI);
+	afx_msg void OnCopyPathnames();
+	afx_msg void OnCopyFilenames();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);

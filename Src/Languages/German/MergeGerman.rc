@@ -278,6 +278,9 @@ BEGIN
             MENUITEM "&Mit...",                     ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
+        MENUITEM "Cop&y Pathnames"                  ID_DIR_COPY_PATHNAMES
+        MENUITEM "Copy &Filenames"                  ID_DIR_COPY_FILENAMES
+        MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
             MENUITEM "Zip &Left Side %1 File(s) from %2 Selected Item(s)",
@@ -1535,6 +1538,8 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Öffnet die rechte Datei im externen Editor."
     ID_DIR_OPEN_RIGHT_WITH  "Öffne rechte Datei mit..."
     IDS_CANNOT_EXECUTE_FILE "%1 konnte nicht ausgeführt werden."
+    ID_DIR_COPY_PATHNAMES   "Copy pathnames to clipboard"
+    ID_DIR_COPY_FILENAMES   "Copy filenames to clipboard"
 END
 
 // DIRECTORY DIFFING : 7ZIP

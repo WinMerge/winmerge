@@ -158,6 +158,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_SELECT_ALL, OnUpdateSelectAll)
 	ON_COMMAND_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnPluginPredifferMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnUpdatePluginPredifferMode)
+	ON_COMMAND(ID_DIR_COPY_PATHNAMES, OnCopyPathnames)
+	ON_COMMAND(ID_DIR_COPY_FILENAMES, OnCopyFilenames)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -2200,3 +2202,56 @@ void CDirView::RefreshOptions()
 	m_bEscCloses = mf->m_options.GetInt(OPT_CLOSE_WITH_ESC);
 }
 
+/**
+ * @brief Copy selected item paths (containing filenames) to clipboard.
+ */
+void CDirView::OnCopyPathnames()
+{
+	CDiffContext *pCtx = GetDiffContext();
+	CString strPaths;
+	int sel = -1;
+
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (!di.isSideRight())
+		{
+			strPaths += di. getLeftFilepath(pCtx);
+			strPaths += _T("\\");
+			if (!di.isDirectory())
+				strPaths += di.sfilename;
+			strPaths += _T("\n");
+		}
+
+		if (!di.isSideLeft())
+		{
+			strPaths += di. getRightFilepath(pCtx);
+			strPaths += _T("\\");
+			if (!di.isDirectory())
+				strPaths += di.sfilename;
+			strPaths += _T("\n");
+		}
+	}
+	PutToClipboard(strPaths, mf->GetSafeHwnd());
+}
+
+/**
+ * @brief Copy selected item filenames to clipboard.
+ */
+void CDirView::OnCopyFilenames()
+{
+	CDiffContext *pCtx = GetDiffContext();
+	CString strPaths;
+	int sel = -1;
+
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (!di.isDirectory())
+		{
+			strPaths += di.sfilename;
+			strPaths += _T("\n");
+		}
+	}
+	PutToClipboard(strPaths, mf->GetSafeHwnd());
+}

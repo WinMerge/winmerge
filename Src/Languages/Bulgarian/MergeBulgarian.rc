@@ -271,6 +271,9 @@ BEGIN
             MENUITEM "&с...",                    ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
+        MENUITEM "Cop&y Pathnames"                  ID_DIR_COPY_PATHNAMES
+        MENUITEM "Copy &Filenames"                  ID_DIR_COPY_FILENAMES
+        MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
             MENUITEM "Zip &лявата страна %1 файл(а) от %2 избрания обект(и)",
@@ -1417,6 +1420,8 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Отваряне на десния файл с външен редактор"
     ID_DIR_OPEN_RIGHT_WITH  "Отваряне на десния файл с..."
     IDS_CANNOT_EXECUTE_FILE "Неможе да стартира %1"
+    ID_DIR_COPY_PATHNAMES   "Copy pathnames to clipboard"
+    ID_DIR_COPY_FILENAMES   "Copy filenames to clipboard"
 END
 
 // DIRECTORY DIFFING : 7ZIP
