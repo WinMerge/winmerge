@@ -127,17 +127,20 @@ void CPatchDlg::OnOK()
 			AfxMessageBox(IDS_DIFF_ITEM2NOTFOUND, MB_ICONSTOP);
 	}
 
-	fileExists = is_regfile2(m_fileResult);
-
-	// Result file already exists and append not selected
-	if (fileExists && !m_appendFile)
+	if (file1Ok && file2Ok)
 	{
-		overWrite = AfxMessageBox(IDS_DIFF_FILEOVERWRITE, MB_YESNO);
-		if (overWrite == IDNO)
-			fileResultOK = FALSE;
+		fileExists = is_regfile2(m_fileResult);
+
+		// Result file already exists and append not selected
+		if (fileExists && !m_appendFile)
+		{
+			overWrite = AfxMessageBox(IDS_DIFF_FILEOVERWRITE, MB_YESNO);
+			if (overWrite == IDNO)
+				fileResultOK = FALSE;
+		}
+		else	// It's ok to write new file
+			fileResultOK = TRUE;
 	}
-	else	// It's ok to write new file
-		fileResultOK = TRUE;
 
 	if (file1Ok && file2Ok && fileResultOK)
 	{
@@ -239,7 +242,7 @@ void CPatchDlg::OnDiffBrowseFile1()
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	if (SelectFile(s, folder, title, NULL, TRUE))
 	{
-		AddNewFile(s, TRUE);
+		ChangeFile(s, TRUE);
 		UpdateData(FALSE);
 	}
 }
@@ -257,19 +260,34 @@ void CPatchDlg::OnDiffBrowseFile2()
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	if (SelectFile(s, folder, title, NULL, TRUE))
 	{
-		AddNewFile(s, FALSE);
+		ChangeFile(s, FALSE);
 		UpdateData(FALSE);
 	}
 }
 
 /** 
- * @brief Add selected file to list and UI
+ * @brief Changes file in patchfiles list and to UI.
  */
-void CPatchDlg::AddNewFile(CString sFile, BOOL bLeft)
+void CPatchDlg::ChangeFile(CString sFile, BOOL bLeft)
 {
 	PATCHFILES pf;
 	int count = GetItemCount();
 
+	if (count == 1)
+	{
+		POSITION pos = GetFirstItem();
+		pf = GetNextItem(pos);
+	}
+	else if (count > 1)
+	{
+		if (bLeft)
+			m_file1.Empty();
+		else
+			m_file2.Empty();
+	}
+	ClearItems();
+
+	// Change file
 	if (bLeft)
 	{
 		pf.lfile = sFile;
@@ -279,25 +297,6 @@ void CPatchDlg::AddNewFile(CString sFile, BOOL bLeft)
 	{
 		pf.rfile = sFile;
 		m_file2 = sFile;
-	}
-
-	if (count == 1)
-	{
-		POSITION pos = GetFirstItem();
-		POSITION current = pos;
-		pf = GetNextItem(pos);
-		SetItemAt(current, pf);
-		return;
-	}
-
-	// If there are multiple files already, empty list
-	if (count > 1)
-	{
-		ClearItems();
-		if (bLeft)
-			m_file1.Empty();
-		else
-			m_file2.Empty();
 	}
 	AddItem(pf);
 }
@@ -329,9 +328,11 @@ void CPatchDlg::OnSelchangeFile1Combo()
 	int sel = m_ctlFile1.GetCurSel();
 	if (sel != CB_ERR)
 	{
-		m_ctlFile1.GetLBText(sel, m_file1);
-		m_ctlFile1.SetWindowText(m_file1);
-		UpdateData(TRUE);
+		CString file;
+		m_ctlFile1.GetLBText(sel, file);
+		m_ctlFile1.SetWindowText(file);
+		ChangeFile(file, TRUE);
+		UpdateData(FALSE);
 	}
 }
 
@@ -343,9 +344,12 @@ void CPatchDlg::OnSelchangeFile2Combo()
 	int sel = m_ctlFile2.GetCurSel();
 	if (sel != CB_ERR)
 	{
-		m_ctlFile2.GetLBText(sel, m_file2);
-		m_ctlFile2.SetWindowText(m_file2);
-		UpdateData(TRUE);
+		CString file;
+		m_ctlFile2.GetLBText(sel, file);
+		m_ctlFile2.SetWindowText(file);
+		ChangeFile(file, FALSE);
+		UpdateData(FALSE);
+
 	}
 }
 

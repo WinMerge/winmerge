@@ -92,7 +92,7 @@ protected:
 
 	CList<PATCHFILES, PATCHFILES> m_fileList;
 	
-	void AddNewFile(CString sFile, BOOL bLeft);
+	void ChangeFile(CString sFile, BOOL bLeft);
 
 	// Generated message map functions
 	//{{AFX_MSG(CPatchDlg)

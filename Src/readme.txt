@@ -1,6 +1,8 @@
 2003-10-20 Kimmo
  BUG: [ 826645 ] Scrolling to diff does not move cursor to diff
   WinMerge: MergeEditView.cpp
+ Fix Patch Generate dialog's comboboxes to really change files
+  WinMerge: PatchDlg.h PatchDlg.cpp
 
 2003-10-20 Laoran
  'Comparison Summary' not updated after saving (lost in plugin patch)
