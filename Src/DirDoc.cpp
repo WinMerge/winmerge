@@ -205,9 +205,9 @@ diff_dirs2 (filevec, handle_file, depth)
 
 void CDirDoc::Rescan()
 {
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
+	if (!m_pCtxt) return;
 
-	ASSERT(m_pCtxt != NULL);
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
 
 	gLog.Write(_T("Starting directory scan:\r\n\tLeft: %s\r\n\tRight: %s\r\n"),
 			m_pCtxt->m_strLeft, m_pCtxt->m_strRight);

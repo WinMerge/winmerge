@@ -6,6 +6,8 @@
    WaitStatusCursor.cpp WaitStatusCursor.h
  PATCH: [ 724473 ] Move WaitStatusCursor strings into RC
   WinMerge: DirDoc.cpp DirView.cpp MainFrm.cpp MergeDoc.cpp MergeEditView.cpp resource.h StdAfx.cpp StdAfx.h
+ PATCH: [ 724479 ] Fix Refresh crash in empty dir view
+  WinMerge: DirDoc.cpp
 
 2003-04-19 Perry
  [ 724280 ] Could use wait cursors at OpenSelection calls
