@@ -1,3 +1,7 @@
+2004-06-01 Laoran
+ PATCH: [ 964497 ] fix display of moved block in detail pane
+  Src: MergeDiffDetailView.cpp
+
 2004-06-02 Kimmo
  BUG: [ 964885 ] ColExtGet() returns extension converted to lowercase
   Src: DirViewColItems.cpp
