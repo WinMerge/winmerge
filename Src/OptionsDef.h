@@ -94,4 +94,7 @@ const TCHAR OPT_LINEFILTER_REGEXP[] = _T("Settings/RegExps");
 /// Currently selected filefilter
 const TCHAR OPT_FILEFILTER_CURRENT[] = _T("Settings/FileFilterCurrent");
 
+// Fonts
+const TCHAR OPT_FONT_FILECMP_USECUSTOM[] = _T("Font/Specified");
+
 #endif // _OPTIONS_DEF_H_
