@@ -309,7 +309,7 @@ void CChildFrame::CloseNow()
 CChildFrame::MergeStatus::MergeStatus(CChildFrame * pFrame, int base)
 : m_pFrame(pFrame)
 , m_base(base)
-, m_nLine(0)
+// CString m_sLine
 , m_nChars(0)
 // CString m_sEol
 // CString m_sEolDisplay
@@ -322,7 +322,15 @@ void CChildFrame::MergeStatus::Update()
 	if (IsWindow(m_pFrame->m_wndStatusBar.m_hWnd))
 	{
 		CString str;
-		str.Format(_T("Line %d, Chars %d, EOL: %s"), m_nLine, m_nChars, m_sEolDisplay);
+		if (m_nChars == -1)
+		{
+			str.Format(IDS_EMPTY_LINE_STATUS_INFO, m_sLine);
+		}
+		else
+		{
+			str.Format(IDS_LINE_STATUS_INFO, m_sLine, m_nChars, m_sEolDisplay);
+		}
+
 		m_pFrame->m_wndStatusBar.SetPaneText(m_base, str);
 	}
 }
@@ -338,11 +346,11 @@ static CString EolString(const CString & sEol)
 }
 
 // Receive status line info from crystal window and display
-void CChildFrame::MergeStatus::SetLineInfo(int nLine, int nChars, LPCTSTR szEol)
+void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nChars, LPCTSTR szEol)
 {
-	if (nLine!=m_nLine || nChars!=m_nChars || m_sEol != szEol)
+	if (m_sLine!=szLine || m_nChars!=nChars || m_sEol != szEol)
 	{
-		m_nLine = nLine;
+		m_sLine = szLine;
 		m_nChars = nChars;
 		m_sEol = szEol;
 		m_sEolDisplay = EolString(m_sEol);

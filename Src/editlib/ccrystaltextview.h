@@ -156,6 +156,7 @@ public :
     BOOL IsTextBufferInitialized () const;
     CString GetTextBufferEol (int nLine) const;
     int ComputeRealLine (int nApparentLine) const;
+    int ComputeApparentLine (int nRealLine) const;
 
 protected :
     CPoint WordToRight (CPoint pt);

@@ -973,6 +973,8 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "Replaced %1 string(s)."
     IDS_EDIT_TEXT_NOT_FOUND "Cannot find string""%s"""
+    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
 END
 
 #endif    // Czech resources

@@ -823,8 +823,24 @@ OnUpdateCaret()
 	{
 		int nScreenLine = GetCursorPos().y;
 		int nRealLine = ComputeRealLine(nScreenLine);
+		CString sLine;
 		int chars = GetLineLength(nScreenLine);
 		CString sEol = GetTextBufferEol(nScreenLine);
-		m_piMergeEditStatus->SetLineInfo(nRealLine+1, chars, sEol);
+		// Is this a ghost line ?
+		if (!m_pTextBuffer->GetFullLineLength(nScreenLine))
+		{
+			// Ghost lines display eg "Line 12-13"
+			sLine.Format(_T("%d-%d"), nRealLine, nRealLine+1);
+			chars = -1;
+			sEol = _T("");
+		}
+		else
+		{
+			// Regular lines display eg "Line 13 Characters: 25 EOL: CRLF"
+			sLine.Format(_T("%d"), nRealLine+1);
+			chars = GetLineLength(nScreenLine);
+			sEol = GetTextBufferEol(nScreenLine);
+		}
+		m_piMergeEditStatus->SetLineInfo(sLine, chars, sEol);
 	}
 }

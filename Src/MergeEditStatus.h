@@ -2,5 +2,5 @@
 class IMergeEditStatus
 {
 public:
-	virtual void SetLineInfo(int nLine, int nChars, LPCTSTR szEol) = 0;
+	virtual void SetLineInfo(LPCTSTR szLine, int nChars, LPCTSTR szEol) = 0;
 };

@@ -991,6 +991,8 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "%1 Vorkommen ersetzt."
     IDS_EDIT_TEXT_NOT_FOUND "Kann ""%s"" nicht finden"
+    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
 END
 
 #endif    // German (Germany) resources

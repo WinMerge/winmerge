@@ -5326,5 +5326,9 @@ int CCrystalTextView::ComputeRealLine (int nApparentLine) const
   return m_pTextBuffer->ComputeRealLine(nApparentLine);
 }
 
+int CCrystalTextView::ComputeApparentLine (int nRealLine) const
+{
+  return m_pTextBuffer->ComputeApparentLine(nRealLine);
+}
 ////////////////////////////////////////////////////////////////////////////
 #pragma warning ( default : 4100 )

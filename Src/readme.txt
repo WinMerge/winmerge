@@ -1,3 +1,10 @@
+2003-07-11 Perry
+ PATCH: [ 765150 ] Fix char count in edit view bottom status line
+  WinMerge: ChildFrm.cpp ChildFrm.h Merge.rc MergeEditStatus.h 
+   MergeEditView.cpp resource.h
+  editlib: ccrystaltextview.cpp ccrystaltextview.h
+  Languages: Updated all resource.h and rc files to include two new strings
+
 2003-07-11 Kimmo
  PATCH: [ 769295 ] Fix for threaded dir compare crash
   WinMerge: DiffThread.h DiffThread.cpp DirDoc.h DirDoc.cpp DirView.h DirView.cpp

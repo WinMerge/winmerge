@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Developer Studio generated include file.
-// Used by MergeDutch.rc
+// Used by Merge.rc
 //
 #define IDC_CUT                         3
 #define IDC_COPY                        4
@@ -157,6 +157,8 @@
 #define IDC_FILE_FILTER                 1039
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
+#define IDS_LINE_STATUS_INFO            8503
+#define IDS_EMPTY_LINE_STATUS_INFO      8504
 #define IDD_EDIT_FIND                   8601
 #define IDD_EDIT_REPLACE                8602
 #define IDC_EDIT_WHOLE_WORD             8603

@@ -49,13 +49,13 @@ protected:
 		// ctr
 		MergeStatus(CChildFrame * pFrame, int base);
 		// Implement MergeEditStatus
-		void SetLineInfo(int nLine, int nChars, LPCTSTR szEol);
+		void SetLineInfo(LPCTSTR szLine, int nChars, LPCTSTR szEol);
 	protected:
 		void Update();
 	private:
 		CChildFrame * m_pFrame;
 		int m_base; // 0 for left, 1 for right
-		int m_nLine;
+		CString m_sLine;
 		int m_nChars;
 		CString m_sEol;
 		CString m_sEolDisplay;
