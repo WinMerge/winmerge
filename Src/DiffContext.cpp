@@ -35,7 +35,7 @@
 #include "coretools.h"
 #include "UniFile.h"
 #include "DiffFileInfo.h"
-
+#include <shlwapi.h>
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -123,8 +123,6 @@ void CDiffContext::AddDiff(const CString &pszFilename, const CString &szSubdir
 	DIFFITEM di;
 	di.sfilename = pszFilename;
 	di.sSubdir = szSubdir;
-	di.left.spath = pszLeftDir;
-	di.right.spath = pszRightDir;
 	di.left.mtime = lmtime;
 	di.right.mtime = rmtime;
 	di.left.ctime = lctime;
@@ -149,15 +147,6 @@ void CDiffContext::AddDiff(const CString &pszFilename, const CString &szSubdir
  */
 void CDiffContext::AddDiff(DIFFITEM & di)
 {
-	// BSP - Capture the extension; from the end of the file name to the last '.'     
-	TCHAR *pDest = _tcsrchr(di.sfilename, _T('.') );
-
-	if(pDest)	// handle no extensions case.
-	{
-		di.sext = pDest+1; // skip dot
-		di.sext.MakeLower();
-	}
-
 	m_pList->AddTail(di);
 	// ignore return value
 	SendMessage(m_hDirFrame, m_msgUpdateStatus, di.diffcode, NULL);
@@ -283,8 +272,9 @@ void CDiffContext::UpdateStatusFromDisk(POSITION diffpos)
 void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
 {
 	UpdateVersion(di, dfi);
-
-	CString filepath = paths_ConcatPath(dfi.spath, di.sfilename);
+	ASSERT(&dfi == &di.left || &dfi == &di.right);
+	CString spath = &dfi == &di.left ? di.getLeftFilepath(this) : di.getRightFilepath(this);
+	CString filepath = paths_ConcatPath(spath, di.sfilename);
 	dfi.Update(filepath);
 	GuessEncoding(filepath, &dfi.unicoding, &dfi.codepage);
 }
@@ -386,13 +376,13 @@ demoGuessEncoding_rc(UniFile * pufile, int * encoding, int * codepage)
 void CDiffContext::UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi)
 {
 	// Check only binary files
-	CString filename = di.sfilename;
-	filename.MakeUpper();
-	if (_tcsstr(filename, _T(".EXE")) || _tcsstr(filename, _T(".DLL")) || _tcsstr(filename, _T(".SYS")) ||
-	    _tcsstr(filename, _T(".DRV")) || _tcsstr(filename, _T(".OCX")) || _tcsstr(filename, _T(".CPL")) ||
-	    _tcsstr(filename, _T(".SCR")))
+	LPCTSTR ext = PathFindExtension(di.sfilename);
+	if (!lstrcmpi(ext, _T(".EXE")) || !lstrcmpi(ext, _T(".DLL")) || !lstrcmpi(ext, _T(".SYS")) ||
+	    !lstrcmpi(ext, _T(".DRV")) || !lstrcmpi(ext, _T(".OCX")) || !lstrcmpi(ext, _T(".CPL")) ||
+	    !lstrcmpi(ext, _T(".SCR")))
 	{
-		CString filepath = paths_ConcatPath(dfi.spath, di.sfilename);
+		CString spath = &dfi == &di.left ? di.getLeftFilepath(this) : di.getRightFilepath(this);
+		CString filepath = paths_ConcatPath(spath, di.sfilename);
 		dfi.version = GetFixedFileVersion(filepath);
 	}
 	else
@@ -400,13 +390,31 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi)
 }
 
 /** @brief Return path to left file, including all but file name */
-CString DIFFITEM::getLeftFilepath() const
+CString DIFFITEM::getLeftFilepath(const CDiffContext *pCtxt) const
 {
-	return left.spath;
+	CString sPath;
+	if (!isSideRight())
+	{
+		sPath = pCtxt->m_strNormalizedLeft;
+		if (sSubdir.GetLength())
+		{
+			sPath += _T("\\") + sSubdir;
+		}
+	}
+	return sPath;
 }
 
 /** @brief Return path to right file, including all but file name */
-CString DIFFITEM::getRightFilepath() const
+CString DIFFITEM::getRightFilepath(const CDiffContext *pCtxt) const
 {
-	return right.spath;
+	CString sPath;
+	if (!isSideLeft())
+	{
+		sPath = pCtxt->m_strNormalizedRight;
+		if (sSubdir.GetLength())
+		{
+			sPath += _T("\\") + sSubdir;
+		}
+	}
+	return sPath;
 }

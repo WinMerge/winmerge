@@ -53,6 +53,8 @@ struct DIFFCODE
 	bool isBin() const { return ((diffcode & DIFFCODE::TEXTFLAG) == DIFFCODE::BIN); }
 };
 
+class CDiffContext;
+
 /**
  * @brief information about one diff (including files on both sides)
  *
@@ -77,14 +79,13 @@ struct DIFFITEM : DIFFCODE
 	DiffFileInfo right;
 	CString sfilename;
 	CString sSubdir; //*< Common subdirectory from root of comparison */
-	CString sext;
 	int	nsdiffs;
 	int ndiffs;
 
 	DIFFITEM() : DIFFCODE(0), ndiffs(-1), nsdiffs(-1) { }
 
-	CString getLeftFilepath() const;
-	CString getRightFilepath() const;
+	CString getLeftFilepath(const CDiffContext *) const;
+	CString getRightFilepath(const CDiffContext *) const;
 };
 
 // Interface for reporting current file, as diff traverses file tree
@@ -102,7 +103,7 @@ public:
 	virtual BOOL includeDir(LPCTSTR szDirName)=0;
 };
 
-class CDiffContext  
+class CDiffContext
 {
 public:
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight);

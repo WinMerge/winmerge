@@ -2277,10 +2277,10 @@ void CMainFrame::OnToolsGeneratePatch()
 		
 			if (!item.isBin() && !item.isDirectory() &&	!item.isResultError())
 			{
-				CString leftFile = item.getLeftFilepath();
+				CString leftFile = item.getLeftFilepath(pDoc->m_pCtxt);
 				if (!leftFile.IsEmpty())
 					leftFile += _T("\\") + item.sfilename;
-				CString rightFile = item.getRightFilepath();
+				CString rightFile = item.getRightFilepath(pDoc->m_pCtxt);
 				if (!rightFile.IsEmpty())
 					rightFile += _T("\\") + item.sfilename;
 				

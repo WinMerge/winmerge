@@ -38,8 +38,8 @@ interface Merge7z
 					CheckIfPresent = 128,
 					NeedFindFile = Attributes|CreationTime|LastAccessTime|LastWriteTime|Size|Name
 				};
-			} *operator->() {return 0;}
-			UINT32 Mask;
+				UINT32 Item;
+			} Mask;
 			UINT32 Attributes;
 			FILETIME CreationTime;
 			FILETIME LastAccessTime;

@@ -1,0 +1,15 @@
+;static const char rcsid[] = "$Id$"
+;/*
+;This module definition file also serves as a change log. Please log your
+;changes at the end of this file. The file is #included during compilation
+;so the executable knows its version from the rcsid above.
+
+EXPORTS
+	DllGetVersion
+
+;DATE:		BY:					DESCRIPTION:
+;==========	===================	================================================
+;2003/12/16	Jochen Tucht		GuessFormat() now checks for directory
+;2004/03/15	Jochen Tucht		Fix Visual Studio 2003 build issue
+;2004/04/13	Jochen Tucht		Experimental DllGetVersion() based on rcsid.
+;*/

@@ -60,7 +60,6 @@ struct DiffFileInfo
 	__int64 mtime;
 	__int64 size; /**< file size in bytes */
 	CString version; /**< string of fixed file version, eg, 1.2.3.4 */
-	CString spath; /**< fully qualified directory of file */
 	FileFlags flags; /**< file attributes */
 	int codepage; /**< 8bit codepage, if applicable, 0 is unknown or N/A */
 	int unicoding; /**< Unicode encoding (ucr::CODESET) */

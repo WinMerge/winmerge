@@ -152,6 +152,10 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\Merge7z.def
+# End Source File
+# Begin Source File
+
 SOURCE=.\Merge7z.h
 # End Source File
 # Begin Source File

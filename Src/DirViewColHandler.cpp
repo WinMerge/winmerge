@@ -54,12 +54,12 @@ enum
 /**
  * @brief Get text for specified column (forwards to specific column handler)
  */
-static CString ColGet(int col, const DIFFITEM & di)
+static CString ColGet(CDiffContext *pCtxt, int col, const DIFFITEM & di)
 {
 	// Custom properties have custom get functions
 	if (ColGetFnc fnc = g_cols[col].getfnc)
 	{
-		return (*fnc)(reinterpret_cast<const char *>(&di) + g_cols[col].offset);
+		return (*fnc)(pCtxt, reinterpret_cast<const char *>(&di) + g_cols[col].offset);
 	}
 	ASSERT(FALSE);
 	return "???";
@@ -68,7 +68,7 @@ static CString ColGet(int col, const DIFFITEM & di)
 /**
  * @brief Sort two items on specified column (forwards to specific column handler)
  */
-static int ColSort(int col, const DIFFITEM & ldi, const DIFFITEM &rdi)
+static int ColSort(CDiffContext *pCtxt, int col, const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
 	// Custom properties have custom sort functions
 	if (ColSortFnc fnc = g_cols[col].sortfnc)
@@ -76,6 +76,7 @@ static int ColSort(int col, const DIFFITEM & ldi, const DIFFITEM &rdi)
 		SIZE_T offset = g_cols[col].offset;
 		return (*fnc)
 		(
+			pCtxt,
 			reinterpret_cast<const char *>(&ldi) + offset,
 			reinterpret_cast<const char *>(&rdi) + offset
 		);
@@ -122,7 +123,7 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 {
 	// initialize structures to obtain required information
 	CDirView* pView = reinterpret_cast<CDirView*>(lParamSort);
-	
+	CDiffContext *pCtxt = pView->GetDiffContext();
 	// Sort special items always first in dir view
 	if (lParam1 == -1)
 	  return -1;
@@ -131,11 +132,11 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 	
 	POSITION diffposl = pView->GetItemKeyFromData(lParam1);
 	POSITION diffposr = pView->GetItemKeyFromData(lParam2);
-	const DIFFITEM &ldi = pView->GetDiffContext()->GetDiffAt(diffposl);
-	const DIFFITEM &rdi = pView->GetDiffContext()->GetDiffAt(diffposr);
+	const DIFFITEM &ldi = pCtxt->GetDiffAt(diffposl);
+	const DIFFITEM &rdi = pCtxt->GetDiffAt(diffposr);
 
 	// compare 'left' and 'right' parameters as appropriate
-	int retVal = ColSort(pView->m_sortColumn, ldi, rdi);
+	int retVal = ColSort(pCtxt, pView->m_sortColumn, ldi, rdi);
 
 	// return compare result, considering sort direction
 	return (pView->m_bSortAscending)?retVal:-retVal;
@@ -199,7 +200,7 @@ void CDirView::UpdateDiffItemStatus(UINT nIdx, DIFFITEM & di)
 		int phy = ColLogToPhys(i);
 		if (phy>=0)
 		{
-			CString s = ColGet(i, di);
+			CString s = ColGet(GetDiffContext(), i, di);
 			
 			// Add '*' to newer time field
 			if (i == DirCol_LmTime && bLeftNewer) // Left modification time

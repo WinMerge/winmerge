@@ -7,6 +7,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <shlwapi.h>
 #include "DirScan.h"
 #include "common/unicoder.h"
 #include "DiffContext.h"
@@ -44,8 +45,7 @@ void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * fi
 static void Sort(fentryArray * dirs, bool casesensitive);;
 static int collstr(const CString & s1, const CString & s2, bool casesensitive);
 static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry *rent, 
-			    int code, CDiffContext * pCtxt, int ndiffs=-1, int ntrivialdiffs=-1);
-static int prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2, int * ndiffs, int * ntrivialdiffs);
+			    int code, CDiffContext *, const DiffFileData * = 0);
 
 /** @brief cmpmth is a typedef for a pointer to a method */
 typedef int (CString::*cmpmth)(LPCTSTR sz) const;
@@ -65,14 +65,16 @@ typedef int (CString::*cmpmth)(LPCTSTR sz) const;
 int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 	int depth, IAbortable * piAbortable)
 {
+	//int (WINAPI *collstr)(LPCTSTR, LPCTSTR) = casesensitive ? lstrcmp : lstrcmpi;
+	static const TCHAR backslash[] = _T("\\");
 	CString sLeftDir = pCtxt->m_strNormalizedLeft;
 	CString sRightDir = pCtxt->m_strNormalizedRight;
 	CString subprefix;
 	if (!subdir.IsEmpty())
 	{
-		sLeftDir += _T("\\") + subdir;
-		sRightDir += _T("\\") + subdir;
-		subprefix = subdir + _T("\\");
+		sLeftDir += backslash + subdir;
+		sRightDir += backslash + subdir;
+		subprefix = subdir + backslash;
 	}
 
 	fentryArray leftDirs, leftFiles, rightDirs, rightFiles;
@@ -91,17 +93,17 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 
 		// In debug mode, send current status to debug window
 		if (i<leftDirs.GetSize())
-			TRACE(_T("Candidate left: leftDirs[i]=%s\n"), leftDirs[i]);
+			TRACE(_T("Candidate left: leftDirs[i]=%s\n"), (LPCTSTR)leftDirs[i].name);
 		if (j<rightDirs.GetSize())
-			TRACE(_T("Candidate right: rightDirs[j]=%s\n"), rightDirs[j]);
+			TRACE(_T("Candidate right: rightDirs[j]=%s\n"), (LPCTSTR)rightDirs[j].name);
 		if (i<leftDirs.GetSize() && (j==rightDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)<0))
 		{
-			int nDiffCode = DIFFCODE::LEFT + DIFFCODE::DIR;
+			int nDiffCode = DIFFCODE::LEFT | DIFFCODE::DIR;
 
 			// Test against filter
 			CString newsub = subprefix + leftDirs[i].name;
 			if (!pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
-				nDiffCode |= DIFFCODE::SKIPPED;
+				nDiffCode = DIFFCODE::LEFT | DIFFCODE::DIR | DIFFCODE::SKIPPED;
 
 			// Advance left pointer over left-only entry, and then retest with new pointers
 			StoreDiffResult(subdir, &leftDirs[i], 0, nDiffCode, pCtxt);
@@ -110,12 +112,12 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 		}
 		if (j<rightDirs.GetSize() && (i==leftDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)>0))
 		{
-			int nDiffCode = DIFFCODE::RIGHT + DIFFCODE::DIR;
+			int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::DIR;
 
 			// Test against filter
 			CString newsub = subprefix + rightDirs[j].name;
 			if (!pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
-				nDiffCode |= DIFFCODE::SKIPPED;
+				nDiffCode = DIFFCODE::RIGHT | DIFFCODE::DIR | DIFFCODE::SKIPPED;
 
 			// Advance right pointer over right-only entry, and then retest with new pointers
 			StoreDiffResult(subdir, 0, &rightDirs[j], nDiffCode, pCtxt);
@@ -163,34 +165,54 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 
 		// In debug mode, send current status to debug window
 		if (i<leftFiles.GetSize())
-			TRACE(_T("Candidate left: leftFiles[i]=%s\n"), leftFiles[i]);
+			TRACE(_T("Candidate left: leftFiles[i]=%s\n"), (LPCTSTR)leftFiles[i].name);
 		if (j<rightFiles.GetSize())
-			TRACE(_T("Candidate right: rightFiles[j]=%s\n"), rightFiles[j]);
+			TRACE(_T("Candidate right: rightFiles[j]=%s\n"), (LPCTSTR)rightFiles[j].name);
 		if (i<leftFiles.GetSize() && (j==rightFiles.GetSize() || collstr(leftFiles[i].name, rightFiles[j].name, casesensitive)<0))
 		{
-			int nDiffCode = DIFFCODE::LEFT + DIFFCODE::FILE;
-
 			// Test against filter
 			CString newsubfile = subprefix + leftFiles[i].name;
 			if (!pCtxt->m_piFilterUI->includeFile(newsubfile) || !pCtxt->m_piFilterGlobal->includeFile(newsubfile))
-				nDiffCode |= DIFFCODE::SKIPPED;
-
+			{
+				StoreDiffResult(subdir, &leftFiles[i], 0, DIFFCODE::LEFT | DIFFCODE::FILE | DIFFCODE::SKIPPED, pCtxt);
+			}
+			else if (mf->m_nCompMethod != 1)
+			{
+				// Compare file to itself to detect encoding
+				CString filepath = sLeftDir + backslash + leftFiles[i].name;
+				DiffFileData diffdata;
+				diffdata.prepAndCompareTwoFiles(filepath, filepath);
+				StoreDiffResult(subdir, &leftFiles[i], 0, DIFFCODE::LEFT | DIFFCODE::FILE, pCtxt, &diffdata);
+			}
+			else
+			{
+				StoreDiffResult(subdir, &leftFiles[i], 0, DIFFCODE::LEFT | DIFFCODE::FILE, pCtxt);
+			}
 			// Advance left pointer over left-only entry, and then retest with new pointers
-			StoreDiffResult(subdir, &leftFiles[i], 0, nDiffCode, pCtxt);
 			++i;
 			continue;
 		}
 		if (j<rightFiles.GetSize() && (i==leftFiles.GetSize() || collstr(leftFiles[i].name, rightFiles[j].name, casesensitive)>0))
 		{
-			int nDiffCode = DIFFCODE::RIGHT + DIFFCODE::FILE;
-
 			// Test against filter
 			CString newsubfile = subprefix + rightFiles[j].name;
 			if (!pCtxt->m_piFilterUI->includeFile(newsubfile) || !pCtxt->m_piFilterGlobal->includeFile(newsubfile))
-				nDiffCode |= DIFFCODE::SKIPPED;
-
+			{
+				StoreDiffResult(subdir, 0, &rightFiles[j], DIFFCODE::RIGHT | DIFFCODE::FILE | DIFFCODE::SKIPPED, pCtxt);
+			}
+			else if (mf->m_nCompMethod != 1)
+			{
+				// Compare file to itself to detect encoding
+				CString filepath = sRightDir + backslash + rightFiles[j].name;
+				DiffFileData diffdata;
+				diffdata.prepAndCompareTwoFiles(filepath, filepath);
+				StoreDiffResult(subdir, 0, &rightFiles[j], DIFFCODE::RIGHT | DIFFCODE::FILE, pCtxt, &diffdata);
+			}
+			else
+			{
+				StoreDiffResult(subdir, 0, &rightFiles[j], DIFFCODE::RIGHT | DIFFCODE::FILE, pCtxt);
+			}
 			// Advance right pointer over right-only entry, and then retest with new pointers
-			StoreDiffResult(subdir, 0, &rightFiles[j], nDiffCode, pCtxt);
 			++j;
 			continue;
 		}
@@ -201,40 +223,32 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			if (!pCtxt->m_piFilterUI->includeFile(newsubfile) || !pCtxt->m_piFilterGlobal->includeFile(newsubfile))
 			{
 				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], DIFFCODE::SKIPPED+DIFFCODE::FILE, pCtxt);
+				continue;
 			}
-			else
+			LPCTSTR leftname = leftFiles[i].name;
+			LPCTSTR rightname = rightFiles[j].name;
+
+			gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s")
+				, leftname, rightname, (LPCTSTR)sLeftDir, (LPCTSTR)sRightDir);
+
+			if (mf->m_nCompMethod == 1)
 			{
-				CString leftname = leftFiles[i].name;
-				CString rightname = rightFiles[j].name;
-
-				gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s")
-					, leftname, rightname, sLeftDir, sRightDir);
-
-				// Files to compare
-				CString filepath1 = paths_ConcatPath(sLeftDir, leftname);
-				CString filepath2 = paths_ConcatPath(sRightDir, rightname);
-
-
-				int code = 0;
-				int ndiffs=0, ntrivialdiffs=0;
-				if (mf->m_nCompMethod == 1)
-				{
-					// Compare only by modified date
-					// TODO: Set ndiffs & ntrivialdiffs to -1 & handle in display
-					if (leftFiles[i].mtime != rightFiles[j].mtime)
-						code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::DIFF;
-					else
-						code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
-				}
-				else
-				{
-					// Really compare
-					code = prepAndCompareTwoFiles(filepath1, filepath2, &ndiffs, &ntrivialdiffs);
-				}
-
+				// Compare only by modified date
+				int code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
+				if (leftFiles[i].mtime != rightFiles[j].mtime)
+					code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::DIFF;
 				// report result back to caller
-				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt, ndiffs, ntrivialdiffs);
+				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt);
+				continue;
 			}
+			// Files to compare
+			CString filepath1 = sLeftDir + backslash + leftname;
+			CString filepath2 = sRightDir + backslash + rightname;
+			// Really compare
+			DiffFileData diffdata;
+			int code = diffdata.prepAndCompareTwoFiles(filepath1, filepath2);
+			// report result back to caller
+			StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt, &diffdata);
 			++i;
 			++j;
 			continue;
@@ -242,158 +256,6 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 		break;
 	}
 	return 1;
-}
-
-/**
- * @brief Invoke appropriate plugins for unpacking
- * return false if anything fails
- * caller has to DeleteFile filepathTransformed, if it differs from filepath
- */
-static bool Unpack(CString & filepathTransformed,
-	const CString & filteredFilenames, PackingInfo * infoUnpacker)
-{
-	// first step : unpack (plugins)
-	if (infoUnpacker->bToBeScanned)
-	{
-		if (!FileTransform_Unpacking(filepathTransformed, filteredFilenames, infoUnpacker, &infoUnpacker->subcode))
-			return false;
-	}
-	else
-	{
-		if (!FileTransform_Unpacking(filepathTransformed, infoUnpacker, &infoUnpacker->subcode))
-			return false;
-	}
-	return true;
-}
-
-/**
- * @brief Invoke appropriate plugins for prediffing
- * return false if anything fails
- * caller has to DeleteFile filepathTransformed, if it differs from filepath
- */
-static bool Transform(const CString & filepath, CString & filepathTransformed,
-	const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd)
-{
-	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
-
-	DiffFileData::UniFileBom bom = fd; // guess encoding
-
-	if (bom.unicoding && bom.unicoding != ucr::UCS2LE)
-	{
-		// second step : normalize Unicode to OLECHAR (most of time, do nothing) (OLECHAR = UCS-2LE in Windows)
-		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
-		if (!FileTransform_NormalizeUnicode(filepathTransformed, bMayOverwrite))
-			return false;
-	}
-
-	// Note: filepathTransformed may be in UCS-2 (if toUtf8), or it may be raw encoding (if !Utf8)
-	// prediff plugins must handle both
-
-	// third step : prediff (plugins)
-	bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
-	if (infoPrediffer->bToBeScanned)
-	{
-		if (!FileTransform_Prediffing(filepathTransformed, filteredFilenames, infoPrediffer, bMayOverwrite))
-			return false;
-	}
-	else
-	{
-		if (!FileTransform_Prediffing(filepathTransformed, *infoPrediffer, bMayOverwrite))
-			return false;
-	}
-
-	if (bom.unicoding)
-	{
-		// fourth step : prepare for diffing
-		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
-		if (!FileTransform_UCS2ToUTF8(filepathTransformed, bMayOverwrite))
-			return false;
-	}
-
-	return true;
-}
-
-/**
- * @brief Prepare files (run plugins) & compare them, and return diffcode
- */
-static int
-prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2, int * ndiffs, int * ntrivialdiffs)
-{
-	int code = DIFFCODE::FILE | DIFFCODE::CMPERR;
-	// For user chosen plugins, define bAutomaticUnpacker as false and use the chosen infoHandler
-	// but how can we receive the infoHandler ? DirScan actually only 
-	// returns info, but can not use file dependent information.
-
-	// Transformation happens here
-	// text used for automatic mode : plugin filter must match it
-	CString filteredFilenames = filepath1 + "|" + filepath2;
-	// Use temporary plugins info
-	PackingInfo infoUnpacker;
-	PrediffingInfo infoPrediffer;
-
-	// plugin may alter filepaths to temp copies (which we delete before returning in all cases)
-	CString filepathUnpacked1 = filepath1;
-	CString filepathUnpacked2 = filepath2;
-
-	CString filepathTransformed1;
-	CString filepathTransformed2;
-
-	DiffFileData diffdata(filepathTransformed1, filepathTransformed2);
-	// Invoke unpacking plugins
-	if (!Unpack(filepathUnpacked1, filteredFilenames, &infoUnpacker))
-		goto exitPrepAndCompare;
-
-	// we use the same plugins for both files, so they must be defined before second file
-	ASSERT(infoUnpacker.bToBeScanned == FALSE);
-
-	if (!Unpack(filepathUnpacked2, filteredFilenames, &infoUnpacker))
-		goto exitPrepAndCompare;
-
-	// As we keep handles open on unpacked files, Transform() may not delete them.
-	// Unpacked files will be deleted at end of this function.
-	diffdata.m_sFilepath[0] = filepathTransformed1 = filepathUnpacked1;
-	diffdata.m_sFilepath[1] = filepathTransformed2 = filepathUnpacked2;
-	if (!diffdata.OpenFiles())
-		goto exitPrepAndCompare;
-
-	// Invoke prediff'ing plugins
-	if (!Transform(filepathUnpacked1, filepathTransformed1, filteredFilenames, &infoPrediffer, diffdata.fd(0)))
-		goto exitPrepAndCompare;
-
-	// we use the same plugins for both files, so they must be defined before second file
-	ASSERT(infoPrediffer.bToBeScanned == FALSE);
-
-	if (!Transform(filepathUnpacked2, filepathTransformed2, filteredFilenames, &infoPrediffer, diffdata.fd(1)))
-		goto exitPrepAndCompare;
-
-	// If options are binary equivalent, we could check for filesize
-	// difference here, and bail out if files are clearly different
-	// But, then we don't know if file is ascii or binary, and this
-	// affects behavior (also, we don't have an icon for unknown type)
-
-	// Actually compare the files
-	// just_compare_files is a fairly thin front-end to diffutils
-	if (filepathTransformed1 != filepathUnpacked1 || filepathTransformed2 != filepathUnpacked2)
-	{
-		diffdata.m_sFilepath[0] = filepathTransformed1;
-		diffdata.m_sFilepath[1] = filepathTransformed2;
-		if (!diffdata.OpenFiles())
-			goto exitPrepAndCompare;
-	}
-	code = diffdata.just_compare_files(0, ndiffs, ntrivialdiffs);
-
-exitPrepAndCompare:
-	diffdata.Reset();
-	// delete the temp files after comparison
-	if (filepathTransformed1 != filepathUnpacked1)
-		VERIFY(::DeleteFile(filepathTransformed1) || gLog::DeleteFileFailed(filepathTransformed1));
-	if (filepathTransformed2 != filepathUnpacked2)
-		VERIFY(::DeleteFile(filepathTransformed2) || gLog::DeleteFileFailed(filepathTransformed2));
-	if (filepathUnpacked1 != filepath1)
-		VERIFY(::DeleteFile(filepathUnpacked1) || gLog::DeleteFileFailed(filepathUnpacked1));
-	if (filepathUnpacked2 != filepath2)
-		VERIFY(::DeleteFile(filepathUnpacked2) || gLog::DeleteFileFailed(filepathUnpacked2));
-	return code;
 }
 
 /**
@@ -412,36 +274,27 @@ void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * fi
 void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 {
 	CString sPattern = sDir;
-	if (!sPattern.IsEmpty() && sPattern[sPattern.GetLength()-1]!='\\')
-		sPattern += '\\';
+	sPattern.TrimRight(_T("\\"));
 	sPattern += _T("\\*.*");
-	CFileFind finder;
-	BOOL bWorking = finder.FindFile(sPattern);
-	while (bWorking)
+
+	WIN32_FIND_DATA ff;
+	HANDLE h = FindFirstFile(sPattern, &ff);
+	if (h != INVALID_HANDLE_VALUE)
 	{
-		bWorking = finder.FindNextFile();
-		if (finder.IsDots())
-			continue;
-		fentry ent;
-		CTime mtim;
-		finder.GetLastWriteTime(mtim);
-		CTime ctim;
-		finder.GetCreationTime(ctim);
-		ent.mtime = mtim.GetTime();
-		ent.ctime = ctim.GetTime();
-#if _MSC_VER < 1300
-		// MSVC6
-		ent.size = finder.GetLength64(); // __int64
-#else
-		// MSVC7 (VC.NET)
-		ent.size = finder.GetLength(); // ULONGLONG
-#endif
-		ent.name = finder.GetFileName();
-		ent.attrs = 0;
-		if (finder.IsDirectory())
-			dirs->Add(ent);
-		else
-			files->Add(ent);
+		do
+		{
+			DWORD dwIsDirectory = ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY;
+			if (dwIsDirectory && StrStr(_T(".."), ff.cFileName))
+				continue;
+			fentry ent;
+			ent.ctime = CTime(ff.ftCreationTime).GetTime();
+			ent.mtime = CTime(ff.ftLastWriteTime).GetTime();
+			ent.size = ff.nFileSizeLow + (ff.nFileSizeHigh << 32);
+			ent.name = ff.cFileName;
+			ent.attrs = ff.dwFileAttributes;
+			(dwIsDirectory ? dirs : files) -> Add(ent);
+		} while (FindNextFile(h, &ff));
+		FindClose(h);
 	}
 }
 
@@ -491,38 +344,61 @@ static int collstr(const CString & s1, const CString & s2, bool casesensitive)
  * @brief Send one file or directory result back through the diff context
  */
 static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry * rent,
-			    int code, CDiffContext * pCtxt, int ndiffs, int ntrivialdiffs)
+	int code, CDiffContext * pCtxt, const DiffFileData * pDiffFileData)
 {
-	CString name, leftdir, rightdir;
-	_int64 rmtime=0, lmtime=0, rctime=0, lctime=0;
-	_int64 lsize=0, rsize=0;
-	int lattrs=0, rattrs=0;
-
 	// We must store both paths - we cannot get paths later
 	// and we need unique item paths for example when items
 	// change to identical
-	leftdir = paths_ConcatPath(pCtxt->m_strNormalizedLeft, sDir);
-	rightdir = paths_ConcatPath(pCtxt->m_strNormalizedRight, sDir);
+
+	DIFFITEM di;
+	di.sSubdir = sDir;
+
+	if (pDiffFileData)
+	{
+		di.nsdiffs = pDiffFileData->m_ndiffs - pDiffFileData->m_ntrivialdiffs;
+		di.ndiffs = pDiffFileData->m_ndiffs;
+		di.left.unicoding = pDiffFileData->m_sFilepath[0].unicoding;
+		di.left.codepage = pDiffFileData->m_sFilepath[0].codepage;
+		di.right.unicoding = pDiffFileData->m_sFilepath[1].unicoding;
+		di.right.codepage = pDiffFileData->m_sFilepath[1].codepage;
+	}
 
 	if (lent)
 	{
-		lmtime = lent->mtime;
-		lctime = lent->ctime;
-		lsize = lent->size;
-		name = lent->name;
-		lattrs = lent->attrs;
+		di.sfilename = lent->name;
+		//di.left.spath = pCtxt->m_strNormalizedLeft; //paths_ConcatPath(pCtxt->m_strNormalizedLeft, sDir);
+		di.left.mtime = lent->mtime;
+		di.left.ctime = lent->ctime;
+		di.left.size = lent->size;
+		di.left.flags.flags = lent->attrs;
 	}
+	else
+	{
+		di.left.unicoding = 0;
+		di.left.codepage = 0;
+	}
+
 	if (rent)
 	{
-		rmtime = rent->mtime;
-		rctime = rent->ctime;
-		rsize = rent->size;
-		name = rent->name;
-		rattrs = rent->attrs;
+		di.sfilename = rent->name;
+		//di.right.spath = pCtxt->m_strNormalizedRight; //paths_ConcatPath(pCtxt->m_strNormalizedRight, sDir);
+		di.right.mtime = rent->mtime;
+		di.right.ctime = rent->ctime;
+		di.right.size = rent->size;
+		di.right.flags.flags = rent->attrs;
 	}
-	gLog.Write(LOGLEVEL::LCOMPAREDATA,_T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d")
-		, (LPCTSTR)name, (LPCTSTR)leftdir, (LPCTSTR)rightdir, code);
-	pCtxt->AddDiff(name, sDir, leftdir, rightdir
-		, lmtime, rmtime, lctime, rctime, lsize, rsize, code, lattrs, rattrs
-		, ndiffs, ntrivialdiffs);
+	else
+	{
+		di.right.unicoding = 0;
+		di.right.codepage = 0;
+	}
+
+	di.diffcode = code;
+
+	gLog.Write
+	(
+		LOGLEVEL::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
+		(LPCTSTR)di.sfilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), code
+	);
+	pCtxt->AddDiff(di);
 }

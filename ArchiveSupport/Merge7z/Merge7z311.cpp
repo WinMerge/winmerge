@@ -29,6 +29,7 @@
 
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
+2004/03/15	Jochen Tucht		Fix Visual Studio 2003 build issue
 
 */
 
@@ -306,64 +307,63 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 			ComplainCantOpen(path);
 		}
 
-		CObjectVector<CUpdatePair2> operationChain;
-		CObjectVector<CArchiveItem> archiveItems;
-		CObjectVector<CDirItem> dirItems;
-
 		UINT count = etor->Open();
+		CObjectVector<CUpdatePair2> operationChain;
+		operationChain.Reserve(count);
+		CObjectVector<CDirItem> dirItems;
 		dirItems.Reserve(count);
 		while (count--)
 		{
 			Merge7z::DirItemEnumerator::Item etorItem;
-			etorItem.Mask = 0;
+			etorItem.Mask.Item = 0;
 			Merge7z::Envelope *envelope = etor->Enum(etorItem);
 			CDirItem item;
-			if (etorItem.Mask & etorItem->Name)
+			if (etorItem.Mask.Item & etorItem.Mask.Name)
 				item.Name = GetUnicodeString(etorItem.Name);
-			if (etorItem.Mask & etorItem->FullPath)
+			if (etorItem.Mask.Item & etorItem.Mask.FullPath)
 				item.FullPath = GetUnicodeString(etorItem.FullPath);
-			if (etorItem.Mask & etorItem->Attributes)
+			if (etorItem.Mask.Item & etorItem.Mask.Attributes)
 				item.Attributes = etorItem.Attributes;
-			if (etorItem.Mask & etorItem->Size)
+			if (etorItem.Mask.Item & etorItem.Mask.Size)
 				item.Size = etorItem.Size;
-			if (etorItem.Mask & etorItem->CreationTime)
+			if (etorItem.Mask.Item & etorItem.Mask.CreationTime)
 				item.CreationTime = etorItem.CreationTime;
-			if (etorItem.Mask & etorItem->LastAccessTime)
+			if (etorItem.Mask.Item & etorItem.Mask.LastAccessTime)
 				item.LastAccessTime = etorItem.LastAccessTime;
-			if (etorItem.Mask & etorItem->LastWriteTime)
+			if (etorItem.Mask.Item & etorItem.Mask.LastWriteTime)
 				item.LastWriteTime = etorItem.LastWriteTime;
 			if (envelope)
 			{
 				envelope->Free();
 			}
-			if (etorItem.Mask && (etorItem.Mask & (etorItem->NeedFindFile|etorItem->CheckIfPresent)) != etorItem->NeedFindFile)
+			if (etorItem.Mask.Item && (etorItem.Mask.Item & (etorItem.Mask.NeedFindFile|etorItem.Mask.CheckIfPresent)) != etorItem.Mask.NeedFindFile)
 			{
 				NFile::NFind::CFileInfoW fileInfo;
 				if (NFile::NFind::FindFile(item.FullPath, fileInfo))
 				{
-					if (!(etorItem.Mask & etorItem->Name))
+					if (!(etorItem.Mask.Item & etorItem.Mask.Name))
 						item.Name = fileInfo.Name;
-					if (!(etorItem.Mask & etorItem->Attributes))
+					if (!(etorItem.Mask.Item & etorItem.Mask.Attributes))
 						item.Attributes = fileInfo.Attributes;
-					if (!(etorItem.Mask & etorItem->Size))
+					if (!(etorItem.Mask.Item & etorItem.Mask.Size))
 						item.Size = fileInfo.Size;
-					if (!(etorItem.Mask & etorItem->CreationTime))
+					if (!(etorItem.Mask.Item & etorItem.Mask.CreationTime))
 						item.CreationTime = fileInfo.CreationTime;
-					if (!(etorItem.Mask & etorItem->LastAccessTime))
+					if (!(etorItem.Mask.Item & etorItem.Mask.LastAccessTime))
 						item.LastAccessTime = fileInfo.LastAccessTime;
-					if (!(etorItem.Mask & etorItem->LastWriteTime))
+					if (!(etorItem.Mask.Item & etorItem.Mask.LastWriteTime))
 						item.LastWriteTime = fileInfo.LastWriteTime;
 				}
 				else
 				{
-					if COMPLAIN(!(etorItem.Mask & etorItem->CheckIfPresent))
+					if COMPLAIN(!(etorItem.Mask.Item & etorItem.Mask.CheckIfPresent))
 					{
 						ComplainCantOpen(GetSystemString(item.FullPath));
 					}
-					etorItem.Mask = 0;
+					etorItem.Mask.Item = 0;
 				}
 			}
-			if (etorItem.Mask)
+			if (etorItem.Mask.Item)
 			{
 				CUpdatePair2 pair2;
 				pair2.IsAnti = false;
@@ -375,6 +375,7 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 			}
 		}
 
+		CObjectVector<CArchiveItem> archiveItems;
 		updateCallbackSpec->Init(UString()/*folderPrefix*/, &dirItems, &archiveItems, 
 			&operationChain, NULL, updateCallback100);
 

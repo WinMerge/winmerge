@@ -32,6 +32,7 @@
 #include "diff.h"
 #include "FileTransform.h"
 #include "LogFile.h"
+#include <shlwapi.h>
 
 extern int recursive;
 extern CLogFile gLog;
@@ -211,10 +212,10 @@ BOOL CDiffWrapper::RunFileDiff()
 	FileTransform_Prediffing(strFile2Temp, infoPrediffer, TRUE);
 	FileTransform_UCS2ToUTF8(strFile2Temp, TRUE);
 
-	DiffFileData diffdata(strFile1Temp, strFile2Temp);
+	DiffFileData diffdata;
 
 	// This opens & fstats both files (if it succeeds)
-	if (!diffdata.OpenFiles())
+	if (!diffdata.OpenFiles(strFile1Temp, strFile2Temp))
 	{
 		return FALSE;
 	}
@@ -705,14 +706,14 @@ void CDiffWrapper::EndDirectoryDiff()
 }
 
 /** @brief Simple initialization of DiffFileData */
-DiffFileData::DiffFileData(LPCTSTR szFilepath1, LPCTSTR szFilepath2)
+DiffFileData::DiffFileData()
 {
 	m_inf = new file_data[2];
 	for (int i=0; i<2; ++i)
 		memset(&m_inf[i], 0, sizeof(m_inf[i]));
 	m_used = false;
-	m_sFilepath[0] = szFilepath1;
-	m_sFilepath[1] = szFilepath2;
+	m_ndiffs = 0;
+	m_ntrivialdiffs = 0;
 	Reset();
 }
 
@@ -721,12 +722,13 @@ DiffFileData::~DiffFileData()
 {
 	Reset();
 	delete [] m_inf;
-	m_inf = 0;
 }
 
 /** @brief Open file descriptors in the inf structure (return false if failure) */
-bool DiffFileData::OpenFiles()
+bool DiffFileData::OpenFiles(LPCTSTR szFilepath1, LPCTSTR szFilepath2)
 {
+	m_sFilepath[0].CString::operator=(szFilepath1);
+	m_sFilepath[1].CString::operator=(szFilepath2);
 	bool b = DoOpenFiles();
 	if (!b)
 		Reset();
@@ -749,7 +751,10 @@ bool DiffFileData::DoOpenFiles()
 		// Open up file descriptors
 		// Always use O_BINARY mode, to avoid terminating file read on ctrl-Z (DOS EOF)
 		// Also, WinMerge-modified diffutils handles all three major eol styles
-		m_inf[i].desc = _topen(m_sFilepath[i], O_RDONLY|O_BINARY, _S_IREAD);
+		if (m_inf[i].desc == 0)
+		{
+			m_inf[i].desc = _topen(m_sFilepath[i], O_RDONLY|O_BINARY, _S_IREAD);
+		}
 		if (m_inf[i].desc < 0)
 			return false;
 
@@ -757,6 +762,10 @@ bool DiffFileData::DoOpenFiles()
 		if (fstat(m_inf[i].desc, &m_inf[i].stat) != 0)
 		{
 			return false;
+		}
+		if (m_sFilepath[1] == m_sFilepath[0])
+		{
+			m_inf[1].desc = m_inf[0].desc;
 		}
 	}
 
@@ -778,6 +787,10 @@ void DiffFileData::Reset()
 	// open file handles might be leftover from a failure in DiffFileData::OpenFiles
 	for (int i=0; i<2; ++i)
 	{
+		if (m_inf[1].desc == m_inf[0].desc)
+		{
+			m_inf[1].desc = 0;
+		}
 		free((void *)m_inf[i].name);
 		m_inf[i].name = NULL;
 
@@ -790,14 +803,83 @@ void DiffFileData::Reset()
 	}
 }
 
+/**
+ * @brief Parser for rc files to find encoding information
+ *
+ * To be removed when plugin event added for this
+ */
+static int demoGuessEncoding_rc(const char **data, int count)
+{
+	int cp = 0;
+	if (count > 30)
+		count = 30;
+	while (count--)
+	{
+		const char *line = *data++;
+		static const char prefix[] = "#pragma code_page(";
+		if (StrIsIntlEqualA(FALSE, line, prefix, sizeof prefix - 1))
+		{
+			cp = StrToIntA(line + sizeof prefix - 1);
+			break;
+		}
+	}
+	return cp;
+}
+
+/**
+ * @brief Parser for HTML files to find encoding information
+ *
+ * To be removed when plugin event added for this
+ */
+static int demoGuessEncoding_html(const char **data, int count)
+{
+	int cp = 0;
+	if (count > 30)
+		count = 30;
+	while (count--)
+	{
+		const char *line = *data++;
+		static const char prefix[] = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=";
+		if (StrIsIntlEqualA(FALSE, line, prefix, sizeof prefix - 1))
+		{
+			// TODO: Map ISO-8859-1 pages to codenumbers (is this possible ?)
+			cp = StrToIntA(line + sizeof prefix - 1);
+			break;
+		}
+	}
+	return cp;
+}
+
+/**
+ * @brief Try to deduce encoding for this file
+ */
+void DiffFileData::Filepath::GuessEncoding(const char **data, int count)
+{
+	if (unicoding == 0)
+	{
+		LPCTSTR ext = PathFindExtension(*this);
+		if (lstrcmpi(ext, _T(".rc")) ==  0)
+		{
+			codepage = demoGuessEncoding_rc(data, count);
+		}
+		else if (lstrcmpi(ext, _T(".htm")) == 0 || lstrcmpi(ext, _T(".html")) == 0)
+		{
+			codepage = demoGuessEncoding_html(data, count);
+		}
+	}
+}
+
 /** @brief Compare two specified files */
-int DiffFileData::just_compare_files(int depth, int *ndiffs, int *ntrivialdiffs)
+int DiffFileData::just_compare_files(int depth)
 {
 	int bin_flag = 0;
 
 	// Do the actual comparison (generating a change script)
 	BOOL bDetectMovedBlocks = FALSE;
 	struct change *script = diff_2_files (m_inf, depth, &bin_flag, bDetectMovedBlocks);
+
+	m_sFilepath[0].GuessEncoding(m_inf[0].linbuf + m_inf[0].linbuf_base, m_inf[0].valid_lines - m_inf[0].linbuf_base);
+	m_sFilepath[1].GuessEncoding(m_inf[1].linbuf + m_inf[1].linbuf_base, m_inf[1].valid_lines - m_inf[1].linbuf_base);
 
 	int code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
 
@@ -807,11 +889,11 @@ int DiffFileData::just_compare_files(int depth, int *ndiffs, int *ntrivialdiffs)
 		struct change *p,*e;
 		for (e = script; e; e = p)
 		{
-			(*ndiffs)++;
+			++m_ndiffs;
 			if (!e->trivial)
 				code = code & ~DIFFCODE::SAME | DIFFCODE::DIFF;
 			else
-				(*ntrivialdiffs)++;
+				++m_ntrivialdiffs;
 			p = e->link;
 			free (e);
 		}
@@ -827,12 +909,6 @@ int DiffFileData::just_compare_files(int depth, int *ndiffs, int *ntrivialdiffs)
 		code = code & ~DIFFCODE::SAME | DIFFCODE::DIFF;
 
 	return code;
-}
-
-/** @brief return 1st or 2nd file descriptor */
-int DiffFileData::fd(int i)
-{
-	return m_inf[i].desc;
 }
 
 /** @brief detect unicode file and quess encoding */
@@ -1229,5 +1305,149 @@ void cleanup_script(struct change ** pscript)
 		free (e);
 	}
 	*pscript = 0;
+}
+
+/**
+ * @brief Invoke appropriate plugins for unpacking
+ * return false if anything fails
+ * caller has to DeleteFile filepathTransformed, if it differs from filepath
+ */
+static bool Unpack(CString & filepathTransformed,
+	const CString & filteredFilenames, PackingInfo * infoUnpacker)
+{
+	// first step : unpack (plugins)
+	if (infoUnpacker->bToBeScanned)
+	{
+		if (!FileTransform_Unpacking(filepathTransformed, filteredFilenames, infoUnpacker, &infoUnpacker->subcode))
+			return false;
+	}
+	else
+	{
+		if (!FileTransform_Unpacking(filepathTransformed, infoUnpacker, &infoUnpacker->subcode))
+			return false;
+	}
+	return true;
+}
+
+/**
+ * @brief Invoke appropriate plugins for prediffing
+ * return false if anything fails
+ * caller has to DeleteFile filepathTransformed, if it differs from filepath
+ */
+bool DiffFileData::Filepath::Transform(const CString & filepath, CString & filepathTransformed,
+	const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd)
+{
+	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
+
+	UniFileBom bom = fd; // guess encoding
+	unicoding = bom.unicoding;
+
+	if (unicoding && unicoding != ucr::UCS2LE)
+	{
+		// second step : normalize Unicode to OLECHAR (most of time, do nothing) (OLECHAR = UCS-2LE in Windows)
+		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
+		if (!FileTransform_NormalizeUnicode(filepathTransformed, bMayOverwrite))
+			return false;
+	}
+
+	// Note: filepathTransformed may be in UCS-2 (if toUtf8), or it may be raw encoding (if !Utf8)
+	// prediff plugins must handle both
+
+	// third step : prediff (plugins)
+	bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
+	if (!FileTransform_Prediffing(filepathTransformed, filteredFilenames, infoPrediffer, bMayOverwrite))
+		return false;
+
+	if (unicoding)
+	{
+		// fourth step : prepare for diffing
+		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
+		if (!FileTransform_UCS2ToUTF8(filepathTransformed, bMayOverwrite))
+			return false;
+	}
+	return true;
+}
+
+/**
+ * @brief Prepare files (run plugins) & compare them, and return diffcode
+ */
+int
+DiffFileData::prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2) //, int * ndiffs, int * ntrivialdiffs, int unicoding[2])
+{
+	int code = DIFFCODE::FILE | DIFFCODE::CMPERR;
+	// For user chosen plugins, define bAutomaticUnpacker as false and use the chosen infoHandler
+	// but how can we receive the infoHandler ? DirScan actually only 
+	// returns info, but can not use file dependent information.
+
+	// Transformation happens here
+	// text used for automatic mode : plugin filter must match it
+	CString filteredFilenames = filepath1 + "|" + filepath2;
+	// Use temporary plugins info
+	PackingInfo infoUnpacker(g_bUnpackerMode);
+	PrediffingInfo infoPrediffer(g_bPredifferMode);
+
+	// plugin may alter filepaths to temp copies (which we delete before returning in all cases)
+	CString filepathUnpacked1 = filepath1;
+	CString filepathUnpacked2 = filepath2;
+
+	CString filepathTransformed1;
+	CString filepathTransformed2;
+
+	//DiffFileData diffdata; //(filepathTransformed1, filepathTransformed2);
+	// Invoke unpacking plugins
+	if (!Unpack(filepathUnpacked1, filteredFilenames, &infoUnpacker))
+		goto exitPrepAndCompare;
+
+	// we use the same plugins for both files, so they must be defined before second file
+	ASSERT(infoUnpacker.bToBeScanned == FALSE);
+
+	if (!Unpack(filepathUnpacked2, filteredFilenames, &infoUnpacker))
+		goto exitPrepAndCompare;
+
+	// As we keep handles open on unpacked files, Transform() may not delete them.
+	// Unpacked files will be deleted at end of this function.
+	/*diffdata.m_sFilepath[0] = */filepathTransformed1 = filepathUnpacked1;
+	/*diffdata.m_sFilepath[1] = */filepathTransformed2 = filepathUnpacked2;
+	if (!OpenFiles(filepathTransformed1, filepathTransformed2))
+		goto exitPrepAndCompare;
+
+	// Invoke prediff'ing plugins
+	if (!m_sFilepath[0].Transform(filepathUnpacked1, filepathTransformed1, filteredFilenames, &infoPrediffer, m_inf[0].desc))
+		goto exitPrepAndCompare;
+
+	// we use the same plugins for both files, so they must be defined before second file
+	ASSERT(infoPrediffer.bToBeScanned == FALSE);
+
+	if (!m_sFilepath[1].Transform(filepathUnpacked2, filepathTransformed2, filteredFilenames, &infoPrediffer, m_inf[1].desc))
+		goto exitPrepAndCompare;
+
+	// If options are binary equivalent, we could check for filesize
+	// difference here, and bail out if files are clearly different
+	// But, then we don't know if file is ascii or binary, and this
+	// affects behavior (also, we don't have an icon for unknown type)
+
+	// Actually compare the files
+	// just_compare_files is a fairly thin front-end to diffutils
+	if (filepathTransformed1 != filepathUnpacked1 || filepathTransformed2 != filepathUnpacked2)
+	{
+		//diffdata.m_sFilepath[0] = filepathTransformed1;
+		//diffdata.m_sFilepath[1] = filepathTransformed2;
+		if (!OpenFiles(filepathTransformed1, filepathTransformed2))
+			goto exitPrepAndCompare;
+	}
+	code = just_compare_files(0);
+
+exitPrepAndCompare:
+	Reset();
+	// delete the temp files after comparison
+	if (filepathTransformed1 != filepathUnpacked1)
+		VERIFY(::DeleteFile(filepathTransformed1) || gLog::DeleteFileFailed(filepathTransformed1));
+	if (filepathTransformed2 != filepathUnpacked2)
+		VERIFY(::DeleteFile(filepathTransformed2) || gLog::DeleteFileFailed(filepathTransformed2));
+	if (filepathUnpacked1 != filepath1)
+		VERIFY(::DeleteFile(filepathUnpacked1) || gLog::DeleteFileFailed(filepathUnpacked1));
+	if (filepathUnpacked2 != filepath2)
+		VERIFY(::DeleteFile(filepathUnpacked2) || gLog::DeleteFileFailed(filepathUnpacked2));
+	return code;
 }
 

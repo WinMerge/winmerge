@@ -11,9 +11,10 @@
 #ifndef DirViewColItems_h
 #define DirViewColItems_h
 
+class CDiffContext;
 
-typedef CString (*ColGetFnc)(const void *);
-typedef int (*ColSortFnc)(const void *, const void *);
+typedef CString (*ColGetFnc)(const CDiffContext *, const void *);
+typedef int (*ColSortFnc)(const CDiffContext *, const void *, const void *);
 
 /**
  * @brief Information about one column of dirview list info

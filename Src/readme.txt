@@ -1,4 +1,11 @@
-2004-07-13 Kimmo
+2004-04-13 Jochen
+ PATCH: [ 889357 ] Attempt to improve DirScan speed -- updated patch from 2004-03-18
+  Src: 7zCommon.cpp 7zCommon.h DiffContext.cpp DiffContext.h DiffFileInfo.h
+   DiffWrapper.cpp DiffWrapper.h DirDoc.cpp DirScan.cpp DirViewColHandler.cpp DirViewColItems.cpp DirViewColItems.h
+   MainFrm.cpp
+  Merge7z: Merge7z.def Merge7z.h Merge7z311.cpp Merge7zCommon.cpp Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp
+
+2004-04-13 Kimmo
  PATCH: [ 932086 ] Syntax highlighting of HTML not complete (Bug 930930)
   Submitted by Tim Gerundt
   Src/editlib: ccrystaltextview.cpp html.cpp php.cpp

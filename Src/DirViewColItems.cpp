@@ -10,6 +10,7 @@
 
 
 #include "stdafx.h"
+#include <shlwapi.h>
 #include "Merge.h"
 #include "DirView.h"
 #include "DirDoc.h"
@@ -92,17 +93,28 @@ static int cmpfloat(double v1, double v2)
  * @name Functions to display each type of column info.
  */
 /* @{ */
-static CString ColFileNameGet(const void *p) //sfilename
+static CString ColFileNameGet(const CDiffContext *, const void *p) //sfilename
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
 	return di.sfilename;
 }
-static CString ColNameGet(const void *p) //sfilename
+/**
+ * @{ Functions to display each type of column info
+ */
+static CString ColNameGet(const CDiffContext *, const void *p) //sfilename
 {
 	const CString &r = *static_cast<const CString*>(p);
 	return r;
 }
-static CString ColPathGet(const void *p)
+static CString ColExtGet(const CDiffContext *, const void *p) //sfilename
+{
+	const CString &r = *static_cast<const CString*>(p);
+	CString s = PathFindExtension(r);
+	s.TrimLeft(_T("."));
+	s.MakeLower();
+	return s;
+}
+static CString ColPathGet(const CDiffContext *, const void *p)
 {
 	const CString &r = *static_cast<const CString*>(p);
 	if (r.IsEmpty())
@@ -110,7 +122,7 @@ static CString ColPathGet(const void *p)
 	else
 		return r;
 }
-static CString ColStatusGet(const void *p)
+static CString ColStatusGet(const CDiffContext *pCtxt, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
 	// Note that order of items does matter. We must check for
@@ -130,11 +142,11 @@ static CString ColStatusGet(const void *p)
 	}
 	else if (di.isSideLeft())
 	{
-		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getLeftFilepath());
+		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getLeftFilepath(pCtxt));
 	}
 	else if (di.isSideRight())
 	{
-		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getRightFilepath());
+		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getRightFilepath(pCtxt));
 	}
 	else if (di.isResultSame())
 	{
@@ -152,7 +164,7 @@ static CString ColStatusGet(const void *p)
 	}
 	return s;
 }
-static CString ColTimeGet(const void *p)
+static CString ColTimeGet(const CDiffContext *, const void *p)
 {
 	const __int64 &r = *static_cast<const __int64*>(p);
 	if (r)
@@ -160,14 +172,14 @@ static CString ColTimeGet(const void *p)
 	else
 		return _T("");
 }
-static CString ColSizeGet(const void *p)
+static CString ColSizeGet(const CDiffContext *, const void *p)
 {
 	const __int64 &r = *static_cast<const __int64*>(p);
 	CString s;
 	s.Format(_T("%I64d"), r);
 	return locality::GetLocaleStr(s);
 }
-static CString ColDiffsGet(const void *p)
+static CString ColDiffsGet(const CDiffContext *, const void *p)
 {
 	const int &r = *static_cast<const int*>(p);
 	CString s;
@@ -178,7 +190,7 @@ static CString ColDiffsGet(const void *p)
 	}
 	return s;
 }
-static CString ColNewerGet(const void *p)
+static CString ColNewerGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
 	if (di.isSideLeft())
@@ -203,7 +215,7 @@ static CString ColNewerGet(const void *p)
 	}
 	return _T("***");
 }
-static CString ColStatusAbbrGet(const void *p)
+static CString ColStatusAbbrGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
 	int id;
@@ -249,23 +261,25 @@ static CString ColStatusAbbrGet(const void *p)
 	VERIFY(s.LoadString(id));
 	return s;
 }
-static CString ColAttrGet(const void *p)
+static CString ColAttrGet(const CDiffContext *, const void *p)
 {
 	const FileFlags &r = *static_cast<const FileFlags *>(p);
 	return r.toString();
 }
-static CString ColEncodingGet(const void *p)
+static CString ColEncodingGet(const CDiffContext *, const void *p)
 {
 	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
 	return EncodingString(r.unicoding, r.codepage);
 }
-/* @} */
+/**
+ * @}
+ */
 
 /**
  * @name Functions to sort each type of column info.
  */
 /* @{ */ 
-static int ColFileNameSort(const void *p, const void *q)
+static int ColFileNameSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
 	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
@@ -278,49 +292,54 @@ static int ColFileNameSort(const void *p, const void *q)
 		return 1;
 	else return ldi.sfilename.CompareNoCase(rdi.sfilename);
 }
-
-static int ColNameSort(const void *p, const void *q)
+static int ColNameSort(const CDiffContext *, const void *p, const void *q)
 {
 	const CString &r = *static_cast<const CString*>(p);
 	const CString &s = *static_cast<const CString*>(q);
 	return r.CompareNoCase(s);
 }
-
-static int ColStatusSort(const void *p, const void *q)
+static int ColExtSort(const CDiffContext *pCtxt, const void *p, const void *q)
+{
+	const CString &r = *static_cast<const CString*>(p);
+	const CString &s = *static_cast<const CString*>(q);
+	return lstrcmpi(PathFindExtension(r), PathFindExtension(s));
+	//return ColExtGet(pCtxt, p).CompareNoCase(ColExtGet(pCtxt, q));
+}
+static int ColStatusSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
 	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
 	return cmpdiffcode(rdi.diffcode, ldi.diffcode);
 }
-static int ColTimeSort(const void *p, const void *q)
+static int ColTimeSort(const CDiffContext *, const void *p, const void *q)
 {
 	const __int64 &r = *static_cast<const __int64*>(p);
 	const __int64 &s = *static_cast<const __int64*>(q);
 	return cmp64(r, s);
 }
-static int ColSizeSort(const void *p, const void *q)
+static int ColSizeSort(const CDiffContext *, const void *p, const void *q)
 {
 	const __int64 &r = *static_cast<const __int64*>(p);
 	const __int64 &s = *static_cast<const __int64*>(q);
 	return cmp64(r, s);
 }
-static int ColDiffsSort(const void *p, const void *q)
+static int ColDiffsSort(const CDiffContext *, const void *p, const void *q)
 {
 	const int &r = *static_cast<const int*>(p);
 	const int &s = *static_cast<const int*>(q);
 	return r - s;
 }
-static int ColNewerSort(const void *p, const void *q)
+static int ColNewerSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return ColNewerGet(p).Compare(ColNewerGet(q));
+	return ColNewerGet(pCtxt, p).Compare(ColNewerGet(pCtxt, q));
 }
-static int ColAttrSort(const void *p, const void *q)
+static int ColAttrSort(const CDiffContext *, const void *p, const void *q)
 {
 	const FileFlags &r = *static_cast<const FileFlags *>(p);
 	const FileFlags &s = *static_cast<const FileFlags *>(q);
 	return r.toString().Compare(s.toString());
 }
-static int ColEncodingSort(const void *p, const void *q)
+static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
 	const DiffFileInfo &s = *static_cast<const DiffFileInfo *>(q);
@@ -348,7 +367,7 @@ DirColInfo g_cols[] =
 	{ _T("Rmtime"), IDS_COLHDR_RTIMEM, -1, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, right.mtime), 4, false },
 	{ _T("Lctime"), IDS_COLHDR_LTIMEC, -1, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, left.ctime), -1, false },
 	{ _T("Rctime"), IDS_COLHDR_RTIMEC, -1, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, right.ctime), -1, false },
-	{ _T("Ext"), IDS_COLHDR_EXTENSION, -1, &ColNameGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, sext), 5, true },
+	{ _T("Ext"), IDS_COLHDR_EXTENSION, -1, &ColExtGet, &ColExtSort, FIELD_OFFSET(DIFFITEM, sfilename), 5, true },
 	{ _T("Lsize"), IDS_COLHDR_LSIZE, -1, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, left.size), -1, false },
 	{ _T("Rsize"), IDS_COLHDR_RSIZE, -1, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, right.size), -1, false },
 	{ _T("Newer"), IDS_COLHDR_NEWER, -1, &ColNewerGet, &ColNewerSort, 0, -1, true },

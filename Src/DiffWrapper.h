@@ -221,27 +221,40 @@ private:
 	CMap<int, int, int, int> m_moved1;
 };
 
-struct file_data; // forward declaration needed by DiffFileData
+// forward declarations needed by DiffFileData
+struct file_data;
+class PrediffingInfo;
 
 /**
  * @brief C++ container for the structure (file_data) used by diffutils' diff_2_files(...)
  */
 struct DiffFileData
 {
-	DiffFileData(LPCTSTR szFilepath1, LPCTSTR szFilepath2);
+	DiffFileData();
 	~DiffFileData();
 
-	bool OpenFiles();
+	bool OpenFiles(LPCTSTR szFilepath1, LPCTSTR szFilepath2);
 	void Reset();
 	void Close() { Reset(); }
 
-	int fd(int); // return 1st or 2nd file descriptor
-	int just_compare_files(int depth, int *ndiffs, int *ntrivialdiffs);
+	int just_compare_files(int depth);
+	int prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2);
 
 	file_data * m_inf;
 	bool m_used; // whether m_inf has real data
-	CString m_sFilepath[2];
-
+	struct Filepath : CString
+	{
+		int unicoding;
+		int codepage;
+		Filepath():unicoding(0),codepage(0)
+		{
+		}
+		bool Transform(const CString & filepath, CString & filepathTransformed,
+			const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd);
+		void GuessEncoding(const char **data, int count);
+	} m_sFilepath[2];
+	int m_ndiffs;
+	int m_ntrivialdiffs;
 	struct UniFileBom // detect unicode file and quess encoding
 	{
 		UniFileBom(int); // initialize from file descriptor

@@ -303,7 +303,7 @@ static bool IsItemHiddenBackup(const DIFFITEM & di)
  * @return Path to item, NULL if user does not want to see it
  * @note Preferably left path, but right path if a right-only item
  */
-static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
+static LPCTSTR GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di, int llen, int rlen)
 {
 	varprop::VariantValue val;
 	if (IsItemHiddenBackup(di))
@@ -338,9 +338,9 @@ static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 
 	LPCTSTR p = NULL;
 	if (di.isSideRight())
-		p = _tcsninc(di.getRightFilepath(), rlen);
+		p = _tcsninc(di.getRightFilepath(pCtxt), rlen);
 	else
-		p = _tcsninc(di.getLeftFilepath(), llen);
+		p = _tcsninc(di.getLeftFilepath(pCtxt), llen);
 
 	return p;
 }
@@ -373,7 +373,7 @@ void CDirDoc::Redisplay()
 		POSITION curdiffpos = diffpos;
 		DIFFITEM di = m_pCtxt->GetNextDiffPosition(diffpos);
 
-		LPCTSTR p=GetItemPathIfShowable(di, llen, rlen);
+		LPCTSTR p=GetItemPathIfShowable(m_pCtxt, di, llen, rlen);
 
 		if (p)
 		{
@@ -496,8 +496,8 @@ POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 		currentPos = pos;
 		current = m_pCtxt->GetNextDiffPosition(pos);
 
-		if (path1 == current.getLeftFilepath() &&
-			path2 == current.getRightFilepath() &&
+		if (path1 == current.getLeftFilepath(m_pCtxt) &&
+			path2 == current.getRightFilepath(m_pCtxt) &&
 			file1 == current.sfilename)
 		{
 			return currentPos;

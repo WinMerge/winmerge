@@ -53,6 +53,8 @@ DATE:		BY:					DESCRIPTION:
 2003/12/16	Jochen Tucht		Obtain long path to temporary folder
 2004/01/20	Jochen Tucht		Complain only once if Merge7z*.dll is missing
 2004/01/25	Jochen Tucht		Fix bad default for OPENFILENAME::nFilterIndex
+2004/03/15	Jochen Tucht		Fix Visual Studio 2003 build issue
+2004/04/13	Jochen Tucht		Avoid StrNCat to get away with shlwapi 4.71
 
 */
 
@@ -89,7 +91,8 @@ void NTAPI MakeLongPath(LPTSTR path, UINT length)
 		strLongPath.Insert(0, ffd.cFileName);
 		PathRemoveFileSpec(path);
 	}
-	StrNCat(path, strLongPath, length);
+	int head = lstrlen(path);
+	lstrcpyn(path + head, strLongPath, length - head);
 }
 
 /**
@@ -285,7 +288,7 @@ UINT CompressSingleFile::Open()
  */
 Merge7z::Envelope *CompressSingleFile::Enum(Item &item)
 {
-	item.Mask = item->Name|item->FullPath;
+	item.Mask.Item = item.Mask.Name|item.Mask.FullPath;
 	item.Name = Name;
 	item.FullPath = FullPath;
 	return 0;
@@ -422,6 +425,7 @@ const DIFFITEM &CDirView::DirItemEnumerator::Next()
  */
 Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 {
+	CDiffContext *pCtxt = m_pView->GetDiffContext();
 	const DIFFITEM &di = Next();
 
 	if ((m_nFlags & DiffsOnly) && !m_pView->IsItemNavigableDiff(di))
@@ -439,7 +443,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 	}
 	envelope->FullPath = di.sfilename;
 	envelope->FullPath.Insert(0, '\\');
-	envelope->FullPath.Insert(0, m_bRight ? di.getRightFilepath() : di.getLeftFilepath());
+	envelope->FullPath.Insert(0, m_bRight ? di.getRightFilepath(pCtxt) : di.getLeftFilepath(pCtxt));
 
 	if (m_nFlags & BalanceFolders)
 	{
@@ -455,7 +459,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 					// Folder is not implied by some other file, and has
 					// not been enumerated so far, so enumerate it now!
 					envelope->Name = di.sSubdir;
-					envelope->FullPath = di.getLeftFilepath();
+					envelope->FullPath = di.getLeftFilepath(pCtxt);
 					implied = PVOID(2); // Don't enumerate same folder twice!
 				}
 			}
@@ -472,7 +476,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 					// Folder is not implied by some other file, and has
 					// not been enumerated so far, so enumerate it now!
 					envelope->Name = di.sSubdir;
-					envelope->FullPath = di.getRightFilepath();
+					envelope->FullPath = di.getRightFilepath(pCtxt);
 					implied = PVOID(2); // Don't enumerate same folder twice!
 				}
 			}
@@ -485,7 +489,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 		envelope->Name.Insert(0, m_strFolderPrefix);
 	}
 
-	item.Mask = item->Name|item->FullPath|item->CheckIfPresent;
+	item.Mask.Item = item.Mask.Name|item.Mask.FullPath|item.Mask.CheckIfPresent;
 	item.Name = envelope->Name;
 	item.FullPath = envelope->FullPath;
 	return envelope;
@@ -585,4 +589,39 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 #endif
 }
 
-
+/**
+ * @brief Collect files for SHFileOperation
+ */
+void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
+{
+	CDiffContext *pCtxt = m_pView->GetDiffContext();
+	UINT i;
+	int cchBuffer = 0;
+	for (i = Open() ; i-- ; )
+	{
+		const DIFFITEM &di = Next();
+		if (m_bRight ? m_pView->IsItemOpenableOnRightWith(di) : m_pView->IsItemOpenableOnLeftWith(di))
+		{
+			cchBuffer +=
+			(
+				m_bRight ? di.getRightFilepath(pCtxt) : di.getLeftFilepath(pCtxt)
+			).GetLength() + di.sfilename.GetLength() + 2;
+		}
+	}
+	LPTSTR pchBuffer = strBuffer.GetBufferSetLength(cchBuffer);
+	for (i = Open() ; i-- ; )
+	{
+		const DIFFITEM &di = Next();
+		if (m_bRight ? m_pView->IsItemOpenableOnRightWith(di) : m_pView->IsItemOpenableOnLeftWith(di))
+		{
+			pchBuffer += wsprintf
+			(
+				pchBuffer,
+				_T("%s\\%s"),
+				m_bRight ? di.getRightFilepath(pCtxt) : di.getLeftFilepath(pCtxt),
+				di.sfilename
+			) + 1;
+		}
+	}
+	ASSERT(pchBuffer - strBuffer == cchBuffer);
+}
