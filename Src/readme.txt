@@ -2,6 +2,8 @@
  BUG: [ 969922 ] inconsistent 'options' dialog behavior
   Fix enabling/disabling 'Apply to unrecognized side' checkbox in Editor options
   Src: PropEditor.cpp
+ BUG: [ 970940 ] Location pane bars not shown if syntax highlight disabled
+  Src: LocationView.cpp
 
 2004-06-10 Kimmo
  BUG: [ 969922 ] inconsistent 'options' dialog behavior

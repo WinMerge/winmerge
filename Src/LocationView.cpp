@@ -270,7 +270,7 @@ BOOL CLocationView::GetNextRect(int &nLineIndex)
  */
 void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border)
 {
-	if (cr==CLR_NONE)
+	if (cr == CLR_NONE || cr == GetSysColor(COLOR_WINDOW))
 	{
 		CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
 		pDC->Rectangle(r);
