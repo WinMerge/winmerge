@@ -2971,7 +2971,17 @@ re_compile_fastmap (struct re_pattern_buffer *bufp)
 
   /* Set `can_be_null' for the last path (also the first path, if the
      pattern is empty).  */
-  bufp->can_be_null |= path_can_be_null;
+  bufp->can_be_null |= path_can_be_null; 
+
+  /* free the fail_statck: it is causing memory leaks */
+#ifdef MATCH_MAY_ALLOCATE
+  if (fail_stack.stack)
+  {
+	free (fail_stack.stack);
+	fail_stack.stack = NULL;
+  }
+#endif
+
   return 0;
 } /* re_compile_fastmap */
 

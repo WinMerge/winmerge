@@ -393,7 +393,7 @@ typedef struct
    unfortunately clutters up the declarations a bit, but I think it's
    worth it.  */
 
-#if __STDC__
+#if __STDC__ || defined(__MSDOS__) || defined(__NT__) || defined(WIN32)
 
 #define _RE_ARGS(args) args
 

@@ -342,6 +342,19 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,57,10
 END
 
+IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Filter"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Ignore lines matching the follow patterns",
+                    IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    7,221,15
+    LTEXT           "Regular Expressions (one per line):",IDC_STATIC,7,28,
+                    221,8
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,96,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -459,6 +472,14 @@ BEGIN
     END
 
     IDD_PROPSYNTAX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_PROPPAGE_FILTER, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 228

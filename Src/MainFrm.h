@@ -70,6 +70,8 @@ public:
 	void CleanupFileBufs();
 	BOOL m_bIgnoreBlankLines;
 	BOOL m_bIgnoreCase;
+	BOOL m_bIgnoreRegExp;
+	CString m_sPattern;
 	void UpdateResources();
 	void UpdateCurrentFileStatus(UINT nStatus);
 	BOOL SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest);
@@ -121,6 +123,14 @@ protected:
 	afx_msg void OnClose();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+private:
+	// builds the regular expression list if the
+	// user choose to ignore Ignore changes affecting only lines 
+	// that match the specified regexp. 
+	void RebuildRegExpList();
+	// destroy the regular expression list and free up the memory
+	void FreeRegExpList();
 };
 
 extern CMainFrame *mf;

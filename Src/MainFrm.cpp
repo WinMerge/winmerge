@@ -41,6 +41,7 @@
 #include "CCPrompt.h"
 #include "PropVss.h"
 #include "PropGeneral.h"
+#include "PropFilter.h"
 #include "RegKey.h"
 #include "logfile.h"
 #include "PropSyntax.h"
@@ -56,6 +57,8 @@ CMainFrame *mf = NULL;
 extern CLogFile gLog;
 extern bool gWriteLog;
 
+// add a 
+static void add_regexp PARAMS((struct regexp_list **, char const*));
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame
 
@@ -119,6 +122,9 @@ CMainFrame::CMainFrame()
 	m_strVssPath = theApp.GetProfileString(_T("Settings"), _T("VssPath"), _T(""));
 	m_nTabSize = theApp.GetProfileInt(_T("Settings"), _T("TabSize"), 4);
 	m_bHiliteSyntax = theApp.GetProfileInt(_T("Settings"), _T("HiliteSyntax"), TRUE)!=0;
+	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
+	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
+
 	if (m_strVssPath.IsEmpty())
 	{
 		CRegKeyEx reg;
@@ -134,6 +140,8 @@ CMainFrame::CMainFrame()
 
 CMainFrame::~CMainFrame()
 {
+	// destroy the reg expression list
+	FreeRegExpList();
 }
 
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -147,6 +155,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	ignore_case_flag = m_bIgnoreCase;
 	ignore_blank_lines_flag = m_bIgnoreBlankLines;
 	ignore_some_changes = m_bIgnoreWhitespace || m_bIgnoreCase || m_bIgnoreBlankLines;
+	// build the initial reg expression list
+	RebuildRegExpList();
 
 	heuristic = 1;
 	output_style = OUTPUT_NORMAL;
@@ -479,8 +489,10 @@ void CMainFrame::OnProperties()
 	CPropVss vss;
 	CPropGeneral gen;
 	CPropSyntax syn;
+	CPropFilter filter;
 	sht.AddPage(&gen);
 	sht.AddPage(&syn);
+	sht.AddPage(&filter);
 	sht.AddPage(&vss);
 	
 	vss.m_nVerSys = m_nVerSys;
@@ -494,6 +506,8 @@ void CMainFrame::OnProperties()
 	gen.m_nTabSize = m_nTabSize;
 
 	syn.m_bHiliteSyntax = m_bHiliteSyntax;
+	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
+	filter.m_sPattern = m_sPattern;
 	
 	if (sht.DoModal()==IDOK)
 	{
@@ -510,6 +524,9 @@ void CMainFrame::OnProperties()
 		ignore_some_changes = m_bIgnoreWhitespace || m_bIgnoreCase || m_bIgnoreBlankLines;
 		length_varies = m_bIgnoreWhitespace;
 
+		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
+		m_sPattern = filter.m_sPattern;
+
 		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreSpace"), m_bIgnoreWhitespace);
 		theApp.WriteProfileInt(_T("Settings"), _T("ScrollToFirst"), m_bScrollToFirst);
@@ -518,10 +535,13 @@ void CMainFrame::OnProperties()
 		theApp.WriteProfileInt(_T("Settings"), _T("TabSize"), m_nTabSize);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreBlankLines"), m_bIgnoreBlankLines);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreCase"), m_bIgnoreCase);
+		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
+		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
 
 		m_bHiliteSyntax = syn.m_bHiliteSyntax;
 		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), m_bHiliteSyntax);
 
+		RebuildRegExpList();
 
 		// make an attempt at rescanning any open diff sessions
 		if (m_pLeft != NULL && m_pRight != NULL)
@@ -888,3 +908,71 @@ void CMainFrame::OnClose()
 }
 
 
+void CMainFrame::FreeRegExpList()
+{
+	struct regexp_list *r;
+	r = ignore_regexp_list;
+	// iterate through the list, free the reg expression
+	// list item
+	while (ignore_regexp_list)
+	{
+		r = r->next;
+		free((ignore_regexp_list->buf).fastmap);
+		free((ignore_regexp_list->buf).buffer);
+		free(ignore_regexp_list);
+		ignore_regexp_list = r;
+	}
+
+}
+
+
+void CMainFrame::RebuildRegExpList()
+{
+	_TCHAR tmp[MAX_PATH];
+	_TCHAR* token;
+	_TCHAR sep[] = "\r\n";
+	
+	// destroy the old list if the it is not NULL
+	FreeRegExpList();
+
+	// build the new list if the user choose to
+	// ignore lines matching the reg expression patterns
+	if (m_bIgnoreRegExp)
+	{
+		// find each regular expression and add to list
+		_tcscpy(tmp, m_sPattern);
+
+		token = _tcstok(tmp, sep);
+		while (token)
+		{
+			add_regexp(&ignore_regexp_list, token);
+			token = _tcstok(NULL, sep);
+		}
+	}
+
+	if (ignore_regexp_list)
+	{
+		ignore_some_changes = 1;
+	}
+
+}
+
+// Add the compiled form of regexp pattern to reglist
+static void
+add_regexp(struct regexp_list **reglist,
+     char const* pattern)
+{
+  struct regexp_list *r;
+  char const *m;
+
+  r = (struct regexp_list *) xmalloc (sizeof (*r));
+  bzero (r, sizeof (*r));
+  r->buf.fastmap = (char*) xmalloc (256);
+  m = re_compile_pattern (pattern, strlen (pattern), &r->buf);
+  if (m != 0)
+    error ("%s: %s", pattern, m);
+
+  /* Add to the start of the list, since it's easier than the end.  */
+  r->next = *reglist;
+  *reglist = r;
+}

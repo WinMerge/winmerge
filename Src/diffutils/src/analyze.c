@@ -1022,6 +1022,16 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * pbBin
 				}
 				script=NULL;
 			}
+			else if (changes == 0 && ignore_regexp_list )
+			{
+				// determined that there were no changes after considering flags
+				for (e = script; e; e = p)
+				{
+					p = e->link;
+					free (e);
+				}
+				script=NULL;
+			}
 			else if (changes || ! no_diff_means_no_output)
 			{
 				//  Record info for starting up output,

@@ -27,6 +27,7 @@
 #define IDS_COPY2DIR_FMT                134
 #define IDD_CLEARCASE                   134
 #define IDS_CONFIRM_COPY2DIR            135
+#define IDD_PROPPAGE_FILTER             135
 #define IDS_FONT_CHANGE                 136
 #define IDS_DIRECTORY_WINDOW_TITLE      137
 #define IDS_DIRECTORY_WINDOW_STATUS_FMT 138
@@ -101,6 +102,8 @@
 #define IDC_COMMENTS                    1017
 #define IDC_VER_SYS                     1018
 #define IDC_HILITE_CHECK                1019
+#define IDC_IGNOREREGEXP                1020
+#define IDC_EDITPATTERN                 1021
 #define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
 #define IDD_PROPSYNTAX                  30001
@@ -249,7 +252,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32806
-#define _APS_NEXT_CONTROL_VALUE         1020
+#define _APS_NEXT_CONTROL_VALUE         1023
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif

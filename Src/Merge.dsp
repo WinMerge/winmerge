@@ -507,6 +507,10 @@ SOURCE=.\OpenDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropFilter.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropGeneral.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -784,6 +788,10 @@ SOURCE=.\MergeEditView.h
 # Begin Source File
 
 SOURCE=.\OpenDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PropFilter.h
 # End Source File
 # Begin Source File
 
