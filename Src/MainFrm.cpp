@@ -663,6 +663,9 @@ void CMainFrame::OnOptions()
 	CString selectedFilter;
 	theApp.GetFileFilterNameList(filefilters, selectedFilter);
 
+	// use CDiffwrapper static functions to exchange the options with registry
+	CDiffWrapper::ReadDiffOptions(&diffOptions);
+
 	CPropertySheet sht(IDS_OPTIONS_TITLE);
 	CPropVss vss;
 	CPropGeneral gen;
@@ -737,6 +740,9 @@ void CMainFrame::OnOptions()
 
 		theApp.m_bHiliteSyntax = syn.m_bHiliteSyntax;
 		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), theApp.m_bHiliteSyntax);
+
+		// use CDiffwrapper static functions to exchange the options with registry
+		CDiffWrapper::WriteDiffOptions(&diffOptions);
 
 		RebuildRegExpList();
 
@@ -906,7 +912,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  _T("\tVerSys: %d\r\n")
 				  _T("\tVssPath: %s\r\n")
 				  _T("\tBackups: %d\r\n")
-				  _T("\tIgnoreWS: %d\r\n")
 				  _T("\tScrollToFirst: %d\r\n")
 				  _T("### End Comparison Parameters #############################\r\n"),
 				  strLeft,

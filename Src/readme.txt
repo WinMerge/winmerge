@@ -1,3 +1,8 @@
+2003-08-30 Kimmo
+ PATCH: [ 797797 ] OnOptions must exchange diffOptions with the registry
+  Submitted by Laoran.
+   WinMerge: MainFrm.cpp
+
 2003-08-30 Laoran
  PATCH: [ 784109 ] layout with two new horizontal panels
   common new files: sizecbar.cpp sizecbar.h sizecbarg.cpp sizecbarg.h 
