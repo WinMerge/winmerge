@@ -139,28 +139,39 @@ BOOL CFilepathEdit::SubClassEdit(UINT nID, CWnd* pParent)
 /////////////////////////////////////////////////////////////////////////////
 // CFilepathEdit
 
+/** Return the entire path originally given to this edit control */
 void CFilepathEdit::GetWholeText(CString& rString) const
 {		
-	rString = wholeText;
+	rString = m_sWholeText;
 }
 
-// set whole text
-// and set the display text (truncate it if necessary)
+/**
+ * @brief Store path given, and also compute display version (may be shortened)
+ *
+ * The original path is saved as m_sWholeText.
+ * The display version is passed to underlying edit control (via SetWindowText)
+ */
 void CFilepathEdit::SetWholeText(LPCTSTR lpszString)
 {
-	if (_tcscmp(wholeText, lpszString) == 0)
+	if (_tcscmp(m_sWholeText, lpszString) == 0)
 		return;
 
 	if (lpszString != 0)
-		wholeText = lpszString;
+		m_sWholeText = lpszString;
 
 	RefreshDisplayText();
 }
 
-// the display test is the window text for CWnd
+/**
+ * @brief Recompute display text from m_sWholeText & update window text
+ *
+ * This method takes the m_sWholeText string and computes a short version
+ * and uses the short version to set the window text (which will be used
+ * by the underlying edit control to actually paint).
+ */
 void CFilepathEdit::RefreshDisplayText()
 {
-	CString line = wholeText;
+	CString line = m_sWholeText;
 
 	// we want to keep the first and the last path component, and in between,
 	// as much characters as possible from the right
@@ -205,21 +216,27 @@ void CFilepathEdit::RefreshDisplayText()
 	SetWindowText(line);
 }
 
-// updates and returns the tooltip for this edit box
+/**
+ * @brief Updates and returns the tooltip for this edit box
+ *
+ * @note This uses a member variable (m_sToolTipString) in 
+ * order to be able to return an LPCTSTR safely.
+ */
 LPCTSTR CFilepathEdit::GetUpdatedTipText(CDC * pDC, int maxWidth)
 {
-	GetWholeText(toolTipString);
+
+	GetWholeText(m_sToolTipString);
 
 	if (GetDllVersion(_T("shlwapi.dll")) < PACKVERSION(4,70))
 		// \n in tooltip text not supported before 4.70
 		;
 	else
-		FormatFilePathForDisplayWidth(pDC, maxWidth, toolTipString);
+		FormatFilePathForDisplayWidth(pDC, maxWidth, m_sToolTipString);
 		
 	// add the help text
-// toolTipString += "\n\nRight click on the path to copy";
+// m_sToolTipString += "\n\nRight click on the path to copy";
 
-	return (LPCTSTR) toolTipString;
+	return (LPCTSTR)m_sToolTipString;
 }
 
 /**
@@ -230,7 +247,7 @@ LPCTSTR CFilepathEdit::GetUpdatedTipText(CDC * pDC, int maxWidth)
 void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 {
 	if (iEnd == -1)
-		iEnd = wholeText.GetLength();
+		iEnd = m_sWholeText.GetLength();
 
 	// get the clipboard
 	if (! OpenClipboard())
@@ -243,9 +260,11 @@ void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 	if (hData == NULL)
 		return;
 	LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
-	_tcscpy (pszData, (LPTSTR) wholeText.Mid(iBegin, iEnd-iBegin).GetBuffer(0));
+	// Copy selected data from m_sWholeText into the alloc'd data area
+	_tcscpy (pszData, (LPTSTR) m_sWholeText.Mid(iBegin, iEnd-iBegin).GetBuffer(0));
 	GlobalUnlock (hData);
 	UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
+	// Using alloc'd data, set the clipboard
 	SetClipboardData (fmt, hData);
 
 	// release the clipboard
@@ -280,7 +299,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		BCMenu* pPopup = (BCMenu *) menu.GetSubMenu(0);
 		ASSERT(pPopup != NULL);
 
-		if (wholeText.Right(1) == '\\')
+		if (m_sWholeText.Right(1) == '\\')
 			// no filename, we have to disable the unwanted menu entry
 			pPopup->EnableMenuItem(ID_EDITOR_COPY_FILENAME, MF_GRAYED);
 
@@ -297,7 +316,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		{
 		case ID_EDITOR_COPY_FILENAME:
 			{
-			int lastSlash = wholeText.ReverseFind('\\');
+			int lastSlash = m_sWholeText.ReverseFind('\\');
 			if (lastSlash != -1)
 				iBegin = lastSlash+1;
 			else
@@ -306,7 +325,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 			break;
 		case ID_EDITOR_COPY_PATH:
 			// pass the heading "*" for modified files
-			if (wholeText.GetAt(0) == '*')
+			if (m_sWholeText.GetAt(0) == '*')
 				iBegin = 2;
 			else
 				iBegin = 0;

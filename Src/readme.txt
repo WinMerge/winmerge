@@ -1,3 +1,7 @@
+2005-03-08 Perry
+ Cosmetic: Added & doxygen'd comments, and prefixed members with m_.
+  Src: FilepathEdit.cpp FilepathEdit.h
+
 2005-03-08 WinMerge experimental release 2.3.1.6 (cvs)
 
 2005-03-08 Kimmo

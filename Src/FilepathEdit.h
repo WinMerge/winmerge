@@ -63,8 +63,8 @@ protected:
 private:
 	void CustomCopy(int iBegin, int iEnd =-1);
 
-	CString toolTipString;
-	CString wholeText;
+	CString m_sToolTipString; /**< buffer for return data from GetUpdatedTipText */
+	CString m_sWholeText; /**< Full path that was given to control */
 	BOOL m_bActive;
 };
 
