@@ -75,8 +75,12 @@ protected:
 	afx_msg void OnSelDifferenceTextColor();
 	afx_msg void OnTrivialDiffColor();
 	afx_msg void OnTrivialDiffDeletedColor();
+	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+private:
+	COptionsMgr * m_pOptionsMgr;
 };
 
 //{{AFX_INSERT_LOCATION}}

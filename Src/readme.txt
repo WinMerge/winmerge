@@ -1,6 +1,13 @@
+2004-03-03 Kimmo
+ PATCH: [ 908606 ] Restore default colors
+  Add "Defaults" button to Color options page
+  Src/Common: OptionsMgr.cpp OptionsMgr.cpp
+  Src: Merge.rc PropColor.cpp PropColors.h resource.h
+  Languages: recource.h *.rc
+  
 2004-03-02 Kimmo
  PATCH: [ 907087 ] Allow commandline switches for external editor
-  Common: coretools.cpp coretools.h
+  Src/Common: coretools.cpp coretools.h
   Src: MainFrm.cpp
  PATCH: [ 907641 ] Convert color options to new system
   Src: ColorButton.cpp ColorButton.h MainFrm.cpp Merge.cpp Merge.h

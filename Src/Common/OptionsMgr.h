@@ -76,6 +76,7 @@ public:
 	CString GetString(CString name) const;
 	int GetInt(CString name) const;
 	int Set(CString name, varprop::VariantValue value);
+	int Reset(CString name);
 
 private:
 	CMap<CString, LPCTSTR, COption, COption&> m_optionsMap;

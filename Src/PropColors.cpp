@@ -44,6 +44,8 @@ CPropColors::CPropColors(COptionsMgr *optionsMgr) : CPropertyPage(CPropColors::I
 	m_cSelDiffText.SetColor(m_clrSelDiffText, FALSE);
 	m_cTrivial.SetColor(m_clrTrivial, FALSE);
 	m_cTrivialDeleted.SetColor(m_clrTrivialDeleted, FALSE);
+
+	m_pOptionsMgr = optionsMgr;
 	//}}AFX_DATA_INIT
 }
 
@@ -73,6 +75,7 @@ BEGIN_MESSAGE_MAP(CPropColors, CDialog)
 	ON_BN_CLICKED(IDC_SEL_DIFFERENCE_TEXT_COLOR, OnSelDifferenceTextColor)
 	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_COLOR, OnTrivialDiffColor)
 	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_DELETED_COLOR, OnTrivialDiffDeletedColor)
+	ON_BN_CLICKED(IDC_COLORDEFAULTS_BTN, OnDefaults)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -210,6 +213,39 @@ void CPropColors::OnTrivialDiffDeletedColor()
 		m_cTrivialDeleted.SetColor(m_clrTrivialDeleted);
 	}
 	SaveCustomColors();
+}
+
+/** 
+ * @brief Resets colors to defaults
+ */
+void CPropColors::OnDefaults()
+{
+	m_pOptionsMgr->Reset(OPT_CLR_DIFF);
+	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_DIFF);
+	m_pOptionsMgr->Reset(OPT_CLR_DIFF_DELETED);
+	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_DIFF_DELETED);
+	m_pOptionsMgr->Reset(OPT_CLR_DIFF_TEXT);
+	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_DIFF_TEXT);
+	m_pOptionsMgr->Reset(OPT_CLR_TRIVIAL_DIFF);
+	m_pOptionsMgr->Reset(OPT_CLR_TRIVIAL_DIFF_DELETED);
+
+	m_clrDiff = m_pOptionsMgr->GetInt(OPT_CLR_DIFF);
+	m_clrSelDiff = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
+	m_clrDiffDeleted = m_pOptionsMgr->GetInt(OPT_CLR_DIFF_DELETED);
+	m_clrSelDiffDeleted = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
+	m_clrDiffText = m_pOptionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
+	m_clrSelDiffText = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
+	m_clrTrivial = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF);
+	m_clrTrivialDeleted = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
+
+	m_cDiff.SetColor(m_clrDiff);
+	m_cSelDiff.SetColor(m_clrSelDiff);
+	m_cDiffDeleted.SetColor(m_clrDiffDeleted);
+	m_cSelDiffDeleted.SetColor(m_clrSelDiffDeleted);
+	m_cDiffText.SetColor(m_clrDiffText);
+	m_cSelDiffText.SetColor(m_clrSelDiffText);
+	m_cTrivial.SetColor(m_clrTrivial);
+	m_cTrivialDeleted.SetColor(m_clrTrivialDeleted);
 }
 
 /** 

@@ -266,6 +266,28 @@ int COptionsMgr::Set(CString name, varprop::VariantValue value)
 }
 
 /**
+ * @brief Reset option value to default
+ */
+int COptionsMgr::Reset(CString name)
+{
+	COption tmpOption;
+	BOOL optionFound = FALSE;
+	int retVal = OPT_OK;
+
+	optionFound = m_optionsMap.Lookup(name, tmpOption);
+	if (optionFound == TRUE)
+	{
+		tmpOption.Reset();
+		m_optionsMap.SetAt(name, tmpOption);
+	}
+	else
+	{
+		retVal = OPT_NOTFOUND;
+	}
+	return retVal;
+}
+
+/**
  * @brief Split option name to path (in registry) and
  * valuename (in registry).
  *
