@@ -28,6 +28,7 @@ public:
 	UINT	m_nTabSize;
 	BOOL	m_bIgnoreCase;
 	BOOL	m_bIgnoreBlankLines;
+	BOOL	m_bDisableSplash;
 	//}}AFX_DATA
 
 

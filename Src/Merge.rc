@@ -292,7 +292,7 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "General"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Settings",IDC_STATIC,7,7,221,78
+    GROUPBOX        "Settings",IDC_STATIC,7,7,221,92
     CONTROL         "&Backup original file",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,21,75,10
     CONTROL         "Automatically &scroll to first difference",
@@ -304,9 +304,11 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,57,71,10
     CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,69,53,10
-    GROUPBOX        "Tabs",IDC_STATIC,7,92,221,30
-    LTEXT           "&Tab size:",IDC_STATIC,15,106,30,8
-    EDITTEXT        IDC_TAB_EDIT,47,105,27,12,ES_AUTOHSCROLL
+    GROUPBOX        "Tabs",IDC_STATIC,7,105,221,30
+    LTEXT           "&Tab size:",IDC_STATIC,15,119,30,8
+    EDITTEXT        IDC_TAB_EDIT,47,118,27,12,ES_AUTOHSCROLL
+    CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,81,87,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111

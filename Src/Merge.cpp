@@ -96,13 +96,6 @@ BOOL CMergeApp::InitInstance()
 		TRACE(_T("AfxOleInitFailed. OLE functionality disabled"));
 	}
 
-	// CG: The following block was added by the Splash Screen component.
-	{
-		CCommandLineInfo cmdInfo;
-		ParseCommandLine(cmdInfo);
-		CSplashWnd::EnableSplashScreen(cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew);
-	}
-
 	// Standard initialization
 	// If you are not using these features and wish to reduce the size
 	//  of your final executable, you should remove from the following
@@ -120,6 +113,15 @@ BOOL CMergeApp::InitInstance()
 	SetRegistryKey(_T("Thingamahoochie"));
 
 	LoadStdProfileSettings();  // Load standard INI file options (including MRU)
+
+	m_bDisableSplash = GetProfileInt(_T("Settings"), _T("DisableSplash"), FALSE);
+
+	// CG: The following block was added by the Splash Screen component.
+	{
+		CCommandLineInfo cmdInfo;
+		ParseCommandLine(cmdInfo);
+		CSplashWnd::EnableSplashScreen(m_bDisableSplash==FALSE && cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew);
+	}
 
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views.

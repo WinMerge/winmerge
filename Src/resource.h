@@ -104,6 +104,7 @@
 #define IDC_HILITE_CHECK                1019
 #define IDC_IGNOREREGEXP                1020
 #define IDC_EDITPATTERN                 1021
+#define IDC_DISABLE_SPLASH              1023
 #define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
 #define IDD_PROPSYNTAX                  30001
@@ -252,7 +253,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32807
-#define _APS_NEXT_CONTROL_VALUE         1023
+#define _APS_NEXT_CONTROL_VALUE         1024
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif
