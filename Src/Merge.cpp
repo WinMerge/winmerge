@@ -265,8 +265,8 @@ BOOL CAboutDlg::OnInitDialog()
 	CVersionInfo version;
 	AfxFormatString1(m_strVersion, IDS_VERSION_FMT, version.GetProductVersion());
 
-	m_ctlCompany.m_link = _T("http://www.geocities.com/SiliconValley/Vista/8632");
-	m_ctlWWW.m_link = _T("http://www.geocities.com/SiliconValley/Vista/8632/ts_winmerge.html");
+	m_ctlCompany.m_link = _T("http://winmerge.sourceforge.net");
+	m_ctlWWW.m_link = _T("http://winmerge.sourceforge.net");
 
 	UpdateData(FALSE);
 	
