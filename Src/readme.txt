@@ -1,3 +1,7 @@
+2004-05-21 Perry
+ Localized language names into Korean
+  Src/Languages: MergeKorean.rc
+
 2004-05-20 Kimmo
  PATCH: [ 956893 ] Fix toolbar problem with XP themes and VC6
   Src: MainFrm.cpp Merge.cpp
