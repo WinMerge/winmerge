@@ -167,6 +167,16 @@ BOOL CMergeDoc::Rescan()
 			/* Compare the files, if no error was found.  */
 			
 			script = diff_2_files (inf, depth);
+
+			// throw the diff into a temp file
+			CString path = GetModulePath(NULL) + _T("\\Diff.txt");
+			outfile = fopen(path, "w+");
+			if (outfile != NULL)
+			{
+				print_normal_script(script);
+				fclose(outfile);
+				outfile=NULL;
+			}
 			
 			struct change *next = script;
 			int trans_a0, trans_b0, trans_a1, trans_b1;
