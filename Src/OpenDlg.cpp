@@ -296,7 +296,7 @@ BOOL COpenDlg::IsFileOk(CString & strFile, BOOL *pbDir /*= NULL*/)
 	if (s.GetLength()==2 && s.Right(1) == _T(':'))
 	{
 		TCHAR temp[100];
-		TCHAR drive = toupper(s.GetAt(0));
+		TCHAR drive = (TCHAR)toupper(s.GetAt(0));
 
 		if (GetLogicalDriveStrings(100,temp))
 		{
