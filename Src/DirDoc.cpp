@@ -215,7 +215,9 @@ diff_dirs2 (filevec, handle_file, depth)
   return val;
 }*/
 
-// Perform directory comparison again from scratch
+/**
+ * @brief Perform directory comparison again from scratch
+ */
 void CDirDoc::Rescan()
 {
 	if (!m_pCtxt) return;
@@ -273,14 +275,20 @@ void CDirDoc::Rescan()
 	// ((CDirFrame*)(m_pDirView->GetParent()))->SetStatus(s);
 }
 
-// return true if we need to hide this item because it is a backup
+/**
+ * @brief Determines if item is backup item and needed to be hidden
+ * @return true if item is a backup
+ */
 static bool IsItemHiddenBackup(const DIFFITEM & di)
 {
 	return mf->m_bHideBak && FileExtMatches(di.sfilename,BACKUP_FILE_EXT);
 }
 
-// returns path of item if user wants to see this item
-// preferably left path, but right path if a right-only item
+/**
+ * @brief Determines if user wants to see this item
+ * @return Path to item, NULL if user does not want to see it
+ * @note Preferably left path, but right path if a right-only item
+ */
 static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 {
 	if (IsItemHiddenBackup(di))
@@ -342,7 +350,7 @@ void CDirDoc::Redisplay()
 		if (p)
 		{
 			int i = m_pDirView->AddDiffItem(cnt, di, p, curdiffpos);
-			UpdateScreenItemStatus(i, di);
+			m_pDirView->UpdateDiffItemStatus(i, di);
 			cnt++;
 		}
 	}
@@ -383,7 +391,8 @@ static long GetModTime(LPCTSTR szPath)
 
 
 /**
- * @brief Update in-memory diffitem status from disk and tell view
+ * @brief Update in-memory diffitem status from disk and update view
+ * @param nIdx Index of item in UI list
  */
 void CDirDoc::ReloadItemStatus(UINT nIdx)
 {
@@ -394,17 +403,8 @@ void CDirDoc::ReloadItemStatus(UINT nIdx)
 
 	// Update view
 	const DIFFITEM & updated = m_pCtxt->GetDiffAt(diffpos);
-	UpdateScreenItemStatus(nIdx, updated);
+	m_pDirView->UpdateDiffItemStatus(nIdx, updated);
 }
-
-/**
- * @brief Push current in-memory diffitem status out to screen for selected item
- */
-void CDirDoc::UpdateScreenItemStatus(UINT nIdx, DIFFITEM di)
-{
-	m_pDirView->UpdateDiffItemStatus(nIdx, di);
-}	
-
 
 void CDirDoc::InitStatusStrings()
 {
@@ -576,7 +576,6 @@ void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unifie
 	// Update both view and diff context memory
 	SetDiffCompare(diffcode, ind);
 	ReloadItemStatus(ind);
-
 }
 
 /**
@@ -645,6 +644,8 @@ void CDirDoc::SetRecursive(BOOL bRecursive)
 
 /**
  * @brief Set side status of diffitem
+ * @note This does not update UI - ReloadItemStatus() does
+ * @sa CDirDoc::ReloadItemStatus()
  */
 void CDirDoc::SetDiffSide(UINT diffcode, int idx)
 {
@@ -653,6 +654,8 @@ void CDirDoc::SetDiffSide(UINT diffcode, int idx)
 
 /**
  * @brief Set compare status of diffitem
+ * @note This does not update UI - ReloadItemStatus() does
+ * @sa CDirDoc::ReloadItemStatus()
  */
 void CDirDoc::SetDiffCompare(UINT diffcode, int idx)
 {
@@ -739,7 +742,7 @@ BOOL DirDocFilterByExtension::includeFile(LPCTSTR szFileName)
 
 /**
  * @brief Write path and filename to headerbar
- * @note SetWholeText() does not repaint unchanged text
+ * @note SetText() does not repaint unchanged text
  */
 void CDirDoc::UpdateHeaderPath(BOOL bLeft)
 {

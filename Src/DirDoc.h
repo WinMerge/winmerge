@@ -114,8 +114,6 @@ public:
 #endif
 
 protected:
-	void UpdateScreenItemStatus(UINT nIdx, DIFFITEM di);
-
 	CDiffWrapper m_diffWrapper;
 
 	// Generated message map functions

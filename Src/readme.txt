@@ -13,6 +13,9 @@
  Don't update filedata multiple times + comment changes/updates
   (In journey to solve BUG: 840547 Copying unique file does not update date and size
   WinMerge: DirActions.cpp DirDoc.cpp DirView.cpp
+ Removing one unneeded function + code cleanups + comment changes/updates
+  (Hunting reason for BUG: 840547 Copying unique file does not update date and size)
+  WinMerge: DiffContext.cpp DirDoc.h DirDoc.h 
 
 2003-11-13 Laoran 
  modify the assert in GetText/GetTextWithoutEmptys (see patch #837480)

@@ -128,6 +128,9 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir
 	AddDiff(di);
 }
 
+/**
+ * @brief Add new diffitem to CDiffContext array
+ */
 void CDiffContext::AddDiff(DIFFITEM di)
 {
 	// BSP - Capture the extension; from the end of the file name to the last '.'     
@@ -144,36 +147,61 @@ void CDiffContext::AddDiff(DIFFITEM di)
 	SendMessage(m_hDirFrame, m_msgUpdateStatus, di.diffcode, NULL);
 }
 
+/**
+ * @brief Remove diffitem from CDiffContext array
+ * @param diffpos position of item to remove
+ */
 void CDiffContext::RemoveDiff(POSITION diffpos)
 {
 	m_pList->RemoveAt(diffpos);
 }
 
+/**
+ * @brief Sets regular expression for DiffContext
+ */
 void CDiffContext::SetRegExp(LPCTSTR pszExp)
 {
 	m_strRegExp = pszExp;
 }
 
+/**
+ * @brief Empty CDiffContext array
+ */
 void CDiffContext::RemoveAll()
 {
 	m_pList->RemoveAll();
 }
 
+/**
+ * @brief Get position of first item in CDiffContext array
+ */
 POSITION CDiffContext::GetFirstDiffPosition()
 {
 	return m_pList->GetHeadPosition();
 }
 
+/**
+ * @brief Get position of next item in CDiffContext array
+ * @param diffpos position of current item, updated to next item position
+ * @return Diff Item in current position
+ */
 DIFFITEM CDiffContext::GetNextDiffPosition(POSITION & diffpos)
 {
 	return m_pList->GetNext(diffpos);
 }
 
+/**
+ * @brief Get Diff Item at given position of CDiffContext array
+ * @param diffpos position of item to return
+ */
 const DIFFITEM & CDiffContext::GetDiffAt(POSITION diffpos) const
 {
 	return m_pList->GetAt(diffpos);
 }
 
+/**
+ * @brief Get number of items in CDiffContext array
+ */
 int CDiffContext::GetDiffCount()
 {
 	return m_pList->GetCount();
