@@ -1,4 +1,8 @@
 2003-07-30 Laoran
+ PATCH: [ 779470 ] disable unwanted options in PropGeneral
+  WinMerge: PropGeneral.cpp PropGeneral.h 
+
+2003-07-30 Laoran
  PATCH: [ 777871 ] New headerbar for the file paths 
   WinMerge: ChildFrm.cpp ChildFrm.h dllver.cpp dllver.h Merge.dsp Merge.rc resource.h
   WinMerge new files : EditorFilepathBar.cpp EditorFilepathBar.h FilepathEdit.cpp FilepathEdit.h

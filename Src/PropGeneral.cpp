@@ -56,6 +56,17 @@ CPropGeneral::~CPropGeneral()
 {
 }
 
+
+BOOL CPropGeneral::OnInitDialog()
+{
+	CPropertyPage::OnInitDialog();
+
+	// enable/disable the "sensitive to EOL" button
+	OnAnyWhitespaceChange();
+
+	return TRUE;  // return TRUE  unless you set the focus to a control
+}
+
 void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
@@ -63,6 +74,7 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_BACKUP_CHECK, m_bBackup);
 	DDX_Check(pDX, IDC_SCROLL_CHECK, m_bScroll);
 	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
+	DDV_MinMaxInt( pDX, m_nTabSize, 0, 64 );
 	DDX_Check(pDX, IDC_IGNCASE_CHECK, m_bIgnoreCase);
 	DDX_Check(pDX, IDC_IGNBLANKS_CHECK, m_bIgnoreBlankLines);
 	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bEolSensitive);
@@ -70,16 +82,28 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	DDX_Radio(pDX, IDC_PROP_INSERT_TABS, m_nTabType);
 	DDX_Check(pDX, IDC_AUTOMRESCAN_CHECK, m_bAutomaticRescan);
-	DDV_MinMaxInt( pDX, m_nTabSize, 0, 64 );
 	//}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CPropGeneral, CPropertyPage)
 	//{{AFX_MSG_MAP(CPropGeneral)
-		// NOTE: the ClassWizard will add message map macros here
+	ON_BN_CLICKED(IDC_WHITE_CHANGE, OnAnyWhitespaceChange)
+	ON_BN_CLICKED(IDC_WHITESPACE, OnAnyWhitespaceChange)
+	ON_BN_CLICKED(IDC_ALL_WHITE, OnAnyWhitespaceChange)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropGeneral message handlers
+
+// if compareWhitespace is off, "sensitive to EOL" has no influence
+// we disable "sensitive to EOL" button to make this evident for the user
+void CPropGeneral::OnAnyWhitespaceChange() 
+{
+	// TODO: Add your control notification handler code here
+	if (IsDlgButtonChecked(IDC_WHITESPACE))
+		GetDlgItem(IDC_EOL_SENSITIVE)->EnableWindow(TRUE);
+	else
+		GetDlgItem(IDC_EOL_SENSITIVE)->EnableWindow(FALSE);
+}

@@ -27,7 +27,7 @@ public:
 	UINT	m_nTabSize;
 	BOOL	m_bIgnoreCase;
 	BOOL	m_bIgnoreBlankLines;
-	BOOL    m_bEolSensitive;
+	BOOL	m_bEolSensitive;
 	BOOL	m_bDisableSplash;
 	int		m_nIgnoreWhite;
 	int		m_nTabType;
@@ -44,9 +44,11 @@ public:
 
 // Implementation
 protected:
+	virtual BOOL OnInitDialog();
+
 	// Generated message map functions
 	//{{AFX_MSG(CPropGeneral)
-		// NOTE: the ClassWizard will add member functions here
+	afx_msg void OnAnyWhitespaceChange();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
