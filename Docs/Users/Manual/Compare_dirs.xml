@@ -1,19 +1,19 @@
 <sect1 id="CompareDirs">
   <title>Comparing directories</title>
-  <para>Directory compare shows all files and subdirectries found from compared directories as list. Directory compare allows synchronising directories by copying and deleting files and subdirectories. Directory compare view can be versatile customised.</para>
+  <para>The Directory compare window displays all of the files and subdirectories compared in a sortable list view. Files and subdirectories may be synchronized by copying or deleting, and actions may be performed on multiple items simultaneously. The columns displayed may be changed and reordered.</para>
   <mediaobject>
     <imageobject>
       <imagedata fileref="screenshots/dircomp1.gif" format="GIF"/>
     </imageobject>
   </mediaobject>
-  <para>Directory compare has two different modes. Mode is selected in Open-dialog with "<guilabel>Include Subfolders</guilabel>"-checkbox.<itemizedlist>
+  <para>Directory comparison has two different modes. The mode is selected in the Open dialog with the "<guilabel>Include Subfolders</guilabel>"-checkbox.<itemizedlist>
       <listitem>
-        <para>When subfolders are included all subfolders and their contents are compared. Directory compare does not show names for folders that exist in both compared directories, only files in them. If folder does not exist in another side then folder is shown as unique folder.</para>
-        <para>This mode does not allow browsing folders and can be slow if there are a lot of subfolders and files.</para>
+        <para>When subfolders are included, all subfolders and their contents are compared. Files are displayed depending on the options on the View menu (eg, Show Identical Files). Common directories are never displayed (but all files inside of them are). Directories only existing on one side are displayed according to the View menu options (eg, Show Left Unique Files). </para>
+        <para>This mode does not allow browsing folders and can be slow if there are many subfolders and files.</para>
       </listitem>
       <listitem>
         <para>When subfolders are not included only files in selected folders and names of subfolders are shown.</para>
-        <para>This mode allows browsing folders by opening Subfolders and parent folders. This is biggest benefit of this mode since comparing only one folder at a time is faster to do. Smaller amount of files (and folders) in view is also easier to manage.</para>
+        <para>This mode allows browsing folders by opening subfolders and parent folders. This mode has the advantage of speed, as it may be much faster when there are many subfolders that need not be examined. Also the display may be easier to manage, showing only items in one folder.</para>
       </listitem>
     </itemizedlist></para>
   <sect2>

@@ -1,3 +1,8 @@
+2004-10-04 Kimmo
+ PATCH: [ 1039653 ] Rewrite beginning of CompareDirs.xml
+  Submitted by Perry
+  Manual: Compare_dirs.xml
+
 2004-09-30 Kimmo
  PATCH: [ 1037256 ] Docs: Explain Copy Path/Filenames
   Manual: Compare_dirs.xml
