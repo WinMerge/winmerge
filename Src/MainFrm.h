@@ -57,16 +57,12 @@ public:
 
 // Operations
 public:
-	CString GetSystemErrorDesc(int nerr);
-	void RemoveLineReturns(CString & str);
 	BOOL DeleteFileOrError(LPCTSTR szFile);
-	BOOL DeleteRecurseDir(LPCTSTR szDir);
-	BOOL ConfirmAndDeleteFile(LPCTSTR szFile);
-	BOOL ConfirmAndDeleteDir(LPCTSTR szDir);
 	void rptStatus(BYTE code);
 	void clearStatus();
-	BOOL SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest);
-	void UpdateCurrentFileStatus(UINT nStatus);
+	BOOL SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
+	BOOL DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
+	void UpdateCurrentFileStatus(UINT nStatus, int idx);
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL, BOOL bRecurse = FALSE);
 	void ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight);
 	void UpdateResources();
@@ -166,6 +162,10 @@ private:
 };
 
 extern CMainFrame *mf;
+
+BOOL DeleteFileSilently(LPCTSTR szFile, CString * psError);
+BOOL DeleteDirSilently(LPCTSTR szDir, CString * psError);
+CString GetSystemErrorDesc(int nerr);
 
 /////////////////////////////////////////////////////////////////////////////
 

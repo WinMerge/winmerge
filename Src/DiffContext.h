@@ -43,13 +43,29 @@ public:
 class CDiffContext  
 {
 public:
-	void SetRegExp(LPCTSTR pszExp);
-	void AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszRightDir, long ltime, long rtime, BYTE code);
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, IDiffStatus * piStatus);
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src);
 	virtual ~CDiffContext();
 
-	CList<DIFFITEM,DIFFITEM> m_dirlist, *m_pList;
+	void SetRegExp(LPCTSTR pszExp);
+
+	// add & remove differences
+	void AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszRightDir, long ltime, long rtime, BYTE code);
+	void AddDiff(DIFFITEM di);
+	void RemoveDiff(POSITION diffpos);
+	void RemoveAll();
+
+	// to iterate over all differences on list
+	POSITION GetFirstDiffPosition();
+	DIFFITEM GetNextDiffPosition(POSITION & diffpos);
+	DIFFITEM GetDiffAt(POSITION diffpos);
+	BYTE GetDiffStatus(POSITION diffpos);
+
+	// change an existing difference
+	void UpdateStatusCode(POSITION diffpos, BYTE status);
+	void ClearStatus() { m_piStatus=0; }
+
+
 	BOOL m_bRecurse;
 	CString m_strLeft;
 	CString m_strRight;
@@ -61,6 +77,9 @@ public:
 	struct dirdata ddLeft, ddRight;
 	char *pNamesLeft;
 	char *pNamesRight;
+
+private:
+	CList<DIFFITEM,DIFFITEM> m_dirlist, *m_pList; // master list of differences
 };
 
 #endif // !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)

@@ -43,6 +43,9 @@
 struct tagDIFFITEM;
 typedef struct tagDIFFITEM DIFFITEM;
 
+class CDiffContext;
+
+typedef enum { eMain, eContext } eMenuType;
 
 class CDirDoc;
 
@@ -53,18 +56,66 @@ protected:
 	DECLARE_DYNCREATE(CDirView)
 
 // Attributes
-	CImageList m_imageList;
 public:
 	CDirDoc* GetDocument(); // non-debug version is inline
-	CSortHeaderCtrl		m_ctlSortHeader;
+	const CDirDoc * GetDocument() const { return const_cast<CDirView *>(this)->GetDocument(); }
+private:
+	CDiffContext * GetDiffContext();
 
 // Operations
 public:
 	static int CALLBACK CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
-	BOOL GetSelectedDirNames(CString& strLeft, CString& strRight);
 	void UpdateResources();
-	BOOL GetSelectedFileNames(CString& strLeft, CString& strRight);
-	CListCtrl * m_pList;
+	POSITION GetItemKey(int idx);
+	void SetItemKey(int idx, POSITION diffpos);
+	void DeleteAllDisplayItems();
+
+
+// Implementation types
+private:
+	typedef enum { ACT_COPY=1, ACT_DEL_LEFT, ACT_DEL_RIGHT, ACT_DEL_BOTH } ACT_TYPE;
+	struct action { CString src; CString dest; BOOL dirflag; int idx; };
+	typedef CList<int, int> DeletedItemList; // indices into display list control
+	struct ActionList
+	{
+		int selcount; // #items in full selection (not all may be affected)
+		ACT_TYPE atype;
+		CList<action, action&> actions;
+		CStringList errors;
+		DeletedItemList deletedItems;
+		ActionList(ACT_TYPE at) : selcount(0), atype(at) { }
+		int GetCount() const { return actions.GetCount(); }
+	};
+	typedef enum { SIDE_LEFT=1, SIDE_RIGHT } SIDE_TYPE;
+
+// Implementation in DirActions.cpp
+private:
+	BOOL GetSelectedDirNames(CString& strLeft, CString& strRight) const;
+	BOOL GetSelectedFileNames(CString& strLeft, CString& strRight) const;
+	CString GetSelectedFileName(SIDE_TYPE stype) const;
+	void GetItemFileNames(int sel, CString& strLeft, CString& strRight) const;
+	BOOL IsItemLeftOnly(int code);
+	BOOL IsItemRightOnly(int code);
+	BOOL IsItemCopyableToLeft(int code);
+	BOOL IsItemCopyableToRight(int code);
+	BOOL IsItemDeletableOnLeft(int code);
+	BOOL IsItemDeletableOnRight(int code);
+	BOOL IsItemDeletableOnBoth(int code);
+	BOOL IsItemOpenableOnLeft(int code);
+	BOOL IsItemOpenableOnRight(int code);
+	void DoCopyFileToRight();
+	void DoCopyFileToLeft();
+	void DoDelLeft();
+	void DoDelRight();
+	void DoDelBoth();
+	void DoOpen(SIDE_TYPE stype);
+	void DoOpenWith(SIDE_TYPE stype);
+	void ConfirmAndPerformActions(ActionList & actions);
+	BOOL ConfirmActionList(const ActionList & actions);
+	void PerformActionList(ActionList & actions);
+	void PerformAndRemoveTopAction(ActionList & actions);
+// End DirActions.cpp
+
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -83,10 +134,16 @@ protected:
 	virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
+// Implementation data
 protected:
+	CSortHeaderCtrl		m_ctlSortHeader;
+	CImageList m_imageList;
 	bool m_bSortAscending;	// is currently sorted ascending.
 	int m_sortColumn;		// index to column which is sorted
+	CListCtrl * m_pList;
+
+	
+	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnContextMenu(CWnd*, CPoint point);
 	//{{AFX_MSG(CDirView)
@@ -103,31 +160,44 @@ protected:
 	afx_msg void OnUpdateCtxtDirDelLeft(CCmdUI* pCmdUI);
 	afx_msg void OnCtxtDirDelRight();
 	afx_msg void OnUpdateCtxtDirDelRight(CCmdUI* pCmdUI);
+	afx_msg void OnCtxtDirDelBoth();
+	afx_msg void OnUpdateCtxtDirDelBoth(CCmdUI* pCmdUI);
+	afx_msg void OnCtxtDirOpenLeft();
+	afx_msg void OnUpdateCtxtDirOpenLeft(CCmdUI* pCmdUI);
+	afx_msg void OnCtxtDirOpenLeftWith();
+	afx_msg void OnUpdateCtxtDirOpenLeftWith(CCmdUI* pCmdUI);
+	afx_msg void OnCtxtDirOpenRight();
+	afx_msg void OnUpdateCtxtDirOpenRight(CCmdUI* pCmdUI);
+	afx_msg void OnCtxtDirOpenRightWith();
+	afx_msg void OnUpdateCtxtDirOpenRightWith(CCmdUI* pCmdUI);
 	afx_msg void OnDestroy();
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
 	void OpenSelection();
-	const DIFFITEM& CDirView::GetDiffItem(int sel, POSITION & pos);
-	void DoCopyFileToRight();
-	void DoCopyFileToLeft();
-	void DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI);
-	void DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI);
+	void DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI, eMenuType menuType);
+	void DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI, eMenuType menuType);
 	void ModifyPopup(CMenu * pPopup, int nStringResource, int nMenuId, LPCTSTR szPath);
-	void DoDelLeft();
-	void DoDelRight();
 	void DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI);
-	void ConfirmAndDeleteFileAndUpdate(LPCTSTR szFile, POSITION pos, int sel);
-	void ConfirmAndDeleteDirAndUpdate(LPCTSTR szDir, POSITION pos, int sel);
-
+	void DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI);
+	void DoUpdateOpenLeft(CCmdUI* pCmdUI);
+	void DoUpdateOpenRight(CCmdUI* pCmdUI);
+	POSITION GetItemKeyFromData(DWORD dw);
+	DIFFITEM GetDiffItem(int sel);
+	int GetSingleSelectedItem() const;
 };
+
 
 #ifndef _DEBUG  // debug version in DirView.cpp
 inline CDirDoc* CDirView::GetDocument()
    { return (CDirDoc*)m_pDocument; }
 #endif
+
+
+CString NumToStr(int n);
+
 
 /////////////////////////////////////////////////////////////////////////////
 

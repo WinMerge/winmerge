@@ -163,6 +163,12 @@ BEGIN
         MENUITEM "Copy file to right",          ID_DIR_COPY_FILE_TO_RIGHT
         MENUITEM "Delete left",                 ID_DIR_DEL_LEFT
         MENUITEM "Delete right",                ID_DIR_DEL_RIGHT
+        MENUITEM "Delete both",                 ID_DIR_DEL_BOTH
+        MENUITEM SEPARATOR
+        MENUITEM "Open left",                   ID_DIR_OPEN_LEFT
+        MENUITEM "Open left with...",           ID_DIR_OPEN_LEFT_WITH
+        MENUITEM "Open right",                  ID_DIR_OPEN_RIGHT
+        MENUITEM "Open right with...",          ID_DIR_OPEN_RIGHT_WITH
     END
 END
 
@@ -372,6 +378,15 @@ BEGIN
                     WS_EX_CLIENTEDGE
 END
 
+IDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,106,136,50,14
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | 
+                    WS_VSCROLL
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -595,8 +610,8 @@ BEGIN
     IDS_ALLFILES            "All Files (*.*)|*.*||"
     IDS_CONFIRM_ALL_LEFT    "Are you sure you want to copy all differences to the left file?"
     IDS_CONFIRM_ALL_RIGHT   "Are you sure you want to copy all differences to the right file?"
-    IDS_COPY2DIR_LEFT_FMT   "Copy file to left: %1"
-    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy the selected file to %1?"
+    IDS_ERRORS_TITLE        "%1 Error(s)"
+    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy %1 of %2 selected item(s)"
     IDS_FONT_CHANGE         "The selected font change will not be applied to any currently visible difference windows."
     IDS_DIRECTORY_WINDOW_TITLE "Directory Comparison Results"
     IDS_DIRECTORY_WINDOW_STATUS_FMT "Results for %1 and %2"
@@ -759,12 +774,16 @@ BEGIN
     ID_CURDIFF              "Scroll to the current difference\nCurrent Diff (Alt+Enter)"
     ID_LASTDIFF             "Scroll to the last difference\nLast Diff (Alt+End)"
     ID_DIFFNUM              "placeholder"
-    ID_DIR_DEL_LEFT         "Delete selected file on left"
-    ID_DIR_DEL_RIGHT        "Delete selected file on right"
+    ID_DIR_DEL_LEFT         "Delete selected item on left"
+    ID_DIR_DEL_RIGHT        "Delete selected item on right"
     ID_DIFFSTATUS           "placeholder for status count"
     ID_OPTIONS_SHOWUNIQUELEFT "Displays files that exist in only on left side"
     ID_OPTIONS_SHOWUNIQUERIGHT 
                             "Displays files that exist in only on right side"
+    ID_DIR_DEL_BOTH         "Delete selected item(s) on both sides"
+    ID_DIR_OPEN_LEFT        "Open left file"
+    ID_DIR_OPEN_LEFT_WITH   "Open left file with ..."
+    ID_DIR_OPEN_RIGHT       "Open right file"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -938,16 +957,32 @@ BEGIN
     IDS_LTIME_HEADER        "Left Date"
     IDS_RTIME_HEADER        "Right Date"
     IDS_EXTENSION_HEADER    "Extension"
-    IDS_COPY2DIR_RIGHT_FMT  "Copy file to right: %1"
-    IDS_DEL_LEFT_FMT        "Delete left: %1"
+    IDS_CONFIRM_DELETE_ITEMS 
+                            "Are you sure you want to delete %1 of %2 selected item(s) ?"
+    IDS_DEL_LEFT_FMT        "Delete left side %1 of %2 selected item(s)"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_DEL_RIGHT_FMT       "Delete right: %1"
-    IDS_DELETE_FILE_FAILED  "Delete file failed: %1"
+    IDS_DEL_RIGHT_FMT       "Delete right side %1 of %2 selected item(s)"
+    IDS_DELETE_FILE_FAILED  "Delete file %1 failed: %2"
     IDS_CONFIRM_DELETE_DIR  "Delete directory %1?"
     IDS_REMOVE_DIR_FAILED   "Remove directory failed: %1"
+    IDS_COPY_TO_LEFT        "Copy to left side %1 of %2 selected item(s)"
+    IDS_DEL_BOTH_FMT        "Delete both sides %1 of %2 selected item(s)"
+    IDS_COPY_TO_RIGHT       "Copy to right side %1 of %2 selected item(s)"
+    IDS_DELETE_DIR_FAILED   "Delete directory %1 failed: %s"
+    IDS_COPY_FILE_FAILED    "Copying file %1 failed: %2"
+    IDS_COPY_DIR_FAILED     "Copying directory %1 failed: %2"
+    IDS_ERROR_FILE_WRITEABLE "Error checking destination writeability"
+    IDS_ERROR_BACKUP        "Error backing up file"
+    IDS_CONFIRM_COPY_SINGLE "Are you sure you want to copy %1 to %2?"
+    IDS_CONFIRM_DELETE_SINGLE "Are you sure you want to delete %1?"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
 END
 
 #endif    // English (U.S.) resources

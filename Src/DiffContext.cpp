@@ -50,6 +50,12 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 
 CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 {
+	// This is used somehow in recursive comparisons
+	// I think that it is only used during rescan to copy into temporaries
+	// which modify the original (because pointers are copied below)
+	// and then the temporary goes away
+	// so the temporary never exists while the user is interacting with the GUI
+
 	m_bRecurse=src.m_bRecurse;
 	m_strLeft = pszLeft;
 	m_strRight = pszRight;
@@ -80,10 +86,14 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszR
 	di.ltime = ltime;
 	di.rtime = rtime;
 	di.code = code;
+	AddDiff(di);
+}
 
-    // BSP - Capture the extension; from the end of the file name to the last '.'     
+void CDiffContext::AddDiff(DIFFITEM di)
+{
+	// BSP - Capture the extension; from the end of the file name to the last '.'     
 	int j = 0;
-	TCHAR *pDest = _tcsrchr(pszFilename, _T('.') );
+	TCHAR *pDest = _tcsrchr(di.filename, _T('.') );
 
 	if(pDest)	// handle no extensions case.
 	{
@@ -99,7 +109,12 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszR
 	m_pList->AddTail(di);
 
 	if (m_piStatus)
-		m_piStatus->rptFile(code);
+		m_piStatus->rptFile(di.code);
+}
+
+void CDiffContext::RemoveDiff(POSITION diffpos)
+{
+	m_pList->RemoveAt(diffpos);
 }
 
 void CDiffContext::SetRegExp(LPCTSTR pszExp)
@@ -107,3 +122,36 @@ void CDiffContext::SetRegExp(LPCTSTR pszExp)
 	m_strRegExp = pszExp;
 	m_rgx.RegComp( pszExp );
 }
+
+void CDiffContext::RemoveAll()
+{
+	m_pList->RemoveAll();
+}
+
+POSITION CDiffContext::GetFirstDiffPosition()
+{
+	return m_pList->GetHeadPosition();
+}
+
+DIFFITEM CDiffContext::GetNextDiffPosition(POSITION & diffpos)
+{
+	return m_pList->GetNext(diffpos);
+}
+
+DIFFITEM CDiffContext::GetDiffAt(POSITION diffpos)
+{
+	return m_pList->GetAt(diffpos);
+}
+
+BYTE CDiffContext::GetDiffStatus(POSITION diffpos)
+{
+	return m_pList->GetAt(diffpos).code;
+}
+
+
+void CDiffContext::UpdateStatusCode(POSITION diffpos, BYTE status)
+{
+	DIFFITEM & di = m_pList->GetAt(diffpos);
+	di.code = status;
+}
+

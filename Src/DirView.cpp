@@ -68,6 +68,16 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_DIR_DEL_LEFT, OnUpdateCtxtDirDelLeft)
 	ON_COMMAND(ID_DIR_DEL_RIGHT, OnCtxtDirDelRight)
 	ON_UPDATE_COMMAND_UI(ID_DIR_DEL_RIGHT, OnUpdateCtxtDirDelRight)
+	ON_COMMAND(ID_DIR_DEL_BOTH, OnCtxtDirDelBoth)
+	ON_UPDATE_COMMAND_UI(ID_DIR_DEL_BOTH, OnUpdateCtxtDirDelBoth)
+	ON_COMMAND(ID_DIR_OPEN_LEFT, OnCtxtDirOpenLeft)
+	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_LEFT, OnUpdateCtxtDirOpenLeft)
+	ON_COMMAND(ID_DIR_OPEN_LEFT_WITH, OnCtxtDirOpenLeftWith)
+	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_LEFT_WITH, OnUpdateCtxtDirOpenLeftWith)
+	ON_COMMAND(ID_DIR_OPEN_RIGHT, OnCtxtDirOpenRight)
+	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT, OnUpdateCtxtDirOpenRight)
+	ON_COMMAND(ID_DIR_OPEN_RIGHT_WITH, OnCtxtDirOpenRightWith)
+	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT_WITH, OnUpdateCtxtDirOpenRightWith)
 	ON_WM_DESTROY()
 	ON_WM_CHAR()
 	//}}AFX_MSG_MAP
@@ -103,6 +113,11 @@ CDirDoc* CDirView::GetDocument() // non-debug version is inline
 	return (CDirDoc*)m_pDocument;
 }
 #endif //_DEBUG
+
+CDiffContext * CDirView::GetDiffContext()
+{
+	return GetDocument()->m_pCtxt;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirView message handlers
@@ -207,27 +222,39 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 
 		CMenu* pPopup = menu.GetSubMenu(0);
 		ASSERT(pPopup != NULL);
-		CWnd* pWndPopupOwner = this;
 
 		// set the menu items with the proper directory names
 		CString s, sl, sr;
 		GetSelectedDirNames(sl, sr);
 
-		
-		ModifyPopup(pPopup, IDS_COPY2DIR_LEFT_FMT, ID_DIR_COPY_FILE_TO_LEFT, sl);
-		ModifyPopup(pPopup, IDS_COPY2DIR_RIGHT_FMT, ID_DIR_COPY_FILE_TO_RIGHT, sr);
-		ModifyPopup(pPopup, IDS_DEL_LEFT_FMT, ID_DIR_DEL_LEFT, sl);
-		ModifyPopup(pPopup, IDS_DEL_RIGHT_FMT, ID_DIR_DEL_RIGHT, sr);
-		// 
-
+		// find non-child ancestor to use as menu parent
+		CWnd* pWndPopupOwner = this;
 		while (pWndPopupOwner->GetStyle() & WS_CHILD)
 			pWndPopupOwner = pWndPopupOwner->GetParent();
+
+		// TODO: It would be more efficient to set
+		// all the popup items now with one traverse over selected items
+		// instead of using updates, in which we make a traverse for every item
+		// Perry, 2002-12-04
+		// 
+
 
 		// invoke context menu
 		// this will invoke all the OnUpdate methods to enable/disable the individual items
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
 			pWndPopupOwner);
 	}
+}
+
+// Make a string out of a number
+// TODO: Ought to introduce commas every three digits, except this is locale-specific
+// How to do this with locale sensitivity ?
+CString
+NumToStr(int n)
+{
+	CString s;
+	s.Format(_T("%d"), n);
+	return s;
 }
 
 // Change menu item by using string resource
@@ -239,13 +266,6 @@ void CDirView::ModifyPopup(CMenu * pPopup, int nStringResource, int nMenuId, LPC
 	pPopup->ModifyMenu(nMenuId, MF_BYCOMMAND|MF_STRING, nMenuId, s);
 }
 
-// given index in list control, get position & DIFFITEM reference to its data
-const DIFFITEM& CDirView::GetDiffItem(int sel, POSITION & pos)
-{
-	pos = reinterpret_cast<POSITION>(m_pList->GetItemData(sel));
-	const DIFFITEM& di = GetDocument()->m_pCtxt->m_dirlist.GetAt(pos);
-	return di;
-}
 
 // User chose (main menu) Copy from right to left
 void CDirView::OnDirCopyFileToLeft() 
@@ -269,218 +289,69 @@ void CDirView::OnCtxtDirCopyFileToRight()
 	DoCopyFileToRight();
 }
 
-// Prompt & copy item from right to left, if legal
-void CDirView::DoCopyFileToLeft() 
-{
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel == -1) return;
-
-	CString sl, sr, slFile, srFile;
-	if (!GetSelectedDirNames(sl, sr) || !GetSelectedFileNames(slFile, srFile))
-		return;
-
-	CDirDoc *pd = GetDocument();
-	CString s;
-	// find item from document
-	POSITION pos;
-	const DIFFITEM& di = GetDiffItem(sel, pos);
-	// what we do depends on comparison result for this item
-	switch(di.code)
-	{
-	case FILE_LUNIQUE:
-		break;
-	case FILE_RUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINDIFF:
-		AfxFormatString1(s, IDS_CONFIRM_COPY2DIR, sl);
-		if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION)==IDYES)
-		{		
-			if (mf->SyncFiles(srFile, slFile))
-			{
-				mf->UpdateCurrentFileStatus(FILE_SAME);
-			}
-		}
-		break;
-	case FILE_LDIRUNIQUE:
-	case FILE_RDIRUNIQUE:
-		// TODO: Would be nice to allow copying directory
-		// but must write code for recursive copy
-		// and worse, this will make the item display invalid (new items not on it)
-		// Perry 2002-11-26
-	case FILE_SAME:
-	default:
-		// Not allowed, and should have been disabled choices anyway
-		break;
-	}
-}
-// Prompt & copy item from left to right, if legal
-void CDirView::DoCopyFileToRight() 
-{
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel == -1) return;
-
-	CString sl, sr, slFile, srFile;
-	if (!GetSelectedDirNames(sl, sr) || !GetSelectedFileNames(slFile, srFile))
-		return;
-
-	CDirDoc *pd = GetDocument();
-	CString s;
-	// find item from document
-	POSITION pos;
-	const DIFFITEM& di = GetDiffItem(sel, pos);
-	// what we do depends on comparison result for this item
-	switch(di.code)
-	{
-	case FILE_RUNIQUE:
-		break;
-	case FILE_LUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINDIFF:
-		AfxFormatString1(s, IDS_CONFIRM_COPY2DIR, sr);
-		if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION)==IDYES)
-		{		
-			CString left, right;
-			if (mf->SyncFiles(slFile, srFile))
-			{
-				mf->UpdateCurrentFileStatus(FILE_SAME);
-			}
-		}
-		break;
-	case FILE_LDIRUNIQUE:
-	case FILE_RDIRUNIQUE:
-			// see comments in DoCopyFileToLeft
-	case FILE_SAME:
-	default:
-		// Not allowed, and should have been disabled choices anyway
-		break;
-	}
-}
-
 // Update context menu Copy Right to Left item
 void CDirView::OnUpdateCtxtDirCopyFileToLeft(CCmdUI* pCmdUI) 
 {
-	DoUpdateDirCopyFileToLeft(pCmdUI);
+	DoUpdateDirCopyFileToLeft(pCmdUI, eContext);
 }
 // Update context menu Copy Left to Right item
 void CDirView::OnUpdateCtxtDirCopyFileToRight(CCmdUI* pCmdUI) 
 {
-	DoUpdateDirCopyFileToRight(pCmdUI);
+	DoUpdateDirCopyFileToRight(pCmdUI, eContext);
 }
 
 // Update main menu Copy Right to Left item
 void CDirView::OnUpdateDirCopyFileToLeft(CCmdUI* pCmdUI) 
 {
-	DoUpdateDirCopyFileToLeft(pCmdUI);
+	DoUpdateDirCopyFileToLeft(pCmdUI, eMain);
 }
 // Update main menu Copy Left to Right item
 void CDirView::OnUpdateDirCopyFileToRight(CCmdUI* pCmdUI) 
 {
-	DoUpdateDirCopyFileToRight(pCmdUI);
+	DoUpdateDirCopyFileToRight(pCmdUI, eMain);
 }
 
 // Should Copy to Left be enabled or disabled ? (both main menu & context menu use this)
-void CDirView::DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI) 
+void CDirView::DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI, eMenuType menuType)
 {
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel == -1)
+	int sel=-1;
+	int legalcount=0, selcount=0;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
-		// no item there
-		pCmdUI->Enable(FALSE);
-		return;
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (IsItemCopyableToLeft(di.code))
+			++legalcount;
+		++selcount;
 	}
-	// found item (normal case)
-	// find item from document
-	POSITION pos;
-	const DIFFITEM& di = GetDiffItem(sel, pos);
-	// what we do depends on comparison result for this item
-	switch(di.code)
+	pCmdUI->Enable(legalcount>0);
+	if (menuType==eContext)
 	{
-	case FILE_LUNIQUE:
-		pCmdUI->Enable(FALSE); // no right item, so can't copy to left
-		break;
-	case FILE_RUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINDIFF:
-		pCmdUI->Enable(TRUE);
-		break;
-	case FILE_SAME:
-		pCmdUI->Enable(FALSE);
-		break;
-	case FILE_LDIRUNIQUE:
-		pCmdUI->Enable(FALSE); // no right item, so can't copy to left
-		break;
-	case FILE_RDIRUNIQUE:
-	// TODO 2002-11-22: Enable unique also, but must write code to do recursive copy
-		pCmdUI->Enable(TRUE);
-		break;
-	default:
-		pCmdUI->Enable(FALSE);
-		break;
+		CString s;
+		AfxFormatString2(s, IDS_COPY_TO_LEFT, NumToStr(legalcount), NumToStr(selcount));
+		pCmdUI->SetText(s);
 	}
 }
 // Should Copy to Right be enabled or disabled ? (both main menu & context menu use this)
-void CDirView::DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI) 
+void CDirView::DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI, eMenuType menuType)
 {
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel == -1)
+	int sel=-1;
+	int legalcount=0, selcount=0;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
-		// no item there
-		pCmdUI->Enable(FALSE);
-		return;
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (IsItemCopyableToRight(di.code))
+			++legalcount;
+		++selcount;
 	}
-	// found item (normal case)
-	// find item from document
-	POSITION pos;
-	const DIFFITEM& di = GetDiffItem(sel, pos);
-	switch(di.code)
+	pCmdUI->Enable(legalcount>0);
+	if (menuType==eContext)
 	{
-	case FILE_LUNIQUE:
-		pCmdUI->Enable(TRUE);
-		break;
-	case FILE_RUNIQUE:
-		pCmdUI->Enable(FALSE); // no left item, so can't copy to right
-		break;
-	case FILE_DIFF:
-	case FILE_BINDIFF:
-		pCmdUI->Enable(TRUE);
-		break;
-	case FILE_LDIRUNIQUE:
-	// TODO 2002-11-22: Enable unique also, but must write code to do recursive copy
-		pCmdUI->Enable(FALSE);
-		break;
-	case FILE_RDIRUNIQUE:
-		pCmdUI->Enable(FALSE); // no left item, so can't copy to right
-		break;
-	case FILE_SAME:
-	default:
-		pCmdUI->Enable(FALSE);
-		break;
+		CString s;
+		AfxFormatString2(s, IDS_COPY_TO_RIGHT, NumToStr(legalcount), NumToStr(selcount));
+		pCmdUI->SetText(s);
 	}
 }
 
-BOOL CDirView::GetSelectedFileNames(CString& strLeft, CString& strRight)
-{
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel != -1)
-	{
-		CDirDoc *pd = GetDocument();
-		CString name, pathex;
-		name = m_pList->GetItemText(sel, DV_NAME);
-		pathex = m_pList->GetItemText(sel, DV_PATH);
-		if (pathex.Left(2) == _T(".\\") || pathex.Left(2) == _T("./"))
-		{
-			strLeft.Format(_T("%s\\%s\\%s"), pd->m_pCtxt->m_strLeft, pathex.Right(pathex.GetLength()-2), name);
-			strRight.Format(_T("%s\\%s\\%s"), pd->m_pCtxt->m_strRight, pathex.Right(pathex.GetLength()-2), name);
-		}
-		else
-		{
-			strLeft.Format(_T("%s\\%s"), pd->m_pCtxt->m_strLeft, name);
-			strRight.Format(_T("%s\\%s"), pd->m_pCtxt->m_strRight, name);
-		}
-		return TRUE;
-	}
-	return FALSE;
-}
 
 
 void CDirView::UpdateResources()
@@ -509,28 +380,14 @@ void CDirView::UpdateResources()
 	m_pList->SetColumn(DV_RTIME, &lvc);
 }
 
-BOOL CDirView::GetSelectedDirNames(CString& strLeft, CString& strRight)
-{
-	BOOL bResult = GetSelectedFileNames(strLeft, strRight);
-
-	if (bResult)
-	{
-		TCHAR path[MAX_PATH];
-		split_filename(strLeft, path, NULL, NULL);
-		strLeft = path;
-
-		split_filename(strRight, path, NULL, NULL);
-		strRight = path;
-	}
-	return bResult;
-}
-
 int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort)
 {
 	// initialize structures to obtain required information
 	CDirView* pView = reinterpret_cast<CDirView*>(lParamSort);
-	DIFFITEM lDi = pView->GetDocument()->m_pCtxt->m_dirlist.GetAt( reinterpret_cast<POSITION>(lParam1) );
-	DIFFITEM rDi = pView->GetDocument()->m_pCtxt->m_dirlist.GetAt( reinterpret_cast<POSITION>(lParam2) );
+	POSITION diffposl = pView->GetItemKeyFromData(lParam1);
+	POSITION diffposr = pView->GetItemKeyFromData(lParam2);
+	DIFFITEM lDi = pView->GetDiffContext()->GetDiffAt(diffposl);
+	DIFFITEM rDi = pView->GetDiffContext()->GetDiffAt(diffposr);
 
 	// compare 'left' and 'right' parameters as appropriate
 	int retVal = 0;		// initialize for default case
@@ -589,6 +446,8 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CDirView::OnDestroy() 
 {
+	DeleteAllDisplayItems();
+
 	// save the column widths
 	CListCtrl& ctl = GetListCtrl();
 
@@ -615,14 +474,16 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CListViewEx::OnChar(nChar, nRepCnt, nFlags);
 }
 
+// TODO: This just opens first selected item
+// should it do something different when multiple items are selected ?
+// (Perry, 2002-12-04)
 void CDirView::OpenSelection()
 {
 	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
 	if (sel != -1)
 	{
-		CDirDoc *pd = GetDocument();
-		POSITION pos = reinterpret_cast<POSITION>(m_pList->GetItemData(sel));
-		DIFFITEM di = pd->m_pCtxt->m_dirlist.GetAt(pos);
+		POSITION diffpos = GetItemKey(sel);
+		DIFFITEM di = GetDiffContext()->GetDiffAt(diffpos);
 		switch(di.code)
 		{
 		case FILE_DIFF:
@@ -684,61 +545,12 @@ void CDirView::OnCtxtDirDelRight()
 {
 	DoDelRight();
 }
-
-// Prompt & delete left, if legal
-void CDirView::DoDelLeft() 
+// User chose (context menu) delete both
+void CDirView::OnCtxtDirDelBoth()
 {
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel == -1) return;
-
-	CString sl, sr, slFile, srFile;
-	if (!GetSelectedDirNames(sl, sr) || !GetSelectedFileNames(slFile, srFile))
-		return;
-
-	// find item from document
-	POSITION pos;
-	const DIFFITEM& di = GetDiffItem(sel, pos);
-
-	// need to know if file or directory
-	switch(di.code)
-	{
-	case FILE_LUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINDIFF:
-		ConfirmAndDeleteFileAndUpdate(slFile, pos, sel);
-		break;
-	case FILE_LDIRUNIQUE:
-		ConfirmAndDeleteDirAndUpdate(slFile, pos, sel);
-		break;
-	}
+	DoDelBoth();
 }
-// Prompt & delete right, if legal
-void CDirView::DoDelRight() 
-{
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel == -1) return;
 
-	CString sl, sr, slFile, srFile;
-	if (!GetSelectedDirNames(sl, sr) || !GetSelectedFileNames(slFile, srFile))
-		return;
-
-	// find item from document
-	POSITION pos;
-	const DIFFITEM& di = GetDiffItem(sel, pos);
-
-	// need to know if file or directory
-	switch(di.code)
-	{
-	case FILE_RUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINDIFF:
-		ConfirmAndDeleteFileAndUpdate(srFile, pos, sel);
-		break;
-	case FILE_RDIRUNIQUE:
-		ConfirmAndDeleteDirAndUpdate(srFile, pos, sel);
-		break;
-	}
-}
 
 // Enable/disable Delete Left menu choice on context menu
 void CDirView::OnUpdateCtxtDirDelLeft(CCmdUI* pCmdUI)
@@ -751,111 +563,173 @@ void CDirView::OnUpdateCtxtDirDelRight(CCmdUI* pCmdUI)
 {
 	DoUpdateCtxtDirDelRight(pCmdUI);
 }
+// Enable/disable Delete Both menu choice on context menu
+void CDirView::OnUpdateCtxtDirDelBoth(CCmdUI* pCmdUI) 
+{
+	DoUpdateCtxtDirDelBoth(pCmdUI);
+}
 
 // Should Delete left be enabled or disabled ?
-void CDirView::DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI) 
+void CDirView::DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI)
 {
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel == -1)
+	int sel=-1;
+	int count=0, total=0;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
-		// no item there
-		pCmdUI->Enable(FALSE);
-		return;
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (IsItemDeletableOnLeft(di.code))
+			++count;
+		++total;
 	}
-	// found item (normal case)
-	// find item from document
-	POSITION pos;
-	const DIFFITEM& di = GetDiffItem(sel, pos);
-	// what we do depends on comparison result for this item
-	switch(di.code)
-	{
-	case FILE_LUNIQUE:
-		pCmdUI->Enable(TRUE);
-		break;
-	case FILE_RUNIQUE:
-		pCmdUI->Enable(FALSE); // no left item, so can't delete left
-		break;
-	case FILE_DIFF:
-	case FILE_BINDIFF:
-		pCmdUI->Enable(TRUE);
-		break;
-	case FILE_SAME:
-		pCmdUI->Enable(FALSE);
-		break;
-	case FILE_LDIRUNIQUE:
-		pCmdUI->Enable(TRUE);
-		break;
-	case FILE_RDIRUNIQUE:
-		pCmdUI->Enable(FALSE); // no left item, so can't delete left
-		break;
-	default:
-		pCmdUI->Enable(FALSE);
-		break;
-	}
+	pCmdUI->Enable(count>0);
+	CString s;
+	AfxFormatString2(s, IDS_DEL_LEFT_FMT, NumToStr(count), NumToStr(total));
+	pCmdUI->SetText(s);
 }
 // Should Delete right be enabled or disabled ?
 void CDirView::DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI) 
 {
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel == -1)
+	int sel=-1;
+	int count=0, total=0;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
-		// no item there
-		pCmdUI->Enable(FALSE);
-		return;
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (IsItemDeletableOnRight(di.code))
+			++count;
+		++total;
 	}
-	// found item (normal case)
-	// find item from document
-	POSITION pos;
-	const DIFFITEM& di = GetDiffItem(sel, pos);
-	// what we do depends on comparison result for this item
-	switch(di.code)
+	pCmdUI->Enable(count>0);
+	CString s;
+	AfxFormatString2(s, IDS_DEL_RIGHT_FMT, NumToStr(count), NumToStr(total));
+	pCmdUI->SetText(s);
+}
+// Should Delete both be enabled or disabled ?
+void CDirView::DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI) 
+{
+	int sel=-1;
+	int count=0, total=0;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
-	case FILE_LUNIQUE:
-		pCmdUI->Enable(FALSE); // no right item, so can't delete right
-		break;
-	case FILE_RUNIQUE:
-		pCmdUI->Enable(TRUE);
-		break;
-	case FILE_DIFF:
-	case FILE_BINDIFF:
-		pCmdUI->Enable(TRUE);
-		break;
-	case FILE_SAME:
-		pCmdUI->Enable(FALSE);
-		break;
-	case FILE_LDIRUNIQUE:
-		pCmdUI->Enable(FALSE); // no right item, so can't delete right
-		break;
-	case FILE_RDIRUNIQUE:
-		pCmdUI->Enable(TRUE);
-		break;
-	default:
-		pCmdUI->Enable(FALSE);
-		break;
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (IsItemDeletableOnBoth(di.code))
+			++count;
+		++total;
 	}
+	pCmdUI->Enable(count>0);
+	CString s;
+	AfxFormatString2(s, IDS_DEL_BOTH_FMT, NumToStr(count), NumToStr(total));
+	pCmdUI->SetText(s);
 }
 
-// Prompt & delete file, & remove its data entries
-void CDirView::ConfirmAndDeleteFileAndUpdate(LPCTSTR szFile, POSITION pos, int sel)
+
+POSITION CDirView::GetItemKey(int idx)
 {
-	// May want an option to suppress these message boxes
-
-	if (!mf->ConfirmAndDeleteFile(szFile))
-		return;
-	// remove item data from document & screen
-	GetDocument()->m_pCtxt->m_dirlist.RemoveAt(pos);
-	GetListCtrl().DeleteItem(sel);
+	return GetItemKeyFromData(m_pList->GetItemData(idx));
 }
 
-// Prompt & delete directory, & remove its data entries
-void CDirView::ConfirmAndDeleteDirAndUpdate(LPCTSTR szDir, POSITION pos, int sel)
+// SetItemKey & GetItemKey encapsulate how the display list items
+// are mapped to DiffItems, which in turn are DiffContext keys to the actual DIFFITEM data
+POSITION CDirView::GetItemKeyFromData(DWORD dw)
 {
-	// May want an option to suppress these message boxes
-
-	if (!mf->ConfirmAndDeleteDir(szDir))
-		return;
-	// remove item data from document & screen
-	// so, this assumes it is a unique entry (has no children listed)
-	GetDocument()->m_pCtxt->m_dirlist.RemoveAt(pos);
-	GetListCtrl().DeleteItem(sel);
+	return (POSITION)dw;
 }
+void CDirView::SetItemKey(int idx, POSITION diffpos)
+{
+	m_pList->SetItemData(idx, (DWORD)diffpos);
+}
+
+// given index in list control, get its associated DIFFITEM data
+DIFFITEM CDirView::GetDiffItem(int sel)
+{
+	POSITION diffpos = GetItemKey(sel);
+	return GetDiffContext()->GetDiffAt(diffpos);
+}
+
+void CDirView::DeleteAllDisplayItems()
+{
+	// item data are just positions (diffposes)
+	// that is, they contain no memory needing to be freed
+	m_pList->DeleteAllItems();
+}
+
+// User chose (context menu) open left
+void CDirView::OnCtxtDirOpenLeft()
+{
+	DoOpen(SIDE_LEFT);
+}
+// User chose (context menu) open right
+void CDirView::OnCtxtDirOpenRight()
+{
+	DoOpen(SIDE_RIGHT);
+}
+
+// User chose (context menu) open left with
+void CDirView::OnCtxtDirOpenLeftWith()
+{
+	DoOpenWith(SIDE_LEFT);
+}
+// User chose (context menu) open right with
+void CDirView::OnCtxtDirOpenRightWith()
+{
+	DoOpenWith(SIDE_RIGHT);
+}
+// return selected item index, or -1 if none or multiple
+int CDirView::GetSingleSelectedItem() const
+{
+	int sel=-1, sel2=-1;
+	sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
+	if (sel == -1) return -1;
+	sel2 = m_pList->GetNextItem(sel, LVNI_SELECTED);
+	if (sel2 != -1) return -1;
+	return sel;
+}
+// Enable/disable Open Left menu choice on context menu
+void CDirView::OnUpdateCtxtDirOpenLeft(CCmdUI* pCmdUI)
+{
+	DoUpdateOpenLeft(pCmdUI);
+}
+// Enable/disable Open Right menu choice on context menu
+void CDirView::OnUpdateCtxtDirOpenRight(CCmdUI* pCmdUI)
+{
+	DoUpdateOpenRight(pCmdUI);
+}
+
+// Enable/disable Open Left With menu choice on context menu
+void CDirView::OnUpdateCtxtDirOpenLeftWith(CCmdUI* pCmdUI)
+{
+	DoUpdateOpenLeft(pCmdUI);
+}
+// Enable/disable Open Right With menu choice on context menu
+void CDirView::OnUpdateCtxtDirOpenRightWith(CCmdUI* pCmdUI)
+{
+	DoUpdateOpenRight(pCmdUI);
+}
+
+// used for both OpenLeft and OpenLeftWith
+void CDirView::DoUpdateOpenLeft(CCmdUI* pCmdUI)
+{
+	int sel = GetSingleSelectedItem();
+	if (sel != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (!IsItemOpenableOnLeft(di.code))
+			sel = -1;
+	}
+
+	pCmdUI->Enable(sel>=0);
+}
+// used for both OpenRight and OpenRightWith
+void CDirView::DoUpdateOpenRight(CCmdUI* pCmdUI)
+{
+	int sel = GetSingleSelectedItem();
+	if (sel != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (!IsItemOpenableOnRight(di.code))
+			sel = -1;
+	}
+
+	pCmdUI->Enable(sel>=0);
+}
+
+

@@ -435,6 +435,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
     {
       /* Both exist and neither is a directory.  */
       int o_binary = always_text_flag ? O_BINARY : 0;
+      o_binary = O_BINARY; // Perry 2002-12-08 CTRL-Z screws things up in text mode 
 	  if (!ignore_eol_diff) o_binary = O_BINARY;
       /* Open the files and record their descriptors.  */
 

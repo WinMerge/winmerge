@@ -196,6 +196,10 @@ SOURCE=.\Dir.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DirActions.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\DirDoc.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -405,6 +409,10 @@ SOURCE=.\OpenDlg.cpp
 
 !ENDIF 
 
+# End Source File
+# Begin Source File
+
+SOURCE=.\OutputDlg.cpp
 # End Source File
 # Begin Source File
 
@@ -677,6 +685,10 @@ SOURCE=.\MergeEditView.h
 # Begin Source File
 
 SOURCE=.\OpenDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\OutputDlg.h
 # End Source File
 # Begin Source File
 

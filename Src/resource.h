@@ -3,36 +3,35 @@
 // Used by Merge.rc
 //
 #define IDC_CUT                         3
-#define IDSAVEAS                        3
 #define IDC_COPY                        4
 #define IDC_PASTE                       5
 #define IDC_UNDO                        6
+#define IDSAVEAS                        7
 #define IDD_ABOUTBOX                    100
-#define IDR_POPUP_DIFFVIEW              102
-#define IDB_SPLASH                      103
-#define IDR_POPUP_DIRVIEW               104
-#define IDD_PROP_VSS                    107
-#define IDR_MAINFRAME                   128
-#define IDR_MERGETYPE                   129
-#define IDD_OPEN                        130
-#define IDB_WINMERGE                    130
+#define IDR_POPUP_DIFFVIEW              101
+#define IDR_POPUP_DIRVIEW               102
+
+#define IDD_PROP_VSS                    103
+#define IDR_MAINFRAME                   104
+#define IDR_MERGETYPE                   105
+#define IDD_OPEN                        106
+#define IDD_EDITFILE                    107
+#define IDD_VSS                         108
+#define IDD_PROPPAGE_LARGE              109
+#define IDD_CLEARCASE                   110
+#define IDD_PROPPAGE_FILTER             111
+#define IDD_OUTPUT                      112
 #define IDS_VERSION_FMT                 130
-#define IDD_EDITFILE                    131
-#define IDB_OLDSPLASH                   131
+
 #define IDS_ALLFILES                    131
-#define IDD_VSS                         132
 #define IDS_CONFIRM_ALL_LEFT            132
-#define IDD_PROPPAGE_LARGE              133
 #define IDS_CONFIRM_ALL_RIGHT           133
-#define IDS_COPY2DIR_LEFT_FMT           134
-#define IDD_CLEARCASE                   134
+#define IDS_ERRORS_TITLE                134
 #define IDS_CONFIRM_COPY2DIR            135
-#define IDD_PROPPAGE_FILTER             135
 #define IDS_FONT_CHANGE                 136
 #define IDS_DIRECTORY_WINDOW_TITLE      137
 #define IDS_DIRECTORY_WINDOW_STATUS_FMT 138
 #define IDS_FILES_ARE_DIFFERENT         139
-#define IDB_LFOLDER                     140
 #define IDS_BIN_FILES_DIFF              140
 #define IDS_ONLY_IN_FMT                 141
 #define IDS_IDENTICAL                   142
@@ -69,13 +68,25 @@
 #define IDS_LTIME_HEADER                171
 #define IDS_RTIME_HEADER                172
 #define IDS_EXTENSION_HEADER            173
-#define IDS_COPY2DIR_RIGHT_FMT          174
+#define IDS_CONFIRM_DELETE_ITEMS        174
 #define IDS_DEL_LEFT_FMT                175
 #define IDS_DEL_RIGHT_FMT               176
 #define IDS_DELETE_FAILED               177
 #define IDS_DELETE_FILE_FAILED          177
 #define IDS_CONFIRM_DELETE_DIR          178
 #define IDS_REMOVE_DIR_FAILED           179
+#define IDS_COPY_TO_LEFT                180
+#define IDS_COPY_TO_LEFT_MAIN           181
+#define IDS_DEL_BOTH_FMT                181
+#define IDS_COPY_TO_RIGHT               182
+#define IDS_COPY_TO_RIGHT_MAIN          183
+#define IDS_DELETE_DIR_FAILED           184
+#define IDS_COPY_FILE_FAILED            185
+#define IDS_COPY_DIR_FAILED             186
+#define IDS_ERROR_FILE_WRITEABLE        187
+#define IDS_ERROR_BACKUP                188
+#define IDS_CONFIRM_COPY_SINGLE         189
+#define IDS_CONFIRM_DELETE_SINGLE       190
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
@@ -83,6 +94,11 @@
 #define IDB_BINARY                      217
 #define IDB_LFILE                       218
 #define IDB_RFILE                       219
+#define IDB_SPLASH                      220
+#define IDB_WINMERGE                    221
+#define IDB_OLDSPLASH                   222
+#define IDB_LFOLDER                     223
+
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -122,6 +138,7 @@
 #define IDC_PASSWORD                    1028
 #define IDC_DIFFERENCE_COLOR            1031
 #define IDC_SEL_DIFFERENCE_COLOR        1032
+#define IDC_EDIT1                       1033
 #define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
 #define IDD_PROPSYNTAX                  30001
@@ -268,15 +285,20 @@
 #define ID_DIFFSTATUS                   32809
 #define ID_OPTIONS_SHOWUNIQUELEFT       32810
 #define ID_OPTIONS_SHOWUNIQUERIGHT      32811
+#define ID_DIR_DEL_BOTH                 32812
+#define ID_DIR_OPEN_LEFT                32813
+#define ID_DIR_OPEN_LEFT_WITH           32814
+#define ID_DIR_OPEN_RIGHT               32815
+#define ID_DIR_OPEN_RIGHT_WITH          32816
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        135
-#define _APS_NEXT_COMMAND_VALUE         32812
-#define _APS_NEXT_CONTROL_VALUE         1032
-#define _APS_NEXT_SYMED_VALUE           106
+#define _APS_NEXT_RESOURCE_VALUE        113
+#define _APS_NEXT_COMMAND_VALUE         32817
+#define _APS_NEXT_CONTROL_VALUE         1034
+#define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

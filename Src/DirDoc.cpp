@@ -190,7 +190,7 @@ void CDirDoc::Rescan()
 
 	if (gWriteLog) gLog.Write(_T("Starting directory scan:\r\n\tLeft: %s\r\n\tRight: %s\r\n"),
 			m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
-	m_pCtxt->m_dirlist.RemoveAll();
+	m_pCtxt->RemoveAll();
 
 	compare_files (0, (char const *)(LPCTSTR)m_pCtxt->m_strLeft, 
 			       0, (char const *)(LPCTSTR)m_pCtxt->m_strRight, m_pCtxt, 0);
@@ -212,16 +212,19 @@ void CDirDoc::Redisplay()
 
 	CString s,s2;
 	UINT cnt=0;
-	LPCTSTR p=NULL;
 	int llen = m_pCtxt->m_strLeft.GetLength();
 	int rlen = m_pCtxt->m_strRight.GetLength();
 
-	m_pView->m_pList->DeleteAllItems();
-	POSITION pos = m_pCtxt->m_dirlist.GetHeadPosition(), curpos;
-	while (pos != NULL)
+	m_pView->DeleteAllDisplayItems();
+
+	POSITION diffpos = m_pCtxt->GetFirstDiffPosition();
+	while (diffpos)
 	{
-		curpos = pos;
-		DIFFITEM di = m_pCtxt->m_dirlist.GetNext(pos);
+		POSITION curdiffpos = diffpos;
+		DIFFITEM di = m_pCtxt->GetNextDiffPosition(diffpos);
+
+		LPCTSTR p=NULL;
+		
 		BOOL leftside = (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE);
 		BOOL rightside = (di.code==FILE_RUNIQUE || di.code==FILE_RDIRUNIQUE);
 		switch (di.code)
@@ -230,32 +233,14 @@ void CDirDoc::Redisplay()
 			if (mf->m_bShowDiff
 				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
 			{
-				m_pView->AddItem(cnt, DV_NAME, di.filename);
-				m_pView->AddItem(cnt, DV_EXT, di.extension);    // BSP - Add the current file extension
-
 				p = _tcsninc(di.lpath, llen);
-				s = _T(".");
-				s += p;
-				m_pView->AddItem(cnt, DV_PATH, s);
-				
-				m_pView->m_pList->SetItemData(cnt, (DWORD)curpos);
-				UpdateItemStatus(cnt);
-				cnt++;
 			}
 			break;
 		case FILE_BINDIFF:
 			if (mf->m_bShowDiff
 				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
 			{
-				m_pView->AddItem(cnt, DV_NAME, di.filename);
-				m_pView->AddItem(cnt, DV_EXT, di.extension);    // BSP - Add the current file extension
 				p = _tcsninc(di.lpath, llen);
-				s = _T(".");
-				s += p;
-				m_pView->AddItem(cnt, DV_PATH, s);
-				m_pView->m_pList->SetItemData(cnt, (DWORD)curpos);
-				UpdateItemStatus(cnt);
-				cnt++;
 			}
 			break;
 		case FILE_LUNIQUE:
@@ -265,47 +250,35 @@ void CDirDoc::Redisplay()
 			if (((mf->m_bShowUniqueLeft && leftside) || (mf->m_bShowUniqueRight && rightside))
 				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
 			{
-				m_pView->AddItem(cnt, DV_NAME, di.filename);
-				m_pView->AddItem(cnt, DV_EXT, di.extension);    // BSP - Add the current file extension
-				
 				if (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE)
 					p = _tcsninc(di.lpath, llen);
 				else
 					p = _tcsninc(di.rpath, rlen);
-				s2 = _T(".");
-				s2 += p;
-				m_pView->AddItem(cnt, DV_PATH, s2);
-				m_pView->m_pList->SetItemData(cnt, (DWORD)curpos);
-				UpdateItemStatus(cnt);
-				cnt++;
 			}
 			break;
 		case FILE_SAME:
 			if (mf->m_bShowIdent
 				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
 			{
-				m_pView->AddItem(cnt, DV_NAME, di.filename);
-				m_pView->AddItem(cnt, DV_EXT, di.extension);    // BSP - Add the current file extension
 				p = _tcsninc(di.lpath, llen);
-				s = _T(".");
-				s += p;
-				m_pView->AddItem(cnt, DV_PATH, s);
-				m_pView->m_pList->SetItemData(cnt, (DWORD)curpos);
-				UpdateItemStatus(cnt);
-				cnt++;
 			}
 			break;
 		default: // error
+			p = _tcsninc(di.lpath, llen);
+			break;
+		}
+		if (p)
+		{
 			m_pView->AddItem(cnt, DV_NAME, di.filename);
 			m_pView->AddItem(cnt, DV_EXT, di.extension); // BSP - Add the current file extension
-			p = _tcsninc(di.lpath, llen);
 			s = _T(".");
 			s += p;
 			m_pView->AddItem(cnt, DV_PATH, s);
-			m_pView->m_pList->SetItemData(cnt, (DWORD)curpos);
+			m_pView->SetItemKey(cnt, curdiffpos);
+			// This is inefficient, as we have the di in hand right now
+			// But to improve this, have to figure out the intricacies of UpdateItemStatus
 			UpdateItemStatus(cnt);
 			cnt++;
-			break;
 		}
 	}
 	
@@ -324,15 +297,37 @@ CDirView * CDirDoc::GetMainView()
 	return (CDirView*)GetNextView(ps2);
 }
 
+static long GetModTime(LPCTSTR szPath)
+{
+	struct stat mystats;
+	bzero(&mystats, sizeof(mystats));
+	int stat_result = stat(szPath, &mystats);
+	if (stat_result!=0)
+		return 0;
+	return mystats.st_mtime;
+}
+
+static void UpdateTimes(DIFFITEM * pdi)
+{
+	CString sLeft = (CString)pdi->lpath + _T("\\") + pdi->filename;
+	pdi->ltime = GetModTime(sLeft);
+
+	CString sRight = (CString)pdi->rpath + _T("\\") + pdi->filename;
+	pdi->rtime = GetModTime(sRight);
+}
+
 void CDirDoc::UpdateItemStatus(UINT nIdx)
 {
 	CString s,s2;
 	UINT cnt=0;
 	int llen = m_pCtxt->m_strLeft.GetLength();
 	int rlen = m_pCtxt->m_strRight.GetLength();
-	POSITION pos = (POSITION)m_pView->m_pList->GetItemData(nIdx);
-	DIFFITEM di = m_pCtxt->m_dirlist.GetAt(pos);
+	POSITION diffpos = m_pView->GetItemKey(nIdx);
+	DIFFITEM di = m_pCtxt->GetDiffAt(diffpos);
 	TCHAR sTime[80];
+
+	UpdateTimes(&di); // in case just copied (into existence) or modified
+
 	switch (di.code)
 	{
 	case FILE_DIFF:

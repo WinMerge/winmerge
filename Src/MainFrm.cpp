@@ -742,10 +742,11 @@ void CMainFrame::rptStatus(BYTE code)
 		break;
 	}
 	CString s;
-	// AfxFormatString4 doesn't exist
-	s.Format(_T("s:%d d:%d lf:%d ld:%d rf:%d rd:%d bd:%d e:%d")
-		, m_nStatusFileSame, m_nStatusFileDiff, m_nStatusFileBinDiff, m_nStatusFileError
-		, m_nStatusLeftFileOnly, m_nStatusLeftDirOnly, m_nStatusRightFileOnly, m_nStatusRightDirOnly);
+	// TODO: Load the format string from resource
+	s.Format(_T("s:%d d:%d bd:%d lf:%d ld:%d rf:%d rd:%d e:%d")
+		, m_nStatusFileSame, m_nStatusFileDiff, m_nStatusFileBinDiff
+		, m_nStatusLeftFileOnly, m_nStatusLeftDirOnly, m_nStatusRightFileOnly, m_nStatusRightDirOnly
+		, m_nStatusFileError);
 	m_wndStatusBar.SetPaneText(2, s);
 
 }
@@ -849,6 +850,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				pCtxt->SetRegExp(strExt);
 				m_pDirDoc->Rescan();
 			}
+			pCtxt->ClearStatus();
 		}
 	}
 	else
@@ -896,7 +898,7 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 }
 
 // Get user language description of error, if available
-CString CMainFrame::GetSystemErrorDesc(int nerr)
+CString GetSystemErrorDesc(int nerr)
 {
 	LPVOID lpMsgBuf;
 	CString str = _T("?");
@@ -920,12 +922,13 @@ CString CMainFrame::GetSystemErrorDesc(int nerr)
 }
 
 // trim trailing line returns
-void CMainFrame::RemoveLineReturns(CString & str)
+static void RemoveLineReturns(CString & str)
 {
 	str.Replace(_T("\n"), _T(""));
 	str.Replace(_T("\r"), _T(""));
 }
 
+// TODO: Can we move this into DirActions.cpp ?
 // Delete file (return TRUE if deleted, else put up error & return FALSE)
 BOOL CMainFrame::DeleteFileOrError(LPCTSTR szFile)
 {
@@ -942,29 +945,23 @@ BOOL CMainFrame::DeleteFileOrError(LPCTSTR szFile)
 	return TRUE;
 }
 
-// Prompt & delete file (return TRUE if deleted)
-BOOL CMainFrame::ConfirmAndDeleteFile(LPCTSTR szFile)
+// Delete file (return TRUE if successful, else sets error string & returns FALSE)
+BOOL DeleteFileSilently(LPCTSTR szFile, CString * psError)
 {
-	CString s;
-	AfxFormatString1(s, IDS_CONFIRM_DELETE_FILE, szFile);
-	if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION)!=IDYES)
+	if (!DeleteFile(szFile))
+	{
+		CString sError = GetSystemErrorDesc(GetLastError());
+		RemoveLineReturns(sError);
+		AfxFormatString2(*psError, IDS_DELETE_FILE_FAILED, szFile, sError);
 		return FALSE;
-	return DeleteFileOrError(szFile);
+	}
+	return TRUE;
 }
 
-// Prompt & delete directory (return TRUE if deleted)
-BOOL CMainFrame::ConfirmAndDeleteDir(LPCTSTR szDir)
-{
-	CString s;
-	AfxFormatString1(s, IDS_CONFIRM_DELETE_DIR, szDir);
-	if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION)!=IDYES)
-		return FALSE;
-	return DeleteRecurseDir(szDir);
-}
 
 // delete directory by recursively deleting all contents
 // gives up on first error
-BOOL CMainFrame::DeleteRecurseDir(LPCTSTR szDir)
+BOOL DeleteDirSilently(LPCTSTR szDir, CString * psError)
 {
 	CFileFind finder;
 	CString sSpec = szDir;
@@ -978,12 +975,12 @@ BOOL CMainFrame::DeleteRecurseDir(LPCTSTR szDir)
 			if (finder.IsDots()) continue;
 			if (finder.IsDirectory())
 			{
-				if (!DeleteRecurseDir(finder.GetFilePath()))
+				if (!DeleteDirSilently(finder.GetFilePath(), psError))
 					return FALSE;
 			}
 			else
 			{
-				if (!DeleteFileOrError(finder.GetFilePath()))
+				if (!DeleteFileSilently(finder.GetFilePath(), psError))
 					return FALSE;
 			}
 		}
@@ -993,30 +990,46 @@ BOOL CMainFrame::DeleteRecurseDir(LPCTSTR szDir)
 	{
 		CString sError = GetSystemErrorDesc(GetLastError());
 		RemoveLineReturns(sError);
-		sError += (CString)_T(" [") + szDir + _T("]");
-		CString s;
-		AfxFormatString1(s, IDS_DELETE_FILE_FAILED, sError);
-		AfxMessageBox(s, MB_OK|MB_ICONSTOP);
+		AfxFormatString2(*psError, IDS_DELETE_FILE_FAILED, szDir, sError);
 		return FALSE;
 	}
 	return TRUE;
 }
 
-BOOL CMainFrame::SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest)
+// wrapper for DoSyncFiles which adds filename to error string reported
+BOOL CMainFrame::SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
 {
+	if (!DoSyncFiles(pszSrc, pszDest, psError))
+	{
+		AfxFormatString2(*psError, IDS_COPY_FILE_FAILED, *psError, pszSrc);
+		return FALSE;
+	}
+	return TRUE;
+}
+
+// (error string reported does not include filename
+BOOL CMainFrame::DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
+{
+	CString sActionError;
 	CString strSavePath(pszDest);
 
 	if (!CheckSavePath(strSavePath))
+	{
+		psError->LoadString(IDS_ERROR_FILE_WRITEABLE);
 		return FALSE;
+	}
 	
 	if (!CreateBackup(strSavePath))
+	{
+		psError->LoadString(IDS_ERROR_BACKUP);
 		return FALSE;
+	}
 	
 	// Now it's just a matter of copying the right file to the left
 	DeleteFile(strSavePath); // (errors are handled from CopyFile below)
 	if (!CopyFile(pszSrc, strSavePath, FALSE))
 	{
-		
+		*psError = GetSystemErrorDesc(GetLastError());
 		return FALSE;
 	}
 	
@@ -1024,27 +1037,22 @@ BOOL CMainFrame::SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest)
 	return TRUE;
 }
 
-void CMainFrame::UpdateCurrentFileStatus(UINT nStatus)
+void CMainFrame::UpdateCurrentFileStatus(UINT nStatus, int idx)
 {
-	if (NULL != m_pDirDoc)
-	{
-		CDirView *pv = m_pDirDoc->GetMainView();
-		if (NULL != pv)
-		{
-			CListCtrl& lc = pv->GetListCtrl();
-			int sel = lc.GetNextItem(-1, LVNI_SELECTED);
-			if (sel != -1)
-			{
-				// first change it in the dirlist
-				POSITION pos = reinterpret_cast<POSITION>(lc.GetItemData(sel));
-				DIFFITEM di = m_pDirDoc->m_pCtxt->m_dirlist.GetAt(pos);
-				di.code = (BYTE)nStatus;
-				m_pDirDoc->m_pCtxt->m_dirlist.SetAt(pos, di);
-				m_pDirDoc->UpdateItemStatus(sel);
-				//m_pDirDoc->Redisplay();
-			}
-		}
-	}
+	ASSERT(m_pDirDoc);
+	CDirView *pv = m_pDirDoc->GetMainView();
+	ASSERT(pv);
+	// first change it in the dirlist
+	POSITION diffpos = pv->GetItemKey(idx);
+
+	// TODO: Why is the update broken into these pieces ?
+	// Someone could figure out these pieces and probably simplify this.
+
+	// update DIFFITEM code
+	m_pDirDoc->m_pCtxt->UpdateStatusCode(diffpos, (BYTE)nStatus);
+	// update DIFFITEM time, and also tell views
+	m_pDirDoc->UpdateItemStatus(idx);
+	//m_pDirDoc->Redisplay();
 }
 
 void CMainFrame::OnViewSelectfont() 
