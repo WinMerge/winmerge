@@ -242,6 +242,11 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 	{
 		m_pMergeDoc->m_strLeftFile = szLeft;
 		m_pMergeDoc->m_strRightFile = szRight;
+		m_pMergeDoc->m_ltBuf.FreeAll();
+		m_pMergeDoc->m_rtBuf.FreeAll();
+		m_pMergeDoc->m_ltBuf.LoadFromFile(szLeft);
+		m_pMergeDoc->m_rtBuf.LoadFromFile(szRight);
+		
 		if (m_pMergeDoc->Rescan())
 		{
 			if (docNull)

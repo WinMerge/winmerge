@@ -356,6 +356,7 @@ BEGIN
                     ES_AUTOHSCROLL | ES_WANTRETURN
 END
 
+
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -500,7 +501,7 @@ BEGIN
     BUTTON      ID_FILE_OPEN
     BUTTON      ID_FILE_SAVE
     SEPARATOR
-    BUTTON      ID_UNDO
+    BUTTON      ID_EDIT_UNDO
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF

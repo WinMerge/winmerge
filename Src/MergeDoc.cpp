@@ -197,8 +197,38 @@ void CMergeDoc::Dump(CDumpContext& dc) const
 
 BOOL CMergeDoc::Rescan()
 {
+	// store modified status
 	BOOL ltMod = m_ltBuf.IsModified();
 	BOOL rtMod = m_rtBuf.IsModified();
+
+	// remove blank lines and clear winmerge flags
+	int ct;
+	for(ct=m_ltBuf.GetLineCount()-1; ct>=0; --ct)
+	{
+		if(m_ltBuf.GetLineFlags(ct) & LF_RIGHT_ONLY)
+		{
+			m_ltBuf.InternalDeleteText(NULL, ct, 0, ct+1, 0);
+		}
+		m_ltBuf.SetLineFlag(ct, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
+	}
+	for(ct=m_rtBuf.GetLineCount()-1; ct>=0; --ct)
+	{
+		if(m_rtBuf.GetLineFlags(ct) & LF_LEFT_ONLY)
+		{
+			m_rtBuf.InternalDeleteText(NULL, ct, 0, ct+1, 0);
+		}
+		m_rtBuf.SetLineFlag(ct, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
+	}
+
+	// restore modified status
+	m_ltBuf.SetModified(ltMod);
+	m_rtBuf.SetModified(rtMod);
+
+	// output to temp file
+	m_ltBuf.SaveToFile(m_strTempLeftFile, CRLF_STYLE_AUTOMATIC, FALSE);
+	m_rtBuf.SaveToFile(m_strTempRightFile, CRLF_STYLE_AUTOMATIC, FALSE);
+
+	// perform rescan
 	struct file_data inf[2];
 	char *free0=NULL,*free1=NULL;
 	char dir0[MAX_PATH],dir1[MAX_PATH], name0[MAX_PATH], name1[MAX_PATH];
@@ -405,8 +435,6 @@ BOOL CMergeDoc::Rescan()
 		mf->m_pLeft->GoToLine(nResumeTopLine, FALSE);
 		mf->m_pRight->GoToLine(nResumeTopLine, FALSE);
 	}
-	m_ltBuf.SetModified(ltMod);
-	m_rtBuf.SetModified(rtMod);
 	return bResult;
 }
 
@@ -977,11 +1005,6 @@ BOOL CMergeDoc::TempFilesExist()
 
 void CMergeDoc::FlushAndRescan()
 {
-	if (m_ltBuf.IsModified())
-		m_ltBuf.SaveToFile(m_strTempLeftFile, CRLF_STYLE_AUTOMATIC, FALSE);
-	if (m_rtBuf.IsModified())
-		m_rtBuf.SaveToFile(m_strTempRightFile, CRLF_STYLE_AUTOMATIC, FALSE);
-
 	CMDIFrameWnd* mainWnd = dynamic_cast<CMDIFrameWnd*>(AfxGetMainWnd());
 	CMDIChildWnd* diffWnd = dynamic_cast<CMDIChildWnd*>(mainWnd->MDIGetActive());
 	CCrystalEditView* curView = dynamic_cast<CCrystalEditView*>(diffWnd->GetActiveView());

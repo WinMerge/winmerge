@@ -41,7 +41,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_PASTE, OnUpdateEditPaste)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
 	ON_UPDATE_COMMAND_UI(ID_FIRSTDIFF, OnUpdateFirstdiff)
 	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
@@ -60,6 +59,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
 	ON_COMMAND(ID_R2L, OnR2l)
 	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateR2l)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -169,13 +169,7 @@ BOOL CMergeEditView::PrimeListWithFile(LPCTSTR szFilename)
 
 	// get the text buffer for the current view and initialize it
 	CMergeDoc::CDiffTextBuffer *pBuf = static_cast<CMergeDoc::CDiffTextBuffer*>(LocateTextBuffer());
-	pBuf->FreeAll();
 
-	// load the raw file data into the buffer
-	if (!pBuf->LoadFromFile(szFilename))
-	{
-		return FALSE;
-	}
 	CString blankline(_T(""));
 	int blanklen=blankline.GetLength();
 
@@ -569,14 +563,24 @@ void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnEditUndo() 
 {
-	// TODO: Add your command handler code here
-	
+	CMergeDoc* pDoc = GetDocument();
+	CMergeEditView *tgt = pDoc->undoTgt.top();
+	if(tgt==this)
+	{
+		CCrystalEditViewEx::OnEditUndo();
+		pDoc->undoTgt.pop();
+		pDoc->FlushAndRescan();
+	}
+	else
+	{
+		tgt->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+	}
+
 }
 
-void CMergeEditView::OnUpdateEditUndo(CCmdUI* /*pCmdUI*/) 
+void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI) 
 {
-	// TODO: Add your command update UI handler code here
-	
+	pCmdUI->Enable(GetDocument()->undoTgt.empty()==false);
 }
 
 void CMergeEditView::OnFirstdiff() 
@@ -806,6 +810,18 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 {
+	// perform original function
 	CCrystalEditViewEx::OnEditOperation(nAction, pszText);
+
+	// augment with additional operations
+
+	// clear left only or right only flags
+	// editing in 'blank' areas should be considered
+	CPoint ptCursorPos = GetCursorPos ();
+	m_pTextBuffer->SetLineFlag(ptCursorPos.y, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
+
+	// keep document up to date
 	GetDocument()->FlushAndRescan();
+	GetDocument()->undoTgt.push(this);
 }
+

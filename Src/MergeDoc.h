@@ -30,6 +30,7 @@
 
 #include "afxtempl.h"
 #include "CCrystalTextBuffer.h"
+#include <stack>
 
 #define OP_NONE			0
 #define OP_LEFTONLY		1
@@ -63,6 +64,7 @@ public:
 	public :
 class CDiffTextBuffer : public CCrystalTextBuffer
       {
+friend class CMergeDoc;
 private :
         CMergeDoc * m_pOwnerDoc;
 		BOOL m_bIsLeft;
@@ -149,6 +151,7 @@ public:
 
 // Implementation
 public:
+	std::stack<CMergeEditView*> undoTgt;
 	void FlushAndRescan();
 	BOOL TempFilesExist();
 	void CleanupTempFiles();
