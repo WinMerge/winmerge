@@ -260,22 +260,22 @@ BOOL COpenDlg::OnInitDialog()
 	m_ctlExt.LoadState(_T("Files\\Ext"));
 	UpdateData(m_strLeft.IsEmpty() && m_strRight.IsEmpty());
 	
-	CString filter = theApp.m_globalFileFilter.GetFilter();
+	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	BOOL bMask = theApp.m_globalFileFilter.GetUseMask();
 
 	if (!bMask)
 	{
 		CString filterPrefix;
 		VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
-		filter.Insert(0, filterPrefix);
+		FilterNameOrMask.Insert(0, filterPrefix);
 	}
 
-	int ind = m_ctlExt.FindStringExact(0, filter);
+	int ind = m_ctlExt.FindStringExact(0, FilterNameOrMask);
 	if (ind != CB_ERR)
 		m_ctlExt.SetCurSel(ind);
 	else
 	{
-		ind = m_ctlExt.InsertString(0, filter);
+		ind = m_ctlExt.InsertString(0, FilterNameOrMask);
 		if (ind != CB_ERR)
 			m_ctlExt.SetCurSel(ind);
 		else
@@ -479,19 +479,19 @@ void COpenDlg::OnSelectFilter()
 
 	mf->SelectFilter();
 	
-	CString filter = theApp.m_globalFileFilter.GetFilter();
+	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	if (theApp.m_globalFileFilter.GetUseMask())
 	{
-		// If we had filter choosed and now has mask we can overwrite filter
+		// If we had filter chosen and now has mask we can overwrite filter
 		if (!bUseMask || curFilter[0] != '*')
 		{
-			SetDlgItemText(IDC_EXT_COMBO, filter);
+			SetDlgItemText(IDC_EXT_COMBO, FilterNameOrMask);
 		}
 	}
 	else
 	{
-		filter.Insert(0, filterPrefix);
-		SetDlgItemText(IDC_EXT_COMBO, filter);
+		FilterNameOrMask.Insert(0, filterPrefix);
+		SetDlgItemText(IDC_EXT_COMBO, FilterNameOrMask);
 	}
 }
 

@@ -276,9 +276,9 @@ BOOL FileFilterHelper::GetUseMask()
 }
 
 /** 
- * @brief Returns active filter.
+ * @brief Returns active filter (or mask string)
  */
-CString FileFilterHelper::GetFilter()
+CString FileFilterHelper::GetFilterNameOrMask()
 {
 	CString sFilter;
 

@@ -1,6 +1,8 @@
 2005-03-05 Perry
   Rename CDirFrame::SetFilter to CDirFrame::SetFilterStatusDisplay for easier greps.
    Src: DirDoc.cpp DirFrame.cpp DirFrame.h
+  More filter clarifying renames
+   Src: DirDoc.cpp FileFilterHelper.cpp FileFilterHelper.h MainFrm.cpp OpenDlg.cpp
 
 2005-03-04 Perry
  PATCH: [ 1147039 ] experimental patch for colored word diff

@@ -1905,7 +1905,7 @@ void CMainFrame::OnClose()
 	}
 
 	// Save last selected filter
-	CString filter = theApp.m_globalFileFilter.GetFilter();
+	CString filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	m_options.SaveOption(OPT_FILEFILTER_CURRENT, filter);
 
 	// save main window position
@@ -2660,7 +2660,7 @@ void CMainFrame::OnToolsFilters()
 		{
 			theApp.m_globalFileFilter.SetFileFilterPath(path);
 			theApp.m_globalFileFilter.UseMask(FALSE);
-			CString sFilter = theApp.m_globalFileFilter.GetFilter();
+			CString sFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 			m_options.SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
 		m_options.SaveOption(OPT_LINEFILTER_ENABLED, filter.m_bIgnoreRegExp == TRUE);

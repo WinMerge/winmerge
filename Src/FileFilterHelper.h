@@ -103,7 +103,7 @@ public:
 	void SetMask(LPCTSTR strMask);
 
 	BOOL GetUseMask();
-	CString GetFilter();
+	CString GetFilterNameOrMask();
 	BOOL SetFilter(CString filter);
 
 	BOOL includeFile(LPCTSTR szFileName);
