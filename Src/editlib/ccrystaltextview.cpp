@@ -916,6 +916,38 @@ int CCrystalTextView::GetCharWidthFromChar(TCHAR ch)
 }
 
 /**
+ * @brief Return width of specified string
+ */
+int CCrystalTextView::GetCharWidthFromString(LPCTSTR lpsz)
+{
+  // This assumes a fixed width font
+  // But the UNICODE case handles double-wide glyphs (primarily Chinese characters)
+#ifdef _UNICODE
+  int n=0;
+  for (LPCTSTR p = lpsz; *p; ++p)
+    n += GetCharWidthUnicodeChar(*p);
+  return n;
+#else
+  return strlen(lpsz);
+#endif
+}
+
+/**
+ * @brief Return width of displayable version of character
+ *
+ * Differs from GetCharWidthFromChar when viewable whitespace is involved
+ */
+int CCrystalTextView::GetCharWidthFromDisplayableChar(const ViewableWhitespaceChars * lpspc, TCHAR ch)
+{
+	if (ch == ' ')
+	{
+		if (m_bViewTabs)
+			return GetCharWidthFromString(lpspc->c_space);
+	}
+	return GetCharWidthFromChar(ch);
+}
+
+/**
  * @brief Draw a chunk of text (one color, one line, full or part of line)
  *
  * @note In ANSI build, this routine is buggy for multibytes or double-width characters
@@ -1968,6 +2000,7 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
 
 int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoint )
 {
+  const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP());
   // calculate char pos out of point
   const int nLength = GetLineLength( nLineIndex );
   const int nScreenChars = GetScreenChars();
@@ -2002,7 +2035,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
         }
       else
         {
-          int delta = GetCharWidthFromChar(szLine[nIndex]) / GetCharWidth();
+          int delta = GetCharWidthFromDisplayableChar(lpspc, szLine[nIndex]) / GetCharWidth();
           nXPos += delta;
           nCurPos += delta;
         }
@@ -3067,6 +3100,7 @@ OnSetCursor (CWnd * pWnd, UINT nHitTest, UINT message)
 CPoint CCrystalTextView::
 ClientToText (const CPoint & point)
 {
+  const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP());
   //BEGIN SW
   const int nSubLineCount = GetSubLineCount();
   const int nLineCount = GetLineCount();
@@ -3132,7 +3166,7 @@ ClientToText (const CPoint & point)
         }
       else
         {
-          n += GetCharWidthFromChar(pszLine[nIndex]) / GetCharWidth();
+          n += GetCharWidthFromDisplayableChar(lpspc, pszLine[nIndex]) / GetCharWidth();
           nCurPos ++;
         }
 
@@ -3239,6 +3273,7 @@ IsValidTextPosY (const CPoint &point)
 CPoint CCrystalTextView::
 TextToClient (const CPoint & point)
 {
+  const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP());
   ASSERT_VALIDTEXTPOS (point);
   LPCTSTR pszLine = GetLineChars (point.y);
 
@@ -3275,7 +3310,7 @@ TextToClient (const CPoint & point)
       if (pszLine[nIndex] == _T ('\t'))
         pt.x += (nTabSize - pt.x % nTabSize);
       else
-        pt.x += GetCharWidthFromChar(pszLine[nIndex]) / GetCharWidth();
+        pt.x += GetCharWidthFromDisplayableChar(lpspc, pszLine[nIndex]) / GetCharWidth();
     }
   //BEGIN SW
   pt.x-= nPreOffset;
@@ -3380,6 +3415,7 @@ ParseLine (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
 int CCrystalTextView::
 CalculateActualOffset (int nLineIndex, int nCharIndex)
 {
+  const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP());
   const int nLength = GetLineLength (nLineIndex);
   ASSERT (nCharIndex >= 0 && nCharIndex <= nLength);
   LPCTSTR pszChars = GetLineChars (nLineIndex);
@@ -3411,7 +3447,7 @@ CalculateActualOffset (int nLineIndex, int nCharIndex)
       if (pszChars[I] == _T ('\t'))
         nOffset += (nTabSize - nOffset % nTabSize);
       else
-        nOffset += GetCharWidthFromChar(pszChars[I]) / GetCharWidth();
+        nOffset += GetCharWidthFromDisplayableChar(lpspc, pszChars[I]) / GetCharWidth();
     }
   //BEGIN SW
   if( nPreBreak == I && nBreaks )

@@ -39,6 +39,7 @@
 
 class CCrystalTextBuffer;
 class CUpdateContext;
+struct ViewableWhitespaceChars;
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -436,6 +437,8 @@ protected:
     virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex);
 
     int GetCharWidthFromChar(TCHAR ch);
+	int GetCharWidthFromString(LPCTSTR lpsz);
+	int GetCharWidthFromDisplayableChar(const ViewableWhitespaceChars * lpspc, TCHAR ch);
 
 #ifdef _UNICODE
     int GetCharWidthUnicodeChar(wchar_t ch);

@@ -1,3 +1,7 @@
+2004-10-03 Perry
+ PATCH:[ 1037449 ] Fix char width computation for displayable whitespace
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+
 2004-10-03 Kimmo
  PATCH: [ 1039096 ] Save ignore EOL option when changed during file loading
   Src: MergeDoc.cpp
