@@ -18,6 +18,11 @@
       background-color: #EEEEEE;
       border: 1px solid black;
     }
+    p.note {
+      padding: 5px;
+      background-color: #EEEEEE;
+      border: 1px solid blue;
+    }
   -->
   </style>
 </head>
@@ -336,6 +341,10 @@ to be stored in the <code>Languages/</code> directory, in the subdirectory creat
   </li>
   <li>You may localize the layout. Avoid to localize the alignment flag, rather change coordinates.</li>
 </ul>
+<p class="note">Please try to avoid changing dialog layout when translating.
+The layout should be shared by all translations as much as possible, to make merging (and future translation changes) easier.
+You can of course make controls wider to fit longer texts, but you should not move buttons and other controls if not really necessary.<br /><br />
+If you want to improve dialog layout (we welcome UI improvements) you should submit it as src/Merge.rc patch so it will be merged to all translations.</p>
 
 <h4>Compiling</h4>
 <p>We have a customised tool for compiling language files. Project for it is in CVS:</p>
