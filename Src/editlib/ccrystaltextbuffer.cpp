@@ -362,7 +362,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 		if (dwFileAttributes == (DWORD) - 1)
 			__leave;
 		
-		hFile =::CreateFile (pszFileName, GENERIC_READ, FILE_SHARE_READ, NULL,
+		hFile =::CreateFile (pszFileName, GENERIC_READ, FILE_SHARE_READ + FILE_SHARE_WRITE, NULL,
 			OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL);
 		if (hFile == INVALID_HANDLE_VALUE)
 			__leave;
