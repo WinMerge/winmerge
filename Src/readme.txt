@@ -1,3 +1,7 @@
+2003-09-26 Perry
+ PATCH: [ 812820 ] Fix regexp for Unicode
+  common: RegExp.cpp RegExp.h
+
 2003-09-26 Laoran
  PATCH: [ 811371 ] Replace lines when pasting text to ghost lines
   WinMerge: GhostTextBuffer.cpp GhostTextBuffer.h

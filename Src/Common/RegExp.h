@@ -9,6 +9,13 @@
 //    and replace operations.
 // 3. And of course, added the C++ Wrapper
 //
+// Comments from Russell Moss who posted UNICODE fixes to codeguru, herein adopted:
+// Both CRegExp::regnode and CRegExp::reginsert were leaving 
+// 2 "locations" for a short.  In the case of UNICODE, a 
+// TCHAR is a short so leaving room for a short is equivalent 
+// to skipping only one TCHAR
+//
+//
 // The original copyright notice follows:
 //
 // Copyright (c) 1986, 1993, 1995 by University of Toronto.
@@ -87,15 +94,17 @@ private:
 	TCHAR *	regnode(TCHAR op)
 	{
 		if (!bEmitCode) {
-			regsize += 3;
+			regsize += ( sizeof(short) + 2 - sizeof(TCHAR) ) ;
 			return regcode;
 		}
 
 		*regcode++ = op;
 		*regcode++ = _T('\0');		/* Null next pointer. */
+#ifndef _UNICODE
 		*regcode++ = _T('\0');
+#endif // _UNICODE
 
-		return regcode-3;
+		return regcode - (sizeof(short) + 2 - sizeof(TCHAR)) ;
 	};
 
 

@@ -464,23 +464,26 @@ TCHAR *CRegExp::regatom(int *flagp)
 // reginsert - insert an operator in front of already-emitted operand
 //
 // Means relocating the operand.
+// Adopted UNICODE fixes by Russell Moss
  
 void CRegExp::reginsert(TCHAR op, TCHAR *opnd)
 {
 	TCHAR *place;
 
 	if (!bEmitCode) {
-		regsize += 3;
+		regsize += ( sizeof(short) + 2 - sizeof(TCHAR) ) ;
 		return;
 	}
 
-	(void) memmove(opnd+3, opnd, (size_t)((regcode - opnd)*sizeof(TCHAR)));
-	regcode += 3;
+	(void) memmove(opnd+( sizeof(short) + 2 - sizeof(TCHAR) ), opnd, (size_t)((regcode - opnd)*sizeof(TCHAR)));
+	regcode += ( sizeof(short) + 2 - sizeof(TCHAR) ) ;
 
 	place = opnd;		// Op node, where operand used to be. 
 	*place++ = op;
 	*place++ = _T('\0');
+#ifndef _UNICODE
 	*place++ = _T('\0');
+#endif // _UNICODE
 }
 
 //
