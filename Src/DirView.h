@@ -132,6 +132,7 @@ private:
 	virtual void OnInitialUpdate();
 	protected:
 	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	//}}AFX_VIRTUAL
 
 // Implementation

@@ -67,6 +67,7 @@ public:
 	protected:
 	virtual void OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView);
 	virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	//}}AFX_VIRTUAL
 
 // Implementation

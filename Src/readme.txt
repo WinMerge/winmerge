@@ -1,3 +1,7 @@
+2003-05-13 Kimmo
+ PATCH: [ 736443 ] Prpoper Esc fix
+  WinMerge: DirView.h DirView.cpp Merge.cpp MergeEditView.h MergeEditView.cpp
+
 2003-05-09 Kimmo
  PATCH: [ 735127 ] German Translation
   Updated German language file submitted by Jörg Schneider

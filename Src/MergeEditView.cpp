@@ -797,3 +797,14 @@ BOOL CMergeEditView::EnableRescan(BOOL bEnable)
 	m_bAutomaticRescan = bEnable;
 	return bOldValue;
 }
+
+BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
+{
+	// Check if we got 'ESC pressed' -message
+	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE)) 
+	{
+		AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+		return FALSE;
+	}
+	return CCrystalEditViewEx::PreTranslateMessage(pMsg);
+}

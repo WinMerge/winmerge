@@ -1073,3 +1073,14 @@ void CDirView::OnRefresh()
 {
 	GetDocument()->Rescan();
 }
+
+BOOL CDirView::PreTranslateMessage(MSG* pMsg)
+{
+	// Check if we got 'ESC pressed' -message
+	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE)) 
+	{
+		AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+		return FALSE;
+	}
+	return CListViewEx::PreTranslateMessage(pMsg);
+}

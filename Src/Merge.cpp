@@ -379,24 +379,15 @@ BOOL CMergeApp::PreTranslateMessage(MSG* pMsg)
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE)) 
 	{
+		// If /e commandline parameter were given close WinMerge
+		// NOTE: Without /e commandline parameter we only close
+		// active window/dialog. See CDirView::PreTranslateMessage()
+		// and CMergeEditView::PreTranslateMessage()
 		if (m_bEscCloses)
 		{
 			AfxGetMainWnd()->PostMessage(WM_CLOSE);
 			return FALSE;
 		}
-		/* See BUG [ 734554 ] ESC closes dialog + document
-		   If we have a dialog open we should NOT send this message.
-		   Until there is good solution, closing with ESC is disabled.
-		*/
-		/*
-		else
-		{
-			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
-			// Clear pointers that are now invalid 
-			((CMainFrame*)m_pMainWnd)->m_pLeft = NULL;
-			((CMainFrame*)m_pMainWnd)->m_pRight = NULL;
-		}
-		*/
 	}
 
 	// CG: The following lines were added by the Splash Screen component.
