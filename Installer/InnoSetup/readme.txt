@@ -1,3 +1,8 @@
+2004-10-31 Kimmo
+ PATCH: [ 1056383 ] Install Merge7z40x.dll
+  Install also Merge7z410.dll
+  InnoSetup: WinMerge Localized.iss 
+  
 2004-10-29 Kimmo
  PATCH: [ 1056383 ] Install Merge7z40x.dll
   InnoSetup: WinMerge Localized.iss 
