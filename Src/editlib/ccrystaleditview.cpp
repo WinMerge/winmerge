@@ -395,8 +395,14 @@ OnEditDelete ()
           ptSelEnd.y++;
           ptSelEnd.x = 0;
         }
-      else
-        ptSelEnd.x++;
+      else 
+        {
+          ptSelEnd.x++;
+          //yuyunyi
+          if (ptSelEnd.x < GetLineLength (ptSelEnd.y) && m_pTextBuffer->IsMBSTrail (ptSelEnd.y, ptSelEnd.x))
+            // here... if its a MBSTrail, then should move one character more....
+            ptSelEnd.x++;
+      }
     }
 
   CPoint ptCursorPos = ptSelStart;
@@ -603,6 +609,13 @@ OnEditDeleteBack ()
     {
       ptCursorPos.x--;          // Decrement Position
 
+      //yuyunyi
+      if (ptCursorPos.x > 0 && m_pTextBuffer->IsMBSTrail (ptCursorPos.y, ptCursorPos.x))
+        {
+          // here... if its a MBSTrail, then should move one character more....
+          ptCursorPos.x--;
+        }
+	  
       bDeleted = true;          // Set Deleted Flag
 
     }

@@ -1926,6 +1926,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
   int	nCurPos = 0;
   const int nTabSize = GetTabSize();
 
+  BOOL bDBCSLeadPrev = FALSE;  //DBCS support (yuyunyi)
   for( int nIndex = 0; nIndex < nLength; nIndex++ )
     {
       if( nBreaks && nIndex == anBreaks[nYPos] )
@@ -1947,12 +1948,21 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
         }
 
       if( nXPos > curPoint.x && nYPos == curPoint.y )
-        break;
+        {
+          if(bDBCSLeadPrev)
+            nIndex--;
+          break;
+        }
       else if( nYPos > curPoint.y )
         {
           nIndex--;
           break;
         }
+
+      if(bDBCSLeadPrev)
+        bDBCSLeadPrev=FALSE;
+      else
+        bDBCSLeadPrev = IsDBCSLeadByte(szLine[nIndex]);
     }
   delete[] anBreaks;
 
@@ -3038,6 +3048,7 @@ ClientToText (const CPoint & point)
     nCurPos = nIndex = nOffsetChar;
   */
 
+  BOOL bDBCSLeadPrev = FALSE;  //DBCS support (yuyunyi)
   while (nIndex < nLength)
     {
       if( nBreaks && nIndex == anBreaks[i] )
@@ -3059,7 +3070,16 @@ ClientToText (const CPoint & point)
         }
 
       if (n > nPos && i == nSubLineOffset)
-        break;
+        {
+          if(bDBCSLeadPrev)
+            nIndex--;
+          break;
+        }
+
+      if(bDBCSLeadPrev)
+        bDBCSLeadPrev=FALSE;
+      else
+        bDBCSLeadPrev = IsDBCSLeadByte(pszLine[nIndex]);
 
       nIndex ++;
     }

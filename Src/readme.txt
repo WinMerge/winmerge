@@ -1,3 +1,7 @@
+2004-05-24 Perry
+ PATCH: [ 893202 ] Bug fixed for DBCS text edit (Attach again)
+ Src\editlib: ccrystaleditview.cpp ccrystaltextview.cpp
+
 2004-05-23 WinMerge experimental release 2.1.7.4 (cvs)
 
 2004-05-23 Laoran
