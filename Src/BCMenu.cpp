@@ -49,7 +49,11 @@ BOOL BCMenu::original_select_disabled=TRUE;
 // how the menu's are drawn in winXP
 UINT BCMenu::xp_drawmode=BCMENU_DRAWMODE_XP;
 BOOL BCMenu::xp_select_disabled=FALSE;
-BOOL BCMenu::xp_draw_3D_bitmaps=TRUE;
+
+// Set to FALSE since TRUE value causes WinMerge to start slowly in WinXP
+// Ref: BUG item #1052762 WinMerge VERY slow to startup
+// https://sourceforge.net/tracker/index.php?func=detail&aid=1052762&group_id=13216&atid=113216
+BOOL BCMenu::xp_draw_3D_bitmaps=FALSE;
 BOOL BCMenu::hicolor_bitmaps=FALSE;
 // Variable to set how accelerators are justified. The default mode (TRUE) right
 // justifies them to the right of the longes string in the menu. FALSE
