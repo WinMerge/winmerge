@@ -235,7 +235,7 @@ BEGIN
         MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
         MENUITEM "Suport d'&arxivament inhabilitat...",ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
-        MENUITEM "Llicència Pública General de &GNU...", ID_HELP_GNULICENSE
+        MENUITEM "Llicència Pública de &GNU...", ID_HELP_GNULICENSE
         MENUITEM "&Quant al WinMerge...",       ID_APP_ABOUT
     END
 END
@@ -424,7 +424,7 @@ BEGIN
     EDITTEXT        IDC_UNPACKER_EDIT,76,70,161,12,ES_AUTOHSCROLL |
                     ES_READONLY
     PUSHBUTTON      "T&ria...",IDC_SELECT_UNPACKER,242,70,50,12
-    CONTROL         "&Inclou subcarpetes",IDC_RECURS_CHECK,"Button",
+    CONTROL         "&Inclou-hi les subcarpetes",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,76,86,161,10
     LTEXT           "Estat:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "D'acord",IDOK,306,11,50,14
@@ -478,14 +478,14 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "General"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    CONTROL         "&Guarda còpia del fitxer original",IDC_BACKUP_CHECK,
+    CONTROL         "&Guarda una còpia del fitxer original",IDC_BACKUP_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
-    CONTROL         "&Desplaça automàticament fins la primera diferència",
+    CONTROL         "&Desplaça automàticament fins a la primera diferència",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,17,211,10
     CONTROL         "Inhabilita la pantalla de &benvinguda",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
-    CONTROL         "&Tanca subfinestra d'estat de comparació automàticament",IDC_CMPPANE_AUTOCLOSE,
+    CONTROL         "&Tanca la subfinestra d'estat de comparació automàticament",IDC_CMPPANE_AUTOCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "T&anca les finestres amb ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
@@ -673,7 +673,7 @@ FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "&Desa els fitxers suprimits a la Paperera de reciclatge",IDC_USE_RECYCLE_BIN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
-    CONTROL         "&Afegeix menú contextual a l'explorador del Windows",IDC_EXPLORER_CONTEXT,
+    CONTROL         "&Afegeix un menú contextual a l'explorador del Windows",IDC_EXPLORER_CONTEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
     CONTROL         "Habilita el &menú avançat",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
@@ -711,9 +711,9 @@ BEGIN
     COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWNLIST |
                     WS_DISABLED | WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Espais",IDC_STATIC,155,81,123,46
-    CONTROL         "Co&mpara",IDC_DIFF_WHITESPACE_COMPARE,"Button",
+    CONTROL         "Co&mpara'ls",IDC_DIFF_WHITESPACE_COMPARE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,162,92,110,10
-    CONTROL         "&Ignora els canvis",IDC_DIFF_WHITESPACE_IGNORE,"Button",
+    CONTROL         "&Ignora'n els canvis",IDC_DIFF_WHITESPACE_IGNORE,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
     CONTROL         "I&gnora'ls tots",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
@@ -721,9 +721,9 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,142,10
     CONTROL         "&Distingeix entre majúscules i minúscules",IDC_DIFF_CASESENSITIVE,"Button",
                     BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,145,142,10
-    CONTROL         "Inc&lou la línia de comandes",IDC_DIFF_INCLCMDLINE,"Button",
+    CONTROL         "Inc&lou-hi la línia de comandes",IDC_DIFF_INCLCMDLINE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
-    CONTROL         "Obre-ho a un &editor extern",IDC_DIFF_OPENTOEDITOR,"Button",
+    CONTROL         "Obre-ho en un &editor extern",IDC_DIFF_OPENTOEDITOR,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,155,145,170,10
     PUSHBUTTON      "Predeterminats",IDC_DIFF_DEFAULTS,7,159,62,14
     DEFPUSHBUTTON   "D'acord",IDOK,230,159,50,14
@@ -948,14 +948,14 @@ BEGIN
     GROUPBOX        "Fitxer del costat esquerre",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
     EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "&Desa els canvis",IDC_SAVECLOSING_SAVELEFT,"Button",
+    CONTROL         "&Desa-hi els canvis",IDC_SAVECLOSING_SAVELEFT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
     CONTROL         "D&escarta els canvis",IDC_SAVECLOSING_DISCARDLEFT,"Button",
                     BS_AUTORADIOBUTTON,16,46,230,10
     GROUPBOX        "Fitxer del costat dret",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
     EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "De&sa els canvis",IDC_SAVECLOSING_SAVERIGHT,"Button",
+    CONTROL         "De&sa-hi els canvis",IDC_SAVECLOSING_SAVERIGHT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
     CONTROL         "Des&carta els canvis",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
@@ -988,7 +988,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "WinMerge"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "El suport d'arxivament està inhabilitat. Per tal d'habilitar-lo instal·leu una versió del 7-Zip amb la qual es pugui enllaçar el WinMerge, i poseu una còpia del connector d'enllaç apropiat (Merge7z*.dll) al directori del WinMerge.",
+    LTEXT           "El suport d'arxivament està inhabilitat. Per tal d'habilitar-lo instal·leu-hi una versió del 7-Zip amb la qual es pugui enllaçar el WinMerge, i poseu una còpia del connector d'enllaç apropiat (Merge7z*.dll) al directori del WinMerge.",
                     IDC_STATIC,2,2,272,32
     LTEXT           "El WinMerge pot enllaçar-se al 7-Zip 3.11 i superior si el connector d'enllaç apropiat està disponible. Useu la versió del 7-Zip recomanada a continuació fins que hi hagi connectors d'enllaç disponibles per a versions posteriors.",
                     IDC_STATIC,2,34,272,32
@@ -1002,7 +1002,7 @@ BEGIN
                     IDC_STATIC,2,98,208,8
     EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Versió dels components locals del 7-Zip del directori del WinMerge:",
+    LTEXT           "Versió dels components locals del 7-Zip al directori del WinMerge:",
                     IDC_STATIC,2,110,212,8
     EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
@@ -1256,7 +1256,7 @@ STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Obre una altra finestra per al document actiu\nFinestra nova"
     ID_WINDOW_ARRANGE       "Organitza les icones a la part inferior de la finestra\nOrganitza les icones"
-    ID_WINDOW_CASCADE       "Organitza les finestres per a que se sobreposin\nFinestres en cascada"
+    ID_WINDOW_CASCADE       "Organitza les finestres perquè se sobreposin\nFinestres en cascada"
     ID_WINDOW_TILE_HORZ     "Organitza les finestres en mosaic\nFinestres en mosaic"
     ID_WINDOW_TILE_VERT     "Organitza les finestres en mosaic\nFinestres en mosaic"
     ID_WINDOW_SPLIT         "Divideix la finestra activa en subfinestres\nDivideix"
@@ -1364,23 +1364,23 @@ END
 // WINMERGE INFORMATION
 STRINGTABLE
 BEGIN
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge aquest directori"
+    IDS_WINMERGE_THIS_DIRECTORY "Obre aquest directori amb el WinMerge"
     IDS_VERSION_FMT         "Versió %1 - Català"
     IDS_QUICKHELP           "Sintaxi : WinMerge [/r] [/e] [/f màscara/nom] [/ul] [/ur] [/ub] [/dl descesq] [/dr descdreta] camiesq camidreta [camisortida]\n\non:
       /? o -? mostra aquesta ajuda
       /r o -r diu al WinMerge que compari directoris recursivament
-      /e o -e permet tancar el WinMerge amb una única polsació d'esc
+      /e o -e permet tancar el WinMerge amb una única polsació d'Esc
       /f o -f especifica la màscara de fitxers o el nom del filtre per a comparar
       /ul o -ul diu al WinMerge que no afegeixi el camí de l'esquerra a la llista de recents (MRU)
       /ur o -ur diu al WinMerge que no afegeixi el camí de la dreta a la llista de recents (MRU)
       /ub o -ub diu al WinMerge que no afegeixi cap dels dos camins a la llista de recents (MRU)
-      /wl or -wl obre el fitxer de l'esquerra inicialment com a només de lectura
-      /wr or -wr obre el fitxer de la dreta inicialment com a només de lectura
+      /wl o -wl obre el fitxer de l'esquerra inicialment com a només de lectura
+      /wr o -wr obre el fitxer de la dreta inicialment com a només de lectura
       /dl o -dl afegeix una descripció per a mostrar a la banda esquerra enlloc del nom del directori/fitxer
       /dr o -dr afegeix una descripció per a mostrar a la banda dreta enlloc del nom del directori/fitxer
       camiesq és el directori o nom de fitxer per a ésser obert a la banda esquerra
       camidreta és el directori o nom de fitxer per a ésser obert a la banda dreta
-      camisortida és un directori de sortida opcional on voleu que els fitxers fusionats siguin desats"
+      camisortida és un directori de sortida opcional on voleu que siguin desats els fitxers fusionats"
 END
 
 // VARIOUS OPTIONS
@@ -1388,7 +1388,7 @@ STRINGTABLE
 BEGIN
     IDS_OPTIONS_TITLE       "Opcions"
     IDS_MESSAGE_BOX_ARE_RESET "Tots el quadres de missatges es mostraran altre cop."
-    IDS_DIFF_OPEN_NO_SET_PROPS "S'han fet modificacions a la sessió de comparació de fitxers actual i alguns ajustos poden no entrar en vigor fins que no en sigui recomençada."
+    IDS_DIFF_OPEN_NO_SET_PROPS "S'han fet modificacions a la sessió de comparació actual i alguns canvis poden no ser efectius fins que no reinicieu la comparacio."
     IDS_FONT_CHANGE         "El canvi triat de tipus de lletra no serà aplicat a totes les finestres de diferències visibles actualment."
 END
 
@@ -1489,13 +1489,13 @@ BEGIN
     IDS_SAVE_AS_TITLE       "Anomena i desa"
     IDS_SAVE_FMT            "Voleu desar els canvis a %1?"
     IDS_SAVEREADONLY_FMT    "El fitxer %1 està marcat com a només de lectua. Voldríeu substituir el fitxer només de lectura? (No es tracta de desar amb un nom nou.)"
-    IDS_ERROR_FILE_WRITEABLE "Hi ha hagut un error en comprovar l'escrivibilitat de la destinació"
+    IDS_ERROR_FILE_WRITEABLE "Hi ha hagut un error en comprovar si la destinació era modificable"
     IDS_ERROR_BACKUP        "Hi ha hagut un error en crear una còpia de seguretat del fitxer"
-    IDS_BACKUP_FAILED_PROMPT "No es pot desar una còpia de seguretat del fitxer original.\nVoleu continuar en qualsevol cas?"
+    IDS_BACKUP_FAILED_PROMPT "No es pot desar una còpia de seguretat del fitxer original.\nVoleu continuar tot i així?"
     IDS_FILESAVE_FAILED     "Hi ha hagut un error en desar el fitxer.\n%1\n%2\nVoleu desar-lo amb un nom diferent?"
-    IDS_FILEPACK_FAILED_LEFT "El Plugin '%2' no pot tornar a empaquetar els vostres canvis al fitxer de l'esquerra altre cop cap a '%1'.\n\nEl fitxer original no serà canviat.\n\nVoleu desar la versió desempaquetada a un altre fitxer?"
-    IDS_FILEPACK_FAILED_RIGHT "El Plugin '%2' no pot tornar a empaquetar els vostres canvis al fitxer de la dreta altre cop cap a '%1'.\n\nEl fitxer original no serà canviat.\n\nVoleu desar la versió desempaquetada a un altre fitxer?"
-    IDS_FILECHANGED_ONDISK  "Alguna altra aplicació ha actualitzat el fitxer\n%1\ndes de que el WinMerge el va carregar.\n\nVoleu sobreescriure el fitxer?"
+    IDS_FILEPACK_FAILED_LEFT "El connector '%2' no pot tornar a empaquetar els vostres canvis al fitxer de l'esquerra altre cop cap a '%1'.\n\nEl fitxer original no es canviarà.\n\nVoleu desar la versió desempaquetada en un altre fitxer?"
+    IDS_FILEPACK_FAILED_RIGHT "El connector '%2' no pot tornar a empaquetar els vostres canvis al fitxer de la dreta altre cop cap a '%1'.\n\nEl fitxer original no es canviarà.\n\nVoleu desar la versió desempaquetada en un altre fitxer?"
+    IDS_FILECHANGED_ONDISK  "Alguna altra aplicació ha actualitzat el fitxer\n%1\ndes que el WinMerge el va carregar.\n\nVoleu sobreescriure el fitxer?"
     IDS_SAVEREADONLY_MULTI  "%1\nestà marcat com a només de lectura. Voleu substituir l'element només de lectura?"
     IDS_FILECHANGED_RESCAN  "Una altra aplicació ha modificat el fitxer\n%1\ndes que el WinMerge l'analitzà per darrer cop.\n\nSi voleu refrescar els fitxers, tanqueu la comparació de fitxers actual i carregueu-los de bell nou."
     IDS_SAVE_LEFT_AS        "Anomena i desa el fitxer de l'esquerra"
@@ -1518,9 +1518,9 @@ END
 STRINGTABLE
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT "Copia el fitxer seleccionat al directori indicat"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Copia el fitxer seleccionat a un directori personalitzat"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Copia el fitxer seleccionat en un directori a triar"
     ID_DIR_COPY_RIGHT_TO_LEFT "Copia el fitxer seleccionat al directori indicat"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Copia el fitxer seleccionat a un directori personalitzat"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Copia el fitxer seleccionat en un directori a triar"
     ID_DIR_DEL_LEFT         "Suprimeix els elements seleccionats a l'esquerra"
     ID_DIR_DEL_RIGHT        "Suprimeix els elements seleccionats a la dreta"
     ID_DIR_DEL_BOTH         "Suprimeix els element(s) seleccionat(s) a ambdues bandes"
@@ -1566,10 +1566,10 @@ END
 STRINGTABLE
 BEGIN
     ID_DIR_OPEN_LEFT        "Obre el fitxer de l'esquerra"
-    ID_DIR_OPEN_LEFT_WITHEDITOR "Obre el fitxer de l'esquerra a un editor extern"
+    ID_DIR_OPEN_LEFT_WITHEDITOR "Obre el fitxer de l'esquerra en un editor extern"
     ID_DIR_OPEN_LEFT_WITH   "Obre el fitxer de l'esquerra amb..."
     ID_DIR_OPEN_RIGHT       "Obre el fitxer de la dreta"
-    ID_DIR_OPEN_RIGHT_WITHEDITOR "Obre el fitxer de la dreta a un editor extern"
+    ID_DIR_OPEN_RIGHT_WITHEDITOR "Obre el fitxer de la dreta en un editor extern"
     ID_DIR_OPEN_RIGHT_WITH  "Obre el fitxer de la dreta amb..."
     IDS_CANNOT_EXECUTE_FILE "No es pot executar el %1"
     ID_DIR_COPY_FILENAMES   "Copia els noms dels fitxers al Porta-retalls"
@@ -1694,7 +1694,7 @@ BEGIN
     IDS_FILEBINARY          "Els fitxers binaris no es poden comparar visualment."
     IDS_TEMP_FILEERROR      "No s'han pogut obrir els fitxers temporals. Comproveu els ajustos de camí temporal."
     IDS_FILEISDIR           "Els fitxers de directori no es poden comparar visualment."
-    IDS_SUGGEST_IGNOREEOL   "Els fitxers tenen salts de línia de diferent mena.\nAmb les opcions actuals, les línies diferiran.\nVoleu que s'ignorin en aquests fitxers?\n\nUsuari avançat: Si els salts de línia no estan unificats als fitxers,\naltrament podeu especificar la opció '%1'."
+    IDS_SUGGEST_IGNOREEOL   "Els fitxers tenen salts de línia de diferent mena.\nAmb les opcions actuals, les línies diferiran.\nVoleu que s'ignorin en aquests fitxers?\n\nUsuari avançat: Si els salts de línia no estan unificats als fitxers,\naltrament podeu especificar l'opció '%1'."
     IDS_SUGGEST_PRESERVEEOL "Els salts de línia són de diferent mena (DOS/UNIX/MAC) al fitxer '%1'.\nAmb les opcions actual, s'unificaran al tipus principal.\nVoleu canviar les opcions i preservar les diferents menes de salt de línia?"
     IDS_PREDIFFER_ERROR     "Hi ha hagut un error prediferenciant el fitxer '%1' amb el connector '%2'. No es tornarà a aplicar la prediferenciació."
     IDS_SUGGEST_IGNORECODEPAGE "Els fitxers de l'esquerra i de la dreta no tenen la mateixa pàgina de codis.\nEn mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\nVoleu ignorar la informació de pàgina de codis?"
@@ -1710,7 +1710,7 @@ END
 // EDITOR : SEARCH/REPLACE DIALOGS
 STRINGTABLE
 BEGIN
-    IDS_NUM_REPLACED        "S'ha substituït %1 cadena(s)."
+    IDS_NUM_REPLACED        "S'ha(n) substituït %1 cadena(s)."
     IDS_EDIT_TEXT_NOT_FOUND "No s'ha trobat la cadena ""%s"""
 END
 
@@ -1724,7 +1724,7 @@ END
 // CREATE PATCH
 STRINGTABLE
 BEGIN
-    IDS_DIFF_SUCCEEDED      "El pedaç s'ha generat amb èxit."
+    IDS_DIFF_SUCCEEDED      "El pedaç s'ha generat satisfactòriament."
     IDS_DIFF_ITEM1NOTFOUND  "1. no s'ha trobat l'element o aquest és un directori!"
     IDS_DIFF_ITEM2NOTFOUND  "2. no s'ha trobat l'element o aquest és un directori!"
     IDS_DIFF_FILEOVERWRITE  "El fitxer de pedaç ja existeix. El voleu sobreescriure?"
@@ -1749,27 +1749,27 @@ END
 // Regular expression errors
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_ERROR        "Regular expression error"
-    IDS_REGEXP_NOMATCH      "No match"
-    IDS_REGEXP_INVALID      "Invalid regular expression"
-    IDS_REGEXP_COLL_CHAR    "Invalid collation character"
-    IDS_REGEXP_CHAR_CLASS   "Invalid character class name"
-    IDS_REGEXP_TRAILING_BS  "Trailing backslash"
-    IDS_REGEXP_INVALID_BACKREF "Invalid back reference"
-    IDS_REGEXP_UNMATCHED_BRACK "Unmatched [ or [^"
-    IDS_REGEXP_UNMATCHED_PAREN "Unmatched ( or \\("
-    IDS_REGEXP_UNMATCHED_BRACE "Unmatched \\{"
-    IDS_REGEXP_INVALID_BRACE "Invalid content of \\{\\}"
-    IDS_REGEXP_RANGE_END    "Invalid range end"
-    IDS_REGEXP_OUTOFMEM     "Out of memory"
-    IDS_REGEXP_INVALID_PREV_EXP "Invalid preceding regular expression"
-    IDS_REGEXP_PREMATURE_END "Premature end of regular expression"
-    IDS_REGEXP_TOO_BIG      "Regular expression too big"
+    IDS_REGEXP_ERROR        "Hi ha un error a l'expressió regular"
+    IDS_REGEXP_NOMATCH      "No s'ha trobat cap coincidència"
+    IDS_REGEXP_INVALID      "L'expressió regular és invàlida"
+    IDS_REGEXP_COLL_CHAR    "El caràcter de col·lació és invàlid"
+    IDS_REGEXP_CHAR_CLASS   "El nom de la classe de caràcter és invàlid"
+    IDS_REGEXP_TRAILING_BS  "Hi ha una barra inversa al final"
+    IDS_REGEXP_INVALID_BACKREF "La referència vers enrere és invàlida"
+    IDS_REGEXP_UNMATCHED_BRACK "Una construcció [ o [^ està desaparellada"
+    IDS_REGEXP_UNMATCHED_PAREN "Una construcció ( o \\( està desaparellada"
+    IDS_REGEXP_UNMATCHED_BRACE "Una construcció \\{ està desaparellada"
+    IDS_REGEXP_INVALID_BRACE "El contingut de la construcció \\{\\} és invàlid"
+    IDS_REGEXP_RANGE_END    "El final del rang és invàlid"
+    IDS_REGEXP_OUTOFMEM     "Sense memòria"
+    IDS_REGEXP_INVALID_PREV_EXP "L'expressió regular precedent és invàlida"
+    IDS_REGEXP_PREMATURE_END "L'expressió regular acaba prematurament"
+    IDS_REGEXP_TOO_BIG      "L'expressió regular és massa llarga"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_UNMATCHED_RPAREN "Unmatched ) or \\)"
+    IDS_REGEXP_UNMATCHED_RPAREN "Una construcció ) o \\) està desaparellada"
 END
 
 // LANGAGE NAMES #1
@@ -2023,7 +2023,7 @@ END
 STRINGTABLE
 BEGIN
     ID_UNPACK_MANUAL        "L'usuari tria el desempaquetador (no hi ha desempaquetament en comparar directoris)"
-    ID_UNPACK_AUTO          "El desempaquetador adaptat s'aplica a ambdós fitxers (només hi cal l'extensió a un fitxer)"
+    ID_UNPACK_AUTO          "El desempaquetador adaptat s'aplica a ambdós fitxers (només hi cal l'extensió en un fitxer)"
     ID_POPUP_OPEN_WITH_UNPACKER "Tria un desempaquetador per a editar aquest fitxer"
     ID_NO_PREDIFFER         "No prediferencia (normal)"
     ID_SUGGESTED_PLUGINS    "Connectors suggerits"
@@ -2041,7 +2041,7 @@ END
 STRINGTABLE
 BEGIN
     ID_HELP_CONTENTS        "Visualitza la Guia de l'Usuari del WinMerge\nAjuda"
-    ID_HELP_GETCONFIG       "Treu informació de versió i configuració actuals del WinMerge a un fitxer de text"
+    ID_HELP_GETCONFIG       "Treu informació de versió i configuració actuals del WinMerge en un fitxer de text"
     ID_HELP_GNULICENSE      "Mostra la Llicència Pública General de GNU"
     IDS_PRIVATEBUILD_FMT    "Muntatge privat: %1"
 END
@@ -2051,7 +2051,7 @@ STRINGTABLE
 BEGIN
     ID_TITLE_PLUGINS_SETTINGS "Ajustos del connector"
     ID_PREDIFF_MANUAL       "No prediferenciïs"
-    ID_PREDIFF_AUTO         "Prediferencia si és possible"
+    ID_PREDIFF_AUTO         "Prediferencia quan sigui possible"
     ID_NO_EDIT_SCRIPTS      "< Buit >"
     ID_NO_SCT_SCRIPTS       "No s'ha trobat el WSH - seqüències d'ordres .sct inhabilitades"
     IDS_USERCHOICE_NONE     "<Cap>"
@@ -2064,9 +2064,9 @@ BEGIN
     ID_DISPLAY_MOVED_NONE   "No mostra els blocs moguts"
     ID_DISPLAY_MOVED_ALL    "Mostra tots els blocs moguts"
     ID_DISPLAY_MOVED_FOLLOW_DIFF "Mostra només els blocs moguts des de la diferència actual"
-    ID_LOCBAR_GOTODIFF      "Va fins la diferència sota el cursor"
-    ID_LOCBAR_GOTODIFF_FMT  "Va fins la diferència %1 de %2"
-    ID_LOCBAR_GOTOLINE_FMT  "Va fins la línia %1"
+    ID_LOCBAR_GOTODIFF      "Va fins a la diferència sota la busca"
+    ID_LOCBAR_GOTODIFF_FMT  "Va fins a la diferència %1 de %2"
+    ID_LOCBAR_GOTOLINE_FMT  "Va fins a la línia %1"
 END
 
 // END STRINGS SYNCHRO

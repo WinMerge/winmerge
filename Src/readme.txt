@@ -3,6 +3,9 @@
   Submitted by Tim Gerundt
   Src/res: Merge.ico
   Src/Languages/*/res: Merge.ico
+ PATCH: [ 1047670 ] Catalan translation update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
 
 2004-10-15 WinMerge experimental release 2.1.7.15 (cvs) (Perry)
 
