@@ -2601,9 +2601,13 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 		{
 			CString s;
 			AfxFormatString1(s, IDS_SUGGEST_PRESERVEEOL, sFileName); 
-			if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION|MB_DONT_ASK_AGAIN, IDS_SUGGEST_PRESERVEEOL) == IDYES)
+			if (AfxMessageBox(s, MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN,
+				IDS_SUGGEST_PRESERVEEOL) == IDYES)
+			{
 				// the user wants to keep the original chars
 				mf->SetEOLMixed(TRUE);
+				mf->m_options.SaveOption(OPT_ALLOW_MIXED_EOL, TRUE);
+			}
 		}
 	}
 
