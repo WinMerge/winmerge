@@ -1,3 +1,8 @@
+2003-06-26 Kimmo
+ PATCH: [ 755918 ] Fix typo in CCrystalTextView extension list
+  Added more filename extensions
+  editlib: ccrystaltextview.cpp
+
 2003-06-25 Kimmo
  PATCH: [ 759755 ] Better rescan error reporting
   WinMerge: MainFrm.cpp MergeDoc.h MergeDoc.cpp
