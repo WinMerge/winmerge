@@ -1,3 +1,9 @@
+2003-02-26 Kimmo
+ BUG: [ 683753 ] Rescan is not prompting to save dirty
+      current file
+  WinMerge:
+   MainFrm.cpp
+
 2003-02-26 Christian
  [ 70970 ] Translate Merge.rc into danish
     BuildAll.bat and added directory Languages/Danish

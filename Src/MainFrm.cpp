@@ -253,6 +253,12 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 void CMainFrame::OnFileOpen() 
 {
+	if (m_pMergeDoc)
+	{
+		// Save files and update dirview status if needed
+		if (!m_pMergeDoc->SaveHelper())
+			return;
+	}
 	DoFileOpen();
 }
 
