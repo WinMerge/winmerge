@@ -2077,10 +2077,8 @@ void CMergeDoc::OnFileSaveRight()
  */
 void CMergeDoc::OnFileSaveAsLeft()
 {
-	CString s;
 	BOOL bSaveResult = FALSE;
-	
-	DoSaveAs(s, bSaveResult, TRUE);
+	DoSaveAs(m_strLeftFile, bSaveResult, TRUE);
 }
 
 /**
@@ -2088,10 +2086,8 @@ void CMergeDoc::OnFileSaveAsLeft()
  */
 void CMergeDoc::OnFileSaveAsRight()
 {
-	CString s;
 	BOOL bSaveResult = FALSE;
-	
-	DoSaveAs(s, bSaveResult, FALSE);
+	DoSaveAs(m_strRightFile, bSaveResult, FALSE);
 }
 
 /**

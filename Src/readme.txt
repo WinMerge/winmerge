@@ -1,6 +1,8 @@
 2004-09-15 Kimmo
  PATCH: [ 1027936 ] Fix statusbar display for ghost lines
   Src: MergeEditView.cpp
+ PATCH: [ 1027994 ] Use current filename and path as defaults for SaveAs dialog
+  Src: MergeDoc.cpp
 
 2004-09-14 Kimmo
  PATCH: [ 1027118 ] Separate items for Copy Path in dircompare context menu
