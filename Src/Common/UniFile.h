@@ -15,6 +15,7 @@
  */
 class UniFile
 {
+public:
 	struct UniError
 	{
 		CString apiname;
@@ -24,7 +25,7 @@ class UniFile
 		void ClearError() { apiname = _T(""); syserrnum = ERROR_SUCCESS; desc = _T(""); }
 		UniError() { ClearError(); }
 	};
-public:
+
 	virtual bool OpenReadOnly() = 0;
 
 	virtual void Close() = 0;

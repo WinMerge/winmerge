@@ -7,7 +7,11 @@
   WinMerge: DirView.h
  Removing unused variables
   WinMerge: DiffWrapper.cpp DirActions.cpp DirDoc.cpp DirScan.cpp
-   DirViewColHandler.cpp MainFrm.cpp Merge.cpp MergeDoc.cpp 
+   DirViewColHandler.cpp MainFrm.cpp Merge.cpp MergeDoc.cpp
+ BUG: [ 830258 ] Problem compiling with visual .net C++
+  Submitted with fixes by Steve Beaudoin
+  common: UniFile.h
+  WinMerge: ChildFrm.cpp files.cpp
 
 2003-10-31 Laoran
  fix Plugins PACK_UNPACK when nothing changes (+ update functions name)

@@ -269,7 +269,8 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// Merge frame also has a dockable bar at the very bottom
 	// created in OnCreateClient 
-	m_wndDetailBar.SetBarStyle(m_wndDetailBar.GetBarStyle() | CBRS_SIZE_DYNAMIC);
+	m_wndDetailBar.SetBarStyle(m_wndDetailBar.GetBarStyle() |
+		CBRS_SIZE_DYNAMIC | CBRS_ALIGN_TOP);
 	m_wndDetailBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM);
 	DockControlBar(&m_wndDetailBar, AFX_IDW_DOCKBAR_BOTTOM);
 

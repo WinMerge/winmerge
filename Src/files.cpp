@@ -217,7 +217,7 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 		if (parsedTextFile->codeset == ucr::NONE)
 		{
 			ch = *lpByte;
-			newline.sline += ch;
+			newline.sline += (char)ch;
 		}
 #endif
 	// otherwise we convert via Unicode
