@@ -78,18 +78,25 @@ public :
           m_pOwnerDoc = pDoc;
 		  m_bIsLeft=bLeft;
         }
-        BOOL GetLine( int nLineIndex, CString &strLine )
-        {
-	        int		nLineLength = CCrystalTextBuffer::GetLineLength( nLineIndex );
+		BOOL GetLine( int nLineIndex, CString &strLine ) 
+		{ 
+			int nLineLength = CCrystalTextBuffer::GetLineLength 
+				( nLineIndex ); 
+			
+			if( nLineLength < 0 ) 
+				return FALSE; 
+			else if( nLineLength == 0 ) 
+				strLine.Empty(); 
+			else 
+			{ 
+				_tcsncpy ( strLine.GetBuffer( nLineLength ), 
+					CCrystalTextBuffer::GetLineChars( nLineIndex ), 
+					nLineLength ); 
+				strLine.ReleaseBuffer( nLineLength ); 
+			} 
+			return TRUE; 
+		} 
 
-	        if( nLineLength <= 0 )
-		        return FALSE;
-
-	        _tcsncpy ( strLine.GetBuffer( nLineLength ), CCrystalTextBuffer::GetLineChars( nLineIndex ), nLineLength );
-	        strLine.ReleaseBuffer( nLineLength );
-
-	        return TRUE;
-        }
         virtual void SetModified (BOOL bModified = TRUE)
         {
           CCrystalTextBuffer::SetModified (bModified);
