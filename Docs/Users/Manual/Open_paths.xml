@@ -3,8 +3,7 @@
   <para>WinMerge allows selecting/opening paths in several ways. Using Open-dialog is just one of them.</para>
   <sect2>
     <title>Open-dialog</title>
-    <para>Basic use of Open-dialog is described in <link linkend="QuickStart">Quick start</link>. Here are some more detailed information and tips to use Open-dialog more efficiently.</para>
-    <para>Environment variables can be used as (part of) paths. Environment variable is expanded when it's name is put between two <constant>%</constant>:s. For example <envar>%WORKDIR%\</envar></para>
+    <para>Basic use of Open-dialog is described in <link linkend="QuickStart">Quick start</link>. Here is some more detailed information and tips about how to use Open-dialog more efficiently.</para>
     <sect3>
       <title>Environment variables</title>
       <para>Environment variables can be used as (part of) paths. Environment variable is expanded when it's name is put between two <constant>%</constant>:s.</para>
@@ -15,7 +14,11 @@
     </sect3>
     <sect3>
       <title>Opening archive files</title>
-      <para>If <ulink url="http://www.7-zip.org/">7-Zip</ulink> is installed to system WinMerge can open archive files. Opening archive files is done like other files: select archive files to Open-dialog's fields. If WinMerge recognizes archive format it opens contents of archive files to directory compare.</para>
+      <para>If <ulink url="http://www.7-zip.org/">7-Zip</ulink> is installed to system WinMerge can open archive files. Opening two archive files is done like other files: select two archive files to Open-dialog's fields. If WinMerge recognizes archive format it opens contents of archive files to directory compare.</para>
+      <para><link linkend="CompareDirs">Directory compare</link> chapter describes how to add files to archive files from directory compare. And how files are put into subfolders <filename class="directory">Original/</filename> and <filename class="directory">Altered/</filename>. If archive file contains these two subfolders it must be opened by selecting same filename to both sides in Open-dialog or commandline. Then WinMerge compares these two subfolders.</para>
+      <tip>
+        <para>When dragging archive file to WinMerge window press <keycap>Shift</keycap> when dropping file and WinMerge automatically copies same filename to both sides and opens archive file.</para>
+      </tip>
     </sect3>
     <sect3>
       <title>Filter selection</title>
