@@ -9,6 +9,7 @@
 
 #include "stdafx.h"
 #include "LogFile.h"
+#include <afxinet.h>
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -130,108 +131,88 @@ void CLogFile::SetMaskLevel(UINT maskLevel)
 /**
  * @brief Write formatted message with default log level
  */
-void CLogFile::Write(LPCTSTR pszFormat, ...)
+UINT CLogFile::Write(LPCTSTR pszFormat, ...)
 {
-	if (!m_bEnabled)
-		return;
-
-	if ((m_nDefaultLevel & m_nMaskLevel) == 0)
-		return;
-
-	TCHAR buf[2*1024] = {0};
-	va_list arglist;
-	va_start(arglist, pszFormat);
-	if (pszFormat != NULL)
-		_vstprintf(buf, pszFormat, arglist);
-	va_end(arglist);
-	_tcscat(buf, _T("\n"));
-	
-	CString msg = GetPrefix(m_nDefaultLevel);
-	msg += buf;
-
-	Write(msg);
+	if (m_bEnabled && (m_nDefaultLevel & m_nMaskLevel))
+	{
+		va_list arglist;
+		va_start(arglist, pszFormat);
+		WriteV(m_nDefaultLevel, pszFormat, arglist);
+		va_end(arglist);
+	}
+	return m_nMaskLevel & LOGLEVEL::LSILENTVERIFY;
 }
 
 /**
  * @brief Write message from resource with default level
  */
-void CLogFile::Write(DWORD idFormatString, ...)
+UINT CLogFile::Write(DWORD idFormatString, ...)
 {
-	if (!m_bEnabled)
-		return;
-
-	if ((m_nDefaultLevel & m_nMaskLevel) == 0)
-		return;
-
-	TCHAR buf[2*1024]=_T("");
 	CString strFormat;
-
-	if (strFormat.LoadString(idFormatString))
+	if (m_bEnabled && (m_nDefaultLevel & m_nMaskLevel)
+		&& strFormat.LoadString(idFormatString))
 	{
 		va_list arglist;
 		va_start(arglist, idFormatString);
-		_vstprintf(buf, strFormat, arglist);
+		WriteV(m_nDefaultLevel, strFormat, arglist);
 		va_end(arglist);
-		_tcscat(buf, _T("\n"));
-		
-		CString msg = GetPrefix(m_nDefaultLevel);
-		msg += buf;
-		
-		Write(msg);
 	}
+	return m_nMaskLevel & LOGLEVEL::LSILENTVERIFY;
 }
 
 /**
  * @brief Write formatted message to log with given level
  */
-void CLogFile::Write(UINT level, LPCTSTR pszFormat, ...)
+UINT CLogFile::Write(UINT level, LPCTSTR pszFormat, ...)
 {
-	if (!m_bEnabled)
-		return;
-
-	if ((level & m_nMaskLevel) == 0)
-		return;
-
-	TCHAR buf[4*1024] = {0};
-	va_list arglist;
-	va_start(arglist, pszFormat);
-	if (pszFormat != NULL)
-		_vstprintf(buf, pszFormat, arglist);
-	va_end(arglist);
-	_tcscat(buf, _T("\n"));
-	
-	CString msg = GetPrefix(level);
-	msg += buf;
-
-	Write(msg);
+	if (m_bEnabled && (level & m_nMaskLevel))
+	{
+		va_list arglist;
+		va_start(arglist, pszFormat);
+		WriteV(level, pszFormat, arglist);
+		va_end(arglist);
+	}
+	return m_nMaskLevel & LOGLEVEL::LSILENTVERIFY;
 }
 
 /**
  * @brief Write message from resource to log with given level
  */
-void CLogFile::Write(UINT level, DWORD idFormatString, ...)
+UINT CLogFile::Write(UINT level, DWORD idFormatString, ...)
 {
-	if (!m_bEnabled)
-		return;
-
-	if ((level & m_nMaskLevel) == 0)
-		return;
-
-	TCHAR buf[2*1024]=_T("");
 	CString strFormat;
-
-	if (strFormat.LoadString(idFormatString))
+	if (m_bEnabled && (level & m_nMaskLevel)
+		&& strFormat.LoadString(idFormatString))
 	{
 		va_list arglist;
 		va_start(arglist, idFormatString);
-		_vstprintf(buf, strFormat, arglist);
+		WriteV(level, strFormat, arglist);
 		va_end(arglist);
-		_tcscat(buf, _T("\n"));
-		
-		CString msg = GetPrefix(m_nDefaultLevel);
-		msg += buf;
-		
-		Write(msg);
+	}
+	return m_nMaskLevel & LOGLEVEL::LSILENTVERIFY;
+}
+
+/**
+ * @brief Format and Write message to log.
+ * @note this function is used only internally by other write-functions.
+ */
+void CLogFile::WriteV(UINT level, LPCTSTR pszFormat, va_list arglist)
+{
+	CString msg;
+	msg.FormatV(pszFormat, arglist);
+	msg.Insert(0, GetPrefix(level));
+	if (level & LOGLEVEL::LOSERROR)
+	{
+		TCHAR cause[5120];
+		CInternetException(GetLastError()).GetErrorMessage(cause, countof(cause));
+		msg += cause;
+	}
+	msg.TrimRight(_T("\r\n"));
+	msg += _T("\n");
+	WriteRaw(msg);
+	if (level & LOGLEVEL::LDEBUG)
+	{
+		OutputDebugString(msg);
 	}
 }
 
@@ -239,7 +220,7 @@ void CLogFile::Write(UINT level, DWORD idFormatString, ...)
  * @brief Write new line to log.
  * @note this function is used only internally by other write-functions.
  */
-void CLogFile::Write(CString msg)
+void CLogFile::WriteRaw(LPCTSTR msg)
 {
 	DWORD dwWaitRes = WaitForSingleObject(m_hLogMutex, 10000);
 
@@ -304,10 +285,10 @@ void CLogFile::Prune(FILE *f)
 /**
  * @brief Return message prefix for given loglevel.
  */
-CString CLogFile::GetPrefix(UINT level) const
+LPCTSTR CLogFile::GetPrefix(UINT level) const
 {
-	CString str;
-	switch (level)
+	LPCTSTR str = _T("");
+	switch (level & 0x0FFF)
 	{
 		case LOGLEVEL::LERROR:
 			str = _T("ERROR: ");

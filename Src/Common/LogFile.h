@@ -24,6 +24,9 @@ namespace LOGLEVEL
 		LMSG = 0x8, /**< Normal messages */
 		LCODEFLOW = 0x10, /**< Code flow messages */
 		LCOMPAREDATA = 0x20,
+		LOSERROR = 0x1000, /**< Append description of last error */
+		LSILENTVERIFY = 0x2000, /**< No VERIFY popup, please */
+		LDEBUG = 0x4000,  /**< Append message to debug window as well */
 	};
 };
 
@@ -53,10 +56,10 @@ public:
 	UINT GetMaskLevel() const;
 	void SetMaskLevel(UINT maskLevel);
 
-	void Write(LPCTSTR pszFormat, ...);
-	void Write(DWORD idFormatString, ...);
-	void Write(UINT level, LPCTSTR pszFormat, ...);
-	void Write(UINT level, DWORD idFormatString, ...);
+	UINT Write(LPCTSTR pszFormat, ...);
+	UINT Write(DWORD idFormatString, ...);
+	UINT Write(UINT level, LPCTSTR pszFormat, ...);
+	UINT Write(UINT level, DWORD idFormatString, ...);
 
 	// overloaded Write Function to map to Write to Error Set code //
 	void WriteError(CString JobID, CString ProcessID, CString Event, long ecode, CString CIndex);
@@ -67,8 +70,9 @@ public:
 
 protected:
 	void Prune(FILE *f);
-	CString GetPrefix(UINT level) const;
-	void Write(CString msg);
+	LPCTSTR GetPrefix(UINT level) const;
+	void WriteV(UINT level, LPCTSTR pszFormat, va_list);
+	void WriteRaw(LPCTSTR msg);
 
 private:
 	HANDLE    m_hLogMutex;
