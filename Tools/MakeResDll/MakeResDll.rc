@@ -1,0 +1,113 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_HELLO               "Hello from MFC!"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "ResourceDLL Builder\n\nBuildR\n\n\nBuildResDll.Document\nBuildR Document"
+    IDS_BADBASEDIR          "Please locate the Developer Studio main directory"
+    IDS_CHOOSEOUTDIR        "Choose the output folder"
+    IDS_SELECTRC_CAPTION    "Select an RC Script..."
+    IDS_SELECT_RCEXE_CAPTION "Please locate RC.EXE..."
+    IDS_SELECT_LINKEXE_CAPTION "Please locate LINK.EXE..."
+    IDS_CHECK_COMPILER_FMT  "Checking compiler..."
+    IDS_CREATE_OUTDIR       "Creating output folder..."
+    IDS_BUILD_RC            "Compiling resources..."
+    IDS_LINK                "Binding resources to final DLL..."
+    IDS_SUCCESS             "Resource DLL created successfully as:"
+    IDS_CHECK_OBJ           "Building ResDll.obj..."
+    IDS_CHECK_DEF           "Building ResDll.def..."
+    IDS_ABORT               "DLL was not created."
+    IDS_BAD_RC_PATH_FMT     "Invalid RC compiler path: %1"
+    IDS_BAD_LINK_PATH_FMT   "Invalid linker path: %1"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RC_FILTER           "RC Scripts (*.rc)|*.rc||"
+    IDS_EXE_FILTER          "Executable Files (*.exe)|*.exe||"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RESOURCE_SIZE_NO_MATCH 
+                            "Resource sizes don't match, unable to continue"
+    IDS_ERR_CREATE_RES_FILE "Unable to create resource file"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PRESS_ANY_KEY       "<< press ENTER to continue >>"
+    IDS_SUCCESS_FMT         "The resource DLL was built successfully, and can be found in the following location:\r\n\r\n%1"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
