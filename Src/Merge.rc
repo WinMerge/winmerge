@@ -104,7 +104,7 @@ BEGIN
     END
     POPUP "&Edit"
     BEGIN
-        MENUITEM "&Undo\tCtrl+Z",               ID_UNDO
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
         MENUITEM SEPARATOR
         MENUITEM "&Next Difference\tTab",       ID_NEXTDIFF
         MENUITEM "&Previous Difference\tShift+Tab", ID_PREVDIFF
