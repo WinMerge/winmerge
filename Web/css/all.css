@@ -48,7 +48,7 @@ body {
 	float: left;
 	margin: 5px;
 	padding: 5px;
-	width: 180px;
+	width: 11.2em;
 	background: #C0C0C0;
 	border: 1px solid #808080;
 }
@@ -68,7 +68,7 @@ body {
 }
 
 #content {
-	margin: 5px 0 0 200px;
+	margin: 5px 0 0 12.5em;
 	padding: 5px;
 }
 

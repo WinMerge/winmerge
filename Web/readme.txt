@@ -1,3 +1,7 @@
+2005-03-06 Tim
+ PATCH: [ 1157240 ] Web: Scaling menu
+  Web\css: all.css
+
 2005-02-22 Tim
  Some margin updates:
   Web\css: all.css print.css
