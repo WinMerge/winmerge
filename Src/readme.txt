@@ -3,8 +3,10 @@
   WinMerge: MergeEditView.cpp
 
 2003-10-17 Laoran
+ fix for unicode conversion in unicode build
+  WinMerge: UnicodeUtf8.cpp
  fix to delete useless temporary files
-  FileTransform.cpp
+  WinMerge: FileTransform.cpp
  PATCH: [ 807263 ] Preprocessing patch
   common: dllproxy.c dllproxy.h lwdisp.c lwdisp.h
   Languages: resource.h *.rc
