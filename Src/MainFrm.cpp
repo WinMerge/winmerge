@@ -1698,30 +1698,38 @@ void CMainFrame::OnUpdateViewSelectfont(CCmdUI* pCmdUI)
  */
 void CMainFrame::GetFontProperties()
 {
+	USES_CONVERSION;
+
 	LOGFONT lfDefault;
 	ZeroMemory(&lfDefault, sizeof(LOGFONT));
 
-	// Use "Terminal" font instead of "Courier" as default font when
-	// system locale font charset is not ANSI_CHARSET
-	GetObject(GetStockObject(OEM_FIXED_FONT), sizeof(LOGFONT), &lfDefault);
-	if (lfDefault.lfCharSet == ANSI_CHARSET)
+	MIMECPINFO cpi = {0};
+	cpi.bGDICharset = ANSI_CHARSET;
+	lstrcpyW(cpi.wszFixedWidthFont, L"Courier New");
+	IMultiLanguage *pMLang = NULL;
+
+	HRESULT hr = CoCreateInstance(CLSID_CMultiLanguage, NULL,
+		CLSCTX_INPROC_SERVER, IID_IMultiLanguage, (void **)&pMLang);
+	if (SUCCEEDED(hr))
 	{
-		lfDefault.lfHeight = -16;
-		lfDefault.lfWidth = 0;
-		lfDefault.lfEscapement = 0;
-		lfDefault.lfOrientation = 0;
-		lfDefault.lfWeight = FW_NORMAL;
-		lfDefault.lfItalic = FALSE;
-		lfDefault.lfUnderline = FALSE;
-		lfDefault.lfStrikeOut = FALSE;
-		lfDefault.lfCharSet = ANSI_CHARSET;
-		lfDefault.lfOutPrecision = OUT_STRING_PRECIS;
-		lfDefault.lfClipPrecision = CLIP_STROKE_PRECIS;
-		lfDefault.lfQuality = DRAFT_QUALITY;
-  		lfDefault.lfPitchAndFamily = FF_MODERN | FIXED_PITCH;
-		_tcscpy(lfDefault.lfFaceName, _T("Courier"));
+		hr = pMLang->GetCodePageInfo(GetACP(), &cpi);
+		pMLang->Release();
 	}
 
+	lfDefault.lfHeight = -16;
+	lfDefault.lfWidth = 0;
+	lfDefault.lfEscapement = 0;
+	lfDefault.lfOrientation = 0;
+	lfDefault.lfWeight = FW_NORMAL;
+	lfDefault.lfItalic = FALSE;
+	lfDefault.lfUnderline = FALSE;
+	lfDefault.lfStrikeOut = FALSE;
+	lfDefault.lfCharSet = cpi.bGDICharset;
+	lfDefault.lfOutPrecision = OUT_STRING_PRECIS;
+	lfDefault.lfClipPrecision = CLIP_STROKE_PRECIS;
+	lfDefault.lfQuality = DRAFT_QUALITY;
+	lfDefault.lfPitchAndFamily = FF_MODERN | FIXED_PITCH;
+	_tcscpy(lfDefault.lfFaceName, W2T(cpi.wszFixedWidthFont));
 	LOGFONT lfnew;
 	ZeroMemory(&lfnew, sizeof(LOGFONT));
 

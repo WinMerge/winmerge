@@ -1,3 +1,8 @@
+2005-03-14 Kimmo
+ BUG: [ 1154153 ] Poor font choice for default font
+  Fix submitted by Takashi Sawanaka
+  Src: MainFrm.cpp
+
 2005-03-13 Kimmo
  BUG: [ 1162374 ] Recent WinMerge doesn't support NT4
   Src/Common: UniFile.cpp
