@@ -18,7 +18,7 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-/** 
+/**
  * @file  MergeEditView.cpp
  *
  * @brief Implementation of the CMergeEditView class
@@ -192,7 +192,7 @@ void CMergeEditView::UpdateResources()
 BOOL CMergeEditView::PrimeListWithFile()
 {
 	// Set the tab size now, just in case the options change...
-	// We don't update it at the end of OnOptions, 
+	// We don't update it at the end of OnOptions,
 	// we can update it safely now
 	SetTabSize(mf->m_nTabSize);
 
@@ -293,7 +293,7 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, BOOL & bDrawWhitespace)
 {
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
-	
+
 	// Line inside diff
 	if (dwLineFlags & LF_WINMERGE_FLAGS)
 	{
@@ -337,7 +337,7 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 	}
 	else
 	{
-		// Line not inside diff, 
+		// Line not inside diff,
 		if (!theApp.m_bHiliteSyntax)
 		{
 			// If no syntax hilighting, get windows default colors
@@ -380,7 +380,7 @@ void CMergeEditView::UpdateSiblingScrollPos (BOOL bHorz)
 						newTopLine = pSiblingView->GetLineCount()-1;
 			}
 		}
-		if (m_nTopLine != newTopLine) 
+		if (m_nTopLine != newTopLine)
 			ScrollToLine(newTopLine);
 
 		for (nRow = 0; nRow < nRows; nRow++)
@@ -454,11 +454,11 @@ void CMergeEditView::SelectDiff(int nDiff, BOOL bScroll /*=TRUE*/, BOOL bSelectT
 
 	// Check that nDiff is valid
 	if (nDiff < 0)
-		_RPTF1( _CRT_ERROR, _T("Diffnumber negative (%d)"), nDiff);
+		_RPTF1(_CRT_ERROR, "Diffnumber negative (%d)", nDiff);
 	if (nDiff >= (int)pd->m_nDiffs)
-		_RPTF2( _CRT_ERROR, _T("Selected diff > diffcount (%d >= %d)"),
+		_RPTF2(_CRT_ERROR, "Selected diff > diffcount (%d >= %d)",
 			nDiff, (int)pd->m_nDiffs);
-	
+
 	SelectNone();
 	pd->SetCurrentDiff(nDiff);
 	ShowDiff(bScroll, bSelectText);
@@ -528,7 +528,7 @@ void CMergeEditView::OnEditCopy()
 	CMergeDoc * pDoc = GetDocument();
 	CPoint ptSelStart, ptSelEnd;
 	GetSelection(ptSelStart, ptSelEnd);
-	
+
 	// Nothing selected
 	if (ptSelStart == ptSelEnd)
 		return;
@@ -539,7 +539,7 @@ void CMergeEditView::OnEditCopy()
 		= m_bIsLeft ? &pDoc->m_ltBuf : &pDoc->m_rtBuf;
 
 	buffer->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
-		ptSelEnd.y, ptSelEnd.x, text); 
+		ptSelEnd.y, ptSelEnd.x, text);
 
 	PutToClipboard(text);
 }
@@ -642,7 +642,7 @@ void CMergeEditView::OnEditUndo()
 			return;
 
 		GetParentFrame()->SetActiveView(this, TRUE);
-		if(CCrystalEditViewEx::DoEditUndo()) 
+		if(CCrystalEditViewEx::DoEditUndo())
 		{
 			--pDoc->curUndo;
 			pDoc->UpdateHeaderPath(m_bIsLeft);
@@ -834,10 +834,10 @@ BOOL CMergeEditView::IsLineInCurrentDiff(int nLine)
 	// Check validity of nLine
 #ifdef _DEBUG
 	if (nLine < 0)
-		_RPTF1( _CRT_ERROR, _T("Linenumber is negative (%d)!"), nLine);
+		_RPTF1(_CRT_ERROR, "Linenumber is negative (%d)!", nLine);
 	int nLineCount = LocateTextBuffer()->GetLineCount();
 	if (nLine >= nLineCount)
-		_RPTF2( _CRT_ERROR, _T("Linenumber > linecount (%d>%d)!"), nLine, nLineCount);
+		_RPTF2(_CRT_ERROR, "Linenumber > linecount (%d>%d)!", nLine, nLineCount);
 #endif
 
 	CMergeDoc *pd = GetDocument();
@@ -849,7 +849,7 @@ BOOL CMergeEditView::IsLineInCurrentDiff(int nLine)
 
 /**
  * @brief Called when mouse left-button double-clicked
- * 
+ *
  * Double-clicking mouse inside diff selects that diff
  */
 void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
@@ -992,11 +992,11 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 /**
  * @brief Copy diffs inside selection from right to left
  */
-void CMergeEditView::OnMultipleLeft() 
+void CMergeEditView::OnMultipleLeft()
 {
 	if (m_bIsLeft)
 	{
-		// We need the right selection, go to right view 
+		// We need the right selection, go to right view
 		GetDocument()->GetRightView()->OnMultipleLeft();
 		return;
 	}
@@ -1016,11 +1016,11 @@ void CMergeEditView::OnMultipleLeft()
 /**
  * @brief Update "Copy diffs in right selection to left" item
  */
-void CMergeEditView::OnUpdateMultipleLeft(CCmdUI* pCmdUI) 
+void CMergeEditView::OnUpdateMultipleLeft(CCmdUI* pCmdUI)
 {
 	if (m_bIsLeft)
 	{
-		// We need the right selection, go to right view 
+		// We need the right selection, go to right view
 		GetDocument()->GetRightView()->OnUpdateMultipleLeft(pCmdUI);
 		return;
 	}
@@ -1039,11 +1039,11 @@ void CMergeEditView::OnUpdateMultipleLeft(CCmdUI* pCmdUI)
 /**
  * @brief Copy diffs inside selection from left to right
  */
-void CMergeEditView::OnMultipleRight() 
+void CMergeEditView::OnMultipleRight()
 {
 	if (!m_bIsLeft)
 	{
-		// We need the left selection, go to left view 
+		// We need the left selection, go to left view
 		GetDocument()->GetLeftView()->OnMultipleRight();
 		return;
 	}
@@ -1063,11 +1063,11 @@ void CMergeEditView::OnMultipleRight()
 /**
  * @brief Update "Copy diffs in left selection to right" item
  */
-void CMergeEditView::OnUpdateMultipleRight(CCmdUI* pCmdUI) 
+void CMergeEditView::OnUpdateMultipleRight(CCmdUI* pCmdUI)
 {
 	if (!m_bIsLeft)
 	{
-		// We need the left selection, go to left view 
+		// We need the left selection, go to left view
 		GetDocument()->GetLeftView()->OnUpdateMultipleRight(pCmdUI);
 		return;
 	}
@@ -1154,7 +1154,7 @@ void CMergeEditView::OnEditRedo()
 			return;
 
 		GetParentFrame()->SetActiveView(this, TRUE);
-		if(CCrystalEditViewEx::DoEditRedo()) 
+		if(CCrystalEditViewEx::DoEditRedo())
 		{
 			++pDoc->curUndo;
 			pDoc->UpdateHeaderPath(m_bIsLeft);
@@ -1204,7 +1204,7 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 
 	// Try to trap some errors
 	if (nDiff >= (int)pd->m_nDiffs)
-		_RPTF2(_CRT_ERROR, _T("Selected diff > diffcount (%d > %d)!"),
+		_RPTF2(_CRT_ERROR, "Selected diff > diffcount (%d > %d)!",
 			nDiff, pd->m_nDiffs);
 
 	if (m_bIsLeft)
@@ -1260,10 +1260,10 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 }
 
 
-void CMergeEditView::OnTimer(UINT nIDEvent) 
+void CMergeEditView::OnTimer(UINT nIDEvent)
 {
 	// Maybe we want theApp::OnIdle to proceed before processing a timer message
-	// ...but for this the queue must be empty 
+	// ...but for this the queue must be empty
 	// The timer message is a low priority message but the queue is maybe not yet empty
 	// So we set a flag, wait for OnIdle to proceed, then come back here...
 	// We come back here with a IDLE_TIMER OnTimer message (send with SendMessage
@@ -1278,18 +1278,18 @@ void CMergeEditView::OnTimer(UINT nIDEvent)
 	if (nIDEvent == IDT_RESCAN)
 	{
 		KillTimer(IDT_RESCAN);
-		fTimerWaitingForIdle |= FLAG_RESCAN_WAITS_FOR_IDLE; 
+		fTimerWaitingForIdle |= FLAG_RESCAN_WAITS_FOR_IDLE;
 		// notify the app to come back after OnIdle
 		theApp.SetNeedIdleTimer();
 	}
-	
+
 	if (nIDEvent == IDLE_TIMER)
 	{
 		// not a real timer, just come back after OnIdle
 		// look to flags to know what to do
 		if (fTimerWaitingForIdle & FLAG_RESCAN_WAITS_FOR_IDLE)
 			GetDocument()->RescanIfNeeded(RESCAN_TIMEOUT/1000);
-		fTimerWaitingForIdle = 0; 
+		fTimerWaitingForIdle = 0;
 	}
 
 	CCrystalEditViewEx::OnTimer(nIDEvent);
@@ -1361,7 +1361,7 @@ BOOL CMergeEditView::EnableRescan(BOOL bEnable)
 BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 {
 	// Check if we got 'ESC pressed' -message
-	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE)) 
+	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{
 		// Ask about saving unsaved document
 		CMergeDoc *pd = GetDocument();
@@ -1386,7 +1386,7 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 void CMergeEditView::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-	
+
 	if (pd->m_ltBuf.IsModified() || pd->m_rtBuf.IsModified())
 		pCmdUI->Enable(TRUE);
 	else
@@ -1477,14 +1477,14 @@ OnUpdateCaret()
 }
 
 /// Highlight difference in current line
-void CMergeEditView::OnShowlinediff() 
+void CMergeEditView::OnShowlinediff()
 {
 	// Pass this to the document, to compare this file to other
 	GetDocument()->Showlinediff(this);
 }
 
 /// Enable highlight menuitem if current line is flagged as having a difference
-void CMergeEditView::OnUpdateShowlinediff(CCmdUI* pCmdUI) 
+void CMergeEditView::OnUpdateShowlinediff(CCmdUI* pCmdUI)
 {
 	int line = GetCursorPos().y;
 	BOOL enable = GetLineFlags(line) & LF_DIFF;
@@ -1531,7 +1531,7 @@ typedef struct {
 		CPoint point;
 }				CallbackDataForContextMenu;
 
-/** 
+/**
  * @brief Callback for the context menu : display the menu, let the user choose a function
  */
 int callbackForContextMenu(CStringArray * functionNamesList, void * receivedData)
@@ -1547,7 +1547,7 @@ int callbackForContextMenu(CStringArray * functionNamesList, void * receivedData
 	::AppendMenu(hMenu, MF_SEPARATOR, (UINT) -1, 0);
 	::AppendMenu(hMenu, MF_STRING, 100, _T("Unload script"));
 
-	// wait for the user choice 
+	// wait for the user choice
 	CallbackDataForContextMenu * data = (CallbackDataForContextMenu*) receivedData;
 	int response = ::TrackPopupMenu(hMenu, TPM_RETURNCMD, data->point.x, data->point.y, 0, data->pWnd, 0);
 	::DestroyMenu(hMenu);
@@ -1567,10 +1567,10 @@ int callbackForContextMenu(CStringArray * functionNamesList, void * receivedData
 	return -1;
 }
 
-/** 
+/**
  * @brief Offer a context menu built with scriptlet/ActiveX functions
  */
-void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point) 
+void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
 	// text is CHAR if compiled without UNICODE, WCHAR with UNICODE
 	CString text = GetSelectedText();
@@ -1613,7 +1613,7 @@ void CMergeEditView::OnUpdateStatusRightEOL(CCmdUI* pCmdUI)
 /**
  * @brief Change EOL mode and unify all the lines EOL to this new mode
  */
-void CMergeEditView::OnConvertEolTo(UINT nID ) 
+void CMergeEditView::OnConvertEolTo(UINT nID )
 {
 	int nStyle = CRLF_STYLE_AUTOMATIC;;
 	switch (nID)
@@ -1629,7 +1629,7 @@ void CMergeEditView::OnConvertEolTo(UINT nID )
 			break;
 		default:
 			// Catch errors
-			_RPTF0(_CRT_ERROR, _T("Unhandled EOL type conversion!"));
+			_RPTF0(_CRT_ERROR, "Unhandled EOL type conversion!");
 			break;
 	}
 	m_pTextBuffer->SetCRLFMode(nStyle);
@@ -1647,7 +1647,7 @@ void CMergeEditView::OnConvertEolTo(UINT nID )
 /**
  * @brief allow convert to entries in file submenu
  */
-void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI) 
+void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 {
 	int nStyle = CRLF_STYLE_AUTOMATIC;
 	switch (pCmdUI->m_nID)
