@@ -73,7 +73,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 {
 	//lpcs->style |= WS_MAXIMIZE;
 	// create a splitter with 1 row, 2 columns
-	if (!m_wndSplitter.CreateStatic(this, 1, 2)) //, WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL))
+	if (!m_wndSplitter.CreateStatic(this, 1, 2, WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL) )
 	{
 		TRACE0("Failed to CreateStaticSplitter\n");
 		return FALSE;
