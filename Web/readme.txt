@@ -1,3 +1,7 @@
+2005-02-22 Tim
+ Some margin updates:
+  Web\css: all.css print.css
+
 2005-02-20 Tim
  PATCH: [ 1144726 ] Web: Updated Developer instructions
   Web\developer: needed.php

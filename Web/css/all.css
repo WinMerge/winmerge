@@ -94,7 +94,8 @@ p.important {
 }
 
 pre.code {
-	margin: 0 25px 0 25px;
+	margin-left: 25px;
+	margin-right: 25px;
 	padding: 5px;
 	background-color: #EEEEEE;
 	border: 1px solid black;
@@ -107,6 +108,7 @@ acronym {
 
 /* Status of translations */
 #status {
+	margin-bottom: 10px;
 	border-collapse: collapse;
 }
 
