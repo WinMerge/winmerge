@@ -1,9 +1,11 @@
 2003-11-14 Laoran 
-  PATCH: [ 841062 ] Alternative icons for PATCH [ 840273 ] (for hilight line diff)
-  Submitted by Tim Gerundt
-   WinMerge: Merge.rc
-   res: Toolbar.bmp
-   Languages/res: Toolbar.bmp
+ PATCH: [ 840296 ] Informative messageboxes when loading files
+  WinMerge: files.h MainFrm.cpp MainFrm.h Merge.rc MergeDoc.cpp resource.h
+ PATCH: [ 841062 ] Alternative icons for PATCH [ 840273 ] (for hilight line diff)
+ Submitted by Tim Gerundt
+  WinMerge: Merge.rc
+  res: Toolbar.bmp
+  Languages/res: Toolbar.bmp
 
 2003-11-14 Kimmo
  PATCH: [ 841767 ] Store unique item path

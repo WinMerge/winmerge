@@ -102,6 +102,7 @@ public:
 	void ApplyViewWhitespace();
 	BOOL OpenFileToExternalEditor(CString file);
 	CString GetDefaultEditor();
+	void SetEOLMixed(BOOL bAllow);
 
 // Overrides
 	// ClassWizard generated virtual function overrides

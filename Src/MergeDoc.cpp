@@ -1085,6 +1085,18 @@ int GetTextFileStyle(const UniMemFile::txtstats & stats)
 		}
 	}
 }
+/**
+ * @brief Examine statistics in textFileStats and tell if the file has only one EOL type
+ */
+int IsTextFileStylePure(const UniMemFile::txtstats & stats)
+{
+	int nType = 0;
+	nType += (stats.ncrlfs > 0);
+	nType += (stats.ncrs > 0);
+	nType += (stats.nlfs > 0);
+	return (nType <= 1);
+}
+
 
 /**
  * @brief Return a string giving #lines and #bytes and how much time elapsed.
@@ -1240,7 +1252,15 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 		FinishLoading();
 		// flags don't need initialization because 0 is the default value
 
-		nRetVal = FRESULT_OK;
+		// Set the return value : OK + info if the file is impure
+		// A pure file is a file where EOL are consistent (all DOS, or all UNIX, or all MAC)
+		// An impure file is a file with several EOL types
+		// WinMerge may display impure files, but the default option is to unify the EOL
+		// We return this info to the caller, so it may display a confirmation box
+		if (IsTextFileStylePure(pufile->GetTxtStats()))
+			nRetVal = FRESULT_OK;
+		else
+			nRetVal = FRESULT_OK_IMPURE;
 
 		// stash original encoding away
 		switch (pufile->GetUnicoding())
@@ -2436,6 +2456,22 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 	int nCrlfStyle = CRLF_STYLE_AUTOMATIC;
 	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker, m_strBothFilenames, readOnly, nCrlfStyle, codepage);
 
+	if (retVal == FRESULT_OK_IMPURE)
+	{
+		// File loaded, and multiple EOL types in this file
+		retVal = FRESULT_OK;
+		// By default, WinMerge unifies EOL to the most used type (when diffing or saving)
+		// As some info are lost, we request a confirmation from the user
+		if (!mf->m_bAllowMixedEol)
+		{
+			CString s;
+			AfxFormatString1(s, IDS_SUGGEST_PRESERVEEOL, sFileName); 
+			if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION) == IDYES)
+				// the user wants to keep the original chars
+				mf->SetEOLMixed(TRUE);
+		}
+	}
+
 	if (retVal != FRESULT_OK)
 	{
 		if (retVal == FRESULT_ERROR)
@@ -2475,12 +2511,9 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright)
 {
-	DIFFOPTIONS diffOptions = {0};
 	int nRescanResult = RESCAN_OK;
-	m_diffWrapper.GetOptions(&diffOptions);
 
-	m_ltBuf.SetEolSensitivity(diffOptions.bEolSensitive);
-	m_rtBuf.SetEolSensitivity(diffOptions.bEolSensitive);
+	// clear undo stack
 	undoTgt.clear();
 	curUndo = undoTgt.begin();
 
@@ -2526,6 +2559,26 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	// Set read-only statuses
 	m_ltBuf.SetReadOnly(bROLeft);
 	m_rtBuf.SetReadOnly(bRORight);
+
+	// Check the EOL sensitivity option (do it before Rescan)
+	DIFFOPTIONS diffOptions = {0};
+	m_diffWrapper.GetOptions(&diffOptions);
+	if (m_ltBuf.GetCRLFMode() != m_rtBuf.GetCRLFMode() && !mf->m_bAllowMixedEol && diffOptions.bEolSensitive)
+	{
+		// Options and files not are not compatible :
+		// Sensitive to EOL on, allow mixing EOL off, and files have a different EOL style.
+		// All lines will differ, that is not very interesting and probably not wanted.
+		// Propose to turn off the option 'sensitive to EOL'
+		CString sOptionName;
+		VERIFY(sOptionName.LoadString(IDC_MIXED_EOL));
+		CString s;
+		AfxFormatString1(s, IDS_SUGGEST_IGNOREEOL, sOptionName); 
+		if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION) == IDYES)
+		{
+			diffOptions.bEolSensitive = FALSE;
+			m_diffWrapper.SetOptions(&diffOptions);
+		}
+	}
 
 	nRescanResult = Rescan();
 

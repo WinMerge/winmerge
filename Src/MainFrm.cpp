@@ -908,6 +908,18 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 	return TRUE;
 }
 
+/// Wrapper to set the global option 'm_bAllowMixedEol'
+void CMainFrame::SetEOLMixed(BOOL bAllow)
+{
+	if (m_bAllowMixedEol == bAllow)
+		return;
+
+	m_bAllowMixedEol = bAllow;
+	theApp.WriteProfileInt(_T("Settings"), _T("AllowMixedEOL"), m_bAllowMixedEol);
+
+	ApplyViewWhitespace();
+}
+
 void CMainFrame::OnOptions() 
 {
 	DIFFOPTIONS diffOptions = {0};
@@ -963,7 +975,6 @@ void CMainFrame::OnOptions()
 		m_bScrollToFirst = gen.m_bScroll;
 		m_nTabSize = gen.m_nTabSize;
 		m_nTabType = gen.m_nTabType;
-		m_bAllowMixedEol = gen.m_bAllowMixedEol;
 		theApp.m_bDisableSplash = gen.m_bDisableSplash;
 		m_bAutomaticRescan = gen.m_bAutomaticRescan;
 
@@ -998,7 +1009,6 @@ void CMainFrame::OnOptions()
 		theApp.WriteProfileString(_T("Settings"), _T("VssPath"), m_strVssPath);
 		theApp.WriteProfileInt(_T("Settings"), _T("TabSize"), m_nTabSize);
 		theApp.WriteProfileInt(_T("Settings"), _T("TabType"), m_nTabType);
-		theApp.WriteProfileInt(_T("Settings"), _T("AllowMixedEOL"), m_bAllowMixedEol);
 		theApp.WriteProfileInt(_T("Settings"), _T("AutomaticRescan"), m_bAutomaticRescan);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
 		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
@@ -1014,8 +1024,8 @@ void CMainFrame::OnOptions()
 
 		RebuildRegExpList();
 
-		// Update ViewWhitespace as it depends on m_bAllowMixedEol
-		mf->ApplyViewWhitespace();
+		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
+		SetEOLMixed(gen.m_bAllowMixedEol);
 
 		// make an attempt at rescanning any open diff sessions
 		MergeDocList docs;
