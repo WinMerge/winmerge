@@ -165,7 +165,7 @@ protected:
 	int m_numcols;
 	CArray<int, int> m_colorder;
 	CArray<int, int> m_invcolorder;
-
+	CPoint m_ptLastMousePos;
 	
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);
@@ -211,10 +211,12 @@ protected:
 	afx_msg void OnRefresh();
 	afx_msg void OnUpdateRefresh(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT nIDEvent);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
 	BOOL OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
+	afx_msg void OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult);
 
 private:
 	void OpenSelection();

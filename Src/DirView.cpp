@@ -48,12 +48,12 @@ IMPLEMENT_DYNCREATE(CDirView, CListViewEx)
 CDirView::CDirView()
 : m_numcols(-1)
 {
-	m_pList=NULL;
+	m_pList = NULL;
 }
 
 CDirView::~CDirView()
 {
-	 m_imageList.DeleteImageList();
+	m_imageList.DeleteImageList();
 }
 
 
@@ -100,8 +100,10 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_UPDATE_COMMAND_UI(ID_REFRESH, OnUpdateRefresh)
 	ON_WM_TIMER()
+	ON_WM_MOUSEMOVE()
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
+	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -194,7 +196,12 @@ void CDirView::OnInitialUpdate()
 
 	// Allow user to rearrange columns via drag&drop of headers
 	// if they have a new enough common controls
-	m_pList->SetExtendedStyle(LVS_EX_HEADERDRAGDROP);
+	// Also enable infotips & full row selection
+	m_pList->SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP | LVS_EX_INFOTIP);
+
+	// Disable CListViewEx's full row selection which only causes problems
+	// (tooltips and custom draw do not work!)
+	SetFullRowSel(FALSE);
 }
 
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
@@ -1312,4 +1319,34 @@ void CDirView::OnTimer(UINT nIDEvent)
 	}
 	
 	CListViewEx::OnTimer(nIDEvent);
+}
+
+/// Called before infotip is shown to get infotip text
+void CDirView::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
+{
+	LVHITTESTINFO lvhti = {0};
+	NMLVGETINFOTIP * pInfoTip = reinterpret_cast<NMLVGETINFOTIP*>(pNMHDR);
+	ASSERT(pInfoTip);
+	
+	// Get subitem under mouse cursor
+	lvhti.pt = m_ptLastMousePos;
+	m_pList->SubItemHitTest(&lvhti);
+
+	// Values >= 0 are subitem indexes
+	if (lvhti.iSubItem >= 0)
+	{
+		// Check that we are over icon or label
+		if ((lvhti.flags & LVHT_ONITEMICON) || (lvhti.flags & LVHT_ONITEMLABEL))
+		{
+			// Set item text to tooltip
+			CString strText = m_pList->GetItemText(lvhti.iItem, lvhti.iSubItem);
+			_tcscpy(pInfoTip->pszText, strText);
+		}
+	}
+}
+
+void CDirView::OnMouseMove(UINT nFlags, CPoint point) 
+{
+	m_ptLastMousePos = point;
+	CListViewEx::OnMouseMove(nFlags, point);
 }

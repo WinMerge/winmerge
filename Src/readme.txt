@@ -1,3 +1,7 @@
+2003-07-31 Kimmo
+ PATCH: [ 780827 ] Tooltips for DirView
+  WinMerge: DirView.cpp DirView.h
+
 2003-07-31 Laoran
  PATCH: [ 780508 ] Convert Line Length array to CArray
   WinMerge: ccrystaltextview.cpp ccrystaltextview.h 
