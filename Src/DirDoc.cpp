@@ -70,6 +70,7 @@ CDirDoc::CDirDoc()
 	m_bRORight = FALSE;
 	m_bRecursive = FALSE;
 	m_statusCursor = NULL;
+	m_bReuseCloses = FALSE;
 
 	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetInt(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
@@ -474,9 +475,9 @@ void CDirDoc::MergeDocClosing(CMergeDoc * pMergeDoc)
 	ASSERT(pos);
 	m_MergeDocs.RemoveAt(pos);
 
-	// If dir compare is empty (no compare results) when we close
-	// file compare close also dir compare
-	if (m_pCtxt == NULL)
+	// If dir compare is empty (no compare results) and we are not closing
+	// because of reuse close also dir compare
+	if (m_pCtxt == NULL && !m_bReuseCloses)
 		AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 }
 
@@ -507,9 +508,13 @@ BOOL CDirDoc::CloseMergeDocs()
  */
 BOOL CDirDoc::ReusingDirDoc()
 {
+	m_bReuseCloses = TRUE;
+
 	// Inform all of our merge docs that we're closing
 	if (!CloseMergeDocs())
 		return FALSE;
+
+	m_bReuseCloses = FALSE;
 
 	// clear diff display
 	ASSERT(m_pDirView);

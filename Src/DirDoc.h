@@ -137,6 +137,7 @@ private:
 	CString m_strLeftDesc; /**< Left side desription text */
 	CString m_strRightDesc; /**< Left side desription text */
 	PluginManager m_pluginman;
+	BOOL m_bReuseCloses; /**< Are we closing because of reuse? */
 };
 
 //{{AFX_INSERT_LOCATION}}

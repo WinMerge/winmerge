@@ -1,3 +1,8 @@
+2004-00-08 Kimmo
+ PATCH: [ 1023917 ] Don't close dirview when mergedocs closed by reusing code
+  Fixes bug #1023412 Crash in WinMerge.exe 2.1.7.13
+  Src: DirDoc.cpp DirDoc.h
+
 2004-09-03 WinMerge experimental release 2.1.7.13 (cvs)
 
 2004-09-03 Kimmo
