@@ -82,7 +82,8 @@ BEGIN
         MENUITEM "Copia a la &dreta",            ID_L2R
         MENUITEM "Copia a l'&esquerra",          ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Re&ssalta les diferències de línia", ID_SHOWLINEDIFF
+        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
+        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Desfés",                      ID_EDIT_UNDO
         MENUITEM "Re&fés",                       ID_EDIT_REDO
@@ -139,7 +140,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Selecciona-ho &tot\tCtrl+A",  ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "R&essalta les diferències de línia\tF4", ID_SHOWLINEDIFF
+        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
+        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Cerca...\tCtrl+F",           ID_EDIT_FIND
         MENUITEM "Subst&itueix...\tCtrl+H",     ID_EDIT_REPLACE
@@ -359,7 +361,8 @@ BEGIN
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
+    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
+    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1092,7 +1095,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEDIFF
+    BUTTON      ID_SHOWLINEWORDDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -1966,7 +1969,8 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEDIFF         "Ressalta les diferències a la línia actual\nDiferències a la Línia Actual (F4)"
+    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
+    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
     ID_EDIT_WMGOTO          "Va fins a una línia o una diferència\nVés a (Ctrl+G)"
     ID_OPTIONS              "Especifica opcions del programa\nOpcions"
     ID_REFRESH              "Actualitza la visualització\nActualitza (F5)"

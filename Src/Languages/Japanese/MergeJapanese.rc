@@ -82,7 +82,8 @@ BEGIN
         MENUITEM "右にコピー(&O)",              ID_L2R
         MENUITEM "左にコピー(&Y)",              ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "行の差異をハイライト(&H)",    ID_SHOWLINEDIFF
+        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
+        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "元に戻す(&U)",                ID_EDIT_UNDO
         MENUITEM "やり直し(&R)",                ID_EDIT_REDO
@@ -139,7 +140,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "すべて選択(&A)\tCtrl+A",      ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "行の差異をハイライト(&H)\tF4", ID_SHOWLINEDIFF
+        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
+        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "検索(&F)...\tCtrl+F",         ID_EDIT_FIND
         MENUITEM "置換(&E)...\tCtrl+H",         ID_EDIT_REPLACE
@@ -360,7 +362,8 @@ BEGIN
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
+    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
+    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1079,7 +1082,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEDIFF
+    BUTTON      ID_SHOWLINEWORDDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -1953,7 +1956,8 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEDIFF         "現在の行の差異をハイライト表示します\n現在の行の差異 (F4)"
+    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
+    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
     ID_EDIT_WMGOTO          "指定した行または、差異へ移動します\nジャンプ (Ctrl+G)"
     ID_OPTIONS              "プログラムオプションを設定します\nオプション"
     ID_REFRESH              "最新の情報に更新します\n表示更新 (F5)"

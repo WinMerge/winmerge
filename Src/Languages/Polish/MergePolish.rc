@@ -82,7 +82,8 @@ BEGIN
         MENUITEM "Kopiuj na prawa",              ID_L2R
         MENUITEM "Kopiuj na lewa",               ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
+        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
+        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Cofnij",                      ID_EDIT_UNDO
         MENUITEM "&Powtórz",                     ID_EDIT_REDO
@@ -139,7 +140,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Diff\tF4",    ID_SHOWLINEDIFF
+        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
+        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "W&yszukaj...\tCtrl+F",        ID_EDIT_FIND
         MENUITEM "&Zastap...\tCtrl+H",          ID_EDIT_REPLACE
@@ -359,7 +361,8 @@ BEGIN
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
+    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
+    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1190,7 +1193,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEDIFF
+    BUTTON      ID_SHOWLINEWORDDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -2063,7 +2066,8 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEDIFF         "Highlight difference in current line\nDiff in Current Line (F4)"
+    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
+    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
     ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
     ID_OPTIONS              "Ustaw opcje programu\nOpcje"
     ID_REFRESH              "Odswiez podglad\nOdswiez (F5)"
