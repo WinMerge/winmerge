@@ -206,7 +206,6 @@ public:
 	/// String of concatenated filenames as text to apply plugins filter to
 	CString m_strBothFilenames;
 
-	int GetLineCount(BOOL bLeft) const;
 	void UpdateHeaderPath(BOOL bLeft);
 	void UpdateHeaderActivity(BOOL bLeft, BOOL bActivate);
 	void RefreshOptions();

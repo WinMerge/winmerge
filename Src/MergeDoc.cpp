@@ -3090,14 +3090,6 @@ BOOL CMergeDoc::GetDiff(int nDiff, DIFFRANGE &di) const
 }
 
 /**
- * @brief Return linecount from left/right buffer
- */
-int CMergeDoc::GetLineCount(BOOL bLeft) const
-{
-	return bLeft ? m_ltBuf.GetLineCount() : m_rtBuf.GetLineCount();
-}
-
-/**
  * @brief Return if doc is in Merging/Editing mode
  */
 BOOL CMergeDoc::GetMergingMode() const

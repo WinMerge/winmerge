@@ -230,7 +230,7 @@ BOOL CLocationView::GetNextRect(int &nLineIndex)
 	CMergeDoc *pDoc = GetDocument();
 	BOOL bInDiff = FALSE;
 	int nextDiff = -1;
-	const int nbLines = min(pDoc->GetLineCount(TRUE), pDoc->GetLineCount(FALSE));
+	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
 	
 	++nLineIndex;
 	if (nLineIndex >= nbLines)

@@ -1,4 +1,6 @@
 2004-06-14 Laoran
+ PATCH: [ 972296 ] GetLineCount in MergeDoc must test validity of buffers
+  Src: LocationView.cpp MergeDoc.cpp MergeDoc.h
  declare GetLeftView()/GetRightView()/GetLeftDetailView()/GetRightDetailView() as const
   Src: MergeDoc.h
 
