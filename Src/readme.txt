@@ -1,3 +1,7 @@
+2005-02-27 Kimmo
+ BUG: [ 1153017 ] FileFilterHelper::SetFilter ASSERTS on empty string
+  Src: FileFilterHelper.cpp
+
 2005-02-27 Perry
  BUG: [ 1152913 ] LocationView type bugs?
   (Fixed 17 type conversion warnings in MSVC.NET 2003, mostly by explicit casts)

@@ -299,6 +299,12 @@ CString FileFilterHelper::GetFilter()
  */
 BOOL FileFilterHelper::SetFilter(CString filter)
 {
+	if (filter.IsEmpty())
+	{
+		_RPTF0(_CRT_ERROR, "Filter (path/mask) cannot be empty!");
+		return FALSE;
+	}
+
 	if (filter[0] == '*')
 	{
 		SetMask(filter);
