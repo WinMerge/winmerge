@@ -1,3 +1,5 @@
+2005-01-11 WinMerge experimental release 2.3.1.2 (cvs)
+
 2005-01-11 Kimmo
  PATCH: [ 1100176 ] small fix in DirDoc RefreshOptions
   Submitted by Jim Fougeron
