@@ -452,7 +452,7 @@ BEGIN
     PUSHBUTTON      "Abbrechen",IDCANCEL,312,28,50,14
     GROUPBOX        "Zu vergleichende Dateien oder Verzeichnisse",IDC_FILES_DIRS_GROUP,
                     7,7,298,111
-    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
+    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,312,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166

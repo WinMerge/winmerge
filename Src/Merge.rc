@@ -887,12 +887,12 @@ BEGIN
     LTEXT           "G&oto:",IDC_STATIC,7,9,36,8
     EDITTEXT        IDC_WMGOTO_PARAM,45,7,102,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "File",IDC_STATIC,7,27,57,35
-    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,13,38,48,10
     CONTROL         "&Right",IDC_WMGOTO_FILERIGHT,"Button",
                     BS_AUTORADIOBUTTON,13,48,47,10
     GROUPBOX        "Goto what",IDC_STATIC,69,27,78,35
-    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,76,38,68,10
     CONTROL         "&Difference",IDC_WMGOTO_TODIFF,"Button",
                     BS_AUTORADIOBUTTON,76,48,68,10
@@ -996,7 +996,7 @@ BEGIN
 END
 
 IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1026,7 +1026,7 @@ BEGIN
                     IDC_STATIC,2,30,296,28
     LTEXT           "Please use the version of 7-Zip recommended below until interface plugins for later\nversions become available.",
                     IDC_STATIC,2,58,296,18
-    CTEXT           "Version",IDC_STATIC,146,78,56,20,SS_CENTERIMAGE | 
+    CTEXT           "Version",IDC_STATIC,146,78,56,20,SS_CENTERIMAGE |
                     SS_SUNKEN
     CTEXT           "Plugin required\n(dllbuild %04u)",102,204,78,94,20,
                     SS_SUNKEN
@@ -1034,7 +1034,7 @@ BEGIN
                     SS_CENTERIMAGE
     CTEXT           "0.00",110,146,100,20,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "present",109,168,100,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "Merge7z000.dll",111,204,100,54,10,SS_CENTERIMAGE | 
+    CTEXT           "Merge7z000.dll",111,204,100,54,10,SS_CENTERIMAGE |
                     SS_SUNKEN
     CTEXT           "present",112,260,100,38,10,SS_CENTERIMAGE | SS_SUNKEN
     LTEXT           "7-Zip software installed on your computer:",IDC_STATIC,
@@ -1049,12 +1049,12 @@ BEGIN
     CTEXT           "outdated",132,260,124,38,10,SS_CENTERIMAGE | SS_SUNKEN
     LTEXT           "Plugins on path:",9001,2,140,100,8
     CONTROL         "Don't display this &message again.\n(You can allways recall this message from help menu.)",
-                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
+                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
     CONTROL         "Plugin Download",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
                     236,140,62,10
-    LISTBOX         105,2,150,296,72,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+    LISTBOX         105,2,150,296,72,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1065,8 +1065,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,0,0
- PRODUCTVERSION 0,0,0,0
+ FILEVERSION 2,3,1,6
+ PRODUCTVERSION 2,3,1,6
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x9L
@@ -1082,13 +1082,13 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "FileDescription", "WinMerge Application\0"
-            VALUE "FileVersion", "000.000.000.000\0"
+            VALUE "FileVersion", "2.3.1.6\0"
             VALUE "InternalName", "WinMerge\0"
             VALUE "LegalCopyright", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
-            VALUE "ProductVersion", "000.000.000.000\0"
+            VALUE "ProductVersion", "2.3.1.6\0"
         END
     END
     BLOCK "VarFileInfo"
