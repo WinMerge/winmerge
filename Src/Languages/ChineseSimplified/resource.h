@@ -66,6 +66,8 @@
 #define IDB_VIEW_SELECTFONT             328
 #define IDB_FILE_EXIT                   329
 #define IDB_HELP_CONTENTS               330
+#define IDB_FOLDERUP                    331
+#define IDB_FOLDERUP_DISABLE            332
 
 
 

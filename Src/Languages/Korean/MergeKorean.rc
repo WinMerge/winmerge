@@ -1086,6 +1086,8 @@ IDB_VIEW_SELECTFONT     BITMAP                  "res\\select_font.bmp"
 IDB_FILE_EXIT           BITMAP                  "res\\exit.bmp"
 IDB_HELP_CONTENTS       BITMAP                  "res\\help_contents.bmp"
 IDB_ERROR               BITMAP                  "res\\error.bmp"
+IDB_FOLDERUP            BITMAP                  "res\\folderup.bmp"
+IDB_FOLDERUP_DISABLE    BITMAP                  "res\\folderup_disable.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
