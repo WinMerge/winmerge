@@ -1,3 +1,7 @@
+2005-01-22 Kimmo
+ PATCH: [ 1107027 ] Docs: Explain inclusive/exclusive file filters
+  Manual: Filters.xml
+
 2005-01-16 Kimmo
  PATCH: [ 1103148 ] Docs: Mention need for rescan after changing linefilters
   Manual: Filters.xml

@@ -107,13 +107,25 @@
         </listitem>
       </itemizedlist>
 
-      <para>Filter files supplied with WinMerge contain comments about naming
-      and setting filter to exclusive/inclusive.</para>
+      <para>First part of filter file defines name and basic functionality of
+      the filter:</para>
 
-      <para>Exclusive filter includes items matching given rules to compare.
-      All items not matching are marked as skipped. That includes subdirectory
-      names too: a filter must contain rule to include wanted subdirectories.
-      Usually its wise to use this rule to include all subdirectories:</para>
+      <para><screen>name: Example filter
+def: include</screen>where <constant>def</constant>: is:<itemizedlist>
+          <listitem>
+            <para><constant>include</constant> - inclusive filter. This filter
+            type filters out files and directories that match rules in
+            filter.</para>
+          </listitem>
+
+          <listitem>
+            <para><constant>exclude</constant> - exclusive filter. This filter
+            type lets through files and directories that match rules in
+            filter.</para>
+          </listitem>
+        </itemizedlist>When using exclusive filter its worth noting that the
+      filter must contain rule to include all wanted subdirectories. Usually
+      its wise to use this rule to include all subdirectories:</para>
 
       <screen>d: \\*$ ## Subdirectories</screen>
 
@@ -136,7 +148,7 @@
       after that are ignored by WinMerge.</para>
 
       <para><note>
-          <para>File filters rules are case-insensitive. Rule
+          <para>File filter rules are case-insensitive. Rule
           <constant>.\bat$</constant> matches to
           <filename>winmerge.bat</filename> and
           <filename>compare.BAT</filename>.</para>
