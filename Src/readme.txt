@@ -3,6 +3,11 @@
   Src/Languages: MergeFrench.rc
  Updates to Spanish localized language names
   Src/Languages: MergeSpanish.rc
+ BUG: [ 898924 ] Lang order in Language selection dialog?
+ RFE: [ 953015 ] sort language names
+  Mark listbox in language dialog as sorted
+  Src: Merge.rc
+  Src/Languages: Merge*.rc
 
 2004-05-21 Perry
  Fix PATCH [ 957740] - declare CMergeDoc::CompareBinaries

@@ -478,7 +478,7 @@ BEGIN
     PUSHBUTTON      "Добре",IDOK,154,16,52,14
     PUSHBUTTON      "Прекрати",IDCANCEL,154,33,52,14
     LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT |
-                    WS_VSCROLL | WS_TABSTOP
+                    WS_VSCROLL | WS_TABSTOP | LBS_SORT
     LTEXT           "Възможни езици:",IDC_STATIC,7,7,66,8
 END
 
