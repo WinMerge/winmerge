@@ -1,3 +1,8 @@
+2003-08-19 Perry
+ Change versions in Merge.rc to "000.000.000.000" as recommended by stampver
+  (http://www.elphin.com/products/stampver.html).
+  WinMerge: Merge.rc
+
 2003-08-17 Kimmo
  Updated comments for ShellExtension: added comment about used registry values etc
   ShellExtension:
