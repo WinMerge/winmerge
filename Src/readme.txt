@@ -1,6 +1,8 @@
 2004-12-04 Kimmo
  PATCH: [ 1078505 ] Use DOS eol as filename/pathname clipboard separator
   Src: DirView.cpp
+ PATCH: [ 981218 ] Show filenames/paths in caption
+  Src: DirDoc.cpp DirDoc.h DirView.cpp DirView.h MainFrm.cpp MergeDoc.cpp MergeDoc.h 
 
 2004-12-03 Kimmo
  PATCH: [ 1068011 ] Partial French translation

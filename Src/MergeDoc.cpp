@@ -54,6 +54,8 @@
 #include "SaveClosingDlg.h"
 #include "DiffList.h"
 #include "sbuffer.h"
+#include "dllver.h"
+#include <Shlwapi.h>		// PathCompactPathEx()
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -62,6 +64,8 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 extern CLogFile gLog;
+
+static const UINT CAPTION_PATH_MAX = 50;
 
 /**
  * @brief EOL types
@@ -2996,6 +3000,8 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 		sText.Insert(0, _T("* "));
 
 	pf->GetHeaderInterface()->SetText(nPane, sText);
+
+	SetTitle(NULL);
 }
 
 /**
@@ -3045,4 +3051,53 @@ void CMergeDoc::SetEditedAfterRescan(BOOL bLeft)
 		m_bLeftEditAfterRescan = TRUE;
 	else
 		m_bRightEditAfterRescan = TRUE;
+}
+
+/**
+ * @brief Update document filenames to title
+ */
+void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
+{
+	if (lpszTitle)
+		CDocument::SetTitle(lpszTitle);
+	else
+	{
+		CString strTitle;
+
+		// PathCompactPath() supported in versions 4.71 and higher
+		if (GetDllVersion(_T("shlwapi.dll")) >= PACKVERSION(4,71))
+		{
+			// Combine title from file/dir names
+			TCHAR pszLeftFile[_MAX_PATH] = {0};
+			TCHAR pszRightFile[_MAX_PATH] = {0};
+			CString strSeparator = _T(" - ");
+			DWORD res = 0;
+
+			if (!m_strLeftDesc.IsEmpty())
+				strTitle = m_strLeftDesc;
+			else
+			{
+				if (PathCompactPathEx(pszLeftFile, m_strLeftFile, CAPTION_PATH_MAX, res))
+					strTitle = pszLeftFile;
+				else
+					strTitle = m_strLeftFile;
+			}
+	
+			strTitle += strSeparator;
+	
+			if (!m_strRightDesc.IsEmpty())
+				strTitle += m_strRightDesc;
+			else
+			{
+				if (PathCompactPathEx(pszRightFile, m_strRightFile, CAPTION_PATH_MAX, res))
+					strTitle += pszRightFile;
+				else
+					strTitle += m_strRightFile;
+			}
+		}
+		else
+			VERIFY(strTitle.LoadString(IDS_FILE_COMPARISON_TITLE));
+
+		CDocument::SetTitle(strTitle);	
+	}	
 }

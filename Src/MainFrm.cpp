@@ -1468,6 +1468,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				pDirDoc->SetRecursive(bRecurse);
 				pDirDoc->SetDiffContext(pCtxt);
 				pDirDoc->SetDescriptions(m_strLeftDesc, m_strRightDesc);
+				pDirDoc->SetTitle(NULL);
 				m_strLeftDesc.Empty();
 				m_strRightDesc.Empty();
 

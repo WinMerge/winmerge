@@ -29,6 +29,7 @@
 //
 
 #include "stdafx.h"
+#include <Shlwapi.h>		// PathCompactPathEx()
 #include "Merge.h"
 #include "DirDoc.h"
 #include "DirFrame.h"
@@ -42,6 +43,7 @@
 #include "WaitStatusCursor.h"
 #include "7zCommon.h"
 #include "OptionsDef.h"
+#include "dllver.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -777,4 +779,70 @@ void CDirDoc::SetDiffCounts(UINT diffs, UINT ignored, int idx)
 
 	// Update diff counts
 	m_pCtxt->SetDiffCounts(diffpos, diffs, ignored);
+}
+
+/**
+ * @brief Set document title to given string or items compared.
+ */
+void CDirDoc::SetTitle(LPCTSTR lpszTitle)
+{
+	if (!m_pDirView)
+		return;
+
+	if (lpszTitle)
+		CDocument::SetTitle(lpszTitle);
+	else if (!m_pCtxt || m_pCtxt->m_strLeft.IsEmpty() ||
+		m_pCtxt->m_strRight.IsEmpty())
+	{
+		CString title;
+		VERIFY(title.LoadString(IDS_DIRECTORY_WINDOW_TITLE));
+		CDocument::SetTitle(title);
+	}
+	else
+	{
+		// PathCompactPath() supported in versions 4.71 and higher
+		if (GetDllVersion(_T("shlwapi.dll")) >= PACKVERSION(4,71))
+		{
+			// Combine title from file/dir names
+			TCHAR *pszLeftFile;
+			TCHAR *pszRightFile;
+			CString sLeftFile;
+			CString sRightFile;
+			CRect rcClient;
+			CString strTitle;
+			const TCHAR strSeparator[] = _T(" - ");
+			CClientDC lDC(m_pDirView);
+			
+			m_pDirView->GetClientRect(&rcClient);
+			const DWORD width = rcClient.right / 3;
+
+			sLeftFile = m_pCtxt->m_strLeft;
+			pszLeftFile = sLeftFile.GetBuffer(MAX_PATH);
+
+			if (PathCompactPath(lDC.GetSafeHdc(), pszLeftFile, width))
+				strTitle = pszLeftFile;
+			else
+				strTitle = m_pCtxt->m_strLeft;
+
+			sLeftFile.ReleaseBuffer();
+			strTitle += strSeparator;
+
+			sRightFile = m_pCtxt->m_strLeft;
+			pszRightFile = sRightFile.GetBuffer(MAX_PATH);
+
+			if (PathCompactPath(lDC.GetSafeHdc(), pszRightFile, width))
+				strTitle += pszRightFile;
+			else
+				strTitle += m_pCtxt->m_strRight;
+			sRightFile.ReleaseBuffer();
+
+			CDocument::SetTitle(strTitle);
+		}
+		else
+		{
+			CString title;
+			VERIFY(title.LoadString(IDS_DIRECTORY_WINDOW_TITLE));
+			CDocument::SetTitle(title);
+		}
+	}	
 }

@@ -245,6 +245,7 @@ public:
 	virtual BOOL CanCloseFrame(CFrameWnd* pFrame);
 	virtual BOOL SaveModified();
 	virtual void DeleteContents ();
+	virtual void SetTitle(LPCTSTR lpszTitle);
 	//}}AFX_VIRTUAL
 
 // Implementation in MergeDocLineDiffs.cpp

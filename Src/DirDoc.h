@@ -75,6 +75,7 @@ public:
 	//{{AFX_VIRTUAL(CDirDoc)
 	public:
 	virtual void Serialize(CArchive& ar);   // overridden for document i/o
+	virtual void SetTitle(LPCTSTR lpszTitle);
 	protected:
 	virtual BOOL OnNewDocument();
 	virtual BOOL SaveModified();

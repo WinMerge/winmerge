@@ -165,6 +165,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_LEFT_TO_BROWSE, OnUpdateCtxtDirMoveLeftTo)
 	ON_COMMAND(ID_DIR_MOVE_RIGHT_TO_BROWSE, OnCtxtDirMoveRightTo)
 	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_RIGHT_TO_BROWSE, OnUpdateCtxtDirMoveRightTo)
+	ON_WM_SIZE()
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -2398,6 +2399,15 @@ void CDirView::OnUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI)
 void CDirView::OnUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI) 
 {
 	DoUpdateCtxtDirMoveLeftTo(pCmdUI);
+}
+
+/**
+ * @brief Update title after window is resized.
+ */
+void CDirView::OnSize(UINT nType, int cx, int cy)
+{
+	CListView::OnSize(nType, cx, cy);
+	GetDocument()->SetTitle(NULL);
 }
 
 /**
