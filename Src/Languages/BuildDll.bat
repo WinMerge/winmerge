@@ -6,6 +6,6 @@ echo Building %1
 set rcScript=.\%1\Merge%1.rc
 set outputdir=.\DLL
 
-.\MakeResDll -b -o %outputdir% %rcScript%
+.\MakeResDll -v -b -o %outputdir% %rcScript%
 
 :end

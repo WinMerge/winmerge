@@ -85,6 +85,8 @@ private:
 // Implementation
 protected:
 	void RemoveTrailingSlash(CString& s);
+	void SetStatus(UINT msgID);
+	void SetUnpackerStatus(UINT msgID);
 
 	// Generated message map functions
 	//{{AFX_MSG(COpenDlg)

@@ -203,6 +203,12 @@
 #define IDS_MERGEMODE_MERGING           283
 #define IDS_COLHDR_BINARY               284
 #define IDS_DIFFERENT                   285
+#define IDS_OPEN_FILESDIRS              286
+#define IDS_OPEN_LEFTINVALID            287
+#define IDS_OPEN_RIGHTINVALID           288
+#define IDS_OPEN_BOTHINVALID            289
+#define IDS_OPEN_UNPACKERDISABLED       290
+#define IDS_OPEN_MISMATCH               291
 #define ID_SCRIPT_FIRST                 900
 #define ID_SCRIPT_LAST                  949
 #define ID_PREDIFFERS_FIRST             950
@@ -337,6 +343,7 @@
 #define IDC_COUNT_FOLDER                1125
 #define IDC_COLDLG_DEFAULTS             1126
 #define IDC_UNREC_APPLYSYNTAX           1127
+#define IDC_OPEN_STATUS                 1128
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -619,7 +626,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        126
 #define _APS_NEXT_COMMAND_VALUE         32879
-#define _APS_NEXT_CONTROL_VALUE         1128
+#define _APS_NEXT_CONTROL_VALUE         1129
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

@@ -1,3 +1,8 @@
+2004-04-28 Kimmo
+ PATCH: [ 937947 ] Open-dialog improvements (no codepage controls)
+  Src: Merge.rc OpenDlg.cpp OpenDlg.h resource.h
+  Languages: *.rc resource.h
+
 2004-04-27 Kimmo
  RFE: [ 942591 ] Loose filter for Visual Basic
   Submitted by Tim Gerundt

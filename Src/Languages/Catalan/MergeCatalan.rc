@@ -375,7 +375,7 @@ BEGIN
     PUSHBUTTON      "Open...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
 END
 
-IDD_OPEN DIALOGEX 0, 0, 356, 115
+IDD_OPEN DIALOGEX 0, 0, 364, 126
 STYLE WS_POPUP | WS_CAPTION | WS_THICKFRAME
 CAPTION "Tria de fitxers o directoris..."
 FONT 8, "MS Sans Serif", 0, 0, 0x1
@@ -384,25 +384,26 @@ BEGIN
     COMBOBOX        IDC_LEFT_COMBO,76,22,162,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "&Navega...",IDC_LEFT_BUTTON,241,22,38,12
+    PUSHBUTTON      "&Navega...",IDC_LEFT_BUTTON,242,22,50,12
     RTEXT           "&Dreta:",IDC_STATIC,13,40,60,8
     COMBOBOX        IDC_RIGHT_COMBO,76,38,162,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "N&avega...",IDC_RIGHT_BUTTON,241,38,38,12
+    PUSHBUTTON      "N&avega...",IDC_RIGHT_BUTTON,242,38,50,12
     RTEXT           "E&xtensions:",IDC_STATIC,13,56,60,8
-    COMBOBOX        IDC_EXT_COMBO,76,54,131,95,CBS_DROPDOWN |
+    COMBOBOX        IDC_EXT_COMBO,76,54,161,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Re&cursiu",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,35,72,48,10
-    RTEXT           "Desem&paquetador:",IDC_STATIC,13,88,60,8
-    EDITTEXT        IDC_UNPACKER_EDIT,76,86,140,12,ES_AUTOHSCROLL |
+    RTEXT           "Desem&paquetador:",IDC_STATIC,13,72,60,8
+    EDITTEXT        IDC_UNPACKER_EDIT,76,70,161,12,ES_AUTOHSCROLL |
                     ES_READONLY
-    PUSHBUTTON      "&Tria...",IDC_SELECT_UNPACKER,241,86,38,12
-    DEFPUSHBUTTON   "D'acord",IDOK,295,11,50,14
-    PUSHBUTTON      "Anul·la",IDCANCEL,295,28,50,14
+    PUSHBUTTON      "&Tria...",IDC_SELECT_UNPACKER,242,70,50,12
+    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,76,86,161,10
+    LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
+    DEFPUSHBUTTON   "D'acord",IDOK,306,11,50,14
+    PUSHBUTTON      "Anul·la",IDCANCEL,306,28,50,14
     GROUPBOX        "Fitxers o directoris a comparar",IDC_FILES_DIRS_GROUP,7,
-                    7,279,101
+                    7,292,111
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 159
@@ -1455,6 +1456,16 @@ BEGIN
     IDS_MERGEMODE_MERGING   "Merge"
     IDS_COLHDR_BINARY       "Binary"
     IDS_DIFFERENT           "Different"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPEN_FILESDIRS      "Select two directories or two files to compare."
+    IDS_OPEN_LEFTINVALID    "Left path is invalid!"
+    IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
+    IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
+    IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
+    IDS_OPEN_MISMATCH       "Cannot compare file and directory!"
 END
 
 STRINGTABLE 

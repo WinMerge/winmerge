@@ -375,8 +375,8 @@ BEGIN
     PUSHBUTTON      "Open...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
 END
 
-IDD_OPEN DIALOGEX 0, 0, 356, 115
-STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+IDD_OPEN DIALOGEX 0, 0, 364, 126
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Velg filer eller mapper..."
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
@@ -384,25 +384,26 @@ BEGIN
     COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "&Åpne...",IDC_LEFT_BUTTON,241,22,38,12
+    PUSHBUTTON      "&Åpne...",IDC_LEFT_BUTTON,242,22,50,12
     RTEXT           "&Høyre:",IDC_STATIC,13,40,40,8
     COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "Å&pne...",IDC_RIGHT_BUTTON,241,38,38,12
+    PUSHBUTTON      "Å&pne...",IDC_RIGHT_BUTTON,242,38,50,12
     RTEXT           "E&xtensions:",IDC_STATIC,13,56,40,8
-    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN |
+    COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Re&kursivt",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,35,72,46,10
-    RTEXT           "&Unpacker:",IDC_STATIC,13,88,40,8
-    EDITTEXT        IDC_UNPACKER_EDIT,56,86,182,12,ES_AUTOHSCROLL |
+    RTEXT           "&Unpacker:",IDC_STATIC,13,72,40,8
+    EDITTEXT        IDC_UNPACKER_EDIT,56,70,181,12,ES_AUTOHSCROLL |
                     ES_READONLY
-    PUSHBUTTON      "Select...",IDC_SELECT_UNPACKER,241,86,38,12
-    DEFPUSHBUTTON   "OK",IDOK,295,11,50,14
-    PUSHBUTTON      "Avbryt",IDCANCEL,295,28,50,14
+    PUSHBUTTON      "&Select...",IDC_SELECT_UNPACKER,242,70,50,12
+    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,56,86,181,10
+    LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
+    DEFPUSHBUTTON   "OK",IDOK,306,11,50,14
+    PUSHBUTTON      "Avbryt",IDCANCEL,306,28,50,14
     GROUPBOX        "Filer eller mapper som skal sammenlignes",IDC_FILES_DIRS_GROUP,7,
-                    7,279,101
+                    7,292,111
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 159
@@ -1439,6 +1440,16 @@ BEGIN
     IDS_MERGEMODE_MERGING   "Merge"
     IDS_COLHDR_BINARY       "Binary"
     IDS_DIFFERENT           "Different"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPEN_FILESDIRS      "Select two directories or two files to compare."
+    IDS_OPEN_LEFTINVALID    "Left path is invalid!"
+    IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
+    IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
+    IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
+    IDS_OPEN_MISMATCH       "Cannot compare file and directory!"
 END
 
 STRINGTABLE 

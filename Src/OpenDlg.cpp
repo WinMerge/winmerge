@@ -247,6 +247,7 @@ BOOL COpenDlg::OnInitDialog()
 	m_constraint.ConstrainItem(IDC_LEFT_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_RIGHT_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
 	m_constraint.DisallowHeightGrowth();
@@ -267,11 +268,16 @@ BOOL COpenDlg::OnInitDialog()
 	m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0)==1;
 	m_strUnpacker = m_infoHandler.pluginName;
 	UpdateData(FALSE);
+	SetStatus(IDS_OPEN_FILESDIRS);
+	SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
 	return TRUE;  
 }
 
 void COpenDlg::UpdateButtonStates()
 {
+	BOOL bLeftInvalid = FALSE;
+	BOOL bRightInvalid = FALSE;
+
 	UpdateData(TRUE); // load member variables from screen
 	KillTimer(IDT_CHECKFILES);
 	
@@ -281,6 +287,27 @@ void COpenDlg::UpdateButtonStates()
 	m_ctlRecurse.EnableWindow(pathsType == IS_EXISTING_DIR); 
 	m_ctlUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
 	m_ctlSelectUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
+
+	if (paths_DoesPathExist(m_strLeft) == DOES_NOT_EXIST)
+		bLeftInvalid = TRUE;
+	if (paths_DoesPathExist(m_strRight) == DOES_NOT_EXIST)
+		bRightInvalid = TRUE;
+
+	if (bLeftInvalid && bRightInvalid)
+		SetStatus(IDS_OPEN_BOTHINVALID);
+	else if (bLeftInvalid)
+		SetStatus(IDS_OPEN_LEFTINVALID);
+	else if (bRightInvalid)
+		SetStatus(IDS_OPEN_RIGHTINVALID);
+	else if (!bLeftInvalid && !bRightInvalid && pathsType == DOES_NOT_EXIST)
+		SetStatus(IDS_OPEN_MISMATCH);
+	else
+		SetStatus(IDS_OPEN_FILESDIRS);
+
+	if (pathsType == IS_EXISTING_FILE)
+		SetUnpackerStatus(0);	//Empty field
+	else
+		SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
 }
 
 BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder) 
@@ -381,3 +408,20 @@ void COpenDlg::OnSelectUnpacker()
 		UpdateData(FALSE);
 	}
 }
+
+void COpenDlg::SetStatus(UINT msgID)
+{
+	CString msg;
+	if (msgID > 0)
+		VERIFY(msg.LoadString(msgID));
+	SetDlgItemText(IDC_OPEN_STATUS, msg);
+}
+
+void COpenDlg::SetUnpackerStatus(UINT msgID)
+{
+	CString msg;
+	if (msgID > 0)
+		VERIFY(msg.LoadString(msgID));
+	SetDlgItemText(IDC_UNPACKER_EDIT, msg);
+}
+
