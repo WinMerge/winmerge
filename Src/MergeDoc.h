@@ -273,6 +273,10 @@ protected:
 protected:
 	//{{AFX_MSG(CMergeDoc)
 	afx_msg void OnFileSave();
+	afx_msg void OnFileSaveLeft();
+	afx_msg void OnFileSaveRight();
+	afx_msg void OnFileSaveAsLeft();
+	afx_msg void OnFileSaveAsRight();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

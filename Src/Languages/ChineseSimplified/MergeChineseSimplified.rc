@@ -96,9 +96,19 @@ BEGIN
     BEGIN
         MENUITEM "´ò¿ª(&O)...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM "±£´æ(&S)\tCtrl+S",            ID_FILE_SAVE
+        POPUP "Save &Left"
+        BEGIN
+            MENUITEM "&Save",                       ID_FILE_SAVE_LEFT
+            MENUITEM "Save &As...",                 ID_FILE_SAVEAS_LEFT
+        END
+        POPUP "Save &Right"
+        BEGIN
+            MENUITEM "&Save",                       ID_FILE_SAVE_RIGHT
+            MENUITEM "Save &As...",                 ID_FILE_SAVEAS_RIGHT
+        END
         MENUITEM SEPARATOR
-        MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
-        MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
+        MENUITEM "L&eft read-only",              ID_FILE_LEFT_READONLY
+        MENUITEM "R&ight read-only",             ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
         POPUP "Format for"
         BEGIN
@@ -1012,6 +1022,14 @@ BEGIN
 END
 
 STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_SAVE_LEFT       "Save the left file"
+    ID_FILE_SAVE_RIGHT      "Save the right file"
+    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
+    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
+END
+
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_LEFTONLY            "Left Only"
     IDS_RIGHTONLY           "Right Only"

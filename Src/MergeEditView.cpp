@@ -102,6 +102,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 	ON_WM_TIMER()
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_LEFT, OnUpdateFileSaveLeft)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_RIGHT, OnUpdateFileSaveRight)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_RIGHT, OnUpdateFileSaveRight)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_LEFT, OnUpdateFileSaveLeft)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
 	ON_COMMAND(ID_SHOWLINEDIFF, OnShowlinediff)
@@ -748,6 +752,9 @@ BOOL CMergeEditView::IsLineInCurrentDiff(int nLine)
 	return (nLine >= (int)pd->m_diffs[cur].dbegin0 && nLine <= (int)pd->m_diffs[cur].dend0);
 }
 
+/**
+ * @brief Called when mouse left-button double-clicked
+ */
 void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 	CMergeDoc *pd = GetDocument();
@@ -764,6 +771,9 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CCrystalEditViewEx::OnLButtonDblClk(nFlags, point);
 }
 
+/**
+ * @brief Called when mouse left button is released
+ */
 void CMergeEditView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	CMergeDoc *pd = GetDocument();
@@ -784,6 +794,9 @@ void CMergeEditView::UpdateLineLengths()
 	GetMaxLineLength();
 }
 
+/**
+ * @brief Copy diff from left pane to right pane
+ */
 void CMergeEditView::OnL2r()
 {
 	// Check that right side is not readonly
@@ -793,6 +806,9 @@ void CMergeEditView::OnL2r()
 	GetDocument()->ListCopy(true);
 }
 
+/**
+ * @brief Called when "Copy to left" item is updated
+ */
 void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 {
 	// Check that right side is not readonly
@@ -802,6 +818,9 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
+/**
+ * @brief Copy diff from right pane to left pane
+ */
 void CMergeEditView::OnR2l()
 {
 	// Check that left side is not readonly
@@ -811,6 +830,9 @@ void CMergeEditView::OnR2l()
 	GetDocument()->ListCopy(false);
 }
 
+/**
+ * @brief Called when "Copy to right" item is updated
+ */
 void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 {
 	// Check that left side is not readonly
@@ -820,6 +842,9 @@ void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
+/**
+ * @brief Copy all diffs from right pane to left pane
+ */
 void CMergeEditView::OnAllLeft()
 {
 	// Check that left side is not readonly
@@ -830,6 +855,9 @@ void CMergeEditView::OnAllLeft()
 	GetDocument()->CopyAllList(false);
 }
 
+/**
+ * @brief Called when "Copy all to left" item is updated
+ */
 void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 {
 	// Check that left side is not readonly
@@ -839,6 +867,9 @@ void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
+/**
+ * @brief Copy all diffs from left pane to right pane
+ */
 void CMergeEditView::OnAllRight()
 {
 	// Check that right side is not readonly
@@ -850,6 +881,9 @@ void CMergeEditView::OnAllRight()
 	GetDocument()->CopyAllList(true);
 }
 
+/**
+ * @brief Called when "Copy all to right" item is updated
+ */
 void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 {
 	// Check that right side is not readonly
@@ -907,6 +941,9 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 	}
 }
 
+/**
+ * @brief Redo last action
+ */
 void CMergeEditView::OnEditRedo()
 {
 	CMergeDoc* pDoc = GetDocument();
@@ -930,6 +967,9 @@ void CMergeEditView::OnEditRedo()
 	}
 }
 
+/**
+ * @brief Called when "Redo" item is updated
+ */
 void CMergeEditView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
@@ -1014,6 +1054,10 @@ void CMergeEditView::OnTimer(UINT nIDEvent)
 	CCrystalEditViewEx::OnTimer(nIDEvent);
 }
 
+/**
+ * @brief Returns if buffer is read-only
+ * @note This has no any relation to file being read-only!
+ */
 BOOL CMergeEditView::IsReadOnly(BOOL bLeft)
 {
 	CCrystalTextBuffer *pBuf = NULL;
@@ -1026,6 +1070,36 @@ BOOL CMergeEditView::IsReadOnly(BOOL bLeft)
 	return pBuf->GetReadOnly();
 }
 
+/**
+ * @brief Called when "Save left (as...)" item is updated
+ */
+void CMergeEditView::OnUpdateFileSaveLeft(CCmdUI* pCmdUI)
+{
+	CMergeDoc *pd = GetDocument();
+
+	if (!IsReadOnly(TRUE) && pd->m_ltBuf.IsModified())
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
+}
+
+/**
+ * @brief Called when "Save right (as...)" item is updated
+ */
+void CMergeEditView::OnUpdateFileSaveRight(CCmdUI* pCmdUI)
+{
+	CMergeDoc *pd = GetDocument();
+
+	if (!IsReadOnly(FALSE) && pd->m_rtBuf.IsModified())
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
+}
+
+/**
+ * @brief Refresh display using text-buffers
+ * @note This DOES NOT reload files!
+ */
 void CMergeEditView::OnRefresh()
 {
 	CMergeDoc *pd = GetDocument();
@@ -1033,6 +1107,9 @@ void CMergeEditView::OnRefresh()
 	pd->FlushAndRescan(TRUE);
 }
 
+/**
+ * @brief Enable/Disable automatic rescanning
+ */
 BOOL CMergeEditView::EnableRescan(BOOL bEnable)
 {
 	BOOL bOldValue = m_bAutomaticRescan;
@@ -1062,6 +1139,9 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 	return CCrystalEditViewEx::PreTranslateMessage(pMsg);
 }
 
+/**
+ * @brief Called when "Save" item is updated
+ */
 void CMergeEditView::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
@@ -1072,6 +1152,9 @@ void CMergeEditView::OnUpdateFileSave(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
+/**
+ * @brief Enable/disable left buffer read-only
+ */
 void CMergeEditView::OnLeftReadOnly()
 {
 	CMergeDoc *pd = GetDocument();
@@ -1079,6 +1162,9 @@ void CMergeEditView::OnLeftReadOnly()
 	pd->m_ltBuf.SetReadOnly(!bReadOnly);
 }
 
+/**
+ * @brief Called when "Left read-only" item is updated
+ */
 void CMergeEditView::OnUpdateLeftReadOnly(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
@@ -1087,6 +1173,9 @@ void CMergeEditView::OnUpdateLeftReadOnly(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(bReadOnly);
 }
 
+/**
+ * @brief Enable/disable right buffer read-only
+ */
 void CMergeEditView::OnRightReadOnly()
 {
 	CMergeDoc *pd = GetDocument();
@@ -1094,6 +1183,9 @@ void CMergeEditView::OnRightReadOnly()
 	pd->m_rtBuf.SetReadOnly(!bReadOnly);
 }
 
+/**
+ * @brief Called when "Left read-only" item is updated
+ */
 void CMergeEditView::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
@@ -1102,14 +1194,14 @@ void CMergeEditView::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(bReadOnly);
 }
 
-// Store our interface we use to display status line info
+/// Store our interface we use to display status line info
 void CMergeEditView::SetStatusInterface(IMergeEditStatus * piMergeEditStatus)
 {
 	ASSERT(!m_piMergeEditStatus);
 	m_piMergeEditStatus = piMergeEditStatus;
 }
 
-// Override from CCrystalTextView
+/// Override from CCrystalTextView
 void CMergeEditView::
 OnUpdateCaret()
 {
@@ -1142,14 +1234,14 @@ OnUpdateCaret()
 	}
 }
 
-// Highlight difference in current line
+/// Highlight difference in current line
 void CMergeEditView::OnShowlinediff() 
 {
 	// Pass this to the document, to compare this file to other
 	GetDocument()->Showlinediff(this);
 }
 
-// Enable highlight menuitem if current line is flagged as having a difference
+/// Enable highlight menuitem if current line is flagged as having a difference
 void CMergeEditView::OnUpdateShowlinediff(CCmdUI* pCmdUI) 
 {
 	int line = GetCursorPos().y;

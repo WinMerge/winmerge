@@ -71,6 +71,10 @@ IMPLEMENT_DYNCREATE(CMergeDoc, CDocument)
 BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	//{{AFX_MSG_MAP(CMergeDoc)
 	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
+	ON_COMMAND(ID_FILE_SAVE_LEFT, OnFileSaveLeft)
+	ON_COMMAND(ID_FILE_SAVE_RIGHT, OnFileSaveRight)
+	ON_COMMAND(ID_FILE_SAVEAS_LEFT, OnFileSaveAsLeft)
+	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
 	ON_UPDATE_COMMAND_UI(ID_DIFFNUM, OnUpdateStatusNum)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -436,8 +440,10 @@ BOOL CMergeDoc::Undo()
 	return FALSE;
 }
 
-// An instance of RescanSuppress prevents rescan during its lifetime
-// (or until its Clear method is called, which ends its effect).
+/**
+ * @brief An instance of RescanSuppress prevents rescan during its lifetime
+ * (or until its Clear method is called, which ends its effect).
+ */
 class RescanSuppress
 {
 public:
@@ -594,8 +600,12 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 	FlushAndRescan();
 }
 
-// Return false when saving fails, so we can ask again
-// bSaveSuccess is TRUE if saving succeeded
+/**
+ * @brief Asks from filename to save from user and save file
+ * @param strPath Initial path shown to user
+ * @param bSaveSuccess Returns if saving itself succeeded/failed
+ * @return False when saving fails, so we can ask again
+ */
 BOOL CMergeDoc::TrySaveAs(CString strPath, BOOL &bSaveSuccess, BOOL bLeft)
 {
 	BOOL result = TRUE;
@@ -762,7 +772,9 @@ CString CMergeDoc::Tabify(LPCTSTR szText)
 	return strResult;
 }*/
 
-/// Checks if line is inside diff
+/**
+ * @brief Checks if line is inside diff
+ */
 BOOL CMergeDoc::LineInDiff(UINT nLine, UINT nDiff)
 {
 	ASSERT(nDiff >= 0 && nDiff <= m_nDiffs);
@@ -773,7 +785,9 @@ BOOL CMergeDoc::LineInDiff(UINT nLine, UINT nDiff)
 		return FALSE;
 }
 
-/// Returns order num of diff for given line
+/**
+ * @brief Returns order num of diff for given line
+ */
 int CMergeDoc::LineToDiff(UINT nLine)
 {
 	for (UINT i = 0; i < m_nDiffs; i++)
@@ -923,6 +937,7 @@ int CMergeDoc::CDiffTextBuffer::NoteCRLFStyleFromBuffer(TCHAR *lpLineBegin, DWOR
 	count[iStyle] ++;
 	return iStyle;
 }
+
 
 /// Reads one line from filebuffer and inserts to textbuffer
 void CMergeDoc::CDiffTextBuffer::ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineNum, DWORD dwLineLen /* =0 */)
@@ -1278,6 +1293,9 @@ void CMergeDoc::CleanupTempFiles()
 	}
 }
 
+/**
+ * @brief Returns TRUE if tempfile already exists
+ */
 BOOL CMergeDoc::TempFilesExist()
 {
 	CFileStatus s1,s2;
@@ -1319,6 +1337,9 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 		ShowRescanError(nRescanResult);
 }
 
+/**
+ * @brief Saves both files
+ */
 void CMergeDoc::OnFileSave() 
 {
 	BOOL bLSaveSuccess = FALSE;
@@ -1352,6 +1373,105 @@ void CMergeDoc::OnFileSave()
 	}
 }
 
+/**
+ * @brief Saves left-side file
+ */
+void CMergeDoc::OnFileSaveLeft()
+{
+	BOOL bLSaveSuccess = FALSE;
+	BOOL bLModified = FALSE;
+
+	if (m_ltBuf.IsModified() && !m_ltBuf.GetReadOnly())
+	{
+		bLModified = TRUE;
+		DoSave(m_strLeftFile, bLSaveSuccess, TRUE );
+	}
+
+	// If file were modified and saving succeeded,
+	// update status on dir view
+	if (bLModified && bLSaveSuccess)
+	{
+		// If DirDoc contains diffs
+		if (m_pDirDoc->m_pCtxt)
+		{
+			bool unified = (m_nDiffs==0); // true if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile, unified);
+		}
+	}
+}
+
+/**
+ * @brief Saves right-side file
+ */
+void CMergeDoc::OnFileSaveRight()
+{
+	BOOL bRSaveSuccess = FALSE;
+	BOOL bRModified = FALSE;
+
+	if (m_rtBuf.IsModified() && !m_rtBuf.GetReadOnly())
+	{
+		bRModified = TRUE;
+		DoSave(m_strRightFile, bRSaveSuccess, FALSE);
+	}
+
+	// If file were modified and saving succeeded,
+	// update status on dir view
+	if (bRModified && bRSaveSuccess)
+	{
+		// If DirDoc contains diffs
+		if (m_pDirDoc->m_pCtxt)
+		{
+			bool unified = (m_nDiffs==0); // true if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile, unified);
+		}
+	}
+}
+
+/**
+ * @brief Saves left-side file with name asked
+ */
+void CMergeDoc::OnFileSaveAsLeft()
+{
+	BOOL result = TRUE;
+	CString s;
+	CString title;
+	BOOL bSaveSuccess = FALSE;
+	
+	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
+	if (SelectFile(s, m_strLeftFile, title, NULL, FALSE))
+	{
+		bSaveSuccess = m_ltBuf.SaveToFile(s, FALSE);
+		if (!bSaveSuccess)
+			// Saving failed, user may save to another location if wants to
+			while (!result)
+				result = TrySaveAs(s, bSaveSuccess, TRUE);
+	}
+}
+
+/**
+ * @brief Saves right-side file with name asked
+ */
+void CMergeDoc::OnFileSaveAsRight()
+{
+	BOOL result = TRUE;
+	CString s;
+	CString title;
+	BOOL bSaveSuccess = FALSE;
+	
+	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
+	if (SelectFile(s, m_strRightFile, title, NULL, FALSE))
+	{
+		bSaveSuccess = m_rtBuf.SaveToFile(s, FALSE);
+		if (!bSaveSuccess)
+			// Saving failed, user may save to another location if wants to
+			while (!result)
+				result = TrySaveAs(s, bSaveSuccess, FALSE);
+	}
+}
+
+/**
+ * @brief Update diff-number pane text
+ */
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
 	CString sIdx,sCnt,s;

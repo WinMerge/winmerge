@@ -189,6 +189,8 @@ protected:
 	afx_msg void OnEditRedo();
 	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT nIDEvent);
+	afx_msg void OnUpdateFileSaveLeft(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateFileSaveRight(CCmdUI* pCmdUI);
 	afx_msg void OnRefresh();
 	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
 	afx_msg void OnShowlinediff();

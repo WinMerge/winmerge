@@ -1,6 +1,10 @@
 2003-09-22 Kimmo
  PATCH: [ 809902 ] Show if file is changed
   WinMerge: MergeDoc.h MergeDoc.cpp MergeEditView.cpp
+ PATCH: [ 810066 ] Add Save Left (as...) and Save Right (as...)
+  WinMerge: Merge.rc MergeDoc.h MergeDoc.cpp MergeEditView.h
+   MergeEditView.cpp resource.h
+  Languages: resource.h *.rc
 
 2003-09-21 Kimmo
  BUG: [ 807766 ] File filter rules not applied to unique items (2.1)
