@@ -11,7 +11,8 @@
  Use ComboBox with history in Patch Generate -dialog
   WinMerge: Merge.rc PatchDlg.h PatchDlg.cpp
   Languages: *.rc
- Fix bug: File's timestamps wrong in patch files
+ Fix bug: File timestamps wrong in patch files
+  WinMerge: DiffWrapper.cpp
 
 2003-10-14 Laoran
  PATCH: [ 819123 ] Half-wait cursor during rescan (new try)
