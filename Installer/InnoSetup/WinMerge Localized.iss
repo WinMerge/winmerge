@@ -348,6 +348,8 @@ Name: {app}\MergePlugins; Type: DirIfEmpty; Check: ComponentDisabled('Plugins')
 ;Removes a CVS ignore record created by TortoiseCVS on Seier's System, I'm hoping this was never let
 ;out into the wild, but it could have been
 Name: {app}\Filters\.cvsignore; TYpe: Files
+Name: {app}\Filters\ADAMulti.flt; Type: Files; Check: ComponentDisabled('Filters')
+Name: {app}\Filters\MASM.flt; Type: Files; Check: ComponentDisabled('Filters')
 Name: {app}\Filters\Merge_GnuC_loose.flt; Type: Files; Check: ComponentDisabled('Filters')
 Name: {app}\Filters\Merge_VC_loose.flt; Type: Files; Check: ComponentDisabled('Filters')
 Name: {app}\Filters\Merge_VB_loose.flt; Type: Files; Check: ComponentDisabled('Filters')
