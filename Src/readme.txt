@@ -1,3 +1,8 @@
+2004-07-13 Kimmo
+ PATCH: [ 932086 ] Syntax highlighting of HTML not complete (Bug 930930)
+  Submitted by Tim Gerundt
+  Src/editlib: ccrystaltextview.cpp html.cpp php.cpp
+
 2004-04-07 Laoran
  BUG: [ 930995 ] Cursor help text ... ; part two : inversion in menu
   Src: Merge.rc
