@@ -246,7 +246,7 @@ BOOL PluginInfo::TestAgainstRegList(LPCTSTR szTest)
  */
 static PluginArray * GetAvailableScripts( LPCWSTR transformationEvent, BOOL getScriptletsToo ) 
 {
-	CString path = GetModulePath() + TEXT("\\plugins\\");
+	CString path = GetModulePath() + TEXT("\\MergePlugins\\");
 
 	CStringArray scriptlets;
 	if (getScriptletsToo)

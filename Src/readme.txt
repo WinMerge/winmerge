@@ -1,3 +1,7 @@
+2003-11-05 Laoran
+ change directory name 'Plugins' to 'MergePlugins' (see BUG [ 832090 ])
+  WinMerge: Plugins.cpp
+
 2003-11-05 Perry
  deleted unused function files_loadLines per Laurent's suggestion 
   (in PATCH: [ 826250 ] New UniMemFile class for memory-mapping)
