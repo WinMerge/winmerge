@@ -2,7 +2,7 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Developers Needed!');
+  $page->printHead('WinMerge: Developers Needed!', WINMERGE_DEV);
 ?>
 <h2>Developers Needed!</h2>
 <p>One of the reasons WinMerge is on SourceForge is so other

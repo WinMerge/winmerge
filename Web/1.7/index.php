@@ -4,7 +4,6 @@
   $page = new Page;
   $page->printHead('WinMerge 1.7', WINMERGE_1_7);
 ?>
-<h2>WinMerge 1.7</h2>
 <p class="important">This is an old version of WinMerge, for the latest version go to the <a href="../index.php">main site</a>.</p>
 <p>WinMerge is the result of my dissatisfaction with existing diff / merge tools available
 on the web.&nbsp; They always seemed so lacking, and the one that ships with SourceSafe

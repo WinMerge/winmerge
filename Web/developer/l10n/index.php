@@ -2,9 +2,9 @@
   include('../../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Translations');
+  $page->printHead('WinMerge: Translations', WINMERGE_DEV);
 ?>
-<h2>WinMerge translations</h2>
+<h2>Translations</h2>
 <p>We currently have WinMerge translated into the languages listed below:</p>
 <?php
   $status = $page->convertXml2Array('status.xml');

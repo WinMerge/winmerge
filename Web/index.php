@@ -4,7 +4,6 @@
   $page = new Page;
   $page->printHead();
 ?>
-<h1><img src="images/winmerge22.gif" height="32" width="32" align="top" alt="WinMerge logo"> WinMerge</h1>
 <p>WinMerge is an Open Source visual text file differencing and merging tool for Win32 platforms. It is highly useful for determing what has changed between project versions, and then merging changes between versions.</p>
 <h2>Features</h2>
 <ul>

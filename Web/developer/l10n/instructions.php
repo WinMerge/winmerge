@@ -2,9 +2,10 @@
   include('../../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Translations instructions');
+  $page->printHead('WinMerge: Translations instructions', WINMERGE_DEV);
 ?>
-<h2>I want to translate into my own language</h2>
+<h2>Translations instructions</h2>
+<h3>I want to translate into my own language</h3>
 <p>If you are interested in translating WinMerge to your own language, we'd be happy to include your language as well.</p>
 
 <p>All the resources are located in a DLL, so it should be fairly straightforward to support most languages.</p>

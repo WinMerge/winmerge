@@ -2,7 +2,7 @@
   include('../page.inc');
   
   $page = new Page;
-  $page->printHead('WinMerge: Using WinCVS');
+  $page->printHead('WinMerge: Using WinCVS', WINMERGE_DEV);
 ?>
 <h2>Using WinCVS</h2>
 <p>After much trial and error, I finally seem to have hit the sweet spot

@@ -1,3 +1,12 @@
+2004-11-12 Tim
+ PATCH: [ 1064765 ] Web: Use always <h1>
+  Web: index.php page.inc
+  Web\1.7: changes.txt index.php
+  Web\2.0: changes.txt index.php
+  Web\2.2: changes.txt index.php
+  Web\developer: index.php needed.php wincvs.php
+  Web\developer\l10n: index.php instructions.php status.php
+
 2004-11-10 Tim
  PATCH: [ 1064175 ] Website changes for new stable release 2.2.0
   Web: index.php page.inc WinMergePAD.xml

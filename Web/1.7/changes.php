@@ -4,7 +4,7 @@
   $page = new Page;
   $page->printHead('WinMerge 1.7: Change History', WINMERGE_1_7);
 ?>
-<h2>WinMerge Change History</h2>
+<h2>Change History</h2>
 <H3>1.7.1 (10/25/2000)</H3>
 <UL>
   <LI>Fixed bug #121116&nbsp; </LI></UL>

@@ -2,7 +2,7 @@
   include('../../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Status of translations');
+  $page->printHead('WinMerge: Status of translations', WINMERGE_DEV);
 ?>
 <h2>Status of translations</h2>
 

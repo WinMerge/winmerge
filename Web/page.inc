@@ -12,6 +12,7 @@
   define ('WINMERGE_1_7', '1.7');
   define ('WINMERGE_2_0', '2.0');
   define ('WINMERGE_2_2', '2.2');
+  define ('WINMERGE_DEV', '-');
 
   /**
    * ...
@@ -25,7 +26,7 @@
      * Constructor
      */
     function Page() {
-      $this->_title = 'Welcome to WinMerge on SourceForge!';
+      $this->_title = 'WinMerge 2.2';
       $this->_charset = 'ISO-8859-1';
       $this->_description = 'WinMerge HomePage: Visual text file comparison and merging (Open Source software).';
       $this->_keywords = 'WinMerge, free, download, Beyond Compare, Scooter Software, DLSuperC, DLSubCF, Component Software Diff, Viff, TreeDiff, FileSync, WMatch, Quick Spot, NTDMatch, windiff, WDIFF, FolderMatch, Merge 99, Merge99, PMdiff, PMDiff, PMDIFF, pmdiff, visual, visually, file, folder, directory, synchronization, comparison, graphical, document, text, compare, diff, difference, revision, Araxis, compare folders, compare files, synchronize folders, merge files, merge folders, Y2K, Year 2000, Year 2K, side-by-side, VFC, GFC, gdiff, CSDiff, OS2GFC, vdiff, ediff, fc';
@@ -96,6 +97,20 @@
       $temp .= $this->getMenu();
       $temp .= "    </td>\n\n";
       $temp .= "    <td width=\"*\" valign=\"top\" id=\"content\">\n";
+      switch ($this->_version) {
+        case WINMERGE_1_7: //if WinMerge 1.7 ...
+          $temp .= "<h1><img src=\"/images/winmerge.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 1.7</h1>\n";
+          break;
+        case WINMERGE_2_0: //if WinMerge 2.0 ...
+          $temp .= "<h1><img src=\"/images/winmerge.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 2.0</h1>\n";
+          break;
+        case WINMERGE_2_2: //if WinMerge 2.2 ...
+          $temp .= "<h1><img src=\"/images/winmerge22.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 2.2</h1>\n";
+          break;
+        case WINMERGE_DEV: //if NONE Version ...
+          $temp .= "<h1><img src=\"/images/winmerge22.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge</h1>\n";
+          break;
+      }
       print($temp);
     }
 

@@ -2,7 +2,7 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Developers');
+  $page->printHead('WinMerge: Developers', WINMERGE_DEV);
 ?>
 <h2>WinMerge developers</h2>
 <p>This is a list of some of the current developers on WinMerge</p>

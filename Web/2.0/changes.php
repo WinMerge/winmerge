@@ -4,7 +4,7 @@
   $page = new Page;
   $page->printHead('WinMerge 2.0: Change History', WINMERGE_2_0);
 ?>
-<h2>WinMerge Change History</h2>
+<h2>Change History</h2>
 <?php
   print($page->convertChanges2Html('changes.txt'));
 ?>
