@@ -1,3 +1,7 @@
+2003-05-02 Kimmo
+ BUG: [ 724726 ] Status bar says "Rescanning" the first time
+  WinMerge: Merge.rc
+
 2003-05-01 Kimmo
  PATCH: [ 730738 ] Update BCMenu (to v3.033)
   WinMerge: BCMenu.h BCMenu.cpp
