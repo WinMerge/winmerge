@@ -2046,43 +2046,10 @@ void CMergeEditView::OnWMGoto()
 		if (dlg.m_nGotoWhat == 0)
 		{
 			int nRealLine = _ttoi(dlg.m_strParam) - 1;
-			int nApparentLine = 0;
-			int nLineCount = 0;
-
 			if (nRealLine < 0)
 				nRealLine = 0;
 
-			// Compute apparent (shown linenumber) line
-			if (dlg.m_nFile == 0)
-			{
-				if (nRealLine > pDoc->m_ltBuf.GetLineCount() - 1)
-					nRealLine = pDoc->m_ltBuf.GetLineCount() - 1;
-
-				nApparentLine = pDoc->m_ltBuf.ComputeApparentLine(nRealLine);
-			}
-			else
-			{
-				if (nRealLine > pDoc->m_rtBuf.GetLineCount() - 1)
-					nRealLine = pDoc->m_rtBuf.GetLineCount() - 1;
-
-				nApparentLine = pDoc->m_rtBuf.ComputeApparentLine(nRealLine);
-			}
-
-			CPoint ptPos;
-			ptPos.x = 0;
-			ptPos.y = nApparentLine;
-
-			// Scroll line to center of view
-			const int offset = GetScreenLines() / 2;
-			int nScrollLine = nApparentLine - offset;
-			if (nScrollLine < 0)
-				nScrollLine = 0;
-			pCurrentView->ScrollToLine(nScrollLine);
-			pOtherView->ScrollToLine(nScrollLine);
-			pCurrentView->SetCursorPos(ptPos);
-			pOtherView->SetCursorPos(ptPos);
-			pCurrentView->SetAnchor(ptPos);
-			pOtherView->SetAnchor(ptPos);
+			GotoLine(nRealLine, TRUE, dlg.m_nFile == 0);
 		}
 		else
 		{
@@ -2257,4 +2224,56 @@ void CMergeEditView::OnUpdateMergingStatus(CCmdUI *pCmdUI)
 	VERIFY(text.LoadString(IDS_MERGEMODE_MERGING));
 	pCmdUI->SetText(text);
 	pCmdUI->Enable(GetDocument()->GetMergingMode());
+}
+
+/** 
+ * @brief Goto given line.
+ * @param [in] nLine Destination linenumber
+ * @param [in] bRealLine if TRUE linenumber is real line, otherwise
+ * it is apparent line (including deleted lines)
+ * @param [in] bLeft If TRUE linenumber is for left pane
+ */
+void CMergeEditView::GotoLine(UINT nLine, BOOL bRealLine, BOOL bLeft)
+{
+ 	CMergeDoc *pDoc = GetDocument();
+	CMergeEditView *pLeftView = pDoc->GetLeftView();
+	CMergeEditView *pRightView = pDoc->GetRightView();
+	int nRealLine = nLine;
+	int nApparentLine = 0;
+	int nLineCount = 0;
+
+	// Compute apparent (shown linenumber) line
+	if (bRealLine)
+	{
+		if (bLeft)
+		{
+			if (nRealLine > pDoc->m_ltBuf.GetLineCount() - 1)
+				nRealLine = pDoc->m_ltBuf.GetLineCount() - 1;
+
+			nApparentLine = pDoc->m_ltBuf.ComputeApparentLine(nRealLine);
+		}
+		else
+		{
+			if (nRealLine > pDoc->m_rtBuf.GetLineCount() - 1)
+				nRealLine = pDoc->m_rtBuf.GetLineCount() - 1;
+
+			nApparentLine = pDoc->m_rtBuf.ComputeApparentLine(nRealLine);
+		}
+	}
+	CPoint ptPos;
+	ptPos.x = 0;
+	ptPos.y = nApparentLine;
+
+	// Scroll line to center of view
+	int nScrollLine = nApparentLine;
+	nScrollLine -= GetScreenLines() / 2;
+	if (nScrollLine < 0)
+		nScrollLine = 0;
+	
+	pLeftView->ScrollToLine(nScrollLine);
+	pRightView->ScrollToLine(nScrollLine);
+	pLeftView->SetCursorPos(ptPos);
+	pRightView->SetCursorPos(ptPos);
+	pLeftView->SetAnchor(ptPos);
+	pRightView->SetAnchor(ptPos);
 }

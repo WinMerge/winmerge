@@ -351,7 +351,7 @@ BOOL CLocationView::GotoLocation(CPoint point)
 	else
 		return FALSE;
 
-	ScrollToLine(bar == BAR_LEFT, line);
+	m_view0->GotoLine(line, TRUE, bar == BAR_LEFT);
 	return TRUE;
 }
 
@@ -423,7 +423,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	switch (command)
 	{
 	case ID_LOCBAR_GOTODIFF:
-		ScrollToLine(bar == BAR_LEFT, nLine);
+		m_view0->GotoLine(nLine, TRUE, bar == BAR_LEFT);
 		break;
 	case ID_EDIT_WMGOTO:
 		m_view0->WMGoto();
@@ -501,23 +501,4 @@ int CLocationView::IsInsideBar(CRect rc, POINT pt)
 		retVal = BAR_RIGHT;
 
 	return retVal;
-}
-
-/** 
- * @brief Scroll to given real line in given side.
- * @param bLeft [in] left/right side
- * @param nLine [in] 0-based index of line to scroll to [0...lines-1]
- */
-void CLocationView::ScrollToLine(BOOL bLeft, int nLine)
-{
-	CMergeDoc* pDoc = GetDocument();
-	int nApparentLine = 0;
-
-	if (bLeft)
-		nApparentLine = pDoc->m_ltBuf.ComputeApparentLine(nLine);
-	else
-		nApparentLine = pDoc->m_rtBuf.ComputeApparentLine(nLine);
-
-	m_view0->GoToLine(nApparentLine + 1, false); // GotoLine() wants linenumber not lineindex
-	m_view1->GoToLine(nApparentLine + 1, false);
 }

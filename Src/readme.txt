@@ -4,6 +4,8 @@
  PATCH: [ 1000117 ] Hide only skipped subfolders in non-recursive compare
   Fixes bug #922718 'show different files' off : subdirs not displayed
   Src: DirDoc.cpp DirDoc.h
+ PATCH: [ 1000308 ] Add GotoLine() to CMergeEditView and use it
+  Src: LocationView.cpp LocationView.h MergeEditView.cpp MergeEditView.h
 
 2004-07-29 Kimmo
  PATCH: [ 999681 ] Accept filter name from commandline

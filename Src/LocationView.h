@@ -50,7 +50,6 @@ protected:
 	BOOL GotoLocation(CPoint point);
 	int GetLineFromYPos(int nYCoord, CRect rc, int bar);
 	int IsInsideBar(CRect rc, POINT pt);
-	void ScrollToLine(BOOL bLeft, int nLine);
 
 private:
 	CMergeEditView* m_view0;
