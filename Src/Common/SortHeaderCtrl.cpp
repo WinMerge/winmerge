@@ -61,7 +61,8 @@ void CSortHeaderCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	rgn.DeleteObject();
 
 	// Draw the background
-	dc.FillRect(rcLabel, &CBrush(::GetSysColor(COLOR_3DFACE)));
+	CBrush brush(::GetSysColor(COLOR_3DFACE));
+	dc.FillRect(rcLabel, &brush);
 
 	// Labels are offset by a certain amount	
 	// This offset is related to the width of a space character
