@@ -140,16 +140,21 @@
         </listitem>
 
         <listitem>
+          <para>If <filename class="directory">Languages</filename>
+          subdirectory does not exist under WinMerge directory (where
+          <filename>WinMerge.exe</filename> and/or
+          <filename>WinMergeU.exe</filename> is located) create it.</para>
+        </listitem>
+
+        <listitem>
           <para>a) If you downloaded just language file, unzip it into the
-          same directory where <filename>WinMerge.exe</filename> and/or
-          <filename>WinMergeU.exe</filename> is located.</para>
+          <filename class="directory">Languages</filename> directory.</para>
 
           <para>b) If you downloaded WinMerge release then search for
           <filename>Merge*.lang</filename> files, where * is name of language
           (<filename>MergeSwedish.lang</filename> for Swedish translation).
-          Unzip that file to the same directory where
-          <filename>WinMerge.exe</filename> and/or
-          <filename>WinMergeU.exe</filename> is located.</para>
+          Unzip that file to the <filename>Languages</filename>
+          directory.</para>
         </listitem>
 
         <listitem>
