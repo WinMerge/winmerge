@@ -1,3 +1,8 @@
+2004-01-06 Kimmo
+ Add Polish translation contributed by Pawel Wawrzyszko
+ Languages/Polish/*
+ Languages: BuildAll.bat UpdateAll_resource_h.bat
+
 2004-01-06 WinMerge experimental release 2.1.5.3 (cvs)
 
 2004-01-06 Perry
