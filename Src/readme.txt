@@ -1,3 +1,7 @@
+2003-11-05 Perry
+ Typofix: "Wiew Whitespaces" -> "View Whitespace"
+  WinMerge: ConfigLog.cpp
+
 2003-11-05 Kimmo
  BUG: [ 829435 ] Fix character classification routines for UNICODE
   common: RegExp.cpp

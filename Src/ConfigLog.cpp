@@ -205,7 +205,7 @@ BOOL CConfigLog::WriteLogFile()
 	else
 		file.WriteString(_T("Yes\n"));
 
-	file.WriteString(_T("\n Wiew Whitespaces: "));
+	file.WriteString(_T("\n View Whitespace: "));
 	if (miscSettings.bViewWhitespace)
 		file.WriteString(_T("Yes\n"));
 	else
