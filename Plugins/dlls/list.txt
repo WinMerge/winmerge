@@ -8,7 +8,7 @@ Use : Put the cursor where you want the date/time to be inserted, right-click
 and select one function.
 
 RCLocalizationHelper
-Preprocessing plugin for files .rc.
+Prediffing plugin for files .rc.
 Use this plugin to compare two files localized in different languages.
 It hides most differences concerning the localization (strings with localized
 text, layout of controls in dialog). Missing strings/controls/menus
