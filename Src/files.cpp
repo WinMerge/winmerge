@@ -255,7 +255,7 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 				ch = 0;
 		}
 		// Binary check
-		if (ch < 0x09)
+		if (ch == 0x00)
 		{
 			bBinary = TRUE;
 			break;

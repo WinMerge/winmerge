@@ -3,6 +3,8 @@
   From Tim Gerundt
   WinMerge/res: Merge.ico MergeDoc.ico
   All Languages/res: Merge.ico MergeDoc.ico
+ PATCH: [ 824987 ] Change binary-file detection (look only for zeros)
+  WinMerge: files.cpp
 
 2003-10-20 Kimmo
  BUG: [ 826645 ] Scrolling to diff does not move cursor to diff
