@@ -407,26 +407,6 @@ void CDirDoc::SetDiffContext(CDiffContext *pCtxt)
 	m_pCtxt = pCtxt;
 }
 
-CString GetPathOnly( const CString& sString )
-{
-	int nIdx = sString.GetLength();
-	CString	sReturn;
-
-	while (nIdx--)
-	{
-		if (sString.GetAt(nIdx) == '/' || sString.GetAt(nIdx) == '\\')
-		{
-			if (nIdx > 1)
-			{
-				LPTSTR pszRet = sReturn.GetBufferSetLength(nIdx + 1);
-				_tcsncpy(pszRet, sString, nIdx);
-				sReturn.ReleaseBuffer(nIdx);
-			}
-		}
-	}
-	return sReturn;
-}
-
 /**
  * @brief Find the CDiffContext diffpos of an item from its left & right paths
  */

@@ -4,6 +4,9 @@
  Optimise CFilePathEdit to not change text when same text given again
   By Laoran (PATCH "#809902 Show if file is changed" comments)
   WinMerge: FilePathEdit.cpp
+ Remove unused function GetPathOnly() from DirDoc.cpp -
+  its really defined in coretools.cpp and
+  WinMerge: DirDoc.cpp
 
 2003-09-20 WinMerge experimental release 2.1.1.7 (Unicode handling patch)
 
