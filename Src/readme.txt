@@ -1,3 +1,8 @@
+2003-02-13  Perry
+ [ 685816 ] Recommend deleting unlocalized translations
+ [ 684290 ] improved bin test:
+  Diff.cpp readme.txt
+
 2003-02-12  Perry
  Languages:
   Dutch/MergeDutch.rc

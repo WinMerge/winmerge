@@ -120,23 +120,22 @@ filetype (struct stat const *st)
 
 int FileIsBinary(int fd)
 {
-    int bResult=0;
-    int cnt;
-    char buf[128];
-    long prevpos = tell(fd);
+	int bResult=0;
+	int cnt;
+	char buf[128];
+	long prevpos = tell(fd);
 
 	// check front of file first
 	lseek(fd, 0L, SEEK_SET);
 	cnt=read(fd, buf, sizeof buf);
-    if (cnt>0)
-    {
+	if (cnt>0)
+	{
 		for (register int i=0; i < cnt; i++)
 		{
-			if (buf[i] == 0)
-//				|| (!isprint(buf[i]) && !isspace(buf[i])))
+			if (((unsigned char)buf[i]) < 0x09)
 			{
-			bResult=1;
-			break;
+				bResult=1;
+				break;
 			}
 		}
     }
@@ -150,8 +149,7 @@ int FileIsBinary(int fd)
 		{
 			for (register int i=0; i < cnt; i++)
 			{
-				if (buf[i] == 0)
-//					|| (!isprint(buf[i]) && !isspace(buf[i])))
+				if (((unsigned char)buf[i]) < 0x09)
 				{
 					bResult=1;
 					break;
@@ -160,8 +158,8 @@ int FileIsBinary(int fd)
 		}
 	}
 
-    lseek(fd, prevpos, SEEK_SET);
-    return bResult;
+	lseek(fd, prevpos, SEEK_SET);
+	return bResult;
 }
 
 
