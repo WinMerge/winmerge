@@ -4,16 +4,16 @@
   <para>Each plugin :</para>
   <itemizedlist>
     <listitem>
-      <para>is a single file, either a dll or a scriptlet (extension .sct)</para>
+      <para>is a single file, either a dll or a scriptlet (extension <filename class="extension">.sct</filename>)</para>
     </listitem>
     <listitem>
-      <para>is installed in the subdirectory "MergePlugins".</para>
+      <para>is installed in the subdirectory "<filename class="directory">MergePlugins</filename>".</para>
     </listitem>
     <listitem>
-      <para>is easy to install : copy the plugin file in "MergePlugins", close WinMerge if it is running, and launch it again</para>
+      <para>is easy to install : copy the plugin file in "<filename class="directory">MergePlugins</filename>", close WinMerge if it is running, and launch it again</para>
     </listitem>
   </itemizedlist>
-  <para>"Plugins" is a generic name for extra-feature dll or scriptlets. Plugins features are spread over three categories : file editor complement, unpacker, prediffer.</para>
+  <para>"<guilabel>Plugins</guilabel>" is a generic name for extra-feature dll or scriptlets. Plugins features are spread over three categories : file editor complement, unpacker, prediffer.</para>
   <para></para>
   <sect2>
     <title>Three categories of plugins</title>
@@ -40,11 +40,11 @@
   <sect2>
     <title>Select and apply a plugin</title>
     <sect3>
-      <title>"Suggested plugin" and "Automatic mode"</title>
-      <para>Each plugin specifies a list of file extensions (see plugins details for more info). When the file extension, either from the left or from the right file, matches the plugin list, the plugin is called "a suggested plugin".</para>
-      <para>When "Automatic mode" is on, WinMerge searches for a suggested plugin and applies it if it is avaialble. When two suggested plugins are available for a file, WinMerge applies the first one only (alphabetical order).</para>
+      <title>"<guilabel>Suggested plugin</guilabel>" and "<guilabel>Automatic mode</guilabel>"</title>
+      <para>Each plugin specifies a list of file extensions (see plugins details for more info). When the file extension, either from the left or from the right file, matches the plugin list, the plugin is called "<guilabel>a suggested plugin</guilabel>".</para>
+      <para>When "<guilabel>Automatic mode</guilabel>" is on, WinMerge searches for a suggested plugin and applies it if it is avaialble. When two suggested plugins are available for a file, WinMerge applies the first one only (alphabetical order).</para>
       <note>
-        <para>"Automatic unpacking" and "Automatic prediffing" are two separate options. There is no option for editor complements.</para>
+        <para>"<guimenuitem>Automatic Unpacking</guimenuitem>" and "<guimenuitem>Auto prediffer</guimenuitem>" are two separate options. There is no option for editor complements.</para>
       </note>
     </sect3>
     <sect3>
@@ -53,44 +53,44 @@
     </sect3>
     <sect3>
       <title>Editor complement in editor view</title>
-      <para>Access list with main menu, "Edit"-&gt;"Scripts"-&gt; </para>
+      <para>Access list with main menu, <menuchoice><guimenu>Edit</guimenu><guimenuitem>Scripts</guimenuitem><guimenuitem>...</guimenuitem></menuchoice></para>
     </sect3>
     <sect3>
       <title>Unpacker in directory view</title>
-      <para>Check "Plugins"-&gt;"Automatic unpacking" in the main menu. Update the results (F5). Each file is loaded again with its suggested unpacker and compared. </para>
+      <para>Check <menuchoice><guimenu>Plugins</guimenu><guimenuitem>Automatic Unpacking</guimenuitem></menuchoice> in the main menu. Update the results (<keycap>F5</keycap>). Each file is loaded again with its suggested unpacker and compared. </para>
     </sect3>
     <sect3>
       <title>Unpacker in editor view</title>
       <para>Three possibilities</para>
-      <para>Open dialog : select the two files first. Then press the button "select" right from the filed "unpacker". WinMerge displays the standard dialog for unpacker selection. Use the top combobox to select the plugin. Two generic choices are available also : "no unpacker" and "automatic unpacker".</para>
-      <para>From the directory view when "Plugins"-&gt;"Automatic unpacking" is checked : just double click to open the file. The suggested plugin used during the directory comparison is used to load the file in the editor. </para>
-      <para>From the directory view, always : select one file, then main menu "Plugins"-&gt;"Edit with unpacker". WinMerge displays the dialog for unpacker selection. Select an unpacker and press "OK", WinMerge opens the editor view and applies this unpacker to load the file. This plugin is forgotten when you close the editor view.</para>
+      <para>Open dialog : select the two files first. Then press the button "<guibutton>Select</guibutton>" right from the filed "<guilabel>Unpacker</guilabel>". WinMerge displays the standard dialog for unpacker selection. Use the top combobox to select the plugin. Two generic choices are available also : "<guilabel>None</guilabel>" and "<guilabel>Automatic</guilabel>".</para>
+      <para>From the directory view when <menuchoice><guimenu>Plugins</guimenu><guimenuitem>Automatic Unpacking</guimenuitem></menuchoice> is checked : just double click to open the file. The suggested plugin used during the directory comparison is used to load the file in the editor. </para>
+      <para>From the directory view, always : select one file, then main menu <menuchoice><guimenu>Plugins</guimenu><guimenuitem>Edit with Unpacker</guimenuitem></menuchoice>. WinMerge displays the dialog for unpacker selection. Select an unpacker and press "<guibutton>OK</guibutton>", WinMerge opens the editor view and applies this unpacker to load the file. This plugin is forgotten when you close the editor view.</para>
     </sect3>
     <sect3>
       <title>Prediffer in directory view</title>
-      <para>When the files are selected, right-click to open the context menu. Follow "Plugin settings"-&gt;"Prediffer settings"-&gt; and select "Auto prediffer" or "No prediffer". Refresh the view (F5) to update the results.</para>
+      <para>When the files are selected, right-click to open the context menu. Follow <menuchoice><guimenuitem>Plugin Settings</guimenuitem><guimenuitem>Prediffer Settings</guimenuitem></menuchoice> and select "<guimenuitem>Auto prediffer</guimenuitem>" or "<guimenuitem>No prediffer</guimenuitem>". Refresh the view (<keycap>F5</keycap>) to update the results.</para>
       <note>
-        <para>"Automatic prediffer" is a per-file option. Some files in the same directory can be in mode "no prediffer" and some in mode "automatic prediffer". When you change directory during a non-recursive compare, the mode is always reset to "no prediffer".</para>
+        <para>"<guimenuitem>Auto prediffer</guimenuitem>" is a per-file option. Some files in the same directory can be in mode "<guimenuitem>No prediffer</guimenuitem>" and some in mode "<guimenuitem>Auto prediffer</guimenuitem>". When you change directory during a non-recursive compare, the mode is always reset to "<guimenuitem>No prediffer</guimenuitem>".</para>
       </note>
     </sect3>
     <sect3>
       <title>Prediffer in editor view</title>
       <para>Two possibilities</para>
-      <para>From the directory view when "automatic prediffer" is checked for a file : just double click to open the file. The plugin used during the directory comparison is used in the editor before the diff algorithm.</para>
-      <para>During an editor session, access prediffer lists with menu "Plugins"-&gt;"Prediffer"-&gt;... The active prediffer is checked. Suggested plugins are indicated first above the not-suggested ones. The files are compared again after the selection, you don't need to rescan.</para>
+      <para>From the directory view when "<guimenuitem>Auto prediffer</guimenuitem>" is checked for a file : just double click to open the file. The plugin used during the directory comparison is used in the editor before the diff algorithm.</para>
+      <para>During an editor session, access prediffer lists with menu <menuchoice><guimenu>Plugins</guimenu><guimenuitem>Prediffer</guimenuitem><guimenuitem>...</guimenuitem></menuchoice> The active prediffer is checked. Suggested plugins are indicated first above the not-suggested ones. The files are compared again after the selection, you don't need to rescan.</para>
     </sect3>
   </sect2>
   <sect2>
     <title>Plugin details</title>
-    <para>A file Plugins.txt is created during the setup process. It documents each installed plugin : category, suggested file extensions, whether pack is available for unpack plugins, quick description.</para>
-    <para>If you don't use the setup.exe, the file is in the subdirectory "MergePlugins" and called list.txt. </para>
-    <para>Developpers may find information and code of examples in the source package, under the directory "Plugins".</para>
+    <para>A file <filename>Plugins.txt</filename> is created during the setup process. It documents each installed plugin : category, suggested file extensions, whether pack is available for unpack plugins, quick description.</para>
+    <para>If you don't use the <filename>setup.exe</filename>, the file is in the subdirectory "<filename class="directory">MergePlugins</filename>" and called <filename>list.txt</filename>. </para>
+    <para>Developpers may find information and code of examples in the source package, under the directory "<filename class="directory">Plugins</filename>".</para>
   </sect2>
   <sect2>
     <title>Windows Script Host</title>
     <para>Some editor complements need this optionnal component from Microsoft. </para>
     <para>If the list of editor complements does not present all editor plugins, this component is probably missing.</para>
     <para>You can check easily. WinMerge informs you with a comment at the bottom of the list.</para>
-    <para>You may install WSH on any version of Windows (need IE 4.0). Download it from &lt;http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp&gt;</para>
+    <para>You may install WSH on any version of Windows (need IE 4.0). Download it from <ulink url="http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp">MSDN Library</ulink>.</para>
   </sect2>
 </sect1>

@@ -15,7 +15,10 @@
   Manual: Whatsnew_2_1.xml
  Oops! Forgot Japanese in patch #1034717
   Manual: Locales.xml
-
+ PATCH: [ 1034558 ] Docs: More meta-informations
+  Submitted by Tim Gerundt
+  Manual: Plugins.xml
+ 
 2004-09-25 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations
   Submitted by Tim Gerundt
