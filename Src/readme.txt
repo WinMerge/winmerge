@@ -1,3 +1,7 @@
+2004-04-26 Perry
+ PATCH: [ 941986 ] Remove blank lines in popup dirview menu in Merge.rc
+  Src: Merge.rc
+
 2004-04-25 WinMerge experimental release 2.1.7.1 (cvs)
 
 2004-04-25 Perry

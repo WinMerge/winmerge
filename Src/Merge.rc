@@ -246,13 +246,9 @@ BEGIN
         POPUP "&Copy"
         BEGIN
             MENUITEM "&Left to Right",              ID_DIR_COPY_LEFT_TO_RIGHT
-
             MENUITEM "L&eft to...",                 ID_DIR_COPY_LEFT_TO_BROWSE
-
             MENUITEM "&Right to Left",              ID_DIR_COPY_RIGHT_TO_LEFT
-
             MENUITEM "R&ight to...",                ID_DIR_COPY_RIGHT_TO_BROWSE
-
         END
         POPUP "&Delete"
         BEGIN
@@ -265,14 +261,12 @@ BEGIN
         BEGIN
             MENUITEM "with &Registered Application", ID_DIR_OPEN_LEFT
             MENUITEM "with &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
-
             MENUITEM "&with...",                    ID_DIR_OPEN_LEFT_WITH
         END
         POPUP "O&pen Right"
         BEGIN
             MENUITEM "with &Registered Application", ID_DIR_OPEN_RIGHT
             MENUITEM "with &External Editor",       ID_DIR_OPEN_RIGHT_WITHEDITOR
-
             MENUITEM "&with...",                    ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
