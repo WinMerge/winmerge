@@ -887,7 +887,10 @@ void CDirView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 {
 	int focused = GetFocusedItem();
 	int lastDiff = GetLastDifferentItem();
-	if (focused < lastDiff)
+
+	// Check if different files were found and
+	// there is different item after focused item
+	if ((lastDiff > -1) && (focused < lastDiff))
 		pCmdUI->Enable(TRUE);
 	else
 		pCmdUI->Enable(FALSE);
@@ -924,7 +927,10 @@ void CDirView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 {
 	int focused = GetFocusedItem();
 	int firstDiff = GetFirstDifferentItem();
-	if (firstDiff < focused)
+
+	// Check if different files were found and
+	// there is different item before focused item
+	if ((firstDiff > -1) && (firstDiff < focused))
 		pCmdUI->Enable(TRUE);
 	else
 		pCmdUI->Enable(FALSE);

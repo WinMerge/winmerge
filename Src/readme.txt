@@ -1,3 +1,8 @@
+2003-02-24 Kimmo
+ [ 687574 ] Navigate in directory view (fix bug in patch)
+  WinMerge:
+   DirView.cpp
+
 2003-02-22 Perry
  [ 650356 ] suggest commenting out several functions
  [ 684416 ] is_all_whitespace is bad
