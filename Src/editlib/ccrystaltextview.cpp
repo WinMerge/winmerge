@@ -478,7 +478,7 @@ CCrystalTextView::~CCrystalTextView ()
 	}
 	if (m_pdwParseCookies != NULL)
 	{
-		delete m_pdwParseCookies;
+		delete[] m_pdwParseCookies;
 		m_pdwParseCookies = NULL;
 	}
 	if (m_pnActualLineLength != NULL)
@@ -1577,7 +1577,7 @@ ResetView ()
     }
   if (m_pdwParseCookies != NULL)
     {
-      delete m_pdwParseCookies;
+      delete[] m_pdwParseCookies;
       m_pdwParseCookies = NULL;
     }
   if (m_pnActualLineLength != NULL)
@@ -3374,7 +3374,7 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
               DWORD *pdwNewArray = new DWORD[nLineCount];
               if (nLineIndex > 0)
                 memcpy (pdwNewArray, m_pdwParseCookies, sizeof (DWORD) * nLineIndex);
-              delete m_pdwParseCookies;
+              delete[] m_pdwParseCookies;
               m_nParseArraySize = nLineCount;
               m_pdwParseCookies = pdwNewArray;
             }
