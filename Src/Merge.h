@@ -67,6 +67,8 @@ public:
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);
 	void EditFileFilter(LPCTSTR szFileFilterName);
 	void GetFileFilters(StringPairArray * filters, CString & selected) const;
+	CString GetFileFilterName(CString filterPath);
+	CString GetFileFilterPath(CString filterName);
 
 	// implement file/directory filtering, because app currently holds the filter manager
 	BOOL includeFile(LPCTSTR szFileName);

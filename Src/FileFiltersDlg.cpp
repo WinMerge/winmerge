@@ -149,35 +149,10 @@ BOOL FileFiltersDlg::OnInitDialog()
  */
 void FileFiltersDlg::AddToGrid(int filterIndex)
 {
-/*	CString file;
-	CString path;
-	CString ext;
-	CString appDataPath;
-	CString profilePath;
-	CString profilePath2;
-	CString winmergePath;
-*/
-	int i = filterIndex;
-
-/*	winMergePath = GetModulePath() + _T("\\Filters\\");
-	GetAppDataPath(appDataPath);
-	appDataPath += _T("\\WinMerge\\Filters\\");
-	GetUserProfilePath(profilePath);
-	profilePath2 = profilePath;
-	profilePath += _T("\\Local Settings\\Application Data\\WinMerge\\Filters\\");
-	profilePath2 += _T("\\Application Data\\WinMerge\\Filters\\");
-
-	SplitFileName(m_Filters->GetAt(i).first, &path, &file, &ext);
-
-	if (path.CompareNoCase(winMergePath) == 0)
-	{
-		path = _T("ProgramDir");
-	}
-*/
-	m_listFilters.InsertItem(i + 1, m_Filters->GetAt(i).second);
-
-	m_listFilters.SetItemText(i + 1, 1, m_Filters->GetAt(i).first);
-
+	m_listFilters.InsertItem(filterIndex + 1,
+		m_Filters->GetAt(filterIndex).second);
+	m_listFilters.SetItemText(filterIndex + 1, 1,
+		m_Filters->GetAt(filterIndex).first);
 }
 
 /**

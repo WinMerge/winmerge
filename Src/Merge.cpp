@@ -745,6 +745,44 @@ void CMergeApp::EditFileFilter(LPCTSTR szFileFilterPath)
 
 }
 
+/** @brief Return name of filter in given file */
+CString CMergeApp::GetFileFilterName(CString filterPath)
+{
+	StringPairArray filters;
+	CString selected;
+	CString name;
+
+	GetFileFilters(&filters, selected);
+	for (int i = 0; i < filters.GetSize(); i++)
+	{
+		if (filters.GetAt(i).first == filterPath)
+		{
+			name = filters.GetAt(i).second;
+			break;
+		}
+	}
+	return name;
+}
+
+/** @brief Return path to filter with given name */
+CString CMergeApp::GetFileFilterPath(CString filterName)
+{
+	StringPairArray filters;
+	CString selected;
+	CString path;
+
+	GetFileFilters(&filters, selected);
+	for (int i = 0; i < filters.GetSize(); i++)
+	{
+		if (filters.GetAt(i).second == filterName)
+		{
+			path = filters.GetAt(i).first;
+			break;
+		}
+	}
+	return path;
+}
+
 /** @brief Return TRUE unless we're suppressing this file by filter */
 BOOL CMergeApp::includeFile(LPCTSTR szFileName)
 {

@@ -101,6 +101,7 @@ public:
 	BOOL OpenFileToExternalEditor(CString file);
 	CString GetDefaultEditor();
 	void SetEOLMixed(BOOL bAllow);
+	void SelectFilter();
 
 // Overrides
 	// ClassWizard generated virtual function overrides

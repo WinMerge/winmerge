@@ -2686,3 +2686,11 @@ void CMainFrame::OnToolsFilters()
 
 	}
 }
+
+/**
+ * @brief Open Filters dialog.
+ */
+void CMainFrame::SelectFilter()
+{
+	OnToolsFilters();
+}

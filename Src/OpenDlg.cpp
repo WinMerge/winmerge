@@ -32,6 +32,7 @@
 #include "coretools.h"
 #include "paths.h"
 #include "SelectUnpackerDlg.h"
+#include "MainFrm.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -42,6 +43,7 @@ static char THIS_FILE[] = __FILE__;
 // Timer ID and timeout for delaying path validity check
 const UINT IDT_CHECKFILES = 1;
 const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
+static const TCHAR EMPTY_EXTENSION[] = _T(".*");
 
 /////////////////////////////////////////////////////////////////////////////
 // COpenDlg dialog
@@ -58,8 +60,9 @@ COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
 	m_strUnpacker = _T("");
 	//}}AFX_DATA_INIT
 
-	m_strParsedExt = _T(".*");
+	m_strParsedExt = EMPTY_EXTENSION;
 	m_pathsType = DOES_NOT_EXIST;
+	m_bFileFilterSelected = FALSE;
 }
 
 void COpenDlg::DoDataExchange(CDataExchange* pDX)
@@ -94,13 +97,17 @@ BEGIN_MESSAGE_MAP(COpenDlg, CDialog)
 	ON_CBN_EDITCHANGE(IDC_RIGHT_COMBO, OnEditEvent)
 	ON_CBN_SELENDCANCEL(IDC_RIGHT_COMBO, UpdateButtonStates)
 	ON_WM_TIMER()
+	ON_BN_CLICKED(IDC_SELECT_FILTER, OnSelectFilter)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // COpenDlg message handlers
 
-void COpenDlg::OnLeftButton() 
+/** 
+ * @brief Called when "Browse..." button is selected for left path.
+ */
+void COpenDlg::OnLeftButton()
 {
 	CString s;
 	CString sfolder, sname;
@@ -128,6 +135,9 @@ void COpenDlg::OnLeftButton()
 	}	
 }
 
+/** 
+ * @brief Called when "Browse..." button is selected for right path.
+ */
 void COpenDlg::OnRightButton() 
 {
 	CString s;
@@ -154,13 +164,22 @@ void COpenDlg::OnRightButton()
 	}	
 }
 
+/** 
+ * @brief Called when dialog is closed with "OK".
+ *
+ * Checks that paths are valid and sets filters.
+ */
 void COpenDlg::OnOK() 
 {
+	CString filterPrefix;
+	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
+
 	UpdateData(TRUE);
 
 	m_pathsType = GetPairComparability(m_strLeft, m_strRight);
 
-	if (m_pathsType == DOES_NOT_EXIST) {
+	if (m_pathsType == DOES_NOT_EXIST)
+	{
 		AfxMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
 		return;
 	}
@@ -171,49 +190,23 @@ void COpenDlg::OnOK()
 	UpdateData(FALSE);
 	KillTimer(IDT_CHECKFILES);
 
-	// parse the extensions
-	static const TCHAR pszSeps[] = _T("; |%^&,\\/<>:\"'`?\t\r\n");
-
-	TCHAR ext[2048];
-	// no need to trim before tokenizing
-	_tcscpy(ext, m_strExt);
-	LPTSTR p, pbreak;
-	CString strPattern;
-
-	p = _tcstok(ext, pszSeps);
-	while (p != NULL)
+	// If prefix found from start..
+	if (m_strExt.Find(filterPrefix, 0) == 0)
 	{
-		strPattern += _T(".*");
-		while ((pbreak = _tcspbrk(p,  _T(".*"))) != NULL)
-		{
-			TCHAR c = *pbreak;
-			*pbreak = 0;
-			strPattern += p;
-
-			if (c == _T('*'))
-				// replace all * with .*
-				strPattern += _T(".*");
-			if (c == _T('.'))
-				// replace all . with \\.
-				strPattern += _T("\\.");
-			p = pbreak + 1;
-		}
-		strPattern += p;
-
-		p = _tcstok(NULL, pszSeps);
-		if (p != NULL)
-			strPattern += _T('|');
+		// Remove prefix + space
+		m_strExt.Delete(0, filterPrefix.GetLength());
+		CString path = theApp.GetFileFilterPath(m_strExt);
+		m_strParsedExt = EMPTY_EXTENSION;
+		m_bFileFilterSelected = TRUE;
+		theApp.SetFileFilterPath(path);
 	}
-
-	if (strPattern.IsEmpty())
-		m_strParsedExt = _T(".*");
 	else
 	{
-		m_strParsedExt = _T("^(");
-		strPattern.MakeLower();
-		m_strParsedExt += strPattern + _T("|");
-		strPattern.MakeUpper();
-		m_strParsedExt += strPattern + _T(")$");
+		CString strNone;
+		VERIFY(strNone.LoadString(IDS_USERCHOICE_NONE));
+		theApp.SetFileFilterPath(strNone);
+		m_strParsedExt = ParseExtensions(m_strExt);
+		m_bFileFilterSelected = FALSE;
 	}
 
 	m_ctlLeft.SaveState(_T("Files\\Left"));
@@ -248,6 +241,7 @@ BOOL COpenDlg::OnInitDialog()
 	m_constraint.ConstrainItem(IDC_RIGHT_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
 	m_constraint.DisallowHeightGrowth();
@@ -259,10 +253,39 @@ BOOL COpenDlg::OnInitDialog()
 	m_ctlExt.LoadState(_T("Files\\Ext"));
 	UpdateData(m_strLeft.IsEmpty() && m_strRight.IsEmpty());
 	
-	// Select last used extension always, above line does not update
-	// it when one or both paths already set. That is case when opening
-	// one path from ShellExtension or drag&dropping one path
-	m_ctlExt.SetCurSel(0);
+	// Select active filter from filter list or add it to list
+	CString filterPrefix;
+	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
+	CString strNone;
+	VERIFY(strNone.LoadString(IDS_USERCHOICE_NONE));
+	CString filterFile, filterExt;
+	CString filterPath = theApp.GetFileFilterPath();
+	SplitFilename(filterPath, NULL, &filterFile, &filterExt);
+	filterFile += _T(".");
+	filterFile += filterExt;
+
+	if (filterFile.Find(strNone, 0) > -1)
+		// No filter selected, select last used extension
+		m_ctlExt.SetCurSel(0);
+	else
+	{
+		// Filter selected, search filter first from list, add if not found
+		m_bFileFilterSelected = TRUE;
+		CString filterName = theApp.GetFileFilterName(filterPath);
+		filterName.Insert(0, filterPrefix);
+		int ind = m_ctlExt.FindStringExact(0, filterName);
+		if (ind != CB_ERR)
+			m_ctlExt.SetCurSel(ind);
+		else
+		{
+			ind = m_ctlExt.InsertString(0, filterName);
+			if (ind != CB_ERR)
+				m_ctlExt.SetCurSel(ind);
+			else
+				LogErrorString(_T("Failed to add string to filters combo list!"));
+		}
+	}
+
 	UpdateButtonStates();
 
 	m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0)==1;
@@ -270,9 +293,12 @@ BOOL COpenDlg::OnInitDialog()
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);
 	SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
-	return TRUE;  
+	return TRUE;
 }
 
+/** 
+ * @brief Enable/disable components based on validity of paths.
+ */
 void COpenDlg::UpdateButtonStates()
 {
 	BOOL bLeftInvalid = FALSE;
@@ -310,12 +336,15 @@ void COpenDlg::UpdateButtonStates()
 		SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
 }
 
+/** 
+ * @brief Shows file/folder selection dialog.
+ */
 BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder) 
 {
 	CString s;
 	CString dirSelTag;
 
-    VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
+	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
 	VERIFY(s.LoadString(IDS_ALLFILES));
 	DWORD flags = OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
 	CFileDialog pdlg(TRUE, NULL, dirSelTag, flags, s);
@@ -345,7 +374,6 @@ void COpenDlg::OnSelchangeLeftCombo()
 		UpdateData(TRUE);
 	}
 	UpdateButtonStates();
-	
 }
 
 void COpenDlg::OnSelchangeRightCombo() 
@@ -369,7 +397,9 @@ void COpenDlg::RemoveTrailingSlash(CString & s)
 		s.Delete(s.GetLength()-1);
 }
 
-// Called every time paths are edited
+/** 
+ * @brief Called every time paths are edited.
+ */
 void COpenDlg::OnEditEvent()
 {
 	// (Re)start timer to path validity check delay
@@ -425,3 +455,78 @@ void COpenDlg::SetUnpackerStatus(UINT msgID)
 	SetDlgItemText(IDC_UNPACKER_EDIT, msg);
 }
 
+/** 
+ * @brief Called when "Select..." button for filters is selected.
+ */
+void COpenDlg::OnSelectFilter()
+{
+	CString filterName;
+	CString strNone;
+	CString filterPrefix;
+	VERIFY(strNone.LoadString(IDS_USERCHOICE_NONE));
+	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
+
+	mf->SelectFilter();
+	CString filter = theApp.GetFileFilterPath();
+	
+	if (filter == strNone)
+		SetDlgItemText(IDC_EXT_COMBO, _T("*.*"));
+	else
+	{
+		filterName = theApp.GetFileFilterName(filter);
+		filterName.Insert(0, filterPrefix);
+		SetDlgItemText(IDC_EXT_COMBO, filterName);
+	}
+}
+
+/** 
+ * @brief Parse user-given extension list to valid regexp for diffengine.
+ */
+CString COpenDlg::ParseExtensions(CString extensions)
+{
+	CString strParsed;
+	static const TCHAR pszSeps[] = _T("; |%^&,\\/<>:\"'`?\t\r\n");
+
+	TCHAR ext[2048];
+	// no need to trim before tokenizing
+	_tcscpy(ext, extensions);
+	LPTSTR p, pbreak;
+	CString strPattern;
+
+	p = _tcstok(ext, pszSeps);
+	while (p != NULL)
+	{
+		strPattern += EMPTY_EXTENSION;
+		while ((pbreak = _tcspbrk(p,  EMPTY_EXTENSION)) != NULL)
+		{
+			TCHAR c = *pbreak;
+			*pbreak = 0;
+			strPattern += p;
+
+			if (c == _T('*'))
+				// replace all * with .*
+				strPattern += EMPTY_EXTENSION;
+			if (c == _T('.'))
+				// replace all . with \\.
+				strPattern += _T("\\.");
+			p = pbreak + 1;
+		}
+		strPattern += p;
+
+		p = _tcstok(NULL, pszSeps);
+		if (p != NULL)
+			strPattern += _T('|');
+	}
+
+	if (strPattern.IsEmpty())
+		strParsed = EMPTY_EXTENSION;
+	else
+	{
+		strParsed = _T("^(");
+		strPattern.MakeLower();
+		strParsed += strPattern + _T("|");
+		strPattern.MakeUpper();
+		strParsed += strPattern + _T(")$");
+	}
+	return strParsed;
+}

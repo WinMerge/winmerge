@@ -70,6 +70,8 @@ public:
 	int m_pathsType; // enum from PATH_EXISTENCE in paths.h
 	/// unpacker info
 	PackingInfo m_infoHandler;
+	BOOL m_bFileFilterSelected;
+
 // Implementation data
 private:
 	prdlg::CMoveConstraint m_constraint; 
@@ -87,6 +89,7 @@ protected:
 	void RemoveTrailingSlash(CString& s);
 	void SetStatus(UINT msgID);
 	void SetUnpackerStatus(UINT msgID);
+	CString ParseExtensions(CString extensions);
 
 	// Generated message map functions
 	//{{AFX_MSG(COpenDlg)
@@ -99,6 +102,7 @@ protected:
 	afx_msg void OnEditEvent();
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnSelectUnpacker();
+	afx_msg void OnSelectFilter();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

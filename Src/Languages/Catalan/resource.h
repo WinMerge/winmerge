@@ -199,6 +199,7 @@
 #define IDC_SAVE_AS                     1132
 #define IDC_STATIC_TITLE_LEFT           1133
 #define IDC_STATIC_TITLE_RIGHT          1134
+#define IDC_SELECT_FILTER               1135
 
 
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -258,6 +259,7 @@
 #define IDS_FILTERFILE_NAMETITLE        16448
 #define IDS_FILTERFILE_PATHTITLE        16449
 #define IDS_FILTER_TITLE                16450
+#define IDS_FILTER_PREFIX               16451
 
 #define IDS_CC_CMD                      16464
 #define IDS_VSS_CMD                     16465
@@ -667,7 +669,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        162
 #define _APS_NEXT_COMMAND_VALUE         33088
-#define _APS_NEXT_CONTROL_VALUE         1135
+#define _APS_NEXT_CONTROL_VALUE         1136
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif

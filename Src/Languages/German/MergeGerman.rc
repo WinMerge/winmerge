@@ -398,9 +398,10 @@ BEGIN
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "S&uchen...",IDC_RIGHT_BUTTON,248,38,50,12
-    RTEXT           "&Erweiterungen:",IDC_STATIC,13,56,47,8
+    RTEXT           "&Filter:",IDC_STATIC,13,56,47,8
     COMBOBOX        IDC_EXT_COMBO,63,54,182,95,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Select...",IDC_SELECT_FILTER,242,54,50,12
     RTEXT           "&Entpacker:",IDC_STATIC,13,72,47,8
     EDITTEXT        IDC_UNPACKER_EDIT,63,70,182,12,ES_AUTOHSCROLL | 
                     ES_READONLY
@@ -1365,6 +1366,7 @@ BEGIN
     IDS_FILTERFILE_NAMETITLE "Name"
     IDS_FILTERFILE_PATHTITLE "Location"
     IDS_FILTER_TITLE        "Filters"
+    IDS_FILTER_PREFIX       "[F] "
 END
 
 // VERSION CONTROL OPTIONS

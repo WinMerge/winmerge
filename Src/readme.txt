@@ -5,6 +5,10 @@
  PATCH: [ 952586 ] Improve readonly file and folder handling
   Src: DirActions.cpp MainFrm.cpp MainFrm.h Merge.rc MergeDoc.cpp resource.h
   Src/Languages: *.rc resource.h
+ PATCH: [ 948592 ] Open and select filefilter from Open-dialog
+  Src: FileFiltersDlg.cpp MainFrm.cpp MainFrm.h Merge.cpp Merge.h
+   Merge.rc OpenDlg.cpp OpenDlg.h resource.h
+  Src/Languages: *.rc resource.h
 
 2004-05-13 Kimmo
  Backout last change to Merge.rc - restore version 1.187
