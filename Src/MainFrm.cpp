@@ -59,6 +59,7 @@
 #include "PatchTool.h"
 #include "FileTransform.h"
 #include "SelectUnpackerDlg.h"
+#include "files.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -590,47 +591,47 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 	CFileStatus status;
 	UINT userChoice = 0;
 	BOOL bRetVal = TRUE;
+	BOOL bFileRO = FALSE;
+	BOOL bFileExists = FALSE;
 	CString s;
 
-	if (CFile::GetStatus(strSavePath, status))
+	bFileRO = files_isFileReadOnly(strSavePath, &bFileExists);
+	
+	if (bFileExists && bFileRO)
 	{
-		// If file is read-only
-		if (status.m_attribute & CFile::Attribute::readOnly)
+		// Version control system used?
+		if (m_nVerSys > 0)
+			bRetVal = SaveToVersionControl(strSavePath);
+		else
 		{
-			// Version control system used?
-			if (m_nVerSys > 0)
-				bRetVal = SaveToVersionControl(strSavePath);
-			else
+			CString title;
+			VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
+			
+			// Prompt for user choice
+			AfxFormatString1(s, IDS_SAVEREADONLY_FMT, strSavePath);
+			userChoice = AfxMessageBox(s, MB_YESNOCANCEL |
+					MB_ICONQUESTION | MB_DEFBUTTON2);
+			switch (userChoice)
 			{
-				CString title;
-				VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
-				
-				// Prompt for user choice
-				AfxFormatString1(s, IDS_SAVEREADONLY_FMT, strSavePath);
-				userChoice = AfxMessageBox(s, MB_YESNOCANCEL |
-						MB_ICONQUESTION | MB_DEFBUTTON2);
-				switch (userChoice)
-				{
-				// Overwrite read-only file
-				case IDYES:
-					status.m_mtime = 0;		// Avoid unwanted changes
-					status.m_attribute &= ~CFile::Attribute::readOnly;
-					CFile::SetStatus(strSavePath, status);
-					break;
-				
-				// Save to new filename
-				case IDNO:
-					if (SelectFile(s, strSavePath, title, NULL, FALSE))
-						strSavePath = s;
-					else
-						bRetVal = FALSE;
-					break;
-				
-				// Cancel saving
-				case IDCANCEL:
+			// Overwrite read-only file
+			case IDYES:
+				status.m_mtime = 0;		// Avoid unwanted changes
+				status.m_attribute &= ~CFile::Attribute::readOnly;
+				CFile::SetStatus(strSavePath, status);
+				break;
+			
+			// Save to new filename
+			case IDNO:
+				if (SelectFile(s, strSavePath, title, NULL, FALSE))
+					strSavePath = s;
+				else
 					bRetVal = FALSE;
-					break;
-				}
+				break;
+			
+			// Cancel saving
+			case IDCANCEL:
+				bRetVal = FALSE;
+				break;
 			}
 		}
 	}
@@ -1164,6 +1165,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	CString strExt;
 	PackingInfo infoUnpacker;
 
+	BOOL bRORight = dwLeftFlags & FFILEOPEN_READONLY;
+	BOOL bROLeft = dwRightFlags & FFILEOPEN_READONLY;
 	BOOL docNull;
 	CDirDoc * pDirDoc = GetDirDocToShow(&docNull);
 
@@ -1249,8 +1252,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			CDiffContext *pCtxt = new CDiffContext(strLeft, strRight);
 			if (pCtxt != NULL)
 			{
-				pDirDoc->SetReadOnly(TRUE, FALSE);
-				pDirDoc->SetReadOnly(FALSE, FALSE);
+				pDirDoc->SetReadOnly(TRUE, bROLeft);
+				pDirDoc->SetReadOnly(FALSE, bRORight);
 				pDirDoc->SetRecursive(bRecurse);
 				pCtxt->SetRegExp(strExt);
 				pDirDoc->SetDiffContext(pCtxt);
@@ -1265,7 +1268,14 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	}
 	else
 	{
-		ShowMergeDoc(pDirDoc, strLeft, strRight, FALSE, FALSE, &infoUnpacker);
+		// If file is read-only on disk, set RO status
+		// But if file is not, don't reset RO status given as param
+		if (files_isFileReadOnly(strLeft))
+			bROLeft = TRUE;
+		if (files_isFileReadOnly(strRight))
+			bRORight = TRUE;
+	
+		ShowMergeDoc(pDirDoc, strLeft, strRight, bROLeft, bRORight, &infoUnpacker);
 	}
 	return TRUE;
 }

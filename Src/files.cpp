@@ -343,3 +343,29 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 		return FRESULT_OK;
 	}
 }
+
+/**
+ * @brief Checks if file is read-only on disk.
+ * Optionally returns also if file exists.
+ */
+BOOL files_isFileReadOnly(CString file, BOOL *fileExists /*=NULL*/)
+{
+	CFileStatus status;
+	BOOL bReadOnly = FALSE;
+	BOOL bExists = FALSE;
+
+	if (CFile::GetStatus(file, status))
+	{
+		bExists = TRUE;
+
+		if (status.m_attribute & CFile::Attribute::readOnly)
+			bReadOnly = TRUE;
+	}
+	else
+		bExists = FALSE;
+	
+	if (fileExists != NULL)
+		*fileExists = bExists;
+
+	return bReadOnly;
+}

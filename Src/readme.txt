@@ -1,3 +1,7 @@
+2003-10-24 Kimmo
+ PATCH: [ 828283 ] Open Read-only files as such
+  WinMerge: DirView.cpp files.h files.cpp MainFrm.cpp
+
 2003-10-24 Perry
  BUG: [ 829437 ] Can't compare two files with unicode filenames
   WinMerge: Diff.cpp

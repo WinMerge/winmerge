@@ -620,10 +620,16 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		{
 			// Open identical and different files
 			CString left, right;
+			BOOL bLeftRO = GetDocument()->GetReadOnly(TRUE);
+			BOOL bRightRO = GetDocument()->GetReadOnly(FALSE);
+
+			// FileFlags can only set RO status, not clear!
+			bLeftRO |= (di.left.flags.flags & FileFlags::RO);
+			bRightRO |= (di.right.flags.flags & FileFlags::RO);
+
 			GetItemFileNames(sel, left, right);
 			mf->ShowMergeDoc(GetDocument(), left, right,
-				GetDocument()->GetReadOnly(TRUE),
-				GetDocument()->GetReadOnly(FALSE), infoUnpacker);
+				bLeftRO, bRightRO, infoUnpacker);
 		}
 	}
 }
