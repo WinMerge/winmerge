@@ -1,3 +1,7 @@
+2004-11-09 Kimmo
+ PATCH: [ 1062598 ] Docs: More examples for filters
+  Manual: Filters.xml
+
 2004-11-02 Kimmo
  PATCH: [ 1059075 ] Docs: What means MRU?
   Submitted by Tim Gerundt
