@@ -1,6 +1,7 @@
 2004-05-10 Christian
  PATCH: [ 945467 ] Remove ReleaseMinsize and UnicodeReleaseMinsize
   Src: Merge.dsp
+  Src/Languages: CopyAll.bat
 
 2004-05-10 Kimmo
  PATCH: [ 951234 ] Use resourceIDs in dircompare statebar bitmpaps
