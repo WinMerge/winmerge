@@ -47,6 +47,7 @@ const UINT MSG_STAT_UPDATE = WM_USER + 2;
 int xisspecial (int c);
 int xisalpha (int c);
 int xisalnum (int c);
+int xisspace (int c);
 
 	/** @brief Load string from string resources; shortcut for CString::LoadString */
 CString LoadResString(int id);

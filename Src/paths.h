@@ -19,6 +19,7 @@ PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight);
 CString ExpandShortcut(CString &inFile);
 CString paths_ConcatPath(const CString & path, const CString & subpath);
 CString paths_GetParentPath(CString path);
+bool IsSlash(LPCTSTR pszStart, int nPos);
 BOOL paths_IsPathAbsolute(CString path);
 
 #endif // paths_h_included

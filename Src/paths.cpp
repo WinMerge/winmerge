@@ -9,15 +9,22 @@
 #include "stdafx.h"
 #include "paths.h"
 #include <direct.h>
+#include <mbctype.h> // MBCS (multibyte codepage stuff)
 
-bool IsSlash(TCHAR ch)
+bool IsSlash(LPCTSTR pszStart, int nPos)
 {
-	return ch=='\\' || ch=='/';
+	return pszStart[nPos]=='/' || 
+#ifdef _UNICODE
+	       pszStart[nPos]=='\\';
+#else
+		// Avoid 0x5C (ASCII backslash) byte occurring as trail byte in MBCS
+	       (pszStart[nPos]=='\\' && !_ismbstrail((unsigned char *)pszStart, (unsigned char *)pszStart + nPos));
+#endif
 }
 
 bool EndsWithSlash(const CString & s)
 {
-	return !s.IsEmpty() && IsSlash(s[s.GetLength()-1]);
+	return !s.IsEmpty() && IsSlash(s, s.GetLength()-1);
 }
 
 PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath)
@@ -215,7 +222,7 @@ CString paths_ConcatPath(const CString & path, const CString & subpath)
 	if (subpath.IsEmpty()) return path;
 	if (EndsWithSlash(path))
 	{
-		if (IsSlash(subpath[0]))
+		if (IsSlash(subpath, 0))
 		{
 			return path + subpath.Mid(1);
 		}
@@ -226,7 +233,7 @@ CString paths_ConcatPath(const CString & path, const CString & subpath)
 	}
 	else
 	{
-		if (IsSlash(subpath[0]))
+		if (IsSlash(subpath, 0))
 		{
 			return path + subpath;
 		}

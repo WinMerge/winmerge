@@ -1,3 +1,8 @@
+2004-05-30 Perry
+ PATCH: [ 962558 ] Some MBCS fixes from sawanaka
+  Src: paths.cpp paths.h StdAfx.cpp StdAfx.h
+  Src/Common: coretools.cpp
+
 2004-05-29 Kimmo
  PATCH: [ 961810 ] Store path for ShellExtension
   ShellExtension: resource.h ShellExtension.cpp ShellExtension.rc

@@ -25,6 +25,7 @@
 #include "stdafx.h"
 #include <stdio.h>
 #include <io.h>
+#include <mbctype.h> // MBCS (multibyte codepage stuff)
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -334,7 +335,13 @@ void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pE
 				extptr = pszChar;
 			}
 		}
-		else if (*pszChar == '/' || *pszChar == '\\' || *pszChar == ':')
+
+#ifdef _UNICODE
+		else if (*pszChar == '/' || *pszChar == ':' || *pszChar == '\\')
+#else
+		// Avoid 0x5C (ASCII backslash) byte occurring as trail byte in MBCS
+		else if (*pszChar == '/' || *pszChar == ':' || (*pszChar == '\\' && !_ismbstrail((unsigned char *)pathLeft, (unsigned char *)pszChar)))
+#endif
 		{
 			// Ok, found last slash, so we collect any info desired
 			// and we're done

@@ -72,6 +72,14 @@ xisalnum (int c)
   return _istalnum (normch(c)) || xisspecial (normch(c));
 }
 
+// Returns non-zero if input character is a space
+// Also converts any negative inputs to negative char equivalents (see normch)
+int
+xisspace (int c)
+{
+  return _istspace (normch(c));
+}
+
 // Load string resource and return as CString
 CString LoadResString(int id)
 {
