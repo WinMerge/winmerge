@@ -2223,7 +2223,7 @@ void CMergeDoc::PrimeTextBuffers()
 				// left side
 				for (UINT i = curDiff.dbegin0; i <= curDiff.dend0 ; i++)
 				{
-					if (curDiff.blank0 == -1 || i < curDiff.blank0)
+					if (curDiff.blank0 == -1 || (int)i < curDiff.blank0)
 					{
 						// set diff or trivial flag
 						DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;
@@ -2240,7 +2240,7 @@ void CMergeDoc::PrimeTextBuffers()
 				// right side
 				for (i = curDiff.dbegin1; i <= curDiff.dend1 ; i++)
 				{
-					if (curDiff.blank1 == -1 || i < curDiff.blank1)
+					if (curDiff.blank1 == -1 || (int)i < curDiff.blank1)
 					{
 						// set diff or trivial flag
 						DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;

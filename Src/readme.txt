@@ -1,3 +1,7 @@
+2004-05-01 Perry
+ PATCH: [ 941979 ] Add cast to suppress VS.NET 2002 warning
+  Src: MergeDoc.cpp
+
 2004-04-30 Christian
  PATCH: [ 941982 ] Fix VS6 compilation
   Src/Common: MessageBoxDialog.cpp MessageBoxDialog.h
