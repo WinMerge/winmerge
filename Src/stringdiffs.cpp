@@ -440,17 +440,15 @@ matchchar(TCHAR ch1, TCHAR ch2, bool casitive)
 }
 
 
-// Does character introduce a multicharacter character?
-inline bool IsLeadByte(TCHAR ch)
+/** Does character introduce a multicharacter character? */
+static inline bool IsLeadByte(TCHAR ch)
+{
 #ifdef UNICODE
-{
 	return false;
-}
 #else
-{
 	return _getmbcp() && IsDBCSLeadByte(ch);
-}
 #endif
+}
 
 /**
  * @brief Is it whitespace (excludes all lead & trail bytes)

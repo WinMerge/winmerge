@@ -2000,6 +2000,16 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
   return nReturnVal;
 }
 
+/** Does character introduce a multicharacter character? */
+static inline bool IsLeadByte(TCHAR ch)
+{
+#ifdef UNICODE
+  return false;
+#else
+  return _getmbcp() && IsDBCSLeadByte(ch);
+#endif
+}
+
 int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoint )
 {
   const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP());
@@ -2057,7 +2067,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
       if(bDBCSLeadPrev)
         bDBCSLeadPrev=FALSE;
       else
-        bDBCSLeadPrev = IsDBCSLeadByte(szLine[nIndex]);
+        bDBCSLeadPrev = IsLeadByte(szLine[nIndex]);
     }
   delete[] anBreaks;
 
@@ -3182,7 +3192,7 @@ ClientToText (const CPoint & point)
       if(bDBCSLeadPrev)
         bDBCSLeadPrev=FALSE;
       else
-        bDBCSLeadPrev = IsDBCSLeadByte(pszLine[nIndex]);
+        bDBCSLeadPrev = IsLeadByte(pszLine[nIndex]);
 
       nIndex ++;
     }

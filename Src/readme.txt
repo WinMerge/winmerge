@@ -1,3 +1,8 @@
+2004-10-24 Perry
+ BUG: [ 1048439 ] UNICODE build calling IsDBCSLeadByte (shouldn't)
+  Src: stringdiffs.cpp
+  Src/editlib: ccrystaltextview.cpp
+
 2004-10-23 Kimmo
  BUG: [ 1052283 ] after edit, asks TWICE for rewriting the original file (-e switch)
   Src: MergeDoc.cpp
