@@ -293,13 +293,10 @@ void CDirDoc::Redisplay()
 			s += p;
 			m_pView->AddItem(cnt, DV_PATH, s);
 			m_pView->SetItemKey(cnt, curdiffpos);
-			// This is inefficient, as we have the di in hand right now
-			// But to improve this, have to figure out the intricacies of UpdateItemStatus
-			UpdateItemStatus(cnt);
+			UpdateItemStatus(cnt, di);
 			cnt++;
 		}
 	}
-
 }
 
 CDirView * CDirDoc::GetMainView()
@@ -354,16 +351,17 @@ void CDirDoc::SetItemStatus(UINT nIdx, LPCTSTR szStatus, int image, const time_t
 
 void CDirDoc::UpdateItemStatus(UINT nIdx)
 {
-	CString s,s2;
-//	These are not used currently
-//	UINT cnt=0;
-//	int llen = m_pCtxt->m_strLeft.GetLength();
-//	int rlen = m_pCtxt->m_strRight.GetLength();
 	POSITION diffpos = m_pView->GetItemKey(nIdx);
 	DIFFITEM di = m_pCtxt->GetDiffAt(diffpos);
 
 	UpdateTimes(&di); // in case just copied (into existence) or modified
+	UpdateItemStatus(nIdx, di);
+}
 
+
+void CDirDoc::UpdateItemStatus(UINT nIdx, DIFFITEM di)
+{
+	CString s;
 	switch (di.code)
 	{
 	case FILE_DIFF:
@@ -398,7 +396,6 @@ void CDirDoc::UpdateItemStatus(UINT nIdx)
 		break;
 	}
 }
-
 
 void CDirDoc::InitStatusStrings()
 {

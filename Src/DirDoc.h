@@ -73,8 +73,10 @@ public:
 	virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
 protected:
+	void UpdateItemStatus(UINT nIdx, DIFFITEM di);
+
+	// Generated message map functions
 	//{{AFX_MSG(CDirDoc)
 		// NOTE - the ClassWizard will add and remove member functions here.
 	//}}AFX_MSG

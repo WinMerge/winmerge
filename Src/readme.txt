@@ -1,3 +1,7 @@
+2003-03-06 Kimmo
+ PATCH: [ 696695 ] DirDoc Redisplay optimisation
+  WinMerge: DirDoc.h DirDoc.cpp
+
 2003-03-05 Perry
  Added new subdir Languages/Danish/res
   PATCH: [ 695857 ] Fix directory handling, & UNC paths, & shortnames
