@@ -1,4 +1,7 @@
 2003-11-18 Laoran
+ PATCH: [ 842817 ] Initialize OpenDlg extension filter to blank
+ fix proposed by Perry
+  WinMerge: OpenDlg.cpp
  BUG: [ 840759 ] Failed to load library UnpackDFM.dll
  fix proposed by Jochen
   common: lwdisp.c

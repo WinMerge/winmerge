@@ -56,7 +56,7 @@ COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
 	m_strLeft = _T("");
 	m_strRight = _T("");
 	m_bRecurse = FALSE;
-	m_strExt = _T("*.*");
+	m_strExt = _T("");
 	m_strUnpacker = _T("");
 	//}}AFX_DATA_INIT
 
