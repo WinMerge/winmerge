@@ -1144,7 +1144,7 @@ private_tempnam (dir, pfx, dir_search, lenptr)
   else
     plen = 0;
 
-  if (dir != tmpdir && !strcmp (dir, tmpdir))
+  if (dir != tmpdir && !stricmp (dir, tmpdir))
     dir = tmpdir;
   info = &infos[(plen == 0 && dir == tmpdir) ? 1 : 0];
 

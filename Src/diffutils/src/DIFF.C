@@ -778,7 +778,7 @@ compare_files (dir0, name0, dir1, name1, depth)
 	{
 	  int stat_result;
 
-	  if (i && strcmp (inf[i].name, inf[0].name) == 0)
+	  if (i && stricmp (inf[i].name, inf[0].name) == 0)
 	    {
 	      inf[i].stat = inf[0].stat;
 	      stat_result = 0;

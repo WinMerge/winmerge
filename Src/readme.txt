@@ -1,3 +1,7 @@
+2003-03-14 Kimmo
+ PATCH: [ 703234 ] Use stricmp
+  WinMerge: DIFF.C diffmain.c SDIFF.C
+
 2003-03-11 Perry
   Deleted unused res files: bitmap1.bmp, bmp00001.bmp, ScreenShot.gif, WinMerge.gif
 
