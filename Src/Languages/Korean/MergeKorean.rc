@@ -1,4 +1,4 @@
-// Microsoft Visual C++ generated resource script.
+//Microsoft Developer Studio generated resource script.
 //
 // $Id$
 
@@ -15,13 +15,50 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 한국어 resources
+// Korean resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
-LANGUAGE LANG_KOREAN, SUBLANG_KOREAN
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 #pragma code_page(949)
 #endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE  
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE  
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(949)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Merge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -42,19 +79,19 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "오른쪽으로 복사(&G)",         ID_L2R
-        MENUITEM "왼쪽으로 복사(&L)",           ID_R2L
+        MENUITEM "오른쪽으로 복사(&O)",         ID_L2R
+        MENUITEM "왼쪽으로 복사(&Y)",           ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
+        MENUITEM "&Highlight Line Diff",        ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "살행 취소(&U)",               ID_EDIT_UNDO
-        MENUITEM "다시 실행",                   ID_EDIT_REDO
+        MENUITEM "다시 실행(&R)",               ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "잘라내기",                    ID_EDIT_CUT
+        MENUITEM "잘라내기(&T)",                ID_EDIT_CUT
         MENUITEM "복사(&C)",                    ID_EDIT_COPY
         MENUITEM "붙여넣기(&P)",                ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "&Goto...",                     ID_EDIT_WMGOTO
+        MENUITEM "이동(&G)",                    ID_EDIT_WMGOTO
     END
 END
 
@@ -68,48 +105,48 @@ BEGIN
         MENUITEM "저장(&S)\tCtrl+S",            ID_FILE_SAVE
         POPUP "왼쪽 저장(&L)"
         BEGIN
-            MENUITEM "저장(&S)",                       ID_FILE_SAVE_LEFT
-            MENUITEM "다른 이름으로 저장(&A)...",      ID_FILE_SAVEAS_LEFT
+            MENUITEM "저장(&S)",                    ID_FILE_SAVE_LEFT
+            MENUITEM "다른 이름으로 저장(&A)...",   ID_FILE_SAVEAS_LEFT
         END
         POPUP "오른쪽 저장(&R)"
         BEGIN
-            MENUITEM "저장(&S)",                       ID_FILE_SAVE_RIGHT
-            MENUITEM "다른 이름으로 저장(&A)...",      ID_FILE_SAVEAS_RIGHT
+            MENUITEM "저장(&S)",                    ID_FILE_SAVE_RIGHT
+            MENUITEM "다른 이름으로 저장(&A)...",   ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "왼쪽을 읽기전용으로(E&)",             ID_FILE_LEFT_READONLY
-        MENUITEM "오른쪽을 읽기전용으로(&G)",           ID_FILE_RIGHT_READONLY
+        MENUITEM "왼쪽을 읽기전용으로(E&)",     ID_FILE_LEFT_READONLY
+        MENUITEM "오른쪽을 읽기전용으로(&G)",   ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "포맷 변경(&F)"
+        POPUP "EOL 포맷(&F)"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "Merge Mode\tF9",              ID_FILE_MERGINGMODE
+        MENUITEM "Merge 모드\tF9",              ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "끝내기(&X)",                  ID_APP_EXIT
     END
     POPUP "편집(&E)"
     BEGIN
-        MENUITEM "살행 취소(&U)\tCtrl+Z",       ID_EDIT_UNDO
-        MENUITEM "다시 실행(&R)\tCtrl+Y",       ID_EDIT_REDO
+        MENUITEM "실행취소(&U)\tCtrl+Z",        ID_EDIT_UNDO
+        MENUITEM "재실행(&R)\tCtrl+Y",          ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "잘라내기(&T)\tCtrl+X",        ID_EDIT_CUT
         MENUITEM "복사(&C)\tCtrl+C",            ID_EDIT_COPY
         MENUITEM "붙여넣기(&P)\tCtrl+V",        ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "모두 선택(&A)\tCtrl+A",       ID_EDIT_SELECT_ALL
+        MENUITEM "전체선택(&A)\tCtrl+A",        ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "비교된 줄 선택(&H)\tF4",      ID_SHOWLINEDIFF
+        MENUITEM "&Highlight Line Diff\tF4",    ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "찾기(&I)...\tCtrl+F",         ID_EDIT_FIND
         MENUITEM "바꾸기(&C)...\tCtrl+H",       ID_EDIT_REPLACE
         MENUITEM SEPARATOR
         POPUP "스크립트(&S)"
         BEGIN
-            MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS
+            MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
         MENUITEM "이동(&G)...\tCtrl+G",         ID_EDIT_WMGOTO
@@ -122,12 +159,10 @@ BEGIN
     BEGIN
         MENUITEM "동일한 파일 보기(&I)",        ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "다른 파일 보기(&D)",          ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "좌측 유니크(unique)한 파일 보기(&F)",
-                                                ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "우측 유니크(unique)한 파일 보기(&G)",
-                                                ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "왼쪽만 존재하는 디렉토리/파일 보기(&F)",  ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "오른쪽만 존재하는 디렉토리/파일 보기(&G)", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "바이너리 파일 보기(&H)",      ID_OPTIONS_SHOWBINARIES
-        MENUITEM "무시된 파일 보기(&K)",        ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "필터링된 파일 보기(&K)",      ID_OPTIONS_SHOWSKIPPED
         MENUITEM SEPARATOR
         MENUITEM "폰트 선택(&F)...",            ID_VIEW_SELECTFONT
         MENUITEM "기본 폰트 사용(&O)",          ID_VIEW_USEDEFAULTFONT
@@ -136,58 +171,58 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "툴바(&T)",                    ID_VIEW_TOOLBAR
         MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
-        MENUITEM "자세한 비교창 보기(&P)",      ID_VIEW_DETAIL_BAR
-        MENUITEM "Location &Pane",              ID_VIEW_LOCATION_BAR
-        MENUITEM "디렉토리 비교 결과 보기(&R)", ID_VIEW_DIR_STATEPANE
+        MENUITEM "선택 비교창 보기(&P)",        ID_VIEW_DETAIL_BAR
+        MENUITEM "위치 표시창(&C)",             ID_VIEW_LOCATION_BAR
+        MENUITEM "디렉토리 비교 결과 요약(&R)", ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "언어(&L)...",                 ID_VIEW_LANGUAGE
     END
-    POPUP "&Merge"
+    POPUP "Merge(&M)"
     BEGIN
         MENUITEM "다음 다른 부분(&X)\tAlt+Down", ID_NEXTDIFF
         MENUITEM "이전 다른 부분(&V)\tAlt+Up",  ID_PREVDIFF
         MENUITEM SEPARATOR
         MENUITEM "처음 다른 부분(&F)\tAlt+Home", ID_FIRSTDIFF
-        MENUITEM "현재 다른 부분(&N)\tAlt+Enter", ID_CURDIFF
+        MENUITEM "현재 선택된 다른 부분(&N)\tAlt+Enter", ID_CURDIFF
         MENUITEM "마지막 다른 부분(&D)\tAlt+End", ID_LASTDIFF
         MENUITEM SEPARATOR
         MENUITEM "오른쪽으로 복사(&G)\tAlt+Right", ID_L2R
         MENUITEM "왼쪽으로 복사(&L)\tAlt+Left", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "C&opy to Right and Advance\tAlt+Ctrl+Right", ID_L2RNEXT
-        MENUITEM "Copy &to Left and Advance\tAlt+Ctrl+Left", ID_R2LNEXT
+        MENUITEM "오른쪽으로 복사 - Advance(&O)\tAlt+Ctrl+Right", ID_L2RNEXT
+        MENUITEM "왼쪽으로 복사 - Advance(&T)\tAlt+Ctrl+Left", ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "모두 오른쪽으로 복사(&A)",    ID_ALL_RIGHT
         MENUITEM "모두 왼쪽으로 복사(&E)",      ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "Copy Diffs in Left Selection to Right", ID_MULTIPLE_RIGHT
-        MENUITEM "Copy Diffs in Right Selection to Left", ID_MULTIPLE_LEFT
+        MENUITEM "선택 영역중 다른 부분 오른쪽으로 복사", ID_MULTIPLE_RIGHT
+        MENUITEM "선택 영역중 다른 부분 왼쪽으로 복사", ID_MULTIPLE_LEFT
     END
     POPUP "도구(&T)"
     BEGIN
-        MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
-        MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
-        MENUITEM "패치 생성(&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "디렉토리 비교 설정(&Customize Columns)", ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "필터(&F)",                    ID_TOOLS_FILTERS
+        MENUITEM "패치 생성(&G)",               ID_TOOLS_GENERATEPATCH
     END
     POPUP "플러그인(&P)"
     BEGIN
-        MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
-        MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
+        MENUITEM "수동 Unpacking(&M)",           ID_UNPACK_MANUAL
+        MENUITEM "자동 Unpacking(&A)",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "&Edit with Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "Unpacker 사용 편집(&E)",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         POPUP "&Prediffer"
         BEGIN
             MENUITEM SEPARATOR
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
+        MENUITEM "플러그인 다시 로드(&R)",             ID_RELOAD_PLUGINS
     END
     POPUP "창(&W)"
     BEGIN
         MENUITEM "닫기",                        ID_FILE_CLOSE
         MENUITEM SEPARATOR
-        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM "창(pane) 이동(&P)\tF6",       ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
         MENUITEM "수직 정렬(&H)",               ID_WINDOW_TILE_HORZ
         MENUITEM "수평 정렬(&V)",               ID_WINDOW_TILE_VERT
@@ -197,10 +232,10 @@ BEGIN
     BEGIN
         MENUITEM "목차(&C)...\tF1",             ID_HELP_CONTENTS
         MENUITEM SEPARATOR
-        MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "설정(&O)...",           ID_HELP_GETCONFIG
+        MENUITEM "압축파일 지원에 대하여(&R)...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
-        MENUITEM "GNU Public License...",       ID_HELP_GNULICENSE
+        MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
         MENUITEM "WinMerge 정보(&A)...",        ID_APP_ABOUT
     END
 END
@@ -209,57 +244,59 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        POPUP "&Copy"
+        POPUP "복사(&C)"
         BEGIN
-            MENUITEM "&Left to Right",              ID_DIR_COPY_LEFT_TO_RIGHT
-            MENUITEM "L&eft to...",                 ID_DIR_COPY_LEFT_TO_BROWSE
-            MENUITEM "&Right to Left",              ID_DIR_COPY_RIGHT_TO_LEFT
-            MENUITEM "R&ight to...",                ID_DIR_COPY_RIGHT_TO_BROWSE
+            MENUITEM "왼쪽에서 오른쪽으로(&L)",     ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "왼쪽 복사 위치 지정(&E)",     ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "오른쪽에서 왼쪽으로(&R)",     ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "오른쪽 복사 위치 지정(&I)",   ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "&Move"
+        POPUP "이동(&M)"
         BEGIN
-            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
-            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+            MENUITEM "왼쪽 이동 위치 지정(&L)",     ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "오른쪽 이동 위치 지정(&R)",   ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
-        POPUP "&Delete"
+        POPUP "삭제(&D)"
         BEGIN
-            MENUITEM "&Left",                       ID_DIR_DEL_LEFT
-            MENUITEM "&Right",                      ID_DIR_DEL_RIGHT
-            MENUITEM "&Both",                       ID_DIR_DEL_BOTH
-        END
-        MENUITEM SEPARATOR
-        POPUP "&Open Left"
-        BEGIN
-            MENUITEM "with &Registered Application", ID_DIR_OPEN_LEFT
-            MENUITEM "with &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
-            MENUITEM "&with...",                    ID_DIR_OPEN_LEFT_WITH
-        END
-        POPUP "O&pen Right"
-        BEGIN
-            MENUITEM "with &Registered Application", ID_DIR_OPEN_RIGHT
-            MENUITEM "with &External Editor",       ID_DIR_OPEN_RIGHT_WITHEDITOR
-            MENUITEM "&with...",                    ID_DIR_OPEN_RIGHT_WITH
+            MENUITEM "왼쪽만(&L)",                  ID_DIR_DEL_LEFT
+            MENUITEM "오른쪽만(&R)",                ID_DIR_DEL_RIGHT
+            MENUITEM "모두(&B)",                    ID_DIR_DEL_BOTH
         END
         MENUITEM SEPARATOR
-        POPUP "Cop&y Pathnames"
+        POPUP "왼쪽 파일 열기(&O)"
         BEGIN
-            MENUITEM "&Left (%1 of %2)",            ID_DIR_COPY_PATHNAMES_LEFT
-            MENUITEM "&Right (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
-            MENUITEM "&Both (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+            MENUITEM "연결 프로그램(&R)",           ID_DIR_OPEN_LEFT
+            MENUITEM "외부 편집기(&E)",             ID_DIR_OPEN_LEFT_WITHEDITOR
+
+            MENUITEM "프로그램 선택(&W)...",        ID_DIR_OPEN_LEFT_WITH
         END
-        MENUITEM "Copy &Filenames",                 ID_DIR_COPY_FILENAMES
-        MENUITEM SEPARATOR
-        POPUP "&Zip"
+        POPUP "오른쪽 파일 열기(&O)"
         BEGIN
-            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
-            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
-            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
-            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "연결 프로그램(&R)",           ID_DIR_OPEN_RIGHT
+            MENUITEM "외부 편집기(&E)",             ID_DIR_OPEN_RIGHT_WITHEDITOR
+
+            MENUITEM "프로그램 선택(&W)...",        ID_DIR_OPEN_RIGHT_WITH
+        END
+        MENUITEM SEPARATOR
+        POPUP "경로 복사(&Y)"
+        BEGIN
+            MENUITEM "왼쪽만(&L) (%1 of %2)",       ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "오른쪽만(&R) (%1 of %2)",     ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "모두(&B) (%1 of %2)",         ID_DIR_COPY_PATHNAMES_BOTH
+        END
+        MENUITEM "파일이름 복사(&F)",               ID_DIR_COPY_FILENAMES
+        MENUITEM SEPARATOR
+        POPUP "압축(&Zip)"
+        BEGIN
+            MENUITEM "왼쪽만(&L)... (%1 of %2)",    ID_DIR_ZIP_LEFT
+            MENUITEM "오른쪽만(&R)... (%1 of %2)",  ID_DIR_ZIP_RIGHT
+            MENUITEM "모두(&B)... (%1 of %2)",      ID_DIR_ZIP_BOTH
+            MENUITEM "다른 파일만(&D)... (%1 of %2)", ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
     END
     POPUP "_HDR_POPUP_"
     BEGIN
-        MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "디렉토리 비교 설정(&Customize Columns)", ID_TOOLS_CUSTOMIZECOLUMNS
     END
 END
 
@@ -267,17 +304,17 @@ IDR_POPUP_EDITOR_HEADERBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Copy Full Path",             ID_EDITOR_COPY_PATH
-        MENUITEM "Copy &Filename",              ID_EDITOR_COPY_FILENAME
+        MENUITEM "전체경로 복사(&C)",           ID_EDITOR_COPY_PATH
+        MENUITEM "파일이름 복사(&F)",           ID_EDITOR_COPY_FILENAME
     END
 END
 
 IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
-    POPUP "Prediffer Settings"
+    POPUP "Prediffer 설정"
     BEGIN
-        MENUITEM "&No prediffer",               ID_PREDIFF_MANUAL
-        MENUITEM "Auto prediffer",              ID_PREDIFF_AUTO
+        MENUITEM "prediffer 사용안함(&N)",               ID_PREDIFF_MANUAL
+        MENUITEM "prediffer 자동선택",              ID_PREDIFF_AUTO
     END
 END
 
@@ -285,12 +322,12 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "G&oto Diff"                   ID_LOCBAR_GOTODIFF
-        MENUITEM "&Goto...",                    ID_EDIT_WMGOTO
+        MENUITEM "다른부분으로 이동(&O)",            ID_LOCBAR_GOTODIFF
+        MENUITEM "이동(&G)...",                      ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
-        MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
-        MENUITEM "Moved Block for &Current Diff", ID_DISPLAY_MOVED_FOLLOW_DIFF
+        MENUITEM "이동영역 표시하지 않음(&N)",       ID_DISPLAY_MOVED_NONE
+        MENUITEM "모든 이동영역 표시(&A)",           ID_DISPLAY_MOVED_ALL
+        MENUITEM "선택된 이동영역만 표시(&C)",       ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
 END
 
@@ -353,12 +390,12 @@ FONT 8, "MS Shell Dlg"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
-    DEFPUSHBUTTON   "확인",IDOK,184,7,32,14,WS_GROUP
-    LTEXT           "버전 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
+    LTEXT           "Version 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
     LTEXT           "All rights reserved.",IDC_STATIC,7,60,170,8
-    LTEXT           "WinMerge 홈페이지 방문!",IDC_WWW,7,107,209,8
-    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
+    LTEXT           "Visit the WinMerge HomePage!",IDC_WWW,7,119,209,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,113,209,1
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
     LTEXT           "Contributors are listed in",IDC_STATIC,7,81,208,8
     LTEXT           "Contributors.txt",IDC_STATIC,7,91,153,8
@@ -368,60 +405,60 @@ END
 IDD_OPEN DIALOGEX 0, 0, 364, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU |
     WS_THICKFRAME
-CAPTION "파일/디렉토리 선택..."
+CAPTION "디렉토리/파일 선택..."
 FONT 8, "MS Shell Dlg"
 BEGIN
-    RTEXT           "좌측(&L):",IDC_STATIC,13,24,40,8
-    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
+    RTEXT           "왼쪽(&L):",IDC_STATIC,13,24,40,8
+    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "찾기(&B)...",IDC_LEFT_BUTTON,242,22,50,12
-    RTEXT           "우측(&R):",IDC_STATIC,13,40,40,8
-    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
+    PUSHBUTTON      "찾아보기(&B)...",IDC_LEFT_BUTTON,242,22,50,12
+    RTEXT           "오른쪽(&R):",IDC_STATIC,13,40,40,8
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "찾기(&W)...",IDC_RIGHT_BUTTON,242,38,50,12
-    RTEXT           "&Filter:",IDC_STATIC,13,56,40,8
-    COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN |
+    PUSHBUTTON      "찾아보기(&W)...",IDC_RIGHT_BUTTON,242,38,50,12
+    RTEXT           "필터(&F):",IDC_STATIC,13,56,40,8
+    COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Select...",IDC_SELECT_FILTER,242,54,50,12
+    PUSHBUTTON      "선택...",IDC_SELECT_FILTER,242,54,50,12
     RTEXT           "&Unpacker:",IDC_STATIC,13,72,40,8
-    EDITTEXT        IDC_UNPACKER_EDIT,56,70,181,12,ES_AUTOHSCROLL |
+    EDITTEXT        IDC_UNPACKER_EDIT,56,70,181,12,ES_AUTOHSCROLL | 
                     ES_READONLY
-    PUSHBUTTON      "&Select...",IDC_SELECT_UNPACKER,242,70,50,12
-    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",
+    PUSHBUTTON      "선택(&S)...",IDC_SELECT_UNPACKER,242,70,50,12
+    CONTROL         "하위 디렉토리 포함(&I)",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,56,86,181,10
-    LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
+    LTEXT           "상태:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "확인",IDOK,306,11,50,14
     PUSHBUTTON      "취소",IDCANCEL,306,28,50,14
-    GROUPBOX        "비교할 파일/디렉토리",IDC_FILES_DIRS_GROUP,7,7,292,111
+    GROUPBOX        "비교할 디렉토리/파일",IDC_FILES_DIRS_GROUP,7,7,292,111
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "비주얼 소스세이프(Visual SourceSafe)"
+CAPTION "Visual SourceSafe"
 FONT 8, "MS Shell Dlg"
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
     LTEXT           "Database:",IDC_STATIC,7,64,36,8
-    COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN |
+    COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Project:",IDC_STATIC,7,81,36,8
-    COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN |
+    COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "User:",IDC_STATIC,7,99,36,8
     EDITTEXT        IDC_USER,48,96,70,14,ES_AUTOHSCROLL
     RTEXT           "Password:",IDC_STATIC,122,99,55,8
     EDITTEXT        IDC_PASSWORD,180,96,70,14,ES_PASSWORD | ES_AUTOHSCROLL
-    CONTROL         "Link to Destination VSS project",IDC_VCPROJ_SYNC,"Button",
+    CONTROL         "VSS project 에 연결",IDC_VCPROJ_SYNC,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+    CONTROL         "모든 항목에 적용",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
-    DEFPUSHBUTTON   "Check Out",IDOK,91,145,50,14
-    PUSHBUTTON      "Save As...",IDC_SAVE_AS,145,145,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,200,145,50,14
+    DEFPUSHBUTTON   "Check Out",IDOK,70,145,50,14
+    PUSHBUTTON      "다른이름으로 저장...",IDC_SAVE_AS,124,145,74,14
+    PUSHBUTTON      "취소",IDCANCEL,200,145,50,14
 END
 
 IDD_PROP_VSS DIALOGEX 0, 0, 235, 157
@@ -434,7 +471,7 @@ BEGIN
                     WS_TABSTOP
     LTEXT           "cleartool.exe 경로(&P) :",IDC_VSS_L1,7,37,221,10
     EDITTEXT        IDC_PATH_EDIT,7,48,166,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "찾기(&B)...",IDC_BROWSE_BUTTON,178,48,50,14
+    PUSHBUTTON      "찾아보기(&B)...",IDC_BROWSE_BUTTON,178,48,50,14
 END
 
 IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 156
@@ -448,29 +485,29 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,129,10
     CONTROL         "스플래쉬 화면 사용 안함(&D)",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,98,10
-    CONTROL         "디렉토리 비교 결과창을 자동으로 닫기(&C)",IDC_CMPPANE_AUTOCLOSE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
+    CONTROL         "디렉토리 비교 결과창을 자동으로 닫기(&C)",
+                    IDC_CMPPANE_AUTOCLOSE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,37,206,10
     CONTROL         "ESC로 창 닫기(&O)",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
-    CONTROL         "Automatically verify paths in Open-dialog",
-                    IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "열기 대화상자에서 자동으로 올바른 경로인지 검사",
+                    IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,57,206,10
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
+    PUSHBUTTON      "초기화",IDC_RESET_ALL_MESSAGE_BOXES,179,87,50,13,NOT 
                     WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press button to make all messageboxes visible again.",
-                    IDC_STATIC,7,79,168,31
+    LTEXT           "",IDC_STATIC,7,79,171,31
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "언어"
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     PUSHBUTTON      "확인",IDOK,154,16,52,14
     PUSHBUTTON      "취소",IDCANCEL,154,33,52,14
-    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT |
-                    WS_VSCROLL | WS_TABSTOP | LBS_SORT
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "선택 가능한 언어:",IDC_STATIC,7,7,140,8
 END
 
@@ -481,11 +518,11 @@ CAPTION "찾기"
 FONT 8, "MS Shell Dlg"
 BEGIN
     LTEXT           "찾을 내용(&N) :",IDC_STATIC,7,9,50,8
-    COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN |
+    COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "단어 단위로(&W)",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,10
-    CONTROL         "대/소문자 구분(&C)",IDC_EDIT_MATCH_CASE,"Button",
+    CONTROL         "대소문자 구분(&C)",IDC_EDIT_MATCH_CASE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
     CONTROL         "정규 표현식(&E)",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
@@ -498,26 +535,26 @@ BEGIN
     PUSHBUTTON      "취소",IDCANCEL,226,24,50,14
 END
 
-IDD_EDIT_REPLACE DIALOGEX 36, 44, 311, 90
+IDD_EDIT_REPLACE DIALOGEX 36, 44, 304, 90
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "바꾸기"
 FONT 8, "MS Shell Dlg"
 BEGIN
     LTEXT           "찾을 내용(&N):",IDC_STATIC,7,9,65,8
-    COMBOBOX        IDC_EDIT_FINDTEXT,75,7,165,66,CBS_DROPDOWN |
+    COMBOBOX        IDC_EDIT_FINDTEXT,75,7,165,66,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "바꿀 내용(&P):",IDC_STATIC,7,24,65,8
-    COMBOBOX        IDC_EDIT_REPLACE_WITH,75,22,165,66,CBS_DROPDOWN |
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,75,22,165,66,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "단어 단위로(&W)",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
-    CONTROL         "대/소문자 구분(&C)",IDC_EDIT_MATCH_CASE,"Button",
+    CONTROL         "대소문자 구분(&C)",IDC_EDIT_MATCH_CASE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
     CONTROL         "정규 표현식(&E)",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
-    CONTROL         "&Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
+    CONTROL         "EOF랩(Wrap End of File) 하지 않기",IDC_EDIT_SCOPE_DONT_WRAP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
     GROUPBOX        "적용 범위",IDC_STATIC,149,40,90,36,WS_GROUP
     CONTROL         "현재 파일(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
@@ -537,15 +574,16 @@ FONT 8, "MS Shell Dlg"
 BEGIN
     DEFPUSHBUTTON   "체크아웃",IDOK,35,90,50,14
     PUSHBUTTON      "취소",IDCANCEL,194,90,50,14
-    PUSHBUTTON      "다른 이름으로 저장...",IDC_SAVE_AS,106,90,63,14,NOT WS_VISIBLE
-    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
+    PUSHBUTTON      "다른 이름으로 저장...",IDC_SAVE_AS,97,90,84,14,NOT 
+                    WS_VISIBLE
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "코멘트",IDC_STATIC,18,7,34,10
 END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Linefilters"
+CAPTION "라인 필터"
 FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "아래 패턴과 일치하는 라인 무시",IDC_IGNOREREGEXP,"Button",
@@ -561,58 +599,58 @@ CAPTION "색상"
 FONT 8, "MS Shell Dlg"
 BEGIN
     RTEXT           "다른 부분:",IDC_STATIC,7,29,90,8
-    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,29,17,14,WS_EX_TRANSPARENT |
+    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,113,29,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     RTEXT           "선택된 다른 부분:",IDC_STATIC,7,49,90,8
-    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,49,17,14,WS_EX_TRANSPARENT |
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,113,49,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CTEXT           "배경색",IDC_STATIC,96,15,50,8
     CTEXT           "지워짐",IDC_STATIC,145,15,38,8
-    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,156,29,17,14,WS_EX_TRANSPARENT |
+    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,156,29,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,156,49,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,156,49,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,199,29,17,14,WS_EX_TRANSPARENT |
+    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,199,29,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,49,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,199,49,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CTEXT           "텍스트",IDC_STATIC,193,15,29,8
-    CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,69,17,14,WS_EX_TRANSPARENT |
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,113,69,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     RTEXT           "무시된 다른 부분:",IDC_STATIC,7,69,90,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,156,69,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,156,69,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Dif",IDC_TRIVIAL_DIFF_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,69,17,14,WS_EX_TRANSPARENT |
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_TEXT_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,199,69,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Dif",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT |
+    CONTROL         "Dif",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    RTEXT           "Moved:",IDC_STATIC,7,89,90,8
-    CONTROL         "Dif",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT |
+    RTEXT           "이동한 부분:",IDC_STATIC,7,89,90,8
+    CONTROL         "Dif",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Dif",IDC_MOVEDBLOCK_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,89,17,14,WS_EX_TRANSPARENT |
+    CONTROL         "Dif",IDC_MOVEDBLOCK_TEXT_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,199,89,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT |
+    CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Moved:",IDC_STATIC,7,109,90,8
+    RTEXT           "선택된 이동한 부분:",IDC_STATIC,7,109,90,8
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+                    BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,
+                    WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
-                    WS_EX_CLIENTEDGE
+                    BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,
+                    WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     PUSHBUTTON      "기본값",IDC_COLORDEFAULTS_BTN,166,130,50,14
 END
 
@@ -623,7 +661,7 @@ CAPTION "대화 상자"
 FONT 8, "MS Shell Dlg"
 BEGIN
     DEFPUSHBUTTON   "확인",IDOK,106,136,50,14
-    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY |
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | 
                     WS_VSCROLL
 END
 
@@ -634,9 +672,9 @@ FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "삭제한 파일은 휴지통으로(&P)",IDC_USE_RECYCLE_BIN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
-    CONTROL         "탐색기 메뉴에 추가(&A)",IDC_EXPLORER_CONTEXT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
-    CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",
+    CONTROL         "탐색기 메뉴에 추가(&A)",IDC_EXPLORER_CONTEXT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
+    CONTROL         "Advanced 메뉴 활성화(&N)",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
     LTEXT           "외부 편집기(&E):",IDC_STATIC,7,44,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
@@ -646,49 +684,49 @@ END
 IDD_GENERATE_PATCH DIALOGEX 0, 0, 340, 180
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Patch Generator"
+CAPTION "패치 생성기"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "File&1:",IDC_STATIC,7,10,36,8
-    COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN |
+    LTEXT           "파일&1:",IDC_STATIC,7,10,36,8
+    COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "찾아보기(&B)...",IDC_DIFF_BROWSE_FILE1,283,7,50,14
-    LTEXT           "File&2:",IDC_STATIC,7,27,36,8
-    COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN |
+    PUSHBUTTON      "찾아보기(&B)...",IDC_DIFF_BROWSE_FILE1,283,7,52,14
+    LTEXT           "파일&2:",IDC_STATIC,7,27,36,8
+    COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Br&owse...",IDC_DIFF_BROWSE_FILE2,283,24,50,14
-    PUSHBUTTON      "&Swap",IDC_DIFF_SWAPFILES,283,41,50,14
-    CONTROL         "&Append to existing file",IDC_DIFF_APPENDFILE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
-    LTEXT           "&Result:",IDC_STATIC,7,66,37,8
-    COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN |
+    PUSHBUTTON      "찾아보기(&O)...",IDC_DIFF_BROWSE_FILE2,283,24,52,14
+    PUSHBUTTON      "위치바꾸기(&S)",IDC_DIFF_SWAPFILES,283,41,52,14
+    CONTROL         "존재하는 파일에 덧붙이기(&A)",IDC_DIFF_APPENDFILE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
+    LTEXT           "결과(&R):",IDC_STATIC,7,66,37,8
+    COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Bro&wse...",IDC_DIFF_BROWSE_RESULT,283,63,50,14
+    PUSHBUTTON      "찾아보기(&W)...",IDC_DIFF_BROWSE_RESULT,283,63,52,14
     GROUPBOX        "&Format",IDC_STATIC,7,81,142,46
     LTEXT           "St&yle:",IDC_STATIC,13,95,46,8
-    COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL |
+    COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL | 
                     WS_TABSTOP
     LTEXT           "&Context:",IDC_STATIC,13,109,46,8
-    COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWNLIST | 
                     WS_DISABLED | WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "W&hitespaces",IDC_STATIC,155,81,123,46
-    CONTROL         "Com&pare",IDC_DIFF_WHITESPACE_COMPARE,"Button",
+    GROUPBOX        "공백문자(whitespace)",IDC_STATIC,155,81,123,46
+    CONTROL         "모두 비교(&P)",IDC_DIFF_WHITESPACE_COMPARE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,162,92,110,10
-    CONTROL         "I&gnore changes",IDC_DIFF_WHITESPACE_IGNORE,"Button",
-                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
-    CONTROL         "Ig&nore all",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
-                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
-    CONTROL         "Ignor&e blank lines",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
+    CONTROL         "바뀐부분 비교 안함(&G)",IDC_DIFF_WHITESPACE_IGNORE,
+                    "Button",BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
+    CONTROL         "모두 비교 안함(&N)",IDC_DIFF_WHITESPACE_IGNOREALL,
+                    "Button",BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
+    CONTROL         "공백 라인 무시(&E)",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,142,10
-    CONTROL         "Case sensi&tive",IDC_DIFF_CASESENSITIVE,"Button",
+    CONTROL         "대소문자 구분(&T)",IDC_DIFF_CASESENSITIVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
     CONTROL         "Inclu&de command line",IDC_DIFF_INCLCMDLINE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
-    CONTROL         "Open to e&xternal editor",IDC_DIFF_OPENTOEDITOR,"Button",
+    CONTROL         "외부 에디터로 열기(&X)",IDC_DIFF_OPENTOEDITOR,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,155,145,170,10
     PUSHBUTTON      "기본값",IDC_DIFF_DEFAULTS,7,159,50,14
-    DEFPUSHBUTTON   "OK",IDOK,230,159,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,283,159,50,14
+    DEFPUSHBUTTON   "확인",IDOK,230,159,50,14
+    PUSHBUTTON      "취소",IDCANCEL,283,159,50,14
 END
 
 IDD_EDITOR_HEADERBAR DIALOGEX 0, 0, 373, 12
@@ -706,23 +744,23 @@ END
 IDD_DIRCOLS DIALOGEX 0, 0, 283, 170
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Display Columns"
+CAPTION "디렉토리 비교 표시 항목"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    GROUPBOX        "Show columns",IDC_GROUP_SHOW,7,7,129,109
-    LISTBOX         IDC_LIST_SHOW,48,19,80,90,LBS_NOINTEGRALHEIGHT |
+    GROUPBOX        "표시",IDC_GROUP_SHOW,7,7,132,109
+    LISTBOX         IDC_LIST_SHOW,51,19,80,90,LBS_NOINTEGRALHEIGHT | 
                     LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
-    PUSHBUTTON      "&Up",IDC_UP,14,45,27,14
-    PUSHBUTTON      "&Down",IDC_DOWN,14,63,27,14
-    GROUPBOX        "Hide columns",IDC_GROUP_HIDE,180,7,96,109
-    LISTBOX         IDC_LIST_HIDE,188,19,80,90,LBS_NOINTEGRALHEIGHT |
+    PUSHBUTTON      "위로(&U)",IDC_UP,11,45,36,14
+    PUSHBUTTON      "아래로(&D)",IDC_DOWN,11,63,36,14
+    GROUPBOX        "숨기기",IDC_GROUP_HIDE,180,7,96,109
+    LISTBOX         IDC_LIST_HIDE,188,19,80,90,LBS_NOINTEGRALHEIGHT | 
                     LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
-    PUSHBUTTON      "<==",IDC_ADD,143,45,29,14
-    PUSHBUTTON      "==>",IDC_REMOVE,143,63,29,14
+    PUSHBUTTON      "<==",IDC_ADD,146,45,29,14
+    PUSHBUTTON      "==>",IDC_REMOVE,146,63,29,14
     EDITTEXT        IDC_COLDLG_DESC,7,122,269,22,ES_MULTILINE | ES_READONLY
     PUSHBUTTON      "기본값",IDC_COLDLG_DEFAULTS,7,149,50,14
-    DEFPUSHBUTTON   "OK",IDOK,172,149,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,226,149,50,14
+    DEFPUSHBUTTON   "확인",IDOK,172,149,50,14
+    PUSHBUTTON      "취소",IDCANCEL,226,149,50,14
 END
 
 IDD_SELECTUNPACKER DIALOGEX 0, 0, 293, 126
@@ -731,16 +769,16 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Select Unpacker"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,87,99,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,156,99,50,14
-    LTEXT           "File unpacker:",IDC_STATIC,7,18,50,10
-    COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST |
+    DEFPUSHBUTTON   "확인",IDOK,87,99,50,14
+    PUSHBUTTON      "취소",IDCANCEL,156,99,50,14
+    LTEXT           "파일 unpacker:",IDC_STATIC,7,18,50,10
+    COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Display all unpackers, don't check the extension",
-                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "모든 unpacker 표시, 확장자를 체크하지 않음",
+                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX | 
                     BS_LEFTTEXT | WS_TABSTOP,7,74,202,13
-    LTEXT           "Extensions list:",IDC_STATIC,7,36,49,10
-    LTEXT           "Description:",IDC_STATIC,7,52,47,10
+    LTEXT           "확장자 목록:",IDC_STATIC,7,36,49,10
+    LTEXT           "설명:",IDC_STATIC,7,52,47,10
     EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,176,12,
                     ES_AUTOHSCROLL | ES_READONLY
     EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL |
@@ -806,29 +844,29 @@ BEGIN
                     0x2000
     RTEXT           "",IDC_COUNT_FILESKIP,288,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    DEFPUSHBUTTON   "Stop",IDC_COMPARISON_STOP,327,17,83,14
+    DEFPUSHBUTTON   "중지",IDC_COMPARISON_STOP,327,17,83,14
 END
 
 IDD_WMGOTO DIALOGEX 0, 0, 210, 70
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Go To"
+CAPTION "이동"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "G&oto:",IDC_STATIC,7,9,36,8
+    LTEXT           "이동(&O):",IDC_STATIC,7,9,36,8
     EDITTEXT        IDC_WMGOTO_PARAM,45,7,102,14,ES_AUTOHSCROLL | ES_NUMBER
-    GROUPBOX        "File",IDC_STATIC,7,27,57,35
-    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP,13,38,48,10
-    CONTROL         "&Right",IDC_WMGOTO_FILERIGHT,"Button",
+    GROUPBOX        "파일",IDC_STATIC,7,27,57,35
+    CONTROL         "왼쪽(&L)",IDC_WMGOTO_FILELEFT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,13,38,48,10
+    CONTROL         "오른쪽(&R)",IDC_WMGOTO_FILERIGHT,"Button",
                     BS_AUTORADIOBUTTON,13,48,47,10
-    GROUPBOX        "Goto what",IDC_STATIC,69,27,78,35
-    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | 
+    GROUPBOX        "이동할 곳",IDC_STATIC,69,27,78,35
+    CONTROL         "라인(&N)",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP,76,38,68,10
-    CONTROL         "&Difference",IDC_WMGOTO_TODIFF,"Button",
+    CONTROL         "다른 부분(&D)",IDC_WMGOTO_TODIFF,"Button",
                     BS_AUTORADIOBUTTON,76,48,68,10
-    DEFPUSHBUTTON   "&Go To",IDOK,153,7,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,153,24,50,14
+    DEFPUSHBUTTON   "이동(&G)",IDOK,153,7,50,14
+    PUSHBUTTON      "취소",IDCANCEL,153,24,50,14
 END
 
 IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 235, 156
@@ -845,32 +883,31 @@ BEGIN
                     BS_AUTORADIOBUTTON,14,41,206,10
     CONTROL         "공백 라인 무시(&K)",IDC_IGNBLANKS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
-    CONTROL         "대/소문자 무시(&C)",IDC_IGNCASE_CHECK,"Button",
+    CONTROL         "대소문자 무시(&C)",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
-    CONTROL         "Igno&re carriage return differences (DOS/UNIX/MAC)",
+    CONTROL         "carriage return 무시(&R) (DOS/UNIX/MAC)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,80,221,10
-    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",
+    CONTROL         "이동영역 찾기 활성화",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
     LTEXT           "파일 비교 방식(&F):",IDC_STATIC,7,105,70,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,103,84,52,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,103,84,52,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "기본값",IDC_COMPARE_DEFAULTS,7,121,50,14
 END
 
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+STYLE DS_FIXEDSYS | WS_CHILD | WS_CAPTION
 CAPTION "편집기"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "구문 하이라이트",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
-    CONTROL         "Apply to &unrecognized side",
-                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,18,18,204,10
+    CONTROL         "Apply to &unrecognized side",IDC_UNREC_APPLYSYNTAX,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,18,204,10
     CONTROL         "자동 리스캔(&R)",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
-    CONTROL         "원래 있던 EOL 문자 보호(&P)",IDC_MIXED_EOL,"Button",
+    CONTROL         "원본 EOL 보존(&P)",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "탭(Tabs)",IDC_STATIC,7,54,221,33,WS_GROUP
     LTEXT           "탭 크기(&T):",IDC_STATIC,15,68,42,8
@@ -883,98 +920,97 @@ BEGIN
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
-FONT 8, "MS Shell Dlg"
+STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
 END
 
-IDD_FILEFILTERS DIALOGEX 0, 0, 356, 135
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "Filefilters"
+IDD_FILEFILTERS DIALOG   0, 0, 356, 135
+STYLE DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "파일 필터"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
-                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
+    CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,299,114,50,14
+    PUSHBUTTON      "편집...",IDC_FILTERFILE_EDITBTN,299,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Save modified files?"
+CAPTION "수정 파일 저장"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Left side file",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
-    EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL |
+    GROUPBOX        "왼쪽 파일",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
+    EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    CONTROL         "&Save changes",IDC_SAVECLOSING_SAVELEFT,"Button",
+    CONTROL         "저장(&S)",IDC_SAVECLOSING_SAVELEFT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
-    CONTROL         "&Discard changes",IDC_SAVECLOSING_DISCARDLEFT,"Button",
+    CONTROL         "저장하지 않음(&D)",IDC_SAVECLOSING_DISCARDLEFT,"Button",
                     BS_AUTORADIOBUTTON,16,46,230,10
-    GROUPBOX        "Right side file",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
-    EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL |
+    GROUPBOX        "오른쪽 파일",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
+    EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    CONTROL         "S&ave changes",IDC_SAVECLOSING_SAVERIGHT,"Button",
+    CONTROL         "저장(&A)",IDC_SAVECLOSING_SAVERIGHT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
-    CONTROL         "Dis&card changes",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
+    CONTROL         "저장하지 않음(&C)",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
-    DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,205,133,50,14
+    DEFPUSHBUTTON   "확인",IDOK,149,133,50,14
+    PUSHBUTTON      "취소",IDCANCEL,205,133,50,14
 END
 
 IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Detect codepage info for these files : .html, .rc \nneed to restart session",
-                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
+    CONTROL         "다음 파일에서 codepage를 자동 디텍트 : .html, .rc \n(비교를 다시 시작해야합니다)",
+                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP | 
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
-    CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
+    CONTROL         "시스템 codepage",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
-    CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",
+    CONTROL         "WinMerge 유저인터페이스를 따름",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,33,210,10
-    CONTROL         "Custom codepage :",IDC_CP_CUSTOM,"Button",
+    CONTROL         "일반적인 codepage :",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,46,77,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Default codepage for ANSI files",IDC_STATIC,7,7,221,58
+    GROUPBOX        "ANSI 파일의 기본 codepage",IDC_STATIC,7,7,221,58
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 276, 186
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "WinMerge"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "Archive support is disabled. In order to enable archive support, please install a version of 7-Zip that WinMerge can interface, and place a copy of the appropriate interface plugin (Merge7z*.dll) in your WinMerge directory.",
+    LTEXT           "압축지원 기능이 꺼져있습니다. 사용하기 위해서는 Winmere가 인터페이스할 수 있는 버전의 7-Zip 을 인스톨하고, Winmerge 디렉토리에 plugin(Merge7z*.dll)을 복사하세요.",
                     IDC_STATIC,2,2,272,32
-    LTEXT           "WinMerge can interface 7-Zip 3.11 and above, provided the appropriate interface plugin is available. Please use the version of 7-Zip recommended below until interface plugins for later versions become available.",
+    LTEXT           "Winmere 는 7-Zip 3.11 이상 버전에서 제공하는 인터페이스 플러그인을 사용할 수 있습니다. 아래에서 권장하는 7-Zip 인터페이스 플러그인을 사용하세요.",
                     IDC_STATIC,2,34,272,32
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,70,131,8
+    LTEXT           "권장하는 7-Zip 버전:",IDC_STATIC,2,70,131,8
     EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugin required:",IDC_STATIC,2,82,86,8
+    LTEXT           "필요한 인터페이스 플러그인:",IDC_STATIC,2,82,86,8
     EDITTEXT        102,214,82,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of 7-Zip currently installed on your computer:",
+    LTEXT           "현재 설치되어 있는 7-Zip 버전:",
                     IDC_STATIC,2,98,208,8
     EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of local 7-Zip components found in WinMerge directory:",
+    LTEXT           "WinMerge 디렉토리서 발견된 7-Zip 컴포넌트 버전:",
                     IDC_STATIC,2,110,208,8
     EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugins found in WinMerge directory:",
+    LTEXT           "WinMerge 디렉토리서 발견된 인터페이스 플러그인:",
                     IDC_STATIC,2,130,168,28
     LISTBOX         105,174,130,100,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
                     WS_VSCROLL | WS_GROUP
-    CONTROL         "Don't display this &message again.\n(You can allways recall this message from help menu.)",
+    CONTROL         "이 메시지를 다시 표시하지 않습니다(&M)\n(도움말 메뉴에서 메세지를 다시 표시하게 할 수 있습니다.)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
-                    WS_TABSTOP,2,164,202,20
-    DEFPUSHBUTTON   "OK",IDOK,208,170,50,14,WS_GROUP
+                    WS_TABSTOP,2,164,216,20
+    DEFPUSHBUTTON   "OK",IDOK,222,168,50,14,WS_GROUP
 END
 
 #ifndef _MAC
@@ -984,8 +1020,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,0,0
- PRODUCTVERSION 0,0,0,0
+ FILEVERSION 2,1,10,0
+ PRODUCTVERSION 2,1,10,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x9L
@@ -998,142 +1034,26 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041203b5"
+        BLOCK "041204b0"
         BEGIN
-            VALUE "Comments", "Translated by Sukjoon\0"
-            VALUE "CompanyName", "\0"
+            VALUE "Comments", "Translated by Christian List\0"
             VALUE "FileDescription", "WinMerge Application\0"
-            VALUE "FileVersion", "000.000.000.000\0"
+            VALUE "FileVersion", "2.1.10.0\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "ⓒ 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
-            VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "WinMerge.EXE"
+            VALUE "LegalCopyright", "� 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
-            VALUE "ProductVersion", "000.000.000.000\0"
-            VALUE "SpecialBuild", "\0"
+            VALUE "ProductVersion", "2.1.10.0\0"
         END
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "Translation", 0x412, 949
+        VALUE "Translation", 0x412, 1200
     END
 END
 
 #endif    // !_MAC
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO
-BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 216
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 115
-    END
-
-    IDD_OPEN, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 349
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 108
-    END
-
-    IDD_VSS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 251
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 141
-    END
-
-    IDD_PROP_VSS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 252
-        VERTGUIDE, 85
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 150
-    END
-
-    IDD_PROPPAGE_LARGE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 252
-        VERTGUIDE, 144
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_CLEARCASE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 272
-        VERTGUIDE, 18
-        VERTGUIDE, 35
-        VERTGUIDE, 244
-        VERTGUIDE, 261
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 104
-    END
-
-    IDD_PROPSYNTAX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_PROPPAGE_FILTER, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_PROPPAGE_COLORS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_EDITOR_HEADERBAR, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 366
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 4
-    END
-
-    IDD_DIRCOLS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 266
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 155
-    END
-
-    IDD_GENERATE_PATCH, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 333
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 173
-    END
-END
-#endif    // APSTUDIO_INVOKED
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1244,6 +1164,7 @@ END
 
 IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
@@ -1267,7 +1188,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl-N)"
+    ID_FILE_NEW             "빈 문서를 생성합니다\n새문서 (Ctrl-N)"
     ID_FILE_OPEN            "기존에 만들어진 문서를 엽니다.\n열기 (Ctrl+O)"
     ID_FILE_CLOSE           "현재 문서를 닫습니다.\n닫기"
     ID_FILE_SAVE            "현재 문서를 저장합니다.\n저장 (Ctrl+S)"
@@ -1280,28 +1201,28 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_APP_ABOUT            "프로그램 정보, 버전, 카피라이트를 봅니다.\n정보"
+    ID_APP_ABOUT            "프로그램 정보, 버전, 저작권을 봅니다.\n정보"
     ID_APP_EXIT             "프로그램을 종료합니다.\n종료"
 END
 
 STRINGTABLE
 BEGIN
-    ID_FILE_MRU_FILE1       "선택한 문서 열기"
-    ID_FILE_MRU_FILE2       "선택한 문서 열기"
-    ID_FILE_MRU_FILE3       "선택한 문서 열기"
-    ID_FILE_MRU_FILE4       "선택한 문서 열기"
-    ID_FILE_MRU_FILE5       "선택한 문서 열기"
-    ID_FILE_MRU_FILE6       "선택한 문서 열기"
-    ID_FILE_MRU_FILE7       "선택한 문서 열기"
-    ID_FILE_MRU_FILE8       "선택한 문서 열기"
-    ID_FILE_MRU_FILE9       "선택한 문서 열기"
-    ID_FILE_MRU_FILE10      "선택한 문서 열기"
-    ID_FILE_MRU_FILE11      "선택한 문서 열기"
-    ID_FILE_MRU_FILE12      "선택한 문서 열기"
-    ID_FILE_MRU_FILE13      "선택한 문서 열기"
-    ID_FILE_MRU_FILE14      "선택한 문서 열기"
-    ID_FILE_MRU_FILE15      "선택한 문서 열기"
-    ID_FILE_MRU_FILE16      "선택한 문서 열기"
+    ID_FILE_MRU_FILE1       "선택 문서 열기"
+    ID_FILE_MRU_FILE2       "선택 문서 열기"
+    ID_FILE_MRU_FILE3       "선택 문서 열기"
+    ID_FILE_MRU_FILE4       "선택 문서 열기"
+    ID_FILE_MRU_FILE5       "선택 문서 열기"
+    ID_FILE_MRU_FILE6       "선택 문서 열기"
+    ID_FILE_MRU_FILE7       "선택 문서 열기"
+    ID_FILE_MRU_FILE8       "선택 문서 열기"
+    ID_FILE_MRU_FILE9       "선택 문서 열기"
+    ID_FILE_MRU_FILE10      "선택 문서 열기"
+    ID_FILE_MRU_FILE11      "선택 문서 열기"
+    ID_FILE_MRU_FILE12      "선택 문서 열기"
+    ID_FILE_MRU_FILE13      "선택 문서 열기"
+    ID_FILE_MRU_FILE14      "선택 문서 열기"
+    ID_FILE_MRU_FILE15      "선택 문서 열기"
+    ID_FILE_MRU_FILE16      "선택 문서 열기"
 END
 
 STRINGTABLE
@@ -1375,47 +1296,47 @@ END
 // OPTIONS NAME TO PRESERVE/UNIFY EOL
 STRINGTABLE
 BEGIN
-    IDC_MIXED_EOL           "Preserve original EOL chars"
+    IDC_MIXED_EOL           "원본 파일의 EOL 유지"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
 STRINGTABLE
 BEGIN
-    IDC_COMPARISON_STOP     "Stop"
-    IDC_COMPARISON_CLOSE    "Press any key"
+    IDC_COMPARISON_STOP     "중지"
+    IDC_COMPARISON_CLOSE    "아무키나 누르세요"
 END
 
 // EDITOR : FILENAME BAR
 STRINGTABLE
 BEGIN
-    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
-    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+    IDC_STATIC_TITLE_LEFT   "복사할 경로에 오른쪽 버튼을 누르세요"
+    IDC_STATIC_TITLE_RIGHT  "복사할 경로에 오른쪽 버튼을 누르세요"
 END
 
-// IDS_MESSAGEBOX_OK SYNCHRO
+// "DO NOT SHOW AGAIN" MESSAGEBOXES
 STRINGTABLE
 BEGIN
-    IDS_MESSAGEBOX_OK       "&Ok"
-    IDS_MESSAGEBOX_CANCEL   "&Cancel"
-    IDS_MESSAGEBOX_ABORT    "&Abort"
-    IDS_MESSAGEBOX_RETRY    "&Retry"
-    IDS_MESSAGEBOX_IGNORE   "&Ignore"
-    IDS_MESSAGEBOX_IGNOREALL "Ignore &all"
-    IDS_MESSAGEBOX_YES      "&Yes"
+    IDS_MESSAGEBOX_OK       "확인(&O)"
+    IDS_MESSAGEBOX_CANCEL   "취소(&C)"
+    IDS_MESSAGEBOX_ABORT    "중지(&A)"
+    IDS_MESSAGEBOX_RETRY    "재시도(&)"
+    IDS_MESSAGEBOX_IGNORE   "무시(&I)"
+    IDS_MESSAGEBOX_IGNOREALL "모두 무시(&A)"
+    IDS_MESSAGEBOX_YES      "예(&Y)"
 END
 
 // "DO NOT SHOW AGAIN" MESSAGEBOXES (2)
 STRINGTABLE
 BEGIN
-    IDS_MESSAGEBOX_YES_TO_ALL "Yes to &all"
-    IDS_MESSAGEBOX_NO       "&No"
-    IDS_MESSAGEBOX_NO_TO_ALL "No to a&ll"
-    IDS_MESSAGEBOX_CONTINUE "&Continue"
-    IDS_MESSAGEBOX_SKIP     "&Skip"
-    IDS_MESSAGEBOX_SKIPALL  "Skip &all"
-    IDS_MESSAGEBOX_HELP     "&Help"
-    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
-    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
+    IDS_MESSAGEBOX_YES_TO_ALL "모두 적용(&A)"
+    IDS_MESSAGEBOX_NO       "아니오(&N)"
+    IDS_MESSAGEBOX_NO_TO_ALL "모두 아니오(&L)"
+    IDS_MESSAGEBOX_CONTINUE "계속(&C)"
+    IDS_MESSAGEBOX_SKIP     "무시(&S)"
+    IDS_MESSAGEBOX_SKIPALL  "모두 무시(&A)"
+    IDS_MESSAGEBOX_HELP     "도움말(&H)"
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "이 메시지를 다시 표시하지 않습니다(&M)"
+    IDS_MESSAGEBOX_DONT_ASK_AGAIN "다시 묻지 않습니다(&Q)"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1423,7 +1344,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
-    IDS_VERSION_FMT         "버전 %1"
+    IDS_VERSION_FMT         "Version %1"
     IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
       /? or -? displays this help
       /r or -r tells winmerge to compare directories recursively
@@ -1445,16 +1366,17 @@ END
 STRINGTABLE
 BEGIN
     IDS_OPTIONS_TITLE       "옵션"
-    IDS_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
-    IDS_DIFF_OPEN_NO_SET_PROPS "수정되었습니다.  어떤 설정은 파일비교를 다시할 때까지 적용되지 않을 수 있습니다."
-    IDS_FONT_CHANGE         "바꾸신 폰트는 현재 비교창에는 적용되지 않습니다."
+    IDS_MESSAGE_BOX_ARE_RESET "이제 모든 메세지박스가 활성화됩니다."
+    IDS_DIFF_OPEN_NO_SET_PROPS 
+                            "수정되었습니다.  몇몇 설정은 파일비교를 재시작할 때까지 적용되지 않습니다."
+    IDS_FONT_CHANGE         "바뀐 폰트는 현재 비교창에는 적용되지 않습니다."
 END
 
 // BROWSE FILE
 STRINGTABLE
 BEGIN
     IDS_OPEN_TITLE          "열기"
-    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+    IDS_PROGRAMFILES        "프로그램|*.exe;*.bat;*.cmd|모든 파일 (*.*)|*.*||"
     IDS_ALLFILES            "모든 파일 (*.*)|*.*||"
 END
 
@@ -1468,9 +1390,9 @@ END
 // FILTER OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_FILTERFILE_NAMETITLE "Name"
-    IDS_FILTERFILE_PATHTITLE "Location"
-    IDS_FILTER_TITLE        "Filters"
+    IDS_FILTERFILE_NAMETITLE "이름"
+    IDS_FILTERFILE_PATHTITLE "경로"
+    IDS_FILTER_TITLE        "필터"
     IDS_FILTER_PREFIX       "[F] "
 END
 
@@ -1486,8 +1408,8 @@ STRINGTABLE
 BEGIN
     IDS_DIRECTORY_WINDOW_TITLE "디렉토리 비교 결과"
     IDS_FILE_COMPARISON_TITLE "파일 비교"
-    IDS_EMPTY_LEFT_FILE     "Untitled left"
-    IDS_EMPTY_RIGHT_FILE    "Untitled right"
+    IDS_EMPTY_LEFT_FILE     "이름없는 문서"
+    IDS_EMPTY_RIGHT_FILE    "이름없는 문서"
 END
 
 // STATUS BAR : CURRENT OPERATION STATUS
@@ -1499,9 +1421,9 @@ BEGIN
     IDS_STATUS_COPYR2L      "오른쪽에서 왼쪽으로 복사중"
     IDS_STATUS_COPYALL2L    "왼쪽으로 모두 복사중"
     IDS_STATUS_COPYALL2R    "오른쪽으로 모두 복사중"
-    IDS_STATUS_COPYFILES    "Copying files..."
-    IDS_STATUS_DELETEFILES  "Deleting files..."
-    IDS_STATUS_MOVEFILES    "Moving files..."
+    IDS_STATUS_COPYFILES    "파일 복사중..."
+    IDS_STATUS_DELETEFILES  "파일 삭제중..."
+    IDS_STATUS_MOVEFILES    "파일 이동중..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1511,34 +1433,34 @@ BEGIN
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
     IDS_MERGEMODE_MERGING   "Merge"
-    IDS_DIFF_NUMBER_STATUS_FMT "다른 파일(%1 중 %2)"
-    IDS_NO_DIFF_SEL_FMT     "다른 부분 %1개 발견"
-    IDS_1_DIFF_FOUND        "1 Difference Found"
+    IDS_DIFF_NUMBER_STATUS_FMT "다른 파일(%1 of %2)"
+    IDS_NO_DIFF_SEL_FMT     "%1개의 다른 부분 존재"
+    IDS_1_DIFF_FOUND        "1개의 다른 부분 존재"
     IDS_STATUSBAR_READONLY  "RO"
 END
 
 // OPEN DIALOG
 STRINGTABLE
 BEGIN
-    IDS_ERROR_INCOMPARABLE  "비교할 두 파일 또는 디렉토리를 선택하세요."
-    IDS_DIRSEL_TAG          "Directory Selection"
-    IDS_OPEN_FILESDIRS      "Select two directories or two files to compare."
-    IDS_OPEN_LEFTINVALID    "Left path is invalid!"
-    IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
-    IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
-    IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
-    IDS_OPEN_MISMATCH       "Cannot compare file and directory!"
+    IDS_ERROR_INCOMPARABLE  "비교할 두 디렉토리 또는 파일을 선택하세요."
+    IDS_DIRSEL_TAG          "디렉토리 선택"
+    IDS_OPEN_FILESDIRS      "비교할 디렉토리/파일 선택"
+    IDS_OPEN_LEFTINVALID    "왼쪽은 잘못된 경로입니다!"
+    IDS_OPEN_RIGHTINVALID   "오른쪽은 잘못된 경로입니다!"
+    IDS_OPEN_BOTHINVALID    "양쪽 모두 잘못된 경로입니다!"
+    IDS_OPEN_UNPACKERDISABLED "Unpacker 선택 활성화를 위해 두 파일을 선택하세요."
+    IDS_OPEN_MISMATCH       "디렉토리/파일을 비교할 수 없습니다!"
 END
 
 // LOADING FILE
 STRINGTABLE
 BEGIN
     IDS_ERROR_FILE_NOT_FOUND "해당하는 파일이 없습니다 : %1"
-    IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
-    IDS_BINFILES_IDENTICAL   "%1\n%2\n\nare identical binary files."
-    IDS_BINFILES_DIFFERENT   "%1\n%2\n\nare different binary files."
-    IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
-    IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
+    IDS_ERROR_FILE_NOT_UNPACKED "unpack 된 파일: %1"
+    IDS_BINFILES_IDENTICAL  "%1\n%2\n\n두 파일은 동일한 바이너리 파일입니다."
+    IDS_BINFILES_DIFFERENT  "%1\n%2\n\n두 파일은 동일하지 않은 바이너리 파일입니다."
+    IDS_OTHER_IS_BINARY     "%1\n\n위 파일은 바이너리 파일입니다. 바이너리 파일과 텍스트 파일은 비교할 수 없습니다."
+    IDS_ERROR_FILEOPEN      "열 수 없는 파일입니다.\n%1\n\n%2"
 END
 
 // SAVING FILE
@@ -1546,66 +1468,67 @@ STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "다른 이름으로 저장"
     IDS_SAVE_FMT            "%1 의 변경된 부분을 저장하시겠습니까?"
-    IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
+    IDS_SAVEREADONLY_FMT    "%1 은 읽기전용 파일입니다. 덮어쓰시겠습니까 ? (다른이름으로 저장하려면 아니오를 선택하세요.)"
     IDS_ERROR_FILE_WRITEABLE "복사 가능 체크 실패"
     IDS_ERROR_BACKUP        "파일 백업을 실패하였습니다"
     IDS_BACKUP_FAILED_PROMPT "원본 파일을 백업할 수 없습니다.\n계속하시겠습니까?"
-    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
+    IDS_FILESAVE_FAILED     "저장을 실패했습니다.\n%1\n%2\n다른 이름으로 저장하시겠습니까?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
-    IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
-    IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nIf you want to refresh files close current file compare and load files again."
-    IDS_SAVE_LEFT_AS        "Save Left File As"
-    IDS_SAVE_RIGHT_AS       "Save Right File As"
+    IDS_SAVEREADONLY_MULTI  "%1\n읽기 전용 파일입니다. 덮어쓰시겠습니까?"
+    IDS_FILECHANGED_RESCAN  "WinMerge가 마지막으로 스캔한 이후\n외부에서 파일이 변경되었습니다 .\n\n변경된 파일 내용을 보려면 지금 파일을 닫고 다시 열어주세요."
+    IDS_SAVE_LEFT_AS        "왼쪽 파일 다른 이름으로 저장"
+    IDS_SAVE_RIGHT_AS       "오른쪽 파일 다른 이름으로 저장"
 END
 
 // VSS
 STRINGTABLE
 BEGIN
-     IDS_NOPROJECT           "계속하시려면 소스세이프 프로젝트 경로를 설정하셔야합니다 (예:  $/MyProject)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_NOPROJECT           "계속하시려면 소스세이프 프로젝트 경로를 설정하셔야합니다 (예:  $/MyProject)"
+    IDS_VSS_CHECKOUT_STATUS "VSS 체크아웃 파일..."
     IDS_VSSERROR            "체크아웃 실행 중 에러가 발생하였습니다.  더 이상 진행할 수 없습니다..."
     IDS_VSS_RUN_ERROR       "버전관리시스템 명령 실행 실패."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
-    IDS_VSS_NODATABASES     "No VSS database(s) found!"
-    IDS_VSS_ERRORFROM       "Error from VSS:"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH 
+                            "VSS 워킹 폴더와 현재 파일의 경로가 일치하지 않습니다. 계속하겠습니까?"
+    IDS_VSS_NODATABASES     "VSS database(s)가 존재하지 않습니다!"
+    IDS_VSS_ERRORFROM       "VSS 에러:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "선택하신 파일중 왼쪽에만 존재하는 파일을 오른쪽으로 복사합니다."
-    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected file to custom directory"
-    ID_DIR_COPY_RIGHT_TO_LEFT "선택하신 파일중 오른쪽에만 존재하는 파일을 왼쪽으로 복사합니다."
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected file to custom directory"
-    ID_DIR_DEL_LEFT         "선택하신 파일 중 왼쪽 파일만 삭제합니다."
-    ID_DIR_DEL_RIGHT        "선택하신 파일 중 오른쪽 파일만 삭제합니다."
-    ID_DIR_DEL_BOTH         "선택하신 파일을 양쪽 모두에서 삭제합니다."
-    IDS_COPY_TO_LEFT        "Right to Left (%1)"
-    IDS_COPY_TO_RIGHT       "Left to Right (%1)"
-    IDS_COPY_TO_LEFT2       "Right to Left (%1 of %2)"
-    IDS_COPY_TO_RIGHT2      "Left to Right (%1 of %2)"
-    IDS_COPY_LEFT_TO        "Left to... (%1)"
-    IDS_COPY_RIGHT_TO       "Right to... (%1)"
-    IDS_COPY_LEFT_TO2       "Left to... (%1 of %2)"
-    IDS_COPY_RIGHT_TO2      "Right to... (%1 of %2)"
-    IDS_DEL_LEFT_FMT        "Left (%1)"
+    ID_DIR_COPY_LEFT_TO_RIGHT "선택 파일중 왼쪽에만 존재하는 파일을 오른쪽으로 복사합니다."
+    ID_DIR_COPY_LEFT_TO_BROWSE "선택 파일을 특정 디렉토리로 복사합니다."
+    ID_DIR_COPY_RIGHT_TO_LEFT "선택 파일중 오른쪽에만 존재하는 파일을 왼쪽으로 복사합니다."
+    ID_DIR_COPY_RIGHT_TO_BROWSE "선택 파일을 특정 디렉토리로 복사합니다."
+    ID_DIR_DEL_LEFT         "선택한 파일 중 왼쪽 파일만 삭제합니다."
+    ID_DIR_DEL_RIGHT        "선택한 파일 중 오른쪽 파일만 삭제합니다."
+    ID_DIR_DEL_BOTH         "선택한 파일을 양쪽 모두에서 삭제합니다."
+    IDS_COPY_TO_LEFT        "왼쪽으로 (%1)"
+    IDS_COPY_TO_RIGHT       "오른쪽으로 (%1)"
+    IDS_COPY_TO_LEFT2       "왼쪽으로 (%1 of %2)"
+    IDS_COPY_TO_RIGHT2      "오른쪽으로 (%1 of %2)"
+    IDS_COPY_LEFT_TO        "왼쪽파일 위치지정 복사 (%1)"
+    IDS_COPY_RIGHT_TO       "오른쪽파일 위치지정 복사 (%1)"
+    IDS_COPY_LEFT_TO2       "왼쪽파일 위치지정 복사 (%1 of %2)"
+    IDS_COPY_RIGHT_TO2      "오른쪽파일 위치지정 복사 (%1 of %2)"
+    IDS_DEL_LEFT_FMT        "왼쪽 (%1)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
 STRINGTABLE
 BEGIN
-    IDS_DEL_RIGHT_FMT       "Right (%1)"
-    IDS_DEL_BOTH_FMT        "Both (%1)"
-    IDS_DEL_LEFT_FMT2       "Left (%1 of %2)"
-    IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
-    IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
-    IDS_SELECT_DESTFOLDER   "Select destination folder"
-    IDS_MOVE_LEFT_TO        "Left to... (%1)"
-    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
-    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
-    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
+    IDS_DEL_RIGHT_FMT       "오른쪽 (%1)"
+    IDS_DEL_BOTH_FMT        "모두 (%1)"
+    IDS_DEL_LEFT_FMT2       "왼쪽 (%1 of %2)"
+    IDS_DEL_RIGHT_FMT2      "오른쪽 (%1 of %2)"
+    IDS_DEL_BOTH_FMT2       "모두 (%1 of %2)"
+    IDS_SELECT_DESTFOLDER   "디렉토리 선택"
+    IDS_MOVE_LEFT_TO        "왼쪽파일 위치지정 이동 (%1)"
+    IDS_MOVE_RIGHT_TO       "오른쪽 파일 위치지정 이동 (%1)"
+    IDS_MOVE_LEFT_TO2       "왼쪽 파일 위치지정 이동 (%1 of %2)"
+    IDS_MOVE_RIGHT_TO2      "오른쪽 파일 위치지정 이동 (%1 of %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1624,36 +1547,36 @@ END
 STRINGTABLE
 BEGIN
     ID_DIR_OPEN_LEFT        "왼쪽 파일을 엽니다."
-    ID_DIR_OPEN_LEFT_WITHEDITOR "Open the left file to external editor"
+    ID_DIR_OPEN_LEFT_WITHEDITOR "외부 에디터를 이용해서 왼쪽 파일을 엽니다"
     ID_DIR_OPEN_LEFT_WITH   "왼쪽 파일을 연결 프로그램을 선택해서 엽니다. ..."
     ID_DIR_OPEN_RIGHT       "오른쪽 파일을 엽니다."
-    ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
+    ID_DIR_OPEN_RIGHT_WITHEDITOR "외부 에디터를 이용해서 오른쪽 파일을 엽니다"
     ID_DIR_OPEN_RIGHT_WITH  "오른쪽 파일을 연결 프로그램을 선택해서 엽니다. ..."
-    IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"
-    ID_DIR_COPY_FILENAMES   "Copy filenames to clipboard"
-    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
+    IDS_CANNOT_EXECUTE_FILE "%1 을(를) 실행할 수 없습니다"
+    ID_DIR_COPY_FILENAMES   "파일명을 클립보드에 복사합니다"
+    ID_DIR_COPY_PATHNAMES_LEFT "왼쪽 경로를 클립보드에 복사합니다"
+    ID_DIR_COPY_PATHNAMES_RIGHT "오른쪽 경로를 클립보드에 복사합니다"
+    ID_DIR_COPY_PATHNAMES_BOTH "양쪽 경로를 모두 클립보드에 복사합니다"
 END
 
 // DIRECTORY DIFFING : 7ZIP
 STRINGTABLE
 BEGIN
-    IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
-    ID_DIR_ZIP_LEFT         "Add items from left side to archive"
-    ID_DIR_ZIP_RIGHT        "Add items from right side to archive"
-    ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
-    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
+    IDS_UNKNOWN_ARCHIVE_FORMAT "알 수 없는 압축 포맷"
+    ID_DIR_ZIP_LEFT         "왼쪽 파일 압축파일에 더하기"
+    ID_DIR_ZIP_RIGHT        "오른쪽 파일 압축파일에 더하기"
+    ID_DIR_ZIP_BOTH         "양쪽 파일 모두 압축파일에 더하기"
+    ID_DIR_ZIP_BOTH_DIFFS_ONLY "다른 파일 압축파일에 더하기 (양쪽)"
     ID_DIR_MOVE_LEFT_TO_BROWSE 
-                            "Move selected file on left to custom directory"
+                            "왼쪽 선택파일 위치지정 이동"
     ID_DIR_MOVE_RIGHT_TO_BROWSE 
-                            "Move selected file on right to custom directory"
+                            "오른쪽 선택파일 위치지정 이동"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
 STRINGTABLE
 BEGIN
-    IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
+    IDS_DIRECTORY_REPORT_TITLE "%1 & %2 비교"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES
@@ -1665,104 +1588,105 @@ BEGIN
     IDS_COLHDR_LTIMEM       "왼쪽 날짜"
     IDS_COLHDR_RTIMEM       "오른쪽 날짜"
     IDS_COLHDR_EXTENSION    "확장자"
-    IDS_COLHDR_LSIZE        "Left Size"
-    IDS_COLHDR_RSIZE        "Right Size"
-    IDS_COLHDR_LTIMEC       "Left Creation Time"
-    IDS_COLHDR_RTIMEC       "Right Creation Time"
-    IDS_COLHDR_NEWER        "Newer File"
-    IDS_COLHDR_LVERSION     "Left File Version"
-    IDS_COLHDR_RVERSION     "Right File Version"
-    IDS_COLHDR_RESULT_ABBR  "Short Result"
-    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
-    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_COLHDR_LSIZE        "왼쪽 크기"
+    IDS_COLHDR_RSIZE        "오른쪽 크기"
+    IDS_COLHDR_LTIMEC       "왼쪽 생성 시간"
+    IDS_COLHDR_RTIMEC       "오른쪽 생성 시간"
+    IDS_COLHDR_NEWER        "최신 파일"
+    IDS_COLHDR_LVERSION     "왼쪽 파일 버전"
+    IDS_COLHDR_RVERSION     "오른쪽 파일 버전"
+    IDS_COLHDR_RESULT_ABBR  "요약 결과"
+    IDS_COLHDR_LATTRIBUTES  "왼쪽 속성"
+    IDS_COLHDR_RATTRIBUTES  "오른쪽 속성"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES (2)
 STRINGTABLE
 BEGIN
-    IDS_COLHDR_LENCODING    "Left Encoding"
-    IDS_COLHDR_RENCODING    "Right Encoding"
+    IDS_COLHDR_LENCODING    "왼쪽 인코딩"
+    IDS_COLHDR_RENCODING    "오른쪽 인코딩"
     IDS_COLHDR_NDIFFS       "#differences"
     IDS_COLHDR_NSDIFFS      "#sig. differences"
-    IDS_COLHDR_BINARY       "Binary"
+    IDS_COLHDR_BINARY       "바이너리"
 END
 
 // DIRECTORY DIFFING : FILE COMPARISON RESULT, FULL & SHORTENED FORMS
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "파일을 비교할 수 없습니다"
-    IDS_FILE_SKIPPED        "File skipped"
-    IDS_DIR_SKIPPED         "Directory skipped"
+    IDS_FILE_SKIPPED        "필터링된 파일"
+    IDS_DIR_SKIPPED         "필터링된 디렉토리"
     IDS_ONLY_IN_FMT         "한쪽만 존재(%1)"
     IDS_BIN_FILES_SAME      "동일한 파일(바이너리 파일)"
     IDS_IDENTICAL           "동일한 파일"
     IDS_BIN_FILES_DIFF      "동일하지 않은 파일(바이너리 파일)"
     IDS_FILES_ARE_DIFFERENT "동일하지 않은 파일"
-    IDS_LEFTONLY            "Left Only"
-    IDS_RIGHTONLY           "Right Only"
-    IDS_DIFFERENT           "Different"
+    IDS_LEFTONLY            "왼쪽만 존재"
+    IDS_RIGHTONLY           "오른쪽만 존재"
+    IDS_DIFFERENT           "다른 파일"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
 STRINGTABLE
 BEGIN
-    IDS_ELAPSED_TIME        "Elapsed time: %ld ms"
-    IDS_STATUS_SELITEM1     "1 item selected"
-    IDS_STATUS_SELITEMS     "%1 items selected"
+    IDS_ELAPSED_TIME        "걸린 시간: %ld ms"
+    IDS_STATUS_SELITEM1     "1 항목 선택"
+    IDS_STATUS_SELITEMS     "%1 항목 선택"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_FILENAME    "Filename or directory name."
-    IDS_COLDESC_DIR         "Subdirectory name when subdirectories are included."
-    IDS_COLDESC_RESULT      "Comparison result, long form."
-    IDS_COLDESC_LTIMEM      "Left side modification date."
-    IDS_COLDESC_RTIMEM      "Right side modification date."
-    IDS_COLDESC_EXTENSION   "File's extension."
-    IDS_COLDESC_LSIZE       "Left file size in bytes."
-    IDS_COLDESC_RSIZE       "Right file size in bytes."
-    IDS_COLDESC_LTIMEC      "Left side creation time."
-    IDS_COLDESC_RTIMEC      "Right side creation time."
-    IDS_COLDESC_NEWER       "Tells which side has newer modification date."
-    IDS_COLDESC_LVERSION    "Left side file version, only for some filetypes."
-    IDS_COLDESC_RVERSION    "Right side file version, only for some filetypes."
-    IDS_COLDESC_RESULT_ABBR "Short comparison result."
-    IDS_COLDESC_LATTRIBUTES "Left side attributes."
-    IDS_COLDESC_RATTRIBUTES "Right side attributes."
+    IDS_COLDESC_FILENAME    "디렉토리 이름 또는 파일 이름."
+    IDS_COLDESC_DIR         "하위 디렉토리가 있을때 하위 디렉토리 이름."
+    IDS_COLDESC_RESULT      "자세한 비교 결과."
+    IDS_COLDESC_LTIMEM      "왼쪽 수정 시간."
+    IDS_COLDESC_RTIMEM      "오른쪽 수정 시간."
+    IDS_COLDESC_EXTENSION   "파일 확장자."
+    IDS_COLDESC_LSIZE       "왼쪽 파일 크기(byte)."
+    IDS_COLDESC_RSIZE       "오른쪽 파일 크기(byte)."
+    IDS_COLDESC_LTIMEC      "왼쪽 생성 시간."
+    IDS_COLDESC_RTIMEC      "오른쪽 생성 시간."
+    IDS_COLDESC_NEWER       "어느쪽이 더 최근에 수정된 건지 알려줍니다."
+    IDS_COLDESC_LVERSION    "왼쪽 파일 버전(모든 파일 종류에 대해서 알 수는 없습니다)."
+    IDS_COLDESC_RVERSION    "오른쪽 파일 버전(모든 파일 종류에 대해서 알 수는 없습니다)."
+    IDS_COLDESC_RESULT_ABBR "간략한 요약 결과."
+    IDS_COLDESC_LATTRIBUTES "왼쪽 속성."
+    IDS_COLDESC_RATTRIBUTES "오른쪽 속성."
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_LENCODING   "Left side encoding."
-    IDS_COLDESC_RENCODING   "Right side encoding."
-    IDS_COLDESC_NDIFFS      "Number of total differences."
-    IDS_COLDESC_NSDIFFS     "Number of differences not counting ignored ones."
-    IDS_COLDESC_BINARY      "Shows asterisk (*) if file is binary."
+    IDS_COLDESC_LENCODING   "왼쪽 인코딩."
+    IDS_COLDESC_RENCODING   "오른쪽 인코딩."
+    IDS_COLDESC_NDIFFS      "다른 파일의 개수."
+    IDS_COLDESC_NSDIFFS     "필터링된 다른 파일의 개수."
+    IDS_COLDESC_BINARY      "바이너리 파일이면 * 표시."
 END
 
 // FILE COMPARISON RESULT : MESSAGES
 STRINGTABLE
 BEGIN
-    IDS_FILE_TO_ITSELF      "The same file is opened in both panels."
-    IDS_FILESSAME           "선택하신 파일들은 동일한 내용의 파일들입니다.."
-    IDS_FILEUNIQUE          "선택하신 파일은 양쪽 디렉토리에 모두 존재하는 파일이 아닙니다."
+    IDS_FILE_TO_ITSELF      "양쪽 창에 동일한 파일이 열려있습니다."
+    IDS_FILESSAME           "선택한 파일들은 내용이 동일합니다.."
+    IDS_FILEUNIQUE          "선택한 파일은 양쪽 디렉토리에 모두 존재하는 파일이 아닙니다."
     IDS_FILEERROR           "파일 비교 도중 에러가 발생했습니다."
-    IDS_FILEBINARY          "바이너리 파일은 비교하실 수 없습니다."
-    IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
-    IDS_FILEISDIR           "디렉토리 파일은 비교할 수 없습니다."
-    IDS_SUGGEST_IGNOREEOL   "The files have a different EOL type.\nWith the current options, all lines will differ.\nDo you want to ignore EOL differences for these files ?\n\nAdvanced user : if the EOL are not unified in your files,\n you may rather set the option '%1'."
-    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-    IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-    IDS_SUGGEST_IGNORECODEPAGE "Left and right files don't have the same codepage. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to force both into the default codepage (recommended)?"
+    IDS_FILEBINARY          "바이너리 파일은 비교할 수 없습니다."
+    IDS_TEMP_FILEERROR      "임시 파일을 생성할 수 없습니다. 임시 파일 설정을 확인하세요."
+    IDS_FILEISDIR           "디렉토리는 비교할 수 없습니다."
+    IDS_SUGGEST_IGNOREEOL   "두 파일은 다른 EOL로 작성되어 있습니다.\n현재 옵션으로는 모든 라인이 다르게 나옵니다\n이 파일들에 대해서 EOL 차이를 무시하습니까 ?\n\nAdvanced user : EOL 이 파일내에서 동일하지 않다면,\n'%1' 옵션을 사용하는 것이 좋습니다."
+    IDS_SUGGEST_PRESERVEEOL "'%1'은 서로 다른 EOL(DOS/UNIX/MAC)로 작성되었습니다.\n 현재 옵션으로는 모든 EOL이 하나로 바뀌게 됩니다.\n 원본 EOL을 유지하기 원하십니까 ?"
+    IDS_PREDIFFER_ERROR     "'%2' 플러그인으로 '%1'을 prediff하는 중 에러가 발생했습니다. 더 이상 prediff가 수행되지 않습니다."
+    IDS_SUGGEST_IGNORECODEPAGE 
+                            "두 파일은 같은 codepage 로 구성되지 않았습니다. \n각각의 codepage 를 유지하면서 비교하는건 보기는 좋지만 merge/복사가 안전하지 않습니다.\n두 파일을 기본 codepage로 변환하겠습니까(권장)?"
 END
 
 // EDITOR : SHOW LINE DIFF
 STRINGTABLE
 BEGIN
-    IDS_LINEDIFF_NODIFF     "No difference"
-    IDS_LINEDIFF_NODIFF_CAPTION "Line difference"
+    IDS_LINEDIFF_NODIFF     "동일함"
+    IDS_LINEDIFF_NODIFF_CAPTION "라인 비교"
 END
 
 // EDITOR : SEARCH/REPLACE DIALOGS
@@ -1775,59 +1699,58 @@ END
 // EDITOR : FILENAME BAR POPUP
 STRINGTABLE
 BEGIN
-    ID_EDITOR_COPY_PATH     "Copy Full Path"
-    ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_EDITOR_COPY_PATH     "전체 경로 복사"
+    ID_EDITOR_COPY_FILENAME "파일 이름 복사"
 END
 
 // CREATE PATCH
 STRINGTABLE
 BEGIN
-    IDS_DIFF_SUCCEEDED      "Patch file succesfully written."
-    IDS_DIFF_ITEM1NOTFOUND  "1. item is not found or is directory!"
-    IDS_DIFF_ITEM2NOTFOUND  "2. item is not found or is directory!"
-    IDS_DIFF_FILEOVERWRITE  "The patch file already exists. Do you want to overwrite it?"
-    IDS_DIFF_SELECTEDFILES  "[%1 files selected]"
+    IDS_DIFF_SUCCEEDED      "Patch 파일이 작성되었습니다."
+    IDS_DIFF_ITEM1NOTFOUND  "1. 파일이 없거나 디렉토리입니다!"
+    IDS_DIFF_ITEM2NOTFOUND  "2. 파일이 없거나 디렉토리입니다!"
+    IDS_DIFF_FILEOVERWRITE  "같은 이름의 patch 파일이 존재합니다. 덮어쓸까요?"
+    IDS_DIFF_SELECTEDFILES  "[%1 개의 파일 선택됨]"
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Context"
     IDS_DIFF_UNIFIED        "Unified"
-    IDS_FILEWRITE_ERROR     "Could not write to file %1."
-    IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
-    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
-    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
+    IDS_FILEWRITE_ERROR     "%1 파일에 쓸 수 없습니다."
+    IDS_PATH_NOT_ABSOLUTE   "%1\n 절대 경로가 아닙니다!"
+    IDS_CANNOT_CREATE_BINARYPATCH 
+                            "바이너리 파일에서는 patch 파일을 생성할 수 없습니다."
+    IDS_CANNOT_CREATE_DIRPATCH "디렉토리에서는 patch 파일을 생성할 수 없습니다."
 END
 
 STRINGTABLE
 BEGIN
-    IDS_DIR_RESULTS_EMPTIED "Current directory comparison results will be cleared."
-    IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\n
-                            All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.
-                            See manual for more info about archive support and how to enable it."
+    IDS_DIR_RESULTS_EMPTIED "현재 디렉토리 비교 결과가 지워집니다."
+    IDS_NO_ZIP_SUPPORT      "압축 지원 기능이 꺼져있습니다.\n \n압축 지원 기능에 필요한 컴포넌트(7-zip and/or Merge7z*.dll)가 없습니. 다. \n압축 지원 기능에 대해 더 많은 정보를 원하시면 메뉴얼을 참조하세요."
 END
 
 // Regular expression errors
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_ERROR        "Regular expression error"
-    IDS_REGEXP_NOMATCH      "No match"
-    IDS_REGEXP_INVALID      "Invalid regular expression"
-    IDS_REGEXP_COLL_CHAR    "Invalid collation character"
-    IDS_REGEXP_CHAR_CLASS   "Invalid character class name"
-    IDS_REGEXP_TRAILING_BS  "Trailing backslash"
-    IDS_REGEXP_INVALID_BACKREF "Invalid back reference"
-    IDS_REGEXP_UNMATCHED_BRACK "Unmatched [ or [^"
-    IDS_REGEXP_UNMATCHED_PAREN "Unmatched ( or \\("
-    IDS_REGEXP_UNMATCHED_BRACE "Unmatched \\{"
-    IDS_REGEXP_INVALID_BRACE "Invalid content of \\{\\}"
-    IDS_REGEXP_RANGE_END    "Invalid range end"
-    IDS_REGEXP_OUTOFMEM     "Out of memory"
-    IDS_REGEXP_INVALID_PREV_EXP "Invalid preceding regular expression"
-    IDS_REGEXP_PREMATURE_END "Premature end of regular expression"
-    IDS_REGEXP_TOO_BIG      "Regular expression too big"
+    IDS_REGEXP_ERROR        "정규 표현식 오류"
+    IDS_REGEXP_NOMATCH      "동일하지 않음"
+    IDS_REGEXP_INVALID      "잘못된 정규 표현식"
+    IDS_REGEXP_COLL_CHAR    "잘못된 collation 문자"
+    IDS_REGEXP_CHAR_CLASS   "잘못된 문자 클래스(character class) 이름"
+    IDS_REGEXP_TRAILING_BS  "백슬래쉬 떼어내기"
+    IDS_REGEXP_INVALID_BACKREF "잘못된 후참조(backreference)"
+    IDS_REGEXP_UNMATCHED_BRACK "일치하지 않는 [ 또는 [^"
+    IDS_REGEXP_UNMATCHED_PAREN "일치하지 않는 ( 또는 \\("
+    IDS_REGEXP_UNMATCHED_BRACE "일치하지 않는 \\{"
+    IDS_REGEXP_INVALID_BRACE "\\{\\} 내용 오류"
+    IDS_REGEXP_RANGE_END    "잘못된 범위"
+    IDS_REGEXP_OUTOFMEM     "메모리 부족"
+    IDS_REGEXP_INVALID_PREV_EXP "잘못된 선행(preceding) 정규 표현식"
+    IDS_REGEXP_PREMATURE_END "이른(premature) 정규 표현식 종결"
+    IDS_REGEXP_TOO_BIG      "너무 큰 정규 표현식"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_UNMATCHED_RPAREN "Unmatched ) or \\)"
+    IDS_REGEXP_UNMATCHED_RPAREN "일치하지 않는 ) 또는 \\)"
 END
 
 // LANGAGE NAMES #1
@@ -1928,8 +1851,8 @@ BEGIN
     IDS_JAPANESE            "일본어"
     IDS_KASHMIRI            "Kashmiri (India)"
     IDS_KAZAK               "카자흐스탄어 / 카작어"
-    IDS_KOREAN              "한국어 / 조선말"
-    IDS_KOREAN_JOHAB        "한국어 / 조선말 (Johab)"
+    IDS_KOREAN              "한국어"
+    IDS_KOREAN_JOHAB        "한국어(조합)"
 END
 
 // LANGAGE NAMES #6
@@ -2007,23 +1930,23 @@ END
 // FILE MENU
 STRINGTABLE
 BEGIN
-    ID_FILE_SAVE_LEFT       "Save the left file"
-    ID_FILE_SAVE_RIGHT      "Save the right file"
-    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
-    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
-    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
-    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
-    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
-    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
-    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
-    ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
+    ID_FILE_SAVE_LEFT       "왼쪽 파일 저장"
+    ID_FILE_SAVE_RIGHT      "오른쪽 파일 저장"
+    ID_FILE_SAVEAS_LEFT     "왼쪽 파일 다른 이름으로 저장..."
+    ID_FILE_SAVEAS_RIGHT    "오른쪽 파일 다른 이름으로 저장..."
+    ID_FILE_LEFT_READONLY   "왼쪽 디렉토리/파일 읽기 속성 변경"
+    ID_FILE_RIGHT_READONLY  "오른쪽 디렉토리/파일 읽기 속성 변경"
+    ID_EOL_TO_DOS           "DOS 모드로 EOL 변경"
+    ID_EOL_TO_UNIX          "UNIX 모드로 EOL 변경"
+    ID_EOL_TO_MAC           "MAC 모드로 EOL 변경"
+    ID_FILE_MERGINGMODE     "편집 모드/Merge 모드 전환"
 END
 
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEDIFF         "Highlight difference in current line\nDiff in Current Line (F4)"
-    ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
+    ID_SHOWLINEDIFF         "현재 라인에서 다른 부분을 하이라이팅합니다\n현재 라인에서 다른 부분 (F4)"
+    ID_EDIT_WMGOTO          "선택 라인이나 다른 부분으로 이동합니다\n이동 (Ctrl+G)"
     ID_OPTIONS              "옵션을 설정합니다.\n옵션"
     ID_REFRESH              "새로 고침\n새로 고침 (F5)"
 END
@@ -2031,12 +1954,12 @@ END
 // VIEW MENU (FILE TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "내용이 동일한 파일들을 봅니다."
-    ID_OPTIONS_SHOWDIFFERENT "내용이 동일하지 않은 파일들을 봅니다."
-    ID_OPTIONS_SHOWUNIQUELEFT "왼쪽에만 존재하는 파일을 봅니다."
-    ID_OPTIONS_SHOWUNIQUERIGHT "오른쪽에만 존재하는 파일을 봅니다."
-    ID_OPTIONS_SHOWBINARIES "바이너리 파일을 봅니다."
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
+    ID_OPTIONS_SHOWIDENTICAL "내용이 동일한 파일들을 표시합니다."
+    ID_OPTIONS_SHOWDIFFERENT "내용이 동일하지 않은 파일들을 표시합니다."
+    ID_OPTIONS_SHOWUNIQUELEFT "왼쪽에만 존재하는 디렉토리/파일을 표시합니다."
+    ID_OPTIONS_SHOWUNIQUERIGHT "오른쪽에만 존재하는 디렉토리/파일을 표시합니다."
+    ID_OPTIONS_SHOWBINARIES "바이너리 파일을 표시합니다."
+    ID_OPTIONS_SHOWSKIPPED  "필터링된 파일을 표시합니다."
 END
 
 // VIEW MENU
@@ -2044,10 +1967,10 @@ STRINGTABLE
 BEGIN
     ID_VIEW_SELECTFONT      "파일 비교시에 볼 폰트를 선택합니다.\n폰트 선택"
     ID_VIEW_USEDEFAULTFONT  "기본 폰트로 설정을 되돌립니다.\n기본 폰트"
-    ID_VIEW_WHITESPACE      "공백문자(whitespace character)를 봅니다."
-    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
-    ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
-    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
+    ID_VIEW_WHITESPACE      "공백문자를 표시합니다."
+    ID_VIEW_DETAIL_BAR      "선택 비교창을 보거나 숨깁니다."
+    ID_VIEW_LOCATION_BAR    "위치 표시창은 전체 비교 상황을 이미지로 보여줍니다."
+    ID_VIEW_DIR_STATEPANE   "디렉토리 비교 상황을 요약해서 봅니다."
     ID_VIEW_LANGUAGE        "언어를 선택합니다.\n언어"
 END
 
@@ -2057,49 +1980,49 @@ BEGIN
     ID_PREVDIFF             "이전 다른 부분으로 이동합니다.\n이전 다른 부분 (Alt Up)"
     ID_NEXTDIFF             "다음 다른 부분으로 이동합니다.\n다음 다른 부분 (Alt Down)"
     ID_FIRSTDIFF            "처음 다른 부분으로 이동합니다.\n처음 다른 부분 (Alt+Home)"
-    ID_CURDIFF              "현재 다른 부분으로 이동합니다.\n현재 다른 부분 (Alt+Enter)"
+    ID_CURDIFF              "현재 선택되어 있는 다른 부분으로 이동합니다.\n현재 선택된 다른 부분 (Alt+Enter)"
     ID_LASTDIFF             "마지막 다른 부분으로 이동합니다.\n마지막 다른 부분 (Alt+End)"
     ID_L2R                  "선택 영역을 오른쪽으로 복사합니다.\n오른쪽으로 복사 (Alt Right)"
     ID_R2L                  "선택 영역을 왼쪽으로 복사합니다.\n왼쪽으로 복사 (Alt Left)"
-    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and Advance (Ctrl+Alt+Right)"
-    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
+    ID_L2RNEXT              "다른 부분을 오른쪽으로 복사하고, 다음 다른 부분으로 이동합니다\n오른쪽으로 복사 - Advance (Ctrl+Alt+Right)"
+    ID_R2LNEXT              "다른 부분을 왼쪽으로 복사하고, 다음 다른 부분으로 이동합니다\n왼쪽으로 복사 - Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "모든 다른 부분을 오른쪽 파일로 복사합니다.\n모두 오른쪽으로"
     ID_ALL_LEFT             "모든 다른 부분을 왼쪽 파일로 복사합니다.\n모두 왼쪽으로"
-    ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
-    ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
+    ID_MULTIPLE_RIGHT       "선택 영역중 다른 부분을 오른쪽으로 복사합니다."
+    ID_MULTIPLE_LEFT        "선택 영역중 다른 부분을 왼쪽으로 복사합니다."
 END
 
 // TOOLS MENU
 STRINGTABLE
 BEGIN
-    ID_TOOLS_CUSTOMIZECOLUMNS "Select and reorder directory compare columns"
-    ID_TOOLS_GENERATEPATCH  "Generate a patch-file"
-    ID_TOOLS_FILTERS        "Select and modify filters"
+    ID_TOOLS_CUSTOMIZECOLUMNS "디렉토리 비교 설정 선택/순서 변경"
+    ID_TOOLS_GENERATEPATCH  "patch 파일 생성"
+    ID_TOOLS_FILTERS        "필터 선택/수정"
 END
 
 // PLUGINS MENU
 STRINGTABLE
 BEGIN
-    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
-    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
-    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
-    ID_NO_PREDIFFER         "No prediffer (normal)"
-    ID_SUGGESTED_PLUGINS    "Suggested plugins"
-    ID_NOT_SUGGESTED_PLUGINS "Others plugins"
-    ID_RELOAD_PLUGINS       "Unload all plugins and reload them (for developpers)"
+    ID_UNPACK_MANUAL        "unpacker를 선택합니다 (디렉토리 비교에는 unapcking 하지 않습니다)"
+    ID_UNPACK_AUTO          "양쪽 파일 모두에 unpacker 가 적용됩니다 (one file only needs the extension)"
+    ID_POPUP_OPEN_WITH_UNPACKER "이 파일의 편집을 위한 unpacker를 선택하세요"
+    ID_NO_PREDIFFER         "prediffer 사용 안함(normal)"
+    ID_SUGGESTED_PLUGINS    "권장하는 플러그인"
+    ID_NOT_SUGGESTED_PLUGINS "다른 플러그인"
+    ID_RELOAD_PLUGINS       "모든 플러그인을 내리고 다시 로드 (for 개발자)"
 END
 
 // WINDOW MENU
 STRINGTABLE
 BEGIN
-    ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
+    ID_WINDOW_CHANGE_PANE   "다음 파일을 활성화합니다\n다음 파일 활성화"
 END
 
 // HELP MENU
 STRINGTABLE
 BEGIN
     ID_HELP_CONTENTS        "WinMerge 유저 가이드를 봅니다.\n도움말"
-    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
+    ID_HELP_GETCONFIG       "WinMerge 버전정보 및 설정을 텍스트 파일로 출력합니다"
     ID_HELP_GNULICENSE      "GNU public license 봅니다."
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
 END
@@ -2107,28 +2030,28 @@ END
 // PLUGINS DIALOGS AND DYNAMIC MENUS
 STRINGTABLE
 BEGIN
-    ID_TITLE_PLUGINS_SETTINGS "Plugin Settings"
-    ID_PREDIFF_MANUAL       "No prediffer"
-    ID_PREDIFF_AUTO         "Prediff if possible"
+    ID_TITLE_PLUGINS_SETTINGS "플러그인 세팅"
+    ID_PREDIFF_MANUAL       "prediffer 사용안함"
+    ID_PREDIFF_AUTO         "prediff 사용 가능하면 사용하기"
     ID_NO_EDIT_SCRIPTS      "< Empty >"
-    ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
-    IDS_USERCHOICE_NONE     "<없음>"
+    ID_NO_SCT_SCRIPTS       "WSH 존재 하지 않음 - .sct 스크립트를 사용하지 않음"
+    IDS_USERCHOICE_NONE     "<None>"
     IDS_USERCHOICE_AUTOMATIC "<Automatic>"
 END
 
 // LOCATIONBAR CONTEXT MENU
 STRINGTABLE
 BEGIN
-    ID_DISPLAY_MOVED_NONE   "Do not display moved blocks"
-    ID_DISPLAY_MOVED_ALL    "Display all moved blacks"
-    ID_DISPLAY_MOVED_FOLLOW_DIFF "Display moved blocks only from current diff"
-    ID_LOCBAR_GOTODIFF      "Go to diff under cursor"
-    ID_LOCBAR_GOTODIFF_FMT  "G&oto Diff %1 of %2"
-    ID_LOCBAR_GOTOLINE_FMT  "G&oto Line %1"
+    ID_DISPLAY_MOVED_NONE   "이동영역을 표시하지 않습니다."
+    ID_DISPLAY_MOVED_ALL    "모든 이동영역을 표시합니다."
+    ID_DISPLAY_MOVED_FOLLOW_DIFF "현재 선택된 이동영역만 표시합니다."
+    ID_LOCBAR_GOTODIFF      "커서가 있는 다른 부분으로 이동합니다."
+    ID_LOCBAR_GOTODIFF_FMT  "다른 부분으로 이동합니다. (%1 of %2)"
+    ID_LOCBAR_GOTOLINE_FMT  "%1라인으로 이동"
 END
 
 // END STRINGS SYNCHRO
-#endif    // 한국어 resources
+#endif    // Korean resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -2142,7 +2065,7 @@ END
 #define _AFX_NO_TRACKER_RESOURCES
 #define _AFX_NO_PROPERTY_RESOURCES
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
 LANGUAGE 9, 1
 #pragma code_page(949)

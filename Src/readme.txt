@@ -1,3 +1,7 @@
+2004-10-24 Perry
+ PATCH: [ 1053282 ] Korean translation
+ Src/Languages/Korean: MergeKorean.rc
+
 2004-10-24 Kimmo
  PATCH: [ 1048288 ] Fixes to Organization.txt
   Submitted by Perry
