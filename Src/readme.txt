@@ -1,3 +1,7 @@
+2003-11-24 Perry
+ Improvements to language names in LanguageSelect.cpp (and reference URLs), from Laurent.
+ common: LanguageSelect.cpp
+
 2003-11-24 Kimmo
  PATCH: [ 847137 ] Report from dir compare results
   Submitted by Vikrant
