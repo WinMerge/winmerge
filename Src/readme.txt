@@ -3,6 +3,8 @@
   Common: UniFile.cpp UniFile.h
  Fix compile error in MainFrm.cpp
   Src: MainFrm.cpp
+ Add typecast for VC6
+  Common UniFile.cpp
 
 2005-02-18 Kimmo
  PATCH: [ 1124475 ] Update of the swedish translation

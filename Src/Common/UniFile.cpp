@@ -114,7 +114,7 @@ bool UniLocalFile::DoGetFileStatus(HANDLE handle)
 		return false;
 
 	// Attach CFile to already open filehandle
-	CFile file(handle);
+	CFile file((int)handle); // VC6 needs int cast here :(
 	CFileStatus status;
 	if (!file.GetStatus(status))
 	{
