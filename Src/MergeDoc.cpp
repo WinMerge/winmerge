@@ -80,7 +80,7 @@ CMergeDoc::~CMergeDoc()
 		delete pitem;
 	}
 	mf->m_pMergeDoc = NULL;
-  CleanupTempFiles();
+
 }
 
 
@@ -238,7 +238,6 @@ BOOL CMergeDoc::Rescan()
 	BOOL bResult=FALSE;
 //	int nResumeTopLine=0;
 
-	CWaitCursor wait;
 
 	// get the desired files to temp locations so we can edit them dynamically
 	if (!TempFilesExist())
@@ -966,13 +965,16 @@ void CMergeDoc::CDiffTextBuffer::ReplaceLine(int nLine, const CString &strText)
 
 BOOL CMergeDoc::InitTempFiles(const CString& srcPathL, const CString& strPathR)
 {
-	CleanupTempFiles();
+	TCHAR strTempPath[MAX_PATH] = {0};
 
-	CString strPath = GetModulePath(NULL);
+	if (!::GetTempPath(MAX_PATH, strTempPath))
+	{
+		return FALSE;
+	}
 	if (m_strTempLeftFile.IsEmpty())
 	{
 		TCHAR name[MAX_PATH];
-		::GetTempFileName (strPath, _T ("_LT"), 0, name);
+		::GetTempFileName (strTempPath, _T ("_LT"), 0, name);
 		m_strTempLeftFile = name;
 
 		if (!::CopyFile(srcPathL, m_strTempLeftFile, FALSE))
@@ -982,7 +984,7 @@ BOOL CMergeDoc::InitTempFiles(const CString& srcPathL, const CString& strPathR)
 	if (m_strTempRightFile.IsEmpty())
 	{
 		TCHAR name[MAX_PATH];
-		::GetTempFileName (strPath, _T ("_RT"), 0, name);
+		::GetTempFileName (strTempPath, _T ("_RT"), 0, name);
 		m_strTempRightFile = name;
 
 		if (!::CopyFile(strPathR, m_strTempRightFile, FALSE))

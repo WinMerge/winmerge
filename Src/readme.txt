@@ -1,5 +1,6 @@
 2003-01-21
  [ 671037 ] Changes for MSVC.NET
+ [ 671810 ] Tempfiles to temp dir
 
 2003-01-20
  [ 671034 ] operator precedence bug in SplitterWndEx.cpp
