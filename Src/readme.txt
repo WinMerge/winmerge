@@ -1,6 +1,9 @@
 2003-05-03 Kimmo
- BUG:[ 731486 ] Crash after save
+ BUG: [ 731486 ] Crash after save
   WinMerge: MergeDoc.cpp
+ PATCH: [ 731533 ] Temp path fix
+  WinMerge: MergeDoc.h MergeDoc.cpp
+  editlib: ccrystaltextbuffer.h ccrystaltextbuffer.cpp
 
 2003-05-02 Kimmo
  BUG: [ 724726 ] Status bar says "Rescanning" the first time

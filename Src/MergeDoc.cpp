@@ -241,9 +241,16 @@ BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	m_ltBuf.SetModified(ltMod);
 	m_rtBuf.SetModified(rtMod);
 
+	// get the desired files to temp locations so we can edit them dynamically
+	if (!TempFilesExist())
+	{
+		if (!InitTempFiles(m_strLeftFile, m_strRightFile))
+			return FALSE;
+	}
+
 	// output to temp file
-	m_ltBuf.SaveToFile(m_strTempLeftFile, CRLF_STYLE_AUTOMATIC, FALSE);
-	m_rtBuf.SaveToFile(m_strTempRightFile, CRLF_STYLE_AUTOMATIC, FALSE);
+	m_ltBuf.SaveToFile(m_strTempLeftFile, TRUE, CRLF_STYLE_AUTOMATIC, FALSE);
+	m_rtBuf.SaveToFile(m_strTempRightFile, TRUE, CRLF_STYLE_AUTOMATIC, FALSE);
 
 	// perform rescan
 	struct file_data inf[2];
@@ -254,21 +261,6 @@ BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	struct change *e, *p;
 	struct change *script=NULL;
 	BOOL bResult=FALSE;
-//	int nResumeTopLine=0;
-
-	// get the desired files to temp locations so we can edit them dynamically
-	if (!TempFilesExist())
-	{
-		if (!InitTempFiles(m_strLeftFile, m_strRightFile))
-		{
-			return FALSE;
-		}
-	}
-	else
-	{
-		// find the top line to scroll back to
-//		nResumeTopLine = mf->m_pLeft->GetScrollPos(SB_VERT)+1;
-	}
 
 	m_diffs.RemoveAll();
 	m_nDiffs=0;
@@ -276,8 +268,8 @@ BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	
 	SplitFilename(m_strTempLeftFile, &sdir0, &sname0, 0);
 	SplitFilename(m_strTempRightFile, &sdir1, &sname1, 0);
-	memset(&inf[0], 0,sizeof(inf[0]));
-	memset(&inf[1], 0,sizeof(inf[1]));
+	ZeroMemory(&inf[0], sizeof(inf[0]));
+	ZeroMemory(&inf[1], sizeof(inf[1]));
 	
 	/* Both exist and neither is a directory.  */
 	int o_binary = always_text_flag ? 0:O_BINARY;
@@ -349,8 +341,7 @@ BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 				
 				/* Print thisob hunk.  */
 				//(*printfun) (thisob);
-				{
-					
+				{					
 					/* Determine range of line numbers involved in each file.  */
 					analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
 					if (!(!deletes && !inserts))
@@ -369,7 +360,6 @@ BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 						TRACE("left=%d,%d   right=%d,%d   op=%d\n",trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 					}
 				}
-				
 				
 				/* Reconnect the script so it will all be freed properly.  */
 				end->link = next;
@@ -473,14 +463,9 @@ BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	if (free1)
 		free (free1);
 
-//	if (nResumeTopLine>0)
-//	{
-//		mf->m_pLeft->GoToLine(nResumeTopLine, FALSE);
-//		mf->m_pRight->GoToLine(nResumeTopLine, FALSE);
-//	}
+
 	return bResult;
 }
-
 
 void CMergeDoc::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op)
 {
@@ -759,9 +744,10 @@ BOOL CMergeDoc::TrySaveAs(CString strPath, BOOL &bSaveSuccess, BOOL bLeft)
 		{
 			strPath = s;
 			if (bLeft)
-			bSaveSuccess = m_ltBuf.SaveToFile(strPath);
+				bSaveSuccess = m_ltBuf.SaveToFile(strPath, FALSE);
 			else
-				bSaveSuccess = m_rtBuf.SaveToFile(strPath);
+				bSaveSuccess = m_rtBuf.SaveToFile(strPath, FALSE);
+
 			if (!bSaveSuccess)
 				result = FALSE;
 		}
@@ -806,7 +792,7 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	BOOL result;
 	if(bLeft)
 	{
-		result = m_ltBuf.SaveToFile(strSavePath);
+		result = m_ltBuf.SaveToFile(strSavePath, FALSE);
 		if(result)
 		{
 			bSaveSuccess = TRUE;
@@ -830,7 +816,7 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	}
 	else
 	{
-		result = m_rtBuf.SaveToFile(strSavePath);
+		result = m_rtBuf.SaveToFile(strSavePath, FALSE);
 		if(result)
 		{
 			bSaveSuccess = TRUE;
@@ -854,7 +840,6 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	}
 	return result;
 }
-
 
 /*CString CMergeDoc::ExpandTabs(LPCTSTR szText)
 {
@@ -1211,8 +1196,8 @@ BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 }
 
 BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
-											 int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ ,
-											 BOOL bClearModifiedFlag /*= TRUE*/ )
+		BOOL bTempFile, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ ,
+		BOOL bClearModifiedFlag /*= TRUE*/ )
 {
 	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
 		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
@@ -1243,14 +1228,28 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 
 	if (pszFileName)
 	{
-		_tsplitpath(pszFileName, drive, dir, NULL, NULL);
-		_tcscpy(szTempFileDir, drive);
-		_tcscat(szTempFileDir, dir);
+		// Temp files are in temp dir...
+		if (bTempFile)
+		{
+			_tsplitpath(pszFileName, drive, dir, NULL, NULL);
+			_tcscpy(szTempFileDir, drive);
+			_tcscat(szTempFileDir, dir);
+		}
+		else
+		{
+			if (!GetTempPath(_MAX_PATH, szTempFileDir))
+			{
+				// No temp dir, ugh! use document's dir then
+				_tsplitpath(pszFileName, drive, dir, NULL, NULL);
+				_tcscpy(szTempFileDir, drive);
+				_tcscat(szTempFileDir, dir);
+			}
+		}
 	}
 	else
-		return FALSE;
+		return FALSE;	// No filename, cannot save...
 
-	if (::GetTempFileName(szTempFileDir, _T("MRG"), 0, szTempFileName) == 0)
+	if (!::GetTempFileName(szTempFileDir, _T("MRG"), 0, szTempFileName))
 		return FALSE;  //Nothing to do if even tempfile name fails
 
 	// Init filedata struct and open file as memory mapped 
@@ -1273,12 +1272,11 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		else
 			CopyMemory(fileData.pMapBase, (void *)(LPCTSTR)text, nBufSize);
 
-		// This means user wants to save file - let's play safe and
-		// force flush buffer to disk
-		if (bClearModifiedFlag)
-			files_closeFileMapped(&fileData, nBufSize, TRUE);
-		else
+		// Force flushing of file buffers for user files
+		if (bTempFile)
 			files_closeFileMapped(&fileData, nBufSize, FALSE);
+		else
+			files_closeFileMapped(&fileData, nBufSize, TRUE);
 		
 		// Write tempfile over original file
 		if (files_safeReplaceFile(pszFileName, szTempFileName))

@@ -337,6 +337,8 @@ static LPCTSTR crlfs[] =
     _T ("\x0a")      //  Macintosh style
   };
 
+// WinMerge has own routine for loading
+#if 0
 BOOL CCrystalTextBuffer::
 LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 {
@@ -486,9 +488,13 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
   //END SW
   return bSuccess;
 }
+#endif // #if 0 loadfromfile
 
-BOOL CCrystalTextBuffer::
-SaveToFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ , BOOL bClearModifiedFlag /*= TRUE*/ )
+// WinMerge has own routine for saving
+#if 0
+BOOL CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName, 
+									int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/, 
+									BOOL bClearModifiedFlag /*= TRUE*/)
 {
   ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
           nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
@@ -604,6 +610,7 @@ SaveToFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ , BOO
       }
       return bSuccess;
 }
+#endif // #if 0 savetofile
 
 int CCrystalTextBuffer::
 GetCRLFMode ()

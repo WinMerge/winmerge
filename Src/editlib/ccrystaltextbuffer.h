@@ -248,8 +248,14 @@ public :
 
     //  Basic functions
     BOOL InitNew (int nCrlfStyle = CRLF_STYLE_DOS);
+
+// WinMerge has own routines for loading and saving
+#if 0
     BOOL LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
-    BOOL SaveToFile (LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC, BOOL bClearModifiedFlag = TRUE);
+	BOOL SaveToFile(LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC, 
+		BOOL bClearModifiedFlag = TRUE);
+#endif
+
     void FreeAll ();
 
     //  'Dirty' flag

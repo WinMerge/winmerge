@@ -80,8 +80,8 @@ public :
 		UINT GetTextWithoutEmptys(int nStartLine, int nStartChar, int nEndLine, int nEndChar, 
 				CString &text, BOOL bLeft, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
 		BOOL LoadFromFile(LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
-		BOOL SaveToFile (LPCTSTR pszFileName, 
-											 int nCrlfStyle = CRLF_STYLE_AUTOMATIC , 
+		BOOL SaveToFile (LPCTSTR pszFileName, BOOL bTempFile,
+				int nCrlfStyle = CRLF_STYLE_AUTOMATIC, 
 											 BOOL bClearModifiedFlag = TRUE );
 
         CDiffTextBuffer (CMergeDoc * pDoc, BOOL bLeft)
