@@ -15,6 +15,7 @@ typedef enum { DIRSLASH, NODIRSLASH } DIRSLASH_TYPE;
 PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath);
 void paths_normalize(CString & sPath);
 CString paths_GetLongPath(const CString & sPath);
+bool paths_CreateIfNeeded(const CString & sPath);
 LPCTSTR paths_GetTempPath();
 PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight);
 CString ExpandShortcut(const CString &inFile);

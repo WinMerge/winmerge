@@ -28,12 +28,20 @@
 #include "FileFilterHelper.h"
 #include "RegExp.h"
 #include "Coretools.h"
+#include "paths.h"
+
 
 FileFilterHelper::FileFilterHelper()
 {
-	m_fileFilterMgr = NULL;
+	m_fileFilterMgr = new FileFilterMgr;
 	m_bUseMask = TRUE;
 }
+
+FileFilterHelper::~FileFilterHelper()
+{
+	delete m_fileFilterMgr;
+}
+
 
 /** 
  * @brief Return filtermanager used.
@@ -41,15 +49,6 @@ FileFilterHelper::FileFilterHelper()
 FileFilterMgr * FileFilterHelper::GetManager()
 {
 	return m_fileFilterMgr;
-}
-
-/** 
- * @brief Set filtermanager used.
- */
-void FileFilterHelper::SetManager(FileFilterMgr * pFilterManager)
-{
-	if (pFilterManager != NULL)
-		m_fileFilterMgr = pFilterManager;
 }
 
 /** @brief Store current filter (if filter manager validates the name) */
@@ -361,6 +360,21 @@ void FileFilterHelper::ReloadUpdatedFilters()
 }
 
 /**
+ * @ brief Returns true if directory exists or successfully created
+ * Tries to create multiple directories if needed
+ */
+static bool
+EnsureDirectoryExists(const CString & sPath)
+{
+	// paths_CanUse will 
+	if (paths_CreateIfNeeded(sPath))
+		return true;
+	else
+		return false;
+
+}
+
+/**
  * @brief Load any known file filters
  * @todo Preserve filter selection? How?
  */
@@ -377,18 +391,40 @@ void FileFilterHelper::LoadAllFileFilters()
 	LoadFileFilterDirPattern(patternsLoaded, sPattern);
 
 	// Application data path in user profile directory
-	if (GetAppDataPath(sPattern))
+	CString sAppPath;
+	if (GetAppDataPath(sAppPath))
 	{
-		sPattern += _T("\\WinMerge\\Filters\\*.flt");
-		LoadFileFilterDirPattern(patternsLoaded, sPattern);
+		CString sPath = sAppPath + _T("\\WinMerge\\Filters");
+		TestCandidateFilterPath(sPath);
+		LoadFileFilterDirPattern(patternsLoaded, sPath + _T("\\*.flt"));
 	}
+
 	// User profile local & roaming settings
 	CString sProfile;
 	if (GetUserProfilePath(sProfile))
 	{
-		sPattern = sProfile + _T("\\Local Settings\\Application Data\\WinMerge\\Filters\\*.flt");
-		LoadFileFilterDirPattern(patternsLoaded, sPattern);
-		sPattern = sProfile + _T("\\Application Data\\WinMerge\\Filters\\*.flt");
-		LoadFileFilterDirPattern(patternsLoaded, sPattern);
+		CString sPath = sProfile + _T("\\Local Settings\\Application Data\\WinMerge\\Filters");
+		TestCandidateFilterPath(sPath);
+		LoadFileFilterDirPattern(patternsLoaded, sPath + _T("\\*.flt"));
+
+		sPath = sProfile + _T("\\Application Data\\WinMerge\\Filters");
+		TestCandidateFilterPath(sPath);
+		LoadFileFilterDirPattern(patternsLoaded, sPath + _T("\\*.flt"));
 	}
 }
+
+/**
+ * @brief Store as path for new file filters, if we still need one and this path exists
+ */
+void
+FileFilterHelper::TestCandidateFilterPath(const CString & sPath)
+{
+	if (m_sNewFileFilterPath.IsEmpty())
+	{
+		if (EnsureDirectoryExists(sPath))
+		{
+			m_sNewFileFilterPath = sPath;
+		}
+	}
+}
+

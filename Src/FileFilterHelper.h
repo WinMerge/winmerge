@@ -66,6 +66,10 @@ public:
 /**
  * @brief Helper class for using filefilters.
  *
+ * A FileFilterHelper object is the owner of any active mask, and of the file filter manager
+ * This is kind of a File Filter SuperManager, taking care of both inline filters from strings
+ *  and loaded file filters (the latter handled by its internal file filter manager)
+ *
  * This class is mainly for handling two ways to filter files in WinMerge:
  * - File masks: *.ext lists (*.cpp *.h etc)
  * - File filters: regular expression rules in separate files
@@ -79,10 +83,10 @@ class FileFilterHelper : public IDiffFilter
 {
 public:
 	FileFilterHelper();
+	~FileFilterHelper();
 
 	FileFilterMgr * GetManager();
-	void SetManager(FileFilterMgr * pFilterManager);
-	CString GetFileFilterPath() const { return m_sFileFilterPath; }
+	CString GetNewFileFilterPath() const { return m_sNewFileFilterPath; }
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);
 	void EditFileFilter(LPCTSTR szFileFilterPath);
 	void GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const;
@@ -107,6 +111,8 @@ public:
 
 protected:
 	CString ParseExtensions(CString extensions);
+	void TestCandidateFilterPath(const CString & sPath);
+
 
 private:
 	FileFilter * m_currentFilter;     /*< Currently selected filefilter */
@@ -114,6 +120,7 @@ private:
 	CString m_sFileFilterPath;        /*< Path to current filter */
 	CString m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
 	BOOL m_bUseMask;   /*< If TRUE file mask is used, filter otherwise */
+	CString m_sNewFileFilterPath;    /*< Path where new filters should be created */
 
 	CRegExp m_rgx;     /*< Compiled file mask regular expression */
 };

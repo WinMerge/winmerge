@@ -73,6 +73,21 @@ void paths_normalize(CString & sPath)
 }
 
 /**
+ * @brief Get canonical name of directory & return true, if it exists
+ */
+static bool GetDirName(const CString & sDir, CString& sName)
+{
+	// (Couldn't get info for just the directory from CFindFile)
+	WIN32_FIND_DATA ffd;
+	HANDLE h = FindFirstFile(sDir, &ffd);
+	if (h == INVALID_HANDLE_VALUE)
+		return false;
+	sName = ffd.cFileName;
+	FindClose(h);
+	return true;
+}
+
+/**
  * Convert path to canonical long path (ie, with ~ short names expanded)
  * Expand any environment strings
  * If path does not exist, make canonical the part that does exist, and leave the rest as is
@@ -156,10 +171,8 @@ CString paths_GetLongPath(const CString & sPath)
 		// advance to next component (or set ptr==0 to flag end)
 		ptr = (end ? end+1 : 0);
 
-		// (Couldn't get info for just the directory from CFindFile)
-		WIN32_FIND_DATA ffd;
-		HANDLE h = FindFirstFile(sTemp, &ffd);
-		if (h == INVALID_HANDLE_VALUE)
+		CString sNextName;
+		if (!GetDirName(sTemp, sNextName))
 		{
 			sLong = sTemp;
 			if (ptr)
@@ -169,16 +182,87 @@ CString paths_GetLongPath(const CString & sPath)
 			return sLong;
 		}
 		sLong += '\\';
-		sLong += ffd.cFileName;
-		if (dst == DIRSLASH && !ptr &&
-			(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+		sLong += sNextName;
+		if (dst == DIRSLASH && !ptr)
 		{
 			sLong += '\\';
 		}
-		FindClose(h);
 	}
 	return sLong;
 }
+
+/**
+ * @brief Return true if path exists or if we successfully create it
+ * Expand any environment strings
+ * Create missing parts (as far as possible)
+ */
+bool paths_CreateIfNeeded(const CString & sPath)
+{
+	if (sPath.IsEmpty()) return false;
+
+	CString sTemp;
+	if (GetDirName(sPath, sTemp)) return true;
+
+	if (sPath.GetLength() >= _MAX_PATH) return false;
+
+	// Expand environment variables:
+	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
+	TCHAR fullPath[_MAX_PATH] = _T("");
+	if (!_tcschr(sPath, '%') || !ExpandEnvironmentStrings(sPath, fullPath, _MAX_PATH))
+	{
+		_tcscpy(fullPath, sPath);
+	}
+	// Now fullPath holds our desired path
+
+	CString sLong;
+	TCHAR *ptr = fullPath;
+	TCHAR *end = NULL;
+
+	// Skip to \ position     d:\abcd or \\host\share\abcd
+	// indicated by ^           ^                    ^
+	if (_tcslen(ptr) > 2)
+		end = _tcschr(fullPath+2, _T('\\'));
+	if (end && !_tcsnicmp(fullPath, _T("\\\\"),2))
+		end = _tcschr(end+1, _T('\\'));
+
+	if (!end) return false;
+
+	// check that first component exists
+	*end = 0;
+	if (!GetDirName(fullPath, sTemp))
+		return false;
+	*end = '\\';
+
+	ptr = end+1;
+
+	while (ptr)
+	{
+		end = _tcschr(ptr, '\\');
+		// zero-terminate current component
+		// (if we're at end, its already zero-terminated)
+		if (end)
+			*end = 0;
+
+		// advance to next component (or set ptr==0 to flag end)
+		ptr = (end ? end+1 : 0);
+
+		CString sNextName;
+		if (!GetDirName(fullPath, sNextName))
+		{
+			// try to create directory, and then double-check its existence
+			if (!CreateDirectory(fullPath, 0)
+				|| !GetDirName(fullPath, sNextName))
+			{
+				return false;
+			}
+		}
+		// if not finished, restore directory string we're working in
+		if (ptr)
+			*end = '\\';
+	}
+	return true;
+}
+
 
 /** 
  * @brief Return folder for temporary files.

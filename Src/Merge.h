@@ -38,7 +38,6 @@
 #include "languageselect.h"
 #include "FileFilterHelper.h"
 
-class FileFilterMgr;
 struct FileFilter;
 class CAssureScriptsForThread;
 class CMainFrame;
@@ -93,7 +92,6 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
-	FileFilterMgr * m_fileFilterMgr;
 	CAssureScriptsForThread * m_mainThreadScripts;
 };
 

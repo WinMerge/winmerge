@@ -351,19 +351,10 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 	TCHAR drive[_MAX_DRIVE] = {0};
 
 	VERIFY(title.LoadString(IDS_FILEFILTER_SAVENEW));
-	path = theApp.m_globalFileFilter.GetFileFilterPath();
+	path = theApp.m_globalFileFilter.GetNewFileFilterPath();
+	if (path.GetLength() && path[path.GetLength()-1] != '\\')
+		path += '\\';
 
-	// Drop filename and extension
-	_tsplitpath(path, drive, dir, NULL, NULL);
-	if (_tcslen(drive) > 0 )
-	{
-		path = drive;
-		path += dir;
-	}
-	else
-	{
-		path = dir;
-	}
 	
 	tmplPath = path + FILE_FILTER_TEMPLATE;
 	

@@ -1,3 +1,9 @@
+2005-03-04 Perry
+ PATCH: [ 1156253 ] Fix filter helper handling of new filters
+ BUG: [ 1153018 ] Create new filter, now cannot find it
+  Src: FileFilterHelper.cpp FileFilterHelper.h FileFiltersDlg.cpp Merge.cpp
+   Merge.h paths.cpp paths.h
+
 2005-03-03 Kimmo
  PATCH: [ 1155319 ] Select font for dir compare view
   Src: DirView.cpp DirView.h MainFrm.cpp MainFrm.h Merge.rc OptionsDef.h

@@ -42,7 +42,6 @@
 #include "logfile.h"
 #include "coretools.h"
 #include "paths.h"
-#include "FileFilterMgr.h"
 #include "FileFilterHelper.h"
 #include "Plugins.h"
 #include "DirScan.h" // for DirScan_InitializeDefaultCodepage
@@ -83,7 +82,6 @@ CMergeApp::CMergeApp() :
 , m_pDiffTemplate(0)
 , m_pDirTemplate(0)
 , m_lang(IDR_MAINFRAME, IDR_MAINFRAME)
-, m_fileFilterMgr(0)
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
@@ -582,7 +580,6 @@ void CMergeApp::OnViewLanguage()
 
 int CMergeApp::ExitInstance() 
 {
-	delete m_fileFilterMgr;
 	delete m_mainThreadScripts;
 	return CWinApp::ExitInstance();
 }
@@ -669,10 +666,6 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 /** @brief Load any known file filters */
 void CMergeApp::InitializeFileFilters()
 {
-	if (!m_fileFilterMgr)
-		m_fileFilterMgr = new FileFilterMgr;
-
-	m_globalFileFilter.SetManager(m_fileFilterMgr);
 	m_globalFileFilter.LoadAllFileFilters();
 }
 
