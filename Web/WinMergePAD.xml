@@ -1,103 +1,110 @@
 <?xml version="1.0" encoding="Windows-1252" ?>
 <XML_DIZ_INFO>
-<MASTER_PAD_VERSION_INFO>
-    <MASTER_PAD_VERSION>1.15</MASTER_PAD_VERSION>
-    <MASTER_PAD_INFO>Portable Application Description, or PAD for short, is a data set that is used by shareware authors to disseminate information to anyone interested in their software products. To find out more go to http://www.asp-shareware.org/pad</MASTER_PAD_INFO>
-</MASTER_PAD_VERSION_INFO>
-<Company_Info>
-        <Company_Name>Thingamahoochie Software</Company_Name>
-        <Address_1 />
-        <Address_2 />
-        <City_Town />
-        <State_Province />
-        <Zip_Postal_Code />
-        <Country />
-        <Company_WebSite_URL>http://winmerge.org/</Company_WebSite_URL>
-<Contact_Info>
-        <Author_First_Name>WinMerge team</Author_First_Name>
-        <Author_Last_Name></Author_Last_Name>
-        <Author_Email>winmerge-support@lists.sourceforge.net</Author_Email>
-        <Contact_First_Name>WinMerge team</Contact_First_Name>
-        <Contact_Last_Name></Contact_Last_Name>
-        <Contact_Email>winmerge-support@lists.sourceforge.net</Contact_Email>
-    </Contact_Info>
-<Support_Info>
-        <Sales_Email>winmerge-support@lists.sourceforge.net</Sales_Email>
-        <Support_Email>winmerge-support@lists.sourceforge.net</Support_Email>
-        <General_Email>winmerge-support@lists.sourceforge.net</General_Email>
-        <Sales_Phone />
-        <Support_Phone />
-        <General_Phone />
-        <Fax_Phone />
-    </Support_Info>
-</Company_Info>
-<Program_Info>
-        <Program_Name>WinMerge</Program_Name>
-        <Program_Version>2.0.2</Program_Version>
-        <Program_Release_Month>12</Program_Release_Month>
-        <Program_Release_Day>10</Program_Release_Day>
-        <Program_Release_Year>2003</Program_Release_Year>
-        <Program_Cost_Dollars>0</Program_Cost_Dollars>
-        <Program_Cost_Other_Code />
-        <Program_Cost_Other />
-        <Program_Type>Freeware</Program_Type>
-        <Program_Release_Status>Major Update</Program_Release_Status>
-        <Program_Install_Support>Install and Uninstall</Program_Install_Support>
-        <Program_OS_Support>Win95,Win98,WinME,WinNT 4.x,WinXP,Windows2000</Program_OS_Support>
-        <Program_Language>English,Spanish,French,German,Italian,ChineseSimplified,ChineseTraditional</Program_Language>
-<File_Info>
-        <Filename_Versioned>WinMergeSetup202.exe</Filename_Versioned>
-        <Filename_Previous>WinMergeSetup20.exe</Filename_Previous>
-        <Filename_Generic>WinMergeSetup.exe</Filename_Generic>
-        <Filename_Long>WinMergeSetup.exe</Filename_Long>
-        <File_Size_Bytes>2052666</File_Size_Bytes>
-        <File_Size_K>2005</File_Size_K>
-        <File_Size_MB>1.96</File_Size_MB>
-    </File_Info>
-<Expire_Info>
-        <Has_Expire_Info>N</Has_Expire_Info>
-        <Expire_Count />
-        <Expire_Based_On>Days</Expire_Based_On>
-        <Expire_Other_Info />
-        <Expire_Month />
-        <Expire_Day />
-        <Expire_Year />
-    </Expire_Info>
-        <Program_Change_Info />
-        <Program_Specific_Category>Utilities</Program_Specific_Category>
-        <Program_Categories>File Syncronizing, Differencing</Program_Categories>
-        <Program_System_Requirements />
-        <Includes_JAVA_VM>N</Includes_JAVA_VM>
-        <Includes_VB_Runtime>N</Includes_VB_Runtime>
-        <Includes_DirectX>N</Includes_DirectX>
-</Program_Info>
-<Program_Descriptions>
-<English>
-        <Keywords>diff,merge,text files,differencing,syncronize</Keywords>
-        <Char_Desc_45>Visual differencing and merging tool</Char_Desc_45>
-        <Char_Desc_80>Open Source visual differencing and merging tool</Char_Desc_80>
-        <Char_Desc_250>An Open Source visual text file differencing and merging tool for Win32 platforms. It is highly useful for determing what has changed between project versions, and then merging changes between versions.</Char_Desc_250>
-        <Char_Desc_450>An Open Source visual text file differencing and merging tool for Win32 platforms. It is highly useful for determing what has changed between project versions, and then merging changes between versions. Features include: diff / merge, directory comparison, directory recursion, Visual SourceSafe integration, and a simple integrated editor. User interface translated to several languages.</Char_Desc_450>
-        <Char_Desc_2000>An Open Source visual text file differencing and merging tool for Win32 platforms. It is highly useful for determing what has changed between project versions, and then merging changes between versions. Features include: diff / merge, directory comparison, directory recursion, Visual SourceSafe integration, and a simple integrated editor. User interface translated to several languages.</Char_Desc_2000>
-</English>
-</Program_Descriptions>
-<Web_Info>
-<Application_URLs>
-        <Application_Info_URL>http://winmerge.org/</Application_Info_URL>
-        <Application_Order_URL>http://winmerge.org/</Application_Order_URL>
-        <Application_Screenshot_URL>http://winmerge.sourceforge.net/images/screenshot.png</Application_Screenshot_URL>
-        <Application_Icon_URL>http://winmerge.sourceforge.net/images/winmerge.gif</Application_Icon_URL>
-        <Application_XML_File_URL>http://winmerge.sourceforge.net/WinMergePAD.xml</Application_XML_File_URL>
-    </Application_URLs>
-<Download_URLs>
-        <Primary_Download_URL>http://prdownloads.sourceforge.net/winmerge/WinMergeSetup202.exe</Primary_Download_URL>
-        <Secondary_Download_URL />
-        <Additional_Download_URL_1 />
-        <Additional_Download_URL_2 />
-    </Download_URLs>
-</Web_Info>
-<Permissions>
-        <Distribution_Permissions>GPL</Distribution_Permissions>
-        <EULA>GPL</EULA>
-</Permissions>
+	<MASTER_PAD_VERSION_INFO>
+		<MASTER_PAD_VERSION>2.01</MASTER_PAD_VERSION>
+		<MASTER_PAD_EDITOR>PADGen 2.0.1.22 http://www.padgen.org</MASTER_PAD_EDITOR>
+		<MASTER_PAD_INFO>Portable Application Description, or PAD for short, is a data set that is used by shareware authors to disseminate information to anyone interested in their software products. To find out more go to http://www.asp-shareware.org/pad</MASTER_PAD_INFO>
+	</MASTER_PAD_VERSION_INFO>
+	<Company_Info>
+		<Company_Name>Thingamahoochie Software</Company_Name>
+		<Address_1 />
+		<Address_2 />
+		<City_Town />
+		<State_Province />
+		<Zip_Postal_Code />
+		<Country />
+		<Company_WebSite_URL>http://winmerge.org/</Company_WebSite_URL>
+		<Contact_Info>
+			<Author_First_Name>WinMerge team</Author_First_Name>
+			<Author_Last_Name />
+			<Author_Email>winmerge-support@lists.sourceforge.net</Author_Email>
+			<Contact_First_Name>WinMerge team</Contact_First_Name>
+			<Contact_Last_Name />
+			<Contact_Email>winmerge-support@lists.sourceforge.net</Contact_Email>
+		</Contact_Info>
+		<Support_Info>
+			<Sales_Email>winmerge-support@lists.sourceforge.net</Sales_Email>
+			<Support_Email>winmerge-support@lists.sourceforge.net</Support_Email>
+			<General_Email>winmerge-support@lists.sourceforge.net</General_Email>
+			<Sales_Phone />
+			<Support_Phone />
+			<General_Phone />
+			<Fax_Phone />
+		</Support_Info>
+	</Company_Info>
+	<Program_Info>
+		<Program_Name>WinMerge</Program_Name>
+		<Program_Version>2.2.0</Program_Version>
+		<Program_Release_Month>11</Program_Release_Month>
+		<Program_Release_Day>10</Program_Release_Day>
+		<Program_Release_Year>2004</Program_Release_Year>
+		<Program_Cost_Dollars>0</Program_Cost_Dollars>
+		<Program_Cost_Other_Code />
+		<Program_Cost_Other />
+		<Program_Type>Freeware</Program_Type>
+		<Program_Release_Status>Major Update</Program_Release_Status>
+		<Program_Install_Support>Install and Uninstall</Program_Install_Support>
+		<Program_OS_Support>Win95,Win98,WinME,WinNT 4.x,Windows2000,WinXP</Program_OS_Support>
+		<Program_Language>English,ChineseSimplified,ChineseTraditional,Czech,Danish,French,German,Hungarian,Italian,Japanese,Korean,Polish,Portuguese,Romanian,Russian,Spanish,Swedish</Program_Language>
+		<Program_Change_Info />
+		<Program_Specific_Category>Utilities</Program_Specific_Category>
+		<Program_Category_Class>System Utilities::Other</Program_Category_Class>
+		<Program_Categories>File Syncronizing, Differencing</Program_Categories>
+		<Program_System_Requirements />
+		<Includes_JAVA_VM>N</Includes_JAVA_VM>
+		<Includes_VB_Runtime>N</Includes_VB_Runtime>
+		<Includes_DirectX>N</Includes_DirectX>
+		<File_Info>
+			<Filename_Versioned>WinMerge-2.2.0-Setup.exe</Filename_Versioned>
+			<Filename_Previous>WinMergeSetup202.exe</Filename_Previous>
+			<Filename_Generic>WinMergeSetup.exe</Filename_Generic>
+			<Filename_Long>WinMergeSetup.exe</Filename_Long>
+			<File_Size_Bytes>2813971</File_Size_Bytes>
+			<File_Size_K>2748</File_Size_K>
+			<File_Size_MB>2.68</File_Size_MB>
+		</File_Info>
+		<Expire_Info>
+			<Has_Expire_Info>N</Has_Expire_Info>
+			<Expire_Count />
+			<Expire_Based_On>Days</Expire_Based_On>
+			<Expire_Other_Info />
+			<Expire_Month />
+			<Expire_Day />
+			<Expire_Year />
+		</Expire_Info>
+	</Program_Info>
+	<Program_Descriptions>
+		<English>
+			<Keywords>diff,merge,text files,differencing,syncronize</Keywords>
+			<Char_Desc_45>Compare and merge files or directories</Char_Desc_45>
+			<Char_Desc_80>WinMerge is side-by-side difference display and merge, for files or directories</Char_Desc_80>
+			<Char_Desc_250>WinMerge is a tool for visual difference display and merging, for both files and directories. Unicode support. Flexible syntax coloring editor. Windows Shell integration. Regexp filtering. Side-by-side line diff and in-line word diff visualisation.</Char_Desc_250>
+			<Char_Desc_450>WinMerge is a tool for visual difference display and merging, for both files and directories. WinMerge has Unicode support, Flexible syntax coloring editor, and Windows Shell integration. Regexp filtering for filenames and lines. Side-by-side line difference and in-line word difference visualisation. A file map shows the overall file differences in a location pane. The user interface is translated into several languages.</Char_Desc_450>
+			<Char_Desc_2000>WinMerge is a tool for visual difference display and merging, for both files and directories. It is highly useful for determing what has changed between file versions, and then merging those changes. WinMerge has Unicode support, Flexible syntax coloring editor, Visual SourceSafe integration, and Windows Shell integration. Regexp filtering for filenames and lines. Side-by-side line difference and in-line word difference visualisation.A file map shows the overall file differences in a location pane. The user interface is translated into several languages.</Char_Desc_2000>
+		</English>
+	</Program_Descriptions>
+	<Web_Info>
+		<Application_URLs>
+			<Application_Info_URL>http://winmerge.org/</Application_Info_URL>
+			<Application_Order_URL>http://winmerge.org/</Application_Order_URL>
+			<Application_Screenshot_URL>http://winmerge.sourceforge.net/images/screenshot.png</Application_Screenshot_URL>
+			<Application_Icon_URL>http://winmerge.sourceforge.net/images/winmerge.gif</Application_Icon_URL>
+			<Application_XML_File_URL>http://winmerge.sourceforge.net/WinMergePAD.xml</Application_XML_File_URL>
+		</Application_URLs>
+		<Download_URLs>
+			<Primary_Download_URL>http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.0-Setup.exe</Primary_Download_URL>
+			<Secondary_Download_URL />
+			<Additional_Download_URL_1 />
+			<Additional_Download_URL_2 />
+		</Download_URLs>
+	</Web_Info>
+	<Permissions>
+		<Distribution_Permissions>GPL</Distribution_Permissions>
+		<EULA>GPL</EULA>
+	</Permissions>
+	<ASP>
+		<ASP_FORM>Y</ASP_FORM>
+		<ASP_Member>N</ASP_Member>
+		<ASP_Member_Number />
+	</ASP>
 </XML_DIZ_INFO>

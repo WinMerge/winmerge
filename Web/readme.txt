@@ -1,4 +1,6 @@
 2004-11-10 Tim
+ PATCH: [ 1064082 ] Updated WinMergePAD.xml
+  Web: WinMergePAD.xml
  BUG: [ 1028252 ] [homepage] Help needed page refers to only bug list
   Web\developer: needed.php
 
