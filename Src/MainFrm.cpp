@@ -51,6 +51,7 @@
 #include "multimon.h"
 #include "paths.h"
 #include "WaitStatusCursor.h"
+#include "files.h"
 
 
 #ifdef _DEBUG
@@ -299,6 +300,7 @@ void CMainFrame::OnFileOpen()
 
 void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight)
 {
+	CString sError;
 	BOOL docNull;
 	int nRescanResult = RESCAN_OK;
 	CMergeDoc * pMergeDoc = GetMergeDocToShow(pDirDoc, &docNull);
@@ -316,24 +318,51 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	pMergeDoc->m_ltBuf.SetEolSensitivity(m_bEolSensitive);
 	pMergeDoc->m_rtBuf.SetEolSensitivity(m_bEolSensitive);
 
-	CString sError;
 	// Load left side
-	if (!pMergeDoc->m_ltBuf.LoadFromFile(szLeft))
+	int nLeftSuccess = pMergeDoc->m_ltBuf.LoadFromFile(szLeft);
+	if (nLeftSuccess != FRESULT_OK)
 	{
-		pMergeDoc->m_ltBuf.InitNew();
-		pMergeDoc->m_rtBuf.InitNew();
-		AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szLeft);
+		if (nLeftSuccess == FRESULT_ERROR)
+			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szLeft);
+		else if (nLeftSuccess == FRESULT_BINARY)
+		{
+			sError.LoadString(IDS_FILEBINARY);
+			sError += "\n(";
+			sError += szLeft;
+			sError += ")";
+		}
 	}
-	// Load right side (unless left side failed)
-	if (sError.IsEmpty() && !pMergeDoc->m_rtBuf.LoadFromFile(szRight))
+
+	int nRightSuccess = FRESULT_ERROR;
+	
+	// Load right side only if left side was succesfully loaded
+	if (nLeftSuccess == FRESULT_OK)
+		nRightSuccess = pMergeDoc->m_rtBuf.LoadFromFile(szRight);
+
+	// Left side was OK but right side failed
+	if (nLeftSuccess == FRESULT_OK && nRightSuccess != FRESULT_OK)
 	{
 		pMergeDoc->m_rtBuf.InitNew();
-		AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szRight);
+
+		if (nRightSuccess == FRESULT_ERROR)
+			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szRight);
+		else if (nRightSuccess == FRESULT_BINARY)
+		{
+			sError.LoadString(IDS_FILEBINARY);
+			sError += "\n(";
+			sError += szRight;
+			sError += ")";
+		}
 	}
 	// Bail out if either side failed
 	if (!sError.IsEmpty())
 	{
-		AfxMessageBox(sError, MB_ICONSTOP);
+		pMergeDoc->m_ltBuf.FreeAll();
+		pMergeDoc->m_ltBuf.InitNew();
+		pMergeDoc->m_rtBuf.FreeAll();
+		pMergeDoc->m_rtBuf.InitNew();
+
+		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 		// TODO -- should we close the doc ? How ?
 		return;
 	}

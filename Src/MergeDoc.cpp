@@ -1093,14 +1093,15 @@ void CMergeDoc::CDiffTextBuffer::SetTempPath(CString path)
 	m_strTempPath = path;
 }
 
-BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
+int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/)
 {
 	ASSERT(!m_bInit);
 	ASSERT(m_aLines.GetSize() == 0);
 	MAPPEDFILEDATA fileData = {0};
 	CString sExt;
-	BOOL bSuccess = TRUE;
+	BOOL bSuccess = FALSE;
+	BOOL nRetVal = FRESULT_OK;
 
 	// Set encoding based on extension, if we know one
 	SplitFilename(pszFileName, NULL, NULL, &sExt);
@@ -1116,6 +1117,11 @@ BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 	bSuccess = files_openFileMapped(&fileData);
 
 	if (bSuccess)
+		nRetVal = files_binCheck(&fileData);
+	else
+		nRetVal = FRESULT_ERROR;
+	
+	if (nRetVal == FRESULT_OK)
 	{
 		//Try to determine current CRLF mode based on first line
 		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
@@ -1178,11 +1184,11 @@ BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 
 		UpdateViews(NULL, NULL, UPDATE_RESET);
 		m_ptLastChange.x = m_ptLastChange.y = -1;
-		bSuccess = TRUE;
+		nRetVal = FRESULT_OK;
 	}
 	
 	files_closeFileMapped(&fileData, 0xFFFFFFFF, FALSE);
-	return bSuccess;
+	return nRetVal;
 }
 
 BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,

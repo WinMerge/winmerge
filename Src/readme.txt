@@ -1,3 +1,7 @@
+2003-07-17 Kimmo
+ PATCH: [ 772228 ] Quick bin check for 2.0
+  WinMerge: files.h files.cpp MainFrm.cpp MergeDoc.cpp
+
 2003-07-16 Laoran
  PATCH: [ 765926 ] Merge empty last line to the last diffrange (change)
  new version

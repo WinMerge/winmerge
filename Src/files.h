@@ -1,6 +1,13 @@
 #ifndef _FILES_H_INCLUDED
 #define _FILES_H_INCLUDED
 
+enum
+{
+	FRESULT_ERROR = 0,
+	FRESULT_OK,
+	FRESULT_BINARY
+};
+
 struct MAPPEDFILEDATA
 {
 	TCHAR fileName[_MAX_PATH];
@@ -15,7 +22,6 @@ struct MAPPEDFILEDATA
 BOOL files_openFileMapped(MAPPEDFILEDATA *fileData);
 BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush);
 int files_readEOL(TCHAR *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive);
-BOOL files_safeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength);
-BOOL files_safeReadFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength);
+int files_binCheck(MAPPEDFILEDATA *fileData);
 
 #endif // _FILES_H

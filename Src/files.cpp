@@ -164,24 +164,28 @@ int files_readEOL(TCHAR *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive)
 	return eolBytes;
 }
 
-BOOL files_safeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength)
+int files_binCheck(MAPPEDFILEDATA *fileData)
 {
-	DWORD dwWrittenBytes = 0;
-	if (WriteFile(hFile, lpBuf, dwLength, &dwWrittenBytes, NULL))
+	// Use unsigned type for binary compare
+	// Note that this does not work for UNICODE files
+	// as WinMerge is not compiled UNICODE enabled
+	TBYTE *lpByte = (TBYTE *)fileData->pMapBase;
+	BOOL bBinary = FALSE;
+	DWORD dwBytesRead = 0;
+	
+	while ((dwBytesRead < fileData->dwSize - 1) && (bBinary == FALSE))
 	{
-		if (dwLength == dwWrittenBytes)
-			return TRUE;
+		// Binary check
+		if (*lpByte < 0x09)
+		{
+			bBinary = TRUE;
+		}
+		lpByte++;
+		dwBytesRead++;
 	}
-	return FALSE;
-}
 
-BOOL files_safeReadFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength)
-{
-	DWORD dwReadBytes = 0;
-	if (::ReadFile(hFile, lpBuf, dwLength, &dwReadBytes, NULL))
-	{
-		if (dwLength == dwReadBytes)
-			return TRUE;
-	}
-	return FALSE;
+	if (bBinary)
+		return FRESULT_BINARY;
+	else
+		return FRESULT_OK;
 }
