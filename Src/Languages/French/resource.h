@@ -181,6 +181,13 @@
 #define IDS_COMPMETHOD_MODDATE          263
 #define IDS_PATH_NOT_ABSOLUTE           264
 #define IDS_FILECHANGED_ONDISK          265
+#define IDB_EDIT_COPY                   266
+#define IDB_EDIT_CUT                    267
+#define IDB_EDIT_PASTE                  268
+#define IDB_EDIT_SEARCH                 269
+#define IDB_WINDOW_CASCADE              270
+#define IDB_WINDOW_HORIZONTAL           271
+#define IDB_WINDOW_VERTICAL             272
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

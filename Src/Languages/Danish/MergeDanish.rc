@@ -1037,6 +1037,13 @@ IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
 IDB_FOLDERSKIP          BITMAP  DISCARDABLE     "res\\folderskip.bmp"
 IDB_FILESKIP            BITMAP  DISCARDABLE     "res\\fileskip.bmp"
 IDB_FOLDER              BITMAP  DISCARDABLE     "res\\folder.bmp"
+IDB_EDIT_COPY           BITMAP  DISCARDABLE     "res\\copy.bmp"
+IDB_EDIT_CUT            BITMAP  DISCARDABLE     "res\\cut.bmp"
+IDB_EDIT_PASTE          BITMAP  DISCARDABLE     "res\\paste.bmp"
+IDB_EDIT_SEARCH         BITMAP  DISCARDABLE     "res\\search.bmp"
+IDB_WINDOW_CASCADE      BITMAP  DISCARDABLE     "res\\cascade.bmp"
+IDB_WINDOW_HORIZONTAL   BITMAP  DISCARDABLE     "res\\horizontally.bmp"
+IDB_WINDOW_VERTICAL     BITMAP  DISCARDABLE     "res\\vertically.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
