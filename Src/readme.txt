@@ -1,3 +1,9 @@
+2003-09-26 Perry
+ PATCH: [ 811039 ] Identify filters by path to solve problems with reused names
+  common: coretools.cpp coretools.h
+  WinMerge: FileFilterMgr.cpp FileFilterMgr.h MainFrm.cpp Merge.cpp Merge.h
+   PropFilter.cpp PropFilter.h
+
 2003-09-26 WinMerge beta 2.1.2.0 released
 
 2003-09-26 WinMerge experimental release 2.1.1.9 (Unicode handling patch)

@@ -1217,3 +1217,21 @@ BOOL GetAppDataPath(CString &sAppDataPath)
 		return FALSE;
 	}
 }
+
+/** 
+ * @brief Returns User Profile path (if available in environment)
+ */
+BOOL GetUserProfilePath(CString &sAppDataPath)
+{
+	TCHAR path[_MAX_PATH] = {0};
+	if (GetEnvironmentVariable(_T("USERPROFILE"), path, countof(path)))
+	{	
+		sAppDataPath = path;
+		return TRUE;
+	}
+	else
+	{
+		sAppDataPath = _T("");
+		return FALSE;
+	}
+}

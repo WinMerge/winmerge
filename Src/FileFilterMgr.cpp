@@ -160,11 +160,11 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilenam
 
 // Give client back a pointer to the actual filter
 // We just do a linear search, because this is seldom called
-FileFilter * FileFilterMgr::GetFilter(LPCTSTR szFilterName)
+FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
 {
 	for (int i=0; i<m_filters.GetSize(); ++i)
 	{
-		if (m_filters[i]->name == szFilterName)
+		if (m_filters[i]->fullpath == szFilterPath)
 			return m_filters[i];
 	}
 	return 0;
@@ -202,9 +202,14 @@ BOOL FileFilterMgr::TestDirNameAgainstFilter(FileFilter * pFilter, LPCTSTR szDir
 	return pFilter->default_include;
 }
 
-CString FileFilterMgr::GetFilterName(int i)
+CString FileFilterMgr::GetFilterName(int i) const
 {
 	return m_filters[i]->name; 
+}
+
+CString FileFilterMgr::GetFilterPath(int i) const
+{
+	return m_filters[i]->fullpath;
 }
 
 CString FileFilterMgr::GetFullpath(FileFilter * pfilter) const

@@ -37,6 +37,7 @@
 
 class FileFilterMgr;
 struct FileFilter;
+class StringPairArray;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -75,10 +76,10 @@ public:
 	void SetDiffTextColor(COLORREF clrValue) { m_clrDiffText = clrValue; }
 	void SetSelDiffTextColor(COLORREF clrValue) { m_clrSelDiffText = clrValue; }
 	void SetNeedIdleTimer();
-	CString GetFileFilterName() const { return m_sFileFilterName; }
-	void SetFileFilterName(LPCTSTR szFileFilterName);
+	CString GetFileFilterPath() const { return m_sFileFilterPath; }
+	void SetFileFilterPath(LPCTSTR szFileFilterPath);
 	void EditFileFilter(LPCTSTR szFileFilterName);
-	void GetFileFilterNameList(CStringList & filefilters, CString & selected) const;
+	void GetFileFilters(StringPairArray * filters, CString & selected) const;
 
 	// implement file/directory filtering, because app currently holds the filter manager
 	BOOL includeFile(LPCTSTR szFileName);
@@ -99,6 +100,7 @@ protected:
 
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void InitializeFileFilters();
+	void LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int, int> & patternsLoaded, const CString & sPattern);
 	void ParseArgs(CStringArray & files, UINT & nFiles, BOOL & recurse, DWORD & dwLeftFlags, DWORD & dwRightFlags);
 
 
@@ -111,7 +113,7 @@ private:
 	BOOL m_bEscCloses;
 	FileFilter * m_currentFilter;
 	FileFilterMgr * m_fileFilterMgr;
-	CString m_sFileFilterName;
+	CString m_sFileFilterPath;
 };
 
 extern CMergeApp theApp;

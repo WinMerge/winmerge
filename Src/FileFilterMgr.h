@@ -34,8 +34,9 @@ public:
 
 	// access to array of filters
 	int GetFilterCount() const { return m_filters.GetSize(); }
-	CString GetFilterName(int i);
-	FileFilter * GetFilter(LPCTSTR szFilterName);
+	CString GetFilterName(int i) const;
+	CString GetFilterPath(int i) const;
+	FileFilter * GetFilterByPath(LPCTSTR szFilterName);
 	CString GetFullpath(FileFilter * pfilter) const;
 
 	// methods to actually use filter

@@ -156,5 +156,6 @@ HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized = TRUE, BOOL bNe
 BOOL HasExited(HANDLE hProcess, DWORD *pCode = NULL);
 BOOL IsLocalPath(LPCTSTR path);
 BOOL GetAppDataPath(CString &sAppDataPath);
+BOOL GetUserProfilePath(CString &sAppDataPath);
 
 #endif

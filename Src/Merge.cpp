@@ -51,6 +51,12 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#ifndef StringPair_declared
+#define StringPair_declared
+struct StringPair { CString first; CString second; };
+class StringPairArray : public CArray<StringPair, StringPair> { }; // need class so can forward declare
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp
 
@@ -690,43 +696,74 @@ void CMergeApp::InitializeFileFilters()
 	if (!m_fileFilterMgr)
 		m_fileFilterMgr = new FileFilterMgr;
 
-	CString sPattern = GetModulePath() + _T("\\Filters\\*.flt");
-	m_fileFilterMgr->LoadFromDirectory(sPattern, _T(".flt"));
+	// Load filters from all possible subdirectories
+	CMap<CString, LPCTSTR, int, int> patternsLoaded;
 
-	// Get Application data path in user profile directory
+	// Application directory
+	CString sPattern = GetModulePath() + _T("\\Filters\\*.flt");
+	LoadFileFilterDirPattern(patternsLoaded, sPattern);
+
+	// Application data path in user profile directory
 	if (GetAppDataPath(sPattern))
 	{
-		// Load filters from subdir
 		sPattern += _T("\\WinMerge\\Filters\\*.flt");
+		LoadFileFilterDirPattern(patternsLoaded, sPattern);
+	}
+	// User profile local & roaming settings
+	CString sProfile;
+	if (GetUserProfilePath(sProfile))
+	{
+		sPattern = sProfile + _T("\\Local Settings\\Application Data\\WinMerge\\Filters\\*.flt");
+		LoadFileFilterDirPattern(patternsLoaded, sPattern);
+		sPattern = sProfile + _T("\\Application Data\\WinMerge\\Filters\\*.flt");
+		LoadFileFilterDirPattern(patternsLoaded, sPattern);
+	}
+}
+
+/** @brief Load in all filter patterns in a directory (unless already in map) */
+void
+CMergeApp::LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int, int> & patternsLoaded, const CString & sPattern)
+{
+	int n=0;
+	if (!patternsLoaded.Lookup(sPattern, n))
+	{
 		m_fileFilterMgr->LoadFromDirectory(sPattern, _T(".flt"));
 	}
+	patternsLoaded[sPattern] = ++n;
 }
 
 /** @brief fill list with names of known filters */
-void CMergeApp::GetFileFilterNameList(CStringList & filefilters, CString & selected) const
+void CMergeApp::GetFileFilters(StringPairArray * filters, CString & selected) const
 {
-	if (!m_fileFilterMgr) return;
-	for (int i=0; i<m_fileFilterMgr->GetFilterCount(); ++i)
+	if (m_fileFilterMgr)
 	{
-		filefilters.AddTail(m_fileFilterMgr->GetFilterName(i));
+		int count = m_fileFilterMgr->GetFilterCount();
+		filters->SetSize(count);
+		for (int i=0; i<count; ++i)
+		{
+			StringPair pair;
+			pair.first = m_fileFilterMgr->GetFilterPath(i);
+			pair.second = m_fileFilterMgr->GetFilterName(i);
+			filters->SetAt(i, pair);
+		}
 	}
-	selected = m_sFileFilterName;
+	selected = m_sFileFilterPath;
 }
 
 /** @brief Store current filter (if filter manager validates the name) */
-void CMergeApp::SetFileFilterName(LPCTSTR szFileFilterName)
+void CMergeApp::SetFileFilterPath(LPCTSTR szFileFilterPath)
 {
-	m_sFileFilterName = _T("<None>");
+	m_sFileFilterPath = _T("<None>");
 	if (!m_fileFilterMgr) return;
-	m_currentFilter = m_fileFilterMgr->GetFilter(szFileFilterName);
+	m_currentFilter = m_fileFilterMgr->GetFilterByPath(szFileFilterPath);
 	if (m_currentFilter)
-		m_sFileFilterName = szFileFilterName;
+		m_sFileFilterPath = szFileFilterPath;
 }
 
 /** @brief Bring up file filter in notepad */
-void CMergeApp::EditFileFilter(LPCTSTR szFileFilterName)
+void CMergeApp::EditFileFilter(LPCTSTR szFileFilterPath)
 {
-	FileFilter * filter = m_fileFilterMgr->GetFilter(szFileFilterName);
+	FileFilter * filter = m_fileFilterMgr->GetFilterByPath(szFileFilterPath);
 	if (!filter)
 	{
 		ASSERT(0);

@@ -10,13 +10,20 @@
 /////////////////////////////////////////////////////////////////////////////
 // CPropFilter dialog
 
+#ifndef StringPair_declared
+#define StringPair_declared
+struct StringPair { CString first; CString second; };
+class StringPairArray : public CArray<StringPair, StringPair> { }; // need class so can forward declare
+#endif
+
+
 class CPropFilter : public CPropertyPage
 {
 	DECLARE_DYNAMIC(CPropFilter)
 
 // Construction
 public:
-	CPropFilter(const CStringList & fileFilters, CString & selected);
+	CPropFilter(const StringPairArray * fileFilters, CString & selected);
 	~CPropFilter();
 
 // Dialog Data
@@ -28,8 +35,10 @@ public:
 	BOOL	m_bIgnoreRegExp;
 	CString	m_sPattern;
 	//}}AFX_DATA
-	CString m_sFileFilterName;
+	CString m_sFileFilterPath;
 
+// Implementation
+	int AddFilter(int i);
 
 // Overrides
 	// ClassWizard generate virtual function overrides
@@ -40,7 +49,7 @@ public:
 
 // Implementation
 protected:
-	CStringList m_FilterNames;
+	const StringPairArray * m_Filters;
 
 	// Generated message map functions
 	//{{AFX_MSG(CPropFilter)

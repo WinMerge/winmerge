@@ -16,19 +16,15 @@ static char THIS_FILE[] = __FILE__;
 
 IMPLEMENT_DYNAMIC(CPropFilter, CPropertyPage)
 
-CPropFilter::CPropFilter(const CStringList & fileFilters, CString & selected)
+CPropFilter::CPropFilter(const StringPairArray * fileFilters, CString & selected)
 : CPropertyPage(CPropFilter::IDD)
+, m_Filters(fileFilters)
 {
 	//{{AFX_DATA_INIT(CPropFilter)
 	m_bIgnoreRegExp = FALSE;
 	m_sPattern = _T("");
 	//}}AFX_DATA_INIT
-	for (POSITION pos = fileFilters.GetHeadPosition(); pos; )
-	{
-		CString name = fileFilters.GetNext(pos);
-		m_FilterNames.AddTail(name);
-	}
-	m_sFileFilterName = selected;
+	m_sFileFilterPath = selected;
 }
 
 CPropFilter::~CPropFilter()
@@ -63,14 +59,16 @@ BOOL CPropFilter::OnInitDialog()
 {
 	CPropertyPage::OnInitDialog();
 	
-	m_cboFileFilter.AddString(_T("<None>"));
+	AddFilter(-1);
 	int sel = 0;
-	for (POSITION pos = m_FilterNames.GetHeadPosition(); pos; )
+	if (m_Filters)
 	{
-		CString name = m_FilterNames.GetNext(pos);
-		if (name == m_sFileFilterName)
-			sel = m_cboFileFilter.GetCount();
-		m_cboFileFilter.AddString(name);
+		for (int i=0; i<m_Filters->GetSize(); ++i)
+		{
+			int index = AddFilter(i);
+			if (m_sFileFilterPath == m_Filters->GetAt(i).first)
+				sel = index;
+		}
 	}
 	m_cboFileFilter.SetCurSel(sel);
 	m_btnEditFileFilter.EnableWindow(sel!=0);
@@ -79,6 +77,21 @@ BOOL CPropFilter::OnInitDialog()
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+/**
+ * @brief Add a filter to the filter display combo box
+ */
+int CPropFilter::AddFilter(int i)
+{
+	CString name;
+	if (i>=0)
+		name = m_Filters->GetAt(i).second;
+	else
+		name = _T("<None>"); // TODO: Globalize
+	int index = m_cboFileFilter.AddString(name);
+	m_cboFileFilter.SetItemData(index, i);
+	return index;
 }
 
 // User clicked the ignore checkbox
@@ -95,21 +108,26 @@ void CPropFilter::OnIgnoreregexp()
 // User changed file filter names
 void CPropFilter::OnSelchangeFileFilter() 
 {
-	m_cboFileFilter.GetWindowText(m_sFileFilterName);
-	if (m_sFileFilterName == _T("<None>"))
+	int index = m_cboFileFilter.GetCurSel();
+	if (index<=0) // Cannot edit #0 ("<None>")
 	{
 		m_btnEditFileFilter.EnableWindow(FALSE);
-		m_sFileFilterName = _T("");
+		m_sFileFilterPath = _T("");
 	}
 	else
 	{
 		m_btnEditFileFilter.EnableWindow(TRUE);
+		int nfilter = m_cboFileFilter.GetItemData(index);
+		m_sFileFilterPath = m_Filters->GetAt(nfilter).first;
 	}
 }
 
 void CPropFilter::OnEditFileFilter() 
 {
-	CString filtername;
-	m_cboFileFilter.GetWindowText(filtername);
-	theApp.EditFileFilter(filtername);
+	int index = m_cboFileFilter.GetCurSel();
+	if (index<=0) return; // Cannot edit #0 ("<None>")
+
+	int nfilter = m_cboFileFilter.GetItemData(index);
+	CString filterpath = m_Filters->GetAt(nfilter).first;
+	theApp.EditFileFilter(filterpath);
 }

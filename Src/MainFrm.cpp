@@ -153,7 +153,7 @@ CMainFrame::CMainFrame()
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
 	m_bAllowMixedEol = theApp.GetProfileInt(_T("Settings"), _T("AllowMixedEOL"), NULL);
-	theApp.SetFileFilterName(theApp.GetProfileString(_T("Settings"), _T("FileFilterName"), _T("")));
+	theApp.SetFileFilterPath(theApp.GetProfileString(_T("Settings"), _T("FileFilterPath"), _T("")));
 	m_bReuseDirDoc = TRUE;
 	// TODO: read preference for logging
 
@@ -699,9 +699,9 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 void CMainFrame::OnOptions() 
 {
 	DIFFOPTIONS diffOptions = {0};
-	CStringList filefilters;
 	CString selectedFilter;
-	theApp.GetFileFilterNameList(filefilters, selectedFilter);
+	StringPairArray fileFilters;
+	theApp.GetFileFilters(&fileFilters, selectedFilter);
 
 	// use CDiffwrapper static functions to exchange the options with registry
 	CDiffWrapper::ReadDiffOptions(&diffOptions);
@@ -710,7 +710,7 @@ void CMainFrame::OnOptions()
 	CPropVss vss;
 	CPropGeneral gen;
 	CPropSyntax syn;
-	CPropFilter filter(filefilters, selectedFilter);
+	CPropFilter filter(&fileFilters, selectedFilter);
 	CPropColors colors(theApp.GetDiffColor(), theApp.GetSelDiffColor(), theApp.GetDiffDeletedColor(), theApp.GetSelDiffDeletedColor(), theApp.GetDiffTextColor(), theApp.GetSelDiffTextColor());
 	CPropRegistry regpage;
 	sht.AddPage(&gen);
@@ -759,7 +759,7 @@ void CMainFrame::OnOptions()
 		
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
 		m_sPattern = filter.m_sPattern;
-		theApp.SetFileFilterName(filter.m_sFileFilterName);
+		theApp.SetFileFilterPath(filter.m_sFileFilterPath);
 
 		theApp.SetDiffColor(colors.m_clrDiff);
 		theApp.SetSelDiffColor(colors.m_clrSelDiff);
@@ -778,9 +778,8 @@ void CMainFrame::OnOptions()
 		theApp.WriteProfileInt(_T("Settings"), _T("AutomaticRescan"), m_bAutomaticRescan);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
 		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
-		theApp.WriteProfileString(_T("Settings"), _T("FileFilterName"), filter.m_sFileFilterName);
+		theApp.WriteProfileString(_T("Settings"), _T("FileFilterPath"), filter.m_sFileFilterPath);
 		theApp.WriteProfileInt(_T("Settings"), _T("DisableSplash"), theApp.m_bDisableSplash);
-		theApp.WriteProfileString(_T("Settings"), _T("FileFilterName"), filter.m_sFileFilterName);
 
 		theApp.m_bHiliteSyntax = syn.m_bHiliteSyntax;
 		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), theApp.m_bHiliteSyntax);
