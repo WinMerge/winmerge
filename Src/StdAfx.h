@@ -36,6 +36,12 @@ int xisalpha (int c);
 int xisalnum (int c);
 
 #include "edtlib.h"
+
+CString GetPathOnly( const CString& sString );
+void SplitFilename( LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pExt );
+
+
+
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
