@@ -27,57 +27,6 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Dialog
 //
 
-IDD_EDIT_FIND DIALOG FIXED IMPURE  30, 73, 236, 68
-STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Find"
-FONT 8, "MS Shell Dlg"
-BEGIN
-    COMBOBOX        IDC_EDIT_TEXT,41,6,135,138,CBS_DROPDOWN | WS_VSCROLL | 
-                    WS_TABSTOP
-    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",
-                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
-    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,4,40,64,12
-    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,4,54,77,12
-    CONTROL         "&Up",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP,111,36,25,12
-    CONTROL         "&Down",IDC_EDIT_DIRECTION_DOWN,"Button",
-                    BS_AUTORADIOBUTTON,111,48,35,12
-    DEFPUSHBUTTON   "&Find Next",IDOK,182,5,50,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,182,23,50,14
-    LTEXT           "Fi&nd what:",IDC_STATIC,4,8,36,8
-    GROUPBOX        "Direction",IDC_STATIC,107,26,68,38,WS_GROUP
-END
-
-IDD_EDIT_REPLACE DIALOG FIXED IMPURE  36, 44, 230, 89
-STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Replace"
-FONT 8, "MS Shell Dlg"
-BEGIN
-    COMBOBOX        IDC_EDIT_TEXT,52,7,116,30,CBS_DROPDOWN | CBS_SORT | 
-                    WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN | 
-                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",
-                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
-    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,60,59,12
-    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,74,77,12
-    CONTROL         "&Selection",IDC_EDIT_SCOPE_SELECTION,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,102,57,59,10
-    CONTROL         "Wh&ole file",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
-                    BS_AUTORADIOBUTTON,102,70,58,10
-    DEFPUSHBUTTON   "&Find Next",IDC_EDIT_SKIP,174,4,50,14,WS_GROUP
-    PUSHBUTTON      "&Replace",IDC_EDIT_REPLACE,174,21,50,14
-    PUSHBUTTON      "Replace &All",IDC_EDIT_REPLACE_ALL,174,38,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,174,55,50,14
-    LTEXT           "Fi&nd what:",IDC_STATIC,4,9,48,8
-    LTEXT           "Re&place with:",IDC_STATIC,4,26,48,8
-    GROUPBOX        "Replace in",IDC_STATIC,97,46,71,39,WS_GROUP
-END
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -108,8 +57,6 @@ BEGIN
     "9",            ID_EDIT_TOGGLE_BOOKMARK9, VIRTKEY, CONTROL, NOINVERT
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
-    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
-    "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
     "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
     VK_BACK,        ID_EDIT_DELETE_BACK,    VIRTKEY, NOINVERT
     VK_BACK,        ID_EDIT_DELETE_WORD_BACK, VIRTKEY, CONTROL, NOINVERT
@@ -129,8 +76,6 @@ BEGIN
     VK_F2,          ID_EDIT_TOGGLE_BOOKMARK, VIRTKEY, CONTROL, NOINVERT
     VK_F2,          ID_EDIT_GOTO_NEXT_BOOKMARK, VIRTKEY, NOINVERT
     VK_F2,          ID_EDIT_GOTO_PREV_BOOKMARK, VIRTKEY, SHIFT, NOINVERT
-    VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
-    VK_F3,          ID_EDIT_FIND_PREVIOUS,  VIRTKEY, SHIFT, NOINVERT
     VK_HOME,        ID_EDIT_HOME,           VIRTKEY, NOINVERT
     VK_HOME,        ID_EDIT_TEXT_BEGIN,     VIRTKEY, CONTROL, NOINVERT
     VK_HOME,        ID_EDIT_EXT_HOME,       VIRTKEY, SHIFT, NOINVERT
@@ -212,12 +157,7 @@ END
 // String Table
 //
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_EDIT_TEXT_NOT_FOUND "Cannot find string""%s"""
-END
-
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_MENU_UNDO_FORMAT    "&Undo %s\tCtrl+Z"
     IDS_MENU_REDO_FORMAT    "&Redo %s\tCtrl+Y"
@@ -238,7 +178,6 @@ BEGIN
     IDS_EDITOP_DRAGDROP     "Drag And Drop"
     IDS_EDITOP_REPLACE      "Replace"
     IDS_EDITOP_AUTOINDENT   "Auto Indent"
-    IDS_NUM_REPLACED        "Replaced %1 string(s)."
 END
 
 #endif    // English (U.S.) resources

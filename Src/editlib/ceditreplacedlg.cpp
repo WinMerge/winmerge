@@ -74,13 +74,13 @@ DoDataExchange (CDataExchange * pDX)
 {
   CDialog::DoDataExchange (pDX);
   //{{AFX_DATA_MAP(CEditReplaceDlg)
-  DDX_Control (pDX, IDC_EDIT_TEXT, m_ctlFindText);
+  DDX_Control (pDX, IDC_EDIT_FINDTEXT, m_ctlFindText);
   DDX_Control (pDX, IDC_EDIT_REPLACE_WITH, m_ctlReplText);
   DDX_Control (pDX, IDC_EDIT_WHOLE_WORD, m_ctlWholeWord);
   DDX_Check (pDX, IDC_EDIT_MATCH_CASE, m_bMatchCase);
   DDX_Check (pDX, IDC_EDIT_WHOLE_WORD, m_bWholeWord);
   DDX_Check (pDX, IDC_EDIT_REGEXP, m_bRegExp);
-  DDX_CBString (pDX, IDC_EDIT_TEXT, m_sText);
+  DDX_CBString (pDX, IDC_EDIT_FINDTEXT, m_sText);
   DDX_CBString (pDX, IDC_EDIT_REPLACE_WITH, m_sNewText);
   DDX_Radio (pDX, IDC_EDIT_SCOPE_SELECTION, m_nScope);
   //}}AFX_DATA_MAP
@@ -88,8 +88,8 @@ DoDataExchange (CDataExchange * pDX)
 
 BEGIN_MESSAGE_MAP (CEditReplaceDlg, CDialog)
 //{{AFX_MSG_MAP(CEditReplaceDlg)
-ON_CBN_EDITCHANGE (IDC_EDIT_TEXT, OnChangeEditText)
-ON_CBN_SELCHANGE (IDC_EDIT_TEXT, OnChangeEditText)
+ON_CBN_EDITCHANGE (IDC_EDIT_FINDTEXT, OnChangeEditText)
+ON_CBN_SELCHANGE (IDC_EDIT_FINDTEXT, OnChangeEditText)
 ON_BN_CLICKED (IDC_EDIT_REPLACE, OnEditReplace)
 ON_BN_CLICKED (IDC_EDIT_REPLACE_ALL, OnEditReplaceAll)
 ON_BN_CLICKED (IDC_EDIT_SKIP, OnEditSkip)

@@ -31,7 +31,7 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
-#include "editcmd.h"
+#include "resource.h"
 #include "memcombo.h"
 
 class CCrystalTextView;

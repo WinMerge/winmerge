@@ -56,11 +56,11 @@ DoDataExchange (CDataExchange * pDX)
 {
   CDialog::DoDataExchange (pDX);
   //{{AFX_DATA_MAP(CFindTextDlg)
-  DDX_Control (pDX, IDC_EDIT_TEXT, m_ctlFindText);
+  DDX_Control (pDX, IDC_EDIT_FINDTEXT, m_ctlFindText);
   DDX_Control (pDX, IDC_EDIT_WHOLE_WORD, m_ctlWholeWord);
   DDX_Radio (pDX, IDC_EDIT_DIRECTION_UP, m_nDirection);
   DDX_Check (pDX, IDC_EDIT_MATCH_CASE, m_bMatchCase);
-  DDX_CBString (pDX, IDC_EDIT_TEXT, m_sText);
+  DDX_CBString (pDX, IDC_EDIT_FINDTEXT, m_sText);
   DDX_Check (pDX, IDC_EDIT_WHOLE_WORD, m_bWholeWord);
   DDX_Check (pDX, IDC_EDIT_REGEXP, m_bRegExp);
   //}}AFX_DATA_MAP
@@ -82,8 +82,8 @@ UpdateRegExp ()
 
 BEGIN_MESSAGE_MAP (CFindTextDlg, CDialog)
 //{{AFX_MSG_MAP(CFindTextDlg)
-ON_CBN_EDITCHANGE (IDC_EDIT_TEXT, OnChangeEditText)
-ON_CBN_SELCHANGE (IDC_EDIT_TEXT, OnChangeEditText)
+ON_CBN_EDITCHANGE (IDC_EDIT_FINDTEXT, OnChangeEditText)
+ON_CBN_SELCHANGE (IDC_EDIT_FINDTEXT, OnChangeEditText)
 ON_BN_CLICKED (IDC_EDIT_REGEXP, OnRegExp)
 //}}AFX_MSG_MAP
 END_MESSAGE_MAP ()

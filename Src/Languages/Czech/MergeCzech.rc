@@ -121,6 +121,9 @@ BEGIN
         MENUITEM "Kopírovat vše vpravo",        ID_ALL_RIGHT
         MENUITEM "Kopírovat vše vlevo",         ID_ALL_LEFT
         MENUITEM SEPARATOR
+        MENUITEM "F&ind...\tCtrl+F",            ID_EDIT_FIND
+        MENUITEM "Repla&ce...\tCtrl+H",         ID_EDIT_REPLACE
+        MENUITEM SEPARATOR
         MENUITEM "&Vlastnosti",                 ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "Refre&sh\tF5",                ID_REFRESH
@@ -187,6 +190,8 @@ END
 IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE
 BEGIN
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
@@ -196,6 +201,8 @@ BEGIN
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
+    VK_F3,          ID_EDIT_FIND_PREVIOUS,  VIRTKEY, SHIFT, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -837,6 +844,12 @@ BEGIN
     IDS_UZBEK_LATIN         "Uzbek (Latin)"
     IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
     IDS_VIETNAMESE          "Vietnamese"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NUM_REPLACED        "Replaced %1 string(s)."
+    IDS_EDIT_TEXT_NOT_FOUND "Cannot find string""%s"""
 END
 
 #endif    // Czech resources

@@ -154,6 +154,22 @@
 #define IDC_ASSOC_DIRECTORY             1036
 #define IDC_LANGUAGE_LIST               1037
 #define IDC_AUTOMRESCAN_CHECK           1038
+#define IDS_NUM_REPLACED                8501
+#define IDS_EDIT_TEXT_NOT_FOUND         8502
+#define IDD_EDIT_FIND                   8601
+#define IDD_EDIT_REPLACE                8602
+#define IDC_EDIT_WHOLE_WORD             8603
+#define IDC_EDIT_MATCH_CASE             8604
+#define IDC_EDIT_FINDTEXT               8605
+#define IDC_EDIT_REGEXP                 8606
+#define IDC_EDIT_REPLACE                8607
+#define IDC_EDIT_REPLACE_ALL            8608
+#define IDC_EDIT_REPLACE_WITH           8609
+#define IDC_EDIT_SKIP                   8610
+#define IDC_EDIT_DIRECTION_UP           8611
+#define IDC_EDIT_DIRECTION_DOWN         8612
+#define IDC_EDIT_SCOPE_SELECTION        8613
+#define IDC_EDIT_SCOPE_WHOLE_FILE       8614
 #define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
 #define IDD_PROPSYNTAX                  30001
@@ -332,6 +348,7 @@
 #define ID_OPTIONS_SHOWBINARIES         32817
 #define ID_VIEW_WHITESPACE              32818
 #define ID_REFRESH                      32819
+#define ID_EDIT_FIND_PREVIOUS           32820
 
 // Next default values for new objects
 // 

@@ -1,3 +1,11 @@
+2003-05-07 Kimmo
+ PATCH: [ 733383 ] Enable Find- and Replace- dialogs
+  WinMerge: Merge.rc resource.h
+  editlib: ceditreplacedlg.h ceditreplacedlg.cpp cfindtextdlg.h
+   cfindtextdlg.cpp editcmd.h editres.rc
+  Removed: editlib/resource.h
+  Updated other languages
+
 2003-05-06 Kimmo
  PATCH: [ 732775 ] Add support for MAC files
   WinMerge: MergeDoc.cpp MergeEditView.h

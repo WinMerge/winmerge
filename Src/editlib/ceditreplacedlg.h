@@ -33,7 +33,7 @@
 // ceditreplacedlg.h : header file
 //
 
-#include "editcmd.h"
+#include "resource.h"
 #include "memcombo.h"
 
 class CCrystalEditView;

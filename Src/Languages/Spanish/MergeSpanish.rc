@@ -120,9 +120,12 @@ BEGIN
         MENUITEM "Copiar todas al lado derecho", ID_ALL_RIGHT
         MENUITEM "Copiar todas al lado izquierdo", ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "Pr&opiedades...",              ID_OPTIONS
+        MENUITEM "F&ind...\tCtrl+F",            ID_EDIT_FIND
+        MENUITEM "Repla&ce...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        MENUITEM "Refre&scar\tF5",               ID_REFRESH
+        MENUITEM "Pr&opiedades...",             ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "Refre&scar\tF5",              ID_REFRESH
     END
     POPUP "&Vista"
     BEGIN
@@ -186,6 +189,8 @@ END
 IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE
 BEGIN
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
@@ -195,6 +200,8 @@ BEGIN
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
+    VK_F3,          ID_EDIT_FIND_PREVIOUS,  VIRTKEY, SHIFT, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -810,6 +817,8 @@ BEGIN
     IDS_ERROR_BACKUP        "Error backing up file"
     IDS_CONFIRM_COPY_SINGLE "Are you sure you want to copy %1 to %2?"
     IDS_CONFIRM_DELETE_SINGLE "Are you sure you want to delete %1?"
+    IDS_NUM_REPLACED        "Replaced %1 string(s)."
+    IDS_EDIT_TEXT_NOT_FOUND "Cannot find string""%s"""
 END
 
 STRINGTABLE DISCARDABLE
