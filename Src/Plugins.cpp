@@ -260,7 +260,7 @@ static PluginArray * GetAvailableScripts( LPCWSTR transformationEvent, BOOL getS
 	for (i = 0 ; i < scriptlets.GetSize() ; i++)
 	{
 		// Search for the class "WinMergeScript"
-		LPDISPATCH lpDispatch = CreateDispatchBySource(scriptlets.GetAt(i), _T("WinMergeScript"));
+		LPDISPATCH lpDispatch = CreateDispatchBySource(scriptlets.GetAt(i), L"WinMergeScript");
 		if (lpDispatch == 0)
 			continue;
 

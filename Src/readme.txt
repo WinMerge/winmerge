@@ -10,7 +10,7 @@
   WinMerge: GhostTextBuffer.cpp
   editlib: ccrystaltextbuffer.cpp
  Merging lwdisp.c with Jochen's changes (see patch #837480)
-  common: lwdisp.c lwdisp.h
+  common: lwdisp.c lwdisp.h Plugins.cpp
  PATCH: [ 838354 ] Revisit Speedup Speed up display of large differences
  submitted by Hern Chen (hern_chen)
   WinMerge: GhostTextBuffer.cpp MergeDoc.cpp
