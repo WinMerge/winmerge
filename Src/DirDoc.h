@@ -30,7 +30,6 @@
 #define AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_
 #pragma once
 
-#include "DiffContext.h"
 #include "diffThread.h"
 #include "DiffWrapper.h"
 

@@ -1,3 +1,7 @@
+2004-06-02 Perry
+ PATCH: [ 964665 ] And another unneeded include in DirDoc.h
+  Src: DirDoc.h
+
 2004-06-01 Laoran
  PATCH: [ 964497 ] fix display of moved block in detail pane
   Src: MergeDiffDetailView.cpp
