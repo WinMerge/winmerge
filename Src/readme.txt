@@ -1,3 +1,5 @@
+2003-11-05 WinMerge experimental release 2.1.3.7 (cvs)
+
 2003-11-08 Laoran
  BUG: [ 838248 ] possible typo in plugin code (cosmetic)
   WinMerge: Plugins.cpp
