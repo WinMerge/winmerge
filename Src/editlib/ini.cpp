@@ -71,7 +71,7 @@ DWORD CCrystalTextView::
 ParseLineIni (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
 {
   int nLength = GetLineLength (nLineIndex);
-  if (nLength <= 1)
+  if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
   LPCTSTR pszChars = GetLineChars (nLineIndex);

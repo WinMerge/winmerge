@@ -1,6 +1,10 @@
 2004-06-29 Kimmo
  PATCH: [ 981468 ] Properly handle different commentstyles for Pascal
-  Src/editlib/pascal.cpp
+  Src/editlib: pascal.cpp
+ PATCH: [ 981526 ] Don't ignore one-char lines in syntax highlight
+  Src/editlib: asp.cpp basic.cpp batch.cpp cplusplus.cpp csharp.cpp dcl.cpp
+   fortran.cpp html.cpp ini.cpp is.cpp java.cpp lisp.cpp pascal.cpp perl.cpp
+   php.cpp python.cpp rexx.cpp rsrc.cpp siod.cpp sql.cpp tex.cpp xml.cpp
 
 2004-06-28 Laoran
  PATCH: [ 981290 ] Updated Swedish MergeSwedish.rc file
