@@ -2,7 +2,7 @@
  *  @file   unicoder.cpp
  *  @author Perry Rapp, Creator, 2003-2004
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-10-31 (Perry Rapp)
+ *  @date   Edited:  2004-12-28 (Perry Rapp)
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
@@ -442,114 +442,6 @@ writeBom(LPVOID dest, UNICODESET unicoding)
 		return 3;
 	}
 	return 0;
-}
-
-/**
- * @brief Write src string (TCHAR) to destination buffer in codeset specified.
- *
- * In ANSI build, source string is assumed to be in defcodepage.
- * This is designed for use writing to memory-mapped file.
- * NB: Destination is not zero-terminated!
- */
-int
-convertToBuffer(const CString & src, LPVOID dest, UNICODESET unicoding, int codepage)
-{
-	static int defcodepage = getDefaultCodepage();
-
-	unsigned char * lpd = reinterpret_cast<unsigned char *>(dest);
-	unsigned char * start = lpd;
-
-#ifdef _UNICODE
-	if (unicoding == UCS2LE)
-	{
-		int nbytes = src.GetLength() * 2;
-		CopyMemory(lpd, src, nbytes);
-		return nbytes;
-	}
-	else if (unicoding == UCS2BE)
-	{
-		for (int i=0; i<src.GetLength(); ++i)
-		{
-			UINT u = src[i];
-			*lpd++ = (unsigned char)(u >> 8);
-			*lpd++ = (unsigned char)(u & 0xFF);
-		}
-		return lpd - start;
-	}
-	else if (unicoding == UTF8)
-	{
-		for (int i=0; i<src.GetLength(); ++i)
-		{
-			UINT u = src[i];
-			ucr::to_utf8_advance(u, lpd);
-		}
-		return lpd - start;
-	}
-	else
-	{
-		ASSERT(unicoding == NONE); // there aren't any other values in UNICODESET
-		// Write wchars to chars
-		DWORD flags = 0;
-		// Take a swag at the maximum length :(
-		int maxlen = src.GetLength() * 3;
-		BOOL replaced=FALSE;
-		int nbytes = WideCharToMultiByte(codepage, flags, src, src.GetLength(), (char *)lpd, maxlen, NULL, &replaced);
-		// TODO: Ought to output replaced flag to caller
-		return nbytes;
-	}
-
-#else
-	// ANSI build, TCHAR=char
-
-	// NB: Following conversions are wrong, because they assume source encoding is ISO-8859-1
-	// (which is identical to Unicode codepoints) -- so they will fail for any codepages
-	// outside of cp-1252 (and for non-standard entries in cp-1252) !!
-	if (unicoding == UCS2LE)
-	{
-		for (int i=0; i<src.GetLength(); ++i)
-		{
-			UINT u = src[i];
-			*lpd++ = (unsigned char)u;
-			*lpd++ = 0;
-		}
-		return lpd - start;
-	}
-	else if (unicoding == UCS2BE)
-	{
-		for (int i=0; i<src.GetLength(); ++i)
-		{
-			UINT u = src[i];
-			*lpd++ = 0;
-			*lpd++ = (unsigned char)u;
-		}
-		return lpd - start;
-	}
-	else if (unicoding == UTF8)
-	{
-		for (int i=0; i<src.GetLength(); ++i)
-		{
-			UINT u = src[i];
-			to_utf8_advance(u, lpd);
-		}
-		return lpd - start;
-	}
-	else
-	{
-		ASSERT(unicoding == NONE); // there aren't any other values in UNICODESET
-
-		if (codepage == defcodepage)
-		{
-			// trivial case, string is already in the correct codepage
-			CopyMemory(lpd, (LPCTSTR)src, src.GetLength());
-			return src.GetLength();
-		}
-		bool lossy=false;
-		// Take a swag at the maximum length :(
-		int maxlen = src.GetLength() * 3;
-		int nbytes = CrossConvert(src, src.GetLength(), (LPSTR)lpd, maxlen, defcodepage, codepage, &lossy);
-		return nbytes;
-	}
-#endif
 }
 
 /**

@@ -5,6 +5,9 @@
  BUG: [ 859995 ] convertToBuffer assumes ISO-8895-1 codepage
   Add comment about flawed code in actual code
    Src/Common: unicoder.cpp
+ BUG: [ 859995 ] convertToBuffer assumes ISO-8895-1 codepage
+  Removed flawed and unused method convertToBuffer.
+   Src/Common: unicoder.cpp unicoder.h
 
 2004-12-17 Kimmo
  PATCH: [ 1086601 ] Dircompare statepane miscounting skipped items

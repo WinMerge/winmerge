@@ -2,7 +2,7 @@
  *  @file   unicoder.h
  *  @author Perry Rapp, Creator, 2003-2004
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-03-26 (Laurent)
+ *  @date   Edited:  2004-12-28 (Perry Rapp)
  *
  *  @brief  Declaration of utility unicode conversion routines
  */ 
@@ -34,7 +34,6 @@ UINT GetUtf8Char(unsigned char * str);
 int to_utf8_advance(UINT u, unsigned char * &lpd);
 CString maketchar(UINT ch, bool & lossy);
 int writeBom(LPVOID dest, UNICODESET unicoding);
-int convertToBuffer(const CString & src, LPVOID dest, UNICODESET unicoding, int codepage);
 UINT get_unicode_char(unsigned char * ptr, UNICODESET unicoding, int codepage=0);
 CString maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy);
 CString maketchar(UINT unich, bool & lossy);
