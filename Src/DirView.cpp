@@ -2044,7 +2044,8 @@ void CDirView::OnDirStatePane()
  */
 void CDirView::OnUpdateDirStatePane(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(TRUE);
+	CDiffContext *pCtxt = GetDiffContext();
+	pCmdUI->Enable(pCtxt != NULL);
 }
 
 

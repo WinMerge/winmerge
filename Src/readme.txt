@@ -1,6 +1,8 @@
 2004-08-03 Kimmo
  PATCH: [ 1002333 ] Set default filter to *.* when starting WinMerge
   Src: Merge.cpp
+ PATCH: [ 1002280 ] Don't show dircompare statepane if no dircompare results
+  Src: DirView.cpp
 
 2004-08-02 Kimmo
  PATCH: [ 1001111 ] Warn if user selected binary files for patch creating
