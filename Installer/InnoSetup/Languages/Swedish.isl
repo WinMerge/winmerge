@@ -301,6 +301,7 @@ SharedFileLocationLabel=Plats:
 WizardUninstalling=Avinstallationsstatus
 StatusUninstalling=Avinstallerar %1...
 [CustomMessages]
+NameAndVersion=%1 version %2
 AdditionalIcons=Återstående ikoner:
 CreateDesktopIcon=Skapa en ikon på Skrivbordet
 CreateQuickLaunchIcon=Skapa en ikon i Snabbstartfältet

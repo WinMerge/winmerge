@@ -1,3 +1,7 @@
+2004-09-13 Kimmo
+ BUG: [ 1026821 ] NameAndVersion Message missing from installer's Swedish lang
+  Innosetup/Languages: Swedish.isl
+
 2004-08-26 Kimmo
  BUG: [ 938556 ] Broken shortcut in cvs in InnoSetup?
   Removed Languages/Languages.lnk
