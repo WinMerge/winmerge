@@ -352,6 +352,11 @@ static int ColRencodingSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 
 /**
  * @brief All existing columns
+ *
+ * Column internal name, followed by resource ID for localized name
+ *  then resource ID for localized description (all -1 currently)
+ *  then custom get & custom sort functions (NULL for generic properties)
+ *  then default order (or -1 if not shown by default), then whether to start ascending
  */
 DirColInfo g_cols[] =
 {

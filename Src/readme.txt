@@ -1,3 +1,7 @@
+2004-01-22 Perry
+ Add some comments before initialization of g_cols
+  src: DirViewColItems.cpp
+
 2004-01-21 Perry
  PATCH: [ 878631 ] Add generic named properties to DiffContext
   src: Diff.cpp DiffContext.cpp DiffContext.h DirDoc.cpp DirScan.cpp
