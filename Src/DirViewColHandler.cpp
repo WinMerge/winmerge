@@ -312,17 +312,7 @@ void CDirView::ValidateColumnOrdering()
 	{
 		ASSERT(hdrcnt == m_dispcols);
 	}
-		return;
-	// Check that all physical columns map to logical columns
-	for (i=0; i<m_dispcols; ++i)
-	{
-		ASSERT(m_invcolorder[i]>=0);
-	}
-	// Check that no columns beyond end have physical mappings
-	for ( /* existing i */; i<m_numcols; ++i)
-	{
-		ASSERT(m_invcolorder[i]==-1);
-	}
+	return;
 #endif
 }
 

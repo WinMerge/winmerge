@@ -11,6 +11,8 @@
    MergeDanish.rc MergeDutch.rc MergeFrench.rc MergeGerman.rc MergeItalian.rc
    MergeKorean.rc MergeNorwegian.rc MergePolish.rc MergeRussian.rc
    MergeSlovak.rc MergeSpanish.rc MergeSwedish.rc
+ PATCH: [ 909761 ] Misplaced return in CDirView::ValidateColumnOrdering()?
+  Src: DirViewColHandler.cpp
 
 2004-04-30 Christian
  PATCH: [ 941982 ] Fix VS6 compilation
