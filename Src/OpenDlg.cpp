@@ -26,6 +26,7 @@
 #include "OpenDlg.h"
 #include "coretools.h"
 #include "StringEx.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -104,7 +105,7 @@ void COpenDlg::OnLeftButton()
 		SplitFilename(s, &sfolder, &sname, 0);
 		if (sname == DIRSEL_TAG)
 		{
-			m_strLeft = sfolder;
+			m_strLeft = sfolder + '\\';
 		}
 		else
 			m_strLeft = s;
@@ -129,7 +130,7 @@ void COpenDlg::OnRightButton()
 	{
 		SplitFilename(s, &sfolder, &sname, 0);
 		if (sname == DIRSEL_TAG)
-			m_strRight = sfolder;
+			m_strRight = sfolder + '\\';
 		else
 			m_strRight = s;
 		UpdateData(FALSE);
@@ -140,16 +141,18 @@ void COpenDlg::OnRightButton()
 void COpenDlg::OnOK() 
 {
 	UpdateData(TRUE);
-	RemoveTrailingSlash(m_strLeft);
-	RemoveTrailingSlash(m_strRight);
 
-	if (m_strLeft.Right(1)==_T(':'))
-		m_strLeft += _T("\\");
-	if (m_strRight.Right(1)==_T(':'))
-		m_strRight += _T("\\");
+	BOOL bDirs;
+	if (!AreComparable(&bDirs)) {
+		AfxMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
+		return;
+	}
+
+	paths_normalize(m_strRight);
+	paths_normalize(m_strLeft);
+
+
 	UpdateData(FALSE);
-	m_ctlLeft.SetWindowText(m_strLeft);
-	m_ctlRight.SetWindowText(m_strRight);
 
 	// parse the extensions
 	// replace all *. with .*\\.
@@ -207,25 +210,32 @@ BOOL COpenDlg::OnInitDialog()
 	return TRUE;  
 }
 
+// Return TRUE only if items are valid to compare
+BOOL COpenDlg::AreComparable(BOOL * pbDirs) const
+{
+	// To be comparable, both must exist and be the same type
+	// Using logical operators here for shortcircuit
+	// (don't look for right if left doesn't exist)
+	BOOL bLIsDir, bRIsDir;
+	BOOL bComparable =
+		IsFileOk(m_strLeft, &bLIsDir)  // left exists
+		&& IsFileOk(m_strRight, &bRIsDir) // and right exists
+		&& (bLIsDir == bRIsDir); // and same type (file or directory)
+	if (bComparable)
+		*pbDirs = bLIsDir;
+	return bComparable;
+}
+
 void COpenDlg::UpdateButtonStates()
 {
-	BOOL bLIsDir, bRIsDir;
-	BOOL bLeftOk, bRightOk;
-	BOOL bEnableOK = FALSE;
-	UpdateData(TRUE);
+	UpdateData(TRUE); // load member variables from screen
 
-	// Only enable OK button if both are exixting files or
-	// both are existing directories
-	bLeftOk = IsFileOk(m_strLeft, &bLIsDir);
-	bRightOk = IsFileOk(m_strRight, &bRIsDir);
+	// Only enable OK button if items are comparable
+	BOOL bDirs;
+	BOOL bEnableOK = AreComparable(&bDirs);
 
-	if (bLeftOk && bRightOk)
-	{	
-		if ((bLIsDir && bRIsDir) || (!bLIsDir && !bRIsDir))
-			bEnableOK = TRUE;
-	}
 	m_ctlOk.EnableWindow(bEnableOK);
-	m_ctlRecurse.EnableWindow(bEnableOK && bLIsDir && bRIsDir);
+	m_ctlRecurse.EnableWindow(bEnableOK && bDirs); 
 }
 
 BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder) 
@@ -276,47 +286,19 @@ void COpenDlg::OnSelchangeRightCombo()
 	UpdateButtonStates();
 }
 
-BOOL COpenDlg::IsFileOk(CString & strFile, BOOL *pbDir /*= NULL*/)
+BOOL COpenDlg::IsFileOk(const CString & strFile, BOOL *pbDir /*= NULL*/) const
 {
-	BOOL bResult=FALSE;
-	CFileStatus status;
-	CString s(strFile);
-
-	while (s.Right(1) == _T('\\') || s.Right(1) == _T('/'))
-		s = s.Left(s.GetLength()-1);
-
-	// fix bug #121116
-	// I guess GetStatus doesn't like stuff like "F:"
-	if (s.GetLength()==2 && s.Right(1) == _T(':'))
+	switch(paths_DoesPathExist(strFile))
 	{
-		TCHAR temp[100];
-		TCHAR drive = (TCHAR)toupper(s.GetAt(0));
-
-		if (GetLogicalDriveStrings(100,temp))
-		{
-			LPTSTR p;
-			for (p=temp; *p != _T('\0'); )
-			{
-				if (toupper(*p) == drive)
-				{
-					bResult=TRUE;
-					break;
-				}
-				p = _tcsninc(p,_tcslen(p)+1);
-			}
-		}
-
-		if (pbDir != NULL)
-			*pbDir = TRUE;
+	case IS_EXISTING_FILE:
+		if (pbDir) *pbDir = FALSE;
+		return TRUE;
+	case IS_EXISTING_DIR:
+		if (pbDir) *pbDir = TRUE;
+		return TRUE;
+	default:
+		return FALSE;
 	}
-	else
-	{
-		bResult = CFile::GetStatus(s, status);
-		if (pbDir != NULL)
-			*pbDir = (status.m_attribute & CFile::Attribute::directory);
-	}
-
-	return bResult;
 }
 
 void COpenDlg::RemoveTrailingSlash(CString & s)

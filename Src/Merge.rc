@@ -1047,6 +1047,7 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_FILESAVE_FAILED     "Saving %1 failed. Would you like to save the file under a different name?"
     IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
+    IDS_ERROR_INCOMPARABLE  "Select two existing directories or files to compare"
 END
 
 #endif    // English (U.S.) resources

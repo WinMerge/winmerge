@@ -56,7 +56,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\Merge\Build\MergeRelease\WinMerge.exe
+TargetPath=\dev\sf\wm\cvsver\Build\MergeRelease\WinMerge.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -416,6 +416,10 @@ SOURCE=.\OutputDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\paths.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropColors.cpp
 # End Source File
 # Begin Source File
@@ -693,6 +697,10 @@ SOURCE=.\OpenDlg.h
 # Begin Source File
 
 SOURCE=.\OutputDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\paths.h
 # End Source File
 # Begin Source File
 

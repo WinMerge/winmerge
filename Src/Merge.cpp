@@ -35,6 +35,7 @@
 #include "statlink.h"
 #include "logfile.h"
 #include "coretools.h"
+#include "paths.h"
 
 #include "MergeEditView.h"
 #ifdef _DEBUG
@@ -200,7 +201,9 @@ BOOL CMergeApp::InitInstance()
 		}
 		else
 		{
-			files.SetAtGrow(nFiles, pszParam);
+			CString sParam = pszParam;
+			CString sFile = paths_GetLongPath(sParam);
+			files.SetAtGrow(nFiles, sFile);
 			nFiles++;
 		}
 	}

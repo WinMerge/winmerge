@@ -64,7 +64,8 @@ public:
 // Implementation
 protected:
 	void RemoveTrailingSlash(CString& s);
-	BOOL IsFileOk(CString& strFile, BOOL *pbDir = NULL);
+	BOOL IsFileOk(const CString& strFile, BOOL *pbDir = NULL) const;
+	BOOL AreComparable(BOOL * pbDirs) const;
 
 	// Generated message map functions
 	//{{AFX_MSG(COpenDlg)
