@@ -3,6 +3,8 @@
   InnoSetup: WinMerge Localized.iss
  PATCH: [ 945759 ] Move to location when double-click location view
   Src/Common: LocationView.cpp LocationView.h
+ BUG: [ 961901 ] Possible overflow bug in SplitFilename
+  Src/Common: coretools.cpp
 
 2004-05-29 WinMerge experimental release 2.1.7.5 (cvs)
 

@@ -344,9 +344,8 @@ void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pE
 				// Grab directory (omit trailing slash)
 				int len = pszChar - pathLeft;
 				if (*pszChar == ':') ++len; // Keep trailing colon ( eg, C:filename.txt)
-				TCHAR* pszDir = pPath->GetBufferSetLength(len);
-				_tcsncpy(pszDir, pathLeft, len);
-				pszDir[len] = '\0'; // strncpy doesn't always zero-terminate
+				TCHAR* pszDir = pPath->GetBufferSetLength(len+1);
+				lstrcpyn(pszDir, pathLeft, len);
 				pPath->ReleaseBuffer();
 			}
 
