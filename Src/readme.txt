@@ -1,4 +1,8 @@
 2004-05-03 Laoran
+ PATCH: [ 946091 ] Fix for GetLineActualLength
+  Src/editlib: ccrystaltextview.cpp
+
+2004-05-03 Laoran
  PATCH: [ 936842 ] Custom message when same file in both panels
   Src: Merge.rc MergeDoc.cpp resource.h
   Languages: *.rc resource.h

@@ -591,6 +591,20 @@ LocateTextBuffer ()
   return NULL;
 }
 
+/**
+ * @brief : Get the line length, for cursor movement 
+ *
+ * @note : there are at least 4 line lengths :
+ * - number of characters (memory, no EOL)
+ * - number of characters (memory, with EOL)
+ * - number of characters for cursor position (tabs are expanded, no EOL)
+ * - number of displayed characters (tabs are expanded, with EOL)
+ * Corresponding functions :
+ * - GetLineLength
+ * - GetFullLineLength
+ * - GetLineActualLength
+ * - ExpandChars (returns the line to be displayed as a CString)
+ */
 int CCrystalTextView::
 GetLineActualLength (int nLineIndex)
 {
@@ -624,17 +638,16 @@ GetLineActualLength (int nLineIndex)
 
       const int nTabSize = GetTabSize ();
       int ind = 0;
-      nLength--;
 
       while (ind < nLength)
         {
-           if (pszCurrent[ind] == _T('\t'))
-          nActualLength += (nTabSize - nActualLength % nTabSize);
-           else
-             nActualLength++;
+          if (pszCurrent[ind] == _T('\t'))
+            nActualLength += (nTabSize - nActualLength % nTabSize);
+          else
+            nActualLength++;
 
-           ind++;
-            }
+          ind++;
+        }
 
       delete[] pszChars;
     }
@@ -2873,7 +2886,7 @@ RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
       si.nMin = 0;
 
       // Horiz scroll limit to longest line + one screenwidth 
-      si.nMax = nMaxLineLen + nScreenChars + 1;
+      si.nMax = nMaxLineLen + nScreenChars;
       si.nPage = nScreenChars;
       si.nPos = m_nOffsetChar;
     }
@@ -3428,8 +3441,8 @@ EnsureVisible (CPoint pt)
 
   // Horiz scroll limit to longest line + one screenwidth
   const int nMaxLineLen = GetMaxLineLength ();
-  if (nNewOffset >= nMaxLineLen + nScreenChars + 1)
-    nNewOffset = nMaxLineLen + nScreenChars;
+  if (nNewOffset >= nMaxLineLen + nScreenChars)
+    nNewOffset = nMaxLineLen + nScreenChars - 1;
   if (nNewOffset < 0)
     nNewOffset = 0;
 
