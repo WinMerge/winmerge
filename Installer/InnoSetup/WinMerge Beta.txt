@@ -1,0 +1,9 @@
+-All files installed into application folder now have the release date of the installer.  
+-A Task item was added to or not to Install Tortoise CVS
+-Plugins are now installed
+-Installer no longer tries to delete locked ShellExtension.dll file since it's locked (speeds up installation)
+-CompareTimeStamp was removed since it occurs automatically on files lacking version info
+-TortoiseCVS registry are no longer installed unless the user requests them
+-PSAPI.dll is now bundled with the installer since it's required by our AutoIt Helper App (Installer Helper.exe) under Windows NT 4.0
+-ATL.DLL is now bundled for ShellExtension.dll
+-7-Zip is Bad ass we're bundling 3.26MB of Runtimes alone and our installer still winds up being only 2.5MB!
