@@ -170,6 +170,7 @@ protected:
 	CString m_strTempRightFile;
 	CString m_strTempLeftFile;
 	//{{AFX_MSG(CMergeDoc)
+	afx_msg void OnFileSave();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -34,6 +34,7 @@
 #include "VssPrompt.h"
 #include "MergeEditView.h"
 #include "cs2cs.h"
+#include "childFrm.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -48,6 +49,7 @@ IMPLEMENT_DYNCREATE(CMergeDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	//{{AFX_MSG_MAP(CMergeDoc)
+	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -619,9 +621,36 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, CMergeEditView * /*pList*/, BOOL bLeft)
 	if (!mf->CreateBackup(strSavePath))
 		return FALSE;
 
+	BOOL result;
 	if(bLeft)
-		return m_ltBuf.SaveToFile(strSavePath);
-	return m_rtBuf.SaveToFile(strSavePath);
+	{
+		result = m_ltBuf.SaveToFile(strSavePath);
+		if(result)
+		{
+			m_strLeftFile = strSavePath;
+			CChildFrame *parent = dynamic_cast<CChildFrame*>(dynamic_cast<CMDIFrameWnd*>(AfxGetMainWnd())->MDIGetActive());
+			if(parent)
+			{
+				parent->SetHeaderText(0, m_strLeftFile);
+			}
+		}
+	}
+	else
+	{
+		result = m_rtBuf.SaveToFile(strSavePath);
+		if(result)
+		{
+			m_strRightFile = strSavePath;
+			CChildFrame *parent = dynamic_cast<CChildFrame*>(dynamic_cast<CMDIFrameWnd*>(AfxGetMainWnd())->MDIGetActive());
+			if(parent)
+			{
+				parent->SetHeaderText(1, m_strRightFile);
+			}
+		}
+	}
+	return result;
+
+
 }
 
 
@@ -971,4 +1000,19 @@ void CMergeDoc::FlushAndRescan()
 		pFocus->SetFocus();
 
 	mf->m_pLeft->UpdateStatusMessage();
+}
+
+void CMergeDoc::OnFileSave() 
+{
+	if (mf->m_pLeft && mf->m_pLeft->IsModified())
+	{
+		if (DoSave(m_strLeftFile, mf->m_pLeft, TRUE))
+			mf->m_pLeft->ResetMod();
+	}
+
+	if (mf->m_pRight && mf->m_pRight->IsModified())
+	{
+		if (DoSave(m_strRightFile, mf->m_pRight, FALSE))
+			mf->m_pRight->ResetMod();
+	}
 }
