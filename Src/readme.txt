@@ -1,3 +1,8 @@
+2004-03-10 Kimmo
+ Fix for OptionsMgr bugs when loading string options from registry
+  UNICODE strings were not handled correctly, incorrect buffer lengths
+  Src/Common: OptionsMgr.cpp OptionsMgr.h
+
 2004-03-09 Kimmo
  PATCH: [ 912297 ] Splashscreen and syntax highlight options
   Src: MainFrm.cpp Merge.cpp Merge.h MergeDiffDetailView.cpp

@@ -100,7 +100,7 @@ public:
 
 protected:
 	void SplitName(CString strName, CString &strPath, CString &strValue);
-	int LoadValueFromReg(HKEY hKey, CString strValueName,
+	int LoadValueFromReg(HKEY hKey, CString strName,
 		varprop::VariantValue &value);
 	int SaveValueToReg(HKEY hKey, CString strValueName,
 		varprop::VariantValue value);

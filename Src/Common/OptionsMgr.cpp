@@ -322,50 +322,68 @@ void CRegOptions::SplitName(CString strName, CString &strPath,
  * is read from value parameter and error is returned if value
  * cannot be found or if it is different type than value parameter.
  * @param [in] hKey Handle to open registry key
- * @param [in] strValueName Name of value to read
+ * @param [in] strName Name of value to read (incl. path!).
  * @param [in, out] value
  * [in] Values type must match to value type in registry
  * [out] Read value is returned
+ * @note This function must handle ANSI and UNICODE data!
  * @todo Handles only string and integer types
  */
-int CRegOptions::LoadValueFromReg(HKEY hKey, CString strValueName,
+int CRegOptions::LoadValueFromReg(HKEY hKey, CString strName,
 	varprop::VariantValue &value)
 {
+	CString strPath;
+	CString strValueName;
 	LONG retValReg = 0;
-	BYTE data[MAX_PATH] = {0};
+	LPBYTE pData = NULL;
 	DWORD type = 0;
 	TCHAR * valueBuf = NULL;
-	DWORD size = MAX_PATH;
+	DWORD size = 0;
 	int valType = value.getType();
 	int retVal = OPT_OK;
 
-	// Get type of value in registry
+	SplitName(strName, strPath, strValueName);
+
+	// Get type and size of value in registry
 	retValReg = RegQueryValueEx(hKey, (LPCTSTR)strValueName, 0, &type,
-		data, &size);
+		NULL, &size);
+	
+	if (retValReg == ERROR_SUCCESS)
+	{
+		pData = new BYTE[size];
+		if (pData == NULL)
+			return OPT_ERR;
+
+		// Get data
+		retValReg = RegQueryValueEx(hKey, (LPCTSTR)strValueName,
+			0, &type, pData, &size);
+	}
 	
 	if (retValReg == ERROR_SUCCESS)
 	{
 		if (type == REG_SZ && valType == varprop::VT_STRING )
 		{
 			CString strValue;
-			valueBuf = strValue.GetBuffer(MAX_PATH);
-			CopyMemory(valueBuf, data, MAX_PATH);
+			valueBuf = strValue.GetBuffer(size);
+			CopyMemory(valueBuf, pData, size); // Copy NULL also
 			strValue.ReleaseBuffer();
 			value.SetString(strValue);
-			Set(strValueName, value);
+			retVal = Set(strName, value);
 		}
 		else if (type == REG_DWORD && valType == varprop::VT_INT)
 		{
 			DWORD dwordValue;
-			CopyMemory(&dwordValue, data, sizeof(DWORD));
+			CopyMemory(&dwordValue, pData, sizeof(DWORD));
 			value.SetInt(dwordValue);
-			Set(strValueName, value);
+			retVal = Set(strName, value);
 		}
 		else
 			retVal = OPT_WRONG_TYPE;
 	}
 	else
 		retVal = OPT_ERR;
+
+	delete [] pData;
 
 	return retVal;
 }
@@ -384,22 +402,21 @@ int CRegOptions::SaveValueToReg(HKEY hKey, CString strValueName,
 	varprop::VariantValue value)
 {
 	LONG retValReg = 0;
-	BYTE * data = NULL;
 	int valType = value.getType();
 	int retVal = OPT_OK;
 
 	if (valType == varprop::VT_STRING)
 	{
 		CString strVal = value.getString();
-		data = (BYTE*)(LPCTSTR) strVal;
 		retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_SZ,
-				data, strVal.GetLength() + 1);
+				(LPBYTE)(LPCTSTR)value.getString(),
+				(strVal.GetLength() + 1) * sizeof(TCHAR));
 	}
 	else if (valType == varprop::VT_INT)
 	{
 		DWORD dwordVal = value.getInt();
 		retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_DWORD,
-				(PBYTE)&dwordVal, sizeof(DWORD));
+				(LPBYTE)&dwordVal, sizeof(DWORD));
 	}
 	else
 	{
@@ -459,14 +476,12 @@ int CRegOptions::InitOption(CString name, varprop::VariantValue defaultValue)
 				// Value didn't exist. Save default value to registry
 				if (retValReg == ERROR_FILE_NOT_FOUND)
 				{
-					retVal = SaveValueToReg(hKey, strValueName,
-						defaultValue);
+					retVal = SaveValueToReg(hKey, strValueName,	defaultValue);
 				}
 				// Value already exists so read it.
 				else if (retValReg == ERROR_SUCCESS)
 				{
-					retVal = LoadValueFromReg(hKey, strValueName,
-						defaultValue);
+					retVal = LoadValueFromReg(hKey, name, defaultValue);
 					if (retVal == OPT_OK)
 						retVal = Set(name, defaultValue);
 				}
@@ -543,7 +558,7 @@ int CRegOptions::LoadOption(CString name)
 
 		if (retValReg == ERROR_SUCCESS)
 		{
-			retVal = LoadValueFromReg(hKey, strValueName, value);
+			retVal = LoadValueFromReg(hKey, name, value);
 			RegCloseKey(hKey);
 		}
 		else
