@@ -37,7 +37,7 @@ void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 	CSplitterWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 
 	// only sync if shared horizontal bars
-	if(GetScrollStyle()&WS_HSCROLL == 0)
+	if((GetScrollStyle()&WS_HSCROLL) == 0)
 		return;
 
 	// enhance with proportional horizontal scroll synchronization
