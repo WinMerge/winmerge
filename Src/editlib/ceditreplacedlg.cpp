@@ -26,6 +26,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
+#include "resource.h"
 #include "ceditreplacedlg.h"
 #include "ccrystaleditview.h"
 
@@ -150,7 +151,7 @@ OnInitDialog ()
 }
 
 BOOL CEditReplaceDlg::
-DoHighlightText ()
+DoHighlightText ( BOOL bNotifyIfNotFound )
 {
   ASSERT (m_pBuddy != NULL);
   DWORD dwSearchFlags = 0;
@@ -176,9 +177,12 @@ DoHighlightText ()
 
   if (!bFound)
     {
-      CString prompt;
-      prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, m_sText);
-      AfxMessageBox (prompt);
+	  if ( bNotifyIfNotFound ) 
+		{
+		  CString prompt;
+		  prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, m_sText);
+		  AfxMessageBox (prompt);
+		}
       m_ptCurrentPos = m_nScope == 0 ? m_ptBlockBegin : CPoint (0, 0);
       return FALSE;
     }
@@ -230,7 +234,7 @@ OnEditSkip ()
   if (!m_bFound)
     {
       m_ptFoundAt = m_ptCurrentPos;
-      m_bFound = DoHighlightText ();
+      m_bFound = DoHighlightText ( TRUE );
       if (m_bFound)
         {
           pSkip->SetButtonStyle (pSkip->GetButtonStyle () & ~BS_DEFPUSHBUTTON);
@@ -259,7 +263,7 @@ OnEditSkip ()
       }
   else
     m_ptFoundAt.x += 1;
-  m_bFound = DoHighlightText ();
+  m_bFound = DoHighlightText ( TRUE );
   if (m_bFound)
     {
       pSkip->SetButtonStyle (pSkip->GetButtonStyle () & ~BS_DEFPUSHBUTTON);
@@ -283,7 +287,7 @@ OnEditReplace ()
   if (!m_bFound)
     {
       m_ptFoundAt = m_ptCurrentPos;
-      m_bFound = DoHighlightText ();
+      m_bFound = DoHighlightText ( TRUE );
       CButton *pSkip = (CButton*) GetDlgItem (IDC_EDIT_SKIP);
       CButton *pRepl = (CButton*) GetDlgItem (IDC_EDIT_REPLACE);
       if (m_bFound)
@@ -341,7 +345,7 @@ OnEditReplace ()
       m_ptFoundAt.x += m_pBuddy->m_nLastReplaceLen;
       m_ptFoundAt = m_pBuddy->GetCursorPos ();
     }
-  m_bFound = DoHighlightText ();
+  m_bFound = DoHighlightText ( TRUE );
 }
 
 void CEditReplaceDlg::
@@ -350,11 +354,14 @@ OnEditReplaceAll ()
   if (!UpdateData ())
     return;
 
+  int nNumReplaced = 0;
   CWaitCursor waitCursor;
+
+
   if (!m_bFound)
     {
       m_ptFoundAt = m_ptCurrentPos;
-      m_bFound = DoHighlightText ();
+      m_bFound = DoHighlightText ( FALSE );
     }
 
   while (m_bFound)
@@ -366,7 +373,7 @@ OnEditReplaceAll ()
         dwSearchFlags |= FIND_WHOLE_WORD;
       if (m_bRegExp)
         dwSearchFlags |= FIND_REGEXP;
-
+		
       //  We have highlighted text
       VERIFY (m_pBuddy->ReplaceSelection (m_sNewText, dwSearchFlags));
 
@@ -400,8 +407,18 @@ OnEditReplaceAll ()
           m_ptFoundAt.x += m_pBuddy->m_nLastReplaceLen;
           m_ptFoundAt = m_pBuddy->GetCursorPos ();
         }
-      m_bFound = DoHighlightText ();
+	  nNumReplaced++;
+
+      m_bFound = DoHighlightText ( FALSE );
     }
+
+  // Let user know how many strings were replaced
+  CString strMessage;
+  CString strNumber;
+  strNumber.Format( "%d", nNumReplaced );
+  AfxFormatString1(strMessage, IDS_NUM_REPLACED, strNumber);
+
+  AfxMessageBox( strMessage );
 }
 
 void CEditReplaceDlg::
