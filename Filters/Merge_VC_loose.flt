@@ -1,14 +1,30 @@
+## This is a directory/file filter for WinMerge
+## This filter suppresses various binaries found in Visual C++ source trees
 name: Visual C++ loose
+
+## This is an inclusive (loose) filter
+## (it lets through everything not specified)
 def: include
-f: .*\.obj
-f: .*\.sbr
-f: .*\.aps
-f: .*\.clw
-f: .*\.ncb
-f: .*\.ilk
-f: .*\.res
-f: .*\.lib
-f: .*\.exp
-f: .*\.exe
-f: .*\.pch
-d: .*\\cvs
+
+## Filters for filenames begin with f:
+## Filters for directories begin with d:
+## (Inline comments begin with " ##" and extend to the end of the line)
+
+f: \.aps$ ## VC Binary version of resource file, for quick loading
+f: \.bsc$ ## VC Browser database
+f: \.clw$ ## VC class-wizard status file
+f: \.dll$ ## Windows DLL
+f: \.exe$ ## Windows/DOS executable
+f: \.exp$ ## VC library export file
+f: \\vc60.idb$ ## VC ?
+f: \.ilk$ ## VC incremental linker memory file
+f: \.lib$ ## compiled libraries
+f: \.ncb$ ## VC parser information file (class view & component gallery stuff)
+f: \.obj$ ## VC object module file
+f: \.pch$ ## VC precompiled header file
+f: \.pdb$ ## VC program database file (debugging symbolic information)
+f: \.sbr$ ## VC source browser file (used to create bsc file)
+f: \.res$ ## VC compiled resources file (output of RC [resource compiler])
+
+d: \\cvs$ ## CVS control directory
+

@@ -1,3 +1,7 @@
+2003-06-06 Kimmov
+ Updated filter file from patch [ 742041 ] Improvements to file/directory filters
+  Filters: Merge_VC_loose.flt
+
 2003-06-05 Christian
  PATCH: [ 749566 ] Updated resource files
   Languages: all resource.h files and all Merge*.rc files
