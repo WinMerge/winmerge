@@ -77,7 +77,7 @@ public:
 
 	CString GetFileName() const;
 	void WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile & file);
-	BOOL WriteLogFile();
+	BOOL WriteLogFile(CString &sError);
 	CString GetWindowsVer();
 	CString GetBuildFlags();
 

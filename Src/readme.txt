@@ -1,6 +1,8 @@
 2004-09-01 Kimmo
  PATCH: [ 1019759 ] Allow D&D projectfile to main window
   Src: MainFrm.cpp
+ PATCH: [ 1019945 ] Don't fail configlog writing silently
+  Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp
 
 2004-08-31 Kimmo
  PATCH: [ 1019108 ] Warn if file changed on disk between rescans

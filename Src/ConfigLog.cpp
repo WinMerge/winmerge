@@ -92,9 +92,10 @@ static void WriteLocaleSettings(CStdioFile & file, LCID locid, LPCTSTR title)
 /** 
  * @brief Write logfile
  */
-BOOL CConfigLog::WriteLogFile()
+BOOL CConfigLog::WriteLogFile(CString &sError)
 {
 	CStdioFile file;
+	CFileException e;
 	CVersionInfo version;
 	CString tempPath;
 	CString text;
@@ -114,7 +115,12 @@ BOOL CConfigLog::WriteLogFile()
 	m_sFileName = paths_GetLongPath(m_sFileName, NODIRSLASH);
 
 	if (!file.Open(m_sFileName, CFile::modeCreate | CFile::modeWrite))
+	{
+		TCHAR szError[1024];
+		e.GetErrorMessage(szError, 1024);
+		sError = szError;
 		return FALSE;
+	}
 
 // Begin log
 	file.WriteString(_T("WinMerge configuration log\n"));

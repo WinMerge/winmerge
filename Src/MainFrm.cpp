@@ -2368,6 +2368,7 @@ CString CMainFrame::GetDefaultEditor()
 void CMainFrame::OnSaveConfigData()
 {
 	CConfigLog configLog;
+	CString sError;
 
 	configLog.m_diffOptions.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	configLog.m_diffOptions.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
@@ -2393,10 +2394,17 @@ void CMainFrame::OnSaveConfigData()
 	configLog.m_cpSettings.nDefaultCustomValue = m_options.GetInt(OPT_CP_DEFAULT_CUSTOM);
 	configLog.m_cpSettings.bDetectCodepage = m_options.GetInt(OPT_CP_DETECT);
 
-	if (configLog.WriteLogFile())
+	if (configLog.WriteLogFile(sError))
 	{
 		CString sFileName = configLog.GetFileName();
 		OpenFileToExternalEditor(sFileName);
+	}
+	else
+	{
+		CString msg;
+		CString sFileName = configLog.GetFileName();
+		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, sFileName, sError);
+		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
 	}
 }
 
