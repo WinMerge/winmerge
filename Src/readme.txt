@@ -3,6 +3,8 @@
    Src: DirDoc.cpp DirFrame.cpp DirFrame.h
   More filter clarifying renames
    Src: DirDoc.cpp FileFilterHelper.cpp FileFilterHelper.h MainFrm.cpp OpenDlg.cpp
+  Rename FilterHelper's GetUseMask to IsUsingMask.
+   Src: FileFilterHelper.cpp FileFilterHelper.h MainFrm.cpp OpenDlg.cpp
 
 2005-03-04 Perry
  PATCH: [ 1147039 ] experimental patch for colored word diff

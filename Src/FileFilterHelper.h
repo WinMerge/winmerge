@@ -102,7 +102,7 @@ public:
 	void UseMask(BOOL bUseMask);
 	void SetMask(LPCTSTR strMask);
 
-	BOOL GetUseMask();
+	BOOL IsUsingMask();
 	CString GetFilterNameOrMask();
 	BOOL SetFilter(CString filter);
 

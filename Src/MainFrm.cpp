@@ -2649,7 +2649,7 @@ void CMainFrame::OnToolsFilters()
 		if (path.Find(strNone) > -1)
 		{
 			// Don't overwrite mask we already have
-			if (!theApp.m_globalFileFilter.GetUseMask())
+			if (!theApp.m_globalFileFilter.IsUsingMask())
 			{
 				CString sFilter = _T("*.*");
 				theApp.m_globalFileFilter.SetFilter(sFilter);

@@ -261,7 +261,7 @@ BOOL COpenDlg::OnInitDialog()
 	UpdateData(m_strLeft.IsEmpty() && m_strRight.IsEmpty());
 	
 	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
-	BOOL bMask = theApp.m_globalFileFilter.GetUseMask();
+	BOOL bMask = theApp.m_globalFileFilter.IsUsingMask();
 
 	if (!bMask)
 	{
@@ -472,7 +472,7 @@ void COpenDlg::OnSelectFilter()
 	CString curFilter;
 	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
 
-	const BOOL bUseMask = theApp.m_globalFileFilter.GetUseMask();
+	const BOOL bUseMask = theApp.m_globalFileFilter.IsUsingMask();
 	GetDlgItemText(IDC_EXT_COMBO, curFilter);
 	curFilter.TrimLeft();
 	curFilter.TrimRight();
@@ -480,7 +480,7 @@ void COpenDlg::OnSelectFilter()
 	mf->SelectFilter();
 	
 	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
-	if (theApp.m_globalFileFilter.GetUseMask())
+	if (theApp.m_globalFileFilter.IsUsingMask())
 	{
 		// If we had filter chosen and now has mask we can overwrite filter
 		if (!bUseMask || curFilter[0] != '*')

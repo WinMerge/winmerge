@@ -270,7 +270,7 @@ CString FileFilterHelper::ParseExtensions(CString extensions)
 /** 
  * @brief Returns TRUE if active filter is mask.
  */
-BOOL FileFilterHelper::GetUseMask()
+BOOL FileFilterHelper::IsUsingMask()
 {
 	return m_bUseMask;
 }
@@ -282,7 +282,7 @@ CString FileFilterHelper::GetFilterNameOrMask()
 {
 	CString sFilter;
 
-	if (!GetUseMask())
+	if (!IsUsingMask())
 		sFilter = GetFileFilterName(m_sFileFilterPath);
 	else
 		sFilter = m_sMask;
