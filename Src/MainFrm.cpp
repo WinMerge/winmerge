@@ -1502,11 +1502,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				m_strRightDesc.Empty();
 
 				pDirDoc->Rescan();
-				if (m_options.GetInt(OPT_SCROLL_TO_FIRST))
-				{
-					CDirView * pDirView = pDirDoc->GetMainView();
-					pDirView->GotoFirstDiff();
-				}
 			}
 		}
 	}

@@ -89,7 +89,6 @@ public:
 	int GetFirstSelectedInd();
 	//DIFFITEM GetNextSelectedInd(int &ind);
 	const DIFFITEM &GetItemAt(int ind);
-	void GotoFirstDiff() { OnFirstdiff(); };
 	int AddSpecialItems();
 	void AddParentFolderItem();
 	void RefreshOptions();

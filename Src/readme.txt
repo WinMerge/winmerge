@@ -1,3 +1,7 @@
+2004-05-17 Kimmo
+ PATCH: [ 955411 ] Remove non-functional firstdiff selection
+  Src: DirView.h MainFrm.cpp
+
 2004-05-15 Kimmo
  Fix build error, VC6 doesn't like CList::GetSize()
   Src: DirActions.cpp
