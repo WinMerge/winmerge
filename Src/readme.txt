@@ -1,6 +1,8 @@
 2004-05-25 Perry
  PATCH: [ 950243 ] 2 minor updates to developers docs
   Docs/Developers: readme-developers.html
+ Localized language names into Italian
+  Src/Languages: MergeItalian.rc
 
 2004-05-24 Perry
  PATCH: [ 958973 ] CDiffTextBuffer::LoadFromFile wrong return
