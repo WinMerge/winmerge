@@ -1,3 +1,8 @@
+2003-03-06 Christian
+ Update Danish language file with new strings in MergeDanish.rc
+ Removed duplicate dialog in French language file in MergeFrench.rc
+ Added Czech to BuildAll.bat
+
 2003-03-06 Kimmo
  PATCH: [ 696695 ] DirDoc Redisplay optimisation
   WinMerge: DirDoc.h DirDoc.cpp
