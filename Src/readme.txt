@@ -1,3 +1,7 @@
+2004-10-04 Kimmo
+ BUG: [ 1037587 ] XML Syntax highlighting: Problems with numbers
+  Src/editLib: xml.cpp
+
 2004-10-04 Perry
  PATCH: [ 1039300 ] Factor listviewex code so it can be used with a CListCtrlEx.
   Src/Common: listvwex.cpp listvwex.h

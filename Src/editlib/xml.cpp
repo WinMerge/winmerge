@@ -438,7 +438,7 @@ next:
           //  Preprocessor start: < or bracket
           if (!(dwCookie & COOKIE_EXT_USER1) && pszChars[I] == '<' && !(I < nLength - 3 && pszChars[I + 1] == '!' && pszChars[I + 2] == '-' && pszChars[I + 3] == '-') || pszChars[I] == '{')
             {
-              DEFINE_BLOCK (I + 1, COLORINDEX_PREPROCESSOR);
+			  DEFINE_BLOCK (I, COLORINDEX_PREPROCESSOR);
               dwCookie |= COOKIE_PREPROCESSOR;
               nIdentBegin = -1;
               continue;
@@ -452,7 +452,6 @@ next:
                   dwCookie &= ~COOKIE_PREPROCESSOR;
                   nIdentBegin = -1;
                   bRedefineBlock = TRUE;
-                  bDecIndex = TRUE;
                   continue;
                 }
             }
