@@ -33,7 +33,7 @@ struct fentry
 	__int64 ctime;
 	_int64 size;
 };
-typedef CArray<fentry, fentry&> fentryArray;;
+typedef CArray<fentry, fentry&> fentryArray;
 
 static void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files);
 void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * files, bool casesensitive);

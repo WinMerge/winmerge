@@ -1,3 +1,7 @@
+2003-09-24 Perry
+ fix BUG: [ 811750 ] typo in DirScan.cpp
+  WinMerge: DirScan.cpp
+
 2003-09-24 Kimmo
  BUG: [ 811748 ] Brazilian RC compile failure
   Languages/Brasilian: MergeBrasilian.rc
