@@ -1,3 +1,10 @@
+2004-10-01 Kimmo
+ PATCH: [ 1038091 ] Various Updates in German Translation
+  Submitted by Tim Gerundt
+  Src/Languages/German: MergeGerman.rc
+
+2004-09-30 2.2RC (2.1.8.0) released
+
 2004-09-30 Perry
  Fix bracketing mistake in PATCH: [ 1034810 ]
   Src/editlib: ccrystaltextview.cpp

@@ -177,7 +177,7 @@ BEGIN
         MENUITEM "&Symbolleiste",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
-        MENUITEM "Location &Pane",              ID_VIEW_LOCATION_BAR
+        MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
         MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
@@ -240,7 +240,7 @@ BEGIN
         MENUITEM "&Inhalt\tF1",                 ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "&Archiv-Unterstützung deaktiviert...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
         MENUITEM "Ü&ber WinMerge...",           ID_APP_ABOUT
@@ -258,10 +258,10 @@ BEGIN
             MENUITEM "&Rechts nach Links",          ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "R&echts nach ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "&Move"
+        POPUP "&Verschieben"
         BEGIN
-            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
-            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+            MENUITEM "&Links nach...",              ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "&Rechts nach...",             ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
         POPUP "&Löschen"
         BEGIN
@@ -285,18 +285,18 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Kopiere &Pfade"
         BEGIN
-            MENUITEM "&Left (%1 of %2)",            ID_DIR_COPY_PATHNAMES_LEFT
-            MENUITEM "&Right (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
-            MENUITEM "&Both (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+            MENUITEM "&Links (%1 von %2)",          ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "&Rechts (%1 von %2)",         ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "&Beide (%1 von %2)",          ID_DIR_COPY_PATHNAMES_BOTH
         END
         MENUITEM "Kopiere &Dateinamen",             ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
-            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
-            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
-            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
-            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "&Links... (%1 von %2)",       ID_DIR_ZIP_LEFT
+            MENUITEM "&Rechts... (%1 von %2)",      ID_DIR_ZIP_RIGHT
+            MENUITEM "&Beide... (%1 von %2)",       ID_DIR_ZIP_BOTH
+            MENUITEM "&Unterschiede... (%1 von %2)", ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
     END
     POPUP "_HDR_POPUP_"
@@ -951,44 +951,44 @@ END
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Save modified files?"
+CAPTION "Geänderte Dateien speichern?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Left side file",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
+    GROUPBOX        "Linke Datei",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
     EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "&Save changes",IDC_SAVECLOSING_SAVELEFT,"Button",
+    CONTROL         "Änderungen &speichern",IDC_SAVECLOSING_SAVELEFT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
-    CONTROL         "&Discard changes",IDC_SAVECLOSING_DISCARDLEFT,"Button",
+    CONTROL         "Änderungen &verwerfen",IDC_SAVECLOSING_DISCARDLEFT,"Button",
                     BS_AUTORADIOBUTTON,16,46,230,10
-    GROUPBOX        "Right side file",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
+    GROUPBOX        "Rechte Datei",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
     EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "S&ave changes",IDC_SAVECLOSING_SAVERIGHT,"Button",
+    CONTROL         "Änderungen s&peichern",IDC_SAVECLOSING_SAVERIGHT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
-    CONTROL         "Dis&card changes",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
+    CONTROL         "Änderungen ver&werfen",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
     DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,205,133,50,14
+    PUSHBUTTON      "Abbruch",IDCANCEL,205,133,50,14
 END
 
 IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Codepage"
+CAPTION "Zeichensatz"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Detect codepage info for these files : .html, .rc \nneed to restart session",
+    CONTROL         "Ermitteln des Zeichensatzes für folgende Dateien: .html, .rc \nBenötigt einen Neustart des Programmes.",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
-    CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
+    CONTROL         "System-Zeichensatz",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
-    CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",
+    CONTROL         "Entsprechend der WinMerge Benutzeroberfläche",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,33,210,10
-    CONTROL         "Custom codepage :",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,46,77,10
-    EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Default codepage for ANSI files",IDC_STATIC,7,7,221,58
+    CONTROL         "Benutzerdefinierter Zeichensatz:",IDC_CP_CUSTOM,"Button",
+                    BS_AUTORADIOBUTTON,13,46,220,10
+    EDITTEXT        IDC_CUSTOM_CP_NUMBER,133,45,56,13,ES_AUTOHSCROLL
+    GROUPBOX        "Standard-Zeichensatz für ANSI-Dateien",IDC_STATIC,7,7,221,58
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 276, 186
@@ -1546,7 +1546,7 @@ BEGIN
     IDS_STATUS_COPYALL2R    "Kopiere alles nach rechts"
     IDS_STATUS_COPYFILES    "Kopiere Dateien..."
     IDS_STATUS_DELETEFILES  "Lösche Dateien..."
-    IDS_STATUS_MOVEFILES    "Moving files..."
+    IDS_STATUS_MOVEFILES    "Verschiebe Dateien..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1558,7 +1558,7 @@ BEGIN
     IDS_MERGEMODE_MERGING   "Merge"
     IDS_DIFF_NUMBER_STATUS_FMT "Unterschied %1 von %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Unterschiede gefunden"
-    IDS_1_DIFF_FOUND        "1 Difference Found"
+    IDS_1_DIFF_FOUND        "1 Unterschied gefunden"
     IDS_STATUSBAR_READONLY  "RO"
 END
 
@@ -1580,10 +1580,10 @@ STRINGTABLE
 BEGIN
     IDS_ERROR_FILE_NOT_FOUND "Datei nicht gefunden: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "Datei nicht entpackt: %1"
-    IDS_BINFILES_IDENTICAL   "%1\n%2\n\nare identical binary files."
-    IDS_BINFILES_DIFFERENT   "%1\n%2\n\nare different binary files."
-    IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
-    IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
+    IDS_BINFILES_IDENTICAL   "%1\n%2\n\nsind identische Binärdateien."
+    IDS_BINFILES_DIFFERENT   "%1\n%2\n\nsind unterschiedliche Binärdateien."
+    IDS_OTHER_IS_BINARY      "%1\n\nist eine Binärdatei. Binärdateien und Textdateien können nicht verglichen werden."
+    IDS_ERROR_FILEOPEN       "Kann Datei nicht öffnen\n%1\n\n%2"
 END
 
 // SAVING FILE
@@ -1601,20 +1601,20 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
     IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nIf you want to refresh files close current file compare and load files again."
-    IDS_SAVE_LEFT_AS        "Save Left File As"
-    IDS_SAVE_RIGHT_AS       "Save Right File As"
+    IDS_SAVE_LEFT_AS        "Speichere linke Datei unter"
+    IDS_SAVE_RIGHT_AS       "Speichere rechte Datei unter"
 END
 
 // VSS
 STRINGTABLE
 BEGIN
     IDS_NOPROJECT           "Sie müssen einen SourceSafe-Projektpfad angeben um fortzufahren (z.B.: $/MeinProjekt)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSS_CHECKOUT_STATUS "Dateien auschecken vom VSS..."
     IDS_VSSERROR            "SourceSafe hat beim Versuch die Datei auszuchecken einen Fehler gemeldet. Der Vorgang kann nicht fortgesetzt werden..."
     IDS_VSS_RUN_ERROR       "Fehler beim Versionieren."
     IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
-    IDS_VSS_NODATABASES     "No VSS database(s) found!"
-    IDS_VSS_ERRORFROM       "Error from VSS:"
+    IDS_VSS_NODATABASES     "Keine VSS Datenbank(en) gefunden!"
+    IDS_VSS_ERRORFROM       "Fehler vom VSS:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
@@ -1647,10 +1647,10 @@ BEGIN
     IDS_DEL_RIGHT_FMT2      "Rechts (%1 von %2)"
     IDS_DEL_BOTH_FMT2       "Beide (%1 von %2)"
     IDS_SELECT_DESTFOLDER   "Zielverzeichnis auswählen."
-    IDS_MOVE_LEFT_TO        "Left to... (%1)"
-    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
-    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
-    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
+    IDS_MOVE_LEFT_TO        "Links nach... (%1)"
+    IDS_MOVE_RIGHT_TO       "Rechts nach... (%1)"
+    IDS_MOVE_LEFT_TO2       "Links nach... (%1 von %2)"
+    IDS_MOVE_RIGHT_TO2      "Rechts nach... (%1 von %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1659,8 +1659,8 @@ BEGIN
     IDS_CONFIRM_ALL_LEFT    "Sind Sie sicher, dass sie alle Unterschiede in die linke Datei kopieren wollen?"
     IDS_CONFIRM_ALL_RIGHT   "Sind Sie sicher, dass sie alle Unterschiede in die rechte Datei kopieren wollen?"
     IDS_CONFIRM_COPY_SINGLE "Wollen Sie wirklich\n\n%1\nnach\n%2\nkopieren?"
-    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy %1 of %2 selected item(s)?"
-    IDS_CONFIRM_DELETE_ITEMS "Wollen Sie wirklich %1 von %2 ausgewählten Einträgen löschen?"
+    IDS_CONFIRM_COPY2DIR    "Wollen Sie wirklich %1 von %2 ausgewählte Objekte kopieren?"
+    IDS_CONFIRM_DELETE_ITEMS "Wollen Sie wirklich %1 von %2 ausgewählte Objekte löschen?"
     IDS_CONFIRM_DELETE_DIR  "Verzeichnis\n\n%1\nlöschen?"
     IDS_CONFIRM_DELETE_SINGLE "Wollen Sie wirklich\n\n%1\nlöschen?"
 END
@@ -1676,23 +1676,23 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Öffne rechte Datei mit..."
     IDS_CANNOT_EXECUTE_FILE "%1 konnte nicht ausgeführt werden."
     ID_DIR_COPY_FILENAMES   "Kopiere Dateinamen in die Zwischenablage"
-    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_LEFT "Kopiere linken Pfad in die Zwischenablage"
+    ID_DIR_COPY_PATHNAMES_RIGHT "Kopiere rechten Pfad in die Zwischenablage"
+    ID_DIR_COPY_PATHNAMES_BOTH "Kopiere beide Pfade in die Zwischenablage"
 END
 
 // DIRECTORY DIFFING : 7ZIP
 STRINGTABLE
 BEGIN
     IDS_UNKNOWN_ARCHIVE_FORMAT "Unbekanntes Archiv Format"
-    ID_DIR_ZIP_LEFT         "Add items from left side to archive"
-    ID_DIR_ZIP_RIGHT        "Add items from right side to archive"
-    ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
-    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
+    ID_DIR_ZIP_LEFT         "Fügt Objekte von der linken Seite zum Archiv hinzu."
+    ID_DIR_ZIP_RIGHT        "Fügt Objekte von der rechten Seite zum Archiv hinzu."
+    ID_DIR_ZIP_BOTH         "Fügt Objekte von beiden Seiten zum Archiv hinzu."
+    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Fügt unterschiedliche Objekte zum Archiv hinzu (beide Seiten)."
     ID_DIR_MOVE_LEFT_TO_BROWSE 
-                            "Move selected file on left to custom directory"
+                            "Verschiebt die ausgewählte Datei in ein beliebiges Verzeichnis."
     ID_DIR_MOVE_RIGHT_TO_BROWSE 
-                            "Move selected file on right to custom directory"
+                            "Verschiebt die ausgewählte Datei in ein beliebiges Verzeichnis."
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
@@ -1752,8 +1752,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_ELAPSED_TIME        "Ausführungszeit: %ld ms"
-    IDS_STATUS_SELITEM1     "1 item selected"
-    IDS_STATUS_SELITEMS     "%1 items selected"
+    IDS_STATUS_SELITEM1     "1 Objekt ausgewählt"
+    IDS_STATUS_SELITEMS     "%1 Objekte ausgewählt"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
@@ -1837,8 +1837,8 @@ BEGIN
     IDS_DIFF_UNIFIED        "Unified"
     IDS_FILEWRITE_ERROR     "Konnte nicht in die Datei %1 schreiben."
     IDS_PATH_NOT_ABSOLUTE   "%1\n ist kein absoluter Pfad!"
-    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
-    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
+    IDS_CANNOT_CREATE_BINARYPATCH "Kann keine Patchdatei von Binärdateien erzeugen."
+    IDS_CANNOT_CREATE_DIRPATCH "Kann keine Patchdatei von Verzeichnissen erzeugen."
 END
 
 STRINGTABLE
@@ -2125,12 +2125,12 @@ END
 // PLUGINS MENU
 STRINGTABLE
 BEGIN
-    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
-    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
-    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
+    ID_UNPACK_MANUAL        "Der Benutzer wählt den Entpacker (kein Entpacken beim Verzeichnis-Vergleich)."
+    ID_UNPACK_AUTO          "Der passende Entpacker wird auf beide Dateien angewendet (nur eine Datei benötigt die Erweiterung)."
+    ID_POPUP_OPEN_WITH_UNPACKER "Auswählen eines Entpackers zum Bearbeiten dieser Datei."
     ID_NO_PREDIFFER         "No prediffer (normal)"
-    ID_SUGGESTED_PLUGINS    "Vorgeschlagene Plugins."
-    ID_NOT_SUGGESTED_PLUGINS "Andere Plugins."
+    ID_SUGGESTED_PLUGINS    "Vorgeschlagene Plugins"
+    ID_NOT_SUGGESTED_PLUGINS "Andere Plugins"
     ID_RELOAD_PLUGINS       "Entlädt alle Plugins und lädt sie neu (für Entwickler)."
 END
 
