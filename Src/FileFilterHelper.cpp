@@ -149,6 +149,7 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 	{
 		// preprend a backslash if there is none
 		CString strFileName = szFileName;
+		strFileName.MakeLower();
 		if (strFileName[0] != _T('\\'))
 			strFileName = _T('\\') + strFileName;
 		// append a point if there is no extension
@@ -260,15 +261,12 @@ CString FileFilterHelper::ParseExtensions(CString extensions)
 	}
 
 	if (strPattern.IsEmpty())
-		strParsed = _T("*.*");
+		strParsed = _T(".*"); // Match everything
 	else
 	{
-		// Add 'or' for lowercase and uppercase match
-		strParsed = _T("^(");
+		strParsed = _T("^");
 		strPattern.MakeLower();
-		strParsed += strPattern + _T("|");
-		strPattern.MakeUpper();
-		strParsed += strPattern + _T(")$");
+		strParsed += strPattern + _T("$");
 	}
 	return strParsed;
 }

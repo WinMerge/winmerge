@@ -1,3 +1,7 @@
+2004-08-12 Kimmo
+ PATCH: [ 1007212 ] Make extension matching in Open-dialog case insensitive
+  Src: FileFilterHelper.cpp
+
 2004-08-11 Kimmo
  PATCH: [ 1006475 ] Don't save editor settings to different key in registry
   Src/editlib: editreg.h
