@@ -29,7 +29,10 @@ DATE:		BY:					DESCRIPTION:
 2003/03/16	J.Tucht				ensure BSTR arguments are writeable
 2003/05/31	J.Tucht				registration of SCT and OCX no longer required
 2003/08/05	J.Tucht				change some names for use with MFC
-
+2003/08/31	J.Tucht				avoid wnsprintfW to get away with shlwapi < 5.0
+2003/10/05	J.Tucht				allow calls from other threads through HWND
+2003/11/04	J.Tucht				more explicit error messages, SEH
+2003/11/06	NOBODY@ALL			incredible number of changes for unknown reasons
 */
 // RCS ID line follows -- this is updated by CVS
 // $Id$
@@ -49,52 +52,80 @@ struct _RPC_ASYNC_STATE;	// avoid MSC warning C4115
 #include "lwdisp.h"
 #include "dllproxy.h"
 
-LPSTR NTAPI ReportError(HRESULT sc, UINT style)
+/**
+ * @brief try to turn HRESULT into a readable error message.
+ *
+ * @param uType : if 0, return the message, else display MessageBox of given uType
+ *
+ * @note if uType == 0, caller must LocalFree() the message.
+ */
+static LPTSTR NTAPI ReportError(HRESULT sc, UINT style)
 {
-	LPCH pc = 0;
-	FormatMessageA
+	LPTCH pc = 0;
+	FormatMessage
 	(
 		FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
 		NULL, sc,
 		MAKELANGID(LANG_NEUTRAL, SUBLANG_SYS_DEFAULT),
-		(LPCH)&pc, 0, NULL
+		(LPTCH)&pc, 0, NULL
 	);
 	if (pc == 0)
 	{
-		FormatMessageA
+		FormatMessage
 		(
 			FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_STRING |
 			FORMAT_MESSAGE_ARGUMENT_ARRAY,
 			"Error 0x%1!lX!", 0,
 			MAKELANGID(LANG_NEUTRAL, SUBLANG_SYS_DEFAULT),
-			(LPCH)&pc, 0, (va_list *)&sc
+			(LPTCH)&pc, 0, (va_list *)&sc
 		);
 	}
 	if (style)
 	{
-		MessageBoxA(0, pc, 0, style);
+		MessageBox(0, pc, 0, style);
 		LocalFree(pc);
 		pc = 0;
 	}
 	return pc;
 }
 
-void mycpyt2w(LPCTSTR tsz, wchar_t * wdest, int limit)
+/**
+ * @brief build a formatted message string 
+ */
+static LPTSTR FormatMessageFromString(LPCTSTR format, ...)
+{
+	LPTCH pc = 0;
+	FormatMessage
+	(
+		FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_STRING |
+		FORMAT_MESSAGE_ARGUMENT_ARRAY,
+		format, 0,
+		MAKELANGID(LANG_NEUTRAL, SUBLANG_SYS_DEFAULT),
+		(LPTCH)&pc, 0, (va_list *)(&format + 1)
+	);
+	return pc;
+}
+
+static void mycpyt2w(LPCTSTR tsz, wchar_t * wdest, int limit)
 {
 #ifdef _UNICODE
 	wcsncpy(wdest, tsz, limit);
 #else
 	MultiByteToWideChar(CP_ACP, 0, tsz, -1, wdest, limit);
 #endif
+	// always terminate the string
+	wdest[limit-1] = 0;
 }
 
-void mycpyt2a(LPCTSTR tsz, char * adest, int limit)
+static void mycpyt2a(LPCTSTR tsz, char * adest, int limit)
 {
 #ifdef _UNICODE
 	WideCharToMultiByte(CP_ACP, 0, tsz, -1, adest, limit, 0, 0);
 #else
 	strncpy(adest, tsz, limit);
 #endif
+	// always terminate the string
+	adest[limit-1] = 0;
 }
 
 /**
@@ -102,8 +133,11 @@ void mycpyt2a(LPCTSTR tsz, char * adest, int limit)
  * @Note We can use this code with unregistered COM DLL
  * For VC++ DLL, we need a custom CComTypeInfoHolder as the default one search the registry
  * For VB DLL, instance can not be shared accross thread, one must be created for each thread
+ *
+ * Don't catch unknown errors in this function, because we want to catch
+ * both C++ and C errors, and this is a C file.
  */
-LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
+LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 {
 	void *pv = 0;
 	SCODE sc;
@@ -111,8 +145,7 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 	if (source == 0)
 	{
 		CLSID clsid;
-		mycpyt2w(source, wc, DIMOF(wc));
-		if SUCCEEDED(sc=CLSIDFromProgID(wc, &clsid))
+		if SUCCEEDED(sc=CLSIDFromProgID(progid, &clsid))
 		{
 			sc=CoCreateInstance(&clsid, 0, CLSCTX_ALL, &IID_IDispatch, &pv);
 		}
@@ -135,8 +168,7 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 						BSTR bstrName = 0;
 						if SUCCEEDED(sc=piTypeInfo->lpVtbl->GetDocumentation(piTypeInfo, MEMBERID_NIL, &bstrName, 0, 0, 0))
 						{
-							LPCTSTR name = B2T(bstrName);
-							if (pTypeAttr->typekind == TKIND_COCLASS && lstrcmpi(name, progid) == 0)
+							if (pTypeAttr->typekind == TKIND_COCLASS && StrCmpIW(bstrName, progid) == 0)
 							{
 								IClassFactory *piClassFactory;
 								EXPORT_DLLPROXY
@@ -178,16 +210,11 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 		bind_opts.grfMode = STGM_READWRITE;
 		bind_opts.dwTickCountDeadline = 0;
 		// prepend appropriate moniker:
-		if (PathMatchSpec(source, _T("*.sct")))
-		{
-			MultiByteToWideChar(CP_ACP, 0, "script:", -1, wc, DIMOF(wc));
-			mycpyt2w(source, wc+wcslen(wc), DIMOF(wc)-wcslen(wc));
-		}
+		if (PathIsContentType(source, _T("text/scriptlet")))
+			mycpyt2w(_T("script:"), wc, DIMOF(wc));
 		else
-		{
-			mycpyt2w(source, wc, DIMOF(wc));
-		}
-		wc[DIMOF(wc)-1] = 0;
+			mycpyt2w(_T(""), wc, DIMOF(wc));
+		mycpyt2w(source, wc+wcslen(wc), DIMOF(wc)-wcslen(wc));
 
 		// I observed that CoGetObject() may internally provoke an access
 		// violation and succeed anyway. No idea how to avoid this.
@@ -216,28 +243,19 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 	}
 	if FAILED(sc)
 	{
-		// report error
-		LPSTR bareErrorText = ReportError(sc, 0);
+		// get the error description
+		LPTSTR errorText = ReportError(sc, 0);
 		if (source)
 		{
 			// append the source name
-			LPTSTR errorText;
-			errorText = malloc((strlen(bareErrorText)+1+_tcslen(source)+1)*sizeof(TCHAR));
-#ifdef UNICODE
-			MultiByteToWideChar(CP_ACP, 0, bareErrorText, -1, errorText, strlen(bareErrorText)+1);
-#else
-			strcpy(errorText, bareErrorText);
-#endif
-			_tcscat(errorText, _T("\n"));
-			_tcscat(errorText, source);
-			MessageBox(0, errorText, 0, MB_ICONSTOP|MB_TASKMODAL);
-			free (errorText);
+			LPTSTR tmp;
+			tmp = FormatMessageFromString(_T("%1\n%2"), errorText, source);
+			LocalFree(errorText);
+			errorText = tmp;
 		}
-		else
-		{
-			MessageBoxA(0, bareErrorText, 0, MB_ICONSTOP|MB_TASKMODAL);
-		}
-		LocalFree(bareErrorText);
+		// report error
+		MessageBox(0, errorText, 0, MB_ICONSTOP|MB_TASKMODAL);
+		LocalFree(errorText);
 		// no valid dispatch
 		pv = 0;
 	}

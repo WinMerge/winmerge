@@ -83,15 +83,13 @@ extern "C"{
 
 #define DIMOF(a) (sizeof(a)/sizeof(*a))
 
-// try to turn HRESULT into a readable error message.
-// if uType == 0, return the message, else display MessageBox of given uType.
-// if uType == 0, caller must LocalFree() the message.
-LPSTR NTAPI ReportError(HRESULT, UINT style);
 
-// if source == 0, create an object of the class registered as *progid*
-// if progid == 0, create an object from file *source*
-// if neither of the above, ask *source* to create an object of class *progid*
-LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid);
+/**
+ * @param source : if 0, create an object of the class registered as *progid*
+ * @param progid : if 0, create an object from file *source*
+ * If both source and progid defined, ask *source* to create an object of class *progid*
+ */
+LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid);
 
 /**
  * @brief invoke helper (__stdcall)
