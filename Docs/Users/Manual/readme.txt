@@ -4,6 +4,8 @@
   Manual: Compare_files.xml
  PATCH: [ 1035983 ] Docs: More shortcut keys (F7, F8, F9)
   Manual: Shortcut_keys.xml
+ Revision to 0.3
+  Manual: WinMerge_help.xml
 
 2004-09-27 Kimmo
  PATCH: [ 1034776 ] New manual sections for encoding and fonts
