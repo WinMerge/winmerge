@@ -82,8 +82,8 @@ BEGIN
         MENUITEM "右にコピー(&O)",              ID_L2R
         MENUITEM "左にコピー(&Y)",              ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
-        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
+        MENUITEM "行の差異を単語単位でハイライト(&H)",    ID_SHOWLINEWORDDIFF
+        MENUITEM "行の差異を文字単位でハイライト(&I)",    ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "元に戻す(&U)",                ID_EDIT_UNDO
         MENUITEM "やり直し(&R)",                ID_EDIT_REDO
@@ -102,7 +102,7 @@ BEGIN
     BEGIN
         MENUITEM "新規作成(&N)\tCtrl+N",        ID_FILE_NEW
         MENUITEM "開く(&O)...\tCtrl+O",         ID_FILE_OPEN
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "プロジェクトを開く(&J)...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "保存(&S)\tCtrl+S",            ID_FILE_SAVE
         POPUP "左のファイルを保存(&L)"
@@ -141,8 +141,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "すべて選択(&A)\tCtrl+A",      ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
+        MENUITEM "行の差異を単語単位でハイライト(&H)\tF4", ID_SHOWLINEWORDDIFF
+        MENUITEM "行の差異を文字単位でハイライト(&I)\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "検索(&F)...\tCtrl+F",         ID_EDIT_FIND
         MENUITEM "置換(&E)...\tCtrl+H",         ID_EDIT_REPLACE
@@ -152,9 +152,9 @@ BEGIN
             MENUITEM "< なし >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
-        POPUP "Advanced"
+        POPUP "高度な操作"
         BEGIN
-            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
+            MENUITEM "行番号付きでコピー(&C)\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
         MENUITEM "ジャンプ(&G)...\tCtrl+G",        ID_EDIT_WMGOTO
@@ -271,7 +271,7 @@ BEGIN
             MENUITEM "右(&R)",                      ID_DIR_DEL_RIGHT
             MENUITEM "両側(&B)",                    ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "ファイルの非表示(&H)",            ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "左を開く(&O)"
         BEGIN
@@ -415,7 +415,7 @@ BEGIN
     PUSHBUTTON      "表示する...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
 END
 
-IDD_OPEN DIALOGEX 0, 0, 364, 126
+IDD_OPEN DIALOGEX 0, 0, 374, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU |
     WS_THICKFRAME
 CAPTION "ファイルまたはディレクトリの選択..."
@@ -442,11 +442,11 @@ BEGIN
     CONTROL         "サブフォルダを含む(&I)",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,71,86,181,10
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
-    DEFPUSHBUTTON   "OK",IDOK,306,11,50,14
-    PUSHBUTTON      "キャンセル",IDCANCEL,306,28,50,14
+    DEFPUSHBUTTON   "OK",IDOK,306,11,60,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,306,28,60,14
     GROUPBOX        "比較するファイルまたはディレクトリ",IDC_FILES_DIRS_GROUP,7,
                      7,292,111
-    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
+    PUSHBUTTON      "プロジェクトの保存",IDC_SAVEPROJECT,306,56,60,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -917,7 +917,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
     CONTROL         "大文字と小文字を区別しない(&C)",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
-    CONTROL         "改行文字の違いを無視しない(&R) (DOS/UNIX/MAC)",
+    CONTROL         "改行文字の違いを無視する(&R) (DOS/UNIX/MAC)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,80,221,10
     CONTROL         "移動ブロック検出を有効にする(&N)",IDC_MOVED_BLOCKS,"Button",
@@ -967,9 +967,9 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,188,114,50,14
+    PUSHBUTTON      "新規...",IDC_FILTERFILE_NEWBTN,188,114,50,14
     PUSHBUTTON      "編集...",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "削除...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -1077,7 +1077,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "ｩ 1996-2004 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "ｩ 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
@@ -1215,7 +1215,7 @@ BEGIN
     ID_FILE_PRINT_SETUP     "プリンタ/印刷オプションの変更\n印刷設定"
     ID_FILE_PRINT           "作業中のドキュメントを印刷します\n印刷"
     ID_FILE_PRINT_PREVIEW   "印刷イメージを表示します\n印刷プレビュー"
-    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+    ID_FILE_OPENPROJECT     "プロジェクトを開きます\nプロジェクトを開く (Ctrl+J)"
 END
 
 STRINGTABLE
@@ -1413,9 +1413,9 @@ BEGIN
     IDS_FILTERFILE_PATHTITLE "場所"
     IDS_FILTER_TITLE        "フィルタ"
     IDS_FILTER_PREFIX       "[F] "
-    IDS_FILTERFILE_DESCTITLE "Description"
-    IDS_FILEFILTER_SAVENEW  "Select filename for new filter"
-    IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
+    IDS_FILTERFILE_DESCTITLE "説明"
+    IDS_FILEFILTER_SAVENEW  "新しいフィルタのファイル名を指定してください"
+    IDS_FILEFILTER_FILEMASK "ファイルフィルタ (*.flt)|*.flt|All Files (*.*)|*.*||"
 END
 
 // VERSION CONTROL OPTIONS
@@ -1519,9 +1519,9 @@ END
 // VSS system
 STRINGTABLE
 BEGIN
-    IDS_VCS_NONE            "None"
-    IDS_VCS_VSS4            "Visual SourceSafe (less than 5.0)"
-    IDS_VCS_VSS5            "Visual SourceSafe (5.0 and above)"
+    IDS_VCS_NONE            "なし"
+    IDS_VCS_VSS4            "Visual SourceSafe (5.0 未満)"
+    IDS_VCS_VSS5            "Visual SourceSafe (5.0 以上)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
 END
 
@@ -1535,7 +1535,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "左の選択された項目を削除します"
     ID_DIR_DEL_RIGHT        "右の選択された項目を削除します"
     ID_DIR_DEL_BOTH         "両側の選択された項目を削除します"
-    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
+    ID_DIR_HIDE_FILENAMES   "選択された項目を非表示にします(オンザフライ フィルタ)"
     IDS_COPY_TO_LEFT        "右から左 (%1)"
     IDS_COPY_TO_RIGHT       "左から右 (%1)"
     IDS_COPY_TO_LEFT2       "右を左に (%1 / %2)"
@@ -1706,12 +1706,7 @@ BEGIN
     IDS_FILEBINARY          "バイナリファイルは視覚的に比較できません。"
     IDS_TEMP_FILEERROR      "テンポラリファイルが作成できませんでした。テンポラリパス設定を確認してください。"
     IDS_FILEISDIR           "ディレクトリは、ビジュアルに比較できません。"
-    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
-                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
-                            Note: If you always want to treat all carriage return types \
-                            as equivalent, set the option 'Ignore carriage return \
-                            differences..' in the Compare tab of the options dialog\
-                            (available under Edit/Options)."
+    IDS_SUGGEST_IGNOREEOL   "ファイル内に異なるEOLタイプが存在しています。\n現在のオプション設定では、すべての行は、異なったままです。\nファイル内に存在するEOLの違いを無視しますか?\n\n上級者 : ファイル内のEOLが統一されていないのであれば、\n むしろオプション '%1' をセットしたほうがよいかもしれません。"
     IDS_SUGGEST_PRESERVEEOL "ファイル'%1'内に異なるタイプ(DOS/UNIX/MAC)のEOLが存在しています。\n 現在のオプション設定では、主なEOLに統一されます。\n オプションを変更して、異なるEOLを保持するようにしますか?"
     IDS_PREDIFFER_ERROR      "プラグイン'%2'でファイル'%1'の比較前処理の実行中にエラーが発生しました。比較前処理は以降行なわれません。"
     IDS_SUGGEST_IGNORECODEPAGE "両側のファイルは、同じコードページではありません。(cp%d vs cp%d)\n各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\nコードページ情報を無視しますが、よろしいですか?"
@@ -1766,27 +1761,27 @@ END
 // Regular expression errors
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_ERROR        "Regular expression error"
-    IDS_REGEXP_NOMATCH      "No match"
-    IDS_REGEXP_INVALID      "Invalid regular expression"
-    IDS_REGEXP_COLL_CHAR    "Invalid collation character"
-    IDS_REGEXP_CHAR_CLASS   "Invalid character class name"
-    IDS_REGEXP_TRAILING_BS  "Trailing backslash"
-    IDS_REGEXP_INVALID_BACKREF "Invalid back reference"
-    IDS_REGEXP_UNMATCHED_BRACK "Unmatched [ or [^"
-    IDS_REGEXP_UNMATCHED_PAREN "Unmatched ( or \\("
-    IDS_REGEXP_UNMATCHED_BRACE "Unmatched \\{"
-    IDS_REGEXP_INVALID_BRACE "Invalid content of \\{\\}"
-    IDS_REGEXP_RANGE_END    "Invalid range end"
-    IDS_REGEXP_OUTOFMEM     "Out of memory"
-    IDS_REGEXP_INVALID_PREV_EXP "Invalid preceding regular expression"
-    IDS_REGEXP_PREMATURE_END "Premature end of regular expression"
-    IDS_REGEXP_TOO_BIG      "Regular expression too big"
+    IDS_REGEXP_ERROR        "正規表現エラー"
+    IDS_REGEXP_NOMATCH      "マッチしません"
+    IDS_REGEXP_INVALID      "無効な正規表現です"
+    IDS_REGEXP_COLL_CHAR    "無効な照合文字です"
+    IDS_REGEXP_CHAR_CLASS   "無効なキャラクタクラス名です"
+    IDS_REGEXP_TRAILING_BS  "\\ で終わっています"
+    IDS_REGEXP_INVALID_BACKREF "無効な後方参照演算子です"
+    IDS_REGEXP_UNMATCHED_BRACK "[ か [^ の対応がとれていません"
+    IDS_REGEXP_UNMATCHED_PAREN "( か \\( の対応がとれていません"
+    IDS_REGEXP_UNMATCHED_BRACE "\\{ の対応がとれていません"
+    IDS_REGEXP_INVALID_BRACE "\\{\\} の内容が無効です"
+    IDS_REGEXP_RANGE_END    "無効な範囲の終了位置です"
+    IDS_REGEXP_OUTOFMEM     "メモリが不足しています"
+    IDS_REGEXP_INVALID_PREV_EXP "繰り返し演算子が無効な位置にあります"
+    IDS_REGEXP_PREMATURE_END "正規表現が異常です"
+    IDS_REGEXP_TOO_BIG      "正規表現が大きすぎます"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_UNMATCHED_RPAREN "Unmatched ) or \\)"
+    IDS_REGEXP_UNMATCHED_RPAREN ") か \\) の対応がとれていません"
 END
 
 // LANGUAGE NAMES #1
@@ -2080,12 +2075,12 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
-    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
+    ID_SHOWLINEWORDDIFF     "現在の行の差異を単語単位でハイライト表示します\n現在の行の差異 (F4)"
+    ID_SHOWLINECHARDIFF     "現在の行の差異を文字単位でハイライト表示します\n現在の行の差異 (Shift+F4)"
     ID_EDIT_WMGOTO          "指定した行または、差異へ移動します\nジャンプ (Ctrl+G)"
     ID_OPTIONS              "プログラムオプションを設定します\nオプション"
     ID_REFRESH              "最新の情報に更新します\n表示更新 (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "選択された行の先頭に行番号を付加してクリップボードへコピーします"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2102,8 +2097,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
-    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
+    ID_VIEW_SELECTFONT      "Diffビューのフォントを選択します\nDiffフォントの選択"
+    ID_VIEW_USEDEFAULTFONT  "Diffビューのフォントをデフォルトフォントに戻します\nデフォルトフォント"
     ID_VIEW_WHITESPACE      "空白文字を表示します"
     ID_VIEW_DETAIL_BAR      "Diffペインの表示/非表示を切り替えます"
     ID_VIEW_LOCATION_BAR    "ロケーションペインはファイルの内容全体をピクチャとして表示します"

@@ -1,3 +1,9 @@
+2005-03-04 Perry
+ PATCH: [ 1147039 ] experimental patch for colored word diff
+  Merge all the easy new Japanese string translations
+   (Omit major changes to IDD_PROPPAGE_EDITOR & IDD_MERGE7ZMISMATCH.
+  Languages: Japanese/MergeJapanese.rc
+
 2005-03-04 Kimmo
  PATCH: [ 1155319 ] Select font for dir compare view
   We must allow selecting file compare font even if no open views
