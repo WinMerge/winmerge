@@ -2,18 +2,9 @@
 <sect1 id="Locales">
   <title>Locale support</title>
 
-  <para>Keeping with the spirit in which WinMerge was created, I decided one
-  day to diddle with UI localization using resource DLLs. By virtue of that
-  effort, combined with the gracious contributions of several good people, you
-  can now use WinMerge in your own native language.</para>
-
-  <note>
-    <para>The language DLLs allow to using a different interface language than
-    English, but does not change other locale issues (such as how large
-    numbers are broken up, or how words are alphabetized).</para>
-  </note>
-
-  <para>At the time of this writing, language DLLs are available from <ulink
+  <para>WinMerge allows translating user interface to other languages than
+  English. Several translations have been contributed. At the time of this
+  writing, translations are available from <ulink
   url="http://www.winmerge.org/">WinMerge.org</ulink> for the following
   languages:</para>
 
@@ -95,36 +86,18 @@
     </listitem>
   </itemizedlist>
 
-  <para>If you would like to add your language to the list, look at the <ulink
-  url="http://www.winmerge.org/developer/l10n/index.php">on-line
-  documentation</ulink> for the details on how to do it. All translations are
-  not complete so it would be nice if you can help improving them too. Translating
-  (or improving translation) does not require you to have all compile tools or
-  knowledge of WinMerge internals. Just read instructions from above link. And
-  if you have problems ask help from us in one of <ulink
-  url="http://sourceforge.net/forum/?group_id=13216">WinMerge
-  forums</ulink>.</para>
+  <para><note>
+      <para>The translations allow to using a different interface language
+      than English, but does not change other locale issues (such as how large
+      numbers are broken up, or how words are alphabetized).</para>
+    </note></para>
 
   <sect2>
-    <title>Configuration</title>
+    <title>Selecting language</title>
 
-    <para>In order to change the current UI language, you must do the
-    following:</para>
+    <para>In order to change the current UI language, do the following:</para>
 
     <orderedlist>
-      <listitem>
-        <para>Download the desired language DLL from the <ulink
-        url="http://sourceforge.net/project/showfiles.php?group_id=13216">WinMerge
-        download site</ulink>.</para>
-      </listitem>
-
-      <listitem>
-        <para>Unzip the downloaded file into the same directory where
-        <filename>WinMerge.exe</filename> is located. Note that the language
-        DLL has a <filename class="extension">.lang</filename>
-        extension.</para>
-      </listitem>
-
       <listitem>
         <para>Run WinMerge</para>
       </listitem>
@@ -141,5 +114,80 @@
 
     <para>Note that the WinMerge UI instantly updates to the selected
     language.</para>
+  </sect2>
+
+  <sect2>
+    <title>Installing translation</title>
+
+    <para>Easiest way to install translations is selecting them in installer.
+    Translations are selected in 4th installer dialog (<guilabel>Select
+    components</guilabel>). Default install (<guilabel>Typical
+    Installation</guilabel>) does not install translations, but they can be
+    individually selected from the list.</para>
+
+    <para>If you don't want to re-run installer, or didn't install WinMerge
+    with installer at first place, then WinMerge translation files are
+    available in zipped versions and translation updates. To install new
+    translation file:</para>
+
+    <para><orderedlist>
+        <listitem>
+          <para>Download the zipped release from <ulink
+          url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=283717">WinMerge
+          download</ulink> site or updated translation file from <ulink
+          url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=283717">Languages
+          download</ulink>.</para>
+        </listitem>
+
+        <listitem>
+          <para>a) If you downloaded just language file, unzip it into the
+          same directory where <filename>WinMerge.exe</filename> and/or
+          <filename>WinMergeU.exe</filename> is located.</para>
+
+          <para>b) If you downloaded WinMerge release then search for
+          <filename>Merge*.lang</filename> files, where * is name of language
+          (<filename>MergeSwedish.lang</filename> for Swedish translation).
+          Unzip that file to the same directory where
+          <filename>WinMerge.exe</filename> and/or
+          <filename>WinMergeU.exe</filename> is located.</para>
+        </listitem>
+
+        <listitem>
+          <para>Run WinMerge</para>
+        </listitem>
+
+        <listitem>
+          <para>Select <guimenuitem>Language</guimenuitem> from the
+          <guimenu>View</guimenu> menu</para>
+        </listitem>
+
+        <listitem>
+          <para>Select your language and click
+          <guibutton>OK</guibutton></para>
+        </listitem>
+      </orderedlist></para>
+  </sect2>
+
+  <sect2>
+    <title>Reporting error in translation</title>
+
+    <para>Please submit errors you find in translations as bugs to our <ulink
+    url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug-list</ulink>.
+    It would be great if you can provide corrected version of translated text
+    also.</para>
+  </sect2>
+
+  <sect2>
+    <title>Submitting a new translation</title>
+
+    <para>If you would like to add your language to the list, look at the
+    <ulink url="http://www.winmerge.org/developer/l10n/index.php">on-line
+    documentation</ulink> for the details on how to do it. All translations
+    are not complete so it would be nice if you can help improving them too.
+    Translating (or improving translation) does not require you to have all
+    compile tools or knowledge of WinMerge internals. Just read instructions
+    from above link. And if you have problems ask help from us in one of
+    <ulink url="http://sourceforge.net/forum/?group_id=13216">WinMerge
+    forums</ulink>.</para>
   </sect2>
 </sect1>

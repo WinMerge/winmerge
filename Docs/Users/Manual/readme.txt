@@ -1,3 +1,7 @@
+2005-02-20 Kimmo
+ PATCH: [ 1144624 ] Docs: Better instructions for installing translations
+  Manual: Locales.xml
+
 2005-02-15 Kimmo
  PaTCH: [ 1122699 ] Docs: Missing Hungarian translation, info about translations
   Manual: Locales.xml
