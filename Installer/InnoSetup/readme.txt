@@ -1,3 +1,7 @@
+2005-02-07 Kimmo
+ RFE: [ 1116010 ] Smaller default font
+  InnoSetup: WinMerge Localized.iss
+
 2005-01-29 Kimmo
  Install language files to 'Languages' directory
   InnoSetup: WinMerge Localized.iss
