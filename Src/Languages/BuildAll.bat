@@ -1,3 +1,4 @@
+Call BuildDll Czech
 Call BuildDll Danish
 Call BuildDll Dutch
 Call BuildDll French
