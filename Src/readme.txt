@@ -1,3 +1,5 @@
+2003-10-25 WinMerge experimental release 2.1.3.5 (cvs)
+
 2003-10-25 Perry
  PATCH: [ 828633 ] Abort running scan
   WinMerge: DiffThread.cpp DiffThread.h DirDoc.cpp DirDoc.h
