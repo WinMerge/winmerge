@@ -1,3 +1,9 @@
+2004-02-20 Perry
+ Fix CopyAll.bat for new directory structure
+  Src: Languages\CopyAll.bat
+
+2004-02-20 WinMerge experimental release 2.1.5.11 (cvs)
+
 2004-02-20 Kimmo
  PATCH: [ 899926 ] Write LogErrorString()s to logfile
   Src: DiffWrapper.cpp MainFrm.cpp MergeDoc.cpp StdAfx.cpp
