@@ -245,16 +245,18 @@ CString CConfigLog::GetWindowsVer()
 
 		// Test for the specific product family.
 		if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2 )
-			sVersion = _T("Microsoft Windows Server&nbsp;2003 family, ");
-
-		if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 1 )
+			sVersion = _T("Microsoft Windows Server 2003 family, ");
+		else if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 1 )
 			sVersion = _T("Microsoft Windows XP ");
-
-		if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 0 )
+		else if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 0 )
 			sVersion = _T("Microsoft Windows 2000 ");
-
-		if ( osvi.dwMajorVersion <= 4 )
+		else if ( osvi.dwMajorVersion <= 4 )
 			sVersion = _T("Microsoft Windows NT ");
+		else if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 0 )
+			sVersion = _T("Microsoft Windows Longhorn ");
+		else
+			sVersion.Format(_T("[? WindowsNT %d.%d] "), 
+				osvi.dwMajorVersion, osvi.dwMinorVersion);
 
 #if 0
 		// Test for specific product on Windows NT 4.0 SP6 and later.
@@ -383,26 +385,31 @@ CString CConfigLog::GetWindowsVer()
 			if ( osvi.szCSDVersion[1] == 'C' || osvi.szCSDVersion[1] == 'B' )
 				sVersion += _T("OSR2 " );
 		}
-
-		if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 10)
+		else if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 10)
 		{
 			sVersion = _T("Microsoft Windows 98 ");
 			if ( osvi.szCSDVersion[1] == 'A' )
 				sVersion += _T("SE " );
 		}
-
-		if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 90)
+		else if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 90)
 		{
 			sVersion = _T("Microsoft Windows Millennium Edition");
 		}
+		else
+		{
+			sVersion.Format(_T("[? Windows9x %d.%d] "), 
+				osvi.dwMajorVersion, osvi.dwMinorVersion);
+		}
 		break;
 
-	/*
 	case VER_PLATFORM_WIN32s:
 
 		sVersion = _T("Microsoft Win32s\n");
 		break;
-	*/
+
+	default:
+		sVersion.Format(_T(" [? Windows? %d.%d] "),
+			osvi.dwMajorVersion, osvi.dwMinorVersion);
 	}
 	return sVersion;
 }
