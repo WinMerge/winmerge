@@ -183,7 +183,7 @@ protected:
 	afx_msg void OnViewWhitespace();
 	afx_msg void OnUpdateViewWhitespace(CCmdUI* pCmdUI);
 	afx_msg void OnDropFiles(HDROP dropInfo);
-	afx_msg void OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

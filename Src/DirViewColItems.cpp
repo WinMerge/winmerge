@@ -28,13 +28,27 @@ static char THIS_FILE[] = __FILE__;
  * @brief Return time displayed appropriately, as string
  */
 static CString
-TimeString(const time_t * tim)
+TimeString(const __int64 * tim)
 {
 	if (!tim) return _T("---");
 	// _tcsftime does not respect user date customizations from
 	// Regional Options/Configuration Regional; COleDateTime::Format does so.
+#if _MSC_VER < 1300
+		// MSVC6
+	COleDateTime odt = (time_t)*tim;
+#else
+		// MSVC7 (VC.NET)
 	COleDateTime odt = *tim;
+#endif
 	return odt.Format();
+}
+/**
+ * @brief Function to compare two __int64s for a sort
+ */
+static int cmp64(__int64 i1, __int64 i2)
+{
+	if (i1==i2) return 0;
+	return i1>i2 ? 1 : -1;
 }
 
 /**
@@ -215,19 +229,19 @@ static int ColStatusSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 }
 static int ColLmtimeSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
-	return rdi.left.mtime-ldi.left.mtime;
+	return cmp64(rdi.left.mtime, ldi.left.mtime);
 }
 static int ColRmtimeSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
-	return rdi.right.mtime-ldi.right.mtime;
+	return cmp64(rdi.right.mtime, ldi.right.mtime);
 }
 static int ColLctimeSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
-	return rdi.left.ctime-ldi.left.ctime;
+	return cmp64(rdi.left.ctime, ldi.left.ctime);
 }
 static int ColRctimeSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
-	return rdi.right.ctime-ldi.right.ctime;
+	return cmp64(rdi.right.ctime, ldi.right.ctime);
 }
 static int ColExtSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
@@ -235,11 +249,11 @@ static int ColExtSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 }
 static int ColLsizeSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
-	return rdi.left.size - ldi.left.size;
+	return cmp64(rdi.left.size, ldi.left.size);
 }
 static int ColRsizeSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
-	return rdi.right.size - ldi.right.size;
+	return cmp64(rdi.right.size, ldi.right.size);
 }
 static int ColNewerSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 {

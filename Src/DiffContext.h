@@ -48,8 +48,10 @@ struct DIFFITEM;
  */
 struct DiffFileInfo
 {
-	long mtime; /**< time of last modification */
-	long ctime; /**< time of creation */
+	// storing __time_t if MSVC6 (__MSC_VER<1300)
+	// storing __time64_t if MSVC7 (VC.NET)
+	__int64 mtime; /**< time of last modification */
+	__int64 ctime; /**< time of creation */
 	__int64 size; /**< file size in bytes */
 	CString version; /**< string of fixed file version, eg, 1.2.3.4 */
 	CString spath; /**< fully qualified directory of file */
@@ -101,7 +103,7 @@ public:
 
 	// add & remove differences
 	void AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir, LPCTSTR pszLeftDir, LPCTSTR pszRightDir
-		, long lmtime, long rmtime, long lctime, long rctime
+		, __int64 lmtime, __int64 rmtime, __int64 lctime, __int64 rctime
 		, __int64 lsize, __int64 rsize, BYTE code);
 	void AddDiff(DIFFITEM di);
 	void RemoveDiff(POSITION diffpos);

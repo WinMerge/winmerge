@@ -514,7 +514,7 @@ void CMergeEditView::OnEditUndo()
 			return;
 
 		GetParentFrame()->SetActiveView(this, TRUE);
-		if(CCrystalEditViewEx::OnEditUndo()) 
+		if(CCrystalEditViewEx::DoEditUndo()) 
 		{
 			--pDoc->curUndo;
 			pDoc->FlushAndRescan();
@@ -869,7 +869,7 @@ void CMergeEditView::OnEditRedo()
 			return;
 
 		GetParentFrame()->SetActiveView(this, TRUE);
-		if(CCrystalEditViewEx::OnEditRedo()) 
+		if(CCrystalEditViewEx::DoEditRedo()) 
 		{
 			++pDoc->curUndo;
 			pDoc->FlushAndRescan();

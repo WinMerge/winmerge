@@ -101,8 +101,8 @@ static CString GetFixedFileVersion(const CString & path)
  */
 void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir
 	, LPCTSTR pszLeftDir, LPCTSTR pszRightDir
-	, long lmtime, long rmtime
-	, long lctime, long rctime
+	, __int64 lmtime, __int64 rmtime
+	, __int64 lctime, __int64 rctime
 	, __int64 lsize, __int64 rsize
 	, BYTE code
 	)
@@ -136,6 +136,7 @@ void CDiffContext::AddDiff(DIFFITEM di)
 	}
 
 	m_pList->AddTail(di);
+	// ignore return value
 	SendMessage(m_hMainFrame, m_msgUpdateStatus, di.code, NULL);
 }
 
@@ -213,7 +214,7 @@ void CDiffContext::UpdateInfoFromDisk(DIFFITEM & di)
 /**
  * @brief Convert a FILETIME to a long (standard time)
  */
-static long FileTimeToLong(FILETIME & ft)
+static __int64 FileTimeToInt64(FILETIME & ft)
 {
 	return CTime(ft).GetTime();
 }
@@ -234,7 +235,7 @@ void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
 	HANDLE h = FindFirstFile(filepath, &wfd);
 	if (h != INVALID_HANDLE_VALUE)
 	{
-		dfi.mtime = FileTimeToLong(wfd.ftLastWriteTime);
+		dfi.mtime = FileTimeToInt64(wfd.ftLastWriteTime);
 		dfi.flags.reset();
 		if (wfd.dwFileAttributes & FILE_ATTRIBUTE_READONLY)
 			dfi.flags.flags += FileFlags::RO;

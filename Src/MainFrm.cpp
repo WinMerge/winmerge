@@ -1643,10 +1643,11 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 	DoFileOpen(files[0], files[1], FFILEOPEN_NONE, FFILEOPEN_NONE, ctrlKey);
 }
 
-void CMainFrame::OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam)
+LRESULT CMainFrame::OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam)
 {
 	if (wParam == 0xFF)
 		clearStatus();
 	else
 		rptStatus(wParam);
+	return 0; // return value not meaningful
 }

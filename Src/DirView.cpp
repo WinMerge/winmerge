@@ -1199,7 +1199,7 @@ void CDirView::OnUpdateRefresh(CCmdUI* pCmdUI)
  * @brief Called when compare thread asks UI update
  * @note Currently thread asks update after compare is ready
  */
-void CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
+LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 {
 	CDirDoc * pDoc = GetDocument();
 	ASSERT(pDoc);
@@ -1210,6 +1210,7 @@ void CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	
 	if (mf->m_bScrollToFirst)
 		OnFirstdiff();
+	return 0; // return value unused
 }
 
 BOOL CDirView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult) 

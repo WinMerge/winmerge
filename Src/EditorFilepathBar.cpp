@@ -123,11 +123,11 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 			// compute max width : 97% of application width or 80% or full screen width
 			CRect rect;
 			GetWindowRect(rect);
-			int maxWidth = rect.Width() * .97;
+			int maxWidth = (int)(rect.Width() * .97);
 			CRect rectScreen; 
 			SystemParametersInfo(SPI_GETWORKAREA, 0, rectScreen, 0);
 			if (rectScreen.Width() * .8 > maxWidth)
-				maxWidth = rectScreen.Width() * .8;
+				maxWidth = (int)(rectScreen.Width() * .8);
 
 			// use the tooltip font
 			HANDLE hFont = (HANDLE) ::SendMessage(pTTTStruct->hwndFrom, WM_GETFONT, 0, 0);

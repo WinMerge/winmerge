@@ -2,6 +2,11 @@
  Widen label IDC_PRIVATEBUILD on about box.
   WinMerge: Merge.rc
   Languages: *.rc
+ PATCH: [ 802120 ] Fix for VC.NET
+  WinMerge: DiffContext.cpp DiffContext.h DirScan.cpp DirView.cpp
+   DirView.h DirViewColItems.cpp EditorFilepathBar.cpp MainFrm.cpp 
+   MainFrm.h MergeEditView.cpp
+  editlib: ccrystaleditview.cpp ccrystaleditview.h
 
 2003-09-13 WinMerge experimental release 2.1.1.5 (patch demos)
 2003-09-13 WinMerge experimental release 2.1.1.4 (cvs)

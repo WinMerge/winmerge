@@ -1441,8 +1441,14 @@ OnUpdateEditUndo (CCmdUI * pCmdUI)
     }
 }
 
-BOOL CCrystalEditView::
+void CCrystalEditView::
 OnEditUndo ()
+{
+	DoEditUndo();
+}
+
+BOOL CCrystalEditView::
+DoEditUndo ()
 {
   if (m_pTextBuffer != NULL && m_pTextBuffer->CanUndo ())
     {
@@ -1467,8 +1473,14 @@ SetDisableBSAtSOL (BOOL bDisableBSAtSOL)
   m_bDisableBSAtSOL = bDisableBSAtSOL;
 }
 
-BOOL CCrystalEditView::
+void CCrystalEditView::
 OnEditRedo ()
+{
+	DoEditRedo();
+}
+
+BOOL CCrystalEditView::
+DoEditRedo ()
 {
   if (m_pTextBuffer != NULL && m_pTextBuffer->CanRedo ())
     {

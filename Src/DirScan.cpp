@@ -27,8 +27,10 @@ static char THIS_FILE[] = __FILE__;
 struct fentry
 {
 	CString name;
-	long mtime;
-	long ctime;
+	// storing __time_t if MSVC6 (__MSC_VER<1300)
+	// storing __time64_t if MSVC7 (VC.NET)
+	__int64 mtime;
+	__int64 ctime;
 	_int64 size;
 };
 typedef CArray<fentry, fentry&> fentryArray;;
@@ -224,7 +226,13 @@ void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 		finder.GetCreationTime(ctim);
 		ent.mtime = mtim.GetTime();
 		ent.ctime = ctim.GetTime();
-		ent.size = finder.GetLength64();
+#if _MSC_VER < 1300
+		// MSVC6
+		ent.size = finder.GetLength64(); // __int64
+#else
+		// MSVC7 (VC.NET)
+		ent.size = finder.GetLength(); // ULONGLONG
+#endif
 		ent.name = finder.GetFileName();
 		if (finder.IsDirectory())
 			dirs->Add(ent);
@@ -271,7 +279,7 @@ static int collstr(const CString & s1, const CString & s2, bool casesensitive)
 static void FilterAdd(const CString & sDir, const fentry * lent, const fentry * rent, int code, CDiffContext * pCtxt)
 {
 	CString name, leftdir, rightdir;
-	long rmtime=0, lmtime=0, rctime=0, lctime=0;
+	_int64 rmtime=0, lmtime=0, rctime=0, lctime=0;
 	_int64 lsize=0, rsize=0;
 	if (lent)
 	{
