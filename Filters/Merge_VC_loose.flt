@@ -1,0 +1,14 @@
+name: Visual C++ loose
+def: include
+f: .*\.obj
+f: .*\.sbr
+f: .*\.aps
+f: .*\.clw
+f: .*\.ncb
+f: .*\.ilk
+f: .*\.res
+f: .*\.lib
+f: .*\.exp
+f: .*\.exe
+f: .*\.pch
+d: .*\\cvs
