@@ -1374,8 +1374,6 @@ LoadFromFileExit:
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
 				pszFileName, GetSysError(GetLastError())));
-			gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
-				pszFileName, GetSysError(GetLastError()));
 		}
 
 	return nRetVal;
@@ -1492,8 +1490,6 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
 					sIntermediateFilename, GetSysError(GetLastError())));
-				gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
-					sIntermediateFilename, GetSysError(GetLastError()));
 			}
 			// returns now, don't overwrite the original file
 			return SAVE_PACK_FAILED;
@@ -1505,8 +1501,6 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
 					sIntermediateFilename, GetSysError(GetLastError())));
-				gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
-					sIntermediateFilename, GetSysError(GetLastError()));
 			}
 			sIntermediateFilename = csTempFileName;
 		}
@@ -1518,8 +1512,6 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
 					sIntermediateFilename, GetSysError(GetLastError())));
-				gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
-					sIntermediateFilename, GetSysError(GetLastError()));
 			}
 			if (bClearModifiedFlag)
 			{
@@ -1645,8 +1637,6 @@ void CMergeDoc::CleanupTempFiles()
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
 				m_strTempLeftFile, GetSysError(GetLastError())));
-			gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
-				m_strTempLeftFile, GetSysError(GetLastError()));
 		}
 	}
 	if (!m_strTempRightFile.IsEmpty())
@@ -1657,8 +1647,6 @@ void CMergeDoc::CleanupTempFiles()
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
 				m_strTempRightFile, GetSysError(GetLastError())));
-			gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
-				m_strTempRightFile, GetSysError(GetLastError()));
 		}
 	}
 }

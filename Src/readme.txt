@@ -1,3 +1,7 @@
+2004-02-20 Kimmo
+ PATCH: [ 899926 ] Write LogErrorString()s to logfile
+  Src: DiffWrapper.cpp MainFrm.cpp MergeDoc.cpp StdAfx.cpp
+
 2004-02-19 Jochen
  BUG: [ 888992 ] 7zip integration: Error deleting file when closing WinMerge
   Src: 7zCommon.cpp
@@ -10,7 +14,7 @@
   Src: Merge.rc
   Languages: *.rc
  RFE: [ 897975 ] Syntax highlighting for INI files
-   Submitted by Tim Gerundt
+   Patch submitted by Tim Gerundt
    Src: Merge.dsp
    editlib: ccrystaltextview.cpp ccrystaltextview.h
    editlib new file: ini.cpp

@@ -1199,8 +1199,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 					{
 						LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
 							strLeft, GetSysError(GetLastError())));
-						gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
-							strLeft, GetSysError(GetLastError()));
 					}
 				}
 				strLeft.Delete(0, strLeft.ReverseFind('\\'));
@@ -1230,8 +1228,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 						{
 							LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
 								strRight, GetSysError(GetLastError())));
-							gLog.Write(LOGLEVEL::LERROR, _T("DeleteFile(%s) failed: %s"),
-								strRight, GetSysError(GetLastError()));
 						}
 					}
 					strRight.Delete(0, strRight.ReverseFind('\\'));

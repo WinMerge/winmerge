@@ -103,12 +103,16 @@ CString GetSysError(int nerr)
 	return str;
 }
 
-// Send message to log (well, to debug window)
+// Send message to log and debug window
 void LogErrorString(LPCTSTR sz)
 {
 	if (!sz || !sz[0]) return;
 	CString now = COleDateTime::GetCurrentTime().Format();
 	TRACE(_T("%s: %s\n"), (LPCTSTR)now, sz);
+
+#if defined (_DEBUG) || defined (ENABLE_LOG)
+	gLog.Write(LOGLEVEL::LERROR, sz);
+#endif
 }
 
 // Make a CString from printf-style args (single call version of CString::Format)
@@ -131,4 +135,3 @@ int GetClipTcharTextFormat()
 	return CF_TEXT;
 #endif // _UNICODE
 }
-
