@@ -1602,6 +1602,8 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 	}
 	
 LoadFromFileExit:
+	// close the file now to free the handle
+	pufile->Close();
 
 	// delete the file that unpacking may have created
 	if (_tcscmp(pszFileNameInit, pszFileName) != 0)
