@@ -387,6 +387,7 @@ static long GetModTime(LPCTSTR szPath)
  */
 void CDirDoc::ReloadItemStatus(UINT nIdx)
 {
+	// Get position of item in DiffContext
 	POSITION diffpos = m_pDirView->GetItemKey(nIdx);
 
 	m_pCtxt->UpdateStatusFromDisk(diffpos); // in case just copied (into existence) or modified
@@ -432,6 +433,8 @@ void CDirDoc::SetDiffContext(CDiffContext *pCtxt)
 
 /**
  * @brief Find the CDiffContext diffpos of an item from its left & right paths
+ * @return POSITION to item, NULL if not found.
+ * @note Filenames must be same, if they differ NULL is returned.
  */
 POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 {
@@ -557,7 +560,9 @@ CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
 }
 
 /**
- * @brief Item specified has changed on disk (and is now the same if unified==true).
+ * @brief Update changed item's compare status
+ * @param unified true if files became identical, false otherwise.
+ * @note Filenames must be same, otherwise function asserts.
  */
 void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unified)
 {
@@ -569,7 +574,9 @@ void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unifie
 	UINT diffcode = (unified ? DIFFCODE::SAME : DIFFCODE::DIFF);
 
 	// Update both view and diff context memory
-	SetDiffStatus(diffcode, DIFFCODE::COMPAREFLAGS, ind);
+	SetDiffCompare(diffcode, ind);
+	ReloadItemStatus(ind);
+
 }
 
 /**
@@ -636,31 +643,40 @@ void CDirDoc::SetRecursive(BOOL bRecursive)
 	m_bRecursive = bRecursive;
 }
 
+/**
+ * @brief Set side status of diffitem
+ */
 void CDirDoc::SetDiffSide(UINT diffcode, int idx)
 {
 	SetDiffStatus(diffcode, DIFFCODE::SIDEFLAG, idx);
 }
 
+/**
+ * @brief Set compare status of diffitem
+ */
 void CDirDoc::SetDiffCompare(UINT diffcode, int idx)
 {
 	SetDiffStatus(diffcode, DIFFCODE::COMPAREFLAGS, idx);
 }
 
+/**
+ * @brief Set status for diffitem
+ * @param diffcode New code
+ * @param mask Defines allowed set of flags to change
+ * @param idx Item's index to list in UI
+ */
 void CDirDoc::SetDiffStatus(UINT diffcode, UINT mask, int idx)
 {
-	CDirView *pv = GetMainView();
-	ASSERT(pv);
-	// first change it in the dirlist
-	POSITION diffpos = pv->GetItemKey(idx);
+	// Get position of item in DiffContext 
+	POSITION diffpos = m_pDirView->GetItemKey(idx);
 
 	// TODO: Why is the update broken into these pieces ?
 	// Someone could figure out these pieces and probably simplify this.
 
-	// update DIFFITEM code (comparison result)
+	// Update DIFFITEM code (comparison result) to DiffContext
 	m_pCtxt->SetDiffStatusCode(diffpos, diffcode, mask);
 
 	// update DIFFITEM time (and other disk info), and tell views
-	ReloadItemStatus(idx);
 }
 
 

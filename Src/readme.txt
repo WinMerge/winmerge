@@ -10,6 +10,9 @@
  Code cleanup: use SetDiffCompare() and SetDiffSide()
   (I think those functions were designed to be used instead of SetDiffStatus())
   WinMerge: DirActions.cpp
+ Don't update filedata multiple times + comment changes/updates
+  (In journey to solve BUG: 840547 Copying unique file does not update date and size
+  WinMerge: DirActions.cpp DirDoc.cpp DirView.cpp
 
 2003-11-13 Laoran 
  modify the assert in GetText/GetTextWithoutEmptys (see patch #837480)

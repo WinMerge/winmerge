@@ -304,6 +304,7 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 			{
 				GetDocument()->SetDiffSide(DIFFCODE::BOTH, act.idx);
 				GetDocument()->SetDiffCompare(DIFFCODE::SAME, act.idx);
+				GetDocument()->ReloadItemStatus(act.idx);
 			}
 			else
 			{
@@ -348,6 +349,7 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 					{
 						GetDocument()->SetDiffSide(DIFFCODE::RIGHT, act.idx);
 						GetDocument()->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
+						GetDocument()->ReloadItemStatus(act.idx);
 					}
 				}
 				else
@@ -372,6 +374,7 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 					{
 						GetDocument()->SetDiffSide(DIFFCODE::LEFT, act.idx);
 						GetDocument()->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
+						GetDocument()->ReloadItemStatus(act.idx);
 					}
 				}
 				else

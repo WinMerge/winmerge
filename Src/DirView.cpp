@@ -740,6 +740,10 @@ void CDirView::DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI)
 	}
 }
 
+/**
+ * @brief Get keydata associated with item in given index
+ * @param idx Item's index to list in UI
+ */
 POSITION CDirView::GetItemKey(int idx) const
 {
 	return GetItemKeyFromData(m_pList->GetItemData(idx));
@@ -770,7 +774,10 @@ void CDirView::DeleteAllDisplayItems()
 	m_pList->DeleteAllItems();
 }
 
-// given key, get index of item which has it stored
+/**
+ * @brief Given key, get index of item which has it stored.
+ * This function searches from list in UI.
+ */
 int CDirView::GetItemIndex(DWORD key)
 {
 	LVFINDINFO findInfo;
