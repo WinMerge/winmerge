@@ -154,6 +154,9 @@
           $temp .= "</ul>\n";
           break;
       }
+      $temp .= "<ul>\n";
+      $temp .= "  <li><a href=\"/links.php\">Links</a></li>\n";
+      $temp .= "</ul>\n";
       $temp .= "<h2>Support</h2>\n";
       $temp .= "<ul>\n";
       $temp .= "  <li><a href=\"http://sourceforge.net/mail/?group_id=13216\">Mailing Lists</a></li>\n";

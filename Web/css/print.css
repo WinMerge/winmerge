@@ -34,6 +34,11 @@ pre.code {
 	border: 1px solid black;
 }
 
+acronym {
+	cursor: help;
+	border-bottom: 1px dotted black;
+}
+
 .noprint {
 	display: none;
 }

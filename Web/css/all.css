@@ -51,6 +51,11 @@ pre.code {
 	border: 1px solid black;
 }
 
+acronym {
+	cursor: help;
+	border-bottom: 1px dotted black;
+}
+
 /* Status of translations */
 #status {
 	border-collapse: collapse;
