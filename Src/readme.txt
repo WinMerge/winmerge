@@ -1,3 +1,7 @@
+2004-01-19 Perry
+ PATCH: [ 880046 ] Save every line including last one in SaveToFile
+  src: MergeDoc.cpp
+
 2004-01-19 Kimmo
  PATCH: 876875 Go To -Dialog
   Fix crash in GotoDlg. This was in latest patch, but I merged part of older patch :(
@@ -14,6 +18,8 @@
   src: ChildFrm.h DirFrame.h DirView.h EditFile.h FilepathEdit.h
    GhostTextBuffer.h GhostTextView.h MainFrm.h Merge.h MergeDoc.h
    PropGeneral.h PropVss.h StdAfx.h VssPrompt.h
+ PATCH: [ 880046 ] Save every line including last one in SaveToFile
+  src: MergeDoc.cpp
 
 2004-01-18 Kimmo
  PATCH: 876875 Go To -Dialog
