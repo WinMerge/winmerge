@@ -4,6 +4,9 @@
   Src/Common: OptionsMgr.cpp OptionsMgr.cpp
   Src: Merge.rc PropColor.cpp PropColors.h resource.h
   Languages: recource.h *.rc
+ PATCH: [ 908211 ] DiffContext.h should not include RegExp.h
+  Submitted by Perry
+  Src: DiffContext.h DirDoc.h
   
 2004-03-02 Kimmo
  PATCH: [ 907087 ] Allow commandline switches for external editor

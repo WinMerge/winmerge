@@ -10,7 +10,6 @@
 #define AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_
 #pragma once
 
-#include "RegExp.h"
 
 struct dirdata
 {

@@ -37,6 +37,10 @@
 #include "diffThread.h"
 #include "DiffWrapper.h"
 
+#ifndef REGEXP_H
+#include "RegExp.h"
+#endif
+
 class CMergeDoc;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocPtrList;
 class DirDocFilterGlobal;
