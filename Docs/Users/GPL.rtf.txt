@@ -5,6 +5,9 @@ Where did I get the text?
 http://www.gnu.org/licenses/gpl.html
 
 How did I change it?
-I removed all target hyperlinks(hyperlinks that scroll to different points in the same document).  Therefore their removal doesn't void the legal or literal functionality of the license.  I also lowered the font sizes to 12/10 and Arial for readability.  This font selection was also to match the sizes used in Read Me.rtf also used in the installer.  Once I had made these changes to the HTML content I copied and pasted it from MS Word to Wordpad knowing that wordpad would use less markup (19KB vs. 31KB).    
+I removed all target hyperlinks(hyperlinks that scroll to different points in the same document).  Therefore their removal doesn't void the legal or literal functionality of the license.  I also lowered the font sizes to 12/10 and Arial for readability.  This font selection was also to match the sizes used in Read Me.rtf also used in the installer.  Once I had made these changes to the HTML content I copied and pasted it from MS Word to Wordpad knowing that wordpad would use less markup (19KB vs. 31KB).  
+
+How Can I translate it?
+Well you probably don't have to just go to http://www.gnu.org/licenses/translations.html and create an RTF version of your language.  Please be sure to make the 100% arial.  Remove all hyperlinks replacing them with plain text "Description HTTP://SomeURL.net".  The other thing is headings are bold size 12 and regular text is plain size 10.   
 
 -Seier Blackburn
