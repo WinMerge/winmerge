@@ -1,6 +1,10 @@
 2004-05-13 Kimmo
  Backout last change to Merge.rc - restore version 1.187
   Src: Merge.rc
+ BUG: [ 953232 ] Some lang-files broken
+  Backout last changes to lang files (see bug item for details)
+   Src/Languages: MergeBulgarian.rc MergeChineseSimplified.rc
+    MergeChineseTraditional.rc MergeKorean.rc MergeRussian.rc
 
 2004-05-13 Perry
  PATCH: [ 950530 ] Remove unneeded cast in DirView.cpp
