@@ -3,6 +3,8 @@
   Src: MergeDoc.cpp
  PATCH: [ 937441 ] CMergeEditView:Avoid calling SelectDiff when no current diff
    Src: MergeEditView.cpp
+ BUG: [ 936079 ] castellano options
+   Src/Languages/Spanish: MergeSpanish.rc
 
 2004-04-18 Kimmo
  PATCH: [ 934738 ] CopyLeftTo/CopyRightTo Including Common Subdirectories
