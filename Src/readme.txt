@@ -6,6 +6,7 @@
   Src: MergeDoc.cpp MergeDoc.h
   Src/Common: UniFile.cpp
  PATCH: [ 1002432 ] codepage UI version 2
+  Patch by Perry and Laoran
   Src: ConfigLog.cpp ConfigLog.h DirDoc.cpp DirScan.cpp MainFrm.cpp Merge.dsp
    Merge.rc OptionsDef.h PropGeneral.cpp PropGeneral.h resource.h
   Src new files: codepage.cpp codepage.h PropCodepage.cpp PropCodepage.h
