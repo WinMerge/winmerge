@@ -208,7 +208,17 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 				bBinary = TRUE;
 				break;
 			}
-			ch = ucr::GetUtf8Char(lpByte);
+			// Handle bad UTF-8
+			// (Convert bad bytes individually to '?'
+			if (utf8len<1)
+			{
+				utf8len=1;
+				ch = '?';
+			}
+			else
+			{
+				ch = ucr::GetUtf8Char(lpByte);
+			}
 		}
 		else
 		{

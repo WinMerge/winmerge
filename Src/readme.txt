@@ -1,3 +1,7 @@
+2003-09-30 Perry
+ PATCH: [ 814829 ] Fix handle bad utf8
+  WinMerge: files.cpp
+
 2003-09-30 Kimmo
  PATCH: [ 814830 ] Prevent rescan of scanning dirdoc
   Submitted by Perry
