@@ -1544,6 +1544,10 @@ END
 STRINGTABLE
 BEGIN
     IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
+    ID_DIR_ZIP_LEFT         "Add items from left side to archive"
+    ID_DIR_ZIP_RIGHT        "Add items from right side to archive"
+    ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
+    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT

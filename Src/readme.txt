@@ -15,6 +15,9 @@
  PATCH: [ 962509 ] Copy pathnames and filenames from directory compare
   Src: DirView.cpp DirView.h Merge.rc resource.h
   Src/languages: *.rc resource.h
+ BUG: [ 962449 ] Zip* items in dircompare context menu don't have help text
+  Src: Merge.rc
+  Src/languages: *.rc
 
 2004-05-30 Laoran
  BUG: [ 909779 ] Uninitialised variable in CGhostTextBuffer::DeleteText() ; fix the fix !
