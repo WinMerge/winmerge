@@ -1,4 +1,6 @@
-2004-0228 Kimmo
+2004-02-28 WinMerge experimental release 2.1.5.12 (cvs)
+
+2004-02-28 Kimmo
  PATCH: [ 906120 ] Improve error handling for dircompare fileoperations
   Src: DirActions.cpp
  PATCH: [ 906224 ] Convert more options to new system
