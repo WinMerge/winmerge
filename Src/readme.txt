@@ -15,6 +15,8 @@
    DirViewColItems.cpp DirViewColItems.h
  Bugfix: CDiffContext::AddDiff was not setting diff context subdir from argument.
   WinMerge:: DiffContext.cpp
+ Bugfix: Don't prefix subdirectories with dot in ColPathGet.
+  WinMerge: DirViewColItems.cpp
 
 2003-08-22 Kimmo
  PATCH: [ 787495 ] Create diffutils class (CDiffWrapper)

@@ -47,9 +47,10 @@ static CString ColNameGet(const DIFFITEM & di)
 }
 static CString ColPathGet(const DIFFITEM & di)
 {
-	CString s = _T(".");
-	s += di.sSubdir;
-	return s;
+	if (di.sSubdir.IsEmpty())
+		return _T(".");
+	else
+		return di.sSubdir;
 }
 static CString ColStatusGet(const DIFFITEM & di)
 {
