@@ -262,6 +262,7 @@ BEGIN
             MENUITEM "&Right",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Both",                       ID_DIR_DEL_BOTH
         END
+        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Open Left"
         BEGIN
@@ -1624,6 +1625,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "Excluir o objeto selecionado a esquerda"
     ID_DIR_DEL_RIGHT        "Excluir o objeto selecionado a direita"
     ID_DIR_DEL_BOTH         "Excluir o(s) arquivo(s) selecionado(s) em ambos os lados"
+    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
     IDS_COPY_TO_LEFT        "Right to Left (%1)"
     IDS_COPY_TO_RIGHT       "Left to Right (%1)"
     IDS_COPY_TO_LEFT2       "Right to Left (%1 of %2)"
@@ -1632,12 +1634,12 @@ BEGIN
     IDS_COPY_RIGHT_TO       "Right to... (%1)"
     IDS_COPY_LEFT_TO2       "Left to... (%1 of %2)"
     IDS_COPY_RIGHT_TO2      "Right to... (%1 of %2)"
-    IDS_DEL_LEFT_FMT        "Left (%1)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
 STRINGTABLE
 BEGIN
+    IDS_DEL_LEFT_FMT        "Left (%1)"
     IDS_DEL_RIGHT_FMT       "Right (%1)"
     IDS_DEL_BOTH_FMT        "Both (%1)"
     IDS_DEL_LEFT_FMT2       "Left (%1 of %2)"

@@ -262,6 +262,7 @@ BEGIN
             MENUITEM "De la &dreta",                ID_DIR_DEL_RIGHT
             MENUITEM "D'&ambdós costats",           ID_DIR_DEL_BOTH
         END
+        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Obre l'&esquerra"
         BEGIN
@@ -1524,6 +1525,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "Suprimeix els elements seleccionats a l'esquerra"
     ID_DIR_DEL_RIGHT        "Suprimeix els elements seleccionats a la dreta"
     ID_DIR_DEL_BOTH         "Suprimeix els element(s) seleccionat(s) a ambdues bandes"
+    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
     IDS_COPY_TO_LEFT        "Dreta a esquerra (%1)"
     IDS_COPY_TO_RIGHT       "Esquerra a dreta (%1)"
     IDS_COPY_TO_LEFT2       "Dreta a esquerra (%1 de %2)"
@@ -1532,12 +1534,12 @@ BEGIN
     IDS_COPY_RIGHT_TO       "Dreta a... (%1)"
     IDS_COPY_LEFT_TO2       "Esquerra a... (%1 de %2)"
     IDS_COPY_RIGHT_TO2      "Dreta a... (%1 de %2)"
-    IDS_DEL_LEFT_FMT        "Esquerra (%1)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
 STRINGTABLE
 BEGIN
+    IDS_DEL_LEFT_FMT        "Esquerra (%1)"
     IDS_DEL_RIGHT_FMT       "Dreta (%1)"
     IDS_DEL_BOTH_FMT        "Ambdós (%1)"
     IDS_DEL_LEFT_FMT2       "Esquerra (%1 de %2)"

@@ -161,6 +161,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_RIGHT, OnCopyRightPathnames)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_BOTH, OnCopyBothPathnames)
 	ON_COMMAND(ID_DIR_COPY_FILENAMES, OnCopyFilenames)
+	ON_COMMAND(ID_DIR_HIDE_FILENAMES, OnHideFilenames)
 	ON_COMMAND(ID_DIR_MOVE_LEFT_TO_BROWSE, OnCtxtDirMoveLeftTo)
 	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_LEFT_TO_BROWSE, OnUpdateCtxtDirMoveLeftTo)
 	ON_COMMAND(ID_DIR_MOVE_RIGHT_TO_BROWSE, OnCtxtDirMoveRightTo)
@@ -2371,6 +2372,38 @@ void CDirView::OnCopyFilenames()
 		}
 	}
 	PutToClipboard(strPaths, mf->GetSafeHwnd());
+}
+
+/**
+ * @brief hide selected item filenames (removes them from the ListView)
+ */
+void CDirView::OnHideFilenames()
+{
+	int sel = -1;
+	int Cnt = 0, Max = 1000;
+	int *pCells = new int[Max];
+	// Build a dynamic int array, storing a sorted list of selected cells
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		if (Cnt == Max)
+		{
+			Max += 1000;	// Grow the array of selections
+			int *pCellsTmp = new int[Max];
+			memcpy(pCellsTmp, pCells, sizeof(int)*Cnt);
+			delete[] pCells;
+			pCells = pCellsTmp;
+		}
+		pCells[Cnt++] = sel;
+	}
+	if (Cnt)
+	{
+		// Remove cells in reverse order (largest to smallest count).
+		m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
+		while (Cnt--)
+			m_pList->DeleteItem(pCells[Cnt]);
+		m_pList->SetRedraw(TRUE);	// Turn updating back on
+	}
+	delete[] pCells;
 }
 
 /// User chose (context menu) Move left to...

@@ -1,6 +1,10 @@
 2005-01-10 Kimmo
  Add Hungarian to resource.h updates in UpdateAll_resource_h.bat
   Src/Languages: UpdateAll_resource_h.bat
+ PATCH: [ 1099011 ] Added "Hide files" to right click menu (onthefly filter)
+  Submitted by Jim Fougeron
+  Src: DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
 
 2005-01-09 Kimmo
  PATCH: [ 1019445 ] IDS_WINMERGE_THIS_DIRECTORY is unused

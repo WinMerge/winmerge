@@ -262,6 +262,7 @@ BEGIN
             MENUITEM "&Høyre",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Begge",                       ID_DIR_DEL_BOTH
         END
+        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Åpne venstre"
         BEGIN
@@ -1620,6 +1621,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "Slett valgte elementer til venstre"
     ID_DIR_DEL_RIGHT        "Slett valgte elementer til høyre"
     ID_DIR_DEL_BOTH         "Slett de valgte element(er) på begge sider"
+    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
     IDS_COPY_TO_LEFT        "Høyre til venstre (%1)"
     IDS_COPY_TO_RIGHT       "Venstre til høyre (%1)"
     IDS_COPY_TO_LEFT2       "Høyre til venstre (%1 av %2)"
@@ -1628,12 +1630,12 @@ BEGIN
     IDS_COPY_RIGHT_TO       "Høyre til... (%1)"
     IDS_COPY_LEFT_TO2       "Venstre til... (%1 av %2)"
     IDS_COPY_RIGHT_TO2      "Høyre til... (%1 av %2)"
-    IDS_DEL_LEFT_FMT        "Venstre (%1)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
 STRINGTABLE
 BEGIN
+    IDS_DEL_LEFT_FMT        "Venstre (%1)"
     IDS_DEL_RIGHT_FMT       "Høyre (%1)"
     IDS_DEL_BOTH_FMT        "Begge (%1)"
     IDS_DEL_LEFT_FMT2       "Venstre (%1 av %2)"

@@ -262,6 +262,7 @@ BEGIN
             MENUITEM "右(&R)",                      ID_DIR_DEL_RIGHT
             MENUITEM "両側(&B)",                    ID_DIR_DEL_BOTH
         END
+        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "左を開く(&O)"
         BEGIN
@@ -1511,6 +1512,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "左の選択された項目を削除します"
     ID_DIR_DEL_RIGHT        "右の選択された項目を削除します"
     ID_DIR_DEL_BOTH         "両側の選択された項目を削除します"
+    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
     IDS_COPY_TO_LEFT        "右から左 (%1)"
     IDS_COPY_TO_RIGHT       "左から右 (%1)"
     IDS_COPY_TO_LEFT2       "右を左に (%1 / %2)"
@@ -1519,12 +1521,12 @@ BEGIN
     IDS_COPY_RIGHT_TO       "右をコピー... (%1)"
     IDS_COPY_LEFT_TO2       "左をコピー... (%1/%2)"
     IDS_COPY_RIGHT_TO2      "右をコピー... (%1/%2)"
-    IDS_DEL_LEFT_FMT        "左 (%1)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
 STRINGTABLE
 BEGIN
+    IDS_DEL_LEFT_FMT        "左 (%1)"
     IDS_DEL_RIGHT_FMT       "右 (%1)"
     IDS_DEL_BOTH_FMT        "両側 (%1)"
     IDS_DEL_LEFT_FMT2       "左 (%1 / %2)"

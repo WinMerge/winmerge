@@ -262,6 +262,7 @@ BEGIN
             MENUITEM "오른쪽만(&R)",                ID_DIR_DEL_RIGHT
             MENUITEM "모두(&B)",                    ID_DIR_DEL_BOTH
         END
+        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "왼쪽 파일 열기(&O)"
         BEGIN
@@ -1505,6 +1506,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "선택한 파일 중 왼쪽 파일만 삭제합니다."
     ID_DIR_DEL_RIGHT        "선택한 파일 중 오른쪽 파일만 삭제합니다."
     ID_DIR_DEL_BOTH         "선택한 파일을 양쪽 모두에서 삭제합니다."
+    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
     IDS_COPY_TO_LEFT        "왼쪽으로 (%1)"
     IDS_COPY_TO_RIGHT       "오른쪽으로 (%1)"
     IDS_COPY_TO_LEFT2       "왼쪽으로 (%1 of %2)"
@@ -1513,12 +1515,12 @@ BEGIN
     IDS_COPY_RIGHT_TO       "오른쪽파일 위치지정 복사 (%1)"
     IDS_COPY_LEFT_TO2       "왼쪽파일 위치지정 복사 (%1 of %2)"
     IDS_COPY_RIGHT_TO2      "오른쪽파일 위치지정 복사 (%1 of %2)"
-    IDS_DEL_LEFT_FMT        "왼쪽 (%1)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
 STRINGTABLE
 BEGIN
+    IDS_DEL_LEFT_FMT        "왼쪽 (%1)"
     IDS_DEL_RIGHT_FMT       "오른쪽 (%1)"
     IDS_DEL_BOTH_FMT        "모두 (%1)"
     IDS_DEL_LEFT_FMT2       "왼쪽 (%1 of %2)"

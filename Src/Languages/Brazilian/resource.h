@@ -747,6 +747,7 @@
 #define ID_DIR_ZIP_BOTH_DIFFS_ONLY      32979
 #define ID_DIR_MOVE_LEFT_TO_BROWSE      32980
 #define ID_DIR_MOVE_RIGHT_TO_BROWSE     32981
+#define ID_DIR_HIDE_FILENAMES           32982
 
 #define ID_SCRIPT_FIRST                 32992
 #define ID_SCRIPT_LAST                  33039

@@ -267,6 +267,7 @@ BEGIN
             MENUITEM "Справа",                      ID_DIR_DEL_RIGHT
             MENUITEM "Оба",                         ID_DIR_DEL_BOTH
         END
+        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Открыть левый файл"
         BEGIN
@@ -1518,6 +1519,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "Удалить выбранный элемент слева"
     ID_DIR_DEL_RIGHT        "Удалить выбранный элемент справа"
     ID_DIR_DEL_BOTH         "Удалить выбранные элементы с обоих сторон"
+    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
     IDS_COPY_TO_LEFT        "Скопировать на левую сторону %1 из %2 выбранных элементов"
     IDS_COPY_TO_RIGHT       "Скопировать на правую сторону %1 из %2 выбранных элементов"
     IDS_COPY_TO_LEFT2       "Справа налево (%1 из %2)"
@@ -1526,12 +1528,12 @@ BEGIN
     IDS_COPY_RIGHT_TO       "Справа на... (%1)"
     IDS_COPY_LEFT_TO2       "Слева на... (%1 из %2)"
     IDS_COPY_RIGHT_TO2      "Справа на... (%1 из %2)"
-    IDS_DEL_LEFT_FMT        "Слева (%1)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
 STRINGTABLE
 BEGIN
+    IDS_DEL_LEFT_FMT        "Слева (%1)"
     IDS_DEL_RIGHT_FMT       "Удалить %1 из %2 выбранных элементов с правой стороны"
     IDS_DEL_BOTH_FMT        "Удалить с обеих сторон %1 из %2 выбранных элементов"
     IDS_DEL_LEFT_FMT2       "Слева (%1 из %2)"

@@ -301,6 +301,7 @@ protected:
 	afx_msg void OnCopyRightPathnames();
 	afx_msg void OnCopyBothPathnames();
 	afx_msg void OnCopyFilenames();
+	afx_msg void OnHideFilenames();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnCtxtDirMoveLeftTo();
 	afx_msg void OnUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);
