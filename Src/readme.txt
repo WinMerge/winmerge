@@ -1,3 +1,6 @@
+2003-02-07
+ Added 24 missing languages
+
 2003-02-05  Perry
  Updated Brazilian & Spanish resources to sync with English/main resources.
 

@@ -582,10 +582,6 @@ SOURCE=.\VssPrompt.cpp
 !ENDIF 
 
 # End Source File
-# Begin Source File
-
-SOURCE=D:\data\html\WinMergeChanges.html
-# End Source File
 # End Group
 # Begin Group "Header Files"
 
