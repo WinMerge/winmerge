@@ -1,5 +1,7 @@
 2003-10-25 Laoran
- [ 830072 ] "Unload script" does not work
+ BUG: [ 830076 ] Context menu plugins change ghost lines to real lines
+  WinMerge: GhostTextView.cpp GhostTextView.h MergeEditView.cpp
+ BUG: [ 830072 ] "Unload script" does not work
   WinMerge: FileTransform.cpp MergeEditView.cpp
 
 2003-10-25 Perry

@@ -89,6 +89,8 @@ public:
 	/** real cursor function to preserve cursor during Rescan */
 	void PushCursors ();
 
+	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, int nCrlfStyle =CRLF_STYLE_AUTOMATIC );
+
 	int ComputeApparentLine (int nRealLine) const;
 	int ComputeRealLine (int nApparentLine) const;
 

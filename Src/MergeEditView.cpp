@@ -211,7 +211,7 @@ CString CMergeEditView::GetSelectedText()
 	CPoint ptStart, ptEnd;
 	CString strText;
 	GetSelection(ptStart, ptEnd);
-	GetText(ptStart, ptEnd, strText);
+	GetTextWithoutEmptys(ptStart.y, ptStart.x, ptEnd.y, ptEnd.x, strText);
 	return strText;
 }
 

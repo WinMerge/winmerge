@@ -173,8 +173,10 @@ int CGhostTextView::ComputeApparentLine (int nRealLine) const
 	return m_pGhostTextBuffer->ComputeApparentLine(nRealLine);
 }
 
-
-
-
-
-
+void CGhostTextView::GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, int nCrlfStyle /*=CRLF_STYLE_AUTOMATIC*/ )
+{
+  if (m_pGhostTextBuffer != NULL)
+    m_pGhostTextBuffer->GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, text, nCrlfStyle);
+  else
+    text = _T ("");
+}
