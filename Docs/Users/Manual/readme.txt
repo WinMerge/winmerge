@@ -13,6 +13,8 @@
   Manual: Configuration.xml
  BUG: [ 1034766 ] 2.2 docs yet more minor tweaking (from Perry)
   Manual: Whatsnew_2_1.xml
+ Oops! Forgot Japanese in patch #1034717
+  Manual: Locales.xml
 
 2004-09-25 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations
