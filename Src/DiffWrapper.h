@@ -40,6 +40,18 @@ enum
 };
 
 /**
+ * @brief Whitespace options
+ *
+ * DIFFOPTIONS structs nIgnoreWhitespace can have these values
+ */
+enum
+{
+	WHITESPACE_COMPARE_ALL = 0,
+	WHITESPACE_IGNORE_CHANGE,
+	WHITESPACE_IGNORE_ALL
+};
+
+/**
  * @brief One difference defined by linenumbers.
  *
  * This struct defines one set of different lines "diff".

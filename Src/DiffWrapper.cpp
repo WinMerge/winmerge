@@ -384,9 +384,9 @@ void CDiffWrapper::InternalGetOptions(DIFFOPTIONS *options)
 	int nIgnoreWhitespace = 0;
 
 	if (m_settings.ignoreAllSpace)
-		nIgnoreWhitespace = 2;
+		nIgnoreWhitespace = WHITESPACE_IGNORE_ALL;
 	else if (m_settings.ignoreSpaceChange)
-		nIgnoreWhitespace = 1;
+		nIgnoreWhitespace = WHITESPACE_IGNORE_CHANGE;
 
 	options->nIgnoreWhitespace = nIgnoreWhitespace;
 	options->bIgnoreBlankLines = m_settings.ignoreBlankLines;
@@ -400,15 +400,15 @@ void CDiffWrapper::InternalGetOptions(DIFFOPTIONS *options)
  */
 void CDiffWrapper::InternalSetOptions(DIFFOPTIONS *options)
 {
-	m_settings.ignoreAllSpace = (options->nIgnoreWhitespace == 2);
-	m_settings.ignoreSpaceChange = (options->nIgnoreWhitespace == 1);
+	m_settings.ignoreAllSpace = (options->nIgnoreWhitespace == WHITESPACE_IGNORE_ALL);
+	m_settings.ignoreSpaceChange = (options->nIgnoreWhitespace == WHITESPACE_IGNORE_CHANGE);
 	m_settings.ignoreBlankLines = options->bIgnoreBlankLines;
 	m_settings.ignoreEOLDiff = !options->bEolSensitive;
 	m_settings.ignoreCase = options->bIgnoreCase;
-	m_settings.ignoreSomeChanges = (options->nIgnoreWhitespace != 0) ||
+	m_settings.ignoreSomeChanges = (options->nIgnoreWhitespace != WHITESPACE_COMPARE_ALL) ||
 		options->bIgnoreCase || options->bIgnoreBlankLines ||
 		!options->bEolSensitive;
-	m_settings.lengthVaries = (options->nIgnoreWhitespace!=0);
+	m_settings.lengthVaries = (options->nIgnoreWhitespace != WHITESPACE_COMPARE_ALL);
 }
 
 /**
