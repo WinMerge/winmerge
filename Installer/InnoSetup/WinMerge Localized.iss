@@ -9,7 +9,7 @@
 ;                           throughout the script in the header.  If you search this plain text script for a particular file in our CVS and it
 ;                           doesn't appear then this script is not directly dependant on that file.
 ;Compilation Instructions:  1.  Open this file in Inno Setup or ISTool
-;                           2.  Make sure Compression=7Zip/Ultra, InternalCompressLevel=Ultra, and SolidCompression=True these values are lowered during
+;                           2.  Make sure Compression=LZMA/Ultra, InternalCompressLevel=Ultra, and SolidCompression=True these values are lowered during
 ;                               development to speed up compilation, however at release we want the intaller to be as strong as possible.
 ;                           3.  Compile the script:
 ;                                   -From Inno Setup "Click "Build" --> "Compile"
