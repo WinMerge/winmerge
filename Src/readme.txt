@@ -1,3 +1,7 @@
+2003-11-02 Kimmo
+ BUG: (part of) [ 829435 ] Fix character classification routines for UNICODE
+  WinMerge: MainFrm.cpp MergeDoc.cpp Paths.h Paths.cpp
+
 2003-11-02 Laoran
  BUG: [ 834490 ] Ignore blank lines disabled when ignore EOL
   WinMerge: UTIL.C

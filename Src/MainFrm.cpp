@@ -685,7 +685,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			SplitFilename(strSavePath, &spath, &sname, 0);
 			if (!spath.IsEmpty())
 			{
-				_chdrive(toupper(spath[0])-'A'+1);
+				_chdrive(_totupper(spath[0])-'A'+1);
 				_tchdir(spath);
 			}
 			CString args;
@@ -876,7 +876,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			SplitFilename(strSavePath, &spath, &sname, 0);
 			if (!spath.IsEmpty())
 			{
-				_chdrive(toupper(spath[0])-'A'+1);
+				_chdrive(_totupper(spath[0])-'A'+1);
 				_tchdir(spath);
 			}
 			DWORD code;

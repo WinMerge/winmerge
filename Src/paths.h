@@ -1,3 +1,11 @@
+/** 
+ * @file  paths.h
+ *
+ * @brief Declaration file for path routines
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #ifndef paths_h_included
 #define paths_h_included
 

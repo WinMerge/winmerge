@@ -2128,7 +2128,7 @@ static bool casematch(BOOL case_sensitive, TCHAR ch1, TCHAR ch2)
 	if (case_sensitive) 
 		return ch1==ch2;
 	else 
-		return toupper(ch1)==toupper(ch2);
+		return _totupper(ch1)==_totupper(ch2);
 }
 
 /**

@@ -1,3 +1,11 @@
+/** 
+ * @file  paths.cpp
+ *
+ * @brief Path handling routines
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #include "stdafx.h"
 #include "paths.h"
 
@@ -137,7 +145,7 @@ CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 		{
 			// relative path
 			TCHAR chdrv = sBuffer[0];
-			if (islower(chdrv)) chdrv = toupper(chdrv);
+			if (_istlower(chdrv)) chdrv = _totupper(chdrv);
 			if (chdrv == paths_GetCurrentDriveUpper())
 			{
 				// relative on current drive, so prepend current directory
@@ -240,8 +248,8 @@ TCHAR paths_GetCurrentDriveUpper()
 	TCHAR curdir[_MAX_PATH];
 	if (!GetCurrentDirectory(sizeof(curdir)/sizeof(curdir[0]), curdir))
 		return 'C';
-	if (__isascii(curdir[0]) && islower(curdir[0]))
-		curdir[0] = _toupper(curdir[0]);
+	if (__isascii(curdir[0]) && _istlower(curdir[0]))
+		curdir[0] = _totupper(curdir[0]);
 	return curdir[0];
 }
 
