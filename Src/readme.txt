@@ -1,3 +1,7 @@
+2003-10-15 Kimmo
+ PATCH: [ 823382 ] Save As should update filename
+  WinMerge: MergeDoc.h MergeDoc.cpp
+
 2003-10-14 Laoran
  PATCH: [ 819123 ] Half-wait cursor during rescan (new try)
   WinMerge: DirDoc.cpp DirDoc.h MainFrm.cpp MainFrm.h WaitStatusCursor.cpp WaitStatusCursor.h

@@ -640,14 +640,16 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 
 /**
  * @brief Asks from filename to save from user and save file
- * @param strPath Initial path shown to user
+ * @param strPath Initial path shown to user,
+ * path to new filename returned if saving succeeds
  * @param bSaveSuccess Returns if saving itself succeeded/failed
  * @return False when saving fails, so we can ask again
  */
-BOOL CMergeDoc::TrySaveAs(CString strPath, BOOL &bSaveSuccess, BOOL bLeft)
+BOOL CMergeDoc::TrySaveAs(CString &strPath, BOOL &bSaveSuccess, BOOL bLeft)
 {
 	BOOL result = TRUE;
 	CString s;
+	CString strSavePath;
 	CString title;
 
 	bSaveSuccess = FALSE;
@@ -658,14 +660,17 @@ BOOL CMergeDoc::TrySaveAs(CString strPath, BOOL &bSaveSuccess, BOOL bLeft)
 		VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
 		if (SelectFile(s, strPath, title, NULL, FALSE))
 		{
-			strPath = s;
+			strSavePath = s;
 			if (bLeft)
-				bSaveSuccess = m_ltBuf.SaveToFile(strPath, FALSE);
+				bSaveSuccess = m_ltBuf.SaveToFile(strSavePath, FALSE);
 			else
-				bSaveSuccess = m_rtBuf.SaveToFile(strPath, FALSE);
+				bSaveSuccess = m_rtBuf.SaveToFile(strSavePath, FALSE);
 
 			if (bSaveSuccess)
+			{
+				strPath = strSavePath;
 				UpdateHeaderPath(bLeft);
+			}
 			else
 				result = FALSE;
 		}
@@ -1562,9 +1567,17 @@ void CMergeDoc::OnFileSaveAsLeft()
 	{
 		bSaveSuccess = m_ltBuf.SaveToFile(s, FALSE);
 		if (!bSaveSuccess)
+		{
 			// Saving failed, user may save to another location if wants to
 			while (!result)
 				result = TrySaveAs(s, bSaveSuccess, TRUE);
+		}
+		else
+		{
+			// Update filename
+			m_strLeftFile = s;
+			UpdateHeaderPath(TRUE);
+		}
 	}
 }
 
@@ -1583,9 +1596,17 @@ void CMergeDoc::OnFileSaveAsRight()
 	{
 		bSaveSuccess = m_rtBuf.SaveToFile(s, FALSE);
 		if (!bSaveSuccess)
+		{
 			// Saving failed, user may save to another location if wants to
 			while (!result)
 				result = TrySaveAs(s, bSaveSuccess, FALSE);
+		}
+		else
+		{
+			// Update filename
+			m_strRightFile = s;
+			UpdateHeaderPath(FALSE);
+		}
 	}
 }
 
