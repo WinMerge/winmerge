@@ -1,4 +1,6 @@
 2003-09-11 Laoran
+ PATCH: [ 804408 ] Fixes to help compile release version
+  WinMerge: Merge.dsp 
  PATCH: [ 797821 ] GUI for the file EOL option
   WinMerge: ChildFrm.cpp GhostTextBuffer.cpp MainFrm.cpp MainFrm.h Merge.rc MergeDoc.cpp 
    MergeDoc.h MergeEditView.cpp MergeEditView.h PropGeneral.cpp PropGeneral.h resource.h

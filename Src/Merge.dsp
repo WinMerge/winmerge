@@ -53,7 +53,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
+# ADD LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
 TargetPath=\dev\sf\wm\cvsver\Build\MergeRelease\WinMerge.exe
@@ -196,11 +196,11 @@ SOURCE=.\DiffThread.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\DiffWrapper.cpp
+SOURCE=.\DiffViewBar.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\DiffViewBar.cpp
+SOURCE=.\DiffWrapper.cpp
 # End Source File
 # Begin Source File
 
@@ -280,15 +280,7 @@ SOURCE=.\DirViewColItems.cpp
 # Begin Source File
 
 SOURCE=..\common\dllproxy.c
-
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -406,15 +398,7 @@ SOURCE=..\common\LogFile.cpp
 # Begin Source File
 
 SOURCE=..\common\lwdisp.c
-
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -734,15 +718,15 @@ SOURCE=.\DiffThread.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\DiffViewBar.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\DiffWrapper.h
 # End Source File
 # Begin Source File
 
 SOURCE=.\DirColsDlg.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\DiffViewBar.h
 # End Source File
 # Begin Source File
 
