@@ -1,3 +1,7 @@
+2004-01-29 Kimmo
+ PATCH: [ 885092 ] CMergeDoc::DoSave() cleanup
+  src: MergeDoc.h MergeDoc.cpp
+
 2004-01-27 Kimmo
  PATCH: [ 884301 ] Modified Visual Basic syntax highlighting
   Submitted by Tim Gerundt
