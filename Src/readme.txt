@@ -1,3 +1,8 @@
+2004-09-24 Kimmo
+ PATCH: [ 1033678 ] Better description for 'Reset messageboxes'
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2004-09-23 Kimmo
  PATCH: [ 1032841 ] Add 'DiffEngine' filegroup to project file
   Src: Merge.dsp

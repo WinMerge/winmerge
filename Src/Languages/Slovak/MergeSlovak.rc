@@ -492,10 +492,10 @@ BEGIN
     CONTROL         "Automatically verify paths in Open-dialog",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,206,10
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,167,77,49,13,NOT
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "Press button to reset all message boxes",IDC_STATIC,7,
-                    79,157,8
+    LTEXT           "WinMerge allows hiding some common messageboxes. Press button to make all messageboxes visible again.",
+                    IDC_STATIC,7,79,168,31
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
