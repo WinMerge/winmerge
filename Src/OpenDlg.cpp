@@ -63,6 +63,7 @@ COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
 
 	m_pathsType = DOES_NOT_EXIST;
 	m_bFileFilterSelected = FALSE;
+	m_bOverwriteRecursive = FALSE;
 }
 
 void COpenDlg::DoDataExchange(CDataExchange* pDX)
@@ -298,7 +299,9 @@ BOOL COpenDlg::OnInitDialog()
 
 	UpdateButtonStates();
 
-	m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0)==1;
+	if (!m_bOverwriteRecursive)
+		m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1;
+
 	m_strUnpacker = m_infoHandler.pluginName;
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);

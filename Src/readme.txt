@@ -2,6 +2,8 @@
  PATCH: [ 999681 ] Accept filter name from commandline
   Src: FilterHelper.cpp FilterHelper.h Merge.cpp Merge.rc
   Src/Languages: *.rc
+ PATCH: [ 999804 ] Fix setting recursive for Open-dialog
+  Src: MainFrm.cpp OpenDlg.cpp OpenDlg.h
 
 2004-07-28 Kimmo
  Remove suppressing checkbox from commandline help messagebox

@@ -70,6 +70,7 @@ public:
 	/// unpacker info
 	PackingInfo m_infoHandler;
 	BOOL m_bFileFilterSelected;
+	BOOL m_bOverwriteRecursive;  /**< If TRUE overwrite last used value of recursive */
 
 // Implementation data
 private:

@@ -1426,6 +1426,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		dlg.m_strLeft = strLeft;
 		dlg.m_strRight = strRight;
 		dlg.m_bRecurse = bRecurse;
+		dlg.m_bOverwriteRecursive = TRUE; // Use given value, not previously used value
 		if (dlg.DoModal() != IDOK)
 			return FALSE;
 
