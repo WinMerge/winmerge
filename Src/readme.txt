@@ -1,6 +1,8 @@
 2004-04-23 Kimmo
  PATCH: [ 940713 ] Fix for resetting dirview columns
   Src: DirViewColHandler.cpp
+ Remove deprecated keywords from RC file I added in when applying #936682.
+  Src: Merge.rc
 
 2004-04-22 Kimmo
  PATCH: [ 936682 ] Highlight syntax in unrecognized side
