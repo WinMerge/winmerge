@@ -29,6 +29,7 @@
 #include "resource.h"
 #include "coretools.h"
 #include "WaitStatusCursor.h"
+#include "dllver.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -39,11 +40,13 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CDirView
 
+enum { COLUMN_REORDER=99 };
 
 
 IMPLEMENT_DYNCREATE(CDirView, CListViewEx)
 
 CDirView::CDirView()
+: m_numcols(-1)
 {
 	m_pList=NULL;
 }
@@ -96,6 +99,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_MESSAGE(MSG_UI_UPDATE, OnUpdateUIMessage)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_UPDATE_COMMAND_UI(ID_REFRESH, OnUpdateRefresh)
+	ON_WM_TIMER()
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 END_MESSAGE_MAP()
@@ -148,35 +152,9 @@ void CDirView::OnInitialUpdate()
 	// Replace standard header with sort header
 	if (HWND hWnd = ListView_GetHeader(m_pList->m_hWnd))
 		m_ctlSortHeader.SubclassWindow(hWnd);
-        
-	int w;
-	CString sKey;
-	CString sFmt(_T("WDirHdr%d")), sSect(_T("DirView"));
 
-	sKey.Format(sFmt, DV_NAME);
-	w = max(10, theApp.GetProfileInt(sSect, sKey, 150));
-	m_pList->InsertColumn(DV_NAME, _T("Filename"), LVCFMT_LEFT, w);
-
-	sKey.Format(sFmt, DV_PATH);
-	w = max(10, theApp.GetProfileInt(sSect, sKey, 200));
-	m_pList->InsertColumn(DV_PATH, _T("Directory"), LVCFMT_LEFT, w);
-
-	sKey.Format(sFmt, DV_STATUS);
-	w = max(10, theApp.GetProfileInt(sSect, sKey, 250));
-	m_pList->InsertColumn(DV_STATUS, _T("Comparison result"), LVCFMT_LEFT, w);
-
-	sKey.Format(sFmt, DV_LTIME);
-	w = max(10, theApp.GetProfileInt(sSect, sKey, 150));
-	m_pList->InsertColumn(DV_LTIME, _T("Left Time"), LVCFMT_LEFT, w);
-
-	sKey.Format(sFmt, DV_RTIME);
-	w = max(10, theApp.GetProfileInt(sSect, sKey, 150));
-	m_pList->InsertColumn(DV_RTIME, _T("Right Time"), LVCFMT_LEFT, w);
-
-	// BSP - Create a column for the extension values
-	sKey.Format(sFmt, DV_EXT);
-	w = max(10, theApp.GetProfileInt(sSect, sKey, 150));
-	m_pList->InsertColumn(DV_EXT, _T("Extension"), LVCFMT_LEFT, w);
+	LoadColumnOrders();
+	AddColumns();
 
 	CBitmap bm;
 	VERIFY (m_imageList.Create (16, 16, ILC_MASK, 0, 1));
@@ -208,9 +186,15 @@ void CDirView::OnInitialUpdate()
 	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
 	bm.Detach();
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
-	UpdateResources();
+
+	UpdateColumnNames();
+	SetColumnWidths();
 
 	//m_ctlSortHeader.SetSortImage(m_sortColumn, m_bSortAscending);
+
+	// Allow user to rearrange columns via drag&drop of headers
+	// if they have a new enough common controls
+	m_pList->SetExtendedStyle(LVS_EX_HEADERDRAGDROP);
 }
 
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
@@ -370,32 +354,35 @@ void CDirView::DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI, eMenuType menuType)
 	}
 }
 
-void CDirView::UpdateResources()
+/// Assign column name, using string resource & current column ordering
+void CDirView::NameColumn(int id, int subitem)
 {
 	CString s;
+	VERIFY(s.LoadString(id));
 	LV_COLUMN lvc;
 	lvc.mask = LVCF_TEXT;
-
-	VERIFY(s.LoadString(IDS_FILENAME_HEADER));
 	lvc.pszText = (LPTSTR)((LPCTSTR)s);
-	m_pList->SetColumn(DV_NAME, &lvc);
-	VERIFY(s.LoadString(IDS_EXTENSION_HEADER));
-	lvc.pszText = (LPTSTR)((LPCTSTR)s);
-	m_pList->SetColumn(DV_EXT, &lvc);
-	VERIFY(s.LoadString(IDS_DIR_HEADER));
-	lvc.pszText = (LPTSTR)((LPCTSTR)s);
-	m_pList->SetColumn(DV_PATH, &lvc);
-	VERIFY(s.LoadString(IDS_RESULT_HEADER));
-	lvc.pszText = (LPTSTR)((LPCTSTR)s);
-	m_pList->SetColumn(DV_STATUS, &lvc);
-	VERIFY(s.LoadString(IDS_LTIME_HEADER));
-	lvc.pszText = (LPTSTR)((LPCTSTR)s);
-	m_pList->SetColumn(DV_LTIME, &lvc);
-	VERIFY(s.LoadString(IDS_RTIME_HEADER));
-	lvc.pszText = (LPTSTR)((LPCTSTR)s);
-	m_pList->SetColumn(DV_RTIME, &lvc);
+	m_pList->SetColumn(m_colorder[subitem], &lvc);
 }
 
+/// Load column names from string table
+void CDirView::UpdateColumnNames()
+{
+	NameColumn(IDS_FILENAME_HEADER, DV_NAME);
+	NameColumn(IDS_EXTENSION_HEADER, DV_EXT);
+	NameColumn(IDS_DIR_HEADER, DV_PATH);
+	NameColumn(IDS_RESULT_HEADER, DV_STATUS);
+	NameColumn(IDS_LTIME_HEADER, DV_LTIME);
+	NameColumn(IDS_RTIME_HEADER, DV_RTIME);
+}
+
+/// Update any language-dependent data
+void CDirView::UpdateResources()
+{
+	UpdateColumnNames();
+}
+
+/// Compare two specified rows during a sort operation (windows callback)
 int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort)
 {
 	// initialize structures to obtain required information
@@ -460,20 +447,13 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 	*pResult = 0;
 }
 
+/// Do any last minute work as view closes
 void CDirView::OnDestroy() 
 {
 	DeleteAllDisplayItems();
 
-	// save the column widths
-	CListCtrl& ctl = GetListCtrl();
-
-	CHeaderCtrl *phdr = ctl.GetHeaderCtrl();
-	for (int i=0; i < phdr->GetItemCount(); i++)
-	{
-		CString s;
-		s.Format(_T("WDirHdr%d"), i);
-		theApp.WriteProfileInt(_T("DirView"), s, ctl.GetColumnWidth(i));
-	}
+	SaveColumnOrders();
+	SaveColumnWidths();
 
 	CListViewEx::OnDestroy();
 }
@@ -1124,4 +1104,212 @@ void CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	GetDocument()->Redisplay();
 	if (mf->m_bScrollToFirst)
 		OnFirstdiff();
+}
+// Add new item to list view
+int CDirView::AddNewItem(int i)
+{
+	LV_ITEM lvItem;
+	memset(&lvItem, 0, sizeof(lvItem));
+	lvItem.iItem = i;
+	return GetListCtrl().InsertItem(&lvItem);
+  
+}
+
+// Set a subitem on an existing item
+void CDirView::SetSubitem(int item, int subitem, LPCTSTR sz)
+{
+	LV_ITEM lvItem;
+	memset(&lvItem, 0, sizeof(lvItem));
+	lvItem.mask = LVIF_TEXT;
+	lvItem.iItem = item;
+	lvItem.iSubItem = m_colorder[subitem];
+	lvItem.pszText = const_cast<LPTSTR>(sz);
+	GetListCtrl().SetItem(&lvItem);
+}
+
+BOOL CDirView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult) 
+{
+	NMHDR * hdr = reinterpret_cast<NMHDR *>(lParam);
+	if (hdr->code == HDN_ENDDRAG)
+		return OnHeaderEndDrag((LPNMHEADER)hdr, pResult);
+	if (hdr->code == HDN_BEGINDRAG)
+		return OnHeaderBeginDrag((LPNMHEADER)hdr, pResult);
+	
+	return CListViewEx::OnNotify(wParam, lParam, pResult);
+}
+
+/// User is starting to drag a column header
+BOOL CDirView::OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult)
+{
+	// save column widths before user reorders them
+	// so we can reload them on the end drag
+	SaveColumnWidths();
+	return TRUE;
+}
+
+/// User just finished dragging a column header
+BOOL CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
+{
+	int src = hdr->iItem;
+	int dest = hdr->pitem->iOrder;
+	BOOL allowDrop = TRUE;
+	*pResult = !allowDrop;
+	if (allowDrop && src!=dest)
+	{
+		// actually moved column
+		m_colorder[m_invcolorder[src]] = dest;
+		// shift all other affected columns
+		int dir = src > dest ? +1 : -1;
+		for (int i=dest; i!=src; i += dir)
+		{
+			m_colorder[m_invcolorder[i]] = i+dir;
+		}
+		// fix inverse mapping
+		for (i=0; i<m_numcols; ++i)
+			m_invcolorder[m_colorder[i]] = i;
+		PostMessage(WM_TIMER, COLUMN_REORDER);
+	}
+	return TRUE;
+}
+
+/// Remove any windows reordering of columns
+void CDirView::FixReordering()
+{
+	LVCOLUMN lvcol;
+	memset(&lvcol, 0, sizeof(lvcol));
+	lvcol.mask = LVCF_ORDER;
+	for (int i=0; i<m_numcols; ++i)
+	{
+		lvcol.iOrder = i;
+		GetListCtrl().SetColumn(i, &lvcol);
+	}
+}
+
+/// Add columns to display, loading width & order from registry
+void CDirView::AddColumns()
+{
+	for (int i=0; i<m_numcols; ++i)
+	{
+		int ix = m_invcolorder[i];
+		CString sOrderKey;
+		sOrderKey.Format(_T("WDirHdrOrder%d"), ix);
+		int ord = theApp.GetProfileInt(_T("DirView"), sOrderKey, ix);
+		LVCOLUMN lvcol;
+		memset(&lvcol, 0, sizeof(lvcol));
+		lvcol.mask = LVCF_FMT+LVCF_TEXT+LVCF_SUBITEM;
+		lvcol.fmt = LVCFMT_LEFT;
+		lvcol.pszText = _T("text"); // UpdateColumnNames fixes this
+		lvcol.iSubItem = ix;
+		m_pList->InsertColumn(i, &lvcol);
+	}
+}
+
+/// Update all column widths (from registry to screen)
+// Necessary when user reorders columns
+void CDirView::SetColumnWidths()
+{
+	LVCOLUMN lvcol;
+	memset(&lvcol, 0, sizeof(lvcol));
+	lvcol.mask = LVCF_WIDTH;
+	CString sWidthKey;
+	int cols = GetListCtrl().GetHeaderCtrl()->GetItemCount();
+	int i;
+
+	for (i=0; i<cols; ++i)
+	{
+		sWidthKey.Format(_T("WDirHdr%d"), i);
+		int w = max(10, theApp.GetProfileInt(_T("DirView"), sWidthKey, 150));
+		GetListCtrl().SetColumnWidth(m_colorder[i], w);
+	}
+
+}
+
+/// store current column widths into registry
+void CDirView::SaveColumnWidths()
+{
+	int cols = GetListCtrl().GetHeaderCtrl()->GetItemCount();
+	for (int i=0; i < cols; i++)
+	{
+		CString s;
+		s.Format(_T("WDirHdr%d"), m_invcolorder[i]);
+		int w = GetListCtrl().GetColumnWidth(i);
+		theApp.WriteProfileInt(_T("DirView"), s, w);
+	}
+}
+
+/// store current column orders into registry
+void CDirView::SaveColumnOrders()
+{
+	ASSERT(m_colorder.GetSize() == m_numcols);
+	ASSERT(m_invcolorder.GetSize() == m_numcols);
+	int cols = GetListCtrl().GetHeaderCtrl()->GetItemCount();
+	for (int i=0; i < cols; i++)
+	{
+		CString key;
+		key.Format(_T("WDirHdrOrder%d"), i);
+		int ord = m_colorder[i];
+		theApp.WriteProfileInt(_T("DirView"), key, ord);
+	}
+}
+
+/// load column orders from registry
+void CDirView::LoadColumnOrders()
+{
+	ASSERT(m_numcols == -1);
+	m_numcols = 6;
+	m_colorder.SetSize(m_numcols);
+	m_invcolorder.SetSize(m_numcols);
+	for (int i=0; i<m_numcols; ++i)
+	{
+		m_colorder[i] = -1;
+		m_invcolorder[i] = -1;
+	}
+
+	for (i=0; i<6; ++i)
+	{
+		CString key;
+		key.Format(_T("WDirHdrOrder%d"), i);
+		int ord = theApp.GetProfileInt(_T("DirView"), key, i);
+		m_colorder[i] = ord;
+		m_invcolorder[ord] = i;
+	}
+	// validate just loaded data
+	BOOL valid=TRUE;
+	for (i=0; i<m_numcols; ++i)
+	{
+		if (!(m_colorder[i]>=0 && m_colorder[i]<m_numcols))
+		{
+			valid=FALSE;
+			break;
+		}
+		if (!(m_invcolorder[i]>=0 && m_invcolorder[i]<m_numcols))
+		{
+			valid=FALSE;
+			break;
+		}
+	}
+	if (!valid)
+	{
+		// reset to identity
+		for (int i=0; i<m_numcols; ++i)
+		{
+			m_colorder[i] = i;
+			m_invcolorder[i] = i;
+		}
+	}
+}
+
+void CDirView::OnTimer(UINT nIDEvent) 
+{
+	if (nIDEvent == COLUMN_REORDER)
+	{
+		// Remove the windows reordering, as we're doing it ourselves
+		FixReordering();
+		// Now redraw screen
+		UpdateColumnNames();
+		SetColumnWidths();
+		GetDocument()->Redisplay();
+	}
+	
+	CListViewEx::OnTimer(nIDEvent);
 }

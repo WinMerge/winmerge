@@ -259,6 +259,10 @@ SOURCE=.\DirView.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\dllver.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\ED.C
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -676,6 +680,10 @@ SOURCE=.\DirView.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\dllver.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\EditFile.h
 # End Source File
 # Begin Source File
@@ -840,7 +848,7 @@ SOURCE=.\res\binary.bmp
 # End Source File
 # Begin Source File
 
-SOURCE=.\res\bmp00001.bmp
+SOURCE=.\res\binarydiff.bmp
 # End Source File
 # Begin Source File
 

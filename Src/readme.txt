@@ -1,3 +1,7 @@
+2003-07-30 Perry
+ PATCH: [ 778379 ] Drag&drop reordering columns
+  WinMerge: DirDoc.cpp DirView.cpp DirView.h Merge.dsp dllver.cpp dllver.h
+
 2003-07-29 Perry
  PATCH: [ 779224 ] Fix sort bug in right date
   WinMerge: DirView.cpp

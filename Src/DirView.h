@@ -26,12 +26,12 @@
 // DirView.h : header file
 //
 
-#define DV_NAME   0
-#define DV_PATH   1
-#define DV_STATUS 2
-#define DV_LTIME 3
-#define DV_RTIME 4
-#define DV_EXT		5
+#define DV_NAME     0
+#define DV_PATH     1
+#define DV_STATUS   2
+#define DV_LTIME    3
+#define DV_RTIME    4
+#define DV_EXT      5
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirView view
@@ -68,10 +68,16 @@ public:
 
 	static int CALLBACK CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
 	void UpdateResources();
+	void UpdateColumnNames();
+	void AddColumns();
 	POSITION GetItemKey(int idx);
 	void SetItemKey(int idx, POSITION diffpos);
-	void DeleteAllDisplayItems();
 	int GetItemIndex(DWORD key);
+	// for populating list
+	void DeleteAllDisplayItems();
+	void SetColumnWidths();
+	int AddNewItem(int i);
+	void SetSubitem(int item, int subitem, LPCTSTR sz);
 
 	UINT GetSelectedCount() const;
 	int GetFirstSelectedInd();
@@ -135,6 +141,7 @@ private:
 	protected:
 	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -155,6 +162,9 @@ protected:
 	bool m_bSortAscending;	// is currently sorted ascending.
 	int m_sortColumn;		// index to column which is sorted
 	CListCtrl * m_pList;
+	int m_numcols;
+	CArray<int, int> m_colorder;
+	CArray<int, int> m_invcolorder;
 
 	
 	// Generated message map functions
@@ -200,8 +210,12 @@ protected:
 	afx_msg void OnUpdateUIMessage(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnRefresh();
 	afx_msg void OnUpdateRefresh(CCmdUI* pCmdUI);
+	afx_msg void OnTimer(UINT nIDEvent);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
+	BOOL OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
+
 private:
 	void OpenSelection();
 	void DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI, eMenuType menuType);
@@ -219,6 +233,11 @@ private:
 	int GetSingleSelectedItem() const;
 	bool IsItemNavigableDiff(const DIFFITEM & di) const;
 	void MoveSelection(int currentInd, int i, int selCount);
+	void SaveColumnWidths();
+	void SaveColumnOrders();
+	void LoadColumnOrders();
+	void NameColumn(int id, int subitem);
+	void FixReordering();
 };
 
 

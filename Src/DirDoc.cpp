@@ -330,13 +330,14 @@ void CDirDoc::Redisplay()
 
 		if (p)
 		{
-			m_pDirView->AddItem(cnt, DV_NAME, di.sfilename);
-			m_pDirView->AddItem(cnt, DV_EXT, di.sext); // BSP - Add the current file extension
+			int i = m_pDirView->AddNewItem(cnt);
+			m_pDirView->SetSubitem(i, DV_NAME, di.sfilename); 
+			m_pDirView->SetSubitem(i, DV_EXT, di.sext);
 			s = _T(".");
 			s += p;
-			m_pDirView->AddItem(cnt, DV_PATH, s);
-			m_pDirView->SetItemKey(cnt, curdiffpos);
-			UpdateItemStatus(cnt, di);
+			m_pDirView->SetSubitem(i, DV_PATH, s);
+			m_pDirView->SetItemKey(i, curdiffpos);
+			UpdateItemStatus(i, di);
 			cnt++;
 		}
 	}
@@ -392,10 +393,10 @@ TimeString(const time_t * tim)
 
 void CDirDoc::SetItemStatus(UINT nIdx, LPCTSTR szStatus, int image, const time_t * ltime, const time_t * rtime)
 {
-	m_pDirView->AddItem(nIdx, DV_STATUS, szStatus);
+	m_pDirView->SetSubitem(nIdx, DV_STATUS, szStatus);
 	m_pDirView->SetImage(nIdx, image);
-	m_pDirView->AddItem(nIdx, DV_LTIME, TimeString(ltime));
-	m_pDirView->AddItem(nIdx, DV_RTIME, TimeString(rtime));
+	m_pDirView->SetSubitem(nIdx, DV_LTIME, TimeString(ltime));
+	m_pDirView->SetSubitem(nIdx, DV_RTIME, TimeString(rtime));
 }
 
 void CDirDoc::UpdateItemStatus(UINT nIdx)
@@ -453,7 +454,7 @@ void CDirDoc::InitStatusStrings()
 
 void CDirDoc::UpdateResources()
 {
-	m_pDirView->UpdateResources();
+	m_pDirView->UpdateColumnNames();
 
 	CString s;
 	VERIFY(s.LoadString(IDS_DIRECTORY_WINDOW_TITLE));
