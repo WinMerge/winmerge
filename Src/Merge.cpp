@@ -671,7 +671,7 @@ void CMergeApp::InitializeFileFilters()
 		m_fileFilterMgr = new FileFilterMgr;
 
 	CString sPattern = GetModulePath() + _T("\\Merge_*.flt");
-	m_fileFilterMgr->LoadFromDirectory(sPattern);
+	m_fileFilterMgr->LoadFromDirectory(sPattern, _T(".flt"));
 }
 
 // fill list with names of known filters

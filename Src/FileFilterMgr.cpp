@@ -57,18 +57,28 @@ FileFilterMgr::~FileFilterMgr()
 }
 
 // Load 
-void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern)
+void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
 {
 	DeleteAllFilters();
 	CFileFind finder;
-   BOOL bWorking = finder.FindFile(szPattern);
-   while (bWorking)
-   {
-      bWorking = finder.FindNextFile();
+	BOOL bWorking = finder.FindFile(szPattern);
+	int extlen = szExt ? _tcslen(szExt) : 0;
+	while (bWorking)
+	{
+		bWorking = finder.FindNextFile();
 		if (finder.IsDots() || finder.IsDirectory())
 			continue;
-		LoadFilterFile(finder.GetFilePath(), finder.GetFileName());
-   }
+		CString sFilename = finder.GetFileName();
+		if (szExt)
+		{
+			// caller specified a specific extension
+			// (This is really a workaround for brokenness in windows, which
+			//  doesn't screen correctly on extension in pattern)
+			if (sFilename.Right(extlen).CompareNoCase(szExt))
+				return;
+		}
+		LoadFilterFile(finder.GetFilePath(), sFilename);
+	}
 }
 
 void FileFilterMgr::DeleteAllFilters()
@@ -86,6 +96,13 @@ static void AddFilterPattern(RegList & reglist, CString & str)
 {
 	str.TrimLeft();
 	str.MakeUpper();
+	LPCTSTR commentLeader = _T(" ##");
+	// anything from commentLeader to end of line is a comment
+	int comment = str.Find(commentLeader);
+	if (comment >= 0)
+	{
+		str = str.Left(comment);
+	}
 	if (str.IsEmpty()) return;
 	CRegExp * regexp = new CRegExp;
 	if (regexp->RegComp(str))

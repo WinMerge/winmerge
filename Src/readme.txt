@@ -2,6 +2,8 @@
  PATCH: [ 745654 ] Draw long lines
   WinMerge: MergeEditView.cpp
   editlib: ccrystaltextview.cpp
+ PATCH: [ 742041 ] Improvements to file/directory filters
+  WinMerge: FileFilterMgr.h FileFilterMgr.cpp Merge.cpp
 
 2003-05-29 Christian
  PATCH: Applied [ 745223 ] Fix pasting different EOL types

@@ -28,7 +28,7 @@ private:
 public:
 	~FileFilterMgr();
 	// Reload filter array from specified directory (passed to CFileFind)
-	void LoadFromDirectory(LPCTSTR szPattern);
+	void LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt);
 
 	// access to array of filters
 	int GetFilterCount() const { return m_filters.GetSize(); }
