@@ -79,7 +79,7 @@ SelectLanguageTitle=Välj språk för installationen
 SelectLanguageLabel=Välj språk som skall användas under installationen:
 
 ; *** Common wizard text
-ClickNext=Klicka på Nästa för att fortsätta, eller Avbryt för att avsluta installationen.
+ClickNext=Klicka på Nästa för att fortsätta eller på Avbryt för att avsluta installationen.
 BeveledLabel=
 BrowseDialogTitle=Bläddra mapp
 BrowseDialogLabel=Välj en mapp i listan nedan, klicka sedan OK.
@@ -108,10 +108,10 @@ LicenseNotAccepted=Jag accepterar &inte avtalet
 ; *** "Information" wizard pages
 WizardInfoBefore=Information
 InfoBeforeLabel=Var god läs följande viktiga information innan du fortsätter.
-InfoBeforeClickLabel=När du är klar att fortsätta med installationen, klicka på Nästa.
+InfoBeforeClickLabel=När du är klar att fortsätta installationen klickar du på Nästa.
 WizardInfoAfter=Information
 InfoAfterLabel=Var god läs följande viktiga information innan du fortsätter.
-InfoAfterClickLabel=När du är klar att fortsätta med installationen, klicka på Nästa.
+InfoAfterClickLabel=När du är klar att fortsätta installationen klickar du på Nästa.
 
 ; *** "User Information" wizard page
 WizardUserInfo=Användarinformation
@@ -125,7 +125,7 @@ UserInfoNameRequired=Du måste fylla i ett namn.
 WizardSelectDir=Välj installationsplats
 SelectDirDesc=Var skall [name] installeras?
 SelectDirLabel3=Installationsprogrammet kommer att installera [name] i följande mapp
-SelectDirBrowseLabel=För att fortsätta, klicka på Nästa. Om du vill välja en annan mapp, klicka på Bläddra.
+SelectDirBrowseLabel=För att fortsätta klickar du på Nästa. Om du vill välja en annan mapp klickar du på Bläddra.
 DiskSpaceMBLabel=Programmet kräver minst [mb] MB hårddiskutrymme.
 ToUNCPathname=Installationsprogrammet kan inte installera till UNC sökväg. Om du försöker installera via ett nätverk, ska du ange  nätverksenheten.
 InvalidPath=Du måste skriva en fullständig sökväg med enhetsbeteckning; till exempel:%C:\APP
@@ -142,7 +142,7 @@ DirDoesntExist=Mappen:%n%n%1%n%nfinns inte. Vill du skapa den?
 
 ; *** "Select Components" wizard page
 WizardSelectComponents=Välj komponenter
-SelectComponentsDesc=Vilka komonenter skall installeras?
+SelectComponentsDesc=Vilka komponenter skall installeras?
 SelectComponentsLabel2=Välj de komponenter som du vill ska installeras; avmarkera de komponenter som du inte vill ha. Klicka på Nästa när du är klar att  fortsätta.
 FullInstallation=Fullständig installation
 
@@ -164,7 +164,7 @@ SelectTasksLabel2=Markera ytterligare uppgifter att utföra vid installation av [
 WizardSelectProgramGroup=Välj Startmeny-mapp
 SelectStartMenuFolderDesc=Var skall installationsprogrammet placera programmets genvägar?
 SelectStartMenuFolderLabel3=Installationsprogrammet kommer att skapa programmets genvägar i följande mapp.
-SelectStartMenuFolderBrowseLabel=För att fortsätta, klicka på Nästa. Om du vill välja en annan mapp, klicka på Bläddra.
+SelectStartMenuFolderBrowseLabel=För att fortsätta klickar du på Nästa. Om du vill välja en annan mapp klickar du på Bläddra.
 NoIconsCheck=&Skapa inte ikoner
 MustEnterGroupName=Du måste ange en mapp.
 GroupNameTooLong=Mappens namn eller sökväg är för lång.
@@ -294,7 +294,7 @@ WizardUninstalling=Avinstallationsstatus
 StatusUninstalling=Avinstallerar %1...
 [CustomMessages]
 AdditionalIcons=Återstående ikoner:
-CreateDesktopIcon=Skapa en ikon på srivbordet
+CreateDesktopIcon=Skapa en ikon på Skrivbordet
 CreateQuickLaunchIcon=Skapa en ikon i Snabbstartfältet
 ProgramOnTheWeb=%1 på Webben
 UninstallProgram=Avinstallera %1
@@ -340,16 +340,16 @@ SpanishLanguage=Spanish menus and dialogs
 SwedishLanguage=Swedish menus and dialogs
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
+ExplorerContextMenu=&Möjliggör integration med Explorers menyer
 IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateDelphi4=Borland® Delphi &4 Binary File Support
+IntegrateDelphi4=Stöd Borland 4 Binära filer
 UpdatingCommonControls=Updating the System's Common Controls
 
 ;Icon Labels
 ReadMe=Read Me
 UsersGuide=User's Guide
 UpdatingCommonControls=Updating the System's Common Controls
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
+ViewStartMenuFolder=Visa Winmerges startkatalog
 
 ;Code Dialogs
 DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
