@@ -1,3 +1,7 @@
+2004-05-30 Laoran
+ BUG: [ 909779 ] Uninitialised variable in CGhostTextBuffer::DeleteText() ; fix the fix !
+  Src: GhostTextBuffer.cpp
+
 2004-05-30 Perry
  PATCH: [ 962558 ] Some MBCS fixes from sawanaka
   Src: paths.cpp paths.h StdAfx.cpp StdAfx.h
