@@ -1,3 +1,7 @@
+2004-06-03 Kimmo
+ PATCH: [ 965144 ] Userdocs: Filters
+  Manual: Filters.xml
+
 2004-06-02 Kimmo
  PATCH: [ 964442 ] Userdocs: Frequently asked questions
   Manual: Faq.xml
