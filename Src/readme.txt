@@ -1,3 +1,8 @@
+2005-03-02 Kimmo
+ BUG: [ 975226 ] Editor: Always refresh with Del-Key
+  Fix submitted by Takashi Sawanaka
+  Src: MergeEditView.cpp
+
 2005-03-02 Perry
  PATCH: [ 1154259 ] Non blurred 'error.bmp'
   New clearer error bitmap from Tim Gerundt

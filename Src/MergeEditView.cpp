@@ -1210,6 +1210,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 			nAction == CE_ACTION_INDENT ||
 			nAction == CE_ACTION_PASTE ||
 			nAction == CE_ACTION_DELSEL ||
+			nAction == CE_ACTION_DELETE ||
 			nAction == CE_ACTION_CUT)
 		{
 			if (!SetTimer(IDT_RESCAN, RESCAN_TIMEOUT, NULL))
