@@ -1,3 +1,7 @@
+2003-07-02 Perry
+ PATCH: [ 764789 ] Fix Private Build string in rc file
+  WinMerge: Merge.rc
+
 2003-07-02 Kimmo
  PATCH: [ 763817 ] Hilight diffs when syntax hilight is off
   WinMerge: MergeEditView.cpp

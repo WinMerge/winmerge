@@ -510,7 +510,7 @@ BEGIN
             VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
-            VALUE "PrivateBuild", "CVS (Unreleased) Version 2003-04-08\0"
+            VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", "1.9.1.4\0"
             VALUE "SpecialBuild", "\0"
