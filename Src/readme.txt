@@ -5,6 +5,8 @@
    UTIL.C
  PATCH: [ 806277 ] Patch output fix (803299) alternate approach
   WinMerge: UTIL.C
+ PATCH: 819633	Fix bug in my "fix ignore blank lines" patch
+  WinMerge: analyze.c
 
 2003-10-07 Kimmo
  BUG: [ 803330 ] DirView updated too many times after compare

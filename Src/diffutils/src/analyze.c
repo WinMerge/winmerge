@@ -738,6 +738,7 @@ add_change (line0, line1, deleted, inserted, old)
      struct change *old;
 {
   struct change *newob = (struct change *) xmalloc (sizeof (struct change));
+  memset(newob, 0, sizeof(*newob));
 
   newob->line0 = line0;
   newob->line1 = line1;
