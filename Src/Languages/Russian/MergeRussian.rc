@@ -140,6 +140,11 @@ BEGIN
         MENUITEM "&Найти...\tCtrl+F",           ID_EDIT_FIND
         MENUITEM "&Заменить...\tCtrl+H",        ID_EDIT_REPLACE
         MENUITEM SEPARATOR
+        POPUP "&Scripts"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
         MENUITEM "Перейти к строке...\tCtrl+G", ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Настройки...",               ID_OPTIONS
@@ -205,6 +210,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Редактировать с распаковщиком",
                                                 ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload plugins (debug)",     ID_RELOAD_PLUGINS
     END
     POPUP "&Окно"
     BEGIN
@@ -1505,6 +1512,12 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Открыть файл справа во внешнем редакторе"
     ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
     ID_EDIT_WMGOTO          "Перейти на строку или отличие\nGo to (Ctrl+G)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NO_EDIT_SCRIPTS      "< Empty >"
+    ID_RELOAD_PLUGINS       "&Unload all plugins and reload them (for developpers)"
 END
 
 #endif    // Russian resources

@@ -137,6 +137,11 @@ BEGIN
         MENUITEM "Ñ°ÕÒ(&I)...\tCtrl+F",         ID_EDIT_FIND
         MENUITEM "Ìæ»»(&C)...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
+        POPUP "&Scripts"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
         MENUITEM "&Go To...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "Ñ¡Ïî(&O)...",                 ID_OPTIONS
@@ -197,6 +202,8 @@ BEGIN
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
         MENUITEM "&Edit with Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload plugins (debug)",     ID_RELOAD_PLUGINS
     END
     POPUP "´°¿Ú(&W)"
     BEGIN
@@ -1366,6 +1373,12 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
     ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
     ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NO_EDIT_SCRIPTS      "< Empty >"
+    ID_RELOAD_PLUGINS       "&Unload all plugins and reload them (for developpers)"
 END
 
 // END STRINGS SYNCHRO

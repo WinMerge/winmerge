@@ -473,20 +473,13 @@ BOOL FileTransform_UCS2ToUTF8(CString & filepath, BOOL bMayOverwrite)
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// transformation : TextTransform_Interactive
+// transformation : TextTransform_Interactive (editor scripts)
 
-
-BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent,
-															 int (*callbackUserChooseFunction) (CStringArray*, void*), void * dataForCallback)
+void GetFreeFunctionsInScripts(CStringArray & sNamesArray, LPCWSTR TransformationEvent)
 {
 	// get an array with the available scripts
 	PluginArray * piScriptArray = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(TransformationEvent);
-
-	// allocate structures : function name, ordinal of script, function Id in script
-	CDWordArray iInScriptArray;
-	CDWordArray iIdArray;
-	CStringArray sNamesArray;
 
 	// fill in these structures
 	int nFnc = 0;	
@@ -498,33 +491,48 @@ BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent,
 		BSTR * scriptNamesArray;
 		int * scriptIdsArray;
 		int nScriptFnc = GetMethodsFromScript(piScript, scriptNamesArray, scriptIdsArray);
-		iInScriptArray.SetSize(nFnc+nScriptFnc);
-		iIdArray.SetSize(nFnc+nScriptFnc);
 		sNamesArray.SetSize(nFnc+nScriptFnc);
 
 		int iFnc;
 		for (iFnc = 0 ; iFnc < nScriptFnc ; iFnc++)
-		{
-			iInScriptArray[nFnc+iFnc] = iScript;
-			iIdArray[nFnc+iFnc] = scriptIdsArray[iFnc];
 			// the CString = operator provides the conversion if UNICODE is not defined
 			sNamesArray[nFnc+iFnc] = scriptNamesArray[iFnc];
-		}
 
-		delete [] scriptNamesArray;
 		delete [] scriptIdsArray;
+		delete [] scriptNamesArray;
+
 		nFnc += nScriptFnc;
 	}
+}
 
-	// now ask the user : let him choose a function name in the sNamesArray
-	int iFncChosen = callbackUserChooseFunction(&sNamesArray, dataForCallback);
-
-	if (iFncChosen < 0 || iFncChosen >= nFnc)
+BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent, int iFncChosen)
+{
+	if (iFncChosen < 0)
 		return FALSE;
+
+	// get an array with the available scripts
+	PluginArray * piScriptArray = 
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(TransformationEvent);
+
+	int iScript;
+	for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++)
+	{
+		if (iFncChosen < piScriptArray->GetAt(iScript).nFreeFunctions)
+			// we have found the script file
+			break;
+		iFncChosen -= piScriptArray->GetAt(iScript).nFreeFunctions;
+	}
+
+	if (iScript >= piScriptArray->GetSize())
+		return FALSE;
+
+	// iFncChosen is the index of the function in the script file
+	// we must convert it to the function ID
+	int fncID = GetMethodIDInScript(piScriptArray->GetAt(iScript).lpDispatch, iFncChosen);
 
 	// execute the transform operation
 	BOOL bChanged = FALSE;
-	InvokeTransformText(text, bChanged, piScriptArray->GetAt(iInScriptArray[iFncChosen]).lpDispatch, iIdArray[iFncChosen]);
+	InvokeTransformText(text, bChanged, piScriptArray->GetAt(iScript).lpDispatch, fncID);
 
 	return bChanged;
 }

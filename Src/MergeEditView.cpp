@@ -146,6 +146,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CHANGE_PANE, OnUpdateChangePane)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_WMGOTO, OnUpdateWMGoto)
+	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnUpdateScripts)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1543,46 +1545,36 @@ void CMergeEditView::OnUpdateStatusRightRO(CCmdUI* pCmdUI)
 }
 
 
-
-typedef struct {
-		struct HWND__ *	pWnd;
-		CPoint point;
-}				CallbackDataForContextMenu;
-
 /**
- * @brief Callback for the context menu : display the menu, let the user choose a function
+ * @brief Create the dynamic submenu for scripts
  */
-int callbackForContextMenu(CStringArray * functionNamesList, void * receivedData)
+HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 {
-	// create the menu and populate it with the available functions
-	HMENU hMenu = ::CreatePopupMenu();
+	// get scripts list
+	CStringArray functionNamesList;
+	GetFreeFunctionsInScripts(functionNamesList, L"CONTEXT_MENU");
 
-	int i;
-	int ID = 101;	// first ID in menu
-	for (i = 0 ; i < functionNamesList->GetSize() ; i++, ID++)
-		::AppendMenu(hMenu, MF_STRING, ID, (*functionNamesList)[i]);
+	// empty the menu
+	int i = GetMenuItemCount(hMenu);
+	while (i --)
+		DeleteMenu(hMenu, 0, MF_BYPOSITION);
 
-	::AppendMenu(hMenu, MF_SEPARATOR, (UINT) -1, 0);
-	::AppendMenu(hMenu, MF_STRING, 100, _T("Unload script"));
-
-	// wait for the user choice
-	CallbackDataForContextMenu * data = (CallbackDataForContextMenu*) receivedData;
-	int response = ::TrackPopupMenu(hMenu, TPM_RETURNCMD, data->point.x, data->point.y, 0, data->pWnd, 0);
-	::DestroyMenu(hMenu);
-
-	// return the chosen function, or apply "Unload script"
-	if (response)
+	if (functionNamesList.GetSize() == 0)
 	{
-		if (response == 100)
-		{
-			CAllThreadsScripts::GetActiveSet()->FreeScriptsForEvent(L"CONTEXT_MENU");
-		}
-		else
-			return response-101;
+		// no script : create a <empty> entry
+		::AppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, LoadResString(ID_NO_EDIT_SCRIPTS));
+	}
+	else
+	{
+		// or fill in the submenu with the scripts names
+		int ID = ID_SCRIPT_FIRST;	// first ID in menu
+		for (i = 0 ; i < functionNamesList.GetSize() ; i++, ID++)
+			::AppendMenu(hMenu, MF_STRING, ID, functionNamesList[i]);
+
+		functionNamesList.RemoveAll();
 	}
 
-	// return an invalid value to cancel
-	return -1;
+	return hMenu;
 }
 
 /**
@@ -1604,17 +1596,6 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 		point.Offset(5, 5);
 	}
 
-	// prepare the tracking data for the callback
-	CallbackDataForContextMenu data;
-	data.point = point;
-	data.pWnd = m_hWnd;
-
-	// transform the text with a script/ActiveX function, event=USER_CONTEXT_MENU
-	BOOL bChanged = TextTransform_Interactive(text, L"CONTEXT_MENU", callbackForContextMenu, &data);
-
-	if (bChanged)
-		// now replace the text
-		ReplaceSelection(text, 0);
 }
 
 /**
@@ -1882,5 +1863,25 @@ void CMergeEditView::RefreshOptions()
 	m_cachedColors.clrSelDiffText = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
 	m_cachedColors.clrTrivial = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF);
 	m_cachedColors.clrTrivialDeleted = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
+}
+
+/**
+ * @brief Called when an editor script item is updated
+ */
+void CMergeEditView::OnUpdateScripts(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+}
+
+void CMergeEditView::OnScripts(UINT nID )
+{
+	// text is CHAR if compiled without UNICODE, WCHAR with UNICODE
+	CString text = GetSelectedText();
+
+	// transform the text with a script/ActiveX function, event=USER_CONTEXT_MENU
+	BOOL bChanged = TextTransform_Interactive(text, L"CONTEXT_MENU", nID - ID_SCRIPT_FIRST);
+	if (bChanged)
+		// now replace the text
+		ReplaceSelection(text, 0);
 }
 

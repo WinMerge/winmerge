@@ -194,6 +194,8 @@
 #define IDB_EDIT_REPLACE                276
 #define IDB_VIEW_LANGUAGE               277
 #define IDB_VIEW_SELECTFONT             278
+#define ID_SCRIPT_FIRST                 900
+#define ID_SCRIPT_LAST                  999
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -564,14 +566,16 @@
 #define ID_DIR_ZIP_BOTH                 32862
 #define ID_DIR_ZIP_BOTH_DIFFS_ONLY      32863
 #define ID_VIEW_DIR_STATEPANE           32864
+#define ID_NO_EDIT_SCRIPTS              32865
+#define ID_RELOAD_PLUGINS               32866
 
 // Next default values for new objects
-//
+// 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        124
-#define _APS_NEXT_COMMAND_VALUE         32865
+#define _APS_NEXT_COMMAND_VALUE         32867
 #define _APS_NEXT_CONTROL_VALUE         1124
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

@@ -154,7 +154,9 @@ public:
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
 	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 	virtual void UpdateSiblingScrollPos (BOOL bHorz);
-
+	
+	// to customize the mergeview menu
+	static HMENU createScriptsSubmenu(HMENU hMenu);
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -239,6 +241,8 @@ protected:
 	afx_msg void OnUpdateChangePane(CCmdUI* pCmdUI);
 	afx_msg void OnWMGoto();
 	afx_msg void OnUpdateWMGoto(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateScripts(CCmdUI* pCmdUI);
+	afx_msg void OnScripts(UINT nID );
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -59,6 +59,7 @@
 #include "WaitStatusCursor.h"
 #include "PatchTool.h"
 #include "FileTransform.h"
+#include "Plugins.h"
 #include "SelectUnpackerDlg.h"
 #include "files.h"
 #include "ConfigLog.h"
@@ -119,6 +120,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_SETCURSOR()
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnUpdatePluginUnpackMode)
+	ON_UPDATE_COMMAND_UI(ID_RELOAD_PLUGINS, OnUpdateReloadPlugins)
+	ON_COMMAND(ID_RELOAD_PLUGINS, OnReloadPlugins)
 	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
 	//}}AFX_MSG_MAP
@@ -331,6 +334,28 @@ HMENU CMainFrame::NewMenu()
 }
 */
 
+/** 
+ * @brief Find the scripts submenu from the main menu
+ * As now this is the first submenu in "Edit" menu
+ */
+HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
+{
+	// look for "Edit" menu
+	int i;
+	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
+		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == ID_EDIT_UNDO)
+			break;
+	HMENU editMenu = ::GetSubMenu(mainMenu, i);
+
+	// look for "script" submenu (first submenu)
+	for (i = 0 ; i < ::GetMenuItemCount(editMenu) ; i++)
+		if (::GetSubMenu(editMenu, i) != NULL)
+			return ::GetSubMenu(editMenu, i);
+
+	// error, submenu not found
+	return NULL;
+}
+
 /**
  * @brief Create new default (CMainFrame) menu
  */
@@ -354,6 +379,12 @@ HMENU CMainFrame::NewDefaultMenu()
 	m_default.ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
 
 	m_default.LoadToolbar(IDR_MAINFRAME);
+
+	// append the scripts submenu
+	HMENU scriptsSubmenu = GetScriptsSubmenu(m_default.GetSafeHmenu());
+	if (scriptsSubmenu != NULL)
+		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
+
 	return(m_default.Detach());
 }
 
@@ -2366,6 +2397,30 @@ void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI)
 		pCmdUI->SetRadio(PLUGIN_MANUAL == g_bUnpackerMode);
 	if (pCmdUI->m_nID == ID_UNPACK_AUTO)
 		pCmdUI->SetRadio(PLUGIN_AUTO == g_bUnpackerMode);
+}
+
+/**
+ * @brief Called when "Reload Plugins" item is updated
+ */
+void CMainFrame::OnUpdateReloadPlugins(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+}
+
+void CMainFrame::OnReloadPlugins()
+{
+	// delete all script interfaces
+	// (interfaces will be created again automatically when WinMerge needs them)
+	CAllThreadsScripts::GetActiveSet()->FreeAllScripts();
+
+	// update the editor scripts submenu
+	HMENU scriptsSubmenu = GetScriptsSubmenu(m_hMenuDefault);
+	if (scriptsSubmenu != NULL)
+		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
+
+	// This simulates a window being opened if you don't have
+	// a default window displayed at startup
+//	OnUpdateFrameMenu(m_hMenuDefault);
 }
 
 /**

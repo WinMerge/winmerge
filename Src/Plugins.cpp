@@ -47,6 +47,8 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 static CStringArray theScriptletList;
+/// Need to lock the *.sct so the user can't delete them
+static CPtrArray theScriptletHandleList;
 static bool scriptletsLoaded=false;
 static CSemaphore scriptletsSem;
 
@@ -158,7 +160,41 @@ BOOL SearchScriptForDefinedProperties(LPDISPATCH piDispatch, WCHAR * functionNam
 }
 
 
+int CountMethodsInScript(LPDISPATCH piDispatch)
+{
+	BSTR * namesArray=0;
+	int * IdArray=0;
+	int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
+	delete [] IdArray;
+	delete [] namesArray;
 
+	return nFnc;
+}
+
+/** 
+ * @return ID of the function or -1 if no function with this index
+ */
+int GetMethodIDInScript(LPDISPATCH piDispatch, int methodIndex)
+{
+	int fncID;
+
+	BSTR * namesArray=0;
+	int * IdArray=0;
+	int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
+	delete [] namesArray;
+
+	if (methodIndex < nFnc)
+	{
+		fncID = IdArray[methodIndex];
+	}
+	else
+	{
+		fncID = -1;
+	}
+	
+	delete [] IdArray;
+	return fncID;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // find scripts/activeX for an event : each event is assigned to a subdirectory 
@@ -183,7 +219,6 @@ static void GetScriptletsAt(LPCTSTR szSearchPath, LPCTSTR extension, CStringArra
 		{
 			if (!(ffi.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 			{
-
 				strFileSpec.Format(_T("%s%s"), szSearchPath, ffi.cFileName);
 				scriptlets.Add(strFileSpec);  
 			}
@@ -281,6 +316,7 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 	}
 	VariantClear(&ret);
 
+	// plugins PREDIFF or PACK_UNPACK : functions names are mandatory
 	// Check that the plugin offers the requested functions
 	// set the mode for the events which uses it
 	BOOL bUnicodeMode = SCRIPT_A | SCRIPT_W;
@@ -308,7 +344,18 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 	}
 	if (bFound == FALSE)
 	{
-		return -1; // error (Plugin doesn't support the method as it claimed)
+		// error (Plugin doesn't support the method as it claimed)
+		return -1; 
+	}
+
+	// plugins CONTEXT_MENU : functions names are free
+	// there may be several functions inside one script, count the number of functions
+	if (wcscmp(transformationEvent, L"CONTEXT_MENU") == 0)
+	{
+		plugin.nFreeFunctions = CountMethodsInScript(lpDispatch);
+		if (plugin.nFreeFunctions == 0)
+			// error (Plugin doesn't offer any method, what is this ?)
+			return -1;
 	}
 
 
@@ -413,6 +460,7 @@ static int LoadPluginWrapper(PluginInfo & plugin, const CString & scriptletFilep
  * @brief Return list of all candidate plugins in module path
  *
  * Computes list only the first time, and caches it.
+ * Lock the plugins *.sct (.ocx and .dll are locked when the interface is created)
  */
 static CStringArray & LoadTheScriptletList()
 {
@@ -425,8 +473,55 @@ static CStringArray & LoadTheScriptletList()
 		GetScriptletsAt(path, _T(".ocx"), theScriptletList );		// VB COM object
 		GetScriptletsAt(path, _T(".dll"), theScriptletList );		// VC++ COM object
 		scriptletsLoaded = true;
+
+		// lock the *.sct to avoid them being deleted/moved away
+		int i;
+		for (i = 0 ; i < theScriptletList.GetSize() ; i++)
+		{
+			if (theScriptletList.GetAt(i).Right(4).CompareNoCase(_T(".sct")) != 0)
+			{
+				// don't need to lock this file
+				theScriptletHandleList.Add((void*) 0);
+				continue;
+			}
+
+			HANDLE hFile;
+			hFile=CreateFile(theScriptletList.GetAt(i), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING,
+				NULL, NULL);
+			if (hFile == INVALID_HANDLE_VALUE)
+			{
+				theScriptletList.RemoveAt(i);
+				i --;
+			}
+			else
+			{
+				theScriptletHandleList.Add((void*) hFile);
+			}
+		}
 	}
 	return theScriptletList;
+}
+/**
+ * @brief Delete the scriptlet list and delete locks to *.sct
+ *
+ * Allow to load it again
+ */
+static void UnloadTheScriptletList()
+{
+	if (scriptletsLoaded)
+	{
+		int i;
+		for (i = 0 ; i < theScriptletHandleList.GetSize() ; i++)
+		{
+			HANDLE hFile = theScriptletHandleList.GetAt(i);
+			if (hFile != 0)
+				CloseHandle(hFile);
+		}
+
+		theScriptletHandleList.RemoveAll();
+		theScriptletList.RemoveAll();
+		scriptletsLoaded = false;
+	}
 }
 
 /**
@@ -438,6 +533,11 @@ static void RemoveScriptletCandidate(const CString &scriptletFilepath)
 	{
 		if (scriptletFilepath == theScriptletList[i])
 		{
+			HANDLE hFile = (HANDLE) theScriptletHandleList.GetAt(i);
+			if (hFile != 0)
+				CloseHandle(hFile);
+
+			theScriptletHandleList.RemoveAt(i);
 			theScriptletList.RemoveAt(i);
 			return;
 		}
@@ -563,6 +663,9 @@ void CScriptsOfThread::FreeAllScripts()
 	for (i = 0 ; i < nTransformationEvents ; i++)
 		if (m_aPluginsByEvent[i])
 			::FreeAllScripts(m_aPluginsByEvent[i]);
+
+	// force to reload the scriptlet list
+	UnloadTheScriptletList();
 }
 
 void CScriptsOfThread::FreeScriptsForEvent(LPCWSTR transformationEvent)

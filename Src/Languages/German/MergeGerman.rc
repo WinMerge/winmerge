@@ -141,6 +141,11 @@ BEGIN
         MENUITEM "&Suchen...\tStrg+F",          ID_EDIT_FIND
         MENUITEM "Erse&tzen...\tStrg+H",        ID_EDIT_REPLACE
         MENUITEM SEPARATOR
+        POPUP "&Scripts"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
         MENUITEM "&Gehe nach...\tStrg+G",       ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Einstellungen...",           ID_OPTIONS
@@ -207,6 +212,8 @@ BEGIN
         MENUITEM "&Automatisch entpacken",      ID_UNPACK_AUTO
         MENUITEM SEPARATOR
         MENUITEM "Mit Entpacker &bearbeiten",   ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload plugins (debug)",     ID_RELOAD_PLUGINS
     END
     POPUP "&Fenster"
     BEGIN
@@ -1517,6 +1524,12 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Öffnet die rechte Datei im externen Editor."
     ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
     ID_EDIT_WMGOTO          "Geht zur Zeile oder zum Unterschied.\nGehe nach (Strg+G)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NO_EDIT_SCRIPTS      "< Empty >"
+    ID_RELOAD_PLUGINS       "&Unload all plugins and reload them (for developpers)"
 END
 
 // END STRINGS SYNCHRO

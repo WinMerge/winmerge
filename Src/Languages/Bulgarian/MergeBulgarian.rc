@@ -140,6 +140,11 @@ BEGIN
         MENUITEM "Н&амери...\tCtrl+А",            ID_EDIT_FIND
         MENUITEM "Замес&ти...\tCtrl+Т",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
+        POPUP "&Scripts"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
         MENUITEM "От&иди на...\tCtrl+И",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Настройки...",                 ID_OPTIONS
@@ -200,6 +205,8 @@ BEGIN
         MENUITEM "&Автоматично разархевиране",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
         MENUITEM "&Редактирай с разархиватора",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload plugins (debug)",     ID_RELOAD_PLUGINS
     END
     POPUP "&Прозорци"
     BEGIN
@@ -1399,6 +1406,12 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Отваряне на десния файл с външен редактор"
     ID_WINDOW_CHANGE_PANE   "Да се вижда следващия файл\nАктивиране на следващия файл"
     ID_EDIT_WMGOTO          "Отиди на графа или разлика\nОтиди на (Ctrl+G)"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_NO_EDIT_SCRIPTS      "< Empty >"
+    ID_RELOAD_PLUGINS       "&Unload all plugins and reload them (for developpers)"
 END
 
 #endif    // Bulgarian resources

@@ -233,16 +233,34 @@ BOOL FileTransform_UCS2ToUTF8(CString & filepath, BOOL bMayOverwrite);
 
 
 /**
- * @brief Transform a text (interactive)
+ * @brief Get the list of all the free functions in all the scripts for this event :
+ * 
+ * @note the order is :
+ * 1st script file, 1st function name
+ * 1st script file, 2nd function name
+ * 1st script file, ...
+ * 1st script file, last function name
+ * 2nd script file, 1st function name
+ * 2nd script file, 2nd function name
+ * 2nd script file, ...
+ * 2nd script file, last function name
+ * ... script file
+ * last script file, 1st function name
+ * last script file, 2nd function name
+ * last script file, ...
+ * last script file, last function name
+ */
+void GetFreeFunctionsInScripts(CStringArray & sNamesArray, LPCWSTR TransformationEvent);
+
+/** 
+ * @brief : Execute one free function from one script
  *
- * @param callbackUserChooseFunction  needs a callback : context menu, dialog box...
+ * @param iFncChosen : index of the function in the list returned by GetFreeFunctionsInScripts
  *
  * @return Tells if the text has been changed 
  *
  * @note Event CONTEXT_MENU, ?
  */
-BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent,
-															 int (*callbackUserChooseFunction) (CStringArray*, void*), void * dataForCallback);
-
+BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent, int iFncChosen);
 
 #endif // FileTransform_h

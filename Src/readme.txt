@@ -1,3 +1,8 @@
+2004-03-27 Laoran
+ Src: FileTransform.cpp FileTransform.h MainFrm.cpp MainFrm.h Merge.rc
+  MergeEditView.cpp MergeEditView.h Plugins.cpp Plugins.h resource.h
+ Src/Languages: *.rc resource.h
+
 2003-03-27 WinMerge beta 2.1.6.0 released
 
 2004-03-26 Perry

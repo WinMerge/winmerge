@@ -66,13 +66,15 @@ public:
 	BOOL TestAgainstRegList(LPCTSTR szTest);
 
 public:
-	LPDISPATCH	lpDispatch;
-	CString			name;
-	CString			filtersText;
-	CString			description;
-	BOOL				bUnicodeMode;
-	BOOL				bAutomatic;
-	RegList*		filters;
+	LPDISPATCH  lpDispatch;
+	CString     name;
+	CString     filtersText;
+	CString     description;
+	BOOL        bUnicodeMode;
+	BOOL        bAutomatic;
+	RegList*    filters;
+	/// only for plugins with free function names (CONTEXT_MENU)
+	int         nFreeFunctions;
 };
 
 
@@ -167,6 +169,17 @@ int GetMethodsFromScript(LPDISPATCH piDispatch, BSTR *& namesArray, int *& IdArr
 BOOL SearchScriptForFunctionName(LPDISPATCH piDispatch, WCHAR * functionName);
 
 
+/**
+ * @brief Get the number of methods in the script
+ * @note For free function scripts (CONTEXT_MENU)
+ */
+int CountMethodsInScript(LPDISPATCH piDispatch);
+
+/**
+ * @brief Get the ID of the a free function
+ * @param methodOrdinal : index of the free function (0,1,2...)
+ */
+int GetMethodIDInScript(LPDISPATCH piDispatch, int methodIndex);
 
 
 
