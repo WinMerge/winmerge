@@ -1,3 +1,7 @@
+2005-02-23 Kimmo
+ PATCH: [ 1145560 ] Docs: Add link to updated developer-pages
+  Manual: Introduction.xml
+
 2005-02-22 Kimmo
  Fix markup and typo
   Manual: Locales.xml

@@ -7,7 +7,7 @@
   platforms. WinMerge can compare directories and files and present
   differences in easy to understand and handle format.</para>
 
-  <para>WinMerge is highly useful for determing what has changed between
+  <para>WinMerge is highly useful for determining what has changed between
   project versions, and then merging changes between versions. WinMerge can be
   used as external differencing/merging tool or as standalone
   application.</para>
@@ -52,7 +52,7 @@
       url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158">Beta
       versions</ulink> are for people who want to test latest features and
       improvements done after last stable version. Beta versions are not so
-      extensively tested as stable versions are and propably have some
+      extensively tested as stable versions are and probably have some
       bugs.</para>
     </sect3>
 
@@ -86,10 +86,9 @@
     url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug
     report</ulink>. Please attach as much information as you can, at least the
     version number of WinMerge you are using. If you can, attach also
-    configuration log which you can see from menu
-    <guimenu>Help</guimenu><guimenuitem>Configuration</guimenuitem>... Good
-    information in bug report means better change for bug to be fixed
-    faster.</para>
+    configuration log which you can see from menu <menuchoice><guimenu>Help</guimenu>
+    <guimenuitem>Configuration...</guimenuitem></menuchoice> Good information in
+    bug report means better change for bug to be fixed faster.</para>
   </sect2>
 
   <sect2>
@@ -118,6 +117,11 @@
       <para>As mentioned above, we look for help in many areas, not just
       coding. Translations, documentation and testing are important
       too.</para>
+
+      <para><ulink
+      url="http://winmerge.sourceforge.net/developer/index.php">Developer
+      pages</ulink> are good start if you want to help with
+      development.</para>
 
       <para><ulink
       url="http://sourceforge.net/forum/forum.php?forum_id=41639">Developers-forum</ulink>
