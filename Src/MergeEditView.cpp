@@ -306,9 +306,7 @@ void CMergeEditView::OnCurdiff()
 		if (nDiff != -1)
 		{
 			// scroll to the first line of the first diff, with some context thrown in
-			PushCursor();
 			SelectDiff(nDiff, TRUE, FALSE);
-			PopCursor();
 		}
 	}
 }
