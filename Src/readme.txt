@@ -1,3 +1,9 @@
+2005-01-23 Perry
+ PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
+  (Applied UniFile.cpp portion of this patch)
+  Src/Common: UniFile.cpp UniFile.h
+  Src: MergeDoc.cpp
+
 2005-01-23 Kimmo
  PATCH: [ 1107508 ] Add dirview statusbar panel showing current filter name
   Src: DirDoc.cpp DirFrame.cpp DirFrame.h resource.h

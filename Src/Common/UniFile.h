@@ -48,12 +48,9 @@ public:
 	virtual int GetCodepage() const = 0;
 	virtual void SetCodepage(int codepage) = 0;
 
-protected:
+public:
 	virtual BOOL ReadString(CString & line) = 0;
 	virtual BOOL ReadString(CString & line, CString & eol) = 0;
-public:
-	virtual BOOL ReadString(sbuffer & line) = 0;
-	virtual BOOL ReadString(sbuffer & line, CString & eol) = 0;
 
 	virtual int GetLineNumber() const = 0;
 	virtual __int64 GetPosition() const = 0;
@@ -140,12 +137,9 @@ public:
 
 	virtual bool ReadBom();
 
-protected:
+public:
 	virtual BOOL ReadString(CString & line);
 	virtual BOOL ReadString(CString & line, CString & eol);
-public:
-	virtual BOOL ReadString(sbuffer & line);
-	virtual BOOL ReadString(sbuffer & line, CString & eol);
 
 	virtual __int64 GetPosition() const { return m_current - m_base; }
 
