@@ -1,6 +1,8 @@
 2004-07-31 Kimmo
  PATCH: [ 1000714 ] Don't create difflist or patch file for binary files
   Src: DiffWrapper.cpp
+ PATCH: [ 1000772 ] Fix focus in SaveClosing dialog
+  Src: SaveClosingDlg.cpp
 
 2004-07-30 Kimmo
  PATCH: [ 999738 ] Gray out moved block menuitems when moved blocks disabled

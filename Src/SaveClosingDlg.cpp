@@ -73,8 +73,12 @@ BOOL SaveClosingDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
+	GetDlgItem(IDC_SAVECLOSING_SAVELEFT)->SetFocus();
 	if (!m_bAskForLeft)
 	{
+		// Left items disabled move focus to right side items
+		GetDlgItem(IDC_SAVECLOSING_SAVERIGHT)->SetFocus();
+
 		GetDlgItem(IDC_SAVECLOSING_LEFTFRAME)->EnableWindow(FALSE);
 		GetDlgItem(IDC_SAVECLOSING_LEFTFILE)->EnableWindow(FALSE);
 		GetDlgItem(IDC_SAVECLOSING_SAVELEFT)->EnableWindow(FALSE);
@@ -94,7 +98,7 @@ BOOL SaveClosingDlg::OnInitDialog()
 		GetDlgItem(IDCANCEL)->EnableWindow(FALSE);
 	}
 
-	return TRUE;  // return TRUE unless you set the focus to a control
+	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
