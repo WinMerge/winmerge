@@ -314,6 +314,9 @@ line_cmp (s1, len1, s2, len2)
 
   /* Not exactly identical, but perhaps they match anyway
      when case or white space is ignored.  */
+  /* c1 is the current character value for the line s1, it is set to 0
+     when the line has been entirely scanned.
+     c2 is the equivalent of c1 for the line s2 */
 
   if (ignore_case_flag | ignore_space_change_flag | ignore_all_space_flag | ignore_eol_diff)
     {
@@ -322,8 +325,16 @@ line_cmp (s1, len1, s2, len2)
 
       while (1)
 	{
-	  register unsigned char c1 = *t1++;
-	  register unsigned char c2 = *t2++;
+	  register unsigned char c1;
+	  register unsigned char c2;
+	  if (t1-s1<(int)len1)
+	    c1 = *t1++;
+	  else
+	    c1 = 0;
+	  if (t2-s2<(int)len2)
+	    c2 = *t2++;
+	  else
+	    c2 = 0;
 
       /* Test for exact char equality first, since it's a common case.  */
       if (c1 != c2)
@@ -440,10 +451,6 @@ line_cmp (s1, len1, s2, len2)
 
 	  if (!c1)
 	    return 0;
-	  if (t1-s1>=(int)len1)
-	    return ((t2-s2>=(int)len2) ? 0 : 1);
-	  if (t2-s2>=(int)len2)
-	      return 1;
 	}
     }
 

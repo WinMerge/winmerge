@@ -3,6 +3,8 @@
   WinMerge: MainFrm.cpp
 
 2003-10-30 Laoran
+ BUG: [ 830911 ] trailing whitespaces not ignored
+  WinMerge: UTIL.C
  PATCH: [ 830132 ] open empty file
   common: UniFile.cpp
   WinMerge: MergeDoc.cpp files.cpp
