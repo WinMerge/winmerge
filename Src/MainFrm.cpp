@@ -43,6 +43,7 @@
 #include "PropGeneral.h"
 #include "PropFilter.h"
 #include "PropColors.h"
+#include "PropRegistry.h"
 #include "RegKey.h"
 #include "logfile.h"
 #include "PropSyntax.h"
@@ -614,11 +615,13 @@ void CMainFrame::OnProperties()
 	CPropSyntax syn;
 	CPropFilter filter;
 	CPropColors colors( theApp.GetDiffColor(), theApp.GetSelDiffColor() );
+	CPropRegistry regpage;
 	sht.AddPage(&gen);
 	sht.AddPage(&syn);
 	sht.AddPage(&filter);
 	sht.AddPage(&vss);
 	sht.AddPage(&colors);
+	sht.AddPage(&regpage);
 	
 	vss.m_nVerSys = m_nVerSys;
 	vss.m_strPath = m_strVssPath;

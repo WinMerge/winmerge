@@ -1,3 +1,6 @@
+2003-02-12  Christian
+ [ 683752 ] Add option to be listed on Directory context menu
+
 2003-02-11  Perry
  Fixing recent SplitFilename & directory concat problems.
  [ 683924 ] Same binaries for directory compare.
@@ -24,10 +27,10 @@
 2003-02-05  Perry
  Updated Brazilian, Italian, Spanish resources to sync with English/main resources.
 
-2003-01-28
- [ 424579 ] Escape to exit
+2003-01-28  Christian
+ Committed [ 424579 ] Escape to exit
 
-2003-01-27
+2003-01-27  Christian
  [ 668654 ] Tabtype selection feature
  [ 672554 ] Update DirView after individual merge
  Fixed [ 225571 ] After individual merge, dirView not updated
@@ -36,19 +39,19 @@
  [ 673063 ] Modification check before close
  [ 675526 ] Waitcursors and merging all
 
-2003-01-21
+2003-01-21  Christian
  [ 671037 ] Changes for MSVC.NET
  [ 671810 ] Tempfiles to temp dir
 
-2003-01-20
+2003-01-20  Christian
  [ 671034 ] operator precedence bug in SplitterWndEx.cpp
 
-2003-01-15
+2003-01-15  Christian
  [ 650384 ] Fix for false equals for binary files
  [ 651689 ] Add OpenLeft, OpenLeftWith, ... context
  [ 650293 ] Implement context menus with multiselect
 
-2003-01-14
+2003-01-14  Christian
  [ 665993 ] Little optimisation
 
 2002-11-26  Perry
@@ -59,6 +62,6 @@
  Fixed tooltips of toolbar buttons to list correct hotkeys
  Split "Show Unique" option into "Show Left Unique" and "Show Right Unique"
 
-2002-12-02
+2002-12-02  Perry
  Added left files, left dirs, right files, right dirs to status bar feedback
 

@@ -393,6 +393,14 @@ BEGIN
                     WS_VSCROLL
 END
 
+IDD_PROPPAGE_REGISTRY DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Registry"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "Associated with directories",IDC_ASSOC_DIRECTORY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,221,15
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1019,6 +1027,11 @@ STRINGTABLE DISCARDABLE
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
     IDS_BIN_FILES_SAME      "Binary files are identical"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
 END
 
 #endif    // English (U.S.) resources

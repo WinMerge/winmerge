@@ -24,14 +24,29 @@ void CRegKeyEx::Close()
 
 LONG CRegKeyEx::Open(HKEY hKeyRoot, LPCTSTR pszPath)
 {
+	return OpenWithAccess(hKeyRoot, pszPath, KEY_ALL_ACCESS);
+}
+
+LONG CRegKeyEx::OpenWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM regsam)
+{
+	Close();
+
 	DWORD dw;
 	_tcscpy(m_sPath,pszPath);
 
 	return RegCreateKeyEx (hKeyRoot, pszPath, 0L, NULL,
-		REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, 
+		REG_OPTION_NON_VOLATILE, regsam, NULL, 
 		&m_hKey, &dw);
 }
 
+LONG CRegKeyEx::OpenNoCreateWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM regsam)
+{
+	Close();
+
+	_tcscpy(m_sPath,pszPath);
+
+	return RegOpenKeyEx (hKeyRoot, pszPath, 0L, regsam, &m_hKey);
+}
 
 LONG CRegKeyEx::WriteDword (LPCTSTR pszKey, DWORD dwVal)
 {

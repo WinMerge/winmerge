@@ -437,6 +437,10 @@ SOURCE=.\PropGeneral.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropRegistry.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropSyntax.cpp
 # End Source File
 # Begin Source File
@@ -697,6 +701,10 @@ SOURCE=.\PropFilter.h
 # Begin Source File
 
 SOURCE=.\PropGeneral.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PropRegistry.h
 # End Source File
 # Begin Source File
 
