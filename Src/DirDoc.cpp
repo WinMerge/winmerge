@@ -212,6 +212,16 @@ void CDirDoc::Rescan()
 }
 
 /**
+ * @brief Determines if item is backup item and needed to be hidden
+ * @return true if item is a backup
+ */
+static bool IsItemHiddenBackup(const DIFFITEM & di)
+{
+	return mf->m_options.GetInt(OPT_HIDE_BACKUP) &&
+		FileExtMatches(di.sfilename,BACKUP_FILE_EXT);
+}
+
+/**
  * @brief Determines if user wants to see this item
  * @param [in] pCtxt CDiffContext containing filedata
  * @param [in] di Item tested

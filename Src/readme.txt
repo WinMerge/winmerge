@@ -11,6 +11,10 @@
   Src new files: ProjectFile.cpp ProjectFile.h
  Option OPT_HIDE_BACKUP didn't get removed when UI was removed, remove it now
   Src: ConfigLog.cpp ConfigLog.h DirDoc.cpp MainFrm.cpp OptionsDef.h
+ Backout previous 'Option OPT_HIDE_BACKUP didn't get removed..' checkin.
+  It caused build with VC6 to crash in dir compare -- really weird why
+  Src: ConfigLog.cpp ConfigLog.h DirDoc.cpp MainFrm.cpp OptionsDef.h
+
   
 2004-08-03 Kimmo
  PATCH: [ 1002333 ] Set default filter to *.* when starting WinMerge

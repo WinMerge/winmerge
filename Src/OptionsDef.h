@@ -16,6 +16,7 @@ const TCHAR OPT_SHOW_DIFFERENT[] = _T("Settings/ShowDifferent");
 const TCHAR OPT_SHOW_IDENTICAL[] = _T("Settings/ShowIdentical");
 const TCHAR OPT_SHOW_BINARIES[] = _T("Settings/ShowBinaries");
 const TCHAR OPT_SHOW_SKIPPED[] = _T("Settings/ShowSkipped");
+const TCHAR OPT_HIDE_BACKUP[] = _T("Settings/HideBak");
 
 const TCHAR OPT_SYNTAX_HIGHLIGHT[] = _T("Settings/HiliteSyntax");
 const TCHAR OPT_DISABLE_SPLASH[] = _T("Settings/DisableSplash");
