@@ -26,8 +26,6 @@
 ; #  Add the Windows Scripting Host if the user chooses the plugins (*.SCT)
 ; #  UnpackDFM.dll requires ADVAPI32.dll, we'll have to bundle IE or at least display a warning :).  Also figure out if Delphi 4+ /Free Pascal wouldn't
 ;    install this to begin with
-; #  Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL (Use GetCurentFileName)
-; #  Provide the option to or not to assign the Ctrl+Alt+M accelerator to WinMerge., make sure it's turned on for at least one icon
 ; #  Add WinMerge to the user's path so they can execute comparison's from a Dos Prompt (Cmd.exe/Command.exe)
 ; #  We need to unregister, and delete the ShellExtension Dll if the user doesn't want it, during installation
 ; #  When Explorer.exe is restarted we should record what windows were present before hand and restore them afterwards.
@@ -51,7 +49,6 @@
 ; #  Add Delphi 4 Detection for UnpackDFM.dll, making it both selected and visible
 ;
 ; Custom Installer Pages:
-; #  Bundle 7-Zip with WinMerge or provide on the fly download capability.
 ; #  Allow users to set their working directory via a custom installer page
 ;
 ; Things that make the user's life easier:
@@ -282,19 +279,6 @@ Name: {app}\WinMergeU.exe; Type: files; MinVersion: 0, 4
 ;Manifest file is indeed removed.
 Name: {app}\WinMergeU.exe.manifest; Type: files; OnlyBelowVersion: 0, 5.01
 
-Name: {app}\Merge7z311.dll; Type: files; MinVersion: 4, 0
-Name: {app}\Merge7z311U.dll; Type: files; MinVersion: 0, 4
-
-Name: {app}\Merge7z312.dll; Type: files; MinVersion: 4, 0
-Name: {app}\Merge7z312U.dll; Type: files; MinVersion: 0, 4
-
-Name: {app}\Merge7z313.dll; Type: files; MinVersion: 4, 0
-Name: {app}\Merge7z313U.dll; Type: files; MinVersion: 0, 4
-
-Name: {app}\Merge7z412.dll; Type: files; MinVersion: 4, 0
-Name: {app}\Merge7z412U.dll; Type: files; MinVersion: 0, 4
-
-
 ;This won't work, because the file has to be unregistered, and explorer closed, first.
 ;Name: {app}\ShellExtension.dll; Type: files; Check: TaskDisabled('ShellExtension')
 
@@ -393,18 +377,6 @@ Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveru
 ; end VC system files
 
 Source: ..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder
-
-;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\Build\MergeUnicodeRelease\Merge7z414U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll(414)
-Source: ..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll(313)
-Source: ..\Build\MergeUnicodeRelease\Merge7z312U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll(312)
-Source: ..\Build\MergeUnicodeRelease\Merge7z311U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll(311)
-
-Source: ..\Build\MergeRelease\Merge7z414.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Check: Install7ZipDll(414)
-Source: ..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Check: Install7ZipDll(313)
-Source: ..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Check: Install7ZipDll(312)
-Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Check: Install7ZipDll(311)
-
 Source: ..\Plugins\dlls\UnpackDFM.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 
 Source: ..\Src\Languages\DLL\MergeBulgarian.lang; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
@@ -563,6 +535,8 @@ Filename: {app}\{code:ExeName}; Description: {cm:LaunchProgram, WinMerge}; Flags
 
 
 [UninstallDelete]
+;Remove 7-zip integration dlls possibly installed (by hand or using separate installer)
+Name: {app}\Merge7z*.dll; Type: files
 Name: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Type: Files
 Name: {group}; Type: dirifempty
 Name: {app}; Type: dirifempty
@@ -571,9 +545,6 @@ Name: {app}; Type: dirifempty
 
 [Code]
 Var
-    {Stores the version of 7-Zip Installed}
-    int7Zip_Version: Integer;
-
     {Determines two things whether or not ComCtrl is needed and whether or not we've already checked}
     intComCtlNeeded: Integer;
 
@@ -864,117 +835,6 @@ Begin
 	 Msgbox('The version of ' + strFile_path + ' required is "' + IntToStr(intMajor) + '.' + IntToStr(intMinor) + '.' + IntToStr(intRevision) + '.' + IntToStr(intBuild) + '". The version found was "' + strVersion + '.  The version detected did not meet the required value.', mbInformation, MB_OK);
     }
 end;
-
-function Install7ZipDll(strDLL_Version: string): Boolean;
-Var
-    {Stores the file path of the 7-Zip File Manager Program}
-    str7Zip_Path: String;
-
-    {Stores the version of 7-Zip Installed}
-    str7Zip_Version: String;
-
-    {Stores the DLL's Version Function Input Parameter in integer format}
-    intDLL_Version: Integer;
-Begin
-
-    {If the actual version of 7-Zip Installed hasn't been determined yet then...}
-    If int7Zip_Version = 0 Then
-        Begin
-	       {Detects the install location of 7-Zip from the registry, if it's installed}
-	       RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\7zFM.exe', '', str7Zip_Path)
-
-	        {If there is 7-Zip information in the registry then...}
-			If length(str7Zip_Path) > 0 Then
-				begin
-				    {If the 7zFM.exe file exists then...}
-				    If FileExists(str7Zip_Path) = True Then
-				        Begin
-							{Detects the version of the 7-Zip Installed}
-							GetVersionNumbersString(str7Zip_Path, str7Zip_Version)
-
-
-
-				            {If the version of 7-Zip Installed is at least 3.11 Then...}
-				            If VersionAtLeast(str7Zip_Version, 3, 11, 0, 0) = True Then
-				                begin
-				                    {If the user has 3.12 or higher installed then...}
-				                    If VersionAtLeast(str7Zip_Version, 3, 12, 0, 0) = True Then
-                                        Begin
-				                            {If the user has 3.13 or higher installed then...}
-				                            If VersionAtLeast(str7Zip_Version, 3, 13, 0, 0) = True Then
-
-				                                {We record the version of 7-Zip installed as 3.13 regardless of whether or not it's actually 3.14, 3.15, etc..}
-				                                int7Zip_Version := 313
-
-				                            Else
-
-				                                {Since it was at least 3.12, but not 3.13 then it must be 3.12}
-				                                int7Zip_Version := 312;
-
-				                        end
-				                    Else
-				                            {Since it was at least 3.11, but not 3.12 then it must be 3.11}
-				                            int7Zip_Version := 311;
-				                end;
-                        End
-				    Else
-				       {Records that the 7-Zip program didn't exist for the rest of the installation}
-				        int7Zip_Version := -1;
-				end
-			Else
-				{Records that the 7-Zip program wasn't installed for rest of the installation}
-				int7Zip_Version := -1;
-	    end;
-
-    {Converts the DLL Version String to an Integer for numeric evaluation}
-    intDLL_Version := StrToInt(strDLL_Version);
-
-	{If 7-Zip either wasn't installed or was of inadequate version then...}
-	If int7Zip_Version = -1 Then
-		Begin
-			{If the program is trying to determine if the 313 DLL should be installed then the answer is yes
-			we install this, because it's the most recent version and if they were to install 7-zip this
-			would be the version they'd want (since people generally install the latest and greatest)}
-			if intDLL_Version = 313 Then
-				Result := True
-
-			{If the program is trying to install anything, but 313 on a system without 7-Zip
-			then we disallow the installation of that DLL}
-			else
-				Result := False;
-		End
-
-	{If the version of 7-Zip was sufficient then...}
-	Else
-		Begin
-			{if the version the program is trying to install matches the version installed on the clients system then...}
-			If int7Zip_Version = intDLL_Version Then
-				Result := True
-
-			{If the program is trying to install the 31X DLL on a 31Y system then we won't allow the file to be copied...}
-            else
-				Result := False;
-		End;
-
-    {Debug:
-    If UsingWinNT = True Then
-        begin
-            If Result = True Then
-                Msgbox('We''re are installing Merge7z' + strDLL_Version + 'U.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok)
-            Else
-                Msgbox('We''re aren''t installing Merge7z' + strDLL_Version + 'U.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok);
-        end
-
-
-    Else
-         begin
-            If Result = True Then
-                Msgbox('We''re are installing Merge7z' + strDLL_Version + '.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok)
-            Else
-                Msgbox('We''re aren''t installing Merge7z' + strDLL_Version + '.DLL because the system has 7-Zip ' + IntToStr(int7Zip_Version) + ' installed.', mbInformation, mb_Ok);
-        end }
-
-End;
 
 {Determines whether or not to Install the Comctl Update
 Note: this confusing code isn't Seier's it's from jrsoftware.org :)

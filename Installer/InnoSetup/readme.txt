@@ -1,3 +1,7 @@
+2005-03-01 Kimmo
+ PATCH: [ 1153851 ] Remove Merge7z*.dll install from installer
+  InnoSetup: WinMerge Localized.iss
+
 2005-02-15 Kimmo
  PATCH: [ 1121779 ] Uninstall new filters too
   InnoSetup: WinMerge Localized.iss
