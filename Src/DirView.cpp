@@ -1443,6 +1443,9 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 			// Do not color unique items
 			if (ditem.left.mtime == 0 || ditem.right.mtime == 0)
 				lplvcd->clrText = GetSysColor(COLOR_WINDOWTEXT);
+			// Do not color skipped items
+			else if (ditem.isResultSkipped())
+				lplvcd->clrText = GetSysColor(COLOR_WINDOWTEXT);
 			else
 			{
 				if (ditem.left.mtime < ditem.right.mtime)

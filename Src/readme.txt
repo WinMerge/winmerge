@@ -4,6 +4,8 @@
   WinMerge: DirView.cpp Merge.rc resource.h
   WinMerge/res: new files fileskip.bmp folderskip.bmp
   Languages: resource.h *.rc new files /res fileskip.bmp folderskip.bmp
+ Don't color skipped items filenames in directory compare
+  WinMerge: DirView.cpp
 
 2003-09-14 Perry
  PATCH: [ 805875 ] Switch to diffcode flags
