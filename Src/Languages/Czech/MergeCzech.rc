@@ -1425,6 +1425,9 @@ STRINGTABLE
 BEGIN
     IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
+    IDS_BINFILES_IDENTICAL   "%1\n%2\n\nare identical binary files."
+    IDS_BINFILES_DIFFERENT   "%1\n%2\n\nare different binary files."
+    IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
 END
 
 // SAVING FILE (+ VERSION CONTROL)

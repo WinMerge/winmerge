@@ -100,57 +100,58 @@ enum
  *
  * @note @p blank0 & @p blank1 are -1 if there are no blank lines
  */
-typedef struct tagDIFFRANGE
+struct DIFFRANGE
 {
 	UINT begin0;	/**< First diff line in original file1 */
 	UINT end0;		/**< Last diff line in original file1 */
 	UINT begin1;	/**< First diff line in original file2 */
 	UINT end1;		/**< Last diff line in original file2 */
-	UINT dbegin0;	/**< First deleted line in file1 */
-	UINT dend0;		/**< Last deleted line in file1 */
-	UINT dbegin1;	/**< First deleted line in file2 */
-	UINT dend1;		/**< Last deleted line in file2 */
+	UINT dbegin0;	/**< Synchronised (ghost lines added) first diff line in file1 */
+	UINT dend0;		/**< Synchronised (ghost lines added) last diff line in file1 */
+	UINT dbegin1;	/**< Synchronised (ghost lines added) first diff line in file2 */
+	UINT dend1;		/**< Synchronised (ghost lines added) last diff line in file2 */
 	int blank0;		/**< Number of blank lines in file1 */
 	int blank1;		/**< Number of blank lines in file2 */
 	BYTE op;		/**< Operation done with this diff */
-} DIFFRANGE;
+};
 
 /**
  * @brief Diffutils options users of this class must use
  */
-typedef struct tagDIFFOPTIONS
+struct DIFFOPTIONS
 {
 	int nIgnoreWhitespace;
 	BOOL bIgnoreCase;
 	BOOL bIgnoreBlankLines;
 	BOOL bEolSensitive;
-} DIFFOPTIONS;
+};
 
 /**
  * @brief Additional options for creating patch files
  */
-typedef struct tagPATCHOPTIONS
+struct PATCHOPTIONS
 {
 	enum output_style outputStyle;
 	int nContext;
 	BOOL bAddCommandline;
-} PATCHOPTIONS;
+};
 
 /**
  * @brief Diffutils returns this statusdata about files compared
  */
-typedef struct tagDIFFSTATUS
+struct DIFFSTATUS
 {
-	BOOL bLeftMissingNL;
-	BOOL bRightMissingNL;
-	BOOL bBinaries;
-	BOOL bPatchFileFailed;
-} DIFFSTATUS;
+	BOOL bLeftMissingNL; /**< Left file is missing EOL before EOF */
+	BOOL bRightMissingNL; /**< Right file is missing EOL before EOF */
+	BOOL bBinaries; /**< Files are binaries */
+	BOOL bBinariesIdentical; /**< Binary files are identical. */
+	BOOL bPatchFileFailed; /**< Creating patch file failed */
+};
 
 /**
  * @brief Internally used diffutils options
  */
-typedef struct tagDIFFSETTINGS
+struct DIFFSETTINGS
 {
 	enum output_style outputStyle;
 	int context;
@@ -165,7 +166,7 @@ typedef struct tagDIFFSETTINGS
 	int lengthVaries;
 	int heuristic;
 	int recursive;
-} DIFFSETTINGS;
+};
 
 /**
  * @brief Wrapper class for GNU/diffutils

@@ -303,8 +303,8 @@ static void SaveBuffForDiff(CMergeDoc::CDiffTextBuffer & buf, const CString & fi
 /**
  * @brief Save files to temp files & compare again.
  *
- * @param bBinary [out] If TRUE binary file was detected.
- * But we don't know which file is binary, or are they both.
+ * @param bBinary [in,out] [in] If TRUE, compare two binary files
+ * [out] If TRUE binary file was detected.
  * @param bIdentical [out] If TRUE files were identical
  * @param bForced [in] If TRUE, suppressing is ignored and rescan
  * is done always
@@ -340,8 +340,11 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	}
 
 	// output buffers to temp files (in UTF-8 if TCHAR=wchar_t or buffer was Unicode)
-	SaveBuffForDiff(m_ltBuf, m_strTempLeftFile);
-	SaveBuffForDiff(m_rtBuf, m_strTempRightFile);
+	if (bBinary == FALSE)
+	{
+		SaveBuffForDiff(m_ltBuf, m_strTempLeftFile);
+		SaveBuffForDiff(m_rtBuf, m_strTempRightFile);
+	}
 
 	// Set up DiffWrapper
 	m_diffWrapper.SetCompareFiles(m_strTempLeftFile, m_strTempRightFile);
@@ -378,7 +381,11 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	if (!diffSuccess)
 		nResult = RESCAN_FILE_ERR;
 	else if (status.bBinaries)
+	{
 		bBinary = TRUE;
+		if (status.bBinariesIdentical)
+			bIdentical = TRUE;
+	}
 	else
 	{
 		// Now update views and buffers for ghost lines
@@ -1148,7 +1155,8 @@ BOOL CMergeDoc::LineInDiff(UINT nLine, UINT nDiff)
 
 /**
  * @brief Checks if given line is inside diff and
- * returns index to diff table. Returns -1 if line not inside diff.
+ * @param nLine [in] Linenumber, 0-based.
+ * @return Index to diff table, -1 if line no inside any diff.
  */
 int CMergeDoc::LineToDiff(UINT nLine)
 {
@@ -2530,20 +2538,14 @@ BOOL CMergeDoc::CloseNow()
 }
 
 /**
-* @brief Loads file to buffer and shows load-errors
-*
-* @param sFileName File to open
-* @param bLeft Left/right-side file
-* @param readOnly whether file is read-only
-* @param codepage relevant 8-bit codepage if any (0 if none or unknown)
-*
-* @return Tells if files were loaded succesfully
-*
-* @note Binary loading message could be improved...
-*
-* @sa CMergeDoc::OpenDocs()
-*
-*/
+ * @brief Loads file to buffer and shows load-errors
+ * @param sFileName [in] File to open
+ * @param bLeft [in] Left/right-side file
+ * @param readOnly [out] whether file is read-only
+ * @param codepage [in] relevant 8-bit codepage if any (0 if none or unknown)
+ * @return Tells if files were loaded succesfully
+ * @sa CMergeDoc::OpenDocs()
+ **/
 int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int codepage)
 {
 	CDiffTextBuffer *pBuf;
@@ -2580,20 +2582,14 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 		}
 	}
 
-	if (retVal != FRESULT_OK)
+	if (retVal == FRESULT_ERROR)
 	{
-		if (retVal == FRESULT_ERROR)
-			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, sFileName);
-		else if (retVal == FRESULT_ERROR_UNPACK)
-			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_UNPACKED, sFileName);
-		else if (retVal == FRESULT_BINARY)
-		{
-			sError.LoadString(IDS_FILEBINARY);
-			sError += "\n(";
-			sError += sFileName;
-			sError += ")";
-		}
-
+		AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, sFileName);
+		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
+	}
+	else if (retVal == FRESULT_ERROR_UNPACK)
+	{
+		AfxFormatString1(sError, IDS_ERROR_FILE_NOT_UNPACKED, sFileName);
 		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 	}
 	return retVal;
@@ -2601,12 +2597,12 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 
 /**
  * @brief Loads files and does initial rescan
- * @param sLeftFile File to open to left side
- * @param sRightFile File to open to right side
- * @param bROLeft Is left file read-only
- * @param bRORight Is right file read-only
- * @param cpleft Is left file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
- * @param cpright Is right file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
+ * @param sLeftFile [in] File to open to left side
+ * @param sRightFile [in] File to open to right side
+ * @param bROLeft [in] Is left file read-only
+ * @param bRORight [in] Is right file read-only
+ * @param cpleft [in] Is left file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
+ * @param cpright [in] Is right file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
  * @return Tells if files were loaded and scanned succesfully
  * @todo Options are still read from CMainFrame, this will change
  * @sa CMainFrame::ShowMergeDoc()
@@ -2676,7 +2672,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		}
 
 		m_rightSaveFileInfo.Update(sRightFile);
-		if (nLeftSuccess == FRESULT_OK)
+		if (nLeftSuccess == FRESULT_OK || nLeftSuccess == FRESULT_BINARY)
 			nRightSuccess = LoadFile(sRightFile, FALSE, bRORight, cpright);
 	}
 	else
@@ -2696,10 +2692,11 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	// Bail out if either side failed
 	if (nLeftSuccess != FRESULT_OK || nRightSuccess != FRESULT_OK)
 	{
-		GetParentFrame()->DestroyWindow();
+		if (nLeftSuccess == FRESULT_BINARY || nRightSuccess == FRESULT_BINARY)
+			CompareBinaries(sLeftFile, sRightFile, nLeftSuccess, nRightSuccess);
 		return FALSE;
 	}
-	
+
 	// Now buffers data are valid
 	m_pLeftView->AttachToBuffer();
 	m_pRightView->AttachToBuffer();
@@ -2851,6 +2848,66 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		return FALSE;
 	}
 	return TRUE;
+}
+
+/**
+ * @brief Compare binary files and print results to user.
+ *
+ * @param sLeftFile [in] Full path to left file
+ * @param sRightFile [in] Full path to right file
+ * @param nLeftSuccess [in] Returnvalue from file load for leftside
+ * @param nRightSuccess [in] Returnvalue from file load for rightside
+ * @sa CMergeDoc::OpenDocs()
+ * @sa CMergeDoc::Rescan()
+ */
+void CMergeDoc::CompareBinaries(CString sLeftFile, CString sRightFile, int nLeftSuccess, int nRightSuccess)
+{
+	int nRescanResult = RESCAN_OK;
+	BOOL bBinary = FALSE;
+	BOOL bIdentical = FALSE;
+
+	// Compare binary files
+	if (nLeftSuccess == FRESULT_BINARY && nRightSuccess == FRESULT_BINARY)
+	{
+		bBinary = TRUE; // Compare binary files
+		int nRescanResult = Rescan(bBinary, bIdentical);
+	}
+
+	// We MUST destroy frame before showing messagebox to avoid drawing frame
+	// when messagebox is shown!
+	GetParentFrame()->DestroyWindow();
+
+	if (nRescanResult == RESCAN_OK)
+	{
+		// Format message shown to user: both files are binaries
+		if (nLeftSuccess == FRESULT_BINARY && nRightSuccess == FRESULT_BINARY)
+		{
+			CString msg;
+			CString msg2;
+			if (bIdentical)
+				AfxFormatString2(msg, IDS_BINFILES_IDENTICAL, sLeftFile, sRightFile);
+			else
+				AfxFormatString2(msg, IDS_BINFILES_DIFFERENT, sLeftFile, sRightFile);
+			msg += _T("\n\n");
+			VERIFY(msg2.LoadString(IDS_FILEBINARY));
+			msg += msg2;
+			AfxMessageBox(msg, MB_ICONINFORMATION);
+		}
+		else if (nLeftSuccess == FRESULT_BINARY || nRightSuccess == FRESULT_BINARY)
+		{
+			// Other file binary, other text
+			CString msg;
+			CString msg2;
+			if (nLeftSuccess == FRESULT_BINARY)
+				AfxFormatString1(msg, IDS_OTHER_IS_BINARY, sLeftFile);
+			else
+				AfxFormatString1(msg, IDS_OTHER_IS_BINARY, sRightFile);
+
+			AfxMessageBox(msg, MB_ICONSTOP);
+		}
+	}
+	else
+		ShowRescanError(nRescanResult, bBinary, bIdentical);
 }
 
 /**

@@ -299,6 +299,9 @@
 
 #define IDS_ERROR_FILE_NOT_FOUND        17216
 #define IDS_ERROR_FILE_NOT_UNPACKED     17217
+#define IDS_BINFILES_IDENTICAL          17218
+#define IDS_BINFILES_DIFFERENT          17219
+#define IDS_OTHER_IS_BINARY             17220
 
 #define IDS_SAVE_AS_TITLE               17232
 #define IDS_SAVE_FMT                    17233

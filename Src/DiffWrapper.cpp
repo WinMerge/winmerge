@@ -462,13 +462,22 @@ BOOL CDiffWrapper::RunFileDiff()
 		strFile2Temp.Empty();
 	}
 
-	m_status.bBinaries = bin_flag > 0;
+	// diff_2_files set bin_flag to -1 if different binary
+	// diff_2_files set bin_flag to +1 if same binary
+	if (bin_flag != 0)
+	{
+		m_status.bBinaries = TRUE;
+		if (bin_flag == -1)
+			m_status.bBinariesIdentical = FALSE;
+		else
+			m_status.bBinariesIdentical = TRUE;
+	}
+	else
+		m_status.bBinaries = FALSE;
 	m_status.bLeftMissingNL = inf[0].missing_newline;
 	m_status.bRightMissingNL = inf[1].missing_newline;
-	
 
 	SwapToGlobalSettings();
-
 	return TRUE;
 }
 
@@ -1331,7 +1340,6 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 
 }
 
-	
 /*
 read_files
  creates and destroys the hash table of lines (equivs & buckets)

@@ -1,3 +1,8 @@
+2004-05-21 Kimmo
+ PATCH: [ 957740 ] Tell if two binary files are different/identical
+  Src: DiffWrapper.cpp DiffWrapper.h Merge.rc MergeDoc.cpp resource.h
+  Src/Languages: *.rc resource.h
+
 2004-05-21 Laoran
  PATCH: [ 947680 ] Organize resource strings, part 2 (IDD and IDB)
   Src: resource.h
