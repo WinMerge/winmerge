@@ -2074,7 +2074,7 @@ BEGIN
     ID_EDIT_WMGOTO          "Отиди на графа или разлика\nОтиди на (Ctrl+G)"
     ID_OPTIONS              "Нагласяне на програмните настроики\nНастроики"
     ID_REFRESH              "Refresh display\nRefresh (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to cliboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
 END
 
 // VIEW MENU (FILE TYPE)

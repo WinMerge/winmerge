@@ -1,3 +1,7 @@
+2005-02-20 Tim
+ Fix 'cliboard' typo in rc files.
+  Languages: *.rc
+
 2005-02-20 Perry
  BUG: [ 1144917 ] cvs source does not compile: '_stati64' : undeclared identif
   Fix ANSI compilation of stati64

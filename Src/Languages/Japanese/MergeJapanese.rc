@@ -2077,7 +2077,7 @@ BEGIN
     ID_EDIT_WMGOTO          "指定した行または、差異へ移動します\nジャンプ (Ctrl+G)"
     ID_OPTIONS              "プログラムオプションを設定します\nオプション"
     ID_REFRESH              "最新の情報に更新します\n表示更新 (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to cliboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
 END
 
 // VIEW MENU (FILE TYPE)

@@ -2075,7 +2075,7 @@ BEGIN
     ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
     ID_OPTIONS              "Modifier les options du programme\nOptions"
     ID_REFRESH              "Actualiser l'affichage\nActualiser (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to cliboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
 END
 
 // VIEW MENU (FILE TYPE)

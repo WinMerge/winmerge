@@ -2187,7 +2187,7 @@ BEGIN
     ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
     ID_OPTIONS              "Especificar propiedades de la aplicación\nPropiedades"
     ID_REFRESH              "Refresh display\nRefresh (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to cliboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
 END
 
 // VIEW MENU (FILE TYPE)

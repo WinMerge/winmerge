@@ -2072,7 +2072,7 @@ BEGIN
     ID_EDIT_WMGOTO          "Gå til linje eller forskel\nGå til (Ctrl+G)"
     ID_OPTIONS              "Sæt program indstillinger\nIndstillinger"
     ID_REFRESH              "Opdater display\nOpdater (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to cliboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
 END
 
 // VIEW MENU (FILE TYPE)

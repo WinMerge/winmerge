@@ -2084,7 +2084,7 @@ BEGIN
     ID_EDIT_WMGOTO          "Перейти на строку или отличие\nGo to (Ctrl+G)"
     ID_OPTIONS              "Установить программные настройки\nНастройки"
     ID_REFRESH              "Обновить экран\nRefresh (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to cliboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
 END
 
 // VIEW MENU (FILE TYPE)

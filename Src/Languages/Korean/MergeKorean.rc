@@ -2071,7 +2071,7 @@ BEGIN
     ID_EDIT_WMGOTO          "선택 라인이나 다른 부분으로 이동합니다\n이동 (Ctrl+G)"
     ID_OPTIONS              "옵션을 설정합니다.\n옵션"
     ID_REFRESH              "새로 고침\n새로 고침 (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to cliboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
 END
 
 // VIEW MENU (FILE TYPE)
