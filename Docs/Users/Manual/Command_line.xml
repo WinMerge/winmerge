@@ -1,25 +1,28 @@
 <sect1>
   <title>Commandline</title>
-  <para>WinMerge can be started from commandline. This is useful when WinMerge is used as external merge tool.</para>
+  <para>WinMerge can be also used from commandline. There are several commandline switches to ease using WinMerge as external merge/diff application.</para>
   <para>
-   Syntax for commandline is:
-   <cmdsynopsis>
-    <command>WinMerge</command>
-    <arg>/r</arg>
-    <arg>/e</arg>
-    <arg>/ul</arg>
-    <arg>/ur</arg>
-    <arg>/ub</arg>
-    <arg>/dl <replaceable>leftdesc</replaceable></arg>
-    <arg>/dr <replaceable>rightdesc</replaceable></arg>
-    <arg choice='plain'><replaceable>leftpath</replaceable></arg>
-    <arg choice='plain'><replaceable>rightpath</replaceable></arg>
-    <arg><replaceable>outputpath</replaceable></arg>
-   </cmdsynopsis>
+Syntax for commandline is:
+   
   </para>
+  <para><screen><cmdsynopsis sepchar=" ">
+        <command moreinfo="none">WinMerge</command>
+        <arg choice="opt" rep="norepeat"><option>/r</option></arg>
+        <arg choice="opt" rep="norepeat"><option>/e</option></arg>
+        <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
+        <arg choice="opt" rep="norepeat"><option>/ur</option></arg>
+        <arg choice="opt" rep="norepeat"><option>/ub</option></arg>
+        <arg><option>/wl</option></arg>
+        <arg><option>/wr</option></arg>
+        <arg choice="opt" rep="norepeat">/dl <replaceable>leftdesc</replaceable></arg>
+        <arg choice="opt" rep="norepeat">/dr <replaceable>rightdesc</replaceable></arg>
+        <arg choice="plain" rep="norepeat"><replaceable>leftpath</replaceable></arg>
+        <arg choice="plain" rep="norepeat"><replaceable>rightpath</replaceable></arg>
+        <arg choice="opt" rep="norepeat"><replaceable>outputpath</replaceable></arg>
+      </cmdsynopsis></screen></para>
   <itemizedlist>
     <listitem>
-      <para>/? or -? displays this help</para>
+      <para>/? or -? displays help message</para>
     </listitem>
     <listitem>
       <para>/r or -r tells winmerge to compare directories recursively</para>
@@ -37,6 +40,12 @@
       <para>/ub or -ub tells winmerge to not add both paths to MRU</para>
     </listitem>
     <listitem>
+      <para>/wl or -wl initially opens left side as read-only</para>
+    </listitem>
+    <listitem>
+      <para>/wr or -wr initially opens right side as read-only</para>
+    </listitem>
+    <listitem>
       <para>/dl or -dl adds a description for left side shown instead of directory/filename</para>
     </listitem>
     <listitem>
@@ -52,7 +61,6 @@
       <para>outputpath is an optional output directory where you want merged files to be saved</para>
     </listitem>
   </itemizedlist>
-  
   <note>
     <para>leftpath and rightpath both has to be files or both has to be directories</para>
   </note>
