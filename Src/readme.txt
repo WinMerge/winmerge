@@ -3,6 +3,9 @@
   Src: FileFilterHelper.cpp
  PATCH: [ 1007216 ] Allow '*.' to match files without extension in Open-dialog
   Src: FileFilterHelper.cpp
+ PATCH: [ 1007627 ] Filter selection fixes
+  Src: FileFilterHelper.cpp FileFilterHelper.h MainFrm.cpp OpenDlg.cpp
+   OpenDlg.h OptionsDef.h
 
 2004-08-11 Kimmo
  PATCH: [ 1006475 ] Don't save editor settings to different key in registry

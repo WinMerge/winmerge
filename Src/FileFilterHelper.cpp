@@ -130,16 +130,9 @@ void FileFilterHelper::UseMask(BOOL bUseMask)
  */
 void FileFilterHelper::SetMask(LPCTSTR strMask)
 {
+	m_sMask = strMask;
 	CString regExp = ParseExtensions(strMask);
-	SetMaskRegExp(regExp);
-}
-
-/** 
- * @brief Set regexp for filtering.
- */
-void FileFilterHelper::SetMaskRegExp(LPCTSTR strRegExp)
-{
-	m_rgx.RegComp(strRegExp);
+	m_rgx.RegComp(regExp);
 }
 
 /** @brief Return TRUE unless we're suppressing this file by filter */
@@ -186,7 +179,11 @@ BOOL FileFilterHelper::includeDir(LPCTSTR szDirName)
 	}
 }
 
-/** @brief Bring up file filter in notepad */
+/**
+ * @brief Open filter file to editor (notepad) for modifying.
+ *
+ * @param [in] szFileFilterterPath Path of filter file to edit.
+ */
 void FileFilterHelper::EditFileFilter(LPCTSTR szFileFilterPath)
 {
 	FileFilter * filter = m_fileFilterMgr->GetFilterByPath(szFileFilterPath);
@@ -214,6 +211,11 @@ void FileFilterHelper::EditFileFilter(LPCTSTR szFileFilterPath)
 	
 	// Reload filter after changing it
 	m_fileFilterMgr->ReloadFilterFromDisk(filter);
+
+	// If it was active filter we have to re-set it
+	CString sPath = GetFileFilterPath();
+	if (sPath == szFileFilterPath)
+		SetFileFilterPath(szFileFilterPath);
 }
 
 /** @brief Load in all filter patterns in a directory (unless already in map) */
@@ -273,6 +275,29 @@ CString FileFilterHelper::ParseExtensions(CString extensions)
 }
 
 /** 
+ * @brief Returns TRUE if active filter is mask.
+ */
+BOOL FileFilterHelper::GetUseMask()
+{
+	return m_bUseMask;
+}
+
+/** 
+ * @brief Returns active filter.
+ */
+CString FileFilterHelper::GetFilter()
+{
+	CString sFilter;
+
+	if (!GetUseMask())
+		sFilter = GetFileFilterName(m_sFileFilterPath);
+	else
+		sFilter = m_sMask;
+
+	return sFilter;
+}
+
+/** 
  * @brief Set filter.
  *
  * Simple-to-use function to select filter. This function determines
@@ -295,7 +320,6 @@ BOOL FileFilterHelper::SetFilter(CString filter)
 		}
 		else
 			return FALSE;
-	
 	}
 	return TRUE;
 }

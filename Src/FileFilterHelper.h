@@ -67,8 +67,9 @@ public:
 
 	void UseMask(BOOL bUseMask);
 	void SetMask(LPCTSTR strMask);
-	void SetMaskRegExp(LPCTSTR strRegExp);
 
+	BOOL GetUseMask();
+	CString GetFilter();
 	BOOL SetFilter(CString filter);
 
 	BOOL includeFile(LPCTSTR szFileName);
@@ -81,6 +82,7 @@ private:
 	FileFilter * m_currentFilter;
 	FileFilterMgr * m_fileFilterMgr;
 	CString m_sFileFilterPath;
+	CString m_sMask;
 	BOOL m_bUseMask;
 
 	CRegExp m_rgx;

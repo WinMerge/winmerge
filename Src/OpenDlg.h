@@ -69,7 +69,6 @@ public:
 	int m_pathsType; // enum from PATH_EXISTENCE in paths.h
 	/// unpacker info
 	PackingInfo m_infoHandler;
-	BOOL m_bFileFilterSelected;
 	BOOL m_bOverwriteRecursive;  /**< If TRUE overwrite last used value of recursive */
 
 // Implementation data

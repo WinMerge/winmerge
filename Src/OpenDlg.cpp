@@ -59,7 +59,6 @@ COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
 	//}}AFX_DATA_INIT
 
 	m_pathsType = DOES_NOT_EXIST;
-	m_bFileFilterSelected = FALSE;
 	m_bOverwriteRecursive = FALSE;
 }
 
@@ -190,24 +189,26 @@ void COpenDlg::OnOK()
 	UpdateData(FALSE);
 	KillTimer(IDT_CHECKFILES);
 
+	m_strExt.TrimLeft();
+	m_strExt.TrimRight();
+
 	// If prefix found from start..
 	if (m_strExt.Find(filterPrefix, 0) == 0)
 	{
 		// Remove prefix + space
 		m_strExt.Delete(0, filterPrefix.GetLength());
-		CString path = theApp.m_globalFileFilter.GetFileFilterPath(m_strExt);
-		m_bFileFilterSelected = TRUE;
-		theApp.m_globalFileFilter.SetFileFilterPath(path);
-		theApp.m_globalFileFilter.UseMask(FALSE);
+		if (!theApp.m_globalFileFilter.SetFilter(m_strExt))
+		{
+			// If filtername is not found use default *.* mask
+			theApp.m_globalFileFilter.SetFilter(_T("*.*"));
+			m_strExt = _T("*.*");
+		}
+		mf->m_options.SaveOption(OPT_FILEFILTER_CURRENT, m_strExt);
 	}
 	else
 	{
-		CString strNone;
-		VERIFY(strNone.LoadString(IDS_USERCHOICE_NONE));
-		theApp.m_globalFileFilter.SetFileFilterPath(strNone);
-		theApp.m_globalFileFilter.SetMask(m_strExt);
-		m_bFileFilterSelected = FALSE;
-		theApp.m_globalFileFilter.UseMask(TRUE);
+		theApp.m_globalFileFilter.SetFilter(m_strExt);
+		mf->m_options.SaveOption(OPT_FILEFILTER_CURRENT, m_strExt);
 	}
 
 	m_ctlLeft.SaveState(_T("Files\\Left"));
@@ -256,37 +257,26 @@ BOOL COpenDlg::OnInitDialog()
 	m_ctlExt.LoadState(_T("Files\\Ext"));
 	UpdateData(m_strLeft.IsEmpty() && m_strRight.IsEmpty());
 	
-	// Select active filter from filter list or add it to list
-	CString filterPrefix;
-	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
-	CString strNone;
-	VERIFY(strNone.LoadString(IDS_USERCHOICE_NONE));
-	CString filterFile, filterExt;
-	CString filterPath = theApp.m_globalFileFilter.GetFileFilterPath();
-	SplitFilename(filterPath, NULL, &filterFile, &filterExt);
-	filterFile += _T(".");
-	filterFile += filterExt;
+	CString filter = theApp.m_globalFileFilter.GetFilter();
+	BOOL bMask = theApp.m_globalFileFilter.GetUseMask();
 
-	if (filterFile.Find(strNone, 0) > -1)
-		// No filter selected, select last used extension
-		m_ctlExt.SetCurSel(0);
+	if (!bMask)
+	{
+		CString filterPrefix;
+		VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
+		filter.Insert(0, filterPrefix);
+	}
+
+	int ind = m_ctlExt.FindStringExact(0, filter);
+	if (ind != CB_ERR)
+		m_ctlExt.SetCurSel(ind);
 	else
 	{
-		// Filter selected, search filter first from list, add if not found
-		m_bFileFilterSelected = TRUE;
-		CString filterName = theApp.m_globalFileFilter.GetFileFilterName(filterPath);
-		filterName.Insert(0, filterPrefix);
-		int ind = m_ctlExt.FindStringExact(0, filterName);
+		ind = m_ctlExt.InsertString(0, filter);
 		if (ind != CB_ERR)
 			m_ctlExt.SetCurSel(ind);
 		else
-		{
-			ind = m_ctlExt.InsertString(0, filterName);
-			if (ind != CB_ERR)
-				m_ctlExt.SetCurSel(ind);
-			else
-				LogErrorString(_T("Failed to add string to filters combo list!"));
-		}
+			LogErrorString(_T("Failed to add string to filters combo list!"));
 	}
 
 	if (!mf->m_options.GetInt(OPT_VERIFY_OPEN_PATHS))
@@ -474,22 +464,30 @@ void COpenDlg::SetUnpackerStatus(UINT msgID)
  */
 void COpenDlg::OnSelectFilter()
 {
-	CString filterName;
-	CString strNone;
 	CString filterPrefix;
-	VERIFY(strNone.LoadString(IDS_USERCHOICE_NONE));
+	CString curFilter;
 	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
 
+	const BOOL bUseMask = theApp.m_globalFileFilter.GetUseMask();
+	GetDlgItemText(IDC_EXT_COMBO, curFilter);
+	curFilter.TrimLeft();
+	curFilter.TrimRight();
+
 	mf->SelectFilter();
-	CString filter = theApp.m_globalFileFilter.GetFileFilterPath();
 	
-	if (filter == strNone)
-		SetDlgItemText(IDC_EXT_COMBO, _T("*.*"));
+	CString filter = theApp.m_globalFileFilter.GetFilter();
+	if (theApp.m_globalFileFilter.GetUseMask())
+	{
+		// If we had filter choosed and now has mask we can overwrite filter
+		if (!bUseMask || curFilter[0] != '*')
+		{
+			SetDlgItemText(IDC_EXT_COMBO, filter);
+		}
+	}
 	else
 	{
-		filterName = theApp.m_globalFileFilter.GetFileFilterName(filter);
-		filterName.Insert(0, filterPrefix);
-		SetDlgItemText(IDC_EXT_COMBO, filterName);
+		filter.Insert(0, filterPrefix);
+		SetDlgItemText(IDC_EXT_COMBO, filter);
 	}
 }
 

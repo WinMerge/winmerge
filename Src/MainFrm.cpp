@@ -223,7 +223,7 @@ CMainFrame::CMainFrame()
 
 	m_options.InitOption(OPT_LINEFILTER_ENABLED, FALSE);
 	m_options.InitOption(OPT_LINEFILTER_REGEXP, _T(""));
-	m_options.InitOption(OPT_FILEFILTER_PATH, _T(""));
+	m_options.InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
 
 	m_bShowErrors = TRUE;
 	m_CheckOutMulti = FALSE;
@@ -237,7 +237,7 @@ CMainFrame::CMainFrame()
 	theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), _T(""));
 	m_strVssPath = theApp.GetProfileString(_T("Settings"), _T("VssPath"), _T(""));
 	m_strVssDatabase = theApp.GetProfileString(_T("Settings"), _T("VssDatabase"),_T(""));
-	theApp.m_globalFileFilter.SetFileFilterPath(m_options.GetString(OPT_FILEFILTER_PATH));
+	theApp.m_globalFileFilter.SetFilter(m_options.GetString(OPT_FILEFILTER_CURRENT));
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	// uncomment this when the GUI allows to toggle the mode
 //	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
@@ -2109,6 +2109,10 @@ void CMainFrame::OnClose()
 		}
 	}
 
+	// Save last selected filter
+	CString filter = theApp.m_globalFileFilter.GetFilter();
+	m_options.SaveOption(OPT_FILEFILTER_CURRENT, filter);
+
 	// save main window position
 	WINDOWPLACEMENT wp;
 	wp.length = sizeof(WINDOWPLACEMENT);
@@ -2779,9 +2783,26 @@ void CMainFrame::OnToolsFilters()
 
 	if (sht.DoModal() == IDOK)
 	{
+		CString strNone;
+		VERIFY(strNone.LoadString(IDS_USERCHOICE_NONE));
 		CString path = fileFiltersDlg.GetSelected();
-		theApp.m_globalFileFilter.SetFileFilterPath(path);
-		m_options.SaveOption(OPT_FILEFILTER_PATH, path);
+		if (path.Find(strNone) > -1)
+		{
+			// Don't overwrite mask we already have
+			if (!theApp.m_globalFileFilter.GetUseMask())
+			{
+				CString sFilter = _T("*.*");
+				theApp.m_globalFileFilter.SetFilter(sFilter);
+				m_options.SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
+			}
+		}
+		else
+		{
+			theApp.m_globalFileFilter.SetFileFilterPath(path);
+			theApp.m_globalFileFilter.UseMask(FALSE);
+			CString sFilter = theApp.m_globalFileFilter.GetFilter();
+			m_options.SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
+		}
 		m_options.SaveOption(OPT_LINEFILTER_ENABLED, filter.m_bIgnoreRegExp);
 		m_options.SaveOption(OPT_LINEFILTER_REGEXP, filter.m_sPattern);
 

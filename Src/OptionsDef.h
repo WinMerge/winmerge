@@ -84,7 +84,7 @@ const TCHAR OPT_CMP_MOVED_BLOCKS[] = _T("Settings/MovedBlocks");
 const TCHAR OPT_LINEFILTER_ENABLED[] = _T("Settings/IgnoreRegExp");
 ///Regular expression linefilters
 const TCHAR OPT_LINEFILTER_REGEXP[] = _T("Settings/RegExps");
-/// Location of currently selected filefilter
-const TCHAR OPT_FILEFILTER_PATH[] = _T("Settings/FileFilterPath");
+/// Currently selected filefilter
+const TCHAR OPT_FILEFILTER_CURRENT[] = _T("Settings/FileFilterCurrent");
 
 #endif // _OPTIONS_DEF_H_
