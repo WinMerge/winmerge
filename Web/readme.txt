@@ -1,3 +1,12 @@
+2004-07-28 Kimmo
+ PATCH: [ 986413 ] Update Italian translation status
+  Web/developer/l10n: status.xml
+
+2004-07-23 Perry
+ PATCH: [ 988505 ] updated email address for catalan translator
+  Update email address for Jordi Vilar (Catalan translator)
+   Web\developer\l10n: status.xml
+
 2004-06-14 Christian
  PATCH: [ 929401 ] New website structure
   Web: .htaccess index.php page.inc winmerge.css
