@@ -48,6 +48,7 @@
 #include "FileTransform.h"
 #include "unicoder.h"
 #include "UniFile.h"
+#include "locality.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1067,7 +1068,27 @@ int GetTextFileStyle(const UniMemFile::txtstats & stats)
 	}
 }
 
-/// Loads file from disk to buffer
+/**
+ * @brief Return a string giving #lines and #bytes and how much time elapsed.
+ */
+static CString
+GetLineByteTimeReport(UINT lines, UINT bytes, const COleDateTime & start)
+{
+	CString sLines = locality::NumToLocaleStr(lines);
+	CString sBytes = locality::NumToLocaleStr(bytes);
+	COleDateTimeSpan duration = COleDateTime::GetCurrentTime() - start;
+	CString sMinutes = locality::NumToLocaleStr((int)duration.GetTotalMinutes());
+	CString str;
+	str.Format(_T("%s lines (%s byte) saved in %sm%02ds\n")
+		, sLines, sBytes, sMinutes
+		, duration.GetSeconds()
+		);
+	return str;
+}
+
+/**
+ * @brief Load file from disk into buffer
+ */
 int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInfo * infoUnpacker, CString sToFindUnpacker, BOOL & readOnly,
 		int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/)
 {
@@ -1116,6 +1137,9 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 		UINT lineno = 0;
 		CString line, eol, preveol;
 		bool done = false;
+		int next_line_report = 100; // for trace messages
+		int next_line_multiple = 5; // for trace messages
+		COleDateTime start = COleDateTime::GetCurrentTime(); // for trace messages
 
 		// Manually grow line array exponentially
 		int arraysize = 500;
@@ -1141,7 +1165,32 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 			AppendLine(lineno, line, line.GetLength());
 			++lineno;
 			preveol = eol;
+
+			// send occasional line counts to trace
+			// (at 100, 500, 1000, 5000, etc)
+			if (lineno == next_line_report)
+			{
+				__int64 dwBytesRead = 99;
+				COleDateTimeSpan duration = COleDateTime::GetCurrentTime() - start;
+				if (duration.GetTotalMinutes() > 1)
+				{
+					CString strace = GetLineByteTimeReport(lineno, dwBytesRead, start);
+					TRACE(_T("%s\n"), (LPCTSTR)strace);
+				}
+				next_line_report = next_line_multiple * next_line_report;
+				next_line_multiple = (next_line_multiple == 5) ? 2 : 5;
+			}
 		} while (!done);
+
+		// Send report of duration to trace (if it took a while)
+		COleDateTime end = COleDateTime::GetCurrentTime();
+		COleDateTimeSpan duration = end - start;
+		if (duration.GetTotalMinutes() > 2)
+		{
+			__int64 dwBytesRead = 999;
+			CString strace = GetLineByteTimeReport(lineno, dwBytesRead, start);
+			TRACE(_T("%s\n"), (LPCTSTR)strace);
+		}
 
 		// fix array size (due to our manual exponential growth
 		m_aLines.SetSize(lineno);
