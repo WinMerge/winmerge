@@ -32,6 +32,9 @@ int xisalpha (int c);
 int xisalnum (int c);
 
 CString LoadResString(int id);
+CString GetSysError(int nerr);
+void LogErrorString(LPCTSTR sz);
+CString Fmt(LPCTSTR fmt, ...);
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.

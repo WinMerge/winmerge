@@ -7,6 +7,8 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 	DWORD dwMapAccess = 0;
 	DWORD dwOpenAccess = 0;
 	DWORD dwFileSizeHigh = 0;
+	DWORD dwSharedMode = 0; // exclusive
+	HANDLE hTemplateFile = NULL; // for creating new file
 	BOOL bSuccess = TRUE;
 
 	if (fileData->bWritable)
@@ -23,11 +25,15 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 	}
 
 	fileData->hFile = CreateFile(fileData->fileName,
-		dwOpenAccess, 0, NULL, fileData->dwOpenFlags,
-		FILE_ATTRIBUTE_NORMAL, NULL);
+		dwOpenAccess, dwSharedMode, NULL, fileData->dwOpenFlags,
+		FILE_ATTRIBUTE_NORMAL, hTemplateFile);
 
 	if (fileData->hFile == INVALID_HANDLE_VALUE)
+	{
 		bSuccess = FALSE;
+		LogErrorString(Fmt(_T("CreateFile(%s) failed in files_openFileMapped: %s")
+			, fileData->fileName, GetSysError(GetLastError())));
+	}
 	else
 	{
 		if (fileData->dwSize == 0)
@@ -46,17 +52,24 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 	{
 		fileData->hMapping = CreateFileMapping(fileData->hFile,
 				NULL, dwProtectFlag, 0, fileData->dwSize, NULL);
+		if (!fileData->hMapping)
+		{
+			bSuccess = FALSE;
+			LogErrorString(Fmt(_T("CreateFileMapping(%s) failed: %s")
+				, fileData->fileName, GetSysError(GetLastError())));
+		}
+		else
+		{
+			fileData->pMapBase = MapViewOfFile(fileData->hMapping,
+				dwMapAccess, 0, 0, 0);
+			if (!fileData->pMapBase)
+			{
+				bSuccess = FALSE;
+				LogErrorString(Fmt(_T("MapViewOfFile(%s) failed: %s")
+					, fileData->fileName, GetSysError(GetLastError())));
+			}
+		}
 	}
-
-	if (fileData->hMapping)
-		fileData->pMapBase = MapViewOfFile(fileData->hMapping,
-			dwMapAccess, 0, 0, 0);
-	else
-		bSuccess = FALSE;
-
-
-	if (!fileData->pMapBase)
-		bSuccess = FALSE;
 
 	if (!bSuccess)
 	{

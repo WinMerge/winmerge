@@ -1,3 +1,7 @@
+2003-07-08 Perry
+ PATCH: [ 765165 ] Log error string if CreateFile fails (to debug window)
+  WinMerge: files.cpp MainFrm.cpp MainFrm.h MergeDoc.cpp StdAfx.cpp StdAfx.h
+
 2003-07-07 Kimmo
  PATCH: [ 767204 ] Fix for assert when rescanning with selection
   Submitted by Gilbert Wellisch

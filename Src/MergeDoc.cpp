@@ -1358,30 +1358,6 @@ BOOL CMergeDoc::InitTempFiles(const CString& srcPathL, const CString& strPathR)
 	return TRUE;
 }
 
-void TraceLastErrorMessage()
-{
-	LPVOID lpMsgBuf;
-	FormatMessage( 
-		FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-		FORMAT_MESSAGE_FROM_SYSTEM | 
-		FORMAT_MESSAGE_IGNORE_INSERTS,
-		NULL,
-		GetLastError(),
-		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
-		(LPTSTR) &lpMsgBuf,
-		0,
-		NULL 
-		);
-	// Process any inserts in lpMsgBuf.
-	// ...
-	// Display the string.
-	//MessageBox( NULL, (LPCTSTR)lpMsgBuf, "Error", MB_OK | MB_ICONINFORMATION );
-	TRACE((LPCTSTR)lpMsgBuf);
-	// Free the buffer.
-	LocalFree( lpMsgBuf );
- 
-}
-
 void CMergeDoc::CleanupTempFiles()
 {
 	if (!m_strTempLeftFile.IsEmpty())
@@ -1389,14 +1365,16 @@ void CMergeDoc::CleanupTempFiles()
 		if (::DeleteFile(m_strTempLeftFile))
 			m_strTempLeftFile = _T("");
 		else
-			TraceLastErrorMessage();
+			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
+				, m_strTempLeftFile, GetSysError(GetLastError())));
 	}
 	if (!m_strTempRightFile.IsEmpty())
 	{
 		if (::DeleteFile(m_strTempRightFile))
 			m_strTempRightFile = _T("");
 		else
-			TraceLastErrorMessage();
+			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
+				, m_strTempRightFile, GetSysError(GetLastError())));
 	}
 }
 

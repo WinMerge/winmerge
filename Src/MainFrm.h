@@ -195,7 +195,6 @@ extern CMainFrame *mf;
 
 BOOL DeleteFileSilently(LPCTSTR szFile, CString * psError);
 BOOL DeleteDirSilently(LPCTSTR szDir, CString * psError);
-CString GetSystemErrorDesc(int nerr);
 
 /////////////////////////////////////////////////////////////////////////////
 

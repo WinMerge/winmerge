@@ -320,6 +320,7 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	if (!pMergeDoc->m_ltBuf.LoadFromFile(szLeft))
 	{
 		pMergeDoc->m_ltBuf.InitNew();
+		pMergeDoc->m_rtBuf.InitNew();
 		AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szLeft);
 	}
 	// Load right side (unless left side failed)
@@ -1025,30 +1026,6 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 	return TRUE;
 }
 
-// Get user language description of error, if available
-CString GetSystemErrorDesc(int nerr)
-{
-	LPVOID lpMsgBuf;
-	CString str = _T("?");
-	if (FormatMessage( 
-		FORMAT_MESSAGE_ALLOCATE_BUFFER | 
-		FORMAT_MESSAGE_FROM_SYSTEM | 
-		FORMAT_MESSAGE_IGNORE_INSERTS,
-		NULL,
-		nerr,
-		0, // Default language
-		(LPTSTR) &lpMsgBuf,
-		0,
-		NULL 
-		))
-	{
-		str = (LPCTSTR)lpMsgBuf;
-	}
-	// Free the buffer.
-	LocalFree( lpMsgBuf );
-	return str;
-}
-
 // trim trailing line returns
 static void RemoveLineReturns(CString & str)
 {
@@ -1062,7 +1039,7 @@ BOOL CMainFrame::DeleteFileOrError(LPCTSTR szFile)
 {
 	if (!DeleteFile(szFile))
 	{
-		CString sError = GetSystemErrorDesc(GetLastError());
+		CString sError = GetSysError(GetLastError());
 		RemoveLineReturns(sError);
 		sError += (CString)_T(" [") + szFile + _T("]");
 		CString s;
@@ -1078,7 +1055,7 @@ BOOL DeleteFileSilently(LPCTSTR szFile, CString * psError)
 {
 	if (!DeleteFile(szFile))
 	{
-		CString sError = GetSystemErrorDesc(GetLastError());
+		CString sError = GetSysError(GetLastError());
 		RemoveLineReturns(sError);
 		AfxFormatString2(*psError, IDS_DELETE_FILE_FAILED, szFile, sError);
 		return FALSE;
@@ -1116,7 +1093,7 @@ BOOL DeleteDirSilently(LPCTSTR szDir, CString * psError)
 	finder.Close(); // must close the handle or RemoveDirectory will fail
 	if (!RemoveDirectory(szDir))
 	{
-		CString sError = GetSystemErrorDesc(GetLastError());
+		CString sError = GetSysError(GetLastError());
 		RemoveLineReturns(sError);
 		AfxFormatString2(*psError, IDS_DELETE_FILE_FAILED, szDir, sError);
 		return FALSE;
@@ -1159,7 +1136,7 @@ BOOL CMainFrame::DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
 	DeleteFile(strSavePath); // (errors are handled from CopyFile below)
 	if (!CopyFile(pszSrc, strSavePath, FALSE))
 	{
-		*psError = GetSystemErrorDesc(GetLastError());
+		*psError = GetSysError(GetLastError());
 		return FALSE;
 	}
 	
