@@ -20,12 +20,12 @@
 /////////////////////////////////////////////////////////////////////////////
 // OpenDlg.cpp : implementation file
 //
+// $Id$
 
 #include "stdafx.h"
 #include "Merge.h"
 #include "OpenDlg.h"
 #include "coretools.h"
-#include "StringEx.h"
 #include "paths.h"
 
 #ifdef _DEBUG
@@ -162,14 +162,12 @@ void COpenDlg::OnOK()
 
 	// parse the extensions
 	// replace all *. with .*\\.
-	int idx=0;
-	LPCTSTR pszSeps = _T("; |*%^&.,\\/<>:\"'`?\t\r\n");
-	CStringEx strExt(m_strExt);
-	strExt.TrimLeft();
-	strExt.TrimRight();
+
+	static const TCHAR pszSeps[] = _T("; |*%^&.,\\/<>:\"'`?\t\r\n");
 
 	TCHAR ext[2048];
-	_tcscpy(ext, strExt);
+	// no need to trim before tokenizing
+	_tcscpy(ext, m_strExt);
 	LPTSTR p;
 	CString strPattern(_T("^.*\\.("));
 

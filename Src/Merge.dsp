@@ -579,10 +579,6 @@ SOURCE=.\StdAfx.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\common\StringEx.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=..\common\SuperComboBox.cpp
 # End Source File
 # Begin Source File
@@ -841,10 +837,6 @@ SOURCE=..\common\StatLink.h
 # Begin Source File
 
 SOURCE=.\StdAfx.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\common\StringEx.h
 # End Source File
 # Begin Source File
 

@@ -1,3 +1,8 @@
+2003-08-20 Kimmo
+ PATCH: [ 791263 ] Remove CStringEx from OpenDlg (and from WinMerge?)
+  WinMerge: Merge.dsp OpenDlg.cpp
+  Common: removed StringEx.h StringEx.cpp
+
 2003-08-20 Perry
  Added Norwegian to batch build file
   Languages: BuildAll.bat
