@@ -135,7 +135,7 @@ public:
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	BOOL Undo();
 	void ListCopy(bool bSrcLeft);
-	BOOL TrySaveAs(CString strPath, BOOL &bSaveSuccess);
+	BOOL TrySaveAs(CString strPath, BOOL &bSaveSuccess, BOOL bLeft);
 	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
 	//CString ExpandTabs(LPCTSTR szText);
 	//CString Tabify(LPCTSTR szText);

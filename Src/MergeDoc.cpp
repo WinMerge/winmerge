@@ -670,7 +670,7 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 
 // Return false when saving fails, so we can ask again
 // bSaveSuccess is TRUE if saving succeeded
-BOOL CMergeDoc::TrySaveAs(CString strPath, BOOL &bSaveSuccess)
+BOOL CMergeDoc::TrySaveAs(CString strPath, BOOL &bSaveSuccess, BOOL bLeft)
 {
 	BOOL result = TRUE;
 	CString s;
@@ -685,7 +685,10 @@ BOOL CMergeDoc::TrySaveAs(CString strPath, BOOL &bSaveSuccess)
 		if (SelectFile(s, strPath, title, NULL, FALSE))
 		{
 			strPath = s;
+			if (bLeft)
 			bSaveSuccess = m_ltBuf.SaveToFile(strPath);
+			else
+				bSaveSuccess = m_rtBuf.SaveToFile(strPath);
 			if (!bSaveSuccess)
 				result = FALSE;
 		}
@@ -745,7 +748,7 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 		{
 			// Saving failed, user may save to another location if wants to
 			while (!result)
-				result = TrySaveAs(strSavePath, bSaveSuccess);
+				result = TrySaveAs(strSavePath, bSaveSuccess, bLeft);
 		}
 	}
 	else
@@ -765,7 +768,7 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 		{
 			// Saving failed, user may save to another location if wants to
 			while (!result)
-				result = TrySaveAs(strSavePath, bSaveSuccess);
+				result = TrySaveAs(strSavePath, bSaveSuccess, bLeft);
 		}
 	}
 	return result;
