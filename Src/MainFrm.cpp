@@ -249,6 +249,9 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_FONT_FILECMP_USECUSTOM, false);
 	m_options.InitOption(OPT_FONT_DIRCMP_USECUSTOM, false);
 
+	m_options.InitOption(OPT_VCS_SYSTEM, VCS_NONE);
+	m_options.InitOption(OPT_VSS_PATH, _T(""));
+
 	updateDefaultCodepage(&m_options);
 
 	m_bShowErrors = TRUE;
@@ -256,12 +259,10 @@ CMainFrame::CMainFrame()
 	m_bVCProjSync = FALSE;
 	m_bVssSuppressPathCheck = FALSE;
 
-	m_nVerSys = theApp.GetProfileInt(_T("Settings"), _T("VersionSystem"), VCS_NONE);
 	m_vssHelper.SetProjectBase(theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T("")));
 	m_strVssUser = theApp.GetProfileString(_T("Settings"), _T("VssUser"), _T(""));
 //	m_strVssPassword = theApp.GetProfileString(_T("Settings"), _T("VssPassword"), _T(""));
 	theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), _T(""));
-	m_strVssPath = theApp.GetProfileString(_T("Settings"), _T("VssPath"), _T(""));
 	m_strVssDatabase = theApp.GetProfileString(_T("Settings"), _T("VssDatabase"),_T(""));
 	theApp.m_globalFileFilter.SetFilter(m_options.GetString(OPT_FILEFILTER_CURRENT));
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
@@ -275,7 +276,8 @@ CMainFrame::CMainFrame()
 	if (m_options.GetString(OPT_EXT_EDITOR_CMD).IsEmpty())
 		m_options.SaveOption(OPT_EXT_EDITOR_CMD, GetDefaultEditor());
 
-	if (m_strVssPath.IsEmpty())
+	CString vssPath = m_options.GetString(OPT_VSS_PATH);
+	if (vssPath.IsEmpty())
 	{
 		CRegKeyEx reg;
 		if (reg.QueryRegMachine(_T("SOFTWARE\\Microsoft\\SourceSafe")))
@@ -283,7 +285,8 @@ CMainFrame::CMainFrame()
 			TCHAR temp[_MAX_PATH] = {0};
 			reg.ReadChars(_T("SCCServerPath"), temp, _MAX_PATH, _T(""));
 			CString spath = GetPathOnly(temp);
-			m_strVssPath = spath + _T("\\Ss.exe");
+			vssPath = spath + _T("\\Ss.exe");
+			m_options.SaveOption(OPT_VSS_PATH, vssPath);
 		}
 	}
 
@@ -762,15 +765,17 @@ int CMainFrame::HandleReadonlySave(CString& strSavePath, BOOL bMultiFile,
 	BOOL bFileExists = FALSE;
 	CString s;
 	CString title;
+	int nVerSys = 0;
 
 	bFileRO = files_isFileReadOnly(strSavePath, &bFileExists);
+	nVerSys = m_options.GetInt(OPT_VCS_SYSTEM);
 	
 	if (bFileExists && bFileRO)
 	{
 		// Version control system used?
 		// Checkout file from VCS and modify, don't ask about overwriting
 		// RO files etc.
-		if (m_nVerSys != VCS_NONE)
+		if (nVerSys != VCS_NONE)
 		{
 			BOOL bRetVal = SaveToVersionControl(strSavePath);
 			if (bRetVal)
@@ -852,8 +857,11 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 	CFileStatus status;
 	CString s;
 	UINT userChoice = 0;
+	int nVerSys = 0;
 
-	switch(m_nVerSys)
+	nVerSys = m_options.GetInt(OPT_VCS_SYSTEM);
+
+	switch(nVerSys)
 	{
 	case VCS_NONE:	//no versioning system
 		// Already handled in CheckSavePath()
@@ -893,7 +901,8 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			}
 			CString args;
 			args.Format(_T("checkout \"%s/%s\""), m_vssHelper.GetProjectBase(), sname);
-			HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
+			CString vssPath = m_options.GetString(OPT_VSS_PATH);
+			HANDLE hVss = RunIt(vssPath, args, TRUE, FALSE);
 			if (hVss != INVALID_HANDLE_VALUE)
 			{
 				WaitForSingleObject(hVss, INFINITE);
@@ -1114,7 +1123,8 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			DWORD code;
 			CString args;
 			args.Format(_T("checkout -c \"%s\" \"%s\""), dlg.m_comments, sname);
-			HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
+			CString vssPath = m_options.GetString(OPT_VSS_PATH);
+			HANDLE hVss = RunIt(vssPath, args, TRUE, FALSE);
 			if (hVss!=INVALID_HANDLE_VALUE)
 			{
 				WaitForSingleObject(hVss, INFINITE);
@@ -1172,8 +1182,8 @@ void CMainFrame::OnOptions()
 	sht.AddPage(&regpage);
 	sht.AddPage(&codepage);
 	
-	vss.m_nVerSys = m_nVerSys;
-	vss.m_strPath = m_strVssPath;
+	vss.m_nVerSys = m_options.GetInt(OPT_VCS_SYSTEM);
+	vss.m_strPath = m_options.GetString(OPT_VSS_PATH);
 	gen.m_bBackup = m_options.GetBool(OPT_CREATE_BACKUPS);
 	gen.m_bScroll = m_options.GetBool(OPT_SCROLL_TO_FIRST);
 	gen.m_bDisableSplash = m_options.GetBool(OPT_DISABLE_SPLASH);
@@ -1201,9 +1211,6 @@ void CMainFrame::OnOptions()
 
 	if (sht.DoModal()==IDOK)
 	{
-		m_nVerSys = vss.m_nVerSys;
-		m_strVssPath = vss.m_strPath;
-		
 		m_options.SaveOption(OPT_CREATE_BACKUPS, gen.m_bBackup == TRUE);
 		m_options.SaveOption(OPT_SCROLL_TO_FIRST, gen.m_bScroll == TRUE);
 		m_options.SaveOption(OPT_DISABLE_SPLASH, gen.m_bDisableSplash == TRUE);
@@ -1234,8 +1241,8 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_SYNTAX_HIGHLIGHT, editor.m_bHiliteSyntax == TRUE);
 		m_options.SaveOption(OPT_UNREC_APPLYSYNTAX, editor.m_bApplySyntax == TRUE);
 
-		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
-		theApp.WriteProfileString(_T("Settings"), _T("VssPath"), m_strVssPath);
+		m_options.SaveOption(OPT_VCS_SYSTEM, vss.m_nVerSys);
+		m_options.SaveOption(OPT_VSS_PATH, vss.m_strPath);
 
 		m_options.SaveOption(OPT_CLR_DIFF, (int)colors.m_clrDiff);
 		m_options.SaveOption(OPT_CLR_SELECTED_DIFF, (int)colors.m_clrSelDiff);
@@ -1567,6 +1574,9 @@ int CMainFrame::SyncFileToVCS(LPCTSTR pszSrc, LPCTSTR pszDest,
 {
 	CString sActionError;
 	CString strSavePath(pszDest);
+	int nVerSys = 0;
+
+	nVerSys = m_options.GetInt(OPT_VCS_SYSTEM);
 	
 	int nRetVal = HandleReadonlySave(strSavePath, TRUE, bApplyToAll);
 	if (nRetVal == IDCANCEL || nRetVal == IDNO)
@@ -1579,7 +1589,7 @@ int CMainFrame::SyncFileToVCS(LPCTSTR pszSrc, LPCTSTR pszDest,
 	}
 	
 	// If VC project opened from VSS sync and version control used
-	if ((m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_VSS5) && m_bVCProjSync)
+	if ((nVerSys == VCS_VSS4 || nVerSys == VCS_VSS5) && m_bVCProjSync)
 	{
 		if (!m_vssHelper.ReLinkVCProj(strSavePath, psError))
 			nRetVal = -1;

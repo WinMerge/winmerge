@@ -143,8 +143,6 @@ public:
 	 * @name Version Control System (VCS) integration.
 	 */
 	/*@{*/ 
-	int m_nVerSys; /**< Selected version control system */
-	CString m_strVssPath;
 	CString m_strVssUser; /**< Visual Source Safe User ID */
 	CString m_strVssPassword; /**< Visual Source Safe Password */
 	CString m_strVssDatabase;

@@ -1,3 +1,7 @@
+2005-03-13 Kimmo
+ PATCH: [ 1161671 ] Convert couple of VCS options to COptionsMgr
+  Src: MainFrm.cpp MainFrm.h OptionsDef.h
+
 2005-03-11 Kimmo
  PATCH: [ 1160923 ] Remove CMainFrame::m_nCompMethod (ugly hack)
   Src: DirDoc.cpp MainFrm.cpp MainFrm.h

@@ -16,7 +16,6 @@ const TCHAR OPT_SHOW_DIFFERENT[] = _T("Settings/ShowDifferent");
 const TCHAR OPT_SHOW_IDENTICAL[] = _T("Settings/ShowIdentical");
 const TCHAR OPT_SHOW_BINARIES[] = _T("Settings/ShowBinaries");
 const TCHAR OPT_SHOW_SKIPPED[] = _T("Settings/ShowSkipped");
-const TCHAR OPT_HIDE_BACKUP[] = _T("Settings/HideBak");
 
 // Show/hide toolbar/statusbar
 const TCHAR OPT_SHOW_TOOLBAR[] = _T("Settings/ShowToolbar");
@@ -108,5 +107,9 @@ const TCHAR OPT_FILEFILTER_CURRENT[] = _T("Settings/FileFilterCurrent");
 // Fonts
 const TCHAR OPT_FONT_FILECMP_USECUSTOM[] = _T("Font/Specified");
 const TCHAR OPT_FONT_DIRCMP_USECUSTOM[] = _T("FontDirCompare/Specified");
+
+// Version control
+const TCHAR OPT_VCS_SYSTEM[] = _T("Settings/VersionSystem");
+const TCHAR OPT_VSS_PATH[] = _T("Settings/VssPath");
 
 #endif // _OPTIONS_DEF_H_
