@@ -1,3 +1,7 @@
+2004-05-13 Kimmo
+ Backout last change to Merge.rc - restore version 1.187
+  Src: Merge.rc
+
 2004-05-13 Perry
  PATCH: [ 950530 ] Remove unneeded cast in DirView.cpp
   Src: DirView.cpp
