@@ -59,7 +59,10 @@ CLogFile::~CLogFile()
 
 void CLogFile::Write(LPCTSTR pszFormat, ...)
 {
-    TCHAR buf[2048]=_T("");
+	if (!m_bEnabled)
+		return;
+
+	TCHAR buf[2048]=_T("");
 	va_list arglist;
 	va_start(arglist, pszFormat);
 	if (pszFormat != NULL)
