@@ -1,3 +1,7 @@
+2004-03-26 Perry
+ Add new Bulgarian translation
+  Src/Languages/Bulgarian
+
 2004-03-25 Kimmo
  BUG: [ 918760 ] doxygen.cfg moved
   Update paths for new location of doxygen.cfg in docs/developers

@@ -1,0 +1,1412 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Bulgarian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_BGR)
+#ifdef _WIN32
+LANGUAGE LANG_BULGARIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Merge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Merge.ico"
+IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_POPUP_DIFFVIEW MENU DISCARDABLE 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Копирай на другата страна",          ID_POPUP_COPYTOOTHERSIDE
+        MENUITEM "Копирай от другата страна",        ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM SEPARATOR
+        MENUITEM "Копирай всички различия на другата страна...", 
+                                                ID_POPUP_COPYALLDIFFSTOOTHERSIDE
+
+        MENUITEM "Копирай всички различия от другата страна...",
+                                                ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+
+        MENUITEM SEPARATOR
+        MENUITEM "Предишно",                        ID_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Запази промените...",             ID_POPUP_SAVE
+    END
+END
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&Файл"
+    BEGIN
+        MENUITEM "&Нов\tCtrl+Н",                ID_FILE_NEW
+        MENUITEM "&Отвори...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "&Съхрани\tCtrl+С",               ID_FILE_SAVE
+        POPUP "Съхрани &лявата част"
+        BEGIN
+            MENUITEM "&Съхрани",                       ID_FILE_SAVE_LEFT
+            MENUITEM "Съхрани &като...",                 ID_FILE_SAVEAS_LEFT
+        END
+        POPUP "Съхрани &дясната част"
+        BEGIN
+            MENUITEM "&Съхрани",                       ID_FILE_SAVE_RIGHT
+            MENUITEM "Съхрани &като...",                 ID_FILE_SAVEAS_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "О&т ляво само за четене",             ID_FILE_LEFT_READONLY
+        MENUITEM "От дяс&но само за четене",            ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        POPUP "&Формат за"
+        BEGIN
+            MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
+            MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
+            MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "И&зход\tEsc",                  ID_APP_EXIT
+    END
+    POPUP "&Редактиране"
+    BEGIN
+        MENUITEM "&Предишно\tCtrl+П",               ID_EDIT_UNDO
+        MENUITEM "Въ&рни\tCtrl+Р",               ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Ре&жа\tCtrl+Ж",                ID_EDIT_CUT
+        MENUITEM "К&опирам\tCtrl+О",               ID_EDIT_COPY
+        MENUITEM "По&сатвям\tCtrl+С",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Избери &всичко\tCtrl+В",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "По&дчертай разликите\tF4",    ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Н&амери...\tCtrl+А",            ID_EDIT_FIND
+        MENUITEM "Замес&ти...\tCtrl+Т",         ID_EDIT_REPLACE
+        MENUITEM SEPARATOR
+        MENUITEM "От&иди на...\tCtrl+И",           ID_EDIT_WMGOTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Настройки...",                 ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "Обн&ови\tF5",                ID_REFRESH
+    END
+    POPUP "&Представяне"
+    BEGIN
+        MENUITEM "Показвай &еднаквите файлове",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Показвай &различните файлове",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Показвай ле&вите уникални файлове",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Показвай де&сните уникални файлове",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "По&казвай бинарните файлове",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Показвай п&ропуснатите файлове",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Скрии *.&BAK файлове",           ID_HIDE_BACKUP_FILES
+        MENUITEM SEPARATOR
+        MENUITEM "Избери &фонт...",             ID_VIEW_SELECTFONT
+        MENUITEM "Използвай ф&онт по подразбиране",           ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Виждай празните места",            ID_VIEW_WHITESPACE
+        MENUITEM SEPARATOR
+        MENUITEM "&Инструменти",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM "Лист с &различията",                  ID_VIEW_DETAIL_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Език...",                ID_VIEW_LANGUAGE
+    END
+    POPUP "&Сравняване"
+    BEGIN
+        MENUITEM "&Следваща разлика\tAlt+Down",  ID_NEXTDIFF
+        MENUITEM "&Предишна разлика\tAlt+Up", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Първа разлика\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Текуща разлика\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Последна разлика\tAlt+End",   ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Копирай в &дясно\tAlt+Right",   ID_L2R
+        MENUITEM "Копирай в л&яво\tAlt+Left",     ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "К&опирай в дясно и се премести\tAlt+Ctrl+Right", ID_R2LNEXT
+        MENUITEM "Копирай &в ляво и се премести\tAlt+Ctrl+Left", ID_L2RNEXT
+        MENUITEM SEPARATOR
+        MENUITEM "Копирай &всичко в дясно",          ID_ALL_RIGHT
+        MENUITEM "Копира&Й всичко в ляво",           ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "Копирай разликите от лявата част към дясната", ID_MULTIPLE_RIGHT
+        MENUITEM "Копирай разликите от дясната част към лявата", ID_MULTIPLE_LEFT
+    END
+    POPUP "&Инструменти"
+    BEGIN
+        MENUITEM "&Нагласи колоните...",       ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Създай пач...",          ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Добавки"
+    BEGIN
+        MENUITEM "&Ръчно разархевиране",           ID_UNPACK_MANUAL
+        MENUITEM "&Автоматично разархевиране",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Редактирай с разархиватора",         ID_POPUP_OPEN_WITH_UNPACKER
+    END
+    POPUP "&Прозорци"
+    BEGIN
+        MENUITEM "За&твори",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Смени &листа\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "Подреди &хоризонтално",          ID_WINDOW_TILE_HORZ
+        MENUITEM "Подреди &вертикално",            ID_WINDOW_TILE_VERT
+        MENUITEM "&Каскадно",                    ID_WINDOW_CASCADE
+    END
+    POPUP "&Помощ"
+    BEGIN
+        MENUITEM "&Съдържание...",                ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "Настрои&ки...",           ID_HELP_GETCONFIG
+        MENUITEM SEPARATOR
+        MENUITEM "&Обществен GNU лиценз...",      ID_HELP_GNULICENSE
+        MENUITEM "&За WinMerge...",          ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_DIRVIEW MENU DISCARDABLE
+BEGIN
+    POPUP "_ITEM_POPUP_"
+    BEGIN
+        POPUP "&Копирай"
+        BEGIN
+            MENUITEM "&Ляво към дясно",              ID_DIR_COPY_LEFT_TO_RIGHT
+
+            MENUITEM "Ляв&о към...",                 ID_DIR_COPY_LEFT_TO_BROWSE
+
+            MENUITEM "&Дясно към ляво",              ID_DIR_COPY_RIGHT_TO_LEFT
+
+            MENUITEM "Д&ясно към...",                ID_DIR_COPY_RIGHT_TO_BROWSE
+
+        END
+        POPUP "&Изтрии"
+        BEGIN
+            MENUITEM "&От ляво",                       ID_DIR_DEL_LEFT
+            MENUITEM "&От дясно",                      ID_DIR_DEL_RIGHT
+            MENUITEM "&Двете",                       ID_DIR_DEL_BOTH
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Отвори в ляво"
+        BEGIN
+            MENUITEM "с &регистрирана програма", ID_DIR_OPEN_LEFT
+            MENUITEM "с &външен редактор",       ID_DIR_OPEN_LEFT_WITHEDITOR
+
+            MENUITEM "&с...",                    ID_DIR_OPEN_LEFT_WITH
+        END
+        POPUP "О&твори в дясно"
+        BEGIN
+            MENUITEM "с &регистрирана програма", ID_DIR_OPEN_RIGHT
+            MENUITEM "с &външен редактор",       ID_DIR_OPEN_RIGHT_WITHEDITOR
+
+            MENUITEM "&с...",                    ID_DIR_OPEN_RIGHT_WITH
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Zip"
+        BEGIN
+            MENUITEM "Zip &лявата страна %1 файл(а) от %2 избрания обект(и)", 
+                                                    ID_DIR_ZIP_LEFT
+            MENUITEM "Zip &дясната страна %1 файл(а) от %2 избрания обект(и)",
+                                                    ID_DIR_ZIP_RIGHT
+            MENUITEM "Zip &двете страни %1 файл(а) от %2 избрания обект(и)",
+                                                    ID_DIR_ZIP_BOTH
+            MENUITEM "Zip двете &страни само разликите %1 файл(а) от %2 на %3 избрания обект(и)",
+                                                    ID_DIR_ZIP_BOTH_DIFFS_ONLY
+
+        END
+    END
+    POPUP "_HDR_POPUP_"
+    BEGIN
+        MENUITEM "&Редактиране...",            ID_EDIT_COLUMNS
+    END
+END
+
+IDR_POPUP_EDITOR_HEADERBAR MENU DISCARDABLE 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Копирай пътя",             ID_EDITOR_COPY_PATH
+        MENUITEM "Копирай &името",              ID_EDITOR_COPY_FILENAME
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "В",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
+    "О",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "А",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
+    "Т",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "С",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    "Ж",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Р",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
+    "П",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
+    VK_F3,          ID_EDIT_FIND_PREVIOUS,  VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
+    VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_LEFT,        ID_R2L,                 VIRTKEY, ALT, NOINVERT
+    VK_LEFT,        ID_R2LNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
+    VK_RETURN,      ID_CURDIFF,             VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
+    VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 134
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "За WinMerge"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
+    LTEXT           "Version 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
+    LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
+    LTEXT           "Всички права запасени.",IDC_STATIC,7,60,170,8
+    LTEXT           "Посети страницата на WinMerge!",IDC_WWW,7,119,209,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,113,209,1
+    LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
+    LTEXT           "Syntax Highlighting Edit View by Andrei Stcherbatchenko ",
+                    IDC_STATIC,7,71,209,8
+    LTEXT           "Various Syntaxes by Ferdinand Prantl",IDC_STATIC,7,81,
+                    209,8
+    LTEXT           "Other major contributors include:",IDC_STATIC,7,91,209,
+                    8
+    LTEXT           "Christian List, Perry Rapp, Kimmo Varis, Laurent Ganier",
+                    IDC_STATIC,7,101,209,8
+END
+
+IDD_OPEN DIALOGEX 0, 0, 356, 115
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Избери Файл или директория..."
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    RTEXT           "&От ляво:",IDC_STATIC,13,24,40,8
+    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
+    PUSHBUTTON      "&Потърси...",IDC_LEFT_BUTTON,241,22,38,12
+    RTEXT           "О&т дясно:",IDC_STATIC,13,40,40,8
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
+    PUSHBUTTON      "Пот&ърси...",IDC_RIGHT_BUTTON,241,38,38,12
+    RTEXT           "Р&азширения:",IDC_STATIC,13,56,40,8
+    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Re&cursive",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,35,72,48,10
+    RTEXT           "&Разархивитор:",IDC_STATIC,13,88,40,8
+    EDITTEXT        IDC_UNPACKER_EDIT,56,86,182,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Избери...",IDC_SELECT_UNPACKER,241,86,38,12
+    DEFPUSHBUTTON   "Добре",IDOK,295,11,50,14
+    PUSHBUTTON      "Прекрати",IDCANCEL,295,28,50,14
+    GROUPBOX        "Файлове или директории за сравняване",IDC_FILES_DIRS_GROUP,7,
+                    7,279,101
+END
+
+IDD_VSS DIALOGEX 0, 0, 257, 159
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Visual SourceSafe"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
+    LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
+    DEFPUSHBUTTON   "Действай",IDOK,53,132,50,14
+    PUSHBUTTON      "Прекрати",IDCANCEL,193,132,50,14
+    PUSHBUTTON      "Съхрани като...",IDSAVEAS,123,132,50,14
+    LTEXT           "Проект:",IDC_STATIC,9,81,25,8
+    COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Потребител:",IDC_STATIC,10,99,18,8
+    EDITTEXT        IDC_USER,48,96,58,14,ES_AUTOHSCROLL
+    LTEXT           "Парола:",IDC_STATIC,127,99,34,8
+    EDITTEXT        IDC_PASSWORD,162,97,70,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "База данни:",IDC_STATIC,9,64,33,13
+    COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,49,117,65,8
+    CONTROL         "Връзка с VSS проект",IDC_VCPROJ_SYNC,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,125,115,118,12
+END
+
+IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Versioning System"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Настроики",IDC_STATIC,7,7,245,54
+    LTEXT           "&Път към cleartool.exe:",IDC_VSS_L1,16,42,68,8
+    EDITTEXT        IDC_PATH_EDIT,85,40,116,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Потърси...",IDC_BROWSE_BUTTON,206,40,42,12
+    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "&Versioning System:",IDC_STATIC,16,22,60,10
+END
+
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Основни"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "&Backup на първоначалния файл",IDC_BACKUP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
+    CONTROL         "Автоматично &предвижване към първата разлика",
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    17,206,10
+    CONTROL         "&Забрани Splash Screen",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
+    CONTROL         "&Close compare Statepane automatically",
+                    IDC_CMPPANE_AUTOCLOSE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,37,206,10
+END
+
+IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Език"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Добре",IDOK,154,16,52,14
+    PUSHBUTTON      "Прекрати",IDCANCEL,154,33,52,14
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Възможни езици:",IDC_STATIC,7,7,66,8
+END
+
+IDD_EDIT_FIND DIALOG FIXED IMPURE  30, 73, 236, 68
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Намери"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    COMBOBOX        IDC_EDIT_FINDTEXT,41,6,135,138,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Търси &само цели думи",IDC_EDIT_WHOLE_WORD,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
+    CONTROL         "Търси &в думите",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,40,64,12
+    CONTROL         "Правилни &изрази",IDC_EDIT_REGEXP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,54,77,12
+    CONTROL         "&Нагоре",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,111,36,25,12
+    CONTROL         "На&долу",IDC_EDIT_DIRECTION_DOWN,"Button",
+                    BS_AUTORADIOBUTTON,111,48,35,12
+    DEFPUSHBUTTON   "&Намери следващото",IDOK,182,5,50,14,WS_GROUP
+    PUSHBUTTON      "Прекрати",IDCANCEL,182,23,50,14
+    LTEXT           "Тъ&рси:",IDC_STATIC,4,8,36,8
+    GROUPBOX        "Посока",IDC_STATIC,107,26,68,38,WS_GROUP
+END
+
+IDD_EDIT_REPLACE DIALOG FIXED IMPURE  36, 44, 230, 103
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Замени"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Търси &само цели думи",IDC_EDIT_WHOLE_WORD,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
+    CONTROL         "Търси &в думите",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,60,59,12
+    CONTROL         "Правилни &изрази",IDC_EDIT_REGEXP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,74,77,12
+    CONTROL         "&Избор",IDC_EDIT_SCOPE_SELECTION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,102,57,59,10
+    CONTROL         "В ц&елия файл",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
+                    BS_AUTORADIOBUTTON,102,70,58,10
+    DEFPUSHBUTTON   "&Намери следващото",IDC_EDIT_SKIP,174,4,50,14,WS_GROUP
+    PUSHBUTTON      "&Замени",IDC_EDIT_REPLACE,174,21,50,14
+    PUSHBUTTON      "Замени &всичко",IDC_EDIT_REPLACE_ALL,174,38,50,14
+    PUSHBUTTON      "Прекрати",IDCANCEL,174,55,50,14
+    LTEXT           "Тъ&рси:",IDC_STATIC,4,9,48,8
+    LTEXT           "Замен&и с:",IDC_STATIC,4,26,48,8
+    GROUPBOX        "Замени в",IDC_STATIC,97,46,71,39,WS_GROUP
+    CONTROL         "До края на файла",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,88,84,12
+END
+
+IDD_CLEARCASE DIALOG DISCARDABLE  0, 0, 279, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Rational Clearcase"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Действай",IDOK,35,90,50,14
+    PUSHBUTTON      "Прекрати",IDCANCEL,194,90,50,14
+    PUSHBUTTON      "Съхрани като...",IDSAVEAS,114,90,50,14
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Коментари",IDC_STATIC,18,7,34,10
+END
+
+IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Филтър"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Игнорирай линиите съдържащи следното",
+                    IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    7,221,15
+    LTEXT           "Правилните изази (по един на линия):",IDC_STATIC,7,28,
+                    221,8
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+    LTEXT           "Файлов филтър:",IDC_STATIC,7,128,60,10
+    COMBOBOX        IDC_FILE_FILTER,73,126,117,63,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "редактирай",IDC_EDIT_FILE_FILTER,194,126,34,13,WS_DISABLED
+END
+
+IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Цветове"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    RTEXT           "Разлики:",IDC_STATIC,13,29,66,8
+    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,98,29,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    RTEXT           "Избери разликите:",IDC_STATIC,13,49,66,8
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,98,49,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CTEXT           "Фон",IDC_STATIC,81,15,50,8
+    CTEXT           "Изтрити",IDC_STATIC,130,15,38,8
+    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CTEXT           "Текст",IDC_STATIC,178,15,29,8
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    RTEXT           "Игнорирани разлики:",IDC_STATIC,13,69,66,8
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,141,69,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Първоначални",IDC_COLORDEFAULTS_BTN,151,90,50,14
+END
+
+IDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Диалог"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Добре",IDOK,106,136,50,14
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | 
+                    WS_VSCROLL
+END
+
+IDD_PROPPAGE_REGISTRY DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Системни"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "&Сложи изтритите фаилове в Кошчето",IDC_USE_RECYCLE_BIN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,114,10
+    CONTROL         "&Добави към менюто на Експлорера",IDC_EXPLORER_CONTEXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,167,10
+    LTEXT           "&WinMerge executable:",IDC_STATIC,7,30,167,8
+    EDITTEXT        IDC_WINMERGE_PATH,7,40,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Потърси...",IDC_WINMERGE_PATH_BROWSE,179,40,50,14
+    LTEXT           "&Външен редактор:",IDC_STATIC,7,61,167,8
+    EDITTEXT        IDC_EXT_EDITOR_PATH,7,71,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "П&отърси...",IDC_EXT_EDITOR_BROWSE,179,71,50,14
+END
+
+IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 340, 180
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Генериране на пач"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Файл&1:",IDC_STATIC,7,10,36,8
+    COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Потърси...",IDC_DIFF_BROWSE_FILE1,283,7,50,14
+    LTEXT           "Файл&2:",IDC_STATIC,7,27,36,8
+    COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "П&отърси...",IDC_DIFF_BROWSE_FILE2,283,24,50,14
+    PUSHBUTTON      "&Размени",IDC_DIFF_SWAPFILES,283,41,50,14
+    CONTROL         "&Приложи към съществуващ файл",IDC_DIFF_APPENDFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
+    LTEXT           "&Резултати:",IDC_STATIC,7,66,37,8
+    COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "По&търси...",IDC_DIFF_BROWSE_RESULT,283,63,50,14
+    GROUPBOX        "&Формат",IDC_STATIC,7,81,142,46
+    LTEXT           "Сти&л:",IDC_STATIC,13,95,46,8
+    COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "&Контекст:",IDC_STATIC,13,109,46,8
+    COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Празн&и места",IDC_STATIC,155,81,123,46
+    CONTROL         "Срав&ни",IDC_DIFF_WHITESPACE_COMPARE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,162,92,110,10
+    CONTROL         "И&гнорирай промените",IDC_DIFF_WHITESPACE_IGNORE,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
+    CONTROL         "Иг&норирай всичко",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
+    CONTROL         "Игнорира&й празните линии",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,142,10
+    CONTROL         "Case sensi&tive",IDC_DIFF_CASESENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
+    CONTROL         "Обхва&щай командния ред",IDC_DIFF_INCLCMDLINE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
+    CONTROL         "Отвори с външ&ния редактор",IDC_DIFF_OPENTOEDITOR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,155,145,170,10
+    DEFPUSHBUTTON   "Добре",IDOK,230,159,50,14
+    PUSHBUTTON      "Прекрати",IDCANCEL,283,159,50,14
+END
+
+IDD_EDITOR_HEADERBAR DIALOGEX 0, 0, 373, 12
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_STATIC_TITLE_LEFT,0,2,160,12,ES_AUTOHSCROLL | 
+                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
+                    WS_TABSTOP,WS_EX_STATICEDGE
+    EDITTEXT        IDC_STATIC_TITLE_RIGHT,163,2,160,12,ES_AUTOHSCROLL | 
+                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
+                    WS_TABSTOP,WS_EX_STATICEDGE
+END
+
+IDD_DIRCOLS DIALOG DISCARDABLE  0, 0, 283, 143
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Показвай графите"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Добре",IDOK,89,122,50,14
+    PUSHBUTTON      "Прекрати",IDCANCEL,143,122,50,14
+    GROUPBOX        "Show columns",IDC_GROUP_SHOW,7,7,129,109
+    LISTBOX         IDC_LIST_SHOW,48,19,80,90,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Нагоре",IDC_UP,14,45,27,14
+    PUSHBUTTON      "Н&адолу",IDC_DOWN,14,63,27,14
+    GROUPBOX        "Скривай графите",IDC_GROUP_HIDE,180,7,96,109
+    LISTBOX         IDC_LIST_HIDE,188,19,80,90,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "<==",IDC_ADD,143,45,29,14
+    PUSHBUTTON      "==>",IDC_REMOVE,143,63,29,14
+END
+
+IDD_SELECTUNPACKER DIALOG DISCARDABLE  0, 0, 293, 126
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Избери разархиватора"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Добре",IDOK,87,99,50,14
+    PUSHBUTTON      "Прекрати",IDCANCEL,156,99,50,14
+    LTEXT           "Файлов разархиватор:",IDC_STATIC,7,18,50,10
+    COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Показвай всички разархиватори, не проверявай разширенията",
+                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,7,74,202,13
+    LTEXT           "Лист на разширенията:",IDC_STATIC,7,36,49,10
+    LTEXT           "Описание:",IDC_STATIC,7,52,47,10
+    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,176,12,
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+END
+
+IDD_DIRCOMPSTATE DIALOGEX 0, 0, 415, 45
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "",IDC_STATIC,3,4,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,3,24,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,56,4,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,56,24,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,109,4,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,109,24,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,162,4,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,162,24,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,215,4,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,268,4,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,215,24,51,17,SS_SUNKEN | NOT WS_GROUP
+    CONTROL         223,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,7,8,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         213,IDC_STATIC,"Static",SS_BITMAP,60,8,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         214,IDC_STATIC,"Static",SS_BITMAP,60,27,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         215,IDC_STATIC,"Static",SS_BITMAP,7,27,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         216,IDC_STATIC,"Static",SS_BITMAP,271,8,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         217,IDC_STATIC,"Static",SS_BITMAP,113,8,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         218,IDC_STATIC,"Static",SS_BITMAP,165,8,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         219,IDC_STATIC,"Static",SS_BITMAP,165,27,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         224,IDC_STATIC,"Static",SS_BITMAP,113,27,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         226,IDC_STATIC,"Static",SS_BITMAP,218,8,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         227,IDC_STATIC,"Static",SS_BITMAP,218,27,12,11,
+                    WS_EX_STATICEDGE
+    RTEXT           "",IDC_COUNT_LFOLDER,24,10,26,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_RFOLDER,24,29,26,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_EQUAL,76,10,26,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_NOTEQUAL,76,29,26,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_BINARYSAME,129,10,26,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_BINARYDIFF,129,29,26,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_LFILE,182,10,26,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_RFILE,182,29,26,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_FOLDERSKIP,235,10,26,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_FILESKIP,235,29,26,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_UNKNOWN,288,10,26,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    PUSHBUTTON      "Stop",IDC_COMPARISON_STOP,327,17,83,14
+END
+
+IDD_WMGOTO DIALOG DISCARDABLE  0, 0, 189, 70
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Отиди на"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "О&тиди на:",IDC_STATIC,7,9,18,8
+    EDITTEXT        IDC_WMGOTO_PARAM,33,7,93,14,ES_AUTOHSCROLL | ES_NUMBER
+    GROUPBOX        "Файл",IDC_STATIC,7,27,48,35
+    CONTROL         "&Ляво",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,13,38,28,10
+    CONTROL         "&Дясно",IDC_WMGOTO_FILERIGHT,"Button",
+                    BS_AUTORADIOBUTTON,13,48,33,10
+    GROUPBOX        "Отиди на",IDC_STATIC,61,27,63,35
+    CONTROL         "Лин&ия",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,68,38,29,10
+    CONTROL         "&Разлики",IDC_WMGOTO_TODIFF,"Button",
+                    BS_AUTORADIOBUTTON,68,48,49,10
+    DEFPUSHBUTTON   "&Отиди на",IDOK,132,7,50,14
+    PUSHBUTTON      "Прекрати",IDCANCEL,132,24,50,14
+END
+
+IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 236, 156
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Сравняване"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Празните места",IDC_STATIC,7,7,221,50
+    CONTROL         "&Сравняване",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,14,19,206,10
+    CONTROL         "&Игнорирай промените",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,14,30,206,10
+    CONTROL         "И&гнорирай всичко",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
+                    14,41,206,10
+    CONTROL         "Игнорирай пра&зните линии",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
+    CONTROL         "Игнорирай &частите от думите",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
+    CONTROL         "Чувствителност към &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,80,221,10
+    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
+    LTEXT           "Метод за сравнение:",IDC_STATIC,7,105,70,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,103,84,52,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Първоначално",IDC_COMPARE_DEFAULTS,7,121,50,14
+END
+
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Редактор"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "&Подчетавай синтаксиса",IDC_HILITE_CHECK,"Button",
+                        BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "&Автоматично сканиране",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+    CONTROL         "&Запази оргиналните EOL вифър",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
+    GROUPBOX        "Етикет",IDC_STATIC,7,44,221,33,WS_GROUP
+    LTEXT           "&Големина на етикета:",IDC_STATIC,15,58,30,8
+    EDITTEXT        IDC_TAB_EDIT,47,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
+    CONTROL         "&Сложи етикет",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,77,53,51,10
+    CONTROL         "Сложи &разстояния",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,77,62,59,10
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x9L
+#else
+ FILEFLAGS 0x8L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040204e3"
+        BEGIN
+            VALUE "Коментари", "\0"
+            VALUE "Име на компанията", "\0"
+            VALUE "Описание", "WinMerge Application\0"
+            VALUE "Версия", "000.000.000.000\0"
+            VALUE "Име", "WinMerge\0"
+            VALUE "Авотрско право", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "Запазаена марка", "\0"
+            VALUE "Оргинално име", "WinMerge.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "Име на продукта", "WinMerge\0"
+            VALUE "Версия на продукта", "000.000.000.000\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x402, 1251
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_UNDO
+    BUTTON      ID_EDIT_REDO
+    SEPARATOR
+    BUTTON      ID_SHOWLINEDIFF
+    SEPARATOR
+    BUTTON      ID_NEXTDIFF
+    BUTTON      ID_PREVDIFF
+    SEPARATOR
+    BUTTON      ID_FIRSTDIFF
+    BUTTON      ID_CURDIFF
+    BUTTON      ID_LASTDIFF
+    SEPARATOR
+    BUTTON      ID_L2R
+    BUTTON      ID_R2L
+    SEPARATOR
+    BUTTON      ID_L2RNEXT
+    BUTTON      ID_R2LNEXT
+    SEPARATOR
+    BUTTON      ID_OPTIONS
+    SEPARATOR
+    BUTTON      ID_ALL_RIGHT
+    BUTTON      ID_ALL_LEFT
+    SEPARATOR
+    BUTTON      ID_REFRESH
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDB_SPLASH              BITMAP  DISCARDABLE     "res\\splash1.bmp"
+IDB_LFOLDER             BITMAP  DISCARDABLE     "res\\lfolder.bmp"
+IDB_EQUAL               BITMAP  DISCARDABLE     "res\\equal.bmp"
+IDB_NOTEQUAL            BITMAP  DISCARDABLE     "res\\notequal.bmp"
+IDB_RFOLDER             BITMAP  DISCARDABLE     "res\\rfolder.bmp"
+IDB_UNKNOWN             BITMAP  DISCARDABLE     "res\\unknown.bmp"
+IDB_BINARYSAME          BITMAP  DISCARDABLE     "res\\binary.bmp"
+IDB_LFILE               BITMAP  DISCARDABLE     "res\\lfile.bmp"
+IDB_RFILE               BITMAP  DISCARDABLE     "res\\rfile.bmp"
+IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
+IDB_FOLDERSKIP          BITMAP  DISCARDABLE     "res\\folderskip.bmp"
+IDB_FILESKIP            BITMAP  DISCARDABLE     "res\\fileskip.bmp"
+IDB_FOLDER              BITMAP  DISCARDABLE     "res\\folder.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_PROP_VSS DLGINIT
+BEGIN
+    IDC_VER_SYS, 0x403, 5, 0
+0x6f4e, 0x656e, "\000" 
+    IDC_VER_SYS, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
+0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029, 
+    IDC_VER_SYS, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
+0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029, 
+    IDC_VER_SYS, 0x403, 19, 0
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
+"\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "WinMerge"
+    AFX_IDS_IDLEMESSAGE     "Готое"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Съждай нов документ\nНов документ (Ctrl+N)"
+    ID_FILE_OPEN            "Отвори съществуваш документ\nОтвори (Ctrl+O)"
+    ID_FILE_CLOSE           "Затвори действащия документ\nЗатвори"
+    ID_FILE_SAVE            "Съхрани текущия документ\nСъхрани (Ctrl+S)"
+    ID_FILE_SAVE_AS         "Съхрани текущия документ с ново име\nСъхрани като"
+    ID_FILE_PAGE_SETUP      "Промени настроиките на принтера\nНастроики на страницата"
+    ID_FILE_PRINT_SETUP     "Промени настроиките на принтера и настроиките за принтиране\nPrint Setup"
+    ID_FILE_PRINT           "Принтирай текущия документ\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Представи страницата\nPrint Preview"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Представя информация за програмата, версията и авторското право\nЗа"
+    ID_APP_EXIT             "Излизане от приложението; напомняне да запазите документа\nИзход"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Отваряне на този документ"
+    ID_FILE_MRU_FILE2       "Отваряне на този документ"
+    ID_FILE_MRU_FILE3       "Отваряне на този документ"
+    ID_FILE_MRU_FILE4       "Отваряне на този документ"
+    ID_FILE_MRU_FILE5       "Отваряне на този документ"
+    ID_FILE_MRU_FILE6       "Отваряне на този документ"
+    ID_FILE_MRU_FILE7       "Отваряне на този документ"
+    ID_FILE_MRU_FILE8       "Отваряне на този документ"
+    ID_FILE_MRU_FILE9       "Отваряне на този документ"
+    ID_FILE_MRU_FILE10      "Отваряне на този документ"
+    ID_FILE_MRU_FILE11      "Отваряне на този документ"
+    ID_FILE_MRU_FILE12      "Отваряне на този документ"
+    ID_FILE_MRU_FILE13      "Отваряне на този документ"
+    ID_FILE_MRU_FILE14      "Отваряне на този документ"
+    ID_FILE_MRU_FILE15      "Отваряне на този документ"
+    ID_FILE_MRU_FILE16      "Отваряне на този документ"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_NEW           "Отваряне на друг прозорец за текущия документ\nНов прозорец"
+    ID_WINDOW_ARRANGE       "Подреди иконките в основата на прозореца\nПодреди иконите"
+    ID_WINDOW_CASCADE       "Подрежда прозорците та да се застъпват\nКаскадно"
+    ID_WINDOW_TILE_HORZ     "Подрежда прозорците без да се покриват\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Подрежда прозорците без да се покриват\nTile Windows"
+    ID_WINDOW_SPLIT         "Разделя текущия прозорец\nРазделя"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Изтрива избраното\nИзтрива"
+    ID_EDIT_CLEAR_ALL       "Изтрива всичко\nИзтрива всичко"
+    ID_EDIT_COPY            "Копира избраното и го слага в Clipboard\nКопирай"
+    ID_EDIT_CUT             "Режи избраното и го слага в Clipboard\nРежи"
+    ID_EDIT_FIND            "Търси определения текст\nТърси"
+    ID_EDIT_PASTE           "Сложи съдържанието на Clipboard\nПоставяне"
+    ID_EDIT_REPEAT          "Повтори последното действие\nПовтаря"
+    ID_EDIT_REPLACE         "Замести определения текст\nЗамести"
+    ID_EDIT_SELECT_ALL      "Избери целия документ\nИзбери всичко"
+    ID_EDIT_UNDO            "Отмени последното действие\nОтмени (Ctrl+П)"
+    ID_EDIT_REDO            "Върни последното действие\nВърни (Ctrl+Р)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Показвай или скривай инструментите\nПоказване на инструментите"
+    ID_VIEW_STATUS_BAR      "Показвай или скривай статуса\nСтатус"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Промени големината на прозореца"
+    AFX_IDS_SCMOVE          "Промени мястото на прозореца"
+    AFX_IDS_SCMINIMIZE      "Направи прозореца на икона"
+    AFX_IDS_SCMAXIMIZE      "Увеличи прозореца до пълните му размери"
+    AFX_IDS_SCNEXTWINDOW    "Прехвърли на следващия документ"
+    AFX_IDS_SCPREVWINDOW    "Прехвърли на предишния документ"
+    AFX_IDS_SCCLOSE         "Затваря прозореца ,дали да съхрани документите"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Нормалната големина на прозореца"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+    AFX_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE
+BEGIN
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge тази директория"
+    IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
+    IDS_ELAPSED_TIME        "Оставащо време: %ld ms"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE
+BEGIN
+    IDS_VERSION_FMT         "Версия %1"
+    IDS_ALLFILES            "Всички файлове (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "Сигурен ли се ,че искаш да се копират всички разлики на левият файл?"
+    IDS_CONFIRM_ALL_RIGHT   "Сигурен ли се ,че искаш да се копират всички разлики на десният файл?"
+    IDS_ERRORS_TITLE        "%1 Грешка(и)"
+    IDS_CONFIRM_COPY2DIR    "Сигурен ли се ,че искаш да се копира %1 към %2 избрани обект(и)"
+    IDS_FONT_CHANGE         "Избрания фонт няма да никои от текущите прозорци."
+    IDS_DIRECTORY_WINDOW_TITLE "Резултати от сравянване на директорията"
+    IDS_DIRECTORY_WINDOW_STATUS_FMT "Резултати за %1 и %2"
+    IDS_FILES_ARE_DIFFERENT "Различни файлове"
+    IDS_BIN_FILES_DIFF      "Бинарните файлове са различни"
+    IDS_ONLY_IN_FMT         "само в %1"
+    IDS_IDENTICAL           "Еднакви"
+    IDS_CANT_COMPARE_FILES  "Не може да сравни файловете"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_SAVE_AS_TITLE       "Съхрани като"
+    IDS_SELECT_FILES_OR_FOLDERS 
+                            "Твоят избор трябва да е или два файла или две директории"
+    IDS_BACKUP_FAILED_PROMPT 
+                            "Не може да backup първоначалния файл.\nЩе продължите ли?"
+    IDS_OPTIONS_TITLE       "Настроики"
+    IDS_OPEN_TITLE          "Отвори"
+    IDS_CONFIRM_DELETE_FILE "Да изтрие ли файла %1?"
+    IDS_EDIT_WINDOW_TITLE_FMT "Редактиране %1"
+    IDS_FILESSAME           "Избраните файлове са еднакви."
+    IDS_FILEUNIQUE          "Избраните файлове не съществуват в две директории и не могат да бъдат сравнявани."
+    IDS_FILEERROR           "Получи се грешка при сравняване на файловете."
+    IDS_SAVEREADONLY_FMT    "%1 е read-only. Да запиши ли read-only файла ? (Не ще го запиша с ново име.)"
+    IDS_SAVE_FMT            "Запазва промените на %1?"
+    IDS_FILEBINARY          "Бинарните файлове не могат да се сравняват видимо."
+    IDS_SAVEVSS_FMT         "%1 iе read-only.  Желаете ли да го премахнете от Versioning System, или да го запишете с различно име?"
+    IDS_VSSERROR            "Versioning System върна грешка при опита да провери файла.  Неможе да продължи..."
+    IDS_NOPROJECT           "Вие трябва да изберете SourceSafe проект за да продължите (ie:  $/MyProject)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_COLHDR_FILENAME     "Име"
+    IDS_COLHDR_DIR          "Директория"
+    IDS_COLHDR_RESULT       "Резултати при сравняване"
+    IDS_FILE_COMPARISON_TITLE "Сравняване на файлове"
+    IDS_DIFF_NUMBER_STATUS_FMT "Разлики %1 от %2"
+    IDS_NO_DIFF_SEL_FMT     "%1 Намерени разлики"
+    IDS_FILEISDIR           "Директориите не могат да бъдат сравнявани видимо."
+    IDS_CC_CMD              "&Път до cleartool.exe :"
+    IDS_VSS_CMD             "&Път до SS.EXE :"
+    IDS_VSS_RUN_ERROR       "Грешка при стартиране на команда от versioning system."
+    IDS_DIFF_OPEN_NO_SET_PROPS 
+                            "Промените се правят на файловете от текущиата сесия на сравнение .  Някои промени ще станат докато се рестартира текущата сесия."
+    IDS_COLHDR_LTIMEM       "Лява дата"
+    IDS_COLHDR_RTIMEM       "Дясна дата"
+    IDS_COLHDR_EXTENSION    "Разширение"
+    IDS_CONFIRM_DELETE_ITEMS
+                            "Сигурен ли сте ,че искате да изтриите %1 от %2 избрани обект(и) ?"
+    IDS_DEL_LEFT_FMT        "Ляво (%1)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DEL_RIGHT_FMT       "Дясно (%1)"
+    IDS_DELETE_FILE_FAILED  "Изтриването на  %1 неуспешно: %2"
+    IDS_CONFIRM_DELETE_DIR  "Да изтрие ли директорията %1?"
+    IDS_REMOVE_DIR_FAILED   "Изтриването на директорията неуспешно: %1"
+    IDS_COPY_TO_LEFT        "От дясно към ляво (%1)"
+    IDS_DEL_BOTH_FMT        "Двете(%1)"
+    IDS_COPY_TO_RIGHT       "От ляво към дясно (%1)"
+    IDS_COLHDR_LSIZE        "Размер от ляво"
+    IDS_DELETE_DIR_FAILED   "Изтриването на  %1 неуспешно: %s"
+    IDS_COPY_FILE_FAILED    "Копирането на %1 неуспешно: %2"
+    IDS_COPY_DIR_FAILED     "Копирането на %1 неуспешно: %2"
+    IDS_ERROR_FILE_WRITEABLE "Грешка при проверката за писане"
+    IDS_ERROR_BACKUP        "Error backing up file"
+    IDS_CONFIRM_COPY_SINGLE "Сигурен ли сте ,че искате да копирате %1 на %2?"
+    IDS_CONFIRM_DELETE_SINGLE "Сигурен ли сте ,че искате да изтриите %1?"
+    IDS_BIN_FILES_SAME      "Бинарните файлове са еднакви"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FILESAVE_FAILED     "Записването на %1 неуспешно. Желаете ли да запишете файла под различно име?"
+    IDS_ERROR_FILE_NOT_FOUND "Фаила не бе намерен: %1"
+    IDS_ERROR_INCOMPARABLE  "Изберете две съществуващи директории или файлове за сравнение"
+    IDS_STATUS_RESCANNING   "Сканиране на файловете..."
+    IDS_STATUS_OPENING_SELECTION "Отваря избраното"
+    IDS_STATUS_COPYL2R      "Копира от ляво на дясно"
+    IDS_STATUS_COPYR2L      "Копира от дясно на ляво"
+    IDS_STATUS_COPYALL2L    "Копира всичко в ляво"
+    IDS_STATUS_COPYALL2R    "Копира всичко в дясно"
+    IDS_PROGRAMFILES        "Програми|*.exe;*.bat;*.cmd|Всички файлове (*.*)|*.*||"
+    IDS_COLHDR_RSIZE        "Големина на дясната част"
+    IDS_COLHDR_LTIMEC       "Време за направа на лявата част"
+    IDS_COLHDR_RTIMEC       "Време за направа на дясната част"
+    IDS_COLHDR_NEWER        "Нови файлове"
+    IDS_COLHDR_LVERSION     "Версия на левия файл"
+    IDS_COLHDR_RVERSION     "Версия на десния файл"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LEFTONLY            "Само левият"
+    IDS_RIGHTONLY           "Само десният"
+    IDS_COLHDR_RESULT_ABBR  "Бързи резултати"
+    IDS_COLHDR_LATTRIBUTES  "Атрибути от ляво"
+    IDS_COLHDR_RATTRIBUTES  "Атрибути от дясно"
+    IDS_FILE_SKIPPED        "Пропуснат файл"
+    IDS_DIR_SKIPPED         "Пропусната директория"
+    IDS_STATUSBAR_READONLY  "RO"
+    IDS_COLHDR_LENCODING    "Left Encoding"
+    IDS_COLHDR_RENCODING    "Right Encoding"
+    IDS_DIRECTORY_REPORT_TITLE "Сравняване %1 с %2"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_COMPARISON_STOP     "Спиране"
+    IDC_COMPARISON_CLOSE    "Натисни клавиш"
+    IDS_COLHDR_NDIFFS       "#differences"
+    IDS_COLHDR_NSDIFFS      "#sig. differences"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+    IDS_FILEWRITE_ERROR     "Не може да пише върху %1."
+    IDS_DIFF_SUCCEEDED      "Патча е готов."
+    IDS_DIFF_ITEM1NOTFOUND  "1. обекта не е намерен или е директория!"
+    IDS_DIFF_ITEM2NOTFOUND  "2. обекта не е намерен или е директория!"
+    IDS_DIFF_FILEOVERWRITE  "Патча вече съществува. Ще го презапишете ли?"
+    IDS_DIFF_SELECTEDFILES  "[%1 избрани файлове]"
+    IDS_DIFF_NORMAL         "Normal"
+    IDS_DIFF_CONTEXT        "Context"
+    IDS_DIFF_UNIFIED        "Unified"
+    IDS_FILEPACK_FAILED_LEFT 
+                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_RIGHT 
+                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:\n /? or -? displays this help\n /r or -r tells winmerge to compare directories recursively\n /e or -e allows WinMerge to be closed with a single esc keypress\n /ul or -ul tells winmerge to not add left path to MRU\n /ur or -ur tells winmerge to not add right path to MRU\n /ub or -ub tells winmerge to not add both paths to MRU\n /dl or -dl adds a description for left side shown instead of directory/filename\n /dr or -dr adds a description for right side shown instead of directory/filename\n leftpath is the directory or filename to open on the left side\n rightpath is the directory or filename to open on the right side\n outputpath is an optional output directory where you want merged files to be \n saved\n \n Note: leftpath and rightpath both has to be files or both has to be \n directories\n"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LINEDIFF_NODIFF     "Без разлики"
+    IDS_LINEDIFF_NODIFF_CAPTION "Разлики в линиите"
+    IDS_ERROR_FILE_NOT_UNPACKED "Файла не е разархивиран: %1"
+    IDS_USERCHOICE_NONE     "<None>"
+    IDS_USERCHOICE_AUTOMATIC "<Automatic>"
+    IDS_SUGGEST_IGNOREEOL   "The files have a different EOL type.\nWith the current options, all lines will differ.\nDo you want to ignore EOL differences for these files ?\n\nAdvanced user : if the EOL are not unified in your files,\n you may rather set the option '%1'."
+    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
+    IDS_EMPTY_LEFT_FILE     "Без заглавие ляв"
+    IDS_EMPTY_RIGHT_FILE    "Без заглавие десен"
+    IDS_DEL_LEFT_FMT2       "Ляв (%1 от %2)"
+    IDS_DEL_RIGHT_FMT2      "Десен (%1 от %2)"
+    IDS_DEL_BOTH_FMT2       "двете (%1 от %2)"
+    IDS_COPY_TO_LEFT2       "Десен към ляв (%1 oт %2)"
+    IDS_COPY_TO_RIGHT2      "Ляв към десен (%1 oт %2)"
+    IDS_DIRSEL_TAG          "Избор на директория"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_COPY_LEFT_TO        "Ляв към... (%1)"
+    IDS_COPY_LEFT_TO2       "Ляв към... (%1 oт %2)"
+    IDS_COPY_RIGHT_TO       "Десен към... (%1)"
+    IDS_COPY_RIGHT_TO2      "Десен към... (%1 oт %2)"
+    IDS_SELECT_DESTFOLDER   "Избери на директория"
+    IDS_COMPMETHOD_CONTENTS "Съдържание"
+    IDS_COMPMETHOD_MODDATE  "Променена дата"
+    IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
+    IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_MIXED_EOL           "Preserve original EOL chars"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NUM_REPLACED        "Заменя %1 низа."
+    IDS_EDIT_TEXT_NOT_FOUND "Неможе да намери низ""%s"""
+    IDS_LINE_STATUS_INFO_EOL "Линия: %s Колона: %d Знак: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Линия: %s"
+    IDS_LINE_STATUS_INFO    "Линия: %s Колона: %d Знак: %d"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH 
+                            "VSS работна директория и разположението на файла не съвападат. Ще продължите ли?"
+    IDS_CANNOT_EXECUTE_FILE "Неможе да стартира %1"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_L2R                  "Копиране на избрания текст в десния файл\nКопиране в дясно (Alt+Right)"
+    ID_R2L                  "Копиране на избрания текст в левия файл\nКопиране в ляво (Alt+Left)"
+    ID_OPTIONS_SHOWIDENTICAL "Показвай файловете които са еднакви"
+    ID_OPTIONS_SHOWDIFFERENT "Показвай файловете с разлики"
+    ID_PREVDIFF             "Предвижи се на предишната разлика\nПредишна разлика (Alt+Up)"
+    ID_NEXTDIFF             "Предвижи се на следващата разлика\nСледваща разлика (Alt+Down)"
+    ID_OPTIONS_BACKUPORIGINALFILE 
+                            "Съхрани копие от оргиналния файл като *.bak\nBackup"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
+                            "Автоматично предвижване на първата разлика\nПърва разлика"
+    ID_OPTIONS_IGNOREWHITESPACE "Disregards whitespace when comparing files"
+    ID_HIDE_BACKUP_FILES    "Скриване на файлове с разширение BAK"
+    ID_HELP_GNULICENSE      "Показване на GNU лиценза"
+    ID_USEVSS               "Attempts to checkout read-only files from sourcesafe"
+    ID_OPTIONS              "Нагласяне на програмните настроики\nНастроики"
+    ID_ALL_LEFT             "Копиране на всички разлики в левия файл\nВсичко в ляво"
+    ID_ALL_RIGHT            "Копиране на всички разлики в десния файл\nВсичко в дясно"
+    ID_VIEW_SELECTFONT      "Избиране на фонт за разликите\nФонт за разликите"
+    ID_VIEW_USEDEFAULTFONT  "Връщане към първоначалния фонт показващ разликите\nПървоначален фонт"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Копиране на файловете към избраната директория"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_COPY_LEFT_TO_RIGHT "Копиране на файловете към избраната директория"
+    ID_VIEW_LANGUAGE        "Изберете езика на които да е програмата\nЕзик"
+    ID_HELP_CONTENTS        "Показване на помощния файл на WinMerge\nПомощ"
+    ID_FIRSTDIFF            "Предвижване на първата разлика\nПърва разлика (Alt+Home)"
+    ID_CURDIFF              "Предвижване на текущата разлика\nТекуща разлика (Alt+Enter)"
+    ID_LASTDIFF             "Предвижване на последната разлика\nПоследната разлика (Alt+End)"
+    ID_DIFFNUM              "placeholder"
+    ID_DIR_DEL_LEFT         "Изтриване на избрания обект от ляво"
+    ID_DIR_DEL_RIGHT        "Изтриване на избрания обект от дясно"
+    ID_DIFFSTATUS           "placeholder for status count"
+    ID_OPTIONS_SHOWUNIQUELEFT "Показвай файловете ,които съществуват само в лявата част"
+    ID_OPTIONS_SHOWUNIQUERIGHT 
+                            "Показвай файловете ,които съществуват само в дясната част"
+    ID_DIR_DEL_BOTH         "Изтриване на избрания обект(и) от двете страни"
+    ID_DIR_OPEN_LEFT        "Отваряне на левия файл"
+    ID_DIR_OPEN_LEFT_WITH   "Отваряне на левия файл с..."
+    ID_DIR_OPEN_RIGHT       "Отваряне на десния файл"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "Отваряне на десния файл с..."
+    ID_OPTIONS_SHOWBINARIES "Показване на бинарните файлове"
+    ID_VIEW_WHITESPACE      "Shows whitespace characters"
+    ID_REFRESH              "Refresh display\nRefresh (F5)"
+    ID_SHOWLINEDIFF         "Подчертай разликите в тази графа\nРазлики в графата (F4)"
+    ID_EDITOR_COPY_PATH     "Копирай пътя"
+    ID_EDITOR_COPY_FILENAME "Копирай пътя"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
+    ID_FILE_LEFT_READONLY   "Сменяне на левия файл/директория read-only статуса"
+    ID_FILE_RIGHT_READONLY  "Сменяне на десния файл/директория read-only статуса"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+    ID_OPTIONS_SHOWSKIPPED  "Показвай пропуснатите файлове"
+    ID_TOOLS_GENERATEPATCH  "Generate a patch-file"
+    ID_FILE_SAVE_LEFT       "Запазване на левия файл"
+    ID_FILE_SAVE_RIGHT      "Запазване на десния файл"
+    ID_FILE_SAVEAS_LEFT     "Запазване на левия файл като..."
+    ID_FILE_SAVEAS_RIGHT    "Запазване на десния файл като..."
+    ID_R2LNEXT              "Копиране на разликата в левия файл и предвижване към следващата\nКопиране в ляво и предвижване (Ctrl+Alt+Left)"
+    ID_L2RNEXT              "Копиране на разликата в десния файл и предвижване към следващата\nКопиране в дясно и предвижване (Ctrl+Alt+Right)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_MULTIPLE_RIGHT       "Копиране на избрания текст към десния файл"
+    ID_MULTIPLE_LEFT        "Копиране на избрания текст към левия файл"
+    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
+    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
+    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+    ID_DIR_OPEN_LEFT_WITHEDITOR "Отваряне на левия файл с външен редактор"
+    ID_DIR_OPEN_RIGHT_WITHEDITOR "Отваряне на десния файл с външен редактор"
+    ID_WINDOW_CHANGE_PANE   "Да се вижда следващия файл\nАктивиране на следващия файл"
+    ID_EDIT_WMGOTO          "Отиди на графа или разлика\nОтиди на (Ctrl+G)"
+END
+
+#endif    // Bulgarian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif
+#include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
