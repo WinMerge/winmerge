@@ -1075,6 +1075,7 @@ HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized /*= TRUE*/, BOOL
 		FALSE, NORMAL_PRIORITY_CLASS|(bNewConsole? CREATE_NEW_CONSOLE:0), 
                          NULL, _T(".\\"), &si, &procInfo))
 	{
+		CloseHandle(procInfo.hThread);
 		return procInfo.hProcess;
 	}
 
