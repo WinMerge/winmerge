@@ -25,3 +25,11 @@ VERSION(2,2)
 "*"//2005/01/15 Jochen Tucht	New interface Merge7z::Format::Inspector
 //								New interface Merge7z::Format::Updater
 //								New method Merge7z::LoadLang() to set UI language
+
+"*"//2005/02/26 Jochen Tucht	Fix extensions when unwrapping tgz, rpm, ...
+//								Expose some handler properties
+//								Fix crash on failure to open archive
+//								Use canned system messages wherever possible
+//								Fix Merge7z::LoadLang() for no.txt (Norwegian)
+//								Use DLLPSTUB if DllBuild_Merge7z >= 10
+//								Optimize release builds for size

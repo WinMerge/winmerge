@@ -27,6 +27,7 @@ DATE:		BY:					DESCRIPTION:
 2004/03/18	Jochen Tucht		Experimental DllGetVersion() based on rcsid.
 2004/10/10	Jochen Tucht		DllGetVersion() based on new REVISION.TXT
 2005/01/15	Jochen Tucht		Changed as explained in revision.txt
+2005/02/26	Jochen Tucht		Changed as explained in revision.txt
 */
 
 #include "stdafx.h"
@@ -51,37 +52,53 @@ BOOL APIENTRY DllMain(HINSTANCE hModule, DWORD, LPVOID)
 /**
  * @brief Load a dll and import a number of functions.
  */
-static HMODULE DllProxyHelper(LPCSTR *export, ...)
+static HMODULE DllProxyHelper(LPCSTR *proxy, ...)
 {
-	HMODULE handle = 0;
-	if (LPCSTR format = *export)
+	HMODULE handle = NULL;
+	if (LPCSTR name = *proxy)
 	{
-		char path[MAX_PATH];
-		FormatMessageA
-		(
-			FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ARGUMENT_ARRAY,
-			format,
-			0,
-			0,
-			path,
-			sizeof path,
-			(va_list *)(&export + 1)
-		);
-		handle = LoadLibraryA(path);
-		if COMPLAIN(handle == 0)
+		if (proxy[1] && proxy[1] != name)
 		{
-			ComplainNotFound(GetSystemString(path));
-		}
-		*export = 0;
-		while (LPCSTR name = *++export)
-		{
-			*export = (LPCSTR)GetProcAddress(handle, name);
-			if COMPLAIN(*export == 0)
+			char path[MAX_PATH];
+			FormatMessageA
+			(
+				FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ARGUMENT_ARRAY,
+				name,
+				0,
+				0,
+				path,
+				sizeof path,
+				(va_list *)(&proxy + 1)
+			);
+			handle = LoadLibraryA(path);
+			if (handle)
 			{
-				ComplainNotFound(GetSystemString(name));
+				LPCSTR *export = proxy;
+				*proxy = NULL;
+				while ((name = *++export) != NULL)
+				{
+					*export = (LPCSTR)GetProcAddress(handle, name);
+					if (*export == NULL)
+					{
+						*proxy = proxy[1] = name;
+						export = proxy + 2;
+						break;
+					}
+				}
+				*export = (LPCSTR)handle;
 			}
 		}
-		*export = (LPCSTR)handle;
+		if ((name = *proxy) != NULL)
+		{
+			DWORD dwError = ERROR_MOD_NOT_FOUND;
+			HMODULE hContext = NULL;
+			if (proxy[1] == name)
+			{
+				dwError = ERROR_PROC_NOT_FOUND;
+				hContext = (HMODULE)proxy[2];
+			}
+			Complain(dwError, GetSystemString(name), hContext);
+		}
 	}
 	return handle;
 }
@@ -103,7 +120,7 @@ IInArchive *Format7zDLL::Interface::GetInArchive()
 	void *pv;
 	if COMPLAIN(proxy->CreateObject(proxy.clsid, &IID_IInArchive, &pv) != S_OK)
 	{
-		ComplainCreateObject(proxy.handle, _T("IInArchive"));
+		Complain(RPC_S_INTERFACE_NOT_FOUND, _T("IInArchive"), proxy.handle);
 	}
 	return static_cast<IInArchive *>(pv);
 }
@@ -116,7 +133,7 @@ IOutArchive *Format7zDLL::Interface::GetOutArchive()
 	void *pv;
 	if COMPLAIN(proxy->CreateObject(proxy.clsid, &IID_IOutArchive, &pv) != S_OK)
 	{
-		ComplainCreateObject(proxy.handle, _T("IOutArchive"));
+		Complain(RPC_S_INTERFACE_NOT_FOUND, _T("IOutArchive"), proxy.handle);
 	}
 	return static_cast<IOutArchive *>(pv);
 }
@@ -126,9 +143,23 @@ IOutArchive *Format7zDLL::Interface::GetOutArchive()
  */
 HRESULT Format7zDLL::Interface::DeCompressArchive(HWND hwndParent, LPCTSTR path, LPCTSTR folder)
 {
-	Merge7z::Format::Inspector *inspector = Open(hwndParent, path);
-	HRESULT result = inspector->Extract(hwndParent, folder);
-	inspector->Free();
+	HRESULT result = E_FAIL;
+	if (Merge7z::Format::Inspector *inspector = Open(hwndParent, path))
+	{
+		if (CMyComBSTR(GetHandlerAddExtension(hwndParent)).Length())
+		{
+			//Most handlers seem to be happy with missing index array, but rpm
+			//handler doesn't know how to "extract all" and needs index array
+			//even for the one and only file inside (which is .cpio.gz).
+			static const UINT32 indices[1] = {0};
+			result = inspector->Extract(hwndParent, folder, indices, 1);
+		}
+		else
+		{
+			result = inspector->Extract(hwndParent, folder);
+		}
+		inspector->Free();
+	}
 	return result;
 }
 
@@ -137,10 +168,10 @@ HRESULT Format7zDLL::Interface::DeCompressArchive(HWND hwndParent, LPCTSTR path,
  */
 Merge7z::Format::Inspector *Format7zDLL::Interface::Open(HWND hwndParent, LPCTSTR path)
 {
-	Inspector *inspector = new Inspector(this, hwndParent, path);
+	Inspector *inspector = new Inspector(this, path);
 	try
 	{
-		inspector->Init();
+		inspector->Init(hwndParent);
 	}
 	catch (Complain *complain)
 	{
@@ -215,15 +246,66 @@ FILETIME Format7zDLL::Interface::Inspector::LastWriteTime(UINT32 index)
 	return SUCCEEDED(GetProperty(index, kpidLastWriteTime, &value, VT_FILETIME)) ? value.filetime : invalid;
 }
 
+void Format7zDLL::Interface::GetDefaultName(HWND hwndParent, UString &ustrDefaultName)
+{
+	int dot = ustrDefaultName.ReverseFind('.');
+	int slash = ustrDefaultName.ReverseFind('\\');
+	if (dot > slash)
+	{
+		LPCWSTR pchExtension = ustrDefaultName;
+		pchExtension += dot + 1;
+		static const OLECHAR wBlank[] = L" ";
+		CMyComBSTR bstrHandlerExtension = GetHandlerExtension(hwndParent);
+		CMyComBSTR bstrHandlerAddExtension = GetHandlerAddExtension(hwndParent);
+		LPWSTR pchHandlerExtension = bstrHandlerExtension.m_str;
+		LPWSTR pchHandlerAddExtension = bstrHandlerAddExtension.m_str;
+		while (int cchHandlerAddExtension = StrCSpnW(pchHandlerAddExtension += StrSpnW(pchHandlerAddExtension, wBlank), wBlank))
+		{
+			int cchHandlerExtension = StrCSpnW(pchHandlerExtension += StrSpnW(pchHandlerExtension, wBlank), wBlank);
+			if (StrIsIntlEqualW(FALSE, pchExtension, pchHandlerExtension, cchHandlerExtension) && pchExtension[cchHandlerExtension] == 0)
+			{
+				pchHandlerAddExtension[cchHandlerAddExtension] = '\0'; // will also stop iteration
+				ustrDefaultName.ReleaseBuffer(dot);
+				if (*pchHandlerAddExtension == '.') // consider != '*'
+				{
+					ustrDefaultName += pchHandlerAddExtension;
+					dot += cchHandlerAddExtension; // make ReleaseBuffer(dot) below a NOP
+				}
+			}
+			pchHandlerExtension += cchHandlerExtension;
+			pchHandlerAddExtension += cchHandlerAddExtension;
+		}
+		ustrDefaultName.ReleaseBuffer(dot);
+		ustrDefaultName.Delete(0, slash + 1);
+	}
+	else
+	{
+		ustrDefaultName = L"noname";
+	}
+}
+
+BSTR Format7zDLL::Interface::GetDefaultName(HWND hwndParent, LPCTSTR path)
+{
+	UString ustrDefaultName = GetUnicodeString(path);
+	GetDefaultName(hwndParent, ustrDefaultName);
+	return SysAllocString(ustrDefaultName);
+}
+
+BSTR Format7zDLL::Interface::Inspector::GetDefaultName()
+{
+	//UString ustrDefaultName = GetUnicodeString(path);
+	return SysAllocString(ustrDefaultName);
+}
+
 /**
  * @brief Open archive for update.
  */
 Merge7z::Format::Updater *Format7zDLL::Interface::Update(HWND hwndParent, LPCTSTR path)
 {
-	Updater *updater = new Updater(this, hwndParent, path);
+	Updater *updater = new Updater(this, path);
 	try
 	{
-		updater->Init();
+		updater->Init(hwndParent);
 	}
 	catch (Complain *complain)
 	{
@@ -312,22 +394,102 @@ void Format7zDLL::Interface::Updater::Free()
  */
 HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, Merge7z::DirItemEnumerator *etor)
 {
-	Merge7z::Format::Updater *updater = Update(hwndParent, path);
-	UINT count = etor->Open();
-	while (count--)
+	HRESULT result = E_FAIL;
+	if (Merge7z::Format::Updater *updater = Update(hwndParent, path))
 	{
-		Merge7z::DirItemEnumerator::Item etorItem;
-		etorItem.Mask.Item = 0;
-		Merge7z::Envelope *envelope = etor->Enum(etorItem);
-		updater->Add(etorItem);
-		if (envelope)
+		UINT count = etor->Open();
+		while (count--)
 		{
-			envelope->Free();
+			Merge7z::DirItemEnumerator::Item etorItem;
+			etorItem.Mask.Item = 0;
+			Merge7z::Envelope *envelope = etor->Enum(etorItem);
+			updater->Add(etorItem);
+			if (envelope)
+			{
+				envelope->Free();
+			}
+		}
+		result = updater->Commit(hwndParent);
+		updater->Free();
+	}
+	return result;
+}
+
+/**
+ * @brief get handler property identified by given propID
+ */
+HRESULT Format7zDLL::Interface::GetHandlerProperty(HWND hwndParent, PROPID propID, PROPVARIANT *value, VARTYPE vt)
+{
+	VariantInit((VARIANT *)value);
+	HRESULT result = DISP_E_EXCEPTION;
+	try
+	{
+		result = proxy->GetHandlerProperty(propID, value);
+		if (SUCCEEDED(result) && value->vt != vt)
+		{
+			VariantClear((VARIANT *)value);
+			result = DISP_E_TYPEMISMATCH;
 		}
 	}
-	HRESULT result = updater->Commit(hwndParent);
-	updater->Free();
+	catch (Complain *complain)
+	{
+		complain->Alert(hwndParent);
+	}
 	return result;
+}
+
+/**
+ * @brief get Name handler property
+ */
+BSTR Format7zDLL::Interface::GetHandlerName(HWND hwndParent)
+{
+	PROPVARIANT value;
+	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::kName, &value, VT_BSTR)) ? value.bstrVal : 0;
+}
+
+/**
+ * @brief get ClassID handler property
+ */
+BSTR Format7zDLL::Interface::GetHandlerClassID(HWND hwndParent)
+{
+	PROPVARIANT value;
+	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::kClassID, &value, VT_BSTR)) ? value.bstrVal : 0;
+}
+
+/**
+ * @brief get Extension handler property
+ */
+BSTR Format7zDLL::Interface::GetHandlerExtension(HWND hwndParent)
+{
+	PROPVARIANT value;
+	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::kExtension, &value, VT_BSTR)) ? value.bstrVal : 0;
+}
+
+/**
+ * @brief get AddExtension handler property
+ */
+BSTR Format7zDLL::Interface::GetHandlerAddExtension(HWND hwndParent)
+{
+	PROPVARIANT value;
+	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::kAddExtension, &value, VT_BSTR)) ? value.bstrVal : 0;
+}
+
+/**
+ * @brief get Update handler property
+ */
+VARIANT_BOOL Format7zDLL::Interface::GetHandlerUpdate(HWND hwndParent)
+{
+	PROPVARIANT value;
+	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::kUpdate, &value, VT_BOOL)) ? value.boolVal : 0;
+}
+
+/**
+ * @brief get KeepName handler property
+ */
+VARIANT_BOOL Format7zDLL::Interface::GetHandlerKeepName(HWND hwndParent)
+{
+	PROPVARIANT value;
+	return SUCCEEDED(GetHandlerProperty(hwndParent, NArchive::kKeepName, &value, VT_BOOL)) ? value.boolVal : 0;
 }
 
 /**
@@ -351,13 +513,17 @@ int Merge7z::Initialize(DWORD dwFlags)
 	return 0;
 }
 
+static const char aCreateObject[] = "CreateObject";
+static const char aGetHandlerProperty[] = "GetHandlerProperty";
+
 #define	DEFINE_FORMAT(name, dll, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8) \
 		EXTERN_C const GUID CLSID_##name \
 				= { l, w1, w2, { b1, b2,  b3,  b4,  b5,  b6,  b7,  b8 } }; \
 		Format7zDLL::Proxy PROXY_##name = \
 		{ \
 			"%1Formats\\" dll, \
-			"CreateObject", \
+			aCreateObject, \
+			aGetHandlerProperty, \
 			(HMODULE)0, \
 			&CLSID_##name \
 		}; \
@@ -371,6 +537,7 @@ Format7zDLL::Proxy PROXY_CFormat7z =
 {
 	"%1Formats\\7Z.DLL",
 	"CreateObject",
+	"GetHandlerProperty",
 	(HMODULE)0,
 	&CLSID_CFormat7z
 };
@@ -401,6 +568,8 @@ DEFINE_FORMAT(CTarHandler, "TAR.DLL",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x04, 0x00, 0x00);
 DEFINE_FORMAT(CZipHandler, "ZIP.DLL",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x01, 0x00, 0x00);
+DEFINE_FORMAT(CZHandler, "Z.DLL",
+	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x0D, 0x00, 0x00);
 
 /**
  * @brief Construct Merge7z interface.
@@ -425,6 +594,7 @@ Merge7z::Format *Merge7z::GuessFormat(LPCTSTR path)
 	(
 		EnumList,
 		_ENUM(7Z)
+		ENUM(Z)
 		ENUM(ZIP)
 		ENUM(JAR)
 		ENUM(XPI)
@@ -445,6 +615,9 @@ Merge7z::Format *Merge7z::GuessFormat(LPCTSTR path)
 	{
 	case EnumList::_7Z:
 		pFormat = &CFormat7z;
+		break;
+	case EnumList::Z:
+		pFormat = &CZHandler;
 		break;
 	case EnumList::ZIP:
 	case EnumList::JAR:
@@ -507,7 +680,16 @@ LPCTSTR Merge7z::LoadLang(LPCTSTR langFile)
 	}
 	if (minus > slash && !PathFileExists(g_LangPath))
 	{
+		// 2nd chance: filename == language code
+		CSysString Region = g_LangPath.Mid(minus, dot - minus);
+		Region.Replace('-', '\\');
 		g_LangPath.Delete(minus, dot - minus);
+		if (!PathFileExists(g_LangPath))
+		{
+			// 3rd chance: filename == region code (Norwegian)
+			g_LangPath.Delete(slash, minus - slash);
+			g_LangPath.Insert(slash, Region);
+		}
 	}
 	ReloadLang();
 	return g_LangPath;
@@ -541,6 +723,7 @@ EXTERN_C HRESULT CALLBACK DllGetVersion(DLLVERSIONINFO *pdvi)
 #		include "revision.txt"
 #		undef VERSION
 	);
+	C_ASSERT(dwBuild == DllBuild_Merge7z);
 	// Compute dwVersion from revision.txt
 	static const DWORD dwVersion =
 	(

@@ -1,14 +1,5 @@
-/* File:	tools.cpp
- * Author:	Jochen Tucht 2003/12/09
- *			Copyright (C) Jochen Tucht
- *
- * Purpose:	supplementary classes and functions for Merge7z
- *
- * Remarks:	
- *
- *	*** SECURITY ALERT ***
- *	Be aware of 2. a) of the GNU General Public License. Please log your changes
- *	at the end of this comment.
+/* tools.cpp: Supplementary classes and functions for Merge7z
+ * Copyright (c) 2003 Jochen Tucht
  *
  * License:	This program is free software; you can redistribute it and/or modify
  *			it under the terms of the GNU General Public License as published by
@@ -25,9 +16,12 @@
  *			Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
 
+Please mind 2. a) of the GNU General Public License, and log your changes below.
+
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
-
+2003/12/09	Jochen Tucht		Created
+2005/02/26	Jochen Tucht		Changed as explained in revision.txt
 */
 
 #include "stdafx.h"
@@ -51,6 +45,34 @@ Complain::Complain(LPCTSTR format, ...)
 	throw this;
 }
 
+Complain::Complain(DWORD dwError, LPCTSTR pszContext, HMODULE hContext)
+{
+	LPTSTR pszMessage = msg;
+	if (pszContext)
+	{
+		pszMessage += wsprintf(pszMessage, _T("%.500s"), pszContext);
+		if (hContext)
+		{
+			*pszMessage++ = '@';
+			int cch = ::GetModuleFileName(hContext, pszMessage, 500);
+			if (cch == 0)
+			{
+				cch = wsprintf(pszMessage, _T("%08lX"), hContext);
+			}
+			pszMessage += cch;
+		}
+		*pszMessage++ = ':';
+		*pszMessage++ = '\n';
+	}
+	FormatMessage
+	(
+		FORMAT_MESSAGE_FROM_SYSTEM, NULL, dwError,
+		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+		pszMessage, 500, NULL
+	);
+	throw this;
+}
+
 /**
  * @brief Report error to user. To be called from within catch block.
  */
@@ -64,26 +86,11 @@ int Complain::Alert(HWND hwndParent, UINT flags)
  */
 void ComplainCreateObject(HMODULE handle, LPCTSTR name)
 {
-	TCHAR module[MAX_PATH];
-	::GetModuleFileName(handle, module, sizeof module);
-	Complain(_T("%.300s Failed to create %.300s"), module, name);
+	TCHAR szContext[800];
+	LPTSTR pszContext = szContext + wsprintf(szContext, _T("%.100s@"), name);
+	::GetModuleFileName(handle, pszContext, 500);
+	Complain(RPC_S_INTERFACE_NOT_FOUND, szContext);
 } 
-
-/**
- * @brief Complain that something could not be found.
- */
-void ComplainNotFound(LPCTSTR name)
-{
-	Complain(_T("Not found: %.300s"), name);
-}
-
-/**
- * @brief Complain that something could not be opened.
- */
-void ComplainCantOpen(LPCTSTR name)
-{
-	Complain(_T("Can't open: %.300s"), name);
-}
 
 /**
  * @brief Release interface until ref count reaches 0.

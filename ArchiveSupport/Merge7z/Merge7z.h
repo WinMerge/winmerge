@@ -8,10 +8,18 @@
 #define DllBuild_Merge7z_9 private
 #endif
 
+#if DllBuild_Merge7z >= 10
+#define DllBuild_Merge7z_10 public
+#else
+#define DllBuild_Merge7z_10 private
+#define DLLPSTUB /##/
+#endif
+
 interface Merge7z
 {
 	struct Proxy
 	{
+		DLLPSTUB stub;
 		LPCSTR Merge7z[2];
 		HMODULE handle;
 		interface Merge7z *operator->();
@@ -78,6 +86,8 @@ interface Merge7z
 			virtual BSTR GetExtension(UINT32) = 0;
 			virtual VARIANT_BOOL IsFolder(UINT32) = 0;
 			virtual FILETIME LastWriteTime(UINT32) = 0;
+		DllBuild_Merge7z_10:
+			virtual BSTR GetDefaultName() = 0;
 		};
 		virtual Inspector *Open(HWND, LPCTSTR) = 0;
 		interface Updater
@@ -87,6 +97,15 @@ interface Merge7z
 			virtual HRESULT Commit(HWND) = 0;
 		};
 		virtual Updater *Update(HWND, LPCTSTR) = 0;
+	DllBuild_Merge7z_10:
+		virtual HRESULT GetHandlerProperty(HWND, PROPID, PROPVARIANT *, VARTYPE) = 0;
+		virtual BSTR GetHandlerName(HWND) = 0;
+		virtual BSTR GetHandlerClassID(HWND) = 0;
+		virtual BSTR GetHandlerExtension(HWND) = 0;
+		virtual BSTR GetHandlerAddExtension(HWND) = 0;
+		virtual VARIANT_BOOL GetHandlerUpdate(HWND) = 0;
+		virtual VARIANT_BOOL GetHandlerKeepName(HWND) = 0;
+		virtual BSTR GetDefaultName(HWND, LPCTSTR) = 0;
 	};
 	Merge7z();
 	Format &Format7z;

@@ -12,12 +12,9 @@ class Complain
 public:
 	TCHAR msg[1024];
 	Complain(LPCTSTR, ...);
+	Complain(DWORD, LPCTSTR, HMODULE = 0);
 	int Alert(HWND, UINT = MB_ICONSTOP|MB_TASKMODAL);
 };
-
-void ComplainCreateObject(HMODULE, LPCTSTR);
-void ComplainNotFound(LPCTSTR);
-void ComplainCantOpen(LPCTSTR);
 
 void NTAPI Release(IUnknown *);
 

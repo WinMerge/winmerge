@@ -10,7 +10,8 @@
 #include "7zip/Common/FileStreams.h"
 // Merge7z includes
 #include "tools.h"
-#define DllBuild_Merge7z 9
+#define DllBuild_Merge7z 10
+#define DLLPSTUB /##/
 #include "Merge7z.h"
 
 using namespace NWindows;
@@ -20,14 +21,18 @@ extern DWORD g_dwFlags;
 extern CHAR g_cPath7z[MAX_PATH];
 
 typedef UINT32 (WINAPI * CreateObjectFunc)(
-    const GUID *clsID, 
-    const GUID *interfaceID, 
-    void **outObject);
+	const GUID *clsID, 
+	const GUID *interfaceID, 
+	void **outObject);
+
+typedef UINT32 (WINAPI * GetHandlerPropertyFunc)(
+	PROPID propID, PROPVARIANT *value);
 
 struct Format7zDLL
 {
 	HMODULE origin;
 	CreateObjectFunc CreateObject;
+	GetHandlerPropertyFunc GetHandlerProperty;
 	HMODULE handle;
 	const CLSID *clsid;
 	struct Proxy;
@@ -52,6 +57,7 @@ interface Format7zDLL::Interface : Merge7z::Format
 	Interface(Proxy &proxy):proxy(proxy)
 	{
 	}
+	void GetDefaultName(HWND, UString &);
 	virtual IInArchive *GetInArchive();
 	virtual HRESULT DeCompressArchive(HWND, LPCTSTR path, LPCTSTR folder);
 	virtual IOutArchive *GetOutArchive();
@@ -67,13 +73,16 @@ interface Format7zDLL::Interface : Merge7z::Format
 		virtual BSTR GetExtension(UINT32);
 		virtual VARIANT_BOOL IsFolder(UINT32);
 		virtual FILETIME LastWriteTime(UINT32);
+		virtual BSTR GetDefaultName();
+		Format7zDLL::Interface *const format;
 		IInArchive *archive;
 		CInFileStream *file;
 		IArchiveOpenCallback *callback;
-		CSysString path;
+		CSysString const path;
+		UString ustrDefaultName;
 		NFile::NFind::CFileInfo fileInfo;
-		Inspector(Format7zDLL::Interface *, HWND, LPCTSTR);
-		void Init();
+		Inspector(Format7zDLL::Interface *, LPCTSTR);
+		void Init(HWND);
 	};
 	virtual Merge7z::Format::Inspector *Open(HWND, LPCTSTR);
 	interface Updater : Merge7z::Format::Updater
@@ -81,13 +90,22 @@ interface Format7zDLL::Interface : Merge7z::Format
 		virtual void Free();
 		virtual UINT32 Add(Merge7z::DirItemEnumerator::Item &);
 		virtual HRESULT Commit(HWND);
+		Format7zDLL::Interface *const format;
 		IOutArchive *outArchive;
 		COutFileStream *file;
-		CSysString path;
+		CSysString const path;
 		CObjectVector<CDirItem> dirItems;
 		CObjectVector<CArchiveItem> archiveItems;
-		Updater(Format7zDLL::Interface *, HWND, LPCTSTR);
-		void Init();
+		Updater(Format7zDLL::Interface *, LPCTSTR);
+		void Init(HWND);
 	};
 	virtual Merge7z::Format::Updater *Update(HWND, LPCTSTR);
+	virtual HRESULT GetHandlerProperty(HWND, PROPID, PROPVARIANT *, VARTYPE);
+	virtual BSTR GetHandlerName(HWND);
+	virtual BSTR GetHandlerClassID(HWND);
+	virtual BSTR GetHandlerExtension(HWND);
+	virtual BSTR GetHandlerAddExtension(HWND);
+	virtual VARIANT_BOOL GetHandlerUpdate(HWND);
+	virtual VARIANT_BOOL GetHandlerKeepName(HWND);
+	virtual BSTR GetDefaultName(HWND, LPCTSTR);
 };

@@ -31,6 +31,7 @@ DATE:		BY:					DESCRIPTION:
 2004/10/17	Jochen Tucht		Leave decision whether to recurse into folders
 								to enumerator (Mask.Recurse)
 2005/01/15	Jochen Tucht		Changed as explained in revision.txt
+2005/02/26	Jochen Tucht		Changed as explained in revision.txt
 */
 
 #include "stdafx.h"
@@ -89,7 +90,7 @@ public:
 		result = E_FAIL;
 		if COMPLAIN(!Create(Process, this))
 		{
-			Complain(_T("Failed to create extraction thread"));
+			Complain(GetLastError(), NULL);
 		}
 		ExtractCallbackSpec->StartProgressDialog(GetUnicodeString(title));
 	}
@@ -98,35 +99,37 @@ public:
 /**
  * @brief Initialize Inspector
  */
-Format7zDLL::Interface::Inspector::Inspector(Format7zDLL::Interface *format, HWND hwndParent, LPCTSTR path)
-: archive(0), file(0), callback(0), path(path)
+Format7zDLL::Interface::Inspector::Inspector(Format7zDLL::Interface *format, LPCTSTR path)
+: format(format), archive(0), file(0), callback(0), path(path), ustrDefaultName(GetUnicodeString(path))
 {
-	COpenArchiveCallback *callbackImpl = new COpenArchiveCallback;
-	(archive = format->GetInArchive()) -> AddRef();
-	(file = new CInFileStream) -> AddRef();
-	(callback = callbackImpl) -> AddRef();
-	callbackImpl->PasswordIsDefined = false;
-	callbackImpl->ParentWindow = hwndParent;
 }
 
 /**
  * @brief Initialize Inspector
  */
-void Format7zDLL::Interface::Inspector::Init()
+void Format7zDLL::Interface::Inspector::Init(HWND hwndParent)
 {
+	format->GetDefaultName(hwndParent, ustrDefaultName);
+	COpenArchiveCallback *callbackImpl = new COpenArchiveCallback;
+	//COpenCallbackImp *callbackImpl = new COpenCallbackImp;
+	(archive = format->GetInArchive()) -> AddRef();
+	(file = new CInFileStream) -> AddRef();
+	(callback = callbackImpl) -> AddRef();
+	callbackImpl->PasswordIsDefined = false;
+	callbackImpl->ParentWindow = hwndParent;
 	/*CMyComBSTR password;
 	callback->CryptoGetTextPassword(&password);*/
+	if COMPLAIN(!NFile::NFind::FindFile(path, fileInfo))
+	{
+		Complain(ERROR_FILE_NOT_FOUND, path);
+	}
 	if COMPLAIN(!file->Open(path))
 	{
-		ComplainCantOpen(path);
+		Complain(ERROR_OPEN_FAILED, path);
 	}
 	if COMPLAIN(archive->Open(file, 0, callback) != S_OK)
 	{
-		ComplainCantOpen(path);
-	}
-	if COMPLAIN(!NFile::NFind::FindFile(path, fileInfo))
-	{
-		ComplainCantOpen(path);
+		Complain(ERROR_CANT_ACCESS_FILE, path);
 	}
 }
 
@@ -144,29 +147,8 @@ HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR fold
 		{
 			if COMPLAIN(!NFile::NDirectory::CreateComplexDirectory(folder))
 			{
-				Complain(_T("Can not create output directory"));
+				Complain(ERROR_CANNOT_MAKE, folder);
 			}
-		}
-		//	if path is whatever.tar.bz2, default to whatever.tar:
-		UString ustrDefaultName = GetUnicodeString(path);
-		int dot = ustrDefaultName.ReverseFind('.');
-		int slash = ustrDefaultName.ReverseFind('\\');
-		if (dot > slash)
-		{
-			if (StrChrW(L"Tt", ustrDefaultName[dot + 1]))
-			{
-				ustrDefaultName.ReleaseBuffer(dot + 2);
-				ustrDefaultName += L"ar";
-			}
-			else
-			{
-				ustrDefaultName.ReleaseBuffer(dot);
-			}
-			ustrDefaultName.Delete(0, slash + 1);
-		}
-		else
-		{
-			ustrDefaultName = L"noname";
 		}
 
 		(extractCallbackSpec2 = new CExtractCallbackImp) -> AddRef();
@@ -188,7 +170,7 @@ HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR fold
 			NExtract::NPathMode::kFullPathnames, 
 			NExtract::NOverwriteMode::kWithoutPrompt,
 			UStringVector(),
-			ustrDefaultName, 
+			ustrDefaultName,
 			fileInfo.LastWriteTime,
 			fileInfo.Attributes
 		);
@@ -205,7 +187,13 @@ HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR fold
 
 		if COMPLAIN(extractCallbackSpec->_numErrors)
 		{
-			Complain(_T("%I64u error(s)"), extractCallbackSpec->_numErrors);
+			//	There is no canned system message for this one, so it won't
+			//	localize. I can't help it.
+			Complain(_T("%s:\n%I64u error(s)"), path, extractCallbackSpec->_numErrors);
+		}
+		if COMPLAIN(result != S_OK)
+		{
+			Complain(E_FAIL, path);
 		}
 	}
 	catch (Complain *complain)
@@ -259,7 +247,7 @@ public:
 		result = E_FAIL;
 		if COMPLAIN(!Create(Process, this))
 		{
-			Complain(_T("Failed to create extraction thread"));
+			Complain(GetLastError(), NULL);
 		}
 		updateCallbackGUI->StartProgressDialog(GetUnicodeString(title));
 	}
@@ -268,21 +256,21 @@ public:
 /**
  * @brief Construct Updater
  */
-Format7zDLL::Interface::Updater::Updater(Format7zDLL::Interface *format, HWND hwndParent, LPCTSTR path)
-: outArchive(0), file(0), path(path)
+Format7zDLL::Interface::Updater::Updater(Format7zDLL::Interface *format, LPCTSTR path)
+: format(format), outArchive(0), file(0), path(path)
 {
-	(outArchive = format->GetOutArchive()) -> AddRef();
-	(file = new COutFileStream) -> AddRef();
 }
 
 /**
  * @brief Initialize Updater
  */
-void Format7zDLL::Interface::Updater::Init()
+void Format7zDLL::Interface::Updater::Init(HWND hwndParent)
 {
+	(outArchive = format->GetOutArchive()) -> AddRef();
+	(file = new COutFileStream) -> AddRef();
 	if COMPLAIN(!file->Create(path, true))
 	{
-		ComplainCantOpen(path);
+		Complain(ERROR_CANNOT_MAKE, path);
 	}
 }
 
@@ -349,7 +337,7 @@ HRESULT Format7zDLL::Interface::Updater::Commit(HWND hwndParent)
 		//result = outArchive->UpdateItems(file, operationChain.Size(), updateCallbackSpec);
 		if COMPLAIN(result != S_OK)
 		{
-			ComplainCantOpen(path);
+			Complain(E_FAIL, path);
 		}
 	}
 	catch (Complain *complain)
