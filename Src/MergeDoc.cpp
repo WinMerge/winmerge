@@ -1142,7 +1142,7 @@ void CMergeDoc::SetDiffViewMode(BOOL bEnable)
 BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/) 
 {
 	// Allow user to cancel closing
-	if (SaveHelper(TRUE))
+	if (!mf->m_bEscShutdown && SaveHelper(TRUE))
 	{
 		// Set modified status to false so that we are not asking
 		// about saving again in OnCloseDocument()

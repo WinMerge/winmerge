@@ -1,3 +1,7 @@
+2004-10-23 Kimmo
+ BUG: [ 1052283 ] after edit, asks TWICE for rewriting the original file (-e switch)
+  Src: MergeDoc.cpp
+
 2004-10-22 Perry
  PATCH: [ 966908 ] find byte difference in line
  Src: Merge.rc MergeDiffDetailView.cpp MergeDiffDetailView.h
