@@ -3,7 +3,9 @@
   Languages: BuildAll.bat
  Updated two property pages in Norwegian
   IDD_PROPPAGE_REGISTRY (patch#789504) and IDD_PROPPAGE_COLORS (patch#768740).
-  Languages: Norwegian/resource.h Norwegian/MergeNorwegian.rc
+  Languages\Norwegian: resource.h Norwegian/MergeNorwegian.rc
+ Updated color property page in ChineseSimplified (patch#768740).
+  Languages\ChineseSimplified: MergeChineseSimplified.rc resource.h
 
 2003-08-20 Christian
  PATCH: [ 791487 ] Norwegian (bokmål) translation

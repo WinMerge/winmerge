@@ -451,12 +451,27 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "颜色"
 FONT 9, "宋体", 0, 0, 0x1
 BEGIN
-    LTEXT           "不同:",-1,15,18,36,8
+    LTEXT           "不同:",IDC_STATIC,43,18,36,8
     CONTROL         "不同",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,83,15,17,
                     14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
-    LTEXT           "已选择:",-1,14,36,66,8
+    LTEXT           "已选择:",IDC_STATIC,14,36,66,8
     CONTROL         "已选择",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,83,33,17,
                     14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    LTEXT           "Background",IDC_STATIC,86,15,40,8
+    LTEXT           "Deleted",IDC_STATIC,137,15,26,8
+    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    LTEXT           "Text",IDC_STATIC,184,15,15,8
 END
 
 IDD_OUTPUT DIALOG FIXED IMPURE  0, 0, 278, 157
