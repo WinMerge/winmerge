@@ -200,6 +200,8 @@ void CDirDoc::Rescan()
 	pf->GetHeaderInterface()->SetActive(0, TRUE);
 	pf->GetHeaderInterface()->SetActive(1, TRUE);
 
+	// Make sure filters are up-to-date
+	theApp.m_globalFileFilter.ReloadUpdatedFilters();
 	m_pCtxt->m_piFilterGlobal = &theApp.m_globalFileFilter;
 
 	// Show active filter name in statusbar

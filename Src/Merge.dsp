@@ -362,6 +362,10 @@ SOURCE=.\FileFiltersDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\FileInfo.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\FilepathEdit.cpp
 # End Source File
 # Begin Source File
@@ -902,6 +906,10 @@ SOURCE=.\FileFilterMgr.h
 # Begin Source File
 
 SOURCE=.\FileFiltersDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FileInfo.h
 # End Source File
 # Begin Source File
 

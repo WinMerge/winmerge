@@ -1,3 +1,9 @@
+2005-02-03 Kimmo
+ PATCH: [ 1114360 ] Non-blocking file filter editing
+  Src: DiffFileInfo.cpp DiffFileInfo.h DirDoc.cpp DirViewColItems.cpp FileFilterHelper.cpp
+   FileFilterHelper.h FileFilterMgr.cpp FileFilterMgr.h MainFrm.cpp Merge.dsp
+  Src new files: FileInfo.cpp FileInfo.h
+
 2005-02-02 Kimmo
  BUG: [ 1039592 ] No differences shown after changing EOL options when loading
   Src: MergeDoc.cpp MergeEditView.cpp MergeEditView.h

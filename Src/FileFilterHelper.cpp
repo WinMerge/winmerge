@@ -23,6 +23,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "FileInfo.h"
 #include "FileFilterMgr.h"
 #include "FileFilterHelper.h"
 #include "RegExp.h"
@@ -136,7 +137,12 @@ void FileFilterHelper::SetMask(LPCTSTR strMask)
 	m_rgx.RegComp(regExp);
 }
 
-/** @brief Return TRUE unless we're suppressing this file by filter */
+/**
+ * @brief Check if any of filefilter rules match to filename.
+ *
+ * @param [in] szFileName Filename to test.
+ * @return TRUE unless we're suppressing this file by filter
+ */
 BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 {
 	if (m_bUseMask)
@@ -159,7 +165,12 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 	}
 }
 
-/** @brief Return TRUE unless we're suppressing this directory by filter */
+/**
+ * @brief Check if any of filefilter rules match to directoryname.
+ *
+ * @param [in] szFileName Directoryname to test.
+ * @return TRUE unless we're suppressing this directory by filter
+ */
 BOOL FileFilterHelper::includeDir(LPCTSTR szDirName)
 {
 	if (m_bUseMask)
@@ -201,22 +212,6 @@ void FileFilterHelper::EditFileFilter(LPCTSTR szFileFilterPath)
 	stInfo.cb = sizeof(STARTUPINFO);
 	processSuccess = CreateProcess(NULL, (LPTSTR)(LPCTSTR)cmdLine, NULL,
 		NULL, FALSE, 0, NULL, NULL, &stInfo, &prInfo);
-
-	if (processSuccess == TRUE)
-	{
-		// Wait until process closes down
-		WaitForSingleObject(prInfo.hProcess, INFINITE);
-		CloseHandle(prInfo.hThread);
-		CloseHandle(prInfo.hProcess);
-	}
-	
-	// Reload filter after changing it
-	m_fileFilterMgr->ReloadFilterFromDisk(filter);
-
-	// If it was active filter we have to re-set it
-	CString sPath = GetFileFilterPath();
-	if (sPath == szFileFilterPath)
-		SetFileFilterPath(szFileFilterPath);
 }
 
 /** @brief Load in all filter patterns in a directory (unless already in map) */
@@ -324,4 +319,39 @@ BOOL FileFilterHelper::SetFilter(CString filter)
 			return FALSE;
 	}
 	return TRUE;
+}
+
+/** 
+ * @brief Reloads changed filter files
+ *
+ * Checks if filter file has been modified since it was last time
+ * loaded/reloaded. If file has been modified we reload it.
+ */
+void FileFilterHelper::ReloadUpdatedFilters()
+{
+	FILEFILTER_INFOLIST filters;
+	FileInfo fileInfo;
+	FileInfo *fileInfoStored = NULL;
+	FileFilterInfo * filter = NULL;
+	CString selected;
+
+	GetFileFilters(&filters, selected);
+	for (int i = 0; i < filters.GetSize(); i++)
+	{
+		filter = &filters.GetAt(i);
+		CString path = filter->fullpath;
+		fileInfoStored = &filter->fileinfo;
+
+		fileInfo.Update(path);
+		if (fileInfo.mtime != fileInfoStored->mtime ||
+			fileInfo.size != fileInfoStored->size)
+		{
+			// Reload filter after changing it
+			m_fileFilterMgr->ReloadFilterFromDisk(path);
+
+			// If it was active filter we have to re-set it
+			if (path == selected)
+				SetFileFilterPath(path);
+		}
+	}
 }

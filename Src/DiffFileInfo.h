@@ -25,15 +25,17 @@
 #ifndef _DIFF_FILE_INFO_H_INCLUDED
 #define _DIFF_FILE_INFO_H_INCLUDED
 
+#ifndef _FILE_INFO_H_INCLUDED
+#include "FileInfo.h"
+#endif
+
 /**
  * @brief Class for fileflags and coding info.
  */
-struct FileFlags
+struct DiffFileFlags : public FileFlags
 {
 	DWORD coding; /**< Coding info for item */
-	DWORD attributes; /**< Fileattributes for item */
-	FileFlags() : coding(0), attributes(0) { }
-	void reset() { attributes = 0; } /// Reset fileattributes
+	DiffFileFlags() : coding(0) { FileFlags(); }
 	
 	/// Convert flags and coding to string for UI.
 	CString toString() const
@@ -75,16 +77,10 @@ struct FileFlags
 /**
  * @brief Information for file
  */
-struct DiffFileInfo
+struct DiffFileInfo : public FileInfo
 {
-	// storing __time_t if MSVC6 (__MSC_VER<1300)
-	// storing __time64_t if MSVC7 (VC.NET)
-	__int64 ctime; /**< time of creation */
-	__int64 mtime;
-	__int64 size; /**< file size in bytes, -1 means file does not exist*/
-	CString version; /**< string of fixed file version, eg, 1.2.3.4 */
 	bool bVersionChecked; /**< true if version string is up-to-date */
-	FileFlags flags; /**< file attributes */
+	DiffFileFlags flags; /**< file attributes */
 	int codepage; /**< 8bit codepage, if applicable, 0 is unknown or N/A */
 	int unicoding; /**< Unicode encoding (ucr::CODESET) */
 	DiffFileInfo() { Clear(); }

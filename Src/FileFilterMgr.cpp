@@ -7,7 +7,13 @@
 //    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 //    You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
-//
+/**
+ *  @file FileFilterMgr.cpp
+ *
+ *  @brief Implementation of FileFilterMgr and supporting routines
+ */ 
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "FileFilterMgr.h"
@@ -238,6 +244,10 @@ BOOL TestAgainstRegList(const RegList & reglist, LPCTSTR szTest)
 /**
  * @brief Test given filename against filefilter.
  *
+ * Test filename against active filefilter. If matching rule is found
+ * we must first determine type of rule that matched. If we return FALSE
+ * from this function directory scan marks file as skipped.
+ *
  * @param [in] pFilter Pointer to filefilter
  * @param [in] szFileName Filename to test
  * @return TRUE if file passes the filter
@@ -252,6 +262,10 @@ BOOL FileFilterMgr::TestFileNameAgainstFilter(FileFilter * pFilter, LPCTSTR szFi
 
 /**
  * @brief Test given directory name against filefilter.
+ *
+ * Test directory name against active filefilter. If matching rule is found
+ * we must first determine type of rule that matched. If we return FALSE
+ * from this function directory scan marks file as skipped.
  *
  * @param [in] pFilter Pointer to filefilter
  * @param [in] szDirName Directory name to test
@@ -329,4 +343,17 @@ void FileFilterMgr::ReloadFilterFromDisk(FileFilter * pfilter)
 		}
 	}
 	m_filters.Add(newfilter);
+}
+
+/**
+ * @brief Reload filter from disk
+ *
+ * Reloads filter from disk. This is done by creating a new one
+ * to substitute for old one.
+ * @param [in] szFullPath Full path to filter file to reload.
+ */
+void FileFilterMgr::ReloadFilterFromDisk(LPCTSTR szFullPath)
+{
+	FileFilter * filter = GetFilterByPath(szFullPath);
+	ReloadFilterFromDisk(filter);
 }

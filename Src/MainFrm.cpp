@@ -2502,6 +2502,9 @@ void CMainFrame::OnToolsFilters()
 	sht.AddPage(&filter);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
+	// Make sure all filters are up-to-date
+	theApp.m_globalFileFilter.ReloadUpdatedFilters();
+
 	theApp.m_globalFileFilter.GetFileFilters(&fileFilters, selectedFilter);
 	fileFiltersDlg.SetFilterArray(&fileFilters);
 	fileFiltersDlg.SetSelected(selectedFilter);

@@ -15,16 +15,15 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  DiffFileInfo.cpp
+ * @file  FileInfo.cpp
  *
- * @brief Implementation for DiffFileInfo routines
+ * @brief Implementation for FileInfo routines
  */
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
 #include "FileInfo.h"
-#include "DiffFileInfo.h"
 
 /**
  * @brief Convert a FILETIME to a long (standard time)
@@ -38,7 +37,7 @@ static __int64 FileTimeToInt64(FILETIME & ft)
  * @brief Update fileinfo from given file
  * @param [in] sFilePath Full path to file/directory to update
  */
-void DiffFileInfo::Update(CString sFilePath)
+void FileInfo::Update(CString sFilePath)
 {
 	// CFileFind doesn't expose the attributes
 	// CFileStatus doesn't expose 64 bit size
@@ -65,10 +64,11 @@ void DiffFileInfo::Update(CString sFilePath)
 /**
  * @brief Clears FileInfo data.
  */
-void DiffFileInfo::Clear()
+void FileInfo::Clear()
 {
-	FileInfo::Clear();
-	bVersionChecked = false;
-	codepage = 0;
-	unicoding = 0;
+	ctime = 0;
+	mtime = 0;
+	size = -1;
+	version.Empty();
+	flags.reset();
 }

@@ -10,6 +10,13 @@
 //    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 //    You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
+/**
+ *  @file FileFilterMgr.h
+ *
+ *  @brief Declaration file for FileFilterMgr
+ */ 
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #ifndef FileFilter_h_included
 #define FileFilter_h_included
@@ -38,6 +45,7 @@ public:
 	void LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt);
 	// Reload an edited filter
 	void ReloadFilterFromDisk(FileFilter * pfilter);
+	void ReloadFilterFromDisk(LPCTSTR szFullPath);
 	// Load a filter from a string
 	void LoadFilterString(LPCTSTR szFilterString);
 
@@ -78,4 +86,3 @@ void DeleteRegList(RegList & reglist);
 
 
 #endif // FileFilter_h_included
-
