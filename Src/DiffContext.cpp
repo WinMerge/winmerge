@@ -176,13 +176,26 @@ int CDiffContext::GetDiffCount()
 	return m_pList->GetCount();
 }
 
+/**
+ * @brief Alter some bit flags of the diffcode.
+ *
+ * Examples:
+ *  SetDiffStatusCode(pos, DIFFCODE::SAME, DIFFCODE::COMPAREFLAGS)
+ *   changes the comparison result to be the same.
+ * 
+ *  SetDiffStatusCode(pos, DIFFCODE::BOTH, DIFFCODE::SIDEFLAG)
+ *   changes the side status to be both (sides).
+ *
+ * SetDiffStatusCode(pos, DIFFCODE::SAME+DIFFCODE::BOTH, DIFFCODE::COMPAREFLAGS+DIFFCODE::SIDEFLAG);
+ *  changes the comparison result to be the same and the side status to be both
+ */
 void CDiffContext::SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask)
 {
 	ASSERT(diffpos);
 	DIFFITEM & di = m_pList->GetAt(diffpos);
 	ASSERT(! ((~mask) && diffcode) ); // make sure they only set flags in their mask
-	di.diffcode = di.diffcode & (~mask); // remove current data
-	di.diffcode = di.diffcode | diffcode; // add new data
+	di.diffcode &= (~mask); // remove current data
+	di.diffcode |= diffcode; // add new data
 }
 
 /**
