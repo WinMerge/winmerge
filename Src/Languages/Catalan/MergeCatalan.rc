@@ -124,9 +124,9 @@ BEGIN
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Mode de combinació\tF7",              ID_FILE_MERGINGMODE
+        MENUITEM "&Mode de combinació\tF9",     ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
-        MENUITEM "&Surt\tEsc",                  ID_APP_EXIT
+        MENUITEM "&Surt",                       ID_APP_EXIT
     END
     POPUP "E&dita"
     BEGIN

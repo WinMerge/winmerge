@@ -3,6 +3,10 @@
   Src: MergeEditView.cpp
  PATCH: [ 1027994 ] Use current filename and path as defaults for SaveAs dialog
   Src: MergeDoc.cpp
+ BUG: [ 1027605 ] Esc (as indicated by File Exit) doesn't quit app
+  Remove ESC from menuitem. Also fix merge-mode shortcut to F9.
+  Src: Merge.rc
+  Src/Languages: *.rc
 
 2004-09-14 Kimmo
  PATCH: [ 1027118 ] Separate items for Copy Path in dircompare context menu

@@ -124,9 +124,9 @@ BEGIN
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "マージモード\tF7",            ID_FILE_MERGINGMODE
+        MENUITEM "マージモード\tF9",            ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
-        MENUITEM "終了(&X)\tEsc",               ID_APP_EXIT
+        MENUITEM "終了(&X)",                    ID_APP_EXIT
     END
     POPUP "編集(&E)"
     BEGIN

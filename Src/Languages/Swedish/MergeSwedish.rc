@@ -123,9 +123,9 @@ BEGIN
             MENUITEM "&MAC  (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "Merge Mode\tF7",              ID_FILE_MERGINGMODE
+        MENUITEM "Merge Mode\tF9",              ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
-        MENUITEM "&Avsluta\tEsc",               ID_APP_EXIT
+        MENUITEM "&Avsluta",                    ID_APP_EXIT
     END
     POPUP "&Redigera"
     BEGIN

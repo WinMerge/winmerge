@@ -124,7 +124,7 @@ BEGIN
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Modalità 'Unione'\tF7",      ID_FILE_MERGINGMODE
+        MENUITEM "&Modalità 'Unione'\tF9",      ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "Es&ci",                       ID_APP_EXIT
     END
