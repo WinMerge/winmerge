@@ -1,3 +1,7 @@
+2003-02-27 Kimmo
+ BUG: [ 693820 ] Typed path failed to compare
+  WinMerge: OpenDlg.cpp
+
 2003-02-26 Kimmo
  BUG: [ 683753 ] Rescan is not prompting to save dirty
       current file

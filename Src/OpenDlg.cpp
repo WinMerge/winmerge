@@ -337,6 +337,9 @@ BOOL COpenDlg::IsFileOk(CString & strFile, BOOL *pbDir /*= NULL*/)
 
 void COpenDlg::RemoveTrailingSlash(CString & s)
 {
+	// Do not remove slash from "X:\"
+	if (s[s.GetLength()-2] == _T(':'))
+		return;
 	while (s.Right(1) == _T('\\') || s.Right(1) == _T('/'))
-		s = s.Left(s.GetLength()-1);
+		s.Delete(s.GetLength()-1);
 }
