@@ -109,7 +109,6 @@ void CPatchDlg::OnOK()
 	BOOL fileResultOK = TRUE;
 	int overWrite = 0;
 	int selectCount = 0;
-	struct _stat fileStat = {0};
 
 	UpdateData(TRUE);
 	selectCount = m_fileList.GetCount();

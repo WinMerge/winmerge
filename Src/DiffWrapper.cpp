@@ -176,18 +176,13 @@ BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
 BOOL CDiffWrapper::RunFileDiff()
 {
 	USES_CONVERSION;
-
-	BOOL bRetStatus = FALSE;
 	SwapToInternalSettings();
 
 	if (m_bUseDiffList)
 		m_nDiffs = m_diffs->GetSize();
 
 	// perform rescan
-	char *free0 = NULL,*free1 = NULL;
 	CString sdir0, sdir1, sname0, sname1, sext0, sext1;
-	int failed=0;
-	bool same_files = FALSE;
 	struct change *e, *p;
 	struct change *script = NULL;
 

@@ -490,7 +490,6 @@ COleSafeArray * storageForPlugins::GetDataBufferAnsi()
 	int textRealSize = textForeseenSize;
 
 	// allocate the memory
-	BOOL bAllocSuccess = TRUE;
 	array.CreateOneDim(VT_UI1, textForeseenSize);
 	char * parrayData;
 	array.AccessData((void**)&parrayData);
@@ -597,7 +596,6 @@ static UINT TransformUtf8ToUcs2(LPCSTR pcsUtf, UINT nUtf, LPWSTR psUcs, UINT nUc
 
 BOOL UnicodeFileToOlechar(CString & filepath, LPCTSTR filepathDst, int & nFileChanged)
 {
-	BOOL bIsUnicode = FALSE;
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(filepath) || !ufile.ReadBom())
 		return TRUE; // not unicode file, nothing to do

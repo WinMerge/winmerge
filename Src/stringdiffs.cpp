@@ -339,7 +339,6 @@ stringdiffs::PopulateDiffs()
 {
 	for (int i=0; i<m_wdiffs.GetSize(); ++i)
 	{
-		wdiff & wd = m_wdiffs[i];
 		bool skipIt = false;
 		// combine it with next ?
 		if (i+1<m_wdiffs.GetSize())

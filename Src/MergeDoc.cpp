@@ -876,7 +876,6 @@ BOOL CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	// or SAVE_DONE when the save succeeds
 	// TODO: Shall we return this code in addition to bSaveSuccess ?
 	int nSaveErrorCode = SAVE_DONE;
-	CDiffTextBuffer *pBuffer = bLeft ? &m_ltBuf : &m_rtBuf;
 
 	// Use SAVE_NO_FILENAME to prevent asking about error
 	nSaveErrorCode = SAVE_NO_FILENAME;
@@ -2337,7 +2336,6 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	m_strBothFilenames = sLeftFile + "|" + sRightFile;
 
 	// Load left side file
-	BOOL bLeft = TRUE;
 	int nLeftSuccess = FRESULT_ERROR;
 	if (!sLeftFile.IsEmpty())
 	{
@@ -2554,4 +2552,5 @@ void CMergeDoc::UpdateHeaderActivity(BOOL bLeft, BOOL bActivate)
 	int nPane = (bLeft) ? 0 : 1;
 	pf->GetHeaderInterface()->SetActive(nPane, bActivate);
 }
+
 
