@@ -1,3 +1,6 @@
+2003-03-05 Perry
+ Added new subdir Languages/Danish/res
+
 2003-03-04
  BUG: [ 684622 ] Escape key closes whole program
   Nikki Locke's patch slightly modified
