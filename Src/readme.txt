@@ -4,6 +4,9 @@
   Src/Languages/Swedish: MergeSwedish.rc
  BUG: [ 1029644 ] (English) Options/System wording fix
   Src: Merge.rc
+ More space for texts in Options/System
+  Src: Merge.rc
+  Src/Languages: *.rc
 
 2004-09-17 Kimmo
  PATCH: [ 1029538 ] Reverse 'Ignore carriage return differences' when resetting

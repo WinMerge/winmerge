@@ -681,12 +681,12 @@ CAPTION "System"
 FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "Gelöschte Dateien in den &Papierkorb verschieben",IDC_USE_RECYCLE_BIN,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,214,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
     CONTROL         "Zum Explorer-Kontextmenü &hinzufügen",IDC_EXPLORER_CONTEXT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,167,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
     CONTROL         "Er&weitertes Menü verwenden",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
-    LTEXT           "&Externer Editor:",IDC_STATIC,7,44,167,8
+    LTEXT           "&Externer Editor:",IDC_STATIC,7,44,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "&Suchen...",IDC_EXT_EDITOR_BROWSE,179,54,50,14
 END

@@ -677,7 +677,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
     CONTROL         "Habilita el &menú avançat",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
-    LTEXT           "&Editor extern:",IDC_STATIC,7,44,167,8
+    LTEXT           "&Editor extern:",IDC_STATIC,7,44,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "N&avega...",IDC_EXT_EDITOR_BROWSE,179,54,50,14
 END

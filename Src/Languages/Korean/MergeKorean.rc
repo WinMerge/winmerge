@@ -633,12 +633,12 @@ CAPTION "시스템"
 FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "삭제한 파일은 휴지통으로(&P)",IDC_USE_RECYCLE_BIN,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,114,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
     CONTROL         "탐색기 메뉴에 추가(&A)",IDC_EXPLORER_CONTEXT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,167,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
     CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
-    LTEXT           "외부 편집기(&E):",IDC_STATIC,7,44,167,8
+    LTEXT           "외부 편집기(&E):",IDC_STATIC,7,44,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "찾아보기(&B)...",IDC_EXT_EDITOR_BROWSE,179,54,50,14
 END

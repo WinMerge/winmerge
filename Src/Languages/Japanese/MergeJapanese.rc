@@ -674,12 +674,12 @@ CAPTION "レジストリ"
 FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "削除されたファイルをごみ箱に移動する(&P)",IDC_USE_RECYCLE_BIN,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,134,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
     CONTROL         "エクスプローラーコンテキストメニューに追加(&A)",IDC_EXPLORER_CONTEXT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,167,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
     CONTROL         "拡張メニューを有効にする(&N)",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
-    LTEXT           "外部エディタ(&E):",IDC_STATIC,7,44,167,8
+    LTEXT           "外部エディタ(&E):",IDC_STATIC,7,44,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "参照(&B)...",IDC_EXT_EDITOR_BROWSE,179,54,50,14
 END

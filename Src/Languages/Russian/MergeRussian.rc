@@ -680,13 +680,13 @@ CAPTION "Система"
 FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "Помещать удаленные файлы в корзину",IDC_USE_RECYCLE_BIN,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,151,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
     CONTROL         "Добавить в &контекстное меню проводника",
                     IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,17,167,10
+                    WS_TABSTOP,7,17,222,10
     CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
-    LTEXT           "Внешний редактор:",IDC_STATIC,7,44,167,8
+    LTEXT           "Внешний редактор:",IDC_STATIC,7,44,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Обзор...",IDC_EXT_EDITOR_BROWSE,179,54,50,14
 END
