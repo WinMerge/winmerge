@@ -1,3 +1,7 @@
+2004-01-06 Perry
+ PATCH: [ 869575 ] UniMemFile needs to init charsize to 1
+  common: UniFile.cpp
+
 2004-01-04 Kimmo
  BUG: [ 869289 ] Typo in XML_html.flt excludes gif files
   Filters: XML_html.flt

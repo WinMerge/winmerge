@@ -2,7 +2,7 @@
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2003-11-14 (Perry)
+ *  @date   Edited:  2003-01-05 (Perry)
  *
  *  @brief Implementation of Memory-Mapped Unicode enabled file class
  */
@@ -36,7 +36,7 @@ UniMemFile::UniMemFile(LPCTSTR filename)
 , m_lineno(-1)
 , m_readbom(false)
 , m_unicoding(ucr::NONE)
-, m_charsize(0)
+, m_charsize(1)
 , m_codepage(0)
 {
 	m_filename = filename;
