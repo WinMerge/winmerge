@@ -248,7 +248,9 @@ BOOL COpenDlg::OnInitDialog()
 	m_constraint.DisallowHeightGrowth();
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("OpenDlg"), true); // persist size & location via registry
-	
+
+	CenterToMainFrame();
+
 	m_ctlLeft.LoadState(_T("Files\\Left"));
 	m_ctlRight.LoadState(_T("Files\\Right"));
 	m_ctlExt.LoadState(_T("Files\\Ext"));
@@ -541,4 +543,24 @@ CString COpenDlg::ParseExtensions(CString extensions)
 		strParsed += strPattern + _T(")$");
 	}
 	return strParsed;
+}
+
+/** 
+ * @brief Move Open-dialog to center of MainFrame
+ */
+void COpenDlg::CenterToMainFrame()
+{
+	CRect rectFrame;
+	CRect rectBar;
+	mf->GetWindowRect(&rectFrame);
+	GetClientRect(&rectBar);
+	// Middlepoint of MainFrame
+	int x = rectFrame.left + (rectFrame.right - rectFrame.left) / 2;
+	int y = rectFrame.top + (rectFrame.bottom - rectFrame.top) / 2;
+	// Reduce by half of dialog's size
+	x -= rectBar.right / 2;
+	y -= rectBar.bottom / 2;
+
+	SetWindowPos(&CWnd::wndTop, x, y, rectBar.right,
+		rectBar.bottom, SWP_NOOWNERZORDER | SWP_NOSIZE );
 }

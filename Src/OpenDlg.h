@@ -90,6 +90,7 @@ protected:
 	void SetStatus(UINT msgID);
 	void SetUnpackerStatus(UINT msgID);
 	CString ParseExtensions(CString extensions);
+	void CenterToMainFrame();
 
 	// Generated message map functions
 	//{{AFX_MSG(COpenDlg)

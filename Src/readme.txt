@@ -5,6 +5,8 @@
  PATCH: [ 961780 ] ShellExtension advanced menu - UI
   Src: Merge.rc PropRegistry.cpp PropRegistry.h resource.h
   Src/Languages: *.rc resource.h
+ PATCH: [ 962348 ] Center OpenDialog to MainFrame
+  Src: OpenDlg.cpp OpenDlg.h
 
 2004-05-29 Perry
  Updated WinMerge Localized.iss from seier (manifest & plugins.txt changes)
