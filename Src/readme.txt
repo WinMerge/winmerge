@@ -1,3 +1,7 @@
+2004-03-26 Perry
+ Docs/Users: Contributors.rtf
+ Add Bulgarian credit to contributors.rtf. Move Portuguese to alphabetically Portuguese.
+
 2004-03-26 seier
   Fixed Swedish Language had a description of Spanish in the installer.  
   Fixed Swedish was installing along with Spanish rather than the Swedish component description in the installer.  
