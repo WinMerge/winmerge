@@ -167,63 +167,71 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 	CCrystalEditViewEx::OnActivateView(bActivate, pActivateView, pDeactiveView);
 }
 
-void CMergeEditView::GetLineColors (int nLineIndex, COLORREF & crBkgnd,
+void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, BOOL & bDrawWhitespace)
 {
-  if (theApp.m_bHiliteSyntax)
-	CCrystalEditViewEx::GetLineColors(nLineIndex, crBkgnd, crText, bDrawWhitespace);
-  DWORD dwLineFlags = GetLineFlags (nLineIndex);
-  if (dwLineFlags & LF_DIFF)
-  {
-	  if (IsLineInCurrentDiff(nLineIndex))
-		crBkgnd = theApp.GetSelDiffColor();
-	  else
-		crBkgnd = theApp.GetDiffColor();
-      crText = RGB(0,0,0);
-	  bDrawWhitespace = TRUE;
-      return;
-  }
-  else if (dwLineFlags & LF_DELETED)
-  {
-      if (IsLineInCurrentDiff(nLineIndex))
-		crBkgnd = theApp.GetSelDiffColor();
-	  else
-		crBkgnd = RGB(192,192,192);
-      crText = RGB(0,0,0);
-	  bDrawWhitespace = TRUE;
-      return;
-  }
-  else if (dwLineFlags & LF_LEFT_ONLY)
-  {
-	  if (IsLineInCurrentDiff(nLineIndex))
-		crBkgnd = theApp.GetSelDiffColor();
-	  else if (m_bIsLeft)
-		crBkgnd = theApp.GetDiffColor();
-	  else
-		crBkgnd = RGB(192,192,192);
-      crText = RGB(0,0,0);
-	  bDrawWhitespace = TRUE;
-      return;
-  }
-  else if (dwLineFlags & LF_RIGHT_ONLY)
-  {
-	  if (IsLineInCurrentDiff(nLineIndex))
-		crBkgnd = theApp.GetSelDiffColor();
-	  else if (m_bIsLeft)
-		crBkgnd = RGB(192,192,192);
-	  else
-		crBkgnd = theApp.GetDiffColor();
-      crText = RGB(0,0,0);
-	  bDrawWhitespace = TRUE;
-      return;
-  }
-  else if (!theApp.m_bHiliteSyntax)
-  {
-	  crBkgnd = RGB(255,255,255);
-	  crText = RGB(0,0,0);
-	  bDrawWhitespace = FALSE;
-	  return;
-  }
+	// If no syntax hilighting
+	if (!theApp.m_bHiliteSyntax)
+	{
+		crBkgnd = RGB(255, 255, 255);
+		crText = RGB(0, 0, 0);
+		bDrawWhitespace = FALSE;
+		return;
+	}
+
+	DWORD dwLineFlags = GetLineFlags(nLineIndex);
+	
+	// Line inside diff
+	if (dwLineFlags & LF_WINMERGE_FLAGS)
+	{
+		// Black text inside diffs
+		crText = RGB(0, 0, 0);
+		bDrawWhitespace = TRUE;
+		BOOL lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);
+
+		if (dwLineFlags & LF_DIFF)
+		{
+			if (lineInCurrentDiff)
+				crBkgnd = theApp.GetSelDiffColor();
+			else
+				crBkgnd = theApp.GetDiffColor();
+			return;
+		}
+		else if (dwLineFlags & LF_DELETED)
+		{
+			if (lineInCurrentDiff)
+				crBkgnd = theApp.GetSelDiffColor();
+			else
+				crBkgnd = RGB(192, 192, 192);
+			return;
+		}
+		else if (dwLineFlags & LF_LEFT_ONLY)
+		{
+			if (lineInCurrentDiff)
+				crBkgnd = theApp.GetSelDiffColor();
+			else if (m_bIsLeft)
+				crBkgnd = theApp.GetDiffColor();
+			else
+				crBkgnd = RGB(192, 192, 192);
+			return;
+		}
+		else if (dwLineFlags & LF_RIGHT_ONLY)
+		{
+			if (lineInCurrentDiff)
+				crBkgnd = theApp.GetSelDiffColor();
+			else if (m_bIsLeft)
+				crBkgnd = RGB(192, 192, 192);
+			else
+				crBkgnd = theApp.GetDiffColor();
+			return;
+		}
+	}
+	else
+	{
+		// Line not inside diff, get colors from CrystalEditor
+		CCrystalEditViewEx::GetLineColors(nLineIndex, crBkgnd,
+			crText, bDrawWhitespace);
+	}
 }
 
 void CMergeEditView::UpdateSiblingScrollPos (BOOL bHorz)
@@ -457,33 +465,26 @@ void CMergeEditView::OnNextdiff()
 		return;
 
 	int curDiff = pd->GetCurrentDiff();
-
-	if (curDiff+1 >= (int)pd->m_nDiffs)
-	{
-		// we're on the last diff already, so remove the selection
-//		mf->m_pLeft->SelectNone();
-//		mf->m_pRight->SelectNone();
-	}
-	else if (curDiff!=-1)
+	if (curDiff != -1)
 	{
 		// we're on a diff, so just select the next one
-		SelectDiff(curDiff+1, TRUE, FALSE);
+		SelectDiff(curDiff + 1, TRUE, FALSE);
 	}
 	else
 	{
 		// we're not on a diff, so figure out which one to select
 		int line = GetCursorPos().y;
-		if (!IsValidTextPosY(CPoint(0,line)))
+		if (!IsValidTextPosY(CPoint(0, line)))
 			line = m_nTopLine;
-		for (UINT i=0; i < pd->m_nDiffs; i++)
+		for (UINT i = 0; i < pd->m_nDiffs; i++)
 		{
 			if ((int)pd->m_diffs[i].dbegin0 >= line)
 			{
-				curDiff=i;
-				SelectDiff(i, TRUE, FALSE);
+				curDiff = i;
 				break;
 			}
 		}
+		SelectDiff(curDiff, TRUE, FALSE);
 	}
 }
 
@@ -503,32 +504,26 @@ void CMergeEditView::OnPrevdiff()
 
 	int curDiff = pd->GetCurrentDiff();
 
-	if (curDiff==0)
-	{
-		// we're on the first diff already, so remove the selection
-//		mf->m_pLeft->SelectNone();
-//		mf->m_pRight->SelectNone();
-	}
-	else if (curDiff!=-1)
+	if (curDiff != -1)
 	{
 		// we're on a diff, so just select the next one
-		SelectDiff(curDiff-1, TRUE, FALSE);
+		SelectDiff(curDiff - 1, TRUE, FALSE);
 	}
 	else
 	{
 		// we're not on a diff, so figure out which one to select
 		int line = GetCursorPos().y;
-		if (!IsValidTextPosY(CPoint(0,line)))
+		if (!IsValidTextPosY(CPoint(0, line)))
 			line = m_nTopLine;
-		for (int i=pd->m_nDiffs-1; i >= 0 ; i--)
+		for (int i = pd->m_nDiffs - 1; i >= 0 ; i--)
 		{
 			if ((int)pd->m_diffs[i].dend0 <= line)
 			{
-				curDiff=i;
-				SelectDiff(i, TRUE, FALSE);
+				curDiff = i;
 				break;
 			}
 		}
+		SelectDiff(curDiff, TRUE, FALSE);
 	}
 }
 
@@ -721,9 +716,8 @@ void CMergeEditView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
-	// TODO: Add your specialized code here and/or call the base class
 	CCrystalEditViewEx::OnUpdate(pSender, lHint, pHint);
-	ShowDiff(FALSE, FALSE);
+	// ShowDiff(FALSE, FALSE);
 }
 
 void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)

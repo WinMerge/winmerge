@@ -1,6 +1,8 @@
 2003-04-02 Kimmo
  PATCH: [ 713322 ] Save whole buffer not line by line
   WinMerge: MergeDoc.cpp
+ PATCH: [ 713416 ] MergeEditView optimisations
+  WinMerge: MergeEditView.cpp
 
 2003-03-31 Kimmo
  PATCH: [ 711437 ] Don't copy/cut removed lines
