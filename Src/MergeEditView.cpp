@@ -1812,8 +1812,11 @@ void CMergeEditView::OnWMGoto()
 			CPoint ptPos;
 			ptPos.x = 0;
 			ptPos.y = nApparentLine;
-			pCurrentView->ScrollToLine(ptPos.y);
-			pOtherView->ScrollToLine(ptPos.y);
+			int nScrollLine = nApparentLine - CONTEXT_LINES_ABOVE;
+			if (nScrollLine < 0)
+				nScrollLine = 0;
+			pCurrentView->ScrollToLine(nScrollLine);
+			pOtherView->ScrollToLine(nScrollLine);
 			pCurrentView->SetCursorPos(ptPos);
 			pOtherView->SetCursorPos(ptPos);
 			pCurrentView->SetAnchor(ptPos);

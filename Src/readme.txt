@@ -4,6 +4,9 @@
   Src/Common: OptionsMgr.cpp OptionsMgr.h
  PATCH: [ 912754 ] Close open MergeDoc before opening new from DirDoc
   Src: DirDoc.cpp DirDoc.h DirView.cpp
+ RFE: [ 874366 ] Add goto line-number
+  Show few lines of context above line scrolled to
+  Src: MergeEditView.cpp
 
 2004-03-09 Kimmo
  PATCH: [ 912297 ] Splashscreen and syntax highlight options
