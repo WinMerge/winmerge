@@ -1,4 +1,8 @@
 2004-04-20 Laoran
+ Syntax correction for Unicode
+  Src: DirView.cpp
+
+2004-04-20 Laoran
  BUG:[ 938373 ] Filtering broken - infinite loop when file filtered
   Src: DirScan.cpp
 
