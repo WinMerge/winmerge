@@ -29,10 +29,6 @@
 #if !defined(AFX_DIRFRAME_H__95565903_35C4_11D1_BAA7_00A024706EDC__INCLUDED_)
 #define AFX_DIRFRAME_H__95565903_35C4_11D1_BAA7_00A024706EDC__INCLUDED_
 
-#if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
-
 #include "EditorFilepathBar.h"
 #include "DirCompStateBar.h"
 

@@ -1,9 +1,12 @@
+/**
+ * @file  GhostTextView.h
+ *
+ * @brief Declaration of CGhostTextView (subclasses CCrystalEditViewEx to handle ghost lines)
+ */
+
+
 #ifndef __GHOSTTEXTVIEW_H__
 #define __GHOSTTEXTVIEW_H__
-
-#if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
 
 #include "crystalEditViewex.h"
 

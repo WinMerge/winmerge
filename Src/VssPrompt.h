@@ -25,10 +25,6 @@
 #if !defined(AFX_VSSPROMPT_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_)
 #define AFX_VSSPROMPT_H__F767E53B_90F4_11D1_BB11_00A024706EDC__INCLUDED_
 
-#if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
-
 #include "SuperComboBox.h"
 #include "afxwin.h"
 

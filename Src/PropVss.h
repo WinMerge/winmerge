@@ -1,15 +1,19 @@
+/**
+ * @file  PropVss.h
+ *
+ * @brief Declaration of CPropVss
+ */
+
 #if !defined(AFX_PROPVSS_H__30AD07AF_E420_11D1_BBC5_00A024706EDC__INCLUDED_)
 #define AFX_PROPVSS_H__30AD07AF_E420_11D1_BBC5_00A024706EDC__INCLUDED_
 
-#if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
 // PropVss.h : header file
 //
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropVss dialog
 
+/** @brief Options property page covering Visual SourceSafe integration */
 class CPropVss : public CPropertyPage
 {
 	DECLARE_DYNCREATE(CPropVss)

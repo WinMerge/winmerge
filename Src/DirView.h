@@ -29,10 +29,6 @@
 #if !defined(AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_)
 #define AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_
 
-#if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
-
 // TODO delete
 /*
 #define DV_NAME     0

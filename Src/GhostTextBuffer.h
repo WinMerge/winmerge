@@ -1,9 +1,11 @@
+/**
+ * @file  GhostTextBuffer.h
+ *
+ * @brief Declaration of CGhostTextBuffer (subclasses CCrystalTextBuffer to handle ghost lines)
+ */
+
 #ifndef __GHOSTTEXTBUFFER_H__
 #define __GHOSTTEXTBUFFER_H__
-
-#if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
 
 
 #include "ccrystaltextbuffer.h"

@@ -1,11 +1,12 @@
+/** 
+ * @file  PropGeneral.h
+ *
+ * @brief Declaration of CPropGeneral class
+ */
+
 #if !defined(AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_)
 #define AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_
 
-#if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
-// PropGeneral.h : header file
-//
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropGeneral dialog

@@ -5,6 +5,10 @@
   src: ChildFrm.cpp ChildFrm.h DirDoc.cpp DirDoc.h DirFrame.cpp DirFrame.h
    DirView.cpp DirView.h MainFrm.cpp MainFrm.h MergeDiffDetailView.cpp 
    MergeDiffDetailView.h MergeEditView.cpp MergeEditView.h
+ PATCH: [ 802113 ] strip out spurious tests: _MSC_VER >= 1000
+  src: ChildFrm.h DirFrame.h DirView.h EditFile.h FilepathEdit.h
+   GhostTextBuffer.h GhostTextView.h MainFrm.h Merge.h MergeDoc.h
+   PropGeneral.h PropVss.h StdAfx.h VssPrompt.h
 
 2004-01-18 Kimmo
  PATCH: 876875 Go To -Dialog
