@@ -2,6 +2,8 @@
  BUG: [ 1152913 ] LocationView type bugs?
   (Fixed 17 type conversion warnings in MSVC.NET 2003, mostly by explicit casts)
   Src: LocationView.cpp
+ PATCH: [ 1152967 ] Fix re_match_2 declaration warnings
+  Src/diffutils/lib: REGEX.C
 
 2005-02-26 Jochen
  PATCH: [ 1152256 ] UniFile may fail to read last line

@@ -3273,8 +3273,11 @@ re_match (struct re_pattern_buffer *bufp, const char *string, int size, int pos,
    matched substring.  */
 
 int
-re_match_2 (struct re_pattern_buffer *bufp, char *string1, int size1, char *string2, int size2, int pos, struct re_registers *regs, int stop)
+re_match_2 (struct re_pattern_buffer *bufp, const char *xstring1, int size1, const char *xstring2, int size2, int pos, struct re_registers *regs, int stop)
 {
+  char *string1 = (char *)xstring1;
+  char *string2 = (char *)xstring2;
+
   /* General temporaries.  */
   int mcnt;
   unsigned char *p1;
