@@ -466,7 +466,7 @@ STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
-    IDS_VERSION_FMT         "Versión %1"
+    IDS_VERSION_FMT         "Versión %1 - Español"
     IDS_ALLFILES            "Todos los archivos (*.*)|*.*||"
     IDS_CONFIRM_ALL_LEFT    "Seguramente quiere copiar todas las diferencias al lado izquierda?"
     IDS_CONFIRM_ALL_RIGHT   "Seguramente quiere copiar todas las diferencias al lado derecha?"
