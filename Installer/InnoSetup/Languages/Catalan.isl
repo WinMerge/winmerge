@@ -297,7 +297,7 @@ StatusUninstalling=Desinstal·lant %1...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 versió %2
 AdditionalIcons=Icones addicionals:
-CreateDesktopIcon=Create a &desktop icon
+CreateDesktopIcon=Crear una icona a l'&Escriptori
 CreateQuickLaunchIcon=Crear una icona a la &Barra de tasques
 ProgramOnTheWeb=%1 a Internet
 UninstallProgram=Desinstal·lar %1
@@ -308,52 +308,53 @@ AssocingFileExtension=Associant %1 amb l'extensió de fitxer %2...
 ;Things we can also localize
 CompanyName=Thingamahoochie Software
 
+;Translated by Jordi Vilar <jvilar@users.sourceforge.net>
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=Instal·lació típica
+FullInstallation=Instal·laciò completa
+CompactInstallation=Instal·lació compacta
+CustomInstallation=Instal·lació personalitzada
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-ApplicationRuntimes=Application Runtimes
-UsersGuide=User's Guide
-Filters=Filters
-Plugins=Plugins (See Plugins.txt)
+AppCoreFiles=Fitxers centrals del WinMerge
+ApplicationRuntimes=Llibreries d'aplicació en temps d'execució
+UsersGuide=Guia d'usuari
+Filters=Filtres
+Plugins=Connectors (Veieu Plugins.txt)
 
 ;Localization Components
-Languages=Languages
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FrenchLanguage=French menus and dialogs
-GermanLanguage=German menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseLanguage=Portuguese (Brazillian) menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
+Languages=Idiomes
+BulgarianLanguage=Menús i diàlegs en Búlgar
+CatalanLanguage=Menús i diàlegs en Català
+ChineseSimplifiedLanguage=Menús i diàlegs en Xinès (Simplificat)
+ChineseTraditionalLanguage=Menús i diàlegs en Xinès (Tradicional)
+CzechLanguage=Menús i diàlegs en Txec
+DanishLanguage=Menús i diàlegs en Danès
+DutchLanguage=Menús i diàlegs en Neerlandès
+FrenchLanguage=Menús i diàlegs en Francès
+GermanLanguage=Menús i diàlegs en Alemany
+ItalianLanguage=Menús i diàlegs en Italià
+JapaneseLanguage=Menús i diàlegs en Japonès
+KoreanLanguage=Menús i diàlegs en Koreà
+NorwegianLanguage=Menús i diàlegs en Noruec
+PolishLanguage=Menús i diàlegs en Polonès
+PortugueseLanguage=Menús i diàlegs en Portuguès (Brasiler)
+RussianLanguage=Menús i diàlegs en Rus
+SlovakLanguage=Menús i diàlegs en Eslovac
+SpanishLanguage=Menús i diàlegs en Castellà
+SwedishLanguage=Menús i diàlegs en Suec
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateDelphi4=Borland® Delphi &4 Binary File Support
-UpdatingCommonControls=Updating the System's Common Controls
+ExplorerContextMenu=&Habilita la integració del menú de contexte a l'Explorador
+IntegrateTortoiseCVS=Integraamb el &TortoiseCVS
+IntegrateDelphi4=Suport per a fitxers binaris del Borland® Delphi &4
+UpdatingCommonControls=Actualitzant els Controls Comuns del Sistema
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-UpdatingCommonControls=Updating the System's Common Controls
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
+ReadMe=Llegiu-me
+UsersGuide=Guia de l'usuari
+UpdatingCommonControls=Actualitzant els Controls Comuns del Sistema
+ViewStartMenuFolder=&Veure la carpera del menú Inicia del WinMerge
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=L'instal·lador ha detectat que heu canviat la ubicació del vostre menú d'inici de "%s" a "%s". Voleu esborrar la carpeta del menú d'inici anterior?

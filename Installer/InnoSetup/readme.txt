@@ -1,3 +1,7 @@
+2004-07-23 Perry
+ PATCH: [ 988503 ] Inno Setup Localization: Catalan
+  InnoSetup\Languages: Catalan.isl
+
 2004-06-13 Perry
  [ 972007 ] Japanese translation update(2) ; submitted by Takashi Sawanaka
   InnoSetup: WinMerge Localized.iss WinMerge.iss 

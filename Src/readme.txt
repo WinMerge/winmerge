@@ -2,6 +2,8 @@
  PATCH: [ 988505 ] updated email address for catalan translator
   Update email address for Jordi Vilar (Catalan translator)
    Web\developer\l10n: status.xml
+ PATCH: [ 988503 ] Inno Setup Localization: Catalan
+  InnoSetup\Languages: Catalan.isl
 
 2004-07-23 WinMerge experimental release 2.7.1.10 (cvs)
 
