@@ -1491,25 +1491,11 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 				return FALSE;
 		}
 
-		// Check if we got 'ESC pressed' -message
-		if (pMsg->wParam == VK_ESCAPE)
+		// Close window if user has allowed it from options
+		if (pMsg->wParam == VK_ESCAPE && m_bCloseWithEsc)
 		{
-			if (!m_bCloseWithEsc)
-				return CCrystalEditViewEx::PreTranslateMessage(pMsg);
-
-			// Ask about saving unsaved document, allow to cancel closing
-			CMergeDoc *pd = GetDocument();
-			if (pd->SaveHelper(TRUE))
-			{
-				// Set modified status to false so that we are not asking
-				// about saving again
-				pd->m_ltBuf.SetModified(FALSE);
-				pd->m_rtBuf.SetModified(FALSE);
-				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
-				return FALSE;
-			}
-			else
-				return TRUE;
+			GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
+			return FALSE;
 		}
 	}
 	return CCrystalEditViewEx::PreTranslateMessage(pMsg);

@@ -1,3 +1,8 @@
+2004-10-06 Kimmo
+ PATCH: [ 1040041 ] [ 1039640 ] reproducible tooltip ASSERT in debug
+  Submitted by Takashi Sawanaka
+  Src: MergeEditView.cpp
+
 2004-10-05 Kimmo
  PATCH: [ 1039552 ] Italian translation updated for RC
   Submitted by Andrea Decorte
