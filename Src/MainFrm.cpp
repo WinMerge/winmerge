@@ -707,6 +707,8 @@ void SerializeColorsWithPropPage(CPropColors & colors, bool saving)
 	theApp.SerializeSelDiffDeletedColor(colors.m_clrSelDiffDeleted, saving);
 	theApp.SerializeDiffTextColor(colors.m_clrDiffText, saving);
 	theApp.SerializeSelDiffTextColor(colors.m_clrSelDiffText, saving);
+	theApp.SerializeDiffTrivialColor(colors.m_clrDiffTrivial, saving);
+	theApp.SerializeSelDiffTrivialColor(colors.m_clrSelDiffTrivial, saving);
 }
 
 void CMainFrame::OnOptions() 

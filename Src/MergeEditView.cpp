@@ -266,6 +266,14 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 				theApp.SerializeDiffDeletedColor(crBkgnd, false);
 			return;
 		}
+		else if (dwLineFlags & LF_TRIVIAL)
+		{
+			if (lineInCurrentDiff)
+				theApp.SerializeSelDiffTrivialColor(crBkgnd, false);
+			else
+				theApp.SerializeDiffTrivialColor(crBkgnd, false);
+			return;
+		}
 	}
 	else
 	{

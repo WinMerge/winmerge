@@ -39,6 +39,8 @@ public:
 	COLORREF	m_clrSelDiffDeleted;
 	COLORREF	m_clrDiffText;
 	COLORREF	m_clrSelDiffText;
+	COLORREF	m_clrDiffTrivial;
+	COLORREF	m_clrSelDiffTrivial;
 
 	// Overrides
 	// ClassWizard generated virtual function overrides

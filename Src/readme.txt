@@ -1,4 +1,8 @@
-2003-10-30 Perry
+2003-10-04 Perry
+ Restore trivial colors originally included in PATCH: [ 813794 ] Fix "ignore blank lines"
+  WinMerge: MainFrm.cpp Merge.h MergeEditView.cpp PropColors.h
+
+2003-10-03 Perry
  Bugfix for PATCH: [ 813794 ] Fix "ignore blank lines"
  (Prevent crashes on identical files dereferencing null script).
   WinMerge: analyze.c

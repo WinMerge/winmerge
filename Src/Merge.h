@@ -67,6 +67,8 @@ public:
 	COLORREF	m_clrSelDiffDeleted;            // The selected difference deleted color
 	COLORREF	m_clrDiffText;                  // The difference text color
 	COLORREF	m_clrSelDiffText;               // The selected difference text color
+	COLORREF	m_clrDiffTrivial;               // The difference deleted color
+	COLORREF	m_clrSelDiffTrivial;            // The selected difference deleted color
 	BOOL m_bNeedIdleTimer;
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
@@ -80,6 +82,8 @@ public:
 	void SerializeSelDiffDeletedColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrSelDiffDeleted, saving); }
 	void SerializeDiffTextColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrDiffText, saving); }
 	void SerializeSelDiffTextColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrSelDiffText, saving); }
+	void SerializeDiffTrivialColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrDiffTrivial, saving); }
+	void SerializeSelDiffTrivialColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrSelDiffTrivial, saving); }
 	void SetNeedIdleTimer();
 	CString GetFileFilterPath() const { return m_sFileFilterPath; }
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);
