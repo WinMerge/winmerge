@@ -1,3 +1,5 @@
+2003-09-17 WinMerge experimental release 2.1.1.6 (Preprocessing patch)
+
 2003-09-16 Perry
  fix BUG: [ 807420 ] assert when saving a modified doc
   WinMerge: DiffContext.cpp
