@@ -125,8 +125,9 @@ void CFindTextDlg::OnOK ()
 void CFindTextDlg::
 OnChangeEditText ()
 {
-  UpdateData();
-  GetDlgItem (IDOK)->EnableWindow (!m_sText.IsEmpty ());
+	TRACE0( "Changed find text\n" );
+	UpdateData();
+	UpdateControls();
 }
 
 BOOL CFindTextDlg::
@@ -137,8 +138,8 @@ OnInitDialog ()
   UpdateData (FALSE);
   m_ctlFindText.m_sGroup = _T ("FindText");
   m_ctlFindText.OnSetfocus ();
-  GetDlgItem (IDOK)->EnableWindow (!m_sText.IsEmpty ());
-  UpdateRegExp ();
+  
+  UpdateControls();
 
   return TRUE;
 }
@@ -156,4 +157,16 @@ OnRegExp ()
   UpdateData (TRUE);
   UpdateRegExp ();
   UpdateData (FALSE);
+}
+
+
+//
+// Update controls, enabling/disabling according to what's appropriate
+//
+void CFindTextDlg::
+UpdateControls()
+{
+	GetDlgItem(IDOK)->EnableWindow( !m_sText.IsEmpty() );
+	
+	UpdateRegExp();
 }
