@@ -52,6 +52,15 @@ CString Fmt(LPCTSTR fmt, ...);
 	/** @brief Get appropriate clipboard format for TCHAR text, ie, CF_TEXT or CF_UNICODETEXT */
 int GetClipTcharTextFormat();
 
+class CLogFile;
+extern CLogFile gLog;
+
+	/** @brief Shortcuts for common gLog messages */
+struct gLog
+{
+	static UINT DeleteFileFailed(LPCTSTR path);
+};
+
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 

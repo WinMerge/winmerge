@@ -28,6 +28,12 @@
 // Logging
 CLogFile gLog;
 
+/** @brief Report DeleteFile() failure to gLog */
+UINT gLog::DeleteFileFailed(LPCTSTR path)
+{
+	return::gLog.Write(LOGLEVEL::LERROR|LOGLEVEL::LOSERROR|LOGLEVEL::LDEBUG, _T("DeleteFile(%s) failed: "), path);
+}
+
 // Convert any negative inputs to negative char equivalents
 // This is aimed at correcting any chars mistakenly 
 // sign-extended to negative ints.
