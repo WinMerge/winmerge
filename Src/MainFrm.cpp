@@ -302,7 +302,11 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	int nRescanResult = RESCAN_OK;
 	CMergeDoc * pMergeDoc = GetMergeDocToShow(pDirDoc, &docNull);
 
+	ASSERT(pMergeDoc);		// must ASSERT to get an answer to the question below ;-)
 	if (!pMergeDoc) return; // when does this happen ?
+
+	CChildFrame *pf = pMergeDoc->GetParentFrame();
+	ASSERT(pf);
 
 	pMergeDoc->m_strLeftFile = szLeft;
 	pMergeDoc->m_strRightFile = szRight;
@@ -376,24 +380,13 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 		pRight->SetDisableBSAtSOL( FALSE ); 
 
 		// set the frame window header
-		CChildFrame *pf = pMergeDoc->GetParentFrame();
-		if (pf != NULL)
-		{
-			pf->SetHeaderText(0, szLeft);
-			pf->SetHeaderText(1, szRight);
-		}
+		pf->SetHeaderText(0, szLeft);
+		pf->SetHeaderText(1, szRight);
 
 		// Set tab type (tabs/spaces)
-		if ( m_nTabType == 0 )
-		{
-			pLeft->SetInsertTabs( TRUE );
-			pRight->SetInsertTabs( TRUE );
-		}
-		else
-		{
-			pLeft->SetInsertTabs( FALSE );
-			pRight->SetInsertTabs( FALSE );
-		}
+		BOOL bInsertTabs = (m_nTabType == 0);
+		pLeft->SetInsertTabs(bInsertTabs);
+		pRight->SetInsertTabs(bInsertTabs);
 	}
 	else
 	{
@@ -1506,24 +1499,6 @@ void CMainFrame::OnViewWhitespace()
 void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_bViewWhitespace);
-}
-
-
-void CMainFrame::ConvertPathToSlashes(LPTSTR path)
-{
-	TCHAR *ptr = path;
-	TCHAR *ptr2 = NULL;
-
-	do
-	{
-		ptr2 = _tcschr(ptr, '\\');
-		if (ptr2 != NULL)
-		{
-			*ptr2 = _T('/');
-		}
-		ptr = ptr2;
-	}
-	while (ptr != NULL);
 }
 
 // get list of MergeDocs (documents underlying edit sessions)

@@ -71,7 +71,6 @@ public:
 
 // Operations
 public:
-	void ConvertPathToSlashes( LPTSTR path );
 	BOOL DeleteFileOrError(LPCTSTR szFile);
 	void rptStatus(BYTE code);
 	void clearStatus();

@@ -76,8 +76,8 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	m_diffs.SetSize(64);
 	m_nDiffs=0;
 	m_nCurDiff=-1;
-	m_strTempLeftFile=_T("");
-	m_strTempRightFile=_T("");
+	m_strTempLeftFile;
+	m_strTempRightFile;
 	m_bEnableRescan = TRUE;
 	m_bNeedIdleRescan = FALSE;
 	// COleDateTime m_LastRescan
@@ -1105,7 +1105,7 @@ BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 	// Set encoding based on extension, if we know one
 	SplitFilename(pszFileName, NULL, NULL, &sExt);
 	CCrystalTextView::TextDefinition *def = 
-			CCrystalTextView::GetTextType((LPCTSTR)sExt);
+			CCrystalTextView::GetTextType(sExt);
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
 	
@@ -1477,9 +1477,6 @@ void CMergeDoc::PrimeTextBuffers()
 	UINT LeftExtras=0;   // extra lines added to view
 	UINT RightExtras=0;   // extra lines added to view
 
-	CString blankline(_T(""));
-	int blanklen=blankline.GetLength();
-
 	// walk the diff stack and flag the line codes
 	SetCurrentDiff(-1);
 	for (int nDiff=0; nDiff < static_cast<int>(m_nDiffs); ++nDiff)
@@ -1510,7 +1507,7 @@ void CMergeDoc::PrimeTextBuffers()
 				curDiff.blank1 = curDiff.dbegin1;
 				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
 				{
-					m_rtBuf.InsertLine(blankline, blanklen, i);
+					m_rtBuf.InsertLine(NULL, 0, i);
 					m_rtBuf.SetLineFlag(i, LF_LEFT_ONLY, TRUE, FALSE, FALSE);
 					++RightExtras;
 				}
@@ -1536,7 +1533,7 @@ void CMergeDoc::PrimeTextBuffers()
 				curDiff.blank0 = curDiff.dbegin0;
 				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
 				{
-					m_ltBuf.InsertLine(blankline, blanklen, i);
+					m_ltBuf.InsertLine(NULL, 0, i);
 					m_ltBuf.SetLineFlag(i, LF_RIGHT_ONLY, TRUE, FALSE, FALSE);
 					++LeftExtras;
 				}
@@ -1562,7 +1559,7 @@ void CMergeDoc::PrimeTextBuffers()
 					for (int b=0; b < blanks; b++)
 					{
 						int idx = curDiff.blank0+b;
-						m_ltBuf.InsertLine(blankline, blanklen, idx);
+						m_ltBuf.InsertLine(NULL, 0, idx);
 						m_ltBuf.SetLineFlag(idx, LF_RIGHT_ONLY, TRUE, FALSE, FALSE);
 						curDiff.dend0++;
 						LeftExtras++;
@@ -1588,7 +1585,7 @@ void CMergeDoc::PrimeTextBuffers()
 					for (int b=0; b < blanks; b++)
 					{
 						int idx = curDiff.blank1+b;
-						m_rtBuf.InsertLine(blankline, blanklen, idx);
+						m_rtBuf.InsertLine(NULL, 0, idx);
 						m_rtBuf.SetLineFlag(idx, LF_LEFT_ONLY, TRUE, FALSE, FALSE);
 						curDiff.dend1++;
 						++RightExtras;

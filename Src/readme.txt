@@ -5,6 +5,9 @@
   Updated language files too
  PATCH: [ 761827 ] Current diff item to select inactive diff
   WinMerge: MergeDoc.h MergeDoc.cpp MergeEditView.cpp
+ PATCH: [ 762098 ] Code cleanups from Jochen
+  Submitted by jtuc
+  WinMerge: MainFrm.h MainFrm.cpp MergeDoc.cpp MergeEditView.cpp
 
 2003-06-28 Perry
  PATCH: [ 758930 ] Display EOL chars with View Whitespace

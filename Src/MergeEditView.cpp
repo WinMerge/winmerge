@@ -136,7 +136,7 @@ BOOL CMergeEditView::PrimeListWithFile()
 
 CString CMergeEditView::GetLineText(int idx)
 {
-	return CString(GetLineChars(idx));
+	return GetLineChars(idx);
 }
 
 CString CMergeEditView::GetSelectedText()
@@ -801,7 +801,7 @@ void CMergeEditView::OnTimer(UINT nIDEvent)
 		GetDocument()->RescanIfNeeded();
 	}
 
-	CWnd::OnTimer(nIDEvent);
+	CCrystalEditViewEx::OnTimer(nIDEvent);
 }
 
 void CMergeEditView::OnRefresh()
