@@ -1573,13 +1573,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	}
 	else
 	{
-		// If file is read-only on disk, set RO status
-		// But if file is not, don't reset RO status given as param
-		if (files_isFileReadOnly(strLeft))
-			bROLeft = TRUE;
-		if (files_isFileReadOnly(strRight))
-			bRORight = TRUE;
-
 		gLog.Write(LOGLEVEL::LNOTICE, _T("Open files: Left: %s\n\tRight: %s."),
 			strLeft, strRight);
 		

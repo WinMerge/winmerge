@@ -3,6 +3,9 @@
   Src: DiffFileInfo.cpp DiffFileInfo.h DirScan.cpp DirView.cpp
  PATCH: [ 977796 ] Make dir compare column cust. dialog usable from keyboard
   Src: DirColsDlg.cpp DirColsDlg.h
+ BUG: [ 936525 ] RO not removed in refresh
+  Don't set files/dirs with RO fileflag RO in UI - this was bad idea!
+  Src: DirView.cpp MainFrm.cpp
 
 2004-06-22 Kimmo
  PATCH: [ 977475 ] Log DeleteFile() failure in FileTransform.cpp

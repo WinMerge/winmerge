@@ -840,10 +840,6 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			BOOL bLeftRO = GetDocument()->GetReadOnly(TRUE);
 			BOOL bRightRO = GetDocument()->GetReadOnly(FALSE);
 
-			// FileFlags can only set RO status, not clear!
-			bLeftRO |= (di.left.flags.attributes & FILE_ATTRIBUTE_READONLY);
-			bRightRO |= (di.right.flags.attributes & FILE_ATTRIBUTE_READONLY);
-
 			GetItemFileNames(sel, left, right);
 			mf->ShowMergeDoc(GetDocument(), left, right,
 				bLeftRO, bRightRO,
