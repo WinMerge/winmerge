@@ -487,10 +487,13 @@ BEGIN
     CONTROL         "Verifica els trajectes automàticament al diàleg d'Obrir",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,229,10
-    PUSHBUTTON      "Reinicialitza",IDC_RESET_ALL_MESSAGE_BOXES,218,77,49,13,NOT
+    CONTROL         "Use codepage info (html,rc) for Load/Save - need to restart session",
+                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,7,67,240,10
+    PUSHBUTTON      "Reinicialitza",IDC_RESET_ALL_MESSAGE_BOXES,218,87,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Premeu el botó per a reinicialitzar tots els quadres de missatges",IDC_STATIC,7,
-                    79,215,8
+                    89,215,8
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111

@@ -486,10 +486,13 @@ BEGIN
     CONTROL         "Verifiera Automatiskt sökvägar i Öppna-dialogen",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,57,143,10
-    PUSHBUTTON      "Återställ",IDC_RESET_ALL_MESSAGE_BOXES,167,77,49,13,NOT
+    CONTROL         "Use codepage info (html,rc) for Load/Save - need to restart session",
+                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,7,67,240,10
+    PUSHBUTTON      "Återställ",IDC_RESET_ALL_MESSAGE_BOXES,167,87,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Tryck på knappen för att återställa alla meddelanderutor",IDC_STATIC,7,
-                    79,157,8
+                    89,157,8
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 162

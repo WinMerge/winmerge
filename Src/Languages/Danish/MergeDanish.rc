@@ -486,10 +486,13 @@ BEGIN
     CONTROL         "Automatically verify paths in Open-dialog",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,143,10
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,167,77,49,13,NOT
+    CONTROL         "Use codepage info (html,rc) for Load/Save - need to restart session",
+                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,7,67,240,10
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,167,87,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Press button to reset all message boxes",IDC_STATIC,7,
-                    79,157,8
+                    89,157,8
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 162
