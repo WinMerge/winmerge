@@ -329,7 +329,7 @@ Filters=Filters
 Plugins=Plugins (See Plugins.txt)
 
 ;Localization Components
-
+Languages=Languages
 BulgarianLanguage=Bulgarian menus and dialogs
 CatalanLanguage=Catalan menus and dialogs
 ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs

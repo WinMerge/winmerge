@@ -201,7 +201,7 @@ Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Type
 
 ;Language components, please note that whatever language you chose to install in will be installed in addition to any of the language components you've
 ;selected.  This is to make it easier for users that have a working localization of Inno Setup.
-Name: Languages; Description: Languages; Flags: disablenouninstallwarning
+Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
 Name: Languages\Bulgarian; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Bulgarian)
 Name: Languages\Bulgarian; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Bulgarian
 
