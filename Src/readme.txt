@@ -7,6 +7,8 @@
  WinMerge: ChildFrm.cpp DirActions.cpp DirDoc.cpp DirDoc.h DirView.cpp MainFrm.cpp MainFrm.h
   Merge.cpp MergeDoc.cpp MergeDoc.h MergeEditView.cpp
  NB: This broke two things in MainFrm--search for TODO: 2003-03-29
+ BUGFIX: [ 711975 ] CMainFrame::GetAllViews crashes
+ WinMerge: MainFrm.cpp
 
 2003-03-25 Perry
  PATCH: [ 709575 ] Fix sanity check in CChildFrame::UpdateHeaderSizes()

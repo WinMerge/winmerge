@@ -1516,39 +1516,41 @@ void CMainFrame::GetAllDirDocs(DirDocList * pDirDocs)
 // get pointers to all views into typed lists (both arguments are optional)
 void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, DirViewList * pDirViews)
 {
-	POSITION pos = AfxGetApp()->GetFirstDocTemplatePosition(); 
-	CDocTemplate * pTemplate;
-	while ((pTemplate = AfxGetApp()->GetNextDocTemplate(pos)))
+	for (POSITION pos = AfxGetApp()->GetFirstDocTemplatePosition(); pos; )
 	{
-		POSITION pos2 = pTemplate->GetFirstDocPosition();
-		CDocument * pDoc;
-		while ((pDoc = pTemplate->GetNextDoc(pos2)))
+		CDocTemplate * pTemplate = AfxGetApp()->GetNextDocTemplate(pos);
+		for (POSITION pos2 = pTemplate->GetFirstDocPosition(); pos2; )
 		{
-			POSITION pos3 = pDoc->GetFirstViewPosition();
-			CView * pView;
-			while ((pView = pDoc->GetNextView(pos3)))
+			CDocument * pDoc = pTemplate->GetNextDoc(pos2);
+			CMergeDoc * pMergeDoc = dynamic_cast<CMergeDoc *>(pDoc);
+			CDirDoc * pDirDoc = dynamic_cast<CDirDoc *>(pDoc);
+			for (POSITION pos3 = pDoc->GetFirstViewPosition(); pos3; )
 			{
-				CMergeDoc * pMergeDoc = dynamic_cast<CMergeDoc *>(pDoc);
+				CView * pView = pDoc->GetNextView(pos3);
 				if (pMergeDoc)
 				{
 					if (pEditViews)
 					{
+						// a merge doc only has merge edit views
+						CMergeEditView * pEditView = dynamic_cast<CMergeEditView *>(pView);
+						ASSERT(pEditView);
+						pEditViews->AddTail(pEditView);
+					}
+				}
+				else if (pDirDoc)
+				{
+					if (pDirViews)
+					{
+						// a dir doc only has dir views
+						CDirView * pDirView = dynamic_cast<CDirView *>(pView);
+						ASSERT(pDirView);
+						pDirViews->AddTail(pDirView);
 					}
 				}
 				else
 				{
-					CDirDoc * pDirDoc = dynamic_cast<CDirDoc *>(pDoc);
-					if (pDirDoc)
-					{
-						if (pDirViews)
-						{
-						}
-					}
-					else
-					{
-						// There are currently only two types of docs 2003-02-20
-						ASSERT(0);
-					}
+					// There are currently only two types of docs 2003-02-20
+					ASSERT(0);
 				}
 			}
 		}
