@@ -138,6 +138,7 @@ Name: Dutch_Language; Description: Dutch menus and dialogs; Flags: disablenounin
 Name: French_Language; Description: French menus and dialogs; Flags: disablenouninstallwarning
 Name: German_Language; Description: German menus and dialogs; Flags: disablenouninstallwarning
 Name: Italian_Language; Description: Italian menus and dialogs; Flags: disablenouninstallwarning
+Name: Japanese_Language; Description: Japanese menus and dialogs; Flags: disablenouninstallwarning
 Name: Korean_Language; Description: Korean menus and dialogs; Flags: disablenouninstallwarning
 Name: Norwegian_Language; Description: Norwegian menus and dialogs; Flags: disablenouninstallwarning
 Name: Polish_Language; Description: Polish menus and dialogs; Flags: disablenouninstallwarning
@@ -238,6 +239,7 @@ Name: {app}\MergeDutch.lang; Type: files
 Name: {app}\MergeFrench.lang; Type: files
 Name: {app}\MergeGerman.lang; Type: files
 Name: {app}\MergeItalian.lang; Type: files
+Name: {app}\MergeJapanese.lang; Type: files
 Name: {app}\MergeKorean.lang; Type: files
 Name: {app}\MergeNorwegian.lang; Type: files
 Name: {app}\MergePolish.lang; Type: files
@@ -312,6 +314,7 @@ Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: Dutch_
 Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: French_Language; Flags: ignoreversion
 Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: German_Language; Flags: ignoreversion
 Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: Italian_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeJapanese.lang; DestDir: {app}; Components: Japanese_Language; Flags: ignoreversion
 Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: Korean_Language; Flags: ignoreversion
 Source: ..\Src\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Components: Norwegian_Language; Flags: ignoreversion
 Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Components: Polish_Language; Flags: ignoreversion

@@ -338,6 +338,7 @@ DutchLanguage=Dutch menus and dialogs
 FrenchLanguage=French menus and dialogs
 GermanLanguage=German menus and dialogs
 ItalianLanguage=Italian menus and dialogs
+JapaneseLanguage=Japanese menus and dialogs
 KoreanLanguage=Korean menus and dialogs
 NorwegianLanguage=Norwegian menus and dialogs
 PolishLanguage=Polish menus and dialogs

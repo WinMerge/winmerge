@@ -1,3 +1,8 @@
+2004-06-13 Perry
+ [ 972007 ] Japanese translation update(2) ; submitted by Takashi Sawanaka
+  InnoSetup: WinMerge Localized.iss WinMerge.iss 
+  InnoSetup/Languages: *.isl
+
 2004-05-29 Perry
  Updated WinMerge Localized.iss from seier (manifest & plugins.txt changes)
   WinMerge Localized.iss

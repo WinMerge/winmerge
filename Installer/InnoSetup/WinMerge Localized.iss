@@ -167,6 +167,7 @@ Name: Dutch; MessagesFile: Languages\Dutch.isl
 Name: French; MessagesFile: Languages\French.isl
 Name: German; MessagesFile: Languages\German.isl
 Name: Italian; MessagesFile: Languages\Italian.isl
+Name: Japanese; MessagesFile: Languages\Japanese.isl
 Name: Korean; MessagesFile: Languages\Korean.isl
 Name: Norwegian; MessagesFile: Languages\Norwegian.isl
 Name: Polish; MessagesFile: Languages\Polish.isl
@@ -231,6 +232,9 @@ Name: Languages\German; Description: {cm:GermanLanguage}; Flags: disablenouninst
 
 Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Italian)
 Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Italian
+
+Name: Languages\Japanese; Description: {cm:JapaneseLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Japanese)
+Name: Languages\Japanese; Description: {cm:JapaneseLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Japanese
 
 Name: Languages\Korean; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Korean)
 Name: Languages\Korean; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Korean
@@ -386,6 +390,7 @@ Name: {app}\MergeDutch.lang; Type: files; Check: ComponentDisabled('Dutch')
 Name: {app}\MergeFrench.lang; Type: files; Check: ComponentDisabled('French')
 Name: {app}\MergeGerman.lang; Type: files; Check: ComponentDisabled('German')
 Name: {app}\MergeItalian.lang; Type: files; Check: ComponentDisabled('Italian')
+Name: {app}\MergeJapanese.lang; Type: files; Check: ComponentDisabled('Japanese')
 Name: {app}\MergeKorean.lang; Type: files; Check: ComponentDisabled('Korean')
 Name: {app}\MergeNorwegian.lang; Type: files; Check: ComponentDisabled('Norwegian')
 Name: {app}\MergePolish.lang; Type: files; Check: ComponentDisabled('Polish')
@@ -488,6 +493,7 @@ Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: Langua
 Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: Languages\French; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: Languages\German; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeJapanese.lang; DestDir: {app}; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
@@ -612,6 +618,7 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; 
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000040c; Flags: deletevalue; Languages: French
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000407; Flags: deletevalue; Languages: German
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000410; Flags: deletevalue; Languages: Italian
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000411; Flags: deletevalue; Languages: Japanese
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000412; Flags: deletevalue; Languages: Korean
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000414; Flags: deletevalue; Languages: Norwegian
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000415; Flags: deletevalue; Languages: Polish
