@@ -1,3 +1,7 @@
+2004-08-19 Kimmo
+ PATCH: [ 1011283 ] Docs: Copy locale documentation from 2.0 docs
+  Manual: Locales.xml
+  
 2004-08-18 Kimmo
  Use ID as generated html filename for .xsl tools too
   Manual: Manual.xsl
