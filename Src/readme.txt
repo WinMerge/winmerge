@@ -1,3 +1,8 @@
+2004-05-03 Laoran
+ PATCH: [ 936842 ] Custom message when same file in both panels
+  Src: Merge.rc MergeDoc.cpp resource.h
+  Languages: *.rc resource.h
+  
 2004-05-02 Kimmo
  PATCH: [ 833180 ] Filters dialog
   Src new files: FileFiltersDlg.cpp FileFiltersDlg.h

@@ -451,8 +451,17 @@ void CMergeDoc::ShowRescanError(int nRescanResult)
 	switch (nRescanResult)
 	{
 	case RESCAN_IDENTICAL:
-		VERIFY(s.LoadString(IDS_FILESSAME));
-		AfxMessageBox(s, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FILESSAME);
+		if (m_strLeftFile == m_strRightFile)
+		{
+			// compare file to itself, a custom message so user may hide the message in this case only
+			VERIFY(s.LoadString(IDS_FILE_TO_ITSELF));
+			AfxMessageBox(s, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FILE_TO_ITSELF);
+		}
+		else
+		{
+			VERIFY(s.LoadString(IDS_FILESSAME));
+			AfxMessageBox(s, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FILESSAME);
+		}
 		break;
 
 	case RESCAN_BINARIES:
