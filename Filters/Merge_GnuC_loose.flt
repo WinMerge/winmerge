@@ -1,5 +1,5 @@
 name: GNU C loose
 def: include
-f: *.o
-f: *.lib
+f: \.o
+f: \.lib
 d: cvs

@@ -1,3 +1,7 @@
+2003-09-20 Laoran
+ Actualizing the GnuC filter *.o -> \.o
+  filter: Merge_GnuC_loose.flt
+
 2003-09-19 Laoran
  PATCH: [ 809253 ] New release minsize mode
   WinMerge: Merge.dsp
