@@ -2,6 +2,10 @@
  [ 692922 ] Don't try to compare file & directory
   WinMerge:
    OpenDlg.cpp
+ [ 686699 ] Check & return file saving success
+  Fix2: Do not return save success of "Save As"
+  WinMerge:
+   MergeDoc.cpp
 
 2003-02-24 Kimmo
  [ 687574 ] Navigate in directory view (fix bug in patch)

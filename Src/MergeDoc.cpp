@@ -767,8 +767,12 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 		else
 		{
 			// Saving failed, user may save to another location if wants to
+			// TODO: proper fix for handling save success here;
+			// problem is we cannot return bSaveSuccess because callers use
+			// it to determine if file statuses should be changed.
+			BOOL bSaveAsSuccess;
 			while (!result)
-				result = TrySaveAs(strSavePath, bSaveSuccess, bLeft);
+				result = TrySaveAs(strSavePath, bSaveAsSuccess, bLeft);
 		}
 	}
 	return result;
