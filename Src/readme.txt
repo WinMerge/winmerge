@@ -1,3 +1,7 @@
+2003-07-15 Perry
+ PATCH: [ 770361 ] Slovak translation
+  Languages: New Slovak subdirectory
+
 2003-07-12 Laoran
  PATCH: [ 765399 ] Careful view initialization in PrimeListWithFile
   WinMerge: MergeDoc.cpp MergeEditView.cpp 
