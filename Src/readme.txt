@@ -1,3 +1,7 @@
+2005-03-20 Kimmo
+ PATCH: [ 1165515 ] Improve drawing location pane moved block lines
+  Src: LocationView.cpp LocationView.h
+
 2005-03-20 Jochen
  Update IDD_MERGE7ZMISMATCH resource in localized RC files
   Src/Languages: Merge*.rc

@@ -13,13 +13,23 @@
 /**
  * @brief Status for display moved block
  */
-enum
+enum DISPLAY_MOVED_BLOCKS
 {
 	DISPLAY_MOVED_NONE = 0,
 	DISPLAY_MOVED_ALL,
 	DISPLAY_MOVED_FOLLOW_DIFF,
 };
 
+/**
+ * @brief Endpoints of line connecting moved blocks
+ */
+struct MovedLine
+{
+	CPoint ptLeft;
+	CPoint ptRight;
+};
+
+typedef CList<MovedLine, MovedLine&> MOVEDLINE_LIST;
 
 /** 
  * @brief Class showing map of files.
@@ -53,6 +63,7 @@ protected:
 	int GetLineFromYPos(int nYCoord, CRect rc, int bar);
 	int IsInsideBar(CRect rc, POINT pt);
 	void DrawVisibleAreaRect(int nTopLine = -1, int nBottomLine = -1);
+	void DrawConnectLines();
 
 private:
 	CMergeEditView* m_view0;
@@ -65,6 +76,7 @@ private:
 	UINT m_nRightBarRight; //*< Right edge of right-side bar */
 	int m_visibleTop; //*< Top visible line for visible area indicator */
 	int m_visibleBottom; //*< Bottom visible line for visible area indicator */
+	MOVEDLINE_LIST m_movedLines; //*< List of moved block connecting lines */
 
 	// Generated message map functions
 protected:

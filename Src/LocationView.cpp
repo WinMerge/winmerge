@@ -156,6 +156,7 @@ void CLocationView::OnDraw(CDC* pDC)
 	m_visibleTop = -1;
 	m_visibleBottom = -1;
 	DrawVisibleAreaRect();
+	m_movedLines.RemoveAll();
 
 	while (true)
 	{
@@ -210,19 +211,21 @@ void CLocationView::OnDraw(CDC* pDC)
 			int apparent1 = pDoc->RightLineInMovedBlock(apparent0);
 			if (apparent1 != -1)
 			{
-				// Draw connector between moved blocks
-				int nBeginY0 = (int) (apparent0 * LineInPix + Y_OFFSET);
-				int nEndY0 = (int) ((blockHeight + apparent0) * LineInPix + Y_OFFSET);
-				int nBeginY1 = (int) (apparent1 * LineInPix + Y_OFFSET);
-				int nEndY1 = (int) ((blockHeight + apparent1) * LineInPix + Y_OFFSET);
-			
-				CRect r0bis(m_nLeftBarLeft, nBeginY0, m_nLeftBarRight, nEndY0);
-				CRect r1bis(m_nRightBarLeft, nBeginY1, m_nRightBarRight, nEndY1);
+				MovedLine line;
+				CPoint start;
+				CPoint end;
 
-				CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
-				pDC->MoveTo(r0bis.right, r0bis.CenterPoint().y);
-				pDC->LineTo(r1bis.left, r1bis.CenterPoint().y);
-				pDC->SelectObject(oldObj);
+				start.x = m_nLeftBarRight;
+				int leftUpper = (int) (apparent0 * LineInPix + Y_OFFSET);
+				int leftLower = (int) ((blockHeight + apparent0) * LineInPix + Y_OFFSET);
+				start.y = leftUpper + (leftLower - leftUpper) / 2;
+				end.x = m_nRightBarLeft;
+				int rightUpper = (int) (apparent1 * LineInPix + Y_OFFSET);
+				int rightLower = (int) ((blockHeight + apparent1) * LineInPix + Y_OFFSET);
+				end.y = rightUpper + (rightLower - rightUpper) / 2;
+				line.ptLeft = start;
+				line.ptRight = end;
+				m_movedLines.AddTail(line);
 			}
 		}
 
@@ -232,25 +235,30 @@ void CLocationView::OnDraw(CDC* pDC)
 			int apparent0 = pDoc->LeftLineInMovedBlock(apparent1);
 			if (apparent0 != -1)
 			{
-				// Draw connector between moved blocks
-				int nBeginY0 = (int) (apparent0 * LineInPix + Y_OFFSET);
-				int nEndY0 = (int) ((blockHeight + apparent0) * LineInPix + Y_OFFSET);
-				int nBeginY1 = (int) (apparent1 * LineInPix + Y_OFFSET);
-				int nEndY1 = (int) ((blockHeight + apparent1) * LineInPix + Y_OFFSET);
-			
-				CRect r0bis(m_nLeftBarLeft, nBeginY0, m_nLeftBarRight, nEndY0);
-				CRect r1bis(m_nRightBarLeft, nBeginY1, m_nRightBarRight, nEndY1);
+				MovedLine line;
+				CPoint start;
+				CPoint end;
 
-				CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
-				pDC->MoveTo(r0bis.right, r0bis.CenterPoint().y);
-				pDC->LineTo(r1bis.left, r1bis.CenterPoint().y);
-				pDC->SelectObject(oldObj);
+				start.x = m_nLeftBarRight;
+				int leftUpper = (int) (apparent0 * LineInPix + Y_OFFSET);
+				int leftLower = (int) ((blockHeight + apparent0) * LineInPix + Y_OFFSET);
+				start.y = leftUpper + (leftLower - leftUpper) / 2;
+				end.x = m_nRightBarLeft;
+				int rightUpper = (int) (apparent1 * LineInPix + Y_OFFSET);
+				int rightLower = (int) ((blockHeight + apparent1) * LineInPix + Y_OFFSET);
+				end.y = rightUpper + (rightLower - rightUpper) / 2;
+				line.ptLeft = start;
+				line.ptRight = end;
+				m_movedLines.AddTail(line);
 			}
 		}
 
 		nstart0 = nend0;
 
 	} // blocks loop 
+
+	if (m_displayMovedBlocks != DISPLAY_MOVED_NONE)
+		DrawConnectLines();
 }
 
 /** 
@@ -610,6 +618,8 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 {
 	DrawVisibleAreaRect(nTopLine, nBottomLine);
+	if (m_displayMovedBlocks != DISPLAY_MOVED_NONE)
+		DrawConnectLines();
 }
 
 /**
@@ -619,4 +629,24 @@ void CLocationView::OnClose()
 {
 	m_view0->m_pLocationView = NULL;
 	m_view1->m_pLocationView = NULL;
+}
+
+/** 
+ * @brief Draw lines connecting moved blocks.
+ */
+void CLocationView::DrawConnectLines()
+{
+	CDC *pClientDC = GetDC();
+	CPen* oldObj = (CPen*)pClientDC->SelectStockObject(BLACK_PEN);
+
+	POSITION pos = m_movedLines.GetHeadPosition();
+	while (pos != NULL)
+	{
+		MovedLine line = m_movedLines.GetNext(pos);
+		pClientDC->MoveTo(line.ptLeft.x, line.ptLeft.y);
+		pClientDC->LineTo(line.ptRight.x, line.ptRight.y);
+	}
+
+	pClientDC->SelectObject(oldObj);
+	ReleaseDC(pClientDC);
 }
