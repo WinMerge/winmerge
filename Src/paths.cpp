@@ -95,11 +95,8 @@ static bool GetDirName(const CString & sDir, CString& sName)
  */
 CString paths_GetLongPath(const CString & sPath)
 {
-    // This used to be an argument, but it was no longer fully implemented
-    DIRSLASH_TYPE dst = DIRSLASH;
-        
-    int len = sPath.GetLength();
-    if (len < 1) return sPath;
+	int len = sPath.GetLength();
+	if (len < 1) return sPath;
 
 	TCHAR fullPath[_MAX_PATH] = {0};
 	TCHAR *lpPart;
@@ -171,22 +168,22 @@ CString paths_GetLongPath(const CString & sPath)
 		// advance to next component (or set ptr==0 to flag end)
 		ptr = (end ? end+1 : 0);
 
-		CString sNextName;
-		if (!GetDirName(sTemp, sNextName))
+		// (Couldn't get info for just the directory from CFindFile)
+		WIN32_FIND_DATA ffd;
+		HANDLE h = FindFirstFile(sTemp, &ffd);
+		if (h == INVALID_HANDLE_VALUE)
 		{
 			sLong = sTemp;
 			if (ptr)
-				sLong += (CString)_T("\\") + ptr;
-			// No trailing slash no matter dst setting
-			// because it (requested path) doesn't exist
+			{
+				sLong += '\\';
+				sLong += ptr;
+			}
 			return sLong;
 		}
 		sLong += '\\';
-		sLong += sNextName;
-		if (dst == DIRSLASH && !ptr)
-		{
-			sLong += '\\';
-		}
+		sLong += ffd.cFileName;
+		FindClose(h);
 	}
 	return sLong;
 }
