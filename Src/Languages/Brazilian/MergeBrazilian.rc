@@ -90,7 +90,6 @@ BEGIN
         MENUITEM "Undo",                        ID_UNDO
         MENUITEM SEPARATOR
         MENUITEM "Save Changes...",             ID_POPUP_SAVE
-        MENUITEM "Edit file",                   ID_POPUP_EDITFILE
     END
 END
 
@@ -101,28 +100,34 @@ BEGIN
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
         MENUITEM SEPARATOR
-        MENUITEM "E&xit",                       ID_APP_EXIT
+        MENUITEM "E&xit\tEsc",                  ID_APP_EXIT
     END
     POPUP "&Edit"
     BEGIN
-        MENUITEM "&Undo\tCtrl+Z",               ID_UNDO
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "&Next difference\tTab",       ID_NEXTDIFF
-        MENUITEM "&Previous difference\tShift+Tab", ID_PREVDIFF
+        MENUITEM "&Next Difference\tAlt+Down",  ID_NEXTDIFF
+        MENUITEM "&Previous Difference\tAlt+Up", ID_PREVDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Copy to &Right\tArrow right", ID_L2R
-        MENUITEM "Copy to &Left\tArrow left",   ID_R2L
+        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
+        MENUITEM "Last &Difference\tAlt+End",   ID_LASTDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Copy All to Right",           ID_ALL_RIGHT
-        MENUITEM "Copy All to Left",            ID_ALL_LEFT
+        MENUITEM "Copy to &Right\tAlt+Right",   ID_L2R
+        MENUITEM "Copy to &Left\tAlt+Left",     ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Pr&operties",                 ID_PROPERTIES
+        MENUITEM "Copy &All to Right",          ID_ALL_RIGHT
+        MENUITEM "Copy All to L&eft",           ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "Pr&operties...",              ID_PROPERTIES
     END
     POPUP "&View"
     BEGIN
         MENUITEM "Show &Identical Files",       ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "Show &Different Files",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Show &Unique Files",          ID_OPTIONS_SHOWUNIQUE
+        MENUITEM "Show Le&ft Unique Files",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Files",    ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Hide *.&BAK Files",           ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
@@ -156,6 +161,14 @@ BEGIN
     BEGIN
         MENUITEM "Copy file to left",           ID_DIR_COPY_FILE_TO_LEFT
         MENUITEM "Copy file to right",          ID_DIR_COPY_FILE_TO_RIGHT
+        MENUITEM "Delete left",                 ID_DIR_DEL_LEFT
+        MENUITEM "Delete right",                ID_DIR_DEL_RIGHT
+        MENUITEM "Delete both",                 ID_DIR_DEL_BOTH
+        MENUITEM SEPARATOR
+        MENUITEM "Open left",                   ID_DIR_OPEN_LEFT
+        MENUITEM "Open left with...",           ID_DIR_OPEN_LEFT_WITH
+        MENUITEM "Open right",                  ID_DIR_OPEN_RIGHT
+        MENUITEM "Open right with...",          ID_DIR_OPEN_RIGHT_WITH
     END
 END
 
@@ -175,16 +188,19 @@ BEGIN
     "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
     VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
-    VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, NOINVERT
+    VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_ESCAPE,      ID_APP_EXIT,            VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
     VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
-    VK_TAB,         ID_NEXTDIFF,            VIRTKEY, NOINVERT
-    VK_TAB,         ID_PREVDIFF,            VIRTKEY, SHIFT, NOINVERT
-    VK_UP,          ID_PREVDIFF,            VIRTKEY, NOINVERT
+    VK_LEFT,        ID_R2L,                 VIRTKEY, ALT, NOINVERT
+    VK_RETURN,      ID_CURDIFF,             VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
+    VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
     "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
-    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -193,21 +209,23 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 198, 103
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 122
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About WinMerge"
 FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
-    LTEXT           "© 1999 ",IDC_STATIC,7,49,27,8
-    DEFPUSHBUTTON   "OK",IDOK,159,7,32,14,WS_GROUP
+    DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
     LTEXT           "Version 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
     LTEXT           "All rights reserved.",IDC_STATIC,7,60,170,8
-    LTEXT           "Visit the WinMerge HomePage!",IDC_WWW,7,76,184,8
-    LTEXT           "grimmd@geocities.com",IDC_EMAIL,7,88,170,8
-    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,72,184,1
-    LTEXT           "Thingamahoochie Software",IDC_COMPANY,35,49,91,8
+    LTEXT           "Visit the WinMerge HomePage!",IDC_WWW,7,107,209,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
+    LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
+    LTEXT           "Syntax Highlighting Edit View by Andrei Stcherbatchenko ",
+                    IDC_STATIC,7,71,209,8
+    LTEXT           "Various Syntaxes by Ferdinand Prantl",IDC_STATIC,7,81,
+                    209,8
 END
 
 IDD_OPEN DIALOGEX 0, 0, 352, 98
@@ -235,47 +253,37 @@ BEGIN
     GROUPBOX        "Files or Directories to Compare",IDC_STATIC,7,7,279,84
 END
 
-IDD_EDITFILE DIALOG DISCARDABLE  0, 0, 510, 350
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Dialog"
-FONT 8, "MS Sans Serif"
-BEGIN
-    PUSHBUTTON      "Save",IDOK,453,7,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,453,24,50,14
-    EDITTEXT        IDC_FILE_EDIT,7,7,437,336,ES_MULTILINE | ES_NOHIDESEL | 
-                    ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    PUSHBUTTON      "Cu&t",IDC_CUT,453,64,50,14
-    PUSHBUTTON      "&Copy",IDC_COPY,453,82,50,14
-    PUSHBUTTON      "&Paste",IDC_PASTE,453,99,50,14
-    PUSHBUTTON      "&Undo",IDC_UNDO,453,117,50,14
-END
-
-IDD_VSS DIALOG DISCARDABLE  0, 0, 258, 105
+IDD_VSS DIALOG DISCARDABLE  0, 0, 258, 149
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Visual SourceSafe"
 FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,244,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    DEFPUSHBUTTON   "Check Out",IDOK,33,83,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,173,83,50,14
-    PUSHBUTTON      "Save As...",IDSAVEAS,103,83,50,14
+    DEFPUSHBUTTON   "Check Out",IDOK,33,121,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,173,121,50,14
+    PUSHBUTTON      "Save As...",IDSAVEAS,103,121,50,14
     LTEXT           "Project:",IDC_STATIC,9,61,25,8
     COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "User:",IDC_STATIC,13,80,18,8
+    EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_STATIC,127,79,34,8
+    EDITTEXT        IDC_PASSWORD,162,78,70,14,ES_PASSWORD | ES_AUTOHSCROLL
 END
 
 IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "SourceSafe"
+CAPTION "Versioning System"
 FONT 8, "MS Sans Serif"
 BEGIN
     GROUPBOX        "Settings",IDC_STATIC,7,7,245,54
-    CONTROL         "Enable Visual &SourceSafe integration",IDC_DOVSS_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,21,133,10
-    LTEXT           "&Path to SS.EXE:",IDC_VSS_L1,16,42,53,8
-    EDITTEXT        IDC_PATH_EDIT,72,40,131,12,ES_AUTOHSCROLL
+    LTEXT           "&Path to cleartool.exe:",IDC_VSS_L1,16,42,68,8
+    EDITTEXT        IDC_PATH_EDIT,85,40,116,12,ES_AUTOHSCROLL
     PUSHBUTTON      "&Browse...",IDC_BROWSE_BUTTON,206,40,42,12
+    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "&Versioning System",IDC_STATIC,16,22,60,10
 END
 
 IDD_PROPPAGE_LARGE DIALOG DISCARDABLE  0, 0, 235, 156
@@ -283,21 +291,33 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "General"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Settings",IDC_STATIC,7,7,221,78
+    GROUPBOX        "Settings",IDC_STATIC,7,7,242,92
     CONTROL         "&Backup original file",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,21,75,10
     CONTROL         "Automatically &scroll to first difference",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     17,33,129,10
-    CONTROL         "Ignore &whitespace",IDC_WHITESPACE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,45,74,10
     CONTROL         "Ignore blan&k lines",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,71,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,45,71,10
     CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,69,53,10
-    GROUPBOX        "Tabs",IDC_STATIC,7,92,221,30
-    LTEXT           "&Tab size:",IDC_STATIC,15,106,30,8
-    EDITTEXT        IDC_TAB_EDIT,47,105,27,12,ES_AUTOHSCROLL
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,53,10
+    CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,81,87,10
+    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,128,45,82,10
+    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,128,57,100,10
+    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,128,69,83,10
+    GROUPBOX        "Tabs",IDC_STATIC,7,105,221,30,WS_GROUP
+    LTEXT           "&Tab size:",IDC_STATIC,15,119,30,8
+    EDITTEXT        IDC_TAB_EDIT,47,117,27,12,ES_AUTOHSCROLL
+    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,68,69,10
+    CONTROL         "Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,99,112,51,10
+    CONTROL         "Insert Spaces",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,99,123,59,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -310,6 +330,67 @@ BEGIN
     LISTBOX         30001,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_TABSTOP
     LTEXT           "Available languages:",IDC_STATIC,7,7,66,8
+END
+
+IDD_CLEARCASE DIALOG DISCARDABLE  0, 0, 279, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Rational Clearcase"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "CheckOut",IDOK,35,90,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,194,90,50,14
+    PUSHBUTTON      "Save As...",IDSAVEAS,114,90,50,14
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Comments",IDC_STATIC,18,7,34,10
+END
+
+IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Hilighting"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Hilight syntax",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,57,10
+END
+
+IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Filter"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Ignore lines matching the follow patterns",
+                    IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    7,221,15
+    LTEXT           "Regular Expressions (one per line):",IDC_STATIC,7,28,
+                    221,8
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,96,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+END
+
+IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Colors"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Difference:",IDC_STATIC,15,18,36,8
+    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,15,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    LTEXT           "Selected Difference:",IDC_STATIC,14,36,66,8
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,33,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+END
+
+IDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,106,136,50,14
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | 
+                    WS_VSCROLL
 END
 
 
@@ -341,7 +422,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "999.999.999.999\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "© 1999 Dean P. Grimm\0"
+            VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", "\0"
@@ -370,9 +451,9 @@ BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 191
+        RIGHTMARGIN, 216
         TOPMARGIN, 7
-        BOTTOMMARGIN, 96
+        BOTTOMMARGIN, 115
     END
 
     IDD_OPEN, DIALOG
@@ -383,31 +464,61 @@ BEGIN
         BOTTOMMARGIN, 91
     END
 
-    IDD_EDITFILE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 503
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 343
-    END
-
     IDD_VSS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 251
         TOPMARGIN, 7
-        BOTTOMMARGIN, 97
+        BOTTOMMARGIN, 141
     END
 
     IDD_PROP_VSS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 252
+        VERTGUIDE, 85
         TOPMARGIN, 7
         BOTTOMMARGIN, 150
     END
 
     IDD_PROPPAGE_LARGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        VERTGUIDE, 128
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_CLEARCASE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 272
+        VERTGUIDE, 18
+        VERTGUIDE, 35
+        VERTGUIDE, 244
+        VERTGUIDE, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 104
+    END
+
+    IDD_PROPSYNTAX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_PROPPAGE_FILTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_PROPPAGE_COLORS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 228
@@ -428,10 +539,14 @@ BEGIN
     BUTTON      ID_FILE_OPEN
     BUTTON      ID_FILE_SAVE
     SEPARATOR
-    BUTTON      ID_UNDO
+    BUTTON      ID_EDIT_UNDO
+    BUTTON      ID_EDIT_REDO
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
+    BUTTON      ID_LASTDIFF
+    BUTTON      ID_CURDIFF
+    BUTTON      ID_FIRSTDIFF
     SEPARATOR
     BUTTON      ID_L2R
     BUTTON      ID_R2L
@@ -456,6 +571,37 @@ IDB_NOTEQUAL            BITMAP  DISCARDABLE     "res\\notequal.bmp"
 IDB_RFOLDER             BITMAP  DISCARDABLE     "res\\rfolder.bmp"
 IDB_UNKNOWN             BITMAP  DISCARDABLE     "res\\unknown.bmp"
 IDB_BINARY              BITMAP  DISCARDABLE     "res\\binary.bmp"
+IDB_LFILE               BITMAP  DISCARDABLE     "res\\lfile.bmp"
+IDB_RFILE               BITMAP  DISCARDABLE     "res\\rfile.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_PROP_VSS DLGINIT
+BEGIN
+    IDC_VER_SYS, 0x403, 5, 0
+0x6f4e, 0x656e, "\000" 
+    IDC_VER_SYS, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
+0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029, 
+    IDC_VER_SYS, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
+0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029, 
+    IDC_VER_SYS, 0x403, 19, 0
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
+"\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -466,12 +612,16 @@ STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
     IDS_VERSION_FMT         "Version %1"
     IDS_ALLFILES            "All Files (*.*)|*.*||"
     IDS_CONFIRM_ALL_LEFT    "Are you sure you want to copy all differences to the left file?"
     IDS_CONFIRM_ALL_RIGHT   "Are you sure you want to copy all differences to the right file?"
-    IDS_COPY2DIR_FMT        "Copy file to %1"
-    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy the selected file to %1?"
+    IDS_ERRORS_TITLE        "%1 Error(s)"
+    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy %1 of %2 selected item(s)"
     IDS_FONT_CHANGE         "The selected font change will not be applied to any currently visible difference windows."
     IDS_DIRECTORY_WINDOW_TITLE "Directory Comparison Results"
     IDS_DIRECTORY_WINDOW_STATUS_FMT "Results for %1 and %2"
@@ -501,9 +651,9 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_FILE_NEW             "Create a new document\nNew"
-    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_OPEN            "Open an existing document\nOpen (Ctrl+O)"
     ID_FILE_CLOSE           "Close the active document\nClose"
-    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE            "Save the active document\nSave (Ctrl+S)"
     ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
     ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
     ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
@@ -599,13 +749,12 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_L2R                  "Copy the selected text to the right file\nCopy Right (Right Arrow)"
-    ID_R2L                  "Copy the selected text to the left file\nCopy Left (Left Arrow)"
+    ID_L2R                  "Copy the selected text to the right file\nCopy Right (Alt Right)"
+    ID_R2L                  "Copy the selected text to the left file\nCopy Left (Alt Left)"
     ID_OPTIONS_SHOWIDENTICAL "Displays files that are exactly the same"
     ID_OPTIONS_SHOWDIFFERENT "Displays files that have differences"
-    ID_OPTIONS_SHOWUNIQUE   "Displays files that exist in only one directory"
-    ID_PREVDIFF             "Scroll to the previous difference\nPrev Diff (Shift+Tab)"
-    ID_NEXTDIFF             "Scroll to the next difference\nNext Diff (Tab)"
+    ID_PREVDIFF             "Scroll to the previous difference\nPrev Diff (Alt Up)"
+    ID_NEXTDIFF             "Scroll to the next difference\nNext Diff (Alt Down)"
     ID_OPTIONS_BACKUPORIGINALFILE 
                             "Save a copy of the original as *.bak\nBackup"
 END
@@ -631,6 +780,20 @@ BEGIN
     ID_DIR_COPY_FILE_TO_RIGHT "Copy selected file to named directory"
     ID_VIEW_LANGUAGE        "Select the current user interfacce language\nLanguage"
     ID_HELP_CONTENTS        "Displays the WinMerge User's Guide\nHelp"
+    ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff (Alt+Home)"
+    ID_CURDIFF              "Scroll to the current difference\nCurrent Diff (Alt+Enter)"
+    ID_LASTDIFF             "Scroll to the last difference\nLast Diff (Alt+End)"
+    ID_DIFFNUM              "placeholder"
+    ID_DIR_DEL_LEFT         "Delete selected item on left"
+    ID_DIR_DEL_RIGHT        "Delete selected item on right"
+    ID_DIFFSTATUS           "placeholder for status count"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays files that exist in only on left side"
+    ID_OPTIONS_SHOWUNIQUERIGHT 
+                            "Displays files that exist in only on right side"
+    ID_DIR_DEL_BOTH         "Delete selected item(s) on both sides"
+    ID_DIR_OPEN_LEFT        "Open left file"
+    ID_DIR_OPEN_LEFT_WITH   "Open left file with ..."
+    ID_DIR_OPEN_RIGHT       "Open right file"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -642,6 +805,7 @@ BEGIN
                             "Unable to backup original file.\nContinue anyway?"
     IDS_PROPERTIES_TITLE    "Properties"
     IDS_OPEN_TITLE          "Open"
+    IDS_CONFIRM_DELETE_FILE "Delete file %1?"
     IDS_EDIT_WINDOW_TITLE_FMT "Edit %1"
     IDS_FILESSAME           "The selected files are identical."
     IDS_FILEUNIQUE          "The selected file didn't exist in both directories and therefore couldn't be compared."
@@ -649,8 +813,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "%1 is marked read-only.  Would you like to save the file under a different name?"
     IDS_SAVE_FMT            "Save changes to %1?"
     IDS_FILEBINARY          "Binary files cannot be visually compared."
-    IDS_SAVEVSS_FMT         "%1 is marked read-only.  Would you like to check it out from SourceSafe, or save it under a different name?"
-    IDS_VSSERROR            "SourceSafe returned an error while attempting to check out the file.  Unable to continue..."
+    IDS_SAVEVSS_FMT         "%1 is marked read-only.  Would you like to check it out from Versioning System, or save it under a different name?"
+    IDS_VSSERROR            "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
     IDS_NOPROJECT           "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
 END
 
@@ -687,13 +851,13 @@ BEGIN
     IDS_CHINESE_HONGKONG    "Chinese (Hong Kong)"
     IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
     IDS_CROATIAN            "Croatian"
-    IDS_CZECH               "Czechslovakian"
+    IDS_CZECH               "Cesko"
     IDS_DANISH              "Danish"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_DUTCH               "Dutch"
+    IDS_DUTCH               "Nederlandse"
     IDS_ENGLISH_US          "English (US)"
     IDS_ENGLISH_UK          "English (UK)"
     IDS_ENGLISH_AUS         "English (Australian)"
@@ -713,27 +877,27 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_FRENCH              "French"
-    IDS_FRENCH_BELGIAN      "French (Belgian)"
-    IDS_FRENCH_CANADIAN     "French (Canadian)"
-    IDS_FRENCH_SWISS        "French (Swiss)"
-    IDS_FRENCH_LUXEMBOURG   "French (Lux)"
-    IDS_GERMAN              "German"
-    IDS_GERMAN_SWISS        "German (Swiss)"
-    IDS_GERMAN_AUSTRIAN     "German (Austrian)"
-    IDS_GERMAN_LUXEMBOURG   "German (Lux)"
-    IDS_GERMAN_LIECHTENSTEIN "German (Liecht)"
+    IDS_FRENCH              "Francais"
+    IDS_FRENCH_BELGIAN      "Francais (Belgique)"
+    IDS_FRENCH_CANADIAN     "Francais (Canada)"
+    IDS_FRENCH_SWISS        "Francais (Suisse)"
+    IDS_FRENCH_LUXEMBOURG   "Francais (Luxembourg)"
+    IDS_GERMAN              "Deutsch (Deutschland)"
+    IDS_GERMAN_SWISS        "Deutsch (Schweiz)"
+    IDS_GERMAN_AUSTRIAN     "Deutsch (Österreich)"
+    IDS_GERMAN_LUXEMBOURG   "Deutsch (Luxemburg)"
+    IDS_GERMAN_LIECHTENSTEIN "Deutsch (Liechtenstein)"
     IDS_GREEK               "Greek"
     IDS_HEBREW              "Hebrew"
     IDS_HUNGARIAN           "Hungarian"
     IDS_ICELANDIC           "Icelandic"
     IDS_INDONESIAN          "Indonesian"
-    IDS_ITALIAN             "Italian"
+    IDS_ITALIAN             "Italiano"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ITALIAN_SWISS       "Italian (Swiss)"
+    IDS_ITALIAN_SWISS       "Italiano (Svizzera)"
     IDS_JAPANESE            "Japanese"
     IDS_KOREAN              "Korean"
     IDS_KOREAN_JOHAB        "Korean (Johab)"
@@ -754,30 +918,30 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_SLOVENIAN           "Slovenian"
-    IDS_SPANISH             "Spanish"
-    IDS_SPANISH_MEXICAN     "Spanish (Mexican)"
-    IDS_SPANISH_MODERN      "Spanish (Modern)"
-    IDS_SPANISH_GUATEMALA   "Spanish (Guatemala)"
-    IDS_SPANISH_COSTA_RICA  "Spanish (Costa Rica)"
-    IDS_SPANISH_PANAMA      "Spanish (Panama)"
-    IDS_SPANISH_DOMINICAN   "Spanish (Dominican)"
-    IDS_SPANISH_VENEZUELA   "Spanish (Venezuela)"
-    IDS_SPANISH_COLOMBIA    "Spanish (Colombia)"
-    IDS_SPANISH_PERU        "Spanish (Peru)"
-    IDS_SPANISH_ARGENTINA   "Spanish (Argentina)"
-    IDS_SPANISH_ECUADOR     "Spanish (Ecuador)"
-    IDS_SPANISH_CHILE       "Spanish (Chile)"
-    IDS_SPANISH_URUGUAY     "Spanish (Uruguay)"
-    IDS_SPANISH_PARAGUAY    "Spanish (Paraguay)"
+    IDS_SPANISH             "Español"
+    IDS_SPANISH_MEXICAN     "Español (Mexicano)"
+    IDS_SPANISH_MODERN      "Español (Moderno)"
+    IDS_SPANISH_GUATEMALA   "Español (Guatemala)"
+    IDS_SPANISH_COSTA_RICA  "Español (Costa Rica)"
+    IDS_SPANISH_PANAMA      "Español (Panamá)"
+    IDS_SPANISH_DOMINICAN   "Español (Dominicano)"
+    IDS_SPANISH_VENEZUELA   "Español (Venezuela)"
+    IDS_SPANISH_COLOMBIA    "Español (Colombiano)"
+    IDS_SPANISH_PERU        "Español (Peru)"
+    IDS_SPANISH_ARGENTINA   "Español (Argentina)"
+    IDS_SPANISH_ECUADOR     "Español (Ecuador)"
+    IDS_SPANISH_CHILE       "Español (Chile)"
+    IDS_SPANISH_URUGUAY     "Español (Uruguay)"
+    IDS_SPANISH_PARAGUAY    "Español (Paraguay)"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_SPANISH_BOLIVIA     "Spanish (Bolivia)"
-    IDS_SPANISH_EL_SALVADOR "Spanish (El Salvador)"
-    IDS_SPANISH_HONDURAS    "Spanish (Honduras)"
-    IDS_SPANISH_NICARAGUA   "Spanish (Nicaragua)"
-    IDS_SPANISH_PUERTO_RICO "Spanish (Puerto Rico)"
+    IDS_SPANISH_BOLIVIA     "Español (Bolivia)"
+    IDS_SPANISH_EL_SALVADOR "Español (El Salvador)"
+    IDS_SPANISH_HONDURAS    "Español (Hondureño)"
+    IDS_SPANISH_NICARAGUA   "Español (Nicaragua)"
+    IDS_SPANISH_PUERTO_RICO "Español (Puerto Rico)"
     IDS_SWEDISH             "Swedish"
     IDS_SWEDISH_FINLAND     "Swedish (Finland)"
     IDS_THAI                "Thai"
@@ -792,9 +956,46 @@ BEGIN
     IDS_DIR_HEADER          "Directory"
     IDS_RESULT_HEADER       "Comparison result"
     IDS_FILE_COMPARISON_TITLE "File Comparison"
+    IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
+    IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
+    IDS_FILEISDIR           "Directory files cannot be visually compared."
+    IDS_CC_CMD              "&Path to cleartool.exe :"
+    IDS_VSS_CMD             "&Path to SS.EXE :"
+    IDS_VSS_RUN_ERROR       "Error executing versioning system command."
+    IDS_DIFF_OPEN_NO_SET_PROPS 
+                            "Modifications have been made to the current file comparison session.  Some property settings may not take place until the current file comparison is restarted."
+    IDS_LTIME_HEADER        "Left Date"
+    IDS_RTIME_HEADER        "Right Date"
+    IDS_EXTENSION_HEADER    "Extension"
+    IDS_CONFIRM_DELETE_ITEMS 
+                            "Are you sure you want to delete %1 of %2 selected item(s) ?"
+    IDS_DEL_LEFT_FMT        "Delete left side %1 of %2 selected item(s)"
 END
 
-#endif    // Portuguese (Brazil) resources
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DEL_RIGHT_FMT       "Delete right side %1 of %2 selected item(s)"
+    IDS_DELETE_FILE_FAILED  "Delete file %1 failed: %2"
+    IDS_CONFIRM_DELETE_DIR  "Delete directory %1?"
+    IDS_REMOVE_DIR_FAILED   "Remove directory failed: %1"
+    IDS_COPY_TO_LEFT        "Copy to left side %1 of %2 selected item(s)"
+    IDS_DEL_BOTH_FMT        "Delete both sides %1 of %2 selected item(s)"
+    IDS_COPY_TO_RIGHT       "Copy to right side %1 of %2 selected item(s)"
+    IDS_DELETE_DIR_FAILED   "Delete directory %1 failed: %s"
+    IDS_COPY_FILE_FAILED    "Copying file %1 failed: %2"
+    IDS_COPY_DIR_FAILED     "Copying directory %1 failed: %2"
+    IDS_ERROR_FILE_WRITEABLE "Error checking destination writeability"
+    IDS_ERROR_BACKUP        "Error backing up file"
+    IDS_CONFIRM_COPY_SINGLE "Are you sure you want to copy %1 to %2?"
+    IDS_CONFIRM_DELETE_SINGLE "Are you sure you want to delete %1?"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
+END
+
+#endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
