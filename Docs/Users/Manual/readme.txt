@@ -1,3 +1,7 @@
+2004-10-28 Kimmo
+ Remove unused Open_dlg1.jpg (noticed by Tim Gerundt)
+ Docs/User/Manual/screenshots: Open_dlg1.jpg
+
 2004-10-27 Kimmo
  PATCH: [ 1054861 ] Docs: Explain archive menuitems in dircompare
   Src: Compare_dirs.xml
