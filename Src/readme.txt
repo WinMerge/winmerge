@@ -1,3 +1,7 @@
+2004-03-30 Kimmo
+ PATCH: [ 925179 ] Remove is_*file() functions from coretools.h/cpp
+  Common: coretools.cpp coretools.h
+
 2004-03-30 Laoran
  BUG [ 925202 ] broken feature: after save error, save with another filename
   Src: MergeDoc.cpp
