@@ -795,6 +795,10 @@ SOURCE=.\WaitStatusCursor.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\WindowStyle.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\WMGotoDlg.cpp
 # End Source File
 # End Group
@@ -1208,6 +1212,10 @@ SOURCE=.\VssPrompt.h
 # Begin Source File
 
 SOURCE=.\WaitStatusCursor.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\WindowStyle.h
 # End Source File
 # Begin Source File
 

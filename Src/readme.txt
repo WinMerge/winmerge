@@ -12,7 +12,7 @@
    java.cpp list.cpp pascal.cpp perl.cpp php.cpp python.cpp rexx.cpp rsrc.cpp
    sgml.cpp sh.cpp siod.cpp sql.cpp tcl.cpp tex.cpp xml.cpp
  PATCH: [ 1157859 ] Add LVS_SHOWSELALWAYS style to dirview
-  Src: DirView.cpp
+  Src: DirView.cpp Merge.dsp
   Common new files: WindowStyle.cpp WindowStyle.h
 
 
