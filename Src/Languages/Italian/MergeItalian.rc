@@ -84,9 +84,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copia tutto dall'altro lato...",
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-
         MENUITEM "Copia tutto l'altro lato...", ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
-
         MENUITEM SEPARATOR
         MENUITEM "Annulla",                     ID_UNDO
         MENUITEM SEPARATOR
@@ -173,6 +171,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Copia a destra\tFreccia destra", ID_L2R
         MENUITEM "Co&pia a sinistra\tFreccia sinistra", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Copy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
+        MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
         MENUITEM SEPARATOR
         MENUITEM "Copia tutto a destra",        ID_ALL_RIGHT
         MENUITEM "Copia tutto a sinistra",      ID_ALL_LEFT
@@ -263,8 +264,10 @@ BEGIN
     VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
     VK_LEFT,        ID_R2L,                 VIRTKEY, ALT, NOINVERT
+    VK_LEFT,        ID_R2LNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_RETURN,      ID_CURDIFF,             VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
 END
 
@@ -790,6 +793,9 @@ BEGIN
     BUTTON      ID_L2R
     BUTTON      ID_R2L
     SEPARATOR
+    BUTTON      ID_L2RNEXT
+    BUTTON      ID_R2LNEXT
+    SEPARATOR
     BUTTON      ID_OPTIONS
     SEPARATOR
     BUTTON      ID_ALL_RIGHT
@@ -1161,6 +1167,8 @@ BEGIN
     ID_FILE_SAVE_RIGHT      "Save the right file"
     ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
     ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
+    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
+    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
 END
 
 STRINGTABLE DISCARDABLE

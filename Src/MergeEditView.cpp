@@ -122,6 +122,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_EOL_TO_DOS, ID_EOL_TO_MAC, OnUpdateConvertEolTo)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTFILE_EOL, OnUpdateStatusLeftEOL)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTFILE_EOL, OnUpdateStatusRightEOL)
+	ON_COMMAND(ID_L2RNEXT, OnL2RNext)
+	ON_UPDATE_COMMAND_UI(ID_L2RNEXT, OnUpdateL2RNext)
+	ON_COMMAND(ID_R2LNEXT, OnR2LNext)
+	ON_UPDATE_COMMAND_UI(ID_R2LNEXT, OnUpdateR2LNext)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1468,3 +1472,44 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
+/**
+ * @brief Copy diff from left to right and advance to next diff
+ */
+void CMergeEditView::OnL2RNext()
+{
+	OnL2r();
+	OnNextdiff();
+}
+
+/**
+ * @brief Update "Copy right and advance" UI item
+ */
+void CMergeEditView::OnUpdateL2RNext(CCmdUI* pCmdUI)
+{
+	// Check that right side is not readonly
+	if (!IsReadOnly(FALSE))
+		pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+	else
+		pCmdUI->Enable(FALSE);
+}
+
+/**
+ * @brief Copy diff from right to left and advance to next diff
+ */
+void CMergeEditView::OnR2LNext()
+{
+	OnR2l();
+	OnNextdiff();
+}
+
+/**
+ * @brief Update "Copy left and advance" UI item
+ */
+void CMergeEditView::OnUpdateR2LNext(CCmdUI* pCmdUI)
+{
+	// Check that left side is not readonly
+	if (!IsReadOnly(TRUE))
+		pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+	else
+		pCmdUI->Enable(FALSE);
+}

@@ -207,6 +207,10 @@ protected:
 	afx_msg void OnUpdateConvertEolTo(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusLeftEOL(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusRightEOL(CCmdUI* pCmdUI);
+	afx_msg void OnL2RNext();
+	afx_msg void OnUpdateL2RNext(CCmdUI* pCmdUI);
+	afx_msg void OnR2LNext();
+	afx_msg void OnUpdateR2LNext(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

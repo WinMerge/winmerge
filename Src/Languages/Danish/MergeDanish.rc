@@ -175,6 +175,9 @@ BEGIN
         MENUITEM "Kopier til &højre\tAlt+Højre", ID_L2R
         MENUITEM "Kopier til &venstre\tAlt+Venstre", ID_R2L
         MENUITEM SEPARATOR
+        MENUITEM "Copy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
+        MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
+        MENUITEM SEPARATOR
         MENUITEM "Kopier alt &til højre",       ID_ALL_RIGHT
         MENUITEM "Kopier alt til ve&nstre",     ID_ALL_LEFT
     END
@@ -264,8 +267,10 @@ BEGIN
     VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
     VK_LEFT,        ID_R2L,                 VIRTKEY, ALT, NOINVERT
+    VK_LEFT,        ID_R2LNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_RETURN,      ID_CURDIFF,             VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
 END
 
@@ -789,6 +794,9 @@ BEGIN
     BUTTON      ID_L2R
     BUTTON      ID_R2L
     SEPARATOR
+    BUTTON      ID_L2RNEXT
+    BUTTON      ID_R2LNEXT
+    SEPARATOR
     BUTTON      ID_OPTIONS
     SEPARATOR
     BUTTON      ID_ALL_RIGHT
@@ -1160,6 +1168,8 @@ BEGIN
     ID_FILE_SAVE_RIGHT      "Save the right file"
     ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
     ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
+    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
+    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
 END
 
 STRINGTABLE DISCARDABLE

@@ -87,7 +87,6 @@ BEGIN
 
         MENUITEM "Copiar todos diferentes do outro lado...", 
                                                 ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
-
         MENUITEM SEPARATOR
         MENUITEM "Desfazer",                    ID_UNDO
         MENUITEM SEPARATOR
@@ -174,6 +173,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copiar para a &Direita\tAlt+Right", ID_L2R
         MENUITEM "Copiar para a &Esquerda\tAlt+Left", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Copy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
+        MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
         MENUITEM SEPARATOR
         MENUITEM "Copiar tudo para a Direita",  ID_ALL_RIGHT
         MENUITEM "Copiar tudo para a Esquerda", ID_ALL_LEFT
@@ -264,8 +266,10 @@ BEGIN
     VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
     VK_LEFT,        ID_R2L,                 VIRTKEY, ALT, NOINVERT
+    VK_LEFT,        ID_R2LNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_RETURN,      ID_CURDIFF,             VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
 END
 

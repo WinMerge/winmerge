@@ -1,6 +1,11 @@
 2003-10-05 Kimmo
  PATCH: [ 817269 ] Fix navigation in directory compare
   WinMerge: DirView.cpp
+ PATCH: [ 817394 ] Implement Copy diff and advance to next
+  WinMerge: Merge.rc MergeEditView.h MergeEditView.cpp resource.h
+  WinMerge/res: Toolbar.bmp
+  Languages: resource.h *.rc
+  Languages/res: Toolbar.bmp
 
 2003-10-04 Perry
  Update dll copy batch file for 4 new build targets
