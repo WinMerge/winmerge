@@ -4,6 +4,9 @@
   Src: DirDoc.cpp DirView.cpp MainFrm.cpp MainFrm.h Merge.dsp MergeDoc.cpp
    MergeEditView.cpp 
   Src: new file OptionsDef.h
+ PATCH: [ 900718 ] Updated German translation
+  Submitted by Tim Gerundt
+  Languages/German: MergeGerman.rc
 
 2004-02-20 Perry
  Fix CopyAll.bat for new directory structure.
