@@ -117,7 +117,11 @@ void storageForPlugins::ValidateNewFile()
 	if (nChangedValid == nChanged)
 	{
 		// plugin succeeded, but nothing changed, just delete the new file
-		::DeleteFile(tempFilenameDst);
+		if (!::DeleteFile(tempFilenameDst))
+		{
+			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
+				, tempFilenameDst, GetSysError(GetLastError())));
+		}
 		// we may reuse the temp filename
 		// tempFilenameDst.Empty();
 	}
@@ -126,7 +130,11 @@ void storageForPlugins::ValidateNewFile()
 		nChangedValid = nChanged;
 		if (bOverwriteSourceFile)
 		{
-			::DeleteFile(filename);
+			if (!::DeleteFile(filename))
+			{
+				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
+					, filename, GetSysError(GetLastError())));
+			}
 			::MoveFile(tempFilenameDst, filename);
 		}
 		else

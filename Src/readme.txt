@@ -1,6 +1,8 @@
 2004-04-07 Kimmo
  PATCH: [ 930495 ] Log delete file errors from FileTransform.cpp
   Src: FileTransform.cpp
+ PATCH: [ 930512 ] Log delete file errors from multiformatText.cpp
+  Src/Common: multiformatText.cpp
 
 2004-04-07 Laoran
  BUG: [ 930995 ] Cursor help text ...
