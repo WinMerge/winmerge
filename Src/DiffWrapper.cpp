@@ -1142,7 +1142,12 @@ public:
 };
 
 
-/* WinMerge moved block code */
+/*
+ WinMerge moved block code
+ This is called by diffutils code, by diff_2_files routine
+ read_files earlier computed the hash chains ("equivs" file variable) and freed them,
+ but the equivs numerics are still available in each line
+*/
 extern "C" void moved_block_analysis(struct change ** pscript, struct file_data fd[])
 {
 	// Hash all altered lines
@@ -1397,21 +1402,6 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 
 }
 
-/*
-read_files
- creates and destroys the hash table of lines (equivs & buckets)
-
-It is called from diff_2_files
- which subsequently builds the script chain (of blocks)
-
-So we need to (optionally) keep the hash table around after
- read_files so diff_2_files can pass it to the new
- block moved routine
-
-
-
-
-*/
 void cleanup_script(struct change ** pscript)
 {
 	struct change * script = *pscript;

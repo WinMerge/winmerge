@@ -4,6 +4,9 @@
   Src: LocationView.cpp
  PATCH: [ 1152967 ] Fix re_match_2 declaration warnings
   Src/diffutils/lib: REGEX.C
+ BUG: [ 1038897 ] Weird comment in DiffWrapper.cpp
+  cosmetic: removing obsolete comment, improving existing comments
+  Src: DiffWrapper.cpp
 
 2005-02-26 Jochen
  PATCH: [ 1152256 ] UniFile may fail to read last line
