@@ -73,6 +73,14 @@
           <entry>Close window (if enabled in options)</entry>
         </row>
         <row>
+          <entry><keycap>F3</keycap></entry>
+          <entry>Find again</entry>
+        </row>
+        <row>
+          <entry><keycap>F4</keycap></entry>
+          <entry>Show line difference</entry>
+        </row>
+        <row>
           <entry><keycap>F5</keycap></entry>
           <entry>Refresh</entry>
         </row>
@@ -81,8 +89,16 @@
           <entry>Change pane (active file)</entry>
         </row>
         <row>
-          <entry><keycap>F4</keycap></entry>
-          <entry>Show line difference</entry>
+          <entry><keycap>F7</keycap></entry>
+          <entry>Go to previous difference</entry>
+        </row>
+        <row>
+          <entry><keycap>F8</keycap></entry>
+          <entry>Go to next difference</entry>
+        </row>
+        <row>
+          <entry><keycap>F9</keycap></entry>
+          <entry>Turn Merge mode on/off</entry>
         </row>
         <row>
           <entry><keycombo><keycap>Ctrl</keycap><keycap>G</keycap></keycombo></entry>
@@ -91,10 +107,6 @@
         <row>
           <entry><keycombo><keycap>Ctrl</keycap><keycap>F</keycap></keycombo></entry>
           <entry>Find text</entry>
-        </row>
-        <row>
-          <entry><keycap>F3</keycap></entry>
-          <entry>Find again</entry>
         </row>
         <row>
           <entry><keycombo><keycap>Ctrl</keycap><keycap>H</keycap></keycombo></entry>
