@@ -71,6 +71,9 @@ protected:
 public:
 
 // Operations
+private:
+	BOOL EnsureValidDockState(CDockState& state);
+
 public:
 
 // Overrides

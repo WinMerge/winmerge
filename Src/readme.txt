@@ -1,3 +1,7 @@
+2003-09-01 Laoran
+ [ 798272 ] save settings for the dockable diff bar
+  WinMerge: ChildFrm.cpp ChildFrm.h MainFrm.cpp
+
 2003-09-01 Kimmo
  Improve 256-color icon
   WinMerge/res: Merge.ico

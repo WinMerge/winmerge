@@ -279,6 +279,38 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
+/**
+ * @brief We must use this function before a call to SetDockState
+ *
+ * @note Without this, SetDockState will assert or crash if a bar from the 
+ * CDockState is missing in the current CChildFrame.
+ * The bars are identified with their ID. This means the missing bar bug is triggered
+ * when we run WinMerge after changing the ID of a bar. 
+ */
+BOOL CChildFrame::EnsureValidDockState(CDockState& state) 
+{
+	for (int i = state.m_arrBarInfo.GetSize()-1 ; i >= 0; i--) 
+	{
+		BOOL barIsCorrect = TRUE;
+		CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
+		if (! pInfo) 
+			barIsCorrect = FALSE;
+		else
+		{
+			if (! pInfo->m_bFloating) 
+			{
+				pInfo->m_pBar = GetControlBar(pInfo->m_nBarID);
+				if (!pInfo->m_pBar) 
+					barIsCorrect = FALSE; //toolbar id's probably changed	
+			}
+		}
+
+		if (! barIsCorrect)
+			state.m_arrBarInfo.RemoveAt(i);
+	}
+	return TRUE;
+}
+
 void CChildFrame::ActivateFrame(int nCmdShow) 
 {
 	if (!m_bActivated) 
@@ -292,22 +324,22 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 	CMDIChildWnd::ActivateFrame(nCmdShow);
 	UpdateHeaderSizes();
 
-	// load the diff pane state
-	// load dimension : default dimension, then LoadState if it was saved before
+	// load the bars layout
+	// initialize the diff pane state with default dimension
 	int initialDiffHeight = ((CMergeDiffDetailView*)m_wndDetailSplitter.GetPane(1,0))->ComputeInitialHeight();
 	UpdateDiffDockbarHeight(initialDiffHeight);
-	m_wndDetailBar.LoadState(_T("Settings"));
-	// load docking position
+	// load docking positions and sizes
 	CDockState m_pDockState;
 	m_pDockState.LoadState(_T("Settings"));
-	
-	// This causes ASSERT when opening merge docs
-	// SetDockState(m_pDockState);
+	if (EnsureValidDockState(m_pDockState)) // checks for valid so won't ASSERT
+		SetDockState(m_pDockState);
+	// for the dimensions of the diff pane, use the CSizingControlBar loader
+	m_wndDetailBar.LoadState(_T("Settings"));
 }
 
 BOOL CChildFrame::DestroyWindow() 
 {
-	
+	SavePosition();
 	return CMDIChildWnd::DestroyWindow();
 }
 
@@ -324,19 +356,18 @@ void CChildFrame::SavePosition()
 	GetWindowPlacement(&wp);
 	theApp.WriteProfileInt(_T("Settings"), _T("LeftMax"), (wp.showCmd == SW_MAXIMIZE));
 
-	// save the diff pane state
-	// save dimension
-	m_wndDetailBar.SaveState(_T("Settings"));
-	// save docking position
+	// save the bars layout
+	// save docking positions and sizes
 	CDockState m_pDockState;
 	GetDockState(m_pDockState);
 	m_pDockState.SaveState(_T("Settings"));
+	// for the dimensions of the diff pane, use the CSizingControlBar save
+	m_wndDetailBar.SaveState(_T("Settings"));
 }
 
 void CChildFrame::OnClose() 
 {
 	// clean up pointers.
-	SavePosition();
 	CMDIChildWnd::OnClose();
 }
 
