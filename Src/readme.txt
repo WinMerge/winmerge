@@ -2,6 +2,9 @@
  PATCH: [ 755918 ] Fix typo in CCrystalTextView extension list
   Added more filename extensions
   editlib: ccrystaltextview.cpp
+ PATCH: [ 757180 ] Update Open OK on dropped file
+  Submitted by Perry
+  common: SuperComboBox.cpp
 
 2003-06-25 Kimmo
  PATCH: [ 759755 ] Better rescan error reporting

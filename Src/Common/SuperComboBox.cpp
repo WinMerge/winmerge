@@ -314,7 +314,11 @@ void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 	if (expandedFile!=_T("")) 
 		firstFile=expandedFile;
 
+	GetParent()->SendMessage(WM_COMMAND, GetDlgCtrlID() +
+		(CBN_EDITUPDATE << 16), (LPARAM)m_hWnd);
 	SetWindowText(firstFile);
+	GetParent()->SendMessage(WM_COMMAND, GetDlgCtrlID() +
+		(CBN_EDITCHANGE << 16), (LPARAM)m_hWnd);
 }
 
 //////////////////////////////////////////////////////////////////
