@@ -35,6 +35,7 @@
  */
 struct DiffFuncStruct
 {
+	bool bSinglethreaded;
 	CString path1;
 	CString path2;
 	CDiffContext * context;
@@ -45,7 +46,8 @@ struct DiffFuncStruct
 	BOOL bRecursive;
 	DiffThreadAbortable * m_pAbortgate;
 	DiffFuncStruct()
-		: context(0)
+		: bSinglethreaded(false)
+		, context(0)
 		, msgUIUpdate(0)
 		, msgStatusUpdate(0)
 		, hWindow(0)
@@ -118,7 +120,20 @@ UINT CDiffThread::CompareDirectories(CString dir1, CString dir2, BOOL bRecursive
 	m_bAborting = FALSE;
 
 	m_pDiffParm->nThreadState = THREAD_COMPARING;
-	m_thread = AfxBeginThread(DiffThread, m_pDiffParm);
+
+	// When interactively debugging, this is a way to force all diff code to run in main thread
+	static bool singlethreaded = false;
+
+	if (singlethreaded)
+	{
+		m_pDiffParm->bSinglethreaded = true;
+		DiffThread(m_pDiffParm);
+	}
+	else
+	{
+		m_thread = AfxBeginThread(DiffThread, m_pDiffParm);
+	}
+
 	return 1;
 }
 
@@ -161,7 +176,9 @@ UINT DiffThread(LPVOID lpParam)
 
 	// keep the scripts alive during the Rescan
 	// when we exit the thread, we delete this and release the scripts
-	CScriptsOfThread scriptsForRescan;
+	CScriptsOfThread * scriptsForRescan = 0;
+	if (!myStruct->bSinglethreaded)
+		scriptsForRescan = new CScriptsOfThread;
 
 	bool casesensitive = false;
 	int depth = myStruct->bRecursive ? -1 : 0;
@@ -171,5 +188,8 @@ UINT DiffThread(LPVOID lpParam)
 	// Send message to UI to update
 	myStruct->nThreadState = THREAD_COMPLETED;
 	PostMessage(hWnd, msgID, NULL, NULL);
+
+	if (scriptsForRescan)
+		delete scriptsForRescan;
 	return 1;
 }

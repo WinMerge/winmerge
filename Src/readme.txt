@@ -1,3 +1,8 @@
+2003-12-16 Perry
+ PATCH: [ 860072 ] Allow singlethreaded diffs
+  Add unused code to trigger diffs in main thread (for developer to trigger via breakpoint).
+  WinMerge: DiffThread.cpp
+
 2003-12-15 Kimmo
  PATCH: [ 858283 ] Add isResultDiff() to DiffItem
   Fixes BUG [ 852998 ] Left Only being filtered out if not view different
