@@ -1271,14 +1271,14 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 
 	int nRescanResult = RESCAN_OK;
 
-	m_pLeftView->PushCursor();
-	m_pRightView->PushCursor();
+	m_pLeftView->PushCursors();
+	m_pRightView->PushCursors();
 
 	nRescanResult = Rescan(bForced);
 	UpdateAllViews(NULL);
 
-	m_pLeftView->PopCursor();
-	m_pRightView->PopCursor();
+	m_pLeftView->PopCursors();
+	m_pRightView->PopCursors();
 
 	if (curView)
 		curView->EnsureVisible(curView->GetCursorPos());

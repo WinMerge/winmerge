@@ -115,7 +115,9 @@ private :
     int m_nIdealCharPos;
 
     BOOL m_bFocused;
+protected:
     CPoint m_ptAnchor;
+private:
     LOGFONT m_lfBaseFont;
     CFont *m_apFonts[4];
 
@@ -144,13 +146,14 @@ private :
     */
     CArray<int, int> *m_pnActualLineLength;
 
+protected:
     BOOL m_bPreparingToDrag;
     BOOL m_bDraggingText;
     BOOL m_bDragSelection, m_bWordSelection, m_bLineSelection;
     UINT m_nDragSelTimer;
 
     CPoint m_ptDrawSelStart, m_ptDrawSelEnd;
-protected:
+
     CPoint m_ptCursorPos, m_ptCursorLast;
     CPoint m_ptSelStart, m_ptSelEnd;
     void PrepareSelBounds ();

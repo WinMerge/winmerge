@@ -1111,6 +1111,16 @@ DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
   if (pszText == NULL)
     return FALSE;
 
+  // Open the undo group
+  // When we drag from the same panel, it is already open, so do nothing
+  // (we could test m_pTextBuffer->m_bUndoGroup if it were not a protected member)
+  BOOL bGroupFlag = FALSE;
+  if (! IsDraggingText())
+    {
+      m_pTextBuffer->BeginUndoGroup ();
+      bGroupFlag = TRUE;
+    } 
+
   int x, y;
   m_pTextBuffer->InsertText (this, ptDropPos.y, ptDropPos.x, pszText, y, x, CE_ACTION_DRAGDROP);  //   [JRT]
 
@@ -1120,6 +1130,9 @@ DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
   SetSelection (ptDropPos, ptCurPos);
   SetCursorPos (ptCurPos);
   EnsureVisible (ptCurPos);
+
+  if (bGroupFlag)
+    m_pTextBuffer->FlushUndoGroup (this);
 
   ::GlobalUnlock (hData);
   return TRUE;
@@ -1223,6 +1236,11 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags
       pContext->RecalcPoint (m_ptSavedSelEnd);
       ASSERT_VALIDTEXTPOS (m_ptSavedSelStart);
       ASSERT_VALIDTEXTPOS (m_ptSavedSelEnd);
+    }
+  if (m_bDropPosVisible )
+    {
+      pContext->RecalcPoint (m_ptSavedCaretPos);
+      ASSERT_VALIDTEXTPOS (m_ptSavedCaretPos);
     }
 }
 
@@ -1375,8 +1393,6 @@ ReplaceSelection (LPCTSTR pszNewText, DWORD dwFlags)
       m_nLastReplaceLen = _tcslen (pszNewText);
     }
 
-  m_pTextBuffer->FlushUndoGroup(this);
-
   CPoint ptEndOfBlock = CPoint (x, y);
   ASSERT_VALIDTEXTPOS (ptCursorPos);
   ASSERT_VALIDTEXTPOS (ptEndOfBlock);
@@ -1384,6 +1400,9 @@ ReplaceSelection (LPCTSTR pszNewText, DWORD dwFlags)
   SetSelection (ptCursorPos, ptEndOfBlock);
   SetCursorPos (ptEndOfBlock);
   //EnsureVisible (ptEndOfBlock);
+
+  m_pTextBuffer->FlushUndoGroup(this);
+
   return TRUE;
 }
 

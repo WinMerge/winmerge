@@ -1,3 +1,9 @@
+2003-09-07 Laoran
+ PATCH: [ 799464 ] preserve positions during Rescan (2.1)
+  WinMerge: GhostTextBuffer.cpp GhostTextView.cpp GhostTextView.h MergeDoc.cpp
+  editlib: ccrystaleditview.cpp ccrystaleditview.h ccrystaltextbuffer.cpp ccrystaltextbuffer.h
+   ccrystaltextview.cpp ccrystaltextview.h
+
 2003-09-07 Kimmo
  BUG: [ 802063 ] files_analyzeFile bug for UNIX file (2.1)
   WinMerge: files.cpp

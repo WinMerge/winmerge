@@ -1501,6 +1501,7 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex)
 BOOL CCrystalTextView::
 IsInsideSelBlock (CPoint ptTextPos)
 {
+  PrepareSelBounds();
   ASSERT_VALIDTEXTPOS (ptTextPos);
   if (ptTextPos.y < m_ptDrawSelStart.y)
     return FALSE;
@@ -1526,6 +1527,12 @@ IsInsideSelection (const CPoint & ptTextPos)
   return IsInsideSelBlock (ptTextPos);
 }
 
+/**
+ * @brief : class the selection extremities in ascending order
+ *
+ * @note : Updates m_ptDrawSelStart and m_ptDrawSelEnd
+ * This function must be called before reading these values
+ */
 void CCrystalTextView::
 PrepareSelBounds ()
 {

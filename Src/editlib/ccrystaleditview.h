@@ -64,13 +64,14 @@ protected:
     BOOL m_bLastReplace;
     DWORD m_dwLastReplaceFlags;
 
-private :
-    BOOL m_bOvrMode;
+protected:
     BOOL m_bDropPosVisible;
     CPoint m_ptSavedCaretPos;
-    CPoint m_ptDropPos;
     BOOL m_bSelectionPushed;
     CPoint m_ptSavedSelStart, m_ptSavedSelEnd;
+private :
+    BOOL m_bOvrMode;
+    CPoint m_ptDropPos;
     BOOL m_bAutoIndent;
 
     //  [JRT]

@@ -1526,6 +1526,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 
   if (bGroupFlag)
     FlushUndoGroup (pSource);
+
   return TRUE;
 }
 
@@ -1766,6 +1767,11 @@ CPoint CCrystalTextBuffer::GetLastChangePos() const
   return m_ptLastChange;
 }
 //END SW
+void CCrystalTextBuffer::RestoreLastChangePos(CPoint pt)
+{
+  m_ptLastChange = pt;
+}
+
 
 void CCrystalTextBuffer::DeleteLine(int line)
 {

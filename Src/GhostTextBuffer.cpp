@@ -541,6 +541,13 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 ////////////////////////////////////////////////////////////////////////////
 // edition functions
 
+/**
+ *
+ * @param nEndLine and nEndChar are the coordinates of the end od the inserted text
+ * They are valid as long as you do not call FlushUndoGroup
+ * If you need to call FlushUndoGroup, just store them in a variable which
+ * is preserved with real line number during Rescan (m_ptCursorPos, m_ptLastChange for example)
+ */
 BOOL CGhostTextBuffer::
 InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
             int &nEndLine, int &nEndChar, int nAction, BOOL bHistory /*=TRUE*/)
@@ -618,6 +625,10 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 
 	if (bGroupFlag)
 		FlushUndoGroup (pSource);
+
+	// nEndLine may have changed during Rescan
+	nEndLine = m_ptLastChange.y;
+
 	return TRUE;
 }
 

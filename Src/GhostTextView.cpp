@@ -67,28 +67,100 @@ DetachFromBuffer ()
 
 
 
-void CGhostTextView::
-PopCursor ()
+void CGhostTextView::popPosition(SCursorPushed Ssrc, CPoint & pt)
 {
-	CPoint ptCursorLast = m_ptCursorLast;
-	ptCursorLast.y = m_pGhostTextBuffer->ComputeApparentLine(m_ptCursorLast.y, m_ptCursorLast_nGhost);
-	if (ptCursorLast.y >= GetLineCount())
+	pt.x = Ssrc.x;
+	pt.y = m_pGhostTextBuffer->ComputeApparentLine(Ssrc.y, Ssrc.nToFirstReal);
+	// if the cursor was in a trailing ghost line, and this disappeared,
+	// got at the end of the last line
+	if (pt.y >= GetLineCount())
 	{
-		ptCursorLast.y = GetLineCount()-1;
-		ptCursorLast.x = GetLineLength(ptCursorLast.y);
+		pt.y = GetLineCount()-1;
+		pt.x = GetLineLength(pt.y);
 	}
-	ASSERT_VALIDTEXTPOS (ptCursorLast);
-	SetCursorPos (ptCursorLast);
-	SetSelection (ptCursorLast, ptCursorLast);
-	SetAnchor (ptCursorLast);
+}
+
+void CGhostTextView::pushPosition(SCursorPushed & Sdest, CPoint pt)
+{
+	Sdest.x = pt.x;
+	Sdest.y = m_pGhostTextBuffer->ComputeRealLineAndGhostAdjustment(pt.y, Sdest.nToFirstReal);
 }
 
 void CGhostTextView::
-PushCursor ()
+PopCursors ()
 {
-	m_ptCursorLast.x = m_ptCursorPos.x;
-	m_ptCursorLast.y = m_pGhostTextBuffer->ComputeRealLineAndGhostAdjustment(m_ptCursorPos.y, m_ptCursorLast_nGhost);
+	CPoint ptCursorLast = m_ptCursorLast;
+	popPosition(m_ptCursorPosPushed, ptCursorLast);
+
+	ASSERT_VALIDTEXTPOS (ptCursorLast);
+	SetCursorPos (ptCursorLast);
+
+	popPosition(m_ptSelStartPushed, m_ptSelStart);
+	ASSERT_VALIDTEXTPOS (m_ptSelStart);
+	popPosition(m_ptSelEndPushed, m_ptSelEnd);
+	ASSERT_VALIDTEXTPOS (m_ptSelEnd);
+	popPosition(m_ptAnchorPushed, m_ptAnchor);
+	ASSERT_VALIDTEXTPOS (m_ptAnchor);
+	// laoran 2003/09/03
+	// here is what we did before, maybe we have to do it, but test with pushed positions
+	// SetSelection (ptCursorLast, ptCursorLast);
+	// SetAnchor (ptCursorLast);
+
+	if (m_bDraggingText == TRUE)
+	{
+		popPosition(m_ptDraggedTextBeginPushed, m_ptDraggedTextBegin);
+		ASSERT_VALIDTEXTPOS(m_ptDraggedTextBegin);
+		popPosition(m_ptDraggedTextEndPushed, m_ptDraggedTextEnd);
+		ASSERT_VALIDTEXTPOS(m_ptDraggedTextEnd);
+	}
+	if (m_bDropPosVisible == TRUE)
+	{
+		popPosition(m_ptSavedCaretPosPushed, m_ptSavedCaretPos);
+		ASSERT_VALIDTEXTPOS(m_ptSavedCaretPos);
+	}
+	if (m_bSelectionPushed == TRUE)
+	{
+		popPosition(m_ptSavedSelStartPushed, m_ptSavedSelStart);
+		ASSERT_VALIDTEXTPOS(m_ptSavedSelStart);
+		popPosition(m_ptSavedSelEndPushed, m_ptSavedSelEnd);
+		ASSERT_VALIDTEXTPOS(m_ptSavedSelEnd);
+	}
+
+	CPoint ptLastChange;
+	if (m_ptLastChangePushed.y == 0 && m_ptLastChangePushed.nToFirstReal == 1)
+		ptLastChange = CPoint(-1,-1);
+	else 
+	{
+		popPosition(m_ptLastChangePushed, ptLastChange);
+		ASSERT_VALIDTEXTPOS(ptLastChange);
+	}
+	m_pGhostTextBuffer->RestoreLastChangePos(ptLastChange);
 }
+
+void CGhostTextView::
+PushCursors ()
+{
+	pushPosition(m_ptCursorPosPushed, m_ptCursorPos);
+	pushPosition(m_ptSelStartPushed, m_ptSelStart);
+	pushPosition(m_ptSelEndPushed, m_ptSelEnd);
+	pushPosition(m_ptAnchorPushed, m_ptAnchor);
+	if (m_bDraggingText == TRUE)
+	{
+		pushPosition(m_ptDraggedTextBeginPushed, m_ptDraggedTextBegin);
+		pushPosition(m_ptDraggedTextEndPushed, m_ptDraggedTextEnd);
+	}
+	if (m_bDropPosVisible == TRUE)
+		pushPosition(m_ptSavedCaretPosPushed, m_ptSavedCaretPos);
+	if (m_bSelectionPushed == TRUE)
+	{
+		pushPosition(m_ptSavedSelStartPushed, m_ptSavedSelStart);
+		pushPosition(m_ptSavedSelEndPushed, m_ptSavedSelEnd);
+	}
+
+	pushPosition(m_ptLastChangePushed, m_pGhostTextBuffer->GetLastChangePos());
+}
+
+
 
 
 int CGhostTextView::ComputeRealLine (int nApparentLine) const

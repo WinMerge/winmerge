@@ -323,6 +323,7 @@ public :
     */
     CPoint GetLastChangePos() const;
     //END SW
+    void RestoreLastChangePos(CPoint pt);
     void DeleteLine(int line);
 
 
