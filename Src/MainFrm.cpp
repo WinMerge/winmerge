@@ -324,7 +324,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 HMENU CMainFrame::NewMenu()
 {
 	m_menu.LoadMenu(IDR_MAINFRAME);
-	m_menu.ModifyMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WIN_VERTICAL);
+	m_menu.ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WIN_VERTICAL);
 	m_menu.LoadToolbar(IDR_MAINFRAME);
 	return(m_menu.Detach());
 }
@@ -336,6 +336,16 @@ HMENU CMainFrame::NewMenu()
 HMENU CMainFrame::NewDefaultMenu()
 {
 	m_default.LoadMenu(IDR_MAINFRAME);
+	
+	// Load bitmaps to menuitems
+	m_default.ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);
+	m_default.ModifyODMenu(NULL, ID_EDIT_CUT, IDB_EDIT_CUT);
+	m_default.ModifyODMenu(NULL, ID_EDIT_PASTE, IDB_EDIT_PASTE);
+	m_default.ModifyODMenu(NULL, ID_EDIT_FIND, IDB_EDIT_SEARCH);
+	m_default.ModifyODMenu(NULL, ID_WINDOW_CASCADE, IDB_WINDOW_CASCADE);
+	m_default.ModifyODMenu(NULL, ID_WINDOW_TILE_HORZ, IDB_WINDOW_HORIZONTAL);
+	m_default.ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WINDOW_VERTICAL);
+
 	m_default.LoadToolbar(IDR_MAINFRAME);
 	return(m_default.Detach());
 }

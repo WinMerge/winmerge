@@ -5,6 +5,13 @@
   Adds missing handler functions BCMenu needs
   Also added code to implement document menus (commented out for now)
   Src: MainFrm.cpp MainFrm.h Merge.rc
+ PATCH: [ 913743 ] Icons for menuitems (RFE 873697)
+  Submitted by Tim Gerundt
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/res new files: cascade.bmp cut.bmp cut.bmp horizontally.bmp
+   paste.bmp search.bmp vertically.bmp
+  Languages: *.rc resource.h
+   res/bmp files
 
 2004-03-10 Kimmo
  Fix for OptionsMgr bugs when loading string options from registry
