@@ -1,3 +1,7 @@
+2004-10-13 Kimmo
+ PATCH: [ 1045473 ] Disable Ctrl+Arrow merging in Mergemode
+  Src: MergeEditView.cpp
+
 2004-10-12 Perry
  PATCH: [ 1043819 ] Fix recent compiler warnings in src/util.c
   diffutils: src/util.c

@@ -1427,7 +1427,6 @@ BOOL CMergeEditView::EnableRescan(BOOL bEnable)
 BOOL CMergeEditView::MergeModeKeyDown(MSG* pMsg)
 {
 	BOOL bHandled = FALSE;
-	BOOL bCtrlKey = ::GetAsyncKeyState(VK_CONTROL);
 
 	// Allow default text selection when SHIFT pressed
 	if (::GetAsyncKeyState(VK_SHIFT))
@@ -1438,18 +1437,12 @@ BOOL CMergeEditView::MergeModeKeyDown(MSG* pMsg)
 	switch (pMsg->wParam)
 	{
 	case VK_LEFT:
-		if (bCtrlKey)
-			OnR2LNext();
-		else
-			OnR2l();
+		OnR2l();
 		bHandled = TRUE;
 		break;
 
 	case VK_RIGHT:
-		if (bCtrlKey)
-			OnL2RNext();
-		else
-			OnL2r();
+		OnL2r();
 		bHandled = TRUE;
 		break;
 
