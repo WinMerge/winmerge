@@ -1,6 +1,6 @@
 2004-12-11 Tim
  PATCH: [ 1081625 ] Web: Move screenshots and icons
-  Web: .htaccess page.inc WinMergePAD.xml
+  Web: .htaccess page.inc index.php WinMergePAD.xml
   Web\1.7\images: icon.gif
   Web\2.0\images: icon.gif
   Web\2.2: index.php
