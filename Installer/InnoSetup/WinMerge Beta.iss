@@ -21,7 +21,6 @@
 ; #  Automatically detect and configure WinMerge to work with Visual Source Safe
 ; #  We need to add support for Tortoises' SubVersion program mimicing our support settings for TortoiseCVS if possible
 ; #  Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL
-; #  Add a Desktop.ini file to our \Program Files\WinMerge folder
 ; #  Test and distribute the files contained within "MergePlugins (From 2140).7z" or in the folder MergePlugins of "WinMerge2140-exe.7z"
 ;    Also take a look at this folder and see if there are any more we should be including WinMerge\Plugins
 ; #  Bundle 7-Zip with WinMerge or provide on the fly download capability.
@@ -42,8 +41,6 @@
 ; #  Create two info pages during installation one for our Contributors and a second one for our Read Me file.
 ;     If this isn't possible then we'll need to use ISPP and somehow programatically combine the two RTF files prior to compilation.
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
-; #  Rather than requiring users to restart we could just kill all intances of Explorer.exe, but we'll need to prompt the user first and restart it
-;    once the ShellExtension.dll file has been added or removed.   Tell Kimmo to re-write to detect path from HKLM.
 ; #  Be dilegent about getting a higher resolution copy of the Users's Guide.ico source art from somebody
 ; #  If the user happens to have Syn Text Editor installed then we'll make that the default text editor rather than notepad.
 ; #  Set the order of icons within the start menu (we'll have to use a registry hack since Inno Setup doesn't yet have this level of granularity).
@@ -58,7 +55,9 @@
 ;      5.  Uninstall WinMerge
 ; #  We need to determine if our application can cooperate with WinCVS and if so how
 ; #  We need to unregister the ShellExtension Dll if the user doesn't want it, during installation
-
+; #  When Explorer.exe is restarted we should record what windows were present before hand and restore them afterwards.
+; #  Automatically integrate with Syn Text Editor if the user has it installed
+; #  Only display TortoiseCVS option if the user has it installed
 
 #define AppVersion GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe"), 1, 5)
@@ -112,6 +111,11 @@ Compression=none
 InternalCompressLevel=fast
 SolidCompression=false
 
+;Causes the installer to force the date of compilation on all the files in the installation destination folder.  This is a wonderful diagnostic for the
+;installer itself. It also provides end-users assurance that the files contained in the application were updated properly.
+TouchDate=current
+TouchTime=current
+
 [Messages]
 FinishedLabel=Setup has finished installing [Name] on your computer.
 SetupAppTitle=Setup - WinMerge {#AppVersion}
@@ -119,6 +123,7 @@ SetupAppTitle=Setup - WinMerge {#AppVersion}
 
 [Tasks]
 Name: ShellExtension; Description: &Enable Explorer context menu integration; GroupDescription: Optional Features:
+Name: TortoiseCVS; Description: Integrate with &TortoiseCVS; GroupDescription: Optional Features:
 Name: desktopicon; Description: Create a &Desktop Icon; GroupDescription: Additional Icons:; Flags: unchecked
 Name: quicklaunchicon; Description: Create a &Quick Launch Icon; GroupDescription: Additional Icons:
 Name: CustomFolderIcon; Description: "Use a &Custom Icon for ""{app}"""; GroupDescription: Additional Icons:
@@ -128,6 +133,7 @@ Name: CustomFolderIcon; Description: "Use a &Custom Icon for ""{app}"""; GroupDe
 Name: main; Description: WinMerge Core Files; Types: full compact custom; Flags: fixed
 Name: docs; Description: User's Guide; Types: full
 Name: filters; Description: Filters; Types: full
+Name: Plugins; Description: Plug-Ins (enhance core behavior); Types: full
 
 ;Non-English Languages are no longer a default part of a normal installation.  If a user selected a language as part of their last installation
 ;that language will be selected automatically during subsequent installs.
@@ -228,7 +234,8 @@ Name: {app}\Merge7z312U.dll; Type: files
 Name: {app}\Merge7z313.dll; Type: files
 Name: {app}\Merge7z313U.dll; Type: files
 
-Name: {app}\ShellExtension.dll; Type: files
+;This won't work, because the file has to be unregistered first.
+;Name: {app}\ShellExtension.dll; Type: files
 
 Name: {app}\MergeBrazilian.lang; Type: files
 Name: {app}\MergeCatalan.lang; Type: files
@@ -282,20 +289,20 @@ Name: {app}\Desktop.ini; Type: files
 
 [Dirs]
 ;The always uninstall flag tells the uninstaller to remove the folder if it's empty regardless of whether or not it existed prior to the installation
-Name: {app}; Flags: uninsalwaysuninstall;
+Name: {app}; Flags: uninsalwaysuninstall
 
 [Files]
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
-Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; MinVersion: 0, 4; Components: main; Flags: ignoreversion
+Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 0, 4; Components: main
 
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running Win9X platform system
-Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; MinVersion: 4, 0; Components: main; Flags: ignoreversion
+Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 4, 0; Components: main
 
 ;Installs the ComCtl32.dll update on any system where its DLLs are more recent
-Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall; Check: InstallComCtlUpdate
+Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall touch; Check: InstallComCtlUpdate
 
 ;Adds Seier's Explorer Restart and Shell Extension Deletion Utility
-Source: Installer Helper.exe; DestDir: {app};
+Source: Installer Helper.exe; DestDir: {app}; Flags: touch
 
 ; begin VC system files
 Source: Runtimes\mfc42.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile
@@ -304,44 +311,54 @@ Source: Runtimes\msvcrt.dll; DestDir: {sys}; Flags: restartreplace uninsneveruni
 Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile
 ; end VC system files
 
-Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; Flags: regserver
+Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; Flags: regserver touch; BeforeInstall: ShellExtension(/I); Tasks: ShellExtension
+Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; BeforeInstall: ShellExtension(/U); Flags: touch; Check: TaskDisabled(ShellExtension)
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(313)
-Source: ..\Build\MergeUnicodeRelease\Merge7z312U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(312)
-Source: ..\Build\MergeUnicodeRelease\Merge7z311U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(311)
+Source: ..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 0, 4; Check: Install7ZipDll(313)
+Source: ..\Build\MergeUnicodeRelease\Merge7z312U.dll; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 0, 4; Check: Install7ZipDll(312)
+Source: ..\Build\MergeUnicodeRelease\Merge7z311U.dll; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 0, 4; Check: Install7ZipDll(311)
 
-Source: ..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(313)
-Source: ..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(312)
-Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(311)
+Source: ..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 4, 0; Check: Install7ZipDll(313)
+Source: ..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 4, 0; Check: Install7ZipDll(312)
+Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 4, 0; Check: Install7ZipDll(311)
 
-Source: ..\Src\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: Brazilian_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Components: Catalan_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: ChineseSimplified_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: ChineseTraditional_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: Czeck_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: Danish_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: Dutch_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: French_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: German_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: Italian_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: Korean_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Components: Norwegian_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Components: Polish_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}; Components: Russian_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: Slovak_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
+Source: ..\Plugins\dlls\RCLocalizationHelper.dll; DestDir: {app}\MergePlugins; Flags: touch; Components: Plugins
+Source: ..\Plugins\dlls\UnpackDFM.dll; DestDir: {app}\MergePlugins; Flags: touch; Components: Plugins
+
+Source: ..\Src\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Flags: touch; Components: Brazilian_Language
+Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Flags: touch; Components: Catalan_Language
+Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Flags: touch; Components: ChineseSimplified_Language
+Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Flags: touch; Components: ChineseTraditional_Language
+Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}; Flags: touch; Components: Czeck_Language
+Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Flags: touch; Components: Danish_Language
+Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Flags: touch; Components: Dutch_Language
+Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Flags: touch; Components: French_Language
+Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Flags: touch; Components: German_Language
+Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Flags: touch; Components: Italian_Language
+Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Flags: touch; Components: Korean_Language
+Source: ..\Src\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Flags: touch; Components: Norwegian_Language
+Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Flags: touch; Components: Polish_Language
+Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}; Flags: touch; Components: Russian_Language
+Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Flags: touch; Components: Slovak_Language
+Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Flags: touch; Components: Spanish_Language
+Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Flags: touch; Components: Spanish_Language
 
 
-Source: ..\Docs\Users\Guide\*.*; DestDir: {app}\Docs\User's Guide\; Components: docs; Flags: ignoreversion sortfilesbyextension
-Source: ..\Docs\Users\Guide\Art\*.*; DestDir: {app}\Docs\User's Guide\Art; Components: docs; Flags: ignoreversion sortfilesbyextension
-Source: ..\Filters\*.*; DestDir: {app}\Filters; Components: filters; Flags: ignoreversion sortfilesbyextension
+Source: ..\Docs\Users\Guide\*.*; DestDir: {app}\Docs\User's Guide\; Flags: sortfilesbyextension touch; Components: docs;
+Source: ..\Docs\Users\Guide\Art\*.*; DestDir: {app}\Docs\User's Guide\Art; Flags: sortfilesbyextension touch; Components: docs;
+Source: ..\Filters\*.*; DestDir: {app}\Filters; Flags: sortfilesbyextension touch; Components: filters;
 
 ;Documentation
-Source: ..\Docs\Users\Read Me.rtf; DestDir: {app}\Docs; Components: main; Flags: ignoreversion
+Source: ..\Docs\Users\Read Me.rtf; DestDir: {app}\Docs; Flags: touch; Components: main
 
-Source: ..\Docs\Users\Contributors.rtf; DestDir: {app}\Docs; Components: main; Flags: ignoreversion;
+Source: ..\Docs\Users\Contributors.rtf; DestDir: {app}\Docs; Flags: touch; Components: main
+
+;Please note I removed CompareTimeStamp since neither old nor new versions of these files contain version info
+Source: ..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags: touch; Components: Plugins
+Source: ..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: touch; Components: Plugins
+Source: ..\Plugins\dlls\list.txt; DestDir: {app}\MergePlugins; Flags: touch; Components: Plugins
+
 
 [INI]
 Filename: {app}\WinMerge.url; Section: InternetShortcut; Key: URL; String: http://WinMerge.org/
@@ -412,13 +429,13 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueNa
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 1; Tasks: ShellExtension
 
 ;If WinMerge.exe is installed then we'll automatically configure WinMerge as the differencing application
-Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue
-Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: DiffAsUnicode; ValueData: $00000001; Flags: uninsdeletevalue
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: DiffAsUnicode; ValueData: $00000001; Flags: uninsdeletevalue; Tasks: TortoiseCVS
 
 ;Tells TortoiseCVS to use WinMerge as its differencing application (this happens whether or not Tortoise is current installed, that way
 ;if it is installed at a later date this will automatically support it)
-Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Merge Application; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue
-Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: MergeAsUnicode; ValueData: $00000001; Flags: uninsdeletevalue
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Merge Application; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue; Tasks: TortoiseCVS
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: MergeAsUnicode; ValueData: $00000001; Flags: uninsdeletevalue; Tasks: TortoiseCVS
 
 
 [Run]
@@ -441,7 +458,7 @@ Type: dirifempty; Name: {app}
 
 [UninstallRun]
 ;Restarts and deletes the shellextension file so we don't have to restart
-Filename: {app}\Installer Helper.exe; Parameters: /u; StatusMsg: Removing ShellExtension.dll
+Filename: {app}\Installer Helper.exe; Parameters: /U; StatusMsg: Removing ShellExtension.dll
 
 Filename: {sys}\Attrib.exe; Parameters: """{app}"" -S"; Flags: runhidden; Tasks: CustomFolderIcon
 
@@ -881,12 +898,48 @@ begin
     end;
 end;
 
-{Returns True if the user chose not to have a customized folder icon}
-Function NoCustomFolderIcon(Unused: string): boolean;
+{Returns true or false based on whether the specified task is disabled}
+Function TaskDisabled(strTask: string): boolean;
 Begin
-    If ShouldProcessEntry('main', 'CustomFolderIcon') <> srYes then
-        Result := True
-    Else
-        Result := False;
+    Case ShouldProcessEntry('main', strTask) of
+        srNo:
+            Result := True;
+        srYes:
+            Result := False;
+        srUnknown:
+            Begin
+                msgbox('TaskDisabled(' + strTask + ')=Unknown', mbInformation, mb_Ok)
+                Result := False
+            end;
+    End;
+        
+    {Debug}
+    If Result = True then
+        Msgbox('TaskDisabled(' + strTask + ')=True', mbInformation, mb_OK)
+    else
+        Msgbox('TaskDisabled(' + strTask + ')=False', mbInformation, mb_OK);
+    
+
 End;
 
+Procedure ShellExtension(strCommand: string);
+var
+    intReturn_Code: integer;
+    strShellExt_Path: string;
+Begin
+    {Debug}
+    msgbox('ShellExtension(' + strCommand + ')', mbInformation, mb_OK)
+    
+    strShellExt_Path := ExpandConstant('{app}\ShellExtension.dll');
+    
+    If FileExists(strShellExt_Path) = True Then
+        UnRegisterServer(strShellExt_Path, True);
+    
+    If strCommand = '/I' Then
+        InstExec(ExpandConstant('{app}\Installer Helper.exe'), '/I', '', True, False, 0, intReturn_Code)
+    Else
+        InstExec(ExpandConstant('{app}\Installer Helper.exe'), '/U', '', True, False, 0, intReturn_Code)
+end;
+
+[_ISTool]
+OutputExeFilename=D:\Programming\Visual C++\WinMerge\WinMerge\InnoSetup\Output\WinMerge 2.1.5.15.exe
