@@ -298,17 +298,21 @@ BEGIN
     CONTROL         "Automatically &scroll to first difference",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     17,33,129,10
-    CONTROL         "Ignore &whitespace",IDC_WHITESPACE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,45,74,10
     CONTROL         "Ignore blan&k lines",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,71,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,45,71,10
     CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,69,53,10
-    GROUPBOX        "Tabs",IDC_STATIC,7,105,221,30
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,53,10
+    CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,69,87,10
+    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,128,45,82,10
+    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,128,57,100,10
+    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,128,69,83,10
+    GROUPBOX        "Tabs",IDC_STATIC,7,105,221,30,WS_GROUP
     LTEXT           "&Tab size:",IDC_STATIC,15,119,30,8
     EDITTEXT        IDC_TAB_EDIT,47,118,27,12,ES_AUTOHSCROLL
-    CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,81,87,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -459,6 +463,7 @@ BEGIN
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 228
+        VERTGUIDE, 128
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
     END

@@ -41,11 +41,11 @@ CPropGeneral::CPropGeneral() : CPropertyPage(CPropGeneral::IDD)
 	//{{AFX_DATA_INIT(CPropGeneral)
 	m_bBackup = FALSE;
 	m_bScroll = FALSE;
-	m_bIgnoreWhite = FALSE;
 	m_nTabSize = 0;
 	m_bIgnoreCase = FALSE;
 	m_bIgnoreBlankLines = FALSE;
 	m_bDisableSplash = FALSE;
+	m_nIgnoreWhite = -1;
 	//}}AFX_DATA_INIT
 }
 
@@ -59,11 +59,11 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(CPropGeneral)
 	DDX_Check(pDX, IDC_BACKUP_CHECK, m_bBackup);
 	DDX_Check(pDX, IDC_SCROLL_CHECK, m_bScroll);
-	DDX_Check(pDX, IDC_WHITESPACE_CHECK, m_bIgnoreWhite);
 	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
 	DDX_Check(pDX, IDC_IGNCASE_CHECK, m_bIgnoreCase);
 	DDX_Check(pDX, IDC_IGNBLANKS_CHECK, m_bIgnoreBlankLines);
 	DDX_Check(pDX, IDC_DISABLE_SPLASH, m_bDisableSplash);
+	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	//}}AFX_DATA_MAP
 }
 

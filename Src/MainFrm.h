@@ -83,7 +83,7 @@ public:
 	CString m_strVssProject;
 	int m_nVerSys;
 	BOOL m_bHideBak;
-	BOOL m_bIgnoreWhitespace;
+	int m_nIgnoreWhitespace;
 	BOOL m_bScrollToFirst;
 	void ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight);
 	CMergeEditView *m_pLeft, *m_pRight;

@@ -24,11 +24,11 @@ public:
 	enum { IDD = IDD_PROPPAGE_LARGE };
 	BOOL	m_bBackup;
 	BOOL	m_bScroll;
-	BOOL	m_bIgnoreWhite;
 	UINT	m_nTabSize;
 	BOOL	m_bIgnoreCase;
 	BOOL	m_bIgnoreBlankLines;
 	BOOL	m_bDisableSplash;
+	int		m_nIgnoreWhite;
 	//}}AFX_DATA
 
 

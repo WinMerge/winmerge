@@ -115,7 +115,7 @@ CMainFrame::CMainFrame()
 	m_bShowIdent = theApp.GetProfileInt(_T("Settings"), _T("ShowIdentical"), TRUE)!=0;
 	m_bBackup = theApp.GetProfileInt(_T("Settings"), _T("BackupFile"), TRUE)!=0;
 	m_bScrollToFirst = theApp.GetProfileInt(_T("Settings"), _T("ScrollToFirst"), FALSE)!=0;
-	m_bIgnoreWhitespace = theApp.GetProfileInt(_T("Settings"), _T("IgnoreSpace"), TRUE)!=0;
+	m_nIgnoreWhitespace = theApp.GetProfileInt(_T("Settings"), _T("IgnoreSpace"), 1);
 	m_bHideBak = theApp.GetProfileInt(_T("Settings"), _T("HideBak"), TRUE)!=0;
 	m_nVerSys = theApp.GetProfileInt(_T("Settings"), _T("VersionSystem"), 0);
 	m_strVssProject = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
@@ -150,11 +150,12 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	mf = this;
-	ignore_all_space_flag = m_bIgnoreWhitespace;
-	length_varies = m_bIgnoreWhitespace;
+	ignore_space_change_flag = (m_nIgnoreWhitespace==1);
+	ignore_all_space_flag = (m_nIgnoreWhitespace==2);
+	length_varies = (m_nIgnoreWhitespace!=0);
 	ignore_case_flag = m_bIgnoreCase;
 	ignore_blank_lines_flag = m_bIgnoreBlankLines;
-	ignore_some_changes = m_bIgnoreWhitespace || m_bIgnoreCase || m_bIgnoreBlankLines;
+	ignore_some_changes = (m_nIgnoreWhitespace!=0) || m_bIgnoreCase || m_bIgnoreBlankLines;
 	// build the initial reg expression list
 	RebuildRegExpList();
 
@@ -510,7 +511,7 @@ void CMainFrame::OnProperties()
 	vss.m_strPath = m_strVssPath;
 
 	gen.m_bBackup = m_bBackup;
-	gen.m_bIgnoreWhite = m_bIgnoreWhitespace;
+	gen.m_nIgnoreWhite = m_nIgnoreWhitespace;
 	gen.m_bIgnoreCase = m_bIgnoreCase;
 	gen.m_bIgnoreBlankLines = m_bIgnoreBlankLines;
 	gen.m_bScroll = m_bScrollToFirst;
@@ -531,17 +532,19 @@ void CMainFrame::OnProperties()
 		m_nTabSize = gen.m_nTabSize;
 		theApp.m_bDisableSplash = gen.m_bDisableSplash;
 
-		ignore_all_space_flag = m_bIgnoreWhitespace = gen.m_bIgnoreWhite;
+		m_nIgnoreWhitespace = gen.m_nIgnoreWhite;
+		ignore_all_space_flag = (m_nIgnoreWhitespace==2);
+		ignore_space_change_flag = (m_nIgnoreWhitespace==1);
 		ignore_blank_lines_flag = m_bIgnoreBlankLines = gen.m_bIgnoreBlankLines;
 		ignore_case_flag = m_bIgnoreCase = gen.m_bIgnoreCase;
-		ignore_some_changes = m_bIgnoreWhitespace || m_bIgnoreCase || m_bIgnoreBlankLines;
-		length_varies = m_bIgnoreWhitespace;
+		ignore_some_changes = (m_nIgnoreWhitespace!=0) || m_bIgnoreCase || m_bIgnoreBlankLines;
+		length_varies = (m_nIgnoreWhitespace!=0);
 		
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
 		m_sPattern = filter.m_sPattern;
 
 		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
-		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreSpace"), m_bIgnoreWhitespace);
+		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreSpace"), m_nIgnoreWhitespace);
 		theApp.WriteProfileInt(_T("Settings"), _T("ScrollToFirst"), m_bScrollToFirst);
 		theApp.WriteProfileInt(_T("Settings"), _T("BackupFile"), m_bBackup);
 		theApp.WriteProfileString(_T("Settings"), _T("VssPath"), m_strVssPath);
@@ -645,7 +648,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  m_nVerSys,
 				  m_strVssPath,
 				  m_bBackup,
-				  m_bIgnoreWhitespace,
+				  m_nIgnoreWhitespace,
 				  m_bScrollToFirst);
 	}
 
