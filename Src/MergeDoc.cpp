@@ -375,6 +375,14 @@ BOOL CMergeDoc::Rescan()
 				free (e);
 			}
 
+			// If other file has EOL before EOF and other not...
+			if (inf[0].missing_newline != inf[1].missing_newline)
+			{
+				// ..lasf DIFFRANGE of file which has EOL must be
+				// fixed to contain last line too
+				FixLastDiffRange(inf[1].missing_newline);
+			}
+			
 			cleanup_file_buffers(inf);
 			
 			/* Close the file descriptors.  */
@@ -468,8 +476,7 @@ BOOL CMergeDoc::Rescan()
 void CMergeDoc::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op)
 {
 	TRY {
-		DIFFRANGE dr;
-		memset(&dr, 0, sizeof(dr));
+		DIFFRANGE dr = {0};
 		dr.begin0 = begin0;
 		dr.end0 = end0;
 		dr.begin1 = begin1;
@@ -481,13 +488,28 @@ void CMergeDoc::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYT
 	}
 	CATCH_ALL(e)
 	{
-		TCHAR msg[1024];
+		TCHAR msg[1024] = {0};
 		e->GetErrorMessage(msg, 1024);
 		AfxMessageBox(msg, MB_ICONSTOP);
 	}
 	END_CATCH_ALL;
 }
 
+// Expand last DIFFRANGE of file by one line to contain last line
+// after EOL
+void CMergeDoc::FixLastDiffRange(BOOL left)
+{
+	DIFFRANGE dr = {0};
+	int count = m_diffs.GetSize();
+	dr = m_diffs.GetAt(count - 1);
+
+	if (left)
+		dr.end0++;
+	else
+		dr.end1++;
+
+	m_diffs.SetAt(count - 1, dr); 
+}
 
 void CMergeDoc::AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList)
 {

@@ -138,6 +138,7 @@ public:
 	void RescanIfNeeded();
 	BOOL Rescan();
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
+	void FixLastDiffRange(BOOL left);
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	BOOL Undo();
 	void ListCopy(bool bSrcLeft);

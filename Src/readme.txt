@@ -3,6 +3,8 @@
   WinMerge: MergeDoc.h MergeDoc.cpp
  PATCH: [ 703069 ] Fix undo crash
   editlib: crystaltextbuffer.cpp
+ PATCH: [ 709502 ] Fix missing/existing EOL at end of file
+  WinMerge: MergeDoc.h MergeDoc.cpp
 
 2003-03-23 Perry
  PATCH: [ 706006 ] Suppress Rescan during Merge
