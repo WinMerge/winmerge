@@ -1,3 +1,5 @@
+2004-03-11 WinMerge experimental release 2.1.5.14 (installer test)
+
 2004-03-11 Kimmo
  PATCH: [ 913792 ] Cache color options for MergeView
   Src: MergeDoc.cpp MergeEditView.cpp MergeEditView.h
