@@ -29,7 +29,7 @@
       $this->_charset = 'ISO-8859-1';
       $this->_description = 'WinMerge HomePage: Visual text file comparison and merging (Open Source software).';
       $this->_keywords = 'WinMerge, free, download, Beyond Compare, Scooter Software, DLSuperC, DLSubCF, Component Software Diff, Viff, TreeDiff, FileSync, WMatch, Quick Spot, NTDMatch, windiff, WDIFF, FolderMatch, Merge 99, Merge99, PMdiff, PMDiff, PMDIFF, pmdiff, visual, visually, file, folder, directory, synchronization, comparison, graphical, document, text, compare, diff, difference, revision, Araxis, compare folders, compare files, synchronize folders, merge files, merge folders, Y2K, Year 2000, Year 2K, side-by-side, VFC, GFC, gdiff, CSDiff, OS2GFC, vdiff, ediff, fc';
-      $this->_version = WINMERGE_2_0;
+      $this->_version = WINMERGE_2_2;
     }
 
     /**
@@ -200,10 +200,9 @@
           break;
         case WINMERGE_2_2: //if WinMerge 2.2 ...
           $temp .= "<ul>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&package_id=29158&release_id=273507\">WinMerge Release Candidate</a></li>\n";
-          //$temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248\">WinMerge</a></li>\n";
-          //$temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403\">Language DLL's</a></li>\n";
-          //$temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254\">Documentation</a></li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248\">WinMerge</a></li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403\">Language DLL's</a></li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254\">Documentation</a></li>\n";
           $temp .= "</ul>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158\">WinMerge Beta versions</a></li>\n";

@@ -5,7 +5,6 @@
   $page->printHead('WinMerge 2.2', WINMERGE_2_2);
 ?>
 <h2>WinMerge 2.2</h2>
-<p class="important">This is a release candidate of the new WinMerge, for the current stable version go to the <a href="../index.php">main site</a>.</p>
 <p>WinMerge is an Open Source visual text file differencing and merging tool for Win32 platforms. It is highly useful for determing what has changed between project versions, and then merging changes between versions.</p>
 <h2>Features</h2>
 <ul>
@@ -15,6 +14,7 @@
   <li class="toc">Unicode support</li>
   <li class="toc">Difference pane shows current difference in two vertical panes</li>
   <li class="toc">Location pane shows map of files compared</li>
+  <li class="toc">In-line word difference visualisation</li>
   <li class="toc">File filters in directory diff</li>
   <li class="toc">Moved lines detection in file compare</li>
   <li class="toc">Shell Integration</li>
@@ -30,7 +30,7 @@
 
 <h2>Installation</h2>
 <p>Just download the installer and double-click it.</p>
-<p>Or you may simply unzip the binary zip package (eg, <code>WinMerge220-exe.zip</code>) into the desired location, and run
+<p>Or you may simply unzip the binary zip package (eg, <code>WinMerge-2.2.0-exe.zip</code>) into the desired location, and run
 <code>WinMerge.exe</code> or <code>WinMergeU.exe</code> (the latter is the Unicode version, only for use on NT/2000/XP).</p>
 
 <h2>Using WinMerge</h2>

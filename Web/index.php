@@ -4,36 +4,37 @@
   $page = new Page;
   $page->printHead();
 ?>
-<h1><img src="images/winmerge.gif" height="32" width="32" align="top" alt="WinMerge logo"> WinMerge</h1>
+<h1><img src="images/winmerge22.gif" height="32" width="32" align="top" alt="WinMerge logo"> WinMerge</h1>
 <p>WinMerge is an Open Source visual text file differencing and merging tool for Win32 platforms. It is highly useful for determing what has changed between project versions, and then merging changes between versions.</p>
 <h2>Features</h2>
 <ul>
-  <li class="toc">Visual differencing of text files
-  <li class="toc">Syntax highlighting
-  <li class="toc">Diff a single file, or entire directories
-  <li class="toc">File filters in directory diff
-  <li class="toc">Merge differences
-  <li class="toc">Directory recursion
-  <li class="toc">Integrated editor (with multi-level undo/redo)
-  <li class="toc">Find &amp; Replace
-  <li class="toc">Drag &amp; Drop support
-  <li class="toc">Option for integration with Windows Explorer
-  <li class="toc">Rudimentary Visual SourceSafe and Rational ClearCase integration
-  <li class="toc">Handles DOS, UNIX and MAC text file formats
-  <li class="toc">Localizable interface via resource DLL
-  <li class="toc">HTML-based <a href="2.0/docs/index.html">User's Guide</a></li>
+  <li class="toc">Visual differencing and merging of text files</li>
+  <li class="toc">Flexible editor with syntax highlighting</li>
+  <li class="toc">Handles DOS, UNIX and MAC text file formats</li>
+  <li class="toc">Unicode support</li>
+  <li class="toc">Difference pane shows current difference in two vertical panes</li>
+  <li class="toc">Location pane shows map of files compared</li>
+  <li class="toc">In-line word difference visualisation</li>
+  <li class="toc">File filters in directory diff</li>
+  <li class="toc">Moved lines detection in file compare</li>
+  <li class="toc">Shell Integration</li>
+  <li class="toc">Rudimentary Visual SourceSafe and Rational ClearCase integration</li>
+  <li class="toc">Archive file support using 7-zip</li>
+  <li class="toc">Plugins</li>
+  <li class="toc">Localizable interface via resource DLL</li>
+  <li class="toc">HTML-based <a href="2.2/manual/index.html">Manual</a></li>
 </ul>
 
 <h2>Screenshot</h2>
-<img src="images/screenshot.png" alt="Screenshot of WinMerge">
+<img src="2.2/images/filecomp1.gif" alt="Screenshot of WinMerge">
 
-<h2>WinMerge 2.0.2 - latest stable version</h2>
-<p><a href="2.0/index.php">WinMerge 2.0.2</a> is the latest stable version, and it is recommended for most users.</p>
+<h2>WinMerge 2.2 - latest stable version</h2>
+<p><a href="2.2/index.php">WinMerge 2.2</a> is the latest stable version, and it is recommended for most users.</p>
+<p><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.0-Setup.exe">Download WinMerge 2.2 Installer</a></p>
+
+<h2>WinMerge 2.0.2 - older stable version</h2>
+<p><a href="2.0/index.php">WinMerge 2.0.2</a> is an older version.</p>
 <p><a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup202.exe">Download WinMerge 2.0.2 Installer</a></p>
-
-<h2>WinMerge 2.2RC - release candidate version</h2>
-<p><a href="2.2/index.php">WinMerge 2.2RC</a> is the release candidate version from the next stable version with many new and great features.</p>
-<p><a href="https://sourceforge.net/project/showfiles.php?group_id=13216&package_id=29158&release_id=280509">Download WinMerge 2.2RC</a></p>
 
 <!--
 <h2>WinMerge 2.1 - current development version</h2>
@@ -42,17 +43,17 @@
 <p><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;release_id=199032">Download WinMerge 2.1</a></p>
 -->
 
-<h2>WinMerge 1.7 - older stable version</h2>
-<p><a href="1.7/index.php">WinMerge 1.7</a> is an older and simpler version, from before the integrated editor was introduced.</p>
+<h2>WinMerge 1.7 - much older stable version</h2>
+<p><a href="1.7/index.php">WinMerge 1.7</a> is an much older and simpler version, from before the integrated editor was introduced.</p>
 <p><a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup.exe">Download WinMerge 1.7 Installer</a></p>
 
 <h2>Installation</h2>
 <p>Just download the installer and double-click it.</p>
-<p>Or you may simply unzip the binary zip package (eg, <code>WinMerge202-exe.zip</code>) into the desired location, and run
+<p>Or you may simply unzip the binary zip package (eg, <code>WinMerge-2.2.0-exe.zip</code>) into the desired location, and run
 <code>WinMerge.exe</code> or <code>WinMergeU.exe</code> (the latter is the Unicode version, only for use on NT/2000/XP).</p>
 
 <h2>Using WinMerge</h2>
-<p>You can use the <a href="2.0/docs/index.html">online User's Guide</a>, or you can
+<p>You can use the <a href="2.2/manual/index.html">online Manual</a>, or you can
 <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254">download</a> a copy.</p>
 
 <h2>Support</h2>
@@ -65,7 +66,7 @@ bugs <a href="http://sourceforge.net/bugs/?group_id=13216">here</a>. Wish list i
 <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">RFE list</a> will also be considered, but we make
 absolutely no promises.</p>
 
-<p>Here is the current <a href="2.0/changes.php">change history</a>.</p>
+<p>Here is the current <a href="2.2/changes.php">change history</a>.</p>
 
 <p>Since WinMerge is an Open Source project, you may use it free of charge.
 But please consider making a <a href="http://sourceforge.net/project/project_donations.php?group_id=13216">donation</a>

@@ -1,6 +1,8 @@
 2004-11-10 Tim
- PATCH: [ 1060919 ] Web: Translation status updates
-  Web\developer\l10n: status.xml
+ PATCH: [ 1064175 ] Website changes for new stable release 2.2.0
+  Web: index.php page.inc WinMergePAD.xml
+  Web\2.0: index.php
+  Web\2.2: changes.txt index.php
  PATCH: [ 1064082 ] Updated WinMergePAD.xml
   Web: WinMergePAD.xml
  BUG: [ 1028252 ] [homepage] Help needed page refers to only bug list
