@@ -490,9 +490,3 @@ void SillyTestCrap()
 
 }
 #endif
-
-int CMergeApp::ExitInstance() 
-{
-	::CoUninitialize();	
-	return CWinApp::ExitInstance();
-}
