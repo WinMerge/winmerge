@@ -1,4 +1,24 @@
-// WinMergeShell.cpp : Implementation of CWinMergeShell
+/////////////////////////////////////////////////////////////////////////////
+// WinMergeShell.cpp : implementation file
+// see WinMergeShell.h for description
+//
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+//    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+//    You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+// Look at http://www.codeproject.com/shell/ for excellent guide
+// to Windows Shell programming by Michael Dunn.
+// 
+// This extension needs two registry values to be defined:
+//  HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\ContextMenuEnabled
+//   defines if context menu is shown (extension enabled)
+//  HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Executable
+//   contains path to program to run (can be batch file too)
+//
+// $Id$
+
 #include "stdafx.h"
 #include "ShellExtension.h"
 #include "WinMergeShell.h"
@@ -14,6 +34,7 @@ static LPCTSTR f_RegValuePath = _T("Executable");
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeShell
 
+/// Default constructor, loads icon bitmap
 CWinMergeShell::CWinMergeShell()
 {
 	m_nSelectedItems = 0;
@@ -21,6 +42,7 @@ CWinMergeShell::CWinMergeShell()
 			MAKEINTRESOURCE(IDB_WINMERGE));
 }
 
+/// Reads selected paths
 HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 		LPDATAOBJECT pDataObj, HKEY hProgID)
 {
@@ -53,7 +75,7 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 
 	HRESULT hr = S_OK;
 
-	// get all file names. but we'll only need the first one.
+	// Get all file names.
 	for (WORD x = 0 ; x < uNumFilesDropped; x++)
 	{
 		// Get the number of bytes required by the file's full pathname
@@ -81,6 +103,7 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
     return hr;
 }
 
+/// Adds context menu item
 HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd, UINT uidLastCmd, UINT uFlags)
 {
@@ -121,6 +144,7 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 }
 
+/// Gets string shown explorer's status bar when menuitem selected
 HRESULT CWinMergeShell::GetCommandString(UINT idCmd, UINT uFlags,
 		UINT* pwReserved, LPSTR pszName, UINT  cchMax)
 {
@@ -164,6 +188,7 @@ HRESULT CWinMergeShell::GetCommandString(UINT idCmd, UINT uFlags,
 	return E_INVALIDARG;
 }
 
+/// Runs WinMerge with given paths
 HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
@@ -201,19 +226,18 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	}
 }
 
+/// Reads WinMerge path from registry
 BOOL CWinMergeShell::GetWinMergeDir(CString &strDir)
 {
-	CString tmpDir;
 	CRegKeyEx reg;
 	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
 		// TODO: Ask location from user?
 		return FALSE;
 	
-	tmpDir = reg.ReadString(f_RegValuePath, _T(""));
-	if (tmpDir.IsEmpty())
+	strDir = reg.ReadString(f_RegValuePath, _T(""));
+	if (strDir.IsEmpty())
 		// TODO: Ask location from user?
 		return FALSE;
 
-	strDir = tmpDir;
 	return TRUE;
 }

@@ -1,3 +1,11 @@
+2003-08-17 Kimmo
+ Updated comments for ShellExtension: added comment about used registry values etc
+  ShellExtension:
+   ShellExtension.cpp WinMergeShell.h WinMergeShell.cpp
+ Removed two generated files from CVS (Christian spotted those)
+  ShellExtension: 
+   ShellExtension.h DllData.cp
+
 2003-08-16 Kimmo
  PATCH: [ 789204 ] Color dir compare based on left/right newer
   WinMerge: DirView.h DirView.cpp
