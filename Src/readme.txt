@@ -1,3 +1,7 @@
+2004-01-11 Kimmo
+ Minor update to 2.2 plan
+  Docs: Planning_2_2.txt
+
 2004-01-11 WinMerge experimental release 2.1.5.4 (cvs)
 
 2004-01-11 Perry
