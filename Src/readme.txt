@@ -3,6 +3,9 @@
   Src/Common: UniFile.cpp
  Fix for patch #1019108: update rescan info also after saving
   Src: MergeDoc.cpp
+ BUG: [ 1021003 ] Unicode builds do not read ansi files properly (UniFile.cpp)
+  Fix what seems to be invalid #ifdef'ing for unicode build
+  Src/Common: UniFile.cpp
 
 2004-09-01 Kimmo
  PATCH: [ 1019759 ] Allow D&D projectfile to main window

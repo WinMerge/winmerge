@@ -2,7 +2,7 @@
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-09-01 (Kimmo Varis)
+ *  @date   Edited:  2004-09-02 (Kimmo Varis)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -378,7 +378,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 		}
 		return TRUE;
 	}
-#else
+#endif
 	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, getDefaultCodepage()))
 	{
 		// If there aren't any bytes left in the file, return FALSE to indicate EOF
@@ -421,7 +421,6 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 		}
 		return TRUE;
 	}
-#endif
 
 	if (m_current - m_base + (m_charsize-1) >= m_filesize)
 		return FALSE;
