@@ -601,6 +601,12 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		bRecurse = dlg.m_bRecurse;
 		strExt = dlg.m_strParsedExt;
 	}
+	else
+	{
+		//save the MRU left and right files.
+		addToMru(pszLeft, _T("Files\\Left"));
+		addToMru(pszRight, _T("Files\\Right"));
+	}
 
 
 	// check to make sure they are same type
@@ -984,4 +990,28 @@ add_regexp(struct regexp_list **reglist,
   /* Add to the start of the list, since it's easier than the end.  */
   r->next = *reglist;
   *reglist = r;
+}
+
+// utility function to update CSuperComboBox format MRU
+void CMainFrame::addToMru(LPCSTR szItem, LPCSTR szRegSubKey, UINT nMaxItems)
+{
+	CString s,s2;
+	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, "Count", 0);
+	++cnt;	// add new string
+	if(cnt>nMaxItems)
+	{
+		cnt=nMaxItems;
+	}
+	// move items down a step
+	for (UINT i=cnt ; i!=0; --i)
+	{
+		s2.Format("Item_%d", i-1);
+		s = AfxGetApp()->GetProfileString(szRegSubKey, s2);
+		s2.Format("Item_%d", i);
+		AfxGetApp()->WriteProfileString(szRegSubKey, s2, s);
+	}
+	// add most recent item
+	AfxGetApp()->WriteProfileString(szRegSubKey, "Item_0", szItem);
+	// update count
+	AfxGetApp()->WriteProfileInt(szRegSubKey, "Count", cnt);
 }
