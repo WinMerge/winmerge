@@ -164,6 +164,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
 	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
+	ON_COMMAND(ID_FILE_CLOSE, OnWindowClose)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2285,4 +2286,23 @@ void CMergeEditView::GotoLine(UINT nLine, BOOL bRealLine, BOOL bLeft)
 	pRightView->SetCursorPos(ptPos);
 	pLeftView->SetAnchor(ptPos);
 	pRightView->SetAnchor(ptPos);
+}
+
+/**
+ * @brief Called when user selects Window/Close, allows user to save files.
+ */
+void CMergeEditView::OnWindowClose()
+{
+ 	CMergeDoc *pDoc = GetDocument();
+
+	// Allow user to cancel closing
+	if (!pDoc->SaveHelper(TRUE))
+		return;
+	else
+	{
+		// Set modified to false so we don't ask again about saving
+		pDoc->m_ltBuf.SetModified(FALSE);
+		pDoc->m_rtBuf.SetModified(FALSE);
+		GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
+	}
 }

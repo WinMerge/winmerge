@@ -264,6 +264,7 @@ protected:
 	afx_msg void OnMergingMode();
 	afx_msg void OnUpdateMergingMode(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateMergingStatus(CCmdUI* pCmdUI);
+	afx_msg void OnWindowClose();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

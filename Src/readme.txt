@@ -1,3 +1,7 @@
+2005-01-02 Kimmo
+ PATCH: [ 1088049 ] Ask about saving when Window/Close is selected
+  Src: MergeEditView.cpp MergeEditView.h
+
 2004-12-29 Perry
  BUG: [ 1064942 ] Copyright notice????
   Bumped copyright year to continue through 2005
