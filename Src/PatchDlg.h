@@ -100,8 +100,6 @@ protected:
 	afx_msg void OnSelchangeDiffStyle();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-	BOOL SelectFile(CString& path, LPCTSTR pszFolder);
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -5,6 +5,9 @@
   WinMerge: ChildFrm.cpp
  Removed unneeded unlocalisable string from SelectFile() ("Directory selection")
   WinMerge: Merge.cpp
+ Use SelectFile() from Merge.cpp in Patch Generate dialog
+  also fixes bug Result-file asked with "Open" dialog
+  WinMerge: PatchDlg.h PatchDlg.cpp
 
 2003-10-14 Laoran
  PATCH: [ 819123 ] Half-wait cursor during rescan (new try)

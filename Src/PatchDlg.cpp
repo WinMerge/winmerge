@@ -215,8 +215,10 @@ void CPatchDlg::OnDiffBrowseFile1()
 	CString s;
 	CString folder;
 	CString name;
+	CString title;
 
-	if (SelectFile(s, folder))
+	VERIFY(title.LoadString(IDS_OPEN_TITLE));
+	if (SelectFile(s, folder, title, NULL, TRUE))
 	{
 		AddNewFile(s, TRUE);
 		UpdateData(FALSE);
@@ -231,8 +233,10 @@ void CPatchDlg::OnDiffBrowseFile2()
 	CString s;
 	CString folder;
 	CString name;
+	CString title;
 
-	if (SelectFile(s, folder))
+	VERIFY(title.LoadString(IDS_OPEN_TITLE));
+	if (SelectFile(s, folder, title, NULL, TRUE))
 	{
 		AddNewFile(s, FALSE);
 		UpdateData(FALSE);
@@ -287,8 +291,10 @@ void CPatchDlg::OnDiffBrowseResult()
 	CString s;
 	CString folder;
 	CString name;
+	CString title;
 
-	if (SelectFile(s, folder))
+	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
+	if (SelectFile(s, folder, title, NULL, FALSE))
 	{
 		SplitFilename(s, &folder, &name, NULL);
 		m_fileResult = s;
@@ -296,29 +302,7 @@ void CPatchDlg::OnDiffBrowseResult()
 	}
 }
 
-/** 
- * @brief Select file using Windows common dialog
- */
-BOOL CPatchDlg::SelectFile(CString& path, LPCTSTR pszFolder)
-{
-	CString s;
 
-	VERIFY(s.LoadString(IDS_ALLFILES));
-	CFileDialog pdlg(TRUE, NULL, _T(""), OFN_NOTESTFILECREATE | OFN_PATHMUSTEXIST, s);
-
-	CString title;
-	VERIFY(title.LoadString(IDS_OPEN_TITLE));
-	pdlg.m_ofn.lpstrTitle = (LPCTSTR)title;
-	pdlg.m_ofn.lpstrInitialDir = (LPCTSTR)pszFolder;
-
-	if (pdlg.DoModal() == IDOK)
-	{
-	 	path = pdlg.GetPathName();
-	 	return TRUE;
-	}
-	else
-		return FALSE;
-}
 
 /** 
  * @brief Change diff style, enable/disable context selection
