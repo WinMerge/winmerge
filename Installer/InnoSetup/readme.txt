@@ -1,3 +1,7 @@
+2004-10-29 Kimmo
+ PATCH: [ 1056383 ] Install Merge7z40x.dll
+  InnoSetup: WinMerge Localized.iss 
+
 2004-10-28 Kimmo
  PATCH: [ 1055590 ] Installer: read manual files from /Build/Manual
   InnoSetup: WinMerge Localized.iss
