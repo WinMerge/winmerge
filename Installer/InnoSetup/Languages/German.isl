@@ -352,6 +352,7 @@ DanishLanguage=Dänische Menüs und Dialoge
 DutchLanguage=Holländische Menüs und Dialoge
 FrenchLanguage=Französische Menüs und Dialoge
 GermanLanguage=Deutsche Menüs und Dialoge
+HungarianLanguage=Hungarian menus and dialogs
 ItalianLanguage=Italienische Menüs und Dialoge
 JapaneseLanguage=Japanische Menüs und Dialoge
 KoreanLanguage=Koreanische Menüs und Dialoge

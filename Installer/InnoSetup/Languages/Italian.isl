@@ -345,6 +345,7 @@ DanishLanguage=Menu e finestre di dialogo in danese
 DutchLanguage=Menu e finestre di dialogo in olandese
 FrenchLanguage=Menu e finestre di dialogo in francese
 GermanLanguage=Menu e finestre di dialogo in tedesco
+HungarianLanguage=Hungarian menus and dialogs
 ItalianLanguage=Menu e finestre di dialogo in italiano
 JapaneseLanguage=Menu e finestre di dialogo in giapponese
 KoreanLanguage=Menu e finestre di dialogo in coreano

@@ -158,6 +158,7 @@ Name: Danish; MessagesFile: Languages\Danish.isl
 Name: Dutch; MessagesFile: Languages\Dutch.isl
 Name: French; MessagesFile: Languages\French.isl
 Name: German; MessagesFile: Languages\German.isl
+Name: Hungarian; MessagesFile: Languages\Hungarian.isl
 Name: Italian; MessagesFile: Languages\Italian.isl
 Name: Japanese; MessagesFile: Languages\Japanese.isl
 Name: Korean; MessagesFile: Languages\Korean.isl
@@ -221,6 +222,9 @@ Name: Languages\French; Description: {cm:FrenchLanguage}; Flags: disablenouninst
 
 Name: Languages\German; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(German)
 Name: Languages\German; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: German
+
+Name: Languages\Hungarian; Description: {cm:HungarianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Hungarian)
+Name: Languages\Hungarian; Description: {cm:HungarianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Hungarian
 
 Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Italian)
 Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Italian
@@ -313,6 +317,7 @@ Name: {app}\MergeDanish.lang; Type: files; Check: ComponentDisabled('Danish')
 Name: {app}\MergeDutch.lang; Type: files; Check: ComponentDisabled('Dutch')
 Name: {app}\MergeFrench.lang; Type: files; Check: ComponentDisabled('French')
 Name: {app}\MergeGerman.lang; Type: files; Check: ComponentDisabled('German')
+Name: {app}\MergeHungarian.lang; Type: files; Check: ComponentDisabled('Hungarian')
 Name: {app}\MergeItalian.lang; Type: files; Check: ComponentDisabled('Italian')
 Name: {app}\MergeJapanese.lang; Type: files; Check: ComponentDisabled('Japanese')
 Name: {app}\MergeKorean.lang; Type: files; Check: ComponentDisabled('Korean')
@@ -423,6 +428,7 @@ Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: Langu
 Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: Languages\French; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: Languages\German; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeHungarian.lang; DestDir: {app}; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeJapanese.lang; DestDir: {app}; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
