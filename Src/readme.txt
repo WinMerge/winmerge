@@ -1,3 +1,5 @@
+2004-06-12 WinMerge experimental release 2.1.7.7 (cvs)
+
 2004-06-11 Laoran
  BUG: [ 970936 ] Cannot merge last diff
   Src: MergeDiffDetailView.cpp
