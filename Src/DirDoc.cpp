@@ -43,11 +43,7 @@ int compare_files (LPCTSTR, LPCTSTR, LPCTSTR, LPCTSTR, CDiffContext*, int);
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
-CLogFile gLog(_T("WinMerge.log"), NULL, TRUE);
-bool gWriteLog = true;
-
-
+extern CLogFile gLog;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc
@@ -188,14 +184,14 @@ void CDirDoc::Rescan()
 	ASSERT(m_pCtxt != NULL);
 	BeginWaitCursor();
 
-	if (gWriteLog) gLog.Write(_T("Starting directory scan:\r\n\tLeft: %s\r\n\tRight: %s\r\n"),
+	gLog.Write(_T("Starting directory scan:\r\n\tLeft: %s\r\n\tRight: %s\r\n"),
 			m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
 	m_pCtxt->RemoveAll();
 
 	compare_files (0, (char const *)(LPCTSTR)m_pCtxt->m_strLeft,
 			       0, (char const *)(LPCTSTR)m_pCtxt->m_strRight, m_pCtxt, 0);
 
-	if (gWriteLog) gLog.Write(_T("Directory scan complete\r\n"));
+	gLog.Write(_T("Directory scan complete\r\n"));
 
 	CString s;
 	AfxFormatString2(s, IDS_DIRECTORY_WINDOW_STATUS_FMT, m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
@@ -310,10 +306,10 @@ static long GetModTime(LPCTSTR szPath)
 static void UpdateTimes(DIFFITEM * pdi)
 {
 	CString sLeft = (CString)pdi->lpath + _T("\\") + pdi->filename;
-	pdi->ltime = GetModTime(sLeft);
+	pdi->ltime = GetFileModTime(sLeft);
 
 	CString sRight = (CString)pdi->rpath + _T("\\") + pdi->filename;
-	pdi->rtime = GetModTime(sRight);
+	pdi->rtime = GetFileModTime(sRight);
 }
 
 static CString
@@ -402,8 +398,8 @@ void CDirDoc::SetDiffContext(CDiffContext *pCtxt)
 	m_pCtxt = pCtxt;
 }
 
-BOOL CDirDoc::UpdateItemStatus( LPCTSTR pathLeft, LPCTSTR pathRight,
-							   UINT status )
+BOOL CDirDoc::UpdateItemStatus(LPCTSTR pathLeft, LPCTSTR pathRight,
+							   UINT status)
 {
 	TCHAR path1[_MAX_PATH] = {0};
 	TCHAR path2[_MAX_PATH] = {0};
@@ -471,4 +467,10 @@ BOOL CDirDoc::UpdateItemStatus( LPCTSTR pathLeft, LPCTSTR pathRight,
 		i++;
 	}
 	return found;
+}
+CDirView * CDirDoc::SetView(CDirView * newView)
+{
+	CDirView * currentView = m_pView;
+	m_pView = newView;
+	return currentView;
 }

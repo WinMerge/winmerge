@@ -51,6 +51,17 @@ BOOL GetFileTimes(LPCTSTR szFilename,
 	return FALSE;
 }
 
+long GetFileModTime(LPCTSTR szPath)
+{
+	if (!szPath || !szPath[0]) return 0;
+	struct stat mystats;
+	memset(&mystats, 0, sizeof(mystats));
+	int stat_result = stat(szPath, &mystats);
+	if (stat_result!=0)
+		return 0;
+	return mystats.st_mtime;
+}
+
 DWORD GetFileSizeEx(LPCTSTR szFilename)
 {
 	WIN32_FIND_DATA ffi;
@@ -326,7 +337,7 @@ replace_char(LPTSTR s, int target, int repl)
 CString ConvertPath2PS(LPCTSTR szPath)
 {
 	CString result(_T(""));
-	TCHAR path[MAX_PATH];
+	TCHAR path[_MAX_PATH] = {0};
 	_tcscpy(path,szPath);
 
 	replace_char(path, _T('\\'), _T('//'));
@@ -410,7 +421,7 @@ AddExtension(LPTSTR name, LPCTSTR ext)
 
 	assert(ext[0] != _T('.'));
 	if (!((p=_tcsrchr(name,_T('.'))) != NULL
-		  && !_tcscmp(p+1,ext)))
+		  && !_tcsicmp(p+1,ext)))
 	{
 		_tcscat(name,_T("."));
 		_tcscat(name,ext);
@@ -601,7 +612,7 @@ SwapEndian(short int val)
 
 BOOL MkDirEx(LPCTSTR filename)
 {
-	TCHAR tempPath[MAX_PATH];
+	TCHAR tempPath[_MAX_PATH] = {0};
 	LPTSTR p; 
 
 	_tcscpy(tempPath, filename);
@@ -714,7 +725,7 @@ BOOL HaveAdminAccess()
 
 CString LegalizeFileName(LPCTSTR szFileName)
 {
-	TCHAR tempname[MAX_PATH];
+	TCHAR tempname[_MAX_PATH] = {0};
 	LPTSTR p;
 
 	_tcscpy(tempname, szFileName);
@@ -1100,10 +1111,10 @@ BOOL HasExited(HANDLE hProcess, DWORD *pCode)
 BOOL IsLocalPath(LPCTSTR path) 
 {
 
-  _TCHAR finalpath[_MAX_PATH];
-  _TCHAR temppath[_MAX_PATH];
-  _TCHAR uncname[_MAX_PATH];
-  _TCHAR computername[_MAX_PATH];
+  _TCHAR finalpath[_MAX_PATH] = {0};
+  _TCHAR temppath[_MAX_PATH] = {0};
+  _TCHAR uncname[_MAX_PATH] = {0};
+  _TCHAR computername[_MAX_PATH] = {0};
 
   BOOL bUNC=FALSE;
   BOOL bLocal=FALSE;
@@ -1205,10 +1216,11 @@ BOOL IsLocalPath(LPCTSTR path)
 
 CString GetModulePath(HMODULE hModule /* = NULL*/)
 {
-	TCHAR path[MAX_PATH], temp[MAX_PATH];
-	GetModuleFileName(hModule, temp, MAX_PATH); 
+	TCHAR path[MAX_PATH] = {0};
+	TCHAR  temp[MAX_PATH] = {0};
+	GetModuleFileName(hModule, temp, _MAX_PATH); 
 	split_filename(temp, path, NULL, NULL);
-	return CString(path);
+	return path;
 }
 
 

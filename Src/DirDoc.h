@@ -42,7 +42,6 @@ protected:
 public:
 // Operations
 public:
-	CDirView *m_pView;
 	CDirView * GetMainView();
 
 // Overrides
@@ -66,6 +65,9 @@ public:
 	void Rescan();
 	CDiffContext *m_pCtxt;
 	virtual ~CDirDoc();
+	CDirView *SetView( CDirView *newView );
+	CDirView *GetView() { return m_pView; }
+
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -77,6 +79,11 @@ protected:
 		// NOTE - the ClassWizard will add and remove member functions here.
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+	// Implementation data
+private:
+	CDirView *m_pView;
+
 };
 
 //{{AFX_INSERT_LOCATION}}

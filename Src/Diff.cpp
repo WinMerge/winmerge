@@ -53,7 +53,6 @@ extern int diff_dirs (CDiffContext*, int);
 
 
 extern CLogFile gLog;
-extern bool gWriteLog;
 
 int compare_files (LPCTSTR, LPCTSTR, LPCTSTR, LPCTSTR, CDiffContext*, int);
 int excluded_filename (char const *f);
@@ -193,7 +192,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
   /* If this is directory comparison, perhaps we have a file
      that exists only in one of the directories.  */
 
-  if (gWriteLog) gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s"), name0, name1, dir0, dir1);
+  gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s"), name0, name1, dir0, dir1);
 
   if (! ((name0 != 0 && name1 != 0)
 	 || (unidirectional_new_file_flag && name1 != 0)
@@ -298,7 +297,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 		  name = name1;
 	  }
 	  pCtx->AddDiff(name, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, code);
-      if (gWriteLog) gLog.Write(_T("\tUnique\r\n"));
+      gLog.Write(_T("\tUnique\r\n"));
 	  if (free0)
 		  free (free0);
 	  if (free1)
@@ -374,7 +373,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	}
       else
 	{
-	  if (gWriteLog) gLog.Write(_T("\tDirs found.\r\n"));
+	  gLog.Write(_T("\tDirs found.\r\n"));
 
 	  CDiffContext ctx(inf[0].name, inf[1].name, *pCtx);
 	  val = diff_dirs (&ctx, depth);
@@ -396,7 +395,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	      && (entire_new_file_flag
 		  || (unidirectional_new_file_flag && inf[0].desc == -1)))
 	  {
-		  if (gWriteLog) gLog.Write(_T("\tDirs found.\r\n"));
+		  gLog.Write(_T("\tDirs found.\r\n"));
 		  CDiffContext ctx(inf[0].name, inf[1].name, *pCtx);
 		  val = diff_dirs (&ctx, depth);
 	  }
@@ -488,13 +487,13 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 		if(val==2)
 	    {
 			pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_ERROR);
-			if (gWriteLog) gLog.Write(_T("\t%s.\r\n"), val==2? "error":"different");
+			gLog.Write(_T("\t%s.\r\n"), val==2? "error":"different");
 	    }
 		else if (diff_flag)
 	    {
 			val = 1;
 			pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_BINDIFF);
-				if (gWriteLog) gLog.Write(_T("\tbinary.\r\n"));
+			gLog.Write(_T("\tdiffenent binary.\r\n"));
 	    }
 	    else 
 	    {
@@ -534,7 +533,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	    if (val==2 || val == 1)
 	    {
 		pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, (BYTE)(val==2? FILE_ERROR:FILE_DIFF));
-		if (gWriteLog) gLog.Write(_T("\t%s.\r\n"), val==2? "error":"different");
+		gLog.Write(_T("\t%s.\r\n"), val==2? "error":"different");
 	    }
 	}
     }
@@ -548,7 +547,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	message ("Files %s and %s are identical\n",
 		 inf[0].name, inf[1].name);
       pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_SAME);
-      if (gWriteLog) gLog.Write(_T("\tidentical.\r\n"));
+      gLog.Write(_T("\tidentical.\r\n"));
    }
   else
   {

@@ -127,13 +127,12 @@ void CDirView::OnInitialUpdate()
 	CListViewEx::OnInitialUpdate();
 	m_sortColumn = -1;	// start up in no sorted order.
 	m_pList = &GetListCtrl();
-	GetDocument()->m_pView = this;
+	GetDocument()->SetView(this);
 
     // Replace standard header with sort header
     if (HWND hWnd = ListView_GetHeader(m_pList->m_hWnd))
             m_ctlSortHeader.SubclassWindow(hWnd);
         
-	
 	int w;
 	CString sKey;
 	CString sFmt(_T("WDirHdr%d")), sSect(_T("DirView"));
@@ -742,4 +741,37 @@ void CDirView::DoUpdateOpenRight(CCmdUI* pCmdUI)
 	pCmdUI->Enable(sel>=0);
 }
 
+UINT CDirView::GetSelectedCount() const
+{
+	return m_pList->GetSelectedCount();
+}
 
+int CDirView::GetFirstSelectedInd()
+{
+	int sel =- 1;
+	sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
+	
+	return sel;
+}
+
+DIFFITEM CDirView::GetNextSelectedInd(int &ind)
+{
+	DIFFITEM di = {0};
+	int sel =- 1;
+
+	sel = m_pList->GetNextItem(ind, LVNI_SELECTED);
+	di = GetDiffItem(ind);
+	ind = sel;
+	
+	return di;
+}
+
+DIFFITEM CDirView::GetItemAt(int ind)
+{
+	DIFFITEM di = { 0 };
+	if (ind != -1)
+	{	
+		di = GetDiffItem(ind);
+	}
+	return di;
+}

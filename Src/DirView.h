@@ -71,6 +71,10 @@ public:
 	void DeleteAllDisplayItems();
 	int GetItemIndex(DWORD key);
 
+	UINT GetSelectedCount() const;
+	int GetFirstSelectedInd();
+	DIFFITEM GetNextSelectedInd(int &ind);
+	DIFFITEM GetItemAt(int ind);
 
 // Implementation types
 private:

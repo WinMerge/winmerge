@@ -56,8 +56,7 @@ static char THIS_FILE[] = __FILE__;
 
 extern int recursive;
 CMainFrame *mf = NULL;
-extern CLogFile gLog;
-extern bool gWriteLog;
+CLogFile gLog(_T("WinMerge.log"), NULL, TRUE);
 
 // add a 
 static void add_regexp PARAMS((struct regexp_list **, char const*));
@@ -133,6 +132,7 @@ CMainFrame::CMainFrame()
 	m_nTabType = theApp.GetProfileInt(_T("Settings"), _T("TabType"), 0);
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
+	// TODO: read preference for logging
 
 	if (m_strVssPath.IsEmpty())
 	{

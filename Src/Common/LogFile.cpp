@@ -16,11 +16,14 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 CLogFile::CLogFile(LPCTSTR szLogName, LPCTSTR szLogPath /*= NULL*/, BOOL bDeleteExisting /*=FALSE*/)
+	: m_nMaxSize(1024576)
+	, m_bEnabled(FALSE)
+// CString m_strLogPath
 {
 
 	TCHAR temp[MAX_PATH];
 
-	m_nMaxSize = 1024576;
+
 
 	// build the path to the logfile
 	if (szLogPath != NULL
@@ -84,8 +87,12 @@ void CLogFile::Write(LPCTSTR pszFormat, ...)
 
 void CLogFile::Write(DWORD idFormatString, ...)
 {
-    TCHAR buf[2048]=_T("");
+	if (!m_bEnabled)
+		return;
+
+	TCHAR buf[2048]=_T("");
 	CString strFormat;
+
 	if (strFormat.LoadString(idFormatString))
 	{
 		va_list arglist;
@@ -95,11 +102,7 @@ void CLogFile::Write(DWORD idFormatString, ...)
 		_tcscat(buf, _T("\n"));
 
 		FILE *f;
-#ifndef _UNICODE
-		if ((f=fopen(m_strLogPath, _T("a"))) != NULL)
-#else
-		if ((f=wfopen(m_strLogPath, L"a")) != NULL)
-#endif
+		if ((f=_tfopen(m_strLogPath, _T("a"))) != NULL)
 		{
 			_fputts(buf, f);
 				
@@ -114,6 +117,8 @@ void CLogFile::Write(DWORD idFormatString, ...)
 
 void CLogFile::WriteError(CString JobID, CString ProcessID, CString Event, long ecode, CString CIndex)
 {
+	if (!m_bEnabled)
+		return;
 	
 	JobID.TrimRight();
 	ProcessID.TrimRight();
@@ -129,7 +134,7 @@ void CLogFile::WriteError(CString JobID, CString ProcessID, CString Event, long 
 
 void CLogFile::Prune(FILE *f)
 {
-	TCHAR buf[8196];
+	TCHAR buf[8196] = {0};
 	DWORD amt;
 	TCHAR tempfile[MAX_PATH];
 	FILE *tf;

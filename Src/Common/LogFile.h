@@ -16,7 +16,6 @@ public:
 
 	CLogFile(LPCTSTR szLogName, LPCTSTR szLogPath = NULL, BOOL bDeleteExisting = FALSE);
 
-	void Prune(FILE *f);
 	void Write(LPCTSTR pszFormat, ...);
 	void Write(DWORD idFormatString, ...);
 
@@ -25,11 +24,16 @@ public:
 
 	virtual ~CLogFile();
 	void SetMaxLogSize(DWORD dwMax) { m_nMaxSize = dwMax; }
-	CString GetPath() { return m_strLogPath; }
+	CString GetPath() const { return m_strLogPath; }
+	void EnableLogging(BOOL enable) { m_bEnabled = enable; }
+
 
 protected:
-	DWORD		m_nMaxSize;
-	CString	m_strLogPath;
+	void Prune(FILE *f);
+
+	DWORD     m_nMaxSize;
+	BOOL      m_bEnabled;
+	CString   m_strLogPath;
 
 };
 
