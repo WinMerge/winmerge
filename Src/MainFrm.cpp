@@ -2217,34 +2217,23 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 
 	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
 	{
-		// Check if file exists
-		CFileStatus status;
-		if (CFile::GetStatus(m_sExtEditorPath, status))
-		{
-			// Format command line
-			CString strCommandLine = _T("\"") + m_sExtEditorPath + _T("\" \"") +
-				file + _T("\"");
+		// Format command line
+		CString strCommandLine = _T("\"") + m_sExtEditorPath + _T("\" \"") +
+			file + _T("\"");
 
-			BOOL retVal = FALSE;
-			STARTUPINFO stInfo = {0};
-			stInfo.cb = sizeof(STARTUPINFO);
-			PROCESS_INFORMATION processInfo;
+		BOOL retVal = FALSE;
+		STARTUPINFO stInfo = {0};
+		stInfo.cb = sizeof(STARTUPINFO);
+		PROCESS_INFORMATION processInfo;
 
-			retVal = CreateProcess(NULL, (LPTSTR)(LPCTSTR) strCommandLine,
-				NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
-				&stInfo, &processInfo);
+		retVal = CreateProcess(NULL, (LPTSTR)(LPCTSTR) strCommandLine,
+			NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
+			&stInfo, &processInfo);
 
-			if (!retVal)
-			{
-				CString msg;
-				AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, m_sExtEditorPath);
-				AfxMessageBox(msg, MB_ICONSTOP);
-			}
-		}
-		else
+		if (!retVal)
 		{
 			CString msg;
-			AfxFormatString1(msg, IDS_ERROR_FILE_NOT_FOUND, m_sExtEditorPath);
+			AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, m_sExtEditorPath);
 			AfxMessageBox(msg, MB_ICONSTOP);
 		}
 	}

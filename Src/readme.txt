@@ -1,3 +1,7 @@
+2003-11-06 Kimmo
+ BUG: [ 836781 ] File not found: notepad.exe
+  WinMerge: MainFrm.cpp
+
 2003-11-06 Laoran
  BUG: [ 836384 ] File extension wildcards does not work. 
   WinMerge: OpenDlg.cpp
