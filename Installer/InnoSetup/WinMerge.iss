@@ -1,8 +1,19 @@
-;Please note in order to compile this script you must have at least Inno Setup 4.18 and ISPack 4.18 installed.  Inno Setup 4.18 or a newer version
-;can be downloaded at: http://www.jrsoftware.org/isdl.php
+;      Original File Name:  WinMerge.iss
+;           File Revision:  18
+;           Revision Date:  2004/03/10 16:51
+;           Programmed by:  Christian Blackburn and ?
+;                 Purpose:  The is the Inno Setup installation script for distributing our WinmMerge application.
+; Tools Needed To Compile:  Inno Setup 4.18+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 4.18+(http://www.jrsoftware.org/isdl.php)
+;                           note: the versions of Inno Setup and the QuickStart Pack should be identical to ensure proper function
+;Directly Dependant Files:  Because this is an installer. It would be difficult to list and maintain each of the files referenced
+;                           throughout the script in the header.  If you search this plain text script for a particular file in our CVS and it
+;                           doesn't appear then this script is not directly dependant on that file.
+;Compilation Instructions:  1.  MANUALLY combine the textual contents of \Docs\Read Me.rtf and \Docs\Contributors.rtf
+;                               making an updated \InnoSetup\Info.rtf
+;                           2.  Open this file in Inno Setup or ISTool
 
 ;Installer Todo List:
-; 1.  Determine the minimum allowable version Comctl32.dll.  If they don't have it distribute IE 6.01 on those platforms.
+;  1. Determine the minimum allowable version Comctl32.dll.  If they don't have it distribute IE 6.01 on those platforms.
 ;     We'll actually need to determine the user's locale and download the correct version of IE for their platform (Yikes!, maybe we'll only
 ;     Distribute IE for those lucky enough to speak English :)
 ;     Note the following file could be downloaded this would list the locales and their download paths:
@@ -14,16 +25,24 @@
 ;     Locale: da
 ;     Note this seemingly awesome feature will break eventually (MS does change their website regularly) so we'll need to have some
 ;     damage control built in.
-; 2.  Add WinMerge [+ or - U].exe to HKLM\Software\Microsoft\Windows\CurrentVersion\AppPaths\
-; 3.  Make a Floppy Disk /Low Bandwidth Edition of the WinMerge Installer that doesn't include outdated (3.11, 3.12) 7-Zip Support or the Language files
-;     If the user requires any of these we'll download it on the fly.  (maybe that should be the default behavior from the get go?)
-; 4.  Make an uninstall icon and use it: UninstallIconFile=..\src\res\Merge.ico
-; 5.  Add WinMerge is running would you like to close it now support with programmatic termination [ISX]
-; 6.  Automatically detect the user's locale, select, and install that language the and the registry settings that would make that language be
+;  2. Determine if our application really needs 7-Zip installed to function.  If it does then we should probably just bundle 7-Zip or provide
+;      integrated download on the fly support for it.
+;  3. Automatically detect the user's locale, select, and install that language the and the registry settings that would make that language be
 ;     the language on startup.
-; 7.  We need to look in the registry and or inno setup log file and actually determine what the previous start
+;  4. Add WinMerge is running would you like to close it now support with programmatic termination [ISX]
+;  5. Add WinMerge to the user's path so they can execute comparison's from a Dos Prompt (Cmd.exe/Command.exe)
+;  6. Make an uninstall icon and use it: UninstallIconFile=..\src\res\Merge.ico
+;  7. Make a Floppy Disk /Low Bandwidth Edition of the WinMerge Installer that doesn't include outdated (3.11, 3.12) 7-Zip Support or the Language files
+;     If the user requires any of these we'll download it on the fly.  (maybe that should be the default behavior from the get go?)
+;  8. We need to look in the registry and or inno setup log file and actually determine what the previous start
 ;     menu location was so that we can remove it if the user chooses to install to a different location.
-; 8.  Add WinMerge to the user's path so they can execute comparison's from a Dos Prompt (Cmd.exe/Command.exe)
+;  9. Determine whether NT 3.51 with a 3.0 or higher version of IE can run our application I don't want the system requirements
+;     in \Docs\Read Me.RTF to be inaccurate.
+; 10. Create two info pages during installation one for our Contributors and a second one for our Read Me file.
+;     If this isn't possible then we'll need to use ISPP and somehow programatically combine the two RTF files prior to compilation.
+; 11. Copy our Read Me file to the intallation directory and include it in the start menu.
+; 12. Open the start menu group that the user installed to automatically towards the end of the installation.
+; 13. Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL
 
 #define AppVersion GetFileVersion(AddBackSlash(SourcePath) + "..\Build\MergeRelease\WinMerge.exe")
 
@@ -31,9 +50,9 @@
 AppName=WinMerge
 AppVerName=WinMerge {#AppVersion}
 AppPublisher=Thingamahoochie Software
-AppPublisherURL=http://winmerge.sourceforge.net/
-AppSupportURL=http://winmerge.sourceforge.net/
-AppUpdatesURL=http://winmerge.sourceforge.net/
+AppPublisherURL=http://winmerge.org/
+AppSupportURL=http://winmerge.org/
+AppUpdatesURL=http://winmerge.org/
 
 ;This is in case an older version of the installer happened to be
 DirExistsWarning=No
@@ -46,7 +65,7 @@ DefaultGroupName=WinMerge
 DisableStartupPrompt=yes
 AllowNoIcons=yes
 LicenseFile=..\src\COPYING
-InfoBeforeFile=Info.txt
+InfoBeforeFile=Info.rtf
 OutputBaseFilename=WinMerge {#AppVersion}
 PrivilegesRequired=poweruser
 UninstallDisplayIcon={app}\{code:ExeName}
@@ -61,8 +80,8 @@ WizardImageStretch=No
 
 SetupIconFile=..\src\res\Merge.ico
 
-;The uninstall icon shouldn't match the WinMerge icon, so I've remmed this until someone
-;(probably me) creates a decent WinMerge specific uninstall icon
+;The uninstall icon shouldn't match the WinMerge icon, because it would look confusing in the start menu.
+;  So I've remmed this until someone (probably me [Seier Blackburn]) creates a decent WinMerge specific uninstall icon
 ;UninstallIconFile=..\src\res\Merge.ico
 
 ;Compression Parameters
@@ -80,9 +99,9 @@ Name: quicklaunchicon; Description: Create a &Quick Launch icon; GroupDescriptio
 
 
 [Components]
-Name: main; Description: WinMerge main files; Types: full compact custom; Flags: fixed
-Name: docs; Description: User's guide; Types: full
-Name: filters; Description: Filter files; Types: full
+Name: main; Description: WinMerge Core Files; Types: full compact custom; Flags: fixed
+Name: docs; Description: User's Guide; Types: full
+Name: filters; Description: Filters; Types: full
 
 ;Languages are no longer a default part of a normal installation.  Users that had chosen a foreign
 ;language in the past will still have one now though
@@ -138,6 +157,7 @@ Name: {app}\WinMergeU.exe; Type: files
 Name: {commonstartmenu}\Programs\WinMerge\WinMerge.lnk; Type: files
 Name: {commonstartmenu}\Programs\WinMerge\Uninstall WinMerge.lnk; Type: files
 Name: {commonstartmenu}\Programs\WinMerge\WinMerge on the Web.lnk; Type: files
+Name: {commonstartmenu}\Programs\WinMerge\Read Me.lnk; Type: files
 Name: {commonstartmenu}\Programs\WinMerge; Type: dirifempty
 
 ;This removes the quick launch icon in case the user chooses not to install it after previously having it installed
@@ -148,7 +168,7 @@ Name: {userdesktop}\WinMerge.lnk; Type: files
 
 [Files]
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
-Source: ..\Build\MergeRelease\WinMergeU.exe; DestDir: {app}; MinVersion: 0, 4; Components: main; Flags: ignoreversion
+Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; MinVersion: 0, 4; Components: main; Flags: ignoreversion
 
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running Win9X platform system
 Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; MinVersion: 4, 0; Components: main; Flags: ignoreversion
@@ -161,14 +181,14 @@ Source: Runtimes\msvcrt.dll; DestDir: {sys}; Flags: restartreplace uninsneveruni
 
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\Build\Merge7z313U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(313)
-Source: ..\Build\Merge7z312U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(312)
-Source: ..\Build\Merge7z311U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(311)
+Source: ..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(313)
+Source: ..\Build\MergeUnicodeRelease\Merge7z312U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(312)
+Source: ..\Build\MergeUnicodeRelease\Merge7z311U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(311)
 
 
-Source: ..\Build\Merge7z313.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(313)
-Source: ..\Build\Merge7z312.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(312)
-Source: ..\Build\Merge7z311.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(311)
+Source: ..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(313)
+Source: ..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(312)
+Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(311)
 
 Source: ..\Docs\*.*; DestDir: {app}\Docs; Components: docs; Flags: ignoreversion sortfilesbyextension
 Source: ..\Filters\*.*; DestDir: {app}\Filters; Components: filters; Flags: ignoreversion sortfilesbyextension
@@ -189,14 +209,16 @@ Source: ..\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: italianl
 Source: ..\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: spanishlanguage; Flags: ignoreversion
 Source: ..\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: brazilian; Flags: ignoreversion
 
+Source: ..\Docs\Read Me.rtf; DestDir: {app}; Components: main; Flags: ignoreversion
 
 [INI]
-Filename: {app}\WinMerge.url; Section: InternetShortcut; Key: URL; String: http://winmerge.sourceforge.net/
+Filename: {app}\WinMerge.url; Section: InternetShortcut; Key: URL; String: http://winmerge.org/
 
 
 [Icons]
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; HotKey: Ctrl+Alt+M
+Name: {group}\Read Me; Filename: {app}\Read Me.rtf; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\WinMerge on the Web; Filename: {app}\WinMerge.url
 Name: {group}\Uninstall WinMerge; Filename: {uninstallexe}
 
@@ -246,6 +268,7 @@ Root: HKLM; SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMerge
 
 
 [Run]
+Filename: {win}\Explorer.exe; Parameters: """{group}"""; Flags: nowait skipifsilent
 Filename: {app}\{code:ExeName}; Description: Launch WinMerge; Flags: nowait postinstall skipifsilent runmaximized
 
 
@@ -523,11 +546,11 @@ Var
 
     {Stores the version of 7-Zip Installed}
     str7Zip_Version: String;
-    
+
     {Stores the DLL's Version Function Input Parameter in integer format}
     intDLL_Version: Integer;
 Begin
-    
+
     {If the actual version of 7-Zip Installed hasn't been determined yet then...}
     If int7Zip_Version = 0 Then
         Begin
@@ -542,8 +565,8 @@ Begin
 				        Begin
 							{Detects the version of the 7-Zip Installed}
 							GetVersionNumbersString(str7Zip_Path, str7Zip_Version)
-							
-							
+
+
 
 				            {If the version of 7-Zip Installed is at least 3.11 Then...}
 				            If VersionAtLeast(str7Zip_Version, 3, 11, 0, 0) = True Then
@@ -576,10 +599,10 @@ Begin
 				{Records that the 7-Zip program wasn't installed for rest of the installation}
 				int7Zip_Version := -1;
 	    end;
-    
+
     {Converts the DLL Version String to an Integer for numeric evaluation}
     intDLL_Version := StrToInt(strDLL_Version);
-    
+
 	{If 7-Zip either wasn't installed or was of inadequate version then...}
 	If int7Zip_Version = -1 Then
 		Begin
