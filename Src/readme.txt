@@ -1,3 +1,8 @@
+2004-02-05 Perry
+ BUG: [ 876500 ] OlecharToUTF8 doesn't distinguish UCS-2BE?
+ Add function header comment to OlecharToUTF8 in multiformatText.cpp
+  Common: multiformatText.cpp
+
 2004-02-04 Kimmo
  PATCH: [ 888662 ] Add Editor options page
   Src: MainFrm.cpp Merge.dsp Merge.rc PropGeneral.cpp PropGeneral.h resource.g

@@ -680,6 +680,15 @@ BOOL UnicodeFileToOlechar(CString & filepath, LPCTSTR filepathDst, int & nFileCh
 	return bSuccess;
 }
 
+/**
+ * @brief  If file is OLECHAR, then convert it to UTF-8
+ *
+ * Assumes that input file is either Olechar (UCS-2LE), or not Unicode.
+ * That is, if it finds a Unicode BOM (byte order mark), then it assumes file
+ * is UCS-2LE, which is the Windows standard Unicode encoding.
+ * Returns FALSE if file is Unicode but opening it fails.
+ * Returns TRUE if file is not Unicode, or if converted file successfully
+ */
 BOOL OlecharToUTF8(CString & filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
 {
 	UniMemFile ufile;
