@@ -1,6 +1,10 @@
 2005-03-09 Perry
  PATCH: [ 1157359 ] Minor change for FILEFILTER_INFOLIST
   Src: FileFilterHelper.h
+ PATCH: [ 1159465 ] Add Jesus (Mack) to contributors/Spanish
+  Add [Jesús M. Delgado 'MacK'] to Spanish contributors. 
+  Alphabetize Swedish contributors.
+  Users/Docs: Contributors.txt
 
 2005-03-08 Perry
  Cosmetic: Added & doxygen'd comments, and prefixed members with m_.

@@ -78,11 +78,12 @@ Localization:
   Majvan
              
 * Spanish:	
+  Jesús M. Delgado 'MacK'
   Dean Grimm
              
 * Swedish:	
-  Göran Håkansson
   Hans Eriksson
+  Göran Håkansson
 
 
 Other Contributors (code, ideas, testing..):
