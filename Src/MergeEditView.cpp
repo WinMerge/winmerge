@@ -484,6 +484,7 @@ void CMergeEditView::OnEditUndo()
 	CMergeEditView *tgt = *(pDoc->curUndo-1);
 	if(tgt==this)
 	{
+		GetParentFrame()->SetActiveView(this, TRUE);
 		if(CCrystalEditViewEx::OnEditUndo()) 
 		{
 			--pDoc->curUndo;
@@ -782,6 +783,7 @@ void CMergeEditView::OnEditRedo()
 	CMergeEditView *tgt = *(pDoc->curUndo);
 	if(tgt==this)
 	{
+		GetParentFrame()->SetActiveView(this, TRUE);
 		if(CCrystalEditViewEx::OnEditRedo()) 
 		{
 			++pDoc->curUndo;

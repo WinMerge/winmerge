@@ -1,3 +1,7 @@
+2003-08-28 Laoran
+ PATCH: [ 794345 ] make visible the changed text when undo/redo
+  WinMerge: MergeEditView.cpp
+
 2003-08-27 Perry
  i18n effects of patch#781529: new popup menu, new dialog, alter existing col header strings
   Languages: Czech, Danish, Dutch
