@@ -773,13 +773,23 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
       return;
     }
 
-  int nTabSize = GetTabSize();
+  const int nTabSize = GetTabSize ();
+
+  // Calculate offset from begin of line
+  int nActualOffset = 0;
+  for (int i = 0; i < nOffset; i++)
+    {
+      if (pszChars[i] == _T ('\t'))
+        nActualOffset += (nTabSize - nActualOffset % nTabSize);
+      else
+        nActualOffset++;
+    }
 
   pszChars += nOffset;
   int nLength = nCount;
 
   int nTabCount = 0;
-  for (int i = 0; i < nLength; i++)
+  for (i = 0; i < nLength; i++)
     {
       if (pszChars[i] == _T('\t'))
         nTabCount++;
@@ -794,7 +804,7 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
         {
           if (pszChars[i] == _T('\t'))
             {
-              int nSpaces = nTabSize - nCurPos % nTabSize;
+              int nSpaces = nTabSize - (nActualOffset + nCurPos) % nTabSize;
               if (m_bViewTabs)
                 {
                   pszBuf[nCurPos++] = TAB_CHARACTER;

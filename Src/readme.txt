@@ -1,3 +1,8 @@
+2003-04-10 Kimmo
+ PATCH: [ 717688 ] CrystalEditor optimisations and memleaks
+  fix tab bug.
+  editlib: ccrystaltextview.cpp
+
 2003-04-09 Kimmo
  PATCH: [ 717688 ] CrystalEditor optimisations and memleaks
   editlib: ccrystaltextview.cpp
