@@ -1,3 +1,7 @@
+2003-07-05 Laoran
+ PATCH: [ 765926 ] Merge empty last line to the last diffrange (change)
+  WinMerge: MergeDoc.cpp
+
 2003-07-04 Laoran
  PATCH: [ 766038 ] stay in the viewing area during OnFirstdiff
   WinMerge: MergeEditView.cpp

@@ -506,9 +506,17 @@ void CMergeDoc::FixLastDiffRange(BOOL left)
 	dr = m_diffs.GetAt(count - 1);
 
 	if (left)
+	{
+		if (dr.op == OP_RIGHTONLY)
+			dr.op = OP_DIFF;
 		dr.end0++;
+	}
 	else
+	{
+		if (dr.op == OP_LEFTONLY)
+			dr.op = OP_DIFF;
 		dr.end1++;
+	}
 
 	m_diffs.SetAt(count - 1, dr); 
 }
