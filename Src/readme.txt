@@ -32,6 +32,8 @@
   WinMerge: paths.cpp stdafx.cpp
   editlib: cregexp.cpp
 
+2003-11-05 WinMerge experimental release 2.1.3.6 (cvs)
+
 2003-11-05 Laoran
  change directory name 'Plugins' to 'MergePlugins' (see BUG [ 832090 ])
   WinMerge: Plugins.cpp
