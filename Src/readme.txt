@@ -4,6 +4,9 @@
  Ran "cvs admin -kb *.bmp *.ico" to fix incorrectly typed resources
   Languages: Czech/res Dutch/res French/res German/res 
    Italian/res Spanish/res
+ Fix MakeResDll for MSVC.NET & MSVC.NET 2003.
+ Bump MakeResDll version from 1.0.0.1 to 1.0.1.0.
+  MakeResDll: MakeResDll.cpp MakeResDll.rc
 
 2003-10-22 WinMerge experimental release 2.1.3.4 (cvs)
 

@@ -408,7 +408,8 @@ void InitModulePaths()
 	gsVcBaseFolder = _T("");
 	gsIncludes = _T("");
 	gsLibs = _T("");
-	if (reg.Open(HKEY_CURRENT_USER, _T("Software\\Thingamahoochie\\MakeResDll\\Settings")) == ERROR_SUCCESS)
+	LPCTSTR settings = _T("Software\\Thingamahoochie\\MakeResDll\\Settings");
+	if (reg.Open(HKEY_CURRENT_USER, settings) == ERROR_SUCCESS)
 	{
 		gsVcBaseFolder = reg.ReadString(_T("VcBaseFolder"), _T(""));
 		gsRCExe = reg.ReadString(_T("RCExe"), _T(""));
@@ -416,9 +417,28 @@ void InitModulePaths()
 		reg.Close();
 	}
 
-	// check for devstudio 6
+	// check for VisualStudio .NET and .NET 2003
+	LPCTSTR dirs71 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1\\Setup\\VC");
+	LPCTSTR dirs7 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.0\\Setup\\VC");
 	if (gsVcBaseFolder.IsEmpty()
-		&& reg.Open(HKEY_CURRENT_USER, _T("Software\\Microsoft\\DevStudio\\6.0\\Directories")) == ERROR_SUCCESS)
+		&&(reg.OpenNoCreateWithAccess(HKEY_LOCAL_MACHINE, dirs71, KEY_QUERY_VALUE) == ERROR_SUCCESS
+		|| reg.OpenNoCreateWithAccess(HKEY_LOCAL_MACHINE, dirs7, KEY_QUERY_VALUE) == ERROR_SUCCESS))
+	{
+		gsVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
+		reg.Close();
+		if (!gsVcBaseFolder.IsEmpty())
+		{
+			if (gsRCExe.IsEmpty())
+				gsRCExe.Format(_T("%s\\bin\\rc.exe"), gsVcBaseFolder);
+			if (gsLinkExe.IsEmpty())
+				gsLinkExe.Format(_T("%s\\bin\\link.exe"), gsVcBaseFolder);
+		}
+	}
+
+	// check for devstudio 6
+	LPCTSTR dirs6 = _T("Software\\Microsoft\\DevStudio\\6.0\\Directories");
+	if (gsVcBaseFolder.IsEmpty()
+		&& reg.Open(HKEY_CURRENT_USER, dirs6) == ERROR_SUCCESS)
 	{
 		gsVcBaseFolder = reg.ReadString(_T("Install Dirs"), _T(""));
 		reg.Close();
@@ -438,8 +458,9 @@ void InitModulePaths()
 	}
 
 	// check for devstudio 5
+	LPCTSTR dirs5 = _T("Software\\Microsoft\\DevStudio\\5.0\\Directories");
 	if (gsVcBaseFolder.IsEmpty()
-		&& reg.Open(HKEY_CURRENT_USER, _T("Software\\Microsoft\\DevStudio\\5.0\\Directories")) == ERROR_SUCCESS)
+		&& reg.Open(HKEY_CURRENT_USER, dirs5) == ERROR_SUCCESS)
 	{
 		gsVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
 		reg.Close();
@@ -453,8 +474,8 @@ void InitModulePaths()
 	}
 
 
-
-	if (reg.Open(HKEY_CURRENT_USER, _T("Software\\Microsoft\\DevStudio\\5.0\\Build System\\Components\\Platforms\\Win32 (x86)\\Directories")) == ERROR_SUCCESS)
+	LPCTSTR moredirs5 = _T("Software\\Microsoft\\DevStudio\\5.0\\Build System\\Components\\Platforms\\Win32 (x86)\\Directories");
+	if (reg.Open(HKEY_CURRENT_USER, moredirs5) == ERROR_SUCCESS)
 	{
 		gsIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
 		gsLibs = reg.ReadString(_T("Library Dirs"), _T(""));
