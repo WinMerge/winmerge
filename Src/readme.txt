@@ -1,6 +1,8 @@
 2003-06-06 Kimmov
  Updated filter file from patch [ 742041 ] Improvements to file/directory filters
   Filters: Merge_VC_loose.flt
+ BUG: [ 749007 ] "Highlighting" is misspelled as "Hilighting"
+  WinMerge: Merge.rc
 
 2003-06-05 Christian
  PATCH: [ 749566 ] Updated resource files
