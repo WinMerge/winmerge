@@ -200,6 +200,8 @@ BOOL FileTransform_Packing(CString & filepath, PackingInfo handler)
 			bSuccess = InvokePackFile(filepath, tempFilepath, nFileChanged, piScript, handler.subcode);
 			if (bSuccess && nFileChanged > 0)
 				filepath = tempFilepath;
+			else
+				::DeleteFile(tempFilepath);
 		}
 		else
 		{
@@ -284,6 +286,8 @@ BOOL FileTransform_Unpacking(CString & filepath, PackingInfo handler, int * hand
 			bSuccess = InvokeUnpackFile(filepath, tempFilepath, nFileChanged, piScript, handler.subcode);
 			if (bSuccess && nFileChanged > 0)
 				filepath = tempFilepath;
+			else
+				::DeleteFile(tempFilepath);
 		}
 		else
 		{
@@ -384,6 +388,8 @@ BOOL FileTransform_Unpacking(CString & filepath, CString filteredText, PackingIn
 			bHandled = InvokeUnpackFile(filepath, tempFilepath, nFileChanged, plugin.lpDispatch, handler->subcode);
 			if (bHandled && nFileChanged > 0)
 				filepath = tempFilepath;
+			else
+				::DeleteFile(tempFilepath);
 		}
 
 		if (step == 100)
@@ -497,6 +503,9 @@ BOOL FileTransform_NormalizeUnicode(CString & filepath, CString filteredText, in
 		// and change the filepath if everything works
 		filepath = tempFilepath;
 	}
+	else
+		::DeleteFile(tempFilepath);
+
 
 	return TRUE;
 }
@@ -750,6 +759,9 @@ BOOL FileTransform_Preprocess(CString & filepath, CString filteredText, int bMay
 		// and change the filepath if everything works
 		filepath = tempFilepath;
 	}
+	else
+		::DeleteFile(tempFilepath);
+
 
 	// now for sure we can overwrite
 	bMayOverwrite = TRUE;
