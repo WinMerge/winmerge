@@ -36,7 +36,7 @@
 <p><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;release_id=199032" target="_top">Download WinMerge 2.1</a></p>
 
 <h2>WinMerge 1.7 - older stable version</h2>
-<p><a href="http://winmerge.sourceforge.net/WinMerge17/index.html" target="_top">WinMerge 1.7</a> is an older and simpler version, from before the integrated editor was introduced.</p>
+<p><a href="http://winmerge.org/1.7/index.php" target="_top">WinMerge 1.7</a> is an older and simpler version, from before the integrated editor was introduced.</p>
 <p><a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup.exe" target="_top">Download WinMerge 1.7 Installer</a></p>
 
 <h2>Installation</h2>
@@ -69,7 +69,7 @@ to support the continued development of WinMerge.</p>
 you get more information about the development for WinMerge.</p>
 <p>You get a list from the current developers, how to 
 <a href="http://winmerge.org/developer/needed.php" target="_top">develop</a> and 
-<a href="developer/l10n/index.php" target="_top">translate WinMerge</a>
+<a href="http://winmerge.org/developer/translate.php" target="_top">translate WinMerge</a>
 and some hints for <a href="http://winmerge.org/developer/wincvs.php" target="_top">WinCVS</a>.</p>
 <?php
   $page->printFoot();

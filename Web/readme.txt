@@ -1,4 +1,7 @@
 2004-06-14 Christian
+ PATCH: [ 929401 ] New website structure
+  Web: .htaccess index.php page.inc winmerge.css
+  Web/1.7: All files added
  PATCH: [ 955458 ] Optimize translations status page
   Web: page.inc
   Web/developer/l10n: index.php status.php status.xml

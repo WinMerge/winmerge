@@ -4,3 +4,6 @@
 </FilesMatch>
 
 Redirect permanent /developer/translate.php http://winmerge.sourceforge.net/developer/l10n/index.php
+Redirect permanent /WinMerge17/index.html http://winmerge.org/1.7/index.php
+Redirect permanent /WinMerge17/WinMergeChanges.html http://winmerge.org/1.7/changes.php
+Redirect permanent /WinMerge17/docs http://winmerge.org/1.7/docs

@@ -11,6 +11,11 @@ h1, h2, h3, h4
 	color: #000000;
 }
 
+p.important
+{
+	font-weight: bold;
+}
+
 li.toc
 {
 	list-style-image : url(images/arrow_small.gif);
