@@ -1,3 +1,8 @@
+2004-06-17 Laoran
+ widen labels in colors dialog
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2004-06-15 Kimmo
  PATCH: [ 972575 ] Goto real line from location pane
   Src: LocationView.cpp LocationView.h

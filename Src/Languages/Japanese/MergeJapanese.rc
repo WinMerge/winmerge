@@ -79,16 +79,16 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "‰E‚ÉƒRƒs[(&O)",              ID_L2R
-        MENUITEM "¶‚ÉƒRƒs[(&Y)",              ID_R2L
+        MENUITEM "‰E‚ÉƒRƒs?[(&O)",              ID_L2R
+        MENUITEM "?¶‚ÉƒRƒs?[(&Y)",              ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "s‚Ì·ˆÙ‚ðƒnƒCƒ‰ƒCƒg(&H)",    ID_SHOWLINEDIFF
+        MENUITEM "?s‚Ì?·ˆÙ‚ðƒnƒCƒ‰ƒCƒg(&H)",    ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "Œ³‚É–ß‚·(&U)",                ID_EDIT_UNDO
         MENUITEM "‚â‚è’¼‚µ(&R)",                ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "Ø‚èŽæ‚è(&T)",                ID_EDIT_CUT
-        MENUITEM "ƒRƒs[(&C)",                  ID_EDIT_COPY
+        MENUITEM "?Ø‚èŽæ‚è(&T)",                ID_EDIT_CUT
+        MENUITEM "ƒRƒs?[(&C)",                  ID_EDIT_COPY
         MENUITEM "“\‚è•t‚¯(&P)",                ID_EDIT_PASTE
         MENUITEM SEPARATOR
         MENUITEM "ƒWƒƒƒ“ƒv(&G)...",             ID_EDIT_WMGOTO
@@ -99,11 +99,11 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "ƒtƒ@ƒCƒ‹(&F)"
     BEGIN
-        MENUITEM "V‹Kì¬(&N)\tCtrl+N",        ID_FILE_NEW
+        MENUITEM "?V‹K?ì?¬(&N)\tCtrl+N",        ID_FILE_NEW
         MENUITEM "ŠJ‚­(&O)...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "•Û‘¶(&S)\tCtrl+S",            ID_FILE_SAVE
-        POPUP "¶‚Ìƒtƒ@ƒCƒ‹‚ð•Û‘¶(&L)"
+        POPUP "?¶‚Ìƒtƒ@ƒCƒ‹‚ð•Û‘¶(&L)"
         BEGIN
             MENUITEM "•Û‘¶(&S)",                    ID_FILE_SAVE_LEFT
             MENUITEM "–¼‘O‚ð•t‚¯‚Ä•Û‘¶(&A)...",     ID_FILE_SAVEAS_LEFT
@@ -114,34 +114,34 @@ BEGIN
             MENUITEM "–¼‘O‚ð•t‚¯‚Ä•Û‘¶(&A)...",     ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "¶‚ð“Ç‚ÝŽæ‚èê—p(&E)",        ID_FILE_LEFT_READONLY
-        MENUITEM "‰E‚ð“Ç‚ÝŽæ‚èê—p(&I)",        ID_FILE_RIGHT_READONLY
+        MENUITEM "?¶‚ð“Ç‚ÝŽæ‚è?ê—p(&E)",        ID_FILE_LEFT_READONLY
+        MENUITEM "‰E‚ð“Ç‚ÝŽæ‚è?ê—p(&I)",        ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "‰üsƒR[ƒh(&F)"
+        POPUP "‰ü?sƒR?[ƒh(&F)"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "ƒ}[ƒWƒ‚[ƒh\tF7",            ID_FILE_MERGINGMODE
+        MENUITEM "ƒ}?[ƒWƒ‚?[ƒh\tF7",            ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
-        MENUITEM "I—¹(&X)\tEsc",               ID_APP_EXIT
+        MENUITEM "?I—¹(&X)\tEsc",               ID_APP_EXIT
     END
-    POPUP "•ÒW(&E)"
+    POPUP "•Ò?W(&E)"
     BEGIN
         MENUITEM "Œ³‚É–ß‚·(&U)\tCtrl+Z",        ID_EDIT_UNDO
         MENUITEM "‚â‚è’¼‚µ(&R)\tCtrl+Y",        ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "Ø‚èŽæ‚è(&T)\tCtrl+X",        ID_EDIT_CUT
-        MENUITEM "ƒRƒs[(&C)\tCtrl+C",          ID_EDIT_COPY
+        MENUITEM "?Ø‚èŽæ‚è(&T)\tCtrl+X",        ID_EDIT_CUT
+        MENUITEM "ƒRƒs?[(&C)\tCtrl+C",          ID_EDIT_COPY
         MENUITEM "“\‚è•t‚¯(&P)\tCtrl+V",        ID_EDIT_PASTE
         MENUITEM SEPARATOR
         MENUITEM "‚·‚×‚Ä‘I‘ð(&A)\tCtrl+A",      ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "s‚Ì·ˆÙ‚ðƒnƒCƒ‰ƒCƒg(&H)\tF4", ID_SHOWLINEDIFF
+        MENUITEM "?s‚Ì?·ˆÙ‚ðƒnƒCƒ‰ƒCƒg(&H)\tF4", ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "ŒŸõ(&F)...\tCtrl+F",         ID_EDIT_FIND
+        MENUITEM "ŒŸ?õ(&F)...\tCtrl+F",         ID_EDIT_FIND
         MENUITEM "’uŠ·(&E)...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
         POPUP "ƒXƒNƒŠƒvƒg(&S)"
@@ -151,16 +151,16 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "ƒWƒƒƒ“ƒv(&G)...\tCtrl+G",        ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "Ý’è(&O)...",                 ID_OPTIONS
+        MENUITEM "?Ý’è(&O)...",                 ID_OPTIONS
         MENUITEM SEPARATOR
-        MENUITEM "ÅV‚Ìî•ñ‚ÉXV(S)\tF5",     ID_REFRESH
+        MENUITEM "?Å?V‚Ì?î•ñ‚É?X?V(S)\tF5",     ID_REFRESH
     END
     POPUP "•\Ž¦(&V)"
     BEGIN
         MENUITEM "“¯ˆêƒtƒ@ƒCƒ‹‚Ì•\Ž¦(&I)",      ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "·ˆÙƒtƒ@ƒCƒ‹‚Ì•\Ž¦(&D)",      ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "¶‚Ì‚Ý‚É‘¶Ý‚·‚éƒtƒ@ƒCƒ‹‚Ì•\Ž¦(&F)", ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "‰E‚Ì‚Ý‚É‘¶Ý‚·‚éƒtƒ@ƒCƒ‹‚Ì•\Ž¦(&G)", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "?·ˆÙƒtƒ@ƒCƒ‹‚Ì•\Ž¦(&D)",      ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "?¶‚Ì‚Ý‚É‘¶?Ý‚·‚éƒtƒ@ƒCƒ‹‚Ì•\Ž¦(&F)", ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "‰E‚Ì‚Ý‚É‘¶?Ý‚·‚éƒtƒ@ƒCƒ‹‚Ì•\Ž¦(&G)", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Ì•\Ž¦(&H)",  ID_OPTIONS_SHOWBINARIES
         MENUITEM "ƒXƒLƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì•\Ž¦(&K)", ID_OPTIONS_SHOWSKIPPED
         MENUITEM "*.BAKƒtƒ@ƒCƒ‹‚Ì”ñ•\Ž¦(&B)",   ID_HIDE_BACKUP_FILES
@@ -170,40 +170,40 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "‹ó”’‚ð•\Ž¦(&V)",              ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
-        MENUITEM "ƒc[ƒ‹ƒo[(&T)",              ID_VIEW_TOOLBAR
-        MENUITEM "ƒXƒe[ƒ^ƒXƒo[(&S)",          ID_VIEW_STATUS_BAR
+        MENUITEM "ƒc?[ƒ‹ƒo?[(&T)",              ID_VIEW_TOOLBAR
+        MENUITEM "ƒXƒe?[ƒ^ƒXƒo?[(&S)",          ID_VIEW_STATUS_BAR
         MENUITEM "DiffƒyƒCƒ“(&P)",              ID_VIEW_DETAIL_BAR
-        MENUITEM "ƒƒP[ƒVƒ‡ƒ“ƒyƒCƒ“(&P)",      ID_VIEW_LOCATION_BAR
-        MENUITEM "”äŠró‘ÔƒyƒCƒ“(&R)",          ID_VIEW_DIR_STATEPANE
+        MENUITEM "ƒ?ƒP?[ƒVƒ‡ƒ“ƒyƒCƒ“(&P)",      ID_VIEW_LOCATION_BAR
+        MENUITEM "”äŠr?ó‘ÔƒyƒCƒ“(&R)",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "Œ¾Œê(&L)...",                 ID_VIEW_LANGUAGE
     END
-    POPUP "ƒ}[ƒW(&M)"
+    POPUP "ƒ}?[ƒW(&M)"
     BEGIN
-        MENUITEM "ŽŸ‚Ì·ˆÙ(&N)\tAlt+Down",      ID_NEXTDIFF
-        MENUITEM "‘O‚Ì·ˆÙ(&P)\tAlt+Up",        ID_PREVDIFF
+        MENUITEM "ŽŸ‚Ì?·ˆÙ(&N)\tAlt+Down",      ID_NEXTDIFF
+        MENUITEM "‘O‚Ì?·ˆÙ(&P)\tAlt+Up",        ID_PREVDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Å‰‚Ì·ˆÙ(&F)\tAlt+Home",    ID_FIRSTDIFF
-        MENUITEM "Œ»Ý‚Ì·ˆÙ(&C)\tAlt+Enter",   ID_CURDIFF
-        MENUITEM "ÅŒã‚Ì·ˆÙ(&L)\tAlt+End",     ID_LASTDIFF
+        MENUITEM "?Å?‰‚Ì?·ˆÙ(&F)\tAlt+Home",    ID_FIRSTDIFF
+        MENUITEM "Œ»?Ý‚Ì?·ˆÙ(&C)\tAlt+Enter",   ID_CURDIFF
+        MENUITEM "?ÅŒã‚Ì?·ˆÙ(&L)\tAlt+End",     ID_LASTDIFF
         MENUITEM SEPARATOR
-        MENUITEM "‰E‚ÉƒRƒs[(&R)\tAlt+Right",   ID_L2R
-        MENUITEM "¶‚ÉƒRƒs[(&E)\tAlt+Left",    ID_R2L
+        MENUITEM "‰E‚ÉƒRƒs?[(&R)\tAlt+Right",   ID_L2R
+        MENUITEM "?¶‚ÉƒRƒs?[(&E)\tAlt+Left",    ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "‰E‚ÉƒRƒs[‚µ‚ÄŽŸ‚Éi‚Þ(&O)\tAlt+Ctrl+Right", ID_R2LNEXT
-        MENUITEM "¶‚ÉƒRƒs[‚µ‚ÄŽŸ‚Éi‚Þ(&T)\tAlt+Ctrl+Left", ID_L2RNEXT
+        MENUITEM "‰E‚ÉƒRƒs?[‚µ‚ÄŽŸ‚É?i‚Þ(&O)\tAlt+Ctrl+Right", ID_R2LNEXT
+        MENUITEM "?¶‚ÉƒRƒs?[‚µ‚ÄŽŸ‚É?i‚Þ(&T)\tAlt+Ctrl+Left", ID_L2RNEXT
         MENUITEM SEPARATOR
-        MENUITEM "‘S‚Ä‚ð‰E‚ÉƒRƒs[(&A)",        ID_ALL_RIGHT
-        MENUITEM "‘S‚Ä‚ð¶‚ÉƒRƒs[(&Y)",        ID_ALL_LEFT
+        MENUITEM "‘S‚Ä‚ð‰E‚ÉƒRƒs?[(&A)",        ID_ALL_RIGHT
+        MENUITEM "‘S‚Ä‚ð?¶‚ÉƒRƒs?[(&Y)",        ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "¶‘I‘ð”ÍˆÍ“à‚Ì·ˆÙ‚ð‰E‚ÉƒRƒs[", ID_MULTIPLE_RIGHT
-        MENUITEM "‰E‘I‘ð”ÍˆÍ“à‚Ì·ˆÙ‚ð¶‚ÉƒRƒs[", ID_MULTIPLE_LEFT
+        MENUITEM "?¶‘I‘ð”ÍˆÍ“à‚Ì?·ˆÙ‚ð‰E‚ÉƒRƒs?[", ID_MULTIPLE_RIGHT
+        MENUITEM "‰E‘I‘ð”ÍˆÍ“à‚Ì?·ˆÙ‚ð?¶‚ÉƒRƒs?[", ID_MULTIPLE_LEFT
     END
-    POPUP "ƒc[ƒ‹(&T)"
+    POPUP "ƒc?[ƒ‹(&T)"
     BEGIN
-        MENUITEM "—ñ‚ÌÝ’è(&C)...",             ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "—ñ‚Ì?Ý’è(&C)...",             ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "ƒtƒBƒ‹ƒ^(&F)...",             ID_TOOLS_FILTERS
-        MENUITEM "ƒpƒbƒ`‚Ì¶¬(&G)...",         ID_TOOLS_GENERATEPATCH
+        MENUITEM "ƒpƒbƒ`‚Ì?¶?¬(&G)...",         ID_TOOLS_GENERATEPATCH
     END
     POPUP "ƒvƒ‰ƒOƒCƒ“(&P)"
     BEGIN
@@ -217,25 +217,25 @@ BEGIN
             MENUITEM SEPARATOR
         END
         MENUITEM SEPARATOR
-        MENUITEM "ƒvƒ‰ƒOƒCƒ“‚ÌÄ“Çž‚Ý(&R) (debug)", ID_RELOAD_PLUGINS
+        MENUITEM "ƒvƒ‰ƒOƒCƒ“‚Ì?Ä“Ç?ž‚Ý(&R) (debug)", ID_RELOAD_PLUGINS
     END
     POPUP "ƒEƒBƒ“ƒhƒE(&W)"
     BEGIN
         MENUITEM "•Â‚¶‚é(&O)",                  ID_FILE_CLOSE
         MENUITEM SEPARATOR
-        MENUITEM "ƒyƒCƒ“‚ð•ÏX‚·‚é(&P)\tF6",    ID_WINDOW_CHANGE_PANE
+        MENUITEM "ƒyƒCƒ“‚ð•Ï?X‚·‚é(&P)\tF6",    ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
-        MENUITEM "ã‰º‚É•À‚×‚Ä•\Ž¦(&H)",        ID_WINDOW_TILE_HORZ
-        MENUITEM "¶‰E‚É•À‚×‚Ä•\Ž¦(&V)",        ID_WINDOW_TILE_VERT
-        MENUITEM "d‚Ë‚Ä•\Ž¦(&C)",              ID_WINDOW_CASCADE
+        MENUITEM "?ã‰º‚É•À‚×‚Ä•\Ž¦(&H)",        ID_WINDOW_TILE_HORZ
+        MENUITEM "?¶‰E‚É•À‚×‚Ä•\Ž¦(&V)",        ID_WINDOW_TILE_VERT
+        MENUITEM "?d‚Ë‚Ä•\Ž¦(&C)",              ID_WINDOW_CASCADE
     END
     POPUP "ƒwƒ‹ƒv(&H)"
     BEGIN
         MENUITEM "–ÚŽŸ(&C)...",                 ID_HELP_CONTENTS
         MENUITEM SEPARATOR
-        MENUITEM "Ý’è(&O)...",                 ID_HELP_GETCONFIG
+        MENUITEM "?Ý’è(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM SEPARATOR
-        MENUITEM "GNUˆê”ÊŒöO—˜—p‹–‘øŒ_–ñ‘(&G)...", ID_HELP_GNULICENSE
+        MENUITEM "GNUˆê”ÊŒö?O—˜—p‹–‘øŒ_–ñ?‘(&G)...", ID_HELP_GNULICENSE
         MENUITEM "WinMerge‚É‚Â‚¢‚Ä(&A)...",     ID_APP_ABOUT
     END
 END
@@ -244,53 +244,53 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        POPUP "ƒRƒs[(&C)"
+        POPUP "ƒRƒs?[(&C)"
         BEGIN
-            MENUITEM "¶‚©‚ç‰E‚É(&L)",              ID_DIR_COPY_LEFT_TO_RIGHT
-            MENUITEM "¶‚©‚çŽQÆæ‚Ö(&E)...",       ID_DIR_COPY_LEFT_TO_BROWSE
-            MENUITEM "‰E‚©‚ç¶‚É(&R)",              ID_DIR_COPY_RIGHT_TO_LEFT
-            MENUITEM "‰E‚©‚çŽQÆæ‚Ö(&I)...",       ID_DIR_COPY_RIGHT_TO_BROWSE
+            MENUITEM "?¶‚©‚ç‰E‚É(&L)",              ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "?¶‚©‚çŽQ?Æ?æ‚Ö(&E)...",       ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "‰E‚©‚ç?¶‚É(&R)",              ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "‰E‚©‚çŽQ?Æ?æ‚Ö(&I)...",       ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "íœ(&D)"
+        POPUP "?í?œ(&D)"
         BEGIN
-            MENUITEM "¶(&L)",                      ID_DIR_DEL_LEFT
+            MENUITEM "?¶(&L)",                      ID_DIR_DEL_LEFT
             MENUITEM "‰E(&R)",                      ID_DIR_DEL_RIGHT
             MENUITEM "—¼•û(&B)",                    ID_DIR_DEL_BOTH
         END
         MENUITEM SEPARATOR
-        POPUP "¶‚ðŠJ‚­(&O)"
+        POPUP "?¶‚ðŠJ‚­(&O)"
         BEGIN
-            MENUITEM "“o˜^‚³‚ê‚½ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å(&R)", ID_DIR_OPEN_LEFT
+            MENUITEM "“o˜^‚³‚ê‚½ƒAƒvƒŠƒP?[ƒVƒ‡ƒ“‚Å(&R)", ID_DIR_OPEN_LEFT
             MENUITEM "ŠO•”ƒGƒfƒBƒ^‚Å(&E)",          ID_DIR_OPEN_LEFT_WITHEDITOR
-            MENUITEM "ƒvƒƒOƒ‰ƒ€‚Ì‘I‘ð(&W)...",     ID_DIR_OPEN_LEFT_WITH
+            MENUITEM "ƒvƒ?ƒOƒ‰ƒ€‚Ì‘I‘ð(&W)...",     ID_DIR_OPEN_LEFT_WITH
         END
         POPUP "‰E‚ðŠJ‚­(&P)"
         BEGIN
-            MENUITEM "“o˜^‚³‚ê‚½ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å(&R)", ID_DIR_OPEN_RIGHT
+            MENUITEM "“o˜^‚³‚ê‚½ƒAƒvƒŠƒP?[ƒVƒ‡ƒ“‚Å(&R)", ID_DIR_OPEN_RIGHT
             MENUITEM "ŠO•”ƒGƒfƒBƒ^‚Å(&E)",          ID_DIR_OPEN_RIGHT_WITHEDITOR
 
-            MENUITEM "ƒvƒƒOƒ‰ƒ€‚Ì‘I‘ð(&W)...",     ID_DIR_OPEN_RIGHT_WITH
+            MENUITEM "ƒvƒ?ƒOƒ‰ƒ€‚Ì‘I‘ð(&W)...",     ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "ƒpƒX–¼‚ðƒRƒs[(&Y)"               ID_DIR_COPY_PATHNAMES
-        MENUITEM "ƒtƒ@ƒCƒ‹–¼‚ðƒRƒs[(&F)"           ID_DIR_COPY_FILENAMES
+        MENUITEM "ƒpƒX–¼‚ðƒRƒs?[(&Y)"               ID_DIR_COPY_PATHNAMES
+        MENUITEM "ƒtƒ@ƒCƒ‹–¼‚ðƒRƒs?[(&F)"           ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
-        POPUP "ˆ³k(&Z)"
+        POPUP "ˆ³?k(&Z)"
         BEGIN
-            MENUITEM "‘I‘ð‚³‚ê‚½%2ŒÂ‚Ì€–Ú‚Ì“àA¶‘¤ %1ŒÂ‚Ìƒtƒ@ƒCƒ‹‚ðˆ³k‚µ‚Ü‚·(&L)", 
+            MENUITEM "‘I‘ð‚³‚ê‚½%2ŒÂ‚Ì?€–Ú‚Ì“à?A?¶‘¤ %1ŒÂ‚Ìƒtƒ@ƒCƒ‹‚ðˆ³?k‚µ‚Ü‚·(&L)", 
                                                     ID_DIR_ZIP_LEFT
-            MENUITEM "‘I‘ð‚³‚ê‚½%2ŒÂ‚Ì€–Ú‚Ì“àA‰E‘¤ %1ŒÂ‚Ìƒtƒ@ƒCƒ‹‚ðˆ³k‚µ‚Ü‚·(&R)", 
+            MENUITEM "‘I‘ð‚³‚ê‚½%2ŒÂ‚Ì?€–Ú‚Ì“à?A‰E‘¤ %1ŒÂ‚Ìƒtƒ@ƒCƒ‹‚ðˆ³?k‚µ‚Ü‚·(&R)", 
                                                     ID_DIR_ZIP_RIGHT
-            MENUITEM "‘I‘ð‚³‚ê‚½%2ŒÂ‚Ì€–Ú‚Ì“àA—¼‘¤ %1ŒÂ‚Ìƒtƒ@ƒCƒ‹‚ðˆ³k‚µ‚Ü‚·(&B)", 
+            MENUITEM "‘I‘ð‚³‚ê‚½%2ŒÂ‚Ì?€–Ú‚Ì“à?A—¼‘¤ %1ŒÂ‚Ìƒtƒ@ƒCƒ‹‚ðˆ³?k‚µ‚Ü‚·(&B)", 
                                                     ID_DIR_ZIP_BOTH
-            MENUITEM "‘I‘ð‚³‚ê‚½%3ŒÂ‚Ì€–Ú‚©‚ç·ˆÙ‚Ì‚ ‚é%2ŒÂ‚Ì€–Ú‚Ì“àA—¼‘¤ %1ŒÂ‚Ìƒtƒ@ƒCƒ‹‚Ì‚Ý‚ðˆ³k‚µ‚Ü‚·(&S)", 
+            MENUITEM "‘I‘ð‚³‚ê‚½%3ŒÂ‚Ì?€–Ú‚©‚ç?·ˆÙ‚Ì‚ ‚é%2ŒÂ‚Ì?€–Ú‚Ì“à?A—¼‘¤ %1ŒÂ‚Ìƒtƒ@ƒCƒ‹‚Ì‚Ý‚ðˆ³?k‚µ‚Ü‚·(&S)", 
                                                     ID_DIR_ZIP_BOTH_DIFFS_ONLY
 
         END
     END
     POPUP "_HDR_POPUP_"
     BEGIN
-        MENUITEM "—ñ‚ÌÝ’è(&E)",                ID_EDIT_COLUMNS
+        MENUITEM "—ñ‚Ì?Ý’è(&E)",                ID_EDIT_COLUMNS
     END
 END
 
@@ -298,8 +298,8 @@ IDR_POPUP_EDITOR_HEADERBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "ƒtƒ‹ƒpƒX‚ðƒRƒs[(&C)",        ID_EDITOR_COPY_PATH
-        MENUITEM "ƒtƒ@ƒCƒ‹–¼‚ðƒRƒs[(&F)",      ID_EDITOR_COPY_FILENAME
+        MENUITEM "ƒtƒ‹ƒpƒX‚ðƒRƒs?[(&C)",        ID_EDITOR_COPY_PATH
+        MENUITEM "ƒtƒ@ƒCƒ‹–¼‚ðƒRƒs?[(&F)",      ID_EDITOR_COPY_FILENAME
     END
 END
 
@@ -316,12 +316,12 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "·ˆÙ‚ÖˆÚ“®(&O)"               ID_LOCBAR_GOTODIFF
+        MENUITEM "?·ˆÙ‚ÖˆÚ“®(&O)"               ID_LOCBAR_GOTODIFF
         MENUITEM "ˆÚ“®(&G)...",                 ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "ˆÚ“®ƒuƒƒbƒN•\Ž¦‚È‚µ(&N)",    ID_DISPLAY_MOVED_NONE
-        MENUITEM "‘SˆÚ“®ƒuƒƒbƒN•\Ž¦(&A)",ID_DISPLAY_MOVED_ALL
-        MENUITEM "Œ»Ý·ˆÙ‚ÌˆÚ“®ƒuƒƒbƒN‚Ì‚Ý•\Ž¦(&C)", ID_DISPLAY_MOVED_FOLLOW_DIFF
+        MENUITEM "ˆÚ“®ƒuƒ?ƒbƒN•\Ž¦‚È‚µ(&N)",    ID_DISPLAY_MOVED_NONE
+        MENUITEM "‘SˆÚ“®ƒuƒ?ƒbƒN•\Ž¦(&A)",ID_DISPLAY_MOVED_ALL
+        MENUITEM "Œ»?Ý?·ˆÙ‚ÌˆÚ“®ƒuƒ?ƒbƒN‚Ì‚Ý•\Ž¦(&C)", ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
 END
 
@@ -387,10 +387,10 @@ BEGIN
     LTEXT           "Version 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
     LTEXT           "All rights reserved.",IDC_STATIC,7,60,170,8
-    LTEXT           "WinMerge‚Ìƒz[ƒ€ƒy[ƒW‚És‚­!",IDC_WWW,7,119,209,8
+    LTEXT           "WinMerge‚Ìƒz?[ƒ€ƒy?[ƒW‚É?s‚­!",IDC_WWW,7,119,209,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,113,209,1
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
-    LTEXT           "ŠJ”­ŽÒ/vŒ£ŽÒƒŠƒXƒg‚É‚Â‚¢‚Ä‚ÍAˆÈ‰º‚Ìƒtƒ@ƒCƒ‹‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢",IDC_STATIC,7,81,208,8
+    LTEXT           "ŠJ”­ŽÒ/?vŒ£ŽÒƒŠƒXƒg‚É‚Â‚¢‚Ä‚Í?AˆÈ‰º‚Ìƒtƒ@ƒCƒ‹‚ðŽQ?Æ‚µ‚Ä‚­‚¾‚³‚¢",IDC_STATIC,7,81,208,8
     LTEXT           "Contributors.txt",IDC_STATIC,7,91,153,8
     PUSHBUTTON      "•\Ž¦‚·‚é...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
 END
@@ -401,16 +401,16 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU |
 CAPTION "ƒtƒ@ƒCƒ‹‚Ü‚½‚ÍƒfƒBƒŒƒNƒgƒŠ‚Ì‘I‘ð..."
 FONT 8, "MS Shell Dlg"
 BEGIN
-    RTEXT           "¶(&L):",IDC_STATIC,13,24,55,8
+    RTEXT           "?¶(&L):",IDC_STATIC,13,24,55,8
     COMBOBOX        IDC_LEFT_COMBO,71,22,167,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "ŽQÆ(&B)...",IDC_LEFT_BUTTON,242,22,50,12
+    PUSHBUTTON      "ŽQ?Æ(&B)...",IDC_LEFT_BUTTON,242,22,50,12
     RTEXT           "‰E(&R):",IDC_STATIC,13,40,55,8
     COMBOBOX        IDC_RIGHT_COMBO,71,38,167,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "ŽQÆ(&W)...",IDC_RIGHT_BUTTON,242,38,50,12
+    PUSHBUTTON      "ŽQ?Æ(&W)...",IDC_RIGHT_BUTTON,242,38,50,12
     RTEXT           "ƒtƒBƒ‹ƒ^(&F):",IDC_STATIC,13,56,55,8
     COMBOBOX        IDC_EXT_COMBO,71,54,167,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
@@ -436,19 +436,19 @@ FONT 8, "MS Shell Dlg"
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    LTEXT           "ƒf[ƒ^ƒx[ƒX:",IDC_STATIC,7,64,36,8
+    LTEXT           "ƒf?[ƒ^ƒx?[ƒX:",IDC_STATIC,7,64,36,8
     COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "ƒvƒƒWƒFƒNƒg:",IDC_STATIC,9,81,36,8
+    LTEXT           "ƒvƒ?ƒWƒFƒNƒg:",IDC_STATIC,9,81,36,8
     COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "ƒ†[ƒU[:",IDC_STATIC,7,99,36,8
+    LTEXT           "ƒ†?[ƒU?[:",IDC_STATIC,7,99,36,8
     EDITTEXT        IDC_USER,48,96,70,14,ES_AUTOHSCROLL
-    RTEXT           "ƒpƒXƒ[ƒh:",IDC_STATIC,122,99,55,8
+    RTEXT           "ƒpƒXƒ??[ƒh:",IDC_STATIC,122,99,55,8
     EDITTEXT        IDC_PASSWORD,180,96,70,14,ES_PASSWORD | ES_AUTOHSCROLL
-    CONTROL         "‘ÎÛVSSƒvƒƒWƒFƒNƒg‚ÆƒŠƒ“ƒN‚·‚é",IDC_VCPROJ_SYNC,"Button",
+    CONTROL         "‘Î?ÛVSSƒvƒ?ƒWƒFƒNƒg‚ÆƒŠƒ“ƒN‚·‚é",IDC_VCPROJ_SYNC,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
-    CONTROL         "‚·‚×‚Ä‚Ì€–Ú‚É“K—p‚·‚é",IDC_MULTI_CHECKOUT,"Button",
+    CONTROL         "‚·‚×‚Ä‚Ì?€–Ú‚É“K—p‚·‚é",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
     DEFPUSHBUTTON   "ƒ`ƒFƒbƒNƒAƒEƒg",IDOK,53,132,50,14
     PUSHBUTTON      "–¼‘O‚ð•t‚¯‚Ä•Û‘¶...",IDC_SAVE_AS,145,145,50,14
@@ -457,16 +457,16 @@ END
 
 IDD_PROP_VSS DIALOGEX 0, 0, 259, 157
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "ƒo[ƒWƒ‡ƒ“ŠÇ—ƒVƒXƒeƒ€"
+CAPTION "ƒo?[ƒWƒ‡ƒ“ŠÇ—?ƒVƒXƒeƒ€"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    GROUPBOX        "Ý’è",IDC_STATIC,7,7,245,54
+    GROUPBOX        "?Ý’è",IDC_STATIC,7,7,245,54
     LTEXT           "cleartool.exe‚Ö‚ÌƒpƒX(&P):",IDC_VSS_L1,16,42,68,8
     EDITTEXT        IDC_PATH_EDIT,85,40,116,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "ŽQÆ(&B)...",IDC_BROWSE_BUTTON,206,40,42,12
+    PUSHBUTTON      "ŽQ?Æ(&B)...",IDC_BROWSE_BUTTON,206,40,42,12
     COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
-    LTEXT           "ƒo[ƒWƒ‡ƒ“ƒVƒXƒeƒ€(&V):",IDC_STATIC,16,22,69,10
+    LTEXT           "ƒo?[ƒWƒ‡ƒ“ƒVƒXƒeƒ€(&V):",IDC_STATIC,16,22,69,10
 END
 
 IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 156
@@ -476,25 +476,25 @@ FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "Œ³ƒtƒ@ƒCƒ‹‚ðƒoƒbƒNƒAƒbƒv(&B)",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
-    CONTROL         "Ž©“®“I‚ÉÅ‰‚Ì·ˆÙ‚ÉƒXƒNƒ[ƒ‹‚·‚é(&S)",
+    CONTROL         "Ž©“®“I‚É?Å?‰‚Ì?·ˆÙ‚ÉƒXƒNƒ??[ƒ‹‚·‚é(&S)",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     17,206,10
     CONTROL         "ƒXƒvƒ‰ƒbƒVƒ…‰æ–Ê‚ð”ñ•\Ž¦(&D)",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
-    CONTROL         "Ž©“®“I‚É”äŠró‹µƒyƒCƒ“‚ð•Â‚¶‚é(&C)",
+    CONTROL         "Ž©“®“I‚É”äŠr?ó‹µƒyƒCƒ“‚ð•Â‚¶‚é(&C)",
                     IDC_CMPPANE_AUTOCLOSE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,37,206,10
-    CONTROL         "ESCƒL[‚ÅƒEƒCƒ“ƒhƒE‚ð•Â‚¶‚é(&O)",IDC_ESC_CLOSES_WINDOW,
+    CONTROL         "ESCƒL?[‚ÅƒEƒCƒ“ƒhƒE‚ð•Â‚¶‚é(&O)",IDC_ESC_CLOSES_WINDOW,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,208,10
-    CONTROL         "ŠJ‚­ƒ_ƒCƒAƒƒO‚ÅŽ©“®“I‚ÉƒpƒX‚ðŒŸ¸‚·‚é",
+    CONTROL         "ŠJ‚­ƒ_ƒCƒAƒ?ƒO‚ÅŽ©“®“I‚ÉƒpƒX‚ðŒŸ?¸‚·‚é",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,143,10
-    CONTROL         "“Çž/•Û‘¶‚ÅƒR[ƒhƒy[ƒWî•ñ(html,rc)‚ðŽg—p‚·‚é(ƒZƒbƒVƒ‡ƒ“‚ÌÄ‹N“®‚ª•K—v)",
+    CONTROL         "“Ç?ž/•Û‘¶‚ÅƒR?[ƒhƒy?[ƒW?î•ñ(html,rc)‚ðŽg—p‚·‚é(ƒZƒbƒVƒ‡ƒ“‚Ì?Ä‹N“®‚ª•K—v)",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,67,240,10
     PUSHBUTTON      "ƒŠƒZƒbƒg",IDC_RESET_ALL_MESSAGE_BOXES,167,87,49,13,NOT
                     WS_TABSTOP
-    LTEXT           "‚·‚×‚Ä‚ÌƒƒbƒZ[ƒWƒ{ƒbƒNƒX‚ðƒŠƒZƒbƒg‚·‚é‚É‚ÍA\nƒŠƒZƒbƒgƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B",IDC_STATIC,7,
+    LTEXT           "‚·‚×‚Ä‚Ìƒ?ƒbƒZ?[ƒWƒ{ƒbƒNƒX‚ðƒŠƒZƒbƒg‚·‚é‚É‚Í?A\nƒŠƒZƒbƒgƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢?B",IDC_STATIC,7,
                     89,157,16
 END
 
@@ -514,25 +514,25 @@ END
 IDD_EDIT_FIND DIALOGEX 30, 73, 236, 68
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "ŒŸõ"
+CAPTION "ŒŸ?õ"
 FONT 8, "MS Shell Dlg"
 BEGIN
     COMBOBOX        IDC_EDIT_FINDTEXT,50,6,126,138,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "’PŒê’PˆÊ‚Å’T‚·(&W)",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
-    CONTROL         "‘å•¶Žš‚Æ¬•¶Žš‚ð‹æ•Ê‚·‚é(&C)",IDC_EDIT_MATCH_CASE,"Button",
+    CONTROL         "‘å•¶Žš‚Æ?¬•¶Žš‚ð‹æ•Ê‚·‚é(&C)",IDC_EDIT_MATCH_CASE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,40,101,12
-    CONTROL         "³‹K•\Œ»(&E)",IDC_EDIT_REGEXP,"Button",
+    CONTROL         "?³‹K•\Œ»(&E)",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,54,77,12
-    CONTROL         "ã‚Ö(&U)",IDC_EDIT_DIRECTION_UP,"Button",
+    CONTROL         "?ã‚Ö(&U)",IDC_EDIT_DIRECTION_UP,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,111,36,34,12
     CONTROL         "‰º‚Ö(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",
                     BS_AUTORADIOBUTTON,111,48,35,12
-    DEFPUSHBUTTON   "ŽŸ‚ðŒŸõ(&F)",IDOK,182,5,50,14,WS_GROUP
+    DEFPUSHBUTTON   "ŽŸ‚ðŒŸ?õ(&F)",IDOK,182,5,50,14,WS_GROUP
     PUSHBUTTON      "ƒLƒƒƒ“ƒZƒ‹",IDCANCEL,182,23,50,14
-    LTEXT           "ŒŸõ•¶Žš—ñ(&N)",IDC_STATIC,4,8,46,8
-    GROUPBOX        "ŒŸõ‚·‚é•ûŒü",IDC_STATIC,107,26,68,38,WS_GROUP
+    LTEXT           "ŒŸ?õ•¶Žš—ñ(&N)",IDC_STATIC,4,8,46,8
+    GROUPBOX        "ŒŸ?õ‚·‚é•ûŒü",IDC_STATIC,107,26,68,38,WS_GROUP
 END
 
 IDD_EDIT_REPLACE DIALOGEX 36, 44, 243, 103
@@ -541,7 +541,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "’uŠ·"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "ŒŸõ‚·‚é•¶Žš—ñ(&N):",IDC_STATIC,4,9,61,8
+    LTEXT           "ŒŸ?õ‚·‚é•¶Žš—ñ(&N):",IDC_STATIC,4,9,61,8
     COMBOBOX        IDC_EDIT_FINDTEXT,65,5,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "’uŠ·Œã‚Ì•¶Žš—ñ(&P):",IDC_STATIC,4,26,61,8
@@ -549,17 +549,17 @@ BEGIN
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "’PŒê’PˆÊ‚Å’T‚·(&W)",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
-    CONTROL         "‘å•¶Žš‚Æ¬•¶Žš‚ð‹æ•Ê‚·‚é(&C)",IDC_EDIT_MATCH_CASE,"Button",
+    CONTROL         "‘å•¶Žš‚Æ?¬•¶Žš‚ð‹æ•Ê‚·‚é(&C)",IDC_EDIT_MATCH_CASE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,60,105,12
-    CONTROL         "³‹K•\Œ»(&E)",IDC_EDIT_REGEXP,"Button",
+    CONTROL         "?³‹K•\Œ»(&E)",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,74,77,12
-    CONTROL         "ƒtƒ@ƒCƒ‹‚ÌI’[‚ÅÜ‚è•Ô‚³‚È‚¢(&D)",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+    CONTROL         "ƒtƒ@ƒCƒ‹‚Ì?I’[‚Å?Ü‚è•Ô‚³‚È‚¢(&D)",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,88,135,12
     CONTROL         "‘I‘ð”ÍˆÍ(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,115,57,59,10
     CONTROL         "ƒtƒ@ƒCƒ‹‘S‘Ì(&O)",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
                     BS_AUTORADIOBUTTON,115,70,58,10
-    DEFPUSHBUTTON   "ŽŸ‚ðŒŸõ(&F)",IDC_EDIT_SKIP,185,5,55,14,WS_GROUP
+    DEFPUSHBUTTON   "ŽŸ‚ðŒŸ?õ(&F)",IDC_EDIT_SKIP,185,5,55,14,WS_GROUP
     PUSHBUTTON      "’uŠ·‚µ‚ÄŽŸ‚É(&R)",IDC_EDIT_REPLACE,185,23,55,14
     PUSHBUTTON      "‚·‚×‚Ä’uŠ·(&A)",IDC_EDIT_REPLACE_ALL,185,39,55,14
     PUSHBUTTON      "ƒLƒƒƒ“ƒZƒ‹",IDCANCEL,185,57,55,14
@@ -577,18 +577,18 @@ BEGIN
     PUSHBUTTON      "–¼‘O‚ð•t‚¯‚Ä•Û‘¶...",IDC_SAVE_AS,114,90,50,14
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    LTEXT           "ƒRƒƒ“ƒg",IDC_STATIC,18,7,34,10
+    LTEXT           "ƒRƒ?ƒ“ƒg",IDC_STATIC,18,7,34,10
 END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "sƒtƒBƒ‹ƒ^"
+CAPTION "?sƒtƒBƒ‹ƒ^"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    CONTROL         "ŽŸ‚Ìƒpƒ^[ƒ“‚Éˆê’v‚µ‚½s‚ð–³Ž‹‚·‚é",
+    CONTROL         "ŽŸ‚Ìƒpƒ^?[ƒ“‚Éˆê’v‚µ‚½?s‚ð–³Ž‹‚·‚é",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
-    LTEXT           "³‹K•\Œ» (s‚ ‚½‚èˆê‚Â):",IDC_STATIC,7,28,
+    LTEXT           "?³‹K•\Œ» (?s‚ ‚½‚èˆê‚Â):",IDC_STATIC,7,28,
                     221,8
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
@@ -596,69 +596,69 @@ END
 
 IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "F"
+CAPTION "?F"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    RTEXT           "·ˆÙ:",IDC_STATIC,7,29,75,8
+    RTEXT           "?·ˆÙ:",IDC_STATIC,7,29,90,8
     CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,98,29,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,113,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "‘I‘ð‚³‚ê‚½·ˆÙ:",IDC_STATIC,7,49,75,8
+    RTEXT           "‘I‘ð‚³‚ê‚½?·ˆÙ:",IDC_STATIC,7,49,90,8
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,98,49,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,113,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CTEXT           "”wŒi",IDC_STATIC,81,15,50,8
-    CTEXT           "íœ",IDC_STATIC,130,15,38,8
+    CTEXT           "”wŒi",IDC_STATIC,96,15,50,8
+    CTEXT           "?í?œ",IDC_STATIC,145,15,38,8
     CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,156,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,156,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,199,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,199,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CTEXT           "ƒeƒLƒXƒg",IDC_STATIC,178,15,29,8
+    CTEXT           "ƒeƒLƒXƒg",IDC_STATIC,193,15,29,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,113,69,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "–³Ž‹‚³‚ê‚½·ˆÙ:",IDC_STATIC,7,69,75,8
+    RTEXT           "–³Ž‹‚³‚ê‚½?·ˆÙ:",IDC_STATIC,7,69,90,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,69,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,156,69,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,184,69,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,199,69,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,98,89,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "ˆÚ“®ƒuƒƒbƒN:",IDC_STATIC,7,89,75,8
+    RTEXT           "ˆÚ“®ƒuƒ?ƒbƒN:",IDC_STATIC,7,89,90,8
     CONTROL         "Dif",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,89,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_MOVEDBLOCK_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,184,89,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,199,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,98,109,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "‘I‘ð‚³‚ê‚½ˆÚ“®ƒuƒƒbƒN:",IDC_STATIC,7,109,75,8
+    RTEXT           "‘I‘ð‚³‚ê‚½ˆÚ“®ƒuƒ?ƒbƒN:",IDC_STATIC,7,109,90,8
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,109,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,184,109,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    PUSHBUTTON      "ƒfƒtƒHƒ‹ƒg",IDC_COLORDEFAULTS_BTN,151,130,50,14
+    PUSHBUTTON      "ƒfƒtƒHƒ‹ƒg",IDC_COLORDEFAULTS_BTN,166,130,50,14
 END
 
 IDD_OUTPUT DIALOGEX 0, 0, 278, 157
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "ƒ_ƒCƒAƒƒO"
+CAPTION "ƒ_ƒCƒAƒ?ƒO"
 FONT 8, "MS Shell Dlg"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,106,136,50,14
@@ -671,39 +671,39 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "ƒŒƒWƒXƒgƒŠ"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    CONTROL         "íœ‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ð‚²‚Ý” ‚ÉˆÚ“®‚·‚é(&P)",IDC_USE_RECYCLE_BIN,
+    CONTROL         "?í?œ‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ð‚²‚Ý” ‚ÉˆÚ“®‚·‚é(&P)",IDC_USE_RECYCLE_BIN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,134,10
-    CONTROL         "ƒGƒNƒXƒvƒ[ƒ‰[ƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[‚É’Ç‰Á(&A)",IDC_EXPLORER_CONTEXT,
+    CONTROL         "ƒGƒNƒXƒvƒ??[ƒ‰?[ƒRƒ“ƒeƒLƒXƒgƒ?ƒjƒ…?[‚É’Ç‰Á(&A)",IDC_EXPLORER_CONTEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,167,10
-    CONTROL         "Šg’£ƒƒjƒ…[‚ð—LŒø‚É‚·‚é(&N)",IDC_EXPLORER_ADVANCED,"Button",
+    CONTROL         "Šg’£ƒ?ƒjƒ…?[‚ð—LŒø‚É‚·‚é(&N)",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
     LTEXT           "ŠO•”ƒGƒfƒBƒ^(&E):",IDC_STATIC,7,44,167,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "ŽQÆ(&B)...",IDC_EXT_EDITOR_BROWSE,179,54,50,14
+    PUSHBUTTON      "ŽQ?Æ(&B)...",IDC_EXT_EDITOR_BROWSE,179,54,50,14
 END
 
 IDD_GENERATE_PATCH DIALOGEX 0, 0, 340, 180
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "ƒpƒbƒ`¶¬"
+CAPTION "ƒpƒbƒ`?¶?¬"
 FONT 8, "MS Shell Dlg"
 BEGIN
     LTEXT           "ƒtƒ@ƒCƒ‹&1:",IDC_STATIC,7,10,36,8
     COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "ŽQÆ(&B)...",IDC_DIFF_BROWSE_FILE1,283,7,50,14
+    PUSHBUTTON      "ŽQ?Æ(&B)...",IDC_DIFF_BROWSE_FILE1,283,7,50,14
     LTEXT           "ƒtƒ@ƒCƒ‹&2:",IDC_STATIC,7,27,36,8
     COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "ŽQÆ(&O)...",IDC_DIFF_BROWSE_FILE2,283,24,50,14
+    PUSHBUTTON      "ŽQ?Æ(&O)...",IDC_DIFF_BROWSE_FILE2,283,24,50,14
     PUSHBUTTON      "ŒðŠ·(&S)",IDC_DIFF_SWAPFILES,283,41,50,14
     CONTROL         "Šù‘¶‚Ìƒtƒ@ƒCƒ‹‚É’Ç‰Á‚·‚é(&A)",IDC_DIFF_APPENDFILE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
     LTEXT           "Œ‹‰Ê(&R):",IDC_STATIC,7,66,37,8
     COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "ŽQÆ(&W)...",IDC_DIFF_BROWSE_RESULT,283,63,50,14
-    GROUPBOX        "o—ÍŒ`Ž®(&F)",IDC_STATIC,7,81,142,46
+    PUSHBUTTON      "ŽQ?Æ(&W)...",IDC_DIFF_BROWSE_RESULT,283,63,50,14
+    GROUPBOX        "?o—ÍŒ`Ž®(&F)",IDC_STATIC,7,81,142,46
     LTEXT           "ƒXƒ^ƒCƒ‹(&Y):",IDC_STATIC,13,95,46,8
     COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
@@ -713,15 +713,15 @@ BEGIN
     GROUPBOX        "‹ó”’(&H)",IDC_STATIC,155,81,123,46
     CONTROL         "”äŠr‚·‚é(&P)",IDC_DIFF_WHITESPACE_COMPARE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,162,92,110,10
-    CONTROL         "•ÏX‚ð–³Ž‹‚·‚é(&G)",IDC_DIFF_WHITESPACE_IGNORE,"Button",
+    CONTROL         "•Ï?X‚ð–³Ž‹‚·‚é(&G)",IDC_DIFF_WHITESPACE_IGNORE,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
     CONTROL         "‚·‚×‚Ä–³Ž‹‚·‚é(&N)",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
-    CONTROL         "‹ó”’s‚ð–³Ž‹‚·‚é(&E)",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
+    CONTROL         "‹ó”’?s‚ð–³Ž‹‚·‚é(&E)",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,142,10
-    CONTROL         "‘å•¶Žš‚Æ¬•¶Žš‚ð‹æ•Ê‚·‚é(&T)",IDC_DIFF_CASESENSITIVE,"Button",
+    CONTROL         "‘å•¶Žš‚Æ?¬•¶Žš‚ð‹æ•Ê‚·‚é(&T)",IDC_DIFF_CASESENSITIVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
-    CONTROL         "ƒRƒ}ƒ“ƒhs‚ðŠÜ‚ß‚é(&D)",IDC_DIFF_INCLCMDLINE,"Button",
+    CONTROL         "ƒRƒ}ƒ“ƒh?s‚ðŠÜ‚ß‚é(&D)",IDC_DIFF_INCLCMDLINE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
     CONTROL         "ŠO•”ƒGƒfƒBƒ^‚ÅŠJ‚­(&X)",IDC_DIFF_OPENTOEDITOR,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,155,145,170,10
@@ -751,7 +751,7 @@ BEGIN
     GROUPBOX        "•\Ž¦—ñ",IDC_GROUP_SHOW,7,7,129,109
     LISTBOX         IDC_LIST_SHOW,48,19,80,90,LBS_NOINTEGRALHEIGHT |
                     LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "ã‚Ö(&U)",IDC_UP,14,45,27,14
+    PUSHBUTTON      "?ã‚Ö(&U)",IDC_UP,14,45,27,14
     PUSHBUTTON      "‰º‚Ö(&D)",IDC_DOWN,14,63,27,14
     GROUPBOX        "”ñ•\Ž¦—ñ",IDC_GROUP_HIDE,180,7,96,109
     LISTBOX         IDC_LIST_HIDE,188,19,80,90,LBS_NOINTEGRALHEIGHT |
@@ -775,11 +775,11 @@ BEGIN
     LTEXT           "ƒtƒ@ƒCƒ‹“WŠJƒvƒ‰ƒOƒCƒ“:",IDC_STATIC,7,18,68,10
     COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "‚·‚×‚Ä‚Ì“WŠJƒvƒ‰ƒOƒCƒ“‚ð•\Ž¦‚µAŠg’£Žq‚ðƒ`ƒFƒbƒN‚µ‚Ü‚¹‚ñB",
+    CONTROL         "‚·‚×‚Ä‚Ì“WŠJƒvƒ‰ƒOƒCƒ“‚ð•\Ž¦‚µ?AŠg’£Žq‚ðƒ`ƒFƒbƒN‚µ‚Ü‚¹‚ñ?B",
                     IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX |
                     BS_LEFTTEXT | WS_TABSTOP,7,74,202,13
     LTEXT           "Šg’£Žqˆê——:",IDC_STATIC,7,36,49,10
-    LTEXT           "à–¾:",IDC_STATIC,7,52,47,10
+    LTEXT           "?à–¾:",IDC_STATIC,7,52,47,10
     EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,176,12,
                     ES_AUTOHSCROLL | ES_READONLY
     EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL |
@@ -854,17 +854,17 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "ƒWƒƒƒ“ƒv"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "”Ô†(&O):",IDC_STATIC,7,9,18,8
+    LTEXT           "”Ô?†(&O):",IDC_STATIC,7,9,18,8
     EDITTEXT        IDC_WMGOTO_PARAM,33,7,93,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "ƒtƒ@ƒCƒ‹",IDC_STATIC,7,27,48,35
-    CONTROL         "¶(&L)",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
+    CONTROL         "?¶(&L)",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,13,38,28,10
     CONTROL         "‰E(&R)",IDC_WMGOTO_FILERIGHT,"Button",
                     BS_AUTORADIOBUTTON,13,48,33,10
     GROUPBOX        "ƒWƒƒƒ“ƒvŽí•Ê",IDC_STATIC,61,27,63,35
-    CONTROL         "s(&I)",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON |
+    CONTROL         "?s(&I)",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,68,38,29,10
-    CONTROL         "·ˆÙ(&D)",IDC_WMGOTO_TODIFF,"Button",
+    CONTROL         "?·ˆÙ(&D)",IDC_WMGOTO_TODIFF,"Button",
                     BS_AUTORADIOBUTTON,68,48,49,10
     DEFPUSHBUTTON   "ƒWƒƒƒ“ƒv(&G)",IDOK,132,7,50,14
     PUSHBUTTON      "ƒLƒƒƒ“ƒZƒ‹",IDCANCEL,132,24,50,14
@@ -878,18 +878,18 @@ BEGIN
     GROUPBOX        "‹ó”’",IDC_STATIC,7,7,221,50
     CONTROL         "”äŠr‚·‚é(&C)",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,14,19,206,10
-    CONTROL         "•ÏX‚ð–³Ž‹‚·‚é(&I)",IDC_WHITE_CHANGE,"Button",
+    CONTROL         "•Ï?X‚ð–³Ž‹‚·‚é(&I)",IDC_WHITE_CHANGE,"Button",
                     BS_AUTORADIOBUTTON,14,30,206,10
     CONTROL         "‚·‚×‚Ä–³Ž‹‚·‚é(&G)",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
                     14,41,206,10
-    CONTROL         "‹ós‚ð–³Ž‹‚·‚é(&K)",IDC_IGNBLANKS_CHECK,"Button",
+    CONTROL         "‹ó?s‚ð–³Ž‹‚·‚é(&K)",IDC_IGNBLANKS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
-    CONTROL         "‘å•¶Žš‚Æ¬•¶Žš‚ð‹æ•Ê‚µ‚È‚¢(&C)",IDC_IGNCASE_CHECK,"Button",
+    CONTROL         "‘å•¶Žš‚Æ?¬•¶Žš‚ð‹æ•Ê‚µ‚È‚¢(&C)",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
-    CONTROL         "‰üs•¶Žš‚Ìˆá‚¢‚ð–³Ž‹‚µ‚È‚¢(&R) (DOS/UNIX/MAC)",
+    CONTROL         "‰ü?s•¶Žš‚Ìˆá‚¢‚ð–³Ž‹‚µ‚È‚¢(&R) (DOS/UNIX/MAC)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,80,221,10
-    CONTROL         "ˆÚ“®ƒuƒƒbƒNŒŸo‚ð—LŒø‚É‚·‚é(&N)",IDC_MOVED_BLOCKS,"Button",
+    CONTROL         "ˆÚ“®ƒuƒ?ƒbƒNŒŸ?o‚ð—LŒø‚É‚·‚é(&N)",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
     LTEXT           "ƒtƒ@ƒCƒ‹”äŠr•û–@(&F):",IDC_STATIC,7,105,70,9
     COMBOBOX        IDC_COMPAREMETHODCOMBO,79,103,84,52,CBS_DROPDOWNLIST |
@@ -907,17 +907,17 @@ BEGIN
     CONTROL         "”FŽ¯‚Å‚«‚È‚¢‘¤‚É‚à“K—p‚·‚é(&U)",
                     IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,18,18,204,10
-    CONTROL         "Ž©“®“I‚ÉÄƒXƒLƒƒƒ“‚·‚é(&A)",IDC_AUTOMRESCAN_CHECK,"Button",
+    CONTROL         "Ž©“®“I‚É?ÄƒXƒLƒƒƒ“‚·‚é(&A)",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "Œ³‚ÌEOL•¶Žš‚ð•Û‘¶‚·‚é(&P)",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "ƒ^ƒu",IDC_STATIC,7,54,221,33,WS_GROUP
-    LTEXT           "ƒ^ƒu•(&T):",IDC_STATIC,15,68,30,8
+    LTEXT           "ƒ^ƒu•?(&T):",IDC_STATIC,15,68,30,8
     EDITTEXT        IDC_TAB_EDIT,47,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "ƒ^ƒu‚ð‘}“ü(&I)",IDC_PROP_INSERT_TABS,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,77,63,51,10
-    CONTROL         "ƒXƒy[ƒX‚ð‘}“ü(&S)",IDC_PROP_INSERT_SPACES,"Button",
+    CONTROL         "ƒXƒy?[ƒX‚ð‘}“ü(&S)",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,77,72,59,10
 END
 
@@ -936,7 +936,7 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "•ÒW...",IDC_FILTERFILE_EDITBTN,299,114,50,14
+    PUSHBUTTON      "•Ò?W...",IDC_FILTERFILE_EDITBTN,299,114,50,14
 END
 
 #ifndef _MAC
@@ -1111,27 +1111,27 @@ BEGIN
     ID_INDICATOR_CAPS       "CAP"
     ID_INDICATOR_NUM        "NUM"
     ID_INDICATOR_SCRL       "SCRL"
-    ID_INDICATOR_OVR        "ã‘"
+    ID_INDICATOR_OVR        "?ã?‘"
     ID_INDICATOR_REC        "‹L˜^"
 END
 
 STRINGTABLE
 BEGIN
-    ID_FILE_NEW             "V‚µ‚¢ƒhƒLƒ…ƒƒ“ƒg‚ð¶¬‚µ‚Ü‚·\nV‹KƒhƒLƒ…ƒƒ“ƒg (Ctrl-N)"
-    ID_FILE_OPEN            "Šù‘¶‚ÌƒhƒLƒ…ƒƒ“ƒg‚ðŠJ‚«‚Ü‚·\nŠJ‚­ (Ctrl+O)"
-    ID_FILE_CLOSE           "ì‹Æ’†‚ÌƒhƒLƒ…ƒƒ“ƒg‚ð•Â‚¶‚Ü‚·\n•Â‚¶‚é"
-    ID_FILE_SAVE            "ì‹Æ’†‚ÌƒhƒLƒ…ƒƒ“ƒg‚ð•Û‘¶‚µ‚Ü‚·\n•Û‘¶ (Ctrl+S)"
-    ID_FILE_SAVE_AS         "ì‹Æ’†‚ÌƒhƒLƒ…ƒƒ“ƒg‚ðV‚µ‚¢–¼‘O‚ð‚Â‚¯‚Ä•Û‘¶‚µ‚Ü‚·\n–¼‘O‚ð•t‚¯‚Ä•Û‘¶"
-    ID_FILE_PAGE_SETUP      "ˆóüƒIƒvƒVƒ‡ƒ“‚ð•ÏX‚µ‚Ü‚·\nƒy[ƒW ƒŒƒCƒAƒEƒg‚ÌÝ’è"
-    ID_FILE_PRINT_SETUP     "ƒvƒŠƒ“ƒ^/ˆóüƒIƒvƒVƒ‡ƒ“‚Ì•ÏX\nˆóüÝ’è"
-    ID_FILE_PRINT           "ì‹Æ’†‚ÌƒhƒLƒ…ƒƒ“ƒg‚ðˆóü‚µ‚Ü‚·\nˆóü"
-    ID_FILE_PRINT_PREVIEW   "ˆóüƒCƒ[ƒW‚ð•\Ž¦‚µ‚Ü‚·\nˆóüƒvƒŒƒrƒ…["
+    ID_FILE_NEW             "?V‚µ‚¢ƒhƒLƒ…ƒ?ƒ“ƒg‚ð?¶?¬‚µ‚Ü‚·\n?V‹KƒhƒLƒ…ƒ?ƒ“ƒg (Ctrl-N)"
+    ID_FILE_OPEN            "Šù‘¶‚ÌƒhƒLƒ…ƒ?ƒ“ƒg‚ðŠJ‚«‚Ü‚·\nŠJ‚­ (Ctrl+O)"
+    ID_FILE_CLOSE           "?ì‹Æ’†‚ÌƒhƒLƒ…ƒ?ƒ“ƒg‚ð•Â‚¶‚Ü‚·\n•Â‚¶‚é"
+    ID_FILE_SAVE            "?ì‹Æ’†‚ÌƒhƒLƒ…ƒ?ƒ“ƒg‚ð•Û‘¶‚µ‚Ü‚·\n•Û‘¶ (Ctrl+S)"
+    ID_FILE_SAVE_AS         "?ì‹Æ’†‚ÌƒhƒLƒ…ƒ?ƒ“ƒg‚ð?V‚µ‚¢–¼‘O‚ð‚Â‚¯‚Ä•Û‘¶‚µ‚Ü‚·\n–¼‘O‚ð•t‚¯‚Ä•Û‘¶"
+    ID_FILE_PAGE_SETUP      "ˆó?üƒIƒvƒVƒ‡ƒ“‚ð•Ï?X‚µ‚Ü‚·\nƒy?[ƒW ƒŒƒCƒAƒEƒg‚Ì?Ý’è"
+    ID_FILE_PRINT_SETUP     "ƒvƒŠƒ“ƒ^/ˆó?üƒIƒvƒVƒ‡ƒ“‚Ì•Ï?X\nˆó?ü?Ý’è"
+    ID_FILE_PRINT           "?ì‹Æ’†‚ÌƒhƒLƒ…ƒ?ƒ“ƒg‚ðˆó?ü‚µ‚Ü‚·\nˆó?ü"
+    ID_FILE_PRINT_PREVIEW   "ˆó?üƒCƒ??[ƒW‚ð•\Ž¦‚µ‚Ü‚·\nˆó?üƒvƒŒƒrƒ…?["
 END
 
 STRINGTABLE
 BEGIN
-    ID_APP_ABOUT            "ƒvƒƒOƒ‰ƒ€‚Ìî•ñAƒo[ƒWƒ‡ƒ“‚»‚µ‚Ä’˜ìŒ ‚ð•\Ž¦‚µ‚Ü‚·\nƒo[ƒWƒ‡ƒ“î•ñ"
-    ID_APP_EXIT             "ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ðI—¹‚µAƒtƒ@ƒCƒ‹‚Ì•Û‘¶‚ðŽwŽ¦‚µ‚Ü‚·\nI—¹"
+    ID_APP_ABOUT            "ƒvƒ?ƒOƒ‰ƒ€‚Ì?î•ñ?Aƒo?[ƒWƒ‡ƒ“‚»‚µ‚Ä’˜?ìŒ ‚ð•\Ž¦‚µ‚Ü‚·\nƒo?[ƒWƒ‡ƒ“?î•ñ"
+    ID_APP_EXIT             "ƒAƒvƒŠƒP?[ƒVƒ‡ƒ“‚ð?I—¹‚µ?Aƒtƒ@ƒCƒ‹‚Ì•Û‘¶‚ðŽwŽ¦‚µ‚Ü‚·\n?I—¹"
 END
 
 STRINGTABLE
@@ -1156,62 +1156,62 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_NEXT_PANE            "ŽŸ‚ÌƒEƒBƒ“ƒhƒEƒyƒCƒ“‚ÉØ‚è‘Ö‚¦‚Ü‚·\nŽŸ‚ÌƒyƒCƒ“"
-    ID_PREV_PANE            "‘O‚ÌƒEƒBƒ“ƒhƒEƒyƒCƒ“‚ÉØ‚è‘Ö‚¦‚Ü‚·\n‘O‚ÌƒyƒCƒ“"
+    ID_NEXT_PANE            "ŽŸ‚ÌƒEƒBƒ“ƒhƒEƒyƒCƒ“‚É?Ø‚è‘Ö‚¦‚Ü‚·\nŽŸ‚ÌƒyƒCƒ“"
+    ID_PREV_PANE            "‘O‚ÌƒEƒBƒ“ƒhƒEƒyƒCƒ“‚É?Ø‚è‘Ö‚¦‚Ü‚·\n‘O‚ÌƒyƒCƒ“"
 END
 
 STRINGTABLE
 BEGIN
-    ID_WINDOW_NEW           "ì‹Æ’†‚ÌƒEƒBƒ“ƒhƒE‚ð•¡ŽÊ‚µ‚Ä•\Ž¦‚µ‚Ü‚·\nV‹KƒEƒBƒ“ƒhƒE"
-    ID_WINDOW_ARRANGE       "ƒEƒBƒ“ƒhƒE‚Ì‰º•”‚ÉƒAƒCƒRƒ“‚ð®—ñ‚µ‚Ü‚·\nƒAƒCƒRƒ“‚Ì®—ñ"
-    ID_WINDOW_CASCADE       "ƒEƒBƒ“ƒhƒE‚ðd‚Ë‚Ä•\Ž¦‚µ‚Ü‚·\nd‚Ë‚Ä•\Ž¦"
-    ID_WINDOW_TILE_HORZ     "ƒEƒBƒ“ƒhƒE‚ðã‰º‚É•À‚×‚Ä•\Ž¦‚µ‚Ü‚·\n•À‚×‚Ä•\Ž¦"
-    ID_WINDOW_TILE_VERT     "ƒEƒBƒ“ƒhƒE‚ð¶‰E‚É•À‚×‚Ä•\Ž¦‚µ‚Ü‚·\n•À‚×‚Ä•\Ž¦"
-    ID_WINDOW_SPLIT         "ì‹Æ’†‚ÌƒEƒBƒ“ƒhƒE‚ð•ªŠ„‚µ‚Ü‚·\n•ªŠ„"
+    ID_WINDOW_NEW           "?ì‹Æ’†‚ÌƒEƒBƒ“ƒhƒE‚ð•¡ŽÊ‚µ‚Ä•\Ž¦‚µ‚Ü‚·\n?V‹KƒEƒBƒ“ƒhƒE"
+    ID_WINDOW_ARRANGE       "ƒEƒBƒ“ƒhƒE‚Ì‰º•”‚ÉƒAƒCƒRƒ“‚ð?®—ñ‚µ‚Ü‚·\nƒAƒCƒRƒ“‚Ì?®—ñ"
+    ID_WINDOW_CASCADE       "ƒEƒBƒ“ƒhƒE‚ð?d‚Ë‚Ä•\Ž¦‚µ‚Ü‚·\n?d‚Ë‚Ä•\Ž¦"
+    ID_WINDOW_TILE_HORZ     "ƒEƒBƒ“ƒhƒE‚ð?ã‰º‚É•À‚×‚Ä•\Ž¦‚µ‚Ü‚·\n•À‚×‚Ä•\Ž¦"
+    ID_WINDOW_TILE_VERT     "ƒEƒBƒ“ƒhƒE‚ð?¶‰E‚É•À‚×‚Ä•\Ž¦‚µ‚Ü‚·\n•À‚×‚Ä•\Ž¦"
+    ID_WINDOW_SPLIT         "?ì‹Æ’†‚ÌƒEƒBƒ“ƒhƒE‚ð•ªŠ„‚µ‚Ü‚·\n•ªŠ„"
 END
 
 STRINGTABLE
 BEGIN
-    ID_EDIT_CLEAR           "‘I‘ð”ÍˆÍ‚ðÁ‹Ž‚µ‚Ü‚·\níœ"
-    ID_EDIT_CLEAR_ALL       "‚·‚×‚ÄÁ‹Ž‚µ‚Ü‚·\n‚·‚×‚Äíœ"
-    ID_EDIT_COPY            "‘I‘ð”ÍˆÍ‚ðƒNƒŠƒbƒvƒ{[ƒh‚ÉƒRƒs[‚µ‚Ü‚·\nƒRƒs["
-    ID_EDIT_CUT             "‘I‘ð”ÍˆÍ‚ðØ‚èŽæ‚Á‚ÄAƒNƒŠƒbƒvƒ{[ƒh‚ÉƒRƒs[‚µ‚Ü‚·\nØ‚èŽæ‚è"
-    ID_EDIT_FIND            "Žw’è‚µ‚½•¶Žš—ñ‚ðŒŸõ‚µ‚Ü‚·\nŒŸõ"
-    ID_EDIT_PASTE           "ƒNƒŠƒbƒvƒ{[ƒh‚Ì“à—e‚ð‘}“ü‚µ‚Ü‚·\n“\‚è•t‚¯"
-    ID_EDIT_REPEAT          "’¼‘O‚És‚Á‚½“®ì‚ðŒJ‚è•Ô‚·\nŒJ‚è•Ô‚µ"
-    ID_EDIT_REPLACE         "Žw’è‚³‚ê‚½•¶Žš—ñ‚ðA‚Ù‚©‚Ì•¶Žš—ñ‚É’u‚«Š·‚¦‚Ü‚·\n’uŠ·"
-    ID_EDIT_SELECT_ALL      "ƒhƒLƒ…ƒƒ“ƒg‘S‘Ì‚ð‘I‘ð‚µ‚Ü‚·\n‚·‚×‚Ä‘I‘ð"
-    ID_EDIT_UNDO            "’¼‘O‚És‚È‚Á‚½‘€ì‚ðŽæ‚èÁ‚µ‚Ü‚·\nŒ³‚É–ß‚· (Ctrl+Z)"
-    ID_EDIT_REDO            "’¼‘O‚És‚Á‚½“®ì‚ðŒJ‚è•Ô‚·\nŒJ‚è•Ô‚· (Ctrl+Y)"
+    ID_EDIT_CLEAR           "‘I‘ð”ÍˆÍ‚ð?Á‹Ž‚µ‚Ü‚·\n?í?œ"
+    ID_EDIT_CLEAR_ALL       "‚·‚×‚Ä?Á‹Ž‚µ‚Ü‚·\n‚·‚×‚Ä?í?œ"
+    ID_EDIT_COPY            "‘I‘ð”ÍˆÍ‚ðƒNƒŠƒbƒvƒ{?[ƒh‚ÉƒRƒs?[‚µ‚Ü‚·\nƒRƒs?["
+    ID_EDIT_CUT             "‘I‘ð”ÍˆÍ‚ð?Ø‚èŽæ‚Á‚Ä?AƒNƒŠƒbƒvƒ{?[ƒh‚ÉƒRƒs?[‚µ‚Ü‚·\n?Ø‚èŽæ‚è"
+    ID_EDIT_FIND            "Žw’è‚µ‚½•¶Žš—ñ‚ðŒŸ?õ‚µ‚Ü‚·\nŒŸ?õ"
+    ID_EDIT_PASTE           "ƒNƒŠƒbƒvƒ{?[ƒh‚Ì“à—e‚ð‘}“ü‚µ‚Ü‚·\n“\‚è•t‚¯"
+    ID_EDIT_REPEAT          "’¼‘O‚É?s‚Á‚½“®?ì‚ðŒJ‚è•Ô‚·\nŒJ‚è•Ô‚µ"
+    ID_EDIT_REPLACE         "Žw’è‚³‚ê‚½•¶Žš—ñ‚ð?A‚Ù‚©‚Ì•¶Žš—ñ‚É’u‚«Š·‚¦‚Ü‚·\n’uŠ·"
+    ID_EDIT_SELECT_ALL      "ƒhƒLƒ…ƒ?ƒ“ƒg‘S‘Ì‚ð‘I‘ð‚µ‚Ü‚·\n‚·‚×‚Ä‘I‘ð"
+    ID_EDIT_UNDO            "’¼‘O‚É?s‚È‚Á‚½‘€?ì‚ðŽæ‚è?Á‚µ‚Ü‚·\nŒ³‚É–ß‚· (Ctrl+Z)"
+    ID_EDIT_REDO            "’¼‘O‚É?s‚Á‚½“®?ì‚ðŒJ‚è•Ô‚·\nŒJ‚è•Ô‚· (Ctrl+Y)"
 END
 
 STRINGTABLE
 BEGIN
-    ID_VIEW_TOOLBAR         "ƒc[ƒ‹ƒo[‚Ì•\Ž¦/”ñ•\Ž¦‚ðØ‚è‘Ö‚¦‚Ü‚·\nƒc[ƒ‹ƒo[•\Ž¦‚ÌƒgƒOƒ‹"
-    ID_VIEW_STATUS_BAR      "ƒXƒe[ƒ^ƒXƒo[‚Ì•\Ž¦/”ñ•\Ž¦‚ðØ‚è‘Ö‚¦‚Ü‚·\nƒXƒe[ƒ^ƒXƒo[•\Ž¦‚ÌƒgƒOƒ‹"
+    ID_VIEW_TOOLBAR         "ƒc?[ƒ‹ƒo?[‚Ì•\Ž¦/”ñ•\Ž¦‚ð?Ø‚è‘Ö‚¦‚Ü‚·\nƒc?[ƒ‹ƒo?[•\Ž¦‚ÌƒgƒOƒ‹"
+    ID_VIEW_STATUS_BAR      "ƒXƒe?[ƒ^ƒXƒo?[‚Ì•\Ž¦/”ñ•\Ž¦‚ð?Ø‚è‘Ö‚¦‚Ü‚·\nƒXƒe?[ƒ^ƒXƒo?[•\Ž¦‚ÌƒgƒOƒ‹"
 END
 
 STRINGTABLE
 BEGIN
-    AFX_IDS_SCSIZE          "ƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY‚ð•ÏX"
-    AFX_IDS_SCMOVE          "ƒEƒBƒ“ƒhƒE‚ÌˆÊ’u‚ð•ÏX"
-    AFX_IDS_SCMINIMIZE      "ƒEƒBƒ“ƒhƒE‚ðÅ¬‰»‚·‚é"
-    AFX_IDS_SCMAXIMIZE      "ƒEƒBƒ“ƒhƒE‚ðÅ‘å‰»‚·‚é"
-    AFX_IDS_SCNEXTWINDOW    "ŽŸ‚ÌƒEƒBƒ“ƒhƒE‚ÉØ‚è‘Ö‚¦‚é"
-    AFX_IDS_SCPREVWINDOW    "‘O‚ÌƒEƒBƒ“ƒhƒE‚ÉØ‚è‘Ö‚¦‚é"
-    AFX_IDS_SCCLOSE         "ì‹Æ’†‚ÌƒEƒBƒ“ƒhƒE‚ð•Â‚¶A•ÏX‚µ‚½ƒtƒ@ƒCƒ‹‚Ì•Û‘¶‚ðŽwŽ¦"
+    AFX_IDS_SCSIZE          "ƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY‚ð•Ï?X"
+    AFX_IDS_SCMOVE          "ƒEƒBƒ“ƒhƒE‚ÌˆÊ’u‚ð•Ï?X"
+    AFX_IDS_SCMINIMIZE      "ƒEƒBƒ“ƒhƒE‚ð?Å?¬‰»‚·‚é"
+    AFX_IDS_SCMAXIMIZE      "ƒEƒBƒ“ƒhƒE‚ð?Å‘å‰»‚·‚é"
+    AFX_IDS_SCNEXTWINDOW    "ŽŸ‚ÌƒEƒBƒ“ƒhƒE‚É?Ø‚è‘Ö‚¦‚é"
+    AFX_IDS_SCPREVWINDOW    "‘O‚ÌƒEƒBƒ“ƒhƒE‚É?Ø‚è‘Ö‚¦‚é"
+    AFX_IDS_SCCLOSE         "?ì‹Æ’†‚ÌƒEƒBƒ“ƒhƒE‚ð•Â‚¶?A•Ï?X‚µ‚½ƒtƒ@ƒCƒ‹‚Ì•Û‘¶‚ðŽwŽ¦"
 END
 
 STRINGTABLE
 BEGIN
-    AFX_IDS_SCRESTORE       "ƒEƒBƒ“ƒhƒE‚ð’Êí‚ÌƒTƒCƒY‚É–ß‚·"
-    AFX_IDS_SCTASKLIST      "ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌØ‚è‘Ö‚¦"
+    AFX_IDS_SCRESTORE       "ƒEƒBƒ“ƒhƒE‚ð’Ê?í‚ÌƒTƒCƒY‚É–ß‚·"
+    AFX_IDS_SCTASKLIST      "ƒAƒvƒŠƒP?[ƒVƒ‡ƒ“‚Ì?Ø‚è‘Ö‚¦"
     AFX_IDS_MDICHILD        "Žw’è‚ÌƒEƒBƒ“ƒhƒE‚ð•\Ž¦"
 END
 
 STRINGTABLE
 BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "ˆóüƒvƒŒƒrƒ…[ƒ‚[ƒh‚ðI—¹‚µ‚Ü‚·\nƒvƒŒƒrƒ…[‚ÌƒLƒƒƒ“ƒZƒ‹"
+    AFX_IDS_PREVIEW_CLOSE   "ˆó?üƒvƒŒƒrƒ…?[ƒ‚?[ƒh‚ð?I—¹‚µ‚Ü‚·\nƒvƒŒƒrƒ…?[‚ÌƒLƒƒƒ“ƒZƒ‹"
 END
 
 // WINMERGE INFORMATION
@@ -1225,21 +1225,21 @@ END
 // OPTIONS NAME TO PRESERVE/UNIFY EOL
 STRINGTABLE
 BEGIN
-    IDC_MIXED_EOL           "Œ³‚ÌEOL•¶Žš‚ð•ÛŽ‚µ‚Ü‚·"
+    IDC_MIXED_EOL           "Œ³‚ÌEOL•¶Žš‚ð•ÛŽ?‚µ‚Ü‚·"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
 STRINGTABLE
 BEGIN
     IDC_COMPARISON_STOP     "’†’f"
-    IDC_COMPARISON_CLOSE    "‰½‚©ƒL[‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢"
+    IDC_COMPARISON_CLOSE    "‰½‚©ƒL?[‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢"
 END
 
 // EDITOR : FILENAME BAR
 STRINGTABLE
 BEGIN
-    IDC_STATIC_TITLE_LEFT   "‰EƒNƒŠƒbƒN‚ÅƒpƒX‚ðƒRƒs["
-    IDC_STATIC_TITLE_RIGHT  "‰EƒNƒŠƒbƒN‚ÅƒpƒX‚ðƒRƒs["
+    IDC_STATIC_TITLE_LEFT   "‰EƒNƒŠƒbƒN‚ÅƒpƒX‚ðƒRƒs?["
+    IDC_STATIC_TITLE_RIGHT  "‰EƒNƒŠƒbƒN‚ÅƒpƒX‚ðƒRƒs?["
 END
 
 // "DO NOT SHOW AGAIN" MESSAGEBOXES
@@ -1248,7 +1248,7 @@ BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
     IDS_MESSAGEBOX_CANCEL   "ƒLƒƒƒ“ƒZƒ‹(&C)"
     IDS_MESSAGEBOX_ABORT    "’†Ž~(&A)"
-    IDS_MESSAGEBOX_RETRY    "ÄŽŽs(&R)"
+    IDS_MESSAGEBOX_RETRY    "?ÄŽŽ?s(&R)"
     IDS_MESSAGEBOX_IGNORE   "–³Ž‹(&I)"
     IDS_MESSAGEBOX_IGNOREALL "‘S‚Ä–³Ž‹(&A)"
     IDS_MESSAGEBOX_YES      "‚Í‚¢(&Y)"
@@ -1260,12 +1260,12 @@ BEGIN
     IDS_MESSAGEBOX_YES_TO_ALL "‘S‚Ä‚Í‚¢(&A)"
     IDS_MESSAGEBOX_NO       "‚¢‚¢‚¦(&N)"
     IDS_MESSAGEBOX_NO_TO_ALL "‘S‚Ä‚¢‚¢‚¦(&L)"
-    IDS_MESSAGEBOX_CONTINUE "‘±s(&C)"
+    IDS_MESSAGEBOX_CONTINUE "‘±?s(&C)"
     IDS_MESSAGEBOX_SKIP     "ƒXƒLƒbƒv(&S)"
     IDS_MESSAGEBOX_SKIPALL  "‚·‚×‚ÄƒXƒLƒbƒv(&A)"
     IDS_MESSAGEBOX_HELP     "ƒwƒ‹ƒv(&H)"
-    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Ä‚Ñ‚±‚ÌƒƒbƒZ[ƒW‚ð•\Ž¦‚µ‚È‚¢(&M)"
-    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Ä‚Ñ‚±‚ÌŽ¿–â‚ð‚µ‚È‚¢(&Q)"
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "?Ä‚Ñ‚±‚Ìƒ?ƒbƒZ?[ƒW‚ð•\Ž¦‚µ‚È‚¢(&M)"
+    IDS_MESSAGEBOX_DONT_ASK_AGAIN "?Ä‚Ñ‚±‚ÌŽ¿–â‚ð‚µ‚È‚¢(&Q)"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1276,34 +1276,34 @@ BEGIN
     IDS_VERSION_FMT         "Version %1 - Japanese"
     IDS_QUICKHELP           "ƒVƒ“ƒ^ƒbƒNƒX : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere: 
       /? or -? ‚±‚Ìƒwƒ‹ƒv‚ð•\Ž¦‚µ‚Ü‚· 
-      /r or -r Ä‹A“I‚ÉƒfƒBƒŒƒNƒgƒŠ‚ð”äŠr‚µ‚Ü‚· 
-      /e or -e EscƒL[‚Ì‰Ÿ‰º‚ÅWinMerge‚ðI—¹‚µ‚Ü‚· 
-      /ul or -ul ¶ƒpƒX‚ðMRU‚É’Ç‰Á‚µ‚Ü‚¹‚ñ 
+      /r or -r ?Ä‹A“I‚ÉƒfƒBƒŒƒNƒgƒŠ‚ð”äŠr‚µ‚Ü‚· 
+      /e or -e EscƒL?[‚Ì‰Ÿ‰º‚ÅWinMerge‚ð?I—¹‚µ‚Ü‚· 
+      /ul or -ul ?¶ƒpƒX‚ðMRU‚É’Ç‰Á‚µ‚Ü‚¹‚ñ 
       /ur or -ur ‰EƒpƒX‚ðMRU‚É’Ç‰Á‚µ‚Ü‚¹‚ñ 
       /ub or -ub —¼•û‚ÌƒpƒX‚ðMRU‚É’Ç‰Á‚µ‚Ü‚¹‚ñ 
-      /wl or -wl ¶‘¤‚ð“Ç‚ÝŽæ‚èê—p‚ÅŠJ‚«‚Ü‚· 
-      /wr or -wr ‰E‘¤‚ð“Ç‚ÝŽæ‚èê—p‚ÅŠJ‚«‚Ü‚· 
-      /dl or -dl ƒfƒBƒŒƒNƒgƒŠ/ƒtƒ@ƒCƒ‹–¼‚Ì‘ã‚í‚è‚Éà–¾•¶‚ð¶‘¤‚É•\Ž¦‚µ‚Ü‚· 
-      /dr or -dr ƒfƒBƒŒƒNƒgƒŠ/ƒtƒ@ƒCƒ‹–¼‚Ì‘ã‚í‚è‚Éà–¾•¶‚ð‰E‘¤‚É•\Ž¦‚µ‚Ü‚· 
-      leftpath ‚ÍA¶‘¤‚ÅŠJ‚­ƒfƒBƒŒƒNƒgƒŠ‚Ü‚½‚Íƒtƒ@ƒCƒ‹–¼‚Å‚· 
+      /wl or -wl ?¶‘¤‚ð“Ç‚ÝŽæ‚è?ê—p‚ÅŠJ‚«‚Ü‚· 
+      /wr or -wr ‰E‘¤‚ð“Ç‚ÝŽæ‚è?ê—p‚ÅŠJ‚«‚Ü‚· 
+      /dl or -dl ƒfƒBƒŒƒNƒgƒŠ/ƒtƒ@ƒCƒ‹–¼‚Ì‘ã‚í‚è‚É?à–¾•¶‚ð?¶‘¤‚É•\Ž¦‚µ‚Ü‚· 
+      /dr or -dr ƒfƒBƒŒƒNƒgƒŠ/ƒtƒ@ƒCƒ‹–¼‚Ì‘ã‚í‚è‚É?à–¾•¶‚ð‰E‘¤‚É•\Ž¦‚µ‚Ü‚· 
+      leftpath ‚Í?A?¶‘¤‚ÅŠJ‚­ƒfƒBƒŒƒNƒgƒŠ‚Ü‚½‚Íƒtƒ@ƒCƒ‹–¼‚Å‚· 
       rightpath ‰E‘¤‚ÅŠJ‚­ƒfƒBƒŒƒNƒgƒŠ‚Ü‚½‚Íƒtƒ@ƒCƒ‹–¼‚Å‚· 
-      outputpath ‚ÍAÈ—ª‰Â”\‚Èƒ}[ƒW‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì•Û‘¶æƒfƒBƒŒƒNƒgƒŠ‚Å‚·"
+      outputpath ‚Í?A?È—ª‰Â”\‚Èƒ}?[ƒW‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì•Û‘¶?æƒfƒBƒŒƒNƒgƒŠ‚Å‚·"
 END
 
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN
     IDS_OPTIONS_TITLE       "ƒIƒvƒVƒ‡ƒ“"
-    IDS_MESSAGE_BOX_ARE_RESET "‚·‚×‚Ä‚ÌƒƒbƒZ[ƒWƒ{ƒbƒNƒX‚ªAÄ‚Ñ•\Ž¦‚³‚ê‚Ü‚·B"
-    IDS_DIFF_OPEN_NO_SET_PROPS "Œ»ÝŠJ‚¢‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚Í•ÏX‚³‚ê‚Ä‚¢‚Ü‚·B‚¢‚­‚Â‚©‚ÌÝ’è‚ÍAŒ»Ý‚Ìƒtƒ@ƒCƒ‹‚ð”äŠr‚µ‚È‚¨‚·‚Ü‚Å”½‰f‚³‚ê‚È‚¢‚©‚à‚µ‚ê‚Ü‚¹‚ñB"
-    IDS_FONT_CHANGE         "‘I‘ð‚³‚ê‚½ƒtƒHƒ“ƒg‚ÍŒ»Ý•\Ž¦‚³‚ê‚Ä‚¢‚é·ˆÙƒEƒCƒ“ƒhƒE‚É‚Í“K—p‚³‚ê‚Ü‚¹‚ñB"
+    IDS_MESSAGE_BOX_ARE_RESET "‚·‚×‚Ä‚Ìƒ?ƒbƒZ?[ƒWƒ{ƒbƒNƒX‚ª?A?Ä‚Ñ•\Ž¦‚³‚ê‚Ü‚·?B"
+    IDS_DIFF_OPEN_NO_SET_PROPS "Œ»?ÝŠJ‚¢‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚Í•Ï?X‚³‚ê‚Ä‚¢‚Ü‚·?B‚¢‚­‚Â‚©‚Ì?Ý’è‚Í?AŒ»?Ý‚Ìƒtƒ@ƒCƒ‹‚ð”äŠr‚µ‚È‚¨‚·‚Ü‚Å”½‰f‚³‚ê‚È‚¢‚©‚à‚µ‚ê‚Ü‚¹‚ñ?B"
+    IDS_FONT_CHANGE         "‘I‘ð‚³‚ê‚½ƒtƒHƒ“ƒg‚ÍŒ»?Ý•\Ž¦‚³‚ê‚Ä‚¢‚é?·ˆÙƒEƒCƒ“ƒhƒE‚É‚Í“K—p‚³‚ê‚Ü‚¹‚ñ?B"
 END
 
 // BROWSE FILE
 STRINGTABLE
 BEGIN
     IDS_OPEN_TITLE          "ŠJ‚­"
-    IDS_PROGRAMFILES        "ƒvƒƒOƒ‰ƒ€|*.exe;*.bat;*.cmd|‚·‚×‚Ä‚Ìƒtƒ@ƒCƒ‹(*.*)|*.*||"
+    IDS_PROGRAMFILES        "ƒvƒ?ƒOƒ‰ƒ€|*.exe;*.bat;*.cmd|‚·‚×‚Ä‚Ìƒtƒ@ƒCƒ‹(*.*)|*.*||"
     IDS_ALLFILES            "‚·‚×‚Ä‚Ìƒtƒ@ƒCƒ‹ (*.*)|*.*||"
 END
 
@@ -1311,14 +1311,14 @@ END
 STRINGTABLE
 BEGIN
     IDS_COMPMETHOD_CONTENTS "“à—e"
-    IDS_COMPMETHOD_MODDATE  "XV“úŽž"
+    IDS_COMPMETHOD_MODDATE  "?X?V“úŽž"
 END
 
 // FILTER OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_FILTERFILE_NAMETITLE "–¼Ì"
-    IDS_FILTERFILE_PATHTITLE "êŠ"
+    IDS_FILTERFILE_NAMETITLE "–¼?Ì"
+    IDS_FILTERFILE_PATHTITLE "?ê?Š"
     IDS_FILTER_TITLE        "ƒtƒBƒ‹ƒ^"
     IDS_FILTER_PREFIX       "[F] "
 END
@@ -1335,45 +1335,45 @@ STRINGTABLE
 BEGIN
     IDS_DIRECTORY_WINDOW_TITLE "ƒfƒBƒŒƒNƒgƒŠ”äŠrŒ‹‰Ê"
     IDS_FILE_COMPARISON_TITLE "ƒtƒ@ƒCƒ‹”äŠr"
-    IDS_EMPTY_LEFT_FILE     "¶–³‘è"
+    IDS_EMPTY_LEFT_FILE     "?¶–³‘è"
     IDS_EMPTY_RIGHT_FILE    "‰E–³‘è"
 END
 
 // STATUS BAR : CURRENT OPERATION STATUS
 STRINGTABLE
 BEGIN
-    IDS_STATUS_RESCANNING   "ƒtƒ@ƒCƒ‹‚ð‘–¸‚µ‚Ä‚¢‚Ü‚·..."
+    IDS_STATUS_RESCANNING   "ƒtƒ@ƒCƒ‹‚ð‘–?¸‚µ‚Ä‚¢‚Ü‚·..."
     IDS_STATUS_OPENING_SELECTION "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ðŠJ‚¢‚Ä‚¢‚Ü‚·"
-    IDS_STATUS_COPYL2R      "¶‚©‚ç‰E‚ÉƒRƒs[‚µ‚Ä‚¢‚Ü‚·"
-    IDS_STATUS_COPYR2L      "‰E‚©‚ç¶‚ÉƒRƒs[‚µ‚Ä‚¢‚Ü‚·"
-    IDS_STATUS_COPYALL2L    "‘S‚Ä‚ð¶‚ÉƒRƒs[‚µ‚Ä‚¢‚Ü‚·"
-    IDS_STATUS_COPYALL2R    "‘S‚Ä‚ð‰E‚ÉƒRƒs[‚µ‚Ä‚¢‚Ü‚·"
-    IDS_STATUS_COPYFILES    "ƒtƒ@ƒCƒ‹‚ðƒRƒs[‚µ‚Ä‚¢‚Ü‚·..."
-    IDS_STATUS_DELETEFILES  "ƒtƒ@ƒCƒ‹‚ðíœ‚µ‚Ä‚¢‚Ü‚·..."
+    IDS_STATUS_COPYL2R      "?¶‚©‚ç‰E‚ÉƒRƒs?[‚µ‚Ä‚¢‚Ü‚·"
+    IDS_STATUS_COPYR2L      "‰E‚©‚ç?¶‚ÉƒRƒs?[‚µ‚Ä‚¢‚Ü‚·"
+    IDS_STATUS_COPYALL2L    "‘S‚Ä‚ð?¶‚ÉƒRƒs?[‚µ‚Ä‚¢‚Ü‚·"
+    IDS_STATUS_COPYALL2R    "‘S‚Ä‚ð‰E‚ÉƒRƒs?[‚µ‚Ä‚¢‚Ü‚·"
+    IDS_STATUS_COPYFILES    "ƒtƒ@ƒCƒ‹‚ðƒRƒs?[‚µ‚Ä‚¢‚Ü‚·..."
+    IDS_STATUS_DELETEFILES  "ƒtƒ@ƒCƒ‹‚ð?í?œ‚µ‚Ä‚¢‚Ü‚·..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
 STRINGTABLE
 BEGIN
-    IDS_LINE_STATUS_INFO_EOL "s: %s —ñ: %d •¶Žš”: %d EOL: %s"
-    IDS_EMPTY_LINE_STATUS_INFO "s: %s"
-    IDS_LINE_STATUS_INFO    "s: %s —ñ: %d •¶Žš”: %d"
-    IDS_MERGEMODE_MERGING   "ƒ}[ƒW"
-    IDS_DIFF_NUMBER_STATUS_FMT "·ˆÙ %1/%2"
-    IDS_NO_DIFF_SEL_FMT     "%1ŒÂ‚Ì·ˆÙ‚ªŒ©‚Â‚©‚è‚Ü‚µ‚½"
+    IDS_LINE_STATUS_INFO_EOL "?s: %s —ñ: %d •¶Žš?”: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "?s: %s"
+    IDS_LINE_STATUS_INFO    "?s: %s —ñ: %d •¶Žš?”: %d"
+    IDS_MERGEMODE_MERGING   "ƒ}?[ƒW"
+    IDS_DIFF_NUMBER_STATUS_FMT "?·ˆÙ %1/%2"
+    IDS_NO_DIFF_SEL_FMT     "%1ŒÂ‚Ì?·ˆÙ‚ªŒ©‚Â‚©‚è‚Ü‚µ‚½"
     IDS_STATUSBAR_READONLY  "RO"
 END
 
 // OPEN DIALOG
 STRINGTABLE
 BEGIN
-    IDS_ERROR_INCOMPARABLE  "‘¶Ý‚·‚éƒfƒBƒŒƒNƒgƒŠ‚Ü‚½‚ÍAƒtƒ@ƒCƒ‹‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢"
+    IDS_ERROR_INCOMPARABLE  "‘¶?Ý‚·‚éƒfƒBƒŒƒNƒgƒŠ‚Ü‚½‚Í?Aƒtƒ@ƒCƒ‹‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢"
     IDS_DIRSEL_TAG          "Directory Selection"
-    IDS_OPEN_FILESDIRS      "2‚Â‚ÌƒfƒBƒŒƒNƒgƒŠ‚Ü‚½‚ÍA2‚Â‚Ìƒtƒ@ƒCƒ‹‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢B"
-    IDS_OPEN_LEFTINVALID    "¶‘¤‚ÌƒpƒX‚Í•s³‚ÈƒpƒX‚Å‚·!"
-    IDS_OPEN_RIGHTINVALID   "‰E‘¤‚ÌƒpƒX‚Í•s³‚ÈƒpƒX‚Å‚·!"
-    IDS_OPEN_BOTHINVALID    "—¼‘¤‚ÌƒpƒX‚Í•s³‚ÈƒpƒX‚Å‚·!"
-    IDS_OPEN_UNPACKERDISABLED "“WŠJƒvƒ‰ƒOƒCƒ“‘I‘ð‚ð—LŒø‚É‚·‚é‚É‚Íƒtƒ@ƒCƒ‹‚ð“ñ‚Â‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢B"
+    IDS_OPEN_FILESDIRS      "2‚Â‚ÌƒfƒBƒŒƒNƒgƒŠ‚Ü‚½‚Í?A2‚Â‚Ìƒtƒ@ƒCƒ‹‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢?B"
+    IDS_OPEN_LEFTINVALID    "?¶‘¤‚ÌƒpƒX‚Í•s?³‚ÈƒpƒX‚Å‚·!"
+    IDS_OPEN_RIGHTINVALID   "‰E‘¤‚ÌƒpƒX‚Í•s?³‚ÈƒpƒX‚Å‚·!"
+    IDS_OPEN_BOTHINVALID    "—¼‘¤‚ÌƒpƒX‚Í•s?³‚ÈƒpƒX‚Å‚·!"
+    IDS_OPEN_UNPACKERDISABLED "“WŠJƒvƒ‰ƒOƒCƒ“‘I‘ð‚ð—LŒø‚É‚·‚é‚É‚Íƒtƒ@ƒCƒ‹‚ð“ñ‚Â‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢?B"
     IDS_OPEN_MISMATCH       "ƒtƒ@ƒCƒ‹‚ÆƒfƒBƒŒƒNƒgƒŠ‚Í”äŠr‚Å‚«‚Ü‚¹‚ñ!"
 END
 
@@ -1382,9 +1382,9 @@ STRINGTABLE
 BEGIN
     IDS_ERROR_FILE_NOT_FOUND "ƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "ƒtƒ@ƒCƒ‹‚ª“WŠJ‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ: %1"
-    IDS_BINFILES_IDENTICAL   "%1\n%2\n\n‚ÍA“¯ˆê‚ÈƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Å‚·B"
-    IDS_BINFILES_DIFFERENT   "%1\n%2\n\n‚ÍA·ˆÙ‚Ì‚ ‚éƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Å‚·B"
-    IDS_OTHER_IS_BINARY      "%1\n\n‚ÍAƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Å‚·BƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ÆƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚ð”äŠr‚Å‚«‚Ü‚¹‚ñB"
+    IDS_BINFILES_IDENTICAL   "%1\n%2\n\n‚Í?A“¯ˆê‚ÈƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Å‚·?B"
+    IDS_BINFILES_DIFFERENT   "%1\n%2\n\n‚Í?A?·ˆÙ‚Ì‚ ‚éƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Å‚·?B"
+    IDS_OTHER_IS_BINARY      "%1\n\n‚Í?AƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Å‚·?BƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ÆƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚ð”äŠr‚Å‚«‚Ü‚¹‚ñ?B"
     IDS_ERROR_FILEOPEN       "ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñ\n%1\n\n%2"
 END
 
@@ -1392,48 +1392,48 @@ END
 STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "–¼‘O‚ð•t‚¯‚Ä•Û‘¶"
-    IDS_SAVE_FMT            "ƒtƒ@ƒCƒ‹ %1 ‚Ì“à—e‚Í•ÏX‚³‚ê‚Ä‚¢‚Ü‚·B\n•ÏX‚ð•Û‘¶‚µ‚Ü‚·‚©?"
-    IDS_SAVEREADONLY_FMT    "%1‚Í“Ç‚ÝŽæ‚èê—pƒtƒ@ƒCƒ‹‚Å‚·B “Ç‚ÝŽæ‚èê—pƒtƒ@ƒCƒ‹‚ðã‘‚«‚µ‚Ü‚·‚©? (V‚µ‚¢ƒtƒ@ƒCƒ‹–¼‚Å‚Í•Û‘¶‚µ‚Ü‚¹‚ñB)"
-    IDS_ERROR_FILE_WRITEABLE "ƒtƒ@ƒCƒ‹‘‚«ž‚Ý‰Âƒ`ƒFƒbƒNƒGƒ‰["
-    IDS_ERROR_BACKUP        "ƒtƒ@ƒCƒ‹ƒoƒbƒNƒAƒbƒvƒGƒ‰["
-    IDS_BACKUP_FAILED_PROMPT "Œ³ƒtƒ@ƒCƒ‹‚ðƒoƒbƒNƒAƒbƒv‚Å‚«‚Ü‚¹‚ñB\n–³Ž‹‚µ‚Ä‘±‚¯‚Ü‚·‚©?"
-    IDS_FILESAVE_FAILED     "%1‚Ì•Û‘¶‚ÉŽ¸”s‚µ‚Ü‚µ‚½B‚±‚Ìƒtƒ@ƒCƒ‹‚ð•Ê–¼‚Å•Û‘¶‚µ‚Ü‚·‚©?"
-    IDS_FILEPACK_FAILED_LEFT "ƒvƒ‰ƒOƒCƒ“ '%2' ‚ÍAC³“à—e‚ð¶‘¤‚Ìƒtƒ@ƒCƒ‹ '%1' ‚É‘‚«–ß‚·‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñB\n\nŒ³ƒtƒ@ƒCƒ‹‚Í•ÏX‚³‚ê‚Ü‚¹‚ñB\n\n“WŠJ‚³‚ê‚½‚à‚Ì‚ð•Êƒtƒ@ƒCƒ‹‚É•Û‘¶‚µ‚Ü‚·‚©?"
-    IDS_FILEPACK_FAILED_RIGHT "ƒvƒ‰ƒOƒCƒ“ '%2' ‚ÍAC³“à—e‚ð‰E‘¤‚Ìƒtƒ@ƒCƒ‹ '%1' ‚É‘‚«–ß‚·‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñB\n\nŒ³ƒtƒ@ƒCƒ‹‚Í•ÏX‚³‚ê‚Ü‚¹‚ñB\n\n“WŠJ‚³‚ê‚½‚à‚Ì‚ð•Êƒtƒ@ƒCƒ‹‚É•Û‘¶‚µ‚Ü‚·‚©?"
-    IDS_FILECHANGED_ONDISK  "%1\n‚±‚Ìƒtƒ@ƒCƒ‹‚Í WinMerge ˆÈŠO‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÅC³‚³‚ê‚Ä‚¢‚Ü‚·BC³‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Éã‘‚«‚µ‚Ü‚·‚©?"
-    IDS_SAVEREADONLY_MULTI  "%1\n‚ÍA“Ç‚ÝŽæ‚èê—p‚Å‚·B “Ç‚ÝŽæ‚èê—p‚Ì€–Ú‚ðã‘‚«‚µ‚Ü‚·‚©?"
+    IDS_SAVE_FMT            "ƒtƒ@ƒCƒ‹ %1 ‚Ì“à—e‚Í•Ï?X‚³‚ê‚Ä‚¢‚Ü‚·?B\n•Ï?X‚ð•Û‘¶‚µ‚Ü‚·‚©?"
+    IDS_SAVEREADONLY_FMT    "%1‚Í“Ç‚ÝŽæ‚è?ê—pƒtƒ@ƒCƒ‹‚Å‚·?B “Ç‚ÝŽæ‚è?ê—pƒtƒ@ƒCƒ‹‚ð?ã?‘‚«‚µ‚Ü‚·‚©? (?V‚µ‚¢ƒtƒ@ƒCƒ‹–¼‚Å‚Í•Û‘¶‚µ‚Ü‚¹‚ñ?B)"
+    IDS_ERROR_FILE_WRITEABLE "ƒtƒ@ƒCƒ‹?‘‚«?ž‚Ý‰Âƒ`ƒFƒbƒNƒGƒ‰?["
+    IDS_ERROR_BACKUP        "ƒtƒ@ƒCƒ‹ƒoƒbƒNƒAƒbƒvƒGƒ‰?["
+    IDS_BACKUP_FAILED_PROMPT "Œ³ƒtƒ@ƒCƒ‹‚ðƒoƒbƒNƒAƒbƒv‚Å‚«‚Ü‚¹‚ñ?B\n–³Ž‹‚µ‚Ä‘±‚¯‚Ü‚·‚©?"
+    IDS_FILESAVE_FAILED     "%1‚Ì•Û‘¶‚ÉŽ¸”s‚µ‚Ü‚µ‚½?B‚±‚Ìƒtƒ@ƒCƒ‹‚ð•Ê–¼‚Å•Û‘¶‚µ‚Ü‚·‚©?"
+    IDS_FILEPACK_FAILED_LEFT "ƒvƒ‰ƒOƒCƒ“ '%2' ‚Í?A?C?³“à—e‚ð?¶‘¤‚Ìƒtƒ@ƒCƒ‹ '%1' ‚É?‘‚«–ß‚·‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ?B\n\nŒ³ƒtƒ@ƒCƒ‹‚Í•Ï?X‚³‚ê‚Ü‚¹‚ñ?B\n\n“WŠJ‚³‚ê‚½‚à‚Ì‚ð•Êƒtƒ@ƒCƒ‹‚É•Û‘¶‚µ‚Ü‚·‚©?"
+    IDS_FILEPACK_FAILED_RIGHT "ƒvƒ‰ƒOƒCƒ“ '%2' ‚Í?A?C?³“à—e‚ð‰E‘¤‚Ìƒtƒ@ƒCƒ‹ '%1' ‚É?‘‚«–ß‚·‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ?B\n\nŒ³ƒtƒ@ƒCƒ‹‚Í•Ï?X‚³‚ê‚Ü‚¹‚ñ?B\n\n“WŠJ‚³‚ê‚½‚à‚Ì‚ð•Êƒtƒ@ƒCƒ‹‚É•Û‘¶‚µ‚Ü‚·‚©?"
+    IDS_FILECHANGED_ONDISK  "%1\n‚±‚Ìƒtƒ@ƒCƒ‹‚Í WinMerge ˆÈŠO‚ÌƒAƒvƒŠƒP?[ƒVƒ‡ƒ“‚Å?C?³‚³‚ê‚Ä‚¢‚Ü‚·?B?C?³‚³‚ê‚½ƒtƒ@ƒCƒ‹‚É?ã?‘‚«‚µ‚Ü‚·‚©?"
+    IDS_SAVEREADONLY_MULTI  "%1\n‚Í?A“Ç‚ÝŽæ‚è?ê—p‚Å‚·?B “Ç‚ÝŽæ‚è?ê—p‚Ì?€–Ú‚ð?ã?‘‚«‚µ‚Ü‚·‚©?"
 END
 
 // VSS
 STRINGTABLE
 BEGIN
-    IDS_NOPROJECT           "‘±s‚·‚é‚½‚ß‚É‚ÍASourceSafeƒvƒƒWƒFƒNƒgƒpƒX‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢B (—á:  $/MyProject)"
+    IDS_NOPROJECT           "‘±?s‚·‚é‚½‚ß‚É‚Í?ASourceSafeƒvƒ?ƒWƒFƒNƒgƒpƒX‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢?B (—á:  $/MyProject)"
     IDS_VSS_CHECKOUT_STATUS "VSS‚©‚çƒtƒ@ƒCƒ‹‚ðƒ`ƒFƒbƒNƒAƒEƒg‚µ‚Ä‚¢‚Ü‚·..."
-    IDS_VSSERROR            "ƒtƒ@ƒCƒ‹‚Ìƒ`ƒFƒbƒNƒAƒEƒg‚ÅƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B  Œp‘±‚Å‚«‚Ü‚¹‚ñ..."
-    IDS_VSS_RUN_ERROR       "ƒo[ƒWƒ‡ƒ“ƒVƒXƒeƒ€ƒRƒ}ƒ“ƒh‚ÌŽÀsƒGƒ‰[B"
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSSì‹ÆƒtƒHƒ‹ƒ_‚ÆŒ»Ý‚Ìƒtƒ@ƒCƒ‹ˆÊ’u‚Íˆê’v‚µ‚Ä‚¢‚Ü‚¹‚ñB‘±s‚µ‚Ü‚·‚©?"
-    IDS_VSS_NODATABASES     "VSS‚Ìƒf[ƒ^ƒx[ƒX‚ª‚Ý‚Â‚©‚è‚Ü‚¹‚ñ!"
+    IDS_VSSERROR            "ƒtƒ@ƒCƒ‹‚Ìƒ`ƒFƒbƒNƒAƒEƒg‚ÅƒGƒ‰?[‚ª”­?¶‚µ‚Ü‚µ‚½?B  Œp‘±‚Å‚«‚Ü‚¹‚ñ..."
+    IDS_VSS_RUN_ERROR       "ƒo?[ƒWƒ‡ƒ“ƒVƒXƒeƒ€ƒRƒ}ƒ“ƒh‚ÌŽÀ?sƒGƒ‰?[?B"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS?ì‹ÆƒtƒHƒ‹ƒ_‚ÆŒ»?Ý‚Ìƒtƒ@ƒCƒ‹ˆÊ’u‚Íˆê’v‚µ‚Ä‚¢‚Ü‚¹‚ñ?B‘±?s‚µ‚Ü‚·‚©?"
+    IDS_VSS_NODATABASES     "VSS‚Ìƒf?[ƒ^ƒx?[ƒX‚ª‚Ý‚Â‚©‚è‚Ü‚¹‚ñ!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ðŽw’èƒfƒBƒŒƒNƒgƒŠ‚ÉƒRƒs[‚µ‚Ü‚·"
-    ID_DIR_COPY_LEFT_TO_BROWSE "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ð‘I‘ð‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚ÉƒRƒs[‚µ‚Ü‚·y"
-    ID_DIR_COPY_RIGHT_TO_LEFT "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ðŽw’èƒfƒBƒŒƒNƒgƒŠ‚ÉƒRƒs[‚µ‚Ü‚·"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ð‘I‘ð‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚ÉƒRƒs[‚µ‚Ü‚·"
-    ID_DIR_DEL_LEFT         "¶‚Ì‘I‘ð‚³‚ê‚½€–Ú‚ðíœ‚µ‚Ü‚·"
-    ID_DIR_DEL_RIGHT        "‰E‚Ì‘I‘ð‚³‚ê‚½€–Ú‚ðíœ‚µ‚Ü‚·"
-    ID_DIR_DEL_BOTH         "—¼‘¤‚Ì‘I‘ð‚³‚ê‚½€–Ú‚ðíœ‚µ‚Ü‚·"
-    IDS_COPY_TO_LEFT        "‰E‚©‚ç¶ (%1)"
-    IDS_COPY_TO_RIGHT       "¶‚©‚ç‰E (%1)"
-    IDS_COPY_TO_LEFT2       "‰E‚ð¶‚É (%1 / %2)"
-    IDS_COPY_TO_RIGHT2      "¶‚ð‰E‚É (%1 / %2)"
-    IDS_COPY_LEFT_TO        "¶‚ðƒRƒs[... (%1)"
-    IDS_COPY_RIGHT_TO       "‰E‚ðƒRƒs[... (%1)"
-    IDS_COPY_LEFT_TO2       "¶‚ðƒRƒs[... (%1/%2)"
-    IDS_COPY_RIGHT_TO2      "‰E‚ðƒRƒs[... (%1/%2)"
-    IDS_DEL_LEFT_FMT        "¶ (%1)"
+    ID_DIR_COPY_LEFT_TO_RIGHT "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ðŽw’èƒfƒBƒŒƒNƒgƒŠ‚ÉƒRƒs?[‚µ‚Ü‚·"
+    ID_DIR_COPY_LEFT_TO_BROWSE "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ð‘I‘ð‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚ÉƒRƒs?[‚µ‚Ü‚·y"
+    ID_DIR_COPY_RIGHT_TO_LEFT "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ðŽw’èƒfƒBƒŒƒNƒgƒŠ‚ÉƒRƒs?[‚µ‚Ü‚·"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ð‘I‘ð‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚ÉƒRƒs?[‚µ‚Ü‚·"
+    ID_DIR_DEL_LEFT         "?¶‚Ì‘I‘ð‚³‚ê‚½?€–Ú‚ð?í?œ‚µ‚Ü‚·"
+    ID_DIR_DEL_RIGHT        "‰E‚Ì‘I‘ð‚³‚ê‚½?€–Ú‚ð?í?œ‚µ‚Ü‚·"
+    ID_DIR_DEL_BOTH         "—¼‘¤‚Ì‘I‘ð‚³‚ê‚½?€–Ú‚ð?í?œ‚µ‚Ü‚·"
+    IDS_COPY_TO_LEFT        "‰E‚©‚ç?¶ (%1)"
+    IDS_COPY_TO_RIGHT       "?¶‚©‚ç‰E (%1)"
+    IDS_COPY_TO_LEFT2       "‰E‚ð?¶‚É (%1 / %2)"
+    IDS_COPY_TO_RIGHT2      "?¶‚ð‰E‚É (%1 / %2)"
+    IDS_COPY_LEFT_TO        "?¶‚ðƒRƒs?[... (%1)"
+    IDS_COPY_RIGHT_TO       "‰E‚ðƒRƒs?[... (%1)"
+    IDS_COPY_LEFT_TO2       "?¶‚ðƒRƒs?[... (%1/%2)"
+    IDS_COPY_RIGHT_TO2      "‰E‚ðƒRƒs?[... (%1/%2)"
+    IDS_DEL_LEFT_FMT        "?¶ (%1)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
@@ -1441,46 +1441,46 @@ STRINGTABLE
 BEGIN
     IDS_DEL_RIGHT_FMT       "‰E (%1)"
     IDS_DEL_BOTH_FMT        "—¼•û (%1)"
-    IDS_DEL_LEFT_FMT2       "¶ (%1 / %2)"
+    IDS_DEL_LEFT_FMT2       "?¶ (%1 / %2)"
     IDS_DEL_RIGHT_FMT2      "‰E (%1 / %2)"
     IDS_DEL_BOTH_FMT2       "—¼•û (%1 / %2)"
-    IDS_SELECT_DESTFOLDER   "‘ÎÛƒtƒHƒ‹ƒ_‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢"
+    IDS_SELECT_DESTFOLDER   "‘Î?ÛƒtƒHƒ‹ƒ_‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
 STRINGTABLE
 BEGIN
-    IDS_CONFIRM_ALL_LEFT    "–{“–‚É‘S‚Ä‚Ì·ˆÙ‚ð¶‘¤‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs[‚µ‚Ü‚·‚©?"
-    IDS_CONFIRM_ALL_RIGHT   "–{“–‚É‘S‚Ä‚Ì·ˆÙ‚ð‰E‘¤‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs[‚µ‚Ü‚·‚©?"
-    IDS_CONFIRM_COPY_SINGLE "–{“–‚É %1 ‚ð %2 ‚ÉƒRƒs[‚µ‚Ü‚·‚©?"
-    IDS_CONFIRM_COPY2DIR    "–{“–‚É‘I‘ð‚³‚ê‚½ %2ŒÂ‚Ì€–Ú‚Ì“à %1ŒÂ‚ðƒRƒs[‚µ‚Ü‚·‚©?"
-    IDS_CONFIRM_DELETE_ITEMS "–{“–‚É‘I‘ð‚³‚ê‚½%2ŒÂ‚Ì€–Ú‚Ì“à %1ŒÂ‚ðíœ‚µ‚Ü‚·‚©?"
-    IDS_CONFIRM_DELETE_DIR  "ƒfƒBƒŒƒNƒgƒŠ%1‚ðíœ‚µ‚Ü‚·‚©?"
-    IDS_CONFIRM_DELETE_SINGLE "–{“–‚É%1‚ðíœ‚µ‚Ü‚·‚©?"
+    IDS_CONFIRM_ALL_LEFT    "–{“–‚É‘S‚Ä‚Ì?·ˆÙ‚ð?¶‘¤‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs?[‚µ‚Ü‚·‚©?"
+    IDS_CONFIRM_ALL_RIGHT   "–{“–‚É‘S‚Ä‚Ì?·ˆÙ‚ð‰E‘¤‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs?[‚µ‚Ü‚·‚©?"
+    IDS_CONFIRM_COPY_SINGLE "–{“–‚É %1 ‚ð %2 ‚ÉƒRƒs?[‚µ‚Ü‚·‚©?"
+    IDS_CONFIRM_COPY2DIR    "–{“–‚É‘I‘ð‚³‚ê‚½ %2ŒÂ‚Ì?€–Ú‚Ì“à %1ŒÂ‚ðƒRƒs?[‚µ‚Ü‚·‚©?"
+    IDS_CONFIRM_DELETE_ITEMS "–{“–‚É‘I‘ð‚³‚ê‚½%2ŒÂ‚Ì?€–Ú‚Ì“à %1ŒÂ‚ð?í?œ‚µ‚Ü‚·‚©?"
+    IDS_CONFIRM_DELETE_DIR  "ƒfƒBƒŒƒNƒgƒŠ%1‚ð?í?œ‚µ‚Ü‚·‚©?"
+    IDS_CONFIRM_DELETE_SINGLE "–{“–‚É%1‚ð?í?œ‚µ‚Ü‚·‚©?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE
 STRINGTABLE
 BEGIN
-    ID_DIR_OPEN_LEFT        "¶‚Ìƒtƒ@ƒCƒ‹‚ðŠJ‚«‚Ü‚·"
-    ID_DIR_OPEN_LEFT_WITHEDITOR "ŠO•”ƒGƒfƒBƒ^‚Å¶‚Ìƒtƒ@ƒCƒ‹‚ðŠJ‚«‚Ü‚·"
-    ID_DIR_OPEN_LEFT_WITH   "¶‚Ìƒtƒ@ƒCƒ‹‚ð‘I‘ð‚µ‚½ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÅŠJ‚«‚Ü‚·..."
+    ID_DIR_OPEN_LEFT        "?¶‚Ìƒtƒ@ƒCƒ‹‚ðŠJ‚«‚Ü‚·"
+    ID_DIR_OPEN_LEFT_WITHEDITOR "ŠO•”ƒGƒfƒBƒ^‚Å?¶‚Ìƒtƒ@ƒCƒ‹‚ðŠJ‚«‚Ü‚·"
+    ID_DIR_OPEN_LEFT_WITH   "?¶‚Ìƒtƒ@ƒCƒ‹‚ð‘I‘ð‚µ‚½ƒAƒvƒŠƒP?[ƒVƒ‡ƒ“‚ÅŠJ‚«‚Ü‚·..."
     ID_DIR_OPEN_RIGHT       "‰E‚Ìƒtƒ@ƒCƒ‹‚ðŠJ‚«‚Ü‚·"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "ŠO•”ƒGƒfƒBƒ^‚Å‰E‚Ìƒtƒ@ƒCƒ‹‚ðŠJ‚«‚Ü‚·"
-    ID_DIR_OPEN_RIGHT_WITH  "‰E‚Ìƒtƒ@ƒCƒ‹‚ð‘I‘ð‚µ‚½ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÅŠJ‚«‚Ü‚·..."
-    IDS_CANNOT_EXECUTE_FILE "%1‚ðŽÀs‚Å‚«‚Ü‚¹‚ñ"
-    ID_DIR_COPY_PATHNAMES   "ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒpƒX–¼‚ðƒRƒs["
-    ID_DIR_COPY_FILENAMES   "ƒNƒŠƒbƒvƒ{[ƒh‚Éƒtƒ@ƒCƒ‹–¼‚ðƒRƒs["
+    ID_DIR_OPEN_RIGHT_WITH  "‰E‚Ìƒtƒ@ƒCƒ‹‚ð‘I‘ð‚µ‚½ƒAƒvƒŠƒP?[ƒVƒ‡ƒ“‚ÅŠJ‚«‚Ü‚·..."
+    IDS_CANNOT_EXECUTE_FILE "%1‚ðŽÀ?s‚Å‚«‚Ü‚¹‚ñ"
+    ID_DIR_COPY_PATHNAMES   "ƒNƒŠƒbƒvƒ{?[ƒh‚ÉƒpƒX–¼‚ðƒRƒs?["
+    ID_DIR_COPY_FILENAMES   "ƒNƒŠƒbƒvƒ{?[ƒh‚Éƒtƒ@ƒCƒ‹–¼‚ðƒRƒs?["
 END
 
 // DIRECTORY DIFFING : 7ZIP
 STRINGTABLE
 BEGIN
-    IDS_UNKNOWN_ARCHIVE_FORMAT "–¢’m‚ÌƒA[ƒJƒCƒuŒ`Ž®‚Å‚·"
-    ID_DIR_ZIP_LEFT         "ƒA[ƒJƒCƒu‚É¶‘¤‚Ì€–Ú‚ð’Ç‰Á"
-    ID_DIR_ZIP_RIGHT        "ƒA[ƒJƒCƒu‚É‰E‘¤‚Ì€–Ú‚ð’Ç‰Á"
-    ID_DIR_ZIP_BOTH         "ƒA[ƒJƒCƒu‚É—¼‘¤‚Ì€–Ú‚ð’Ç‰Á"
-    ID_DIR_ZIP_BOTH_DIFFS_ONLY "ƒA[ƒJƒCƒu‚É·ˆÙ‚Ì‚ ‚é—¼‘¤‚Ì€–Ú‚ð’Ç‰Á"
+    IDS_UNKNOWN_ARCHIVE_FORMAT "–¢’m‚ÌƒA?[ƒJƒCƒuŒ`Ž®‚Å‚·"
+    ID_DIR_ZIP_LEFT         "ƒA?[ƒJƒCƒu‚É?¶‘¤‚Ì?€–Ú‚ð’Ç‰Á"
+    ID_DIR_ZIP_RIGHT        "ƒA?[ƒJƒCƒu‚É‰E‘¤‚Ì?€–Ú‚ð’Ç‰Á"
+    ID_DIR_ZIP_BOTH         "ƒA?[ƒJƒCƒu‚É—¼‘¤‚Ì?€–Ú‚ð’Ç‰Á"
+    ID_DIR_ZIP_BOTH_DIFFS_ONLY "ƒA?[ƒJƒCƒu‚É?·ˆÙ‚Ì‚ ‚é—¼‘¤‚Ì?€–Ú‚ð’Ç‰Á"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
@@ -1495,28 +1495,28 @@ BEGIN
     IDS_COLHDR_FILENAME     "ƒtƒ@ƒCƒ‹–¼"
     IDS_COLHDR_DIR          "ƒfƒBƒŒƒNƒgƒŠ"
     IDS_COLHDR_RESULT       "”äŠrŒ‹‰Ê"
-    IDS_COLHDR_LTIMEM       "¶“ú•t"
+    IDS_COLHDR_LTIMEM       "?¶“ú•t"
     IDS_COLHDR_RTIMEM       "‰E“ú•t"
     IDS_COLHDR_EXTENSION    "Šg’£Žq"
-    IDS_COLHDR_LSIZE        "¶ƒTƒCƒY"
+    IDS_COLHDR_LSIZE        "?¶ƒTƒCƒY"
     IDS_COLHDR_RSIZE        "‰EƒTƒCƒY"
-    IDS_COLHDR_LTIMEC       "¶ì¬“úŽž"
-    IDS_COLHDR_RTIMEC       "‰Eì¬“úŽž"
-    IDS_COLHDR_NEWER        "V‚µ‚¢ƒtƒ@ƒCƒ‹"
-    IDS_COLHDR_LVERSION     "¶ƒtƒ@ƒCƒ‹ƒo[ƒWƒ‡ƒ“"
-    IDS_COLHDR_RVERSION     "‰Eƒtƒ@ƒCƒ‹ƒo[ƒWƒ‡ƒ“"
+    IDS_COLHDR_LTIMEC       "?¶?ì?¬“úŽž"
+    IDS_COLHDR_RTIMEC       "‰E?ì?¬“úŽž"
+    IDS_COLHDR_NEWER        "?V‚µ‚¢ƒtƒ@ƒCƒ‹"
+    IDS_COLHDR_LVERSION     "?¶ƒtƒ@ƒCƒ‹ƒo?[ƒWƒ‡ƒ“"
+    IDS_COLHDR_RVERSION     "‰Eƒtƒ@ƒCƒ‹ƒo?[ƒWƒ‡ƒ“"
     IDS_COLHDR_RESULT_ABBR  "ŠÈˆÕŒ‹‰Ê•\Ž¦"
-    IDS_COLHDR_LATTRIBUTES  "¶‘®«"
-    IDS_COLHDR_RATTRIBUTES  "‰E‘®«"
+    IDS_COLHDR_LATTRIBUTES  "?¶‘®?«"
+    IDS_COLHDR_RATTRIBUTES  "‰E‘®?«"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES (2)
 STRINGTABLE
 BEGIN
-    IDS_COLHDR_LENCODING    "¶ƒGƒ“ƒR[ƒfƒBƒ“ƒO"
-    IDS_COLHDR_RENCODING    "‰EƒGƒ“ƒR[ƒfƒBƒ“ƒO"
-    IDS_COLHDR_NDIFFS       "#·ˆÙ”"
-    IDS_COLHDR_NSDIFFS      "#d—v‚È·ˆÙ”"
+    IDS_COLHDR_LENCODING    "?¶ƒGƒ“ƒR?[ƒfƒBƒ“ƒO"
+    IDS_COLHDR_RENCODING    "‰EƒGƒ“ƒR?[ƒfƒBƒ“ƒO"
+    IDS_COLHDR_NDIFFS       "#?·ˆÙ?”"
+    IDS_COLHDR_NSDIFFS      "#?d—v‚È?·ˆÙ?”"
     IDS_COLHDR_BINARY       "ƒoƒCƒiƒŠ"
 END
 
@@ -1526,12 +1526,12 @@ BEGIN
     IDS_CANT_COMPARE_FILES  "ƒtƒ@ƒCƒ‹‚ð”äŠr‚Å‚Ü‚¹‚ñ"
     IDS_FILE_SKIPPED        "ƒXƒLƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹"
     IDS_DIR_SKIPPED         "ƒXƒLƒbƒv‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ"
-    IDS_ONLY_IN_FMT         " %1 “à‚Ì‚Ý‘¶Ý"
+    IDS_ONLY_IN_FMT         " %1 “à‚Ì‚Ý‘¶?Ý"
     IDS_BIN_FILES_SAME      "ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Í“¯ˆê‚Å‚·"
     IDS_IDENTICAL           "“¯ˆê"
     IDS_BIN_FILES_DIFF      "ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ÍˆÙ‚È‚Á‚Ä‚¢‚Ü‚·"
     IDS_FILES_ARE_DIFFERENT "ƒtƒ@ƒCƒ‹‚ÍˆÙ‚È‚Á‚Ä‚¢‚Ü‚·"
-    IDS_LEFTONLY            "¶‚Ì‚Ý"
+    IDS_LEFTONLY            "?¶‚Ì‚Ý"
     IDS_RIGHTONLY           "‰E‚Ì‚Ý"
     IDS_DIFFERENT           "ˆÙ‚È‚Á‚Ä‚¢‚Ü‚·"
 END
@@ -1545,83 +1545,83 @@ END
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_FILENAME    "ƒtƒ@ƒCƒ‹–¼‚Ü‚½‚ÍAƒfƒBƒŒƒNƒgƒŠ–¼"
+    IDS_COLDESC_FILENAME    "ƒtƒ@ƒCƒ‹–¼‚Ü‚½‚Í?AƒfƒBƒŒƒNƒgƒŠ–¼"
     IDS_COLDESC_DIR         "ƒTƒuƒfƒBƒŒƒNƒgƒŠ‚ªŠÜ‚Ü‚ê‚½‚Æ‚«‚ÌƒTƒuƒfƒBƒŒƒNƒgƒŠ–¼"
     IDS_COLDESC_RESULT      "’·‚¢Œ`Ž®‚Ì”äŠrŒ‹‰Ê•\Ž¦"
-    IDS_COLDESC_LTIMEM      "¶‘¤‚ÌXV“ú•t"
-    IDS_COLDESC_RTIMEM      "‰E‘¤‚ÌXV“ú•t"
+    IDS_COLDESC_LTIMEM      "?¶‘¤‚Ì?X?V“ú•t"
+    IDS_COLDESC_RTIMEM      "‰E‘¤‚Ì?X?V“ú•t"
     IDS_COLDESC_EXTENSION   "ƒtƒ@ƒCƒ‹Šg’£Žq"
-    IDS_COLDESC_LSIZE       "¶‘¤ƒtƒ@ƒCƒ‹‚ÌƒoƒCƒg”"
-    IDS_COLDESC_RSIZE       "‰E‘¤ƒtƒ@ƒCƒ‹‚ÌƒoƒCƒg”"
-    IDS_COLDESC_LTIMEC      "¶‘¤‚Ìì¬Žž"
-    IDS_COLDESC_RTIMEC      "‰E‘¤‚Ìì¬Žž"
-    IDS_COLDESC_NEWER       "‚Ç‚¿‚ç‚ªÅV‚Ì•ÏX“ú•t‚©‚ðŽ¦‚µ‚Ü‚·B"
-    IDS_COLDESC_LVERSION    "¶‘¤ƒtƒ@ƒCƒ‹‚Ìƒo[ƒWƒ‡ƒ“, ŒÀ‚ç‚ê‚½ƒtƒ@ƒCƒ‹ƒ^ƒCƒv‚Ì‚Ý"
-    IDS_COLDESC_RVERSION    "‰E‘¤ƒtƒ@ƒCƒ‹‚Ìƒo[ƒWƒ‡ƒ“, ŒÀ‚ç‚ê‚½ƒtƒ@ƒCƒ‹ƒ^ƒCƒv‚Ì‚Ý"
+    IDS_COLDESC_LSIZE       "?¶‘¤ƒtƒ@ƒCƒ‹‚ÌƒoƒCƒg?”"
+    IDS_COLDESC_RSIZE       "‰E‘¤ƒtƒ@ƒCƒ‹‚ÌƒoƒCƒg?”"
+    IDS_COLDESC_LTIMEC      "?¶‘¤‚Ì?ì?¬Žž??"
+    IDS_COLDESC_RTIMEC      "‰E‘¤‚Ì?ì?¬Žž??"
+    IDS_COLDESC_NEWER       "‚Ç‚¿‚ç‚ª?Å?V‚Ì•Ï?X“ú•t‚©‚ðŽ¦‚µ‚Ü‚·?B"
+    IDS_COLDESC_LVERSION    "?¶‘¤ƒtƒ@ƒCƒ‹‚Ìƒo?[ƒWƒ‡ƒ“, ŒÀ‚ç‚ê‚½ƒtƒ@ƒCƒ‹ƒ^ƒCƒv‚Ì‚Ý"
+    IDS_COLDESC_RVERSION    "‰E‘¤ƒtƒ@ƒCƒ‹‚Ìƒo?[ƒWƒ‡ƒ“, ŒÀ‚ç‚ê‚½ƒtƒ@ƒCƒ‹ƒ^ƒCƒv‚Ì‚Ý"
     IDS_COLDESC_RESULT_ABBR "’Z‚¢Œ`Ž®‚Ì”äŠrŒ‹‰Ê•\Ž¦"
-    IDS_COLDESC_LATTRIBUTES "¶‘¤‚Ì‘®«"
-    IDS_COLDESC_RATTRIBUTES "‰E‘¤‚Ì‘®«"
+    IDS_COLDESC_LATTRIBUTES "?¶‘¤‚Ì‘®?«"
+    IDS_COLDESC_RATTRIBUTES "‰E‘¤‚Ì‘®?«"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_LENCODING   "¶‘¤ƒGƒ“ƒR[ƒfƒBƒ“ƒO"
-    IDS_COLDESC_RENCODING   "‰E‘¤ƒGƒ“ƒR[ƒfƒBƒ“ƒO"
-    IDS_COLDESC_NDIFFS      "·ˆÙ‚Ì‡Œv"
-    IDS_COLDESC_NSDIFFS     "·ˆÙ‚Ì‡Œv”‚©‚ç–³Ž‹‚Å‚«‚é·ˆÙ”‚ð·‚µˆø‚¢‚½”‚Å‚·B"
-    IDS_COLDESC_BINARY      "‚à‚µAƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚È‚çƒAƒXƒ^ƒŠƒXƒN(*)‚ð•\Ž¦‚µ‚Ü‚·B"
+    IDS_COLDESC_LENCODING   "?¶‘¤ƒGƒ“ƒR?[ƒfƒBƒ“ƒO"
+    IDS_COLDESC_RENCODING   "‰E‘¤ƒGƒ“ƒR?[ƒfƒBƒ“ƒO"
+    IDS_COLDESC_NDIFFS      "?·ˆÙ‚Ì?‡Œv"
+    IDS_COLDESC_NSDIFFS     "?·ˆÙ‚Ì?‡Œv?”‚©‚ç–³Ž‹‚Å‚«‚é?·ˆÙ?”‚ð?·‚µˆø‚¢‚½?”‚Å‚·?B"
+    IDS_COLDESC_BINARY      "‚à‚µ?AƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚È‚çƒAƒXƒ^ƒŠƒXƒN(*)‚ð•\Ž¦‚µ‚Ü‚·?B"
 END
 
 // FILE COMPARISON RESULT : MESSAGES
 STRINGTABLE
 BEGIN
-    IDS_FILE_TO_ITSELF      "“¯‚¶ƒtƒ@ƒCƒ‹‚ª—¼‘¤‚Ìƒpƒlƒ‹‚ÅŠJ‚©‚ê‚Ä‚¢‚Ü‚·B"
-    IDS_FILESSAME           "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Í“¯ˆê‚Å‚·B"
-    IDS_FILEUNIQUE          "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ÍA—¼•û‚ÌƒfƒBƒŒƒNƒgƒŠ‚É‘¶Ý‚µ‚È‚¢‚½‚ßA”äŠr‚Å‚«‚Ü‚¹‚ñB"
-    IDS_FILEERROR           "ƒtƒ@ƒCƒ‹‚Ì”äŠrŽž‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B"
-    IDS_FILEBINARY          "ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ÍŽ‹Šo“I‚É”äŠr‚Å‚«‚Ü‚¹‚ñB"
-    IDS_TEMP_FILEERROR      "ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ªì¬‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½Bƒeƒ“ƒ|ƒ‰ƒŠƒpƒXÝ’è‚ðŠm”F‚µ‚Ä‚­‚¾‚³‚¢B"
-    IDS_FILEISDIR           "ƒfƒBƒŒƒNƒgƒŠ‚ÍAƒrƒWƒ…ƒAƒ‹‚É”äŠr‚Å‚«‚Ü‚¹‚ñB"
-    IDS_SUGGEST_IGNOREEOL   "ƒtƒ@ƒCƒ‹“à‚ÉˆÙ‚È‚éEOLƒ^ƒCƒv‚ª‘¶Ý‚µ‚Ä‚¢‚Ü‚·B\nŒ»Ý‚ÌƒIƒvƒVƒ‡ƒ“Ý’è‚Å‚ÍA‚·‚×‚Ä‚Ìs‚ÍAˆÙ‚È‚Á‚½‚Ü‚Ü‚Å‚·B\nƒtƒ@ƒCƒ‹“à‚É‘¶Ý‚·‚éEOL‚Ìˆá‚¢‚ð–³Ž‹‚µ‚Ü‚·‚©?\n\nã‹‰ŽÒ : if the EOL are not unified in your files,\n you may rather set the option '%1'."
-    IDS_SUGGEST_PRESERVEEOL "ƒtƒ@ƒCƒ‹'%1'“à‚ÉˆÙ‚È‚éƒ^ƒCƒv(DOS/UNIX/MAC)‚ÌEOL‚ª‘¶Ý‚µ‚Ä‚¢‚Ü‚·B\n Œ»Ý‚ÌƒIƒvƒVƒ‡ƒ“Ý’è‚Å‚ÍAŽå‚ÈEOL‚É“ˆê‚³‚ê‚Ü‚·B\n ƒIƒvƒVƒ‡ƒ“‚ð•ÏX‚µ‚ÄAˆÙ‚È‚éEOL‚ð•ÛŽ‚·‚é‚æ‚¤‚É‚µ‚Ü‚·‚©?"
+    IDS_FILE_TO_ITSELF      "“¯‚¶ƒtƒ@ƒCƒ‹‚ª—¼‘¤‚Ìƒpƒlƒ‹‚ÅŠJ‚©‚ê‚Ä‚¢‚Ü‚·?B"
+    IDS_FILESSAME           "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Í“¯ˆê‚Å‚·?B"
+    IDS_FILEUNIQUE          "‘I‘ð‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Í?A—¼•û‚ÌƒfƒBƒŒƒNƒgƒŠ‚É‘¶?Ý‚µ‚È‚¢‚½‚ß?A”äŠr‚Å‚«‚Ü‚¹‚ñ?B"
+    IDS_FILEERROR           "ƒtƒ@ƒCƒ‹‚Ì”äŠrŽž‚ÉƒGƒ‰?[‚ª”­?¶‚µ‚Ü‚µ‚½?B"
+    IDS_FILEBINARY          "ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ÍŽ‹Šo“I‚É”äŠr‚Å‚«‚Ü‚¹‚ñ?B"
+    IDS_TEMP_FILEERROR      "ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ª?ì?¬‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½?Bƒeƒ“ƒ|ƒ‰ƒŠƒpƒX?Ý’è‚ðŠm”F‚µ‚Ä‚­‚¾‚³‚¢?B"
+    IDS_FILEISDIR           "ƒfƒBƒŒƒNƒgƒŠ‚Í?AƒrƒWƒ…ƒAƒ‹‚É”äŠr‚Å‚«‚Ü‚¹‚ñ?B"
+    IDS_SUGGEST_IGNOREEOL   "ƒtƒ@ƒCƒ‹“à‚ÉˆÙ‚È‚éEOLƒ^ƒCƒv‚ª‘¶?Ý‚µ‚Ä‚¢‚Ü‚·?B\nŒ»?Ý‚ÌƒIƒvƒVƒ‡ƒ“?Ý’è‚Å‚Í?A‚·‚×‚Ä‚Ì?s‚Í?AˆÙ‚È‚Á‚½‚Ü‚Ü‚Å‚·?B\nƒtƒ@ƒCƒ‹“à‚É‘¶?Ý‚·‚éEOL‚Ìˆá‚¢‚ð–³Ž‹‚µ‚Ü‚·‚©?\n\n?ã‹‰ŽÒ : if the EOL are not unified in your files,\n you may rather set the option '%1'."
+    IDS_SUGGEST_PRESERVEEOL "ƒtƒ@ƒCƒ‹'%1'“à‚ÉˆÙ‚È‚éƒ^ƒCƒv(DOS/UNIX/MAC)‚ÌEOL‚ª‘¶?Ý‚µ‚Ä‚¢‚Ü‚·?B\n Œ»?Ý‚ÌƒIƒvƒVƒ‡ƒ“?Ý’è‚Å‚Í?AŽå‚ÈEOL‚É“?ˆê‚³‚ê‚Ü‚·?B\n ƒIƒvƒVƒ‡ƒ“‚ð•Ï?X‚µ‚Ä?AˆÙ‚È‚éEOL‚ð•ÛŽ?‚·‚é‚æ‚¤‚É‚µ‚Ü‚·‚©?"
     IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 END
 
 // EDITOR : SHOW LINE DIFF
 STRINGTABLE
 BEGIN
-    IDS_LINEDIFF_NODIFF     "·ˆÙ‚Í‚ ‚è‚Ü‚¹‚ñ"
-    IDS_LINEDIFF_NODIFF_CAPTION "s‚Ì·ˆÙ"
+    IDS_LINEDIFF_NODIFF     "?·ˆÙ‚Í‚ ‚è‚Ü‚¹‚ñ"
+    IDS_LINEDIFF_NODIFF_CAPTION "?s‚Ì?·ˆÙ"
 END
 
 // EDITOR : SEARCH/REPLACE DIALOGS
 STRINGTABLE
 BEGIN
     IDS_NUM_REPLACED        "%1ŒÂ‚Ì•¶Žš—ñ‚ð’uŠ·‚µ‚Ü‚µ‚½"
-    IDS_EDIT_TEXT_NOT_FOUND "•¶Žš—ñ""%s""‚ªŒŸõ‚Å‚«‚Ü‚¹‚ñ"
+    IDS_EDIT_TEXT_NOT_FOUND "•¶Žš—ñ""%s""‚ªŒŸ?õ‚Å‚«‚Ü‚¹‚ñ"
 END
 
 // EDITOR : FILENAME BAR POPUP
 STRINGTABLE
 BEGIN
-    ID_EDITOR_COPY_PATH     "ƒtƒ‹ƒpƒX‚ðƒRƒs[‚µ‚Ü‚·"
-    ID_EDITOR_COPY_FILENAME "ƒtƒ@ƒCƒ‹–¼‚ðƒRƒs[‚µ‚Ü‚·"
+    ID_EDITOR_COPY_PATH     "ƒtƒ‹ƒpƒX‚ðƒRƒs?[‚µ‚Ü‚·"
+    ID_EDITOR_COPY_FILENAME "ƒtƒ@ƒCƒ‹–¼‚ðƒRƒs?[‚µ‚Ü‚·"
 END
 
 // CREATE PATCH
 STRINGTABLE
 BEGIN
-    IDS_DIFF_SUCCEEDED      "ƒpƒbƒ`ƒtƒ@ƒCƒ‹‘ž‚Ý‚É¬Œ÷‚µ‚Ü‚µ‚½B"
-    IDS_DIFF_ITEM1NOTFOUND  "1. €–Ú‚ª‚Ý‚Â‚©‚ç‚È‚¢‚©AƒfƒBƒŒƒNƒgƒŠ‚Å‚·!"
-    IDS_DIFF_ITEM2NOTFOUND  "2. €–Ú‚ª‚Ý‚Â‚©‚ç‚È‚¢‚©AƒfƒBƒŒƒNƒgƒŠ‚Å‚·!"
-    IDS_DIFF_FILEOVERWRITE  "o—ÍŒ‹‰Êƒtƒ@ƒCƒ‹‚ÍŠù‚É‘¶Ý‚µ‚Ü‚·B ã‘‚«‚µ‚Ü‚·‚©?"
+    IDS_DIFF_SUCCEEDED      "ƒpƒbƒ`ƒtƒ@ƒCƒ‹?‘?ž‚Ý‚É?¬Œ÷‚µ‚Ü‚µ‚½?B"
+    IDS_DIFF_ITEM1NOTFOUND  "1. ?€–Ú‚ª‚Ý‚Â‚©‚ç‚È‚¢‚©?AƒfƒBƒŒƒNƒgƒŠ‚Å‚·!"
+    IDS_DIFF_ITEM2NOTFOUND  "2. ?€–Ú‚ª‚Ý‚Â‚©‚ç‚È‚¢‚©?AƒfƒBƒŒƒNƒgƒŠ‚Å‚·!"
+    IDS_DIFF_FILEOVERWRITE  "?o—ÍŒ‹‰Êƒtƒ@ƒCƒ‹‚ÍŠù‚É‘¶?Ý‚µ‚Ü‚·?B ?ã?‘‚«‚µ‚Ü‚·‚©?"
     IDS_DIFF_SELECTEDFILES  "[%1 ŒÂ‚Ìƒtƒ@ƒCƒ‹‚ª‘I‘ð‚³‚ê‚Ä‚¢‚Ü‚·]"
-    IDS_DIFF_NORMAL         "ƒm[ƒ}ƒ‹"
+    IDS_DIFF_NORMAL         "ƒm?[ƒ}ƒ‹"
     IDS_DIFF_CONTEXT        "ƒRƒ“ƒeƒLƒXƒg"
     IDS_DIFF_UNIFIED        "ƒ†ƒjƒtƒ@ƒCƒh"
-    IDS_FILEWRITE_ERROR     "ƒtƒ@ƒCƒ‹ %1‚É‘‚«ž‚ß‚Ü‚¹‚ñB"
-    IDS_PATH_NOT_ABSOLUTE   "%1\n ‚Íâ‘ÎƒpƒX‚Å‚Í‚ ‚è‚Ü‚¹‚ñ!"
+    IDS_FILEWRITE_ERROR     "ƒtƒ@ƒCƒ‹ %1‚É?‘‚«?ž‚ß‚Ü‚¹‚ñ?B"
+    IDS_PATH_NOT_ABSOLUTE   "%1\n ‚Í?â‘ÎƒpƒX‚Å‚Í‚ ‚è‚Ü‚¹‚ñ!"
 END
 
 // LANGAGE NAMES #1
@@ -1801,34 +1801,34 @@ END
 // FILE MENU
 STRINGTABLE
 BEGIN
-    ID_FILE_SAVE_LEFT       "¶‚Ìƒtƒ@ƒCƒ‹‚ð•Û‘¶‚µ‚Ü‚·"
+    ID_FILE_SAVE_LEFT       "?¶‚Ìƒtƒ@ƒCƒ‹‚ð•Û‘¶‚µ‚Ü‚·"
     ID_FILE_SAVE_RIGHT      "‰E‚Ìƒtƒ@ƒCƒ‹‚ð•Û‘¶‚µ‚Ü‚·"
-    ID_FILE_SAVEAS_LEFT     "¶‚Ìƒtƒ@ƒCƒ‹‚ð–¼‘O‚ð•t‚¯‚Ä•Û‘¶‚µ‚Ü‚·..."
+    ID_FILE_SAVEAS_LEFT     "?¶‚Ìƒtƒ@ƒCƒ‹‚ð–¼‘O‚ð•t‚¯‚Ä•Û‘¶‚µ‚Ü‚·..."
     ID_FILE_SAVEAS_RIGHT    "‰E‚Ìƒtƒ@ƒCƒ‹‚ð–¼‘O‚ð•t‚¯‚Ä•Û‘¶‚µ‚Ü‚·..."
-    ID_FILE_LEFT_READONLY   "¶‚Ìƒtƒ@ƒCƒ‹/ƒfƒBƒŒƒNƒgƒŠ‚ðƒŠ[ƒhƒIƒ“ƒŠ[ó‘Ô‚É•ÏX‚µ‚Ü‚·"
-    ID_FILE_RIGHT_READONLY  "‰E‚Ìƒtƒ@ƒCƒ‹/ƒfƒBƒŒƒNƒgƒŠ‚ðƒŠ[ƒhƒIƒ“ƒŠ[ó‘Ô‚É•ÏX‚µ‚Ü‚·"
+    ID_FILE_LEFT_READONLY   "?¶‚Ìƒtƒ@ƒCƒ‹/ƒfƒBƒŒƒNƒgƒŠ‚ðƒŠ?[ƒhƒIƒ“ƒŠ?[?ó‘Ô‚É•Ï?X‚µ‚Ü‚·"
+    ID_FILE_RIGHT_READONLY  "‰E‚Ìƒtƒ@ƒCƒ‹/ƒfƒBƒŒƒNƒgƒŠ‚ðƒŠ?[ƒhƒIƒ“ƒŠ?[?ó‘Ô‚É•Ï?X‚µ‚Ü‚·"
     ID_EOL_TO_DOS           "EOL‚ðDOSƒ^ƒCƒv‚É•ÏŠ·‚µ‚Ü‚·"
     ID_EOL_TO_UNIX          "EOL‚ðUnixƒ^ƒCƒv‚É•ÏŠ·‚µ‚Ü‚·"
     ID_EOL_TO_MAC           "EOL‚ðMACƒ^ƒCƒv‚É•ÏŠ·‚µ‚Ü‚·"
-    ID_FILE_MERGINGMODE     "Œ»Ý‚Ìƒ‚[ƒh‚©‚ç•ÒWƒ‚[ƒh‚Ü‚½‚Íƒ}[ƒWƒ‚[ƒh‚ðØ‚è‘Ö‚¦‚Ü‚·"
+    ID_FILE_MERGINGMODE     "Œ»?Ý‚Ìƒ‚?[ƒh‚©‚ç•Ò?Wƒ‚?[ƒh‚Ü‚½‚Íƒ}?[ƒWƒ‚?[ƒh‚ð?Ø‚è‘Ö‚¦‚Ü‚·"
 END
 
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEDIFF         "Œ»Ý‚Ìs‚Ì·ˆÙ‚ðƒnƒCƒ‰ƒCƒg•\Ž¦‚µ‚Ü‚·\nŒ»Ý‚Ìs‚Ì·ˆÙ (F4)"
-    ID_EDIT_WMGOTO          "Žw’è‚µ‚½s‚Ü‚½‚ÍA·ˆÙ‚ÖˆÚ“®\nƒWƒƒƒ“ƒv (Ctrl+G)"
-    ID_OPTIONS              "ƒvƒƒOƒ‰ƒ€ƒIƒvƒVƒ‡ƒ“‚ðÝ’è‚µ‚Ü‚·\nƒIƒvƒVƒ‡ƒ“"
-    ID_REFRESH              "ÅV‚Ìî•ñ‚ÉXV‚µ‚Ü‚·\n•\Ž¦XV (F5)"
+    ID_SHOWLINEDIFF         "Œ»?Ý‚Ì?s‚Ì?·ˆÙ‚ðƒnƒCƒ‰ƒCƒg•\Ž¦‚µ‚Ü‚·\nŒ»?Ý‚Ì?s‚Ì?·ˆÙ (F4)"
+    ID_EDIT_WMGOTO          "Žw’è‚µ‚½?s‚Ü‚½‚Í?A?·ˆÙ‚ÖˆÚ“®\nƒWƒƒƒ“ƒv (Ctrl+G)"
+    ID_OPTIONS              "ƒvƒ?ƒOƒ‰ƒ€ƒIƒvƒVƒ‡ƒ“‚ð?Ý’è‚µ‚Ü‚·\nƒIƒvƒVƒ‡ƒ“"
+    ID_REFRESH              "?Å?V‚Ì?î•ñ‚É?X?V‚µ‚Ü‚·\n•\Ž¦?X?V (F5)"
 END
 
 // VIEW MENU (FILE TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "³Šm‚Éˆê’v‚µ‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ð•\Ž¦‚µ‚Ü‚·"
-    ID_OPTIONS_SHOWDIFFERENT "·ˆÙ‚Ì‚ ‚éƒtƒ@ƒCƒ‹‚ð•\Ž¦‚µ‚Ü‚·"
-    ID_OPTIONS_SHOWUNIQUELEFT "‰E‘¤‚É‚Ì‚Ý‘¶Ý‚·‚éƒtƒ@ƒCƒ‹‚ð•\Ž¦‚µ‚Ü‚·"
-    ID_OPTIONS_SHOWUNIQUERIGHT "‰E‘¤‚É‚Ì‚Ý‘¶Ý‚·‚éƒtƒ@ƒCƒ‹‚ð•\Ž¦‚µ‚Ü‚·"
+    ID_OPTIONS_SHOWIDENTICAL "?³Šm‚Éˆê’v‚µ‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ð•\Ž¦‚µ‚Ü‚·"
+    ID_OPTIONS_SHOWDIFFERENT "?·ˆÙ‚Ì‚ ‚éƒtƒ@ƒCƒ‹‚ð•\Ž¦‚µ‚Ü‚·"
+    ID_OPTIONS_SHOWUNIQUELEFT "‰E‘¤‚É‚Ì‚Ý‘¶?Ý‚·‚éƒtƒ@ƒCƒ‹‚ð•\Ž¦‚µ‚Ü‚·"
+    ID_OPTIONS_SHOWUNIQUERIGHT "‰E‘¤‚É‚Ì‚Ý‘¶?Ý‚·‚éƒtƒ@ƒCƒ‹‚ð•\Ž¦‚µ‚Ü‚·"
     ID_OPTIONS_SHOWBINARIES "ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ð•\Ž¦‚µ‚Ü‚·"
     ID_OPTIONS_SHOWSKIPPED  "ƒXƒLƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ð•\Ž¦‚µ‚Ü‚·"
     ID_HIDE_BACKUP_FILES    "Šg’£Žq‚ªBAK‚Ìƒtƒ@ƒCƒ‹‚ð”ñ•\Ž¦‚É‚µ‚Ü‚·"
@@ -1837,47 +1837,47 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Diffƒrƒ…[‚ÌƒtƒHƒ“ƒg‚ð‘I‘ð‚µ‚Ü‚·\nDiffƒtƒHƒ“ƒg‚Ì‘I‘ð"
-    ID_VIEW_USEDEFAULTFONT  "Diffƒrƒ…[‚ÌƒtƒHƒ“ƒg‚ðƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒg‚É–ß‚µ‚Ü‚·\nƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒg"
+    ID_VIEW_SELECTFONT      "Diffƒrƒ…?[‚ÌƒtƒHƒ“ƒg‚ð‘I‘ð‚µ‚Ü‚·\nDiffƒtƒHƒ“ƒg‚Ì‘I‘ð"
+    ID_VIEW_USEDEFAULTFONT  "Diffƒrƒ…?[‚ÌƒtƒHƒ“ƒg‚ðƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒg‚É–ß‚µ‚Ü‚·\nƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒg"
     ID_VIEW_WHITESPACE      "‹ó”’•¶Žš‚ð•\Ž¦‚µ‚Ü‚·"
-    ID_VIEW_DETAIL_BAR      "DiffƒyƒCƒ“‚Ì•\Ž¦/”ñ•\Ž¦‚ðØ‚è‘Ö‚¦‚Ü‚·"
-    ID_VIEW_LOCATION_BAR    "ƒƒP[ƒVƒ‡ƒ“ƒyƒCƒ“‚Íƒtƒ@ƒCƒ‹‚Ì“à—e‘S‘Ì‚ðƒsƒNƒ`ƒƒ‚Æ‚µ‚Ä•\Ž¦‚µ‚Ü‚·"
-    ID_VIEW_DIR_STATEPANE   "ƒfƒBƒŒƒNƒgƒŠ”äŠró‘ÔƒyƒCƒ“‚ð•\Ž¦‚µ‚Ü‚·"
-    ID_VIEW_LANGUAGE        "Œ»Ý‚Ìƒ†[ƒU[ƒCƒ“ƒ^[ƒtƒF[ƒXŒ¾Œê‚ð‘I‘ð‚µ‚Ü‚·\nŒ¾Œê"
+    ID_VIEW_DETAIL_BAR      "DiffƒyƒCƒ“‚Ì•\Ž¦/”ñ•\Ž¦‚ð?Ø‚è‘Ö‚¦‚Ü‚·"
+    ID_VIEW_LOCATION_BAR    "ƒ?ƒP?[ƒVƒ‡ƒ“ƒyƒCƒ“‚Íƒtƒ@ƒCƒ‹‚Ì“à—e‘S‘Ì‚ðƒsƒNƒ`ƒƒ‚Æ‚µ‚Ä•\Ž¦‚µ‚Ü‚·"
+    ID_VIEW_DIR_STATEPANE   "ƒfƒBƒŒƒNƒgƒŠ”äŠr?ó‘ÔƒyƒCƒ“‚ð•\Ž¦‚µ‚Ü‚·"
+    ID_VIEW_LANGUAGE        "Œ»?Ý‚Ìƒ†?[ƒU?[ƒCƒ“ƒ^?[ƒtƒF?[ƒXŒ¾Œê‚ð‘I‘ð‚µ‚Ü‚·\nŒ¾Œê"
 END
 
 // MERGE MENU
 STRINGTABLE
 BEGIN
-    ID_PREVDIFF             "‘O‚Ì·ˆÙ‚ÖˆÚ“®‚µ‚Ü‚·\n‘O‚Ì·ˆÙ (Alt+Up)"
-    ID_NEXTDIFF             "ŽŸ‚Ì·ˆÙ‚ÖˆÚ“®‚µ‚Ü‚·\nŽŸ‚Ì·ˆÙ (Alt+Down)"
-    ID_FIRSTDIFF            "Å‰‚Ì·ˆÙ‚ÉˆÚ“®‚µ‚Ü‚·\nÅ‰‚Ì·ˆÙ (Alt+Home)"
-    ID_CURDIFF              "Œ»Ý‚Ì·ˆÙ‚ÉˆÚ“®‚µ‚Ü‚·\nŒ»Ý‚Ì·ˆÙ (Alt+Enter)"
-    ID_LASTDIFF             "ÅŒã‚Ì·ˆÙ‚ÉˆÚ“®‚µ‚Ü‚·\nÅŒã‚Ì·ˆÙ (Alt+End)"
-    ID_L2R                  "‘I‘ð‚³‚ê‚½ƒeƒLƒXƒg‚ð‰E‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs[‚µ‚Ü‚·\n‰E‚ÖƒRƒs[ (Alt+Right)"
-    ID_R2L                  "‘I‘ð‚³‚ê‚½ƒeƒLƒXƒg‚ð¶‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs[‚µ‚Ü‚·\n¶‚ÖƒRƒs[ (Alt+Left)"
-    ID_R2LNEXT              "·ˆÙ‚ð¶‚ÉƒRƒs[‚µAŽŸ‚Ì·ˆÙ‚Éi‚Ý‚Ü‚·\n¶‚ÉƒRƒs[‚µŽŸ‚Ö (Ctrl+Alt+Left)"
-    ID_L2RNEXT              "·ˆÙ‚ð‰E‚ÉƒRƒs[‚µAŽŸ‚Ì·ˆÙ‚Éi‚Ý‚Ü‚·\n‰E‚ÉƒRƒs[‚µŽŸ‚Ö (Ctrl+Alt+Right)"
-    ID_ALL_RIGHT            "‚·‚×‚Ä‚Ì·ˆÙ‚ð‰E‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs[‚µ‚Ü‚·\n‰E‚·‚×‚Ä"
-    ID_ALL_LEFT             "‚·‚×‚Ä‚Ì·ˆÙ‚ð¶‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs[‚µ‚Ü‚·\n¶‚·‚×‚Ä"
-    ID_MULTIPLE_RIGHT       "¶ƒpƒlƒ‹‚Ì‘I‘ð‚³‚ê‚½ƒeƒLƒXƒg‚©‚ç·ˆÙ‚ð‰E‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs[‚µ‚Ü‚·"
-    ID_MULTIPLE_LEFT        "‰Eƒpƒlƒ‹‚Ì‘I‘ð‚³‚ê‚½ƒeƒLƒXƒg‚©‚ç·ˆÙ‚ð¶‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs[‚µ‚Ü‚·"
+    ID_PREVDIFF             "‘O‚Ì?·ˆÙ‚ÖˆÚ“®‚µ‚Ü‚·\n‘O‚Ì?·ˆÙ (Alt+Up)"
+    ID_NEXTDIFF             "ŽŸ‚Ì?·ˆÙ‚ÖˆÚ“®‚µ‚Ü‚·\nŽŸ‚Ì?·ˆÙ (Alt+Down)"
+    ID_FIRSTDIFF            "?Å?‰‚Ì?·ˆÙ‚ÉˆÚ“®‚µ‚Ü‚·\n?Å?‰‚Ì?·ˆÙ (Alt+Home)"
+    ID_CURDIFF              "Œ»?Ý‚Ì?·ˆÙ‚ÉˆÚ“®‚µ‚Ü‚·\nŒ»?Ý‚Ì?·ˆÙ (Alt+Enter)"
+    ID_LASTDIFF             "?ÅŒã‚Ì?·ˆÙ‚ÉˆÚ“®‚µ‚Ü‚·\n?ÅŒã‚Ì?·ˆÙ (Alt+End)"
+    ID_L2R                  "‘I‘ð‚³‚ê‚½ƒeƒLƒXƒg‚ð‰E‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs?[‚µ‚Ü‚·\n‰E‚ÖƒRƒs?[ (Alt+Right)"
+    ID_R2L                  "‘I‘ð‚³‚ê‚½ƒeƒLƒXƒg‚ð?¶‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs?[‚µ‚Ü‚·\n?¶‚ÖƒRƒs?[ (Alt+Left)"
+    ID_R2LNEXT              "?·ˆÙ‚ð?¶‚ÉƒRƒs?[‚µ?AŽŸ‚Ì?·ˆÙ‚É?i‚Ý‚Ü‚·\n?¶‚ÉƒRƒs?[‚µŽŸ‚Ö (Ctrl+Alt+Left)"
+    ID_L2RNEXT              "?·ˆÙ‚ð‰E‚ÉƒRƒs?[‚µ?AŽŸ‚Ì?·ˆÙ‚É?i‚Ý‚Ü‚·\n‰E‚ÉƒRƒs?[‚µŽŸ‚Ö (Ctrl+Alt+Right)"
+    ID_ALL_RIGHT            "‚·‚×‚Ä‚Ì?·ˆÙ‚ð‰E‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs?[‚µ‚Ü‚·\n‰E‚·‚×‚Ä"
+    ID_ALL_LEFT             "‚·‚×‚Ä‚Ì?·ˆÙ‚ð?¶‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs?[‚µ‚Ü‚·\n?¶‚·‚×‚Ä"
+    ID_MULTIPLE_RIGHT       "?¶ƒpƒlƒ‹‚Ì‘I‘ð‚³‚ê‚½ƒeƒLƒXƒg‚©‚ç?·ˆÙ‚ð‰E‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs?[‚µ‚Ü‚·"
+    ID_MULTIPLE_LEFT        "‰Eƒpƒlƒ‹‚Ì‘I‘ð‚³‚ê‚½ƒeƒLƒXƒg‚©‚ç?·ˆÙ‚ð?¶‚Ìƒtƒ@ƒCƒ‹‚ÉƒRƒs?[‚µ‚Ü‚·"
 END
 
 // TOOLS MENU
 STRINGTABLE
 BEGIN
     ID_TOOLS_CUSTOMIZECOLUMNS "ƒfƒBƒŒƒNƒgƒŠ”äŠr•\Ž¦‚Ì—ñ‚ð‘I‘ð‚Ü‚½‚Í•À‚×‘Ö‚¦‚Ü‚·"
-    ID_TOOLS_GENERATEPATCH  "ƒpƒbƒ`ƒtƒ@ƒCƒ‹¶¬‚µ‚Ü‚·"
-    ID_TOOLS_FILTERS        "ƒtƒBƒ‹ƒ^‚Ì‘I‘ð‚Æ•ÏX‚ð‚µ‚Ü‚·"
+    ID_TOOLS_GENERATEPATCH  "ƒpƒbƒ`ƒtƒ@ƒCƒ‹?¶?¬‚µ‚Ü‚·"
+    ID_TOOLS_FILTERS        "ƒtƒBƒ‹ƒ^‚Ì‘I‘ð‚Æ•Ï?X‚ð‚µ‚Ü‚·"
 END
 
 // PLUGINS MENU
 STRINGTABLE
 BEGIN
-    ID_UNPACK_MANUAL        "“WŠJƒvƒ‰ƒOƒCƒ“‚ðƒ†[ƒU[‚ª‘I‘ð‚µ‚Ü‚· (ƒfƒBƒŒƒNƒgƒŠ”äŠr‚Ì‚Æ‚«‚Í“WŠJ‚µ‚Ü‚¹‚ñ)"
-    ID_UNPACK_AUTO          "Ž©“®“I‚É“WŠJƒvƒ‰ƒOƒCƒ“‚ð‘I‘ð‚µA—¼•û‚Ìƒtƒ@ƒCƒ‹‚É“K—p‚µ‚Ü‚· (‚Ç‚¿‚ç‚©‚Ìƒtƒ@ƒCƒ‹‚É‚ÍAŠg’£Žq‚ª•K—v‚Å‚·)"
-    ID_POPUP_OPEN_WITH_UNPACKER "‚±‚Ìƒtƒ@ƒCƒ‹‚ð•ÒW‚·‚é‚½‚ß‚Ì“WŠJƒvƒ‰ƒOƒCƒ“‚ð‘I‘ð‚µ‚Ü‚·"
+    ID_UNPACK_MANUAL        "“WŠJƒvƒ‰ƒOƒCƒ“‚ðƒ†?[ƒU?[‚ª‘I‘ð‚µ‚Ü‚· (ƒfƒBƒŒƒNƒgƒŠ”äŠr‚Ì‚Æ‚«‚Í“WŠJ‚µ‚Ü‚¹‚ñ)"
+    ID_UNPACK_AUTO          "Ž©“®“I‚É“WŠJƒvƒ‰ƒOƒCƒ“‚ð‘I‘ð‚µ?A—¼•û‚Ìƒtƒ@ƒCƒ‹‚É“K—p‚µ‚Ü‚· (‚Ç‚¿‚ç‚©‚Ìƒtƒ@ƒCƒ‹‚É‚Í?AŠg’£Žq‚ª•K—v‚Å‚·)"
+    ID_POPUP_OPEN_WITH_UNPACKER "‚±‚Ìƒtƒ@ƒCƒ‹‚ð•Ò?W‚·‚é‚½‚ß‚Ì“WŠJƒvƒ‰ƒOƒCƒ“‚ð‘I‘ð‚µ‚Ü‚·"
     ID_NO_PREDIFFER         "No prediffer (normal)"
     ID_SUGGESTED_PLUGINS    "Suggested plugins"
     ID_NOT_SUGGESTED_PLUGINS "Others plugins"
@@ -1893,16 +1893,16 @@ END
 // HELP MENU
 STRINGTABLE
 BEGIN
-    ID_HELP_CONTENTS        "WinMergeƒ†[ƒU[ƒKƒCƒh‚ð•\Ž¦‚µ‚Ü‚·\nƒwƒ‹ƒv"
-    ID_HELP_GETCONFIG       "Œ»Ý‚Ì WinMerge ‚Ìƒo[ƒWƒ‡ƒ“î•ñ‚ÆÝ’è‚ðƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚Éo—Í‚µ‚Ü‚·"
-    ID_HELP_GNULICENSE      "GNUˆê”ÊŒöO—˜—p‹–‘øŒ_–ñ‘‚ð•\Ž¦‚µ‚Ü‚·"
+    ID_HELP_CONTENTS        "WinMergeƒ†?[ƒU?[ƒKƒCƒh‚ð•\Ž¦‚µ‚Ü‚·\nƒwƒ‹ƒv"
+    ID_HELP_GETCONFIG       "Œ»?Ý‚Ì WinMerge ‚Ìƒo?[ƒWƒ‡ƒ“?î•ñ‚Æ?Ý’è‚ðƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚É?o—Í‚µ‚Ü‚·"
+    ID_HELP_GNULICENSE      "GNUˆê”ÊŒö?O—˜—p‹–‘øŒ_–ñ?‘‚ð•\Ž¦‚µ‚Ü‚·"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS
 STRINGTABLE
 BEGIN
-    ID_TITLE_PLUGINS_SETTINGS "ƒvƒ‰ƒOƒCƒ“Ý’è"
+    ID_TITLE_PLUGINS_SETTINGS "ƒvƒ‰ƒOƒCƒ“?Ý’è"
     ID_PREDIFF_MANUAL       "No prediffer"
     ID_PREDIFF_AUTO         "Prediff if possible"
     ID_NO_EDIT_SCRIPTS      "< Empty >"
@@ -1914,12 +1914,12 @@ END
 // LOCATIONBAR CONTEXT MENU
 STRINGTABLE 
 BEGIN
-    ID_DISPLAY_MOVED_NONE   "ˆÚ“®ƒuƒƒbƒN‚ð•\Ž¦‚µ‚Ü‚¹‚ñ"
-    ID_DISPLAY_MOVED_ALL    "‘S‚Ä‚ÌˆÚ“®ƒuƒƒbƒN‚ð•\Ž¦‚µ‚Ü‚·"
-    ID_DISPLAY_MOVED_FOLLOW_DIFF "Œ»Ý‚Ì·ˆÙ‚É‘Î‰ž‚·‚éˆÚ“®ƒuƒƒbƒN‚Ì‚Ý‚ð•\Ž¦‚µ‚Ü‚·"
-    ID_LOCBAR_GOTODIFF      "ƒJ[ƒ\ƒ‹’¼‰º‚Ì·ˆÙ‚ÖˆÚ“®‚µ‚Ü‚·"
-    ID_LOCBAR_GOTODIFF_FMT  "·ˆÙ%1/%2‚ÉˆÚ“®(&O)"
-    ID_LOCBAR_GOTOLINE_FMT  "s%1‚ÉˆÚ“®(&O)"
+    ID_DISPLAY_MOVED_NONE   "ˆÚ“®ƒuƒ?ƒbƒN‚ð•\Ž¦‚µ‚Ü‚¹‚ñ"
+    ID_DISPLAY_MOVED_ALL    "‘S‚Ä‚ÌˆÚ“®ƒuƒ?ƒbƒN‚ð•\Ž¦‚µ‚Ü‚·"
+    ID_DISPLAY_MOVED_FOLLOW_DIFF "Œ»?Ý‚Ì?·ˆÙ‚É‘Î‰ž‚·‚éˆÚ“®ƒuƒ?ƒbƒN‚Ì‚Ý‚ð•\Ž¦‚µ‚Ü‚·"
+    ID_LOCBAR_GOTODIFF      "ƒJ?[ƒ\ƒ‹’¼‰º‚Ì?·ˆÙ‚ÖˆÚ“®‚µ‚Ü‚·"
+    ID_LOCBAR_GOTODIFF_FMT  "?·ˆÙ%1/%2‚ÉˆÚ“®(&O)"
+    ID_LOCBAR_GOTOLINE_FMT  "?s%1‚ÉˆÚ“®(&O)"
 END
 
 // END STRINGS SYNCHRO

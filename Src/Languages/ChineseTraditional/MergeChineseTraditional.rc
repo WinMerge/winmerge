@@ -590,58 +590,58 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "色彩"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    RTEXT           "不同:",IDC_STATIC,7,29,66,8
-    CONTROL         "不同",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,98,29,17,
+    RTEXT           "不同:",IDC_STATIC,7,29,90,8
+    CONTROL         "不同",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,29,17,
                     14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
-    RTEXT           "選取的不同:",IDC_STATIC,7,49,66,8
-    CONTROL         "不同",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,98,49,17,
+    RTEXT           "選取的不同:",IDC_STATIC,7,49,90,8
+    CONTROL         "不同",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,49,17,
                     14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
-    CTEXT           "Background",IDC_STATIC,81,15,50,8
-    CTEXT           "Deleted",IDC_STATIC,130,15,38,8
+    CTEXT           "Background",IDC_STATIC,96,15,50,8
+    CTEXT           "Deleted",IDC_STATIC,145,15,38,8
     CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,156,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,156,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,199,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,199,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CTEXT           "Text",IDC_STATIC,178,15,29,8
+    CTEXT           "Text",IDC_STATIC,193,15,29,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,113,69,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Ignored Difference:",IDC_STATIC,7,69,75,8
+    RTEXT           "Ignored Difference:",IDC_STATIC,7,69,90,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,69,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,156,69,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,184,69,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,199,69,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,98,89,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Moved:",IDC_STATIC,7,89,75,8
+    RTEXT           "Moved:",IDC_STATIC,7,89,90,8
     CONTROL         "Dif",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,89,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_MOVEDBLOCK_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,184,89,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,199,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,98,109,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Moved:",IDC_STATIC,7,109,75,8
+    RTEXT           "Selected Moved:",IDC_STATIC,7,109,90,8
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,109,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,184,109,17,14,WS_EX_TRANSPARENT |
+                    BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    PUSHBUTTON      "Defaults",IDC_COLORDEFAULTS_BTN,151,130,50,14
+    PUSHBUTTON      "Defaults",IDC_COLORDEFAULTS_BTN,166,130,50,14
 END
 
 IDD_OUTPUT DIALOGEX 0, 0, 278, 157
