@@ -1,3 +1,7 @@
+2004-03-15 Perry
+ Fix Bulgarian (Cyrillic) spelling of Bulgarian.
+ Src/Common: LanguageSelect.cpp
+
 2004-03-15 Kimmo
  RFE: [ 874366 ] Add goto line-number
   Scroll line searched to center of view, as suggested by harry mckame
