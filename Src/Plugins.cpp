@@ -273,7 +273,7 @@ static bool LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, L
 	if (wcscmp(transformationEvent, L"BUFFER_PREDIFF") == 0)
 	{
 		bFound &= SearchScriptForMethodName(lpDispatch, L"PrediffBufferW");
-			bUnicodeMode &= ~SCRIPT_A;
+		bUnicodeMode &= ~SCRIPT_A;
 	}
 	else if (wcscmp(transformationEvent, L"FILE_PREDIFF") == 0)
 	{
@@ -413,14 +413,10 @@ static void FreeAllScripts(PluginArray *& pArray)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
-// class CScriptsOfThread : cache the interfaces during a thread life
-
-CScriptsOfThread * CScriptsOfThread::m_aAvailableThreads[NMAXTHREADS] = {0};
+// class CScriptsOfThread : cache the interfaces during the thread life
 
 CScriptsOfThread::CScriptsOfThread()
 {
-	// initialize the thread data
-
 	// count number of events
 	int i;
 	for (i = 0 ;  ; i ++)
@@ -428,68 +424,30 @@ CScriptsOfThread::CScriptsOfThread()
 			break;
 	nTransformationEvents = i;
 
+	// initialize the thread data
+	m_nThreadId = GetCurrentThreadId();
+	m_nLocks = 0;
+	// initialize the plugins pointers
 	typedef PluginArray * LPPluginArray;
 	m_aPluginsByEvent = new LPPluginArray [nTransformationEvents];
 	ZeroMemory(m_aPluginsByEvent, nTransformationEvents*sizeof(LPPluginArray));
-	m_nThreadId = GetCurrentThreadId();
-
-
-	for (i = 0 ; i < NMAXTHREADS ; i++)
-		if (m_aAvailableThreads[i] && m_aAvailableThreads[i]->m_nThreadId == GetCurrentThreadId())
-			break;
-	if (i < NMAXTHREADS)
-	{
-		// error : the thread is already in the list 
-		ASSERT(0);
-		return;
-	}
-		
-	// add the thread in the array
-	for (i = 0 ; i < NMAXTHREADS ; i++)
-		if (m_aAvailableThreads[i] == 0)
-			break;
-	if (i == NMAXTHREADS)
-	{
-		// no free place, don't register
-		ASSERT(0);
-	}
-	else
-	{
-		// register in the array
-		m_aAvailableThreads[i] = this;
-		// CoInitialize the thread, keep the returned value for the destructor 
-		hrInitialize = CoInitialize(NULL);
-		ASSERT(hrInitialize == S_OK || hrInitialize == S_FALSE);
-	}
-}
-
-
-BOOL CScriptsOfThread::bInMainThread()
-{
-	return (this == m_aAvailableThreads[0]);
+	// CoInitialize the thread, keep the returned value for the destructor 
+	hrInitialize = CoInitialize(NULL);
+	ASSERT(hrInitialize == S_OK || hrInitialize == S_FALSE);
 }
 
 CScriptsOfThread::~CScriptsOfThread()
 {
-	// unregister from the list
-	int i;
-	for (i = 0 ; i < NMAXTHREADS ; i++)
-		if (m_aAvailableThreads[i] && m_aAvailableThreads[i]->m_nThreadId == GetCurrentThreadId())
-			break;
-	if (i == NMAXTHREADS)
-	{
-		// not in the list ?
-		ASSERT(0);
-	}
-	else
-	{
-		m_aAvailableThreads[i] = NULL;
-		if (hrInitialize == S_OK || hrInitialize == S_FALSE)
-			CoUninitialize();
-	}
+	if (hrInitialize == S_OK || hrInitialize == S_FALSE)
+		CoUninitialize();
 
 	FreeAllScripts();
 	delete [] m_aPluginsByEvent;
+}
+
+BOOL CScriptsOfThread::bInMainThread()
+{
+	return (CAllThreadsScripts::bInMainThread(this));
 }
 
 PluginArray * CScriptsOfThread::GetAvailableScripts(LPCWSTR transformationEvent)
@@ -505,48 +463,6 @@ PluginArray * CScriptsOfThread::GetAvailableScripts(LPCWSTR transformationEvent)
 	// return a pointer to an empty list
 	static PluginArray noPlugin;
 	return &noPlugin;
-}
-
-// the mode must be supported by all the scripts
-BOOL CScriptsOfThread::GetUnicodeModeOfScripts(LPCWSTR transformationEvent)
-{
-	int i;
-	for (i = 0 ; i < nTransformationEvents ; i ++)
-		if (wcscmp(transformationEvent, TransformationCategories[i]) == 0)
-		{
-			if (m_aPluginsByEvent[i] == NULL)
-				m_aPluginsByEvent[i] = ::GetAvailableScripts(transformationEvent, bInMainThread());
-
-			BOOL bUnicodeMode = 0xFFFFFFFF;
-			for (int j = 0 ; j <  m_aPluginsByEvent[i]->GetSize() ; j++)
-				bUnicodeMode &= m_aPluginsByEvent[i]->GetAt(j).bUnicodeMode;
-			return bUnicodeMode;
-		}
-	return 0;
-}
-// the mode must be supported by all the scripts if their filter match the filteredText
-BOOL CScriptsOfThread::GetUnicodeModeOfScripts(LPCWSTR transformationEvent, LPCTSTR filteredText)
-{
-	int i;
-	for (i = 0 ; i < nTransformationEvents ; i ++)
-		if (wcscmp(transformationEvent, TransformationCategories[i]) == 0)
-		{
-			if (m_aPluginsByEvent[i] == NULL)
-				m_aPluginsByEvent[i] = ::GetAvailableScripts(transformationEvent, bInMainThread());
-
-			BOOL bUnicodeMode = 0xFFFFFFFF;
-			for (int j = 0 ; j <  m_aPluginsByEvent[i]->GetSize() ; j++)
-			{
-				PluginInfo & plugin = m_aPluginsByEvent[i]->ElementAt(j);
-				if (plugin.bAutomatic == FALSE)
-					continue;
-				if (plugin.TestAgainstRegList(filteredText) == FALSE)
-					continue;
-				bUnicodeMode &= m_aPluginsByEvent[i]->GetAt(j).bUnicodeMode;
-			}
-			return bUnicodeMode;
-		}
-	return 0;
 }
 
 
@@ -605,6 +521,94 @@ PluginInfo *  CScriptsOfThread::GetPluginInfo(LPDISPATCH piScript)
 	return NULL;
 }
 
+////////////////////////////////////////////////////////////////////////////////////
+// class CAllThreadsScripts : array of CScriptsOfThread, one per active thread
+
+CScriptsOfThread * CAllThreadsScripts::m_aAvailableThreads[NMAXTHREADS] = {0};
+
+void CAllThreadsScripts::Add(CScriptsOfThread * scripts)
+{
+	// add the thread in the array
+	int i;
+	for (i = 0 ; i < NMAXTHREADS ; i++)
+		if (m_aAvailableThreads[i] == 0)
+			break;
+	if (i == NMAXTHREADS)
+	{
+		// no free place, don't register
+		ASSERT(0);
+	}
+	else
+	{
+		// register in the array
+		m_aAvailableThreads[i] = scripts;
+	}
+}
+
+void CAllThreadsScripts::Remove(CScriptsOfThread * scripts)
+{
+	// unregister from the list
+	int i;
+	for (i = 0 ; i < NMAXTHREADS ; i++)
+		if (m_aAvailableThreads[i] == scripts)
+			break;
+	if (i == NMAXTHREADS)
+		// not in the list ?
+		ASSERT(0);
+	else
+		m_aAvailableThreads[i] = NULL;
+}
+
+CScriptsOfThread * CAllThreadsScripts::GetActiveSet()
+{
+	unsigned long nThreadId = GetCurrentThreadId();
+	int i;
+	for (i = 0 ; i < NMAXTHREADS ; i++)
+		if (m_aAvailableThreads[i] && m_aAvailableThreads[i]->m_nThreadId == nThreadId)
+			return m_aAvailableThreads[i];
+	ASSERT(0);
+	return NULL;
+}
+CScriptsOfThread * CAllThreadsScripts::GetActiveSetNoAssert()
+{
+	unsigned long nThreadId = GetCurrentThreadId();
+	int i;
+	for (i = 0 ; i < NMAXTHREADS ; i++)
+		if (m_aAvailableThreads[i] && m_aAvailableThreads[i]->m_nThreadId == nThreadId)
+			return m_aAvailableThreads[i];
+	return NULL;
+}
+
+BOOL CAllThreadsScripts::bInMainThread(CScriptsOfThread * scripts)
+{
+	return (scripts == m_aAvailableThreads[0]);
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+// class CAssureScriptsForThread : control creation/destruction of CScriptsOfThread
+
+CAssureScriptsForThread::CAssureScriptsForThread()
+{
+	CScriptsOfThread * scripts = CAllThreadsScripts::GetActiveSetNoAssert();
+	if (scripts == NULL)
+	{
+		scripts = new CScriptsOfThread;
+		// insert the script in the repository
+		CAllThreadsScripts::Add(scripts);
+	}
+	scripts->Lock();
+}
+CAssureScriptsForThread::~CAssureScriptsForThread()
+{
+	CScriptsOfThread * scripts = CAllThreadsScripts::GetActiveSetNoAssert();
+	if (scripts == NULL)
+		return;
+	if (scripts->Unlock() == TRUE)
+	{
+		CAllThreadsScripts::Remove(scripts);
+		delete scripts;
+	}
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // reallocation, take care of flag bWriteable
@@ -655,7 +659,7 @@ static void reallocBuffer(LPWSTR & pszBuf, UINT & nOldSize, UINT nSize, BOOL bWr
  */
 static void ShowPluginErrorMessage(LPDISPATCH piScript, LPTSTR description)
 {
-	PluginInfo * pInfo = CScriptsOfThread::GetScriptsOfThreads()->GetPluginInfo(piScript);
+	PluginInfo * pInfo = CAllThreadsScripts::GetActiveSet()->GetPluginInfo(piScript);
 	ASSERT(pInfo != NULL);
 	ASSERT (description != NULL);	
 	MessageBox(AfxGetMainWnd()->GetSafeHwnd(), description, pInfo->name, MB_ICONSTOP);

@@ -62,9 +62,9 @@ void CSelectUnpackerDlg::Initialize()
 	m_pPlugin = noPlugin;
 
 	PluginArray * piFileScriptArray = 
-		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(L"FILE_PACK_UNPACK");
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PACK_UNPACK");
 	PluginArray * piBufferScriptArray = 
-		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(L"BUFFER_PACK_UNPACK");
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PACK_UNPACK");
 
 	// add the default unpackers to the unpackers list
 	m_UnpackerPlugins.Add(noPlugin);

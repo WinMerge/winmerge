@@ -43,7 +43,7 @@
 
 class FileFilterMgr;
 struct FileFilter;
-class CScriptsOfThread;
+class CAssureScriptsForThread;
 class StringPairArray;
 class CMainFrame;
 
@@ -132,7 +132,7 @@ private:
 	FileFilter * m_currentFilter;
 	FileFilterMgr * m_fileFilterMgr;
 	CString m_sFileFilterPath;
-	CScriptsOfThread * m_mainThreadScripts;
+	CAssureScriptsForThread * m_mainThreadScripts;
 };
 
 extern CMergeApp theApp;

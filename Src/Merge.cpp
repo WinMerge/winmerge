@@ -185,7 +185,7 @@ BOOL CMergeApp::InitInstance()
 
 	InitializeFileFilters();
 
-	m_mainThreadScripts = new CScriptsOfThread;
+	m_mainThreadScripts = new CAssureScriptsForThread;
 
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views.

@@ -1464,7 +1464,7 @@ int callbackForContextMenu(CStringArray * functionNamesList, void * receivedData
 	{
 		if (response == 100)
 		{
-			CScriptsOfThread::GetScriptsOfThreads()->FreeScriptsForEvent(L"CONTEXT_MENU");
+			CAllThreadsScripts::GetActiveSet()->FreeScriptsForEvent(L"CONTEXT_MENU");
 		}
 		else
 			return response-101;

@@ -1,6 +1,10 @@
 2004-01-08 Perry
  PATCH: [ 872727 ] Fix function comment on lwdisp.c: ReportError
   common: lwdisp.c
+ PATCH: [ 862040 ] CAssureScriptsForThread like WaitCursor
+  WinMerge: DiffThread.cpp FileTransform.cpp Merge.cpp Merge.h
+   MergeEditView.cpp Plugins.cpp Plugins.h SelectUnpackerDlg.cpp
+
 
 2004-01-08 Kimmo
  Updated Russian translation from Dmitriy Aleshkowskiy

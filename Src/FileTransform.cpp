@@ -78,9 +78,9 @@ BOOL FileTransform_Packing(CString & filepath, PackingInfo handler)
 	// control value
 	BOOL bHandled = FALSE;
 
-	PluginInfo * plugin = CScriptsOfThread::GetScriptsOfThreads()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName);
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName);
 	if (plugin == NULL)
-		plugin = CScriptsOfThread::GetScriptsOfThreads()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName);
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName);
 	LPDISPATCH piScript = plugin->lpDispatch;
 	if (handler.bWithFile)
 	{
@@ -131,9 +131,9 @@ BOOL FileTransform_Unpacking(CString & filepath, PackingInfo handler, int * hand
 	// control value
 	BOOL bHandled = FALSE;
 
-	PluginInfo * plugin = CScriptsOfThread::GetScriptsOfThreads()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName);
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName);
 	if (plugin == NULL)
-		plugin = CScriptsOfThread::GetScriptsOfThreads()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName);
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName);
 	LPDISPATCH piScript = plugin->lpDispatch;
 	if (handler.bWithFile)
 	{
@@ -186,7 +186,7 @@ BOOL FileTransform_Unpacking(CString & filepath, CString filteredText, PackingIn
 
 	// get the scriptlet files
 	PluginArray * piFileScriptArray = 
-		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(L"FILE_PACK_UNPACK");
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PACK_UNPACK");
 
 	// MAIN LOOP : call each handler, 
 	// stop as soon as we have a success
@@ -215,7 +215,7 @@ BOOL FileTransform_Unpacking(CString & filepath, CString filteredText, PackingIn
 
 	// get the scriptlet files
 	PluginArray * piBufferScriptArray = 
-		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(L"BUFFER_PACK_UNPACK");
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PACK_UNPACK");
 
 	// MAIN LOOP : call each handler, 
 	// stop as soon as we have a success
@@ -279,9 +279,9 @@ BOOL FileTransform_Prediffing(CString & filepath, PackingInfo handler, BOOL bMay
 	// control value
 	BOOL bHandled = FALSE;
 
-	PluginInfo * plugin = CScriptsOfThread::GetScriptsOfThreads()->GetPluginByName(L"FILE_PREDIFF", handler.pluginName);
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", handler.pluginName);
 	if (plugin == NULL)
-		plugin = CScriptsOfThread::GetScriptsOfThreads()->GetPluginByName(L"BUFFER_PREDIFF", handler.pluginName);
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", handler.pluginName);
 	LPDISPATCH piScript = plugin->lpDispatch;
 	if (handler.bWithFile)
 	{
@@ -335,7 +335,7 @@ BOOL FileTransform_Prediffing(CString & filepath, CString filteredText, PackingI
 
 	// get the scriptlet files
 	PluginArray * piFileScriptArray = 
-		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(L"FILE_PREDIFF");
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
 
 	// MAIN LOOP : call each handler, 
 	// stop as soon as we have a success
@@ -361,7 +361,7 @@ BOOL FileTransform_Prediffing(CString & filepath, CString filteredText, PackingI
 
 	// get the scriptlet files
 	PluginArray * piBufferScriptArray = 
-		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(L"BUFFER_PREDIFF");
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
 
 	// MAIN LOOP : call each handler, 
 	// stop as soon as we have a success
@@ -482,7 +482,7 @@ BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent,
 {
 	// get an array with the available scripts
 	PluginArray * piScriptArray = 
-		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(TransformationEvent);
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(TransformationEvent);
 
 	// allocate structures : function name, ordinal of script, function Id in script
 	CDWordArray iInScriptArray;

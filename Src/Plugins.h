@@ -80,56 +80,74 @@ public:
 typedef CArray<PluginInfo, PluginInfo&>PluginArray;
 
 /**
- * @brief Cache for the scriptlets' interfaces during the life of a thread
- * Create one and one only CScriptsOfThread for each thread, including the main one.
+ * @brief Cache for the scriptlets' interfaces during the life of a thread. 
+ * One instance and only one for each thread (necessary for VB)
  *
- * @note Each thread needs its own COM interface (necessary for VB)
+ * @note Never create CScriptsOfThread directly : use the class CAssureScriptsForThread
+ * to guarantee unicity
  */
 class CScriptsOfThread
 {
+friend class CAssureScriptsForThread;
+friend class CAllThreadsScripts;
 public:
-	static CScriptsOfThread * GetScriptsOfThreads()
-	{
-		int i;
-		for (i = 0 ; i < NMAXTHREADS ; i++)
-			if (m_aAvailableThreads[i] && m_aAvailableThreads[i]->m_nThreadId == GetCurrentThreadId())
-				return m_aAvailableThreads[i];
-		ASSERT(0);
-		return NULL;
-	}
-
-private:
-	// fixed size array, advantage : no mutex to allocate/free
-	static CScriptsOfThread * m_aAvailableThreads[NMAXTHREADS];
-	int nTransformationEvents;
-
-public:
-	CScriptsOfThread();
-
-	~CScriptsOfThread();
-
 	PluginArray * GetAvailableScripts(LPCWSTR transformationEvent);
 	PluginInfo * GetPluginByName(LPCWSTR transformationEvent, LPCTSTR name);
 	PluginInfo * GetPluginInfo(LPDISPATCH piScript);
-
-	/// Get the modes (Unicode/Ansi) supported by all plugins
-	BOOL GetUnicodeModeOfScripts(LPCWSTR transformationEvent);
-	/// Get the modes (Unicode/Ansi) supported by all plugins related to these files
-	BOOL GetUnicodeModeOfScripts(LPCWSTR transformationEvent, LPCTSTR filteredText);
 
 	void FreeAllScripts();
 	void FreeScriptsForEvent(LPCWSTR transformationEvent);
 
 protected:
+	CScriptsOfThread();
+	~CScriptsOfThread();
+	void Lock()	  { m_nLocks ++; };
+	BOOL Unlock()	{ m_nLocks --; return (m_nLocks == 0); };
+	/// Tell if this scripts is the one for main thread (by convention, the first in the repository)
+	BOOL bInMainThread();
+
+private:
+	unsigned int m_nLocks;
 	unsigned long m_nThreadId;
 	/// Result of CoInitialize
 	HRESULT hrInitialize;
+	int nTransformationEvents;
 	PluginArray ** m_aPluginsByEvent;
-
-	BOOL bInMainThread();
 };
 
 
+/**
+ * @brief Repository of CScriptsOfThread
+ */
+class CAllThreadsScripts
+{
+friend class CAssureScriptsForThread;
+protected:
+	static void Add(CScriptsOfThread * scripts);
+	static void Remove(CScriptsOfThread * scripts);
+	static CScriptsOfThread * GetActiveSetNoAssert();
+public:
+	/// main public function : get the plugins array for the current thread
+	static CScriptsOfThread * GetActiveSet();
+	/// by convention, the scripts for main thread must be created before all others
+	static BOOL bInMainThread(CScriptsOfThread * scripts);
+private:
+	// fixed size array, advantage : no mutex to allocate/free
+	static CScriptsOfThread * m_aAvailableThreads[NMAXTHREADS];
+};
+
+/**
+ * @brief Simple control to add/remove a CScriptsOfThread in the repository. 
+ * Create at least one CAssumeScriptsForThread for each thread, including the main one.
+ * It's OK to create several CAssumeScriptsForThread for the same thread (if you need scripts in one function 
+ * and do not know what happened before the function).
+ */
+class CAssureScriptsForThread
+{
+public:
+	CAssureScriptsForThread();
+	~CAssureScriptsForThread();
+};
 
 
 

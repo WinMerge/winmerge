@@ -161,7 +161,7 @@ UINT DiffThread(LPVOID lpParam)
 
 	// keep the scripts alive during the Rescan
 	// when we exit the thread, we delete this and release the scripts
-	CScriptsOfThread scriptsForRescan;
+	CAssureScriptsForThread scriptsForRescan;
 
 	bool casesensitive = false;
 	int depth = myStruct->bRecursive ? -1 : 0;
