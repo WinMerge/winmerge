@@ -1,6 +1,8 @@
 2003-08-26 Perry
  Implement fix for BUG#794514: 'Comparison Summary' not updated properly
   WinMerge: DirDoc.cpp
+ i18n effects of patch#781529: new popup menu, new dialog, alter existing col header strings
+  Brazilian, ChineseSimplified, ChineseTraditional
   
 2003-08-25 Laoran
  [ 783507 ] normalize replaceSelection and ListCopy

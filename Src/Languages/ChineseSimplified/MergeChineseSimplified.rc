@@ -170,7 +170,7 @@ END
 
 IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
-    POPUP "_POPUP_"
+    POPUP "_ITEM_POPUP_"
     BEGIN
         MENUITEM "复制文件到左边",              ID_DIR_COPY_FILE_TO_LEFT
         MENUITEM "复制文件到右边",              ID_DIR_COPY_FILE_TO_RIGHT
@@ -182,6 +182,10 @@ BEGIN
         MENUITEM "打开左边以...",               ID_DIR_OPEN_LEFT_WITH
         MENUITEM "打开右边",                    ID_DIR_OPEN_RIGHT
         MENUITEM "打开右边以...",               ID_DIR_OPEN_RIGHT_WITH
+    END
+    POPUP "_HDR_POPUP_"
+    BEGIN
+        MENUITEM "Edit columns",                ID_EDIT_COLUMNS
     END
 END
 
@@ -507,6 +511,25 @@ BEGIN
                     WS_TABSTOP,WS_EX_STATICEDGE
 END
 
+IDD_DIRCOLS DIALOG DISCARDABLE  0, 0, 273, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Display Columns"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,141,129,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,81,129,50,14
+    GROUPBOX        "Show columns",IDC_GROUP_SHOW,7,17,124,100
+    LISTBOX         IDC_LIST_SHOW,42,31,83,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Up",IDC_UP,13,43,23,13
+    PUSHBUTTON      "&Down",IDC_DOWN,13,67,23,13
+    GROUPBOX        "Hide columns",IDC_GROUP_HIDE,181,17,85,103
+    LISTBOX         IDC_LIST_HIDE,192,31,66,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "<==",IDC_ADD,141,41,29,11
+    PUSHBUTTON      "==>",IDC_REMOVE,141,76,29,11
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -678,9 +701,9 @@ END
 
 STRINGTABLE FIXED IMPURE
 BEGIN
-    IDS_FILENAME_HEADER     "文件名称"
-    IDS_DIR_HEADER          "文件夹"
-    IDS_RESULT_HEADER       "比对结果"
+    IDS_COLHDR_FILENAME     "文件名称"
+    IDS_COLHDR_DIR          "文件夹"
+    IDS_COLHDR_RESULT       "比对结果"
     IDS_FILE_COMPARISON_TITLE "文件比对"
     IDS_DIFF_NUMBER_STATUS_FMT "不同 %1 在 %2"
     IDS_NO_DIFF_SEL         "%1 不同找到"
@@ -689,9 +712,9 @@ BEGIN
     IDS_VSS_CMD             "SS.EXE 路径(&P):"
     IDS_VSS_RUN_ERROR       "执行版本系统命令错误。"
     IDS_DIFF_OPEN_NO_SET_PROPS "在目前文件比对期间已有修改。 在重新启动目前文件比对前，一些设置不会生效。"
-    IDS_LTIME_HEADER        "左边日期"
-    IDS_RTIME_HEADER        "右边日期"
-    IDS_EXTENSION_HEADER    "扩展名"
+    IDS_COLHDR_LTIMEM       "左边日期"
+    IDS_COLHDR_RTIMEM       "右边日期"
+    IDS_COLHDR_EXTENSION    "扩展名"
     IDS_CONFIRM_DELETE_ITEMS "您确定要删除 %1 在 %2 选择的项目吗？"
     IDS_DEL_LEFT_FMT        "删除左边 %1 在 %2 选择的项目"
 END

@@ -175,7 +175,7 @@ END
 
 IDR_POPUP_DIRVIEW MENU DISCARDABLE 
 BEGIN
-    POPUP "_POPUP_"
+    POPUP "_ITEM_POPUP_"
     BEGIN
         MENUITEM "Copiar arquivo para a esquerda", ID_DIR_COPY_FILE_TO_LEFT
         MENUITEM "Copiar arquivo para a direita", ID_DIR_COPY_FILE_TO_RIGHT
@@ -187,6 +187,10 @@ BEGIN
         MENUITEM "Abrir da Esquerda com...",    ID_DIR_OPEN_LEFT_WITH
         MENUITEM "Abrir da Direita",            ID_DIR_OPEN_RIGHT
         MENUITEM "Abrir da Direita com...",     ID_DIR_OPEN_RIGHT_WITH
+    END
+    POPUP "_HDR_POPUP_"
+    BEGIN
+        MENUITEM "Edit columns",                ID_EDIT_COLUMNS
     END
 END
 
@@ -531,6 +535,25 @@ BEGIN
                     WS_TABSTOP,WS_EX_STATICEDGE
 END
 
+IDD_DIRCOLS DIALOG DISCARDABLE  0, 0, 273, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Display Columns"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,141,129,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,81,129,50,14
+    GROUPBOX        "Show columns",IDC_GROUP_SHOW,7,17,124,100
+    LISTBOX         IDC_LIST_SHOW,42,31,83,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Up",IDC_UP,13,43,23,13
+    PUSHBUTTON      "&Down",IDC_DOWN,13,67,23,13
+    GROUPBOX        "Hide columns",IDC_GROUP_HIDE,181,17,85,103
+    LISTBOX         IDC_LIST_HIDE,192,31,66,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "<==",IDC_ADD,141,41,29,11
+    PUSHBUTTON      "==>",IDC_REMOVE,141,76,29,11
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -662,6 +685,14 @@ BEGIN
         RIGHTMARGIN, 228
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
+    END
+
+    IDD_DIRCOLS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 266
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 155
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -965,9 +996,9 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_FILENAME_HEADER     "Nome de Arquivo"
-    IDS_DIR_HEADER          "Diretório"
-    IDS_RESULT_HEADER       "Resultados da comparação"
+    IDS_COLHDR_FILENAME     "Nome de Arquivo"
+    IDS_COLHDR_DIR          "Diretório"
+    IDS_COLHDR_RESULT       "Resultados da comparação"
     IDS_FILE_COMPARISON_TITLE "Comparação de Arquivo"
     IDS_DIFF_NUMBER_STATUS_FMT "Diferença %1 de %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Diferença(s) encontrada(s)"
@@ -977,9 +1008,9 @@ BEGIN
     IDS_VSS_RUN_ERROR       "Erro ao executar o comando do sistema de versões."
     IDS_DIFF_OPEN_NO_SET_PROPS 
                             "Alterações foram feitas no arquivo corrente nesta sessão de comparação. Alguns ajustes podem não acontecer até que a comparação ao atual arquivo seja reiniciada."
-    IDS_LTIME_HEADER        "Data da Esquerda"
-    IDS_RTIME_HEADER        "Data da Direita"
-    IDS_EXTENSION_HEADER    "Extensão"
+    IDS_COLHDR_LTIMEM       "Data da Esquerda"
+    IDS_COLHDR_RTIMEM       "Data da Direita"
+    IDS_COLHDR_EXTENSION    "Extensão"
     IDS_CONFIRM_DELETE_ITEMS 
                             "Você tem certeza que deseja excluir %1 de %2 do(s) objecto(s) selecionado(s)?"
     IDS_DEL_LEFT_FMT        "Excluir a esquerda %1 de %2 objeto(s) selecionado(s)"
