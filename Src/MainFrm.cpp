@@ -152,18 +152,6 @@ static UINT indicators[] =
  */
 CMainFrame::CMainFrame()
 {
-#if defined (_DEBUG) || defined (ENABLE_LOG)
-	gLog.SetFile(_T("WinMerge.log"));
-	gLog.EnableLogging(TRUE);
-	// Not interested about compare data (very noisy!)
-	gLog.SetMaskLevel(LOGLEVEL::LALL & ~LOGLEVEL::LCOMPAREDATA);
-#endif
-
-// Only log errors and warnings for release!
-//#ifndef _DEBUG
-//	gLog.SetMaskLevel(LOGLEVEL::LERROR | LOGLEVEL::LWARNING);
-//#endif
-
 	m_bFontSpecified=FALSE;
 	m_strSaveAsPath = _T("");
 	m_bFirstTime = TRUE;
@@ -197,6 +185,7 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_MERGE_MODE, FALSE);
 	m_options.InitOption(OPT_UNREC_APPLYSYNTAX, FALSE);
 	m_options.InitOption(OPT_CLOSE_WITH_ESC, TRUE);
+	m_options.InitOption(OPT_LOGGING, 0);
 
 	m_options.InitOption(OPT_CMP_IGNORE_WHITESPACE, 0);
 	m_options.InitOption(OPT_CMP_IGNORE_BLANKLINES, FALSE);
@@ -258,10 +247,24 @@ CMainFrame::CMainFrame()
 			m_strVssPath = spath + _T("\\Ss.exe");
 		}
 	}
+
+	int logging = m_options.GetInt(OPT_LOGGING);
+	if (logging > 0)
+	{
+		gLog.EnableLogging(TRUE);
+		gLog.SetFile(_T("WinMerge.log"));
+
+		if (logging == 1)
+			gLog.SetMaskLevel(LOGLEVEL::LALL);
+		else if (logging == 2)
+			gLog.SetMaskLevel(LOGLEVEL::LERROR | LOGLEVEL::LWARNING);
+	}
 }
 
 CMainFrame::~CMainFrame()
 {
+	gLog.EnableLogging(FALSE);
+
 	// destroy the reg expression list
 	FreeRegExpList();
 	// Delete all temporary folders belonging to this process

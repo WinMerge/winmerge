@@ -1,6 +1,8 @@
 2004-05-24 Kimmo
  PATCH: [ 958938 ] Better way to close WinMerge with ESC (-e switch)
   Src: MainFrm.cpp MainFrm.h Merge.cpp Merge.h
+ PATCH: [ 959035 ] Registry value for enabling logging
+  Src: MainFrm.cpp OptionsDef.h
 
 2004-05-24 Perry
  PATCH: [ 893202 ] Bug fixed for DBCS text edit (Attach again)

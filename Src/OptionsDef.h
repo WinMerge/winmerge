@@ -35,6 +35,7 @@ const TCHAR OPT_USE_RECYCLE_BIN[] = _T("Settings/UseRecycleBin");
 const TCHAR OPT_AUTOCLOSE_CMPPANE[] = _T("Settings/AutoCloseCmpPane");
 const TCHAR OPT_MERGE_MODE[] = _T("Settings/MergingMode");
 const TCHAR OPT_CLOSE_WITH_ESC[] = _T("Settings/CloseWithEsc");
+const TCHAR OPT_LOGGING[] = _T("Settings/Logging");
 
 // Color options
 // The difference color
