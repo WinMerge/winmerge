@@ -1,3 +1,6 @@
+2003-02-18 Christian
+  Removed annoying SourceSafe path from Merge.dsp
+
 2003-02-18 Kimmo
   [ 684737 ] Fix Language Box to handle dblclick
   Languages:
