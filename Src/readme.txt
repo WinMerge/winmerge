@@ -1,3 +1,7 @@
+2003-07-24 Kimmo
+ PATCH: [ 776525 ] Close doc after failed load
+  WinMerge: MainFrm.cpp
+
 2003-07-23 Perry
  PATCH: [ 776046 ] Fixes for <Highlight Line Diff> menu item
   WinMerge: Merge.rc MergeEditView.cpp
