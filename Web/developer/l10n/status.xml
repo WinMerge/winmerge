@@ -128,10 +128,12 @@
       <author>
         <name>Gil Andre</name>
         <email>gil_andre at compuserve dot com</email>
+        <comment>1.7</comment>
       </author>
       <author>
         <name>Laurent Ganier</name>
         <email>ccganier at club-internet dot fr</email>
+        <comment>2.1 &amp; 2.0</comment>
       </author>
     </authors>
     <versions>
@@ -147,14 +149,17 @@
       <author>
         <name>Winfried Peter</name>
         <email>winfried dot peter at omicron dot at</email>
+        <comment>1.7</comment>
       </author>
       <author>
         <name>Joerg Schneider</name>
         <email>tonda at users dot sourceforge dot net</email>
+        <comment>2.0</comment>
       </author>
       <author>
         <name>Tim Gerundt</name>
         <email>tim at gerundt dot de</email>
+        <comment>2.1</comment>
       </author>
     </authors>
     <versions>
@@ -285,10 +290,12 @@
       <author>
         <name>Göran Håkansson</name>
         <email>goran dot x dot hakansson at telia dot com</email>
+        <comment>2.0</comment>
       </author>
       <author>
         <name>Hans Eriksson</name>
         <email>hans dot ericson at bredband dot net</email>
+        <comment>2.1</comment>
       </author>
     </authors>
     <versions>

@@ -65,11 +65,14 @@ releases.</p>
       $author = $authors[$j];
       $author_name = $author['NAME'][0]['VALUE'];
       $author_email = $author['EMAIL'][0]['VALUE'];
+      $author_comment = $author['COMMENT'][0]['VALUE'];
 
       if ($author_email != '')
-        print("<a href=\"mailto:" . $author_email . "\">" . $author_name . "</a><br>" );
+        print("<a href=\"mailto:" . $author_email . "\">" . $author_name . "</a>");
       else
-        print($author_name . "<br>" );
+        print($author_name);
+      if ($author_comment != '') print(" (" . $author_comment . ")");
+      print("<br>");
     }
     print("</td>\n");
 

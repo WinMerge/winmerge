@@ -1,3 +1,8 @@
+2004-09-27 Kimmo
+ PATCH: [ 955458 ] Optimize translations status page
+  Submitted by Tim Gerundt
+  Web\developer\l10n: status.php status.xml
+
 2004-09-26 Kimmo
  PATCH: [ 1034981 ] Web: Add Japanese to translation status table
   Web\developer\l10n: status.xml
