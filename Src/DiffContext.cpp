@@ -109,6 +109,7 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir
 {
 	DIFFITEM di;
 	di.sfilename = pszFilename;
+	di.sSubdir = szSubdir;
 	di.left.spath = pszLeftDir;
 	di.right.spath = pszRightDir;
 	di.left.mtime = lmtime;

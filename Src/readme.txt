@@ -13,6 +13,8 @@
    MergeDoc.cpp resource.h
   WinMerge new files: DirColsDlg.cpp DirColsDlg.h DirViewColHandler.cpp
    DirViewColItems.cpp DirViewColItems.h
+ Bugfix: CDiffContext::AddDiff was not setting diff context subdir from argument.
+  WinMerge:: DiffContext.cpp
 
 2003-08-22 Kimmo
  PATCH: [ 787495 ] Create diffutils class (CDiffWrapper)
