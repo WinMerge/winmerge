@@ -231,6 +231,8 @@
 #define IDC_CP_CUSTOM                   1149
 #define IDC_CUSTOM_CP_NUMBER            1150
 #define IDC_SAVEPROJECT                 1151
+#define IDC_FILTERFILE_NEWBTN           1152
+#define IDC_FILTERFILE_DELETEBTN        1153
 
 
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -293,6 +295,8 @@
 #define IDS_FILTER_TITLE                16450
 #define IDS_FILTER_PREFIX               16451
 #define IDS_FILTERFILE_DESCTITLE        16452
+#define IDS_FILEFILTER_SAVENEW          16453
+#define IDS_FILEFILTER_FILEMASK         16454
 #define IDS_CC_CMD                      16464
 #define IDS_VSS_CMD                     16465
 
