@@ -583,6 +583,8 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 			dbuf.FlushUndoGroup(curView);
 			dbuf.BeginUndoGroup(TRUE);
 		}
+		dbuf.FlushUndoGroup(NULL);
+
 
 		//mf->m_pRight->ReplaceSelection(strText, 0);
 
@@ -591,7 +593,8 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 
 		// remove the diff			
 		SetCurrentDiff(-1);
-		m_diffs.RemoveAt(curDiff);
+		// no longer needed since rescan automatically does this
+/*		m_diffs.RemoveAt(curDiff);
 		m_nDiffs--;
 
 		// adjust remaining diffs
@@ -608,7 +611,7 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 				cd.blank1 -= deleted_lines;
 			}
 		}
-
+*/
 		UpdateAllViews(NULL);
 
 		// reset the mod status of the source view because we do make some
@@ -921,7 +924,8 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 
 void CMergeDoc::CDiffTextBuffer::ReplaceLine(int nLine, const CString &strText)
 {
-	DeleteText(NULL, nLine, 0, nLine, GetLineLength(nLine));
+	if (GetLineLength(nLine)>0)
+		DeleteText(NULL, nLine, 0, nLine, GetLineLength(nLine));
 	int endl,endc;
 	InsertText(NULL, nLine, 0, strText, endl,endc);
 }
