@@ -498,7 +498,7 @@ CCrystalTextView::~CCrystalTextView ()
 	}
 	if (m_pszMatched)
 	{
-		delete m_pszMatched;
+		delete[] m_pszMatched;
 		m_pszMatched = NULL;
 	}
 	//BEGIN SW
@@ -1310,8 +1310,8 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 	}
 	*/
 	//END SW
-	delete anBreaks;
-	delete pBuf;
+	delete[] anBreaks;
+	delete[] pBuf;
 }
 
 COLORREF CCrystalTextView::
@@ -1588,7 +1588,7 @@ ResetView ()
     }
   if (m_pnActualLineLength != NULL)
     {
-      delete m_pnActualLineLength;
+      delete[] m_pnActualLineLength;
       m_pnActualLineLength = NULL;
     }
   m_nParseArraySize = 0;
@@ -1789,7 +1789,7 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
 	charPoint.y = i + 1;
 
 	int nReturnVal = (i >= 0)? anBreaks[i] : 0;
-	delete anBreaks;
+	delete[] anBreaks;
 
 	return nReturnVal;
 }
@@ -1840,7 +1840,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
 			break;
 		}
 	}
-	delete anBreaks;
+	delete[] anBreaks;
 
 	return nIndex;	
 }
@@ -1880,7 +1880,7 @@ int CCrystalTextView::SubLineEndToCharPos( int nLineIndex, int nSubLineOffset )
 	ASSERT( nSubLineOffset >= 0 && nSubLineOffset <= nBreaks );
 	
 	int nReturnVal = anBreaks[nSubLineOffset] - 1;
-	delete anBreaks;
+	delete[] anBreaks;
 
 	return nReturnVal;
 }
@@ -1907,7 +1907,7 @@ int CCrystalTextView::SubLineHomeToCharPos( int nLineIndex, int nSubLineOffset )
 	ASSERT( nSubLineOffset > 0 && nSubLineOffset <= nBreaks );
 	
 	int nReturnVal = anBreaks[nSubLineOffset - 1];
-	delete anBreaks;
+	delete[] anBreaks;
 
 	return nReturnVal;
 }
@@ -2198,7 +2198,7 @@ RecalcPageLayouts (CDC * pdc, CPrintInfo * pInfo)
               nLimit += 32;
               int *pnNewPages = new int[nLimit];
               memcpy (pnNewPages, m_pnPages, sizeof (int) * m_nPrintPages);
-              delete m_pnPages;
+              delete[] m_pnPages;
               m_pnPages = pnNewPages;
             }
           ASSERT (nLimit > m_nPrintPages);
@@ -2245,7 +2245,7 @@ OnEndPrinting (CDC * pdc, CPrintInfo * pInfo)
     }
   if (m_pnPages != NULL)
     {
-      delete m_pnPages;
+      delete[] m_pnPages;
       m_pnPages = NULL;
     }
   m_nPrintPages = 0;
@@ -2947,7 +2947,7 @@ ClientToText (const CPoint & point)
 		nIndex ++;
 	}
 
-	delete anBreaks;
+	delete[] anBreaks;
 
 	ASSERT(nIndex >= 0 && nIndex <= nLength);
 	pt.x = nIndex;
@@ -3193,7 +3193,7 @@ CalculateActualOffset (int nLineIndex, int nCharIndex)
 		for( int J = nBreaks - 1; J >= 0 && nCharIndex < anBreaks[J]; J-- );
 		nPreBreak = anBreaks[J];
 	}
-	delete anBreaks;
+	delete[] anBreaks;
 	//END SW
   for (int I = 0; I < nCharIndex; I++)
     {

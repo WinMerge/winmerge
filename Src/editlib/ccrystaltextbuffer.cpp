@@ -115,7 +115,7 @@ void CCrystalTextBuffer::SUndoRecord::
 FreeText ()
 {
   if (HIWORD ((DWORD) m_pszText) != 0)
-    delete m_pszText;
+    delete[] m_pszText;
 }
 
 
@@ -256,7 +256,7 @@ AppendLine (int nLineIndex, LPCTSTR pszChars, int nLength /*= -1*/ )
       TCHAR *pcNewBuf = new TCHAR[li.m_nMax];
       if (li.m_nLength > 0)
         memcpy (pcNewBuf, li.m_pcLine, sizeof (TCHAR) * li.m_nLength);
-      delete li.m_pcLine;
+      delete[] li.m_pcLine;
       li.m_pcLine = pcNewBuf;
     }
   memcpy (li.m_pcLine + li.m_nLength, pszChars, sizeof (TCHAR) * nLength);
@@ -272,7 +272,7 @@ FreeAll ()
   for (int I = 0; I < nCount; I++)
     {
       if (m_aLines[I].m_nMax > 0)
-        delete m_aLines[I].m_pcLine;
+        delete[] m_aLines[I].m_pcLine;
     }
   m_aLines.RemoveAll ();
 
@@ -919,7 +919,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, 
 
       int nDelCount = nEndLine - nStartLine;
       for (int L = nStartLine + 1; L <= nEndLine; L++)
-        delete m_aLines[L].m_pcLine;
+        delete[] m_aLines[L].m_pcLine;
       m_aLines.RemoveAt (nStartLine + 1, nDelCount);
 
       //  nEndLine is no more valid
@@ -927,7 +927,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, 
       if (nRestCount > 0)
         {
           AppendLine (nStartLine, pszRestChars, nRestCount);
-          delete pszRestChars;
+          delete[] pszRestChars;
         }
 
 	  if (pSource!=NULL)
@@ -1011,7 +1011,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
     }
 
   if (pszRestChars != NULL)
-    delete pszRestChars;
+    delete[] pszRestChars;
 
   context.m_ptEnd.x = nEndChar;
   context.m_ptEnd.y = nEndLine;

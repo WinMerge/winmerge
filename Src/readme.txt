@@ -1,3 +1,7 @@
+2003-04-08 Kimmo
+ PATCH: [ 716744 ] Fix CrystalEditor memory leaks
+  editlib: ccrystaltextbuffer.cpp ccrystaltextview.cpp
+
 2003-04-07 Kimmo
  PATCH: [ 716308 ] Disable italic text
   editlib: ccrystaltextview.cpp
