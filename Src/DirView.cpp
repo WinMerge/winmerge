@@ -117,6 +117,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_FILE_LEFT_READONLY, OnUpdateLeftReadOnly)
 	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
 	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
+	ON_COMMAND(ID_TOOLS_CUSTOMIZECOLUMNS, OnCustomizeColumns)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -1524,3 +1525,14 @@ void CDirView::OnUpdateStatusRightRO(CCmdUI* pCmdUI)
 	BOOL bRORight = GetDocument()->GetReadOnly(FALSE);
 	pCmdUI->Enable(bRORight);
 }
+
+/**
+ * @brief Open dialog to customize dirview columns
+ */
+void CDirView::OnCustomizeColumns()
+{
+	// Located in DirViewColHandler.cpp
+	CDirView::OnEditColumns();
+}
+
+

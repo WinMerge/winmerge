@@ -260,6 +260,7 @@ protected:
 	afx_msg void OnUpdateRightReadOnly(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusLeftRO(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusRightRO(CCmdUI* pCmdUI);
+	afx_msg void OnCustomizeColumns();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);

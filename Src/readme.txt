@@ -1,3 +1,8 @@
+2003-09-25 Kimmo
+ PATCH: [ 811307 ] Open dirview column dialog from menu
+  WinMerge: DirView.h DirView.cpp Merge.rc resource.h
+  Languages: resource.h *.rc
+
 2003-09-24 Perry
  fix BUG: [ 811750 ] typo in DirScan.cpp
   WinMerge: DirScan.cpp
