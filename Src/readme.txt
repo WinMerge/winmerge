@@ -2,6 +2,12 @@
  RFE [ 897975 ] Syntax highlighting for INI files
   Color "[...]"
   Src/editlib: ini.cpp
+ Apply icon change (2004-03-13 Seier) to languages
+  Languages/res: Merge.ico
+
+2004-03-13 Seier
+ Add 48*48 icon version (256 & 16 color)
+ Src/res: Merge.ico
 
 2004-03-13 Kimmo
  Add User Manual draft to CVS
