@@ -214,6 +214,11 @@ void CDirDoc::Rescan()
 {
 	if (!m_pCtxt) return;
 
+	// If we're already doing a rescan, bail out
+	UINT threadState = m_diffThread.GetThreadState();
+	if (threadState == THREAD_COMPARING)
+		return;
+
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
 
 	gLog.Write(_T("Starting directory scan:\r\n\tLeft: %s\r\n\tRight: %s\r\n"),

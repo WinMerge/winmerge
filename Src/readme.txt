@@ -1,3 +1,8 @@
+2003-09-30 Kimmo
+ PATCH: [ 814830 ] Prevent rescan of scanning dirdoc
+  Submitted by Perry
+  WinMerge: DirDoc.cpp
+
 2003-09-29 Kimmo
  PATCH: [ 814098 ] More edit-events for delayed rescan
   WinMerge: MergeEditView.cpp
