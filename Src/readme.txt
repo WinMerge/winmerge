@@ -1,6 +1,8 @@
 2004-03-01 Kimmo
- PATCH: [ 906872 ] Change ShellExtension to open directories non-recursive
+ PATCH: [ 906180 ] Use SHBrowseForFolder() to select folder
   Src: Merge.cpp Merge.h
+ FIX wrong checkin comments and wrong patch number and description
+  in previous checkin.
 
 2004-02-28 WinMerge experimental release 2.1.5.12 (cvs)
 
