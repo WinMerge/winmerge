@@ -547,6 +547,21 @@ SOURCE=.\paths.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\charsets.c
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=.\language.c
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=.\markdown.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
 SOURCE=.\PluginManager.cpp
 # End Source File
 # Begin Source File
@@ -1026,6 +1041,18 @@ SOURCE=.\PatchTool.h
 # Begin Source File
 
 SOURCE=.\paths.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\charsets.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\language.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\markdown.h
 # End Source File
 # Begin Source File
 

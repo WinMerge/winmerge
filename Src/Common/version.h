@@ -7,6 +7,8 @@
 #ifndef VERSIONTOOLS_H
 #define VERSIONTOOLS_H
 
+#include <shlwapi.h>
+
 /**
  * @brief Class providing access to version information of a file
  */
@@ -22,7 +24,7 @@ class CVersionInfo
 	CString m_strCodepage;
 	CString m_strCompanyName;
 	CString m_strFileDescription;
-	CString m_strFileVersion; 
+	CString m_strFileVersion;
 	CString m_strInternalName; 
 	CString m_strLegalCopyright; 
 	CString m_strOriginalFilename; 
@@ -31,8 +33,6 @@ class CVersionInfo
 	CString m_strComments;
 	CString m_strSpecialBuild;
 	CString m_strPrivateBuild;
-	void Init();
-
 public:
 	CVersionInfo(LPCTSTR szFileToVersion = NULL, 
 				   LPCTSTR szLanguage = NULL,
@@ -50,6 +50,7 @@ public:
 	CString GetPrivateBuild();
 	CString GetFixedProductVersion();
 	CString GetFixedFileVersion();
+	DLLVERSIONINFO m_dvi;
 protected:
 	void GetVersionInfo();
 	void GetFixedVersionInfo();

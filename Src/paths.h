@@ -15,11 +15,12 @@ typedef enum { DIRSLASH, NODIRSLASH } DIRSLASH_TYPE;
 PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath);
 void paths_normalize(CString & sPath);
 CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst = NODIRSLASH);
+LPCTSTR paths_GetTempPath();
 PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight);
-CString ExpandShortcut(CString &inFile);
+CString ExpandShortcut(const CString &inFile);
 CString paths_ConcatPath(const CString & path, const CString & subpath);
 CString paths_GetParentPath(CString path);
 bool IsSlash(LPCTSTR pszStart, int nPos);
-BOOL paths_IsPathAbsolute(CString path);
+BOOL paths_IsPathAbsolute(const CString &path);
 
 #endif // paths_h_included

@@ -35,6 +35,7 @@
 #include "paths.h"
 #include "unicoder.h"
 #include "codepage.h"
+#include "7zcommon.h"
 
 /** 
  * @brief Return logfile name and path
@@ -76,20 +77,6 @@ static CString GetLocaleString(LCID locid, LCTYPE lctype)
 }
 
 /**
- * @brief Write out various possibly relevant windows locale information
- */
-static void WriteLocaleSettings(CStdioFile & file, LCID locid, LPCTSTR title)
-{
-	file.WriteString(Fmt(_T(" %s:\n"), title));
-	file.WriteString(Fmt(_T("  Def ANSI codepage: %s\n"), GetLocaleString(locid, LOCALE_IDEFAULTANSICODEPAGE)));
-	file.WriteString(Fmt(_T("  Def OEM codepage: %s\n"), GetLocaleString(locid, LOCALE_IDEFAULTCODEPAGE)));
-	file.WriteString(Fmt(_T("  Country: %s\n"), GetLocaleString(locid, LOCALE_SENGCOUNTRY)));
-	file.WriteString(Fmt(_T("  Language: %s\n"), GetLocaleString(locid, LOCALE_SENGLANGUAGE)));
-	file.WriteString(Fmt(_T("  Language code: %s\n"), GetLocaleString(locid, LOCALE_ILANGUAGE)));
-	file.WriteString(Fmt(_T("  ISO Language code: %s\n"), GetLocaleString(locid, LOCALE_SISO639LANGNAME)));
-}
-
-/**
  * @brief Return Windows font charset constant name from constant value, eg, FontCharsetName() => "Hebrew"
  */
 static CString FontCharsetName(BYTE charset)
@@ -119,6 +106,169 @@ static CString FontCharsetName(BYTE charset)
 	}
 }
 
+/**
+ * @brief Write string item
+ */
+static void WriteItem(CStdioFile &file, int indent, LPCTSTR key, LPCTSTR value = 0)
+{
+	CString text;
+	text.Format(value ? _T("%*.0s%s: %s\n") : _T("%*.0s%s:\n"), indent, key, key, value);
+	file.WriteString(text);
+}
+
+/**
+ * @brief Write int item
+ */
+static void WriteItem(CStdioFile &file, int indent, LPCTSTR key, long value)
+{
+	CString text;
+	text.Format(_T("%*.0s%s: %ld\n"), indent, key, key, value);
+	file.WriteString(text);
+}
+
+/**
+ * @brief Write boolean item using keywords (Yes|No)
+ */
+static void WriteItemYesNo(CStdioFile &file, int indent, LPCTSTR key, BOOL value)
+{
+	CString text;
+	text.Format(_T("%*.0s%s: %s\n"), indent, key, key, value ? _T("Yes") : _T("No"));
+	file.WriteString(text);
+}
+
+/**
+ * @brief Write out various possibly relevant windows locale information
+ */
+static void WriteLocaleSettings(CStdioFile & file, LCID locid, LPCTSTR title)
+{
+	WriteItem(file, 1, title);
+	WriteItem(file, 2, _T("Def ANSI codepage"), GetLocaleString(locid, LOCALE_IDEFAULTANSICODEPAGE));
+	WriteItem(file, 2, _T("Def OEM codepage"), GetLocaleString(locid, LOCALE_IDEFAULTCODEPAGE));
+	WriteItem(file, 2, _T("Country"), GetLocaleString(locid, LOCALE_SENGCOUNTRY));
+	WriteItem(file, 2, _T("Language"), GetLocaleString(locid, LOCALE_SENGLANGUAGE));
+	WriteItem(file, 2, _T("Language code"), GetLocaleString(locid, LOCALE_ILANGUAGE));
+	WriteItem(file, 2, _T("ISO Language code"), GetLocaleString(locid, LOCALE_SISO639LANGNAME));
+}
+
+/**
+ * @brief Write version of a single executable file
+ */
+static void WriteVersionOf1(CStdioFile &file, int indent, LPTSTR path)
+{
+	LPTSTR name = PathFindFileName(path);
+	CVersionInfo vi = path;
+	CString text;
+	text.Format
+	(
+		name == path
+	?	_T("%*s%-20s %s=%u.%02u %s=%04u\n")
+	:	_T("%*s%-20s %s=%u.%02u %s=%04u path=%s\n"),
+		indent,
+		GetModuleHandle(path) ? _T("~") : _T("")/*name*/,
+		name,
+		vi.m_dvi.cbSize > FIELD_OFFSET(DLLVERSIONINFO, dwMajorVersion)
+	?	_T("dllversion")
+	:	_T("version"),
+		vi.m_dvi.dwMajorVersion,
+		vi.m_dvi.dwMinorVersion,
+		vi.m_dvi.cbSize > FIELD_OFFSET(DLLVERSIONINFO, dwBuildNumber)
+	?	_T("dllbuild")
+	:	_T("build"),
+		vi.m_dvi.dwBuildNumber,
+		path
+	);
+	file.WriteString(text);
+}
+
+/**
+ * @brief Write version of a set of executable files
+ */
+static void WriteVersionOf(CStdioFile &file, int indent, LPTSTR path)
+{
+	LPTSTR name = PathFindFileName(path);
+	WIN32_FIND_DATA ff;
+	HANDLE h = FindFirstFile(path, &ff);
+	if (h != INVALID_HANDLE_VALUE)
+	{
+		do
+		{
+			lstrcpy(name, ff.cFileName);
+			WriteVersionOf1(file, indent, path);
+		} while (FindNextFile(h, &ff));
+		FindClose(h);
+	}
+}
+
+/**
+ * @brief Write version of 7-Zip plugins and shell context menu handler
+ */
+static void WriteVersionOf7z(CStdioFile &file, LPTSTR path)
+{
+	lstrcat(path, _T("\\7-zip*.dll"));
+	LPTSTR pattern = PathFindFileName(path);
+	WriteVersionOf(file, 2, path);
+	WriteItem(file, 2, _T("Codecs"));
+	lstrcpy(pattern, _T("codecs\\*.dll"));
+	WriteVersionOf(file, 3, path);
+	WriteItem(file, 2, _T("Formats"));
+	lstrcpy(pattern, _T("formats\\*.dll"));
+	WriteVersionOf(file, 3, path);
+}
+
+/**
+ * @brief Write archive support stuff
+ */
+static void WriteArchiveSupport(CStdioFile &file)
+{
+	DWORD registered = VersionOf7z(FALSE);
+	DWORD standalone = VersionOf7z(TRUE);
+	TCHAR path[MAX_PATH];
+	DWORD type = 0;
+	DWORD size = sizeof path;
+
+	WriteItem(file, 0, _T("Archive support"));
+	WriteItem(file, 1, _T("ForceLocal7z"),
+		AfxGetApp()->GetProfileInt(_T("Settings"), _T("ForceLocal7z"), 0));
+
+	wsprintf(path, _T("%u.%02u"), UINT HIWORD(registered), UINT LOWORD(registered));
+	WriteItem(file, 1, _T("7-Zip software installed on your computer"), path);
+	static const TCHAR szSubKey[] = _T("Software\\7-Zip");
+	static const TCHAR szValue[] = _T("Path");
+	SHGetValue(HKEY_LOCAL_MACHINE, szSubKey, szValue, &type, path, &size);
+	WriteVersionOf7z(file, path);
+
+	wsprintf(path, _T("%u.%02u"), UINT HIWORD(standalone), UINT LOWORD(standalone));
+	WriteItem(file, 1, _T("7-Zip components for standalone operation"), path);
+	GetModuleFileName(0, path, countof(path));
+	LPTSTR pattern = PathFindFileName(path);
+	PathRemoveFileSpec(path);
+	WriteVersionOf7z(file, path);
+
+	WriteItem(file, 1, _T("Merge7z plugins on path"));
+	lstrcpy(pattern, _T("Merge7z*.dll"));
+	WriteVersionOf(file, 2, path);
+	// now see what's on the path:
+	if (DWORD cchPath = GetEnvironmentVariable(_T("path"), 0, 0))
+	{
+		static const TCHAR cSep[] = _T(";");
+		LPTSTR pchPath = new TCHAR[cchPath];
+		GetEnvironmentVariable(_T("PATH"), pchPath, cchPath);
+		LPTSTR pchItem = pchPath;
+		while (int cchItem = StrCSpn(pchItem += StrSpn(pchItem, cSep), cSep))
+		{
+			if (cchItem < MAX_PATH)
+			{
+				CopyMemory(path, pchItem, cchItem*sizeof*pchItem);
+				path[cchItem] = 0;
+				PathAppend(path, _T("Merge7z*.dll"));
+				WriteVersionOf(file, 2, path);
+			}
+			pchItem += cchItem;
+		}
+		delete[] pchPath;
+	}
+}
+
 /** 
  * @brief Write logfile
  */
@@ -127,22 +277,12 @@ BOOL CConfigLog::WriteLogFile(CString &sError)
 	CStdioFile file;
 	CFileException e;
 	CVersionInfo version;
-	CString tempPath;
 	CString text;
 
 	m_sFileName = _T("WinMerge.txt");
 
 	// Get path to $temp/WinMerge.txt
-	if (GetTempPath(MAX_PATH, tempPath.GetBuffer(MAX_PATH)))
-	{
-		tempPath.ReleaseBuffer();
-		m_sFileName.Insert(-1, tempPath);
-	}
-	else
-		return FALSE;
-
-	// Convert from 8.3 style as yielded by GetTempPath to normal style
-	m_sFileName = paths_GetLongPath(m_sFileName, NODIRSLASH);
+	m_sFileName.Insert(0, paths_GetTempPath());
 
 	if (!file.Open(m_sFileName, CFile::modeCreate | CFile::modeWrite))
 	{
@@ -179,138 +319,56 @@ BOOL CConfigLog::WriteLogFile(CString &sError)
 	file.WriteString(_T("\n Windows: "));
 	text = GetWindowsVer();
 	file.WriteString(text);
-		
-	DWORD dllVersion = GetDllVersion(_T("comctl32.dll"));;
-	text.Format(_T("\n COMCTL32.dll: %u.%u\n"),
-		HIWORD(dllVersion), LOWORD(dllVersion));
-	file.WriteString(text);
-	
-	dllVersion = GetDllVersion(_T("ShellExtension.dll"));;
-	if (dllVersion > 0)
-	{
-		text.Format(_T("\n ShellExtension.dll: %u.%u\n"),
-			HIWORD(dllVersion), LOWORD(dllVersion));
-		file.WriteString(text);
-	}
 
+	file.WriteString(_T("\n"));
+	WriteVersionOf1(file, 1, _T("COMCTL32.dll"));
+	WriteVersionOf1(file, 1, _T("ShellExtension.dll"));
+
+	file.WriteString(_T("\n"));
+	WriteArchiveSupport(file);
 // WinMerge settings
 	file.WriteString(_T("\nWinMerge configuration:\n"));
 	file.WriteString(_T(" Compare settings:\n"));
-	file.WriteString(_T("  Ignore blank lines: "));
-	if (m_diffOptions.bIgnoreBlankLines)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
 
-	file.WriteString(_T("  Ignore case: "));
-	if (m_diffOptions.bIgnoreCase)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
+	WriteItemYesNo(file, 2, _T("Ignore blank lines"), m_diffOptions.bIgnoreBlankLines);
+	WriteItemYesNo(file, 2, _T("Ignore case"), m_diffOptions.bIgnoreCase);
+	WriteItemYesNo(file, 2, _T("Ignore carriage return differences"), !m_diffOptions.bEolSensitive);
 
-	file.WriteString(_T("  Ignore carriage return differences: "));
-	if (m_diffOptions.bEolSensitive)
-		file.WriteString(_T("No\n"));
-	else
-		file.WriteString(_T("Yes\n"));
-
-	file.WriteString(_T("  Whitespace compare: "));
+	text = _T("Unknown");
 	switch (m_diffOptions.nIgnoreWhitespace)
 	{
 	case WHITESPACE_COMPARE_ALL:
-		file.WriteString(_T("Compare all\n"));
+		text = _T("Compare all");
 		break;
 	case WHITESPACE_IGNORE_CHANGE:
-		file.WriteString(_T("Ignore change\n"));
+		text = _T("Ignore change");
 		break;
 	case WHITESPACE_IGNORE_ALL:
-		file.WriteString(_T("Ignore all\n"));
-		break;
-	default:
-		file.WriteString(_T("Unknown\n"));
+		text = _T("Ignore all");
 		break;
 	}
+	WriteItem(file, 2, _T("Whitespace compare"), text);
 
-	file.WriteString(_T("  Detect moved blocks: "));
-	if (m_miscSettings.bMovedBlocks)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
+	WriteItemYesNo(file, 2, _T("Detect moved blocks"), m_miscSettings.bMovedBlocks);
 
 	file.WriteString(_T("\n Other settings:\n"));
-	file.WriteString(_T("  Automatic rescan: "));
-	if (m_miscSettings.bAutomaticRescan)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
-
-	file.WriteString(_T("  Simple EOL: "));
-	if (m_miscSettings.bAllowMixedEol)
-		file.WriteString(_T("No\n"));
-	else
-		file.WriteString(_T("Yes\n"));
-
-	file.WriteString(_T("  Automatic scroll to 1st difference: "));
-	if (m_miscSettings.bScrollToFirst)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
-
-	file.WriteString(_T("  Backup original file: "));
-	if (m_miscSettings.bBackup)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
+	WriteItemYesNo(file, 2, _T("Automatic rescan"), m_miscSettings.bAutomaticRescan);
+	WriteItemYesNo(file, 2, _T("Simple EOL"), !m_miscSettings.bAllowMixedEol);
+	WriteItemYesNo(file, 2, _T("Automatic scroll to 1st difference"), m_miscSettings.bScrollToFirst);
+	WriteItemYesNo(file, 2, _T("Backup original file"), m_miscSettings.bBackup);
 
 	file.WriteString(_T("\n Show:\n"));
-	file.WriteString(_T("  Identical files: "));
-	if (m_viewSettings.bShowIdent)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
+	WriteItemYesNo(file, 2, _T("Identical files"), m_viewSettings.bShowIdent);
+	WriteItemYesNo(file, 2, _T("Different files"), m_viewSettings.bShowDiff);
+	WriteItemYesNo(file, 2, _T("Left Unique files"), m_viewSettings.bShowUniqueLeft);
+	WriteItemYesNo(file, 2, _T("Right Unique files"), m_viewSettings.bShowUniqueRight);
+	WriteItemYesNo(file, 2, _T("Binary files"), m_viewSettings.bShowBinaries);
+	WriteItemYesNo(file, 2, _T("Skipped files"), m_viewSettings.bShowSkipped);
+	WriteItemYesNo(file, 2, _T("*.bak files"), !m_viewSettings.bHideBak);
 
-	file.WriteString(_T("  Different files: "));
-	if (m_viewSettings.bShowDiff)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
-
-	file.WriteString(_T("  Left Unique files: "));
-	if (m_viewSettings.bShowUniqueLeft)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
-
-	file.WriteString(_T("  Right Unique files: "));
-	if (m_viewSettings.bShowUniqueRight)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
-
-	file.WriteString(_T("  Binary files: "));
-	if (m_viewSettings.bShowBinaries)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
-
-	file.WriteString(_T("  Skipped files: "));
-	if (m_viewSettings.bShowSkipped)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
-
-	file.WriteString(_T("  *.bak files: "));
-	if (m_viewSettings.bHideBak)
-		file.WriteString(_T("No\n"));
-	else
-		file.WriteString(_T("Yes\n"));
-
-	file.WriteString(_T("\n View Whitespace: "));
-	if (m_miscSettings.bViewWhitespace)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
-
+	file.WriteString(_T("\n"));
+	WriteItemYesNo(file, 1, _T("View Whitespace"), m_miscSettings.bViewWhitespace);
+	
 // Font settings
 	file.WriteString(_T("\n Font:\n"));
 	file.WriteString(Fmt(_T("  Font facename: %s\n"), m_fontSettings.sFacename));
@@ -320,22 +378,18 @@ BOOL CConfigLog::WriteLogFile(CString &sError)
 // System settings
 	file.WriteString(_T("\nSystem settings:\n"));
 	file.WriteString(_T(" codepage settings:\n"));
-	file.WriteString(Fmt(_T("  ANSI codepage: %d\n"), GetACP()));
-	file.WriteString(Fmt(_T("  OEM codepage: %d\n"), GetOEMCP()));
+	WriteItem(file, 2, _T("ANSI codepage"), GetACP());
+	WriteItem(file, 2, _T("OEM codepage"), GetOEMCP());
 #ifndef UNICODE
-	file.WriteString(Fmt(_T("  multibyte codepage: %d\n"), _getmbcp()));
+	WriteItem(file, 2, _T("multibyte codepage"), _getmbcp());
 #endif
 	WriteLocaleSettings(file, GetThreadLocale(), _T("Locale (Thread)"));
 	WriteLocaleSettings(file, LOCALE_USER_DEFAULT, _T("Locale (User)"));
 	WriteLocaleSettings(file, LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));
 
 // Codepage settings
-	file.WriteString(_T("Detect codepage automatically for RC and HTML files: "));
-	if (m_cpSettings.bDetectCodepage)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
-	file.WriteString(Fmt(_T(" unicoder codepage: %d\n"), getDefaultCodepage()));
+	WriteItemYesNo(file, 0, _T("Detect codepage automatically for RC and HTML files"), m_cpSettings.bDetectCodepage);
+	WriteItem(file, 1, _T("unicoder codepage"), getDefaultCodepage());
 
 // Plugins
 	file.WriteString(_T("\nPlugins: "));

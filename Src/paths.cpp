@@ -172,6 +172,22 @@ CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 	return sLong;
 }
 
+/** 
+ * @brief Return folder for temporary files.
+ */
+static CString strTempPath;
+
+LPCTSTR paths_GetTempPath()
+{
+	if (strTempPath.IsEmpty())
+	{
+		int cchTempPath = GetTempPath(0, 0);
+		GetTempPath(cchTempPath, strTempPath.GetBufferSetLength(cchTempPath - 1));
+		strTempPath = paths_GetLongPath(strTempPath, DIRSLASH);
+	}
+	return strTempPath;
+}
+
 // return IS_EXISTING_DIR if both are directories & exist
 // return IS_EXISTING_FILE if both are files & exist
 // return DOES_NOT_EXIST in all other cases
@@ -196,7 +212,7 @@ PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight)
 //	1996 by Rob Warner
 //	rhwarner@southeast.net
 //	http://users.southeast.net/~rhwarner
-CString ExpandShortcut(CString &inFile)
+CString ExpandShortcut(const CString &inFile)
 {
 	CString outFile;
 
@@ -300,7 +316,7 @@ CString paths_GetParentPath(CString path)
 /** 
  * @brief Checks if path is absolute path
  */
-BOOL paths_IsPathAbsolute(CString path)
+BOOL paths_IsPathAbsolute(const CString &path)
 {
 	if (path.GetLength() < 3)
 		return FALSE;

@@ -1,3 +1,4 @@
+#define DllBuild_Merge7z 9 // Minimum DllBuild of Merge7z plugin required
 #include "../Merge7z/Merge7z.h"
 
 #include "DirView.h"
@@ -18,12 +19,11 @@ public:
 
 class CTempPath
 {
-protected:
-	TCHAR m_cPath[MAX_PATH + 40];
+	CString m_strPath;
 public:
 	operator LPCTSTR()
 	{
-		return m_cPath;
+		return m_strPath;
 	}
 	CTempPath(LPVOID);
 	void Clear();
@@ -92,10 +92,17 @@ public:
 int NTAPI HasZipSupport();
 void NTAPI Recall7ZipMismatchError();
 
-DWORD NTAPI VersionOf7zInstalled();
-DWORD NTAPI VersionOf7zLocal();
+DWORD NTAPI VersionOf7z(BOOL bLocal = FALSE);
+CString NTAPI LangFile7z();
 
-HMODULE DllProxyHelper(LPCSTR *, ...);
+/**
+ * @brief assign BSTR to CString, and return BSTR for optional SysFreeString()
+ */
+inline BSTR Assign(CString &dst, BSTR src)
+{
+	dst = src;
+	return src;
+}
 
 #ifdef _UNICODE
 #define DECORATE_A

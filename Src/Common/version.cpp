@@ -12,101 +12,62 @@ CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion /* = NULL*/,
 						   LPCTSTR szLanguage /* = NULL*/,
 						   LPCTSTR szCodepage /* = NULL*/)
 {
-	Init();
 	m_strFileName = szFileToVersion;
 	m_strLanguage = szLanguage;
 	m_strCodepage = szCodepage;
+	GetVersionInfo();
 }
 
 CVersionInfo::CVersionInfo(HINSTANCE hModule)
 {
-	Init();
 	TCHAR szFileName[MAX_PATH];
 	GetModuleFileName(hModule, szFileName, MAX_PATH);
 	m_strFileName = szFileName;
-}
-
-void CVersionInfo::Init()
-{
-	m_lpstrVffInfo = NULL;
-	m_strFileName = _T("");
-	m_strLanguage = _T("");
-	m_strCodepage = _T("");
-	m_strCompanyName = _T("");
-	m_strFileDescription  = _T("");
-	m_strFileVersion = _T(""); 
-	m_strInternalName = _T(""); 
-	m_strLegalCopyright = _T(""); 
-	m_strOriginalFilename = _T(""); 
-	m_strProductName = _T(""); 
-	m_strProductVersion = _T(""); 
-	m_strComments = _T("");
-	m_strSpecialBuild = _T("");
-	m_strPrivateBuild = _T("");
-	m_bQueryDone=FALSE;
-	memset(&m_FixedFileInfo, 0, sizeof(m_FixedFileInfo));
+	GetVersionInfo();
 }
 
 CString CVersionInfo::GetFileVersion()
 {
-	if (!m_bQueryDone)
-		GetVersionInfo();
 	return m_strFileVersion;
 }
 
 CString CVersionInfo::GetPrivateBuild()
 {
-	if (!m_bQueryDone)
-		GetVersionInfo();
 	return m_strPrivateBuild;
 }
 
 CString CVersionInfo::GetSpecialBuild()
 {
-	if (!m_bQueryDone)
-		GetVersionInfo();
 	return m_strSpecialBuild;
 }
 
 CString CVersionInfo::GetCompanyName()
 {
-	if (!m_bQueryDone)
-		GetVersionInfo();
 	return m_strCompanyName;
 }
 
 CString CVersionInfo::GetFileDescription()
 {
-	if (!m_bQueryDone)
-		GetVersionInfo();
 	return m_strFileDescription;
 }
 
 CString CVersionInfo::GetInternalName()
 {
-	if (!m_bQueryDone)
-		GetVersionInfo();
 	return m_strInternalName;
 }
 
 CString CVersionInfo::GetLegalCopyright()
 {
-	if (!m_bQueryDone)
-		GetVersionInfo();
 	return m_strLegalCopyright;
 }
 
 CString CVersionInfo::GetOriginalFilename()
 {
-	if (!m_bQueryDone)
-		GetVersionInfo();
 	return m_strOriginalFilename;
 }
 
 CString CVersionInfo::GetProductVersion()
 {
-	if (!m_bQueryDone)
-		GetVersionInfo();
 	return m_strProductVersion;
 }
 
@@ -119,8 +80,6 @@ static CString MakeVersionString(DWORD hi, DWORD lo)
 
 CString CVersionInfo::GetFixedProductVersion()
 {
-	if (!m_bQueryDone)
-		GetVersionInfo();
 	if (!m_dwVerInfoSize)
 		return _T("");
 	return MakeVersionString(m_FixedFileInfo.dwProductVersionMS
@@ -129,8 +88,6 @@ CString CVersionInfo::GetFixedProductVersion()
 
 CString CVersionInfo::GetFixedFileVersion()
 {
-	if (!m_bQueryDone)
-		GetVersionInfo();
 	if (!m_dwVerInfoSize)
 		return _T("");
 	return MakeVersionString(m_FixedFileInfo.dwFileVersionMS
@@ -139,14 +96,17 @@ CString CVersionInfo::GetFixedFileVersion()
 
 CString CVersionInfo::GetComments()
 {
-	if (!m_bQueryDone)
-		GetVersionInfo();
 	return m_strComments;
 }
 
 void CVersionInfo::GetVersionInfo()
 {
-	DWORD   dwVerHnd=0;			// An 'ignored' parameter, always '0'
+	m_lpstrVffInfo = NULL;
+	m_bQueryDone = FALSE;
+	ZeroMemory(&m_FixedFileInfo, sizeof m_FixedFileInfo);
+	ZeroMemory(&m_dvi, sizeof m_dvi);
+
+	DWORD dwVerHnd = 0;			// An 'ignored' parameter, always '0'
 	TCHAR szFileName[MAX_PATH];
 
 	m_bQueryDone=TRUE;
@@ -156,10 +116,11 @@ void CVersionInfo::GetVersionInfo()
 		_tcscpy(szFileName, m_strFileName);
 	
 	m_dwVerInfoSize = GetFileVersionInfoSize(szFileName, &dwVerHnd);
-	if (m_dwVerInfoSize) {
+	if (m_dwVerInfoSize)
+	{
 		HANDLE  hMem;
 		hMem = GlobalAlloc(GMEM_MOVEABLE, m_dwVerInfoSize);
-		m_lpstrVffInfo  = (LPTSTR)GlobalLock(hMem);
+		m_lpstrVffInfo = (LPTSTR)GlobalLock(hMem);
 		if (GetFileVersionInfo(szFileName, dwVerHnd, m_dwVerInfoSize, m_lpstrVffInfo))
 		{
 			GetFixedVersionInfo();
@@ -190,6 +151,21 @@ void CVersionInfo::GetVersionInfo()
 		}
 		GlobalUnlock(hMem);
 		GlobalFree(hMem);
+		m_lpstrVffInfo = 0;
+	}
+
+	if (HINSTANCE hinstDll = LoadLibrary(szFileName))
+	{
+		DLLGETVERSIONPROC DllGetVersion = (DLLGETVERSIONPROC) GetProcAddress(hinstDll, "DllGetVersion");
+		if (DllGetVersion)
+		{
+			m_dvi.cbSize = sizeof m_dvi;
+			if FAILED(DllGetVersion(&m_dvi))
+			{
+				m_dvi.cbSize = 0;
+			}
+		}
+		FreeLibrary(hinstDll);
 	}
 }
 
@@ -208,14 +184,14 @@ void CVersionInfo::QueryValue(LPCTSTR szId, CString& s)
 		(LPVOID *)&lpVersion,
 		&uVersionLen);
 	
-	if(bRetCode)
+	if (bRetCode)
 	{
 		s = lpVersion;
 		s.TrimLeft();
 		s.TrimRight();
 	}
 	else
-		s = _T("");
+		s.Empty();
 }
 
 void CVersionInfo::GetFixedVersionInfo()
@@ -225,6 +201,9 @@ void CVersionInfo::GetFixedVersionInfo()
 	BOOL bRetCode = VerQueryValue(
 		(LPVOID)m_lpstrVffInfo, _T("\\"), (LPVOID *)&pffi, &len);
 	memcpy(&m_FixedFileInfo, pffi, sizeof(m_FixedFileInfo));
+	m_dvi.dwMajorVersion = HIWORD(m_FixedFileInfo.dwFileVersionMS);
+	m_dvi.dwMinorVersion = LOWORD(m_FixedFileInfo.dwFileVersionMS);
+	m_dvi.dwBuildNumber = HIWORD(m_FixedFileInfo.dwFileVersionLS);
 }
 
 
