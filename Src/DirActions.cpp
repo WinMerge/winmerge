@@ -678,8 +678,6 @@ BOOL CDirView::IsItemOpenableOnRightWith(const DIFFITEM & di)
 /// is it possible to copy to... left item?
 BOOL CDirView::IsItemCopyableToOnLeft(const DIFFITEM & di)
 {
-	// no directory copying right now
-	if (di.isDirectory()) return FALSE;
 	// impossible if only on right
 	if (di.isSideRight()) return FALSE;
 
@@ -689,8 +687,6 @@ BOOL CDirView::IsItemCopyableToOnLeft(const DIFFITEM & di)
 /// is it possible to copy to... right item?
 BOOL CDirView::IsItemCopyableToOnRight(const DIFFITEM & di)
 {
-	// no directory copying right now
-	if (di.isDirectory()) return FALSE;
 	// impossible if only on left
 	if (di.isSideLeft()) return FALSE;
 

@@ -2,6 +2,8 @@
  PATCH: [ 934738 ] CopyLeftTo/CopyRightTo Including Common Subdirectories
   Submitted by Ben (?) - some modifications by Kimmo
   Src: DirActions.cpp
+ PATCH: [ 930456 ] Allow Copy Left/Right to copy folders too
+  Src: DirActions.cpp
   
 2004-04-17 Kimmo
  PATCH: [ 910557 ] Location Bar
