@@ -1,3 +1,9 @@
+2003-10-19 Perry
+ Add writeup for MakePatchDirs to readme-developers info. Add section on 
+  minor patches and bugfixes. Also make minor grammar fixes. Also update 
+ language count (to 14).
+  WinMerge: readme-developers.html readme-developers-MakePatchDirs.html
+
 2003-10-19 Laoran
  Rearranging strings in .rc (all languages) by growing identifier values
   Languages : *.rc
