@@ -1,3 +1,8 @@
+2003-12-17 Kimmo
+ PATCH: [ 858283 ] Add isResultDiff() to DiffItem
+  Fix bug in patch (DirDoc.cpp)
+  WinMerge: DirDoc.cpp
+
 2003-12-17 Laoran
  update plugin docs and examples, consequence of patch #853147 
   plugins: list of sources.txt readme.txt syntax.txt
@@ -12,7 +17,7 @@
  unpatch: Reverse (back out) patch [ 860072 ] Allow singlethreaded diffs
   WinMerge: DiffThread.cpp
 
-2003-12-15 Kimmo
+2003-12-16 Kimmo
  PATCH: [ 858283 ] Add isResultDiff() to DiffItem
   Fixes BUG [ 852998 ] Left Only being filtered out if not view different
   WinMerge: DiffContext.h DirDoc.cpp
