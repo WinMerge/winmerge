@@ -68,6 +68,12 @@ void CPatchDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_DIFF_WHITESPACE_IGNOREBLANKS, m_ignoreBlanks);
 	DDX_Radio(pDX, IDC_DIFF_WHITESPACE_COMPARE, m_whitespaceCompare);
 	DDX_Check(pDX, IDC_DIFF_APPENDFILE, m_appendFile);
+	DDX_Control(pDX, IDC_DIFF_FILE1, m_ctlFile1);
+	DDX_Control(pDX, IDC_DIFF_FILE2, m_ctlFile2);
+	DDX_Control(pDX, IDC_DIFF_FILERESULT, m_ctlResult);
+	DDX_CBStringExact(pDX, IDC_DIFF_FILE1, m_file1);
+	DDX_CBStringExact(pDX, IDC_DIFF_FILE2, m_file2);
+	DDX_CBStringExact(pDX, IDC_DIFF_FILERESULT, m_fileResult);
 	//}}AFX_DATA_MAP
 }
 
@@ -77,6 +83,9 @@ BEGIN_MESSAGE_MAP(CPatchDlg, CDialog)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_FILE1, OnDiffBrowseFile1)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_FILE2, OnDiffBrowseFile2)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_RESULT, OnDiffBrowseResult)
+	ON_CBN_SELCHANGE(IDC_DIFF_FILE1, OnSelchangeFile1Combo)
+	ON_CBN_SELCHANGE(IDC_DIFF_FILE2, OnSelchangeFile2Combo)
+	ON_CBN_SELCHANGE(IDC_DIFF_FILERESULT, OnSelchangeResultCombo)
 	ON_CBN_SELCHANGE(IDC_DIFF_STYLE, OnSelchangeDiffStyle)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -143,6 +152,11 @@ void CPatchDlg::OnOK()
 		else
 			m_contextLines = 0;
 
+		// Save combobox history
+		m_ctlFile1.SaveState(_T("Files\\DiffFile1"));
+		m_ctlFile2.SaveState(_T("Files\\DiffFile2"));
+		m_ctlResult.SaveState(_T("Files\\DiffFileResult"));
+
 		CDialog::OnOK();
 	}
 }
@@ -157,17 +171,22 @@ BOOL CPatchDlg::OnInitDialog()
 	m_ignoreBlanks = TRUE;
 	m_caseSensitive = TRUE;
 	m_whitespaceCompare = 0;
-	int count = m_fileList.GetCount();
+
+	// Load combobox history
+	m_ctlFile1.LoadState(_T("Files\\DiffFile1"));
+	m_ctlFile2.LoadState(_T("Files\\DiffFile2"));
+	m_ctlResult.LoadState(_T("Files\\DiffFileResult"));
 	
+	int count = m_fileList.GetCount();
+
 	// If one file added, show filenames on dialog
 	if (count == 1)
 	{
 		PATCHFILES files = m_fileList.GetHead();
-		if (m_file1.IsEmpty())
-			m_file1 = files.lfile;
-
-		if (m_file2.IsEmpty())
-			m_file2 = files.rfile;
+		m_file1 = files.lfile;
+		m_ctlFile1.SetWindowText(files.lfile);
+		m_file2 = files.rfile;
+		m_ctlFile2.SetWindowText(files.rfile);
 	}
 	else if (count > 1)	// Multiple files added, show number of files
 	{
@@ -302,7 +321,47 @@ void CPatchDlg::OnDiffBrowseResult()
 	}
 }
 
+/** 
+ * @brief Called when File1 combo selection is changed
+ */
+void CPatchDlg::OnSelchangeFile1Combo() 
+{
+	int sel = m_ctlFile1.GetCurSel();
+	if (sel != CB_ERR)
+	{
+		m_ctlFile1.GetLBText(sel, m_file1);
+		m_ctlFile1.SetWindowText(m_file1);
+		UpdateData(TRUE);
+	}
+}
 
+/** 
+ * @brief Called when File2 combo selection is changed
+ */
+void CPatchDlg::OnSelchangeFile2Combo() 
+{
+	int sel = m_ctlFile2.GetCurSel();
+	if (sel != CB_ERR)
+	{
+		m_ctlFile2.GetLBText(sel, m_file2);
+		m_ctlFile2.SetWindowText(m_file2);
+		UpdateData(TRUE);
+	}
+}
+
+/** 
+ * @brief Called when Result combo selection is changed
+ */
+void CPatchDlg::OnSelchangeResultCombo() 
+{
+	int sel = m_ctlResult.GetCurSel();
+	if (sel != CB_ERR)
+	{
+		m_ctlResult.GetLBText(sel, m_fileResult);
+		m_ctlResult.SetWindowText(m_fileResult);
+		UpdateData(TRUE);
+	}
+}
 
 /** 
  * @brief Change diff style, enable/disable context selection

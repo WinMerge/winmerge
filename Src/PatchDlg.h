@@ -30,6 +30,7 @@
 #endif // _MSC_VER > 1000
 
 #include "resource.h"
+#include "SuperComboBox.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // PatchDlg dialog
@@ -65,6 +66,9 @@ public:
 	CComboBox	m_comboStyle;
 	CComboBox	m_comboContext;
 	BOOL	m_caseSensitive;
+	CSuperComboBox m_ctlFile1;
+	CSuperComboBox m_ctlFile2;
+	CSuperComboBox m_ctlResult;
 	CString	m_file1;
 	CString	m_file2;
 	CString	m_fileResult;
@@ -97,6 +101,9 @@ protected:
 	afx_msg void OnDiffBrowseFile1();
 	afx_msg void OnDiffBrowseFile2();
 	afx_msg void OnDiffBrowseResult();
+	afx_msg void OnSelchangeFile1Combo();
+	afx_msg void OnSelchangeFile2Combo();
+	afx_msg void OnSelchangeResultCombo();
 	afx_msg void OnSelchangeDiffStyle();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

@@ -8,6 +8,9 @@
  Use SelectFile() from Merge.cpp in Patch Generate dialog
   also fixes bug Result-file asked with "Open" dialog
   WinMerge: PatchDlg.h PatchDlg.cpp
+ Use ComboBox with history in Patch Generate -dialog
+  WinMerge: Merge.rc PatchDlg.h PatchDlg.cpp
+  Languages: *.rc
 
 2003-10-14 Laoran
  PATCH: [ 819123 ] Half-wait cursor during rescan (new try)
