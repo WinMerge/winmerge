@@ -232,17 +232,17 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "關於 WinMerge"
 FONT 9, "新細明體"
 BEGIN
-    ICON            IDR_MAINFRAME,-1,24,14,21,20
-    LTEXT           "WinMerge",-1,63,13,63,8,SS_NOPREFIX
-    DEFPUSHBUTTON   "確定",1,184,7,32,14,WS_GROUP
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
+    LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "確定",IDOK,184,7,32,14,WS_GROUP
     LTEXT           "版本 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
-    LTEXT           "保留所有權利。",-1,7,60,170,8
+    LTEXT           "保留所有權利。",IDC_STATIC,7,60,170,8
     LTEXT           "拜訪 WinMerge 首頁！",IDC_WWW,7,107,209,8
-    CONTROL         "",-1,"Static",SS_ETCHEDHORZ,7,103,209,1
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
     LTEXT           "版權(c) 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
     LTEXT           "語法強調編輯檢視編寫由 Andrei Stcherbatchenko ",-1,7,71,
                     209,8
-    LTEXT           "不同的語法編寫由 Ferdinand Prantl",-1,7,81,209,8
+    LTEXT           "不同的語法編寫由 Ferdinand Prantl",IDC_STATIC,7,81,209,8
 END
 
 IDD_OPEN DIALOGEX 0, 0, 352, 98
@@ -250,22 +250,22 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "選取檔案或資料夾..."
 FONT 9, "新細明體"
 BEGIN
-    LTEXT           "左邊(&L):",-1,34,24,19,8
+    LTEXT           "左邊(&L):",IDC_STATIC,34,24,19,8
     COMBOBOX        IDC_RIGHT_EDIT,56,22,182,94,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
     PUSHBUTTON      "瀏覽(&B)...",IDC_LEFT_BUTTON,241,22,38,12
-    LTEXT           "右邊(&R):",-1,33,40,20,8
+    LTEXT           "右邊(&R):",IDC_STATIC,33,40,20,8
     COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
     PUSHBUTTON      "瀏覽(&W)...",IDC_RIGHT_BUTTON,241,38,38,12
-    LTEXT           "副檔名(&X):",-1,16,56,37,8
+    LTEXT           "副檔名(&X):",IDC_STATIC,16,56,37,8
     COMBOBOX        IDC_MESSAGE,56,54,151,95,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "子資料夾(&C)",IDC_WHITESPACE_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,35,77,57,10
-    DEFPUSHBUTTON   "確定",1,295,11,50,14
-    PUSHBUTTON      "取消",CBRS_SIZE_FIXED,295,28,50,14
-    GROUPBOX        "要比對的檔案或資料夾",-1,7,7,279,84
+    DEFPUSHBUTTON   "確定",IDOK,295,11,50,14
+    PUSHBUTTON      "取消",IDCANCEL,295,28,50,14
+    GROUPBOX        "要比對的檔案或資料夾",IDC_STATIC,7,7,279,84
 END
 
 IDD_VSS DIALOG FIXED IMPURE  0, 0, 258, 149
@@ -273,17 +273,17 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Visual SourceSafe"
 FONT 9, "新細明體"
 BEGIN
-    LTEXT           "",-1,7,7,244,47,SS_SUNKEN
+    LTEXT           "",IDC_STATIC,7,7,244,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    DEFPUSHBUTTON   "檢查",1,33,121,50,14
-    PUSHBUTTON      "取消",CBRS_SIZE_FIXED,173,121,50,14
+    DEFPUSHBUTTON   "檢查",IDOK,33,121,50,14
+    PUSHBUTTON      "取消",IDCANCEL,173,121,50,14
     PUSHBUTTON      "另存新檔...",IDSAVEAS,103,121,50,14
-    LTEXT           "專案:",-1,9,61,25,8
+    LTEXT           "專案:",IDC_STATIC,9,61,25,8
     COMBOBOX        IDC_RIGHT_COMBO,36,58,215,114,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP
     LTEXT           "用戶:",-1,13,80,18,8
     EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
-    LTEXT           "密碼:",-1,127,79,34,8
+    LTEXT           "密碼:",IDC_STATIC,127,79,34,8
     EDITTEXT        IDC_PASSWORD,162,78,70,14,ES_PASSWORD | ES_AUTOHSCROLL
 END
 
@@ -292,13 +292,13 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "版本系統"
 FONT 9, "新細明體"
 BEGIN
-    GROUPBOX        "設定",-1,7,7,245,54
+    GROUPBOX        "設定",IDC_STATIC,7,7,245,54
     LTEXT           "cleartool.exe 路徑(&P):",IDC_SCROLL_CHECK,16,42,68,8
     EDITTEXT        IDC_PATH_EDIT,85,40,116,12,ES_AUTOHSCROLL
     PUSHBUTTON      "瀏覽(&B)...",IDC_BROWSE_BUTTON,206,40,42,12
     COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
-    LTEXT           "版本系統(&V)",-1,16,22,60,10
+    LTEXT           "版本系統(&V)",IDC_STATIC,16,22,60,10
 END
 
 IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 156
@@ -306,7 +306,7 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "一般"
 FONT 9, "新細明體"
 BEGIN
-    GROUPBOX        "設定",-1,7,7,221,94
+    GROUPBOX        "設定",IDC_STATIC,7,7,221,94
     CONTROL         "備份原始的檔案(&B)",IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,19,83,10
     CONTROL         "自動地捲動到第一個不同(&S)",IDC_SCROLL_CHECK,"Button",
@@ -343,9 +343,9 @@ FONT 9, "新細明體"
 BEGIN
     PUSHBUTTON      "確定",IDOK,154,16,52,14
     PUSHBUTTON      "取消",IDCANCEL,154,33,52,14
-    LISTBOX         1037,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
                     WS_TABSTOP
-    LTEXT           "可用的語言:",-1,7,7,66,8
+    LTEXT           "可用的語言:",IDC_STATIC,7,7,66,8
 END
 
 IDD_EDIT_FIND DIALOG FIXED IMPURE  30, 73, 236, 68
@@ -363,10 +363,10 @@ BEGIN
     CONTROL         "上移(&U)",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
                     111,36,43,12
     CONTROL         "下移(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",BS_AUTORADIOBUTTON,111,48,41,12
-    DEFPUSHBUTTON   "找下一個(&F)",1,185,5,50,14,WS_GROUP
-    PUSHBUTTON      "取消",CBRS_SIZE_FIXED,185,24,50,14
-    LTEXT           "要找什麼(&N):",-1,1,8,44,8
-    GROUPBOX        "方向",-1,107,26,68,38,WS_GROUP
+    DEFPUSHBUTTON   "找下一個(&F)",IDOK,185,5,50,14,WS_GROUP
+    PUSHBUTTON      "取消",IDCANCEL,185,24,50,14
+    LTEXT           "要找什麼(&N):",IDC_STATIC,1,8,44,8
+    GROUPBOX        "方向",IDC_STATIC,107,26,68,38,WS_GROUP
 END
 
 IDD_EDIT_REPLACE DIALOG FIXED IMPURE  36, 44, 230, 89
@@ -392,9 +392,9 @@ BEGIN
     PUSHBUTTON      "取代(&R)",IDC_EDIT_REPLACE,174,21,50,14
     PUSHBUTTON      "全部取代(&A)",IDC_EDIT_REPLACE_ALL,174,38,50,14
     PUSHBUTTON      "取消",CBRS_SIZE_FIXED,174,55,50,14
-    LTEXT           "要找什麼(&N):",-1,4,9,48,8
-    LTEXT           "取代以(&P):",-1,4,26,48,8
-    GROUPBOX        "取代在",-1,97,46,71,39,WS_GROUP
+    LTEXT           "要找什麼(&N):",IDC_STATIC,4,9,48,8
+    LTEXT           "取代以(&P):",IDC_STATIC,4,26,48,8
+    GROUPBOX        "取代在",IDC_STATIC,97,46,71,39,WS_GROUP
 END
 
 IDD_CLEARCASE DIALOG FIXED IMPURE  0, 0, 279, 111
@@ -402,8 +402,8 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Rational Clearcase"
 FONT 9, "新細明體"
 BEGIN
-    DEFPUSHBUTTON   "勘試",1,35,90,50,14
-    PUSHBUTTON      "取消",CBRS_SIZE_FIXED,194,90,50,14
+    DEFPUSHBUTTON   "勘試",IDOK,35,90,50,14
+    PUSHBUTTON      "取消",IDCANCEL,194,90,50,14
     PUSHBUTTON      "另存新檔...",IDSAVEAS,114,90,50,14
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
@@ -439,10 +439,10 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "色彩"
 FONT 9, "新細明體", 0, 0, 0x1
 BEGIN
-    LTEXT           "不同:",-1,15,18,36,8
+    LTEXT           "不同:",IDC_STATIC,15,18,36,8
     CONTROL         "不同",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,83,15,17,
                     14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
-    LTEXT           "選取的不同:",-1,14,36,66,8
+    LTEXT           "選取的不同:",IDC_STATIC,14,36,66,8
     CONTROL         "不同",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,83,33,17,
                     14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
 END
@@ -452,7 +452,7 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
 FONT 9, "新細明體"
 BEGIN
-    DEFPUSHBUTTON   "確定",1,106,136,50,14
+    DEFPUSHBUTTON   "確定",IDOK,106,136,50,14
     EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | WS_VSCROLL
 END
 
@@ -477,7 +477,7 @@ END
 // Version
 //
 
-1 VERSIONINFO
+VS_VERSION_INFO VERSIONINFO
  FILEVERSION 1,0,0,1
  PRODUCTVERSION 1,0,0,1
  FILEFLAGSMASK 0x3fL
@@ -494,7 +494,7 @@ BEGIN
     BEGIN
         BLOCK "040403B6"
         BEGIN
-            VALUE "Comments", "Translated by koko\0"
+            VALUE "Comments", "翻譯由 koko\0"
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "999.999.999.999\0"
             VALUE "InternalName", "WinMerge\0"
