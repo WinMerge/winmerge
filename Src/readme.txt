@@ -1,4 +1,8 @@
-2003-10-07 Laoran
+2003-09-08 Kimmo
+ PATCH: [ 802096 ] Fix diff navigation when first/last diff selected
+  WinMerge: MergeEditView.cpp
+
+2003-09-08 Laoran
  PATCH: [ 802066 ] diff pane when OnDisplayDiff(-1) (2.1)
   WinMerge: MergeDiffDetailView.cpp
 

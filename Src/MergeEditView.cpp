@@ -530,6 +530,9 @@ void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
+/**
+ * @brief Go to first diff
+ */
 void CMergeEditView::OnFirstdiff()
 {
 	CMergeDoc *pd = GetDocument();
@@ -547,11 +550,17 @@ void CMergeEditView::OnFirstdiff()
 	}
 }
 
+/**
+ * @brief Update "First diff" UI items
+ */
 void CMergeEditView::OnUpdateFirstdiff(CCmdUI* pCmdUI)
 {
 	OnUpdatePrevdiff(pCmdUI);
 }
 
+/**
+ * @brief Go to last diff
+ */
 void CMergeEditView::OnLastdiff()
 {
 	CMergeDoc *pd = GetDocument();
@@ -559,11 +568,19 @@ void CMergeEditView::OnLastdiff()
 		SelectDiff(pd->m_nDiffs-1, TRUE, FALSE);
 }
 
+/**
+ * @brief Update "Last diff" UI items
+ */
 void CMergeEditView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 {
 	OnUpdateNextdiff(pCmdUI);
 }
 
+/**
+ * @brief Go to next diff
+ * @note If no diff selected, next diff below cursor
+ * is selected.
+ */
 void CMergeEditView::OnNextdiff()
 {
 	CMergeDoc *pd = GetDocument();
@@ -571,10 +588,15 @@ void CMergeEditView::OnNextdiff()
 	if (cnt <= 0)
 		return;
 
+	// Returns -1 if no diff selected
 	int curDiff = pd->GetCurrentDiff();
 	if (curDiff != -1)
 	{
-		// we're on a diff, so just select the next one
+		if (curDiff == pd->m_nDiffs - 1)
+			// We're on a last diff, so select that
+			SelectDiff(curDiff, TRUE, FALSE);
+		else
+			// We're on a diff, so select the next one
 		SelectDiff(curDiff + 1, TRUE, FALSE);
 	}
 	else
@@ -595,6 +617,9 @@ void CMergeEditView::OnNextdiff()
 	}
 }
 
+/**
+ * @brief Update "Next diff" UI items
+ */
 void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
@@ -602,6 +627,11 @@ void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 	pCmdUI->Enable(pd->m_nDiffs>0 && pos.y < (long)pd->m_diffs[pd->m_nDiffs-1].dbegin0);
 }
 
+/**
+ * @brief Go to previous diff
+ * @note If no diff selected, previous diff above cursor
+ * is selected. 
+ */
 void CMergeEditView::OnPrevdiff()
 {
 	CMergeDoc *pd = GetDocument();
@@ -609,11 +639,16 @@ void CMergeEditView::OnPrevdiff()
 	if (cnt <= 0)
 		return;
 
+	// Returns -1 if no diff selected
 	int curDiff = pd->GetCurrentDiff();
 
 	if (curDiff != -1)
 	{
-		// we're on a diff, so just select the next one
+		if (curDiff == 0)
+			// We're on a first diff, select it
+			SelectDiff(curDiff, TRUE, FALSE);
+		else
+			// We're on a diff, so select the previous one
 		SelectDiff(curDiff - 1, TRUE, FALSE);
 	}
 	else
@@ -634,6 +669,9 @@ void CMergeEditView::OnPrevdiff()
 	}
 }
 
+/**
+ * @brief Update "Previous diff" UI items
+ */
 void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
