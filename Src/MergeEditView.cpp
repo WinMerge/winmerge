@@ -70,6 +70,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 	ON_WM_TIMER()
 	ON_COMMAND(ID_REFRESH, OnRefresh)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -807,4 +808,14 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 		return FALSE;
 	}
 	return CCrystalEditViewEx::PreTranslateMessage(pMsg);
+}
+
+void CMergeEditView::OnUpdateFileSave(CCmdUI* pCmdUI)
+{
+	CMergeDoc *pd = GetDocument();
+	
+	if (pd->m_ltBuf.IsModified() || pd->m_rtBuf.IsModified())
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
 }

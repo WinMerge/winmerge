@@ -117,6 +117,7 @@ protected:
 	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnRefresh();
+	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
