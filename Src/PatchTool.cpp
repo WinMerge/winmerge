@@ -47,10 +47,7 @@ void CPatchTool::AddFiles(CString file1, CString file2)
  */
 int CPatchTool::CreatePatch()
 {
-	DIFFOPTIONS diffOptions = {0};
-	PATCHOPTIONS patchOptions;
 	DIFFSTATUS status = {0};
-	CPatchDlg dlg;
 	BOOL bResult = TRUE;
 	BOOL bDiffSuccess;
 
@@ -61,33 +58,22 @@ int CPatchTool::CreatePatch()
 	for (int i = 0; i < count; i++)
 	{
 		PATCHFILES files = m_fileList.GetNext(pos);
-		dlg.AddItem(files);
+		m_dlgPatch.AddItem(files);
 	}
 
-	if (dlg.DoModal() == IDOK)
+	if (ShowDialog())
 	{
-		patchOptions.outputStyle = dlg.m_outputStyle;
-		patchOptions.context = dlg.m_contextLines;
-		m_diffWrapper.SetPatchOptions(&patchOptions);
-
-		diffOptions.nIgnoreWhitespace = dlg.m_whitespaceCompare;
-		diffOptions.bIgnoreBlankLines = dlg.m_ignoreBlanks;
-		diffOptions.bEolSensitive = TRUE;
-		m_diffWrapper.SetAppendFiles(dlg.m_appendFile);
-
+		// Select patch create -mode
 		m_diffWrapper.SetUseDiffList(FALSE);
 		m_diffWrapper.SetCreatePatchFile(TRUE);
-		m_diffWrapper.SetPatchFile(dlg.m_fileResult);
+		m_diffWrapper.SetAppendFiles(m_dlgPatch.m_appendFile);
 
-		diffOptions.bIgnoreCase = !dlg.m_caseSensitive;
-		m_diffWrapper.SetOptions(&diffOptions);
-		
-		int fileCount = dlg.GetItemCount();
-		POSITION pos = dlg.GetFirstItem();
+		int fileCount = m_dlgPatch.GetItemCount();
+		POSITION pos = m_dlgPatch.GetFirstItem();
 
 		for (int i = 0; i < fileCount; i++)
 		{
-			PATCHFILES files = dlg.GetNextItem(pos);
+			PATCHFILES files = m_dlgPatch.GetNextItem(pos);
 			CString filename1 = files.lfile;
 			CString filename2 = files.rfile;
 			
@@ -96,28 +82,65 @@ int CPatchTool::CreatePatch()
 			bDiffSuccess = m_diffWrapper.RunFileDiff();
 			m_diffWrapper.GetDiffStatus(&status);
 
-			if (!bDiffSuccess)
+			if (!bDiffSuccess || status.bPatchFileFailed)
 			{
 				bResult = FALSE;
 				CString errMsg;
-				AfxFormatString1(errMsg, IDS_FILEWRITE_ERROR, dlg.m_fileResult);
+				AfxFormatString1(errMsg, IDS_FILEWRITE_ERROR, m_dlgPatch.m_fileResult);
 				AfxMessageBox(errMsg, MB_ICONSTOP);
-				break;
-			}
-
-			// If patch file could not be written do not continue to other files
-			if (status.bPatchFileFailed)
-			{
-				bResult = FALSE;
 				break;
 			}
 
 			// Append next files...
 			m_diffWrapper.SetAppendFiles(TRUE);
 		}
-		if (bResult)
+		if (bResult && fileCount > 0)
 			AfxMessageBox(IDS_DIFF_SUCCEEDED, MB_ICONINFORMATION);
 	}
-	dlg.ClearItems();
+	m_dlgPatch.ClearItems();
 	return 1;
+}
+
+/** 
+ * @brief Show patch options dialog and check options selected
+ */
+BOOL CPatchTool::ShowDialog()
+{
+	DIFFOPTIONS diffOptions = {0};
+	PATCHOPTIONS patchOptions;
+	BOOL bRetVal = TRUE;
+
+	if (m_dlgPatch.DoModal() == IDOK)
+	{
+		// There must be one filepair
+		if (m_dlgPatch.GetItemCount() < 1)
+			bRetVal = FALSE;
+
+		// Result file must be given
+		if (m_dlgPatch.m_fileResult.IsEmpty())
+			bRetVal = FALSE;
+		else
+			m_diffWrapper.SetPatchFile(m_dlgPatch.m_fileResult);
+
+		// These two are from dropdown list - can't be wrong
+		patchOptions.outputStyle = m_dlgPatch.m_outputStyle;
+		patchOptions.context = m_dlgPatch.m_contextLines;
+		m_diffWrapper.SetPatchOptions(&patchOptions);
+
+		// These are from checkboxes and radiobuttons - can't be wrong
+		diffOptions.nIgnoreWhitespace = m_dlgPatch.m_whitespaceCompare;
+		diffOptions.bIgnoreBlankLines = m_dlgPatch.m_ignoreBlanks;
+		m_diffWrapper.SetAppendFiles(m_dlgPatch.m_appendFile);
+
+		// Use this because non-sensitive setting can't write
+		// patch file EOLs correctly
+		diffOptions.bEolSensitive = TRUE;
+		
+		diffOptions.bIgnoreCase = !m_dlgPatch.m_caseSensitive;
+		m_diffWrapper.SetOptions(&diffOptions);
+	}
+	else
+		return FALSE;
+
+	return bRetVal;
 }

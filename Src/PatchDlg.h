@@ -30,10 +30,20 @@
 #endif // _MSC_VER > 1000
 
 #include "resource.h"
-#include "patchtool.h"	// PATCHFILES
 
 /////////////////////////////////////////////////////////////////////////////
 // PatchDlg dialog
+
+/** 
+ * @brief Filepair to create patch
+ */
+typedef struct tagPATCHFILES
+{
+	CString lfile;
+	CString rfile;
+	time_t ltime, rtime;
+} PATCHFILES;
+
 
 class CPatchDlg : public CDialog
 {
@@ -77,6 +87,8 @@ public:
 protected:
 
 	CList<PATCHFILES, PATCHFILES> m_fileList;
+	
+	void AddNewFile(CString sFile, BOOL bLeft);
 
 	// Generated message map functions
 	//{{AFX_MSG(CPatchDlg)

@@ -25,16 +25,7 @@
 #ifndef _PATCHTOOL_H_
 #define _PATCHTOOL_H_
 
-
-/** 
- * @brief Filepair to create patch
- */
-typedef struct tagPATCHFILES
-{
-	CString lfile;
-	CString rfile;
-	time_t ltime, rtime;
-} PATCHFILES;
+#include "PatchDlg.h"
 
 /** 
  * @brief Provides patch creation functionality
@@ -46,9 +37,12 @@ public:
 	int CreatePatch();
 
 private:
+	BOOL ShowDialog();
+
 	CList<PATCHFILES,PATCHFILES> m_fileList;
 	CString m_sPatchFile;
 	CDiffWrapper m_diffWrapper;
+	CPatchDlg m_dlgPatch;
 };
 
 #endif	// _PATCHTOOL_H_

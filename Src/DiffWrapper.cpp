@@ -238,13 +238,20 @@ BOOL CDiffWrapper::RunFileDiff()
 			{
 				print_normal_script(script);
 				fclose(outfile);
-				outfile=NULL;
+				outfile = NULL;
 			}
 #endif
 			// Create patch file
 			if (m_bCreatePatchFile)
 			{
-				outfile = _tfopen(m_sPatchFile, _T("w+"));
+				outfile = NULL;
+				if (!m_sPatchFile.IsEmpty())
+				{
+					if (m_bAppendFiles)
+						outfile = _tfopen(m_sPatchFile, _T("a+"));
+					else
+						outfile = _tfopen(m_sPatchFile, _T("w+"));
+				}
 
 				if (outfile != NULL)
 				{

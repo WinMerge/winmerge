@@ -1,6 +1,9 @@
 2003-09-24 Kimmo
  BUG: [ 811748 ] Brazilian RC compile failure
   Languages/Brasilian: MergeBrasilian.rc
+ Patch Generate improvements and fixes
+  WinMerge: DiffWrapper.cpp PatchDlg.h PatchDlg.cpp PatchTool.h
+   PatchTool.cpp
 
 2003-09-23 Kimmo
  Don't show [0 files selected] in Patch Generate -dialog

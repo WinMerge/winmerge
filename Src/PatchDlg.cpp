@@ -36,7 +36,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-extern int recursive;
 
 /////////////////////////////////////////////////////////////////////////////
 // CPatchDlg dialog
@@ -94,7 +93,8 @@ void CPatchDlg::OnOK()
 	TCHAR contextText[50] = {0};
 	BOOL file1Ok = TRUE;
 	BOOL file2Ok = TRUE;
-	BOOL fileResultOk = FALSE;
+	BOOL fileExists = FALSE;
+	BOOL fileResultOK = TRUE;
 	int overWrite = 0;
 	int selectCount = 0;
 	struct _stat fileStat = {0};
@@ -118,19 +118,19 @@ void CPatchDlg::OnOK()
 			AfxMessageBox(IDS_DIFF_ITEM2NOTFOUND, MB_ICONSTOP);
 	}
 
-	fileResultOk = is_regfile2(m_fileResult);
+	fileExists = is_regfile2(m_fileResult);
 
 	// Result file already exists and append not selected
-	if (fileResultOk == TRUE && m_appendFile == FALSE)
+	if (fileExists && !m_appendFile)
 	{
 		overWrite = AfxMessageBox(IDS_DIFF_FILEOVERWRITE, MB_YESNO);
 		if (overWrite == IDNO)
-			fileResultOk = FALSE;
+			fileResultOK = FALSE;
 	}
 	else	// It's ok to write new file
-		fileResultOk = TRUE;
+		fileResultOK = TRUE;
 
-	if (file1Ok == TRUE && file2Ok == TRUE && fileResultOk == TRUE)
+	if (file1Ok && file2Ok && fileResultOK)
 	{
 		m_outputStyle = (enum output_style) m_comboStyle.GetCurSel();
 
@@ -178,7 +178,6 @@ BOOL CPatchDlg::OnInitDialog()
 		m_file1 = msg;
 		m_file2 = msg;
 	}
-	
 	UpdateData(FALSE);
 
 	// Add patch styles to combobox
@@ -219,35 +218,7 @@ void CPatchDlg::OnDiffBrowseFile1()
 
 	if (SelectFile(s, folder))
 	{
-		PATCHFILES pf;
-		int count = GetItemCount();
-
-		// If there are multiple files already, empty list
-		if (count > 1)
-		{
-			ClearItems();
-			pf.lfile = s;
-			AddItem(pf);
-			m_file1 = s;
-			m_file2 = "";
-		}
-		else if (count == 0)
-		{
-			pf.lfile = s;
-			AddItem(pf);
-			m_file1 = s;
-		}
-		else
-		{
-			POSITION pos = GetFirstItem();
-			POSITION current = pos;
-			pf = GetNextItem(pos);
-			//CString fileName = pf.lfile;
-			pf.lfile = s;
-			m_file1 = s;
-
-			SetItemAt(current, pf);
-		}
+		AddNewFile(s, TRUE);
 		UpdateData(FALSE);
 	}
 }
@@ -263,37 +234,49 @@ void CPatchDlg::OnDiffBrowseFile2()
 
 	if (SelectFile(s, folder))
 	{
-		PATCHFILES pf;
-		int count = GetItemCount();
-
-		// If there are multiple files already, empty list
-		if (count > 1)
-		{
-			ClearItems();
-			pf.rfile = s;
-			AddItem(pf);
-			m_file1 = "";
-			m_file2 = s;
-		}
-		else if (count == 0)
-		{
-			pf.rfile = s;
-			AddItem(pf);
-			m_file2 = s;
-		}
-		else
-		{
-			POSITION pos = GetFirstItem();
-			POSITION current = pos;
-			pf = GetNextItem(pos);
-			//CString fileName = pf.rfile;
-			pf.rfile = s;
-			m_file2 = s;
-
-			SetItemAt(current, pf);
-		}
+		AddNewFile(s, FALSE);
 		UpdateData(FALSE);
 	}
+}
+
+/** 
+ * @brief Add selected file to list and UI
+ */
+void CPatchDlg::AddNewFile(CString sFile, BOOL bLeft)
+{
+	PATCHFILES pf;
+	int count = GetItemCount();
+
+	if (bLeft)
+	{
+		pf.lfile = sFile;
+		m_file1 = sFile;
+	}
+	else
+	{
+		pf.rfile = sFile;
+		m_file2 = sFile;
+	}
+
+	if (count == 1)
+	{
+		POSITION pos = GetFirstItem();
+		POSITION current = pos;
+		pf = GetNextItem(pos);
+		SetItemAt(current, pf);
+		return;
+	}
+
+	// If there are multiple files already, empty list
+	if (count > 1)
+	{
+		ClearItems();
+		if (bLeft)
+			m_file1.Empty();
+		else
+			m_file2.Empty();
+	}
+	AddItem(pf);
 }
 
 /** 
