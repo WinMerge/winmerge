@@ -50,6 +50,8 @@
 #include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
 #include "multimon.h"
 #include "paths.h"
+#include "WaitStatusCursor.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -163,6 +165,24 @@ CMainFrame::~CMainFrame()
 	FreeRegExpList();
 }
 
+// This is a bridge to implement IStatusDisplay for WaitStatusCursor
+// by forwarding all calls to the main frame
+class StatusDisplay : public IStatusDisplay
+{
+public:
+	StatusDisplay() : m_pfrm(0) { }
+	void SetFrame(CMainFrame * frm) { m_pfrm = frm; }
+// Implement IStatusDisplay
+	virtual CString BeginStatus(LPCTSTR str) { return m_pfrm->SetStatus(str); }
+	virtual void ChangeStatus(LPCTSTR str) { m_pfrm->SetStatus(str); }
+	virtual void EndStatus(LPCTSTR str, LPCTSTR oldstr) { m_pfrm->SetStatus(oldstr); }
+
+protected:
+	CMainFrame * m_pfrm;
+};
+
+static StatusDisplay myStatusDisplay;
+
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)
@@ -215,6 +235,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// CG: The following line was added by the Splash Screen component.
 	CSplashWnd::ShowSplashScreen(this);
+
+	// Start handling status messages from WaitStatusCursors
+	myStatusDisplay.SetFrame(this);
+	WaitStatusCursor::SetStatusDisplay(&myStatusDisplay);
 
 	return 0;
 }
@@ -1340,6 +1364,9 @@ void CMainFrame::OnClose()
 			pMergeDoc->GetParentFrame()->SavePosition();
 	}
 	
+	// Stop handling status messages from WaitStatusCursors
+	WaitStatusCursor::SetStatusDisplay(0);
+	myStatusDisplay.SetFrame(0);
 	
 	CMDIFrameWnd::OnClose();
 }
@@ -1572,6 +1599,14 @@ CDirDoc * CMainFrame::GetDirDocToShow(BOOL * pNew)
 	return pDirDoc;
 }
 
+// Set status in the main status pane
+CString CMainFrame::SetStatus(LPCTSTR status)
+{
+	CString old = m_wndStatusBar.GetPaneText(0);
+	m_wndStatusBar.SetPaneText(0, status);
+	return old;
+}
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1630,3 +1665,4 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 	BOOL ctrlKey = ::GetAsyncKeyState(VK_CONTROL);
 	DoFileOpen(files[0], files[1], ctrlKey);
 }
+

@@ -594,6 +594,10 @@ SOURCE=.\VssPrompt.cpp
 !ENDIF 
 
 # End Source File
+# Begin Source File
+
+SOURCE=.\WaitStatusCursor.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
@@ -797,6 +801,10 @@ SOURCE=..\common\version.h
 # Begin Source File
 
 SOURCE=.\VssPrompt.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\WaitStatusCursor.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"

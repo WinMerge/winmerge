@@ -28,6 +28,7 @@
 #include "MainFrm.h"
 #include "resource.h"
 #include "coretools.h"
+#include "WaitStatusCursor.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -212,7 +213,7 @@ void CDirView::OnInitialUpdate()
 
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
-	CWaitCursor wait;
+	WaitStatusCursor waitstatus(_T("Opening selection"));
 	OpenSelection();
 	CListViewEx::OnLButtonDblClk(nFlags, point);
 }
@@ -485,7 +486,7 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	if(nChar==VK_RETURN)
 	{
-		CWaitCursor wait;
+		WaitStatusCursor waitstatus(_T("Opening selection"));
 		OpenSelection();
 	}
 	CListViewEx::OnChar(nChar, nRepCnt, nFlags);

@@ -32,6 +32,7 @@
 #include "coretools.h"
 #include "logfile.h"
 #include "paths.h"
+#include "WaitStatusCursor.h"
 
 extern int recursive;
 
@@ -204,8 +205,9 @@ diff_dirs2 (filevec, handle_file, depth)
 
 void CDirDoc::Rescan()
 {
+	WaitStatusCursor waitstatus(_T("Rescanning"));
+
 	ASSERT(m_pCtxt != NULL);
-	BeginWaitCursor();
 
 	gLog.Write(_T("Starting directory scan:\r\n\tLeft: %s\r\n\tRight: %s\r\n"),
 			m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
@@ -228,7 +230,6 @@ void CDirDoc::Rescan()
 	((CDirFrame*)(m_pDirView->GetParent()))->SetStatus(s);
 	Redisplay();
 
-	EndWaitCursor();
 }
 
 // return true if we need to hide this item because it is a backup

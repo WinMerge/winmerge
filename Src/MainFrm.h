@@ -84,6 +84,7 @@ public:
 	HMENU NewDefaultMenu();
 	BOOL CreateBackup(LPCTSTR pszPath);
 	BOOL CheckSavePath(CString& strSavePath);
+	CString SetStatus(LPCTSTR status);
 
 // Overrides
 	// ClassWizard generated virtual function overrides

@@ -1,6 +1,9 @@
 2003-04-20 Perry
  Changed dynamic array to be CArray based
   editlib: ccrystaltextview.cpp
+ PATCH: [ 724309 ] Add WaitStatusCursors
+  WinMerge: DirDoc.cpp DirView.cpp MainFrm.cpp Merge.dsp MergeDoc.cpp MergeEditView.cpp 
+   WaitStatusCursor.cpp WaitStatusCursor.h
 
 2003-04-19 Perry
  [ 724280 ] Could use wait cursors at OpenSelection calls

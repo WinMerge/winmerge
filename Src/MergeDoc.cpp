@@ -38,6 +38,7 @@
 #include "childFrm.h"
 #include "dirdoc.h"
 #include "files.h"
+#include "WaitStatusCursor.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1674,7 +1675,10 @@ void CMergeDoc::RescanIfNeeded()
 		m_bNeedIdleRescan = FALSE;
 		COleDateTimeSpan elapsed = COleDateTime::GetCurrentTime() - m_LastRescan;
 		if (elapsed.GetTotalSeconds() > 1)
+		{
+			WaitStatusCursor waitstatus(_T("Rescanning"));
 			FlushAndRescan();
+		}
 	}
 }
 

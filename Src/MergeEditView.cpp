@@ -6,6 +6,7 @@
 #include "MergeEditView.h"
 #include "MergeDoc.h"
 #include "MainFrm.h"
+#include "WaitStatusCursor.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -588,9 +589,8 @@ void CMergeEditView::UpdateLineLengths()
 
 void CMergeEditView::OnL2r()
 {
-	BeginWaitCursor();
+	WaitStatusCursor waitstatus(_T("Copying Left to Right"));
 	GetDocument()->ListCopy(true);
-	EndWaitCursor();
 }
 
 void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
@@ -600,9 +600,8 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnR2l()
 {
-	BeginWaitCursor();
+	WaitStatusCursor waitstatus(_T("Copying Right to Left"));
 	GetDocument()->ListCopy(false);
-	EndWaitCursor();
 }
 
 void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
@@ -612,8 +611,9 @@ void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnAllLeft()
 {
+	WaitStatusCursor waitstatus(_T("Copying All to Left"));
+
 	CMergeDoc* pDoc = GetDocument();
-	BeginWaitCursor();
 	// Unfortunately difftools is not designed for this kind
 	// of use and sometimes all differences cannot be merged
 	// in one run.
@@ -626,7 +626,6 @@ void CMergeEditView::OnAllLeft()
 			pDoc->ListCopy(false);
 		}
 	}
-	EndWaitCursor();
 }
 
 void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
@@ -636,8 +635,9 @@ void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnAllRight()
 {
+	WaitStatusCursor waitstatus(_T("Copying All to Right"));
+
 	CMergeDoc* pDoc = GetDocument();
-	BeginWaitCursor();
 	// Unfortunately difftools is not designed for this kind
 	// of use and sometimes all differences cannot be merged
 	// in one run.
@@ -650,7 +650,6 @@ void CMergeEditView::OnAllRight()
 			pDoc->ListCopy(true);
 		}
 	}
-	EndWaitCursor();
 }
 
 void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
