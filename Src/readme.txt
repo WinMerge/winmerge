@@ -1,3 +1,8 @@
+2005-03-13 Jochen
+ BUG: [ 1162369 ] short path name problem
+  Fix paths_GetLongPath(), which erroneously added trailing backslash when passing in short path.
+  Src: paths.cpp
+
 2005-03-13 Kimmo
  PATCH: [ 1161671 ] Convert couple of VCS options to COptionsMgr
   Src: MainFrm.cpp MainFrm.h OptionsDef.h
