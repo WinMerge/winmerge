@@ -2,6 +2,9 @@
  PATCH: [ 1145522 ] fix crash on search
   Submitted by Takashi Sawanaka
   Src/editlib: ccrystaltextview.cpp
+ BUG: [ 1144580 ] markdown.cpp compile error with VS 2003
+  Fix from Jochen
+  Src: markdown.h
 
 2005-02-21 Kimmo
  Update Docbook instructions in devel doc (path changed in sf.net)

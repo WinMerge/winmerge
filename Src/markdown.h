@@ -65,7 +65,7 @@ public:
 		{
 			return B;
 		}
-		EntityString():B(0)
+		EntityString(BSTR B = 0):B(B)
 		{
 		}
 		void operator=(BSTR B)
