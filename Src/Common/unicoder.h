@@ -1,13 +1,11 @@
 /**
  *  @file   unicoder.h
- *  @author Perry Rapp, Creator, 2003
+ *  @author Perry Rapp, Creator, 2003-2004
  *  @date   Created: 2003-10
- *  @date   Edited:  2003-11-13 (Perry)
+ *  @date   Edited:  2004-01-14 (Perry)
  *
  *  @brief  Declaration of utility unicode conversion routines
  */ 
-// RCS ID line follows -- this is updated by CVS
-// $Id$
 
 #ifndef unicoder_h_included
 #define unicoder_h_included
