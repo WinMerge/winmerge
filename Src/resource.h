@@ -54,6 +54,9 @@
 #define IDS_DIR_HEADER                  161
 #define IDS_RESULT_HEADER               162
 #define IDS_FILE_COMPARISON_TITLE       163
+#define IDS_DIFF_NUMBER_STATUS_FMT      164
+#define IDS_NO_DIFF_SEL                 165
+#define IDS_NO_DIFF_SEL_FMT             165
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
@@ -230,6 +233,6 @@
 #define _APS_NEXT_RESOURCE_VALUE        134
 #define _APS_NEXT_COMMAND_VALUE         32809
 #define _APS_NEXT_CONTROL_VALUE         1017
-#define _APS_NEXT_SYMED_VALUE           105
+#define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif

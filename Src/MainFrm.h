@@ -30,6 +30,8 @@
 
 #define BACKUP_FILE_EXT   _T(".bak")
 
+#define ID_DIFFNUM    1
+
 
 class CDiffView;
 class CDirView;
@@ -63,6 +65,7 @@ public:
 
 // Implementation
 public:
+	void SetDiffStatus(int nDiff, int nDiffCnt);
 	BOOL m_bFirstTime;
 	CString m_strSaveAsPath;
 	void CleanupFileBufs();

@@ -85,6 +85,7 @@ END_MESSAGE_MAP()
 static UINT indicators[] =
 {
 	ID_SEPARATOR,           // status line indicator
+	ID_SEPARATOR,
 	ID_INDICATOR_CAPS,
 	ID_INDICATOR_NUM,
 	ID_INDICATOR_SCRL,
@@ -165,6 +166,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
 	}
+	m_wndStatusBar.SetPaneInfo(1, ID_DIFFNUM, 0, 150); 
 
 	// TODO: Remove this if you don't want tool tips or a resizeable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
@@ -770,4 +772,23 @@ void CMainFrame::OnClose()
 	if(m_pMergeDoc != NULL && m_pLeft)
 		((CChildFrame*)m_pLeft->GetParentFrame())->SavePosition();
 	CMDIFrameWnd::OnClose();
+}
+
+void CMainFrame::SetDiffStatus(int nDiff, int nDiffCnt)
+{
+	CString sIdx,sCnt,s;
+	if (nDiff < 0 &&  nDiffCnt <= 0)
+		s = _T("");
+	else if (nDiff < 0)
+	{
+		sCnt.Format(_T("%ld"), nDiffCnt);
+		AfxFormatString1(s, IDS_NO_DIFF_SEL_FMT, sCnt); 
+	}
+	else
+	{
+		sIdx.Format(_T("%ld"), nDiff+1);
+		sCnt.Format(_T("%ld"), nDiffCnt);
+		AfxFormatString2(s, IDS_DIFF_NUMBER_STATUS_FMT, sIdx, sCnt); 
+	}
+	m_wndStatusBar.SetPaneText(ID_DIFFNUM, s);
 }

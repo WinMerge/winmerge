@@ -803,6 +803,8 @@ BEGIN
     IDS_DIR_HEADER          "Directory"
     IDS_RESULT_HEADER       "Comparison result"
     IDS_FILE_COMPARISON_TITLE "File Comparison"
+    IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
+    IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
 END
 
 #endif    // English (U.S.) resources
