@@ -3,6 +3,10 @@
   MakePatchDirs: MakePatchDirs.dsp MakePatchDirs.rc
    MakePatchDirsApp.cpp MakePatchDirsDlg.cpp MakePatchDirsDlg.h
    resource.h StdAfx.h
+ PATCH: [ 967405 ] Add Japanese satellite dll to MakePatchDirs
+ (Adding new files forgotten at first check-in)
+  MakePatchDirs: MakePatchDirs_ja.dsp MakePatchDirs_ja.rc 
+  MakePatchDirs_sat.cpp Satellites.cpp Satellites.h
 
 2004-07-31 Perry
  PATCH: [ 989288 ] Inno Setup Localization: Italian

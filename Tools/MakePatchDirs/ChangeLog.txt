@@ -36,4 +36,6 @@ Add new items to bottom
 2004-08-01, Perry Rapp
  Implement Japanese satellite resource DLL
  WinMerge PATCH#967405: Add Japanese satellite dll to MakePatchDirs
-
+ Add new files (forgotten in first check in):
+  MakePatchDirs_ja.dsp MakePatchDirs_ja.rc MakePatchDirs_sat.cpp 
+  Satellites.cpp Satellites.h
