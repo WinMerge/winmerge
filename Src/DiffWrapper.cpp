@@ -176,6 +176,8 @@ BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
 BOOL CDiffWrapper::RunFileDiff()
 {
 	USES_CONVERSION;
+	CString strFile1Temp = m_sFile1;
+	CString strFile2Temp = m_sFile2;
 	SwapToInternalSettings();
 
 	if (m_bUseDiffList)
@@ -186,23 +188,25 @@ BOOL CDiffWrapper::RunFileDiff()
 	struct change *e, *p;
 	struct change *script = NULL;
 
-	// do the preprocessing now, overwrite the temp files
+	// Do the preprocessing now, overwrite the temp files
 	// TODO : do something with this prediffer info
+	// NOTE: FileTransform_UCS2ToUTF8() may create new temp
+	// files and return new names, those created temp files
+	// are deleted in end of function.
 	PackingInfo infoPrediffer;
-	FileTransform_Prediffing(m_sFile1, m_sToFindUnpacker, &infoPrediffer, TRUE);
-	FileTransform_UCS2ToUTF8(m_sFile1, TRUE);
-	FileTransform_Prediffing(m_sFile2, infoPrediffer, TRUE);
-	FileTransform_UCS2ToUTF8(m_sFile2, TRUE);
+	FileTransform_Prediffing(strFile1Temp, m_sToFindUnpacker,
+		&infoPrediffer, TRUE);
+	FileTransform_UCS2ToUTF8(strFile1Temp, TRUE);
+	FileTransform_Prediffing(strFile2Temp, infoPrediffer, TRUE);
+	FileTransform_UCS2ToUTF8(strFile2Temp, TRUE);
 
-
-	DiffFileData diffdata(m_sFile1, m_sFile2);
+	DiffFileData diffdata(strFile1Temp, strFile2Temp);
 
 	// This opens & fstats both files (if it succeeds)
 	if (!diffdata.OpenFiles())
 	{
 		return FALSE;
 	}
-
 
 	file_data * inf = diffdata.m_inf;
 
@@ -361,6 +365,25 @@ BOOL CDiffWrapper::RunFileDiff()
 	// Done with diffutils filedata
 	diffdata.Close();
 
+	// Delete temp files transformation functions possibly created
+	if (m_sFile1.CompareNoCase(strFile1Temp) != 0)
+	{
+		if (!::DeleteFile(strFile1Temp))
+		{
+			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+				strFile1Temp, GetSysError(GetLastError())));
+		}
+		strFile1Temp.Empty();
+	}
+	if (m_sFile2.CompareNoCase(strFile2Temp) != 0)
+	{
+		if (!::DeleteFile(strFile2Temp))
+		{
+			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+				strFile2Temp, GetSysError(GetLastError())));
+		}
+		strFile2Temp.Empty();
+	}
 
 	m_status.bBinaries = diff_flag > 0;
 	m_status.bLeftMissingNL = inf[0].missing_newline;
@@ -749,3 +772,4 @@ void DiffFileData::Reset()
 		memset(&m_inf[i], 0, sizeof(m_inf[i]));
 	}
 }
+
