@@ -416,7 +416,7 @@ void CDirView::PerformActionList(ActionList & actionList)
 					break;
 				case ACT_DEL_BOTH:
 					fileOp.AddSourceFile(act.src);
-					fileOp.AddDestFile(act.dest);
+					fileOp.AddSourceFile(act.dest);
 					gLog.Write(_T("Delete BOTH file(s) from: %s\n\tto: %s"), act.src, act.dest);
 					break;
 				}

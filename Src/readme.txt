@@ -1,3 +1,7 @@
+2004-03-24 Kimmo
+ BUG: [ 922716 ] "delete both" broken
+  Src: DirActions.cpp
+
 2004-03-23 Perry
  Add simple comments in action list code
  Src: DirActions.cpp
