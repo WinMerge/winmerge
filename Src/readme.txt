@@ -5,6 +5,9 @@
  PATCH: [ 981788 ] modify UI to compress folders
   Submitted by Laoran
   Src: DirView.cpp
+ RFE: [ 953630 ] Ctrl+Shift+Z for Redo in file comparison
+  Src: Merge.rc
+  Src/Languages: *.rc
 
 2004-08-18 Kimmo
  RFE: [ 952959 ] split Are you sure you want to copy into more lines
