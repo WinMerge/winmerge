@@ -1,6 +1,6 @@
 ;      Original File Name:  WinMerge.iss
-;           File Revision:  19
-;           Revision Date:  2004/03/10 16:56
+;           File Revision:  20
+;           Revision Date:  2004/03/10 17:42
 ;           Programmed by:  Christian Blackburn and ?
 ;                 Purpose:  The is the Inno Setup installation script for distributing our WinmMerge application.
 ; Tools Needed To Compile:  Inno Setup 4.18+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 4.18+(http://www.jrsoftware.org/isdl.php)
@@ -11,7 +11,13 @@
 ;Compilation Instructions:  1.  MANUALLY combine the textual contents of \Docs\Read Me.rtf and \Docs\Contributors.rtf
 ;                               making an updated \InnoSetup\Info.rtf
 ;                           2.  Open this file in Inno Setup or ISTool
-
+;                           3.  Make sure Compression=7Zip/Ultra, InternalCompressLevel=Ultra, and SolidCompression=True these values are lowered during
+;                               development to speed up compilation, however at release we want the intaller to be as strong as possible.
+;                           4.  Compile the script:
+;                                   -From Inno Setup "Click "Build" --> "Compile"
+;                                   -From ISTool Click "Project" --> "Compile Setup"
+;                           5.  The compiled installer will appear in the \InnoSetup\Output\ directory at currently should be around 1.5MBs in size.
+;
 ;Installer Todo List:
 ;  1. Determine the minimum allowable version Comctl32.dll.  If they don't have it distribute IE 6.01 on those platforms.
 ;     We'll actually need to determine the user's locale and download the correct version of IE for their platform (Yikes!, maybe we'll only
@@ -49,9 +55,9 @@
 AppName=WinMerge
 AppVerName=WinMerge {#AppVersion}
 AppPublisher=Thingamahoochie Software
-AppPublisherURL=http://winmerge.org/
-AppSupportURL=http://winmerge.org/
-AppUpdatesURL=http://winmerge.org/
+AppPublisherURL=http://WinMerge.org/
+AppSupportURL=http://WinMerge.org/
+AppUpdatesURL=http://WinMerge.org/
 
 ;This is in case an older version of the installer happened to be
 DirExistsWarning=No
