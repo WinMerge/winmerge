@@ -1,3 +1,7 @@
+2004-08-18 Kimmo
+ Use ID as generated html filename for .xsl tools too
+  Manual: Manual.xsl
+
 2004-08-14 Kimmo
  PATCH: [ 1008785 ] Docs: File compare update
   Manual: Compare_files.xml
