@@ -3,6 +3,8 @@
   Src: DirDoc.cpp DirView.cpp DirView.h MainFrm.cpp Merge.rc MergeEditView.cpp
    MergeEditView.h OptionsDef.h PropGeneral.cpp PropGeneral.h resource.h
   Languages: *.rc resource.h
+ PATCH: [ 946550 ] [MergeMode] Don't try to merge if diff not selected
+  Src: MergeEditView.cpp
 
 2004-05-03 Laoran
  PATCH: [ 946091 ] Fix for GetLineActualLength

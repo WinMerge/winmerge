@@ -929,6 +929,10 @@ void CMergeEditView::OnL2r()
 	// Check that right side is not readonly
 	if (IsReadOnly(FALSE))
 		return;
+	// Check that diff is selected
+	if (GetDocument()->GetCurrentDiff() == -1)
+		return;
+
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
 	GetDocument()->ListCopy(true);
 }
@@ -953,6 +957,10 @@ void CMergeEditView::OnR2l()
 	// Check that left side is not readonly
 	if (IsReadOnly(TRUE))
 		return;
+	// Check that diff is selected
+	if (GetDocument()->GetCurrentDiff() == -1)
+		return;
+
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
 	GetDocument()->ListCopy(false);
 }
@@ -1896,6 +1904,10 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnL2RNext()
 {
+	// Check that diff is selected
+	if (GetDocument()->GetCurrentDiff() == -1)
+		return;
+
 	OnL2r();
 	OnNextdiff();
 }
@@ -1917,6 +1929,10 @@ void CMergeEditView::OnUpdateL2RNext(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnR2LNext()
 {
+	// Check that diff is selected
+	if (GetDocument()->GetCurrentDiff() == -1)
+		return;
+
 	OnR2l();
 	OnNextdiff();
 }
