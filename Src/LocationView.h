@@ -56,6 +56,7 @@ private:
 	CMergeEditView* m_view0;
 	CMergeEditView* m_view1;
 	int m_displayMovedBlocks;
+	double m_pixInLines; //*< How many pixels is one line in bars */
 
 	// Generated message map functions
 protected:

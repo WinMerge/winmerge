@@ -29,6 +29,11 @@ static char THIS_FILE[] = __FILE__;
 static const DWORD Y_OFFSET = 5;
 
 /** 
+ * @brief Max pixels in view per line in file
+ */
+static const double MAX_LINEPIX = 4.0;
+
+/** 
  * @brief Bars in location pane
  */
 enum
@@ -122,12 +127,20 @@ void CLocationView::OnDraw(CDC* pDC)
 	const int w2 = 2 * x + 2 * w;
 	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
+	double nLineInPix = hTotal / nbLines;
 	COLORREF cr0 = CLR_NONE; // Left side color
 	COLORREF cr1 = CLR_NONE; // Right side color
 	COLORREF crt = CLR_NONE; // Text color
 	BOOL bwh = FALSE;
 	int nstart0 = -1;
 	int nend0 = -1;
+
+	m_pixInLines = nbLines / hTotal;
+	if (nLineInPix > MAX_LINEPIX)
+	{
+		nLineInPix = MAX_LINEPIX;
+		m_pixInLines = 1 / MAX_LINEPIX;
+	}
 
 	while (true)
 	{
@@ -141,8 +154,8 @@ void CLocationView::OnDraw(CDC* pDC)
 		nstart0++;
 
 		// here nstart0 = first line of block
-		const double nBeginY = (nstart0) * hTotal / nbLines + Y_OFFSET;
-		const double nEndY = (blockHeight + nstart0) * hTotal / nbLines + Y_OFFSET;
+		const double nBeginY = nstart0 * nLineInPix + Y_OFFSET;
+		const double nEndY = (blockHeight + nstart0) * nLineInPix + Y_OFFSET;
 
 		// Draw left side block
 		m_view0->GetLineColors(nstart0, cr0, crt, bwh);
@@ -183,10 +196,10 @@ void CLocationView::OnDraw(CDC* pDC)
 			if (apparent1 != -1)
 			{
 				// Draw connector between moved blocks
-				const double nBeginY0 = (apparent0) * hTotal / nbLines + Y_OFFSET;
-				const double nEndY0 = (blockHeight + apparent0) * hTotal / nbLines + Y_OFFSET;
-				const double nBeginY1 = (apparent1) * hTotal / nbLines + Y_OFFSET;
-				const double nEndY1 = (blockHeight + apparent1) * hTotal / nbLines + Y_OFFSET;
+				const double nBeginY0 = apparent0 * nLineInPix + Y_OFFSET;
+				const double nEndY0 = (blockHeight + apparent0) * nLineInPix + Y_OFFSET;
+				const double nBeginY1 = apparent1 * nLineInPix + Y_OFFSET;
+				const double nEndY1 = (blockHeight + apparent1) * nLineInPix + Y_OFFSET;
 			
 				CRect r0bis(x, nBeginY0, x + w, nEndY0);
 				CRect r1bis(x2, nBeginY1, w2, nEndY1);
@@ -205,10 +218,10 @@ void CLocationView::OnDraw(CDC* pDC)
 			if (apparent0 != -1)
 			{
 				// Draw connector between moved blocks
-				const double nBeginY0 = (apparent0) * hTotal / nbLines + Y_OFFSET;
-				const double nEndY0 = (blockHeight + apparent0) * hTotal / nbLines + Y_OFFSET;
-				const double nBeginY1 = (apparent1) * hTotal / nbLines + Y_OFFSET;
-				const double nEndY1 = (blockHeight + apparent1) * hTotal / nbLines + Y_OFFSET;
+				const double nBeginY0 = apparent0 * nLineInPix + Y_OFFSET;
+				const double nEndY0 = (blockHeight + apparent0) * nLineInPix + Y_OFFSET;
+				const double nBeginY1 = apparent1 * nLineInPix + Y_OFFSET;
+				const double nEndY1 = (blockHeight + apparent1) * nLineInPix + Y_OFFSET;
 			
 				CRect r0bis(x, nBeginY0, x + w, nEndY0);
 				CRect r1bis(x2, nBeginY1, w2, nEndY1);
@@ -429,13 +442,12 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
  * @param rc [in] size of locationpane
  * @param bar [in] bar/file
  * @return 0-based index of real line in file [0...lines-1]
- * @bug line calculation is not precise
  */
 int CLocationView::GetLineFromYPos(int nYCoord, CRect rc, int bar)
 {
 	CMergeDoc* pDoc = GetDocument();
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
-	int line = ((double)nbLines / (double)(rc.Height() - Y_OFFSET * 2)) * nYCoord;
+	int line = m_pixInLines * (nYCoord - Y_OFFSET);
 	int nRealLine = -1;
 
 	line--; // Convert linenumber to lineindex

@@ -1,6 +1,8 @@
 2004-07-08 Kimmo
  PATCH: [ 986794 ] Hide 'Apply' button from filters dialog
   Src: MainFrm.cpp
+ PATCH: [ 986785 ] Improve location pane with short files
+  Src: LocationView.cpp LocationView.h
 
 2004-07-07 Kimmo
  PATCH: [ 983265 ] Italian translation updated for latest experimental version
