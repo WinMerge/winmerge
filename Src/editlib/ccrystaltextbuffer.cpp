@@ -1387,7 +1387,6 @@ FlushUndoGroup (CCrystalTextView * pSource)
       ASSERT (m_nUndoPosition == m_aUndoBuf.GetSize ());
       if (m_nUndoPosition > 0)
         {
-          m_bUndoBeginGroup = TRUE;
           pSource->OnEditOperation (m_aUndoBuf[m_nUndoPosition - 1].m_nAction, m_aUndoBuf[m_nUndoPosition - 1].GetText ());
         }
     }

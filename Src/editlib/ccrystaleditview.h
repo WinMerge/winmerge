@@ -132,6 +132,7 @@ protected :
 
     // Generated message map functions
 protected :
+	  bool m_bMergeUndo;
     //{{AFX_MSG(CCrystalEditView)
     afx_msg void OnEditPaste ();
     afx_msg void OnUpdateEditCut (CCmdUI * pCmdUI);
@@ -165,6 +166,7 @@ protected :
     afx_msg void OnEditCapitalize ();
     afx_msg void OnUpdateEditSentence (CCmdUI * pCmdUI);
     afx_msg void OnEditSentence ();
+    afx_msg void OnKillFocus (CWnd * pNewWnd);
     //}}AFX_MSG
     afx_msg void OnUpdateIndicatorCol (CCmdUI * pCmdUI);
     afx_msg void OnUpdateIndicatorOvr (CCmdUI * pCmdUI);
@@ -179,6 +181,33 @@ protected :
 	afx_msg void OnToolsCharCoding ();
 	afx_msg void OnEditDeleteWord ();
 	afx_msg void OnEditDeleteWordBack ();
+	// cursor movement
+    afx_msg void OnCharLeft();
+    afx_msg void OnExtCharLeft();
+    afx_msg void OnCharRight();
+    afx_msg void OnExtCharRight();
+    afx_msg void OnWordLeft();
+    afx_msg void OnExtWordLeft();
+    afx_msg void OnWordRight();
+    afx_msg void OnExtWordRight();
+    afx_msg void OnLineUp();
+    afx_msg void OnExtLineUp();
+    afx_msg void OnLineDown();
+    afx_msg void OnExtLineDown();
+    afx_msg void OnPageUp();
+    afx_msg void OnExtPageUp();
+    afx_msg void OnPageDown();
+    afx_msg void OnExtPageDown();
+    afx_msg void OnLineEnd();
+    afx_msg void OnExtLineEnd();
+    afx_msg void OnHome();
+    afx_msg void OnExtHome();
+    afx_msg void OnTextBegin();
+    afx_msg void OnExtTextBegin();
+    afx_msg void OnTextEnd();
+    afx_msg void OnExtTextEnd();
+    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+    afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
     DECLARE_MESSAGE_MAP ()
   };
 

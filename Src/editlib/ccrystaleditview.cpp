@@ -119,6 +119,7 @@ CCrystalEditView::CCrystalEditView ()
   m_bInsertTabs = TRUE;
   m_bAutoIndent = TRUE;
   m_mapExpand = new CMap<CString, LPCTSTR, CString, LPCTSTR> (10);
+  m_bMergeUndo = false;
 }
 
 CCrystalEditView:: ~ CCrystalEditView ()
@@ -195,6 +196,7 @@ ON_UPDATE_COMMAND_UI(ID_EDIT_GOTO_LAST_CHANGE, OnUpdateEditGotoLastChange)
 ON_COMMAND(ID_EDIT_GOTO_LAST_CHANGE, OnEditGotoLastChange)
 ON_COMMAND(ID_EDIT_DELETE_WORD, OnEditDeleteWord)
 ON_COMMAND(ID_EDIT_DELETE_WORD_BACK, OnEditDeleteWordBack)
+ON_WM_KILLFOCUS ()
 //}}AFX_MSG_MAP
 ON_UPDATE_COMMAND_UI (ID_EDIT_INDICATOR_READ, OnUpdateIndicatorRead)
 ON_UPDATE_COMMAND_UI (ID_INDICATOR_OVR, OnUpdateIndicatorOvr)
@@ -203,6 +205,35 @@ ON_UPDATE_COMMAND_UI (ID_TOOLS_SPELLING, OnUpdateToolsSpelling)
 ON_COMMAND (ID_TOOLS_SPELLING, OnToolsSpelling)
 ON_UPDATE_COMMAND_UI (ID_TOOLS_CHARCODING, OnUpdateToolsCharCoding)
 ON_COMMAND (ID_TOOLS_CHARCODING, OnToolsCharCoding)
+// cursor movement commands
+ON_COMMAND (ID_EDIT_CHAR_LEFT, OnCharLeft)
+ON_COMMAND (ID_EDIT_EXT_CHAR_LEFT, OnExtCharLeft)
+ON_COMMAND (ID_EDIT_CHAR_RIGHT, OnCharRight)
+ON_COMMAND (ID_EDIT_EXT_CHAR_RIGHT, OnExtCharRight)
+ON_COMMAND (ID_EDIT_WORD_LEFT, OnWordLeft)
+ON_COMMAND (ID_EDIT_EXT_WORD_LEFT, OnExtWordLeft)
+ON_COMMAND (ID_EDIT_WORD_RIGHT, OnWordRight)
+ON_COMMAND (ID_EDIT_EXT_WORD_RIGHT, OnExtWordRight)
+ON_COMMAND (ID_EDIT_LINE_UP, OnLineUp)
+ON_COMMAND (ID_EDIT_EXT_LINE_UP, OnExtLineUp)
+ON_COMMAND (ID_EDIT_LINE_DOWN, OnLineDown)
+ON_COMMAND (ID_EDIT_EXT_LINE_DOWN, OnExtLineDown)
+ON_COMMAND (ID_EDIT_SCROLL_UP, ScrollUp)
+ON_COMMAND (ID_EDIT_SCROLL_DOWN, ScrollDown)
+ON_COMMAND (ID_EDIT_PAGE_UP, OnPageUp)
+ON_COMMAND (ID_EDIT_EXT_PAGE_UP, OnExtPageUp)
+ON_COMMAND (ID_EDIT_PAGE_DOWN, OnPageDown)
+ON_COMMAND (ID_EDIT_EXT_PAGE_DOWN, OnExtPageDown)
+ON_COMMAND (ID_EDIT_LINE_END, OnLineEnd)
+ON_COMMAND (ID_EDIT_EXT_LINE_END, OnExtLineEnd)
+ON_COMMAND (ID_EDIT_HOME, OnHome)
+ON_COMMAND (ID_EDIT_EXT_HOME, OnExtHome)
+ON_COMMAND (ID_EDIT_TEXT_BEGIN, OnTextBegin)
+ON_COMMAND (ID_EDIT_EXT_TEXT_BEGIN, OnExtTextBegin)
+ON_COMMAND (ID_EDIT_TEXT_END, OnTextEnd)
+ON_COMMAND (ID_EDIT_EXT_TEXT_END, OnExtTextEnd)
+ON_WM_LBUTTONDOWN ()
+ON_WM_RBUTTONDOWN ()
 END_MESSAGE_MAP ()
 
 
@@ -430,7 +461,8 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
             }
         }
 
-      m_pTextBuffer->BeginUndoGroup ();
+      m_pTextBuffer->BeginUndoGroup(m_bMergeUndo);
+	  m_bMergeUndo = false;
 
       if (QueryEditable () && m_pTextBuffer != NULL)
         {
@@ -474,7 +506,8 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
     {
       if (QueryEditable () && m_pTextBuffer != NULL)
         {
-          m_pTextBuffer->BeginUndoGroup (nChar != _T (' '));
+          m_pTextBuffer->BeginUndoGroup (m_bMergeUndo);
+		  m_bMergeUndo = true;
 
           CPoint ptSelStart, ptSelEnd;
           GetSelection (ptSelStart, ptSelEnd);
@@ -2526,6 +2559,169 @@ OnEditDeleteWordBack ()
 
       m_pTextBuffer->FlushUndoGroup (this);
     }
+}
+
+void CCrystalEditView::
+OnKillFocus (CWnd * pNewWnd)
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnKillFocus (pNewWnd);
+}
+
+void CCrystalEditView::OnCharLeft()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnCharLeft();
+}
+
+void CCrystalEditView::OnExtCharLeft()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnExtCharLeft();
+}
+
+void CCrystalEditView::OnCharRight()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnCharRight();
+}
+
+void CCrystalEditView::OnExtCharRight()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnExtCharRight();
+}
+
+void CCrystalEditView::OnWordLeft()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnWordLeft();
+}
+
+void CCrystalEditView::OnExtWordLeft()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnExtWordLeft();
+}
+
+void CCrystalEditView::OnWordRight()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnWordRight();
+}
+
+void CCrystalEditView::OnExtWordRight()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnExtWordRight();
+}
+
+void CCrystalEditView::OnLineUp()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnLineUp();
+}
+
+void CCrystalEditView::OnExtLineUp()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnExtLineUp();
+}
+
+void CCrystalEditView::OnLineDown()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnLineDown();
+}
+
+void CCrystalEditView::OnExtLineDown()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnExtLineDown();
+}
+
+void CCrystalEditView::OnPageUp()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnPageUp();
+}
+
+void CCrystalEditView::OnExtPageUp()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnExtPageUp();
+}
+
+void CCrystalEditView::OnPageDown()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnPageDown();
+}
+
+void CCrystalEditView::OnExtPageDown()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnExtPageDown();
+}
+
+void CCrystalEditView::OnLineEnd()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnLineEnd();
+}
+
+void CCrystalEditView::OnExtLineEnd()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnExtLineEnd();
+}
+
+void CCrystalEditView::OnHome()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnHome();
+}
+
+void CCrystalEditView::OnExtHome()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnExtHome();
+}
+
+void CCrystalEditView::OnTextBegin()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnTextBegin();
+}
+
+void CCrystalEditView::OnExtTextBegin()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnExtTextBegin();
+}
+
+void CCrystalEditView::OnTextEnd()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnTextEnd();
+}
+
+void CCrystalEditView::OnExtTextEnd()
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnExtTextEnd();
+}
+
+void CCrystalEditView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnLButtonDown(nFlags, point);
+}
+
+void CCrystalEditView::OnRButtonDown(UINT nFlags, CPoint point)
+{
+	m_bMergeUndo = false;
+	CCrystalTextView::OnRButtonDown(nFlags, point);
 }
 
 ////////////////////////////////////////////////////////////////////////////
