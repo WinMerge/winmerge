@@ -181,6 +181,7 @@ public:
 	void SetPatchOptions(PATCHOPTIONS *options);
 	BOOL GetUseDiffList() const;
 	BOOL SetUseDiffList(BOOL bUseDiffList);
+	void SetDetectMovedBlocks(BOOL bDetectMovedBlocks) { m_bDetectMovedBlocks = bDetectMovedBlocks; }
 	BOOL GetAppendFiles() const;
 	BOOL SetAppendFiles(BOOL bAppendFiles);
 	BOOL GetCreatePatchFile() const;
@@ -191,6 +192,8 @@ public:
 	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left);
 	void StartDirectoryDiff();
 	void EndDirectoryDiff();
+	const CMap<int, int, int, int> * GetMoved0() { return &m_moved0; }
+	const CMap<int, int, int, int> * GetMoved1() { return &m_moved1; }
 
 protected:
 	void InternalGetOptions(DIFFOPTIONS *options);
@@ -208,11 +211,14 @@ private:
 	CString m_sPatchFile;
 	CString m_sToFindUnpacker;
 	BOOL m_bUseDiffList;
+	BOOL m_bDetectMovedBlocks;
 	BOOL m_bCreatePatchFile;
 	BOOL m_bAddCmdLine;
 	BOOL m_bAppendFiles;
 	int m_nDiffs;
 	CArray<DIFFRANGE,DIFFRANGE> *m_diffs;
+	CMap<int, int, int, int> m_moved0;
+	CMap<int, int, int, int> m_moved1;
 };
 
 struct file_data; // forward declaration needed by DiffFileData

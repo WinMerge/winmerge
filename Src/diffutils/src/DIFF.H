@@ -91,6 +91,9 @@ EXTERN int      ignore_all_space_flag;
 /* Ignore changes that affect only blank lines (-B).  */
 EXTERN int      ignore_blank_lines_flag;
 
+/* WinMerge moved block code */
+EXTERN int moved_blocks_flag;
+
 /* 1 if lines may match even if their lengths are different.
    This depends on various options.  */
 EXTERN int      length_varies;
@@ -213,6 +216,8 @@ struct change
   int line1;			/* Line number of 1st inserted line.  */
   char ignore;			/* Flag used in context.c */
   char trivial;                 /* Flag if change is trivial (ignored blanks or filtered regexps) */
+  int match0;                   /* side0 matching line for line 1 */ /* WinMerge moved block code */
+  int match1;                   /* side1 matching line for line 0 */ /* WinMerge moved block code */
 };
 
 /* Structures that describe the input files.  */
@@ -291,7 +296,7 @@ EXTERN FILE *outfile;
 /* Declare various functions.  */
 
 /* analyze.c */
-struct change * diff_2_files PARAMS((struct file_data[], int, int *));
+struct change * diff_2_files PARAMS((struct file_data[], int, int *, int));
 
 /* context.c */
 void print_context_header PARAMS((struct file_data[], int));

@@ -315,6 +315,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	void PrimeTextBuffers();
+	void FlagMovedLines(const CMap<int, int, int, int> * movedLines, CDiffTextBuffer * pBuffer);
 };
 
 /////////////////////////////////////////////////////////////////////////////

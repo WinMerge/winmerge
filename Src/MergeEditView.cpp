@@ -319,6 +319,12 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 			{
 				crBkgnd = m_cachedColors.clrDiff;
 				crText = m_cachedColors.clrDiffText;
+				if (dwLineFlags & LF_MOVED)
+				{
+					// TODO: decide how to display moved lines
+					crBkgnd = m_cachedColors.clrSelDiffDeleted;
+					crBkgnd = 0x777777;
+				}
 			}
 			return;
 		}

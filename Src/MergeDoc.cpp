@@ -329,6 +329,7 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	m_diffWrapper.SetTextForAutomaticUnpack(m_strBothFilenames);
 	m_diffWrapper.SetDiffList(&m_diffs);
 	m_diffWrapper.SetUseDiffList(TRUE);		// Add diffs to list
+	m_diffWrapper.SetDetectMovedBlocks(TRUE); // want the moved blocks detection algorithm
 	m_diffWrapper.GetOptions(&diffOptions);
 	
 	// Clear diff list
@@ -380,6 +381,10 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 		// Analyse diff-list (updating real line-numbers)
 		// this operation does not change the modified flag
 		PrimeTextBuffers();
+
+		// Apply flags to lines that moved, to differentiate from appeared/disappeared lines
+		FlagMovedLines(m_diffWrapper.GetMoved0(), &m_ltBuf);
+		FlagMovedLines(m_diffWrapper.GetMoved1(), &m_rtBuf);
 		
 		// After PrimeTextBuffers() we know amount of real diffs
 		// (m_nDiffs) and trivial diffs (m_nTrivialDiffs)
@@ -401,6 +406,28 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 		m_pRightDetailView->ReAttachToBuffer();
 	}
 	return nResult;
+}
+
+/** @brief Adjust all different lines that were detected as actually matching moved lines */
+void CMergeDoc::FlagMovedLines(const CMap<int, int, int, int> * movedLines, CDiffTextBuffer * pBuffer)
+{
+	int i;
+	for (i=0; i<pBuffer->GetLineCount(); ++i)
+	{
+		int j=-1;
+		if (movedLines->Lookup(i, j))
+		{
+			TRACE(_T("%d->%d\n"), i, j);
+			ASSERT(j>=0);
+			// We only flag lines that are already marked as being different
+			int apparent = pBuffer->ComputeApparentLine(i);
+			if (pBuffer->FlagIsSet(apparent, LF_DIFF))
+			{
+				pBuffer->SetLineFlag(apparent, LF_MOVED, TRUE, FALSE, FALSE);
+			}
+		}
+	}
+	// TODO: Need to record actual moved information
 }
 
 /// Prints (error) message by rescan resultcode

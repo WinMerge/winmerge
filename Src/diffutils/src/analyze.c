@@ -745,6 +745,8 @@ add_change (line0, line1, deleted, inserted, old)
   newob->inserted = inserted;
   newob->deleted = deleted;
   newob->link = old;
+  newob->match0 = -1; /* WinMerge moved block code */
+  newob->match1 = -1; /* WinMerge moved block code */
   return newob;
 }
 
@@ -835,7 +837,7 @@ briefly_report (changes, filevec)
 
 //  Report the differences of two files.  DEPTH is the current directory
 // depth. 
-struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_status)
+struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_status, int moved_blocks_flag)
 {
 	int diags;
 	int i;
@@ -938,7 +940,7 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 		xvec = filevec[0].undiscarded;
 		yvec = filevec[1].undiscarded;
 		diags = filevec[0].nondiscarded_lines + filevec[1].nondiscarded_lines + 3;
-      fdiag = (int *) xmalloc (diags * (2 * sizeof (int)));
+		fdiag = (int *) xmalloc (diags * (2 * sizeof (int)));
 		bdiag = fdiag + diags;
 		fdiag += filevec[1].nondiscarded_lines + 1;
 		bdiag += filevec[1].nondiscarded_lines + 1;
@@ -1010,6 +1012,12 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 		else
 		{
 			changes = (script != 0);
+		}
+
+		/* WinMerge moved block support */
+		if (moved_blocks_flag)
+		{
+			moved_block_analysis(&script, filevec);
 		}
 		
 		if (no_details_flag)
