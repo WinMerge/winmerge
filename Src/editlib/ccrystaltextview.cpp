@@ -1264,7 +1264,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
 {
   CPoint	originalOrigin = ptOrigin;
   CRect		frect = rcClip;
-  const int nLineLength = GetLineLength( ptTextPos.y );
+  const int nLineLength = GetViewableLineLength( ptTextPos.y );
   const int nLineHeight = GetLineHeight();
 
   frect.top = ptOrigin.y;
@@ -1427,12 +1427,8 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   COLORREF crBkgnd, crText;
   GetLineColors (nLineIndex, crBkgnd, crText, bDrawWhitespace);
 
-  int nLength = GetLineLength (nLineIndex);
+  int nLength = GetViewableLineLength (nLineIndex);
   LPCTSTR pszChars = GetLineChars (nLineIndex);
-  if (m_bViewEols)
-    { // Display EOL (end of line) characters too
-      nLength = GetFullLineLength(nLineIndex);
-    }
 
   //  Parse the line
   DWORD dwCookie = GetParseCookie (nLineIndex - 1);
@@ -2697,6 +2693,16 @@ GetFullLineLength (int nLineIndex) const
   return m_pTextBuffer->GetFullLineLength (nLineIndex);
 }
 
+// How many bytes of line are displayed on-screen?
+int CCrystalTextView::
+GetViewableLineLength (int nLineIndex) const
+{
+	if (m_bViewEols)
+		return GetFullLineLength(nLineIndex);
+	else
+		return GetLineLength(nLineIndex);
+}
+
 LPCTSTR CCrystalTextView::
 GetLineChars (int nLineIndex) const
 {
@@ -3330,7 +3336,7 @@ AssertValidTextPos (const CPoint & point)
     {
       ASSERT (m_nTopLine >= 0 && m_nOffsetChar >= 0);
       ASSERT (point.y >= 0 && point.y < GetLineCount ());
-      ASSERT (point.x >= 0 && point.x <= GetLineLength (point.y));
+      ASSERT (point.x >= 0 && point.x <= GetViewableLineLength (point.y));
     }
 }
 #endif

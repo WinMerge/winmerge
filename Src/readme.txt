@@ -1,3 +1,7 @@
+2005-03-06 Perry
+ PATCH: [ 1157524 ] Fix view line length
+  editlib: ccrystaltextview.cpp ccrystaltextview.h
+
 2005-03-05 Perry
  Rename CDirFrame::SetFilter to CDirFrame::SetFilterStatusDisplay for easier greps.
   Src: DirDoc.cpp DirFrame.cpp DirFrame.h
