@@ -1,4 +1,6 @@
 2003-11-21 Laoran
+ cosmetic in Dirscan : FilterAdd -> StoreDiffResult
+  WinMerge: DirScan.cpp
  SaveToFile : returned value (BOOL -> int)
  cosmetic changes in TrySaveAs/DoSave/OnFileSaveAsLeft/OnFileSaveAsRight
   WinMerge: MergeDoc.cpp MergeDoc.h

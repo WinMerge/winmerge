@@ -41,13 +41,13 @@ static void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * fi
 void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * files, bool casesensitive);
 static void Sort(fentryArray * dirs, bool casesensitive);;
 static int collstr(const CString & s1, const CString & s2, bool casesensitive);
-static void FilterAdd(const CString & sDir, const fentry * lent, const fentry *rent, int code, CDiffContext * pCtxt);
+static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry *rent, int code, CDiffContext * pCtxt);
 
 
 typedef int (CString::*cmpmth)(LPCTSTR sz) const;
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object).*(ptrToMember))
 
-// Compare two directories & output all results found via calls to FilterAdd
+// Compare two directories & output all results found via calls to StoreDiffResult
 // base directories to compare are in the CDiffContext
 // and this call is responsible for diff'ing just the subdir specified
 // (ie, if subdir is empty, this is the base call)
@@ -95,7 +95,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 				nDiffCode |= DIFFCODE::SKIPPED;
 
 			// Advance left pointer over left-only entry, and then retest with new pointers
-			FilterAdd(subdir, &leftDirs[i], 0, nDiffCode, pCtxt);
+			StoreDiffResult(subdir, &leftDirs[i], 0, nDiffCode, pCtxt);
 			++i;
 			continue;
 		}
@@ -110,7 +110,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 				nDiffCode |= DIFFCODE::SKIPPED;
 
 			// Advance right pointer over right-only entry, and then retest with new pointers
-			FilterAdd(subdir, 0, &rightDirs[j], nDiffCode, pCtxt);
+			StoreDiffResult(subdir, 0, &rightDirs[j], nDiffCode, pCtxt);
 			++j;
 			continue;
 		}
@@ -120,7 +120,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			CString newsub = subprefix + leftDirs[i].name;
 			if (!depth || !pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
 			{
-				FilterAdd(subdir, &leftDirs[i], &rightDirs[j], DIFFCODE::SKIPPED+DIFFCODE::DIR, pCtxt);
+				StoreDiffResult(subdir, &leftDirs[i], &rightDirs[j], DIFFCODE::SKIPPED+DIFFCODE::DIR, pCtxt);
 			}
 			else
 			{
@@ -156,7 +156,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 				nDiffCode |= DIFFCODE::SKIPPED;
 
 			// Advance left pointer over left-only entry, and then retest with new pointers
-			FilterAdd(subdir, &leftFiles[i], 0, nDiffCode, pCtxt);
+			StoreDiffResult(subdir, &leftFiles[i], 0, nDiffCode, pCtxt);
 			++i;
 			continue;
 		}
@@ -170,7 +170,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 				nDiffCode |= DIFFCODE::SKIPPED;
 
 			// Advance right pointer over right-only entry, and then retest with new pointers
-			FilterAdd(subdir, 0, &rightFiles[j], nDiffCode, pCtxt);
+			StoreDiffResult(subdir, 0, &rightFiles[j], nDiffCode, pCtxt);
 			++j;
 			continue;
 		}
@@ -180,7 +180,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			CString newsubfile = subprefix + leftFiles[i].name;
 			if (!pCtxt->m_piFilterUI->includeFile(newsubfile) || !pCtxt->m_piFilterGlobal->includeFile(newsubfile))
 			{
-				FilterAdd(subdir, &leftFiles[i], &rightFiles[j], DIFFCODE::SKIPPED+DIFFCODE::FILE, pCtxt);
+				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], DIFFCODE::SKIPPED+DIFFCODE::FILE, pCtxt);
 			}
 			else
 			{
@@ -259,7 +259,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 					code |= (bin ? DIFFCODE::BIN : DIFFCODE::TEXT);
 				}
 				// report result back to caller
-				FilterAdd(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt);
+				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt);
 			}
 			++i;
 			++j;
@@ -365,7 +365,7 @@ static int collstr(const CString & s1, const CString & s2, bool casesensitive)
 }
 
 // Add a result
-static void FilterAdd(const CString & sDir, const fentry * lent, const fentry * rent, int code, CDiffContext * pCtxt)
+static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry * rent, int code, CDiffContext * pCtxt)
 {
 	CString name, leftdir, rightdir;
 	_int64 rmtime=0, lmtime=0, rctime=0, lctime=0;
