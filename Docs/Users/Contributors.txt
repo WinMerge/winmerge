@@ -13,6 +13,7 @@ Other developers:
 * Dennis Limm
 * Chris Mumford
 * Perry Rapp
+* Christian "Seier" Blackburn (Installer)
 * Jochen Tucht
 * Kimmo Varis
 
@@ -79,7 +80,6 @@ Localization:
 
 
 Other Contributors:  
-* Christian "Seier" Blackburn (Installer)
 * Gilbert Wellisch
 * Harry Mckame
 * Hern Chen
@@ -91,6 +91,7 @@ Other Contributors:
 * Takashi Sawanaka
 * Vikrant
 * Vincent Osele
+* Vladimir Lukianov
 
 
 WinMerge includes code from:
