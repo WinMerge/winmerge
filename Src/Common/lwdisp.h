@@ -93,9 +93,23 @@ LPSTR NTAPI ReportError(HRESULT, UINT style);
 // if neither of the above, ask *source* to create an object of class *progid*
 LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid);
 
-// invoke helpers
+/**
+ * @brief invoke helper (__stdcall)
+ *
+ * @note Free all variants passed to it (except ByRef ones) 
+ */
 STDAPI invokeV(LPDISPATCH, VARIANT *, DISPID, LPCCH, VARIANT *);
+/**
+ * @brief invoke helper (by ordinal)
+ *
+ * @note Free all variants passed to it (except ByRef ones) 
+ */
 STDAPIV invokeA(LPDISPATCH, VARIANT *, DISPID, LPCCH, VARIANT *);
+/**
+ * @brief invoke helper (by function name)
+ *
+ * @note Free all variants passed to it (except ByRef ones) 
+ */
 STDAPIV invokeW(LPDISPATCH, VARIANT *, BSTR, LPCCH, VARIANT *);
 
 // macros for use with invoke*()

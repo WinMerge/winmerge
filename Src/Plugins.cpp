@@ -616,6 +616,11 @@ static void ShowPluginErrorMessage(LPDISPATCH piScript)
 	AfxMessageBox(s, MB_ICONSTOP);
 }
 
+/**
+ * @brief safe invoke helper (by ordinal)
+ *
+ * @note Free all variants passed to it (except ByRef ones) 
+ */
 static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...)
 {
 	HRESULT h;
@@ -632,6 +637,11 @@ static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...
 
 	return h;
 }
+/**
+ * @brief safe invoke helper (by function name)
+ *
+ * @note Free all variants passed to it (except ByRef ones) 
+ */
 static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, ...)
 {
 	HRESULT h;

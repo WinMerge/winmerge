@@ -1,3 +1,8 @@
+2003-11-09 Laoran
+ comments for invoke helpers (see BUG[ 838275 ])
+  WinMerge: Plugins.cpp
+  common: lwdisp.h
+
 2003-11-08 Perry
  PATCH: [ 838283 ] Simplifiy OnFileSave
   WinMerge: MergeDoc.cpp
