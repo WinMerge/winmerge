@@ -1,6 +1,9 @@
 2003-07-03 Kimmo
  PATCH: [ 764571 ] Ask about saving when closing with esc
   WinMerge: MainFrm.cpp MergeDoc.cpp MergeEditView.cpp
+ PATCH: [ 763499 ] update french language
+  Submitted by Laoran
+  Lang/MergeFrench.rc
 
 2003-07-03 Perry
  PATCH: [ 763265 ] Fix handling of .. and . components
