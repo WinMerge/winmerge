@@ -5,6 +5,8 @@
    MergeKorean.rc MergeRussian.rc
  BUG: [ 955550 ] Slovak rc file broken (typo)
   Src/Languages: MergeSlovak.rc
+ BUG: [ 955553 ] Russian rc file broken
+  Src/Languages: MergeRussian.rc
   
 2004-05-17 Kimmo
  PATCH: [ 955411 ] Remove non-functional firstdiff selection
