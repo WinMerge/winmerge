@@ -45,7 +45,8 @@ public:
 	int		m_nNotEqual;
 	int		m_nRFile;
 	int		m_nRFolder;
-	int		m_nUnknown;
+	int		m_nError;
+	int		m_nFolder;
 	CButton	m_ctlStop;
 	//}}AFX_DATA
 

@@ -1838,6 +1838,10 @@ SOURCE=.\res\binarydiff.bmp
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\error.bmp
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\equal.bmp
 # End Source File
 # Begin Source File

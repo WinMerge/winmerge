@@ -245,6 +245,9 @@ void CDirView::OnInitialUpdate()
 	VERIFY (bm.LoadBitmap (IDB_FOLDER));
 	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
 	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_ERROR));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
 
 	// Restore column orders as they had them last time they ran
@@ -274,7 +277,7 @@ void CDirView::OnInitialUpdate()
 #define DIFFIMG_RUNIQUE     1
 #define DIFFIMG_DIFF        2
 #define DIFFIMG_SAME        3
-#define DIFFIMG_ERROR       4
+#define DIFFIMG_UNKNOWN     4
 #define DIFFIMG_BINSAME     5
 #define DIFFIMG_BINDIFF     6
 #define DIFFIMG_LDIRUNIQUE  7
@@ -282,6 +285,7 @@ void CDirView::OnInitialUpdate()
 #define DIFFIMG_SKIP        9
 #define DIFFIMG_DIRSKIP    10
 #define DIFFIMG_DIR        11
+#define DIFFIMG_ERROR      11
 
 /**
  * @brief Return image index appropriate for this row

@@ -34,6 +34,7 @@
 #define IDD_WMGOTO                      121
 #define IDD_PROPPAGE_COMPARE            122
 #define IDD_PROPPAGE_EDITOR             123
+#define IDB_ERROR                       124
 #define IDS_VERSION_FMT                 130
 #define IDS_ALLFILES                    131
 #define IDS_CONFIRM_ALL_LEFT            132
@@ -300,7 +301,7 @@
 #define IDC_COUNT_RFOLDER               1096
 #define IDC_COUNT_FILESKIP              1097
 #define IDC_COUNT_FOLDERSKIP            1098
-#define IDC_COUNT_UNKNOWN               1099
+#define IDC_COUNT_ERROR                 1099
 #define IDC_COUNT_EQUAL                 1100
 #define IDC_COUNT_NOTEQUAL              1101
 #define IDC_COUNT_BINARYSAME            1102
@@ -326,6 +327,7 @@
 #define IDC_DIFF_DEFAULTS               1122
 #define IDC_MOVED_BLOCKS                1123
 #define IDC_RESET_ALL_MESSAGE_BOXES     1124
+#define IDC_COUNT_FOLDER                1125
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -589,15 +591,16 @@
 #define ID_NO_EDIT_SCRIPTS              32865
 #define ID_RELOAD_PLUGINS               32866
 #define ID_MESSAGE_BOX_ARE_RESET        32867
+#define ID_NO_SCT_SCRIPTS               32868
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        124
+#define _APS_NEXT_RESOURCE_VALUE        125
 #define _APS_NEXT_COMMAND_VALUE         32868
-#define _APS_NEXT_CONTROL_VALUE         1125
+#define _APS_NEXT_CONTROL_VALUE         1126
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

@@ -1,3 +1,10 @@
+2004-04-05 Kimmo
+ PATCH: [ 929155 ] Add identical folders to dircompare statepane
+  Src: DirCompStateBar.cpp DirCompStateBar.h DirView.cpp Merge.dsp
+   Merge.rc resource.h
+  Src/res new file: error.bmp
+  Languages: Merge.rc resource.h res/error.bmp
+
 2004-04-04 Perry
  PATCH: [ 928976 ] Handle when selected language not in list
   Src/Common: LanguageSelect.cpp

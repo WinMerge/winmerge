@@ -38,10 +38,16 @@ void CDirCompStateBar::ClearStat()
 	m_nNotEqual = 0;
 	m_nRFile = 0;
 	m_nRFolder = 0;
-	m_nUnknown = 0;
+	m_nError = 0;
+	m_nFolder = 0;
 	//}}AFX_DATA_INIT
 }
 
+/**
+ * @brief Constructor.
+ *
+ * Resets stats and loads strings from resource.
+ */
 CDirCompStateBar::CDirCompStateBar(CWnd* pParent /*=NULL*/)
 {
 	ClearStat();
@@ -74,7 +80,8 @@ void CDirCompStateBar::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_COUNT_NOTEQUAL, m_nNotEqual);
 	DDX_Text(pDX, IDC_COUNT_RFILE, m_nRFile);
 	DDX_Text(pDX, IDC_COUNT_RFOLDER, m_nRFolder);
-	DDX_Text(pDX, IDC_COUNT_UNKNOWN, m_nUnknown);
+	DDX_Text(pDX, IDC_COUNT_ERROR, m_nError);
+	DDX_Text(pDX, IDC_COUNT_FOLDER, m_nFolder);
 	DDX_Control(pDX, IDC_COMPARISON_STOP, m_ctlStop);
 	//}}AFX_DATA_MAP
 }
@@ -109,11 +116,11 @@ BOOL CDirCompStateBar::GetDefaultRect( LPRECT lpRect ) const
 	return TRUE;
 }
 
-    
-
-/////////////////////////////////////////////////////////////////////////////
-// CDirCompStateBar message handlers
-
+/**
+ * @brief User selects to stop compare.
+ *
+ * Aborts compare and hides status panel.
+ */
 void CDirCompStateBar::OnStop()
 {
 	// use GetOwner and not GetParentFrame
@@ -130,6 +137,11 @@ void CDirCompStateBar::OnStop()
 	pDirFrame->ShowProcessingBar(FALSE);
 }
 
+/**
+ * @brief Update button text.
+ *
+ * Changes button text after compare is ready.
+ */
 void CDirCompStateBar::OnUpdateStop(CCmdUI* pCmdUI)
 {
 	// use GetOwner and not GetParentFrame
@@ -214,8 +226,8 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 	else if (di.isResultError())
 	{
 		// could be directory error ?
-		++m_nUnknown;
-		SetDlgItemInt(IDC_COUNT_UNKNOWN, m_nUnknown);
+		++m_nError;
+		SetDlgItemInt(IDC_COUNT_ERROR, m_nError);
 	}
 	// Now we know it was on both sides & compared!
 	else if (di.isResultSame())
@@ -237,8 +249,8 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		// presumably it is diff
 		if (di.isDirectory())
 		{
-			// this doesn't happen right now, but it will
-			// TODO
+			++m_nFolder;
+			SetDlgItemInt(IDC_COUNT_FOLDER, m_nFolder);
 		}
 		else
 		{
