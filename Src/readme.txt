@@ -1,6 +1,8 @@
 2003-11-02 Kimmo
  BUG: (part of) [ 829435 ] Fix character classification routines for UNICODE
   WinMerge: MainFrm.cpp MergeDoc.cpp Paths.h Paths.cpp
+ PATCH: [ 834230 ] Use PostMessage() to update dir compare status
+  WinMerge: DiffContext.cpp
 
 2003-11-02 Laoran
  Creation of directory Docs
