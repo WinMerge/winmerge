@@ -4,6 +4,8 @@
  PATCH: [ 1103530 ] Include codepages in "force unification" question
   Src: MainFrm.cpp Merge.rc
   Languages: *.rc
+ Minor grammar fixes & wording changes
+  Docs/Developers/readme-developers.html
 
 2005-01-22 Perry
  PATCH: [ 1107484 ] Fix broken version columns

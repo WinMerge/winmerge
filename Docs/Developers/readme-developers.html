@@ -383,7 +383,7 @@ Compiled language files (*.lang) are placed in <code>/WinMerge/Src/Languages/Dll
 
 Issues :
 <ul><li>
-It is long to update 19 languages for just one patch. But reducing the frequency of such updates is maybe not a progress : 5 small updates are long but easy, 1 big update is quick and more complex.
+It is slow and tedious to update 19 languages for just one patch. But reducing the frequency of such updates does not help either: 5 small updates are tedious and frequent, but easy; 1 big update is more infrequent, but much more tedious and difficult.
 </li><li>
 merging of layout : translator may change layout, then when developers insert new controls, moved and new controls may overlap. Visual check of 19 dialogs is definitively too long for a single patch update.
 </li><li>
@@ -462,8 +462,8 @@ docbook2txt
 <p>
 Editing manual
 <br>
-I'ts XML, so you can use XML editor or your favourite text editor. Note that
-XML requires document to well formed, unlike HTML, before it can be processed.
+The user's manual is XML, so you can use XML editor or your favourite text editor. Note that
+XML requires document to be well formed, unlike HTML, before it can be processed.
 So if possible, make sure your DocBook is well formed before submitting document
 patches.
 <p>
@@ -496,8 +496,8 @@ commandline that works (2004-09-13) is:<br>
 
 <a name="Logging"></a>
 <h3>Logging</h3>
-Logs are good tool for tracing errors. But logs must be first written. Its always
-good habit to write errormessage to logfile also.
+Logs are a good tool for tracing errors. But logs must be first written. Its always
+a good habit to write error message to logfile also.
 <p>
 Writing to log:<br>
 Simplest way to write errormessage to log is using
