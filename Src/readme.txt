@@ -7,6 +7,9 @@
   Remove ESC from menuitem. Also fix merge-mode shortcut to F9.
   Src: Merge.rc
   Src/Languages: *.rc
+ PATCH: [ 1026619 ] Fix bug [ 1017264 ] Location pane contextmenu items...
+  Submitted by Jochen (jtuc)
+  Src: LocationView.cpp
 
 2004-09-14 Kimmo
  PATCH: [ 1027118 ] Separate items for Copy Path in dircompare context menu

@@ -378,6 +378,26 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	BCMenu* pPopup = (BCMenu *) menu.GetSubMenu(0);
 	ASSERT(pPopup != NULL);
 
+	CCmdUI cmdUI;
+	cmdUI.m_pMenu = pPopup;
+	cmdUI.m_nIndexMax = cmdUI.m_pMenu->GetMenuItemCount();
+	for (cmdUI.m_nIndex = 0 ; cmdUI.m_nIndex < cmdUI.m_nIndexMax ; ++cmdUI.m_nIndex)
+	{
+		cmdUI.m_nID = cmdUI.m_pMenu->GetMenuItemID(cmdUI.m_nIndex);
+		switch (cmdUI.m_nID)
+		{
+		case ID_DISPLAY_MOVED_NONE:
+			cmdUI.SetRadio(m_displayMovedBlocks == DISPLAY_MOVED_NONE);
+			break;
+		case ID_DISPLAY_MOVED_ALL:
+			cmdUI.SetRadio(m_displayMovedBlocks == DISPLAY_MOVED_ALL);
+			break;
+		case ID_DISPLAY_MOVED_FOLLOW_DIFF:
+			cmdUI.SetRadio(m_displayMovedBlocks == DISPLAY_MOVED_FOLLOW_DIFF);
+			break;
+		}
+	}
+
 	CString strItem;
 	CString strNum;
 	int nLine = -1;
@@ -393,19 +413,6 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		pPopup->EnableMenuItem(ID_LOCBAR_GOTODIFF, MF_GRAYED);
 	AfxFormatString1(strItem, ID_LOCBAR_GOTOLINE_FMT, strNum);
 	pPopup->SetMenuText(ID_LOCBAR_GOTODIFF, strItem, MF_BYCOMMAND);
-
-	switch (m_displayMovedBlocks)
-	{
-	case DISPLAY_MOVED_NONE:
-		pPopup->CheckMenuItem(ID_DISPLAY_MOVED_NONE, MF_CHECKED);
-		break;
-	case DISPLAY_MOVED_ALL:
-		pPopup->CheckMenuItem(ID_DISPLAY_MOVED_ALL, MF_CHECKED);
-		break;
-	case DISPLAY_MOVED_FOLLOW_DIFF:
-		pPopup->CheckMenuItem(ID_DISPLAY_MOVED_FOLLOW_DIFF, MF_CHECKED);
-		break;
-	}
 
 	// invoke context menu
 	// we don't want to use the main application handlers, so we use flags TPM_NONOTIFY | TPM_RETURNCMD
