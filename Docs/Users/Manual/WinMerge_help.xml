@@ -18,11 +18,8 @@
 ]>
 <article>
   <articleinfo>
-    <title>WinMerge 2.1 user guide</title>
+    <title>WinMerge 2.2 user guide</title>
   </articleinfo>
-  <note>
-    <para>This guide is based on 2.1.6.0 beta release.</para>
-  </note>
   &About_doc;
   &Introduction;
   &WhatsNew21;

@@ -1,12 +1,16 @@
 <sect1>
-  <title>What's new in 2.1</title>
+  <title>What's new in 2.2</title>
   <sect2>
     <title>Unicode support</title>
-    <para>WinMerge 2.1 is distributed with ANSI executable (WinMerge.exe) for Windows 95/98/ME and UNICODE executable (WinMergeU.exe) for Windows NT /200/XP. UNICODE executable supports UCS-2 and UTF-8 UNICODE files and UNICODE filenames.</para>
+    <para>WinMerge 2.2 is distributed with ANSI executable (WinMerge.exe) for Windows 95/98/ME and UNICODE executable (WinMergeU.exe) for Windows NT /200/XP. UNICODE executable supports UCS-2 and UTF-8 UNICODE files and UNICODE filenames.</para>
+  </sect2>
+  <sect2>
+    <title>Archive support</title>
+    <para>WinMerge 2.2 can open and save several archivetypes. Archive support requires installing 7-zip (version 3.10 or later). <ulink url="http://www.7-zip.org/">http://www.7-zip.org/</ulink></para>
   </sect2>
   <sect2>
     <title>Shell integration</title>
-    <para>WinMerge 2.1 can be integrated into Windows Shell. Shell integration adds "Winmerge" menuitem to Windows Explorer's context menu for easy and fast comparing files and directories.</para>
+    <para>WinMerge 2.2 can be integrated into Windows Shell. Shell integration adds "Winmerge" menuitem to Windows Explorer's context menu for easy and fast comparing files and directories.</para>
   </sect2>
   <sect2>
     <title>Generating patches</title>
@@ -64,6 +68,18 @@
       </listitem>
       <listitem>
         <para>Feature to highlight difference in lines</para>
+      </listitem>
+      <listitem>
+        <para>Merge-mode (or 1.7 mode) to navigate and merge differences easier and faster.</para>
+      </listitem>
+      <listitem>
+        <para>Goto -dialog for moving fast to certain line or difference.</para>
+      </listitem>
+      <listitem>
+        <para>Location pane showing overall picture from files and allowing moving to difference by double-clicking.</para>
+      </listitem>
+      <listitem>
+        <para>Moved lines detection. Moved lines can be shown with different color in file area and location pane. Location pane can also show lines connecting moved lines.</para>
       </listitem>
     </itemizedlist>
   </sect2>

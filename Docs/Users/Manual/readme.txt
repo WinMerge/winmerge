@@ -1,6 +1,9 @@
 2004-05-30 Kimmo
  PATCH: [ 962676 ] Userdocs: Commandline
   Manual: Command_line.xml
+ PATCH: [ 963142 ] Userdocs: Whatsnew and quickstart
+  Manual: Install.xml Quick_start.xml Whatsnew_2_1.xml WinMerge_help.xml
+  Manual/screenshots new file: OpenDlg1.gif
 
 2004-04-07 Kimmo
  PATCH: [ 930704 ] WinMerge 2.1 User Guide (Manual) 
