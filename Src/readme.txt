@@ -1,3 +1,7 @@
+2004-06-07 Kimmo
+ BUG: [ 967899 ] Ignore carriage return differences logic backwards
+  Src: MainFrm.cpp
+
 2004-06-07 Laoran
  PATCH: [ 966693 ] set scroll width in diffpane for widest view
   Src: MergeDiffDetailView.cpp MergeDiffDetailView.h
