@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Developer Studio generated include file.
-// Used by MergeNorwegian.rc
+// Used by Merge.rc
 //
 #define IDC_CUT                         3
 #define IDC_COPY                        4
@@ -22,6 +22,8 @@
 #define IDD_PROPPAGE_FILTER             111
 #define IDD_OUTPUT                      112
 #define IDD_PROPPAGE_REGISTRY           113
+#define IDD_EDITOR_HEADERBAR            114
+#define IDR_POPUP_EDITOR_HEADERBAR      115
 #define IDS_VERSION_FMT                 130
 #define IDS_ALLFILES                    131
 #define IDS_CONFIRM_ALL_LEFT            132
@@ -97,6 +99,7 @@
 #define IDS_STATUS_COPYR2L              198
 #define IDS_STATUS_COPYALL2L            199
 #define IDS_STATUS_COPYALL2R            200
+#define IDS_PROGRAMFILES                201
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
@@ -151,12 +154,23 @@
 #define IDC_EDIT1                       1033
 #define IDC_PROP_INSERT_TABS            1034
 #define IDC_PROP_INSERT_SPACES          1035
-#define IDC_ASSOC_DIRECTORY             1036
 #define IDC_LANGUAGE_LIST               1037
 #define IDC_AUTOMRESCAN_CHECK           1038
 #define IDC_FILE_FILTER                 1039
+#define IDC_DIFFERENCE_TEXT_COLOR       1040
+#define IDC_DIFFERENCE_DELETED_COLOR    1041
+#define IDC_SEL_DIFFERENCE_DELETED_COLOR 1042
+#define IDC_SEL_DIFFERENCE_TEXT_COLOR   1043
+#define IDC_EXPLORER_CONTEXT            1044
+#define IDC_WINMERGE_PATH_BROWSE        1045
+#define IDC_WINMERGE_PATH               1046
+#define IDC_WINMERGE_PATH_SAVE          1047
+#define IDC_STATIC_TITLE_LEFT           1048
+#define IDC_STATIC_TITLE_RIGHT          1049
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
+#define IDS_LINE_STATUS_INFO            8503
+#define IDS_EMPTY_LINE_STATUS_INFO      8504
 #define IDD_EDIT_FIND                   8601
 #define IDD_EDIT_REPLACE                8602
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -350,15 +364,18 @@
 #define ID_VIEW_WHITESPACE              32818
 #define ID_REFRESH                      32819
 #define ID_EDIT_FIND_PREVIOUS           32820
+#define ID_SHOWLINEDIFF                 32821
+#define ID_EDITOR_COPY_PATH             32822
+#define ID_EDITOR_COPY_FILENAME         32823
 
 // Next default values for new objects
-// 
+//
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        114
-#define _APS_NEXT_COMMAND_VALUE         32820
-#define _APS_NEXT_CONTROL_VALUE         1040
+#define _APS_NEXT_RESOURCE_VALUE        116
+#define _APS_NEXT_COMMAND_VALUE         32822
+#define _APS_NEXT_CONTROL_VALUE         1050
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

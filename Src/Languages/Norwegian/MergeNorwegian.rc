@@ -456,6 +456,21 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,83,33,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
+    LTEXT           "Background",IDC_STATIC,86,15,40,8
+    LTEXT           "Deleted",IDC_STATIC,137,15,26,8
+    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    LTEXT           "Text",IDC_STATIC,184,15,15,8
 END
 
 IDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
@@ -473,8 +488,11 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Registreringer"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "Assosiert med mapper",IDC_ASSOC_DIRECTORY,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,221,15
+    CONTROL         "&Add to explorer context menu",IDC_EXPLORER_CONTEXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,108,10
+    EDITTEXT        IDC_WINMERGE_PATH,7,19,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Browse...",IDC_WINMERGE_PATH_BROWSE,180,19,50,14
+    PUSHBUTTON      "&Save path",IDC_WINMERGE_PATH_SAVE,7,36,50,14
 END
 
 
