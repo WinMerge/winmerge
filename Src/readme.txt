@@ -1,3 +1,7 @@
+2004-05-20 Kimmo
+ PATCH: [ 956893 ] Fix toolbar problem with XP themes and VC6
+  Src: MainFrm.cpp Merge.cpp
+
 2004-05-18 Kimmo
  PATCH: [ 955408 ] Select first item in dir compare
   Src: DirView.cpp

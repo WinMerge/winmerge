@@ -296,13 +296,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	RebuildRegExpList();
 	GetFontProperties();
 	
-	if (!m_wndToolBar.CreateEx(this,TBSTYLE_FLAT,WS_CHILD|WS_VISIBLE|CBRS_GRIPPER|CBRS_TOP|CBRS_TOOLTIPS|CBRS_FLYBY|CBRS_SIZE_DYNAMIC) ||
+	m_wndToolBar.SetBorders(1, 1, 1, 1);
+	if (!m_wndToolBar.Create(this, WS_CHILD|WS_VISIBLE|CBRS_GRIPPER|CBRS_TOP|CBRS_TOOLTIPS|CBRS_FLYBY|CBRS_SIZE_DYNAMIC) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	{
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
-
+	VERIFY(m_wndToolBar.ModifyStyle(0, TBSTYLE_FLAT));
+	
 	if (!m_wndStatusBar.Create(this) ||
 		!m_wndStatusBar.SetIndicators(indicators,
 		  sizeof(indicators)/sizeof(UINT)))

@@ -103,6 +103,9 @@ CMergeApp theApp;
 
 BOOL CMergeApp::InitInstance()
 {
+	InitCommonControls();    // initialize common control library
+	CWinApp::InitInstance(); // call parent class method
+
 	// Runtime switch so programmer may set this in interactive debugger
 	int dbgmem = 0;
 	if (dbgmem)
