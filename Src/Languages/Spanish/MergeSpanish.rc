@@ -190,6 +190,15 @@ BEGIN
     END
 END
 
+IDR_POPUP_EDITOR_HEADERBAR MENU DISCARDABLE 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Copy full Path",              ID_EDITOR_COPY_PATH
+        MENUITEM "Copy Filename",               ID_EDITOR_COPY_FILENAME
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -496,13 +505,23 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Registry"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    CONTROL         "Associated with directories",IDC_ASSOC_DIRECTORY,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,221,15
-    CONTROL         "Add to explorer context menu",IDC_EXPLORER_CONTEXT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,21,108,10
-    EDITTEXT        IDC_WINMERGE_PATH,7,34,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_WINMERGE_PATH_BROWSE,180,34,50,14
-    PUSHBUTTON      "Save path",IDC_WINMERGE_PATH_SAVE,8,51,50,14
+    CONTROL         "&Add to explorer context menu",IDC_EXPLORER_CONTEXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,108,10
+    EDITTEXT        IDC_WINMERGE_PATH,7,19,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Browse...",IDC_WINMERGE_PATH_BROWSE,180,19,50,14
+    PUSHBUTTON      "&Save path",IDC_WINMERGE_PATH_SAVE,7,36,50,14
+END
+
+IDD_EDITOR_HEADERBAR DIALOGEX 0, 0, 373, 12
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_STATIC_TITLE_LEFT,0,2,160,12,ES_AUTOHSCROLL | 
+                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
+                    WS_TABSTOP,WS_EX_STATICEDGE
+    EDITTEXT        IDC_STATIC_TITLE_RIGHT,163,2,160,12,ES_AUTOHSCROLL | 
+                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
+                    WS_TABSTOP,WS_EX_STATICEDGE
 END
 
 
@@ -983,6 +1002,9 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "Displays binary files"
     ID_VIEW_WHITESPACE      "Shows whitespace characters"
     ID_REFRESH              "Refresh display\nRefresh (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_EDITOR_COPY_PATH     "Copy full Path"
+    ID_EDITOR_COPY_FILENAME "Copy Filename"
 END
 
 STRINGTABLE DISCARDABLE
@@ -996,6 +1018,7 @@ BEGIN
     IDS_STATUS_COPYR2L      "Copying Right to Left"
     IDS_STATUS_COPYALL2L    "Copying All to Left"
     IDS_STATUS_COPYALL2R    "Copying All to Right"
+    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1004,6 +1027,12 @@ BEGIN
     IDS_EDIT_TEXT_NOT_FOUND "Cannot find string""%s"""
     IDS_LINE_STATUS_INFO    "Line: %s Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
 #endif    // English (U.S.) resources

@@ -1,6 +1,9 @@
 2003-08-16 Kimmo
  PATCH: [ 789204 ] Color dir compare based on left/right newer
   WinMerge: DirView.h DirView.cpp
+ PATCH: [ 789504 ] Remove unneeded old dir shell assoc
+  WinMerge: Merge.rc PropRegistry.h PropRegistry.cpp resource.h
+  Languages: resource.h *.rc
 
 2003-08-12 Christian
  PATCH: [ 786618 ] Brazilian Portuguese translation

@@ -1,5 +1,6 @@
 // PropRegistry.cpp : implementation file
 //
+// $Id$
 
 #include "stdafx.h"
 #include "resource.h"
@@ -47,7 +48,6 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CPropRegistry, CDialog)
 	//{{AFX_MSG_MAP(CPropRegistry)
-	ON_BN_CLICKED(IDC_ASSOC_DIRECTORY, OnAssocDirectory)
 	ON_BN_CLICKED(IDC_EXPLORER_CONTEXT, OnAddToExplorer)
 	ON_BN_CLICKED(IDC_WINMERGE_PATH_SAVE, OnSavePath)
 	ON_BN_CLICKED(IDC_WINMERGE_PATH_BROWSE, OnBrowsePath)
@@ -61,7 +61,11 @@ BOOL CPropRegistry::OnInitDialog()
 {
 	CPropertyPage::OnInitDialog();
 	
-	UpdateButton();
+	// Check if old keys exists and delete those
+	// Those keys are NOT used by new ShellExtension
+	if (IsRegisteredForDirectory())
+		EnableContextHandler(false);
+		
 	GetContextRegValues();
 	UpdateData(FALSE);
 	
@@ -69,7 +73,7 @@ BOOL CPropRegistry::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-// Are we registered as a Directory context handler ?
+/// Determines if WinMerge is registered as a (OLD) Directory context handler ?
 bool CPropRegistry::IsRegisteredForDirectory() const
 {
 	CRegKeyEx reg;
@@ -82,15 +86,7 @@ bool CPropRegistry::IsRegisteredForDirectory() const
 	return true;
 }
 
-// check registry and set button & member accordingly
-void CPropRegistry::UpdateButton()
-{
-	m_enabled = IsRegisteredForDirectory();
-	WPARAM wcheck = m_enabled ? BST_CHECKED : BST_UNCHECKED;
-	SendDlgItemMessage(IDC_ASSOC_DIRECTORY, BM_SETCHECK, wcheck, 0);
-}
-
-// Set or clear our entries in registry for Directory context
+/// Set or clear our entries in registry for (OLD) Directory context
 void CPropRegistry::EnableContextHandler(bool enabling)
 {
 	if (enabling)
@@ -117,13 +113,7 @@ void CPropRegistry::EnableContextHandler(bool enabling)
 	}
 }
 
-void CPropRegistry::OnAssocDirectory()
-{
-	bool enabling = (SendDlgItemMessage(IDC_ASSOC_DIRECTORY, BM_GETCHECK, 0, 0) == BST_CHECKED);
-	EnableContextHandler(enabling);
-	UpdateButton();
-}
-
+/// Get registry values for ShellExtension
 void CPropRegistry::GetContextRegValues()
 {
 	CRegKeyEx reg;
@@ -139,6 +129,7 @@ void CPropRegistry::GetContextRegValues()
 	m_strPath = reg.ReadString(f_RegValuePath, _T(""));
 }
 
+/// Set registry values for ShellExtension
 void CPropRegistry::OnAddToExplorer()
 {
 	UpdateData();
@@ -158,6 +149,7 @@ void CPropRegistry::OnAddToExplorer()
 	reg.WriteDword(f_RegValueEnabled, dwContextEnabled);
 }
 
+/// Saves given path to registry for ShellExtension
 void CPropRegistry::OnSavePath()
 {
 	UpdateData();
@@ -169,22 +161,20 @@ void CPropRegistry::OnSavePath()
 	reg.WriteString(f_RegValuePath, m_strPath);
 }
 
+/// Open file browse dialog to locate WinMerge.exe or bat file
 void CPropRegistry::OnBrowsePath()
 {
 	CString s;           
                    
-	VERIFY(s.LoadString(IDS_ALLFILES) );
+	VERIFY(s.LoadString(IDS_PROGRAMFILES));
 	DWORD flags = OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
-	CFileDialog pdlg(TRUE, NULL, _T("WinMerge.exe"), flags, s);
+	CFileDialog pdlg(TRUE, NULL, _T(""), flags, s);
 	CString title;
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	pdlg.m_ofn.lpstrTitle = (LPCTSTR)title;
-//	pdlg.m_ofn.lpstrInitialDir = (LPSTR)pszFolder;
 
-	if (pdlg.DoModal()==IDOK)
-	{
+	if (pdlg.DoModal() == IDOK)
 	 	m_strPath = pdlg.GetPathName(); 
-	}
 
 	UpdateData(FALSE);
 }

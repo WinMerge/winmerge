@@ -99,6 +99,7 @@
 #define IDS_STATUS_COPYR2L              198
 #define IDS_STATUS_COPYALL2L            199
 #define IDS_STATUS_COPYALL2R            200
+#define IDS_PROGRAMFILES                201
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
@@ -153,7 +154,6 @@
 #define IDC_EDIT1                       1033
 #define IDC_PROP_INSERT_TABS            1034
 #define IDC_PROP_INSERT_SPACES          1035
-#define IDC_ASSOC_DIRECTORY             1036
 #define IDC_LANGUAGE_LIST               1037
 #define IDC_AUTOMRESCAN_CHECK           1038
 #define IDC_FILE_FILTER                 1039
@@ -369,7 +369,7 @@
 #define ID_EDITOR_COPY_FILENAME         32823
 
 // Next default values for new objects
-// 
+//
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1

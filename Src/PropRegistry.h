@@ -6,7 +6,7 @@
 #endif // _MSC_VER > 1000
 // PropRegistry.h : header file
 //
-
+// $Id$
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropRegistry dialog
@@ -42,7 +42,6 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CPropRegistry)
 	virtual BOOL OnInitDialog();
-	afx_msg void OnAssocDirectory();
 	afx_msg void OnAddToExplorer();
 	afx_msg void OnSavePath();
 	afx_msg void OnBrowsePath();
