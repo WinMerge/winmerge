@@ -151,6 +151,8 @@
 #define IDS_ERROR_FILE_NOT_UNPACKED     241
 #define IDS_USERCHOICE_NONE             242
 #define IDS_USERCHOICE_AUTOMATIC        243
+#define IDS_SUGGEST_IGNOREEOL           244
+#define IDS_SUGGEST_PRESERVEEOL         245
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

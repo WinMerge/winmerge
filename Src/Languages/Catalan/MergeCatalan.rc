@@ -1263,6 +1263,11 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
+    IDC_MIXED_EOL           "Permet la &barreja de tipus de marques de final de línia"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
     IDC_COMPARISON_STOP     "Atura"
     IDC_COMPARISON_CLOSE    "Prem qualsevol tecla"
 END
@@ -1533,6 +1538,10 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_PLUGIN_FAILED       "S'ha produït un error al plugin '%1' i l'operació actual s'avortarà."
     IDS_ERROR_FILE_NOT_UNPACKED "El fitxer not s'ha desempaquetat: %1"
+    IDS_USERCHOICE_NONE     "<None>"
+    IDS_USERCHOICE_AUTOMATIC "<Automatic>"
+    IDS_SUGGEST_IGNOREEOL   "The files have a different EOL type.\nWith the current options, all lines will differ.\nDo you want to ignore EOL differences for these files ?\n\nAdvanced user : if the EOL are not unified in your files,\n you may rather set the option '%1'."
+    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
 END
 
 #endif    // Catalan resources
