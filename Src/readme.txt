@@ -4,6 +4,8 @@
  PATCH: [ 1016282 ] Add GetDefault() to COptionsMgr
   Src: PropColors.cpp
   Src/Common: OptionsMgr.cpp OptionsMgr.h
+ Convert Compare options dialog for GetDefault()
+  Src: PropCompare.cpp
 
 2004-08-25 Kimmo
  PATCH: [ 1008755 ] avoid flickering when diff view opens

@@ -85,19 +85,18 @@ BOOL CPropCompare::OnInitDialog()
  */
 void CPropCompare::OnDefaults()
 {
-	m_pOptionsMgr->Reset(OPT_CMP_IGNORE_WHITESPACE);
-	m_pOptionsMgr->Reset(OPT_CMP_IGNORE_BLANKLINES);
-	m_pOptionsMgr->Reset(OPT_CMP_IGNORE_CASE);
-	m_pOptionsMgr->Reset(OPT_CMP_EOL_SENSITIVE);
-	m_pOptionsMgr->Reset(OPT_CMP_METHOD);
-	m_pOptionsMgr->Reset(OPT_CMP_MOVED_BLOCKS);
-
-	m_compareMethod = m_pOptionsMgr->GetInt(OPT_CMP_METHOD);
-	m_nIgnoreWhite = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	m_bEolSensitive = m_pOptionsMgr->GetInt(OPT_CMP_EOL_SENSITIVE);
-	m_bIgnoreBlankLines = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_BLANKLINES);
-	m_bIgnoreCase = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_CASE);
-	m_bMovedBlocks = m_pOptionsMgr->GetInt(OPT_CMP_MOVED_BLOCKS);
-
+	DWORD tmp;
+	m_pOptionsMgr->GetDefault(OPT_CMP_METHOD, tmp);
+	m_compareMethod = tmp;
+	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_WHITESPACE, tmp);
+	m_nIgnoreWhite = tmp;
+	m_pOptionsMgr->GetDefault(OPT_CMP_EOL_SENSITIVE, tmp);
+	m_bEolSensitive = tmp;
+	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_BLANKLINES, tmp);
+	m_bIgnoreBlankLines = tmp;
+	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_CASE, tmp);
+	m_bIgnoreCase = tmp;
+	m_pOptionsMgr->GetDefault(OPT_CMP_MOVED_BLOCKS, tmp);
+	m_bMovedBlocks = tmp;
 	UpdateData(FALSE);
 }
