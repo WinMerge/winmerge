@@ -2,6 +2,9 @@
  PATCH: [ 1171805 ] Update italian translation
   Submitted by Andrea Decorte
   InnoSetup/Languages: Italian.isl
+ PATCH: [ 1172427 ] Norwegian translation for 2.2.2 / CVS head
+  Submitted by Hans Fr. Nordhaug
+  Src/Languages/Norwegian: MergeNorwegian.rc
 
 2005-03-29 Jochen
  BUG: [ 1172080 ] Unable to translate IDD_MERGE7ZMISMATCH string

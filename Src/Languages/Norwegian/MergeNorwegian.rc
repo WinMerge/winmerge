@@ -82,8 +82,8 @@ BEGIN
         MENUITEM "Kopier til &høyre",           ID_L2R
         MENUITEM "Kopier til &venstre",         ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
-        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
+        MENUITEM "&Framhev ordforskjell på linje",   ID_SHOWLINEWORDDIFF
+        MENUITEM "F&ramhev tegnforskjell på linje",  ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Angre",                      ID_EDIT_UNDO
         MENUITEM "&Gjenopprett",                ID_EDIT_REDO
@@ -102,7 +102,7 @@ BEGIN
     BEGIN
         MENUITEM "&Ny\tCtrl+N",                 ID_FILE_NEW
         MENUITEM "&Åpne...\tCtrl+O",            ID_FILE_OPEN
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Åpne prosjekt...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Lagre\tCtrl+S",              ID_FILE_SAVE
         POPUP "Lagre &venstre"
@@ -149,12 +149,12 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Skript"
         BEGIN
-            MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS
+            MENUITEM "< Tom >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
-        POPUP "Advanced"
+        POPUP "Avansert"
         BEGIN
-            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
+            MENUITEM "&Kopier med linjenummer\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
         MENUITEM "&Gå til...\tCtrl+G",           ID_EDIT_WMGOTO
@@ -176,9 +176,9 @@ BEGIN
         MENUITEM "Bruk standard s&krifttype",   ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "&Vis mellomrom",              ID_VIEW_WHITESPACE
-        MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
+        MENUITEM "V&is linjeforksjell",         ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
-        MENUITEM "&verktøylinje",               ID_VIEW_TOOLBAR
+        MENUITEM "&Verktøylinje",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
         MENUITEM "&Forskjellsvindu",            ID_VIEW_DETAIL_BAR
         MENUITEM "&Lokasjonsvindu",             ID_VIEW_LOCATION_BAR
@@ -271,7 +271,7 @@ BEGIN
             MENUITEM "&Høyre",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Begge",                       ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "S&kjul filer",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Åpne venstre"
         BEGIN
@@ -445,7 +445,7 @@ BEGIN
     PUSHBUTTON      "Avbryt",IDCANCEL,306,28,50,14
     GROUPBOX        "Filer eller mapper som skal sammenlignes",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
-    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
+    PUSHBUTTON      "Lagre prosjekt",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -466,11 +466,11 @@ BEGIN
     EDITTEXT        IDC_USER,48,96,70,14,ES_AUTOHSCROLL
     RTEXT           "Passord:",IDC_STATIC,122,99,55,8
     EDITTEXT        IDC_PASSWORD,180,96,70,14,ES_PASSWORD | ES_AUTOHSCROLL
-    CONTROL         "Link to Destination VSS project",IDC_VCPROJ_SYNC,"Button",
+    CONTROL         "Lenke til mål-VSS-prosjekt",IDC_VCPROJ_SYNC,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+    CONTROL         "For alle elementer",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
-    DEFPUSHBUTTON   "Check Out",IDOK,91,145,50,14
+    DEFPUSHBUTTON   "Sjekk ut",IDOK,91,145,50,14
     PUSHBUTTON      "Lagre som...",IDC_SAVE_AS,145,145,50,14
     PUSHBUTTON      "Avbryt",IDCANCEL,200,145,50,14
 END
@@ -493,7 +493,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Generelt"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Backup originale filer",IDC_BACKUP_CHECK,"Button",
+    CONTROL         "&Sikkerhetskopier originale filer",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,81,10
     CONTROL         "Automatisk &rulling til første forskjell",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
@@ -597,7 +597,7 @@ END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Linefilters"
+CAPTION "Linjefilter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Ignorer linjer som følger det følgende mønster",
@@ -666,14 +666,14 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Word Difference:",IDC_STATIC,7,129,90,8
+    RTEXT           "Ordforskjell:",IDC_STATIC,7,129,90,8
     CONTROL         "Dif",IDC_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_WORDDIFFERENCE_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Word Diff:",IDC_STATIC,7,149,90,8
+    RTEXT           "Valgt ordforskjell:",IDC_STATIC,7,149,90,8
     CONTROL         "Dif",IDC_SEL_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,149,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -725,7 +725,7 @@ BEGIN
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "B&la gjennom...",IDC_DIFF_BROWSE_FILE2,283,24,50,14
     PUSHBUTTON      "B&ytt",IDC_DIFF_SWAPFILES,283,41,50,14
-    CONTROL         "&Append to existing file",IDC_DIFF_APPENDFILE,"Button",
+    CONTROL         "&Legg til i eksisterende fil",IDC_DIFF_APPENDFILE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
     LTEXT           "&Resultat:",IDC_STATIC,7,66,37,8
     COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN |
@@ -735,7 +735,7 @@ BEGIN
     LTEXT           "St&il:",IDC_STATIC,13,95,46,8
     COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
-    LTEXT           "&Context:",IDC_STATIC,13,109,46,8
+    LTEXT           "&Kontekst:",IDC_STATIC,13,109,46,8
     COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWNLIST |
                     WS_DISABLED | WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "&Mellomrom",IDC_STATIC,155,81,123,46
@@ -964,9 +964,9 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,188,114,50,14
+    PUSHBUTTON      "Ny...",IDC_FILTERFILE_NEWBTN,188,114,50,14
     PUSHBUTTON      "Rediger...",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "Slett...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -995,26 +995,26 @@ END
 
 IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Codepage"
+CAPTION "Tegntabell"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Detekter codepage informasjon for disse filene : .html, .rc \nMå starte programmet på nytt.",
+    CONTROL         "Detekter tegntabellinformasjon for disse filene : .html, .rc \nMå starte programmet på nytt.",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
-    CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
+    CONTROL         "System tegntabell",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
     CONTROL         "I følge WinMerge brukergrensesnitt",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,33,210,10
-    CONTROL         "Tilpasset codepage:",IDC_CP_CUSTOM,"Button",
+    CONTROL         "Tilpasset tegntabell:",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,46,77,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Standard codepage for ANSI-filer",IDC_STATIC,7,7,221,58
+    GROUPBOX        "Standard tegntabell for ANSI-filer",IDC_STATIC,7,7,221,58
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245
 STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_NOPARENTNOTIFY
-CAPTION "WinMerge - Archive support disabled"
+CAPTION "WinMerge - arkivstøtte er ikke aktivert"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Unable to detect 7-Zip version (not installed?)",107,2,
@@ -1061,13 +1061,13 @@ END
 IDD_PREFERENCES DIALOGEX 0, 0, 352, 260
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Options"
+CAPTION "Innstillinger"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,187,237,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,241,237,50,14
-    PUSHBUTTON      "Help",IDC_TREEOPT_HELP,295,237,50,14
-    CONTROL         "Tree1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
+    PUSHBUTTON      "Avbryt",IDCANCEL,241,237,50,14
+    PUSHBUTTON      "Hjelp",IDC_TREEOPT_HELP,295,237,50,14
+    CONTROL         "Tre1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
                     WS_DISABLED,110,0,235,222
@@ -1349,13 +1349,13 @@ BEGIN
     ID_FILE_NEW             "Opprett et tomt dokument\nNytt dokument (Ctrl-N)"
     ID_FILE_OPEN            "Åpne et eksisterende dokumentet\nÅpne (Ctrl+O)"
     ID_FILE_CLOSE           "Lukk det aktive dokumentet\nLukk"
-    ID_FILE_SAVE            "Skjul det aktive dokumentet\nSkjul (Ctrl+S)"
-    ID_FILE_SAVE_AS         "Skjul det aktive dokumentet med et nytt navn\nSkjul som"
+    ID_FILE_SAVE            "Lagre det aktive dokumentet\nLagre (Ctrl+S)"
+    ID_FILE_SAVE_AS         "Lagre det aktive dokumentet med et nytt navn\nLagre som"
     ID_FILE_PAGE_SETUP      "Endrer skriverens indstillinger\nSideoppsett"
     ID_FILE_PRINT_SETUP     "Endrer skriver og skriverens indstillinger\nSkriveroppsett"
     ID_FILE_PRINT           "Skriv ut det aktive dokumentet\nSkriv ut"
     ID_FILE_PRINT_PREVIEW   "Vis de fulle sidene\nUtskriftsforhåndsvisning"
-    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+    ID_FILE_OPENPROJECT     "Åpne prosjektfil\nProject file (Ctrl+J)"
 END
 
 STRINGTABLE
@@ -1547,15 +1547,15 @@ BEGIN
     IDS_OPEN_TITLE          "Åpne"
     IDS_PROGRAMFILES        "Programmer|*.exe;*.bat;*.cmd|Alle filer (*.*)|*.*||"
     IDS_ALLFILES            "Alle filer (*.*)|*.*||"
-    IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+    IDS_PROJECTFILES        "WinMerge prosjektfiler (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
 END
 
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
-    IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    IDS_COMPMETHOD_FULL_CONTENTS "Fullt innhold"
+    IDS_COMPMETHOD_QUICK_CONTENTS "Raskt innhold"
     IDS_COMPMETHOD_MODDATE  "Endringsdato"
 END
 
@@ -1566,9 +1566,9 @@ BEGIN
     IDS_FILTERFILE_PATHTITLE "Plassering"
     IDS_FILTER_TITLE        "Filter"
     IDS_FILTER_PREFIX       "[F] "
-    IDS_FILTERFILE_DESCTITLE "Description"
-    IDS_FILEFILTER_SAVENEW  "Select filename for new filter"
-    IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
+    IDS_FILTERFILE_DESCTITLE "Beskrivelse"
+    IDS_FILEFILTER_SAVENEW  "Velg navn for nytt filter"
+    IDS_FILEFILTER_FILEMASK "Filfiltere (*.flt)|*.flt|Alle filer (*.*)|*.*||"
 END
 
 // VERSION CONTROL OPTIONS
@@ -1604,9 +1604,9 @@ END
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
 STRINGTABLE
 BEGIN
-    IDS_LINE_STATUS_INFO_EOL "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "Ln: %s  Kol: %d/%d  Tegn: %d/%d  EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Linje: %s"
-    IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
+    IDS_LINE_STATUS_INFO    "Ln: %s  Kol: %d/%d  Tegn: %d/%d"
     IDS_MERGEMODE_MERGING   "Flette"
     IDS_DIFF_NUMBER_STATUS_FMT "Forskjell %1 av %2"
     IDS_NO_DIFF_SEL_FMT     "%1 forskjeller funnet"
@@ -1672,9 +1672,9 @@ END
 // VSS system
 STRINGTABLE
 BEGIN
-    IDS_VCS_NONE            "None"
-    IDS_VCS_VSS4            "Visual SourceSafe (less than 5.0)"
-    IDS_VCS_VSS5            "Visual SourceSafe (5.0 and above)"
+    IDS_VCS_NONE            "Ingen"
+    IDS_VCS_VSS4            "Visual SourceSafe (eldre enn 5.0)"
+    IDS_VCS_VSS5            "Visual SourceSafe (5.0 og nyere)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
 END
 
@@ -1688,7 +1688,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "Slett valgte elementer til venstre"
     ID_DIR_DEL_RIGHT        "Slett valgte elementer til høyre"
     ID_DIR_DEL_BOTH         "Slett de valgte element(er) på begge sider"
-    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
+    ID_DIR_HIDE_FILENAMES   "Skjul valgte element(er) (i farta filter)"
     IDS_COPY_TO_LEFT        "Høyre til venstre (%1)"
     IDS_COPY_TO_RIGHT       "Venstre til høyre (%1)"
     IDS_COPY_TO_LEFT2       "Høyre til venstre (%1 av %2)"
@@ -1859,15 +1859,15 @@ BEGIN
     IDS_FILEBINARY          "Binære filer kan ikke sammenlignes visuelt."
     IDS_TEMP_FILEERROR      "Midlertidige filer kan ikke opprettes. Sjekk sti til den TMP/TEMP-mappe."
     IDS_FILEISDIR           "Mapper kan ikke sammenlignes visuelt."
-    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
-                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
-                            Note: If you always want to treat all carriage return types \
-                            as equivalent, set the option 'Ignore carriage return \
-                            differences..' in the Compare tab of the options dialog\
-                            (available under Edit/Options)."
-    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-    IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-    IDS_SUGGEST_IGNORECODEPAGE "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to force both into the default codepage (recommended)?"
+    IDS_SUGGEST_IGNOREEOL   "Disse filene har forskjellig linjeskifttype.\n\n
+                            Vil du behandle alle linjeskifttypene likt for denne sammenligningen?\n\n\
+                            Merknad: Hvis du alltid vil behandle linjeskifttypene \
+                            likt, velg innstillingen 'Ignorer forskjell i linjeskift' \
+                            i sammenligningsarket i innstillingsdialogen\
+                            (tilgjengelig under Rediger/Innstillinger)."
+    IDS_SUGGEST_PRESERVEEOL "Linjeskiftene (EOL) er forskjellig (DOS/UNIX/MAC) i filen '%1'.\n Med gjeldende innstillinger vil de bli endret til hovedtypen.\n Vil du endre innstillingene og bevare de forskjellig linjeskiftene?"
+    IDS_PREDIFFER_ERROR      "En feil oppstod under forhåndsforskjell for filen '%1' med programtillegget '%2'. Forhåndsforskjellen blir ikke brukt mer."
+    IDS_SUGGEST_IGNORECODEPAGE "Forskjelling tegntabell funnet i venstre (cp%d) og høyre (cp%d) fil. \nVisning av filene i hvert sin tegntabell ser best ut, men fletting/flytting er farlig.\nVil du sette tegntabell for begge til standardverdi (anbefalt)?"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2233,12 +2233,12 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
-    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
+    ID_SHOWLINEWORDDIFF     "Framhev ordforskjell på gjeldende linje\nOrdforskjell på gjeldende linje (F4)"
+    ID_SHOWLINECHARDIFF     "Framhev tegnforskjell på gjeldende linje\nTegnforskjell på gjeldende linje (Shift+F4)"
     ID_EDIT_WMGOTO          "Gå til linje eller forskjell\nGå til (Ctrl+G)"
     ID_OPTIONS              "Sett programinnstillinger\nInnstillinger"
     ID_REFRESH              "Oppdater visning\nOppdater (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "Kopier valgte linjer til utklippstavle med linjenummer foran"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2255,14 +2255,14 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
-    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
+    ID_VIEW_SELECTFONT      "Velg skrifttype for visningen\nVelg skrifttype"
+    ID_VIEW_USEDEFAULTFONT  "Bruk standard skrifttype for visningen\nStandard skrifttype"
     ID_VIEW_WHITESPACE      "Viser et tegn for mellomrom"
     ID_VIEW_DETAIL_BAR      "Veksle forskjellsvindu"
     ID_VIEW_LOCATION_BAR    "Plasseringsvindu viser oversiktbilde av filene"
     ID_VIEW_DIR_STATEPANE   "Vis mappesammenligningsvindu"
     ID_VIEW_LANGUAGE        "Velg språk til brukergrensesnittet\nSpråk"
-    ID_VIEW_LINEDIFFS       "Shows differences inside lines with different color\nShow Line Diff"
+    ID_VIEW_LINEDIFFS       "Vis forskjeller på en linje med forskjellig farge\nVis linjeforskjell"
 END
 
 // MERGE MENU
