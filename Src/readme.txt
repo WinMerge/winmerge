@@ -1,3 +1,7 @@
+2003-09-16 Perry
+ fix BUG: [ 807420 ] assert when saving a modified doc
+  WinMerge: DiffContext.cpp
+
 2003-09-16 Laoran
  BUG: [ 807402 ] ListCopy problem for Unix Files
   WinMerge: MergeDoc.cpp

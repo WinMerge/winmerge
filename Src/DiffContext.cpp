@@ -193,7 +193,7 @@ void CDiffContext::SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask)
 {
 	ASSERT(diffpos);
 	DIFFITEM & di = m_pList->GetAt(diffpos);
-	ASSERT(! ((~mask) && diffcode) ); // make sure they only set flags in their mask
+	ASSERT(! ((~mask) & diffcode) ); // make sure they only set flags in their mask
 	di.diffcode &= (~mask); // remove current data
 	di.diffcode |= diffcode; // add new data
 }
