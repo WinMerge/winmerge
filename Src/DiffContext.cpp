@@ -141,7 +141,7 @@ void CDiffContext::AddDiff(DIFFITEM di)
 
 	m_pList->AddTail(di);
 	// ignore return value
-	PostMessage(m_hDirFrame, m_msgUpdateStatus, di.diffcode, NULL);
+	SendMessage(m_hDirFrame, m_msgUpdateStatus, di.diffcode, NULL);
 }
 
 void CDiffContext::RemoveDiff(POSITION diffpos)

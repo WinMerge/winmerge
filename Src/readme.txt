@@ -3,6 +3,9 @@
   WinMerge: MainFrm.cpp
  PATCH: [ 836714 ] Separate counts of normal and trivial diffs
   WinMerge: MergeDoc.h MergeDoc.cpp
+ Backout PATCH: [ 834230 ] Use PostMessage() to update dir compare status
+  It caused bug [ 837366 ] Dir compare status panel not drawn correctly
+  WinMerge: DiffContext.cpp
 
 2003-11-06 Laoran
  BUG: [ 836868 ] Search and replace field size limited
