@@ -1,4 +1,6 @@
 2003-10-20 Laoran
+ 'Comparison Summary' not updated after saving (lost in plugin patch)
+  WinMerge: MergeDoc.cpp
  Format for (eol type) must set the asterisk (sign for modified file)
   WinMerge: MergeEditView.cpp
 

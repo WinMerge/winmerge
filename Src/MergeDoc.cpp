@@ -717,7 +717,8 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, BOOL &bSaveSuccess, BOOL bLeft, Pack
 * allows user to select new location/name for file.
 *
 * @param szPath Path where to save including filename
-* @param bSaveSuccess Will contain information about save success
+* @param bSaveSuccess Will contain information about save success with the original name
+* (to determine if file statuses should be changed)
 * @param bLeft If TRUE we are saving left(side) file, else right file
 *
 * @return Tells if caller can continue (no errors happened)
@@ -762,25 +763,28 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	if (!mf->CreateBackup(strSavePath))
 		return FALSE;
 
+	// FALSE as long as the user is not satisfied
+	// TRUE if saving succeeds, even with another filename, or if the user cancels
 	BOOL result;
+	// the error code from the latest save try, needed to display the correct error message
+	// either SAVE_DONE, either an error code
+	// TODO: Shall we return this code in addition to bSaveSuccess ?
+	BOOL bSaveErrorCode;
 	if(bLeft)
 	{
-		bSaveSuccess = m_ltBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
-		if(bSaveSuccess == SAVE_DONE)
+		bSaveErrorCode = m_ltBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
+		if(bSaveErrorCode == SAVE_DONE)
 		{
 			m_strLeftFile = strSavePath;
 			UpdateHeaderPath(TRUE);
+			bSaveSuccess = TRUE;
 			result = TRUE;
 		}
 		else
 		{
 			// Saving failed, user may save to another location if wants to
-			// TODO: proper fix for handling save success here;
-			// problem is we cannot return bSaveSuccess because callers use
-			// it to determine if file statuses should be changed.
-			BOOL bSaveAsSuccess = bSaveSuccess;
 			do
-				result = TrySaveAs(strSavePath, bSaveAsSuccess, bLeft, &infoTempUnpacker);
+				result = TrySaveAs(strSavePath, bSaveErrorCode, bLeft, &infoTempUnpacker);
 			while (!result);
 		}
 	}
@@ -791,17 +795,14 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 		{
 			m_strRightFile = strSavePath;
 			UpdateHeaderPath(FALSE);
+			bSaveSuccess = TRUE;
 			result = TRUE;
 		}
 		else
 		{
 			// Saving failed, user may save to another location if wants to
-			// TODO: proper fix for handling save success here;
-			// problem is we cannot return bSaveSuccess because callers use
-			// it to determine if file statuses should be changed.
-			BOOL bSaveAsSuccess = bSaveSuccess;
 			do
-				result = TrySaveAs(strSavePath, bSaveAsSuccess, bLeft, &infoTempUnpacker);
+				result = TrySaveAs(strSavePath, bSaveErrorCode, bLeft, &infoTempUnpacker);
 			while (!result);
 		}
 	}
