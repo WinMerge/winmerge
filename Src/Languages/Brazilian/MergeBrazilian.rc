@@ -1054,12 +1054,38 @@ BEGIN
     IDS_STATUS_COPYR2L      "Copiando da direita para esquerda"
     IDS_STATUS_COPYALL2L    "Copiando tudo para esquerda"
     IDS_STATUS_COPYALL2R    "Copiando tudo para direita"
+    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+    IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_LTIMEC       "Left Creation Time"
+    IDS_COLHDR_RTIMEC       "Right Creation Time"
+    IDS_COLHDR_NEWER        "Newer File"
+    IDS_COLHDR_LVERSION     "Left File Version"
+    IDS_COLHDR_RVERSION     "Right File Version"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_NUM_REPLACED        "Substituindo %1 texto(s)."
     IDS_EDIT_TEXT_NOT_FOUND "Não foi possível localizar""%s"""
+    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LEFTONLY            "Left Only"
+    IDS_RIGHTONLY           "Right Only"
+    IDS_COLHDR_RESULT_ABBR  "Short Result"
+    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
+    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_FILE_SKIPPED        "File skipped"
+    IDS_DIR_SKIPPED         "Directory skipped"
 END
 
 #endif    // Portuguese (Brazil) resources

@@ -772,84 +772,123 @@ END
 
 STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
-    IDS_SAVE_AS_TITLE       "另存新檔"
-    IDS_SELECT_FILES_OR_FOLDERS "你的選取必須是兩者都是檔案或兩者都是資料夾"
-    IDS_BACKUP_FAILED_PROMPT "無法備份原始的檔案。\n無論如何要繼續嗎？"
-    IDS_OPTIONS_TITLE       "選項"
-    IDS_OPEN_TITLE          "開啟"
-    IDS_CONFIRM_DELETE      "刪除檔案 %1？"
-    IDS_EDIT_WINDOW_TITLE_FMT "編輯 %1"
-    IDS_FILESSAME           "選取的檔案完全相同。"
-    IDS_FILEUNIQUE          "選取的檔案不存在於兩邊的資料夾，因此無法比對。"
-    IDS_FILEERROR           "一個錯誤發生於比對檔案時。"
-    IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-    IDS_SAVE_FMT            "儲存更改到 %1？"
-    IDS_FILEBINARY          "二進制檔案無法作視覺的比對。"
-    IDS_SAVEVSS_FMT         "%1 標記為唯讀。 你要從版本系統檢查它，還是以一個不同的名稱儲存它？"
-    IDS_VSSERROR            "嘗試檢查檔案時版本系統返回一個錯誤。 無法繼續..."
-    IDS_NOPROJECT           "你必須指定一個 SourceSafe 專案路徑以便繼續 (例如：  $/MyProject)"
+    AFX_IDS_APP_TITLE       "WinMerge"
+    AFX_IDS_IDLEMESSAGE     "就緒"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_COLHDR_FILENAME     "檔案名稱"
-    IDS_COLHDR_DIR          "資料夾"
-    IDS_COLHDR_RESULT       "比對結果"
-    IDS_FILE_COMPARISON_TITLE "檔案比對"
-    IDS_DIFF_NUMBER_STATUS_FMT "不同 %1 在 %2"
-    IDS_NO_DIFF_SEL         "%1 不同找到"
-    IDS_FILEISDIR           "資料夾檔案無法做視覺的比對。"
-    IDS_CC_CMD              "cleartool.exe 路徑(&P):"
-    IDS_VSS_CMD             "SS.EXE 路徑(&P):"
-    IDS_VSS_RUN_ERROR       "錯誤執行版本系統指令。"
-    IDS_DIFF_OPEN_NO_SET_PROPS "在目前檔案比對期間已有修改。 在重新啟動目前檔案比對前，一些設定不會生效。"
-    IDS_COLHDR_LTIMEM       "左邊日期"
-    IDS_COLHDR_RTIMEM       "右邊日期"
-    IDS_COLHDR_EXTENSION    "副檔名"
-    IDS_CONFIRM_DELETE_ITEMS "你確定要刪除 %1 在 %2 選取的項目嗎？"
-    IDS_DEL_LEFT_FMT        "刪除左邊 %1 在 %2 選取的項目"
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "建立一個新文件\n新增"
+    ID_FILE_OPEN            "開啟一個現存文件\n開啟 (Ctrl+O)"
+    ID_FILE_CLOSE           "關閉作用中文件\n關閉"
+    ID_FILE_SAVE            "儲存作用中文件\n儲存 (Ctrl+S)"
+    ID_FILE_SAVE_AS         "以一個新名稱儲存作用中文件\n另存新檔"
+    ID_FILE_PAGE_SETUP      "變更列印選項\n版面設定"
+    ID_FILE_PRINT_SETUP     "變更印表機和列印選項\n列印設定"
+    ID_FILE_PRINT           "列印作用中文件\n列印"
+    ID_FILE_PRINT_DIRECT    " "
+    ID_FILE_PRINT_PREVIEW   "顯示整頁\n預覽列印"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "顯示程式資訊，版本號碼和版權\n關於"
+    ID_APP_EXIT             "離開應用程式；提示要儲存文件\n結束"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_DEL_RIGHT_FMT       "刪除右邊 %1 在 %2 選取的項目"
-    IDS_DELETE_FAILED       "刪除檔案 %1 失敗： %2"
-    IDS_CONFIRM_DELETE_DIR  "刪除資料夾 %1？"
-    IDS_REMOVE_DIR_FAILED   "移除資料夾失敗： %1"
-    IDS_COPY_TO_LEFT        "複製到左邊 %1 在 %2 選取的項目"
-    IDS_COPY_TO_LEFT_MAIN   "刪除兩邊 %1 在 %2 選取的項目"
-    IDS_COPY_TO_RIGHT       "複製到右邊 %1 在 %2 選取的項目"
-    IDS_DELETE_DIR_FAILED   "刪除資料夾 %1 失敗： %s"
-    IDS_COPY_FILE_FAILED    "正在複製檔案 %1 失敗： %2"
-    IDS_COPY_DIR_FAILED     "正在複製資料夾 %1 失敗： %2"
-    IDS_ERROR_FILE_WRITEABLE "錯誤檢查目標寫入性"
-    IDS_ERROR_BACKUP        "錯誤備份檔案"
-    IDS_CONFIRM_COPY_SINGLE "你確定要複製 %1 到 %2 嗎？"
-    IDS_CONFIRM_DELETE_SINGLE "你確定要刪除 %1 嗎？"
-    IDS_BIN_FILES_SAME      "二進制檔案完全相同"
+    ID_FILE_MRU_FIRST       "開啟這個文件"
+    ID_FILE_MRU_FILE2       "開啟這個文件"
+    ID_FILE_MRU_FILE3       "開啟這個文件"
+    ID_FILE_MRU_FILE4       "開啟這個文件"
+    ID_FILE_MRU_FILE5       "開啟這個文件"
+    ID_FILE_MRU_FILE6       "開啟這個文件"
+    ID_FILE_MRU_FILE7       "開啟這個文件"
+    ID_FILE_MRU_FILE8       "開啟這個文件"
+    ID_FILE_MRU_FILE9       "開啟這個文件"
+    ID_FILE_MRU_FILE10      "開啟這個文件"
+    ID_FILE_MRU_FILE11      "開啟這個文件"
+    ID_FILE_MRU_FILE12      "開啟這個文件"
+    ID_FILE_MRU_FILE13      "開啟這個文件"
+    ID_FILE_MRU_FILE14      "開啟這個文件"
+    ID_FILE_MRU_FILE15      "開啟這個文件"
+    ID_FILE_MRU_FILE16      "開啟這個文件"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_FILESAVE_FAILED     "儲存 %1 失敗。你要以一個不同的名稱儲存檔案嗎？"
-    IDS_ERROR_FILE_NOT_FOUND "檔案找不到: %1"
-    IDS_ERROR_INCOMPARABLE  "選取要比對的兩個現存資料夾或檔案"
-    IDS_STATUS_RESCANNING                     "掃描檔案..."
-    IDS_STATUS_OPENING_SELECTION                     "開啟選取"
-    IDS_STATUS_COPYL2R      "正在複製左邊到右邊"
-    IDS_STATUS_COPYR2L      "正在複製右邊到左邊"
-    IDS_STATUS_COPYALL2L    "正在全部複製到左邊"
-    IDS_STATUS_COPYALL2R    "正在全部複製到右邊"
+    ID_NEXT_PANE            "切換到下一個視窗\n下一視窗"
+    ID_PREV_PANE            "切換回上一個視窗\n上一視窗"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_NUM_REPLACED        "已取代 %1 個字串。"
-    IDS_EDIT_TEXT_NOT_FOUND "無法尋找字串「%s」"
+    ID_WINDOW_NEW           "為作用中文件開啟另一個視窗\n新視窗"
+    ID_WINDOW_ARRANGE       "排列圖示在視窗的底部\n排列圖示"
+    ID_WINDOW_CASCADE       "排列視窗讓它們彼此覆蓋n重疊視窗"
+    ID_WINDOW_TILE_HORZ     "非覆蓋的排列視窗\n並列視窗"
+    ID_WINDOW_TILE_VERT     "非覆蓋的排列視窗\n並列視窗"
+    ID_WINDOW_SPLIT         "分割目前視窗\n分割"
 END
 
 STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "清除選取的範圍\n刪除"
+    ID_EDIT_CLEAR_ALL       "全部刪除\n全部刪除"
+    ID_EDIT_COPY            "複製選取並放置它到這剪貼簿\n複製"
+    ID_EDIT_CUT             "剪下選取並放置它到剪貼簿\n剪下"
+    ID_EDIT_FIND            "尋找指定文字\n尋找"
+    ID_EDIT_PASTE           "插入剪貼簿內容\n貼上"
+    ID_EDIT_PASTE_LINK      " "
+    ID_EDIT_PASTE_SPECIAL   " "
+    ID_EDIT_REPEAT          "重複上次的動作\n重複"
+    ID_EDIT_REPLACE         "以不同的文字取代特定的文字\n取代"
+    ID_EDIT_SELECT_ALL      "選取整份文件\n全選"
+    ID_EDIT_UNDO            "復原上次的動作\n復原"
+    ID_EDIT_REDO            "重做之前未完成的動作\n重做"
+END
 
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "顯示或隱藏工具列\n切換工具列"
+    ID_VIEW_STATUS_BAR      "顯示或隱藏狀態列\n切換狀態列"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "更改視窗大小"
+    AFX_IDS_SCMOVE          "更改視窗位置"
+    AFX_IDS_SCMINIMIZE      "縮小視窗為一個圖示"
+    AFX_IDS_SCMAXIMIZE      "擴大視窗為完整螢幕大小"
+    AFX_IDS_SCNEXTWINDOW    "切換到下一個文件視窗"
+    AFX_IDS_SCPREVWINDOW    "切換到上一個文件視窗"
+    AFX_IDS_SCCLOSE         "關閉作用中視窗並提示到儲存這文件"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "將視窗還原成標準的大小"
+    AFX_IDS_SCTASKLIST      "啟用工作清單"
+    AFX_IDS_MDICHILD        "啟用這個視窗"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "關閉預覽列印模式\n取消預覽"
+END
+
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_L2R                  "複製選取的文字到右邊檔案\n複製右邊 (Alt + Right)"
     ID_R2L                  "複製選取的文字到左邊檔案\n複製左邊 (Alt + Left)"
@@ -903,18 +942,133 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "開啟右邊檔案"
 END
 
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDS_SAVE_AS_TITLE       "另存新檔"
+    IDS_SELECT_FILES_OR_FOLDERS "你的選取必須是兩者都是檔案或兩者都是資料夾"
+    IDS_BACKUP_FAILED_PROMPT "無法備份原始的檔案。\n無論如何要繼續嗎？"
+    IDS_OPTIONS_TITLE       "選項"
+    IDS_OPEN_TITLE          "開啟"
+    IDS_CONFIRM_DELETE      "刪除檔案 %1？"
+    IDS_EDIT_WINDOW_TITLE_FMT "編輯 %1"
+    IDS_FILESSAME           "選取的檔案完全相同。"
+    IDS_FILEUNIQUE          "選取的檔案不存在於兩邊的資料夾，因此無法比對。"
+    IDS_FILEERROR           "一個錯誤發生於比對檔案時。"
+    IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
+    IDS_SAVE_FMT            "儲存更改到 %1？"
+    IDS_FILEBINARY          "二進制檔案無法作視覺的比對。"
+    IDS_SAVEVSS_FMT         "%1 標記為唯讀。 你要從版本系統檢查它，還是以一個不同的名稱儲存它？"
+    IDS_VSSERROR            "嘗試檢查檔案時版本系統返回一個錯誤。 無法繼續..."
+    IDS_NOPROJECT           "你必須指定一個 SourceSafe 專案路徑以便繼續 (例如：  $/MyProject)"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    IDS_NORWEGIAN_BOKMAL    "Norsk (Bokmal)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SPANISH_MODERN      "Espanol (Moderno)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_COLHDR_FILENAME     "檔案名稱"
+    IDS_COLHDR_DIR          "資料夾"
+    IDS_COLHDR_RESULT       "比對結果"
+    IDS_FILE_COMPARISON_TITLE "檔案比對"
+    IDS_DIFF_NUMBER_STATUS_FMT "不同 %1 在 %2"
+    IDS_NO_DIFF_SEL         "%1 不同找到"
+    IDS_FILEISDIR           "資料夾檔案無法做視覺的比對。"
+    IDS_CC_CMD              "cleartool.exe 路徑(&P):"
+    IDS_VSS_CMD             "SS.EXE 路徑(&P):"
+    IDS_VSS_RUN_ERROR       "錯誤執行版本系統指令。"
+    IDS_DIFF_OPEN_NO_SET_PROPS "在目前檔案比對期間已有修改。 在重新啟動目前檔案比對前，一些設定不會生效。"
+    IDS_COLHDR_LTIMEM       "左邊日期"
+    IDS_COLHDR_RTIMEM       "右邊日期"
+    IDS_COLHDR_EXTENSION    "副檔名"
+    IDS_CONFIRM_DELETE_ITEMS "你確定要刪除 %1 在 %2 選取的項目嗎？"
+    IDS_DEL_LEFT_FMT        "刪除左邊 %1 在 %2 選取的項目"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DEL_RIGHT_FMT       "刪除右邊 %1 在 %2 選取的項目"
+    IDS_DELETE_FAILED       "刪除檔案 %1 失敗： %2"
+    IDS_CONFIRM_DELETE_DIR  "刪除資料夾 %1？"
+    IDS_REMOVE_DIR_FAILED   "移除資料夾失敗： %1"
+    IDS_COPY_TO_LEFT        "複製到左邊 %1 在 %2 選取的項目"
+    IDS_COPY_TO_LEFT_MAIN   "刪除兩邊 %1 在 %2 選取的項目"
+    IDS_COPY_TO_RIGHT       "複製到右邊 %1 在 %2 選取的項目"
+    IDS_DELETE_DIR_FAILED   "刪除資料夾 %1 失敗： %s"
+    IDS_COPY_FILE_FAILED    "正在複製檔案 %1 失敗： %2"
+    IDS_COPY_DIR_FAILED     "正在複製資料夾 %1 失敗： %2"
+    IDS_ERROR_FILE_WRITEABLE "錯誤檢查目標寫入性"
+    IDS_ERROR_BACKUP        "錯誤備份檔案"
+    IDS_CONFIRM_COPY_SINGLE "你確定要複製 %1 到 %2 嗎？"
+    IDS_CONFIRM_DELETE_SINGLE "你確定要刪除 %1 嗎？"
+    IDS_BIN_FILES_SAME      "二進制檔案完全相同"
+END
+
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "開啟右邊檔案以..."
     ID_OPTIONS_SHOWBINARIES "顯示二進制檔案"
     ID_VIEW_WHITESPACE      "顯示空白和跳格字元"
     ID_REFRESH              "更新顯示\n更新 (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_EDITOR_COPY_PATH     "Copy full Path"
+    ID_EDITOR_COPY_FILENAME "Copy Filename"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    AFX_IDS_APP_TITLE       "WinMerge"
-    AFX_IDS_IDLEMESSAGE     "就緒"
+    IDS_FILESAVE_FAILED     "儲存 %1 失敗。你要以一個不同的名稱儲存檔案嗎？"
+    IDS_ERROR_FILE_NOT_FOUND "檔案找不到: %1"
+    IDS_ERROR_INCOMPARABLE  "選取要比對的兩個現存資料夾或檔案"
+    IDS_STATUS_RESCANNING                     "掃描檔案..."
+    IDS_STATUS_OPENING_SELECTION                     "開啟選取"
+    IDS_STATUS_COPYL2R      "正在複製左邊到右邊"
+    IDS_STATUS_COPYR2L      "正在複製右邊到左邊"
+    IDS_STATUS_COPYALL2L    "正在全部複製到左邊"
+    IDS_STATUS_COPYALL2R    "正在全部複製到右邊"
+    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+    IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_LTIMEC       "Left Creation Time"
+    IDS_COLHDR_RTIMEC       "Right Creation Time"
+    IDS_COLHDR_NEWER        "Newer File"
+    IDS_COLHDR_LVERSION     "Left File Version"
+    IDS_COLHDR_RVERSION     "Right File Version"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NUM_REPLACED        "已取代 %1 個字串。"
+    IDS_EDIT_TEXT_NOT_FOUND "無法尋找字串「%s」"
+    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LEFTONLY            "Left Only"
+    IDS_RIGHTONLY           "Right Only"
+    IDS_COLHDR_RESULT_ABBR  "Short Result"
+    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
+    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_FILE_SKIPPED        "File skipped"
+    IDS_DIR_SKIPPED         "Directory skipped"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
     AFX_IDS_HELPMODEMESSAGE " "
     AFX_IDS_APP_TITLE_EMBEDDING " "
     AFX_IDS_COMPANY_NAME    " "
@@ -924,16 +1078,6 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_FILE_NEW             "建立一個新文件\n新增"
-    ID_FILE_OPEN            "開啟一個現存文件\n開啟 (Ctrl+O)"
-    ID_FILE_CLOSE           "關閉作用中文件\n關閉"
-    ID_FILE_SAVE            "儲存作用中文件\n儲存 (Ctrl+S)"
-    ID_FILE_SAVE_AS         "以一個新名稱儲存作用中文件\n另存新檔"
-    ID_FILE_PAGE_SETUP      "變更列印選項\n版面設定"
-    ID_FILE_PRINT_SETUP     "變更印表機和列印選項\n列印設定"
-    ID_FILE_PRINT           "列印作用中文件\n列印"
-    ID_FILE_PRINT_DIRECT    " "
-    ID_FILE_PRINT_PREVIEW   "顯示整頁\n預覽列印"
     ID_FILE_UPDATE          " "
     ID_FILE_SAVE_COPY_AS    " "
     ID_FILE_SEND_MAIL       " "
@@ -941,106 +1085,12 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_FILE_MRU_FIRST       "開啟這個文件"
-    ID_FILE_MRU_FILE2       "開啟這個文件"
-    ID_FILE_MRU_FILE3       "開啟這個文件"
-    ID_FILE_MRU_FILE4       "開啟這個文件"
-    ID_FILE_MRU_FILE5       "開啟這個文件"
-    ID_FILE_MRU_FILE6       "開啟這個文件"
-    ID_FILE_MRU_FILE7       "開啟這個文件"
-    ID_FILE_MRU_FILE8       "開啟這個文件"
-    ID_FILE_MRU_FILE9       "開啟這個文件"
-    ID_FILE_MRU_FILE10      "開啟這個文件"
-    ID_FILE_MRU_FILE11      "開啟這個文件"
-    ID_FILE_MRU_FILE12      "開啟這個文件"
-    ID_FILE_MRU_FILE13      "開啟這個文件"
-    ID_FILE_MRU_FILE14      "開啟這個文件"
-    ID_FILE_MRU_FILE15      "開啟這個文件"
-    ID_FILE_MRU_FILE16      "開啟這個文件"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_EDIT_CLEAR           "清除選取的範圍\n刪除"
-    ID_EDIT_CLEAR_ALL       "全部刪除\n全部刪除"
-    ID_EDIT_COPY            "複製選取並放置它到這剪貼簿\n複製"
-    ID_EDIT_CUT             "剪下選取並放置它到剪貼簿\n剪下"
-    ID_EDIT_FIND            "尋找指定文字\n尋找"
-    ID_EDIT_PASTE           "插入剪貼簿內容\n貼上"
-    ID_EDIT_PASTE_LINK      " "
-    ID_EDIT_PASTE_SPECIAL   " "
-    ID_EDIT_REPEAT          "重複上次的動作\n重複"
-    ID_EDIT_REPLACE         "以不同的文字取代特定的文字\n取代"
-    ID_EDIT_SELECT_ALL      "選取整份文件\n全選"
-    ID_EDIT_UNDO            "復原上次的動作\n復原"
-    ID_EDIT_REDO            "重做之前未完成的動作\n重做"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_WINDOW_NEW           "為作用中文件開啟另一個視窗\n新視窗"
-    ID_WINDOW_ARRANGE       "排列圖示在視窗的底部\n排列圖示"
-    ID_WINDOW_CASCADE       "排列視窗讓它們彼此覆蓋n重疊視窗"
-    ID_WINDOW_TILE_HORZ     "非覆蓋的排列視窗\n並列視窗"
-    ID_WINDOW_TILE_VERT     "非覆蓋的排列視窗\n並列視窗"
-    ID_WINDOW_SPLIT         "分割目前視窗\n分割"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_APP_ABOUT            "顯示程式資訊，版本號碼和版權\n關於"
-    ID_APP_EXIT             "離開應用程式；提示要儲存文件\n結束"
     ID_HELP_INDEX           " "
     ID_HELP_FINDER          " "
     ID_HELP_USING           " "
     ID_CONTEXT_HELP         " "
     ID_HELP                 " "
     ID_DEFAULT_HELP         " "
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_NEXT_PANE            "切換到下一個視窗\n下一視窗"
-    ID_PREV_PANE            "切換回上一個視窗\n上一視窗"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_INDICATOR_EXT        "EXT"
-    ID_INDICATOR_CAPS       "CAP"
-    ID_INDICATOR_NUM        "NUM"
-    ID_INDICATOR_SCRL       "SCRL"
-    ID_INDICATOR_OVR        "OVR"
-    ID_INDICATOR_REC        "REC"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_VIEW_TOOLBAR         "顯示或隱藏工具列\n切換工具列"
-    ID_VIEW_STATUS_BAR      "顯示或隱藏狀態列\n切換狀態列"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    AFX_IDS_SCSIZE          "更改視窗大小"
-    AFX_IDS_SCMOVE          "更改視窗位置"
-    AFX_IDS_SCMINIMIZE      "縮小視窗為一個圖示"
-    AFX_IDS_SCMAXIMIZE      "擴大視窗為完整螢幕大小"
-    AFX_IDS_SCNEXTWINDOW    "切換到下一個文件視窗"
-    AFX_IDS_SCPREVWINDOW    "切換到上一個文件視窗"
-    AFX_IDS_SCCLOSE         "關閉作用中視窗並提示到儲存這文件"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    AFX_IDS_SCRESTORE       "將視窗還原成標準的大小"
-    AFX_IDS_SCTASKLIST      "啟用工作清單"
-    AFX_IDS_MDICHILD        "啟用這個視窗"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "關閉預覽列印模式\n取消預覽"
 END
 
 #endif    // Chinese (Traditional) resources

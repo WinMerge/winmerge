@@ -656,13 +656,11 @@ STRINGTABLE FIXED IMPURE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
-    IDD_OPEN                "WinMerge 这个文件夹"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge 这个文件夹"
 END
 
 STRINGTABLE FIXED IMPURE
 BEGIN
-    CBRS_BORDER_3D          " "
-    129                     " "
     IDS_VERSION_FMT         "版本 %1"
     IDS_ALLFILES            "所有文件 (*.*)|*.*||"
     IDS_CONFIRM_ALL_LEFT    "您确定要复制所有不同到左边文件吗？"
@@ -677,6 +675,175 @@ BEGIN
     IDS_ONLY_IN_FMT         "只在 %1"
     IDS_IDENTICAL           "完全相同"
     IDS_CANT_COMPARE_FILES  "无法比对文件"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    AFX_IDS_APP_TITLE       "WinMerge"
+    AFX_IDS_IDLEMESSAGE     "就绪"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    ID_FILE_NEW             "建立一个新文件\n新增"
+    ID_FILE_OPEN            "打开一个现存文件\n打开 (Ctrl+O)"
+    ID_FILE_CLOSE           "关闭作用中文件\n关闭"
+    ID_FILE_SAVE            "保存作用中文件\n保存 (Ctrl+S)"
+    ID_FILE_SAVE_AS         "以一个新名称保存作用中文件\n另存新档"
+    ID_FILE_PAGE_SETUP      "变更打印选项\n版面设定"
+    ID_FILE_PRINT_SETUP     "变更打印机和打印选项\n打印设定"
+    ID_FILE_PRINT           "打印作用中文件\n打印"
+    ID_FILE_PRINT_DIRECT    " "
+    ID_FILE_PRINT_PREVIEW   "显示整页\n预览打印"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    ID_APP_ABOUT            "显示程序信息，版本号码和版权\n关于"
+    ID_APP_EXIT             "离开应用程序；提示要保存文件\n退出"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    ID_FILE_MRU_FIRST       "打开这个文件"
+    ID_FILE_MRU_FILE2       "打开这个文件"
+    ID_FILE_MRU_FILE3       "打开这个文件"
+    ID_FILE_MRU_FILE4       "打开这个文件"
+    ID_FILE_MRU_FILE5       "打开这个文件"
+    ID_FILE_MRU_FILE6       "打开这个文件"
+    ID_FILE_MRU_FILE7       "打开这个文件"
+    ID_FILE_MRU_FILE8       "打开这个文件"
+    ID_FILE_MRU_FILE9       "打开这个文件"
+    ID_FILE_MRU_FILE10      "打开这个文件"
+    ID_FILE_MRU_FILE11      "打开这个文件"
+    ID_FILE_MRU_FILE12      "打开这个文件"
+    ID_FILE_MRU_FILE13      "打开这个文件"
+    ID_FILE_MRU_FILE14      "打开这个文件"
+    ID_FILE_MRU_FILE15      "打开这个文件"
+    ID_FILE_MRU_FILE16      "打开这个文件"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    ID_NEXT_PANE            "切换到下一个窗口\n下一窗口"
+    ID_PREV_PANE            "切换回上一个窗口\n上一窗口"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    ID_WINDOW_NEW           "为作用中文件打开另一个窗口\n新窗口"
+    ID_WINDOW_ARRANGE       "排列图标在窗口的底部\n排列图标"
+    ID_WINDOW_CASCADE       "排列窗口让它们彼此覆盖n重迭窗口"
+    ID_WINDOW_TILE_HORZ     "非覆盖的排列窗口\n并列窗口"
+    ID_WINDOW_TILE_VERT     "非覆盖的排列窗口\n并列窗口"
+    ID_WINDOW_SPLIT         "分割目前窗口\n分割"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    ID_EDIT_CLEAR           "清除选择的范围\n删除"
+    ID_EDIT_CLEAR_ALL       "全部删除\n全部删除"
+    ID_EDIT_COPY            "复制选择并放置它到这剪贴簿\n复制"
+    ID_EDIT_CUT             "剪切选择并放置它到剪贴簿\n剪切"
+    ID_EDIT_FIND            "寻找指定文字\n寻找"
+    ID_EDIT_PASTE           "插入剪贴簿内容\n粘贴"
+    ID_EDIT_PASTE_LINK      " "
+    ID_EDIT_PASTE_SPECIAL   " "
+    ID_EDIT_REPEAT          "重复上次的动作\n重复"
+    ID_EDIT_REPLACE         "以不同的文字替换特定的文字\n替换"
+    ID_EDIT_SELECT_ALL      "选择整份文件\n全选"
+    ID_EDIT_UNDO            "撤销上次的动作\n撤销"
+    ID_EDIT_REDO            "重复之前未完成的动作\n重复"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n切换工具栏"
+    ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n切换状态栏"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    AFX_IDS_SCSIZE          "更改窗口大小"
+    AFX_IDS_SCMOVE          "更改窗口位置"
+    AFX_IDS_SCMINIMIZE      "缩小窗口为一个图标"
+    AFX_IDS_SCMAXIMIZE      "扩大窗口为完整屏幕大小"
+    AFX_IDS_SCNEXTWINDOW    "切换到下一个文件窗口"
+    AFX_IDS_SCPREVWINDOW    "切换到上一个文件窗口"
+    AFX_IDS_SCCLOSE         "关闭作用中窗口并提示到保存这文件"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    AFX_IDS_SCRESTORE       "将窗口还原成标准的大小"
+    AFX_IDS_SCTASKLIST      "启用工作清单"
+    AFX_IDS_MDICHILD        "启用这个窗口"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "关闭预览打印模式\n取消预览"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    ID_L2R                  "复制选择的文字到右边文件\n复制右边 (Alt + Right)"
+    ID_R2L                  "复制选择的文字到左边文件\n复制左边 (Alt + Left)"
+    ID_UNDO                 " "
+    ID_OPTIONS_SHOWIDENTICAL "显示完全相同的文件"
+    ID_OPTIONS_SHOWDIFFERENT "显示有不同的文件"
+    ID_OPTIONS_SHOWUNIQUE   " "
+    ID_POPUP_COPYTOOTHERSIDE " "
+    ID_POPUP_COPYFROMOTHERSIDE " "
+    ID_PREVDIFF             "卷动到上一个不同\n上一个不同 (Alt + Up)"
+    ID_POPUP_SAVE           " "
+    ID_NEXTDIFF             "卷动到下一个不同\n下一个不同 (Alt + Down)"
+    ID_OPTIONS_BACKUPORIGINALFILE "保存的这原始的一个副本为 *.bak\n备份"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE "自动地卷动到这第一个不同\n卷动到第一个"
+    ID_OPTIONS_IGNOREWHITESPACE "比对文件时不管空白和制表符"
+    ID_HIDE_BACKUP_FILES    "隐藏扩展名为 BAK 的文件"
+    ID_HELP_GNULICENSE      "显示 GNU 公共授权"
+    ID_USEVSS               "尝试从 sourcesafe 调试只读文件"
+    ID_OPTIONS              "设定程序选项\n选项"
+    ID_ALL_LEFT             "复制所有不同到左边文件\n所有到左边"
+    ID_ALL_RIGHT            "复制所有不同到右边文件\n所有到右边"
+    ID_VIEW_SELECTFONT      "选择不同视图的字型\n选择不同视图字型"
+    ID_VIEW_USEDEFAULTFONT  "使用预设的系统字型于不同视图\n预设字型"
+    ID_DIR_COPY_FILE_TO_LEFT "复制选择的文件到已命名的文件夹"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    ID_DIR_COPY_FILE_TO_RIGHT "复制选择的文件到已命名的文件夹"
+    ID_VIEW_LANGUAGE        "选择目前用户接口语言\n语言"
+    ID_HELP_CONTENTS        "显示 WinMerge 用户帮助\n帮助"
+    ID_FIRSTDIFF            "卷动到第一个不同\n第一个不同 (Alt+Home)"
+    ID_CURDIFF              "卷动到目前不同\n目前不同 (Alt+Enter)"
+    ID_LASTDIFF             "卷动到上次的不同\n上次的不同 (Alt+End)"
+    ID_DIFFNUM              "预留位置"
+    ID_DIR_DEL_LEFT         "删除在左边的选择项目"
+    ID_DIR_DEL_RIGHT        "删除在右边的选择项目"
+    ID_DIFFSTATUS           "预留位置为状态计数"
+    ID_OPTIONS_SHOWUNIQUELEFT "显示只存在于左边的文件"
+    ID_OPTIONS_SHOWUNIQUERIGHT "显示只存在于右边的文件"
+    ID_DIR_DEL_BOTH         "删除两边的选择项目"
+    ID_DIR_OPEN_LEFT        "打开左边文件"
+    ID_DIR_OPEN_LEFT_WITH   "打开左边文件以 ..."
+    ID_DIR_OPEN_RIGHT       "打开右边文件"
 END
 
 STRINGTABLE FIXED IMPURE
@@ -697,6 +864,16 @@ BEGIN
     IDS_SAVEVSS_FMT         "%1 标记为只读。 您要从版本系统检查它，还是以一个不同的名称保存它？"
     IDS_VSSERROR            "尝试检查文件时版本系统返回一个错误。 无法继续..."
     IDS_NOPROJECT           "您必须指定一个 SourceSafe 项目路径以便继续 (例如：  $/MyProject)"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    IDS_NORWEGIAN_BOKMAL    "Norsk (Bokmal)"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
+    IDS_SPANISH_MODERN      "Espa駉l (Moderno)"
 END
 
 STRINGTABLE FIXED IMPURE
@@ -740,6 +917,17 @@ END
 
 STRINGTABLE FIXED IMPURE
 BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "打开右边文件以..."
+    ID_OPTIONS_SHOWBINARIES "显示二进制文件"
+    ID_VIEW_WHITESPACE      "显示空白和制表符字符"
+    ID_REFRESH              "更新显示\n更新 (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_EDITOR_COPY_PATH     "Copy full Path"
+    ID_EDITOR_COPY_FILENAME "Copy Filename"
+END
+
+STRINGTABLE FIXED IMPURE
+BEGIN
     IDS_FILESAVE_FAILED     "保存 %1 失败。您要以一个不同的称保存文件吗？"
     IDS_ERROR_FILE_NOT_FOUND "文件找不到: %1"
     IDS_ERROR_INCOMPARABLE  "选择要比对的两个现存文件夹或文件"
@@ -749,258 +937,38 @@ BEGIN
     IDS_STATUS_COPYR2L      "正在复制右边到左边"
     IDS_STATUS_COPYALL2L    "正在全部复制到左边"
     IDS_STATUS_COPYALL2R    "正在全部复制到右边"
+    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+    IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_LTIMEC       "Left Creation Time"
+    IDS_COLHDR_RTIMEC       "Right Creation Time"
+    IDS_COLHDR_NEWER        "Newer File"
+    IDS_COLHDR_LVERSION     "Left File Version"
+    IDS_COLHDR_RVERSION     "Right File Version"
 END
 
 STRINGTABLE FIXED IMPURE
 BEGIN
     IDS_NUM_REPLACED        "已替换 %1 个字符串。"
     IDS_EDIT_TEXT_NOT_FOUND "无法寻找字符串「%s」"
+    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
-    CBRS_ALIGN_BOTTOM       " "
-    32769                   " "
-    32770                   " "
-    ID_L2R                  "复制选择的文字到右边文件\n复制右边 (Alt + Right)"
-    ID_R2L                  "复制选择的文字到左边文件\n复制左边 (Alt + Left)"
-    ID_UNDO                 " "
-    ID_OPTIONS_SHOWIDENTICAL "显示完全相同的文件"
-    ID_OPTIONS_SHOWDIFFERENT "显示有不同的文件"
-    ID_OPTIONS_SHOWUNIQUE   " "
-    ID_POPUP_COPYTOOTHERSIDE " "
-    ID_POPUP_COPYFROMOTHERSIDE " "
-    ID_PREVDIFF             "卷动到上一个不同\n上一个不同 (Alt + Up)"
-    ID_POPUP_SAVE           " "
-    ID_NEXTDIFF             "卷动到下一个不同\n下一个不同 (Alt + Down)"
-    ID_OPTIONS_BACKUPORIGINALFILE "保存的这原始的一个副本为 *.bak\n备份"
-    32783                   " "
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE "自动地卷动到这第一个不同\n卷动到第一个"
-    32785                   " "
-    32786                   " "
-    ID_POPUP_EDITFILE       " "
-    ID_OPTIONS_IGNOREWHITESPACE "比对文件时不管空白和制表符"
-    ID_HIDE_BACKUP_FILES    "隐藏扩展名为 BAK 的文件"
-    ID_HELP_GNULICENSE      "显示 GNU 公共授权"
-    ID_USEVSS               "尝试从 sourcesafe 调试只读文件"
-    ID_OPTIONS              "设定程序选项\n选项"
-    ID_ALL_LEFT             "复制所有不同到左边文件\n所有到左边"
-    ID_ALL_RIGHT            "复制所有不同到右边文件\n所有到右边"
-    ID_VIEW_SELECTFONT      "选择不同视图的字型\n选择不同视图字型"
-    ID_VIEW_USEDEFAULTFONT  "使用预设的系统字型于不同视图\n预设字型"
-    ID_POPUP_COPYALLDIFFSTOOTHERSIDE " "
-    ID_POPUP_COPYALLDIFFSFROMOTHERSIDE " "
-    ID_DIR_COPY_FILE_TO_LEFT "复制选择的文件到已命名的文件夹"
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT "复制选择的文件到已命名的文件夹"
-    ID_VIEW_LANGUAGE        "选择目前用户接口语言\n语言"
-    ID_HELP_CONTENTS        "显示 WinMerge 用户帮助\n帮助"
-    ID_FIRSTDIFF            "卷动到第一个不同\n第一个不同 (Alt+Home)"
-    ID_CURDIFF              "卷动到目前不同\n目前不同 (Alt+Enter)"
-    ID_LASTDIFF             "卷动到上次的不同\n上次的不同 (Alt+End)"
-    ID_DIFFNUM              "预留位置"
-    ID_DIR_DEL_LEFT         "删除在左边的选择项目"
-    ID_DIR_DEL_RIGHT        "删除在右边的选择项目"
-    ID_DIFFSTATUS           "预留位置为状态计数"
-    ID_OPTIONS_SHOWUNIQUELEFT "显示只存在于左边的文件"
-    ID_OPTIONS_SHOWUNIQUERIGHT "显示只存在于右边的文件"
-    ID_DIR_DEL_BOTH         "删除两边的选择项目"
-    ID_DIR_OPEN_LEFT        "打开左边文件"
-    ID_DIR_OPEN_LEFT_WITH   "打开左边文件以 ..."
-    ID_DIR_OPEN_RIGHT       "打开右边文件"
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "打开右边文件以..."
-    ID_OPTIONS_SHOWBINARIES "显示二进制文件"
-    ID_VIEW_WHITESPACE      "显示空白和制表符字符"
-    ID_REFRESH              "更新显示\n更新 (F5)"
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    AFX_IDS_APP_TITLE       "WinMerge"
-    AFX_IDS_IDLEMESSAGE     "就绪"
-    AFX_IDS_HELPMODEMESSAGE " "
-    AFX_IDS_APP_TITLE_EMBEDDING " "
-    AFX_IDS_COMPANY_NAME    " "
-    AFX_IDS_OBJ_TITLE_INPLACE " "
-    57350                   " "
-    57351                   " "
-    57352                   " "
-    57353                   " "
-    57354                   " "
-    57355                   " "
-    57356                   " "
-    57357                   " "
-    57358                   " "
-    57359                   " "
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    ID_FILE_NEW             "建立一个新文件\n新增"
-    ID_FILE_OPEN            "打开一个现存文件\n打开 (Ctrl+O)"
-    ID_FILE_CLOSE           "关闭作用中文件\n关闭"
-    ID_FILE_SAVE            "保存作用中文件\n保存 (Ctrl+S)"
-    ID_FILE_SAVE_AS         "以一个新名称保存作用中文件\n另存新档"
-    ID_FILE_PAGE_SETUP      "变更打印选项\n版面设定"
-    ID_FILE_PRINT_SETUP     "变更打印机和打印选项\n打印设定"
-    ID_FILE_PRINT           "打印作用中文件\n打印"
-    ID_FILE_PRINT_DIRECT    " "
-    ID_FILE_PRINT_PREVIEW   "显示整页\n预览打印"
-    ID_FILE_UPDATE          " "
-    ID_FILE_SAVE_COPY_AS    " "
-    ID_FILE_SEND_MAIL       " "
-    57613                   " "
-    57614                   " "
-    57615                   " "
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    ID_FILE_MRU_FIRST       "打开这个文件"
-    ID_FILE_MRU_FILE2       "打开这个文件"
-    ID_FILE_MRU_FILE3       "打开这个文件"
-    ID_FILE_MRU_FILE4       "打开这个文件"
-    ID_FILE_MRU_FILE5       "打开这个文件"
-    ID_FILE_MRU_FILE6       "打开这个文件"
-    ID_FILE_MRU_FILE7       "打开这个文件"
-    ID_FILE_MRU_FILE8       "打开这个文件"
-    ID_FILE_MRU_FILE9       "打开这个文件"
-    ID_FILE_MRU_FILE10      "打开这个文件"
-    ID_FILE_MRU_FILE11      "打开这个文件"
-    ID_FILE_MRU_FILE12      "打开这个文件"
-    ID_FILE_MRU_FILE13      "打开这个文件"
-    ID_FILE_MRU_FILE14      "打开这个文件"
-    ID_FILE_MRU_FILE15      "打开这个文件"
-    ID_FILE_MRU_FILE16      "打开这个文件"
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    ID_EDIT_CLEAR           "清除选择的范围\n删除"
-    ID_EDIT_CLEAR_ALL       "全部删除\n全部删除"
-    ID_EDIT_COPY            "复制选择并放置它到这剪贴簿\n复制"
-    ID_EDIT_CUT             "剪切选择并放置它到剪贴簿\n剪切"
-    ID_EDIT_FIND            "寻找指定文字\n寻找"
-    ID_EDIT_PASTE           "插入剪贴簿内容\n粘贴"
-    ID_EDIT_PASTE_LINK      " "
-    ID_EDIT_PASTE_SPECIAL   " "
-    ID_EDIT_REPEAT          "重复上次的动作\n重复"
-    ID_EDIT_REPLACE         "以不同的文字替换特定的文字\n替换"
-    ID_EDIT_SELECT_ALL      "选择整份文件\n全选"
-    ID_EDIT_UNDO            "撤销上次的动作\n撤销"
-    ID_EDIT_REDO            "重复之前未完成的动作\n重复"
-    57645                   " "
-    57646                   " "
-    57647                   " "
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    ID_WINDOW_NEW           "为作用中文件打开另一个窗口\n新窗口"
-    ID_WINDOW_ARRANGE       "排列图标在窗口的底部\n排列图标"
-    ID_WINDOW_CASCADE       "排列窗口让它们彼此覆盖n重迭窗口"
-    ID_WINDOW_TILE_HORZ     "非覆盖的排列窗口\n并列窗口"
-    ID_WINDOW_TILE_VERT     "非覆盖的排列窗口\n并列窗口"
-    ID_WINDOW_SPLIT         "分割目前窗口\n分割"
-    57654                   " "
-    57655                   " "
-    57656                   " "
-    57657                   " "
-    57658                   " "
-    57659                   " "
-    57660                   " "
-    57661                   " "
-    57662                   " "
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    ID_APP_ABOUT            "显示程序信息，版本号码和版权\n关于"
-    ID_APP_EXIT             "离开应用程序；提示要保存文件\n退出"
-    ID_HELP_INDEX           " "
-    ID_HELP_FINDER          " "
-    ID_HELP_USING           " "
-    ID_CONTEXT_HELP         " "
-    ID_HELP                 " "
-    ID_DEFAULT_HELP         " "
-    57672                   " "
-    57673                   " "
-    57674                   " "
-    57675                   " "
-    57676                   " "
-    57677                   " "
-    57678                   " "
-    57679                   " "
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    ID_NEXT_PANE            "切换到下一个窗口\n下一窗口"
-    ID_PREV_PANE            "切换回上一个窗口\n上一窗口"
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    ID_INDICATOR_EXT        "EXT"
-    ID_INDICATOR_CAPS       "CAP"
-    ID_INDICATOR_NUM        "NUM"
-    ID_INDICATOR_SCRL       "SCRL"
-    ID_INDICATOR_OVR        "OVR"
-    ID_INDICATOR_REC        "REC"
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n切换工具栏"
-    ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n切换状态栏"
-    59394                   " "
-    59395                   " "
-    59396                   " "
-    59397                   " "
-    59398                   " "
-    59399                   " "
-    59400                   " "
-    59401                   " "
-    59402                   " "
-    59403                   " "
-    59404                   " "
-    59405                   " "
-    59406                   " "
-    59407                   " "
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    AFX_IDS_SCSIZE          "更改窗口大小"
-    AFX_IDS_SCMOVE          "更改窗口位置"
-    AFX_IDS_SCMINIMIZE      "缩小窗口为一个图标"
-    AFX_IDS_SCMAXIMIZE      "扩大窗口为完整屏幕大小"
-    AFX_IDS_SCNEXTWINDOW    "切换到下一个文件窗口"
-    AFX_IDS_SCPREVWINDOW    "切换到上一个文件窗口"
-    AFX_IDS_SCCLOSE         "关闭作用中窗口并提示到保存这文件"
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    AFX_IDS_SCRESTORE       "将窗口还原成标准的大小"
-    AFX_IDS_SCTASKLIST      "启用工作清单"
-    AFX_IDS_MDICHILD        "启用这个窗口"
-END
-
-STRINGTABLE FIXED IMPURE
-BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "关闭预览打印模式\n取消预览"
+    IDS_LEFTONLY            "Left Only"
+    IDS_RIGHTONLY           "Right Only"
+    IDS_COLHDR_RESULT_ABBR  "Short Result"
+    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
+    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_FILE_SKIPPED        "File skipped"
+    IDS_DIR_SKIPPED         "Directory skipped"
 END
 
 #endif    // Chinese (Traditional) resources
