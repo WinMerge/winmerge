@@ -183,6 +183,19 @@
     </versions>
   </language>
   <language>
+    <name>Japanese</name>
+    <status>1</status>
+    <authors>
+      <author>
+        <name>Takashi Sawanaka</name>
+        <email>sdottaka at users dot sourceforge dot net</email>
+      </author>
+    </authors>
+    <versions>
+      <version>2.1</version>
+    </versions>
+  </language>
+  <language>
     <name>Korean</name>
     <status>4</status>
     <authors>
