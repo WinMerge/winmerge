@@ -390,9 +390,16 @@ HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
 /**
  * @brief Create new default (CMainFrame) menu
  */
-HMENU CMainFrame::NewDefaultMenu()
+HMENU CMainFrame::NewDefaultMenu(int ID /*=0*/)
 {
-	m_default.LoadMenu(IDR_MAINFRAME);
+	if (ID == 0)
+		ID = IDR_MAINFRAME;
+
+	if (!m_default.LoadMenu(ID))
+	{
+		ASSERT(FALSE);
+		return NULL;
+	}
 	
 	// Load bitmaps to menuitems
 	m_default.ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);

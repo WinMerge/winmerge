@@ -556,7 +556,7 @@ void CMergeApp::OnViewLanguage()
 {
 	if (m_lang.DoModal()==IDOK)
 	{
-		m_lang.ReloadMenu();
+		//m_lang.ReloadMenu();
 		//m_LangDlg.UpdateDocTitle();
 		mf->UpdateResources();
 	}

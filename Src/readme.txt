@@ -1,3 +1,8 @@
+2004-05-11 Laoran
+ PATCH: [ 948528 ] Build BCMenu after select language
+  Src: MainFrm.cpp MainFrm.h Merge.cpp
+  Src\Common: LanguageSelect.cpp
+
 2004-05-11 Perry
  Fix MakePatchDirs to ignore BuildTmp.
  MakePatchDirs: ChangeLog.txt MakePatchDirs.rc MakePatchDirsDlg.cpp

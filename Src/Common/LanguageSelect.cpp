@@ -6,6 +6,7 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "LanguageSelect.h"
+#include "MainFrm.h"
 #include <locale.h>
 
 
@@ -478,24 +479,14 @@ void CLanguageSelect::ReloadMenu()
 	if (m_idDocMenu)
 	{
 		// set the menu of the main frame window
-		CMenu menu;
 		UINT idMenu = GetDocResId();
-		if ( (idMenu > 0) && menu.LoadMenu( idMenu ) )
+		CMainFrame * pMainFrame = dynamic_cast<CMainFrame *> ((CFrameWnd*)AfxGetApp()->m_pMainWnd);
+		HMENU hNewMenu = pMainFrame->NewDefaultMenu(idMenu);
+		if (hNewMenu)
 		{
-			CMenu* pOldMenu = AfxGetApp()->m_pMainWnd->GetMenu();
-			
-			if ( AfxGetApp()->m_pMainWnd->SetMenu( &menu ) )
-			{
-				pOldMenu->DestroyMenu();
-				AfxGetApp()->m_pMainWnd->DrawMenuBar();  
-				((CFrameWnd*)AfxGetApp()->m_pMainWnd)->m_hMenuDefault = menu.m_hMenu;
-				
-			}
-			menu.Detach( );
-		}
-		else
-		{
-			ASSERT(FALSE);
+			::DestroyMenu(pMainFrame->m_hMenuDefault);
+			pMainFrame->m_hMenuDefault = hNewMenu;
+			pMainFrame->OnUpdateFrameMenu(pMainFrame->m_hMenuDefault);
 		}
 	}
 }

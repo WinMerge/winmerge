@@ -60,6 +60,7 @@ typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocList;
 typedef CTypedPtrList<CPtrList, CDirDoc *> DirDocList;
 
 class CRegOptions;
+class PackingInfo;
 
 /**
  * @brief Frame class containing save-routines etc
@@ -80,7 +81,7 @@ public:
 // Operations
 public:
 	// HMENU NewMenu(); // Uncomment to enable document menus
-	HMENU NewDefaultMenu();
+	HMENU NewDefaultMenu(int ID = 0);
 	HMENU GetScriptsSubmenu(HMENU mainMenu);
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
 	void UpdatePrediffersMenu();
