@@ -291,7 +291,7 @@ BEGIN
         END
         MENUITEM "Kopiere &Dateinamen",             ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
-        POPUP "&Zip"
+        POPUP "P&acken"
         BEGIN
             MENUITEM "&Links... (%1 von %2)",       ID_DIR_ZIP_LEFT
             MENUITEM "&Rechts... (%1 von %2)",      ID_DIR_ZIP_RIGHT
@@ -997,29 +997,29 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "WinMerge"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "Archive support is disabled. In order to enable archive support, please install a version of 7-Zip that WinMerge can interface, and place a copy of the appropriate interface plugin (Merge7z*.dll) in your WinMerge directory.",
+    LTEXT           "Die Archiv-Unterstützung ist deaktiviert. Um die Unterstützung zu ermöglichen, installieren Sie eine Version von 7-Zip, die WinMerge ansteuern kann, und legen eine Kopie des passenden Schnittstellen-Plugin (Merge7z*.dll) im WinMerge-Verzeichnis ab.",
                     IDC_STATIC,2,2,272,32
-    LTEXT           "WinMerge can interface 7-Zip 3.11 and above, provided the appropriate interface plugin is available. Please use the version of 7-Zip recommended below until interface plugins for later versions become available.",
+    LTEXT           "WinMerge kann 7-Zip 3.11 und höher ansteuern, vorausgesetzt das passende Schnittstellen-Plugin ist vorhanden. Verwenden Sie bitte die Version von 7-Zip, die unten empfohlen wird, bis Schnittstellen-Plugins für neuere Versionen vorhanden sind.",
                     IDC_STATIC,2,34,272,32
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,70,131,8
+    LTEXT           "Empfohlene Version von 7-Zip:",IDC_STATIC,2,70,131,8
     EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugin required:",IDC_STATIC,2,82,86,8
+    LTEXT           "Benötigtes Schnittstellen-Plugin:",IDC_STATIC,2,82,106,8
     EDITTEXT        102,214,82,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of 7-Zip currently installed on your computer:",
+    LTEXT           "Zurzeit installierte Version von 7-Zip auf Ihrem Computer:",
                     IDC_STATIC,2,98,208,8
     EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of local 7-Zip components found in WinMerge directory:",
+    LTEXT           "Version von 7-Zip Komponenten im WinMerge-Verzeichnis:",
                     IDC_STATIC,2,110,208,8
     EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugins found in WinMerge directory:",
+    LTEXT           "Gefundenes Schnittstellen-Plugin im WinMerge-Verzeichnis:",
                     IDC_STATIC,2,130,168,28
     LISTBOX         105,174,130,100,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
                     WS_VSCROLL | WS_GROUP
-    CONTROL         "Don't display this &message again.\n(You can allways recall this message from help menu.)",
+    CONTROL         "Diese &Meldung nicht erneut anzeigen.\n(Sie können diese Meldung jederzeit vom Hilfe-Menü erneut aufrufen.)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_TABSTOP,2,164,202,20
     DEFPUSHBUTTON   "OK",IDOK,208,170,50,14,WS_GROUP
@@ -1469,21 +1469,21 @@ STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge dieses Verzeichnis"
     IDS_VERSION_FMT         "Version %1 - Deutsch"
-    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
-      /? or -? displays this help
-      /r or -r tells winmerge to compare directories recursively
-      /e or -e allows WinMerge to be closed with a single esc keypress
-      /f or -f sets filemask or filtername for compare
-      /ul or -ul tells winmerge to not add left path to MRU
-      /ur or -ur tells winmerge to not add right path to MRU
-      /ub or -ub tells winmerge to not add both paths to MRU
-      /wl or -wl initially opens left side as read-only
-      /wr or -wr initially opens right side as read-only
-      /dl or -dl adds a description for left side shown instead of directory/filename
-      /dr or -dr adds a description for right side shown instead of directory/filename
-      leftpath is the directory or filename to open on the left side
-      rightpath is the directory or filename to open on the right side
-      outputpath is an optional output directory where you want merged files to be saved"
+    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f Maske/Name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl LinkeBeschreibung] [/dr RechteBeschreibung] LinkerPfad RechterPfad [AusgabePfad]\n\nWo:
+      /? oder -? zeigt diese Hilfe
+      /r oder -r befiehlt WinMerge, Verzeichnisse rekursiv zu vergleichen
+      /e oder -e erlaubt, dass WinMerge mit einem einzelnen ESC-Tastendruck geschlossen wird
+      /f oder -f setzt die Dateimaske oder den Filtername für den Vergleich
+      /ul oder -ul befiehlt WinMerge, den linken Pfad nicht der 'Kürzlich verwendet'-Liste hinzuzufügen
+      /ur oder -ur befiehlt WinMerge, den rechten Pfad nicht der 'Kürzlich verwendet'-Liste hinzuzufügen
+      /ub oder -ub befiehlt WinMerge, beide Pfade nicht der 'Kürzlich verwendet'-Liste hinzuzufügen
+      /wl oder -wl öffnet die linke Seite zunächst als schreibgeschützt
+      /wr oder -wr öffnet die rechte Seite zunächst als schreibgeschützt
+      /dl oder -dl fügt eine Beschreibung für die linke Seite hinzu, die anstelle vom Verzeichnis/Dateinamen gezeigt wird
+      /dr oder -dr fügt eine Beschreibung für die rechte Seite hinzu, die anstelle vom Verzeichnis/Dateinamen gezeigt wird
+      LinkerPfad ist das Verzeichnis oder der Dateiname zum Öffnen auf der linken Seite
+      RechterPfad ist das Verzeichnis oder der Dateiname zum Öffnen auf der rechten Seite
+      AusgabePfad ist ein optionales Ausgabeverzeichnis, in dem Sie die vermischten Dateien speichern möchten"
 END
 
 // VARIOUS OPTIONS
@@ -1552,9 +1552,9 @@ END
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
 STRINGTABLE
 BEGIN
-    IDS_LINE_STATUS_INFO_EOL "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "Ze: %s  Sp: %d/%d  Zchn: %d/%d  Format: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Zeile: %s"
-    IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
+    IDS_LINE_STATUS_INFO    "Ze: %s  Sp: %d/%d  Zchn: %d/%d"
     IDS_MERGEMODE_MERGING   "Merge"
     IDS_DIFF_NUMBER_STATUS_FMT "Unterschied %1 von %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Unterschiede gefunden"
@@ -1844,9 +1844,9 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIR_RESULTS_EMPTIED "Die aktuellen Resultate des Verzeichnis-Vergleichs werden gelöscht."
-    IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\n
-                            All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.
-                            See manual for more info about archive support and how to enable it."
+    IDS_NO_ZIP_SUPPORT      "Die Archiv-Unterstützung ist nicht aktiviert.\n
+                            Alle erforderlichen Komponenten (7-zip und/oder Merge7z*.dll) für die Archiv-Unterstützung können nicht gefunden werden.
+                            Entnehmen Sie dem Handbuch mehr Informationen über die Archiv-Unterstützung und wie sie aktiviert wird."
 END
 
 // Regular expression errors
@@ -1902,14 +1902,14 @@ BEGIN
     IDS_ARABIC_BAHRAIN      "Arabisch (Bahrain)"
     IDS_ARABIC_QATAR        "Arabisch (Qatar)"
     IDS_ARMENIAN            "Armenisch"
-    IDS_AZERI_LATIN         "Azeri (Latin)"
-    IDS_AZERI_CYRILLIC      "Azeri (Cyrillic)"
+    IDS_AZERI_LATIN         "Aserbaidschanisch (Lateinisch)"
+    IDS_AZERI_CYRILLIC      "Aserbaidschanisch (Kyrillisch)"
     IDS_BASQUE              "Baskenland"
-    IDS_BELARUSIAN          "Belarusian"
+    IDS_BELARUSIAN          "Belarussisch"
     IDS_BULGARIAN           "Bulgarisch"
     IDS_CATALAN             "Katalanisch"
-    IDS_CHINESE_TRADITIONAL "Chinesisch (Traditional)"
-    IDS_CHINESE_SIMPLIFIED  "Chinesisch (Simplified)"
+    IDS_CHINESE_TRADITIONAL "Chinesisch (Traditionell)"
+    IDS_CHINESE_SIMPLIFIED  "Chinesisch (Vereinfacht)"
     IDS_CHINESE_HONGKONG    "Chinesisch (Hong Kong)"
     IDS_CHINESE_SINGAPORE   "Chinesisch (Singapur)"
 END
@@ -1971,8 +1971,8 @@ BEGIN
     IDS_ITALIAN             "Italienisch"
     IDS_ITALIAN_SWISS       "Italienisch (Schweiz)"
     IDS_JAPANESE            "Japanisch"
-    IDS_KASHMIRI            "Kashmiri (India)"
-    IDS_KAZAK               "Kazakh"
+    IDS_KASHMIRI            "Kaschmiri (Indien)"
+    IDS_KAZAK               "Kasachisch"
     IDS_KOREAN              "Koreanisch"
     IDS_KOREAN_JOHAB        "Koreanisch (Johab)"
 END
@@ -2004,16 +2004,16 @@ BEGIN
     IDS_SLOVAK              "Slowakisch"
     IDS_SLOVENIAN           "Slowenisch"
     IDS_SPANISH             "Spanisch"
-    IDS_SPANISH_MEXICAN     "Spanisch (Mexican)"
+    IDS_SPANISH_MEXICAN     "Spanisch (Mexikanisch)"
     IDS_SPANISH_MODERN      "Spanisch (Modern)"
     IDS_SPANISH_GUATEMALA   "Spanisch (Guatemala)"
     IDS_SPANISH_COSTA_RICA  "Spanisch (Costa Rica)"
     IDS_SPANISH_PANAMA      "Spanisch (Panama)"
-    IDS_SPANISH_DOMINICAN   "Spanisch (Dominican)"
+    IDS_SPANISH_DOMINICAN   "Spanisch (Dominikanisch)"
     IDS_SPANISH_VENEZUELA   "Spanisch (Venezuela)"
-    IDS_SPANISH_COLOMBIA    "Spanisch (Colombia)"
+    IDS_SPANISH_COLOMBIA    "Spanisch (Kolumbien)"
     IDS_SPANISH_PERU        "Spanisch (Peru)"
-    IDS_SPANISH_ARGENTINA   "Spanisch (Argentina)"
+    IDS_SPANISH_ARGENTINA   "Spanisch (Argentinien)"
     IDS_SPANISH_ECUADOR     "Spanisch (Ecuador)"
     IDS_SPANISH_CHILE       "Spanisch (Chile)"
     IDS_SPANISH_URUGUAY     "Spanisch (Uruguay)"
@@ -2023,7 +2023,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_SPANISH_PARAGUAY    "Spanisch (Paraguay)"
-    IDS_SPANISH_BOLIVIA     "Spanisch (Bolivia)"
+    IDS_SPANISH_BOLIVIA     "Spanisch (Bolivien)"
     IDS_SPANISH_EL_SALVADOR "Spanisch (El Salvador)"
     IDS_SPANISH_HONDURAS    "Spanisch (Honduras)"
     IDS_SPANISH_NICARAGUA   "Spanisch (Nicaragua)"
@@ -2031,13 +2031,13 @@ BEGIN
     IDS_SWAHILI             "Swahili (Kenia)"
     IDS_SWEDISH             "Schwedisch"
     IDS_SWEDISH_FINLAND     "Schwedisch (Finnland)"
-    IDS_TAMIL               "Tamil"
-    IDS_TATAR               "Tatar (Tatarstan)"
+    IDS_TAMIL               "Tamilisch"
+    IDS_TATAR               "Tatarisch (Tatarstan)"
     IDS_THAI                "Thailändisch"
     IDS_TURKISH             "Türkisch"
     IDS_UKRANIAN            "Ukrainisch"
     IDS_URDU_PAKISTAN       "Urdu (Pakistan)"
-    IDS_URDU_INDIA          "Urdu (India)"
+    IDS_URDU_INDIA          "Urdu (Indien)"
 END
 
 // LANGAGE NAMES #9

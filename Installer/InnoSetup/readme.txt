@@ -1,3 +1,8 @@
+2004-11-02 Kimmo
+ PATCH: [ 1058293 ] The finished german language file
+  Submitted by Tim Gerundt
+  InnoSetup/Languages: German.isl
+
 2004-11-01 Kimmo
  PATCH: [ 1057661 ] Installer: Install Hungarian lang file
   InnoSetup: WinMerge Localized.iss

@@ -1,3 +1,8 @@
+2004-11-02 Kimmo
+ PATCH: [ 1058293 ] The finished german language file
+  Submitted by Tim Gerundt
+  Src/Languages/German: MergeGerman.rc
+
 2004-11-01 Kimmo
  PATCH: [ 1057719 ] Add Hungarian translator to Contributors list
   Docs/Users: Contributors.txt
