@@ -19,9 +19,9 @@ releases.</p>
   updates</li>
   <li class="toc"><b><a name="maintained">Maintained</a></b> - translator(s) (we hope) send updates
   when we ask</li>
-  <li class="toc"><b><a name="unmaintained">Unmaintained</a></b> - we haven't heard anything about
+  <li class="toc"><b><a name="unmaintained">Unmaintained</a></b> - we haven't heard anything from
   translator(s)</li>
-  <li class="toc"><b><a name="unknown">Unknown</a></b> - we get update to latest stable but don't
+  <li class="toc"><b><a name="unknown">Unknown</a></b> - we got update to latest stable but don't
   know if translator is still interested</li>
 </ul>
 
