@@ -64,6 +64,7 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 	pNamesRight = NULL;
 	m_piFilterUI = 0;
 	m_piFilterGlobal = 0;
+	m_piPluginInfos = 0;
 	m_msgUpdateStatus = 0;
 	m_hDirFrame = NULL;
 }
@@ -417,4 +418,11 @@ CString DIFFITEM::getRightFilepath(const CDiffContext *pCtxt) const
 		}
 	}
 	return sPath;
+}
+
+/** @brief Forward call to retrieve plugin info (winds up in DirDoc) */
+void CDiffContext::FetchPluginInfos(const CString& filteredFilenames, PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer)
+{
+	ASSERT(m_piPluginInfos);
+	m_piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
 }

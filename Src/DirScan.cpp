@@ -181,7 +181,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 				// Compare file to itself to detect encoding
 				CString filepath = sLeftDir + backslash + leftFiles[i].name;
 				DiffFileData diffdata;
-				diffdata.prepAndCompareTwoFiles(filepath, filepath);
+				diffdata.prepAndCompareTwoFiles(pCtxt, filepath, filepath);
 				StoreDiffResult(subdir, &leftFiles[i], 0, DIFFCODE::LEFT | DIFFCODE::FILE, pCtxt, &diffdata);
 			}
 			else
@@ -205,7 +205,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 				// Compare file to itself to detect encoding
 				CString filepath = sRightDir + backslash + rightFiles[j].name;
 				DiffFileData diffdata;
-				diffdata.prepAndCompareTwoFiles(filepath, filepath);
+				diffdata.prepAndCompareTwoFiles(pCtxt, filepath, filepath);
 				StoreDiffResult(subdir, 0, &rightFiles[j], DIFFCODE::RIGHT | DIFFCODE::FILE, pCtxt, &diffdata);
 			}
 			else
@@ -228,26 +228,26 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			LPCTSTR leftname = leftFiles[i].name;
 			LPCTSTR rightname = rightFiles[j].name;
 
-			gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s")
+				gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s")
 				, leftname, rightname, (LPCTSTR)sLeftDir, (LPCTSTR)sRightDir);
 
-			if (mf->m_nCompMethod == 1)
-			{
-				// Compare only by modified date
+				if (mf->m_nCompMethod == 1)
+				{
+					// Compare only by modified date
 				int code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
-				if (leftFiles[i].mtime != rightFiles[j].mtime)
-					code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::DIFF;
+					if (leftFiles[i].mtime != rightFiles[j].mtime)
+						code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::DIFF;
 				// report result back to caller
 				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt);
 				continue;
-			}
+				}
 			// Files to compare
 			CString filepath1 = sLeftDir + backslash + leftname;
 			CString filepath2 = sRightDir + backslash + rightname;
-			// Really compare
+					// Really compare
 			DiffFileData diffdata;
-			int code = diffdata.prepAndCompareTwoFiles(filepath1, filepath2);
-			// report result back to caller
+			int code = diffdata.prepAndCompareTwoFiles(pCtxt, filepath1, filepath2);
+				// report result back to caller
 			StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt, &diffdata);
 			++i;
 			++j;
@@ -285,8 +285,8 @@ void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 		{
 			DWORD dwIsDirectory = ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY;
 			if (dwIsDirectory && StrStr(_T(".."), ff.cFileName))
-				continue;
-			fentry ent;
+			continue;
+		fentry ent;
 			ent.ctime = CTime(ff.ftCreationTime).GetTime();
 			ent.mtime = CTime(ff.ftLastWriteTime).GetTime();
 			ent.size = ff.nFileSizeLow + (ff.nFileSizeHigh << 32);

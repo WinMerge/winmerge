@@ -124,6 +124,7 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	options.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
 
 	m_diffWrapper.SetOptions(&options);
+	m_diffWrapper.SetPrediffer(NULL);
 }
 
 #pragma warning(default:4355)
@@ -237,6 +238,15 @@ void CMergeDoc::SetUnpacker(PackingInfo * infoNewHandler)
 	}
 }
 
+void CMergeDoc::SetPrediffer(PrediffingInfo * infoPrediffer)
+{
+	m_diffWrapper.SetPrediffer(infoPrediffer);
+}
+void CMergeDoc::GetPrediffer(PrediffingInfo * infoPrediffer)
+{
+	m_diffWrapper.GetPrediffer(infoPrediffer);
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc serialization
 
@@ -327,7 +337,6 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 
 	// Set up DiffWrapper
 	m_diffWrapper.SetCompareFiles(m_strTempLeftFile, m_strTempRightFile);
-	m_diffWrapper.SetTextForAutomaticUnpack(m_strBothFilenames);
 	m_diffWrapper.SetDiffList(&m_diffs);
 	m_diffWrapper.SetUseDiffList(TRUE);		// Add diffs to list
 	m_diffWrapper.GetOptions(&diffOptions);
@@ -2639,6 +2648,13 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		}
 	}
 
+	// Define the prediffer
+	PackingInfo * infoUnpacker = 0;
+	PrediffingInfo * infoPrediffer = 0;
+	m_pDirDoc->FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
+	m_diffWrapper.SetPrediffer(infoPrediffer);
+	m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
+	
 	nRescanResult = Rescan();
 
 	// Open different and identical files

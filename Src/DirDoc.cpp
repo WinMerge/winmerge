@@ -460,6 +460,9 @@ void CDirDoc::SetDiffContext(CDiffContext *pCtxt)
 		delete m_pCtxt;
 
 	m_pCtxt = pCtxt;
+
+	// All plugin management is done by our plugin manager
+	m_pCtxt->m_piPluginInfos = &m_pluginman;
 }
 
 /**
@@ -882,3 +885,22 @@ void CDirDoc::SetDescriptions(CString strLeftDesc, CString strRightDesc)
 	m_strRightDesc = strRightDesc;
 }
 
+/**
+ * @brief Store a plugin setting for specified file comparison
+ */
+void CDirDoc::SetPluginPrediffSetting(const CString & filteredFilenames, int newsetting)
+{
+	m_pluginman.SetPrediffSetting(filteredFilenames, newsetting);
+}
+
+/**
+ * @brief Retrieve any cached plugin info for specified comparison
+ */
+void CDirDoc::FetchPluginInfos(const CString& filteredFilenames, 
+                               PackingInfo ** infoUnpacker, 
+                               PrediffingInfo ** infoPrediffer)
+{
+	// This will manufacture the needed objects if not already cached
+	IPluginInfos * piPluginInfos = &m_pluginman;
+	piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
+}

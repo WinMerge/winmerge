@@ -92,6 +92,7 @@ struct DiffFileInfo;
 class CMergeEditView;
 class CMergeDiffDetailView;
 class PackingInfo;
+class PrediffingInfo;
 class CChildFrame;
 class CDirDoc;
 
@@ -203,6 +204,8 @@ public:
 	UINT m_nDiffs; /**< Amount of diffs */
 	UINT m_nTrivialDiffs; /**< Amount of trivial (ignored) diffs */
 	CString m_strLeftFile, m_strRightFile;
+	/// String of concatenated filenames as text to apply plugins filter to
+	CString m_strBothFilenames;
 
 	void UpdateHeaderPath(BOOL bLeft);
 	void UpdateHeaderActivity(BOOL bLeft, BOOL bActivate);
@@ -228,6 +231,8 @@ public:
 	void SetDiffViewMode(BOOL bEnable);
 
 	void SetUnpacker(PackingInfo * infoUnpacker);
+	void SetPrediffer(PrediffingInfo * infoPrediffer);
+	void GetPrediffer(PrediffingInfo * infoPrediffer);
 	void SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight);
 	void SetMergeDetailViews(CMergeDiffDetailView * pLeft, CMergeDiffDetailView * pRight);
 	void SetDirDoc(CDirDoc * pDirDoc);
@@ -291,8 +296,6 @@ protected:
 	CDiffWrapper m_diffWrapper;
 	/// information about the file packer/unpacker
 	PackingInfo * m_pInfoUnpacker;
-	/// String of concatenated filenames as text to apply plugins filter to
-	CString m_strBothFilenames;
 	CString m_strLeftDesc; /**< Left side description text */
 	CString m_strRightDesc; /**< Right side description text */
 	BUFFERTYPE m_nLeftBufferType;

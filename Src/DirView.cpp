@@ -155,6 +155,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_DIR_STATEPANE, OnUpdateDirStatePane)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, OnSelectAll)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_SELECT_ALL, OnUpdateSelectAll)
+	ON_COMMAND_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnPluginPredifferMode)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnUpdatePluginPredifferMode)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -412,6 +414,17 @@ static void NTAPI FormatContextMenu(BCMenu *pPopup, UINT uIDItem, int n1, int n2
 }
 
 /**
+ * @brief Toggle context menu item
+ */
+static void NTAPI CheckContextMenu(BCMenu *pPopup, UINT uIDItem, BOOL bCheck)
+{
+	if (bCheck)
+		pPopup->CheckMenuItem(uIDItem, MF_CHECKED);
+	else
+		pPopup->CheckMenuItem(uIDItem, MF_UNCHECKED);
+}
+
+/**
  * @brief User right-clicked in listview rows
  */
 void CDirView::ListContextMenu(CPoint point, int /*i*/)
@@ -426,6 +439,10 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	// 1st submenu of IDR_POPUP_DIRVIEW is for item popup
 	BCMenu *pPopup = (BCMenu*) menu.GetSubMenu(0);
 	ASSERT(pPopup != NULL);
+
+	CMenu menuPluginsHolder;
+	menuPluginsHolder.LoadMenu(IDR_POPUP_PLUGINS_SETTINGS);
+	pPopup->AppendMenu(MF_POPUP, (int)menuPluginsHolder.m_hMenu, "Plugin Settings"); // TODO: i18n
 
 	// set the menu items with the proper directory names
 	CString sl, sr;
@@ -452,6 +469,8 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	int nOpenableOnRightWith = 0;
 	int nDiffItems = 0;
 	int nDiffFiles = 0;
+	int nPredifferAuto = 0;
+	int nPredifferManual = 0;
 	int i = -1;
 	while ((i = m_pList->GetNextItem(i, LVNI_SELECTED)) != -1)
 	{
@@ -483,12 +502,30 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 				++nDiffFiles;
 		}
 		++nTotal;
+
+		// note the prediffer flag for 'files present on both sides and not skipped'
+		if (!di.isDirectory() && !di.isBin() && !di.isSideLeft() && !di.isSideRight() && !di.isResultSkipped())
+		{
+			CString leftPath = di.getLeftFilepath(GetDiffContext()) + _T("\\") + di.sfilename;
+			CString rightPath = di.getRightFilepath(GetDiffContext()) + _T("\\") + di.sfilename;
+			CString filteredFilenames = leftPath + "|" + rightPath;
+			PackingInfo * unpacker;
+			PrediffingInfo * prediffer;
+			GetDocument()->FetchPluginInfos(filteredFilenames, &unpacker, &prediffer);
+			if (prediffer->bToBeScanned == 1)
+				nPredifferAuto ++;
+			else
+				nPredifferManual ++;
+		}
 	}
 
 	FormatContextMenu(pPopup, ID_DIR_ZIP_LEFT, nOpenableOnLeftWith, nTotal);
 	FormatContextMenu(pPopup, ID_DIR_ZIP_RIGHT, nOpenableOnRightWith, nTotal);
 	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH, nOpenableOnLeftWith + nOpenableOnRightWith, nTotal);
 	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH_DIFFS_ONLY, nDiffFiles, nDiffItems, nTotal);
+
+	CheckContextMenu(pPopup, ID_PREDIFF_AUTO, (nPredifferAuto > 0));
+	CheckContextMenu(pPopup, ID_PREDIFF_MANUAL, (nPredifferManual > 0));
 
 	CFrameWnd *pFrame = GetTopLevelFrame();
 	ASSERT(pFrame != NULL);
@@ -2047,3 +2084,33 @@ void CDirView::OnUpdateSelectAll(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
+/**
+ * @brief Handle clicks in plugin context view in list
+ */
+void CDirView::OnPluginPredifferMode(UINT nID)
+{
+	int newsetting = 0;
+	switch (nID)
+	{
+	case ID_PREDIFF_MANUAL:
+		newsetting = PLUGIN_MANUAL;
+		break;
+	case ID_PREDIFF_AUTO:
+		newsetting = PLUGIN_AUTO;
+		break;
+	}
+	ApplyPluginPrediffSetting(newsetting);
+}
+
+/**
+ * @brief Updates just before displaying plugin context view in list
+ */
+void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
+{
+	// 2004-04-03, Perry
+	// CMainFrame::OnUpdatePluginUnpackMode handles this for global unpacking
+	// and is the template to copy, but here, this is a bit tricky
+	// as a group of files may be selected
+	// and they may not all have the same setting
+	// so I'm not trying this right now
+}

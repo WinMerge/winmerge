@@ -143,6 +143,7 @@ private:
 	void DoOpen(SIDE_TYPE stype);
 	void DoOpenWith(SIDE_TYPE stype);
 	void DoOpenWithEditor(SIDE_TYPE stype);
+	void ApplyPluginPrediffSetting(int newsetting);
 	void ConfirmAndPerformActions(ActionList & actions);
 	BOOL ConfirmActionList(const ActionList & actions);
 	void PerformActionList(ActionList & actions);
@@ -285,6 +286,8 @@ protected:
 	afx_msg void OnUpdateDirStatePane(CCmdUI* pCmdUI);
 	afx_msg void OnSelectAll();
 	afx_msg void OnUpdateSelectAll(CCmdUI* pCmdUI);
+	afx_msg void OnPluginPredifferMode(UINT nID);
+	afx_msg void OnUpdatePluginPredifferMode(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);

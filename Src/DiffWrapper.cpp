@@ -51,6 +51,7 @@ CDiffWrapper::CDiffWrapper()
 	m_bAddCmdLine = TRUE;
 	m_bAppendFiles = FALSE;
 	m_nDiffs = 0;
+	m_infoPrediffer = NULL;
 
 	m_settings.heuristic = 1;
 	m_settings.outputStyle = OUTPUT_NORMAL;
@@ -58,6 +59,12 @@ CDiffWrapper::CDiffWrapper()
     
 	// character that ends a line.  Currently this is always `\n'
 	line_end_char = '\n';
+}
+
+CDiffWrapper::~CDiffWrapper()
+{
+	if (m_infoPrediffer)
+		delete m_infoPrediffer;
 }
 
 /**
@@ -108,12 +115,27 @@ void CDiffWrapper::SetOptions(DIFFOPTIONS *options)
 }
 
 /**
- * @brief Set text tested to find the unpacker automatically.
+ * @brief Set text tested to find the prediffer automatically.
  * Most probably a concatenated string of both filenames.
  */
-void CDiffWrapper::SetTextForAutomaticUnpack(CString text)
+void CDiffWrapper::SetTextForAutomaticPrediff(CString text)
 {
-	m_sToFindUnpacker = text;
+	m_sToFindPrediffer = text;
+}
+void CDiffWrapper::SetPrediffer(PrediffingInfo * prediffer /*=NULL*/)
+{
+	if (m_infoPrediffer)
+		delete m_infoPrediffer;
+
+	// all flags are set correctly during the construction
+	m_infoPrediffer = new PrediffingInfo;
+
+	if (prediffer)
+		*m_infoPrediffer = *prediffer;
+}
+void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer)
+{
+	*prediffer = *m_infoPrediffer;
 }
 
 /**
@@ -193,23 +215,43 @@ BOOL CDiffWrapper::RunFileDiff()
 	struct change *script = NULL;
 
 	// Do the preprocessing now, overwrite the temp files
-	// TODO : do something with this prediffer info
 	// NOTE: FileTransform_UCS2ToUTF8() may create new temp
 	// files and return new names, those created temp files
 	// are deleted in end of function.
-	PrediffingInfo infoPrediffer;
-	if (infoPrediffer.bToBeScanned)
+	if (m_infoPrediffer->bToBeScanned)
 	{
-		FileTransform_Prediffing(strFile1Temp, m_sToFindUnpacker, &infoPrediffer, TRUE);
+		// this can only fail if the data can not be saved back (no more place on disk ???)
+		// what to do then ??
+		FileTransform_Prediffing(strFile1Temp, m_sToFindPrediffer, m_infoPrediffer, TRUE);
 	}
 	else
 	{
-		FileTransform_Prediffing(strFile1Temp, infoPrediffer, TRUE);
+		// this can failed if the prediffer has a problem
+		if (FileTransform_Prediffing(strFile1Temp, *m_infoPrediffer, TRUE) == FALSE)
+		{
+			// display a message box
+			CString sError;
+			AfxFormatString2(sError, ID_PREDIFFER_ERROR, strFile1Temp, m_infoPrediffer->pluginName);
+			AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
+			// don't use any more this prediffer
+			m_infoPrediffer->bToBeScanned = FALSE;
+			m_infoPrediffer->pluginName = _T("");
+		}
 	}
+
 	FileTransform_UCS2ToUTF8(strFile1Temp, TRUE);
 	// we use the same plugin for both files, so it must be defined before second file
-	ASSERT(infoPrediffer.bToBeScanned == FALSE);
-	FileTransform_Prediffing(strFile2Temp, infoPrediffer, TRUE);
+	ASSERT(m_infoPrediffer->bToBeScanned == FALSE);
+	if (FileTransform_Prediffing(strFile2Temp, *m_infoPrediffer, TRUE) == FALSE)
+	{
+		// display a message box
+		CString sError;
+		AfxFormatString2(sError, ID_PREDIFFER_ERROR, strFile2Temp, m_infoPrediffer->pluginName);
+		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
+		// don't use any more this prediffer
+		m_infoPrediffer->bToBeScanned = FALSE;
+		m_infoPrediffer->pluginName = _T("");
+	}
 	FileTransform_UCS2ToUTF8(strFile2Temp, TRUE);
 
 	DiffFileData diffdata;
@@ -753,7 +795,7 @@ bool DiffFileData::DoOpenFiles()
 		// Also, WinMerge-modified diffutils handles all three major eol styles
 		if (m_inf[i].desc == 0)
 		{
-			m_inf[i].desc = _topen(m_sFilepath[i], O_RDONLY|O_BINARY, _S_IREAD);
+		m_inf[i].desc = _topen(m_sFilepath[i], O_RDONLY|O_BINARY, _S_IREAD);
 		}
 		if (m_inf[i].desc < 0)
 			return false;
@@ -1372,7 +1414,7 @@ bool DiffFileData::Filepath::Transform(const CString & filepath, CString & filep
  * @brief Prepare files (run plugins) & compare them, and return diffcode
  */
 int
-DiffFileData::prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2) //, int * ndiffs, int * ntrivialdiffs, int unicoding[2])
+DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const CString & filepath1, const CString & filepath2) //, int * ndiffs, int * ntrivialdiffs, int unicoding[2])
 {
 	int code = DIFFCODE::FILE | DIFFCODE::CMPERR;
 	// For user chosen plugins, define bAutomaticUnpacker as false and use the chosen infoHandler
@@ -1382,9 +1424,12 @@ DiffFileData::prepAndCompareTwoFiles(const CString & filepath1, const CString & 
 	// Transformation happens here
 	// text used for automatic mode : plugin filter must match it
 	CString filteredFilenames = filepath1 + "|" + filepath2;
-	// Use temporary plugins info
-	PackingInfo infoUnpacker(g_bUnpackerMode);
-	PrediffingInfo infoPrediffer(g_bPredifferMode);
+
+	PackingInfo * infoUnpacker=0;
+	PrediffingInfo * infoPrediffer=0;
+
+	// Get existing or new plugin infos
+	pCtxt->FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 
 	// plugin may alter filepaths to temp copies (which we delete before returning in all cases)
 	CString filepathUnpacked1 = filepath1;
@@ -1395,13 +1440,13 @@ DiffFileData::prepAndCompareTwoFiles(const CString & filepath1, const CString & 
 
 	//DiffFileData diffdata; //(filepathTransformed1, filepathTransformed2);
 	// Invoke unpacking plugins
-	if (!Unpack(filepathUnpacked1, filteredFilenames, &infoUnpacker))
+	if (!Unpack(filepathUnpacked1, filteredFilenames, infoUnpacker))
 		goto exitPrepAndCompare;
 
 	// we use the same plugins for both files, so they must be defined before second file
-	ASSERT(infoUnpacker.bToBeScanned == FALSE);
+	ASSERT(infoUnpacker->bToBeScanned == FALSE);
 
-	if (!Unpack(filepathUnpacked2, filteredFilenames, &infoUnpacker))
+	if (!Unpack(filepathUnpacked2, filteredFilenames, infoUnpacker))
 		goto exitPrepAndCompare;
 
 	// As we keep handles open on unpacked files, Transform() may not delete them.
@@ -1412,13 +1457,13 @@ DiffFileData::prepAndCompareTwoFiles(const CString & filepath1, const CString & 
 		goto exitPrepAndCompare;
 
 	// Invoke prediff'ing plugins
-	if (!m_sFilepath[0].Transform(filepathUnpacked1, filepathTransformed1, filteredFilenames, &infoPrediffer, m_inf[0].desc))
+	if (!m_sFilepath[0].Transform(filepathUnpacked1, filepathTransformed1, filteredFilenames, infoPrediffer, m_inf[0].desc))
 		goto exitPrepAndCompare;
 
 	// we use the same plugins for both files, so they must be defined before second file
-	ASSERT(infoPrediffer.bToBeScanned == FALSE);
+	ASSERT(infoPrediffer->bToBeScanned == FALSE);
 
-	if (!m_sFilepath[1].Transform(filepathUnpacked2, filepathTransformed2, filteredFilenames, &infoPrediffer, m_inf[1].desc))
+	if (!m_sFilepath[1].Transform(filepathUnpacked2, filepathTransformed2, filteredFilenames, infoPrediffer, m_inf[1].desc))
 		goto exitPrepAndCompare;
 
 	// If options are binary equivalent, we could check for filesize

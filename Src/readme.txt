@@ -1,4 +1,10 @@
 2004-04-16 Laoran
+ PATCH: [ 935048 ] Plugin manager and per-file plugin settings V2
+  Src: DiffContext.cpp DiffContext.h DiffWrapper.cpp DiffWrapper.h DirActions.cpp DirDoc.cpp DirDoc.h 
+   DirScan.cpp DirView.cpp DirView.h MainFrm.cpp Merge.dsp Merge.rc MergeDoc.cpp MergeDoc.h resource.h
+  Src Add: PluginManager.cpp PluginManager.h
+
+2004-04-16 Laoran
  updated swedish translation
   Submitted by Hans Ericson <hans.ericson@bredband.net>
   Languages/Swedish: MergeSwedish.rc

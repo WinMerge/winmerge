@@ -740,3 +740,24 @@ void CDirView::DoOpenWithEditor(SIDE_TYPE stype)
 
 	mf->OpenFileToExternalEditor(file);
 }
+
+/**
+ * @brief Apply specified setting for prediffing to all selected items
+ */
+void CDirView::ApplyPluginPrediffSetting(int newsetting)
+{
+	// Unlike other group actions, here we don't build an action list
+	// to execute; we just apply this change directly
+	int sel=-1;
+	CString slFile, srFile;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (!di.isDirectory() && !di.isSideLeft() && !di.isSideRight())
+		{
+			GetItemFileNames(sel, slFile, srFile);
+			CString filteredFilenames = slFile + (CString)_T("|") + srFile;
+			GetDocument()->SetPluginPrediffSetting(filteredFilenames, newsetting);
+		}
+	}
+}

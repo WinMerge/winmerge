@@ -27,6 +27,9 @@
 #ifndef _DIFFWRAPPER_H
 #define _DIFFWRAPPER_H
 
+class CDiffContext;
+class PrediffingInfo;
+
 /**
  * @brief Different compare methods
  */
@@ -171,12 +174,15 @@ class CDiffWrapper
 {
 public:
 	CDiffWrapper();
+	~CDiffWrapper();
 	void SetCompareFiles(CString file1, CString file2);
 	void SetPatchFile(CString file);
 	void SetDiffList(CArray<DIFFRANGE,DIFFRANGE> *diffs);
 	void GetOptions(DIFFOPTIONS *options);
 	void SetOptions(DIFFOPTIONS *options);
-	void SetTextForAutomaticUnpack(CString text);
+	void SetTextForAutomaticPrediff(CString text);
+	void SetPrediffer(PrediffingInfo * prediffer =NULL);
+	void GetPrediffer(PrediffingInfo * prediffer);
 	void GetPatchOptions(PATCHOPTIONS *options);
 	void SetPatchOptions(PATCHOPTIONS *options);
 	BOOL GetUseDiffList() const;
@@ -209,7 +215,10 @@ private:
 	CString m_sFile1;
 	CString m_sFile2;
 	CString m_sPatchFile;
-	CString m_sToFindUnpacker;
+	/// prediffer info are stored only for MergeDoc
+	PrediffingInfo * m_infoPrediffer;
+	/// prediffer info are stored only for MergeDoc
+	CString m_sToFindPrediffer;
 	BOOL m_bUseDiffList;
 	BOOL m_bDetectMovedBlocks;
 	BOOL m_bCreatePatchFile;
@@ -238,7 +247,7 @@ struct DiffFileData
 	void Close() { Reset(); }
 
 	int just_compare_files(int depth);
-	int prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2);
+	int prepAndCompareTwoFiles(CDiffContext * pCtxt, const CString & filepath1, const CString & filepath2);
 
 	file_data * m_inf;
 	bool m_used; // whether m_inf has real data

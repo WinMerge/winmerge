@@ -1070,6 +1070,10 @@ SOURCE=.\paths.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PluginManager.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Plugins.cpp
 # End Source File
 # Begin Source File
@@ -1691,6 +1695,10 @@ SOURCE=.\PatchTool.h
 # Begin Source File
 
 SOURCE=.\paths.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PluginManager.h
 # End Source File
 # Begin Source File
 

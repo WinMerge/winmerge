@@ -474,6 +474,9 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	if (!pMergeDoc) return; // when does this happen ?
 
 	// if an unpacker is selected, it must be used during LoadFromFile
+	// MergeDoc must memorize it for SaveToFile
+	// Warning : this unpacker may differ from the pDirDoc one
+	// (through menu : "Plugins"->"Open with unpacker")
 	pMergeDoc->SetUnpacker(infoUnpacker);
 
 	bOpenSuccess = pMergeDoc->OpenDocs(szLeft, szRight,

@@ -290,6 +290,15 @@ BEGIN
     END
 END
 
+IDR_POPUP_PLUGINS_SETTINGS MENU 
+BEGIN
+    POPUP "Prediffer Settings"
+    BEGIN
+        MENUITEM "&No prediffer",               ID_PREDIFF_MANUAL
+        MENUITEM "Auto prediffer",              ID_PREDIFF_AUTO
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1553,6 +1562,10 @@ BEGIN
     ID_NO_EDIT_SCRIPTS      "< Empty >"
     ID_RELOAD_PLUGINS       "&Unload all plugins and reload them (for developpers)"
     ID_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
+    ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
+    ID_PREDIFF_MANUAL       "No prediffer"
+    ID_PREDIFF_AUTO         "Prediff if possible"
+    ID_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 END
 
 #endif    // French (France) resources

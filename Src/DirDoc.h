@@ -37,6 +37,10 @@
 #include "diffThread.h"
 #include "DiffWrapper.h"
 
+#ifndef PluginManager_h_included
+#include "PluginManager.h"
+#endif
+
 #ifndef REGEXP_H
 #include "RegExp.h"
 #endif
@@ -108,6 +112,9 @@ public:
 	void AbortCurrentScan();
 	bool IsCurrentScanAbortable() const;
 	void SetDescriptions(CString strLeftDesc, CString strRightDesc);
+	void SetPluginPrediffSetting(const CString & filteredFilenames, int newsetting);
+	void FetchPluginInfos(const CString& filteredFilenames, 
+	                      PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
 
 protected:
 	CDiffWrapper m_diffWrapper;
@@ -131,6 +138,7 @@ private:
 	CustomStatusCursor * m_statusCursor;
 	CString m_strLeftDesc; /**< Left side desription text */
 	CString m_strRightDesc; /**< Left side desription text */
+	PluginManager m_pluginman;
 };
 
 /**

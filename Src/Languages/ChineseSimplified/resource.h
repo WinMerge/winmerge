@@ -35,6 +35,7 @@
 #define IDD_PROPPAGE_COMPARE            122
 #define IDD_PROPPAGE_EDITOR             123
 #define IDB_ERROR                       124
+#define IDR_POPUP_PLUGINS_SETTINGS      125
 #define IDS_VERSION_FMT                 130
 #define IDS_ALLFILES                    131
 #define IDS_CONFIRM_ALL_LEFT            132
@@ -593,14 +594,17 @@
 #define ID_RELOAD_PLUGINS               32866
 #define ID_MESSAGE_BOX_ARE_RESET        32867
 #define ID_NO_SCT_SCRIPTS               32868
+#define ID_PREDIFF_MANUAL               32869
+#define ID_PREDIFF_AUTO                 32870
+#define ID_PREDIFFER_ERROR              32871
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        125
-#define _APS_NEXT_COMMAND_VALUE         32868
+#define _APS_NEXT_RESOURCE_VALUE        126
+#define _APS_NEXT_COMMAND_VALUE         32872
 #define _APS_NEXT_CONTROL_VALUE         1127
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

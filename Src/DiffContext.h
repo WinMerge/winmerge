@@ -14,6 +14,9 @@
 #include "DiffFileInfo.h"
 #endif
 
+class PackingInfo;
+class PrediffingInfo;
+
 struct dirdata
 {
   char const **names;	/* Sorted names of files in dir, 0-terminated.  */
@@ -103,7 +106,17 @@ public:
 	virtual BOOL includeDir(LPCTSTR szDirName)=0;
 };
 
-class CDiffContext
+/** Interface to a provider of plugin info */
+class IPluginInfos
+{
+public:
+	virtual void FetchPluginInfos(const CString& filteredFilenames, 
+                                      PackingInfo ** infoUnpacker, 
+                                      PrediffingInfo ** infoPrediffer) = 0;
+};
+
+
+class CDiffContext  
 {
 public:
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight);
@@ -138,6 +151,9 @@ public:
 	void UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi);
 	void UpdateStatusFromDisk(POSITION diffpos);
 
+	// retrieve or manufacture plugin info for specified file comparison
+	void FetchPluginInfos(const CString& filteredFilenames, PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
+
 	BOOL m_bRecurse;
 	CString m_strLeft;
 	CString m_strRight;
@@ -146,6 +162,7 @@ public:
 	CString m_strRegExp;
 	IDiffFilter * m_piFilterUI;
 	IDiffFilter * m_piFilterGlobal;
+	IPluginInfos * m_piPluginInfos;
 	UINT m_msgUpdateStatus;
 	HWND m_hDirFrame;
 
