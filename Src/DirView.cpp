@@ -1602,6 +1602,7 @@ void CDirView::OnEditCopy()
 /**
  * @brief Create a string report for the viewed diffed directory list
  * @note This function assumes longest header length is < 160.
+ * @note DOS-EOL style is used for reports.
  */
 CString CDirView::GenerateReport()
 {
@@ -1615,6 +1616,7 @@ CString CDirView::GenerateReport()
 	// Report:Title
 	if (GetDiffContext() != NULL)
 		AfxFormatString2(report, IDS_DIRECTORY_REPORT_TITLE, GetDiffContext()->m_strLeft, GetDiffContext()->m_strRight);
+	report += _T("\r\n"); // Use DOS-EOL style for reports
 
 	// Report:Header
 	for (int currCol = 0; currCol < nCols; currCol++)

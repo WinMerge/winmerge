@@ -9,6 +9,9 @@
   WinMerge: DirView.h DirView.cpp Merge.rc resource.h
   Languages: *.rc resource.h
  Within PATCH: [ 847137 ] - add space to New File item tooltip
+ PATCH: [ 847137 ] Report from dir compare results
+  Missed one diff from DirView.cpp
+  WinMerge: DirView.cpp
 
 2003-11-23 Perry
  Fix Exceptions.h for Unicode build
