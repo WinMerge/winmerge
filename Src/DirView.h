@@ -111,6 +111,8 @@ private:
 	BOOL IsItemDeletableOnBoth(int code);
 	BOOL IsItemOpenableOnLeft(int code);
 	BOOL IsItemOpenableOnRight(int code);
+	BOOL IsItemOpenableOnLeftWith(int code);
+	BOOL IsItemOpenableOnRightWith(int code);
 	void DoCopyFileToRight();
 	void DoCopyFileToLeft();
 	void DoDelLeft();
@@ -208,6 +210,8 @@ private:
 	void DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI);
 	void DoUpdateOpenLeft(CCmdUI* pCmdUI);
 	void DoUpdateOpenRight(CCmdUI* pCmdUI);
+	void DoUpdateOpenLeftWith(CCmdUI* pCmdUI);
+	void DoUpdateOpenRightWith(CCmdUI* pCmdUI);
 	POSITION GetItemKeyFromData(DWORD dw);
 	DIFFITEM GetDiffItem(int sel);
 	int GetSingleSelectedItem() const;

@@ -710,15 +710,15 @@ void CDirView::OnUpdateCtxtDirOpenRight(CCmdUI* pCmdUI)
 // Enable/disable Open Left With menu choice on context menu
 void CDirView::OnUpdateCtxtDirOpenLeftWith(CCmdUI* pCmdUI)
 {
-	DoUpdateOpenLeft(pCmdUI);
+	DoUpdateOpenLeftWith(pCmdUI);
 }
 // Enable/disable Open Right With menu choice on context menu
 void CDirView::OnUpdateCtxtDirOpenRightWith(CCmdUI* pCmdUI)
 {
-	DoUpdateOpenRight(pCmdUI);
+	DoUpdateOpenRightWith(pCmdUI);
 }
 
-// used for both OpenLeft and OpenLeftWith
+// used for OpenLeft
 void CDirView::DoUpdateOpenLeft(CCmdUI* pCmdUI)
 {
 	int sel = GetSingleSelectedItem();
@@ -731,7 +731,8 @@ void CDirView::DoUpdateOpenLeft(CCmdUI* pCmdUI)
 
 	pCmdUI->Enable(sel>=0);
 }
-// used for both OpenRight and OpenRightWith
+
+// used for OpenRight
 void CDirView::DoUpdateOpenRight(CCmdUI* pCmdUI)
 {
 	int sel = GetSingleSelectedItem();
@@ -739,6 +740,34 @@ void CDirView::DoUpdateOpenRight(CCmdUI* pCmdUI)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!IsItemOpenableOnRight(di.code))
+			sel = -1;
+	}
+
+	pCmdUI->Enable(sel>=0);
+}
+
+// used for OpenLeftWith
+void CDirView::DoUpdateOpenLeftWith(CCmdUI* pCmdUI)
+{
+	int sel = GetSingleSelectedItem();
+	if (sel != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (!IsItemOpenableOnLeftWith(di.code))
+			sel = -1;
+	}
+
+	pCmdUI->Enable(sel>=0);
+}
+
+// used for OpenRightWith
+void CDirView::DoUpdateOpenRightWith(CCmdUI* pCmdUI)
+{
+	int sel = GetSingleSelectedItem();
+	if (sel != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (!IsItemOpenableOnRightWith(di.code))
 			sel = -1;
 	}
 

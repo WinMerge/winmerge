@@ -4,6 +4,8 @@
   editlib: ccrystaltextview.cpp
  PATCH: [ 742041 ] Improvements to file/directory filters
   WinMerge: FileFilterMgr.h FileFilterMgr.cpp Merge.cpp
+ PATCH: [ 738557 ] Allow "Open Left" for directories
+  WinMerge: DirActions.cpp DirView.h DirView.cpp
 
 2003-05-29 Christian
  PATCH: Applied [ 745223 ] Fix pasting different EOL types

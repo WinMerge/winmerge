@@ -472,6 +472,7 @@ BOOL CDirView::IsItemOpenableOnLeft(int code)
 	switch(code)
 	{
 	case FILE_LUNIQUE:
+	case FILE_LDIRUNIQUE:
 	case FILE_DIFF:
 	case FILE_BINSAME:
 	case FILE_BINDIFF:
@@ -482,6 +483,35 @@ BOOL CDirView::IsItemOpenableOnLeft(int code)
 }
 // is it possible to open right item ?
 BOOL CDirView::IsItemOpenableOnRight(int code)
+{
+	switch(code)
+	{
+	case FILE_RUNIQUE:
+	case FILE_RDIRUNIQUE:
+	case FILE_DIFF:
+	case FILE_BINSAME:
+	case FILE_BINDIFF:
+	case FILE_SAME:
+		return TRUE;
+	}
+	return FALSE;
+}
+// is it possible to open left ... item ?
+BOOL CDirView::IsItemOpenableOnLeftWith(int code)
+{
+	switch(code)
+	{
+	case FILE_LUNIQUE:
+	case FILE_DIFF:
+	case FILE_BINSAME:
+	case FILE_BINDIFF:
+	case FILE_SAME:
+		return TRUE;
+	}
+	return FALSE;
+}
+// is it possible to open with ... right item ?
+BOOL CDirView::IsItemOpenableOnRightWith(int code)
 {
 	switch(code)
 	{
