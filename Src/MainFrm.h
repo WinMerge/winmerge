@@ -80,8 +80,7 @@ public:
 // Operations
 public:
 	BOOL DeleteFileOrError(LPCTSTR szFile);
-	BOOL SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
-	BOOL DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
+	BOOL SyncFilesToVCS(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
 		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE);
 	void ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft, BOOL bRORight, int cpleft, int cpright, PackingInfo * infoUnpacker = NULL);
@@ -201,9 +200,6 @@ private:
 };
 
 extern CMainFrame *mf;
-
-BOOL DeleteFileSilently(LPCTSTR szFile, CString * psError);
-BOOL DeleteDirSilently(LPCTSTR szDir, CString * psError);
 
 /////////////////////////////////////////////////////////////////////////////
 

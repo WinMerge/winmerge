@@ -139,7 +139,8 @@ private:
 	void ConfirmAndPerformActions(ActionList & actions);
 	BOOL ConfirmActionList(const ActionList & actions);
 	void PerformActionList(ActionList & actions);
-	void PerformAndRemoveTopAction(ActionList & actions);
+	void UpdateCopiedItems(ActionList & actions);
+	void UpdateDeletedItems(ActionList & actions);
 // End DirActions.cpp
 
 // Implementation in DirViewCols.cpp

@@ -287,7 +287,10 @@ void CDirView::ConfirmAndPerformActions(ActionList & actionList)
 	PerformActionList(actionList);
 }
 
-// Confirm actions with user as appropriate (type, whether single or multiple)
+/**
+ * @brief Confirm actions with user as appropriate
+ * (type, whether single or multiple).
+ */
 BOOL CDirView::ConfirmActionList(const ActionList & actionList)
 {
 	// special handling for the single item case, because it is probably the most common,
@@ -307,38 +310,188 @@ BOOL CDirView::ConfirmActionList(const ActionList & actionList)
 				return FALSE;
 		}
 		break;
-	default: // deletes
-		if (actionList.GetCount()==1 && actionList.atype!=ACT_DEL_BOTH)
-		{
-			const action & act = actionList.actions.GetHead();
-			if (!ConfirmSingleDelete(act.src))
-				return FALSE;
-		}
-		else
-		{
-			if (!ConfirmMultipleDelete(actionList.GetCount(), actionList.selcount))
-				return FALSE;
-		}
+		
+	// Deleting does not need confirmation, CShellFileOp takes care of it
+	case ACT_DEL_LEFT:
+	case ACT_DEL_RIGHT:
+	case ACT_DEL_BOTH:
+		break;
+
+	// Invalid operation
+	default: 
+		LogErrorString(_T("Unknown fileoperation in CDirView::ConfirmActionList()"));
+		_RPTF0(_CRT_ERROR, "Unknown fileoperation in CDirView::ConfirmActionList()");
 		break;
 	}
 	return TRUE;
 }
 
-// Perform an array of actions
+/**
+ * @brief Perform an array of actions
+ * @note There can be only COPY or DELETE actions, not both!
+ */
 void CDirView::PerformActionList(ActionList & actionList)
 {
+	CShellFileOp fileOp;
+	CString destPath;
+	CString startPath;
+	CString strErr;
+	UINT operation = 0;
+
 	// Set mainframe variable (VSS):
 	mf->m_CheckOutMulti = FALSE;
 	mf->m_bVCProjSync = TRUE;
+	
+	switch (actionList.atype)
+	{
+	case ACT_COPY:
+		operation = FO_COPY;
+		break;
+	case ACT_DEL_LEFT:
+		operation = FO_DELETE;
+		break;
+	case ACT_DEL_RIGHT:
+		operation = FO_DELETE;
+		break;
+	case ACT_DEL_BOTH:
+		operation = FO_DELETE;
+		break;
+	default:
+		LogErrorString(_T("Unknown fileoperation in CDirView::PerformActionList()"));
+		_RPTF0(_CRT_ERROR, "Unknown fileoperation in CDirView::PerformActionList()");
+		break;
+	}
+	
+	// TODO: option for putting deleted items into recycle bin!
+	int operFlags = FOF_NOCONFIRMMKDIR | FOF_MULTIDESTFILES;
+	fileOp.SetOperationFlags(operation, this, operFlags);
+	
+	// Add files/directories
+	POSITION pos = actionList.actions.GetHeadPosition();
+	while (pos != NULL)
+	{
+		const action act = actionList.actions.GetNext(pos);
+		switch (actionList.atype)
+		{
+		case ACT_COPY:
+			fileOp.AddSourceFile(act.src);
+			fileOp.AddDestFile(act.dest);
+			if (!act.dirflag)
+			{
+				mf->SyncFilesToVCS(act.src, act.dest, &strErr);
+			}
+			gLog.Write(_T("Copy file(s) from: %s\n\tto: %s"), act.src, act.dest);
+			break;
+		case ACT_DEL_LEFT:
+			fileOp.AddSourceFile(act.src);
+			gLog.Write(_T("Delete file(s) from LEFT: %s"), act.src);
+			break;
+		case ACT_DEL_RIGHT:
+			fileOp.AddSourceFile(act.src);
+			gLog.Write(_T("Delete file(s) from RIGHT: %s"), act.src);
+			break;
+		case ACT_DEL_BOTH:
+			fileOp.AddSourceFile(act.src);
+			fileOp.AddSourceFile(act.dest);
+			gLog.Write(_T("Delete BOTH file(s) from: %s\n\tto: %s"), act.src, act.dest);
+			break;
+		}
+	} 
 
+	BOOL bOpStarted = FALSE;
+	int apiRetVal = 0;
+	BOOL bUserCancelled = FALSE; 
+	BOOL bFileOpSucceed = fileOp.Go(&bOpStarted, &apiRetVal, &bUserCancelled);
+
+	// All succeeded
+	if (bFileOpSucceed && !bUserCancelled)
+	{
+		gLog.Write(_T("Fileoperation succeeded."));
+		UpdateCopiedItems(actionList);
+		UpdateDeletedItems(actionList);
+	}
+	else if (!bOpStarted)
+	{
+		// Invalid parameters - is this programmer error only?
+		LogErrorString(_T("Invalid usage of CShellFileOp in "
+			"CDirView::PerformActionList()"));
+		_RPTF0(_CRT_ERROR, "Invalid usage of CShellFileOp in "
+			"CDirView::PerformActionList()");
+	}
+	else if (bUserCancelled)
+	{
+		// User cancelled, we have a problem as we don't know which
+		// items were processed!
+		// User could cancel operation before it was done or during operation
+		gLog.Write(LOGLEVEL::LWARNING, _T("User cancelled fileoperation!"));
+	}
+	else
+	{
+		// CShellFileOp shows errors to user, so just write log
+		LogErrorString(Fmt(_T("File operation failed: %s"),
+			GetSysError(GetLastError())));
+	}
+}
+
+/**
+ * @brief Update copied items after fileactions
+ */
+void CDirView::UpdateCopiedItems(ActionList & actionList)
+{
 	while (actionList.GetCount()>0)
 	{
-		PerformAndRemoveTopAction(actionList);
-	}
+		action act = actionList.actions.RemoveHead();
 
-	// must process deleted items in reverse order
-	// ie, work our way *up* the display list
-	// so we don't invalidate indices of items not done yet
+#ifdef _DEBUG
+		// Sometimes its nice to see flags...
+		POSITION diffpos = GetItemKey(act.idx);
+		const DIFFITEM & di = GetDiffContext()->GetDiffAt(diffpos);
+#endif
+
+		if (actionList.atype == ACT_COPY)
+		{
+			// Copy files and folders
+			CDirDoc *pDoc = GetDocument();
+			pDoc->SetDiffSide(DIFFCODE::BOTH, act.idx);
+			
+			// Folders don't have compare flag set!!
+			if (act.dirflag)
+				pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
+			else
+				pDoc->SetDiffCompare(DIFFCODE::SAME, act.idx);
+			pDoc->ReloadItemStatus(act.idx);
+		}
+		else
+		{
+			// Delete files and folders
+			CDirDoc *pDoc = GetDocument();
+			if (actionList.atype == ACT_DEL_LEFT)
+			{
+				pDoc->SetDiffSide(DIFFCODE::RIGHT, act.idx);
+				pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
+				pDoc->ReloadItemStatus(act.idx);
+			}
+			
+			if (actionList.atype == ACT_DEL_RIGHT)
+			{
+				pDoc->SetDiffSide(DIFFCODE::LEFT, act.idx);
+				pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
+				pDoc->ReloadItemStatus(act.idx);
+			}
+
+			if (actionList.atype == ACT_DEL_BOTH)
+			{
+				actionList.deletedItems.AddTail(act.idx);
+			}
+		}
+	}
+}
+
+/**
+ * @brief Update deleted items after fileactions
+ */
+void CDirView::UpdateDeletedItems(ActionList & actionList)
+{
 	while (!actionList.deletedItems.IsEmpty())
 	{
 		int idx = actionList.deletedItems.RemoveTail();
@@ -347,123 +500,6 @@ void CDirView::PerformActionList(ActionList & actionList)
 		m_pList->DeleteItem(idx);
 	}
 
-	if (!actionList.errors.IsEmpty())
-	{
-		CString sTitle, sText;
-		AfxFormatString1(sTitle, IDS_ERRORS_TITLE, NumToStr(actionList.errors.GetCount()));
-		while (!actionList.errors.IsEmpty())
-		{
-			sText += actionList.errors.RemoveHead() + _T("\r\n\r\n");
-		}
-		gLog.Write(LOGLEVEL::LERROR, sText);
-		OutputBox(sTitle, sText);
-	}
-}
-
-static void NormalizeFilepath(CString * pstr)
-{
-	pstr->Replace('/', '\\');
-}
-
-void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
-{
-	action act = actionList.actions.RemoveHead();
-	if (actionList.atype == ACT_COPY)
-	{
-		// copy
-		if (act.dirflag)
-		{
-			// TODO: copy directory
-			// add new entries to an append list to be added to list at end
-		}
-		else
-		{
-			CString s;
-			// copy single file, and update status immediately
-			if (mf->SyncFiles(act.src, act.dest, &s))
-			{
-				GetDocument()->SetDiffSide(DIFFCODE::BOTH, act.idx);
-				GetDocument()->SetDiffCompare(DIFFCODE::SAME, act.idx);
-				GetDocument()->ReloadItemStatus(act.idx);
-			}
-			else
-			{
-				actionList.errors.AddTail(s);
-			}
-		}
-	}
-	else
-	{
-		// delete
-		if (act.dirflag)
-		{
-			// delete directory
-			CString s;
-			if (DeleteDirSilently(act.src, &s))
-			{
-				ASSERT(actionList.atype != ACT_DEL_BOTH); // directories are all unique
-				actionList.deletedItems.AddTail(act.idx);
-			}
-			else
-			{
-				actionList.errors.AddTail(s);
-			}
-		}
-		else
-		{
-			// delete file
-			CString s;
-			if (actionList.atype==ACT_DEL_LEFT || actionList.atype==ACT_DEL_BOTH)
-			{
-				CString sFile = act.src;
-				if (DeleteFileSilently(sFile, &s))
-				{
-					// figure out if copy on right
-					POSITION diffpos = GetItemKey(act.idx);
-					const DIFFITEM & di = GetDiffContext()->GetDiffAt(diffpos);
-					if (di.isSideLeft())
-					{
-						actionList.deletedItems.AddTail(act.idx);
-					}
-					else
-					{
-						GetDocument()->SetDiffSide(DIFFCODE::RIGHT, act.idx);
-						GetDocument()->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
-						GetDocument()->ReloadItemStatus(act.idx);
-					}
-				}
-				else
-				{
-					actionList.errors.AddTail(s);
-				}
-			}
-			s.Empty();
-			if (actionList.atype==ACT_DEL_RIGHT || actionList.atype==ACT_DEL_BOTH)
-			{
-				CString sFile = act.dest.IsEmpty() ? act.src : act.dest;
-				if (DeleteFileSilently(sFile, &s))
-				{
-					// figure out if copy on right
-					POSITION diffpos = GetItemKey(act.idx);
-					const DIFFITEM & di = GetDiffContext()->GetDiffAt(diffpos);
-					if (di.isSideRight())
-					{
-						actionList.deletedItems.AddTail(act.idx);
-					}
-					else
-					{
-						GetDocument()->SetDiffSide(DIFFCODE::LEFT, act.idx);
-						GetDocument()->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
-						GetDocument()->ReloadItemStatus(act.idx);
-					}
-				}
-				else
-				{
-					actionList.errors.AddTail(s);
-				}
-			}
-		}
-	}
 }
 
 /// Get directories of first selected item
@@ -484,8 +520,6 @@ BOOL CDirView::IsItemCopyableToLeft(const DIFFITEM & di)
 {
 	// don't let them mess with error items
 	if (di.isResultError()) return FALSE;
-	// no directory copying right now
-	if (di.isDirectory()) return FALSE;
 	// can't copy same items
 	if (di.isResultSame()) return FALSE;
 	// impossible if only on left
@@ -499,8 +533,6 @@ BOOL CDirView::IsItemCopyableToRight(const DIFFITEM & di)
 {
 	// don't let them mess with error items
 	if (di.isResultError()) return FALSE;
-	// no directory copying right now
-	if (di.isDirectory()) return FALSE;
 	// can't copy same items
 	if (di.isResultSame()) return FALSE;
 	// impossible if only on right
@@ -661,4 +693,3 @@ void CDirView::DoOpenWithEditor(SIDE_TYPE stype)
 
 	mf->OpenFileToExternalEditor(file);
 }
-

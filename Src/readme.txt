@@ -1,3 +1,7 @@
+2004-02-26 Kimmo
+ PATCH: [ 903670 ] Copy Folder (and convert to CShellFileOp)
+  Src: DirActions.cpp DirView.h MainFrm.cpp MainFrm.h
+
 2004-02-23 Kimmo
  PATCH: [ 902738 ] Two errors in resource (Whitespaces and Hilight)
   Also RFE [ 837773 ] fix all about boxes

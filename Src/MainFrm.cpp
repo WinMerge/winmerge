@@ -1358,96 +1358,23 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 	return TRUE;
 }
 
-// trim trailing line returns
+/**
+ * @brief Trim trailing line returns.
+ */
 static void RemoveLineReturns(CString & str)
 {
 	str.Remove('\n');
 	str.Remove('\r');
 }
 
-// TODO: Can we move this into DirActions.cpp ?
-// Delete file (return TRUE if deleted, else put up error & return FALSE)
-BOOL CMainFrame::DeleteFileOrError(LPCTSTR szFile)
-{
-	if (!DeleteFile(szFile))
-	{
-		CString sError = GetSysError(GetLastError());
-		RemoveLineReturns(sError);
-		sError += (CString)_T(" [") + szFile + _T("]");
-		CString s;
-		AfxFormatString1(s, IDS_DELETE_FILE_FAILED, sError);
-		AfxMessageBox(s, MB_OK|MB_ICONSTOP);
-		return FALSE;
-	}
-	return TRUE;
-}
-
-// Delete file (return TRUE if successful, else sets error string & returns FALSE)
-BOOL DeleteFileSilently(LPCTSTR szFile, CString * psError)
-{
-	if (!DeleteFile(szFile))
-	{
-		CString sError = GetSysError(GetLastError());
-		RemoveLineReturns(sError);
-		AfxFormatString2(*psError, IDS_DELETE_FILE_FAILED, szFile, sError);
-		return FALSE;
-	}
-	return TRUE;
-}
-
-
-// delete directory by recursively deleting all contents
-// gives up on first error
-BOOL DeleteDirSilently(LPCTSTR szDir, CString * psError)
-{
-	CFileFind finder;
-	CString sSpec = szDir;
-	sSpec += _T("\\*.*");
-	if (finder.FindFile(sSpec))
-	{
-		BOOL done=FALSE;
-		while (!done)
-		{
-			done = !finder.FindNextFile();
-			if (finder.IsDots()) continue;
-			if (finder.IsDirectory())
-			{
-				if (!DeleteDirSilently(finder.GetFilePath(), psError))
-					return FALSE;
-			}
-			else
-			{
-				if (!DeleteFileSilently(finder.GetFilePath(), psError))
-					return FALSE;
-			}
-		}
-	}
-	finder.Close(); // must close the handle or RemoveDirectory will fail
-	if (!RemoveDirectory(szDir))
-	{
-		CString sError = GetSysError(GetLastError());
-		RemoveLineReturns(sError);
-		AfxFormatString2(*psError, IDS_DELETE_FILE_FAILED, szDir, sError);
-		return FALSE;
-	}
-	return TRUE;
-}
-
-// wrapper for DoSyncFiles which adds filename to error string reported
-BOOL CMainFrame::SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
-{
-	if (!DoSyncFiles(pszSrc, pszDest, psError))
-	{
-		CString msg;
-		AfxFormatString2(msg, IDS_COPY_FILE_FAILED, *psError, pszSrc);
-		*psError = msg;
-		return FALSE;
-	}
-	return TRUE;
-}
-
-// (error string reported does not include filename
-BOOL CMainFrame::DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
+/**
+ * @brief Sync file to Version Control System
+ * @param [in] pszSrc File to copy
+ * @param [in] pszDest Where to copy (incl. filename)
+ * @param [out] psError Error string that can be shown to user in caller func.
+ * Does not contain filename.
+ */
+BOOL CMainFrame::SyncFilesToVCS(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
 {
 	CString sActionError;
 	CString strSavePath(pszDest);
@@ -1461,13 +1388,6 @@ BOOL CMainFrame::DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
 	if (!CreateBackup(strSavePath))
 	{
 		psError->LoadString(IDS_ERROR_BACKUP);
-		return FALSE;
-	}
-	
-	// Now it's just a matter of copying the right file to the left
-	if (!CopyFile(pszSrc, strSavePath, FALSE))
-	{
-		*psError = GetSysError(GetLastError());
 		return FALSE;
 	}
 	
