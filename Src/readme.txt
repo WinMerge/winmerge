@@ -1,3 +1,7 @@
+2004-05-21 Perry
+ Fix PATCH [ 957740] - declare CMergeDoc::CompareBinaries
+  Src: MergeDoc.h
+
 2004-05-21 Kimmo
  PATCH: [ 957740 ] Tell if two binary files are different/identical
   Src: DiffWrapper.cpp DiffWrapper.h Merge.rc MergeDoc.cpp resource.h

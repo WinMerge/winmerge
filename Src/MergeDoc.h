@@ -212,6 +212,7 @@ public:
 	void RefreshOptions();
 	BOOL OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright);
+	void CompareBinaries(CString sLeftFile, CString sRightFile, int nLeftSuccess, int nRightSuccess);
 	int LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int codepage);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(BOOL &bBinary, BOOL &bIdentical, BOOL bForced = FALSE);
