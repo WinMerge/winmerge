@@ -981,8 +981,8 @@ BEGIN
     CONTROL         "En funció de l'idioma de l'interfície d'usuari del WinMerge",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,33,210,10
     CONTROL         "Pàgina de codis personalitzada:",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,46,110,10
-    EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
+                    BS_AUTORADIOBUTTON,13,46,120,10
+    EDITTEXT        IDC_CUSTOM_CP_NUMBER,143,45,56,13,ES_AUTOHSCROLL
     GROUPBOX        "Pàgina de codis predefinida per a fitxers ANSI",IDC_STATIC,7,7,221,58
 END
 

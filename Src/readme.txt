@@ -3,6 +3,9 @@
   (Applied UniFile.cpp portion of this patch)
   Src/Common: UniFile.cpp UniFile.h
   Src: MergeDoc.cpp
+ BUG: [ 1029643 ] (Catalan) Options/codepage too crowded
+  Moved codepage edit box over 20 units, widened label 10 units
+  Languages/Catalan: MergeCatalan.rc
 
 2005-01-23 Kimmo
  PATCH: [ 1107508 ] Add dirview statusbar panel showing current filter name
