@@ -325,6 +325,9 @@ line_cmp (s1, len1, s2, len2)
 	  register unsigned char c1 = *t1++;
 	  register unsigned char c2 = *t2++;
 
+      /* Test for exact char equality first, since it's a common case.  */
+      if (c1 != c2)
+	{
 	  /* Ignore horizontal white space if -b or -w is specified.  */
 
 	  if (ignore_all_space_flag)
@@ -366,6 +369,28 @@ line_cmp (s1, len1, s2, len2)
 			}
 		    }
 		}
+
+	      if (c1 != c2)
+		{
+		  /* If we went too far when doing the simple test
+		     for equality, go back to the first non-white-space
+		     character in both sides and try again.  */
+		  if (c2 == ' ' && c1 != '\n'
+		      && (unsigned char const *) s1 + 1 < t1
+		      && isspace(t1[-2]))
+		    {
+		      --t1;
+		      continue;
+		    }
+		  if (c1 == ' ' && c2 != '\n'
+		      && (unsigned char const *) s2 + 1 < t2
+		      && isspace(t2[-2]))
+		    {
+		      --t2;
+		      continue;
+		}
+		  }
+
 	    }
 
 	  /* Upcase all letters if -i is specified.  */
@@ -380,6 +405,8 @@ line_cmp (s1, len1, s2, len2)
 
 	  if (c1 != c2)
 	    break;
+	  }
+
 	  if (c1 == end_char)
 	    return 0;
 	}
