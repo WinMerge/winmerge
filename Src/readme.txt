@@ -1,3 +1,7 @@
+2004-07-28 Kimmo
+ Remove suppressing checkbox from commandline help messagebox
+  Src: Merge.cpp
+
 2004-07-23 Perry
  PATCH: [ 988505 ] updated email address for catalan translator
   Update email address for Jordi Vilar (Catalan translator)

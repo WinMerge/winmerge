@@ -261,7 +261,7 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 			{
 				CString s;
 				VERIFY(s.LoadString(IDS_QUICKHELP));
-				AfxMessageBox(s, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_QUICKHELP);
+				AfxMessageBox(s, MB_ICONINFORMATION);
 			}
 
 			// -r to compare recursively
