@@ -931,7 +931,10 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 		if (nAction == CE_ACTION_TYPING ||
 			nAction == CE_ACTION_REPLACE ||
 			nAction == CE_ACTION_BACKSPACE ||
-			nAction == CE_ACTION_INDENT)
+			nAction == CE_ACTION_INDENT ||
+			nAction == CE_ACTION_PASTE ||
+			nAction == CE_ACTION_DELSEL ||
+			nAction == CE_ACTION_CUT)
 		{
 			if (!SetTimer(IDT_RESCAN, RESCAN_TIMEOUT, NULL))
 				pDoc->FlushAndRescan();

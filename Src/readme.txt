@@ -1,4 +1,8 @@
-2003-09-27 Laoran
+2003-09-29 Kimmo
+ PATCH: [ 814098 ] More edit-events for delayed rescan
+  WinMerge: MergeEditView.cpp
+
+2003-09-29 Laoran
  BUG In DrawSingleLine, Draw EOL only if there is an EOL in the line
   WinMerge: ccrystaltextview.cpp ccrystaltextview.h
  BUG [ 814214 ] ASSERT failure with diff at eof
