@@ -395,7 +395,7 @@ void CDirDoc::ReloadItemStatus(UINT nIdx)
 	m_pCtxt->UpdateStatusFromDisk(diffpos); // in case just copied (into existence) or modified
 
 	// Update view
-	const DIFFITEM & updated = m_pCtxt->GetDiffAt(diffpos);
+	DIFFITEM & updated = m_pCtxt->GetDiffAt(diffpos);
 	m_pDirView->UpdateDiffItemStatus(nIdx, updated);
 }
 

@@ -1392,6 +1392,10 @@ SOURCE=.\diffutils\src\UTIL.C
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\varprop.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\version.cpp
 # End Source File
 # Begin Source File
@@ -1763,6 +1767,10 @@ SOURCE=.\Common\unicoder.h
 # Begin Source File
 
 SOURCE=.\Common\UniFile.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\varprop.h
 # End Source File
 # Begin Source File
 

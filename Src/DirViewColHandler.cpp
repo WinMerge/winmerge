@@ -56,7 +56,17 @@ enum
  */
 static CString ColGet(int col, const DIFFITEM & di)
 {
-	return (*g_cols[col].getfnc)(di);
+	// Custom properties have custom get functions
+	ColGetFnc fnc = g_cols[col].getfnc;
+	if (fnc)
+		return (*fnc)(di);
+	// Ok, try to find it as a generic property
+	LPCTSTR propname = g_cols[col].regName;
+	const varprop::VariantValue * varval = di.GetGenericProperty(propname);
+	if (!varval)
+		return _T("");
+	// Format it as a string
+	return CDirView::GetColItemDisplay(*varval);
 }
 
 /**
@@ -64,7 +74,15 @@ static CString ColGet(int col, const DIFFITEM & di)
  */
 static int ColSort(int col, const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
-	return (*g_cols[col].sortfnc)(ldi, rdi);
+	// Custom properties have custom sort functions
+	ColSortFnc fnc = g_cols[col].sortfnc;
+	if (fnc)
+		return (*fnc)(ldi, rdi);
+	// Ok, get generic properties, and then we'll use generic sort
+	LPCTSTR propname = g_cols[col].regName;
+	const varprop::VariantValue * lvar = ldi.GetGenericProperty(propname);
+	const varprop::VariantValue * rvar = rdi.GetGenericProperty(propname);
+	return CDirView::GenericSortItem(lvar, rvar);
 }
 
 /**
@@ -158,18 +176,27 @@ int CDirView::AddDiffItem(int index, const DIFFITEM & di, LPCTSTR szPath, POSITI
 
 
 /// Update listview display of details for specified row
-void CDirView::UpdateDiffItemStatus(UINT nIdx, const DIFFITEM & di)
+void CDirView::UpdateDiffItemStatus(UINT nIdx, DIFFITEM & di)
 {
 	BOOL bLeftNewer = FALSE;
 	BOOL bRightNewer = FALSE;
 
-	// Determine if other side is newer
-	if (di.left.mtime > 0 && di.right.mtime > 0)
+
+	COleDateTime lmtime = di.GetGenericPropertyTime(_T("Lmtime"));
+	COleDateTime rmtime = di.GetGenericPropertyTime(_T("Rmtime"));
+	if (lmtime.GetStatus() == COleDateTime::valid
+		&& rmtime.GetStatus() == COleDateTime::valid)
 	{
-		if (di.left.mtime > di.right.mtime)
+		if (lmtime > rmtime)
+		{
+			di.shprops.SetProperty(_T("Snewer"), _T("L"));
 			bLeftNewer = TRUE;
-		else if (di.left.mtime < di.right.mtime)
+		}
+		else if (lmtime < rmtime)
+		{
+			di.shprops.SetProperty(_T("Snewer"), _T("R"));
 			bRightNewer = TRUE;
+		}
 	}
 
 	for (int i=0; i<g_ncols; ++i)

@@ -1,3 +1,10 @@
+2004-01-21 Perry
+ PATCH: [ 878631 ] Add generic named properties to DiffContext
+  src: Diff.cpp DiffContext.cpp DiffContext.h DirDoc.cpp DirScan.cpp
+   DirView.h DirViewColHandler.cpp DirViewColItems.cpp Merge.dsp
+   Merge.rc resource.h
+  src/Common: varprop.cpp varprop.h
+
 2004-01-21 Kimmo
  PATCH: [ 880898 ] BCMenu update to v3.034
   src: BCMenu.h BCMenu.cpp

@@ -58,6 +58,8 @@ class CDirFrame;
 
 class PackingInfo;
 
+namespace varprop { struct VariantValue; }
+
 /** View displaying results of a diff, one row per file */
 class CDirView : public CListViewEx
 {
@@ -156,7 +158,7 @@ public:
 	void UpdateColumnNames();
 	static int CALLBACK CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
 	int AddDiffItem(int index, const DIFFITEM & di, LPCTSTR szPath, POSITION curdiffpos);
-	void UpdateDiffItemStatus(UINT nIdx, const DIFFITEM & di);
+	void UpdateDiffItemStatus(UINT nIdx, DIFFITEM & di);
 	void ToDoDeleteThisValidateColumnOrdering() { ValidateColumnOrdering(); }
 private:
 	void InitiateSort();
@@ -175,6 +177,10 @@ private:
 	void MoveColumn(int psrc, int pdest);
 	CString GetColRegValueNameBase(int col) const;
 	int GetColDefaultOrder(int col) const;
+public:
+	static CString GetColItemDisplay(const varprop::VariantValue & var);
+	static int GenericSortItem(const varprop::VariantValue * lvar, const varprop::VariantValue * rvar);
+private:
 // End DirViewCols.cpp
 
 // Overrides

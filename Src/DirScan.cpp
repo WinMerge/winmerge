@@ -13,7 +13,7 @@
 #include "paths.h"
 #include "FileTransform.h"
 
-extern bool just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin);
+extern bool just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin, int * ndiffs, int *ntrivialdiffs);
 extern CLogFile gLog;
 
 #ifdef _DEBUG
@@ -43,8 +43,10 @@ static void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * fi
 void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * files, bool casesensitive);
 static void Sort(fentryArray * dirs, bool casesensitive);;
 static int collstr(const CString & s1, const CString & s2, bool casesensitive);
-static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry *rent, int code, CDiffContext * pCtxt);
-static int prepAndCompareTwoFiles(const fentry & lent, const fentry & rent, const CString & sLeftDir, const CString & sRightDir);
+static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry *rent, 
+			    int code, CDiffContext * pCtxt, int ndiffs=-1, int ntrivialdiffs=-1);
+static int prepAndCompareTwoFiles(const fentry & lent, const fentry & rent, const CString & sLeftDir, 
+				  const CString & sRightDir, int * ndiffs, int * ntrivialdiffs);
 
 
 /** @brief cmpmth is a typedef for a pointer to a method */
@@ -196,11 +198,12 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			}
 			else
 			{
+				int ndiffs=0, ntrivialdiffs=0;
 				int code = prepAndCompareTwoFiles(leftFiles[i], rightFiles[j], 
-					sLeftDir, sRightDir);
+					sLeftDir, sRightDir, &ndiffs, &ntrivialdiffs);
 				
 				// report result back to caller
-				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt);
+				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt, ndiffs, ntrivialdiffs);
 			}
 			++i;
 			++j;
@@ -215,8 +218,10 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
  * @brief Prepare files (run plugins) & compare them, and return diffcode
  */
 static int
-prepAndCompareTwoFiles(const fentry & lent, const fentry & rent, 
-	const CString & sLeftDir, const CString & sRightDir
+prepAndCompareTwoFiles(const fentry & lent, const fentry & rent,
+	const CString & sLeftDir, const CString & sRightDir,
+	int * ndiffs, int * ntrivialdiffs
+
 	)
 {
 	// If options are binary equivalent, we could check for filesize
@@ -292,7 +297,10 @@ prepAndCompareTwoFiles(const fentry & lent, const fentry & rent,
 	// just_compare_files is a fairly thin front-end to diffutils
 	bool diff=false, bin=false;
 	if (compareok)
-		compareok = just_compare_files (filepathTransformed1, filepathTransformed2, 0, &diff, &bin);
+	{
+		compareok = just_compare_files (filepathTransformed1, 
+			filepathTransformed2, 0, &diff, &bin, ndiffs, ntrivialdiffs);
+	}
 
 	// delete the temp files after comparison
 	if (filepathTransformed1 != filepath1)
@@ -408,7 +416,8 @@ static int collstr(const CString & s1, const CString & s2, bool casesensitive)
 /**
  * @brief Send one file or directory result back through the diff context
  */
-static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry * rent, int code, CDiffContext * pCtxt)
+static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry * rent, 
+			    int code, CDiffContext * pCtxt, int ndiffs, int ntrivialdiffs)
 {
 	CString name, leftdir, rightdir;
 	_int64 rmtime=0, lmtime=0, rctime=0, lctime=0;
@@ -440,5 +449,6 @@ static void StoreDiffResult(const CString & sDir, const fentry * lent, const fen
 	gLog.Write(_T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d")
 		, (LPCTSTR)name, (LPCTSTR)leftdir, (LPCTSTR)rightdir, code);
 	pCtxt->AddDiff(name, sDir, leftdir, rightdir
-		, lmtime, rmtime, lctime, rctime, lsize, rsize, code, lattrs, rattrs);
+		, lmtime, rmtime, lctime, rctime, lsize, rsize, code, lattrs, rattrs
+		, ndiffs, ntrivialdiffs);
 }

@@ -1279,6 +1279,8 @@ BEGIN
     IDS_STATUSBAR_READONLY  "RO"
     IDS_COLHDR_LENCODING    "Left Encoding"
     IDS_COLHDR_RENCODING    "Right Encoding"
+    IDS_COLHDR_NDIFFS       "#differences"
+    IDS_COLHDR_NSDIFFS      "#sig. differences"
     IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 

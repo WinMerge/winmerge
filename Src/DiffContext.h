@@ -12,6 +12,10 @@
 
 #include "RegExp.h"
 
+#ifndef varprop_h_included
+#include "varprop.h"
+#endif
+
 struct dirdata
 {
   char const **names;	/* Sorted names of files in dir, 0-terminated.  */
@@ -58,6 +62,7 @@ struct FileFlags
 
 struct DIFFITEM;
 
+
 /**
  * @brief information for file on one side of a diff
  */
@@ -65,7 +70,6 @@ struct DiffFileInfo
 {
 	// storing __time_t if MSVC6 (__MSC_VER<1300)
 	// storing __time64_t if MSVC7 (VC.NET)
-	__int64 mtime; /**< time of last modification */
 	__int64 ctime; /**< time of creation */
 	__int64 size; /**< file size in bytes */
 	CString version; /**< string of fixed file version, eg, 1.2.3.4 */
@@ -73,7 +77,9 @@ struct DiffFileInfo
 	FileFlags flags; /**< file attributes */
 	int codepage; /**< 8bit codepage, if applicable, 0 is unknown or N/A */
 	int unicoding; /**< Unicode encoding (ucr::CODESET) */
-	DiffFileInfo() : mtime(0), ctime(0), size(0), codepage(0), unicoding(0) { }
+	varprop::PropertySet m_props;
+	DiffFileInfo() : ctime(0), size(0), codepage(0), unicoding(0) { }
+
 	CString getEncodingString() const;
 	// We could stash a pointer here to the parent DIFFITEM
 	// but, I ran into trouble with, I think, the DIFFITEM copy constructor
@@ -104,6 +110,7 @@ struct DIFFITEM
 	CString sSubdir; //*< Common subdirectory from root of comparison */
 	CString sext;
 	int diffcode;
+	varprop::PropertySet shprops; // shared properties
 
 	DIFFITEM() : diffcode(0) { }
 
@@ -123,6 +130,11 @@ struct DIFFITEM
 	bool isResultSkipped() const { return ((diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SKIPPED); }
 	// type
 	bool isBin() const { return ((diffcode & DIFFCODE::TEXTFLAG) == DIFFCODE::BIN); }
+
+	// generic properties
+	const varprop::VariantValue * GetGenericProperty(LPCTSTR propname) const;
+	CString GetGenericPropertyString(LPCTSTR propname) const;
+	COleDateTime GetGenericPropertyTime(LPCTSTR propname) const;
 };
 
 // Interface for reporting current file, as diff traverses file tree
@@ -153,8 +165,9 @@ public:
 	void AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir, LPCTSTR pszLeftDir, LPCTSTR pszRightDir
 		, __int64 lmtime, __int64 rmtime, __int64 lctime, __int64 rctime
 		, __int64 lsize, __int64 rsize, int diffcode
-		, int lattrs=0, int rattrs=0);
-	void AddDiff(DIFFITEM di);
+		, int lattrs=0, int rattrs=0
+		, int ndiffs=-1, int ntrivialdiffs=-1);
+	void AddDiff(DIFFITEM & di);
 	void RemoveDiff(POSITION diffpos);
 	void RemoveAll();
 	void UpdateFieldsNeededForNewItems(DIFFITEM & di, DiffFileInfo & dfi);
@@ -163,7 +176,7 @@ public:
 	// to iterate over all differences on list
 	POSITION GetFirstDiffPosition();
 	DIFFITEM GetNextDiffPosition(POSITION & diffpos);
-//	DIFFITEM GetDiffAt(POSITION diffpos);
+	DIFFITEM & GetDiffAt(POSITION diffpos);
 	const DIFFITEM & GetDiffAt(POSITION diffpos) const;
 //	int GetDiffStatus(POSITION diffpos);
 	int GetDiffCount();

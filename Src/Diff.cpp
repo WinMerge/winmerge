@@ -64,7 +64,7 @@ int recursive;
   Otherwise, sets out parameters diff (are files different?) and bin (are files binary?)
 */
 bool
-just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin)
+just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin, int * ndiffs, int *ntrivialdiffs)
 {
 
 	DiffFileData diffdata(filepath1, filepath2);
@@ -91,8 +91,11 @@ just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff
 		struct change *p,*e;
 		for (e = script; e; e = p)
 		{
+			(*ndiffs)++;
 			if (!e->trivial)
 				*diff = true;
+			else
+				(*ntrivialdiffs)++;
 			p = e->link;
 			free (e);
 		}
