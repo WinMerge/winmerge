@@ -1,6 +1,8 @@
 2005-02-22 Kimmo
  Fix markup and typo
- Manual: Locales.xml
+  Manual: Locales.xml
+ Improve markup (menuchoice around menu selection)
+  Manual: Version_control.xml
 
 2005-02-22 Perry
  Minor grammar proofing

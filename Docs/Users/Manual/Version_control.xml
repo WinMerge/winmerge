@@ -22,8 +22,8 @@
     <orderedlist>
       <listitem>
         <para>Enable Visual SourceSafe integration from
-        <guimenu>Edit</guimenu><guimenuitem>Options</guimenuitem><guilabel>
-        Versioning System</guilabel></para>
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Options</guimenuitem>
+        <guilabel>Versioning System</guilabel></menuchoice></para>
       </listitem>
 
       <listitem>
