@@ -1,3 +1,7 @@
+2004-07-04 Perry
+ Add lost piece of PATCH: [ 982960 ] Rescan when saving to update dir compare status
+  Src: DirDoc.cpp
+
 2004-07-03 Kimmo
  PATCH: [ 984520 ] Don't add '...' items as fileaction targets
   Src: DirActions.cpp

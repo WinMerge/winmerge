@@ -838,3 +838,12 @@ void CDirDoc::FetchPluginInfos(const CString& filteredFilenames,
 	IPluginInfos * piPluginInfos = &m_pluginman;
 	piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
 }
+
+void CDirDoc::SetDiffCounts(UINT diffs, UINT ignored, int idx)
+{
+	// Get position of item in DiffContext 
+	POSITION diffpos = m_pDirView->GetItemKey(idx);
+
+	// Update diff counts
+	m_pCtxt->SetDiffCounts(diffpos, diffs, ignored);
+}
