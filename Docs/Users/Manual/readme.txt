@@ -11,6 +11,8 @@
   Manual: WinMerge_help.xml
  BUG: [ 1034763 ] 2.2 docs: more minor tweaks (from Perry)
   Manual: Configuration.xml
+ BUG: [ 1034766 ] 2.2 docs yet more minor tweaking (from Perry)
+  Manual: Whatsnew_2_1.xml
 
 2004-09-25 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations

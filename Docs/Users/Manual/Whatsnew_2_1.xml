@@ -21,7 +21,7 @@
   </sect2>
   <sect2>
     <title>Project files</title>
-    <para>WinMerge can read paths to open from project files. Project files are simple XML files storing one or two paths, possibly filter and subfolder iclusion too.</para>
+    <para>WinMerge can read paths to open from project files. Project files are simple XML files storing one or two paths, and also possibly choice of which filter to use and whether to include subfolders.</para>
   </sect2>
   <sect2>
     <title>Generating patches</title>
