@@ -208,7 +208,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CAboutDlg)
 	enum { IDD = IDD_ABOUTBOX };
-	CStaticLink	m_ctlCompany;
+	CStatic	m_ctlCompany;
 	CStaticLink	m_ctlWWW;
 	CString	m_strVersion;
 	//}}AFX_DATA
@@ -263,7 +263,7 @@ BOOL CAboutDlg::OnInitDialog()
 	CVersionInfo version;
 	AfxFormatString1(m_strVersion, IDS_VERSION_FMT, version.GetProductVersion());
 
-	m_ctlCompany.m_link = _T("http://winmerge.sourceforge.net");
+	m_ctlCompany.SetWindowText(version.GetLegalCopyright());
 	m_ctlWWW.m_link = _T("http://winmerge.sourceforge.net");
 
 	UpdateData(FALSE);
