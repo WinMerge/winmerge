@@ -52,7 +52,7 @@
 <pre class="code">
             VALUE "Comments", "Translated by Christian List\0"
 </pre>
-<p>This ensures that you get credit for the translation. We will of course also add your name to the table below.</p>
+<p>This ensures that you get credit for the translation. We will of course also add your name to the <a href="status.php">status table</a>.</p>
 
 <p>Once you have translated all the strings, then you need to upload your translation to our patch section <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216" target="_top">here</a> (please leave your contact information in case there are any problems that need to be resolved). In case you have problems uploading the patch, you can also send it to us by e-mail 
 <a href="mailto:winmerge-support@lists.sourceforge.net">here</a>.</p>

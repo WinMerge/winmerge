@@ -1,3 +1,7 @@
+2005-04-02 Tim
+ BUG: [ 1173631 ] Translation instructions page refers to non-existing table
+  Web\developer\l10n: instructions.php
+
 2005-03-30 Tim
  PATCH: [ 1172781 ] Web: Misc updates for translations status
   Web\css: all.css print.css
