@@ -1212,6 +1212,11 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
 		nCrlfStyle = GetCRLFMode();
 	
+	// HACK for MAC files support.  Temp files for diff must
+	// be in unix format
+	if (bTempFile && nCrlfStyle == CRLF_STYLE_MAC)
+		nCrlfStyle = CRLF_STYLE_UNIX;
+
 	ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
 	LPCTSTR pszCRLF = crlfs[nCrlfStyle];
 	int nCRLFLength = _tcslen(pszCRLF);

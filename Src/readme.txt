@@ -1,3 +1,7 @@
+2003-05-06 Kimmo
+ PATCH: [ 732775 ] Add support for MAC files
+  WinMerge: MergeDoc.cpp MergeEditView.h
+
 2003-05-03 Kimmo
  BUG: [ 731486 ] Crash after save
   WinMerge: MergeDoc.cpp
