@@ -1,3 +1,8 @@
+2004-09-13 Kimmo
+ PATCH: [ 1026894 ] More space for translations in Goto-dialog
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2004-09-12 Kimmo
  Fix Italian lang file build error and remove unneeded \n
   Src/Languages/Italian: MergeItalian.rc
