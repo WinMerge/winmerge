@@ -26,6 +26,7 @@
 #include "merge.h"
 #include "FileFiltersDlg.h"
 #include "coretools.h"
+#include "dllver.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -58,8 +59,10 @@ BEGIN_MESSAGE_MAP(FileFiltersDlg, CDialog)
 	//{{AFX_MSG_MAP(FileFiltersDlg)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
+	ON_WM_MOUSEMOVE()
 	//}}AFX_MSG_MAP
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_FILTERFILE_LIST, OnLvnItemchangedFilterfileList)
+	ON_NOTIFY(LVN_GETINFOTIP, IDC_FILTERFILE_LIST, OnInfoTip)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -97,8 +100,14 @@ void FileFiltersDlg::SetSelected(CString selected)
 void FileFiltersDlg::InitList()
 {
 	CString title;
-	m_listFilters.SetExtendedStyle(m_listFilters.GetExtendedStyle() |
-			LVS_EX_FULLROWSELECT );
+	// Show selection across entire row.
+	DWORD newstyle = LVS_EX_FULLROWSELECT;
+	// Also enable infotips if they have new enough version for our
+	// custom draw code
+	// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
+	if (GetDllVersion(_T("comctl32.dll")) >= PACKVERSION(4,71))
+		newstyle |= LVS_EX_INFOTIP;
+	m_listFilters.SetExtendedStyle(m_listFilters.GetExtendedStyle() | newstyle);
 
 	VERIFY(title.LoadString(IDS_FILTERFILE_NAMETITLE));
 	m_listFilters.InsertColumn(0, title,LVCFMT_LEFT, 150);
@@ -238,4 +247,40 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 			btn->EnableWindow(TRUE);
 	}
 	*pResult = 0;
+}
+
+/// Called before infotip is shown to get infotip text
+void FileFiltersDlg::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
+{
+	LVHITTESTINFO lvhti = {0};
+	NMLVGETINFOTIP * pInfoTip = reinterpret_cast<NMLVGETINFOTIP*>(pNMHDR);
+	ASSERT(pInfoTip);
+
+	if (GetDllVersion(_T("comctl32.dll")) < PACKVERSION(4,71))
+	{
+		// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
+		return;
+	}
+
+	// Get subitem under mouse cursor
+	lvhti.pt = m_ptLastMousePos;
+	m_listFilters.SubItemHitTest(&lvhti);
+
+	if (lvhti.iSubItem > 1)
+	{
+		// Check that we are over icon or label
+		if ((lvhti.flags & LVHT_ONITEMICON) || (lvhti.flags & LVHT_ONITEMLABEL))
+		{
+			// Set item text to tooltip
+			CString strText = m_listFilters.GetItemText(lvhti.iItem, lvhti.iSubItem);
+			_tcscpy(pInfoTip->pszText, strText);
+		}
+	}
+}
+
+/// Track mouse position for showing tooltips
+void FileFiltersDlg::OnMouseMove(UINT nFlags, CPoint point) 
+{
+	m_ptLastMousePos = point;
+	CDialog::OnMouseMove(nFlags, point);
 }

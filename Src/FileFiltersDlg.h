@@ -73,8 +73,14 @@ protected:
 	afx_msg void OnFiltersEditbtn();
 	afx_msg void OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+private:
+	CPoint m_ptLastMousePos;
+
 };
 
 //{{AFX_INSERT_LOCATION}}

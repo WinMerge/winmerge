@@ -1,3 +1,7 @@
+2005-01-06 Kimmo
+ PATCH: [ 1096609 ] Show tooltips for filefilter dialog list
+  Src: FileFiltersDlg.cpp FileFiltersDlg.h
+
 2005-01-05 Kimmo
  PATCH: [ 1094534 ] Add description field for file filters
   Src: FileFilterHelper.cpp FileFilterHelper.h FileFilterMgr.cpp FileFilterMgr.h
