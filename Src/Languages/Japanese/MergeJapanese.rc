@@ -159,12 +159,12 @@ BEGIN
     BEGIN
         MENUITEM "同一ファイルの表示(&I)",      ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "差異ファイルの表示(&D)",      ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "左のみに存在するファイルの表示(&F)", ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "左のみに存在するファイルの表示(&E)", ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "右のみに存在するファイルの表示(&G)", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "バイナリファイルの表示(&H)",  ID_OPTIONS_SHOWBINARIES
         MENUITEM "スキップされたファイルの表示(&K)", ID_OPTIONS_SHOWSKIPPED
         MENUITEM SEPARATOR
-        MENUITEM "フォント選択(&N)...",         ID_VIEW_SELECTFONT
+        MENUITEM "フォント選択(&F)...",         ID_VIEW_SELECTFONT
         MENUITEM "デフォルトフォントを使用(&O)", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "空白を表示(&V)",              ID_VIEW_WHITESPACE
@@ -172,7 +172,7 @@ BEGIN
         MENUITEM "ツールバー(&T)",              ID_VIEW_TOOLBAR
         MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
         MENUITEM "Diffペイン(&P)",              ID_VIEW_DETAIL_BAR
-        MENUITEM "ロケーションペイン(&P)",      ID_VIEW_LOCATION_BAR
+        MENUITEM "ロケーションペイン(&C)",      ID_VIEW_LOCATION_BAR
         MENUITEM "比較状態ペイン(&R)",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "言語(&L)...",                 ID_VIEW_LANGUAGE
@@ -211,7 +211,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "展開プラグインで開く",        ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "&Prediffer"
+        POPUP "比較前処理プラグイン(&P)"
         BEGIN
             MENUITEM SEPARATOR
         END
@@ -233,7 +233,7 @@ BEGIN
         MENUITEM "目次(&C)...\tF1",             ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "アーカイブサポートが無効です(&R)...",ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "GNU一般公衆利用許諾契約書(&G)...", ID_HELP_GNULICENSE
         MENUITEM "WinMergeについて(&A)...",     ID_APP_ABOUT
@@ -251,16 +251,16 @@ BEGIN
             MENUITEM "右から左に(&R)",              ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "右から参照先へ(&I)...",       ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "&Move"
+        POPUP "移動(&M)"
         BEGIN
-            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
-            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+            MENUITEM "左から参照先へ(&L)...",       ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "右から参照先へ(&R)...",       ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
         POPUP "削除(&D)"
         BEGIN
             MENUITEM "左(&L)",                      ID_DIR_DEL_LEFT
             MENUITEM "右(&R)",                      ID_DIR_DEL_RIGHT
-            MENUITEM "両方(&B)",                    ID_DIR_DEL_BOTH
+            MENUITEM "両側(&B)",                    ID_DIR_DEL_BOTH
         END
         MENUITEM SEPARATOR
         POPUP "左を開く(&O)"
@@ -279,18 +279,18 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "パス名をコピー(&Y)"
         BEGIN
-            MENUITEM "&Left (%1 of %2)",            ID_DIR_COPY_PATHNAMES_LEFT
-            MENUITEM "&Right (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
-            MENUITEM "&Both (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+            MENUITEM "左(&L) (%1 / %2)",            ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "右(&R) (%1 / %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "両側(&B) (%1 / %2)",            ID_DIR_COPY_PATHNAMES_BOTH
         END
         MENUITEM "ファイル名をコピー(&F)",          ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "圧縮(&Z)"
         BEGIN
-            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
-            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
-            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
-            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "左(&L)... (%1 / %2)",         ID_DIR_ZIP_LEFT
+            MENUITEM "右(&R)... (%1 / %2)",         ID_DIR_ZIP_RIGHT
+            MENUITEM "両側(&B)... (%1 / %2)",       ID_DIR_ZIP_BOTH
+            MENUITEM "差異(&D)... (%1 / %2)",       ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
     END
     POPUP "_HDR_POPUP_"
@@ -310,10 +310,10 @@ END
 
 IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
-    POPUP "Prediffer Settings"
+    POPUP "比較前処理プラグイン設定"
     BEGIN
-        MENUITEM "&No prediffer",               ID_PREDIFF_MANUAL
-        MENUITEM "Auto prediffer",              ID_PREDIFF_AUTO
+        MENUITEM "使用しない(&N)",              ID_PREDIFF_MANUAL
+        MENUITEM "自動",                        ID_PREDIFF_AUTO
     END
 END
 
@@ -496,7 +496,7 @@ BEGIN
                     WS_TABSTOP,7,57,206,10
     PUSHBUTTON      "リセット",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press button to make all messageboxes visible again.",
+    LTEXT           "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。 全てのメッセージボックスを再び表示させるには、ボタンを押下してください。",
                     IDC_STATIC,7,79,168,31
 END
 
@@ -761,9 +761,9 @@ BEGIN
     PUSHBUTTON      "<==",IDC_ADD,143,45,29,14
     PUSHBUTTON      "==>",IDC_REMOVE,143,63,29,14
     EDITTEXT        IDC_COLDLG_DESC,7,122,269,22,ES_MULTILINE | ES_READONLY
-    PUSHBUTTON      "デフォルト",IDC_COLDLG_DEFAULTS,7,122,50,14
-    DEFPUSHBUTTON   "OK",IDOK,172,122,50,14
-    PUSHBUTTON      "キャンセル",IDCANCEL,226,122,50,14
+    PUSHBUTTON      "デフォルト",IDC_COLDLG_DEFAULTS,7,149,50,14
+    DEFPUSHBUTTON   "OK",IDOK,172,149,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,226,149,50,14
 END
 
 IDD_SELECTUNPACKER DIALOGEX 0, 0, 293, 126
@@ -944,44 +944,44 @@ END
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Save modified files?"
+CAPTION "変更されたファイルを保存しますか?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Left side file",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
+    GROUPBOX        "左側ファイル",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
     EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "&Save changes",IDC_SAVECLOSING_SAVELEFT,"Button",
+    CONTROL         "変更を保存する(&S)",IDC_SAVECLOSING_SAVELEFT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
-    CONTROL         "&Discard changes",IDC_SAVECLOSING_DISCARDLEFT,"Button",
+    CONTROL         "変更を破棄する(&D)",IDC_SAVECLOSING_DISCARDLEFT,"Button",
                     BS_AUTORADIOBUTTON,16,46,230,10
-    GROUPBOX        "Right side file",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
+    GROUPBOX        "右側ファイル",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
     EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "S&ave changes",IDC_SAVECLOSING_SAVERIGHT,"Button",
+    CONTROL         "変更を保存する(&A)",IDC_SAVECLOSING_SAVERIGHT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
-    CONTROL         "Dis&card changes",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
+    CONTROL         "変更を破棄する(&C)",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
     DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,205,133,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,205,133,50,14
 END
 
 IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Codepage"
+CAPTION "コードページ"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Detect codepage info for these files : .html, .rc \nneed to restart session",
+    CONTROL         ".html, .rc ファイルのコードページ情報を検出する\nセッションの再起動が必要です",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
-    CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
+    CONTROL         "システムコードページ",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
-    CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",
+    CONTROL         "現在のWinMergeユーザーインターフェース言語に従う",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,33,210,10
-    CONTROL         "Custom codepage :",IDC_CP_CUSTOM,"Button",
+    CONTROL         "カスタムコードページ:",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,46,77,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Default codepage for ANSI files",IDC_STATIC,7,7,221,58
+    GROUPBOX        "非Unicodeファイルのデフォルトコードページ",IDC_STATIC,7,7,221,58
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 276, 186
@@ -990,29 +990,29 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "WinMerge"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "Archive support is disabled. In order to enable archive support, please install a version of 7-Zip that WinMerge can interface, and place a copy of the appropriate interface plugin (Merge7z*.dll) in your WinMerge directory.",
+    LTEXT           "アーカイブサポートは無効になっています。アーカイブサポートを有効にするためには、WinMerge と連携できる 7-Zip のバージョンをインストールし、適切なインターフェースプラグイン(Merge7z*.dll)をWinMerge ディレクトリにコピーしてください。",
                     IDC_STATIC,2,2,272,32
-    LTEXT           "WinMerge can interface 7-Zip 3.11 and above, provided the appropriate interface plugin is available. Please use the version of 7-Zip recommended below until interface plugins for later versions become available.",
+    LTEXT           "WinMerge は、7-Zip 3.11以上と連携でき、使用可能で適切なインターフェースプラグインを提供します。最新のバージョンのインターフェースプラグインが利用可能になるまで、以下の推奨される7-Zip のバージョンを使用してください。",
                     IDC_STATIC,2,34,272,32
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,70,131,8
+    LTEXT           "7-Zip の推奨バージョン:",IDC_STATIC,2,70,131,8
     EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugin required:",IDC_STATIC,2,82,86,8
+    LTEXT           "必要なインターフェースプラグイン:",IDC_STATIC,2,82,208,8
     EDITTEXT        102,214,82,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of 7-Zip currently installed on your computer:",
+    LTEXT           "現在インストールされている 7-Zip のバージョン:",
                     IDC_STATIC,2,98,208,8
     EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of local 7-Zip components found in WinMerge directory:",
+    LTEXT           "WinMerge ディレクトリ内で見つかった 7-Zip のバージョン:",
                     IDC_STATIC,2,110,208,8
     EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugins found in WinMerge directory:",
+    LTEXT           "WinMerge ディレクトリ内で見つかったインターフェースプラグイン:",
                     IDC_STATIC,2,130,168,28
     LISTBOX         105,174,130,100,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
                     WS_VSCROLL | WS_GROUP
-    CONTROL         "Don't display this &message again.\n(You can allways recall this message from help menu.)",
+    CONTROL         "再度このメッセージを表示しない(&M)。\n(ヘルプメニューからこのメッセージを表示できます。)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_TABSTOP,2,164,202,20
     DEFPUSHBUTTON   "OK",IDOK,208,170,50,14,WS_GROUP
@@ -1357,16 +1357,16 @@ BEGIN
       /? or -? このヘルプを表示します
       /r or -r 再帰的にディレクトリを比較します
       /e or -e Escキーの押下でWinMergeを終了します
-      /f or -f sets filemask or filtername for compare
+      /f or -f  ファイルマスクまたはフィルタ名を設定します
       /ul or -ul 左パスをMRUに追加しません
       /ur or -ur 右パスをMRUに追加しません
-      /ub or -ub 両方のパスをMRUに追加しません
+      /ub or -ub 両側のパスをMRUに追加しません
       /wl or -wl 左側を読み取り専用で開きます
       /wr or -wr 右側を読み取り専用で開きます
       /dl or -dl ディレクトリ/ファイル名の代わりに説明文を左側に表示します
       /dr or -dr ディレクトリ/ファイル名の代わりに説明文を右側に表示します
       leftpath は、左側で開くディレクトリまたはファイル名です
-      rightpath 右側で開くディレクトリまたはファイル名です
+      rightpath は、右側で開くディレクトリまたはファイル名です
       outputpath は、省略可能なマージされたファイルの保存先ディレクトリです"
 END
 
@@ -1430,19 +1430,19 @@ BEGIN
     IDS_STATUS_COPYALL2R    "全てを右にコピーしています"
     IDS_STATUS_COPYFILES    "ファイルをコピーしています..."
     IDS_STATUS_DELETEFILES  "ファイルを削除しています..."
-    IDS_STATUS_MOVEFILES    "Moving files..."
+    IDS_STATUS_MOVEFILES    "ファイルを移動しています..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
 STRINGTABLE
 BEGIN
-    IDS_LINE_STATUS_INFO_EOL "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "行: %s  列: %d/%d  文字: %d/%d  EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "行: %s"
-    IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
+    IDS_LINE_STATUS_INFO    "行: %s  列: %d/%d  文字: %d/%d"
     IDS_MERGEMODE_MERGING   "マージ"
     IDS_DIFF_NUMBER_STATUS_FMT "差異 %1/%2"
     IDS_NO_DIFF_SEL_FMT     "%1個の差異が見つかりました"
-    IDS_1_DIFF_FOUND        "1 Difference Found"
+    IDS_1_DIFF_FOUND        "1個の差異が見つかりました"
     IDS_STATUSBAR_READONLY  "RO"
 END
 
@@ -1479,14 +1479,14 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "ファイル書き込み可チェックエラー"
     IDS_ERROR_BACKUP        "ファイルバックアップエラー"
     IDS_BACKUP_FAILED_PROMPT "元ファイルをバックアップできません。\n無視して続けますか?"
-    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
+    IDS_FILESAVE_FAILED     "ファイルの保存に失敗しました。\n%1\n%2\n別名でファイルを保存しますか?"
     IDS_FILEPACK_FAILED_LEFT "プラグイン '%2' は、修正内容を左側のファイル '%1' に書き戻すことができません。\n\n元ファイルは変更されません。\n\n展開されたものを別ファイルに保存しますか?"
     IDS_FILEPACK_FAILED_RIGHT "プラグイン '%2' は、修正内容を右側のファイル '%1' に書き戻すことができません。\n\n元ファイルは変更されません。\n\n展開されたものを別ファイルに保存しますか?"
     IDS_FILECHANGED_ONDISK  "%1\nこのファイルは WinMerge 以外のアプリケーションで修正されています。修正されたファイルに上書きしますか?"
     IDS_SAVEREADONLY_MULTI  "%1\nは、読み取り専用です。 読み取り専用の項目を上書きしますか?"
-    IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nIf you want to refresh files close current file compare and load files again."
-    IDS_SAVE_LEFT_AS        "Save Left File As"
-    IDS_SAVE_RIGHT_AS       "Save Right File As"
+    IDS_FILECHANGED_RESCAN  "WinMerge でファイル \n%1\nを最後に開いてから、他のアプリケーションがファイルを更新しています。\n\nファイルを更新したい場合は、ファイルを開き直してください。"
+    IDS_SAVE_LEFT_AS        "名前を付けて左側のファイルを保存"
+    IDS_SAVE_RIGHT_AS       "名前を付けて右側のファイルを保存"
 END
 
 // VSS
@@ -1498,14 +1498,14 @@ BEGIN
     IDS_VSS_RUN_ERROR       "バージョンシステムコマンドの実行エラー。"
     IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS作業フォルダと現在のファイル位置は一致していません。続行しますか?"
     IDS_VSS_NODATABASES     "VSSのデータベースがみつかりません!"
-    IDS_VSS_ERRORFROM       "Error from VSS:"
+    IDS_VSS_ERRORFROM       "VSSからのエラー:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT "選択されたファイルを指定ディレクトリにコピーします"
-    ID_DIR_COPY_LEFT_TO_BROWSE "選択されたファイルを選択されたディレクトリにコピーしますy"
+    ID_DIR_COPY_LEFT_TO_BROWSE "選択されたファイルを選択されたディレクトリにコピーします"
     ID_DIR_COPY_RIGHT_TO_LEFT "選択されたファイルを指定ディレクトリにコピーします"
     ID_DIR_COPY_RIGHT_TO_BROWSE "選択されたファイルを選択されたディレクトリにコピーします"
     ID_DIR_DEL_LEFT         "左の選択された項目を削除します"
@@ -1526,15 +1526,15 @@ END
 STRINGTABLE
 BEGIN
     IDS_DEL_RIGHT_FMT       "右 (%1)"
-    IDS_DEL_BOTH_FMT        "両方 (%1)"
+    IDS_DEL_BOTH_FMT        "両側 (%1)"
     IDS_DEL_LEFT_FMT2       "左 (%1 / %2)"
     IDS_DEL_RIGHT_FMT2      "右 (%1 / %2)"
-    IDS_DEL_BOTH_FMT2       "両方 (%1 / %2)"
+    IDS_DEL_BOTH_FMT2       "両側 (%1 / %2)"
     IDS_SELECT_DESTFOLDER   "対象フォルダを選択してください"
-    IDS_MOVE_LEFT_TO        "Left to... (%1)"
-    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
-    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
-    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
+    IDS_MOVE_LEFT_TO        "左から参照先へ... (%1)"
+    IDS_MOVE_RIGHT_TO       "右から参照先へ... (%1)"
+    IDS_MOVE_LEFT_TO2       "左から参照先へ... (%1 / %2)"
+    IDS_MOVE_RIGHT_TO2      "右から参照先へ... (%1 / %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1559,24 +1559,24 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "外部エディタで右のファイルを開きます"
     ID_DIR_OPEN_RIGHT_WITH  "右のファイルを選択したアプリケーションで開きます..."
     IDS_CANNOT_EXECUTE_FILE "%1を実行できません"
-    ID_DIR_COPY_FILENAMES   "クリップボードにファイル名をコピー"
-    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
+    ID_DIR_COPY_FILENAMES   "クリップボードにファイル名をコピーします"
+    ID_DIR_COPY_PATHNAMES_LEFT "左側のパス名をクリップボードにコピーします"
+    ID_DIR_COPY_PATHNAMES_RIGHT "右側のパス名をクリップボードにコピーします"
+    ID_DIR_COPY_PATHNAMES_BOTH "両側のパス名をクリップボードにコピーします"
 END
 
 // DIRECTORY DIFFING : 7ZIP
 STRINGTABLE
 BEGIN
     IDS_UNKNOWN_ARCHIVE_FORMAT "未知のアーカイブ形式です"
-    ID_DIR_ZIP_LEFT         "アーカイブに左側の項目を追加"
-    ID_DIR_ZIP_RIGHT        "アーカイブに右側の項目を追加"
-    ID_DIR_ZIP_BOTH         "アーカイブに両側の項目を追加"
-    ID_DIR_ZIP_BOTH_DIFFS_ONLY "アーカイブに差異のある両側の項目を追加"
+    ID_DIR_ZIP_LEFT         "アーカイブに左側の項目を追加します"
+    ID_DIR_ZIP_RIGHT        "アーカイブに右側の項目を追加します"
+    ID_DIR_ZIP_BOTH         "アーカイブに両側の項目を追加します"
+    ID_DIR_ZIP_BOTH_DIFFS_ONLY "アーカイブに差異のある両側の項目を追加します"
     ID_DIR_MOVE_LEFT_TO_BROWSE 
-                            "Move selected file on left to custom directory"
+                            "左側の選択されたファイルを指定したディレクトリに移動します"
     ID_DIR_MOVE_RIGHT_TO_BROWSE 
-                            "Move selected file on right to custom directory"
+                            "右側の選択されたファイルを指定したディレクトリに移動します"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
@@ -1636,8 +1636,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_ELAPSED_TIME        "経過時間: %ld ms"
-    IDS_STATUS_SELITEM1     "1 item selected"
-    IDS_STATUS_SELITEMS     "%1 items selected"
+    IDS_STATUS_SELITEM1     "1個の項目を選択"
+    IDS_STATUS_SELITEMS     "%1個の項目を選択"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
@@ -1676,15 +1676,15 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "同じファイルが両側のパネルで開かれています。"
     IDS_FILESSAME           "選択されたファイルは同一です。"
-    IDS_FILEUNIQUE          "選択されたファイルは、両方のディレクトリに存在しないため、比較できません。"
+    IDS_FILEUNIQUE          "選択されたファイルは、両側のディレクトリに存在しないため、比較できません。"
     IDS_FILEERROR           "ファイルの比較時にエラーが発生しました。"
     IDS_FILEBINARY          "バイナリファイルは視覚的に比較できません。"
     IDS_TEMP_FILEERROR      "テンポラリファイルが作成できませんでした。テンポラリパス設定を確認してください。"
     IDS_FILEISDIR           "ディレクトリは、ビジュアルに比較できません。"
     IDS_SUGGEST_IGNOREEOL   "ファイル内に異なるEOLタイプが存在しています。\n現在のオプション設定では、すべての行は、異なったままです。\nファイル内に存在するEOLの違いを無視しますか?\n\n上級者 : if the EOL are not unified in your files,\n you may rather set the option '%1'."
     IDS_SUGGEST_PRESERVEEOL "ファイル'%1'内に異なるタイプ(DOS/UNIX/MAC)のEOLが存在しています。\n 現在のオプション設定では、主なEOLに統一されます。\n オプションを変更して、異なるEOLを保持するようにしますか?"
-    IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-    IDS_SUGGEST_IGNORECODEPAGE "Left and right files don't have the same codepage. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWe suggest to forget the codepage information. Do you agree ?"
+    IDS_PREDIFFER_ERROR      "プラグイン'%2'でファイル'%1'の比較前処理の実行中にエラーが発生しました。比較前処理は以降行なわれません。"
+    IDS_SUGGEST_IGNORECODEPAGE "両側のファイルは、同じコードページではありません。\n各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\nコードページ情報を無視しますが、よろしいですか?"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -1721,16 +1721,16 @@ BEGIN
     IDS_DIFF_UNIFIED        "ユニファイド"
     IDS_FILEWRITE_ERROR     "ファイル %1に書き込めません。"
     IDS_PATH_NOT_ABSOLUTE   "%1\n は絶対パスではありません!"
-    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
-    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
+    IDS_CANNOT_CREATE_BINARYPATCH "バイナリファイルからパッチファイルは生成できません。"
+    IDS_CANNOT_CREATE_DIRPATCH "ディレクトリからパッチファイルは生成できません。"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_DIR_RESULTS_EMPTIED "Current directory comparison results will be cleared."
-    IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\n
-                            All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.
-                            See manual for more info about archive support and how to enable it."
+    IDS_DIR_RESULTS_EMPTIED "現在のディレクトリ比較結果はクリアされます。"
+    IDS_NO_ZIP_SUPPORT      "アーカイブサポートが有効になっていません。\n
+                            アーカイブサポートの為に必要なコンポーネント(7-zip と Merge7z*.dll) が見つかりません。
+                            アーカイブサポートとそれを有効にする方法についての情報は、マニュアルを参照してください。"
 END
 
 // LANGAGE NAMES #1
@@ -1926,7 +1926,7 @@ END
 STRINGTABLE
 BEGIN
     ID_SHOWLINEDIFF         "現在の行の差異をハイライト表示します\n現在の行の差異 (F4)"
-    ID_EDIT_WMGOTO          "指定した行または、差異へ移動\nジャンプ (Ctrl+G)"
+    ID_EDIT_WMGOTO          "指定した行または、差異へ移動します\nジャンプ (Ctrl+G)"
     ID_OPTIONS              "プログラムオプションを設定します\nオプション"
     ID_REFRESH              "最新の情報に更新します\n表示更新 (F5)"
 END
@@ -1984,12 +1984,12 @@ END
 STRINGTABLE
 BEGIN
     ID_UNPACK_MANUAL        "展開プラグインをユーザーが選択します (ディレクトリ比較のときは展開しません)"
-    ID_UNPACK_AUTO          "自動的に展開プラグインを選択し、両方のファイルに適用します (どちらかのファイルには、拡張子が必要です)"
+    ID_UNPACK_AUTO          "自動的に展開プラグインを選択し、両側のファイルに適用します (どちらかのファイルには、拡張子が必要です)"
     ID_POPUP_OPEN_WITH_UNPACKER "このファイルを編集するための展開プラグインを選択します"
-    ID_NO_PREDIFFER         "No prediffer (normal)"
-    ID_SUGGESTED_PLUGINS    "Suggested plugins"
-    ID_NOT_SUGGESTED_PLUGINS "Others plugins"
-    ID_RELOAD_PLUGINS       "Unload all plugins and reload them (for developpers)"
+    ID_NO_PREDIFFER         "比較前処理プラグインを使用しない (標準)"
+    ID_SUGGESTED_PLUGINS    "関連するプラグイン"
+    ID_NOT_SUGGESTED_PLUGINS "その他のプラグイン"
+    ID_RELOAD_PLUGINS       "全てのプラグインを再読込みします (開発者用)"
 END
 
 // WINDOW MENU
@@ -2011,9 +2011,9 @@ END
 STRINGTABLE
 BEGIN
     ID_TITLE_PLUGINS_SETTINGS "プラグイン設定"
-    ID_PREDIFF_MANUAL       "No prediffer"
-    ID_PREDIFF_AUTO         "Prediff if possible"
-    ID_NO_EDIT_SCRIPTS      "< Empty >"
+    ID_PREDIFF_MANUAL       "比較前処理プラグインを使用しません"
+    ID_PREDIFF_AUTO         "可能ならば比較前処理を行ないます"
+    ID_NO_EDIT_SCRIPTS      "< 空 >"
     ID_NO_SCT_SCRIPTS       "WSH がみつかりません - .sct スクリプトは無効化されました"
     IDS_USERCHOICE_NONE     "<なし>"
     IDS_USERCHOICE_AUTOMATIC "<自動>"

@@ -5,6 +5,9 @@
  PATCH: [ 1034557 ] Swedish translation update
   Submitted by Hans Eriksson
   Src/Languages/Swedish: MergeSwedish.rc
+ PATCH: [ 1034642 ] Updated Japanese Translation
+  Submitted by Takashi Sawanaka
+  Src/Languages/Japanese: MergeJapanese.rc
 
 2004-09-24 Kimmo
  PATCH: [ 1033678 ] Better description for 'Reset messageboxes'
