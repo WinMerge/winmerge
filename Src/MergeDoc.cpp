@@ -337,8 +337,6 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		FALSE, TRUE);
 	bRightFileChanged = IsFileChangedOnDisk(m_strRightFile, fileInfo,
 		FALSE, FALSE);
-	m_leftRescanFileInfo.Update(m_strLeftFile);
-	m_rightRescanFileInfo.Update(m_strRightFile);
 	m_LastRescan = COleDateTime::GetCurrentTime();
 
 	// get the desired files to temp locations so we can edit them dynamically
@@ -445,6 +443,9 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		m_bLeftEditAfterRescan = FALSE;
 		m_bRightEditAfterRescan = FALSE;
 	}
+
+	m_leftRescanFileInfo.Update(m_strLeftFile);
+	m_rightRescanFileInfo.Update(m_strRightFile);
 
 	if (bLeftFileChanged)
 	{
@@ -980,11 +981,13 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 		if (bLeft)
 		{
 			m_leftSaveFileInfo.Update(strSavePath);
+			m_leftRescanFileInfo.Update(m_strLeftFile);
 			m_strLeftFile = strSavePath;
 		}
 		else
 		{
 			m_rightSaveFileInfo.Update(strSavePath);
+			m_rightRescanFileInfo.Update(m_strRightFile);
 			m_strRightFile = strSavePath;
 		}
 		UpdateHeaderPath(bLeft);
@@ -1044,11 +1047,13 @@ BOOL CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 		if (bLeft)
 		{
 			m_leftSaveFileInfo.Update(strSavePath);
+			m_leftRescanFileInfo.Update(m_strLeftFile);
 			m_strLeftFile = strSavePath;
 		}
 		else
 		{
 			m_rightSaveFileInfo.Update(strSavePath);
+			m_rightRescanFileInfo.Update(m_strRightFile);
 			m_strRightFile = strSavePath;
 		}
 		UpdateHeaderPath(bLeft);
