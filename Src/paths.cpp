@@ -114,8 +114,8 @@ CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 {
 	int len = sPath.GetLength();
 	// ensure it is not a root drive or a UNC path
-	if (len < 2) return sPath;
-	if (sPath[0]=='\\' && sPath[1]=='\\') return sPath;
+	if (len < 1) return sPath;
+	if (sPath[0]=='\\' && len>1 && sPath[1]=='\\') return sPath;
 
 	// Now get a working buffer and walk down each directory
 	CString sBuffer=sPath; // original path
@@ -129,7 +129,7 @@ CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 		sTemp += paths_GetCurrentDriveUpper();
 		sBuffer = sTemp + ':' + sBuffer;
 	}
-	else if (sBuffer[1] == ':')
+	else if (len>1 && sBuffer[1] == ':')
 	{
 		if (!_istalpha(sBuffer[0]))
 			return sPath; // not a valid drive, give up
@@ -175,36 +175,36 @@ CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 	while (ptr)
 	{
 		end = _tcschr(ptr, '\\');
-		if (!end)
-		{
-			// on last component (probably filename)
-			sTemp = sLong + '\\' + ptr;
-			ptr = 0;
-		}
-		else
-		{
+		// zero-terminate current component
+		// (if we're at end, its already zero-terminated)
+		if (end)
 			*end = 0;
-			sTemp = sLong + _T("\\") + ptr;
-			if (0 == _tcscmp(ptr, _T(".")))
-			{
-				ptr = &end[1];
-				continue;
-			}
-			if (0 == _tcscmp(ptr, _T("..")))
-			{
-				// back up one component
-				for (int i = sLong.GetLength()-1; i>=0 && sLong[i]!='\\' && sLong[i]!=':'; --i)
-					;
-				if (i==-1)
-				{
-					return _T("");
-				}
-				sLong = sLong.Left(i);
-				ptr = &end[1];
-				continue;
-			}
-			ptr = &end[1];
+		sTemp = sLong + '\\' + ptr;
+		// special handling for . and .. components
+		if (0 == _tcscmp(ptr, _T(".")))
+		{
+			// advance to next component (or set ptr==0 to flag end)
+			ptr = (end ? end+1 : 0);
+			continue;
 		}
+		if (0 == _tcscmp(ptr, _T("..")))
+		{
+			// back up one component
+			for (int i = sLong.GetLength()-1; i>=0 && sLong[i]!='\\' && sLong[i]!=':'; --i)
+				;
+			if (i==-1)
+			{
+				return _T("");
+			}
+			sLong = sLong.Left(i);
+			// advance to next component (or set ptr==0 to flag end)
+			ptr = (end ? end+1 : 0);
+			continue;
+		}
+
+		// advance to next component (or set ptr==0 to flag end)
+		ptr = (end ? end+1 : 0);
+
 		// (Couldn't get info for just the directory from CFindFile)
 		WIN32_FIND_DATA ffd;
 		HANDLE h = FindFirstFile(sTemp, &ffd);
