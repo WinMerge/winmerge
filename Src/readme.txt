@@ -12,6 +12,8 @@
   Docs/Users/Languages: Read Me-Swedish.rtf
  Update contributors file (Add Dutch and French translators)
   Docs/Users: Contributors.txt
+ PATCH: [ 1176600 ] Drag location pane indicator with mouse
+  Src: LocationView.cpp LocationView.h
 
 2005-04-03 Kimmo
  PATCH: [ 1175319 ] Dutch translation update

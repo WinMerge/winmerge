@@ -29,6 +29,11 @@ static char THIS_FILE[] = __FILE__;
 static const DWORD Y_OFFSET = 5;
 
 /** 
+ * @brief Size of y-margin for visible area indicator (in pixels)
+ */
+static const UINT INDICATOR_MARGIN = 2;
+
+/** 
  * @brief Max pixels in view per line in file
  */
 static const double MAX_LINEPIX = 4.0;
@@ -41,6 +46,7 @@ enum LOCBAR_TYPE
 	BAR_NONE = 0,	/**< No bar in given coords */
 	BAR_LEFT,		/**< Left side bar in given coords */
 	BAR_RIGHT,		/**< Right side bar in given coords */
+	BAR_YAREA,		/**< Y-Coord in bar area */
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -61,6 +67,9 @@ CLocationView::CLocationView()
 BEGIN_MESSAGE_MAP(CLocationView, CView)
 	//{{AFX_MSG_MAP(CLocationView)
 	ON_WM_LBUTTONDOWN()
+	ON_WM_LBUTTONUP()
+	ON_WM_MOUSEMOVE()
+	ON_WM_LBUTTONDBLCLK()
 	ON_WM_CONTEXTMENU()
 	ON_WM_CLOSE()
 	//}}AFX_MSG_MAP
@@ -348,11 +357,52 @@ void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border)
 	}
 }
 
-/// User pushed left mousebutton
+/**
+ * @brief Capture the mouse target.
+ */
 void CLocationView::OnLButtonDown(UINT nFlags, CPoint point) 
 {
+	SetCapture();
+
 	if (!GotoLocation(point, FALSE))
 		CView::OnLButtonDown(nFlags, point);
+}
+
+/**
+ * @brief Release the mouse target.
+ */
+void CLocationView::OnLButtonUp(UINT nFlags, CPoint point) 
+{
+	ReleaseCapture();
+
+	CView::OnLButtonUp(nFlags, point);
+}
+
+/**
+ * @brief Process drag action on a captured mouse.
+ *
+ * Reposition on every dragged movement.
+ * The Screen update stress will be similar to a mouse wheeling.:-)
+ */
+void CLocationView::OnMouseMove(UINT nFlags, CPoint point) 
+{
+	if(GetCapture() == this)
+	{
+		if(GotoLocation(point, FALSE))
+			return;
+	}
+
+	CView::OnMouseMove(nFlags, point);
+}
+
+/**
+ * User left double-clicked mouse
+ * @todo We can give alternative action to a double clicking. 
+ */
+void CLocationView::OnLButtonDblClk(UINT nFlags, CPoint point) 
+{
+	if (!GotoLocation(point, FALSE))
+		CView::OnLButtonDblClk(nFlags, point);
 }
 
 /**
@@ -384,13 +434,17 @@ BOOL CLocationView::GotoLocation(CPoint point, BOOL bRealLine)
 	{
 		line = GetLineFromYPos(point.y, rc, bar, bRealLine);
 	}
+	else if (bar == BAR_YAREA)
+	{
+		line = GetLineFromYPos(point.y, rc, bar, FALSE);
+	}
 	else
 		return FALSE;
 
 	m_view0->GotoLine(line, bRealLine, bar == BAR_LEFT);
 	if (bar == BAR_LEFT)
 		m_view0->SetFocus();
-	else
+	else if (bar == BAR_RIGHT)
 		m_view1->SetFocus();
 
 	return TRUE;
@@ -533,12 +587,14 @@ int CLocationView::GetLineFromYPos(int nYCoord, CRect rc, int bar,
  * @brief Determines if given coords are inside left/right bar.
  * @param rc [in] size of locationpane client area
  * @param pt [in] point we want to check, in client coordinates.
+ * @return LOCBAR_TYPE area where point is.
  */
 int CLocationView::IsInsideBar(CRect rc, POINT pt)
 {
 	int retVal = BAR_NONE;
 	BOOL bLeftSide = FALSE;
 	BOOL bRightSide = FALSE;
+	BOOL bYarea = FALSE;
 	const int w = rc.Width() / 4;
 	const int x = (rc.Width() - 2 * w) / 3;
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
@@ -551,12 +607,16 @@ int CLocationView::IsInsideBar(CRect rc, POINT pt)
 	{
 		bLeftSide = (pt.x >= x && pt.x < x + w);
 		bRightSide = (pt.x >= 2 * x + w && pt.x < 2 * x + 2 * w);
+		bYarea = (pt.x >= INDICATOR_MARGIN &&
+			pt.x < (rc.Width() - INDICATOR_MARGIN));
 	}
 	
 	if (bLeftSide)
 		retVal = BAR_LEFT;
 	else if(bRightSide)
 		retVal = BAR_RIGHT;
+	else if (bYarea)
+		retVal = BAR_YAREA;
 
 	return retVal;
 }
@@ -587,9 +647,9 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 		LineInPix = MAX_LINEPIX;
 
 	int nTopCoord = (int) (Y_OFFSET + ((double)nTopLine * LineInPix));
-	int nLeftCoord = 2;
+	int nLeftCoord = INDICATOR_MARGIN;
 	int nBottomCoord = (int) (Y_OFFSET + ((double)(nTopLine + nScreenLines) * LineInPix));
-	int nRightCoord = rc.Width() - 2;
+	int nRightCoord = rc.Width() - INDICATOR_MARGIN;
 	
 	// Visible area was not changed
 	if (m_visibleTop == nTopCoord && m_visibleBottom == nBottomCoord)
