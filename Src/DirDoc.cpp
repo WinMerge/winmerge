@@ -505,7 +505,9 @@ POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 	return NULL;
 }
 
-// stash away our view pointer
+/**
+ * @brief Stash away our view pointer.
+ */
 void CDirDoc::SetDirView(CDirView * newView)
 {
 	m_pDirView = newView;
@@ -515,14 +517,18 @@ void CDirDoc::SetDirView(CDirView * newView)
 	ASSERT(temp == m_pDirView); // verify that our stashed pointer is the same as MFC's
 }
 
-// a new merge doc has been opened
+/**
+ * @brief A new MergeDoc has been opened.
+ */
 void CDirDoc::AddMergeDoc(CMergeDoc * pMergeDoc)
 {
 	ASSERT(pMergeDoc);
 	m_MergeDocs.AddTail(pMergeDoc);
 }
 
-// merge doc informs us it is closing
+/**
+ * @brief MergeDoc informs us it is closing.
+ */
 void CDirDoc::MergeDocClosing(CMergeDoc * pMergeDoc)
 {
 	ASSERT(pMergeDoc);
@@ -531,19 +537,36 @@ void CDirDoc::MergeDocClosing(CMergeDoc * pMergeDoc)
 	m_MergeDocs.RemoveAt(pos);
 }
 
-// Prepare for reuse
-// Close all our merge docs (which gives them chance to save)
-// This may fail if user cancels a Save dialog
-// in which case this aborts and returns FALSE
-BOOL CDirDoc::ReusingDirDoc()
+/**
+ * @brief Close MergeDocs opened from DirDoc.
+ *
+ * Asks confirmation for docs containing unsaved data and then
+ * closes MergeDocs.
+ * @return TRUE if success, FALSE if user canceled or closing failed
+ */
+BOOL CDirDoc::CloseMergeDocs()
 {
-	// Inform all of our merge docs that we're closing
 	for (POSITION pos = m_MergeDocs.GetHeadPosition(); pos; )
 	{
 		CMergeDoc * pMergeDoc = m_MergeDocs.GetNext(pos);
 		if (!pMergeDoc->CloseNow())
 			return FALSE;
 	}
+	return TRUE;
+}
+
+/**
+ * @brief Prepare for reuse.
+ *
+ * Close all our merge docs (which gives them chance to save)
+ * This may fail if user cancels a Save dialog
+ * in which case this aborts and returns FALSE
+ */
+BOOL CDirDoc::ReusingDirDoc()
+{
+	// Inform all of our merge docs that we're closing
+	if (!CloseMergeDocs())
+		return FALSE;
 
 	// clear diff display
 	ASSERT(m_pDirView);
@@ -567,8 +590,11 @@ BOOL CDirDoc::ReusingDirDoc()
 	return TRUE;
 }
 
-// Obtain a merge doc to display a difference in files
-// pNew is set to TRUE if a new doc is created, and FALSE if an existing one reused
+/**
+ * @brief Obtain a merge doc to display a difference in files.
+ * @param [out] pNew Set to TRUE if a new doc is created,
+ * and FALSE if an existing one reused.
+ */
 CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
 {
 	CMergeDoc * pMergeDoc = 0;

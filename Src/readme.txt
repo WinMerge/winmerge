@@ -2,6 +2,8 @@
  Fix for OptionsMgr bugs when loading string options from registry
   UNICODE strings were not handled correctly, incorrect buffer lengths
   Src/Common: OptionsMgr.cpp OptionsMgr.h
+ PATCH: [ 912754 ] Close open MergeDoc before opening new from DirDoc
+  Src: DirDoc.cpp DirDoc.h DirView.cpp
 
 2004-03-09 Kimmo
  PATCH: [ 912297 ] Splashscreen and syntax highlight options

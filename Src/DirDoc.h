@@ -69,6 +69,7 @@ protected:
 public:
 // Operations
 public:
+	BOOL CloseMergeDocs();
 	CDirView * GetMainView();
 	CMergeDoc * GetMergeDocForDiff(BOOL * pNew);
 	BOOL ReusingDirDoc();

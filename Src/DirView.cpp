@@ -753,6 +753,10 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
 		else
 		{
+			// Close open documents first (ask to save unsaved data)
+			if (!GetDocument()->CloseMergeDocs())
+				return;
+			
 			// Open identical and different files
 			CString left, right;
 			BOOL bLeftRO = GetDocument()->GetReadOnly(TRUE);
