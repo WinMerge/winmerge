@@ -349,6 +349,8 @@ BOOL CMergeApp::PreTranslateMessage(MSG* pMsg)
 			AfxGetMainWnd()->PostMessage(WM_CLOSE);
 			return FALSE;
 		}
+		else
+			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 	}
 
 	// CG: The following lines were added by the Splash Screen component.

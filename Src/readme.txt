@@ -1,3 +1,8 @@
+2003-03-04
+ BUG: [ 684622 ] Escape key closes whole program
+  Nikki Locke's patch slightly modified
+  WinMerge: Merge.cpp
+
 2003-02-28 Kimmo
  BUG: [ 693932 ] Trailing \ on path crashes WinMerge
   WinMerge: OpenDlg.h OpenDlg.cpp
