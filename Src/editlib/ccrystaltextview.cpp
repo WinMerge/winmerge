@@ -5466,6 +5466,7 @@ int CCrystalTextView::GetCharWidthUnicodeChar(wchar_t ch)
 }
 #endif
 
+// This function assumes selection is in one line
 void CCrystalTextView::EnsureVisible (CPoint ptStart, CPoint ptEnd)
 {
   //  Scroll vertically
@@ -5513,18 +5514,40 @@ void CCrystalTextView::EnsureVisible (CPoint ptStart, CPoint ptEnd)
   int nActualEndPos = CalculateActualOffset (ptEnd.y, ptEnd.x);
   int nNewOffset = m_nOffsetChar;
   const int nScreenChars = GetScreenChars ();
-  if (nActualEndPos > nNewOffset + nScreenChars)
+  const int nBeginOffset = nActualPos - m_nOffsetChar;
+  const int nEndOffset = nActualEndPos - m_nOffsetChar;
+  const int nSelLen = nActualEndPos - nActualPos;
+
+  // Selection fits to screen, scroll whole selection visible
+  if (nSelLen < nScreenChars)
     {
-      // Check selection is not wider than visible area and
-      // Add 10 chars width space after line
-      if (nActualEndPos < nActualPos + nScreenChars - 10)
-        nNewOffset = nActualEndPos - nScreenChars + 10;
-      else
-        nNewOffset = nActualPos - nScreenChars + 10;
-    }
-  if (nActualPos < nNewOffset)
+      // Begin of selection not visible 
+      if (nBeginOffset > nScreenChars)
+        {
+          // Scroll so that there is max 5 chars margin at end
+          if (nScreenChars - nSelLen > 5)
+            nNewOffset = nActualPos + 5 - nScreenChars + nSelLen;
+          else
+            nNewOffset = nActualPos - 5;
+        }
+      else if (nBeginOffset < 0)
+        {
+          // Scroll so that there is max 5 chars margin at begin
+          if (nScreenChars - nSelLen >= 5)
+            nNewOffset = nActualPos - 5;
+          else
+            nNewOffset = nActualPos - 5 - nScreenChars + nSelLen;
+        }
+      // End of selection not visible
+      else if (nEndOffset > nScreenChars ||
+          nEndOffset < 0)
+        {
+          nNewOffset = nActualPos - 5;
+        }
+     }
+  else // Selection does not fit screen so scroll to begin of selection
     {
-      nNewOffset = nActualPos - 10;
+      nNewOffset = nActualPos - 5;
     }
 
   // Horiz scroll limit to longest line + one screenwidth
