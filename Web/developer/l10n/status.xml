@@ -97,6 +97,7 @@
       </author>
     </authors>
     <versions>
+      <version>2.2</version>
       <version>2.0</version>
     </versions>
   </language>
@@ -114,17 +115,8 @@
     </versions>
   </language>
   <language>
-    <name>Esperanto</name>
-    <status>4</status>
-    <authors>
-      <author>
-        <name>Tim Morley</name>
-      </author>
-    </authors>
-  </language>
-  <language>
     <name>French</name>
-    <status>1</status>
+    <status>4</status>
     <authors>
       <author>
         <name>Gil Andre</name>
@@ -219,7 +211,7 @@
   </language>
   <language>
     <name>Korean</name>
-    <status>4</status>
+    <status>2</status>
     <authors>
       <author>
         <name>Sukjoon</name>
@@ -264,7 +256,7 @@
   </language>
   <language>
     <name>Russian</name>
-    <status>1</status>
+    <status>2</status>
     <authors>
       <author>
         <name>Dmitriy S. Aleshkowskiy</name>
