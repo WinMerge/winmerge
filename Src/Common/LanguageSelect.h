@@ -49,7 +49,6 @@ private:
 	CString GetPath( LPCTSTR FileName);
 	
 	CString GetLanguageString( WORD LangId );
-	WORD  GetLanguageId(const CString& Language );
 
 // Dialog Data
 	//{{AFX_DATA(CLanguageSelect)

@@ -1,3 +1,10 @@
+2003-11-23 Perry
+ PATCH: [ 842906 ] Hardcode native language names into LanguageSelection.cpp
+  Now Merge.rc holds all ASCII language names, and non-ASCII versions (if different)
+   are in LanguageSelection.cpp, as Unicode strings.
+  WinMerge: Merge.rc
+  common: LanguageSelection.cpp LanguageSelection.h
+
 2003-11-22 Kimmo
  PATCH: [ 820676 ] Scratchpad
   WinMerge: MainFrm.h MainFrm.cpp Merge.rc MergeDoc.h MergeDoc.cpp resource.h
