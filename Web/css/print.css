@@ -6,6 +6,18 @@ body {
 	font-family: sans-serif;
 }
 
+#head {
+	margin: 0;
+	padding: 5px;
+	background: white;
+	border: 0;
+}
+
+#head h1 {
+	margin: 0;
+	padding: 0;
+}
+
 #nav {
 	display: none;
 }
@@ -15,8 +27,8 @@ body {
 	padding: 5px;
 }
 
-#content h1 {
-	margin: 0;
+#content h2, p {
+	margin-top: 0;
 }
 
 #content li {

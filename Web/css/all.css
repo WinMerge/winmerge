@@ -1,7 +1,21 @@
 body {
+	margin: 0;
+	padding: 0;
 	color: black;
 	background: white;
 	font-family: sans-serif;
+}
+
+#head {
+	margin: 0;
+	padding: 5px;
+	background: #FFCC00;
+	border: 1px solid #FF9933;
+}
+
+#head h1 {
+	margin: 0;
+	padding: 0;
 }
 
 #nav {
@@ -28,12 +42,12 @@ body {
 }
 
 #content {
-	margin: 0 0 0 200px;
+	margin: 5px 0 0 200px;
 	padding: 5px;
 }
 
-#content h1 {
-	margin: 0;
+#content h2, p {
+	margin-top: 0;
 }
 
 #content li {

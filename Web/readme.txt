@@ -1,3 +1,8 @@
+2005-02-08 Tim
+ PATCH: [ 1116828 ] Web: New layout for header (h1)
+  Web: page.inc
+  Web\css: all.css print.css
+
 2005-02-04 Tim
  PATCH: [ 1115079 ] Web: Switch from TABLE to CSS layout
   Web: page.inc

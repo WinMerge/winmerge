@@ -91,10 +91,7 @@
       $temp .= "  <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n";
       $temp .= "</head>\n\n";
       $temp .= "<body>\n";
-      $temp .= "<div id=\"nav\">\n";
-      $temp .= $this->getMenu();
-      $temp .= "</div>\n";
-      $temp .= "<div id=\"content\">\n";
+      $temp .= "<div id=\"head\">\n";
       switch ($this->_version) {
         case WINMERGE_1_7: //if WinMerge 1.7 ...
           $temp .= "<h1><img src=\"/1.7/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 1.7</h1>\n";
@@ -109,6 +106,11 @@
           $temp .= "<h1><img src=\"/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge</h1>\n";
           break;
       }
+      $temp .= "</div>\n";
+      $temp .= "<div id=\"nav\">\n";
+      $temp .= $this->getMenu();
+      $temp .= "</div>\n";
+      $temp .= "<div id=\"content\">\n";
       print($temp);
     }
 
