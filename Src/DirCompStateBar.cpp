@@ -141,9 +141,7 @@ void CDirCompStateBar::OnUpdateStop(CCmdUI* pCmdUI)
 	// adapt the text of button 
 	if (m_ctlStop.GetSafeHwnd())
 	{
-		if (pDirDoc->IsCurrentScanAbortable())
-			m_ctlStop.SetWindowText(strAbort);
-		else 
+		if (!pDirDoc->IsCurrentScanAbortable())
 		{
 			CString text;
 			m_ctlStop.GetWindowText(text);
@@ -154,11 +152,8 @@ void CDirCompStateBar::OnUpdateStop(CCmdUI* pCmdUI)
 				text.Format(IDS_ELAPSED_TIME, m_lElapsed);
 				pFrameWnd->SetMessageText(text);
 			}
-			// also give the focus to the button (PreTranslateMessage needs it)
-			m_ctlStop.SetFocus();
 		}
 	}
-
 	pCmdUI->Enable(TRUE);
 }
  
@@ -305,4 +300,7 @@ void CDirCompStateBar::Reset()
 	m_lElapsed = 0;
 	m_lElapsed -= ::GetTickCount();
 	UpdateData(FALSE);
+	m_ctlStop.SetWindowText(strAbort);
+	// also give the focus to the button (PreTranslateMessage needs it)
+	m_ctlStop.SetFocus();
 }
