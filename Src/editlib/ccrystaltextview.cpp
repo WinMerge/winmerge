@@ -1186,7 +1186,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   //  Parse the line
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   DWORD dwCookie = GetParseCookie (nLineIndex - 1);
-  TEXTBLOCK *pBuf = (TEXTBLOCK *) _alloca (sizeof (TEXTBLOCK) * nLength * 3);
+  TEXTBLOCK *pBuf = new TEXTBLOCK[nLength * 3];
   int nBlocks = 0;
 	//BEGIN SW
 	// insert at least one textblock of normal color at the beginning
@@ -1201,7 +1201,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 	int nActualItem = 0;
 
 	// Wrap the line
-	int *anBreaks = (int*)_alloca( sizeof( int ) * nLength );
+	int *anBreaks = new int[nLength];
 	int	nBreaks = 0;
 
 	WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
@@ -1306,6 +1306,8 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 	}
 	*/
 	//END SW
+	delete anBreaks;
+	delete pBuf;
 }
 
 COLORREF CCrystalTextView::
@@ -1762,7 +1764,7 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
 	*/
 
 	// line is wrapped
-	int *anBreaks = (int*)_alloca( sizeof( int ) * GetLineLength( nLineIndex ) );
+	int *anBreaks = new int[GetLineLength( nLineIndex )];
 	int	nBreaks = 0;
 
 	WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
@@ -1772,7 +1774,10 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
 	charPoint.x = (i >= 0)? nCharPos - anBreaks[i] : nCharPos;
 	charPoint.y = i + 1;
 
-	return (i >= 0)? anBreaks[i] : 0;
+	int nReturnVal = (i >= 0)? anBreaks[i] : 0;
+	delete anBreaks;
+
+	return nReturnVal;
 }
 
 int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoint )
@@ -1783,7 +1788,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
 	LPCTSTR	szLine = GetLineChars( nLineIndex );
 
 	// wrap line
-	int *anBreaks = (int*)_alloca( sizeof( int ) * nLength );
+	int *anBreaks = new int[nLength];
 	int	nBreaks = 0;
 
 	WrapLineCached( nLineIndex, nScreenChars, anBreaks, nBreaks );
@@ -1821,6 +1826,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
 			break;
 		}
 	}
+	delete anBreaks;
 
 	return nIndex;	
 }
@@ -1846,7 +1852,7 @@ int CCrystalTextView::SubLineEndToCharPos( int nLineIndex, int nSubLineOffset )
 		return nLength;
 
 	// wrap line
-	int *anBreaks = (int*)_alloca( sizeof( int ) * nLength );
+	int *anBreaks = new int[nLength];
 	int	nBreaks = 0;
 
 	WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
@@ -1859,7 +1865,10 @@ int CCrystalTextView::SubLineEndToCharPos( int nLineIndex, int nSubLineOffset )
 	// compute character position for end of subline
 	ASSERT( nSubLineOffset >= 0 && nSubLineOffset <= nBreaks );
 	
-	return anBreaks[nSubLineOffset] - 1;
+	int nReturnVal = anBreaks[nSubLineOffset] - 1;
+	delete anBreaks;
+
+	return nReturnVal;
 }
 
 int CCrystalTextView::SubLineHomeToCharPos( int nLineIndex, int nSubLineOffset )
@@ -1871,7 +1880,7 @@ int CCrystalTextView::SubLineHomeToCharPos( int nLineIndex, int nSubLineOffset )
 		return 0;
 
 	// wrap line
-	int *anBreaks = (int*)_alloca( sizeof( int ) * nLength );
+	int *anBreaks = new int[nLength];
 	int	nBreaks = 0;
 
 	WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
@@ -1883,7 +1892,10 @@ int CCrystalTextView::SubLineHomeToCharPos( int nLineIndex, int nSubLineOffset )
 	// compute character position for end of subline
 	ASSERT( nSubLineOffset > 0 && nSubLineOffset <= nBreaks );
 	
-	return anBreaks[nSubLineOffset - 1];
+	int nReturnVal = anBreaks[nSubLineOffset - 1];
+	delete anBreaks;
+
+	return nReturnVal;
 }
 //END SW
 
@@ -2869,7 +2881,7 @@ ClientToText (const CPoint & point)
 	if (pt.y >= 0 && pt.y < nLineCount)
 	{
 		nLength = GetLineLength( pt.y );
-		anBreaks = (int*)_alloca( sizeof( int ) * nLength );
+		anBreaks = new int[nLength];
 		pszLine = GetLineChars(pt.y);
 		WrapLineCached( pt.y, GetScreenChars(), anBreaks, nBreaks );
 
@@ -2915,6 +2927,8 @@ ClientToText (const CPoint & point)
 
 		nIndex ++;
 	}
+
+	delete anBreaks;
 
 	ASSERT(nIndex >= 0 && nIndex <= nLength);
 	pt.x = nIndex;
@@ -3146,7 +3160,7 @@ CalculateActualOffset (int nLineIndex, int nCharIndex)
   int nOffset = 0;
   int nTabSize = GetTabSize ();
 	//BEGIN SW
-	int			*anBreaks = (int*)_alloca( sizeof( int ) * nLength );
+	int			*anBreaks = new int[nLength];
 	int			nBreaks = 0;
 
 	/*if( nLength > GetScreenChars() )*/
@@ -3160,6 +3174,7 @@ CalculateActualOffset (int nLineIndex, int nCharIndex)
 		for( int J = nBreaks - 1; J >= 0 && nCharIndex < anBreaks[J]; J-- );
 		nPreBreak = anBreaks[J];
 	}
+	delete anBreaks;
 	//END SW
   for (int I = 0; I < nCharIndex; I++)
     {
