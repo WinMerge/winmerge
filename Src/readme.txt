@@ -1,6 +1,10 @@
 2004-10-04 Kimmo
  BUG: [ 1037587 ] XML Syntax highlighting: Problems with numbers
   Src/editLib: xml.cpp
+ PATCH: [ 1039552 ] Italian translation updated for RC
+  Submitted by Andrea Decorte
+  Src/Languages/Italian: MergeItalian.rc
+
 
 2004-10-04 Perry
  PATCH: [ 1039300 ] Factor listviewex code so it can be used with a CListCtrlEx.

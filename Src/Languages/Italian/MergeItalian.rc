@@ -480,13 +480,13 @@ CAPTION "Generale"
 FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "Salva copia di bac&kup del file originale",IDC_BACKUP_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,118,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "&Visualizza automaticamente la prima differenza",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,17,211,10
     CONTROL         "&Disattiva la schermata iniziale",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
-    CONTROL         "&Chiudi automaticamente il pannello di confronto rapido cartelle",IDC_CMPPANE_AUTOCLOSE,
+    CONTROL         "&Chiudi automaticamente pannello di confronto rapido cartelle",IDC_CMPPANE_AUTOCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "C&hiudi finestra con ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
@@ -536,7 +536,7 @@ BEGIN
     PUSHBUTTON      "Annulla",IDCANCEL,226,24,50,14
 END
 
-IDD_EDIT_REPLACE DIALOGEX 36, 44, 304, 90
+IDD_EDIT_REPLACE DIALOGEX 36, 44, 314, 90
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Sostituisci"
@@ -561,10 +561,10 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
     CONTROL         "T&utto il file",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
                     BS_AUTORADIOBUTTON,154,61,80,10
-    DEFPUSHBUTTON   "&Trova succ.",IDC_EDIT_SKIP,247,7,50,14,WS_GROUP
-    PUSHBUTTON      "&Sostituisci",IDC_EDIT_REPLACE,247,24,50,14
-    PUSHBUTTON      "Sost&ituisci tutto",IDC_EDIT_REPLACE_ALL,247,41,50,14
-    PUSHBUTTON      "Annulla",IDCANCEL,247,58,50,14
+    DEFPUSHBUTTON   "&Trova succ.",IDC_EDIT_SKIP,247,7,60,14,WS_GROUP
+    PUSHBUTTON      "&Sostituisci",IDC_EDIT_REPLACE,247,24,60,14
+    PUSHBUTTON      "Sost&ituisci tutto",IDC_EDIT_REPLACE_ALL,247,41,60,14
+    PUSHBUTTON      "Annulla",IDCANCEL,247,58,60,14
 END
 
 IDD_CLEARCASE DIALOGEX 0, 0, 279, 111
@@ -893,8 +893,8 @@ BEGIN
                     7,80,221,10
     CONTROL         "Attiva il rilevamento di blocc&hi spostati",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
-    LTEXT           "Metodo confronto &file:",IDC_STATIC,7,105,70,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,103,84,52,CBS_DROPDOWNLIST |
+    LTEXT           "Metodo confronto &file:",IDC_STATIC,7,105,100,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,114,103,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Predefinito",IDC_COMPARE_DEFAULTS,7,121,50,14
 END
@@ -1004,7 +1004,7 @@ BEGIN
                     IDC_STATIC,2,98,208,8
     EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Versione componenti del 7-Zip locale trovati nella cartella di WinMerge:",
+    LTEXT           "Versione componenti 7-Zip locale trovati nella cartella di WinMerge:",
                     IDC_STATIC,2,110,208,8
     EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
