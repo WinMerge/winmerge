@@ -1696,6 +1696,11 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_DIR_RESULTS_EMPTIED "Current directory comparison results will be cleared."
+END
+
 // LANGAGE NAMES #1
 STRINGTABLE
 BEGIN

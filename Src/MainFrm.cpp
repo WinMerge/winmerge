@@ -2722,6 +2722,15 @@ void CMainFrame::OnFileNew()
 
 	if (!docNull)
 	{
+		// If dircompare contains results, warn user that they are lost
+		if (pDirDoc->m_pCtxt)
+		{
+			int res = AfxMessageBox(IDS_DIR_RESULTS_EMPTIED, MB_OKCANCEL |
+				MB_ICONWARNING | MB_DONT_DISPLAY_AGAIN, IDS_DIR_RESULTS_EMPTIED);
+			if (res == IDCANCEL)
+				return;
+		}
+
 		// If reusing an existing doc, give it a chance to save its data
 		// and close any merge views, and clear its window
 		if (!pDirDoc->ReusingDirDoc())

@@ -477,6 +477,8 @@
 #define IDS_FILEWRITE_ERROR             18408
 #define IDS_PATH_NOT_ABSOLUTE           18409
 
+#define IDS_DIR_RESULTS_EMPTIED         18448
+
 
 
 

@@ -2,6 +2,9 @@
  PATCH: [ 982960 ] Rescan when saving to update dir compare status
   Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirDoc.h MergeDoc.cpp
    MergeDoc.h MergeEditView.cpp
+ PATCH: [ 983410 ] Warn that New clears dircompare results
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
 
 2004-07-01 Kimmo
  PATCH: [ 982683 ] Clear results only after user chooses new files or folders
