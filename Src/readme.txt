@@ -1,6 +1,9 @@
 2004-06-28 Kimmo
  PATCH: [ 980851 ] Don't save VSS password
   Src: MainFrm.cpp
+ PATCH: [ 978987 ] [RFE 976364] Expand Environment Strings in paths
+  Submitted by Jordi Vilar - minor tweak by Kimmo
+  Src: Paths.cpp
 
 2004-06-23 WinMerge experimental release 2.1.7.8 (cvs)
 

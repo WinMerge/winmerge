@@ -31,7 +31,20 @@ PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath)
 {
 	if (!szPath || !szPath[0]) return DOES_NOT_EXIST;
 
-	DWORD attr = GetFileAttributes(szPath);
+	// Expand environment variables:
+	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
+	LPCTSTR lpcszPath;
+	TCHAR expandedPath[_MAX_PATH] = {0};
+
+	if (_tcschr(szPath, '%') &&
+		ExpandEnvironmentStrings(szPath, expandedPath, _MAX_PATH))
+	{
+		lpcszPath = expandedPath;
+	}
+	else
+		lpcszPath = szPath;
+
+	DWORD attr = GetFileAttributes(lpcszPath);
 
 	if (attr == ((DWORD) -1))
 		return DOES_NOT_EXIST;
@@ -65,7 +78,7 @@ CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 	int len = sPath.GetLength();
 	if (len < 1) return sPath;
 
-	TCHAR fullPath[_MAX_PATH];
+	TCHAR fullPath[_MAX_PATH] = {0};
 	TCHAR *lpPart;
 
 	//                                         GetFullPathName  GetLongPathName
@@ -77,7 +90,21 @@ CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 	// Fail when file/directory does not exist      No                Yes
 	//
 	// Fully qualify/normalize name using GetFullPathName.
-	if (!GetFullPathName(sPath, _MAX_PATH, fullPath, &lpPart))
+
+	// Expand environment variables:
+	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
+	TCHAR expandedPath[_MAX_PATH] = {0};
+	LPCTSTR lpcszPath;
+
+	if (_tcschr(sPath, '%') &&
+		ExpandEnvironmentStrings(sPath, expandedPath, _MAX_PATH))
+	{
+		lpcszPath = expandedPath;
+	}
+	else
+		lpcszPath = sPath;
+
+	if (!GetFullPathName(lpcszPath, _MAX_PATH, fullPath, &lpPart))
 		_tcscpy(fullPath, sPath);
 
 	// We are done if this is not a short name.
