@@ -5,6 +5,8 @@
   InnoSetup: WinMerge Localized.iss
  Updated Swedish ReadMe from seier
   Docs/Users/Languages: Read Me-Swedish.rtf
+ Updated all non-localized language versions of Read Me*.rtf to current Read Me.rtf
+  Docs\Users\Languages: Read Me*.rtf (except Swedish)
 
 2004-05-21 Kimmo
  PATCH: [ 957740 ] Tell if two binary files are different/identical
