@@ -13,7 +13,7 @@ or
 The remainder of this file contains specific instructions for each localized language.  Please look for your langauge within this file.  If it's not listed here or your have any other questions please let Seier Blackburn know at MyPurchases@Yahoo.com.  
 
 The following languages do not need translating:
-Czech, Dutch, French, German, Norwegian, Russian, Slovenian, and Swedish
+Bulgarian, Czech, Danish, Dutch, French, German, Korean, Norwegian, Russian, Slovenian, and Swedish
 
 [Spanish]
 File=SpanishStd-4.2.1.isl
@@ -26,6 +26,8 @@ File=BrazilianPortuguese-4.2.1.isl
 LineToTranslate=2
 Line1=SelectStartMenuFolderLabel3
 Line2=SelectDirLabel3
+
+
 
 
 
