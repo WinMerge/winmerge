@@ -1,4 +1,6 @@
 2003-11-09 Laoran
+ PATCH: [ 838574 ] SplitterWndEx OnHScroll
+  common: SplitterWndEx.cpp SplitterWndEx.h
  fixing text alignment in dialogs (right aligned on screen->RTEXT, centered->CTEXT)
   WinMerge: Merge.rc
   Languages : *.rc

@@ -22,6 +22,7 @@ static char THIS_FILE[]=__FILE__;
 BEGIN_MESSAGE_MAP(CSplitterWndEx, CSplitterWnd)
 	//{{AFX_MSG_MAP(CSplitterWndEx)
 	ON_WM_HSCROLL()
+	ON_WM_VSCROLL()
 	ON_WM_SIZE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -88,6 +89,44 @@ void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 
 }
 
+
+void CSplitterWndEx::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
+{
+	// maintain original synchronization functionality
+	CSplitterWnd::OnVScroll(nSBCode, nPos, pScrollBar);
+
+	// only sync if shared vertical bars
+	if((GetScrollStyle()&WS_VSCROLL) == 0)
+		return;
+
+	// enhance with proportional vertical scroll synchronization
+	ASSERT(pScrollBar != NULL);
+	int curRow = ::GetDlgCtrlID(pScrollBar->m_hWnd) - AFX_IDW_VSCROLL_FIRST;
+	ASSERT(curRow >= 0 && curRow < m_nMaxRows);
+
+	ASSERT(m_nCols > 0);
+	const int oldLimit = pScrollBar->GetScrollLimit();
+	// broadcast to all panes
+	for (int row = 0; row < m_nRows; row++)
+	{
+		// for current row, already handled in base OnHScroll
+		if(row==curRow)
+			continue;
+
+		CScrollBar* curBar = GetPane(0, curRow)->GetScrollBarCtrl(SB_VERT);
+		register int temp = pScrollBar->GetScrollPos() * curBar->GetScrollLimit() + oldLimit/2;
+		int newPos = temp/oldLimit;
+
+		// iterate through all columns
+		for (int col = 0; col < m_nCols; col++)
+		{
+			// broadcast to all rows
+			GetPane(row, col)->SendMessage(WM_VSCROLL,
+				MAKELONG(SB_THUMBPOSITION, newPos), (LPARAM)curBar->m_hWnd);
+		}
+	}
+
+}
 
 void CSplitterWndEx::EqualizeRows() 
 {
