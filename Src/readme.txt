@@ -1,3 +1,7 @@
+2003-11-28 Laoran
+ Add header and RCS ID
+  common: lwdisp.h unicoder.cpp unicoder.h FileTransform.h Plugins.h SelectUnpackerDlg.h
+
 2003-11-28 Kimmo
  BUG: [ 848725 ] Crash trying to generate report
   WinMerge: DirView.cpp
