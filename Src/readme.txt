@@ -1,6 +1,8 @@
 2003-07-28 Perry
  PATCH: [ 778234 ] Fix DirScan ASSERT when run out of right list
   WinMerge: DirScan.cpp
+ PATCH: [ 765225 ] Convert parse cookie array to be CArray
+  editlib: ccrystaltextview.cpp ccrystaltextview.h
 
 2003-07-27 Kimmo
  PATCH: [ 778144 ] Use CopyFile instead of DeleteFile() and MoveFile()

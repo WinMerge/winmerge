@@ -120,8 +120,7 @@ private :
     CFont *m_apFonts[4];
 
     //  Parsing stuff
-    DWORD *m_pdwParseCookies;
-    int m_nParseArraySize;
+    CArray<int, int> *m_ParseCookies;
     DWORD GetParseCookie (int nLineIndex);
 
     //  Pre-calculated line lengths (in characters)

@@ -476,6 +476,7 @@ CCrystalTextView::CCrystalTextView ()
   m_pstrIncrementalSearchStringOld = new CString;
   ASSERT( m_pstrIncrementalSearchStringOld );
   //END SW
+  m_ParseCookies = new CArray<int, int>;
   ResetView ();
   SetTextType (SRC_PLAIN);
   m_bSingle = false; // needed to be set in descendat classes
@@ -492,11 +493,6 @@ CCrystalTextView::~CCrystalTextView ()
     {
       free (m_pszLastFindWhat);
       m_pszLastFindWhat=NULL;
-    }
-  if (m_pdwParseCookies != NULL)
-    {
-      delete[] m_pdwParseCookies;
-      m_pdwParseCookies = NULL;
     }
   if (m_pnActualLineLength != NULL)
     {
@@ -530,6 +526,9 @@ CCrystalTextView::~CCrystalTextView ()
       m_pstrIncrementalSearchStringOld = NULL;
     }
   //END SW
+  ASSERT(m_ParseCookies);
+  delete m_ParseCookies;
+  m_ParseCookies = 0;
 }
 
 BOOL CCrystalTextView::
@@ -1037,20 +1036,20 @@ DWORD CCrystalTextView::
 GetParseCookie (int nLineIndex)
 {
   int nLineCount = GetLineCount ();
-  if (m_pdwParseCookies == NULL)
+  if (!m_ParseCookies->GetSize())
     {
-      m_nParseArraySize = nLineCount;
-      m_pdwParseCookies = new DWORD[nLineCount];
-      memset (m_pdwParseCookies, 0xff, nLineCount * sizeof (DWORD));
+      m_ParseCookies->SetSize(nLineCount);
+      for (int i=0; i<nLineCount; ++i)
+        m_ParseCookies->SetAt(i, 0xff);
     }
 
   if (nLineIndex < 0)
     return 0;
-  if (m_pdwParseCookies[nLineIndex] != (DWORD) - 1)
-    return m_pdwParseCookies[nLineIndex];
+  if (m_ParseCookies->GetAt(nLineIndex) != (DWORD) - 1)
+    return m_ParseCookies->GetAt(nLineIndex);
 
   int L = nLineIndex;
-  while (L >= 0 && m_pdwParseCookies[L] == (DWORD) - 1)
+  while (L >= 0 && m_ParseCookies->GetAt(L) == (DWORD) - 1)
     L--;
   L++;
 
@@ -1059,14 +1058,14 @@ GetParseCookie (int nLineIndex)
     {
       DWORD dwCookie = 0;
       if (L > 0)
-        dwCookie = m_pdwParseCookies[L - 1];
+        dwCookie = m_ParseCookies->GetAt(L - 1);
       ASSERT (dwCookie != (DWORD) - 1);
-      m_pdwParseCookies[L] = ParseLine (dwCookie, L, NULL, nBlocks);
-      ASSERT (m_pdwParseCookies[L] != (DWORD) - 1);
+      m_ParseCookies->SetAt(L, ParseLine (dwCookie, L, NULL, nBlocks));
+      ASSERT (m_ParseCookies->GetAt(L) != (DWORD) - 1);
       L++;
     }
 
-  return m_pdwParseCookies[nLineIndex];
+  return m_ParseCookies->GetAt(nLineIndex);
 }
 
 //BEGIN SW
@@ -1286,8 +1285,8 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   pBuf[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
   nBlocks++;
   //END SW
-  m_pdwParseCookies[nLineIndex] = ParseLine (dwCookie, nLineIndex, pBuf, nBlocks);
-  ASSERT (m_pdwParseCookies[nLineIndex] != (DWORD) - 1);
+  m_ParseCookies->SetAt(nLineIndex, ParseLine (dwCookie, nLineIndex, pBuf, nBlocks));
+  ASSERT (m_ParseCookies->GetAt(nLineIndex) != (DWORD) - 1);
 
   //BEGIN SW
   int nActualItem = 0;
@@ -1565,11 +1564,11 @@ OnDraw (CDC * pdc)
   const int nLineHeight = GetLineHeight ();
   PrepareSelBounds ();
 
-  // if the private arrays (m_pdwParseCookies and m_pnActualLineLength) 
+  // if the private arrays (m_ParseCookies and m_pnActualLineLength) 
   // are defined, check they are in phase with the text buffer
   // as the access to these arrays is not protected (simple arrays not CArray) 
-  if (m_pdwParseCookies != NULL)
-    ASSERT(m_nParseArraySize == nLineCount);
+  if (m_ParseCookies->GetSize())
+    ASSERT(m_ParseCookies->GetSize() == nLineCount);
   if (m_pnActualLineLength != NULL)
     ASSERT(m_nActualLengthArraySize == nLineCount);
 
@@ -1672,17 +1671,12 @@ ResetView ()
           m_apFonts[I] = NULL;
         }
     }
-  if (m_pdwParseCookies != NULL)
-    {
-      delete[] m_pdwParseCookies;
-      m_pdwParseCookies = NULL;
-    }
+  m_ParseCookies->RemoveAll();
   if (m_pnActualLineLength != NULL)
     {
       delete[] m_pnActualLineLength;
       m_pnActualLineLength = NULL;
     }
-  m_nParseArraySize = 0;
   m_nActualLengthArraySize = 0;
   m_ptCursorPos.x = 0;
   m_ptCursorPos.y = 0;
@@ -3453,10 +3447,11 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
     {
       ASSERT (nLineIndex != -1);
       //  All text below this line should be reparsed
-      if (m_pdwParseCookies != NULL)
+      if (m_ParseCookies->GetSize())
         {
-          ASSERT (m_nParseArraySize == nLineCount);
-          memset (m_pdwParseCookies + nLineIndex, 0xff, sizeof (DWORD) * (m_nParseArraySize - nLineIndex));
+          ASSERT (m_ParseCookies->GetSize() == nLineCount);
+          for (int i=nLineIndex; i<m_ParseCookies->GetSize(); ++i)
+            m_ParseCookies->SetAt(i, 0xff);
         }
       //  This line'th actual length must be recalculated
       if (m_pnActualLineLength != NULL)
@@ -3476,20 +3471,19 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
         nLineIndex = 0;         //  Refresh all text
       //  All text below this line should be reparsed
 
-      if (m_pdwParseCookies != NULL)
+      if (m_ParseCookies->GetSize())
         {
-          if (m_nParseArraySize != nLineCount)
+          if (m_ParseCookies->GetSize() != nLineCount)
             {
-              //  Reallocate cookies array
-              DWORD *pdwNewArray = new DWORD[nLineCount];
-              if (nLineIndex > 0)
-                memcpy (pdwNewArray, m_pdwParseCookies, sizeof (DWORD) * nLineIndex);
-              delete[] m_pdwParseCookies;
-              m_nParseArraySize = nLineCount;
-              m_pdwParseCookies = pdwNewArray;
+              int oldsize = m_ParseCookies->GetSize(); 
+              m_ParseCookies->SetSize(nLineCount);
+              for (int i=oldsize; i<m_ParseCookies->GetSize(); ++i)
+                m_ParseCookies->SetAt(i, 0xff);
             }
-          memset (m_pdwParseCookies + nLineIndex, 0xff, sizeof (DWORD) * (m_nParseArraySize - nLineIndex));
+          for (int i=nLineIndex; i<m_ParseCookies->GetSize(); ++i)
+            m_ParseCookies->SetAt(i, 0xff);
         }
+
       //  Recalculate actual length for all lines below this
       if (m_pnActualLineLength != NULL)
         {
