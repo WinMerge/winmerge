@@ -1,6 +1,8 @@
 2004-06-07 Kimmo
  BUG: [ 967899 ] Ignore carriage return differences logic backwards
   Src: MainFrm.cpp
+ PATCH: [ 968255 ] Rename EOL sensitive in configlog
+  Src: ConfigLog.cpp
 
 2004-06-07 Laoran
  PATCH: [ 966693 ] set scroll width in diffpane for widest view

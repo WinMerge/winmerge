@@ -171,11 +171,11 @@ BOOL CConfigLog::WriteLogFile()
 	else
 		file.WriteString(_T("No\n"));
 
-	file.WriteString(_T("  EOL sensitive: "));
+	file.WriteString(_T("  Ignore carriage return differences: "));
 	if (m_diffOptions.bEolSensitive)
-		file.WriteString(_T("Yes\n"));
-	else
 		file.WriteString(_T("No\n"));
+	else
+		file.WriteString(_T("Yes\n"));
 
 	file.WriteString(_T("  Whitespace compare: "));
 	switch (m_diffOptions.nIgnoreWhitespace)
