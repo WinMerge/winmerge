@@ -1,3 +1,7 @@
+2003-06-02 Kimmo
+ PATCH: [ 747090 ] Fix scroll handling
+  editlib: ccrystaltextview.cpp
+
 2003-06-01 Kimmo
  PATCH: [ 746319 ] Adjust horiz scrolling width
   editlib: ccrystaltextview.cpp

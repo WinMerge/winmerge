@@ -2692,21 +2692,12 @@ RecalcVertScrollBar (BOOL bPositionOnly /*= FALSE*/ )
   if (bPositionOnly)
     {
       si.fMask = SIF_POS;
-		//BEGIN SW
-		si.nPos = m_nTopSubLine;
-		/*ORIGINAL
-		si.nPos = m_nTopLine;
-		*/
-		//END SW
+      si.nPos = m_nTopSubLine;
     }
   else
     {
-		//BEGIN SW
-		if( GetScreenLines() >= GetSubLineCount() && m_nTopSubLine > 0 )
-		/*ORIGINAL
-		if (GetScreenLines() >= GetLineCount() && m_nTopLine > 0)
-		*/
-		//END SW
+      const int nScreenLines = GetScreenLines();
+      if( nScreenLines >= GetSubLineCount() && m_nTopSubLine > 0 )
         {
           m_nTopLine = 0;
           Invalidate ();
@@ -2714,19 +2705,9 @@ RecalcVertScrollBar (BOOL bPositionOnly /*= FALSE*/ )
         }
       si.fMask = SIF_DISABLENOSCROLL | SIF_PAGE | SIF_POS | SIF_RANGE;
       si.nMin = 0;
-		//BEGIN SW
-		si.nMax = GetSubLineCount() - 1;
-		/*ORIGINAL
-		si.nMax = GetLineCount() - 1;
-		*/
-		//END SW
-      si.nPage = GetScreenLines ();
-		//BEGIN SW
-		si.nPos = m_nTopSubLine;
-		/*ORIGINAL
-		si.nPos = m_nTopLine;
-		*/
-		//END SW
+      si.nMax = GetSubLineCount() - 1;
+      si.nPage = nScreenLines;
+      si.nPos = m_nTopSubLine;
     }
   VERIFY (SetScrollInfo (SB_VERT, &si));
 }
@@ -2736,100 +2717,61 @@ OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 {
   CView::OnVScroll (nSBCode, nPos, pScrollBar);
 
-  //  Note we cannot use nPos because of its 16-bit nature
-  SCROLLINFO si;
+  // Note we cannot use nPos because of its 16-bit nature
+  SCROLLINFO si = {0};
   si.cbSize = sizeof (si);
-  si.fMask = SIF_ALL;
+  si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE | SIF_TRACKPOS;
   VERIFY (GetScrollInfo (SB_VERT, &si));
 
-	//BEGIN SW
-	int nPageLines = GetScreenLines();
-	int nSubLineCount = GetSubLineCount();
+  // Get the minimum and maximum scroll-bar positions.
+  int nMinPos = si.nMin;
+  int nMaxPos = si.nMax;
 
-	int nNewTopSubLine;
-	BOOL bDisableSmooth = TRUE;
-	switch (nSBCode)
-	{
-	case SB_TOP:
-		nNewTopSubLine = 0;
-		bDisableSmooth = FALSE;
-		break;
-	case SB_BOTTOM:
-		nNewTopSubLine = nSubLineCount - nPageLines + 1;
-		bDisableSmooth = FALSE;
-		break;
-	case SB_LINEUP:
-		nNewTopSubLine = m_nTopSubLine - 1;
-		break;
-	case SB_LINEDOWN:
-		nNewTopSubLine = m_nTopSubLine + 1;
-		break;
-	case SB_PAGEUP:
-		nNewTopSubLine = m_nTopSubLine - si.nPage + 1;
-		bDisableSmooth = FALSE;
-		break;
-	case SB_PAGEDOWN:
-		nNewTopSubLine = m_nTopSubLine + si.nPage - 1;
-		bDisableSmooth = FALSE;
-		break;
-	case SB_THUMBPOSITION:
-	case SB_THUMBTRACK:
-		nNewTopSubLine = si.nTrackPos;
-		break;
-	default:
-		return;
-	}
+  // Get the current position of scroll box.
+  int nCurPos = si.nPos;
 
-	if (nNewTopSubLine < 0)
-		nNewTopSubLine = 0;
-	if (nNewTopSubLine >= nSubLineCount)
-		nNewTopSubLine = nSubLineCount - 1;
-	ScrollToSubLine(nNewTopSubLine, bDisableSmooth);
+  BOOL bDisableSmooth = TRUE;
+  switch (nSBCode)
+    {
+    case SB_TOP:			// Scroll to top.
+      nCurPos = nMinPos;
+      bDisableSmooth = FALSE;
+      break;
 
-	/*ORIGINAL
-	int nPageLines = GetScreenLines();
-	int nLineCount = GetLineCount();
+    case SB_BOTTOM:			// Scroll to bottom.
+      nCurPos = nMaxPos;
+      bDisableSmooth = FALSE;
+      break;
 
-	int nNewTopLine;
-	BOOL bDisableSmooth = TRUE;
-	switch (nSBCode)
-	{
-	case SB_TOP:
-		nNewTopLine = 0;
-		bDisableSmooth = FALSE;
-		break;
-	case SB_BOTTOM:
-		nNewTopLine = nLineCount - nPageLines + 1;
-		bDisableSmooth = FALSE;
-		break;
-	case SB_LINEUP:
-		nNewTopLine = m_nTopLine - 1;
-		break;
-	case SB_LINEDOWN:
-		nNewTopLine = m_nTopLine + 1;
-		break;
-	case SB_PAGEUP:
-		nNewTopLine = m_nTopLine - si.nPage + 1;
-		bDisableSmooth = FALSE;
-		break;
-	case SB_PAGEDOWN:
-		nNewTopLine = m_nTopLine + si.nPage - 1;
-		bDisableSmooth = FALSE;
-		break;
-	case SB_THUMBPOSITION:
-	case SB_THUMBTRACK:
-		nNewTopLine = si.nTrackPos;
-		break;
-	default:
-		return;
-	}
+    case SB_LINEUP:			// Scroll one line up.
+      if (nCurPos > nMinPos)
+        nCurPos--;
+      break;
 
-	if (nNewTopLine < 0)
-		nNewTopLine = 0;
-	if (nNewTopLine >= nLineCount)
-		nNewTopLine = nLineCount - 1;
-	ScrollToLine(nNewTopLine, bDisableSmooth);
-	*///END SW
+    case SB_LINEDOWN:		// Scroll one line down.
+      if (nCurPos < nMaxPos)
+        nCurPos++;
+      break;
+
+    case SB_PAGEUP:			// Scroll one page up.
+      nCurPos = max(nMinPos, nCurPos - (int) si.nPage + 1);
+      bDisableSmooth = FALSE;
+      break;
+
+    case SB_PAGEDOWN:		// Scroll one page down.
+      nCurPos = min(nMaxPos, nCurPos + (int) si.nPage - 1);
+      bDisableSmooth = FALSE;
+      break;
+
+    case SB_THUMBPOSITION:		// Scroll to absolute position. nPos is the position
+      nCurPos = si.nTrackPos;	// of the scroll box at the end of the drag operation.
+      break;
+
+    case SB_THUMBTRACK:			// Drag scroll box to specified position. nPos is the
+      nCurPos = si.nTrackPos;	// position that the scroll box has been dragged to.
+      break;
+    }
+  ScrollToSubLine(nCurPos, bDisableSmooth);
 }
 
 void CCrystalTextView::
@@ -2838,6 +2780,7 @@ RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
   //  Again, we cannot use nPos because it's 16-bit
   SCROLLINFO si = {0};
   const int nScreenChars = GetScreenChars();
+  const int nMaxLineLen = GetMaxLineLength ();
   si.cbSize = sizeof (si);
   if (bPositionOnly)
     {
@@ -2846,7 +2789,7 @@ RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
     }
   else
     {
-      if (nScreenChars >= GetMaxLineLength () && m_nOffsetChar > 0)
+      if (nScreenChars >= nMaxLineLen && m_nOffsetChar > 0)
         {
           m_nOffsetChar = 0;
           Invalidate ();
@@ -2854,8 +2797,9 @@ RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
         }
       si.fMask = SIF_DISABLENOSCROLL | SIF_PAGE | SIF_POS | SIF_RANGE;
       si.nMin = 0;
+
       // Horiz scroll limit to longest line + one screenwidth 
-	  si.nMax = GetMaxLineLength () + nScreenChars + 1;      
+      si.nMax = nMaxLineLen + nScreenChars + 1;
       si.nPage = nScreenChars;
       si.nPos = m_nOffsetChar;
     }
@@ -2865,52 +2809,62 @@ RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
 void CCrystalTextView::
 OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 {
-  CView::OnHScroll (nSBCode, nPos, pScrollBar);
-
-  const int nScreenChars = GetScreenChars ();
+  // Default handler not needed
+  //CView::OnHScroll (nSBCode, nPos, pScrollBar);
   SCROLLINFO si = {0};
   si.cbSize = sizeof (si);
-  si.fMask = SIF_ALL;
+  si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE | SIF_TRACKPOS;
   VERIFY (GetScrollInfo (SB_HORZ, &si));
 
-  // Horiz scroll limit to longest line + one screenwidth
-  const DWORD nMaxLineLength = GetMaxLineLength () + nScreenChars + 1;
+  // Get the minimum and maximum scroll-bar positions.
+  int nMinPos = si.nMin;
+  int nMaxPos = si.nMax;
 
-  int nNewOffset;
+  // Get the current position of scroll box.
+  int nCurPos = si.nPos;
+
   switch (nSBCode)
     {
-    case SB_LEFT:
-      nNewOffset = 0;
+    case SB_LEFT:			// Scroll to far left.
+      nCurPos = nMinPos;
       break;
-    case SB_BOTTOM:
-      nNewOffset = nMaxLineLength - nScreenChars + 1;
-      break;
-    case SB_LINEUP:
-      nNewOffset = m_nOffsetChar - 1;
-      break;
-    case SB_LINEDOWN:
-      nNewOffset = m_nOffsetChar + 1;
-      break;
-    case SB_PAGEUP:
-      nNewOffset = m_nOffsetChar - si.nPage + 1;
-      break;
-    case SB_PAGEDOWN:
-      nNewOffset = m_nOffsetChar + si.nPage - 1;
-      break;
-    case SB_THUMBPOSITION:
-    case SB_THUMBTRACK:
-      nNewOffset = nPos;
-      break;
-    default:
-      return;
-    }
 
-  if (nNewOffset >= nMaxLineLength)
-    nNewOffset = nMaxLineLength - 1;
-  if (nNewOffset < 0)
-    nNewOffset = 0;
-  ScrollToChar (nNewOffset, TRUE);
+    case SB_RIGHT:			// Scroll to far right.
+      nCurPos = nMaxPos;
+      break;
+
+    case SB_ENDSCROLL:		// End scroll.
+      break;
+
+    case SB_LINELEFT:		// Scroll left.
+      if (nCurPos > nMinPos)
+        nCurPos--;
+      break;
+
+    case SB_LINERIGHT:		// Scroll right.
+      if (nCurPos < nMaxPos)
+        nCurPos++;
+      break;
+
+    case SB_PAGELEFT:		// Scroll one page left.
+      nCurPos = max(nMinPos, nCurPos - (int) si.nPage + 1);
+      break;
+
+    case SB_PAGERIGHT:		// Scroll one page right.
+      nCurPos = min(nMaxPos, nCurPos + (int) si.nPage - 1);
+      break;
+
+    case SB_THUMBPOSITION:		// Scroll to absolute position. nPos is the position
+      nCurPos = si.nTrackPos;	// of the scroll box at the end of the drag operation.
+      break;
+
+    case SB_THUMBTRACK:			// Drag scroll box to specified position. nPos is the
+      nCurPos = si.nTrackPos;	// position that the scroll box has been dragged to.
+      break;
+    }
+  ScrollToChar (nCurPos, TRUE);
   UpdateCaret ();
+  UpdateSiblingScrollPos (TRUE);
 }
 
 BOOL CCrystalTextView::
