@@ -1372,7 +1372,17 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	}
 	else
 	{
-		// 8-bit encoding
+		// 2003-12-09, Perry:
+		// This is not always correct, and it is not simple to fix, and leads to GPFs when wrong.
+		
+		// In ANSI build, if file encoding matches default thread encoding (TCHAR), this is correct.
+		// Otherwise, if both file encoding and default thread encoding (TCHAR) are single byte encodings,
+		// this is ok. But if multibyte encodings are involved, this may be wrong.
+
+		// In UNICODE build, if file encoding is single byte, this is ok (I think), but if file encoding
+		// is multibyte, this is wrong.
+
+		// Buggy code
 		nbytes = nchars;
 	}
 

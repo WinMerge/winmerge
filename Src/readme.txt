@@ -1,3 +1,7 @@
+2003-12-10 Perry
+ Add comment inside CMergeDoc::CDiffTextBuffer::SaveToFile about existing buggy code.
+  WinMerge: MergeDoc.cpp
+
 2003-12-10 Kimmo
  PATCH: [ 857003 ] Move linediff messagebox text into resource
   WinMerge: Merge.rc MergeDocLineDiffs.cpp resource.h
