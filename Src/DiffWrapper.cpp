@@ -260,7 +260,7 @@ BOOL CDiffWrapper::RunFileDiff()
 					{
 						CString switches = FormatSwitchString();
 						fprintf(outfile, "diff%s %s %s\n", 
-							switches, inf[0].name , inf[1].name);
+							T2CA(switches), inf[0].name , inf[1].name);
 					}
 
 					// Read timestamps for files

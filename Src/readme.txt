@@ -4,6 +4,9 @@
   WinMerge: MainFrm.cpp
  BUG: [ 813557 ] Selection not visible after find
   editlib: cfindtextdlg.cpp
+ Fix bug: Commandline params for diff were missing from
+  generated patch-file in unicode build. (Missing conversion)
+  WinMerge: DiffWrapper.cpp
 
 2003-10-15 Kimmo
  PATCH: [ 823382 ] Save As should update filename
