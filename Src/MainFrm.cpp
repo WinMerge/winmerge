@@ -1234,9 +1234,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			}
 		}
 	}
-	catch (CSilentException *)
-	{
-	}
 	catch (CException *e)
 	{
 		e->ReportError(MB_ICONSTOP);

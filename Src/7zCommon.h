@@ -2,11 +2,15 @@
 
 extern Merge7z::Proxy Merge7z;
 
-class CSilentException : public CSimpleException
+class CSilentException : public CException
 {
 public:
-	CSilentException():CSimpleException(FALSE)
+	CSilentException():CException(FALSE)
 	{
+	}
+	virtual int ReportError(UINT, UINT)
+	{
+		return 0;
 	}
 };
 

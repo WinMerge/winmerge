@@ -222,28 +222,36 @@ interface Merge7z *Merge7z::Proxy::operator->()
 {
 	if (Merge7z[0])
 	{
-		DWORD flags = Initialize::Default;
+		DWORD flags = ~0;
 		switch (theApp.GetProfileInt(_T("Settings"), _T("ForceLocal7z"), 0))
 		{
 		case 0:
 			if (DWORD ver = VersionOf7zInstalled())
-				if (DllProxyHelper(Merge7z, UINT HIWORD(ver), UINT LOWORD(ver)))
-					break;
-		default:
-			flags = Initialize::Default | Initialize::Local7z;
-			if (DWORD ver = VersionOf7zLocal())
-				if (DllProxyHelper(Merge7z, UINT HIWORD(ver), UINT LOWORD(ver)))
-					break;
-			static CSilentException *pSilentException = NULL;
-			if (pSilentException)
 			{
-				// This is a subsequent call: Fail silenty.
-				throw pSilentException;
+				flags = Initialize::Default;
+				if (DllProxyHelper(Merge7z, UINT HIWORD(ver), UINT LOWORD(ver)))
+					break;
 			}
-			// Create a CSilentException to be thrown on subsequent calls.
-			// Leave an intentional memory leak so the leak dump will
-			// reveal where the error occured.
-			pSilentException = new CSilentException;
+		default:
+			if (DWORD ver = VersionOf7zLocal())
+			{
+				flags = Initialize::Default | Initialize::Local7z;
+				if (DllProxyHelper(Merge7z, UINT HIWORD(ver), UINT LOWORD(ver)))
+					break;
+			}
+			do
+			{
+				static CSilentException *pSilentException = NULL;
+				if (pSilentException)
+				{
+					// This is a subsequent call: Fail silenty.
+					throw pSilentException;
+				}
+				// Create a CSilentException to be thrown on subsequent calls.
+				// Leave an intentional memory leak so the leak dump will
+				// reveal where the error occured.
+				pSilentException = new CSilentException;
+			} while (flags == ~0); // 7-Zip not present: Don't care about Merge7z.
 			ComplainNotFound("Merge7z*.dll");
 		}
 		((interface Merge7z *)Merge7z[1])->Initialize(flags);
