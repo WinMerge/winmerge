@@ -1,3 +1,8 @@
+2003-05-31 Kimmo
+ PATCH: [ 745654 ] Draw long lines
+  WinMerge: MergeEditView.cpp
+  editlib: ccrystaltextview.cpp
+
 2003-05-29 Christian
  PATCH: Applied [ 745223 ] Fix pasting different EOL types
   edilib: ccrystaltextbuffer.cpp

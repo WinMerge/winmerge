@@ -853,11 +853,13 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
     {
       CString line;
       ExpandChars (pszChars, nOffset, nCount, line);
+      const int lineLen = line.GetLength();
       int nWidth = rcClip.right - ptOrigin.x;
+      const int nCharWidth = GetCharWidth();
+
       if (nWidth > 0)
         {
-          int nCharWidth = GetCharWidth ();
-          int nCount = line.GetLength ();
+          int nCount = lineLen;
           int nCountFit = nWidth / nCharWidth + 1;
           if (nCount > nCountFit)
             nCount = nCountFit;
@@ -871,9 +873,38 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
              rcBounds.right = rcBounds.left + GetCharWidth() * nCount;
              pdc->ExtTextOut(rcBounds.left, rcBounds.top, ETO_OPAQUE, &rcBounds, NULL, 0, NULL);
            */
-          VERIFY (pdc->ExtTextOut (ptOrigin.x, ptOrigin.y, ETO_CLIPPED, &rcClip, line, nCount, NULL));
+
+          // Because ExtTextOut() can handle 8192 chars at max.
+          // we have to draw longer lines in 8192 char blocks
+          if (nCount > 8192)
+            {
+              CPoint ptDraw = ptOrigin;
+              LPCTSTR szText = line.GetBuffer(nCount + 1);
+              DWORD dwDrawnChars = 0;
+              DWORD dwCharsToDraw = 0;
+
+              while (dwDrawnChars < nCount)
+                {
+                  if ((nCount - dwDrawnChars) > 8192)
+                    dwCharsToDraw = 8192;
+                  else
+                    dwCharsToDraw = nCount - dwDrawnChars;
+
+                  VERIFY(pdc->ExtTextOut(ptDraw.x, ptDraw.y, ETO_CLIPPED,
+                      &rcClip, &szText[dwDrawnChars], dwCharsToDraw, NULL));
+
+                  dwDrawnChars += dwCharsToDraw;
+                  ptDraw.x += nCharWidth * dwCharsToDraw;
         }
-	  ptOrigin.x += pdc->GetOutputTextExtent(line).cx;
+              line.ReleaseBuffer(nCount);
+            }
+          else
+            {
+              VERIFY(pdc->ExtTextOut(ptOrigin.x, ptOrigin.y, ETO_CLIPPED,
+                  &rcClip, line, nCount, NULL));
+            }
+        }
+      ptOrigin.x += nCharWidth * lineLen;
     }
 }
 

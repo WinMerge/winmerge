@@ -276,7 +276,10 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHo
       if (!bHorz)  // changed this so bHorz works right
         {
           ASSERT (pSrcView->m_nTopLine >= 0);
-          ASSERT (pSrcView->m_nTopLine < GetLineCount ());
+
+		  // This ASSERT is wrong: panes have different files and
+		  // different linecounts
+          // ASSERT (pSrcView->m_nTopLine < GetLineCount ());
           if (pSrcView->m_nTopLine != m_nTopLine)
             {
               ScrollToLine (pSrcView->m_nTopLine, TRUE, FALSE);
@@ -287,7 +290,10 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHo
       else
         {
           ASSERT (pSrcView->m_nOffsetChar >= 0);
-          ASSERT (pSrcView->m_nOffsetChar < GetMaxLineLength ());
+
+		  // This ASSERT is wrong: panes have different files and
+		  // different linelengths
+          // ASSERT (pSrcView->m_nOffsetChar < GetMaxLineLength ());
           if (pSrcView->m_nOffsetChar != m_nOffsetChar)
             {
               ScrollToChar (pSrcView->m_nOffsetChar, TRUE, FALSE);
