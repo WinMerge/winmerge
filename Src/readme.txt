@@ -1,3 +1,6 @@
+2003-02-10  Perry
+ Kimmo's fix for crash due to NULL doc pointer in MergeDoc::SaveHelper.
+
 2003-02-09  Perry
  [ 683120 ] splitfilename changed to CStrings
  Move new SplitFilename from Chris Mumford into coretools, remove old

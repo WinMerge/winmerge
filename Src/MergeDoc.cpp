@@ -1306,7 +1306,8 @@ BOOL CMergeDoc::SaveHelper()
 	// dir view
 	if (result && m_nDiffs == 0)
 	{
-		mf->m_pDirDoc->UpdateItemStatus(m_strLeftFile,
+		if (mf->m_pDirDoc)
+			mf->m_pDirDoc->UpdateItemStatus(m_strLeftFile,
 				m_strRightFile, FILE_SAME);
 	}
 	return result;
