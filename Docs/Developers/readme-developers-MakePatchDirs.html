@@ -1,42 +1,44 @@
-<h3>Perry's patch process with MakePatchDir</h3>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>MakePatchDirs</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<h2>MakePatchDirs</h2>
 
-<a href="readme-developers.html">Back to readme-developers</a>
+<h3>Perry's patch process with MakePatchDirs</h3>
+<p>Perry wrote a small program, which he is happy to share in source or binary form,
+that he uses to generate patch directories. Here is his process:</p>
+<ul>
+  <li><p>Update local cvs copy to ensure starting with most recent sources (optional).</p></li>
+  <li><p>Create a new directory for the patch, eg, "<code>Somewhere\WinMerge\patches\new_nifty_patch</code>".</p></li>
+  <li><p>Create a subdirectory called "<code>new_nifty_patch\original_all</code>" and copy WinMerge and common directories into it.</p></li>
+  <li><p>Copy this directory and rename the copy as "<code>new_nifty_patch\applied</code>"</p></li>
+  <li><p>Make changes to the code in the applied version and test until happy.</p></li>
+  <li>
+    <p>Run <code>MakePatchDirs</code>, and drag and drop the patch directory root
+    (<code>Somewhere\WinMerge\patches\new_nifty_patch</code>) into the edit box, then push the Go button.
+    This wipes and regenerates the directories <code>new_nifty_patch\original</code> and <code>new_nifty_patch\altered</code>, which contain all files altered
+    in the applied version, and the corresponding original files. (This purely uses timestamps;
+    it is not nearly as clever as WinMerge itself.)</p>
+  </li>
+  <li>
+    <p>Zip up the altered and original directories, and attach them to the patch. (I always
+    create the patch, then attach files afterwards, because SourceForge seems to always
+    lose attachments if they were attached when the patch is first created.)</p>
+  </li>
+</ul>
 
-<p>
+<p>This process is optional; you are welcome to adopt it if you like. If you have
+a better system, please consider posting it on the developers forum so we may
+all potentially benefit.</p>
 
-Perry wrote a small program, which he is happy to share in source or binary form,
-that he uses to generate patch directories. Here is his process:
+<p>I, Perry, like having the applied subdirectory around to rerun tests with,
+for a little while, and like having the altered and original subdirectories
+which I can compare with WinMerge. :)</p>
 
-<ul><li>
-Update local cvs copy to ensure starting with most recent sources (optional).
-</li><li>
-Create a new directory for the patch, eg, "Somewhere\WinMerge\patches\new_nifty_patch"
-</li><li>
-Create a subdirectory called new_nifty_patch\original_all
-and copy WinMerge and common directories into it. 
-</li><li>
-Copy this directory and rename the copy as new_nifty_patch\applied
-</li><li>
-Make changes to the code in the applied version and test until happy.
-</li><li>
-Run MakePatchDirs, and drag and drop the patch directory root 
-(Somewhere\WinMerge\patches\new_nifty_patch) into the edit box, then push the Go button.
-This wipes and regenerates the directories new_nifty_patch\original and new_nifty_patch\altered, which contain all files altered
-in the applied version, and the corresponding original files. (This purely uses timestamps; 
-it is not nearly as clever as WinMerge itself.)
-</li><li>
-Zip up the altered and original directories, and attach them to the patch. (I always
-create the patch, then attach files afterwards, because SourceForge seems to always
-lose attachments if they were attached when the patch is first created.)
-</li></ul>
-
-<p>
-This process is optional; you are welcome to adopt it if you like. If you have 
-a better system, please consider posting it on the developers forum so we may 
-all potentially benefit.
-
-<p>
-I, Perry, like having the applied subdirectory around to rerun tests with, 
-for a little while, and like having the altered and original subdirectories 
-which I can compare with WinMerge :)
-
+<p><a href="readme-developers.html">Back to readme-developers</a></p>
+</body>
+</html>

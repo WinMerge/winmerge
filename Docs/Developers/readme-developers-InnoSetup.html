@@ -11,23 +11,26 @@
 
 <h3>Needed programs:</h3>
 <ul>
-  <li><a href="http://www.jrsoftware.org/">Inno Setup</a> version 4.2.7
+  <li>
+    <a href="http://www.jrsoftware.org/">Inno Setup</a> version 4.2.7
     (5.x version may work too, but we haven't used it yet)
-  </li><li>
-   <a href="http://www.istool.org/">ISTool</a> <b>recommended</b>
+  </li>
+  <li>
+    <a href="http://www.istool.org/">ISTool</a> <strong>recommended</strong>
     - great help managing Inno Setup installer scripts
   </li>
 </ul>
 
-There is download package called "QuickStart Pack" available in Inno Setup
-downloads. It contains all needed components in one installer.
+<p>There is download package called "QuickStart Pack" available in Inno Setup
+downloads. It contains all needed components in one installer.</p>
 
 <h3>Checklist:</h3>
 <ul>
   <li>
     Installer reads version number from <code>WinMerge.exe</code>. So make
     sure you have version resource correctly set.
-  </li><li>
+  </li>
+  <li>
     Installer checks that files listed are present. But some files are
     included as directory (like <code>/Manual</code>) or as filemask (like
     <code>*.flt</code>) so take extra care to make sure all needed files
@@ -37,10 +40,10 @@ downloads. It contains all needed components in one installer.
 
 <h3>Directory structure and files needed:</h3>
 
-These files are produced by compiling WinMerge, documentation etc, but
-that's not subject of this document, refer to readme-developers.html.
-<p>
-Copy or move the files into the following layout:
+<p>These files are produced by compiling WinMerge, documentation etc, but
+that's not subject of this document, refer to <a href="readme-developers.html">readme-developers.html</a>.</p>
+
+<p>Copy or move the files into the following layout:</p>
 
 <ul>
  <li>
@@ -52,44 +55,36 @@ Copy or move the files into the following layout:
      <li>
       <code>Manual/</code>
       <ul>
-       <li>
-        <i>Copy the entire manual directory to here</i>
-       </li>
+       <li><em>Copy the entire manual directory to here</em></li>
       </ul>
-     </li><li>
-      <code>ShellExtension.dll</code>
-     </li><li>
-      <code>WinMerge.exe</code>
      </li>
+     <li><code>ShellExtension.dll</code></li>
+     <li><code>WinMerge.exe</code></li>
     </ul>
-   </li><li>
+   </li>
+   <li>
     <code>MergeUnicodeRelease/</code>
     <ul>
-     <li>
-      <code>WinMergeU.exe</code>
-     </li><li>
-      <code>WinMergeU.exe.Manifest</code>
-     </li>
+     <li><code>WinMergeU.exe</code></li>
+     <li><code>WinMergeU.exe.Manifest</code></li>
     </ul>
    </li>
   </ul>
- </li><li>
+ </li>
+ <li>
   <code>Filters/</code>
   <ul>
-   <li>
-    <code>FileFilter.tmpl</code>
-   </li><li>
-    <code>*.flt</code>
-   </li>
+   <li><code>FileFilter.tmpl</code></li>
+   <li><code>*.flt</code></li>
   </ul>
- </li><li>
+ </li>
+ <li>
   <code>InnoSetup/</code>
   <ul>
-   <li>
-    <i>Copy the entire InnoSetup source directory to here</i>
-   </li>
+   <li><em>Copy the entire InnoSetup source directory to here</em></li>
   </ul>
- </li><li>
+ </li>
+ <li>
   <code>Src/</code>
    <ul>
     <li>
@@ -98,9 +93,7 @@ Copy or move the files into the following layout:
       <li>
        <code>DLL/</code>
        <ul>
-        <li>
-         <code>*.lang</code>
-        </li>
+        <li><code>*.lang</code></li>
        </ul>
       </li>
      </ul>
@@ -111,30 +104,31 @@ Copy or move the files into the following layout:
 
 <h3>Running Inno Setup to create installer</h3>
 
-<code>WinMerge Localized.iss</code> (in <code>InnoSetup</code> folder)
-is script used to create WinMerge installer,.
+<p><code>WinMerge Localized.iss</code> (in <code>InnoSetup</code> folder)
+is script used to create WinMerge installer.</p>
 
-Rest of this section assumes ISTool is used. If not, then refer to
-InnoSetup manual for creating installer from script.
+<p>Rest of this section assumes ISTool is used. If not, then refer to
+InnoSetup manual for creating installer from script.</p>
 
 <ol>
   <li>
     Start ISTool and load <code>WinMerge Localized.iss</code>
-  </li><li>
-    Select <code>Project/Verify Files..</code> from ISTool menu to verify
+  </li>
+  <li>
+    Select "Project-&gt;Verify Files..." from ISTool menu to verify
     all needed files are present and in correct directories. Copy missing
     files to correct directories before continuing.
-  </li><li>
-    Select <code>Project/Compile Setup</code> from ISTool menu to create
+  </li>
+  <li>
+    Select "Project-&gt;Compile Setup" from ISTool menu to create
     installer. This takes a while...
   </li>
 </ol>
 
-If compile succeeds you have <code>WinMerge-version-Setup.exe</code> in
-directory <code>InnoSetup/Output</code>.
-<p>
+<p>If compile succeeds you have <code>WinMerge-version-Setup.exe</code> in
+directory <code>InnoSetup/Output</code>.</p>
 
-<b>Test installer!</b>
+<p><strong>Test installer!</strong></p>
 
 </body>
 </html>

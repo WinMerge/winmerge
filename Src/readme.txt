@@ -1,3 +1,7 @@
+2005-03-06 Tim
+ PATCH: [ 1156198 ] Non-standard html in developer docs
+  Docs/Developers: readme-developers-*.html
+
 2005-03-06 Perry
  PATCH: [ 1157524 ] Fix view line length
   editlib: ccrystaltextview.cpp ccrystaltextview.h
