@@ -19,8 +19,7 @@ import "ocidl.idl";
 		[propget, id(2), helpstring("property PluginDescription")] HRESULT PluginDescription([out, retval] BSTR *pVal);
 		[propget, id(3), helpstring("property PluginFileFilters")] HRESULT PluginFileFilters([out, retval] BSTR *pVal);
 		[propget, id(4), helpstring("property PluginIsAutomatic")] HRESULT PluginIsAutomatic([out, retval] VARIANT_BOOL *pVal);
-		[id(5), helpstring("method DiffingPreprocessW")] HRESULT DiffingPreprocessW([in] BSTR * pText, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [out, retval] VARIANT_BOOL * pbHandled);
-		[id(6), helpstring("method DiffingPreprocessA")] HRESULT DiffingPreprocessA([in] SAFEARRAY(unsigned char)* pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [out, retval] VARIANT_BOOL * pbHandled);
+		[id(5), helpstring("method PrediffBufferW")] HRESULT PrediffBufferW([in] BSTR * pText, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [out, retval] VARIANT_BOOL * pbHandled);
 	};
 
 [

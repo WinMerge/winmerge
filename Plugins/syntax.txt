@@ -1,6 +1,5 @@
 Plugins use an ActiveX interface.
-Plugins may be written in any format that supports this interface. Known formats
-are :
+Plugins may be written in any format that supports this interface. Examples are available in :
 	C++ COM component
 	VB ActiveX dll
 	scriptlets (VBS,JS)
@@ -10,9 +9,8 @@ Limitation : scriptlets only work for CONTEXT_MENU plugins.
 The plugins code is being rewritten, and in the next version, scriptlet will work for any event.
 
 
-
-
-Properties syntax :
+Properties syntax
+=================
 				
 PluginEvent
 C++	STDMETHODIMP CWinMergeScript::get_PluginEvent(BSTR * pVal)
@@ -35,35 +33,36 @@ VB	Public Property Get PluginIsAutomatic() As Boolean
 
 
 
-Methods syntax :
-
-CONTEXT_MENU		Functions parameters (name is free) :
+Methods syntax
+==============
+CONTEXT_MENU		Functions parameters (function names are free) :
 			C++	STDMETHOD(MakeUpperVB)([in] BSTR inputText, [out, retval] BSTR * outputText);
 			VB	Public Function MakeUpperVB(text As String)
 			VBS	Function MakeUpperVBS(Text)
 
-PREDIFFING		Mandatory Function name and parameters : 
-			C++ 	STDMETHOD(DiffingPreprocessW)([in] BSTR * pText, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [out, retval] VARIANT_BOOL * pbHandled);
-			VB	Public Function DiffingPreprocessW(ByRef text As String, ByRef size As Long, ByRef bChanged As Boolean) As Boolean
+FILE_PREDIFF		Functions names and parameters : 
+			VC++	STDMETHOD(PrediffFile)        ([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)
+			VB	Public Function PrediffFile   (BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean
 
-			Optional Function, name and parameters : 
-			C++ 	STDMETHOD(DiffingPreprocessA)([in] SAFEARRAY ** pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [out, retval] VARIANT_BOOL * pbHandled);
-			VB	Public Function DiffingPreprocessA(ByRef buffer() As Byte, ByRef size As Long, ByRef bChanged As Boolean) As Boolean
+BUFFER_PREDIFF		Functions names and parameters : 
+			C++ 	STDMETHOD(PrediffBufferW)     ([in] BSTR * pText, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [out, retval] VARIANT_BOOL * pbHandled);
+			VB	Public Function PrediffBufferW(ByRef text As String, ByRef size As Long, ByRef bChanged As Boolean) As Boolean
 
-FILE_PACK_UNPACK	Functions names (mandatory) and parameters : 
-			VC++	STDMETHOD(UnpackFile)  ([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)
-				STDMETHOD(PackFile)    ([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)
-			VB	Public Function UnpackFile  (BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean
-				Public Function PackFile    (BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, subcode As Long) As Boolean
+FILE_PACK_UNPACK	Functions names and parameters : 
+			VC++	STDMETHOD(UnpackFile)         ([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)
+				STDMETHOD(PackFile)           ([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)
+			VB	Public Function UnpackFile    (BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean
+				Public Function PackFile      (BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, subcode As Long) As Boolean
 
-BUFFER_PACK_UNPACK	Functions names (mandatory) and parameters : 
-			VC++	STDMETHOD(UnpackBufferA)  ([in] SAFEARRAY ** pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [in] INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)
-				STDMETHOD(PackBufferA)    ([in] SAFEARRAY ** pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [in] INT subcode, [out, retval] VARIANT_BOOL * pbSuccess)
-			VB	Public Function UnpackBufferA  (ByRef buffer() As Byte, ByRef size As Long, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean
-				Public Function PackBufferA    (ByRef buffer() As Byte, ByRef size As Long, ByRef bChanged As Boolean, subcode As Long) As Boolean
+BUFFER_PACK_UNPACK	Functions names and parameters : 
+			VC++	STDMETHOD(UnpackBufferA)      ([in] SAFEARRAY ** pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [in] INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)
+				STDMETHOD(PackBufferA)        ([in] SAFEARRAY ** pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [in] INT subcode, [out, retval] VARIANT_BOOL * pbSuccess)
+			VB	Public Function UnpackBufferA (ByRef buffer() As Byte, ByRef size As Long, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean
+				Public Function PackBufferA   (ByRef buffer() As Byte, ByRef size As Long, ByRef bChanged As Boolean, subcode As Long) As Boolean
 
 
-Additionnal steps to write a plugin in C++ : 	
+Additionnal steps to write a plugin in C++
+==========================================
 
 * do not register the dll : delete everything in 'settings'->'custom build'
 * do not register the dll : delete the file .rgs, and the registry section in the file .rc

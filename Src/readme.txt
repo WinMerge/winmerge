@@ -1,3 +1,10 @@
+2003-12-17 Laoran
+ update plugin docs and examples, consequence of patch #853147 
+  plugins: list of sources.txt readme.txt syntax.txt
+  plugins\dlls: RCLocalizationHelper.dll list.txt
+  plugins\src_VB\IgnoreTwoFirstCharsOrder: WinMergeScript.cls
+  plugins\src_VCPP\RCLocalizationHelper: RCLocalizationHelper.idl WinMergeScript.cpp WinMergeScript.h
+
 2003-12-16 Perry
  PATCH: [ 860072 ] Allow singlethreaded diffs
   Add unused code to trigger diffs in main thread (for developer to trigger via breakpoint).

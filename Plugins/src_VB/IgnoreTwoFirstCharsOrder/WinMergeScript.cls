@@ -14,7 +14,7 @@ Attribute VB_Exposed = True
 Option Explicit
 
 Public Property Get PluginEvent() As String
-         PluginEvent = "PREDIFFING"
+         PluginEvent = "BUFFER_PREDIFF"
 End Property
 
 Public Property Get PluginDescription() As String
@@ -29,7 +29,7 @@ Public Property Get PluginIsAutomatic() As Boolean
          PluginIsAutomatic = True
 End Property
 
-Public Function DiffingPreprocessW(ByRef text As String, ByRef size As Long, ByRef bChanged As Boolean) As Boolean
+Public Function PrediffBufferW(ByRef text As String, ByRef size As Long, ByRef bChanged As Boolean) As Boolean
     If Mid(text, 1, 1) < Mid(text, 2, 1) Then
         Dim c1, c2
         c1 = Mid(text, 1, 1)

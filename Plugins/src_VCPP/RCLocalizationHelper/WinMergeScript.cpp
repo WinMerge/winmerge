@@ -9,7 +9,7 @@
 
 STDMETHODIMP CWinMergeScript::get_PluginEvent(BSTR *pVal)
 {
-	*pVal = SysAllocString(L"PREDIFFING");
+	*pVal = SysAllocString(L"BUFFER_PREDIFF");
 	return S_OK;
 }
 
@@ -33,7 +33,7 @@ STDMETHODIMP CWinMergeScript::get_PluginIsAutomatic(VARIANT_BOOL *pVal)
 	return S_OK;
 }
 
-STDMETHODIMP CWinMergeScript::DiffingPreprocessW(BSTR *pText, INT *pSize, VARIANT_BOOL *pbChanged, VARIANT_BOOL *pbHandled)
+STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BOOL *pbChanged, VARIANT_BOOL *pbHandled)
 {
 	WCHAR * text = *pText;
 	long nSize = *pSize;
@@ -69,65 +69,6 @@ STDMETHODIMP CWinMergeScript::DiffingPreprocessW(BSTR *pText, INT *pSize, VARIAN
 		if (bPrend)
 			text[iDst ++] = text[iSrc];
 	}
-
-	// set the new size
-	*pSize = iDst;
-
-	if (iDst == nSize)
-		*pbChanged = VARIANT_FALSE;
-	else
-		*pbChanged = VARIANT_TRUE;
-
-	*pbHandled = VARIANT_TRUE;
-	return S_OK;
-}
-
-
-
-
-
-STDMETHODIMP CWinMergeScript::DiffingPreprocessA(SAFEARRAY **pBuffer, INT *pSize, VARIANT_BOOL *pbChanged, VARIANT_BOOL *pbHandled)
-{
-	// Now lock the array for editing and get a pointer to the raw elements
-	char *text; 
-	SafeArrayAccessData(*pBuffer, (void**)&text);
-
-	long nSize = *pSize;
-
-	int iSrc, iDst;
-	int bPrend = 1;
-	for (iSrc = 0, iDst = 0 ; iSrc < nSize ; iSrc++)
-	{
-		if (text[iSrc] == '"')
-		{
-			bPrend = 1 - bPrend;
-			continue;
-		}
-		if (text[iSrc] == '\n' || text[iSrc] == '\r')
-		{
-			bPrend = 1;
-			text[iDst ++] = text[iSrc];
-			continue;
-		}
-		if (text[iSrc] >= '0' && text[iSrc] <= '9')
-		{
-			if (iDst == 0 || iswspace(text[iDst-1]) || text[iDst-1] == ',')
-			{
-				if (text[iSrc] == '0' && iSrc+1 < nSize && text[iSrc+1] == 'x')
-					iSrc += 2;
-				while (iSrc < nSize && (text[iSrc] >= '0' && text[iSrc] <= '9'))
-					iSrc ++;
-				iSrc --;
-				continue;
-			}
-		}
-
-		if (bPrend)
-			text[iDst ++] = text[iSrc];
-	}
-
-	// Unlock the array
-	SafeArrayUnaccessData(*pBuffer);
 
 	// set the new size
 	*pSize = iDst;

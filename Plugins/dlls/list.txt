@@ -1,6 +1,7 @@
 ============
 editor addin		
 ============
+API : CONTEXT_MENU
 Event : CONTEXT_MENU
 Add two functions to the context menu : MakeUpper and MakeLower.
 Use : Select a piece of text, right-click and select one function.
@@ -8,6 +9,7 @@ Use : Select a piece of text, right-click and select one function.
 ===============
 insert datetime
 ===============
+API : CONTEXT_MENU
 Event : CONTEXT_MENU
 Add two functions to the context menu : InsertDate and InsertTime.
 Use : Put the cursor where you want the date/time to be inserted, right-click and select one function.
@@ -15,6 +17,7 @@ Use : Put the cursor where you want the date/time to be inserted, right-click an
 ====================
 RCLocalizationHelper
 ====================
+API : BUFFER_PREDIFF
 Event : PREDIFFING
 A plugin to merge .rc files localized in different languages. It hides most differences concerning the localization (strings with localized text, layout of controls in dialog). Missing strings/controls/menus 
 are displayed as differences.
@@ -26,7 +29,8 @@ Should be displayed as ignored.
 =========
 UnpackDFM 
 =========
-Event : FILE_PACK_UNPACK
+API : FILE_PACK_UNPACK
+Event : PACK_UNPACK
 A plugin for WinMerge which allows WinMerge to compare and merge Delphi's binary dfm files.
 
 The plugin does nothing if it is passed a text-based dfm file. In this case, WinMerge will handle the 
