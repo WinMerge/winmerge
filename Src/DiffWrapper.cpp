@@ -263,16 +263,25 @@ BOOL CDiffWrapper::RunFileDiff()
 							switches, inf[0].name , inf[1].name);
 					}
 
+					// Read timestamps for files
+					for (int i=0; i<2; ++i)
+					{
+						if (stat(inf[i].name, &inf[i].stat) != 0)
+						{
+							return false;
+						}
+					}
+					
 					// Output patchfile
 					switch (output_style)
 					{
 					case OUTPUT_CONTEXT:
-						print_context_header(files, 0);
+						print_context_header(inf, 0);
 						print_context_script(script, 0);
 						break;
 						
 					case OUTPUT_UNIFIED:
-						print_context_header(files, 1);
+						print_context_header(inf, 1);
 						print_context_script(script, 1);
 						break;
 						
