@@ -1,3 +1,5 @@
+2005-01-24 WinMerge experimental release 2.3.1.3 (cvs)
+
 2005-01-23 Perry
  PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
   (Applied UniFile.cpp portion of this patch)
