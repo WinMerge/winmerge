@@ -1,22 +1,34 @@
 #include "StdAfx.h" 
 #include "ViewableWhitespace.h"
 
+static bool f_initialized=false;
+
 #ifdef UNICODE
 // For UNICODE build, there is just one set which is always used
 // tab, space, cr, lf, eol
-struct ViewableWhitespaceChars 
+struct ViewableWhitespaceChars
+// Do not use L literals, as they involve runtime mbcs expansion, apparently
  f_specialChars = {
 	0
-	, L"\xBB" // U+BB: RIGHT POINTING DOUBLE ANGLE QUOTATION MARK
-	, L"\xB7" // U+B7: MIDDLE DOT
-	, L"\xA7" // U+A7: SECTION SIGN
-	, L"\xB6" // U+B6: PILCROW SIGN
-	, L"\xA4" // U+A4: CURRENCY SIGN
+	, L" " // U+BB: RIGHT POINTING DOUBLE ANGLE QUOTATION MARK
+	, L" " // U+B7: MIDDLE DOT
+	, L" " // U+A7: SECTION SIGN
+	, L" " // U+B6: PILCROW SIGN
+	, L" " // U+A4: CURRENCY SIGN
 };
+static void initialize()
+{
+	f_specialChars.c_tab[0] = 0xBB;
+	f_specialChars.c_space[0] = 0xB7;
+	f_specialChars.c_cr[0] = 0xA7;
+	f_specialChars.c_lf[0] = 0xB6;
+	f_specialChars.c_eol[0] = 0xA4;
+
+	f_initialized = true;
+}
 
 #else
 // For ANSI build, there are various sets for different codepages
-static bool f_initialized=false;
 static CMap<int, int, int, int> f_offset; // map codepage to offset
 
 // tab, space, cr, lf, eol
@@ -57,7 +69,7 @@ static struct ViewableWhitespaceChars
 
 static void initialize()
 {
-	for (int i=0; i<sizeof(f_offset)/sizeof(f_offset[0]); ++i)
+	for (int i=0; i<sizeof(f_specialChars)/sizeof(f_specialChars[0]); ++i)
 	{
 		int codepage = f_specialChars[i].c_codepage;
 		f_offset[codepage] = i;
@@ -71,13 +83,17 @@ static void initialize()
 
 const ViewableWhitespaceChars * GetViewableWhitespaceChars(int codepage)
 {
+	if (!f_initialized)
+		initialize();
 #ifdef UNICODE
 	return &f_specialChars;
 #else
-	initialize();
 	// Use the [0] version by default, if lookup fails to find a better one
 	int offset = 0;
-	f_offset.Lookup(codepage, offset);
+	if (f_offset.Lookup(codepage, offset))
+	{
+		int d=9;
+	}
 	return &f_specialChars[offset];
 #endif
 }

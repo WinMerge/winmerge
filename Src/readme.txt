@@ -3,6 +3,9 @@
   Src/editlib: ccrystaltextview.cpp
  PATCH: [ 1034754 ] Fix demoGuessEncoding's default
   Src: codepage.cpp codepage.h DiffWrapper.cpp
+ PATCH: [ 1037418 ] Fix whitespace for Unicode non-1252
+ PATCH: [ 1037424 ] fix non-unicode initialization loop in ViewableWhitespace
+  Src: ViewableWhitespace.cpp
 
 2004-09-29 Perry
  PATCH: [ 1034810 ] fix whitespace for other encodings
