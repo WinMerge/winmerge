@@ -247,11 +247,10 @@ BOOL PluginInfo::TestAgainstRegList(LPCTSTR szTest)
  */
 static PluginArray * GetAvailableScripts( LPCWSTR transformationEvent, BOOL getScriptletsToo ) 
 {
-	CString path = GetModulePath() + TEXT("\\MergePlugins\\");
+	CString path = GetModulePath() + _T("\\MergePlugins\\");
 
 	CStringArray scriptlets;
-	if (getScriptletsToo)
-		GetScriptletsAt(path, _T(".sct"), scriptlets );		// VBS/JVS scriptlet
+	GetScriptletsAt(path, _T(".sct"), scriptlets );		// VBS/JVS scriptlet
 	GetScriptletsAt(path, _T(".ocx"), scriptlets );		// VB COM object
 	GetScriptletsAt(path, _T(".dll"), scriptlets );		// VC++ COM object
 
@@ -418,6 +417,9 @@ CScriptsOfThread::CScriptsOfThread()
 	{
 		// register in the array
 		m_aAvailableThreads[i] = this;
+		// CoInitialize the thread, keep the returned value for the destructor 
+		hrInitialize = CoInitialize(NULL);
+		ASSERT(hrInitialize == S_OK || hrInitialize == S_FALSE);
 	}
 }
 
@@ -442,6 +444,8 @@ CScriptsOfThread::~CScriptsOfThread()
 	else
 	{
 		m_aAvailableThreads[i] = NULL;
+		if (hrInitialize == S_OK || hrInitialize == S_FALSE)
+			CoUninitialize();
 	}
 
 	FreeAllScripts();

@@ -1,4 +1,6 @@
 2003-11-23 Laoran
+ PATCH: [ 843124 ] Initialize COM in secondary threads
+  WinMerge: Plugins.cpp Plugins.h
  BUG: [ 846622 ] rc files wrongly displayed as identical (fix : no automatic prediffing)
   WinMerge: FileTransform.cpp FileTransform.h MainFrm.cpp
  cosmetic: replace bUnpackerMode with m_bUnpackerMode

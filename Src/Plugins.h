@@ -94,6 +94,8 @@ public:
 
 protected:
 	unsigned long m_nThreadId;
+	/// Result of CoInitialize
+	HRESULT hrInitialize;
 	PluginArray ** m_aPluginsByEvent;
 
 	BOOL bInMainThread();
