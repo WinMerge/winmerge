@@ -1,3 +1,7 @@
+2005-03-20 Jochen
+ Update IDD_MERGE7ZMISMATCH resource in localized RC files
+  Src/Languages: Merge*.rc
+
 2005-03-19 Perry
  PATCH: [ 1157769 ] Move GuessEncoding functions into one file
   Src: DiffContext.cpp DiffContext.cpp MainFrm.cpp Merge.dsp
