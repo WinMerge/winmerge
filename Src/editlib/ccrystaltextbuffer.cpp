@@ -373,7 +373,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 		
 		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
 		{
-			//  Try to determine current CRLF mode
+			//  Try to determine current CRLF mode based on first line
 			for (DWORD I = 0; I < dwCurSize; I++)
 			{
 				if ((pcBuf[I] == _T('\x0d')) || (pcBuf[I] == _T('\x0a')))
@@ -403,15 +403,13 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 		
 		ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
 		m_nCRLFMode = nCrlfStyle;
-		LPCTSTR crlf = crlfs[nCrlfStyle];
 		
 		m_aLines.SetSize (0, 4096);
 		
 		DWORD dwBufPtr = 0;
-		int nCrlfPtr = 0;
 		while (dwBufPtr < dwCurSize)
 		{
-			int c = pcBuf[dwBufPtr];
+			TCHAR c = pcBuf[dwBufPtr];
 			dwBufPtr++;
 			if (dwBufPtr == dwCurSize && dwCurSize == dwBufSize)
 			{
@@ -420,7 +418,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 				dwBufPtr = 0;
 			}
 			
-			pcLineBuf[nCurrentLength] = (TCHAR) c;
+			pcLineBuf[nCurrentLength] = c;
 			nCurrentLength++;
 			if (nCurrentLength == nCurrentMax)
 			{
@@ -428,25 +426,22 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 				nCurrentMax += 256;
 				LPTSTR pcNewBuf = new TCHAR[nCurrentMax];
 				memcpy (pcNewBuf, pcLineBuf, nCurrentLength);
-				delete pcLineBuf;
+				delete[] pcLineBuf;
 				pcLineBuf = pcNewBuf;
 			}
 			
-			if ((TCHAR) c == crlf[nCrlfPtr])
+			// detect both types of EOL for each line
+			// handles mixed mode files.
+			if( c==0x0A )
 			{
-				nCrlfPtr++;
-				if (crlf[nCrlfPtr] == 0)
-				{
-					pcLineBuf[nCurrentLength - nCrlfPtr] = 0;
-					if (m_nSourceEncoding >= 0)
-						iconvert (pcLineBuf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
-					InsertLine (pcLineBuf);
-					nCurrentLength = 0;
-					nCrlfPtr = 0;
-				}
+				TCHAR prevChar = pcLineBuf[nCurrentLength-2];
+				// remove EOL characters
+				pcLineBuf[nCurrentLength - (prevChar==0x0D?2:1) ] = '\0';
+				nCurrentLength = 0;
+				if (m_nSourceEncoding >= 0)
+					iconvert (pcLineBuf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
+				InsertLine (pcLineBuf);
 			}
-			else
-				nCrlfPtr = 0;
 		}
 		
 		pcLineBuf[nCurrentLength] = 0;
@@ -469,7 +464,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
   __finally
   {
 	  if (pcLineBuf != NULL)
-		  delete pcLineBuf;
+		  delete[] pcLineBuf;
   }
   if (hFile != NULL && hFile != INVALID_HANDLE_VALUE)
 	  ::CloseHandle (hFile);
