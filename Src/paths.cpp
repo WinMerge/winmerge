@@ -185,6 +185,24 @@ CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 		{
 			*end = 0;
 			sTemp = sLong + _T("\\") + ptr;
+			if (0 == _tcscmp(ptr, _T(".")))
+			{
+				ptr = &end[1];
+				continue;
+			}
+			if (0 == _tcscmp(ptr, _T("..")))
+			{
+				// back up one component
+				for (int i = sLong.GetLength()-1; i>=0 && sLong[i]!='\\' && sLong[i]!=':'; --i)
+					;
+				if (i==-1)
+				{
+					return _T("");
+				}
+				sLong = sLong.Left(i);
+				ptr = &end[1];
+				continue;
+			}
 			ptr = &end[1];
 		}
 		// (Couldn't get info for just the directory from CFindFile)

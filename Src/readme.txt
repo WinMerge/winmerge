@@ -1,3 +1,7 @@
+2003-07-03 Perry
+ PATCH: [ 763265 ] Fix handling of .. and . components
+  WinMerge: paths.cpp
+
 2003-07-02 Perry
  PATCH: [ 764789 ] Fix Private Build string in rc file
   WinMerge: Merge.rc
