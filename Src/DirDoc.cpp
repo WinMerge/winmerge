@@ -706,10 +706,9 @@ BOOL DirDocFilterGlobal::includeFile(LPCTSTR szFileName)
 	// return TRUE;
 #endif
 	// preprend a backslash if there is none
-	CString strFileName;
-	if (strFileName != _T('\\'))
-		strFileName = _T('\\');
-	strFileName += szFileName;
+	CString strFileName = szFileName;
+	if (strFileName[0] != _T('\\'))
+		strFileName = _T('\\') + strFileName;
 	return theApp.includeFile(strFileName);
 }
 
@@ -732,10 +731,9 @@ BOOL DirDocFilterByExtension::includeFile(LPCTSTR szFileName)
 	// return TRUE;
 #endif
 	// preprend a backslash if there is none
-	CString strFileName;
-	if (strFileName != _T('\\'))
-		strFileName = _T('\\');
-	strFileName += szFileName;
+	CString strFileName = szFileName;
+	if (strFileName[0] != _T('\\'))
+		strFileName = _T('\\') + strFileName;
 	return (! m_rgx.RegFind(strFileName));
 }
 

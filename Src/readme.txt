@@ -1,3 +1,7 @@
+2003-12-09 Laoran
+ Don't preprend a backslash to filename if there is already one (test for filter)
+  WinMerge: DirDoc.cpp
+
 2003-12-04 Laoran
  BUG: [ 836868 ] Search and replace field size limited (apply to languages)
   Languages : *.rc
