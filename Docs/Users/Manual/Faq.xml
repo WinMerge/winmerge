@@ -247,6 +247,17 @@
           seconds to rescan.</para>
         </answer>
       </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Can I print files from editor?</para>
+        </question>
+
+        <answer>
+          <para>Unfortunately printing is not supported. This is one area
+          where we really appreciate help in implementation!</para>
+        </answer>
+      </qandaentry>
     </qandaset>
   </sect2>
 
@@ -397,33 +408,31 @@
     <title>Patch files</title>
 
     <qandaset>
-      <qandadiv>
-        <qandaentry>
-          <question>
-            <para>Is there way to create patch files from commandline?</para>
-          </question>
+      <qandaentry>
+        <question>
+          <para>Is there way to create patch files from commandline?</para>
+        </question>
 
-          <answer>
-            <para>No. It may be added in later versions but until then Win32
-            port of diffutils can be used. Win32 port od diffutils (and patch)
-            can be downloaded from <productname>GnuWin32</productname> project
-            from SourceForge: <ulink
-            url="???">http://sourceforge.net/projects/gnuwin32</ulink></para>
-          </answer>
-        </qandaentry>
+        <answer>
+          <para>No. It may be added in later versions but until then Win32
+          port of diffutils can be used. Win32 port od diffutils (and patch)
+          can be downloaded from <productname>GnuWin32</productname> project
+          from SourceForge: <ulink
+          url="???">http://sourceforge.net/projects/gnuwin32</ulink></para>
+        </answer>
+      </qandaentry>
 
-        <qandaentry>
-          <question>
-            <para>Can patches be applied using Winmerge?</para>
-          </question>
+      <qandaentry>
+        <question>
+          <para>Can patches be applied using Winmerge?</para>
+        </question>
 
-          <answer>
-            <para>No. Patch tool from GnuWin32 project can be used for patch
-            applying since WinMerge produces GNU/diffutils compatible patch
-            files. See above question.</para>
-          </answer>
-        </qandaentry>
-      </qandadiv>
+        <answer>
+          <para>No. Patch tool from GnuWin32 project can be used for patch
+          applying since WinMerge produces GNU/diffutils compatible patch
+          files. See above question.</para>
+        </answer>
+      </qandaentry>
     </qandaset>
 
     <para></para>
