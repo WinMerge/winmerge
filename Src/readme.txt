@@ -1,3 +1,7 @@
+2004-02-01 Perry
+ Cosmetic: fix copy&paste error in UniFile.cpp comment.
+ Src/Common: UniFile.cpp
+
 2004-02-01 Kimmo
  PATCH: [ 885496 ] Move compare options to Compare-page
   src: MainFrm.cpp Merge.rc PropCompare.cpp PropCompare.h

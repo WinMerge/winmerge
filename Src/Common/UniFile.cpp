@@ -2,7 +2,7 @@
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-01-19 (Perry)
+ *  @date   Edited:  2004-02-01 (Perry)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -740,13 +740,13 @@ bool UniStdioFile::ReadBom()
 
 BOOL UniStdioFile::ReadString(CString & line)
 {
-	ASSERT(0); // unimplemented -- currently cannot read from a UniMemFile!
+	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
 	return FALSE;
 }
 
 BOOL UniStdioFile::ReadString(CString & line, CString & eol)
 {
-	ASSERT(0); // unimplemented -- currently cannot read from a UniMemFile!
+	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
 	return FALSE;
 }
 
