@@ -384,10 +384,19 @@ BOOL CMergeApp::PreTranslateMessage(MSG* pMsg)
 			AfxGetMainWnd()->PostMessage(WM_CLOSE);
 			return FALSE;
 		}
+		/* See BUG [ 734554 ] ESC closes dialog + document
+		   If we have a dialog open we should NOT send this message.
+		   Until there is good solution, closing with ESC is disabled.
+		*/
+		/*
 		else
 		{
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+			// Clear pointers that are now invalid 
+			((CMainFrame*)m_pMainWnd)->m_pLeft = NULL;
+			((CMainFrame*)m_pMainWnd)->m_pRight = NULL;
 		}
+		*/
 	}
 
 	// CG: The following lines were added by the Splash Screen component.

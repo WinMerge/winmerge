@@ -1,6 +1,9 @@
 2003-05-09 Kimmo
  PATCH: [ 735127 ] German Translation
   Updated German language file submitted by Jörg Schneider
+ PATCH: [ 734787 ] Disable ESC closing window
+  NOTE: This is to fix BUG [ 734554 ] ESC closes dialog + document
+  WinMerge: Merge.cpp
 
 2003-05-07 Kimmo
  PATCH: [ 733383 ] Enable Find- and Replace- dialogs
