@@ -935,6 +935,10 @@ SOURCE=.\Common\RegKey.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\SaveClosingDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\SelectUnpackerDlg.cpp
 # End Source File
 # Begin Source File
@@ -1432,6 +1436,10 @@ SOURCE=.\Common\RegKey.h
 # Begin Source File
 
 SOURCE=.\Resource.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SaveClosingDlg.h
 # End Source File
 # Begin Source File
 

@@ -936,6 +936,30 @@ BEGIN
     PUSHBUTTON      "Modifica...",IDC_FILTERFILE_EDITBTN,299,114,50,14
 END
 
+IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Save modified files?"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Left side file",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
+    EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CONTROL         "&Save changes",IDC_SAVECLOSING_SAVELEFT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
+    CONTROL         "&Discard changes",IDC_SAVECLOSING_DISCARDLEFT,"Button",
+                    BS_AUTORADIOBUTTON,16,46,230,10
+    GROUPBOX        "Right side file",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
+    EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CONTROL         "S&ave changes",IDC_SAVECLOSING_SAVERIGHT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
+    CONTROL         "Dis&card changes",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
+                    BS_AUTORADIOBUTTON,16,109,230,10
+    DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,205,133,50,14
+END
+
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //

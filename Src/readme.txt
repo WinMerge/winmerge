@@ -1,6 +1,10 @@
 2004-07-15 Kimmo
  PATCH: [ 991181 ] Disable 'Goto Line' outside reduced locationpane bars
   Src: LocationView.cpp
+ PATCH: [ 990365 ] Dialog to ask about saving modified files
+  Src: Merge.dsp Merge.rc MergeDoc.cpp resource.h
+  Src new files: SaveClosingDlg.cpp SaveClosingDlg.h
+  Src/Languages: *.rc resource.h
 
 2004-07-14 Kimmo
  PATCH: [ 988494 ] Catalan translation update

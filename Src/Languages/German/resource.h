@@ -11,6 +11,7 @@
 #define IDR_POPUP_MERGEVIEW             104
 #define IDR_POPUP_DIRVIEW               105
 #define IDR_POPUP_LOCATIONBAR           106
+#define IDD_SAVECLOSING                 107
 
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
@@ -216,6 +217,14 @@
 #define IDC_COLDLG_DESC                 1136
 #define IDC_VERIFY_OPEN_PATHS           1137
 #define IDC_DETECT_CODEPAGE             1138
+#define IDC_SAVECLOSING_SAVELEFT        1139
+#define IDC_SAVECLOSING_DISCARDLEFT     1140
+#define IDC_SAVECLOSING_SAVERIGHT       1141
+#define IDC_SAVECLOSING_DISCARDRIGHT    1142
+#define IDC_SAVECLOSING_RIGHTFILE       1143
+#define IDC_SAVECLOSING_LEFTFILE        1144
+#define IDC_SAVECLOSING_LEFTFRAME       1145
+#define IDC_SAVECLOSING_RIGHTFRAME      1146
 
 
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -720,7 +729,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        163
 #define _APS_NEXT_COMMAND_VALUE         33094
-#define _APS_NEXT_CONTROL_VALUE         1139
-#define _APS_NEXT_SYMED_VALUE           106
+#define _APS_NEXT_CONTROL_VALUE         1147
+#define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

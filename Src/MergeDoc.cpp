@@ -51,6 +51,7 @@
 #include "locality.h"
 #include "OptionsDef.h"
 #include "DiffFileInfo.h"
+#include "SaveClosingDlg.h"
 
 
 #ifdef _DEBUG
@@ -2329,13 +2330,12 @@ BOOL CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 /**
  * @brief Asks and then saves modified files.
  *
- * This function saves modified files. User is asked about saving
- * both files so user can save file(s) one wants to. Optionally
- * canceling is allowed for following operation, i.e. when closing
- * documents selecting cancel does not save or close documents.
- * opened from directory compare, status there is updated.
- * @param [in] bAllowCancel If TRUE "Cancel" button is shown.
- * @return TRUE if user selected Yes/No so next operation can be
+ * This function saves modified files. Dialog is shown for user to select
+ * modified file(s) one wants to save or discard changed. Cancelling of
+ * save operation is allowed unless denied by parameter. After successfully
+ * save operation file statuses are updated to directory compare.
+ * @param [in] bAllowCancel If FALSE "Cancel" button is disabled.
+ * @return TRUE if user selected "OK" so next operation can be
  * executed. If FALSE user choosed "Cancel".
  * @note If filename is empty, we assume scratchpads are saved,
  * so instead of filename, description is shown.
@@ -2344,62 +2344,44 @@ BOOL CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
  */
 BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 {
+	const BOOL bLModified = m_ltBuf.IsModified();
+	const BOOL bRModified = m_rtBuf.IsModified();
 	BOOL result = TRUE;
-	CString s;
 	BOOL bLSaveSuccess = FALSE;
 	BOOL bRSaveSuccess = FALSE;
-	BOOL bLModified = FALSE;
-	BOOL bRModified = FALSE;
-	BOOL bCancel = FALSE;
-	UINT nDialogType = MB_YESNO;
+	SaveClosingDlg dlg;
 
-	// Add "Cancel" button to messagebox
-	if (bAllowCancel)
-		nDialogType = MB_YESNOCANCEL;
+	if (!bLModified && !bRModified) //Both files unmodified
+		return TRUE;
 
-	if (m_ltBuf.IsModified())
+	dlg.DoAskFor(bLModified, bRModified);
+	if (!bAllowCancel)
+		dlg.m_bDisableCancel = TRUE;
+	if (!m_strLeftFile.IsEmpty())
+		dlg.m_sLeftFile = m_strLeftFile;
+	else
+		dlg.m_sLeftFile = m_strLeftDesc;
+	if (!m_strRightFile.IsEmpty())
+		dlg.m_sRightFile = m_strRightFile;
+	else
+		dlg.m_sRightFile = m_strRightDesc;
+
+	if (dlg.DoModal() == IDOK)
 	{
-		if (!m_strLeftFile.IsEmpty())
-			AfxFormatString1(s, IDS_SAVE_FMT, m_strLeftFile);
-		else
-			AfxFormatString1(s, IDS_SAVE_FMT, m_strLeftDesc);
-	
-		bLModified = TRUE;
-		switch (AfxMessageBox(s, nDialogType | MB_ICONQUESTION))
+		if (bLModified && dlg.m_leftSave == 0)
 		{
-		case IDYES:
 			if (!DoSave(m_strLeftFile, bLSaveSuccess, TRUE))
 				result = FALSE;
-			break;
-		case IDNO:
-			break;
-		default:  // IDCANCEL
-			bCancel = TRUE;
-			break;
 		}
-	}
 
-	if (m_rtBuf.IsModified() && !bCancel)
-	{
-		if (!m_strRightFile.IsEmpty())
-			AfxFormatString1(s, IDS_SAVE_FMT, m_strRightFile);
-		else
-			AfxFormatString1(s, IDS_SAVE_FMT, m_strRightDesc);
-
-		bRModified = TRUE;
-		switch (AfxMessageBox(s, nDialogType | MB_ICONQUESTION))
+		if (bRModified && dlg.m_rightSave == 0)
 		{
-		case IDYES:
 			if (!DoSave(m_strRightFile, bRSaveSuccess, FALSE))
 				result = FALSE;
-			break;
-		case IDNO:
-			break;
-		default:  // IDCANCEL
-			bCancel = TRUE;
-			break;
 		}
 	}
+	else
+		result = FALSE;
 
 	// If file were modified and saving was successfull,
 	// update status on dir view
@@ -2417,11 +2399,6 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 				m_nDiffs, m_nTrivialDiffs, bIdentical);
 		}
 	}
-
-	// User cancelled, return FALSE even if first file could succeed
-	if (bCancel)
-		result = FALSE;
-
 	return result;
 }
 
