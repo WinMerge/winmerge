@@ -1,3 +1,7 @@
+2004-06-19 Kimmo
+ PATCH: [ 975432 ] Add codepage detection option to configlog
+  Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp
+
 2004-06-19 Laoran
  PATCH: [ 974714 ] detect codepage when open documents directly, small update
   Src: MainFrm.cpp

@@ -2667,6 +2667,7 @@ void CMainFrame::OnSaveConfigData()
 	configLog.m_miscSettings.bBackup = m_options.GetInt(OPT_CREATE_BACKUPS);
 	configLog.m_miscSettings.bViewWhitespace = m_options.GetInt(OPT_VIEW_WHITESPACE);
 	configLog.m_miscSettings.bMovedBlocks = m_options.GetInt(OPT_CMP_MOVED_BLOCKS);
+	configLog.m_miscSettings.bDetectCodepage = m_options.GetInt(OPT_DETECT_CODEPAGE);
 
 	if (configLog.WriteLogFile())
 	{

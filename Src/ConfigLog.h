@@ -50,6 +50,7 @@ struct MISCSETTINGS
 	BOOL bBackup;
 	BOOL bViewWhitespace;
 	BOOL bMovedBlocks;
+	BOOL bDetectCodepage;
 };
 
 /** 

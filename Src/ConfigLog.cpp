@@ -200,6 +200,12 @@ BOOL CConfigLog::WriteLogFile()
 	else
 		file.WriteString(_T("No\n"));
 
+	file.WriteString(_T("  Detect codepage automatically for RC and HTML files: "));
+	if (m_miscSettings.bDetectCodepage)
+		file.WriteString(_T("Yes\n"));
+	else
+		file.WriteString(_T("No\n"));
+
 	file.WriteString(_T("\n Other settings:\n"));
 	file.WriteString(_T("  Automatic rescan: "));
 	if (m_miscSettings.bAutomaticRescan)
