@@ -4,7 +4,7 @@
 //    it under the terms of the GNU General Public License as published by
 //    the Free Software Foundation; either version 2 of the License, or (at
 //    your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful, but
 //    WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -14,7 +14,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
-/** 
+/**
  * @file  PropRegistry.cpp
  *
  * @brief CPropRegistry implementation file
@@ -49,7 +49,8 @@ CPropRegistry::CPropRegistry()
 	: CPropertyPage(CPropRegistry::IDD)
 {
 	//{{AFX_DATA_INIT(CPropRegistry)
-		// NOTE: the ClassWizard will add member initialization here
+	m_bContextAdded = FALSE;
+	m_bUseRecycleBin = TRUE;
 	//}}AFX_DATA_INIT
 }
 
@@ -60,6 +61,7 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_EXPLORER_CONTEXT, m_bContextAdded);
 	DDX_Text(pDX, IDC_WINMERGE_PATH, m_strPath);
 	DDX_Text(pDX, IDC_EXT_EDITOR_PATH, m_strEditorPath);
+	DDX_Check(pDX, IDC_USE_RECYCLE_BIN, m_bUseRecycleBin);
 	//}}AFX_DATA_MAP
 }
 
@@ -74,13 +76,13 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CPropRegistry message handlers
 
-BOOL CPropRegistry::OnInitDialog() 
+BOOL CPropRegistry::OnInitDialog()
 {
 	CPropertyPage::OnInitDialog();
-	
+
 	GetContextRegValues();
 	UpdateData(FALSE);
-	
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -94,7 +96,7 @@ void CPropRegistry::GetContextRegValues()
 
 	// This will be bit mask, although now there is only one bit defined
 	DWORD dwContextEnabled = reg.ReadDword(f_RegValueEnabled, 0);
-	
+
 	if (dwContextEnabled & 0x1)
 		m_bContextAdded = TRUE;
 
@@ -109,7 +111,7 @@ void CPropRegistry::OnAddToExplorer()
 	CRegKeyEx reg;
 	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
 		return;
-	
+
 	// This will be bit mask, although now there is only one bit defined
 	DWORD dwContextEnabled = reg.ReadDword(f_RegValueEnabled, 0);
 
@@ -136,8 +138,8 @@ void CPropRegistry::SaveMergePath()
 /// Open file browse dialog to locate WinMerge.exe or bat file
 void CPropRegistry::OnBrowsePath()
 {
-	CString s;           
-                   
+	CString s;
+
 	VERIFY(s.LoadString(IDS_PROGRAMFILES));
 	DWORD flags = OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
 	CFileDialog pdlg(TRUE, NULL, _T(""), flags, s);
@@ -146,7 +148,7 @@ void CPropRegistry::OnBrowsePath()
 	pdlg.m_ofn.lpstrTitle = (LPCTSTR)title;
 
 	if (pdlg.DoModal() == IDOK)
-	 	m_strPath = pdlg.GetPathName(); 
+	 	m_strPath = pdlg.GetPathName();
 
 	UpdateData(FALSE);
 }
@@ -154,7 +156,7 @@ void CPropRegistry::OnBrowsePath()
 /// Open file browse dialog to locate editor
 void CPropRegistry::OnBrowseEditor()
 {
-	CString s;           
+	CString s;
 	VERIFY(s.LoadString(IDS_PROGRAMFILES));
 	DWORD flags = OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
 	CFileDialog pdlg(TRUE, NULL, _T(""), flags, s);
@@ -163,7 +165,7 @@ void CPropRegistry::OnBrowseEditor()
 	pdlg.m_ofn.lpstrTitle = (LPCTSTR)title;
 
 	if (pdlg.DoModal() == IDOK)
-	 	m_strEditorPath = pdlg.GetPathName(); 
+	 	m_strEditorPath = pdlg.GetPathName();
 
 	UpdateData(FALSE);
 }

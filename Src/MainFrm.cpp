@@ -161,6 +161,7 @@ CMainFrame::CMainFrame()
 
 	m_options.SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
 
+	// Initialise options (name, default value)
 	m_options.InitOption(OPT_SHOW_UNIQUE_LEFT, TRUE);
 	m_options.InitOption(OPT_SHOW_UNIQUE_RIGHT, TRUE);
 	m_options.InitOption(OPT_SHOW_DIFFERENT, TRUE);
@@ -175,6 +176,8 @@ CMainFrame::CMainFrame()
 
 	m_options.InitOption(OPT_AUTOMATIC_RESCAN, FALSE);
 	m_options.InitOption(OPT_ALLOW_MIXED_EOL, FALSE);
+
+	m_options.InitOption(OPT_USE_RECYCLE_BIN, TRUE);
 
 	m_bShowErrors = TRUE;
 	m_nVerSys = theApp.GetProfileInt(_T("Settings"), _T("VersionSystem"), 0);
@@ -979,6 +982,7 @@ void CMainFrame::OnOptions()
 	filter.m_sPattern = m_sPattern;
 	regpage.m_strEditorPath = m_sExtEditorPath;
 	regpage.GetContextRegValues();
+	regpage.m_bUseRecycleBin = m_options.GetInt(OPT_USE_RECYCLE_BIN);
     compage.m_compareMethod = m_nCompMethod;
 	compage.m_nIgnoreWhite = diffOptions.nIgnoreWhitespace;
 	compage.m_bIgnoreCase = diffOptions.bIgnoreCase;
@@ -999,6 +1003,7 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_SCROLL_TO_FIRST, gen.m_bScroll);
 
 		theApp.m_bDisableSplash = gen.m_bDisableSplash;
+		m_options.SaveOption(OPT_USE_RECYCLE_BIN, regpage.m_bUseRecycleBin);
 
 		diffOptions.nIgnoreWhitespace = compage.m_nIgnoreWhite;
 		diffOptions.bIgnoreBlankLines = compage.m_bIgnoreBlankLines;

@@ -24,6 +24,7 @@
 #include "OutputDlg.h"
 #include "paths.h"
 #include "CShellFileOp.h"
+#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -362,8 +363,12 @@ void CDirView::PerformActionList(ActionList & actionList)
 		break;
 	}
 	
-	// TODO: option for putting deleted items into recycle bin!
 	int operFlags = FOF_NOCONFIRMMKDIR | FOF_MULTIDESTFILES;
+	
+	// Check option and enable putting deleted items to Recycle Bin
+	if (mf->m_options.GetInt(OPT_USE_RECYCLE_BIN) == TRUE)
+		operFlags |= FOF_ALLOWUNDO;
+
 	fileOp.SetOperationFlags(operation, this, operFlags);
 	
 	// Add files/directories

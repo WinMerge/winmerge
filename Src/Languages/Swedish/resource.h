@@ -299,6 +299,7 @@
 #define IDS_COLHDR_NDIFFS               1114
 #define IDS_COLHDR_NSDIFFS              1115
 #define IDC_COMPAREMETHODCOMBO          1116
+#define IDC_USE_RECYCLE_BIN             1117
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503

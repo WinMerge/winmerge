@@ -425,14 +425,13 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Generale"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Impostazioni",IDC_STATIC,7,7,221,51
     CONTROL         "&Esegui il backup del file originale",IDC_BACKUP_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,19,118,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,118,10
     CONTROL         "&Visualizza automaticamente la prima differenza",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    17,30,161,10
+                    7,17,161,10
     CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,87,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,87,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -580,17 +579,19 @@ END
 
 IDD_PROPPAGE_REGISTRY DIALOG DISCARDABLE  0, 0, 235, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Registry"
+CAPTION "System"
 FONT 8, "MS Sans Serif"
 BEGIN
+    CONTROL         "&Put deleted files to Recycle Bin",IDC_USE_RECYCLE_BIN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,114,10
     CONTROL         "&Add to explorer context menu",IDC_EXPLORER_CONTEXT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,167,10
-    LTEXT           "&WinMerge executable:",IDC_STATIC,7,19,167,8
-    EDITTEXT        IDC_WINMERGE_PATH,7,29,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "&Browse...",IDC_WINMERGE_PATH_BROWSE,179,29,50,14
-    LTEXT           "External editor:",IDC_STATIC,7,50,167,8
-    EDITTEXT        IDC_EXT_EDITOR_PATH,7,60,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_EXT_EDITOR_BROWSE,179,60,50,14
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,167,10
+    LTEXT           "&WinMerge executable:",IDC_STATIC,7,30,167,8
+    EDITTEXT        IDC_WINMERGE_PATH,7,40,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Browse...",IDC_WINMERGE_PATH_BROWSE,179,40,50,14
+    LTEXT           "&External editor:",IDC_STATIC,7,61,167,8
+    EDITTEXT        IDC_EXT_EDITOR_PATH,7,71,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "B&rowse...",IDC_EXT_EDITOR_BROWSE,179,71,50,14
 END
 
 IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 340, 180

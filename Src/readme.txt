@@ -1,3 +1,9 @@
+2004-02-27 Kimmo
+ PATCH: [ 905115 ] Put deleted files to Recycle Bin
+  Also added option to disable it in "System" options
+  DirActions.cpp MainFrm.cpp Merge.rc OptionsDef.h PropRegistry.cpp
+  PropRegistry.h resource.h
+
 2004-02-26 Kimmo
  PATCH: [ 903670 ] Copy Folder (and convert to CShellFileOp)
   Src: DirActions.cpp DirView.h MainFrm.cpp MainFrm.h

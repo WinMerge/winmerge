@@ -14,7 +14,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
-/** 
+/**
  * @file  PropRegistry.h
  *
  * @brief Declaration file CPropRegistry
@@ -47,6 +47,7 @@ public:
 	BOOL m_bContextAdded;
 	CString m_strPath;
 	CString	m_strEditorPath;
+	BOOL	m_bUseRecycleBin;
 	//}}AFX_DATA
 
 	// Overrides
