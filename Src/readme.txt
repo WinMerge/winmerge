@@ -1,11 +1,15 @@
+2003-11-13 Laoran 
+ BUG: [ 841428 ] WinMerge executable path is deleted
+  WinMerge: MainFrm.cpp PropRegistry.h
+
 2003-11-13 Kimmo
  PATCH: [ 838084 ] Add * to newer file's date field in dir compare
   WinMerge: DirView.cpp DirViewColHandler.cpp
  BUG: [ 840785 ] Menu: Plugins | Automatic/Manual inconsistent
   WinMerge: MainFrm.cpp
 
-2003-11-13 Laoran
- modify the assert in GetText/GetTextWithoutEmptys
+2003-11-13 Laoran 
+ modify the assert in GetText/GetTextWithoutEmptys (see patch #837480)
  submitted by Jochen
   WinMerge: GhostTextBuffer.cpp
   editlib: ccrystaltextbuffer.cpp

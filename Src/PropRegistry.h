@@ -41,6 +41,7 @@ class CPropRegistry : public CPropertyPage
 public:
 
 	CPropRegistry();   // standard constructor
+	void GetContextRegValues();
 	void SaveMergePath();
 
 // Dialog Data
@@ -62,7 +63,6 @@ public:
 protected:
 	bool IsRegisteredForDirectory() const;
 	void EnableContextHandler(bool enabling);
-	void GetContextRegValues();
 
 	// Generated message map functions
 	//{{AFX_MSG(CPropRegistry)

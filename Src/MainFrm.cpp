@@ -952,6 +952,7 @@ void CMainFrame::OnOptions()
 	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
 	filter.m_sPattern = m_sPattern;
 	regpage.m_strEditorPath = m_sExtEditorPath;
+	regpage.GetContextRegValues();
 	
 	if (sht.DoModal()==IDOK)
 	{
