@@ -1,6 +1,6 @@
 ;      Original File Name:  WinMerge.iss
-;           File Revision:  18
-;           Revision Date:  2004/03/10 16:51
+;           File Revision:  19
+;           Revision Date:  2004/03/10 16:56
 ;           Programmed by:  Christian Blackburn and ?
 ;                 Purpose:  The is the Inno Setup installation script for distributing our WinmMerge application.
 ; Tools Needed To Compile:  Inno Setup 4.18+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 4.18+(http://www.jrsoftware.org/isdl.php)
@@ -41,8 +41,7 @@
 ; 10. Create two info pages during installation one for our Contributors and a second one for our Read Me file.
 ;     If this isn't possible then we'll need to use ISPP and somehow programatically combine the two RTF files prior to compilation.
 ; 11. Copy our Read Me file to the intallation directory and include it in the start menu.
-; 12. Open the start menu group that the user installed to automatically towards the end of the installation.
-; 13. Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL
+; 12. Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL
 
 #define AppVersion GetFileVersion(AddBackSlash(SourcePath) + "..\Build\MergeRelease\WinMerge.exe")
 
@@ -268,7 +267,7 @@ Root: HKLM; SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMerge
 
 
 [Run]
-Filename: {win}\Explorer.exe; Parameters: """{group}"""; Flags: nowait skipifsilent
+Filename: {win}\Explorer.exe; Description: View the WinMerge Start Menu Folder; Parameters: """{group}"""; Flags: nowait postinstall skipifsilent
 Filename: {app}\{code:ExeName}; Description: Launch WinMerge; Flags: nowait postinstall skipifsilent runmaximized
 
 
