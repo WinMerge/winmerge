@@ -5,6 +5,7 @@
 #include "resource.h"
 #include "PropRegistry.h"
 #include "RegKey.h"
+#include "coretools.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -91,7 +92,8 @@ void CPropRegistry::EnableContextHandler(bool enabling)
 		reg.Close();
 		if (reg.Open(HKEY_CLASSES_ROOT, f_context_key_cmd) != ERROR_SUCCESS)
 			return;
-		CString cmd = (CString)AfxGetApp()->m_pszExeName + _T(" \"%1\"");
+		CString exe = GetModulePath() + '\\' + AfxGetApp()->m_pszExeName;
+		CString cmd = exe + _T(" \"%1\"");
 		reg.WriteString(_T(""), cmd);
 	}
 	else

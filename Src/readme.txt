@@ -2,6 +2,8 @@
  Update Danish language file with new strings in MergeDanish.rc
  Removed duplicate dialog in French language file in MergeFrench.rc
  Added Czech to BuildAll.bat
+ PATCH: [ 698346 ] Use full path for directory context menu option
+  WinMerge: PropRegistry.cpp
 
 2003-03-06 Kimmo
  PATCH: [ 696695 ] DirDoc Redisplay optimisation
