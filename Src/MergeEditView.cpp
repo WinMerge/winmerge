@@ -1594,6 +1594,8 @@ OnUpdateCaret()
 		int chars = -1;
 		CString sEol;
 		int column = -1;
+		int columns = -1;
+		int curChar = -1;
 
 		// Is this a ghost line ?
 		if (m_pTextBuffer->GetLineFlags(nScreenLine) & LF_GHOST)
@@ -1605,14 +1607,17 @@ OnUpdateCaret()
 		{
 			// Regular lines display eg "Line 13 Characters: 25 EOL: CRLF"
 			sLine.Format(_T("%d"), nRealLine+1);
+			curChar = cursorPos.x;
 			chars = GetLineLength(nScreenLine);
 			column = CalculateActualOffset(nScreenLine, cursorPos.x);
+			columns = CalculateActualOffset(nScreenLine, chars);
 			if (mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
 				sEol = GetTextBufferEol(nScreenLine);
 			else
 				sEol = _T("hidden");
 		}
-		m_piMergeEditStatus->SetLineInfo(sLine, column + 1, chars, sEol);
+		m_piMergeEditStatus->SetLineInfo(sLine, column + 1, columns + 1,
+			curChar + 1, chars + 1, sEol);
 	}
 }
 

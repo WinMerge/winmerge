@@ -35,7 +35,9 @@
 #include "DiffViewBar.h"
 #include "LocationBar.h"
 
-
+/** 
+ * @brief Frame class for file compare, handles panes, statusbar etc.
+ */
 class CChildFrame : public CMDIChildWnd
 {
 	DECLARE_DYNCREATE(CChildFrame)
@@ -58,16 +60,18 @@ protected:
 		// ctr
 		MergeStatus(CChildFrame * pFrame, int base);
 		// Implement MergeEditStatus
-		void SetLineInfo(LPCTSTR szLine, int nColumn,
-			int nChars, LPCTSTR szEol);
+		void SetLineInfo(LPCTSTR szLine, int nColumn, int nColumns,
+			int nChar, int nChars, LPCTSTR szEol);
 	protected:
 		void Update();
 	private:
 		CChildFrame * m_pFrame;
-		int m_base; // 0 for left, 1 for right
+		int m_base; /**< 0 for left, 1 for right */
 		CString m_sLine;
-		int m_nColumn;
-		int m_nChars;
+		int m_nColumn; /**< Current column, tab-expanded */
+		int m_nColumns; /**< Amount of columns, tab-expanded */
+		int m_nChar; /**< Current char */
+		int m_nChars; /**< Amount of chars in line */
 		CString m_sEol;
 		CString m_sEolDisplay;
 	};

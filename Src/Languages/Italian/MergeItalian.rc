@@ -1465,9 +1465,9 @@ END
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
 STRINGTABLE
 BEGIN
-    IDS_LINE_STATUS_INFO_EOL "Ln: %s  Col: %d  Chrs: %d  EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
-    IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d  Chrs: %d"
+    IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
     IDS_MERGEMODE_MERGING   "Merge"
     IDS_DIFF_NUMBER_STATUS_FMT "Differenza %1 su %2"
     IDS_NO_DIFF_SEL_FMT     "%1 differenze trovate"

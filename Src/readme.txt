@@ -7,6 +7,9 @@
  RFE: [ 891123 ] Short format for line info in file compare
   Src: Merge.rc
   Src/Languages: *.rc
+ PATCH: [ 976255 ] Add total columns and current char to lineinfo
+  Src: ChildFrm.cpp ChildFrm.h Merge.rc MergeEditStatus.h MergeEditView.cpp
+  Src/Languages: *.rc
 
 2004-06-19 Kimmo
  PATCH: [ 975432 ] Add codepage detection option to configlog
