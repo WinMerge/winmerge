@@ -120,7 +120,7 @@ SOURCE=.\MakeResDll.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\Common\RegKey.h
+SOURCE=..\common\RegKey.h
 # End Source File
 # Begin Source File
 

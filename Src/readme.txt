@@ -6,6 +6,9 @@
  Handle lib & includes for MakeResDll (& rearrange globals). 
  Bump version from 1.0.1.0 to 1.0.2.0.
   MakeResDll: MakeResDll.cpp MakeResDll.rc readme.txt
+ Handle lib & includes for .NET and .NET 2003 in MakeResDll.
+ Fix location of RegKey.h in MakeResDll.
+  MakeResDll: MakeResDll.cpp MakeResDll.dsp readme.txt
 
 2003-10-23 Kimmo
  BUG: [ 815147 ] Scrollwheel scrolls too far at end of file

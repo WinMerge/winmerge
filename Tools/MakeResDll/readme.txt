@@ -22,3 +22,26 @@ HKCU\Software\\Thingamahoochie\\MakeResDll\\Settings
  VcBaseFolder = C:\Program Files\Microsoft Visual Studio\Common\MSDev98\Bin
  RCExe = C:\Program Files\Microsoft Visual Studio\Common\MSDev98\Bin\rc.exe
  LinkExe = C:\Program Files\Microsoft Visual Studio\vc98\bin\link.exe
+
+Or you may force a specific version of MSVC by just setting the value
+HKCU\Software\\Thingamahoochie\\MakeResDll\\Settings
+ VcVersion = 6
+
+(or 5, or Net, or Net2003)
+
+2003-10-24, Perry:
+ The link line is failing for me, using this with Microsoft Visual Studio .NET.
+ I can only get this to work with MSVC .NET using the backup method below:
+ 
+ 
+The backup method to set the lib and include paths, is to use the batch
+files that ship with Microsoft Visual Studio. 
+ 
+If these were not set at installation time (it is an option),
+these may typically be set by invoking a batch file such as:
+
+ C:\Program Files\Microsoft Visual Studio .NET\Common7\Tools\vsvars32.bat
+
+or
+
+ C:\Program Files\Microsoft Visual Studio\VC98\Bin\vcvars32.bat
