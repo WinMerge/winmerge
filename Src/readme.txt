@@ -1,3 +1,8 @@
+2003-10-25 Perry
+ PATCH: [ 828633 ] Abort running scan
+  WinMerge: DiffThread.cpp DiffThread.h DirDoc.cpp DirDoc.h
+   DirScan.cpp DirScan.h
+
 2003-10-24 Perry
  PATCH: [ 814832 ] Timing traces for loading file
   WinMerge: MergeDoc.cpp

@@ -29,10 +29,45 @@
 #include "DirScan.h"
 #include "Plugins.h"
 
+
 /**
- * @brief Static structure for sharing data with thread
+ * @brief Data sent to diff thread
  */
-static DiffFuncStruct diffParam;
+struct DiffFuncStruct
+{
+	CString path1;
+	CString path2;
+	CDiffContext * context;
+	UINT msgUIUpdate;
+	UINT msgStatusUpdate;
+	HWND hWindow;
+	UINT nThreadState;
+	BOOL bRecursive;
+	DiffThreadAbortable * m_pAbortgate;
+	DiffFuncStruct()
+		: context(0)
+		, msgUIUpdate(0)
+		, msgStatusUpdate(0)
+		, hWindow(0)
+		, nThreadState(THREAD_NOTSTARTED)
+		, bRecursive(FALSE)
+		, m_pAbortgate(0)
+		{}
+};
+
+
+/** @brief abort handler for CDiffThread -- just a gateway to CDiffThread */
+class DiffThreadAbortable : public IAbortable
+{
+// Implement DirScan's IAbortable
+public:
+	virtual bool ShouldAbort() { return m_diffthread->ShouldAbort(); }
+
+// All this object does is forward ShouldAbort calls to its containing CDiffThread
+
+	DiffThreadAbortable(CDiffThread * diffthread) : m_diffthread(diffthread) { }
+	CDiffThread * m_diffthread;
+};
 
 /**
  * @brief Default constructor
@@ -41,11 +76,18 @@ CDiffThread::CDiffThread()
 {
 	m_pDiffContext = NULL;
 	m_thread = NULL;
-	diffParam.nThreadState = THREAD_NOTSTARTED;
+	m_pDiffParm = new DiffFuncStruct;
+	m_pAbortgate = new DiffThreadAbortable(this);
+	m_msgUpdateUI = 0;
+	m_msgUpdateStatus = 0;
+	m_hWnd = 0;
+	m_bAborting = FALSE;
 }
 
 CDiffThread::~CDiffThread()
 {
+	delete m_pDiffParm;
+	delete m_pAbortgate;
 
 }
 
@@ -64,15 +106,18 @@ CDiffContext * CDiffThread::SetContext(CDiffContext * pCtx)
  */
 UINT CDiffThread::CompareDirectories(CString dir1, CString dir2, BOOL bRecursive)
 {
-	diffParam.path1 = dir1;
-	diffParam.path2 = dir2;
-	diffParam.bRecursive = bRecursive;
-	diffParam.context = m_pDiffContext;
-	diffParam.msgUIUpdate = m_msgUpdateUI;
-	diffParam.hWindow = m_hWnd;
+	ASSERT(m_pDiffParm->nThreadState != THREAD_COMPARING);
 
-	diffParam.nThreadState = THREAD_COMPARING;
-	m_thread = AfxBeginThread(DiffThread, (LPVOID)&diffParam);
+	m_pDiffParm->path1 = dir1;
+	m_pDiffParm->path2 = dir2;
+	m_pDiffParm->bRecursive = bRecursive;
+	m_pDiffParm->context = m_pDiffContext;
+	m_pDiffParm->msgUIUpdate = m_msgUpdateUI;
+	m_pDiffParm->hWindow = m_hWnd;
+	m_pDiffParm->m_pAbortgate = m_pAbortgate;
+
+	m_pDiffParm->nThreadState = THREAD_COMPARING;
+	m_thread = AfxBeginThread(DiffThread, m_pDiffParm);
 	return 1;
 }
 
@@ -96,9 +141,9 @@ void CDiffThread::SetMessageIDs(UINT updateMsg, UINT statusMsg)
 /**
  * @brief Returns thread's current state
  */
-UINT CDiffThread::GetThreadState()
+UINT CDiffThread::GetThreadState() const
 {
-	return diffParam.nThreadState;
+	return m_pDiffParm->nThreadState;
 }
 
 /**
@@ -120,10 +165,10 @@ UINT DiffThread(LPVOID lpParam)
 	bool casesensitive = false;
 	int depth = myStruct->bRecursive ? -1 : 0;
 	CString subdir; // blank to start at roots specified in diff context
-	DirScan(subdir, myStruct->context, casesensitive, depth);
+	DirScan(subdir, myStruct->context, casesensitive, depth, myStruct->m_pAbortgate);
 	
 	// Send message to UI to update
-	diffParam.nThreadState = THREAD_COMPLETED;
+	myStruct->nThreadState = THREAD_COMPLETED;
 	PostMessage(hWnd, msgID, NULL, NULL);
 	return 1;
 }

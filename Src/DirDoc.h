@@ -105,6 +105,8 @@ public:
 	void SetDiffStatus(UINT diffcode, UINT mask, int idx);
 	void SetDiffContext(CDiffContext *pCtxt);
 	void UpdateHeaderPath(BOOL bLeft);
+	void AbortCurrentScan();
+	bool IsCurrentScanAbortable() const;
 
 #ifdef _DEBUG
 	virtual void AssertValid() const;

@@ -51,7 +51,9 @@ typedef int (CString::*cmpmth)(LPCTSTR sz) const;
 // base directories to compare are in the CDiffContext
 // and this call is responsible for diff'ing just the subdir specified
 // (ie, if subdir is empty, this is the base call)
-int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, int depth)
+// return 1 normally, return -1 if aborting
+int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
+	int depth, IAbortable * piAbortable)
 {
 	CString sLeftDir = pCtxt->m_strNormalizedLeft;
 	CString sRightDir = pCtxt->m_strNormalizedRight;
@@ -62,10 +64,13 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 		sRightDir += _T("\\") + subdir;
 		subprefix = subdir + _T("\\");
 	}
+
 	cmpmth mthptr = (casesensitive ? &CString::Collate : &CString::CollateNoCase);
 	fentryArray leftDirs, leftFiles, rightDirs, rightFiles;
 	LoadAndSortFiles(sLeftDir, &leftDirs, &leftFiles, casesensitive);
 	LoadAndSortFiles(sRightDir, &rightDirs, &rightFiles, casesensitive);
+
+	if (piAbortable && piAbortable->ShouldAbort()) return -1;
 
 	// Handle directories
 	// i points to current directory in left list (leftDirs)
@@ -73,6 +78,8 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 	int i=0, j=0;
 	while (1)
 	{
+		if (piAbortable && piAbortable->ShouldAbort()) return -1;
+
 		// In debug mode, send current status to debug window
 		if (i<leftDirs.GetSize())
 			TRACE(_T("Candidate left: leftDirs[i]=%s\n"), leftDirs[i]);
@@ -118,7 +125,8 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 			}
 			else
 			{
-				DirScan(newsub, pCtxt, casesensitive, depth-1); 
+				if (DirScan(newsub, pCtxt, casesensitive, depth-1, piAbortable) == -1)
+					return -1;
 			}
 			++i;
 			++j;
@@ -132,6 +140,8 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 	i=0, j=0;
 	while (1)
 	{
+		if (piAbortable && piAbortable->ShouldAbort()) return -1;
+
 		// In debug mode, send current status to debug window
 		if (i<leftFiles.GetSize())
 			TRACE(_T("Candidate left: leftFiles[i]=%s\n"), leftFiles[i]);

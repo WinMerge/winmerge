@@ -27,6 +27,9 @@
 
 #include "diffcontext.h"
 
+struct DiffFuncStruct;
+class DiffThreadAbortable;
+
 /**
  * @brief Thread's statuses
  */
@@ -37,20 +40,6 @@ enum
 	THREAD_COMPLETED
 };
 
-/**
- * @brief Data sent to diff thread
- */
-struct DiffFuncStruct
-{
-	CString path1;
-	CString path2;
-	CDiffContext * context;
-	UINT msgUIUpdate;
-	UINT msgStatusUpdate;
-	HWND hWindow;
-	UINT nThreadState;
-	BOOL bRecursive;
-};
 
 /**
  * @brief Class for threaded directory compare
@@ -59,20 +48,32 @@ struct DiffFuncStruct
 class CDiffThread
 {
 public:
+// creation and use, called on main thread
 	CDiffThread();
 	~CDiffThread();
 	CDiffContext * SetContext(CDiffContext * pCtx);
 	UINT CompareDirectories(CString dir1, CString dir2,	BOOL bRecursive);
 	void SetHwnd(HWND hWnd);
 	void SetMessageIDs(UINT updateMsg, UINT statusMsg);
-	UINT GetThreadState();
+
+// runtime interface for main thread, called on main thread
+	UINT GetThreadState() const;
+	void Abort() { m_bAborting = true; }
+	bool IsAborting() const { return m_bAborting; }
+
+// runtime interface for child thread, called on child thread
+	bool ShouldAbort() const { return m_bAborting; }
+
 
 private:
 	CDiffContext * m_pDiffContext;
 	CWinThread * m_thread;
+	DiffFuncStruct * m_pDiffParm;
+	DiffThreadAbortable * m_pAbortgate;
 	UINT m_msgUpdateUI;
 	UINT m_msgUpdateStatus;
 	HWND m_hWnd;
+	bool m_bAborting;
 };
 
 UINT DiffThread(LPVOID lpParam);

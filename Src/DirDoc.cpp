@@ -755,3 +755,24 @@ BOOL CDirDoc::SaveModified()
 	
 	return CDocument::SaveModified();
 }
+
+/**
+ * @brief Send signal to thread to stop current scan
+ *
+ * @todo: Call this from somewhere in GUI, eg, <escape> button
+ */
+void CDirDoc::AbortCurrentScan()
+{
+	m_diffThread.Abort();
+}
+
+/**
+ * @brief Returns true if there is an active scan that hasn't been aborted.
+ *
+ * @todo: This is for Update command handler of menu item or toolbar button to cancel scan
+ */
+bool CDirDoc::IsCurrentScanAbortable() const
+{
+	return (m_diffThread.GetThreadState() == THREAD_COMPARING 
+		&& !m_diffThread.IsAborting());
+}
