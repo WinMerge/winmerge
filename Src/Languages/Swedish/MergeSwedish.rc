@@ -1695,6 +1695,7 @@ BEGIN
     IDS_SUGGEST_IGNOREEOL   "Filerna har olika EOL typer.\nMed de aktuella inställningarna , kommer alla rader att vara olika.\nVill du ignorera EOL skillnader för dessa filer ?\n\nAvancerad användare : om EOL inte är lika i dina filer,\n kan du hellre ställa in inställningen '%1'."
     IDS_SUGGEST_PRESERVEEOL "EOL är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika EOL ?"
     IDS_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
+    IDS_SUGGEST_IGNORECODEPAGE "Left and right files don't have the same codepage. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWe suggest to forget the codepage information. Do you agree ?"
 END
 
 // EDITOR : SHOW LINE DIFF

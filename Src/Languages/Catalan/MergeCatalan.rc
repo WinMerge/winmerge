@@ -1599,6 +1599,7 @@ BEGIN
     IDS_SUGGEST_IGNOREEOL   "Els fitxers tenen salts de línia de diferent mena.\nAmb les opcions actuals, totes les línies diferiran.\nVoleu ignorar les diferències d'aquesta mena en aquests fitxers?\n\nUsuari avançat: Si els salts de línia no estan unificades als vostres fitxers,\n alternativament podeu especificar la opció '%1'."
     IDS_SUGGEST_PRESERVEEOL "Els salts de línia són de diferent mena (DOS/UNIX/MAC) al fitxer '%1'.\nAmb les opcions actual, s'unificaran al tipus principal.\nVoleu canviar les opcions i preservar les diferents menes de salt de línia?"
     IDS_PREDIFFER_ERROR     "Hi ha hagut un error prediferenciant el fitxer '%1' amb el connector '%2'. No es tornarà a aplicar la prediferenciació."
+    IDS_SUGGEST_IGNORECODEPAGE "Left and right files don't have the same codepage. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWe suggest to forget the codepage information. Do you agree ?"
 END
 
 // EDITOR : SHOW LINE DIFF

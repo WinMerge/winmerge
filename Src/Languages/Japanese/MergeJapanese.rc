@@ -1586,6 +1586,7 @@ BEGIN
     IDS_SUGGEST_IGNOREEOL   "ファイル内に異なるEOLタイプが存在しています。\n現在のオプション設定では、すべての行は、異なったままです。\nファイル内に存在するEOLの違いを無視しますか?\n\n上級者 : if the EOL are not unified in your files,\n you may rather set the option '%1'."
     IDS_SUGGEST_PRESERVEEOL "ファイル'%1'内に異なるタイプ(DOS/UNIX/MAC)のEOLが存在しています。\n 現在のオプション設定では、主なEOLに統一されます。\n オプションを変更して、異なるEOLを保持するようにしますか?"
     IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+    IDS_SUGGEST_IGNORECODEPAGE "Left and right files don't have the same codepage. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWe suggest to forget the codepage information. Do you agree ?"
 END
 
 // EDITOR : SHOW LINE DIFF

@@ -1,3 +1,8 @@
+2004-06-19 Laoran
+ PATCH: [ 975213 ] warn when codepages differ
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2004-06-18 Kimmo
  BUG: [ 930574 ] Remove old and unused undo-code
   Src: MergeDoc.h MergeDoc.cpp

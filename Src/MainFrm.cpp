@@ -537,6 +537,17 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	// (through menu : "Plugins"->"Open with unpacker")
 	pMergeDoc->SetUnpacker(infoUnpacker);
 
+
+	if (cpleft != cpright)
+	{
+		// Two files with different codepages
+		// Warn and propose to use the default codepage for both
+		int userChoice = AfxMessageBox(IDS_SUGGEST_IGNORECODEPAGE, 
+		                               MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN);
+		if (userChoice == IDYES)
+			cpleft = cpright = ucr::getDefaultCodepage();
+	}
+
 	bOpenSuccess = pMergeDoc->OpenDocs(szLeft, szRight,
 			bROLeft, bRORight, cpleft, cpright);
 
