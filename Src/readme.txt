@@ -1,3 +1,10 @@
+2004-05-02 Kimmo
+ PATCH: [ 833180 ] Filters dialog
+  Src new files: FileFiltersDlg.cpp FileFiltersDlg.h
+  Src: MainFrm.cpp MainFrm.h Merge.dsp Merge.rc
+   PropFilter.cpp PropFilter.h resource.h
+  Languages: *.rc resource.h
+
 2004-05-01 Laoran
  PATCH: addon to [ 941623 ] Propose moving IDC_COMPARISON_STOP to block with ...CLOSE
   Src: Merge.rc

@@ -66,6 +66,7 @@
 #include "ConfigLog.h"
 #include "7zCommon.h"
 #include <shlwapi.h>
+#include "FileFiltersDlg.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
 
@@ -125,6 +126,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_RELOAD_PLUGINS, OnReloadPlugins)
 	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
+	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1113,14 +1115,9 @@ void CMainFrame::SetEOLMixed(BOOL bAllow)
 void CMainFrame::OnOptions() 
 {
 	CString sExtEditor;
-	CString selectedFilter;
-	StringPairArray fileFilters;
-	theApp.GetFileFilters(&fileFilters, selectedFilter);
-
 	CPropertySheet sht(IDS_OPTIONS_TITLE);
 	CPropVss vss;
 	CPropGeneral gen;
-	CPropFilter filter(&fileFilters, selectedFilter);
 	CPropColors colors(&m_options);
 	CPropRegistry regpage;
     CPropCompare compage(&m_options);
@@ -1129,7 +1126,6 @@ void CMainFrame::OnOptions()
 	sht.AddPage(&gen);
 	sht.AddPage(&compage);
 	sht.AddPage(&editor);
-	sht.AddPage(&filter);
 	sht.AddPage(&vss);
 	sht.AddPage(&colors);
 	sht.AddPage(&regpage);
@@ -1140,8 +1136,6 @@ void CMainFrame::OnOptions()
 	gen.m_bScroll = m_options.GetInt(OPT_SCROLL_TO_FIRST);
 	gen.m_bDisableSplash = m_options.GetInt(OPT_DISABLE_SPLASH);
 	gen.m_bAutoCloseCmpPane = m_options.GetInt(OPT_AUTOCLOSE_CMPPANE);
-	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
-	filter.m_sPattern = m_sPattern;
 	regpage.m_strEditorPath = m_options.GetString(OPT_EXT_EDITOR_CMD);
 	regpage.GetContextRegValues();
 	regpage.m_bUseRecycleBin = m_options.GetInt(OPT_USE_RECYCLE_BIN);
@@ -1192,15 +1186,8 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_SYNTAX_HIGHLIGHT, editor.m_bHiliteSyntax);
 		m_options.SaveOption(OPT_UNREC_APPLYSYNTAX, editor.m_bApplySyntax);
 
-		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
-		m_sPattern = filter.m_sPattern;
-		theApp.SetFileFilterPath(filter.m_sFileFilterPath);
-
 		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
 		theApp.WriteProfileString(_T("Settings"), _T("VssPath"), m_strVssPath);
-		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
-		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
-		theApp.WriteProfileString(_T("Settings"), _T("FileFilterPath"), filter.m_sFileFilterPath);
 
 		m_options.SaveOption(OPT_CLR_DIFF, colors.m_clrDiff);
 		m_options.SaveOption(OPT_CLR_SELECTED_DIFF, colors.m_clrSelDiff);
@@ -1211,8 +1198,6 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF, colors.m_clrTrivial);
 		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, colors.m_clrTrivialDeleted);
 		
-		RebuildRegExpList();
-
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
 		SetEOLMixed(editor.m_bAllowMixedEol);
 
@@ -2608,3 +2593,38 @@ void CMainFrame::OnFileNew()
 	m_strRightDesc.Empty();
 }
 
+/**
+ * @brief Open Filters dialog
+ */
+void CMainFrame::OnToolsFilters()
+{
+	CPropertySheet sht(IDS_FILTER_TITLE);
+	CPropFilter filter;
+	FileFiltersDlg fileFiltersDlg;
+	StringPairArray fileFilters;
+	CString selectedFilter;
+	sht.AddPage(&fileFiltersDlg);
+	sht.AddPage(&filter);
+
+	theApp.GetFileFilters(&fileFilters, selectedFilter);
+	fileFiltersDlg.SetFilterArray(&fileFilters);
+	fileFiltersDlg.SetSelected(selectedFilter);
+	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
+	filter.m_sPattern = m_sPattern;
+
+	if (sht.DoModal() == IDOK)
+	{
+		CString path = fileFiltersDlg.GetSelected();
+		theApp.SetFileFilterPath(path);
+		theApp.WriteProfileString(_T("Settings"), _T("FileFilterPath"), path);
+
+		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
+		m_sPattern = filter.m_sPattern;
+
+		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
+		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
+
+		RebuildRegExpList();
+
+	}
+}

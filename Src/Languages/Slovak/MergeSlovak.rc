@@ -202,6 +202,7 @@ BEGIN
     POPUP "&Tools"
     BEGIN
         MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
     END
     POPUP "&Plugins"
@@ -544,22 +545,18 @@ BEGIN
     LTEXT           "Comments",IDC_STATIC,18,7,34,10
 END
 
-IDD_PROPPAGE_FILTER DIALOG  0, 0, 235, 156
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Filter"
+IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Linefilters"
 FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "Ignoruj riadky obsahujúce nasledovné vzorky (patterns):",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
     LTEXT           "Regulárne výrazy (jeden na riadok):",IDC_STATIC,7,28,
-221,8
+                    221,8
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
-    LTEXT           "Súbor pre filter:",IDC_STATIC,7,128,60,10
-    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST |
-                    WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Edit",IDC_EDIT_FILE_FILTER,194,126,34,13,WS_DISABLED
 END
 
 IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
@@ -864,6 +861,17 @@ IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
+END
+
+IDD_FILEFILTERS DIALOGEX 0, 0, 356, 135
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+CAPTION "Filefilters"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,7,7,342,100
+    PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,299,114,50,14
 END
 
 #ifndef _MAC
@@ -1457,6 +1465,13 @@ END
 
 STRINGTABLE 
 BEGIN
+    IDS_FILTERFILE_NAMETITLE "Name"
+    IDS_FILTERFILE_PATHTITLE "Location"
+    IDS_FILTER_TITLE        "Filters"
+END
+
+STRINGTABLE 
+BEGIN
     IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
@@ -1619,6 +1634,7 @@ BEGIN
     ID_NO_PREDIFFER         "No prediffer (normal)"
     ID_TITLE_PLUGINS_SETTINGS "Plugin Settings"
     ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
+    ID_TOOLS_FILTERS        "Select and modify filters"
 END
 
 // END STRINGS SYNCHRO

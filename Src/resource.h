@@ -209,6 +209,10 @@
 #define IDS_OPEN_BOTHINVALID            289
 #define IDS_OPEN_UNPACKERDISABLED       290
 #define IDS_OPEN_MISMATCH               291
+#define IDD_FILEFILTERS                 304
+#define IDS_FILTERFILE_NAMETITLE        305
+#define IDS_FILTERFILE_PATHTITLE        306
+#define IDS_FILTER_TITLE                307
 #define ID_SCRIPT_FIRST                 900
 #define ID_SCRIPT_LAST                  949
 #define ID_PREDIFFERS_FIRST             950
@@ -344,6 +348,8 @@
 #define IDC_COLDLG_DEFAULTS             1126
 #define IDC_UNREC_APPLYSYNTAX           1127
 #define IDC_OPEN_STATUS                 1128
+#define IDC_FILTERFILE_EDITBTN          1129
+#define IDC_FILTERFILE_LIST             1130
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -618,6 +624,7 @@
 #define ID_TITLE_PLUGINS_SETTINGS       32876
 #define ID_FILE_MERGINGMODE             32877
 #define ID_STATUS_MERGINGMODE           32878
+#define ID_TOOLS_FILTERS                32879
 
 // Next default values for new objects
 // 
@@ -625,8 +632,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        126
-#define _APS_NEXT_COMMAND_VALUE         32879
-#define _APS_NEXT_CONTROL_VALUE         1129
+#define _APS_NEXT_COMMAND_VALUE         32880
+#define _APS_NEXT_CONTROL_VALUE         1131
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

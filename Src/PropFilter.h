@@ -4,39 +4,34 @@
 #if !defined(AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_)
 #define AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_
 
+/** 
+ * @file  PropFilter.h
+ *
+ * @brief Declaration file for Line Filter dialog
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropFilter dialog
-
-#ifndef StringPair_declared
-#define StringPair_declared
-struct StringPair { CString first; CString second; };
-class StringPairArray : public CArray<StringPair, StringPair> { }; // need class so can forward declare
-#endif
-
-
+/// Class for Line filter propertypage
 class CPropFilter : public CPropertyPage
 {
 	DECLARE_DYNAMIC(CPropFilter)
 
 // Construction
 public:
-	CPropFilter(const StringPairArray * fileFilters, CString & selected);
+	CPropFilter();
 	~CPropFilter();
 
 // Dialog Data
 	//{{AFX_DATA(CPropFilter)
 	enum { IDD = IDD_PROPPAGE_FILTER };
-	CButton	m_btnEditFileFilter;
-	CComboBox	m_cboFileFilter;
 	CEdit	m_cPattern;
 	BOOL	m_bIgnoreRegExp;
 	CString	m_sPattern;
 	//}}AFX_DATA
-	CString m_sFileFilterPath;
 
 // Implementation
-	int AddFilter(int i);
 
 // Overrides
 	// ClassWizard generate virtual function overrides
@@ -47,14 +42,11 @@ public:
 
 // Implementation
 protected:
-	const StringPairArray * m_Filters;
 
 	// Generated message map functions
 	//{{AFX_MSG(CPropFilter)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnIgnoreregexp();
-	afx_msg void OnSelchangeFileFilter();
-	afx_msg void OnEditFileFilter();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

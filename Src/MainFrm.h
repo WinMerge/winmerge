@@ -200,6 +200,7 @@ protected:
 	afx_msg void OnReloadPlugins();
 	afx_msg void OnSaveConfigData();
 	afx_msg void OnFileNew();
+	afx_msg void OnToolsFilters();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
