@@ -1129,7 +1129,21 @@ void CMergeEditView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 {
 	CMergeDoc *pd = GetDocument();
+	CMergeEditView *pCurrentView = NULL;
+	CMergeEditView *pOtherView = NULL;
 	int nDiff = pd->GetCurrentDiff();
+
+	if (m_bIsLeft)
+	{
+		pCurrentView = pd->GetLeftView();
+		pOtherView = pd->GetRightView();
+	}
+	else
+	{
+		pCurrentView = pd->GetRightView();
+		pOtherView = pd->GetLeftView();
+	}
+
 	if (nDiff >= 0 && nDiff < (int)pd->m_nDiffs)
 	{
 		CPoint ptStart, ptEnd;
@@ -1149,10 +1163,14 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 				int line = ptStart.y - CONTEXT_LINES_ABOVE;
 				if (line < 0)
 					line = 0;
-				ScrollToLine(line);
+
+				pCurrentView->ScrollToLine(line);
+				pOtherView->ScrollToLine(line);
 			}
-			SetCursorPos(ptStart);
-			SetAnchor(ptStart);
+			pCurrentView->SetCursorPos(ptStart);
+			pOtherView->SetCursorPos(ptStart);
+			pCurrentView->SetAnchor(ptStart);
+			pOtherView->SetAnchor(ptStart);
 		}
 
 		if (bSelectText)

@@ -1,3 +1,8 @@
+2004-01-12 Kimmo
+ PATCH: [ 874451 ] Update lineposition offpane when navigating diffs
+ Fixes wrong linenumber and cursor position in inactive file
+  WinMerge: MergeEditView.cpp
+
 2004-01-11 Perry
  PATCH: [ 875237 ] Fix fwrite call in UniStdioFile::WriteString
  Fix byte count and argument order when UniStdioFile::WriteString calls fwrite.
