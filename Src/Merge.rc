@@ -1358,6 +1358,7 @@ BEGIN
     IDS_SELECT_DESTFOLDER   "Select destination folder"
     IDS_COMPMETHOD_CONTENTS "Contents"
     IDS_COMPMETHOD_MODDATE  "Modified date"
+    IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1669,4 +1670,3 @@ LANGUAGE 9, 1
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-

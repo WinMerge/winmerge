@@ -27,8 +27,7 @@
 #include "PatchDlg.h"
 #include "diff.h"
 #include "coretools.h"
-#include <sys/types.h>	// struct stat
-#include <sys/stat.h>	// struct stat & _fstat()
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -45,12 +44,17 @@ CPatchDlg::CPatchDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CPatchDlg::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CPatchDlg)
-	m_caseSensitive = FALSE;
+	m_caseSensitive = TRUE;
 	m_file1 = _T("");
 	m_file2 = _T("");
 	m_fileResult = _T("");
-	m_ignoreBlanks = FALSE;
-	m_whitespaceCompare = -1;
+	m_ignoreBlanks = 0;
+	m_whitespaceCompare = 0;
+	m_appendFile = FALSE;
+	m_openToEditor = FALSE;
+	m_includeCmdLine = FALSE;
+	m_outputStyle = OUTPUT_NORMAL;
+	m_contextLines = 0;
 	//}}AFX_DATA_INIT
 }
 
@@ -62,9 +66,6 @@ void CPatchDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_DIFF_STYLE, m_comboStyle);
 	DDX_Control(pDX, IDC_DIFF_CONTEXT, m_comboContext);
 	DDX_Check(pDX, IDC_DIFF_CASESENSITIVE, m_caseSensitive);
-	DDX_Text(pDX, IDC_DIFF_FILE1, m_file1);
-	DDX_Text(pDX, IDC_DIFF_FILE2, m_file2);
-	DDX_Text(pDX, IDC_DIFF_FILERESULT, m_fileResult);
 	DDX_Check(pDX, IDC_DIFF_WHITESPACE_IGNOREBLANKS, m_ignoreBlanks);
 	DDX_Radio(pDX, IDC_DIFF_WHITESPACE_COMPARE, m_whitespaceCompare);
 	DDX_Check(pDX, IDC_DIFF_APPENDFILE, m_appendFile);
@@ -103,10 +104,11 @@ void CPatchDlg::OnOK()
 {
 	int contextSel = 0;
 	TCHAR contextText[50] = {0};
-	BOOL file1Ok = TRUE;
-	BOOL file2Ok = TRUE;
+	BOOL file1Ok = FALSE;
+	BOOL file2Ok = FALSE;
 	BOOL fileExists = FALSE;
 	BOOL fileResultOK = TRUE;
+	BOOL pathAbsolute = FALSE;
 	int overWrite = 0;
 	int selectCount = 0;
 
@@ -119,8 +121,10 @@ void CPatchDlg::OnOK()
 	// Filenames read from Dirview must be valid ones.
 	if (selectCount == 1)
 	{
-		file1Ok = is_regfile2(m_file1);
-		file2Ok = is_regfile2(m_file2);
+		if (paths_DoesPathExist(m_file1) == IS_EXISTING_FILE)
+			file1Ok = TRUE;
+		if (paths_DoesPathExist(m_file2) == IS_EXISTING_FILE)
+			file2Ok = TRUE;
 
 		if (file1Ok == FALSE)
 			AfxMessageBox(IDS_DIFF_ITEM1NOTFOUND, MB_ICONSTOP);
@@ -129,9 +133,22 @@ void CPatchDlg::OnOK()
 			AfxMessageBox(IDS_DIFF_ITEM2NOTFOUND, MB_ICONSTOP);
 	}
 
+	// Check that result (patch) file is absolute path
 	if (file1Ok && file2Ok)
 	{
-		fileExists = is_regfile2(m_fileResult);
+		pathAbsolute = paths_IsPathAbsolute(m_fileResult);
+		if (pathAbsolute == FALSE)
+		{
+			CString msg;
+			AfxFormatString1(msg, IDS_PATH_NOT_ABSOLUTE, m_fileResult);
+			AfxMessageBox(msg, MB_ICONSTOP);
+		}
+	}
+	
+	if (file1Ok && file2Ok && pathAbsolute)
+	{
+		if (paths_DoesPathExist(m_fileResult) == IS_EXISTING_FILE)
+			fileExists = TRUE;
 
 		// Result file already exists and append not selected
 		if (fileExists && !m_appendFile)
@@ -140,11 +157,11 @@ void CPatchDlg::OnOK()
 			if (overWrite == IDNO)
 				fileResultOK = FALSE;
 		}
-		else	// It's ok to write new file
+		else  // It's OK to write new file
 			fileResultOK = TRUE;
 	}
 
-	if (file1Ok && file2Ok && fileResultOK)
+	if (file1Ok && file2Ok && pathAbsolute && fileResultOK)
 	{
 		m_outputStyle = (enum output_style) m_comboStyle.GetCurSel();
 
@@ -172,10 +189,6 @@ void CPatchDlg::OnOK()
 BOOL CPatchDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-
-	m_ignoreBlanks = TRUE;
-	m_caseSensitive = TRUE;
-	m_whitespaceCompare = 0;
 
 	// Load combobox history
 	m_ctlFile1.LoadState(_T("Files\\DiffFile1"));
@@ -467,4 +480,3 @@ void CPatchDlg::ClearItems()
 {
 	m_fileList.RemoveAll();
 }
-

@@ -1058,6 +1058,7 @@ BEGIN
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge 这个文件夹"
     IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
+    IDS_ELAPSED_TIME        "Elapsed time: %ld ms"
 END
 
 STRINGTABLE FIXED IMPURE
@@ -1224,6 +1225,7 @@ BEGIN
     IDS_SELECT_DESTFOLDER   "Select destination folder"
     IDS_COMPMETHOD_CONTENTS "Contents"
     IDS_COMPMETHOD_MODDATE  "Modified date"
+    IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
 END
 
 STRINGTABLE DISCARDABLE

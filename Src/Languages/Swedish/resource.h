@@ -18,6 +18,7 @@
 #define IDD_EDITFILE                    107
 #define IDS_UNKNOWN_ARCHIVE_FORMAT      107
 #define IDD_VSS                         108
+#define IDS_ELAPSED_TIME                108
 #define IDD_PROPPAGE_LARGE              109
 #define IDD_CLEARCASE                   110
 #define IDD_PROPPAGE_FILTER             111
@@ -178,6 +179,7 @@
 #define IDS_SELECT_DESTFOLDER           261
 #define IDS_COMPMETHOD_CONTENTS         262
 #define IDS_COMPMETHOD_MODDATE          263
+#define IDS_PATH_NOT_ABSOLUTE           264
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

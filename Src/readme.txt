@@ -1,3 +1,8 @@
+2004-02-19 Kimmo
+ PATCH: [ 899145 ] Check if patch path is absolute
+  Src: Merge.rc PatchDlg.cpp paths.cpp paths.h resource.h
+  Languages: *.rc resource.h (incl. changes from #889357)
+
 2004-02-18 Jochen
  PATCH: [ 889357 ] Attempt to improve DirScan speed
   The VERIFY(::DeleteFile... ) in prepAndCompareTwoFiles() won't fire as long as
