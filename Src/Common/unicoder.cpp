@@ -2,7 +2,7 @@
  *  @file   unicoder.cpp
  *  @author Perry Rapp, Creator, 2003-2004
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-05-26 (Perry Rapp)
+ *  @date   Edited:  2004-10-16 (Perry Rapp)
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
@@ -310,14 +310,7 @@ CString maketchar(UINT unich, bool & lossy)
 {
 	static bool vercheck=false;
 	static UINT codepage = CP_ACP;
-	if (!vercheck)
-	{
-		if (!f_osvi_fetched) fetch_verinfo();
-		// Need 2000 or better for CP_THREAD_ACP
-		if (f_osvi.dwMajorVersion>=5)
-			codepage = CP_THREAD_ACP;
-		vercheck = true;
-	}
+	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
 
 	return maketchar(unich, lossy, codepage);
 }
@@ -387,14 +380,8 @@ byteToUnicode (unsigned char ch)
 {
 	static bool vercheck=false;
 	static UINT codepage = CP_ACP;
-	if (!vercheck)
-	{
-		if (!f_osvi_fetched) fetch_verinfo();
-		// Need 2000 or better for CP_THREAD_ACP
-		if (f_osvi.dwMajorVersion>=5)
-			codepage = CP_THREAD_ACP;
-		vercheck = true;
-	}
+	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
+
 	return byteToUnicode(ch, codepage);
 }
 
