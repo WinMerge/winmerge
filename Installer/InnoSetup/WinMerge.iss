@@ -58,9 +58,6 @@
 ; #  We need to determine if our application can cooperate with WinCVS and if so how
 
 
-
-
-
 #define AppVersion GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe"), 1, 5)
 
