@@ -40,6 +40,7 @@ protected:
 	//{{AFX_MSG(CVssPrompt)
 	virtual BOOL OnInitDialog();
 	virtual void OnOK();
+	afx_msg void OnSaveas();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -57,7 +57,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\Programs\Merge\Build\MergeRelease\WinMerge.exe
+TargetPath=\Merge\Build\MergeRelease\WinMerge.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -145,6 +145,10 @@ SOURCE=.\ANALYZE.C
 
 !ENDIF 
 
+# End Source File
+# Begin Source File
+
+SOURCE=.\CCPrompt.cpp
 # End Source File
 # Begin Source File
 
@@ -692,6 +696,10 @@ SOURCE=D:\data\html\WinMergeChanges.html
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=.\CCPrompt.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\ChildFrm.h

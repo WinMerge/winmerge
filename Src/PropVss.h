@@ -26,7 +26,7 @@ public:
 	CEdit	m_ctlPath;
 	CButton	m_ctlBrowse;
 	CString	m_strPath;
-	BOOL	m_bDoVss;
+	int		m_nVerSys;
 	//}}AFX_DATA
 
 
@@ -41,9 +41,9 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(CPropVss)
-	afx_msg void OnDovssCheck();
 	afx_msg void OnBrowseButton();
 	virtual BOOL OnInitDialog();
+	afx_msg void OnSelendokVerSys();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

@@ -58,6 +58,7 @@ void CVssPrompt::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CVssPrompt, CDialog)
 	//{{AFX_MSG_MAP(CVssPrompt)
+	ON_BN_CLICKED(IDSAVEAS, OnSaveas)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -86,4 +87,9 @@ void CVssPrompt::OnOK()
 	m_ctlProject.SaveState(_T("Vss"));
 	
 	CDialog::OnOK();
+}
+
+void CVssPrompt::OnSaveas() 
+{
+	EndDialog(IDSAVEAS);
 }

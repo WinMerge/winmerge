@@ -25,7 +25,7 @@
 #define IDD_PROPPAGE_LARGE              133
 #define IDS_CONFIRM_ALL_RIGHT           133
 #define IDS_COPY2DIR_FMT                134
-#define IDB_BITMAP1                     134
+#define IDD_CLEARCASE                   134
 #define IDS_CONFIRM_COPY2DIR            135
 #define IDS_FONT_CHANGE                 136
 #define IDS_DIRECTORY_WINDOW_TITLE      137
@@ -59,6 +59,9 @@
 #define IDS_NO_DIFF_SEL                 165
 #define IDS_NO_DIFF_SEL_FMT             165
 #define IDS_FILEISDIR                   166
+#define IDS_CC_CMD                      167
+#define IDS_VSS_CMD                     168
+#define IDS_VSS_RUN_ERROR               169
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
@@ -91,6 +94,8 @@
 #define IDC_IGNCASE_CHECK               1014
 #define IDC_EMAIL                       1015
 #define IDC_COMPANY                     1016
+#define IDC_COMMENTS                    1017
+#define IDC_VER_SYS                     1018
 #define IDD_LANGUAGE_SELECT             30000
 #define IDS_AFRIKAANS                   30003
 #define IDS_ALBANIAN                    30004
@@ -235,8 +240,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
-#define _APS_NEXT_COMMAND_VALUE         32809
-#define _APS_NEXT_CONTROL_VALUE         1017
+#define _APS_NEXT_COMMAND_VALUE         32806
+#define _APS_NEXT_CONTROL_VALUE         1019
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif

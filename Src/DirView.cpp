@@ -100,6 +100,7 @@ CDirDoc* CDirView::GetDocument() // non-debug version is inline
 void CDirView::OnInitialUpdate() 
 {
 	CListViewEx::OnInitialUpdate();
+	m_sortColumn = -1;	// start up in no sorted order.
 	m_pList = &GetListCtrl();
 	GetDocument()->m_pView = this;
 	

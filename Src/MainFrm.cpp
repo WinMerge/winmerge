@@ -38,6 +38,7 @@
 #include "coretools.h"
 #include "Splash.h"
 #include "VssPrompt.h"
+#include "CCPrompt.h"
 #include "PropVss.h"
 #include "PropGeneral.h"
 #include "RegKey.h"
@@ -112,7 +113,7 @@ CMainFrame::CMainFrame()
 	m_bScrollToFirst = theApp.GetProfileInt(_T("Settings"), _T("ScrollToFirst"), FALSE)!=0;
 	m_bIgnoreWhitespace = theApp.GetProfileInt(_T("Settings"), _T("IgnoreSpace"), TRUE)!=0;
 	m_bHideBak = theApp.GetProfileInt(_T("Settings"), _T("HideBak"), TRUE)!=0;
-	m_bUseVss = theApp.GetProfileInt(_T("Settings"), _T("UseVss"), FALSE)!=0;
+	m_nVerSys = theApp.GetProfileInt(_T("Settings"), _T("VersionSystem"), 0);
 	m_strVssProject = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
 	m_strVssPath = theApp.GetProfileString(_T("Settings"), _T("VssPath"), _T(""));
 	m_nTabSize = theApp.GetProfileInt(_T("Settings"), _T("TabSize"), 4);
@@ -324,30 +325,29 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 		{
 			if (status.m_attribute & CFile::Attribute::readOnly)
 			{
-				if (!m_bUseVss)
+				int userChoice = IDCANCEL;
+
+				switch(m_nVerSys)
 				{
-					CString title;
-					VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
+				case 0:	//no versioning system
+					// prompt for user choice
 					AfxFormatString1(s, IDS_SAVEREADONLY_FMT, strSavePath);
-					if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION) == IDYES
-						&& SelectFile(s, strSavePath, title, NULL, FALSE))
+					if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION) == IDYES)
 					{
-						strSavePath = s;
-						needCheck=TRUE;
+						userChoice = IDSAVEAS;
 					}
-					else
-						return FALSE;
-				}
-				else
+					break;
+				case 1:	// Visual Source Safe
 				{
+						// prompt for user choice
 					CVssPrompt dlg;
-					AfxFormatString1(dlg.m_strMessage, IDS_SAVEVSS_FMT, strSavePath);
+						dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
 					dlg.m_strProject = m_strVssProject;
-					switch(dlg.DoModal())
-					{
-					case IDOK:
+						userChoice = dlg.DoModal();
+						// process versioning system specific action
+						if(userChoice==IDOK)
 						{
-							BeginWaitCursor();
+							CWaitCursor wait;
 							m_strVssProject = dlg.m_strProject;
 							theApp.WriteProfileString(_T("Settings"), _T("VssProject"), mf->m_strVssProject);
 							TCHAR args[1024];
@@ -358,10 +358,48 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 							DWORD code;
 							_stprintf(args,_T("checkout %s/%s"), m_strVssProject,name);
 							HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
-							if (hVss)
+							if (hVss!=INVALID_HANDLE_VALUE)
 							{
-								while (!HasExited(hVss, &code))
-									Sleep(1000);
+								WaitForSingleObject(hVss, INFINITE);
+								GetExitCodeProcess(hVss, &code);
+								CloseHandle(hVss);
+								if (code != 0)
+								{
+									AfxMessageBox(IDS_VSSERROR, MB_ICONSTOP);
+									return FALSE;
+								}
+								needCheck=FALSE;
+							}
+							else
+							{
+								AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+								return FALSE;
+							}
+						}
+					}
+					break;
+				case 2:	// ClearCase
+					{
+						// prompt for user choice
+						CCCPrompt dlg;
+						userChoice = dlg.DoModal();
+						// process versioning system specific action
+						if(userChoice == IDOK)
+						{
+							CWaitCursor wait;
+							TCHAR args[1024];
+							TCHAR path[MAX_PATH],name[MAX_PATH];
+							split_filename(strSavePath,path,name,NULL);
+							_chdrive(toupper(path[0])-'A'+1);
+							_chdir(path);
+							DWORD code;
+							_stprintf(args,_T("checkout -c \"%s\" %s"), dlg.m_comments, name);
+							HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
+							if (hVss!=INVALID_HANDLE_VALUE)
+							{
+								WaitForSingleObject(hVss, INFINITE);
+								GetExitCodeProcess(hVss, &code);
+								CloseHandle(hVss);
 								
 								if (code != 0)
 								{
@@ -369,17 +407,26 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 									return FALSE;
 								}
 								needCheck=FALSE;
-								//CloseHandle(hVss);
 							}
-							EndWaitCursor();
+							else
+							{
+								AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+								return FALSE;
+							}
+						}
 						}
 						break;
+				}	//switch(m_nVerSys)
+
+				// common processing for all version systems
+				switch(userChoice)
+				{
 					case IDCANCEL:
 						return FALSE;
 					case IDSAVEAS:
 						CString title;
 						VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
-						if (SelectFile(s, strSavePath, title, NULL, FALSE))
+						if (SelectFile(s, NULL, title, NULL, FALSE))
 						{
 							strSavePath = s;
 							needCheck=TRUE;
@@ -390,7 +437,6 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 					}
 				}
 			}
-		}
 	} while (needCheck);
 	return TRUE;
 }
@@ -403,7 +449,7 @@ void CMainFrame::OnProperties()
 	sht.AddPage(&gen);
 	sht.AddPage(&vss);
 	
-	vss.m_bDoVss = m_bUseVss;
+	vss.m_nVerSys = m_nVerSys;
 	vss.m_strPath = m_strVssPath;
 
 	gen.m_bBackup = m_bBackup;
@@ -415,7 +461,7 @@ void CMainFrame::OnProperties()
 	
 	if (sht.DoModal()==IDOK)
 	{
-		m_bUseVss = vss.m_bDoVss;
+		m_nVerSys = vss.m_nVerSys;
 		m_strVssPath = vss.m_strPath;
 		
 		m_bBackup = gen.m_bBackup;
@@ -428,7 +474,7 @@ void CMainFrame::OnProperties()
 		ignore_some_changes = m_bIgnoreWhitespace || m_bIgnoreCase || m_bIgnoreBlankLines;
 		length_varies = m_bIgnoreWhitespace;
 
-		theApp.WriteProfileInt(_T("Settings"), _T("UseVss"), m_bUseVss);	
+		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreSpace"), m_bIgnoreWhitespace);
 		theApp.WriteProfileInt(_T("Settings"), _T("ScrollToFirst"), m_bScrollToFirst);
 		theApp.WriteProfileInt(_T("Settings"), _T("BackupFile"), m_bBackup);
@@ -495,7 +541,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  _T("\tShowIdentical: %d\r\n")
 				  _T("\tShowDiff: %d\r\n")
 				  _T("\tHideBak: %d\r\n")
-				  _T("\tUseVss: %d\r\n")
+				  _T("\tVerSys: %d\r\n")
 				  _T("\tVssPath: %s\r\n")
 				  _T("\tBackups: %d\r\n")
 				  _T("\tIgnoreWS: %d\r\n")
@@ -508,7 +554,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  m_bShowIdent,
 				  m_bShowDiff,
 				  m_bHideBak,
-				  m_bUseVss,
+				  m_nVerSys,
 				  m_strVssPath,
 				  m_bBackup,
 				  m_bIgnoreWhitespace,

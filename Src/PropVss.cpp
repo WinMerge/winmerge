@@ -41,7 +41,7 @@ CPropVss::CPropVss() : CPropertyPage(CPropVss::IDD)
 {
 	//{{AFX_DATA_INIT(CPropVss)
 	m_strPath = _T("");
-	m_bDoVss = FALSE;
+	m_nVerSys = -1;
 	//}}AFX_DATA_INIT
 }
 
@@ -57,15 +57,15 @@ void CPropVss::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_PATH_EDIT, m_ctlPath);
 	DDX_Control(pDX, IDC_BROWSE_BUTTON, m_ctlBrowse);
 	DDX_Text(pDX, IDC_PATH_EDIT, m_strPath);
-	DDX_Check(pDX, IDC_DOVSS_CHECK, m_bDoVss);
+	DDX_CBIndex(pDX, IDC_VER_SYS, m_nVerSys);
 	//}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CPropVss, CPropertyPage)
 	//{{AFX_MSG_MAP(CPropVss)
-	ON_BN_CLICKED(IDC_DOVSS_CHECK, OnDovssCheck)
 	ON_BN_CLICKED(IDC_BROWSE_BUTTON, OnBrowseButton)
+	ON_CBN_SELENDOK(IDC_VER_SYS, OnSelendokVerSys)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -92,16 +92,6 @@ BOOL ChooseFile( CString& strResult,
 	return FALSE;	   
 }
 
-
-
-void CPropVss::OnDovssCheck() 
-{
-	UpdateData(TRUE);
-	m_ctlPath.EnableWindow(m_bDoVss);
-	m_ctlVssL1.EnableWindow(m_bDoVss);
-	m_ctlBrowse.EnableWindow(m_bDoVss);
-}
-
 void CPropVss::OnBrowseButton() 
 {
 	CString s;
@@ -119,7 +109,17 @@ BOOL CPropVss::OnInitDialog()
 	CPropertyPage::OnInitDialog();
 	
 	UpdateData(FALSE);
-	OnDovssCheck();
+	OnSelendokVerSys();
 	
 	return TRUE;  
+}
+
+void CPropVss::OnSelendokVerSys() 
+{
+	UpdateData(TRUE);
+	CString tempStr((LPCSTR)(m_nVerSys==2?IDS_CC_CMD:IDS_VSS_CMD));
+	m_ctlVssL1.SetWindowText(tempStr);
+	m_ctlPath.EnableWindow(m_nVerSys>0);
+	m_ctlVssL1.EnableWindow(m_nVerSys>0);
+	m_ctlBrowse.EnableWindow(m_nVerSys>0);
 }

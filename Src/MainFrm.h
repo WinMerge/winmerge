@@ -80,7 +80,7 @@ public:
 	BOOL CheckSavePath(CString& strSavePath);
 	CString m_strVssPath;
 	CString m_strVssProject;
-	BOOL m_bUseVss;
+	int m_nVerSys;
 	BOOL m_bHideBak;
 	BOOL m_bIgnoreWhitespace;
 	BOOL m_bScrollToFirst;
