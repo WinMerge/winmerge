@@ -1,0 +1,26 @@
+MakePatchDirs/ChangeLog.txt
+Add new items to bottom
+
+2003-08-21, Perry Rapp
+ Program works.
+
+2003-09-03, Perry Rapp
+ Added checkboxes to front to suppress VC6 stuff and RCS stuff.
+ (Implemented filter to implement suppressing this stuff.)
+ Bumped version to 1.1.13246.0.
+
+2003-12-10, Perry Rapp
+ Replaced App-Wizard boilerplate readme.txt with small writeup.
+
+2004-01-18, Perry Rapp
+ Remove code that skipped everything at top level except subdirectories (common, Languages, WinMerge)"
+ (So it works with WinMerge after the recent CVS reorganization.)
+ Fix browse dialog prompt, and move to string table.
+ Move errors from MakeDirs.cpp to string table.
+ Moved obj & binaries to Build and bin peer directories.
+ Display summary messagebox (with #files changed & new).
+ Bumped version to 1.2.0.0.
+
+2004-01-30, Perry Rapp
+ Moved output to ..\Build\Merge*, and temps to ..\BuildTmp\MakeMatchDirs__*.
+ Added to WinMerge sourceforge cvs repository.

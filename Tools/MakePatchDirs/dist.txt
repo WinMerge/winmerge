@@ -1,0 +1,8 @@
+MakePatchDirs/dist.txt
+Add new items to bottom
+
+2003-08-25, Perry Rapp
+ Sent release exe (1.0.13233.0) to Laurent Ganier.
+
+2003-12-10, Perry Rapp
+ Sent source (1.1.13246.0) to Christian List.

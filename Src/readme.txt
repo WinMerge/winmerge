@@ -3,6 +3,14 @@
   ShellExtension: ShellExtension.dsp
  PATCH: [ 882650 ] Move temp build files out of Build into BuildTmp (more)
   ShellExtension: ShellExtension.dsp
+ [ 879536 ] Add MakePatchDirs source to repository
+  MakePatchDirs: AppVersion.cpp AppVersion.h CDirDialog.cpp CDirDialog.h
+   CMoveConstraint.cpp CMoveConstraint.h CSubclass.cpp CSubclass.h
+   ChangeLog.txt DropEdit.cpp DropEdit.h MakeDirs.cpp MakeDirs.h
+   MakePatchDirs.dsp MakePatchDirs.ico MakePatchDirs.rc MakePatchDirs.rc2
+   MakePatchDirsApp.cpp MakePatchDirsApp.h MakePatchDirsDlg.cpp 
+   MakePatchDirsDlg.h ReadMe.txt StdAfx.cpp StdAfx.h dist.txt exc.cpp
+   exc.h resource.h
 
 2004-01-30 WinMerge experimental release 2.1.5.8 (cvs)
 
