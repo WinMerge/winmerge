@@ -58,9 +58,9 @@ class CConfigLog
 {
 public:
 
-	DIFFOPTIONS diffOptions;
-	VIEWSETTINGS viewSettings;
-	MISCSETTINGS miscSettings;
+	DIFFOPTIONS m_diffOptions;
+	VIEWSETTINGS m_viewSettings;
+	MISCSETTINGS m_miscSettings;
 
 	CString GetFileName() const;
 	BOOL WriteLogFile();

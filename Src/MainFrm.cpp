@@ -182,6 +182,14 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_EXT_EDITOR_CMD, _T(""));
 	m_options.InitOption(OPT_USE_RECYCLE_BIN, TRUE);
 
+	m_options.InitOption(OPT_CMP_IGNORE_WHITESPACE, 0);
+	m_options.InitOption(OPT_CMP_IGNORE_BLANKLINES, FALSE);
+	m_options.InitOption(OPT_CMP_IGNORE_CASE, FALSE);
+	m_options.InitOption(OPT_CMP_EOL_SENSITIVE, TRUE);
+	m_options.InitOption(OPT_CMP_METHOD, CMP_CONTENT);
+
+	m_nCompMethod = m_options.GetInt(OPT_CMP_METHOD);
+
 	m_options.InitOption(OPT_CLR_DIFF, RGB(239,203,5));
 	m_options.InitOption(OPT_CLR_SELECTED_DIFF, RGB(239,119,116));
 	m_options.InitOption(OPT_CLR_DIFF_DELETED, RGB(192, 192, 192));
@@ -209,11 +217,6 @@ CMainFrame::CMainFrame()
 	theApp.SetFileFilterPath(theApp.GetProfileString(_T("Settings"), _T("FileFilterPath"), _T("")));
 	m_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), UNPACK_MANUAL);
 	m_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PREDIFF_MANUAL);
-
-    // Load the compare method and protect it from manual modifs in registry!
-    m_nCompMethod = theApp.GetProfileInt(_T("Settings"),_T("CompMethod"),0);
-    if (m_nCompMethod > 1)
-        m_nCompMethod = 0;
 
 	m_bReuseDirDoc = TRUE;
 	// TODO: read preference for logging
@@ -962,14 +965,10 @@ void CMainFrame::SetEOLMixed(BOOL bAllow)
 
 void CMainFrame::OnOptions() 
 {
-	DIFFOPTIONS diffOptions = {0};
 	CString sExtEditor;
 	CString selectedFilter;
 	StringPairArray fileFilters;
 	theApp.GetFileFilters(&fileFilters, selectedFilter);
-
-	// use CDiffwrapper static functions to exchange the options with registry
-	CDiffWrapper::ReadDiffOptions(&diffOptions);
 
 	CPropertySheet sht(IDS_OPTIONS_TITLE);
 	CPropVss vss;
@@ -998,11 +997,11 @@ void CMainFrame::OnOptions()
 	regpage.m_strEditorPath = m_options.GetString(OPT_EXT_EDITOR_CMD);
 	regpage.GetContextRegValues();
 	regpage.m_bUseRecycleBin = m_options.GetInt(OPT_USE_RECYCLE_BIN);
-    compage.m_compareMethod = m_nCompMethod;
-	compage.m_nIgnoreWhite = diffOptions.nIgnoreWhitespace;
-	compage.m_bIgnoreCase = diffOptions.bIgnoreCase;
-	compage.m_bIgnoreBlankLines = diffOptions.bIgnoreBlankLines;
-	compage.m_bEolSensitive = diffOptions.bEolSensitive;
+    compage.m_compareMethod = m_options.GetInt(OPT_CMP_METHOD);
+	compage.m_nIgnoreWhite = m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	compage.m_bIgnoreBlankLines = m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
+	compage.m_bIgnoreCase = m_options.GetInt(OPT_CMP_IGNORE_CASE);
+	compage.m_bEolSensitive = m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
 	editor.m_nTabSize = m_options.GetInt(OPT_TAB_SIZE);
 	editor.m_nTabType = m_options.GetInt(OPT_TAB_TYPE);
 	editor.m_bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
@@ -1027,11 +1026,13 @@ void CMainFrame::OnOptions()
 			sExtEditor = GetDefaultEditor();
 		m_options.SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
 
-		diffOptions.nIgnoreWhitespace = compage.m_nIgnoreWhite;
-		diffOptions.bIgnoreBlankLines = compage.m_bIgnoreBlankLines;
-		diffOptions.bEolSensitive = compage.m_bEolSensitive;
-		diffOptions.bIgnoreCase = compage.m_bIgnoreCase;
-        m_nCompMethod = compage.m_compareMethod;
+		m_options.SaveOption(OPT_CMP_IGNORE_WHITESPACE, compage.m_nIgnoreWhite);
+		m_options.SaveOption(OPT_CMP_IGNORE_BLANKLINES, compage.m_bIgnoreBlankLines);
+		m_options.SaveOption(OPT_CMP_EOL_SENSITIVE, compage.m_bEolSensitive);
+		m_options.SaveOption(OPT_CMP_IGNORE_CASE, compage.m_bIgnoreCase);
+        m_options.SaveOption(OPT_CMP_METHOD, compage.m_compareMethod);
+		
+		m_nCompMethod = compage.m_compareMethod;
 
 		m_options.SaveOption(OPT_TAB_SIZE, editor.m_nTabSize);
 		m_options.SaveOption(OPT_TAB_TYPE, editor.m_nTabType);
@@ -1049,8 +1050,6 @@ void CMainFrame::OnOptions()
 		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
 		theApp.WriteProfileString(_T("Settings"), _T("FileFilterPath"), filter.m_sFileFilterPath);
 		theApp.WriteProfileInt(_T("Settings"), _T("DisableSplash"), theApp.m_bDisableSplash);
-        theApp.WriteProfileInt(_T("Settings"), _T("CompMethod"), m_nCompMethod);
-
 		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), theApp.m_bHiliteSyntax);
 
 		m_options.SaveOption(OPT_CLR_DIFF, colors.m_clrDiff);
@@ -1062,9 +1061,6 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF, colors.m_clrTrivial);
 		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, colors.m_clrTrivialDeleted);
 		
-		// use CDiffwrapper static functions to exchange the options with registry
-		CDiffWrapper::WriteDiffOptions(&diffOptions);
-
 		RebuildRegExpList();
 
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
@@ -1080,7 +1076,7 @@ void CMainFrame::OnOptions()
 			CMergeEditView * pRight = pMergeDoc->GetRightView();
 
 			// Re-read MergeDoc settings
-			pMergeDoc->ReadSettings();
+			pMergeDoc->RefreshOptions();
 			
 			// Enable/disable automatic rescan (rescan after editing)
 			pLeft->EnableRescan(m_options.GetInt(OPT_AUTOMATIC_RESCAN));
@@ -1110,7 +1106,7 @@ void CMainFrame::OnOptions()
 		while (!dirDocs.IsEmpty())
 		{
 			CDirDoc *pDirDoc = dirDocs.RemoveHead();
-			pDirDoc->ReadSettings();
+			pDirDoc->RefreshOptions();
 		}
 	}
 }
@@ -1333,7 +1329,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			bROLeft = TRUE;
 		if (files_isFileReadOnly(strRight))
 			bRORight = TRUE;
-	
+
 		gLog.Write(LOGLEVEL::LNOTICE, _T("Open files: Left: %s\n\tRight: %s."),
 			strLeft, strRight);
 		
@@ -2350,20 +2346,25 @@ CString CMainFrame::GetDefaultEditor()
 void CMainFrame::OnSaveConfigData()
 {
 	CConfigLog configLog;
-	
-	configLog.viewSettings.bShowIdent = m_options.GetInt(OPT_SHOW_DIFFERENT);
-	configLog.viewSettings.bShowDiff = m_options.GetInt(OPT_SHOW_DIFFERENT);
-	configLog.viewSettings.bShowUniqueLeft = m_options.GetInt(OPT_SHOW_UNIQUE_LEFT);
-	configLog.viewSettings.bShowUniqueRight = m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT);
-	configLog.viewSettings.bShowBinaries = m_options.GetInt(OPT_SHOW_BINARIES);
-	configLog.viewSettings.bShowSkipped = m_options.GetInt(OPT_SHOW_SKIPPED);
-	configLog.viewSettings.bHideBak = m_options.GetInt(OPT_HIDE_BACKUP);
 
-	configLog.miscSettings.bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
-	configLog.miscSettings.bAllowMixedEol = m_options.GetInt(OPT_ALLOW_MIXED_EOL);
-	configLog.miscSettings.bScrollToFirst = m_options.GetInt(OPT_SCROLL_TO_FIRST);
-	configLog.miscSettings.bBackup = m_options.GetInt(OPT_CREATE_BACKUPS);
-	configLog.miscSettings.bViewWhitespace = m_options.GetInt(OPT_VIEW_WHITESPACE);
+	configLog.m_diffOptions.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	configLog.m_diffOptions.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
+	configLog.m_diffOptions.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);
+	configLog.m_diffOptions.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
+	
+	configLog.m_viewSettings.bShowIdent = m_options.GetInt(OPT_SHOW_DIFFERENT);
+	configLog.m_viewSettings.bShowDiff = m_options.GetInt(OPT_SHOW_DIFFERENT);
+	configLog.m_viewSettings.bShowUniqueLeft = m_options.GetInt(OPT_SHOW_UNIQUE_LEFT);
+	configLog.m_viewSettings.bShowUniqueRight = m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT);
+	configLog.m_viewSettings.bShowBinaries = m_options.GetInt(OPT_SHOW_BINARIES);
+	configLog.m_viewSettings.bShowSkipped = m_options.GetInt(OPT_SHOW_SKIPPED);
+	configLog.m_viewSettings.bHideBak = m_options.GetInt(OPT_HIDE_BACKUP);
+
+	configLog.m_miscSettings.bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
+	configLog.m_miscSettings.bAllowMixedEol = m_options.GetInt(OPT_ALLOW_MIXED_EOL);
+	configLog.m_miscSettings.bScrollToFirst = m_options.GetInt(OPT_SCROLL_TO_FIRST);
+	configLog.m_miscSettings.bBackup = m_options.GetInt(OPT_CREATE_BACKUPS);
+	configLog.m_miscSettings.bViewWhitespace = m_options.GetInt(OPT_VIEW_WHITESPACE);
 
 	if (configLog.WriteLogFile())
 	{

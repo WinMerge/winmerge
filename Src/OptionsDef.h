@@ -9,6 +9,7 @@
 #ifndef _OPTIONS_DEF_H_
 #define _OPTIONS_DEF_H_
 
+// View-menu
 const TCHAR OPT_SHOW_UNIQUE_LEFT[] = _T("Settings/ShowUniqueLeft");
 const TCHAR OPT_SHOW_UNIQUE_RIGHT[] = _T("Settings/ShowUniqueRight");
 const TCHAR OPT_SHOW_DIFFERENT[] = _T("Settings/ShowDifferent");
@@ -46,5 +47,12 @@ const TCHAR OPT_CLR_SELECTED_DIFF_TEXT[] = _T("Settings/SelectedDifferenceTextCo
 const TCHAR OPT_CLR_TRIVIAL_DIFF[] = _T("Settings/TrivialDifferenceColor");
 // The ignored and deleted lines color
 const TCHAR OPT_CLR_TRIVIAL_DIFF_DELETED[] = _T("Settings/TrivialDifferenceDeletedColor");
+
+// Compare options
+const TCHAR OPT_CMP_IGNORE_WHITESPACE[] = _T("Settings/IgnoreSpace");
+const TCHAR OPT_CMP_IGNORE_BLANKLINES[] = _T("Settings/IgnoreBlankLines");
+const TCHAR OPT_CMP_IGNORE_CASE[] = _T("Settings/IgnoreCase");
+const TCHAR OPT_CMP_EOL_SENSITIVE[] = _T("Settings/EolSensitive");
+const TCHAR OPT_CMP_METHOD[] = _T("Settings/CompMethod");
 
 #endif // _OPTIONS_DEF_H_

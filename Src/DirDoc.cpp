@@ -56,8 +56,13 @@ extern CLogFile gLog;
 
 IMPLEMENT_DYNCREATE(CDirDoc, CDocument)
 
+/**
+ * @brief Constructor.
+ */
 CDirDoc::CDirDoc()
 {
+	DIFFOPTIONS options = {0};
+
 	m_pDirView = NULL;
 	m_pCtxt=NULL;
 	m_bReuseMergeDocs = TRUE;
@@ -67,8 +72,20 @@ CDirDoc::CDirDoc()
 	m_bRORight = FALSE;
 	m_bRecursive = FALSE;
 	m_statusCursor = NULL;
+
+	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	options.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
+	options.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);
+	options.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
+
+	m_diffWrapper.SetOptions(&options);
 }
 
+/**
+ * @brief Destructor.
+ *
+ * Clears document list and deleted possible archive-temp files.
+ */
 CDirDoc::~CDirDoc()
 {
 	delete m_pCtxt;
@@ -85,19 +102,27 @@ CDirDoc::~CDirDoc()
 	CTempPath(this);
 }
 
-// callback we give our frame
-// which allows us to control whether or not it closes
+/**
+ * @brief Callback we give our frame which allows us to control whether
+ * or not it closes.
+ */
 static bool DocClosableCallback(void * param)
 {
 	CDirDoc * pDoc = reinterpret_cast<CDirDoc *>(param);
 	return pDoc->CanFrameClose();
 }
 
+/**
+ * @brief Checks if there are mergedocs associated with this dirdoc.
+ */
 bool CDirDoc::CanFrameClose()
 {
 	return !!m_MergeDocs.IsEmpty();
 }
 
+/**
+ * @brief Called when new dirdoc is created.
+ */
 BOOL CDirDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
@@ -425,6 +450,9 @@ void CDirDoc::UpdateResources()
 	Redisplay();
 }
 
+/**
+ * @brief Sets pointer to DiffContext.
+ */
 void CDirDoc::SetDiffContext(CDiffContext *pCtxt)
 {
 	if (m_pCtxt != NULL)
@@ -599,15 +627,21 @@ void CDirDoc::CompareReady()
 }
 
 /**
- * @brief Read doc settings from registry
+ * @brief Refresh cached options.
  *
- * @note Currently loads only diffutils settings, but later others too
+ * For compare speed, we have to cache some frequently needed options,
+ * instead of getting option value every time from OptionsMgr. This
+ * function must be called every time options are changed to OptionsMgr.
  */
-void CDirDoc::ReadSettings()
+void CDirDoc::RefreshOptions()
 {
 	DIFFOPTIONS options;
 	
-	CDiffWrapper::ReadDiffOptions(&options);
+	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	options.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
+	options.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);
+	options.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
+
 	m_diffWrapper.SetOptions(&options);
 }
 

@@ -92,8 +92,14 @@ END_MESSAGE_MAP()
 
 
 #pragma warning(disable:4355)
+
+/**
+ * @brief Constructor.
+ */
 CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 {
+	DIFFOPTIONS options = {0};
+
 	m_diffs.SetSize(64);
 	m_nDiffs=0;
 	m_nCurDiff=-1;
@@ -110,28 +116,36 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	m_pInfoUnpacker = new PackingInfo;
 	m_nLeftBufferType = BUFFER_NORMAL;
 	m_nRightBufferType = BUFFER_NORMAL;
+
+	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	options.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
+	options.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);
+	options.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
+
+	m_diffWrapper.SetOptions(&options);
 }
+
 #pragma warning(default:4355)
 
+/**
+ * @brief Destructor.
+ *
+ * Informs associated dirdoc that mergedoc is closing.
+ */
 CMergeDoc::~CMergeDoc()
 {	
-//<jtuc 2003-06-28>
-	/*CUndoItem *pitem;
-	while (!m_undoList.IsEmpty())
-	{
-		pitem = (CUndoItem*)m_undoList.RemoveHead();
-		delete pitem;
-	}*/
-//</jtuc>
 	if (m_pDirDoc)
 	{
 		m_pDirDoc->MergeDocClosing(this);
-		m_pDirDoc = 0;
+		m_pDirDoc = NULL;
 	}
 
 	delete m_pInfoUnpacker;
 }
 
+/**
+ * @brief Deleted data associated with doc before closing.
+ */
 void CMergeDoc::DeleteContents ()
 {
 	CDocument::DeleteContents ();
@@ -194,6 +208,11 @@ void CMergeDoc::OnFileEvent (WPARAM /*wEvent*/, LPCTSTR /*pszPathName*/)
     }*/
 }
 
+/**
+ * @brief Called when new document is created.
+ *
+ * Initialises buffers.
+ */
 BOOL CMergeDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
@@ -2635,17 +2654,22 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 }
 
 /**
- * @brief Read doc settings from registry
+ * @brief Refresh cached options.
  *
- * @note Currently loads only diffutils settings, but later others too
+ * For compare speed, we have to cache some frequently needed options,
+ * instead of getting option value every time from OptionsMgr. This
+ * function must be called every time options are changed to OptionsMgr.
  */
-void CMergeDoc::ReadSettings()
+void CMergeDoc::RefreshOptions()
 {
-	DIFFOPTIONS diffOptions = {0};
+	DIFFOPTIONS options = {0};
 	
-	// We have to first get current options
-	CDiffWrapper::ReadDiffOptions(&diffOptions);
-	m_diffWrapper.SetOptions(&diffOptions);
+	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	options.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
+	options.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);
+	options.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
+
+	m_diffWrapper.SetOptions(&options);
 }
 
 /**

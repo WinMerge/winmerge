@@ -111,7 +111,7 @@ protected:
 // Public implementation data
 public:
 	CRegOptions m_options; /**< Options manager */
-	BOOL m_bFirstTime;
+	BOOL m_bFirstTime; /**< If first time frame activated, get  pos from reg */
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bIgnoreRegExp; /**< Are regular expression linefilters enabled? */
 	CString m_sPattern; /**< Regular expression linefilters */
@@ -126,7 +126,10 @@ public:
 	BOOL m_CheckOutMulti;
 	BOOL m_bVCProjSync;
 
-    int m_nCompMethod; /**< CompareMethod : CPropCompare::BY_CONTENTS or CPropCompare::BY_DATE */
+    // This is ugly hack to workaround problem we don't have any
+	// access to compare options from dirscan() (dirscan.cpp)
+	// Please fixme!
+	int m_nCompMethod; /**< CompareMethod : CPropCompare::BY_CONTENTS or CPropCompare::BY_DATE */
 
 	/**
 	 * @name Textual labels/descriptors

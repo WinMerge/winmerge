@@ -90,7 +90,7 @@ public:
 	void SetRecursive(BOOL bRecursive);
 	BOOL GetReadOnly(BOOL bLeft) const;
 	void SetReadOnly(BOOL bLeft, BOOL bReadOnly);
-	void ReadSettings();
+	void RefreshOptions();
 	void CompareReady();
 	void UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unified);
 	POSITION FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight);

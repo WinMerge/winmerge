@@ -49,7 +49,6 @@ BOOL CConfigLog::WriteLogFile()
 	CString text;
 
 	m_sFileName = _T("WinMerge.txt");
-	CDiffWrapper::ReadDiffOptions(&diffOptions);
 
 	// Get path to $temp/WinMerge.txt
 	if (GetTempPath(MAX_PATH, tempPath.GetBuffer(MAX_PATH)))
@@ -108,25 +107,25 @@ BOOL CConfigLog::WriteLogFile()
 	file.WriteString(_T("\nWinMerge configuration:\n"));
 	file.WriteString(_T(" Compare settings:\n"));
 	file.WriteString(_T("  Ignore blank lines: "));
-	if (diffOptions.bIgnoreBlankLines)
+	if (m_diffOptions.bIgnoreBlankLines)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
 
 	file.WriteString(_T("  Ignore case: "));
-	if (diffOptions.bIgnoreCase)
+	if (m_diffOptions.bIgnoreCase)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
 
 	file.WriteString(_T("  EOL sensitive: "));
-	if (diffOptions.bEolSensitive)
+	if (m_diffOptions.bEolSensitive)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
 
 	file.WriteString(_T("  Whitespace compare: "));
-	switch(diffOptions.nIgnoreWhitespace)
+	switch (m_diffOptions.nIgnoreWhitespace)
 	{
 	case WHITESPACE_COMPARE_ALL:
 		file.WriteString(_T("Compare all\n"));
@@ -144,74 +143,74 @@ BOOL CConfigLog::WriteLogFile()
 
 	file.WriteString(_T("\n Other settings:\n"));
 	file.WriteString(_T("  Automatic rescan: "));
-	if (miscSettings.bAutomaticRescan)
+	if (m_miscSettings.bAutomaticRescan)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
 
 	file.WriteString(_T("  Simple EOL: "));
-	if (miscSettings.bAllowMixedEol)
+	if (m_miscSettings.bAllowMixedEol)
 		file.WriteString(_T("No\n"));
 	else
 		file.WriteString(_T("Yes\n"));
 
 	file.WriteString(_T("  Automatic scroll to 1st difference: "));
-	if (miscSettings.bScrollToFirst)
+	if (m_miscSettings.bScrollToFirst)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
 
 	file.WriteString(_T("  Backup original file: "));
-	if (miscSettings.bBackup)
+	if (m_miscSettings.bBackup)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
 
 	file.WriteString(_T("\n Show:\n"));
 	file.WriteString(_T("  Identical files: "));
-	if (viewSettings.bShowIdent)
+	if (m_viewSettings.bShowIdent)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
 
 	file.WriteString(_T("  Different files: "));
-	if (viewSettings.bShowDiff)
+	if (m_viewSettings.bShowDiff)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
 
 	file.WriteString(_T("  Left Unique files: "));
-	if (viewSettings.bShowUniqueLeft)
+	if (m_viewSettings.bShowUniqueLeft)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
 
 	file.WriteString(_T("  Right Unique files: "));
-	if (viewSettings.bShowUniqueRight)
+	if (m_viewSettings.bShowUniqueRight)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
 
 	file.WriteString(_T("  Binary files: "));
-	if (viewSettings.bShowBinaries)
+	if (m_viewSettings.bShowBinaries)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
 
 	file.WriteString(_T("  Skipped files: "));
-	if (viewSettings.bShowSkipped)
+	if (m_viewSettings.bShowSkipped)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
 
 	file.WriteString(_T("  *.bak files: "));
-	if (viewSettings.bHideBak)
+	if (m_viewSettings.bHideBak)
 		file.WriteString(_T("No\n"));
 	else
 		file.WriteString(_T("Yes\n"));
 
 	file.WriteString(_T("\n View Whitespace: "));
-	if (miscSettings.bViewWhitespace)
+	if (m_miscSettings.bViewWhitespace)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));

@@ -242,7 +242,7 @@ public:
 
 	void UpdateHeaderPath(BOOL bLeft);
 	void UpdateHeaderActivity(BOOL bLeft, BOOL bActivate);
-	void ReadSettings();
+	void RefreshOptions();
 	BOOL OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright);
 	int LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int codepage);

@@ -1,3 +1,8 @@
+2004-04-07 Kimmo
+ PATCH: [ 911114 ] DiffOptions to new system
+  Src: ConfigLog.cpp ConfigLog.h DiffWrapper.cpp DiffWrapper.h DirDoc.cpp
+   DirDoc.h MainFrm.cpp MainFrm.h MergeDoc.cpp MergeDoc.h OptionsDef.h
+
 2004-03-06 WinMerge experimental release 2.1.5.13 (cvs)
 
 2004-03-05 Kimmo

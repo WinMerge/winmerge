@@ -36,9 +36,11 @@
 extern int recursive;
 extern CLogFile gLog;
 
+/**
+ * @brief Default constructor
+ */
 CDiffWrapper::CDiffWrapper()
 {
-	DIFFOPTIONS options = {0};
 	ZeroMemory(&m_settings, sizeof(DIFFSETTINGS));
 	ZeroMemory(&m_globalSettings, sizeof(DIFFSETTINGS));
 	ZeroMemory(&m_status, sizeof(DIFFSTATUS));
@@ -48,10 +50,6 @@ CDiffWrapper::CDiffWrapper()
 	m_bAppendFiles = FALSE;
 	m_nDiffs = 0;
 
-	// Read options from registry and convert
-	// to internal format
-	ReadDiffOptions(&options);
-	InternalSetOptions(&options);
 	m_settings.heuristic = 1;
 	m_settings.outputStyle = OUTPUT_NORMAL;
     m_settings.context = -1;
@@ -672,28 +670,6 @@ void CDiffWrapper::StartDirectoryDiff()
 void CDiffWrapper::EndDirectoryDiff()
 {
 	SwapToGlobalSettings();
-}
-
-/**
- * @brief Static function for reading diffoptions from registry
- */
-void CDiffWrapper::ReadDiffOptions(DIFFOPTIONS *options)
-{
-	options->nIgnoreWhitespace = ::AfxGetApp()->GetProfileInt(_T("Settings"), _T("IgnoreSpace"), 1);
-	options->bIgnoreBlankLines = ::AfxGetApp()->GetProfileInt(_T("Settings"), _T("IgnoreBlankLines"), FALSE)!=0;
-	options->bEolSensitive = ::AfxGetApp()->GetProfileInt(_T("Settings"), _T("EolSensitive"), FALSE)!=0;
-	options->bIgnoreCase = ::AfxGetApp()->GetProfileInt(_T("Settings"), _T("IgnoreCase"), FALSE)!=0;
-}
-
-/**
- * @brief Static function for writing diffoptions to registry
- */
-void CDiffWrapper::WriteDiffOptions(DIFFOPTIONS *options)
-{
-	::AfxGetApp()->WriteProfileInt(_T("Settings"), _T("IgnoreSpace"), options->nIgnoreWhitespace);
-	::AfxGetApp()->WriteProfileInt(_T("Settings"), _T("EolSensitive"), options->bEolSensitive);
-	::AfxGetApp()->WriteProfileInt(_T("Settings"), _T("IgnoreBlankLines"), options->bIgnoreBlankLines);
-	::AfxGetApp()->WriteProfileInt(_T("Settings"), _T("IgnoreCase"), options->bIgnoreCase);
 }
 
 /** @brief Simple initialization of DiffFileData */

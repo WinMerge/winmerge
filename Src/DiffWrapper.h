@@ -28,6 +28,15 @@
 #define _DIFFWRAPPER_H
 
 /**
+ * @brief Different compare methods
+ */
+enum
+{
+	CMP_CONTENT = 0, /**< Normal by content compare */
+	CMP_DATE, /**< Compare by modified date */
+};
+
+/**
  * @brief Operations in diffranges.
  * DIFFRANGE structs op-member can have these values
  */
@@ -182,8 +191,6 @@ public:
 	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left);
 	void StartDirectoryDiff();
 	void EndDirectoryDiff();
-	static void ReadDiffOptions(DIFFOPTIONS *options);
-	static void WriteDiffOptions(DIFFOPTIONS *options);
 
 protected:
 	void InternalGetOptions(DIFFOPTIONS *options);
