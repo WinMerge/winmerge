@@ -1,3 +1,8 @@
+2004-10-03 Kimmo
+ PATCH: [ 1039541 ] Italian translation for the installer updated
+  Submitted by Andrea Decorte
+  InnoSetup/Languages: Italian.isl
+
 2004-09-13 Kimmo
  BUG: [ 1026821 ] NameAndVersion Message missing from installer's Swedish lang
   Innosetup/Languages: Swedish.isl

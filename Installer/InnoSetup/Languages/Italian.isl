@@ -57,13 +57,13 @@ OnlyOnThisPlatform=Questo programma richiede per funzionare %1.
 WinVersionTooLowError=Questo programma richiede %1 versione %2 o successiva.
 WinVersionTooHighError=Questo programma non può essere installato su %1 versione %2 o successiva.
 AdminPrivilegesRequired=Per installare questo programma si deve accedere al sistema come amministratore.
-PowerUserPrivilegesRequired=Devi essere connesso come Amministratore per poter installare questo programma.
+PowerUserPrivilegesRequired=Devi essere connesso come amministratore per poter installare questo programma.
 SetupAppRunningError=%1 è attualmente in esecuzione.%n%nChiudere adesso tutte le istanze del programma e poi premere OK, oppure premere Annulla per uscire.
 UninstallAppRunningError=%1 è attualmente in esecuzione.%n%nChiudere adesso tutte le istanze del programma e poi premere OK, oppure premere Annulla per uscire.
 
 ; *** Misc. errors
 ErrorCreatingDir=La cartella "%1" non può essere creata
-ErrorTooManyFilesInDir=Impossibile creare i file nella cartella "%1" perchè contiene troppi file
+ErrorTooManyFilesInDir=Impossibile creare i file nella cartella "%1" in quanto contiene troppi file
 
 ; *** Setup common messages
 ExitSetupTitle=Uscita dall'installazione
@@ -106,12 +106,12 @@ WelcomeLabel2=[name/ver] sarà installato sul computer.%n%nSi consiglia di chiude
 ; *** "Password" wizard page
 WizardPassword=Password
 PasswordLabel1=Questa installazione è protetta da password.
-PasswordLabel3=Inserire la password, poi premere Avanti per continuare. Le password distinguono maiuscole/minuscole.
+PasswordLabel3=Inserire la password, poi premere Avanti per continuare. Le password distinguono tra maiuscole e minuscole.
 PasswordEditLabel=&Password:
 IncorrectPassword=La password inserita non è corretta, riprovare.
 
 ; *** "License Agreement" wizard page
-WizardLicense=Contratto di Licenza
+WizardLicense=Contratto di licenza
 LicenseLabel=Leggere con attenzione le informazioni che seguono prima di procedere.
 LicenseLabel3=Leggere il seguente contratto di licenza. È necessario accettare tutti i termini di questo accordo per procedere con l'installazione.
 LicenseAccepted=&Accetto i termini del contratto di licenza
@@ -131,7 +131,7 @@ UserInfoDesc=Inserire le seguenti informazioni.
 UserInfoName=&Nome:
 UserInfoOrg=&Società:
 UserInfoSerial=&Numero di serie:
-UserInfoNameRequired=E' necessario inserire un nome.
+UserInfoNameRequired=È necessario inserire un nome.
 
 ; *** "Select Destination Location" wizard page
 WizardSelectDir=Selezione della cartella di destinazione
@@ -139,7 +139,7 @@ SelectDirDesc=Dove vuoi installare [name]?
 SelectDirLabel3=[name] sarà installato nella seguente cartella.
 SelectDirBrowseLabel=Per continuare, premere Avanti. Per selezionare un'altra cartella, premere Sfoglia.
 DiskSpaceMBLabel=Il programma richiede almeno [mb] MB di spazio sul disco.
-ToUNCPathname=Non è possiblie installare su un percorso UNC. Se stai installando attraverso una rete, devi connettere la risorsa come una unità di rete.
+ToUNCPathname=Non è possibile installare su un percorso UNC. Se stai installando attraverso una rete, devi connettere la risorsa come unità di rete.
 InvalidPath=Devi inserire un percorso completo di lettera di unità; per esempio:%n%nC:\APP%n%no un percorso UNC nella forma:%n%n\\server\share
 InvalidDrive=L'unità o lo share UNC selezionato non esiste o non è accessibile. Selezionarne un'altro.
 DiskSpaceWarningTitle=Spazio su disco insufficiente
@@ -188,7 +188,7 @@ WizardReady=Pronto per l'installazione
 ReadyLabel1=Il programma è pronto per iniziare l'installazione di [name] sul computer.
 ReadyLabel2a=Premere Installa per continuare con l'installazione, o premere Indietro per rivedere o modificare le impostazioni.
 ReadyLabel2b=Premere Installa per procedere con l'installazione.
-ReadyMemoUserInfo=Informazioni Utente:
+ReadyMemoUserInfo=Informazioni utente:
 ReadyMemoDir=Cartella di destinazione:
 ReadyMemoType=Tipo di installazione:
 ReadyMemoComponents=Componenti selezionati:
@@ -210,9 +210,9 @@ FinishedHeadingLabel=Completamento dell'installazione guidata di [name]
 FinishedLabelNoIcons=L'installazione di [name] è stata completata con successo.
 FinishedLabel=L'installazione di [name] è stata completata con successo. L'applicazione può essere eseguita selezionando le icone installate.
 ClickFinish=Premere Fine per uscire dall'installazione.
-FinishedRestartLabel=Per completare l'installazione di [name], bisogna riavviare il computer. Vuoi riavviare ora?
-FinishedRestartMessage=Per completare l'installazione di [name], bisogna riavviare il computer.%n%nVuoi riavviare ora?
-ShowReadmeCheck=Sì, desidero vedere il file LEGGIMI adesso
+FinishedRestartLabel=Per completare l'installazione di [name], è necessario riavviare il computer. Vuoi riavviare ora?
+FinishedRestartMessage=Per completare l'installazione di [name], è necessario riavviare il computer.%n%nVuoi riavviare ora?
+ShowReadmeCheck=Sì, desidero visualizzare il file LEGGIMI ora
 YesRadio=&Si, riavvia il computer adesso
 NoRadio=&No, riavvio il computer più tardi
 ; used for example as 'Run MyProg.exe'
@@ -233,26 +233,26 @@ EntryAbortRetryIgnore=Premere Riprova per ritentare nuovamente, Ignora per proce
 
 ; *** Installation status messages
 StatusCreateDirs=Creazione cartelle...
-StatusExtractFiles=Estrazione files...
+StatusExtractFiles=Estrazione file...
 StatusCreateIcons=Creazione icone...
 StatusCreateIniEntries=Creazione voci del file INI...
-StatusCreateRegistryEntries=Creazione voci di Registro...
-StatusRegisterFiles=Registrazione files...
+StatusCreateRegistryEntries=Creazione voci del registro...
+StatusRegisterFiles=Registrazione file...
 StatusSavingUninstall=Salvataggio delle informazioni di disinstallazione...
-StatusRunProgram=Termine dell'installazione...
+StatusRunProgram=Conclusione dell'installazione...
 StatusRollback=Recupero delle modifiche...
 
 ; *** Misc. errors
-ErrorInternal2=Errore Interno %1
+ErrorInternal2=Errore interno %1
 ErrorFunctionFailedNoCode=%1 fallito
 ErrorFunctionFailed=%1 fallito; codice %2
 ErrorFunctionFailedWithMessage=%1 fallito; codice %2.%n%3
 ErrorExecutingProgram=Impossibile eseguire il file:%n%1
 
 ; *** Registry errors
-ErrorRegOpenKey=Errore di apertura della chiave di Registro:%n%1\%2
-ErrorRegCreateKey=Errore di creazione della chiave di Registro:%n%1\%2
-ErrorRegWriteKey=Errore di scrittura della chiave di Registro:%n%1\%2
+ErrorRegOpenKey=Errore di apertura della chiave del registro:%n%1\%2
+ErrorRegCreateKey=Errore di creazione della chiave del registro:%n%1\%2
+ErrorRegWriteKey=Errore di scrittura della chiave del registro:%n%1\%2
 
 ; *** INI errors
 ErrorIniEntry=Errore nella creazione delle voci INI nel file "%1".
@@ -262,20 +262,20 @@ FileAbortRetryIgnore=Premere Riprova per tentare di nuovo, Ignora per saltare qu
 FileAbortRetryIgnore2=Premere Riprova per tentare di nuovo, Ignora per proseguire comunque (sconsigliato), o Interrompi per terminare l'installazione.
 SourceIsCorrupted=Il file sorgente è danneggiato
 SourceDoesntExist=Il file sorgente "%1" non esiste
-ExistingFileReadOnly=Il file esistente ha l'attributo di sola lettura.%n%nPremere Riprova per rimuovere l'attributo di sola lettura e ritentare, Ignora per saltare questo file, o Interrompi per terminare l'installazione.
+ExistingFileReadOnly=Il file esistente ha attributi di sola lettura.%n%nPremere Riprova per rimuovere l'attributo di sola lettura e ritentare, Ignora per saltare questo file, o Interrompi per terminare l'installazione.
 ErrorReadingExistingDest=Si è verificato un errore durante la lettura del file esistente:
 FileExists=Il file esiste già.%n%nDesiderate sovrascriverlo?
-ExistingFileNewer=Il file esistente è più recente di quello che si stà installando. Si raccomanda di mantenere il file esistente.%n%nVuoi mantenere il file esistente?
+ExistingFileNewer=Il file esistente è più recente di quello che si sta installando. Si raccomanda di mantenere il file esistente.%n%nVuoi mantenere il file esistente?
 ErrorChangingAttr=Si è verificato un errore durante il tentativo di modifica dell'attributo del file esistente:
 ErrorCreatingTemp=Si è verificato un errore durante la creazione di un file nella cartella di destinazione:
 ErrorReadingSource=Si è verificato un errore durante la lettura del file sorgente:
 ErrorCopying=Si è verificato un errore durante la copia di un file:
 ErrorReplacingExistingFile=Si è verificato un errore durante la sovrascrittura del file esistente:
-ErrorRestartReplace=Errore durante Riavvio-Sostituzione:
+ErrorRestartReplace=Errore durante fase di riavvio-sostituzione:
 ErrorRenamingTemp=Si è verificato un errore durante il tentativo di rinominare un file nella cartella di destinazione:
 ErrorRegisterServer=Impossibile registrare la DLL/OCX: %1
 ErrorRegisterServerMissingExport=DllRegisterServer esportazione mancante
-ErrorRegisterTypeLib=Impossibile registrare il tipo di Libreria: %1
+ErrorRegisterTypeLib=Impossibile registrare il tipo di libreria: %1
 
 ; *** Post-installation errors
 ErrorOpeningReadme=Si è verificato un errore durante l'apertura del file LEGGIMI.
@@ -341,7 +341,7 @@ CatalanLanguage=Menu e finestre di dialogo in catalano
 ChineseSimplifiedLanguage=Menu e finestre di dialogo in cinese (semplificato)
 ChineseTraditionalLanguage=Menu e finestre di dialogo in cinese (tradizionale)
 CzechLanguage=Menu e finestre di dialogo in ceco
-DanishLanguage=Menu e finestre di dialogoin danese
+DanishLanguage=Menu e finestre di dialogo in danese
 DutchLanguage=Menu e finestre di dialogo in olandese
 FrenchLanguage=Menu e finestre di dialogo in francese
 GermanLanguage=Menu e finestre di dialogo in tedesco
@@ -357,7 +357,7 @@ SpanishLanguage=Menu e finestre di dialogo in spagnolo
 SwedishLanguage=Menu e finestre di dialogo in svedese
 
 ;Tasks
-ExplorerContextMenu=&Attiva integrazione con menu contestuale di Explorer
+ExplorerContextMenu=&Attiva l'integrazione con il menu contestuale di Explorer
 IntegrateTortoiseCVS=Integrazione con &TortoiseCVS
 IntegrateDelphi4=Supporto per i file binari di Borland® Delphi &4
 UpdatingCommonControls=Aggiornamento dei controlli comuni del sistema in corso...
