@@ -72,7 +72,7 @@ pfatal_with_name (text)
   errno = e;
   perror (text);
   //exit (2);
-  RaiseException(STATUS_ACCESS_VIOLATION, 0, NULL, NULL);
+  RaiseException(STATUS_ACCESS_VIOLATION, 0, 0, NULL);
 }
 
 /* Print an error message from the format-string FORMAT
@@ -96,7 +96,7 @@ fatal (m)
   print_message_queue ();
   error ("%s", m, 0);
   //exit (2);
-  RaiseException(STATUS_ACCESS_VIOLATION, 0, NULL, NULL);
+  RaiseException(STATUS_ACCESS_VIOLATION, 0, 0, NULL);
 }
 
 /* Like printf, except if -l in effect then save the message and print later.

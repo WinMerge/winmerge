@@ -1,3 +1,7 @@
+2004-10-12 Perry
+ PATCH: [ 1043819 ] Fix recent compiler warnings in src/util.c
+  diffutils: src/util.c
+
 2004-10-11 Perry
  PATCH: [ 1040016 ] patch for BUG[1039615] caret splitting wide characters
   Src/editlib: ccrystaltextview.cpp
