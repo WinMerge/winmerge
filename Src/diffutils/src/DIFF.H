@@ -287,7 +287,7 @@ EXTERN FILE *outfile;
 /* Declare various functions.  */
 
 /* analyze.c */
-struct change * diff_2_files PARAMS((struct file_data[], int));
+struct change * diff_2_files PARAMS((struct file_data[], int, int *));
 
 /* context.c */
 void print_context_header PARAMS((struct file_data[], int));

@@ -166,7 +166,7 @@ BOOL CMergeDoc::Rescan()
 			
 			/* Compare the files, if no error was found.  */
 			
-			script = diff_2_files (inf, depth);
+			script = diff_2_files (inf, depth, NULL);
 
 			// throw the diff into a temp file
 			CString path = GetModulePath(NULL) + _T("\\Diff.txt");

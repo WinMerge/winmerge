@@ -435,30 +435,49 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 		|| (inf[1].desc>0 && FileIsBinary(inf[1].desc)));
 	if (bBinary)
 	{
+		struct change *p,*e,*script=NULL;
+		int diff_flag=0;
+	    
+	    script = diff_2_files (inf, depth, &diff_flag);
+
+		if (script != NULL)
+		{
+			for (e = script; e; e = p)
+			{
+			p = e->link;
+			free (e);
+			}
+		}
+		cleanup_file_buffers(inf);
 		// close open file handles
 	    if (inf[0].desc >= 0 && close (inf[0].desc) != 0)
 	    {
-		perror_with_name (inf[0].name);
-		val = 2;
+			perror_with_name (inf[0].name);
+			val = 2;
 	    }
 	    if (inf[1].desc >= 0 && inf[0].desc != inf[1].desc
 		&& close (inf[1].desc) != 0)
 	    {
-		perror_with_name (inf[1].name);
-		val = 2;
+			perror_with_name (inf[1].name);
+			val = 2;
 	    }
 
-		if (inf[0].stat.st_size != inf[1].stat.st_size
-		|| inf[0].stat.st_mtime != inf[1].stat.st_mtime)
+		if(val==2)
 	    {
-		val = 1;
-		pCtx->AddDiff(name0, dir0, dir1, FILE_BINDIFF);
-		    if (gWriteLog) gLog.Write(_T("\tbinary.\r\n"));
+			pCtx->AddDiff(name0, dir0, dir1, FILE_ERROR);
+			if (gWriteLog) gLog.Write(_T("\t%s.\r\n"), val==2? "error":"different");
 	    }
-	    else if(val==2)
+		else if (diff_flag)
 	    {
-		pCtx->AddDiff(name0, dir0, dir1, FILE_ERROR);
-		if (gWriteLog) gLog.Write(_T("\t%s.\r\n"), val==2? "error":"different");
+			val = 1;
+			pCtx->AddDiff(name0, dir0, dir1, FILE_BINDIFF);
+				if (gWriteLog) gLog.Write(_T("\tbinary.\r\n"));
+	    }
+	    else 
+	    {
+			val = 0;
+			//pCtx->AddDiff(name0, dir0, dir1, FILE_SAME);
+			//	if (gWriteLog) gLog.Write(_T("\tidentical.\r\n"));
 	    }
 	}
 	else
@@ -467,7 +486,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	    struct change *e, *p;
 	    struct change *script=NULL;
 	    
-	    script = diff_2_files (inf, depth);
+	    script = diff_2_files (inf, depth, NULL);
 	    val = script? 1 : 0;
 	    /* Close the file descriptors.  */
 	    // cleanup the script

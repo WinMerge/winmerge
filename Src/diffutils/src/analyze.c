@@ -834,7 +834,7 @@ briefly_report (changes, filevec)
 
 //  Report the differences of two files.  DEPTH is the current directory
 // depth. 
-struct change * diff_2_files (struct file_data filevec[], int depth)
+struct change * diff_2_files (struct file_data filevec[], int depth, int * pbBinaryFilesDiffer)
 {
 	int diags;
 	int i;
@@ -860,7 +860,6 @@ struct change * diff_2_files (struct file_data filevec[], int depth)
 		//  Standard input equals itself.  
 		else if (filevec[0].desc == filevec[1].desc)
 			changes = 0;
-		
 		else
 			//  Scan both files, a buffer at a time, looking for a difference.  
 		{
@@ -909,6 +908,9 @@ struct change * diff_2_files (struct file_data filevec[], int depth)
 		}
 		
 		briefly_report (changes, filevec);
+
+		if (pbBinaryFilesDiffer != NULL)
+			*pbBinaryFilesDiffer = (changes != 0);
 	}
 	else
 	{

@@ -945,7 +945,7 @@ compare_files (dir0, name0, dir1, name1, depth)
 
       /* Compare the files, if no error was found.  */
 
-      val = failed ? 2 : diff_2_files (inf, depth);
+      val = failed ? 2 : diff_2_files (inf, depth, NULL);
 
       /* Close the file descriptors.  */
 
