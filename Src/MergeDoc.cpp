@@ -1201,6 +1201,10 @@ BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		m_nSyncPosition = m_nUndoPosition = 0;
 		ASSERT(m_aUndoBuf.GetSize() == 0);
 		
+		// This is needed: Syntax hilighting does not work when
+		// automatically scroll to first diff is enabled
+		RetypeViews(pszFileName);
+
 		UpdateViews(NULL, NULL, UPDATE_RESET);
 		m_ptLastChange.x = m_ptLastChange.y = -1;
 		bSuccess = TRUE;
