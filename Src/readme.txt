@@ -4,6 +4,9 @@
   src: DirActions.cpp DirView.h DirView.cpp Merge.cpp Merge.dsp
    Merge.h Merge.rc resource.h
   src/Languages: *.rc resource.h
+ PATCH: [ 876556 ] (Minor) code cleanup for SaveToFile
+  Submitted by Perry
+  src: MergeDoc.cpp
 
 2004-01-16 Perry
  Fix bug in UniFile::WriteString counting of written bytes.

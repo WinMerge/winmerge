@@ -1360,74 +1360,60 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		bOpenSuccess = !!file.OpenCreate(sIntermediateFilename);
 	}
 
-	// Why do we continue if !bOpenSuccess ?
+	if (!bOpenSuccess)
+		return SAVE_FAILED;
 
-	if (bOpenSuccess)
+	file.WriteBom();
+
+	CString sLine;
+	CString sEol = GetStringEol(nCrlfStyle);
+	int nLineCount = m_aLines.GetSize();
+	for (int line=0; line<nLineCount-1; ++line)
 	{
-		file.WriteBom();
-
-		CString sLine;
-		CString sEol = GetStringEol(nCrlfStyle);
-		int nLineCount = m_aLines.GetSize();
-		for (int line=0; line<nLineCount-1; ++line)
+		if (GetLineFlags(line) & LF_GHOST)
+			continue;
+		if (GetLineLength(line) > 0)
+			GetText(line, 0, line, GetLineLength(line), sLine, 0);
+		else
+			sLine = _T("");
+		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
 		{
-			if (GetLineFlags(line) & LF_GHOST)
-				continue;
-			if (GetLineLength(line) > 0)
-				GetText(line, 0, line, GetLineLength(line), sLine, 0);
-			else
-				sLine = _T("");
-			if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-			{
-				sLine += GetLineEol(line);
-			}
-			else
-			{
-				sLine += sEol;
-			}
-			file.WriteString(sLine);
-		}
-		file.Close();
-	}
-
-
-	if (bOpenSuccess)
-	{
-		if (!bTempFile)
-		{
-			// If we are saving user files
-			// we need an unpacker/packer, at least a "do nothing" one
-			ASSERT(infoUnpacker != NULL);
-			// repack the file here, overwrite the temporary file we did save in
-			CString csTempFileName = sIntermediateFilename;
-			infoUnpacker->subcode = unpackerSubcode;
-			if (!FileTransform_Packing(csTempFileName, *infoUnpacker))
-			{
-				::DeleteFile(sIntermediateFilename);
-				// returns now, don't overwrite the original file
-				return SAVE_PACK_FAILED;
-			}
-			// the temp filename may have changed during packing
-			if (csTempFileName != sIntermediateFilename)
-			{
-				::DeleteFile(sIntermediateFilename);
-				sIntermediateFilename = csTempFileName;
-			}
-
-			// Write tempfile over original file
-			if (::CopyFile(sIntermediateFilename, pszFileName, FALSE))
-			{
-				::DeleteFile(sIntermediateFilename);
-				if (bClearModifiedFlag)
-				{
-					SetModified(FALSE);
-					m_nSyncPosition = m_nUndoPosition;
-				}
-				bSaveSuccess = TRUE;
-			}
+			sLine += GetLineEol(line);
 		}
 		else
 		{
+			sLine += sEol;
+		}
+		file.WriteString(sLine);
+	}
+	file.Close();
+
+
+	if (!bTempFile)
+	{
+		// If we are saving user files
+		// we need an unpacker/packer, at least a "do nothing" one
+		ASSERT(infoUnpacker != NULL);
+		// repack the file here, overwrite the temporary file we did save in
+		CString csTempFileName = sIntermediateFilename;
+		infoUnpacker->subcode = unpackerSubcode;
+		if (!FileTransform_Packing(csTempFileName, *infoUnpacker))
+		{
+			::DeleteFile(sIntermediateFilename);
+			// returns now, don't overwrite the original file
+			return SAVE_PACK_FAILED;
+		}
+		// the temp filename may have changed during packing
+		if (csTempFileName != sIntermediateFilename)
+		{
+			::DeleteFile(sIntermediateFilename);
+			sIntermediateFilename = csTempFileName;
+		}
+
+		// Write tempfile over original file
+		if (::CopyFile(sIntermediateFilename, pszFileName, FALSE))
+		{
+			::DeleteFile(sIntermediateFilename);
 			if (bClearModifiedFlag)
 			{
 				SetModified(FALSE);
@@ -1436,6 +1422,16 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			bSaveSuccess = TRUE;
 		}
 	}
+	else
+	{
+		if (bClearModifiedFlag)
+		{
+			SetModified(FALSE);
+			m_nSyncPosition = m_nUndoPosition;
+		}
+		bSaveSuccess = TRUE;
+	}
+
 	if (bSaveSuccess)
 		return SAVE_DONE;
 	else
