@@ -6,6 +6,8 @@
   Languages\Norwegian: resource.h Norwegian/MergeNorwegian.rc
  Updated color property page in Brazilian (patch#768740).
   Languages\Brazilian: MergeBrazilian.rc
+ Updated color property page in Simplified Chinese (patch#768740 not quite complete).
+  Languages\ChineseSimplified: MergeChineseSimplified.rc
 
 2003-08-20 Christian
  PATCH: [ 791487 ] Norwegian (bokmål) translation
