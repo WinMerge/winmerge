@@ -1,6 +1,9 @@
 2004-10-28 Kimmo
  PATCH: [ 1055551 ] Move cursor to begin of previous line when deleting diff
   Src: MergeDoc.cpp MergeDoc.h MergeEditView.cpp
+ PATCH: [ 1053234 ] Suggested expansions for Organization.txt
+  Submitted by Perry
+  Docs/Developers: Organisation.txt
 
 2004-10-28 Perry
  PATCH: [ 1055067 ] Add Hungarian support

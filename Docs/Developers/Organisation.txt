@@ -56,7 +56,7 @@ WinMerge/Filters/
  - File filters are here
 
 WinMerge/InnoSetup/
- - Installer
+ -Source files used to create windows installer (with InnoSetup program)
  - readme.txt is changelog file
 
 WinMerge/InnoSetup/Art
@@ -69,10 +69,14 @@ WinMerge/InnoSetup/Runtimes
  - Libraries for WinMerge added to install package
 
 WinMerge/MakePatchDirs/
- - Tool for creating patches
+ - Source files for MakePatchDirs, a program to generate original &
+   altered directories
+ - Used to create patches to WinMerge source tree, for upload to
+   sourceforge patch board
 
 WinMerge/MakeResDll/
- - Tool compiling translation files
+ - Source files for MakeResDll, a command line program used to
+   compile the WinMerge language dlls
 
 WinMerge/Merge7z/
  - 7Zip integration files. Needed to compile WinMerge executable.
