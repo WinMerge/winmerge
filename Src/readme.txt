@@ -1,3 +1,8 @@
+2004-12-15 Tim
+ RFE: [ 1085099 ] 'fileskip.bmp' looks to similar like 'equal.bmp'
+  Src/res: fileskip.bmp
+  Languages: fileskip.bmp
+
 2004-12-05 WinMerge experimental release 2.3.1.1 (cvs)
 
 2004-12-04 Kimmo
