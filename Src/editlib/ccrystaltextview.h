@@ -435,6 +435,10 @@ protected:
     virtual void DrawSingleLine (CDC * pdc, const CRect & rect, int nLineIndex);
     virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex);
 
+#ifdef _UNICODE
+    int GetCharWidthUnicodeChar(wchar_t ch);
+#endif
+
 	//BEGIN SW
 	// word wrapping
 

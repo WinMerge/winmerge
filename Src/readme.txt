@@ -1,3 +1,8 @@
+2004-05-26 Perry
+ PATCH: [ 959468 ] A patch for "Bug [ 958805 ] 2 bytes display error".
+  Src: StdAfx.cpp
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+
 2004-05-25 Perry
  (cosmetic) Update edit dates in file headers
   Src/Common: unicoder.cpp unicoder.h

@@ -897,6 +897,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
       const int lineLen = line.GetLength();
       int nWidth = rcClip.right - ptOrigin.x;
       const int nCharWidth = GetCharWidth();
+      int nSumWidth = 0;
 
       if (nWidth > 0)
         {
@@ -919,13 +920,20 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
           // Seems that CrystalEditor's and ExtTextOut()'s charwidths aren't
           // same with some fonts and text is drawn only partially
           // if this table is not used.
-          int* pnWidths = new int[nCount];
+          int* pnWidths = new int[lineLen];
           ASSERT(pnWidths);
 
           if (pnWidths)
             {
-              for (int i = 0; i < nCount; i++)
+              for (int i = 0; i < lineLen; i++)
+#ifdef _UNICODE
+                {
+                    pnWidths[i] = GetCharWidthUnicodeChar(line[i]);
+                    nSumWidth += pnWidths[i];
+                }
+#else
                 pnWidths[i] = nCharWidth;
+#endif
             }
 
           // Because ExtTextOut() can handle 8192 chars at max.
@@ -961,7 +969,11 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
           if (pnWidths)
             delete [] pnWidths;
         }
+#ifdef _UNICODE
+      ptOrigin.x += nSumWidth;
+#else
       ptOrigin.x += nCharWidth * lineLen;
+#endif
     }
 }
 
@@ -1943,8 +1955,13 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
         }
       else
         {
+#ifdef _UNICODE
+          nXPos += GetCharWidthUnicodeChar(szLine[nIndex]) / GetCharWidth();
+          nCurPos += GetCharWidthUnicodeChar(szLine[nIndex]) / GetCharWidth();
+#else
           nXPos++;
           nCurPos++;
+#endif
         }
 
       if( nXPos > curPoint.x && nYPos == curPoint.y )
@@ -3065,7 +3082,11 @@ ClientToText (const CPoint & point)
         }
       else
         {
+#ifdef _UNICODE
+          n += GetCharWidthUnicodeChar(pszLine[nIndex]) / GetCharWidth();
+#else
           n++;
+#endif
           nCurPos ++;
         }
 
@@ -3206,7 +3227,11 @@ TextToClient (const CPoint & point)
       if (pszLine[nIndex] == _T ('\t'))
         pt.x += (nTabSize - pt.x % nTabSize);
       else
+#ifdef _UNICODE
+        pt.x += GetCharWidthUnicodeChar(pszLine[nIndex]) / GetCharWidth();
+#else
         pt.x++;
+#endif
     }
   //BEGIN SW
   pt.x-= nPreOffset;
@@ -3342,7 +3367,11 @@ CalculateActualOffset (int nLineIndex, int nCharIndex)
       if (pszChars[I] == _T ('\t'))
         nOffset += (nTabSize - nOffset % nTabSize);
       else
+#ifdef _UNICODE
+        nOffset += GetCharWidthUnicodeChar(pszChars[I]) / GetCharWidth();
+#else
         nOffset++;
+#endif
     }
   //BEGIN SW
   if( nPreBreak == I && nBreaks )
@@ -5363,6 +5392,46 @@ CString CCrystalTextView::GetTextBufferEol(int nLine) const
 {
   return m_pTextBuffer->GetLineEol(nLine); 
 }
+
+#ifdef _UNICODE
+int CCrystalTextView::GetCharWidthUnicodeChar(wchar_t ch)
+{
+  static BOOL bCalculated[65536/256];
+  static int iDoubleWidthFlags[65536/32];
+
+  if (!bCalculated[ch/256])
+    {
+      if (ch >= 0x4e00 && ch < 0xe000)
+        {
+          // CJK Unified Ideograph + Hangul
+          memset(&iDoubleWidthFlags[0x4e00/32], 0xff, ((0xe000-0x4e00)/32)*4);
+          for (int i = 0x4e00; i < 0xe000; i+=256) 
+            bCalculated[i / 256] = TRUE;
+        }
+      else
+        {
+          int nWidthArray[256];
+          int nStart = ch/256*256;
+          int nEnd = nStart + 255;
+          CDC *pdc = GetDC();
+          CFont *pOldFont = pdc->SelectObject(GetFont());
+          GetCharWidth32(pdc->m_hDC, nStart, nEnd, nWidthArray);
+          pdc->SelectObject(pOldFont);
+          int nCharWidth = GetCharWidth();
+          for (int i = 0; i < 256; i++) 
+            {
+              if (nCharWidth * 15 < nWidthArray[i] * 10)
+                iDoubleWidthFlags[(nStart+i)/32] |= 1 << (i % 32);
+            }
+          bCalculated[ch / 256] = TRUE;
+        }
+    }
+  if (iDoubleWidthFlags[ch / 32] & (1 << (ch % 32)))
+    return GetCharWidth() * 2;
+  else
+    return GetCharWidth();
+}
+#endif
 
 ////////////////////////////////////////////////////////////////////////////
 #pragma warning ( default : 4100 )

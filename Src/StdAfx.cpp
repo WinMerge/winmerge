@@ -42,7 +42,11 @@ UINT gLog::DeleteFileFailed(LPCTSTR path)
 // codepoints don't extend that high).
 int normch(int c)
 {
+#ifdef _UNICODE
+	return (unsigned short)(short)c;
+#else
 	return (unsigned char)(char)c;
+#endif
 }
 
 // Returns nonzero if input is outside ASCII or is underline
@@ -50,9 +54,6 @@ int
 xisspecial (int c)
 {
   return normch(c) > (unsigned) _T ('\x7f') || c == _T ('_');
-// Apparently someone once tried to enumerate all the alphabetic letters in
-// the upper half of some codepage, probably CP-1252
-//  return _tcschr (_T ("ì?èø?ıáíéóúùïò¾àå?äëöüÌ?ÈØ?İÁÍÉ´OÚÙÏÒ¼ÀÅ?ÄËÖÜ§"), c) != NULL;
 }
 
 // Returns non-zero if input is alphabetic or "special" (see xisspecial)
