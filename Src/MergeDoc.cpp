@@ -1071,5 +1071,5 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 
 bool CMergeDoc::CDiffTextBuffer::curUndoGroup()
 {
-	return m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP;
+	return (m_aUndoBuf.GetSize()!=0 && m_aUndoBuf[0].m_dwFlags&UNDO_BEGINGROUP);
 }
