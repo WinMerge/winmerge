@@ -227,6 +227,7 @@ public :
 
         LPCTSTR GetText () const
         {
+          // see the m_szText/m_pszText definition about the use of HIWORD
           if (HIWORD ((DWORD) m_pszText) != 0)
             return m_pszText;
           return m_szText;

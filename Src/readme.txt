@@ -1,3 +1,7 @@
+2003-07-31 Laoran
+ PATCH: [ 780067 ] SUndoRecord::SetText must free previous text
+  WinMerge: ccrystaltextbuffer.cpp ccrystaltextbuffer.h 
+
 2003-07-30 Laoran
  PATCH: [ 779470 ] disable unwanted options in PropGeneral
   WinMerge: PropGeneral.cpp PropGeneral.h 

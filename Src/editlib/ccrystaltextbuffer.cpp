@@ -95,7 +95,7 @@ int CCrystalTextBuffer::m_nDefaultEncoding = -1;
 void CCrystalTextBuffer::SUndoRecord::
 SetText (LPCTSTR pszText)
 {
-  m_pszText = NULL;
+  FreeText();
   if (pszText != NULL && pszText[0] != _T ('\0'))
     {
       int nLength = _tcslen (pszText);
@@ -114,8 +114,10 @@ SetText (LPCTSTR pszText)
 void CCrystalTextBuffer::SUndoRecord::
 FreeText ()
 {
+  // see the m_szText/m_pszText definition about the use of HIWORD
   if (HIWORD ((DWORD) m_pszText) != 0)
     delete[] m_pszText;
+  m_pszText = NULL;
 }
 
 
