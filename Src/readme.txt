@@ -1,3 +1,7 @@
+2003-05-09 Kimmo
+ PATCH: [ 735127 ] German Translation
+  Updated German language file submitted by Jörg Schneider
+
 2003-05-07 Kimmo
  PATCH: [ 733383 ] Enable Find- and Replace- dialogs
   WinMerge: Merge.rc resource.h
