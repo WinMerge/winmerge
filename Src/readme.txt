@@ -1,6 +1,8 @@
 2003-10-07 Kimmo
  BUG: [ 803330 ] DirView updated too many times after compare
   DiffThread.cpp DirDoc.h DirDoc.cpp
+ RFE: [ 817859 ] Generate patch from modified files
+  MainFrm.cpp
 
 2003-10-05 Kimmo
  Show text "Identical" on diffnumber panel when files are identical

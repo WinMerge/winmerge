@@ -1672,6 +1672,7 @@ void CMainFrame::OnToolsGeneratePatch()
 {
 	CPatchTool patcher;
 	CFrameWnd * pFrame = GetActiveFrame();
+	BOOL bOpenDialog = TRUE;
 
 	// Mergedoc open?
 	if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
@@ -1682,10 +1683,19 @@ void CMainFrame::OnToolsGeneratePatch()
 		while (!mergedocs.IsEmpty())
 		{
 			CMergeDoc * pMergeDoc = mergedocs.RemoveHead();
+
+			// If user cancels, don't open create patch-dialog
+			if (!pMergeDoc->SaveHelper())
+			{
+				bOpenDialog = FALSE;
+			}
 			patcher.AddFiles(pMergeDoc->m_strLeftFile, pMergeDoc->m_strRightFile);
 		}
 	}
-	patcher.CreatePatch();
+
+	if (bOpenDialog)
+		patcher.CreatePatch();
+
 }
 
 /////////////////////////////////////////////////////////////////////////////
