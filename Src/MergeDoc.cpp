@@ -223,11 +223,7 @@ static void PrepareBufferForRescan(CMergeDoc::CDiffTextBuffer * buf, DWORD delet
 
 BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 {
-	// When doing forced rescan, delete temp files first
-	// to make sure we compare right files
-	if (bForced)
-		CleanupTempFiles();
-	else
+	if (!bForced)
 		if (!m_bEnableRescan) return TRUE; // What return value ?
 
 	m_bNeedIdleRescan = FALSE;

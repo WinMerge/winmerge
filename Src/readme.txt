@@ -1,3 +1,7 @@
+2003-04-28 Kimmo
+ PATCH: [ 726330 ] Saving before refresh - backout saving - see bug [ 723412 ]
+  WinMerge: MergeDoc.cpp MergeEditView.cpp
+
 2003-04-27 Kimmo
  BUG: [ 728173 ] Autoscroll first diff breaks syntax hilight
   WinMerge: MergeDoc.cpp
