@@ -18,8 +18,12 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// OpenDlg.cpp : implementation file
-//
+/** 
+ * @file  OpenDlg.cpp
+ *
+ * @brief Implementation of the COpenDlg class
+ */
+// RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
@@ -59,7 +63,6 @@ COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
 	m_strParsedExt = _T(".*");
 	m_pathsType = DOES_NOT_EXIST;
 }
-
 
 void COpenDlg::DoDataExchange(CDataExchange* pDX)
 {
@@ -209,6 +212,12 @@ BOOL COpenDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	
+	// Note: LoadImage gets shared icon, its not needed to destroy
+	HICON hMergeIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+			MAKEINTRESOURCE(IDR_MAINFRAME), IMAGE_ICON, 16, 16,
+			LR_DEFAULTSIZE | LR_SHARED);
+	SetIcon(hMergeIcon, TRUE);
+
 	// setup handler for resizing this dialog	
 	m_constraint.InitializeCurrentSize(this);
 	// configure how individual controls adjust when dialog resizes
@@ -347,4 +356,3 @@ void COpenDlg::OnSelectUnpacker()
 		UpdateData(FALSE);
 	}
 }
-

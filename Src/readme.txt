@@ -1,3 +1,8 @@
+2003-10-22 Kimmo
+ BUG: [ 826969 ] Wrong Open-dialog icon
+  Load WinMerge icon to Open-dialog too
+  WinMerge: OpenDlg.cpp
+
 2003-10-21 Perry
  Make icons and bitmaps in WinMerge\res directory cvs file type binary (cvs admin -kb)
  WinMerge: res\*.bmp res\*.ico
