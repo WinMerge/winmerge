@@ -1,3 +1,8 @@
+2003-11-09 Kimmo
+ PATCH: [ 835198 ] Command line path arguments handling
+  Submitted by Hern Chen
+  WinMerge: Merge.cpp Paths.h Paths.cpp
+
 2003-11-09 Laoran
  comments for invoke helpers (see BUG[ 838275 ])
   WinMerge: Plugins.cpp

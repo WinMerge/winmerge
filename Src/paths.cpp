@@ -8,6 +8,7 @@
 
 #include "stdafx.h"
 #include "paths.h"
+#include <direct.h>
 
 bool IsSlash(TCHAR ch)
 {
@@ -23,67 +24,14 @@ PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath)
 {
 	if (!szPath || !szPath[0]) return DOES_NOT_EXIST;
 
-	CFileStatus status;
-	CString sPath = szPath;
+	DWORD attr = GetFileAttributes(szPath);
 
-	// handle "\"
-	if (sPath.GetLength()==1 && IsSlash(sPath[0]))
-	{
-		// Prefix current drive to "\"
-		sPath.SetAt(0, paths_GetCurrentDriveUpper());
-		sPath += _T(":\\");
-	}
-
-	// Only allow colon in 2nd char, when first char is an English letter
-	// (This disallows urls)
-	int colon = sPath.Find(':');
-	if (colon>=0)
-	{
-		if (colon != 1)
-			return DOES_NOT_EXIST;
-		// handle "c:" or "c:\"
-		if (sPath.GetLength() == 2 || (sPath.GetLength() == 3 && EndsWithSlash(sPath)))
-		{
-			// validate root directory
-			if (!EndsWithSlash(sPath))
-				sPath += '\\';
-			CFileFind filefind;
-			if (filefind.FindFile(sPath + _T("*.*")))
-				return IS_EXISTING_DIR;
-			else
-				return DOES_NOT_EXIST;
-		}
-	}
-
-	// strip trailing slashes (but for UNC, we need to know if there was one)
-	BOOL bDir = EndsWithSlash(sPath);
-	if (bDir)
-		sPath = sPath.Left(sPath.GetLength()-1);
-
-	// disallow multiple trailing slashes
-	if (EndsWithSlash(sPath))
+	if (attr == ((DWORD) -1))
 		return DOES_NOT_EXIST;
-
-	// Check for UNC directories (CFile::GetStatus doesn't open them)
-	if (bDir && sPath.Left(2) == _T("\\\\"))
-	{
-		// validate UNC directory
-		CFileFind filefind;
-		if (filefind.FindFile(sPath + _T("\\*.*")))
-			return IS_EXISTING_DIR;
-		else
-			return DOES_NOT_EXIST;
-	}
-
-	// Now for normal handling
-
-	if (!CFile::GetStatus(sPath, status))
-		return DOES_NOT_EXIST;
-
-	if (status.m_attribute & CFile::Attribute::directory)
+	else if (attr & FILE_ATTRIBUTE_DIRECTORY)
 		return IS_EXISTING_DIR;
-
-	return IS_EXISTING_FILE;
+	else
+		return IS_EXISTING_FILE;
 }
 
 // strip trailing slashes (except from root paths)
@@ -93,20 +41,7 @@ void paths_normalize(CString & sPath)
 	if (!len) return;
 
 	// prefix root with current drive
-	if (sPath == _T("\\"))
-	{
-		// Prefix current drive to "\"
-		sPath.SetAt(0, paths_GetCurrentDriveUpper());
-		sPath += _T(":\\");
-		return;
-	}
-
-	// Append slash to root directory lacking slash
-	if (len == 2 && sPath[1] == ':')
-	{
-		sPath += '\\';
-		return;
-	}
+	sPath = paths_GetLongPath(sPath, DIRSLASH);
 
 	// Do not remove trailing slash from root directories
 	if (len == 3 && sPath[1] == ':')
@@ -121,65 +56,51 @@ void paths_normalize(CString & sPath)
 CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 {
 	int len = sPath.GetLength();
-	// ensure it is not a root drive or a UNC path
 	if (len < 1) return sPath;
-	if (sPath[0]=='\\' && len>1 && sPath[1]=='\\') return sPath;
 
-	// Now get a working buffer and walk down each directory
-	CString sBuffer=sPath; // original path
-	sBuffer.Replace('/', '\\');
-	CString sTemp; // used at each step to hold fully qualified short name
-	CString sLong; // output
+	TCHAR fullPath[_MAX_PATH];
+	TCHAR *lpPart;
 
-	if (sBuffer[0] == '\\')
-	{
-		// root directory, prepend current drive
-		sTemp += paths_GetCurrentDriveUpper();
-		sBuffer = sTemp + ':' + sBuffer;
-	}
-	else if (len>1 && sBuffer[1] == ':')
-	{
-		if (!_istalpha(sBuffer[0]))
-			return sPath; // not a valid drive, give up
-		if (len == 2 || sBuffer[2] != '\\')
-		{
-			// relative path
-			TCHAR chdrv = sBuffer[0];
-			if (_istlower(chdrv)) chdrv = _totupper(chdrv);
-			if (chdrv == paths_GetCurrentDriveUpper())
-			{
-				// relative on current drive, so prepend current directory
-				CString sTemp = paths_GetCurrentDirectory() + _T("\\") + sBuffer.Mid(2);
-				sBuffer = sTemp;
-			}
-			else
-			{
-				// relative on other drive; don't know how to find current dir
-				// so treat it as absolute
-				CString sTemp = sBuffer.Left(2) + _T("\\") + sBuffer.Mid(2);
-				sBuffer = sTemp;
-			}
-		}
-		else
-		{
-			// looks like a fully qualified path
-		}
-	}
-	else
-	{
-		// treat as relative
-		CString curdir = paths_GetCurrentDirectory();
-		sBuffer = curdir + '\\' + sBuffer;
-	}
-	LPTSTR ptr = sBuffer.GetBuffer(0), end;
-	// skip over root slash
-	end = _tcschr(ptr, '\\');
-	if (!end) return sPath;
+	//                                         GetFullPathName  GetLongPathName
+	// Convert to fully qualified form              Yes               No
+	//    (Including .)
+	// Convert /, //, \/, ... to \                  Yes               No
+	// Handle ., .., ..\..\..                       Yes               No
+	// Convert 8.3 names to long names              No                Yes
+	// Fail when file/directory does not exist      No                Yes
+	//
+	// Fully qualify/normalize name using GetFullPathName.
+	if (!GetFullPathName(sPath, _MAX_PATH, fullPath, &lpPart))
+		_tcscpy(fullPath, sPath);
+
+	// We are done if this is not a short name.
+	if (_tcschr(fullPath, _T('~')) == NULL)
+		return fullPath;
+
+	// We have to do it the hard way because GetLongPathName is not
+	// available on Win9x and some WinNT 4
+
+	// The file/directory does not exist, use as much long name as we can
+	// and leave the invalid stuff at the end.
+	CString sLong;
+	TCHAR *ptr = fullPath;
+	TCHAR *end = NULL;
+
+	// Skip to \ position     d:\abcd or \\host\share\abcd
+	// indicated by ^           ^                    ^
+	if (_tcslen(ptr) > 2)
+		end = _tcschr(fullPath+2, _T('\\'));
+	if (end && !_tcsnicmp(fullPath, _T("\\\\"),2))
+		end = _tcschr(end+1, _T('\\'));
+
+	if (!end) return fullPath;
+
 	*end = 0;
 	sLong += ptr;
 	ptr = &end[1];
-	// now walk down each directory
-	// using CFileFind to get its long name
+	CString sTemp; // used at each step to hold fully qualified short name
+
+	// now walk down each directory and do short to long name conversion
 	while (ptr)
 	{
 		end = _tcschr(ptr, '\\');
@@ -187,28 +108,8 @@ CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 		// (if we're at end, its already zero-terminated)
 		if (end)
 			*end = 0;
+
 		sTemp = sLong + '\\' + ptr;
-		// special handling for . and .. components
-		if (0 == _tcscmp(ptr, _T(".")))
-		{
-			// advance to next component (or set ptr==0 to flag end)
-			ptr = (end ? end+1 : 0);
-			continue;
-		}
-		if (0 == _tcscmp(ptr, _T("..")))
-		{
-			// back up one component
-			for (int i = sLong.GetLength()-1; i>=0 && sLong[i]!='\\' && sLong[i]!=':'; --i)
-				;
-			if (i==-1)
-			{
-				return _T("");
-			}
-			sLong = sLong.Left(i);
-			// advance to next component (or set ptr==0 to flag end)
-			ptr = (end ? end+1 : 0);
-			continue;
-		}
 
 		// advance to next component (or set ptr==0 to flag end)
 		ptr = (end ? end+1 : 0);
@@ -218,39 +119,21 @@ CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 		HANDLE h = FindFirstFile(sTemp, &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 		{
-			sLong += '\\';
+			sLong = sTemp + '\\';
 			if (ptr)
 				sLong += ptr;
 			return sLong;
 		}
-		if (!sLong.IsEmpty())
-			sLong += '\\';
+		sLong += '\\';
 		sLong += ffd.cFileName;
-		if (dst == DIRSLASH && !ptr 
-			&& (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+		if (dst == DIRSLASH && !ptr &&
+			(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 		{
 			sLong += '\\';
 		}
 		FindClose(h);
 	}
 	return sLong;
-}
-
-CString paths_GetCurrentDirectory()
-{
-		TCHAR curdir[_MAX_PATH] = _T("");
-		GetCurrentDirectory(sizeof(curdir)/sizeof(curdir[0]), curdir);
-		return curdir;
-}
-
-TCHAR paths_GetCurrentDriveUpper()
-{
-	TCHAR curdir[_MAX_PATH];
-	if (!GetCurrentDirectory(sizeof(curdir)/sizeof(curdir[0]), curdir))
-		return 'C';
-	if (_istascii(curdir[0]) && _istlower(curdir[0]))
-		curdir[0] = _totupper(curdir[0]);
-	return curdir[0];
 }
 
 // return IS_EXISTING_DIR if both are directories & exist

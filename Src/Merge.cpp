@@ -340,6 +340,21 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 			nFiles++;
 		}
 	}
+
+	// if "compare file dir" make it "compare file dir\file"
+	if (nFiles >= 2)
+	{
+		PATH_EXISTENCE p1 = paths_DoesPathExist(files[0]);
+		PATH_EXISTENCE p2 = paths_DoesPathExist(files[1]);
+		if (p1 == IS_EXISTING_FILE && p2 == IS_EXISTING_DIR)
+		{
+			TCHAR fname[_MAX_PATH], fext[_MAX_PATH];
+			_tsplitpath(files[0], NULL, NULL, fname, fext);
+			if (files[1].Right(1) != _T('\\'))
+				files[1] += _T('\\');
+			files[1] = files[1] + fname + fext;
+		}
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////
