@@ -196,7 +196,7 @@ void CVersionInfo::GetVersionInfo()
 void CVersionInfo::QueryValue(LPCTSTR szId, CString& s)
 {
 	ASSERT(m_lpstrVffInfo != NULL);
-	LPSTR   lpVersion;			// String pointer to 'version' text
+	LPTSTR   lpVersion;			// String pointer to 'version' text
 	UINT    uVersionLen;
 	BOOL    bRetCode;
 

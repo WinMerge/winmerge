@@ -1,6 +1,8 @@
 2003-09-24 Perry
  fix BUG: [ 811750 ] typo in DirScan.cpp
   WinMerge: DirScan.cpp
+ fix BUG: [ 811747 ] VersionInfo clipping in Unicode ?
+  common: version.cpp
 
 2003-09-24 Kimmo
  BUG: [ 811748 ] Brazilian RC compile failure
