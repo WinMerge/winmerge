@@ -36,7 +36,7 @@ releases.</p>
   <tr>
     <td>Brazilian Portuguese</td>
     <td>Unknown</td>
-    <td>Wender Firmino</td>
+    <td><a href="mailto:wender at pta dot com dot br">Wender Firmino</a></td>
     <td>&nbsp;</td>
     <td>2.0</td>
     <td>&nbsp;</td>
@@ -60,7 +60,7 @@ releases.</p>
   <tr>
     <td>Simplified Chinese</td>
     <td>Unknown</td>
-    <td>Liaobin</td>
+    <td><a href="mailto:liaobin at jite dot net">Liaobin</a></td>
     <td>&nbsp;</td>
     <td>2.0</td>
     <td>&nbsp;</td>
@@ -116,7 +116,7 @@ releases.</p>
   <tr>
     <td>German</td>
     <td>Actively maintained</td>
-    <td><a href="mailto:winfried dot peter at omicron dot at">Winfried Peter</a> <br> Joerg Schneider and <a href="mailto:tim at gerundt dot de">Tim Gerundt</a></td>
+    <td><a href="mailto:winfried dot peter at omicron dot at">Winfried Peter</a> <br> <a href="mailto:tonda at users dot sourceforge dot net">Joerg Schneider</a> and <a href="mailto:tim at gerundt dot de">Tim Gerundt</a></td>
     <td>&nbsp; <br> 2.1</td>
     <td>&nbsp; <br> 2.0</td>
     <td>1.7 <br> &nbsp;</td>
@@ -132,7 +132,7 @@ releases.</p>
   <tr>
     <td>Korean</td>
     <td>Unknown</td>
-    <td>Sukjoon</td>
+    <td><a href="mailto:sukjoon dot hwang at samsung dot com">Sukjoon</a></td>
     <td>&nbsp;</td>
     <td>2.0</td>
     <td>&nbsp;</td>
@@ -164,7 +164,7 @@ releases.</p>
   <tr>
     <td>Slovak</td>
     <td>Unknown</td>
-    <td>majvan</td>
+    <td><a href="mailto:vancojur at decef dot elf dot stuba dot sk">majvan</a></td>
     <td>&nbsp;</td>
     <td>2.0</td>
     <td>&nbsp;</td>
