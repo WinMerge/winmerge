@@ -296,6 +296,22 @@ FileExtMatches(LPCTSTR filename, LPCTSTR ext)
   return FALSE;
 }
 
+/**
+ * @brief Return true if *pszChar is a slash (either direction) or a colon
+ *
+ * begin points to start of string, in case multibyte trail test is needed
+ */
+bool IsSlashOrColon(LPCTSTR pszChar, LPCTSTR begin)
+{
+#ifdef _UNICODE
+		return (*pszChar == '/' || *pszChar == ':' || *pszChar == '\\');
+#else
+		// Avoid 0x5C (ASCII backslash) byte occurring as trail byte in MBCS
+		return (*pszChar == '/' || *pszChar == ':' 
+			|| (*pszChar == '\\' && !_ismbstrail((unsigned char *)begin, (unsigned char *)pszChar)));
+#endif
+}
+
 // Parse pathLeft, extract out up to three items
 //   - directory (pPath), with no trailing slash (but including trailing colon)
 //   - filename (pFile), including extension
@@ -319,13 +335,7 @@ void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pE
 				extptr = pszChar;
 			}
 		}
-
-#ifdef _UNICODE
-		else if (*pszChar == '/' || *pszChar == ':' || *pszChar == '\\')
-#else
-		// Avoid 0x5C (ASCII backslash) byte occurring as trail byte in MBCS
-		else if (*pszChar == '/' || *pszChar == ':' || (*pszChar == '\\' && !_ismbstrail((unsigned char *)pathLeft, (unsigned char *)pszChar)))
-#endif
+		else if (IsSlashOrColon(pszChar, pathLeft))
 		{
 			// Ok, found last slash, so we collect any info desired
 			// and we're done
