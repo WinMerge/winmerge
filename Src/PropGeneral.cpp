@@ -42,6 +42,7 @@ CPropGeneral::CPropGeneral() : CPropertyPage(CPropGeneral::IDD)
 	m_bBackup = FALSE;
 	m_bScroll = FALSE;
 	m_bDisableSplash = FALSE;
+	m_bAutoCloseCmpPane = FALSE;
 	//}}AFX_DATA_INIT
 }
 
@@ -64,6 +65,7 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_BACKUP_CHECK, m_bBackup);
 	DDX_Check(pDX, IDC_SCROLL_CHECK, m_bScroll);
 	DDX_Check(pDX, IDC_DISABLE_SPLASH, m_bDisableSplash);
+	DDX_Check(pDX, IDC_CMPPANE_AUTOCLOSE, m_bAutoCloseCmpPane);
 	//}}AFX_DATA_MAP
 }
 

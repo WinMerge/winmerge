@@ -164,6 +164,7 @@ BEGIN
         MENUITEM "Па&нель инструментов",        ID_VIEW_TOOLBAR
         MENUITEM "&Строка состояния",           ID_VIEW_STATUS_BAR
         MENUITEM "Пане&ль сравнения",           ID_VIEW_DETAIL_BAR
+        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "&Язык...",                    ID_VIEW_LANGUAGE
     END
@@ -236,7 +237,6 @@ BEGIN
             MENUITEM "Слева на ...",                ID_DIR_COPY_LEFT_TO_BROWSE
             MENUITEM "Справа налево",               ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "Справа на ...",               ID_DIR_COPY_RIGHT_TO_BROWSE
-
         END
         POPUP "Удалить"
         BEGIN
@@ -440,6 +440,8 @@ BEGIN
                     7,17,206,10
     CONTROL         "Отключить &заставку",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
+    CONTROL         "&Close compare Statepane automatically",IDC_CMPPANE_AUTOCLOSE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111

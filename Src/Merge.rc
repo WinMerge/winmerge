@@ -84,10 +84,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copy all diffs to other side...", 
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-
         MENUITEM "Copy all diffs from other side...", 
                                                 ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
-
         MENUITEM SEPARATOR
         MENUITEM "Undo",                        ID_UNDO
         MENUITEM SEPARATOR
@@ -166,6 +164,7 @@ BEGIN
         MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
+        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "&Language...",                ID_VIEW_LANGUAGE
     END
@@ -230,13 +229,9 @@ BEGIN
         POPUP "&Copy"
         BEGIN
             MENUITEM "&Left to Right",              ID_DIR_COPY_LEFT_TO_RIGHT
-
             MENUITEM "L&eft to...",                 ID_DIR_COPY_LEFT_TO_BROWSE
-
             MENUITEM "&Right to Left",              ID_DIR_COPY_RIGHT_TO_LEFT
-
             MENUITEM "R&ight to...",                ID_DIR_COPY_RIGHT_TO_BROWSE
-
         END
         POPUP "&Delete"
         BEGIN
@@ -249,14 +244,12 @@ BEGIN
         BEGIN
             MENUITEM "with &Registered Application", ID_DIR_OPEN_LEFT
             MENUITEM "with &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
-
             MENUITEM "&with...",                    ID_DIR_OPEN_LEFT_WITH
         END
         POPUP "O&pen Right"
         BEGIN
             MENUITEM "with &Registered Application", ID_DIR_OPEN_RIGHT
             MENUITEM "with &External Editor",       ID_DIR_OPEN_RIGHT_WITHEDITOR
-
             MENUITEM "&with...",                    ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
@@ -442,6 +435,8 @@ BEGIN
                     17,206,10
     CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
+    CONTROL         "&Close compare Statepane automatically",IDC_CMPPANE_AUTOCLOSE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111

@@ -164,6 +164,7 @@ BEGIN
         MENUITEM "&Panel n·strojov",            ID_VIEW_TOOLBAR
         MENUITEM "&Stavov˝ riadok",             ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
+        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
     END
@@ -434,6 +435,8 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,206,10
     CONTROL         "&Nezobrazuj sp˙öùacÌ banner",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
+    CONTROL         "&Close compare Statepane automatically",IDC_CMPPANE_AUTOCLOSE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111

@@ -1,4 +1,4 @@
-/** 
+/**
  * @file  PropGeneral.h
  *
  * @brief Declaration of CPropGeneral class
@@ -26,6 +26,7 @@ public:
 	BOOL	m_bBackup;
 	BOOL	m_bScroll;
 	BOOL	m_bDisableSplash;
+	BOOL	m_bAutoCloseCmpPane;
 	//}}AFX_DATA
 
 

@@ -7,6 +7,10 @@
  RFE: [ 874366 ] Add goto line-number
   Show few lines of context above line scrolled to
   Src: MergeEditView.cpp
+ PATCH: [ 913073 ] Option to automatically close compare pane
+  Src: DirView.cpp DirView.h MainFrm.cpp Merge.rc OptionsDef.h
+   PropGeneral.cpp PropGeneral.cpp resource.h
+  Languages: *.rc resource.h
 
 2004-03-09 Kimmo
  PATCH: [ 912297 ] Splashscreen and syntax highlight options

@@ -161,6 +161,7 @@ BEGIN
         MENUITEM "工具栏(&T)",                  ID_VIEW_TOOLBAR
         MENUITEM "状态栏(&S)",                  ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
+        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "语言(&L)...",                 ID_VIEW_LANGUAGE
     END
@@ -426,6 +427,8 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,17,129,10
     CONTROL         "停用引人注目的屏幕(&D)",IDC_DISABLE_SPLASH,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,27,100,10
+    CONTROL         "&Close compare Statepane automatically",IDC_CMPPANE_AUTOCLOSE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG FIXED IMPURE  0, 0, 213, 111

@@ -303,6 +303,7 @@
 #define IDC_USE_RECYCLE_BIN             1117
 #define IDC_COLORDEFAULTS_BTN           1118
 #define IDC_COMPARE_DEFAULTS            1119
+#define IDC_CMPPANE_AUTOCLOSE           1120
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -546,6 +547,7 @@
 #define ID_DIR_ZIP_RIGHT                32861
 #define ID_DIR_ZIP_BOTH                 32862
 #define ID_DIR_ZIP_BOTH_DIFFS_ONLY      32863
+#define ID_VIEW_DIR_STATEPANE           32864
 
 // Next default values for new objects
 //
@@ -553,8 +555,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        124
-#define _APS_NEXT_COMMAND_VALUE         32864
-#define _APS_NEXT_CONTROL_VALUE         1120
+#define _APS_NEXT_COMMAND_VALUE         32865
+#define _APS_NEXT_CONTROL_VALUE         1121
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

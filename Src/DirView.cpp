@@ -29,6 +29,7 @@
 #include "stdafx.h"
 #include "Merge.h"
 #include "DirView.h"
+#include "DirFrame.h"  // StatePane
 #include "DirDoc.h"
 #include "MainFrm.h"
 #include "resource.h"
@@ -138,6 +139,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_DIR_ZIP_RIGHT, OnCtxtDirZipRight)
 	ON_COMMAND(ID_DIR_ZIP_BOTH, OnCtxtDirZipBoth)
 	ON_COMMAND(ID_DIR_ZIP_BOTH_DIFFS_ONLY, OnCtxtDirZipBothDiffsOnly)
+	ON_COMMAND(ID_VIEW_DIR_STATEPANE, OnDirStatePane)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_DIR_STATEPANE, OnUpdateDirStatePane)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, OnSelectAll)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_SELECT_ALL, OnUpdateSelectAll)
 	//}}AFX_MSG_MAP
@@ -1488,6 +1491,13 @@ void CDirView::OnUpdateRefresh(CCmdUI* pCmdUI)
  */
 LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 {
+	// Close compare pane when compare is ready
+	if (mf->m_options.GetInt(OPT_AUTOCLOSE_CMPPANE))
+	{
+		CDirFrame *pf = GetParentFrame();
+		pf->ShowProcessingBar(FALSE);
+	}
+
 	CDirDoc * pDoc = GetDocument();
 	ASSERT(pDoc);
 
@@ -1870,6 +1880,24 @@ CString CDirView::GenerateReport()
 	}
 	return report;
 }
+
+/**
+ * @brief Show directory compare statepane
+ */
+void CDirView::OnDirStatePane()
+{
+	CDirFrame *pf = GetParentFrame();
+	pf->ShowProcessingBar(TRUE);
+}
+
+/**
+ * @brief Enable menuitem for compare statepane
+ */
+void CDirView::OnUpdateDirStatePane(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+}
+
 
 /**
  * @brief Add special items for non-recursive compare

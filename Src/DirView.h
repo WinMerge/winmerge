@@ -274,6 +274,8 @@ protected:
 	afx_msg void OnCtxtDirZipBoth();
 	afx_msg void OnCtxtDirZipBothDiffsOnly();
 	afx_msg void OnUpdateCtxtDir(CCmdUI* pCmdUI);
+	afx_msg void OnDirStatePane();
+	afx_msg void OnUpdateDirStatePane(CCmdUI* pCmdUI);
 	afx_msg void OnSelectAll();
 	afx_msg void OnUpdateSelectAll(CCmdUI* pCmdUI);
 	//}}AFX_MSG

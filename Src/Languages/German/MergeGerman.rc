@@ -169,6 +169,7 @@ BEGIN
         MENUITEM "&Symbolleiste",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
+        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
     END
@@ -442,6 +443,8 @@ BEGIN
                     7,17,210,10
     CONTROL         "Startbildschirm &deaktivieren",IDC_DISABLE_SPLASH,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,27,206,10
+    CONTROL         "&Close compare Statepane automatically",IDC_CMPPANE_AUTOCLOSE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111

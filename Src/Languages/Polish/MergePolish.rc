@@ -153,6 +153,7 @@ BEGIN
         MENUITEM "Pokaz &unikatowe dla lewej",  ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "Pokaz u&nikatowe dla prawej", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Pokaz pliki &binarne",        ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM "Ukryj pliki *.B&AK",          ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Zmi&en czcionke...",          ID_VIEW_SELECTFONT
@@ -162,9 +163,10 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Pasek &narzedzi",             ID_VIEW_TOOLBAR
         MENUITEM "Pasek s&tanu",                ID_VIEW_STATUS_BAR
+        MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
+        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "&Jezyk...",                   ID_VIEW_LANGUAGE
-
     END
     POPUP "&Merge"
     BEGIN
@@ -434,6 +436,8 @@ BEGIN
                     7,17,183,10
     CONTROL         "&Wylacz ekran powitalny",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,100,10
+    CONTROL         "&Close compare Statepane automatically",IDC_CMPPANE_AUTOCLOSE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111

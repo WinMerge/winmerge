@@ -164,6 +164,7 @@ BEGIN
         MENUITEM "Barre d'&outils",             ID_VIEW_TOOLBAR
         MENUITEM "&Barre d'état",               ID_VIEW_STATUS_BAR
         MENUITEM "Détail des différences",                  ID_VIEW_DETAIL_BAR
+        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "&Langue...",                  ID_VIEW_LANGUAGE
     END
@@ -436,6 +437,8 @@ BEGIN
                     7,17,183,10
     CONTROL         "&Sans Splash Screen",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,80,10
+    CONTROL         "&Close compare Statepane automatically",IDC_CMPPANE_AUTOCLOSE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111

@@ -183,6 +183,7 @@ CMainFrame::CMainFrame()
 
 	m_options.InitOption(OPT_EXT_EDITOR_CMD, _T(""));
 	m_options.InitOption(OPT_USE_RECYCLE_BIN, TRUE);
+	m_options.InitOption(OPT_AUTOCLOSE_CMPPANE, FALSE);
 
 	m_options.InitOption(OPT_CMP_IGNORE_WHITESPACE, 0);
 	m_options.InitOption(OPT_CMP_IGNORE_BLANKLINES, FALSE);
@@ -998,7 +999,8 @@ void CMainFrame::OnOptions()
 	vss.m_strPath = m_strVssPath;
 	gen.m_bBackup = m_options.GetInt(OPT_CREATE_BACKUPS);
 	gen.m_bScroll = m_options.GetInt(OPT_SCROLL_TO_FIRST);
-	gen.m_bDisableSplash = m_options.GetInt(OPT_DISABLE_SPLASH);;
+	gen.m_bDisableSplash = m_options.GetInt(OPT_DISABLE_SPLASH);
+	gen.m_bAutoCloseCmpPane = m_options.GetInt(OPT_AUTOCLOSE_CMPPANE);
 	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
 	filter.m_sPattern = m_sPattern;
 	regpage.m_strEditorPath = m_options.GetString(OPT_EXT_EDITOR_CMD);
@@ -1022,8 +1024,8 @@ void CMainFrame::OnOptions()
 		
 		m_options.SaveOption(OPT_CREATE_BACKUPS, gen.m_bBackup);
 		m_options.SaveOption(OPT_SCROLL_TO_FIRST, gen.m_bScroll);
-
 		m_options.SaveOption(OPT_DISABLE_SPLASH, gen.m_bDisableSplash);
+		m_options.SaveOption(OPT_AUTOCLOSE_CMPPANE, gen.m_bAutoCloseCmpPane);
 		m_options.SaveOption(OPT_USE_RECYCLE_BIN, regpage.m_bUseRecycleBin);
 		regpage.SaveMergePath();
 		sExtEditor = regpage.m_strEditorPath;
