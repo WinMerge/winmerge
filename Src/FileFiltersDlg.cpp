@@ -59,6 +59,7 @@ BEGIN_MESSAGE_MAP(FileFiltersDlg, CDialog)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
 	//}}AFX_MSG_MAP
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_FILTERFILE_LIST, OnLvnItemchangedFilterfileList)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -206,5 +207,30 @@ void FileFiltersDlg::OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
 	UNREFERENCED_PARAMETER(pNMHDR);
 
 	OnFiltersEditbtn();
+	*pResult = 0;
+}
+
+/**
+ * @brief Called when item state is changed.
+ *
+ * Disable Edit-button when "None" filter is selected.
+ */
+void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+
+	// If item got selected
+	if (pNMLV->uNewState & LVIS_SELECTED)
+	{
+		CString txtNone;
+		CButton *btn = (CButton *) GetDlgItem(IDC_FILTERFILE_EDITBTN);
+		VERIFY(txtNone.LoadString(IDS_USERCHOICE_NONE));
+		CString txt = m_listFilters.GetItemText(pNMLV->iItem, 0);
+
+		if (txt.CompareNoCase(txtNone) == 0)
+			btn->EnableWindow(FALSE);
+		else
+			btn->EnableWindow(TRUE);
+	}
 	*pResult = 0;
 }

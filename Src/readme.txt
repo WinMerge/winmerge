@@ -1,3 +1,7 @@
+2004-12-01 Kimmo
+ PATCH: [ 1075591 ] Disable file filter edit button for no filter selection
+  Src: FileFiltersDlg.cpp FileFiltersDlg.h
+
 2004-11-27 Jochen
  Remove unneeded system.cpp (no longer present in 7z411+) from Merge7z DSPs
   Merge7z: Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp

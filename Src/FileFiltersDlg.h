@@ -72,6 +72,7 @@ protected:
 	virtual void OnOK();
 	afx_msg void OnFiltersEditbtn();
 	afx_msg void OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
