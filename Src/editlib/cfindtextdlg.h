@@ -37,22 +37,20 @@
 class CCrystalTextView;
 
 
-/////////////////////////////////////////////////////////////////////////////
-
-#ifndef STRUCT_LAST_SEARCH_INFO
-#define STRUCT_LAST_SEARCH_INFO
-
-// this structure is also defined in the file CEditReplaceDlg.h
+/**
+ * @brief Infos about the last search settings (saved in registry)
+ *
+ * @note Is also used in the replace dialog
+ */
 struct LastSearchInfos
   {
-    int m_nDirection;
+    int m_nDirection;       // only for search
+    BOOL m_bReplaceNoWrap;  // only for replace
     BOOL m_bMatchCase;
     CString m_sText;
     BOOL m_bWholeWord;
     BOOL m_bRegExp;
   };
-
-#endif // STRUCT_LAST_SEARCH_INFO
 
 /////////////////////////////////////////////////////////////////////////////
 // CFindTextDlg dialog

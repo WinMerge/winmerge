@@ -1259,6 +1259,7 @@ OnEditReplace ()
       lastSearch->m_bMatchCase = (m_dwLastReplaceFlags & FIND_MATCH_CASE) != 0;
       lastSearch->m_bWholeWord = (m_dwLastReplaceFlags & FIND_WHOLE_WORD) != 0;
       lastSearch->m_bRegExp = (m_dwLastReplaceFlags & FIND_REGEXP) != 0;
+      lastSearch->m_bReplaceNoWrap = (m_dwLastReplaceFlags & REPLACE_NO_WRAP) != 0;
       if (m_pszLastFindWhat != NULL)
         lastSearch->m_sText = m_pszLastFindWhat;
     }
@@ -1270,6 +1271,7 @@ OnEditReplace ()
       lastSearch->m_bMatchCase = (dwFlags & FIND_MATCH_CASE) != 0;
       lastSearch->m_bWholeWord = (dwFlags & FIND_WHOLE_WORD) != 0;
       lastSearch->m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
+      lastSearch->m_bReplaceNoWrap = (dwFlags & REPLACE_NO_WRAP) != 0;
       // lastSearch->m_sText = pApp->GetProfileString (REG_REPLACE_SUBKEY, REG_FIND_WHAT, _T (""));
       // lastSearch->m_sNewText = pApp->GetProfileString (REG_REPLACE_SUBKEY, REG_REPLACE_WITH, _T (""));
     }
@@ -1281,8 +1283,7 @@ OnEditReplace ()
       GetSelection (m_ptSavedSelStart, m_ptSavedSelEnd);
       m_bSelectionPushed = TRUE;
 
-      dlg.m_nScope = 0;         //  Replace in current selection
-
+      dlg.SetScope(TRUE);       //  Replace in current selection
       dlg.m_ptCurrentPos = m_ptSavedSelStart;
       dlg.m_bEnableScopeSelection = TRUE;
       dlg.m_ptBlockBegin = m_ptSavedSelStart;
@@ -1290,8 +1291,7 @@ OnEditReplace ()
     }
   else
     {
-      dlg.m_nScope = 1;         //  Replace in whole text
-
+      dlg.SetScope(FALSE);      // Set scope when no selection
       dlg.m_ptCurrentPos = GetCursorPos ();
       dlg.m_bEnableScopeSelection = FALSE;
 
@@ -1320,6 +1320,8 @@ OnEditReplace ()
     m_dwLastReplaceFlags |= FIND_WHOLE_WORD;
   if (lastSearch->m_bRegExp)
     m_dwLastReplaceFlags |= FIND_REGEXP;
+  if (lastSearch->m_bReplaceNoWrap)
+    m_dwLastReplaceFlags |= REPLACE_NO_WRAP;
 
   //  Restore selection
   if (m_bSelectionPushed)

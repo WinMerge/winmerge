@@ -1,3 +1,9 @@
+2003-12-04 Laoran
+ PATCH: [ 848476 ] Wrap end of file in replace dialog
+  WinMerge: Merge.rc resource.h
+  editlib: ccrystaleditview.cpp ccrystaltextview.h ceditreplacedlg.cpp ceditreplacedlg.h cfindtextdlg.h
+  Languages : *.rc resource.h
+
 2003-12-03 WinMerge experimental release 2.1.5.1 (cvs)
 
 2003-12-01 Laoran

@@ -35,25 +35,9 @@
 
 #include "resource.h"
 #include "memcombo.h"
+#include "cfindtextdlg.h" // for structure LastSearchInfos
 
 class CCrystalEditView;
-
-/////////////////////////////////////////////////////////////////////////////
-
-#ifndef STRUCT_LAST_SEARCH_INFO
-#define STRUCT_LAST_SEARCH_INFO
-
-// this structure is also defined in the file CFindTextDlg.h
-struct LastSearchInfos
-  {
-    int m_nDirection;
-    BOOL m_bMatchCase;
-    CString m_sText;
-    BOOL m_bWholeWord;
-    BOOL m_bRegExp;
-  };
-
-#endif // STRUCT_LAST_SEARCH_INFO
 
 /////////////////////////////////////////////////////////////////////////////
 // CEditReplaceDlg dialog
@@ -71,9 +55,10 @@ private :
     // Construction
 public :
     CEditReplaceDlg (CCrystalEditView * pBuddy);
-    void SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp);
+    void SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp, int nScope);
     void UseLastSearch ();
     LastSearchInfos * GetLastSearchInfos (); 
+    void SetScope(BOOL bWithSelection);
 
 
     BOOL m_bEnableScopeSelection;
@@ -93,6 +78,7 @@ public :
     CString m_sText;
     CString m_sNewText;
     int m_nScope;
+    BOOL m_bDontWrap;
     //}}AFX_DATA
 
     // Overrides

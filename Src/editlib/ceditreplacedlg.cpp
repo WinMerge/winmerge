@@ -51,6 +51,7 @@ CEditReplaceDlg::CEditReplaceDlg (CCrystalEditView * pBuddy):CDialog (CEditRepla
   m_sText = _T ("");
   m_sNewText = _T ("");
   m_nScope = -1;
+  m_bDontWrap = FALSE;
   //}}AFX_DATA_INIT
   m_bEnableScopeSelection = TRUE;
 }
@@ -83,6 +84,7 @@ DoDataExchange (CDataExchange * pDX)
   DDX_CBString (pDX, IDC_EDIT_FINDTEXT, m_sText);
   DDX_CBString (pDX, IDC_EDIT_REPLACE_WITH, m_sNewText);
   DDX_Radio (pDX, IDC_EDIT_SCOPE_SELECTION, m_nScope);
+  DDX_Check (pDX, IDC_EDIT_SCOPE_DONT_WRAP, m_bDontWrap);
   //}}AFX_DATA_MAP
 }
 
@@ -186,21 +188,28 @@ DoHighlightText ( BOOL bNotifyIfNotFound )
       bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptFoundAt, m_ptBlockBegin, m_ptBlockEnd,
                                           dwSearchFlags, FALSE, &m_ptFoundAt);
     }
+  else if (m_bDontWrap)
+    {
+      //  Searching whole text, no wrap
+      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, FALSE, &m_ptFoundAt);
+    }
   else
     {
-      //  Searching whole text
-      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, FALSE, &m_ptFoundAt);
+      //  Searching whole text, wrap
+      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, TRUE, &m_ptFoundAt);
     }
 
   if (!bFound)
     {
-    if ( bNotifyIfNotFound ) 
-    {
-      CString prompt;
-      prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, m_sText);
-      AfxMessageBox (prompt);
-    }
-      m_ptCurrentPos = m_nScope == 0 ? m_ptBlockBegin : CPoint (0, 0);
+      if ( bNotifyIfNotFound ) 
+      {
+        CString prompt;
+        prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, m_sText);
+        AfxMessageBox (prompt);
+      }
+      if (m_nScope == 0)
+        m_ptCurrentPos = m_ptBlockBegin;
+
       return FALSE;
     }
 
@@ -221,10 +230,15 @@ DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
       bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptFoundAt, m_ptBlockBegin, m_ptBlockEnd,
                                           dwSearchFlags, FALSE, &m_ptFoundAt);
     }
+  else if (m_bDontWrap)
+    {
+      //  Searching whole text, no wrap
+      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, FALSE, &m_ptFoundAt);
+    }
   else
     {
-      //  Searching whole text
-      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, FALSE, &m_ptFoundAt);
+      //  Searching whole text, wrap
+      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, TRUE, &m_ptFoundAt);
     }
 
   if (!bFound)
@@ -232,7 +246,8 @@ DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
       CString prompt;
       prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, m_sText);
       AfxMessageBox (prompt);
-      m_ptCurrentPos = m_nScope == 0 ? m_ptBlockBegin : CPoint (0, 0);
+      if (m_nScope == 0)
+        m_ptCurrentPos = m_ptBlockBegin;
       return FALSE;
     }
 
@@ -382,6 +397,7 @@ OnEditReplaceAll ()
   UpdateLastSearch ();
 
   int nNumReplaced = 0;
+  BOOL bWrapped = FALSE;
   CWaitCursor waitCursor;
 
 
@@ -390,6 +406,8 @@ OnEditReplaceAll ()
       m_ptFoundAt = m_ptCurrentPos;
       m_bFound = DoHighlightText ( FALSE );
     }
+
+  CPoint m_ptFirstFound = m_ptFoundAt;
 
   while (m_bFound)
     {
@@ -418,6 +436,13 @@ OnEditReplaceAll ()
               m_ptBlockEnd.x += m_pBuddy->m_nLastReplaceLen;
             }
         }
+      // recalculate m_ptFirstFound
+      if (m_ptFirstFound.y == m_ptFoundAt.y && m_ptFirstFound.x > m_ptFoundAt.x)
+        {
+          m_ptFirstFound.x -= m_pBuddy->m_nLastFindWhatLen;
+          m_ptFirstFound.x += m_pBuddy->m_nLastReplaceLen;
+        }
+
       if (!m_pBuddy->m_nLastFindWhatLen)
         if (m_ptFoundAt.y + 1 < m_pBuddy->GetLineCount ())
           {
@@ -434,9 +459,26 @@ OnEditReplaceAll ()
           m_ptFoundAt.x += m_pBuddy->m_nLastReplaceLen;
           m_ptFoundAt = m_pBuddy->GetCursorPos ();
         }
-    nNumReplaced++;
+      nNumReplaced++;
 
+      // calculate the end of the current replacement
+      CPoint m_ptCurrentReplacedEnd;
+      m_ptCurrentReplacedEnd.y = m_ptFoundAt.y;
+      m_ptCurrentReplacedEnd.x = m_ptFoundAt.x + m_pBuddy->m_nLastReplaceLen;
+
+      // find the next instance
       m_bFound = DoHighlightText ( FALSE );
+
+      // detect if we just wrapped at end of file
+      if (m_ptFoundAt.y < m_ptCurrentReplacedEnd.y || (m_ptFoundAt.y == m_ptCurrentReplacedEnd.y && m_ptFoundAt.x < m_ptCurrentReplacedEnd.x))
+        bWrapped = TRUE;
+
+      // after wrapping, stop at m_ptFirstFound
+      // so we don't replace twice when replacement string includes replaced string 
+      // (like replace "here" with "there")
+      if (bWrapped)
+        if (m_ptFoundAt.y > m_ptFirstFound.y || (m_ptFoundAt.y == m_ptFirstFound.y && m_ptFoundAt.x >= m_ptFirstFound.x))
+          break;
     }
 
   // Let user know how many strings were replaced
@@ -471,19 +513,20 @@ UpdateControls()
 // Last search functions
 //
 void CEditReplaceDlg::
-SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp)
+SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp, int nScope)
 {
   lastSearch.m_bMatchCase = bMatchCase;
   lastSearch.m_bWholeWord = bWholeWord;
   lastSearch.m_bRegExp = bRegExp;
   lastSearch.m_sText = sText;
+  lastSearch.m_bReplaceNoWrap = m_bDontWrap;
 }
 
 
 void CEditReplaceDlg::
 UpdateLastSearch ()
 {
-  SetLastSearch (m_sText, m_bMatchCase, m_bWholeWord, m_bRegExp);
+  SetLastSearch (m_sText, m_bMatchCase, m_bWholeWord, m_bRegExp, m_nScope);
 }
 
 void CEditReplaceDlg::
@@ -493,5 +536,14 @@ UseLastSearch ()
   m_bWholeWord = lastSearch.m_bWholeWord;
   m_bRegExp = lastSearch.m_bRegExp;
   m_sText = lastSearch.m_sText;
+  m_bDontWrap = lastSearch.m_bReplaceNoWrap;
 }
 
+void CEditReplaceDlg::
+SetScope(BOOL bWithSelection)
+{
+  if (bWithSelection)
+    m_nScope = 0;
+  else
+    m_nScope = 1;
+}
