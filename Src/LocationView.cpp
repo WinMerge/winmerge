@@ -23,8 +23,20 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-// Few pixels of empty space around bars
+/** 
+ * @brief Size of empty frame above and below bars (in pixels)
+ */
 static const DWORD Y_OFFSET = 5;
+
+/** 
+ * @brief Bars in location pane
+ */
+enum
+{
+	BAR_NONE = 0,
+	BAR_LEFT,
+	BAR_RIGHT,
+};
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDiffDetailView
@@ -283,7 +295,6 @@ void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border)
 	else
 	{
 		CBrush brush(cr);
-		//pDC->FillRect(r,&brush);
 		pDC->FillSolidRect(r, cr);
 		if (border)
 		{
@@ -317,19 +328,17 @@ BOOL CLocationView::GotoLocation(CPoint point)
 	if (m_view0 == NULL || m_view1 == NULL)
 		return FALSE;
 
-	const int w = rc.Width() / 4;
-	const int x = (rc.Width() - 2 * w) / 3;
-
-	bool leftside = (point.x >= x && point.x < x+w);
-	bool rightside = (point.x >= 2 * x + w && point.x < 2 * x + 2 * w);
-	if (!leftside && !rightside)
+	int line = -1;
+	int lineOther = -1;
+	int bar = IsInsideBar(rc, point);
+	if (bar == BAR_LEFT || bar == BAR_RIGHT)
+	{
+		line = GetLineFromYPos(point.y, rc, bar);
+	}
+	else
 		return FALSE;
 
-	const int line = GetLineFromYPos(point.y, rc);
-
-	m_view0->GoToLine(line, false);
-	m_view1->GoToLine(line, false);
-
+	ScrollToLine(bar == BAR_LEFT, line);
 	return TRUE;
 }
 
@@ -356,13 +365,17 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	BCMenu* pPopup = (BCMenu *) menu.GetSubMenu(0);
 	ASSERT(pPopup != NULL);
 
-	const int nLine = GetLineFromYPos(pt.y, rc);
 	CString strItem;
 	CString strNum;
-	
+	int nLine = -1;
+	int bar = IsInsideBar(rc, pt);
+
 	// If cursor over bar, format string with linenumber, else disable item
-	if (nLine > -1)
-		strNum.Format(_T("%d"), nLine);
+	if (bar != BAR_NONE)
+	{
+		nLine = GetLineFromYPos(pt.y, rc, bar);
+		strNum.Format(_T("%d"), nLine + 1); // Show linenumber not lineindex
+	}
 	else
 		pPopup->EnableMenuItem(ID_LOCBAR_GOTODIFF, MF_GRAYED);
 	AfxFormatString1(strItem, ID_LOCBAR_GOTOLINE_FMT, strNum);
@@ -390,8 +403,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	switch (command)
 	{
 	case ID_LOCBAR_GOTODIFF:
-		m_view0->GoToLine(nLine, false);
-		m_view1->GoToLine(nLine, false);
+		ScrollToLine(bar == BAR_LEFT, nLine);
 		break;
 	case ID_EDIT_WMGOTO:
 		m_view0->WMGoto();
@@ -411,13 +423,78 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	}
 }
 
-/// Calculate line in file from given YCoord in locationpane
-int CLocationView::GetLineFromYPos(int nYCoord, CRect rc)
+/** 
+ * @brief Calculates real line in file from given YCoord in bar.
+ * @param nYcoord [in] ycoord in pane
+ * @param rc [in] size of locationpane
+ * @param bar [in] bar/file
+ * @return 0-based index of real line in file [0...lines-1]
+ * @bug line calculation is not precise
+ */
+int CLocationView::GetLineFromYPos(int nYCoord, CRect rc, int bar)
 {
+	CMergeDoc* pDoc = GetDocument();
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
-	int line = -1;
+	int line = ((double)nbLines / (double)(rc.Height() - Y_OFFSET * 2)) * nYCoord;
+	int nRealLine = -1;
 
-	if ((nYCoord > Y_OFFSET) && (nYCoord < (rc.Height() - Y_OFFSET)))
-		line = ((double)nbLines / (rc.Height() - Y_OFFSET * 2)) * nYCoord;
-	return line;
+	line--; // Convert linenumber to lineindex
+	if (line > nbLines - 1) // Just to be sure
+		line = nbLines - 1;
+
+	if (bar == BAR_LEFT)
+	{
+		nRealLine = pDoc->m_ltBuf.ComputeRealLine(line);
+	}
+	else if (bar == BAR_RIGHT)
+	{
+		nRealLine = pDoc->m_rtBuf.ComputeRealLine(line);
+	}
+	return nRealLine;
+}
+
+/** 
+ * @brief Determines if given coords are inside left/right bar.
+ * @param rc [in] size of locationpane client area
+ * @param pt [in] point we want to check, in client coordinates.
+ */
+int CLocationView::IsInsideBar(CRect rc, POINT pt)
+{
+	int retVal = BAR_NONE;
+	BOOL bLeftSide = FALSE;
+	BOOL bRightSide = FALSE;
+	const int w = rc.Width() / 4;
+	const int x = (rc.Width() - 2 * w) / 3;
+
+	if ((pt.y > Y_OFFSET) && (pt.y < (rc.Height() - Y_OFFSET)))
+	{
+		bLeftSide = (pt.x >= x && pt.x < x + w);
+		bRightSide = (pt.x >= 2 * x + w && pt.x < 2 * x + 2 * w);
+	}
+	
+	if (bLeftSide)
+		retVal = BAR_LEFT;
+	else if(bRightSide)
+		retVal = BAR_RIGHT;
+
+	return retVal;
+}
+
+/** 
+ * @brief Scroll to given real line in given side.
+ * @param bLeft [in] left/right side
+ * @param nLine [in] 0-based index of line to scroll to [0...lines-1]
+ */
+void CLocationView::ScrollToLine(BOOL bLeft, int nLine)
+{
+	CMergeDoc* pDoc = GetDocument();
+	int nApparentLine = 0;
+
+	if (bLeft)
+		nApparentLine = pDoc->m_ltBuf.ComputeApparentLine(nLine);
+	else
+		nApparentLine = pDoc->m_rtBuf.ComputeApparentLine(nLine);
+
+	m_view0->GoToLine(nApparentLine + 1, false); // GotoLine() wants linenumber not lineindex
+	m_view1->GoToLine(nApparentLine + 1, false);
 }

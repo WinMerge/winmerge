@@ -48,7 +48,9 @@ protected:
 	BOOL GetNextRect(int &nLineIndex);
 	void DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border = FALSE);
 	BOOL GotoLocation(CPoint point);
-	int GetLineFromYPos(int nYCoord, CRect rc);
+	int GetLineFromYPos(int nYCoord, CRect rc, int bar);
+	int IsInsideBar(CRect rc, POINT pt);
+	void ScrollToLine(BOOL bLeft, int nLine);
 
 private:
 	CMergeEditView* m_view0;
