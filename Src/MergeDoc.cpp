@@ -2265,19 +2265,21 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView)
 {
 	CRect rectDiff;
 	rectDiff = Computelinediff(m_pLeftView, m_pRightView, pView->GetCursorPos().y);
-	if (rectDiff.top != -1)
-	{
-		m_pLeftView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
-		m_pLeftView->SetCursorPos(rectDiff.TopLeft());
-		m_pLeftView->EnsureVisible(rectDiff.TopLeft());
-	}
+	if (rectDiff.top == -1)
+		return;
+	m_pLeftView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
+	m_pLeftView->SetCursorPos(rectDiff.TopLeft());
+	m_pLeftView->EnsureVisible(rectDiff.TopLeft());
+
 	rectDiff = Computelinediff(m_pRightView, m_pLeftView, pView->GetCursorPos().y);
-	if (rectDiff.top != -1)
+	if (rectDiff.top == -1)
 	{
-		m_pRightView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
-		m_pRightView->SetCursorPos(rectDiff.TopLeft());
-		m_pRightView->EnsureVisible(rectDiff.TopLeft());
+		ASSERT(0);
+		return;
 	}
+	m_pRightView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
+	m_pRightView->SetCursorPos(rectDiff.TopLeft());
+	m_pRightView->EnsureVisible(rectDiff.TopLeft());
 }
 
 /**
@@ -2287,19 +2289,21 @@ void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView)
 {
 	CRect rectDiff;
 	rectDiff = Computelinediff(m_pLeftDetailView, m_pRightDetailView, pView->GetCursorPos().y);
-	if (rectDiff.top != -1)
-	{
-		m_pLeftDetailView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
-		m_pLeftDetailView->SetCursorPos(rectDiff.TopLeft());
-		m_pLeftDetailView->EnsureVisible(rectDiff.TopLeft());
-	}
+	if (rectDiff.top == -1)
+		return;
+	m_pLeftDetailView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
+	m_pLeftDetailView->SetCursorPos(rectDiff.TopLeft());
+	m_pLeftDetailView->EnsureVisible(rectDiff.TopLeft());
+
 	rectDiff = Computelinediff(m_pRightDetailView, m_pLeftDetailView, pView->GetCursorPos().y);
-	if (rectDiff.top != -1)
+	if (rectDiff.top == -1)
 	{
-		m_pRightDetailView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
-		m_pRightDetailView->SetCursorPos(rectDiff.TopLeft());
-		m_pRightDetailView->EnsureVisible(rectDiff.TopLeft());
+		ASSERT(0);
+		return;
 	}
+	m_pRightDetailView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
+	m_pRightDetailView->SetCursorPos(rectDiff.TopLeft());
+	m_pRightDetailView->EnsureVisible(rectDiff.TopLeft());
 }
 
 // Returns a rectangle of the difference in the current line 
