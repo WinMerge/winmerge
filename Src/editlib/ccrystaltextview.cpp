@@ -889,6 +889,11 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
   line.ReleaseBuffer(nCurPos);
 }
 
+/**
+ * @brief Draw a chunk of text (one color, one line, full or part of line)
+ *
+ * @note In ANSI build, this routine is buggy for multibytes or double-width characters
+ */
 void CCrystalTextView::
 DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                     LPCTSTR pszChars, int nOffset, int nCount)
@@ -899,16 +904,37 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
       CString line;
       ExpandChars (pszChars, nOffset, nCount, line);
       const int lineLen = line.GetLength();
-      int nWidth = rcClip.right - ptOrigin.x;
       const int nCharWidth = GetCharWidth();
-      int nSumWidth = 0;
 
-      if (nWidth > 0)
+      // i the character index, from 0 to lineLen-1
+      int i = 0;
+
+      // Pass if the text begins after the right end of the clipping region
+      if (ptOrigin.x < rcClip.right)
         {
-          int nCount = lineLen;
-          int nCountFit = nWidth / nCharWidth + 1;
-          if (nCount > nCountFit)
-            nCount = nCountFit;
+          // Because ExtTextOut is buggy when ptOrigin.x < - 4095 * charWidth
+          // or when nCount >= 4095
+          // and because this is not well documented,
+          // we decide to do the left & right clipping here
+          
+          // Update the position after the left clipped characters
+          // stop for i = first visible character, at least partly
+          for (  ; i < lineLen; i++)
+          {
+#ifdef _UNICODE
+            int pnWidthsCurrent = GetCharWidthUnicodeChar(line[i]);
+#else 
+            int pnWidthsCurrent = nCharWidth;
+#endif
+            ptOrigin.x += pnWidthsCurrent;
+            if (ptOrigin.x >= rcClip.left)
+            {
+              ptOrigin.x -= pnWidthsCurrent;
+              break;
+            }
+          }
+        
+          // 
 #ifdef _DEBUG
           //CSize sz = pdc->GetTextExtent(line, nCount);
           //ASSERT(sz.cx == m_nCharWidth * nCount);
@@ -919,65 +945,62 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
              rcBounds.right = rcBounds.left + GetCharWidth() * nCount;
              pdc->ExtTextOut(rcBounds.left, rcBounds.top, ETO_OPAQUE, &rcBounds, NULL, 0, NULL);
            */
-
-          // Table of charwidths as CCrystalEditor thinks they are
-          // Seems that CrystalEditor's and ExtTextOut()'s charwidths aren't
-          // same with some fonts and text is drawn only partially
-          // if this table is not used.
-          int* pnWidths = new int[lineLen];
-          ASSERT(pnWidths);
-
-          if (pnWidths)
+           
+          if (i < lineLen)
             {
-              for (int i = 0; i < lineLen; i++)
-#ifdef _UNICODE
+              // We have to draw some characters
+              int ibegin = i;
+              int nSumWidth = 0;
+
+              // A raw estimate of the number of characters to display
+              // For wide characters, nCountFit may be overvalued
+              int nWidth = rcClip.right - ptOrigin.x;
+              int nCount = lineLen - ibegin;
+              int nCountFit = nWidth / nCharWidth + 1;
+              if (nCount > nCountFit)
+                nCount = nCountFit;
+
+              // Table of charwidths as CCrystalEditor thinks they are
+              // Seems that CrystalEditor's and ExtTextOut()'s charwidths aren't
+              // same with some fonts and text is drawn only partially
+              // if this table is not used.
+              int* pnWidths = new int[nCount];
+              ASSERT(pnWidths);
+              
+              if (pnWidths)
                 {
-                    pnWidths[i] = GetCharWidthUnicodeChar(line[i]);
-                    nSumWidth += pnWidths[i];
-                }
-#else
-                pnWidths[i] = nCharWidth;
-#endif
-            }
-
-          // Because ExtTextOut() can handle 8192 chars at max.
-          // we have to draw longer lines in 8192 char blocks
-          if (nCount > 8192)
-            {
-              CPoint ptDraw = ptOrigin;
-              LPCTSTR szText = line;
-              DWORD dwDrawnChars = 0;
-              DWORD dwCharsToDraw = 0;
-
-              while (dwDrawnChars < nCount)
-                {
-                  if ((nCount - dwDrawnChars) > 8192)
-                    dwCharsToDraw = 8192;
-                  else
-                    dwCharsToDraw = nCount - dwDrawnChars;
-
-                  VERIFY(pdc->ExtTextOut(ptDraw.x, ptDraw.y, ETO_CLIPPED,
-                      &rcClip, &szText[dwDrawnChars], dwCharsToDraw,
-                      &pnWidths[dwDrawnChars]));
-
-                  dwDrawnChars += dwCharsToDraw;
-                  ptDraw.x += nCharWidth * dwCharsToDraw;
-                }
-            }
-          else
-            {
-              VERIFY(pdc->ExtTextOut(ptOrigin.x, ptOrigin.y, ETO_CLIPPED,
-                  &rcClip, line, nCount, pnWidths));
-            }
-
-          if (pnWidths)
-            delete [] pnWidths;
-        }
+                  for (  ; i < nCount + ibegin ; i++)
+                    {
 #ifdef _UNICODE
-      ptOrigin.x += nSumWidth;
+                      pnWidths[i-ibegin] = GetCharWidthUnicodeChar(line[i]);
 #else
-      ptOrigin.x += nCharWidth * lineLen;
+                      pnWidths[i-ibegin] = nCharWidth;
 #endif
+                      nSumWidth += pnWidths[i-ibegin];
+                    }
+
+                  // we are sure to have less than 4095 characters because all the chars are visible            
+                  VERIFY(pdc->ExtTextOut(ptOrigin.x, ptOrigin.y, ETO_CLIPPED,
+                      &rcClip, LPCTSTR(line) + ibegin, nCount, pnWidths));
+            
+                  delete [] pnWidths;
+                
+                  // Update the final position after the visible characters	              
+                  ptOrigin.x += nSumWidth;
+                }
+
+            }
+
+        }        
+        
+      // Update the final position after the right clipped characters
+      for (  ; i < lineLen; i++)
+#ifdef _UNICODE
+        ptOrigin.x += GetCharWidthUnicodeChar(line[i]);
+#else          	
+        ptOrigin.x += nCharWidth;
+#endif
+
     }
 }
 
@@ -1972,7 +1995,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
         {
           if(bDBCSLeadPrev)
             nIndex--;
-          break;
+        break;
         }
       else if( nYPos > curPoint.y )
         {
@@ -3098,7 +3121,7 @@ ClientToText (const CPoint & point)
         {
           if(bDBCSLeadPrev)
             nIndex--;
-          break;
+        break;
         }
 
       if(bDBCSLeadPrev)

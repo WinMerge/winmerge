@@ -1,3 +1,7 @@
+2004-06-01 Laoran
+ PATCH: [ 960455 ] Clip text in DrawLineHelperImpl
+  Src/editlib: crystaltextview.cpp
+
 2004-05-31 Perry
  PATCH: [ 963804 ] Report also thread codepage in config
   Src: ConfigLog.cpp
