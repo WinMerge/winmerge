@@ -1,3 +1,7 @@
+2004-09-17 Kimmo
+ PATCH: [ 1029538 ] Reverse 'Ignore carriage return differences' when resetting
+  Src: PropCompare.cpp
+
 2004-09-16 Perry
  Fix Italian editor property page (tabs section) & widen corresponding English controls
   Src: Merge.rc

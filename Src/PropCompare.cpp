@@ -91,7 +91,7 @@ void CPropCompare::OnDefaults()
 	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_WHITESPACE, tmp);
 	m_nIgnoreWhite = tmp;
 	m_pOptionsMgr->GetDefault(OPT_CMP_EOL_SENSITIVE, tmp);
-	m_bEolSensitive = tmp;
+	m_bEolSensitive = !tmp; // Reverse
 	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_BLANKLINES, tmp);
 	m_bIgnoreBlankLines = tmp;
 	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_CASE, tmp);
