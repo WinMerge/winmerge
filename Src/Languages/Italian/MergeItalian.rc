@@ -801,14 +801,6 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_FILENAME_HEADER     "Nome del file"
-    IDS_DIR_HEADER          "Cartella"
-    IDS_RESULT_HEADER       "Risultato del confronto"
-    IDS_FILE_COMPARISON_TITLE "Confronto fra file"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
     IDS_AFRIKAANS           "Afrikaans"
     IDS_ALBANIAN            "Albanian"
     IDS_ARABIC_SAUDI        "Arabic (Saudi Arabian)"

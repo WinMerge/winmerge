@@ -1,8 +1,11 @@
 @echo off
 rem This batch file is used to build the Resource DLL
-
-rem ### SET THIS TO THE PATH TO THE RC FILE FOR YOUR LANGUAGE ###
-set rcScript=.\Dutch\MergeDutch.rc
+if '%1==' echo Syntax: BuildDll language
+if '%1==' goto end
+echo Building %1
+set rcScript=.\%1\Merge%1.rc
 set outputdir=.\DLL
 
 .\MakeResDll -o %outputdir% %rcScript%
+
+:end
