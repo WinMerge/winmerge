@@ -688,8 +688,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 
 	// check to make sure they are same type
 	TCHAR name[MAX_PATH];
-	BOOL bLeftIsDir=CFile::GetStatus(strLeft, status) && (status.m_attribute & CFile::Attribute::directory);
-	BOOL bRightIsDir = CFile::GetStatus(strRight, status) && (status.m_attribute & CFile::Attribute::directory);
+	BOOL bLeftIsDir = GetFileAttributes(strLeft)&FILE_ATTRIBUTE_DIRECTORY;
+	BOOL bRightIsDir = GetFileAttributes(strRight)&FILE_ATTRIBUTE_DIRECTORY;
 	if (bLeftIsDir && !bRightIsDir)
 	{
 		split_filename(strRight, NULL, name, NULL);
@@ -873,7 +873,7 @@ void CMainFrame::OnViewSelectfont()
 
 void CMainFrame::GetFontProperties()
 {
-	m_lfDiff.lfHeight = theApp.GetProfileInt(_T("Font"), _T("Height"), 10);
+	m_lfDiff.lfHeight = theApp.GetProfileInt(_T("Font"), _T("Height"), -16);
 	m_lfDiff.lfWidth = theApp.GetProfileInt(_T("Font"), _T("Width"), 0);
 	m_lfDiff.lfEscapement = theApp.GetProfileInt(_T("Font"), _T("Escapement"), 0);
 	m_lfDiff.lfOrientation = theApp.GetProfileInt(_T("Font"), _T("Orientation"), 0);
@@ -882,11 +882,11 @@ void CMainFrame::GetFontProperties()
 	m_lfDiff.lfUnderline = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Underline"), FALSE);
 	m_lfDiff.lfStrikeOut = (BYTE)theApp.GetProfileInt(_T("Font"), _T("StrikeOut"), FALSE);
 	m_lfDiff.lfCharSet = (BYTE)theApp.GetProfileInt(_T("Font"), _T("CharSet"), ANSI_CHARSET);
-	m_lfDiff.lfOutPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("OutPrecision"), OUT_TT_PRECIS);
-	m_lfDiff.lfClipPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("ClipPrecision"), CLIP_TT_ALWAYS);
-	m_lfDiff.lfQuality = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Quality"), DEFAULT_QUALITY);
-	m_lfDiff.lfPitchAndFamily = (BYTE)theApp.GetProfileInt(_T("Font"), _T("PitchAndFamily"), FF_SWISS | DEFAULT_PITCH);
-	_tcscpy(m_lfDiff.lfFaceName, theApp.GetProfileString(_T("Font"), _T("FaceName"), _T("MS Sans Serif")));
+	m_lfDiff.lfOutPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("OutPrecision"), OUT_STRING_PRECIS);
+	m_lfDiff.lfClipPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("ClipPrecision"), CLIP_STROKE_PRECIS);
+	m_lfDiff.lfQuality = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Quality"), DRAFT_QUALITY);
+	m_lfDiff.lfPitchAndFamily = (BYTE)theApp.GetProfileInt(_T("Font"), _T("PitchAndFamily"), FF_MODERN | FIXED_PITCH);
+	_tcscpy(m_lfDiff.lfFaceName, theApp.GetProfileString(_T("Font"), _T("FaceName"), _T("Courier")));
 }
 
 void CMainFrame::OnViewUsedefaultfont() 
