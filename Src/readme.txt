@@ -1,5 +1,5 @@
 2004-06-06 Laoran
- update for MergeSwedish.rc ; contribution from Hans Ericson
+ update for MergeSwedish.rc ; contribution from Hans Eriksson
   Language/Swedish: MergeSwedish.rc
 
 2004-06-04 WinMerge experimental release 2.1.7.6 (cvs)
@@ -431,7 +431,7 @@
 2004-05-08 WinMerge experimental release 2.1.7.2 (cvs)
 
 2004-05-07 Laoran
- update for MergeSwedish.rc ; contribution from Hans Ericson
+ update for MergeSwedish.rc ; contribution from Hans Eriksson
   Language/Swedish: MergeSwedish.rc
 
 2004-05-07 Kimmo
@@ -629,7 +629,7 @@
 
 2004-04-20 Laoran
  updated swedish translation
-  Submitted by Hans Ericson <hans.ericson@bredband.net>
+  Submitted by Hans Eriksson <hans.ericson@bredband.net>
   Languages/Swedish: MergeSwedish.rc
 
 2004-04-20 Laoran
@@ -697,7 +697,7 @@
 
 2004-04-16 Laoran
  updated swedish translation
-  Submitted by Hans Ericson <hans.ericson@bredband.net>
+  Submitted by Hans Eriksson <hans.ericson@bredband.net>
   Languages/Swedish: MergeSwedish.rc
 
 2004-04-16 Kimmo
