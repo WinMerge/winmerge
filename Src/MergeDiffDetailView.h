@@ -116,8 +116,10 @@ protected:
 	//{{AFX_MSG(CMergeDiffDetailView)
 	afx_msg void OnRefresh();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
-	afx_msg void OnShowlinediff();
-	afx_msg void OnUpdateShowlinediff(CCmdUI* pCmdUI);
+	afx_msg void OnShowlineworddiff();
+	afx_msg void OnShowlinechardiff();
+	afx_msg void OnUpdateShowlineworddiff(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateShowlinechardiff(CCmdUI* pCmdUI);
 	afx_msg void OnChangePane();
 	afx_msg void OnUpdateChangePane(CCmdUI* pCmdUI);
 	//}}AFX_MSG

@@ -251,10 +251,11 @@ public:
 
 // Implementation in MergeDocLineDiffs.cpp
 public:
-	void Showlinediff(CMergeEditView * pView);
-	void Showlinediff(CMergeDiffDetailView * pView);
+	typedef enum { BYTEDIFF, WORDDIFF } DIFFLEVEL;
+	void Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl);
+	void Showlinediff(CMergeDiffDetailView * pView, DIFFLEVEL difflvl);
 private:
-	void Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther, int line, CRect * rc1, CRect * rc2);
+	void Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther, int line, CRect * rc1, CRect * rc2, DIFFLEVEL difflvl);
 // End MergeDocLineDiffs.cpp
 
 // Implementation

@@ -39,4 +39,9 @@ void stringdiffs_Get(const CString & str1, const CString & str2,
                    bool case_sensitive, int whitespace,
                    wdiffarray * pDiffs);
 
+void sd_ComputeByteDiff(CString & str1, CString & str2, 
+			bool casitive, int xwhite, 
+			int &begin1, int &begin2, int &end1, int &end2);
+
+
 #endif // stringdiffs_h_included

@@ -52,8 +52,10 @@ BEGIN_MESSAGE_MAP(CMergeDiffDetailView, CCrystalTextView)
 	//{{AFX_MSG_MAP(CMergeDiffDetailView)
 	ON_WM_SIZE()
 	ON_COMMAND(ID_REFRESH, OnRefresh)
-	ON_COMMAND(ID_SHOWLINEDIFF, OnShowlinediff)
-	ON_UPDATE_COMMAND_UI(ID_SHOWLINEDIFF, OnUpdateShowlinediff)
+	ON_COMMAND(ID_SHOWLINEWORDDIFF, OnShowlineworddiff)
+	ON_COMMAND(ID_SHOWLINECHARDIFF, OnShowlinechardiff)
+	ON_UPDATE_COMMAND_UI(ID_SHOWLINEWORDDIFF, OnUpdateShowlineworddiff)
+	ON_UPDATE_COMMAND_UI(ID_SHOWLINECHARDIFF, OnUpdateShowlinechardiff)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CHANGE_PANE, OnUpdateChangePane)
 	//}}AFX_MSG_MAP
@@ -516,18 +518,31 @@ BOOL CMergeDiffDetailView::PreTranslateMessage(MSG* pMsg)
 }
 
 /// Highlight difference in current line
-void CMergeDiffDetailView::OnShowlinediff() 
+void CMergeDiffDetailView::OnShowlineworddiff() 
 {
 	// Pass this to the document, to compare this file to other
-	GetDocument()->Showlinediff(this);
+	GetDocument()->Showlinediff(this, CMergeDoc::WORDDIFF);
+}
+
+/// Highlight difference in current line
+void CMergeDiffDetailView::OnShowlinechardiff() 
+{
+	// Pass this to the document, to compare this file to other
+	GetDocument()->Showlinediff(this, CMergeDoc::BYTEDIFF);
 }
 
 /// Enable highlight menuitem if current line is flagged as having a difference
-void CMergeDiffDetailView::OnUpdateShowlinediff(CCmdUI* pCmdUI) 
+void CMergeDiffDetailView::OnUpdateShowlineworddiff(CCmdUI* pCmdUI) 
 {
 	int line = GetCursorPos().y;
 	BOOL enable = GetLineFlags(line) & LF_DIFF;
 	pCmdUI->Enable(enable);
+}
+
+/// Enable highlight menuitem if current line is flagged as having a difference
+void CMergeDiffDetailView::OnUpdateShowlinechardiff(CCmdUI* pCmdUI) 
+{
+	OnUpdateShowlineworddiff(pCmdUI);
 }
 
 void CMergeDiffDetailView::PushCursors()

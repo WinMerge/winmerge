@@ -65,10 +65,10 @@ HighlightDiffRect(CMergeDiffDetailView * pView, const CRect & rc)
 /**
  * @brief Highlight difference in current line (left & right panes)
  */
-void CMergeDoc::Showlinediff(CMergeEditView * pView)
+void CMergeDoc::Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl)
 {
 	CRect rc1, rc2;
-	Computelinediff(m_pLeftView, m_pRightView, pView->GetCursorPos().y, &rc1, &rc2);
+	Computelinediff(m_pLeftView, m_pRightView, pView->GetCursorPos().y, &rc1, &rc2, difflvl);
 
 	if (rc1.top == -1 && rc2.top == -1)
 	{
@@ -88,10 +88,10 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView)
 /**
  * @brief Highlight difference in diff bar's current line (top & bottom panes)
  */
-void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView)
+void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView, DIFFLEVEL difflvl)
 {
 	CRect rc1, rc2;
-	Computelinediff(m_pLeftDetailView, m_pRightDetailView, pView->GetCursorPos().y, &rc1, &rc2);
+	Computelinediff(m_pLeftDetailView, m_pRightDetailView, pView->GetCursorPos().y, &rc1, &rc2, difflvl);
 
 	if (rc1.top == -1 && rc2.top == -1)
 	{
@@ -163,7 +163,7 @@ ComputeHighlightRects(const wdiffarray & worddiffs, int whichdiff, int line, int
 /**
  * @brief Returns rectangles to highlight in both views (to show differences in line specified)
  */
-void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pView2, int line, CRect * rc1, CRect * rc2)
+void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pView2, int line, CRect * rc1, CRect * rc2, DIFFLEVEL difflvl)
 {
 	// Local statics are used so we can cycle through diffs in one line
 	// We store previous state, both to find next state, and to verify
@@ -173,8 +173,8 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	static CRect lastRc1, lastRc2;
 	static int whichdiff=-2; // last diff highlighted (-2==none, -1=whole line)
 
-	// Only remember place in cycle if same line and same view
-	if (lastView != pView1 || lastLine != line)
+	// Only remember place in cycle if same line and same view (and not doing bytelevel)
+	if (lastView != pView1 || lastLine != line || difflvl==BYTEDIFF)
 	{
 		lastView = pView1;
 		lastLine = line;
@@ -208,10 +208,26 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 			str2 = str2.Left(i+1);
 	}
 
+	// We truncate diffs to remain inside line (ie, to not flag eol characters)
+	int width1 = pView1->GetLineLength(line);
+	int width2 = pView2->GetLineLength(line);
+
+	// Options that affect comparison
+	bool casitive = !diffOptions.bIgnoreCase;
+	int xwhite = diffOptions.nIgnoreWhitespace;
+
+	if (difflvl==BYTEDIFF)
+	{
+		int begin1=-1, end1=-1, begin2=-1, end2=-1;
+		sd_ComputeByteDiff(str1, str2, casitive, xwhite, begin1, begin2, end1, end2);
+		SetLineHighlightRect(begin1, end1, line, width1, rc1);
+		SetLineHighlightRect(begin2, end2, line, width2, rc2);
+		return;
+	}
+
 	// Make the call to stringdiffs, which does all the hard & tedious computations
-	bool case_sensitive = !diffOptions.bIgnoreCase;
 	wdiffarray worddiffs;
-	stringdiffs_Get(str1, str2, case_sensitive, diffOptions.nIgnoreWhitespace, &worddiffs);
+	stringdiffs_Get(str1, str2, casitive, xwhite, &worddiffs);
 
 	if (!worddiffs.GetSize())
 	{
@@ -220,10 +236,6 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 		rc2->top = -1;
 		return;
 	}
-
-	// We truncate diffs to remain inside line (ie, to not flag eol characters)
-	int width1 = pView1->GetLineLength(line);
-	int width2 = pView2->GetLineLength(line);
 
 	// Are we continuing a cycle from the same place ?
 	if (whichdiff >= worddiffs.GetSize())

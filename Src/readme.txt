@@ -1,3 +1,9 @@
+2004-10-22 Perry
+ PATCH: [ 966908 ] find byte difference in line
+ Src: Merge.rc MergeDiffDetailView.cpp MergeDiffDetailView.h
+  MergeDoc.h MergeDocLineDiffs.cpp MergeEditView.cpp
+  MergeEditView.h resource.h stringdiffs.cpp stringdiffs.h
+
 2004-10-19 Perry
  PATCH: [ 1049688 ] Fix caret handling of displayable whitespace
  Src/editlib: ccrystaltextview.cpp

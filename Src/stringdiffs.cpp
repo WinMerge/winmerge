@@ -8,6 +8,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <mbctype.h>
 #include "stringdiffs.h"
 
 class stuff {
@@ -21,7 +22,7 @@ class stuff {
 static char THIS_FILE[] = __FILE__;
 #endif
 
-static bool isWhitespace(TCHAR ch);
+static bool isSafeWhitespace(TCHAR ch);
 
 /**
  * @brief Construct our worker object and tell it to do the work
@@ -73,7 +74,7 @@ insame:
 		int i2 = (w2>0 ? m_words2[w2-1].end+1 : 0); // after end of word before w2
 		// Done, but handle trailing spaces
 		while (i1 < m_str1.GetLength() && i2 < m_str2.GetLength()
-			&& isWhitespace(m_str1[i1]) && isWhitespace(m_str2[i2]))
+			&& isSafeWhitespace(m_str1[i1]) && isSafeWhitespace(m_str2[i2]))
 		{
 			if (m_whitespace==0)
 			{
@@ -303,7 +304,7 @@ stringdiffs::BuildWordsArray(const CString & str, wordarray * words)
 inspace:
 	if (i==str.GetLength())
 		return;
-	if (isWhitespace(str[i])) 
+	if (isSafeWhitespace(str[i])) 
 	{
 		++i;
 		goto inspace;
@@ -313,7 +314,7 @@ inspace:
 
 	// state when we are inside a word
 inword:
-	if (i==str.GetLength() || isWhitespace(str[i]))
+	if (i==str.GetLength() || isSafeWhitespace(str[i]))
 	{
 		if (begin<i)
 		{
@@ -425,11 +426,262 @@ stringdiffs::caseMatch(TCHAR ch1, TCHAR ch2) const
 }
 
 /**
- * @brief Return true if character meets our definition for whitespace
+ * @brief Return true if chars match
+ *
+ * Caller must not call this for lead bytes
  */
 static bool
-isWhitespace(TCHAR ch)
+matchchar(TCHAR ch1, TCHAR ch2, bool casitive)
 {
-	// Actually, we just use the C run time library :)
-	return !!_istspace(ch); 
+	if (casitive)
+		return ch1==ch2;
+	else 
+		return _totupper(ch1)==_totupper(ch2);
+}
+
+
+// Does character introduce a multicharacter character?
+inline bool IsLeadByte(TCHAR ch)
+#ifdef UNICODE
+{
+	return false;
+}
+#else
+{
+	return _getmbcp() && IsDBCSLeadByte(ch);
+}
+#endif
+
+/**
+ * @brief Is it whitespace (excludes all lead & trail bytes)
+ */
+static bool
+isSafeWhitespace(TCHAR ch)
+{
+	return xisspace(ch) && !IsLeadByte(ch);
+}
+
+/**
+ * @brief Return pointer to last character of specified string (handle MBCS)
+ *
+ * If the last byte is a broken multibyte (ie, a solo lead byte), this returns previous char
+ */
+static LPCTSTR
+LastChar(LPCTSTR psz, int len)
+{
+	if (!len) return psz;
+
+	if (!_getmbcp()) return psz+len-1;
+
+	LPCTSTR lastValid = psz+len-1;
+
+	LPCTSTR prev;
+	while (psz<lastValid)
+	{
+		prev = psz;
+		psz = CharNext(psz);
+	}
+	if (psz==lastValid && !IsLeadByte(*psz))
+		return psz;
+	else // last character was multibyte or broken multibyte
+		return prev;
+}
+
+/**
+ * @brief Compute begin1,begin2,end1,end2 to display byte difference between strings str1 & str2
+ *
+ * Assumes whitespace is never leadbyte or trailbyte!
+ */
+void
+sd_ComputeByteDiff(CString & str1, CString & str2, 
+		   bool casitive, int xwhite, 
+		   int &begin1, int &begin2, int &end1, int &end2)
+{
+	// Set to sane values
+	// Also this way can distinguish if we set begin1 to -1 for no diff in line
+	begin1 = end1 = begin2 = end2 = 0;
+
+	int len1 = str1.GetLength();
+	int len2 = str2.GetLength();
+
+	LPCTSTR pbeg1 = (LPCTSTR)str1;
+	LPCTSTR pbeg2 = (LPCTSTR)str2;
+
+	// cursors from front, which we advance to beginning of difference
+	LPCTSTR py1 = pbeg1;
+	LPCTSTR py2 = pbeg2;
+
+	// pen1,pen2 point to the last valid character (broken multibyte lead chars don't count)
+	LPCTSTR pen1 = LastChar(py1, len1);
+	LPCTSTR pen2 = LastChar(py2, len2);
+
+	if (xwhite)
+	{
+		while (py1 < pen1 && isSafeWhitespace(*py1))
+			++py1; // DBCS safe because of isSafeWhitespace above
+		while (py2 < pen2 && isSafeWhitespace(*py2))
+			++py2; // DBCS safe because of isSafeWhitespace above
+		if ((pen1 < pbeg1 + len1 - 1 || pen2 < pbeg2 + len2 -1)
+			&& (!len1 || !len2 || pbeg1[len1] != pbeg2[len2]))
+		{
+			// mismatched broken multibyte ends
+		}
+		else
+		{
+			while (pen1 > py1 && isSafeWhitespace(*pen1))
+				pen1 = CharPrev(py1, pen1);
+			while (pen2 > py2 && isSafeWhitespace(*pen2))
+				pen2 = CharPrev(py2, pen2);
+		}
+	}
+
+	bool alldone = false;
+	// Advance over matching beginnings of lines
+	// Advance py1 & py2 from beginning until find difference or end
+	while (1)
+	{
+		// Check if either side finished
+		if (py1 > pen1 && py2 > pen2)
+		{
+			begin1 = end1 = begin2 = end2 = -1;
+			alldone = true;
+			break;
+		}
+		if (py1 > pen1 || py2 > pen2)
+		{
+			alldone = true;
+			break;
+		}
+
+		// handle all the whitespace logic (due to WinMerge whitespace settings)
+		if (xwhite && isSafeWhitespace(*py1))
+		{
+			if (xwhite==1 && !isSafeWhitespace(*py2))
+				break; // done with forward search
+			// gobble up all whitespace in current area
+			while (py1 < pen1 && isSafeWhitespace(*py1))
+				++py1; // DBCS safe because of isSafeWhitespace above
+			while (py2 < pen2 && isSafeWhitespace(*py2))
+				++py2; // DBCS safe because of isSafeWhitespace above
+			continue;
+
+		}
+		if (xwhite && isSafeWhitespace(*py2))
+		{
+			if (xwhite==1)
+				break; // done with forward search
+			while (py2 < pen2 && isSafeWhitespace(*py2))
+				++py2; // multibyte safe because of isSafeWhitespace above
+			continue;
+		}
+
+		// Now do real character match
+		if (IsLeadByte(*py1))
+		{
+			if (!IsLeadByte(*py2))
+				break; // done with forward search
+			// DBCS (we assume if a lead byte, then character is 2-byte)
+			if (!(py1[0] == py2[0] && py1[1] == py2[1]))
+				break; // done with forward search
+			py1 += 2; // DBCS specific
+			py2 += 2; // DBCS specific
+		}
+		else
+		{
+			if (IsLeadByte(*py2))
+				break; // done with forward search
+			if (!matchchar(py1[0], py2[0], casitive))
+				break; // done with forward search
+			++py1; // DBCS safe b/c we checked above
+			++py2; // DBCS safe b/c we checked above
+		}
+
+	}
+
+
+	// Store results of advance into return variables (begin1 & begin2)
+	// -1 in a begin variable means no visible diff area
+	begin1 = (py1 > pen1) ? -1 : (py1 - pbeg1);
+	begin2 = (py2 > pen2) ? -1 : (py2 - pbeg2);
+
+	if (!alldone)
+	{
+		LPCTSTR pz1 = pen1;
+		LPCTSTR pz2 = pen2;
+
+		// Retreat over matching ends of lines
+		// Retreat pz1 & pz2 from end until find difference or beginning
+		while (1)
+		{
+			// Check if either side finished
+			if (pz1 < py1 && pz2 < py2)
+			{
+				begin1 = end1 = begin2 = end2 = -1;
+				break;
+			}
+			if (pz1 < py1 || pz2 < py2)
+			{
+				break;
+			}
+
+			// handle all the whitespace logic (due to WinMerge whitespace settings)
+			if (xwhite && isSafeWhitespace(*pz1))
+			{
+				if (xwhite==1 && !isSafeWhitespace(*pz2))
+					break; // done with reverse search
+				// gobble up all whitespace in current area
+				while (pz1 > py1 && isSafeWhitespace(*pz1))
+					pz1 = CharPrev(py1, pz1);
+				while (pz2 > py2 && isSafeWhitespace(*pz2))
+					pz2 = CharPrev(py2, pz2);
+				continue;
+
+			}
+			if (xwhite && isSafeWhitespace(*pz2))
+			{
+				if (xwhite==1)
+					break; // done with reverse search
+				while (pz2 > py2 && isSafeWhitespace(*pz2))
+					pz2 = CharPrev(py1, pz2);
+				continue;
+			}
+
+			// Now do real character match
+			if (IsLeadByte(*pz1))
+			{
+				if (!IsLeadByte(*pz2))
+					break; // done with forward search
+				// DBCS (we assume if a lead byte, then character is 2-byte)
+				if (!(pz1[0] == pz2[0] && pz1[1] == pz2[1]))
+					break; // done with forward search
+				pz1 = CharPrev(py1, pz1);
+				pz2 = CharPrev(py2, pz2);
+			}
+			else
+			{
+				if (IsLeadByte(*pz2))
+					break; // done with forward search
+				if (!matchchar(pz1[0], pz2[0], casitive))
+					break; // done with forward search
+				pz1 = CharPrev(pbeg1, pz1);
+				pz2 = CharPrev(pbeg2, pz2);
+			}
+
+		}
+
+		// Store results of advance into return variables (end1 & end2)
+		if (pz1 < pbeg1)
+			begin1 = -1; // no visible diff in line 1
+		else
+			end1 = pz1 - pbeg1;
+		if (pz2 < pbeg2)
+			begin2 = -1; // no visible diff in line 2
+		else
+			end2 = pz2 - pbeg2;
+		
+	}
+
+	// Check if difference region was empty
+	if (begin1 >= end1 && begin2 >= end2)
+		begin1 = -1; // no diff
 }

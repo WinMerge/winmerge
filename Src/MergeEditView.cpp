@@ -127,8 +127,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_RIGHT, OnUpdateFileSaveRight)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
-	ON_COMMAND(ID_SHOWLINEDIFF, OnShowlinediff)
-	ON_UPDATE_COMMAND_UI(ID_SHOWLINEDIFF, OnUpdateShowlinediff)
+	ON_COMMAND(ID_SHOWLINEWORDDIFF, OnShowlineworddiff)
+	ON_COMMAND(ID_SHOWLINECHARDIFF, OnShowlinechardiff)
+	ON_UPDATE_COMMAND_UI(ID_SHOWLINEWORDDIFF, OnUpdateShowlineworddiff)
+	ON_UPDATE_COMMAND_UI(ID_SHOWLINECHARDIFF, OnUpdateShowlinechardiff)
 	ON_WM_CONTEXTMENU()
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
 	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
@@ -1608,18 +1610,31 @@ OnUpdateCaret()
 }
 
 /// Highlight difference in current line
-void CMergeEditView::OnShowlinediff()
+void CMergeEditView::OnShowlineworddiff()
 {
 	// Pass this to the document, to compare this file to other
-	GetDocument()->Showlinediff(this);
+	GetDocument()->Showlinediff(this, CMergeDoc::WORDDIFF);
+}
+
+/// Highlight difference in current line
+void CMergeEditView::OnShowlinechardiff()
+{
+	// Pass this to the document, to compare this file to other
+	GetDocument()->Showlinediff(this, CMergeDoc::BYTEDIFF);
 }
 
 /// Enable highlight menuitem if current line is flagged as having a difference
-void CMergeEditView::OnUpdateShowlinediff(CCmdUI* pCmdUI)
+void CMergeEditView::OnUpdateShowlineworddiff(CCmdUI* pCmdUI)
 {
 	int line = GetCursorPos().y;
 	BOOL enable = GetLineFlags(line) & LF_DIFF;
 	pCmdUI->Enable(enable);
+}
+
+/// Enable highlight menuitem if current line is flagged as having a difference
+void CMergeEditView::OnUpdateShowlinechardiff(CCmdUI* pCmdUI)
+{
+	OnUpdateShowlineworddiff(pCmdUI);
 }
 
 /**
