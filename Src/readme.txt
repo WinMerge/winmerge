@@ -2,6 +2,8 @@
  Get first selected file from directory compare to
   Patch Generate dialog
   WinMerge: MainFrm.cpp
+ BUG: [ 813557 ] Selection not visible after find
+  editlib: cfindtextdlg.cpp
 
 2003-10-15 Kimmo
  PATCH: [ 823382 ] Save As should update filename

@@ -119,7 +119,12 @@ void CFindTextDlg::OnOK ()
           return;
         }
 
-      m_pBuddy->HighlightText (ptTextPos, m_pBuddy->m_nLastFindWhatLen, (dwSearchFlags & FIND_DIRECTION_UP) != 0);
+      // Goto begin of selection if scrolling happens to left
+      BOOL bReverse = FALSE;
+      if (ptTextPos.x < m_ptCurrentPos.x)
+        bReverse = TRUE;
+        
+      m_pBuddy->HighlightText (ptTextPos, m_pBuddy->m_nLastFindWhatLen, bReverse);
 
       CDialog::OnOK ();
     }
