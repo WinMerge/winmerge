@@ -53,6 +53,9 @@
         <para><guilabel>EOL</guilabel> : current line EOL style (shown only when <guilabel>Preserve original EOL chars</guilabel>-option is enabled)</para>
       </listitem>
     </itemizedlist>
+    <note>
+      <para><guilabel>Col</guilabel> counts <keycap>TAB</keycap> as <replaceable>X</replaceable> chars (as defined in editor options) and <guilabel>Ch</guilabel> counts <keycap>TAB</keycap> as one.</para>
+    </note>
     <para>Next two panes show <guilabel>RO</guilabel> if file is protected and file's EOL style ("<guilabel>DOS</guilabel>/<guilabel>UNIX</guilabel>/<guilabel>MAC</guilabel>"). Note these two different ways to show EOL style. When per-line EOL style is not remembered, EOL style is shown on own pane in statusbar. And when per-line EOL style is remembered line's EOL style is shown after char number. When per-line EOL style is used there is no file-wide EOL style.</para>
     <para>Difference between column and char is that column counts tabulator chararcter as so many (space) chars as it occupies (4 by default, can be changed from options). But char count counts tabulator char as one char.</para>
     <para>Lower line in statusbar shows current difference and amount of differences. Text can be:<itemizedlist>
