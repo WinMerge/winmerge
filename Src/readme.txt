@@ -1,3 +1,7 @@
+2005-02-21 Kimmo
+ Update Docbook instructions in devel doc (path changed in sf.net)
+  Docs/Developers: readme-developers.html
+
 2005-02-20 Perry
  BUG [ 1144978 ] No languages available in development
   Fix CopyAll.bat, and cosmetic changes to LanguageSelect.*

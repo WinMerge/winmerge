@@ -379,7 +379,7 @@ which can now be used to compile language files:
 Compiled language files (*.lang) are placed in <code>/WinMerge/Src/Languages/Dll</code> .
 
 <h5>Forcing compiler version with MakeResDll</h5>
-If MakeResDll does not work, and you wish to force it to use the compiler (resource compiler and linker) 
+If MakeResDll does not work, and you wish to force it to use the compiler (resource compiler and linker)
 of your choice, there are registry settings to accomplish this. Perry added these because he has been
 unable to get MakeResDll link successfully using VS.NET 2003, due to it failing to find mspdb71.dll at runtime. To force use of the
 Visual C++ 6 binaries, assuming Visual C++ 6 is correctly installed, set
@@ -444,16 +444,26 @@ Useful DocBook resources:
 <a href="http://www.docbook.org/wiki/moin.cgi/">DocBook Wiki</a>
 
 <p>
-Installing tools needed:<br>
+Installing conversion tools needed:<br>
+<ul><li>
+The hard way: <code>libxml</code> and <code>xsltproc</code><br>
 <a href="http://supportweb.cs.bham.ac.uk/documentation/tutorials/docsystem/build/tutorials/docbooksys/segmentedhtml/">Good instructions</a>
 <br>
 Read ch 3. about how to install Windows environment. Note that only libxml and
 DocBook DTD are needed for creating HTML documentation.
 <br>
 <a href="ftp://ftp.zlatkovic.com/pub/libxml/">libxml download</a><br>
-There is also eDE <a href="http://docbook.e-novative.de/">http://docbook.e-novative.de/</a>
+</li><li>
+Easier with complete command-line environment:<br>
+eDE <a href="http://docbook.e-novative.de/">http://docbook.e-novative.de/</a>
 which is easy to setup environment for DocBook, and its GPL.
-
+</li><li>
+<a href="http://www.cygwin.com//">cygwin</a> contains needed tools too!<br>
+<a href="http://ourworld.compuserve.com/homepages/hoenicka_markus/cygbook1.html">
+long manual for cygwin and XML</a><br>
+<a href="http://www.coin-or.org/Clp/userguide/howto/docbook4clp.html">
+Shorter and easier manual for cygwin and docbook</a>
+</li></ul>
 
 <p>
 Docbook support in SourceForge<br>
@@ -478,6 +488,7 @@ So if possible, make sure your DocBook is well formed before submitting document
 patches.
 <p>
 See these tutorials for editing DocBook:
+<br>
 <a href="http://newbiedoc.sourceforge.net/metadoc/docbook-guide.html.en">NewbieDoc
 DocBook guide</a><br>
 <a href="http://www.codeproject.com/winhelp/docbook_howto.asp">Creating HTML
@@ -499,10 +510,11 @@ file and subdirectories to shell server. Then in directory which contains XML
 files, type:<br>
 <b><code>docbook2html -d Manual-html.dsl WinMerge_help.xml</code></b><br>
 <b>Note:</b>
-Seems that now also <code>-l /usr/share/sgml/xml.dcl</code> switch is needed. So
-commandline that works (2004-09-13) is:<br>
-<b><code>docbook2html -l /usr/share/sgml/xml.dcl -d Manual-html.dsl WinMerge_help.xml
-</code></b>
+Seems that Sourceforge.net has blocked access to outside world from shell, so to generate
+docs one needs to replace <code>docbook.dtd</code> location in <code>WinMerge_help.xml</code> with
+local path. Replace url in second line <code>"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+</code> with valid path. At the moment it is:
+<code>"/usr/share/sgml/docbook/sgml-dtd-4.2-1.0-17/docbook.dtd"</code>
 
 <a name="Logging"></a>
 <h3>Logging</h3>
