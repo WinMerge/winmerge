@@ -536,11 +536,11 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 			// delete only on destination side since rescan will clear the other side
 			if(cd_blank==0)
 			{
-				dbuf.DeleteText(curView, cd_blank, 0, cd_dend+1, 0, CE_ACTION_DELETE);
+				dbuf.DeleteText(curView, cd_blank, 0, cd_dend+1, 0, CE_ACTION_MERGE);
 			}
 			else
 			{
-				dbuf.DeleteText(curView, cd_blank-1, dbuf.GetLineLength(cd_blank-1), cd_dend, dbuf.GetLineLength(cd_dend), CE_ACTION_DELETE);
+				dbuf.DeleteText(curView, cd_blank-1, dbuf.GetLineLength(cd_blank-1), cd_dend, dbuf.GetLineLength(cd_dend), CE_ACTION_MERGE);
 			}
 			deleted_lines=cd_dend-cd_blank+1;
 
@@ -557,7 +557,7 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 			// text exists on left side, so just replace
 			strLine = _T("");
 			sbuf.GetFullLine(i, strLine);
-			dbuf.ReplaceFullLine(curView, i, strLine);
+			dbuf.ReplaceFullLine(curView, i, strLine, CE_ACTION_MERGE);
 			dbuf.FlushUndoGroup(curView);
 			dbuf.BeginUndoGroup(TRUE);
 		}
@@ -1146,13 +1146,13 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 }
 
 /// Replace text of line (no change to eol)
-void CMergeDoc::CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLine, const CString &strText)
+void CMergeDoc::CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLine, const CString &strText, int nAction /*=CE_ACTION_UNKNOWN*/)
 {
 	if (GetLineLength(nLine)>0)
-		DeleteText(pSource, nLine, 0, nLine, GetLineLength(nLine));
+		DeleteText(pSource, nLine, 0, nLine, GetLineLength(nLine), nAction);
 	int endl,endc;
 	if (! strText.IsEmpty())
-		InsertText(pSource, nLine, 0, strText, endl,endc);
+		InsertText(pSource, nLine, 0, strText, endl,endc, nAction);
 }
 
 /// Return pointer to the eol chars of this string, or pointer to empty string if none
@@ -1166,7 +1166,7 @@ LPCTSTR getEol(const CString &str)
 }
 
 /// Replace line (removing any eol, and only including one if in strText)
-void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString &strText)
+void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString &strText, int nAction /*=CE_ACTION_UNKNOWN*/)
 {
 	if (_tcscmp(GetLineEol(nLine), getEol(strText)) == 0)
 	{
@@ -1174,19 +1174,19 @@ void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int
 		// we must clean strText from its eol...
 		CString strTextWithoutEol = strText;
 		strTextWithoutEol.Delete(strTextWithoutEol.GetLength() - _tcslen(getEol(strTextWithoutEol)), 2);
-		ReplaceLine(pSource, nLine, strTextWithoutEol);
+		ReplaceLine(pSource, nLine, strTextWithoutEol, nAction);
 		return;
 	}
 
-	// we may need a last line to delete 
+	// we may need a last line as the DeleteText end is (x=0,y=line+1)
 	if (nLine+1 == GetLineCount())
 		InsertGhostLine (pSource, GetLineCount());
 
 	if (GetFullLineLength(nLine))
-		DeleteText(pSource, nLine, 0, nLine+1, 0); 
+		DeleteText(pSource, nLine, 0, nLine+1, 0, nAction); 
 	int endl,endc;
 	if (! strText.IsEmpty())
-		InsertText(pSource, nLine, 0, strText, endl,endc);
+		InsertText(pSource, nLine, 0, strText, endl,endc, nAction);
 }
 
 /// Determine path for temporary files and init those files

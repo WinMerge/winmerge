@@ -1328,6 +1328,8 @@ ReplaceSelection (LPCTSTR pszNewText, DWORD dwFlags)
   if (!IsSelection ())
     return FALSE;*/
 
+  m_pTextBuffer->BeginUndoGroup();
+
   CPoint ptCursorPos;
   if (IsSelection ())
     {
@@ -1340,8 +1342,7 @@ ReplaceSelection (LPCTSTR pszNewText, DWORD dwFlags)
       SetCursorPos (ptCursorPos);
       EnsureVisible (ptCursorPos);*/
 
-      // [JRT]:
-      m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_REPLACE, FALSE);
+      m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_REPLACE);
     }
   else
     ptCursorPos = GetCursorPos ();
@@ -1363,16 +1364,19 @@ ReplaceSelection (LPCTSTR pszNewText, DWORD dwFlags)
             }
           else
             text.Empty ();
-          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, y, x, CE_ACTION_REPLACE, FALSE);  //  [JRT+FRD]
+          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, y, x, CE_ACTION_REPLACE);  //  [JRT+FRD]
           if (lpszNewStr)
             free(lpszNewStr);
         }
     }
   else
     {
-      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszNewText, y, x, CE_ACTION_REPLACE, FALSE);  //  [JRT]
+      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszNewText, y, x, CE_ACTION_REPLACE);  //  [JRT]
       m_nLastReplaceLen = _tcslen (pszNewText);
     }
+
+  m_pTextBuffer->FlushUndoGroup(this);
+
   CPoint ptEndOfBlock = CPoint (x, y);
   ASSERT_VALIDTEXTPOS (ptCursorPos);
   ASSERT_VALIDTEXTPOS (ptEndOfBlock);

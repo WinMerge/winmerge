@@ -1,4 +1,9 @@
 2003-08-25 Laoran
+  [ 783507 ] normalize replaceSelection and ListCopy
+  WinMerge: GhostTextBuffer.cpp GhostTextBuffer.h MergeDoc.cpp MergeDoc.h
+  editlib : ccrystaleditview.cpp ccrystaltextbuffer.cpp ccrystaltextbuffer.h
+
+2003-08-25 Laoran
   [ 794081 ] Error when dropping a column out of WinMerge
   WinMerge: DirView.cpp
   

@@ -245,7 +245,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 				{
 					VERIFY (CCrystalTextBuffer::DeleteText (pSource, 
 						apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x,
-						0, TRUE, FALSE));
+						0, FALSE));
 					ptCursorPos = apparent_ptStartPos;
 				}
 				else
@@ -284,7 +284,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 			int nEndLine, nEndChar;
 			VERIFY(CCrystalTextBuffer::InsertText (pSource, 
 				apparent_ptStartPos.y, apparent_ptStartPos.x, ur.GetText (), nEndLine, nEndChar, 
-				0, TRUE, FALSE));
+				0, FALSE));
 			ptCursorPos = m_ptLastChange;
 
 			// for the flags, the logic is nearly the same as in insertText
@@ -401,7 +401,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 		{
 			int nEndLine, nEndChar;
 			VERIFY(InsertText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x,
-				ur.GetText(), nEndLine, nEndChar, 0, TRUE, FALSE));
+				ur.GetText(), nEndLine, nEndChar, 0, FALSE));
 			ptCursorPos = m_ptLastChange;
 		}
 		else
@@ -412,7 +412,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 			ASSERT (lstrcmp (text, ur.GetText ()) == 0);
 #endif
 			VERIFY(DeleteText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, 
-				apparent_ptEndPos.y, apparent_ptEndPos.x, 0, TRUE, FALSE));
+				apparent_ptEndPos.y, apparent_ptEndPos.x, 0, FALSE));
 			ptCursorPos = apparent_ptStartPos;
 		}
 		m_nUndoPosition++;
@@ -543,7 +543,7 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 
 BOOL CGhostTextBuffer::
 InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
-            int &nEndLine, int &nEndChar, int nAction, BOOL bUpdate /*=TRUE*/, BOOL bHistory /*=TRUE*/)
+            int &nEndLine, int &nEndChar, int nAction, BOOL bHistory /*=TRUE*/)
 {
 	BOOL bGroupFlag = FALSE;
 	if (bHistory)
@@ -555,7 +555,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 		} 
 	}
 
-	if (!CCrystalTextBuffer::InsertText (pSource, nLine, nPos, pszText, nEndLine, nEndChar, nAction, bUpdate, bHistory))
+	if (!CCrystalTextBuffer::InsertText (pSource, nLine, nPos, pszText, nEndLine, nEndChar, nAction, bHistory))
 		return FALSE;
 
 	// set WinMerge flags
@@ -603,7 +603,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 		RecomputeRealityMapping();
 	}
 
-	RecomputeEOL (bUpdate? pSource:NULL, nLine, nEndLine);
+	RecomputeEOL (pSource, nLine, nEndLine);
 
 
 	if (bHistory == false)
@@ -623,7 +623,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 
 BOOL CGhostTextBuffer::
 DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
-            int nEndLine, int nEndChar, int nAction, BOOL bUpdate /*=TRUE*/, BOOL bHistory /*=TRUE*/)
+            int nEndLine, int nEndChar, int nAction, BOOL bHistory /*=TRUE*/)
 {
 	BOOL bGroupFlag = FALSE;
 	if (bHistory)
@@ -642,7 +642,7 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 
 	CString sTextToDelete;
 	GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
-	if (!CCrystalTextBuffer::DeleteText (pSource, nStartLine, nStartChar, nEndLine, nEndChar, nAction, bUpdate, bHistory))
+	if (!CCrystalTextBuffer::DeleteText (pSource, nStartLine, nStartChar, nEndLine, nEndChar, nAction, bHistory))
 		return FALSE;
 
 	OnNotifyLineHasBeenEdited(nStartLine);
@@ -665,7 +665,7 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 		RecomputeRealityMapping();
 	}
 
-	RecomputeEOL (bUpdate? pSource:NULL, nStartLine, nStartLine);
+	RecomputeEOL (pSource, nStartLine, nStartLine);
 
 
 	if (bHistory == false)

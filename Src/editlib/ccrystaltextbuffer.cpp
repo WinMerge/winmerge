@@ -1375,7 +1375,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
         {
           int nEndLine, nEndChar;
           VERIFY(InsertText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x,
-            ur.GetText(), nEndLine, nEndChar, 0, TRUE, FALSE));
+            ur.GetText(), nEndLine, nEndChar, 0, FALSE));
           ptCursorPos = m_ptLastChange;
         }
       else
@@ -1386,7 +1386,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
           ASSERT (lstrcmp (text, ur.GetText ()) == 0);
 #endif
           VERIFY(DeleteText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, 
-            apparent_ptEndPos.y, apparent_ptEndPos.x, 0, TRUE, FALSE));
+            apparent_ptEndPos.y, apparent_ptEndPos.x, 0, FALSE));
           ptCursorPos = apparent_ptStartPos;
         }
       m_nUndoPosition++;
@@ -1506,9 +1506,9 @@ LPCTSTR CCrystalTextBuffer::GetDefaultEol() const
 
 BOOL CCrystalTextBuffer::
 InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
-            int &nEndLine, int &nEndChar, int nAction, BOOL bUpdate /*=TRUE*/, BOOL bHistory /*=TRUE*/)
+            int &nEndLine, int &nEndChar, int nAction, BOOL bHistory /*=TRUE*/)
 {
-  if (!InternalInsertText (bUpdate? pSource:NULL, nLine, nPos, pszText, nEndLine, nEndChar))
+  if (!InternalInsertText (pSource, nLine, nPos, pszText, nEndLine, nEndChar))
     return FALSE;
 
   if (bHistory == false)
@@ -1531,12 +1531,12 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 
 BOOL CCrystalTextBuffer::
 DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
-            int nEndLine, int nEndChar, int nAction, BOOL bUpdate /*=TRUE*/, BOOL bHistory /*=TRUE*/)
+            int nEndLine, int nEndChar, int nAction, BOOL bHistory /*=TRUE*/)
 {
   CString sTextToDelete;
   GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
 
-  if (!InternalDeleteText (bUpdate? pSource:NULL, nStartLine, nStartChar, nEndLine, nEndChar))
+  if (!InternalDeleteText (pSource, nStartLine, nStartChar, nEndLine, nEndChar))
     return FALSE;
 
   if (bHistory == false)

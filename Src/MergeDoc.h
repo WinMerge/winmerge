@@ -37,9 +37,18 @@
 #include "afxtempl.h"
 #include "DiffWrapper.h"
 
+
+/**
+ * @brief additionnal action code for WinMerge (reserve 100 first codes for CrystalEdit)
+ */enum
+{
+	CE_ACTION_MERGE = 100,
+};
+
 /**
  * @brief Return statuses of file rescan
  */
+
 enum
 {
 	RESCAN_OK = 0,
@@ -88,8 +97,8 @@ public :
 		virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
                         LPCTSTR pszText, int flags, int nActionType = CE_ACTION_UNKNOWN);
 		bool curUndoGroup();
-		void ReplaceLine(CCrystalTextView * pSource, int nLine, const CString& strText);
-		void ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString& strText);
+		void ReplaceLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
+		void ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 
 		BOOL LoadFromFile(LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
 		BOOL SaveToFile (LPCTSTR pszFileName, BOOL bTempFile,
