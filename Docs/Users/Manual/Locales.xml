@@ -2,7 +2,7 @@
 <sect1 id="Locales">
   <title>Locale support</title>
 
-  <para>WinMerge allows translating user interface to other languages than
+  <para>WinMerge allows translating the user interface to other languages than
   English. Several translations have been contributed. At the time of this
   writing, translations are available from <ulink
   url="http://www.winmerge.org/">WinMerge.org</ulink> for the following
@@ -87,9 +87,13 @@
   </itemizedlist>
 
   <para><note>
-      <para>The translations allow to using a different interface language
-      than English, but does not change other locale issues (such as how large
-      numbers are broken up, or how words are alphabetized).</para>
+      <para>The translations cover interface content, including menus,
+      dialogs, tooltips, and messages -- essentially the translation of
+      of all strings displayed. However, they do not provide areas
+      outside of string translation; they do not handle how numbers 
+      are divided, or how words are alphabetized. (These issues should
+      be addressed in the conventional Windows manner, which is
+      via the Regional settings in the Control Panel.)
     </note></para>
 
   <sect2>

@@ -1,3 +1,7 @@
+2005-02-22 Perry
+ Rewrite translation coverage paragram
+ Manual: Locales.xml
+
 2005-02-21 Kimmo
  Fix some typos
   Manual: Faq.xml Locales.xml
