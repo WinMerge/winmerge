@@ -198,7 +198,7 @@ BEGIN
         MENUITEM "Kopier f&orskelle i det valgte fra venstre til højre", ID_MULTIPLE_RIGHT
         MENUITEM "Kopier fors&kelle i det valgte fra højre til venstre", ID_MULTIPLE_LEFT
     END
-    POPUP "&Værktøjer"
+    POPUP "Værk&tøjer"
     BEGIN
         MENUITEM "&Tilpas søjler...",       ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filtre...",                 ID_TOOLS_FILTERS
@@ -218,7 +218,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END
-    POPUP "&Vindue"
+    POPUP "Vind&ue"
     BEGIN
         MENUITEM "&Luk",                         ID_FILE_CLOSE
         MENUITEM SEPARATOR
@@ -857,12 +857,12 @@ BEGIN
     LTEXT           "G&å til:",IDC_STATIC,7,9,36,8
     EDITTEXT        IDC_WMGOTO_PARAM,45,7,102,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "Fil",IDC_STATIC,7,27,57,35
-    CONTROL         "&Venstre",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "&Venstre",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,13,38,48,10
     CONTROL         "&Højre",IDC_WMGOTO_FILERIGHT,"Button",
                     BS_AUTORADIOBUTTON,13,48,47,10
     GROUPBOX        "Gå til hvad",IDC_STATIC,69,27,78,35
-    CONTROL         "Li&nje",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "Li&nje",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,76,38,68,10
     CONTROL         "&Forskel",IDC_WMGOTO_TODIFF,"Button",
                     BS_AUTORADIOBUTTON,76,48,68,10
@@ -964,7 +964,7 @@ BEGIN
 END
 
 IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -983,7 +983,7 @@ BEGIN
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 276, 186
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "WinMerge"
 FONT 8, "MS Shell Dlg"
@@ -993,25 +993,25 @@ BEGIN
     LTEXT           "WinMerge kender 7-Zip 3.11 og opefter, forudsat en passende plugin er til stede. Brug venligst den version af 7-zip der er anbefalet herunder indtil plugin for senere versioner bliver tilgængelige.",
                     IDC_STATIC,2,34,272,32
     LTEXT           "Anbefalet version af 7-Zip:",IDC_STATIC,2,70,131,8
-    EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
+    EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
     LTEXT           "Nødvendig brugerflade plugin:",IDC_STATIC,2,82,86,8
-    EDITTEXT        102,214,82,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
+    EDITTEXT        102,214,82,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
     LTEXT           "Version af 7-Zip der er installeret på din computer:",
                     IDC_STATIC,2,98,208,8
-    EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
+    EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
     LTEXT           "Version af lokale 7-Zip komponenter fundet i WinMerge mappen:",
                     IDC_STATIC,2,110,208,8
-    EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
+    EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
     LTEXT           "Brugerflade plugins fundet i WinMerge mappen:",
                     IDC_STATIC,2,130,168,28
-    LISTBOX         105,174,130,100,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+    LISTBOX         105,174,130,100,28,LBS_SORT | LBS_NOINTEGRALHEIGHT |
                     WS_VSCROLL | WS_GROUP
     CONTROL         "Vis ikke denne &besked igen.\n(Du kan altid få beskeden igen fra hjælp menuen.)",
-                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
+                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
                     WS_TABSTOP,2,164,202,20
     DEFPUSHBUTTON   "OK",IDOK,208,170,50,14,WS_GROUP
 END
@@ -1568,9 +1568,9 @@ BEGIN
     ID_DIR_ZIP_RIGHT        "Tilføj elementer fra højre side til arkiv"
     ID_DIR_ZIP_BOTH         "Tilføj elementer fra begge sider til arkiv"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Tilføj elementer der er forskellige til arkiv (fra begge sider)"
-    ID_DIR_MOVE_LEFT_TO_BROWSE 
+    ID_DIR_MOVE_LEFT_TO_BROWSE
                             "Flyt den valgte fil på venstre side til udvalgt mappe"
-    ID_DIR_MOVE_RIGHT_TO_BROWSE 
+    ID_DIR_MOVE_RIGHT_TO_BROWSE
                             "Flyt den valgte fil på højre side til udvalgt mappe"
 END
 

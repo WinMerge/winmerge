@@ -1,3 +1,8 @@
+2004-11-07 Kimmo
+ BUG: [ 828065 ] More overlapping letters in Dansk/Norsk
+  Fix from Christian
+  Src/Languages/Danish: MergeDanish.rc 
+
 2004-11-06 Perry
  PATCH: [ 1053475 ] Exponentially grow long lines when reading
   Src/Common: UniFile.cpp UniFile.h
