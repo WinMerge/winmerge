@@ -1,3 +1,7 @@
+2004-10-29 Jochen
+ Add Merge7z410.dsp
+  Merge7z: Merge7z410.dsp
+
 2004-10-29 Kimmo
  PATCH: [ 1055681 ] Add Bool type for options and convert existing options
   Src: DirActions.cpp DirDoc.cpp DirView.cpp MainFrm.cpp MergeDiffDetailView.cpp
