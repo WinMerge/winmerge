@@ -29,18 +29,18 @@ LANGUAGE LANG_CATALAN, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
@@ -67,8 +67,8 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Merge.ico"
-IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
+IDR_MAINFRAME           ICON                    "res\\Merge.ico"
+IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -95,7 +95,7 @@ BEGIN
     END
 END
 
-IDR_MAINFRAME MENU PRELOAD DISCARDABLE
+IDR_MAINFRAME MENU 
 BEGIN
     POPUP "&Fitxer"
     BEGIN
@@ -289,7 +289,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_EDITOR_HEADERBAR MENU
+IDR_POPUP_EDITOR_HEADERBAR MENU 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -313,7 +313,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE
+IDR_MAINFRAME ACCELERATORS 
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
@@ -359,7 +359,7 @@ END
 IDD_ABOUTBOX DIALOGEX 0, 0, 223, 134
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Quant al WinMerge"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
@@ -378,7 +378,7 @@ END
 IDD_OPEN DIALOGEX 0, 0, 356, 115
 STYLE WS_POPUP | WS_CAPTION | WS_THICKFRAME
 CAPTION "Tria de fitxers o directoris..."
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     RTEXT           "&Esquerra:",IDC_STATIC,13,24,60,8
     COMBOBOX        IDC_LEFT_COMBO,76,22,162,94,CBS_DROPDOWN |
@@ -408,7 +408,7 @@ END
 IDD_VSS DIALOGEX 0, 0, 257, 159
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
 CAPTION "Visual SourceSafe"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
@@ -431,7 +431,7 @@ BEGIN
                     BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,158,113,93,14
 END
 
-IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
+IDD_PROP_VSS DIALOG  0, 0, 259, 157
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Sistema de control de versions"
 FONT 8, "MS Sans Serif"
@@ -465,7 +465,7 @@ BEGIN
                     59,157,8
 END
 
-IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
+IDD_LANGUAGE_SELECT DIALOG  0, 0, 213, 111
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
 CAPTION "Idioma"
 FONT 8, "MS Sans Serif"
@@ -477,7 +477,7 @@ BEGIN
     LTEXT           "Idiomes disponibles:",IDC_STATIC,7,7,66,8
 END
 
-IDD_EDIT_FIND DIALOG FIXED IMPURE  30, 73, 236, 68
+IDD_EDIT_FIND DIALOG  30, 73, 236, 68
 STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION
 CAPTION "Cerca"
 FONT 8, "MS Shell Dlg"
@@ -500,7 +500,7 @@ BEGIN
     GROUPBOX        "Direcció",IDC_STATIC,107,26,68,38,WS_GROUP
 END
 
-IDD_EDIT_REPLACE DIALOG FIXED IMPURE  36, 44, 243, 103
+IDD_EDIT_REPLACE DIALOG  36, 44, 243, 103
 STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION
 CAPTION "Substitueix"
 FONT 8, "MS Shell Dlg"
@@ -530,7 +530,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,88,84,12
 END
 
-IDD_CLEARCASE DIALOG DISCARDABLE  0, 0, 279, 111
+IDD_CLEARCASE DIALOG  0, 0, 279, 111
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
 CAPTION "Rational Clearcase"
 FONT 8, "MS Sans Serif"
@@ -543,7 +543,7 @@ BEGIN
     LTEXT           "Comentaris",IDC_STATIC,18,7,38,10
 END
 
-IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
+IDD_PROPPAGE_FILTER DIALOG  0, 0, 235, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Filtre"
 FONT 8, "MS Sans Serif"
@@ -599,7 +599,7 @@ BEGIN
     PUSHBUTTON      "Defaults",IDC_COLORDEFAULTS_BTN,151,90,50,14
 END
 
-IDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
+IDD_OUTPUT DIALOG  0, 0, 278, 157
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
 CAPTION "Diàleg"
 FONT 8, "MS Sans Serif"
@@ -609,7 +609,7 @@ BEGIN
                     WS_VSCROLL
 END
 
-IDD_PROPPAGE_REGISTRY DIALOG DISCARDABLE  0, 0, 235, 156
+IDD_PROPPAGE_REGISTRY DIALOG  0, 0, 235, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "System"
 FONT 8, "MS Sans Serif"
@@ -685,7 +685,7 @@ BEGIN
                     WS_TABSTOP,WS_EX_STATICEDGE
 END
 
-IDD_DIRCOLS DIALOG DISCARDABLE  0, 0, 283, 143
+IDD_DIRCOLS DIALOG  0, 0, 283, 143
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
 CAPTION "Visualització de columnes"
 FONT 8, "MS Sans Serif"
@@ -705,7 +705,7 @@ BEGIN
     PUSHBUTTON      "Anul·la",IDCANCEL,226,122,50,14
 END
 
-IDD_SELECTUNPACKER DIALOG DISCARDABLE  0, 0, 293, 126
+IDD_SELECTUNPACKER DIALOG  0, 0, 293, 126
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
 CAPTION "Tria el desempaquetador"
 FONT 8, "MS Sans Serif"
@@ -788,7 +788,7 @@ BEGIN
     DEFPUSHBUTTON   "&Atura",IDC_COMPARISON_STOP,327,17,83,14
 END
 
-IDD_WMGOTO DIALOG DISCARDABLE  0, 0, 189, 70
+IDD_WMGOTO DIALOG  0, 0, 189, 70
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Go To"
 FONT 8, "MS Sans Serif"
@@ -812,7 +812,7 @@ END
 IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 235, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Whitespace",IDC_STATIC,7,7,221,50
     CONTROL         "Compara els &espais",IDC_WHITESPACE,"Button",
@@ -838,7 +838,7 @@ END
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Editor"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     CONTROL         "&Ressalta la sintaxi",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
@@ -1044,7 +1044,7 @@ END
 // Toolbar
 //
 
-IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+IDR_MAINFRAME TOOLBAR  16, 15
 BEGIN
     BUTTON      ID_FILE_NEW
     BUTTON      ID_FILE_OPEN
@@ -1140,7 +1140,7 @@ END
 // Cursor
 //
 
-IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
+IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1263,7 +1263,7 @@ BEGIN
     AFX_IDS_MDICHILD        "Activa aquesta finestra"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Tanca el mode de visualització prèvia\nTanca"
 END
@@ -1342,8 +1342,8 @@ BEGIN
     IDS_DEL_LEFT_FMT        "Left (%1)"
 END
 
-STRINGTABLE 
 // IDS_DEL_RIGHT_FMT SYNCHRO
+STRINGTABLE 
 BEGIN
     IDS_DEL_RIGHT_FMT       "Right (%1)"
     IDS_DELETE_FILE_FAILED  "Ha fallat la supressió del fitxer %1 failed: %2"
@@ -1401,8 +1401,8 @@ BEGIN
     IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
-STRINGTABLE 
 // IDS_PRIVATEBUILD_FMT SYNCHRO
+STRINGTABLE 
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Muntatge privat: %1"
     IDS_FILEWRITE_ERROR     "No s'ha pogut escriure al fitxer  %1."
@@ -1592,7 +1592,7 @@ BEGIN
     ID_L2RNEXT              "Copia la diferència a la dreta i avança a al següent\nCopia a la dreta i avança (Ctrl Alt Right)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_MULTIPLE_RIGHT       "Copia les diferències del text seleccionat a la subfinestra esquerra al fitxer de la dreta"
     ID_MULTIPLE_LEFT        "Copia les diferències del text seleccionat a la subfinestra dreta al fitxer de l'esquerra"
