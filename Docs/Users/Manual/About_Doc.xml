@@ -1,7 +1,7 @@
 <sect1 id="AboutDoc">
   <title>About this document</title>
-  <para>This is user guide for WinMerge. Please read this document carefully.</para>
-  <para>First chapter introduces new users into WinMerge, how and why was WinMerge created, by who and what it can do. Hopefully this is interesting reading for experienced WinMerge users too.</para>
-  <para>Second chapter is for users of previous WinMerge users, it lists important changes after 2.0 releases.</para>
-  <para>Third chapter describes getting WinMerge installer from Internet and installing WinMerge.</para>
+  <para>This is user guide for WinMerge 2.2. Please read this document carefully.</para>
+  <para>This guide is important reading for old and new users of WinMerge 2.2. There are lot of new features and improvements to old features in 2.2. Reading this quide ensures user knows abilities and limitations of WinMerge.</para>
+  <para>FAQ chapter contains answers to many common questions asked from developers. Please check first if your question is answered there before submitting questions to SourceForge.Net.</para>
+  <para>Problem solving tells what to do when WinMerge does not work like expected. Please read this before submitting bugs to SourceForge.Net.</para>
 </sect1>

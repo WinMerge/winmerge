@@ -1,3 +1,7 @@
+2004-06-16 Kimmo
+ PATCH: [ 973527 ] Userdocs: About doc and introduction
+  Manual: About_Doc.xml Introduction.xml
+
 2004-06-15 Christian
  PATCH: [ 973306 ] Userdocs: add ID property for sect1 tags
   Manual: WinMerge_help.xml
