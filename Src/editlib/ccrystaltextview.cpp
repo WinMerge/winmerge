@@ -895,7 +895,8 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
     }
   else
     {
-      line += pszChars;
+      for (int i=0; i<nLength; ++i)
+        line += pszChars[i];
       nCurPos = nLength;
     }
 }

@@ -1,3 +1,7 @@
+2004-10-01 Perry
+ PATCH: [ 1038749 ] Fix whitespace display
+  Src/editlib: ccrystaltextview.cpp
+
 2004-10-01 Kimmo
  PATCH: [ 1038091 ] Various Updates in German Translation
   Submitted by Tim Gerundt
