@@ -8,6 +8,9 @@
  RFE [ 950290 ] Use MS Shell Dlg font in dialogs
   Convert Chinese and Korean translations too
   Src/Languages: MergeChineseSimplified.rc MergeChineseTraditional.rc MergeKorean.rc
+ PATCH: [ 959503 ] Enable word deletion function(Ctrl+Del)
+  Submitted by Takashi Sawanaka
+  Src/editlib: editcmd.h editres.rc
 
 2004-05-25 Perry
  PATCH: [ 950243 ] 2 minor updates to developers docs

@@ -147,7 +147,6 @@
 #define IDR_DEFAULT_ACCEL               22901
 #define IDR_MARGIN_ICONS                22902
 #define IDR_RTF_ACCEL                   22903
-#define ID_EDIT_DELETE_WORD             32771
 #define ID_POPUP_EDIT                   32774
 #define ID_POPUP_PRINT                  32775
 #define ID_POPUP_OPEN                   32780
@@ -169,10 +168,11 @@
 #define ID_EDIT_FIRST                   37000
 #define ID_EDIT_DELETE                  37000
 #define ID_EDIT_DELETE_BACK             37001
-#define ID_EDIT_DELETE_WORD_BACK        37002
-#define ID_EDIT_TAB                     37003
-#define ID_EDIT_UNTAB                   37004
-#define ID_EDIT_SWITCH_OVRMODE          37005
+#define ID_EDIT_DELETE_WORD             37002
+#define ID_EDIT_DELETE_WORD_BACK        37003
+#define ID_EDIT_TAB                     37004
+#define ID_EDIT_UNTAB                   37005
+#define ID_EDIT_SWITCH_OVRMODE          37006
 #define ID_EDIT_CHAR_LEFT               37100
 #define ID_EDIT_EXT_CHAR_LEFT           37101
 #define ID_EDIT_CHAR_RIGHT              37102
