@@ -5,6 +5,8 @@
  PATCH: [ 1027382 ] Customised Save As dialog captions
   Src: Merge.rc MergeDoc.cpp resource.h
   Src/Languages: *.rc resource.h
+ Add Lee Jae-Hong as Korean translator contributor
+  Docs/Users: Contributors.txt
 
 2004-09-13 Kimmo
  PATCH: [ 1026894 ] More space for translations in Goto-dialog

@@ -55,6 +55,7 @@ Localization:
              
 * Korean:
   Sukjoon
+  Lee Jae-Hong
            
 * Norwegian:	
   Hans Fredrik Nordhaug
