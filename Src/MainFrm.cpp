@@ -1093,7 +1093,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			}
 			DWORD code;
 			CString args;
-			args.Format(_T("checkout -c \"%s\" %s"), dlg.m_comments, sname);
+			args.Format(_T("checkout -c \"%s\" \"%s\""), dlg.m_comments, sname);
 			HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
 			if (hVss!=INVALID_HANDLE_VALUE)
 			{
