@@ -2,7 +2,7 @@
  *  @file   UniFile.h
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-10-24 (Perry)
+ *  @date   Edited:  2005-02-17 (Kimmo Varis)
  *
  *  @brief  Declaration of Memory-Mapped Unicode enabled file class
  */
@@ -82,7 +82,6 @@ public:
 	void Clear();
 
 	virtual CString GetFullyQualifiedPath() const { return m_filepath; }
-	const CFileStatus & GetFileStatus() const { return m_filestatus; }
 
 	virtual const UniError & GetLastUniError() const { return m_lastError; }
 
@@ -103,7 +102,6 @@ protected:
 
 protected:
 	int m_statusFetched; // 0 not fetched, -1 error, +1 success
-	CFileStatus m_filestatus;
 	__int64 m_filesize;
 	CString m_filepath;
 	CString m_filename;

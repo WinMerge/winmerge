@@ -1,3 +1,7 @@
+2005-02-17 Kimmo
+ PATCH: [ 1124380 ] Use _tstati64() in UniLocalFile::DoGetFileStatus()
+  Common: UniFile.cpp UniFile.h
+
 2005-02-16 Kimmo
  PATCH: [ 1123539 ] Small improvement for code creating backup copy
   Src: MainFrm.cpp

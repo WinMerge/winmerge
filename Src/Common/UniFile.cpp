@@ -2,7 +2,7 @@
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-01-23 (Perry Rapp & Jochen Tucht)
+ *  @date   Edited:  2005-02-17 (Kimmo Varis)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -30,17 +30,6 @@ static bool demoGuessEncoding_html(UniFile * pufile, int * encoding, int * codep
 static bool demoGuessEncoding_rc(UniFile * pufile, int * encoding, int * codepage);
 
 
-// Utility
-static void ClearFilestatus(CFileStatus & fileStatus)
-{
-	fileStatus.m_ctime = 0;
-	fileStatus.m_mtime = 0;
-	fileStatus.m_atime = 0;
-	fileStatus.m_size = 0;
-	fileStatus.m_attribute = 0;
-	fileStatus.m_szFullName[0] = 0;
-}
-
 /////////////
 // UniLocalFile
 /////////////
@@ -55,7 +44,6 @@ UniLocalFile::UniLocalFile()
 void UniLocalFile::Clear()
 {
 	m_statusFetched = 0;
-	ClearFilestatus(m_filestatus);
 	m_filesize = 0;
 	m_filepath = _T("");
 	m_filename = _T("");
@@ -70,43 +58,23 @@ void UniLocalFile::Clear()
 /** @brief Get file status into member variables */
 bool UniLocalFile::DoGetFileStatus(HANDLE handle)
 {
-	m_lastError.ClearError();
+	_stati64 fstats = {0};
 	m_statusFetched = -1;
+	m_lastError.ClearError();
 
-	if (!CFile::GetStatus(m_filepath, m_filestatus))
+	GetLongPathName(m_filepath, m_filepath.GetBuffer(MAX_PATH), MAX_PATH);
+	m_filepath.ReleaseBuffer();
+
+	if (_tstati64(m_filepath, &fstats) == 0)
 	{
-		LastError(_T("CFile::GetStatus"), 0);
-		return false;
-	}
-	m_filepath = m_filestatus.m_szFullName;
+		m_filesize = fstats.st_size;
+		m_statusFetched = 1;
 
-	bool closehandle = false;
-	if (handle == INVALID_HANDLE_VALUE)
-	{
-		closehandle = true;
-		handle = CreateFile(m_filepath, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, 0);
-		if (handle == INVALID_HANDLE_VALUE)
-		{
-			int errnum = GetLastError();
-			LastError(_T("CreateFile"), errnum);
-			return false;
-		}
+		return true;
 	}
-	DWORD sizehi=0;
-	DWORD sizelo = GetFileSize(handle, &sizehi);
-	int errnum = GetLastError();
-	if (errnum != NO_ERROR)
-	{
-		LastError(_T("GetFileSize"), errnum);
-		return false;
-	}
-	m_filesize = sizelo + (sizehi << 32);
-	m_statusFetched = 1;
 
-	if (closehandle)
-		CloseHandle(handle);
-
-	return true;
+	LastError(_T("_tstati64"), 0);
+	return false;
 }
 
 /** @brief Record an API call failure */
@@ -131,8 +99,6 @@ void UniLocalFile::LastErrorCustom(LPCTSTR desc)
 /////////////
 
 UniMemFile::UniMemFile()
-// CString m_filepath;
-// CString m_filename;
 : m_handle(INVALID_HANDLE_VALUE)
 , m_hMapping(INVALID_HANDLE_VALUE)
 , m_base(NULL)
@@ -630,7 +596,6 @@ void UniStdioFile::Close()
 		m_fp = 0;
 	}
 	m_statusFetched = 0;
-	ClearFilestatus(m_filestatus);
 	m_filesize = 0;
 	// preserve m_filepath
 	// preserve m_filename
