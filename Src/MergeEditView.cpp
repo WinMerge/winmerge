@@ -642,9 +642,15 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 	m_pTextBuffer->SetLineFlag(ptCursorPos.y, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
 
 	// keep document up to date
-	// (Re)start timer to rescan
+	// (Re)start timer to rescan only when user edits text
 	// If timer starting fails, rescan immediately
-	if (!SetTimer(IDT_RESCAN, RESCAN_TIMEOUT, NULL))
+	if (nAction == CE_ACTION_TYPING ||
+		nAction == CE_ACTION_BACKSPACE)
+	{
+		if (!SetTimer(IDT_RESCAN, RESCAN_TIMEOUT, NULL))
+			pDoc->FlushAndRescan();
+	}
+	else
 		pDoc->FlushAndRescan();
 }
 

@@ -1,3 +1,7 @@
+2003-03-23 Kimmo
+ PATCH: [ 707753 ] Delayed rescan - fix
+  WinMerge: MergeEditView.cpp
+
 2003-03-22 Kimmo
  PATCH: [ 707753 ] Delayed rescan
   WinMerge: MergeEditView.h MergeEditView.cpp
