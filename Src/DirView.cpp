@@ -231,6 +231,43 @@ void CDirView::OnInitialUpdate()
 	SetFullRowSel(FALSE);
 }
 
+// These are the offsets into the image list created in OnInitDialog
+#define DIFFIMG_LUNIQUE     0
+#define DIFFIMG_RUNIQUE     1
+#define DIFFIMG_DIFF        2
+#define DIFFIMG_SAME        3
+#define DIFFIMG_ERROR       4
+#define DIFFIMG_BINSAME     5
+#define DIFFIMG_BINDIFF     6
+#define DIFFIMG_LDIRUNIQUE  7
+#define DIFFIMG_RDIRUNIQUE  8
+#define DIFFIMG_SKIP        9
+#define DIFFIMG_DIRSKIP    10
+
+/**
+ * @brief Return image index appropriate for this row
+ */
+int CDirView::GetColImage(const DIFFITEM & di) const
+{
+	// Must return an image index into image list created above in OnInitDialog
+	if (di.isResultError()) return DIFFIMG_ERROR;
+	if (di.isResultSkipped())
+		return (di.isDirectory() ? DIFFIMG_DIRSKIP : DIFFIMG_SKIP);
+	if (di.isSideLeft())
+		return (di.isDirectory() ? DIFFIMG_LDIRUNIQUE : DIFFIMG_LUNIQUE);
+	if (di.isSideRight())
+		return (di.isDirectory() ? DIFFIMG_RDIRUNIQUE : DIFFIMG_RUNIQUE);
+	if (di.isResultSame())
+		return (di.isBin() ? DIFFIMG_BINSAME : DIFFIMG_SAME);
+	// diff
+	return (di.isBin() ? DIFFIMG_BINDIFF : DIFFIMG_DIFF);
+}
+int CDirView::GetDefaultColImage() const
+{
+	return DIFFIMG_ERROR;
+}
+
+
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_OPENING_SELECTION));
@@ -446,7 +483,7 @@ void CDirView::DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI, eMenuType menuType)
 		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 		{
 			const DIFFITEM& di = GetDiffItem(sel);
-			if (IsItemCopyableToLeft(di.code))
+			if (IsItemCopyableToLeft(di))
 				++legalcount;
 			++selcount;
 		}
@@ -472,7 +509,7 @@ void CDirView::DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI, eMenuType menuType)
 		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 		{
 			const DIFFITEM& di = GetDiffItem(sel);
-			if (IsItemCopyableToRight(di.code))
+			if (IsItemCopyableToRight(di))
 				++legalcount;
 			++selcount;
 		}
@@ -558,42 +595,20 @@ void CDirView::OpenSelection()
 	{
 		POSITION diffpos = GetItemKey(sel);
 		DIFFITEM di = GetDiffContext()->GetDiffAt(diffpos);
-		switch(di.code)
+		if (di.isDirectory())
+			AfxMessageBox(IDS_FILEISDIR, MB_ICONINFORMATION);
+		else if (di.isSideLeft() || di.isSideRight())
+			AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
+		else if (di.isBin())
+			AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
+		else
 		{
-		// Open identical and different files
-		case FILE_DIFF:
-		case FILE_SAME:
-			{
-				CString left, right;
-				GetItemFileNames(sel, left, right);
-				mf->ShowMergeDoc(GetDocument(), left, right,
-					GetDocument()->GetReadOnly(TRUE),
-					GetDocument()->GetReadOnly(FALSE));
-			}
-			break;
-		case FILE_LDIRUNIQUE:
-		case FILE_RDIRUNIQUE:
-			{
-				AfxMessageBox(IDS_FILEISDIR, MB_ICONINFORMATION);
-			}
-			break;
-		case FILE_LUNIQUE:
-		case FILE_RUNIQUE:
-			{
-				AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
-			}
-			break;
-		case FILE_BINDIFF:
-		case FILE_BINSAME:
-			{
-				AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
-			}
-			break;
-		default:
-			{
-				AfxMessageBox(IDS_FILEERROR, MB_ICONSTOP);
-			}
-			break;
+			// Open identical and different files
+			CString left, right;
+			GetItemFileNames(sel, left, right);
+			mf->ShowMergeDoc(GetDocument(), left, right,
+				GetDocument()->GetReadOnly(TRUE),
+				GetDocument()->GetReadOnly(FALSE));
 		}
 	}
 }
@@ -645,7 +660,7 @@ void CDirView::DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI)
 		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 		{
 			const DIFFITEM& di = GetDiffItem(sel);
-			if (IsItemDeletableOnLeft(di.code))
+			if (IsItemDeletableOnLeft(di))
 				++count;
 			++total;
 		}
@@ -668,7 +683,7 @@ void CDirView::DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI)
 		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 		{
 			const DIFFITEM& di = GetDiffItem(sel);
-			if (IsItemDeletableOnRight(di.code))
+			if (IsItemDeletableOnRight(di))
 				++count;
 			++total;
 		}
@@ -691,7 +706,7 @@ void CDirView::DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI)
 		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 		{
 			const DIFFITEM& di = GetDiffItem(sel);
-			if (IsItemDeletableOnBoth(di.code))
+			if (IsItemDeletableOnBoth(di))
 				++count;
 			++total;
 		}
@@ -803,7 +818,7 @@ void CDirView::DoUpdateOpenLeft(CCmdUI* pCmdUI)
 	if (sel != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!IsItemOpenableOnLeft(di.code))
+		if (!IsItemOpenableOnLeft(di))
 			sel = -1;
 	}
 
@@ -817,7 +832,7 @@ void CDirView::DoUpdateOpenRight(CCmdUI* pCmdUI)
 	if (sel != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!IsItemOpenableOnRight(di.code))
+		if (!IsItemOpenableOnRight(di))
 			sel = -1;
 	}
 
@@ -831,7 +846,7 @@ void CDirView::DoUpdateOpenLeftWith(CCmdUI* pCmdUI)
 	if (sel != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!IsItemOpenableOnLeftWith(di.code))
+		if (!IsItemOpenableOnLeftWith(di))
 			sel = -1;
 	}
 
@@ -845,7 +860,7 @@ void CDirView::DoUpdateOpenRightWith(CCmdUI* pCmdUI)
 	if (sel != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!IsItemOpenableOnRightWith(di.code))
+		if (!IsItemOpenableOnRightWith(di))
 			sel = -1;
 	}
 
@@ -1134,14 +1149,11 @@ int CDirView::GetLastDifferentItem()
 // When navigating differences, do we stop at this one ?
 bool CDirView::IsItemNavigableDiff(const DIFFITEM & di) const
 {
-	switch(di.code)
-	{
-	case FILE_DIFF: return true;
-	case FILE_BINDIFF: return true;
-	case FILE_LUNIQUE: return true;
-	case FILE_RUNIQUE: return true;
-	}
-	return false;
+	if (di.isResultSkipped() || di.isResultError())
+		return false;
+	if (di.isDirectory())
+		return false;
+	return true;
 }
 
 // move focus (& selection if only one selected) from currentInd to i

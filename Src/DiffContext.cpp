@@ -104,7 +104,7 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir
 	, __int64 lmtime, __int64 rmtime
 	, __int64 lctime, __int64 rctime
 	, __int64 lsize, __int64 rsize
-	, BYTE code
+	, int diffcode
 	)
 {
 	DIFFITEM di;
@@ -116,7 +116,7 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir
 	di.right.mtime = rmtime;
 	di.left.ctime = lctime;
 	di.right.ctime = rctime;
-	di.code = code;
+	di.diffcode = diffcode;
 	di.left.size = lsize;
 	di.right.size = rsize;
 	UpdateFieldsNeededForNewItems(di, di.left);
@@ -137,7 +137,7 @@ void CDiffContext::AddDiff(DIFFITEM di)
 
 	m_pList->AddTail(di);
 	// ignore return value
-	SendMessage(m_hMainFrame, m_msgUpdateStatus, di.code, NULL);
+	SendMessage(m_hMainFrame, m_msgUpdateStatus, di.diffcode, NULL);
 }
 
 void CDiffContext::RemoveDiff(POSITION diffpos)
@@ -166,19 +166,9 @@ DIFFITEM CDiffContext::GetNextDiffPosition(POSITION & diffpos)
 	return m_pList->GetNext(diffpos);
 }
 
-DIFFITEM CDiffContext::GetDiffAt(POSITION diffpos)
+const DIFFITEM & CDiffContext::GetDiffAt(POSITION diffpos) const
 {
 	return m_pList->GetAt(diffpos);
-}
-
-const DIFFITEM CDiffContext::GetDiffAt(POSITION diffpos) const
-{
-	return m_pList->GetAt(diffpos);
-}
-
-BYTE CDiffContext::GetDiffStatus(POSITION diffpos)
-{
-	return m_pList->GetAt(diffpos).code;
 }
 
 int CDiffContext::GetDiffCount()
@@ -186,10 +176,13 @@ int CDiffContext::GetDiffCount()
 	return m_pList->GetCount();
 }
 
-void CDiffContext::UpdateStatusCode(POSITION diffpos, BYTE status)
+void CDiffContext::SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask)
 {
+	ASSERT(diffpos);
 	DIFFITEM & di = m_pList->GetAt(diffpos);
-	di.code = status;
+	ASSERT(! ((~mask) && diffcode) ); // make sure they only set flags in their mask
+	di.diffcode = di.diffcode & (~mask); // remove current data
+	di.diffcode = di.diffcode | diffcode; // add new data
 }
 
 /**
@@ -203,12 +196,20 @@ void CDiffContext::UpdateFieldsNeededForNewItems(DIFFITEM & di, DiffFileInfo & d
 }
 
 /**
- * @brief Update information from disk
+ * @brief Update the diffitem passed from disk
  */
 void CDiffContext::UpdateInfoFromDisk(DIFFITEM & di)
 {
 	UpdateInfoFromDiskHalf(di, di.left);
 	UpdateInfoFromDiskHalf(di, di.right);
+}
+
+/**
+ * @brief Update info in list (specified by position) from disk
+ */
+void CDiffContext::UpdateStatusFromDisk(POSITION diffpos)
+{
+	UpdateInfoFromDisk(m_pList->GetAt(diffpos));
 }
 
 /**

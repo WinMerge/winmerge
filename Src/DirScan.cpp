@@ -79,14 +79,14 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 		if (i<leftDirs.GetSize() && (j==rightDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)<0))
 		{
 			// Advance left pointer over left-only entry, and then retest with new pointers
-			FilterAdd(subdir, &leftDirs[i], 0, FILE_LDIRUNIQUE, pCtxt);
+			FilterAdd(subdir, &leftDirs[i], 0, DIFFCODE::LEFT+DIFFCODE::DIR, pCtxt);
 			++i;
 			continue;
 		}
 		if (j<rightDirs.GetSize() && (i==leftDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)>0))
 		{
 			// Advance right pointer over right-only entry, and then retest with new pointers
-			FilterAdd(subdir, 0, &rightDirs[j], FILE_RDIRUNIQUE, pCtxt);
+			FilterAdd(subdir, 0, &rightDirs[j], DIFFCODE::RIGHT+DIFFCODE::DIR, pCtxt);
 			++j;
 			continue;
 		}
@@ -96,7 +96,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 			CString newsub = subprefix + leftDirs[i].name;
 			if (!depth || !pCtxt->m_piFilter->includeDir(newsub))
 			{
-				FilterAdd(subdir, &leftDirs[i], &rightDirs[j], FILE_DIRSKIP, pCtxt);
+				FilterAdd(subdir, &leftDirs[i], &rightDirs[j], DIFFCODE::SKIPPED+DIFFCODE::DIR, pCtxt);
 			}
 			else
 			{
@@ -122,14 +122,14 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 		if (i<leftFiles.GetSize() && (j==rightFiles.GetSize() || collstr(leftFiles[i].name, rightFiles[j].name, casesensitive)<0))
 		{
 			// Advance left pointer over left-only entry, and then retest with new pointers
-			FilterAdd(subdir, &leftFiles[i], 0, FILE_LUNIQUE, pCtxt);
+			FilterAdd(subdir, &leftFiles[i], 0, DIFFCODE::LEFT+DIFFCODE::FILE, pCtxt);
 			++i;
 			continue;
 		}
 		if (j<rightFiles.GetSize() && (i==leftFiles.GetSize() || collstr(leftFiles[i].name, rightFiles[j].name, casesensitive)>0))
 		{
 			// Advance right pointer over right-only entry, and then retest with new pointers
-			FilterAdd(subdir, 0, &rightFiles[j], FILE_RUNIQUE, pCtxt);
+			FilterAdd(subdir, 0, &rightFiles[j], DIFFCODE::RIGHT+DIFFCODE::FILE, pCtxt);
 			++j;
 			continue;
 		}
@@ -139,7 +139,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 			CString newsubfile = subprefix + leftFiles[i].name;
 			if (!pCtxt->m_piFilter->includeFile(newsubfile))
 			{
-				FilterAdd(subdir, &leftFiles[i], &rightFiles[j], FILE_SKIP, pCtxt);
+				FilterAdd(subdir, &leftFiles[i], &rightFiles[j], DIFFCODE::SKIPPED+DIFFCODE::FILE, pCtxt);
 			}
 			else
 			{
@@ -154,12 +154,12 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 				if (res == 0)
 				{
 					// same
-					FilterAdd(subdir, &leftFiles[i], &rightFiles[j], FILE_SAME, pCtxt);
+					FilterAdd(subdir, &leftFiles[i], &rightFiles[j], DIFFCODE::SAME+DIFFCODE::FILE, pCtxt);
 				}
 				else if (res == 1)
 				{
 					// different
-					FilterAdd(subdir, &leftFiles[i], &rightFiles[j], FILE_DIFF, pCtxt);
+					FilterAdd(subdir, &leftFiles[i], &rightFiles[j], DIFFCODE::DIFF+DIFFCODE::FILE, pCtxt);
 				}
 				else 
 				{
@@ -170,7 +170,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 						ASSERT(0);
 					}
 					// error
-					FilterAdd(subdir, &leftFiles[i], &rightFiles[j], FILE_ERROR, pCtxt);
+					FilterAdd(subdir, &leftFiles[i], &rightFiles[j], DIFFCODE::CMPERR+DIFFCODE::FILE, pCtxt);
 				}
 			}
 			++i;

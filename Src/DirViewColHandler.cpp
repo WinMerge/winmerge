@@ -124,31 +124,10 @@ int CDirView::AddDiffItem(int index, const DIFFITEM & di, LPCTSTR szPath, POSITI
 {
 	int i = AddNewItem(index);
 	SetItemKey(i, curdiffpos);
-	SetImage(i, FILE_ERROR);
+	SetImage(i, GetDefaultColImage());
 	return i;
 }
 
-/**
- * @brief Return image index appropriate for this row
- */
-static int GetColImage(const DIFFITEM & di)
-{
-	switch (di.code)
-	{
-	case FILE_DIFF: return FILE_DIFF;
-	case FILE_BINDIFF: return FILE_BINDIFF;
-	case FILE_BINSAME: return FILE_BINSAME;
-	case FILE_LUNIQUE:
-	case FILE_LDIRUNIQUE:
-		return di.code;
-	case FILE_RUNIQUE:
-	case FILE_RDIRUNIQUE:
-		return di.code;
-		break;
-	case FILE_SAME: return FILE_SAME;
-	default: return FILE_ERROR;
-	}
-}
 
 // Update listview display of details for specified row
 void CDirView::UpdateDiffItemStatus(UINT nIdx, const DIFFITEM & di)

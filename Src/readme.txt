@@ -1,3 +1,9 @@
+2003-09-14 Perry
+ PATCH: [ 805875 ] Switch to diffcode flags
+  WinMerge: DiffContext.cpp DiffContext.h DirActions.cpp DirDoc.cpp DirDoc.h
+   DirScan.cpp DirView.cpp DirView.h DirViewColHandler.cpp DirViewColItems.cpp
+   MainFrm.cpp MainFrm.h
+
 2003-09-13 Perry
  Widen label IDC_PRIVATEBUILD on about box.
   WinMerge: Merge.rc

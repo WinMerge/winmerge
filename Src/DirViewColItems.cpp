@@ -50,6 +50,14 @@ static int cmp64(__int64 i1, __int64 i2)
 	if (i1==i2) return 0;
 	return i1>i2 ? 1 : -1;
 }
+/**
+ * @brief Function to compare two diffcodes
+ */
+static int cmpdiffcode(int diffcode1, int diffcode2)
+{
+	// TODO: How shall we order these ?
+	return diffcode1-diffcode2;	
+}
 
 /**
  * @{ Functions to display each type of column info
@@ -68,37 +76,38 @@ static CString ColPathGet(const DIFFITEM & di)
 static CString ColStatusGet(const DIFFITEM & di)
 {
 	CString s;
-	switch (di.code)
+	if (di.isResultError())
 	{
-	case FILE_DIFF:
-		VERIFY(s.LoadString(IDS_FILES_ARE_DIFFERENT));
-		break;
-	case FILE_BINDIFF:
-		VERIFY(s.LoadString(IDS_BIN_FILES_DIFF));
-		break;
-	case FILE_BINSAME:
-		VERIFY(s.LoadString(IDS_BIN_FILES_SAME));
-		break;
-	case FILE_LUNIQUE:
-	case FILE_LDIRUNIQUE:
-		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getLeftFilepath());
-		break;
-	case FILE_RUNIQUE:
-	case FILE_RDIRUNIQUE:
-		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getRightFilepath());
-		break;
-	case FILE_SAME:
-		VERIFY(s.LoadString(IDS_IDENTICAL));
-		break;
-	case FILE_SKIP:
-		VERIFY(s.LoadString(IDS_FILE_SKIPPED));
-		break;
-	case FILE_DIRSKIP:
-		VERIFY(s.LoadString(IDS_DIR_SKIPPED));
-		break;
-	default: // error
 		VERIFY(s.LoadString(IDS_CANT_COMPARE_FILES));
-		break;
+	}
+	else if (di.isSideLeft())
+	{
+		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getLeftFilepath());
+	}
+	else if (di.isSideRight())
+	{
+		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getRightFilepath());
+	}
+	else if (di.isResultSkipped())
+	{
+		if (di.isDirectory())
+			VERIFY(s.LoadString(IDS_DIR_SKIPPED));
+		else
+			VERIFY(s.LoadString(IDS_FILE_SKIPPED));
+	}
+	else if (di.isResultSame())
+	{
+		if (di.isBin())
+			VERIFY(s.LoadString(IDS_BIN_FILES_SAME));
+		else
+			VERIFY(s.LoadString(IDS_IDENTICAL));
+	}
+	else // diff
+	{
+		if (di.isBin())
+			VERIFY(s.LoadString(IDS_BIN_FILES_DIFF));
+		else
+			VERIFY(s.LoadString(IDS_FILES_ARE_DIFFERENT));
 	}
 	return s;
 }
@@ -180,22 +189,41 @@ static CString ColRverGet(const DIFFITEM & di)
 static CString ColStatusAbbrGet(const DIFFITEM & di)
 {
 	int id;
-	switch (di.code)
+
+	if (di.isResultError())
 	{
-	case FILE_DIFF: id = IDS_FILES_ARE_DIFFERENT; break;
-	case FILE_BINDIFF: id = IDS_BIN_FILES_DIFF; break;
-	case FILE_BINSAME: id = IDS_BIN_FILES_SAME; break;
-	case FILE_LUNIQUE:
-	case FILE_LDIRUNIQUE:
-		id = IDS_LEFTONLY; break;
-	case FILE_RUNIQUE:
-	case FILE_RDIRUNIQUE:
-		id = IDS_RIGHTONLY; break;
-	case FILE_SAME: id = IDS_IDENTICAL; break;
-	case FILE_SKIP: id = IDS_FILE_SKIPPED; break;
-	case FILE_DIRSKIP: id = IDS_DIR_SKIPPED; break;
-	default: id = IDS_CANT_COMPARE_FILES;
+		id = IDS_CANT_COMPARE_FILES;
 	}
+	else if (di.isSideLeft())
+	{
+		id = IDS_LEFTONLY;
+	}
+	else if (di.isSideRight())
+	{
+		id = IDS_RIGHTONLY;
+	}
+	else if (di.isResultSkipped())
+	{
+		if (di.isDirectory())
+			id = IDS_DIR_SKIPPED;
+		else
+			id = IDS_FILE_SKIPPED;
+	}
+	else if (di.isResultSame())
+	{
+		if (di.isBin())
+			id = IDS_BIN_FILES_SAME;
+		else
+			id = IDS_IDENTICAL;
+	}
+	else // diff
+	{
+		if (di.isBin())
+			id = IDS_BIN_FILES_DIFF;
+		else
+			id = IDS_FILES_ARE_DIFFERENT;
+	}
+
 	CString s;
 	VERIFY(s.LoadString(id));
 	return s;
@@ -225,7 +253,7 @@ static int ColPathSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 }
 static int ColStatusSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
-	return rdi.code-ldi.code;
+	return cmpdiffcode(rdi.diffcode, ldi.diffcode);
 }
 static int ColLmtimeSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 {

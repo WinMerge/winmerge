@@ -122,15 +122,15 @@ private:
 	void GetItemFileNames(int sel, CString& strLeft, CString& strRight) const;
 	BOOL IsItemLeftOnly(int code);
 	BOOL IsItemRightOnly(int code);
-	BOOL IsItemCopyableToLeft(int code);
-	BOOL IsItemCopyableToRight(int code);
-	BOOL IsItemDeletableOnLeft(int code);
-	BOOL IsItemDeletableOnRight(int code);
-	BOOL IsItemDeletableOnBoth(int code);
-	BOOL IsItemOpenableOnLeft(int code);
-	BOOL IsItemOpenableOnRight(int code);
-	BOOL IsItemOpenableOnLeftWith(int code);
-	BOOL IsItemOpenableOnRightWith(int code);
+	BOOL IsItemCopyableToLeft(const DIFFITEM & di);
+	BOOL IsItemCopyableToRight(const DIFFITEM & di);
+	BOOL IsItemDeletableOnLeft(const DIFFITEM & di);
+	BOOL IsItemDeletableOnRight(const DIFFITEM & di);
+	BOOL IsItemDeletableOnBoth(const DIFFITEM & di);
+	BOOL IsItemOpenableOnLeft(const DIFFITEM & di);
+	BOOL IsItemOpenableOnRight(const DIFFITEM & di);
+	BOOL IsItemOpenableOnLeftWith(const DIFFITEM & di);
+	BOOL IsItemOpenableOnRightWith(const DIFFITEM & di);
 	void DoCopyFileToRight();
 	void DoCopyFileToLeft();
 	void DoDelLeft();
@@ -191,6 +191,8 @@ protected:
 	int GetFocusedItem();
 	int GetFirstDifferentItem();
 	int GetLastDifferentItem();
+	int GetColImage(const DIFFITEM & di) const;
+	int GetDefaultColImage() const;
 
 // Implementation data
 protected:

@@ -265,58 +265,31 @@ static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 	if (IsItemHiddenBackup(di))
 		return NULL;
 
+	// file type filters
+	if (di.isBin() && !mf->m_bShowBinaries)
+		return 0;
+
+	// result filters
+	if (di.isResultSame() && !mf->m_bShowIdent)
+		return 0;
+	if (di.isResultError() && !mf->m_bShowErrors)
+		return 0;
+	if (di.isResultSkipped() && !mf->m_bShowSkipped)
+		return 0;
+
+	// left/right filters
+	if (di.isSideLeft() && !mf->m_bShowUniqueLeft)
+		return 0;
+	if (di.isSideRight() && !mf->m_bShowUniqueRight)
+		return 0;
+
+
 	LPCTSTR p = NULL;
-
-	BOOL leftside = (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE);
-	BOOL rightside = (di.code==FILE_RUNIQUE || di.code==FILE_RDIRUNIQUE);
-
-	switch (di.code)
-	{
-	case FILE_DIFF:
-		if (mf->m_bShowDiff)
-		{
-			p = _tcsninc(di.getLeftFilepath(), llen);
-		}
-		break;
-	case FILE_BINSAME:
-		if (mf->m_bShowIdent && mf->m_bShowBinaries)
-		{
-			p = _tcsninc(di.getLeftFilepath(), llen);
-		}
-		break;
-	case FILE_BINDIFF:
-		if (mf->m_bShowDiff && mf->m_bShowBinaries)
-		{
-			p = _tcsninc(di.getLeftFilepath(), llen);
-		}
-		break;
-	case FILE_LUNIQUE:
-	case FILE_RUNIQUE:
-	case FILE_LDIRUNIQUE:
-	case FILE_RDIRUNIQUE:
-		if ((mf->m_bShowUniqueLeft && leftside) 
-			|| (mf->m_bShowUniqueRight && rightside))
-		{
-			if (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE)
-			{
-				p = _tcsninc(di.getLeftFilepath(), llen);
-			}
-			else
-			{
-				p = _tcsninc(di.getRightFilepath(), rlen);
-			}
-		}
-		break;
-	case FILE_SAME:
-		if (mf->m_bShowIdent)
-		{
-			p = _tcsninc(di.getLeftFilepath(), llen);
-		}
-		break;
-	default: // error
+	if (di.isSideRight())
+		p = _tcsninc(di.getRightFilepath(), rlen);
+	else
 		p = _tcsninc(di.getLeftFilepath(), llen);
-		break;
-	}
+
 	return p;
 }
 
@@ -575,17 +548,16 @@ void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unifie
 
 	// Get index at view, update filetimes to context
 	// and tell view to update found item
-	DIFFITEM current = m_pCtxt->GetDiffAt(pos);
-	m_pCtxt->UpdateInfoFromDisk(current);
+	m_pCtxt->UpdateStatusFromDisk(pos);
 
 	// Figure out new status code
-	current.code = (unified ? FILE_SAME : FILE_DIFF);
-
+	UINT diffcode = (unified ? DIFFCODE::SAME : DIFFCODE::DIFF);
 	// Save new status code to diff context memory
-	m_pCtxt->UpdateStatusCode(pos, current.code);
+	m_pCtxt->SetDiffStatusCode(pos, diffcode, DIFFCODE::COMPAREFLAGS);
 
 	// Update view
-	UpdateScreenItemStatus(ind, current);
+	const DIFFITEM & updated = m_pCtxt->GetDiffAt(pos);
+	UpdateScreenItemStatus(ind, updated);
 }
 
 /**
@@ -641,3 +613,30 @@ void CDirDoc::SetRecursive(BOOL bRecursive)
 {
 	m_bRecursive = bRecursive;
 }
+
+void CDirDoc::SetDiffSide(UINT diffcode, int idx)
+{
+	SetDiffStatus(diffcode, DIFFCODE::SIDEFLAG, idx);
+}
+
+void CDirDoc::SetDiffCompare(UINT diffcode, int idx)
+{
+	SetDiffStatus(diffcode, DIFFCODE::COMPAREFLAGS, idx);
+}
+
+void CDirDoc::SetDiffStatus(UINT diffcode, UINT mask, int idx)
+{
+	CDirView *pv = GetMainView();
+	ASSERT(pv);
+	// first change it in the dirlist
+	POSITION diffpos = pv->GetItemKey(idx);
+
+	// TODO: Why is the update broken into these pieces ?
+	// Someone could figure out these pieces and probably simplify this.
+
+	// update DIFFITEM code
+	m_pCtxt->SetDiffStatusCode(diffpos, diffcode, mask);
+	// update DIFFITEM time, and also tell views
+	ReloadItemStatus(idx);
+}
+

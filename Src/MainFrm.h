@@ -76,6 +76,8 @@ public:
 	BOOL m_bShowDiff;
 	BOOL m_bShowIdent;
 	BOOL m_bShowBinaries;
+	BOOL m_bShowErrors;
+	BOOL m_bShowSkipped;
 	BOOL m_bBackup;
 	BOOL m_bAllowMixedEol;
 	LOGFONT m_lfDiff;
@@ -86,11 +88,10 @@ public:
 // Operations
 public:
 	BOOL DeleteFileOrError(LPCTSTR szFile);
-	void rptStatus(BYTE code);
+	void rptStatus(UINT diffcode);
 	void clearStatus();
 	BOOL SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
 	BOOL DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
-	void UpdateCurrentFileStatus(CDirDoc * pDirDoc, UINT nStatus, int idx);
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
 		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE);
 	void ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft = FALSE, BOOL bRORight = FALSE);

@@ -19,6 +19,20 @@ struct dirdata
 };
 
 // values for DIFFITEM.code
+namespace DIFFCODE {
+	enum { 
+		// We use extra bits so that no valid values are 0
+		// and each set of flags is in a different hex digit
+		// to make debugging easier
+		// These can always be packed down in the future
+		TEXTFLAG=0x3, TEXT=0x1, BIN=0x2,
+		DIRFLAG=0x30, FILE=0x10, DIR=0x20,
+		SIDEFLAG=0x300, LEFT=0x100, RIGHT=0x200, BOTH=0x300,
+		COMPAREFLAGS=0x7000, SAME=0x1000, DIFF=0x2000, SKIPPED=0x3000, CMPERR=0x4000
+	};
+};
+// old codes
+/* TODO: delete
 #define FILE_LUNIQUE     0
 #define FILE_RUNIQUE     1
 #define FILE_DIFF        2
@@ -30,6 +44,7 @@ struct dirdata
 #define FILE_RDIRUNIQUE  8
 #define FILE_SKIP        9
 #define FILE_DIRSKIP    10
+*/
 
 struct FileFlags
 {
@@ -71,10 +86,24 @@ struct DIFFITEM
 	CString sfilename;
 	CString sSubdir; //*< Common subdirectory from root of comparison */
 	CString sext;
-	BYTE code;
+	int diffcode;
+
+	DIFFITEM() : diffcode(0) { }
+
 	CString getLeftFilepath() const;
 	CString getRightFilepath() const;
-	DIFFITEM() : code(0) { }
+
+	// file/directory
+	bool isDirectory() const { return ((diffcode & DIFFCODE::DIRFLAG) == DIFFCODE::DIR); }
+	// left/right
+	bool isSideLeft() const { return ((diffcode & DIFFCODE::SIDEFLAG) == DIFFCODE::LEFT); }
+	bool isSideRight() const { return ((diffcode & DIFFCODE::SIDEFLAG) == DIFFCODE::RIGHT); }
+	// result filters
+	bool isResultError() const { return ((diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::CMPERR); }
+	bool isResultSame() const { return ((diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME); }
+	bool isResultSkipped() const { return ((diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SKIPPED); }
+	// type
+	bool isBin() const { return ((diffcode & DIFFCODE::TEXTFLAG) == DIFFCODE::BIN); }
 };
 
 // Interface for reporting current file, as diff traverses file tree
@@ -104,7 +133,7 @@ public:
 	// add & remove differences
 	void AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir, LPCTSTR pszLeftDir, LPCTSTR pszRightDir
 		, __int64 lmtime, __int64 rmtime, __int64 lctime, __int64 rctime
-		, __int64 lsize, __int64 rsize, BYTE code);
+		, __int64 lsize, __int64 rsize, int diffcode);
 	void AddDiff(DIFFITEM di);
 	void RemoveDiff(POSITION diffpos);
 	void RemoveAll();
@@ -114,15 +143,16 @@ public:
 	// to iterate over all differences on list
 	POSITION GetFirstDiffPosition();
 	DIFFITEM GetNextDiffPosition(POSITION & diffpos);
-	DIFFITEM GetDiffAt(POSITION diffpos);
-	const DIFFITEM GetDiffAt(POSITION diffpos) const;
-	BYTE GetDiffStatus(POSITION diffpos);
+//	DIFFITEM GetDiffAt(POSITION diffpos);
+	const DIFFITEM & GetDiffAt(POSITION diffpos) const;
+//	int GetDiffStatus(POSITION diffpos);
 	int GetDiffCount();
 
 	// change an existing difference
-	void UpdateStatusCode(POSITION diffpos, BYTE status);
+	void SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask);
 	void UpdateInfoFromDisk(DIFFITEM & di);
 	void UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi);
+	void UpdateStatusFromDisk(POSITION diffpos);
 
 	BOOL m_bRecurse;
 	CString m_strLeft;

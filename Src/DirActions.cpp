@@ -67,12 +67,6 @@ static BOOL ConfirmSingleDelete(LPCTSTR filepath)
 	return (rtn==IDYES);
 }
 
-static BOOL
-IsItemCodeDir(int code)
-{
-	return code==FILE_LDIRUNIQUE || code==FILE_RDIRUNIQUE;
-}
-
 // Prompt & copy item from right to left, if legal
 void CDirView::DoCopyFileToLeft()
 {
@@ -82,15 +76,15 @@ void CDirView::DoCopyFileToLeft()
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemCopyableToLeft(di.code))
+		if (IsItemCopyableToLeft(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
 			action act;
 			act.src = srFile;
 			act.dest = slFile;
 			act.idx = sel;
-			act.code = di.code;
-			act.dirflag = IsItemCodeDir(di.code);
+			act.code = di.diffcode;
+			act.dirflag = di.isDirectory();
 			actionList.actions.AddTail(act);
 		}
 		++actionList.selcount;
@@ -107,15 +101,15 @@ void CDirView::DoCopyFileToRight()
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemCopyableToRight(di.code))
+		if (IsItemCopyableToRight(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
 			action act;
 			act.src = slFile;
 			act.dest = srFile;
-			act.dirflag = IsItemCodeDir(di.code);
+			act.dirflag = di.isDirectory();
 			act.idx = sel;
-			act.code = di.code;
+			act.code = di.diffcode;
 			actionList.actions.AddTail(act);
 		}
 		++actionList.selcount;
@@ -133,14 +127,14 @@ void CDirView::DoDelLeft()
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemDeletableOnLeft(di.code))
+		if (IsItemDeletableOnLeft(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
 			action act;
 			act.src = slFile;
-			act.dirflag = IsItemCodeDir(di.code);
+			act.dirflag = di.isDirectory();
 			act.idx = sel;
-			act.code = di.code;
+			act.code = di.diffcode;
 			actionList.actions.AddTail(act);
 		}
 		++actionList.selcount;
@@ -158,14 +152,14 @@ void CDirView::DoDelRight()
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
 
-		if (IsItemDeletableOnRight(di.code))
+		if (IsItemDeletableOnRight(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
 			action act;
 			act.src = srFile;
-			act.dirflag = IsItemCodeDir(di.code);
+			act.dirflag = di.isDirectory();
 			act.idx = sel;
-			act.code = di.code;
+			act.code = di.diffcode;
 			actionList.actions.AddTail(act);
 		}
 		++actionList.selcount;
@@ -183,15 +177,15 @@ void CDirView::DoDelBoth()
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
 
-		if (IsItemDeletableOnBoth(di.code))
+		if (IsItemDeletableOnBoth(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
 			action act;
 			act.src = srFile;
 			act.dest = slFile;
-			act.dirflag = IsItemCodeDir(di.code);
+			act.dirflag = di.isDirectory();
 			act.idx = sel;
-			act.code = di.code;
+			act.code = di.diffcode;
 			actionList.actions.AddTail(act);
 		}
 		++actionList.selcount;
@@ -304,10 +298,7 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 			// copy single file, and update status immediately
 			if (mf->SyncFiles(act.src, act.dest, &s))
 			{
-				if (act.code == FILE_BINDIFF)
-					mf->UpdateCurrentFileStatus(GetDocument(), FILE_BINSAME, act.idx);
-				else
-					mf->UpdateCurrentFileStatus(GetDocument(), FILE_SAME, act.idx);
+				GetDocument()->SetDiffStatus(DIFFCODE::SAME, DIFFCODE::COMPAREFLAGS, act.idx);
 			}
 			else
 			{
@@ -343,11 +334,11 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 				{
 					// figure out if copy on right
 					POSITION diffpos = GetItemKey(act.idx);
-					BYTE code = GetDiffContext()->GetDiffStatus(diffpos);
-					if (IsItemLeftOnly(code))
+					const DIFFITEM & di = GetDiffContext()->GetDiffAt(diffpos);
+					if (di.isSideLeft())
 						actionList.deletedItems.AddTail(act.idx);
 					else
-						mf->UpdateCurrentFileStatus(GetDocument(), FILE_RUNIQUE, act.idx);
+						GetDocument()->SetDiffStatus(DIFFCODE::RIGHT, DIFFCODE::SIDEFLAG, act.idx);
 				}
 				else
 				{
@@ -362,11 +353,11 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 				{
 					// figure out if copy on right
 					POSITION diffpos = GetItemKey(act.idx);
-					BYTE code = GetDiffContext()->GetDiffStatus(diffpos);
-					if (IsItemRightOnly(code))
+					const DIFFITEM & di = GetDiffContext()->GetDiffAt(diffpos);
+					if (di.isSideRight())
 						actionList.deletedItems.AddTail(act.idx);
 					else
-						mf->UpdateCurrentFileStatus(GetDocument(), FILE_LUNIQUE, act.idx);
+						GetDocument()->SetDiffStatus(DIFFCODE::LEFT, DIFFCODE::SIDEFLAG, act.idx);
 				}
 				else
 				{
@@ -390,146 +381,96 @@ BOOL CDirView::GetSelectedDirNames(CString& strLeft, CString& strRight) const
 	return bResult;
 }
 
-// Does item exist only on the left ?
-BOOL CDirView::IsItemLeftOnly(int code)
-{
-	return code==FILE_LUNIQUE || code==FILE_LDIRUNIQUE;
-}
-// Does item exist only on the right ?
-BOOL CDirView::IsItemRightOnly(int code)
-{
-	return code==FILE_RUNIQUE || code==FILE_RDIRUNIQUE;
-}
-
 // is it possible to copy item to left ?
-BOOL CDirView::IsItemCopyableToLeft(int code)
+BOOL CDirView::IsItemCopyableToLeft(const DIFFITEM & di)
 {
-	switch(code)
-	{
-	case FILE_RUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINDIFF:
-		return TRUE;
-	// no point in allowing FILE_SAME
-	// TODO: FILE_RDIRUNIQUE: add code for directory copy
-	}
-	return FALSE;
+	// don't let them mess with error items
+	if (di.isResultError()) return FALSE;
+	// no directory copying right now
+	if (di.isDirectory()) return FALSE; 
+	// can't copy same items
+	if (di.isResultSame()) return FALSE;
+	// impossible if only on left
+	if (di.isSideLeft()) return FALSE;
+
+	// everything else can be copied to left
+	return TRUE;
 }
 // is it possible to copy item to right ?
-BOOL CDirView::IsItemCopyableToRight(int code)
+BOOL CDirView::IsItemCopyableToRight(const DIFFITEM & di)
 {
-	switch(code)
-	{
-	case FILE_LUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINDIFF:
-		return TRUE;
-	// no point in allowing FILE_SAME
-	// TODO: FILE_LDIRUNIQUE: add code for directory copy
-	}
-	return FALSE;
+	// don't let them mess with error items
+	if (di.isResultError()) return FALSE;
+	// no directory copying right now
+	if (di.isDirectory()) return FALSE; 
+	// can't copy same items
+	if (di.isResultSame()) return FALSE;
+	// impossible if only on right
+	if (di.isSideRight()) return FALSE;
+
+	// everything else can be copied to right
+	return TRUE;
 }
 // is it possible to delete left item ?
-BOOL CDirView::IsItemDeletableOnLeft(int code)
+BOOL CDirView::IsItemDeletableOnLeft(const DIFFITEM & di)
 {
-	switch(code)
-	{
-	case FILE_LUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINSAME:
-	case FILE_BINDIFF:
-	case FILE_SAME:
-	case FILE_LDIRUNIQUE:
-		return TRUE;
-	}
-	return FALSE;
+	// don't let them mess with error items
+	if (di.isResultError()) return FALSE;
+	// impossible if only on right
+	if (di.isSideRight()) return FALSE;
+	// everything else can be deleted on left
+	return TRUE;
 }
 // is it possible to delete right item ?
-BOOL CDirView::IsItemDeletableOnRight(int code)
+BOOL CDirView::IsItemDeletableOnRight(const DIFFITEM & di)
 {
-	switch(code)
-	{
-	case FILE_RUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINSAME:
-	case FILE_BINDIFF:
-	case FILE_SAME:
-	case FILE_RDIRUNIQUE:
-		return TRUE;
-	}
-	return FALSE;
+	// don't let them mess with error items
+	if (di.isResultError()) return FALSE;
+	// impossible if only on right
+	if (di.isSideLeft()) return FALSE;
+
+	// everything else can be deleted on right
+	return TRUE;
 }
 // is it possible to delete both items ?
-BOOL CDirView::IsItemDeletableOnBoth(int code)
+BOOL CDirView::IsItemDeletableOnBoth(const DIFFITEM & di)
 {
-	switch(code)
-	{
-	case FILE_DIFF:
-	case FILE_BINSAME:
-	case FILE_BINDIFF:
-	case FILE_SAME:
-		return TRUE;
-	}
-	return FALSE;
+	// don't let them mess with error items
+	if (di.isResultError()) return FALSE;
+	// impossible if only on right or left
+	if (di.isSideLeft() || di.isSideRight()) return FALSE;
+
+	// everything else can be deleted on both
+	return TRUE;
 }
 
 // is it possible to open left item ?
-BOOL CDirView::IsItemOpenableOnLeft(int code)
+BOOL CDirView::IsItemOpenableOnLeft(const DIFFITEM & di)
 {
-	switch(code)
-	{
-	case FILE_LUNIQUE:
-	case FILE_LDIRUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINSAME:
-	case FILE_BINDIFF:
-	case FILE_SAME:
-		return TRUE;
-	}
-	return FALSE;
+	// impossible if only on right
+	if (di.isSideRight()) return FALSE;
+
+	// everything else can be opened on right
+	return TRUE;
 }
 // is it possible to open right item ?
-BOOL CDirView::IsItemOpenableOnRight(int code)
+BOOL CDirView::IsItemOpenableOnRight(const DIFFITEM & di)
 {
-	switch(code)
-	{
-	case FILE_RUNIQUE:
-	case FILE_RDIRUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINSAME:
-	case FILE_BINDIFF:
-	case FILE_SAME:
-		return TRUE;
-	}
-	return FALSE;
+	// impossible if only on left
+	if (di.isSideLeft()) return FALSE;
+
+	// everything else can be opened on left
+	return TRUE;
 }
 // is it possible to open left ... item ?
-BOOL CDirView::IsItemOpenableOnLeftWith(int code)
+BOOL CDirView::IsItemOpenableOnLeftWith(const DIFFITEM & di)
 {
-	switch(code)
-	{
-	case FILE_LUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINSAME:
-	case FILE_BINDIFF:
-	case FILE_SAME:
-		return TRUE;
-	}
-	return FALSE;
+	return (!di.isDirectory() && IsItemOpenableOnLeft(di));
 }
 // is it possible to open with ... right item ?
-BOOL CDirView::IsItemOpenableOnRightWith(int code)
+BOOL CDirView::IsItemOpenableOnRightWith(const DIFFITEM & di)
 {
-	switch(code)
-	{
-	case FILE_RUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINSAME:
-	case FILE_BINDIFF:
-	case FILE_SAME:
-		return TRUE;
-	}
-	return FALSE;
+	return (!di.isDirectory() && IsItemOpenableOnRight(di));
 }
 
 // get the file names on both sides for first selected item

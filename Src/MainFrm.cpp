@@ -134,6 +134,8 @@ CMainFrame::CMainFrame()
 	m_bShowDiff = theApp.GetProfileInt(_T("Settings"), _T("ShowDifferent"), TRUE)!=0;
 	m_bShowIdent = theApp.GetProfileInt(_T("Settings"), _T("ShowIdentical"), TRUE)!=0;
 	m_bShowBinaries = theApp.GetProfileInt(_T("Settings"), _T("ShowBinaries"), TRUE)!=0;
+	m_bShowErrors = TRUE;
+	m_bShowSkipped = TRUE;
 	m_bBackup = theApp.GetProfileInt(_T("Settings"), _T("BackupFile"), TRUE)!=0;
 	m_bViewWhitespace = theApp.GetProfileInt(_T("Settings"), _T("ViewWhitespace"), FALSE)!=0;
 	m_bScrollToFirst = theApp.GetProfileInt(_T("Settings"), _T("ScrollToFirst"), FALSE)!=0;
@@ -816,38 +818,79 @@ void CMainFrame::clearStatus()
 }
 
 // diff completed another file
-void CMainFrame::rptStatus(BYTE code)
+void CMainFrame::rptStatus(UINT diffcode)
 {
-	switch(code)
+	// TODO: This is a mess
+	// How do we fix this ?
+	DIFFITEM di;
+	di.diffcode = diffcode;
+	if (di.isSideLeft())
 	{
-	case FILE_SAME:
-		++m_nStatusFileSame;
-		break;
-	case FILE_BINSAME:
-		++m_nStatusFileBinSame;
-		break;
-	case FILE_DIFF:
-		++m_nStatusFileDiff;
-		break;
-	case FILE_BINDIFF:
-		++m_nStatusFileBinDiff;
-		break;
-	case FILE_ERROR:
-		++m_nStatusFileError;
-		break;
-	case FILE_LUNIQUE:
-		++m_nStatusLeftFileOnly;
-		break;
-	case FILE_LDIRUNIQUE:
-		++m_nStatusLeftDirOnly;
-		break;
-	case FILE_RUNIQUE:
-		++m_nStatusRightFileOnly;
-		break;
-	case FILE_RDIRUNIQUE:
-		++m_nStatusRightDirOnly;
-		break;
+		if (di.isDirectory())
+		{
+			++m_nStatusLeftDirOnly;
+		}
+		else
+		{
+			++m_nStatusLeftFileOnly;
+		}
 	}
+	else if (di.isSideRight())
+	{
+		if (di.isDirectory())
+		{
+			++m_nStatusRightDirOnly;
+		}
+		else
+		{
+			++m_nStatusRightFileOnly;
+		}
+	}
+	else
+	{
+		if (di.isResultSkipped())
+		{
+			// what about skipped items ?
+		}
+		else if (di.isResultError())
+		{
+			// could be directory error ?
+			++m_nStatusFileError;
+		}
+		// Now we know it was on both sides & compared!
+		else if (di.isResultSame())
+		{
+			if (di.isBin())
+			{
+				++m_nStatusFileBinSame;
+			}
+			else
+			{
+				++m_nStatusFileSame;
+			}
+		}
+		else
+		{
+			// presumably it is diff
+			if (di.isDirectory())
+			{
+				// this doesn't happen right now, but it will
+				// TODO
+			}
+			else
+			{
+				if (di.isBin())
+				{
+					++m_nStatusFileBinDiff;
+				}
+				else
+				{
+					++m_nStatusFileDiff;
+				}
+			}
+		}
+	}
+
 	CString s;
 	// TODO: Load the format string from resource
 	s.Format(_T("s:%d bs:%d d:%d bd:%d lf:%d ld:%d rf:%d rd:%d e:%d")
@@ -1113,22 +1156,6 @@ BOOL CMainFrame::DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
 	return TRUE;
 }
 
-void CMainFrame::UpdateCurrentFileStatus(CDirDoc * pDirDoc, UINT nStatus, int idx)
-{
-	ASSERT(pDirDoc);
-	CDirView *pv = pDirDoc->GetMainView();
-	ASSERT(pv);
-	// first change it in the dirlist
-	POSITION diffpos = pv->GetItemKey(idx);
-
-	// TODO: Why is the update broken into these pieces ?
-	// Someone could figure out these pieces and probably simplify this.
-
-	// update DIFFITEM code
-	pDirDoc->m_pCtxt->UpdateStatusCode(diffpos, (BYTE)nStatus);
-	// update DIFFITEM time, and also tell views
-	pDirDoc->ReloadItemStatus(idx);
-}
 
 void CMainFrame::OnViewSelectfont() 
 {

@@ -86,7 +86,8 @@ public:
 	void CompareReady();
 	void UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unified);
 	POSITION FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight);
-	void SetDiffContext(CDiffContext *pCtxt);
+	void SetDiffSide(UINT diffcode, int idx);
+	void SetDiffCompare(UINT diffcode, int idx);
 	void UpdateResources();
 	void InitStatusStrings();
 	void ReloadItemStatus(UINT nIdx);
@@ -98,6 +99,8 @@ public:
 	void AddMergeDoc(CMergeDoc * pMergeDoc);
 	void MergeDocClosing(CMergeDoc * pMergeDoc);
 	CDiffThread m_diffThread;
+	void SetDiffStatus(UINT diffcode, UINT mask, int idx);
+	void SetDiffContext(CDiffContext *pCtxt);
 
 #ifdef _DEBUG
 	virtual void AssertValid() const;
