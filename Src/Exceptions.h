@@ -49,7 +49,7 @@ public:
 	~SE_Exception() {};
 
 	unsigned long getSeNumber() { return nSE; }
-	LPTSTR getSeMessage()
+	LPCTSTR getSeMessage()
 	{
 		// known exceptions (from WINNT.H)
 		#define EXCEPTION( x ) case EXCEPTION_##x: return _T(#x);
@@ -86,7 +86,7 @@ public:
 	virtual BOOL GetErrorMessage( LPTSTR lpszError, UINT nMaxError, PUINT pnHelpContext = NULL )
 	{
 		static TCHAR message[512];
-		_stprintf(message, "Exception %s (0x%.8x)", getSeMessage(), getSeNumber());
+		_stprintf(message, _T("Exception %s (0x%.8x)"), getSeMessage(), getSeNumber());
 		_tcsncpy(lpszError, message, nMaxError-1);
 		lpszError[nMaxError-1] = 0;
 		return TRUE;

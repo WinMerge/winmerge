@@ -1,3 +1,7 @@
+2003-11-23 Perry
+ Fix Exceptions.h for Unicode build
+  WinMerge: Exceptions.h
+
 2003-11-23 Laoran
  PATCH: [ 846237 ] Fix for the maximized/restored state (dirframe, docframe)
   WinMerge: ChildFrm.cpp DirFrame.cpp
