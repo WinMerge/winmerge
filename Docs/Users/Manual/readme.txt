@@ -1,3 +1,7 @@
+2004-06-02 Kimmo
+ PATCH: [ 964442 ] Userdocs: Frequently asked questions
+  Manual: Faq.xml
+
 2004-05-30 Kimmo
  PATCH: [ 962676 ] Userdocs: Commandline
   Manual: Command_line.xml

@@ -1,7 +1,119 @@
 <sect1>
   <title>Frequently asked questions</title>
   <sect2>
-    <title></title>
-    <para></para>
+    <title>General questions</title>
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Why is there two executable files, WinMerge.exe and WinMergeU.exe?</para>
+        </question>
+        <answer>
+          <itemizedlist>
+            <listitem>
+              <para>WinMerge.exe is ANSI executable which works in all 32-bit Windows systems. It does not have Unicode support.</para>
+            </listitem>
+            <listitem>
+              <para>WinMergeU.exe is Unicode enabled executable which works in Windows NT4, Windows 2000 and newer systems.</para>
+            </listitem>
+          </itemizedlist>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>That splash screen is annoying, how do I turn it off?</para>
+        </question>
+        <answer>
+          <para>From menu, select  Edit -&gt; Options... -&gt; Disable Splash Screen</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>When wanting to compare directories, I cannot select a directory in Browse?</para>
+        </question>
+        <answer>
+          <para>Are you trying to select a directory by clicking on it in the upper part of the Open File dialog ? The OpenFile dialog will then open it, and you have to push Ok again to get out.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </sect2>
+  <sect2>
+    <title>Questions about binary files</title>
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>WinMerge says "Binary files are different", but I am not comparing binary files?</para>
+        </question>
+        <answer>
+          <para>If you are using WinMerge.exe (not WinMergeU.exe), then your files may be Unicode files. WinMerge.exe cannot handle Unicode files. Please try comparing files with WinMergeU.exe if you have Windows NT4, Windows 2000 or newer.</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>WinMerge cannot compare registry files (*.reg)?</para>
+        </question>
+        <answer>
+          <para>Windows registry files (*.reg) are Unicode files (UTF-16 or UCS-2) -- see previous answer.</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>I cannot merge binary files?</para>
+        </question>
+        <answer>
+          <para>WinMerge can only show if binary files are identical or different.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </sect2>
+  <sect2>
+    <title>Questions about editor</title>
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Some characters are cut in half?</para>
+        </question>
+        <answer>
+          <para>Try selecting a different font from menu View -&gt; Select Font...</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>I would like to see the line numbers?</para>
+        </question>
+        <answer>
+          <para>WinMerge shows current line in editor statusbar. WinMerge cannot show in-editor linenumbers. That is anyhow one feature we might consider for future releases.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </sect2>
+  <sect2>
+    <title>WinMerge as external compare or diff-tool</title>
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>How can I avoid temporary paths filling Open-dialog history lists?</para>
+        </question>
+        <answer>
+          <para>Tell program to invoke WinMerge with the /ub option, which tells WinMerge to not add the files to the MRU.</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>But program I'm using doesn't allow commandline parameters!</para>
+        </question>
+        <answer>
+          <para>Create a batch file where you add one of these lines (but not both):</para>
+          <itemizedlist>
+            <listitem>
+              <screen>CALL "&lt;winmerge path&gt;\WinMerge" /ub %1 %2</screen>
+            </listitem>
+            <listitem>
+              <screen>start "WinMerge" "&lt;winmerge path&gt;" /ub %1 %2</screen>
+            </listitem>
+          </itemizedlist>
+          <para>And then call this batch file from program.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
   </sect2>
 </sect1>
