@@ -67,6 +67,7 @@
 #define IDS_DIFF_OPEN_NO_SET_PROPS      170
 #define IDS_LTIME_HEADER                171
 #define IDS_RTIME_HEADER                172
+#define IDS_EXTENSION_HEADER            173
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
@@ -108,6 +109,8 @@
 #define IDC_ALL_WHITE                   1024
 #define IDC_WHITE_CHANGE                1025
 #define IDC_WHITESPACE                  1026
+#define IDC_USER                        1027
+#define IDC_PASSWORD                    1028
 #define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
 #define IDD_PROPSYNTAX                  30001
@@ -256,7 +259,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32807
-#define _APS_NEXT_CONTROL_VALUE         1027
+#define _APS_NEXT_CONTROL_VALUE         1029
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif
