@@ -1,3 +1,7 @@
+2003-06-26 Christian
+ PATCH: [ 754001 ] 2.0 doc link points to 1.7 docs
+  WinMerge: MainFrm.cpp
+
 2003-06-26 Kimmo
  PATCH: [ 755918 ] Fix typo in CCrystalTextView extension list
   Added more filename extensions
