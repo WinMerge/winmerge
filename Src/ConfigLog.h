@@ -36,7 +36,6 @@ struct VIEWSETTINGS
 	BOOL bShowUniqueRight;
 	BOOL bShowBinaries;
 	BOOL bShowSkipped;
-	BOOL bHideBak;
 };
 
 /** 

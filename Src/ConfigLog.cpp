@@ -268,12 +268,6 @@ BOOL CConfigLog::WriteLogFile()
 	else
 		file.WriteString(_T("No\n"));
 
-	file.WriteString(_T("  *.bak files: "));
-	if (m_viewSettings.bHideBak)
-		file.WriteString(_T("No\n"));
-	else
-		file.WriteString(_T("Yes\n"));
-
 	file.WriteString(_T("\n View Whitespace: "));
 	if (m_miscSettings.bViewWhitespace)
 		file.WriteString(_T("Yes\n"));

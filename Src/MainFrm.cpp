@@ -166,7 +166,6 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_SHOW_IDENTICAL, TRUE);
 	m_options.InitOption(OPT_SHOW_BINARIES, TRUE);
 	m_options.InitOption(OPT_SHOW_SKIPPED, TRUE);
-	m_options.InitOption(OPT_HIDE_BACKUP, TRUE);
 
 	m_options.InitOption(OPT_SYNTAX_HIGHLIGHT, TRUE);
 	m_options.InitOption(OPT_DISABLE_SPLASH, FALSE);
@@ -1487,7 +1486,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  m_options.GetInt(OPT_SHOW_IDENTICAL),
 				  m_options.GetInt(OPT_SHOW_DIFFERENT),
 				  m_options.GetInt(OPT_SHOW_BINARIES),
-				  m_options.GetInt(OPT_HIDE_BACKUP),
 				  m_nVerSys,
 				  m_strVssPath,
 				  m_options.GetInt(OPT_CREATE_BACKUPS),
@@ -2689,7 +2687,6 @@ void CMainFrame::OnSaveConfigData()
 	configLog.m_viewSettings.bShowUniqueRight = m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT);
 	configLog.m_viewSettings.bShowBinaries = m_options.GetInt(OPT_SHOW_BINARIES);
 	configLog.m_viewSettings.bShowSkipped = m_options.GetInt(OPT_SHOW_SKIPPED);
-	configLog.m_viewSettings.bHideBak = m_options.GetInt(OPT_HIDE_BACKUP);
 
 	configLog.m_miscSettings.bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
 	configLog.m_miscSettings.bAllowMixedEol = m_options.GetInt(OPT_ALLOW_MIXED_EOL);
