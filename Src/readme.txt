@@ -3,7 +3,12 @@
   Fixes bug: #840547 Copying unique file does not update date and size
   WinMerge: DirScan.cpp
  PATCH: [ 841889 ] Make long path in CConfigLog::WriteLogFile
+  Submitted by Perry
   WinMerge: ConfigLog.cpp
+ PATCH: [ 841039 ] Green "binary.bmp"´(New binary item icons for dir compare)
+  Submitted by Tim Gerundt
+  WinMerge/res: binary.bmp binarydiff.bmp
+  Languages/res: binary.bmp binarydiff.bmp
 
 2003-11-14 Laoran 
  BUG: [ 838272 ] corrupt string operations in lwdisp.c
