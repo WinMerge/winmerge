@@ -179,10 +179,22 @@ Name: Plugins; Description: Plug-Ins (enhance core behavior); Types: full
 ;Non-English Languages are no longer a default part of a normal installation.  If a user selected a language as part of their last installation
 ;that language will be selected automatically during subsequent installs.
 Name: Catalan_Language; Description: Catalan menus and dialogs; Flags: disablenouninstallwarning
-Name: Portuguese_Language; Description: Portuguese (Brazilian) menus and dialogs; Flags: disablenouninstallwarning
+Name: ChineseSimplified_Language; Description: Chinese (Simplified) menus and dialogs; Flags: disablenouninstallwarning
+Name: ChineseTraditional_Language; Description: Chinese (Traditional) menus and dialogs; Flags: disablenouninstallwarning
+Name: Czeck_Language; Description: Czech menus and dialogs; Flags: disablenouninstallwarning
+Name: Danish_Language; Description: Danish menus and dialogs; Flags: disablenouninstallwarning
+Name: Dutch_Language; Description: Dutch menus and dialogs; Flags: disablenouninstallwarning
+Name: French_Language; Description: French menus and dialogs; Flags: disablenouninstallwarning
+Name: German_Language; Description: German menus and dialogs; Flags: disablenouninstallwarning
+Name: Italian_Language; Description: Italian menus and dialogs; Flags: disablenouninstallwarning
+Name: Korean_Language; Description: Korean menus and dialogs; Flags: disablenouninstallwarning
+Name: Norwegian_Language; Description: Norwegian menus and dialogs; Flags: disablenouninstallwarning
+Name: Polish_Language; Description: Polish menus and dialogs; Flags: disablenouninstallwarning
+Name: Brazilian_Language; Description: Portuguese (Brazilian) menus and dialogs; Flags: disablenouninstallwarning
 Name: Russian_Language; Description: Russian menus and dialogs; Flags: disablenouninstallwarning
 Name: Slovak_Language; Description: Slovak menus and dialogs; Flags: disablenouninstallwarning
 Name: Spanish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning
+Name: Swedish_Language; Description: Swedish menus and dialogs; Flags: disablenouninstallwarning
 
 [InstallDelete]
 ;Experimental Versions 2.1.5.10 - WinMerge.2.1.5.13 shipped with the default behavior of creating a folder by the same name

@@ -1,9 +1,9 @@
 2004-05-07 Laoran
  Fix typos in swedish installation file
   InnoSetup/Languages/Swedish.isl
- Add the full list of languages to WinMergeAlpha
+ Fix the list of languages in WinMergeAlpha 
   InnoSetup/WinMerge Alpha.iss
- Fix the list of languages in WinMergeBeta
+ Add the full list of languages to WinMergeBeta
   InnoSetup/WinMerge Beta.iss
 
 2004-05-07 Laoran
