@@ -39,16 +39,25 @@ struct DIFFITEM
 	DIFFITEM() : ltime(0), rtime(0), code(FILE_ERROR) { }
 };
 
+// Interface for reporting current file, as diff traverses file tree
 class IDiffStatus
 {
 public:
 	virtual void rptFile(BYTE code)=0;
 };
 
+// Interface for testing files & directories for exclusion, as diff traverses file tree
+class IDiffFilter
+{
+public:
+	virtual BOOL includeFile(LPCTSTR szFileName)=0;
+	virtual BOOL includeDir(LPCTSTR szDirName)=0;
+};
+
 class CDiffContext  
 {
 public:
-	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, IDiffStatus * piStatus);
+	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, IDiffStatus * piStatus, IDiffFilter * piFilter);
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src);
 	virtual ~CDiffContext();
 
@@ -81,6 +90,7 @@ public:
 	CRegExp m_rgx;
 	CString m_strRegExp;
 	IDiffStatus * m_piStatus;
+	IDiffFilter * m_piFilter;
 
 
 	struct dirdata ddLeft, ddRight;

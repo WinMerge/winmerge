@@ -162,6 +162,16 @@ int FileIsBinary(int fd)
 	return bResult;
 }
 
+/*
+  Check a file or directory against the context file/directory filter
+  precondition: pCtx is non-null
+*/
+static bool
+DoesPassFilter(CDiffContext *pCtx, int dir_p, LPCTSTR name)
+{
+  return dir_p ? !!pCtx->m_piFilter->includeDir(name) 
+	  : !!pCtx->m_piFilter->includeFile(name);
+}
 
 /* Compare two files (or dirs) with specified names
    DIR0/NAME0 and DIR1/NAME1, at level DEPTH in directory recursion.
@@ -272,6 +282,12 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	    }
 	}
     }
+
+  if (pCtx->m_piFilter)
+  {
+    if (!DoesPassFilter(pCtx, inf[0].dir_p, inf[0].name)) return 88;
+    if (!DoesPassFilter(pCtx, inf[1].dir_p, inf[1].name)) return 88;
+  }
 
   // delayed unique determination so we can see if file is a directory or not
   if (!failed && (lunique || runique))

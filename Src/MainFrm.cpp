@@ -144,6 +144,7 @@ CMainFrame::CMainFrame()
 	m_nTabType = theApp.GetProfileInt(_T("Settings"), _T("TabType"), 0);
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
+	theApp.SetFileFilterName(theApp.GetProfileString(_T("Settings"), _T("FileFilterName"), _T("")));
 	m_bReuseDirDoc = TRUE;
 	// TODO: read preference for logging
 
@@ -702,11 +703,16 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 
 void CMainFrame::OnOptions() 
 {
+
+	CStringList filefilters;
+	CString selectedFilter;
+	theApp.GetFileFilterNameList(filefilters, selectedFilter);
+
 	CPropertySheet sht(IDS_OPTIONS_TITLE);
 	CPropVss vss;
 	CPropGeneral gen;
 	CPropSyntax syn;
-	CPropFilter filter;
+	CPropFilter filter(filefilters, selectedFilter);
 	CPropColors colors( theApp.GetDiffColor(), theApp.GetSelDiffColor() );
 	CPropRegistry regpage;
 	sht.AddPage(&gen);
@@ -758,6 +764,7 @@ void CMainFrame::OnOptions()
 		
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
 		m_sPattern = filter.m_sPattern;
+		theApp.SetFileFilterName(filter.m_sFileFilterName);
 
 		theApp.SetDiffColor( colors.m_clrDiff );
 		theApp.SetSelDiffColor( colors.m_clrSelDiff );
@@ -776,6 +783,7 @@ void CMainFrame::OnOptions()
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
 		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
 		theApp.WriteProfileInt(_T("Settings"), _T("DisableSplash"), theApp.m_bDisableSplash);
+		theApp.WriteProfileString(_T("Settings"), _T("FileFilterName"), filter.m_sFileFilterName);
 
 		theApp.m_bHiliteSyntax = syn.m_bHiliteSyntax;
 		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), theApp.m_bHiliteSyntax);
@@ -824,11 +832,23 @@ void CMainFrame::OnOptions()
 }
 
 // callback for progress during diff
+// actually we just forward the rpt call into the frame's handler (CMainFrame::rptStatus)
 class MainFrmStatus : public IDiffStatus
 {
 public:
 	MainFrmStatus(CMainFrame * pFrame) : m_pFrame(pFrame) { m_pFrame->clearStatus(); }
 	virtual void rptFile(BYTE code) { m_pFrame->rptStatus(code); }
+private:
+	CMainFrame * m_pFrame;
+};
+
+// callback for file/directory filtering during diff
+// actually we just forward these calls to the app, to CMergeApp::includeFile & includeDir
+class MainFrmFilter : public IDiffFilter
+{
+public:
+	virtual BOOL includeFile(LPCTSTR szFileName) { return theApp.includeFile(szFileName); }
+	virtual BOOL includeDir(LPCTSTR szDirName) { return theApp.includeDir(szDirName); }
 private:
 	CMainFrame * m_pFrame;
 };
@@ -969,7 +989,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		if (pDirDoc)
 		{
 			MainFrmStatus mfst(this);
-			CDiffContext *pCtxt = new CDiffContext(strLeft, strRight, &mfst);
+			MainFrmFilter mfflt;
+			CDiffContext *pCtxt = new CDiffContext(strLeft, strRight, &mfst, &mfflt);
 			if (pCtxt != NULL)
 			{
 				pDirDoc->SetDiffContext(pCtxt);

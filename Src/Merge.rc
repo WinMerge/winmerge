@@ -430,8 +430,11 @@ BEGIN
                     7,221,15
     LTEXT           "Regular Expressions (one per line):",IDC_STATIC,7,28,
                     221,8
-    EDITTEXT        IDC_EDITPATTERN,7,39,221,96,ES_MULTILINE | 
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | 
                     ES_AUTOHSCROLL | ES_WANTRETURN
+    LTEXT           "File filter:",IDC_STATIC,7,128,60,10
+    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
 END
 
 IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156

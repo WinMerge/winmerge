@@ -36,6 +36,7 @@
 #include "logfile.h"
 #include "coretools.h"
 #include "paths.h"
+#include "FileFilterMgr.h"
 
 #include "MergeEditView.h"
 #ifdef _DEBUG
@@ -79,6 +80,8 @@ CMergeApp::CMergeApp()
 , m_pDiffTemplate(0)
 , m_pDirTemplate(0)
 , m_lang(IDR_MAINFRAME, IDR_MAINFRAME)
+, m_fileFilterMgr(0)
+, m_currentFilter(0)
 , m_bEscCloses(FALSE)
 {
 	// TODO: add construction code here,
@@ -101,7 +104,19 @@ BOOL CMergeApp::InitInstance()
 	SillyTestCrap();
 #endif
 
-//	_CrtSetBreakAlloc( 11481 );
+	// Runtime switch so programmer may set this in interactive debugger
+	int dbgmem = 0;
+	if (dbgmem)
+	{
+		// get current setting
+		int tmpFlag = _CrtSetDbgFlag( _CRTDBG_REPORT_FLAG );
+		// Keep freed memory blocks in the heap’s linked list and mark them as freed
+		tmpFlag |= _CRTDBG_DELAY_FREE_MEM_DF;
+		// Call _CrtCheckMemory at every allocation and deallocation request.
+		tmpFlag |= _CRTDBG_CHECK_ALWAYS_DF;
+		// Set the new state for the flag
+		_CrtSetDbgFlag( tmpFlag );
+	}
 
 	// CCrystalEdit Drag and Drop functionality needs AfxOleInit.
 	if(!AfxOleInit())
@@ -140,13 +155,17 @@ BOOL CMergeApp::InitInstance()
 		CSplashWnd::EnableSplashScreen(m_bDisableSplash==FALSE && cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew);
 	}
 
-	// Register the application's document templates.  Document templates
-	//  serve as the connection between documents, frame windows and views.
+	// Initialize i18n (multiple language) support
 
 	m_lang.SetLogFile(&gLog);
 	m_lang.InitializeLanguage();
 
-	AddEnglishResourceHook();
+	AddEnglishResourceHook(); // Use English string when l10n (foreign) string missing
+
+	InitializeFileFilters();
+
+	// Register the application's document templates.  Document templates
+	//  serve as the connection between documents, frame windows and views.
 
 	m_pDiffTemplate = new CMultiDocTemplate(
 		IDR_MERGETYPE,
@@ -196,6 +215,33 @@ BOOL CMergeApp::InitInstance()
 	files.SetSize(2);
 	DWORD dwLeftFlags = 0;
 	DWORD dwRightFlags = 0;
+	// Split commandline arguments into files & flags & recursive flag
+	ParseArgs(files, nFiles, recurse, dwLeftFlags, dwRightFlags);
+
+	if (nFiles>2)
+	{
+		pMainFrame->m_strSaveAsPath = files[2];
+		pMainFrame->DoFileOpen(files[0], files[1],
+			dwLeftFlags, dwRightFlags, recurse);
+	}
+	else if (nFiles>1)
+	{
+		pMainFrame->m_strSaveAsPath = _T("");
+		pMainFrame->DoFileOpen(files[0], files[1],
+			dwLeftFlags, dwRightFlags, recurse);
+	}
+	else if (nFiles>0)
+	{
+		pMainFrame->m_strSaveAsPath = _T("");
+		pMainFrame->DoFileOpen(files[0], "",
+			dwLeftFlags, dwRightFlags, recurse);
+	}
+	return TRUE;
+}
+
+// Process commandline arguments
+void CMergeApp::ParseArgs(CStringArray & files, UINT & nFiles, BOOL & recurse, DWORD & dwLeftFlags, DWORD & dwRightFlags)
+{
 	for (int i = 1; i < __argc; i++)
 	{
 		LPCTSTR pszParam = __targv[i];
@@ -236,26 +282,6 @@ BOOL CMergeApp::InitInstance()
 			nFiles++;
 		}
 	}
-
-	if (nFiles>2)
-	{
-		pMainFrame->m_strSaveAsPath = files[2];
-		pMainFrame->DoFileOpen(files[0], files[1],
-			dwLeftFlags, dwRightFlags, recurse);
-	}
-	else if (nFiles>1)
-	{
-		pMainFrame->m_strSaveAsPath = _T("");
-		pMainFrame->DoFileOpen(files[0], files[1],
-			dwLeftFlags, dwRightFlags, recurse);
-	}
-	else if (nFiles>0)
-	{
-		pMainFrame->m_strSaveAsPath = _T("");
-		pMainFrame->DoFileOpen(files[0], "",
-			dwLeftFlags, dwRightFlags, recurse);
-	}
-	return TRUE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -576,6 +602,8 @@ int CMergeApp::ExitInstance()
 	WriteProfileInt(_T("Settings"), _T("DifferenceColor"), m_clrDiff);
 	WriteProfileInt(_T("Settings"), _T("SelectedDifferenceColor"), m_clrSelDiff);
 	
+	delete m_fileFilterMgr;
+
 	return CWinApp::ExitInstance();
 }
 
@@ -635,3 +663,47 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 	}
 	return FALSE;
 }
+
+// Load any known file filters
+void CMergeApp::InitializeFileFilters()
+{
+	if (!m_fileFilterMgr)
+		m_fileFilterMgr = new FileFilterMgr;
+
+	CString sPattern = GetModulePath() + _T("\\Merge_*.flt");
+	m_fileFilterMgr->LoadFromDirectory(sPattern);
+}
+
+// fill list with names of known filters
+void CMergeApp::GetFileFilterNameList(CStringList & filefilters, CString & selected) const
+{
+	if (!m_fileFilterMgr) return;
+	for (int i=0; i<m_fileFilterMgr->GetFilterCount(); ++i)
+	{
+		filefilters.AddTail(m_fileFilterMgr->GetFilterName(i));
+	}
+	selected = m_sFileFilterName;
+}
+
+// Store current filter (if filter manager validates the name)
+void CMergeApp::SetFileFilterName(LPCTSTR szFileFilterName)
+{
+	m_sFileFilterName = _T("<None>");
+	if (!m_fileFilterMgr) return;
+	m_currentFilter = m_fileFilterMgr->GetFilter(szFileFilterName);
+	if (m_currentFilter)
+		m_sFileFilterName = szFileFilterName;
+}
+
+BOOL CMergeApp::includeFile(LPCTSTR szFileName)
+{
+	if (!m_fileFilterMgr || !m_currentFilter) return TRUE;
+	return m_fileFilterMgr->TestFileNameAgainstFilter(m_currentFilter, szFileName);
+}
+
+BOOL CMergeApp::includeDir(LPCTSTR szDirName)
+{
+	if (!m_fileFilterMgr || !m_currentFilter) return TRUE;
+	return m_fileFilterMgr->TestDirNameAgainstFilter(m_currentFilter, szDirName);
+}
+

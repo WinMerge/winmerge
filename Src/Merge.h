@@ -35,6 +35,9 @@
 #include "MergeDoc.h"
 #include "languageselect.h"
 
+class FileFilterMgr;
+struct FileFilter;
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
 // See Merge.cpp for the implementation of this class
@@ -60,6 +63,13 @@ public:
 	void SetDiffColor(COLORREF clrValue) ;
 	void SetSelDiffColor(COLORREF clrValue);
 	void SetNeedIdleTimer();
+	CString GetFileFilterName() const { return m_sFileFilterName; }
+	void SetFileFilterName(LPCTSTR szFileFilterName);
+	void GetFileFilterNameList(CStringList & filefilters, CString & selected) const;
+
+	// implement file/directory filtering, because app currently holds the filter manager
+	BOOL includeFile(LPCTSTR szFileName);
+	BOOL includeDir(LPCTSTR szDirName);
 
 // Implementation
 protected:
@@ -75,6 +85,9 @@ protected:
 	//}}AFX_VIRTUAL
 
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	void InitializeFileFilters();
+	void ParseArgs(CStringArray & files, UINT & nFiles, BOOL & recurse, DWORD & dwLeftFlags, DWORD & dwRightFlags);
+
 
 	//{{AFX_MSG(CMergeApp)
 	afx_msg void OnAppAbout();
@@ -83,6 +96,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	BOOL m_bEscCloses;
+	FileFilter * m_currentFilter;
+	FileFilterMgr * m_fileFilterMgr;
+	CString m_sFileFilterName;
 };
 
 extern CMergeApp theApp;

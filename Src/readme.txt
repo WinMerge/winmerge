@@ -1,3 +1,9 @@
+2003-05-18 Perry
+ PATCH: [ 739529 ] project file & directory filters
+  WinMerge: Diff.cpp DiffContext.cpp DiffContext.h FileFilterMgr.cpp 
+    FileFilterMgr.h MainFrm.cpp MainFrm.h Merge.cpp Merge.dsp Merge.h
+	Merge.rc PropFilter.cpp PropFilter.h resource.h
+
 2003-05-16 Kimmo
  PATCH: [ 737709 ] Remove unneeded UpdateAllViews()
   WinMerge: MergeDoc.cpp

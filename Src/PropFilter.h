@@ -12,20 +12,22 @@
 
 class CPropFilter : public CPropertyPage
 {
-	DECLARE_DYNCREATE(CPropFilter)
+	DECLARE_DYNAMIC(CPropFilter)
 
 // Construction
 public:
-	CPropFilter();
+	CPropFilter(const CStringList & fileFilters, CString & selected);
 	~CPropFilter();
 
 // Dialog Data
 	//{{AFX_DATA(CPropFilter)
 	enum { IDD = IDD_PROPPAGE_FILTER };
+	CComboBox	m_cboFileFilter;
 	CEdit	m_cPattern;
 	BOOL	m_bIgnoreRegExp;
 	CString	m_sPattern;
 	//}}AFX_DATA
+	CString m_sFileFilterName;
 
 
 // Overrides
@@ -37,10 +39,13 @@ public:
 
 // Implementation
 protected:
+	CStringList m_FilterNames;
+
 	// Generated message map functions
 	//{{AFX_MSG(CPropFilter)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnIgnoreregexp();
+	afx_msg void OnSelchangeFileFilter();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

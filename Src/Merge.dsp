@@ -271,6 +271,10 @@ SOURCE=.\ED.C
 # End Source File
 # Begin Source File
 
+SOURCE=.\FileFilterMgr.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\files.cpp
 # End Source File
 # Begin Source File
@@ -661,6 +665,10 @@ SOURCE=.\DirView.h
 # Begin Source File
 
 SOURCE=.\EditFile.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FileFilterMgr.h
 # End Source File
 # Begin Source File
 
