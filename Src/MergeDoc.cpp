@@ -2698,6 +2698,10 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	
 	nRescanResult = Rescan();
 
+	// recreate the sub menu (to fill the "selected prediffers")
+	// keep after Rescan (in automatic mode, prediffer is set during the first Rescan)
+	mf->UpdatePrediffersMenu();
+
 	// Open different and identical files
 	if (nRescanResult == RESCAN_OK ||
 		nRescanResult == RESCAN_IDENTICAL)

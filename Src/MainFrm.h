@@ -82,6 +82,8 @@ public:
 	// HMENU NewMenu(); // Uncomment to enable document menus
 	HMENU NewDefaultMenu();
 	HMENU GetScriptsSubmenu(HMENU mainMenu);
+	HMENU GetPrediffersSubmenu(HMENU mainMenu);
+	void UpdatePrediffersMenu();
 
 	BOOL DeleteFileOrError(LPCTSTR szFile);
 	BOOL SyncFilesToVCS(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);

@@ -358,6 +358,28 @@ HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
 }
 
 /**
+ * @brief Find the scripts submenu from the main menu
+ * As now this is the first submenu in "Plugins" menu
+ */
+HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
+{
+	// look for "Plugins" menu
+	int i;
+	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
+		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == ID_UNPACK_MANUAL)
+			break;
+	HMENU editMenu = ::GetSubMenu(mainMenu, i);
+
+	// look for "script" submenu (first submenu)
+	for (i = 0 ; i < ::GetMenuItemCount(editMenu) ; i++)
+		if (::GetSubMenu(editMenu, i) != NULL)
+			return ::GetSubMenu(editMenu, i);
+
+	// error, submenu not found
+	return NULL;
+}
+
+/**
  * @brief Create new default (CMainFrame) menu
  */
 HMENU CMainFrame::NewDefaultMenu()
@@ -2427,10 +2449,26 @@ void CMainFrame::OnReloadPlugins()
 	HMENU scriptsSubmenu = GetScriptsSubmenu(m_hMenuDefault);
 	if (scriptsSubmenu != NULL)
 		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
+	UpdatePrediffersMenu();
+}
 
-	// This simulates a window being opened if you don't have
-	// a default window displayed at startup
-//	OnUpdateFrameMenu(m_hMenuDefault);
+void CMainFrame::UpdatePrediffersMenu()
+{
+		HMENU prediffersSubmenu = GetPrediffersSubmenu(m_hMenuDefault);
+		if (prediffersSubmenu != NULL)
+	{
+		CMergeEditView * pEditView = dynamic_cast<CMergeEditView*> (GetActiveFrame()->GetActiveView());
+		if (pEditView)
+			pEditView->createPrediffersSubmenu(prediffersSubmenu);
+		else
+		{
+			// no view or dir view : display an empty submenu
+			int i = GetMenuItemCount(prediffersSubmenu);
+			while (i --)
+				::DeleteMenu(prediffersSubmenu, 0, MF_BYPOSITION);
+			::AppendMenu(prediffersSubmenu, MF_SEPARATOR, 0, NULL);
+		}
+	}
 }
 
 /**

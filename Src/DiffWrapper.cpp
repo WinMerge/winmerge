@@ -1397,8 +1397,23 @@ bool DiffFileData::Filepath::Transform(const CString & filepath, CString & filep
 
 	// third step : prediff (plugins)
 	bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
-	if (!FileTransform_Prediffing(filepathTransformed, filteredFilenames, infoPrediffer, bMayOverwrite))
-		return false;
+	if (infoPrediffer->bToBeScanned)
+	{
+		// FileTransform_Prediffing tries each prediffer for the pointed out filteredFilenames
+		// if a prediffer fails, we consider it is not the good one, that's all
+		// FileTransform_Prediffing returns FALSE only if the prediffer works, 
+		// but the data can not be saved to disk (no more place ??)
+		if (FileTransform_Prediffing(filepathTransformed, filteredFilenames, infoPrediffer, bMayOverwrite) 
+				== FALSE)
+			return false;
+	}
+	else
+	{
+		// this can failed if the pointed out prediffer has a problem
+		if (FileTransform_Prediffing(filepathTransformed, *infoPrediffer, bMayOverwrite) 
+				== FALSE)
+			return false;
+	}
 
 	if (unicoding)
 	{

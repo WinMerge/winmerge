@@ -129,6 +129,9 @@ private:
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 	BOOL m_bSyntaxHighlight; /**< Cached setting for syntax highlight */
 
+	/// active prediffer ID : helper to check the radio button
+	int m_CurrentPredifferID;
+
 // Operations
 public:
 	void RefreshOptions();
@@ -159,6 +162,7 @@ public:
 
 	// to customize the mergeview menu
 	static HMENU createScriptsSubmenu(HMENU hMenu);
+	HMENU createPrediffersSubmenu(HMENU hMenu);
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -243,6 +247,9 @@ protected:
 	afx_msg void OnUpdateWMGoto(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateScripts(CCmdUI* pCmdUI);
 	afx_msg void OnScripts(UINT nID );
+	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
+	afx_msg void OnNoPrediffer();
+	afx_msg void OnPrediffer(UINT nID );
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

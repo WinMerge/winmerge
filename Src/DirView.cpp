@@ -441,8 +441,10 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	ASSERT(pPopup != NULL);
 
 	CMenu menuPluginsHolder;
+	CString s;
 	menuPluginsHolder.LoadMenu(IDR_POPUP_PLUGINS_SETTINGS);
-	pPopup->AppendMenu(MF_POPUP, (int)menuPluginsHolder.m_hMenu, _T("Plugin Settings")); // TODO: i18n
+	VERIFY(s.LoadString(ID_TITLE_PLUGINS_SETTINGS));
+	pPopup->AppendMenu(MF_POPUP, (int)menuPluginsHolder.m_hMenu, s);
 
 	// set the menu items with the proper directory names
 	CString sl, sr;

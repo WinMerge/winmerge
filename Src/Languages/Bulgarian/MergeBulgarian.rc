@@ -209,6 +209,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Редактирай с разархиватора",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
         MENUITEM "&Reload plugins (debug)",     ID_RELOAD_PLUGINS
     END
     POPUP "&Прозорци"
@@ -1470,6 +1475,10 @@ BEGIN
     ID_PREDIFF_AUTO         "Prediff if possible"
     ID_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
     ID_VIEW_LOCATION_BAR    "Location bar shows overall picture from files"
+    ID_SUGGESTED_PLUGINS    "Suggested plugins"
+    ID_NOT_SUGGESTED_PLUGINS "Others plugins"
+    ID_NO_PREDIFFER         "No prediffer (normal)"
+    ID_TITLE_PLUGINS_SETTINGS "Plugin Settings"
 END
 
 #endif    // Bulgarian resources

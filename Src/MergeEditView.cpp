@@ -148,6 +148,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_WMGOTO, OnUpdateWMGoto)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnUpdateScripts)
+	ON_COMMAND(ID_NO_PREDIFFER, OnNoPrediffer)
+	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
+	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -290,6 +294,7 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 
 	CMergeDoc* pDoc = GetDocument();
 	pDoc->UpdateHeaderActivity(m_bIsLeft, bActivate);
+	mf->UpdatePrediffersMenu();
 }
 
 /**
@@ -1583,6 +1588,114 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 }
 
 /**
+ * @brief Create the dynamic submenu for prediffers
+ *
+ * @note The plugins are grouped in (suggested) and (not suggested)
+ *       The IDs follow the order of GetAvailableScripts
+ *       For example :
+ *				suggested 0         ID_1ST + 0 
+ *				suggested 1         ID_1ST + 2 
+ *				suggested 2         ID_1ST + 5 
+ *				not suggested 0     ID_1ST + 1 
+ *				not suggested 1     ID_1ST + 3 
+ *				not suggested 2     ID_1ST + 4 
+ */
+HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
+{
+	// empty the menu
+	int i = GetMenuItemCount(hMenu);
+	while (i --)
+		DeleteMenu(hMenu, 0, MF_BYPOSITION);
+
+	CMergeDoc *pd = GetDocument();
+	ASSERT(pd);
+
+	// title
+	::AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, LoadResString(ID_NO_PREDIFFER));
+
+	// get the scriptlet files
+	PluginArray * piScriptArray = 
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
+	PluginArray * piScriptArray2 = 
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
+
+	// build the menu : first part, suggested plugins
+	// title
+	::AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
+	::AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, LoadResString(ID_SUGGESTED_PLUGINS));
+
+	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
+	int iScript;
+	for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++, ID ++)
+	{
+		PluginInfo & plugin = piScriptArray->ElementAt(iScript);
+		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) == FALSE)
+			continue;
+
+		::AppendMenu(hMenu, MF_STRING, ID, plugin.name);
+	}
+	for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
+	{
+		PluginInfo & plugin = piScriptArray2->ElementAt(iScript);
+		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) == FALSE)
+			continue;
+
+		::AppendMenu(hMenu, MF_STRING, ID, plugin.name);
+	}
+
+	// build the menu : second part, others plugins
+	// title
+	::AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
+	::AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, LoadResString(ID_NOT_SUGGESTED_PLUGINS));
+
+	ID = ID_PREDIFFERS_FIRST;	// first ID in menu
+	for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++, ID ++)
+	{
+		PluginInfo & plugin = piScriptArray->ElementAt(iScript);
+		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) == TRUE)
+			continue;
+
+		::AppendMenu(hMenu, MF_STRING, ID, plugin.name);
+	}
+	for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
+	{
+		PluginInfo & plugin = piScriptArray2->ElementAt(iScript);
+		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) == TRUE)
+			continue;
+
+		::AppendMenu(hMenu, MF_STRING, ID, plugin.name);
+	}
+
+	// compute the m_CurrentPredifferID (to set the radio button)
+	PrediffingInfo prediffer;
+	pd->GetPrediffer(&prediffer);
+
+	if (prediffer.bToBeScanned)
+		m_CurrentPredifferID = 0;
+	else if (prediffer.pluginName.IsEmpty())
+		m_CurrentPredifferID = ID_NO_PREDIFFER;
+	else
+	{
+		ID = ID_PREDIFFERS_FIRST;	// first ID in menu
+		for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++, ID ++)
+		{
+			PluginInfo & plugin = piScriptArray->ElementAt(iScript);
+			if (prediffer.pluginName == plugin.name)
+				m_CurrentPredifferID = ID;
+
+		}
+		for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
+		{
+			PluginInfo & plugin = piScriptArray2->ElementAt(iScript);
+			if (prediffer.pluginName == plugin.name)
+				m_CurrentPredifferID = ID;
+		}
+	}
+
+	return hMenu;
+}
+
+/**
  * @brief Offer a context menu built with scriptlet/ActiveX functions
  */
 void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
@@ -1901,3 +2014,79 @@ void CMergeEditView::OnScripts(UINT nID )
 		ReplaceSelection(text, 0);
 }
 
+/**
+ * @brief Called when an editor script item is updated
+ */
+void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+
+	CMergeDoc *pd = GetDocument();
+	ASSERT(pd);
+	PrediffingInfo prediffer;
+	pd->GetPrediffer(&prediffer);
+
+	if (prediffer.bToBeScanned)
+	{
+		pCmdUI->SetRadio(FALSE);
+		return;
+	}
+
+	// Detect when CDiffWrapper::RunFileDiff has canceled a buggy prediffer
+	if (prediffer.pluginName.IsEmpty())
+		m_CurrentPredifferID = ID_NO_PREDIFFER;
+
+	pCmdUI->SetRadio(pCmdUI->m_nID == m_CurrentPredifferID);
+}
+
+void CMergeEditView::OnNoPrediffer()
+{
+	OnPrediffer(ID_NO_PREDIFFER);
+}
+void CMergeEditView::OnPrediffer(UINT nID )
+{
+	CMergeDoc *pd = GetDocument();
+	ASSERT(pd);
+
+	if (nID == ID_NO_PREDIFFER)
+	{
+		m_CurrentPredifferID = nID;
+		pd->SetPrediffer(NULL);
+		pd->FlushAndRescan(TRUE);
+		return;
+	}
+
+	// get the scriptlet files
+	PluginArray * piScriptArray = 
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
+	PluginArray * piScriptArray2 = 
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
+
+	// build a PrediffingInfo structure fom the ID
+	PrediffingInfo prediffer;
+	prediffer.bToBeScanned = FALSE;
+
+	int pluginNumber = nID - ID_PREDIFFERS_FIRST;
+	if (pluginNumber < piScriptArray->GetSize())
+	{
+		prediffer.bWithFile = TRUE;
+		PluginInfo & plugin = piScriptArray->ElementAt(pluginNumber);
+		prediffer.pluginName = plugin.name;
+	}
+	else
+	{
+		pluginNumber -= piScriptArray->GetSize();
+		if (pluginNumber >= piScriptArray2->GetSize())
+			return;
+		prediffer.bWithFile = FALSE;
+		PluginInfo & plugin = piScriptArray2->ElementAt(pluginNumber);
+		prediffer.pluginName = plugin.name;
+	}
+
+	// update data for the radio button
+	m_CurrentPredifferID = nID;
+
+	// update the prediffer and rescan
+	pd->SetPrediffer(&prediffer);
+	pd->FlushAndRescan(TRUE);
+}

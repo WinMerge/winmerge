@@ -1,3 +1,9 @@
+2004-04-20 Laoran
+ PATCH: [ 929210 ] GUI for prediffer (compare two files)
+  Src: DiffWrapper.cpp DirView.cpp MainFrm.cpp MainFrm.h Merge.rc MergeDoc.cpp MergeEditView.cpp 
+   MergeEditView.h resource.h
+  Languages: *.rc resource.h
+
 2004-04-19 Perry
  Fix English typos in Localization Instructions.txt
  InnoSetup/Languages/Localization Instructions.txt

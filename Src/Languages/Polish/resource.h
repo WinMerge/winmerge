@@ -201,7 +201,9 @@
 #define IDD_MESSAGE_BOX                 281
 #define IDS_TEMP_FILEERROR              282
 #define ID_SCRIPT_FIRST                 900
-#define ID_SCRIPT_LAST                  999
+#define ID_SCRIPT_LAST                  949
+#define ID_PREDIFFERS_FIRST             950
+#define ID_PREDIFFERS_LAST              999
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -599,6 +601,10 @@
 #define ID_PREDIFF_AUTO                 32870
 #define ID_PREDIFFER_ERROR              32871
 #define ID_VIEW_LOCATION_BAR            32872
+#define ID_SUGGESTED_PLUGINS            32873
+#define ID_NOT_SUGGESTED_PLUGINS        32874
+#define ID_NO_PREDIFFER                 32875
+#define ID_TITLE_PLUGINS_SETTINGS       32876
 
 // Next default values for new objects
 // 
@@ -606,7 +612,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        126
-#define _APS_NEXT_COMMAND_VALUE         32873
+#define _APS_NEXT_COMMAND_VALUE         32877
 #define _APS_NEXT_CONTROL_VALUE         1127
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
