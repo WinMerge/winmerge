@@ -179,6 +179,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Kopírova v?etko vpravo",     ID_ALL_RIGHT
         MENUITEM "Kopírova v?etko v¾avo",      ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "Copy Diffs in Left Selection to Right", ID_MULTIPLE_RIGHT
+        MENUITEM "Copy Diffs in Right Selection to Left", ID_MULTIPLE_LEFT
     END
     POPUP "&Tools"
     BEGIN
@@ -192,6 +195,13 @@ BEGIN
         MENUITEM "Dla?dice &vodorovne",         ID_WINDOW_TILE_HORZ
         MENUITEM "Dla?dice &zvislo",            ID_WINDOW_TILE_VERT
         MENUITEM "&Kaskáda",                    ID_WINDOW_CASCADE
+    END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
+        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
     END
     POPUP "Po&moc"
     BEGIN
@@ -300,7 +310,7 @@ BEGIN
                     209,8
 END
 
-IDD_OPEN DIALOGEX 0, 0, 374, 98
+IDD_OPEN DIALOGEX 0, 0, 366, 115
 STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Výber súborov a adresárov..."
 FONT 8, "MS Sans Serif", 0, 0, 0x1
@@ -309,21 +319,25 @@ BEGIN
     COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "&Prechádza...",IDC_LEFT_BUTTON,241,22,59,12
+    PUSHBUTTON      "&Prechádza...",IDC_LEFT_BUTTON,241,22,49,12
     LTEXT           "P&ravý:",IDC_STATIC,16,40,37,8
     COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "Pr&echádza...",IDC_RIGHT_BUTTON,241,38,59,12
+    PUSHBUTTON      "Pr&echádza...",IDC_RIGHT_BUTTON,241,38,49,12
     LTEXT           "Pr&ípony:",IDC_STATIC,16,56,37,8
     COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "V&norené adresáre",IDC_RECURS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,35,77,190,10
-    DEFPUSHBUTTON   "OK",IDOK,317,11,50,14
-    PUSHBUTTON      "Storno",IDCANCEL,317,28,50,14
+                    BS_AUTOCHECKBOX | WS_TABSTOP,35,72,190,10
+    LTEXT           "&Unpacker:",IDC_STATIC,19,88,34,8
+    EDITTEXT        IDC_UNPACKER_EDIT,56,86,182,12,ES_AUTOHSCROLL |
+                    ES_READONLY
+    PUSHBUTTON      "Select...",IDC_SELECT_UNPACKER,241,86,49,12
+    DEFPUSHBUTTON   "OK",IDOK,307,11,50,14
+    PUSHBUTTON      "Storno",IDCANCEL,307,28,50,14
     GROUPBOX        "Súbory alebo adresáre pre porovnanie",IDC_FILES_DIRS_GROUP,7,7,
-                    303,84
+                    293,101
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 159
@@ -640,6 +654,26 @@ BEGIN
     PUSHBUTTON      "==>",IDC_REMOVE,143,63,29,14
 END
 
+IDD_SELECTUNPACKER DIALOG DISCARDABLE  0, 0, 293, 126
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Unpacker"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,87,99,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,156,99,50,14
+    LTEXT           "File unpacker:",IDC_STATIC,7,18,50,10
+    COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Display all unpackers, don't check the extension",
+                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,7,74,202,13
+    LTEXT           "Extensions list:",IDC_STATIC,7,36,49,10
+    LTEXT           "Description:",IDC_STATIC,7,52,47,10
+    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,176,12,
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -706,9 +740,9 @@ BEGIN
     IDD_OPEN, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 367
+        RIGHTMARGIN, 359
         TOPMARGIN, 7
-        BOTTOMMARGIN, 91
+        BOTTOMMARGIN, 108
     END
 
     IDD_VSS, DIALOG
@@ -1073,6 +1107,9 @@ BEGIN
     ID_DIR_OPEN_LEFT_WITH   "Otovr ¾avý súbor s..."
     ID_DIR_OPEN_RIGHT       "Otvor pravý súbor"
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
+    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
+    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
+    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO
@@ -1201,6 +1238,10 @@ BEGIN
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_STATUSBAR_READONLY  "RO"
+    IDS_FILEPACK_FAILED_LEFT 
+                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_RIGHT 
+                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 END
 
 STRINGTABLE DISCARDABLE

@@ -2,6 +2,8 @@
 // Microsoft Developer Studio generated include file.
 // Used by Merge.rc
 //
+// $Id$
+
 #define IDC_CUT                         3
 #define IDC_COPY                        4
 #define IDC_PASTE                       5
@@ -27,6 +29,7 @@
 #define IDD_GENERATE_PATCH              116
 #define IDD_DIRCOLS                     117
 #define ID_FILE_VSSDATABASE             118
+#define IDD_SELECTUNPACKER              119
 #define IDS_VERSION_FMT                 130
 #define IDS_ALLFILES                    131
 #define IDS_CONFIRM_ALL_LEFT            132
@@ -142,6 +145,8 @@
 #define IDS_DIFF_NORMAL                 234
 #define IDS_DIFF_CONTEXT                235
 #define IDS_DIFF_UNIFIED                236
+#define IDS_FILEPACK_FAILED_LEFT        237
+#define IDS_FILEPACK_FAILED_RIGHT       238
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -229,6 +234,12 @@
 #define IDC_MULTI_CHECKOUT              1082
 #define IDC_CHECK2                      1083
 #define IDC_VCPROJ_SYNC                 1084
+#define IDC_UNPACKER_NAME               1085
+#define IDC_UNPACKER_ALLOW_ALL          1086
+#define IDC_UNPACKER_SUPPORTED_EXTENSIONS 1087
+#define IDC_UNPACKER_DESCRIPTION        1088
+#define IDC_UNPACKER_EDIT               1089
+#define IDC_SELECT_UNPACKER             1090
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -455,15 +466,20 @@
 #define ID_TOOLS_CUSTOMIZECOLUMNS       32845
 #define ID_R2LNEXT                      32846
 #define ID_L2RNEXT                      32847
+#define ID_MULTIPLE_RIGHT               32848
+#define ID_MULTIPLE_LEFT                32849
+#define ID_POPUP_OPEN_WITH_UNPACKER     32850
+#define ID_UNPACK_MANUAL                32851
+#define ID_UNPACK_AUTO                  32852
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        118
-#define _APS_NEXT_COMMAND_VALUE         32848
-#define _APS_NEXT_CONTROL_VALUE         1085
+#define _APS_NEXT_RESOURCE_VALUE        120
+#define _APS_NEXT_COMMAND_VALUE         32853
+#define _APS_NEXT_CONTROL_VALUE         1091
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

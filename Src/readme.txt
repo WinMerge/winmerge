@@ -5,6 +5,7 @@
 2003-10-17 Laoran
  PATCH: [ 807263 ] Preprocessing patch
   common: dllproxy.c dllproxy.h lwdisp.c lwdisp.h
+  Languages: resource.h *.rc
   WinMerge: DiffThread.cpp DiffWrapper.cpp DiffWrapper.h DirScan.cpp DirView.cpp DirView.h FileFilterMgr.cpp
    FileFilterMgr.h MainFrm.cpp MainFrm.h Merge.cpp Merge.dsp Merge.h Merge.rc MergeDoc.cpp MergeDoc.h
    MergeEditView.cpp OpenDlg.cpp OpenDlg.h resource.h
