@@ -1,6 +1,10 @@
 2003-08-24 Perry
  Fix paths_GetLongPath to handle trailing . or ..
+  (BUGFIX: [ 792074 ] Directory mnemonics . and .. are not honored properly)
   WinMerge: paths.cpp
+ Fix DIFFITEM::getLeftFilepath & DIFFITEM::getRightFilepath
+  (BUGFIX: [ 794319 ] Assert when save after merging)
+  WinMerge: DiffContext.cpp
 
 2003-08-24 Kimmo
  PATCH: [ 792668 ] Move file load code to CMergeDoc

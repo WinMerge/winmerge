@@ -265,13 +265,15 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi)
 	}
 }
 
+/** @brief Return path to left file, including all but file name */
 CString DIFFITEM::getLeftFilepath() const
 {
-	return paths_ConcatPath(left.spath, sfilename);
+	return left.spath;
 }
 
+/** @brief Return path to right file, including all but file name */
 CString DIFFITEM::getRightFilepath() const
 {
-	return paths_ConcatPath(right.spath, sfilename);
+	return right.spath;
 }
 
