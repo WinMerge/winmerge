@@ -1,3 +1,11 @@
+2004-02-17 Kimmo
+ BUG: [ 887280 ] Swap toolbar icon (usability)
+  Swaps 'Last Diff' and 'First diff' buttons + adds separator before
+  Src: Merge.rc
+  Src/res: Toolbar.bmp
+  Languages: *.rc
+  Languages/res: Toolbar.bmp 
+
 2004-02-16 Kimmo
  PATCH: [ 873151 ] Attempt to fix Help/Configuration
   Submitted by Perry
