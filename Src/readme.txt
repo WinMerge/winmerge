@@ -1,3 +1,9 @@
+2003-10-07 Perry
+ PATCH: [ 817502 ] Fix "ignore blank lines"
+  WinMerge: analyze.c Diff.cpp DIFF.H DiffWrapper.cpp DiffWrapper.h
+   MergeDiffDetailView.cpp MergeDoc.cpp MergeEditView.cpp MergeEditView.h
+   UTIL.C
+
 2003-10-07 Kimmo
  BUG: [ 803330 ] DirView updated too many times after compare
   WinMerge: DiffThread.cpp DirDoc.h DirDoc.cpp

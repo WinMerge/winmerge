@@ -329,7 +329,7 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	// If comparing whitespaces and
 	// other file has EOL before EOF and other not...
 	if (status.bLeftMissingNL != status.bRightMissingNL &&
-		!diffOptions.nIgnoreWhitespace)
+		!diffOptions.nIgnoreWhitespace && !diffOptions.bIgnoreBlankLines)
 	{
 		// ..lasf DIFFRANGE of file which has EOL must be
 		// fixed to contain last line too
@@ -909,13 +909,17 @@ void CMergeDoc::CDiffTextBuffer::prepareForRescan()
 {
 	RemoveAllGhostLines();
 	for(int ct=GetLineCount()-1; ct>=0; --ct)
+	{
 		SetLineFlag(ct, LF_DIFF, FALSE, FALSE, FALSE);
+		SetLineFlag(ct, LF_TRIVIAL, FALSE, FALSE, FALSE);
+	}
 }
 
 
 void CMergeDoc::CDiffTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
 {
 	SetLineFlag(nLine, LF_DIFF, FALSE, FALSE, FALSE);
+	SetLineFlag(nLine, LF_TRIVIAL, FALSE, FALSE, FALSE);
 	CGhostTextBuffer::OnNotifyLineHasBeenEdited(nLine);
 }
 
@@ -1616,7 +1620,8 @@ void CMergeDoc::PrimeTextBuffers()
 
 	// walk the diff stack and flag the line codes
 	SetCurrentDiff(-1);
-	for (int nDiff=0; nDiff < static_cast<int>(m_nDiffs); ++nDiff)
+	UINT nTrivials = 0;
+	for (UINT nDiff=0; nDiff < m_nDiffs; ++nDiff)
 	{
 		DIFFRANGE &curDiff = m_diffs[nDiff];
 
@@ -1676,6 +1681,9 @@ void CMergeDoc::PrimeTextBuffers()
 				}
 			}
 			break;
+		case OP_TRIVIAL:
+			++nTrivials;
+			// fall through and handle as diff
 		case OP_DIFF:
 			// left side
 			{
@@ -1684,7 +1692,9 @@ void CMergeDoc::PrimeTextBuffers()
 				curDiff.dend0 = curDiff.end0+LeftExtras;
 				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
 				{
-					m_ltBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
+					DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;
+					// set, don't remove previous line, don't update
+					m_ltBuf.SetLineFlag(i, dflag, TRUE, FALSE, FALSE);
 				}
 
 				// insert blanks if needed
@@ -1710,7 +1720,9 @@ void CMergeDoc::PrimeTextBuffers()
 				curDiff.dend1 = curDiff.end1+RightExtras;
 				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
 				{
-					m_rtBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
+					DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;
+					// set, don't remove previous line, don't update
+					m_rtBuf.SetLineFlag(i, dflag, TRUE, FALSE, FALSE);
 				}
 
 				// insert blanks if needed
@@ -1730,6 +1742,34 @@ void CMergeDoc::PrimeTextBuffers()
 				}
 			}
 			break;
+		}
+	}
+
+	if (nTrivials)
+	{
+		// The following code deletes all trivial changes
+		//
+		// #1) Copy nontrivial diffs into new array
+		CArray<DIFFRANGE,DIFFRANGE> newdiffs;
+		newdiffs.SetSize(m_diffs.GetSize()-nTrivials);
+		UINT i,j;
+		for (i=0,j=0; j < m_nDiffs; ++j)
+		{
+			// j is index into m_diffs
+			// i is index into newdiffs
+			// i grows more slowly than j, as i skips trivials
+			if (m_diffs[j].op != OP_TRIVIAL)
+			{
+				newdiffs[i] = m_diffs[j];
+				++i;
+			}
+		}
+		// #2) Now copy from new array back into master array
+		m_nDiffs = newdiffs.GetSize();
+		m_diffs.SetSize(m_nDiffs);
+		for (i=0; i < m_nDiffs; ++i)
+		{
+			m_diffs[i] = newdiffs[i];
 		}
 	}
 

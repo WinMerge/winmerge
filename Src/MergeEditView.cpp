@@ -270,7 +270,15 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 				crBkgnd = theApp.GetDiffDeletedColor();
 			return;
 		}
-
+		else if (dwLineFlags & LF_TRIVIAL)
+		{
+			// TODO: Use trivial color when trivial color implemented
+			if (lineInCurrentDiff)
+				crBkgnd = theApp.GetSelDiffDeletedColor();
+			else
+				crBkgnd = theApp.GetDiffDeletedColor();
+			return;
+		}
 	}
 	else
 	{

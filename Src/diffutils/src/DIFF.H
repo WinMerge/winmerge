@@ -212,8 +212,9 @@ struct change
   int line0;			/* Line number of 1st deleted line.  */
   int line1;			/* Line number of 1st inserted line.  */
   char ignore;			/* Flag used in context.c */
+  char trivial;                 /* Flag if change is trivial (ignored blanks or filtered regexps) */
 };
-
+
 /* Structures that describe the input files.  */
 
 /* Data on one input file being compared.  */

@@ -631,7 +631,12 @@ print_number_range (sepchar, file, a, b)
   else
     fprintf (outfile, "%d", trans_b);
 }
-
+
+int iseolch (char ch)
+{
+  return ch=='\n' || ch=='\r';
+}
+
 /* Look at a hunk of edit script and report the range of lines in each file
    that it applies to.  HUNK is the start of the hunk, which is a chain
    of `struct change'.  The first and last line numbers of file 0 are stored in
@@ -670,7 +675,7 @@ analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts)
       show_to += next->inserted;
 
       for (i = next->line0; i <= l0 && trivial; i++)
-	if (!ignore_blank_lines_flag || files[0].linbuf[i][0] != '\n')
+	if (!ignore_blank_lines_flag || !iseolch(files[0].linbuf[i][0]))
 	  {
 	    struct regexp_list *r;
 	    char const HUGE *line = files[0].linbuf[i];
@@ -686,7 +691,7 @@ analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts)
 	  }
 
       for (i = next->line1; i <= l1 && trivial; i++)
-	if (!ignore_blank_lines_flag || files[1].linbuf[i][0] != '\n')
+	if (!ignore_blank_lines_flag || !iseolch(files[1].linbuf[i][0]))
 	  {
 	    struct regexp_list *r;
 	    char const HUGE *line = files[1].linbuf[i];
@@ -708,9 +713,12 @@ analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts)
 
   /* If all inserted or deleted lines are ignorable,
      tell the caller to ignore this hunk.  */
-
   if (trivial)
     show_from = show_to = 0;
+
+  /* WinMerge editor needs to know if there were trivial changes though,
+  so stash that off in the trivial field */
+  hunk->trivial = trivial;
 
   *deletes = show_from;
   *inserts = show_to;
