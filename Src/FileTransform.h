@@ -17,8 +17,17 @@ enum
 	UNPACK_AUTO,
 };
 
-extern BOOL m_bUnpackerMode;
+/**
+ * @brief Modes for prediffing
+ */
+enum 
+{
+	PREDIFF_MANUAL,
+	PREDIFF_AUTO,
+};
 
+extern BOOL m_bUnpackerMode;
+extern BOOL m_bPredifferMode;
 
 
 /**

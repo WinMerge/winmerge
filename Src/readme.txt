@@ -1,4 +1,6 @@
 2003-11-23 Laoran
+ BUG: [ 846622 ] rc files wrongly displayed as identical (fix : no automatic prediffing)
+  WinMerge: FileTransform.cpp FileTransform.h MainFrm.cpp
  cosmetic: replace bUnpackerMode with m_bUnpackerMode
   WinMerge: FileTransform.cpp FileTransform.h MainFrm.cpp
  PATCH: [ 846523 ] error description for plugins error handler

@@ -168,6 +168,7 @@ CMainFrame::CMainFrame()
 	theApp.SetFileFilterPath(theApp.GetProfileString(_T("Settings"), _T("FileFilterPath"), _T("")));
 	m_sExtEditorPath = theApp.GetProfileString(_T("Settings"), _T("ExternalEditor"), _T(""));
 	m_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), UNPACK_MANUAL);
+	m_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PREDIFF_MANUAL);
 	m_bReuseDirDoc = TRUE;
 	// TODO: read preference for logging
 

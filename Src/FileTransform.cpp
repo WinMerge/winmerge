@@ -40,6 +40,7 @@ static char THIS_FILE[] = __FILE__;
 
 
 BOOL m_bUnpackerMode = UNPACK_MANUAL;
+BOOL m_bPredifferMode = PREDIFF_MANUAL;
 
 /**
  * @brief Category of transformation : define the transformation events
@@ -661,7 +662,7 @@ BOOL FileTransform_PreprocessW(CString & filepath, CString filteredText, int bMa
 	}
 
 	// last transformation
-	// change the buffer from UCS-2 to UTF-8 
+	// change the buffer from UCS-2 to UTF-8 (code in UTF-8, but don't write the BOM)
 	if (bSuccess)
 	{
 		nBufSize = TransformUcs2ToUtf8( bstrBuffer, nWideBufSize, NULL, 0, FALSE, UCS2LE);
@@ -678,11 +679,54 @@ BOOL FileTransform_PreprocessW(CString & filepath, CString filteredText, int bMa
 	return WriteBackBuffer(filepath, pszBuffer, nBufSize, bMayOverwrite);
 }
 
+// default prediffing function
+// only for Unicode : transform to UTF8 for diffutils
+static BOOL FileTransform_UCS2ToUTF8(CString & filepath, CString filteredText, int bMayOverwrite)
+{
+	// Init filedata struct and open file as memory mapped 
+	MAPPEDFILEDATA fileData = {0};
+	_tcsncpy(fileData.fileName, filepath, filepath.GetLength()+1);
+	fileData.bWritable = FALSE;
+	fileData.dwOpenFlags = OPEN_EXISTING;
+	BOOL bSuccess = files_openFileMapped(&fileData);
+	if (!bSuccess)
+		return FALSE;
+
+	char * pszBuffer = (char *)fileData.pMapBase;
+	UINT nBufSize = fileData.dwSize;
+
+	// don't read the BOM
+	pszBuffer += 2;
+	nBufSize -= 2;
+
+	UINT nWideBufSize = nBufSize/sizeof(WCHAR);
+	WCHAR * wstrBuffer = (WCHAR*) pszBuffer;
+
+	// change the buffer from UCS-2 to UTF-8 (code in UTF-8, but don't write the BOM)
+	nBufSize = TransformUcs2ToUtf8( wstrBuffer, nWideBufSize, NULL, 0, FALSE, UCS2LE);
+	pszBuffer = (LPSTR) malloc(nBufSize);
+	TransformUcs2ToUtf8( wstrBuffer, nWideBufSize, pszBuffer, nBufSize, FALSE, UCS2LE);
+
+	files_closeFileMapped(&fileData, 0xFFFFFFFF, FALSE);
+
+	return WriteBackBuffer(filepath, pszBuffer, nBufSize, bMayOverwrite);
+}
+
 
 BOOL FileTransform_Preprocess(CString & filepath, CString filteredText, int bMayOverwrite)
 {
 	int attrs = 0;	
 	BOOL bIsUnicode = UnicodeCheck(filepath, &attrs);
+
+	// no automatic prediffing ? Then no prediffing (no GUI to select a prediffing plugin)
+	if (m_bPredifferMode == FALSE)
+	{
+		// just prepare for diffutils
+		if (bIsUnicode)
+			return FileTransform_UCS2ToUTF8(filepath, filteredText, bMayOverwrite);
+		else
+			return TRUE;
+	}
 
 
 	// Unicode file, use mode W (Unicode)
