@@ -8,48 +8,47 @@
 ;Directly Dependant Files:  Because this is an installer. It would be difficult to list and maintain each of the files referenced
 ;                           throughout the script in the header.  If you search this plain text script for a particular file in our CVS and it
 ;                           doesn't appear then this script is not directly dependant on that file.
-;Compilation Instructions:  1.  MANUALLY combine the textual contents of \Docs\Read Me.rtf and \Docs\Contributors.rtf
-;                               making an updated \InnoSetup\Info.rtf
-;                           2.  Open this file in Inno Setup or ISTool
-;                           3.  Make sure Compression=7Zip/Ultra, InternalCompressLevel=Ultra, and SolidCompression=True these values are lowered during
+;Compilation Instructions:  1.  Open this file in Inno Setup or ISTool
+;                           2.  Make sure Compression=7Zip/Ultra, InternalCompressLevel=Ultra, and SolidCompression=True these values are lowered during
 ;                               development to speed up compilation, however at release we want the intaller to be as strong as possible.
-;                           4.  Compile the script:
+;                           3.  Compile the script:
 ;                                   -From Inno Setup "Click "Build" --> "Compile"
 ;                                   -From ISTool Click "Project" --> "Compile Setup"
-;                           5.  The compiled installer will appear in the \InnoSetup\Output\ directory at currently should be around 1.5MBs in size.
+;                           4.  The compiled installer will appear in the \InnoSetup\Output\ directory at currently should be around 1.5MBs in size.
 ;
 ;Installer Todo List:
-;  1. Determine the minimum allowable version Comctl32.dll.  If they don't have it distribute IE 6.01 on those platforms.
-;     We'll actually need to determine the user's locale and download the correct version of IE for their platform (Yikes!, maybe we'll only
-;     Distribute IE for those lucky enough to speak English :)
-;     Note the following file could be downloaded this would list the locales and their download paths:
-;     http://www.microsoft.com/windows/ie/downloads/critical/ie6sp1/default.asp
-;     inside of this file lines such as can be found:
-;     <option value="http://download.microsoft.com/download/ie6sp1/finrel/6_sp1/W98NT42KMeXP/da/ie6setup.exe|da">Danish</option>
-;     this could be converted to two valuable bits of info:
-;     URL: http://download.microsoft.com/download/ie6sp1/finrel/6_sp1/W98NT42KMeXP/da/ie6setup.exe
-;     Locale: da
-;     Note this seemingly awesome feature will break eventually (MS does change their website regularly) so we'll need to have some
-;     damage control built in.
-;  2. Determine if our application really needs 7-Zip installed to function.  If it does then we should probably just bundle 7-Zip or provide
-;      integrated download on the fly support for it.
-;  3. Automatically detect the user's locale, select, and install that language the and the registry settings that would make that language be
+; #  Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL
+; #  Test and distribute the files contained within "MergePlugins (From 2140).7z" or in the folder MergePlugins of "WinMerge2140-exe.7z"
+; #  Bundle 7-Zip with WinMerge or provide on the fly download capability.
+; #  Automatically detect the user's locale, select, and install that language and the registry settings that would make that language be
 ;     the language on startup.
-;  4. Add WinMerge is running would you like to close it now support with programmatic termination [ISX]
-;  5. Add WinMerge to the user's path so they can execute comparison's from a Dos Prompt (Cmd.exe/Command.exe)
-;  6. Make an uninstall icon and use it: UninstallIconFile=..\src\res\Merge.ico
-;  7. Make a Floppy Disk /Low Bandwidth Edition of the WinMerge Installer that doesn't include outdated (3.11, 3.12) 7-Zip Support or the Language files
+; #  Evaluate current default settings in WinMerge and bug those that don't make sense
+; #  Create instructions and a sample language file using the Inno Setup Translator Tool (http://www2.arnes.si/~sopjsimo/translator.html)
+; #  Add WinMerge is running would you like to close it now support with programmatic termination
+;     -Note: I tried this with ISX and the extensions are innadequate I will have to use AutoIt 3.X instead
+; #  Add WinMerge to the user's path so they can execute comparison's from a Dos Prompt (Cmd.exe/Command.exe)
+; #   Make an uninstall icon and use it: UninstallIconFile=..\src\res\Merge.ico
+; #  Make a Floppy Disk /Low Bandwidth Edition of the WinMerge Installer that doesn't include outdated (3.11, 3.12) 7-Zip Support or the Language files
 ;     If the user requires any of these we'll download it on the fly.  (maybe that should be the default behavior from the get go?)
-;  8. We need to look in the registry and or inno setup log file and actually determine what the previous start
+; #  We need to look in the registry and (HKLM\...\Uninstall\Winmerge_is1) determine what the previous start
 ;     menu location was so that we can remove it if the user chooses to install to a different location.
-;  9. Determine whether NT 3.51 with a 3.0 or higher version of IE can run our application I don't want the system requirements
+; #  Determine whether NT 3.51 with a 3.0 or higher version of IE can run our application I don't want the system requirements
 ;     in \Docs\Read Me.RTF to be inaccurate.
-; 10. Create two info pages during installation one for our Contributors and a second one for our Read Me file.
+; #  Create two info pages during installation one for our Contributors and a second one for our Read Me file.
 ;     If this isn't possible then we'll need to use ISPP and somehow programatically combine the two RTF files prior to compilation.
-; 11. Copy our Read Me file to the intallation directory and include it in the start menu.
-; 12. Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL
+; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
+; #  Rather than requiring users to restart we could just kill all intances of Explorer.exe, but we'll need to prompt the user first and restart it
+;    once the ShellExtension.dll file has been added or removed.   Tell Kimmo to re-write to detect path from HKLM.
+; #  Be dilegent about getting a higher resolution copy of the Users's Guide.ico source art from somebody
+; #  If the user happens to have Syn Text Editor installed then we'll make that the default text editor rather than notepad.
+; #  Set the order of icons within the start menu (we'll have to use a registry hack since Inno Setup doesn't yet have this level of granularity).
+; #  Create a switch for the installer to unzip all of the included binaries as if it were a zip file.
+; #  Perry wanted a Select All button to appear on the components page.  Let's just ask Jordan Russell or Martijn Laan if they'll do it :).
 
-#define AppVersion GetFileVersion(AddBackSlash(SourcePath) + "..\Build\MergeRelease\WinMerge.exe")
+
+
+#define AppVersion GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe")
+#define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe"), 1, 5)
 
 [Setup]
 AppName=WinMerge
@@ -70,9 +69,12 @@ DefaultGroupName=WinMerge
 DisableStartupPrompt=yes
 AllowNoIcons=yes
 LicenseFile=..\src\COPYING
-InfoBeforeFile=Info.rtf
+InfoBeforeFile=..\Docs\Users\Read Me.rtf
 OutputBaseFilename=WinMerge {#AppVersion}
-PrivilegesRequired=poweruser
+
+;This must be admin to install C++ Runtimes
+PrivilegesRequired=admin
+
 UninstallDisplayIcon={app}\{code:ExeName}
 
 ;File Version Info
@@ -97,9 +99,14 @@ Compression=lzma/ultra
 InternalCompressLevel=ultra
 SolidCompression=true
 
+[Messages]
+FinishedLabel=Setup has finished installing [Name] on your computer.
+SetupAppTitle=Setup - WinMerge {#AppVersion}
+
 
 [Tasks]
-Name: desktopicon; Description: Create a &desktop icon; GroupDescription: Additional icons:; Flags: unchecked
+Name: ShellExtension; Description: &Enable Explorer context menu integration; GroupDescription: Optional Features:
+Name: desktopicon; Description: Create a &Desktop icon; GroupDescription: Additional icons:; Flags: unchecked
 Name: quicklaunchicon; Description: Create a &Quick Launch icon; GroupDescription: Additional icons:
 
 
@@ -108,23 +115,81 @@ Name: main; Description: WinMerge Core Files; Types: full compact custom; Flags:
 Name: docs; Description: User's Guide; Types: full
 Name: filters; Description: Filters; Types: full
 
-;Languages are no longer a default part of a normal installation.  Users that had chosen a foreign
-;language in the past will still have one now though
-Name: brazilian; Description: Portuguese (Brazilian) menus and dialogs; Flags: disablenouninstallwarning
-Name: chinesesimplifiedlanguage; Description: Chinese (simplified) menus and dialogs; Flags: disablenouninstallwarning
-Name: chinesetraditionallanguage; Description: Chinese (traditional) menus and dialogs; Flags: disablenouninstallwarning
-Name: czechlanguage; Description: Czech menus and dialogs; Flags: disablenouninstallwarning
-Name: danishlanguage; Description: Danish menus and dialogs; Flags: disablenouninstallwarning
-Name: dutchlanguage; Description: Dutch menus and dialogs; Flags: disablenouninstallwarning
-Name: frenchlanguage; Description: French menus and dialogs; Flags: disablenouninstallwarning
-Name: germanlanguage; Description: German menus and dialogs; Flags: disablenouninstallwarning
-Name: italianlanguage; Description: Italian menus and dialogs; Flags: disablenouninstallwarning
-Name: koreanlanguage; Description: Korean menus and dialogs; Flags: disablenouninstallwarning
-Name: slovaklanguage; Description: Slovak menus and dialogs; Flags: disablenouninstallwarning
-Name: spanishlanguage; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning
-
+;Non-English Languages are no longer a default part of a normal installation.  If a user selected a language as part of their last installation
+;that language will be selected automatically during subsequent installs.
+Name: Catalan_Language; Description: Catalan; Flags: disablenouninstallwarning
+Name: ChineseSimplified_Language; Description: Chinese (Simplified) menus and dialogs; Flags: disablenouninstallwarning
+Name: ChineseTraditional_Language; Description: Chinese (Traditional) menus and dialogs; Flags: disablenouninstallwarning
+Name: Czeck_Language; Description: Czech menus and dialogs; Flags: disablenouninstallwarning
+Name: Danish_Language; Description: Danish menus and dialogs; Flags: disablenouninstallwarning
+Name: Dutch_Language; Description: Dutch menus and dialogs; Flags: disablenouninstallwarning
+Name: French_Language; Description: French menus and dialogs; Flags: disablenouninstallwarning
+Name: German_Language; Description: German menus and dialogs; Flags: disablenouninstallwarning
+Name: Italian_Language; Description: Italian menus and dialogs; Flags: disablenouninstallwarning
+Name: Korean_Language; Description: Korean menus and dialogs; Flags: disablenouninstallwarning
+Name: Norwegian_Language; Description: Norwegian menus and dialogs; Flags: disablenouninstallwarning
+Name: Polish_Language; Description: Polish menus and dialogs; Flags: disablenouninstallwarning
+Name: Brazilian_Language; Description: Portuguese (Brazilian) menus and dialogs; Flags: disablenouninstallwarning
+Name: Russian_Language; Description: Russian menus and dialogs; Flags: disablenouninstallwarning
+Name: Slovak_Language; Description: Slovak menus and dialogs; Flags: disablenouninstallwarning
+Name: Spanish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning
+Name: Swedish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning
 
 [InstallDelete]
+;Experimental Versions 2.1.5.10 - WinMerge.2.1.5.13 shipped with the default behavior of creating a folder by the same name
+; just in case the user was a bozo and left behind that folder we'll go ahead and check for it and delete them as they occurr
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.0-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.1-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.2-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.3-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.4-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.5-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.6-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.7-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.8-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.9-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.10-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.11-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.12-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge.2.1.5.13-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge2140-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge2154-exe
+
+;Deletes the following folder and all its contents during installation
+Type: filesandordirs; Name: {app}\WinMerge2158-exe
+
 ; Diff.txt is a file left over from previous versions of WinMerge (before version 2.0), we just delete it to be nice.
 Type: files; Name: {app}\Diff.txt
 
@@ -137,13 +202,22 @@ Type: files; Name: {app}\MergeChineseTraditionalBIG5.lang
 ;necessary files will be left in the installation folder
 ;Another reason these files might be strays is if a user extracted one of the experimental builds such as:
 ;WinMerge.{#AppVersion}-exe.7z.
+Name: {app}\WinMerge.exe; Type: files
+Name: {app}\WinMergeU.exe; Type: files
+
 Name: {app}\Merge7z311.dll; Type: files
 Name: {app}\Merge7z311U.dll; Type: files
+
 Name: {app}\Merge7z312.dll; Type: files
 Name: {app}\Merge7z312U.dll; Type: files
+
 Name: {app}\Merge7z313.dll; Type: files
 Name: {app}\Merge7z313U.dll; Type: files
-Name: {app}\MergeBrazilian.lang; Type: files
+
+Name: {app}\ShellExtension.dll; Type: files
+
+Name: {app}\MergeBrazilian_Language.lang; Type: files
+Name: {app}\MergeCatalan.lang; Type: files
 Name: {app}\MergeChineseSimplified.lang; Type: files
 Name: {app}\MergeChineseTraditional.lang; Type: files
 Name: {app}\MergeCzech.lang; Type: files
@@ -153,23 +227,40 @@ Name: {app}\MergeFrench.lang; Type: files
 Name: {app}\MergeGerman.lang; Type: files
 Name: {app}\MergeItalian.lang; Type: files
 Name: {app}\MergeKorean.lang; Type: files
+Name: {app}\MergeNorwegian.lang; Type: files
+Name: {app}\MergePolish.lang; Type: files
 Name: {app}\MergeSlovak.lang; Type: files
 Name: {app}\MergeSpanish.lang; Type: files
-Name: {app}\WinMerge.exe; Type: files
-Name: {app}\WinMergeU.exe; Type: files
+Name: {app}\MergeRussian.lang; Type: files
+Name: {app}\MergeSwedish.lang; Type: files
+
+
+
+Name: {app}\Read Me.rtf; Type: files
+Name: {app}\Dos\Contributors.rtf; Type: files
 
 ;Removes the previous start menu items and group in case the user chooses to install to a new start menu location next time
 Name: {commonstartmenu}\Programs\WinMerge\WinMerge.lnk; Type: files
 Name: {commonstartmenu}\Programs\WinMerge\Uninstall WinMerge.lnk; Type: files
 Name: {commonstartmenu}\Programs\WinMerge\WinMerge on the Web.lnk; Type: files
+Name: {commonstartmenu}\Programs\WinMerge\User's Guide.lnk; Type: files
 Name: {commonstartmenu}\Programs\WinMerge\Read Me.lnk; Type: files
 Name: {commonstartmenu}\Programs\WinMerge; Type: dirifempty
+
+Name: {group}\WinMerge.lnk; Type: files
+Name: {group}\Uninstall WinMerge.lnk; Type: files
+Name: {group}\WinMerge on the Web.lnk; Type: files
+Name: {group}\Read Me.lnk; Type: files
+Name: {group}\User's Guide.lnk; Type: files
+Name: {group}; Type: dirifempty
 
 ;This removes the quick launch icon in case the user chooses not to install it after previously having it installed
 Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type: files
 
 ;This removes the desktop icon in case the user chooses not to install it after previously having it installed
 Name: {userdesktop}\WinMerge.lnk; Type: files
+
+Name: {app}\Docs; Type: filesandordirs
 
 [Files]
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
@@ -178,52 +269,64 @@ Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; MinVersion: 
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running Win9X platform system
 Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; MinVersion: 4, 0; Components: main; Flags: ignoreversion
 
+;Installs the ComCtl32.dll update on any system where its DLLs are more recent
+Source: Runtimes\50comupd.exe; DestDir: {tmp}; Check: InstallComCtlUpdate
+
 ; begin VC system files
 Source: Runtimes\mfc42.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile
 Source: Runtimes\mfc42u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 0, 4
 Source: Runtimes\msvcrt.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile
+Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile
 ; end VC system files
 
+Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
 Source: ..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(313)
 Source: ..\Build\MergeUnicodeRelease\Merge7z312U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(312)
 Source: ..\Build\MergeUnicodeRelease\Merge7z311U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(311)
 
-
 Source: ..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(313)
 Source: ..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(312)
 Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(311)
 
-Source: ..\Docs\*.*; DestDir: {app}\Docs; Components: docs; Flags: ignoreversion sortfilesbyextension
+Source: ..\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: Brazilian_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Components: Catalan_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: ChineseSimplified_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: ChineseTraditional_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: Czeck_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: Danish_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: Dutch_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: French_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: German_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: Italian_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: Korean_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Components: Norwegian_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergePolish.lang; DestDir: {app}; Components: Polish_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeRussian.lang; DestDir: {app}; Components: Russian_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: Slovak_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
+Source: ..\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
+
+
+Source: ..\Docs\Users\UsersGuide\*.*; DestDir: {app}\Docs\User's Guide\; Components: docs; Flags: ignoreversion sortfilesbyextension
+Source: ..\Docs\Users\UsersGuide\Art\*.*; DestDir: {app}\Docs\User's Guide\Art; Components: docs; Flags: ignoreversion sortfilesbyextension
 Source: ..\Filters\*.*; DestDir: {app}\Filters; Components: filters; Flags: ignoreversion sortfilesbyextension
 
-Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: chinesesimplifiedlanguage; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: chinesetraditionallanguage; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: koreanlanguage; Flags: ignoreversion
+;Documentation
+Source: ..\Docs\Users\Read Me.rtf; DestDir: {app}\Docs; Components: main; Flags: ignoreversion
+Source: ..\Docs\Users\Contributors.rtf; DestDir: {app}\Docs; Components: main; Flags: ignoreversion
 
-Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: czechlanguage; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: slovaklanguage; Flags: ignoreversion
-
-Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: danishlanguage; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: dutchlanguage; Flags: ignoreversion
-
-Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: frenchlanguage; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: germanlanguage; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: italianlanguage; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: spanishlanguage; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: brazilian; Flags: ignoreversion
-
-Source: ..\Docs\Read Me.rtf; DestDir: {app}; Components: main; Flags: ignoreversion
 
 [INI]
-Filename: {app}\WinMerge.url; Section: InternetShortcut; Key: URL; String: http://winmerge.org/
+Filename: {app}\WinMerge.url; Section: InternetShortcut; Key: URL; String: http://WinMerge.org/
 
 
 [Icons]
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; HotKey: Ctrl+Alt+M
-Name: {group}\Read Me; Filename: {app}\Read Me.rtf; IconFileName: {win}\NOTEPAD.EXE
+Name: {group}\Read Me; Filename: {app}\Docs\Read Me.rtf; IconFileName: {win}\NOTEPAD.EXE
+Name: {group}\User's Guide; Filename: {app}\Docs\User's Guide\Index.html; IconFileName: {app}\Docs\User's Guide\Art\User's Guide.ico; Components: docs
 Name: {group}\WinMerge on the Web; Filename: {app}\WinMerge.url
 Name: {group}\Uninstall WinMerge; Filename: {uninstallexe}
 
@@ -259,10 +362,11 @@ Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; Va
 ; delete obsolete values
 ;In Inno Setup Version 4.18 ValueData couldn't be null and compile,
 ;if this is fixed in a later version feel free to remove the parameter
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Settings; ValueType: dword; ValueName: LeftMax; ValueData: 0; Flags: deletevalue
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Settings; ValueType: dword; ValueName: DirViewMax; ValueData: 0; Flags: deletevalue
-Root: HKCR; SubKey: Directory\shell\WinMerge\command; ValueType: string; Flags: deletekey noerror
-Root: HKCR; SubKey: Directory\shell\WinMerge; ValueType: string; Flags: deletekey noerror
+Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Settings; ValueType: none; ValueName: LeftMax; Flags: deletevalue
+Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Settings; ValueType: none; ValueName: DirViewMax; Flags: deletevalue
+
+Root: HKCR; SubKey: Directory\Shell\WinMerge\command; ValueType: none; Flags: deletekey noerror
+Root: HKCR; SubKey: Directory\Shell\WinMerge; ValueType: none; Flags: deletekey noerror
 
 ;Adds "Start Menu" --> "Run" Support for WinMerge
 Root: HKLM; Subkey: Software\Microsoft\Windows\CurrentVersion\App Paths\WinMerge.exe; ValueType: none; Flags: uninsdeletekey
@@ -270,12 +374,29 @@ Root: HKLM; Subkey: Software\Microsoft\Windows\CurrentVersion\App Paths\WinMerge
 Root: HKLM; SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMerge.exe; ValueType: string; ValueName: ; ValueData: {app}\{code:ExeName}
 Root: HKLM; SubKey: SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMergeU.exe; ValueType: string; ValueName: ; ValueData: {app}\{code:ExeName}
 
+;Registry Keys for use by ShellExtension.dll
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: string; ValueName: Executable; ValueData: {app}\{code:ExeName}
+
+;Enables or disables the Context Menu preference based on what the user selects during install
+;Initially the Context menu is explicitly disabled:
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 0
+
+;If the user chose to use the context menu then we re-enable it.  This is necessary so it'll turn on and off not just on.
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 1; Tasks: ShellExtension
+
+;If WinMerge.exe is installed then we'll automatically configure WinMerge as the differencing application
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName};
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: DiffAsUnicode; ValueData: $00000001;
 
 
 [Run]
-Filename: {win}\Explorer.exe; Description: View the WinMerge Start Menu Folder; Parameters: """{group}"""; Flags: nowait postinstall skipifsilent
-Filename: {app}\{code:ExeName}; Description: Launch WinMerge; Flags: nowait postinstall skipifsilent runmaximized
+;Installs the Microsoft Common Controls Update
+Filename: {tmp}\50comupd.exe; Parameters: /r:n /q:1; StatusMsg: Updating the System's Common Controls; Check: InstallComCtlUpdate
 
+;This will no longer appear unless the user chose to make a start menu group in the first place
+Filename: {win}\Explorer.exe; Description: &View the WinMerge Start Menu Folder; Parameters: """{group}"""; Flags: waituntilidle postinstall skipifsilent; Check: GroupCreated
+
+Filename: {app}\{code:ExeName}; Description: &Launch WinMerge; Flags: nowait postinstall skipifsilent runmaximized
 
 
 [UninstallDelete]
@@ -285,7 +406,39 @@ Type: dirifempty; Name: {app}
 [Code]
 Var
     int7Zip_Version: Integer;
+    intComCtlNeeded: Integer;
 
+{Determines whether or not the user chose to create a start menu}
+Function GroupCreated(): boolean;
+Var
+    {Stores the path of the start menu group Inno Setup may have created}
+    strGroup_Path: string;
+Begin
+    {Saves the path that Inno Setup intended to create the start menu group at}
+    strGroup_Path := ExpandConstant('{group}');
+
+    {If the start menu path isn't blank then..}
+    if strGroup_Path <> '' Then
+        Begin
+            {If the user choose to create the start menu then this folder will exist.
+            If the folder exists then GroupCreated = True otherwise it does not.}
+            Result := DirExists(strGroup_Path)
+        end
+    else
+        {Since the start menu path is null, we know that the user chose not to create a
+        start menu group (note in Inno Setup 4.18 this didn't yet work, but I'm sure it will in the future}
+        Result := False;
+
+     {Debug
+
+    If DirExists(strGroup_Path) = True Then
+        Msgbox('The group "' + ExpandConstant('group') + '" was found', mbInformation, mb_ok)
+    Else
+        Msgbox('The group "' + ExpandConstant('group') + '" doesn''t exist.', mbInformation, mb_ok); }
+End;
+
+
+{Returns the appropriate name of the .EXE being installed}
 Function ExeName(Unused: string): string;
 Begin
 
@@ -293,7 +446,6 @@ Begin
 	 Result := 'WinMergeU.exe'
   Else
     Result := 'WinMerge.exe';
-
 End;
 
 Function FixVersion(strInput: string): string;
@@ -654,3 +806,36 @@ Begin
         end }
 
 End;
+
+{Determines whether or not to Install the Comctl Update
+Note: this confusing code isn't Seier's it's from jrsoftware.org :)
+}
+function InstallComCtlUpdate: Boolean;
+var
+  MS, LS: Cardinal;
+begin
+    Case intComCtlNeeded of
+        -1: Result := False;
+        0:
+            begin
+
+                // Only install if the existing comctl32.dll is < 5.80
+                Result := False;
+                intComCtlNeeded := -1;
+                if GetVersionNumbers(ExpandConstant('{sys}\comctl32.dll'), MS, LS) then
+                    begin
+                        if MS < $00050050 then
+                            begin
+                                Result := True;
+                                intComCtlNeeded := 1
+                            end;
+                    end
+            end;
+        1: Result := True;
+
+    end;
+end;
+
+
+[_ISTool]
+OutputExeFilename=D:\Programming\Visual C++\WinMerge\WinMerge\InnoSetup\Output\WinMerge 2.1.5.13.exe
