@@ -1,4 +1,200 @@
 <appendix id="Shortcuts">
   <title>Shortcut keys</title>
   <para>Most common shortcut keys familiar from other Windows applications work in WinMerge.</para>
+  <table>
+    <title>Directory compare</title>
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Key</entry>
+          <entry>Function</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry>Enter</entry>
+          <entry>Open selected item (if folder, open it)</entry>
+        </row>
+        <row>
+          <entry>Backspace</entry>
+          <entry>Open parent folder if possible (only available when subfolders are not included in compare)</entry>
+        </row>
+        <row>
+          <entry>F5</entry>
+          <entry>Rescan directories</entry>
+        </row>
+        <row>
+          <entry>Alt + Home</entry>
+          <entry>Go to first different file/directoriy</entry>
+        </row>
+        <row>
+          <entry>Alt + End</entry>
+          <entry>Go to last different file/directoriy</entry>
+        </row>
+        <row>
+          <entry>Alt + Enter</entry>
+          <entry>Go to currently selected item (if scrolled off-screen)</entry>
+        </row>
+        <row>
+          <entry>Alt + Up Arrow</entry>
+          <entry>Go to previous different file/directory</entry>
+        </row>
+        <row>
+          <entry>Alt + Down Arrow</entry>
+          <entry>Go to next different file/directory</entry>
+        </row>
+        <row>
+          <entry>Alt + Left Arrow</entry>
+          <entry>Copy selected items from right to left</entry>
+        </row>
+        <row>
+          <entry>Alt + Right Arrow</entry>
+          <entry>Copy selected items from left to right</entry>
+        </row>
+        <row>
+          <entry>Ctrl + C</entry>
+          <entry>Copy selected items to clipboard (format simple report)</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <table>
+    <title>File compare</title>
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Key</entry>
+          <entry>Function</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry>Esc</entry>
+          <entry>Close window (if enabled in options)</entry>
+        </row>
+        <row>
+          <entry>F5</entry>
+          <entry>Refresh</entry>
+        </row>
+        <row>
+          <entry>F6</entry>
+          <entry>Change pane (active file)</entry>
+        </row>
+        <row>
+          <entry>F4</entry>
+          <entry>Show line difference</entry>
+        </row>
+        <row>
+          <entry>Ctrl + G</entry>
+          <entry>Go to difference or line</entry>
+        </row>
+        <row>
+          <entry>Ctrl + F</entry>
+          <entry>Find text</entry>
+        </row>
+        <row>
+          <entry>F3</entry>
+          <entry>Find again</entry>
+        </row>
+        <row>
+          <entry>Ctrl + H</entry>
+          <entry>Replace text with another text</entry>
+        </row>
+        <row>
+          <entry>Ctrl + Z</entry>
+          <entry>Undo last action</entry>
+        </row>
+        <row>
+          <entry>Ctrl + Y</entry>
+          <entry>Redo previously undone action</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <table>
+    <title>Difference navigation and merging (normal mode)</title>
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Key</entry>
+          <entry>Function</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry>Alt + Home</entry>
+          <entry>Go to first difference</entry>
+        </row>
+        <row>
+          <entry>Alt + End</entry>
+          <entry>Go to last difference</entry>
+        </row>
+        <row>
+          <entry>Alt + Enter</entry>
+          <entry>Go to current difference or select difference</entry>
+        </row>
+        <row>
+          <entry>Alt + Up Arrow</entry>
+          <entry>Go to previous difference</entry>
+        </row>
+        <row>
+          <entry>Alt + Down Arrow</entry>
+          <entry>Go to next difference</entry>
+        </row>
+        <row>
+          <entry>Alt + Left Arrow</entry>
+          <entry>Copy difference from right side to left side</entry>
+        </row>
+        <row>
+          <entry>Alt + Right Arrow</entry>
+          <entry>Copy difference from left side to right side</entry>
+        </row>
+        <row>
+          <entry>Ctrl + Alt + Left Arrow</entry>
+          <entry>Copy difference from right side to left side and select next difference</entry>
+        </row>
+        <row>
+          <entry>Ctrl + Alt + Right Arrow</entry>
+          <entry>Copy difference from left side to right side and select next difference</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <table>
+    <title>Difference navigation and merging (merge mode)</title>
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Key</entry>
+          <entry>Function</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry>Up Arrow</entry>
+          <entry>Go to previous difference</entry>
+        </row>
+        <row>
+          <entry>Down Arrow</entry>
+          <entry>Go to next difference</entry>
+        </row>
+        <row>
+          <entry>Left Arrow</entry>
+          <entry>Copy difference from right side to left side</entry>
+        </row>
+        <row>
+          <entry>Right Arrow</entry>
+          <entry>Copy difference from left side to right side</entry>
+        </row>
+        <row>
+          <entry>Ctrl + Alt + Left Arrow</entry>
+          <entry>Copy difference from right side to left side and select next difference</entry>
+        </row>
+        <row>
+          <entry>Ctrl + Alt + Right Arrow</entry>
+          <entry>Copy difference from left side to right side and select next difference</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
 </appendix>
