@@ -4,6 +4,8 @@
   Languages\Norwegian: MergeNorwegian.rc
   Correction#0 Bokmal->Bokmål
   WinMerge\Merge.rc
+  Correction#1 værktøylinje(n)->verktøylinje(n)
+  Languages\Norwegian: MergeNorwegian.rc
 
 2003-08-22 Kimmo
  PATCH: [ 787495 ] Create diffutils class (CDiffWrapper)

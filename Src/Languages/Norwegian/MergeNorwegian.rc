@@ -145,7 +145,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Vis mellomrom",              ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
-        MENUITEM "&Værktøylinje",              ID_VIEW_TOOLBAR
+        MENUITEM "&verktøylinje",              ID_VIEW_TOOLBAR
         MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
@@ -826,7 +826,7 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_VIEW_TOOLBAR         "Vis eller skjul værktøylinjen\nVis værktøylinjen"
+    ID_VIEW_TOOLBAR         "Vis eller skjul verktøylinjen\nVis verktøylinjen"
     ID_VIEW_STATUS_BAR      "Vis eller skjul statuslinjen\nVis statuslinjen"
 END
 
