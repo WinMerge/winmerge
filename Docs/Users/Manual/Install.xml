@@ -2,7 +2,7 @@
   <title>Getting and installing WinMerge</title>
   <sect2>
     <title>Getting files</title>
-    <para>Latest releases can be always downloaded from WinMerge homepage: <ulink url="http://winmerge.sourceforge.net/">http://www.winmerge.org/</ulink>. Note that there may be some delay updating homepages for releases, but project statuspage at <ulink url="https://sourceforge.net/projects/winmerge/">http://sourceforge.net/projects/winmerge/</ulink>shows latest files. There is also mailing-list for release announcements. Stable releases are also available in several file download sites.</para>
+    <para>Latest releases can be always downloaded from WinMerge homepage: <ulink url="http://winmerge.sourceforge.net/">http://www.winmerge.org/ </ulink>. Note that there may be some delay updating homepages for releases, but project statuspage at <ulink url="https://sourceforge.net/projects/winmerge/">http://sourceforge.net/projects/winmerge/ </ulink>shows latest files. There is also mailing-list for release announcements. Stable releases are also available in several file download sites.</para>
   </sect2>
   <sect2>
     <title>Running install program</title>
@@ -11,5 +11,10 @@
   <sect2>
     <title>Shell integration</title>
     <para>If install program is not used, shell integration dll (ShellExtension.dll) must be registered separately. This is done by running register.bat from WinMerge directory.</para>
+  </sect2>
+  <sect2>
+    <title>7-Zip and archive support</title>
+    <para>To enable archive file support in WinMerge 7-Zip is required. WinMerge installer does not install 7-Zip. 7-Zip installer can be downloaded from <ulink url="http://www.7-zip.org/">http://www.7-Zip.org/ </ulink></para>
+    <para>WinMerge detects existence and version of 7-zip in system, there is no need to any configuration. But WinMerge supports only certain versions of 7-Zip. Please check version requirement from Read Me.rft -file in WinMerge directory.</para>
   </sect2>
 </sect1>

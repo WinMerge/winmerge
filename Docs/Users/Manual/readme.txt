@@ -1,6 +1,8 @@
 2004-06-17 Kimmo
  PATCH: [ 973571 ] Userdocs: More frequently asked questions
   Manual: Faq.xml
+ PATCH: [ 974198 ] Userdocs: Installing and 7-zip
+  Manual: Install.xml
 
 2004-06-16 Kimmo
  PATCH: [ 973527 ] Userdocs: About doc and introduction
