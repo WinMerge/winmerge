@@ -87,6 +87,7 @@ Other Contributors:
 * Steve Beaudoin
 * Tim Gerundt
 * Tim Musschoot
+* Takashi Sawanaka
 * Vikrant
 * Vincent Osele
 
