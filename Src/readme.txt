@@ -1,6 +1,8 @@
 2004-01-23 Perry
  PATCH: [ 880006 ] Code cleanup--old commented out lines in DirView.h
   src: DirView.h
+ Cleanup stdafx.h; comment includes & declarations, remove unneeded include of afxsock.h
+  src: StdAfx.cpp StdAfx.h
 
 2004-01-23 Kimmo
  PATCH: [ 848159 ] RFE 826652 : Compare by modified date

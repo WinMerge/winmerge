@@ -100,9 +100,7 @@ CString Fmt(LPCTSTR fmt, ...)
 	return str;
 }
 
-/**
- * @brief Get appropriate clipboard format for TCHAR text
- */
+// Get appropriate clipboard format for TCHAR text
 int GetClipTcharTextFormat()
 {
 #ifdef _UNICODE
