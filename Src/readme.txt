@@ -1,3 +1,7 @@
+2004-01-31 Laoran
+ BUG: [ 885018 ] Crash when trying to save scratchpad
+  src: MergeDoc.cpp
+
 2004-01-31 Kimmo
  PATCH: [ 887283 ] Menu cleanup
   scr: Merge.rc

@@ -2337,6 +2337,11 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		nRightSuccess = FRESULT_OK;
 	}
 
+	// scratchpad : we don't call LoadFile, so
+	// we need to initialize the unpacker as a "do nothing" one
+	if (sLeftFile.IsEmpty() && sRightFile.IsEmpty())
+		m_pInfoUnpacker->Initialize(UNPACK_MANUAL);
+
 	// Bail out if either side failed
 	if (nLeftSuccess != FRESULT_OK || nRightSuccess != FRESULT_OK)
 	{
