@@ -7,6 +7,8 @@
  Fix MakeResDll for MSVC.NET & MSVC.NET 2003.
  Bump MakeResDll version from 1.0.0.1 to 1.0.1.0.
   MakeResDll: MakeResDll.cpp MakeResDll.rc
+ Add readme.txt to MakeResDll.
+  MakeResDll: MakeResDll.dsp readme.txt
 
 2003-10-22 WinMerge experimental release 2.1.3.4 (cvs)
 
