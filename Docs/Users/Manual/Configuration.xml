@@ -16,11 +16,20 @@
     </sect3>
     <sect3>
       <title>Disable splash screen</title>
-      <para>User can disable splash screen appearing when WinMerge is started. It does not make WinMerge start faster (splash screen can be missed by clicking it with mouse) but it saves one click. :)</para>
+      <para>User can disable splash screen appearing when WinMerge is started. It does not make WinMerge start faster (splash screen can be missed by clicking it with mouse) but it saves one click.</para>
     </sect3>
     <sect3>
       <title>Close compare statepane automatically</title>
       <para>User can allow WinMerge to close compare statepane automatically after directory compare is ready. After compare statuspane is closed it can be reopened from View-menu (Compare Statepane).</para>
+    </sect3>
+    <sect3>
+      <title>Close Windows with ESC</title>
+      <para>If this option is enabled, WinMerge closes document windows and application with ESC key. One window is closed with one keypress, so if user has file compare window open one needs three keypresses to close WinMerge: file compare window, directory compare window and then the application.</para>
+    </sect3>
+    <sect3>
+      <title>Automatically verify paths in Open-dialog</title>
+      <para>When enabled: Open-dialog checks both paths given for validity and doesn't enable "OK" button until both paths are valid. Unfortunately this checking needs little delay and some users find this delay annoying.</para>
+      <para>When disabled: Open-dialog enabled "OK" button by default and lets user to try to open all paths. However error message is shown if path is not valid. This is faster to use, there is no any delay in enabling "OK". But user must look at error-dialogs.</para>
     </sect3>
   </sect2>
   <sect2>
@@ -54,8 +63,12 @@
       <para>If this option is enabled WinMerge ignores differences between lowercase and uppercase letters. For example "LowerCase" and "LOWERCASE" and "lowercase" are same.</para>
     </sect3>
     <sect3>
-      <title>Sensitive to EOL</title>
+      <title>Ignore carriage return differences (DOS/UNIX/MAC)</title>
       <para>If this option is not set WinMerge does not detect EOL style differences as differences. If two lines differ only by EOL characters (e.g. DOS EOL and Unix EOL) WinMerge detects files as identical.</para>
+    </sect3>
+    <sect3>
+      <title>Enable moved block detection</title>
+      <para>When this option is enabled WinMerge tries to detect lines that are moved inside file. Moved lines have own difference colors. Also location pane can show moved lines with line between bars. This makes it easier to visualise changes in files. However if there are a lot of moved lines it may get messy looking.</para>
     </sect3>
     <sect3>
       <title>File compare method</title>
@@ -78,11 +91,15 @@
       <para>From "Hilighting" -page user can enable/disable syntax highlighting. WinMerge can syntax highlight many programming language source codes, web formats etc. Syntax hilighting consumes some processing power, so if WinMerge screen updating seems to be slow, turning off this option might help.</para>
     </sect3>
     <sect3>
+      <title>Apply to unrecognized side</title>
+      <para>When this options is enabled WinMerge applies known know file format's syntax highligh to another file even if that file's extension is not known. For example, if you compare files, file.cpp and file.cpp.bak, WinMerge detects file.cpp needs C++ syntax highlight. And then uses same rules for file.cpp.bak too.</para>
+    </sect3>
+    <sect3>
       <title>Automatic rescan</title>
       <para>Enabling automatic rescanning forces WinMerge to rescan after every change done to files, including typing. That's how WinMerge 1.7.1 behaves. For bigger files this can make editing files very slow. To make file editing faster edit events are 'delayed'.</para>
       <para>Delaying means WinMerge waits one second after last edit event before rescanning. If new edit event happens during that time editing is done and counter reset to one second. So there should be no rescans during normal typing, but only after user stops typing.</para>
       <para>When automatic rescan is disabled, rescan is done only when user selects "rescan" or user merges difference.</para>
-      <para>WinMerge 2.1.6.0 beta release delays more edit events than 2.0.x releases, so selecting between automatic and manual rescan is mostly a matter of taste.</para>
+      <para>WinMerge 2.2 release delays more edit events than 2.0.x releases, so selecting between automatic and manual rescan is mostly a matter of taste.</para>
     </sect3>
     <sect3>
       <title>Preserve original EOL chars</title>
@@ -122,9 +139,14 @@ EOL differences.</screen>
       <para>This option enables/disables shell integration. When enabled, new menuitem "WinMerge" is added to explorer's context menu. User can select one or two files/folders and then select that menuitem to open files/folders to WinMerge.</para>
     </sect3>
     <sect3>
+      <title>Enable advanced menu</title>
+      <para>If this option is enabled there are two items shown in explorer's context menu. First item allows user to select path to "memory" and then pick another path and compare those two. This means user does not need to select both paths from same view, but user can select them from different drives etc. Path is forgotten from memory when its compared.</para>
+      <para>Second item in menu always opens WinMerge with selected path(s).</para>
+    </sect3>
+    <sect3>
       <title>External editor</title>
       <para>WinMerge has pretty good editor for most basic editing needs. But its not nowhere near comparable to many other editors in functionality. So WinMerge allows user to define ones personally preferred editor to external editor. Files can be opened to external editor from directory compare's context menu.</para>
-      <para>Notepad is used as default, because it is found from all Windows machines.</para>
+      <para>Notepad is used as default, because it is found from all Windows machines. Commandline parameters can be given, in format: &lt;path to .exe&gt; -option1 -option2 ...</para>
     </sect3>
   </sect2>
 </sect1>
