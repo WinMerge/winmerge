@@ -1160,6 +1160,8 @@ bool CDirView::IsItemNavigableDiff(const DIFFITEM & di) const
 		return false;
 	if (di.isDirectory())
 		return false;
+	if (di.isResultSame())
+		return false;
 	return true;
 }
 

@@ -1,3 +1,7 @@
+2003-10-05 Kimmo
+ PATCH: [ 817269 ] Fix navigation in directory compare
+  WinMerge: DirView.cpp
+
 2003-10-04 Perry
  Update dll copy batch file for 4 new build targets
  Languages/CopyAll.bat
