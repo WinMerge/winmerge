@@ -310,3 +310,51 @@ UninstallProgram=Деинсталлировать %1
 LaunchProgram=Запустить %1
 AssocFileExtension=Св&язать %1 с файлами, имеющими расширение %2
 AssocingFileExtension=Связывание %1 с файлами %2...
+
+;Things we can also localize
+English.CompanyName=Thingamahoochie Software
+
+;Types
+English.TypicalInstallation=Typical Installation
+English.FullInstallation=Full Installation
+English.CompactInstallation=Compact Installation
+English.CustomInstallation=Custom Installation
+
+;Components
+English.AppCoreFile=%1 Core Files
+English.ApplicationRuntimes=Application Runtimes
+English.UsersGuide=User's Guide
+English.Filters=Filters
+English.Plugins=Plugins (enhance core behavior)
+
+;Localization Components
+English.BulgarianLanguage=Bulgarian menus and dialogs
+English.CatalanLanguage=Catalan menus and dialogs
+English.ChineseSimplifiedLanguage=Chinese(Simplified) menus and dialogs
+English.ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
+English.CzechLanguage=Czech menus and dialogs
+English.DanishLanguage=Danish menus and dialogs
+English.DutchLanguage=Dutch menus and dialogs
+English.FrenchLanguage=French menus and dialogs
+English.GermanLanguage=German menus and dialogs
+English.ItalianLanguage=Italian menus and dialogs
+English.KoreanLanguage=Korean menus and dialogs
+English.NorwegianLanguage=Norwegian menus and dialogs
+English.PolishLanguage=Polish menus and dialogs
+English.PortugueseLanguage=Portuguese (Brazillian) menus and dialogs
+English.RussianLanguage=Russian menus and dialogs
+English.SlovakLanguage=Slovak menus and dialogs
+English.SpanishLanguage=Spanish menus and dialogs
+English.SwedishLanguage=Swedish menus and dialogs
+
+;Tasks
+English.ExplorerContextMenu=&Enable Explorer context menu integration
+English.IntegrateTortoiseCVS=Integrate with &TortoiseCVS
+English.IntegrateDelphi4=Borland® Delphi &4 Binary File Support
+English.UpdatingCommonControls=Updating the System's Common Controls
+
+;Icon Labels
+English.ReadMe=Read Me
+English.UsersGuide=User's Guide
+English.UpdatingCommonControls=Updating the System's Common Controls
+English.ViewStartMenuFolder=&View the %1 Start Menu Folder
