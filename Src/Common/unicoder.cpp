@@ -624,7 +624,7 @@ CString maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
 #ifdef UNICODE
 	// Convert input to Unicode, using specified codepage
 	// TCHAR is wchar_t, so convert into CString (str)
-	CString str = lpd; // TODO: fix 2003-11-13
+	CString str;
 	DWORD flags = 0;
 	int wlen = len*2+6;
 	LPWSTR wbuff = str.GetBuffer(wlen);

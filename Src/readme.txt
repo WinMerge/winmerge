@@ -1,3 +1,7 @@
+2004-06-03 Laoran
+ BUG: [ 964242 ] WinMerge getting slower loading and showing files
+  Src/Common: unicoder.cpp
+
 2004-06-03 Kimmo
  PATCH: [ 963814 ] Cosmetic: fix call in OpenDlg to LoadPosition
   Submitted by Perry
@@ -7,7 +11,7 @@
  PATCH: [ 964665 ] And another unneeded include in DirDoc.h
   Src: DirDoc.h
 
-2004-06-01 Laoran
+2004-06-02 Laoran
  PATCH: [ 964497 ] fix display of moved block in detail pane
   Src: MergeDiffDetailView.cpp
 
