@@ -1464,7 +1464,7 @@ BEGIN
     IDS_ERROR_FILE_NOT_UNPACKED "Fichier non décompressé : %1"
     IDS_BINFILES_IDENTICAL   "%1\n%2\n\nsont des fichiers binaires identiques."
     IDS_BINFILES_DIFFERENT   "%1\n%2\n\nsont des fichiers binaires différents."
-    IDS_OTHER_IS_BINARY      "%1\n\nest un fichier bianire. Impossible de comparer un fichier texte et un fichier bianire.
+    IDS_OTHER_IS_BINARY      "%1\n\nest un fichier bianire. Impossible de comparer un fichier texte et un fichier bianire."
     IDS_ERROR_FILEOPEN       "Impossible d'ouvrir le fichier\n%1\n\n%2"
 END
 
