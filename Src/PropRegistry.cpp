@@ -180,6 +180,8 @@ void CPropRegistry::OnSavePath()
 	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
 		return;
 
+	m_strPath.TrimLeft();
+	m_strPath.TrimRight();
 	reg.WriteString(f_RegValuePath, m_strPath);
 }
 
