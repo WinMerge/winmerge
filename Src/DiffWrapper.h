@@ -231,11 +231,11 @@ struct DiffFileData
 
 	file_data * m_inf;
 	bool m_used; // whether m_inf has real data
-	struct Filepath : CString
+	struct FilepathWithEncoding : CString
 	{
 		int unicoding;
 		int codepage;
-		Filepath():unicoding(0),codepage(0)
+		FilepathWithEncoding():unicoding(0),codepage(0)
 		{
 		}
 		bool Transform(const CString & filepath, CString & filepathTransformed,

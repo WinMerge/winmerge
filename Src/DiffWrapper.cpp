@@ -956,7 +956,7 @@ static bool isValidCodepage(int cp)
 /**
  * @brief Try to deduce encoding for this file
  */
-void DiffFileData::Filepath::GuessEncoding(const char **data, int count)
+void DiffFileData::FilepathWithEncoding::GuessEncoding(const char **data, int count)
 {
 	if (unicoding == 0)
 	{
@@ -1441,7 +1441,7 @@ static bool Unpack(CString & filepathTransformed,
  * return false if anything fails
  * caller has to DeleteFile filepathTransformed, if it differs from filepath
  */
-bool DiffFileData::Filepath::Transform(const CString & filepath, CString & filepathTransformed,
+bool DiffFileData::FilepathWithEncoding::Transform(const CString & filepath, CString & filepathTransformed,
 	const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd)
 {
 	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used

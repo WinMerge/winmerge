@@ -2,6 +2,9 @@
  PATCH: [ 1154259 ] Non blurred 'error.bmp'
   New clearer error bitmap from Tim Gerundt
   Src/Res: error.bmp
+ PATCH: [ 1153127 ] Rename Filepath to FilepathWithEncoding
+  Src: DiffWrapper.cpp DiffWrapper.h
+
 
 2005-03-01 WinMerge experimental release 2.3.1.5 (cvs)
 
