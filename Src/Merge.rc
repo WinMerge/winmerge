@@ -1097,7 +1097,6 @@ BEGIN
     ID_DIR_OPEN_LEFT        "Open left file"
     ID_DIR_OPEN_LEFT_WITH   "Open left file with ..."
     ID_DIR_OPEN_RIGHT       "Open right file"
-    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
     ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
     ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
@@ -1179,6 +1178,7 @@ BEGIN
     ID_EDITOR_COPY_FILENAME "Copy Filename"
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
     ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
 STRINGTABLE DISCARDABLE

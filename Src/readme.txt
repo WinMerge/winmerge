@@ -1,3 +1,7 @@
+2003-10-19 Laoran
+ Rearranging strings in English .rc
+  WinMerge: Merge.rc
+
 2003-10-19 Perry
  Added Catalan translation (pre-plugin version)
   Languages: BuildAll.bat Catalan/*
