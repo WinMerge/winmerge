@@ -2754,7 +2754,6 @@ OnSize (UINT nType, int cx, int cy)
 
   RecalcVertScrollBar ();
   RecalcHorzScrollBar ();
-  PostMessage (WM_COMMAND, ID_FORCE_REDRAW);
 }
 
 void CCrystalTextView::
