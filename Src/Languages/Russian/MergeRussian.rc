@@ -1336,6 +1336,8 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "Другое приложение изменило файл\n%1\nуже загруженный в WinMerge .\n\nПерезаписать измененный файл?"
     IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
     IDS_MERGEMODE_MERGING   "Merge"
+    IDS_COLHDR_BINARY       "Binary"
+    IDS_DIFFERENT           "Different"
 END
 
 STRINGTABLE 
@@ -1520,4 +1522,3 @@ LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-

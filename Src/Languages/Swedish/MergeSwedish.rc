@@ -1425,6 +1425,8 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
     IDS_TEMP_FILEERROR      "Temporära filer kunde inte skapas. Kontrollera inställningarna för dina temporära sökvägar."
     IDS_MERGEMODE_MERGING   "Merge"
+    IDS_COLHDR_BINARY       "Binary"
+    IDS_DIFFERENT           "Different"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1614,11 +1616,3 @@ LANGUAGE LANG_SWEDISH, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-
-
-
-
-
-
-
-

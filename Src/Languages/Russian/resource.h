@@ -201,6 +201,8 @@
 #define IDD_MESSAGE_BOX                 281
 #define IDS_TEMP_FILEERROR              282
 #define IDS_MERGEMODE_MERGING           283
+#define IDS_COLHDR_BINARY               284
+#define IDS_DIFFERENT                   285
 #define ID_SCRIPT_FIRST                 900
 #define ID_SCRIPT_LAST                  949
 #define ID_PREDIFFERS_FIRST             950

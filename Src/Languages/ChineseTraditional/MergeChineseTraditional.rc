@@ -1415,6 +1415,8 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
     IDS_MERGEMODE_MERGING   "Merge"
+    IDS_COLHDR_BINARY       "Binary"
+    IDS_DIFFERENT           "Different"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1601,10 +1603,3 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-
-
-
-
-
-
-
