@@ -246,7 +246,7 @@ BEGIN
                     IDC_STATIC,7,71,145,19
     LTEXT           "Várias sintaxes por  Ferdinand Prantl",IDC_STATIC,7,90,
                     209,10
-    LTEXT           "Tradução para o Brasil por Rapha Noreuzis by RARO.com.br",
+    LTEXT           "Tradução para o português Brasil por Wender Firmino",
                     IDC_STATIC,8,101,209,10
 END
 
