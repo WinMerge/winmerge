@@ -2,6 +2,9 @@
  PATCH: [ 791487 ] Norwegian (bokmål) translation
  (Enlarge label in color dialog to avoid clipping text.)
   Languages: MergeNorwegian.rc
+ PATCH: [ 820364 ] Fix handling of non-ASCII 8-bit files
+  common: unicoder.cpp unicoder.h
+  WinMerge: files.cpp
 
 2003-10-10 Laoran
  PATCH: [ 818198 ] Colors for "ignore blank lines"

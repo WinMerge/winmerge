@@ -23,6 +23,22 @@ static char THIS_FILE[] = __FILE__;
 
 namespace ucr {
 
+// current OS version
+static bool f_osvi_fetched=false;
+static OSVERSIONINFO f_osvi;
+
+/**
+ * @brief fetch current OS version into file level variable & set flag
+ */
+static void
+fetch_verinfo()
+{
+	memset(&f_osvi, 0, sizeof(f_osvi));
+	f_osvi.dwOSVersionInfoSize = sizeof(f_osvi);
+	GetVersionEx(&f_osvi);
+	f_osvi_fetched = true;
+}
+
 /**
  * @brief Convert unicode codepoint to UTF-8 byte string
  *
@@ -246,6 +262,25 @@ int to_utf8_advance(UINT u, unsigned char * &lpd)
  */
 CString maketchar(UINT unich, bool & lossy)
 {
+	static bool vercheck=false;
+	static UINT codepage = CP_ACP;
+	if (!vercheck)
+	{
+		if (!f_osvi_fetched) fetch_verinfo();
+		// Need 2000 or better for CP_THREAD_ACP
+		if (f_osvi.dwMajorVersion>=5)
+			codepage = CP_THREAD_ACP;
+		vercheck = true;
+	}
+
+	return maketchar(unich, lossy, codepage);
+}
+
+/**
+ * @brief convert character passed (Unicode codepoint) to a TCHAR (set lossy flag if imperfect conversion)
+ */
+CString maketchar(UINT unich, bool & lossy, UINT codepage)
+{
 #ifdef _UNICODE
 	if (unich < 0x10000)
 	{
@@ -268,12 +303,10 @@ CString maketchar(UINT unich, bool & lossy)
 		static bool has_no_best_fit=false;
 		if (!vercheck)
 		{
-			OSVERSIONINFO osvi;
-			memset(&osvi, 0, sizeof(osvi));
-			osvi.dwOSVersionInfoSize = sizeof(osvi);
-			GetVersionEx(&osvi);
+			if (!f_osvi_fetched) fetch_verinfo();
 			// Need 2000 (5.x) or 98 (4.10)
-			has_no_best_fit = osvi.dwMajorVersion>=5 || (osvi.dwMajorVersion==4 && osvi.dwMinorVersion>=10);
+			has_no_best_fit = f_osvi.dwMajorVersion>=5 || (f_osvi.dwMajorVersion==4 && f_osvi.dwMinorVersion>=10);
+			vercheck = true;
 		}
 		// So far it isn't lossy, so try for lossless conversion
 		TCHAR outch;
@@ -298,6 +331,44 @@ CString maketchar(UINT unich, bool & lossy)
 	}
 	return _T("?");
 #endif
+}
+
+/**
+ * @brief convert 8-bit character input to Unicode codepoint and return it
+ */
+UINT
+byteToUnicode (byte ch)
+{
+	static bool vercheck=false;
+	static UINT codepage = CP_ACP;
+	if (!vercheck)
+	{
+		if (!f_osvi_fetched) fetch_verinfo();
+		// Need 2000 or better for CP_THREAD_ACP
+		if (f_osvi.dwMajorVersion>=5)
+			codepage = CP_THREAD_ACP;
+		vercheck = true;
+	}
+	return byteToUnicode(ch, codepage);
+}
+
+/**
+ * @brief convert 8-bit character input to Unicode codepoint and return it
+ */
+UINT
+byteToUnicode (byte ch, UINT codepage)
+{
+
+	if ((unsigned char)ch < 0x80)
+		return (unsigned char)ch;
+
+	DWORD flags = 0;
+	wchar_t wbuff;
+	int n = MultiByteToWideChar(codepage, flags, (LPCSTR)&ch, 1, &wbuff, 1);
+	if (n>0)
+		return wbuff;
+	else
+		return '?';
 }
 
 /**
@@ -416,7 +487,7 @@ get_unicode_char(byte * ptr, UNICODESET codeset)
 		ch = (ptr[0] << 8) + ptr[1];
 		break;
 	default:
-		ch = *ptr;
+		ch = byteToUnicode(*ptr);
 	}
 	return ch;
 }

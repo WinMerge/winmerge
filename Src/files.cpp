@@ -159,12 +159,6 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 	parsedTextFile->lines.RemoveAll();
 	textline newline;
 	newline.start = 0;
-	// Manually grow line array exponentially
-	int arraysize = 500;
-	int lineno = 0;
-
-
-	parsedTextFile->lines.SetSize(500);
 	
 	// Check for Unicode BOM (byte order mark)
 	// (We don't check for UCS-4 marks)
@@ -201,31 +195,58 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 	{
 		UINT ch=0;
 		UINT utf8len=0;
-		if (parsedTextFile->codeset == ucr::UTF8)
+	// shortcut cases, when file encoding is our native TCHAR encoding
+#ifdef _UNICODE
+		if (parsedTextFile->codeset == ucr::UCS2LE)
 		{
-			// check for end in middle of UTF-8 character
-			// or outside of UCS-2 (len>4)
-			utf8len = ucr::Utf8len_fromLeadByte(*lpByte);
-			if (dwBytesRead + utf8len > fileData->dwSize || utf8len>4)
+			wchar_t wch = *(wchar_t *)lpByte;
+			newline.sline += wch;
+			ch = wch;
+		}
+#else
+		if (parsedTextFile->codeset == ucr::NONE)
+		{
+			ch = *lpByte;
+			newline.sline += ch;
+		}
+#endif
+	// otherwise we convert via Unicode
+		else 
+		{
+			if (parsedTextFile->codeset == ucr::UTF8)
 			{
-				bBinary = TRUE;
-				break;
-			}
-			// Handle bad UTF-8
-			// (Convert bad bytes individually to '?'
-			if (utf8len<1)
-			{
-				utf8len=1;
-				ch = '?';
+				// check for end in middle of UTF-8 character
+				// or outside of UCS-2 (len>4)
+				utf8len = ucr::Utf8len_fromLeadByte(*lpByte);
+				if (dwBytesRead + utf8len > fileData->dwSize || utf8len>4)
+				{
+					bBinary = TRUE;
+					break;
+				}
+				// Handle bad UTF-8
+				// (Convert bad bytes individually to '?'
+				if (utf8len<1)
+				{
+					utf8len=1;
+					ch = '?';
+				}
+				else
+				{
+					ch = ucr::GetUtf8Char(lpByte);
+				}
 			}
 			else
 			{
-				ch = ucr::GetUtf8Char(lpByte);
+				ch = ucr::get_unicode_char(lpByte, (ucr::UNICODESET)parsedTextFile->codeset);
 			}
-		}
-		else
-		{
-			ch = ucr::get_unicode_char(lpByte, (ucr::UNICODESET)parsedTextFile->codeset);
+			// convert from Unicode codepoint to TCHAR string
+			// could be multicharacter if decomposition took place, for example
+			CString sch = ucr::maketchar(ch, parsedTextFile->lossy);
+			newline.sline += sch;
+			if (sch.GetLength() == 1)
+				ch = sch[0];
+			else
+				ch = 0;
 		}
 		// Binary check
 		if (ch < 0x09)
@@ -233,7 +254,6 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 			bBinary = TRUE;
 			break;
 		}
-		newline.sline += ucr::maketchar(ch, parsedTextFile->lossy);
 		if (ch == '\r')
 		{
 			bool crlf = false;
@@ -284,22 +304,12 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 		}
 		if (newline.end >= 0)
 		{
-			// Manually grow line array exponentially
-			if (lineno == arraysize)
-			{
-				arraysize *= 2;
-				parsedTextFile->lines.SetSize(arraysize);
-				
-			}
-			parsedTextFile->lines[lineno] = newline;
-			++lineno;
+			parsedTextFile->lines.Add(newline);
 			newline.start = dwBytesRead;
 			newline.end = -1;
 			newline.sline = _T("");
 		}
 	}
-
-	parsedTextFile->lines.SetSize(lineno);
 
 	if (bBinary)
 	{
