@@ -1,3 +1,8 @@
+2003-12-28 Perry
+ PATCH: [ 863738 ] Various Updates in German Translation
+  Updates to German translation by Tim Gerundt (gerundt), based on 1.73 MergeGerman.rc
+   Languages: German/MergeGerman.rc
+
 2003-12-22 Perry
  Put ID_POPUP_COPYALLDIFFSFROMOTHERSIDE back into rc file so it parses
   Winmerge: Merge.rc
