@@ -172,6 +172,7 @@
 #define IDS_COPY_RIGHT_TO               259
 #define IDS_COPY_RIGHT_TO2              260
 #define IDS_SELECT_DESTFOLDER           261
+#define IDD_WMGOTO                      262
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -283,6 +284,11 @@
 #define IDC_COMPARISON_STOP             1106
 #define IDC_COMPARISON_CLOSE            1107
 #define IDC_DIFF_INCLCMDLINE            1108
+#define IDC_WMGOTO_FILELEFT             1109
+#define IDC_WMGOTO_FILERIGHT            1110
+#define IDC_WMGOTO_TOLINE               1111
+#define IDC_WMGOTO_TODIFF               1112
+#define IDC_WMGOTO_PARAM                1113
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -522,6 +528,7 @@
 #define ID_DIR_COPY_LEFT_TO_BROWSE      32856
 #define ID_DIR_COPY_RIGHT_TO_BROWSE     32857
 #define ID_WINDOW_CHANGE_PANE           32858
+#define ID_EDIT_WMGOTO                  32859
 
 // Next default values for new objects
 //
@@ -529,7 +536,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        121
-#define _APS_NEXT_COMMAND_VALUE         32859
+#define _APS_NEXT_COMMAND_VALUE         32860
 #define _APS_NEXT_CONTROL_VALUE         1108
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

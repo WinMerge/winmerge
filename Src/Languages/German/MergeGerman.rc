@@ -139,6 +139,8 @@ BEGIN
         MENUITEM "&Suchen...\tStrg+F",          ID_EDIT_FIND
         MENUITEM "Erse&tzen...\tStrg+H",        ID_EDIT_REPLACE
         MENUITEM SEPARATOR
+        MENUITEM "Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM SEPARATOR
         MENUITEM "&Einstellungen...",           ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "Aktualisieren\tF5",           ID_REFRESH
@@ -279,6 +281,7 @@ BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
@@ -1427,6 +1430,7 @@ BEGIN
     ID_DIR_OPEN_LEFT_WITHEDITOR "Öffnet die linke Datei im externen Editor."
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Öffnet die rechte Datei im externen Editor."
     ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
+    ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
 END
 
 // END STRINGS SYNCHRO

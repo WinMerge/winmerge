@@ -751,6 +751,10 @@ SOURCE=.\diffutils\GnuVersion.c
 # End Source File
 # Begin Source File
 
+SOURCE=.\WMGotoDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\diffutils\src\IFDEF.C
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -1571,6 +1575,10 @@ SOURCE=.\GhostTextBuffer.h
 # Begin Source File
 
 SOURCE=.\GhostTextView.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\WMGotoDlg.h
 # End Source File
 # Begin Source File
 

@@ -1,3 +1,9 @@
+2004-01-18 Kimmo
+ PATCH: 876875 Go To -Dialog
+  src new files: WMGotoDlg.h WMGotoDlg.cpp
+  src: Merge.dsp Merge.rc MergeEditView.h MergeEditView.cpp resource.h
+  src/Languages: *.rc resource.h
+
 2004-01-17 Kimmo
  PATCH: [ 871789 ] Add "Copy to..." items to dirview context menu
   src/Common: new files CShellOp.h CShellOp.cpp

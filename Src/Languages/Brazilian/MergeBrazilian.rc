@@ -138,6 +138,8 @@ BEGIN
         MENUITEM "Pr&ocurar...\tCtrl+F",        ID_EDIT_FIND
         MENUITEM "Al&terar...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
+        MENUITEM "Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM SEPARATOR
         MENUITEM "Opçõe&s...",                  ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "Atuali&zar\tF5",              ID_REFRESH
@@ -274,6 +276,7 @@ BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
@@ -757,6 +760,26 @@ BEGIN
     PUSHBUTTON      "Stop",IDC_COMPARISON_STOP,320,13,83,14
 END
 
+IDD_WMGOTO DIALOG DISCARDABLE  0, 0, 189, 70
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Go To"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "G&oto:",IDC_STATIC,7,9,18,8
+    EDITTEXT        IDC_WMGOTO_PARAM,33,7,93,14,ES_AUTOHSCROLL | ES_NUMBER
+    GROUPBOX        "File",IDC_STATIC,7,27,48,35
+    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,13,38,28,10
+    CONTROL         "&Right",IDC_WMGOTO_FILERIGHT,"Button",BS_AUTORADIOBUTTON,
+                    13,48,33,10
+    GROUPBOX        "Goto what",IDC_STATIC,61,27,63,35
+    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,68,38,29,10
+    CONTROL         "&Difference",IDC_WMGOTO_TODIFF,"Button",
+                    BS_AUTORADIOBUTTON,68,48,49,10
+    DEFPUSHBUTTON   "&Go To",IDOK,132,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,132,24,50,14
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1419,6 +1442,7 @@ BEGIN
     ID_DIR_OPEN_LEFT_WITHEDITOR "Open the left file to external editor"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
     ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
+    ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
 END
 
 // END STRINGS SYNCHRO

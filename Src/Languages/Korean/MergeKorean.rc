@@ -102,6 +102,8 @@ BEGIN
         MENUITEM "찾기(&I)...\tCtrl+F",         ID_EDIT_FIND
         MENUITEM "바꾸기(&C)...\tCtrl+H",       ID_EDIT_REPLACE
         MENUITEM SEPARATOR
+        MENUITEM "Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM SEPARATOR
         MENUITEM "옵션(&O)...",                 ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "새로 고침(&S)\tF5",           ID_REFRESH
@@ -240,6 +242,7 @@ BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
@@ -1544,6 +1547,7 @@ BEGIN
     ID_DIR_OPEN_LEFT_WITHEDITOR "Open the left file to external editor"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
     ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
+    ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
 END
 
 // END STRINGS SYNCHRO

@@ -37,6 +37,7 @@
 #include "FileTransform.h"
 #include "Plugins.h"
 #include "lwdisp.h"
+#include "WMGotoDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -133,6 +134,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_MULTIPLE_RIGHT, OnUpdateMultipleRight)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CHANGE_PANE, OnUpdateChangePane)
+	ON_COMMAND(ID_EDIT_WMGOTO, OnGoto)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_WMGOTO, OnUpdateGoto)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1223,7 +1226,7 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 		CPoint ptStart, ptEnd;
 		ptStart.x = 0;
 		ptStart.y = pd->m_diffs[nDiff].dbegin0;
-		ptEnd.y = 0;
+		ptEnd.x = 0;
 		ptEnd.y = pd->m_diffs[nDiff].dend0;
 
 		if (bScroll)
@@ -1728,6 +1731,85 @@ void CMergeEditView::OnChangePane()
  * @brief Enable "Change Pane" menuitem when mergeview is active
  */
 void CMergeEditView::OnUpdateChangePane(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+}
+
+/**
+ * @brief Show "Go To" dialog and scroll views to line or diff
+ */
+void CMergeEditView::OnGoto()
+{
+	CWMGotoDlg dlg;
+
+	// Set active file selected in dialog
+	dlg.m_nFile = m_bIsLeft ? 0 : 1;
+	dlg.m_nGotoWhat = 0;
+
+	if (dlg.DoModal() == IDOK)
+	{
+		CMergeDoc * pDoc = GetDocument();
+		CMergeEditView * pCurrentView = NULL;
+		CMergeEditView * pOtherView = NULL;
+
+		if (dlg.m_nGotoWhat == 0)
+		{
+			int nRealLine = _ttoi(dlg.m_strParam) - 1;
+			int nApparentLine = 0;
+			int nLineCount = 0;
+			
+			if (nRealLine < 0)
+				nRealLine = 0;
+
+			// Get views and compute apparent (shown linenumber) line
+			if (dlg.m_nFile == 0)
+			{
+				pCurrentView = pDoc->GetLeftView();
+				pOtherView = pDoc->GetRightView();
+				
+				if (nRealLine > pDoc->m_ltBuf.GetLineCount() - 1)
+					nRealLine = pDoc->m_ltBuf.GetLineCount() - 1;
+				
+				nApparentLine = pDoc->m_ltBuf.ComputeApparentLine(nRealLine);
+			}
+			else
+			{
+				pOtherView = pDoc->GetLeftView();
+				pCurrentView = pDoc->GetRightView();
+
+				if (nRealLine > pDoc->m_rtBuf.GetLineCount() - 1)
+					nRealLine = pDoc->m_rtBuf.GetLineCount() - 1;
+
+				nApparentLine = pDoc->m_rtBuf.ComputeApparentLine(nRealLine);
+			}
+
+			CPoint ptPos;
+			ptPos.x = 0;
+			ptPos.y = nApparentLine;
+			pCurrentView->ScrollToLine(ptPos.y);
+			pOtherView->ScrollToLine(ptPos.y);
+			pCurrentView->SetCursorPos(ptPos);
+			pOtherView->SetCursorPos(ptPos);
+			pCurrentView->SetAnchor(ptPos);
+			pOtherView->SetAnchor(ptPos);
+		}
+		else
+		{
+			int diff = _ttoi(dlg.m_strParam) - 1;
+			if (diff < 1)
+				diff = 1;
+			if (diff > pDoc->m_nDiffs)
+				diff = pDoc->m_nDiffs;
+
+			pCurrentView->SelectDiff(diff, TRUE, FALSE);
+		}
+	}
+}
+
+/**
+ * @brief Enable "Go To" menuitem when mergeview is active
+ */
+void CMergeEditView::OnUpdateGoto(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(TRUE);
 }
