@@ -1,3 +1,8 @@
+2004-03-15 Kimmo
+ RFE: [ 874366 ] Add goto line-number
+   Scroll line searched to center of view, as suggested by harry mckame
+  Src: MergeEditView.cpp
+
 2004-03-14 Kimmo
  RFE [ 897975 ] Syntax highlighting for INI files
   Color "[...]"
@@ -13,7 +18,6 @@
    res/bmp files
  BUG: [ 916028 ] Deleting unique file does not remove it from view
   Src: DirActions.cpp
-
 
 2004-03-13 Seier
  Add 48*48 icon version (256 & 16 color)

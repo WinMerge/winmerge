@@ -1822,7 +1822,10 @@ void CMergeEditView::OnWMGoto()
 			CPoint ptPos;
 			ptPos.x = 0;
 			ptPos.y = nApparentLine;
-			int nScrollLine = nApparentLine - CONTEXT_LINES_ABOVE;
+
+			// Scroll line to center of view
+			const int offset = GetScreenLines() / 2;
+			int nScrollLine = nApparentLine - offset;
 			if (nScrollLine < 0)
 				nScrollLine = 0;
 			pCurrentView->ScrollToLine(nScrollLine);
