@@ -123,23 +123,44 @@ int FileIsBinary(int fd)
 {
     int bResult=0;
     int cnt;
-    char buf[40];
+    char buf[128];
     long prevpos = tell(fd);
+
+	// check front of file first
 	lseek(fd, 0L, SEEK_SET);
-	cnt=read(fd, buf, 40);
+	cnt=read(fd, buf, sizeof buf);
     if (cnt>0)
     {
 		for (register int i=0; i < cnt; i++)
 		{
-			if (!isprint(buf[i])
-			&& !isspace(buf[i])
-			&& buf[i] != NULL)
+			if (buf[i] == 0
+				|| (!isprint(buf[i]) && !isspace(buf[i])))
 			{
 			bResult=1;
 			break;
 			}
 		}
     }
+
+	if (!bResult)
+	{
+		// no binary chars found, look at end of file
+		lseek(fd, -cnt, SEEK_END);
+		cnt=read(fd, buf, cnt);
+		if (cnt>0)
+		{
+			for (register int i=0; i < cnt; i++)
+			{
+				if (buf[i] == 0
+					|| (!isprint(buf[i]) && !isspace(buf[i])))
+				{
+					bResult=1;
+					break;
+				}
+			}
+		}
+	}
+
     lseek(fd, prevpos, SEEK_SET);
     return bResult;
 }

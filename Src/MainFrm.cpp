@@ -241,6 +241,7 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 		{
 			m_pMergeDoc->m_pView->GetParentFrame()->DestroyWindow();
 			m_pMergeDoc=NULL;
+			mf->m_pLeft = mf->m_pRight = NULL;
 		}
 	}
 }

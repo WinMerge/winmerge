@@ -165,8 +165,11 @@ BOOL CMergeDoc::Rescan()
 			}
 			
 			/* Compare the files, if no error was found.  */
-			
-			script = diff_2_files (inf, depth, NULL);
+			BOOL b1 = FileIsBinary(inf[0].desc);
+			BOOL b2 = FileIsBinary(inf[1].desc);
+			int diff_flag=0;
+
+			script = diff_2_files (inf, depth, &diff_flag);
 
 			// throw the diff into a temp file
 			CString path = GetModulePath(NULL) + _T("\\Diff.txt");
@@ -232,14 +235,6 @@ BOOL CMergeDoc::Rescan()
 				free (e);
 			}
 
-			// test to see if we have a binary & text file
-			BOOL b1 = FALSE;
-			BOOL b2 = FALSE;
-			if (m_nDiffs==0)
-			{
-				b1 = FileIsBinary(inf[0].desc);
-				b2 = FileIsBinary(inf[1].desc);
-			}			
 			cleanup_file_buffers(inf);
 			
 			/* Close the file descriptors.  */
@@ -290,8 +285,7 @@ BOOL CMergeDoc::Rescan()
 				}
 				bResult=TRUE;
 			}
-			else if ((b1 && !b2)
-				|| (!b1 && b2))
+			else if (diff_flag)
 			{
 				CString s;
 				VERIFY(s.LoadString(IDS_BIN_FILES_DIFF));
