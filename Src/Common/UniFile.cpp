@@ -2,7 +2,7 @@
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-02-17 (Kimmo Varis)
+ *  @date   Edited:  2005-02-19 (Kimmo Varis)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -55,8 +55,20 @@ void UniLocalFile::Clear()
 	m_txtstats.clear();
 }
 
-/** @brief Get file status into member variables */
-bool UniLocalFile::DoGetFileStatus(HANDLE handle)
+/**
+ * @brief Get file status into member variables
+ *
+ * Reads filestatus (size and full path) of non-open file.
+ * This version of function (See also one with HANDLE parameter)
+ * reads filestatus using CRT function, so file cannot be open
+ * at the same time.
+ * 
+ * @return true on success, false on failure.
+ * @note Function sets filesize member to zero, and status as read
+ * also when failing. That is needed so caller doesn't need to waste
+ * time checking if file already exists (and ignores return value).
+ */
+bool UniLocalFile::DoGetFileStatus()
 {
 	_stati64 fstats = {0};
 	m_statusFetched = -1;
@@ -72,9 +84,57 @@ bool UniLocalFile::DoGetFileStatus(HANDLE handle)
 
 		return true;
 	}
+	else
+	{
+		m_filesize = 0;
+		m_statusFetched = 1; // Yep, done for this file still
+		LastError(_T("_tstati64"), 0);
+		return false;
+	}
+}
 
-	LastError(_T("_tstati64"), 0);
-	return false;
+/**
+ * @brief Get file status into member variables
+ * 
+ * Reads filestatus (size and full path) of already open file.
+ * Using already open handle and CFile is more efficient than
+ * requiring caller first to close file so we can use CRT
+ * functions or CFile static function for reading status for
+ * non-open file.
+ * 
+ * @param [in] handle Handle to open file
+ * @return true on success, false on failure.
+ */
+bool UniLocalFile::DoGetFileStatus(HANDLE handle)
+{
+	m_lastError.ClearError();
+	m_statusFetched = -1;
+
+	if (handle == INVALID_HANDLE_VALUE)
+		return false;
+
+	// Attach CFile to already open filehandle
+	CFile file(handle);
+	CFileStatus status;
+	if (!file.GetStatus(status))
+	{
+		LastError(_T("CFile::GetStatus"), 0);
+		return false;
+	}
+	m_filepath = status.m_szFullName;
+
+	DWORD sizehi=0;
+	DWORD sizelo = GetFileSize(handle, &sizehi);
+	int errnum = GetLastError();
+	if (errnum != NO_ERROR)
+	{
+		LastError(_T("GetFileSize"), errnum);
+		return false;
+	}
+	m_filesize = sizelo + (sizehi << 32);
+	m_statusFetched = 1;
+
+	return true;
 }
 
 /** @brief Record an API call failure */
@@ -619,7 +679,7 @@ bool UniStdioFile::GetFileStatus()
 {
 	if (IsOpen()) return false; // unfortunately we'll hit our lock
 
-	return DoGetFileStatus(INVALID_HANDLE_VALUE); // DoGetFileStatus must open the file itself
+	return DoGetFileStatus();
 }
 
 bool UniStdioFile::OpenReadOnly(LPCTSTR filename)
@@ -655,18 +715,10 @@ bool UniStdioFile::DoOpen(LPCTSTR filename, LPCTSTR mode)
 	m_filepath = filename;
 	m_filename = filename; // TODO: Make canonical ?
 
-	// Open it in case we're creating it
-	m_fp = _tfopen(m_filepath, mode);
-	if (!m_fp)
-		return false;
-	// Close it because otherwise GetFileStatus will fail :(
-	fclose(m_fp);
-	m_fp = 0;
+	// Fails if file doesn't exist (when we are creating new file)
+	// But we don't care since size is set to 0 anyway.
+	GetFileStatus();
 
-	if (!GetFileStatus())
-		return false;
-
-	// reopen it (this closing & reopening is unfortunate)
 	m_fp = _tfopen(m_filepath, mode);
 	if (!m_fp)
 		return false;

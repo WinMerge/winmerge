@@ -1,3 +1,7 @@
+2005-02-19 Kimmo
+ PATCH: [ 1144059 ] Allow getting filestatus from open file in UniXXXFile
+  Common: UniFile.cpp UniFile.h
+
 2005-02-18 Kimmo
  PATCH: [ 1124475 ] Update of the swedish translation
   Submitted by Hans Eriksson

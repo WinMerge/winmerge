@@ -2,7 +2,7 @@
  *  @file   UniFile.h
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-02-17 (Kimmo Varis)
+ *  @date   Edited:  2005-02-19 (Kimmo Varis)
  *
  *  @brief  Declaration of Memory-Mapped Unicode enabled file class
  */
@@ -96,6 +96,7 @@ public:
 	virtual const txtstats & GetTxtStats() const { return m_txtstats; }
 
 protected:
+	virtual bool DoGetFileStatus();
 	virtual bool DoGetFileStatus(HANDLE handle);
 	virtual void LastError(LPCTSTR apiname, int syserrnum);
 	virtual void LastErrorCustom(LPCTSTR desc);
