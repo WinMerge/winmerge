@@ -1,28 +1,31 @@
 <sect1>
   <title>Comparing directories</title>
-  <para>Directory compare shows all files and subdirectries found from compared directories as list. Directory compare allows synchronising directories by copying and deleting files. Directory compare view can be versatile customised.</para>
+  <para>Directory compare shows all files and subdirectries found from compared directories as list. Directory compare allows synchronising directories by copying and deleting files and subdirectories. Directory compare view can be versatile customised.</para>
   <mediaobject>
     <imageobject>
       <imagedata fileref="screenshots/dircomp1.gif" format="GIF"/>
     </imageobject>
   </mediaobject>
-  <para>Directory compare has two different modes: non-recursive and recursive. Mode is selected in Open-dialog.<itemizedlist>
+  <para>Directory compare has two different modes: non-recursive and recursive. Mode is selected in Open-dialog with Include Subfolders -checkbox.<itemizedlist>
       <listitem>
-        <para>In non-recursive compare only files in selected directories are shown. Subdirectories are not shown</para>
+        <para>In non-recursive compare subdirerectories and files in selected directories are shown.</para>
       </listitem>
       <listitem>
-        <para>In recursive compare files selected directories and in all subdirectories are shown. Unique (only in other side) subdirectories are also shown. </para>
+        <para>In recursive compare files in selected directories and in all subdirectories are shown. Unique (only in other side) subdirectories are also shown, but not files inside them.</para>
       </listitem>
     </itemizedlist></para>
   <sect2>
-    <title>Directory compare statusbar</title>
-    <para>During directory compare proceeds, following statusbar is shown:</para>
+    <title>Directory compare statepane</title>
+    <para>During directory compare proceeds, following statepane is shown:</para>
     <para><mediaobject>
         <imageobject>
           <imagedata fileref="screenshots/Dircomp_status1.gif" format="GIF"/>
         </imageobject>
       </mediaobject></para>
-    <para>Directory compare can be stopped by selecting "Stop"-button and results for files and directories compared so far are shown. After directory compare finishes, "Stop" button text is changed to "Press any key". Now statusbar can be closed by selecting that button or pressing any key from keyboard.</para>
+    <para>Directory compare can be stopped by selecting "Stop"-button and results for files and directories compared so far are shown. After directory compare finishes, "Stop" button text is changed to "Press any key". Now statepane can be closed by selecting that button or pressing any key from keyboard.</para>
+    <tip>
+      <para>Enable option "Close Compare statepane automatically" and statepane closes automatically after compare is ready. Statepane can be opened from View-menu if needed.</para>
+    </tip>
     <para><mediaobject>
         <imageobject>
           <imagedata fileref="screenshots/Dircomp_status2.gif" format="GIF"/>
@@ -117,6 +120,58 @@
     </itemizedlist>
   </sect2>
   <sect2>
+    <title>Columns in directory compare</title>
+    <para>By default these columns are visible:
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>Filename</para>
+      </listitem>
+      <listitem>
+        <para>Directory : Relative directoryname for compare path. If subdirectories are not included this is empty.</para>
+      </listitem>
+      <listitem>
+        <para>Comparison result : Verbose comparison result (see also Short Result)</para>
+      </listitem>
+      <listitem>
+        <para>Left date &amp; Right date: Modification date of item. Note that newer date is prefixed with asterisk "*".</para>
+      </listitem>
+      <listitem>
+        <para>Extension : File's extension, handy for sorting</para>
+      </listitem>
+    </itemizedlist>
+    <para>Following columns are available through "Customize Columns" -dialog:</para>
+    <itemizedlist>
+      <listitem>
+        <para>Binary : Column contains asterisk "*" when file is binary. Handy for sorting and to use with Short Result -column.</para>
+      </listitem>
+      <listitem>
+        <para>Left Attributes &amp; Right Attributes: Shows fileattributes. Currently shows only readonly attribyte with "R".</para>
+      </listitem>
+      <listitem>
+        <para>Left Creation Time &amp; Right Creation Time : Item creation time.</para>
+      </listitem>
+      <listitem>
+        <para>Left Encoding &amp; Right Encoding : File encoding.</para>
+      </listitem>
+      <listitem>
+        <para>Left File Version &amp; Right File Version : Version number from file if present. Note that this is read for only some binary files.</para>
+      </listitem>
+      <listitem>
+        <para>Left Size &amp; Right Size : File size in bytes.</para>
+      </listitem>
+      <listitem>
+        <para>Newer File : Shows which side is newer.</para>
+      </listitem>
+      <listitem>
+        <para>#differences : Amount of total differences found from files.</para>
+      </listitem>
+      <listitem>
+        <para>#sig. differences : Amount of significant differences, total differences - ignored differences.</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2>
     <title>Navigation in directory compare</title>
     <para>In addition moving selection using mouse or keyboard, also Merge-menu navigation commands, toolbar buttons and shortcut keys can be used. For example "Next diff" finds next different file and selects it.</para>
     <note>
@@ -126,20 +181,54 @@
   </sect2>
   <sect2>
     <title>File operations in directory compare</title>
-    <para>Directory compare allows user to copy and delete files and directories (Copying folders is not supported in current WinMerge releases). File operations are available through context menu. Also files can be opened to associated program or into external editor.</para>
-    <para>Most common operation is copying files. File can be copied from side to side using Merge-menu items, toolbar buttons and context menu. If multiple files are selected, or file to overwrite is read-only, confirmation dialog is shown.</para>
+    <sect3>
+      <title>Copying and deleting</title>
+      <para></para>
+      <para>Directory compare allows user to copy and delete files and directories. File operations are available through context menu (right-click with mouse). Also files can be opened to associated program or into external editor.</para>
+      <para>In file operation menu, there are one or two numbers shown, depending on files/folders selected. If there is one number shown, for example "Copy/Left to... (5)" that means there is 5 items selected, and all items can be copied. But if there is two numbers shown, for example "Copy/Left to... (3 of 5)", that means there are 5 items selected but only 3 items can be copied.</para>
+      <para>Most common operation is copying files from side to side. File can be copied from side to side using Merge-menu items, toolbar buttons and context menu. If multiple files are selected, or file to overwrite is read-only, confirmation dialog is shown.</para>
+      <para>Sometimes it is useful to copy certain files and/or directories to another directory instead of another compared directory. This can be done selecting "Copy/Left to..." or "Copy/Right to..." items.</para>
+      <para>Another file/directory operation is deleting. Items in another or both sides can be deleted. There is "Put deleted files into recycle bin" option in system options. Its higly recommended to keep that option enabled so deletion can be undone if accidents happen. Note however recycle bin does not help if its disabled from Windows settings.</para>
+      <warning>
+        <para>File/directory deletion cannot be undone if recycle bin is not used!!!</para>
+      </warning>
+    </sect3>
+    <sect3>
+      <title>Opening files</title>
+      <para>There are three items in Open-menus:</para>
+      <itemizedlist>
+        <listitem>
+          <para>With Registered Application</para>
+        </listitem>
+        <listitem>
+          <para>With External Editor</para>
+        </listitem>
+        <listitem>
+          <para>With ...</para>
+        </listitem>
+      </itemizedlist>
+      <para>First one opens file with application registered handling filetype for Windows, if there is one. Second opens file with external editor configurable in options (Notepad by default). Last one opens "Open With..." dialog asking from user with which application files should be opened.</para>
+    </sect3>
+    <sect3>
+      <title>Archiving</title>
+      <para>Selected items or different items from selection can be added to archive file.</para>
+      <note>
+        <para>Archive support requires that compatible version of 7-zip is installed to system.</para>
+      </note>
+      <para>After selecting archive item dialog pops up asking filename and archive type from user.</para>
+    </sect3>
   </sect2>
   <sect2>
     <title>Customising directory compare</title>
     <para>There are many ways to customize directory compare:<itemizedlist>
         <listitem>
-          <para>Sorting by column</para>
+          <para>Sorting by column : Sorted by column can be selected by clicking column name with mouse. Little arrow appears next to column name indicating that results are sorted by this column and sort order.</para>
         </listitem>
         <listitem>
-          <para>Selecting visible columns</para>
+          <para>Selecting visible columns : "Display Columns" dialog can be opened from Tools -menu or by right-clicking column header with mouse.</para>
         </listitem>
         <listitem>
-          <para>Changing order of columns</para>
+          <para>Changing order of columns : Order can be changed in "Display Columns" dialor or by drag &amp; dropping column names with mouse.</para>
         </listitem>
       </itemizedlist></para>
   </sect2>

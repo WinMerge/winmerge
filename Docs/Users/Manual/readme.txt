@@ -3,6 +3,8 @@
   Manual: Filters.xml
  PATCH: [ 965158 ] Userdocs: Options (Configuration)
   Manual: Configuration.xml
+ PATCH: [ 965291 ] Userdocs: Directory compare
+  Manual: Conpare_dirs.xml
 
 2004-06-02 Kimmo
  PATCH: [ 964442 ] Userdocs: Frequently asked questions
