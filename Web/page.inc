@@ -85,13 +85,14 @@
       $temp .= "  <meta http-equiv=\"content-type\" content=\"text/html; charset=" . $this->_charset . "\">\n";
       $temp .= "  <meta name=\"description\" content=\"" . $this->_description . "\">\n";
       $temp .= "  <meta name=\"keywords\" content=\"" . $this->_keywords . "\">\n";
-      $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" href=\"/winmerge.css\">\n";
+      $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/all.css\">\n";
+      $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/css/print.css\">\n";
       $temp .= "  <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n";
       $temp .= "</head>\n\n";
       $temp .= "<body>\n";
       $temp .= "<table border=\"0\" cellpadding=\"4\">\n";
       $temp .= "  <tr>\n";
-      $temp .= "    <td width=\"200\" valign=\"top\" bgcolor=\"#c0c0c0\">\n";
+      $temp .= "    <td width=\"200\" valign=\"top\" bgcolor=\"#c0c0c0\" class=\"noprint\">\n";
       $temp .= $this->getMenu();
       $temp .= "    </td>\n\n";
       $temp .= "    <td width=\"*\" valign=\"top\">\n";
@@ -150,10 +151,11 @@
           $temp .= "  <a href=\"/2.2/changes.php\">Change History</a><br><br>\n";
           break;
       }
-      $temp .= "  <center><a href=\"http://sourceforge.net/donate/index.php?group_id=13216\" target=\"_top\">\n";
-      $temp .= "    <img src=\"http://images.sourceforge.net/images/project-support.jpg\"\n";
-      $temp .= "      width=\"88\" height=\"32\" border=\"0\" alt=\"Donate money to WinMerge\" />\n";
-      $temp .= "  </a></center>\n";
+      $temp .= "</p>\n";
+      $temp .= "<p align=\"center\">\n";
+      $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\" target=\"_top\">\n";
+      $temp .= "    <img src=\"http://images.sourceforge.net/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate money to WinMerge\">\n";
+      $temp .= "  </a>\n";
       $temp .= "</p>\n";
       $temp .= "<p class=\"lefthead\"><a href=\"http://winmerge.org/developer/index.php\">Developers</a></p>\n";
       $temp .= "<p class=\"lefttext\"><a href=\"http://sourceforge.net/projects/winmerge/\" target=\"_top\">Project Home</a><br>\n";
@@ -203,15 +205,19 @@
           $temp .= "</p>\n";
           break;
       }
+      //$temp .= "<p align=\"center\">\n";
+      //$temp .= "  <a href=\"http://i3t.org/sponsorship/showaward.jsp?id=1595259\">\n";
+      //$temp .= "    <img src=\"http://i3t.org/sponsorship/emblem.jsp?id=1595259\" alt=\"The I3T Award for Software Excellence\" border=\"0\">\n";
+      //$temp .= "  </a>\n";
+      //$temp .= "</p>\n";
       $temp .= "<p align=\"center\">\n";
-      $temp .= "  <a href=\"http://i3t.org/sponsorship/showaward.jsp?id=1595259\" target=\"_top\">\n";
-      $temp .= "    <img src=\"http://i3t.org/sponsorship/emblem.jsp?id=1595259\"\n";
-      $temp .= "      alt=\"The I3T Award for Software Excellence\">\n";
+      $temp .= "  <a href=\"http://validator.w3.org/check/referer\">\n";
+      $temp .= "    <img src=\"http://www.w3.org/Icons/valid-html401.gif\" alt=\"Valid HTML 4.01!\" width=\"88\" height=\"31\" border=\"0\">\n";
       $temp .= "  </a>\n";
       $temp .= "</p>\n";
       $temp .= "<p align=\"center\">\n";
-      $temp .= "  <a href=\"http://validator.w3.org/check/referer\">\n";
-      $temp .= "    <img border=\"0\" src=\"http://www.w3.org/Icons/valid-html401.gif\" alt=\"Valid HTML 4.01!\" height=\"31\" width=\"88\">\n";
+      $temp .= "  <a href=\"http://jigsaw.w3.org/css-validator\">\n";
+      $temp .= "    <img src=\"http://jigsaw.w3.org/css-validator/images/vcss.gif\" alt=\"Valid CSS!\" width=\"88\" height=\"31\" border=\"0\">\n";
       $temp .= "  </a>\n";
       $temp .= "</p>\n";
       return $temp;

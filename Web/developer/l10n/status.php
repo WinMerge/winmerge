@@ -34,7 +34,7 @@ releases.</p>
   print("    <th>Language</th>\n");
   print("    <th>Status</th>\n");
   print("    <th>Author</th>\n");
-  print("    <th colspan=\"3\">Versions</th>\n");
+  print("    <th colspan=\"4\">Versions</th>\n");
   print("  </tr>\n");
   $languages = $status['L10N'][0]['LANGUAGE'];
   for ($i = 0; $i < count($languages); $i++) { //For all languages...
@@ -76,6 +76,7 @@ releases.</p>
     }
     print("</td>\n");
 
+    $version_22 = '&nbsp;';
     $version_21 = '&nbsp;';
     $version_20 = '&nbsp;';
     $version_17 = '&nbsp;';
@@ -83,6 +84,9 @@ releases.</p>
       $version = $versions[$j]['VALUE'];
       
       switch ($version) {
+        case '2.2':
+          $version_22 = '2.2';
+          break;
         case '2.1':
           $version_21 = '2.1';
           break;
@@ -94,6 +98,7 @@ releases.</p>
           break;
       }
     }
+    print("    <td>" . $version_22 . "</td>\n");
     print("    <td>" . $version_21 . "</td>\n");
     print("    <td>" . $version_20 . "</td>\n");
     print("    <td>" . $version_17 . "</td>\n");

@@ -1,0 +1,33 @@
+body {
+	font-family: sans-serif;
+	color: black;
+	background-color: white;
+}
+
+h1, h2, h3, h4 {
+	font-family: serif;
+	font-weight: bold;
+}
+
+p.important {
+	font-weight: bold;
+}
+
+li.toc {
+	list-style-image: url();
+	line-height: 125%;
+}
+
+p.lefthead {
+	font-size: larger;
+	font-weight: bold;
+	text-align: center;
+}
+
+p.lefttext {
+	text-align: left;
+}
+
+.noprint {
+	display: none;
+}

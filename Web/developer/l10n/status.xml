@@ -159,10 +159,11 @@
       <author>
         <name>Tim Gerundt</name>
         <email>tim at gerundt dot de</email>
-        <comment>2.1</comment>
+        <comment>2.2 &amp; 2.1</comment>
       </author>
     </authors>
     <versions>
+      <version>2.2</version>
       <version>2.1</version>
       <version>2.0</version>
       <version>1.7</version>
@@ -179,9 +180,11 @@
       <author>
         <name>Andrea Decorte (Klenje)</name>
         <email>klenje at users dot sourceforge dot net</email>
+        <comment>2.2 &amp; 2.1</comment>
       </author>
     </authors>
     <versions>
+      <version>2.2</version>
       <version>2.1</version>
       <version>2.0</version>
       <version>1.7</version>
@@ -193,7 +196,7 @@
     <authors>
       <author>
         <name>Takashi Sawanaka</name>
-        <email>sdottaka at users dot sourceforge dot net</email>
+        <email>sawanaka at d1 dot dion dot ne dot jp</email>
       </author>
     </authors>
     <versions>
@@ -295,12 +298,13 @@
       <author>
         <name>Hans Eriksson</name>
         <email>hans dot ericson at bredband dot net</email>
-        <comment>2.1</comment>
+        <comment>2.2 &amp; 2.1</comment>
       </author>
     </authors>
     <versions>
-      <version>2.0</version>
+      <version>2.2</version>
       <version>2.1</version>
+      <version>2.0</version>
     </versions>
   </language>
 </l10n>
