@@ -129,7 +129,6 @@ public:
 
 // Implementation methods
 protected:
-	void CleanupFileBufs();
 	virtual ~CMainFrame();
 
 // Public implementation data

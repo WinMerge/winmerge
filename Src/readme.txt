@@ -9,6 +9,8 @@
   Docs/Users: Contributors.txt
  Remove declaration of non-existent function DeleteFileOrError()
   Src: MainFrm.h
+ Remove declaration of non-existent function CleanupFileBufs()
+  Src: MainFrm.h
 
 2004-09-13 Kimmo
  PATCH: [ 1026894 ] More space for translations in Goto-dialog
