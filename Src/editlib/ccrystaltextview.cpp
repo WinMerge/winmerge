@@ -2897,46 +2897,48 @@ OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 
   switch (nSBCode)
     {
-    case SB_LEFT:			// Scroll to far left.
+    case SB_LEFT:             // Scroll to far left.
       nCurPos = nMinPos;
       break;
 
-    case SB_RIGHT:			// Scroll to far right.
+    case SB_RIGHT:            // Scroll to far right.
       nCurPos = nMaxPos;
       break;
 
-    case SB_ENDSCROLL:		// End scroll.
+    case SB_ENDSCROLL:        // End scroll.
       break;
 
-    case SB_LINELEFT:		// Scroll left.
+    case SB_LINELEFT:         // Scroll left.
       if (nCurPos > nMinPos)
         nCurPos--;
       break;
 
-    case SB_LINERIGHT:		// Scroll right.
+    case SB_LINERIGHT:        // Scroll right.
       if (nCurPos < nMaxPos)
         nCurPos++;
       break;
 
-    case SB_PAGELEFT:		// Scroll one page left.
+    case SB_PAGELEFT:         // Scroll one page left.
       nCurPos = max(nMinPos, nCurPos - (int) si.nPage + 1);
       break;
 
-    case SB_PAGERIGHT:		// Scroll one page right.
+    case SB_PAGERIGHT:        // Scroll one page right.
       nCurPos = min(nMaxPos, nCurPos + (int) si.nPage - 1);
       break;
 
-    case SB_THUMBPOSITION:		// Scroll to absolute position. nPos is the position
-      nCurPos = si.nTrackPos;	// of the scroll box at the end of the drag operation.
+    case SB_THUMBPOSITION:    // Scroll to absolute position. The current position is 
+      nCurPos = nPos;         // specified by the nPos parameter.
       break;
 
-    case SB_THUMBTRACK:			// Drag scroll box to specified position. nPos is the
-      nCurPos = si.nTrackPos;	// position that the scroll box has been dragged to.
+    case SB_THUMBTRACK:       // Drag scroll box to specified position. The current 
+      nCurPos = nPos;         // position is specified by the nPos parameter
+                              // The SB_THUMBTRACK scroll-bar code typically is used by applications that give 
+                              // some feedback while the scroll box is being dragged.
       break;
     }
   ScrollToChar (nCurPos, TRUE);
+  // This is needed, but why ? OnVScroll don't need to call UpdateCaret
   UpdateCaret ();
-  UpdateSiblingScrollPos (TRUE);
 }
 
 BOOL CCrystalTextView::

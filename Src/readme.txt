@@ -1,3 +1,7 @@
+2003-11-06 Laoran
+ [ 836870 ] Scrollbar "bounces back" in diff pane.
+  editlib: ccrystaltextview.cpp
+
 2003-11-06 Kimmo
  BUG: [ 836781 ] File not found: notepad.exe
   WinMerge: MainFrm.cpp
