@@ -92,6 +92,10 @@
 #include "gotodlg.h"
 #include "Merge.h"
 
+// Escaped character constants in range 0x80-0xFF are interpreted in current codepage
+// Using C locale gets us direct mapping to Unicode codepoints
+#pragma setlocale("C")
+
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
 #include <afxpriv.h>

@@ -9,6 +9,9 @@
 #include "MainFrm.h"
 #include <locale.h>
 
+// Escaped character constants in range 0x80-0xFF are interpreted in current codepage
+// Using C locale gets us direct mapping to Unicode codepoints
+#pragma setlocale("C")
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
