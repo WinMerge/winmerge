@@ -119,9 +119,11 @@ CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 		HANDLE h = FindFirstFile(sTemp, &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 		{
-			sLong = sTemp + '\\';
+			sLong = sTemp;
 			if (ptr)
-				sLong += ptr;
+				sLong += (CString)_T("\\") + ptr;
+			// No trailing slash no matter dst setting
+			// because it (requested path) doesn't exist
 			return sLong;
 		}
 		sLong += '\\';

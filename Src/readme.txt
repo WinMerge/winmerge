@@ -1,3 +1,8 @@
+2004-02-16 Kimmo
+ PATCH: [ 873151 ] Attempt to fix Help/Configuration
+  Submitted by Perry
+  Src: paths.cpp
+
 2004-02-09 Kimmo
  BUG: [ 893287 ] Assign wrong file property when storing changes.
   Src: MainFrm.cpp
