@@ -202,12 +202,34 @@ diff_dirs2 (filevec, handle_file, depth)
   return val;
 }*/
 
+// callback for progress during diff
+// actually we just forward the rpt call into the frame's handler (CMainFrame::rptStatus)
+class DirDocStatus : public IDiffStatus
+{
+public:
+	DirDocStatus(CMainFrame * pFrame) : m_pFrame(pFrame) { m_pFrame->clearStatus(); }
+	virtual void rptFile(BYTE code) { m_pFrame->rptStatus(code); }
+private:
+	CMainFrame * m_pFrame;
+};
+
+// callback for file/directory filtering during diff
+// actually we just forward these calls to the app, to CMergeApp::includeFile & includeDir
+class DirDocFilter : public IDiffFilter
+{
+public:
+	virtual BOOL includeFile(LPCTSTR szFileName) { return theApp.includeFile(szFileName); }
+	virtual BOOL includeDir(LPCTSTR szDirName) { return theApp.includeDir(szDirName); }
+};
+
 
 void CDirDoc::Rescan()
 {
 	if (!m_pCtxt) return;
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
+	DirDocStatus mfst((CMainFrame *)theApp.m_pMainWnd);
+	DirDocFilter mfflt;
 
 	gLog.Write(_T("Starting directory scan:\r\n\tLeft: %s\r\n\tRight: %s\r\n"),
 			m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
@@ -219,9 +241,15 @@ void CDirDoc::Rescan()
 	paths_normalize(m_pCtxt->m_strNormalizedLeft);
 	paths_normalize(m_pCtxt->m_strNormalizedRight);
 
+	m_pCtxt->m_piStatus = &mfst;
+	m_pCtxt->m_piFilter = &mfflt;
+
 	compare_files (0, (char const *)(LPCTSTR)m_pCtxt->m_strNormalizedLeft,
 			       0, (char const *)(LPCTSTR)m_pCtxt->m_strNormalizedRight,
 				   m_pCtxt, 0);
+
+	m_pCtxt->m_piStatus = 0;
+	m_pCtxt->m_piFilter = 0;
 
 	gLog.Write(_T("Directory scan complete\r\n"));
 

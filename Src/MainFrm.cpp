@@ -831,28 +831,6 @@ void CMainFrame::OnOptions()
 	}
 }
 
-// callback for progress during diff
-// actually we just forward the rpt call into the frame's handler (CMainFrame::rptStatus)
-class MainFrmStatus : public IDiffStatus
-{
-public:
-	MainFrmStatus(CMainFrame * pFrame) : m_pFrame(pFrame) { m_pFrame->clearStatus(); }
-	virtual void rptFile(BYTE code) { m_pFrame->rptStatus(code); }
-private:
-	CMainFrame * m_pFrame;
-};
-
-// callback for file/directory filtering during diff
-// actually we just forward these calls to the app, to CMergeApp::includeFile & includeDir
-class MainFrmFilter : public IDiffFilter
-{
-public:
-	virtual BOOL includeFile(LPCTSTR szFileName) { return theApp.includeFile(szFileName); }
-	virtual BOOL includeDir(LPCTSTR szDirName) { return theApp.includeDir(szDirName); }
-private:
-	CMainFrame * m_pFrame;
-};
-
 // clear counters used to track diff progress
 void CMainFrame::clearStatus()
 {
@@ -988,9 +966,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 
 		if (pDirDoc)
 		{
-			MainFrmStatus mfst(this);
-			MainFrmFilter mfflt;
-			CDiffContext *pCtxt = new CDiffContext(strLeft, strRight, &mfst, &mfflt);
+			CDiffContext *pCtxt = new CDiffContext(strLeft, strRight);
 			if (pCtxt != NULL)
 			{
 				pDirDoc->SetDiffContext(pCtxt);
@@ -1003,7 +979,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				}
 
 			}
-			pCtxt->ClearStatus();
 		}
 	}
 	else

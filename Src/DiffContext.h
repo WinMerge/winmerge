@@ -57,7 +57,7 @@ public:
 class CDiffContext  
 {
 public:
-	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, IDiffStatus * piStatus, IDiffFilter * piFilter);
+	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight);
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src);
 	virtual ~CDiffContext();
 
@@ -78,9 +78,8 @@ public:
 
 	// change an existing difference
 	void UpdateStatusCode(POSITION diffpos, BYTE status);
-	void ClearStatus() { m_piStatus=0; }
-	void UpdateTimes(POSITION diffpos, long leftTime, long rightTime);
 
+	void UpdateTimes(POSITION diffpos, long leftTime, long rightTime);
 
 	BOOL m_bRecurse;
 	CString m_strLeft;

@@ -285,8 +285,16 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 
   if (pCtx->m_piFilter)
   {
-    if (!DoesPassFilter(pCtx, inf[0].dir_p, inf[0].name)) return 88;
-    if (!DoesPassFilter(pCtx, inf[1].dir_p, inf[1].name)) return 88;
+    if (!DoesPassFilter(pCtx, inf[0].dir_p, inf[0].name)) 
+    {
+       val = 88;
+       goto compare_files_end;
+    }
+    if (!DoesPassFilter(pCtx, inf[1].dir_p, inf[1].name))
+    {
+       val = 88;
+       goto compare_files_end;
+    }
   }
 
   // delayed unique determination so we can see if file is a directory or not
@@ -527,6 +535,8 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 		}
 	}
     }
+
+compare_files_end:
 
   if (free0)
     free (free0);

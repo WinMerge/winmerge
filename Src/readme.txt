@@ -1,3 +1,7 @@
+2003-05-22 Perry
+ PATCH: [ 741265 ] Fix for bug#741263: 1.9.2.2 crash on refresh
+  WinMerge: Diff.cpp DiffContext.cpp DiffContext.h DirDoc.cpp MainFrm.cpp
+
 2003-05-18 Perry
  PATCH: [ 739529 ] project file & directory filters
   WinMerge: Diff.cpp DiffContext.cpp DiffContext.h FileFilterMgr.cpp 
