@@ -57,7 +57,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\Programs\Merge\temp\Build\MergeRelease\WinMerge.exe
+TargetPath=\Programs\Merge\Build\MergeRelease\WinMerge.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -1394,21 +1394,6 @@ SOURCE=.\editlib\editcmd.h
 # Begin Source File
 
 SOURCE=.\editlib\editreg.h
-
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-# PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
-SOURCE=.\editlib\edtlib.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
 
