@@ -1,3 +1,5 @@
+2004-12-05 WinMerge experimental release 2.3.1.1 (cvs)
+
 2004-12-04 Kimmo
  PATCH: [ 1078505 ] Use DOS eol as filename/pathname clipboard separator
   Src: DirView.cpp
