@@ -1,3 +1,5 @@
+2004-06-04 WinMerge experimental release 2.1.7.6 (cvs)
+
 2004-06-04 Kimmo
  PATCH: [ 965950 ] Simplify and fix Open-dialog extension parser
   Src: OpenDlg.cpp
