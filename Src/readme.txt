@@ -3,6 +3,8 @@
   Src/Common: LanguageSelect.cpp
  PATCH: [ 1055624 ] The finished hungarian language file
   Src/Languages: Hungarian/*
+ PATCH: [ 1053421 ] Changing warning level to 3 in release targets
+  Src: Merge.dsp
 
 2004-10-27 Perry
  PATCH: [ 1003457 ] Move difflist to new class DiffList
