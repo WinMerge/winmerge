@@ -24,7 +24,10 @@ The good news is not only will your translation be helpful to our project, but c
 If you translate some text and forget what it looked like in English, don't fret just have a look at English.isl and search for the same constant. Where XYZ is the name of the constant:
 XYZ=English Text
 
-Here are three languages that have specific lines in addition to the custom messages section that need to be translated.  In case you were wondering the [CustomMessages] section is for text specific to our installer like "Filters" for example.  
+Please download and install Translator: http://www2.arnes.si/~sopjsimo/translator.html.  Once you have installed it run the application opening English.isl on the left and your native language on the right.
+
+Here are three languages that have specific lines in addition to the custom messages section that need to be translated.  In case you were wondering the [CustomMessages] section is for text specific to our installer like "Filters" for example. All other sections are for text used by the installer itself, like the text that appears on the buttons [Cancel], [Next], [Finish], etc... 
+
  
 [Catalan]
 File=Catalan.isl
