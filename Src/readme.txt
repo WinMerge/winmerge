@@ -5,6 +5,9 @@
   Src: MainFrm.cpp OptionsDef.h
  Add note about logging (patch #959035]
   Docs/Developers: readme-developers.html
+ RFE: [ 934419 ] Syntax highlighting *.cls with Visual Basic (basic.cpp)
+  Submitted by Tim Gerundt
+  Src/editlib: ccrystaltextview.cpp
 
 2004-05-24 Perry
  PATCH: [ 893202 ] Bug fixed for DBCS text edit (Attach again)
