@@ -2,6 +2,8 @@
  BUG: [ 684622 ] Escape key closes whole program
   Nikki Locke's patch slightly modified
   WinMerge: Merge.cpp
+ PATCH: [ 696588 ] Multimonitor + virtual screens support
+  WinMerge: MainFrm.cpp Merge.dsp multimon.h
 
 2003-02-28 Kimmo
  BUG: [ 693932 ] Trailing \ on path crashes WinMerge

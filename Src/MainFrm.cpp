@@ -48,6 +48,7 @@
 #include "logfile.h"
 #include "PropSyntax.h"
 #include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
+#include "multimon.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -886,6 +887,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  _T("\tShowUniqueRight: %d\r\n")
 				  _T("\tShowIdentical: %d\r\n")
 				  _T("\tShowDiff: %d\r\n")
+				  _T("\tShowBinaries: %d\r\n")
 				  _T("\tHideBak: %d\r\n")
 				  _T("\tVerSys: %d\r\n")
 				  _T("\tVssPath: %s\r\n")
@@ -900,6 +902,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  m_bShowUniqueRight,
 				  m_bShowIdent,
 				  m_bShowDiff,
+				  m_bShowBinaries,
 				  m_bHideBak,
 				  m_nVerSys,
 				  m_strVssPath,
@@ -1243,19 +1246,26 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 	wp.showCmd = nCmdShow;
 
 	CRect dsk_rc,rc(wp.rcNormalPosition);
-	GetDesktopWindow()->GetWindowRect(&dsk_rc);
+
+	dsk_rc.left = ::GetSystemMetrics(SM_XVIRTUALSCREEN);
+	dsk_rc.top = ::GetSystemMetrics(SM_YVIRTUALSCREEN);
+	dsk_rc.right = dsk_rc.left + ::GetSystemMetrics(SM_CXVIRTUALSCREEN);
+	dsk_rc.bottom = dsk_rc.top + ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
 	if (theApp.GetProfileInt(_T("Settings"), _T("MainMax"), FALSE))
 	{
 		CMDIFrameWnd::ActivateFrame(SW_MAXIMIZE);	
 	}
-	else if (rc.Width() != 0
-		&& rc.Height() != 0
-		&& wp.rcNormalPosition.left >= dsk_rc.left  // only show in saved position if it fits on screen
-		&& wp.rcNormalPosition.top >= dsk_rc.top
-		&& wp.rcNormalPosition.right <= dsk_rc.right
-		&& wp.rcNormalPosition.bottom <= dsk_rc.bottom)
+	else if (rc.Width() != 0 && rc.Height() != 0)
 	{
-		SetWindowPlacement(&wp);
+		// Ensure top-left corner is on visible area,
+		// 20 points margin is added to prevent "lost" window
+		CPoint ptTopLeft(rc.TopLeft());
+		ptTopLeft += CPoint(20, 20);
+
+		if (dsk_rc.PtInRect(ptTopLeft))
+			SetWindowPlacement(&wp);
+		else
+			CMDIFrameWnd::ActivateFrame(nCmdShow);
 	}
 	else
 		CMDIFrameWnd::ActivateFrame(nCmdShow);
