@@ -19,7 +19,9 @@
 ;Installer Todo List:
 ; #  Automatically detect and configure WinMerge to work with Visual Source Safe
 ; #  Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL
+; #  Add a Desktop.ini file to our \Program Files\WinMerge folder
 ; #  Test and distribute the files contained within "MergePlugins (From 2140).7z" or in the folder MergePlugins of "WinMerge2140-exe.7z"
+;    Also take a look at this folder and see if there are any more we should be including WinMerge\Plugins
 ; #  Bundle 7-Zip with WinMerge or provide on the fly download capability.
 ; #  Automatically detect the user's locale, select, and install that language and the registry settings that would make that language be
 ;     the language on startup.
@@ -45,6 +47,7 @@
 ; #  Set the order of icons within the start menu (we'll have to use a registry hack since Inno Setup doesn't yet have this level of granularity).
 ; #  Create a switch for the installer to unzip all of the included binaries as if it were a zip file.
 ; #  Perry wanted a Select All button to appear on the components page.  Let's just ask Jordan Russell or Martijn Laan if they'll do it :).
+
 
 
 
@@ -238,7 +241,7 @@ Name: {app}\MergeSwedish.lang; Type: files
 
 
 Name: {app}\Read Me.rtf; Type: files
-Name: {app}\Docs\Contributors.rtf; Type: files
+Name: {app}\Contributors.rtf; Type: files
 
 ;Removes the previous start menu items and group in case the user chooses to install to a new start menu location next time
 Name: {commonstartmenu}\Programs\WinMerge\WinMerge.lnk; Type: files
@@ -386,8 +389,8 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueNa
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 1; Tasks: ShellExtension
 
 ;If WinMerge.exe is installed then we'll automatically configure WinMerge as the differencing application
-Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName};
-Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: DiffAsUnicode; ValueData: $00000001;
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName}
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: DiffAsUnicode; ValueData: $00000001
 
 
 [Run]
@@ -406,7 +409,10 @@ Type: dirifempty; Name: {app}
 
 [Code]
 Var
+    {Stores the version of 7-Zip Installed}
     int7Zip_Version: Integer;
+
+    {Determines two things whether or not ComCtrl is needed and whether or not we've already checked}
     intComCtlNeeded: Integer;
 
 {Determines whether or not the user chose to create a start menu}
