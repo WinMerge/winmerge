@@ -1,3 +1,6 @@
+2003-03-25 Christian
+ Replace COPYING with corrected version from http://www.gnu.org/licenses/gpl.txt
+
 2003-03-25 Kimmo
  PATCH: [ 708893 ] Don't ask to save file compare
   WinMerge: MergeDoc.h MergeDoc.cpp
