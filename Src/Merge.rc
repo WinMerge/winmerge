@@ -160,6 +160,8 @@ BEGIN
     BEGIN
         MENUITEM "Copy file to left",           ID_DIR_COPY_FILE_TO_LEFT
         MENUITEM "Copy file to right",          ID_DIR_COPY_FILE_TO_RIGHT
+        MENUITEM "Delete left",                 ID_DIR_DEL_LEFT
+        MENUITEM "Delete right",                ID_DIR_DEL_RIGHT
     END
 END
 
@@ -590,7 +592,7 @@ BEGIN
     IDS_ALLFILES            "All Files (*.*)|*.*||"
     IDS_CONFIRM_ALL_LEFT    "Are you sure you want to copy all differences to the left file?"
     IDS_CONFIRM_ALL_RIGHT   "Are you sure you want to copy all differences to the right file?"
-    IDS_COPY2DIR_FMT        "Copy file to %1"
+    IDS_COPY2DIR_LEFT_FMT   "Copy file to left: %1"
     IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy the selected file to %1?"
     IDS_FONT_CHANGE         "The selected font change will not be applied to any currently visible difference windows."
     IDS_DIRECTORY_WINDOW_TITLE "Directory Comparison Results"
@@ -755,6 +757,8 @@ BEGIN
     ID_CURDIFF              "Scroll to the current difference\nCurrent Diff"
     ID_LASTDIFF             "Scroll to the last difference\nLast Diff"
     ID_DIFFNUM              "placeholder"
+    ID_DIR_DEL_LEFT         "Delete selected file on left"
+    ID_DIR_DEL_RIGHT        "Delete selected file on right"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -928,6 +932,14 @@ BEGIN
     IDS_LTIME_HEADER        "Left Date"
     IDS_RTIME_HEADER        "Right Date"
     IDS_EXTENSION_HEADER    "Extension"
+    IDS_COPY2DIR_RIGHT_FMT  "Copy file to right: %1"
+    IDS_DEL_LEFT_FMT        "Delete left: %1"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DEL_RIGHT_FMT       "Del right: %1"
+    IDS_DELETE_FAILED       "Delete failed: %1"
 END
 
 #endif    // English (U.S.) resources

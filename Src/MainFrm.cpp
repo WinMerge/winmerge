@@ -812,6 +812,65 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 	return TRUE;
 }
 
+// Get user language description of error, if available
+static CString
+GetSystemErrorDesc(int nerr)
+{
+	LPVOID lpMsgBuf;
+	CString str = _T("?");
+	if (FormatMessage( 
+		FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+		FORMAT_MESSAGE_FROM_SYSTEM | 
+		FORMAT_MESSAGE_IGNORE_INSERTS,
+		NULL,
+		nerr,
+		0, // Default language
+		(LPTSTR) &lpMsgBuf,
+		0,
+		NULL 
+		))
+	{
+		str = (LPCTSTR)lpMsgBuf;
+	}
+	// Free the buffer.
+	LocalFree( lpMsgBuf );
+	return str;
+}
+
+// trim trailing line returns
+static void TrimRightLines(CString & str)
+{
+	str.Replace(_T("\n"), _T(""));
+	str.Replace(_T("\r"), _T(""));
+}
+
+// Delete file (return TRUE if deleted, else put up error & return FALSE)
+static BOOL DeleteOrError(LPCTSTR szFile)
+{
+	// TODO: 2002-11-22, need to handle deleting directories
+	if (!DeleteFile(szFile))
+	{
+		CString sError = GetSystemErrorDesc(GetLastError());
+		TrimRightLines(sError);
+		CString s;
+		AfxFormatString1(s, IDS_DELETE_FAILED, sError);
+		AfxMessageBox(s, MB_OK|MB_ICONSTOP);
+		return FALSE;
+	}
+	return TRUE;
+}
+
+// Prompt & delete file (return TRUE if deleted)
+BOOL CMainFrame::ConfirmAndDelete(LPCTSTR szFile)
+{
+	CString s;
+	AfxFormatString1(s, IDS_CONFIRM_DELETE, szFile);
+	if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION)!=IDYES)
+		return FALSE;
+	return DeleteOrError(szFile);
+}
+
+
 BOOL CMainFrame::SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest)
 {
 	CString strSavePath(pszDest);

@@ -39,6 +39,11 @@
 #include "listvwex.h"
 #include "SortHeaderCtrl.h"
 
+
+struct tagDIFFITEM;
+typedef struct tagDIFFITEM DIFFITEM;
+
+
 class CDirDoc;
 
 class CDirView : public CListViewEx
@@ -87,15 +92,35 @@ protected:
 	//{{AFX_MSG(CDirView)
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnDirCopyFileToLeft();
+	afx_msg void OnCtxtDirCopyFileToLeft();
 	afx_msg void OnUpdateDirCopyFileToLeft(CCmdUI* pCmdUI);
 	afx_msg void OnDirCopyFileToRight();
+	afx_msg void OnCtxtDirCopyFileToRight();
 	afx_msg void OnUpdateDirCopyFileToRight(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateCtxtDirCopyFileToLeft(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateCtxtDirCopyFileToRight(CCmdUI* pCmdUI);
+	afx_msg void OnCtxtDirDelLeft();
+	afx_msg void OnUpdateCtxtDirDelLeft(CCmdUI* pCmdUI);
+	afx_msg void OnCtxtDirDelRight();
+	afx_msg void OnUpdateCtxtDirDelRight(CCmdUI* pCmdUI);
 	afx_msg void OnDestroy();
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
 	void OpenSelection();
+	const DIFFITEM& CDirView::GetDiffItem(int sel, POSITION & pos);
+	void DoCopyFileToRight();
+	void DoCopyFileToLeft();
+	void DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI);
+	void DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI);
+	void ModifyPopup(CMenu * pPopup, int nStringResource, int nMenuId, LPCTSTR szPath);
+	void DoDelLeft();
+	void DoDelRight();
+	void ConfirmAndDeleteAndUpdate(LPCTSTR szFile, POSITION pos, int sel);
+	void DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI);
+	void DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI);
+
 };
 
 #ifndef _DEBUG  // debug version in DirView.cpp

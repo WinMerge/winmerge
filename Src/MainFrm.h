@@ -75,6 +75,7 @@ public:
 	CString m_sPattern;
 	void UpdateResources();
 	void UpdateCurrentFileStatus(UINT nStatus);
+	BOOL ConfirmAndDelete(LPCTSTR szFile);
 	BOOL SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest);
 	BOOL CreateBackup(LPCTSTR pszPath);
 	UINT m_nTabSize;

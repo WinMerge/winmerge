@@ -24,7 +24,7 @@
 #define IDS_CONFIRM_ALL_LEFT            132
 #define IDD_PROPPAGE_LARGE              133
 #define IDS_CONFIRM_ALL_RIGHT           133
-#define IDS_COPY2DIR_FMT                134
+#define IDS_COPY2DIR_LEFT_FMT           134
 #define IDD_CLEARCASE                   134
 #define IDS_CONFIRM_COPY2DIR            135
 #define IDD_PROPPAGE_FILTER             135
@@ -68,6 +68,10 @@
 #define IDS_LTIME_HEADER                171
 #define IDS_RTIME_HEADER                172
 #define IDS_EXTENSION_HEADER            173
+#define IDS_COPY2DIR_RIGHT_FMT          174
+#define IDS_DEL_LEFT_FMT                175
+#define IDS_DEL_RIGHT_FMT               176
+#define IDS_DELETE_FAILED               177
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
@@ -254,6 +258,8 @@
 #define ID_CURDIFF                      32804
 #define ID_LASTDIFF                     32805
 #define ID_DIFFNUM                      32806
+#define ID_DIR_DEL_LEFT                 32807
+#define ID_DIR_DEL_RIGHT                32808
 
 // Next default values for new objects
 // 
@@ -261,7 +267,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
-#define _APS_NEXT_COMMAND_VALUE         32807
+#define _APS_NEXT_COMMAND_VALUE         32809
 #define _APS_NEXT_CONTROL_VALUE         1032
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
