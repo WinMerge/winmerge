@@ -1,4 +1,8 @@
-2004-04-03 Laoran
+2004-04-07 Kimmo
+ PATCH: [ 930495 ] Log delete file errors from FileTransform.cpp
+  Src: FileTransform.cpp
+
+2004-04-07 Laoran
  BUG: [ 930995 ] Cursor help text ...
   Src/Languages/German: MergeGerman.rc
 
