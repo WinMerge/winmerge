@@ -1,3 +1,7 @@
+2004-06-15 Christian
+ PATCH: [ 973306 ] Userdocs: add ID property for sect1 tags
+  Manual: WinMerge_help.xml
+
 2004-06-15 Kimmo
  PATCH: [ 972861 ] Userdocs: typo in WinMerge_help.xml
   Manual: WinMerge_help.xml

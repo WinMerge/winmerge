@@ -16,7 +16,7 @@
 <!ENTITY CompareFiles SYSTEM "Compare_files.xml">
 <!ENTITY Filters SYSTEM "Filters.xml">
 ]>
-<article>
+<article id="index">
   <articleinfo>
     <title>WinMerge 2.2 user guide</title>
   </articleinfo>
