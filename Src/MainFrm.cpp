@@ -257,6 +257,12 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 			else
 				MDINext();
 			
+			// scroll to first diff
+			if(m_bScrollToFirst && m_pMergeDoc->m_diffs.GetSize()!=0)
+			{
+				m_pLeft->SelectDiff(0, TRUE, FALSE);
+			}
+
 			// set the document types
 			TCHAR name[MAX_PATH],ext[MAX_PATH];
 			split_filename(szLeft, NULL, name, ext);
