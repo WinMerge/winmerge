@@ -29,18 +29,18 @@ LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE 
+1 TEXTINCLUDE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE 
+2 TEXTINCLUDE
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE 
+3 TEXTINCLUDE
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
@@ -75,7 +75,7 @@ IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_MERGEVIEW MENU 
+IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -95,7 +95,7 @@ BEGIN
     END
 END
 
-IDR_MAINFRAME MENU 
+IDR_MAINFRAME MENU
 BEGIN
     POPUP "&Файл"
     BEGIN
@@ -190,7 +190,7 @@ BEGIN
         MENUITEM "Скопировать на &правую панель\tAlt+Right", ID_L2R
         MENUITEM "Скопировать на &левую панель\tAlt+Left", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Скопировать на правую панель и перейти к следующему\tAlt+Ctrl+Right", 
+        MENUITEM "Скопировать на правую панель и перейти к следующему\tAlt+Ctrl+Right",
                                                 ID_L2RNEXT
         MENUITEM "Скопировать на левую панель и перейти к следующему\tAlt+Ctrl+Left",
                                                 ID_R2LNEXT
@@ -198,9 +198,9 @@ BEGIN
         MENUITEM "Ск&опировать все на правую панель", ID_ALL_RIGHT
         MENUITEM "Скоп&ировать все на левую панель", ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "Копировать отличия, в выделенном слева, на правую сторону", 
+        MENUITEM "Копировать отличия, в выделенном слева, на правую сторону",
                                                 ID_MULTIPLE_RIGHT
-        MENUITEM "Копировать отличия, в выделенном справа, на левую сторону", 
+        MENUITEM "Копировать отличия, в выделенном справа, на левую сторону",
                                                 ID_MULTIPLE_LEFT
     END
     POPUP "&Инструменты"
@@ -214,7 +214,7 @@ BEGIN
         MENUITEM "Распаковка вручную",          ID_UNPACK_MANUAL
         MENUITEM "Распаковка автоматически",    ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "Редактировать с распаковщиком", 
+        MENUITEM "Редактировать с распаковщиком",
                                                 ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         POPUP "&Prediffer"
@@ -245,7 +245,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_DIRVIEW MENU 
+IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
@@ -284,13 +284,13 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
-            MENUITEM "Zip &Left Side %1 File(s) from %2 Selected Item(s)", 
+            MENUITEM "Zip &Left Side %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_LEFT
-            MENUITEM "Zip &Right Side %1 File(s) from %2 Selected Item(s)", 
+            MENUITEM "Zip &Right Side %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_RIGHT
-            MENUITEM "Zip &Both Sides %1 File(s) from %2 Selected Item(s)", 
+            MENUITEM "Zip &Both Sides %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_BOTH
-            MENUITEM "Zip Both &Sides Diffs Only %1 File(s) from %2 of %3 Selected Item(s)", 
+            MENUITEM "Zip Both &Sides Diffs Only %1 File(s) from %2 of %3 Selected Item(s)",
                                                     ID_DIR_ZIP_BOTH_DIFFS_ONLY
 
         END
@@ -301,7 +301,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_EDITOR_HEADERBAR MENU 
+IDR_POPUP_EDITOR_HEADERBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -310,7 +310,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_PLUGINS_SETTINGS MENU 
+IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
     POPUP "Prediffer Settings"
     BEGIN
@@ -325,7 +325,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS 
+IDR_MAINFRAME ACCELERATORS
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
@@ -393,21 +393,21 @@ CAPTION "Выберите файлы или каталоги..."
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     RTEXT           "&Левый:",IDC_STATIC,13,24,47,8
-    COMBOBOX        IDC_LEFT_COMBO,64,22,182,94,CBS_DROPDOWN | 
+    COMBOBOX        IDC_LEFT_COMBO,64,22,182,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "&Обзор...",IDC_LEFT_BUTTON,249,22,50,12
     RTEXT           "&правый:",IDC_STATIC,13,40,47,8
-    COMBOBOX        IDC_RIGHT_COMBO,64,38,182,95,CBS_DROPDOWN | 
+    COMBOBOX        IDC_RIGHT_COMBO,64,38,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "Об&зор...",IDC_RIGHT_BUTTON,249,38,50,12
     RTEXT           "&Filter:",IDC_STATIC,13,56,47,8
-    COMBOBOX        IDC_EXT_COMBO,64,54,182,95,CBS_DROPDOWN | 
+    COMBOBOX        IDC_EXT_COMBO,64,54,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Select...",IDC_SELECT_FILTER,242,54,50,12
     RTEXT           "&Распаковщик:",IDC_STATIC,13,72,49,8
-    EDITTEXT        IDC_UNPACKER_EDIT,64,70,181,12,ES_AUTOHSCROLL | 
+    EDITTEXT        IDC_UNPACKER_EDIT,64,70,181,12,ES_AUTOHSCROLL |
                     ES_READONLY
     PUSHBUTTON      "Выбрать...",IDC_SELECT_UNPACKER,249,70,50,12
     CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",
@@ -427,10 +427,10 @@ BEGIN
     LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
     LTEXT           "База данных:",IDC_STATIC,7,64,52,8
-    COMBOBOX        IDC_DATABASE_LIST,65,63,185,114,CBS_DROPDOWN | 
+    COMBOBOX        IDC_DATABASE_LIST,65,63,185,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Проект:",IDC_STATIC,7,81,36,8
-    COMBOBOX        IDC_PROJECT_COMBO,65,78,185,114,CBS_DROPDOWN | 
+    COMBOBOX        IDC_PROJECT_COMBO,65,78,185,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Пользователь:",IDC_STATIC,7,99,51,8
     EDITTEXT        IDC_USER,65,96,58,14,ES_AUTOHSCROLL
@@ -454,7 +454,7 @@ BEGIN
     LTEXT           "&Путь к cleartool.exe:",IDC_VSS_L1,16,42,68,8
     EDITTEXT        IDC_PATH_EDIT,85,40,116,12,ES_AUTOHSCROLL
     PUSHBUTTON      "&Обзор...",IDC_BROWSE_BUTTON,206,40,42,12
-    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL | 
+    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "&Система контроля версий:",IDC_STATIC,16,22,60,10
 END
@@ -476,7 +476,7 @@ BEGIN
                     WS_TABSTOP,7,37,206,10
     CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,90,10
-    PUSHBUTTON      "Сброс",IDC_RESET_ALL_MESSAGE_BOXES,167,67,49,13,NOT 
+    PUSHBUTTON      "Сброс",IDC_RESET_ALL_MESSAGE_BOXES,167,67,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Нажмите кнопку для сброса всех сообщений",IDC_STATIC,7,
                     69,157,8
@@ -544,7 +544,7 @@ BEGIN
     LTEXT           "За&мена: ",IDC_STATIC,4,26,48,8
     GROUPBOX        "Заменить",IDC_STATIC,102,46,71,39,WS_GROUP
     CONTROL         "Не останавливаться при достижении конца файла",
-                    IDC_EDIT_SCOPE_DONT_WRAP,"Button",BS_AUTOCHECKBOX | 
+                    IDC_EDIT_SCOPE_DONT_WRAP,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,5,88,186,12
 END
 
@@ -631,7 +631,7 @@ BEGIN
     CONTROL         "Помещать удаленные файлы в корзину",IDC_USE_RECYCLE_BIN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,151,10
     CONTROL         "Добавить в &контекстное меню проводника",
-                    IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX | 
+                    IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,17,167,10
     LTEXT           "Внешний редактор:",IDC_STATIC,7,33,167,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,43,167,14,ES_AUTOHSCROLL
@@ -782,22 +782,22 @@ BEGIN
                     WS_EX_STATICEDGE
     RTEXT           "",IDC_COUNT_FOLDER,24,10,26,8,SS_REALSIZEIMAGE | 0x2000
     RTEXT           "",IDC_COUNT_ERROR,24,29,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_LFOLDER,76,10,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_LFOLDER,76,10,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_RFOLDER,76,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_RFOLDER,76,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
     RTEXT           "",IDC_COUNT_EQUAL,129,10,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_NOTEQUAL,129,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_NOTEQUAL,129,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_BINARYSAME,182,10,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_BINARYSAME,182,10,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_BINARYDIFF,182,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_BINARYDIFF,182,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
     RTEXT           "",IDC_COUNT_LFILE,235,10,26,8,SS_REALSIZEIMAGE | 0x2000
     RTEXT           "",IDC_COUNT_RFILE,235,29,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_FOLDERSKIP,288,10,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_FOLDERSKIP,288,10,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_FILESKIP,288,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_FILESKIP,288,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
     DEFPUSHBUTTON   "Стоп",IDC_COMPARISON_STOP,327,17,83,14
 END
@@ -845,7 +845,7 @@ BEGIN
     CONTROL         "Обнаружение переме&щенных блоков",IDC_MOVED_BLOCKS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
     LTEXT           "Метод сравнения &файлов:",IDC_STATIC,7,105,90,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,101,103,84,52,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,101,103,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "По умолчанию",IDC_COMPARE_DEFAULTS,7,121,61,14
 END
@@ -858,7 +858,7 @@ BEGIN
     CONTROL         "Подсвечивать синтаксис",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
     CONTROL         "Apply to &unrecognized side",
-                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX | 
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,18,18,204,10
     CONTROL         "Авто&пересканирование",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
@@ -885,8 +885,8 @@ STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "Filefilters"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | 
-                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
+    CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
     PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,299,114,50,14
 END
@@ -922,7 +922,7 @@ BEGIN
             VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
-            VALUE "PrivateBuild", "\0"
+            VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", "000.000.000.000\0"
             VALUE "SpecialBuild", "\0"
@@ -1019,16 +1019,16 @@ IDB_ERROR               BITMAP                  "res\\error.bmp"
 IDD_PROP_VSS DLGINIT
 BEGIN
     IDC_VER_SYS, 0x403, 5, 0
-0x6f4e, 0x656e, "\000" 
+0x6f4e, 0x656e, "\000"
     IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029, 
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029,
     IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029, 
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029,
     IDC_VER_SYS, 0x403, 19, 0
-0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
-"\000" 
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573,
+"\000"
     0
 END
 
@@ -1045,13 +1045,13 @@ IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Готово"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -1061,7 +1061,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Создать пустые документы\nNew Documents (Ctrl-N)"
     ID_FILE_OPEN            "Открыть существующий документ\nOpen (Ctrl+O)"
@@ -1074,13 +1074,13 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Показывать полные страницы\nPrint Preview"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_APP_ABOUT            "Показать информацию о программе, номер версии и копирайт\nAbout"
     ID_APP_EXIT             "Выйти из программы; Спросить о сохранении документов\nExit"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Открыть этот документ"
     ID_FILE_MRU_FILE2       "Открыть этот документ"
@@ -1100,13 +1100,13 @@ BEGIN
     ID_FILE_MRU_FILE16      "Открыть этот документ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_NEXT_PANE            "Переключиться на следующюю оконную панель\nNext Pane"
     ID_PREV_PANE            "Переключиться на предыдущюю оконную панель\nPrevious Pane"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Открыть активный документ в новом окне\nNew Window"
     ID_WINDOW_ARRANGE       "Выстроить значки внизу окна\nArrange Icons"
@@ -1116,7 +1116,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Разделить активное окно на панели\nSplit"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "Очистить выделение\nErase"
     ID_EDIT_CLEAR_ALL       "Очистить все\nErase All"
@@ -1131,13 +1131,13 @@ BEGIN
     ID_EDIT_REDO            "Вернуть отмененное действие\nRedo"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Показать или спрятать панель инструментов\nToggle ToolBar"
     ID_VIEW_STATUS_BAR      "Показать или спрятать панель статуса\nToggle StatusBar"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "Изменить размер окна"
     AFX_IDS_SCMOVE          "Изменить положение окна"
@@ -1148,20 +1148,20 @@ BEGIN
     AFX_IDS_SCCLOSE         "Закрыть активное окно и спросить о сохранении документов"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCRESTORE       "Восстановить нормальные размеры окна"
     AFX_IDS_SCTASKLIST      "Активировать список задач"
     AFX_IDS_MDICHILD        "Активировать это окно"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Закрыть окно предпросмотра печати\nCancel Preview"
 END
 
 // WINMERGE INFORMATION
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
@@ -1175,21 +1175,21 @@ BEGIN
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_COMPARISON_STOP     "Стоп"
     IDC_COMPARISON_CLOSE    "Нажмите любую клавишу"
 END
 
 // EDITOR : FILENAME BAR
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_STATIC_TITLE_LEFT   "Правый клик на пути, чтобы скопировать"
     IDC_STATIC_TITLE_RIGHT  "Правый клик на пути, чтобы скопировать"
 END
 
 // IDS_MESSAGEBOX_OK SYNCHRO
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
     IDS_MESSAGEBOX_CANCEL   "&Отмена"
@@ -1201,7 +1201,7 @@ BEGIN
 END
 
 // "DO NOT SHOW AGAIN" MESSAGEBOXES (2)
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_YES_TO_ALL "Д&а для всех"
     IDS_MESSAGEBOX_NO       "&Нет"
@@ -1216,7 +1216,7 @@ END
 
 // WINMERGE CUSTOM STRINGS
 // WINMERGE INFORMATION
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "Обработать эту директорию в WinMerge"
     IDS_VERSION_FMT         "Версия %1"
@@ -1261,7 +1261,7 @@ BEGIN
 END
 
 // FILTER OPTIONS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_FILTERFILE_NAMETITLE "Name"
     IDS_FILTERFILE_PATHTITLE "Location"
@@ -1473,7 +1473,7 @@ BEGIN
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Filename or directory name."
     IDS_COLDESC_DIR         "Subdirectory name when subdirectories are included."
@@ -1494,7 +1494,7 @@ BEGIN
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Left side encoding."
     IDS_COLDESC_RENCODING   "Right side encoding."

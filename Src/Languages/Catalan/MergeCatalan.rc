@@ -29,18 +29,18 @@ LANGUAGE LANG_CATALAN, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE 
+1 TEXTINCLUDE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE 
+2 TEXTINCLUDE
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE 
+3 TEXTINCLUDE
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
@@ -75,7 +75,7 @@ IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_MERGEVIEW MENU 
+IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -95,7 +95,7 @@ BEGIN
     END
 END
 
-IDR_MAINFRAME MENU 
+IDR_MAINFRAME MENU
 BEGIN
     POPUP "&Fitxer"
     BEGIN
@@ -290,7 +290,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_EDITOR_HEADERBAR MENU 
+IDR_POPUP_EDITOR_HEADERBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -299,7 +299,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_PLUGINS_SETTINGS MENU 
+IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
     POPUP "Prediffer Settings"
     BEGIN
@@ -314,7 +314,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS 
+IDR_MAINFRAME ACCELERATORS
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
@@ -463,7 +463,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,90,10
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,167,67,49,13,NOT 
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,167,67,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Press button to reset all message boxes",IDC_STATIC,7,
                     69,157,8
@@ -766,22 +766,22 @@ BEGIN
                     WS_EX_STATICEDGE
     RTEXT           "",IDC_COUNT_FOLDER,24,10,26,8,SS_REALSIZEIMAGE | 0x2000
     RTEXT           "",IDC_COUNT_ERROR,24,29,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_LFOLDER,76,10,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_LFOLDER,76,10,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_RFOLDER,76,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_RFOLDER,76,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
     RTEXT           "",IDC_COUNT_EQUAL,129,10,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_NOTEQUAL,129,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_NOTEQUAL,129,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_BINARYSAME,182,10,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_BINARYSAME,182,10,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_BINARYDIFF,182,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_BINARYDIFF,182,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
     RTEXT           "",IDC_COUNT_LFILE,235,10,26,8,SS_REALSIZEIMAGE | 0x2000
     RTEXT           "",IDC_COUNT_RFILE,235,29,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_FOLDERSKIP,288,10,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_FOLDERSKIP,288,10,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_FILESKIP,288,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_FILESKIP,288,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
     DEFPUSHBUTTON   "&Atura",IDC_COMPARISON_STOP,327,17,83,14
 END
@@ -842,7 +842,7 @@ BEGIN
     CONTROL         "&Ressalta la sintaxi",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
     CONTROL         "Apply to &unrecognized side",
-                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX | 
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,18,18,204,10
     CONTROL         "&Re-explora automàticament",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
@@ -869,8 +869,8 @@ STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "Filefilters"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | 
-                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
+    CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
     PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,299,114,50,14
 END
@@ -906,7 +906,7 @@ BEGIN
             VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
-            VALUE "PrivateBuild", "\0"
+            VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", "000.000.000.000\0"
             VALUE "SpecialBuild", "\0"
@@ -1157,13 +1157,13 @@ IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Preparat"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -1173,7 +1173,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
     ID_FILE_OPEN            "Obre un document existent\nObrir (Ctrl+O)"
@@ -1186,13 +1186,13 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Visualitza págines senceres\nVisualització prèvia de la impressió"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_APP_ABOUT            "Visualitza informació del programa, número de versió i copyright\nQuant a"
     ID_APP_EXIT             "Surt de l'aplicació i us demana que deseu els documents\nSurt"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Obre aquest document"
     ID_FILE_MRU_FILE2       "Obre aquest document"
@@ -1212,13 +1212,13 @@ BEGIN
     ID_FILE_MRU_FILE16      "Obre aquest document"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_NEXT_PANE            "Canvia a la següent subfinestra\nSunfinestra següent"
     ID_PREV_PANE            "Canvia de nou a la subfinestra anterior\nSubfinestra prèvia"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Obre una altra finestra per al document actiu\nFinestra nova"
     ID_WINDOW_ARRANGE       "Organitza les icones a la part inferior de la finestra\nOrganitza les icones"
@@ -1228,7 +1228,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Divideix la finestra activa en subfinestres\nDivideix"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "Suprimeix la selecció\nSuprimeix"
     ID_EDIT_CLEAR_ALL       "Suprimeix-ho tot\nSuprimeix-ho tot"
@@ -1243,13 +1243,13 @@ BEGIN
     ID_EDIT_REDO            "Refà la darrera acció desfeta\nRefés"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Mostra o amaga la barra d'eines\nBarra d'eines"
     ID_VIEW_STATUS_BAR      "Mostra o amaga la barra d'estat\nBarra d'estat"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "Canvia la mida de la finestra"
     AFX_IDS_SCMOVE          "Canvia la posició de la finestra"
@@ -1260,20 +1260,20 @@ BEGIN
     AFX_IDS_SCCLOSE         "Tanca la finestra activa i demana per desar el document"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCRESTORE       "Restaura la finestra a la mida normal"
     AFX_IDS_SCTASKLIST      "Activa la llista de tasques"
     AFX_IDS_MDICHILD        "Activa aquesta finestra"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Tanca el mode de visualització prèvia\nTanca"
 END
 
 // WINMERGE INFORMATION
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nDocument WinMerge"
@@ -1287,21 +1287,21 @@ BEGIN
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_COMPARISON_STOP     "Atura"
     IDC_COMPARISON_CLOSE    "Prem qualsevol tecla"
 END
 
 // EDITOR : FILENAME BAR
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
 // IDS_MESSAGEBOX_OK SYNCHRO
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
     IDS_MESSAGEBOX_CANCEL   "&Cancel"
@@ -1313,7 +1313,7 @@ BEGIN
 END
 
 // "DO NOT SHOW AGAIN" MESSAGEBOXES (2)
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_YES_TO_ALL "Yes to &all"
     IDS_MESSAGEBOX_NO       "&No"
@@ -1328,7 +1328,7 @@ END
 
 // WINMERGE CUSTOM STRINGS
 // WINMERGE INFORMATION
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge aquest directori"
     IDS_VERSION_FMT         "Versió %1 - Català"
@@ -1373,7 +1373,7 @@ BEGIN
 END
 
 // FILTER OPTIONS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_FILTERFILE_NAMETITLE "Name"
     IDS_FILTERFILE_PATHTITLE "Location"
@@ -1585,7 +1585,7 @@ BEGIN
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Filename or directory name."
     IDS_COLDESC_DIR         "Subdirectory name when subdirectories are included."
@@ -1606,7 +1606,7 @@ BEGIN
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Left side encoding."
     IDS_COLDESC_RENCODING   "Right side encoding."

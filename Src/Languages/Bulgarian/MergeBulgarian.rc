@@ -29,18 +29,18 @@ LANGUAGE LANG_BULGARIAN, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE 
+1 TEXTINCLUDE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE 
+2 TEXTINCLUDE
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE 
+3 TEXTINCLUDE
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
@@ -75,7 +75,7 @@ IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_MERGEVIEW MENU 
+IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -95,7 +95,7 @@ BEGIN
     END
 END
 
-IDR_MAINFRAME MENU 
+IDR_MAINFRAME MENU
 BEGIN
     POPUP "&Файл"
     BEGIN
@@ -240,7 +240,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_DIRVIEW MENU 
+IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
@@ -273,13 +273,13 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
-            MENUITEM "Zip &лявата страна %1 файл(а) от %2 избрания обект(и)", 
+            MENUITEM "Zip &лявата страна %1 файл(а) от %2 избрания обект(и)",
                                                     ID_DIR_ZIP_LEFT
-            MENUITEM "Zip &дясната страна %1 файл(а) от %2 избрания обект(и)", 
+            MENUITEM "Zip &дясната страна %1 файл(а) от %2 избрания обект(и)",
                                                     ID_DIR_ZIP_RIGHT
-            MENUITEM "Zip &двете страни %1 файл(а) от %2 избрания обект(и)", 
+            MENUITEM "Zip &двете страни %1 файл(а) от %2 избрания обект(и)",
                                                     ID_DIR_ZIP_BOTH
-            MENUITEM "Zip двете &страни само разликите %1 файл(а) от %2 на %3 избрания обект(и)", 
+            MENUITEM "Zip двете &страни само разликите %1 файл(а) от %2 на %3 избрания обект(и)",
                                                     ID_DIR_ZIP_BOTH_DIFFS_ONLY
 
         END
@@ -290,7 +290,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_EDITOR_HEADERBAR MENU 
+IDR_POPUP_EDITOR_HEADERBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -299,7 +299,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_PLUGINS_SETTINGS MENU 
+IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
     POPUP "Prediffer Settings"
     BEGIN
@@ -314,7 +314,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS 
+IDR_MAINFRAME ACCELERATORS
 BEGIN
     "В",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "О",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
@@ -415,10 +415,10 @@ BEGIN
     LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
     LTEXT           "База данни:",IDC_STATIC,7,64,36,8
-    COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN | 
+    COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Проект:",IDC_STATIC,7,81,36,8
-    COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN | 
+    COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Потребител:",IDC_STATIC,7,99,36,8
     EDITTEXT        IDC_USER,48,96,70,14,ES_AUTOHSCROLL
@@ -442,7 +442,7 @@ BEGIN
     LTEXT           "&Път към cleartool.exe:",IDC_VSS_L1,16,42,68,8
     EDITTEXT        IDC_PATH_EDIT,85,40,116,12,ES_AUTOHSCROLL
     PUSHBUTTON      "&Потърси...",IDC_BROWSE_BUTTON,206,40,42,12
-    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL | 
+    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "&Versioning System:",IDC_STATIC,16,22,60,10
 END
@@ -460,11 +460,11 @@ BEGIN
     CONTROL         "&Забрани Splash Screen",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "&Close compare Statepane automatically",
-                    IDC_CMPPANE_AUTOCLOSE,"Button",BS_AUTOCHECKBOX | 
+                    IDC_CMPPANE_AUTOCLOSE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,37,206,10
     CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,90,10
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,167,67,49,13,NOT 
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,167,67,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Press button to reset all message boxes",IDC_STATIC,7,
                     69,157,8
@@ -477,18 +477,18 @@ FONT 8, "MS Sans Serif"
 BEGIN
     PUSHBUTTON      "Добре",IDOK,154,16,52,14
     PUSHBUTTON      "Прекрати",IDCANCEL,154,33,52,14
-    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | 
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT |
                     WS_VSCROLL | WS_TABSTOP
     LTEXT           "Възможни езици:",IDC_STATIC,7,7,66,8
 END
 
 IDD_EDIT_FIND DIALOG  30, 73, 236, 68
-STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Намери"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    COMBOBOX        IDC_EDIT_FINDTEXT,41,6,135,138,CBS_DROPDOWN | 
+    COMBOBOX        IDC_EDIT_FINDTEXT,41,6,135,138,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Търси &само цели думи",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
@@ -496,7 +496,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,40,64,12
     CONTROL         "Правилни &изрази",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,54,77,12
-    CONTROL         "&Нагоре",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "&Нагоре",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,111,36,25,12
     CONTROL         "На&долу",IDC_EDIT_DIRECTION_DOWN,"Button",
                     BS_AUTORADIOBUTTON,111,48,35,12
@@ -507,14 +507,14 @@ BEGIN
 END
 
 IDD_EDIT_REPLACE DIALOG  36, 44, 230, 103
-STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Замени"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN | 
+    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN | 
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Търси &само цели думи",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
@@ -545,7 +545,7 @@ BEGIN
     DEFPUSHBUTTON   "Действай",IDOK,35,90,50,14
     PUSHBUTTON      "Прекрати",IDCANCEL,194,90,50,14
     PUSHBUTTON      "Съхрани като...",IDC_SAVE_AS,114,90,50,14
-    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Коментари",IDC_STATIC,18,7,34,10
 END
@@ -560,7 +560,7 @@ BEGIN
                     7,221,15
     LTEXT           "Правилните изази (по един на линия):",IDC_STATIC,7,28,
                     221,8
-    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | 
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
 END
 
@@ -570,34 +570,34 @@ CAPTION "Цветове"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     RTEXT           "Разлики:",IDC_STATIC,13,29,66,8
-    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,98,29,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,98,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     RTEXT           "Избери разликите:",IDC_STATIC,13,49,66,8
-    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,98,49,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,98,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CTEXT           "Фон",IDC_STATIC,81,15,50,8
     CTEXT           "Изтрити",IDC_STATIC,130,15,38,8
-    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT | 
+                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT | 
+                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CTEXT           "Текст",IDC_STATIC,178,15,29,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT | 
+                    WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     RTEXT           "Игнорирани разлики:",IDC_STATIC,13,69,66,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,69,17,14,WS_EX_TRANSPARENT | 
+                    BS_OWNERDRAW | WS_TABSTOP,141,69,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     PUSHBUTTON      "Първоначални",IDC_COLORDEFAULTS_BTN,151,90,50,14
 END
@@ -608,7 +608,7 @@ CAPTION "Диалог"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "Добре",IDOK,106,136,50,14
-    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | 
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY |
                     WS_VSCROLL
 END
 
@@ -632,26 +632,26 @@ CAPTION "Генериране на пач"
 FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "Файл&1:",IDC_STATIC,7,10,36,8
-    COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN | 
+    COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&Потърси...",IDC_DIFF_BROWSE_FILE1,283,7,50,14
     LTEXT           "Файл&2:",IDC_STATIC,7,27,36,8
-    COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN | 
+    COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "П&отърси...",IDC_DIFF_BROWSE_FILE2,283,24,50,14
     PUSHBUTTON      "&Размени",IDC_DIFF_SWAPFILES,283,41,50,14
     CONTROL         "&Приложи към съществуващ файл",IDC_DIFF_APPENDFILE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
     LTEXT           "&Резултати:",IDC_STATIC,7,66,37,8
-    COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN | 
+    COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "По&търси...",IDC_DIFF_BROWSE_RESULT,283,63,50,14
     GROUPBOX        "&Формат",IDC_STATIC,7,81,142,46
     LTEXT           "Сти&л:",IDC_STATIC,13,95,46,8
-    COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL | 
+    COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "&Контекст:",IDC_STATIC,13,109,46,8
-    COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWNLIST |
                     WS_DISABLED | WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Празн&и места",IDC_STATIC,155,81,123,46
     CONTROL         "Срав&ни",IDC_DIFF_WHITESPACE_COMPARE,"Button",
@@ -677,11 +677,11 @@ IDD_EDITOR_HEADERBAR DIALOGEX 0, 0, 373, 12
 STYLE DS_SETFONT | WS_CHILD
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    EDITTEXT        IDC_STATIC_TITLE_LEFT,0,2,160,12,ES_AUTOHSCROLL | 
-                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
+    EDITTEXT        IDC_STATIC_TITLE_LEFT,0,2,160,12,ES_AUTOHSCROLL |
+                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT
                     WS_TABSTOP,WS_EX_STATICEDGE
-    EDITTEXT        IDC_STATIC_TITLE_RIGHT,163,2,160,12,ES_AUTOHSCROLL | 
-                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
+    EDITTEXT        IDC_STATIC_TITLE_RIGHT,163,2,160,12,ES_AUTOHSCROLL |
+                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT
                     WS_TABSTOP,WS_EX_STATICEDGE
 END
 
@@ -714,16 +714,16 @@ BEGIN
     DEFPUSHBUTTON   "Добре",IDOK,87,99,50,14
     PUSHBUTTON      "Прекрати",IDCANCEL,156,99,50,14
     LTEXT           "Файлов разархиватор:",IDC_STATIC,7,18,50,10
-    COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "Показвай всички разархиватори, не проверявай разширенията",
-                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX | 
+                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX |
                     BS_LEFTTEXT | WS_TABSTOP,7,74,202,13
     LTEXT           "Лист на разширенията:",IDC_STATIC,7,36,49,10
     LTEXT           "Описание:",IDC_STATIC,7,52,47,10
     EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,176,12,
                     ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL | 
+    EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL |
                     ES_READONLY
 END
 
@@ -769,22 +769,22 @@ BEGIN
                     WS_EX_STATICEDGE
     RTEXT           "",IDC_COUNT_FOLDER,24,10,26,8,SS_REALSIZEIMAGE | 0x2000
     RTEXT           "",IDC_COUNT_ERROR,24,29,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_LFOLDER,76,10,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_LFOLDER,76,10,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_RFOLDER,76,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_RFOLDER,76,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
     RTEXT           "",IDC_COUNT_EQUAL,129,10,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_NOTEQUAL,129,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_NOTEQUAL,129,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_BINARYSAME,182,10,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_BINARYSAME,182,10,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_BINARYDIFF,182,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_BINARYDIFF,182,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
     RTEXT           "",IDC_COUNT_LFILE,235,10,26,8,SS_REALSIZEIMAGE | 0x2000
     RTEXT           "",IDC_COUNT_RFILE,235,29,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_FOLDERSKIP,288,10,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_FOLDERSKIP,288,10,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_FILESKIP,288,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_FILESKIP,288,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
     DEFPUSHBUTTON   "Stop",IDC_COMPARISON_STOP,327,17,83,14
 END
@@ -797,12 +797,12 @@ BEGIN
     LTEXT           "О&тиди на:",IDC_STATIC,7,9,18,8
     EDITTEXT        IDC_WMGOTO_PARAM,33,7,93,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "Файл",IDC_STATIC,7,27,48,35
-    CONTROL         "&Ляво",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "&Ляво",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,13,38,28,10
     CONTROL         "&Дясно",IDC_WMGOTO_FILERIGHT,"Button",
                     BS_AUTORADIOBUTTON,13,48,33,10
     GROUPBOX        "Отиди на",IDC_STATIC,61,27,63,35
-    CONTROL         "Лин&ия",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "Лин&ия",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,68,38,29,10
     CONTROL         "&Разлики",IDC_WMGOTO_TODIFF,"Button",
                     BS_AUTORADIOBUTTON,68,48,49,10
@@ -816,7 +816,7 @@ CAPTION "Сравняване"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     GROUPBOX        "Празните места",IDC_STATIC,7,7,221,50
-    CONTROL         "&Сравняване",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "&Сравняване",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,14,19,206,10
     CONTROL         "&Игнорирай промените",IDC_WHITE_CHANGE,"Button",
                     BS_AUTORADIOBUTTON,14,30,206,10
@@ -845,7 +845,7 @@ BEGIN
     CONTROL         "&Подчетавай синтаксиса",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
     CONTROL         "Apply to &unrecognized side",
-                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX | 
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,18,18,204,10
     CONTROL         "&Автоматично сканиране",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
@@ -872,8 +872,8 @@ STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "Filefilters"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | 
-                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
+    CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
     PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,299,114,50,14
 END
@@ -909,7 +909,7 @@ BEGIN
             VALUE "Авотрско право", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "Запазаена марка", "\0"
             VALUE "Оргинално име", "WinMerge.EXE\0"
-            VALUE "PrivateBuild", "\0"
+            VALUE "PrivateBuild", ""
             VALUE "Име на продукта", "WinMerge\0"
             VALUE "Версия на продукта", "000.000.000.000\0"
             VALUE "SpecialBuild", "\0"
@@ -1006,16 +1006,16 @@ IDB_ERROR               BITMAP                  "res\\error.bmp"
 IDD_PROP_VSS DLGINIT
 BEGIN
     IDC_VER_SYS, 0x403, 5, 0
-0x6f4e, 0x656e, "\000" 
+0x6f4e, 0x656e, "\000"
     IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029, 
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029,
     IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029, 
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029,
     IDC_VER_SYS, 0x403, 19, 0
-0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
-"\000" 
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573,
+"\000"
     0
 END
 
@@ -1032,13 +1032,13 @@ IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Готое"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -1048,7 +1048,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Съждай нов документ\nНов документ (Ctrl+N)"
     ID_FILE_OPEN            "Отвори съществуваш документ\nОтвори (Ctrl+O)"
@@ -1061,13 +1061,13 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Представи страницата\nPrint Preview"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_APP_ABOUT            "Представя информация за програмата, версията и авторското право\nЗа"
     ID_APP_EXIT             "Излизане от приложението; напомняне да запазите документа\nИзход"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Отваряне на този документ"
     ID_FILE_MRU_FILE2       "Отваряне на този документ"
@@ -1087,13 +1087,13 @@ BEGIN
     ID_FILE_MRU_FILE16      "Отваряне на този документ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
     ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Отваряне на друг прозорец за текущия документ\nНов прозорец"
     ID_WINDOW_ARRANGE       "Подреди иконките в основата на прозореца\nПодреди иконите"
@@ -1103,7 +1103,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Разделя текущия прозорец\nРазделя"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "Изтрива избраното\nИзтрива"
     ID_EDIT_CLEAR_ALL       "Изтрива всичко\nИзтрива всичко"
@@ -1118,13 +1118,13 @@ BEGIN
     ID_EDIT_REDO            "Върни последното действие\nВърни (Ctrl+Р)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Показвай или скривай инструментите\nПоказване на инструментите"
     ID_VIEW_STATUS_BAR      "Показвай или скривай статуса\nСтатус"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "Промени големината на прозореца"
     AFX_IDS_SCMOVE          "Промени мястото на прозореца"
@@ -1135,20 +1135,20 @@ BEGIN
     AFX_IDS_SCCLOSE         "Затваря прозореца ,дали да съхрани документите"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCRESTORE       "Нормалната големина на прозореца"
     AFX_IDS_SCTASKLIST      "Activate Task List"
     AFX_IDS_MDICHILD        "Activate this window"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
 END
 
 // WINMERGE INFORMATION
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
@@ -1162,21 +1162,21 @@ BEGIN
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_COMPARISON_STOP     "Спиране"
     IDC_COMPARISON_CLOSE    "Натисни клавиш"
 END
 
 // EDITOR : FILENAME BAR
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
 // IDS_MESSAGEBOX_OK SYNCHRO
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
     IDS_MESSAGEBOX_CANCEL   "&Cancel"
@@ -1188,7 +1188,7 @@ BEGIN
 END
 
 // "DO NOT SHOW AGAIN" MESSAGEBOXES (2)
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_YES_TO_ALL "Yes to &all"
     IDS_MESSAGEBOX_NO       "&No"
@@ -1203,7 +1203,7 @@ END
 
 // WINMERGE CUSTOM STRINGS
 // WINMERGE INFORMATION
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge тази директория"
     IDS_VERSION_FMT         "Версия %1"
@@ -1248,7 +1248,7 @@ BEGIN
 END
 
 // FILTER OPTIONS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_FILTERFILE_NAMETITLE "Name"
     IDS_FILTERFILE_PATHTITLE "Location"
@@ -1460,7 +1460,7 @@ BEGIN
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Filename or directory name."
     IDS_COLDESC_DIR         "Subdirectory name when subdirectories are included."
@@ -1481,7 +1481,7 @@ BEGIN
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Left side encoding."
     IDS_COLDESC_RENCODING   "Right side encoding."

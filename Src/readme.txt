@@ -1,3 +1,8 @@
+2004-05-21 Kimmo
+ PrivateBuild in version resource must be empty string in CVS.
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2004-05-21 Perry
  Localized language names into Korean
   Src/Languages: MergeKorean.rc
