@@ -24,21 +24,28 @@
 
 #include "stdafx.h"
 
+// fix any nonascii characters
+// which got sign-extended to become negative integers
+int normch(int c)
+{
+	return (unsigned char)(char)c;
+}
+
 int
 xisspecial (int c)
 {
-  return (unsigned) c > (unsigned) _T ('\x7f') || c == _T ('_');
+  return normch(c) > (unsigned) _T ('\x7f') || c == _T ('_');
 //  return _tcschr (_T ("ìšèøıáíéóúùïò¾àåœäëöüÌŠÈØİÁÍÉ´OÚÙÏÒ¼ÀÅŒÄËÖÜ§"), c) != NULL;
 }
 
 int
 xisalpha (int c)
 {
-  return isalpha (c) || xisspecial (c);
+  return isalpha (normch(c)) || xisspecial (normch(c));
 }
 
 int
 xisalnum (int c)
 {
-  return isalnum (c) || xisspecial (c);
+  return isalnum (normch(c)) || xisspecial (normch(c));
 }
