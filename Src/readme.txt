@@ -1,3 +1,7 @@
+2004-02-09 Kimmo
+ BUG: [ 893287 ] Assign wrong file property when storing changes.
+  Src: MainFrm.cpp
+
 2004-02-08 Perry
  Add header comments to functions lacking such in StdAfx.cpp
   Src: StdAfx.cpp

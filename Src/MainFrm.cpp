@@ -625,6 +625,7 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 			{
 			// Overwrite read-only file
 			case IDYES:
+				CFile::GetStatus(strSavePath, status);
 				status.m_mtime = 0;		// Avoid unwanted changes
 				status.m_attribute &= ~CFile::Attribute::readOnly;
 				CFile::SetStatus(strSavePath, status);
