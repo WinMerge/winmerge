@@ -1,3 +1,8 @@
+2004-06-14 Christian
+ PATCH: [ 955458 ] Optimize translations status page
+  Web: page.inc
+  Web/developer/l10n: index.php status.php status.xml
+
 2004-05-25 Christian
  PATCH: [ 955458 ] Optimize translations status page
   Web/developer/l10n: status.php
