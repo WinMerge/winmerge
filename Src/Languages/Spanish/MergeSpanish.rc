@@ -139,6 +139,7 @@ BEGIN
         MENUITEM "Ver Archivos Unicos de izquierdo", ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "Ver Archivos Unicos de derecho", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM "Esconder Archivos de Tipo *.&BAK", ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Cambiar el Fuente...",        ID_VIEW_SELECTFONT
@@ -993,6 +994,7 @@ BEGIN
     ID_DIR_OPEN_LEFT        "Open left file"
     ID_DIR_OPEN_LEFT_WITH   "Open left file with ..."
     ID_DIR_OPEN_RIGHT       "Open right file"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO

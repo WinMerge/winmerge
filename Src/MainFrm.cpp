@@ -80,11 +80,13 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_OPTIONS_SHOWUNIQUELEFT, OnOptionsShowUniqueLeft)
 	ON_COMMAND(ID_OPTIONS_SHOWUNIQUERIGHT, OnOptionsShowUniqueRight)
 	ON_COMMAND(ID_OPTIONS_SHOWBINARIES, OnOptionsShowBinaries)
+	ON_COMMAND(ID_OPTIONS_SHOWSKIPPED, OnOptionsShowSkipped)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENT, OnUpdateOptionsShowdifferent)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWIDENTICAL, OnUpdateOptionsShowidentical)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUELEFT, OnUpdateOptionsShowuniqueleft)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUERIGHT, OnUpdateOptionsShowuniqueright)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWBINARIES, OnUpdateOptionsShowBinaries)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWSKIPPED, OnUpdateOptionsShowSkipped)
 	ON_WM_CREATE()
 	ON_WM_MENUCHAR()
 	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
@@ -135,7 +137,7 @@ CMainFrame::CMainFrame()
 	m_bShowIdent = theApp.GetProfileInt(_T("Settings"), _T("ShowIdentical"), TRUE)!=0;
 	m_bShowBinaries = theApp.GetProfileInt(_T("Settings"), _T("ShowBinaries"), TRUE)!=0;
 	m_bShowErrors = TRUE;
-	m_bShowSkipped = TRUE;
+	m_bShowSkipped = theApp.GetProfileInt(_T("Settings"), _T("ShowSkipped"), TRUE)!=0;
 	m_bBackup = theApp.GetProfileInt(_T("Settings"), _T("BackupFile"), TRUE)!=0;
 	m_bViewWhitespace = theApp.GetProfileInt(_T("Settings"), _T("ViewWhitespace"), FALSE)!=0;
 	m_bScrollToFirst = theApp.GetProfileInt(_T("Settings"), _T("ScrollToFirst"), FALSE)!=0;
@@ -327,6 +329,9 @@ void CMainFrame::RedisplayAllDirDocs()
 	}
 }
 
+/**
+ * @brief Show/Hide different files/directories
+ */
 void CMainFrame::OnOptionsShowDifferent() 
 {
 	m_bShowDiff = !m_bShowDiff;
@@ -334,12 +339,19 @@ void CMainFrame::OnOptionsShowDifferent()
 	RedisplayAllDirDocs();
 }
 
+/**
+ * @brief Show/Hide identical files/directories
+ */
 void CMainFrame::OnOptionsShowIdentical() 
 {
 	m_bShowIdent = !m_bShowIdent;
 	theApp.WriteProfileInt(_T("Settings"), _T("ShowIdentical"), m_bShowIdent);
 	RedisplayAllDirDocs();
 }
+
+/**
+ * @brief Show/Hide left-only files/directories
+ */
 
 void CMainFrame::OnOptionsShowUniqueLeft() 
 {
@@ -348,6 +360,9 @@ void CMainFrame::OnOptionsShowUniqueLeft()
 	RedisplayAllDirDocs();
 }
 
+/**
+ * @brief Show/Hide right-only files/directories
+ */
 void CMainFrame::OnOptionsShowUniqueRight() 
 {
 	m_bShowUniqueRight = !m_bShowUniqueRight;
@@ -355,10 +370,23 @@ void CMainFrame::OnOptionsShowUniqueRight()
 	RedisplayAllDirDocs();
 }
 
+/**
+ * @brief Show/Hide binary files
+ */
 void CMainFrame::OnOptionsShowBinaries()
 {
 	m_bShowBinaries = !m_bShowBinaries;
 	theApp.WriteProfileInt(_T("Settings"), _T("ShowBinaries"), m_bShowBinaries);
+	RedisplayAllDirDocs();
+}
+
+/**
+ * @brief Show/Hide skipped files/directories
+ */
+void CMainFrame::OnOptionsShowSkipped()
+{
+	m_bShowSkipped = !m_bShowSkipped;
+	theApp.WriteProfileInt(_T("Settings"), _T("ShowSkipped"), m_bShowSkipped);
 	RedisplayAllDirDocs();
 }
 
@@ -387,6 +415,14 @@ void CMainFrame::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_bShowBinaries);
 }
 
+void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bShowSkipped);
+}
+
+/**
+ * @brief Show/Hide backup files
+ */
 void CMainFrame::OnHideBackupFiles() 
 {
 	m_bHideBak = ! m_bHideBak;
@@ -399,7 +435,9 @@ void CMainFrame::OnUpdateHideBackupFiles(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_bHideBak);
 }
 
-/// Show GNU licence information in notepad (local file) or in Web Browser
+/**
+ * @brief Show GNU licence information in notepad (local file) or in Web Browser
+ */
 void CMainFrame::OnHelpGnulicense() 
 {
 	CString spath = GetModulePath() + _T("\\Copying");

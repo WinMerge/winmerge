@@ -104,6 +104,7 @@ BEGIN
         MENUITEM "우측 유니크(unique)한 파일 보기(&G)",
                                                 ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "바이너리 파일 보기(&H)",      ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM "백업(*.BAK) 파일 숨기기(&B)", ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "폰트 선택(&F)...",            ID_VIEW_SELECTFONT
@@ -960,6 +961,7 @@ BEGIN
     ID_DIR_OPEN_LEFT        "왼쪽 파일을 엽니다."
     ID_DIR_OPEN_LEFT_WITH   "왼쪽 파일을 연결 프로그램을 선택해서 엽니다. ..."
     ID_DIR_OPEN_RIGHT       "오른쪽 파일을 엽니다."
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO

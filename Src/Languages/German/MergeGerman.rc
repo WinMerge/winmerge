@@ -143,6 +143,7 @@ BEGIN
         MENUITEM "Zeige eindeutige Dateien &rechts",
                                                 ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Zeige Binär&dateien",         ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM "*.&BAK-Dateien verstecken",   ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Schrift &auswählen...",       ID_VIEW_SELECTFONT
@@ -1001,6 +1002,7 @@ BEGIN
     ID_DIR_OPEN_LEFT        "Open left file"
     ID_DIR_OPEN_LEFT_WITH   "Open left file with ..."
     ID_DIR_OPEN_RIGHT       "Open right file"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO

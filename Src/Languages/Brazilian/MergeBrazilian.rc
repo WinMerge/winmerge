@@ -139,6 +139,7 @@ BEGIN
         MENUITEM "Só arquivos da &Esquerda",    ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "Só Arquivos da Di&reita",     ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Exibir Arquivos &Binários",   ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM "Es&conder Arquivos *.BAK",    ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Escolher &Fonte...",          ID_VIEW_SELECTFONT
@@ -1001,6 +1002,7 @@ BEGIN
     ID_DIR_OPEN_LEFT        "Abrir arquivo a esquerda"
     ID_DIR_OPEN_LEFT_WITH   "Abrir arquivo a esquerda com..."
     ID_DIR_OPEN_RIGHT       "Abrir arquivo a direita"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO
@@ -1078,7 +1080,6 @@ BEGIN
     ID_EDITOR_COPY_FILENAME "Copy Filename"
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
     ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
-    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
 // ID_EOL_TO_DOS SYNCHRO
@@ -1087,6 +1088,7 @@ BEGIN
     ID_EOL_TO_DOS           "Convert EOL to DOS mode"
     ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
     ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
 END
 
 STRINGTABLE DISCARDABLE 

@@ -139,6 +139,7 @@ BEGIN
         MENUITEM "Fichiers Uniquement à &Gauche", ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "Fichiers Uniquement à D&roite", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Fichiers &Binaires",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM "&Cacher les Fichiers *.BAK",  ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Sélectionner la &police...",  ID_VIEW_SELECTFONT
@@ -996,6 +997,7 @@ BEGIN
     ID_DIR_OPEN_LEFT        "Ouvrir le fichier de gauche"
     ID_DIR_OPEN_LEFT_WITH   "Ouvrir le fichier de gauche avec ..."
     ID_DIR_OPEN_RIGHT       "Ouvrir le fichier de droite"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO

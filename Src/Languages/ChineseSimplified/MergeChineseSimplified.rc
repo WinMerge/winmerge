@@ -134,6 +134,7 @@ BEGIN
         MENUITEM "显示左边单一的文件(&F)",      ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "显示右边单一的文件(&G)",      ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "显示二进制文件(&H)",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM "隐藏 *.BAK 文件(&B)",         ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "选择字型(&F)...",             ID_VIEW_SELECTFONT
@@ -861,6 +862,7 @@ BEGIN
     ID_DIR_OPEN_LEFT        "打开左边文件"
     ID_DIR_OPEN_LEFT_WITH   "打开左边文件以 ..."
     ID_DIR_OPEN_RIGHT       "打开右边文件"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO

@@ -2,6 +2,9 @@
  PATCH: [ 781013 ] 256 Color icon
   Applying to languages
   Languages/res: Merge.ico
+ PATCH: [ 806785 ] Add menuitem to show/hide skipped files
+  WinMerge: MainFrm.h MainFrm.cpp Merge.rc resource.h
+  Languages: *.rc resource.h
 
 2003-09-15 Kimmo
  BUG: [ 806552 ] DirView icons missing?
