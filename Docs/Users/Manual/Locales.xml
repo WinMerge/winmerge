@@ -95,7 +95,8 @@
   <sect2>
     <title>Selecting language</title>
 
-    <para>In order to change the current UI language, do the following:</para>
+    <para>In order to change the current user interface language, do the
+    following:</para>
 
     <orderedlist>
       <listitem>
@@ -112,8 +113,8 @@
       </listitem>
     </orderedlist>
 
-    <para>Note that the WinMerge UI instantly updates to the selected
-    language.</para>
+    <para>Note that the WinMerge user interface instantly updates to the
+    selected language.</para>
   </sect2>
 
   <sect2>

@@ -1,3 +1,7 @@
+2005-02-21 Kimmo
+ Fix some typos
+  Manual: Faq.xml Locales.xml
+
 2005-02-20 Kimmo
  PATCH: [ 1144624 ] Docs: Better instructions for installing translations
   Manual: Locales.xml
