@@ -1,3 +1,7 @@
+2005-04-04 Tim
+ RFE: [ 1174908 ] Web: translators shouldn't make unnecessary layout changes
+  Web\developer\l10n: instructions.php
+
 2005-04-02 Tim
  BUG: [ 1173631 ] Translation instructions page refers to non-existing table
   Web\developer\l10n: instructions.php

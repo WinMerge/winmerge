@@ -16,6 +16,10 @@
 <p>Grab a copy of the source from CVS (<a href="../wincvs.php">WinCVS Hints</a>).</p>
 <p>You will need to translate all the strings in <code>Merge.rc</code> to your language. Make a <code>MergeYourLanguage.rc</code> and upload it to SF.net as a patch <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216" target="_top">here</a>.
 <p>Then one of the developers will commit it to CVS and it will be released with the next release.</p>
+<p class="note">Please try to avoid changing dialog layout when translating.
+The layout should be shared by all translations as much as possible, to make merging (and future translation changes) easier.
+You can of course make controls wider to fit longer texts, but you should not move buttons and other controls if not really necessary.<br /><br />
+If you want to improve dialog layout (we welcome UI improvements) you should submit it as src/Merge.rc patch so it will be merged to all translations.</p>
 
 <h3>Instructions for everybody else</h3>
 
