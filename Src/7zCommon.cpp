@@ -254,6 +254,7 @@ void CDrawItemStruct::DrawWebLinkButton()
 	switch (itemAction)
 	{
 	case ODA_DRAWENTIRE:
+		::ExtTextOut(hDC, 0, 0, ETO_OPAQUE, &rcItem, 0, 0, 0);
 		::SetBkMode(hDC, TRANSPARENT);
 		::SetTextColor(hDC, clrText);
 		::DrawText(hDC, cText.Data, cchText, &rcText, DT_LEFT);
