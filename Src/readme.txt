@@ -1,3 +1,7 @@
+2004-05-27 Laoran
+ PATCH: [ 960996 ] 'backspace' key in dirview for parent directory
+  Src: DirView.cpp DirView.h
+
 2004-05-27 Perry
  PATCH: [ 959843 ] Fix codepage initialization to thread default
   Src: DiffWrapper.cpp DiffWrapper.h DirScan.cpp DirScan.h Merge.cpp

@@ -761,6 +761,20 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CListViewEx::OnChar(nChar, nRepCnt, nFlags);
 }
 
+void CDirView::OpenParentDirectory()
+{
+	CString left = GetDocument()->m_pCtxt->m_strNormalizedLeft;
+	CString right = GetDocument()->m_pCtxt->m_strNormalizedRight;
+	CString leftParent = paths_GetParentPath(left);
+	CString rightParent = paths_GetParentPath(right);
+
+	if (paths_DoesPathExist(leftParent) == IS_EXISTING_DIR &&
+			paths_DoesPathExist(rightParent) == IS_EXISTING_DIR &&
+			bAllowUpwardDirectory(left, right))
+		mf->DoFileOpen(leftParent, rightParent,
+			FFILEOPEN_NOMRU, FFILEOPEN_NOMRU);
+}
+
 /**
  * @brief Open selected files or directories.
  *
@@ -785,15 +799,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		// special items, but there is currenly only one (parent folder)
 		if (diffpos == (POSITION) -1)
 		{
-			CString left = GetDocument()->m_pCtxt->m_strNormalizedLeft;
-			CString right = GetDocument()->m_pCtxt->m_strNormalizedRight;
-			CString leftParent = paths_GetParentPath(left);
-			CString rightParent = paths_GetParentPath(right);
-
-			if (paths_DoesPathExist(leftParent) == IS_EXISTING_DIR &&
-					paths_DoesPathExist(rightParent) == IS_EXISTING_DIR)
-				mf->DoFileOpen(leftParent, rightParent,
-					FFILEOPEN_NOMRU, FFILEOPEN_NOMRU);
+			OpenParentDirectory();
 		}		
 		else if (di.isDirectory() && (di.isSideLeft() == di.isSideRight()))
 		{
@@ -1531,12 +1537,22 @@ void CDirView::OnRefresh()
 
 BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 {
-	// Check if we got 'ESC pressed' -message
-	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
+	// Handle special shortcuts here
+	if (pMsg->message == WM_KEYDOWN)
 	{
-		if (m_bEscCloses)
+		// Check if we got 'ESC pressed' -message
+		if (pMsg->wParam == VK_ESCAPE)
 		{
-			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+			if (m_bEscCloses)
+			{
+				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+				return FALSE;
+			}
+		}
+		// Check if we got 'Backspace pressed' -message
+		if (pMsg->wParam == VK_BACK)
+		{
+			OpenParentDirectory();
 			return FALSE;
 		}
 	}

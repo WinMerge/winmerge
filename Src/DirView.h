@@ -90,7 +90,8 @@ public:
 	//DIFFITEM GetNextSelectedInd(int &ind);
 	const DIFFITEM &GetItemAt(int ind);
 	int AddSpecialItems();
-	void AddParentFolderItem();
+	BOOL bAllowUpwardDirectory(CString leftPath, CString rightPath);
+	void AddParentFolderItem(BOOL bEnable);
 	void RefreshOptions();
 
 // Implementation types
@@ -302,6 +303,7 @@ protected:
 
 private:
 	void OpenSelection(PackingInfo * infoUnpacker = NULL);
+	void OpenParentDirectory();
 	void DoUpdateDirCopyRightToLeft(CCmdUI* pCmdUI, eMenuType menuType);
 	void DoUpdateDirCopyLeftToRight(CCmdUI* pCmdUI, eMenuType menuType);
 	void ModifyPopup(CMenu * pPopup, int nStringResource, int nMenuId, LPCTSTR szPath);
