@@ -2,6 +2,9 @@
  PATCH: [ 857003 ] Move linediff messagebox text into resource
   WinMerge: Merge.rc MergeDocLineDiffs.cpp resource.h
   Languages: *.rc resource.h
+ PATCH: [ 856974 ] More space for numbers in dir compare statuswindow
+  WinMerge: Merge.rc
+  Languages: *.rc
 
 2003-12-09 Laoran
  BUG: [ 842812 ] Some extension filtering happening by default (fix for *.*)
