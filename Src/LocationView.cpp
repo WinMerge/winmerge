@@ -477,8 +477,12 @@ int CLocationView::IsInsideBar(CRect rc, POINT pt)
 	BOOL bRightSide = FALSE;
 	const int w = rc.Width() / 4;
 	const int x = (rc.Width() - 2 * w) / 3;
+	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
+	// We need '1 / m_pixInLines' to get line in pixels and
+	// that multiplied by linecount gives us bottom coord for bars.
+	const int barBottom = min(nbLines / m_pixInLines + Y_OFFSET, rc.Height() - Y_OFFSET);
 
-	if ((pt.y > Y_OFFSET) && (pt.y < (rc.Height() - Y_OFFSET)))
+	if ((pt.y > Y_OFFSET) && (pt.y <= barBottom))
 	{
 		bLeftSide = (pt.x >= x && pt.x < x + w);
 		bRightSide = (pt.x >= 2 * x + w && pt.x < 2 * x + 2 * w);

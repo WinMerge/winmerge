@@ -1,3 +1,7 @@
+2004-07-15 Kimmo
+ PATCH: [ 991181 ] Disable 'Goto Line' outside reduced locationpane bars
+  Src: LocationView.cpp
+
 2004-07-14 Kimmo
  PATCH: [ 988494 ] Catalan translation update
   Submitted by Jordi Vilar
