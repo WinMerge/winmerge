@@ -1,3 +1,7 @@
+2004-08-16 Kimmo
+ BUG: [ 1002035 ] Crash with locked files (WM v2.1.7.10)
+  Src: MainFrm.cpp
+
 2004-08-14 Kimmo
  PATCH: [ 1008755 ] avoid flickering when diff view opens
   Submitted by Takashi Sawanaka

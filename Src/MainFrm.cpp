@@ -582,6 +582,12 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 		else
 			MDINext();
 	}
+	else
+	{
+		// Close file compare when loading files fails
+		CWnd* pWnd = pMergeDoc->GetParentFrame();
+		pWnd->DestroyWindow();
+	}
 }
 
 void CMainFrame::RedisplayAllDirDocs()
