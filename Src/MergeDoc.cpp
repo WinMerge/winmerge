@@ -672,12 +672,17 @@ void CMergeDoc::CopyMultipleList(bool bSrcLeft, bool bCurrentLeft, int firstDiff
 	// Note we don't care about m_nDiffs count to become zero,
 	// because we don't rescan() so it does not change
 
+	SetCurrentDiff(lastDiff);
+	ListCopy(bSrcLeft, bCurrentLeft);
+
 	// copy from bottom up is more efficient
-	for(int i = lastDiff; i>=firstDiff; --i)
+	for(int i = lastDiff - 1; i >= firstDiff; --i)
 	{
 		SetCurrentDiff(i);
-		ListCopy(bSrcLeft, bCurrentLeft);
+		// Group merge with previous (merge undo data to one action)
+		ListCopy(bSrcLeft, bCurrentLeft, true);
 	}
+
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
 }
@@ -686,8 +691,11 @@ void CMergeDoc::CopyMultipleList(bool bSrcLeft, bool bCurrentLeft, int firstDiff
  * @brief Copy selected (=current) difference from from side to side.
  * @param [in] bSrcLeft Source side from which diff is copied
  * @param [in] bCurrentLeft Currently active view (where cursor is)
+ * @param [in] bGroupWithPrevious Adds diff to same undo group with
+ * previous action (allows one undo for copy all)
  */
-void CMergeDoc::ListCopy(bool bSrcLeft, bool bCurrentLeft)
+void CMergeDoc::ListCopy(bool bSrcLeft, bool bCurrentLeft,
+		bool bGroupWithPrevious /*= false*/)
 {
 	// suppress Rescan during this method
 	// (Not only do we not want to rescan a lot of times, but
@@ -722,26 +730,19 @@ void CMergeDoc::ListCopy(bool bSrcLeft, bool bCurrentLeft)
 			pCurView->SetCursorPos(currentPos);
 		}
 
-		// TODO: add the undo action
-
 		// if the current diff contains missing lines, remove them from both sides
 		int deleted_lines=0;
 		int limit = cd_dend;
 
 		// curView is the view which is changed, so the opposite of the source view
 		CCrystalTextView* curView;
-		/*POSITION pos = GetFirstViewPosition();
-		curView = dynamic_cast<CCrystalTextView*>(GetNextView(pos));
-		if(bSrcLeft)
-		{
-			curView = dynamic_cast<CCrystalTextView*>(GetNextView(pos));
-		}*/
+
 		if(bSrcLeft)
 			curView = m_pRightView;
 		else
 			curView = m_pLeftView;
 
-		dbuf.BeginUndoGroup();
+		dbuf.BeginUndoGroup(bGroupWithPrevious);
 		if (cd_blank>=0)
 		{
 			// text was missing, so delete rest of lines on both sides
@@ -775,40 +776,14 @@ void CMergeDoc::ListCopy(bool bSrcLeft, bool bCurrentLeft)
 		}
 		dbuf.FlushUndoGroup(curView);
 
-
-		//mf->m_pRight->ReplaceSelection(strText, 0);
-
-		//pSrcList->InvalidateLines(cd_dbegin, cd_dend);
-		//pDestList->InvalidateLines(cd_dbegin, cd_dend);
-
-		// remove the diff			
+		// remove the diff
 		SetCurrentDiff(-1);
-		// no longer needed since rescan automatically does this
-/*		m_diffs.RemoveAt(curDiff);
-		m_nDiffs--;
-
-		// adjust remaining diffs
-		if (deleted_lines>0)
-		{
-			for (int i=curDiff; i < (int)m_nDiffs; i++)
-			{
-				DIFFRANGE &cd = m_diffs[i];
-				cd.dbegin0 -= deleted_lines;
-				cd.dbegin1 -= deleted_lines;
-				cd.dend0 -= deleted_lines;
-				cd.dend1 -= deleted_lines;
-				cd.blank0 -= deleted_lines;
-				cd.blank1 -= deleted_lines;
-			}
-		}
-*/
 
 		// reset the mod status of the source view because we do make some
 		// changes, but none that concern the source text
 		sbuf.SetModified(bSrcWasMod);
 	}
-	// what does this do?
-//	pDestList->AddMod();
+
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
 }
