@@ -361,7 +361,7 @@ MovePgUp (BOOL bSelect)
 	if (m_nTopSubLine != nNewTopSubLine)
 	{
 		ScrollToSubLine(nNewTopSubLine);
-		UpdateSiblingScrollPos(TRUE);
+		UpdateSiblingScrollPos(FALSE);
 	}
 
 	// setting cursor
@@ -414,7 +414,7 @@ MovePgDn (BOOL bSelect)
 	if (m_nTopSubLine != nNewTopSubLine)
 	{
 		ScrollToSubLine(nNewTopSubLine);
-		UpdateSiblingScrollPos(TRUE);
+		UpdateSiblingScrollPos(FALSE);
 	}
 
 	// setting cursor
