@@ -1,3 +1,9 @@
+2004-06-29 Laoran
+ PATCH: [ 981529 ] remove hide .BAK from menu
+  Filters: Merge_GnuC_loose.flt Merge_VB_loose.flt Merge_VC_loose.flt
+  Src: MainFrm.cpp MainFrm.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2004-06-29 Kimmo
  PATCH: [ 981468 ] Properly handle different commentstyles for Pascal
   Src/editlib: pascal.cpp

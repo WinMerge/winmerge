@@ -163,7 +163,6 @@ BEGIN
         MENUITEM "Show Ri&ght Unique Files",    ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Zobraz bin·rne s˙bory",       ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "Skryù s˙bory s prÌponou *.&BAK", ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "&Zvoliù pÌsmo...",            ID_VIEW_SELECTFONT
         MENUITEM "Pouûiù z·kladnÈ pÌsm&o",      ID_VIEW_USEDEFAULTFONT
@@ -1943,7 +1942,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "Zobraz s˙bory, ktorÈ existuj˙ iba na pravej strane"
     ID_OPTIONS_SHOWBINARIES "Zobrazuje bin·rne s˙bory"
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_HIDE_BACKUP_FILES    "Skryù s˙bory s prÌponou BAK"
 END
 
 // VIEW MENU

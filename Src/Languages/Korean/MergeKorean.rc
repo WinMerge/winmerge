@@ -128,7 +128,6 @@ BEGIN
                                                 ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "바이너리 파일 보기(&H)",      ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "백업(*.BAK) 파일 숨기기(&B)", ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "폰트 선택(&F)...",            ID_VIEW_SELECTFONT
         MENUITEM "기본 폰트 사용(&O)",          ID_VIEW_USEDEFAULTFONT
@@ -1904,7 +1903,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "오른쪽에만 존재하는 파일을 봅니다."
     ID_OPTIONS_SHOWBINARIES "바이너리 파일을 봅니다."
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_HIDE_BACKUP_FILES    "BAK 확장자를 가지는 파일을 숨깁니다."
 END
 
 // VIEW MENU

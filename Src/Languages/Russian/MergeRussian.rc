@@ -163,7 +163,6 @@ BEGIN
         MENUITEM "Показать уникальные с&права", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Пока&зать бинарные файлы",    ID_OPTIONS_SHOWBINARIES
         MENUITEM "Показать пропу&щенные",       ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "Скрыть *.&BAK Файлы",         ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Выбрать &Шрифт...",           ID_VIEW_SELECTFONT
         MENUITEM "Использовать шрифт по &умолчанию", ID_VIEW_USEDEFAULTFONT
@@ -1846,7 +1845,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "Показать файлы, которые существуют с правой стороны"
     ID_OPTIONS_SHOWBINARIES "Отображать бинарные файлы"
     ID_OPTIONS_SHOWSKIPPED  "Отобразить пропущенные файлы"
-    ID_HIDE_BACKUP_FILES    "Скрывать файлы с расширением BAK"
 END
 
 // VIEW MENU

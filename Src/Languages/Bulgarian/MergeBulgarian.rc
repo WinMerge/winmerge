@@ -163,7 +163,6 @@ BEGIN
         MENUITEM "Показвай де&сните уникални файлове",    ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "По&казвай бинарните файлове",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Показвай п&ропуснатите файлове",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "Скрии *.&BAK файлове",           ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Избери &фонт...",             ID_VIEW_SELECTFONT
         MENUITEM "Използвай ф&онт по подразбиране",           ID_VIEW_USEDEFAULTFONT
@@ -1830,7 +1829,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "Показвай файловете ,които съществуват само в дясната част"
     ID_OPTIONS_SHOWBINARIES "Показване на бинарните файлове"
     ID_OPTIONS_SHOWSKIPPED  "Показвай пропуснатите файлове"
-    ID_HIDE_BACKUP_FILES    "Скриване на файлове с разширение BAK"
 END
 
 // VIEW MENU

@@ -107,10 +107,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWSKIPPED, OnUpdateOptionsShowSkipped)
 	ON_WM_CREATE()
 	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
-	ON_UPDATE_COMMAND_UI(ID_HIDE_BACKUP_FILES, OnUpdateHideBackupFiles)
 	ON_COMMAND(ID_HELP_GNULICENSE, OnHelpGnulicense)
 	ON_COMMAND(ID_OPTIONS, OnOptions)
-	ON_COMMAND(ID_HIDE_BACKUP_FILES, OnHideBackupFiles)
 	ON_COMMAND(ID_VIEW_SELECTFONT, OnViewSelectfont)
 	ON_COMMAND(ID_VIEW_USEDEFAULTFONT, OnViewUsedefaultfont)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_USEDEFAULTFONT, OnUpdateViewUsedefaultfont)
@@ -695,23 +693,6 @@ void CMainFrame::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI)
 void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_SKIPPED));
-}
-
-/**
- * @brief Show/Hide backup files
- */
-void CMainFrame::OnHideBackupFiles() 
-{
-	varprop::VariantValue val;
-	val = m_options.Get(OPT_HIDE_BACKUP);
-	val.SetInt(val.getInt() ? 0 : 1);
-	m_options.SaveOption(OPT_HIDE_BACKUP, val);
-	RedisplayAllDirDocs();
-}
-
-void CMainFrame::OnUpdateHideBackupFiles(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetCheck(m_options.GetInt(OPT_HIDE_BACKUP));
 }
 
 /**

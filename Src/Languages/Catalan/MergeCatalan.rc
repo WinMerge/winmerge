@@ -163,7 +163,6 @@ BEGIN
         MENUITEM "Mostra els fitxers únics de la &dreta", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Mostra els fitxers &binaris", ID_OPTIONS_SHOWBINARIES
         MENUITEM "Mostra els fitxers &omesos",  ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "Amaga els fitxers *.BA&K",    ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "&Tipus de lletra...",         ID_VIEW_SELECTFONT
         MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
@@ -1846,7 +1845,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "Visualitza els fitxers existents únicament a la dreta"
     ID_OPTIONS_SHOWBINARIES "Visualitza els fitxers binaris"
     ID_OPTIONS_SHOWSKIPPED  "Visualitza els fitxers omesos"
-    ID_HIDE_BACKUP_FILES    "Amaga fitxers amb extensió bak"
 END
 
 // VIEW MENU

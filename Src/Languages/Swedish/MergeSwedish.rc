@@ -162,7 +162,6 @@ BEGIN
         MENUITEM "Visa unika filer till &höger", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Visa &binära filer",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Visa &överhoppade filer",     ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "&Göm *.BAK-filer",            ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Välj tecken&snitt...",        ID_VIEW_SELECTFONT
         MENUITEM "Använd standardtec&kensnitt", ID_VIEW_USEDEFAULTFONT
@@ -1942,7 +1941,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "Visar filer som bara finns på höger sida"
     ID_OPTIONS_SHOWBINARIES "Visar binära filer"
     ID_OPTIONS_SHOWSKIPPED  "Visar överhoppade filer"
-    ID_HIDE_BACKUP_FILES    "Gömmer filer med filtyp BAK"
 END
 
 // VIEW MENU

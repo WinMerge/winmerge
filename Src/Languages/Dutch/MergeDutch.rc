@@ -164,7 +164,6 @@ BEGIN
                                                 ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "Verberg *.&BAK Bestanden",    ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Kies  &Font...",              ID_VIEW_SELECTFONT
         MENUITEM "Gebruik standaard  F&ont",    ID_VIEW_USEDEFAULTFONT
@@ -1945,7 +1944,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "Displays files that exist in only on right side"
     ID_OPTIONS_SHOWBINARIES "Displays binary files"
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_HIDE_BACKUP_FILES    "Bestanden met de extentie .BAK verbergen"
 END
 
 // VIEW MENU

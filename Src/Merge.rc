@@ -163,7 +163,6 @@ BEGIN
         MENUITEM "Show Ri&ght Unique Files",    ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "Hide *.&BAK Files",           ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
         MENUITEM "Use Default F&ont",           ID_VIEW_USEDEFAULTFONT
@@ -1828,7 +1827,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "Displays files that exist in only on right side"
     ID_OPTIONS_SHOWBINARIES "Displays binary files"
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_HIDE_BACKUP_FILES    "Hides files with extension BAK"
 END
 
 // VIEW MENU

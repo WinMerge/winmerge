@@ -163,7 +163,6 @@ BEGIN
         MENUITEM "顯示右邊單一的檔案(&G)",      ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "顯示二進制檔案(&H)",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "隱藏 *.BAK 檔案(&B)",         ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "選取字型(&F)...",             ID_VIEW_SELECTFONT
         MENUITEM "使用預設的字型(&O)",          ID_VIEW_USEDEFAULTFONT
@@ -1930,7 +1929,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "顯示只存在於右邊的檔案"
     ID_OPTIONS_SHOWBINARIES "顯示二進制檔案"
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_HIDE_BACKUP_FILES    "隱藏副檔名為 BAK 的檔案"
 END
 
 // VIEW MENU

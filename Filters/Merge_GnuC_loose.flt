@@ -12,6 +12,7 @@ def: include
 
 f: \.o$
 f: \.lib$
+f: \.bak$ ## backup
 
 d: \\cvs$ ## CVS control directory
 

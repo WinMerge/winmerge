@@ -16,6 +16,7 @@ f: \.ctx$ ##
 f: \.dll$ ## Windows DLL
 f: \.ocx$ ## OLE Control Extension
 f: \.exe$ ## Windows/DOS executable
+f: \.bak$ ## backup
 
 d: \\cvs$ ## CVS control directory
 

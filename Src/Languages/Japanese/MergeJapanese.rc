@@ -163,7 +163,6 @@ BEGIN
         MENUITEM "右のみに存在するファイルの表示(&G)", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "バイナリファイルの表示(&H)",  ID_OPTIONS_SHOWBINARIES
         MENUITEM "スキップされたファイルの表示(&K)", ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "*.BAKファイルの非表示(&B)",   ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "フォント選択(&N)...",         ID_VIEW_SELECTFONT
         MENUITEM "デフォルトフォントを使用(&O)", ID_VIEW_USEDEFAULTFONT
@@ -1833,7 +1832,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "右側にのみ存在するファイルを表示します"
     ID_OPTIONS_SHOWBINARIES "バイナリファイルを表示します"
     ID_OPTIONS_SHOWSKIPPED  "スキップされたファイルを表示します"
-    ID_HIDE_BACKUP_FILES    "拡張子がBAKのファイルを非表示にします"
 END
 
 // VIEW MENU

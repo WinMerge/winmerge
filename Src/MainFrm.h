@@ -192,10 +192,8 @@ protected:
 	afx_msg void OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI);
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnFileOpen();
-	afx_msg void OnUpdateHideBackupFiles(CCmdUI* pCmdUI);
 	afx_msg void OnHelpGnulicense();
 	afx_msg void OnOptions();
-	afx_msg void OnHideBackupFiles();
 	afx_msg void OnViewSelectfont();
 	afx_msg void OnViewUsedefaultfont();
 	afx_msg void OnUpdateViewUsedefaultfont(CCmdUI* pCmdUI);

@@ -163,7 +163,6 @@ BEGIN
         MENUITEM "Fichiers Uniquement à D&roite", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Fichiers &Binaires",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "&Cacher les Fichiers *.BAK",  ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Sélectionner la &police...",  ID_VIEW_SELECTFONT
         MENUITEM "Utiliser la police par dé&faut", ID_VIEW_USEDEFAULTFONT
@@ -1912,7 +1911,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "Afficher les fichiers qui n'existent que dans le panneau droit"
     ID_OPTIONS_SHOWBINARIES "Afficher les fichiers binaires"
     ID_OPTIONS_SHOWSKIPPED  "Afficher les fichiers omis"
-    ID_HIDE_BACKUP_FILES    "Cacher les fichiers avec l'extension .BAK"
 END
 
 // VIEW MENU

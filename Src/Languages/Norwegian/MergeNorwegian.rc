@@ -163,7 +163,6 @@ BEGIN
         MENUITEM "Vis &høyre unike filer",      ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Vis &binære filer",           ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "Skjul *.&BAK filer",          ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Velg &skrifttype...",         ID_VIEW_SELECTFONT
         MENUITEM "Bruk standard s&krifttype",   ID_VIEW_USEDEFAULTFONT
@@ -1942,7 +1941,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "Viser filer som kun eksisterer på høyre side"
     ID_OPTIONS_SHOWBINARIES "Viser binære filer"
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_HIDE_BACKUP_FILES    "Skjul filer med extension BAK"
 END
 
 // VIEW MENU

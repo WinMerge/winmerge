@@ -168,7 +168,6 @@ BEGIN
         MENUITEM "Binär&dateien anzeigen",      ID_OPTIONS_SHOWBINARIES
         MENUITEM "Übersprun&gene Dateien anzeigen",
                                                 ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "*.&BAK-Dateien verstecken",   ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Schrift &auswählen...",       ID_VIEW_SELECTFONT
         MENUITEM "Standard-Schrift &verwenden", ID_VIEW_USEDEFAULTFONT
@@ -1949,7 +1948,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "Zeigt eindeutige Dateien auf der rechten Seite an.\nEindeutige Dateien rechts anzeigen"
     ID_OPTIONS_SHOWBINARIES "Zeigt Binärdateien an."
     ID_OPTIONS_SHOWSKIPPED  "Zeigt übersprungene Dateien an."
-    ID_HIDE_BACKUP_FILES    "Blendet Dateien mit der Erweiterung BAK aus."
 END
 
 // VIEW MENU

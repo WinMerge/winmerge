@@ -162,7 +162,6 @@ BEGIN
         MENUITEM "显示右边单一的文件(&G)",      ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "显示二进制文件(&H)",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "隐藏 *.BAK 文件(&B)",         ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "选择字型(&F)...",             ID_VIEW_SELECTFONT
         MENUITEM "使用默认字型(&O)",          ID_VIEW_USEDEFAULTFONT
@@ -1816,7 +1815,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "显示只存在于右边的文件"
     ID_OPTIONS_SHOWBINARIES "显示二进制文件"
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_HIDE_BACKUP_FILES    "隐藏扩展名为 BAK 的文件"
 END
 
 // VIEW MENU

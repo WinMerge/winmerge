@@ -163,7 +163,6 @@ BEGIN
         MENUITEM "Pokaz u&nikatowe dla prawej", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Pokaz pliki &binarne",        ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "Ukryj pliki *.B&AK",          ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Zmi&en czcionke...",          ID_VIEW_SELECTFONT
         MENUITEM "Czcionka &domyslna",          ID_VIEW_USEDEFAULTFONT
@@ -1943,7 +1942,6 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT "Wyswietla pliki istniejace tylko po prawej"
     ID_OPTIONS_SHOWBINARIES "Wyswietla pliki binarne"
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_HIDE_BACKUP_FILES    "Ukryj pliki o rozszerzeniu BAK"
 END
 
 // VIEW MENU
