@@ -148,10 +148,7 @@ BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush)
 }
 
 /**
- * @brief Checks Checks memory-mapped for binary data and counts lines
- * in textfile.
- * @note This does not work for UNICODE files
- * as WinMerge is not compiled UNICODE enabled
+ * @brief Loads line array from memory-mapped file. Checks for Unicode BOMs and for binary file.
  */
 int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 {
@@ -162,6 +159,12 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 	parsedTextFile->lines.RemoveAll();
 	textline newline;
 	newline.start = 0;
+	// Manually grow line array exponentially
+	int arraysize = 500;
+	int lineno = 0;
+
+
+	parsedTextFile->lines.SetSize(500);
 	
 	// Check for Unicode BOM (byte order mark)
 	// (We don't check for UCS-4 marks)
@@ -281,12 +284,22 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 		}
 		if (newline.end >= 0)
 		{
-			parsedTextFile->lines.Add(newline);
+			// Manually grow line array exponentially
+			if (lineno == arraysize)
+			{
+				arraysize *= 2;
+				parsedTextFile->lines.SetSize(arraysize);
+				
+			}
+			parsedTextFile->lines[lineno] = newline;
+			++lineno;
 			newline.start = dwBytesRead;
 			newline.end = -1;
 			newline.sline = _T("");
 		}
 	}
+
+	parsedTextFile->lines.SetSize(lineno);
 
 	if (bBinary)
 	{
