@@ -4,6 +4,7 @@
  PATCH: [ 880769 ] Select all in Dir compare
   src: DirView.h DirView.cpp Merge.rc
   Languages: *.rc
+ Minor update to 2.2 plan - couple of items completed, two new items (25, 26)
 
 2004-01-23 Perry
  PATCH: [ 880006 ] Code cleanup--old commented out lines in DirView.h
