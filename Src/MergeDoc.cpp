@@ -1109,7 +1109,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 
 	// Unpacking the file here, save the result in a temporary file
 	CString sFileName = pszFileNameInit;
-	int attrs=0;		// don't care about it, it is for DirScan
+	//int attrs=0;		// don't care about it, it is for DirScan
 	if (infoUnpacker->bToBeScanned)
 	{
 		if (!FileTransform_Unpacking(sFileName, sToFindUnpacker, infoUnpacker, &unpackerSubcode))
@@ -1125,9 +1125,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 	// we will load the transformed file
 	LPCTSTR pszFileName = sFileName;
 
-	MAPPEDFILEDATA fileData = {0};
 	CString sExt;
-	BOOL bSuccess = FALSE;
 	int nRetVal = FRESULT_OK;
 
 	// Set encoding based on extension, if we know one
@@ -1280,12 +1278,9 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
 	ASSERT (m_bInit);
 	MAPPEDFILEDATA fileData = {0};
-	TCHAR szTempFileDir[_MAX_PATH] = {0};
 	TCHAR szTempFileName[_MAX_PATH] = {0} ;
 	BOOL bOpenSuccess = FALSE;
 	BOOL bSaveSuccess = FALSE;
-	TCHAR drive[_MAX_PATH] = {0};
-	TCHAR dir[_MAX_PATH] = {0};
 
 	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
 	{

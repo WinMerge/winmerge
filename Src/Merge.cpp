@@ -661,7 +661,6 @@ void CMergeApp::EditFileFilter(LPCTSTR szFileFilterPath)
 	STARTUPINFO stInfo = {0};
 	PROCESS_INFORMATION prInfo;
 	BOOL processSuccess = FALSE;
-	DWORD exitCode = 0;
 	stInfo.cb = sizeof(STARTUPINFO);
 	processSuccess = CreateProcess(NULL, (LPTSTR)(LPCTSTR)cmdLine, NULL,
 		NULL, FALSE, 0, NULL, NULL, &stInfo, &prInfo);

@@ -4,7 +4,10 @@
  PATCH: [ 833681 ] Fix default editor for external editor
   WinMerge: MainFrm.h MainFrm.cpp
  Change action.code type to match DIFFITEM.code
-  DirView.h
+  WinMerge: DirView.h
+ Removing unused variables
+  WinMerge: DiffWrapper.cpp DirActions.cpp DirDoc.cpp DirScan.cpp
+   DirViewColHandler.cpp MainFrm.cpp Merge.cpp MergeDoc.cpp 
 
 2003-10-31 Laoran
  fix Plugins PACK_UNPACK when nothing changes (+ update functions name)

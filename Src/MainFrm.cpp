@@ -313,7 +313,6 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 {
 	BOOL docNull;
 	BOOL bOpenSuccess = FALSE;
-	int nRescanResult = RESCAN_OK;
 	CMergeDoc * pMergeDoc = GetMergeDocToShow(pDirDoc, &docNull);
 
 	ASSERT(pMergeDoc);		// must ASSERT to get an answer to the question below ;-)
@@ -1705,11 +1704,15 @@ void CMainFrame::OnViewSelectfont()
 
 		MergeEditViewList editViews;
 		GetAllViews(&editViews, NULL, NULL);
+		
+		// TODO: Update document fonts
+		/*
 		for (POSITION pos = editViews.GetHeadPosition(); pos; editViews.GetNext(pos))
 		{
 			CMergeEditView * pEditView = editViews.GetAt(pos);
 			// update pEditView for font change
 		}
+		*/
 	}
 }
 

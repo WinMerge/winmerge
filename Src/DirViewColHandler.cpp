@@ -134,7 +134,6 @@ void CDirView::UpdateDiffItemStatus(UINT nIdx, const DIFFITEM & di)
 {
 	for (int i=0; i<g_ncols; ++i)
 	{
-		const DirColInfo & col = g_cols[i];
 		int phy = ColLogToPhys(i);
 		if (phy>=0)
 			SetSubitem(nIdx, phy, ColGet(i, di));
@@ -147,7 +146,6 @@ void CDirView::SaveColumnOrders()
 {
 	ASSERT(m_colorder.GetSize() == m_numcols);
 	ASSERT(m_invcolorder.GetSize() == m_numcols);
-	int cols = GetListCtrl().GetHeaderCtrl()->GetItemCount();
 	for (int i=0; i < m_numcols; i++)
 	{
 		CString RegName = GetColRegValueNameBase(i) + _T("_Order");

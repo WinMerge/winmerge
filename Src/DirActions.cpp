@@ -508,7 +508,6 @@ CString CDirView::GetSelectedFileName(SIDE_TYPE stype) const
 /// get the file names on both sides for specified item
 void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) const
 {
-	const CDirDoc *pd = GetDocument();
 	CString name, pathex;
 
 	POSITION diffpos = GetItemKey(sel);

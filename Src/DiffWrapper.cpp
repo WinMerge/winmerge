@@ -185,7 +185,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	struct file_data inf[2] = {0};
 	char *free0 = NULL,*free1 = NULL;
 	CString sdir0, sdir1, sname0, sname1, sext0, sext1;
-	int val,failed=0, depth=0;
+	int val,failed=0;
 	bool same_files = FALSE;
 	struct change *e, *p;
 	struct change *script = NULL;

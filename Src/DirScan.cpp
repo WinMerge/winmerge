@@ -65,7 +65,6 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 		subprefix = subdir + _T("\\");
 	}
 
-	cmpmth mthptr = (casesensitive ? &CString::Collate : &CString::CollateNoCase);
 	fentryArray leftDirs, leftFiles, rightDirs, rightFiles;
 	LoadAndSortFiles(sLeftDir, &leftDirs, &leftFiles, casesensitive);
 	LoadAndSortFiles(sRightDir, &rightDirs, &rightFiles, casesensitive);

@@ -473,7 +473,6 @@ POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 // stash away our view pointer
 void CDirDoc::SetDirView(CDirView * newView)
 {
-	CDirView * currentView = m_pDirView;
 	m_pDirView = newView;
 	// MFC has a view list for us, so lets check against it
 	POSITION pos = GetFirstViewPosition();
@@ -722,7 +721,6 @@ void CDirDoc::UpdateHeaderPath(BOOL bLeft)
 	ASSERT(pf);
 	int nPane = 0;
 	CString sText;
-	BOOL bChanges = FALSE;
 
 	if (bLeft)
 	{
