@@ -6,6 +6,8 @@
  *
  *  @brief  Declaration of utility unicode conversion routines
  */ 
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #ifndef unicoder_h_included
 #define unicoder_h_included

@@ -1,3 +1,30 @@
+/* File:	lwdisp.c - light weight dispatch API
+ * Author:	Jochen Tucht 2003/01/09
+ *			Copyright (C) 2003 herbert dahm datensysteme GmbH
+ *
+ * Declaration file for lwdisp.c
+ *
+ * Purpose:	- Create windows scripting objects (scriptlets)
+ *			- Invoke methods and access properties
+ *			- Implement callback interfaces to be invoked by scriptlets
+ *
+ * License:	THIS FILE CONTAINS FREE SOURCE CODE. IT IS PROVIDED *AS IS*, WITHOUT
+ *			WARRANTY OF ANY KIND. YOU MAY USE IT AT YOUR OWN RISK, AS LONG AS
+ *			YOU KEEP IT IN A SEPARATE FILE AND PRESERVE THIS COMMENT.
+ *			CHANGES MUST BE RECORDED IN THE MODIFICATION HISTORY BELOW SO THERE
+ *			IS EVIDENCE THAT THE FILE DIFFERS FROM EARLIER RELEASES. THE LEVEL
+ *			OF DETAIL IS UP TO YOU. YOU MAY SET THE BY: ENTRY TO "NOBODY@ALL"
+ *			IF YOU DON'T WANT TO EXPOSE YOUR NAME. SUBSEQUENT CHANGES MAY BE
+ *			REFLECTED BY A SINGLE RECORD CARRYING THE DATE OF THE LATEST CHANGE.
+ *
+
+DATE:		BY:					DESCRIPTION:
+==========	==================	================================================
+2003/11/28	Laoran 				      header and RCS ID
+*/
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #ifndef __LWDISP_H__
 #define __LWDISP_H__
 
