@@ -532,35 +532,35 @@ BEGIN
     PUSHBUTTON      "Cancel·la",IDCANCEL,226,24,50,14
 END
 
-IDD_EDIT_REPLACE DIALOGEX  36, 44, 243, 103
+IDD_EDIT_REPLACE DIALOGEX 36, 44, 317, 98
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Substitueix"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "&Cerca:",IDC_STATIC,4,9,48,8
-    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN |
+    LTEXT           "&Cerca:",IDC_STATIC,7,9,65,8
+    COMBOBOX        IDC_EDIT_FINDTEXT,75,7,165,66,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Substitueix-ho p&er:",IDC_STATIC,4,22,48,17
-    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN |
+    LTEXT           "Substitueix-ho p&er:",IDC_STATIC,7,24,65,17
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,75,22,165,66,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "N&omés paraules senceres",IDC_EDIT_WHOLE_WORD,"Button",
-                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,96,12
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
     CONTROL         "&Distingeix entre majúscules i minúscules",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,5,58,94,16
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,54,135,16
     CONTROL         "&Expressió regular",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,74,77,12
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,72,135,10
     CONTROL         "No facis la &volta al final del fitxer",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,88,168,12
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,82,135,10
+    GROUPBOX        "Substitueix a",IDC_STATIC,149,40,90,36,WS_GROUP
     CONTROL         "&Selecció",IDC_EDIT_SCOPE_SELECTION,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,107,57,58,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
     CONTROL         "&Fitxer sencer",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
-                    BS_AUTORADIOBUTTON,107,70,58,10
-    DEFPUSHBUTTON   "&Següent",IDC_EDIT_SKIP,174,4,63,14,WS_GROUP
-    PUSHBUTTON      "S&ubstitueix-ho",IDC_EDIT_REPLACE,174,21,63,14
-    PUSHBUTTON      "Su&bstitueix-ho tot",IDC_EDIT_REPLACE_ALL,174,38,63,14
-    PUSHBUTTON      "Cancel·la",IDCANCEL,174,55,63,14
-    GROUPBOX        "Substitueix a",IDC_STATIC,103,46,65,39,WS_GROUP
+                    BS_AUTORADIOBUTTON,154,61,80,10
+    DEFPUSHBUTTON   "&Següent",IDC_EDIT_SKIP,247,7,63,14,WS_GROUP
+    PUSHBUTTON      "S&ubstitueix-ho",IDC_EDIT_REPLACE,247,24,63,14
+    PUSHBUTTON      "Su&bstitueix-ho tot",IDC_EDIT_REPLACE_ALL,247,41,63,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,247,58,63,14
 END
 
 IDD_CLEARCASE DIALOGEX 0, 0, 279, 111

@@ -533,36 +533,36 @@ BEGIN
     PUSHBUTTON      "Cancelar",IDCANCEL,226,24,50,14
 END
 
-IDD_EDIT_REPLACE DIALOGEX 36, 44, 285, 103
+IDD_EDIT_REPLACE DIALOGEX 36, 44, 304, 90
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Localizar e Substituir"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "&Localizar:",IDC_STATIC,4,9,48,8
-    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,174,30,CBS_DROPDOWN |
+    LTEXT           "&Localizar:",IDC_STATIC,7,9,65,8
+    COMBOBOX        IDC_EDIT_FINDTEXT,75,7,165,66,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Su&bstituir por:",IDC_STATIC,4,26,48,8
-    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,173,30,CBS_DROPDOWN |
+    LTEXT           "Su&bstituir por:",IDC_STATIC,7,24,65,8
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,75,22,165,66,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Somente p&alavras iguais",IDC_EDIT_WHOLE_WORD,"Button",
-                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,52,113,12
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
     CONTROL         "&Diferenciar maiúsculas de minúsculas",
                     IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,5,63,131,12
+                    WS_TABSTOP,7,54,135,10
     CONTROL         "&Expressão regular",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,74,77,12
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
     CONTROL         "&Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,88,84,12
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
+    GROUPBOX        "Substituir",IDC_STATIC,149,40,90,36,WS_GROUP
     CONTROL         "Somente &na seleção",IDC_EDIT_SCOPE_SELECTION,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,141,57,79,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
     CONTROL         "Em todo &documento",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
-                    BS_AUTORADIOBUTTON,141,70,79,10
-    DEFPUSHBUTTON   "&Próximo",IDC_EDIT_SKIP,231,4,50,14,WS_GROUP
-    PUSHBUTTON      "&Substituir",IDC_EDIT_REPLACE,231,21,50,14
-    PUSHBUTTON      "&Todos",IDC_EDIT_REPLACE_ALL,231,38,50,14
-    PUSHBUTTON      "Cancelar",IDCANCEL,231,55,50,14
-    GROUPBOX        "Substituir",IDC_STATIC,137,46,90,39,WS_GROUP
+                    BS_AUTORADIOBUTTON,154,61,80,10
+    DEFPUSHBUTTON   "&Próximo",IDC_EDIT_SKIP,247,7,50,14,WS_GROUP
+    PUSHBUTTON      "&Substituir",IDC_EDIT_REPLACE,247,24,50,14
+    PUSHBUTTON      "&Todos",IDC_EDIT_REPLACE_ALL,247,41,50,14
+    PUSHBUTTON      "Cancelar",IDCANCEL,247,58,50,14
 END
 
 IDD_CLEARCASE DIALOGEX 0, 0, 279, 111

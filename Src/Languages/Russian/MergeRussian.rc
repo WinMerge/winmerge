@@ -545,36 +545,36 @@ BEGIN
     PUSHBUTTON      "Отмена",IDCANCEL,226,24,50,14
 END
 
-IDD_EDIT_REPLACE DIALOGEX 36, 44, 240, 103
+IDD_EDIT_REPLACE DIALOGEX 36, 44, 311, 98
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Замена"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "&Поиск:",IDC_STATIC,4,9,48,8
-    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN |
+    LTEXT           "&Поиск:",IDC_STATIC,7,9,65,8
+    COMBOBOX        IDC_EDIT_FINDTEXT,75,7,165,66,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "За&мена: ",IDC_STATIC,4,26,48,8
-    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN |
+    LTEXT           "За&мена: ",IDC_STATIC,7,24,65,8
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,75,22,165,66,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Искать слова &целиком",IDC_EDIT_WHOLE_WORD,"Button",
-                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
     CONTROL         "Учитывать &регистр",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,60,89,12
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
     CONTROL         "Ре&гулярные выражения",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,74,93,12
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
     CONTROL         "Не останавливаться при достижении конца файла",
                     IDC_EDIT_SCOPE_DONT_WRAP,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,5,88,186,12
+                    BS_MULTILINE | WS_TABSTOP,7,74,135,16
+    GROUPBOX        "Заменить",IDC_STATIC,149,40,90,36,WS_GROUP
     CONTROL         "В вы&деленном",IDC_EDIT_SCOPE_SELECTION,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,106,57,64,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
     CONTROL         "Во всем &файле",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
-                    BS_AUTORADIOBUTTON,106,69,64,10
-    DEFPUSHBUTTON   "&Далее",IDC_EDIT_SKIP,177,4,57,14,WS_GROUP
-    PUSHBUTTON      "&Заменить",IDC_EDIT_REPLACE,177,21,57,14
-    PUSHBUTTON      "З&аменить все",IDC_EDIT_REPLACE_ALL,177,38,57,14
-    PUSHBUTTON      "Отмена",IDCANCEL,177,55,57,14
-    GROUPBOX        "Заменить",IDC_STATIC,102,46,71,39,WS_GROUP
+                    BS_AUTORADIOBUTTON,154,61,80,10
+    DEFPUSHBUTTON   "&Далее",IDC_EDIT_SKIP,247,7,57,14,WS_GROUP
+    PUSHBUTTON      "&Заменить",IDC_EDIT_REPLACE,247,24,57,14
+    PUSHBUTTON      "З&аменить все",IDC_EDIT_REPLACE_ALL,247,41,57,14
+    PUSHBUTTON      "Отмена",IDCANCEL,247,58,57,14
 END
 
 IDD_CLEARCASE DIALOGEX 0, 0, 279, 111

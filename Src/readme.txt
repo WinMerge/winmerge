@@ -11,6 +11,10 @@
   Find-dialog
   Src: Merge.rc
   Src/Languages: *.rc
+ PATCH: [ 941621 ] widen find/replace dialog
+  Replace-dialog
+  Src: Merge.rc
+  Src/Languages: *.rc
 
 2004-07-15 Kimmo
  PATCH: [ 991181 ] Disable 'Goto Line' outside reduced locationpane bars
