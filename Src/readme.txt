@@ -1,3 +1,12 @@
+2005-03-15 Jochen
+ Add Merge7z415(U).dll to Merge7zInstaller
+  Merge7zInstaller: Files.rc2
+ Merge7zInstaller - Initialize filename in Open dialog to "*.exe"
+  Merge7zInstaller: Installer.cpp
+ Fix typo in IDD_MERGE7ZMISMATCH dialog
+  Src: Merge.rc
+
+IDD_MERGE7ZMISMATCH
 2005-03-15 WinMerge beta 2.3.2.0 released
 
 2005-03-15 Kimmo
