@@ -1,7 +1,5 @@
 //Microsoft Developer Studio generated resource script.
 //
-// $Id$
-
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -84,8 +82,10 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copy all diffs to other side...", 
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
+
         MENUITEM "Copy all diffs from other side...", 
                                                 ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+
         MENUITEM SEPARATOR
         MENUITEM "Undo",                        ID_UNDO
         MENUITEM SEPARATOR
@@ -227,12 +227,14 @@ BEGIN
         BEGIN
             MENUITEM "with registered application", ID_DIR_OPEN_LEFT
             MENUITEM "with external editor",        ID_DIR_OPEN_LEFT_WITHEDITOR
+
             MENUITEM "with...",                     ID_DIR_OPEN_LEFT_WITH
         END
         POPUP "Open right"
         BEGIN
             MENUITEM "with registered application", ID_DIR_OPEN_RIGHT
             MENUITEM "with external editor",        ID_DIR_OPEN_RIGHT_WITHEDITOR
+
             MENUITEM "with...",                     ID_DIR_OPEN_RIGHT_WITH
         END
     END
@@ -907,6 +909,8 @@ BEGIN
     SEPARATOR
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
+    SEPARATOR
+    BUTTON      ID_SHOWLINEDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF

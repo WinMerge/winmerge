@@ -1,3 +1,9 @@
+2003-11-14 Laoran 
+  PATCH: [ 841062 ] Alternative icons for PATCH [ 840273 ] (for hilight line diff)
+  Submitted by Tim Gerundt
+   WinMerge: Merge.rc
+   res: Toolbar.bmp
+
 2003-11-14 Kimmo
  PATCH: [ 841767 ] Store unique item path
   Fixes bug: #840547 Copying unique file does not update date and size
