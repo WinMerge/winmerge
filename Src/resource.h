@@ -30,6 +30,8 @@
 #define ID_FILE_VSSDATABASE             118
 #define IDD_SELECTUNPACKER              119
 #define IDD_DIRCOMPSTATE                120
+#define IDD_WMGOTO                      121
+#define IDD_PROPPAGE_COMPARE            122
 #define IDS_VERSION_FMT                 130
 #define IDS_ALLFILES                    131
 #define IDS_CONFIRM_ALL_LEFT            132
@@ -173,7 +175,8 @@
 #define IDS_COPY_RIGHT_TO               259
 #define IDS_COPY_RIGHT_TO2              260
 #define IDS_SELECT_DESTFOLDER           261
-#define IDD_WMGOTO                      262
+#define IDS_COMPMETHOD_CONTENTS         262
+#define IDS_COMPMETHOD_MODDATE          263
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -292,6 +295,7 @@
 #define IDC_WMGOTO_PARAM                1113
 #define IDS_COLHDR_NDIFFS               1114
 #define IDS_COLHDR_NSDIFFS              1115
+#define IDC_COMPAREMETHODCOMBO          1116
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -548,3 +552,4 @@
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif
+

@@ -49,6 +49,7 @@
 #include "PropFilter.h"
 #include "PropColors.h"
 #include "PropRegistry.h"
+#include "PropCompare.h"
 #include "RegKey.h"
 #include "logfile.h"
 #include "PropSyntax.h"
@@ -171,6 +172,12 @@ CMainFrame::CMainFrame()
 	m_sExtEditorPath = theApp.GetProfileString(_T("Settings"), _T("ExternalEditor"), _T(""));
 	m_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), UNPACK_MANUAL);
 	m_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PREDIFF_MANUAL);
+
+    // Load the compare method and protect it from manual modifs in registry!
+    m_nCompMethod = theApp.GetProfileInt(_T("Settings"),_T("CompMethod"),0);
+    if (m_nCompMethod > 1)
+        m_nCompMethod = 0;
+
 	m_bReuseDirDoc = TRUE;
 	// TODO: read preference for logging
 
@@ -924,7 +931,9 @@ void CMainFrame::OnOptions()
 	CPropColors colors(theApp.GetDiffColor(), theApp.GetSelDiffColor(), theApp.GetDiffDeletedColor(), theApp.GetSelDiffDeletedColor(), 
 	                   theApp.GetDiffTextColor(), theApp.GetSelDiffTextColor(), theApp.GetTrivialColor(), theApp.GetTrivialDeletedColor());
 	CPropRegistry regpage;
+    CPropCompare compage;
 	sht.AddPage(&gen);
+    sht.AddPage(&compage);
 	sht.AddPage(&syn);
 	sht.AddPage(&filter);
 	sht.AddPage(&vss);
@@ -951,6 +960,7 @@ void CMainFrame::OnOptions()
 	filter.m_sPattern = m_sPattern;
 	regpage.m_strEditorPath = m_sExtEditorPath;
 	regpage.GetContextRegValues();
+    compage.m_compareMethod = m_nCompMethod;
 	
 	if (sht.DoModal()==IDOK)
 	{
@@ -968,6 +978,8 @@ void CMainFrame::OnOptions()
 		diffOptions.bIgnoreBlankLines = gen.m_bIgnoreBlankLines;
 		diffOptions.bEolSensitive = gen.m_bEolSensitive;
 		diffOptions.bIgnoreCase = gen.m_bIgnoreCase;
+
+        m_nCompMethod = compage.m_compareMethod;
 		
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
 		m_sPattern = filter.m_sPattern;
@@ -1000,6 +1012,7 @@ void CMainFrame::OnOptions()
 		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
 		theApp.WriteProfileString(_T("Settings"), _T("FileFilterPath"), filter.m_sFileFilterPath);
 		theApp.WriteProfileInt(_T("Settings"), _T("DisableSplash"), theApp.m_bDisableSplash);
+        theApp.WriteProfileInt(_T("Settings"), _T("CompMethod"), m_nCompMethod);
 
 		theApp.m_bHiliteSyntax = syn.m_bHiliteSyntax;
 		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), theApp.m_bHiliteSyntax);
@@ -2410,3 +2423,4 @@ void CMainFrame::OnFileNew()
 	VERIFY(m_strRightDesc.LoadString(IDS_EMPTY_RIGHT_FILE));
 	ShowMergeDoc(pDirDoc, _T(""), _T(""), FALSE, FALSE, 0, 0);
 }
+

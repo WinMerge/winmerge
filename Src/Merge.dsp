@@ -1066,6 +1066,10 @@ SOURCE=.\PropColors.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropCompare.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropFilter.cpp
 # End Source File
 # Begin Source File
@@ -1670,6 +1674,10 @@ SOURCE=.\PropColors.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropCompare.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropFilter.h
 # End Source File
 # Begin Source File
@@ -2162,3 +2170,4 @@ SOURCE=.\stampver.inf
 # 	1:10:IDB_SPLASH:103
 # 	2:21:SplashScreenInsertKey:4.0
 # End Section
+

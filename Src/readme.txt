@@ -1,3 +1,10 @@
+2004-01-23 Kimmo
+ PATCH: [ 848159 ] RFE 826652 : Compare by modified date
+  Submitted by Tim Musschoot - some modifications by Kimmo
+  src: DirScan.cpp MainFrm.h MainFrm.cpp Merge.dsp Merge.rc resource.h
+  src new files: PropCompare.h PropCompare.cpp
+  Languages: *.rc resource.h
+
 2004-01-22 Perry
  Add some comments before initialization of g_cols
   src: DirViewColItems.cpp

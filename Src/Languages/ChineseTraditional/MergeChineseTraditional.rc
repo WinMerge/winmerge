@@ -247,6 +247,19 @@ BEGIN
             MENUITEM "with external editor",        ID_DIR_OPEN_RIGHT_WITHEDITOR
             MENUITEM "with...",                     ID_DIR_OPEN_RIGHT_WITH
         END
+        MENUITEM SEPARATOR
+        POPUP "Zip"
+        BEGIN
+            MENUITEM "Zip left side %1 file(s) from %2 selected item(s)", 
+                                                    ID_DIR_ZIP_LEFT
+            MENUITEM "Zip right side %1 file(s) from %2 selected item(s)", 
+                                                    ID_DIR_ZIP_RIGHT
+            MENUITEM "Zip both sides %1 file(s) from %2 selected item(s)", 
+                                                    ID_DIR_ZIP_BOTH
+            MENUITEM "Zip both sides diffs only %1 file(s) from %2 of %3 selected item(s)", 
+                                                    ID_DIR_ZIP_BOTH_DIFFS_ONLY
+
+        END
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -740,6 +753,36 @@ BEGIN
     PUSHBUTTON      "Stop",IDC_COMPARISON_STOP,320,13,83,14
 END
 
+IDD_WMGOTO DIALOG DISCARDABLE  0, 0, 189, 70
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Go To"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "G&oto:",IDC_STATIC,7,9,18,8
+    EDITTEXT        IDC_WMGOTO_PARAM,33,7,93,14,ES_AUTOHSCROLL | ES_NUMBER
+    GROUPBOX        "File",IDC_STATIC,7,27,48,35
+    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,13,38,28,10
+    CONTROL         "&Right",IDC_WMGOTO_FILERIGHT,"Button",BS_AUTORADIOBUTTON,
+                    13,48,33,10
+    GROUPBOX        "Goto what",IDC_STATIC,61,27,63,35
+    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,68,38,29,10
+    CONTROL         "&Difference",IDC_WMGOTO_TODIFF,"Button",
+                    BS_AUTORADIOBUTTON,68,48,49,10
+    DEFPUSHBUTTON   "&Go To",IDOK,132,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,132,24,50,14
+END
+
+IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 190, 111
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Compare"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "File Compare method:",IDC_STATIC,7,6,70,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,83,6,84,71,CBS_DROPDOWNLIST |
+                    WS_VSCROLL | WS_TABSTOP
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1112,6 +1155,7 @@ BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
     IDD_OPEN                "WinMerge 這個資料夾"
+    IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
 END
 
 STRINGTABLE PRELOAD DISCARDABLE
@@ -1226,6 +1270,8 @@ BEGIN
     IDS_STATUSBAR_READONLY  "RO"
     IDS_COLHDR_LENCODING    "Left Encoding"
     IDS_COLHDR_RENCODING    "Right Encoding"
+    IDS_COLHDR_NDIFFS       "#differences"
+    IDS_COLHDR_NSDIFFS      "#sig. differences"
     IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
@@ -1274,6 +1320,8 @@ BEGIN
     IDS_COPY_RIGHT_TO       "Right to... (%1)"
     IDS_COPY_RIGHT_TO2      "Right to... (%1 of %2)"
     IDS_SELECT_DESTFOLDER   "Select destination folder"
+    IDS_COMPMETHOD_CONTENTS "Contents"
+    IDS_COMPMETHOD_MODDATE  "Modified date"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1419,4 +1467,5 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 

@@ -46,6 +46,7 @@ enum
 class CDiffView;
 class CDirView;
 class CDirDoc;
+class CMergeDoc;
 class CMergeEditView;
 class CMergeDiffDetailView;
 
@@ -138,6 +139,8 @@ public:
 	BOOL m_CheckOutMulti;
 	BOOL m_bVCProjSync;
 
+    int m_nCompMethod; /**< CompareMethod : CPropCompare::BY_CONTENTS or CPropCompare::BY_DATE */
+
 // Implementation data
 
 protected:  // control bar embedded members
@@ -215,3 +218,4 @@ BOOL DeleteDirSilently(LPCTSTR szDir, CString * psError);
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
+

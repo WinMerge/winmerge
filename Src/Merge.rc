@@ -792,6 +792,16 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,132,24,50,14
 END
 
+IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 190, 111
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Compare"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "File Compare method:",IDC_STATIC,7,6,70,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,83,6,84,71,CBS_DROPDOWNLIST |
+                    WS_VSCROLL | WS_TABSTOP
+END
+
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1329,6 +1339,8 @@ BEGIN
     IDS_COPY_RIGHT_TO       "Right to... (%1)"
     IDS_COPY_RIGHT_TO2      "Right to... (%1 of %2)"
     IDS_SELECT_DESTFOLDER   "Select destination folder"
+    IDS_COMPMETHOD_CONTENTS "Contents"
+    IDS_COMPMETHOD_MODDATE  "Modified date"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1640,4 +1652,5 @@ LANGUAGE 9, 1
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 

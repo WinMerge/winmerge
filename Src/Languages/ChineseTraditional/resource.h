@@ -16,6 +16,7 @@
 #define IDD_OPEN                        106
 #define IDS_WINMERGE_THIS_DIRECTORY     106
 #define IDD_EDITFILE                    107
+#define IDS_UNKNOWN_ARCHIVE_FORMAT      107
 #define IDD_VSS                         108
 #define IDD_PROPPAGE_LARGE              109
 #define IDD_CLEARCASE                   110
@@ -29,6 +30,8 @@
 #define ID_FILE_VSSDATABASE             118
 #define IDD_SELECTUNPACKER              119
 #define IDD_DIRCOMPSTATE                120
+#define IDD_WMGOTO                      121
+#define IDD_PROPPAGE_COMPARE            122
 #define IDS_VERSION_FMT                 130
 #define IDS_ALLFILES                    131
 #define IDS_CONFIRM_ALL_LEFT            132
@@ -172,7 +175,8 @@
 #define IDS_COPY_RIGHT_TO               259
 #define IDS_COPY_RIGHT_TO2              260
 #define IDS_SELECT_DESTFOLDER           261
-#define IDD_WMGOTO                      262
+#define IDS_COMPMETHOD_CONTENTS         262
+#define IDS_COMPMETHOD_MODDATE          263
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -289,6 +293,9 @@
 #define IDC_WMGOTO_TOLINE               1111
 #define IDC_WMGOTO_TODIFF               1112
 #define IDC_WMGOTO_PARAM                1113
+#define IDS_COLHDR_NDIFFS               1114
+#define IDS_COLHDR_NSDIFFS              1115
+#define IDC_COMPAREMETHODCOMBO          1116
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -529,6 +536,10 @@
 #define ID_DIR_COPY_RIGHT_TO_BROWSE     32857
 #define ID_WINDOW_CHANGE_PANE           32858
 #define ID_EDIT_WMGOTO                  32859
+#define ID_DIR_ZIP_LEFT                 32860
+#define ID_DIR_ZIP_RIGHT                32861
+#define ID_DIR_ZIP_BOTH                 32862
+#define ID_DIR_ZIP_BOTH_DIFFS_ONLY      32863
 
 // Next default values for new objects
 //
@@ -536,8 +547,9 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        121
-#define _APS_NEXT_COMMAND_VALUE         32860
-#define _APS_NEXT_CONTROL_VALUE         1108
+#define _APS_NEXT_COMMAND_VALUE         32864
+#define _APS_NEXT_CONTROL_VALUE         1115
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif
+

@@ -12,6 +12,7 @@
 #include "logfile.h"
 #include "paths.h"
 #include "FileTransform.h"
+#include "mainfrm.h"
 
 extern bool just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin, int * ndiffs, int *ntrivialdiffs);
 extern CLogFile gLog;
@@ -48,6 +49,8 @@ static void StoreDiffResult(const CString & sDir, const fentry * lent, const fen
 static int prepAndCompareTwoFiles(const fentry & lent, const fentry & rent, const CString & sLeftDir, 
 				  const CString & sRightDir, int * ndiffs, int * ntrivialdiffs);
 
+/// Custom function comparing only by date
+static bool just_compare_files_by_date(LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin, int * ndiffs, int * ntrivialdiffs);
 
 /** @brief cmpmth is a typedef for a pointer to a method */
 typedef int (CString::*cmpmth)(LPCTSTR sz) const;
@@ -298,8 +301,16 @@ prepAndCompareTwoFiles(const fentry & lent, const fentry & rent,
 	bool diff=false, bin=false;
 	if (compareok)
 	{
-		compareok = just_compare_files (filepathTransformed1, 
-			filepathTransformed2, 0, &diff, &bin, ndiffs, ntrivialdiffs);
+	    if (mf->m_nCompMethod == 0)
+		{
+			compareok = just_compare_files(filepathTransformed1, 
+				filepathTransformed2, 0, &diff, &bin, ndiffs, ntrivialdiffs);
+		}
+		else if (mf->m_nCompMethod == 1)
+		{
+			compareok = just_compare_files_by_date(filepathTransformed1, 
+				filepathTransformed2, 0, &diff, &bin, ndiffs, ntrivialdiffs);
+		}
 	}
 
 	// delete the temp files after comparison
@@ -452,3 +463,81 @@ static void StoreDiffResult(const CString & sDir, const fentry * lent, const fen
 		, lmtime, rmtime, lctime, rctime, lsize, rsize, code, lattrs, rattrs
 		, ndiffs, ntrivialdiffs);
 }
+
+/**
+ * @brief Compare file timestamps
+ */
+bool just_compare_files_by_date(LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin, int * ndiffs, int * ntrivialdiffs)
+{
+    bool bCompareOK = true;
+    *diff = false;
+    *bin = false;
+    *ndiffs = 0;
+    *ntrivialdiffs = 0;
+
+    FILETIME ftCreate1, ftAccess1, ftWrite1, ftLocal1;
+    FILETIME ftCreate2, ftAccess2, ftWrite2, ftLocal2;
+    SYSTEMTIME stCreate1;
+    SYSTEMTIME stCreate2;
+
+    HANDLE hFile1 = CreateFile(filepath1,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,0,NULL);
+    if (hFile1 == INVALID_HANDLE_VALUE)
+    {
+        return false;
+    }
+
+    HANDLE hFile2 = CreateFile(filepath2,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,0,NULL);
+    if (hFile2 == INVALID_HANDLE_VALUE)
+    {
+        return false;
+    }
+
+    // Retrieve the file times for the file.
+    if (!GetFileTime(hFile1, &ftCreate1, &ftAccess1, &ftWrite1))
+    {
+        return false;
+    }
+
+    // Convert the last-write time to local time.
+    if (!FileTimeToLocalFileTime(&ftWrite1, &ftLocal1))
+    {
+        return false;
+    }
+
+    // Retrieve the file times for the file.
+    if (!GetFileTime(hFile2, &ftCreate2, &ftAccess2, &ftWrite2))
+    {
+        return false;
+    }
+
+    // Convert the last-write time to local time.
+    if (!FileTimeToLocalFileTime(&ftWrite2, &ftLocal2))
+    {
+        return false;
+    }
+
+    // Convert the local file time from UTC to system time.
+    FileTimeToSystemTime(&ftLocal1, &stCreate1);
+    FileTimeToSystemTime(&ftLocal2, &stCreate2);
+
+    if (memcmp(&stCreate1,&stCreate2,sizeof(SYSTEMTIME)) != 0)
+    {
+        *diff = true;
+    }
+    /*if (stCreate1.wYear != stCreate2.wYear ||
+        stCreate1.wMonth != stCreate2.wMonth ||
+        stCreate1.wDay != stCreate2.wDay ||
+        stCreate1.wHour != stCreate2.wHour ||
+        stCreate1.wMinute != stCreate2.wMinute ||
+        stCreate1.wSecond != stCreate2.wSecond ||
+        stCreate1.wMilliseconds != stCreate2.wMilliseconds)
+    {
+        *diff = true;
+    }*/
+
+    CloseHandle(hFile1);
+    CloseHandle(hFile2);
+
+    return bCompareOK;
+}
+
