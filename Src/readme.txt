@@ -1,3 +1,10 @@
+2005-01-11 Kimmo
+ PATCH: [ 1100176 ] small fix in DirDoc RefreshOptions
+  Submitted by Jim Fougeron
+  Src: DirDoc.cpp
+ Update contributors.txt (Jim Fougeron)
+  Doc/Users: Contributors.txt
+
 2005-01-10 Kimmo
  Add Hungarian to resource.h updates in UpdateAll_resource_h.bat
   Src/Languages: UpdateAll_resource_h.bat

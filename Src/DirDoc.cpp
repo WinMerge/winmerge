@@ -596,7 +596,7 @@ void CDirDoc::RefreshOptions()
 	DIFFOPTIONS options;
 
 	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetBool(OPT_CMP_MOVED_BLOCKS));
-	options.nIgnoreWhitespace = mf->m_options.GetBool(OPT_CMP_IGNORE_WHITESPACE);
+	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	options.bIgnoreBlankLines = mf->m_options.GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	options.bIgnoreCase = mf->m_options.GetBool(OPT_CMP_IGNORE_CASE);
 	options.bEolSensitive = mf->m_options.GetBool(OPT_CMP_EOL_SENSITIVE);
