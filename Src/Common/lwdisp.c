@@ -228,7 +228,7 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 #else
 			strcpy(errorText, bareErrorText);
 #endif
-			_tcscat(errorText, "\n");
+			_tcscat(errorText, _T("\n"));
 			_tcscat(errorText, source);
 			MessageBox(0, errorText, 0, MB_ICONSTOP|MB_TASKMODAL);
 			free (errorText);

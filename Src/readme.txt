@@ -1,3 +1,7 @@
+2003-11-04 Perry
+ PATCH: [ 836186 ] Unicode fix for lwdisp.co
+  common: lwdisp.c
+
 2003-11-05 Laoran
  PATCH: [ 831384 ] dir comparison : state bar & stop button
   WinMerge: DiffContext.cpp DiffContext.h DiffThread.cpp DirDoc.cpp DirFrame.cpp DirFrame.h
