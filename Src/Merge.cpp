@@ -194,6 +194,8 @@ BOOL CMergeApp::InitInstance()
 	UINT nFiles=0;
 	BOOL recurse=FALSE;
 	files.SetSize(2);
+	DWORD dwLeftFlags = 0;
+	DWORD dwRightFlags = 0;
 	for (int i = 1; i < __argc; i++)
 	{
 		LPCTSTR pszParam = __targv[i];
@@ -202,11 +204,29 @@ BOOL CMergeApp::InitInstance()
 			// remove flag specifier
 			++pszParam;
 
+			// -r to compare recursively
 			if (!_tcsicmp(pszParam, _T("r")))
 				recurse=TRUE;
 
+			// -e to allow closing with single esc press
 			if (!_tcsicmp(pszParam, _T("e")))
 				m_bEscCloses = TRUE;
+
+			// -ur to not add left path to MEU
+			if (!_tcsicmp(pszParam, _T("ul")))
+				dwLeftFlags |= FFILEOPEN_NOMRU;
+
+			// -ur to not add right path to MRU
+			if (!_tcsicmp(pszParam, _T("ur")))
+				dwRightFlags |= FFILEOPEN_NOMRU;
+
+			// -ur to not add paths to MRU
+			if (!_tcsicmp(pszParam, _T("ub")))
+			{
+				dwLeftFlags |= FFILEOPEN_NOMRU;
+				dwRightFlags |= FFILEOPEN_NOMRU;
+			}
+
 		}
 		else
 		{
@@ -220,19 +240,21 @@ BOOL CMergeApp::InitInstance()
 	if (nFiles>2)
 	{
 		pMainFrame->m_strSaveAsPath = files[2];
-		pMainFrame->DoFileOpen(files[0], files[1], recurse);
+		pMainFrame->DoFileOpen(files[0], files[1],
+			dwLeftFlags, dwRightFlags, recurse);
 	}
 	else if (nFiles>1)
 	{
 		pMainFrame->m_strSaveAsPath = _T("");
-		pMainFrame->DoFileOpen(files[0], files[1], recurse);
+		pMainFrame->DoFileOpen(files[0], files[1],
+			dwLeftFlags, dwRightFlags, recurse);
 	}
 	else if (nFiles>0)
 	{
 		pMainFrame->m_strSaveAsPath = _T("");
-		pMainFrame->DoFileOpen(files[0], "", recurse);
+		pMainFrame->DoFileOpen(files[0], "",
+			dwLeftFlags, dwRightFlags, recurse);
 	}
-
 	return TRUE;
 }
 

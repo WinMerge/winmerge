@@ -32,6 +32,11 @@
 
 #define BACKUP_FILE_EXT   _T(".bak")
 
+enum
+{
+	FFILEOPEN_NONE		= 0x0000,
+	FFILEOPEN_NOMRU		= 0x0001
+};
 
 class CDiffView;
 class CDirView;
@@ -72,7 +77,8 @@ public:
 	BOOL SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
 	BOOL DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
 	void UpdateCurrentFileStatus(CDirDoc * pDirDoc, UINT nStatus, int idx);
-	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL, BOOL bRecurse = FALSE);
+	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
+		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE);
 	void ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight);
 	void UpdateResources();
 	HMENU NewDefaultMenu();

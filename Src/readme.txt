@@ -1,6 +1,9 @@
 2003-04-07 Kimmo
  PATCH: [ 716308 ] Disable italic text
   editlib: ccrystaltextview.cpp
+ PATCH: [ 715553 ] Add commandline options to not add paths to MRU
+  Usage: -ur to ignore rigth, -ul to ignore left and -ub to ignore both
+  WinMerge: MainFrm.h MainFrm.cpp Merge.cpp 
 
 2003-04-06 Kimmo
  PATCH: [ 715457 ] LoadFromFile() rewrote

@@ -850,13 +850,12 @@ void CMainFrame::rptStatus(BYTE code)
 	m_wndStatusBar.SetPaneText(2, s);
 }
 
-
-BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/, BOOL bRecurse /*= FALSE*/)
+BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/,
+	DWORD dwLeftFlags /*=0*/, DWORD dwRightFlags /*=0*/, BOOL bRecurse /*=FALSE*/)
 {
 	CString strLeft(pszLeft);
 	CString strRight(pszRight);
 	CString strExt;
-	CFileStatus status;
 
 	BOOL docNull;
 	CDirDoc * pDirDoc = GetDirDocToShow(&docNull);
@@ -889,8 +888,10 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	else
 	{
 		//save the MRU left and right files.
-		addToMru(pszLeft, _T("Files\\Left"));
-		addToMru(pszRight, _T("Files\\Right"));
+		if (!(dwLeftFlags & FFILEOPEN_NOMRU))
+			addToMru(pszLeft, _T("Files\\Left"));
+		if (!(dwRightFlags & FFILEOPEN_NOMRU))
+			addToMru(pszRight, _T("Files\\Right"));
 	}
 
 	if (1)
