@@ -1,3 +1,7 @@
+2004-02-19 Jochen
+ BUG: [ 888992 ] 7zip integration: Error deleting file when closing WinMerge
+  Src: 7zCommon.cpp
+
 2004-02-19 Kimmo
  PATCH: [ 899145 ] Check if patch path is absolute
   Src: Merge.rc PatchDlg.cpp paths.cpp paths.h resource.h

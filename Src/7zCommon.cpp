@@ -115,7 +115,7 @@ void CTempPath::Clear()
 	int cch = lstrlen(m_cPath);
 	ASSERT(cch < MAX_PATH);
 	m_cPath[cch + 1] = 0;
-	SHFILEOPSTRUCT fileop = {0, FO_DELETE, m_cPath, 0, FOF_NOCONFIRMATION|FOF_SILENT, 0, 0, 0};
+	SHFILEOPSTRUCT fileop = {0, FO_DELETE, m_cPath, 0, FOF_NOCONFIRMATION|FOF_SILENT|FOF_NOERRORUI, 0, 0, 0};
 	SHFileOperation(&fileop);
 }
 
