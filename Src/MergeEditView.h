@@ -9,12 +9,6 @@
 
 #define CONTEXT_LINES   5
 
-static LPCTSTR crlfs[] =
-  {
-    _T ("\x0d\x0a"), //  DOS/Windows style
-    _T ("\x0a"),     //  UNIX style
-    _T ("\x0d")      //  Macintosh style
-  };
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView view

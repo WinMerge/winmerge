@@ -118,7 +118,7 @@ protected :
     BOOL m_bReadOnly;
     BOOL m_bModified;
     int m_nCRLFMode;
-	BOOL m_EolSensitive;
+    BOOL m_EolSensitive;
     BOOL m_bCreateBackupFile;
     int m_nUndoBufSize;
     BOOL m_bInsertTabs;
@@ -132,7 +132,11 @@ protected :
       {
         TCHAR *m_pcLine;
         int m_nLength, m_nMax;
+        int m_nEolChars; // # of eolchars
         DWORD m_dwFlags;
+
+        int FullLength() const { return m_nLength+m_nEolChars; }
+        int Length() const { return m_nLength; }
 
         SLineInfo ()
         {
@@ -150,6 +154,11 @@ protected :
     struct SUndoRecord
       {
         DWORD m_dwFlags;
+        
+        // Undo records store file line numbers, not screen line numbers
+        // File line numbers do not count ghost lines
+        // (ghost lines are lines with no text and no EOL chars, which are
+        //  used by WinMerge as left-only or right-only placeholders)
 
         CPoint m_ptStartPos, m_ptEndPos;  //  Block of text participating
 
@@ -209,6 +218,8 @@ public :
 
     //  Lines of text
     CArray < SLineInfo, SLineInfo & >m_aLines;
+    struct RealityBlock { int nStartReal; int nStartApparent; int nCount; };
+    CArray < RealityBlock, RealityBlock& > m_RealityBlocks; // ghostfree blocks
 
     //  Undo
     CArray < SUndoRecord, SUndoRecord & >m_aUndoBuf;
@@ -216,10 +227,10 @@ public :
     int m_nSyncPosition;
     BOOL m_bUndoGroup, m_bUndoBeginGroup;
 
-	//BEGIN SW
-	/** Position where the last change was made. */
-	CPoint m_ptLastChange;
-	//END SW
+    //BEGIN SW
+    /** Position where the last change was made. */
+    CPoint m_ptLastChange;
+    //END SW
 
     //  Connected views
     CList < CCrystalTextView *, CCrystalTextView * >m_lpViews;
@@ -230,7 +241,8 @@ public :
 
     //  Implementation
     BOOL InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar);
-    BOOL InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos);
+    BOOL InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int * pRealStart=0, int * pRealEnd=0);
+    CString StripTail (int i, int bytes);
 
     //  [JRT] Support For Descriptions On Undo/Redo Actions
     void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
@@ -241,7 +253,6 @@ public :
 
     // Operations
 public :
-	  void DeleteLine(int line);
     //  Construction/destruction code
     CCrystalTextBuffer ();
     ~CCrystalTextBuffer ();
@@ -252,8 +263,8 @@ public :
 // WinMerge has own routines for loading and saving
 #if 0
     BOOL LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
-	BOOL SaveToFile(LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC, 
-		BOOL bClearModifiedFlag = TRUE);
+    BOOL SaveToFile(LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC, 
+    BOOL bClearModifiedFlag = TRUE);
 #endif
 
     void FreeAll ();
@@ -269,6 +280,7 @@ public :
     //  Text access functions
     int GetLineCount ();
     int GetLineLength (int nLine);
+    int GetFullLineLength (int nLine); // including EOLs
     LPTSTR GetLineChars (int nLine);
     DWORD GetLineFlags (int nLine);
     int GetLineWithFlag (DWORD dwFlag);
@@ -278,14 +290,16 @@ public :
     //  Attributes
     int GetCRLFMode ();
     void SetCRLFMode (int nCRLFMode);
+    LPCTSTR CCrystalTextBuffer::GetDefaultEol() const;
     BOOL GetReadOnly () const;
     void SetReadOnly (BOOL bReadOnly = TRUE);
 
-	void SetEolSensitivity(BOOL EolSensitive) { m_EolSensitive = EolSensitive; }
+    void SetEolSensitivity(BOOL EolSensitive) { m_EolSensitive = EolSensitive; }
 
     //  Text modification functions
     BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE);
     BOOL DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE);
+    void FinishLoading();
 
     //  Undo/Redo
     BOOL CanUndo ();
@@ -297,12 +311,14 @@ public :
     void BeginUndoGroup (BOOL bMergeWithPrevious = FALSE);
     void FlushUndoGroup (CCrystalTextView * pSource);
 
-	//BEGIN SW
-	/**
-	Returns the position where the last changes where made.
-	*/
-	CPoint GetLastChangePos() const;
-	//END SW
+    //BEGIN SW
+    /**
+    Returns the position where the last changes where made.
+    */
+    CPoint GetLastChangePos() const;
+    //END SW
+    void DeleteLine(int line);
+
 
     //  Browse undo sequence
     POSITION GetUndoDescription (CString & desc, POSITION pos = NULL);
@@ -315,7 +331,7 @@ public :
                       DWORD dwUpdateFlags, int nLineIndex = -1);
 
     // Tabs/space inserting
-	BOOL GetInsertTabs() const;
+    BOOL GetInsertTabs() const;
     void SetInsertTabs(BOOL bInsertTabs);
 
    	// Tabbing
@@ -336,6 +352,16 @@ public :
 
     // Implementation
 protected :
+    // Code for mapping between file line numbers (real line numbers)
+    // and screen line numbers (apparent line numbers)
+    // This is needed to handle ghost lines (ones with no text or EOL chars)
+    // which WinMerge uses for left-only or right-only lines.
+    int ComputeRealLine(int nApparentLine) const;
+    int ComputeApparentLine(int nRealLine) const;
+    int FindRealityBlocknoFromApparent(int nApparentLine) const;
+    int FindRealityBlocknoFromReal(int nRealLine) const;
+    void RecomputeRealityMapping();
+
     // Generated message map functions
     //{{AFX_MSG(CCrystalTextBuffer)
     //}}AFX_MSG

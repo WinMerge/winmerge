@@ -1,3 +1,8 @@
+2003-06-21 Perry
+ PATCH: [ 716456 ] Update Undo/Redo info with rescan line mapping
+  WinMerge: MergeDoc.cpp MergeEditView.h
+  editlib: crystaltextbuffer.cpp crystaltextbuffer.h
+
 2003-06-19 Perry
  PATCH: [ 728153 ] If opening first file fails, don't open second
   WinMerge: MainFrm.cpp

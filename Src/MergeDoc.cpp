@@ -46,6 +46,14 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+
+static LPCTSTR crlfs[] =
+  {
+    _T ("\x0d\x0a"), //  DOS/Windows style
+    _T ("\x0a"),     //  UNIX style
+    _T ("\x0d")      //  Macintosh style
+  };
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
 
@@ -207,12 +215,15 @@ void CMergeDoc::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc commands
 
-// remove lines with flags==deleteflags, and clear all others
-static void PrepareBufferForRescan(CMergeDoc::CDiffTextBuffer * buf, DWORD deleteflags)
+
+// remove all ghost lines (except last one in file)
+// (2003-06-21, Perry: I don't understand why this is necessary, but if this isn't
+//  done, more and more gray lines appear in the file)
+static void RemoveEmptyLinesExceptLast(CMergeDoc::CDiffTextBuffer * buf)
 {
 	for(int ct=buf->GetLineCount()-1; ct>=0; --ct)
 	{
-		if (buf->GetLineFlags(ct) & deleteflags)
+		if (ct < buf->GetLineCount()-1 && !buf->GetFullLineLength(ct))
 		{
 			buf->DeleteLine(ct);
 		}
@@ -221,6 +232,7 @@ static void PrepareBufferForRescan(CMergeDoc::CDiffTextBuffer * buf, DWORD delet
 	}
 }
 
+// Save files under edit to temp files & compare again, to update diffs on screen
 BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 {
 	if (!bForced)
@@ -234,8 +246,8 @@ BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	BOOL rtMod = m_rtBuf.IsModified();
 
 	// remove blank lines and clear winmerge flags
-	PrepareBufferForRescan(&m_ltBuf, LF_RIGHT_ONLY);
-	PrepareBufferForRescan(&m_rtBuf, LF_LEFT_ONLY);
+	RemoveEmptyLinesExceptLast(&m_ltBuf);
+	RemoveEmptyLinesExceptLast(&m_rtBuf);
 
 	// restore modified status
 	m_ltBuf.SetModified(ltMod);
@@ -962,113 +974,54 @@ BOOL CMergeDoc::CDiffTextBuffer::FlagIsSet(UINT line, DWORD flag)
 	return ((m_aLines[line].m_dwFlags & flag) == flag);
 }
 
-// Get text ignoring removed lines
-// CrystalTextBuffer::GetText() returns text including removed lines
+// Get text of specified lines
+// (ghost lines will not contribute text)
+// CrystalTextBuffer::GetText() returns text including ghost lines
 UINT CMergeDoc::CDiffTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
 								 int nEndLine, int nEndChar, 
 								 CString &text, BOOL bLeft, int nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
 {
 	int lines = m_aLines.GetSize();
 	ASSERT(nStartLine >= 0 && nStartLine < lines);
-	ASSERT(nStartChar >= 0 && nStartChar <= m_aLines[nStartLine].m_nLength);
+	ASSERT(nStartChar >= 0 && nStartChar <= GetLineLength(nStartLine));
 	ASSERT(nEndLine >= 0 && nEndLine < lines);
-	ASSERT(nEndChar >= 0 && nEndChar <= m_aLines[nEndLine].m_nLength);
+	ASSERT(nEndChar >= 0 && nEndChar <= GetFullLineLength(nEndLine));
 	ASSERT(nStartLine < nEndLine || nStartLine == nEndLine && 
 		nStartChar < nEndChar);
-	
-	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-		nCrlfStyle = GetCRLFMode();
-		
-	ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
-	LPCTSTR pszCRLF = crlfs[nCrlfStyle];
-	
-	int nCRLFLength = _tcslen(pszCRLF);
-	ASSERT(nCRLFLength > 0);
-	
+
+	// estimate size (upper bound)
 	int nBufSize = 0;
-	
-	// Count text length (incl. linefeeds)
-	for (int i = nStartLine; i <= nEndLine; i++)
-	{
-		// Skip blank diff lines
-		if ((!m_bIsLeft && !FlagIsSet(i, LF_LEFT_ONLY)) ||
-					( m_bIsLeft && !FlagIsSet(i, LF_RIGHT_ONLY)))
-		{
-			nBufSize += m_aLines[i].m_nLength;
-			nBufSize += nCRLFLength;
-		}
-	}
-	
+	for (int i=nStartLine; i<=nEndLine; ++i)
+		nBufSize += (GetFullLineLength(i) + 2); // in case we insert EOLs
 	LPTSTR pszBuf = text.GetBuffer(nBufSize);
-	
-	// Multiple lines
-	if (nStartLine < nEndLine)
+
+	for (i=nStartLine; i<=nEndLine; ++i)
 	{
-		// Skip blank diff lines
-		if ((!m_bIsLeft && !FlagIsSet(nStartLine, LF_LEFT_ONLY)) ||
-				(m_bIsLeft && !FlagIsSet(nStartLine, LF_RIGHT_ONLY)))
+		int soffset = (i==nStartLine ? nStartChar : 0);
+		int eoffset = (i==nEndLine ? nEndChar : GetFullLineLength(i));
+		int chars = eoffset - soffset;
+		// (Exclude ghost lines, also exclude last line if at position 0)
+		if (chars>0)
 		{
-			// Copy (part of) first line
-			int nCount = m_aLines[nStartLine].m_nLength - nStartChar;
-			if (nCount > 0)
+			LPCTSTR szLine = m_aLines[i].m_pcLine + soffset;
+			CopyMemory(pszBuf, szLine, chars * sizeof(TCHAR));
+			pszBuf += chars;
+			if (i!=GetLineCount() && GetLineLength(i)==GetFullLineLength(i))
 			{
-				CopyMemory(pszBuf, m_aLines[nStartLine].m_pcLine + nStartChar,
-					nCount * sizeof(TCHAR));
-				pszBuf += nCount;
+				// Oops, line lacks EOL
+				// (If this happens, editor probably has bug)
+				CString sEol = crlfs[nCrlfStyle];
+				CopyMemory(pszBuf, sEol, sEol.GetLength());
+				pszBuf += sEol.GetLength();
 			}
-			CopyMemory(pszBuf, pszCRLF, nCRLFLength * sizeof(TCHAR));
-			pszBuf += nCRLFLength;
-		}
-		
-		// Other lines
-		for (i = nStartLine + 1; i < nEndLine; i++)
-		{
-			// Skip blank diff lines
-			if ((!m_bIsLeft && !FlagIsSet(i, LF_LEFT_ONLY)) ||
-					(m_bIsLeft && !FlagIsSet(i, LF_RIGHT_ONLY)))
-			{
-				int nCount = m_aLines[i].m_nLength;
-				if (nCount > 0)
-				{
-					CopyMemory(pszBuf, m_aLines[i].m_pcLine,
-						nCount * sizeof(TCHAR));
-					pszBuf += nCount;
-				}
-				CopyMemory(pszBuf, pszCRLF, nCRLFLength * sizeof(TCHAR));
-				pszBuf += nCRLFLength;
-			}
-		}
-		
-		// Last line
-		if (nEndChar > 0)
-		{
-			// Skip blank diff lines
-			if ((!m_bIsLeft && !FlagIsSet(nEndLine, LF_LEFT_ONLY)) ||
-					(m_bIsLeft && !FlagIsSet(nEndLine, LF_RIGHT_ONLY)))
-			{
-				CopyMemory(pszBuf, m_aLines[nEndLine].m_pcLine,
-					nEndChar * sizeof(TCHAR));
-				pszBuf += nEndChar;
-			}
-		}
-	}
-	else
-	{
-		// Skip blank diff lines
-		if ((!m_bIsLeft && !FlagIsSet(nStartLine, LF_LEFT_ONLY)) ||
-				(m_bIsLeft && !FlagIsSet(nStartLine, LF_RIGHT_ONLY)))
-		{
-			int nCount = nEndChar - nStartChar;
-			CopyMemory(pszBuf, m_aLines[nStartLine].m_pcLine + nStartChar,
-				nCount * sizeof(TCHAR));
-			pszBuf += nCount;
 		}
 	}
 	pszBuf[0] = 0;
 	text.ReleaseBuffer();
 	text.FreeExtra();
-	return nBufSize;
+	return text.GetLength();
 }
+
 
 // Try to determine current CRLF mode based on first line
 int CMergeDoc::CDiffTextBuffer::DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength)
@@ -1136,9 +1089,9 @@ BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 	bSuccess = files_openFileMapped(&fileData);
 
 	if (bSuccess)
-		{
-			//Try to determine current CRLF mode based on first line
-			if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+	{
+		//Try to determine current CRLF mode based on first line
+		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
 			nCrlfStyle = DetermineCRLFStyle(fileData.pMapBase, fileData.dwSize);
 
 		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
@@ -1154,24 +1107,33 @@ BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		{
 			TCHAR c = *lpChar;
 			
-			// EOL found
 			if (c == '\n' || c == '\r')
 			{
-				eolChars = files_readEOL(lpChar, fileData.dwSize - dwBytesRead,
-						mf->m_bEolSensitive);
-				ReadLineFromBuffer(lpLineBegin, lpChar - lpLineBegin);
-					
-				lpChar += eolChars;
-				dwBytesRead += eolChars;	// Skip EOL chars
-				lpLineBegin = lpChar;
+				// Might be an EOL, but check for leading \r of \r\n
+				if (dwBytesRead+1 < fileData.dwSize && lpChar[0]=='\r' && lpChar[1]=='\n')
+				{
+					// This is a \r followed by a \n, so treat it as regular char
+				}
+				else
+				{
+					lpChar++;
+					dwBytesRead++;
+
+					// This is an EOL
+					ReadLineFromBuffer(lpLineBegin, lpChar - lpLineBegin);
+					lpLineBegin = lpChar;
+					continue;
+				}
 			}
-			else
-			{
-				lpChar++;
-				dwBytesRead++;
-			}
+			lpChar++;
+			dwBytesRead++;
 		}
-		ReadLineFromBuffer(lpLineBegin, lpChar - lpLineBegin);
+		// Handle case where file ended with line without EOL
+		if (lpChar > lpLineBegin)
+			ReadLineFromBuffer(lpLineBegin, lpChar - lpLineBegin);
+		// Insert ghost line at end (for appending)
+		InsertLine(_T(""), 0);
+		FinishLoading();
 		ASSERT(m_aLines.GetSize() > 0);   //  At least one empty line must present
 		
 		m_bInit = TRUE;
@@ -1221,15 +1183,11 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	int nCRLFLength = _tcslen(pszCRLF);
 	int nLineCount = m_aLines.GetSize();
 	CString text;			
-	int nLastLength = m_aLines[nLineCount - 1].m_nLength;
+	int nLastLength = GetFullLineLength(nLineCount-1);
 		
 	UINT nBufSize = GetTextWithoutEmptys(0, 0, nLineCount - 1,
 		nLastLength, text, m_bIsLeft, nCrlfStyle);
 	
-	// Remove last CRLF
-	text.Delete(nBufSize - nCRLFLength, nCRLFLength);
-	nBufSize -= nCRLFLength;
-
 	if (pszFileName)
 	{
 		// Temp files are in temp dir...
@@ -1304,12 +1262,6 @@ void CMergeDoc::CDiffTextBuffer::ReplaceLine(int nLine, const CString &strText)
 	int endl,endc;
 	InsertText(NULL, nLine, 0, strText, endl,endc);
 }
-
-//DEL void CMergeDoc::CDiffTextBuffer::DeleteLine(int nLine)
-//DEL {
-//DEL 	if (GetLineLength(nLine)>0)
-//DEL 		DeleteText(m_bIsLeft? mf->m_pLeft:mf->m_pRight, nLine, 0, nLine, GetLineLength(nLine));
-//DEL }
 
 BOOL CMergeDoc::InitTempFiles(const CString& srcPathL, const CString& strPathR)
 {
@@ -1610,7 +1562,9 @@ void CMergeDoc::PrimeTextBuffers()
 	}
 
 	m_ltBuf.SetReadOnly(FALSE);
+	m_ltBuf.FinishLoading();
 	m_rtBuf.SetReadOnly(FALSE);
+	m_rtBuf.FinishLoading();
 
 }
 
