@@ -40,6 +40,8 @@ CVssPrompt::CVssPrompt(CWnd* pParent /*=NULL*/)
 {
 	//{{AFX_DATA_INIT(CVssPrompt)
 	m_strProject = _T("");
+	m_strUser = _T("");
+	m_strPassword = _T("");
 	m_strMessage = _T("");
 	//}}AFX_DATA_INIT
 }
@@ -51,6 +53,8 @@ void CVssPrompt::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(CVssPrompt)
 	DDX_Control(pDX, IDC_PROJECT_COMBO, m_ctlProject);
 	DDX_CBString(pDX, IDC_PROJECT_COMBO, m_strProject);
+	DDX_Text(pDX, IDC_USER, m_strUser);
+	DDX_Text(pDX, IDC_PASSWORD, m_strPassword);
 	DDX_Text(pDX, IDC_MESSAGE, m_strMessage);
 	//}}AFX_DATA_MAP
 }

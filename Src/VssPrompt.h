@@ -22,6 +22,8 @@ public:
 	enum { IDD = IDD_VSS };
 	CSuperComboBox	m_ctlProject;
 	CString	m_strProject;
+	CString	m_strUser;
+	CString	m_strPassword;
 	CString	m_strMessage;
 	//}}AFX_DATA
 
