@@ -6,6 +6,9 @@
   Web\2.2: changes.txt index.php
   Web\developer: index.php needed.php wincvs.php
   Web\developer\l10n: index.php instructions.php status.php
+ RFE: [ 1065059 ] Web: Add link to install help in manual
+  Web: index.php
+  Web\2.2: index.php
 
 2004-11-10 Tim
  PATCH: [ 1064175 ] Website changes for new stable release 2.2.0

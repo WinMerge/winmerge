@@ -47,9 +47,10 @@
 <p><a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup.exe">Download WinMerge 1.7 Installer</a></p>
 
 <h2>Installation</h2>
-<p>Just download the installer and double-click it.</p>
-<p>Or you may simply unzip the binary zip package (eg, <code>WinMerge-2.2.0-exe.zip</code>) into the desired location, and run
+<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.0-Setup.exe">installer</a> and double-click it.</p>
+<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.0-exe.zip">binary zip package</a> into the desired location, and run
 <code>WinMerge.exe</code> or <code>WinMergeU.exe</code> (the latter is the Unicode version, only for use on NT/2000/XP).</p>
+<p>For more details please look at the <a href="2.2/manual/installing.html">Installation section</a> from the <a href="2.2/manual/index.html">Manual</a>.</p>
 
 <h2>Using WinMerge</h2>
 <p>You can use the <a href="2.2/manual/index.html">online Manual</a>, or you can
