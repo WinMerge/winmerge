@@ -3,7 +3,7 @@
  *  @author Perry Rapp, Creator, 2003-2005
  *  @author Kimmo Varis, 2004-2005
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-02-20 (Perry Rapp)
+ *  @date   Edited:  2005-02-22 (Kimmo Varis)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -116,7 +116,14 @@ bool UniLocalFile::DoGetFileStatus(HANDLE handle)
 		return false;
 
 	// Attach CFile to already open filehandle
-	CFile file((HFILE)handle); // VC6 needs cast here :(
+#if _MSC_VER < 1300
+		// MSVC6
+	CFile file((HFILE)handle);
+#else
+		// MSVC7 (VC.NET)
+	CFile file(handle);
+#endif
+	
 	CFileStatus status;
 	if (!file.GetStatus(status))
 	{

@@ -5,6 +5,8 @@
   Src: MergeEditView.cpp
  PATCH: [ 1149388 ] Check for previous compare text before find again
   Src/editlib: ccrystaltextview.cpp
+ Add compiler-selecting ifdef to Unifile.cpp to make it compile with MSVC6 and MSVC7
+  Src/Common: UniFile.cpp
 
 2005-02-22 Kimmo
  PATCH: [ 1145522 ] fix crash on search
