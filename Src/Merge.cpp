@@ -266,7 +266,7 @@ void CMergeApp::ParseArgs(CStringArray & files, UINT & nFiles, BOOL & recurse, D
 			if (!_tcsicmp(pszParam, _T("ur")))
 				dwRightFlags |= FFILEOPEN_NOMRU;
 
-			// -ur to not add paths to MRU
+			// -ub to not add paths to MRU
 			if (!_tcsicmp(pszParam, _T("ub")))
 			{
 				dwLeftFlags |= FFILEOPEN_NOMRU;

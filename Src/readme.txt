@@ -3,6 +3,8 @@
   editlib: crystaltextbuffer.cpp crystaltextbuffer.h
  PATCH: [ 758900 ] Fix bug in pasting contiguous empty lines.
   editlib: crystaltextbuffer.cpp
+ PATCH: [ 756218 ] Fix copy & paste typo in comment in Merge.cpp
+  WinMerge: Merge.cpp
 
 2003-06-21 Perry
  PATCH: [ 716456 ] Update Undo/Redo info with rescan line mapping
