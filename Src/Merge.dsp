@@ -17,12 +17,10 @@ CFG=Merge - Win32 UnicodeDebug
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "Merge - Win32 Release" (based on "Win32 (x86) Application")
-!MESSAGE "Merge - Win32 ReleaseMinsize" (based on "Win32 (x86) Application")
 !MESSAGE "Merge - Win32 Debug" (based on "Win32 (x86) Application")
-!MESSAGE "Merge - Win32 UnicodeRelease" (based on "Win32 (x86) Application")
-!MESSAGE "Merge - Win32 UnicodeReleaseMinsize" (based on "Win32 (x86) Application")
 !MESSAGE "Merge - Win32 UnicodeDebug" (based on "Win32 (x86) Application")
+!MESSAGE "Merge - Win32 Release" (based on "Win32 (x86) Application")
+!MESSAGE "Merge - Win32 UnicodeRelease" (based on "Win32 (x86) Application")
 !MESSAGE 
 
 # Begin Project
@@ -33,78 +31,12 @@ CPP=cl.exe
 MTL=midl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-# PROP BASE Use_MFC 6
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "Release"
-# PROP BASE Intermediate_Dir "Release"
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 6
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "..\BuildTmp\MergeRelease"
-# PROP Intermediate_Dir "..\BuildTmp\MergeRelease"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W4 /GR /GX /Zi /Od /I "." /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /Yu"stdafx.h" /FD /c
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
-# ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
-# SUBTRACT LINK32 /pdb:none
-# Begin Special Build Tool
-TargetPath=\Download\WinMerge\WinMerge\Build\MergeRelease\WinMerge.exe
-SOURCE="$(InputPath)"
-PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
-# End Special Build Tool
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
-
-# PROP BASE Use_MFC 6
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "Merge___Win32_ReleaseMinsize"
-# PROP BASE Intermediate_Dir "Merge___Win32_ReleaseMinsize"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 6
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "..\BuildTmp\MergeReleaseMinsize"
-# PROP Intermediate_Dir "..\BuildTmp\MergeReleaseMinsize"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /MD /W4 /GR /GX /Zi /Od /I "." /I "..\common" /I ".\editlib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W4 /GR /GX /Zi /O1 /I "." /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /Yu"stdafx.h" /FD /c
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
-# ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
-# SUBTRACT BASE LINK32 /pdb:none
-# ADD LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeReleaseMinsize/WinMerge.exe" /verbose:lib
-# SUBTRACT LINK32 /pdb:none
-# Begin Special Build Tool
-TargetPath=\Download\WinMerge\WinMerge\Build\MergeReleaseMinsize\WinMerge.exe
-SOURCE="$(InputPath)"
-PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
-# End Special Build Tool
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP BASE Use_MFC 6
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "Debug"
-# PROP BASE Intermediate_Dir "Debug"
+# PROP BASE Output_Dir "..\BuildTmp\MergeDebug"
+# PROP BASE Intermediate_Dir "..\BuildTmp\MergeDebug"
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 6
 # PROP Use_Debug_Libraries 1
@@ -125,80 +57,12 @@ LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeDebug/WinMerge.exe" /pdbtype:sept
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# PROP BASE Use_MFC 6
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "Merge___Win32_UnicodeRelease"
-# PROP BASE Intermediate_Dir "Merge___Win32_UnicodeRelease"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 6
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "..\BuildTmp\MergeUnicodeRelease"
-# PROP Intermediate_Dir "..\BuildTmp\MergeUnicodeRelease"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /MD /W4 /GR /GX /Zi /Od /I "." /I "..\common" /I ".\editlib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W4 /GR /GX /Zi /Od /I "." /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /FD /c
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
-# ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
-# SUBTRACT BASE LINK32 /pdb:none
-# ADD LINK32 version.lib shlwapi.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease/WinMergeU.exe" /verbose:lib
-# SUBTRACT LINK32 /pdb:none
-# Begin Special Build Tool
-TargetPath=\Download\WinMerge\WinMerge\Build\MergeUnicodeRelease\WinMergeU.exe
-SOURCE="$(InputPath)"
-PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
-# End Special Build Tool
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# PROP BASE Use_MFC 6
-# PROP BASE Use_Debug_Libraries 0
-# PROP BASE Output_Dir "Merge___Win32_UnicodeReleaseMinsize"
-# PROP BASE Intermediate_Dir "Merge___Win32_UnicodeReleaseMinsize"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 6
-# PROP Use_Debug_Libraries 0
-# PROP Output_Dir "..\BuildTmp\MergeUnicodeReleaseMinsize"
-# PROP Intermediate_Dir "..\BuildTmp\MergeUnicodeReleaseMinsize"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /MD /W4 /GR /GX /Zi /Od /I "." /I "..\common" /I ".\editlib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W4 /GR /GX /Zi /O1 /I "." /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /FD /c
-# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
-# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
-# ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease/WinMergeU.exe" /verbose:lib
-# SUBTRACT BASE LINK32 /pdb:none
-# ADD LINK32 version.lib shlwapi.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeReleaseMinsize/WinMergeU.exe" /verbose:lib
-# SUBTRACT LINK32 /pdb:none
-# Begin Special Build Tool
-TargetPath=\Download\WinMerge\WinMerge\Build\MergeUnicodeReleaseMinsize\WinMergeU.exe
-SOURCE="$(InputPath)"
-PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
-# End Special Build Tool
-
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 # PROP BASE Use_MFC 6
 # PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "Merge___Win32_UnicodeDebug"
-# PROP BASE Intermediate_Dir "Merge___Win32_UnicodeDebug"
+# PROP BASE Output_Dir "..\BuildTmp\MergeUnicodeDebug"
+# PROP BASE Intermediate_Dir "..\BuildTmp\MergeUnicodeDebug"
 # PROP BASE Ignore_Export_Lib 0
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 6
@@ -220,16 +84,82 @@ LINK32=link.exe
 # ADD BASE LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeUnicodeDebug/WinMerge.exe" /pdbtype:sept
 # ADD LINK32 version.lib shlwapi.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeUnicodeDebug/WinMergeU.exe" /pdbtype:sept
 
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# PROP BASE Use_MFC 6
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "..\BuildTmp\MergeRelease"
+# PROP BASE Intermediate_Dir "..\BuildTmp\MergeRelease"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 6
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "..\BuildTmp\MergeRelease"
+# PROP Intermediate_Dir "..\BuildTmp\MergeRelease"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /MD /W4 /GR /GX /Zi /O1 /I "." /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W4 /GR /GX /Zi /O1 /I "." /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /Yu"stdafx.h" /FD /c
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
+# ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
+# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
+# SUBTRACT BASE LINK32 /pdb:none
+# ADD LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
+# SUBTRACT LINK32 /pdb:none
+# Begin Special Build Tool
+TargetPath=\Download\WinMerge\WinMergeCompile\Build\MergeRelease\WinMerge.exe
+SOURCE="$(InputPath)"
+PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
+# End Special Build Tool
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# PROP BASE Use_MFC 6
+# PROP BASE Use_Debug_Libraries 0
+# PROP BASE Output_Dir "..\BuildTmp\MergeUnicodeRelease"
+# PROP BASE Intermediate_Dir "..\BuildTmp\MergeUnicodeRelease"
+# PROP BASE Ignore_Export_Lib 0
+# PROP BASE Target_Dir ""
+# PROP Use_MFC 6
+# PROP Use_Debug_Libraries 0
+# PROP Output_Dir "..\BuildTmp\MergeUnicodeRelease"
+# PROP Intermediate_Dir "..\BuildTmp\MergeUnicodeRelease"
+# PROP Ignore_Export_Lib 0
+# PROP Target_Dir ""
+# ADD BASE CPP /nologo /MD /W4 /GR /GX /Zi /O1 /I "." /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W4 /GR /GX /Zi /O1 /I "." /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /FD /c
+# ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
+# ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
+# ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
+# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
+BSC32=bscmake.exe
+# ADD BASE BSC32 /nologo
+# ADD BSC32 /nologo
+LINK32=link.exe
+# ADD BASE LINK32 version.lib shlwapi.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease/WinMergeU.exe" /verbose:lib
+# SUBTRACT BASE LINK32 /pdb:none
+# ADD LINK32 version.lib shlwapi.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeReleaseMinsize/WinMergeU.exe" /verbose:lib
+# SUBTRACT LINK32 /pdb:none
+# Begin Special Build Tool
+TargetPath=\Download\WinMerge\WinMergeCompile\Build\MergeUnicodeRelease\WinMergeU.exe
+SOURCE="$(InputPath)"
+PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
+# End Special Build Tool
+
 !ENDIF 
 
 # Begin Target
 
-# Name "Merge - Win32 Release"
-# Name "Merge - Win32 ReleaseMinsize"
 # Name "Merge - Win32 Debug"
-# Name "Merge - Win32 UnicodeRelease"
-# Name "Merge - Win32 UnicodeReleaseMinsize"
 # Name "Merge - Win32 UnicodeDebug"
+# Name "Merge - Win32 Release"
+# Name "Merge - Win32 UnicodeRelease"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
@@ -241,20 +171,20 @@ SOURCE=.\7zCommon.cpp
 
 SOURCE=.\diffutils\src\ANALYZE.C
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
@@ -262,18 +192,6 @@ SOURCE=.\diffutils\src\ANALYZE.C
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -291,28 +209,19 @@ SOURCE=.\CCPrompt.cpp
 
 SOURCE=.\ChildFrm.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -325,20 +234,20 @@ SOURCE=.\Common\CMoveConstraint.cpp
 
 SOURCE=.\diffutils\lib\CMPBUF.C
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
@@ -346,18 +255,6 @@ SOURCE=.\diffutils\lib\CMPBUF.C
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -375,20 +272,20 @@ SOURCE=.\ConfigLog.cpp
 
 SOURCE=.\diffutils\src\CONTEXT.C
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
@@ -396,18 +293,6 @@ SOURCE=.\diffutils\src\CONTEXT.C
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -429,28 +314,19 @@ SOURCE=.\Common\CSubclass.cpp
 
 SOURCE=.\Diff.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # ADD CPP /O2
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # ADD BASE CPP /O2
 # ADD CPP /O2
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# ADD CPP /O2
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -491,28 +367,19 @@ SOURCE=.\DirCompStateBar.cpp
 
 SOURCE=.\DirDoc.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -521,20 +388,20 @@ SOURCE=.\DirDoc.cpp
 
 SOURCE=.\diffutils\src\DIRENT.C
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
@@ -542,18 +409,6 @@ SOURCE=.\diffutils\src\DIRENT.C
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -563,28 +418,19 @@ SOURCE=.\diffutils\src\DIRENT.C
 
 SOURCE=.\DirFrame.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -597,28 +443,19 @@ SOURCE=.\DirScan.cpp
 
 SOURCE=.\DirView.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -644,20 +481,20 @@ SOURCE=.\dllver.cpp
 
 SOURCE=.\diffutils\src\ED.C
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
@@ -665,18 +502,6 @@ SOURCE=.\diffutils\src\ED.C
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -710,20 +535,20 @@ SOURCE=.\FileTransform.cpp
 
 SOURCE=.\diffutils\lib\FNMATCH.C
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
@@ -731,18 +556,6 @@ SOURCE=.\diffutils\lib\FNMATCH.C
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -765,20 +578,20 @@ SOURCE=.\diffutils\GnuVersion.c
 
 SOURCE=.\diffutils\src\IFDEF.C
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
@@ -786,18 +599,6 @@ SOURCE=.\diffutils\src\IFDEF.C
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -807,20 +608,20 @@ SOURCE=.\diffutils\src\IFDEF.C
 
 SOURCE=.\diffutils\src\IO.C
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
@@ -828,18 +629,6 @@ SOURCE=.\diffutils\src\IO.C
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -878,28 +667,19 @@ SOURCE=.\Common\lwdisp.c
 
 SOURCE=.\MainFrm.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -908,28 +688,19 @@ SOURCE=.\MainFrm.cpp
 
 SOURCE=.\Merge.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -946,28 +717,19 @@ SOURCE=.\MergeDiffDetailView.cpp
 
 SOURCE=.\MergeDoc.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -992,20 +754,20 @@ SOURCE=.\Common\multiformatText.cpp
 
 SOURCE=.\diffutils\src\NORMAL.C
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
@@ -1013,18 +775,6 @@ SOURCE=.\diffutils\src\NORMAL.C
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -1034,28 +784,19 @@ SOURCE=.\diffutils\src\NORMAL.C
 
 SOURCE=.\OpenDlg.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -1108,28 +849,19 @@ SOURCE=.\PropFilter.cpp
 
 SOURCE=.\PropGeneral.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -1142,28 +874,19 @@ SOURCE=.\PropRegistry.cpp
 
 SOURCE=.\PropVss.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -1172,20 +895,20 @@ SOURCE=.\PropVss.cpp
 
 SOURCE=.\diffutils\lib\REGEX.C
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
@@ -1193,18 +916,6 @@ SOURCE=.\diffutils\lib\REGEX.C
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -1226,20 +937,20 @@ SOURCE=.\SelectUnpackerDlg.cpp
 
 SOURCE=.\diffutils\src\SIDE.C
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
@@ -1247,18 +958,6 @@ SOURCE=.\diffutils\src\SIDE.C
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -1280,28 +979,19 @@ SOURCE=.\Common\SortHeaderCtrl.cpp
 
 SOURCE=.\Splash.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -1322,21 +1012,21 @@ SOURCE=.\Common\StatLink.cpp
 
 SOURCE=.\StdAfx.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
 # ADD CPP /Yc"stdafx.h"
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# ADD BASE CPP /Yc"stdafx.h"
+# ADD CPP /Yc"stdafx.h"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /Yc"stdafx.h"
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # ADD CPP /Yc"stdafx.h"
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-# ADD CPP /Yc"stdafx.h"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
@@ -1344,18 +1034,6 @@ SOURCE=.\StdAfx.cpp
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # ADD CPP /Yc"stdafx.h"
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /Yc"stdafx.h"
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# ADD CPP /Yc"stdafx.h"
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# ADD BASE CPP /Yc"stdafx.h"
-# ADD CPP /Yc"stdafx.h"
 
 !ENDIF 
 
@@ -1384,20 +1062,20 @@ SOURCE=.\Common\UniFile.cpp
 
 SOURCE=.\diffutils\src\UTIL.C
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /O2
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
@@ -1405,18 +1083,6 @@ SOURCE=.\diffutils\src\UTIL.C
 # ADD BASE CPP /O2
 # SUBTRACT BASE CPP /YX /Yc /Yu
 # ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -1434,28 +1100,19 @@ SOURCE=.\Common\version.cpp
 
 SOURCE=.\VssPrompt.cpp
 
-!IF  "$(CFG)" == "Merge - Win32 Release"
+!IF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 ReleaseMinsize"
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeReleaseMinsize"
-
-# SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
 
 !ENDIF 
 
@@ -1866,11 +1523,11 @@ SOURCE=.\res\binarydiff.bmp
 # End Source File
 # Begin Source File
 
-SOURCE=.\res\error.bmp
+SOURCE=.\res\equal.bmp
 # End Source File
 # Begin Source File
 
-SOURCE=.\res\equal.bmp
+SOURCE=.\res\error.bmp
 # End Source File
 # Begin Source File
 
@@ -2214,11 +1871,11 @@ SOURCE=.\editlib\tex.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\editlib\xml.cpp
+SOURCE=.\editlib\wispelld.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\editlib\wispelld.h
+SOURCE=.\editlib\xml.cpp
 # End Source File
 # End Group
 # Begin Source File
@@ -2231,12 +1888,10 @@ SOURCE=.\stampver.inf
 # End Source File
 # End Target
 # End Project
-# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
-# 	1:19:IDR_POPUP_ABOUT_DLG:104
-# End Section
 # Section Merge : {6F747475-446E-6C62-436C-6B0000003100}
 # 	1:10:IDB_SPLASH:103
 # 	2:21:SplashScreenInsertKey:4.0
 # End Section
-
-
+# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
+# 	1:19:IDR_POPUP_ABOUT_DLG:104
+# End Section
