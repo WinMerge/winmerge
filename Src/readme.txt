@@ -1,3 +1,7 @@
+2004-09-30 Perry
+ Fix bracketing mistake in PATCH: [ 1034810 ]
+  Src/editlib: ccrystaltextview.cpp
+
 2004-09-29 Perry
  PATCH: [ 1034810 ] fix whitespace for other encodings
   Src: Merge.dsp ViewableWhitespace.cpp ViewableWhitespace.h
