@@ -65,6 +65,8 @@ DWORD GetFileSizeEx(LPCTSTR szFilename)
 	return 0L;
 }
 
+#if UNUSED_CODE
+// 2002-12-08, These are not used, and the UNICODE versions are wrong (wstrcpy ??)
 void WriteWcsFromMbs(CFile* cf, LPCTSTR szSrc, DWORD dwCount)
 {	
 	static wchar_t wstr[1024];
@@ -148,6 +150,7 @@ void ReadWcsToMbs(HANDLE hf, LPTSTR szDest, DWORD dwCount)
 	wcstombs(szDest, wstr, wcslen(wstr)+1);
 #endif
 }
+#endif // UNUSED_CODE
 
 
 int tcssubptr(LPCTSTR start, LPCTSTR end)
@@ -161,7 +164,6 @@ int tcssubptr(LPCTSTR start, LPCTSTR end)
 	}
 	return cnt;
 }
-
 
 BOOL DoModalProcess(CWnd *pWndParent, LPCTSTR szExeFile, 
 					LPCTSTR szCmdLine, LPCTSTR szWindowCaption)
