@@ -1007,7 +1007,7 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 		else
 			changes = (script != 0);
 
-              script->trivial = 0;		
+              if (script) script->trivial = 0;
 		if (no_details_flag)
 			briefly_report (changes, filevec);
 		else
@@ -1015,12 +1015,12 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 			if (changes==0 && ignore_blank_lines_flag)
 			{
 				// determined that there were no changes after considering flags
-                            script->trivial = 1;
+                            if (script) script->trivial = 1;
 			}
 			else if (changes == 0 && ignore_regexp_list )
 			{
 				// determined that there were no changes after considering flags
-                            script->trivial = 1;
+                            if (script) script->trivial = 1;
 			}
 			else if (changes || ! no_diff_means_no_output)
 			{

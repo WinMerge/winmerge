@@ -1,3 +1,8 @@
+2003-10-30 Perry
+ Bugfix for PATCH: [ 813794 ] Fix "ignore blank lines"
+ (Prevent crashes on identical files dereferencing null script).
+  WinMerge: analyze.c
+
 2003-10-03 Laoran
  two minor changes for PATCH: [ 813794 ] Fix "ignore blank lines"
   WinMerge: MergeDiffDetailView.cpp MergeDoc.cpp
