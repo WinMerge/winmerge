@@ -3,6 +3,8 @@
   Manual: Locales.xml
  PATCH: [ 1011854 ] Docs: Add some shortcuts
   Manual: Shortcut_keys.xml
+ Fix xsltproc parsing tables by disabling extensions
+  Manual: Manual.xsl
   
 2004-08-18 Kimmo
  Use ID as generated html filename for .xsl tools too
