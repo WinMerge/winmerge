@@ -1,3 +1,5 @@
+2004-03-13 WinMerge experimental release 2.1.5.15 (cvs)
+
 2004-03-11 Kimmo
  PATCH: [ 902191 ] Uninline CDiffTextBuffer functions
   Src: GhostTextBuffer.cpp MergeDoc.cpp MergeDoc.h
