@@ -4,6 +4,9 @@
    FileFiltersDlg.cpp FileFilterDlg.h MainFrm.cpp Merge.cpp Merge.dsp
    Merge.h OpenDlg.cpp
   Src new files: FileFilterHelper.cpp FileFilterHelper.h
+ PATCH: [ 986393 ] Lose '(debug)' from 'Reload plugins'
+  Src: Merge.rc
+  Src/Languages: *.rc
 
 2004-07-15 Kimmo
  PATCH: [ 991181 ] Disable 'Goto Line' outside reduced locationpane bars
