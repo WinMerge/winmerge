@@ -9,6 +9,7 @@
 
 #include "ColorButton.h"
 
+const int CustomColorsAmount = 16;
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropColors dialog
@@ -48,6 +49,11 @@ public:
 
 // Implementation
 protected:
+
+	void LoadCustomColors();
+	void SaveCustomColors();
+
+	COLORREF m_cCustColors[CustomColorsAmount];
 
 	// Generated message map functions
 	//{{AFX_MSG(CPropColors)

@@ -11,6 +11,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+static const TCHAR Section[] = _T("Custom Colors");
+
 /////////////////////////////////////////////////////////////////////////////
 // CPropColors dialog
 
@@ -57,65 +59,107 @@ END_MESSAGE_MAP()
 void CPropColors::OnDifferenceColor() 
 {
 	CColorDialog dialog(m_clrDiff);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
 	{
 		m_clrDiff = dialog.GetColor();
 		m_cDiff.SetColor(m_clrDiff);
 	}
+	SaveCustomColors();
 }
 
 void CPropColors::OnSelDifferenceColor() 
 {
 	CColorDialog dialog(m_clrSelDiff);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
 	{
 		m_clrSelDiff = dialog.GetColor();
 		m_cSelDiff.SetColor(m_clrSelDiff);
 	}
+	SaveCustomColors();
 }
 
 void CPropColors::OnDifferenceDeletedColor() 
 {
 	CColorDialog dialog(m_clrDiffDeleted);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
 	{
 		m_clrDiffDeleted = dialog.GetColor();
 		m_cDiffDeleted.SetColor(m_clrDiffDeleted);
 	}
+	SaveCustomColors();
 }
 
 void CPropColors::OnSelDifferenceDeletedColor() 
 {
 	CColorDialog dialog(m_clrSelDiffDeleted);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
 	{
 		m_clrSelDiffDeleted = dialog.GetColor();
 		m_cSelDiffDeleted.SetColor(m_clrSelDiffDeleted);
 	}
+	SaveCustomColors();
 }
 
 void CPropColors::OnDifferenceTextColor() 
 {
 	CColorDialog dialog(m_clrDiffText);
-	
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+
 	if (dialog.DoModal() == IDOK)
 	{
 		m_clrDiffText = dialog.GetColor();
 		m_cDiffText.SetColor(m_clrDiffText);
 	}
+	SaveCustomColors();
 }
 
 void CPropColors::OnSelDifferenceTextColor() 
 {
 	CColorDialog dialog(m_clrSelDiffText);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
 	{
 		m_clrSelDiffText = dialog.GetColor();
 		m_cSelDiffText.SetColor(m_clrSelDiffText);
+	}
+	SaveCustomColors();
+}
+
+void CPropColors::LoadCustomColors()
+{
+	for (int i = 0; i < CustomColorsAmount; i++)
+	{
+		CString sEntry;
+		sEntry.Format("%d", i);
+		m_cCustColors[i] = ::AfxGetApp()->GetProfileInt(Section,
+			sEntry, RGB(255, 255, 255));
+	}
+}
+
+void CPropColors::SaveCustomColors()
+{
+	for (int i = 0; i < CustomColorsAmount; i++)
+	{
+		CString sEntry;
+		sEntry.Format("%d", i);
+		if (m_cCustColors[i] == RGB(255, 255, 255))
+			::AfxGetApp()->WriteProfileString(Section, sEntry, NULL);
+		else 
+			::AfxGetApp()->WriteProfileInt(Section, sEntry, m_cCustColors[i]);
 	}
 }

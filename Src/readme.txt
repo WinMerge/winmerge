@@ -1,3 +1,7 @@
+2003-07-18 Kimmo
+ PATCH: [ 772843 ] Remember custom colors
+  WinMerge: PropColors.h PropColors.cpp
+
 2003-07-18 Laoran
  PATCH : [ 771587 ] Undo/Redo functions 
   WinMerge: MainFrm.cpp MergeDoc.cpp MergeDoc.h MergeEditView.cpp
