@@ -1,4 +1,93 @@
 <sect1 id="Plugins">
   <title>Plugins</title>
+  <para>Plugins are extra-features for WinMerge. They are not included in the basic version because they interest few users, or because they do not fit in WinMerge architecture. </para>
+  <para>Each plugin :</para>
+  <itemizedlist>
+    <listitem>is a single file, either a dll or a scriptlet (extension .sct)</listitem>
+    <listitem>is installed in the subdirectory "MergePlugins".</listitem>
+    <listitem>is easy to install : copy the plugin file in "MergePlugins", close WinMerge if it is running, and launch it again</listitem>
+  </itemizedlist>
+  <para>"Plugins" is a generic name for extra-feature dll or scriptlets. Plugins features are spread over three categories : file editor complement, unpacker, prediffer.</para>
   <para></para>
+  <sect2>
+    <title>Three categories of plugins</title>
+    <sect3>
+      <title>Editor complement</title>
+      <para>Operate custom operations on the currently selected text from the active pane.</para>
+      <para>Example plugin : turn the selection to uppercase or lowercase.</para>
+      <para> </para>
+    </sect3>
+    <sect3>
+      <title>Unpack (transform) a file to a text format</title>
+      <para>The original file is not changed. A temporary transformed file is created and loaded in WinMerge. </para>
+      <para>Sometimes the transformed file can be packed back. Then you may merge and save the transformed file. Packing is done automatically in this case. See the plugin details to know if it supports packing back. </para>
+      <para>Example plugin : decompress Delphi4 binary files (extension .dfm).</para>
+      <note>When you compare directories, WinMerge doesn't need to display the files, but the diffing process can give a different result when you compare compressed and not compressed files (for example, uncompressed files maybe be identical, but the compressed files may differ if they include the date of creation). WinMerge applies the unpacker in all situations, and you are sure to have the same result when you compare directories, or when you merge two versions of a file.</note>
+      <para> </para>
+    </sect3>
+    <sect3>
+      <title>Prediff - Process files to hide some differences</title>
+      <para>The files are loaded normally. No change is applied to the displayed file. Copies are made and processed by the plugin, and the diffing algorithm operates on these copies.</para>
+      <para>Example plugin : ignore the differences inside given columns, while displaying the characters in these columns.</para>
+      <para></para>
+    </sect3>
+  </sect2> 
+  <sect2>
+    <title>Select and apply a plugin</title>
+    <sect3>
+      <title>"Suggested plugin" and "Automatic mode"</title>
+      <para>Each plugin specifies a list of file extensions (see plugins details for more info). When the file extension, either from the left or from the right file, matches the plugin list, the plugin is called "a suggested plugin".</para>
+      <para>When "Automatic mode" is on, WinMerge searches for a suggested plugin and applies it if it is avaialble. When two suggested plugins are available for a file, WinMerge applies the first one only (alphabetical order).</para>
+      <note>"Automatic unpacking" and "Automatic prediffing" are two separate options. There is no option for editor complements.</note>
+      <para></para>
+    </sect3>
+    <sect3>
+      <title>Editor complement in directory view</title>
+      <para>Not available </para>
+    </sect3>
+    <sect3>
+      <title>Editor complement in editor view</title>
+      <para>Access list with main menu, "Edit"-&gt;"Scripts"-&gt; </para>
+    </sect3>
+    <sect3>
+      <title>Unpacker in directory view</title>
+      <para>Check "Plugins"-&gt;"Automatic unpacking" in the main menu. Update the results (F5). Each file is loaded again with its suggested unpacker and compared. </para>
+      <para></para>
+    </sect3>
+    <sect3>
+      <title>Unpacker in editor view</title>
+      <para>Three possibilities</para>
+      <para>Open dialog : select the two files first. Then press the button "select" right from the filed "unpacker". WinMerge displays the standard dialog for unpacker selection. Use the top combobox to select the plugin. Two generic choices are available also : "no unpacker" and "automatic unpacker".</para>
+      <para>From the directory view when "Plugins"-&gt;"Automatic unpacking" is checked : just double click to open the file. The suggested plugin used during the directory comparison is used to load the file in the editor. </para>
+      <para>From the directory view, always : select one file, then main menu "Plugins"-&gt;"Edit with unpacker". WinMerge displays the dialog for unpacker selection. Select an unpacker and press "OK", WinMerge opens the editor view and applies this unpacker to load the file. This plugin is forgotten when you close the editor view.</para>
+    </sect3>
+    <sect3>
+      <title>Prediffer in directory view</title>
+      <para>When the files are selected, right-click to open the context menu. Follow "Plugin settings"-&gt;"Prediffer settings"-&gt; and select "Auto prediffer" or "No prediffer". Refresh the view (F5) to update the results.</para>
+      <note>"Automatic prediffer" is a per-file option. Some files in the same directory can be in mode "no prediffer" and some in mode "automatic prediffer". When you change directory during a non-recursive compare, the mode is always reset to "no prediffer".</note>
+      <para></para>
+    </sect3>
+    <sect3>
+      <title>Prediffer in editor view</title>
+      <para>Two possibilities</para>
+      <para>From the directory view when "automatic prediffer" is checked for a file : just double click to open the file. The plugin used during the directory comparison is used in the editor before the diff algorithm.</para>
+      <para>During an editor session, access prediffer lists with menu "Plugins"-&gt;"Prediffer"-&gt;... The active prediffer is checked. Suggested plugins are indicated first above the not-suggested ones. The files are compared again after the selection, you don't need to rescan.</para>
+    </sect3>
+    <para></para>
+  </sect2>
+  <sect2>
+    <title>Plugin details</title>
+    <para>A file Plugins.txt is created during the setup process. It documents each installed plugin : category, suggested file extensions, whether pack is available for unpack plugins, quick description.</para>
+    <para>If you don't use the setup.exe, the file is in the subdirectory "MergePlugins" and called list.txt. </para>
+    <para>Developpers may find information and code of examples in the source package, under the directory "Plugins".</para>
+    <para></para>
+  </sect2>
+  <sect2>
+    <title>Windows Script Host</title>
+    <para>Some editor complements need this optionnal component from Microsoft. </para>
+    <para>If the list of editor complements does not present all editor plugins, this component is probably missing.</para>
+    <para>You can check easily. WinMerge informs you with a comment at the bottom of the list.</para>
+    <para>You may install WSH on any version of Windows (need IE 4.0). Download it from &lt;http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp&gt;</para>
+    <para></para>
+  </sect2>
 </sect1>

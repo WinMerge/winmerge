@@ -1,3 +1,7 @@
+2004-06-19 Laoran
+ PATCH: [ 973592 ] Userdocs : Plugins
+  Manual: Plugins.xml
+
 2004-06-17 Kimmo
  PATCH: [ 973571 ] Userdocs: More frequently asked questions
   Manual: Faq.xml
