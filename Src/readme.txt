@@ -3,6 +3,8 @@
   Src: MainFrm.cpp
  BUG: [ 1002035 ] Crash with locked files (WM v2.1.7.10)
   Src: MergeDoc.cpp
+ BUG: [ 1009918 ] Binary files not detected (unicode builds)
+  Src/Common: UniFile.cpp
 
 2004-08-14 Kimmo
  PATCH: [ 1008755 ] avoid flickering when diff view opens
