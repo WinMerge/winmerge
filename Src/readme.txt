@@ -1,3 +1,8 @@
+2004-04-24 Perry
+ PATCH: [ 941014 ] Various Updates in German Translation (Tim Gerundt)
+  (Except I didn't remove the synchro comments)
+  Languages: MergeGerman.rc
+
 2004-04-23 Kimmo
  PATCH: [ 940713 ] Fix for resetting dirview columns
   Src: DirViewColHandler.cpp
