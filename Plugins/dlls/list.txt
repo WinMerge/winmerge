@@ -9,7 +9,8 @@ and select one function.
 
 RCLocalizationHelper
 Prediffing plugin for files .rc.
-Use this plugin to compare two files localized in different languages.
+Use this plugin to compare two files localized in different languages. Option
+'Ignore whitespace change' or 'Ignore all whitespace' is required.
 It hides most differences concerning the localization (strings with localized
 text, layout of controls in dialog). Missing strings/controls/menus
 are displayed as differences.
