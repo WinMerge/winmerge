@@ -1,3 +1,9 @@
+2004-10-15 Kimmo
+ PATCH: [ 1046583 ] Improved 48x48 icon
+  Submitted by Tim Gerundt
+  Src/res: Merge.ico
+  Src/Languages/*/res: Merge.ico
+
 2004-10-15 WinMerge experimental release 2.1.7.15 (cvs) (Perry)
 
 2004-10-14 Kimmo
