@@ -1,3 +1,8 @@
+2003-05-01 Kimmo
+ PATCH: [ 730738 ] Update BCMenu (to v3.033)
+  WinMerge: BCMenu.h BCMenu.cpp
+   Updates BCMenu to v3.033, http://www.codeproject.com/menu/bcmenu.asp
+
 2003-04-29 Kimmo
  PATCH: [ 728542 ] Automatic rescan enable/disable
   WinMerge: MainFrm.h MainFrm.cpp Merge.rc MergeEditView.h MergeEditView.cpp

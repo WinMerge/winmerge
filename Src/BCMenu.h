@@ -1,7 +1,7 @@
 //*************************************************************************
 // BCMenu.h : header file
-// Version : 3.0
-// Date : January 2002
+// Version : 3.033
+// Date : April 2002
 // Author : Brent Corkum
 // Email :  corkum@rocscience.com
 // Latest Version : http://www.rocscience.com/~corkum/BCMenu.html
@@ -12,7 +12,7 @@
 // Robert Edward Caldecott,Kenny Goers,Leonardo Zide,
 // Stefan Kuhr,Reiner Jung,Martin Vladic,Kim Yoo Chul,
 // Oz Solomonovich,Tongzhe Cui,Stephane Clog,Warren Stevens,
-// Damir Valiulin
+// Damir Valiulin,David Kinder,Marc Loiry
 //
 // You are free to use/modify this code but leave this header intact.
 // This class is public domain so you are free to use it any of
@@ -34,13 +34,13 @@ class BCMenuData
 	wchar_t *m_szMenuText;
 public:
 	BCMenuData () {menuIconNormal=-1;xoffset=-1;bitmap=NULL;pContext=NULL;
-	nFlags=0;nID=0;syncflag=0;m_szMenuText=NULL;};
+	nFlags=0;nID=0;syncflag=0;m_szMenuText=NULL;global_offset=-1;};
 	void SetAnsiString(LPCSTR szAnsiString);
 	void SetWideString(const wchar_t *szWideString);
 	const wchar_t *GetWideString(void) {return m_szMenuText;};
 	~BCMenuData ();
 	CString GetString(void);//returns the menu text in ANSI or UNICODE
-	int xoffset;
+	int xoffset,global_offset;
 	int menuIconNormal;
 	UINT nFlags,nID,syncflag;
 	CImageList *bitmap;
@@ -89,7 +89,7 @@ typedef enum {BCMENU_NONE, BCMENU_HEAD, BCMENU_TAIL, BCMENU_BOTH} BC_Seperator;
 
 class BCMenu : public CMenu
 {
-
+	DECLARE_DYNAMIC( BCMenu )
 public:
 	BCMenu(); 
 	virtual ~BCMenu();
@@ -144,8 +144,8 @@ public:
 	BOOL ModifyODMenuW(wchar_t *lpstrText,wchar_t *OptionText,int nIconNormal);
 	// use this method for adding a solid/hatched colored square beside a menu option
 	// courtesy of Warren Stevens
-	BOOL ModifyODMenuA(const char *lpstrText,UINT nID,COLORREF fill,COLORREF border,int hatchstyle=-1);
-	BOOL ModifyODMenuW(wchar_t *lpstrText,UINT nID,COLORREF fill,COLORREF border,int hatchstyle=-1);
+	BOOL ModifyODMenuA(const char *lpstrText,UINT nID,COLORREF fill,COLORREF border,int hatchstyle=-1,CSize *pSize=NULL);
+	BOOL ModifyODMenuW(wchar_t *lpstrText,UINT nID,COLORREF fill,COLORREF border,int hatchstyle=-1,CSize *pSize=NULL);
 	
 	// for deleting and removing menu options
 	BOOL	RemoveMenu(UINT uiId,UINT nFlags);
@@ -159,6 +159,8 @@ public:
 	// remove the menu item based on their text, return -1 if not found, otherwise return the menu position;
 	int RemoveMenu(char* pText, BC_Seperator sPos=BCMENU_NONE);
 	int RemoveMenu(wchar_t* pText, BC_Seperator sPos=BCMENU_NONE);
+	int DeleteMenu(char* pText, BC_Seperator sPos=BCMENU_NONE);
+	int DeleteMenu(wchar_t* pText, BC_Seperator sPos=BCMENU_NONE);
 	
 	// Destoying
 	virtual BOOL DestroyMenu();
@@ -169,6 +171,8 @@ public:
 	BOOL SetMenuText(UINT id,CString string, UINT nFlags = MF_BYPOSITION);
 
 	// Getting a submenu from it's name or position
+	BCMenu* GetSubBCMenu(char* lpszSubMenuName);
+	BCMenu* GetSubBCMenu(wchar_t* lpszSubMenuName);
 	CMenu* GetSubMenu (LPCTSTR lpszSubMenuName);
 	CMenu* GetSubMenu (int nPos);
 	int GetMenuPosition(char* pText);
@@ -194,11 +198,19 @@ public:
 		BCMenu::original_select_disabled=mode;
 		BCMenu::xp_select_disabled=mode;
 	};
+
 	static int BCMenu::GetMenuDrawMode(void);
+	static BOOL BCMenu::GetSelectDisableMode(void);
+
+	// how the bitmaps are drawn in XP Luna mode
+	static void SetXPBitmap3D(BOOL val){
+		BCMenu::xp_draw_3D_bitmaps=val;
+	};
+	static BOOL GetXPBitmap3D(void){return BCMenu::xp_draw_3D_bitmaps;}
 
 	// Customizing:
 	// Set icon size
-	void SetIconSize (int, int); 
+	static void SetIconSize (int, int); 
 	// set the color in the bitmaps that is the background transparent color
 	void SetBitmapBackground(COLORREF color);
 	void UnSetBitmapBackground(void);
@@ -206,17 +218,22 @@ public:
 	BOOL GetDisableOldStyle(void);
 	void SetDisableOldStyle(void);
 	void UnSetDisableOldStyle(void);
+	static COLORREF LightenColor(COLORREF col,double factor);
+	static COLORREF DarkenColor(COLORREF col,double factor);
 
 // Miscellaneous Protected Member functions
 protected:
 	static BOOL IsNewShell(void);
+	static BOOL IsWinXPLuna(void);
+	static BOOL IsLunaMenuStyle(void);
+	static BOOL IsWindowsClassicTheme(void);
 	BCMenuData *BCMenu::FindMenuItem(UINT nID);
 	BCMenu *FindMenuOption(int nId,int& nLoc);
 	BCMenu *FindAnotherMenuOption(int nId,int& nLoc,CArray<BCMenu*,BCMenu*>&bcsubs,
 								  CArray<int,int&>&bclocs);
 	BCMenuData *FindMenuOption(wchar_t *lpstrText);
 	void InsertSpaces(void);
-	void DrawCheckMark(CDC *pDC,int x,int y,COLORREF color);
+	void DrawCheckMark(CDC* pDC,int x,int y,COLORREF color,BOOL narrowflag=FALSE);
 	void DrawRadioDot(CDC *pDC,int x,int y,COLORREF color);
 	BCMenuData *NewODMenu(UINT pos,UINT nFlags,UINT nID,CString string);
 	void SynchronizeMenu(void);
@@ -226,16 +243,26 @@ protected:
 	void DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS);
 	void DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS);
 	BOOL Draw3DCheckmark(CDC *dc, const CRect& rc,BOOL bSelected,HBITMAP hbmCheck);
-	BOOL DrawXPCheckmark(CDC *dc, const CRect& rc, HBITMAP hbmCheck,COLORREF &colorout);
+	BOOL DrawXPCheckmark(CDC *dc, const CRect& rc, HBITMAP hbmCheck,COLORREF &colorout,BOOL selected);
 	void DitherBlt(HDC hdcDest, int nXDest, int nYDest, int nWidth, 
 		int nHeight, HBITMAP hbm, int nXSrc, int nYSrc,COLORREF bgcolor);
 	void DitherBlt2(CDC *drawdc, int nXDest, int nYDest, int nWidth, 
 		int nHeight, CBitmap &bmp, int nXSrc, int nYSrc,COLORREF bgcolor);
+	void DitherBlt3(CDC *drawdc, int nXDest, int nYDest, int nWidth, 
+		int nHeight, CBitmap &bmp,COLORREF bgcolor);
 	BOOL GetBitmapFromImageList(CDC* pDC,CImageList *imglist,int nIndex,CBitmap &bmp);
 	BOOL ImageListDuplicate(CImageList *il,int xoffset,CImageList *newlist);
-	static COLORREF LightenColor(COLORREF col,double factor);
 	static WORD NumBitmapColors(LPBITMAPINFOHEADER lpBitmap);
-	void ColorBitmap(CDC* pDC, CBitmap& bmp,CSize size,COLORREF fill,COLORREF border,int hatchstyle=-1);
+	void ColorBitmap(CDC* pDC, CBitmap& bmp,CSize bitmap_size,CSize icon_size,COLORREF fill,COLORREF border,int hatchstyle=-1);
+	void RemoveTopLevelOwnerDraw(void);
+	int GetMenuStart(void);
+	void GetFadedBitmap(CBitmap &bmp);
+	void GetTransparentBitmap(CBitmap &bmp);
+	void GetDisabledBitmap(CBitmap &bmp,COLORREF background=0);
+	void GetShadowBitmap(CBitmap &bmp);
+	int AddToGlobalImageList(CImageList *il,int xoffset,int nID);
+	int GlobalImageListOffset(int nID);
+	BOOL CanDraw3DImageList(int offset);
 	
 // Member Variables
 protected:
@@ -246,17 +273,29 @@ protected:
 	CTypedPtrArray<CPtrArray, HMENU>  m_SubMenus;  // Stores list of sub-menus 
 	// Stores a list of all BCMenu's ever created 
 	static CTypedPtrArray<CPtrArray, HMENU>  m_AllSubMenus;
-	int m_iconX,m_iconY;
+	// Global ImageList
+	static CImageList m_AllImages;
+	static CArray<int,int&> m_AllImagesID;
+	// icon size
+	static int m_iconX;
+	static int m_iconY;
 	COLORREF m_bitmapBackground;
 	BOOL m_bitmapBackgroundFlag;
 	BOOL disable_old_style;
-	static UINT original_drawmode,xp_drawmode;
-	static BOOL xp_select_disabled,original_select_disabled;
+	static UINT original_drawmode;
+	static BOOL original_select_disabled;
+	static UINT xp_drawmode;
+	static BOOL xp_select_disabled;
+	static BOOL xp_draw_3D_bitmaps;
+	static BOOL hicolor_bitmaps;
+	static BOOL xp_space_accelerators;
+	static BOOL original_space_accelerators;
 	CImageList *checkmaps;
 	BOOL checkmapsshare;
 	int m_selectcheck;
 	int m_unselectcheck;
 	BOOL m_bDynIcons;
+	BOOL m_loadmenu;
 }; 
 
 #define BCMENU_USE_MEMDC
