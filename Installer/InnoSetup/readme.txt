@@ -1,3 +1,7 @@
+2004-10-20 Kimmo
+ PATCH: [ 1050322 ] Installer: Don't open start-menu folder by default
+  InnoSetup: WinMerge Localized.iss
+
 2004-10-16 Kimmo
  BUG: [ 1030727 ] Installer always ask to delete previous start menu
   Fix from Takashi Sawanaka (Merged final fix from 2.2 branch)
