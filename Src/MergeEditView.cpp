@@ -32,10 +32,6 @@ CMergeEditView::~CMergeEditView()
 
 BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	//{{AFX_MSG_MAP(CMergeEditView)
-	ON_COMMAND(ID_ALL_LEFT, OnAllLeft)
-	ON_UPDATE_COMMAND_UI(ID_ALL_LEFT, OnUpdateAllLeft)
-	ON_COMMAND(ID_ALL_RIGHT, OnAllRight)
-	ON_UPDATE_COMMAND_UI(ID_ALL_RIGHT, OnUpdateAllRight)
 	ON_COMMAND(ID_CURDIFF, OnCurdiff)
 	ON_UPDATE_COMMAND_UI(ID_CURDIFF, OnUpdateCurdiff)
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
@@ -48,20 +44,24 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
 	ON_UPDATE_COMMAND_UI(ID_FIRSTDIFF, OnUpdateFirstdiff)
-	ON_COMMAND(ID_L2R, OnL2r)
-	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
 	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
 	ON_UPDATE_COMMAND_UI(ID_LASTDIFF, OnUpdateLastdiff)
 	ON_COMMAND(ID_NEXTDIFF, OnNextdiff)
 	ON_UPDATE_COMMAND_UI(ID_NEXTDIFF, OnUpdateNextdiff)
 	ON_COMMAND(ID_PREVDIFF, OnPrevdiff)
 	ON_UPDATE_COMMAND_UI(ID_PREVDIFF, OnUpdatePrevdiff)
-	ON_COMMAND(ID_R2L, OnR2l)
-	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateR2l)
 	ON_WM_LBUTTONDBLCLK()
 	ON_WM_LBUTTONUP()
 	ON_WM_KEYUP()
 	ON_WM_CHAR()
+	ON_COMMAND(ID_ALL_LEFT, OnAllLeft)
+	ON_UPDATE_COMMAND_UI(ID_ALL_LEFT, OnUpdateAllLeft)
+	ON_COMMAND(ID_ALL_RIGHT, OnAllRight)
+	ON_UPDATE_COMMAND_UI(ID_ALL_RIGHT, OnUpdateAllRight)
+	ON_COMMAND(ID_L2R, OnL2r)
+	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
+	ON_COMMAND(ID_R2L, OnR2l)
+	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateR2l)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -410,21 +410,6 @@ void CMergeEditView::GetLineColors (int nLineIndex, COLORREF & crBkgnd,
   
 }
 
-//DEL void CMergeEditView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar) 
-//DEL {
-//DEL 	CCrystalEditViewEx::OnHScroll(nSBCode, nPos, pScrollBar);
-//DEL 
-//DEL 	UpdateSiblingScrollPos(TRUE);
-//DEL }
-
-//DEL void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar) 
-//DEL {
-//DEL 	// TODO: Add your message handler code here and/or call default
-//DEL 	
-//DEL 	CCrystalEditViewEx::OnVScroll(nSBCode, nPos, pScrollBar);
-//DEL 	UpdateSiblingScrollPos(FALSE);
-//DEL }
-
 void CMergeEditView::UpdateSiblingScrollPos (BOOL bHorz)
 {
 	CSplitterWnd *pSplitterWnd = GetParentSplitter (this, FALSE);
@@ -527,30 +512,6 @@ void CMergeEditView::SelectDiff(int nDiff, BOOL bScroll /*=TRUE*/, BOOL bSelectT
 	}
 }
 
-void CMergeEditView::OnAllLeft() 
-{
-	// TODO: Add your command handler code here
-	
-}
-
-void CMergeEditView::OnUpdateAllLeft(CCmdUI* /*pCmdUI*/) 
-{
-	// TODO: Add your command update UI handler code here
-	
-}
-
-void CMergeEditView::OnAllRight() 
-{
-	// TODO: Add your command handler code here
-	
-}
-
-void CMergeEditView::OnUpdateAllRight(CCmdUI* /*pCmdUI*/) 
-{
-	// TODO: Add your command update UI handler code here
-	
-}
-
 void CMergeEditView::OnCurdiff() 
 {
 	CMergeDoc *pd = GetDocument();
@@ -638,18 +599,6 @@ void CMergeEditView::OnFirstdiff()
 void CMergeEditView::OnUpdateFirstdiff(CCmdUI* pCmdUI) 
 {
 	OnUpdatePrevdiff(pCmdUI);
-}
-
-void CMergeEditView::OnL2r() 
-{
-	CMergeDoc *pd = GetDocument();
-	pd->ListCopy(mf->m_pLeft, mf->m_pRight);
-}
-
-void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI) 
-{
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(pd!=NULL && pd->GetCurrentDiff()!=-1);
 }
 
 void CMergeEditView::OnLastdiff() 
@@ -754,18 +703,6 @@ void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 	pCmdUI->Enable(pd->m_nDiffs>0 && pos.y > (long)pd->m_diffs[0].dend0);
 }
 
-void CMergeEditView::OnR2l() 
-{
-	CMergeDoc *pd = GetDocument();
-	pd->ListCopy(mf->m_pRight, mf->m_pLeft);
-}
-
-void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI) 
-{
-	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(pd!=NULL && pd->GetCurrentDiff()!=-1);
-}
-
 void CMergeEditView::SelectNone()
 {
 	SetSelection (GetCursorPos(), GetCursorPos());
@@ -822,11 +759,11 @@ void CMergeEditView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	
 	if (nChar == VK_RIGHT)
 	{
-		OnL2r();
+		GetDocument()->ListCopy(true);
 	}
 	else if (nChar == VK_LEFT)
 	{
-		OnR2l();
+		GetDocument()->ListCopy(false);
 	}
 	else if (nChar == VK_NEXT)
 	{
@@ -897,3 +834,56 @@ void CMergeEditView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 	else
 		m_pTextBuffer->SetModified(mod);
 }
+
+void CMergeEditView::OnL2r() 
+{
+	GetDocument()->ListCopy(true);
+}
+
+void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+}
+
+void CMergeEditView::OnR2l() 
+{
+	GetDocument()->ListCopy(false);
+}
+
+void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+}
+
+void CMergeEditView::OnAllLeft() 
+{
+	CMergeDoc* pDoc = GetDocument();
+	// copy from bottom up is more efficient
+	for(int i = pDoc->m_nDiffs-1; i>=0; --i)
+	{
+		pDoc->SetCurrentDiff(i);
+		pDoc->ListCopy(false);
+	}
+}
+
+void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(GetDocument()->m_nDiffs!=0);
+}
+
+void CMergeEditView::OnAllRight() 
+{
+	CMergeDoc* pDoc = GetDocument();
+	// copy from bottom up is more efficient
+	for(int i = pDoc->m_nDiffs-1; i>=0; --i)
+	{
+		pDoc->SetCurrentDiff(i);
+		pDoc->ListCopy(true);
+	}
+}
+
+void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(GetDocument()->m_nDiffs!=0);
+}
+

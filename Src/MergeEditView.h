@@ -74,10 +74,6 @@ protected:
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CMergeEditView)
-	afx_msg void OnAllLeft();
-	afx_msg void OnUpdateAllLeft(CCmdUI* pCmdUI);
-	afx_msg void OnAllRight();
-	afx_msg void OnUpdateAllRight(CCmdUI* pCmdUI);
 	afx_msg void OnCurdiff();
 	afx_msg void OnUpdateCurdiff(CCmdUI* pCmdUI);
 	afx_msg void OnEditCopy();
@@ -90,20 +86,24 @@ protected:
 	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
 	afx_msg void OnFirstdiff();
 	afx_msg void OnUpdateFirstdiff(CCmdUI* pCmdUI);
-	afx_msg void OnL2r();
-	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
 	afx_msg void OnLastdiff();
 	afx_msg void OnUpdateLastdiff(CCmdUI* pCmdUI);
 	afx_msg void OnNextdiff();
 	afx_msg void OnUpdateNextdiff(CCmdUI* pCmdUI);
 	afx_msg void OnPrevdiff();
 	afx_msg void OnUpdatePrevdiff(CCmdUI* pCmdUI);
-	afx_msg void OnR2l();
-	afx_msg void OnUpdateR2l(CCmdUI* pCmdUI);
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnAllLeft();
+	afx_msg void OnUpdateAllLeft(CCmdUI* pCmdUI);
+	afx_msg void OnAllRight();
+	afx_msg void OnUpdateAllRight(CCmdUI* pCmdUI);
+	afx_msg void OnL2r();
+	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
+	afx_msg void OnR2l();
+	afx_msg void OnUpdateR2l(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

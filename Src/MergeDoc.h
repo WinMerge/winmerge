@@ -130,7 +130,7 @@ public:
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	BOOL Undo();
-	void ListCopy(CMergeEditView * pSrcList, CMergeEditView * pDestList);
+	void ListCopy(bool bSrcLeft);
 	BOOL DoSave(LPCTSTR szPath, CMergeEditView * pList, BOOL bLeft);
 	//CString ExpandTabs(LPCTSTR szText);
 	//CString Tabify(LPCTSTR szText);
@@ -174,6 +174,7 @@ protected:
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+private:
 };
 
 /////////////////////////////////////////////////////////////////////////////

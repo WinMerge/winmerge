@@ -500,94 +500,82 @@ BOOL CMergeDoc::Undo()
 }
 
 
-void CMergeDoc::ListCopy(CMergeEditView * pSrcList, CMergeEditView * pDestList)
+void CMergeDoc::ListCopy(bool bSrcLeft)
 {
-	if (pSrcList!=NULL && pDestList!=NULL)
+	// make sure we're on a diff
+	int curDiff = GetCurrentDiff();
+	if (curDiff!=-1)
 	{
-		// make sure we're on a diff
-		int curDiff = GetCurrentDiff();
-		if (curDiff!=-1)
+		DIFFRANGE &cd = m_diffs[curDiff];
+		CDiffTextBuffer& sbuf = bSrcLeft? m_ltBuf:m_rtBuf;
+		CDiffTextBuffer& dbuf = bSrcLeft? m_rtBuf:m_ltBuf;
+		BOOL bSrcWasMod = sbuf.IsModified();
+		int cd_dbegin = bSrcLeft? cd.dbegin0:cd.dbegin1;
+		int cd_dend = bSrcLeft? cd.dend0:cd.dend1;
+		int cd_blank = bSrcLeft? cd.blank0:cd.blank1;
+
+		// TODO: add the undo action
+
+		// if the current diff contains missing lines, remove them from both sides
+		int deleted_lines=0;
+		int limit = cd_dend;
+
+		if (cd_blank>=0)
 		{
-			BOOL bSrcLeft = pSrcList->m_bIsLeft;
-			DIFFRANGE &cd = m_diffs[curDiff];
-			CDiffTextBuffer& sbuf = bSrcLeft? m_ltBuf:m_rtBuf;
-			CDiffTextBuffer& dbuf = bSrcLeft? m_rtBuf:m_ltBuf;
-			BOOL bSrcWasMod = sbuf.IsModified();
-			int cd_dbegin = bSrcLeft? cd.dbegin0:cd.dbegin1;
-			int cd_dend = bSrcLeft? cd.dend0:cd.dend1;
-			int cd_blank = bSrcLeft? cd.blank0:cd.blank1;
+			// text was missing, so delete rest of lines on both sides
+			sbuf.DeleteText(NULL, cd_blank, 0, cd_dend+1, 0, CE_ACTION_UNKNOWN, FALSE);
+			dbuf.DeleteText(NULL, cd_blank, 0, cd_dend+1, 0, CE_ACTION_UNKNOWN, FALSE);
+			deleted_lines=cd_dend-cd_blank+1;
 
-			// TODO: add the undo action
-
-			// clear the line flags
-			for (int i=cd_dbegin; i <= cd_dend; i++)
-			{
-				sbuf.SetLineFlag(i, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
-				dbuf.SetLineFlag(i, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
-			}
-
-			// if the current diff contains missing lines, remove them from both sides
-			int deleted_lines=0;
-			if (cd_blank>=0)
-			{
-				// text was missing, so delete rest of lines on both sides
-				sbuf.DeleteText(pSrcList, cd_blank, 0, cd_dend+1, 0);
-				dbuf.DeleteText(pDestList, cd_blank, 0, cd_dend+1, 0);
-			    deleted_lines=cd_dend-cd_blank+1;
-			}
-			
-
-			// copy the selected text over
-			CString strLine;
-			int limit;
-			if (cd_blank>=0)
-				limit=cd_blank-1;
-			else
-				limit=cd_dend;
-			for (i=cd_dbegin; i <= limit; i++)
-			{
-				// text exists on left side, so just replace
-				sbuf.GetLine(i, strLine);
-				dbuf.ReplaceLine(i, strLine);
-			}
-
-			//mf->m_pRight->ReplaceSelection(strText, 0);
-			pSrcList->SelectNone();
-			pDestList->SelectNone();
-
-			//pSrcList->InvalidateLines(cd_dbegin, cd_dend);
-			//pDestList->InvalidateLines(cd_dbegin, cd_dend);
-
-			// remove the diff			
-			SetCurrentDiff(-1);
-			m_diffs.RemoveAt(curDiff);
-			m_nDiffs--;
-
-			// adjust remaining diffs
-			if (deleted_lines>0)
-			{
-				for (int i=curDiff; i < (int)m_nDiffs; i++)
-				{
-					DIFFRANGE &cd = m_diffs[i];
-					cd.dbegin0 -= deleted_lines;
-					cd.dbegin1 -= deleted_lines;
-					cd.dend0 -= deleted_lines;
-					cd.dend1 -= deleted_lines;
-					cd.blank0 -= deleted_lines;
-					cd.blank1 -= deleted_lines;
-				}
-			}
-
-			pSrcList->Invalidate();
-			pDestList->Invalidate();
-
-			// reset the mod status of the source view because we do make some
-			// changes, but none that concern the source text
-			sbuf.SetModified(bSrcWasMod);
+			limit=cd_blank-1;
 		}
+
+		CString strLine;
+
+		// copy the selected text over
+		for (int i=cd_dbegin; i <= limit; i++)
+		{
+			// clear the line flags
+			sbuf.SetLineFlag(i, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
+			dbuf.SetLineFlag(i, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
+			// text exists on left side, so just replace
+			sbuf.GetLine(i, strLine);
+			dbuf.ReplaceLine(i, strLine);
+		}
+
+		//mf->m_pRight->ReplaceSelection(strText, 0);
+
+		//pSrcList->InvalidateLines(cd_dbegin, cd_dend);
+		//pDestList->InvalidateLines(cd_dbegin, cd_dend);
+
+		// remove the diff			
+		SetCurrentDiff(-1);
+		m_diffs.RemoveAt(curDiff);
+		m_nDiffs--;
+
+		// adjust remaining diffs
+		if (deleted_lines>0)
+		{
+			for (int i=curDiff; i < (int)m_nDiffs; i++)
+			{
+				DIFFRANGE &cd = m_diffs[i];
+				cd.dbegin0 -= deleted_lines;
+				cd.dbegin1 -= deleted_lines;
+				cd.dend0 -= deleted_lines;
+				cd.dend1 -= deleted_lines;
+				cd.blank0 -= deleted_lines;
+				cd.blank1 -= deleted_lines;
+			}
+		}
+
+		UpdateAllViews(NULL);
+
+		// reset the mod status of the source view because we do make some
+		// changes, but none that concern the source text
+		sbuf.SetModified(bSrcWasMod);
 	}
-	pDestList->AddMod();
-	pDestList->UpdateWindow();
+	// what does this do?
+//	pDestList->AddMod();
 }
 
 
