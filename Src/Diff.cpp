@@ -75,24 +75,25 @@ just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff
 	inf[0].name = T2CA(filepath1);
 	inf[1].name = T2CA(filepath2);
 
-	for (int i=0; i<2; ++i)
-	{
-		if (stat(inf[i].name, &inf[i].stat) != 0)
-		{
-			return false;
-		}
-	}
 
-	inf[0].desc = open(inf[0].name, O_RDONLY|O_BINARY, 0);
+	inf[0].desc = _topen(filepath1, O_RDONLY|O_BINARY, 0);
 	if (inf[0].desc < 0)
 	{
 		return false;
 	}
-	inf[1].desc = open(inf[1].name, O_RDONLY|O_BINARY, 0);
+	inf[1].desc = _topen(filepath2, O_RDONLY|O_BINARY, 0);
 	if (inf[1].desc < 0)
 	{
 		close(inf[0].desc);
 		return false;
+	}
+
+	for (int i=0; i<2; ++i)
+	{
+		if (fstat(inf[i].desc, &inf[i].stat) != 0)
+		{
+			return false;
+		}
 	}
 
 	int bin_flag=0;

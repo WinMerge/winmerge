@@ -1,3 +1,7 @@
+2003-10-24 Perry
+ BUG: [ 829437 ] Can't compare two files with unicode filenames
+  WinMerge: Diff.cpp
+
 2003-10-24 Laoran
  Fix unifile code to initialize txtstats.nlosses (see comments in BUG [ 828924 ])
   common: UniFile.h
