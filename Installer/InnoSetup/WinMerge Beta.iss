@@ -295,7 +295,7 @@ Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; MinVersion: 4, 0; Co
 Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall; Check: InstallComCtlUpdate
 
 ;Adds Seier's Explorer Restart and Shell Extension Deletion Utility
-Source: ShellExtension.exe; DestDir: {app};
+Source: Installer Helper.exe; DestDir: {app};
 
 ; begin VC system files
 Source: Runtimes\mfc42.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile
@@ -434,16 +434,16 @@ Filename: {win}\Explorer.exe; Description: &View the WinMerge Start Menu Folder;
 Filename: {app}\{code:ExeName}; Description: &Launch WinMerge; Flags: nowait postinstall skipifsilent runmaximized
 
 
-
-
-
 [UninstallDelete]
 Type: files; Name: {app}\WinMerge.url
+Type: files; Name: {app}\Desktop.ini; Tasks: CustomFolderIcon
 Type: dirifempty; Name: {app}
 
 [UninstallRun]
 ;Restarts and deletes the shellextension file so we don't have to restart
-Filename: {app}\ShellExtension.exe; Parameters: /u; StatusMsg: Removing ShellExtension.dll
+Filename: {app}\Installer Helper.exe; Parameters: /u; StatusMsg: Removing ShellExtension.dll
+
+Filename: {sys}\Attrib.exe; Parameters: """{app}"" -S"; Flags: runhidden; Tasks: CustomFolderIcon
 
 [Code]
 Var
