@@ -1,10 +1,12 @@
 2003-11-14 Laoran 
  PATCH: [ 840296 ] Informative messageboxes when loading files
   WinMerge: files.h MainFrm.cpp MainFrm.h Merge.rc MergeDoc.cpp resource.h
+  Languages: *.rc resource.h
  PATCH: [ 841062 ] Alternative icons for PATCH [ 840273 ] (for hilight line diff)
  Submitted by Tim Gerundt
   WinMerge: Merge.rc
   res: Toolbar.bmp
+  Languages: *.rc
   Languages/res: Toolbar.bmp
 
 2003-11-14 Kimmo
