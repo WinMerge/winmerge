@@ -929,6 +929,14 @@ BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/)
 	return TRUE;
 }
 
+// If WinMerge is closed, CMainFrame::OnClose already takes
+// care of saving so this function just returns TRUE
+// to prevent further questions
+BOOL CMergeDoc::SaveModified()
+{
+	return TRUE;
+}
+
 void CMergeDoc::SetCurrentDiff(int nDiff)
 {
 	if (nDiff >= 0 && nDiff < (int)m_nDiffs)

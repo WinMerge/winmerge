@@ -1,3 +1,7 @@
+2003-03-25 Kimmo
+ PATCH: [ 708893 ] Don't ask to save file compare
+  WinMerge: MergeDoc.h MergeDoc.cpp
+
 2003-03-23 Perry
  PATCH: [ 706006 ] Suppress Rescan during Merge
   Merge.cpp Merge.h MergeDoc.cpp MergeDoc.h MergeEditView.cpp
