@@ -22,6 +22,8 @@
 <a href="#Localization : resources files">Localization : resources files</a>
 </li><li>
 <a href="#Localization : merging and scheduling">Localization : merging and scheduling</a>
+</li><li>
+<a href="#UserManual">User Manual in DocBook/XML</a>
 
 </li></ol>
 
@@ -31,7 +33,7 @@
 
 <p>
 
-In 2003 WinMerge has seen a happy spurt in development activity. Several new 
+In 2003 WinMerge has seen a happy spurt in development activity. Several new
 developers have joined in actively with developer cvs access, and also
 some users have contributed elaborate patches, and participated in ongoing
 discussions.
@@ -60,11 +62,11 @@ discussing the matter.
 Post development intentions:
 
 <ul><li>
-If you are fixing a bug, put a note in the SourceForge bug report that you're 
+If you are fixing a bug, put a note in the SourceForge bug report that you're
 fixing it. If there is no SourceForge bug report, create one.
 </li><li>
 If you are implementing a new feature, put a note in the SourceForge RFE
-(request for enhancement) that you're implementing it. If there is no 
+(request for enhancement) that you're implementing it. If there is no
 SourceForge RFE, create one.
 </li><li>
 If you are rewriting or refactoring code, and the change is not small,
@@ -80,8 +82,8 @@ sources, or of a source zip from a distribution).
 
 </li><li>
 
-Review the sections on <a href="#Coding_conventions">Coding conventions</a> 
-and <a href="#Doxygen_comments">Doxygen comments</a> 
+Review the sections on <a href="#Coding_conventions">Coding conventions</a>
+and <a href="#Doxygen_comments">Doxygen comments</a>
 
 </li><li>
 
@@ -90,7 +92,7 @@ Develop your new version.
 </li><li>
 
 Post your changes as a patch, to the SourceForge patch list. Try to give an
-informative patch title of course. Post to any relevant SourceForge bugs 
+informative patch title of course. Post to any relevant SourceForge bugs
 or RFEs, giving the patch number and title.
 <p>
 The active developers have often been posting entire original and modified
@@ -101,7 +103,7 @@ may be viewed as an infinite line context diff :)
 </li><li>
 
 Wait for reactions from other developers (and sometimes active users).
-If you feel impatient, you may solicit review of your patch via the 
+If you feel impatient, you may solicit review of your patch via the
 developer's mailing list.
 
 </li><li>
@@ -117,7 +119,7 @@ the project.)
 What is a reasonable amount of time? That is somewhat subjective, and
 we need to rely on your expertise as the patch developer, but let us
 suggest waiting a few days for minor patches, and at least a week for
-major patches. 
+major patches.
 
 
 </li><li>
@@ -132,7 +134,7 @@ This is very important so everybody else has a change to figure out who did what
 <a name="MakePatchDirs"></a>
 <h3>MakePatchDirs</h3>
 
-Perry wrote a small program called 
+Perry wrote a small program called
 <a href="readme-developers-MakePatchDirs.html">MakePatchDirs</a>, which helps
 in his patch process -- read the link for more information.
 
@@ -141,22 +143,22 @@ in his patch process -- read the link for more information.
 <h3>Minor code changes and bug fixes</h3>
 
 It is reasonable to post small snippets of code showing small changes
-directly in the text in bug postings, or patch postings. For example, see 
+directly in the text in bug postings, or patch postings. For example, see
 PATCH [ 824987 ] "Change binary-file detection (look only for zeros)", which
 gives the change directly in the text.
 
 <p>
 
 Bugfixes may be treated less formally, especially for simple ones, or for
-fixes to code you know well -- eg, you caused the bug yourself with a 
+fixes to code you know well -- eg, you caused the bug yourself with a
 recent patch :)
 
 <p>
 
 Consider still posting something to the tracker lists, even if it is
-simply a summary in English. If the fix is something like 
+simply a summary in English. If the fix is something like
 "misspelled variable name foo as fooz in many places", it is quite
-understandable that you prefer to just fix the instances rather than 
+understandable that you prefer to just fix the instances rather than
 doing a full patch for it.
 
 
@@ -169,7 +171,7 @@ conform to the local one, in whichever files you are at work.
 
 <ol><li>
 
-WinMerge itself uses Microsoft MFC style coding. 
+WinMerge itself uses Microsoft MFC style coding.
 <ul><li>
 Code indents are purely tabs.
 </li><li>
@@ -182,7 +184,7 @@ Class member variables are usually prefixed with m_.
 
 </li><li>
 Crystal Text Editor (WinMerge/editlib/*) and diffutils code (io.c, normal.c, util.c)
-use traditional Unix style coding. analyze.c should be in this format, but we have 
+use traditional Unix style coding. analyze.c should be in this format, but we have
 made a mess of it :(
 <ul><li>
 Code indents are spaces, with tabs used to abbreviate eight consecutive spaces.
@@ -198,7 +200,7 @@ the curly braces is indented an additional two spaces.
 <h3>Doxygen comments</h3>
 
 We have adopted <a href="http://www.doxygen.org">doxygen</a> style as our desired
-commenting style for functions, classes, files, and so forth, in WinMerge code 
+commenting style for functions, classes, files, and so forth, in WinMerge code
 (this applies only to native WinMerge code, not imported files).
 
 <ul><li>
@@ -237,7 +239,7 @@ We are trying to keep a consistent numbering scheme on our file releases, so eve
 <pre>
 2.1.2.0
 |&nbsp;|&nbsp;|&nbsp;|
-|&nbsp;|&nbsp;|&nbsp;`------- This number increases for each experimental, 
+|&nbsp;|&nbsp;|&nbsp;`------- This number increases for each experimental,
 |&nbsp;|&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and it is reset after each beta or major release.
 |&nbsp;|&nbsp;`--------- Denotes a beta release, an experimental release
 |&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; or a minor bug fix of a major release.
@@ -319,7 +321,7 @@ Typical method to merge strings in a Merge.rc from a patch with a Merge.rc in CV
 <ol><li>
 Add your new strings with WinMerge : resource.h for ID, and Merge.rc.
 </li><li>
-If no overlapping ID, you are finished. 
+If no overlapping ID, you are finished.
 </li><li>
 Update your ID in resource.h.
 </li><li>
@@ -370,7 +372,7 @@ developers do not change resources for beta/release after their creation. Only l
 
 Typical steps for a new beta/release :
 <ol><li>
-Layout of dialogs. Visual check. Probably a developer work (for speed, and maybe the language has no more translator). Update the CVS after this step. 
+Layout of dialogs. Visual check. Probably a developer work (for speed, and maybe the language has no more translator). Update the CVS after this step.
 </li><li>
 Branch the localized resource for the beta/release. Build the dll.
 </li><li>
@@ -380,11 +382,39 @@ Beginning of localization. The translators gets the localized resource.
 </li><li>
 Translator applies his localization to the branch. Rebuild the dll.
 </li><li>
-CVS localization. developers merge the changes from 4 to the current CVS. The layout may be merged only partially, as anyway it will be checked for the next beta/release. 
+CVS localization. developers merge the changes from 4 to the current CVS. The layout may be merged only partially, as anyway it will be checked for the next beta/release.
 </li></ol>
 Steps 3,4,5,6 may be reproduced. As long as the impacted beta/release is the last one, step 6 is necessary (or the changes will be lost in the next beta/release). But step 6 is done by developers only once (per language and per beta/release), after it is the translator's job. Please localize once and well rather than in small chunks !
 
 <p>
 
-Merging tools for resources : WinMerge of course, plus the plugin 'RCLocalizationHelper.dll'. 
+Merging tools for resources : WinMerge of course, plus the plugin 'RCLocalizationHelper.dll'.
 Most text/layout differences are ignored, so new/deleted/moved items appears clearly. Help to merge patches, and to merge a newly localized resource to its CVS version (apply the CVS changes to the newly localized resource). Contrary to a lot of (bad) localization tools, this method preserves the layout done by the translator. There are good localization tools however, and we will welcome with pleasure anyone with such a tool in the project.
+
+<a name="UserManual"></a>
+<h3>User Manual in DocBook/XML</h3>
+
+Useful DocBook resources:
+<a href="http://www.docbook.org/">Official DocBook homepage</a>
+<a href="http://www.docbook.org/wiki/moin.cgi/">DocBook Wiki</a>
+
+<p>
+Installing tools needed:
+<a href="http://supportweb.cs.bham.ac.uk/documentation/tutorials/docsystem/build/tutorials/docbooksys/segmentedhtml/">Good instructions</a>
+<br>
+Read ch 3. about how to install Windows environment. Note that only libxml and
+DocBook DTD are needed for creating HTML documentation.
+<br>
+<a href="ftp://ftp.zlatkovic.com/pub/libxml/">libxml download</a>
+
+<p>
+Editing manual
+<br>
+I'ts XML, so you can use XML editor or your favourite text editor. Note that
+XML requires document to well formed, unlike HTML, before it can be processed.
+<p>
+See these tutorials for editing DocBook:
+<a href="http://newbiedoc.sourceforge.net/metadoc/docbook-guide.html.en">NewbieDoc
+DocBook guide</a>
+<a href="http://www.codeproject.com/winhelp/docbook_howto.asp">Creating HTML
+help from DocBook</a>
