@@ -2105,8 +2105,13 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	// - show amount of diffs
 	else if (GetCurrentDiff() < 0)
 	{
-		sCnt.Format(_T("%ld"), m_nDiffs);
-		AfxFormatString1(s, IDS_NO_DIFF_SEL_FMT, sCnt); 
+		if (m_nDiffs == 1)
+			VERIFY(s.LoadString(IDS_1_DIFF_FOUND));
+		else
+		{
+			sCnt.Format(_T("%ld"), m_nDiffs);
+			AfxFormatString1(s, IDS_NO_DIFF_SEL_FMT, sCnt);
+		}
 	}
 	
 	// There are differences and diff selected

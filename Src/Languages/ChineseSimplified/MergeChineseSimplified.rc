@@ -1420,6 +1420,7 @@ BEGIN
     IDS_MERGEMODE_MERGING   "Merge"
     IDS_DIFF_NUMBER_STATUS_FMT "不同 %1 在 %2"
     IDS_NO_DIFF_SEL_FMT         "%1 不同找到"
+    IDS_1_DIFF_FOUND        "1 Difference Found"
     IDS_STATUSBAR_READONLY  "RO"
 END
 

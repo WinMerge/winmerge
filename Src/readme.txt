@@ -1,6 +1,9 @@
 2004-09-10 Kimmo
  PATCH: [ 1025411 ] Cleanup PropVSS.cpp
   Src: PropVss.cpp
+ PATCH: [ 1025443 ] Add '1 Difference Found' text
+  Src: Merge.rc MergeDoc.cpp resource.h
+  Src/Languages: *.rc resource.h
 
 2004-09-09 Kimmo
  PATCH: [ 1025052 ] Italian translation updated for latest experimental version

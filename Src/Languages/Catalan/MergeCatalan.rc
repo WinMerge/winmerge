@@ -1450,6 +1450,7 @@ BEGIN
     IDS_MERGEMODE_MERGING   "Combina"
     IDS_DIFF_NUMBER_STATUS_FMT "Diferència %1 de %2"
     IDS_NO_DIFF_SEL_FMT     "S'han trobat %1 diferènces"
+    IDS_1_DIFF_FOUND        "1 Difference Found"
     IDS_STATUSBAR_READONLY  "RO"
 END
 

@@ -1508,6 +1508,7 @@ BEGIN
     IDS_MERGEMODE_MERGING   "Merge"
     IDS_DIFF_NUMBER_STATUS_FMT "다른 파일(%1 중 %2)"
     IDS_NO_DIFF_SEL_FMT     "다른 부분 %1개 발견"
+    IDS_1_DIFF_FOUND        "1 Difference Found"
     IDS_STATUSBAR_READONLY  "RO"
 END
 

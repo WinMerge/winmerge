@@ -1549,7 +1549,8 @@ BEGIN
     IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
     IDS_MERGEMODE_MERGING   "Merge"
     IDS_DIFF_NUMBER_STATUS_FMT "Diferença %1 de %2"
-    IDS_NO_DIFF_SEL_FMT     "%1 Diferença(s) encontrada(s)"
+    IDS_NO_DIFF_SEL_FMT     "%1 Diferenças encontradas"
+    IDS_1_DIFF_FOUND        "1 Diferença encontrada"
     IDS_STATUSBAR_READONLY  "RO"
 END
 

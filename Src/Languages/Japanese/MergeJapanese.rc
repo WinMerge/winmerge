@@ -1437,6 +1437,7 @@ BEGIN
     IDS_MERGEMODE_MERGING   "É}Å[ÉW"
     IDS_DIFF_NUMBER_STATUS_FMT "ç∑àŸ %1/%2"
     IDS_NO_DIFF_SEL_FMT     "%1å¬ÇÃç∑àŸÇ™å©Ç¬Ç©ÇËÇ‹ÇµÇΩ"
+    IDS_1_DIFF_FOUND        "1 Difference Found"
     IDS_STATUSBAR_READONLY  "RO"
 END
 

@@ -1553,6 +1553,7 @@ BEGIN
     IDS_MERGEMODE_MERGING   "Merge"
     IDS_DIFF_NUMBER_STATUS_FMT "Unterschied %1 von %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Unterschiede gefunden"
+    IDS_1_DIFF_FOUND        "1 Difference Found"
     IDS_STATUSBAR_READONLY  "RO"
 END
 

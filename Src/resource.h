@@ -315,7 +315,8 @@
 #define IDS_MERGEMODE_MERGING           16835
 #define IDS_DIFF_NUMBER_STATUS_FMT      16836
 #define IDS_NO_DIFF_SEL_FMT             16837
-#define IDS_STATUSBAR_READONLY          16838
+#define IDS_1_DIFF_FOUND                16838
+#define IDS_STATUSBAR_READONLY          16839
 
 #define IDS_ERROR_INCOMPARABLE          17200
 #define IDS_DIRSEL_TAG                  17201
