@@ -15,7 +15,7 @@ PACK_UNPACK		Transform a file in a viewable format (for example, decompress a fi
 			The editor displays the unpacked data.
 			Sometimes files may be packed again (zipped files...). An additionnal function is
 			of course necessary.
-			If the author of the function has created this function, file maybe be saved again in
+			If the author of the plugin created this function, file may be saved again in
 			the compressed format.
 			Else the file can only be saved in a text format. To avoid problems, you are proposed to
 			change the filename when saving a changed file. 
@@ -42,7 +42,7 @@ offers the choice of the plugin before opening the editor view. This plugin is f
 
 How works "Automatic unpacking" ?
 Each plugin defines some file extensions it is intended for (see PluginFileFilters in the section "properties" in readme_developpers.txt).
-This information is is used to automatically apply a plugin to a file.
+This information is used to automatically apply a plugin to a file.
 Note : only the first matching plugin is applied
 Note2 : the plugin must match the extension of either the right or the left file, and is then
 applied to both files.
