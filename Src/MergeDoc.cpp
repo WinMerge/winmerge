@@ -1624,27 +1624,34 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
  */
 void CMergeDoc::OnFileSave() 
 {
-	BOOL bLSaveSuccess = FALSE;
-	BOOL bRSaveSuccess = FALSE;
-	BOOL bLModified = FALSE;
-	BOOL bRModified = FALSE;
+	// We will need to know if either of the originals actually changed
+	// so we know whether to update the diff status
+	BOOL bLChangedOriginal = FALSE;
+	BOOL bRChangedOriginal = FALSE;
 
 	if (m_ltBuf.IsModified() && !m_ltBuf.GetReadOnly())
 	{
-		bLModified = TRUE;
-		DoSave(m_strLeftFile, bLSaveSuccess, TRUE );
+		// (why we don't use return value of DoSave)
+		// DoSave will return TRUE if it wrote to something successfully
+		// but we have to know if it overwrote the original file
+		BOOL bSaveOriginal = FALSE;
+		DoSave(m_strLeftFile, bSaveOriginal, TRUE );
+		if (bSaveOriginal)
+			bLChangedOriginal = TRUE;
 	}
 
 	if (m_rtBuf.IsModified() && !m_rtBuf.GetReadOnly())
 	{
-		bRModified = TRUE;
-		DoSave(m_strRightFile, bRSaveSuccess, FALSE);
+		// See comments above for left case
+		BOOL bSaveOriginal = FALSE;
+		DoSave(m_strRightFile, bSaveOriginal, FALSE);
+		if (bSaveOriginal)
+			bRChangedOriginal = TRUE;
 	}
 
-	// If file were modified and saving succeeded,
-	// update status on dir view
-	if ((bLModified && bLSaveSuccess) || 
-		(bRModified && bRSaveSuccess))
+	// If either of the actual source files being compared was changed
+	// we need to update status in the dir view
+	if (bLChangedOriginal || bRChangedOriginal)
 	{
 		// If DirDoc contains diffs
 		if (m_pDirDoc->m_pCtxt)

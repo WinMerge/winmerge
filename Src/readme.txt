@@ -1,6 +1,10 @@
-2003-11-05 WinMerge experimental release 2.1.3.8 (patch demo)
+2003-11-08 Perry
+ PATCH: [ 838283 ] Simplifiy OnFileSave
+  WinMerge: MergeDoc.cpp
 
-2003-11-05 WinMerge experimental release 2.1.3.7 (cvs)
+2003-11-08 WinMerge experimental release 2.1.3.8 (patch demo)
+
+2003-11-08 WinMerge experimental release 2.1.3.7 (cvs)
 
 2003-11-08 Laoran
  BUG: [ 838248 ] possible typo in plugin code (cosmetic)
