@@ -170,6 +170,7 @@ BEGIN
         MENUITEM "V&erktygsfält",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusfält",                 ID_VIEW_STATUS_BAR
         MENUITEM "Skillnadsfält",               ID_VIEW_DETAIL_BAR
+        MENUITEM "Location &Pane",              ID_VIEW_LOCATION_BAR
         MENUITEM "Jämfö&r Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
@@ -1566,6 +1567,7 @@ BEGIN
     ID_PREDIFF_MANUAL       "No prediffer"
     ID_PREDIFF_AUTO         "Prediff if possible"
     ID_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+    ID_VIEW_LOCATION_BAR    "Location bar shows overall picture from files"
 END
 
 #endif    // Swedish resources
