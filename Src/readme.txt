@@ -8,6 +8,8 @@
  Remove some unused variables
   src: DiffWrapper.cpp MergeDoc.cpp PatchDlg.cpp StringDiffs.cpp
   src/common: multiformatText.cpp
+ Initialise all PackingInfo members
+  src: FileTransform.h
 
 2004-01-31 Laoran
  BUG: [ 885018 ] Crash when trying to save scratchpad

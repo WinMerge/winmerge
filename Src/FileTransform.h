@@ -78,10 +78,12 @@ public:
 	void Initialize(BOOL bLocalUnpackerMode)
 	{
 		// init functions as a valid "do nothing" unpacker
-		pluginName = _T("");
+		subcode = 0;
+		bWithFile = FALSE;
 		// and init bAutomatic flag and name according to global variable
 		if (bLocalUnpackerMode == UNPACK_MANUAL)
 		{			
+			pluginName.Empty();
 			bToBeScanned = FALSE;
 		}
 		else
