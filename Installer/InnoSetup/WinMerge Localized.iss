@@ -24,6 +24,7 @@
 ; #  Get "Read Me.rtf" translated into 18 other languages
 ;
 ; Bugs & Other Priority Items:
+; #  Component: "Languages" still needs to be localized
 ; #  Get All Inno Setup .ISLs localized
 ; #  Get All Inno Setup CustomMessages Localized
 ; #  Add the Windows Scripting Host if the user chooses the plugins (*.SCT)
@@ -73,7 +74,6 @@
 ; #  Make a Floppy Disk /Low Bandwidth Edition of the WinMerge Installer that doesn't include outdated (3.11, 3.12) 7-Zip Support or the Language files
 ;     If the user requires any of these we'll download it on the fly.  (maybe that should be the default behavior from the get go?)
 ; #  See about getting a higher resolution copy of the Users's Guide.ico source art from somebody (A 32x32, and or 48x48 would be nice)
-; #  Set the order of icons within the start menu (we'll have to use a registry hack since Inno Setup doesn't yet have this level of granularity).
 ; #  Create a switch for the installer to unzip all of the included binaries as if it were a zip file.
 ; #  Using the registry set the order our icons appear within their group in the start menu.:
 ;      1.  WinMerge
@@ -120,7 +120,7 @@ DefaultGroupName=WinMerge
 DisableStartupPrompt=yes
 AllowNoIcons=yes
 InfoBeforeFile=..\src\COPYING
-InfoAfterFile=..\Docs\Users\Read Me.rtf
+InfoAfterFile=..\Docs\users\Read Me.rtf
 
 OutputBaseFilename=WinMerge-{#AppVersion}-Setup
 
@@ -178,7 +178,7 @@ Name: Swedish; MessagesFile: Languages\Swedish.isl
 
 
 [Messages]
-English.FinishedLabel=Setup has finished installing [Name] on your computer.
+English.FinishedLabel=Setup has finished installing WinMerge on your computer.
 English.SetupAppTitle=Setup - WinMerge {#AppVersion}
 English.WizardInfoBefore=License Agreement
 English.InfoBeforeLabel=GNU General Public License
@@ -201,60 +201,60 @@ Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Type
 
 ;Language components, please note that whatever language you chose to install in will be installed in addition to any of the language components you've
 ;selected.  This is to make it easier for users that have a working localization of Inno Setup.
-Name: Languages; Description: "Languages"; Flags: disablenouninstallwarning
+Name: Languages; Description: Languages; Flags: disablenouninstallwarning
 Name: Languages\Bulgarian; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Bulgarian)
-Name: Languages\Bulgarian; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Bulgarian
+Name: Languages\Bulgarian; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Bulgarian
 
 Name: Languages\Catalan; Description: {cm:CatalanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Catalan)
-Name: Languages\Catalan; Description: {cm:CatalanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Catalan
+Name: Languages\Catalan; Description: {cm:CatalanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Catalan
 
 Name: Languages\Chinese_Simplified; Description: {cm:ChineseSimplifiedLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Chinese_Simplified)
-Name: Languages\Chinese_Simplified; Description: {cm:ChineseSimplifiedLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Chinese_Simplified
+Name: Languages\Chinese_Simplified; Description: {cm:ChineseSimplifiedLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Chinese_Simplified
 
 Name: Languages\Chinese_Traditional; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Chinese_Traditional)
-Name: Languages\Chinese_Traditional; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Chinese_Traditional
+Name: Languages\Chinese_Traditional; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Chinese_Traditional
 
 Name: Languages\Czech; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Czech)
-Name: Languages\Czech; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Czech
+Name: Languages\Czech; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Czech
 
 Name: Languages\Danish; Description: {cm:DanishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Danish)
-Name: Languages\Danish; Description: {cm:DanishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Danish
+Name: Languages\Danish; Description: {cm:DanishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Danish
 
 Name: Languages\Dutch; Description: {cm:DutchLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Dutch)
-Name: Languages\Dutch; Description: {cm:DutchLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Dutch
+Name: Languages\Dutch; Description: {cm:DutchLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Dutch
 
 Name: Languages\French; Description: {cm:FrenchLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(French)
-Name: Languages\French; Description: {cm:FrenchLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: French
+Name: Languages\French; Description: {cm:FrenchLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: French
 
 Name: Languages\German; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(German)
-Name: Languages\German; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: German
+Name: Languages\German; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: German
 
 Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Italian)
-Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Italian
+Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Italian
 
 Name: Languages\Korean; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Korean)
-Name: Languages\Korean; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Korean
+Name: Languages\Korean; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Korean
 
 Name: Languages\Norwegian; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Norwegian)
-Name: Languages\Norwegian; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Norwegian
+Name: Languages\Norwegian; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Norwegian
 
 Name: Languages\Polish; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Polish)
-Name: Languages\Polish; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Polish
+Name: Languages\Polish; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Polish
 
 Name: Languages\Portuguese; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Portuguese)
-Name: Languages\Portuguese; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Portuguese
+Name: Languages\Portuguese; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Portuguese
 
 Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Russian)
-Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Russian
+Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Russian
 
 Name: Languages\Slovak; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Slovak)
-Name: Languages\Slovak; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Slovak
+Name: Languages\Slovak; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Slovak
 
 Name: Languages\Spanish; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Spanish)
-Name: Languages\Spanish; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Spanish
+Name: Languages\Spanish; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Spanish
 
 Name: Languages\Swedish; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Swedish)
-Name: Languages\Swedish; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact;  Languages: Swedish
+Name: Languages\Swedish; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Swedish
 
 [Tasks]
 Name: ShellExtension; Description: {cm:ExplorerContextMenu}; GroupDescription: Optional Features:
@@ -592,6 +592,7 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; 
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000041b; Flags: deletevalue; Languages: Slovak
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000c0a; Flags: deletevalue; Languages: Spanish
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000041D; Flags: deletevalue; Languages: Swedish
+Root: HKCU; SubKey: Software\Microsoft\Windows\CurrentVersion\Explorer\MenuOrder\Start Menu\Programs\{code:RelativeGroupPath}; ValueType: binary; ValueName: Order; ValueData: 08 00 00 00 02 00 00 00 a2 01 00 00 01 00 00 00 05 00 00 00 4c 00 00 00 01 00 00 00 3d 00 00 00 41 75 67 4d 01 00 00 00 01 00 00 00 00 00 00 00 27 00 32 00 2b 05 00 00 95 30 17 80 20 00 52 65 61 64 20 4d 65 2e 6c 6e 6b 00 52 45 41 44 4d 45 7e 31 2e 4c 4e 4b 00 00 00 00 00 00 05 00 00 00 56 00 00 00 04 00 00 00 48 00 00 00 41 75 67 4d 01 00 00 00 01 00 00 00 00 00 00 00 32 00 32 00 be 01 00 00 95 30 17 80 20 00 55 6e 69 6e 73 74 61 6c 6c 20 57 69 6e 4d 65 72 67 65 2e 6c 6e 6b 00 55 4e 49 4e 53 54 7e 31 2e 4c 4e 4b 00 00 00 00 00 05 00 00 00 50 00 00 00 02 00 00 00 42 00 00 00 41 75 67 4d 01 00 00 00 01 00 00 00 00 00 00 00 2c 00 32 00 c9 05 00 00 95 30 17 80 20 00 55 73 65 72 27 73 20 47 75 69 64 65 2e 6c 6e 6b 00 55 53 45 52 27 53 7e 31 2e 4c 4e 4b 00 00 00 00 00 05 00 00 00 58 00 00 00 03 00 00 00 49 00 00 00 41 75 67 4d 01 00 00 00 01 00 00 00 00 00 00 00 33 00 32 00 2e 00 00 00 95 30 17 80 20 00 57 69 6e 4d 65 72 67 65 20 6f 6e 20 74 68 65 20 57 65 62 2e 75 72 6c 00 57 49 4e 4d 45 52 7e 31 2e 55 52 4c 00 00 00 00 00 00 05 00 00 00 4c 00 00 00 00 00 00 00 3e 00 00 00 41 75 67 4d 01 00 00 00 01 00 00 00 00 00 00 00 28 00 32 00 ce 01 00 00 95 30 17 80 20 00 57 69 6e 4d 65 72 67 65 2e 6c 6e 6b 00 57 49 4e 4d 45 52 47 45 2e 4c 4e 4b 00 00 00 00 00 05 00 00 00
 
 
 [Run]
@@ -1100,6 +1101,15 @@ Begin
     Result := RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\TortoiseCVS\CustomIcons');
 End;
 
+Function RelativeGroupPath(Unused: string): String;
+Var
+    strGroup: String;
+Begin
+    strGroup := ExpandConstant('{group}');
+    StringChange(strGroup, ExpandConstant('{commonstartmenu}\Programs\'), '');
+    Result := strGroup
+End;
+
 Function OldGroup(): string;
 Begin
     {Stores where in \All Users\Programs\ our start menu used to be located}
@@ -1136,35 +1146,35 @@ Begin
 					If Msgbox(strMessage, mbConfirmation, mb_YesNo) = mrYes Then
 						Begin
 						    strOld := ExpandConstant('{commonstartmenu}\Programs\') + strOld;
-			
+
                             {Removes each of the start menu icons to make the folder empty}
                             strShortcut := strOld + '\' + ExpandConstant('{cm:ReadMe}') + '.lnk';
 			                DeleteFile(strShortcut)
-			                
+
 			                strShortcut := strOld + '\Read Me.lnk';
 			                DeleteFile(strShortcut)
-			                			
+
 			                strShortcut := strOld + '\' + ExpandConstant('{cm:UninstallProgram,WinMerge}') + '.lnk';
 			                DeleteFile(strShortcut)
-			                
+
 			                strShortcut := strOld + '\Uninstall WinMerge.lnk';
 			                DeleteFile(strShortcut)
-			
+
 			                strShortcut := strOld + '\' + ExpandConstant('{cm:UsersGuide}') + '.lnk';
                             DeleteFile(strShortcut)
-                            
+
                             strShortcut := strOld + '\User''s Guide.lnk';
 			                DeleteFile(strShortcut)
-                            
+
                             strShortcut := strOld + '\' + ExpandConstant('{cm:ProgramOnTheWeb,WinMerge}') + '.url';
 			                DeleteFile(strShortcut)
-			                
+
 			                strShortcut := strOld + '\Winmerge on the Web.lnk';
 			                DeleteFile(strShortcut)
-			                
+
 			                strShortcut := strOld + '\Winmerge on the Web.url';
 			                DeleteFile(strShortcut)
-			                
+
 			                strShortcut := strOld + '\WinMerge.lnk';
 			                DeleteFile(strShortcut)
 
@@ -1191,10 +1201,8 @@ End;
 {This event procedure is queed each time the user changes pages within the installer}
 Procedure CurPageChanged(CurPage: integer);
 Begin
-
     {if the installer reaches the file copy page then...}
     If CurPage = wpInstalling Then
-
-        {Delete the previous start menu group if the location has changed since the last install}
-        DeletePreviousStartMenu;
+            {Delete the previous start menu group if the location has changed since the last install}
+            DeletePreviousStartMenu;
 End;
