@@ -2,6 +2,9 @@
  PATCH: [ 814830 ] Prevent rescan of scanning dirdoc
   Submitted by Perry
   WinMerge: DirDoc.cpp
+ PATCH: [ 812581 ] Prevent second scan during first scan
+  Submitted by Perry
+  WinMerge: MainFrm.cpp
 
 2003-09-29 Kimmo
  PATCH: [ 814098 ] More edit-events for delayed rescan

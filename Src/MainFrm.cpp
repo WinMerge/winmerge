@@ -937,6 +937,9 @@ void CMainFrame::rptStatus(UINT diffcode)
 	m_wndStatusBar.SetPaneText(2, s);
 }
 
+/**
+ * @brief Begin a diff: open dirdoc if it is directories, else open a mergedoc for editing
+ */
 BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/,
 	DWORD dwLeftFlags /*=0*/, DWORD dwRightFlags /*=0*/, BOOL bRecurse /*=FALSE*/)
 {
@@ -946,6 +949,11 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 
 	BOOL docNull;
 	CDirDoc * pDirDoc = GetDirDocToShow(&docNull);
+
+	// If the dirdoc we are supposed to use is busy doing a diff, bail out
+	UINT threadState = pDirDoc->m_diffThread.GetThreadState();
+	if (threadState == THREAD_COMPARING)
+		return FALSE;
 
 	if (!docNull)
 	{
