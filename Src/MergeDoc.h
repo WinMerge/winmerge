@@ -224,8 +224,6 @@ public:
 	BOOL TrySaveAs(CString &strPath, int &nLastErrorCode, BOOL bLeft, PackingInfo * pInfoTempUnpacker);
 	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
 	BOOL DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
-	//CString ExpandTabs(LPCTSTR szText);
-	//CString Tabify(LPCTSTR szText);
 	int LineToDiff(UINT nLine);
 	BOOL LineInDiff(UINT nLine, UINT nDiff);
 	int RightLineInMovedBlock(int leftLine);

@@ -1097,49 +1097,6 @@ BOOL CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	return result;
 }
 
-/*CString CMergeDoc::ExpandTabs(LPCTSTR szText)
-{
-	LPCTSTR p;
-	CString strResult(_T(""));
-	CString spaces(_T(' '), mf->m_nTabSize);
-	if (szText != NULL && *szText != _T('\0'))
-	{
-		for (p=szText; *p != _T('\0'); p=_tcsinc(p))
-		{
-			if (*p == _T('\t'))
-				strResult += spaces;
-			else
-				strResult += *p;
-		}
-	}
-	return strResult;
-}
-
-CString CMergeDoc::Tabify(LPCTSTR szText)
-{
-	LPCSTR p=szText,p2;
-	TCHAR temp[1024];
-	CString strResult("");
-	CString spaces(' ',mf->m_nTabSize);
-	while (1)
-	{
-		if ((p2=strstr(p, spaces)) != NULL)
-		{
-			strncpy(temp,p,p2-p);
-			temp[p2-p]=NULL;
-			strResult += temp;
-			strResult += "\t";
-			p = p2+mf->m_nTabSize;
-		}
-		else
-		{
-			strResult += p;
-			break;
-		}
-	}
-	return strResult;
-}*/
-
 /**
  * @brief Checks if line is inside given diff
  * @param nline Linenumber to text buffer (not "real" number)

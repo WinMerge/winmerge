@@ -1,3 +1,7 @@
+2004-06-17 Kimmo
+ Remove commented out functions ExpandTabs() and Tabify()
+  Src: MergeDoc.h MergeDoc.cpp
+
 2004-06-17 Laoran
  PATCH: [ 972108 ] use getDefaultCodepage for document with no codepage
   Src: MainFrm.cpp
