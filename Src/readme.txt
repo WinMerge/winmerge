@@ -2,6 +2,8 @@
  PATCH: [ 972500 ] Italian translation updated
   Submitted by Andrea Decorte
   Src/Languages/Italian: MergeItalian.rc
+ PATCH: [ 975025 ] Fix column number in file compare statusbar
+  Src: MergeEditView.cpp
 
 2004-06-19 Kimmo
  PATCH: [ 975432 ] Add codepage detection option to configlog

@@ -1576,7 +1576,12 @@ void CMergeEditView::SetStatusInterface(IMergeEditStatus * piMergeEditStatus)
 	m_piMergeEditStatus = piMergeEditStatus;
 }
 
-/// Override from CCrystalTextView
+/**
+ * @brief Update statusbar info, Override from CCrystalTextView
+ * @Note we tab-expand column, but we don't tab-expand char count,
+ * since we want to show how many chars there are and tab is just one
+ * character although it expands to several spaces.
+ */
 void CMergeEditView::
 OnUpdateCaret()
 {
@@ -1586,27 +1591,28 @@ OnUpdateCaret()
 		int nScreenLine = cursorPos.y;
 		int nRealLine = ComputeRealLine(nScreenLine);
 		CString sLine;
-		int chars;
+		int chars = -1;
 		CString sEol;
+		int column = -1;
+
 		// Is this a ghost line ?
 		if (m_pTextBuffer->GetLineFlags(nScreenLine) & LF_GHOST)
 		{
 			// Ghost lines display eg "Line 12-13"
 			sLine.Format(_T("%d-%d"), nRealLine, nRealLine+1);
-			chars = -1;
-			sEol = _T("");
 		}
 		else
 		{
 			// Regular lines display eg "Line 13 Characters: 25 EOL: CRLF"
 			sLine.Format(_T("%d"), nRealLine+1);
 			chars = GetLineLength(nScreenLine);
+			column = CalculateActualOffset(nScreenLine, cursorPos.x);
 			if (mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
-			sEol = GetTextBufferEol(nScreenLine);
+				sEol = GetTextBufferEol(nScreenLine);
 			else
 				sEol = _T("hidden");
 		}
-		m_piMergeEditStatus->SetLineInfo(sLine, cursorPos.x + 1, chars, sEol);
+		m_piMergeEditStatus->SetLineInfo(sLine, column + 1, chars, sEol);
 	}
 }
 
