@@ -220,8 +220,11 @@ LPCTSTR CFilepathEdit::GetUpdatedTipText(CDC * pDC, int maxWidth)
 	return (LPCTSTR) toolTipString;
 }
 
-// use this when we want to copy from the wholeText
-// the standard Copy function works with the windowText 
+/**
+ * @brief retrieve text from the wholeText
+ *
+ * @note The standard Copy function works with the (compacted) windowText 
+ */
 void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 {
 	if (iEnd == -1)
@@ -234,7 +237,7 @@ void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 		return;		
 		
 	// insert text into clipboard
-	HGLOBAL hData = GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, iEnd-iBegin + 1);
+	HGLOBAL hData = GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, (iEnd-iBegin + 1)*sizeof(TCHAR));
 	if (hData == NULL)
 		return;
 	LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
@@ -295,6 +298,10 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 			}
 			break;
 		case ID_EDITOR_COPY_PATH:
+			// pass the heading "*" for modified files
+			if (wholeText.GetAt(0) == '*')
+				iBegin = 2;
+			else
 			iBegin = 0;
 			break;
 		}
@@ -302,7 +309,4 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		CustomCopy(iBegin);
 	}
 }
-
-
-
 

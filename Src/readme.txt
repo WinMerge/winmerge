@@ -1,4 +1,6 @@
 2003-10-14 Laoran
+ BUG: correcting memory allocation for Unicode build in FilepathEdit.cpp
+  editlib: FilepathEdit.cpp
  BUG: [ 822844 ] Drag & Drop crashes on Unicode build (correcting memory allocation)
   editlib: ccrystaltextview.cpp
 
