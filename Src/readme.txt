@@ -1,3 +1,5 @@
+2004-05-18 WinMerge experimental release 2.1.7.3 (cvs)
+
 2004-05-18 Perry
  PATCH: (continued) [ 942021 ] Propose translation of language names
   Src/Languages: MergeBrazilian.rc MergeBulgarian.rc MergeCatalan.rc
