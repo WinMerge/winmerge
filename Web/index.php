@@ -33,7 +33,7 @@
 
 <h2>WinMerge 2.2RC - release candidate version</h2>
 <p><a href="2.2/index.php">WinMerge 2.2RC</a> is the release candidate version from the next stable version with many new and great features.</p>
-<p><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158&amp;release_id=273507">Download WinMerge 2.2RC</a></p>
+<p><a href="https://sourceforge.net/project/showfiles.php?group_id=13216&package_id=29158&release_id=280509">Download WinMerge 2.2RC</a></p>
 
 <!--
 <h2>WinMerge 2.1 - current development version</h2>
@@ -72,10 +72,10 @@ But please consider making a <a href="http://sourceforge.net/project/project_don
 to support the continued development of WinMerge.</p>
 
 <h2>Developers</h2>
-<p>On the <a href="developer/index.php">developer page</a> 
+<p>On the <a href="developer/index.php">developer page</a>
 you get more information about the development for WinMerge.</p>
-<p>You get a list from the current developers, how to 
-<a href="developer/needed.php">develop</a> and 
+<p>You get a list from the current developers, how to
+<a href="developer/needed.php">develop</a> and
 <a href="developer/translate.php">translate WinMerge</a>
 and some hints for <a href="developer/wincvs.php">WinCVS</a>.</p>
 <?php

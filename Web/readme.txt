@@ -1,3 +1,7 @@
+2004-11-06 Kimmo
+ PATCH: [ 1061441 ] Point homepage to 2.2RC3 download
+  Web: index.php
+
 2004-11-05 Kimmo
  PATCH: [ 1054840 ] New homepage menu
   Submitted by Tim Gerundt
