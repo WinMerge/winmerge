@@ -103,6 +103,7 @@ public:
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
 	void GetFullVSSPath(CString strSavePath, BOOL & bVCProj);
+	void ShowVSSError(CException *e, CString strItem);
 
 // Overrides
 	// ClassWizard generated virtual function overrides

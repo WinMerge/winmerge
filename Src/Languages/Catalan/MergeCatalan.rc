@@ -1426,6 +1426,7 @@ BEGIN
     IDS_VSS_RUN_ERROR       "S'ha produït un error en executar una ordre del sistema de control de versions."
     IDS_VSSFOLDER_AND_FILE_NOMATCH "La carpeta de treball del VSS i la ubicació del fitxer actual no concorden. Voleu continuar?"
     IDS_VSS_NODATABASES     "No VSS database(s) found!"
+    IDS_VSS_ERRORFROM       "Error from VSS:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

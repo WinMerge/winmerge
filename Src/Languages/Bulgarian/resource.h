@@ -337,6 +337,7 @@
 #define IDS_VSS_RUN_ERROR               17267
 #define IDS_VSSFOLDER_AND_FILE_NOMATCH  17268
 #define IDS_VSS_NODATABASES             17269
+#define IDS_VSS_ERRORFROM               17270
 
 #define ID_DIR_COPY_LEFT_TO_RIGHT       17600
 #define ID_DIR_COPY_LEFT_TO_BROWSE      17601

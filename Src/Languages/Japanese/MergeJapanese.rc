@@ -1413,6 +1413,7 @@ BEGIN
     IDS_VSS_RUN_ERROR       "バージョンシステムコマンドの実行エラー。"
     IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS作業フォルダと現在のファイル位置は一致していません。続行しますか?"
     IDS_VSS_NODATABASES     "VSSのデータベースがみつかりません!"
+    IDS_VSS_ERRORFROM       "Error from VSS:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

@@ -8,6 +8,9 @@
   Src: DirView.cpp MainFrm.cpp
  BUG: [ 978062 ] VSS support broken
   Src: MainFrm.cpp
+ PATCH: [ 978393 ] Better VSS errormessages
+  Src: MainFrm.cpp MainFrm.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
 
 2004-06-22 Kimmo
  PATCH: [ 977475 ] Log DeleteFile() failure in FileTransform.cpp

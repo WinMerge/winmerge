@@ -1057,8 +1057,8 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword);
 
 			IVSSDatabase vssdb;
-			IVSSItems m_vssis;
-			IVSSItem m_vssi;
+			IVSSItems vssis;
+			IVSSItem vssi;
 
 			COleException *eOleException = new COleException;
 				
@@ -1073,19 +1073,38 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			}
 
 			//check if m_strVSSDatabase is specified:
-			if (m_strVssDatabase.GetLength() > 0)
+			if (!m_strVssDatabase.IsEmpty())
 			{
 				CString iniPath = m_strVssDatabase + _T("\\srcsafe.ini");
-				// BSP - Open the specific VSS data file  using info from VSS dialog box
-				vssdb.Open(iniPath, m_strVssUser, m_strVssPassword);														
+				TRY
+				{
+					// BSP - Open the specific VSS data file  using info from VSS dialog box
+					vssdb.Open(iniPath, m_strVssUser, m_strVssPassword);
+				}
+				CATCH_ALL(e)
+				{
+					ShowVSSError(e, _T(""));
+				}
+				END_CATCH_ALL
+
 				bOpened = TRUE;
 			}
 			
 			if (bOpened == FALSE)
 			{
-				// BSP - Open the specific VSS data file  using info from VSS dialog box
-				//let vss try to find one if not specified
-				vssdb.Open(NULL, m_strVssUser, m_strVssPassword);
+				CString iniPath = m_strVssDatabase + _T("\\srcsafe.ini");
+				TRY
+				{
+					// BSP - Open the specific VSS data file  using info from VSS dialog box
+					//let vss try to find one if not specified
+					vssdb.Open(NULL, m_strVssUser, m_strVssPassword);
+				}
+				CATCH_ALL(e)
+				{
+					ShowVSSError(e, _T(""));
+					return FALSE;
+				}
+				END_CATCH_ALL
 			}
 
 			SplitFilename(strSavePath, &spath, &sname, 0);
@@ -1142,13 +1161,22 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			}
 			CString strItem = m_strVssProjectBase + '\\' + sname;
 
-			//  BSP - ...to get the specific source safe item to be checked out
-			m_vssi = vssdb.GetVSSItem( strItem, 0 );
+			TRY
+			{
+				//  BSP - ...to get the specific source safe item to be checked out
+				vssi = vssdb.GetVSSItem( strItem, 0 );
+			}
+			CATCH_ALL(e)
+			{
+				ShowVSSError(e, strItem);
+				return FALSE;
+			}
+			END_CATCH_ALL
 
 			if (!m_bVssSuppressPathCheck)
 			{
 				// BSP - Get the working directory where VSS will put the file...
-				CString strLocalSpec = m_vssi.GetLocalSpec();
+				CString strLocalSpec = vssi.GetLocalSpec();
 
 				// BSP - ...and compare it to the directory WinMerge is using.
 				if (strLocalSpec.CompareNoCase(strSavePath))
@@ -1168,8 +1196,17 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				}
 			}
 
-			// BSP - Finally! Check out the file!
-			m_vssi.Checkout(_T(""), strSavePath, 0);
+			TRY
+			{
+				// BSP - Finally! Check out the file!
+				vssi.Checkout(_T(""), strSavePath, 0);
+			}
+			CATCH_ALL(e)
+			{
+				ShowVSSError(e, strSavePath);
+				return FALSE;
+			}
+			END_CATCH_ALL
 		}
 	}
 	break;
@@ -2800,4 +2837,35 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 		}
 	}
 	return CMDIFrameWnd::PreTranslateMessage(pMsg);
+}
+
+/**
+ * @brief Shows VSS error from exception and writes log.
+ */
+void CMainFrame::ShowVSSError(CException *e, CString strItem)
+{
+	CString errMsg;
+	CString logMsg;
+	TCHAR errStr[1024] = {0};
+
+	VERIFY(errMsg.LoadString(IDS_VSS_ERRORFROM));
+	if (e->GetErrorMessage(errStr, 1024))
+	{
+		logMsg = errMsg;
+		errMsg += _T("\n");
+		errMsg += errStr;
+		logMsg += _T(" ");
+		logMsg += errStr;
+		if (!strItem.IsEmpty())
+		{
+			errMsg += _T("\n\n");
+			errMsg += strItem;
+			logMsg += _T(": ");
+			logMsg += strItem;
+		}
+		LogErrorString(logMsg);
+		AfxMessageBox(errMsg, MB_ICONSTOP);
+	}
+	else
+		e->ReportError(MB_ICONSTOP, IDS_VSS_RUN_ERROR);
 }

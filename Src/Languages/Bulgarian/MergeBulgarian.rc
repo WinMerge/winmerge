@@ -1410,6 +1410,7 @@ BEGIN
     IDS_VSS_RUN_ERROR       "Грешка при стартиране на команда от versioning system."
     IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS работна директория и разположението на файла не съвападат. Ще продължите ли?"
     IDS_VSS_NODATABASES     "No VSS database(s) found!"
+    IDS_VSS_ERRORFROM       "Error from VSS:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

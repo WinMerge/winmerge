@@ -1522,6 +1522,7 @@ BEGIN
     IDS_VSS_RUN_ERROR       "Fel vid utförande av kommando för versionshanteringssystem."
     IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS arbetskalogen och läget på den aktuella filen matchar inte. Vill du fortsätta ändå?"
     IDS_VSS_NODATABASES     "No VSS database(s) found!"
+    IDS_VSS_ERRORFROM       "Error from VSS:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

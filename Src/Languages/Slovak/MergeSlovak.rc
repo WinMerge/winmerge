@@ -1523,6 +1523,7 @@ BEGIN
     IDS_VSS_RUN_ERROR       "Chyba pri sp˙öùanÌ prÌkazu zo SystÈmu VerziÌ (CVS a pod)."
     IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
     IDS_VSS_NODATABASES     "No VSS database(s) found!"
+    IDS_VSS_ERRORFROM       "Error from VSS:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

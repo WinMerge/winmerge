@@ -1426,6 +1426,7 @@ BEGIN
     IDS_VSS_RUN_ERROR       "Ошибка выполнения системной команды Системы контроля версий."
     IDS_VSSFOLDER_AND_FILE_NOMATCH "Рабочая папка VSS и местоположение текущего файла не совпадают. Продолжить ?"
     IDS_VSS_NODATABASES     "No VSS database(s) found!"
+    IDS_VSS_ERRORFROM       "Error from VSS:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
