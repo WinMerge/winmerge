@@ -3,6 +3,8 @@
   Src: MergeDoc.h
  Updated WinMerge Localized.iss from seier (add Swedish Readme after install)
   InnoSetup: WinMerge Localized.iss
+ Updated Swedish ReadMe from seier
+  Docs/Users/Languages: Read Me-Swedish.rtf
 
 2004-05-21 Kimmo
  PATCH: [ 957740 ] Tell if two binary files are different/identical
