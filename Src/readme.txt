@@ -1,3 +1,5 @@
+2005-02-23 WinMerge experimental release 2.3.1.4 (cvs)
+
 2005-02-23 Kimmo
  PATCH: [ 1149081 ] Invalid string compare in CChildFrm.cpp
   Src: ChildFrm.cpp
