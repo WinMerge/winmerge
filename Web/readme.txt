@@ -1,3 +1,9 @@
+2004-09-30 Christian
+ PATCH: [ 929401 ] New website structure
+  Submitted by Tim Gerundt
+  Web/2.0: All files added
+  Web: .htaccess index.php page.inc
+
 2004-09-27 Kimmo
  PATCH: [ 955458 ] Optimize translations status page
   Submitted by Tim Gerundt

@@ -27,7 +27,7 @@
 <img src="images/screenshot.png" alt="Screenshot of WinMerge">
 
 <h2>WinMerge 2.0.2 - latest stable version</h2>
-<p>WinMerge 2.0.2 is the latest stable version, and it is recommended for most users</p>
+<p><a href="http://winmerge.org/2.0/index.php" target="_top">WinMerge 2.0.2</a> is the latest stable version, and it is recommended for most users</p>
 <p><a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup202.exe" target="_top">Download WinMerge 2.0.2 Installer</a></p>
 
 <h2>WinMerge 2.1 - current development version</h2>
@@ -41,8 +41,8 @@
 
 <h2>Installation</h2>
 <p>Just download the installer and double-click it.</p>
-<p>Or you may simply unzip the binary zip package (eg, WinMerge202-exe.zip) into the desired location, and run
-WinMerge.exe or WinMergeU.exe (the latter is the Unicode version, only for use on NT/2000/XP).</p>
+<p>Or you may simply unzip the binary zip package (eg, <code>WinMerge202-exe.zip</code>) into the desired location, and run
+<code>WinMerge.exe</code> or <code>WinMergeU.exe</code> (the latter is the Unicode version, only for use on NT/2000/XP).</p>
 
 <h2>Using WinMerge</h2>
 <p>You can use the <a href="http://winmerge.org/docs20/index.html" target="_top">online User's Guide</a>, or you can
@@ -58,7 +58,7 @@ bugs <a href="http://sourceforge.net/bugs/?group_id=13216" target="_top">here</a
 <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216" target="_top">RFE list</a> will also be considered, but we make
 absolutely no promises.</p>
 
-<p>Here is the current <A href="http://winmerge.org/WinMergeChanges.html" target="_top">change history</a>.</p>
+<p>Here is the current <a href="http://winmerge.org/2.0/changes.php" target="_top">change history</a>.</p>
 
 <p>Since WinMerge is an Open Source project, you may use it free of charge.
 But please consider making a <a href="http://sourceforge.net/project/project_donations.php?group_id=13216" target="_top">donation</a>

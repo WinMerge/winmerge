@@ -138,7 +138,7 @@
         $temp .= "  <a href=\"http://winmerge.org/1.7/changes.php\" target=\"_top\">Change History</a><br><br>\n";
       }
       else { //if NOT WinMerge 1.7 ...
-        $temp .= "  <a href=\"http://winmerge.org/WinMergeChanges.html\" target=\"_top\">Change History</a><br><br>\n";
+        $temp .= "  <a href=\"http://winmerge.org/2.0/changes.php\" target=\"_top\">Change History</a><br><br>\n";
       }
       $temp .= "  <center><a href=\"http://sourceforge.net/donate/index.php?group_id=13216\" target=\"_top\">\n";
       $temp .= "    <img src=\"http://images.sourceforge.net/images/project-support.jpg\"\n";
@@ -280,6 +280,31 @@
             return $children;
         }
       }
+    }
+    
+    /**
+     * convert a changelog file into html code
+     */
+    function convertChanges2Html($filename) {
+      $html = "<pre>\n";
+      if (file_exists($filename) == true) {
+        $lines = file($filename);
+        $linescount = sizeof($lines);
+        
+        for ($i = 0; $i < $linescount; $i++) {
+          $line = $lines[$i];
+          
+          $line = preg_replace('#^([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9])#si', '<b>' . '\\1' . '</b>', $line);
+          $line = preg_replace('#PATCH: \[ ([0-9]*) \]#si', 'PATCH: [ <a href="http://sourceforge.net/tracker/index.php?func=detail&aid=\\1&group_id=13216&atid=313216" target="_blank">\\1</a> ]', $line);
+          $line = preg_replace('#BUG: \[ ([0-9]*) \]#si', 'BUG: [ <a href="http://sourceforge.net/tracker/index.php?func=detail&aid=\\1&group_id=13216&atid=113216" target="_blank">\\1</a> ]', $line);
+          $line = preg_replace('#RFE: \[ ([0-9]*) \]#si', 'RFE: [ <a href="http://sourceforge.net/tracker/index.php?func=detail&aid=\\1&group_id=13216&atid=363216" target="_blank">\\1</a> ]', $line);
+        
+          $html .= $line;
+        }
+      }
+      $html .= "</pre>\n";
+      
+      return $html;
     }
   }
 ?>

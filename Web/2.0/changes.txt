@@ -1,15 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
- <TITLE>WinMerge Change History</TITLE>
- <META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
- <META name="Author" content="Dean Grimm">
- <META name="GENERATOR" content="MSHTML 6.00.2600.0">
-</HEAD>
-<BODY>
-<H1>WinMerge Change History</H1>
-<HR>
-<pre>
 2003-12-10 WinMerge 2.0.2.0 released
 
 2003-12-10 Christian
@@ -144,14 +132,22 @@
 2003-08-04 WinMerge 2.0.0.3 released
 
 2003-08-04 Christian
- PATHC: [ 782824 ] Add languages to installer
+ PATCH: [ 782824 ] Add languages to installer
   InnoSetup: WinMerge.iss Info.txt
  PATCH: [ 782820 ] Updated Traditional Chinese for 2.0
   Languages\ChineseTraditional: MergeChineseTraditional.rc
 
+2003-08-04 Laoran
+ PATCH: [ 782866 ] round off in CMergeDoc::RescanIfNeeded
+  WinMerge: MergeDoc.cpp
+
+2003-08-04 Kimmo
+ PATCH: [ 779005 ] No temp files when saving local temp files
+  WinMerge: MergeDoc.cpp
+
 2003-07-30 Laoran
  PATCH: [ 779470 ] disable unwanted options in PropGeneral
-  WinMerge: PropGeneral.cpp PropGeneral.h 
+  WinMerge: PropGeneral.cpp PropGeneral.h
 
 2003-07-29 Perry
  PATCH: [ 779224 ] Fix sort bug in right date
@@ -166,7 +162,7 @@
   common: SuperComboBox.cpp
  PATCH: [ 778403 ] Fix accel keys in lang files
   editlib: editres.rc
-  Languages: ChineseSimplified &amp; ChineseTraditional
+  Languages: ChineseSimplified & ChineseTraditional
 
 2003-07-25 Laoran
  [ 776114 ] french keyboard shortcut
@@ -200,12 +196,10 @@
   WinMerge: MergeDoc.cpp
 
 2003-07-17 Laoran
- PATCH: [ 765399 ] Careful view initialization in PrimeListWithFile
-  WinMerge: MergeEditView.cpp 
-  editlib: ccrystaltextview.cpp
-
-2003-07-17 Laoran
  PATCH : [ 772908 ] ResetView must reset m_nTopSubLine
+  editlib: ccrystaltextview.cpp
+ PATCH: [ 765399 ] Careful view initialization in PrimeListWithFile
+  WinMerge: MergeEditView.cpp
   editlib: ccrystaltextview.cpp
 
 2003-07-17 Kimmo
@@ -275,7 +269,7 @@
  PATCH: [ 754001 ] 2.0 doc link points to 1.7 docs
   Submitted by Christian
   WinMerge: MainFrm.cpp
- PATCH: [ 760441 ] Fix recursive d&amp;d compare
+ PATCH: [ 760441 ] Fix recursive d&d compare
   WinMerge: MainFrm.cpp
  PATCH: [ 759755 ] Better rescan error reporting
   WinMerge: MainFrm.cpp MergeDoc.h MergeDoc.cpp
@@ -302,19 +296,19 @@
    WinMerge: StdAfx.h
  PATCH: [ 758912 ] Combine duplicated code in CMergeEditView::OnEditCopy
   Submitted by Perry
-  WinMerge: MergeEditView.cpp  
+  WinMerge: MergeEditView.cpp
  PATCH: [ 755918 ] Fix typo in CCrystalTextView extension list
    Added more filename extensions
    editlib: ccrystaltextview.cpp
  PATCH: [ 759778 ] Minor cleanup of crystaltextbuffer.cpp
   Submitted by Perry
-  editlib: ccrystaltextbuffer.cpp   
+  editlib: ccrystaltextbuffer.cpp
  PATCH: [ 761874 ] Fix unlocalisable acceskeys
    WinMerge: Merge.rc
    editlib: editres.rc
    Updated language files too
 
-   
+
 -- R2_0 Branch created - above checkins are for that branch only
 
 2003-06-19 Perry
@@ -406,8 +400,8 @@
 2003-05-19 WinMerge beta 1.9.2.2 released
 
 2003-05-18 Perry
- PATCH: [ 739529 ] project file &amp; directory filters
-  WinMerge: Diff.cpp DiffContext.cpp DiffContext.h FileFilterMgr.cpp 
+ PATCH: [ 739529 ] project file & directory filters
+  WinMerge: Diff.cpp DiffContext.cpp DiffContext.h FileFilterMgr.cpp
     FileFilterMgr.h MainFrm.cpp MainFrm.h Merge.cpp Merge.dsp Merge.h
 	Merge.rc PropFilter.cpp PropFilter.h resource.h
 
@@ -504,7 +498,7 @@
  Changed dynamic array to be CArray based
   editlib: ccrystaltextview.cpp
  PATCH: [ 724309 ] Add WaitStatusCursors
-  WinMerge: DirDoc.cpp DirView.cpp MainFrm.cpp Merge.dsp MergeDoc.cpp MergeEditView.cpp 
+  WinMerge: DirDoc.cpp DirView.cpp MainFrm.cpp Merge.dsp MergeDoc.cpp MergeEditView.cpp
    WaitStatusCursor.cpp WaitStatusCursor.h
  PATCH: [ 724473 ] Move WaitStatusCursor strings into RC
   WinMerge: DirDoc.cpp DirView.cpp MainFrm.cpp MergeDoc.cpp MergeEditView.cpp resource.h StdAfx.cpp StdAfx.h
@@ -556,14 +550,14 @@
   editlib: ccrystaltextview.cpp
  PATCH: [ 715553 ] Add commandline options to not add paths to MRU
   Usage: -ur to ignore rigth, -ul to ignore left and -ub to ignore both
-  WinMerge: MainFrm.h MainFrm.cpp Merge.cpp 
+  WinMerge: MainFrm.h MainFrm.cpp Merge.cpp
 
 2003-04-06 Kimmo
  PATCH: [ 715457 ] LoadFromFile() rewrote
   WinMerge: MergeDoc.h MergeDoc.cpp
 
 2003-04-06 Perry
- PATCH: [ 716088 ] Fix bin same/diff bug in Diff.cpp &amp; analyze.c
+ PATCH: [ 716088 ] Fix bin same/diff bug in Diff.cpp & analyze.c
   WinMerge: analyze.c Diff.cpp
 
 2003-04-04 Christian
@@ -612,7 +606,7 @@
 2003-03-25 Perry
  PATCH: [ 709575 ] Fix sanity check in CChildFrame::UpdateHeaderSizes()
  WinMerge: ChildFrm.cpp
- PATCH: [ 708542 ] Make splash &amp; about show language-independent version
+ PATCH: [ 708542 ] Make splash & about show language-independent version
  common: version.cpp version.h
  WinMerge: Merge.cpp Splash.cpp
 
@@ -657,7 +651,7 @@
 2003-03-09 Kimmo
  PATCH: [ 699839 ] Add same binaries to dir compare status
   WinMerge: MainFrm.h MainFrm.cpp
- PATCH: [ 699893 ] Add drag&amp;drop of files/paths to main window
+ PATCH: [ 699893 ] Add drag&drop of files/paths to main window
   Note: Press down Ctrl when dropping dirs for recursive compare
   WinMerge: MainFrm.h MainFrm.cpp Merge.cpp paths.h paths.cpp
 
@@ -684,7 +678,7 @@
 
 2003-03-05 Perry
  Added new subdir Languages/Danish/res
-  PATCH: [ 695857 ] Fix directory handling, &amp; UNC paths, &amp; shortnames
+  PATCH: [ 695857 ] Fix directory handling, & UNC paths, & shortnames
  Fix Danish language files: Update resource.h and update language dialogbox to use IDC_LANGUAGE_LIST.
 
 2003-03-04
@@ -718,10 +712,10 @@
     BuildAll.bat and added directory Languages/Danish
 
 2003-02-26 Kimmo
- [ 692922 ] Don't try to compare file &amp; directory
+ [ 692922 ] Don't try to compare file & directory
   WinMerge:
    OpenDlg.cpp
- [ 686699 ] Check &amp; return file saving success
+ [ 686699 ] Check & return file saving success
   Fix2: Do not return save success of "Save As"
   WinMerge:
    MergeDoc.cpp
@@ -730,32 +724,32 @@
  [ 687574 ] Navigate in directory view (fix bug in patch)
   WinMerge:
    DirView.cpp
- [ 686699 ] Check &amp; return file saving success - fix
-  WinMerge:  
+ [ 686699 ] Check & return file saving success - fix
+  WinMerge:
    MergeDoc.h Mergedoc.cpp
 
 2003-02-22 Perry
  [ 650356 ] suggest commenting out several functions
  [ 684416 ] is_all_whitespace is bad
-  Removed bad unused functions in common/coretools.cpp (&amp; .h)
+  Removed bad unused functions in common/coretools.cpp (& .h)
   (Did not remove all unused functions, only ones with bugs)
 
 2003-02-21 Perry
  Sync'ed all language resources to English version.
  [ 684300 ] Stringified Diffitems
-   + combined &amp; modularized code in DirDoc.cpp
+   + combined & modularized code in DirDoc.cpp
   WinMerge:
    DiffContext.cpp DiffContext.h DirDoc.cpp DirView.cpp DirView.h
 
 2003-02-20 Perry
  [ 689876 ] Patch to fix bug # 689869 (ASSERT on Rescan)
   WinMerge:
-   MainFrm.cpp &amp; new resource IDS_ERROR_FILE_NOT_FOUND
+   MainFrm.cpp & new resource IDS_ERROR_FILE_NOT_FOUND
  [ 687574 ] Navigate in directory view
   WinMerge:
    DirView.cpp DirView.h
  [ 690176 ] Cmdline param for ESC closing
-   (and updated all obsolete French &amp; German accelerators as well)
+   (and updated all obsolete French & German accelerators as well)
   WinMerge:
    Merge.cpp Merge.h Merge.rc
   Languages:
@@ -780,7 +774,7 @@
    ccrystaltextview.cpp
 
 2003-02-15 Kimmo
-  [ 686699 ] Check &amp; return file saving success
+  [ 686699 ] Check & return file saving success
   Merge.rc MergeDoc.h Mergedoc.cpp resource.h
 
 2003-02-14 Kimmo
@@ -810,7 +804,7 @@
  [ 683752 ] Add option to be listed on Directory context menu
 
 2003-02-11  Perry
- Fixing recent SplitFilename &amp; directory concat problems.
+ Fixing recent SplitFilename & directory concat problems.
  [ 683924 ] Same binaries for directory compare.
 
 2003-02-10  Perry
@@ -878,122 +872,3 @@
  Added left files, left dirs, right files, right dirs to status bar feedback
 
 2002-11-18  WinMerge beta 1.7.2.1 released
-</pre>
-
-      <H3>1.7.1 (10/25/2000)</H3>
-      <UL>
-        <LI>Fixed bug #121116&nbsp; </LI></UL>
-      <H3>1.6.0.174 (10/25/2000)</H3>
-      <UL>
-        <LI>Finally fixed the LanguageDLL problem, where some machines were 
-        unable to load the DLLs.&nbsp; Turns out that specifying /NOENTRY to the 
-        linker did the trick.&nbsp; Really all that's needed is new .LANG files, 
-        but I added some extra logging to the main app. (Much thanks to <FONT 
-        size=3>Cesar de Azevedo Gil for the testing help)</FONT> </LI></UL>
-      <H3>1.6.0.168 (3/11/2000)</H3>
-      <UL>
-        <LI>Changed binary file detection to be more locale-specific 
-        <LI>Fixed splitter-centering code </LI></UL>
-      <H3>1.6.0.166 (11/29/99)</H3>
-      <UL>
-        <LI>Fixed crash when comparing 1 text &amp; 1 binary file 
-        <LI>Now displays proper notification in above condition 
-        <LI>Added mousewheel support 
-        <LI>Window sizes are now restored </LI></UL>
-      <H3>1.6.0.163 (11/9/99)</H3>
-      <UL>
-        <LI>Changed method for detecting language of resource DLLs.&nbsp; 
-        Hopefully fixes some problems where certain machines can't detect the 
-        language (thanks to Gil Andre for much debugging help). </LI></UL>
-      <H3>1.6.0.161 (11/2/99)</H3>
-      <UL>
-        <LI>Rebuilt using VC++ 6.0.&nbsp; Requires <A 
-        href="http://winmerge.sourceforge.net/bin/mfc6dll.zip">updated DLLs</A>. 
-
-        <LI>Also rebuilt all language DLLs. </LI></UL>
-      <H3>1.5.1.141 (7/23/99)</H3>
-      <UL>
-        <LI>No longer crashes when more that 2 files are specified on command 
-        line 
-        <LI>Now accepts 3 files on command line for seamless integration with 
-        products such as Perforce.&nbsp; First 2 arguments are files to compare, 
-        third argument is the filename where the diff file is saved.&nbsp; If 
-        the third arg is a directory name, then all changed files are saved to 
-        that location. </LI></UL>
-      <H3>1.5.1.135 (6/11/99)</H3>
-      <UL>
-        <LI>No longer crashes on binary files 
-        <LI>Changed "Non-text files are different" to "Binary files are 
-        different" </LI></UL>
-      <H3>1.5.0.134 (6/8/99)</H3>
-      <UL>
-        <LI>Did work on command line file specification.&nbsp; You can now 
-        specify one or two files or directories from the command line. (Thanks 
-        to <A href="mailto:Bob@pqsystems.com">Bob Sledge</A>)
-        <UL>
-          <LI>If one is a file &amp; one is a dir, the filename is appended to 
-          the dirname &amp; a single file comparison is performed 
-          <LI>If only one argument is specified, the Open dialog is displayed. 
-          <LI>If one of the arguments specifies a non-existing entity,&nbsp; the 
-          Open dialog is displayed. </LI></UL>
-        <LI>You can now drag files from Explorer into the edit fields in the 
-        Open dialog (Thanks to <A href="mailto:Bob@pqsystems.com">Bob 
-        Sledge</A>) 
-        <LI>Now reports that files are identical for single file compares 
-        <LI>Fixed bug that caused differences within the first 40 characters to 
-        not be reported in the directory listing 
-        <LI>Added ability to ignore case &amp; blank lines to preferences 
-      </LI></UL>
-      <H3>1.4.0.128 (4/23/99)</H3>
-      <UL>
-        <LI>Extensions field now defaults to *.* 
-        <LI>Recursive option works again </LI></UL>
-      <H3>1.3.0.124 (4/16/99)</H3>
-      <UL>
-        <LI>Open dialog now allows you to filter directories by multiple file 
-        extensions(ie: *.c;*.cpp;*.h) 
-        <LI>Fixed crash in diff code for large files with lots of changes 
-        <LI>Cleaned up small memory leak in initial diff code. </LI></UL>
-      <H3>1.2.0.110 (4/5/99)</H3>
-      <UL>
-        <LI>Font can now be changed for difference views 
-        <LI>Added "Copy all diffs to other side" item to diff view's context 
-        menu 
-        <LI>Added popup menu to directory view 
-        <LI>Added ability to change UI language via resource DLLs </LI></UL>
-      <H3>1.1.0.90 (3/6/99)</H3>
-      <UL>
-        <LI>Added buttons for copying all diffs to other side (Thanks to <A 
-        href="mailto:Simon.Dick@HEXAGON.zeneca.com">Dick Simon</A> for the 
-        suggestion) 
-        <LI>Difference views now properly preserve embedded tabs (Thanks to <A 
-        href="mailto:jvivona@kpi-tech.com">Joe Vivona</A> and <A 
-        href="mailto:rogersfn@us.ibm.com">Fred Rogers</A>) 
-        <LI>Fixed bug in the Open dialog that caused paths with a \ at the end 
-        to not be considered as a directory, and therefore, the recursive 
-        checkbox would not be enabled (Thanks to <A 
-        href="mailto:mcnair@anet-dfw.com">Dewayne McNair</A>) 
-        <LI>Fixed bug in Open dialog that caused \Directory Selection to be 
-        returned to the edit fields in some cases (Thanks to <A 
-        href="mailto:mcnair@anet-dfw.com">Dewayne McNair</A>) </LI></UL>
-      <H3>1.0.0.65 (1/27/99)</H3>
-      <UL>
-        <LI>Open dialog was initializing both fields the same on the second time 
-        around, but has now been fixed (Thanks to <A 
-        href="mailto:jvivona@kpi-tech.com">Joe Vivona</A>) 
-        <LI>Added preference setting for specifying Tab size </LI></UL>
-      <H3>1.0.0.63 (1/13/99)</H3>
-      <UL>
-        <LI>Fixed problem that was causing crash for some binary files on some 
-        machines (Thanks to <A href="mailto:DOlender@SmartHealth.ca">Doug 
-        Olender</A>) </LI></UL>
-      <H3>1.0.0.52 (1/11/99)</H3>
-      <UL>
-        <LI>Added command line specification of filenames (Thanks to <A 
-        href="mailto:hchen@aspentech.com">Hern Chen</A>) 
-        <LI>Added -r command line option for recursion 
-        <LI>Fixed problem with loading debug libraries 
-        <LI>Added version display on splash screen </LI></UL>
-<HR>
-</BODY>
-</HTML>
