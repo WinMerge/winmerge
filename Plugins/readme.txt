@@ -1,4 +1,13 @@
 2004-06-10 Laoran
+ PATCH: [ 969667 ] Ignore positions/tabbed columns (plugins)
+  Plugins: list of sources.txt
+  Plugins\dlls add: IgnoreColumns.dll IgnoreFieldsComma.dll IgnoreFieldsTab.dll 
+  Plugins\dlls: list.txt
+  Plugins\src_VCPP\IgnoreColumns add: all files
+  Plugins\src_VCPP\IgnoreFieldsComma add: all files
+  Plugins\src_VCPP\IgnoreFieldsTab add: all files
+
+2004-06-10 Laoran
  update plugins text doc :
   Plugins: readme_developpers.txt syntax.txt
   Plugins/dlls Add: readme_users.txt
@@ -11,8 +20,8 @@
 2004-04-03 Laoran
  PATCH: [ 923044 ] Partial compare large files
   Plugins: list of sources.txt
-  Plugins\src_VCPP_WatchBeginningOfLog add: all files
-  Plugins\src_VCPP_WatchEndOfLog add: all files
+  Plugins\src_VCPP\WatchBeginningOfLog add: all files
+  Plugins\src_VCPP\WatchEndOfLog add: all files
 
 2004-04-02 Laoran
  Change plugins event title 'CONTEXT_MENU' -> 'EDITOR_SCRIPT'

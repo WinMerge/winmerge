@@ -1,0 +1,43 @@
+// IgnoreColumns.idl : IDL source for IgnoreColumns.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (IgnoreColumns.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(DAFE8196-A8BD-47F1-9D0C-7299D93105E7),
+		dual,
+		helpstring("IWinMergeScript Interface"),
+		pointer_default(unique)
+	]
+	interface IWinMergeScript : IDispatch
+	{
+		[propget, id(1), helpstring("property PluginEvent")] HRESULT PluginEvent([out, retval] BSTR *pVal);
+		[propget, id(2), helpstring("property PluginDescription")] HRESULT PluginDescription([out, retval] BSTR *pVal);
+		[propget, id(3), helpstring("property PluginFileFilters")] HRESULT PluginFileFilters([out, retval] BSTR *pVal);
+		[propget, id(4), helpstring("property PluginIsAutomatic")] HRESULT PluginIsAutomatic([out, retval] VARIANT_BOOL *pVal);
+		[id(5), helpstring("method PrediffBufferW")] HRESULT PrediffBufferW([in] BSTR * pText, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [out, retval] VARIANT_BOOL * pbHandled);
+	};
+
+[
+	uuid(7039A486-4E6F-4A1E-80BE-BCEA359ADA72),
+	version(1.0),
+	helpstring("IgnoreColumns 1.0 Type Library")
+]
+library IgnoreColumnsLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(EA7D4D55-FBCC-41C0-933A-7DD5F3E5E641),
+		helpstring("WinMergeScript Class")
+	]
+	coclass WinMergeScript
+	{
+		[default] interface IWinMergeScript;
+	};
+};
