@@ -1,3 +1,9 @@
+2004-08-11 Kimmo
+ PATCH: [ 1006757 ] Docs: Dircompare content and screenshots to current CVS
+  Manual: Compare_dirs.xml
+  Manual/screenshots: dircomp1.gif Dircomp_status1.gif Dircomp_status2.gif
+  Manual/screenhots new files: error.gif folderup.gif folderup_disable.gif
+
 2004-08-10 Kimmo
  PATCH: [ 1006131 ] Add -f commandline switch to docs
   Manual: Command_line.xml

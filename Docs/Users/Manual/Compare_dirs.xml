@@ -6,12 +6,14 @@
       <imagedata fileref="screenshots/dircomp1.gif" format="GIF"/>
     </imageobject>
   </mediaobject>
-  <para>Directory compare has two different modes: non-recursive and recursive. Mode is selected in Open-dialog with Include Subfolders -checkbox.<itemizedlist>
+  <para>Directory compare has two different modes. Mode is selected in Open-dialog with Include Subfolders -checkbox.<itemizedlist>
       <listitem>
-        <para>In non-recursive compare subdirerectories and files in selected directories are shown.</para>
+        <para>When subfolders are included all subfolders and their contents are compared. Directory compare does not show names for folders that exist in both compared directories, only files in them. If folder does not exist in another side then folder is shown as unique folder.</para>
+        <para>This mode does not allow browsing folders and can be slow if there are a lot of subfolders and files.</para>
       </listitem>
       <listitem>
-        <para>In recursive compare files in selected directories and in all subdirectories are shown. Unique (only in other side) subdirectories are also shown, but not files inside them.</para>
+        <para>When subfolders are not included only files in selected folders and names of subfolders are shown.</para>
+        <para>This mode allows browsing folders by opening Subfolders and parent folders. This is biggest benefit of this mode since comparing only one folder at a time is faster to do. Smaller amount of files (and folders) in view is also easier to manage.</para>
       </listitem>
     </itemizedlist></para>
   <sect2>
@@ -23,8 +25,9 @@
         </imageobject>
       </mediaobject></para>
     <para>Directory compare can be stopped by selecting "Stop"-button and results for files and directories compared so far are shown. After directory compare finishes, "Stop" button text is changed to "Press any key". Now statepane can be closed by selecting that button or pressing any key from keyboard.</para>
+    <para>Statepane can be opened from View-menu again if needed. Statuspane always shows current status of compare so it can be used to verify there are no different files left to handle.</para>
     <tip>
-      <para>Enable option "Close Compare statepane automatically" and statepane closes automatically after compare is ready. Statepane can be opened from View-menu if needed.</para>
+      <para>Enable option "Close Compare statepane automatically" and statepane closes automatically after compare is ready.</para>
     </tip>
     <para><mediaobject>
         <imageobject>
@@ -87,7 +90,7 @@
           </inlinemediaobject> Skipped files (filtered out)</member>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/unknown.gif" format="GIF"/>
+              <imagedata fileref="screenshots/error.gif" format="GIF"/>
             </imageobject>
           </inlinemediaobject> Directories &amp; files that couldn't be compared. This usually happens when other program has locked the file.</member>
       </simplelist></para>
@@ -97,32 +100,28 @@
     <para>In "View" menu there are several choises for selecting which categories listed above to show/hide.</para>
     <itemizedlist>
       <listitem>
-        <para>Show identical files - shows and hides files detected as identical</para>
+        <para>Show identical files : shows and hides files detected as identical</para>
       </listitem>
       <listitem>
-        <para>Show different files - shows and hides files detected as different</para>
+        <para>Show different files : shows and hides files detected as different</para>
       </listitem>
       <listitem>
-        <para>Show left unique files - shows and hides files and directories present only in left side</para>
+        <para>Show left unique files : shows and hides files and directories present only in left side</para>
       </listitem>
       <listitem>
-        <para>Show right unique files - shows and hides files and directories present only in right side</para>
+        <para>Show right unique files : shows and hides files and directories present only in right side</para>
       </listitem>
       <listitem>
-        <para>Show binary files - shows and hides files detected as binaries</para>
+        <para>Show binary files : shows and hides files detected as binaries</para>
       </listitem>
       <listitem>
-        <para>Show skipped files - shows and hides files and directories filtered out by file filters</para>
-      </listitem>
-      <listitem>
-        <para>Hide *.BAK files - shows and hides *.bak files</para>
+        <para>Show skipped files : shows and hides files and directories filtered out by file filters</para>
       </listitem>
     </itemizedlist>
   </sect2>
   <sect2>
     <title>Columns in directory compare</title>
-    <para>By default these columns are visible:
-</para>
+    <para>By default these columns are visible: </para>
     <itemizedlist>
       <listitem>
         <para>Filename</para>
@@ -146,7 +145,7 @@
         <para>Binary : Column contains asterisk "*" when file is binary. Handy for sorting and to use with Short Result -column.</para>
       </listitem>
       <listitem>
-        <para>Left Attributes &amp; Right Attributes: Shows fileattributes. Currently shows only readonly attribyte with "R".</para>
+        <para>Left Attributes &amp; Right Attributes: Shows fileattributes.</para>
       </listitem>
       <listitem>
         <para>Left Creation Time &amp; Right Creation Time : Item creation time.</para>
@@ -172,6 +171,24 @@
     </itemizedlist>
   </sect2>
   <sect2>
+    <title>Browsing folders</title>
+    <para>Browsing folders is only possible when subfolders are not included to compare. Then parent folders (".." -item) and subfolders existing in both sides can be compared by opening them.</para>
+    <para>Parent folder can be opened if it is not same directory. These two icons indicate if parent folder can be opened:
+</para>
+    <simplelist type="vert">
+      <member><inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="screenshots/folderup.gif" format="GIF"/>
+          </imageobject>
+        </inlinemediaobject> Parent folder can be opened.</member>
+      <member><inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="screenshots/folderup_disable.gif" format="GIF"/>
+          </imageobject>
+        </inlinemediaobject> Parent folder cannot be opened. It propably is same directory for both sides.</member>
+    </simplelist>
+  </sect2>
+  <sect2>
     <title>Navigation in directory compare</title>
     <para>In addition moving selection using mouse or keyboard, also Merge-menu navigation commands, toolbar buttons and shortcut keys can be used. For example "Next diff" finds next different file and selects it.</para>
     <note>
@@ -182,15 +199,16 @@
   <sect2>
     <title>File operations in directory compare</title>
     <sect3>
-      <title>Copying and deleting</title>
+      <title>Copying, moving and deleting</title>
       <para></para>
       <para>Directory compare allows user to copy and delete files and directories. File operations are available through context menu (right-click with mouse). Also files can be opened to associated program or into external editor.</para>
       <para>In file operation menu, there are one or two numbers shown, depending on files/folders selected. If there is one number shown, for example "Copy/Left to... (5)" that means there is 5 items selected, and all items can be copied. But if there is two numbers shown, for example "Copy/Left to... (3 of 5)", that means there are 5 items selected but only 3 items can be copied.</para>
       <para>Most common operation is copying files from side to side. File can be copied from side to side using Merge-menu items, toolbar buttons and context menu. If multiple files are selected, or file to overwrite is read-only, confirmation dialog is shown.</para>
       <para>Sometimes it is useful to copy certain files and/or directories to another directory instead of another compared directory. This can be done selecting "Copy/Left to..." or "Copy/Right to..." items.</para>
       <para>Another file/directory operation is deleting. Items in another or both sides can be deleted. There is "Put deleted files into recycle bin" option in system options. Its higly recommended to keep that option enabled so deletion can be undone if accidents happen. Note however recycle bin does not help if its disabled from Windows settings.</para>
+      <para>Moving is just shortcut for copy + delete.</para>
       <warning>
-        <para>File/directory deletion cannot be undone if recycle bin is not used!!!</para>
+        <para>File/directory deletion cannot be undone if recycle bin is not used!</para>
       </warning>
     </sect3>
     <sect3>
@@ -198,16 +216,15 @@
       <para>There are three items in Open-menus:</para>
       <itemizedlist>
         <listitem>
-          <para>With Registered Application</para>
+          <para>With Registered Application : Opens file with application registered handling filetype for Windows, if there is one.</para>
         </listitem>
         <listitem>
-          <para>With External Editor</para>
+          <para>With External Editor : Open with external editor. Default editor can be selected from options, Notepad is used by default.</para>
         </listitem>
         <listitem>
-          <para>With ...</para>
+          <para>With ... : Opens "Open With..." dialog asking from user with which application files should be opened.</para>
         </listitem>
       </itemizedlist>
-      <para>First one opens file with application registered handling filetype for Windows, if there is one. Second opens file with external editor configurable in options (Notepad by default). Last one opens "Open With..." dialog asking from user with which application files should be opened.</para>
     </sect3>
     <sect3>
       <title>Archiving</title>
