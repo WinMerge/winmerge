@@ -373,6 +373,7 @@ void CDirView::PerformActionList(ActionList & actionList)
 	CString destPath;
 	CString startPath;
 	UINT operation = 0;
+	UINT operFlags = 0;
 
 	// Set mainframe variable (VSS):
 	mf->m_CheckOutMulti = FALSE;
@@ -382,6 +383,7 @@ void CDirView::PerformActionList(ActionList & actionList)
 	{
 	case ActionList::ACT_COPY:
 		operation = FO_COPY;
+		operFlags |= FOF_NOCONFIRMMKDIR | FOF_MULTIDESTFILES;
 		break;
 	case ActionList::ACT_DEL_LEFT:
 		operation = FO_DELETE;
@@ -397,8 +399,6 @@ void CDirView::PerformActionList(ActionList & actionList)
 		_RPTF0(_CRT_ERROR, "Unknown fileoperation in CDirView::PerformActionList()");
 		break;
 	}
-	
-	int operFlags = FOF_NOCONFIRMMKDIR | FOF_MULTIDESTFILES;
 	
 	// Check option and enable putting deleted items to Recycle Bin
 	if (mf->m_options.GetInt(OPT_USE_RECYCLE_BIN) == TRUE)

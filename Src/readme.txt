@@ -4,6 +4,8 @@
   Languages: *.rc
   Docs/Users/Contributors.txt
   Removed: Docs/Users/Contributors.rtf
+ BUG: [ 944290 ] Crash when deleting files
+  Src: DirActions.cpp
 
 2004-04-28 Kimmo
  PATCH: [ 937947 ] Open-dialog improvements (no codepage controls)
