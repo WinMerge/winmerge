@@ -78,7 +78,6 @@ struct ParsedTextFile
 
 BOOL files_openFileMapped(MAPPEDFILEDATA *fileData);
 BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush);
-int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile);
 BOOL files_isFileReadOnly(CString file, BOOL *fileExists = NULL);
 
 #endif // _FILES_H

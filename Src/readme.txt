@@ -1,3 +1,8 @@
+2003-11-05 Perry
+ deleted unused function files_loadLines per Laurent's suggestion 
+  (in PATCH: [ 826250 ] New UniMemFile class for memory-mapping)
+ WinMerge: files.cpp files.h
+
 2003-11-04 Perry
  PATCH: [ 836186 ] Unicode fix for lwdisp.co
   common: lwdisp.c
