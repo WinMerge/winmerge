@@ -1,3 +1,8 @@
+2005-04-05 Kimmo
+ PATCH: [ 1176040 ] French translation 2.3 branch
+  Submitted by Jean-F Jolin
+  Src/Languages/French: MergeFrench.rc
+
 2005-04-03 Kimmo
  PATCH: [ 1175319 ] Dutch translation update
   Submitted by Michel Coene
