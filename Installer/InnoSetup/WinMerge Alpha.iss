@@ -147,7 +147,7 @@ Name: Brazilian_Language; Description: Portuguese (Brazilian) menus and dialogs;
 Name: Russian_Language; Description: Russian menus and dialogs; Flags: disablenouninstallwarning
 Name: Slovak_Language; Description: Slovak menus and dialogs; Flags: disablenouninstallwarning
 Name: Spanish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning
-Name: Swedish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning
+Name: Swedish_Language; Description: Swedish menus and dialogs; Flags: disablenouninstallwarning
 
 [InstallDelete]
 ;Experimental Versions 2.1.5.10 - WinMerge.2.1.5.13 shipped with the default behavior of creating a folder by the same name
