@@ -1,3 +1,7 @@
+2004-06-02 Kimmo
+ BUG: [ 964885 ] ColExtGet() returns extension converted to lowercase
+  Src: DirViewColItems.cpp
+
 2004-06-02 Perry
  PATCH: [ 964678 ] New MergeJapanese.rc file
   Src/Languages: Japanese/MergeJapanese.rc etc

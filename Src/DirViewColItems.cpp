@@ -108,7 +108,6 @@ static CString ColExtGet(const CDiffContext *, const void *p) //sfilename
 	const CString &r = *static_cast<const CString*>(p);
 	CString s = PathFindExtension(r);
 	s.TrimLeft(_T("."));
-	s.MakeLower();
 	return s;
 }
 static CString ColPathGet(const CDiffContext *, const void *p)
