@@ -34,57 +34,57 @@
     <para>Files and directories are compared and divided into several categories:<simplelist>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/equal.bmp" format="BMP"/>
+              <imagedata fileref="screenshots/equal.gif" format="GIF"/>
             </imageobject>
           </inlinemediaobject> Identical text files</member>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/notequal.bmp" format="BMP"/>
+              <imagedata fileref="screenshots/notequal.gif" format="GIF"/>
             </imageobject>
           </inlinemediaobject> Differing text files</member>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/binary.bmp" format="BMP"/>
+              <imagedata fileref="screenshots/binary.gif" format="GIF"/>
             </imageobject>
           </inlinemediaobject> Identical binary files</member>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/binarydiff.bmp" format="BMP"/>
+              <imagedata fileref="screenshots/binarydiff.gif" format="GIF"/>
             </imageobject>
           </inlinemediaobject> Differing binary files</member>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/lfolder.bmp" format="BMP"/>
+              <imagedata fileref="screenshots/lfolder.gif" format="GIF"/>
             </imageobject>
           </inlinemediaobject> Left-only folders</member>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/rfolder.bmp" format="BMP"/>
+              <imagedata fileref="screenshots/rfolder.gif" format="GIF"/>
             </imageobject>
           </inlinemediaobject> Right-only folders</member>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/lfile.bmp" format="BMP"/>
+              <imagedata fileref="screenshots/lfile.gif" format="GIF"/>
             </imageobject>
           </inlinemediaobject> Left-only files</member>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/rfile.bmp" format="BMP"/>
+              <imagedata fileref="screenshots/rfile.gif" format="GIF"/>
             </imageobject>
           </inlinemediaobject> Right-only files</member>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/folderskip.bmp" format="BMP"/>
+              <imagedata fileref="screenshots/folderskip.gif" format="GIF"/>
             </imageobject>
           </inlinemediaobject> Skipped directories (filtered out)</member>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/fileskip.bmp" format="BMP"/>
+              <imagedata fileref="screenshots/fileskip.gif" format="GIF"/>
             </imageobject>
           </inlinemediaobject> Skipped files (filtered out)</member>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/unknown.bmp" format="BMP"/>
+              <imagedata fileref="screenshots/unknown.gif" format="GIF"/>
             </imageobject>
           </inlinemediaobject> Directories &amp; files that couldn't be compared. This usually happens when other program has locked the file.</member>
       </simplelist></para>
