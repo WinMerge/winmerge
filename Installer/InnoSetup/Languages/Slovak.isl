@@ -11,7 +11,7 @@
 ;
 
 [LangOptions]
-LanguageName=Slovenèina
+LanguageName=Sloven<00E8>ina
 LanguageID=$041B
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.

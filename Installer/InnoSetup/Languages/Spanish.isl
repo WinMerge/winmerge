@@ -17,7 +17,7 @@
 ;
 
 [LangOptions]
-LanguageName=Español (Traditional Sort)
+LanguageName=Espa<00F1>ol (Traditional Sort)
 LanguageID=$040a
 ; Si el lenguaje al cual está traduciendo requiere un tipo de letra o
 ; tamaño, quite el comentario de alguna de las siguientes entradas y cámbielas según el caso.

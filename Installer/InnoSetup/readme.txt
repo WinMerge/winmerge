@@ -1,3 +1,7 @@
+2004-10-14 Perry
+ PATCH: [ 1053278 ] Fix three non-ASCII LanguageNames in InnoSetup languages
+  InnoSetup/Languages: Bulgarian.isl Slovak.isl Spanish.isl
+
 2004-10-24 Kimmo
  PATCH: [ 1052839 ] Load manifest files from /Innosetup not /Build
   InnoSetup: WinMerge Localize.iss
