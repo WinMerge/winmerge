@@ -301,20 +301,23 @@ static void SaveBuffForDiff(CMergeDoc::CDiffTextBuffer & buf, const CString & fi
 }
 
 /**
-* @brief Save files to temp files & compare again.
-*
-* @param bForced If TRUE, suppressing is ignored and rescan is done always
-*
-* @return Tells status of rescan done (OK, suppressed, etc).
-* If this code is OK, Rescan has detached the views temporarily (positions of cursors have been lost)
-*
-* @note Rescan() ALWAYS compares temp files. Actual user files are not
-* touched by Rescan().
-*
-* @sa CDiffWrapper::RunFileDiff()
-*
-*/
-int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
+ * @brief Save files to temp files & compare again.
+ *
+ * @param bBinary [out] If TRUE binary file was detected.
+ * But we don't know which file is binary, or are they both.
+ * @param bIdentical [out] If TRUE files were identical
+ * @param bForced [in] If TRUE, suppressing is ignored and rescan
+ * is done always
+ * @return Tells if rescan was successfully, was suppressed, or
+ * error happened
+ * If this code is OK, Rescan has detached the views temporarily
+ * (positions of cursors have been lost)
+ * @note Rescan() ALWAYS compares temp files. Actual user files are not
+ * touched by Rescan().
+ * @sa CDiffWrapper::RunFileDiff()
+ */
+int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
+		BOOL bForced /* =FALSE */)
 {
 	DIFFOPTIONS diffOptions = {0};
 	DIFFSTATUS status = {0};
@@ -375,7 +378,7 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	if (!diffSuccess)
 		nResult = RESCAN_FILE_ERR;
 	else if (status.bBinaries)
-		nResult = RESCAN_BINARIES;
+		bBinary = TRUE;
 	else
 	{
 		// Now update views and buffers for ghost lines
@@ -407,7 +410,7 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 
 		// Identical files are also updated
 		if (m_nDiffs == 0)
-			nResult = RESCAN_IDENTICAL;
+			bIdentical = TRUE;
 
 		// just apply some options to the views
 		m_pLeftView->PrimeListWithFile();
@@ -446,13 +449,51 @@ void CMergeDoc::FlagMovedLines(const CMap<int, int, int, int> * movedLines, CDif
 	// TODO: Need to record actual moved information
 }
 
-/// Prints (error) message by rescan resultcode
-void CMergeDoc::ShowRescanError(int nRescanResult)
+/**
+ * @brief Prints (error) message by rescan status.
+ *
+ * @param nRescanResult [in] Resultcocode from rescan().
+ * @param bBinary [in] Were files binaries?.
+ * @param bIdentical [in] Were files identical?.
+ * @sa CMergeDoc::Rescan()
+ */
+void CMergeDoc::ShowRescanError(int nRescanResult,
+	BOOL bBinary, BOOL bIdentical)
 {
 	CString s;
-	switch (nRescanResult)
+
+	// Rescan was suppressed, there is no sensible status
+	if (nRescanResult == RESCAN_SUPPRESSED)
+		return;
+
+	if (nRescanResult == RESCAN_FILE_ERR)
 	{
-	case RESCAN_IDENTICAL:
+		VERIFY(s.LoadString(IDS_FILEERROR));
+		LogErrorString(s);
+		AfxMessageBox(s, MB_ICONSTOP);
+		return;
+	}
+
+	if (nRescanResult == RESCAN_TEMP_ERR)
+	{
+		VERIFY(s.LoadString(IDS_TEMP_FILEERROR));
+		LogErrorString(s);
+		AfxMessageBox(s, MB_ICONSTOP);
+		return;
+	}
+
+	// Binary files tried to load, this can happen when giving filenames
+	// from commandline
+	if (bBinary)
+	{
+		VERIFY(s.LoadString(IDS_FILEBINARY));
+		AfxMessageBox(s, MB_ICONINFORMATION);
+		return;
+	}
+
+	// Files are not binaries, but they are identical
+	if (bIdentical)
+	{
 		if (m_strLeftFile == m_strRightFile)
 		{
 			// compare file to itself, a custom message so user may hide the message in this case only
@@ -464,22 +505,6 @@ void CMergeDoc::ShowRescanError(int nRescanResult)
 			VERIFY(s.LoadString(IDS_FILESSAME));
 			AfxMessageBox(s, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FILESSAME);
 		}
-		break;
-
-	case RESCAN_BINARIES:
-		VERIFY(s.LoadString(IDS_BIN_FILES_DIFF));
-		AfxMessageBox(s, MB_ICONINFORMATION);
-		break;
-			
-	case RESCAN_FILE_ERR:
-		VERIFY(s.LoadString(IDS_FILEERROR));
-		AfxMessageBox(s, MB_ICONSTOP);
-		break;
-	
-	case RESCAN_TEMP_ERR:
-		VERIFY(s.LoadString(IDS_TEMP_FILEERROR));
-		AfxMessageBox(s, MB_ICONSTOP);
-		break;
 	}
 }
 
@@ -1874,9 +1899,9 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 	if (curView)
 		curView->HideCursor();
 
-	int nRescanResult = RESCAN_OK;
-
-	nRescanResult = Rescan(bForced);
+	BOOL bBinary = FALSE;
+	BOOL bIdentical = FALSE;
+	int nRescanResult = Rescan(bBinary, bIdentical, bForced);
 
 	// restore cursors and caret
 	m_pLeftView->PopCursors();
@@ -1909,9 +1934,8 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 	UpdateAllViews(NULL);
 
 	// Show possible error after updating screen
-	if (nRescanResult != RESCAN_OK &&
-			nRescanResult != RESCAN_SUPPRESSED)
-		ShowRescanError(nRescanResult);
+	if (nRescanResult != RESCAN_SUPPRESSED)
+		ShowRescanError(nRescanResult, bBinary, bIdentical);
 }
 
 /**
@@ -2590,6 +2614,8 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright)
 {
+	BOOL bBinary = FALSE;
+	BOOL bIdentical = FALSE;
 	int nRescanResult = RESCAN_OK;
 
 	// clear undo stack
@@ -2664,7 +2690,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 
 	// scratchpad : we don't call LoadFile, so
 	// we need to initialize the unpacker as a "do nothing" one
-	if (sLeftFile.IsEmpty() && sRightFile.IsEmpty())
+	if (m_nLeftBufferType == BUFFER_UNNAMED && m_nRightBufferType == BUFFER_UNNAMED)
 		m_pInfoUnpacker->Initialize(PLUGIN_MANUAL);
 
 	// Bail out if either side failed
@@ -2712,15 +2738,14 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	m_diffWrapper.SetPrediffer(infoPrediffer);
 	m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
 	
-	nRescanResult = Rescan();
+	nRescanResult = Rescan(bBinary, bIdentical);
 
 	// recreate the sub menu (to fill the "selected prediffers")
 	// keep after Rescan (in automatic mode, prediffer is set during the first Rescan)
 	mf->UpdatePrediffersMenu();
 
-	// Open different and identical files
-	if (nRescanResult == RESCAN_OK ||
-		nRescanResult == RESCAN_IDENTICAL)
+	// Open filed if rescan succeed and files are not binaries
+	if (nRescanResult == RESCAN_OK && bBinary == FALSE)
 	{
 		// prepare the four views
 		CMergeEditView * pLeft = GetLeftView();
@@ -2809,11 +2834,10 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 
 		// Inform user that files are identical
 		// Don't show message if new buffers created
-		if (nRescanResult == RESCAN_IDENTICAL &&
-			(m_nLeftBufferType == BUFFER_NORMAL ||
+		if (bIdentical && (m_nLeftBufferType == BUFFER_NORMAL ||
 			m_nRightBufferType == BUFFER_NORMAL))
 		{
-				ShowRescanError(nRescanResult);
+			ShowRescanError(nRescanResult, bBinary, bIdentical);
 		}
 	}
 	else
@@ -2822,7 +2846,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		// or the really arcane case that the temp files couldn't be created, 
 		// which is too obscure to bother reporting if you can't write to 
 		// your temp directory, doing nothing is graceful enough for that).
-		ShowRescanError(nRescanResult);
+		ShowRescanError(nRescanResult, bBinary, bIdentical);
 		GetParentFrame()->DestroyWindow();
 		return FALSE;
 	}

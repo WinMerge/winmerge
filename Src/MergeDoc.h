@@ -50,8 +50,6 @@ enum
 {
 	RESCAN_OK = 0,
 	RESCAN_SUPPRESSED,
-	RESCAN_IDENTICAL,
-	RESCAN_BINARIES,
 	RESCAN_FILE_ERR,
 	RESCAN_TEMP_ERR,
 };
@@ -216,8 +214,8 @@ public:
 		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright);
 	int LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int codepage);
 	void RescanIfNeeded(float timeOutInSecond);
-	int Rescan(BOOL bForced = FALSE);
-	void ShowRescanError(int nRescanResult);
+	int Rescan(BOOL &bBinary, BOOL &bIdentical, BOOL bForced = FALSE);
+	void ShowRescanError(int nRescanResult, BOOL bBinary, BOOL bIdentical);
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	BOOL Undo();
 	void CopyAllList(bool bSrcLeft);
