@@ -1,3 +1,12 @@
+2005-03-29 Jochen
+ BUG: [ 1172080 ] Unable to translate IDD_MERGE7ZMISMATCH string
+  Src: Merge.rc
+  Src/Languages: Merge*.rc
+ Widen Merge7z plugin download button in catalan translation
+  Src/Languages/Catalan: MergeCatalan.rc
+ Fix typo in MergeGerman.rc
+  Src/Languages/German: MergeGerman.rc
+
 2005-03-28 Kimmo
  PATCH: [ 1169997 ] catalan translation update
   Submitted by Jordi Vilar
