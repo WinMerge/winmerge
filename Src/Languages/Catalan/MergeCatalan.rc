@@ -1457,6 +1457,7 @@ BEGIN
     IDS_FILEPACK_FAILED_LEFT "El Plugin '%2' no pot tornar a empaquetar els vostres canvis al fitxer de l'esquerra altre cop cap a '%1'.\n\nEl fitxer original no serà canviat.\n\nVoleu desar la versió desempaquetada a un altre fitxer?"
     IDS_FILEPACK_FAILED_RIGHT "El Plugin '%2' no pot tornar a empaquetar els vostres canvis al fitxer de la dreta altre cop cap a '%1'.\n\nEl fitxer original no serà canviat.\n\nVoleu desar la versió desempaquetada a un altre fitxer?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
+    IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

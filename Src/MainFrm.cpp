@@ -788,64 +788,94 @@ BOOL CMainFrame::GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset)
 }
 
 /**
-* @brief Check if file is read-only and save to version control if one is used.
-* @param strSavePath Path where to save including filename
-* @return Tells if caller can continue (no errors happened)
-* @note If user selects "Cancel" FALSE is returned and caller must assume file
-* is not saved.
-* @sa SaveToVersionControl()
-*/
-BOOL CMainFrame::CheckSavePath(CString& strSavePath)
+ * @brief Checks if path (file/folder) is read-only and asks overwriting it.
+ *
+ * @param strSavePath [in,out] Path where to save (file or folder)
+ * @param bMultiFile [in] Single file or multiple files/folder
+ * @param bApplyToAll [in,out] Apply last user selection for all items?
+ * @return Users selection:
+ * - IDOK: Item was not readonly, no actions
+ * - IDYES/IDYESTOALL: Overwrite readonly item
+ * - IDNO: User selected new filename (single file) or user wants to skip
+ * - IDCANCEL: Cancel operation
+ * @sa CMainFrame::SyncFileToVCS()
+ * @sa CMergeDoc::DoSave()
+ */
+int CMainFrame::HandleReadonlySave(CString& strSavePath, BOOL bMultiFile,
+		BOOL &bApplyToAll)
 {
 	CFileStatus status;
 	UINT userChoice = 0;
-	BOOL bRetVal = TRUE;
+	int nRetVal = IDOK;
 	BOOL bFileRO = FALSE;
 	BOOL bFileExists = FALSE;
 	CString s;
+	CString title;
 
 	bFileRO = files_isFileReadOnly(strSavePath, &bFileExists);
 	
 	if (bFileExists && bFileRO)
 	{
-		// Version control system used?
-		if (m_nVerSys > 0)
-			bRetVal = SaveToVersionControl(strSavePath);
+		// Don't ask again if its already asked
+		if (bApplyToAll)
+			userChoice = IDYES;
 		else
 		{
-			CString title;
-			VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
-			
 			// Prompt for user choice
-			AfxFormatString1(s, IDS_SAVEREADONLY_FMT, strSavePath);
-			userChoice = AfxMessageBox(s, MB_YESNOCANCEL |
-					MB_ICONQUESTION | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_SAVEREADONLY_FMT);
-			switch (userChoice)
+			if (bMultiFile)
 			{
-			// Overwrite read-only file
-			case IDYES:
-				CFile::GetStatus(strSavePath, status);
-				status.m_mtime = 0;		// Avoid unwanted changes
-				status.m_attribute &= ~CFile::Attribute::readOnly;
-				CFile::SetStatus(strSavePath, status);
-				break;
-			
-			// Save to new filename
-			case IDNO:
-				if (SelectFile(s, strSavePath, title, NULL, FALSE))
-					strSavePath = s;
-				else
-					bRetVal = FALSE;
-				break;
-			
-			// Cancel saving
-			case IDCANCEL:
-				bRetVal = FALSE;
-				break;
+				// Multiple files or folder
+				AfxFormatString1(s, IDS_SAVEREADONLY_MULTI, strSavePath);
+				userChoice = AfxMessageBox(s, MB_YESNOCANCEL |
+						MB_ICONQUESTION | MB_DEFBUTTON3 | MB_DONT_ASK_AGAIN |
+						MB_YES_TO_ALL, IDS_SAVEREADONLY_MULTI);
+			}
+			else
+			{
+				// Single file
+				AfxFormatString1(s, IDS_SAVEREADONLY_FMT, strSavePath);
+				userChoice = AfxMessageBox(s, MB_YESNOCANCEL |
+						MB_ICONQUESTION | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
+						IDS_SAVEREADONLY_FMT);
 			}
 		}
+		switch (userChoice)
+		{
+		// Overwrite read-only file
+		case IDYESTOALL:
+			bApplyToAll = TRUE;  // Don't ask again (no break here)
+		case IDYES:
+			CFile::GetStatus(strSavePath, status);
+			status.m_mtime = 0;		// Avoid unwanted changes
+			status.m_attribute &= ~CFile::Attribute::readOnly;
+			CFile::SetStatus(strSavePath, status);
+			nRetVal = IDYES;
+			break;
+		
+		// Save to new filename (single) /skip this item (multiple)
+		case IDNO:
+			if (!bMultiFile)
+			{
+				VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
+				if (SelectFile(s, strSavePath, title, NULL, FALSE))
+				{
+					strSavePath = s;
+					nRetVal = IDNO;
+				}
+				else
+					nRetVal = IDCANCEL;
+			}
+			else
+				nRetVal = IDNO;
+			break;
+
+		// Cancel saving
+		case IDCANCEL:
+			nRetVal = IDCANCEL;
+			break;
+		}
 	}
-	return bRetVal;
+	return nRetVal;
 }
 
 /**
@@ -1542,33 +1572,37 @@ static void RemoveLineReturns(CString & str)
 
 /**
  * @brief Sync file to Version Control System
- * @param [in] pszSrc File to copy
- * @param [in] pszDest Where to copy (incl. filename)
- * @param [out] psError Error string that can be shown to user in caller func.
- * Does not contain filename.
+ * @param pszSrc [in] File to copy
+ * @param pszDest [in] Where to copy (incl. filename)
+ * @param bApplyToAll [in,out] Apply user selection to all items
+ * @param psError [out] Error string that can be shown to user in caller func
+ * @return User selection or -1 if error happened
+ * @sa CMainFrame::HandleReadonlySave()
+ * @sa CDirView::PerformActionList()
  */
-BOOL CMainFrame::SyncFilesToVCS(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
+int CMainFrame::SyncFileToVCS(LPCTSTR pszSrc, LPCTSTR pszDest,
+	BOOL &bApplyToAll, CString *psError)
 {
 	CString sActionError;
 	CString strSavePath(pszDest);
-
-	if (!CheckSavePath(strSavePath))
-	{
-		psError->LoadString(IDS_ERROR_FILE_WRITEABLE);
-		return FALSE;
-	}
+	
+	int nRetVal = HandleReadonlySave(strSavePath, TRUE, bApplyToAll);
+	if (nRetVal == IDCANCEL || nRetVal == IDNO)
+		return nRetVal;
 	
 	if (!CreateBackup(strSavePath))
 	{
 		psError->LoadString(IDS_ERROR_BACKUP);
-		return FALSE;
+		return -1;
 	}
 	
 	// If VC project opened from VSS sync and version control used
 	if (m_nVerSys > 0 && m_bVCProjSync)
-		return ReLinkVCProj(strSavePath, psError);
-	else
-		return TRUE;
+	{
+		if (!ReLinkVCProj(strSavePath, psError))
+			nRetVal = -1;
+	}
+	return nRetVal;
 }
 
 BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)

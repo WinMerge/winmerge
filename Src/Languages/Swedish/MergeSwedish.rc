@@ -1441,6 +1441,7 @@ BEGIN
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' kan inte packa dina förändringar av den vänstra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kan inte packa dina förändringar av den högra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
+    IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

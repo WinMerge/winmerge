@@ -901,6 +901,8 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	DiffFileInfo fileInfo;
 	CString strSavePath(szPath);
 	BOOL bFileChanged = FALSE;
+	BOOL bApplyToAll = FALSE;	
+	int nRetVal = -1;
 
 	bFileChanged = IsFileChangedOnDisk(szPath, fileInfo, TRUE, bLeft);
 	if (bFileChanged)
@@ -940,7 +942,8 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 			strSavePath = mf->m_strSaveAsPath;	
 	}
 
-	if (!mf->CheckSavePath(strSavePath))
+	nRetVal = mf->HandleReadonlySave(strSavePath, FALSE, bApplyToAll);
+	if (nRetVal == IDCANCEL)
 		return FALSE;
 
 	if (!mf->CreateBackup(strSavePath))

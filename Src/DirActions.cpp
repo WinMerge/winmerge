@@ -401,7 +401,7 @@ void CDirView::PerformActionList(ActionList & actionList)
 	{
 	case ActionList::ACT_COPY:
 		operation = FO_COPY;
-		operFlags |= FOF_NOCONFIRMMKDIR | FOF_MULTIDESTFILES;
+		operFlags |= FOF_NOCONFIRMMKDIR | FOF_MULTIDESTFILES | FOF_NOCONFIRMATION;
 		break;
 	case ActionList::ACT_DEL_LEFT:
 		operation = FO_DELETE;
@@ -425,21 +425,39 @@ void CDirView::PerformActionList(ActionList & actionList)
 	
 	// Add files/directories
 	BOOL bSucceed = TRUE;
+	const BOOL bMultiFile = (actionList.actions.GetSize() > 1);
+	BOOL bApplyToAll = FALSE;
 	POSITION pos = actionList.actions.GetHeadPosition();
+	POSITION curPos = pos;
+	int nItemCount = 0;
 	while (bSucceed && pos != NULL)
 	{
+		BOOL bSkip = FALSE;
+		curPos = pos; // Save current position for later use
 		const ActionList::action act = actionList.actions.GetNext(pos);
 
 		// If copying files, try to sync files to VCS too
 		if (actionList.atype == ActionList::ACT_COPY && !act.dirflag)
 		{
 			CString strErr;
-			bSucceed = mf->SyncFilesToVCS(act.src, act.dest, &strErr);
-			if (!bSucceed)
+			int nRetVal = mf->SyncFileToVCS(act.src, act.dest, bApplyToAll, &strErr);
+			if (nRetVal == -1)
+			{
+				bSucceed = FALSE;
 				AfxMessageBox(strErr, MB_OK | MB_ICONERROR);
+			}
+			else if (nRetVal == IDCANCEL)
+				bSucceed = FALSE; // User canceled, so we don't continue
+			else if (nRetVal == IDNO)
+			{
+				actionList.actions.RemoveAt(curPos);
+				if (actionList.actions.GetCount() == 0)
+					pos = NULL;
+				bSkip = TRUE;  // User wants to skip this item
+			}
 		}
 
-		if (bSucceed) // No error from VCS sync (propably just not called)
+		if (bSucceed && !bSkip) // No error from VCS sync (propably just not called)
 		{
 			try
 			{
@@ -473,19 +491,28 @@ void CDirView::PerformActionList(ActionList & actionList)
 				ex->ReportError();
 				ex->Delete();
 			}
+			if (bSucceed)
+				nItemCount++;
 		}
 	} 
+
+	// Abort if no items to process
+	if (nItemCount == 0)
+	{
+		gLog.Write(_T("Fileoperation aborted, no items to process."));
+		return;
+	}
 
 	// Now process files/directories that got added to list
 	BOOL bOpStarted = FALSE;
 	int apiRetVal = 0;
-	BOOL bUserCancelled = FALSE; 
+	BOOL bUserCancelled = FALSE;
 	BOOL bFileOpSucceed = fileOp.Go(&bOpStarted, &apiRetVal, &bUserCancelled);
 
 	// All succeeded
 	if (bFileOpSucceed && !bUserCancelled)
 	{
-		gLog.Write(_T("Fileoperation succeeded."));
+		gLog.Write(_T("Fileoperation succeeded, %d item processed."), nItemCount);
 		UpdateCopiedItems(actionList);
 		UpdateDeletedItems(actionList);
 	}
@@ -590,7 +617,6 @@ void CDirView::UpdateDeletedItems(ActionList & actionList)
 		GetDiffContext()->RemoveDiff(diffpos);
 		m_pList->DeleteItem(idx);
 	}
-
 }
 
 /// Get directories of first selected item
