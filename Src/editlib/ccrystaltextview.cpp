@@ -698,7 +698,7 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
           ScrollWindow(0, nScrollLines * GetLineHeight());
           UpdateWindow();
           if (bTrackScrollBar)
-          RecalcVertScrollBar(TRUE);
+            RecalcVertScrollBar(TRUE);
         }
       else
         {
@@ -4515,20 +4515,15 @@ OnEditRepeat ()
         }
       HighlightText (ptFoundPos, m_nLastFindWhatLen, (m_dwLastSearchFlags & FIND_DIRECTION_UP) != 0);
       m_bMultipleSearch = TRUE; // More search
-
     }
+  else
+    OnEditFind(); // No previous find, open Find-dialog
 }
 
 void CCrystalTextView::
 OnUpdateEditRepeat (CCmdUI * pCmdUI)
 {
-  BOOL bEnable = m_bLastSearch;
-  if (!bEnable)
-    {
-      CString sText;
-      bEnable = CMemComboBox::groups.Lookup (_T ("FindText"), sText) && !sText.IsEmpty ();
-    }
-  pCmdUI->Enable (bEnable);
+  pCmdUI->Enable (TRUE);
 }
 
 void CCrystalTextView::

@@ -1,3 +1,7 @@
+2004-08-20 Kimmo
+ PATCH: [ 1012291 ] Open Find-dialog for F3 if no previous find
+  Src/editlib: ccrystaltextview.cpp
+
 2004-08-19 Kimmo
  PATCH: [ 982140 ] Merge7z : compress folders
   Submitted by Laoran
