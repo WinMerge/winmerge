@@ -152,6 +152,10 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=..\..\..\7z313\7zip\UI\Common\EnumDirItems.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Merge7z.def
 # End Source File
 # Begin Source File
@@ -191,6 +195,10 @@ SOURCE=.\tools.h
 # Begin Group "Header-Dateien"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=..\..\..\7z313\7zip\UI\Common\EnumDirItems.h
+# End Source File
 # End Group
 # Begin Group "Ressourcendateien"
 

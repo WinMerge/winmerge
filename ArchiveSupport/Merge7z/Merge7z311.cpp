@@ -30,6 +30,8 @@
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
 2004/03/15	Jochen Tucht		Fix Visual Studio 2003 build issue
+2004/08/19	Laurent Ganier		Compression of folders
+								Through EnumerateDirectory (from code of 7zip)
 
 */
 
@@ -40,6 +42,7 @@ DATE:		BY:					DESCRIPTION:
 #include "7zip/FileManager/OpenCallback.h"
 #include "7zip/FileManager/ExtractCallback.h"
 #include "7zip/FileManager/UpdateCallback100.h"
+#include "7zip/UI/Common/EnumDirItems.h"
 
 /**
  * @brief Extraction thread
@@ -254,8 +257,37 @@ public:
 	}
 };
 
+
+/**
+ * @brief Fill in dirItems with the files from a folder and its subfolders
+ *
+ * @note Duplication from 7zip source (EnumDirItems.cpp), because the function is static
+ */
+using namespace NFile;
+using namespace NName;
+static void EnumerateDirectory(
+	const UString &baseFolderPrefix,
+	const UString &directory, 
+	const UString &prefix,
+	CObjectVector<CDirItem> &dirItems)
+{
+	NFind::CEnumeratorW enumerator(baseFolderPrefix + directory + wchar_t(kAnyStringWildcard));
+	NFind::CFileInfoW fileInfo;
+	while (enumerator.Next(fileInfo))
+	{
+		AddDirFileInfo(prefix, directory + fileInfo.Name, fileInfo, dirItems);
+		if (fileInfo.IsDirectory())
+		{
+			EnumerateDirectory(baseFolderPrefix, directory + fileInfo.Name + wchar_t(kDirDelimiter),
+				prefix + fileInfo.Name + wchar_t(kDirDelimiter), dirItems);
+		}
+	}
+}
+
 /**
  * @brief Compression method accessible from outside
+ *
+ * @note See CAgent::DoOperation (in 7zip source) for model
  */
 HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, Merge7z::DirItemEnumerator *etor)
 {
@@ -290,6 +322,10 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 			false,											// passwordIsDefined
 			UString()										// password
 		);
+
+		// Get the fileTimeType to compare new files and files already in archive
+		// We do not really care because we consider that the dest archive is empty
+		/*
 		NFileTimeType::EEnum fileTimeType;
 		UINT32 value;
 		if COMPLAIN(outArchive->GetFileTimeType(&value) != S_OK)
@@ -306,17 +342,18 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 		default:
 			ComplainCantOpen(path);
 		}
+		*/
 
-		UINT count = etor->Open();
-		CObjectVector<CUpdatePair2> operationChain;
-		operationChain.Reserve(count);
+		// First fill the items to compress
 		CObjectVector<CDirItem> dirItems;
-		dirItems.Reserve(count);
+		UINT count = etor->Open();
 		while (count--)
 		{
 			Merge7z::DirItemEnumerator::Item etorItem;
 			etorItem.Mask.Item = 0;
 			Merge7z::Envelope *envelope = etor->Enum(etorItem);
+
+			// fill in the default values from the enumerator
 			CDirItem item;
 			if (etorItem.Mask.Item & etorItem.Mask.Name)
 				item.Name = GetUnicodeString(etorItem.Name);
@@ -336,8 +373,10 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 			{
 				envelope->Free();
 			}
+
 			if (etorItem.Mask.Item && (etorItem.Mask.Item & (etorItem.Mask.NeedFindFile|etorItem.Mask.CheckIfPresent)) != etorItem.Mask.NeedFindFile)
 			{
+				// Check the info from the disk
 				NFile::NFind::CFileInfoW fileInfo;
 				if (NFile::NFind::FindFile(item.FullPath, fileInfo))
 				{
@@ -353,29 +392,52 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 						item.LastAccessTime = fileInfo.LastAccessTime;
 					if (!(etorItem.Mask.Item & etorItem.Mask.LastWriteTime))
 						item.LastWriteTime = fileInfo.LastWriteTime;
+					dirItems.Add(item);
+
+					// Recurse into directories (call a function of 7zip)
+					const UString baseFolderPrefix = L"";
+					if (fileInfo.IsDirectory())
+					{
+						EnumerateDirectory(baseFolderPrefix, item.FullPath + L'\\', 
+								item.Name + L'\\', dirItems);
+					}
 				}
 				else
 				{
+					// file not valid, forget it
 					if COMPLAIN(!(etorItem.Mask.Item & etorItem.Mask.CheckIfPresent))
 					{
 						ComplainCantOpen(GetSystemString(item.FullPath));
 					}
-					etorItem.Mask.Item = 0;
 				}
 			}
-			if (etorItem.Mask.Item)
+			else if (etorItem.Mask.Item)
 			{
-				CUpdatePair2 pair2;
-				pair2.IsAnti = false;
-				pair2.DirItemIndex = dirItems.Add(item);
-				pair2.ExistInArchive = false;
-				pair2.ExistOnDisk = true;
-				pair2.NewData = pair2.NewProperties = true;
-				operationChain.Add(pair2);
+				// No check from disk, simply use info from enumerators (risky)
+				dirItems.Add(item);
 			}
 		}
 
+		// Build the operationChain. One element per item
+		CObjectVector<CUpdatePair2> operationChain;
+		CUpdatePair2 pair2;
+		pair2.IsAnti = false;
+		pair2.ExistInArchive = false;
+		pair2.ExistOnDisk = true;
+		pair2.NewData = pair2.NewProperties = true;
+
+		operationChain.Reserve(dirItems.Size());
+		int i;
+		for (i = 0 ; i < dirItems.Size() ; i++)
+		{
+			pair2.DirItemIndex = i;
+			operationChain.Add(pair2);
+		}
+
+		// No items in dest archive. We always recreate the dest archive
 		CObjectVector<CArchiveItem> archiveItems;
+
+		// Now compress...
 		updateCallbackSpec->Init(UString()/*folderPrefix*/, &dirItems, &archiveItems, 
 			&operationChain, NULL, updateCallback100);
 
