@@ -11,6 +11,6 @@ copy ..\WinMerge\resource.h Korean
 copy ..\WinMerge\resource.h Norwegian
 copy ..\WinMerge\resource.h Slovak
 copy ..\WinMerge\resource.h Spanish
-
+copy ..\WinMerge\resource.h Swedish
 
 pause
