@@ -4,6 +4,7 @@
  RFE: [ 817859 ] Generate patch from modified files
   MainFrm.cpp
  Fix Refresh-crash I introduced when fixing BUG [ 803330 ]
+  DirDoc.cpp
 
 2003-10-05 Kimmo
  Show text "Identical" on diffnumber panel when files are identical
