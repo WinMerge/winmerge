@@ -1,4 +1,6 @@
-2003-09-27 WinMerge experimental release 2.1.1.9 (Unicode handling patch)
+2003-09-26 WinMerge beta 2.1.2.0 released
+
+2003-09-26 WinMerge experimental release 2.1.1.9 (Unicode handling patch)
 
 2003-09-26 Perry
  PATCH: [ 812820 ] Fix regexp for Unicode
