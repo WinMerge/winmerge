@@ -1,7 +1,7 @@
 /**
  *  @file DirScan.cpp
  *
- *  @brief Implementation of DirScan and helper functions
+ *  @brief Implementation of DirScan (q.v.) and helper functions
  */ 
 // RCS ID line follows -- this is updated by CVS
 // $Id$
@@ -22,6 +22,7 @@ extern CLogFile gLog;
 static char THIS_FILE[] = __FILE__;
 #endif
 
+// Static types (ie, types only used locally)
 /**
  * @brief directory or file info for one row in diff result
  */
@@ -37,6 +38,7 @@ struct fentry
 };
 typedef CArray<fentry, fentry&> fentryArray;
 
+// Static functions (ie, functions only used locally)
 static void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files);
 void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * files, bool casesensitive);
 static void Sort(fentryArray * dirs, bool casesensitive);;
@@ -45,14 +47,21 @@ static void StoreDiffResult(const CString & sDir, const fentry * lent, const fen
 static int prepAndCompareTwoFiles(const fentry & lent, const fentry & rent, const CString & sLeftDir, const CString & sRightDir);
 
 
+/** @brief cmpmth is a typedef for a pointer to a method */
 typedef int (CString::*cmpmth)(LPCTSTR sz) const;
+/** @brief CALL_MEMBER_FN calls a method through a pointer to a method */
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object).*(ptrToMember))
 
-// Compare two directories & output all results found via calls to StoreDiffResult
-// base directories to compare are in the CDiffContext
-// and this call is responsible for diff'ing just the subdir specified
-// (ie, if subdir is empty, this is the base call)
-// return 1 normally, return -1 if aborting
+
+/**
+ * @brief Compare two directories and store results (via the context)
+ *
+ * Compare two directories & output all results found via calls to StoreDiffResult
+ * base directories to compare are in the CDiffContext
+ * and this call is responsible for diff'ing just the subdir specified
+ * (ie, if subdir is empty, this is the base call)
+ * return 1 normally, return -1 if aborting
+ */
 int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 	int depth, IAbortable * piAbortable)
 {
@@ -295,30 +304,19 @@ prepAndCompareTwoFiles(const fentry & lent, const fentry & rent,
 	return code;
 }
 
-// In debug mode, dump contents of array to debug window
-static void TraceArray(const fentryArray * arr)
-{
-	return;
-	TRACE(_T("Array has %d elements:\n"), arr->GetSize());
-	for (int i=0; i<arr->GetSize(); ++i)
-	{
-		TRACE(_T("%d: %s\n"), i, (LPCTSTR)arr->GetAt(i).name);
-	}
-}
-
-// Load arrays with all directories & files in specified dir
+/**
+ * @brief Load arrays with all directories & files in specified dir
+ */
 void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * files, bool casesensitive)
 {
 	LoadFiles(sDir, dirs, files);
-	TraceArray(dirs);
-	TraceArray(files);
 	Sort(dirs, casesensitive);
 	Sort(files, casesensitive);
-	TraceArray(dirs);
-	TraceArray(files);
 }
 
-// Load arrays with all directories & files in specified dir
+/**
+ * @brief Load arrays with all directories & files in specified dir
+ */
 void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 {
 	CString sPattern = sDir;
@@ -355,7 +353,9 @@ void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 	}
 }
 
-// case-sensitive collate function for qsorting an array
+/**
+ * @brief case-sensitive collate function for qsorting an array
+ */
 static int __cdecl cmpstring(const void *elem1, const void *elem2)
 {
 	const fentry * s1 = static_cast<const fentry *>(elem1);
@@ -363,7 +363,9 @@ static int __cdecl cmpstring(const void *elem1, const void *elem2)
 	return s1->name.Collate(s2->name);
 }
 
-// case-insensitive collate function for qsorting an array
+/**
+ * @brief case-insensitive collate function for qsorting an array
+ */
 static int __cdecl cmpistring(const void *elem1, const void *elem2)
 {
 	const fentry * s1 = static_cast<const fentry *>(elem1);
@@ -371,7 +373,9 @@ static int __cdecl cmpistring(const void *elem1, const void *elem2)
 	return s1->name.CollateNoCase(s2->name);
 }
 
-// sort specified array
+/**
+ * @brief sort specified array
+ */
 void Sort(fentryArray * dirs, bool casesensitive)
 {
 	fentry * data = dirs->GetData();
@@ -380,7 +384,9 @@ void Sort(fentryArray * dirs, bool casesensitive)
 	qsort(data, dirs->GetSize(), sizeof(dirs->GetAt(0)), comparefnc);
 }
 
-// Compare (NLS aware) two strings, either case-sensitive or case-insensitive as caller specifies
+/**
+ * @brief  Compare (NLS aware) two strings, either case-sensitive or case-insensitive as caller specifies
+ */
 static int collstr(const CString & s1, const CString & s2, bool casesensitive)
 {
 	if (casesensitive)
@@ -389,7 +395,9 @@ static int collstr(const CString & s1, const CString & s2, bool casesensitive)
 		return s1.CollateNoCase(s2);
 }
 
-// Add a result
+/**
+ * @brief Send one file or directory result back through the diff context
+ */
 static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry * rent, int code, CDiffContext * pCtxt)
 {
 	CString name, leftdir, rightdir;

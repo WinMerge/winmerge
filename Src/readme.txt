@@ -1,3 +1,7 @@
+2003-11-24 Perry
+ PATCH: [ 847134 ] More commenting for DirScan (doxygenize function comments)
+  WinMerge: DirScan.cpp DirScan.h
+
 2003-11-24 Laoran
  BUG: [ 848461 ] Toggle 'show different files' is broken (thanks to Kimmo)
   WinMerge: DirDoc.cpp

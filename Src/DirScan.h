@@ -1,3 +1,11 @@
+/**
+ *  @file DirScan.h
+ *
+ *  @brief Declaration of DirScan module (see DirScan function)
+ */ 
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #ifndef DirScan_h_included
 #define DirScan_h_included
 
@@ -15,4 +23,3 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 
 
 #endif // DirScan_h_included
-
