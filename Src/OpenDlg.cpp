@@ -36,6 +36,10 @@ static char THIS_FILE[] = __FILE__;
 
 const LPCTSTR DIRSEL_TAG = _T("Directory Selection");
 
+// Timer ID and timeout for delaying path validity check
+const UINT IDT_CHECKFILES = 1;
+const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
+
 /////////////////////////////////////////////////////////////////////////////
 // COpenDlg dialog
 
@@ -77,11 +81,11 @@ BEGIN_MESSAGE_MAP(COpenDlg, CDialog)
 	ON_BN_CLICKED(IDC_RIGHT_BUTTON, OnRightButton)
 	ON_CBN_SELCHANGE(IDC_LEFT_COMBO, OnSelchangeLeftCombo)
 	ON_CBN_SELCHANGE(IDC_RIGHT_COMBO, OnSelchangeRightCombo)
-	ON_CBN_EDITCHANGE(IDC_LEFT_COMBO, UpdateButtonStates)
+	ON_CBN_EDITCHANGE(IDC_LEFT_COMBO, OnEditEvent)
 	ON_CBN_SELENDCANCEL(IDC_LEFT_COMBO, UpdateButtonStates)
-	ON_CBN_EDITCHANGE(IDC_RIGHT_COMBO, UpdateButtonStates)
+	ON_CBN_EDITCHANGE(IDC_RIGHT_COMBO, OnEditEvent)
 	ON_CBN_SELENDCANCEL(IDC_RIGHT_COMBO, UpdateButtonStates)
-
+	ON_WM_TIMER()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -151,8 +155,8 @@ void COpenDlg::OnOK()
 	paths_normalize(m_strRight);
 	paths_normalize(m_strLeft);
 
-
 	UpdateData(FALSE);
+	KillTimer(IDT_CHECKFILES);
 
 	// parse the extensions
 	// replace all *. with .*\\.
@@ -229,7 +233,8 @@ BOOL COpenDlg::AreComparable(BOOL * pbDirs) const
 void COpenDlg::UpdateButtonStates()
 {
 	UpdateData(TRUE); // load member variables from screen
-
+	KillTimer(IDT_CHECKFILES);
+	
 	// Only enable OK button if items are comparable
 	BOOL bDirs;
 	BOOL bEnableOK = AreComparable(&bDirs);
@@ -308,4 +313,21 @@ void COpenDlg::RemoveTrailingSlash(CString & s)
 		return;
 	while (s.Right(1) == _T('\\') || s.Right(1) == _T('/'))
 		s.Delete(s.GetLength()-1);
+}
+
+// Called every time paths are edited
+void COpenDlg::OnEditEvent()
+{
+	// (Re)start timer to path validity check delay
+	// If timer starting fails, update buttonstates immediately
+	if (!SetTimer(IDT_CHECKFILES, CHECKFILES_TIMEOUT, NULL))
+		UpdateButtonStates();
+}
+
+void COpenDlg::OnTimer(UINT nIDEvent) 
+{
+	if (nIDEvent == IDT_CHECKFILES)
+		UpdateButtonStates();
+
+	CDialog::OnTimer(nIDEvent);
 }

@@ -1,3 +1,7 @@
+2003-03-21 Kimmo
+ PATCH: [ 707152 ] Delay path check in opendialog
+  WinMerge: OpenDlg.h OpenDlg.cpp
+
 2003-03-14 Kimmo
  PATCH: [ 703234 ] Use stricmp
   WinMerge: DIFF.C diffmain.c SDIFF.C
