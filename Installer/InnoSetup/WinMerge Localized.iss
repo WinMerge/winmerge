@@ -358,8 +358,8 @@ Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promp
 Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
-Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe.manifest; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 5.01; Components: Core
-Source: ..\Build\MergeUnicodeRelease\WinMerge.exe.manifest; DestDir: {app}; Flags: promptifolder; Components: Core; MinVersion: 0,5.01
+Source: WinMergeU.exe.manifest; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 5.01; Components: Core
+Source: WinMerge.exe.manifest; DestDir: {app}; Flags: promptifolder; Components: Core; MinVersion: 0,5.01
 
 ;Installs the ComCtl32.dll update on any system where its DLLs are more recent
 Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall; Check: InstallComCtlUpdate

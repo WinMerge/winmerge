@@ -1,3 +1,7 @@
+2004-10-24 Kimmo
+ PATCH: [ 1052839 ] Load manifest files from /Innosetup not /Build
+  InnoSetup: WinMerge Localize.iss
+
 2004-10-24 Perry
  PATCH: [ 1047249 ] Typo in installer at "Brazilian"
   InnoSetup/Languages/*.isl Localization Instructions.txt
