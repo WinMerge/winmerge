@@ -216,6 +216,11 @@
       $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246\">Experimental builds</a></li>\n";
       $temp .= "</ul>\n";
       $temp .= "<p align=\"center\">\n";
+      $temp .= "  <a href=\"/WinMergePAD.php\">\n";
+      $temp .= "    <img src=\"/images/padbutton.gif\" alt=\"PAD Enabled\" border=\"0\">\n";
+      $temp .= "  </a>\n";
+      $temp .= "</p>\n";
+      $temp .= "<p align=\"center\">\n";
       $temp .= "  <a href=\"http://sourceforge.net/projects/winmerge\">\n";
       $temp .= "    <img src=\"http://sourceforge.net/sflogo.php?group_id=13216\" alt=\"SourceForge Logo\" border=\"0\">\n";
       $temp .= "  </a>\n";

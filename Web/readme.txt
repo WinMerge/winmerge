@@ -1,3 +1,8 @@
+2004-12-01 Tim
+ RFE: [ 1069633 ] Info about submitting WinMerge to other sites
+  Web: page.inc WinMergePAD.php
+  Web\images: padbutton.gif
+
 2004-11-25 Tim
  PATCH: [ 1072859 ] Web: Screenshots for 2.2
   Web: index.php page.inc
