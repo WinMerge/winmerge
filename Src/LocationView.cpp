@@ -88,8 +88,8 @@ void CLocationView::OnDraw(CDC* pDC)
 	COLORREF cr1 = CLR_NONE; // Right side color
 	COLORREF crt = CLR_NONE; // Text color
 	BOOL bwh = FALSE;
-	int nstart0 = 0;
-	int nend0 = 0;
+	int nstart0 = -1;
+	int nend0 = -1;
 	
 	while (true)
 	{
@@ -97,17 +97,19 @@ void CLocationView::OnDraw(CDC* pDC)
 		if (!ok0)
 			break;
 
+		nstart0++;
+
 		// Draw left side block
-		m_view0->GetLineColors(nstart0 + 1, cr0, crt, bwh);
-		CRect r0(x, nstart0 * rc.Height() / nbLines,
+		m_view0->GetLineColors(nstart0, cr0, crt, bwh);
+		CRect r0(x, (nstart0 - 1) * rc.Height() / nbLines,
 				x + w, nend0 * rc.Height() / nbLines);
-		DrawRect(pDC, r0, cr0, ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0 + 1));
+		DrawRect(pDC, r0, cr0, ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0));
 		
 		// Draw right side block
-		m_view1->GetLineColors(nstart0 + 1, cr1, crt, bwh);
-		CRect r1(2 * x + w, nstart0 * rc.Height() / nbLines,
+		m_view1->GetLineColors(nstart0, cr1, crt, bwh);
+		CRect r1(2 * x + w, (nstart0 - 1) * rc.Height() / nbLines,
 				2 * x + 2 * w, nend0 * rc.Height() / nbLines);
-		DrawRect(pDC, r1, cr1, ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0 + 1));
+		DrawRect(pDC, r1, cr1, ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0));
 		nstart0 = nend0;
 
 		// Connected line

@@ -1,3 +1,7 @@
+2004-04-24 Kimmo
+ BUG: [ 939245 ] Location Bar don't show diff in first line
+  Src: LocationView.cpp
+
 2004-04-24 Perry
  PATCH: [ 941014 ] Various Updates in German Translation (Tim Gerundt)
   (Except I didn't remove the synchro comments)
