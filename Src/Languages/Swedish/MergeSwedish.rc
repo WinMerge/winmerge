@@ -1411,6 +1411,7 @@ BEGIN
     IDS_COMPMETHOD_MODDATE  "Datum för förändring"
     IDS_PATH_NOT_ABSOLUTE   "%1\n är inte en absolut path!"
     IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
+    IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
 END
 
 STRINGTABLE DISCARDABLE

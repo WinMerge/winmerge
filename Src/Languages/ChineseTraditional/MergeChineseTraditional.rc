@@ -1401,6 +1401,7 @@ BEGIN
     IDS_COMPMETHOD_MODDATE  "Modified date"
     IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
+    IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
 END
 
 STRINGTABLE DISCARDABLE

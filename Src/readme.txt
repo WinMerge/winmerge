@@ -4,6 +4,9 @@
   Src: DirActions.cpp
  PATCH: [ 930456 ] Allow Copy Left/Right to copy folders too
   Src: DirActions.cpp
+ PATCH: [ 934370 ] Log temp file errors and own errormessage
+  Src: Merge.rc MergeDoc.cpp MergeDoc.h resource.h
+  Languages: *.rc resource.h
   
 2004-04-17 Kimmo
  PATCH: [ 910557 ] Location Bar

@@ -199,6 +199,7 @@
 #define IDB_FILE_EXIT                   279
 #define IDB_HELP_CONTENTS               280
 #define IDD_MESSAGE_BOX                 281
+#define IDS_TEMP_FILEERROR              282
 #define ID_SCRIPT_FIRST                 900
 #define ID_SCRIPT_LAST                  999
 #define IDC_LEFT_EDIT                   1000

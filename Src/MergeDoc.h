@@ -52,7 +52,8 @@ enum
 	RESCAN_SUPPRESSED,
 	RESCAN_IDENTICAL,
 	RESCAN_BINARIES,
-	RESCAN_FILE_ERR
+	RESCAN_FILE_ERR,
+	RESCAN_TEMP_ERR,
 };
 
 /**
@@ -275,7 +276,7 @@ public:
 	void FlushAndRescan(BOOL bForced = FALSE);
 	BOOL TempFilesExist();
 	void CleanupTempFiles();
-	BOOL InitTempFiles(const CString& srcPathL, const CString& strPathR);
+	BOOL InitTempFiles(const CString& strPathL, const CString& strPathR);
 	void SetCurrentDiff(int nDiff);
 	int GetCurrentDiff() { return m_nCurDiff; }
 	UINT CountPrevBlanks(UINT nCurLine, BOOL bLeft);
