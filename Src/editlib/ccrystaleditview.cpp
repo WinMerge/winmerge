@@ -483,7 +483,7 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
           else
             ptCursorPos = GetCursorPos ();
           ASSERT_VALIDTEXTPOS (ptCursorPos);
-          const static TCHAR pszText[3] = _T ("\r\n");
+          LPCTSTR pszText = m_pTextBuffer->GetDefaultEol();
 
           int x, y;
           m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszText, y, x, CE_ACTION_TYPING);  //  [JRT]
