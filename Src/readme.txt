@@ -1,3 +1,9 @@
+2003-06-28 Kimmo
+ PATCH: [ 761874 ] Fix unlocalisable acceskeys
+  WinMerge: Merge.rc
+  editlib: editres.rc
+  Updated language files too
+
 2003-06-28 Perry
  PATCH: [ 758930 ] Display EOL chars with View Whitespace
   WinMerge: MainFrm.cpp
