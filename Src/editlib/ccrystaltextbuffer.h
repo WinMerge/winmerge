@@ -183,11 +183,28 @@ private :
           };
 
 public :
-        //  constructor/destructor for this struct
-        SUndoRecord ()
+        SUndoRecord () // default constructor
         {
           memset (this, 0, sizeof (SUndoRecord));
-        };
+        }
+        SUndoRecord (const SUndoRecord & src) // copy constructor
+        {
+          memset (this, 0, sizeof (SUndoRecord));
+          (*this)=src;
+        }
+        SUndoRecord & operator=(const SUndoRecord & src) // copy assignment
+        {
+          m_dwFlags = src.m_dwFlags;
+          m_ptStartPos = src.m_ptStartPos;
+          m_ptEndPos = src.m_ptEndPos;
+          m_nAction = src.m_nAction;
+          SetText(src.GetText());
+	   return *this;
+        }
+        ~SUndoRecord () // destructor
+        {
+          FreeText();
+        }
 
         void SetText (LPCTSTR pszText);
         void FreeText ();

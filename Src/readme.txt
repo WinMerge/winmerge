@@ -3,6 +3,8 @@
   editlib: ccrystaltextbuffer.cpp
  PATCH: [ 760077 ] Omit final ghostline if last line unterminated
   WinMerge: MergeDoc.cpp
+ PATCH: [ 760129 ] Wipe Undo stack if Undo fails, and fix Undo check
+  editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h
 
 2003-06-23 Perry
  PATCH: [ 759533 ] Fix InternalInsertText & InternalDeleteText

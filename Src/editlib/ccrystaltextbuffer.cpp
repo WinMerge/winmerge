@@ -313,11 +313,7 @@ FreeAll ()
     }
   m_aLines.RemoveAll ();
 
-  //  Free undo buffer
-  int nBufSize = m_aUndoBuf.GetSize ();
-  for (I = 0; I < nBufSize; I++)
-    m_aUndoBuf[I].FreeText ();
-  m_aUndoBuf.RemoveAll ();
+  // Undo buffer will be cleared by its destructor
 
   m_bInit = FALSE;
 	//BEGIN SW
@@ -1245,15 +1241,16 @@ Undo (CPoint & ptCursorPos)
 {
   ASSERT (CanUndo ());
   ASSERT ((m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
-  BOOL found = TRUE;
+  BOOL failed = FALSE;
   int tmpPos = m_nUndoPosition;
 
-  for (;;)
+  while (!failed)
     {
       tmpPos--;;
       SUndoRecord ur = m_aUndoBuf[tmpPos];
-		// Undo records are stored in file line numbers
-		// and must be converted to apparent (screen) line numbers for use
+      // Undo records are stored in file line numbers
+      // and must be converted to apparent (screen) line numbers for use
+      int nEndRealLine = ur.m_ptEndPos.y;
       ur.m_ptStartPos.y = ComputeApparentLine(ur.m_ptStartPos.y);
       ur.m_ptEndPos.y = ComputeApparentLine(ur.m_ptEndPos.y);
       if (ur.m_dwFlags & UNDO_INSERT)
@@ -1284,17 +1281,17 @@ Undo (CPoint & ptCursorPos)
                       ptCursorPos = ur.m_ptStartPos;
                 }
               else
-                   found = FALSE;
+                   failed = TRUE;
             }
           else
-              found = FALSE;
+              failed = TRUE;
         }
       else
         {
           int nEndLine, nEndChar;
           VERIFY (InternalInsertText (NULL, ur.m_ptStartPos.y, ur.m_ptStartPos.x, ur.GetText (), nEndLine, nEndChar));
 #ifdef _ADVANCED_BUGCHECK
-          ASSERT (ur.m_ptEndPos.y == nEndLine);
+          ASSERT (nEndRealLine == ComputeRealLine(nEndLine));
           ASSERT (ur.m_ptEndPos.x == nEndChar);
 #endif
           ptCursorPos = ur.m_ptEndPos;
@@ -1306,8 +1303,19 @@ Undo (CPoint & ptCursorPos)
     SetModified (FALSE);
   if (!m_bModified && m_nSyncPosition != tmpPos)
     SetModified (TRUE);
-  m_nUndoPosition = tmpPos;
-  return found;
+  if (failed)
+    {
+      // If the Undo failed, clear the entire Undo/Redo stack
+      // Not only can we not Redo the failed Undo, but the Undo
+      // may have partially completed (if in a group)
+      m_nUndoPosition = 0;
+      m_aUndoBuf.SetSize (m_nUndoPosition);
+    }
+  else
+    {
+      m_nUndoPosition = tmpPos;
+    }
+  return !failed;
 }
 
 BOOL CCrystalTextBuffer::
@@ -1366,8 +1374,6 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
   int nBufSize = m_aUndoBuf.GetSize ();
   if (m_nUndoPosition < nBufSize)
     {
-      for (int I = m_nUndoPosition; I < nBufSize; I++)
-        m_aUndoBuf[I].FreeText ();
       m_aUndoBuf.SetSize (m_nUndoPosition);
     }
 
@@ -1379,7 +1385,6 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
       int nIndex = 0;
       for (;;)
         {
-          m_aUndoBuf[nIndex].FreeText ();
           nIndex++;
           if (nIndex == nBufSize || (m_aUndoBuf[nIndex].m_dwFlags & UNDO_BEGINGROUP) != 0)
             break;
