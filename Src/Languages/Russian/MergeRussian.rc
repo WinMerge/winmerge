@@ -1691,7 +1691,7 @@ BEGIN
     IDS_SUGGEST_IGNOREEOL   "Файлы имеют различные типы EOL.\nС текущими настройками все линии будут иметь отличия.\nХотите ли вы проигнорировать отличия в EOL для этих файлов ?\n\nОпытным пользователям : Если ваши файлы не имеют одинаковых EOL,\n вы, тем не менее, можете установить опцию '%1'."
     IDS_SUGGEST_PRESERVEEOL "В файле '%1' символы EOL разных типов (DOS/UNIX/MAC).\nС текущими настройками, они будут преобразованы ко главному типу.\n Хотите ли вы изменить ваши настройки так, чтобы сохранить различные EOL ?"
     IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-    IDS_SUGGEST_IGNORECODEPAGE "Left and right files don't have the same codepage. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWe suggest to forget the codepage information. Do you agree ?"
+    IDS_SUGGEST_IGNORECODEPAGE "Left and right files don't have the same codepage. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to force both into the default codepage (recommended)?"
 END
 
 // EDITOR : SHOW LINE DIFF

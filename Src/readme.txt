@@ -1,3 +1,9 @@
+2004-09-28 Kimmo
+ PATCH: [ 1034719 ] IDS_SUGGEST_IGNORECODEPAGE change?
+  Submitted by Perry
+  Src: Merge.rc
+  Src/Languages: *.rc (except MergeCatalan.rc, MergeItalian.rc & MergeSwedish.rc)
+
 2004-09-27 Kimmo
  Add links to DocBook DSSL customisation
   Docs/Developers: readme-developers.html
