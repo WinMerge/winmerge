@@ -781,6 +781,7 @@ public :
 
     //  Operations
     virtual void EnsureVisible (CPoint pt);
+    void EnsureVisible (CPoint ptStart, CPoint ptEnd);
 
     //  Text search helpers
     BOOL FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags, BOOL bWrapSearch, CPoint * pptFoundPos);

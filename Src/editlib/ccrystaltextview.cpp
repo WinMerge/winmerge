@@ -4049,7 +4049,7 @@ HighlightText (const CPoint & ptStartPos, int nLength, BOOL bReverse /*= FALSE*/
   m_ptAnchor = m_ptCursorPos;
   SetSelection (ptStartPos, ptEndPos);
   UpdateCaret ();
-  EnsureVisible (m_ptCursorPos);
+  EnsureVisible (ptStartPos, ptEndPos);
   return TRUE;
 }
 
@@ -5465,6 +5465,83 @@ int CCrystalTextView::GetCharWidthUnicodeChar(wchar_t ch)
     return GetCharWidth();
 }
 #endif
+
+void CCrystalTextView::EnsureVisible (CPoint ptStart, CPoint ptEnd)
+{
+  //  Scroll vertically
+  //BEGIN SW
+  int nSubLineCount = GetSubLineCount();
+  int nNewTopSubLine = m_nTopSubLine;
+  CPoint subLinePos;
+  CPoint subLinePosEnd;
+
+  CharPosToPoint( ptStart.y, ptStart.x, subLinePos );
+  subLinePos.y += GetSubLineIndex( ptStart.y );
+  CharPosToPoint( ptEnd.y, ptEnd.x, subLinePosEnd );
+  subLinePosEnd.y += GetSubLineIndex( ptEnd.y );
+
+  if( subLinePos.y >= nNewTopSubLine + GetScreenLines() )
+    nNewTopSubLine = subLinePos.y - GetScreenLines() + 1;
+  if( subLinePos.y < nNewTopSubLine )
+    nNewTopSubLine = subLinePos.y;
+
+  if( nNewTopSubLine < 0 )
+    nNewTopSubLine = 0;
+  if( nNewTopSubLine >= nSubLineCount )
+    nNewTopSubLine = nSubLineCount - 1;
+
+  // WINMERGE: This line fixes (cursor) slowdown after merges!
+  // I don't know exactly why, but propably we are setting
+  // m_nTopLine to zero in ResetView() and are not setting to
+  // valid value again.  Maybe this is a good place to set it?
+  m_nTopLine = nNewTopSubLine;
+
+  if( nNewTopSubLine != m_nTopSubLine )
+    {
+      ScrollToSubLine( nNewTopSubLine );
+      UpdateCaret();
+      UpdateSiblingScrollPos( FALSE );
+    }
+
+  //  Scroll horizontally
+  //BEGIN SW
+  // we do not need horizontally scrolling, if we wrap the words
+  if( m_bWordWrap )
+    return;
+  //END SW
+  int nActualPos = CalculateActualOffset (ptStart.y, ptStart.x);
+  int nActualEndPos = CalculateActualOffset (ptEnd.y, ptEnd.x);
+  int nNewOffset = m_nOffsetChar;
+  const int nScreenChars = GetScreenChars ();
+  if (nActualEndPos > nNewOffset + nScreenChars)
+    {
+      // Check selection is not wider than visible area and
+      // Add 10 chars width space after line
+      if (nActualEndPos < nActualPos + nScreenChars - 10)
+        nNewOffset = nActualEndPos - nScreenChars + 10;
+      else
+        nNewOffset = nActualPos - nScreenChars + 10;
+    }
+  if (nActualPos < nNewOffset)
+    {
+      nNewOffset = nActualPos - 10;
+    }
+
+  // Horiz scroll limit to longest line + one screenwidth
+  const int nMaxLineLen = GetMaxLineLength ();
+  if (nNewOffset >= nMaxLineLen + nScreenChars)
+    nNewOffset = nMaxLineLen + nScreenChars - 1;
+  if (nNewOffset < 0)
+    nNewOffset = 0;
+
+  if (m_nOffsetChar != nNewOffset)
+    {
+      ScrollToChar (nNewOffset);
+      UpdateCaret ();
+      UpdateSiblingScrollPos (TRUE);
+    }
+}
+
 
 ////////////////////////////////////////////////////////////////////////////
 #pragma warning ( default : 4100 )

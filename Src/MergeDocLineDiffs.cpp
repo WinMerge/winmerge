@@ -36,7 +36,7 @@ HighlightDiffRect(CMergeEditView * pView, const CRect & rc)
 	{
 		pView->SelectArea(rc.TopLeft(), rc.BottomRight());
 		pView->SetCursorPos(rc.TopLeft());
-		pView->EnsureVisible(rc.TopLeft());
+		pView->EnsureVisible(rc.TopLeft(), rc.BottomRight());
 	}
 }
 

@@ -8,6 +8,10 @@
   Src: LocationView.cpp LocationView.h MergeEditView.cpp MergeEditView.h
  Add icons to Find and Replace result messageboxes.
   Src/editlib: ceditreplacedlg.cpp cfindtextdlg.cpp
+ PATCH: [ 1000423 ] Try to fix invisible find result
+  Bug: #951584 Find: word found not visible or badly placed
+  Src: MergeDocLineDiffs.cpp
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
 
 2004-07-29 Kimmo
  PATCH: [ 999681 ] Accept filter name from commandline
