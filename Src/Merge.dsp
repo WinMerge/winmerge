@@ -44,7 +44,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W4 /GX /Zi /Od /I "." /I "..\common" /I ".\editlib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W4 /GR /GX /Zi /Od /I "." /I "..\common" /I ".\editlib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
@@ -57,7 +57,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\Programs\Merge\Build\MergeRelease\WinMerge.exe
+TargetPath=\Merge\Build\MergeRelease\WinMerge.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -76,7 +76,7 @@ PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "." /I "..\common" /I ".\editlib" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /FR /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "." /I "..\common" /I ".\editlib" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /FR /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
@@ -103,7 +103,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /I "ms" /I "." /I "..\releases\current\common" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W3 /GX /ZI /Od /I "." /I "..\common" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS=AFX_EXT_CLASS /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MDd /W3 /GR /GX /ZI /Od /I "." /I "..\common" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS=AFX_EXT_CLASS /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
@@ -1916,10 +1916,10 @@ SOURCE=.\stampver.inf
 # End Source File
 # End Target
 # End Project
+# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
+# 	1:19:IDR_POPUP_ABOUT_DLG:104
+# End Section
 # Section Merge : {6F747475-446E-6C62-436C-6B0000003100}
 # 	1:10:IDB_SPLASH:103
 # 	2:21:SplashScreenInsertKey:4.0
-# End Section
-# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
-# 	1:19:IDR_POPUP_ABOUT_DLG:104
 # End Section
