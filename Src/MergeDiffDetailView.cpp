@@ -37,6 +37,10 @@ IMPLEMENT_DYNCREATE(CMergeDiffDetailView, CCrystalTextView)
 CMergeDiffDetailView::CMergeDiffDetailView()
 {
 	m_bIsLeft = FALSE;
+	lineBegin = 0;
+	lineEnd = -1;
+	diffLength = 0;
+	displayLength = NROWS_INIT;
 }
 
 CMergeDiffDetailView::~CMergeDiffDetailView()
@@ -234,6 +238,8 @@ void CMergeDiffDetailView::OnDisplayDiff(int nDiff /*=0*/)
 		}
 	}
 
+	// update the width of the horizontal scrollbar
+	RecalcHorzScrollBar();
 }
 
 /**
@@ -406,7 +412,65 @@ void CMergeDiffDetailView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BO
 	}
 }
 
+/*
+ * @brief Compute the max length of the lines inside the displayed diff
+ */
+int CMergeDiffDetailView::GetDiffLineLength ()
+{
+	int nMaxLineLength = 0;
+	const int nLineCount = GetLineCount ();
+	for (int I = lineBegin; I <= lineEnd; I++)
+	{
+		int nActualLength = GetLineActualLength (I);
+		if (nMaxLineLength < nActualLength)
+			nMaxLineLength = nActualLength;
+	}
+	return nMaxLineLength;
+}
 
+
+/**
+ * @brief Update the horizontal scrollbar (see ccrystaltextview::RecalcHorzScrollBar)
+ *
+ * @note The scrollbar width is the one needed for the largest view
+ */
+void CMergeDiffDetailView::RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
+{
+	// Again, we cannot use nPos because it's 16-bit
+	SCROLLINFO si = {0};
+	const int nScreenChars = GetScreenChars();
+
+	// note : this value differs from the value in CCrystalTextView::RecalcHorzScrollBar
+	int nMaxLineLen = 0;
+	if (GetDocument()->GetRightDetailView())
+		nMaxLineLen = GetDocument()->GetRightDetailView()->GetDiffLineLength();
+	if (GetDocument()->GetLeftDetailView())
+		nMaxLineLen = max(nMaxLineLen, GetDocument()->GetLeftDetailView()->GetDiffLineLength());
+	
+	si.cbSize = sizeof (si);
+	if (bPositionOnly)
+	{
+		si.fMask = SIF_POS;
+		si.nPos = m_nOffsetChar;
+	}
+	else
+	{
+		if (nScreenChars >= nMaxLineLen && m_nOffsetChar > 0)
+		{
+			m_nOffsetChar = 0;
+			Invalidate ();
+			UpdateCaret ();
+		}
+		si.fMask = SIF_DISABLENOSCROLL | SIF_PAGE | SIF_POS | SIF_RANGE;
+		si.nMin = 0;
+		
+		// Horiz scroll limit to longest line + one screenwidth 
+		si.nMax = nMaxLineLen + nScreenChars;
+		si.nPage = nScreenChars;
+		si.nPos = m_nOffsetChar;
+	}
+	VERIFY (SetScrollInfo (SB_HORZ, &si));
+}
 
 
 

@@ -59,6 +59,9 @@ protected:
 	int m_nTopLinePushed;
 
 // Operations
+private:
+	int GetDiffLineLength();
+
 public:
 	virtual CCrystalTextBuffer *LocateTextBuffer ();
 	void DoScroll(UINT code, UINT pos, BOOL bDoScroll);
@@ -69,6 +72,7 @@ public:
 	int ComputeInitialHeight(); 
 	void SetDisplayHeight(int h); 
 	virtual void UpdateSiblingScrollPos (BOOL bHorz);
+	virtual void RecalcHorzScrollBar (BOOL bPositionOnly = FALSE );
 
 	virtual void EnsureVisible (CPoint pt);
 	virtual void SetSelection (const CPoint & ptStart, const CPoint & ptEnd);

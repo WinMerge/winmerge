@@ -1,4 +1,7 @@
 2004-06-07 Laoran
+ PATCH: [ 966693 ] set scroll width in diffpane for widest view
+  Src: MergeDiffDetailView.cpp MergeDiffDetailView.h
+  Src\editlib: ccrystaltextview.h
  PATCH: [ 963124 ] better name for variable for Undo/deleteText
   Src: GhostTextBuffer.cpp GhostTextBuffer.h
 

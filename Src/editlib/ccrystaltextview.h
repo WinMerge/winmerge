@@ -351,7 +351,7 @@ protected :
     CFont *GetFont (BOOL bItalic = FALSE, BOOL bBold = FALSE);
 
     void RecalcVertScrollBar (BOOL bPositionOnly = FALSE);
-    void RecalcHorzScrollBar (BOOL bPositionOnly = FALSE);
+    virtual void RecalcHorzScrollBar (BOOL bPositionOnly = FALSE);
 
     //  Scrolling helpers
     void ScrollToChar (int nNewOffsetChar, BOOL bNoSmoothScroll = FALSE, BOOL bTrackScrollBar = TRUE);
