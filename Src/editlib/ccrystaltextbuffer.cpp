@@ -216,7 +216,12 @@ static bool isdoseol(LPCTSTR sz)
   return sz[0]=='\r' && sz[1]=='\n';
 }
 
-void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ , int nPosition /*= -1*/ )
+/** 
+ * @brief Insert the same line once or several times
+ *
+ * @param nPosition : not defined (or -1) = add lines at the end of array
+ */
+void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ , int nPosition /*= -1*/, int nCount /*= 1*/ )
 {
   if (nLength == -1)
     {
@@ -246,15 +251,25 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ , int
   li.m_nLength -= nEols;
   li.m_nEolChars = nEols;
 
-
+  // nPosition not defined ? Insert at end of array
   if (nPosition == -1)
-    m_aLines.Add (li);
-  else
-    m_aLines.InsertAt (nPosition, li);
+    nPosition = m_aLines.GetSize();
+
+  // insert all lines in one pass
+  m_aLines.InsertAt (nPosition, li, nCount);
+
+  // duplicate the text data for lines after the first one
+  for (int ic = 1; ic < nCount; ic++) 
+  {
+    m_aLines[nPosition+ic].m_pcLine = new TCHAR[li.m_nMax];
+    _tcscpy(m_aLines[nPosition+ic].m_pcLine, li.m_pcLine);
+  }
 
 #ifdef _DEBUG
+  // Warning : this function is also used during rescan
+  // and this trace will appear even after the initial load
   int nLines = m_aLines.GetSize ();
-  if (nLines % 5000 == 0)
+  if (nLines / 5000 != (nLines-nCount) / 5000)
     TRACE1 ("%d lines loaded!\n", nLines);
 #endif
 }
@@ -1820,10 +1835,14 @@ void CCrystalTextBuffer::RestoreLastChangePos(CPoint pt)
 }
 
 
-void CCrystalTextBuffer::DeleteLine(int line)
+/**
+ * @brief Delete one or several lines
+ */
+void CCrystalTextBuffer::DeleteLine(int line, int nCount /*=1*/)
 {
-  delete[] m_aLines[line].m_pcLine;
-  m_aLines.RemoveAt(line);
+  for (int ic = 0; ic < nCount; ic++)
+    delete[] m_aLines[line+ic].m_pcLine;
+  m_aLines.RemoveAt(line, nCount);
 }
 
 int CCrystalTextBuffer::GetTabSize()

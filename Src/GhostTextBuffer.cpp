@@ -813,9 +813,22 @@ InsertGhostLine (CCrystalTextView * pSource, int nLine)
 void CGhostTextBuffer::
 RemoveAllGhostLines()
 {
-	for(int ct=GetLineCount()-1; ct>=0; --ct)
+	int nCount = 0;
+	for(int ct=GetLineCount()-1; ct>=0; --ct) 
+	{
 		if (GetLineFlags(ct) & LF_GHOST)
-			DeleteLine(ct);
+		{
+			nCount++;
+		}
+		else if (nCount) 
+		{
+			DeleteLine(ct+1, nCount);
+			nCount = 0;
+		}
+	}
+
+	if (nCount)
+		DeleteLine(0, nCount);
 
 	RecomputeRealityMapping();
 }

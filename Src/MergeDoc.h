@@ -161,9 +161,9 @@ public :
 			CCrystalTextBuffer::SetModified (bModified);
 			m_pOwnerDoc->SetModifiedFlag (bModified);
 		}
-		void InsertLine (LPCTSTR pszLine, int nLength = -1, int nPosition = -1)
+		void InsertLine (LPCTSTR pszLine, int nLength = -1, int nPosition = -1, int nCount = 1)
 		{
-			CCrystalTextBuffer::InsertLine(pszLine, nLength, nPosition);
+			CCrystalTextBuffer::InsertLine(pszLine, nLength, nPosition, nCount);
 		}
 
 		void prepareForRescan();

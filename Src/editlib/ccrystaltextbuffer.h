@@ -240,7 +240,7 @@ public :
     CList < CCrystalTextView *, CCrystalTextView * >m_lpViews;
 
     //  Helper methods
-    void InsertLine (LPCTSTR pszLine, int nLength = -1, int nPosition = -1);
+    void InsertLine (LPCTSTR pszLine, int nLength = -1, int nPosition = -1, int nCount = 1);
     void AppendLine (int nLineIndex, LPCTSTR pszChars, int nLength = -1);
 
     //  Implementation
@@ -327,7 +327,7 @@ public :
     CPoint GetLastChangePos() const;
     //END SW
     void RestoreLastChangePos(CPoint pt);
-    void DeleteLine(int line);
+    void DeleteLine(int line, int nCount = 1);
 
 
     //  Browse undo sequence

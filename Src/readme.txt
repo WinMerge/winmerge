@@ -1,4 +1,8 @@
 2003-10-23 Laoran
+ PATCH: [ 827615 ] Speed up display of large differences - attachment
+  Submitted by Hern Chen
+  WinMerge: GhostTextBuffer.cpp MergeDoc.cpp MergeDoc.h
+  editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h
  BUG: [ 828802 ] plugins interface problem
   WinMerge: Plugins.cpp
  recovering Czech and Slovak custom characters (they were changed to '?')

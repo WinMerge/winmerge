@@ -1747,9 +1747,10 @@ void CMergeDoc::PrimeTextBuffers()
 				curDiff.dbegin1 = curDiff.begin1+RightExtras;
 				curDiff.dend1 = curDiff.dbegin1+(curDiff.end0-curDiff.begin0);
 				curDiff.blank1 = curDiff.dbegin1;
+				int nCount = curDiff.dend1-curDiff.dbegin1+1;
+				m_rtBuf.InsertLine(NULL, 0, curDiff.dbegin1, nCount);
 				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
 				{
-					m_rtBuf.InsertLine(NULL, 0, i);
 					m_rtBuf.SetLineFlag(i, LF_GHOST, TRUE, FALSE, FALSE);
 					++RightExtras;
 				}
@@ -1773,9 +1774,10 @@ void CMergeDoc::PrimeTextBuffers()
 				curDiff.dbegin0 = curDiff.begin0+LeftExtras;
 				curDiff.dend0 = curDiff.dbegin0+(curDiff.end1-curDiff.begin1);
 				curDiff.blank0 = curDiff.dbegin0;
+				int nCount = curDiff.dend0-curDiff.dbegin0+1;
+				m_ltBuf.InsertLine(NULL, 0, curDiff.dbegin0, nCount);
 				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
 				{
-					m_ltBuf.InsertLine(NULL, 0, i);
 					m_ltBuf.SetLineFlag(i, LF_GHOST, TRUE, FALSE, FALSE);
 					++LeftExtras;
 				}
@@ -1803,10 +1805,10 @@ void CMergeDoc::PrimeTextBuffers()
 				{
 					curDiff.blank0 = curDiff.dend0+1;
 					curDiff.blank1 = -1;
+					m_ltBuf.InsertLine(NULL, 0, curDiff.blank0, blanks);
 					for (int b=0; b < blanks; b++)
 					{
 						int idx = curDiff.blank0+b;
-						m_ltBuf.InsertLine(NULL, 0, idx);
 						// ghost lines opposite to trivial lines are ghost and trivial
 						m_ltBuf.SetLineFlag(idx, LF_GHOST, TRUE, FALSE, FALSE);
 						if (curDiff.op == OP_TRIVIAL)
@@ -1834,10 +1836,10 @@ void CMergeDoc::PrimeTextBuffers()
 				{
 					curDiff.blank1 = curDiff.dend1+1;
 					curDiff.blank0 = -1;
+					m_rtBuf.InsertLine(NULL, 0, curDiff.blank1, blanks);
 					for (int b=0; b < blanks; b++)
 					{
 						int idx = curDiff.blank1+b;
-						m_rtBuf.InsertLine(NULL, 0, idx);
 						// ghost lines opposite to trivial lines are ghost and trivial
 						m_rtBuf.SetLineFlag(idx, LF_GHOST, TRUE, FALSE, FALSE);
 						if (curDiff.op == OP_TRIVIAL)
