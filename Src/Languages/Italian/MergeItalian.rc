@@ -1,0 +1,823 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Merge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Merge.ico"
+IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_POPUP_DIFFVIEW MENU DISCARDABLE 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Copia dall'altro lato",       ID_POPUP_COPYTOOTHERSIDE
+        MENUITEM "Copia l'altro lato",          ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM SEPARATOR
+        MENUITEM "Copia tutto dall'altro lato...", 
+                                                ID_POPUP_COPYALLDIFFSTOOTHERSIDE
+
+        MENUITEM "Copia tutto l'altro lato...", ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+
+        MENUITEM SEPARATOR
+        MENUITEM "Annulla",                     ID_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Salva modifiche...",          ID_POPUP_SAVE
+        MENUITEM "Modifica file",               ID_POPUP_EDITFILE
+    END
+END
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Apri...\tCtrl+A",            ID_FILE_OPEN
+        MENUITEM "&Salva\tCtrl+S",              ID_FILE_SAVE
+        MENUITEM SEPARATOR
+        MENUITEM "&Esci",                       ID_APP_EXIT
+    END
+    POPUP "&Modifica"
+    BEGIN
+        MENUITEM "&Annulla\tCtrl+Z",            ID_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "&Differenza successiva\tTab", ID_NEXTDIFF
+        MENUITEM "Di&fferenza precedente\tMaiusc+Tab", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Copia a destra\tFreccia destra", ID_L2R
+        MENUITEM "Co&pia a sinistra\tFreccia sinistra", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Copia tutto a destra",        ID_ALL_RIGHT
+        MENUITEM "Copia tutto a sinistra",      ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "&Opzioni",                    ID_PROPERTIES
+    END
+    POPUP "&Visualizza"
+    BEGIN
+        MENUITEM "&Mostra file identici",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Mos&tra file con differenze", ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Most&ra file unici",          ID_OPTIONS_SHOWUNIQUE
+        MENUITEM "&Nascondi file *.BAK",        ID_HIDE_BACKUP_FILES
+        MENUITEM SEPARATOR
+        MENUITEM "&Carattere...",               ID_VIEW_SELECTFONT
+        MENUITEM "&Usa carattere predefinito",  ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "Barra degli &strumenti",      ID_VIEW_TOOLBAR
+        MENUITEM "&Barra di stato",             ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Lingua...",                  ID_VIEW_LANGUAGE
+    END
+    POPUP "Fi&nestra"
+    BEGIN
+        MENUITEM "Chiudi",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Affianca &orizzontalmente",   ID_WINDOW_TILE_HORZ
+        MENUITEM "Affianca &verticalmente",     ID_WINDOW_TILE_VERT
+        MENUITEM "&Sovrapponi",                 ID_WINDOW_CASCADE
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Contenuti...",               ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "Licenza pubblica GNU...",     ID_HELP_GNULICENSE
+        MENUITEM "Infor&mazioni su WinMerge...", ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_DIRVIEW MENU DISCARDABLE 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Copia a sinistra",            ID_DIR_COPY_FILE_TO_LEFT
+        MENUITEM "Copia a destra",              ID_DIR_COPY_FILE_TO_RIGHT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "A",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_TAB,         ID_NEXTDIFF,            VIRTKEY, NOINVERT
+    VK_TAB,         ID_PREVDIFF,            VIRTKEY, SHIFT, NOINVERT
+    VK_UP,          ID_PREVDIFF,            VIRTKEY, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 198, 103
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Informazioni su WinMerge"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
+    LTEXT           "© 1999 ",IDC_STATIC,7,49,27,8
+    DEFPUSHBUTTON   "OK",IDOK,159,7,32,14,WS_GROUP
+    LTEXT           "Versione 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
+    LTEXT           "Tutti i diritti riservati.",IDC_STATIC,7,60,170,8
+    LTEXT           "Visita la HomePage di WinMerge!",IDC_WWW,7,76,184,8
+    LTEXT           "grimmd@geocities.com",IDC_EMAIL,7,88,170,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,72,184,1
+    LTEXT           "Thingamahoochie Software",IDC_COMPANY,35,49,91,8
+END
+
+IDD_OPEN DIALOGEX 0, 0, 352, 98
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Seleziona i file o le cartelle..."
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "&Sinistra:",IDC_STATIC,25,24,26,8
+    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
+    PUSHBUTTON      "&S&foglia...",IDC_LEFT_BUTTON,241,22,38,12
+    LTEXT           "&Destra:",IDC_STATIC,27,40,24,8
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
+    PUSHBUTTON      "Sfo&glia...",IDC_RIGHT_BUTTON,241,38,38,12
+    LTEXT           "&Estensioni:",IDC_STATIC,16,56,35,8
+    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&Ricorsivamente",IDC_RECURS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,35,77,65,10
+    DEFPUSHBUTTON   "OK",IDOK,295,11,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,295,28,50,14
+    GROUPBOX        "File o cartelle da confrontare",IDC_STATIC,7,7,279,84
+END
+
+IDD_EDITFILE DIALOG DISCARDABLE  0, 0, 510, 350
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialogo"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Salva",IDOK,453,7,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,453,24,50,14
+    EDITTEXT        IDC_FILE_EDIT,7,7,437,336,ES_MULTILINE | ES_NOHIDESEL | 
+                    ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    PUSHBUTTON      "&Taglia",IDC_CUT,453,64,50,14
+    PUSHBUTTON      "&Copia",IDC_COPY,453,82,50,14
+    PUSHBUTTON      "&Incolla",IDC_PASTE,453,99,50,14
+    PUSHBUTTON      "&Annulla",IDC_UNDO,453,117,50,14
+END
+
+IDD_VSS DIALOG DISCARDABLE  0, 0, 258, 105
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Visual SourceSafe"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "",IDC_STATIC,7,7,244,47,SS_SUNKEN
+    LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
+    DEFPUSHBUTTON   "Estrai",IDOK,33,83,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,173,83,50,14
+    PUSHBUTTON      "Salva come...",IDSAVEAS,103,83,50,14
+    LTEXT           "Progetto:",IDC_STATIC,9,61,30,8
+    COMBOBOX        IDC_PROJECT_COMBO,42,58,209,114,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "SourceSafe"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Impostazioni",IDC_STATIC,7,7,245,54
+    CONTROL         "Abilita l'integrazione con Visual &SourceSafe",
+                    IDC_DOVSS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,
+                    21,151,10
+    LTEXT           "&Percorso di SS.EXE:",IDC_VSS_L1,16,42,66,8
+    EDITTEXT        IDC_PATH_EDIT,84,40,119,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "S&foglia...",IDC_BROWSE_BUTTON,206,40,42,12
+END
+
+IDD_PROPPAGE_LARGE DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Generale"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Impostazioni",IDC_STATIC,7,7,221,78
+    CONTROL         "&Esegui il backup del file originale",IDC_BACKUP_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,21,118,10
+    CONTROL         "&Visualizza automaticamente la prima differenza",
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    17,33,161,10
+    CONTROL         "&Ignora gli spazi",IDC_WHITESPACE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,45,63,10
+    CONTROL         "I&gnora le linee vuote",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,80,10
+    CONTROL         "Ig&nora le differenze fra maiuscole e minuscole",
+                    IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    17,69,159,10
+    GROUPBOX        "Tabulazioni",IDC_STATIC,7,92,221,30
+    LTEXT           "&Dimensione delle tabulazioni:",IDC_STATIC,15,106,92,8
+    EDITTEXT        IDC_TAB_EDIT,110,105,27,12,ES_AUTOHSCROLL
+END
+
+IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Lingua"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,154,16,52,14
+    PUSHBUTTON      "Annulla",IDCANCEL,154,33,52,14
+    LISTBOX         30001,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Lingue disponibili:",IDC_STATIC,7,7,56,8
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041004b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "WinMerge Application\0"
+            VALUE "FileVersion", "999.999.999.999\0"
+            VALUE "InternalName", "WinMerge\0"
+            VALUE "LegalCopyright", "© 1999 Dean P. Grimm\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "WinMerge.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "WinMerge\0"
+            VALUE "ProductVersion", "999.999.999.999\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x410, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 191
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 96
+    END
+
+    IDD_OPEN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 345
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 91
+    END
+
+    IDD_EDITFILE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 503
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 343
+    END
+
+    IDD_VSS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 97
+    END
+
+    IDD_PROP_VSS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 150
+    END
+
+    IDD_PROPPAGE_LARGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_UNDO
+    SEPARATOR
+    BUTTON      ID_NEXTDIFF
+    BUTTON      ID_PREVDIFF
+    SEPARATOR
+    BUTTON      ID_L2R
+    BUTTON      ID_R2L
+    SEPARATOR
+    BUTTON      ID_PROPERTIES
+    SEPARATOR
+    BUTTON      ID_ALL_RIGHT
+    BUTTON      ID_ALL_LEFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDB_SPLASH              BITMAP  DISCARDABLE     "res\\splash1.bmp"
+IDB_LFOLDER             BITMAP  DISCARDABLE     "res\\folder1.bmp"
+IDB_EQUAL               BITMAP  DISCARDABLE     "res\\equal.bmp"
+IDB_NOTEQUAL            BITMAP  DISCARDABLE     "res\\notequal.bmp"
+IDB_RFOLDER             BITMAP  DISCARDABLE     "res\\rfolder.bmp"
+IDB_UNKNOWN             BITMAP  DISCARDABLE     "res\\unknown.bmp"
+IDB_BINARY              BITMAP  DISCARDABLE     "res\\binary.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDS_VERSION_FMT         "Versione %1"
+    IDS_ALLFILES            "Tutti i file (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "Sei sicuro di voler copiare tutte le differenze dal file di destra a quello di sinistra?"
+    IDS_CONFIRM_ALL_RIGHT   "Sei sicuro di voler copiare tutte le differenze dal file di sinistra a quello di destra?"
+    IDS_COPY2DIR_FMT        "Copia il file in %1"
+    IDS_CONFIRM_COPY2DIR    "Sei sicuro di voler copiare il file selezionato in %1?"
+    IDS_FONT_CHANGE         "Il carattere selezionato non sarà utilizzato per le finestre di visualizzazione delle differenze attualmente attive."
+    IDS_DIRECTORY_WINDOW_TITLE "Risultati del confronto fra cartelle"
+    IDS_DIRECTORY_WINDOW_STATUS_FMT "Risultati per %1 e %2"
+    IDS_FILES_ARE_DIFFERENT "I file contengono delle differenze"
+    IDS_BIN_FILES_DIFF      "I file non di testo contengono delle differenze"
+    IDS_ONLY_IN_FMT         "Solo in %1"
+    IDS_IDENTICAL           "Identici"
+    IDS_CANT_COMPARE_FILES  "Impossibile confrontare i file"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "WinMerge"
+    AFX_IDS_IDLEMESSAGE     "Pronto"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EST"
+    ID_INDICATOR_CAPS       "MA"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "BS"
+    ID_INDICATOR_OVR        "SSC"
+    ID_INDICATOR_REC        "REG"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Crea un nuovo documento\nNuovo"
+    ID_FILE_OPEN            "Apre un documento esistente\nApri"
+    ID_FILE_CLOSE           "Chiude il documento attivo\nChiudi"
+    ID_FILE_SAVE            "Salva il documento attivo\nSalva"
+    ID_FILE_SAVE_AS         "Salva il documento attivo con un nuovo nome\nSalva con nome"
+    ID_FILE_PAGE_SETUP      "Modifica le impostazioni di stampa\nImposta pagina"
+    ID_FILE_PRINT_SETUP     "Modifica le impostazioni relative alla stampante e alla stampa\nImposta stampante"
+    ID_FILE_PRINT           "Stampa il documento attivo\nStampa"
+    ID_FILE_PRINT_PREVIEW   "Visualizza le pagine per intero\nAnteprima di stampa"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Visualizza le informazioni sul programma, il numero di versione e le informazioni di copyright\nInformazioni su"
+    ID_APP_EXIT             "Esce dall'applicazione e chiede di salvare i documenti\nEsci"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Apre questo documento"
+    ID_FILE_MRU_FILE2       "Apre questo documento"
+    ID_FILE_MRU_FILE3       "Apre questo documento"
+    ID_FILE_MRU_FILE4       "Apre questo documento"
+    ID_FILE_MRU_FILE5       "Apre questo documento"
+    ID_FILE_MRU_FILE6       "Apre questo documento"
+    ID_FILE_MRU_FILE7       "Apre questo documento"
+    ID_FILE_MRU_FILE8       "Apre questo documento"
+    ID_FILE_MRU_FILE9       "Apre questo documento"
+    ID_FILE_MRU_FILE10      "Apre questo documento"
+    ID_FILE_MRU_FILE11      "Apre questo documento"
+    ID_FILE_MRU_FILE12      "Apre questo documento"
+    ID_FILE_MRU_FILE13      "Apre questo documento"
+    ID_FILE_MRU_FILE14      "Apre questo documento"
+    ID_FILE_MRU_FILE15      "Apre questo documento"
+    ID_FILE_MRU_FILE16      "Apre questo documento"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Passa al riquadro della finestra successivo\nRiquadro successivo"
+    ID_PREV_PANE            "Ritorna al riquadro della finestra precedente\nRiquadro precedente"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_NEW           "Apre un'altra finestra per il documento attivo\nNuova finestra"
+    ID_WINDOW_ARRANGE       "Dispone le icone nella parte inferiore della finestra\nDisponi icone"
+    ID_WINDOW_CASCADE       "Dispone le finestre sovrapponendole\nSovrapponi finestre"
+    ID_WINDOW_TILE_HORZ     "Dispone le finestre senza sovrapporle\nAffianca finestre"
+    ID_WINDOW_TILE_VERT     "Dispone le finestre senza sovrapporle\nAffianca finestre"
+    ID_WINDOW_SPLIT         "Divide la finestra attiva in riquadri\nDividi"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Cancella la selezione\nCancella"
+    ID_EDIT_CLEAR_ALL       "Cancella tutto\nCancella tutto"
+    ID_EDIT_COPY            "Copia la selezione e la pone negli Appunti\nCopia"
+    ID_EDIT_CUT             "Taglia la selezione e la pone negli Appunti\nTaglia"
+    ID_EDIT_FIND            "Trova il testo specificato\nTrova"
+    ID_EDIT_PASTE           "Inserisce il contenuto degli Appunti\nIncolla"
+    ID_EDIT_REPEAT          "Ripete l'ultima azione\nRipeti"
+    ID_EDIT_REPLACE         "Sostituisce il testo specifico con un testo differente\nSostituisci"
+    ID_EDIT_SELECT_ALL      "Seleziona l'intero documento\nSeleziona tutto"
+    ID_EDIT_UNDO            "Annulla l'ultima azione\nAnnulla"
+    ID_EDIT_REDO            "Ripristina l'azione precedentemente annullata\nRipristina"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Mostra o nasconde la barra degli strumenti\nMostra/nascondi barra degli strumenti"
+    ID_VIEW_STATUS_BAR      "Mostra o nasconde la barra di stato\nMostra/nascondi barra di stato"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Modifica le dimensioni della finestra"
+    AFX_IDS_SCMOVE          "Modifica la posizione della finestra"
+    AFX_IDS_SCMINIMIZE      "Riduce la finestra ad icona"
+    AFX_IDS_SCMAXIMIZE      "Allarga la finestra a tutto schermo"
+    AFX_IDS_SCNEXTWINDOW    "Passa alla successiva finestra del documento "
+    AFX_IDS_SCPREVWINDOW    "Passa alla precedente finestra del documento"
+    AFX_IDS_SCCLOSE         "Chiude la finestra attiva e chiede di salvare i documenti"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Ripristina la finestra alle dimensioni normali"
+    AFX_IDS_SCTASKLIST      "Attiva l'Elenco dei task"
+    AFX_IDS_MDICHILD        "Attiva questa finestra"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Chiude la modalità anteprima di stampa\n Annulla anteprima"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_L2R                  "Copia il testo selezionato dal file di sinistra a quello di destra\nCopia a destra (Freccia destra)"
+    ID_R2L                  "Copia il testo selezionato dal file di destra a quello di sinistra\nCopia a sinistra (Freccia sinistra)"
+    ID_OPTIONS_SHOWIDENTICAL "Mostra i file perfettamente identici"
+    ID_OPTIONS_SHOWDIFFERENT "Mostra i file contenenti delle differenze"
+    ID_OPTIONS_SHOWUNIQUE   "Mostra i file presenti unicamente in una delle due cartelle"
+    ID_PREVDIFF             "Visualizza la differenza precedente\nDifferenza precedente (Maiusc+Tab)"
+    ID_NEXTDIFF             "Visualizza la differenza successiva\nDifferenza successiva (Tab)"
+    ID_OPTIONS_BACKUPORIGINALFILE 
+                            "Salva una copia del file originale come *.bak\nBackup"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
+                            "Visualizza automaticamente la prima differenza\nVisualizza prima differenza"
+    ID_OPTIONS_IGNOREWHITESPACE "Ignora gli spazi"
+    ID_HIDE_BACKUP_FILES    "Nasconde i file con estensione BAK"
+    ID_HELP_GNULICENSE      "Visualizza la licenza pubblica GNU"
+    ID_USEVSS               "Tenta di estrarre un file di sola lettura da sourcesafe"
+    ID_PROPERTIES           "Imposta le opzioni del programma\nOpzioni"
+    ID_ALL_LEFT             "Copia tutte le differenze dal file di destra a quello di sinistra\nTutto a sinistra"
+    ID_ALL_RIGHT            "Copia tutte le differenze dal file di sinistra a quello di destra\nTutto a destra"
+    ID_VIEW_SELECTFONT      "Seleziona il carattere per la finestra di visualizzazione delle differenze\nSeleziona carattere"
+    ID_VIEW_USEDEFAULTFONT  "Usa il carattere predefinito per la finestra di visualizzazione delle differenze\nCarattere predefinito"
+    ID_DIR_COPY_FILE_TO_LEFT "Copia questo file nella cartella di sinistra"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_COPY_FILE_TO_RIGHT "Copia questo file nella cartella di destra"
+    ID_VIEW_LANGUAGE        "Seleziona la lingua dell'interfaccia utente\nLingua"
+    ID_HELP_CONTENTS        "Visualizza il manuale utente di WinMerge\nManuale utente"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SAVE_AS_TITLE       "Salva come"
+    IDS_SELECT_FILES_OR_FOLDERS 
+                            "È necessario selezionare una coppia di file o una coppia di cartelle"
+    IDS_BACKUP_FAILED_PROMPT 
+                            "Impossibile eseguire il backup del file originale.\nVuoi continuare ugualmente?"
+    IDS_PROPERTIES_TITLE    "Opzioni"
+    IDS_OPEN_TITLE          "Apri"
+    IDS_EDIT_WINDOW_TITLE_FMT "Modifica %1"
+    IDS_FILESSAME           "I file selezionati sono identici."
+    IDS_FILEUNIQUE          "Il file selezionato è presente unicamente in una due cartelle e pertanto non può essere confrontato."
+    IDS_FILEERROR           "Si è verificato un errore durante il confronto dei file."
+    IDS_SAVEREADONLY_FMT    "%1 è un file di sola lettura. Vuoi salvarlo con un nome differente?"
+    IDS_SAVE_FMT            "Vuoi salvare le modifiche in %1?"
+    IDS_FILEBINARY          "I file di tipo binario non possono essere confrontati visualmente."
+    IDS_SAVEVSS_FMT         "%1 è un file di sola lettura. Vuoi estrarlo da SourceSafe, o salvarlo con un nome differente?"
+    IDS_VSSERROR            "SourceSafe ha generato un errore tentando di estrarre il file. Impossibile continuare..."
+    IDS_NOPROJECT           "È necessario specificare il percorso di un progetto SourceSafe per continuare (es:  $/MioProgetto)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AFRIKAANS           "Afrikaans"
+    IDS_ALBANIAN            "Albanese"
+    IDS_ARABIC_SAUDI        "Arabo (Arabia Saudita)"
+    IDS_ARABIC_IRAQ         "Arabo (Iraq)"
+    IDS_ARABIC_EGYPT        "Arabo (Egitto)"
+    IDS_ARABIC_LIBYA        "Arabo (Libia)"
+    IDS_ARABIC_ALGERIA      "Arabo (Algeria)"
+    IDS_ARABIC_MOROCCO      "Arabo (Marocco)"
+    IDS_ARABIC_TUNISIA      "Arabo (Tunisia)"
+    IDS_ARABIC_OMAN         "Arabo (Oman)"
+    IDS_ARABIC_YEMEN        "Arabo (Yemen)"
+    IDS_ARABIC_SYRIA        "Arabo (Siria)"
+    IDS_ARABIC_JORDAN       "Arabo (Giordania)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ARABIC_LEBANON      "Arabo (Libano)"
+    IDS_ARABIC_KUWAIT       "Arabo (Kuwait)"
+    IDS_ARABIC_UAE          "Arabo (E. A. U.)"
+    IDS_ARABIC_BAHRAIN      "Arabo (Bahrain)"
+    IDS_ARABIC_QATAR        "Arabo (Qatar)"
+    IDS_BASQUE              "Basco"
+    IDS_BELARUSIAN          "Bielorusso"
+    IDS_BULGARIAN           "Bulgaro"
+    IDS_CATALAN             "Catalano"
+    IDS_CHINESE_TRADITIONAL "Cinese (tradizionale)"
+    IDS_CHINESE_SIMPLIFIED  "Cinese (semplificato)"
+    IDS_CHINESE_HONGKONG    "Cinese (Hong Kong)"
+    IDS_CHINESE_SINGAPORE   "Cinese (Singapore)"
+    IDS_CROATIAN            "Croato"
+    IDS_CZECH               "Ceco"
+    IDS_DANISH              "Danese"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DUTCH               "Olandese"
+    IDS_ENGLISH_US          "Inglese (Stati Uniti)"
+    IDS_ENGLISH_UK          "Inglese (Gran Bretagna)"
+    IDS_ENGLISH_AUS         "Inglese (Australia)"
+    IDS_ENGLISH_CAN         "Inglese (Canada)"
+    IDS_ENGLISH_NZ          "Inglese (Nuova Zealanda)"
+    IDS_ENGLISH_EIRE        "Inglese (Irlanda)"
+    IDS_ENGLISH_SOUTH_AFRICA "Inglese (Sud Africa)"
+    IDS_ENGLISH_JAMAICA     "Inglese (Giamaica)"
+    IDS_ENGLISH_CARIBBEAN   "Inglese (Caraibi)"
+    IDS_ENGLISH_BELIZE      "Inglese (Belize)"
+    IDS_ENGLISH_TRINIDAD    "Inglese (Trinidad)"
+    IDS_ESTONIAN            "Estone"
+    IDS_FAEROESE            "Faeroese"
+    IDS_FARSI               "Farsi"
+    IDS_FINNISH             "Finlandese"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FRENCH              "Francese"
+    IDS_FRENCH_BELGIAN      "Francese (Belgio)"
+    IDS_FRENCH_CANADIAN     "Francese (Canada)"
+    IDS_FRENCH_SWISS        "Francese (Svizzera)"
+    IDS_FRENCH_LUXEMBOURG   "Francese (Lussemburgo)"
+    IDS_GERMAN              "Tedesco"
+    IDS_GERMAN_SWISS        "Tedesco (Svizzera)"
+    IDS_GERMAN_AUSTRIAN     "Tedesco (Austria)"
+    IDS_GERMAN_LUXEMBOURG   "Tedesco (Lussemburgo)"
+    IDS_GERMAN_LIECHTENSTEIN "Tedesco (Liechtenstein)"
+    IDS_GREEK               "Greco"
+    IDS_HEBREW              "Ebraico"
+    IDS_HUNGARIAN           "Ungherese"
+    IDS_ICELANDIC           "Islandese"
+    IDS_INDONESIAN          "Indonesiano"
+    IDS_ITALIAN             "Italiano"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ITALIAN_SWISS       "Italiano (Svizzera)"
+    IDS_JAPANESE            "Giapponese"
+    IDS_KOREAN              "Coreano"
+    IDS_KOREAN_JOHAB        "Coreano (Johab)"
+    IDS_LATVIAN             "Lettone"
+    IDS_LITHUANIAN          "Lituano"
+    IDS_NORWEGIAN_BOKMAL    "Norvegese (Bokmal)"
+    IDS_NORWEGIAN_NYNORSK   "Norvegese (Nynorsk)"
+    IDS_POLISH              "Polacco"
+    IDS_PORTUGUESE          "Portoghese"
+    IDS_PORTUGUESE_BRAZILIAN "Portoghese (Brasile)"
+    IDS_ROMANIAN            "Rumeno"
+    IDS_RUSSIAN             "Russo"
+    IDS_SERBIAN_LATIN       "Serbo (latino)"
+    IDS_SERBIAN_CYRILLIC    "Serbo (cirillico)"
+    IDS_SLOVAK              "Slovacco"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SLOVENIAN           "Sloveno"
+    IDS_SPANISH             "Spagnolo"
+    IDS_SPANISH_MEXICAN     "Spagnolo (Messico)"
+    IDS_SPANISH_MODERN      "Spagnolo (moderno)"
+    IDS_SPANISH_GUATEMALA   "Spagnolo (Guatemala)"
+    IDS_SPANISH_COSTA_RICA  "Spagnolo (Costa Rica)"
+    IDS_SPANISH_PANAMA      "Spagnolo (Panama)"
+    IDS_SPANISH_DOMINICAN   "Spagnolo (Repubblica dominicana)"
+    IDS_SPANISH_VENEZUELA   "Spagnolo (Venezuela)"
+    IDS_SPANISH_COLOMBIA    "Spagnolo (Colombia)"
+    IDS_SPANISH_PERU        "Spagnolo (Perù)"
+    IDS_SPANISH_ARGENTINA   "Spagnolo (Argentina)"
+    IDS_SPANISH_ECUADOR     "Spagnolo (Ecuador)"
+    IDS_SPANISH_CHILE       "Spagnolo (Cile)"
+    IDS_SPANISH_URUGUAY     "Spagnolo (Uruguay)"
+    IDS_SPANISH_PARAGUAY    "Spagnolo (Paraguay)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SPANISH_BOLIVIA     "Spagnolo (Bolivia)"
+    IDS_SPANISH_EL_SALVADOR "Spagnolo (El Salvador)"
+    IDS_SPANISH_HONDURAS    "Spagnolo (Honduras)"
+    IDS_SPANISH_NICARAGUA   "Spagnolo (Nicaragua)"
+    IDS_SPANISH_PUERTO_RICO "Spagnolo (Portorico)"
+    IDS_SWEDISH             "Svedese"
+    IDS_SWEDISH_FINLAND     "Svedese (Finlandia)"
+    IDS_THAI                "Tailandese"
+    IDS_TURKISH             "Turco"
+    IDS_UKRANIAN            "Ucraino"
+    IDS_VIETNAMESE          "Vietnamita"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FILENAME_HEADER     "Nome del file"
+    IDS_DIR_HEADER          "Cartella"
+    IDS_RESULT_HEADER       "Risultato del confronto"
+    IDS_FILE_COMPARISON_TITLE "Confronto fra file"
+END
+
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif
+#include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
