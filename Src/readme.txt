@@ -1,3 +1,7 @@
+2004-02-18 Kimmo
+ BUG: [ 898745 ] Wrong result for folders (non-recursive compare)
+  Src: DirViewColHandler.cpp
+
 2004-02-17 Kimmo
  BUG: [ 887280 ] Swap toolbar icon (usability)
   Swaps 'Last Diff' and 'First diff' buttons + adds separator before

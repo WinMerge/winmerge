@@ -175,7 +175,10 @@ int CDirView::AddDiffItem(int index, const DIFFITEM & di, LPCTSTR szPath, POSITI
 }
 
 
-/// Update listview display of details for specified row
+/**
+ * @brief Update listview display of details for specified row
+ * @note Customising shownd data should be done here
+ */
 void CDirView::UpdateDiffItemStatus(UINT nIdx, DIFFITEM & di)
 {
 	BOOL bLeftNewer = FALSE;
@@ -211,6 +214,13 @@ void CDirView::UpdateDiffItemStatus(UINT nIdx, DIFFITEM & di)
 				s.Insert(0, _T("* "));
 			else if (i == DirCol_RmTime && bRightNewer) // Right modification time
 				s.Insert(0, _T("* "));
+
+			// Don't show result for folderitems appearing both sides
+			if ((i == DirCol_Status || i== DirCol_StatusAbbr) &&
+				di.isDirectory() && !di.isSideLeft() && !di.isSideRight())
+			{
+				s.Empty();
+			}
 
 			SetSubitem(nIdx, phy, s);
 		}
@@ -448,4 +458,3 @@ ToDoDeleteThisValidateColumnOrdering();
 	}
 	ValidateColumnOrdering();
 }
-
