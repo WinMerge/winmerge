@@ -1,3 +1,7 @@
+2003-03-22 Kimmo
+ PATCH: [ 707753 ] Delayed rescan
+  WinMerge: MergeEditView.h MergeEditView.cpp
+
 2003-03-21 Kimmo
  PATCH: [ 707152 ] Delay path check in opendialog
   WinMerge: OpenDlg.h OpenDlg.cpp

@@ -13,6 +13,10 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+// Timer ID and timeout for delayed rescan
+const UINT IDT_RESCAN = 2;
+const UINT RESCAN_TIMEOUT = 1000;
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView
 
@@ -62,6 +66,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
 	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
+	ON_WM_TIMER()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -637,9 +642,11 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 	m_pTextBuffer->SetLineFlag(ptCursorPos.y, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
 
 	// keep document up to date
-	pDoc->FlushAndRescan();
+	// (Re)start timer to rescan
+	// If timer starting fails, rescan immediately
+	if (!SetTimer(IDT_RESCAN, RESCAN_TIMEOUT, NULL))
+		pDoc->FlushAndRescan();
 }
-
 
 void CMergeEditView::OnEditRedo()
 {
@@ -703,4 +710,12 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 			Invalidate();
 		}
 	}
+}
+
+void CMergeEditView::OnTimer(UINT nIDEvent) 
+{
+	if (nIDEvent == IDT_RESCAN)
+		GetDocument()->FlushAndRescan();
+
+	CWnd::OnTimer(nIDEvent);
 }
