@@ -1782,15 +1782,15 @@ SOURCE=.\res\fileskip.bmp
 # End Source File
 # Begin Source File
 
-SOURCE=.\res\folder1.bmp
-# End Source File
-# Begin Source File
-
 SOURCE=.\res\folderskip.bmp
 # End Source File
 # Begin Source File
 
 SOURCE=.\res\lfile.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\lfolder.bmp
 # End Source File
 # Begin Source File
 

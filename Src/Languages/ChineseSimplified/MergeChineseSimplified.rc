@@ -816,7 +816,7 @@ END
 
 IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
 IDB_SPLASH              BITMAP  DISCARDABLE     "res\\splash1.bmp"
-IDB_LFOLDER             BITMAP  DISCARDABLE     "res\\folder1.bmp"
+IDB_LFOLDER             BITMAP  DISCARDABLE     "res\\lfolder.bmp"
 IDB_EQUAL               BITMAP  DISCARDABLE     "res\\equal.bmp"
 IDB_NOTEQUAL            BITMAP  DISCARDABLE     "res\\notequal.bmp"
 IDB_RFOLDER             BITMAP  DISCARDABLE     "res\\rfolder.bmp"

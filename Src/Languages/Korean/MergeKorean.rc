@@ -908,7 +908,7 @@ END
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 IDB_SPLASH              BITMAP                  "res\\splash1.bmp"
-IDB_LFOLDER             BITMAP                  "res\\folder1.bmp"
+IDB_LFOLDER             BITMAP                  "res\\lfolder.bmp"
 IDB_EQUAL               BITMAP                  "res\\equal.bmp"
 IDB_NOTEQUAL            BITMAP                  "res\\notequal.bmp"
 IDB_RFOLDER             BITMAP                  "res\\rfolder.bmp"

@@ -1,9 +1,17 @@
+2003-11-29 Kimmo
+ Rename folder1.bmp to lfolder.bmp (suggested in PATCH [ 841039 ] Green "binary.bmp")
+  WinMerge: Merge.dsp Merge.rc
+  Added WinMerge/res/lfolder.bmp
+  Removed WinMerge/res/folder1.bmp
+  Updated languages
+
 2003-11-28 Laoran
  Add header and RCS ID
   common: lwdisp.h unicoder.cpp unicoder.h FileTransform.h Plugins.h SelectUnpackerDlg.h
 
 2003-11-28 Kimmo
  BUG: [ 848725 ] Crash trying to generate report
+  Fix submitted by Perry
   WinMerge: DirView.cpp
 
 2003-11-27 Perry
