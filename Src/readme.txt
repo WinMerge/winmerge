@@ -1,3 +1,7 @@
+2003-10-18 Laoran
+ Add a backslash in front of relative path used to test for filter (as in 2.0)
+  WinMerge: DirScan.cpp
+
 2003-10-17 Christian
  New readme-developers.html added
  PATCH: [ 825035 ] Updated German translation
