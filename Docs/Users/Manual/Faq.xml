@@ -11,6 +11,8 @@
           <itemizedlist>
             <listitem>
               <para>WinMerge.exe is ANSI executable which works in all 32-bit Windows systems. It does not have Unicode support.</para>
+              <para>Internally, it stores only ANSI characters (256 possibilities). If you open an Unicode (65536 possible characters) file, the characters must be converted to the ANSI character set. Conversion can be approximative (accents are lost), or impossible (characters appear as "?").</para>
+              <para>WinMerge.exe can neither open files when filename is not writeable in the current ANSI set.</para>
             </listitem>
             <listitem>
               <para>WinMergeU.exe is Unicode enabled executable which works in Windows NT4, Windows 2000 and newer systems.</para>
@@ -32,6 +34,22 @@
         </question>
         <answer>
           <para>Are you trying to select a directory by clicking on it in the upper part of the Open File dialog ? The OpenFile dialog will then open it, and you have to push Ok again to get out.</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>Does WinMerge support merging three files? Sometimes called 3-way merge, where one file is ancestor. This would be useful for version control!</para>
+        </question>
+        <answer>
+          <para>Unfortunately not. We acknowledge it would be good feature but we don't have plans currently to implement it. It is hard UI and usability problem. Quality of existing 3-way merging tools varies a lot and we don't want to implement it if we are not sure we can do it with quality. This can be somewhat work-arounded using two WinMerge instances.</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>Do you have plans to support other OSes than Windows?</para>
+        </question>
+        <answer>
+          <para>Not currently. If somebody wants to work with cross-platform support (using wxWidgets for example) we are interested in helping of course.</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -84,11 +102,35 @@
           <para>WinMerge shows current line in editor statusbar. WinMerge cannot show in-editor linenumbers. That is anyhow one feature we might consider for future releases.</para>
         </answer>
       </qandaentry>
+      <qandaentry>
+        <question>
+          <para>I see question marks instead of letters in files?</para>
+        </question>
+        <answer>
+          <para>This is propably due to code-page problem. If 'Use codepage info' is selected from options, turn that off and see if it helps.</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>I cannot select proportional fonts for editor?</para>
+        </question>
+        <answer>
+          <para>Unfortunately WinMerge 2.0 or 2.2 supports only non-proportional fonts.</para>
+        </answer>
+      </qandaentry>
     </qandaset>
   </sect2>
   <sect2>
     <title>WinMerge as external compare or diff-tool</title>
     <qandaset>
+      <qandaentry>
+        <question>
+          <para>I want that WinMerge is closed with single ESC press after I'm done?</para>
+        </question>
+        <answer>
+          <para>Use -e commandline switch.</para>
+        </answer>
+      </qandaentry>
       <qandaentry>
         <question>
           <para>How can I avoid temporary paths filling Open-dialog history lists?</para>
@@ -112,6 +154,27 @@
             </listitem>
           </itemizedlist>
           <para>And then call this batch file from program.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </sect2>
+  <sect2>
+    <title>Archive support</title>
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>What means messagebox "Merge7z*.dll was not found."?</para>
+        </question>
+        <answer>
+          <para>WinMerge uses Merge7z*.dll files for archive support using 7-zip. There must be matching version of Merge7z*.dll to 7-zip version installed. For example if 7-zip version 3.11 is installed, there must be Merge7z311.dll present. WinMerge is installed with several versions of that DLL. If there is no such DLL, please check if WinMerge project pages at SourceForge.net have updated DLL or install package available.</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>How can I open 'Perry-style' patch files WinMerge developers use when submitting pathes?</para>
+        </question>
+        <answer>
+          <para>'Perry-style' patches are zip-files containing original and changed files in different directories. WinMerge has internal support (surprise?) for handling these files. Just select zip file in guestion to left side and right side and WinMerge opens zip files contents to directory compare comparing original and altered files.</para>
         </answer>
       </qandaentry>
     </qandaset>

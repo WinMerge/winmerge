@@ -1,3 +1,7 @@
+2004-06-17 Kimmo
+ PATCH: [ 973571 ] Userdocs: More frequently asked questions
+  Manual: Faq.xml
+
 2004-06-16 Kimmo
  PATCH: [ 973527 ] Userdocs: About doc and introduction
   Manual: About_Doc.xml Introduction.xml
