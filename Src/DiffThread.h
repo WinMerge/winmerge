@@ -3,6 +3,13 @@
 
 #include "diffcontext.h"
 
+enum
+{
+	THREAD_NOTSTARTED = 0,
+	THREAD_COMPARING,
+	THREAD_COMPLETED
+};
+
 struct DiffFuncStruct
 {
 	CString path1;
@@ -10,7 +17,8 @@ struct DiffFuncStruct
 	CDiffContext * context;
 	UINT msgUIUpdate;
 	UINT msgStatusUpdate;
-	HWND window;
+	HWND hWindow;
+	UINT nThreadState;
 };
 
 class CDiffThread
@@ -22,9 +30,11 @@ public:
 	UINT CompareDirectories(CString dir1, CString dir2);
 	void SetHwnd(HWND hWnd);
 	void SetMessageIDs(UINT updateMsg, UINT statusMsg);
+	UINT GetThreadState();
 
 private:
 	CDiffContext * m_pDiffContext;
+	CWinThread * m_thread;
 	UINT m_msgUpdateUI;
 	UINT m_msgUpdateStatus;
 	HWND m_hWnd;

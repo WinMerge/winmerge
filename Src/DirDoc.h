@@ -80,6 +80,7 @@ public:
 	void SetDirView( CDirView *newView ); // TODO Perry
 	void AddMergeDoc(CMergeDoc * pMergeDoc);
 	void MergeDocClosing(CMergeDoc * pMergeDoc);
+	CDiffThread m_diffThread;
 
 #ifdef _DEBUG
 	virtual void AssertValid() const;
@@ -98,7 +99,6 @@ protected:
 	// Implementation data
 private:
 	DirDocFilter * m_pFilter;
-	CDiffThread m_diffThread;
 	CDirView *m_pDirView;
 	MergeDocPtrList m_MergeDocs;
 	BOOL m_bReuseMergeDocs; // policy to reuse existing merge docs

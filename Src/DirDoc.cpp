@@ -238,6 +238,9 @@ void CDirDoc::Rescan()
 	CString s;
 	AfxFormatString2(s, IDS_DIRECTORY_WINDOW_STATUS_FMT, m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
 	((CDirFrame*)(m_pDirView->GetParent()))->SetStatus(s);
+
+	// Needed to clear display
+	Redisplay();
 }
 
 // return true if we need to hide this item because it is a backup

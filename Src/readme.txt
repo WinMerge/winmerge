@@ -1,3 +1,7 @@
+2003-07-11 Kimmo
+ PATCH: [ 769295 ] Fix for threaded dir compare crash
+  WinMerge: DiffThread.h DiffThread.cpp DirDoc.h DirDoc.cpp DirView.h DirView.cpp
+
 2003-07-10 Kimmo
  PATCH: [ 766727 ] Threaded dir compare
   WinMerge: DiffContext.h DiffContext.cpp DirDoc.h DirDoc.cpp

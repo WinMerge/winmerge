@@ -199,6 +199,7 @@ protected:
 	afx_msg void OnUpdateSave(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateUIMessage(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnRefresh();
+	afx_msg void OnUpdateRefresh(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
