@@ -1078,7 +1078,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 						m_CheckOutMulti = FALSE; // Reset, we don't want 100 of the same errors
 						return FALSE;   // No means user has to start from begin
 					}
-					else if (iRes = IDYESTOALL)
+					else if (iRes == IDYESTOALL)
 						m_bVssSuppressPathCheck = TRUE; // Don't ask again with selected files
 				}
 			}

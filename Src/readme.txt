@@ -1,6 +1,8 @@
 2005-03-10 Kimmo
  PATCH: [ 1160064 ] Undo for Copy All
   Src: MergeDoc.cpp MergeDoc.h
+ Fix invalid compare for VSS dialog returnvalue
+  Src: MainFrm.cpp
 
 2005-03-09 Perry
  PATCH: [ 1157359 ] Minor change for FILEFILTER_INFOLIST
