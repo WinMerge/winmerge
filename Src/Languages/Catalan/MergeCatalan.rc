@@ -315,6 +315,9 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "G&oto Diff"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "&Vés a...\tCtrl+G",           ID_EDIT_WMGOTO
+        MENUITEM SEPARATOR
         MENUITEM "Blocs &no moguts ",            ID_DISPLAY_MOVED_NONE
         MENUITEM "&Tots el blocs moguts",           ID_DISPLAY_MOVED_ALL
         MENUITEM "Blocs moguts per a la &diferència actual", ID_DISPLAY_MOVED_FOLLOW_DIFF
@@ -1894,6 +1897,8 @@ BEGIN
     ID_DISPLAY_MOVED_NONE   "No mostra els blocs moguts"
     ID_DISPLAY_MOVED_ALL    "Mostra tots els blocs moguts"
     ID_DISPLAY_MOVED_FOLLOW_DIFF "Mostra només els blocs moguts des de la diferència actual"
+    ID_LOCBAR_GOTODIFF      "Go to diff under cursor"
+    ID_LOCBAR_GOTODIFF_FMT  "G&oto Diff %1 of %2"
 END
 
 // END STRINGS SYNCHRO

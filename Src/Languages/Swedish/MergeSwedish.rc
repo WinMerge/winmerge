@@ -314,6 +314,9 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "G&oto Diff"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "&Gå till...",                 ID_EDIT_WMGOTO
+        MENUITEM SEPARATOR
         MENUITEM "&Inga Flyttade Block",            ID_DISPLAY_MOVED_NONE
         MENUITEM "&Alla Flyttade Block",           ID_DISPLAY_MOVED_ALL
         MENUITEM "Flyttat Block för &Aktuell Skillnad", ID_DISPLAY_MOVED_FOLLOW_DIFF
@@ -1990,6 +1993,8 @@ BEGIN
     ID_DISPLAY_MOVED_NONE   "Visa inte flyttade block"
     ID_DISPLAY_MOVED_ALL    "Visa alla flyttade block"
     ID_DISPLAY_MOVED_FOLLOW_DIFF "Visa flyttade block bara från aktuell skillnad"
+    ID_LOCBAR_GOTODIFF      "Go to diff under cursor"
+    ID_LOCBAR_GOTODIFF_FMT  "G&oto Diff %1 of %2"
 END
 
 // END STRINGS SYNCHRO

@@ -91,7 +91,7 @@ BEGIN
         MENUITEM "Co&pier",                     ID_EDIT_COPY
         MENUITEM "C&oller",                     ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "&Goto...",                     ID_EDIT_WMGOTO
+        MENUITEM "&Goto...",                    ID_EDIT_WMGOTO
     END
 END
 
@@ -315,6 +315,9 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "G&oto Diff"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "&Goto...",                    ID_EDIT_WMGOTO
+        MENUITEM SEPARATOR
         MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
         MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
         MENUITEM "Moved Block for &Current Diff", ID_DISPLAY_MOVED_FOLLOW_DIFF
@@ -1960,6 +1963,8 @@ BEGIN
     ID_DISPLAY_MOVED_NONE   "Do not display moved blocks"
     ID_DISPLAY_MOVED_ALL    "Display all moved blacks"
     ID_DISPLAY_MOVED_FOLLOW_DIFF "Display moved blocks only from current diff"
+    ID_LOCBAR_GOTODIFF      "Go to diff under cursor"
+    ID_LOCBAR_GOTODIFF_FMT  "G&oto Diff %1 of %2"
 END
 
 // END STRINGS SYNCHRO

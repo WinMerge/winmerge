@@ -3,6 +3,9 @@
   Src: MainFrm.cpp
  PATCH: [ 968255 ] Rename EOL sensitive in configlog
   Src: ConfigLog.cpp
+ PATCH: [ 967700 ] Add Goto-items to location pane context menu
+  Src: LocationView.cpp Merge.rc MergeEditView.h resource.h
+  Src/Languages: *.rc resource.h
 
 2004-06-07 Laoran
  PATCH: [ 966693 ] set scroll width in diffpane for widest view

@@ -369,6 +369,12 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	CMergeDoc* pDoc = GetDocument();
 	switch (command)
 	{
+	case ID_LOCBAR_GOTODIFF:
+		GotoLocation(point);
+		break;
+	case ID_EDIT_WMGOTO:
+		m_view0->WMGoto();
+		break;
 	case ID_DISPLAY_MOVED_NONE:
 		SetConnectMovedBlocks(DISPLAY_MOVED_NONE);
 		pDoc->SetDetectMovedBlocks(FALSE);

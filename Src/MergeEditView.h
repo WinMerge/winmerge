@@ -160,6 +160,7 @@ public:
 	virtual void UpdateSiblingScrollPos (BOOL bHorz);
 	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
 			COLORREF & crText, BOOL & bDrawWhitespace);
+	void WMGoto() { OnWMGoto(); };
 
 	// to customize the mergeview menu
 	static HMENU createScriptsSubmenu(HMENU hMenu);
