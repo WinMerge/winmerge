@@ -5,6 +5,10 @@
   Src/Common: LocationView.cpp LocationView.h
  BUG: [ 961901 ] Possible overflow bug in SplitFilename
   Src/Common: coretools.cpp
+ New InnoSetup/Languages/Japanese.isl from sawanaka
+  From url posted in discussion in BUG [ 958805 ] 2 bytes display error
+  (I removed the entry for English before checking it in, as there is no English satellite DLL)
+  InnoSetup: Languages/Japanese.isl
 
 2004-05-29 WinMerge experimental release 2.1.7.5 (cvs)
 
