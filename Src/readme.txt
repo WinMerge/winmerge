@@ -1,3 +1,7 @@
+2003-10-25 Laoran
+ [ 830072 ] "Unload script" does not work
+  WinMerge: FileTransform.cpp MergeEditView.cpp
+
 2003-10-25 Perry
  Fix spelling of "delimiter" in comments.
   WinMerge: MainFrm.cpp
@@ -25,6 +29,7 @@
  PATCH: [ 828283 ] Open Read-only files as such
   WinMerge: DirView.cpp files.h files.cpp MainFrm.cpp
 
+>>>>>>> 1.509
 2003-10-24 Perry
  BUG: [ 829437 ] Can't compare two files with unicode filenames
   WinMerge: Diff.cpp

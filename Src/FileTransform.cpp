@@ -782,9 +782,6 @@ BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent,
 	PluginArray * piScriptArray = 
 		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(TransformationEvent);
 
-	if (piScriptArray->GetSize() == 0)
-		return FALSE;
-
 	// allocate structures : function name, ordinal of script, function Id in script
 	CDWordArray iInScriptArray;
 	CDWordArray iIdArray;
