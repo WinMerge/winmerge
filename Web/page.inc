@@ -110,8 +110,11 @@
       $temp .= "<p class=\"lefttext\">\n";
       $temp .= "  <a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216\" target=\"_top\">Submit a Bug Report</a><br>\n";
       $temp .= "  <a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216\" target=\"_top\">Submit a Feature Request</a><br>\n";
-      $temp .= "  <a href=\"http://winmerge.org/WinMergeChanges.html\" target=\"_top\">Change History</a><br>\n";
-      $temp .= "  <a href=\"http://sourceforge.net/project/project_donations.php?group_id=13216\" target=\"_top\">Donations</a>\n";
+      $temp .= "  <a href=\"http://winmerge.org/WinMergeChanges.html\" target=\"_top\">Change History</a><br><br>\n";
+      $temp .= "  <center><a href=\"http://sourceforge.net/donate/index.php?group_id=13216\" target=\"_top\">\n";
+      $temp .= "    <img src=\"http://images.sourceforge.net/images/project-support.jpg\"\n";
+      $temp .= "      width=\"88\" height=\"32\" border=\"0\" alt=\"Donate money to WinMerge\" />\n";
+      $temp .= "  </a></center>\n";
       $temp .= "</p>\n";
       $temp .= "<p class=\"lefthead\"><a href=\"http://winmerge.org/developer/index.php\">Developers</a></p>\n";
       $temp .= "<p class=\"lefttext\"><a href=\"http://sourceforge.net/projects/winmerge/\" target=\"_top\">Project Home</a><br>\n";
