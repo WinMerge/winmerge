@@ -28,6 +28,7 @@
 #include "DiffWrapper.h"
 #include "ConfigLog.h"
 #include "winnt_supp.h"
+#include "paths.h"
 
 /** 
  * @brief Return logfile name and path
@@ -58,6 +59,9 @@ BOOL CConfigLog::WriteLogFile()
 	}
 	else
 		return FALSE;
+
+	// Convert from 8.3 style as yielded by GetTempPath to normal style
+	m_sFileName = paths_GetLongPath(m_sFileName, NODIRSLASH);
 
 	if (!file.Open(m_sFileName, CFile::modeCreate | CFile::modeWrite))
 		return FALSE;

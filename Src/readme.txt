@@ -2,6 +2,8 @@
  PATCH: [ 841767 ] Store unique item path
   Fixes bug: #840547 Copying unique file does not update date and size
   WinMerge: DirScan.cpp
+ PATCH: [ 841889 ] Make long path in CConfigLog::WriteLogFile
+  WinMerge: ConfigLog.cpp
 
 2003-11-14 Laoran 
  BUG: [ 838272 ] corrupt string operations in lwdisp.c
