@@ -1,3 +1,9 @@
+2004-04-03 Laoran
+ PATCH: [ 923044 ] Partial compare large files
+  Plugins: list of sources.txt
+  Plugins\src_VCPP_WatchBeginningOfLog add: all files
+  Plugins\src_VCPP_WatchEndOfLog add: all files
+
 2004-04-02 Laoran
  PATCH [ 925172 ] Check for presence of Windows Script
  Src: ConfigLog.cpp ConfigLog.h Merge.rc MergeEditView.cpp Plugins.cpp Plugins.h resource.h
