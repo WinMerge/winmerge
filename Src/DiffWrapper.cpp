@@ -182,7 +182,6 @@ BOOL CDiffWrapper::RunFileDiff()
 		m_nDiffs = m_diffs->GetSize();
 
 	// perform rescan
-	struct file_data inf[2] = {0};
 	char *free0 = NULL,*free1 = NULL;
 	CString sdir0, sdir1, sname0, sname1, sext0, sext1;
 	int val,failed=0;
@@ -196,6 +195,7 @@ BOOL CDiffWrapper::RunFileDiff()
 
 	SplitFilename(m_sFile1, &sdir0, &sname0, NULL);
 	SplitFilename(m_sFile2, &sdir1, &sname1, NULL);
+	struct file_data inf[2] = {0};
 	ZeroMemory(&inf[0], sizeof(inf[0]));
 	ZeroMemory(&inf[1], sizeof(inf[1]));
 
