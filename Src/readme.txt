@@ -7,6 +7,8 @@
   Src/Languages: *.rc resource.h
  Add Lee Jae-Hong as Korean translator contributor
   Docs/Users: Contributors.txt
+ Remove declaration of non-existent function DeleteFileOrError()
+  Src: MainFrm.h
 
 2004-09-13 Kimmo
  PATCH: [ 1026894 ] More space for translations in Goto-dialog
