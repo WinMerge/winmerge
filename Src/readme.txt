@@ -1,3 +1,10 @@
+2003-09-06 Kimmo
+ PATCH: [ 793900 ] Editable file filters
+ Submitted by Perry
+ WinMerge: FileFilterMgr.h FileFilterMgr.cpp Merge.h Merge.cpp Merge.rc
+  PropFilter.h PropFilter.cpp Resource.h
+ Languages: resource.h *.rc
+
 2003-09-06 Perry
  PATCH: [ 800175 ] skip custom draw if comctl32.dll < 4.71
   WinMerge: DirView.cpp

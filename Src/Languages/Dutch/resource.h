@@ -193,6 +193,7 @@
 #define IDC_LIST_HIDE                   1058
 #define IDC_ADD                         1059
 #define IDC_REMOVE                      1060
+#define IDC_EDIT_FILE_FILTER            1061
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO            8503
@@ -411,7 +412,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        118
 #define _APS_NEXT_COMMAND_VALUE         32834
-#define _APS_NEXT_CONTROL_VALUE         1061
+#define _APS_NEXT_CONTROL_VALUE         1062
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

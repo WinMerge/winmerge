@@ -77,6 +77,7 @@ public:
 	void SetNeedIdleTimer();
 	CString GetFileFilterName() const { return m_sFileFilterName; }
 	void SetFileFilterName(LPCTSTR szFileFilterName);
+	void EditFileFilter(LPCTSTR szFileFilterName);
 	void GetFileFilterNameList(CStringList & filefilters, CString & selected) const;
 
 	// implement file/directory filtering, because app currently holds the filter manager

@@ -29,11 +29,14 @@ public:
 	~FileFilterMgr();
 	// Reload filter array from specified directory (passed to CFileFind)
 	void LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt);
+	// Reload an edited filter
+	void ReloadFilterFromDisk(FileFilter * pfilter);
 
 	// access to array of filters
 	int GetFilterCount() const { return m_filters.GetSize(); }
 	CString GetFilterName(int i);
 	FileFilter * GetFilter(LPCTSTR szFilterName);
+	CString GetFullpath(FileFilter * pfilter) const;
 
 	// methods to actually use filter
 	BOOL TestFileNameAgainstFilter(FileFilter * pFilter, LPCTSTR szFileName);
@@ -45,7 +48,7 @@ protected:
 	// Clear the list of known filters
 	void DeleteAllFilters();
 	// Load a filter from a file (if syntax is valid)
-	void LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilename);
+	FileFilter * LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilename);
 
 // Implementation data
 private:

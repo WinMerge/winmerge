@@ -39,6 +39,7 @@ void CPropFilter::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CPropFilter)
+	DDX_Control(pDX, IDC_EDIT_FILE_FILTER, m_btnEditFileFilter);
 	DDX_Control(pDX, IDC_FILE_FILTER, m_cboFileFilter);
 	DDX_Control(pDX, IDC_EDITPATTERN, m_cPattern);
 	DDX_Check(pDX, IDC_IGNOREREGEXP, m_bIgnoreRegExp);
@@ -51,6 +52,7 @@ BEGIN_MESSAGE_MAP(CPropFilter, CPropertyPage)
 	//{{AFX_MSG_MAP(CPropFilter)
 	ON_BN_CLICKED(IDC_IGNOREREGEXP, OnIgnoreregexp)
 	ON_CBN_SELCHANGE(IDC_FILE_FILTER, OnSelchangeFileFilter)
+	ON_BN_CLICKED(IDC_EDIT_FILE_FILTER, OnEditFileFilter)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -71,6 +73,7 @@ BOOL CPropFilter::OnInitDialog()
 		m_cboFileFilter.AddString(name);
 	}
 	m_cboFileFilter.SetCurSel(sel);
+	m_btnEditFileFilter.EnableWindow(sel!=0);
 	
 	m_cPattern.EnableWindow(m_bIgnoreRegExp);
 	
@@ -94,5 +97,19 @@ void CPropFilter::OnSelchangeFileFilter()
 {
 	m_cboFileFilter.GetWindowText(m_sFileFilterName);
 	if (m_sFileFilterName == _T("<None>"))
+	{
+		m_btnEditFileFilter.EnableWindow(FALSE);
 		m_sFileFilterName = _T("");
+	}
+	else
+	{
+		m_btnEditFileFilter.EnableWindow(TRUE);
+	}
+}
+
+void CPropFilter::OnEditFileFilter() 
+{
+	CString filtername;
+	m_cboFileFilter.GetWindowText(filtername);
+	theApp.EditFileFilter(filtername);
 }

@@ -698,12 +698,46 @@ void CMergeApp::SetFileFilterName(LPCTSTR szFileFilterName)
 		m_sFileFilterName = szFileFilterName;
 }
 
+/** @brief Bring up file filter in notepad */
+void CMergeApp::EditFileFilter(LPCTSTR szFileFilterName)
+{
+	FileFilter * filter = m_fileFilterMgr->GetFilter(szFileFilterName);
+	if (!filter)
+	{
+		ASSERT(0);
+		return;
+	}
+
+	CString cmdLine = (CString)_T("notepad ") + m_fileFilterMgr->GetFullpath(filter);
+	STARTUPINFO stInfo = {0};
+	PROCESS_INFORMATION prInfo;
+	BOOL processSuccess = FALSE;
+	DWORD exitCode = 0;
+	stInfo.cb = sizeof(STARTUPINFO);
+	processSuccess = CreateProcess(NULL, (LPTSTR)(LPCTSTR)cmdLine, NULL,
+		NULL, FALSE, 0, NULL, NULL, &stInfo, &prInfo);
+
+	if (processSuccess == TRUE)
+	{
+		// Wait until process closes down
+		WaitForSingleObject(prInfo.hProcess, INFINITE);
+		CloseHandle(prInfo.hThread);
+		CloseHandle(prInfo.hProcess);
+	}
+	
+	// Reload filter after changing it
+	m_fileFilterMgr->ReloadFilterFromDisk(filter);
+
+}
+
+/** @brief Return TRUE unless we're suppressing this file by filter */
 BOOL CMergeApp::includeFile(LPCTSTR szFileName)
 {
 	if (!m_fileFilterMgr || !m_currentFilter) return TRUE;
 	return m_fileFilterMgr->TestFileNameAgainstFilter(m_currentFilter, szFileName);
 }
 
+/** @brief Return TRUE unless we're suppressing this directory by filter */
 BOOL CMergeApp::includeDir(LPCTSTR szDirName)
 {
 	if (!m_fileFilterMgr || !m_currentFilter) return TRUE;

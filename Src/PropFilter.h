@@ -22,6 +22,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CPropFilter)
 	enum { IDD = IDD_PROPPAGE_FILTER };
+	CButton	m_btnEditFileFilter;
 	CComboBox	m_cboFileFilter;
 	CEdit	m_cPattern;
 	BOOL	m_bIgnoreRegExp;
@@ -46,6 +47,7 @@ protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnIgnoreregexp();
 	afx_msg void OnSelchangeFileFilter();
+	afx_msg void OnEditFileFilter();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

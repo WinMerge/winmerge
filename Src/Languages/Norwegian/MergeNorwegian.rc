@@ -114,18 +114,7 @@ BEGIN
         MENUITEM "Ko&pier\tCtrl+C",               ID_EDIT_COPY
         MENUITEM "&Lim inn\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "&Neste forskjell\tAlt+Down",  ID_NEXTDIFF
-        MENUITEM "&Forrige forskjell\tAlt+Up", ID_PREVDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "F&ørste forskjell\tAlt+Home", ID_FIRSTDIFF
-        MENUITEM "&Aktuell forskjell\tAlt+Enter", ID_CURDIFF
-        MENUITEM "&Siste forskjell\tAlt+End",   ID_LASTDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "Kopier til &høyre\tAlt+Høyre", ID_L2R
-        MENUITEM "Kopier til &venstre\tAlt+Venstre", ID_R2L
-        MENUITEM SEPARATOR
-        MENUITEM "Kopier alt &til høyre",       ID_ALL_RIGHT
-        MENUITEM "Kopier alt til ve&nstre",     ID_ALL_LEFT
+        MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "Sø&k...\tCtrl+F",             ID_EDIT_FIND
         MENUITEM "&Erstatt...\tCtrl+H",          ID_EDIT_REPLACE
@@ -150,8 +139,24 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&verktøylinje",              ID_VIEW_TOOLBAR
         MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
+        MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
+    END
+    POPUP "&Merge"
+    BEGIN
+        MENUITEM "&Neste forskjell\tAlt+Down",  ID_NEXTDIFF
+        MENUITEM "&Forrige forskjell\tAlt+Up", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "F&ørste forskjell\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Aktuell forskjell\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Siste forskjell\tAlt+End",   ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Kopier til &høyre\tAlt+Høyre", ID_L2R
+        MENUITEM "Kopier til &venstre\tAlt+Venstre", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Kopier alt &til høyre",       ID_ALL_RIGHT
+        MENUITEM "Kopier alt til ve&nstre",     ID_ALL_LEFT
     END
     POPUP "&Vindu"
     BEGIN
@@ -191,6 +196,15 @@ BEGIN
     END
 END
 
+IDR_POPUP_EDITOR_HEADERBAR MENU DISCARDABLE 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Copy full Path",              ID_EDITOR_COPY_PATH
+        MENUITEM "Copy Filename",               ID_EDITOR_COPY_FILENAME
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -217,6 +231,7 @@ BEGIN
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_FIND_PREVIOUS,  VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -446,8 +461,9 @@ BEGIN
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
     LTEXT           "Filfilter:",IDC_STATIC,7,128,60,10
-    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_FILE_FILTER,73,126,117,63,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Edit",IDC_EDIT_FILE_FILTER,194,126,34,13,WS_DISABLED
 END
 
 IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156

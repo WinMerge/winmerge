@@ -77,7 +77,8 @@ void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
 			if (sFilename.Right(extlen).CompareNoCase(szExt))
 				return;
 		}
-		LoadFilterFile(finder.GetFilePath(), sFilename);
+		FileFilter * pfilter = LoadFilterFile(finder.GetFilePath(), sFilename);
+		m_filters.Add(pfilter);
 	}
 }
 
@@ -112,11 +113,11 @@ static void AddFilterPattern(RegList & reglist, CString & str)
 }
 
 // Parse a filter file, and add it to array if valid
-void FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilename)
+FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilename)
 {
 	CStdioFile file;
 	if (!file.Open(szFilepath, CFile::modeRead))
-		return;
+		return NULL;
 	FileFilter *pfilter = new FileFilter;
 	pfilter->fullpath = szFilepath;
 	pfilter->name = szFilename; // default if no name
@@ -154,7 +155,7 @@ void FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilename)
 			AddFilterPattern(pfilter->dirfilters, str);
 		}
 	}
-	m_filters.Add(pfilter);
+	return pfilter;
 }
 
 // Give client back a pointer to the actual filter
@@ -204,4 +205,25 @@ BOOL FileFilterMgr::TestDirNameAgainstFilter(FileFilter * pFilter, LPCTSTR szDir
 CString FileFilterMgr::GetFilterName(int i)
 {
 	return m_filters[i]->name; 
+}
+
+CString FileFilterMgr::GetFullpath(FileFilter * pfilter) const
+{
+	return pfilter->fullpath;
+}
+
+// Reload filter from disk (by creating a new one to substitute for old one)
+void FileFilterMgr::ReloadFilterFromDisk(FileFilter * pfilter)
+{
+	FileFilter * newfilter = LoadFilterFile(pfilter->fullpath, pfilter->name);
+	for (int i=0; i<m_filters.GetSize(); ++i)
+	{
+		if (pfilter == m_filters[i])
+		{
+			m_filters.RemoveAt(i);
+			delete pfilter;
+			break;
+		}
+	}
+	m_filters.Add(newfilter);
 }
