@@ -212,7 +212,7 @@ void CDirDoc::Redisplay()
 
 	CString s,s2;
 	UINT cnt=0;
-	LPCTSTR p;
+	LPCTSTR p=NULL;
 	int llen = m_pCtxt->m_strLeft.GetLength();
 	int rlen = m_pCtxt->m_strRight.GetLength();
 
@@ -256,11 +256,17 @@ void CDirDoc::Redisplay()
 			break;
 		case FILE_LUNIQUE:
 		case FILE_RUNIQUE:
+		case FILE_LDIRUNIQUE:
+		case FILE_RDIRUNIQUE:
 			if (mf->m_bShowUnique
 				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
 			{
 				m_pView->AddItem(cnt, DV_NAME, di.filename);
 				
+				if (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE)
+					p = _tcsninc(di.lpath, llen);
+				else
+					p = _tcsninc(di.rpath, rlen);
 				s2 = _T(".");
 				s2 += p;
 				m_pView->AddItem(cnt, DV_PATH, s2);
@@ -315,7 +321,6 @@ void CDirDoc::UpdateItemStatus(UINT nIdx)
 {
 	CString s,s2;
 	UINT cnt=0;
-	LPCTSTR p;
 	int llen = m_pCtxt->m_strLeft.GetLength();
 	int rlen = m_pCtxt->m_strRight.GetLength();
 	POSITION pos = (POSITION)m_pView->m_pList->GetItemData(nIdx);
@@ -333,24 +338,16 @@ void CDirDoc::UpdateItemStatus(UINT nIdx)
 		m_pView->SetImage(nIdx, FILE_BINDIFF);
 		break;
 	case FILE_LUNIQUE:
+	case FILE_LDIRUNIQUE:
+		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.lpath);
+		m_pView->AddItem(nIdx, DV_STATUS, s);
+		m_pView->SetImage(nIdx, di.code);
+		break;
 	case FILE_RUNIQUE:
-		{
-			int img;
-			if (di.code == FILE_LUNIQUE)
-			{
-				p = _tcsninc(di.lpath, llen);
-				AfxFormatString1(s, IDS_ONLY_IN_FMT, di.lpath);
-				img = FILE_LUNIQUE;
-			}
-			else
-			{
-				p = _tcsninc(di.rpath, rlen);
-				AfxFormatString1(s, IDS_ONLY_IN_FMT, di.rpath);
-				img = FILE_RUNIQUE;
-			}
-			m_pView->AddItem(nIdx, DV_STATUS, s);
-			m_pView->SetImage(nIdx, img);
-		}
+	case FILE_RDIRUNIQUE:
+		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.rpath);
+		m_pView->AddItem(nIdx, DV_STATUS, s);
+		m_pView->SetImage(nIdx, di.code);
 		break;
 	case FILE_SAME:
 		VERIFY(s.LoadString(IDS_IDENTICAL));

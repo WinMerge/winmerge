@@ -29,7 +29,8 @@ typedef struct tagDIFFITEM {
 #define FILE_SAME		3
 #define FILE_ERROR		4
 #define FILE_BINDIFF	5
-
+#define FILE_LDIRUNIQUE		6
+#define FILE_RDIRUNIQUE		7
 
 class CDiffContext  
 {

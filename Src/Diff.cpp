@@ -164,13 +164,13 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
   int same_files;
   int failed = 0;
   LPTSTR free0 = 0, free1 = 0;
+  bool lunique=false,runique=false;
 
   memset(&inf[0], 0, sizeof(struct file_data));
   memset(&inf[1], 0, sizeof(struct file_data));
 
   /* If this is directory comparison, perhaps we have a file
-     that exists only in one of the directories.
-     If so, just print a message to that effect.  */
+     that exists only in one of the directories.  */
 
   if (gWriteLog) gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s"), name0, name1, dir0, dir1);
 
@@ -178,13 +178,9 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	 || (unidirectional_new_file_flag && name1 != 0)
 	 || entire_new_file_flag))
     {
-      LPCTSTR name = name0 == 0 ? name1 : name0;
-      LPCTSTR dir = name0 == 0 ? dir1 : dir0;
-      message ("Only in %s: %s\n", dir, name);
-      /* Return 1 so that diff_dirs will return 1 ("some files differ").  */
-      pCtx->AddDiff(name, dir0, dir1, (BYTE)(name0 == 0 ? FILE_RUNIQUE : FILE_LUNIQUE));
-      if (gWriteLog) gLog.Write(_T("\tUnique\r\n"));
-      return 1;
+	  // flag the unique status for later processing
+	  lunique=(name0 != 0);
+	  runique=(name0 == 0);
     }
 
   /* Mark any nonexistent file with -1 in the desc field.  */
@@ -258,6 +254,36 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	    }
 	}
     }
+
+  // delayed unique determination so we can see if file is a directory or not
+  if (!failed && (lunique || runique))
+  {
+	  BYTE code=0;
+      LPCTSTR name=0;
+	  if (lunique)
+	  {
+		  if (inf[0].dir_p != 0)
+			  code = FILE_LDIRUNIQUE;
+		  else
+			  code = FILE_LUNIQUE;
+		  name = name0;
+	  }
+	  else
+	  {
+		  if (inf[1].dir_p != 0)
+			  code = FILE_RDIRUNIQUE;
+		  else
+			  code = FILE_RUNIQUE;
+		  name = name1;
+	  }
+	  pCtx->AddDiff(name, dir0, dir1, code);
+      if (gWriteLog) gLog.Write(_T("\tUnique\r\n"));
+	  if (free0)
+		  free (free0);
+	  if (free1)
+		  free (free1);
+      return 1;
+  }
 
   if (! failed && depth == 0 && inf[0].dir_p != inf[1].dir_p)
     {

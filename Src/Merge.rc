@@ -464,6 +464,9 @@ IDB_NOTEQUAL            BITMAP  DISCARDABLE     "res\\notequal.bmp"
 IDB_RFOLDER             BITMAP  DISCARDABLE     "res\\rfolder.bmp"
 IDB_UNKNOWN             BITMAP  DISCARDABLE     "res\\unknown.bmp"
 IDB_BINARY              BITMAP  DISCARDABLE     "res\\binary.bmp"
+IDB_LFILE               BITMAP  DISCARDABLE     "res\\lfile.bmp"
+IDB_RFILE               BITMAP  DISCARDABLE     "res\\rfile.bmp"
+IDB_BITMAP1             BITMAP  DISCARDABLE     "res\\bitmap1.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -805,6 +808,7 @@ BEGIN
     IDS_FILE_COMPARISON_TITLE "File Comparison"
     IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
+    IDS_FILEISDIR           "Directory files cannot be visually compared."
 END
 
 #endif    // English (U.S.) resources

@@ -25,6 +25,7 @@
 #define IDD_PROPPAGE_LARGE              133
 #define IDS_CONFIRM_ALL_RIGHT           133
 #define IDS_COPY2DIR_FMT                134
+#define IDB_BITMAP1                     134
 #define IDS_CONFIRM_COPY2DIR            135
 #define IDS_FONT_CHANGE                 136
 #define IDS_DIRECTORY_WINDOW_TITLE      137
@@ -57,11 +58,14 @@
 #define IDS_DIFF_NUMBER_STATUS_FMT      164
 #define IDS_NO_DIFF_SEL                 165
 #define IDS_NO_DIFF_SEL_FMT             165
+#define IDS_FILEISDIR                   166
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
 #define IDB_UNKNOWN                     216
 #define IDB_BINARY                      217
+#define IDB_LFILE                       218
+#define IDB_RFILE                       219
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -230,7 +234,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        134
+#define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32809
 #define _APS_NEXT_CONTROL_VALUE         1017
 #define _APS_NEXT_SYMED_VALUE           106

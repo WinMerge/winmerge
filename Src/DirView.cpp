@@ -108,20 +108,32 @@ void CDirView::OnInitialUpdate()
 	m_pList->InsertColumn(DV_PATH, _T("Directory"), LVCFMT_LEFT, 200);
 	m_pList->InsertColumn(DV_STATUS, _T("Comparison result"), LVCFMT_LEFT, 250);
 
-	CBitmap eq,ne,fldl,fldr,unk,bin;
+	CBitmap bm;
 	VERIFY (m_imageList.Create (16, 16, ILC_MASK, 0, 1));
-	VERIFY (eq.LoadBitmap (IDB_EQUAL));
-	VERIFY (ne.LoadBitmap (IDB_NOTEQUAL));
-	VERIFY (fldl.LoadBitmap (IDB_LFOLDER));
-	VERIFY (fldr.LoadBitmap (IDB_RFOLDER));
-	VERIFY (unk.LoadBitmap (IDB_UNKNOWN));
-	VERIFY (bin.LoadBitmap (IDB_BINARY));
-	VERIFY (-1 != m_imageList.Add (&fldl, RGB (255, 255, 255)));
-	VERIFY (-1 != m_imageList.Add (&fldr, RGB (255, 255, 255)));
-	VERIFY (-1 != m_imageList.Add (&ne, RGB (255, 255, 255)));
-	VERIFY (-1 != m_imageList.Add (&eq, RGB (255, 255, 255)));
-	VERIFY (-1 != m_imageList.Add (&unk, RGB (255, 255, 255)));
-	VERIFY (-1 != m_imageList.Add (&bin, RGB (255, 255, 255)));
+	VERIFY (bm.LoadBitmap (IDB_LFILE));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_RFILE));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_NOTEQUAL));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_EQUAL));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_UNKNOWN));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_BINARY));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_LFOLDER));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_RFOLDER));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
 	UpdateResources();
 }
@@ -147,6 +159,14 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 			{
 				CString s;
 				VERIFY(s.LoadString(IDS_FILESSAME));
+				AfxMessageBox(s, MB_ICONINFORMATION);
+			}
+			break;
+		case FILE_LDIRUNIQUE:
+		case FILE_RDIRUNIQUE:
+			{
+				CString s;
+				VERIFY(s.LoadString(IDS_FILEISDIR));
 				AfxMessageBox(s, MB_ICONINFORMATION);
 			}
 			break;
@@ -230,6 +250,8 @@ void CDirView::OnDirCopyFileToLeft()
 		DIFFITEM di = pd->m_pCtxt->m_dirlist.GetAt(pos);
 		switch(di.code)
 		{
+		case FILE_LDIRUNIQUE:
+		case FILE_RDIRUNIQUE:
 		case FILE_LUNIQUE:
 		case FILE_SAME:
 			//pCmdUI->Enable(FALSE);
@@ -263,6 +285,8 @@ void CDirView::OnUpdateDirCopyFileToLeft(CCmdUI* pCmdUI)
 		{
 		case FILE_SAME:
 		case FILE_LUNIQUE:
+		case FILE_LDIRUNIQUE:
+		case FILE_RDIRUNIQUE:
 			pCmdUI->Enable(FALSE);
 			break;
 		case FILE_RUNIQUE:
@@ -290,6 +314,8 @@ void CDirView::OnDirCopyFileToRight()
 		switch(di.code)
 		{
 		case FILE_RUNIQUE:
+		case FILE_LDIRUNIQUE:
+		case FILE_RDIRUNIQUE:
 		case FILE_SAME:
 			//pCmdUI->Enable(FALSE);
 			break;
@@ -322,6 +348,8 @@ void CDirView::OnUpdateDirCopyFileToRight(CCmdUI* pCmdUI)
 		switch(di.code)
 		{
 		case FILE_RUNIQUE:
+		case FILE_LDIRUNIQUE:
+		case FILE_RDIRUNIQUE:
 		case FILE_SAME:
 			pCmdUI->Enable(FALSE);
 			break;
