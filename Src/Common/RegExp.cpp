@@ -849,7 +849,7 @@ TCHAR* CRegExp::GetReplaceString( const TCHAR* sReplaceExp )
 	{
 		if (c == _T('&'))
 			no = 0;
-		else if (c == _T('\\') && isdigit(*src))
+		else if (c == _T('\\') && _istdigit(*src))
 			no = *src++ - _T('0');
 		else
 			no = -1;
@@ -886,7 +886,7 @@ TCHAR* CRegExp::GetReplaceString( const TCHAR* sReplaceExp )
 	{
 		if (c == _T('&'))
 			no = 0;
-		else if (c == _T('\\') && isdigit(*src))
+		else if (c == _T('\\') && _istdigit(*src))
 			no = *src++ - _T('0');
 		else
 			no = -1;
