@@ -160,8 +160,16 @@ IHeaderBar * CDirFrame::GetHeaderInterface() {
  */
 void CDirFrame::ActivateFrame(int nCmdShow) 
 {
-	if (theApp.GetProfileInt(_T("Settings"), _T("DirViewMax"), FALSE))
-		nCmdShow = SW_MAXIMIZE;
+	// get the active child frame, and a flag whether it is maximized
+	BOOL bMaximized;
+	CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
+	if (oldActiveFrame == NULL)
+		// for the first frame, get the restored/maximized state from the registry
+		bMaximized = theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), FALSE);
+	if (bMaximized)
+		nCmdShow = SW_SHOWMAXIMIZED;
+	else
+		nCmdShow = SW_SHOWNORMAL;
 
 	CMDIChildWnd::ActivateFrame(nCmdShow);
 	bFrameIsActive = TRUE;
@@ -216,11 +224,15 @@ void CDirFrame::OnClose()
  */
 BOOL CDirFrame::DestroyWindow() 
 {
-	WINDOWPLACEMENT wp;
-	wp.length = sizeof(WINDOWPLACEMENT);
-	GetWindowPlacement(&wp);
-	theApp.WriteProfileInt(_T("Settings"), _T("DirViewMax"), (wp.showCmd == SW_MAXIMIZE));
-	
+	// If we are active, save the restored/maximized state
+	// If we are not, do nothing and let the active frame do the job.
+	if (this->GetParentFrame()->GetActiveFrame() == (CFrameWnd*)this)
+	{
+		WINDOWPLACEMENT wp;
+		wp.length = sizeof(WINDOWPLACEMENT);
+		GetWindowPlacement(&wp);
+		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
+	}
 	return CMDIChildWnd::DestroyWindow();
 }
 

@@ -1,4 +1,6 @@
 2003-11-23 Laoran
+ PATCH: [ 846237 ] Fix for the maximized/restored state (dirframe, docframe)
+  WinMerge: ChildFrm.cpp DirFrame.cpp
  PATCH: [ 843124 ] Initialize COM in secondary threads
   WinMerge: Plugins.cpp Plugins.h
  BUG: [ 846622 ] rc files wrongly displayed as identical (fix : no automatic prediffing)

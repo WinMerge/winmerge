@@ -332,7 +332,16 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 	if (!m_bActivated) 
 	{
 		m_bActivated = TRUE;
-		if(theApp.GetProfileInt(_T("Settings"), _T("LeftMax"), TRUE))
+
+		// TODO : delete oldkey /*		if(theApp.GetProfileInt(_T("Settings"), _T("LeftMax"), TRUE))
+		// TODO : delete oldkey /*		if(theApp.GetProfileInt(_T("Settings"), _T("DirViewMax"), TRUE))
+		// get the active child frame, and a flag whether it is maximized
+		BOOL bMaximized;
+		CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
+		if (oldActiveFrame == NULL)
+			// for the first frame, get the restored/maximized state from the registry
+			bMaximized = theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), FALSE);
+		if (bMaximized)
 			nCmdShow = SW_SHOWMAXIMIZED;
 		else
 			nCmdShow = SW_SHOWNORMAL;
@@ -356,9 +365,24 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 BOOL CChildFrame::DestroyWindow() 
 {
 	SavePosition();
+	// If we are active, save the restored/maximized state
+	// If we are not, do nothing and let the active frame do the job.
+ 	if (this->GetParentFrame()->GetActiveFrame() == (CFrameWnd*)this)
+	{
+		WINDOWPLACEMENT wp;
+		wp.length = sizeof(WINDOWPLACEMENT);
+		GetWindowPlacement(&wp);
+		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
+	}
 	return CMDIChildWnd::DestroyWindow();
 }
 
+/**
+ * @Save coordinates of the frame, splitters, and bars
+ *
+ * @Note Do not save the maximized/restored state here. We are interested
+ * in the state of the active frame, and maybe this frame is not active
+ */
 void CChildFrame::SavePosition()
 {
 	CRect rc;
@@ -368,9 +392,6 @@ void CChildFrame::SavePosition()
 		pLeft->GetWindowRect(&rc);
 		theApp.WriteProfileInt(_T("Settings"), _T("WLeft"), rc.Width());
 	}
-	WINDOWPLACEMENT wp;
-	GetWindowPlacement(&wp);
-	theApp.WriteProfileInt(_T("Settings"), _T("LeftMax"), (wp.showCmd == SW_MAXIMIZE));
 
 	// save the bars layout
 	// save docking positions and sizes
