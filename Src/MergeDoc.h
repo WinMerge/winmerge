@@ -242,10 +242,10 @@ public:
 	void DirDocClosing(CDirDoc * pDirDoc);
 	BOOL CloseNow();
 
-	CMergeEditView * GetLeftView() { return m_pLeftView; }
-	CMergeEditView * GetRightView() { return m_pRightView; }
-	CMergeDiffDetailView * GetLeftDetailView() { return m_pLeftDetailView; }
-	CMergeDiffDetailView * GetRightDetailView() { return m_pRightDetailView; }
+	CMergeEditView * GetLeftView() const { return m_pLeftView; }
+	CMergeEditView * GetRightView() const { return m_pRightView; }
+	CMergeDiffDetailView * GetLeftDetailView() const { return m_pLeftDetailView; }
+	CMergeDiffDetailView * GetRightDetailView() const { return m_pRightDetailView; }
 	CChildFrame * GetParentFrame();
 
 	// Overrides

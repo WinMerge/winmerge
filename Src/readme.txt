@@ -1,3 +1,7 @@
+2004-06-14 Laoran
+ declare GetLeftView()/GetRightView()/GetLeftDetailView()/GetRightDetailView() as const
+  Src: MergeDoc.h
+
 2004-06-13 Laoran
  PATCH: [ 972007 ] Japanese translation update(2) ; submitted by Takashi Sawanaka
   Src/Languages: UpdateAll_resource_h.bat
