@@ -1,3 +1,7 @@
+2003-10-05 Laoran
+ BUG: [ 817766 ] Dir compare speed drop after 2.0
+  WinMerge: DiffContext.cpp
+
 2003-10-05 Kimmo
  PATCH: [ 817269 ] Fix navigation in directory compare
   WinMerge: DirView.cpp

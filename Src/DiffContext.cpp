@@ -272,15 +272,18 @@ void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
  */
 void CDiffContext::UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi)
 {
-	// Would be better to not check any text files
-	// but binary files are flagged as FILE_SAME not FILE_BINSAME 
-	// when this is called (Perry 2003-08-21)
-	// and we also didn't flag binary for uniques
-	if (1)
+	// Check only binary files
+	CString filename = di.sfilename;
+	filename.MakeUpper();
+	if (_tcsstr(filename, _T(".EXE")) || _tcsstr(filename, _T(".DLL")) || _tcsstr(filename, _T(".SYS")) ||
+	    _tcsstr(filename, _T(".DRV")) || _tcsstr(filename, _T(".OCX")) || _tcsstr(filename, _T(".CPL")) ||
+	    _tcsstr(filename, _T(".SCR")))
 	{
 		CString filepath = paths_ConcatPath(dfi.spath, di.sfilename);
 		dfi.version = GetFixedFileVersion(filepath);
 	}
+	else
+		dfi.version = _T("");
 }
 
 /** @brief Return path to left file, including all but file name */
