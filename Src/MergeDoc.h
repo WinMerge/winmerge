@@ -131,9 +131,9 @@ public :
 		void ReplaceLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 		void ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 
-		BOOL LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker, CString filteredFilenames, BOOL & readOnly, int nCrlfStyle, int codepage);
-		BOOL SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, PackingInfo * infoUnpacker = NULL,
-				int nCrlfStyle = CRLF_STYLE_AUTOMATIC, BOOL bClearModifiedFlag = TRUE );
+		int LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker, CString filteredFilenames, BOOL & readOnly, int nCrlfStyle, int codepage);
+		int SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, PackingInfo * infoUnpacker = NULL,
+                    int nCrlfStyle = CRLF_STYLE_AUTOMATIC, BOOL bClearModifiedFlag = TRUE );
 		int getUnicoding() const { return m_unicoding; }
 		void setUnicoding(int value) { m_unicoding = value; }
 		int getCodepage() const { return m_codepage; }
@@ -231,7 +231,7 @@ public:
 	void CopyAllList(bool bSrcLeft);
 	void CopyMultipleList(bool bSrcLeft, int firstDiff, int lastDiff);
 	void ListCopy(bool bSrcLeft);
-	BOOL TrySaveAs(CString &strPath, BOOL &bSaveSuccess, BOOL bLeft, PackingInfo * pInfoTempUnpacker);
+	BOOL TrySaveAs(CString &strPath, int &bLastErrorCode, BOOL bLeft, PackingInfo * pInfoTempUnpacker);
 	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
 	//CString ExpandTabs(LPCTSTR szText);
 	//CString Tabify(LPCTSTR szText);

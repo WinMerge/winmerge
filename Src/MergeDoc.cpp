@@ -682,33 +682,39 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 }
 
 /**
- * @brief Asks from filename to save from user and save file
- * @param strPath Initial path shown to user,
- * path to new filename returned if saving succeeds
- * @param bSaveSuccess Returns if saving itself succeeded/failed
- * @return False when saving fails, so we can ask again
+ * @brief Display an error message, ask from filename to save from user and save file
+ * @param [in, out] strPath 
+ * [in] : Initial path shown to user,
+ * [out] : path to new filename returned if saving succeeds
+ * @param [in, out] bLastErrorCode 
+ * [in] : error code of the previous try. We use it to display the appropriate message
+ * [out] : error code of this try, or SAVE_DONE if OK
+ *
+ * @return FALSE as long as the user is not satisfied
+ * TRUE if saving succeeds, or if the user cancels
  */
-BOOL CMergeDoc::TrySaveAs(CString &strPath, BOOL &bSaveSuccess, BOOL bLeft, PackingInfo * pInfoTempUnpacker)
+BOOL CMergeDoc::TrySaveAs(CString &strPath, int &bLastErrorCode, BOOL bLeft, PackingInfo * pInfoTempUnpacker)
 {
 	BOOL result = TRUE;
 	CString s;
 	CString strSavePath;
 	CString title;
 
-	if (bSaveSuccess == SAVE_PACK_FAILED)
-	{
-		// display an error message
+	ASSERT (bLastErrorCode != SAVE_DONE);
 
+	// select message text according to the error code of the revious try
+	if (bLastErrorCode == SAVE_PACK_FAILED)
+	{
 		AfxFormatString2(s, bLeft ? IDS_FILEPACK_FAILED_LEFT : IDS_FILEPACK_FAILED_RIGHT, strPath, pInfoTempUnpacker->pluginName);
 		// replace the unpacker with a "do nothing" unpacker
 		pInfoTempUnpacker->Initialize(UNPACK_MANUAL);
 	}
 	else
 	{
-		// display an error message
 		AfxFormatString1(s, IDS_FILESAVE_FAILED, strPath);
 	}
 
+	// display a message box
 	switch(AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION))
 	{
 	case IDYES:
@@ -717,11 +723,11 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, BOOL &bSaveSuccess, BOOL bLeft, Pack
 		{
 			strSavePath = s;
 			if (bLeft)
-				bSaveSuccess = m_ltBuf.SaveToFile(strSavePath, FALSE, pInfoTempUnpacker);
+				bLastErrorCode = m_ltBuf.SaveToFile(strSavePath, FALSE, pInfoTempUnpacker);
 			else
-				bSaveSuccess = m_rtBuf.SaveToFile(strSavePath, FALSE, pInfoTempUnpacker);
+				bLastErrorCode = m_rtBuf.SaveToFile(strSavePath, FALSE, pInfoTempUnpacker);
 
-			if (bSaveSuccess == SAVE_DONE)
+			if (bLastErrorCode == SAVE_DONE)
 			{
 				strPath = strSavePath;
 				UpdateHeaderPath(bLeft);
@@ -792,10 +798,10 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	// FALSE as long as the user is not satisfied
 	// TRUE if saving succeeds, even with another filename, or if the user cancels
 	BOOL result;
-	// the error code from the latest save try, needed to display the correct error message
-	// either SAVE_DONE, either an error code
+	// the error code from the latest save operation, 
+	// or SAVE_DONE when the save succeeds
 	// TODO: Shall we return this code in addition to bSaveSuccess ?
-	BOOL bSaveErrorCode;
+	int bSaveErrorCode;
 	if(bLeft)
 	{
 		bSaveErrorCode = m_ltBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
@@ -816,8 +822,8 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	}
 	else
 	{
-		bSaveSuccess = m_rtBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
-		if(bSaveSuccess == SAVE_DONE)
+		bSaveErrorCode = m_rtBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
+		if(bSaveErrorCode == SAVE_DONE)
 		{
 			m_strRightFile = strSavePath;
 			UpdateHeaderPath(FALSE);
@@ -1127,6 +1133,9 @@ GetLineByteTimeReport(UINT lines, UINT bytes, const COleDateTime & start)
 
 /**
  * @brief Load file from disk into buffer
+ *
+ * @return FRESULT_OK or FRESULT_OK_IMPURE (load OK, but the EOL are of different types)
+ * or an error code (list in files.h)
  */
 int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInfo * infoUnpacker, CString sToFindUnpacker, BOOL & readOnly,
 		int nCrlfStyle, int codepage)
@@ -1295,10 +1304,15 @@ LoadFromFileExit:
 	return nRetVal;
 }
 
-/// Saves file from buffer to disk
-// NOTE: bTempFile is FALSE if we are saving user files and
-// TRUE if we are saving workin-temp-files for diff-engine
-BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
+/**
+ * @brief Saves file from buffer to disk
+ *
+ * @param bTempFile : FALSE if we are saving user files and
+ * TRUE if we are saving workin-temp-files for diff-engine
+ *
+ * @return SAVE_DONE or an error code (list in MergeDoc.h)
+ */
+int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		BOOL bTempFile, PackingInfo * infoUnpacker /*= NULL*/, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ ,
 		BOOL bClearModifiedFlag /*= TRUE*/ )
 {
@@ -1741,7 +1755,7 @@ void CMergeDoc::OnFileSaveAsLeft()
 	BOOL result = TRUE;
 	CString s;
 	CString title;
-	BOOL bSaveSuccess = FALSE;
+	int bSaveErrorCode;
 	
 	// use a temp packer
 	// first copy the m_pInfoUnpacker
@@ -1751,13 +1765,12 @@ void CMergeDoc::OnFileSaveAsLeft()
 	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
 	if (SelectFile(s, m_strLeftFile, title, NULL, FALSE))
 	{
-		bSaveSuccess = m_ltBuf.SaveToFile(s, FALSE, &infoTempUnpacker);
-		if(bSaveSuccess != SAVE_DONE)
+		bSaveErrorCode = m_ltBuf.SaveToFile(s, FALSE, &infoTempUnpacker);
+		if(bSaveErrorCode != SAVE_DONE)
 		{
-			BOOL bSaveAsSuccess = bSaveSuccess;
 			// Saving failed, user may save to another location if wants to
 			do
-				result = TrySaveAs(s, bSaveAsSuccess, TRUE, &infoTempUnpacker);
+				result = TrySaveAs(s, bSaveErrorCode, TRUE, &infoTempUnpacker);
 			while (!result);
 		}
 		else
@@ -1777,7 +1790,7 @@ void CMergeDoc::OnFileSaveAsRight()
 	BOOL result = TRUE;
 	CString s;
 	CString title;
-	BOOL bSaveSuccess = FALSE;
+	int bSaveErrorCode;
 	
 	// use a temp packer
 	// first copy the m_pInfoUnpacker
@@ -1787,13 +1800,12 @@ void CMergeDoc::OnFileSaveAsRight()
 	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
 	if (SelectFile(s, m_strRightFile, title, NULL, FALSE))
 	{
-		bSaveSuccess = m_rtBuf.SaveToFile(s, FALSE, &infoTempUnpacker);
-		if(bSaveSuccess != SAVE_DONE)
+		bSaveErrorCode = m_rtBuf.SaveToFile(s, FALSE, &infoTempUnpacker);
+		if(bSaveErrorCode != SAVE_DONE)
 		{
-			BOOL bSaveAsSuccess = bSaveSuccess;
 			// Saving failed, user may save to another location if wants to
 			do
-				result = TrySaveAs(s, bSaveAsSuccess, FALSE, &infoTempUnpacker);
+				result = TrySaveAs(s, bSaveErrorCode, FALSE, &infoTempUnpacker);
 			while (!result);
 		}
 		else

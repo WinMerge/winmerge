@@ -1,3 +1,8 @@
+2003-11-21 Laoran
+ SaveToFile : returned value (BOOL -> int)
+ cosmetic changes in TrySaveAs/DoSave/OnFileSaveAsLeft/OnFileSaveAsRight
+  WinMerge: MergeDoc.cpp MergeDoc.h
+
 2003-11-19 WinMerge beta 2.1.4.0 released
 
 2003-11-19 Laoran
