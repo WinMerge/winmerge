@@ -11,6 +11,18 @@ UnpackDFM is a plugin for WinMerge which allows WinMerge to compare and merge De
 Written in and for Borland Delphi 4.
 Requires the runtime library vcl40.bpl, which is part of the Delphi 4 setup.
 
+VC		FILE_PACK_UNPACK	WatchBeginningOfLog		*.log
+VC		FILE_PACK_UNPACK	WatchEndOfLog			*.log
+
+For long log files, user is often interested only in the first lines or in the last lines.
+WatchBeginningOfLog truncates the files to the first 1/10th.
+WatchEndOfLog truncates the files to the first 1/10th.
+
+VC		FILE_PACK_UNPACK	DisplayBinaryFiles		.exe, .dll, .ocx, .doc, .xls
+
+Quickly display binary files, like Windiff.
+No packing (no save).
+
 VB		BUFFER_PACK_UNPACK	HideLastLetter			*.last
 
 The last non-space character is invisible in the merge editor (and restored when saving)
@@ -24,6 +36,12 @@ VC		BUFFER_PREDIFF		RCLocalizationHelper		*.rc
 
 Ignore localized strings/layout in files .rc
 
+VC		BUFFER_PREDIFF		IgnoreColumns			*.txt
+VC		BUFFER_PREDIFF		IgnoreFieldsComma		*.csv
+VC		BUFFER_PREDIFF		IgnoreFieldsTab			*.txt
+
+Ignore differences in some columns or some fields (files with separators).
+Update the name of the dll to pass the list of columns/fields.
 
 VB		EDITOR_SCRIPT		ToUpper				---
 
@@ -39,10 +57,7 @@ VBS		EDITOR_SCRIPT		insert datetime			---
 InsertDate : insert date in the current locale
 InsertTime : insert time in the current locale
 
-VC		FILE_PACK_UNPACK	WatchBeginningOfLog		*.log
-VC		FILE_PACK_UNPACK	WatchEndOfLog			*.log
 
-For long log files, user is often interested only in the first lines or in the last lines.
-WatchBeginningOfLog truncates the files to the first 1/10th.
-WatchEndOfLog truncates the files to the first 1/10th.
+
+
 

@@ -1,3 +1,10 @@
+2004-06-21 Laoran
+ PATCH: [ 972299 ] Unpacker for comparing binary files
+  Plugins: list of sources.txt
+  Plugins\dlls add: DisplayBinaryFiles.dll
+  Plugins\dlls: list.txt
+  Plugins\src_VCPP\DisplayBinaryFiles add: all files
+
 2004-06-13 Laoran
  plugins doc : new sections, how to write and debug plugins
   Plugins: readme_developpers.txt syntax.txt
