@@ -1,4 +1,8 @@
 2003-11-11 Laoran
+ update global options dialog : 'Allow mixing EOL' -> 'preserve original EOL chars'
+ update global options dialog : 'ignore EOL' like in 2.0 
+  WinMerge: Merge.rc PropGeneral.cpp PropGeneral.h
+  Languages : *.rc
  PATCH: [ 831308 ] File filter selection text "<None>" hardcoded
   WinMerge: FileTransform.h Merge.cpp Merge.rc PropFilter.cpp SelectUnpackerDlg.cpp
    resource.h

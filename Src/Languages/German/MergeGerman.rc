@@ -417,12 +417,12 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,85,160,10
     CONTROL         "Leerzeichen &vergleichen",IDC_WHITESPACE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,138,41,102,10
-    CONTROL         "Z&eilenende erkennen",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,150,52,86,10
     CONTROL         "Leerzeic&henänderung ignorieren",IDC_WHITE_CHANGE,
-                    "Button",BS_AUTORADIOBUTTON,138,63,114,10
+                    "Button",BS_AUTORADIOBUTTON,138,52,114,10
     CONTROL         "&Alle Leerzeichen ignorieren",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,138,74,106,10
+                    BS_AUTORADIOBUTTON,138,63,106,10
+    CONTROL         "Z&eilenende erkennen",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,138,74,86,10
     GROUPBOX        "Tabulatoren",IDC_STATIC,7,105,245,35,WS_GROUP
     LTEXT           "&Tabulator-Größe:",IDC_STATIC,15,119,54,8
     EDITTEXT        IDC_TAB_EDIT,72,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,

@@ -409,16 +409,16 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,63,87,10
     CONTROL         "Automatic &rescan",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,74,71,10
-    CONTROL         "Allow mixing EOL types",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,89,10
+    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
     CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,125,45,82,10
-    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,137,56,69,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,125,41,82,10
     CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,125,67,96,10
+                    BS_AUTORADIOBUTTON,125,52,96,10
     CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,125,78,83,10
+                    BS_AUTORADIOBUTTON,125,63,83,10
+    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,125,74,69,10
     GROUPBOX        "Tabelátory",IDC_STATIC,7,105,221,30,WS_GROUP
     LTEXT           "&Nastavení tabulátorù:",IDC_STATIC,15,119,80,8
     EDITTEXT        IDC_TAB_EDIT,90,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,

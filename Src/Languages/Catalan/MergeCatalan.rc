@@ -412,15 +412,15 @@ BEGIN
     CONTROL         "&Re-explora automàticament",IDC_AUTOMRESCAN_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,74,108,10
     CONTROL         "Permet la &barreja de tipus de marques de final de línia",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,17,82,108,16
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,17,85,108,16
     CONTROL         "Compara els &espais",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,149,45,82,10
-    CONTROL         "Compara la marca de &final de línia",IDC_EOL_SENSITIVE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,161,56,124,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,149,41,82,10
     CONTROL         "Ignora els &canvis en els espais",IDC_WHITE_CHANGE,
-                    "Button",BS_AUTORADIOBUTTON,149,67,111,10
+                    "Button",BS_AUTORADIOBUTTON,149,52,111,10
     CONTROL         "Ignora t&ots els espais",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,149,78,83,10
+                    BS_AUTORADIOBUTTON,149,63,83,10
+    CONTROL         "Compara la marca de &final de línia",IDC_EOL_SENSITIVE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,149,74,124,10
     GROUPBOX        "Tabulacions",IDC_STATIC,7,105,285,30,WS_GROUP
     LTEXT           "&Tamany de les tabulacions:",IDC_STATIC,15,119,30,8
     EDITTEXT        IDC_TAB_EDIT,47,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,

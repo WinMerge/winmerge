@@ -408,16 +408,16 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,63,79,10
     CONTROL         "Automatisk &opdatering",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,74,71,10
-    CONTROL         "Allow mixing EOL types",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,89,10
+    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
     CONTROL         "Sammenlign &mellemrum",IDC_WHITESPACE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,138,41,89,10
-    CONTROL         "Sensitive for &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,150,52,71,10
     CONTROL         "Ignorer mellemrumsæ&ndringer",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,138,63,108,10
+                    BS_AUTORADIOBUTTON,138,52,108,10
     CONTROL         "Ignorer &alle mellemrum",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,138,74,85,10
+                    BS_AUTORADIOBUTTON,138,63,85,10
+    CONTROL         "Sensitive for &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,138,74,71,10
     GROUPBOX        "Tabulator",IDC_STATIC,7,105,245,30,WS_GROUP
     LTEXT           "&Tabulator størrelse:",IDC_STATIC,15,119,61,8
     EDITTEXT        IDC_TAB_EDIT,81,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,

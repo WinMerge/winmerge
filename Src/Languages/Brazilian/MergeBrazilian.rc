@@ -411,17 +411,17 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,63,97,10
     CONTROL         "&Atualização automática",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,74,89,10
-    CONTROL         "Allow mixing EOL types",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,89,10
+    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
     CONTROL         "Comparar e&spaços em branco",IDC_WHITESPACE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,135,41,110,10
-    CONTROL         "Sensível ao &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,147,52,70,10
     CONTROL         "&Ignorar moficações nos espaços em branco",
                     IDC_WHITE_CHANGE,"Button",BS_AUTORADIOBUTTON | 
-                    BS_MULTILINE,135,63,115,19
+                    BS_MULTILINE,135,52,115,19
     CONTROL         "Ignora t&odos espaços em branco",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,135,82,119,10
+                    BS_AUTORADIOBUTTON,135,71,119,10
+    CONTROL         "Sensível ao &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,135,82,70,10
     GROUPBOX        "Tabulação",IDC_STATIC,7,105,250,30,WS_GROUP
     LTEXT           "Tama&nho da tabulação:",IDC_STATIC,15,119,76,8
     EDITTEXT        IDC_TAB_EDIT,93,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,

@@ -62,9 +62,6 @@ BOOL CPropGeneral::OnInitDialog()
 {
 	CPropertyPage::OnInitDialog();
 
-	// enable/disable the "sensitive to EOL" button
-	OnAnyWhitespaceChange();
-
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -90,22 +87,9 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CPropGeneral, CPropertyPage)
 	//{{AFX_MSG_MAP(CPropGeneral)
-	ON_BN_CLICKED(IDC_WHITE_CHANGE, OnAnyWhitespaceChange)
-	ON_BN_CLICKED(IDC_WHITESPACE, OnAnyWhitespaceChange)
-	ON_BN_CLICKED(IDC_ALL_WHITE, OnAnyWhitespaceChange)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropGeneral message handlers
 
-// if compareWhitespace is off, "sensitive to EOL" has no influence
-// we disable "sensitive to EOL" button to make this evident for the user
-void CPropGeneral::OnAnyWhitespaceChange() 
-{
-	// TODO: Add your control notification handler code here
-	if (IsDlgButtonChecked(IDC_WHITESPACE))
-		GetDlgItem(IDC_EOL_SENSITIVE)->EnableWindow(TRUE);
-	else
-		GetDlgItem(IDC_EOL_SENSITIVE)->EnableWindow(FALSE);
-}

@@ -408,16 +408,16 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,63,105,10
     CONTROL         "AutomatickÈ p&reskenovanie",IDC_AUTOMRESCAN_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,74,101,10
-    CONTROL         "Allow mixing EOL types",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,89,10
+    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
     CONTROL         "Porovn·vaù &pr·zdne miesto",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,137,30,103,10
-    CONTROL         "Citliv˝ na &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,149,50,60,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,137,41,103,10
     CONTROL         "Ignoruj &zmeny v pr·zdnom mieste",IDC_WHITE_CHANGE,
-                    "Button",BS_AUTORADIOBUTTON,137,60,96,10
+                    "Button",BS_AUTORADIOBUTTON,137,52,96,10
     CONTROL         "Ignoruj &celÈ pr·zdne miesto",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,137,80,100,10
+                    BS_AUTORADIOBUTTON,137,63,100,10
+    CONTROL         "Citliv˝ na &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,137,80,60,10
     GROUPBOX        "Tabul·tory",IDC_STATIC,7,105,233,30,WS_GROUP
     LTEXT           "&Nastavenie tabul·torov:",IDC_STATIC,15,119,76,8
     EDITTEXT        IDC_TAB_EDIT,95,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,

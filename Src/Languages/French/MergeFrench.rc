@@ -413,16 +413,16 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,63,80,10
     CONTROL         "&Actualiser automatiquement",IDC_AUTOMRESCAN_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,74,103,10
-    CONTROL         "Mélanger les types d'EOL",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,89,10
+    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
     CONTROL         "Compare les &espaces",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,125,45,83,10
-    CONTROL         "Compare EO&L",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,137,56,60,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,125,41,83,10
     CONTROL         "Ignore les espaces consécutifs",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,125,67,111,10
+                    BS_AUTORADIOBUTTON,125,52,111,10
     CONTROL         "Ignore &tous les espaces",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,125,78,91,10
+                    BS_AUTORADIOBUTTON,125,63,91,10
+    CONTROL         "Compare EO&L (fins de lignes)",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,125,74,111,10
     GROUPBOX        "Tabulations :",IDC_STATIC,7,105,233,30
     LTEXT           "&Taille des tabulations :",IDC_STATIC,15,119,71,8
     EDITTEXT        IDC_TAB_EDIT,90,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,

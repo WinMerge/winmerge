@@ -399,16 +399,16 @@ BEGIN
                     WS_TABSTOP,17,63,100,10
     CONTROL         "自动重新扫描(&R)",IDC_AUTOMRESCAN_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,74,75,10
-    CONTROL         "Allow mixing EOL types",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,89,10
+    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
     CONTROL         "比对空白和制表符(&W)",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
-                    WS_GROUP,125,45,87,10
-    CONTROL         "忽略大小写(&C)",IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,137,56,69,10
+                    WS_GROUP,125,41,87,10
     CONTROL         "忽略空白和制表符更改(&H)",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,125,67,99,10
+                    BS_AUTORADIOBUTTON,125,52,99,10
     CONTROL         "忽略所有空白和制表符(&A)",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,125,78,99,10
+                    BS_AUTORADIOBUTTON,125,63,99,10
+    CONTROL         "忽略大小写(&C)",IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,125,74,69,10
     GROUPBOX        "制表符",-1,7,105,221,30,WS_GROUP
     LTEXT           "制表符大小(&T):",-1,10,119,35,8
     EDITTEXT        IDC_TAB_EDIT,47,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT

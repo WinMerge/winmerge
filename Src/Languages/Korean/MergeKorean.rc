@@ -374,16 +374,16 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,63,98,10
     CONTROL         "자동 리스캔(&R)",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,74,71,10
-    CONTROL         "Allow mixing EOL types",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,89,10
+    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
     CONTROL         "공백 비교(&W)",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,130,45,82,10
-    CONTROL         "EOL(End of Line)에 민감(&E)",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,140,56,110,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,130,41,82,10
     CONTROL         "바뀐 공백 무시(&H)",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,130,67,69,10
+                    BS_AUTORADIOBUTTON,130,52,69,10
     CONTROL         "모든 공백 무시(&A)",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,130,78,83,10
+                    BS_AUTORADIOBUTTON,130,63,83,10
+    CONTROL         "EOL(End of Line)에 민감(&E)",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,130,74,110,10
     GROUPBOX        "탭(Tabs)",IDC_STATIC,7,105,221,33,WS_GROUP
     LTEXT           "탭사이즈(&T):",IDC_STATIC,15,119,36,8
     EDITTEXT        IDC_TAB_EDIT,53,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
