@@ -1013,6 +1013,9 @@ IDB_HELP_CONTENTS       BITMAP                  "res\\help_contents.bmp"
 IDB_ERROR               BITMAP                  "res\\error.bmp"
 IDB_FOLDERUP            BITMAP                  "res\\folderup.bmp"
 IDB_FOLDERUP_DISABLE    BITMAP                  "res\\folderup_disable.bmp"
+IDB_EDIT_SELECTALL      BITMAP                  "res\\select_all.bmp"
+IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
+IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

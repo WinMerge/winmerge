@@ -424,6 +424,9 @@ HMENU CMainFrame::NewDefaultMenu(int ID /*=0*/)
 	m_default.ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
 	m_default.ModifyODMenu(NULL, ID_APP_EXIT, IDB_FILE_EXIT);
 	m_default.ModifyODMenu(NULL, ID_HELP_CONTENTS, IDB_HELP_CONTENTS);
+	m_default.ModifyODMenu(NULL, ID_EDIT_SELECT_ALL, IDB_EDIT_SELECTALL);
+	m_default.ModifyODMenu(NULL, ID_TOOLS_FILTERS, IDB_TOOLS_FILTERS);
+	m_default.ModifyODMenu(NULL, ID_TOOLS_CUSTOMIZECOLUMNS, IDB_TOOLS_COLUMNS);
 	m_default.LoadToolbar(IDR_MAINFRAME);
 
 	// append the scripts submenu

@@ -68,7 +68,9 @@
 #define IDB_HELP_CONTENTS               330
 #define IDB_FOLDERUP                    331
 #define IDB_FOLDERUP_DISABLE            332
-
+#define IDB_EDIT_SELECTALL              333
+#define IDB_TOOLS_FILTERS               334
+#define IDB_TOOLS_COLUMNS               335
 
 
 #define IDC_LEFT_EDIT                   1000

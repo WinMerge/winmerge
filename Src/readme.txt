@@ -3,6 +3,15 @@
   Submitted by Takashi Sawanaka
   Src: Merge.rc
   Src/Languages: *.rc
+ PATCH: [ 913743 ] Icons for menuitems (RFE 873697) - 16-color icons, 3 new icons
+  Submitted by Tim Gerundt
+  Src: MainFrm.cpp Merge.rc
+  Src/res: cascade.bmp change_pane.bmp close.bmp error.bmp exit.bmp
+   go_to.bmp horizontally.bmp language.bmp replace.bmp select_font.bmp
+   unknown.bmp vertically.bmp
+  Src/res new files: customize_columns.bmp filters.bmp select_all.bmp
+  Src/languages: *.rc resource.h
+  Src/languages/res: same changes than in Src/res
 
 2004-05-30 Laoran
  BUG: [ 909779 ] Uninitialised variable in CGhostTextBuffer::DeleteText() ; fix the fix !
