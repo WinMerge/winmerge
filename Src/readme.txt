@@ -1,3 +1,8 @@
+2004-05-21 Laoran
+ PATCH: [ 947680 ] Organize resource strings, part 2 (IDD and IDB)
+  Src: resource.h
+  Src/Languages: resource.h
+
 2004-05-21 Kimmo
  PrivateBuild in version resource must be empty string in CVS.
   Src: Merge.rc
