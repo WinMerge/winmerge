@@ -74,6 +74,14 @@ BOOL CPropEditor::OnInitDialog()
 	if (pEdit != NULL)
 		pEdit->SetLimitText(2);
 
+	// Enable/disable "Apply to unrecognized side" checkbox
+	if (IsDlgButtonChecked(IDC_HILITE_CHECK))
+		GetDlgItem(IDC_UNREC_APPLYSYNTAX)->EnableWindow(TRUE);
+	else
+	{
+		GetDlgItem(IDC_UNREC_APPLYSYNTAX)->EnableWindow(FALSE);
+	}
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -94,5 +102,4 @@ void CPropEditor::OnSyntaxHighlight()
 		CheckDlgButton(IDC_UNREC_APPLYSYNTAX, FALSE);
 		m_bApplySyntax = FALSE;
 	}
-
 }
