@@ -54,6 +54,8 @@ BEGIN_MESSAGE_MAP(CMergeDiffDetailView, CCrystalTextView)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_COMMAND(ID_SHOWLINEDIFF, OnShowlinediff)
 	ON_UPDATE_COMMAND_UI(ID_SHOWLINEDIFF, OnUpdateShowlinediff)
+	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_CHANGE_PANE, OnUpdateChangePane)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -566,4 +568,21 @@ void CMergeDiffDetailView::PopCursors()
 	ScrollToLine(m_nTopLinePushed);
 
 	// other positions are set to (0,0) during ResetView
+}
+
+/**
+ * @brief Change active pane in diff pane
+ */
+void CMergeDiffDetailView::OnChangePane()
+{
+	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, FALSE);
+	pSplitterWnd->ActivateNext();
+}
+
+/**
+ * @brief Enable "Change Pane" menuitem when diff pane is active
+ */
+void CMergeDiffDetailView::OnUpdateChangePane(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
 }

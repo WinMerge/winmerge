@@ -12,9 +12,6 @@
 #define __MERGEDIFFDETAILVIEW_H__
 
 
-//#define CONTEXT_LINES   5
-
-
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDiffDetailView view
 #ifndef __EDTLIB_H
@@ -24,14 +21,15 @@
 
 
 /**
-* @note This class must not be used in a vertical scrollable splitter
-* as we want to scroll only in the current diff, but the vertical
-* scrollbar would be for the whole buffer.
-* There are three virtual functions : ScrollToSubLine/EnsureVisible/SetSelection
-* to be sure that the top line and the cursor/selection pos remains in the
-* current diff.
-*
-*/
+ * @brief Class for Diff Pane View
+ *
+ * @note This class must not be used in a vertical scrollable splitter
+ * as we want to scroll only in the current diff, but the vertical
+ * scrollbar would be for the whole buffer.
+ * There are three virtual functions : ScrollToSubLine/EnsureVisible/SetSelection
+ * to be sure that the top line and the cursor/selection pos remains in the
+ * current diff.
+ */
 class CMergeDiffDetailView : public CCrystalTextView
 {
 protected:
@@ -120,6 +118,8 @@ protected:
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnShowlinediff();
 	afx_msg void OnUpdateShowlinediff(CCmdUI* pCmdUI);
+	afx_msg void OnChangePane();
+	afx_msg void OnUpdateChangePane(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

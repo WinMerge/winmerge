@@ -4,6 +4,8 @@
   Src/Languages/Italian: MergeItalian.rc
  PATCH: [ 1002585 ] Update dir compare statepane counts when reopening
   Src: DirView.cpp
+ PATCH: [ 1002887 ] Enable Change Pane menuitem for Diff Pane
+  Src: MergeDiffDetailView.cpp MergeDoffDetailView.h
   
 2004-08-03 Kimmo
  PATCH: [ 1002333 ] Set default filter to *.* when starting WinMerge
