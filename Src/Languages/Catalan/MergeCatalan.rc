@@ -1276,6 +1276,10 @@ BEGIN
     IDS_FILEPACK_FAILED_RIGHT
                             "El Plugin '%2' no pot tornar a empaquetar els vostres canvis al fitxer de la dreta altre cop cap a '%1'.\n\nEl fitxer original no serà canviat.\n\nVoleu desar la versió desempaquetada a un altre fitxer?"
     IDS_QUICKHELP           "Sintaxi : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl descesq] [/dr descdreta] camiesq camidreta [camisortida]\n\non:\n /? o -? mostra aquesta ajuda\n /r o -r diu al WinMerge que compari directoris recursivament\n /e o -e permet tancar el WinMerge amb una única polsació d'esc\n /ul o -ul diu al WinMerge que no afegeixi el camí de l'esquerra a la llista de recents (MRU)\n /ur o -ur diu al WinMerge que no afegeixi el camí de la dreta a la llista de recents (MRU)\n /ub o -ub diu al WinMerge que no afegeixi cap dels dos camins a la llista de recents (MRU)\n /dl o -dl afegeix una descripció per a mostrar a la banda esquerra enlloc del nom del directori/fitxer\n /dr o -dr afegeix una descripció per a mostrar a la banda dreta enlloc del nom del directori/fitxer\n camiesq és el directori o nom de fitxer per a ésser obert a la banda esquerra\n camidreta és el directori o nom de fitxer per a ésser obert a la banda dreta\n camisortida és un directori de sortida opcional on voleu que els fitxers fusionats siguin desats\n \n Nota: cal que camiesq i camidreta siguin ambdós directoris o fitxers\n"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
     IDS_LINEDIFF_NODIFF     "No difference"
     IDS_LINEDIFF_NODIFF_CAPTION "Line difference"
     IDS_ERROR_FILE_NOT_UNPACKED "El fitxer not s'ha desempaquetat: %1"
@@ -1290,6 +1294,7 @@ BEGIN
     IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
     IDS_COPY_TO_LEFT2       "Right to left (%1 of %2)"
     IDS_COPY_TO_RIGHT2      "Left to right (%1 of%2)"
+    IDS_DIRSEL_TAG          "Directory Selection"
 END
 
 STRINGTABLE DISCARDABLE

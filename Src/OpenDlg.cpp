@@ -39,8 +39,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-const LPCTSTR DIRSEL_TAG = _T("Directory Selection");
-
 // Timer ID and timeout for delaying path validity check
 const UINT IDT_CHECKFILES = 1;
 const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
@@ -106,9 +104,11 @@ void COpenDlg::OnLeftButton()
 {
 	CString s;
 	CString sfolder, sname;
+	CString dirSelTag;
 	CFileStatus status;
 	UpdateData(TRUE); 
 
+    VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
 	if (CFile::GetStatus(m_strLeft, status)
 		&& (status.m_attribute & CFile::Attribute::directory))
 			sfolder = m_strLeft;
@@ -117,7 +117,7 @@ void COpenDlg::OnLeftButton()
 	if (SelectFile(s, sfolder))
 	{
 		SplitFilename(s, &sfolder, &sname, 0);
-		if (sname == DIRSEL_TAG)
+		if (sname == dirSelTag)
 		{
 			m_strLeft = sfolder + '\\';
 		}
@@ -132,6 +132,7 @@ void COpenDlg::OnRightButton()
 {
 	CString s;
 	CString sfolder, sname;
+	CString dirSelTag;
 	CFileStatus status;
 	UpdateData(TRUE);
 
@@ -143,7 +144,7 @@ void COpenDlg::OnRightButton()
 	if (SelectFile(s, sfolder))
 	{
 		SplitFilename(s, &sfolder, &sname, 0);
-		if (sname == DIRSEL_TAG)
+		if (sname == dirSelTag)
 			m_strRight = sfolder + '\\';
 		else
 			m_strRight = s;
@@ -278,11 +279,13 @@ void COpenDlg::UpdateButtonStates()
 
 BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder) 
 {
-	CString s;           
-                   
-	VERIFY(s.LoadString(IDS_ALLFILES) );
+	CString s;
+	CString dirSelTag;
+
+    VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
+	VERIFY(s.LoadString(IDS_ALLFILES));
 	DWORD flags = OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
-	CFileDialog pdlg(TRUE, NULL, DIRSEL_TAG, flags, s);
+	CFileDialog pdlg(TRUE, NULL, dirSelTag, flags, s);
 	CString title;
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	pdlg.m_ofn.lpstrTitle = title;

@@ -1278,6 +1278,7 @@ BEGIN
     IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
     IDS_COPY_TO_LEFT2       "Right to left (%1 of %2)"
     IDS_COPY_TO_RIGHT2      "Left to right (%1 of%2)"
+    IDS_DIRSEL_TAG          "Directory Selection"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -1301,14 +1302,13 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "Ersatt %1 sträng(ar)."
     IDS_EDIT_TEXT_NOT_FOUND "Kan inte hitta strängen ""%s"""
-    IDS_LINE_STATUS_INFO_EOL "Rad: %s Tecken: %d EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "Rad: %s Tecken: %d Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Rad: %s"
-    IDS_LINE_STATUS_INFO    "Rad: %s Tecken: %d"
+    IDS_LINE_STATUS_INFO    "Rad: %s Tecken: %d Characters: %d"
     IDS_VSSFOLDER_AND_FILE_NOMATCH 
                             "The VSS Working Folder and the location of the current file do not match. Continue?"
     IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"
 END
-
 
 STRINGTABLE DISCARDABLE 
 BEGIN

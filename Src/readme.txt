@@ -1,3 +1,8 @@
+2004-01-02 Kimmo
+ PATCH: [ 868584 ] Move DIRSEL_TAG to string resource
+  WinMerge: Merge.rc OpenDlg.cpp resource.h
+  Languages: *.rc resource.h
+
 2003-12-28 Perry
  PATCH: [ 863738 ] Various Updates in German Translation
   Updates to German translation by Tim Gerundt (gerundt), based on 1.73 MergeGerman.rc

@@ -1292,6 +1292,7 @@ BEGIN
     IDS_DEL_BOTH_FMT2       "Beide (%1 of %2)"
     IDS_COPY_TO_LEFT2       "Rechts nach Links (%1 von %2)"
     IDS_COPY_TO_RIGHT2      "Links nach Rechts (%1 von %2)"
+    IDS_DIRSEL_TAG          "Directory Selection"
 END
 
 STRINGTABLE DISCARDABLE
