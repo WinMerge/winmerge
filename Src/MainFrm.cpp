@@ -336,7 +336,11 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 		pRight->SetTabSize(mf->m_nTabSize);
 		pLeft->SetViewTabs(mf->m_bViewWhitespace);
 		pRight->SetViewTabs(mf->m_bViewWhitespace);
-		
+
+		// Enable Backspace at beginning of line 
+		pLeft->SetDisableBSAtSOL( FALSE ); 
+		pRight->SetDisableBSAtSOL( FALSE ); 
+
 		// set the frame window header
 		CChildFrame *pf = pMergeDoc->GetParentFrame();
 		if (pf != NULL)

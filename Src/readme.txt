@@ -1,3 +1,7 @@
+2003-04-04 Christian
+ PATCH: [ 711843 ] Allow backspace at beginning of line
+  WinMerge: MainFrm.cpp
+
 2003-04-03 Kimmo
  BUG: [ 714570 ] Sensitive to EOL -setting not saved
   WinMerge: MainFrm.cpp
