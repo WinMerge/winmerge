@@ -142,6 +142,8 @@ void CLocationView::OnDraw(CDC* pDC)
 		m_pixInLines = 1 / MAX_LINEPIX;
 	}
 
+	DrawVisibleAreaRect();
+
 	while (true)
 	{
 		// here nstart0 = last line before block
@@ -513,4 +515,37 @@ int CLocationView::IsInsideBar(CRect rc, POINT pt)
 		retVal = BAR_RIGHT;
 
 	return retVal;
+}
+
+/** 
+ * @brief Draws rect indicating visible area in file views.
+ * @todo This function dublicates too much DrawRect() code.
+ */
+void CLocationView::DrawVisibleAreaRect()
+{
+	CMergeDoc* pDoc = GetDocument();
+	const int nTopLine = pDoc->GetRightView()->GetTopLine();
+	const int nScreenLines = pDoc->GetRightView()->GetScreenLines();
+	const int nBottomLine = nTopLine + nScreenLines;
+
+	CRect rc;
+	GetClientRect(rc);
+	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
+	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
+	double nLineInPix = hTotal / nbLines;
+	if (nLineInPix > MAX_LINEPIX)
+		nLineInPix = MAX_LINEPIX;
+
+	int nTopCoord = Y_OFFSET + ((double)nTopLine * nLineInPix);
+	int nLeftCoord = 2;
+	int nBottomCoord = Y_OFFSET + ((double)(nTopLine + nScreenLines) * nLineInPix);
+	int nRightCoord = rc.Width() - 2;
+	const int barBottom = min(nbLines / m_pixInLines + Y_OFFSET, rc.Height() - Y_OFFSET);	
+	// Make sure bottom coord is in bar range
+	nBottomCoord = min(nBottomCoord, barBottom);
+
+	CRect rcVisibleArea(nLeftCoord, nTopCoord, nRightCoord, nBottomCoord);
+	CDC *pClientDC = GetDC();
+	pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_SCROLLBAR));
+	ReleaseDC(pClientDC);
 }

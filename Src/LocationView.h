@@ -50,6 +50,7 @@ protected:
 	BOOL GotoLocation(CPoint point);
 	int GetLineFromYPos(int nYCoord, CRect rc, int bar);
 	int IsInsideBar(CRect rc, POINT pt);
+	void DrawVisibleAreaRect();
 
 private:
 	CMergeEditView* m_view0;

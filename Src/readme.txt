@@ -1,3 +1,7 @@
+2005-01-03 Kimmo
+ PATCH: [ 1094474 ] Visible area indicator for location pane
+  Src: LocationView.cpp LocationView.h MergeEditView.h
+
 2005-01-02 Kimmo
  PATCH: [ 1088049 ] Ask about saving when Window/Close is selected
   Src: MergeEditView.cpp MergeEditView.h

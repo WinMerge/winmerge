@@ -167,6 +167,8 @@ public:
 			COLORREF & crText, BOOL & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
 	void GotoLine(UINT nLine, BOOL bRealLine, BOOL bLeft);
+	int GetTopLine() { return m_nTopLine; };
+	int GetScreenLines() { return CCrystalTextView::GetScreenLines(); };
 
 	// to customize the mergeview menu
 	static HMENU createScriptsSubmenu(HMENU hMenu);
