@@ -1,4 +1,13 @@
+2004-03-28 Kimmo
+ PATCH: [ 913743 ] Icons for menuitems (RFE 873697)
+  File/Exit and Help/Contents icons from Tim Gerundt
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/res new files: exit.bmp help_contents.bmp
+  Languages: *.rc resource.h
+  Languages/res: exit.bmp help_contents.bmp
+
 2004-03-27 Laoran
+ PATCH [ 921788 ] scripts submenu in the main menu
  Src: FileTransform.cpp FileTransform.h MainFrm.cpp MainFrm.h Merge.rc
   MergeEditView.cpp MergeEditView.h Plugins.cpp Plugins.h resource.h
  Src/Languages: *.rc resource.h
