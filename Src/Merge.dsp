@@ -113,7 +113,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\Download\WinMerge\WinMergeCompile\Build\MergeRelease\WinMerge.exe
+TargetPath=\WinMerge\WinMerge_CVS\WinMerge\Build\MergeRelease\WinMerge.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -147,7 +147,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib shlwapi.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease\WinMergeU.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\Download\WinMerge\WinMergeCompile\Build\MergeUnicodeRelease\WinMergeU.exe
+TargetPath=\WinMerge\WinMerge_CVS\WinMerge\Build\MergeUnicodeRelease\WinMergeU.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -166,36 +166,6 @@ PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # Begin Source File
 
 SOURCE=.\7zCommon.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\diffutils\src\ANALYZE.C
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -232,36 +202,6 @@ SOURCE=.\Common\CMoveConstraint.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\diffutils\lib\CMPBUF.C
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
 SOURCE=.\codepage.cpp
 # End Source File
 # Begin Source File
@@ -274,36 +214,6 @@ SOURCE=.\ConfigLog.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\diffutils\src\CONTEXT.C
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
 SOURCE=.\Common\coretools.cpp
 # End Source File
 # Begin Source File
@@ -313,27 +223,6 @@ SOURCE=.\common\CShellFileOp.cpp
 # Begin Source File
 
 SOURCE=.\Common\CSubclass.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\Diff.cpp
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# ADD CPP /O2
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# ADD CPP /O2
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -384,36 +273,6 @@ SOURCE=.\DirDoc.cpp
 
 # SUBTRACT BASE CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
-SOURCE=.\diffutils\src\DIRENT.C
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
 
@@ -483,36 +342,6 @@ SOURCE=.\dllver.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\diffutils\src\ED.C
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
 SOURCE=.\EditorFilepathBar.cpp
 # End Source File
 # Begin Source File
@@ -541,36 +370,6 @@ SOURCE=.\FileTransform.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\diffutils\lib\FNMATCH.C
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
 SOURCE=.\GhostTextBuffer.cpp
 # End Source File
 # Begin Source File
@@ -579,72 +378,7 @@ SOURCE=.\GhostTextView.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\diffutils\GnuVersion.c
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
 SOURCE=.\Common\HScrollListBox.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\diffutils\src\IFDEF.C
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
-SOURCE=.\diffutils\src\IO.C
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -761,36 +495,6 @@ SOURCE=.\Common\MessageBoxDialog.cpp
 # Begin Source File
 
 SOURCE=.\Common\multiformatText.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\diffutils\src\NORMAL.C
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -913,36 +617,6 @@ SOURCE=.\PropVss.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\diffutils\lib\REGEX.C
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
 SOURCE=.\Common\RegExp.cpp
 # End Source File
 # Begin Source File
@@ -956,36 +630,6 @@ SOURCE=.\SaveClosingDlg.cpp
 # Begin Source File
 
 SOURCE=.\SelectUnpackerDlg.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\diffutils\src\SIDE.C
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -1084,36 +728,6 @@ SOURCE=.\Common\UniFile.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\diffutils\src\UTIL.C
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
 SOURCE=.\Common\varprop.cpp
 # End Source File
 # Begin Source File
@@ -1179,19 +793,11 @@ SOURCE=.\Common\CMoveConstraint.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\diffutils\lib\CMPBUF.H
-# End Source File
-# Begin Source File
-
 SOURCE=.\codepage.h
 # End Source File
 # Begin Source File
 
 SOURCE=.\ColorButton.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\diffutils\CONFIG.H
 # End Source File
 # Begin Source File
 
@@ -1208,10 +814,6 @@ SOURCE=.\common\CShellFileOp.h
 # Begin Source File
 
 SOURCE=.\Common\CSubclass.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\diffutils\src\DIFF.H
 # End Source File
 # Begin Source File
 
@@ -1244,10 +846,6 @@ SOURCE=.\DirCompStateBar.h
 # Begin Source File
 
 SOURCE=.\DirDoc.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\diffutils\src\DIRENT.H
 # End Source File
 # Begin Source File
 
@@ -1304,10 +902,6 @@ SOURCE=.\files.h
 # Begin Source File
 
 SOURCE=.\FileTransform.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\diffutils\src\FNMATCH.H
 # End Source File
 # Begin Source File
 
@@ -1459,10 +1053,6 @@ SOURCE=.\PropVss.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\diffutils\lib\REGEX.H
-# End Source File
-# Begin Source File
-
 SOURCE=.\Common\RegExp.h
 # End Source File
 # Begin Source File
@@ -1524,10 +1114,6 @@ SOURCE=.\stringdiffsi.h
 # Begin Source File
 
 SOURCE=.\Common\SuperComboBox.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\diffutils\src\SYSTEM.H
 # End Source File
 # Begin Source File
 
@@ -1936,6 +1522,432 @@ SOURCE=.\editlib\wispelld.h
 # Begin Source File
 
 SOURCE=.\editlib\xml.cpp
+# End Source File
+# End Group
+# Begin Group "DiffEngine"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\diffutils\src\ANALYZE.C
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\lib\CMPBUF.C
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\lib\CMPBUF.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\CONFIG.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\src\CONTEXT.C
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\Diff.cpp
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# ADD CPP /O2
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# ADD CPP /O2
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\src\DIFF.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\src\DIRENT.C
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\src\DIRENT.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\src\ED.C
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\lib\FNMATCH.C
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\lib\FNMATCH.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\src\FNMATCH.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\lib\GETOPT.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\GnuVersion.c
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\src\IFDEF.C
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\src\IO.C
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\src\NORMAL.C
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\lib\REGEX.C
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\lib\REGEX.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\src\SIDE.C
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\src\SYSTEM.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\diffutils\src\UTIL.C
+
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /YX /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # End Group
 # Begin Source File

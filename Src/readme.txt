@@ -1,3 +1,7 @@
+2004-09-23 Kimmo
+ PATCH: [ 1032841 ] Add 'DiffEngine' filegroup to project file
+  Src: Merge.dsp
+
 2004-09-22 Kimmo
  BUG: [ 1029646 ] (Norwegian) Options/Editor text chopped off
   Fix all languages
