@@ -1,6 +1,9 @@
 2003-08-07 Kimmo
  PATCH: [ 781013 ] 256 Color icon
   editlib/res: Merge.ico
+ PATCH: [ 783593 ] Add Merge-menu
+  WinMerge: Merge.rc
+  Languages: *.rc
 
 2003-08-07 Perry
  Fix GetItemFileNames to not pull its data from listview (b/c columns may be reordered).

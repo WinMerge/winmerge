@@ -109,19 +109,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "下一不同(&N)\tAlt+Down",      ID_NEXTDIFF
-        MENUITEM "上一不同(&P)\tAlt+Up",        ID_PREVDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "第一個不同(&F)\tAlt+Home",    ID_FIRSTDIFF
-        MENUITEM "目前不同(&C)\tAlt+Enter",     ID_CURDIFF
-        MENUITEM "上次的不同(&D)\tAlt+End",     ID_LASTDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "複製到右邊(&R)\tAlt+Right",   ID_L2R
-        MENUITEM "複製到左邊(&L)\tAlt+Left",    ID_R2L
-        MENUITEM SEPARATOR
-        MENUITEM "全部複製到右邊(&A)",          ID_ALL_RIGHT
-        MENUITEM "全部複製到左邊(&E)",          ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "尋找(&I)...\tCtrl+F",         ID_EDIT_FIND
         MENUITEM "取代(&C)...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
@@ -147,6 +134,21 @@ BEGIN
         MENUITEM "狀態列(&S)",                  ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "語言(&L)...",                 ID_VIEW_LANGUAGE
+    END
+    POPUP "&Merge"
+    BEGIN
+        MENUITEM "下一不同(&N)\tAlt+Down",      ID_NEXTDIFF
+        MENUITEM "上一不同(&P)\tAlt+Up",        ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "第一個不同(&F)\tAlt+Home",    ID_FIRSTDIFF
+        MENUITEM "目前不同(&C)\tAlt+Enter",     ID_CURDIFF
+        MENUITEM "上次的不同(&D)\tAlt+End",     ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "複製到右邊(&R)\tAlt+Right",   ID_L2R
+        MENUITEM "複製到左邊(&L)\tAlt+Left",    ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "全部複製到右邊(&A)",          ID_ALL_RIGHT
+        MENUITEM "全部複製到左邊(&E)",          ID_ALL_LEFT
     END
     POPUP "視窗(&W)"
     BEGIN

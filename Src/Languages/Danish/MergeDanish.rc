@@ -112,19 +112,6 @@ BEGIN
         MENUITEM "&Indsæt\tCtrl+V",             ID_EDIT_PASTE
         MENUITEM SEPARATOR
         MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
-       MENUITEM SEPARATOR
-        MENUITEM "&Næste forskel\tAlt+Ned",     ID_NEXTDIFF
-        MENUITEM "Fo&rrige forskel\tAlt+Op",    ID_PREVDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "F&ørste forskel\tAlt+Home",   ID_FIRSTDIFF
-        MENUITEM "&Aktuelle forskel\tAlt+Enter", ID_CURDIFF
-        MENUITEM "&Sidste forskel\tAlt+End",    ID_LASTDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "Kopier til &højre\tAlt+Højre", ID_L2R
-        MENUITEM "Kopier til &venstre\tAlt+Venstre", ID_R2L
-        MENUITEM SEPARATOR
-        MENUITEM "Kopier alt &til højre",       ID_ALL_RIGHT
-        MENUITEM "Kopier alt til ve&nstre",     ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "Sø&g...\tCtrl+F",             ID_EDIT_FIND
         MENUITEM "&Erstat...\tCtrl+H",          ID_EDIT_REPLACE
@@ -151,6 +138,21 @@ BEGIN
         MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "S&prog...",                   ID_VIEW_LANGUAGE
+    END
+    POPUP "&Merge"
+    BEGIN
+        MENUITEM "&Næste forskel\tAlt+Ned",     ID_NEXTDIFF
+        MENUITEM "Fo&rrige forskel\tAlt+Op",    ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "F&ørste forskel\tAlt+Home",   ID_FIRSTDIFF
+        MENUITEM "&Aktuelle forskel\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Sidste forskel\tAlt+End",    ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Kopier til &højre\tAlt+Højre", ID_L2R
+        MENUITEM "Kopier til &venstre\tAlt+Venstre", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Kopier alt &til højre",       ID_ALL_RIGHT
+        MENUITEM "Kopier alt til ve&nstre",     ID_ALL_LEFT
     END
     POPUP "&Vindue"
     BEGIN

@@ -27,18 +27,18 @@ LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE DISCARDABLE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE DISCARDABLE
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE DISCARDABLE
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
@@ -73,17 +73,17 @@ IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU DISCARDABLE 
+IDR_POPUP_DIFFVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_POPUP_"
     BEGIN
         MENUITEM "KopÌrovaù na druh˙ stranu",   ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "KopÌrovaù z druhej strany",   ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "KopÌrovaù vöetky rozdiely na druh˙ stranu...", 
+        MENUITEM "KopÌrovaù vöetky rozdiely na druh˙ stranu...",
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
 
-        MENUITEM "KopÌrovaù vöetky rozdiely z druhej strany...", 
+        MENUITEM "KopÌrovaù vöetky rozdiely z druhej strany...",
                                                 ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
 
         MENUITEM SEPARATOR
@@ -93,7 +93,7 @@ BEGIN
     END
 END
 
-IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE
 BEGIN
     POPUP "&S˙bor"
     BEGIN
@@ -112,19 +112,6 @@ BEGIN
         MENUITEM "V&loûiù\tCtrl+V",             ID_EDIT_PASTE
         MENUITEM SEPARATOR
         MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "&N·sleduj˙ci rozdiel\tTAlt+Down", ID_NEXTDIFF
-        MENUITEM "&Predch·dzaj˙ci rozdiel\tAlt+Up", ID_PREVDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "Pr&v˝ rozdiel\tAlt+Home",     ID_FIRSTDIFF
-        MENUITEM "&Aktu·ny rozdiel\tAlt+Enter", ID_CURDIFF
-        MENUITEM "Posledn˝ &rozdiel\tAlt+End",  ID_LASTDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "KopÌrovaù vpravo\t<-",        ID_L2R
-        MENUITEM "KopÌrovaù væavo\t->",         ID_R2L
-        MENUITEM SEPARATOR
-        MENUITEM "KopÌrovaù vöetko vpravo",     ID_ALL_RIGHT
-        MENUITEM "KopÌrovaù vöetko væavo",      ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "&Hæadaj...\tCtrl+F",          ID_EDIT_FIND
         MENUITEM "NahraÔ...\tCtrl+H",           ID_EDIT_REPLACE
@@ -152,6 +139,21 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
     END
+    POPUP "M&erge"
+    BEGIN
+        MENUITEM "&N·sleduj˙ci rozdiel\tTAlt+Down", ID_NEXTDIFF
+        MENUITEM "&Predch·dzaj˙ci rozdiel\tAlt+Up", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Pr&v˝ rozdiel\tAlt+Home",     ID_FIRSTDIFF
+        MENUITEM "&Aktu·ny rozdiel\tAlt+Enter", ID_CURDIFF
+        MENUITEM "Posledn˝ &rozdiel\tAlt+End",  ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "KopÌrovaù vpravo\t<-",        ID_L2R
+        MENUITEM "KopÌrovaù væavo\t->",         ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "KopÌrovaù vöetko vpravo",     ID_ALL_RIGHT
+        MENUITEM "KopÌrovaù vöetko væavo",      ID_ALL_LEFT
+    END
     POPUP "&Okno"
     BEGIN
         MENUITEM "Zavrieù",                     ID_FILE_CLOSE
@@ -169,7 +171,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_DIRVIEW MENU DISCARDABLE 
+IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -192,7 +194,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
@@ -257,17 +259,17 @@ CAPTION "V˝ber s˙borov a adres·rov..."
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     LTEXT           "&ºav˝:",IDC_STATIC,16,24,37,8
-    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN | 
+    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "&Prech·dzaù...",IDC_LEFT_BUTTON,241,22,59,12
     LTEXT           "P&rav˝:",IDC_STATIC,16,40,37,8
-    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | 
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "Pr&ech·dzaù...",IDC_RIGHT_BUTTON,241,38,59,12
     LTEXT           "Pr&Ìpony:",IDC_STATIC,16,56,37,8
-    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN | 
+    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "V&norenÈ adres·re",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,35,77,190,10
@@ -288,7 +290,7 @@ BEGIN
     PUSHBUTTON      "Storno",IDCANCEL,173,121,50,14
     PUSHBUTTON      "Uloûiù ako...",IDSAVEAS,103,121,50,14
     LTEXT           "Projekt:",IDC_STATIC,9,61,25,8
-    COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN | 
+    COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Login:",IDC_STATIC,9,80,20,8
     EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
@@ -305,7 +307,7 @@ BEGIN
     LTEXT           "&Cesta ku cleartool.exe:",IDC_VSS_L1,16,42,73,8
     EDITTEXT        IDC_PATH_EDIT,92,40,109,12,ES_AUTOHSCROLL
     PUSHBUTTON      "&Prech·dzaù",IDC_BROWSE_BUTTON,206,40,42,12
-    COMBOBOX        IDC_VER_SYS,92,20,150,41,CBS_DROPDOWNLIST | WS_VSCROLL | 
+    COMBOBOX        IDC_VER_SYS,92,20,150,41,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "SystÈm &verziÌ:",IDC_STATIC,16,22,60,10
 END
@@ -355,7 +357,7 @@ FONT 8, "MS Sans Serif"
 BEGIN
     PUSHBUTTON      "OK",IDOK,154,16,52,14
     PUSHBUTTON      "Storno",IDCANCEL,154,33,52,14
-    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | 
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT |
                     WS_VSCROLL | WS_TABSTOP
     LTEXT           "DostupnÈ jazyky:",IDC_STATIC,7,7,66,8
 END
@@ -365,7 +367,7 @@ STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "N·jdi"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    COMBOBOX        IDC_EDIT_FINDTEXT,41,6,135,138,CBS_DROPDOWN | WS_VSCROLL | 
+    COMBOBOX        IDC_EDIT_FINDTEXT,41,6,135,138,CBS_DROPDOWN | WS_VSCROLL |
                     WS_TABSTOP
     CONTROL         "Iba celÈ &slov·",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
@@ -388,9 +390,9 @@ STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "NahraÔ"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN | CBS_SORT | 
+    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN | CBS_SORT |
                     WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN | 
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN |
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Iba celÈ slov·",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
@@ -419,7 +421,7 @@ BEGIN
     DEFPUSHBUTTON   "CheckOut",IDOK,35,90,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,194,90,50,14
     PUSHBUTTON      "Save As...",IDSAVEAS,114,90,50,14
-    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Comments",IDC_STATIC,18,7,34,10
 END
@@ -443,10 +445,10 @@ BEGIN
                     7,221,15
     LTEXT           "Regul·rne v˝razy (jeden na riadok):",IDC_STATIC,7,28,
                     221,8
-    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | 
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
     LTEXT           "S˙bor pre filter:",IDC_STATIC,7,128,60,10
-    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
 
@@ -456,26 +458,26 @@ CAPTION "Farby"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     LTEXT           "Rozdiel:",IDC_STATIC,43,29,26,8
-    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,98,29,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,98,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     LTEXT           "Rozdiel vo v˝bere:",IDC_STATIC,13,49,60,8
-    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,98,49,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,98,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     LTEXT           "Background",IDC_STATIC,86,15,40,8
     LTEXT           "Deleted",IDC_STATIC,137,15,26,8
-    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT | 
+                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT | 
+                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     LTEXT           "Text",IDC_STATIC,184,15,15,8
 END
@@ -486,7 +488,7 @@ CAPTION "Dialog"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,106,136,50,14
-    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | 
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY |
                     WS_VSCROLL
 END
 
@@ -557,7 +559,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO DISCARDABLE
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
@@ -696,16 +698,16 @@ IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
 IDD_PROP_VSS DLGINIT
 BEGIN
     IDC_VER_SYS, 0x403, 5, 0
-0x6f4e, 0x656e, "\000" 
+0x6f4e, 0x656e, "\000"
     IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029, 
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029,
     IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029, 
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029,
     IDC_VER_SYS, 0x403, 19, 0
-0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
-"\000" 
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573,
+"\000"
     0
 END
 
@@ -722,14 +724,14 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDS_VERSION_FMT         "Verzia %1 - Slovensk˝ preklad"
     IDS_ALLFILES            "Vöetky s˙bory (*.*)|*.*||"
@@ -747,13 +749,13 @@ BEGIN
     IDS_CANT_COMPARE_FILES  "Nemoûno porovnaù s˙bory"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Pripraven˝"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -763,7 +765,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_NEW             "Vytvoriù nov˝ dokument\nNov˝ dokument"
     ID_FILE_OPEN            "Otvoriù existuj˙ci dokument\nOtvor"
@@ -776,13 +778,13 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "N·hæad\nPrehæad pred tlaËou"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_APP_ABOUT            "Zobraziù inform·cie o programe\nO programe"
     ID_APP_EXIT             "UkonËiù program s ot·zkou na uloûenie s˙borov\nKoniec"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Otvoriù dokument"
     ID_FILE_MRU_FILE2       "Otvoriù dokument"
@@ -802,13 +804,13 @@ BEGIN
     ID_FILE_MRU_FILE16      "Otvoriù dokument"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_NEXT_PANE            "Peepn˙ù na Ôalöie okno\nœalöie okno"
     ID_PREV_PANE            "Prepn˙ù na predch·dzaj˙ce okno\nPredch·dzaj˙ce okno"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_WINDOW_NEW           "Otvoriù Ôalöie okno s aktu·lnym dokumentom\nNovÈ okno"
     ID_WINDOW_ARRANGE       "Uspoiadaù ikony na spodnom okraji okna\nUsporiadaj ikony"
@@ -818,7 +820,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Rozdeliù aktÌvne okno\nRozdeliù"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_EDIT_CLEAR           "Vymazaù v˝ber\nZmazaù"
     ID_EDIT_CLEAR_ALL       "Zmazaù vöetko\nZmazaù vöetko"
@@ -833,13 +835,13 @@ BEGIN
     ID_EDIT_REDO            "Obnoviù posledn˙ odvolan˙ akciu\nRedo"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Zobraziù alebo skryù panel n·strojov\nPanel n·strojov"
     ID_VIEW_STATUS_BAR      "Zobraziù nebo skryù stavov˝ riadok\nStavov˝ riadok"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCSIZE          "Zmeniù veækosù okna"
     AFX_IDS_SCMOVE          "Zmeniù pozÌciu okna"
@@ -850,19 +852,19 @@ BEGIN
     AFX_IDS_SCCLOSE         "Zatvoriù aktÌvne okno s moûnosùou uloûenia dokumentov"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCRESTORE       "Obnoviù okn·"
     AFX_IDS_SCTASKLIST      "Aktivovaù zoznam ˙loh"
     AFX_IDS_MDICHILD        "Aktivovaù toto okno"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Zatvoriù n·hæad tlaËe\nZruö n·hæad"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_L2R                  "ZkopÌrovaù vybran˝ text do s˙boru vpravo\nKopÌruj vpravo (->)"
     ID_R2L                  "SkopÌrovaù vybran˝ text do s˙boru væavo\nKopÌruj væavo (<-)"
@@ -874,9 +876,9 @@ BEGIN
     ID_OPTIONS_BACKUPORIGINALFILE "Uloûiù z·loûn˙ kÛpiu s˙boru\nBackup"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
                             "Automaticky prejde na prv˝ rozdiel\nScroll First"
     ID_OPTIONS_IGNOREWHITESPACE "Pri porovnanÌ neberie do ˙vahy pr·zdne mÌsto"
     ID_HIDE_BACKUP_FILES    "Skryù s˙bory s prÌponou BAK"
@@ -890,7 +892,7 @@ BEGIN
     ID_DIR_COPY_FILE_TO_LEFT "KopÌrovaù vybranÈ s˙bory do inÈho adres·ra"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_DIR_COPY_FILE_TO_RIGHT "KopÌrovaù vybranÈ s˙bory do inÈho adres·ra"
     ID_VIEW_LANGUAGE        "Zvoliù jazyk uûivateæskÈho rozhrania\nJazyk"
@@ -902,9 +904,9 @@ BEGIN
     ID_DIR_DEL_LEFT         "Zmaû vybranÈ poloûky væavo"
     ID_DIR_DEL_RIGHT        "Zmaû vybranÈ poloûky vpravo"
     ID_DIFFSTATUS           "placeholder for status count"
-    ID_OPTIONS_SHOWUNIQUELEFT 
+    ID_OPTIONS_SHOWUNIQUELEFT
                             "Zobraz s˙bory, ktorÈ existuj˙ iba na æavej strane"
-    ID_OPTIONS_SHOWUNIQUERIGHT 
+    ID_OPTIONS_SHOWUNIQUERIGHT
                             "Zobraz s˙bory, ktorÈ existuj˙ iba na pravej strane"
     ID_DIR_DEL_BOTH         "Zmaû vybranÈ poloûky na oboch stran·ch"
     ID_DIR_OPEN_LEFT        "Otvor æav˝ s˙bor"
@@ -912,7 +914,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "Otvor prav˝ s˙bor"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Uloûiù jako"
     IDS_SELECT_FILES_OR_FOLDERS "MusÌte zvoliù buÔ s˙bory alebo len adres·re."
@@ -932,7 +934,7 @@ BEGIN
     IDS_NOPROJECT           "MusÌte nastaviù cestu k projektu SourceSafe (napr.: $/MojProjekt)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_FILENAME_HEADER     "Meno s˙boru"
     IDS_DIR_HEADER          "Adres·r"
@@ -944,17 +946,17 @@ BEGIN
     IDS_CC_CMD              "&Cesta ku cleartool.exe :"
     IDS_VSS_CMD             "&Cesta ku SS.EXE :"
     IDS_VSS_RUN_ERROR       "Chyba pri sp˙öùanÌ prÌkazu zo SystÈmu VerziÌ (CVS a pod)."
-    IDS_DIFF_OPEN_NO_SET_PROPS 
+    IDS_DIFF_OPEN_NO_SET_PROPS
                             "Nastali zmeny v aktu·lnom s˙bore. NiektorÈ nastavenia sa neuplatnia, pokiaæ porovnanie aktu·lneho s˙boru sa nezaËne odznova."
     IDS_LTIME_HEADER        "D·tum væavo"
     IDS_RTIME_HEADER        "D·tum vpravo"
     IDS_EXTENSION_HEADER    "PrÌpona"
-    IDS_CONFIRM_DELETE_ITEMS 
+    IDS_CONFIRM_DELETE_ITEMS
                             "Chcete naozaj zmazaù %1 z %2 vybran˝ch poloûiek?"
     IDS_DEL_LEFT_FMT        "Zmaû %1 z %2 vybran˝ch poloûiek z æavej strany"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_DEL_RIGHT_FMT       "Zmaû %1 z %2 vybran˝ch poloûiek z pravej strany"
     IDS_DELETE_FILE_FAILED  "Mazanie s˙boru %1 zlyhalo: %2"
@@ -973,7 +975,7 @@ BEGIN
     IDS_BIN_FILES_SAME      "Bin·rne s˙bory s˙ identickÈ"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Otvor prav˝ s˙bor s..."
     ID_OPTIONS_SHOWBINARIES "Zobrazuje bin·rne s˙bory"
@@ -981,7 +983,7 @@ BEGIN
     ID_REFRESH              "Refresh display\nRefresh (F5)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_FILESAVE_FAILED     "Z·pis %1 ne˙speön˝. Chceö uloûiù s˙bor pod in˝m menom?"
     IDS_ERROR_FILE_NOT_FOUND "S˙bor nen·jden˝: %1"
@@ -994,7 +996,7 @@ BEGIN
     IDS_STATUS_COPYALL2R    "KopÌrujem vöetko do pravÈho"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "Nahraden˝ch %1 reùazcov (strings)."
     IDS_EDIT_TEXT_NOT_FOUND "NemÙûem n·jsù reùazec ""%s"""

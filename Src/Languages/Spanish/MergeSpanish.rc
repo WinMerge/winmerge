@@ -113,19 +113,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "&Diferencia siguiente\tAlt+Down", ID_NEXTDIFF
-        MENUITEM "&Diferencia anterior\tAlt+Up",   ID_PREVDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
-        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
-        MENUITEM "Last &Difference\tAlt+End",   ID_LASTDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "Copiar al lado derecho\tAlt+Right", ID_L2R
-        MENUITEM "Copiar al lado izquierdo\tAlt+Left", ID_R2L
-        MENUITEM SEPARATOR
-        MENUITEM "Copiar todas al lado derecho", ID_ALL_RIGHT
-        MENUITEM "Copiar todas al lado izquierdo", ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "F&ind...\tCtrl+F",            ID_EDIT_FIND
         MENUITEM "Repla&ce...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
@@ -151,6 +138,21 @@ BEGIN
         MENUITEM "&Barra de Estado",            ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Idioma...",                  ID_VIEW_LANGUAGE
+    END
+    POPUP "&Merge"
+    BEGIN
+        MENUITEM "&Diferencia siguiente\tAlt+Down", ID_NEXTDIFF
+        MENUITEM "&Diferencia anterior\tAlt+Up",   ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
+        MENUITEM "Last &Difference\tAlt+End",   ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Copiar al lado derecho\tAlt+Right", ID_L2R
+        MENUITEM "Copiar al lado izquierdo\tAlt+Left", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Copiar todas al lado derecho", ID_ALL_RIGHT
+        MENUITEM "Copiar todas al lado izquierdo", ID_ALL_LEFT
     END
     POPUP "&Ventana"
     BEGIN
@@ -462,17 +464,17 @@ BEGIN
                     WS_EX_CLIENTEDGE
     LTEXT           "Background",IDC_STATIC,86,15,40,8
     LTEXT           "Deleted",IDC_STATIC,137,15,26,8
-    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT | 
+                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT | 
+                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     LTEXT           "Text",IDC_STATIC,184,15,15,8
 END

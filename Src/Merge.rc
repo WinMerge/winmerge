@@ -113,19 +113,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Ne&xt Difference\tAlt+Down",  ID_NEXTDIFF
-        MENUITEM "Pre&vious Difference\tAlt+Up", ID_PREVDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
-        MENUITEM "Curre&nt Difference\tAlt+Enter", ID_CURDIFF
-        MENUITEM "Last &Difference\tAlt+End",   ID_LASTDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "Copy to Ri&ght\tAlt+Right",   ID_L2R
-        MENUITEM "Copy to &Left\tAlt+Left",     ID_R2L
-        MENUITEM SEPARATOR
-        MENUITEM "Copy &All to Right",          ID_ALL_RIGHT
-        MENUITEM "Copy All to L&eft",           ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "F&ind...\tCtrl+F",            ID_EDIT_FIND
         MENUITEM "Repla&ce...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
@@ -151,6 +138,21 @@ BEGIN
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Language...",                ID_VIEW_LANGUAGE
+    END
+    POPUP "&Merge"
+    BEGIN
+        MENUITEM "&Next Difference\tAlt+Down",  ID_NEXTDIFF
+        MENUITEM "&Previous Difference\tAlt+Up", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Curre&nt Difference\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Last Difference\tAlt+End",   ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Copy to &Right\tAlt+Right",   ID_L2R
+        MENUITEM "Copy to L&eft\tAlt+Left",     ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Copy &All to Right",          ID_ALL_RIGHT
+        MENUITEM "Cop&y All to Left",           ID_ALL_LEFT
     END
     POPUP "&Window"
     BEGIN
