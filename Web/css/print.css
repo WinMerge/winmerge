@@ -1,7 +1,9 @@
 body {
-	font-family: sans-serif;
+	margin: 0;
+	padding: 0;
 	color: black;
-	background-color: white;
+	background: white;
+	font-family: sans-serif;
 }
 
 #nav {
@@ -9,8 +11,12 @@ body {
 }
 
 #content {
-	padding-left: 0;
-	vertical-align: top;
+	margin: 0;
+	padding: 5px;
+}
+
+#content h1 {
+	margin: 0;
 }
 
 #content li {

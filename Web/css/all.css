@@ -1,21 +1,23 @@
 body {
-	font-family: sans-serif;
 	color: black;
-	background-color: white;
+	background: white;
+	font-family: sans-serif;
 }
 
 #nav {
+	float: left;
+	margin: 5px;
 	padding: 5px;
-	vertical-align: top;
-	background-color: #C0C0C0;
+	width: 180px;
+	background: #C0C0C0;
 	border: 1px solid #808080;
 }
 
 #nav h2 {
+	margin: 0;
+	padding: 0 0 5px 0;
 	font-family: sans-serif;
 	font-size: medium;
-	margin-bottom: 5px;
-	padding-bottom: 5px;
 }
 
 #nav ul {
@@ -26,8 +28,12 @@ body {
 }
 
 #content {
-	padding-left: 10px;
-	vertical-align: top;
+	margin: 0 0 0 200px;
+	padding: 5px;
+}
+
+#content h1 {
+	margin: 0;
 }
 
 #content li {

@@ -91,12 +91,10 @@
       $temp .= "  <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n";
       $temp .= "</head>\n\n";
       $temp .= "<body>\n";
-      $temp .= "<table border=\"0\">\n";
-      $temp .= "  <tr>\n";
-      $temp .= "    <td width=\"200\" valign=\"top\" id=\"nav\">\n";
+      $temp .= "<div id=\"nav\">\n";
       $temp .= $this->getMenu();
-      $temp .= "    </td>\n\n";
-      $temp .= "    <td width=\"*\" valign=\"top\" id=\"content\">\n";
+      $temp .= "</div>\n";
+      $temp .= "<div id=\"content\">\n";
       switch ($this->_version) {
         case WINMERGE_1_7: //if WinMerge 1.7 ...
           $temp .= "<h1><img src=\"/1.7/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 1.7</h1>\n";
@@ -118,9 +116,7 @@
      * print the foot from the page
      */
     function printFoot() {
-      $temp = "    </td>\n";
-      $temp .= "  </tr>\n";
-      $temp .= "</table>\n";
+      $temp = "</div>\n";
       $temp .= "</body>\n\n";
       $temp .= "</html>\n";
       print($temp);

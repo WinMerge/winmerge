@@ -1,3 +1,8 @@
+2005-02-04 Tim
+ PATCH: [ 1115079 ] Web: Switch from TABLE to CSS layout
+  Web: page.inc
+  Web\css: all.css print.css
+
 2005-01-31 Tim
  RFE: [ 1107914 ] Links -page
   Web: page.inc new file links.php
