@@ -55,18 +55,17 @@ static char THIS_FILE[]=__FILE__;
  * @param [in] pszRight Initial right-side path.
  */
 CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/)
+: m_bRecurse(FALSE)
+, pNamesLeft(NULL)
+, pNamesRight(NULL)
+, m_piFilterGlobal(NULL)
+, m_piPluginInfos(NULL)
+, m_msgUpdateStatus(0)
+, m_hDirFrame(NULL)
 {
-	m_bRecurse=FALSE;
 	m_strLeft = pszLeft;
 	m_strRight = pszRight;
 	m_pList = &m_dirlist;
-
-	pNamesLeft = NULL;
-	pNamesRight = NULL;
-	m_piFilterGlobal = 0;
-	m_piPluginInfos = 0;
-	m_msgUpdateStatus = 0;
-	m_hDirFrame = NULL;
 
 	m_strNormalizedLeft = pszLeft;
 	paths_normalize(m_strNormalizedLeft);
@@ -82,6 +81,8 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
  * @param [in] src Existing CDiffContext whose data is copied.
  */
 CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
+: pNamesLeft(NULL)
+, pNamesRight(NULL)
 {
 	// This is used somehow in recursive comparisons
 	// I think that it is only used during rescan to copy into temporaries
@@ -96,9 +97,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	m_piFilterGlobal = src.m_piFilterGlobal;
 	m_msgUpdateStatus = src.m_msgUpdateStatus;
 	m_hDirFrame = src.m_hDirFrame;
-
-	pNamesLeft = NULL;
-	pNamesRight = NULL;
 
 	m_strNormalizedLeft = pszLeft;
 	paths_normalize(m_strNormalizedLeft);
@@ -177,11 +175,6 @@ const DIFFITEM & CDiffContext::GetDiffAt(POSITION diffpos) const
 {
 	return m_pList->GetAt(diffpos);
 }
-DIFFITEM & CDiffContext::GetDiffAt(POSITION diffpos)
-{
-	return m_pList->GetAt(diffpos);
-}
-
 
 /**
  * @brief Get number of items in CDiffContext array

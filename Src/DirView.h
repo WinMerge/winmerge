@@ -163,7 +163,7 @@ public:
 	void UpdateColumnNames();
 	static int CALLBACK CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
 	int AddDiffItem(int index, const DIFFITEM & di, LPCTSTR szPath, POSITION curdiffpos);
-	void UpdateDiffItemStatus(UINT nIdx, DIFFITEM & di);
+	void UpdateDiffItemStatus(UINT nIdx, const DIFFITEM & di);
 	void ToDoDeleteThisValidateColumnOrdering() { ValidateColumnOrdering(); }
 private:
 	void InitiateSort();

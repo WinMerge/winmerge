@@ -2,6 +2,8 @@
  PATCH: [ 1155319 ] Select font for dir compare view
   We must allow selecting file compare font even if no open views
   Src: Mainfrm.cpp
+ PATCH: [ 1155436 ] Remove non-const GetDiffAt() from CDiffContext
+  Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirView.h DirViewColHandler.cpp
 
 2005-03-04 Perry
  PATCH: [ 1156253 ] Fix filter helper handling of new filters

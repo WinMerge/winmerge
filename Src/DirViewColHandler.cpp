@@ -181,7 +181,7 @@ int CDirView::AddDiffItem(int index, const DIFFITEM & di, LPCTSTR szPath, POSITI
  * @brief Update listview display of details for specified row
  * @note Customising shownd data should be done here
  */
-void CDirView::UpdateDiffItemStatus(UINT nIdx, DIFFITEM & di)
+void CDirView::UpdateDiffItemStatus(UINT nIdx, const DIFFITEM & di)
 {
 	BOOL bLeftNewer = FALSE;
 	BOOL bRightNewer = FALSE;

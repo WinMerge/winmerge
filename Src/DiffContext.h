@@ -141,7 +141,6 @@ public:
 	// to iterate over all differences on list
 	POSITION GetFirstDiffPosition();
 	DIFFITEM GetNextDiffPosition(POSITION & diffpos);
-	DIFFITEM & GetDiffAt(POSITION diffpos);
 	const DIFFITEM & GetDiffAt(POSITION diffpos) const;
 //	int GetDiffStatus(POSITION diffpos);
 	int GetDiffCount();

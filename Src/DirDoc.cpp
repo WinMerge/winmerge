@@ -355,7 +355,7 @@ void CDirDoc::ReloadItemStatus(UINT nIdx, BOOL bLeft, BOOL bRight)
 	m_pCtxt->UpdateStatusFromDisk(diffpos, bLeft, bRight);
 
 	// Update view
-	DIFFITEM & updated = m_pCtxt->GetDiffAt(diffpos);
+	const DIFFITEM & updated = m_pCtxt->GetDiffAt(diffpos);
 	m_pDirView->UpdateDiffItemStatus(nIdx, updated);
 }
 
