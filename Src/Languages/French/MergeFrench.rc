@@ -107,21 +107,25 @@ BEGIN
         MENUITEM "&Annuler\tCtrl+Z",            ID_UNDO
         MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "Différence &suivante\tTab",   ID_NEXTDIFF
-        MENUITEM "Différence &précédente\tShift+Tab", ID_PREVDIFF
+        MENUITEM "Cou&per\tCtrl+X",             ID_EDIT_CUT
+        MENUITEM "&Copier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "Co&ller\tCtrl+V",             ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Différence sui&vante\tTab",   ID_NEXTDIFF
+        MENUITEM "Diff&érence précédente\tShift+Tab", ID_PREVDIFF
         MENUITEM SEPARATOR
         MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
-        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
+        MENUITEM "C&urrent Difference\tAlt+Enter", ID_CURDIFF
         MENUITEM "Last &Difference\tAlt+End",   ID_LASTDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Copier vers la &droite\tFlèche droite", ID_L2R
+        MENUITEM "Copier vers la droi&te\tFlèche droite", ID_L2R
         MENUITEM "Copier vers la &gauche\tFlèche gauche", ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "Tout copier vers la droite",  ID_ALL_RIGHT
         MENUITEM "Tout copier vers la gauche",  ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "F&ind...\tCtrl+F",            ID_EDIT_FIND
-        MENUITEM "Repla&ce...\tCtrl+H",         ID_EDIT_REPLACE
+        MENUITEM "R&eplace...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
         MENUITEM "Pr&opriétés",                 ID_OPTIONS
         MENUITEM SEPARATOR
@@ -298,7 +302,7 @@ BEGIN
     LTEXT           "&Path to cleartool.exe:",IDC_VSS_L1,16,42,68,8
     EDITTEXT        IDC_PATH_EDIT,85,40,116,12,ES_AUTOHSCROLL
     PUSHBUTTON      "&Browse...",IDC_BROWSE_BUTTON,206,40,42,12
-    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL | 
+    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "&Versioning System",IDC_STATIC,16,22,60,10
 END
@@ -357,7 +361,7 @@ STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Find"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    COMBOBOX        IDC_EDIT_FINDTEXT,41,6,135,138,CBS_DROPDOWN | WS_VSCROLL | 
+    COMBOBOX        IDC_EDIT_FINDTEXT,41,6,135,138,CBS_DROPDOWN | WS_VSCROLL |
                     WS_TABSTOP
     CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
@@ -365,7 +369,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,40,64,12
     CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,54,77,12
-    CONTROL         "&Up",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "&Up",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,111,36,25,12
     CONTROL         "&Down",IDC_EDIT_DIRECTION_DOWN,"Button",
                     BS_AUTORADIOBUTTON,111,48,35,12
@@ -380,9 +384,9 @@ STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Replace"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN | CBS_SORT | 
+    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN | CBS_SORT |
                     WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN | 
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN |
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
@@ -411,7 +415,7 @@ BEGIN
     DEFPUSHBUTTON   "CheckOut",IDOK,35,90,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,194,90,50,14
     PUSHBUTTON      "Save As...",IDSAVEAS,114,90,50,14
-    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Comments",IDC_STATIC,18,7,34,10
 END
@@ -435,10 +439,10 @@ BEGIN
                     7,221,15
     LTEXT           "Regular Expressions (one per line):",IDC_STATIC,7,28,
                     221,8
-    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | 
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
     LTEXT           "File filter:",IDC_STATIC,7,128,60,10
-    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
 
@@ -448,12 +452,12 @@ CAPTION "Colors"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     LTEXT           "Difference:",IDC_STATIC,15,18,36,8
-    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,15,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,15,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     LTEXT           "Selected Difference:",IDC_STATIC,14,36,66,8
-    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,33,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,33,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
 END
 
@@ -463,7 +467,7 @@ CAPTION "Dialog"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,106,136,50,14
-    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | 
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY |
                     WS_VSCROLL
 END
 
@@ -668,16 +672,16 @@ IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
 IDD_PROP_VSS DLGINIT
 BEGIN
     IDC_VER_SYS, 0x403, 5, 0
-0x6f4e, 0x656e, "\000" 
+0x6f4e, 0x656e, "\000"
     IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029, 
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029,
     IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029, 
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029,
     IDC_VER_SYS, 0x403, 19, 0
-0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
-"\000" 
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573,
+"\000"
     0
 END
 
@@ -701,7 +705,7 @@ BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDS_VERSION_FMT         "Version %1 - Francais"
     IDS_ALLFILES            "Tous les fichiers (*.*)|*.*||"
@@ -877,7 +881,7 @@ BEGIN
     ID_DIR_DEL_RIGHT        "Delete selected item on right"
     ID_DIFFSTATUS           "placeholder for status count"
     ID_OPTIONS_SHOWUNIQUELEFT "Displays files that exist in only on left side"
-    ID_OPTIONS_SHOWUNIQUERIGHT 
+    ID_OPTIONS_SHOWUNIQUERIGHT
                             "Displays files that exist in only on right side"
     ID_DIR_DEL_BOTH         "Delete selected item(s) on both sides"
     ID_DIR_OPEN_LEFT        "Open left file"
@@ -920,17 +924,17 @@ BEGIN
     IDS_CC_CMD              "&Path to cleartool.exe :"
     IDS_VSS_CMD             "&Path to SS.EXE :"
     IDS_VSS_RUN_ERROR       "Error executing versioning system command."
-    IDS_DIFF_OPEN_NO_SET_PROPS 
+    IDS_DIFF_OPEN_NO_SET_PROPS
                             "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
     IDS_LTIME_HEADER        "Left Date"
     IDS_RTIME_HEADER        "Right Date"
     IDS_EXTENSION_HEADER    "Extension"
-    IDS_CONFIRM_DELETE_ITEMS 
+    IDS_CONFIRM_DELETE_ITEMS
                             "Are you sure you want to delete %1 of %2 selected item(s) ?"
     IDS_DEL_LEFT_FMT        "Delete left side %1 of %2 selected item(s)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_DEL_RIGHT_FMT       "Delete right side %1 of %2 selected item(s)"
     IDS_DELETE_FILE_FAILED  "Delete file %1 failed: %2"
@@ -949,7 +953,7 @@ BEGIN
     IDS_BIN_FILES_SAME      "Binary files are identical"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
     ID_OPTIONS_SHOWBINARIES "Displays binary files"
@@ -957,7 +961,7 @@ BEGIN
     ID_REFRESH              "Refresh display\nRefresh (F5)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_FILESAVE_FAILED     "Saving %1 failed. Would you like to save the file under a different name?"
     IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
@@ -970,7 +974,7 @@ BEGIN
     IDS_STATUS_COPYALL2R    "Copying All to Right"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "Replaced %1 string(s)."
     IDS_EDIT_TEXT_NOT_FOUND "Cannot find string""%s"""

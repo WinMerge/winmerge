@@ -108,6 +108,10 @@ BEGIN
         MENUITEM "&Rückgängig\tStrg+Z",         ID_EDIT_UNDO
         MENUITEM "&Wiederherstellen\tStrg+Y",   ID_EDIT_REDO
         MENUITEM SEPARATOR
+        MENUITEM "Auss&chneiden\tCtrl+X",       ID_EDIT_CUT
+        MENUITEM "&Kopieren\tCtrl+C",           ID_EDIT_COPY
+        MENUITEM "E&infügen\tCtrl+V",           ID_EDIT_PASTE
+        MENUITEM SEPARATOR
         MENUITEM "&Nächster Unterschied\tAlt+Down", ID_NEXTDIFF
         MENUITEM "&Voriger Unterschied\tAlt+Up", ID_PREVDIFF
         MENUITEM SEPARATOR
@@ -435,10 +439,10 @@ BEGIN
                     7,221,15
     LTEXT           "Reguläre Ausdrücke (einer pro Zeile):",IDC_STATIC,7,28,
                     221,8
-    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | 
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
     LTEXT           "File filter:",IDC_STATIC,7,128,60,10
-    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
 

@@ -1,3 +1,8 @@
+2003-06-23 Kimmo
+PATCH: [ 759344 ] Add Copy, Cut & Paste to Edit menu
+ WinMerge: Merge.rc
+ Updated other languages too - translations from Perry anc Christian
+
 2003-06-22 Perry
  PATCH: [ 758870 ] Return filesize+1 rather than 0 for new lines at end
   editlib: crystaltextbuffer.cpp crystaltextbuffer.h
