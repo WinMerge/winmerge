@@ -1,6 +1,8 @@
 2004-10-01 Perry
  PATCH: [ 1038749 ] Fix whitespace display
   Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1036558 ] Cosmetic cleanup in CMergeApp::DoMessageBox
+  Src: Merge.cpp
 
 2004-10-01 Kimmo
  PATCH: [ 1038091 ] Various Updates in German Translation

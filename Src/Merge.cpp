@@ -630,13 +630,17 @@ int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
 		// Try to retrieve a handle to the last active popup.
 		pParentWnd = GetMainWnd()->GetLastActivePopup();
 	}
+
+	// Use our own message box implementation, which adds the
+	// do not show again checkbox, and implements it on subsequent calls
+	// (if caller set the style)
 	
 	// Create the message box dialog.
 	CMessageBoxDialog dlgMessage(pParentWnd, lpszPrompt, _T(""), nType,
 		nIDPrompt);
 	
-	// Display the message box dialog an return the result.
-	return (int)dlgMessage.DoModal();
+	// Display the message box dialog and return the result.
+	return dlgMessage.DoModal();
 }
 
 /** 
