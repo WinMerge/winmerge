@@ -1,3 +1,7 @@
+2005-01-21 Perry
+ PATCH: [ 1103542 ] Declare _MBCS in ANSI builds
+  Src: Merge.dsp
+
 2005-01-21 Kimmo
  BUG: [ 1002327 ] "Untitled left" not translated when language switches
   Src: MergeDoc.cpp
