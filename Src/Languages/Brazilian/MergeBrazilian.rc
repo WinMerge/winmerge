@@ -329,7 +329,7 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 135
+IDD_ABOUTBOX DIALOGEX 0, 0, 223, 134
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Sobre o WinMerge"
 FONT 8, "MS Sans Serif"
@@ -342,14 +342,10 @@ BEGIN
     LTEXT           "Todos os direitos reservados.",IDC_STATIC,7,60,170,8
     LTEXT           "Visite o site do WinMerge!",IDC_WWW,7,119,209,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,114,209,1
-    LTEXT           "© 1996 - 2001 Deam P. Grimm /Thingamahoochie Software",
-                    IDC_COMPANY,7,49,209,8
-    LTEXT           "Sintaxe Destaques Edição Vizualização por Andrei Stcherbatchenko ",
-                    IDC_STATIC,7,71,145,19
-    LTEXT           "Várias sintaxes por  Ferdinand Prantl",IDC_STATIC,7,90,
-                    209,10
-    LTEXT           "Tradução para o português Brasil por Wender Firmino",
-                    IDC_STATIC,8,101,209,10
+    LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
+    LTEXT           "Contributors are listed in",IDC_STATIC,7,81,208,8
+    LTEXT           "Docs/Contributors.rtf",IDC_STATIC,7,91,153,8
+    PUSHBUTTON      "Open...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
 END
 
 IDD_OPEN DIALOGEX 0, 0, 356, 115

@@ -367,6 +367,8 @@ protected:
 	virtual BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedOpenContributors();
 };
 
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
@@ -391,6 +393,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	//{{AFX_MSG_MAP(CAboutDlg)
 	//}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDC_OPEN_CONTRIBUTORS, OnBnClickedOpenContributors)
 END_MESSAGE_MAP()
 
 // App command to run the dialog
@@ -728,3 +731,26 @@ BOOL CMergeApp::includeDir(LPCTSTR szDirName)
 	return m_fileFilterMgr->TestDirNameAgainstFilter(m_currentFilter, szDirName);
 }
 
+/** @brief Open Contributors.rtf */
+void CAboutDlg::OnBnClickedOpenContributors()
+{
+	CString defPath = GetModulePath();
+	// Don't add quotation marks yet, CFile doesn't like them
+	CString docPath = defPath + _T("\\Docs\\Contributors.rtf");
+	
+	CFileStatus status;
+	if (CFile::GetStatus(docPath, status))
+	{
+		// Now, add quotation marks so ShellExecute() doesn't fail if path
+		// includes spaces
+		docPath.Insert(0, _T("\""));
+		docPath.Insert(docPath.GetLength(), _T("\""));
+		ShellExecute(m_hWnd, NULL, _T("wordpad"), docPath, defPath, SW_SHOWNORMAL);
+	}
+	else
+	{
+		CString msg;
+		AfxFormatString1(msg, IDS_ERROR_FILE_NOT_FOUND, docPath);
+		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
+	}
+}

@@ -2,6 +2,8 @@
  RFE [ 917196 ] Directory Comparison Results baloon annoyance
   Don't show infotip for filename when whole filename is already shown
   Src: DirView.cpp
+ PATCH: [ 915790 ] Open Contributors.rtf from About dialog
+  Src: Merge.cpp Merge.rc resource.h
 
 2004-03-15 Perry
  Fix Bulgarian (Cyrillic) spelling of Bulgarian.

@@ -330,7 +330,7 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 134
+IDD_ABOUTBOX DIALOGEX 0, 0, 223, 134
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "O programu"
 FONT 8, "MS Sans Serif"
@@ -344,15 +344,10 @@ BEGIN
     LTEXT           "Navštivte www stránku programu WinMerge!",IDC_WWW,7,107,
                     184,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
-    LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
-    LTEXT           "Syntax Highlighting Edit View by Andrei Stcherbatchenko ",
-                    IDC_STATIC,7,71,209,8
-    LTEXT           "Various Syntaxes by Ferdinand Prantl",IDC_STATIC,7,81,
-                    209,8
-    LTEXT           "Other major contributors include:",IDC_STATIC,7,91,209,
-                    8
-    LTEXT           "Christian List, Perry Rapp, Kimmo Varis, Laurent Ganier",
-                    IDC_STATIC,7,101,209,8
+    LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
+    LTEXT           "Contributors are listed in",IDC_STATIC,7,81,208,8
+    LTEXT           "Docs/Contributors.rtf",IDC_STATIC,7,91,153,8
+    PUSHBUTTON      "Open...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
 END
 
 IDD_OPEN DIALOGEX 0, 0, 356, 115
