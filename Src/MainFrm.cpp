@@ -1508,17 +1508,18 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 	// create backup copy of file if destination file exists
 	if (m_options.GetBool(OPT_CREATE_BACKUPS) && CFile::GetStatus(pszPath, status))
 	{
-		// build the backup filename
-		CString spath, sname, sext;
-		SplitFilename(pszPath, &spath, &sname, &sext);
-		CString s;
-		if (!sext.IsEmpty())
-			s.Format(_T("%s\\%s.%s") BACKUP_FILE_EXT, spath, sname, sext);
+		// Add backup extension if pathlength allows it
+		BOOL success = TRUE;
+		CString s = pszPath;
+		if (s.GetLength() >= (MAX_PATH - _tcslen(BACKUP_FILE_EXT)))
+			success = FALSE;
 		else
-			s.Format(_T("%s\\%s")  BACKUP_FILE_EXT, spath, sname);
+			s.Append(BACKUP_FILE_EXT);	
 
-		// Copy the file
-		if (!CopyFile(pszPath, s, FALSE))
+		if (success)
+			success = CopyFile(pszPath, s, FALSE);
+		
+		if (!success)
 		{
 			if (AfxMessageBox(IDS_BACKUP_FAILED_PROMPT,
 					MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, 

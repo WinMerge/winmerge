@@ -1,3 +1,7 @@
+2005-02-16 Kimmo
+ PATCH: [ 1123539 ] Small improvement for code creating backup copy
+  Src: MainFrm.cpp
+
 2005-02-13 Kimmo
  PATCH: [ 1118261 ] Allow creating and deleting filefilters from UI
   Src: FileFilterHelper.cpp FileFilterHelper.h FileFilterMgr.cpp FileFilterMgr.cpp
