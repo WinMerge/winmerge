@@ -1806,7 +1806,12 @@ BEGIN
     IDS_FILEBINARY          "Binärdateien können nicht visuell verglichen werden."
     IDS_TEMP_FILEERROR      "Temporäre Dateien konnten nicht erzeugt werden. Überprüfen Sie Ihre Einstellungen für temporäre Dateien."
     IDS_FILEISDIR           "Verzeichnisse können nicht visuell verglichen werden."
-    IDS_SUGGEST_IGNOREEOL   "Die Dateien haben ein unterschiedliches Zeilenumbruch-Format.\nMit den aktuellen Einstellungen werden alle Zeilen unterschiedlich sein.\nMöchten Sie die Zeilenumbruch-Unterschiede für diese Dateien ignorieren?\n\nFür fortgeschrittene Anwender: Wenn die Zeilenumbrüche in Ihren Dateien nicht einheitlich sind,\n können Sie eher die Option '%1' einstellen."
+    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
+                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
+                            Note: If you always want to treat all carriage return types \
+                            as equivalent, set the option 'Ignore carriage return \
+                            differences..' in the Compare tab of the options dialog\
+                            (available under Edit/Options)."
     IDS_SUGGEST_PRESERVEEOL "Die Zeilenumbrüche in der Datei '%1' sind von unterschiedlichen Formaten (DOS/UNIX/MAC).\nMit den aktuellen Einstellungen werden sie zum Hauptformat vereinheitlicht.\nMöchten Sie die Einstellungen ändern und das Mischen der Zeilenumbruch-Formate erlauben?"
     IDS_PREDIFFER_ERROR      "Ein Fehler trat beim Prediffing der Datei '%1' mit dem Plugin '%2' auf. Das Prediffing wird daher nicht mehr angewendet."
     IDS_SUGGEST_IGNORECODEPAGE "Die linke (cp%d) und rechte (cp%d) Datei haben nicht den gleichen Zeichensatz.\nDas Anzeigen jeder Datei im eigenen Zeichensatz erlaubt eine bessere Darstellung, aber das Mischen/Kopieren ist gefährlich.\nMöchten Sie für Beide den Standard-Zeichensatz erzwingen (empfohlen)?"

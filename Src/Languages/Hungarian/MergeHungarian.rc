@@ -1687,7 +1687,12 @@ BEGIN
     IDS_FILEBINARY          "Bináris fájlok nem hasonlíthatóak össze vizuálisan."
     IDS_TEMP_FILEERROR      "Nem lehetett létrehozni az ideiglenes fájlokat. Ellenõrizd az ideiglenes könyvtár beállításait."
     IDS_FILEISDIR           "Könyvtárak nem hasonlíthatóak össze vizuálisan."
-    IDS_SUGGEST_IGNOREEOL   "A fájloknak különbözõ újsor-karakter formátumuk van.\nA jelenlegi beállításokkal minden egyes sor eltérõ lesz.\nSzeretnéd figyelmen kívül hagyni az újsor-karakter eltéréseket?\n\nTapasztaltabbaknak: amennyiben nem egyezõek az újsor-karakterek a fájlokban,\nérdemes a '%1' opciót beállítani."
+    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
+                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
+                            Note: If you always want to treat all carriage return types \
+                            as equivalent, set the option 'Ignore carriage return \
+                            differences..' in the Compare tab of the options dialog\
+                            (available under Edit/Options)."
     IDS_SUGGEST_PRESERVEEOL "Az újsor-karakterek különbözõ formátumúak (DOS/UNIX/MAC) ebben a fájlban: '%1'.\n A jelenlegi beállításokkal a leginkább jellemzõ lesz az alapértelmezett.\n Szeretnéd, ha mégis figyelembe venné az eltérõ újsor-karaktereket?"
     IDS_PREDIFFER_ERROR      "Hiba történt ennek a fájlnak az elõvizsgálata közben: '%1' ebben a bõvítményben: '%2'. Az elõvizsgálat ezután nem fog mûködni."
     IDS_SUGGEST_IGNORECODEPAGE "A bal (cp%d) és jobb (cp%d) oldali fájlok nem ugyanazt a kódolást használják. \nA különbözõ kódlapokkal történõ kijelzés könnyebben áttekinthetõ de az olvasztás/törlés kockázatos lehet.\nSzeretnéd mindkét fájlt az alapértelmezett kódlappal megjeleníteni (javasolt)?"

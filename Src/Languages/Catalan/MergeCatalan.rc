@@ -1704,7 +1704,12 @@ BEGIN
     IDS_FILEBINARY          "Els fitxers binaris no es poden comparar visualment."
     IDS_TEMP_FILEERROR      "No s'han pogut obrir els fitxers temporals. Comproveu els ajustos de camí temporal."
     IDS_FILEISDIR           "Els fitxers de directori no es poden comparar visualment."
-    IDS_SUGGEST_IGNOREEOL   "Els fitxers tenen salts de línia de diferent mena.\nAmb les opcions actuals, les línies diferiran.\nVoleu que s'ignorin en aquests fitxers?\n\nUsuari avançat: Si els salts de línia no estan unificats als fitxers,\naltrament podeu especificar l'opció '%1'."
+    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
+                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
+                            Note: If you always want to treat all carriage return types \
+                            as equivalent, set the option 'Ignore carriage return \
+                            differences..' in the Compare tab of the options dialog\
+                            (available under Edit/Options)."
     IDS_SUGGEST_PRESERVEEOL "Els salts de línia són de diferent mena (DOS/UNIX/MAC) al fitxer '%1'.\nAmb les opcions actual, s'unificaran al tipus principal.\nVoleu canviar les opcions i preservar les diferents menes de salt de línia?"
     IDS_PREDIFFER_ERROR     "Hi ha hagut un error prediferenciant el fitxer '%1' amb el connector '%2'. No es tornarà a aplicar la prediferenciació."
     IDS_SUGGEST_IGNORECODEPAGE "Els fitxers de l'esquerra (cp%d) i de la dreta (cp%d) no tenen la mateixa pàgina de codis.\nEn mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\nVoleu ignorar la informació de pàgina de codis?"

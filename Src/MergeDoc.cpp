@@ -2746,10 +2746,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		// Sensitive to EOL on, allow mixing EOL off, and files have a different EOL style.
 		// All lines will differ, that is not very interesting and probably not wanted.
 		// Propose to turn off the option 'sensitive to EOL'
-		CString sOptionName;
-		VERIFY(sOptionName.LoadString(IDC_MIXED_EOL));
-		CString s;
-		AfxFormatString1(s, IDS_SUGGEST_IGNOREEOL, sOptionName); 
+		CString s = LoadResString(IDS_SUGGEST_IGNOREEOL);
 		if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION|MB_DONT_ASK_AGAIN, IDS_SUGGEST_IGNOREEOL) == IDYES)
 		{
 			diffOptions.bEolSensitive = FALSE;

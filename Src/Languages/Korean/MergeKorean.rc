@@ -1685,7 +1685,12 @@ BEGIN
     IDS_FILEBINARY          "바이너리 파일은 비교할 수 없습니다."
     IDS_TEMP_FILEERROR      "임시 파일을 생성할 수 없습니다. 임시 파일 설정을 확인하세요."
     IDS_FILEISDIR           "디렉토리는 비교할 수 없습니다."
-    IDS_SUGGEST_IGNOREEOL   "두 파일은 다른 EOL로 작성되어 있습니다.\n현재 옵션으로는 모든 라인이 다르게 나옵니다\n이 파일들에 대해서 EOL 차이를 무시하습니까 ?\n\nAdvanced user : EOL 이 파일내에서 동일하지 않다면,\n'%1' 옵션을 사용하는 것이 좋습니다."
+    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
+                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
+                            Note: If you always want to treat all carriage return types \
+                            as equivalent, set the option 'Ignore carriage return \
+                            differences..' in the Compare tab of the options dialog\
+                            (available under Edit/Options)."
     IDS_SUGGEST_PRESERVEEOL "'%1'은 서로 다른 EOL(DOS/UNIX/MAC)로 작성되었습니다.\n 현재 옵션으로는 모든 EOL이 하나로 바뀌게 됩니다.\n 원본 EOL을 유지하기 원하십니까 ?"
     IDS_PREDIFFER_ERROR     "'%2' 플러그인으로 '%1'을 prediff하는 중 에러가 발생했습니다. 더 이상 prediff가 수행되지 않습니다."
     IDS_SUGGEST_IGNORECODEPAGE 

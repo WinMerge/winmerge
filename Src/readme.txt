@@ -1,3 +1,8 @@
+2005-02-28 Perry
+ BUG: [ 1039158 ] Confusing EOL differences messagebox
+  Src: Merge.rc
+  Languages: Merge*.rc
+
 2005-02-27 Perry
  PATCH: [ 1112636 ] Suggest cosmetic change in DiffFileData::OpenFiles
   (new method DiffFileData::Filepath::AssignPath)

@@ -1691,7 +1691,12 @@ BEGIN
     IDS_FILEBINARY          "バイナリファイルは視覚的に比較できません。"
     IDS_TEMP_FILEERROR      "テンポラリファイルが作成できませんでした。テンポラリパス設定を確認してください。"
     IDS_FILEISDIR           "ディレクトリは、ビジュアルに比較できません。"
-    IDS_SUGGEST_IGNOREEOL   "ファイル内に異なるEOLタイプが存在しています。\n現在のオプション設定では、すべての行は、異なったままです。\nファイル内に存在するEOLの違いを無視しますか?\n\n上級者 : if the EOL are not unified in your files,\n you may rather set the option '%1'."
+    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
+                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
+                            Note: If you always want to treat all carriage return types \
+                            as equivalent, set the option 'Ignore carriage return \
+                            differences..' in the Compare tab of the options dialog\
+                            (available under Edit/Options)."
     IDS_SUGGEST_PRESERVEEOL "ファイル'%1'内に異なるタイプ(DOS/UNIX/MAC)のEOLが存在しています。\n 現在のオプション設定では、主なEOLに統一されます。\n オプションを変更して、異なるEOLを保持するようにしますか?"
     IDS_PREDIFFER_ERROR      "プラグイン'%2'でファイル'%1'の比較前処理の実行中にエラーが発生しました。比較前処理は以降行なわれません。"
     IDS_SUGGEST_IGNORECODEPAGE "両側のファイルは、同じコードページではありません。(cp%d vs cp%d)\n各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\nコードページ情報を無視しますが、よろしいですか?"

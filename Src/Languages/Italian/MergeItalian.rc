@@ -1802,7 +1802,12 @@ BEGIN
     IDS_FILEBINARY          "I file di tipo binario non possono essere confrontati visualmente."
     IDS_TEMP_FILEERROR      "Impossibile creare file temporanei. Controlla le impostazioni del percorso per i file temporanei."
     IDS_FILEISDIR           "I file di cartelle non possono essere confrontate visivamente."
-    IDS_SUGGEST_IGNOREEOL   "I file hanno un diverso tipo di EOL.\nCon le opzioni correnti, tutte le linee saranno diverse.\nDesideri ignorare le differenze di EOL per questi file ?\n\nUtenti avanzati : se le EOL non sono unificate nei tuoi file,\npuoi piuttosto impostare l'opzione '%1'."
+    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
+                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
+                            Note: If you always want to treat all carriage return types \
+                            as equivalent, set the option 'Ignore carriage return \
+                            differences..' in the Compare tab of the options dialog\
+                            (available under Edit/Options)."
     IDS_SUGGEST_PRESERVEEOL "Gli EOL sono di tipi diversi (DOS/UNIX/MAC) nel file '%1'.\nCon le opzioni correnti, essi verranno unificati nel tipo principale.\nDesideri cambiare le opzioni e conservare gli EOL diversi ?"
     IDS_PREDIFFER_ERROR      "C'è stato un errore nel prediffing del file '%1' con il plugin '%2'. Il prediffing non verrà più applicato."
     IDS_SUGGEST_IGNORECODEPAGE "Il file sinistro (cp%d) e destro (cp%d) non hanno lo stesso codice di pagina.\nLa visualizzazione di ciascun file con il proprio codice di pagina fornirà una migliore visualizzazione ma l'unione/copia sarà pericolosa.\nNoi suggeriamo di lasciare da parte le informazioni sul codice di pagina. Sei d'accordo ?"

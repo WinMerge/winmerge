@@ -1686,7 +1686,12 @@ BEGIN
     IDS_FILEBINARY          "Binære filer kan ikke sammenlignes visuelt."
     IDS_TEMP_FILEERROR      "Midlertidige filer kunne ikke oprettes. Tjek dine indstillinger for midlertidig (temp) mappe."
     IDS_FILEISDIR           "Mapper kan ikke sammenlignes visuelt."
-    IDS_SUGGEST_IGNOREEOL   "Filerne har forskellig EOL type.\nMed de nuværende indstillinger, vil alle linjer være forskellige.\nVil du ignorerer EOL forskelle for disse filer ?\n\nAvancerede brugere : hvis EOL ikke er ens hele vejen gennem dine filer,\n kan det være en ide at sætte indstillingen '%1'."
+    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
+                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
+                            Note: If you always want to treat all carriage return types \
+                            as equivalent, set the option 'Ignore carriage return \
+                            differences..' in the Compare tab of the options dialog\
+                            (available under Edit/Options)."
     IDS_SUGGEST_PRESERVEEOL "Filernes EOL er forskellige typer (DOS/UNIX/MAC) i filen '%1'.\n Med de nuværende indstillinger, vil de blive omdannet til hovedtypen.\n Vil du ændrer indstilingerne og bevare de forskellige EOL ?"
     IDS_PREDIFFER_ERROR      "Der skete en fejl under prediffing af filen '%1' med plugin '%2'. Denne prediffing er ikke brugt mere."
     IDS_SUGGEST_IGNORECODEPAGE "Venstre (cp%d) og højre (cp%d) filer har ikke den samme codepage. \nVisning af hver fil i sin egen codepage vil give et bedre visuelt resultat men fletning/kopiering vil være farligt.\nVil du tvinge begge to til standard codepage (anbefalet)?"
