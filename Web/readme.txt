@@ -1,3 +1,7 @@
+2004-05-13 Christian
+ PATCH: [ 952965 ] updates for localization web page
+  Web/developer: translate.php
+
 2004-05-10 Christian
  PATCH: [ 941187 ] Translation statuspage
   Web/developer: translate.php

@@ -11,39 +11,39 @@
 To change languages, all you have to do is unzip the DLL in the same directory as WinMerge.exe, then select View / Language and choose your language.</p>
 
 <h2>I want to translate into my own language</h2>
-<p>If you are interested in translating WinMerge to your own native language, we'd be happy to include your language as well.</p>
+<p>If you are interested in translating WinMerge to your own language, we'd be happy to include your language as well.</p>
 
-<p>All the resources are moved into a DLL, so it should be fairly straightforward to support most languages.</p>
+<p>All the resources are located in a DLL, so it should be fairly straightforward to support most languages.</p>
 
 <h3>Instructions for those who know CVS and Visual C++</h3>
 <p>Grab a copy of the source from CVS (<a href="http://winmerge.org/developer/wincvs.php" target="_top">WinCVS Hints</a>).</p>
-<p>You will need to translate all strings in Merge.rc to your language. Make a MergeYourLanguage.rc and upload it to SF.net as a patch <a href="http://sourceforge.net/tracker/?group_id=13216&atid=313216" target="_top">here</a>.
+<p>You will need to translate all the strings in Merge.rc to your language. Make a MergeYourLanguage.rc and upload it to SF.net as a patch <a href="http://sourceforge.net/tracker/?group_id=13216&atid=313216" target="_top">here</a>.
 <p>Then one of the developers will commit it to CVS and it will be released with the next release.</p>
 
 <h3>Instructions for everybody else</h3>
 
-<p>You must translate all strings inside a file called Merge.rc into your language.</p>
+<p>You must translate all the strings inside a file called Merge.rc into your language.</p>
 <p>The easiest way to get a copy of Merge.rc is to go to <a href="http://sourceforge.net/project/showfiles.php?group_id=13216" target="_top">our download site</a> and download the latest .zip with sources. If you can't find it, then please <a href="mailto:winmerge-support@lists.sourceforge.net">ask us</a> and we will send the file to you.</p>
 
 <p>If you have Visual Studio, then we suggest you use that to do the translation. In case you do not have Visual Studio, then here is some instructions for you.</p>
 
-<p>You only have to translate the strings between the quotes in Merge.rc. Here is an example. The english version looks like this:</P>
+<p>You only have to translate the strings between the quotes in Merge.rc. Here is an example. The English version looks like this:</P>
 
 <pre>
     CONTROL         "Insert &Spaces",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,77,72,59,10
 </pre>
-And here is the translation into danish:
+And here is the translation into Danish:
 <pre>
     CONTROL         "Indsæt &mellemrum",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,77,72,59,10
 </pre>
 
-Here is a couple of rules to follow:
+Here are a couple of rules to follow:
 <ul>
-<li>Do not translate The first 75 lines
-<li>Do Not translate anything which is all uppercase letters
-<li>The & sign is for accelerator buttons, try to make them meaningfull in your language.
+<li>Do not translate the first 75 lines
+<li>Do not translate anything which is all uppercase letters
+<li>The & sign is for accelerator buttons, try to make them meaningful in your language.
 <li>Don't translate the following strings, as they have special meaning in Visual C++: "Button", "MS Sans Serif" and "MS Shell Dlg"
 </ul>
 
@@ -60,7 +60,7 @@ Here is a couple of rules to follow:
 <p>Once you have translated all the strings, then you need to upload you translation to our patch section <a href="http://sourceforge.net/tracker/?group_id=13216&atid=313216" target="_top">here</a> (please leave some contact information in case there are any problems that needs to be resolved). In case you have problems with uploading it, you can also send it to us by e-mail 
 <a href="mailto:winmerge-support@lists.sourceforge.net">here</a>.</p>
 
-<p>Then one of the developers will compile and test your translation, if there are problems, we will contact you to get them resolved. When everything is resolved your translation will be included in the next release of WinMerge.</p>
+<p>Then one of the developers will compile and test your translation; if there are problems, we will contact you to get them resolved. When everything is resolved your translation will be included in the next release of WinMerge.</p>
 
 <p>When the next major release is comming close we will notify you again, to give you a chance to update the translation with any new/changed strings</p>
 
@@ -88,150 +88,158 @@ releases.</p>
 <div align="center">
 <table border="1" cellpadding="3" cellspacing="0">
   <tr>
-    <th>Status</th>
     <th>Language</th>
+    <th>Status</th>
     <th>Author</th>
     <th colspan=3>Versions</th>
   </tr>
   <tr>
-    <td>Unknown</td>
     <td>Brazilian Portuguese</td>
+    <td>Unknown</td>
     <td>Wender Firmino</td>
     <td>&nbsp;</td>
     <td>2.0</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Maintained</td>
     <td>Bulgarian</td>
+    <td>Maintained</td>
     <td>sld</td>
     <td>2.1</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Maintained</td>
     <td>Catalan</td>
+    <td>Maintained</td>
     <td>Jordi Vilar</td>
     <td>2.1</td>
     <td>2.0</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Unknown</td>
     <td>Simplified Chinese</td>
+    <td>Unknown</td>
     <td>Liaobin</td>
     <td>&nbsp;</td>
     <td>2.0</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Unknown</td>
     <td>Traditional Chinese</td>
+    <td>Unknown</td>
     <td>Koko</td>
     <td>&nbsp;</td>
     <td>2.0</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Unmaintained</td>
     <td>Czech</td>
+    <td>Unmaintained</td>
     <td>Jiri Tax</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>1.7</td>
   </tr>
   <tr>
-    <td>Maintained</td>
     <td>Danish</td>
+    <td>Maintained</td>
     <td>Christian List</td>
     <td>&nbsp;</td>
     <td>2.0</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Unmaintained</td>
     <td>Dutch</td>
+    <td>Unmaintained</td>
     <td>Ronald Schaap</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>1.7</td>
   </tr>
   <tr>
-    <td>Actively maintained</td>
+    <td>Esperanto</td>
+    <td>Unknown</td>
+    <td>Tim Morley</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
     <td>French</td>
+    <td>Actively maintained</td>
     <td>Gil Andre <br> Laurent Ganier</td>
     <td>&nbsp; <br> 2.1</td>
     <td>&nbsp; <br> 2.0</td>
     <td>1.7 <br> &nbsp;</td>
   </tr>
   <tr>
-    <td>Actively maintained</td>
     <td>German</td>
+    <td>Actively maintained</td>
     <td>Winfried Peter <br> Joerg Schneider and Tim Gerundt</td>
     <td>&nbsp; <br> 2.1</td>
     <td>&nbsp; <br> 2.0</td>
     <td>1.7 <br> &nbsp;</td>
   </tr>
   <tr>
-    <td>Unmaintained</td>
     <td>Italian</td>
+    <td>Unmaintained</td>
     <td>Michele Merega</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>1.7</td>
   </tr>
   <tr>
-    <td>Unknown</td>
     <td>Korean</td>
+    <td>Unknown</td>
     <td>Sukjoon</td>
     <td>&nbsp;</td>
     <td>2.0</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Unknown</td>
     <td>Norwegian</td>
+    <td>Unknown</td>
     <td>Hans Fredrik Nordhaug</td>
     <td>&nbsp;</td>
     <td>2.0</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Unknown</td>
     <td>Polish</td>
+    <td>Unknown</td>
     <td>Pawe Wawrzyszko</td>
     <td>&nbsp;</td>
     <td>2.0</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Actively maintained</td>
     <td>Russian</td>
+    <td>Actively maintained</td>
     <td>Dmitriy S. Aleshkowskiy</td>
     <td>2.1</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Unknown</td>
     <td>Slovak</td>
+    <td>Unknown</td>
     <td>majvan</td>
     <td>&nbsp;</td>
     <td>2.0</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Unmaintained</td>
     <td>Spanish</td>
+    <td>Unmaintained</td>
     <td>Dean Grimm</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>1.7</td>
   </tr>
   <tr>
-    <td>Unmaintained</td>
     <td>Swedish</td>
+    <td>Unmaintained</td>
     <td>Göran Håkansson</td>
     <td>&nbsp;</td>
     <td>2.0</td>
