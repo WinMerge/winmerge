@@ -1319,7 +1319,20 @@ BEGIN
                             "Плагин '%2' не может запаковать ваши изменения обратно в файл слева '%1'.\n\nОригинал останется не измененным.\n\nХотите сохранить распакованную версию в другой файл?"
     IDS_FILEPACK_FAILED_RIGHT 
                             "Плагин '%2' не может запаковать ваши изменения обратно в файл справа '%1'.\n\nОригинал останется не измененным.\n\nХотите сохранить распакованную версию в другой файл?"
-    IDS_QUICKHELP           "Синтаксис : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:\n /? or -? показать эту справку\n /r или -r указывает winmerge обрабатывать каталоги рекурсивно\n /e or -e позволяет закрыть WinMerge одним нажатием Esc\n /ul or -ul указывает winmerge не добавлять путь слева в MRU\n /ur or -ur указывает winmerge не добавлять путь справа в MRU\n /ub or -ub tells winmerge to not add both paths to MRU\n /dl or -dl adds a description for left side shown instead of directory/filename\n /dr or -dr adds a description for right side shown instead of directory/filename\n leftpath is the directory or filename to open on the left side\n rightpath is the directory or filename to open on the right side\n outputpath is an optional output directory where you want merged files to be \n saved\n \n Замечание: и левый и правый путь, должны быть одновременно либо файлами, либо каталогами."
+    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
+      /? or -? displays this help
+      /r or -r tells winmerge to compare directories recursively
+      /e or -e allows WinMerge to be closed with a single esc keypress
+      /ul or -ul tells winmerge to not add left path to MRU
+      /ur or -ur tells winmerge to not add right path to MRU
+      /ub or -ub tells winmerge to not add both paths to MRU
+      /wl or -wl initially opens left side as read-only
+      /wr or -wr initially opens right side as read-only
+      /dl or -dl adds a description for left side shown instead of directory/filename
+      /dr or -dr adds a description for right side shown instead of directory/filename
+      leftpath is the directory or filename to open on the left side
+      rightpath is the directory or filename to open on the right side
+      outputpath is an optional output directory where you want merged files to be saved"
 END
 
 STRINGTABLE 

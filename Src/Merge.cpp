@@ -271,6 +271,14 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 			if (!_tcsicmp(pszParam, _T("e")))
 				m_bEscCloses = TRUE;
 
+			// -wl to open left path as read-only
+			if (!_tcsicmp(pszParam, _T("wl")))
+				dwLeftFlags |= FFILEOPEN_READONLY;
+
+			// -wr to open right path as read-only
+			if (!_tcsicmp(pszParam, _T("wr")))
+				dwRightFlags |= FFILEOPEN_READONLY;
+
 			// -ul to not add left path to MRU
 			if (!_tcsicmp(pszParam, _T("ul")))
 				dwLeftFlags |= FFILEOPEN_NOMRU;

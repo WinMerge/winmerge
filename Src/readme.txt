@@ -1,3 +1,8 @@
+2004-05-06 Kimmo
+ PATCH: [ 948634 ] Commandline switch to open left/right side as readonly
+  Src: Merge.cpp Merge.rc
+  Languages: *.rc
+
 2004-05-05 Kimmo
  PATCH: [ 947232 ] Add primary path to WinMerge.exe for ShellExtension
   ShellExtension: ShellExtension.rc WinMergeShell.cpp
