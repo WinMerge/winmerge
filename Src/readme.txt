@@ -1,3 +1,8 @@
+2004-10-05 Kimmo
+ PATCH: [ 1039552 ] Italian translation updated for RC
+  Submitted by Andrea Decorte
+  Src/Languages/Italian: MergeItalian.rc
+
 2004-10-04 Kimmo
  BUG: [ 1037587 ] XML Syntax highlighting: Problems with numbers
   Src/editLib: xml.cpp

@@ -979,8 +979,8 @@ BEGIN
     CONTROL         "In accordo con l'interfaccia di WinMerge",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,33,210,10
     CONTROL         "Codice personalizzato :",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,46,77,10
-    EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
+                    BS_AUTORADIOBUTTON,13,46,90,10
+    EDITTEXT        IDC_CUSTOM_CP_NUMBER,140,45,56,13,ES_AUTOHSCROLL
     GROUPBOX        "Codice di pagina predefinito per file ANSI",IDC_STATIC,7,7,221,58
 END
 
