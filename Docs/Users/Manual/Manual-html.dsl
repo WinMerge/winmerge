@@ -33,7 +33,7 @@
   ;; Sets the path, probably relative to the directory
   ;; where the HTML files are created, to the admonition
   ;; graphics.
-  "images/")
+  "./images/")
 
 (define %callout-graphics%
   ;; If true, callouts are presented with graphics (e.g., reverse-video
@@ -44,7 +44,7 @@
 (define %callout-graphics-path%
   ;; Sets the path, probably relative to the directory where the HTML
   ;; files are created, to the callout graphics.
-  "images/callouts/")  
+  "./images/callouts/")  
 
 (define %callout-graphics-number-limit%
   ;; If '%callout-graphics%' is true, graphics are used to represent
@@ -151,10 +151,6 @@
    (list "CELLSPACING" "0")
    ))
 
-(define %section-autolabel%
-  ;; Are sections enumerated?
-  #t)
-
 (define %body-attr%
   ;; What attributes should be hung off of BODY?
   (list
@@ -195,7 +191,51 @@
 (define (list-element-list)
   ;; fixes bug in Table of Contents generation
   '())
-  
+ 
+;; What section levels get put into separate HTML files
+;; (chunks) in the chunked version
+(define (chunk-section-depth)
+  1)
+
+;; Indent lines in a programlisting? by how many spaces?
+(define %indent-programlisting-lines%
+  "")
+
+  ;; Enumerate lines in a 'Screen'?
+(define %number-screen-lines%
+  #f)
+
+;; Indent lines in a 'Screen'?
+;; This is a string of characters used to indent every line of
+;; a screen. 
+(define %indent-screen-lines%
+  "    ")
+
+;; This puts figure titles below the figure.
+(define ($object-titles-after$)
+  (list (normalize "figure")))
+
+;; Are sections enumerated?
+;; The number appears in their title, both in the table
+;; of contents, and in the text.
+(define %section-autolabel%
+  #t)
+
+;; Name for the root HTML document
+;; If we want to change "book1" to "index" as the
+;; root filename, we can use this:
+;;        (define %root-filename%
+;;          "index")
+
+;; Make GUI-related names appear in bold font.
+;; (element guibutton ($bold-seq$))
+;; (element guiicon ($bold-seq$))
+;; (element guilabel ($bold-seq$))
+;; (element guimenu ($bold-seq$))
+;; (element guimenuitem ($bold-seq$))
+;; (element guisubmenu ($bold-seq$))
+
+
 </style-specification-body>
 </style-specification>
 <external-specification id="docbook" document="docbook.dsl">
