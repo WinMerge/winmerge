@@ -1,3 +1,9 @@
+2004-04-21 Kimmo
+ PATCH: [ 938609 ] Merge mode (simplified)
+  Src: MainFrm.cpp Merge.rc MergeDoc.cpp MergeDoc.h MergeEdiView.cpp
+   MergeEditView.h OptionsDef.h resource.h
+  Languages: *.rc resource.h
+
 2004-04-20 WinMerge experimental release 2.1.7.0 (cvs)
 
 2004-04-20 Laoran

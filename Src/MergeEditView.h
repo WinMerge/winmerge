@@ -180,6 +180,7 @@ protected:
 	virtual ~CMergeEditView();
 	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz);
 	virtual void OnUpdateCaret();
+	BOOL MergeModeKeyDown(MSG* pMsg);
 
 	// Generated message map functions
 protected:
@@ -250,6 +251,9 @@ protected:
 	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
 	afx_msg void OnNoPrediffer();
 	afx_msg void OnPrediffer(UINT nID );
+	afx_msg void OnMergingMode();
+	afx_msg void OnUpdateMergingMode(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateMergingStatus(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

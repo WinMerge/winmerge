@@ -124,6 +124,8 @@ BEGIN
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
+        MENUITEM "Merge Mode\tF7",              ID_FILE_MERGINGMODE
+        MENUITEM SEPARATOR
         MENUITEM "E&xit\tEsc",                  ID_APP_EXIT
     END
     POPUP "&Edit"
@@ -342,6 +344,7 @@ BEGIN
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_F7,          ID_FILE_MERGINGMODE,    VIRTKEY, NOINVERT
     VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
     VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
@@ -1314,6 +1317,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
+    IDS_MERGEMODE_MERGING   "Merge"
 END
 
 STRINGTABLE 
@@ -1632,6 +1636,7 @@ BEGIN
     ID_NOT_SUGGESTED_PLUGINS "Others plugins"
     ID_NO_PREDIFFER         "No prediffer (normal)"
     ID_TITLE_PLUGINS_SETTINGS "Plugin Settings"
+    ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
 END
 
 #endif    // English (U.S.) resources
@@ -1659,4 +1664,3 @@ LANGUAGE 9, 1
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-

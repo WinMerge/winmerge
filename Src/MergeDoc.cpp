@@ -116,6 +116,7 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	m_pInfoUnpacker = new PackingInfo;
 	m_nLeftBufferType = BUFFER_NORMAL;
 	m_nRightBufferType = BUFFER_NORMAL;
+	m_bMergingMode = mf->m_options.GetInt(OPT_MERGE_MODE);
 
 	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetInt(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
@@ -2925,4 +2926,21 @@ BOOL CMergeDoc::GetDiff(int nDiff, DIFFRANGE &di) const
 int CMergeDoc::GetLineCount(BOOL bLeft) const
 {
 	return bLeft ? m_ltBuf.GetLineCount() : m_rtBuf.GetLineCount();
+}
+
+/**
+ * @brief Return if doc is in Merging/Editing mode
+ */
+BOOL CMergeDoc::GetMergingMode() const
+{
+	return m_bMergingMode;
+}
+
+/**
+ * @brief Set doc to Merging/Editing mode
+ */
+void CMergeDoc::SetMergingMode(BOOL bMergingMode)
+{
+	m_bMergingMode = bMergingMode;
+	mf->m_options.SaveOption(OPT_MERGE_MODE, m_bMergingMode);
 }

@@ -282,6 +282,8 @@ public:
 	UINT CountPrevBlanks(UINT nCurLine, BOOL bLeft);
 	virtual ~CMergeDoc();
 	virtual void OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName);
+	BOOL GetMergingMode() const;
+	void SetMergingMode(BOOL bMergingMode);
 	BOOL GetNextDiff(int nLine, int &nDiff);
 	BOOL GetDiff(int nDiff, DIFFRANGE &di) const;
 
@@ -304,6 +306,7 @@ protected:
 	CString m_strRightDesc; /**< Right side description text */
 	BUFFERTYPE m_nLeftBufferType;
 	BUFFERTYPE m_nRightBufferType;
+	BOOL m_bMergingMode; /**< Merging or Edit mode */
 
 // friend access
 	friend class RescanSuppress;

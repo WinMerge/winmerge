@@ -152,6 +152,9 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
 	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
+	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
+	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1385,24 +1388,89 @@ BOOL CMergeEditView::EnableRescan(BOOL bEnable)
 	return bOldValue;
 }
 
+/**
+ * @brief Handle some keys when in merging mode
+ */
+BOOL CMergeEditView::MergeModeKeyDown(MSG* pMsg)
+{
+	BOOL bHandled = FALSE;
+	BOOL bCtrlKey = ::GetAsyncKeyState(VK_CONTROL);
+
+	// If we are in merging mode (merge with cursor keys)
+	// handle some keys here
+	switch (pMsg->wParam)
+	{
+	case VK_LEFT:
+		if (bCtrlKey)
+			OnR2LNext();
+		else
+			OnR2l();
+		bHandled = TRUE;
+		break;
+
+	case VK_RIGHT:
+		if (bCtrlKey)
+			OnL2RNext();
+		else
+			OnL2r();
+		bHandled = TRUE;
+		break;
+
+	case VK_UP:
+		OnPrevdiff();
+		bHandled = TRUE;
+		break;
+
+	case VK_DOWN:
+		OnNextdiff();
+		bHandled = TRUE;
+		break;
+	}
+
+	if (bHandled)
+		return TRUE;
+
+	return FALSE;
+}
+
+/**
+ * @brief Called before messages are translated.
+ *
+ * Checks if <ESC> were pressed, saves and closes doc.
+ * Also if in merge mode traps cursor keys.
+ */
 BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 {
-	// Check if we got 'ESC pressed' -message
-	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
+	if (pMsg->message == WM_KEYDOWN)
 	{
-		// Ask about saving unsaved document, allow to cancel closing
-		CMergeDoc *pd = GetDocument();
-		if (pd->SaveHelper(TRUE))
+		BOOL bHandled = FALSE;
+		
+		// If we are in merging mode (merge with cursor keys)
+		// handle some keys here
+		if (GetDocument()->GetMergingMode())
 		{
-			// Set modified status to false so that we are not asking
-			// about saving again
-			pd->m_ltBuf.SetModified(FALSE);
-			pd->m_rtBuf.SetModified(FALSE);
-			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
-			return FALSE;
+			bHandled = MergeModeKeyDown(pMsg);
+			if (bHandled)
+				return FALSE;
 		}
-		else
-			return TRUE;
+
+		// Check if we got 'ESC pressed' -message
+		if (pMsg->wParam == VK_ESCAPE)
+		{
+			// Ask about saving unsaved document, allow to cancel closing
+			CMergeDoc *pd = GetDocument();
+			if (pd->SaveHelper(TRUE))
+			{
+				// Set modified status to false so that we are not asking
+				// about saving again
+				pd->m_ltBuf.SetModified(FALSE);
+				pd->m_rtBuf.SetModified(FALSE);
+				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+				return FALSE;
+			}
+			else
+				return TRUE;
+		}
 	}
 	return CCrystalEditViewEx::PreTranslateMessage(pMsg);
 }
@@ -2089,4 +2157,36 @@ void CMergeEditView::OnPrediffer(UINT nID )
 	// update the prediffer and rescan
 	pd->SetPrediffer(&prediffer);
 	pd->FlushAndRescan(TRUE);
+}
+
+/**
+ * @brief Switch Merging/Editing mode and update
+ * buffer read-only states accordingly
+ */
+void CMergeEditView::OnMergingMode()
+{
+	CMergeDoc *pDoc = GetDocument();
+	BOOL bMergingMode = pDoc->GetMergingMode();
+
+	pDoc->SetMergingMode(!bMergingMode);
+}
+
+/**
+ * @brief Update Menuitem for Merging Mode
+ */
+void CMergeEditView::OnUpdateMergingMode(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck(GetDocument()->GetMergingMode());
+}
+
+/**
+ * @brief Update MergingMode UI in statusbar
+ */
+void CMergeEditView::OnUpdateMergingStatus(CCmdUI *pCmdUI)
+{
+	CString text;
+	VERIFY(text.LoadString(IDS_MERGEMODE_MERGING));
+	pCmdUI->SetText(text);
+	pCmdUI->Enable(GetDocument()->GetMergingMode());
 }

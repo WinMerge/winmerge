@@ -134,7 +134,8 @@ END_MESSAGE_MAP()
 static UINT indicators[] =
 {
 	ID_SEPARATOR,           // status line indicator
-	ID_SEPARATOR,
+	ID_SEPARATOR,           // Merge mode
+	ID_SEPARATOR,           // Diff number
 	ID_INDICATOR_CAPS,
 	ID_INDICATOR_NUM,
 	ID_INDICATOR_SCRL,
@@ -190,6 +191,7 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_EXT_EDITOR_CMD, _T(""));
 	m_options.InitOption(OPT_USE_RECYCLE_BIN, TRUE);
 	m_options.InitOption(OPT_AUTOCLOSE_CMPPANE, FALSE);
+	m_options.InitOption(OPT_MERGE_MODE, FALSE);
 
 	m_options.InitOption(OPT_CMP_IGNORE_WHITESPACE, 0);
 	m_options.InitOption(OPT_CMP_IGNORE_BLANKLINES, FALSE);
@@ -303,7 +305,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
 	}
-	m_wndStatusBar.SetPaneInfo(1, ID_DIFFNUM, 0, 150); 
+	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_MERGINGMODE, 0, 100); 
+	m_wndStatusBar.SetPaneInfo(2, ID_DIFFNUM, 0, 150); 
 
 	// TODO: Remove this if you don't want tool tips or a resizeable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |

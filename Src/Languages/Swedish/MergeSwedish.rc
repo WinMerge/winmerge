@@ -123,6 +123,8 @@ BEGIN
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
+        MENUITEM "Merge Mode\tF7",              ID_FILE_MERGINGMODE
+        MENUITEM SEPARATOR
         MENUITEM "&Avsluta\tEsc",               ID_APP_EXIT
     END
     POPUP "&Redigera"
@@ -335,6 +337,7 @@ BEGIN
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_F7,          ID_FILE_MERGINGMODE,    VIRTKEY, NOINVERT
     VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
     VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
@@ -1089,6 +1092,7 @@ IDB_VIEW_LANGUAGE       BITMAP                  "res\\language.bmp"
 IDB_VIEW_SELECTFONT     BITMAP                  "res\\select_font.bmp"
 IDB_FILE_EXIT           BITMAP                  "res\\exit.bmp"
 IDB_HELP_CONTENTS       BITMAP                  "res\\help_contents.bmp"
+IDB_ERROR               BITMAP                  "res\\error.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1417,6 +1421,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n är inte en absolut sökväg!"
     IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
     IDS_TEMP_FILEERROR      "Temporära filer kunde inte skapas. Kontrollera inställningarna för dina temporära sökvägar."
+    IDS_MERGEMODE_MERGING   "Merge"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1578,6 +1583,7 @@ BEGIN
     ID_NOT_SUGGESTED_PLUGINS "Others plugins"
     ID_NO_PREDIFFER         "No prediffer (normal)"
     ID_TITLE_PLUGINS_SETTINGS "Plugin Settings"
+    ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
 END
 
 #endif    // Swedish resources
