@@ -1,3 +1,11 @@
+2005-03-01 Jochen
+ PATCH: [ 1152341 ] Merge7z update (DllBuild_Merge7z_10)
+  Merge7z: Merge7z.h Merge7z311.cpp Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp Merge7z407.dsp Merge7z408.dsp
+   Merge7z409.cpp Merge7z409.dsp Merge7z410.dsp Merge7z411.dsp Merge7z412.dsp Merge7z413.dsp Merge7z414.dsp
+   Merge7z415.dsp Merge7zCommon.cpp Merge7zCommon.h revision.txt tools.cpp tools.h
+ PATCH: [ 1152469 ] Add Merge7zInstaller download link
+  Src: 7zCommon.cpp 7zCommon.h dllpstub.cpp dllpstub.h markdown.cpp markdown.h Merge.dsp Merge.rc
+
 2005-02-28 Perry
  BUG: [ 895732 ] paths_GetLongPath usually ignores 2nd parameter
   Remove 2nd parameter entirely from paths_GetLongPath, and improve documentation.
