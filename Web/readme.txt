@@ -1,3 +1,7 @@
+2005-02-20 Tim
+ PATCH: [ 1144726 ] Web: Updated Developer instructions
+  Web\developer: needed.php
+
 2005-02-18 Tim
  RFE: [ 1064389 ] Web: Switch easier between versions
   Web: page.inc
