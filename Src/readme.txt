@@ -1,3 +1,7 @@
+2003-04-19 Perry
+ [ 724280 ] Could use wait cursors at OpenSelection calls
+  WinMerge: DirView.cpp
+
 2003-04-15 Perry
  PATCH: [ 722083 ] refresh button (menu item, accelerator)
   WinMerge: DirView.cpp DirView.h Merge.rc MergeEditView.cpp MergeEditView.h resource.h res/Toolbar.bmp

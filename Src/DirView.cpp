@@ -212,6 +212,7 @@ void CDirView::OnInitialUpdate()
 
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
+	CWaitCursor wait;
 	OpenSelection();
 	CListViewEx::OnLButtonDblClk(nFlags, point);
 }
@@ -484,6 +485,7 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	if(nChar==VK_RETURN)
 	{
+		CWaitCursor wait;
 		OpenSelection();
 	}
 	CListViewEx::OnChar(nChar, nRepCnt, nFlags);
