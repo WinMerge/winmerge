@@ -1,6 +1,14 @@
 2003-02-18 Kimmo
+  [ 684737 ] Fix Language Box to handle dblclick
+  Languages:
+   LanguageSelect.h LanguageSelect.cpp
+  WinMerge:
+   Merge.rc resource.h
   [ 687039 ] View whitespaces on editor
-  MainFrm.h MainFrm.cpp Merge.rc resource.h ccrystaltextview.cpp
+  WinMerge:
+   MainFrm.h MainFrm.cpp Merge.rc resource.h
+  WinMerge/editlib:
+   ccrystaltextview.cpp
 
 2003-02-15 Kimmo
   [ 686699 ] Check & return file saving success

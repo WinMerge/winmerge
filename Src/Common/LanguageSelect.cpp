@@ -180,14 +180,15 @@ void CLanguageSelect::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CLanguageSelect)
-	DDX_Control(pDX, 30001, m_ctlLangList);
-	DDX_LBString(pDX, 30001, m_strLanguage);
+	DDX_Control(pDX, IDC_LANGUAGE_LIST, m_ctlLangList);
+	DDX_LBString(pDX, IDC_LANGUAGE_LIST, m_strLanguage);
 	//}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CLanguageSelect, CDialog)
 //{{AFX_MSG_MAP(CLanguageSelect)
+	ON_LBN_DBLCLK(IDC_LANGUAGE_LIST, OnDblclkLanguageList)
 //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -536,6 +537,11 @@ void CLanguageSelect::OnOK()
 	}
 	
 	EndDialog(IDOK);
+}
+
+void CLanguageSelect::OnDblclkLanguageList()
+{
+	OnOK();
 }
 
 BOOL CLanguageSelect::OnInitDialog() 
