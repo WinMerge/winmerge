@@ -80,12 +80,13 @@ Localization:
   Hans Eriksson
 
 
-Other Contributors:  
+Other Contributors (code, ideas, testing..):
 * Gilbert Wellisch
 * Harry Mckame
 * Hern Chen
 * Marvin Gouw
 * Michael Richter
+* Philippe Verdy
 * Steve Beaudoin
 * Tim Gerundt
 * Tim Musschoot
