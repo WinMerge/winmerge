@@ -8,6 +8,9 @@
   Docs/Developers/readme-developers.html
  Add section on "Forcing compiler version with MakeResDll"
   Docs/Developers/readme-developers.html
+ PATCH: [ 1107686 ] Fix LANGAGE to LANGUAGE in Merge.rc
+  Src: Merge.rc
+  Languages: *.rc
 
 2005-01-22 Perry
  PATCH: [ 1107484 ] Fix broken version columns

@@ -1762,7 +1762,7 @@ BEGIN
     IDS_REGEXP_UNMATCHED_RPAREN "Unmatched ) or \\)"
 END
 
-// LANGAGE NAMES #1
+// LANGUAGE NAMES #1
 STRINGTABLE
 BEGIN
     IDS_AFRIKAANS           "Afrikaans"
@@ -1780,7 +1780,7 @@ BEGIN
     IDS_ARABIC_JORDAN       "Arabe (Jordan)"
 END
 
-// LANGAGE NAMES #2
+// LANGUAGE NAMES #2
 STRINGTABLE
 BEGIN
     IDS_ARABIC_LEBANON      "Arabe (Lebanon)"
@@ -1822,7 +1822,7 @@ BEGIN
     IDS_ENGLISH_BELIZE      "Anglais (Belize)"
 END
 
-// LANGAGE NAMES #4
+// LANGUAGE NAMES #4
 STRINGTABLE
 BEGIN
     IDS_ENGLISH_TRINIDAD    "Anglais (Trinidad)"
@@ -1843,7 +1843,7 @@ BEGIN
     IDS_GERMAN_SWISS        "Allemand (Switzerland)"
 END
 
-// LANGAGE NAMES #5
+// LANGUAGE NAMES #5
 STRINGTABLE
 BEGIN
     IDS_GERMAN_AUSTRIAN     "Allemand (Austria)"
@@ -1864,7 +1864,7 @@ BEGIN
     IDS_KOREAN_JOHAB        "Coréen (Johab)"
 END
 
-// LANGAGE NAMES #6
+// LANGUAGE NAMES #6
 STRINGTABLE
 BEGIN
     IDS_LATVIAN             "Letton"
@@ -1885,7 +1885,7 @@ BEGIN
     IDS_SINDHI              "Sindhi"
 END
 
-// LANGAGE NAMES #7
+// LANGUAGE NAMES #7
 STRINGTABLE
 BEGIN
     IDS_SLOVAK              "Slovaque"
@@ -1906,7 +1906,7 @@ BEGIN
     IDS_SPANISH_URUGUAY     "Espagnol (Uruguay)"
 END
 
-// LANGAGE NAMES #8
+// LANGUAGE NAMES #8
 STRINGTABLE
 BEGIN
     IDS_SPANISH_PARAGUAY    "Espagnol (Paraguay)"
@@ -1927,7 +1927,7 @@ BEGIN
     IDS_URDU_INDIA          "Urdu (India)"
 END
 
-// LANGAGE NAMES #9
+// LANGUAGE NAMES #9
 STRINGTABLE
 BEGIN
     IDS_UZBEK_LATIN         "Uzbek (Latin)"
