@@ -39,7 +39,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 
-BOOL bUnpackerMode = UNPACK_AUTO;
+BOOL m_bUnpackerMode = UNPACK_MANUAL;
 
 /**
  * @brief Category of transformation : define the transformation events

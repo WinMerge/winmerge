@@ -1,4 +1,6 @@
 2003-11-23 Laoran
+ cosmetic: replace bUnpackerMode with m_bUnpackerMode
+  WinMerge: FileTransform.cpp FileTransform.h MainFrm.cpp
  PATCH: [ 846523 ] error description for plugins error handler
   WinMerge: Merge.dsp Merge.rc Plugins.cpp
   WinMerge add: Exceptions.h

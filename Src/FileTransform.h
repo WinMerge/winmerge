@@ -17,7 +17,7 @@ enum
 	UNPACK_AUTO,
 };
 
-extern BOOL bUnpackerMode;
+extern BOOL m_bUnpackerMode;
 
 
 
@@ -69,7 +69,7 @@ public:
 	};
 	PackingInfo() 
 	{
-		Initialize(bUnpackerMode);
+		Initialize(m_bUnpackerMode);
 	};
 	PackingInfo(BOOL bLocalUnpackerMode) 
 	{

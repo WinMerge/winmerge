@@ -167,7 +167,7 @@ CMainFrame::CMainFrame()
 	m_bAllowMixedEol = theApp.GetProfileInt(_T("Settings"), _T("AllowMixedEOL"), NULL);
 	theApp.SetFileFilterPath(theApp.GetProfileString(_T("Settings"), _T("FileFilterPath"), _T("")));
 	m_sExtEditorPath = theApp.GetProfileString(_T("Settings"), _T("ExternalEditor"), _T(""));
-	bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), UNPACK_MANUAL);
+	m_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), UNPACK_MANUAL);
 	m_bReuseDirDoc = TRUE;
 	// TODO: read preference for logging
 
@@ -2206,21 +2206,21 @@ void CMainFrame::OnPluginUnpackMode(UINT nID )
 	switch (nID)
 	{
 	case ID_UNPACK_MANUAL:
-		bUnpackerMode = UNPACK_MANUAL;
+		m_bUnpackerMode = UNPACK_MANUAL;
 		break;
 	case ID_UNPACK_AUTO:
-		bUnpackerMode = UNPACK_AUTO;
+		m_bUnpackerMode = UNPACK_AUTO;
 		break;
 	}
-	theApp.WriteProfileInt(_T("Settings"), _T("UnpackerMode"), bUnpackerMode);
+	theApp.WriteProfileInt(_T("Settings"), _T("UnpackerMode"), m_bUnpackerMode);
 }
 
 void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI) 
 {
 	if (pCmdUI->m_nID == ID_UNPACK_MANUAL)
-		pCmdUI->SetRadio(UNPACK_MANUAL == bUnpackerMode);
+		pCmdUI->SetRadio(UNPACK_MANUAL == m_bUnpackerMode);
 	if (pCmdUI->m_nID == ID_UNPACK_AUTO)
-		pCmdUI->SetRadio(UNPACK_AUTO == bUnpackerMode);
+		pCmdUI->SetRadio(UNPACK_AUTO == m_bUnpackerMode);
 }
 
 /**
