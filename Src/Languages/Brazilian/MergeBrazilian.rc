@@ -223,16 +223,16 @@ BEGIN
     BEGIN
         POPUP "Copy"
         BEGIN
-            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
-            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
-            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
-            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+            MENUITEM "Left to Right",               ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",                 ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",               ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",                ID_DIR_COPY_RIGHT_TO_BROWSE
         END
         POPUP "Delete"
         BEGIN
-            MENUITEM "Left",                    ID_DIR_DEL_LEFT
-            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
-            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+            MENUITEM "Left",                        ID_DIR_DEL_LEFT
+            MENUITEM "Right",                       ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                        ID_DIR_DEL_BOTH
         END
         MENUITEM SEPARATOR
         POPUP "Open left"
@@ -1191,18 +1191,18 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extensão"
     IDS_CONFIRM_DELETE_ITEMS
                             "Você tem certeza que deseja excluir %1 de %2 do(s) objecto(s) selecionado(s)?"
-    IDS_DEL_LEFT_FMT        "Excluir a esquerda %1 de %2 objeto(s) selecionado(s)"
+    IDS_DEL_LEFT_FMT        "Left (%1)"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_DEL_RIGHT_FMT       "Excluir a direita %1 de %2 objeto(s) selecionado(s)"
+    IDS_DEL_RIGHT_FMT       "Right (%1)"
     IDS_DELETE_FILE_FAILED  "A exclusão do arquivo %1 falhou: %2"
     IDS_CONFIRM_DELETE_DIR  "Excluir o diretório %1?"
     IDS_REMOVE_DIR_FAILED   "Falha ao excluir o diretório: %1"
-    IDS_COPY_TO_LEFT        "Copiar a esquerda %1 de %2 objeto(s) selecionado(s)"
-    IDS_DEL_BOTH_FMT        "Excluir de ambos os lados %1 de %2 objeto(s) selecionado(s)"
-    IDS_COPY_TO_RIGHT       "Copiar a direita %1 de %2 objeto(s) selecionado(s)"
+    IDS_COPY_TO_LEFT        "Right to left (%1)"
+    IDS_DEL_BOTH_FMT        "Both (%1)"
+    IDS_COPY_TO_RIGHT       "Left to right (%1)"
     IDS_COLHDR_LSIZE        "Left Size"
     IDS_DELETE_DIR_FAILED   "A exclusão do diretório %1 falhou: %s"
     IDS_COPY_FILE_FAILED    "A copia do arquivo %1 falhou: %2"
@@ -1268,6 +1268,11 @@ BEGIN
     IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:\n /? or -? displays this help\n /r or -r tells winmerge to compare directories recursively\n /e or -e allows WinMerge to be closed with a single esc keypress\n /ul or -ul tells winmerge to not add left path to MRU\n /ur or -ur tells winmerge to not add right path to MRU\n /ub or -ub tells winmerge to not add both paths to MRU\n /dl or -dl adds a description for left side shown instead of directory/filename\n /dr or -dr adds a description for right side shown instead of directory/filename\n leftpath is the directory or filename to open on the left side\n rightpath is the directory or filename to open on the right side\n outputpath is an optional output directory where you want merged files to be \n saved\n \n Note: leftpath and rightpath both has to be files or both has to be \n directories\n"
     IDS_LINEDIFF_NODIFF     "No difference"
     IDS_LINEDIFF_NODIFF_CAPTION "Line difference"
+    IDS_DEL_LEFT_FMT2       "Left (%1 of %2)"
+    IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
+    IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
+    IDS_COPY_TO_LEFT2       "Right to left (%1 of %2)"
+    IDS_COPY_TO_RIGHT2      "Left to right (%1 of%2)"
 END
 
 STRINGTABLE DISCARDABLE

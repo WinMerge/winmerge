@@ -84,10 +84,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copy all diffs to other side...", 
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-
         MENUITEM "Copy all diffs from other side...", 
-                                                ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
-
         MENUITEM SEPARATOR
         MENUITEM "Undo",                        ID_UNDO
         MENUITEM SEPARATOR
@@ -226,13 +223,9 @@ BEGIN
         POPUP "Copy"
         BEGIN
             MENUITEM "Left to Right",               ID_DIR_COPY_LEFT_TO_RIGHT
-
             MENUITEM "Left to ...",                 ID_DIR_COPY_LEFT_TO_BROWSE
-
             MENUITEM "Right to Left",               ID_DIR_COPY_RIGHT_TO_LEFT
-
             MENUITEM "Right to ...",                ID_DIR_COPY_RIGHT_TO_BROWSE
-
         END
         POPUP "Delete"
         BEGIN
@@ -245,14 +238,12 @@ BEGIN
         BEGIN
             MENUITEM "with registered application", ID_DIR_OPEN_LEFT
             MENUITEM "with external editor",        ID_DIR_OPEN_LEFT_WITHEDITOR
-
             MENUITEM "with...",                     ID_DIR_OPEN_LEFT_WITH
         END
         POPUP "Open right"
         BEGIN
             MENUITEM "with registered application", ID_DIR_OPEN_RIGHT
             MENUITEM "with external editor",        ID_DIR_OPEN_RIGHT_WITHEDITOR
-
             MENUITEM "with...",                     ID_DIR_OPEN_RIGHT_WITH
         END
     END
@@ -909,6 +900,7 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 266
         TOPMARGIN, 7
+        BOTTOMMARGIN, 155
     END
 
     IDD_GENERATE_PATCH, DIALOG
@@ -1193,18 +1185,18 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extension"
     IDS_CONFIRM_DELETE_ITEMS 
                             "Are you sure you want to delete %1 of %2 selected item(s) ?"
-    IDS_DEL_LEFT_FMT        "Delete left side %1 of %2 selected item(s)"
+    IDS_DEL_LEFT_FMT        "Left (%1)"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_DEL_RIGHT_FMT       "Delete right side %1 of %2 selected item(s)"
+    IDS_DEL_RIGHT_FMT       "Right (%1)"
     IDS_DELETE_FILE_FAILED  "Delete file %1 failed: %2"
     IDS_CONFIRM_DELETE_DIR  "Delete directory %1?"
     IDS_REMOVE_DIR_FAILED   "Remove directory failed: %1"
-    IDS_COPY_TO_LEFT        "Copy to left side %1 of %2 selected item(s)"
-    IDS_DEL_BOTH_FMT        "Delete both sides %1 of %2 selected item(s)"
-    IDS_COPY_TO_RIGHT       "Copy to right side %1 of %2 selected item(s)"
+    IDS_COPY_TO_LEFT        "Right to left (%1)"
+    IDS_DEL_BOTH_FMT        "Both (%1)"
+    IDS_COPY_TO_RIGHT       "Left to right (%1)"
     IDS_COLHDR_LSIZE        "Left Size"
     IDS_DELETE_DIR_FAILED   "Delete directory %1 failed: %s"
     IDS_COPY_FILE_FAILED    "Copying file %1 failed: %2"
@@ -1281,6 +1273,11 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
     IDS_EMPTY_LEFT_FILE     "Untitled left"
     IDS_EMPTY_RIGHT_FILE    "Untitled right"
+    IDS_DEL_LEFT_FMT2       "Left (%1 of %2)"
+    IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
+    IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
+    IDS_COPY_TO_LEFT2       "Right to left (%1 of %2)"
+    IDS_COPY_TO_RIGHT2      "Left to right (%1 of%2)"
 END
 
 STRINGTABLE DISCARDABLE 

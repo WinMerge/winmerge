@@ -223,16 +223,16 @@ BEGIN
     BEGIN
         POPUP "Copy"
         BEGIN
-            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
-            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
-            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
-            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+            MENUITEM "Left to Right",               ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",                 ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",               ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",                ID_DIR_COPY_RIGHT_TO_BROWSE
         END
         POPUP "Delete"
         BEGIN
-            MENUITEM "Left",                    ID_DIR_DEL_LEFT
-            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
-            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+            MENUITEM "Left",                        ID_DIR_DEL_LEFT
+            MENUITEM "Right",                       ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                        ID_DIR_DEL_BOTH
         END
         MENUITEM SEPARATOR
         POPUP "Obre l'esquerre"
@@ -1201,18 +1201,18 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extensió"
     IDS_CONFIRM_DELETE_ITEMS
                             "Esteu segur que voleu suprimir %1 del(s) %2 element(s) seleccionat(s)?"
-    IDS_DEL_LEFT_FMT        "Suprimeix %1 del(s) %2 element(s) seleccionat(s) de l'esquerra"
+    IDS_DEL_LEFT_FMT        "Left (%1)"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_DEL_RIGHT_FMT       "Suprimeix %1 del(s) %2 element(s) seleccionat(s) de la dreta"
+    IDS_DEL_RIGHT_FMT       "Right (%1)"
     IDS_DELETE_FILE_FAILED  "Ha fallat la supressió del fitxer %1 failed: %2"
     IDS_CONFIRM_DELETE_DIR  "Voleu suprimir el directori %1?"
     IDS_REMOVE_DIR_FAILED   "Ha fallat la supressió del directori: %1"
-    IDS_COPY_TO_LEFT        "Copia %1 del(s) %2 element(s) seleccionat(s) a l'esquerra"
-    IDS_DEL_BOTH_FMT        "Suprimeix %1 del(s) %2 element(s) seleccionat(s) d'ambdues bandes"
-    IDS_COPY_TO_RIGHT       "Copia %1 del(s) %2 element(s) seleccionat(s) a la dreta"
+    IDS_COPY_TO_LEFT        "Right to left (%1)"
+    IDS_DEL_BOTH_FMT        "Both (%1)"
+    IDS_COPY_TO_RIGHT       "Left to right (%1)"
     IDS_COLHDR_LSIZE        "Tamany esquerra"
     IDS_DELETE_DIR_FAILED   "Ha fallat la supressió del directori %1: %s"
     IDS_COPY_FILE_FAILED    "Ha fallat la còpia del fitxer %1: %2"
@@ -1278,6 +1278,18 @@ BEGIN
     IDS_QUICKHELP           "Sintaxi : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl descesq] [/dr descdreta] camiesq camidreta [camisortida]\n\non:\n /? o -? mostra aquesta ajuda\n /r o -r diu al WinMerge que compari directoris recursivament\n /e o -e permet tancar el WinMerge amb una única polsació d'esc\n /ul o -ul diu al WinMerge que no afegeixi el camí de l'esquerra a la llista de recents (MRU)\n /ur o -ur diu al WinMerge que no afegeixi el camí de la dreta a la llista de recents (MRU)\n /ub o -ub diu al WinMerge que no afegeixi cap dels dos camins a la llista de recents (MRU)\n /dl o -dl afegeix una descripció per a mostrar a la banda esquerra enlloc del nom del directori/fitxer\n /dr o -dr afegeix una descripció per a mostrar a la banda dreta enlloc del nom del directori/fitxer\n camiesq és el directori o nom de fitxer per a ésser obert a la banda esquerra\n camidreta és el directori o nom de fitxer per a ésser obert a la banda dreta\n camisortida és un directori de sortida opcional on voleu que els fitxers fusionats siguin desats\n \n Nota: cal que camiesq i camidreta siguin ambdós directoris o fitxers\n"
     IDS_LINEDIFF_NODIFF     "No difference"
     IDS_LINEDIFF_NODIFF_CAPTION "Line difference"
+    IDS_ERROR_FILE_NOT_UNPACKED "El fitxer not s'ha desempaquetat: %1"
+    IDS_USERCHOICE_NONE     "<None>"
+    IDS_USERCHOICE_AUTOMATIC "<Automatic>"
+    IDS_SUGGEST_IGNOREEOL   "The files have a different EOL type.\nWith the current options, all lines will differ.\nDo you want to ignore EOL differences for these files ?\n\nAdvanced user : if the EOL are not unified in your files,\n you may rather set the option '%1'."
+    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
+    IDS_EMPTY_LEFT_FILE     "Untitled left"
+    IDS_EMPTY_RIGHT_FILE    "Untitled right"
+    IDS_DEL_LEFT_FMT2       "Left (%1 of %2)"
+    IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
+    IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
+    IDS_COPY_TO_LEFT2       "Right to left (%1 of %2)"
+    IDS_COPY_TO_RIGHT2      "Left to right (%1 of%2)"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1558,17 +1570,6 @@ BEGIN
     ID_POPUP_OPEN_WITH_UNPACKER "Tria un desempaquetador per a editar aquest fitxer"
     ID_UNPACK_MANUAL        "L'usuari tria el desempaquetador (no hi ha desempaquetament en comparar directoris)"
     ID_UNPACK_AUTO          "El desempaquetador adaptat s'aplica a ambdós fitxers (només hi cal l'extensió a un fitxer)"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    IDS_ERROR_FILE_NOT_UNPACKED "El fitxer not s'ha desempaquetat: %1"
-    IDS_USERCHOICE_NONE     "<None>"
-    IDS_USERCHOICE_AUTOMATIC "<Automatic>"
-    IDS_SUGGEST_IGNOREEOL   "The files have a different EOL type.\nWith the current options, all lines will differ.\nDo you want to ignore EOL differences for these files ?\n\nAdvanced user : if the EOL are not unified in your files,\n you may rather set the option '%1'."
-    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-    IDS_EMPTY_LEFT_FILE     "Untitled left"
-    IDS_EMPTY_RIGHT_FILE	"Untitled right"
     ID_DIR_OPEN_LEFT_WITHEDITOR "Open the left file to external editor"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
     ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"

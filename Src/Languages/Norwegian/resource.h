@@ -160,6 +160,11 @@
 #define IDS_SUGGEST_PRESERVEEOL         247
 #define IDS_EMPTY_LEFT_FILE             248
 #define IDS_EMPTY_RIGHT_FILE            249
+#define IDS_DEL_LEFT_FMT2               250
+#define IDS_DEL_RIGHT_FMT2              251
+#define IDS_DEL_BOTH_FMT2               252
+#define IDS_COPY_TO_LEFT2               253
+#define IDS_COPY_TO_RIGHT2              254
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

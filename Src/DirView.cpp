@@ -507,7 +507,10 @@ void CDirView::DoUpdateDirCopyRightToLeft(CCmdUI* pCmdUI, eMenuType menuType)
 		if (menuType==eContext)
 		{
 			CString s;
-			AfxFormatString2(s, IDS_COPY_TO_LEFT, NumToStr(legalcount), NumToStr(selcount));
+			if (legalcount == selcount)
+				AfxFormatString1(s, IDS_COPY_TO_LEFT, NumToStr(selcount));
+			else
+				AfxFormatString2(s, IDS_COPY_TO_LEFT2, NumToStr(legalcount), NumToStr(selcount));
 			pCmdUI->SetText(s);
 		}
 	}
@@ -533,7 +536,10 @@ void CDirView::DoUpdateDirCopyLeftToRight(CCmdUI* pCmdUI, eMenuType menuType)
 		if (menuType==eContext)
 		{
 			CString s;
-			AfxFormatString2(s, IDS_COPY_TO_RIGHT, NumToStr(legalcount), NumToStr(selcount));
+			if (legalcount == selcount)
+				AfxFormatString1(s, IDS_COPY_TO_RIGHT, NumToStr(selcount));
+			else
+				AfxFormatString2(s, IDS_COPY_TO_RIGHT2, NumToStr(legalcount), NumToStr(selcount));
 			pCmdUI->SetText(s);
 		}
 	}
@@ -689,8 +695,12 @@ void CDirView::DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI)
 			++total;
 		}
 		pCmdUI->Enable(count>0);
+
 		CString s;
-		AfxFormatString2(s, IDS_DEL_LEFT_FMT, NumToStr(count), NumToStr(total));
+		if (count == total)
+			AfxFormatString1(s, IDS_DEL_LEFT_FMT, NumToStr(total));
+		else
+			AfxFormatString2(s, IDS_DEL_LEFT_FMT2, NumToStr(count), NumToStr(total));
 		pCmdUI->SetText(s);
 	}
 }
@@ -712,8 +722,12 @@ void CDirView::DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI)
 			++total;
 		}
 		pCmdUI->Enable(count>0);
+		
 		CString s;
-		AfxFormatString2(s, IDS_DEL_RIGHT_FMT, NumToStr(count), NumToStr(total));
+		if (count == total)
+			AfxFormatString1(s, IDS_DEL_RIGHT_FMT, NumToStr(total));
+		else
+			AfxFormatString2(s, IDS_DEL_RIGHT_FMT2, NumToStr(count), NumToStr(total));
 		pCmdUI->SetText(s);
 	}
 }
@@ -735,8 +749,12 @@ void CDirView::DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI)
 			++total;
 		}
 		pCmdUI->Enable(count>0);
+
 		CString s;
-		AfxFormatString2(s, IDS_DEL_BOTH_FMT, NumToStr(count), NumToStr(total));
+		if (count == total)
+			AfxFormatString1(s, IDS_DEL_BOTH_FMT, NumToStr(total));
+		else
+			AfxFormatString2(s, IDS_DEL_BOTH_FMT2, NumToStr(count), NumToStr(total));
 		pCmdUI->SetText(s);
 	}
 }

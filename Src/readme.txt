@@ -1,3 +1,8 @@
+2003-12-19 Kimmo
+ PATCH: [ 861099 ] Dirview context menu cleanup
+  WinMerge: DirView.cpp Merge.rc resource.h
+  Languages: *.rc resource.h
+
 2003-12-18 Kimmo
  PATCH: [ 860988 ] Change File from menu (Adds Window/Change Pane)
   WinMerge: Merge.rc MergeEditView.h MergeEditView.cpp resource.h
