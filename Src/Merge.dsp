@@ -57,7 +57,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\Programs\Merge\Build\MergeRelease\WinMerge.exe
+TargetPath=\Programs\Merge\temp\Build\MergeRelease\WinMerge.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -229,24 +229,6 @@ SOURCE=.\Diff.cpp
 # Begin Source File
 
 SOURCE=.\DiffContext.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\DiffView.cpp
-
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-# PROP Exclude_From_Build 1
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -628,6 +610,10 @@ SOURCE=.\Splash.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\common\SplitterWndEx.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\common\StatLink.cpp
 # End Source File
 # Begin Source File
@@ -745,21 +731,6 @@ SOURCE=.\DiffContext.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\DiffView.h
-
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
 SOURCE=.\DirDoc.h
 # End Source File
 # Begin Source File
@@ -849,6 +820,10 @@ SOURCE=..\common\SortHeaderCtrl.h
 # Begin Source File
 
 SOURCE=.\Splash.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\common\SplitterWndEx.h
 # End Source File
 # Begin Source File
 
