@@ -1,3 +1,7 @@
+2003-12-18 Laoran
+ adapt plugins syntax check, consequence of patch #853147 
+  WinMerge: Plugins.cpp
+
 2003-12-17 Kimmo
  PATCH: [ 858283 ] Add isResultDiff() to DiffItem
   Fix bug in patch (DirDoc.cpp)
