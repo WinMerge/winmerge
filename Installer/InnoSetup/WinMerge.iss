@@ -274,7 +274,7 @@ Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; MinVersion: 
 Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; MinVersion: 4, 0; Components: main; Flags: ignoreversion
 
 ;Installs the ComCtl32.dll update on any system where its DLLs are more recent
-Source: Runtimes\50comupd.exe; DestDir: {tmp}; Check: InstallComCtlUpdate
+Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall; Check: InstallComCtlUpdate
 
 ; begin VC system files
 Source: Runtimes\mfc42.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile
@@ -283,8 +283,8 @@ Source: Runtimes\msvcrt.dll; DestDir: {sys}; Flags: restartreplace uninsneveruni
 Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile
 ; end VC system files
 
-Source: ..\Build\MergeReleaseMinsize\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete; MinVersion: 4, 0
-Source: ..\Build\MergeUnicodeReleaseMinsize\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete; MinVersion: 0, 4
+Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete; MinVersion: 4, 0
+
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
 Source: ..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(313)
