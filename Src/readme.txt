@@ -1,3 +1,7 @@
+2003-07-02 Kimmo
+ PATCH: [ 763817 ] Hilight diffs when syntax hilight is off
+  WinMerge: MergeEditView.cpp
+
 2003-06-30 Perry
  PATCH: [ 762835 ] Display line number etc beneath editor
   WinMerge: ChildFrm.cpp ChildFrm.h DirFrame.cpp Merge.cpp Merge.dsp 

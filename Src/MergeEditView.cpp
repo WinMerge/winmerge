@@ -176,15 +176,6 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, BOOL & bDrawWhitespace)
 {
-	// If no syntax hilighting
-	if (!theApp.m_bHiliteSyntax)
-	{
-		crBkgnd = RGB(255, 255, 255);
-		crText = RGB(0, 0, 0);
-		bDrawWhitespace = FALSE;
-		return;
-	}
-
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
 	
 	// Line inside diff
@@ -234,9 +225,17 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 	}
 	else
 	{
-		// Line not inside diff, get colors from CrystalEditor
-		CCrystalEditViewEx::GetLineColors(nLineIndex, crBkgnd,
-			crText, bDrawWhitespace);
+		// If no syntax hilighting
+		if (!theApp.m_bHiliteSyntax)
+		{
+			crBkgnd = RGB(255, 255, 255);
+			crText = RGB(0, 0, 0);
+			bDrawWhitespace = FALSE;
+		}
+		else
+			// Line not inside diff, get colors from CrystalEditor
+			CCrystalEditViewEx::GetLineColors(nLineIndex, crBkgnd,
+				crText, bDrawWhitespace);
 	}
 }
 
