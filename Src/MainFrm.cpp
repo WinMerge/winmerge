@@ -363,6 +363,13 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 		}
 		else
 		{
+			// CMergeDoc::Rescan fails if files are identical, or 
+			// does not exist on both sides (both of these cases put
+			// up message boxes inside of CMergeDoc::Rescan)
+			// or the really arcane case that the temp files couldn't 
+			// be created, which is too obscure to bother reporting
+			// if you can't write to your temp directory, doing nothing
+			// is graceful enough for that).
 			m_pMergeDoc->m_pView->GetParentFrame()->DestroyWindow();
 			m_pMergeDoc=NULL;
 			m_pLeft = m_pRight = NULL;
