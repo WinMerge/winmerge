@@ -352,7 +352,7 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 		else
 		{
 			CString sParam = pszParam;
-			CString sFile = paths_GetLongPath(sParam, DIRSLASH);
+			CString sFile = paths_GetLongPath(sParam);
 			files.SetAtGrow(nFiles, sFile);
 			nFiles++;
 		}

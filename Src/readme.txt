@@ -1,3 +1,8 @@
+2005-02-28 Perry
+ BUG: [ 895732 ] paths_GetLongPath usually ignores 2nd parameter
+  Remove 2nd parameter entirely from paths_GetLongPath, and improve documentation.
+  Src: Merge.cpp OpenDlg.cpp paths.cpp paths.h readme.txt
+
 2005-02-28 Kimmo
  PATCH: [ 1153091 ] Fix selecting default font from View menu
   Src: MainFrm.cpp MainFrm.h OptionsDef.h

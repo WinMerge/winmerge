@@ -61,7 +61,7 @@ void paths_normalize(CString & sPath)
 	if (!len) return;
 
 	// prefix root with current drive
-	sPath = paths_GetLongPath(sPath, DIRSLASH);
+	sPath = paths_GetLongPath(sPath);
 
 	// Do not remove trailing slash from root directories
 	if (len == 3 && sPath[1] == ':')
@@ -72,11 +72,19 @@ void paths_normalize(CString & sPath)
 		sPath.Delete(sPath.GetLength()-1);
 }
 
-// get long name (optionally terminate directories with slash)
-CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
+/**
+ * Convert path to canonical long path (ie, with ~ short names expanded)
+ * Expand any environment strings
+ * If path does not exist, make canonical the part that does exist, and leave the rest as is
+ * Result, if a directory, usually does not have a trailing backslash
+ */
+CString paths_GetLongPath(const CString & sPath)
 {
-	int len = sPath.GetLength();
-	if (len < 1) return sPath;
+    // This used to be an argument, but it was no longer fully implemented
+    DIRSLASH_TYPE dst = DIRSLASH;
+        
+    int len = sPath.GetLength();
+    if (len < 1) return sPath;
 
 	TCHAR fullPath[_MAX_PATH] = {0};
 	TCHAR *lpPart;
@@ -183,7 +191,7 @@ LPCTSTR paths_GetTempPath()
 	{
 		int cchTempPath = GetTempPath(0, 0);
 		GetTempPath(cchTempPath, strTempPath.GetBufferSetLength(cchTempPath - 1));
-		strTempPath = paths_GetLongPath(strTempPath, DIRSLASH);
+		strTempPath = paths_GetLongPath(strTempPath);
 	}
 	return strTempPath;
 }

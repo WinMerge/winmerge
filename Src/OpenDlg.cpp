@@ -185,8 +185,8 @@ void COpenDlg::OnOK()
 		return;
 	}
 
-	m_strRight = paths_GetLongPath(m_strRight, DIRSLASH);
-	m_strLeft = paths_GetLongPath(m_strLeft, DIRSLASH);
+	m_strRight = paths_GetLongPath(m_strRight);
+	m_strLeft = paths_GetLongPath(m_strLeft);
 
 	UpdateData(FALSE);
 	KillTimer(IDT_CHECKFILES);
@@ -574,9 +574,9 @@ void COpenDlg::OnSaveProjectButton()
 	UpdateData(TRUE);
 	
 
-	// get long name (optionally terminate directories with slash)
-	CString strRight = paths_GetLongPath(m_strRight, DIRSLASH);
-	CString strLeft = paths_GetLongPath(m_strLeft, DIRSLASH);
+	// get long name
+	CString strRight = paths_GetLongPath(m_strRight);
+	CString strLeft = paths_GetLongPath(m_strLeft);
 	CString strExt = m_strExt;
 
 	//trim them
