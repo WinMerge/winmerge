@@ -1,21 +1,11 @@
-#define DllBuild_Merge7z 9 // Minimum DllBuild of Merge7z plugin required
+#define DllBuild_Merge7z 10 // Minimum DllBuild of Merge7z plugin required
+
+#include "dllpstub.h"
 #include "../Merge7z/Merge7z.h"
 
 #include "DirView.h"
 
 extern Merge7z::Proxy Merge7z;
-
-class CSilentException : public CException
-{
-public:
-	CSilentException():CException(FALSE)
-	{
-	}
-	virtual int ReportError(UINT, UINT)
-	{
-		return 0;
-	}
-};
 
 class CTempPath
 {
@@ -103,13 +93,3 @@ inline BSTR Assign(CString &dst, BSTR src)
 	dst = src;
 	return src;
 }
-
-#ifdef _UNICODE
-#define DECORATE_A
-#define DECORATE_W "W"
-#else
-#define DECORATE_A "A"
-#define DECORATE_W
-#endif
-
-#define DECORATE_AW DECORATE_A DECORATE_W

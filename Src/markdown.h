@@ -1,7 +1,7 @@
 #include <oleauto.h>
 #include <afxtempl.h>
 
-HMODULE NTAPI DllProxyHelper(LPCSTR *, DWORD = 0);
+#include "dllpstub.h"
 
 struct ICONV
 {
@@ -27,11 +27,12 @@ struct ICONV
 extern struct ICONV::Proxy
 {
 //	ICONV dll proxy
+	DLLPSTUB stub;
 	LPCSTR ICONV[&((ICONV*)0)->END - &((ICONV*)0)->BEGIN];
 	HMODULE handle;
 	struct ICONV *operator->()
 	{
-		DllProxyHelper(ICONV);
+		stub.Load();
 		return (struct ICONV *) ICONV;
 	}
 } ICONV;

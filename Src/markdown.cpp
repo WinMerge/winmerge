@@ -64,6 +64,7 @@ Please mind 2. a) of the GNU General Public License, and log your changes below.
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
 2005/01/15	Jochen Tucht		Created
+2005/02/26	Jochen Tucht		Load iconv.dll through DLLPSTUB
 */
 
 #include "stdafx.h"
@@ -71,54 +72,9 @@ DATE:		BY:					DESCRIPTION:
 #include <shlwapi.h> // StrToIntEx
 #include "markdown.h"
 
-/**
- * @brief Load a dll and import a number of functions.
- */
-HMODULE NTAPI DllProxyHelper(LPCSTR *proxy, DWORD dwDllBuildRequired)
-{
-	HMODULE handle = 0;
-	LPCSTR name;
-	if ((name = *proxy) != NULL && proxy[1])
-	{
-		handle = LoadLibraryA(name);
-		if (handle)
-		{
-			if (dwDllBuildRequired)
-			{
-				// Make sure all used interfaces are actually implemented
-				DLLVERSIONINFO dvi;
-				dvi.cbSize = sizeof dvi;
-				dvi.dwBuildNumber = 0;
-				DLLGETVERSIONPROC DllGetVersion = (DLLGETVERSIONPROC)GetProcAddress(handle, "DllGetVersion");
-				if (DllGetVersion == NULL || FAILED(DllGetVersion(&dvi)) || dvi.dwBuildNumber < dwDllBuildRequired)
-				{
-					AfxThrowInternetException(0, CO_S_NOTALLINTERFACES);
-				}
-			}
-			LPCSTR *export = proxy;
-			*proxy = 0;
-			while ((name = *++export) != NULL)
-			{
-				*export = (LPCSTR)GetProcAddress(handle, name);
-				if (*export == 0)
-				{
-					*proxy = name;
-					handle = 0;
-					break;
-				}
-			}
-			*export = (LPCSTR)handle;
-		}
-	}
-	if ((name = *proxy) != NULL)
-	{
-		AfxThrowFileException(CFileException::fileNotFound, -1, CString(name));
-	}
-	return handle;
-}
-
 ICONV::Proxy ICONV =
 {
+	{ 0, 0, 0 },
 	"ICONV.DLL",
 	"libiconv_open",
 	"libiconv",

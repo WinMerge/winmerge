@@ -342,6 +342,10 @@ SOURCE=.\Common\dllproxy.c
 # End Source File
 # Begin Source File
 
+SOURCE=.\dllpstub.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\dllver.cpp
 # End Source File
 # Begin Source File
@@ -548,11 +552,6 @@ SOURCE=.\paths.cpp
 # Begin Source File
 
 SOURCE=.\charsets.c
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=.\language.c
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
@@ -900,6 +899,10 @@ SOURCE=.\Common\dllproxy.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\dllpstub.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\dllver.h
 # End Source File
 # Begin Source File
@@ -1045,10 +1048,6 @@ SOURCE=.\paths.h
 # Begin Source File
 
 SOURCE=.\charsets.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\language.h
 # End Source File
 # Begin Source File
 

@@ -1003,9 +1003,9 @@ IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245
 STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_NOPARENTNOTIFY
 CAPTION "WinMerge - Archive support disabled"
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Unknown cause",107,2,2,296,20
+    LTEXT           "Unable to detect 7-Zip version (not installed?)",107,2,2,296,20
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,26,296,1
     LTEXT           "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\nessential components to be copied to the program directory for standalone operation.\nThere must also be an appropriate interface plugin (Merge7z*.dll) on the path.",
                     IDC_STATIC,2,30,296,28
@@ -1037,6 +1037,8 @@ BEGIN
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
+    CONTROL         "Plugin Download",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
+                    236,140,62,10
     LISTBOX         105,2,150,296,72,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
