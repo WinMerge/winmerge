@@ -1,3 +1,7 @@
+2003-12-11 Kimmo
+ Adding 2.2 plan
+  Docs: Planning_2_2.txt
+
 2003-12-11 Laoran
  remove files UnicodeUtf8, consequence of patch #853147 
   WinMerge: FileTransform.cpp Merge.dsp
