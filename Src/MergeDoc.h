@@ -65,6 +65,18 @@ enum
 	SAVE_CANCELLED, /**< Saving was cancelled */  
 };
 
+/**
+ * @brief Types for buffer.
+ *
+ * Buffer's type determines how it is created, saved etc.
+ */
+enum BUFFERTYPE
+{
+	BUFFER_NORMAL = 0, /**< Normal, file loaded from disk */
+	BUFFER_UNNAMED, /**< Empty, created buffer */
+	BUFFER_NAMED, /**< Empty buffer saved and name given */
+};
+
 class CMergeEditView;
 class CMergeDiffDetailView;
 class PackingInfo;
@@ -304,6 +316,8 @@ protected:
 	CString m_strBothFilenames;
 	CString m_strLeftDesc; /**< Left side description text */
 	CString m_strRightDesc; /**< Right side description text */
+	BUFFERTYPE m_nLeftBufferType;
+	BUFFERTYPE m_nRightBufferType;
 
 // friend access
 	friend class RescanSuppress;
@@ -330,4 +344,3 @@ private:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
-

@@ -105,6 +105,8 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	m_pRightDetailView=NULL;
 	m_pDirDoc=NULL;
 	m_pInfoUnpacker = new PackingInfo;
+	m_nLeftBufferType = BUFFER_NORMAL;
+	m_nRightBufferType = BUFFER_NORMAL;
 }
 #pragma warning(default:4355)
 
@@ -123,11 +125,8 @@ CMergeDoc::~CMergeDoc()
 		m_pDirDoc->MergeDocClosing(this);
 		m_pDirDoc = 0;
 	}
-	if (m_pInfoUnpacker) 
-	{
-		delete m_pInfoUnpacker;
-		m_pInfoUnpacker = 0;
-	}
+
+	delete m_pInfoUnpacker;
 }
 
 void CMergeDoc::DeleteContents ()
@@ -724,14 +723,19 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, BOOL bLeft,
 
 			if (nSaveResult == SAVE_DONE)
 			{
-				// We are saving scratchpad, so empty description so that
-				// filename is shown on headerbar for now on.
+				// We are saving scratchpad (unnamed file)
 				if (strPath.IsEmpty())
 				{
 					if (bLeft)
+					{
+						m_nLeftBufferType = BUFFER_NAMED;
 						m_strLeftDesc.Empty();
+					}
 					else
+					{
+						m_nRightBufferType = BUFFER_NAMED;
 						m_strRightDesc.Empty();
+					}
 				}
 					
 				strPath = strSavePath;
@@ -782,6 +786,8 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	PackingInfo infoTempUnpacker = *m_pInfoUnpacker;
 
 	bSaveSuccess = FALSE;
+	
+	// Check third arg possibly given from command-line
 	if (!mf->m_strSaveAsPath.IsEmpty())
 	{
 		CFileStatus status;
@@ -815,9 +821,15 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	int nSaveErrorCode = SAVE_DONE;
 	CDiffTextBuffer *pBuffer = bLeft ? &m_ltBuf : &m_rtBuf;
 
-	// Assume empty filename means Scratchpad
+	// Assume empty filename means Scratchpad (unnamed file)
+	// Todo: This is not needed? - buffer type check should be enough
 	if (strSavePath.IsEmpty())
 		nSaveErrorCode = SAVE_NO_FILENAME;
+
+	// Handle unnamed buffers
+	if (( bLeft && m_nLeftBufferType == BUFFER_UNNAMED) ||
+		(!bLeft && m_nRightBufferType == BUFFER_UNNAMED))
+			nSaveErrorCode = SAVE_NO_FILENAME;
 
 	if (nSaveErrorCode == SAVE_DONE)
 		nSaveErrorCode = pBuffer->SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
@@ -2385,17 +2397,21 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	m_rtBuf.FreeAll ();
 
 	// build the text being filtered, "|" separates files as it is forbidden in filenames
-	m_strBothFilenames = sLeftFile + "|" + sRightFile;
+	m_strBothFilenames = sLeftFile + _T("|") + sRightFile;
 
 	// Load left side file
 	int nLeftSuccess = FRESULT_ERROR;
 	if (!sLeftFile.IsEmpty())
 	{
+		m_nLeftBufferType = BUFFER_NORMAL;
+
 		// Load left side file
 		nLeftSuccess = LoadFile(sLeftFile, TRUE, bROLeft, cpleft);
 	}
 	else
 	{
+		m_nLeftBufferType = BUFFER_UNNAMED;
+
 		m_ltBuf.InitNew();
 		nLeftSuccess = FRESULT_OK;
 	}
@@ -2404,11 +2420,15 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	int nRightSuccess = FRESULT_ERROR;
 	if (!sRightFile.IsEmpty())
 	{
+		m_nRightBufferType = BUFFER_NORMAL;
+
 		if (nLeftSuccess == FRESULT_OK)
 			nRightSuccess = LoadFile(sRightFile, FALSE, bRORight, cpright);
 	}
 	else
 	{
+		m_nRightBufferType = BUFFER_UNNAMED;
+
 		m_rtBuf.InitNew();
 		nRightSuccess = FRESULT_OK;
 	}
@@ -2527,8 +2547,11 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		// Inform user that files are identical
 		// Don't show message if new buffers created
 		if (nRescanResult == RESCAN_IDENTICAL &&
-			(!sLeftFile.IsEmpty() || !sRightFile.IsEmpty()))
-			ShowRescanError(nRescanResult);
+			(m_nLeftBufferType == BUFFER_NORMAL ||
+			m_nRightBufferType == BUFFER_NORMAL))
+		{
+				ShowRescanError(nRescanResult);
+		}
 	}
 	else
 	{
@@ -2571,7 +2594,7 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 
 	if (bLeft)
 	{
-		if (!m_strLeftDesc.IsEmpty())
+		if (m_nLeftBufferType == BUFFER_UNNAMED)
 			sText = m_strLeftDesc;
 		else
 			sText = m_strLeftFile;
@@ -2580,7 +2603,7 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 	}
 	else
 	{
-		if (!m_strRightDesc.IsEmpty())
+		if (m_nRightBufferType == BUFFER_UNNAMED)
 			sText = m_strRightDesc;
 		else
 			sText = m_strRightFile;
@@ -2604,4 +2627,3 @@ void CMergeDoc::UpdateHeaderActivity(BOOL bLeft, BOOL bActivate)
 	int nPane = (bLeft) ? 0 : 1;
 	pf->GetHeaderInterface()->SetActive(nPane, bActivate);
 }
-

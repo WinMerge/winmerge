@@ -2,6 +2,8 @@
  PATCH: [ 873151 ] Attempt to fix Help/Configuration
   Submitted by Perry
   Src: paths.cpp
+ PATCH: [ 891364 ] Enumerated doctype (scratchpads)
+  Src: MergeDoc.cpp MergeDoc.h
 
 2004-02-09 Kimmo
  BUG: [ 893287 ] Assign wrong file property when storing changes.
