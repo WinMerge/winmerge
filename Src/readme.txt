@@ -1,3 +1,7 @@
+2003-07-04 Laoran
+ PATCH: [ 766038 ] stay in the viewing area during OnFirstdiff
+  WinMerge: MergeEditView.cpp
+
 2003-07-04 Kimmo
  PATCH: [ 765463 ] Simplify temp path handling a little
   WinMerge: MergeDoc.h MergeDoc.cpp

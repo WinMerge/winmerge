@@ -459,7 +459,9 @@ void CMergeEditView::OnFirstdiff()
 	if (pd->m_nDiffs > 0)
 	{
 		// scroll to the first line of the first diff, with some context thrown in
-		int line = max(0, pd->m_diffs[0].dbegin0-CONTEXT_LINES);
+		int line = pd->m_diffs[0].dbegin0-CONTEXT_LINES;
+		if (line < 0)
+			line = 0;
 		ScrollToLine(line);
 		UpdateSiblingScrollPos(FALSE);
 
