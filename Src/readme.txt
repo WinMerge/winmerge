@@ -3,6 +3,8 @@
   Src: MainFrm.cpp MainFrm.h Merge.cpp Merge.h
  PATCH: [ 959035 ] Registry value for enabling logging
   Src: MainFrm.cpp OptionsDef.h
+ Add note about logging (patch #959035]
+  Docs/Developers: readme-developers.html
 
 2004-05-24 Perry
  PATCH: [ 893202 ] Bug fixed for DBCS text edit (Attach again)

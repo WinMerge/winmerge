@@ -24,7 +24,8 @@
 <a href="#Localization : merging and scheduling">Localization : merging and scheduling</a>
 </li><li>
 <a href="#UserManual">User Manual in DocBook/XML</a>
-
+</li><li>
+<a href="#Logging">Logging</a>
 </li></ol>
 
 
@@ -441,3 +442,27 @@ See these tutorials for editing DocBook:
 DocBook guide</a><br>
 <a href="http://www.codeproject.com/winhelp/docbook_howto.asp">Creating HTML
 help from DocBook</a>
+
+<a name="Logging"></a>
+<h3>Logging</h3>
+Logs are good tool for tracing errors. But logs must be first written. Its always
+good habit to write errormessage to logfile also.
+<p>
+Writing to log:<br>
+Simplest way to write errormessage to log is using
+<b><code>void LogErrorString(LPCTSTR sz)</code></b> defined in stdafx.h. Another
+way is to directly use <b><code>gLog</code></b> which is global instance of
+CLogFile. Log is written to users temporary directory ($temp) with name
+<b><code>WinMerge.log</code></b>.
+<p>
+Enabling/disabling log writing<br>
+Log writing is controlled by registry value:
+<b><code>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\Logging
+</code></b>. Possible values are:
+<ol><li>
+0 - no logging
+</li><li>
+1 - all logging enabled
+</li><li>
+2 - only errormessages and warnings written to log
+</li></ol>
