@@ -309,6 +309,7 @@ BOOL FileFilterHelper::SetFilter(CString filter)
 	{
 		SetMask(filter);
 		UseMask(TRUE);
+		SetFileFilterPath(_T(""));
 	}
 	else
 	{

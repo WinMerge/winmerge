@@ -103,7 +103,6 @@ void FileFiltersDlg::InitList()
 	m_listFilters.InsertColumn(0, title,LVCFMT_LEFT, 150);
 	VERIFY(title.LoadString(IDS_FILTERFILE_PATHTITLE));
 	m_listFilters.InsertColumn(1, title,LVCFMT_LEFT, 350);
-//	m_listFilters.InsertColumn(2, _T("File"),LVCFMT_LEFT, 150);
 
 	VERIFY(title.LoadString(IDS_USERCHOICE_NONE));
 	m_listFilters.InsertItem(1, title);
@@ -127,6 +126,13 @@ BOOL FileFiltersDlg::OnInitDialog()
 	InitList();
 
 	CString desc;
+	if (m_sFileFilterPath.IsEmpty())
+	{
+		m_listFilters.SetItemState(0, LVIS_SELECTED, LVIS_SELECTED);
+		m_listFilters.EnsureVisible(0, FALSE);
+		return TRUE;
+	}
+
 	int count = m_listFilters.GetItemCount();
 	for (int i = 0; i < count; i++)
 	{
@@ -137,7 +143,6 @@ BOOL FileFiltersDlg::OnInitDialog()
 			m_listFilters.SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
 			m_listFilters.EnsureVisible(i, FALSE);
 		}
-
 	}
 
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -164,8 +169,7 @@ void FileFiltersDlg::OnOK()
 	int sel =- 1;
 
 	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
-	m_listFilters.GetItemText(sel, 1, path.GetBuffer(MAX_PATH),
-		MAX_PATH);
+	m_listFilters.GetItemText(sel, 1, path.GetBuffer(MAX_PATH),	MAX_PATH);
 	path.ReleaseBuffer();
 	m_sFileFilterPath = path;
 
