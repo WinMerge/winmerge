@@ -1,7 +1,7 @@
-;      Original File Name:  WinMerge.iss
-;           File Revision:  20
-;           Revision Date:  2004/03/10 17:42
-;           Programmed by:  Christian Blackburn and ?
+; RCS ID line follows -- this is updated by CVS
+; $Id$
+;
+;           Programmed by:  Christian Blackburn and Christian List
 ;                 Purpose:  The is the Inno Setup installation script for distributing our WinmMerge application.
 ; Tools Needed To Compile:  Inno Setup 4.18+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 4.18+(http://www.jrsoftware.org/isdl.php)
 ;                           note: the versions of Inno Setup and the QuickStart Pack should be identical to ensure proper function
@@ -198,21 +198,21 @@ Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: ignoreversi
 Source: ..\Docs\*.*; DestDir: {app}\Docs; Components: docs; Flags: ignoreversion sortfilesbyextension
 Source: ..\Filters\*.*; DestDir: {app}\Filters; Components: filters; Flags: ignoreversion sortfilesbyextension
 
-Source: ..\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: chinesesimplifiedlanguage; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: chinesetraditionallanguage; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: koreanlanguage; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: chinesesimplifiedlanguage; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: chinesetraditionallanguage; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: koreanlanguage; Flags: ignoreversion
 
-Source: ..\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: czechlanguage; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: slovaklanguage; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: czechlanguage; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: slovaklanguage; Flags: ignoreversion
 
-Source: ..\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: danishlanguage; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: dutchlanguage; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: danishlanguage; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: dutchlanguage; Flags: ignoreversion
 
-Source: ..\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: frenchlanguage; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: germanlanguage; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: italianlanguage; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: spanishlanguage; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: brazilian; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: frenchlanguage; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: germanlanguage; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: italianlanguage; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: spanishlanguage; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: brazilian; Flags: ignoreversion
 
 Source: ..\Docs\Read Me.rtf; DestDir: {app}; Components: main; Flags: ignoreversion
 
@@ -654,5 +654,3 @@ Begin
         end }
 
 End;
-[_ISTool]
-OutputExeFilename=D:\Programming\Visual C++\WinMerge\WinMerge\InnoSetup\Output\WinMerge 2.1.5.13.exe
