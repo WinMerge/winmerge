@@ -98,9 +98,6 @@ static CString ColFileNameGet(const CDiffContext *, const void *p) //sfilename
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
 	return di.sfilename;
 }
-/**
- * @{ Functions to display each type of column info
- */
 static CString ColNameGet(const CDiffContext *, const void *p) //sfilename
 {
 	const CString &r = *static_cast<const CString*>(p);
@@ -176,8 +173,12 @@ static CString ColSizeGet(const CDiffContext *, const void *p)
 {
 	const __int64 &r = *static_cast<const __int64*>(p);
 	CString s;
-	s.Format(_T("%I64d"), r);
-	return locality::GetLocaleStr(s);
+	if (r != -1)
+	{
+		s.Format(_T("%I64d"), r);
+		s = locality::GetLocaleStr(s);
+	}
+	return s;
 }
 static CString ColDiffsGet(const CDiffContext *, const void *p)
 {

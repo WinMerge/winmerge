@@ -1,3 +1,7 @@
+2004-05-27 Kimmo
+ PATCH: [ 960265 ] Don't show size for folder or non-existing file
+  Src: DiffFileInfo.cpp DiffFileInfo.h DirScan.cpp DirViewColItems.cpp
+
 2004-05-26 Perry
  PATCH: [ 959468 ] A patch for "Bug [ 958805 ] 2 bytes display error".
   Src: StdAfx.cpp

@@ -58,12 +58,12 @@ struct DiffFileInfo
 	// storing __time64_t if MSVC7 (VC.NET)
 	__int64 ctime; /**< time of creation */
 	__int64 mtime;
-	__int64 size; /**< file size in bytes */
+	__int64 size; /**< file size in bytes, -1 means file does not exist*/
 	CString version; /**< string of fixed file version, eg, 1.2.3.4 */
 	FileFlags flags; /**< file attributes */
 	int codepage; /**< 8bit codepage, if applicable, 0 is unknown or N/A */
 	int unicoding; /**< Unicode encoding (ucr::CODESET) */
-	DiffFileInfo() : ctime(0), mtime(0), size(0), codepage(0), unicoding(0) { }
+	DiffFileInfo() : ctime(0), mtime(0), size(-1), codepage(0), unicoding(0) { }
 
 	CString getEncodingString() const;
 	// We could stash a pointer here to the parent DIFFITEM

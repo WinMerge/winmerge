@@ -50,7 +50,9 @@ void DiffFileInfo::Update(CString sFilePath)
 		flags.reset();
 		if (wfd.dwFileAttributes & FILE_ATTRIBUTE_READONLY)
 			flags.flags += FileFlags::RO;
-		size = (wfd.nFileSizeHigh << 32) + wfd.nFileSizeLow;
+		//No size for directory (remains as -1)
+		if ((wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
+			size = (wfd.nFileSizeHigh << 32) + wfd.nFileSizeLow;
 		FindClose(h);
 	}
 	else

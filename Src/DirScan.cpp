@@ -298,11 +298,14 @@ void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 		{
 			DWORD dwIsDirectory = ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY;
 			if (dwIsDirectory && StrStr(_T(".."), ff.cFileName))
-			continue;
-		fentry ent;
+				continue;
+			fentry ent;
 			ent.ctime = CTime(ff.ftCreationTime).GetTime();
 			ent.mtime = CTime(ff.ftLastWriteTime).GetTime();
-			ent.size = ff.nFileSizeLow + (ff.nFileSizeHigh << 32);
+			if (!dwIsDirectory)
+				ent.size = ff.nFileSizeLow + (ff.nFileSizeHigh << 32);
+			else
+				ent.size = -1;  // No size for directories
 			ent.name = ff.cFileName;
 			ent.attrs = ff.dwFileAttributes;
 			(dwIsDirectory ? dirs : files) -> Add(ent);
