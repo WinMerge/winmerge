@@ -731,22 +731,22 @@ BEGIN
     CONTROL         227,IDC_STATIC,"Static",SS_BITMAP,218,27,12,11,
                     WS_EX_STATICEDGE
     RTEXT           "",IDC_COUNT_LFOLDER,24,10,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_RFOLDER,24,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_RFOLDER,24,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
     RTEXT           "",IDC_COUNT_EQUAL,76,10,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_NOTEQUAL,76,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_NOTEQUAL,76,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_BINARYSAME,129,10,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_BINARYSAME,129,10,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_BINARYDIFF,129,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_BINARYDIFF,129,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
     RTEXT           "",IDC_COUNT_LFILE,182,10,26,8,SS_REALSIZEIMAGE | 0x2000
     RTEXT           "",IDC_COUNT_RFILE,182,29,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_FOLDERSKIP,235,10,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_FOLDERSKIP,235,10,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_FILESKIP,235,29,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_FILESKIP,235,29,26,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_UNKNOWN,288,10,26,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_UNKNOWN,288,10,26,8,SS_REALSIZEIMAGE |
                     0x2000
     PUSHBUTTON      "Stop",IDC_COMPARISON_STOP,327,17,83,14
 END
@@ -759,12 +759,12 @@ BEGIN
     LTEXT           "G&oto:",IDC_STATIC,7,9,18,8
     EDITTEXT        IDC_WMGOTO_PARAM,33,7,93,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "File",IDC_STATIC,7,27,48,35
-    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,13,38,28,10
     CONTROL         "&Right",IDC_WMGOTO_FILERIGHT,"Button",BS_AUTORADIOBUTTON,
                     13,48,33,10
     GROUPBOX        "Goto what",IDC_STATIC,61,27,63,35
-    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,68,38,29,10
     CONTROL         "&Difference",IDC_WMGOTO_TODIFF,"Button",
                     BS_AUTORADIOBUTTON,68,48,49,10
@@ -778,7 +778,7 @@ CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
     GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
-    CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,14,19,44,10
     CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",
                     BS_AUTORADIOBUTTON,14,30,96,10
@@ -1318,7 +1318,7 @@ BEGIN
     IDS_DIFF_SUCCEEDED      "Patch file succesfully written."
     IDS_DIFF_ITEM1NOTFOUND  "1. item is not found or is directory!"
     IDS_DIFF_ITEM2NOTFOUND  "2. item is not found or is directory!"
-    IDS_DIFF_FILEOVERWRITE  "Result file exits. Overwrite?"
+    IDS_DIFF_FILEOVERWRITE  "The patch file already exists. Do you want to overwrite it?"
     IDS_DIFF_SELECTEDFILES  "[%1 files selected]"
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Context"

@@ -1317,7 +1317,7 @@ BEGIN
     IDS_DIFF_SUCCEEDED      "Patch file succesfully written."
     IDS_DIFF_ITEM1NOTFOUND  "1. item is not found or is directory!"
     IDS_DIFF_ITEM2NOTFOUND  "2. item is not found or is directory!"
-    IDS_DIFF_FILEOVERWRITE  "Result file exits. Overwrite?"
+    IDS_DIFF_FILEOVERWRITE  "The patch file already exists. Do you want to overwrite it?"
     IDS_DIFF_SELECTEDFILES  "[%1 files selected]"
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Context"

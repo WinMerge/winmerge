@@ -1322,7 +1322,7 @@ BEGIN
     IDS_DIFF_SUCCEEDED      "Патч успешно записан."
     IDS_DIFF_ITEM1NOTFOUND  "1. Элемент не найден или это каталог"
     IDS_DIFF_ITEM2NOTFOUND  "2. Элемент не найден или это каталог"
-    IDS_DIFF_FILEOVERWRITE  "Файл результатов уже существует. Перезаписать ?"
+    IDS_DIFF_FILEOVERWRITE  "The patch file already exists. Do you want to overwrite it?"
     IDS_DIFF_SELECTEDFILES  "[%1 файлов выбрано]"
     IDS_DIFF_NORMAL         "Нормальный"
     IDS_DIFF_CONTEXT        "Контекст"

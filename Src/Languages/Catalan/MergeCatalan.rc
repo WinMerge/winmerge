@@ -1333,7 +1333,7 @@ BEGIN
     IDS_DIFF_SUCCEEDED      "El fitxer de diferències s'ha generat amb èxit."
     IDS_DIFF_ITEM1NOTFOUND  "1. no s'ha trobat l'element o aquest és un directori!"
     IDS_DIFF_ITEM2NOTFOUND  "2. no s'ha trobat l'element o aquest és un directori!"
-    IDS_DIFF_FILEOVERWRITE  "El fitxer de resultat existeix, el voleu sobreescriure?"
+    IDS_DIFF_FILEOVERWRITE  "The patch file already exists. Do you want to overwrite it?"
     IDS_DIFF_SELECTEDFILES  "[%1 fitxers seleccionats]"
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Context"

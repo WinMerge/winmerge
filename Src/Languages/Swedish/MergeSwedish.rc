@@ -1317,7 +1317,7 @@ BEGIN
     IDS_DIFF_SUCCEEDED      "Patchfilen sparad."
     IDS_DIFF_ITEM1NOTFOUND  "Det gick inte att hitta första filen, eller så är det en mapp!"
     IDS_DIFF_ITEM2NOTFOUND  "Det gick inte att hitta andra filen, eller så är det en mapp!"
-    IDS_DIFF_FILEOVERWRITE  "Resultatfilen finns. Vill du skriva över den?"
+    IDS_DIFF_FILEOVERWRITE  "The patch file already exists. Do you want to overwrite it?"
     IDS_DIFF_SELECTEDFILES  "[%1 fil(er) valda]"
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Omgivande (Context)"

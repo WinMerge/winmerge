@@ -2,6 +2,9 @@
  PATCH: [ 899145 ] Check if patch path is absolute
   Src: Merge.rc PatchDlg.cpp paths.cpp paths.h resource.h
   Languages: *.rc resource.h (incl. changes from #889357)
+ BUG: [ 893410 ] Typo in IDS_DIFF_FILEOVERWRITE
+  Src: Merge.rc
+  Languages: *.rc
 
 2004-02-18 Jochen
  PATCH: [ 889357 ] Attempt to improve DirScan speed
