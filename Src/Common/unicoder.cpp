@@ -2,7 +2,7 @@
  *  @file   unicoder.cpp
  *  @author Perry Rapp, Creator, 2003-2004
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-01-14 (Perry)
+ *  @date   Edited:  2004-01-15 (Perry)
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
@@ -783,12 +783,14 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 	{
 		// From UCS-2LE to 8-bit (or UTF-8)
 
+		// WideCharToMultiByte: lpDefaultChar & lpUsedDefaultChar must be NULL when using UTF-8
+
 		int destcp = (unicoding2 == UTF8 ? CP_UTF8 : codepage2);
 		DWORD flags = 0;
 		int bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, srcbytes/2, 0, 0, NULL, NULL);
 		dest->resize(bytes);
 		int losses = 0;
-		bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, srcbytes/2, (char *)dest->ptr, dest->size, NULL, &losses);
+		bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, srcbytes/2, (char *)dest->ptr, dest->size, NULL, NULL);
 		dest->used = bytes;
 		return losses==0;
 	}

@@ -1,6 +1,8 @@
 2004-01-15 Perry
  Remove rcs/cvs ID line from unicoder.* (because I share these elsewhere)
   src/WinMerge/Common: unicoder.cpp unicoder.h
+Fix bug in unicoder.cpp: WideCharToMultiByte: lpDefaultChar & lpUsedDefaultChar must be NULL when using UTF-8.
+  src/WinMerge/Common: unicoder.cpp
 
 2004-01-13 Perry
  PATCH: [ 876546 ] Fix CMergeDoc::CDiffTextBuffer::SaveToFile ghost line detect
