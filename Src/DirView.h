@@ -65,6 +65,8 @@ class PackingInfo;
 /** View displaying results of a diff, one row per file */
 class CDirView : public CListViewEx
 {
+	class DirItemEnumerator;
+	friend DirItemEnumerator;
 protected:
 	CDirView();           // protected constructor used by dynamic creation
 	DECLARE_DYNCREATE(CDirView)
