@@ -2761,6 +2761,7 @@ void CMainFrame::OnToolsFilters()
 	CString selectedFilter;
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&filter);
+	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
 	theApp.GetFileFilters(&fileFilters, selectedFilter);
 	fileFiltersDlg.SetFilterArray(&fileFilters);
