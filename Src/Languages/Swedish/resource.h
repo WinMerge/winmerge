@@ -119,9 +119,6 @@
 #define IDC_SEL_DIFFERENCE_DELETED_COLOR 1042
 #define IDC_SEL_DIFFERENCE_TEXT_COLOR   1043
 #define IDC_EXPLORER_CONTEXT            1044
-#define IDC_WINMERGE_PATH_BROWSE        1045
-#define IDC_WINMERGE_PATH               1046
-#define IDC_WINMERGE_PATH_SAVE          1047
 #define IDC_GROUP_SHOW                  1053
 #define IDC_LIST_SHOW                   1054
 #define IDC_UP                          1055
