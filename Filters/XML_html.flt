@@ -16,7 +16,7 @@ f: \.dtd$
 f: \.html$ ## HTML files
 f: \.htm$
 f: \.css$ ## CSS style files
-f: \\gif$ ## Pictures
+f: \.gif$ ## Pictures
 f: \.bmp$
 f: \.jpg$
 f: \.png$

@@ -1,3 +1,7 @@
+2004-01-04 Kimmo
+ BUG: [ 869289 ] Typo in XML_html.flt excludes gif files
+  Filters: XML_html.flt
+
 2004-01-02 Kimmo
  PATCH: [ 868584 ] Move DIRSEL_TAG to string resource
   WinMerge: Merge.rc OpenDlg.cpp resource.h
