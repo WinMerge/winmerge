@@ -174,7 +174,7 @@ Name: Portuguese; MessagesFile: Languages\Brazilian_Portuguese.isl
 Name: Russian; MessagesFile: Languages\Russian.isl
 Name: Slovak; MessagesFile: Languages\Slovak.isl
 Name: Spanish; MessagesFile: Languages\Spanish.isl
-Name: Swedish; MessagesFile: Languages\Swedish.isl
+Name: Swedish; MessagesFile: Languages\Swedish.isl; InfoAfterFile: ..\Docs\Users\Languages\Read Me-Swedish.rtf
 
 
 [Messages]

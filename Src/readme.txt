@@ -1,6 +1,8 @@
 2004-05-21 Perry
  Fix PATCH [ 957740] - declare CMergeDoc::CompareBinaries
   Src: MergeDoc.h
+ Updated WinMerge Localized.iss from seier (add Swedish Readme after install)
+  InnoSetup: WinMerge Localized.iss
 
 2004-05-21 Kimmo
  PATCH: [ 957740 ] Tell if two binary files are different/identical

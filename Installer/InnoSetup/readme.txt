@@ -1,3 +1,7 @@
+2004-05-21 Perry
+ Updated WinMerge Localized.iss from seier (add Swedish Readme after install)
+  WinMerge Localized.iss
+
 2004-05-20 Kimmo
  RFE: [ 948358 ] Windows XP manifest (themes) support
   Add manifest files for WinMerge.exe and WinMergeU.exe
