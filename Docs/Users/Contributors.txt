@@ -49,6 +49,7 @@ Localization:
   Joerg Schneider   
     
 * Italian:	
+  Andrea Decorte
   Michele Merega
              
 * Korean:
