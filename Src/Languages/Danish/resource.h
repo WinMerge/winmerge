@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Developer Studio generated include file.
-// Used by MergeDanish.rc
+// Used by Merge.rc
 //
 #define IDC_CUT                         3
 #define IDC_COPY                        4
@@ -89,6 +89,8 @@
 #define IDS_CONFIRM_DELETE_SINGLE       190
 #define IDS_BIN_FILES_SAME              191
 #define IDS_FILESAVE_FAILED             192
+#define IDS_ERROR_FILE_NOT_FOUND        193
+#define IDS_ERROR_INCOMPARABLE          194
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
@@ -144,6 +146,7 @@
 #define IDC_PROP_INSERT_TABS            1034
 #define IDC_PROP_INSERT_SPACES          1035
 #define IDC_ASSOC_DIRECTORY             1036
+#define IDC_LANGUAGE_LIST               1037
 #define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
 #define IDD_PROPSYNTAX                  30001
@@ -329,7 +332,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        114
 #define _APS_NEXT_COMMAND_VALUE         32819
-#define _APS_NEXT_CONTROL_VALUE         1037
+#define _APS_NEXT_CONTROL_VALUE         1038
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif
