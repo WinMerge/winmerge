@@ -161,8 +161,10 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 	ASSERT(nStartChar >= 0 && nStartChar <= GetLineLength(nStartLine));
 	ASSERT(nEndLine >= 0 && nEndLine < lines);
 	ASSERT(nEndChar >= 0 && nEndChar <= GetFullLineLength(nEndLine));
-	ASSERT(nStartLine < nEndLine || nStartLine == nEndLine && 
-		nStartChar < nEndChar);
+	ASSERT(nStartLine < nEndLine || nStartLine == nEndLine && nStartChar <= nEndChar);
+	// some edit functions (copy...) should do nothing when there is no selection.
+	// assert to be sure to catch these 'do nothing' cases.
+	ASSERT(nStartLine != nEndLine || nStartChar != nEndChar);
 
 	// estimate size (upper bound)
 	int nBufSize = 0;

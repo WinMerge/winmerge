@@ -5,6 +5,10 @@
   WinMerge: MainFrm.cpp
 
 2003-11-13 Laoran
+ modify the assert in GetText/GetTextWithoutEmptys
+ submitted by Jochen
+  WinMerge: GhostTextBuffer.cpp
+  editlib: ccrystaltextbuffer.cpp
  Merging lwdisp.c with Jochen's changes (see patch #837480)
   common: lwdisp.c lwdisp.h
  PATCH: [ 838354 ] Revisit Speedup Speed up display of large differences

@@ -945,7 +945,10 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & t
   ASSERT (nStartChar >= 0 && nStartChar <= m_aLines[nStartLine].m_nLength);
   ASSERT (nEndLine >= 0 && nEndLine < m_aLines.GetSize ());
   ASSERT (nEndChar >= 0 && nEndChar <= m_aLines[nEndLine].m_nLength);
-  ASSERT (nStartLine < nEndLine || nStartLine == nEndLine && nStartChar < nEndChar);
+  ASSERT (nStartLine < nEndLine || nStartLine == nEndLine && nStartChar <= nEndChar);
+  // some edit functions (copy...) should do nothing when there is no selection.
+  // assert to be sure to catch these 'do nothing' cases.
+  ASSERT (nStartLine != nEndLine || nStartChar != nEndChar);
 
   if (pszCRLF == NULL)
     pszCRLF = crlf;
@@ -1058,7 +1061,10 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, 
   ASSERT (nStartChar >= 0 && nStartChar <= m_aLines[nStartLine].m_nLength);
   ASSERT (nEndLine >= 0 && nEndLine < m_aLines.GetSize ());
   ASSERT (nEndChar >= 0 && nEndChar <= m_aLines[nEndLine].m_nLength);
-  ASSERT (nStartLine < nEndLine || nStartLine == nEndLine && nStartChar < nEndChar);
+  ASSERT (nStartLine < nEndLine || nStartLine == nEndLine && nStartChar <= nEndChar);
+  // some edit functions (delete...) should do nothing when there is no selection.
+  // assert to be sure to catch these 'do nothing' cases.
+  ASSERT (nStartLine != nEndLine || nStartChar != nEndChar);
   if (m_bReadOnly)
     return FALSE;
 
