@@ -1763,7 +1763,7 @@ void CMergeDoc::OnFileSaveAsRight()
 	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
 	if (SelectFile(s, m_strRightFile, title, NULL, FALSE))
 	{
-		bSaveSuccess = m_rtBuf.SaveToFile(s, FALSE);
+		bSaveSuccess = m_rtBuf.SaveToFile(s, FALSE, &infoTempUnpacker);
 		if(bSaveSuccess != SAVE_DONE)
 		{
 			BOOL bSaveAsSuccess = bSaveSuccess;
