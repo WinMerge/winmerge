@@ -1,7 +1,6 @@
 <sect1 id="CompareFiles">
   <title>Comparing files</title>
-  <para>File compare window is basically two files opened to editor into two horizontal panes. Editing files is the big difference between 1.7.1 and newer versions. </para>
-  <para>Editing allows user to make changes to files other than just merging differences. Its easy to make little changes when merging. WinMerge is not and can't be as good in editing than many specialized editor programs are. So WinMerge makes it easy to open selected files from directory compare to user-defined editor.</para>
+  <para>File compare window is basically two files opened to editor into two horizontal panes. Editing files is the big difference between 1.7.1 and newer versions. Editing allows user to easily do small changes without need to open files to other editor or development environment.</para>
   <tip>
     <para>If automatic rescanning is not enabled manual refresh is recommended after editing.</para>
   </tip>
@@ -15,21 +14,61 @@
     <para>WinMerge uses different (user configurable) colors to hilight and select differences. By default WinMerge shows different lines with yellow background and missing lines with gray background. If user selects the difference, it is shown with red background and missing lines with milder red.</para>
   </sect2>
   <sect2>
-    <title>Amount of differences and selected difference</title>
-    <para>First thing user should notice is amount of differences shown on statusbar. There can be three formats for text:<itemizedlist>
+    <title>File headerbar</title>
+    <para>File headerbar has many functionalities. See screenshot below:</para>
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/File_headerbar1.jpg" format="JPG"/>
+        </imageobject>
+      </inlinemediaobject></para>
+    <para>Firstly, headerbar shows filename and full path for file. Headerbar also shows:<itemizedlist>
         <listitem>
-          <para>"Identical" meaning there are no differences</para>
+          <para>current active file with sunken border (like in screenshot), non-active file is shown with flat headerbar.</para>
         </listitem>
         <listitem>
-          <para>"X differences" telling amount of differences when no difference is selected</para>
+          <para>if file has unsaved changes. This is indicated by adding asterisk (*) before filename, like in screenshot.</para>
+        </listitem>
+      </itemizedlist></para>
+    <para>Headerbar also has context menu with items to copy full path or filename to clipboard.</para>
+  </sect2>
+  <sect2>
+    <title>Statusbar</title>
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/filecomp_statusbar1.gif" format="GIF"/>
+        </imageobject>
+      </inlinemediaobject></para>
+    <para>Statusbar upper line shows information about current line. In first pane:</para>
+    <itemizedlist>
+      <listitem>
+        <para>Ln : current linenumber</para>
+      </listitem>
+      <listitem>
+        <para>Col: current column for cursor and total number of columns in line</para>
+      </listitem>
+      <listitem>
+        <para>Ch : current char for cursor and total number of chars in line</para>
+      </listitem>
+      <listitem>
+        <para>EOL : current line EOL style (shown only when Preserve original EOL chars -option is enabled)</para>
+      </listitem>
+    </itemizedlist>
+    <para>Next two panes show "RO" if file is protected and file's EOL style ("DOS/UNIX/MAC"). Note these two different ways to show EOL style. When per-line EOL style is not remembered, EOL style is shown on own pane in statusbar. And when per-line EOL style is remembered line's EOL style is shown after char number. When per-line EOL style is used there is no file-wide EOL style.</para>
+    <para>Difference between column and char is that column counts tabulator chararcter as so many (space) chars as it occupies (4 by default, can be changed from options). But char count counts tabulator char as one char.</para>
+    <para>Lower line in statusbar shows current difference and amount of differences. Text can be:<itemizedlist>
+        <listitem>
+          <para>"Identical" : files are identical there are no differences</para>
         </listitem>
         <listitem>
-          <para>"Difference X of Y" telling total amount of differences (Y) and number of selected difference (X)</para>
+          <para>"X differences" : amount of differences, no difference is selected</para>
+        </listitem>
+        <listitem>
+          <para>"Difference X of Y" : amount of differences (Y) and number of selected difference (X)</para>
         </listitem>
       </itemizedlist></para>
   </sect2>
   <sect2>
-    <title>Difference navigation commands</title>
+    <title>Difference navigation</title>
     <para>Difference navigation commands are in "Merge" menu:</para>
     <para><inlinemediaobject>
         <imageobject>
@@ -57,10 +96,14 @@
     </sect3>
     <sect3>
       <title>Current difference -command</title>
-      <para>This command has two important functions:<simplelist type="vert">
-          <member>If there is no difference selected and cursor is inside difference, it selects this difference. This is very handy way to select difference from keyboard.</member>
-          <member>If there is selected difference, it scrolls to selected difference. This is handy if user has scrolled selected difference out of screen. So user can scroll file(s) to see other contents and quickly return to selected difference.</member>
-        </simplelist></para>
+      <para>This command has two important functions:<itemizedlist>
+          <listitem>
+            <para>When there is no difference selected and cursor is inside difference, it selects this difference. This is very handy way to select difference from keyboard.</para>
+          </listitem>
+          <listitem>
+            <para>When there is selected difference, it scrolls to selected difference. This is handy if user has scrolled selected difference out of screen. So this allows user to scroll files to see other contents and quickly return back to selected difference.</para>
+          </listitem>
+        </itemizedlist></para>
     </sect3>
     <sect3>
       <title>Go To line or difference</title>
@@ -68,6 +111,19 @@
       <tip>
         <para>Go To line number is useful if there is need to merge same change to several target files from one original file. Rather than using Find or difference navigation it is faster to jump to first line of difference.</para>
       </tip>
+    </sect3>
+    <sect3>
+      <title>Merge mode</title>
+      <para>Merge mode can be enabled from File-menu. It makes WinMerge like 1.7.1 for difference merging and navigating:</para>
+      <itemizedlist>
+        <listitem>
+          <para>Up- and Down arrow keys select previous and next difference</para>
+        </listitem>
+        <listitem>
+          <para>Left- and right arrow keys merge difference to left side or right side.</para>
+        </listitem>
+      </itemizedlist>
+      <para>So Alt-key is not needed which makes these basic actions faster and easier to use.</para>
     </sect3>
   </sect2>
   <sect2>
@@ -98,23 +154,6 @@
     <para>Normal editing features work in WinMerge editor. User can type and delete text, select text, copy, cut and paste text etc. There is some customisation because there can be removed lines in files (lines existing only in other side). Anyway these customisations are not usually visible to users otherwise that lines can sometimes 'jump' when WinMerge has to relocate matching/non-matching files.</para>
   </sect2>
   <sect2>
-    <title>File headerbar</title>
-    <para>File headerbar has many functionalities. See screenshot below:</para>
-    <para><inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="screenshots/File_headerbar1.jpg" format="JPG"/>
-        </imageobject>
-      </inlinemediaobject></para>
-    <para>Firstly, headerbar shows filename and full path for file. Headerbar also shows:<itemizedlist>
-        <listitem>
-          <para>current active file with sunken border (like in screenshot), non-active file is shown with flat headerbar.</para>
-        </listitem>
-        <listitem>
-          <para>if file has unsaved changes. This is indicated by adding asterisk (*) before filename, like in screenshot.</para>
-        </listitem>
-      </itemizedlist></para>
-  </sect2>
-  <sect2>
     <title>Difference inside line</title>
     <para>Many times it is useful to see exact differences inside lines. WinMerge can highlight different area between lines. This feature is called "Highlight file diff". It is available in Edit-menu, toolbar and shortcut key (F4). In screenshot below there is one difference highlighted. First time whole difference area in one line is highlighted. Repeating cycles through individual changed words.</para>
     <mediaobject>
@@ -122,5 +161,16 @@
         <imagedata fileref="screenshots/linediff.gif" format="GIF"/>
       </imageobject>
     </mediaobject>
+  </sect2>
+  <sect2>
+    <title>Context menu</title>
+    <para>File compare context menu contains items for frequently used features:</para>
+    <para>
+<inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/filecomp_context1.gif" format="GIF"/>
+        </imageobject>
+      </inlinemediaobject></para>
+    <para>All these items work like selected from main menu.</para>
   </sect2>
 </sect1>
