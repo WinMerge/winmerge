@@ -380,6 +380,10 @@ BOOL CMergeDoc::Rescan()
 				mf->m_pLeft->PrimeListWithFile(m_strTempLeftFile);
 				mf->m_pRight->PrimeListWithFile(m_strTempRightFile);
 
+				// PrimeListWithFile will call resetview which resets tabs
+				mf->m_pLeft->SetTabSize(mf->m_nTabSize);
+				mf->m_pRight->SetTabSize(mf->m_nTabSize);
+
 				int lcnt = mf->m_pLeft->GetLineCount();
 				int rcnt = mf->m_pRight->GetLineCount();
 				/*TODO: if (lcnt < rcnt)

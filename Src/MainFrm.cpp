@@ -271,6 +271,9 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 			split_filename(szRight, NULL, name, ext);
 			m_pRight->SetTextType(ext);
 			
+			// SetTextType will revert to language dependent defaults for tab
+			m_pLeft->SetTabSize(mf->m_nTabSize);
+			m_pRight->SetTabSize(mf->m_nTabSize);
 			
 			// set the frame window header
 			CChildFrame *pf = static_cast<CChildFrame *>(m_pMergeDoc->m_pView->GetParentFrame());
