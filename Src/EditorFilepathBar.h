@@ -55,6 +55,14 @@ public :
 
 // Dialog Data
 	enum { IDD = IDD_EDITOR_HEADERBAR };
+	
+	enum
+	{
+		PANE_LEFT = 0,
+		PANE_RIGHT,
+	};
+
+	enum { PaneCount = 2 }; /**< Number of panes */
 
 	BOOL LookLikeThisWnd(const CWnd * pWnd);
 	void Resize();

@@ -121,13 +121,15 @@ void CEditorFilePathBar::Resize()
 
 	WINDOWPLACEMENT info1;
 	m_EditLeft.GetWindowPlacement(&info1);
-	info1.rcNormalPosition.right = infoBar.rcNormalPosition.right/2 - 2;
+	info1.rcNormalPosition.right = infoBar.rcNormalPosition.right /
+		PaneCount - 2;
 	m_EditLeft.SetWindowPlacement(&info1);
 	m_EditLeft.RefreshDisplayText();
 
 	WINDOWPLACEMENT info2;
 	m_EditRight.GetWindowPlacement(&info2);
-	info2.rcNormalPosition.left = infoBar.rcNormalPosition.right/2 + 2;
+	info2.rcNormalPosition.left = infoBar.rcNormalPosition.right /
+		PaneCount + 2;
 	info2.rcNormalPosition.right = infoBar.rcNormalPosition.right;
 	m_EditRight.SetWindowPlacement(&info2);
 	m_EditRight.RefreshDisplayText();
@@ -137,6 +139,9 @@ void CEditorFilePathBar::Resize()
  */
 void CEditorFilePathBar::Resize(int leftWidth, int rightWidth)
 {
+	if (m_hWnd == NULL)
+		return;
+
 	WINDOWPLACEMENT info1;
 
 	// resize left filename
@@ -162,6 +167,9 @@ END_MESSAGE_MAP()
 
 BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * pResult)
 {
+	if (m_hWnd == NULL)
+		return FALSE;
+
 	TOOLTIPTEXT *pTTT = (TOOLTIPTEXT *)pTTTStruct;
 	UINT nID =pTTTStruct->idFrom;
 	if (pTTT->uFlags & TTF_IDISHWND)
@@ -206,11 +214,19 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 
 /** 
  * @brief Set the path for one side
+ *
+ * @param [in] pane Index (0-based) of pane to update.
+ * @param [in] lpszString New text for pane.
  */
 void CEditorFilePathBar::SetText(int pane, LPCTSTR lpszString)
 {
-	ASSERT (pane >= 0 && pane < 2);
-	if (pane == 0)
+	ASSERT (pane >= PANE_LEFT && pane < PaneCount);
+
+	// Check for NULL since window may be closing..
+	if (m_hWnd == NULL)
+		return;
+
+	if (pane == PANE_LEFT)
 		m_EditLeft.SetWholeText(lpszString);
 	else
 		m_EditRight.SetWholeText(lpszString);
@@ -218,11 +234,19 @@ void CEditorFilePathBar::SetText(int pane, LPCTSTR lpszString)
 
 /** 
  * @brief Set the active status for one status (change the appearance)
+ *
+ * @param [in] pane Index (0-based) of pane to update.
+ * @param [in] bActive If TRUE activates pane, FALSE deactivates.
  */
 void CEditorFilePathBar::SetActive(int pane, BOOL bActive)
 {
-	ASSERT (pane >= 0 && pane < 2);
-	if (pane == 0)
+	ASSERT (pane >= PANE_LEFT && pane < PaneCount);
+
+	// Check for NULL since window may be closing..
+	if (m_hWnd == NULL)
+		return;
+
+	if (pane == PANE_LEFT)
 		m_EditLeft.SetActive(bActive);
 	else
 		m_EditRight.SetActive(bActive);

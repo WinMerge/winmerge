@@ -1,6 +1,8 @@
 2005-03-08 Kimmo
  PATCH: [ 1158456 ] Fix setting font for headerbar editcontrols
   Src: EditorFilepathBar.cpp EditorFilepathBar.h
+ PATCH: [ 1158484 ] Fix assert from headerbar-setactive() when closing views
+  Src: EditorFilepathBar.cpp EditorFilepathBar.h
 
 2005-03-07 Perry
  PATCH: [ 1157859 ] Add LVS_SHOWSELALWAYS style to dirview
