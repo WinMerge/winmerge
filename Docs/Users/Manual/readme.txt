@@ -6,6 +6,8 @@
   Manual: Shortcut_keys.xml
  Revision to 0.3
   Manual: WinMerge_help.xml
+ It's About_Doc.xml not About_doc.xml
+  Manual: WinMerge_help.xml
 
 2004-09-27 Kimmo
  PATCH: [ 1034776 ] New manual sections for encoding and fonts
