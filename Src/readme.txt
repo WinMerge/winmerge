@@ -1,3 +1,8 @@
+2003-02-12  Perry
+ Languages:
+  Dutch/MergeDutch.rc
+ Some updates to align Dutch rc towards English rc.
+
 2003-02-12  Christian
  [ 630286 ] WinMerge crashes/fails in WinCVS
  [ 683752 ] Add option to be listed on Directory context menu
