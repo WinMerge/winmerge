@@ -6,6 +6,9 @@
   WinMerge: ChildFrm.cpp DirFrame.cpp DirView.h DirView.cpp Merge.rc
    MergeEditView.h MergeEditView.cpp Resource.h
   Languages: resource.h *.rc
+ Fix ASSERT when opening files for merging.
+  Submitted by laoran (PATCH [ 784302 ] comments)
+  WinMerge: ChildFrm.cpp
 
 2003-08-30 Kimmo
  PATCH: [ 797797 ] OnOptions must exchange diffOptions with the registry

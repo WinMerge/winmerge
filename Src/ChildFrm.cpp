@@ -300,7 +300,9 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 	// load docking position
 	CDockState m_pDockState;
 	m_pDockState.LoadState(_T("Settings"));
-	SetDockState(m_pDockState);
+	
+	// This causes ASSERT when opening merge docs
+	// SetDockState(m_pDockState);
 }
 
 BOOL CChildFrame::DestroyWindow() 
