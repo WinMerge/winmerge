@@ -65,13 +65,11 @@ protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnAddToExplorer();
 	afx_msg void OnBrowseEditor();
-	afx_msg void OnAdvancedContext();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
 // Implementation data
 protected:
-	bool m_enabled;
 };
 
 //{{AFX_INSERT_LOCATION}}

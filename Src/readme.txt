@@ -4,6 +4,9 @@
   Src: PropEditor.cpp
  BUG: [ 970940 ] Location pane bars not shown if syntax highlight disabled
   Src: LocationView.cpp
+ BUG: [ 969922 ] inconsistent 'options' dialog behavior
+  Fix enabling/disabling 'Enable advanced menu' checkbox in System options
+  Src: PropRegistry.cpp PropRegistry.h
 
 2004-06-10 Kimmo
  BUG: [ 969922 ] inconsistent 'options' dialog behavior

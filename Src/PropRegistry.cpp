@@ -74,7 +74,6 @@ BEGIN_MESSAGE_MAP(CPropRegistry, CDialog)
 	//{{AFX_MSG_MAP(CPropRegistry)
 	ON_BN_CLICKED(IDC_EXPLORER_CONTEXT, OnAddToExplorer)
 	ON_BN_CLICKED(IDC_EXT_EDITOR_BROWSE, OnBrowseEditor)
-	ON_BN_CLICKED(IDC_EXPLORER_ADVANCED, OnAdvancedContext)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -85,7 +84,9 @@ BOOL CPropRegistry::OnInitDialog()
 {
 	CPropertyPage::OnInitDialog();
 
+	// Update shell extension checkboxes
 	GetContextRegValues();
+	AdvancedContextMenuCheck();
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -96,8 +97,16 @@ BOOL CPropRegistry::OnInitDialog()
 void CPropRegistry::GetContextRegValues()
 {
 	CRegKeyEx reg;
-	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
+	LONG retVal = 0;
+	retVal = reg.Open(HKEY_CURRENT_USER, f_RegDir);
+	if (retVal != ERROR_SUCCESS)
+	{
+		CString msg;
+		msg.Format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
+			f_RegDir, retVal, GetSysError(retVal));
+		LogErrorString(msg);
 		return;
+	}
 
 	// This will be bit mask, although now there is only one bit defined
 	DWORD dwContextEnabled = reg.ReadDword(f_RegValueEnabled, 0);
@@ -113,12 +122,37 @@ void CPropRegistry::GetContextRegValues()
 void CPropRegistry::OnAddToExplorer()
 {
 	AdvancedContextMenuCheck();
-	UpdateData();
+}
+
+/// Saves given path to registry for ShellExtension
+void CPropRegistry::SaveMergePath()
+{
+	TCHAR temp[MAX_PATH] = {0};
+	LONG retVal = 0;
+	GetModuleFileName(AfxGetInstanceHandle(), temp, MAX_PATH);
 
 	CRegKeyEx reg;
-	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
+	retVal = reg.Open(HKEY_CURRENT_USER, f_RegDir);
+	if (retVal != ERROR_SUCCESS)
+	{
+		CString msg;
+		msg.Format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
+			f_RegDir, retVal, GetSysError(retVal));
+		LogErrorString(msg);
 		return;
+	}
 
+	// Save path to WinMerge(U).exe
+	retVal = reg.WriteString(f_RegValuePath, temp);
+	if (retVal != ERROR_SUCCESS)
+	{
+		CString msg;
+		msg.Format(_T("Failed to set registry value %s:\n\t%d : %s"),
+			f_RegValuePath, retVal, GetSysError(retVal));
+		LogErrorString(msg);
+	}
+
+	// Determine bitmask for shell extension
 	DWORD dwContextEnabled = reg.ReadDword(f_RegValueEnabled, 0);
 	if (m_bContextAdded)
 		dwContextEnabled |= CONTEXT_F_ENABLED;
@@ -130,21 +164,14 @@ void CPropRegistry::OnAddToExplorer()
 	else
 		dwContextEnabled &= ~CONTEXT_F_ADVANCED;
 
-
-	reg.WriteDword(f_RegValueEnabled, dwContextEnabled);
-}
-
-/// Saves given path to registry for ShellExtension
-void CPropRegistry::SaveMergePath()
-{
-	TCHAR temp[MAX_PATH] = {0};
-	GetModuleFileName(AfxGetInstanceHandle(), temp, MAX_PATH);
-
-	CRegKeyEx reg;
-	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
-		return;
-
-	reg.WriteString(f_RegValuePath, temp);
+	retVal = reg.WriteDword(f_RegValueEnabled, dwContextEnabled);
+	if (retVal != ERROR_SUCCESS)
+	{
+		CString msg;
+		msg.Format(_T("Failed to set registry value %s to %d:\n\t%d : %s"),
+			f_RegValueEnabled, dwContextEnabled, retVal, GetSysError(retVal));
+		LogErrorString(msg);
+	}
 }
 
 /// Open file browse dialog to locate editor
@@ -175,23 +202,4 @@ void CPropRegistry::AdvancedContextMenuCheck()
 		CheckDlgButton(IDC_EXPLORER_ADVANCED, FALSE);
 		m_bContextAdvanced = FALSE;
 	}
-}
-
-// Enable/disable "Advanced menu" in shell extension context menu
-void CPropRegistry::OnAdvancedContext()
-{
-	UpdateData();
-
-	CRegKeyEx reg;
-	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
-		return;
-
-	DWORD dwContextEnabled = reg.ReadDword(f_RegValueEnabled, 0);
-	if (m_bContextAdvanced)
-		dwContextEnabled |= CONTEXT_F_ADVANCED;
-	else
-		dwContextEnabled &= ~CONTEXT_F_ADVANCED;
-
-
-	reg.WriteDword(f_RegValueEnabled, dwContextEnabled);
 }
