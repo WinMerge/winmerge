@@ -3,6 +3,8 @@
   WinMerge: analyze.c Diff.cpp DIFF.H DiffWrapper.cpp DiffWrapper.h
    MergeDiffDetailView.cpp MergeDoc.cpp MergeEditView.cpp MergeEditView.h
    UTIL.C
+ PATCH: [ 806277 ] Patch output fix (803299) alternate approach
+  WinMerge: UTIL.C
 
 2003-10-07 Kimmo
  BUG: [ 803330 ] DirView updated too many times after compare

@@ -505,6 +505,69 @@ print_1_line (line_flag, line)
     fprintf (out, "\n\\ No newline at end of file\n");
 }
 
+/*
+A version of fwrite which converts any embedded \r or \n or \r\n to \n
+before passing it to fwrite. This is meant to be used with mixed eol mode input
+being written to a text mode stream.
+*/
+static size_t
+fwrite_textify( const void *buffer, size_t size, size_t count, FILE *stream )
+{
+	/*
+	\r = carriage return
+	\n = line feed
+	We have to handle the carriage returns (\r) specially
+	because some of them may be the first half of a \r\n pair
+	We output \r\n for any solo \r or solo \n, but also for any \r\n pair
+	so the tricky part is just avoiding outputing \r\n\r\n for the \r\n pair.
+	*/
+
+	int bytes=0;
+	unsigned int i;
+	const char * text = buffer;
+	int cr = 0;
+	char ch;
+	i = 0;
+	while (1)
+	{
+		// first handle any pending carriage returns
+		// before even checking if we've finished file
+		if (cr)
+		{
+			// currently handling a carriage return
+			// we always finish the line for carriage returns
+			bytes += fwrite("\n", 1, 1, stream);
+			if (i==size*count)
+			{
+				// we're done
+				return bytes;
+			}
+			// now check to see if we need to swallow the trailing line feed
+			// of a carriage return/line feed pair (\r\n)
+			if (text[i] == '\n')
+				++i;
+			// finished the pending carriage return
+			cr = 0;
+		}
+		// check if we finished
+		if (i==size*count)
+			return bytes;
+		ch = text[i];
+		// first check if new character is a carriage return
+		if (ch == '\r')
+		{
+			// activate our special mode flag, and go to next character
+			cr = 1;
+			++i;
+			continue;
+		}
+		// (any bare \n characters are ok, stream will convert them)
+		bytes += fwrite(&text[i], 1, 1, stream);
+		++i;
+	}
+}
+
+
 /* Output a line from TEXT up to LIMIT.  Without -t, output verbatim.
    With -t, expand white space characters to spaces, and if FLAG_FORMAT
    is nonzero, output it with argument LINE_FLAG after every
@@ -516,18 +579,7 @@ output_1_line (text, limit, flag_format, line_flag)
 {
   char * pos = NULL;
   if (!tab_expand_flag)
-    {
-      pos = (char *) text;
-      while (pos < limit)
-        {
-          // fputc() converts '\n' to "\r\n" so skip '\r'
-          if (*pos == '\r' && *(pos+1) == '\n')
-            ;
-          else
-            fputc(*pos, outfile);
-          pos++;
-        }
-    }
+    fwrite_textify (text, sizeof (char), limit - text, outfile);
   else
     {
       register FILE *out = outfile;
