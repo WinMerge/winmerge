@@ -1,14 +1,15 @@
-; *** Inno Setup version 4.2.1+ Dutch messages ***
+; *** Inno Setup version 4.2.2+ Dutch messages ***
 ;
 ; This file is based on a user-contributed translations by various authors
 ;
 ; Maintained by Martijn Laan (mlaan@wintax.nl)
 ;
-; $jrsoftware: issrc/Files/Languages/Dutch.isl,v 1.9 2004/03/29 16:14:40 mlaan Exp $
+; $jrsoftware: issrc/Files/Languages/Dutch.isl,v 1.12 2004/04/07 20:19:51 jr Exp $
                                      
 [LangOptions]                
 LanguageName=Nederlands      
 LanguageID=$0413 
+LanguageCodePage=1252
 
 [Messages]
 
@@ -281,7 +282,8 @@ WizardUninstalling=Verwijderingsstatus
 StatusUninstalling=Verwijderen van %1...
 
 [CustomMessages]
-
+;Inno Setup Built-in Custom Messages
+NameAndVersion=%1 versie %2
 AdditionalIcons=Extra snelkoppelingen:
 CreateDesktopIcon=Maak een snelkoppeling op het &bureaublad
 CreateQuickLaunchIcon=Maak een snelkoppeling op de &Snel starten werkbalk

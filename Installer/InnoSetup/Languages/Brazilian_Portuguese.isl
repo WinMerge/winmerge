@@ -301,13 +301,14 @@ StatusUninstalling=Desinstalando %1...
 ; use of them in your scripts, you'll want to translate them.
 
 [CustomMessages]
-
-AdditionalIcons=Additional icons:
-CreateDesktopIcon=Create a &desktop icon
-CreateQuickLaunchIcon=Create a &Quick Launch icon
+;Inno Setup Built-in Custom Messages
+NameAndVersion=%1 version %2
+AdditionalIcons=Additional Icons:
+CreateDesktopIcon=Create a &Desktop Icon
+CreateQuickLaunchIcon=Create a &Quick Launch Icon
 ProgramOnTheWeb=%1 on the Web
 UninstallProgram=Uninstall %1
-LaunchProgram=Launch %1
+LaunchProgram=&Launch %1
 AssocFileExtension=&Associate %1 with the %2 file extension
 AssocingFileExtension=Associating %1 with the %2 file extension...
 

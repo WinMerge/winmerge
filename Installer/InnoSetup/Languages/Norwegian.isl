@@ -1,4 +1,4 @@
-; *** Inno Setup version 4.2.1+ Norwegian messages ***
+; *** Inno Setup version 4.2.2+ Norwegian messages ***
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
@@ -11,21 +11,12 @@
 ;
 ; Harald Habberstad, Frode Weum, Eivind Bakkestuen, Morten Johnsen
 ;
-; $jrsoftware: issrc/Files/Languages/Norwegian.isl,v 1.3 2004/04/01 19:30:49 josander Exp $
+; $jrsoftware: issrc/Files/Languages/Norwegian.isl,v 1.8 2004/04/07 20:19:51 jr Exp $
 
 [LangOptions]
 LanguageName=Norsk
 LanguageID=$0414
-; If the language you are translating to requires special font faces or
-; sizes, uncomment any of the following entries and change them accordingly.
-;DialogFontName=
-;DialogFontSize=8
-;WelcomeFontName=Verdana
-;WelcomeFontSize=12
-;TitleFontName=Arial
-;TitleFontSize=29
-;CopyrightFontName=Arial
-;CopyrightFontSize=8
+LanguageCodePage=1252
 
 [Messages]
 
@@ -304,7 +295,8 @@ StatusUninstalling=Avinnstallerer %1...
 ; use of them in your scripts, you'll want to translate them.
 
 [CustomMessages]
-
+;Inno Setup Built-in Custom Messages
+NameAndVersion=%1 versjon %2
 AdditionalIcons=Ekstra-ikoner:
 CreateDesktopIcon=Lag ikon på &skrivebordet
 CreateQuickLaunchIcon=Lag et &Hurtigstarts-ikon

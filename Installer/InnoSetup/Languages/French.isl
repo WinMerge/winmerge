@@ -1,4 +1,4 @@
-; *** Inno Setup version 4.2.1+ French messages ***
+; *** Inno Setup version 4.2.2+ French messages ***
 ;
 ; To download user-contributed translations of this file, go to:
 ;   http://www.jrsoftware.org/is3rdparty.php
@@ -12,22 +12,12 @@
 ;
 ; Contributors : Frédéric Bonduelle, Francis Pallini
 ;
-; $jrsoftware: issrc/Files/Languages/French.isl,v 1.4 2004/03/29 16:14:40 mlaan Exp $
+; $jrsoftware: issrc/Files/Languages/French.isl,v 1.9 2004/04/07 20:19:51 jr Exp $
 
 [LangOptions]
-LanguageName=Français
+LanguageName=Fran<00E7>ais
 LanguageID=$040C
-; Si la langue dans laquelle vous traduisez InnoSetup requiert des polices ou des
-; tailles différentes des valeurs par défaut, dé-commentez les lignes suivantes 
-; et modifiez les en conséquence.
-;DialogFontName=
-;DialogFontSize=8
-;WelcomeFontName=Verdana
-;WelcomeFontSize=12
-;TitleFontName=Arial
-;TitleFontSize=29
-;CopyrightFontName=Arial
-;CopyrightFontSize=8
+LanguageCodePage=1252
 
 [Messages]
 
@@ -307,7 +297,8 @@ StatusUninstalling=Désinstallation de %1...
 ; traduire
 
 [CustomMessages]
-
+;Inno Setup Built-in Custom Messages
+NameAndVersion=%1 version %2
 AdditionalIcons=Icônes supplémentaires :
 CreateDesktopIcon=Créer une icône sur le &Bureau
 CreateQuickLaunchIcon=Créer une icône dans la barre de &Lancement rapide

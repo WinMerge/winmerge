@@ -302,7 +302,8 @@ StatusUninstalling=正在解除安裝 %1...
 ; use of them in your scripts, you'll want to translate them.
 
 [CustomMessages]
-
+;Inno Setup Built-in Custom Messages
+NameAndVersion=%1 version %2
 AdditionalIcons=Additional icons:
 CreateDesktopIcon=Create a &desktop icon
 CreateQuickLaunchIcon=Create a &Quick Launch icon

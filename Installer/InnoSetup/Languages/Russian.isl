@@ -1,4 +1,4 @@
-; *** Inno Setup version 4.2.1+ Russian messages ***
+; *** Inno Setup version 4.2.2+ Russian messages ***
 ;
 ; Translation is made by Dmitry Kann, http://devtools.narod.ru/
 ; The highest accuracy was the first priority.
@@ -8,21 +8,12 @@
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 ;
-; $jrsoftware$
+; $jrsoftware: issrc/Files/Languages/Russian.isl,v 1.7 2004/04/08 05:29:15 yktoo Exp $
 
 [LangOptions]
-LanguageName=Russian
+LanguageName=<0420><0443><0441><0441><043A><0438><0439>
 LanguageID=$0419
-; If the language you are translating to requires special font faces or
-; sizes, uncomment any of the following entries and change them accordingly.
-;DialogFontName=
-;DialogFontSize=8
-;WelcomeFontName=Verdana
-;WelcomeFontSize=12
-;TitleFontName=Arial
-;TitleFontSize=29
-;CopyrightFontName=Arial
-;CopyrightFontSize=8
+LanguageCodePage=1251
 
 [Messages]
 
@@ -38,7 +29,7 @@ ConfirmTitle=Подтверждение
 ErrorTitle=Ошибка
 
 ; *** SetupLdr messages
-SetupLdrStartupMessage=Данная программа установит %1 на ваш компьютер, продолжить?
+SetupLdrStartupMessage=Данная программа установит %1 на Ваш компьютер, продолжить?
 LdrCannotCreateTemp=Невозможно создать временный файл. Установка прервана
 LdrCannotExecTemp=Невозможно выполнить файл во временном каталоге. Установка прервана
 
@@ -52,7 +43,7 @@ OnlyOnThisPlatform=Эту программу можно запускать только в %1.
 WinVersionTooLowError=Эта программа требует %1 версии %2 или выше.
 WinVersionTooHighError=Программа не может быть установлена в %1 версии %2 или выше.
 AdminPrivilegesRequired=Чтобы установить данную программу, Вы должны выполнить вход в систему как Администратор.
-PowerUserPrivilegesRequired=Чтобы установить эту программу, вы должны выполнить вход в систему как Администратор или член группы «Опытные пользователи» (Power Users).
+PowerUserPrivilegesRequired=Чтобы установить эту программу, Вы должны выполнить вход в систему как Администратор или член группы «Опытные пользователи» (Power Users).
 SetupAppRunningError=Обнаружен запущенный экземпляр %1.%n%nПожалуйста, закройте все экземпляры приложения, затем нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
 UninstallAppRunningError=Деинсталлятор обнаружил запущенный экземпляр %1.%n%nПожалуйста, закройте все экземпляры приложения, затем нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
 
@@ -130,9 +121,9 @@ UserInfoNameRequired=Вы должны ввести имя.
 
 ; *** "Select Destination Directory" wizard page
 WizardSelectDir=Выбор папки установки
-SelectDirDesc=В какую папку вы хотите установить [name]?
+SelectDirDesc=В какую папку Вы хотите установить [name]?
 SelectDirLabel3=Программа установит [name] в следующую папку.
-SelectDirBrowseLabel=Нажмите «Далее», чтобы продолжить. Если вы хотите выбрать другую папку, нажмите «Обзор».
+SelectDirBrowseLabel=Нажмите «Далее», чтобы продолжить. Если Вы хотите выбрать другую папку, нажмите «Обзор».
 DiskSpaceMBLabel=Требуется как минимум [mb] Мб свободного дискового пространства.
 ToUNCPathname=Установка не может выполняться в папку по её сетевому имени. Если Вы устанавливаете в сетевую папку, Вы должны подключить её в виде сетевого диска.
 InvalidPath=Вы должны указать полный путь с буквой диска; например:%n%nC:\APP%n%nили в форме UNC:%n%n\\имя_сервера\имя_ресурса
@@ -150,13 +141,13 @@ DirDoesntExist=Папка%n%n%1%n%nне существует. Вы хотите создать её?
 ; *** "Select Components" wizard page
 WizardSelectComponents=Выбор компонентов
 SelectComponentsDesc=Какие компоненты должны быть установлены?
-SelectComponentsLabel2=Выберите компоненты, которые вы хотите установить; снимите флажки с компонентов, устанавливать которые не требуется. Нажмите «Далее», когда Вы будете готовы продолжить.
+SelectComponentsLabel2=Выберите компоненты, которые Вы хотите установить; снимите флажки с компонентов, устанавливать которые не требуется. Нажмите «Далее», когда Вы будете готовы продолжить.
 FullInstallation=Полная установка
 ; if possible don't translate 'Compact' as 'Minimal' (I mean 'Minimal' in your language)
 CompactInstallation=Компактная установка
 CustomInstallation=Выборочная установка
 NoUninstallWarningTitle=Установленные компоненты
-NoUninstallWarning=Программа установки обнаружила, что следующие компоненты уже установлены на вашем компьютере:%n%n%1%n%nОтмена выбора этих компонент не удалит их.%n%nПродолжить?
+NoUninstallWarning=Программа установки обнаружила, что следующие компоненты уже установлены на Вашем компьютере:%n%n%1%n%nОтмена выбора этих компонент не удалит их.%n%nПродолжить?
 ComponentSize1=%1 Кб
 ComponentSize2=%1 Мб
 ComponentsDiskSpaceMBLabel=Текущий выбор требует не менее [mb] Мб на диске.
@@ -170,7 +161,7 @@ SelectTasksLabel2=Выберите дополнительные задачи, которые должны выполниться при
 WizardSelectProgramGroup=Выберите папку в меню «Пуск»
 SelectStartMenuFolderDesc=Где программа установки должна создать ярлыки?
 SelectStartMenuFolderLabel3=Программа создаст ярлыки в следующей папке меню «Пуск».
-SelectStartMenuFolderBrowseLabel=Нажмите «Далее», чтобы продолжить. Если вы хотите выбрать другую папку, нажмите «Обзор».
+SelectStartMenuFolderBrowseLabel=Нажмите «Далее», чтобы продолжить. Если Вы хотите выбрать другую папку, нажмите «Обзор».
 NoIconsCheck=&Не создавать значков
 MustEnterGroupName=Вы должны ввести имя папки.
 GroupNameTooLong=Имя папки группы или путь к ней превышают допустимую длину.
@@ -203,7 +194,7 @@ InstallingLabel=Пожалуйста, подождите, пока [name] установится на Ваш компьютер.
 ; *** "Setup Completed" wizard page
 FinishedHeadingLabel=Завершение Мастера установки [name]
 FinishedLabelNoIcons=Программа [name] установлена на Ваш компьютер.
-FinishedLabel=Программа [name] установлена на ваш компьютер. Приложение можно запустить с помощью соответствующего значка.
+FinishedLabel=Программа [name] установлена на Ваш компьютер. Приложение можно запустить с помощью соответствующего значка.
 ClickFinish=Нажмите «Завершить», чтобы выйти из программы установки.
 FinishedRestartLabel=Для завершения установки [name] требуется перезагрузить компьютер. Произвести перезагрузку сейчас?
 FinishedRestartMessage=Для завершения установки [name] требуется перезагрузить компьютер.%n%nПроизвести перезагрузку сейчас?
@@ -301,7 +292,8 @@ StatusUninstalling=Деинсталляция %1...
 ; use of them in your scripts, you'll want to translate them.
 
 [CustomMessages]
-
+;Inno Setup Built-in Custom Messages
+NameAndVersion=%1, версия %2
 AdditionalIcons=Дополнительные значки:
 CreateDesktopIcon=Создать значок на &Рабочем столе
 CreateQuickLaunchIcon=Создать значок в &Панели быстрого запуска

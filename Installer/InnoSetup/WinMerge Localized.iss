@@ -147,8 +147,8 @@ SetupIconFile=..\src\res\Merge.ico
 ;Please note while Compression=lzma/ultra and InternalCompressLevel=Ultra are better than max
 ;they also require 320 MB of memory for compression. If you're system has at least 256MB RAM then by all
 ;means set it to ultra before compilation
-Compression=none
-InternalCompressLevel=none
+Compression=LZMA/Ultra
+InternalCompressLevel=Ultra
 SolidCompression=True
 
 
@@ -196,8 +196,8 @@ Name: Core; Description: {cm:AppCoreFiles}; Types: full custom typical compact; 
 Name: Runtimes; Description: {cm:ApplicationRuntimes}; Types: full custom typical compact; Flags: fixed
 
 Name: docs; Description: {cm:UsersGuide}; Flags: disablenouninstallwarning; Types: full typical
-Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical compact
-Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full typical compact
+Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical
+Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full typical
 
 ;Language components, please note that whatever language you chose to install in will be installed in addition to any of the language components you've
 ;selected.  This is to make it easier for users that have a working localization of Inno Setup.
@@ -383,11 +383,18 @@ Name: {app}\MergeRussian.lang; Type: files; Check: ComponentDisabled('Rusian')
 Name: {app}\MergeSwedish.lang; Type: files; Check: ComponentDisabled('Swedish')
 Name: {app}\MergePlugins\list.txt; Type: files; Check: ComponentDisabled('Plugins')
 
+;Removes the user's guide icon if the user deselects the user's guide component.
+Name: {group}\{cm:UsersGuide}.lnk; Type: files; Check: componentDisabled('Docs')
+
+
 
 ;Removes misplaced Files
 Name: {app}\WinMerge.url; Type: files
 Name: {app}\Read Me.rtf; Type: files
 Name: {app}\Contributors.rtf; Type: files
+
+;Remove deprecated Conributors file
+Name: {app}\Docs\Contributors.rtf; Type: files
 
 ;This removes the quick launch icon in case the user chooses not to install it after previously having it installed
 Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type: files; Check: TaskDisabled('QuickLauchIcon')
@@ -407,6 +414,7 @@ Name: {app}\MergePlugins; Type: DirIfEmpty; Check: ComponentDisabled('Plugins')
 Name: {app}\Filters\.cvsignore; TYpe: Files
 Name: {app}\Filters\Merge_GnuC_loose.flt; Type: Files; Check: ComponentDisabled('Filters')
 Name: {app}\Filters\Merge_VC_loose.flt; Type: Files; Check: ComponentDisabled('Filters')
+Name: {app}\Filters\Merge_VB_loose.flt; Type: Files; Check: ComponentDisabled('Filters')
 Name: {app}\Filters\XML_html.flt; Type: Files; Check: ComponentDisabled('Filters')
 Name: {app}\Filters; Type: DirIfEmpty; Check: ComponentDisabled('Filters')
 
@@ -485,7 +493,7 @@ Source: ..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension co
 ;Documentation
 Source: ..\Docs\Users\Read Me.rtf; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 
-Source: ..\Docs\Users\Contributors.rtf; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 
 ;Plugins
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
@@ -606,6 +614,8 @@ Filename: {app}\{code:ExeName}; Description: {cm:LaunchProgram, WinMerge}; Flags
 
 
 [UninstallDelete]
+Name: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Type: Files
+Name: {group}; Type: dirifempty
 Name: {app}; Type: dirifempty
 
 

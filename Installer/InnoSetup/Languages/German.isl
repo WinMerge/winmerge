@@ -1,6 +1,6 @@
 ; ******************************************************
 ; ***                                                ***
-; *** Inno Setup version 4.2.1+ German messages      ***
+; *** Inno Setup version 4.2.2+ German messages      ***
 ; ***                                                ***
 ; *** Original Author:                               ***
 ; ***                                                ***
@@ -14,11 +14,12 @@
 ;
 ; Diese Übersetzung hält sich an die neue deutsche Rechtschreibung.
 ;
-; $jrsoftware: issrc/Files/Languages/German.isl,v 1.4 2004/03/28 21:47:14 mreitz Exp $
+; $jrsoftware: issrc/Files/Languages/German.isl,v 1.8 2004/04/07 20:19:51 jr Exp $
 
 [LangOptions]
 LanguageName=Deutsch
 LanguageID=$0407
+LanguageCodePage=1252
 
 [Messages]
 
@@ -291,7 +292,8 @@ WizardUninstalling=Entfernen (Status)
 StatusUninstalling=Entferne %1 ...
 
 [CustomMessages]
-
+;Inno Setup Built-in Custom Messages
+NameAndVersion=%1 Version %2
 AdditionalIcons=Zusätzliche Symbole:
 CreateDesktopIcon=&Desktop-Symbol anlegen
 CreateQuickLaunchIcon=Symbol in der Schnellstartleiste anlegen

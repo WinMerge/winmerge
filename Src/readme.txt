@@ -3,6 +3,9 @@
   Src: DirView.cpp
  PATCH: [ 945722 ] Two functions are never called
   Src: DiffContext.cpp DiffContext.h
+ PATCH: [ 945152 ] Installer: My last revisions
+  InnoSetup: WinMerge Localized.iss
+  InnoSetup/Languages: *.isl (except Swedish.isl)
 
 2004-05-12 Kimmo
  PATCH: [ 948448 ] Remove WinMerge.exe path from system options

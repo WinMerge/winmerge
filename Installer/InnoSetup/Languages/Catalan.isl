@@ -1,19 +1,21 @@
-; *** Inno Setup version 4 Catalan messages ***
-;
-; To download user-contributed translations of this file, go to:
-;   http://www.jrsoftware.org/is3rdparty.php
+; *** Inno Setup version 4.2.2+ Catalan messages ***
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 ;
-; Traduït per Carles Millan, Barcelona, http://carlesmillan.com (30-01-04)
+; Translated by Carles Millan
+; http://CarlesMillan.com
+; innosetup@carlesmillan.com
+;
+; $jrsoftware: issrc/Files/Languages/Catalan.isl,v 1.4 2004/04/16 17:41:14 jr Exp $
 
 [LangOptions]
 
-LanguageName=Català
+LanguageName=Catal<00E0>
 LanguageID=$0403
+LanguageCodePage=1252
 
 [Messages]
 
@@ -60,23 +62,23 @@ AboutSetupMessage=%1 versió %2%n%3%n%nPàgina web de %1:%n%4
 AboutSetupNote=
 
 ; *** Buttons
-ButtonBack=< &Tornar
+ButtonBack=< &Enrera
 ButtonNext=&Següent >
 ButtonInstall=&Instal·lar
-ButtonOK=Següent
+ButtonOK=Acceptar
 ButtonCancel=Cancel·lar
 ButtonYes=&Sí
-ButtonYesToAll=Sí a &Tot
+ButtonYesToAll=Sí a &tot
 ButtonNo=&No
 ButtonNoToAll=N&o a tot
 ButtonFinish=&Finalitzar
 ButtonBrowse=&Explorar...
-
-; *** "Select Language" dialog messages
 ButtonWizardBrowse=&Cercar...
 ButtonNewFolder=Crear &nova carpeta
-SelectLanguageTitle=Seleccioneu idioma
-SelectLanguageLabel=Seleccioneu idioma a emprar durant la instal·lació:
+
+; *** "Select Language" dialog messages
+SelectLanguageTitle=Trieu idioma
+SelectLanguageLabel=Trieu idioma a emprar durant la instal·lació:
 
 ; *** Common wizard text
 ClickNext=Premeu Següent per a continuar o Cancel·lar per a abandonar la instal·lació.
@@ -84,7 +86,7 @@ BeveledLabel=
 
 ; *** "Welcome" wizard page
 BrowseDialogTitle=Trieu una carpeta
-BrowseDialogLabel=Trieu la carpeta de destinació i premeu Següent.
+BrowseDialogLabel=Trieu la carpeta de destinació i premeu Acceptar.
 NewFolderName=Nova carpeta
 WelcomeLabel1=Benvingut a l'assistent d'instal·lació de [name]
 WelcomeLabel2=Aquest programa instal·larà [name/ver] al vostre ordinador.%n%nÉs molt recomanable que abans de continuar tanqueu tots els altres programes oberts, per tal d'evitar conflictes durant el procés d'instal·lació.
@@ -97,7 +99,7 @@ PasswordEditLabel=&Codi:
 IncorrectPassword=El codi introduït no és correcte. Torneu-ho a intentar.
 
 ; *** "License Agreement" wizard page
-WizardLicense=Acceptació de la llicencia d'ús.
+WizardLicense=Acord de Llicència
 LicenseLabel=Cal que llegiu aquesta informació abans de continuar.
 LicenseLabel3=Si us plau, llegiu l'Acord de Llicència següent. Cal que n'accepteu els termes abans de continuar amb la instal·lació.
 LicenseAccepted=&Accepto l'acord
@@ -119,10 +121,11 @@ UserInfoOrg=&Organització
 UserInfoSerial=&Número de sèrie:
 UserInfoNameRequired=Cal que hi entreu un nom
 
-; *** "Select Destination Directory" wizard page
+; *** "Select Destination Location" wizard page
 WizardSelectDir=Trieu Carpeta de Destinació
 SelectDirDesc=On s'ha d'instal·lar [name]?
-SelectDirLabel3=Setup will install [name] into the following folder.
+SelectDirLabel3=El programa d'instal·lació instal·larà [name] a la carpeta següent.
+SelectDirBrowseLabel=Per a continuar, premeu Següent. Si desitgeu triar una altra capeta, premeu Cercar.
 DiskSpaceMBLabel=Aquest programa necessita un mínim de [mb] MB d'espai a disc.
 ToUNCPathname=La instal·lació no pot instal·lar el programa en una carpeta UNC. Si esteu  provant d'instal·lar-lo en xarxa, haureu d'assignar una lletra (D:, E:, etc...) al disc de destinació.
 InvalidPath=Cal donar una ruta completa amb lletra d'unitat, per exemple:%n%nC:\Aplicació%n%no bé una ruta UNC en la forma:%n%n\\servidor\compartit
@@ -140,7 +143,7 @@ DirDoesntExist=La carpeta:%n%n%1%n%nno existeix. Voleu que sigui creada?
 ; *** "Select Program Group" wizard page
 WizardSelectComponents=Trieu Components
 SelectComponentsDesc=Quins components cal instal·lar?
-SelectComponentsLabel2=Seleccioneu els components que voleu instal·lar; elimineu els components que no voleu instal·lar. Premeu Següent per a continuar.
+SelectComponentsLabel2=Trieu els components que voleu instal·lar; elimineu els components que no voleu instal·lar. Premeu Següent per a continuar.
 FullInstallation=Instal·lació completa
 ; if possible don't translate 'Compact' as 'Minimal' (I mean 'Minimal' in your language)
 CompactInstallation=Instal·lació compacta
@@ -159,9 +162,8 @@ SelectTasksLabel2=Trieu les tasques addicionals que voleu que siguin executades 
 ; *** "Select Start Menu Folder" wizard page
 WizardSelectProgramGroup=Trieu la carpeta del Menú Inici
 SelectStartMenuFolderDesc=On cal situar els enllaços del programa?
-SelectStartMenuFolderLabel3=Setup will create the program's shortcuts in the following Start Menu folder.
-SelectStartMenuFolderBrowseLabel=To continue, click Next. If you would like to select a different folder, click Browse.
-SelectDirBrowseLabel=To continue, click Next. If you would like to select a different folder, click Browse.
+SelectStartMenuFolderLabel3=El programa d'instal·lació crearà l'accés directe al programa a la següent carpeta del menú d'Inici.
+SelectStartMenuFolderBrowseLabel=Per a continuar, premeu Següent. Si desitgeu triar una altra carpeta, premeu Cercar.
 NoIconsCheck=&No crear cap icona
 MustEnterGroupName=Cal que hi entreu un nom de carpeta.
 GroupNameTooLong=El nom de la carpeta o de la ruta és massa llarg.
@@ -293,14 +295,15 @@ StatusUninstalling=Desinstal·lant %1...
 
 [CustomMessages]
 ;Inno Setup Built-in Custom Messages
-AdditionalIcons=Additional icons:
+NameAndVersion=%1 versió %2
+AdditionalIcons=Icones addicionals:
 CreateDesktopIcon=Create a &desktop icon
-CreateQuickLaunchIcon=Create a &Quick Launch icon
-ProgramOnTheWeb=%1 on the Web
-UninstallProgram=Uninstall %1
-LaunchProgram=Launch %1
-AssocFileExtension=&Associate %1 with the %2 file extension
-AssocingFileExtension=Associating %1 with the %2 file extension...
+CreateQuickLaunchIcon=Crear una icona a la &Barra de tasques
+ProgramOnTheWeb=%1 a Internet
+UninstallProgram=Desinstal·lar %1
+LaunchProgram=Obrir %1
+AssocFileExtension=&Associar %1 amb l'extensió de fitxer %2
+AssocingFileExtension=Associant %1 amb l'extensió de fitxer %2...
 
 ;Things we can also localize
 CompanyName=Thingamahoochie Software

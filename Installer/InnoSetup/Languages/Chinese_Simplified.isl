@@ -1,3 +1,6 @@
+; Translation made with Translator 1.32 (http://www2.arnes.si/~sopjsimo/translator.html)
+; $Translator:NL=%n:TB=%t
+;
 ; *** Inno Setup version 4.1.8+ Chinese Simplified messages ***
 ;
 ; To download user-contributed translations of this file, go to:
@@ -15,15 +18,11 @@ LanguageName=Chinese (PRC)
 LanguageID=$0804
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.
-DialogFontName=宋体
-DialogFontSize=9
 ;WelcomeFontName=Verdana
 ;WelcomeFontSize=12
-TitleFontName=宋体_gb2312
 ;TitleFontSize=29
-CopyrightFontName=宋体
-CopyrightFontSize=9
 
+DialogFontName=
 [Messages]
 
 ; *** Application titles
@@ -296,12 +295,9 @@ SharedFileNameLabel=文件名：
 SharedFileLocationLabel=位置：
 WizardUninstalling=卸载状态
 StatusUninstalling=正在卸载 %1...
-
-; The custom messages below aren't used by Setup itself, but if you make
-; use of them in your scripts, you'll want to translate them.
-
 [CustomMessages]
-
+;Inno Setup Built-in Custom Messages
+NameAndVersion=%1 version %2
 AdditionalIcons=Additional icons:
 CreateDesktopIcon=Create a &desktop icon
 CreateQuickLaunchIcon=Create a &Quick Launch icon
