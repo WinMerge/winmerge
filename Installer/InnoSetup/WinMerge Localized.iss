@@ -139,9 +139,9 @@ SetupIconFile=..\src\res\Merge.ico
 ;Please note while Compression=lzma/ultra and InternalCompressLevel=Ultra are better than max
 ;they also require 320 MB of memory for compression. If you're system has at least 256MB RAM then by all
 ;means set it to ultra before compilation
-Compression=LZMA/Ultra
-InternalCompressLevel=Ultra
-SolidCompression=True
+Compression=lzma/ultra
+InternalCompressLevel=ultra
+SolidCompression=true
 
 
 [Languages]
@@ -446,6 +446,8 @@ Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; 
 [Icons]
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
+;WinMerge (ANSI) for WinMerge.exe in NT-windows
+Name: {group}\WinMerge (ANSI); Filename: {app}\WinMerge.exe; IconIndex: 0; MinVersion: 0,4; Components: core
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\Read Me.rtf; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\Plugins.txt; Filename: {app}\Docs\Plugins.txt; Check: InstallPluginsText
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\Manual\index.html; Components: docs
