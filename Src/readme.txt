@@ -1,3 +1,8 @@
+2004-03-26 seier
+  Fixed Swedish Language had a description of Spanish in the installer.  
+  Fixed Swedish was installing along with Spanish rather than the Swedish component description in the installer.  
+     Src: InnoSetup/WinMerge.iss
+     
 2004-03-26 Perry
  Add new Bulgarian translation
   Src/Languages/Bulgarian
@@ -28,9 +33,13 @@
   Languages: *.rc resource.h
 
 2004-03-22 Seier
-  I added /InnoSetup/desktop.ini file to be used as a template for making C:\Program Files\WinMerge, or wherever that might be, have a customized (WinMerge) folder icon. 
-    InnoSetup: desktop.ini
-
+ I added /InnoSetup/desktop.ini file to be used as a template for making C:\Program Files\WinMerge, or wherever that might be, have a customized (WinMerge)   folder icon. 
+  InnoSetup: desktop.ini
+ The DocBook version of the manual was revised to reference GIF versions of all previously referenced BMP images.  Thiw provides better compression and       browser compatiblity.  
+  Docs: Users/Manual/screenshots/*.bmp --> *.gif
+  Docs: Users/Manual/Compare_dirs.xml
+  Docs: Users/Manual/Compare_files.xml
+   
 2004-03-22 Kimmo
  PATCH: [ 920530 ] Remember Patch-dialog settings
   Src: Merge.rc PatchDlg.cpp PatchDlg.h resource.h
@@ -45,24 +54,20 @@
   Src: Merge.rc
   Languages: *.rc
 
-2004-03-21 Seier
-  Patch: [ 919134 ] I added the OleAut32.dll necessary for others to compile the WinMerge.iss script.  Sorry about that.
-    InnoSetup: /Runtimes/OleAut32.dll  
-
 2004-03-22 Laoran
  PATCH: [ 909672 ] Undo makes marker messy
   Src: MergeEditView.cpp
   Src/editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h
 
-2004-03-21 Seier 
-  -I compressed Splash1.bmp using RLE (Run Length Encoding [Lossless compression]) and named it as Splash2.bmp.  I only modified the English version.  Please
-    test it out and send me an e-mail if it works and I'll create the RLE versions of all the other images.  PS: the file size went from 163 --> 111KB.  
-    Src: /res/Splash2.bmp
-  -The Installer now also installs WinMerge as the merging application in addition being the differencing application. 
-  -Installer updated to use \ShellExtension\ShellExtension.dll as the new location for that file 
-  -Installer will now remove the ComCtlupd.exe at the end of the installation.  
-    InnoSetup: WinMerge.iss
-
+2004-03-21 Seier
+  Installer now also installs WinMerge as the merging application in addition being the differencing application.  
+  Installer updated to use \ShellExtension\ShellExtension.dll as the new location for that file 
+  Installer will now remove the ComCtlupd.exe at the end of the installation.  
+  Patch: [ 919134 ] I added the OleAut32.dll necessary for others to compile the WinMerge.iss script.
+    Src: /InnoSetup/WinMerge.iss
+  I compressed Splash1.bmp using RLE (Run Length Encoding [Lossless compression]) and named it as Splash2.bmp.  I only modified the English version.  Please test it out and send me an e-mail if it works and I'll create the RLE versions of all the other images.  PS: the file size went from 163 --> 111KB.  
+     Src: /Src/Res/Splash2.bmp
+ 
 2004-03-21 Kimmo
  PATCH: [ 918545 ] New Splash Screen
   Submitted and graphics by Dean Grimm
@@ -87,10 +92,10 @@
    Src\diffutils\src: analyze.c DIFF.H
 
 2004-03-17 Seier
-  -Modified  \ShellExtension\Register.bat to also UnRegister via a /U (case-insensitive) parameter.  
-    I also added an UnRegister.bat which does nothing more than call Register.bat with the /u switch.  
-  -If you're wondering where a particular file went and why please see \Docs\Developers\File Migration Log.htm.  
-    Everyone can use this file from now on.
+ Modified  \ShellExtension\Register.bat to also UnRegister via a /U (case-insensitive) parameter.  
+  I also added an UnRegister.bat which does nothing more than call Register.bat with the /u switch.  
+ If you're wondering where a particular file or folder went and why please see \Docs\Developers\File Migration Log.htm.  
+  Everyone can use this file from now on.
 
 2004-03-17 Kimmo
  PATCH: [ 913743 ] Icons for menuitems (RFE 873697)
@@ -104,7 +109,7 @@
   Src: Merge.cpp
 
 2004-03-16 Seier
-  Installer [Patch 917142]:
+  [Patch 917142] for Installer:
     -Now detects whether or not the user requires an updated ComCtl32.dll and if needed updates it.  
     -Corrupt Shell Extension folder association removed from the registry (no more errors in Windows Explorer)
     -Explorer "WinMerge" context menu support added
@@ -112,21 +117,16 @@
     -Portugese is now listed amongst the other selectable languages in alpahbetic order
     -Catalan, Norwegian, Polish, Russian, and Swedish translations have been added to the installer for a total of 17 languages! Way to go 
       Translators!  Eventually we'll all just get lazy and speak Mergish :).  
-
     -WinMerge's "User's Guide" and "Read Me" files installed and added to the user's start menu
       Program Files\Docs\ created containing:
         * Read Me.rtf
         * Contributors.rtf
         * \User's Guide\	
-
     -The Read Me.rtf was divided into two files: Read Me.rtf and Contributors.rtf 
       (since this information is non-technical ands considerable bloat to the main Read Me file)
-
     -Obsolete registry settings LeftMax and DirViewMax are now deleted rather than reset 
       (note: all registry deletions in Inno Setup must have Type set to "None")  
-
-    -Whether or not TortoiseCVS is installed support for it is added to the registry.  That way if a user ever installs it our application with start working       with it automatically :) (don't worry this only causes two possibly unecessary registry values and one key to be created)
-	
+    -Whether or not TortoiseCVS is installed support for it is added to the registry.  That way if a user ever installs it our application with start working       with it automatically :) (don't worry this only causes two possibly unecessary registry values and one key to be created)	
     -Since all three of the core WinMerge application files WinMerge*.exe, Merge7z*.dll, and ShellExtension.dll all use Ole Automation, I've included the 	      necessary runtime: OleAut32.dll (VS6 Service Pack 5)
 
 2004-03-16 Kimmo
@@ -166,7 +166,7 @@
 
 2004-03-13 Seier
  Add 48*48 icon version (256 & 16 color)
- Src/res: Merge.ico
+  Src: /res/Merge.ico
 
 2004-03-13 Kimmo
  Add User Manual draft to CVS
