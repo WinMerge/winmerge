@@ -385,8 +385,11 @@ STDAPI ValidateArgs(VARIANT *argv, UINT argc, LPCCH pvt)
  * @brief BSTR to PCH (ANSI) conversion
  * It needs BSTR to be wide (always the case in Windows) 
  *
- * @note the content of bcVal is changed
+ * @note THIS METHOD IS BUGGY : IT IS NOT CORRECT TO PUT A CHAR STRING IN A WCHAR BUFFER
+ * IN FACT IN PLACE TRANSFORMATION OF WCHAR TO CHAR IS NOT CORRECT
+ * the content of bcVal is changed
  */
+/*
 PCH NTAPI B2A(BSTR bcVal)
 {
 	static const char empty[] = {0};
@@ -404,7 +407,10 @@ PCH NTAPI B2A(BSTR bcVal)
 	}
 	return pcVal;
 }
+*/
 
+// FIX B2A BEFORE UNCOMMENTING THIS ONE
+/*
 LPCTSTR NTAPI B2T(BSTR bcVal)
 {
 #ifdef _UNICODE
@@ -413,6 +419,7 @@ LPCTSTR NTAPI B2T(BSTR bcVal)
 	return B2A(bcVal);
 #endif
 }
+*/
 
 STDAPI LWDefProc(PVOID UNUSED_ARG(target), HRESULT UNUSED_ARG(sc),
 	VARIANT *UNUSED_ARG(ret), VARIANT *UNUSED_ARG(argv), UINT UNUSED_ARG(argc),

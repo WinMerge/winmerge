@@ -124,8 +124,11 @@ STDAPIV invokeW(LPDISPATCH, VARIANT *, BSTR, LPCCH, VARIANT *);
 STDAPI ValidateArgs(VARIANT *argv, UINT argc, LPCCH pvt);
 
 // in place conversion of BSTR to LPCCH
+// IN PLACE TRANSFORMATION OF WCHAR TO CHAR IS NOT CORRECT
+/*
 PCH NTAPI B2A(BSTR);
 LPCTSTR NTAPI B2T(BSTR);
+*/
 
 // callback interface related declarations
 

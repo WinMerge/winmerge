@@ -1,3 +1,7 @@
+2003-11-14 Laoran 
+ BUG: [ 838272 ] corrupt string operations in lwdisp.c
+  common: lwdisp.c lwdisp.h
+
 2003-11-13 Laoran 
  BUG: [ 841428 ] WinMerge executable path is deleted
   WinMerge: MainFrm.cpp PropRegistry.h
