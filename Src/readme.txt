@@ -1,3 +1,7 @@
+2004-01-13 Jochen
+ Start Merge7z integration (to be continued)
+  src: 7zCommon.cpp 7zCommon.h DirView.h
+ 
 2004-01-13 Kimmo
  PATCH: [ 875567 ] Compile after reorg
   Submitted by Christian to make WinMerge compile again!
