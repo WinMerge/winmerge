@@ -116,10 +116,10 @@ releases.</p>
   <tr>
     <td>German</td>
     <td>Actively maintained</td>
-    <td><a href="mailto:winfried dot peter at omicron dot at">Winfried Peter</a> <br> <a href="mailto:tonda at users dot sourceforge dot net">Joerg Schneider</a> and <a href="mailto:tim at gerundt dot de">Tim Gerundt</a></td>
-    <td>&nbsp; <br> 2.1</td>
-    <td>&nbsp; <br> 2.0</td>
-    <td>1.7 <br> &nbsp;</td>
+    <td><a href="mailto:winfried dot peter at omicron dot at">Winfried Peter</a> <br> <a href="mailto:tonda at users dot sourceforge dot net">Joerg Schneider</a> <br> <a href="mailto:tim at gerundt dot de">Tim Gerundt</a></td>
+    <td>&nbsp; <br> &nbsp; <br> 2.1</td>
+    <td>&nbsp; <br> 2.0 <br> &nbsp;</td>
+    <td>1.7 <br> &nbsp; <br> &nbsp;</td>
   </tr>
   <tr>
     <td>Italian</td>
@@ -179,11 +179,11 @@ releases.</p>
   </tr>
   <tr>
     <td>Swedish</td>
-    <td>Unmaintained</td>
-    <td><a href="mailto:goran dot x dot hakansson at telia dot com">Göran Håkansson</a></td>
-    <td>&nbsp;</td>
-    <td>2.0</td>
-    <td>&nbsp;</td>
+    <td>Actively maintained</td>
+    <td><a href="mailto:goran dot x dot hakansson at telia dot com">Göran Håkansson</a> <br> <a href="mailto:hans dot ericson at bredband dot net">Hans Eriksson</a></td>
+    <td>&nbsp; <br> 2.1</td>
+    <td>2.0 <br> &nbsp;</td>
+    <td>&nbsp; <br> &nbsp;</td>
   </tr>
 
 </table>
@@ -192,7 +192,7 @@ releases.</p>
 <p>Release 2.0 language versions also works with release 2.0.2.<br>
 Release 1.4 language versions also works with release 1.7.</p>
 
-<p>If you would like to update any of these translations, then please follow the <a href="instructions.php">instructions</a> above.</p>
+<p>If you would like to update any of these translations or add another translation, then please follow <a href="instructions.php">these instructions</a>.</p>
 <?php
   $page->printFoot();
 ?>

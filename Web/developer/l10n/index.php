@@ -28,8 +28,8 @@
   <li>Swedish</li>
 </ul>
 <p>To change languages, all you have to do is unzip the DLL in the same directory as <code>WinMerge.exe</code>, then select View / Language and choose your language.</p>
-<p>If you would like to update any of these translations, then please follow the <a href="instructions.php">instructions</a> above.</p>
-<p>You can also take a look at the <a href="status.php">status of the translations</a>.</p>
+<p>If you would like to update any of these translations, then please follow <a href="instructions.php">these instructions</a>.</p>
+<p>You can also take a look at the <a href="status.php">status of the translations</a>, and check if your language is already available and/or it needs to be updated.</p>
 <?php
   $page->printFoot();
 ?>
