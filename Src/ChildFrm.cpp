@@ -233,7 +233,8 @@ void CChildFrame::UpdateHeaderSizes()
 	if(IsWindowVisible())
 	{
 		int w,wmin;
-		m_wndSplitter.GetColumnInfo(0, w, wmin);	
+		m_wndSplitter.GetColumnInfo(0, w, wmin);
+		if (w<0) w=0; // Perry 2003-01-22 (I don't know why this happens)
 		m_wndStatusBar.SetPaneInfo(0, ID_SEPARATOR, SBPS_NORMAL, w-1);
 		m_wndStatusBar.SetPaneInfo(1, ID_SEPARATOR, SBPS_STRETCH, 0);
 	}
