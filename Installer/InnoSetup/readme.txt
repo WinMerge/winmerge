@@ -1,3 +1,8 @@
+2004-11-19 Kimmo
+ PATCH: [ 1069262 ] Update of Norwegian.isl
+  Submitted by Hans Fr. Nordhaug
+  InnoSetup/Languages: Norwegian.isl
+
 2004-11-03 Kimmo
  PATCH: [ 1059007 ] Installer: Don't install Merge7z for old 7zip betas
   InnoSetup: WinMerge Localized.iss
