@@ -850,7 +850,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
            */
           VERIFY (pdc->ExtTextOut (ptOrigin.x, ptOrigin.y, ETO_CLIPPED, &rcClip, line, nCount, NULL));
         }
-      ptOrigin.x += GetCharWidth () * line.GetLength ();
+	  ptOrigin.x += pdc->GetOutputTextExtent(line).cx;
     }
 }
 
