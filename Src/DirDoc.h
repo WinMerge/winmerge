@@ -82,6 +82,7 @@ public:
 
 // Implementation
 public:
+	BOOL GetRecursive() { return m_bRecursive; }
 	void SetRecursive(BOOL bRecursive);
 	BOOL GetReadOnly(BOOL bLeft) const;
 	void SetReadOnly(BOOL bLeft, BOOL bReadOnly);

@@ -933,7 +933,7 @@ IDB_RFILE               BITMAP                  "res\\rfile.bmp"
 IDB_BINARYDIFF          BITMAP                  "res\\binarydiff.bmp"
 IDB_FOLDERSKIP          BITMAP                  "res\\folderskip.bmp"
 IDB_FILESKIP            BITMAP                  "res\\fileskip.bmp"
-
+IDB_FOLDER              BITMAP                  "res\\folder.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

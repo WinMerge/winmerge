@@ -166,6 +166,7 @@
 #define IDS_COPY_TO_LEFT2               253
 #define IDS_COPY_TO_RIGHT2              254
 #define IDS_DIRSEL_TAG                  255
+#define IDB_FOLDER                      256
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

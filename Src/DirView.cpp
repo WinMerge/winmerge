@@ -38,6 +38,7 @@
 #include "locality.h"
 #include "FileTransform.h"
 #include "SelectUnpackerDlg.h"
+#include "paths.h"	// paths_GetParentPath()
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -223,6 +224,9 @@ void CDirView::OnInitialUpdate()
 	VERIFY (bm.LoadBitmap (IDB_FOLDERSKIP));
 	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
 	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_FOLDER));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
 
 	// Restore column orders as they had them last time they ran
@@ -259,6 +263,7 @@ void CDirView::OnInitialUpdate()
 #define DIFFIMG_RDIRUNIQUE  8
 #define DIFFIMG_SKIP        9
 #define DIFFIMG_DIRSKIP    10
+#define DIFFIMG_DIR        11
 
 /**
  * @brief Return image index appropriate for this row
@@ -275,6 +280,8 @@ int CDirView::GetColImage(const DIFFITEM & di) const
 		return (di.isDirectory() ? DIFFIMG_RDIRUNIQUE : DIFFIMG_RUNIQUE);
 	if (di.isResultSame())
 		return (di.isBin() ? DIFFIMG_BINSAME : DIFFIMG_SAME);
+	if (di.isDirectory())
+		return DIFFIMG_DIR;
 	// diff
 	return (di.isBin() ? DIFFIMG_BINDIFF : DIFFIMG_DIFF);
 }
@@ -607,18 +614,55 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CListViewEx::OnChar(nChar, nRepCnt, nFlags);
 }
 
-// TODO: This just opens first selected item
-// should it do something different when multiple items are selected ?
-// (Perry, 2002-12-04)
+/**
+ * @brief Open selected files or directories.
+ *
+ * Opens selected files to file compare. If comparing
+ * directories non-recursively, then subfolders and parent
+ * folder are opened too.
+ * @todo This just opens first selected item - should
+ * it do something different when multiple items are selected ?
+ */
 void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 {
 	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
 	if (sel != -1)
 	{
+		DIFFITEM di;
 		POSITION diffpos = GetItemKey(sel);
-		DIFFITEM di = GetDiffContext()->GetDiffAt(diffpos);
-		if (di.isDirectory())
-			AfxMessageBox(IDS_FILEISDIR, MB_ICONINFORMATION);
+
+		if (diffpos != (POSITION) -1)
+			di = GetDiffContext()->GetDiffAt((POSITION)diffpos);
+
+		// Browse to parent folder(s) selected, -1 is position for
+		// special items, but there is currenly only one (parent folder)
+		if (diffpos == (POSITION) -1)
+		{
+			CString left = GetDocument()->m_pCtxt->m_strNormalizedLeft;
+			CString right = GetDocument()->m_pCtxt->m_strNormalizedRight;
+			CString leftParent = paths_GetParentPath(left);
+			CString rightParent = paths_GetParentPath(right);
+
+			if (paths_DoesPathExist(leftParent) == IS_EXISTING_DIR &&
+					paths_DoesPathExist(rightParent) == IS_EXISTING_DIR)
+				mf->DoFileOpen(leftParent, rightParent,
+					FFILEOPEN_NOMRU, FFILEOPEN_NOMRU);
+		}		
+		else if (di.isDirectory() && (di.isSideLeft() == di.isSideRight()))
+		{
+			CDirDoc * pDoc = GetDocument();
+			if (pDoc->GetRecursive())
+				AfxMessageBox(IDS_FILEISDIR, MB_ICONINFORMATION);
+			else
+			{
+				// Open subfolders if non-recursive compare
+				// Don't add folders to MRU
+				CString left, right;
+				GetItemFileNames(sel, left, right);
+				mf->DoFileOpen(left, right, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU);
+			}
+
+		}
 		else if (di.isSideLeft() || di.isSideRight())
 			AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
 		else if (di.isBin())
@@ -732,7 +776,9 @@ void CDirView::DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI)
 	}
 }
 
-/// Should Delete both be enabled or disabled ?
+/**
+ * @brief Should Delete both be enabled or disabled ?
+ */
 void CDirView::DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI) 
 {
 	if (GetDocument()->GetReadOnly(TRUE) || GetDocument()->GetReadOnly(FALSE))
@@ -779,11 +825,20 @@ void CDirView::SetItemKey(int idx, POSITION diffpos)
 	m_pList->SetItemData(idx, (DWORD)diffpos);
 }
 
-// given index in list control, get its associated DIFFITEM data
+/**
+ * Given index in list control, get its associated DIFFITEM data
+ */
 DIFFITEM CDirView::GetDiffItem(int sel)
 {
 	POSITION diffpos = GetItemKey(sel);
-	return GetDiffContext()->GetDiffAt(diffpos);
+	
+	// If it is special item, return empty DIFFITEM
+	if (diffpos == (POSITION) -1)
+	{
+		DIFFITEM item;
+		return item;
+	}
+	return GetDiffContext()->GetDiffAt((POSITION)diffpos);
 }
 
 void CDirView::DeleteAllDisplayItems()
@@ -1668,4 +1723,47 @@ CString CDirView::GenerateReport()
 		}
 	}
 	return report;
+}
+
+/**
+ * @brief Add special items for non-recursive compare
+ * to directory view.
+ *
+ * Currently only special item is ".." for browsing to
+ * parent folders.
+ * @return number of items added to view
+ */
+int CDirView::AddSpecialItems()
+{
+	CDirDoc *pDoc = GetDocument();
+	int retVal = 0;
+	CString leftPath = pDoc->m_pCtxt->m_strNormalizedLeft;
+	CString rightPath = pDoc->m_pCtxt->m_strNormalizedRight;
+	CString leftParent = paths_GetParentPath(leftPath);
+	CString rightParent = paths_GetParentPath(rightPath);
+
+	if (paths_DoesPathExist(leftParent) == IS_EXISTING_DIR &&
+		paths_DoesPathExist(rightParent) == IS_EXISTING_DIR)
+	{
+		AddParentFolderItem();
+		retVal = 1;
+	}
+	return retVal;
+}
+
+/**
+ * @brief Add "Parent folder" ("..") item to directory view
+ */
+void CDirView::AddParentFolderItem()
+{
+	int i = AddNewItem(0);
+	SetImage(i, DIFFIMG_DIR);
+	SetItemKey(i, (POSITION) -1);
+
+	LV_ITEM lvItem;
+	lvItem.mask = LVIF_TEXT;
+	lvItem.iItem = i;
+	lvItem.iSubItem = 0;
+	lvItem.pszText = const_cast<LPTSTR>(_T(".."));
+	GetListCtrl().SetItem(&lvItem);
 }

@@ -98,6 +98,8 @@ public:
 	DIFFITEM GetNextSelectedInd(int &ind);
 	DIFFITEM GetItemAt(int ind);
 	void GotoFirstDiff() { OnFirstdiff(); };
+	int AddSpecialItems();
+	void AddParentFolderItem();
 
 // Implementation types
 private:

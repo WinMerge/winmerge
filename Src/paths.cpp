@@ -234,3 +234,29 @@ CString paths_ConcatPath(const CString & path, const CString & subpath)
 		}
 	}
 }
+
+/** 
+ * @brief Get parent path
+ */
+CString paths_GetParentPath(CString path)
+{
+	CString parentPath;
+	int len = path.GetLength();
+
+	// Remove last '\' from paths
+	if (path[len - 1] == '\\')
+	{
+		path.Delete(len - 1, 1);
+		--len;
+	}
+
+	// Remove last part of path
+	int pos = path.ReverseFind('\\');
+
+	if (pos > -1)
+	{
+		path.Delete(pos, len - pos);
+		parentPath = path;
+	}
+	return parentPath;
+}

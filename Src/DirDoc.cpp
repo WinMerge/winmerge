@@ -323,6 +323,7 @@ static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 
 /**
  * @brief Empty & reload listview (of files & columns) with comparison results
+ * @todo Better solution for special items ("..")?
  */
 void CDirDoc::Redisplay()
 {
@@ -337,6 +338,10 @@ void CDirDoc::Redisplay()
 	int rlen = m_pCtxt->m_strNormalizedRight.GetLength();
 
 	m_pDirView->DeleteAllDisplayItems();
+	
+	// If non-recursive compare, add special item(s)
+	if (!m_bRecursive)
+		cnt += m_pDirView->AddSpecialItems();
 
 	POSITION diffpos = m_pCtxt->GetFirstDiffPosition();
 	while (diffpos)

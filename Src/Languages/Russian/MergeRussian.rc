@@ -964,6 +964,7 @@ IDB_RFILE               BITMAP  DISCARDABLE     "res\\rfile.bmp"
 IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
 IDB_FOLDERSKIP          BITMAP  DISCARDABLE     "res\\folderskip.bmp"
 IDB_FILESKIP            BITMAP  DISCARDABLE     "res\\fileskip.bmp"
+IDB_FOLDER              BITMAP  DISCARDABLE     "res\\folder.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

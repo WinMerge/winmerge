@@ -105,6 +105,13 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 {
 	// initialize structures to obtain required information
 	CDirView* pView = reinterpret_cast<CDirView*>(lParamSort);
+	
+	// Sort special items always first in dir view
+	if (lParam1 == -1)
+	  return -1;
+	if (lParam2 == -1)
+	 return -1;
+	
 	POSITION diffposl = pView->GetItemKeyFromData(lParam1);
 	POSITION diffposr = pView->GetItemKeyFromData(lParam2);
 	DIFFITEM ldi = pView->GetDiffContext()->GetDiffAt(diffposl);
@@ -117,7 +124,7 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 	return (pView->m_bSortAscending)?retVal:-retVal;
 }
 
-// Add new item to list view
+/// Add new item to list view
 int CDirView::AddNewItem(int i)
 {
 	LV_ITEM lvItem;
@@ -128,7 +135,7 @@ int CDirView::AddNewItem(int i)
   
 }
 
-// Set a subitem on an existing item
+/// Set a subitem on an existing item
 void CDirView::SetSubitem(int item, int phy, LPCTSTR sz)
 {
 	LV_ITEM lvItem;

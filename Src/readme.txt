@@ -1,3 +1,11 @@
+2004-01-07 Kimmo
+ PATCH: [ 856396 ] Browse folders in non-recursive directory compare
+  WinMerge: DirDoc.h DirDoc.cpp DirScan.cpp DirView.h DirView.cpp
+   DirViewColHandler.cpp Merge.dsp Merge.rc Paths.h Paths.cpp resource.h
+  WinMerge/res: new file folder.bmp
+  Languages: *.rc resource.h
+  Languages/res: new file folder.bmp
+
 2004-01-06 Kimmo
  Add Polish translation contributed by Pawel Wawrzyszko
  Languages/Polish/*

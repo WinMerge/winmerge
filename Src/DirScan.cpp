@@ -99,9 +99,8 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			int nDiffCode = DIFFCODE::LEFT + DIFFCODE::DIR;
 
 			// Test against filter
-			// If comparing non-recursively filter out subdirectories
 			CString newsub = subprefix + leftDirs[i].name;
-			if (!depth || !pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
+			if (!pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
 				nDiffCode |= DIFFCODE::SKIPPED;
 
 			// Advance left pointer over left-only entry, and then retest with new pointers
@@ -114,9 +113,8 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			int nDiffCode = DIFFCODE::RIGHT + DIFFCODE::DIR;
 
 			// Test against filter
-			// If comparing non-recursively filter out subdirectories
 			CString newsub = subprefix + rightDirs[j].name;
-			if (!depth || !pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
+			if (!pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
 				nDiffCode |= DIFFCODE::SKIPPED;
 
 			// Advance right pointer over right-only entry, and then retest with new pointers
@@ -128,12 +126,16 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 		{
 			ASSERT(j<rightDirs.GetSize());
 			CString newsub = subprefix + leftDirs[i].name;
-			if (!depth || !pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
+			if (!pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
 			{
 				StoreDiffResult(subdir, &leftDirs[i], &rightDirs[j], DIFFCODE::SKIPPED+DIFFCODE::DIR, pCtxt);
 			}
 			else
 			{
+				// If non-recursive compare, add folders appearing both sides
+				if (!depth)
+					StoreDiffResult(subdir, &leftDirs[i], &rightDirs[j], DIFFCODE::DIR, pCtxt);
+
 				if (DirScan(newsub, pCtxt, casesensitive, depth-1, piAbortable) == -1)
 					return -1;
 			}
@@ -194,7 +196,6 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			}
 			else
 			{
-
 				int code = prepAndCompareTwoFiles(leftFiles[i], rightFiles[j], 
 					sLeftDir, sRightDir);
 				
