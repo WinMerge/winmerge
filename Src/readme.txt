@@ -1,4 +1,8 @@
 2004-04-17 Laoran
+ BUG: [ 936824 ] Prediffer not initialized when generate patch
+  Src: PatchTool.cpp
+
+2004-04-17 Laoran
  BUG: [ 936524 ] Cannot compare/Cancel,Retry,Continue
   Src: DirView.cpp
 

@@ -80,6 +80,7 @@ int CPatchTool::CreatePatch()
 			
 			// Set up DiffWrapper
 			m_diffWrapper.SetCompareFiles(filename1, filename2);
+			m_diffWrapper.SetPrediffer(NULL);
 			bDiffSuccess = m_diffWrapper.RunFileDiff();
 			m_diffWrapper.GetDiffStatus(&status);
 
