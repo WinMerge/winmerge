@@ -1383,7 +1383,6 @@ bool CMergeDoc::CDiffTextBuffer::curUndoGroup()
 
 void CMergeDoc::PrimeTextBuffers()
 {
-	CStdioFile file;
 	UINT LeftExtras=0;   // extra lines added to view
 	UINT RightExtras=0;   // extra lines added to view
 
