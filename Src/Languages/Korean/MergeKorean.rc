@@ -140,7 +140,7 @@ END
 
 IDR_POPUP_DIRVIEW MENU
 BEGIN
-    POPUP "_POPUP_"
+    POPUP "_ITEM_POPUP_"
     BEGIN
         MENUITEM "왼쪽으로 파일 복사",          ID_DIR_COPY_FILE_TO_LEFT
         MENUITEM "오른쪽으로 파일 복사",        ID_DIR_COPY_FILE_TO_RIGHT
@@ -154,6 +154,10 @@ BEGIN
         MENUITEM "오른쪽 파일 열기",            ID_DIR_OPEN_RIGHT
         MENUITEM "오른쪽 파일 열기(연결 프로그램 선택)...",
                                                 ID_DIR_OPEN_RIGHT_WITH
+    END
+    POPUP "_HDR_POPUP_"
+    BEGIN
+        MENUITEM "Edit columns",                ID_EDIT_COLUMNS
     END
 END
 
@@ -490,6 +494,25 @@ BEGIN
     EDITTEXT        IDC_STATIC_TITLE_RIGHT,163,2,160,12,ES_AUTOHSCROLL | 
                     ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
                     WS_TABSTOP,WS_EX_STATICEDGE
+END
+
+IDD_DIRCOLS DIALOG DISCARDABLE  0, 0, 273, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Display Columns"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,141,129,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,81,129,50,14
+    GROUPBOX        "Show columns",IDC_GROUP_SHOW,7,17,124,100
+    LISTBOX         IDC_LIST_SHOW,42,31,83,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Up",IDC_UP,13,43,23,13
+    PUSHBUTTON      "&Down",IDC_DOWN,13,67,23,13
+    GROUPBOX        "Hide columns",IDC_GROUP_HIDE,181,17,85,103
+    LISTBOX         IDC_LIST_HIDE,192,31,66,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "<==",IDC_ADD,141,41,29,11
+    PUSHBUTTON      "==>",IDC_REMOVE,141,76,29,11
 END
 
 
@@ -1090,9 +1113,9 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_FILENAME_HEADER     "파일 이름"
-    IDS_DIR_HEADER          "디렉토리"
-    IDS_RESULT_HEADER       "비교 결과"
+    IDS_COLHDR_FILENAME     "파일 이름"
+    IDS_COLHDR_DIR          "디렉토리"
+    IDS_COLHDR_RESULT       "비교 결과"
     IDS_FILE_COMPARISON_TITLE "파일 비교"
     IDS_DIFF_NUMBER_STATUS_FMT "다른 파일(%1 중 %2)"
     IDS_NO_DIFF_SEL_FMT     "다른 부분 %1개 발견"
@@ -1102,9 +1125,9 @@ BEGIN
     IDS_VSS_RUN_ERROR       "버전관리시스템 명령 실행 실패."
     IDS_DIFF_OPEN_NO_SET_PROPS
                             "수정되었습니다.  어떤 설정은 파일비교를 다시할 때까지 적용되지 않을 수 있습니다."
-    IDS_LTIME_HEADER        "왼쪽 날짜"
-    IDS_RTIME_HEADER        "오른쪽 날짜"
-    IDS_EXTENSION_HEADER    "확장자"
+    IDS_COLHDR_LTIMEM       "왼쪽 날짜"
+    IDS_COLHDR_RTIMEM       "오른쪽 날짜"
+    IDS_COLHDR_EXTENSION    "확장자"
     IDS_CONFIRM_DELETE_ITEMS "정말 삭제하시겠습니까(%1 중 %2) ?"
     IDS_DEL_LEFT_FMT        "선택 파일 중 왼쪽 파일만 삭제(%1 중 %2)"
 END
@@ -1118,6 +1141,7 @@ BEGIN
     IDS_COPY_TO_LEFT        "오른쪽에만 존재하는 파일 왼쪽으로 복사(%1 중 %2)"
     IDS_DEL_BOTH_FMT        "선택된 파일 양쪽 모두 삭제(%1 중 %2)"
     IDS_COPY_TO_RIGHT       "왼쪽에만 존재하는 파일 오른쪽으로 복사(%1 중 %2)"
+    IDS_COLHDR_LSIZE        "Left Size"
     IDS_DELETE_DIR_FAILED   "%1 디렉토리 삭제를 실패: %s"
     IDS_COPY_FILE_FAILED    "%1 파일 복사를 실패: %2"
     IDS_COPY_DIR_FAILED     "%1 디렉토리 복사를 실패: %2"
@@ -1147,12 +1171,38 @@ BEGIN
     IDS_STATUS_COPYR2L      "오른쪽에서 왼쪽으로 복사중"
     IDS_STATUS_COPYALL2L    "왼쪽으로 모두 복사중"
     IDS_STATUS_COPYALL2R    "오른쪽으로 모두 복사중"
+    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+    IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_LTIMEC       "Left Creation Time"
+    IDS_COLHDR_RTIMEC       "Right Creation Time"
+    IDS_COLHDR_NEWER        "Newer File"
+    IDS_COLHDR_LVERSION     "Left File Version"
+    IDS_COLHDR_RVERSION     "Right File Version"
 END
 
 STRINGTABLE
 BEGIN
     IDS_NUM_REPLACED        "모두 %1 개를 바꾸었습니다."
     IDS_EDIT_TEXT_NOT_FOUND "해당하는 문자열을 찾을 수 없습니다 : ""%s"""
+    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LEFTONLY            "Left Only"
+    IDS_RIGHTONLY           "Right Only"
+    IDS_COLHDR_RESULT_ABBR  "Short Result"
+    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
+    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_FILE_SKIPPED        "File skipped"
+    IDS_DIR_SKIPPED         "Directory skipped"
 END
 
 #endif    // 한국어 resources

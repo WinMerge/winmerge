@@ -175,7 +175,7 @@ END
 
 IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
-    POPUP "_POPUP_"
+    POPUP "_ITEM_POPUP_"
     BEGIN
         MENUITEM "Copier le fichier vers la gauche",
                                                 ID_DIR_COPY_FILE_TO_LEFT
@@ -189,6 +189,10 @@ BEGIN
         MENUITEM "Ouvrir depuis la gauche avec...", ID_DIR_OPEN_LEFT_WITH
         MENUITEM "Ouvrir depuis la droite",     ID_DIR_OPEN_RIGHT
         MENUITEM "Ouvrir depuis la droite avec...", ID_DIR_OPEN_RIGHT_WITH
+    END
+    POPUP "_HDR_POPUP_"
+    BEGIN
+        MENUITEM "Edit columns",                ID_EDIT_COLUMNS
     END
 END
 
@@ -527,6 +531,24 @@ BEGIN
                     WS_TABSTOP,WS_EX_STATICEDGE
 END
 
+IDD_DIRCOLS DIALOG DISCARDABLE  0, 0, 273, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Display Columns"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,141,129,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,81,129,50,14
+    GROUPBOX        "Show columns",IDC_GROUP_SHOW,7,17,124,100
+    LISTBOX         IDC_LIST_SHOW,42,31,83,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Up",IDC_UP,13,43,23,13
+    PUSHBUTTON      "&Down",IDC_DOWN,13,67,23,13
+    GROUPBOX        "Hide columns",IDC_GROUP_HIDE,181,17,85,103
+    LISTBOX         IDC_LIST_HIDE,192,31,66,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "<==",IDC_ADD,141,41,29,11
+    PUSHBUTTON      "==>",IDC_REMOVE,141,76,29,11
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -960,9 +982,9 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_FILENAME_HEADER     "Nom du fichier"
-    IDS_DIR_HEADER          "Répertoire"
-    IDS_RESULT_HEADER       "Résultat de la comparaison"
+    IDS_COLHDR_FILENAME     "Nom du fichier"
+    IDS_COLHDR_DIR          "Répertoire"
+    IDS_COLHDR_RESULT       "Résultat de la comparaison"
     IDS_FILE_COMPARISON_TITLE "Comparaison de fichiers"
     IDS_DIFF_NUMBER_STATUS_FMT "Différence %1 parmi %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Différences Trouvées"
@@ -972,9 +994,9 @@ BEGIN
     IDS_VSS_RUN_ERROR       "Erreur d'exécution de SourceSafe."
     IDS_DIFF_OPEN_NO_SET_PROPS
                             "Certains fichiers de la session courante ont été modifiés. Les changements d'options ne seront appliqués que pour la prochaine session de comparaison."
-    IDS_LTIME_HEADER        "Date Gauche"
-    IDS_RTIME_HEADER        "Date Droite"
-    IDS_EXTENSION_HEADER    "Extension"
+    IDS_COLHDR_LTIMEM       "Date Gauche"
+    IDS_COLHDR_RTIMEM       "Date Droite"
+    IDS_COLHDR_EXTENSION    "Extension"
     IDS_CONFIRM_DELETE_ITEMS
                             "Voulez-vous vraiment supprimer %1 éléments sélectionnés parmi %2 ?"
     IDS_DEL_LEFT_FMT        "Suppression de %1 éléments à gauche parmi %2"
@@ -989,6 +1011,7 @@ BEGIN
     IDS_COPY_TO_LEFT        "Copie de %1 éléments vers la gauche parmi %2"
     IDS_DEL_BOTH_FMT        "Suppression de %1 éléments des deux côtés parmi %2"
     IDS_COPY_TO_RIGHT       "Copie de %1 éléments vers la droite parmi %2"
+    IDS_COLHDR_LSIZE        "Left Size"
     IDS_DELETE_DIR_FAILED   "Erreur lors de la suppression du répertoire %1  :  %2"
     IDS_COPY_FILE_FAILED    "Erreur lors de la copie du fichier %1  :  %2"
     IDS_COPY_DIR_FAILED     "Erreur lors de la copie du répertoire %1  :  %2"
@@ -1019,6 +1042,13 @@ BEGIN
     IDS_STATUS_COPYR2L      "Copie de droite à gauche"
     IDS_STATUS_COPYALL2L    "Copie de tout vers la gauche"
     IDS_STATUS_COPYALL2R    "Copie de tout vers la droite"
+    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+    IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_LTIMEC       "Left Creation Time"
+    IDS_COLHDR_RTIMEC       "Right Creation Time"
+    IDS_COLHDR_NEWER        "Newer File"
+    IDS_COLHDR_LVERSION     "Left File Version"
+    IDS_COLHDR_RVERSION     "Right File Version"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1027,6 +1057,23 @@ BEGIN
     IDS_EDIT_TEXT_NOT_FOUND "texte non trouvé ""%s"""
     IDS_LINE_STATUS_INFO    "Line: %s Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LEFTONLY            "Left Only"
+    IDS_RIGHTONLY           "Right Only"
+    IDS_COLHDR_RESULT_ABBR  "Short Result"
+    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
+    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_FILE_SKIPPED        "File skipped"
+    IDS_DIR_SKIPPED         "Directory skipped"
 END
 
 #endif    // French (France) resources

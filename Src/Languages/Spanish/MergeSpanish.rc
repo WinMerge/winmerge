@@ -175,7 +175,7 @@ END
 
 IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
-    POPUP "_POPUP_"
+    POPUP "_ITEM_POPUP_"
     BEGIN
         MENUITEM "Copy file to left",           ID_DIR_COPY_FILE_TO_LEFT
         MENUITEM "Copy file to right",          ID_DIR_COPY_FILE_TO_RIGHT
@@ -187,6 +187,10 @@ BEGIN
         MENUITEM "Open left with...",           ID_DIR_OPEN_LEFT_WITH
         MENUITEM "Open right",                  ID_DIR_OPEN_RIGHT
         MENUITEM "Open right with...",          ID_DIR_OPEN_RIGHT_WITH
+    END
+    POPUP "_HDR_POPUP_"
+    BEGIN
+        MENUITEM "Edit columns",                ID_EDIT_COLUMNS
     END
 END
 
@@ -522,6 +526,25 @@ BEGIN
     EDITTEXT        IDC_STATIC_TITLE_RIGHT,163,2,160,12,ES_AUTOHSCROLL | 
                     ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
                     WS_TABSTOP,WS_EX_STATICEDGE
+END
+
+IDD_DIRCOLS DIALOG DISCARDABLE  0, 0, 273, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Display Columns"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,141,129,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,81,129,50,14
+    GROUPBOX        "Show columns",IDC_GROUP_SHOW,7,17,124,100
+    LISTBOX         IDC_LIST_SHOW,42,31,83,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Up",IDC_UP,13,43,23,13
+    PUSHBUTTON      "&Down",IDC_DOWN,13,67,23,13
+    GROUPBOX        "Hide columns",IDC_GROUP_HIDE,181,17,85,103
+    LISTBOX         IDC_LIST_HIDE,192,31,66,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "<==",IDC_ADD,141,41,29,11
+    PUSHBUTTON      "==>",IDC_REMOVE,141,76,29,11
 END
 
 
@@ -957,9 +980,9 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_FILENAME_HEADER     "Nombre"
-    IDS_DIR_HEADER          "Directorio"
-    IDS_RESULT_HEADER       "Resultado"
+    IDS_COLHDR_FILENAME     "Nombre"
+    IDS_COLHDR_DIR          "Directorio"
+    IDS_COLHDR_RESULT       "Resultado"
     IDS_FILE_COMPARISON_TITLE "Comparación de Archivos"
     IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
@@ -969,9 +992,9 @@ BEGIN
     IDS_VSS_RUN_ERROR       "Error executing versioning system command."
     IDS_DIFF_OPEN_NO_SET_PROPS
                             "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
-    IDS_LTIME_HEADER        "Left Date"
-    IDS_RTIME_HEADER        "Right Date"
-    IDS_EXTENSION_HEADER    "Extension"
+    IDS_COLHDR_LTIMEM       "Left Date"
+    IDS_COLHDR_RTIMEM       "Right Date"
+    IDS_COLHDR_EXTENSION    "Extension"
     IDS_CONFIRM_DELETE_ITEMS
                             "Are you sure you want to delete %1 of %2 selected item(s) ?"
     IDS_DEL_LEFT_FMT        "Delete left side %1 of %2 selected item(s)"
@@ -986,6 +1009,7 @@ BEGIN
     IDS_COPY_TO_LEFT        "Copy to left side %1 of %2 selected item(s)"
     IDS_DEL_BOTH_FMT        "Delete both sides %1 of %2 selected item(s)"
     IDS_COPY_TO_RIGHT       "Copy to right side %1 of %2 selected item(s)"
+    IDS_COLHDR_LSIZE        "Left Size"
     IDS_DELETE_DIR_FAILED   "Delete directory %1 failed: %s"
     IDS_COPY_FILE_FAILED    "Copying file %1 failed: %2"
     IDS_COPY_DIR_FAILED     "Copying directory %1 failed: %2"
@@ -1019,6 +1043,12 @@ BEGIN
     IDS_STATUS_COPYALL2L    "Copying All to Left"
     IDS_STATUS_COPYALL2R    "Copying All to Right"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+    IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_LTIMEC       "Left Creation Time"
+    IDS_COLHDR_RTIMEC       "Right Creation Time"
+    IDS_COLHDR_NEWER        "Newer File"
+    IDS_COLHDR_LVERSION     "Left File Version"
+    IDS_COLHDR_RVERSION     "Right File Version"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1033,6 +1063,17 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LEFTONLY            "Left Only"
+    IDS_RIGHTONLY           "Right Only"
+    IDS_COLHDR_RESULT_ABBR  "Short Result"
+    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
+    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_FILE_SKIPPED        "File skipped"
+    IDS_DIR_SKIPPED         "Directory skipped"
 END
 
 #endif    // English (U.S.) resources

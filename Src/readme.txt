@@ -1,6 +1,8 @@
 2003-08-27 Perry
- l10n effects of patch#781529: new popup menu, new dialog, alter existing col header strings
+ i18n effects of patch#781529: new popup menu, new dialog, alter existing col header strings
   Languages: Czech, Danish, Dutch
+ i18n effects of patch#781529: new popup menu, new dialog, alter existing col header strings
+  Languages: French, German, Italian, Korean, Norwegian, Slovak, Spanish
 
 2003-08-27 Kimmo
  PATCH: [ 784302 ] Implement Read-only for files and dirs
@@ -17,7 +19,7 @@
 2003-08-26 Perry
  Implement fix for BUG#794514: 'Comparison Summary' not updated properly
   WinMerge: DirDoc.cpp
- l10n effects of patch#781529: new popup menu, new dialog, alter existing col header strings
+ i18n effects of patch#781529: new popup menu, new dialog, alter existing col header strings
   Languages: Brazilian, ChineseSimplified, ChineseTraditional
   
 2003-08-25 Laoran
