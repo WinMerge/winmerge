@@ -2,6 +2,9 @@
  PATCH: [ 912297 ] Splashscreen and syntax highlight options
   Src: MainFrm.cpp Merge.cpp Merge.h MergeDiffDetailView.cpp
    MergeEditView.cpp OptionsDef.h
+ Fix compile of CShellFileOp with Visual Studio 2003
+  Fix from original author Michael Dunn
+  Common: CShellFileOp.cpp
 
 2004-03-08 Kimmo
  PATCH: [ 911350 ] Restore default compare options

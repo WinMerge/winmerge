@@ -8,17 +8,20 @@
 // dot com).  You may freely use and redistribute this source code and
 // accompanying documentation as long as this notice is retained.
 //
-// Contact me if you have any questions, comments, or bug reports.  My 
+// Contact me if you have any questions, comments, or bug reports.  My
 // homepage is at http://home.inreach.com/mdunn/
 //
 //////////////////////////////////////////////////////////////////////
-// 
+//
 // Revision history:
 //  Oct 11, 1998: Version 1.0: First release.
 //
 //  Feb 27, 2000: Version 1.1: Fixed a bug in CShellFileOp::Go() that
 //  would allocate twice the memory needed in Unicode builds.  The 'new'
 //  statements now allocate BYTEs instead of TCHARs.
+//
+//  Mar 9, 2004: Version 1.1a: Fix compile with Visual Studio 2003
+//  Fix from author, applied to WinMerge CVS by Kimmo Varis
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -77,7 +80,7 @@ BOOL CShellFileOp::AddSourceFile ( LPCTSTR szPath )
         {
         m_lcstrSourceFiles.AddTail ( szPath );
         }
-    catch ( CMemoryException )
+    catch ( CMemoryException *)
         {
         TRACE0("Memory exception in CShellFileOp::AddSourceFile()!\n");
         throw;
@@ -112,7 +115,7 @@ BOOL CShellFileOp::AddDestFile ( LPCTSTR szPath )
         {
         m_lcstrDestFiles.AddTail ( szPath );
         }
-    catch ( CMemoryException )
+    catch ( CMemoryException *)
         {
         TRACE0("Memory exception in CShellFileOp::AddDestFile()!\n");
         throw;
@@ -281,7 +284,7 @@ void CShellFileOp::SetOperationFlags ( UINT uOpType, CWnd* pWnd,
 //  Nothing.
 //
 // Note:
-//  The object maintains its own copy of the string in a CString, so the 
+//  The object maintains its own copy of the string in a CString, so the
 //  caller can destroy or reuse its string once this function returns.
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -294,7 +297,7 @@ void CShellFileOp::SetProgressDlgTitle ( LPCTSTR szTitle )
         {
         m_cstrProgressDlgTitle = szTitle;
         }
-    catch ( CMemoryException )
+    catch ( CMemoryException *)
         {
         TRACE0("Memory exception in CShellFileOp::SetProgressDlgTitle()!\n");
         throw;
@@ -433,8 +436,8 @@ int    nAPIRet;
         }
 
                                         // 3 Is the source file list nonempty?
-    
-    if ( m_lcstrSourceFiles.IsEmpty() ) 
+
+    if ( m_lcstrSourceFiles.IsEmpty() )
         {
         TRACE0("Go() aborting because the source file list is empty.\n");
         goto bailout;
@@ -485,7 +488,7 @@ int    nAPIRet;
             szzDestFiles = (LPTSTR) new BYTE [ dwDestBufferSize ];
             }
         }
-    catch ( CMemoryException )
+    catch ( CMemoryException *)
         {
         TRACE0("Memory exception in CShellFileOp::Go()!\n");
         throw;
@@ -507,9 +510,9 @@ int    nAPIRet;
 
 
                                         // If there are 2 or more strings in
-                                        // the destination list, set the 
+                                        // the destination list, set the
                                         // MULTIDESTFILES flag.
-                                    
+
     if ( m_lcstrDestFiles.GetCount() > 1 )
         {
         m_rFOS.fFlags |= FOF_MULTIDESTFILES;
@@ -517,7 +520,7 @@ int    nAPIRet;
 
 
     m_bGoCalledAPI = TRUE;
-    
+
     if ( NULL != lpbOperationStarted )
         {
         *lpbOperationStarted = TRUE;
@@ -526,7 +529,7 @@ int    nAPIRet;
                                         // drum roll please....
     nAPIRet = SHFileOperation ( &m_rFOS );  // tah-dah!
 
-                                        // Save the return value from the API.    
+                                        // Save the return value from the API.
     if ( NULL != lpnAPIReturn )
         {
         *lpnAPIReturn = nAPIRet;
@@ -592,7 +595,7 @@ void CShellFileOp::ResetInternalData()
                                         // Reset state variables
     m_bFlagsSet = FALSE;
     m_bGoCalledAPI = FALSE;
-    
+
                                         // And clear out other stuff...
     m_cstrProgressDlgTitle.Empty();
 
