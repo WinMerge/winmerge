@@ -1,3 +1,7 @@
+2003-06-16 Christian
+ PATCH [ 754015 ] WinMerge installer imrovements
+  InnoSetup: Info.txt WinMerge.iss WinMergeIcon.bmp WinMergeLarge.bmp
+
 2003-06-12 Kimmo
  PATCH: [ 753284 ] Fix cursor slowdown after rescan
   editlib: ccrystaltextview.cpp
