@@ -80,4 +80,11 @@ const TCHAR OPT_CMP_EOL_SENSITIVE[] = _T("Settings/EolSensitive");
 const TCHAR OPT_CMP_METHOD[] = _T("Settings/CompMethod");
 const TCHAR OPT_CMP_MOVED_BLOCKS[] = _T("Settings/MovedBlocks");
 
+/// Are regular expression linefilters enabled?
+const TCHAR OPT_LINEFILTER_ENABLED[] = _T("Settings/IgnoreRegExp");
+///Regular expression linefilters
+const TCHAR OPT_LINEFILTER_REGEXP[] = _T("Settings/RegExps");
+/// Location of currently selected filefilter
+const TCHAR OPT_FILEFILTER_PATH[] = _T("Settings/FileFilterPath");
+
 #endif // _OPTIONS_DEF_H_

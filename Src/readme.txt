@@ -1,6 +1,8 @@
 2004-08-10 Kimmo
  BUG: [ 1006164 ] accelerator conflict
   Src: Merge.rc
+ PATCH: [ 1003181 ] Move filter options to OptionsManager
+  Src: MainFrm.cpp MainFrm.h OptionsDef.h
 
 2004-08-04 Kimmo
  PATCH: [ 1001981 ] Italian translation updated

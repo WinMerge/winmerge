@@ -221,6 +221,10 @@ CMainFrame::CMainFrame()
 	if (m_options.GetInt(OPT_CLR_SELECTED_DIFF) == RGB(255,0,92))
 		m_options.SaveOption(OPT_CLR_SELECTED_DIFF, RGB(239,119,116));
 
+	m_options.InitOption(OPT_LINEFILTER_ENABLED, FALSE);
+	m_options.InitOption(OPT_LINEFILTER_REGEXP, _T(""));
+	m_options.InitOption(OPT_FILEFILTER_PATH, _T(""));
+
 	m_bShowErrors = TRUE;
 	m_CheckOutMulti = FALSE;
 	m_bVCProjSync = FALSE;
@@ -233,9 +237,7 @@ CMainFrame::CMainFrame()
 	theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), _T(""));
 	m_strVssPath = theApp.GetProfileString(_T("Settings"), _T("VssPath"), _T(""));
 	m_strVssDatabase = theApp.GetProfileString(_T("Settings"), _T("VssDatabase"),_T(""));
-	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
-	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
-	theApp.m_globalFileFilter.SetFileFilterPath(theApp.GetProfileString(_T("Settings"), _T("FileFilterPath"), _T("")));
+	theApp.m_globalFileFilter.SetFileFilterPath(m_options.GetString(OPT_FILEFILTER_PATH));
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	// uncomment this when the GUI allows to toggle the mode
 //	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
@@ -2165,10 +2167,10 @@ void CMainFrame::RebuildRegExpList()
 
 	// build the new list if the user choose to
 	// ignore lines matching the reg expression patterns
-	if (m_bIgnoreRegExp)
+	if (m_options.GetInt(OPT_LINEFILTER_ENABLED))
 	{
 		// find each regular expression and add to list
-		_tcscpy(tmp, m_sPattern);
+		_tcsncpy(tmp, m_options.GetString(OPT_LINEFILTER_REGEXP), _MAX_PATH);
 
 		token = _tcstok(tmp, sep);
 		while (token)
@@ -2772,23 +2774,18 @@ void CMainFrame::OnToolsFilters()
 	theApp.m_globalFileFilter.GetFileFilters(&fileFilters, selectedFilter);
 	fileFiltersDlg.SetFilterArray(&fileFilters);
 	fileFiltersDlg.SetSelected(selectedFilter);
-	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
-	filter.m_sPattern = m_sPattern;
+	filter.m_bIgnoreRegExp = m_options.GetInt(OPT_LINEFILTER_ENABLED);
+	filter.m_sPattern = m_options.GetString(OPT_LINEFILTER_REGEXP);
 
 	if (sht.DoModal() == IDOK)
 	{
 		CString path = fileFiltersDlg.GetSelected();
 		theApp.m_globalFileFilter.SetFileFilterPath(path);
-		theApp.WriteProfileString(_T("Settings"), _T("FileFilterPath"), path);
-
-		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
-		m_sPattern = filter.m_sPattern;
-
-		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
-		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
+		m_options.SaveOption(OPT_FILEFILTER_PATH, path);
+		m_options.SaveOption(OPT_LINEFILTER_ENABLED, filter.m_bIgnoreRegExp);
+		m_options.SaveOption(OPT_LINEFILTER_REGEXP, filter.m_sPattern);
 
 		RebuildRegExpList();
-
 	}
 }
 
