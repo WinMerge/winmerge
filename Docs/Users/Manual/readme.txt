@@ -9,6 +9,8 @@
   Manual: Locales.xml
  PATCH: [ 1034722 ] Docs: Move Quick start to second in toc
   Manual: WinMerge_help.xml
+ BUG: [ 1034763 ] 2.2 docs: more minor tweaks (from Perry)
+  Manual: Configuration.xml
 
 2004-09-25 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations

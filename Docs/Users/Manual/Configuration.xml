@@ -114,7 +114,7 @@
     <sect3>
       <title>Preserve original EOL chars</title>
       <important>
-        <para>This is an advanced option for advanced users familiar with EOL bytes. For comparing files with different EOL styles inside ONE file. If comparing that kind of files is not needed, don't set this option.</para>
+        <para>This is an advanced option for users who are familiar with EOL bytes and who want to compare files with different EOL styles inside ONE file. It is recommended that this option not be set unless this advanced functionality is needed.</para>
       </important>
       <para>Setting this option allows handling and comparing files with different EOL styles inside ONE file. Two files with different EOL styles can be compared even without this option set! One example reveals functionality behind this option.</para>
       <screen format="linespecific">This is one example 
