@@ -1316,7 +1316,20 @@ STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "Jämför filerna i den här mappen med WinMerge"
     IDS_VERSION_FMT         "Version %1"
-    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\ndär:\n /? eller -? visar denna hjälp\n /r eller -r får WinMerge att jämföra kataloger rekursivt\n /e eller -e låter WinMerge stängas med en enkel esc tryckning\n /ul eller -ul får WinMerge att inte lägga till vänster sökväg till de senast använda filerna\n /ur eller -ur får WinMerge att inte lägga till höger sökväg till de senast använda filerna\n /ub eller -ub får WinMerge att inte lägga till båda sökvägarna till de senast använda filerna\n /dl eller -dl lägger till en visad beskrivning av vänster sida istället för katalog/filnamn\n /dr eller -dr lägger till en visad beskrivning av höger sida istället för katalog/filnamn\n leftpath är katalogen eller filnamnet att öppna på vänster sida\n rightpath är katalogen eller filnamnet att öppna på höger sida\n outputpath är en optionell outputkatalog där du vill att ändrade filer ska \n sparas\n \n Obs: leftpath och rightpath måste båda vara filer eller båda måste vara \n kataloger\n"
+    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\ndär:
+      /? eller -? visar denna hjälp
+      /r eller -r får WinMerge att jämföra kataloger rekursivt
+      /e eller -e låter WinMerge stängas med en enkel esc tryckning
+      /ul eller -ul får WinMerge att inte lägga till vänster sökväg till de senast använda filerna
+      /ur eller -ur får WinMerge att inte lägga till höger sökväg till de senast använda filerna
+      /ub eller -ub får WinMerge att inte lägga till båda sökvägarna till de senast använda filerna
+      /wl or -wl öppnar vänster fil som skrivskyddad i början
+      /wr or -wr öppnar höger fil som skrivskyddad i början
+      /dl eller -dl lägger till en visad beskrivning av vänster sida istället för katalog/filnamn
+      /dr eller -dr lägger till en visad beskrivning av höger sida istället för katalog/filnamn
+      leftpath är katalogen eller filnamnet att öppna på vänster sida
+      rightpath är katalogen eller filnamnet att öppna på höger sida
+      outputpath är en optionell outputkatalog där du vill att ändrade filer ska sparas"
 END
 
 // VARIOUS OPTIONS

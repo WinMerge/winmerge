@@ -1,3 +1,8 @@
+2004-05-10 Laoran
+ apply again modifications to IDS_QUICKHELP, lost during PATCH: [ 947680 ]
+  Src: Merge.rc 
+  Src\Languages\Swedish: MergeSwedish.rc
+
 2004-05-07 Laoran
  PATCH: [ 947680 ] Organize resource strings
   Src: CCPrompt.cpp DiffWrapper.cpp DirFrame.cpp MainFrm.cpp Merge.rc MergeDoc.cpp
