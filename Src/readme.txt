@@ -1,4 +1,6 @@
 2003-10-25 Laoran
+ fix in PopCursors for ptLastChange
+  WinMerge: GhostTextView.cpp
  BUG: [ 830076 ] Context menu plugins change ghost lines to real lines
   WinMerge: GhostTextView.cpp GhostTextView.h MergeEditView.cpp
  BUG: [ 830072 ] "Unload script" does not work

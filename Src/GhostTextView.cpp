@@ -127,7 +127,7 @@ PopCursors ()
 	}
 
 	CPoint ptLastChange;
-	if (m_ptLastChangePushed.y == 0 && m_ptLastChangePushed.nToFirstReal == 1)
+	if (m_ptLastChangePushed.y == 0 && m_ptLastChangePushed.nToFirstReal > 0)
 		ptLastChange = CPoint(-1,-1);
 	else 
 	{
