@@ -1375,8 +1375,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	CString strExt;
 	PackingInfo infoUnpacker;
 	// TODO: Need to allow user to specify these some day
-	int cpleft=ucr::getDefaultCodepage();
-	int cpright=ucr::getDefaultCodepage();
+	int cpleft= -1; // to be initialized/guessed in ShowMergeDoc
+	int cpright= -1; // to be initialized/guessed in ShowMergeDoc
 
 	BOOL bRORight = dwLeftFlags & FFILEOPEN_READONLY;
 	BOOL bROLeft = dwRightFlags & FFILEOPEN_READONLY;
@@ -1414,8 +1414,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		infoUnpacker = dlg.m_infoHandler;
 		pathsType = static_cast<PATH_EXISTENCE>(dlg.m_pathsType);
 		// TODO: add codepage options to open dialog ?
-		cpleft=ucr::getDefaultCodepage();
-		cpright=ucr::getDefaultCodepage();
+		cpleft= -1; // to be initialized/guessed in ShowMergeDoc
+		cpright= -1; // to be initialized/guessed in ShowMergeDoc
 	}
 	else
 	{
@@ -2704,6 +2704,7 @@ void CMainFrame::OnFileNew()
 	}
 	
 	// Load emptyfile descriptors and open empty docs
+	// Use default codepage
 	VERIFY(m_strLeftDesc.LoadString(IDS_EMPTY_LEFT_FILE));
 	VERIFY(m_strRightDesc.LoadString(IDS_EMPTY_RIGHT_FILE));
 	ShowMergeDoc(pDirDoc, _T(""), _T(""), FALSE, FALSE, 

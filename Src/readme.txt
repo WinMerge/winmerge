@@ -1,4 +1,6 @@
 2004-06-19 Laoran
+ PATCH: [ 974714 ] detect codepage when open documents directly, small update
+  Src: MainFrm.cpp
  PATCH: [ 974714 ] detect codepage when open documents directly
   Src: DiffContext.cpp MainFrm.cpp MainFrm.h
   Src/Common: UniFile.cpp UniFile.h
