@@ -882,6 +882,10 @@ SOURCE=.\res\notequal.bmp
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\rfile.bmp
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\rfolder.bmp
 # End Source File
 # Begin Source File
