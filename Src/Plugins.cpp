@@ -197,7 +197,7 @@ void PluginInfo::LoadFilterString()
 	while(1)
 	{
 		sPiece = sLine.Mid(sLine.ReverseFind(';')+1);
-		sLine = sLine.Left(sLine.ReverseFind(';')-1);
+		sLine = sLine.Left(sLine.ReverseFind(';'));
 		if (sPiece.IsEmpty())
 			break;
 
@@ -215,10 +215,27 @@ void PluginInfo::LoadFilterString()
 
 BOOL PluginInfo::TestAgainstRegList(LPCTSTR szTest)
 {
-	if (filters && szTest && szTest[0])
-		return (::TestAgainstRegList(*filters, szTest));
-	else
+	if (filters == NULL || szTest == NULL || szTest[0] == 0)
 		return FALSE;
+
+	CString sLine = szTest;
+	CString sPiece;
+
+	while(1)
+	{
+		sPiece = sLine.Mid(sLine.ReverseFind('|')+1);
+		sLine = sLine.Left(sLine.ReverseFind('|'));
+		if (sPiece.IsEmpty())
+			break;
+
+		sPiece.TrimLeft();
+		sPiece.MakeUpper();
+
+		if (::TestAgainstRegList(*filters, sPiece))
+			return TRUE;
+	};
+
+	return FALSE;
 }
 
 

@@ -1,3 +1,12 @@
+2003-11-04 Laoran
+ fix to test plugin filter with left & right filenames (instead of just right one)
+  WinMerge: Plugins.cpp
+ PATCH: [ 833961 ] Swedish translation 2.1
+ Submitted by Göran Håkansson
+  Languages: BuildAll.bat
+  Languages\Swedish: MergeSwedish.rc MergeSwedish_LastTranslation.rc resource.h
+  Languages\Swedish\res : all files
+
 2003-11-04 Kimmo
  PATCH: [ 831052 ] Write version and configuration info
   WinMerge: MainFrm.h MainFrm.cpp Merge.dsp Merge.rc resource.h
