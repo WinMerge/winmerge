@@ -559,7 +559,6 @@ BOOL CMergeDoc::CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine)
 	return TRUE;
 }
 
-//<jtuc 2003-06-28>
 void CMergeDoc::CDiffTextBuffer::AddUndoRecord(BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int nLinesToValidate, int nActionType /*= CE_ACTION_UNKNOWN*/)
 {
 	CGhostTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText, nLinesToValidate, nActionType);
@@ -570,75 +569,9 @@ void CMergeDoc::CDiffTextBuffer::AddUndoRecord(BOOL bInsert, const CPoint & ptSt
 		m_pOwnerDoc->curUndo = m_pOwnerDoc->undoTgt.end();
 	}
 }
-//<jtuc>
-
-/*
-void CMergeDoc::AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList)
-{
-	CUndoItem *pitem = new CUndoItem;
-	if (pitem != NULL)
-	{
-		pitem->begin = nBegin;
-		pitem->end = nEnd;
-		pitem->diffidx = nDiff;
-		pitem->blank = nBlanks;
-		pitem->bInsert = bInsert;
-		pitem->m_pList = pList;
-		if (bInsert)
-			for (UINT i=nBegin; i <= nEnd; i++)
-			{
-				CString s = pitem->m_pList->GetLineText(i);
-				pitem->list.AddTail(s);
-			}
-
-		m_undoList.AddHead(pitem);
-	}
-}
-*/
 
 BOOL CMergeDoc::Undo()
 {
-/*TODO	if (!m_undoList.IsEmpty())
-	{
-		CUndoItem *pitem = (CUndoItem *)m_undoList.RemoveHead();
-		if (pitem != NULL)
-		{
-			if (pitem->bInsert)
-			{
-				CString s;
-				POSITION pos = pitem->list.GetHeadPosition();
-				UINT i = pitem->begin;
-				while (pos != NULL)
-				{
-					s = pitem->list.GetNext(pos);
-					pitem->m_pList->m_pList->SetItemText(i,0,s);
-					i++;
-				}
-				if (pitem->m_pList == mf->m_pLeft)
-					m_diffs[pitem->diffidx].blank0 = pitem->blank;
-				else
-					m_diffs[pitem->diffidx].blank1 = pitem->blank;
-				
-				// scroll to the diff
-				int line = max(0, m_diffs[pitem->diffidx].dbegin0-CONTEXT_LINES);
-				mf->m_pLeft->ScrollToLine(line);
-				mf->m_pRight->ScrollToLine(line);
-				
-				// select the diff
-				mf->m_pLeft->SelectDiff(pitem->diffidx);
-			}
-			else
-			{
-				ASSERT(0);
-			}
-
-			pitem->m_pList->SubMod();
-			delete pitem;
-
-
-			return TRUE;
-		}
-	}*/
 	return FALSE;
 }
 

@@ -95,20 +95,6 @@ class PrediffingInfo;
 class CChildFrame;
 class CDirDoc;
 
-//<jtuc 2003-06-28>
-/*
-class CUndoItem
-{
-public:
-	UINT begin,end,diffidx;
-	int blank;
-	BOOL bInsert;
-	CMergeEditView *m_pList;
-	CStringList list;
-};
-*/
-//<jtuc>
-
 /**
  * @brief Document class for merging two files
  */
@@ -198,7 +184,6 @@ protected: // create from serialization only
 public:	
 	DiffFileInfo m_leftSaveFileInfo;
 	DiffFileInfo m_rightSaveFileInfo;
-	CPtrList m_undoList;
 	CArray<DIFFRANGE,DIFFRANGE> m_diffs;
 	UINT m_nDiffs; /**< Amount of diffs */
 	UINT m_nTrivialDiffs; /**< Amount of trivial (ignored) diffs */

@@ -1,3 +1,7 @@
+2004-06-18 Kimmo
+ BUG: [ 930574 ] Remove old and unused undo-code
+  Src: MergeDoc.h MergeDoc.cpp
+
 2004-06-17 Kimmo
  Remove commented out functions ExpandTabs() and Tabify()
   Src: MergeDoc.h MergeDoc.cpp
