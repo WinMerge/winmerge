@@ -1,6 +1,8 @@
 2003-06-22 Perry
  PATCH: [ 758870 ] Return filesize+1 rather than 0 for new lines at end
   editlib: crystaltextbuffer.cpp crystaltextbuffer.h
+ PATCH: [ 758900 ] Fix bug in pasting contiguous empty lines.
+  editlib: crystaltextbuffer.cpp
 
 2003-06-21 Perry
  PATCH: [ 716456 ] Update Undo/Redo info with rescan line mapping

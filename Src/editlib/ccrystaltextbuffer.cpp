@@ -1067,7 +1067,12 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
       while (pszText[nTextPos] && !iseol(pszText[nTextPos]))
         nTextPos++;
       // advance after EOL of line
-      while (iseol(pszText[nTextPos]))
+      if (isdoseol(&pszText[nTextPos]))
+        {
+          haseol = 1;
+          nTextPos += 2;
+        }
+      else if (iseol(pszText[nTextPos]))
         {
           haseol = 1;
           nTextPos++;
@@ -1076,6 +1081,8 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
       if (nCurrentLine == nLine)
         {
           AppendLine (nLine, pszText, nTextPos);
+          if (haseol)
+            bNewLines = TRUE;
         }
       else
         {
