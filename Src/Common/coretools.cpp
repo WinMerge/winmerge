@@ -382,16 +382,21 @@ FileExtMatches(LPCTSTR filename, LPCTSTR ext)
 //   - extension (pExt), with no leading dot
 void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pExt)
 {
-	const TCHAR* pszChar = pathLeft + strlen(pathLeft);
+	LPCTSTR pszChar = pathLeft + strlen(pathLeft);
+	LPCTSTR pend=pszChar, extptr=0;
 	bool ext=false;
 	while (pathLeft < --pszChar) 
 	{
 		if (*pszChar == '.')
 		{
-			if (!ext && pExt)
+			if (!ext)
 			{
+				if (pExt)
+				{
 				(*pExt) = pszChar + 1;
+				}
 				ext = true; // extension is only after last period
+				extptr = pszChar;
 			}
 		}
 		else if (*pszChar == '/' || *pszChar == '\\' || *pszChar == ':')
@@ -416,7 +421,7 @@ void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pE
 				(*pFile) = pszChar + 1;
 			}
 
-			return;
+			goto endSplit;
 		}
 	}
 
@@ -425,6 +430,15 @@ void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pE
 	{
 		(*pFile) = pathLeft;
 	}
+
+endSplit:
+	// if both filename & extension requested, remove extension from filename
+
+	if (pFile && pExt && extptr)
+	{
+		int extlen = pend - extptr;
+		(*pFile) = pFile->Left(pFile->GetLength() - extlen);
+	}
 }
 
 // Test code for SplitFilename above
@@ -432,9 +446,9 @@ void TestSplitFilename()
 {
 	LPCTSTR tests[] = {
 		_T("\\\\hi\\"), _T("\\\\hi"), 0, 0
-		, _T("\\\\hi\\a.a"), _T("\\\\hi"), _T("a.a"), _T("a")
-		, _T("a.hi"), 0, _T("a.hi"), _T("hi")
-		, _T("a.b.hi"), 0, _T("a.b.hi"), _T("hi")
+		, _T("\\\\hi\\a.a"), _T("\\\\hi"), _T("a"), _T("a")
+		, _T("a.hi"), 0, _T("a"), _T("hi")
+		, _T("a.b.hi"), 0, _T("a.b"), _T("hi")
 		, _T("c:"), _T("c:"), 0, 0
 		, _T("c:\\"), _T("c:"), 0, 0
 		, _T("c:\\d:"), _T("c:\\d:"), 0, 0
@@ -450,15 +464,7 @@ void TestSplitFilename()
 		ASSERT(path == szpath);
 		ASSERT(name == szname);
 		ASSERT(ext == szext);
-
 	}
-/*
-	SplitFilename("c:", &path, &name, &ext);
-		SplitFilename("c:\\", &path, &name, &ext);
-		SplitFilename("c:\\", 0, &name, &ext);
-		SplitFilename("c:\\file", &path, &name, &ext);
-		SplitFilename("c:\\file", &path, &name, &ext);
-*/
 }
 
 

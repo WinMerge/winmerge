@@ -1,3 +1,6 @@
+2003-02-11  Perry
+ Fixing recent SplitFilename & directory concat problems.
+
 2003-02-10  Perry
  Kimmo's fix for crash due to NULL doc pointer in MergeDoc::SaveHelper.
  [ 470013 ] Spanish Orthography and Semantics

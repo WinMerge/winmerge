@@ -770,7 +770,7 @@ dir_file_pathname (dir, file)
 {
 #if defined(__MSDOS__) || defined(__NT__) || defined(WIN32)
   char sep = dir[strlen(dir) - 1];
-  return concat (dir, "/" + (*dir && ((sep == '/') || (sep == '\\'))), file);
+  return concat (dir, "\\" + (*dir && ((sep == '/') || (sep == '\\'))), file);
 #else
   return concat (dir, "/" + (*dir && dir[strlen (dir) - 1] == '/'), file);
 #endif /*__MSDOS__||__NT__*/

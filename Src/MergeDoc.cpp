@@ -233,7 +233,7 @@ BOOL CMergeDoc::Rescan()
 	// perform rescan
 	struct file_data inf[2];
 	char *free0=NULL,*free1=NULL;
-	CString sdir0, sdir1, sname0, sname1;
+	CString sdir0, sdir1, sname0, sname1, sext0, sext1;
 	int val,failed=0, depth=0;
 	bool same_files=FALSE;
 	struct change *e, *p;
@@ -428,6 +428,12 @@ BOOL CMergeDoc::Rescan()
 				CString s;
 				VERIFY(s.LoadString(IDS_BIN_FILES_DIFF));
 				AfxMessageBox(s, MB_ICONINFORMATION);
+			}
+			else if (failed)
+			{
+				CString s;
+				VERIFY(s.LoadString(IDS_FILEERROR));
+				AfxMessageBox(s, MB_ICONSTOP);
 			}
 			else
 			{
