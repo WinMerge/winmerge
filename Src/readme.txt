@@ -3,6 +3,8 @@
   WinMerge: DirView.cpp
  Fix color dialog in Norwegian (Earlier today I forgot to move down the previous labels).
   Languages\Norwegian: Norwegian/MergeNorwegian.rc
+ Updated color property page in Korean (patch#768740).
+  Languages\Korean: MergeKorean.rc
 
 2003-08-20 Kimmo
  PATCH: [ 791263 ] Remove CStringEx from OpenDlg (and from WinMerge?)
