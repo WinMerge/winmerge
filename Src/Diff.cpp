@@ -34,6 +34,12 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include "DirDoc.h"
 #include "logfile.h"
 
+// reduce some noise produced with the MSVC compiler
+#if defined (_AFXDLL)
+#pragma warning(disable : 4706)
+#endif
+
+
 extern int diff_dirs (CDiffContext*, int);
 
 
@@ -120,7 +126,8 @@ int FileIsBinary(int fd)
     char buf[40];
     long prevpos = tell(fd);
 	lseek(fd, 0L, SEEK_SET);
-    if (cnt=read(fd, buf, 40))
+	cnt=read(fd, buf, 40);
+    if (cnt>0)
     {
 		for (register int i=0; i < cnt; i++)
 		{
@@ -153,7 +160,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 {
   struct file_data inf[2];
   register int i;
-  int val;
+  int val=0;
   int same_files;
   int failed = 0;
   LPTSTR free0 = 0, free1 = 0;
@@ -172,7 +179,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
       LPCTSTR dir = name0 == 0 ? dir1 : dir0;
       message ("Only in %s: %s\n", dir, name);
       /* Return 1 so that diff_dirs will return 1 ("some files differ").  */
-      pCtx->AddDiff(name, dir0, dir1, name0 == 0 ? FILE_RUNIQUE : FILE_LUNIQUE);
+      pCtx->AddDiff(name, dir0, dir1, (BYTE)(name0 == 0 ? FILE_RUNIQUE : FILE_LUNIQUE));
       if (gWriteLog) gLog.Write(_T("\tUnique\r\n"));
       return 1;
     }
@@ -442,7 +449,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	    }
 	    if (val==2 || val == 1)
 	    {
-		pCtx->AddDiff(name0, dir0, dir1, val==2? FILE_ERROR:FILE_DIFF);
+		pCtx->AddDiff(name0, dir0, dir1, (BYTE)(val==2? FILE_ERROR:FILE_DIFF));
 		if (gWriteLog) gLog.Write(_T("\t%s.\r\n"), val==2? "error":"different");
 	    }
 	}
