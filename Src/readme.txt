@@ -13,6 +13,9 @@
   Src/Languages/Spanish: MergeSpanish.rc
  PATCH: [ 1157145 ] FileFilterHelper doesn't have boilerplate new redefinition
   Src: FileFilterHelper.cpp
+ PATCH: [ 968285 ] DBCS fixes from Sawanaka
+  Applied asp & basic portions (there are many more)
+  editlib: asp.cpp basic.cpp
 
 2005-03-04 Perry
  PATCH: [ 1147039 ] experimental patch for colored word diff
