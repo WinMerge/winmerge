@@ -1,5 +1,7 @@
 //Microsoft Developer Studio generated resource script.
 //
+// $Id$
+
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -926,7 +928,7 @@ BEGIN
     IDS_FILESSAME           "Vybrané súbory sú rovnaké."
     IDS_FILEUNIQUE          "Vybranı súbor neexistuje v oboch adresároch, nedá sa porovna."
     IDS_FILEERROR           "Poèas porovnávania sa vyskytla chyba."
-    IDS_SAVEREADONLY_FMT    "%1 je oznaèenı len na èítanieí. Chcete ho uloi pod inım menom?"
+    IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
     IDS_SAVE_FMT            "Uloi zmeny do %1?"
     IDS_FILEBINARY          "Binárne súbory nemono porovna."
     IDS_SAVEVSS_FMT         "%1 je oznaèenı len na èítanie. Chcete ho skontrolova pomocou SourceSafe alebo uloi pod inım menom?"

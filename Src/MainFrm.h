@@ -20,6 +20,8 @@
 // MainFrm.h : interface of the CMainFrame class
 //
 /////////////////////////////////////////////////////////////////////////////
+//
+// $Id$
 
 #if !defined(AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
@@ -84,6 +86,7 @@ public:
 	HMENU NewDefaultMenu();
 	BOOL CreateBackup(LPCTSTR pszPath);
 	BOOL CheckSavePath(CString& strSavePath);
+	BOOL SaveToVersionControl(CString& strSavePath);
 	CString SetStatus(LPCTSTR status);
 
 // Overrides

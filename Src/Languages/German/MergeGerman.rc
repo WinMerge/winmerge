@@ -1,5 +1,7 @@
 //Microsoft Developer Studio generated resource script.
 //
+// $Id$
+
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -941,7 +943,7 @@ BEGIN
     IDS_FILESSAME           "Die ausgewählten Dateien sind identisch."
     IDS_FILEUNIQUE          "\nDie ausgewählte Datei ist nicht in beiden Verzeichnissen vorhanden und konnte deshalb nicht verglichen werden."
     IDS_FILEERROR           "Beim Vergleichen der Dateien ist ein Fehler aufgetreten."
-    IDS_SAVEREADONLY_FMT    "%1 ist schreibgeschützt. Wollen Sie die Datei unter einem anderen Namen abspeichern?"
+    IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
     IDS_SAVE_FMT            "Änderungen in %1 speichern?"
     IDS_FILEBINARY          "Binärdateien können nicht visuell verglichen werden."
     IDS_SAVEVSS_FMT         "%1 ist schreibgeschützt. Wollen Sie die Datei aus SourceSafe auschecken oder unter einem anderen Namen abspeichern?"

@@ -1,5 +1,7 @@
 //Microsoft Developer Studio generated resource script.
 //
+// $Id$
+
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -923,7 +925,7 @@ BEGIN
     IDS_FILESSAME           "De valgte filer er identiske."
     IDS_FILEUNIQUE          "Den valgte fil eksistere ikke i begge mapper og kan derfor ikke sammenlignes"
     IDS_FILEERROR           "Der skete en fejl under sammenligning af filerne."
-    IDS_SAVEREADONLY_FMT    "%1 er markeret som skrivebeskyttet. Vil du gemme filen under et andet navn?"
+    IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
     IDS_SAVE_FMT            "Gem ændringer til %1?"
     IDS_FILEBINARY          "Binære filer kan ikke sammenlignes visuelt."
     IDS_SAVEVSS_FMT         "%1 er markeret som skrivebeskyttet. Vil du checke filen ud fra et versionsstyringssystem, eller gemme den under et andet navn?"

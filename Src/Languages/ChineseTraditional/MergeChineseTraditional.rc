@@ -1,5 +1,7 @@
 //Microsoft Developer Studio generated resource script.
 //
+// $Id$
+
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -193,34 +195,34 @@ END
 IDR_MAINFRAME ACCELERATORS FIXED IMPURE
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
-    "C",            ID_EDIT_COPY,                  VIRTKEY, CONTROL, NOINVERT
-    "F",            ID_EDIT_FIND,                  VIRTKEY, CONTROL, NOINVERT
-    "H",            ID_EDIT_REPLACE,                  VIRTKEY, CONTROL, NOINVERT
-    "N",            ID_FILE_NEW,                  VIRTKEY, CONTROL, NOINVERT
-    "O",            ID_FILE_OPEN,                  VIRTKEY, CONTROL, NOINVERT
-    "P",            ID_FILE_PRINT,                  VIRTKEY, CONTROL, NOINVERT
-    "S",            ID_FILE_SAVE,                  VIRTKEY, CONTROL, NOINVERT
-    "V",            ID_EDIT_PASTE,                  VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
     "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
     "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
     "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
-    VK_BACK,        ID_EDIT_UNDO,                  VIRTKEY, ALT, NOINVERT
-    VK_DELETE,      ID_EDIT_CUT,                  VIRTKEY, SHIFT, NOINVERT
-    VK_DOWN,        ID_NEXTDIFF,                  VIRTKEY, ALT, NOINVERT
-    VK_END,         ID_LASTDIFF,                  VIRTKEY, ALT, NOINVERT
-    VK_F3,          ID_EDIT_REPEAT,                  VIRTKEY, NOINVERT
-    VK_F3,          ID_EDIT_FIND_PREVIOUS,                  VIRTKEY, SHIFT, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
+    VK_F3,          ID_EDIT_FIND_PREVIOUS,  VIRTKEY, SHIFT, NOINVERT
     VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
-    VK_F5,          ID_REFRESH,                  VIRTKEY, NOINVERT
-    VK_F6,          ID_NEXT_PANE,                  VIRTKEY, NOINVERT
-    VK_F6,          ID_PREV_PANE,                  VIRTKEY, SHIFT, NOINVERT
-    VK_HOME,        ID_FIRSTDIFF,                  VIRTKEY, ALT, NOINVERT
-    VK_INSERT,      ID_EDIT_COPY,                  VIRTKEY, CONTROL, NOINVERT
-    VK_INSERT,      ID_EDIT_PASTE,                  VIRTKEY, SHIFT, NOINVERT
-    VK_LEFT,        ID_R2L,                  VIRTKEY, ALT, NOINVERT
-    VK_RETURN,      ID_CURDIFF,                  VIRTKEY, ALT, NOINVERT
-    VK_RIGHT,       ID_L2R,                  VIRTKEY, ALT, NOINVERT
-    VK_UP,          ID_PREVDIFF,                  VIRTKEY, ALT, NOINVERT
+    VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_LEFT,        ID_R2L,                 VIRTKEY, ALT, NOINVERT
+    VK_RETURN,      ID_CURDIFF,             VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
+    VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
 END
 
 
@@ -633,7 +635,7 @@ BEGIN
     IDS_FILESSAME           "選取的檔案完全相同。"
     IDS_FILEUNIQUE          "選取的檔案不存在於兩邊的資料夾，因此無法比對。"
     IDS_FILEERROR           "一個錯誤發生於比對檔案時。"
-    IDS_SAVEREADONLY_FMT    "%1 標記為唯讀。 你要以一個不同的名稱儲存檔案嗎？"
+    IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
     IDS_SAVE_FMT            "儲存更改到 %1？"
     IDS_FILEBINARY          "二進制檔案無法作視覺的比對。"
     IDS_SAVEVSS_FMT         "%1 標記為唯讀。 你要從版本系統檢查它，還是以一個不同的名稱儲存它？"

@@ -20,6 +20,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // MainFrm.cpp : implementation of the CMainFrame class
 //
+// $Id$
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -535,208 +536,249 @@ void CMainFrame::OnHelpGnulicense()
 		ShellExecute(NULL, _T("open"), url, NULL, NULL, SW_SHOWNORMAL);
 }
 
+/**
+* @brief Check if file is read-only and save to version control if one is used.
+*
+*
+* @param strSavePath Path where to save including filename
+*
+* @return Tells if caller can continue (no errors happened)
+*
+* @note If user selects "Cancel" FALSE is returned and caller must assume file
+* is not saved.
+*
+* @sa SaveToVersionControl()
+*
+*/
 BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 {
-	BOOL needCheck;
 	CFileStatus status;
+	UINT userChoice = 0;
+	BOOL bRetVal = TRUE;
 	CString s;
 
-	// check if file is writeable
-	do
+	if (CFile::GetStatus(strSavePath, status))
 	{
-		needCheck = FALSE;
-		if (CFile::GetStatus(strSavePath, status))
+		// If file is read-only
+		if (status.m_attribute & CFile::Attribute::readOnly)
 		{
-			if (status.m_attribute & CFile::Attribute::readOnly)
+			// Version control system used?
+			if (m_nVerSys > 0)
+				bRetVal = SaveToVersionControl(strSavePath);
+			else
 			{
-				int userChoice = IDCANCEL;
-
-				switch(m_nVerSys)
+				CString title;
+				VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
+				
+				// Prompt for user choice
+				AfxFormatString1(s, IDS_SAVEREADONLY_FMT, strSavePath);
+				userChoice = AfxMessageBox(s, MB_YESNOCANCEL |
+						MB_ICONQUESTION | MB_DEFBUTTON2);
+				switch (userChoice)
 				{
-				case 0:	//no versioning system
-					// prompt for user choice
-					AfxFormatString1(s, IDS_SAVEREADONLY_FMT, strSavePath);
-					if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION) == IDYES)
-					{
-						userChoice = IDSAVEAS;
-					}
+				// Overwrite read-only file
+				case IDYES:
+					status.m_mtime = 0;		// Avoid unwanted changes
+					status.m_attribute &= ~CFile::Attribute::readOnly;
+					CFile::SetStatus(strSavePath, status);
 					break;
-				case 1:	// Visual Source Safe
-				{
-						// prompt for user choice
-					CVssPrompt dlg;
-						dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
-					dlg.m_strProject = m_strVssProject;
-					dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
-					dlg.m_strPassword = m_strVssPassword;
-						userChoice = dlg.DoModal();
-						// process versioning system specific action
-						if(userChoice==IDOK)
-						{
-							CWaitCursor wait;
-							m_strVssProject = dlg.m_strProject;
-							theApp.WriteProfileString(_T("Settings"), _T("VssProject"), mf->m_strVssProject);
-							CString spath, sname;
-							SplitFilename(strSavePath, &spath, &sname, 0);
-							if (!spath.IsEmpty())
-							{
-								_chdrive(toupper(spath[0])-'A'+1);
-								_chdir(spath);
-							}
-							CString args;
-							args.Format(_T("checkout %s/%s"), m_strVssProject, sname);
-							HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
-							if (hVss!=INVALID_HANDLE_VALUE)
-							{
-								WaitForSingleObject(hVss, INFINITE);
-								DWORD code;
-								GetExitCodeProcess(hVss, &code);
-								CloseHandle(hVss);
-								if (code != 0)
-								{
-									AfxMessageBox(IDS_VSSERROR, MB_ICONSTOP);
-									return FALSE;
-								}
-								needCheck=FALSE;
-							}
-							else
-							{
-								AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
-								return FALSE;
-							}
-						}
-					}
+				
+				// Save to new filename
+				case IDNO:
+					if (SelectFile(s, strSavePath, title, NULL, FALSE))
+						strSavePath = s;
+					else
+						bRetVal = FALSE;
 					break;
-				case 2: // CVisual SourceSafe 5.0+ (COM)
-							{
-					// prompt for user choice
-					CVssPrompt dlg;
-					dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
-					dlg.m_strProject = m_strVssProject;
-					dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
-					dlg.m_strPassword = m_strVssPassword;
-					userChoice = dlg.DoModal();
-					// process versioning system specific action
-					if(userChoice==IDOK)
-					{
-						CWaitCursor wait;
-						m_strVssProject = dlg.m_strProject;
-						m_strVssUser = dlg.m_strUser;
-						m_strVssPassword = dlg.m_strPassword;
-
-						theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_strVssProject);
-						theApp.WriteProfileString(_T("Settings"), _T("VssUser"), m_strVssUser);
-						theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword);
-
-						IVSSDatabase	vssdb;
-						IVSSItems		m_vssis;
-						IVSSItem		m_vssi;
-
-                        COleException *eOleException = new COleException;
-							
-						// BSP - Create the COM interface pointer to VSS
-						if (FAILED(vssdb.CreateDispatch("SourceSafe", eOleException)))
-						{
-							throw eOleException;	// catch block deletes.
-						}
-						else
-						{
-							eOleException->Delete();
-						}
-
-                        // BSP - Open the specific VSS data file  using info from VSS dialog box
-						vssdb.Open(m_strVssPath, m_strVssUser, m_strVssPassword);
-
-						CString spath, sname;
-						SplitFilename(strSavePath, &spath, &sname, 0);
-
-                        // BSP - Combine the project entered on the dialog box with the file name...
-						CString strItem = m_strVssProject + '/' + sname;
-
-                        //  BSP - ...to get the specific source safe item to be checked out
-						m_vssi = vssdb.GetVSSItem( strItem, 0 );
-
-                        // BSP - Get the working directory where VSS will put the file...
-						CString strLocalSpec = m_vssi.GetLocalSpec();
-
-                        // BSP - ...and compare it to the directory WinMerge is using.
-						if (strLocalSpec.CompareNoCase(strSavePath))
-						{
-						   // BSP - if the directories are different, let the user confirm the CheckOut
-							int iRes = AfxMessageBox("The VSS Working Folder and the location of the current file do not match.  Continue?", MB_YESNO);
-
-							if (iRes != IDYES)
-								return FALSE;   // BSP - if not Yes, bail.
-						}
-
-                        // BSP - Finally! Check out the file!
-						m_vssi.Checkout("", strSavePath, 0);
-					}
-				}
-				break;
-				case 3:	// ClearCase
-					{
-						// prompt for user choice
-						CCCPrompt dlg;
-						userChoice = dlg.DoModal();
-						// process versioning system specific action
-						if(userChoice == IDOK)
-						{
-							CWaitCursor wait;
-							CString spath, sname;
-							SplitFilename(strSavePath, &spath, &sname, 0);
-							if (!spath.IsEmpty())
-							{
-								_chdrive(toupper(spath[0])-'A'+1);
-								_chdir(spath);
-							}
-							DWORD code;
-							CString args;
-							args.Format(_T("checkout -c \"%s\" %s"), dlg.m_comments, sname);
-							HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
-							if (hVss!=INVALID_HANDLE_VALUE)
-							{
-								WaitForSingleObject(hVss, INFINITE);
-								GetExitCodeProcess(hVss, &code);
-								CloseHandle(hVss);
-								
-								if (code != 0)
-								{
-									AfxMessageBox(IDS_VSSERROR, MB_ICONSTOP);
-									return FALSE;
-								}
-								needCheck=FALSE;
-							}
-							else
-							{
-								AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
-								return FALSE;
-							}
-						}
-						}
-						break;
-				}	//switch(m_nVerSys)
-
-				// common processing for all version systems
-				switch(userChoice)
-				{
-					case IDCANCEL:
-						return FALSE;
-					case IDSAVEAS:
-						CString title;
-						VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
-						if (SelectFile(s, strSavePath, title, NULL, FALSE))
-						{
-							strSavePath = s;
-							needCheck=TRUE;
-						}
-						else
-							return FALSE;
-						break;
-					}
+				
+				// Cancel saving
+				case IDCANCEL:
+					bRetVal = FALSE;
+					break;
 				}
 			}
-	} while (needCheck);
+		}
+	}
+	return bRetVal;
+}
+
+/**
+* @brief Saves file to selected version control system
+*
+* @param strSavePath Path where to save including filename
+*
+* @return Tells if caller can continue (no errors happened)
+*
+* @note
+*
+* @sa CheckSavePath()
+*
+*/
+BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
+{
+	CFileStatus status;
+	CString s;
+	UINT userChoice = 0;
+
+	switch(m_nVerSys)
+	{
+	case 0:	//no versioning system
+		// Already handled in CheckSavePath()
+		break;
+	case 1:	// Visual Source Safe
+	{
+			// prompt for user choice
+		CVssPrompt dlg;
+			dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
+		dlg.m_strProject = m_strVssProject;
+		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
+		dlg.m_strPassword = m_strVssPassword;
+		userChoice = dlg.DoModal();
+		// process versioning system specific action
+		if(userChoice==IDOK)
+		{
+			CWaitCursor wait;
+			m_strVssProject = dlg.m_strProject;
+			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), mf->m_strVssProject);
+			CString spath, sname;
+			SplitFilename(strSavePath, &spath, &sname, 0);
+			if (!spath.IsEmpty())
+			{
+				_chdrive(toupper(spath[0])-'A'+1);
+				_chdir(spath);
+			}
+			CString args;
+			args.Format(_T("checkout %s/%s"), m_strVssProject, sname);
+			HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
+			if (hVss!=INVALID_HANDLE_VALUE)
+			{
+				WaitForSingleObject(hVss, INFINITE);
+				DWORD code;
+				GetExitCodeProcess(hVss, &code);
+				CloseHandle(hVss);
+				if (code != 0)
+				{
+					AfxMessageBox(IDS_VSSERROR, MB_ICONSTOP);
+					return FALSE;
+				}
+			}
+			else
+			{
+				AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+				return FALSE;
+			}
+		}
+	}
+	break;
+	case 2: // CVisual SourceSafe 5.0+ (COM)
+	{
+		// prompt for user choice
+		CVssPrompt dlg;
+		dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
+		dlg.m_strProject = m_strVssProject;
+		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
+		dlg.m_strPassword = m_strVssPassword;
+		userChoice = dlg.DoModal();
+		// process versioning system specific action
+		if(userChoice==IDOK)
+		{
+			CWaitCursor wait;
+			m_strVssProject = dlg.m_strProject;
+			m_strVssUser = dlg.m_strUser;
+			m_strVssPassword = dlg.m_strPassword;
+
+			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_strVssProject);
+			theApp.WriteProfileString(_T("Settings"), _T("VssUser"), m_strVssUser);
+			theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword);
+
+			IVSSDatabase	vssdb;
+			IVSSItems		m_vssis;
+			IVSSItem		m_vssi;
+
+            COleException *eOleException = new COleException;
+				
+			// BSP - Create the COM interface pointer to VSS
+			if (FAILED(vssdb.CreateDispatch("SourceSafe", eOleException)))
+			{
+				throw eOleException;	// catch block deletes.
+			}
+			else
+			{
+				eOleException->Delete();
+			}
+
+            // BSP - Open the specific VSS data file  using info from VSS dialog box
+			vssdb.Open(m_strVssPath, m_strVssUser, m_strVssPassword);
+
+			CString spath, sname;
+			SplitFilename(strSavePath, &spath, &sname, 0);
+
+            // BSP - Combine the project entered on the dialog box with the file name...
+			CString strItem = m_strVssProject + '/' + sname;
+
+            //  BSP - ...to get the specific source safe item to be checked out
+			m_vssi = vssdb.GetVSSItem( strItem, 0 );
+
+            // BSP - Get the working directory where VSS will put the file...
+			CString strLocalSpec = m_vssi.GetLocalSpec();
+
+            // BSP - ...and compare it to the directory WinMerge is using.
+			if (strLocalSpec.CompareNoCase(strSavePath))
+			{
+			   // BSP - if the directories are different, let the user confirm the CheckOut
+				int iRes = AfxMessageBox("The VSS Working Folder and the location of the current file do not match.  Continue?", MB_YESNO);
+
+				if (iRes != IDYES)
+					return FALSE;   // BSP - if not Yes, bail.
+			}
+
+            // BSP - Finally! Check out the file!
+			m_vssi.Checkout("", strSavePath, 0);
+		}
+	}
+	break;
+	case 3:	// ClearCase
+	{
+		// prompt for user choice
+		CCCPrompt dlg;
+		userChoice = dlg.DoModal();
+		// process versioning system specific action
+		if(userChoice == IDOK)
+		{
+			CWaitCursor wait;
+			CString spath, sname;
+			SplitFilename(strSavePath, &spath, &sname, 0);
+			if (!spath.IsEmpty())
+			{
+				_chdrive(toupper(spath[0])-'A'+1);
+				_chdir(spath);
+			}
+			DWORD code;
+			CString args;
+			args.Format(_T("checkout -c \"%s\" %s"), dlg.m_comments, sname);
+			HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
+			if (hVss!=INVALID_HANDLE_VALUE)
+			{
+				WaitForSingleObject(hVss, INFINITE);
+				GetExitCodeProcess(hVss, &code);
+				CloseHandle(hVss);
+				
+				if (code != 0)
+				{
+					AfxMessageBox(IDS_VSSERROR, MB_ICONSTOP);
+					return FALSE;
+				}
+			}
+			else
+			{
+				AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+				return FALSE;
+			}
+		}
+	}
+	break;
+	}	//switch(m_nVerSys)
+
 	return TRUE;
 }
 

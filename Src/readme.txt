@@ -1,3 +1,8 @@
+2003-08-12 Kimmo
+ PATCH: [ 785288 ] Overwrite Read-Only file
+  WinMerge: MainFrm.h MainFrm.cpp Merge.rc MergeDoc.cpp
+  Languages: *.rc
+
 2003-08-07 Kimmo
  PATCH: [ 781013 ] 256 Color icon
   editlib/res: Merge.ico

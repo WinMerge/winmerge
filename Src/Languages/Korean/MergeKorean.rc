@@ -1,5 +1,7 @@
 // Microsoft Visual C++ generated resource script.
 //
+// $Id$
+
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -881,7 +883,7 @@ BEGIN
     IDS_FILESSAME           "선택하신 파일들은 동일한 내용의 파일들입니다.."
     IDS_FILEUNIQUE          "선택하신 파일은 양쪽 디렉토리에 모두 존재하는 파일이 아닙니다."
     IDS_FILEERROR           "파일 비교 도중 에러가 발생했습니다."
-    IDS_SAVEREADONLY_FMT    "%1 은 읽기 전용 파일입니다.  다른 이름으로 저장하시겠습니까?"
+    IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
     IDS_SAVE_FMT            "%1 의 변경된 부분을 저장하시겠습니까?"
     IDS_FILEBINARY          "바이너리 파일은 비교하실 수 없습니다."
     IDS_SAVEVSS_FMT         "%1 은 읽기 전용 파일입니다.  버전관리시스템에서 체크아웃하거나 다른 이름으로 저장하시겠습니까?"

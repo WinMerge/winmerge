@@ -20,6 +20,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // MergeDoc.cpp : implementation of the CMergeDoc class
 //
+// $Id$
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -822,8 +823,24 @@ BOOL CMergeDoc::TrySaveAs(CString strPath, BOOL &bSaveSuccess, BOOL bLeft)
 	return result;
 }
 
-// Return value tells if caller can continue (no errors)
-// bSaveSuccess is TRUE if file saving succeeded
+/**
+* @brief Save file creating backups etc
+* Safe top-level file saving function. Checks validity of given path.
+* Creates backup file if wanted to. And if saving to given path fails,
+* allows user to select new location/name for file.
+*
+* @param szPath Path where to save including filename
+* @param bSaveSuccess Will contain information about save success
+* @param bLeft If TRUE we are saving left(side) file, else right file
+*
+* @return Tells if caller can continue (no errors happened)
+*
+* @note Return value does not tell if SAVING succeeded. Caller must
+* Check value of bSaveSuccess parameter after calling this function!
+*
+* @sa
+*
+*/
 BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 {
 	CString strSavePath(szPath);
@@ -963,10 +980,10 @@ BOOL CMergeDoc::LineInDiff(UINT nLine, UINT nDiff)
 int CMergeDoc::LineToDiff(UINT nLine)
 {
 	for (UINT i = 0; i < m_nDiffs; i++)
-		{
+	{
 		if (LineInDiff(nLine, i))
 			return i;
-		}
+	}
 	return -1;
 }
 
