@@ -394,6 +394,13 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	AfxFormatString1(strItem, ID_LOCBAR_GOTOLINE_FMT, strNum);
 	pPopup->SetMenuText(ID_LOCBAR_GOTODIFF, strItem, MF_BYCOMMAND);
 
+	if (mf->m_options.GetInt(OPT_CMP_MOVED_BLOCKS) == 0)
+	{
+		pPopup->EnableMenuItem(ID_DISPLAY_MOVED_NONE, MF_GRAYED);
+		pPopup->EnableMenuItem(ID_DISPLAY_MOVED_ALL, MF_GRAYED);
+		pPopup->EnableMenuItem(ID_DISPLAY_MOVED_FOLLOW_DIFF, MF_GRAYED);
+	}
+
 	switch (m_displayMovedBlocks)
 	{
 	case DISPLAY_MOVED_NONE:

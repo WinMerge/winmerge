@@ -1,3 +1,7 @@
+2004-07-30 Kimmo
+ PATCH: [ 999738 ] Gray out moved block menuitems when moved blocks disabled
+  Src: LocationView.cpp
+
 2004-07-29 Kimmo
  PATCH: [ 999681 ] Accept filter name from commandline
   Src: FilterHelper.cpp FilterHelper.h Merge.cpp Merge.rc
