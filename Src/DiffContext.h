@@ -75,6 +75,7 @@ public:
 	POSITION GetFirstDiffPosition();
 	DIFFITEM GetNextDiffPosition(POSITION & diffpos);
 	DIFFITEM GetDiffAt(POSITION diffpos);
+	const DIFFITEM GetDiffAt(POSITION diffpos) const;
 	BYTE GetDiffStatus(POSITION diffpos);
 	int GetDiffCount();
 

@@ -547,17 +547,13 @@ void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) co
 {
 	const CDirDoc *pd = GetDocument();
 	CString name, pathex;
-	name = m_pList->GetItemText(sel, DV_NAME);
-	pathex = m_pList->GetItemText(sel, DV_PATH);
-	strLeft = pd->m_pCtxt->m_strLeft;
-	strRight = pd->m_pCtxt->m_strRight;
-	if (pathex.Left(2) == _T(".\\") || pathex.Left(2) == _T("./"))
-	{
-		strLeft = paths_ConcatPath(strLeft, pathex.Right(pathex.GetLength()-2));
-		strRight = paths_ConcatPath(strRight, pathex.Right(pathex.GetLength()-2));
-	}
-	strLeft = paths_ConcatPath(strLeft, name);
-	strRight = paths_ConcatPath(strRight, name);
+
+	POSITION diffpos = GetItemKey(sel);
+	const CDiffContext * ctxt = GetDiffContext();
+	const DIFFITEM & di = ctxt->GetDiffAt(diffpos);
+
+	strLeft = paths_ConcatPath(di.slpath, di.sfilename);
+	strRight = paths_ConcatPath(di.srpath, di.sfilename);
 }
 
 // Open selected file on specified side

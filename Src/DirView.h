@@ -61,6 +61,7 @@ public:
 	const CDirDoc * GetDocument() const { return const_cast<CDirView *>(this)->GetDocument(); }
 private:
 	CDiffContext * GetDiffContext();
+	const CDiffContext * GetDiffContext() const;
 
 // Operations
 public:
@@ -70,7 +71,7 @@ public:
 	void UpdateResources();
 	void UpdateColumnNames();
 	void AddColumns();
-	POSITION GetItemKey(int idx);
+	POSITION GetItemKey(int idx) const;
 	void SetItemKey(int idx, POSITION diffpos);
 	int GetItemIndex(DWORD key);
 	// for populating list
@@ -230,7 +231,7 @@ private:
 	void DoUpdateOpenRight(CCmdUI* pCmdUI);
 	void DoUpdateOpenLeftWith(CCmdUI* pCmdUI);
 	void DoUpdateOpenRightWith(CCmdUI* pCmdUI);
-	POSITION GetItemKeyFromData(DWORD dw);
+	POSITION GetItemKeyFromData(DWORD dw) const;
 	DIFFITEM GetDiffItem(int sel);
 	int GetSingleSelectedItem() const;
 	bool IsItemNavigableDiff(const DIFFITEM & di) const;

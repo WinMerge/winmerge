@@ -1,3 +1,8 @@
+2003-08-07 Perry
+ Fix GetItemFileNames to not pull its data from listview (b/c columns may be reordered).
+ (Various const fixes needed.)
+ WinMerge: DiffContext.cpp DiffContext.h DirActions.cpp DirView.cpp DirView.h
+
 2003-08-05 Laoran
  PATCH: [ 781582 ] Timer for FlushAndRescan
   WinMerge: MergeDoc.cpp MergeDoc.h MergeEditView.cpp MergeEditView.h

@@ -139,6 +139,11 @@ DIFFITEM CDiffContext::GetDiffAt(POSITION diffpos)
 	return m_pList->GetAt(diffpos);
 }
 
+const DIFFITEM CDiffContext::GetDiffAt(POSITION diffpos) const
+{
+	return m_pList->GetAt(diffpos);
+}
+
 BYTE CDiffContext::GetDiffStatus(POSITION diffpos)
 {
 	return m_pList->GetAt(diffpos).code;

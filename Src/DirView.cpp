@@ -141,6 +141,11 @@ CDiffContext * CDirView::GetDiffContext()
 	return GetDocument()->m_pCtxt;
 }
 
+const CDiffContext * CDirView::GetDiffContext() const
+{
+	return GetDocument()->m_pCtxt;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CDirView message handlers
 
@@ -610,14 +615,14 @@ void CDirView::DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI)
 	pCmdUI->SetText(s);
 }
 
-POSITION CDirView::GetItemKey(int idx)
+POSITION CDirView::GetItemKey(int idx) const
 {
 	return GetItemKeyFromData(m_pList->GetItemData(idx));
 }
 
 // SetItemKey & GetItemKey encapsulate how the display list items
 // are mapped to DiffItems, which in turn are DiffContext keys to the actual DIFFITEM data
-POSITION CDirView::GetItemKeyFromData(DWORD dw)
+POSITION CDirView::GetItemKeyFromData(DWORD dw) const
 {
 	return (POSITION)dw;
 }
