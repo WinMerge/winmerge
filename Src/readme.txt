@@ -1,3 +1,7 @@
+2003-11-23 Laoran
+ typo in TrySaveAs and merge error in DoSave
+  WinMerge: MergeDoc.cpp
+
 2003-11-23 Perry
  PATCH: [ 842906 ] Hardcode native language names into LanguageSelection.cpp
   Now Merge.rc holds all ASCII language names, and non-ASCII versions (if different)

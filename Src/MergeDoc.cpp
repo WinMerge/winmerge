@@ -693,7 +693,7 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &bLastErrorCode, BOOL bLeft, Pac
 		AfxFormatString1(s, IDS_FILESAVE_FAILED, strPath);
 	}
 
-	// If path is empty, we are saving scracthpad and don't want
+	// If path is empty, we are saving scratchpad and don't want
 	// messagebox shown. Answer is initialised to IDYES.
 	if (!strPath.IsEmpty())
 		answer = AfxMessageBox(s, MB_YESNO | MB_ICONQUESTION);
@@ -823,14 +823,14 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	else
 	{
 		if (!strSavePath.IsEmpty())
-			bSaveSuccess = m_rtBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
+			bSaveErrorCode = m_rtBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
 		else
 		{
 			BOOL bSaveAsSuccess;
 			result = TrySaveAs(strSavePath, bSaveAsSuccess, FALSE, &infoTempUnpacker);
 		}
 
-		if(bSaveSuccess == SAVE_DONE || result)
+		if(bSaveErrorCode == SAVE_DONE || result)
 		{
 			m_strRightFile = strSavePath;
 			UpdateHeaderPath(FALSE);
