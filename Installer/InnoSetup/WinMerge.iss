@@ -97,6 +97,11 @@ Root: HKCU; Subkey: "Software\Thingamahoochie\WinMerge\Font"; ValueType: dword; 
 Root: HKCU; Subkey: "Software\Thingamahoochie\WinMerge\Font"; ValueType: dword; ValueName: "ClipPrecision"; ValueData: "2"
 Root: HKCU; Subkey: "Software\Thingamahoochie\WinMerge\Font"; ValueType: dword; ValueName: "Quality"; ValueData: "1"
 Root: HKCU; Subkey: "Software\Thingamahoochie\WinMerge\Font"; ValueType: dword; ValueName: "PitchAndFamily"; ValueData: "$31"
+; delete obsolete values
+Root: HKCU; Subkey: "Software\Thingamahoochie\WinMerge\Settings"; ValueType: dword; ValueName: "LeftMax"; Flags: deletevalue
+Root: HKCU; Subkey: "Software\Thingamahoochie\WinMerge\Settings"; ValueType: dword; ValueName: "DirViewMax"; Flags: deletevalue
+Root: HKCR; SubKey: "Directory\shell\WinMerge\command"; ValueType: string; Flags: deletekey noerror
+Root: HKCR; SubKey: "Directory\shell\WinMerge"; ValueType: string; Flags: deletekey noerror
 
 [Run]
 Filename: "{app}\WinMerge.exe"; Description: "Launch WinMerge"; Flags: nowait postinstall skipifsilent unchecked

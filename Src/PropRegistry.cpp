@@ -34,10 +34,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-// registry keys we use to be on Directory context menu
-static LPCTSTR f_context_key = _T("Directory\\shell\\WinMerge");
-static LPCTSTR f_context_key_cmd = _T("Directory\\shell\\WinMerge\\command");
-
 // registry dir to WinMerge
 static LPCTSTR f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
 
@@ -82,56 +78,11 @@ BOOL CPropRegistry::OnInitDialog()
 {
 	CPropertyPage::OnInitDialog();
 	
-	// Check if old keys exists and delete those
-	// Those keys are NOT used by new ShellExtension
-	if (IsRegisteredForDirectory())
-		EnableContextHandler(false);
-		
 	GetContextRegValues();
 	UpdateData(FALSE);
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
-}
-
-/// Determines if WinMerge is registered as a (OLD) Directory context handler ?
-bool CPropRegistry::IsRegisteredForDirectory() const
-{
-	CRegKeyEx reg;
-	REGSAM regsam = KEY_READ;
-	if (reg.OpenNoCreateWithAccess(HKEY_CLASSES_ROOT, f_context_key, regsam) != ERROR_SUCCESS)
-		return false;
-	reg.Close();
-	if (reg.OpenNoCreateWithAccess(HKEY_CLASSES_ROOT, f_context_key_cmd, regsam) != ERROR_SUCCESS)
-		return false;
-	return true;
-}
-
-/// Set or clear our entries in registry for (OLD) Directory context
-void CPropRegistry::EnableContextHandler(bool enabling)
-{
-	if (enabling)
-	{
-		CRegKeyEx reg;
-		if (reg.Open(HKEY_CLASSES_ROOT, f_context_key) != ERROR_SUCCESS)
-		{
-			return;
-		}
-		CString lbl;
-		VERIFY(lbl.LoadString(IDS_WINMERGE_THIS_DIRECTORY));
-		reg.WriteString(_T(""), lbl);
-		reg.Close();
-		if (reg.Open(HKEY_CLASSES_ROOT, f_context_key_cmd) != ERROR_SUCCESS)
-			return;
-		CString exe = GetModulePath() + '\\' + AfxGetApp()->m_pszExeName;
-		CString cmd = exe + _T(" \"%1\"");
-		reg.WriteString(_T(""), cmd);
-	}
-	else
-	{
-		::RegDeleteKey(HKEY_CLASSES_ROOT, f_context_key_cmd);
-		::RegDeleteKey(HKEY_CLASSES_ROOT, f_context_key);
-	}
 }
 
 /// Get registry values for ShellExtension

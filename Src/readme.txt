@@ -1,3 +1,8 @@
+2003-11-29 Laoran
+ PATCH: [ 847884 ] Remove obsolete registry keys
+  WinMerge: PropRegistry.cpp PropRegistry.h
+  InnoSetup: WinMerge.iss
+
 2003-11-29 Kimmo
  Rename folder1.bmp to lfolder.bmp (suggested in PATCH [ 841039 ] Green "binary.bmp")
   WinMerge: Merge.dsp Merge.rc

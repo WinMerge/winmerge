@@ -61,9 +61,6 @@ public:
 
 // Implementation methods
 protected:
-	bool IsRegisteredForDirectory() const;
-	void EnableContextHandler(bool enabling);
-
 	// Generated message map functions
 	//{{AFX_MSG(CPropRegistry)
 	virtual BOOL OnInitDialog();
