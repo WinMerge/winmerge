@@ -36,6 +36,8 @@ CString GetSysError(int nerr);
 void LogErrorString(LPCTSTR sz);
 CString Fmt(LPCTSTR fmt, ...);
 
+int GetClipTcharTextFormat();
+
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 

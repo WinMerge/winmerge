@@ -934,7 +934,8 @@ OnUpdateEditSwitchOvrmode (CCmdUI * pCmdUI)
 DROPEFFECT CEditDropTargetImpl::
 OnDragEnter (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint point)
 {
-  if (!pDataObject->IsDataAvailable (CF_TEXT))
+  UINT fmt = GetClipTcharTextFormat();
+  if (!pDataObject->IsDataAvailable (fmt))
     {
       m_pOwner->HideDropIndicator ();
       return DROPEFFECT_NONE;
@@ -954,13 +955,6 @@ OnDragLeave (CWnd * pWnd)
 DROPEFFECT CEditDropTargetImpl::
 OnDragOver (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint point)
 {
-  /*
-     if (! pDataObject->IsDataAvailable(CF_TEXT))
-     {
-     m_pOwner->HideDropIndicator();
-     return DROPEFFECT_NONE;
-     }
-   */
   //
   // [JRT]
   //
@@ -979,7 +973,8 @@ OnDragOver (CWnd * pWnd, COleDataObject * pDataObject, DWORD dwKeyState, CPoint 
   //  if ((pDataObject->IsDataAvailable( CF_TEXT ) ) ||       // If Text Available
   //          ( pDataObject -> IsDataAvailable( xxx ) ) ||    // Or xxx Available
   //          ( pDataObject -> IsDataAvailable( yyy ) ) )     // Or yyy Available
-  if (pDataObject->IsDataAvailable (CF_TEXT))   // If Text Available
+  UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
+  if (pDataObject->IsDataAvailable (fmt))   // If Text Available
 
     {
       bDataSupported = true;    // Set Flag
@@ -1020,7 +1015,8 @@ OnDrop (CWnd * pWnd, COleDataObject * pDataObject, DROPEFFECT dropEffect, CPoint
   //  if( ( pDataObject -> IsDataAvailable( CF_TEXT ) ) ||    // If Text Available
   //          ( pDataObject -> IsDataAvailable( xxx ) ) ||    // Or xxx Available
   //          ( pDataObject -> IsDataAvailable( yyy ) ) )     // Or yyy Available
-  if (pDataObject->IsDataAvailable (CF_TEXT))   // If Text Available
+  UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
+  if (pDataObject->IsDataAvailable (fmt))   // If Text Available
 
     {
       bDataSupported = true;    // Set Flag
@@ -1093,7 +1089,8 @@ DoDragScroll (const CPoint & point)
 BOOL CCrystalEditView::
 DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
 {
-  HGLOBAL hData = pDataObject->GetGlobalData (CF_TEXT);
+  UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
+  HGLOBAL hData = pDataObject->GetGlobalData (fmt);
   if (hData == NULL)
     return FALSE;
 

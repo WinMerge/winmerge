@@ -243,7 +243,8 @@ void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 	LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
 	_tcscpy (pszData, (LPTSTR) wholeText.Mid(iBegin, iEnd-iBegin).GetBuffer(0));
 	GlobalUnlock (hData);
-	SetClipboardData (CF_TEXT, hData);
+	UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
+	SetClipboardData (fmt, hData);
 
 	// release the clipboard
 	CloseClipboard ();
@@ -302,7 +303,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 			if (wholeText.GetAt(0) == '*')
 				iBegin = 2;
 			else
-			iBegin = 0;
+				iBegin = 0;
 			break;
 		}
 		

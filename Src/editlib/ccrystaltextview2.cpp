@@ -835,7 +835,8 @@ OnMouseMove (UINT nFlags, CPoint point)
             m_pTextBuffer->BeginUndoGroup ();
 
           COleDataSource ds;
-          ds.CacheGlobalData (CF_TEXT, hData);
+          UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
+          ds.CacheGlobalData (fmt, hData);
           m_bDraggingText = TRUE;
           DROPEFFECT de = ds.DoDragDrop (GetDropEffect ());
           if (de != DROPEFFECT_NONE)
@@ -1162,18 +1163,6 @@ Copy ()
   PutToClipboard (text);
 }
 
-/**
- * @brief Get appropriate clipboard format for TCHAR text
- */
-static int
-GetClipTcharTextFormat()
-{
-#ifdef _UNICODE
-  return CF_UNICODETEXT;
-#else
-  return CF_TEXT;
-#endif // _UNICODE
-}
 
 BOOL CCrystalTextView::
 TextInClipboard ()

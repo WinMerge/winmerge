@@ -1,4 +1,7 @@
 2003-10-17 Laoran
+ PATCH: [ 823556 ] CF_UNICODETEXT format for OLE in unicode build
+  WinMerge: FilepathEdit.cpp StdAfx.cpp StdAfx.h 
+  editlib: ccrystaleditview.cpp ccrystaltextview2.cpp
  PATCH: [ 823074 ] DiffContext not updated
   WinMerge: DirDoc.cpp
 
