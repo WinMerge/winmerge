@@ -27,4 +27,7 @@
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
+	/** @brief Get appropriate clipboard format for TCHAR text, ie, CF_TEXT or CF_UNICODETEXT */
+int GetClipTcharTextFormat();
+
 #endif // !defined(AFX_STDAFX_H__A0529471_F288_11D2_826F_00A024706EDC__INCLUDED_)
