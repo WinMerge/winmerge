@@ -1,4 +1,10 @@
 2004-10-19 Christian
+ PATCH: [ 1049555 ] Various updates to the index.php's
+  Submitted by Tim Gerundt
+  Web: index.php
+  Web\1.7: index.php
+  Web\2.0: index.php
+  Web\2.2: index.php
  PATCH: [ 1049530 ] Hide navigation when printing
   Submitted by Tim Gerundt
   Web\css: All files added
