@@ -119,7 +119,7 @@ DefaultDirName={pf}\WinMerge
 DefaultGroupName=WinMerge
 DisableStartupPrompt=yes
 AllowNoIcons=yes
-InfoBeforeFile=..\src\COPYING
+InfoBeforeFile=..\Docs\users\GPL.rtf
 InfoAfterFile=..\Docs\users\Read Me.rtf
 
 OutputBaseFilename=WinMerge-{#AppVersion}-Setup
