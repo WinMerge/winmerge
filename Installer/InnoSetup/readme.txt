@@ -1,3 +1,9 @@
+2004-10-15 Kimmo
+ PATCH: [ 1046583 ] Improved 48x48 icon
+  Submitted by Tim Gerundt
+  InnoSetup/Languages: WinMerge Localized.iss
+  InnoSetup/Art new files: Large Logo.bmp Small Logo.bmp
+
 2004-10-11 Kimmo
  PATCH: [ 1044751 ] German translation for installer
   Submitted by Tim Gerundt

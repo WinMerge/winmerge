@@ -125,8 +125,8 @@ UninstallDisplayIcon={app}\{code:ExeName}
 VersionInfoVersion={#AppVersion}
 
 ;Artwork References
-WizardImageFile=Art\Large Logo.rle
-WizardSmallImageFile=Art\Small Logo.rle
+WizardImageFile=Art\Large Logo.bmp
+WizardSmallImageFile=Art\Small Logo.bmp
 WizardImageStretch=No
 
 SetupIconFile=..\src\res\Merge.ico
