@@ -5,6 +5,8 @@
  Update MASM filter file
   Submitted by Matt Bossard (to forum)
   Filters file: MASM.flt
+ Fix bug that left path was shown twice in caption
+  Src: DirDoc.cpp
 
 2005-01-23 Perry
  PATCH: [ 1107516 ] Suggest code simplification for DiffFileInfo ctr

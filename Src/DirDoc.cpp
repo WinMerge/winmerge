@@ -832,7 +832,7 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 			sLeftFile.ReleaseBuffer();
 			strTitle += strSeparator;
 
-			sRightFile = m_pCtxt->m_strLeft;
+			sRightFile = m_pCtxt->m_strRight;
 			pszRightFile = sRightFile.GetBuffer(MAX_PATH);
 
 			if (PathCompactPath(lDC.GetSafeHdc(), pszRightFile, width))
