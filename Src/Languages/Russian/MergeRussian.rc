@@ -84,10 +84,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Скопировать все различия на другую сторону...", 
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-
         MENUITEM "Скопировать все различия с другой стороны...", 
                                                 ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
-
         MENUITEM SEPARATOR
         MENUITEM "Отменить",                        ID_UNDO
         MENUITEM SEPARATOR
@@ -202,6 +200,8 @@ BEGIN
     BEGIN
         MENUITEM "Закрыть",                       ID_FILE_CLOSE
         MENUITEM SEPARATOR
+        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
         MENUITEM "Разместить &Горизонтально",          ID_WINDOW_TILE_HORZ
         MENUITEM "Разместить &Вертикально",            ID_WINDOW_TILE_VERT
         MENUITEM "&Каскад",                    ID_WINDOW_CASCADE
@@ -238,15 +238,13 @@ BEGIN
         POPUP "Открыть левый файл"
         BEGIN
             MENUITEM "Зарегистрированым приложением", ID_DIR_OPEN_LEFT
-            MENUITEM "Внешним редактором",        ID_DIR_OPEN_LEFT_WITHEDITOR
-
-            MENUITEM "С помощью...",                     ID_DIR_OPEN_LEFT_WITH
+            MENUITEM "Внешним редактором",     ID_DIR_OPEN_LEFT_WITHEDITOR
+            MENUITEM "С помощью...",           ID_DIR_OPEN_LEFT_WITH
         END
         POPUP "Открыть правый файл"
         BEGIN
             MENUITEM "Зарегистрированым приложением", ID_DIR_OPEN_RIGHT
             MENUITEM "Внешним редактором",        ID_DIR_OPEN_RIGHT_WITHEDITOR
-
             MENUITEM "С помощью...",                     ID_DIR_OPEN_RIGHT_WITH
         END
     END
@@ -480,7 +478,7 @@ BEGIN
     GROUPBOX        "Направление",IDC_STATIC,107,26,68,38,WS_GROUP
 END
 
-IDD_EDIT_REPLACE DIALOG FIXED IMPURE  36, 44, 230, 89
+IDD_EDIT_REPLACE DIALOG FIXED IMPURE  36, 44, 230, 103
 STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Замена"
 FONT 8, "MS Shell Dlg"
@@ -506,6 +504,8 @@ BEGIN
     LTEXT           "&Текст для поиска:",IDC_STATIC,4,9,48,8
     LTEXT           "За&меняем:",IDC_STATIC,4,26,48,8
     GROUPBOX        "Заменить",IDC_STATIC,97,46,71,39,WS_GROUP
+    CONTROL         "Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,88,84,12
 END
 
 IDD_CLEARCASE DIALOG DISCARDABLE  0, 0, 279, 111
@@ -886,11 +886,6 @@ BEGIN
         BOTTOMMARGIN, 149
     END
 
-    IDD_GENERATE_PATCH, DIALOG
-    BEGIN
-        BOTTOMMARGIN, 163
-    END
-
     IDD_EDITOR_HEADERBAR, DIALOG
     BEGIN
         LEFTMARGIN, 7
@@ -904,6 +899,15 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 266
         TOPMARGIN, 7
+        BOTTOMMARGIN, 155
+    END
+
+    IDD_GENERATE_PATCH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 333
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
     END
 END
 #endif    // APSTUDIO_INVOKED

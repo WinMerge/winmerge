@@ -1,3 +1,7 @@
+2004-01-08 Kimmo
+ Updated Russian translation from Dmitriy Aleshkowskiy
+  Languages/Russian: MergeRussian.rc
+
 2004-01-08 Perry
  PATCH: [ 872032 ] Add SEH around calls to load plugins
   WinMerge: Plugins.cpp
