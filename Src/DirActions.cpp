@@ -466,12 +466,8 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 	while (actionList.GetCount()>0)
 	{
 		action act = actionList.actions.RemoveHead();
-
-#ifdef _DEBUG
-		// Sometimes its nice to see flags...
 		POSITION diffpos = GetItemKey(act.idx);
 		const DIFFITEM & di = GetDiffContext()->GetDiffAt(diffpos);
-#endif
 
 		if (actionList.atype == ACT_COPY)
 		{
@@ -489,19 +485,35 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 		else
 		{
 			// Delete files and folders
+			// If both items or unique item is deleted, don't bother updating
+			// statuses, just remove from list
 			CDirDoc *pDoc = GetDocument();
 			if (actionList.atype == ACT_DEL_LEFT)
 			{
-				pDoc->SetDiffSide(DIFFCODE::RIGHT, act.idx);
-				pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
-				pDoc->ReloadItemStatus(act.idx);
+				if (di.isSideLeft())
+				{
+					actionList.deletedItems.AddTail(act.idx);
+				}
+				else
+				{
+					pDoc->SetDiffSide(DIFFCODE::RIGHT, act.idx);
+					pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
+					pDoc->ReloadItemStatus(act.idx);
+				}
 			}
 			
 			if (actionList.atype == ACT_DEL_RIGHT)
 			{
-				pDoc->SetDiffSide(DIFFCODE::LEFT, act.idx);
-				pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
-				pDoc->ReloadItemStatus(act.idx);
+				if (di.isSideRight())
+				{
+					actionList.deletedItems.AddTail(act.idx);
+				}
+				else
+				{
+					pDoc->SetDiffSide(DIFFCODE::LEFT, act.idx);
+					pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
+					pDoc->ReloadItemStatus(act.idx);
+				}
 			}
 
 			if (actionList.atype == ACT_DEL_BOTH)

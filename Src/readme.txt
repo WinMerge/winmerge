@@ -11,6 +11,8 @@
   Src/res new files: close.bmp
   Languages: *.rc resource.h
    res/bmp files
+ BUG: [ 916028 ] Deleting unique file does not remove it from view
+  Src: DirActions.cpp
 
 
 2004-03-13 Seier
