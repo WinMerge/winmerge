@@ -381,8 +381,10 @@ BOOL CMergeDoc::Rescan()
 				free (e);
 			}
 
-			// If other file has EOL before EOF and other not...
-			if (inf[0].missing_newline != inf[1].missing_newline)
+			// If comparing whitespaces and
+			// other file has EOL before EOF and other not...
+			if (inf[0].missing_newline != inf[1].missing_newline &&
+				!mf->m_nIgnoreWhitespace)
 			{
 				// ..lasf DIFFRANGE of file which has EOL must be
 				// fixed to contain last line too
