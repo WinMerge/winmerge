@@ -1,3 +1,9 @@
+2004-09-29 Kimmo
+ PATCH: [ 1036134 ] Show error about invalid linefilter regexps
+  Src: MainFrm.cpp MainFrm.h Merge.rc resource.h
+  Src/diffutils/lib: REGEX.C REGEX.H
+  Src/Languages: *.rc resource.h
+
 2004-09-28 Kimmo
  PATCH: [ 1034719 ] IDS_SUGGEST_IGNORECODEPAGE change?
   Submitted by Perry

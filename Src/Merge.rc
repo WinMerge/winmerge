@@ -1728,6 +1728,32 @@ BEGIN
                             See manual for more info about archive support and how to enable it."
 END
 
+// Regular expression errors
+STRINGTABLE
+BEGIN
+    IDS_REGEXP_ERROR        "Regular expression error"
+    IDS_REGEXP_NOMATCH      "No match"
+    IDS_REGEXP_INVALID      "Invalid regular expression"
+    IDS_REGEXP_COLL_CHAR    "Invalid collation character"
+    IDS_REGEXP_CHAR_CLASS   "Invalid character class name"
+    IDS_REGEXP_TRAILING_BS  "Trailing backslash"
+    IDS_REGEXP_INVALID_BACKREF "Invalid back reference"
+    IDS_REGEXP_UNMATCHED_BRACK "Unmatched [ or [^"
+    IDS_REGEXP_UNMATCHED_PAREN "Unmatched ( or \\("
+    IDS_REGEXP_UNMATCHED_BRACE "Unmatched \\{"
+    IDS_REGEXP_INVALID_BRACE "Invalid content of \\{\\}"
+    IDS_REGEXP_RANGE_END    "Invalid range end"
+    IDS_REGEXP_OUTOFMEM     "Out of memory"
+    IDS_REGEXP_INVALID_PREV_EXP "Invalid preceding regular expression"
+    IDS_REGEXP_PREMATURE_END "Premature end of regular expression"
+    IDS_REGEXP_TOO_BIG      "Regular expression too big"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_REGEXP_UNMATCHED_RPAREN "Unmatched ) or \\)"
+END
+
 // LANGAGE NAMES #1
 STRINGTABLE
 BEGIN

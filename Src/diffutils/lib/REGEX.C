@@ -4791,7 +4791,7 @@ bcmp_translate (unsigned char *s1, unsigned char *s2, register int len, char *tr
    
    We call regex_compile to do the actual compilation.  */
 
-const char *
+int
 re_compile_pattern (const char *pattern, int length, struct re_pattern_buffer *bufp)
 {
   reg_errcode_t ret;
@@ -4810,7 +4810,7 @@ re_compile_pattern (const char *pattern, int length, struct re_pattern_buffer *b
   
   ret = regex_compile (pattern, length, re_syntax_options, bufp);
 
-  return re_error_msg[(int) ret];
+  return (int) ret;
 }     
 
 /* Entry points compatible with 4.2 BSD regex library.  We don't define

@@ -231,7 +231,7 @@ private:
 	// builds the regular expression list if the
 	// user choose to ignore Ignore changes affecting only lines 
 	// that match the specified regexp. 
-	void RebuildRegExpList();
+	void RebuildRegExpList(BOOL bShowError);
 	// destroy the regular expression list and free up the memory
 	void FreeRegExpList();
 	void GetAllViews(MergeEditViewList * pEditViews, MergeDetailViewList * pDetailViews, DirViewList * pDirViews);

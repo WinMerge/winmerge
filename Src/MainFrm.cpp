@@ -85,8 +85,7 @@ static char THIS_FILE[] = __FILE__;
 extern CLogFile gLog;
 CMainFrame *mf = NULL;
 
-// add a 
-static void add_regexp PARAMS((struct regexp_list **, char const*));
+static BOOL add_regexp PARAMS((struct regexp_list **, char const*, BOOL bShowError));
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame
 
@@ -324,7 +323,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	mf = this;
 	
 	// build the initial reg expression list
-	RebuildRegExpList();
+	RebuildRegExpList(FALSE);
 	GetFontProperties();
 	
 	m_wndToolBar.SetBorders(1, 1, 1, 1);
@@ -1815,6 +1814,7 @@ void CMainFrame::OnClose()
 	CMDIFrameWnd::OnClose();
 }
 
+/// Empty regexp list used internally
 void CMainFrame::FreeRegExpList()
 {
 	struct regexp_list *r;
@@ -1831,13 +1831,19 @@ void CMainFrame::FreeRegExpList()
 	}
 }
 
-void CMainFrame::RebuildRegExpList()
+/**
+ * @brief Add regexps from options to internal list
+ * @param [in] bShowError When TRUE error messages are shown to user,
+ * otherwise just written to log.
+ */
+void CMainFrame::RebuildRegExpList(BOOL bShowError)
 {
 	USES_CONVERSION;
 
-	_TCHAR tmp[_MAX_PATH] = {0};
-	_TCHAR* token;
-	_TCHAR sep[] = _T("\r\n");
+	TCHAR tmp[_MAX_PATH] = {0};
+	TCHAR* token;
+	TCHAR sep[] = _T("\r\n");
+	BOOL valid = TRUE;
 	
 	// destroy the old list if the it is not NULL
 	FreeRegExpList();
@@ -1850,9 +1856,9 @@ void CMainFrame::RebuildRegExpList()
 		_tcsncpy(tmp, m_options.GetString(OPT_LINEFILTER_REGEXP), _MAX_PATH);
 
 		token = _tcstok(tmp, sep);
-		while (token)
+		while (token && valid)
 		{
-			add_regexp(&ignore_regexp_list, T2A(token));
+			valid = add_regexp(&ignore_regexp_list, T2A(token), bShowError);
 			token = _tcstok(NULL, sep);
 		}
 	}
@@ -1863,24 +1869,50 @@ void CMainFrame::RebuildRegExpList()
 	}
 }
 
-// Add the compiled form of regexp pattern to reglist
-static void
-add_regexp(struct regexp_list **reglist,
-     char const* pattern)
+/// Add the compiled form of regexp pattern to reglist
+static BOOL add_regexp(struct regexp_list **reglist, char const* pattern, BOOL bShowError)
 {
-  struct regexp_list *r;
-  char const *m;
+	struct regexp_list *r;
+	int m;
+	BOOL ret = FALSE;
 
-  r = (struct regexp_list *) xmalloc (sizeof (*r));
-  bzero (r, sizeof (*r));
-  r->buf.fastmap = (char*) xmalloc (256);
-  m = re_compile_pattern (pattern, strlen (pattern), &r->buf);
-  if (m != 0)
-    error ("%s: %s", pattern, m);
+	r = (struct regexp_list *) malloc (sizeof (*r));
+	if (r)
+	{
+		bzero (r, sizeof (*r));
+		r->buf.fastmap = (char*) malloc (256);
+		if (r->buf.fastmap)
+		{
+			m = re_compile_pattern (pattern, strlen (pattern), &r->buf);
 
-  /* Add to the start of the list, since it's easier than the end.  */
-  r->next = *reglist;
-  *reglist = r;
+			if (m > 0)
+			{
+				CString msg;
+				CString errMsg;
+				VERIFY(errMsg.LoadString(IDS_REGEXP_ERROR));
+				errMsg += _T(":\n\n");
+				errMsg += pattern;
+				errMsg += _T("\n\n");
+				int errID = IDS_REGEXP_ERROR + m;
+				VERIFY(msg.LoadString(errID));
+				errMsg += msg;
+				LogErrorString(errMsg);
+				if (bShowError)
+					AfxMessageBox(errMsg, MB_ICONWARNING);
+			}
+
+			/* Add to the start of the list, since it's easier than the end.  */
+			r->next = *reglist;
+			*reglist = r;
+			ret = TRUE;
+		}
+		else
+		{
+			free(r->buf.fastmap);
+			r->buf.fastmap = NULL;
+		}
+	}
+	return ret;
 }
 
 /**
@@ -2506,7 +2538,7 @@ void CMainFrame::OnToolsFilters()
 		m_options.SaveOption(OPT_LINEFILTER_ENABLED, filter.m_bIgnoreRegExp);
 		m_options.SaveOption(OPT_LINEFILTER_REGEXP, filter.m_sPattern);
 
-		RebuildRegExpList();
+		RebuildRegExpList(TRUE);
 	}
 }
 

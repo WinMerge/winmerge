@@ -410,7 +410,7 @@ extern reg_syntax_t re_set_syntax _RE_ARGS ((reg_syntax_t syntax));
 /* Compile the regular expression PATTERN, with length LENGTH
    and syntax given by the global `re_syntax_options', into the buffer
    BUFFER.  Return NULL if successful, and an error string if not.  */
-extern const char *re_compile_pattern
+extern int re_compile_pattern
   _RE_ARGS ((const char *pattern, int length,
              struct re_pattern_buffer *buffer));
 
@@ -483,6 +483,10 @@ extern size_t regerror
              size_t errbuf_size));
 extern void regfree _RE_ARGS ((regex_t *preg));
 
+#ifdef __cplusplus
+}
+#endif
+
 #endif /* not __REGEXP_LIBRARY_H__ */
 
 /*
@@ -492,7 +496,3 @@ version-control: t
 trim-versions-without-asking: nil
 End:
 */
-
-#ifdef __cplusplus
-}
-#endif
