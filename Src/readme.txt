@@ -1,4 +1,7 @@
 2003-11-21 Laoran
+ BUG: [ 846450 ] "Winmerge executable:" label missing from registry options
+  WinMerge: Merge.rc
+  Languages: *.rc
  cosmetic in Dirscan : FilterAdd -> StoreDiffResult
   WinMerge: DirScan.cpp
  SaveToFile : returned value (BOOL -> int)

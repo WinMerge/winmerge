@@ -586,13 +586,13 @@ FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "Lägg till i Utforskarens popup-meny",
                     IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,7,7,167,10
-    LTEXT           "&WinMerge executable:",IDC_STATIC,7,19,165,8
+                    WS_TABSTOP,7,6,167,10
+    LTEXT           "&WinMerge executable:",IDC_STATIC,7,19,167,8
     EDITTEXT        IDC_WINMERGE_PATH,7,29,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "&Bläddra...",IDC_WINMERGE_PATH_BROWSE,178,29,50,14
-    LTEXT           "External editor:",IDC_STATIC,7,50,48,8
+    PUSHBUTTON      "&Bläddra...",IDC_WINMERGE_PATH_BROWSE,179,29,50,14
+    LTEXT           "External editor:",IDC_STATIC,7,50,167,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,60,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_EXT_EDITOR_BROWSE,178,60,50,14
+    PUSHBUTTON      "Bläddra...",IDC_EXT_EDITOR_BROWSE,179,60,50,14
 END
 
 IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 259, 162
