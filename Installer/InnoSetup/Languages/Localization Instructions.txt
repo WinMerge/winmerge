@@ -13,8 +13,12 @@ or
 The remainder of this file contains specific instructions for each localized language.  Please look for your langauge within this file.  If it's not listed here or your have any other questions please let Seier Blackburn know at MyPurchases@Yahoo.com.  
 
 The following languages do not need translating:
-Bulgarian, Czech, Danish, Dutch, French, German, Korean, Norwegian, Russian, Slovenian, and Swedish
+Bulgarian, Chinese (Simplified), Chinese (Traditional), Czech, Danish, Dutch, French, German, Italian, Korean, Norwegian, Polish, Russian, and Swedish
 
+Once you've translated your file.  Please add it to the CVS and submit it as a patch assigning it to Seier and categorizing it as an installer issue. 
+
+The good news is not only will your translation be helpful to our project, but countless other installers will now speak your language.  I will be submitting all these translations to the Inno Setup project for inclusion :).  
+ 
 [Catalan]
 File=Catalan.isl
 LinesToTranslate=4
