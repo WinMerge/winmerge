@@ -1,3 +1,8 @@
+2003-09-13 Laoran
+ effects of patch [ 797821 ]
+  WinMerge: Merge.rc resource.h 
+  Languages: resource.h *.rc
+
 2003-09-11 Laoran
  PATCH: [ 804408 ] Fixes to help compile release version
   WinMerge: Merge.dsp 

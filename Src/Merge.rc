@@ -1,5 +1,7 @@
 //Microsoft Developer Studio generated resource script.
 //
+// $Id$
+
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -103,7 +105,7 @@ BEGIN
         MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
         MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "Format for ..."
+        POPUP "Format for "
         BEGIN
             MENUITEM "DOS (CRLF)",                  ID_EOL_TO_DOS
             MENUITEM "UNIX (LF)",                   ID_EOL_TO_UNIX
@@ -835,6 +837,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// ID_FILE_NEW SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_FILE_NEW             "Create a new document\nNew"
@@ -848,6 +851,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
 END
 
+// ID_APP_ABOUT SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
@@ -874,6 +878,7 @@ BEGIN
     ID_FILE_MRU_FILE16      "Open this document"
 END
 
+// ID_NEXT_PANE SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
@@ -890,6 +895,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
 END
 
+// ID_EDIT_CLEAR SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_EDIT_CLEAR           "Erase the selection\nErase"
@@ -983,6 +989,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "Open right file"
 END
 
+// IDS_SAVE_AS_TITLE SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_SAVE_AS_TITLE       "Save As"
@@ -1005,6 +1012,121 @@ BEGIN
     IDS_NOPROJECT           "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
 END
 
+// IDS_COLHDR_FILENAME SYNCHRO
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_COLHDR_FILENAME     "Filename"
+    IDS_COLHDR_DIR          "Directory"
+    IDS_COLHDR_RESULT       "Comparison result"
+    IDS_FILE_COMPARISON_TITLE "File Comparison"
+    IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
+    IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
+    IDS_FILEISDIR           "Directory files cannot be visually compared."
+    IDS_CC_CMD              "&Path to cleartool.exe :"
+    IDS_VSS_CMD             "&Path to SS.EXE :"
+    IDS_VSS_RUN_ERROR       "Error executing versioning system command."
+    IDS_DIFF_OPEN_NO_SET_PROPS 
+                            "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
+    IDS_COLHDR_LTIMEM       "Left Date"
+    IDS_COLHDR_RTIMEM       "Right Date"
+    IDS_COLHDR_EXTENSION    "Extension"
+    IDS_CONFIRM_DELETE_ITEMS 
+                            "Are you sure you want to delete %1 of %2 selected item(s) ?"
+    IDS_DEL_LEFT_FMT        "Delete left side %1 of %2 selected item(s)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DEL_RIGHT_FMT       "Delete right side %1 of %2 selected item(s)"
+    IDS_DELETE_FILE_FAILED  "Delete file %1 failed: %2"
+    IDS_CONFIRM_DELETE_DIR  "Delete directory %1?"
+    IDS_REMOVE_DIR_FAILED   "Remove directory failed: %1"
+    IDS_COPY_TO_LEFT        "Copy to left side %1 of %2 selected item(s)"
+    IDS_DEL_BOTH_FMT        "Delete both sides %1 of %2 selected item(s)"
+    IDS_COPY_TO_RIGHT       "Copy to right side %1 of %2 selected item(s)"
+    IDS_COLHDR_LSIZE        "Left Size"
+    IDS_DELETE_DIR_FAILED   "Delete directory %1 failed: %s"
+    IDS_COPY_FILE_FAILED    "Copying file %1 failed: %2"
+    IDS_COPY_DIR_FAILED     "Copying directory %1 failed: %2"
+    IDS_ERROR_FILE_WRITEABLE "Error checking destination writeability"
+    IDS_ERROR_BACKUP        "Error backing up file"
+    IDS_CONFIRM_COPY_SINGLE "Are you sure you want to copy %1 to %2?"
+    IDS_CONFIRM_DELETE_SINGLE "Are you sure you want to delete %1?"
+    IDS_BIN_FILES_SAME      "Binary files are identical"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
+    ID_OPTIONS_SHOWBINARIES "Displays binary files"
+    ID_VIEW_WHITESPACE      "Shows whitespace characters"
+    ID_REFRESH              "Refresh display\nRefresh (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_EDITOR_COPY_PATH     "Copy full Path"
+    ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
+END
+
+// ID_EOL_TO_DOS SYNCHRO
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FILESAVE_FAILED     "Saving %1 failed. Would you like to save the file under a different name?"
+    IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
+    IDS_ERROR_INCOMPARABLE  "Select two existing directories or files to compare"
+    IDS_STATUS_RESCANNING   "Scanning files..."
+    IDS_STATUS_OPENING_SELECTION "Opening selection"
+    IDS_STATUS_COPYL2R      "Copying Left to Right"
+    IDS_STATUS_COPYR2L      "Copying Right to Left"
+    IDS_STATUS_COPYALL2L    "Copying All to Left"
+    IDS_STATUS_COPYALL2R    "Copying All to Right"
+    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+    IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_LTIMEC       "Left Creation Time"
+    IDS_COLHDR_RTIMEC       "Right Creation Time"
+    IDS_COLHDR_NEWER        "Newer File"
+    IDS_COLHDR_LVERSION     "Left File Version"
+    IDS_COLHDR_RVERSION     "Right File Version"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LEFTONLY            "Left Only"
+    IDS_RIGHTONLY           "Right Only"
+    IDS_COLHDR_RESULT_ABBR  "Short Result"
+    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
+    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_FILE_SKIPPED        "File skipped"
+    IDS_DIR_SKIPPED         "Directory skipped"
+    IDS_STATUSBAR_READONLY  "RO"
+    IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+END
+
+// IDS_NUM_REPLACED SYNCHRO
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NUM_REPLACED        "Replaced %1 string(s)."
+    IDS_EDIT_TEXT_NOT_FOUND "Cannot find string""%s"""
+    IDS_LINE_STATUS_INFO_EOL "Line: %s Characters: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
+    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+// LANGUAGES SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_AFRIKAANS           "Afrikaans"
@@ -1169,117 +1291,7 @@ BEGIN
     IDS_VIETNAMESE          "Vietnamese"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_COLHDR_FILENAME     "Filename"
-    IDS_COLHDR_DIR          "Directory"
-    IDS_COLHDR_RESULT       "Comparison result"
-    IDS_FILE_COMPARISON_TITLE "File Comparison"
-    IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
-    IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
-    IDS_FILEISDIR           "Directory files cannot be visually compared."
-    IDS_CC_CMD              "&Path to cleartool.exe :"
-    IDS_VSS_CMD             "&Path to SS.EXE :"
-    IDS_VSS_RUN_ERROR       "Error executing versioning system command."
-    IDS_DIFF_OPEN_NO_SET_PROPS 
-                            "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
-    IDS_COLHDR_LTIMEM       "Left Date"
-    IDS_COLHDR_RTIMEM       "Right Date"
-    IDS_COLHDR_EXTENSION    "Extension"
-    IDS_CONFIRM_DELETE_ITEMS 
-                            "Are you sure you want to delete %1 of %2 selected item(s) ?"
-    IDS_DEL_LEFT_FMT        "Delete left side %1 of %2 selected item(s)"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_DEL_RIGHT_FMT       "Delete right side %1 of %2 selected item(s)"
-    IDS_DELETE_FILE_FAILED  "Delete file %1 failed: %2"
-    IDS_CONFIRM_DELETE_DIR  "Delete directory %1?"
-    IDS_REMOVE_DIR_FAILED   "Remove directory failed: %1"
-    IDS_COPY_TO_LEFT        "Copy to left side %1 of %2 selected item(s)"
-    IDS_DEL_BOTH_FMT        "Delete both sides %1 of %2 selected item(s)"
-    IDS_COPY_TO_RIGHT       "Copy to right side %1 of %2 selected item(s)"
-    IDS_COLHDR_LSIZE        "Left Size"
-    IDS_DELETE_DIR_FAILED   "Delete directory %1 failed: %s"
-    IDS_COPY_FILE_FAILED    "Copying file %1 failed: %2"
-    IDS_COPY_DIR_FAILED     "Copying directory %1 failed: %2"
-    IDS_ERROR_FILE_WRITEABLE "Error checking destination writeability"
-    IDS_ERROR_BACKUP        "Error backing up file"
-    IDS_CONFIRM_COPY_SINGLE "Are you sure you want to copy %1 to %2?"
-    IDS_CONFIRM_DELETE_SINGLE "Are you sure you want to delete %1?"
-    IDS_BIN_FILES_SAME      "Binary files are identical"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
-    ID_OPTIONS_SHOWBINARIES "Displays binary files"
-    ID_VIEW_WHITESPACE      "Shows whitespace characters"
-    ID_REFRESH              "Refresh display\nRefresh (F5)"
-    ID_SHOWLINEDIFF         "Highlight difference in current line"
-    ID_EDITOR_COPY_PATH     "Copy full Path"
-    ID_EDITOR_COPY_FILENAME "Copy Filename"
-    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
-    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
-    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
-    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
-    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_FILESAVE_FAILED     "Saving %1 failed. Would you like to save the file under a different name?"
-    IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
-    IDS_ERROR_INCOMPARABLE  "Select two existing directories or files to compare"
-    IDS_STATUS_RESCANNING   "Scanning files..."
-    IDS_STATUS_OPENING_SELECTION "Opening selection"
-    IDS_STATUS_COPYL2R      "Copying Left to Right"
-    IDS_STATUS_COPYR2L      "Copying Right to Left"
-    IDS_STATUS_COPYALL2L    "Copying All to Left"
-    IDS_STATUS_COPYALL2R    "Copying All to Right"
-    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
-    IDS_COLHDR_RSIZE        "Right Size"
-    IDS_COLHDR_LTIMEC       "Left Creation Time"
-    IDS_COLHDR_RTIMEC       "Right Creation Time"
-    IDS_COLHDR_NEWER        "Newer File"
-    IDS_COLHDR_LVERSION     "Left File Version"
-    IDS_COLHDR_RVERSION     "Right File Version"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_LEFTONLY            "Left Only"
-    IDS_RIGHTONLY           "Right Only"
-    IDS_COLHDR_RESULT_ABBR  "Short Result"
-    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
-    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
-    IDS_FILE_SKIPPED        "File skipped"
-    IDS_DIR_SKIPPED         "Directory skipped"
-    IDS_STATUSBAR_READONLY  "RO"
-    IDS_PRIVATEBUILD_FMT    "Private Build: %1"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_NUM_REPLACED        "Replaced %1 string(s)."
-    IDS_EDIT_TEXT_NOT_FOUND "Cannot find string""%s"""
-    IDS_LINE_STATUS_INFO_EOL "Line: %s Characters: %d EOL: %s"
-    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
-    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
-    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
-END
-
+// END STRINGS SYNCHRO
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 

@@ -2,6 +2,8 @@
 // Microsoft Developer Studio generated include file.
 // Used by Merge.rc
 //
+// $Id$
+
 #define IDC_CUT                         3
 #define IDC_COPY                        4
 #define IDC_PASTE                       5
@@ -120,7 +122,6 @@
 #define IDB_RFOLDER                     215
 #define IDS_STATUSBAR_READONLY          215
 #define IDB_UNKNOWN                     216
-#define IDS_PRIVATEBUILD_FMT            216
 #define IDB_BINARYSAME                  217
 #define IDB_LFILE                       218
 #define IDB_RFILE                       219
@@ -129,6 +130,7 @@
 #define IDB_OLDSPLASH                   222
 #define IDB_LFOLDER                     223
 #define IDB_BINARYDIFF                  224
+#define IDS_PRIVATEBUILD_FMT            225
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -174,7 +176,6 @@
 #define IDC_LANGUAGE_LIST               1037
 #define IDC_AUTOMRESCAN_CHECK           1038
 #define IDC_FILE_FILTER                 1039
-#define IDC_MIXED_EOL                   1039
 #define IDC_DIFFERENCE_TEXT_COLOR       1040
 #define IDC_DIFFERENCE_DELETED_COLOR    1041
 #define IDC_SEL_DIFFERENCE_DELETED_COLOR 1042
@@ -195,6 +196,7 @@
 #define IDC_REMOVE                      1060
 #define IDC_EDIT_FILE_FILTER            1061
 #define IDC_PRIVATEBUILD                1062
+#define IDC_MIXED_EOL                   1063
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -419,7 +421,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        118
 #define _APS_NEXT_COMMAND_VALUE         32839
-#define _APS_NEXT_CONTROL_VALUE         1063
+#define _APS_NEXT_CONTROL_VALUE         1064
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif
