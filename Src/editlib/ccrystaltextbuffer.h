@@ -238,6 +238,7 @@ public :
 
     // Operations
 public :
+	  void DeleteLine(int line);
     //  Construction/destruction code
     CCrystalTextBuffer ();
     ~CCrystalTextBuffer ();

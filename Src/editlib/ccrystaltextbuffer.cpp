@@ -1490,3 +1490,9 @@ CPoint CCrystalTextBuffer::GetLastChangePos() const
 	return m_ptLastChange;
 }
 //END SW
+
+void CCrystalTextBuffer::DeleteLine(int line)
+{
+	delete[] m_aLines[line].m_pcLine;
+	m_aLines.RemoveAt(line);
+}
