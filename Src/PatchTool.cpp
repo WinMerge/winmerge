@@ -132,7 +132,10 @@ BOOL CPatchTool::ShowDialog()
 
 		// These two are from dropdown list - can't be wrong
 		patchOptions.outputStyle = m_dlgPatch.m_outputStyle;
-		patchOptions.context = m_dlgPatch.m_contextLines;
+		patchOptions.nContext = m_dlgPatch.m_contextLines;
+
+		// Checkbox - can't be wrong
+		patchOptions.bAddCommandline = m_dlgPatch.m_includeCmdLine;
 		m_diffWrapper.SetPatchOptions(&patchOptions);
 
 		// These are from checkboxes and radiobuttons - can't be wrong

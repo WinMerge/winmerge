@@ -120,7 +120,8 @@ typedef struct tagDIFFOPTIONS
 typedef struct tagPATCHOPTIONS
 {
 	enum output_style outputStyle;
-	int context;
+	int nContext;
+	BOOL bAddCommandline;
 } PATCHOPTIONS;
 
 /**

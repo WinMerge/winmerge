@@ -270,6 +270,7 @@
 #define IDC_COUNT_RFILE                 1105
 #define IDC_COMPARISON_STOP             1106
 #define IDC_COMPARISON_CLOSE            1107
+#define IDC_DIFF_INCLCMDLINE            1108
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503

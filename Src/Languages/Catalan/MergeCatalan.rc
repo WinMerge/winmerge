@@ -608,48 +608,50 @@ BEGIN
     PUSHBUTTON      "N&avega...",IDC_EXT_EDITOR_BROWSE,179,60,50,14
 END
 
-IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 259, 170
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 340, 180
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Generador de fitxer de diferències"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "Fitxer &1:",IDC_STATIC,7,10,26,8
-    COMBOBOX        IDC_DIFF_FILE1,37,7,158,93,CBS_DROPDOWN |
+    LTEXT           "Fitxer &1:",IDC_STATIC,7,10,36,8
+    COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "&Navega...",IDC_DIFF_BROWSE_FILE1,202,7,50,14
-    LTEXT           "Fitxer &2:",IDC_STATIC,7,27,26,8
-    COMBOBOX        IDC_DIFF_FILE2,37,24,158,96,CBS_DROPDOWN |
+    PUSHBUTTON      "&Navega...",IDC_DIFF_BROWSE_FILE1,283,7,50,14
+    LTEXT           "Fitxer &2:",IDC_STATIC,7,27,36,8
+    COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "N&avega...",IDC_DIFF_BROWSE_FILE2,202,24,50,14
-    PUSHBUTTON      "Inter&canvia",IDC_DIFF_SWAPFILES,202,41,50,14
+    PUSHBUTTON      "N&avega...",IDC_DIFF_BROWSE_FILE2,283,24,50,14
+    PUSHBUTTON      "Inter&canvia",IDC_DIFF_SWAPFILES,283,41,50,14
     CONTROL         "A&fegeix al final del fitxer existent",IDC_DIFF_APPENDFILE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,37,51,115,10
-    LTEXT           "&Resultat:",IDC_STATIC,7,66,29,8
-    COMBOBOX        IDC_DIFF_FILERESULT,37,63,158,96,CBS_DROPDOWN |
+                    BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
+    LTEXT           "&Resultat:",IDC_STATIC,7,66,37,8
+    COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Na&vega...",IDC_DIFF_BROWSE_RESULT,202,63,50,14
-    GROUPBOX        "Format",IDC_STATIC,7,81,94,46
-    LTEXT           "E&stil:",IDC_STATIC,13,95,16,8
-    COMBOBOX        IDC_DIFF_STYLE,44,92,48,68,CBS_DROPDOWNLIST | WS_VSCROLL |
+    PUSHBUTTON      "Na&vega...",IDC_DIFF_BROWSE_RESULT,283,63,50,14
+    GROUPBOX        "Format",IDC_STATIC,7,81,142,46
+    LTEXT           "E&stil:",IDC_STATIC,13,95,46,8
+    COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
-    LTEXT           "&Context:",IDC_STATIC,13,109,27,8
-    COMBOBOX        IDC_DIFF_CONTEXT,44,108,48,65,CBS_DROPDOWNLIST |
+    LTEXT           "&Context:",IDC_STATIC,13,109,46,8
+    COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWNLIST |
                     WS_DISABLED | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "&Distingeix entre majúscules i minúscules",IDC_DIFF_CASESENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,128,94,20
-    CONTROL         "Obre-ho a un &editor extern",IDC_DIFF_OPENTOEDITOR,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,148,98,10
-    GROUPBOX        "Espais",IDC_STATIC,107,81,144,62
+    GROUPBOX        "Espais",IDC_STATIC,155,81,123,46
     CONTROL         "Co&mpara",IDC_DIFF_WHITESPACE_COMPARE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,113,92,44,10
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,162,92,110,10
     CONTROL         "&Ignora els canvis",IDC_DIFF_WHITESPACE_IGNORE,"Button",
-                    BS_AUTORADIOBUTTON | WS_TABSTOP,113,104,80,10
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
     CONTROL         "I&gnora'ls tots",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
-                    BS_AUTORADIOBUTTON | WS_TABSTOP,113,116,55,10
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
     CONTROL         "Ign&ora les línies en blanc",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,129,130,10
-    DEFPUSHBUTTON   "D'acord",IDOK,148,149,50,14
-    PUSHBUTTON      "Anul·la",IDCANCEL,202,149,50,14
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,142,10
+    CONTROL         "&Distingeix entre majúscules i minúscules",IDC_DIFF_CASESENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,145,142,10
+    CONTROL         "Inclu&de command line",IDC_DIFF_INCLCMDLINE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
+    CONTROL         "Obre-ho a un &editor extern",IDC_DIFF_OPENTOEDITOR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,155,145,170,10
+    DEFPUSHBUTTON   "D'acord",IDOK,230,159,50,14
+    PUSHBUTTON      "Anul·la",IDCANCEL,283,159,50,14
 END
 
 IDD_EDITOR_HEADERBAR DIALOGEX 0, 0, 373, 12
@@ -899,11 +901,6 @@ BEGIN
         BOTTOMMARGIN, 149
     END
 
-    IDD_GENERATE_PATCH, DIALOG
-    BEGIN
-        BOTTOMMARGIN, 163
-    END
-
     IDD_EDITOR_HEADERBAR, DIALOG
     BEGIN
         LEFTMARGIN, 7
@@ -918,6 +915,14 @@ BEGIN
         RIGHTMARGIN, 266
         TOPMARGIN, 7
         BOTTOMMARGIN, 155
+    END
+
+    IDD_GENERATE_PATCH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 333
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -1535,6 +1540,7 @@ BEGIN
     ID_EOL_TO_UNIX          "Converteix la marca de final de línia al mode del UNIX"
     ID_EOL_TO_MAC           "Converteix la marca de final de línia al mode del MAC"
     ID_OPTIONS_SHOWSKIPPED  "Visualitza els fitxers omesos"
+    ID_TOOLS_GENERATEPATCH  "Generate a patch-file"
     ID_FILE_SAVE_LEFT       "Desa el fitxer de l'esquerra"
     ID_FILE_SAVE_RIGHT      "Desa el fitxer de la dreta"
     ID_FILE_SAVEAS_LEFT     "Desa i anomena el fitxer de l'esquerra..."

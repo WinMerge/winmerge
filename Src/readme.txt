@@ -2,6 +2,11 @@
  BUG: [ 833096 ] Left/right-only status overwrites skipped-status
   Apply fix for long result too
   WinMerge: DirViewColItems.cpp
+ PATCH: [ 851586 ] Improve Patch generate dialog
+  Also implements RFE #849890 Disable first line in patch-file
+  WinMerge: DiffWrapper.h DiffWrapper.cpp Merge.rc PatchDlg.h PatchDlg.cpp
+   PatchTool.cpp resource.h
+  Languages: *.rc resource.h
 
 2003-12-11 Kimmo
  Adding 2.2 plan

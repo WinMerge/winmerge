@@ -75,6 +75,7 @@ void CPatchDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_CBStringExact(pDX, IDC_DIFF_FILE2, m_file2);
 	DDX_CBStringExact(pDX, IDC_DIFF_FILERESULT, m_fileResult);
 	DDX_Check(pDX, IDC_DIFF_OPENTOEDITOR, m_openToEditor);
+	DDX_Check(pDX, IDC_DIFF_INCLCMDLINE, m_includeCmdLine);
 	//}}AFX_DATA_MAP
 }
 

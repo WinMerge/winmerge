@@ -76,6 +76,7 @@ public:
 	int m_whitespaceCompare;
 	BOOL m_appendFile;
 	BOOL m_openToEditor;
+	BOOL m_includeCmdLine;
 	//}}AFX_DATA
 
 	enum output_style m_outputStyle;

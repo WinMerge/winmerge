@@ -118,8 +118,9 @@ void CDiffWrapper::SetTextForAutomaticUnpack(CString text)
 void CDiffWrapper::GetPatchOptions(PATCHOPTIONS *options)
 {
 	ASSERT(options);
-	options->context = m_settings.context;
+	options->nContext = m_settings.context;
 	options->outputStyle = m_settings.outputStyle;
+	options->bAddCommandline = m_bAddCmdLine;
 }
 
 /**
@@ -128,8 +129,9 @@ void CDiffWrapper::GetPatchOptions(PATCHOPTIONS *options)
 void CDiffWrapper::SetPatchOptions(PATCHOPTIONS *options)
 {
 	ASSERT(options);
-	m_settings.context = options->context;
+	m_settings.context = options->nContext;
 	m_settings.outputStyle = options->outputStyle;
+	m_bAddCmdLine = options->bAddCommandline;
 }
 
 /**

@@ -603,48 +603,50 @@ BEGIN
     PUSHBUTTON      "Browse...",IDC_EXT_EDITOR_BROWSE,179,60,50,14
 END
 
-IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 259, 170
+IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 340, 180
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Patch Generator"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "File1:",IDC_STATIC,7,10,18,8
-    COMBOBOX        IDC_DIFF_FILE1,33,7,162,93,CBS_DROPDOWN |
+    LTEXT           "File&1:",IDC_STATIC,7,10,36,8
+    COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Browse...",IDC_DIFF_BROWSE_FILE1,202,7,50,14
-    LTEXT           "File2:",IDC_STATIC,7,27,18,8
-    COMBOBOX        IDC_DIFF_FILE2,33,24,162,96,CBS_DROPDOWN |
+    PUSHBUTTON      "&Browse...",IDC_DIFF_BROWSE_FILE1,283,7,50,14
+    LTEXT           "File&2:",IDC_STATIC,7,27,36,8
+    COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Browse...",IDC_DIFF_BROWSE_FILE2,202,24,50,14
-    PUSHBUTTON      "Swap",IDC_DIFF_SWAPFILES,202,41,50,14
-    CONTROL         "Append to existing file",IDC_DIFF_APPENDFILE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,33,51,85,10
-    LTEXT           "Result:",IDC_STATIC,7,66,23,8
-    COMBOBOX        IDC_DIFF_FILERESULT,33,63,162,96,CBS_DROPDOWN |
+    PUSHBUTTON      "Br&owse...",IDC_DIFF_BROWSE_FILE2,283,24,50,14
+    PUSHBUTTON      "&Swap",IDC_DIFF_SWAPFILES,283,41,50,14
+    CONTROL         "&Append to existing file",IDC_DIFF_APPENDFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
+    LTEXT           "&Result:",IDC_STATIC,7,66,37,8
+    COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Browse...",IDC_DIFF_BROWSE_RESULT,202,63,50,14
-    GROUPBOX        "Format",IDC_STATIC,7,81,94,46
-    LTEXT           "Style:",IDC_STATIC,13,95,18,8
-    COMBOBOX        IDC_DIFF_STYLE,44,92,48,68,CBS_DROPDOWNLIST | WS_VSCROLL |
+    PUSHBUTTON      "Bro&wse...",IDC_DIFF_BROWSE_RESULT,283,63,50,14
+    GROUPBOX        "&Format",IDC_STATIC,7,81,142,46
+    LTEXT           "St&yle:",IDC_STATIC,13,95,46,8
+    COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL | 
                     WS_TABSTOP
-    LTEXT           "Context:",IDC_STATIC,13,109,27,8
-    COMBOBOX        IDC_DIFF_CONTEXT,44,108,48,65,CBS_DROPDOWNLIST |
+    LTEXT           "&Context:",IDC_STATIC,13,109,46,8
+    COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWNLIST | 
                     WS_DISABLED | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Case sensitive",IDC_DIFF_CASESENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,132,61,10
-    CONTROL         "Open to external editor",IDC_DIFF_OPENTOEDITOR,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,143,87,10
-    GROUPBOX        "Whitespaces",IDC_STATIC,107,81,88,62
-    CONTROL         "Compare",IDC_DIFF_WHITESPACE_COMPARE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,115,92,44,10
-    CONTROL         "Ignore changes",IDC_DIFF_WHITESPACE_IGNORE,"Button",
-                    BS_AUTORADIOBUTTON | WS_TABSTOP,115,104,65,10
-    CONTROL         "Ignore all",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
-                    BS_AUTORADIOBUTTON | WS_TABSTOP,115,116,45,10
-    CONTROL         "Ignore blank lines",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,115,129,71,10
-    DEFPUSHBUTTON   "OK",IDOK,148,149,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,202,149,50,14
+    GROUPBOX        "W&hitespaces",IDC_STATIC,155,81,123,46
+    CONTROL         "Com&pare",IDC_DIFF_WHITESPACE_COMPARE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,162,92,110,10
+    CONTROL         "I&gnore changes",IDC_DIFF_WHITESPACE_IGNORE,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
+    CONTROL         "Ig&nore all",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
+    CONTROL         "Ignor&e blank lines",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,142,10
+    CONTROL         "Case sensi&tive",IDC_DIFF_CASESENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
+    CONTROL         "Inclu&de command line",IDC_DIFF_INCLCMDLINE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
+    CONTROL         "Open to e&xternal editor",IDC_DIFF_OPENTOEDITOR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,155,145,170,10
+    DEFPUSHBUTTON   "OK",IDOK,230,159,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,283,159,50,14
 END
 
 IDD_EDITOR_HEADERBAR DIALOGEX 0, 0, 373, 12
@@ -893,6 +895,14 @@ BEGIN
         RIGHTMARGIN, 266
         TOPMARGIN, 7
         BOTTOMMARGIN, 155
+    END
+
+    IDD_GENERATE_PATCH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 333
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -1353,6 +1363,7 @@ BEGIN
     ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
     ID_EOL_TO_MAC           "Convert EOL to MAC mode"
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
+    ID_TOOLS_GENERATEPATCH  "Generate a patch-file"
     ID_FILE_SAVE_LEFT       "Save the left file"
     ID_FILE_SAVE_RIGHT      "Save the right file"
     ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
