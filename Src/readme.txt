@@ -1,3 +1,7 @@
+2004-11-01 Kimmo
+ PATCH: [ 1057719 ] Add Hungarian translator to Contributors list
+  Docs/Users: Contributors.txt
+
 2004-10-31 Perry
  PATCH: [ 1036683 ] unicoder.cpp always use GetACP codepage (remove dead variable)
   Src/Common: unicoder.cpp

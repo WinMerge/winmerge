@@ -48,7 +48,10 @@ Localization:
   Tim Gerundt
   Winfried Peter
   Joerg Schneider   
-    
+
+* Hungarian:
+  Márton Balázs  
+
 * Italian:	
   Andrea Decorte
   Michele Merega
