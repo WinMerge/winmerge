@@ -143,8 +143,8 @@ SetupIconFile=..\src\res\Merge.ico
 ;Please note while Compression=lzma/ultra and InternalCompressLevel=Ultra are better than max
 ;they also require 320 MB of memory for compression. If you're system has at least 256MB RAM then by all
 ;means set it to ultra before compilation
-Compression=none
-InternalCompressLevel=none
+Compression=LZMA/Ultra
+InternalCompressLevel=Ultra
 SolidCompression=True
 
 
