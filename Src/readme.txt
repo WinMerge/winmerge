@@ -1,10 +1,14 @@
+2003-08-26 Perry
+ Implement fix for BUG#794514: 'Comparison Summary' not updated properly
+  WinMerge: DirDoc.cpp
+  
 2003-08-25 Laoran
-  [ 783507 ] normalize replaceSelection and ListCopy
+ [ 783507 ] normalize replaceSelection and ListCopy
   WinMerge: GhostTextBuffer.cpp GhostTextBuffer.h MergeDoc.cpp MergeDoc.h
   editlib : ccrystaleditview.cpp ccrystaltextbuffer.cpp ccrystaltextbuffer.h
 
 2003-08-25 Laoran
-  [ 794081 ] Error when dropping a column out of WinMerge
+ [ 794081 ] Error when dropping a column out of WinMerge
   WinMerge: DirView.cpp
   
 2003-08-24 Perry

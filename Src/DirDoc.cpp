@@ -574,12 +574,12 @@ void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unifie
 	DIFFITEM current = m_pCtxt->GetDiffAt(pos);
 	m_pCtxt->UpdateInfoFromDisk(current);
 
-	if (unified)
-	{
-		// files have been unified -- that is, they are now identical
-		UINT status = FILE_SAME;
-		m_pCtxt->UpdateStatusCode(pos, (BYTE)status);
-	}
+	// Figure out new status code
+	current.code = (unified ? FILE_SAME : FILE_DIFF);
 
+	// Save new status code to diff context memory
+	m_pCtxt->UpdateStatusCode(pos, current.code);
+
+	// Update view
 	UpdateScreenItemStatus(ind, current);
 }
