@@ -255,7 +255,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
@@ -353,14 +353,14 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,193,132,50,14
     PUSHBUTTON      "Save As...",IDSAVEAS,123,132,50,14
     LTEXT           "Project:",IDC_STATIC,9,81,25,8
-    COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN | 
+    COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "User:",IDC_STATIC,10,99,18,8
     EDITTEXT        IDC_USER,48,96,58,14,ES_AUTOHSCROLL
     LTEXT           "Password:",IDC_STATIC,127,99,34,8
     EDITTEXT        IDC_PASSWORD,162,97,70,14,ES_PASSWORD | ES_AUTOHSCROLL
     LTEXT           "Database:",IDC_STATIC,9,64,33,13
-    COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN | 
+    COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,49,117,65,8
@@ -531,25 +531,25 @@ BEGIN
                     14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     CTEXT           "Background",IDC_STATIC,81,15,50,8
     CTEXT           "Deleted",IDC_STATIC,130,15,38,8
-    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT | 
+                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT | 
+                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CTEXT           "Text",IDC_STATIC,178,15,29,8
-    CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     RTEXT           "Ignored Difference:",IDC_STATIC,13,69,66,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,141,69,17,14,WS_EX_TRANSPARENT | 
+                    BS_OWNERDRAW | WS_TABSTOP,141,69,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
 END
 
@@ -568,13 +568,13 @@ CAPTION "登錄"
 FONT 9, "新細明體", 0, 0, 0x1
 BEGIN
     CONTROL         "&Add to explorer context menu",IDC_EXPLORER_CONTEXT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,108,10
-    EDITTEXT        IDC_WINMERGE_PATH,7,19,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "&Browse...",IDC_WINMERGE_PATH_BROWSE,180,19,50,14
-    PUSHBUTTON      "&Save path",IDC_WINMERGE_PATH_SAVE,7,36,50,14
-    LTEXT           "External editor:",IDC_STATIC,8,58,48,8
-    EDITTEXT        IDC_EXT_EDITOR_PATH,7,68,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_EXT_EDITOR_BROWSE,179,68,50,14
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,167,10
+    LTEXT           "&WinMerge executable:",IDC_STATIC,7,19,165,8
+    EDITTEXT        IDC_WINMERGE_PATH,7,29,166,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Browse...",IDC_WINMERGE_PATH_BROWSE,178,29,50,14
+    LTEXT           "&External editor:",IDC_STATIC,7,50,164,8
+    EDITTEXT        IDC_EXT_EDITOR_PATH,7,60,166,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "B&rowse...",IDC_EXT_EDITOR_BROWSE,178,60,50,14
 END
 
 IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 259, 170
@@ -583,26 +583,26 @@ CAPTION "Patch Generator"
 FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "File1:",IDC_STATIC,7,10,18,8
-    COMBOBOX        IDC_DIFF_FILE1,33,7,162,93,CBS_DROPDOWN | 
+    COMBOBOX        IDC_DIFF_FILE1,33,7,162,93,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Browse...",IDC_DIFF_BROWSE_FILE1,202,7,50,14
     LTEXT           "File2:",IDC_STATIC,7,27,18,8
-    COMBOBOX        IDC_DIFF_FILE2,33,24,162,96,CBS_DROPDOWN | 
+    COMBOBOX        IDC_DIFF_FILE2,33,24,162,96,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Browse...",IDC_DIFF_BROWSE_FILE2,202,24,50,14
     PUSHBUTTON      "Swap",IDC_DIFF_SWAPFILES,202,41,50,14
     CONTROL         "Append to existing file",IDC_DIFF_APPENDFILE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,33,51,85,10
     LTEXT           "Result:",IDC_STATIC,7,66,23,8
-    COMBOBOX        IDC_DIFF_FILERESULT,33,63,162,96,CBS_DROPDOWN | 
+    COMBOBOX        IDC_DIFF_FILERESULT,33,63,162,96,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Browse...",IDC_DIFF_BROWSE_RESULT,202,63,50,14
     GROUPBOX        "Format",IDC_STATIC,7,81,94,46
     LTEXT           "Style:",IDC_STATIC,13,95,18,8
-    COMBOBOX        IDC_DIFF_STYLE,44,92,48,68,CBS_DROPDOWNLIST | WS_VSCROLL | 
+    COMBOBOX        IDC_DIFF_STYLE,44,92,48,68,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "Context:",IDC_STATIC,13,109,27,8
-    COMBOBOX        IDC_DIFF_CONTEXT,44,108,48,65,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_DIFF_CONTEXT,44,108,48,65,CBS_DROPDOWNLIST |
                     WS_DISABLED | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Case sensitive",IDC_DIFF_CASESENSITIVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,132,61,10
@@ -625,11 +625,11 @@ IDD_EDITOR_HEADERBAR DIALOGEX 0, 0, 373, 12
 STYLE WS_CHILD
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    EDITTEXT        IDC_STATIC_TITLE_LEFT,0,2,160,12,ES_AUTOHSCROLL | 
-                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
+    EDITTEXT        IDC_STATIC_TITLE_LEFT,0,2,160,12,ES_AUTOHSCROLL |
+                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT
                     WS_TABSTOP,WS_EX_STATICEDGE
-    EDITTEXT        IDC_STATIC_TITLE_RIGHT,163,2,160,12,ES_AUTOHSCROLL | 
-                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
+    EDITTEXT        IDC_STATIC_TITLE_RIGHT,163,2,160,12,ES_AUTOHSCROLL |
+                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT
                     WS_TABSTOP,WS_EX_STATICEDGE
 END
 
@@ -641,12 +641,12 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,89,122,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,143,122,50,14
     GROUPBOX        "Show columns",IDC_GROUP_SHOW,7,7,129,109
-    LISTBOX         IDC_LIST_SHOW,48,19,80,90,LBS_NOINTEGRALHEIGHT | 
+    LISTBOX         IDC_LIST_SHOW,48,19,80,90,LBS_NOINTEGRALHEIGHT |
                     LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&Up",IDC_UP,14,45,27,14
     PUSHBUTTON      "&Down",IDC_DOWN,14,63,27,14
     GROUPBOX        "Hide columns",IDC_GROUP_HIDE,180,7,96,109
-    LISTBOX         IDC_LIST_HIDE,188,19,80,90,LBS_NOINTEGRALHEIGHT | 
+    LISTBOX         IDC_LIST_HIDE,188,19,80,90,LBS_NOINTEGRALHEIGHT |
                     LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "<==",IDC_ADD,143,45,29,14
     PUSHBUTTON      "==>",IDC_REMOVE,143,63,29,14
@@ -660,16 +660,16 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,87,99,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,156,99,50,14
     LTEXT           "File unpacker:",IDC_STATIC,7,18,50,10
-    COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "Display all unpackers, don't check the extension",
-                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX | 
+                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX |
                     BS_LEFTTEXT | WS_TABSTOP,7,74,202,13
     LTEXT           "Extensions list:",IDC_STATIC,7,36,49,10
     LTEXT           "Description:",IDC_STATIC,7,52,47,10
     EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,176,12,
                     ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL | 
+    EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL |
                     ES_READONLY
 END
 
@@ -700,22 +700,22 @@ BEGIN
     CONTROL         227,IDC_STATIC,"Static",SS_BITMAP,214,23,12,11,
                     WS_EX_STATICEDGE
     RTEXT           "",IDC_COUNT_LFOLDER,24,9,19,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_RFOLDER,24,25,19,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_RFOLDER,24,25,19,8,SS_REALSIZEIMAGE |
                     0x2000
     RTEXT           "",IDC_COUNT_EQUAL,77,10,19,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_NOTEQUAL,78,25,19,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_NOTEQUAL,78,25,19,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_BINARYSAME,128,9,19,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_BINARYSAME,128,9,19,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_BINARYDIFF,127,25,19,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_BINARYDIFF,127,25,19,8,SS_REALSIZEIMAGE |
                     0x2000
     RTEXT           "",IDC_COUNT_LFILE,180,10,19,8,SS_REALSIZEIMAGE | 0x2000
     RTEXT           "",IDC_COUNT_RFILE,180,25,19,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_FOLDERSKIP,230,10,19,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_FOLDERSKIP,230,10,19,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_FILESKIP,230,24,19,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_FILESKIP,230,24,19,8,SS_REALSIZEIMAGE |
                     0x2000
-    RTEXT           "",IDC_COUNT_UNKNOWN,284,10,19,8,SS_REALSIZEIMAGE | 
+    RTEXT           "",IDC_COUNT_UNKNOWN,284,10,19,8,SS_REALSIZEIMAGE |
                     0x2000
     PUSHBUTTON      "Stop",IDC_COMPARISON_STOP,317,14,60,14
 END
@@ -770,7 +770,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO DISCARDABLE
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
@@ -963,7 +963,7 @@ BEGIN
     AFX_IDS_IDLEMESSAGE     "就緒"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -974,7 +974,7 @@ BEGIN
 END
 
 // ID_FILE_NEW SYNCHRO
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     ID_FILE_NEW             "建立一個新文件\n新增"
     ID_FILE_OPEN            "開啟一個現存文件\n開啟 (Ctrl+O)"
@@ -988,13 +988,13 @@ BEGIN
 END
 
 // ID_APP_ABOUT SYNCHRO
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     ID_APP_ABOUT            "顯示程式資訊，版本號碼和版權\n關於"
     ID_APP_EXIT             "離開應用程式；提示要儲存文件\n結束"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_MRU_FIRST       "開啟這個文件"
     ID_FILE_MRU_FILE2       "開啟這個文件"
@@ -1015,13 +1015,13 @@ BEGIN
 END
 
 // ID_NEXT_PANE SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_NEXT_PANE            "切換到下一個視窗\n下一視窗"
     ID_PREV_PANE            "切換回上一個視窗\n上一視窗"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_WINDOW_NEW           "為作用中文件開啟另一個視窗\n新視窗"
     ID_WINDOW_ARRANGE       "排列圖示在視窗的底部\n排列圖示"
@@ -1032,7 +1032,7 @@ BEGIN
 END
 
 // ID_EDIT_CLEAR SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_EDIT_CLEAR           "清除選取的範圍\n刪除"
     ID_EDIT_CLEAR_ALL       "全部刪除\n全部刪除"
@@ -1047,13 +1047,13 @@ BEGIN
     ID_EDIT_REDO            "重做之前未完成的動作\n重做"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_VIEW_TOOLBAR         "顯示或隱藏工具列\n切換工具列"
     ID_VIEW_STATUS_BAR      "顯示或隱藏狀態列\n切換狀態列"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCSIZE          "更改視窗大小"
     AFX_IDS_SCMOVE          "更改視窗位置"
@@ -1064,14 +1064,14 @@ BEGIN
     AFX_IDS_SCCLOSE         "關閉作用中視窗並提示到儲存這文件"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCRESTORE       "將視窗還原成標準的大小"
     AFX_IDS_SCTASKLIST      "啟用工作清單"
     AFX_IDS_MDICHILD        "啟用這個視窗"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "關閉預覽列印模式\n取消預覽"
 END
@@ -1083,7 +1083,7 @@ BEGIN
     IDD_OPEN                "WinMerge 這個資料夾"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDS_VERSION_FMT         "版本 %1"
     IDS_ALLFILES            "所有檔案 (*.*)|*.*||"
@@ -1102,7 +1102,7 @@ BEGIN
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "另存新檔"
     IDS_SELECT_FILES_OR_FOLDERS "你的選取必須是兩者都是檔案或兩者都是資料夾"
@@ -1123,7 +1123,7 @@ BEGIN
 END
 
 // IDS_COLHDR_FILENAME SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_COLHDR_FILENAME     "檔案名稱"
     IDS_COLHDR_DIR          "資料夾"
@@ -1143,7 +1143,7 @@ BEGIN
     IDS_DEL_LEFT_FMT        "刪除左邊 %1 在 %2 選取的項目"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_DEL_RIGHT_FMT       "刪除右邊 %1 在 %2 選取的項目"
     IDS_DELETE_FAILED       "刪除檔案 %1 失敗： %2"
@@ -1183,7 +1183,7 @@ BEGIN
     IDS_COLHDR_RVERSION     "Right File Version"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_LEFTONLY            "Left Only"
     IDS_RIGHTONLY           "Right Only"
@@ -1214,28 +1214,28 @@ BEGIN
     IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:\n /? or -? displays this help\n /r or -r tells winmerge to compare directories recursively\n /e or -e allows WinMerge to be closed with a single esc keypress\n /ul or -ul tells winmerge to not add left path to MRU\n /ur or -ur tells winmerge to not add right path to MRU\n /ub or -ub tells winmerge to not add both paths to MRU\n /dl or -dl adds a description for left side shown instead of directory/filename\n /dr or -dr adds a description for right side shown instead of directory/filename\n leftpath is the directory or filename to open on the left side\n rightpath is the directory or filename to open on the right side\n outputpath is an optional output directory where you want merged files to be \n saved\n \n Note: leftpath and rightpath both has to be files or both has to be \n directories\n"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDC_COMPARISON_STOP     "Stop"
     IDC_COMPARISON_CLOSE    "Press any key"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "已取代 %1 個字串。"
     IDS_EDIT_TEXT_NOT_FOUND "無法尋找字串「%s」"
     IDS_LINE_STATUS_INFO_EOL "Line: %s Column: %d Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
-    IDS_VSSFOLDER_AND_FILE_NOMATCH 
+    IDS_VSSFOLDER_AND_FILE_NOMATCH
                             "The VSS Working Folder and the location of the current file do not match. Continue?"
-    IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"                      
+    IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1249,7 +1249,7 @@ BEGIN
     ID_OPTIONS_BACKUPORIGINALFILE "儲存的這原始的一個副本為 *.bak\n備份"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE "自動地捲動到這第一個不同\n捲動到第一個"
     ID_OPTIONS_IGNOREWHITESPACE "比對檔案時不管空白和跳格"
@@ -1264,7 +1264,7 @@ BEGIN
     ID_DIR_COPY_FILE_TO_LEFT "複製選取的檔案到已命名的資料夾"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_DIR_COPY_FILE_TO_RIGHT "複製選取的檔案到已命名的資料夾"
     ID_VIEW_LANGUAGE        "選取目前用戶介面語言\n語言"
@@ -1312,7 +1312,7 @@ BEGIN
     ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
     ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
@@ -1321,7 +1321,7 @@ BEGIN
     ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_PLUGIN_FAILED       "An error occurred in plugin '%1'. The current operation is aborted."
     IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"

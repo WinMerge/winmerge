@@ -974,6 +974,7 @@ void CMainFrame::OnOptions()
 		m_sPattern = filter.m_sPattern;
 		theApp.SetFileFilterPath(filter.m_sFileFilterPath);
 
+		regpage.SaveMergePath();
 		m_sExtEditorPath = regpage.m_strEditorPath;
 		m_sExtEditorPath.TrimLeft();
 		m_sExtEditorPath.TrimRight();

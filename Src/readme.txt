@@ -11,6 +11,9 @@
   Submitted by Perry
   WinMerge: ConfigLog.cpp
   WinMerge new file: winnt_supp.h
+ PATCH: [ 838898 ] Cleanup Registry -optionpage
+  WinMerge: MainFrm.cpp Merge.rc PropRegistry.h PropRegistry.cpp
+  Languages: *.rc
 
 2003-11-11 Laoran
  PATCH: [ 839243 ] F4 should hilight diff in both files

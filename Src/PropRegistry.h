@@ -41,6 +41,7 @@ class CPropRegistry : public CPropertyPage
 public:
 
 	CPropRegistry();   // standard constructor
+	void SaveMergePath();
 
 // Dialog Data
 	//{{AFX_DATA(CPropRegistry)
@@ -60,7 +61,6 @@ public:
 // Implementation methods
 protected:
 	bool IsRegisteredForDirectory() const;
-	void UpdateButton();
 	void EnableContextHandler(bool enabling);
 	void GetContextRegValues();
 
@@ -68,7 +68,6 @@ protected:
 	//{{AFX_MSG(CPropRegistry)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnAddToExplorer();
-	afx_msg void OnSavePath();
 	afx_msg void OnBrowsePath();
 	afx_msg void OnBrowseEditor();
 	//}}AFX_MSG

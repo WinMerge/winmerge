@@ -70,7 +70,6 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CPropRegistry, CDialog)
 	//{{AFX_MSG_MAP(CPropRegistry)
 	ON_BN_CLICKED(IDC_EXPLORER_CONTEXT, OnAddToExplorer)
-	ON_BN_CLICKED(IDC_WINMERGE_PATH_SAVE, OnSavePath)
 	ON_BN_CLICKED(IDC_WINMERGE_PATH_BROWSE, OnBrowsePath)
 	ON_BN_CLICKED(IDC_EXT_EDITOR_BROWSE, OnBrowseEditor)
 	//}}AFX_MSG_MAP
@@ -172,10 +171,8 @@ void CPropRegistry::OnAddToExplorer()
 }
 
 /// Saves given path to registry for ShellExtension
-void CPropRegistry::OnSavePath()
+void CPropRegistry::SaveMergePath()
 {
-	UpdateData();
-
 	CRegKeyEx reg;
 	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
 		return;
