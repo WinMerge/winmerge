@@ -1,3 +1,7 @@
+2004-11-11 Kimmo
+ PATCH: [ 1063342 ] Fix problem in XML syntax highlight and backslash
+  Src/editlib: xml.cpp
+
 2004-11-09 Jochen
  PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
   Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
