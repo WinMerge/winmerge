@@ -1,3 +1,8 @@
+2004-09-16 Perry
+ Fix Italian editor property page (tabs section) & widen corresponding English controls
+  Src: Merge.rc
+  Src/Languages: Italian/MergeItalian.rc
+
 2004-09-15 WinMerge experimental release 2.1.7.14 (cvs)
 
 2004-09-15 Kimmo

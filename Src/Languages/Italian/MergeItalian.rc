@@ -913,9 +913,9 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Conserva caratteri di fine linea originali",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
-    GROUPBOX        "Tabulazioni",IDC_STATIC,7,54,215,30,WS_GROUP
-    LTEXT           "&Dimensioni:",IDC_STATIC,15,78,30,8
-    EDITTEXT        IDC_TAB_EDIT,47,80,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+    GROUPBOX        "Tabulazioni",IDC_STATIC,7,54,221,33,WS_GROUP
+    LTEXT           "&Dimensioni:",IDC_STATIC,15,68,35,8
+    EDITTEXT        IDC_TAB_EDIT,55,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "&Inserisci tabulazioni",IDC_PROP_INSERT_TABS,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,85,63,85,10
