@@ -1,3 +1,8 @@
+2004-11-17 Kimmo
+ PATCH: [ 1067374 ] Norwegian translation for 2.2.0
+  Submitted by Hans Fr. Nordhaug
+  Src/Languages/Norwegian: MergeNorwegian.rc
+
 2004-11-14 Kimmo
  PATCH: [ 1065462 ] Show all skipped items when selected so
   Src: DirDoc.cpp
