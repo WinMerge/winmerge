@@ -6,6 +6,8 @@
   Languages: *.rc
  Minor grammar fixes & wording changes
   Docs/Developers/readme-developers.html
+ Add section on "Forcing compiler version with MakeResDll"
+  Docs/Developers/readme-developers.html
 
 2005-01-22 Perry
  PATCH: [ 1107484 ] Fix broken version columns

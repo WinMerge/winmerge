@@ -378,6 +378,16 @@ which can now be used to compile language files:
 
 Compiled language files (*.lang) are placed in <code>/WinMerge/Src/Languages/Dll</code> .
 
+<h5>Forcing compiler version with MakeResDll</h5>
+If MakeResDll does not work, and you wish to force it to use the compiler (resource compiler and linker) 
+of your choice, there are registry settings to accomplish this. Perry added these because he has been
+unable to get MakeResDll link successfully using VS.NET 2003, due to it failing to find mspdb71.dll at runtime. To force use of the
+Visual C++ 6 binaries, assuming Visual C++ 6 is correctly installed, set
+<ul><li>
+HKEY_CURRENT_USER\Software\Thingamahoochie\MakeResDll\Settings\VcVersion="6"
+</li></ul>
+
+
 <a name="Localization : merging and scheduling"></a>
 <h3>Localization : merging and scheduling</h3>
 
