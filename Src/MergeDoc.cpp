@@ -1742,3 +1742,159 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView)
 	pView->SelectArea(ptBegin, ptEnd);
 	pView->SetCursorPos(ptBegin);
 }
+
+/**
+* @brief Loads file to buffer and shows load-errors
+*
+* @param sFileName File to open
+* @param bLeft Left/right-side file
+*
+* @return Tells if files were loaded succesfully
+*
+* @note Binary loading message could be improved...
+*
+* @sa CMergeDoc::OpenDocs()
+*
+*/
+int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft)
+{
+	CDiffTextBuffer *pBuf;
+	CString sError;
+	int retVal = FRESULT_ERROR;
+
+	if (bLeft)
+	{
+		pBuf = &m_ltBuf;
+		m_strLeftFile = sFileName;
+	}
+	else
+	{
+		pBuf = &m_rtBuf;
+		m_strRightFile = sFileName;
+	}
+
+	// FreeAll() is needed before loading (this is complicated)
+	pBuf->FreeAll();
+	retVal = pBuf->LoadFromFile(sFileName);
+
+	if (retVal != FRESULT_OK)
+	{
+		if (retVal == FRESULT_ERROR)
+			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, sFileName);
+		else if (retVal == FRESULT_BINARY)
+		{
+			sError.LoadString(IDS_FILEBINARY);
+			sError += "\n(";
+			sError += sFileName;
+			sError += ")";
+		}
+
+		// Clear buffer, but don't leave as uninitialised
+		pBuf->FreeAll();
+		pBuf->InitNew();
+		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
+	}
+	return retVal;
+}
+
+/**
+* @brief Loads files and does initial rescan
+*
+* @param sLeftFile File to open to left side
+* @param sRightFile File to open to right side
+*
+* @return Tells if files were loaded and scanned succesfully
+*
+* @note Options are still read from CMainFrame, this will change
+*
+* @sa CMainFrame::ShowMergeDoc()
+*
+*/
+BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile)
+{
+	int nRescanResult = RESCAN_OK;
+	CChildFrame *pf = GetParentFrame();
+	ASSERT(pf);
+
+	m_ltBuf.SetEolSensitivity(mf->m_bEolSensitive);
+	m_rtBuf.SetEolSensitivity(mf->m_bEolSensitive);
+	undoTgt.clear();
+	curUndo = undoTgt.begin();
+
+	// Load left side file
+	int nLeftSuccess = LoadFile(sLeftFile, TRUE);
+	
+	// Load right side only if left side was succesfully loaded
+	int nRightSuccess = FRESULT_ERROR;
+	if (nLeftSuccess == FRESULT_OK)
+		nRightSuccess = LoadFile(sRightFile, FALSE);
+
+	// Bail out if either side failed
+	if (nLeftSuccess != FRESULT_OK || nRightSuccess != FRESULT_OK)
+	{
+		GetParentFrame()->DestroyWindow();
+		return FALSE;
+	}
+	
+	nRescanResult = Rescan();
+
+	// Open different and identical files
+	if (nRescanResult == RESCAN_OK ||
+		nRescanResult == RESCAN_IDENTICAL)
+	{
+		CMergeEditView * pLeft = GetLeftView();
+		CMergeEditView * pRight = GetRightView();
+			
+		// scroll to first diff
+		if(mf->m_bScrollToFirst && m_diffs.GetSize() != 0)
+			pLeft->SelectDiff(0, TRUE, FALSE);
+
+		// Enable/disable automatic rescan (rescanning after edit)
+		pLeft->EnableRescan(mf->m_bAutomaticRescan);
+		pRight->EnableRescan(mf->m_bAutomaticRescan);
+
+		// set the document types
+		CString sext;
+		SplitFilename(sLeftFile, 0, 0, &sext);
+		pLeft->SetTextType(sext);
+		SplitFilename(sRightFile, 0, 0, &sext);
+		pRight->SetTextType(sext);
+
+		// SetTextType will revert to language dependent defaults for tab
+		pLeft->SetTabSize(mf->m_nTabSize);
+		pRight->SetTabSize(mf->m_nTabSize);
+		pLeft->SetViewTabs(mf->m_bViewWhitespace);
+		pRight->SetViewTabs(mf->m_bViewWhitespace);
+		pLeft->SetViewEols(mf->m_bViewWhitespace);
+		pRight->SetViewEols(mf->m_bViewWhitespace);
+	
+		// Enable Backspace at beginning of line
+		pLeft->SetDisableBSAtSOL(FALSE);
+		pRight->SetDisableBSAtSOL(FALSE);
+		
+		// set the frame window header
+		pf->SetHeaderText(0, sLeftFile);
+		pf->SetHeaderText(1, sRightFile);
+
+		// Set tab type (tabs/spaces)
+		BOOL bInsertTabs = (mf->m_nTabType == 0);
+		pLeft->SetInsertTabs(bInsertTabs);
+		pRight->SetInsertTabs(bInsertTabs);
+
+		// Inform user that files are identical
+		if (nRescanResult == RESCAN_IDENTICAL)
+			ShowRescanError(nRescanResult);
+	}
+	else
+	{
+		// CMergeDoc::Rescan fails if files are identical, or 
+		// does not exist on both sides or the really arcane case
+		// that the temp files couldn't be created, which is too
+		// obscure to bother reporting if you can't write to your
+		// temp directory, doing nothing is graceful enough for that).
+		ShowRescanError(nRescanResult);
+		GetParentFrame()->DestroyWindow();
+		return FALSE;
+	}
+	return TRUE;
+}

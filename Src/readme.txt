@@ -1,3 +1,7 @@
+2003-08-24 Kimmo
+ PATCH: [ 792668 ] Move file load code to CMergeDoc
+  WinMerge: MainFrm.cpp MergeDoc.h MergeDoc.cpp
+
 2003-08-23 Perry
  PATCH: [ 791487 ] Norwegian (bokmål) translation
   Corrections#2 Avbrytt->Avbryt and #3 Opdater->Oppdater

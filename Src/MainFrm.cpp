@@ -38,8 +38,6 @@
 #include "MergeEditView.h"
 
 #include "diff.h"
-#include "getopt.h"
-#include "fnmatch.h"
 #include "coretools.h"
 #include "Splash.h"
 #include "VssPrompt.h"
@@ -56,7 +54,6 @@
 #include "multimon.h"
 #include "paths.h"
 #include "WaitStatusCursor.h"
-#include "files.h"
 
 
 #ifdef _DEBUG
@@ -303,82 +300,20 @@ void CMainFrame::OnFileOpen()
 	DoFileOpen();
 }
 
+/// Creates new MergeDoc instance and shows documents
 void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight)
 {
-	CString sError;
 	BOOL docNull;
+	BOOL bOpenSuccess = FALSE;
 	int nRescanResult = RESCAN_OK;
 	CMergeDoc * pMergeDoc = GetMergeDocToShow(pDirDoc, &docNull);
 
 	ASSERT(pMergeDoc);		// must ASSERT to get an answer to the question below ;-)
 	if (!pMergeDoc) return; // when does this happen ?
 
-	CChildFrame *pf = pMergeDoc->GetParentFrame();
-	ASSERT(pf);
+	bOpenSuccess = pMergeDoc->OpenDocs(szLeft, szRight);
 
-	pMergeDoc->m_strLeftFile = szLeft;
-	pMergeDoc->m_strRightFile = szRight;
-	pMergeDoc->m_ltBuf.FreeAll();
-	pMergeDoc->m_rtBuf.FreeAll();
-	pMergeDoc->m_ltBuf.SetEolSensitivity(m_bEolSensitive);
-	pMergeDoc->m_rtBuf.SetEolSensitivity(m_bEolSensitive);
-	pMergeDoc->undoTgt.clear();
-	pMergeDoc->curUndo = pMergeDoc->undoTgt.begin();
-
-	// Load left side
-	int nLeftSuccess = pMergeDoc->m_ltBuf.LoadFromFile(szLeft);
-	if (nLeftSuccess != FRESULT_OK)
-	{
-		if (nLeftSuccess == FRESULT_ERROR)
-			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szLeft);
-		else if (nLeftSuccess == FRESULT_BINARY)
-		{
-			sError.LoadString(IDS_FILEBINARY);
-			sError += "\n(";
-			sError += szLeft;
-			sError += ")";
-		}
-	}
-
-	int nRightSuccess = FRESULT_ERROR;
-	
-	// Load right side only if left side was succesfully loaded
-	if (nLeftSuccess == FRESULT_OK)
-		nRightSuccess = pMergeDoc->m_rtBuf.LoadFromFile(szRight);
-
-	// Left side was OK but right side failed
-	if (nLeftSuccess == FRESULT_OK && nRightSuccess != FRESULT_OK)
-	{
-		pMergeDoc->m_rtBuf.InitNew();
-
-		if (nRightSuccess == FRESULT_ERROR)
-			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szRight);
-		else if (nRightSuccess == FRESULT_BINARY)
-		{
-			sError.LoadString(IDS_FILEBINARY);
-			sError += "\n(";
-			sError += szRight;
-			sError += ")";
-		}
-	}
-	// Bail out if either side failed
-	if (!sError.IsEmpty())
-	{
-		pMergeDoc->m_ltBuf.FreeAll();
-		pMergeDoc->m_ltBuf.InitNew();
-		pMergeDoc->m_rtBuf.FreeAll();
-		pMergeDoc->m_rtBuf.InitNew();
-
-		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
-		pMergeDoc->GetParentFrame()->DestroyWindow();
-		return;
-	}
-	
-	nRescanResult = pMergeDoc->Rescan();
-
-	// Open different and identical files
-	if (nRescanResult == RESCAN_OK ||
-		nRescanResult == RESCAN_IDENTICAL)
+	if (bOpenSuccess)
 	{
 		if (docNull)
 		{
@@ -387,61 +322,6 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 		}
 		else
 			MDINext();
-
-		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
-		CMergeEditView * pRight = pMergeDoc->GetRightView();
-			
-		// scroll to first diff
-		if(m_bScrollToFirst && pMergeDoc->m_diffs.GetSize()!=0)
-		{
-			pLeft->SelectDiff(0, TRUE, FALSE);
-		}
-
-		// Enable/disable automatic rescan (rescanning after edit)
-		pLeft->EnableRescan(m_bAutomaticRescan);
-		pRight->EnableRescan(m_bAutomaticRescan);
-
-		// set the document types
-		CString sext;
-		SplitFilename(szLeft, 0, 0, &sext);
-		pLeft->SetTextType(sext);
-		SplitFilename(szRight, 0, 0, &sext);
-		pRight->SetTextType(sext);
-
-		// SetTextType will revert to language dependent defaults for tab
-		pLeft->SetTabSize(mf->m_nTabSize);
-		pRight->SetTabSize(mf->m_nTabSize);
-		pLeft->SetViewTabs(mf->m_bViewWhitespace);
-		pRight->SetViewTabs(mf->m_bViewWhitespace);
-		pLeft->SetViewEols(mf->m_bViewWhitespace);
-		pRight->SetViewEols(mf->m_bViewWhitespace);
-
-		// Enable Backspace at beginning of line 
-		pLeft->SetDisableBSAtSOL( FALSE ); 
-		pRight->SetDisableBSAtSOL( FALSE ); 
-
-		// set the frame window header
-		pf->SetHeaderText(0, szLeft);
-		pf->SetHeaderText(1, szRight);
-
-		// Set tab type (tabs/spaces)
-		BOOL bInsertTabs = (m_nTabType == 0);
-		pLeft->SetInsertTabs(bInsertTabs);
-		pRight->SetInsertTabs(bInsertTabs);
-
-		// Inform user that files are identical
-		if (nRescanResult == RESCAN_IDENTICAL)
-			pMergeDoc->ShowRescanError(nRescanResult);
-	}
-	else
-	{
-		// CMergeDoc::Rescan fails if files are identical, or 
-		// does not exist on both sides or the really arcane case
-		// that the temp files couldn't be created, which is too
-		// obscure to bother reporting if you can't write to your
-		// temp directory, doing nothing is graceful enough for that).
-		pMergeDoc->ShowRescanError(nRescanResult);
-		pMergeDoc->GetParentFrame()->DestroyWindow();
 	}
 }
 

@@ -170,6 +170,8 @@ public:
 	UINT m_nDiffs;
 	CString m_strLeftFile, m_strRightFile;
 
+	BOOL OpenDocs(CString sLeftFile, CString sRightFile);
+	int LoadFile(CString sFileName, BOOL bLeft);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(BOOL bForced = FALSE);
 	void ShowRescanError(int nRescanResult);
