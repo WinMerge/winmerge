@@ -1,3 +1,7 @@
+2003-07-08 Kimmo
+ PATCH: [ 766473 ] Update identical files
+  WinMerge: MergeDoc.cpp
+
 2003-07-08 Laoran
  PATCH: [ 767159 ] merge LF_RIGHT_ONLY and LF_LEFT_ONLY -> LF_GHOST 
   WinMerge: MergeDoc.cpp MergeEditView.cpp

@@ -412,9 +412,18 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 				val = 2;
 			}
 			
-			// display the files
-			if (m_nDiffs>0)
+			// Binary files or errors?
+			if (diff_flag > 0)
+				nResult = RESCAN_BINARIES;
+			else if (failed)
+				nResult = RESCAN_FILE_ERR;
+			else
 			{
+				// Identical files are also updated
+				if (m_nDiffs == 0)
+					nResult = RESCAN_IDENTICAL;
+
+				// display the files
 				PrimeTextBuffers();
 
 				int nResumeTopLine = m_pLeftView->GetScrollPos(SB_VERT)+1;
@@ -455,19 +464,6 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 					mf->m_pRight->m_pList->SetItemData(rcnt, 1);
 					rcnt++;
 				}*/
-				nResult = RESCAN_OK;
-			}
-			else if (diff_flag)
-			{
-				nResult = RESCAN_BINARIES;
-			}
-			else if (failed)
-			{
-				nResult = RESCAN_FILE_ERR;
-			}
-			else
-			{
-				nResult = RESCAN_IDENTICAL;
 			}
 		}
 	}
