@@ -1,3 +1,8 @@
+2004-08-18 Kimmo
+ RFE: [ 952959 ] split Are you sure you want to copy into more lines
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2004-08-17 WinMerge experimental release 2.1.7.11 (cvs)
 
 2004-08-17 Kimmo

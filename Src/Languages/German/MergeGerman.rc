@@ -1603,11 +1603,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "Sind Sie sicher, dass sie alle Unterschiede in die linke Datei kopieren wollen?"
     IDS_CONFIRM_ALL_RIGHT   "Sind Sie sicher, dass sie alle Unterschiede in die rechte Datei kopieren wollen?"
-    IDS_CONFIRM_COPY_SINGLE "Wollen Sie wirklich %1 nach %2 kopieren?"
-    IDS_CONFIRM_COPY2DIR    "Sind Sie sicher, dass Sie die ausgewählte Datei nach %1 kopieren wollen?"
+    IDS_CONFIRM_COPY_SINGLE "Wollen Sie wirklich\n\n%1\nnach\n%2\nkopieren?"
+    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy %1 of %2 selected item(s)?"
     IDS_CONFIRM_DELETE_ITEMS "Wollen Sie wirklich %1 von %2 ausgewählten Einträgen löschen?"
-    IDS_CONFIRM_DELETE_DIR  "Verzeichnis %1 löschen?"
-    IDS_CONFIRM_DELETE_SINGLE "Wollen Sie wirklich %1 löschen?"
+    IDS_CONFIRM_DELETE_DIR  "Verzeichnis\n\n%1\nlöschen?"
+    IDS_CONFIRM_DELETE_SINGLE "Wollen Sie wirklich\n\n%1\nlöschen?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

@@ -1596,11 +1596,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "Er du sikker på du vil kopiere alle forskjeller til den venstre filen?"
     IDS_CONFIRM_ALL_RIGHT   "Er du sikker på du vil kopiere alle forskjeller til den høyre filen?"
-    IDS_CONFIRM_COPY_SINGLE "Er du sikker på at du vil kopiere %1 til %2?"
+    IDS_CONFIRM_COPY_SINGLE "Er du sikker på at du vil kopiere\n\n%1\ntil\n%2 ?"
     IDS_CONFIRM_COPY2DIR    "Er du sikker på du vil kopiere %1 av %2 valgte?"
     IDS_CONFIRM_DELETE_ITEMS "Er du sikker på at du vil slette %1 av %2 valgte element(er)?"
-    IDS_CONFIRM_DELETE_DIR  "Slett mappen %1?"
-    IDS_CONFIRM_DELETE_SINGLE "Er du sikker på at du vil slette %1?"
+    IDS_CONFIRM_DELETE_DIR  "Slett mappen\n\n%1 ?"
+    IDS_CONFIRM_DELETE_SINGLE "Er du sikker på at du vil slette\n\n%1 ?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

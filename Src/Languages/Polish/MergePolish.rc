@@ -1597,11 +1597,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "Czy rzeczywiscie chcesz skopiowac wszystkie róznice na plik po lewej?"
     IDS_CONFIRM_ALL_RIGHT   "Czy rzeczywiscie chcesz skopiowac wszystkie róznice na plik po prawej?"
-    IDS_CONFIRM_COPY_SINGLE "Czy rzeczywiscie chcesz skopiowac %1 na %2?"
+    IDS_CONFIRM_COPY_SINGLE "Czy rzeczywiscie chcesz skopiowac\n\n%1\nna \n%2 ?"
     IDS_CONFIRM_COPY2DIR    "Czy rzeczywiscie chcesz skopiowac %1 z %2 wybranych pozycji"
-    IDS_CONFIRM_DELETE_ITEMS "Are you sure you want to delete %1 of %2 selected item(s) ?"
-    IDS_CONFIRM_DELETE_DIR  "Usunac katalog %1?"
-    IDS_CONFIRM_DELETE_SINGLE "Czy rzeczywiscie usunac %1?"
+    IDS_CONFIRM_DELETE_ITEMS "Are you sure you want to delete %1 of %2 selected item(s)?"
+    IDS_CONFIRM_DELETE_DIR  "Usunac katalog\n\n%1 ?"
+    IDS_CONFIRM_DELETE_SINGLE "Czy rzeczywiscie usunac\n\n%1 ?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

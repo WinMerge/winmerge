@@ -1599,11 +1599,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "Weet u zeker dat u alle verschillen naar het linker bestand wil kopiëren?"
     IDS_CONFIRM_ALL_RIGHT   "Weet u zeker dat u alle verschillen naar het rechter bestand wil kopiëren?"
-    IDS_CONFIRM_COPY_SINGLE "Are you sure you want to copy %1 to %2?"
-    IDS_CONFIRM_COPY2DIR    "Weet u zeker dat u het geselecteerde bestand  wil kopiëren naar %1?"
+    IDS_CONFIRM_COPY_SINGLE "Are you sure you want to copy\n\n%1\nto\n%2 ?"
+    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy %1 of %2 selected item(s)?"
     IDS_CONFIRM_DELETE_ITEMS "Are you sure you want to delete %1 of %2 selected item(s) ?"
-    IDS_CONFIRM_DELETE_DIR  "Delete directory %1?"
-    IDS_CONFIRM_DELETE_SINGLE "Are you sure you want to delete %1?"
+    IDS_CONFIRM_DELETE_DIR  "Delete directory\n\n%1 ?"
+    IDS_CONFIRM_DELETE_SINGLE "Are you sure you want to delete\n\n%1 ?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

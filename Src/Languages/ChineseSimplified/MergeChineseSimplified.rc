@@ -1470,11 +1470,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "您确定要复制所有不同到左边文件吗？"
     IDS_CONFIRM_ALL_RIGHT   "您确定要复制所有不同到右边文件吗？"
-    IDS_CONFIRM_COPY_SINGLE "您确定要复制 %1 到 %2 吗？"
+    IDS_CONFIRM_COPY_SINGLE "您确定要复制\n\n%1\n到\n%2\n吗？"
     IDS_CONFIRM_COPY2DIR    "您确定要复制 %1 在 %2 选择的项目"
     IDS_CONFIRM_DELETE_ITEMS "您确定要删除 %1 在 %2 选择的项目吗？"
-    IDS_CONFIRM_DELETE_DIR  "删除文件夹 %1？"
-    IDS_CONFIRM_DELETE_SINGLE "您确定要删除 %1 吗？"
+    IDS_CONFIRM_DELETE_DIR  "删除文件夹\n\n%1\n？"
+    IDS_CONFIRM_DELETE_SINGLE "您确定要删除\n\n%1\n吗？"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

@@ -1598,11 +1598,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "Sei sicuro di voler copiare tutte le differenze dal file di destra a quello di sinistra?"
     IDS_CONFIRM_ALL_RIGHT   "Sei sicuro di voler copiare tutte le differenze dal file di sinistra a quello di destra?"
-    IDS_CONFIRM_COPY_SINGLE "Sei sicuro di voler copiare %1 in %2?"
-    IDS_CONFIRM_COPY2DIR    "Sei sicuro di voler copiare il file selezionato in %1?"
+    IDS_CONFIRM_COPY_SINGLE "Sei sicuro di voler copiare\n\n%1\nin\n%2 ?"
+    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy %1 of %2 selected item(s)?"
     IDS_CONFIRM_DELETE_ITEMS "Sei sicuro di voler eliminare %1 elemento(i) selezionato(i) su %2 ?"
-    IDS_CONFIRM_DELETE_DIR  "Eliminare la cartella %1?"
-    IDS_CONFIRM_DELETE_SINGLE "Sei sicuro di voler eliminare %1?"
+    IDS_CONFIRM_DELETE_DIR  "Eliminare la cartella\n\n%1 ?"
+    IDS_CONFIRM_DELETE_SINGLE "Sei sicuro di voler eliminare\n\n%1 ?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

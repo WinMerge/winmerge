@@ -1484,11 +1484,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "Сигурен ли се ,че искаш да се копират всички разлики на левият файл?"
     IDS_CONFIRM_ALL_RIGHT   "Сигурен ли се ,че искаш да се копират всички разлики на десният файл?"
-    IDS_CONFIRM_COPY_SINGLE "Сигурен ли сте ,че искате да копирате %1 на %2?"
-    IDS_CONFIRM_COPY2DIR    "Сигурен ли се ,че искаш да се копира %1 към %2 избрани обект(и)"
-    IDS_CONFIRM_DELETE_ITEMS "Сигурен ли сте ,че искате да изтриите %1 от %2 избрани обект(и) ?"
-    IDS_CONFIRM_DELETE_DIR  "Да изтрие ли директорията %1?"
-    IDS_CONFIRM_DELETE_SINGLE "Сигурен ли сте ,че искате да изтриите %1?"
+    IDS_CONFIRM_COPY_SINGLE "Сигурен ли сте ,че искате да копирате\n\n%1\nна\n%2 ?"
+    IDS_CONFIRM_COPY2DIR    "Сигурен ли се ,че искаш да се копира %1 към %2 избрани обект(и)?"
+    IDS_CONFIRM_DELETE_ITEMS "Сигурен ли сте ,че искате да изтриите %1 от %2 избрани обект(и)?"
+    IDS_CONFIRM_DELETE_DIR  "Да изтрие ли директорията\n\n%1 ?"
+    IDS_CONFIRM_DELETE_SINGLE "Сигурен ли сте ,че искате да изтриите\n\n%1 ?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

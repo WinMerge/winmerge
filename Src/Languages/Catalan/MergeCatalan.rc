@@ -1500,11 +1500,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "Esteu segur que voleu copiar totes les diferències al fitxer de l'esquerra?"
     IDS_CONFIRM_ALL_RIGHT   "Esteu segur que voleu copiar totes les diferències al fitxer de la dreta?"
-    IDS_CONFIRM_COPY_SINGLE "Esteu segur que voleu copiar %1 a %2?"
+    IDS_CONFIRM_COPY_SINGLE "Esteu segur que voleu copiar\n\n%1\na \n%2 ?"
     IDS_CONFIRM_COPY2DIR    "Esteu segur que voleu copiar %1 de %2 element(s) seleccionat(s)?"
     IDS_CONFIRM_DELETE_ITEMS "Esteu segur que voleu suprimir %1 del(s) %2 element(s) seleccionat(s)?"
-    IDS_CONFIRM_DELETE_DIR  "Voleu suprimir el directori %1?"
-    IDS_CONFIRM_DELETE_SINGLE "Esteu segur que voleu suprimir %1?"
+    IDS_CONFIRM_DELETE_DIR  "Voleu suprimir el directori\n\n%1 ?"
+    IDS_CONFIRM_DELETE_SINGLE "Esteu segur que voleu suprimir\n\n%1 ?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

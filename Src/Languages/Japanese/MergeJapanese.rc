@@ -1487,11 +1487,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "本当に全ての差異を左側のファイルにコピーしますか?"
     IDS_CONFIRM_ALL_RIGHT   "本当に全ての差異を右側のファイルにコピーしますか?"
-    IDS_CONFIRM_COPY_SINGLE "本当に %1 を %2 にコピーしますか?"
+    IDS_CONFIRM_COPY_SINGLE "本当に\n\n%1\nを\n%2\nにコピーしますか?"
     IDS_CONFIRM_COPY2DIR    "本当に選択された %2個の項目の内 %1個をコピーしますか?"
     IDS_CONFIRM_DELETE_ITEMS "本当に選択された%2個の項目の内 %1個を削除しますか?"
-    IDS_CONFIRM_DELETE_DIR  "ディレクトリ%1を削除しますか?"
-    IDS_CONFIRM_DELETE_SINGLE "本当に%1を削除しますか?"
+    IDS_CONFIRM_DELETE_DIR  "ディレクトリ\n\n%1\nを削除しますか?"
+    IDS_CONFIRM_DELETE_SINGLE "本当に\n\n%1\nを削除しますか?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

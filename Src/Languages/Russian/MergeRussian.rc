@@ -1494,11 +1494,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "Вы уверены, что хотите скопировать все отличия в файл слева ?"
     IDS_CONFIRM_ALL_RIGHT   "Вы уверены, что хотите скопировать все отличия в файл справа ?"
-    IDS_CONFIRM_COPY_SINGLE "Вы уверены, что хотите скопировать %1 в %2 ?"
+    IDS_CONFIRM_COPY_SINGLE "Вы уверены, что хотите скопировать\n\n%1\nв\n%2 ?"
     IDS_CONFIRM_COPY2DIR    "Вы уверены, что хотите скопировать %1 из %2 выбранных элементов"
     IDS_CONFIRM_DELETE_ITEMS "Вы уверены, что хотите удалить %1 из %2 выбранных элементов ?"
-    IDS_CONFIRM_DELETE_DIR  "Удалить каталог %1?"
-    IDS_CONFIRM_DELETE_SINGLE "Вы уверены, что хотите удалить %1 ?"
+    IDS_CONFIRM_DELETE_DIR  "Удалить каталог\n\n%1 ?"
+    IDS_CONFIRM_DELETE_SINGLE "Вы уверены, что хотите удалить\n\n%1 ?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

@@ -1597,11 +1597,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "Voulez-vous vraiment copier toutes les différences vers le fichier gauche ?"
     IDS_CONFIRM_ALL_RIGHT   "Voulez-vous vraiment copier toutes les différences vers le fichier droit ?"
-    IDS_CONFIRM_COPY_SINGLE "Voulez-vous vraiment copier %1 vers %2 ?"
+    IDS_CONFIRM_COPY_SINGLE "Voulez-vous vraiment copier\n\n%1\nvers\n%2 ?"
     IDS_CONFIRM_COPY2DIR    "Voulez-vous vraiment copier %1 éléments sélectionnés parmi %2 ?"
     IDS_CONFIRM_DELETE_ITEMS "Voulez-vous vraiment supprimer %1 éléments sélectionnés parmi %2 ?"
-    IDS_CONFIRM_DELETE_DIR  "Voulez-vous vraiment supprimer le répertoire %1 ?"
-    IDS_CONFIRM_DELETE_SINGLE "Voulez-vous vraiment supprimer le fichier %1 ?"
+    IDS_CONFIRM_DELETE_DIR  "Voulez-vous vraiment supprimer le répertoire\n\n%1 ?"
+    IDS_CONFIRM_DELETE_SINGLE "Voulez-vous vraiment supprimer le fichier\n\n%1 ?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

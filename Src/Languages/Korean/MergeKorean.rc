@@ -1558,11 +1558,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "정말 모든 다른 부분을 왼쪽 파일로 복사하시겠습니까?"
     IDS_CONFIRM_ALL_RIGHT   "정말 모든 다른 부분을 오른쪽 파일로 복사하시겠습니까?"
-    IDS_CONFIRM_COPY_SINGLE "%1을 %2로 복사하시겠습니까?"
+    IDS_CONFIRM_COPY_SINGLE "%1\n을\n%2\n로 복사하시겠습니까?"
     IDS_CONFIRM_COPY2DIR    "선택한 파일을 정말 복사하시겠습니까(%1 중 %2)"
-    IDS_CONFIRM_DELETE_ITEMS "정말 삭제하시겠습니까(%1 중 %2) ?"
-    IDS_CONFIRM_DELETE_DIR  "%1 디렉토리를 삭제하시겠습니까?"
-    IDS_CONFIRM_DELETE_SINGLE "정말 삭제하시겠습니까 %1?"
+    IDS_CONFIRM_DELETE_ITEMS "정말 삭제하시겠습니까(%1 중 %2)?"
+    IDS_CONFIRM_DELETE_DIR  "%1\n디렉토리를 삭제하시겠습니까?"
+    IDS_CONFIRM_DELETE_SINGLE "정말 삭제하시겠습니까\n\n%1 ?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

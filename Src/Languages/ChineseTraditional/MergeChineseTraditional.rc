@@ -1584,11 +1584,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "你確定要複製所有不同到左邊檔案嗎？"
     IDS_CONFIRM_ALL_RIGHT   "你確定要複製所有不同到右邊檔案嗎？"
-    IDS_CONFIRM_COPY_SINGLE "你確定要複製 %1 到 %2 嗎？"
+    IDS_CONFIRM_COPY_SINGLE "你確定要複製\n\n%1\n到\n%2\n嗎？"
     IDS_CONFIRM_COPY2DIR    "你確定要複製 %1 在 %2 選取的項目"
     IDS_CONFIRM_DELETE_ITEMS "你確定要刪除 %1 在 %2 選取的項目嗎？"
-    IDS_CONFIRM_DELETE_DIR  "刪除資料夾 %1？"
-    IDS_CONFIRM_DELETE_SINGLE "你確定要刪除 %1 嗎？"
+    IDS_CONFIRM_DELETE_DIR  "刪除資料夾\n\n%1\n？"
+    IDS_CONFIRM_DELETE_SINGLE "你確定要刪除\n\n%1\n嗎？"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

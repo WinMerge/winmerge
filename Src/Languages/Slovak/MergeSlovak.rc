@@ -1597,11 +1597,11 @@ STRINGTABLE
 BEGIN
     IDS_CONFIRM_ALL_LEFT    "Naozaj chcete skopÌrovaù vöetky rozdiely do s˙boru væavo?"
     IDS_CONFIRM_ALL_RIGHT   "Naozaj chcete skopÌrovaù vöetky rozdiely do s˙boru vpravo?"
-    IDS_CONFIRM_COPY_SINGLE "Chceö naozaj kopÌrovaù %1 do %2?"
-    IDS_CONFIRM_COPY2DIR    "Naozaj chcete kopÌrovaù vybran˝ s˙bor do %1?"
+    IDS_CONFIRM_COPY_SINGLE "Chceö naozaj kopÌrovaù\n\n%1\ndo\n%2 ?"
+    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy %1 of %2 selected item(s)?"
     IDS_CONFIRM_DELETE_ITEMS "Chcete naozaj zmazaù %1 z %2 vybran˝ch poloûiek?"
-    IDS_CONFIRM_DELETE_DIR  "Zmazaù adres·r %1?"
-    IDS_CONFIRM_DELETE_SINGLE "Chceö naozaj zmazaù%1?"
+    IDS_CONFIRM_DELETE_DIR  "Zmazaù adres·r\n\n%1 ?"
+    IDS_CONFIRM_DELETE_SINGLE "Chceö naozaj zmazaù\n\n%1 ?"
 END
 
 // DIRECTORY DIFFING : OPEN FILE
