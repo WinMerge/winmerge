@@ -1,3 +1,11 @@
+2004-10-17 Jochen
+ PATCH: [ 1043909 ] Add support for 7-Zip 4.09, plus DSPs for 4.07 and 4.08
+ Leave decision whether to recurse into folders to enumerator
+ Fix leading zero in 7-Zip minor version numbers shown in "archive support disabled" message
+  Merge7z: Merge7z.def Merge7z.h Merge7z311.cpp Merge7z407.dsp Merge7z408.dsp Merge7z409.cpp
+   Merge7z409.dsp Merge7zCommon.cpp Merge7zCommon.h revision.txt StdAfx.h
+  Src: 7zCommon.cpp 7zCommon.h
+
 2004-10-16 Kimmo
  PATCH: [ 1046546 ] Open new manual locally
   Src: MainFrm.cpp
