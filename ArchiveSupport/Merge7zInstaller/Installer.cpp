@@ -27,6 +27,7 @@ Please mind 2. a) of the GNU General Public License, and log your changes below.
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
 2005/01/15	Jochen Tucht		Created
+2005/02/28	Jochen Tucht		Initialize filename in Open dialog to "*.exe"
 */
 
 #include <windows.h>
@@ -165,7 +166,12 @@ BOOL CALLBACK DlgMain_BrowseExe(HWND hWnd)
 	path.ofn.lpstrFilter = "*.exe\0*.exe\0";
 	path.ofn.lpstrTitle = "Browse for application ...";
 	path.ofn.Flags = OFN_FILEMUSTEXIST | OFN_HIDEREADONLY | OFN_LONGNAMES | OFN_PATHMUSTEXIST;
-	GetDlgItemText(hWnd, 203, path.buffer, sizeof path.buffer);
+	int cchPath = GetDlgItemText(hWnd, 203, path.buffer, sizeof path.buffer);
+	int cchName = GetFileTitle(path.buffer, 0, 0);
+	if (cchName < cchPath)
+	{
+		lstrcpy(path.buffer + cchPath - cchName, "\\*.exe");
+	}
 	if (GetOpenFileName(&path.ofn))
 	{
 		SetDlgItemText(hWnd, 203, path.buffer);
