@@ -360,7 +360,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "999.999.999.999\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "© 2000 Dean P. Grimm\0"
+            VALUE "LegalCopyright", "© 2000 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", "\0"
@@ -857,6 +857,8 @@ BEGIN
     IDS_CC_CMD              "&Path to cleartool.exe :"
     IDS_VSS_CMD             "&Path to SS.EXE :"
     IDS_VSS_RUN_ERROR       "Error executing versioning system command."
+    IDS_DIFF_OPEN_NO_SET_PROPS 
+                            "Modifications have been made to the current file comparison session.  Some property settings may not take place until the current file comparison is restarted."
 END
 
 #endif    // English (U.S.) resources

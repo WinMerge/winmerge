@@ -426,7 +426,7 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 					case IDSAVEAS:
 						CString title;
 						VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
-						if (SelectFile(s, NULL, title, NULL, FALSE))
+						if (SelectFile(s, strSavePath, title, NULL, FALSE))
 						{
 							strSavePath = s;
 							needCheck=TRUE;
@@ -482,6 +482,20 @@ void CMainFrame::OnProperties()
 		theApp.WriteProfileInt(_T("Settings"), _T("TabSize"), m_nTabSize);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreBlankLines"), m_bIgnoreBlankLines);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreCase"), m_bIgnoreCase);
+
+		// make an attempt at rescanning any open diff sessions
+		if (m_pLeft != NULL && m_pRight != NULL)
+		{
+			if (m_pLeft->SaveHelper())
+			{
+				m_pLeft->GetDocument()->Rescan();
+			}
+			// mods have been made, so just warn
+			else
+			{
+				AfxMessageBox(IDS_DIFF_OPEN_NO_SET_PROPS,MB_ICONEXCLAMATION);
+			}
+		}
 	}
 }
 

@@ -605,6 +605,10 @@ BOOL CMergeDoc::CanCloseFrame(CFrameWnd* pFrame)
 	if (mf->m_pLeft)
 		if (!mf->m_pLeft->SaveHelper())
 			return FALSE;
+
 	
-	return CDocument::CanCloseFrame(pFrame);
+	BOOL result = CDocument::CanCloseFrame(pFrame);
+	if (result)
+		mf->m_pLeft = mf->m_pRight = NULL;
+	return result;
 }

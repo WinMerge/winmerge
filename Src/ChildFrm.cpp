@@ -186,7 +186,6 @@ void CChildFrame::SavePosition()
 void CChildFrame::OnClose() 
 {
 	// clean up pointers.
-	mf->m_pLeft = mf->m_pRight = NULL;
 	SavePosition();
 	CMDIChildWnd::OnClose();
 }
