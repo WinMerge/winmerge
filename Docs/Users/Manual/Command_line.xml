@@ -1,14 +1,12 @@
 <sect1 id="CommandLine">
   <title>Commandline</title>
   <para>WinMerge can be also used from commandline. There are several commandline switches to ease using WinMerge as external merge/diff application.</para>
-  <para>
-Syntax for commandline is:
-   
-  </para>
+  <para> Syntax for commandline is: </para>
   <para><screen><cmdsynopsis sepchar=" ">
         <command moreinfo="none">WinMerge</command>
         <arg choice="opt" rep="norepeat"><option>/r</option></arg>
         <arg choice="opt" rep="norepeat"><option>/e</option></arg>
+        <arg><option></option>/f filter</arg>
         <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
         <arg choice="opt" rep="norepeat"><option>/ur</option></arg>
         <arg choice="opt" rep="norepeat"><option>/ub</option></arg>
@@ -29,6 +27,9 @@ Syntax for commandline is:
     </listitem>
     <listitem>
       <para>/e or -e allows WinMerge to be closed with a single esc keypress</para>
+    </listitem>
+    <listitem>
+      <para>/f or -f allows selecting filter used. Filter can be filemask like "*.h *.cpp" or name of filefilter like "XML/HTML Devel". Quotation marks must be used if filter mask or name contains spaces</para>
     </listitem>
     <listitem>
       <para>/ul or -ul tells winmerge to not add left path to MRU</para>
@@ -64,4 +65,5 @@ Syntax for commandline is:
   <note>
     <para>leftpath and rightpath both has to be files or both has to be directories</para>
   </note>
+  <para>If both paths are not files or directories or one of paths is non-existant WinMerge shows Open-dialog for user to choose proper paths to open.</para>
 </sect1>

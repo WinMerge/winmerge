@@ -1,3 +1,7 @@
+2004-08-10 Kimmo
+ PATCH: [ 1006131 ] Add -f commandline switch to docs
+  Manual: Command_line.xml
+
 2004-07-07 Kimmo
  PATCH: [ 985272 ] Use 'manual' instead of 'guide'
   Manual: About_Doc.xml Faq.xml Plugins.xml WinMerge_help.xml
