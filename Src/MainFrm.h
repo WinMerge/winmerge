@@ -144,6 +144,7 @@ protected:
 	afx_msg void OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI);
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg LRESULT OnMenuChar(UINT nChar, UINT nFlags, CMenu* pMenu) ;
 	afx_msg void OnFileOpen();
 	afx_msg void OnUpdateHideBackupFiles(CCmdUI* pCmdUI);
 	afx_msg void OnHelpGnulicense();

@@ -79,6 +79,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUERIGHT, OnUpdateOptionsShowuniqueright)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWBINARIES, OnUpdateOptionsShowBinaries)
 	ON_WM_CREATE()
+	ON_WM_MENUCHAR()
 	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
 	ON_UPDATE_COMMAND_UI(ID_HIDE_BACKUP_FILES, OnUpdateHideBackupFiles)
 	ON_COMMAND(ID_HELP_GNULICENSE, OnHelpGnulicense)
@@ -222,6 +223,18 @@ HMENU CMainFrame::NewDefaultMenu()
 	m_default.LoadMenu(IDR_MAINFRAME);
 	m_default.LoadToolbar(IDR_MAINFRAME);
 	return(m_default.Detach());
+}
+
+//This handler ensures that keyboard shortcuts work
+LRESULT CMainFrame::OnMenuChar(UINT nChar, UINT nFlags, 
+	CMenu* pMenu) 
+{
+	LRESULT lresult;
+	if(m_default.IsMenu(pMenu))
+		lresult=BCMenu::FindKeyboardShortcut(nChar, nFlags, pMenu);
+	else
+		lresult=CMDIFrameWnd::OnMenuChar(nChar, nFlags, pMenu);
+	return(lresult);
 }
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
