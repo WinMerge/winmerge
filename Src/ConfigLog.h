@@ -49,6 +49,7 @@ struct MISCSETTINGS
 	BOOL bScrollToFirst;
 	BOOL bBackup;
 	BOOL bViewWhitespace;
+	BOOL bMovedBlocks;
 };
 
 /** 

@@ -2613,6 +2613,7 @@ void CMainFrame::OnSaveConfigData()
 	configLog.m_miscSettings.bScrollToFirst = m_options.GetInt(OPT_SCROLL_TO_FIRST);
 	configLog.m_miscSettings.bBackup = m_options.GetInt(OPT_CREATE_BACKUPS);
 	configLog.m_miscSettings.bViewWhitespace = m_options.GetInt(OPT_VIEW_WHITESPACE);
+	configLog.m_miscSettings.bMovedBlocks = m_options.GetInt(OPT_CMP_MOVED_BLOCKS);
 
 	if (configLog.WriteLogFile())
 	{

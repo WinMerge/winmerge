@@ -194,6 +194,12 @@ BOOL CConfigLog::WriteLogFile()
 		break;
 	}
 
+	file.WriteString(_T("  Detect moved blocks: "));
+	if (m_miscSettings.bMovedBlocks)
+		file.WriteString(_T("Yes\n"));
+	else
+		file.WriteString(_T("No\n"));
+
 	file.WriteString(_T("\n Other settings:\n"));
 	file.WriteString(_T("  Automatic rescan: "));
 	if (m_miscSettings.bAutomaticRescan)
