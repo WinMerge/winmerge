@@ -7,6 +7,7 @@
 #include "MergeDoc.h"
 #include "MainFrm.h"
 #include "WaitStatusCursor.h"
+#include "MergeEditStatus.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,6 +28,7 @@ CMergeEditView::CMergeEditView()
 {
 	m_bIsLeft = FALSE;
 	m_nModifications = 0;
+	m_piMergeEditStatus = 0;
 	SetParser(&m_xParser);
   	m_bAutomaticRescan = FALSE;
 }
@@ -837,4 +839,25 @@ void CMergeEditView::OnUpdateFileSave(CCmdUI* pCmdUI)
 		pCmdUI->Enable(TRUE);
 	else
 		pCmdUI->Enable(FALSE);
+}
+
+// Store our interface we use to display status line info
+void CMergeEditView::SetStatusInterface(IMergeEditStatus * piMergeEditStatus)
+{
+	ASSERT(!m_piMergeEditStatus);
+	m_piMergeEditStatus = piMergeEditStatus;
+}
+
+// Override from CCrystalTextView
+void CMergeEditView::
+OnUpdateCaret()
+{
+	if (m_piMergeEditStatus && IsTextBufferInitialized())
+	{
+		int nScreenLine = GetCursorPos().y;
+		int nRealLine = ComputeRealLine(nScreenLine);
+		int chars = GetLineLength(nScreenLine);
+		CString sEol = GetTextBufferEol(nScreenLine);
+		m_piMergeEditStatus->SetLineInfo(nRealLine+1, chars, sEol);
+	}
 }

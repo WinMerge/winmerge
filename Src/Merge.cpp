@@ -167,12 +167,15 @@ BOOL CMergeApp::InitInstance()
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views.
 
+	// Merge Edit view
 	m_pDiffTemplate = new CMultiDocTemplate(
 		IDR_MERGETYPE,
 		RUNTIME_CLASS(CMergeDoc),
 		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
 		RUNTIME_CLASS(CMergeEditView));
 	AddDocTemplate(m_pDiffTemplate);
+
+	// Directory view
 	m_pDirTemplate = new CMultiDocTemplate(
 		IDR_MERGETYPE,
 		RUNTIME_CLASS(CDirDoc),

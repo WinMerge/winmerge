@@ -16,6 +16,9 @@
 #include "edtlib.h"
 #endif
 
+class IMergeEditStatus;
+
+
 class CMergeEditView : public CCrystalEditViewEx
 {
 protected:
@@ -27,6 +30,7 @@ protected:
 public:
 	BOOL m_bIsLeft;
 	LONG m_nModifications;
+	IMergeEditStatus * m_piMergeEditStatus; // interface to status bar
 
 protected:
 	// Controls if rescan is done after edit events
@@ -51,6 +55,7 @@ public:
 	void UpdateResources();
 	BOOL IsModified() { return (LocateTextBuffer()->IsModified()); }
 	BOOL PrimeListWithFile();
+	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
 
 
 // Overrides
@@ -71,6 +76,7 @@ protected:
                                 COLORREF & crText, BOOL & bDrawWhitespace);
 	virtual void UpdateSiblingScrollPos (BOOL bHorz);
 	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz);
+	virtual void OnUpdateCaret();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

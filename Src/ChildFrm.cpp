@@ -48,7 +48,13 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-static UINT indicators[] =
+static UINT indicatorsHdr[] =
+{
+	ID_SEPARATOR,
+	ID_SEPARATOR
+};
+
+static UINT indicatorsBottom[] =
 {
 	ID_SEPARATOR,
 	ID_SEPARATOR
@@ -58,6 +64,10 @@ static UINT indicators[] =
 // CChildFrame construction/destruction
 
 CChildFrame::CChildFrame()
+#pragma warning(disable:4355) // 'this' : used in base member initializer list
+: m_leftStatus(this, 0)
+, m_rightStatus(this, 1)
+#pragma warning(default:4355)
 {
 	m_bActivated = FALSE;
 	m_nLastSplitPos=0;
@@ -103,12 +113,15 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	// stash left & right pointers into the mergedoc
 	CMergeEditView * pLeft = (CMergeEditView *)m_wndSplitter.GetPane(0,0);
 	CMergeEditView * pRight = (CMergeEditView *)m_wndSplitter.GetPane(0,1);
+	// connect merge views up to display of status info
+	pLeft->SetStatusInterface(&m_leftStatus);
+	pRight->SetStatusInterface(&m_rightStatus);
+	// tell merge doc about these views
 	CMergeDoc * pDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);
 	pDoc->SetMergeViews(pLeft, pRight);
 	pLeft->m_bIsLeft = TRUE;
 	pRight->m_bIsLeft = FALSE;
 	
-
 
 	CRect rc;
 	GetClientRect(&rc);
@@ -149,9 +162,10 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	ModifyStyle(WS_THICKFRAME,0); // this is necessary to prevent the sizing tab on right
 
-	if (!m_wndStatusBar.Create(this) ||
-		!m_wndStatusBar.SetIndicators(indicators,
-		  sizeof(indicators)/sizeof(UINT)))
+	// Merge frame has a status bar at top
+	if (!m_wndHdrStatusBar.Create(this) ||
+		!m_wndHdrStatusBar.SetIndicators(indicatorsHdr,
+		  sizeof(indicatorsHdr)/sizeof(UINT)))
 	{
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
@@ -159,10 +173,22 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	ModifyStyle(0,WS_THICKFRAME);
 
-	m_wndStatusBar.SetBarStyle(CBRS_ALIGN_TOP);
+	m_wndHdrStatusBar.SetBarStyle(CBRS_ALIGN_TOP);
+	m_wndHdrStatusBar.SetPaneStyle(0, SBPS_NORMAL);
+	m_wndHdrStatusBar.SetPaneStyle(1, SBPS_NORMAL);
+
+	// Merge frame also has a status bar at bottom
+	if (!m_wndStatusBar.Create(this) ||
+		!m_wndStatusBar.SetIndicators(indicatorsBottom,
+		  sizeof(indicatorsBottom)/sizeof(UINT)))
+	{
+		TRACE0("Failed to create status bar\n");
+		return -1;      // fail to create
+	}	
+
 	m_wndStatusBar.SetPaneStyle(0, SBPS_NORMAL);
 	m_wndStatusBar.SetPaneStyle(1, SBPS_NORMAL);
-	
+
 	m_wndSplitter.SetScrollStyle(WS_HSCROLL|WS_VSCROLL);
 	m_wndSplitter.RecalcLayout();
 
@@ -237,6 +263,8 @@ void CChildFrame::UpdateHeaderSizes()
 		int w,wmin;
 		m_wndSplitter.GetColumnInfo(0, w, wmin);
 		if (w<1) w=1; // Perry 2003-01-22 (I don't know why this happens)
+		m_wndHdrStatusBar.SetPaneInfo(0, ID_SEPARATOR, SBPS_NORMAL, w-1);
+		m_wndHdrStatusBar.SetPaneInfo(1, ID_SEPARATOR, SBPS_STRETCH, 0);
 		m_wndStatusBar.SetPaneInfo(0, ID_SEPARATOR, SBPS_NORMAL, w-1);
 		m_wndStatusBar.SetPaneInfo(1, ID_SEPARATOR, SBPS_STRETCH, 0);
 	}
@@ -267,7 +295,7 @@ void CChildFrame::OnTimer(UINT nIDEvent)
 
 void CChildFrame::SetHeaderText(int nPane, const CString &text)
 {
-	m_wndStatusBar.SetPaneText(nPane, text);
+	m_wndHdrStatusBar.SetPaneText(nPane, text);
 }
 
 // document commanding us to close
@@ -275,4 +303,49 @@ void CChildFrame::CloseNow()
 {
 	MDIActivate();
 	MDIDestroy();
+}
+
+// Bridge class which implements the interface from crystal editor to frame status line display
+CChildFrame::MergeStatus::MergeStatus(CChildFrame * pFrame, int base)
+: m_pFrame(pFrame)
+, m_base(base)
+, m_nLine(0)
+, m_nChars(0)
+// CString m_sEol
+// CString m_sEolDisplay
+{
+}
+
+// Send status line info (about one side of merge view) to screen
+void CChildFrame::MergeStatus::Update()
+{
+	if (IsWindow(m_pFrame->m_wndStatusBar.m_hWnd))
+	{
+		CString str;
+		str.Format(_T("Line %d, Chars %d, EOL: %s"), m_nLine, m_nChars, m_sEolDisplay);
+		m_pFrame->m_wndStatusBar.SetPaneText(m_base, str);
+	}
+}
+
+// Visible representation of eol
+static CString EolString(const CString & sEol)
+{
+	if (sEol == _T("\r\n")) return _T("CRLF");
+	if (sEol == _T("\n")) return _T("LF");
+	if (sEol == _T("\r")) return _T("CR");
+	if (sEol.IsEmpty()) return _T("None");
+	return _T("?");
+}
+
+// Receive status line info from crystal window and display
+void CChildFrame::MergeStatus::SetLineInfo(int nLine, int nChars, LPCTSTR szEol)
+{
+	if (nLine!=m_nLine || nChars!=m_nChars || m_sEol != szEol)
+	{
+		m_nLine = nLine;
+		m_nChars = nChars;
+		m_sEol = szEol;
+		m_sEolDisplay = EolString(m_sEol);
+		Update();
+	}
 }

@@ -152,6 +152,10 @@ private :
 public :
     virtual void ResetView ();
     virtual int GetLineCount ();
+    virtual void OnUpdateCaret ();
+    BOOL IsTextBufferInitialized () const;
+    CString GetTextBufferEol (int nLine) const;
+    int ComputeRealLine (int nApparentLine) const;
 
 protected :
     CPoint WordToRight (CPoint pt);

@@ -704,6 +704,10 @@ SOURCE=.\MergeDoc.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\MergeEditStatus.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\MergeEditView.h
 # End Source File
 # Begin Source File

@@ -112,6 +112,7 @@ public:
 
     int m_nSourceEncoding;
     static int m_nDefaultEncoding;
+    BOOL IsTextBufferInitialized () const { return m_bInit; }
 
 protected :
     BOOL m_bInit;
@@ -371,14 +372,15 @@ public :
     //}}AFX_VIRTUAL
 
     // Implementation
-protected :
     // Code for mapping between file line numbers (real line numbers)
     // and screen line numbers (apparent line numbers)
     // This is needed to handle ghost lines (ones with no text or EOL chars)
     // which WinMerge uses for left-only or right-only lines.
+public:
     int ComputeRealLine(int nApparentLine) const;
     int ComputeApparentLine(int nRealLine) const;
     int LastRealLine() const;
+protected :
     void RecomputeRealityMapping();
 
     // Generated message map functions

@@ -29,17 +29,40 @@
 #endif // _MSC_VER >= 1000
 
 #include "SplitterWndEx.h"
+#include "MergeEditStatus.h"
 
 class CChildFrame : public CMDIChildWnd
 {
 	DECLARE_DYNCREATE(CChildFrame)
 public:
 	CChildFrame();
-	CStatusBar  m_wndStatusBar;
 
 // Attributes
 protected:
 	CSplitterWndEx m_wndSplitter;
+	CStatusBar m_wndHdrStatusBar;
+	CStatusBar m_wndStatusBar;
+	// Object that displays status line info for one side of a merge view
+	class MergeStatus : public IMergeEditStatus
+	{
+	public:
+		// ctr
+		MergeStatus(CChildFrame * pFrame, int base);
+		// Implement MergeEditStatus
+		void SetLineInfo(int nLine, int nChars, LPCTSTR szEol);
+	protected:
+		void Update();
+	private:
+		CChildFrame * m_pFrame;
+		int m_base; // 0 for left, 1 for right
+		int m_nLine;
+		int m_nChars;
+		CString m_sEol;
+		CString m_sEolDisplay;
+	};
+	friend class MergeStatus; // MergeStatus accesses status bar
+	MergeStatus m_leftStatus;
+	MergeStatus m_rightStatus;
 public:
 
 // Operations

@@ -1712,6 +1712,12 @@ UpdateCaret ()
     {
       HideCaret ();
     }
+  OnUpdateCaret();
+}
+
+void CCrystalTextView::
+OnUpdateCaret()
+{
 }
 
 int CCrystalTextView::
@@ -5298,6 +5304,21 @@ void CCrystalTextView::OnUpdateStatusMessage( CStatusBar *pStatusBar )
 	bUpdatedAtLastCall = TRUE;
 }
 //END SW
+
+BOOL CCrystalTextView::IsTextBufferInitialized () const
+{
+  return m_pTextBuffer && m_pTextBuffer->IsTextBufferInitialized(); 
+}
+
+CString CCrystalTextView::GetTextBufferEol(int nLine) const
+{
+  return m_pTextBuffer->GetLineEol(nLine); 
+}
+
+int CCrystalTextView::ComputeRealLine (int nApparentLine) const
+{
+	return m_pTextBuffer->ComputeRealLine(nApparentLine);
+}
 
 ////////////////////////////////////////////////////////////////////////////
 #pragma warning ( default : 4100 )
