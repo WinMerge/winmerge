@@ -1,3 +1,7 @@
+2003-11-23 Kimmo
+ PATCH: [ 847638 ] Unused member variables in MainFrm.h
+  WinMerge: MainFrm.h
+
 2003-11-23 Laoran
  typo in TrySaveAs and merge error in DoSave
   WinMerge: MergeDoc.cpp

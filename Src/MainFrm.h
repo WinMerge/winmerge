@@ -144,15 +144,6 @@ public:
 
 // Implementation data
 protected:
-	int m_nStatusFileSame;
-	int m_nStatusFileBinSame;
-	int m_nStatusFileDiff;
-	int m_nStatusFileBinDiff;
-	int m_nStatusFileError;
-	int m_nStatusLeftFileOnly;
-	int m_nStatusLeftDirOnly;
-	int m_nStatusRightFileOnly;
-	int m_nStatusRightDirOnly;
 
 #ifdef _DEBUG
 	virtual void AssertValid() const;
