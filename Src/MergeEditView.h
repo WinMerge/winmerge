@@ -75,8 +75,6 @@ protected:
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CMergeEditView)
-	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnAllLeft();
 	afx_msg void OnUpdateAllLeft(CCmdUI* pCmdUI);
 	afx_msg void OnAllRight();

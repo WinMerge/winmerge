@@ -32,8 +32,6 @@ CMergeEditView::~CMergeEditView()
 
 BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	//{{AFX_MSG_MAP(CMergeEditView)
-	ON_WM_HSCROLL()
-	ON_WM_VSCROLL()
 	ON_COMMAND(ID_ALL_LEFT, OnAllLeft)
 	ON_UPDATE_COMMAND_UI(ID_ALL_LEFT, OnUpdateAllLeft)
 	ON_COMMAND(ID_ALL_RIGHT, OnAllRight)
@@ -413,47 +411,47 @@ void CMergeEditView::GetLineColors (int nLineIndex, COLORREF & crBkgnd,
   
 }
 
-void CMergeEditView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar) 
-{
-	CCrystalEditViewEx::OnHScroll(nSBCode, nPos, pScrollBar);
+//DEL void CMergeEditView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar) 
+//DEL {
+//DEL 	CCrystalEditViewEx::OnHScroll(nSBCode, nPos, pScrollBar);
+//DEL 
+//DEL 	UpdateSiblingScrollPos(TRUE);
+//DEL }
 
-	UpdateSiblingScrollPos(TRUE);
-}
-
-void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar) 
-{
-	// TODO: Add your message handler code here and/or call default
-	
-	CCrystalEditViewEx::OnVScroll(nSBCode, nPos, pScrollBar);
-	UpdateSiblingScrollPos(FALSE);
-}
+//DEL void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar) 
+//DEL {
+//DEL 	// TODO: Add your message handler code here and/or call default
+//DEL 	
+//DEL 	CCrystalEditViewEx::OnVScroll(nSBCode, nPos, pScrollBar);
+//DEL 	UpdateSiblingScrollPos(FALSE);
+//DEL }
 
 void CMergeEditView::UpdateSiblingScrollPos (BOOL bHorz)
 {
-  CSplitterWnd *pSplitterWnd = GetParentSplitter (this, FALSE);
-  if (pSplitterWnd != NULL)
-  {
-      //  See CSplitterWnd::IdFromRowCol() implementation for details
-      int nCurrentRow = (GetDlgCtrlID () - AFX_IDW_PANE_FIRST) / 16;
-      int nCurrentCol = (GetDlgCtrlID () - AFX_IDW_PANE_FIRST) % 16;
-      ASSERT (nCurrentRow >= 0 && nCurrentRow < pSplitterWnd->GetRowCount ());
-      ASSERT (nCurrentCol >= 0 && nCurrentCol < pSplitterWnd->GetColumnCount ());
-	  
-	  int nRows = pSplitterWnd->GetRowCount ();
-	  int nCols = pSplitterWnd->GetColumnCount ();
-	  for (int nRow = 0; nRow < nRows; nRow++)
-	  {
-          for (int nCol = 0; nCol < nCols; nCol++)
-		  {
-              if (!(nRow == nCurrentRow && nCol == nCurrentCol))  //  We don't need to update ourselves
-			  {
-				  CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
-				  if (pSiblingView != NULL)
-					  pSiblingView->OnUpdateSibling (this, bHorz);
-			  }
-		  }
-	  }
-  }
+	CSplitterWnd *pSplitterWnd = GetParentSplitter (this, FALSE);
+	if (pSplitterWnd != NULL)
+    {
+        //  See CSplitterWnd::IdFromRowCol() implementation for details
+        int nCurrentRow = (GetDlgCtrlID () - AFX_IDW_PANE_FIRST) / 16;
+        int nCurrentCol = (GetDlgCtrlID () - AFX_IDW_PANE_FIRST) % 16;
+        ASSERT (nCurrentRow >= 0 && nCurrentRow < pSplitterWnd->GetRowCount ());
+		ASSERT (nCurrentCol >= 0 && nCurrentCol < pSplitterWnd->GetColumnCount ());
+
+		int nRows = pSplitterWnd->GetRowCount ();
+		int nCols = pSplitterWnd->GetColumnCount ();
+		for (int nRow = 0; nRow < nRows; nRow++)
+		{
+			for (int nCol = 0; nCol < nCols; nCol++)
+			{
+				if (!(nRow == nCurrentRow && nCol == nCurrentCol))  //  We don't need to update ourselves
+				{
+					CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
+					if (pSiblingView != NULL)
+						pSiblingView->OnUpdateSibling (this, bHorz);
+				}
+			}
+		}
+	}
 }
 
 void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz)
