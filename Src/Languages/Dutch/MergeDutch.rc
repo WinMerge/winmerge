@@ -161,15 +161,14 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About WinMerge"
 FONT 8, "MS Sans Serif"
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
     LTEXT           "WinMerge",IDC_STATIC,63,18,63,8,SS_NOPREFIX
-    LTEXT           "© 2000",IDC_STATIC,7,49,25,8
     DEFPUSHBUTTON   "OK",IDOK,159,7,32,14,WS_GROUP
     LTEXT           "Version 1.0",IDC_VERSION,64,28,127,8,SS_NOPREFIX
     LTEXT           "All rights reserved.",IDC_STATIC,7,60,170,8
     LTEXT           "Bezoek deWinMerge HomePage!",IDC_WWW,7,76,184,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,72,184,1
-    LTEXT           "Thingamahoochie Software",IDC_COMPANY,35,49,91,8
+    LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,184,8
 END
 
 IDD_OPEN DIALOG DISCARDABLE  0, 0, 352, 98
@@ -298,12 +297,12 @@ BEGIN
     BEGIN
         BLOCK "041304b0"
         BEGIN
-            VALUE "Comments", "\0"
+            VALUE "Comments", "Translated by Ronald Schaap\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "999.999.999.999\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "© 1999 Dean P. Grimm\0"
+            VALUE "LegalCopyright", "© 2000 Dean P. Grimm\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", "\0"
