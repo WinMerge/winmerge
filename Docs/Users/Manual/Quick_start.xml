@@ -2,7 +2,7 @@
   <title>Quick start</title>
   <sect2>
     <title>Opening files and directories</title>
-    <para>Start WinMerge and select "<guisubmenu>Open</guisubmenu>" from <guimenu>File</guimenu>-menu, click yellow folder icon from toolbar or press <keycombo><keycap>Ctrl</keycap><keycap>O</keycap></keycombo>. File/directory selection dialog is shown:</para>
+    <para>Start WinMerge and select "<guimenuitem>Open</guimenuitem>" from <guimenu>File</guimenu>-menu, click yellow folder icon from toolbar or press <keycombo><keycap>Ctrl</keycap><keycap>O</keycap></keycombo>. File/directory selection dialog is shown:</para>
     <para><mediaobject>
         <imageobject>
           <imagedata fileref="screenshots/OpenDlg1.gif" format="GIF"/>
@@ -52,8 +52,8 @@
           <imagedata fileref="screenshots/filecomp1.gif" format="GIF"/>
         </imageobject>
       </inlinemediaobject></para>
-    <para>File compare shows two files side by side. Different lines are highlighted with background color. One or more consecutively lines form one difference (or 'diff'). WinMerge mostly works with these differences, not separate lines.</para>
+    <para>File compare shows two files side by side. Different lines are highlighted with background color. One or more consecutively lines form one difference (or "diff"). WinMerge mostly works with these differences, not separate lines.</para>
     <para>With merging commands lines in difference can be copied between sides. Gray (removed/missing) lines can be copied also. When missing lines are copied from side to another matching existing lines are removed. In screenshot above copying three lines in third difference from right to left would mean removing matching three lines from left side.</para>
-    <para>WinMerge has an simple editor to modify files. Typing, copying, cutting and pasting text works. If automatic rescanning is enabled then WinMerge updates file differences while files are edited. If automatic rescanning is disabled files can be updated selecting <guisubmenu>Refresh</guisubmenu> from <guimenu>Edit</guimenu>-menu, clicking toolbar button with two yellow arrows or pressing <keycap>F5</keycap> key.</para>
+    <para>WinMerge has an simple editor to modify files. Typing, copying, cutting and pasting text works. If <guilabel>Automatic rescan</guilabel> is enabled then WinMerge updates file differences while files are edited. If <guilabel>Automatic rescan</guilabel> is disabled files can be updated selecting <guimenuitem>Refresh</guimenuitem> from <guimenu>Edit</guimenu>-menu, clicking toolbar button with two yellow arrows or pressing <keycap>F5</keycap> key.</para>
   </sect2>
 </sect1>

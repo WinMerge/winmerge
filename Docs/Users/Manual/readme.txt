@@ -1,3 +1,10 @@
+2004-10-26 Kimmo
+ PATCH: [ 1034558 ] Docs: More meta-informations
+  Submitted by Tim Gerundt
+  Manual: Command_line.xml Compare_dirs.xml Faq.xml Filters.xml Install.xml
+   Locales.xml Open_paths.xml Plugins.xml Quick_start.xml Version_control.xml
+   Whatsnew_2_1.xml
+
 2004-10-20 Kimmo
  PATCH: [ 1050306 ] Docs: Describe installing phases and unzipping from archive
   Manual: Install.xml

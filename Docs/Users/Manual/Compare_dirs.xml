@@ -8,7 +8,7 @@
   </mediaobject>
   <para>Directory comparison has two different modes. The mode is selected in the Open dialog with the "<guilabel>Include Subfolders</guilabel>"-checkbox.<itemizedlist>
       <listitem>
-        <para>When subfolders are included, all subfolders and their contents are compared. Files are displayed depending on the options on the View menu (eg, Show Identical Files). Common directories are never displayed (but all files inside of them are). Directories only existing on one side are displayed according to the View menu options (eg, Show Left Unique Files). </para>
+        <para>When subfolders are included, all subfolders and their contents are compared. Files are displayed depending on the options on the <guimenu>View</guimenu> menu (eg, <guimenuitem>Show Identical Files</guimenuitem>). Common directories are never displayed (but all files inside of them are). Directories only existing on one side are displayed according to the <guimenu>View</guimenu> menu options (eg, <guimenuitem>Show Left Unique Files</guimenuitem>).</para>
         <para>This mode does not allow browsing folders and can be slow if there are many subfolders and files.</para>
       </listitem>
       <listitem>
@@ -25,7 +25,7 @@
         </imageobject>
       </mediaobject></para>
     <para>Directory compare can be stopped by selecting "<guibutton>Stop</guibutton>"-button and results for files and directories compared so far are shown. After directory compare finishes, "<guibutton>Stop</guibutton>" button text is changed to "<guibutton>Press any key</guibutton>". Now statepane can be closed by selecting that button or pressing any key from keyboard.</para>
-    <para>Statepane can be opened from <guimenu>View</guimenu>-menu again if needed. Statuspane always shows current status of compare so it can be used to verify there are no different files left to handle.</para>
+    <para>Statepane can be opened from <guimenu>View</guimenu>-menu again if needed. Statepane always shows current status of compare so it can be used to verify there are no different files left to handle.</para>
     <tip>
       <para>Enable option "<guilabel>Close Compare statepane automatically</guilabel>" and statepane closes automatically after compare is ready.</para>
     </tip>

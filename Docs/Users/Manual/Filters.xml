@@ -8,38 +8,50 @@
     <sect3>
       <title>Help with regexps</title>
       <para>There are many guides and help sites in Web:</para>
-      <simplelist type="vert">
-        <member><ulink url="http://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink> Good site devoted for regexps</member>
-        <member><ulink url="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</ulink> Good HOWTO document for regexps</member>
-        <member><ulink url="http://www.zvon.org/other/PerlTutorial/Output/index.html">http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink> Tutorial</member>
-        <member><ulink url="http://gmckinney.info/resources/regex.pdf">http://gmckinney.info/resources/regex.pdf</ulink> PDF quick reference</member>
-      </simplelist>
+      <variablelist>
+        <varlistentry>
+          <term>Good site devoted for regexps:</term>
+          <listitem><para><ulink url="http://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink></para></listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>Good HOWTO document for regexps:</term>
+          <listitem><para><ulink url="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</ulink></para></listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>Tutorial:</term>
+          <listitem><para><ulink url="http://www.zvon.org/other/PerlTutorial/Output/index.html">http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink></para></listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>PDF quick reference:</term>
+          <listitem><para><ulink url="http://gmckinney.info/resources/regex.pdf">http://gmckinney.info/resources/regex.pdf</ulink></para></listitem>
+        </varlistentry>
+      </variablelist>
     </sect3>
   </sect2>
   <sect2>
     <title>File filters</title>
     <para>File filter is set of rules saved to one file. Every file and directory is tested against all there rules before comparing. Depending if filter is exclusive of inclusive file or directory matching is excluded from or included to compare.</para>
     <tip>
-      <para>Ignored items have 'Skipped' status in directory compare. User can select them to visible or hidden from 'View' menu. Usually its wise to keep skipped items hidden.</para>
+      <para>Ignored items have "<guilabel>Skipped</guilabel>" status in directory compare. User can select them to visible or hidden from <guimenu>View</guimenu> menu. Usually its wise to keep skipped items hidden.</para>
     </tip>
-    <para>WinMerge's filtering system allows only one filter set to be active at a time. Active filter set can be selected from Open-dialog or from menu: Tools --&gt; Filters. Also empty filter can be selected when no directories or files are ignored.</para>
+    <para>WinMerge's filtering system allows only one filter set to be active at a time. Active filter set can be selected from Open-dialog or from menu: <menuchoice><guimenu>Tools</guimenu><guimenuitem>Filters</guimenuitem></menuchoice>. Also empty filter can be selected when no directories or files are ignored.</para>
     <sect3>
       <title>Filter files</title>
-      <para>Filter files are normal ASCII files, with .flt extension. Filter files must be placed to either: </para>
+      <para>Filter files are normal ASCII files, with <filename class="extension">.flt</filename> extension. Filter files must be placed to either: </para>
       <itemizedlist>
         <listitem>
-          <para>'Filters' subdirectory in WinMerge program directory. This is recommended place.</para>
+          <para>"<filename class="directory">Filters</filename>" subdirectory in WinMerge program directory. This is recommended place.</para>
         </listitem>
         <listitem>
-          <para>'Winmerge/Filters' subdirectory in user profile. This can be used for user personal filter when there are many users. Or if backupping from profile directory is wanted etc.</para>
+          <para>"<filename class="directory">Winmerge/Filters</filename>" subdirectory in user profile. This can be used for user personal filter when there are many users. Or if backupping from profile directory is wanted etc.</para>
         </listitem>
       </itemizedlist>
       <para>Filter files supplied with WinMerge contain comments about naming and setting filter to exclusive/inclusive.</para>
       <para>Common format for one filter line is like this:</para>
-      <screen>f: \.ext$ ## Match files *.ext
-or
-d: \\directory$ ## Match given directory name</screen>
-      <para>Rule begins with 'f:' if it matches for filenames and 'd:' if it matches for directory names. Filenames are given to filter as is, there are no special characters added. But for directory names WinMerge adds '\' to begin of directory name. This is done clearly to separate directory names and filenames. '##' is a comment separator, all chars in rule after that are ignored by WinMerge.</para>
+      <screen>f: \.ext$ ## Match files *.ext</screen>
+      <para>or</para>
+      <screen>d: \\directory$ ## Match given directory name</screen>
+      <para>Rule begins with "<constant>f:</constant>" if it matches for filenames and "<constant>d:</constant>" if it matches for directory names. Filenames are given to filter as is, there are no special characters added. But for directory names WinMerge adds "<constant>\</constant>" to begin of directory name. This is done clearly to separate directory names and filenames. "<constant>##</constant>" is a comment separator, all chars in rule after that are ignored by WinMerge.</para>
       <para>So simple filters can be for example:</para>
       <example>
         <title>Simple filefilter rules</title>
@@ -48,9 +60,9 @@ f: \.h$ ## Match *.h files
 d: \\test$ ## Match 'test' directories</screen>
       </example>
       <note>
-        <para>Don't forget '$' at end. It marks end of directory- or filename and without it rule may not work like expected. While '\.c$' matches with only filenames having extension .c '\.c' matches all extensions beginning with 'c' (.cpp, .com etc).</para>
+        <para>Don't forget "<constant>$</constant>" at end. It marks end of directory- or filename and without it rule may not work like expected. While "<literal>\.c$</literal>" matches with only filenames having extension <filename class="extension">.c</filename> "<literal>\.c</literal>" matches all extensions beginning with "<literal>c</literal>" (<filename class="extension">.cpp</filename>, <filename class="extension">.com</filename>, etc).</para>
       </note>
-      <para>Rules can be a lot more complex than those two: this rule matches to CVS generated ".#filename.ext.version" files:</para>
+      <para>Rules can be a lot more complex than those two: this rule matches to CVS generated "<literal>.#filename.ext.version</literal>" files:</para>
       <example>
         <title>More complex file filter rules</title>
         <screen format="linespecific">f: ^\.#.*$ ## .#filename.version files
@@ -66,7 +78,7 @@ f: ^I.*\.h$ ## I*.h files</screen>
       <para>Line filter rule ignores single line it matches. It is not possible to ignore partial lines or several lines with file filter rule.</para>
     </important>
     <para>In file compare ignored lines are shown with own colors to differentiate them from other differences. User can see these differences but cannot select or merge them.</para>
-    <para>Line filter rules are regular expressions like file filter rules. Rules can be added and edited in Filters-dialog (Menu: Tools --&gt; Filters). In editbox, give one rule per line.</para>
+    <para>Line filter rules are regular expressions like file filter rules. Rules can be added and edited in Filters-dialog (Menu: <menuchoice><guimenu>Tools</guimenu><guimenuitem>Filters</guimenuitem></menuchoice>). In editbox, give one rule per line.</para>
     <example>
       <title>Line filter rule matching CVS "Id:" -lines:</title>
       <para>Id-lines are like this:</para>

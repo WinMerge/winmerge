@@ -53,7 +53,7 @@
     </sect3>
     <sect3>
       <title>Editor complement in editor view</title>
-      <para>Access list with main menu, <menuchoice><guimenu>Edit</guimenu><guimenuitem>Scripts</guimenuitem><guimenuitem>...</guimenuitem></menuchoice></para>
+      <para>Access list with main menu, <menuchoice><guimenu>Edit</guimenu><guisubmenu>Scripts</guisubmenu><guimenuitem>...</guimenuitem></menuchoice></para>
     </sect3>
     <sect3>
       <title>Unpacker in directory view</title>
@@ -68,7 +68,7 @@
     </sect3>
     <sect3>
       <title>Prediffer in directory view</title>
-      <para>When the files are selected, right-click to open the context menu. Follow <menuchoice><guimenuitem>Plugin Settings</guimenuitem><guimenuitem>Prediffer Settings</guimenuitem></menuchoice> and select "<guimenuitem>Auto prediffer</guimenuitem>" or "<guimenuitem>No prediffer</guimenuitem>". Refresh the view (<keycap>F5</keycap>) to update the results.</para>
+      <para>When the files are selected, right-click to open the context menu. Follow <menuchoice><guimenuitem>Plugin Settings</guimenuitem><guisubmenu>Prediffer Settings</guisubmenu></menuchoice> and select "<guimenuitem>Auto prediffer</guimenuitem>" or "<guimenuitem>No prediffer</guimenuitem>". Refresh the view (<keycap>F5</keycap>) to update the results.</para>
       <note>
         <para>"<guimenuitem>Auto prediffer</guimenuitem>" is a per-file option. Some files in the same directory can be in mode "<guimenuitem>No prediffer</guimenuitem>" and some in mode "<guimenuitem>Auto prediffer</guimenuitem>". When you change directory during a non-recursive compare, the mode is always reset to "<guimenuitem>No prediffer</guimenuitem>".</para>
       </note>
@@ -77,7 +77,7 @@
       <title>Prediffer in editor view</title>
       <para>Two possibilities</para>
       <para>From the directory view when "<guimenuitem>Auto prediffer</guimenuitem>" is checked for a file : just double click to open the file. The plugin used during the directory comparison is used in the editor before the diff algorithm.</para>
-      <para>During an editor session, access prediffer lists with menu <menuchoice><guimenu>Plugins</guimenu><guimenuitem>Prediffer</guimenuitem><guimenuitem>...</guimenuitem></menuchoice> The active prediffer is checked. Suggested plugins are indicated first above the not-suggested ones. The files are compared again after the selection, you don't need to rescan.</para>
+      <para>During an editor session, access prediffer lists with menu <menuchoice><guimenu>Plugins</guimenu><guisubmenu>Prediffer</guisubmenu><guimenuitem>...</guimenuitem></menuchoice> The active prediffer is checked. Suggested plugins are indicated first above the not-suggested ones. The files are compared again after the selection, you don't need to rescan.</para>
     </sect3>
   </sect2>
   <sect2>

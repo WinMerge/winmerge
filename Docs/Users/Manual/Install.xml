@@ -10,16 +10,16 @@
     <para>This is recommeded for most users. Installer asks location where WinMerge is installed, installs files, configures shell integration and adds WinMerge to <guimenu>Start</guimenu>-menu. To install WinMerge:</para>
     <orderedlist>
       <listitem>
-        <para>Start installer executable (usually named <filename>WinMerge-[version]-setup.exe</filename>)</para>
+        <para>Start installer executable (usually named <filename>WinMerge-<replaceable>version</replaceable>-setup.exe</filename>)</para>
       </listitem>
       <listitem>
-        <para>Select <guilabel>Next</guilabel>-button in welcome screen</para>
+        <para>Select <guibutton>Next</guibutton>-button in welcome screen</para>
       </listitem>
       <listitem>
-        <para>Select <guilabel>Next</guilabel>-button in licence screen</para>
+        <para>Select <guibutton>Next</guibutton>-button in licence screen</para>
       </listitem>
       <listitem>
-        <para>Select location for WinMerge and select <guilabel>Next</guilabel>-button. It is recommended to install WinMerge in own directory.</para>
+        <para>Select location for WinMerge and select <guibutton>Next</guibutton>-button. It is recommended to install WinMerge in own directory.</para>
       </listitem>
       <listitem>
         <para>Select components installed or one of preconfigured combinations. <guilabel>Typical</guilabel> configuration is recommended for most users. In addition to components already selected by <guilabel>Typical</guilabel>, language file(s) could be choosed. Components are:</para>
@@ -40,12 +40,12 @@
             <para><guilabel>Plugins</guilabel> - plugins and scripts</para>
           </listitem>
           <listitem>
-            <para><guilabel>Languages</guilabel> - WinMerge translation files. After installing translation file user interface language can be selected from menu <guilabel>View/Language</guilabel>.</para>
+            <para><guilabel>Languages</guilabel> - WinMerge translation files. After installing translation file user interface language can be selected from menu <menuchoice><guimenu>View</guimenu><guimenuitem>Language</guimenuitem></menuchoice>.</para>
           </listitem>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para>Select <guilabel>Start</guilabel>-menu folder or disable creating it.</para>
+        <para>Select <guimenu>Start</guimenu>-menu folder or disable creating it.</para>
       </listitem>
       <listitem>
         <para>Select additional tasks:<itemizedlist>
@@ -64,7 +64,7 @@
           </itemizedlist></para>
       </listitem>
       <listitem>
-        <para>Verify install selections and select <guilabel>Install</guilabel> button to continue.</para>
+        <para>Verify install selections and select <guibutton>Install</guibutton> button to continue.</para>
       </listitem>
       <listitem>
         <para>After installer has copied files final screen appears with two checkboxes asking if created WinMerge Start-menu folder should be opened and if WinMerge application should be started.</para>
@@ -87,6 +87,6 @@
     <para>Archive file support in WinMerge requires 7-Zip. WinMerge installer does not install 7-Zip. 7-Zip installer can be downloaded from <ulink url="http://www.7-zip.org/">7-Zip.org</ulink>.</para>
     <para>WinMerge automatically detects installed 7-zip in system, there is no need to any configuration. But WinMerge supports only certain versions of 7-Zip. Please check 7-zip version compatibility from <filename>Read Me.rft</filename>-file. </para>
     <para>7-zip integration needs compatible <filename>Merge7z*.dll</filename> in WinMerge program directory. <filename>*</filename> comes from 7-zip version installed. For example 7-zip version 3.13 needs <filename>Merge7z313.dll</filename>. And if <filename>WinMergeU.exe</filename> (unicode version) is used, then "<filename>U</filename>" is also added to filename: <filename>Merge7z313U.dll</filename>. <filename>Merge7z*.dll</filename> files for compatible 7-zip versions are installed by WinMerge installer. If needed dll file is for some reason missing it can be copied to WinMerge directory, for example from zip-archive downloadable in WinMerge download page.</para>
-    <para>If <filename>Merge7z*.dll</filename> file is missing, WinMerge informs user with message showing filename of needed file and recommended version of 7-zip. This message can also be opened from <guimenu>Help</guimenu>-menu item "<guisubmenu>Archive Support Disabled</guisubmenu>".</para>
+    <para>If <filename>Merge7z*.dll</filename> file is missing, WinMerge informs user with message showing filename of needed file and recommended version of 7-zip. This message can also be opened from <guimenu>Help</guimenu>-menu item "<guimenuitem>Archive Support Disabled</guimenuitem>".</para>
   </sect2>
 </sect1>

@@ -27,8 +27,8 @@
         <answer>
           <para>From menu, select <menuchoice>
               <guimenu>Edit</guimenu>
-              <guimenuitem>Options...</guimenuitem>
-              <guimenuitem>General</guimenuitem>
+              <guisubmenu>Options...</guisubmenu>
+              <guisubmenu>General</guisubmenu>
               <guimenuitem>Disable Splash Screen</guimenuitem>
             </menuchoice></para>
         </answer>
@@ -141,7 +141,7 @@
           <para>What means delaying of (automatic) rescan? Why it is needed?</para>
         </question>
         <answer>
-          <para>When Automatic Rescanning is enabled WinMerge delays rescanning while user edits files. So there is no rescanning happening when user types text but shortly after user has finished typing. Without this delaying WinMerge would do rescan after every typed letter and editing files would become slow. This delaying especially improves editing of bigger files which can take several seconds to rescan.</para>
+          <para>When <guilabel>Automatic Rescan</guilabel> is enabled WinMerge delays rescanning while user edits files. So there is no rescanning happening when user types text but shortly after user has finished typing. Without this delaying WinMerge would do rescan after every typed letter and editing files would become slow. This delaying especially improves editing of bigger files which can take several seconds to rescan.</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -216,26 +216,26 @@
           <para>Open the file with Windows notepad (eg, 
           <menuchoice>
               <guimenu>Start</guimenu>
-              <guimenu>(All) Programs</guimenu>
-              <guimenu>Accessories</guimenu>
+              <guisubmenu>(All) Programs</guisubmenu>
+              <guisubmenu>Accessories</guisubmenu>
               <guimenuitem>Notepad</guimenuitem>
             </menuchoice>.
           Choose <menuchoice>
               <guimenu>File</guimenu>
               <guimenuitem>Save As</guimenuitem>
-            </menuchoice>, and in the Save As dialog which appears, look at the dropdown list at the very bottom, labelled "Encoding".</para>
+            </menuchoice>, and in the Save As dialog which appears, look at the dropdown list at the very bottom, labelled "<guilabel>Encoding</guilabel>".</para>
           <itemizedlist>
             <listitem>
-              <para>If it says "ANSI", the file is (apparently) in the local windows codepage. If the file is entirely in English and normal punctuation, then the file is also in ASCII.</para>
+              <para>If it says "<guilabel>ANSI</guilabel>", the file is (apparently) in the local windows codepage. If the file is entirely in English and normal punctuation, then the file is also in ASCII.</para>
             </listitem>
             <listitem>
-              <para>If it says "Unicode", the file is (probably) in the default Windows Unicode encoding "UCS-2LE".</para>
+              <para>If it says "<guilabel>Unicode</guilabel>", the file is (probably) in the default Windows Unicode encoding "UCS-2LE".</para>
             </listitem>
             <listitem>
-              <para>If it says "UTF-8", the file is in the cross-platform Unicode encoding "UTF-8".</para>
+              <para>If it says "<guilabel>UTF-8</guilabel>", the file is in the cross-platform Unicode encoding "UTF-8".</para>
             </listitem>
             <listitem>
-              <para>If it says "Unicode big endian", the file is in a different Unicode encoding not much used or supported under Windows, probably "UCS-2BE".</para>
+              <para>If it says "<guilabel>Unicode big endian</guilabel>", the file is in a different Unicode encoding not much used or supported under Windows, probably "UCS-2BE".</para>
             </listitem>
           </itemizedlist>
         </answer>

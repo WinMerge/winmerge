@@ -29,7 +29,7 @@
       <para><option>/e</option> or <option>-e</option> allows WinMerge to be closed with a single esc keypress</para>
     </listitem>
     <listitem>
-      <para><option>/f</option> or <option>-f</option> allows selecting filter used. Filter can be filemask like "*.h *.cpp" or name of filefilter like "XML/HTML Devel". Quotation marks must be used if filter mask or name contains spaces</para>
+      <para><option>/f</option> or <option>-f</option> allows selecting filter used. Filter can be filemask like "<filename>*.h *.cpp</filename>" or name of filefilter like "<literal>XML/HTML Devel</literal>". Quotation marks must be used if filter mask or name contains spaces</para>
     </listitem>
     <listitem>
       <para><option>/ul</option> or <option>-ul</option> tells winmerge to not add left path to MRU</para>

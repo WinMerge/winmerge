@@ -25,7 +25,7 @@
         <para>You may have entered the project name incorrectly</para>
       </listitem>
       <listitem>
-        <para>Did you use VSS path syntax (ie: $/MyProject/res)</para>
+        <para>Did you use VSS path syntax (ie: <envar>$/MyProject/res</envar>)</para>
       </listitem>
       <listitem>
         <para>Your connection to the VSS server computer may be hosed</para>

@@ -13,7 +13,7 @@
   </sect2>
   <sect2>
     <title>Shell integration</title>
-    <para>WinMerge 2.2 can be integrated into Windows Shell. Shell integration adds "<guisubmenu>Winmerge</guisubmenu>" menuitem to Windows Explorer's context menu for easy and fast comparing files and directories.</para>
+    <para>WinMerge 2.2 can be integrated into Windows Shell. Shell integration adds "<guimenuitem>WinMerge</guimenuitem>" menuitem to Windows Explorer's context menu for easy and fast comparing files and directories.</para>
   </sect2>
   <sect2>
     <title>Selecting filter from commandline</title>
