@@ -90,3 +90,5 @@ public:
 	void CompressArchive(LPCTSTR = 0);
 	void CollectFiles(CString &);
 };
+
+int NTAPI HasZipSupport();

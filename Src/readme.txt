@@ -3,6 +3,9 @@
   Src: MainFrm.cpp
  PATCH: [ 1019945 ] Don't fail configlog writing silently
   Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp
+ PATCH: [ 1019393 ] Inform user about missing archive support (Zip* menuitems)
+  Src: 7zCommon.cpp 7zCommon.h DirView.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
 
 2004-08-31 Kimmo
  PATCH: [ 1019108 ] Warn if file changed on disk between rescans

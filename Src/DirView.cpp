@@ -357,9 +357,11 @@ void CDirView::ReloadColumns()
  */
 void CDirView::OnContextMenu(CWnd*, CPoint point)
 {
-
-	if (!GetListCtrl().GetItemCount())
+	if (GetListCtrl().GetItemCount() == 0)
 		return;
+	// Make sure window is active
+	GetParentFrame()->ActivateFrame();
+
 	int i=0;
 	if (point.x == -1 && point.y == -1)
 	{
@@ -444,9 +446,6 @@ static void NTAPI CheckContextMenu(BCMenu *pPopup, UINT uIDItem, BOOL bCheck)
  */
 void CDirView::ListContextMenu(CPoint point, int /*i*/)
 {
-	// Make sure window is active
-	GetParentFrame()->ActivateFrame();
-
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
@@ -766,6 +765,9 @@ void CDirView::OnDestroy()
 	CListViewEx::OnDestroy();
 }
 
+/**
+ * @brief Open selected item when user presses ENTER key.
+ */
 void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
 {
 	if(nChar==VK_RETURN)
@@ -776,6 +778,9 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CListViewEx::OnChar(nChar, nRepCnt, nFlags);
 }
 
+/**
+ * @brief Open parent folder if possible.
+ */
 void CDirView::OpenParentDirectory()
 {
 	CString left = GetDocument()->m_pCtxt->m_strNormalizedLeft;
@@ -2136,6 +2141,12 @@ void CDirView::AddParentFolderItem(BOOL bEnable)
  */
 void CDirView::OnCtxtDirZipLeft() 
 {
+	if (!HasZipSupport())
+	{
+		AfxMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
+		return;
+	}
+
 	DirItemEnumerator
 	(
 		this, LVNI_SELECTED
@@ -2148,6 +2159,12 @@ void CDirView::OnCtxtDirZipLeft()
  */
 void CDirView::OnCtxtDirZipRight() 
 {
+	if (!HasZipSupport())
+	{
+		AfxMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
+		return;
+	}
+
 	DirItemEnumerator
 	(
 		this, LVNI_SELECTED
@@ -2160,6 +2177,12 @@ void CDirView::OnCtxtDirZipRight()
  */
 void CDirView::OnCtxtDirZipBoth() 
 {
+	if (!HasZipSupport())
+	{
+		AfxMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
+		return;
+	}
+
 	DirItemEnumerator
 	(
 		this, LVNI_SELECTED
@@ -2174,6 +2197,12 @@ void CDirView::OnCtxtDirZipBoth()
  */
 void CDirView::OnCtxtDirZipBothDiffsOnly() 
 {
+	if (!HasZipSupport())
+	{
+		AfxMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
+		return;
+	}
+
 	DirItemEnumerator
 	(
 		this, LVNI_SELECTED

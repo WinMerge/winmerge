@@ -55,6 +55,7 @@ DATE:		BY:					DESCRIPTION:
 2004/01/25	Jochen Tucht		Fix bad default for OPENFILENAME::nFilterIndex
 2004/03/15	Jochen Tucht		Fix Visual Studio 2003 build issue
 2004/04/13	Jochen Tucht		Avoid StrNCat to get away with shlwapi 4.71
+2004/09/01	Kimmo Varis			Add HasZipSupport() (code from Jochen)
 
 */
 
@@ -75,6 +76,29 @@ DATE:		BY:					DESCRIPTION:
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+/**
+ * @brief Check whether archive support is available.
+ */
+int NTAPI HasZipSupport()
+{
+	static int HasZipSupport = -1;
+	if (HasZipSupport == -1)
+	{
+		try
+		{
+			Merge7z.operator->();
+			HasZipSupport = 1;
+		}
+		catch (CException *e)
+		{
+			e->ReportError(MB_ICONSTOP);
+			e->Delete();
+			HasZipSupport = 0;
+		}
+	}
+	return HasZipSupport;
+}
 
 /**
  * @brief Turn short path into long path.

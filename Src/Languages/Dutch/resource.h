@@ -501,7 +501,7 @@
 #define IDS_CANNOT_CREATE_DIRPATCH      18411
 
 #define IDS_DIR_RESULTS_EMPTIED         18448
-
+#define IDS_NO_ZIP_SUPPORT              18449
 
 
 

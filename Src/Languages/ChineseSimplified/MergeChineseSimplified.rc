@@ -1667,6 +1667,9 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIR_RESULTS_EMPTIED "Current directory comparison results will be cleared."
+    IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\n
+                            All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.
+                            See manual for more info about archive support and how to enable it."
 END
 
 // LANGAGE NAMES #1
