@@ -211,7 +211,7 @@ BOOL CDirView::ConfirmActionList(const ActionList & actionList)
 	case ACT_COPY:
 		if (actionList.GetCount()==1)
 		{
-			action & act = actionList.actions.GetHead();
+			const action & act = actionList.actions.GetHead();
 			if (!ConfirmSingleCopy(act.src, act.dest))
 				return FALSE;
 		}
@@ -224,7 +224,7 @@ BOOL CDirView::ConfirmActionList(const ActionList & actionList)
 	default: // deletes
 		if (actionList.GetCount()==1 && actionList.atype!=ACT_DEL_BOTH)
 		{
-			action & act = actionList.actions.GetHead();
+			const action & act = actionList.actions.GetHead();
 			if (!ConfirmSingleDelete(act.src))
 				return FALSE;
 		}

@@ -214,9 +214,9 @@ CString CTextFile::FindDSCCommentString(LPCTSTR szStringToFind, LPCTSTR pszEndOn
 	return CString(_T(""));
 }
 
-DWORD CTextFile::GetPosition() const
+CTextFile::POSOFFSET CTextFile::GetPosition() const
 {
-	DWORD pos = CFile::GetPosition();
+	POSOFFSET pos = CFile::GetPosition();
 	pos -= tcssubptr(m_pBuf, m_endBuf);
 	return pos;
 }
@@ -274,7 +274,7 @@ void CTextFile::Reset()
  	m_cntBuf = 0;
 }
 
-LONG CTextFile::Seek( LONG lOff, UINT nFrom )
+CTextFile::SEEKOFFSET CTextFile::Seek( SEEKOFFSET lOff, UINT nFrom )
 {
 	if (nFrom == CFile::current)
 	{

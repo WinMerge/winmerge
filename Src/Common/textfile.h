@@ -46,9 +46,21 @@
 #define XML_BOOL7(bVal, name) ((bVal)? (_T("\t\t\t\t\t\t\t<") _T(#name) _T("/>\r\n")):_T(""))
 #define XML_BOOL8(bVal, name) ((bVal)? (_T("\t\t\t\t\t\t\t\t<") _T(#name) _T("/>\r\n")):_T(""))
 
-class CTextFile : public CFile
+
+class CTextFile : protected CFile
 {
-  TCHAR *m_pBuf, *m_endBuf, m_buf[TEXTFILE_BUFSIZE], m_bufParse[TEXTFILE_BUFSIZE];
+
+// CFile::Seek(...) and CFile::GetPosition() are 32-bit in MSVC6 but 64-bit in MSVC7
+#if _MSC_VER < 1300
+	typedef LONG SEEKOFFSET;
+	typedef DWORD POSOFFSET;
+#else
+	typedef ULONGLONG SEEKOFFSET;
+	typedef ULONGLONG POSOFFSET;
+#endif
+	
+	
+	TCHAR *m_pBuf, *m_endBuf, m_buf[TEXTFILE_BUFSIZE], m_bufParse[TEXTFILE_BUFSIZE];
   int m_cntBuf;
   
   void Reset();
@@ -64,11 +76,10 @@ public:
 	CString FindString(LPCTSTR szStringToFind, UINT nFrom = CFile::begin, DWORD dwOffset = 0);
 	CString FindDSCCommentString(LPCTSTR szStringToFind, LPCTSTR pszEndOn =_T("%%EndComments"), UINT nFrom = CFile::begin, DWORD dwOffset = 0);
 	BOOL IsOpen() const { return m_hFile != CFile::hFileNull; }
-	virtual LONG Seek( LONG lOff, UINT nFrom );
+	virtual SEEKOFFSET Seek( SEEKOFFSET lOff, UINT nFrom );
 	void SeekToBegin( );
 	void SeekToEnd( );
-	virtual DWORD GetPosition( ) const;
-	
+	virtual POSOFFSET GetPosition( ) const;
 	virtual BOOL ParseXMLValue(LPTSTR pszResult, DWORD dwMax, LPCTSTR pszEndTag);
 
 	template <class T> BOOL ParseXMLValue(T& value, LPCTSTR pszEndTag)
