@@ -1397,7 +1397,7 @@ BEGIN
     IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
 END
 
-// SAVING FILE (+ VERSION CONTROL)
+// SAVING FILE
 STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Сохранить как..."
@@ -1406,16 +1406,22 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Ошибка проверки возможности записи в указанное место"
     IDS_ERROR_BACKUP        "Ошибка создания резервной копии"
     IDS_BACKUP_FAILED_PROMPT "Нет возможности создать резервную копию оригинала?\nВсе равно продолжить ?"
-    IDS_NOPROJECT           "Чтобы продолжить, Вы должны указать путь к проекту SourceSafe (например:  $/MyProject)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-    IDS_VSSERROR            "Система контроля версий вернула ошибку при попытке взять файл под контроль.  Нет возможности продолжать..."
-    IDS_VSS_RUN_ERROR       "Ошибка выполнения системной команды Системы контроля версий."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "Рабочая папка VSS и местоположение текущего файла не совпадают. Продолжить ?"
     IDS_FILESAVE_FAILED     "Сохранение %1 завершилось ошибкой. Хотите сохранить под другим именем ?"
     IDS_FILEPACK_FAILED_LEFT "Плагин '%2' не может запаковать ваши изменения обратно в файл слева '%1'.\n\nОригинал останется не измененным.\n\nХотите сохранить распакованную версию в другой файл?"
     IDS_FILEPACK_FAILED_RIGHT "Плагин '%2' не может запаковать ваши изменения обратно в файл справа '%1'.\n\nОригинал останется не измененным.\n\nХотите сохранить распакованную версию в другой файл?"
     IDS_FILECHANGED_ONDISK  "Другое приложение изменило файл\n%1\nуже загруженный в WinMerge .\n\nПерезаписать измененный файл?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
+END
+
+// VSS
+STRINGTABLE
+BEGIN
+    IDS_NOPROJECT           "Чтобы продолжить, Вы должны указать путь к проекту SourceSafe (например:  $/MyProject)"
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSSERROR            "Система контроля версий вернула ошибку при попытке взять файл под контроль.  Нет возможности продолжать..."
+    IDS_VSS_RUN_ERROR       "Ошибка выполнения системной команды Системы контроля версий."
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "Рабочая папка VSS и местоположение текущего файла не совпадают. Продолжить ?"
+    IDS_VSS_NODATABASES     "No VSS database(s) found!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

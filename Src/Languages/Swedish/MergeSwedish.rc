@@ -1493,7 +1493,7 @@ BEGIN
     IDS_OTHER_IS_BINARY      "%1\n\när en binär fil. Kan inte jämföra binära och textfiler."
 END
 
-// SAVING FILE (+ VERSION CONTROL)
+// SAVING FILE
 STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Spara som"
@@ -1502,16 +1502,22 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Kontrollera skrivbarhet på destinationen!"
     IDS_ERROR_BACKUP        "Fel under backup av filen"
     IDS_BACKUP_FAILED_PROMPT "Kan inte ta backup på originalfilen.\nVill du fortsätta i alla fall?"
-    IDS_NOPROJECT           "Du måste ange sökvägen till ett SourceSafe-projekt för att fortsätta (t.ex.:  $/MittProjekt)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-    IDS_VSSERROR            "Versionshanteringssystemet returnerade ett fel under försöket att checka ut filen. Det går inte att fortsätta..."
-    IDS_VSS_RUN_ERROR       "Fel vid utförande av kommando för versionshanteringssystem."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS arbetskalogen och läget på den aktuella filen matchar inte. Vill du fortsätta ändå?"
     IDS_FILESAVE_FAILED     "Ett fel inträffade när %1 skulle sparas. Vill du spara filen med ett annat namn?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' kan inte packa dina förändringar av den vänstra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kan inte packa dina förändringar av den högra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
     IDS_SAVEREADONLY_MULTI  "%1\när markerad bara läsbar. Vill du ändå ändra i den?"
+END
+
+// VSS
+STRINGTABLE
+BEGIN
+    IDS_NOPROJECT           "Du måste ange sökvägen till ett SourceSafe-projekt för att fortsätta (t.ex.:  $/MittProjekt)"
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSSERROR            "Versionshanteringssystemet returnerade ett fel under försöket att checka ut filen. Det går inte att fortsätta..."
+    IDS_VSS_RUN_ERROR       "Fel vid utförande av kommando för versionshanteringssystem."
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS arbetskalogen och läget på den aktuella filen matchar inte. Vill du fortsätta ändå?"
+    IDS_VSS_NODATABASES     "No VSS database(s) found!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

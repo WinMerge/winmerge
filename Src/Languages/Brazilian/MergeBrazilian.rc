@@ -1496,7 +1496,7 @@ BEGIN
     IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
 END
 
-// SAVING FILE (+ VERSION CONTROL)
+// SAVING FILE
 STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Salvar Como"
@@ -1505,16 +1505,22 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Erro ao checar escrita no destino"
     IDS_ERROR_BACKUP        "Erro ao realizar cópia de segurança do arquivo"
     IDS_BACKUP_FAILED_PROMPT "Não foi possível fazer a cópia de segurança do arquivo original.\nContinuar assim mesmo?"
-    IDS_NOPROJECT           "Você precisa especificar o caminho de um projeto do SourceSafe para continuar (ex:  $/MyProject)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-    IDS_VSSERROR            "O SourceSafe retornou um erro ao tentar efetuar check out no arquivo.  Abortando..."
-    IDS_VSS_RUN_ERROR       "Erro ao executar o comando do sistema de versões."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
     IDS_FILESAVE_FAILED     "Falha ao salvar %1. Você gostaria de salvar o arquivo com outro nome?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
+END
+
+// VSS
+STRINGTABLE
+BEGIN
+    IDS_NOPROJECT           "Você precisa especificar o caminho de um projeto do SourceSafe para continuar (ex:  $/MyProject)"
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSSERROR            "O SourceSafe retornou um erro ao tentar efetuar check out no arquivo.  Abortando..."
+    IDS_VSS_RUN_ERROR       "Erro ao executar o comando do sistema de versões."
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
+    IDS_VSS_NODATABASES     "No VSS database(s) found!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

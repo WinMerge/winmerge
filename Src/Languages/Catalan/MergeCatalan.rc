@@ -1397,7 +1397,7 @@ BEGIN
     IDS_OTHER_IS_BINARY      "%1\n\nés un fitxer binari. No es poden comparar fitxers de text i binaris."
 END
 
-// SAVING FILE (+ VERSION CONTROL)
+// SAVING FILE
 STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Anomena i desa"
@@ -1406,16 +1406,22 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Hi ha hagut un error comprovant l'escrivibilitat de la destinació"
     IDS_ERROR_BACKUP        "Hi ha hagut un error en crear una còpia de seguretat del fitxer"
     IDS_BACKUP_FAILED_PROMPT "No es pot desar una còpia de seguretat del fitxer original.\nVoleu continuar en qualsevol cas?"
-    IDS_NOPROJECT           "Cal que especifiqueu el camí a un projecte del SourceSafe per tal de continuar (p.ex.:  $/MyProject)"
-    IDS_VSS_CHECKOUT_STATUS "Extreu fitxers de VSS..."
-    IDS_VSSERROR            "El sistema de control de versions ha retornat un error en extreure el fitxer. No es pot continuar..."
-    IDS_VSS_RUN_ERROR       "S'ha produït un error en executar una ordre del sistema de control de versions."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "La carpeta de treball del VSS i la ubicació del fitxer actual no concorden. Voleu continuar?"
     IDS_FILESAVE_FAILED     "Ha fallat el desat de %1. Voleu desar-lo amb un nom diferent?"
     IDS_FILEPACK_FAILED_LEFT "El Plugin '%2' no pot tornar a empaquetar els vostres canvis al fitxer de l'esquerra altre cop cap a '%1'.\n\nEl fitxer original no serà canviat.\n\nVoleu desar la versió desempaquetada a un altre fitxer?"
     IDS_FILEPACK_FAILED_RIGHT "El Plugin '%2' no pot tornar a empaquetar els vostres canvis al fitxer de la dreta altre cop cap a '%1'.\n\nEl fitxer original no serà canviat.\n\nVoleu desar la versió desempaquetada a un altre fitxer?"
     IDS_FILECHANGED_ONDISK  "Alguna altra aplicació ha actualitzat el fitxer\n%1\ndes de que el WinMerge el va carregar.\n\nVoleu sobreescriure el fitxer?"
     IDS_SAVEREADONLY_MULTI  "%1\nestà marcat com a només de lectura. Voleu substituir l'element només de lectura?"
+END
+
+// VSS
+STRINGTABLE
+BEGIN
+    IDS_NOPROJECT           "Cal que especifiqueu el camí a un projecte del SourceSafe per tal de continuar (p.ex.:  $/MyProject)"
+    IDS_VSS_CHECKOUT_STATUS "Extreu fitxers de VSS..."
+    IDS_VSSERROR            "El sistema de control de versions ha retornat un error en extreure el fitxer. No es pot continuar..."
+    IDS_VSS_RUN_ERROR       "S'ha produït un error en executar una ordre del sistema de control de versions."
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "La carpeta de treball del VSS i la ubicació del fitxer actual no concorden. Voleu continuar?"
+    IDS_VSS_NODATABASES     "No VSS database(s) found!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

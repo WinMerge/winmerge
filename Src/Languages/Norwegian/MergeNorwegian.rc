@@ -1493,7 +1493,7 @@ BEGIN
     IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
 END
 
-// SAVING FILE (+ VERSION CONTROL)
+// SAVING FILE
 STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Lagre som"
@@ -1502,16 +1502,22 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Sjekk skrivebeskyttelsen på destinasjonen"
     IDS_ERROR_BACKUP        "Feil under backup av filen"
     IDS_BACKUP_FAILED_PROMPT "Kan ikke ta backup av den originale filen.\nVil du fortsette allikevel?"
-    IDS_NOPROJECT           "Du skal angi en SourceSafe prosjektsti for å fortsette (ie:  $/MitProjekt)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-    IDS_VSSERROR            "Versjonsstyringssystemet returnerte en feil under forsøket på å sjekke filen ut. Kan ikke fortsette..."
-    IDS_VSS_RUN_ERROR       "Feil under utførelse av versjonsstyringssystemkommando."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
     IDS_FILESAVE_FAILED     "Lagring av %1 feilet. Vil du lagre filen under et annet navn?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
+END
+
+// VSS
+STRINGTABLE
+BEGIN
+    IDS_NOPROJECT           "Du skal angi en SourceSafe prosjektsti for å fortsette (ie:  $/MitProjekt)"
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSSERROR            "Versjonsstyringssystemet returnerte en feil under forsøket på å sjekke filen ut. Kan ikke fortsette..."
+    IDS_VSS_RUN_ERROR       "Feil under utførelse av versjonsstyringssystemkommando."
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
+    IDS_VSS_NODATABASES     "No VSS database(s) found!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

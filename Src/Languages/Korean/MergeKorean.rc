@@ -1455,7 +1455,7 @@ BEGIN
     IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
 END
 
-// SAVING FILE (+ VERSION CONTROL)
+// SAVING FILE
 STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "다른 이름으로 저장"
@@ -1464,16 +1464,22 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "복사 가능 체크 실패"
     IDS_ERROR_BACKUP        "파일 백업을 실패하였습니다"
     IDS_BACKUP_FAILED_PROMPT "원본 파일을 백업할 수 없습니다.\n계속하시겠습니까?"
-    IDS_NOPROJECT           "계속하시려면 소스세이프 프로젝트 경로를 설정하셔야합니다 (예:  $/MyProject)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-    IDS_VSSERROR            "체크아웃 실행 중 에러가 발생하였습니다.  더 이상 진행할 수 없습니다..."
-    IDS_VSS_RUN_ERROR       "버전관리시스템 명령 실행 실패."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
     IDS_FILESAVE_FAILED     "파일 저장 실패 : %1 . 다른 이름으로 저장하시겠습니까?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
+END
+
+// VSS
+STRINGTABLE
+BEGIN
+     IDS_NOPROJECT           "계속하시려면 소스세이프 프로젝트 경로를 설정하셔야합니다 (예:  $/MyProject)"
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSSERROR            "체크아웃 실행 중 에러가 발생하였습니다.  더 이상 진행할 수 없습니다..."
+    IDS_VSS_RUN_ERROR       "버전관리시스템 명령 실행 실패."
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
+    IDS_VSS_NODATABASES     "No VSS database(s) found!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

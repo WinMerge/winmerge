@@ -1384,7 +1384,7 @@ BEGIN
     IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
 END
 
-// SAVING FILE (+ VERSION CONTROL)
+// SAVING FILE
 STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "名前を付けて保存"
@@ -1393,16 +1393,22 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "ファイル書き込み可チェックエラー"
     IDS_ERROR_BACKUP        "ファイルバックアップエラー"
     IDS_BACKUP_FAILED_PROMPT "元ファイルをバックアップできません。\n無視して続けますか?"
-    IDS_NOPROJECT           "続行するためには、SourceSafeプロジェクトパスを指定してください。 (例:  $/MyProject)"
-    IDS_VSS_CHECKOUT_STATUS "VSSからファイルをチェックアウトしています..."
-    IDS_VSSERROR            "ファイルのチェックアウトでエラーが発生しました。  継続できません..."
-    IDS_VSS_RUN_ERROR       "バージョンシステムコマンドの実行エラー。"
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS作業フォルダと現在のファイル位置は一致していません。続行しますか?"
     IDS_FILESAVE_FAILED     "%1の保存に失敗しました。このファイルを別名で保存しますか?"
     IDS_FILEPACK_FAILED_LEFT "プラグイン '%2' は、修正内容を左側のファイル '%1' に書き戻すことができません。\n\n元ファイルは変更されません。\n\n展開されたものを別ファイルに保存しますか?"
     IDS_FILEPACK_FAILED_RIGHT "プラグイン '%2' は、修正内容を右側のファイル '%1' に書き戻すことができません。\n\n元ファイルは変更されません。\n\n展開されたものを別ファイルに保存しますか?"
     IDS_FILECHANGED_ONDISK  "%1\nこのファイルは WinMerge 以外のアプリケーションで修正されています。修正されたファイルに上書きしますか?"
     IDS_SAVEREADONLY_MULTI  "%1\nは、読み取り専用です。 読み取り専用の項目を上書きしますか?"
+END
+
+// VSS
+STRINGTABLE
+BEGIN
+    IDS_NOPROJECT           "続行するためには、SourceSafeプロジェクトパスを指定してください。 (例:  $/MyProject)"
+    IDS_VSS_CHECKOUT_STATUS "VSSからファイルをチェックアウトしています..."
+    IDS_VSSERROR            "ファイルのチェックアウトでエラーが発生しました。  継続できません..."
+    IDS_VSS_RUN_ERROR       "バージョンシステムコマンドの実行エラー。"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS作業フォルダと現在のファイル位置は一致していません。続行しますか?"
+    IDS_VSS_NODATABASES     "No VSS database(s) found!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

@@ -324,16 +324,18 @@
 #define IDS_ERROR_FILE_WRITEABLE        17235
 #define IDS_ERROR_BACKUP                17236
 #define IDS_BACKUP_FAILED_PROMPT        17237
-#define IDS_NOPROJECT                   17238
-#define IDS_VSS_CHECKOUT_STATUS         17239
-#define IDS_VSSERROR                    17240
-#define IDS_VSS_RUN_ERROR               17241
-#define IDS_VSSFOLDER_AND_FILE_NOMATCH  17242
-#define IDS_FILESAVE_FAILED             17243
-#define IDS_FILEPACK_FAILED_LEFT        17244
-#define IDS_FILEPACK_FAILED_RIGHT       17245
-#define IDS_FILECHANGED_ONDISK          17246
-#define IDS_SAVEREADONLY_MULTI          17247
+#define IDS_FILESAVE_FAILED             17238
+#define IDS_FILEPACK_FAILED_LEFT        17239
+#define IDS_FILEPACK_FAILED_RIGHT       17240
+#define IDS_FILECHANGED_ONDISK          17241
+#define IDS_SAVEREADONLY_MULTI          17242
+
+#define IDS_NOPROJECT                   17264
+#define IDS_VSS_CHECKOUT_STATUS         17265
+#define IDS_VSSERROR                    17266
+#define IDS_VSS_RUN_ERROR               17267
+#define IDS_VSSFOLDER_AND_FILE_NOMATCH  17268
+#define IDS_VSS_NODATABASES             17269
 
 #define ID_DIR_COPY_LEFT_TO_RIGHT       17600
 #define ID_DIR_COPY_LEFT_TO_BROWSE      17601

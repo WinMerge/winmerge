@@ -1381,7 +1381,7 @@ BEGIN
     IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
 END
 
-// SAVING FILE (+ VERSION CONTROL)
+// SAVING FILE
 STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Съхрани като"
@@ -1390,16 +1390,22 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Грешка при проверката за писане"
     IDS_ERROR_BACKUP        "Error backing up file"
     IDS_BACKUP_FAILED_PROMPT "Не може да backup първоначалния файл.\nЩе продължите ли?"
-    IDS_NOPROJECT           "Вие трябва да изберете SourceSafe проект за да продължите (ie:  $/MyProject)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-    IDS_VSSERROR            "Versioning System върна грешка при опита да провери файла.  Неможе да продължи..."
-    IDS_VSS_RUN_ERROR       "Грешка при стартиране на команда от versioning system."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS работна директория и разположението на файла не съвападат. Ще продължите ли?"
     IDS_FILESAVE_FAILED     "Записването на %1 неуспешно. Желаете ли да запишете файла под различно име?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
+END
+
+// VSS
+STRINGTABLE
+BEGIN
+    IDS_NOPROJECT           "Вие трябва да изберете SourceSafe проект за да продължите (ie:  $/MyProject)"
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSSERROR            "Versioning System върна грешка при опита да провери файла.  Неможе да продължи..."
+    IDS_VSS_RUN_ERROR       "Грешка при стартиране на команда от versioning system."
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS работна директория и разположението на файла не съвападат. Ще продължите ли?"
+    IDS_VSS_NODATABASES     "No VSS database(s) found!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

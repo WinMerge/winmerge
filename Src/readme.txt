@@ -2,6 +2,10 @@
  BUG: [ 969922 ] inconsistent 'options' dialog behavior
   Remove 'Apply' button from options-dialog
   Src: MainFrm.cpp
+ BUG: [ 826560 ] CVssPrompt::OnInitDialog neglects to notice failure in open
+  Also inform user if VSS databases not found
+  Src: Merge.rc resource.h VssPrompt.cpp
+  Src/Languages: *.rc resource.h
 
 2004-06-10 Laoran
  PATCH: [ 968887 ] UI for codepage detection

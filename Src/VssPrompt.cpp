@@ -86,38 +86,42 @@ END_MESSAGE_MAP()
 BOOL CVssPrompt::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
-	
+
 	m_ctlProject.LoadState(_T("Vss"));
-	
+
 	int i = 0;
 	int j = 0;
-	TCHAR cName[MAX_PATH];
-	TCHAR cString[MAX_PATH];
+	TCHAR cName[MAX_PATH] = {0};
+	TCHAR cString[MAX_PATH] = {0};
 	DWORD cssize = MAX_PATH;
 	DWORD csize = MAX_PATH;
 	CRegKeyEx reg;
 
-	ZeroMemory(&cName, MAX_PATH * sizeof(TCHAR));
-	ZeroMemory(&cString, MAX_PATH * sizeof(TCHAR));
-
+	// Open key containing VSS databases
 	if (!reg.QueryRegMachine(_T("SOFTWARE\\Microsoft\\SourceSafe\\Databases")))
-		return false;
+	{
+		CString msg;
+		VERIFY(msg.LoadString(IDS_VSS_NODATABASES));
+		AfxMessageBox(msg, MB_ICONERROR);
+		return FALSE;
+	}
+
 	HKEY hreg = reg.GetKey();
-	LONG retval = ERROR_SUCCESS;	
+	LONG retval = ERROR_SUCCESS;
 	while (retval == ERROR_SUCCESS || retval == ERROR_MORE_DATA)
 	{
 		if (_tcslen(cString) > 0 && _tcslen(cName) > 0)
 		{
-			m_ctlDBCombo.InsertString(j, (LPCTSTR)cString);		
+			m_ctlDBCombo.InsertString(j, (LPCTSTR)cString);
 			j++;
 		}
 		retval = RegEnumValue(hreg, i, (LPTSTR)&cName, &csize, NULL, 
-				NULL, (LPBYTE)&cString, &cssize);		
+				NULL, (LPBYTE)&cString, &cssize);
 		cssize = MAX_PATH;
 		csize = MAX_PATH;
 		i++;
 	}
-	return TRUE;  
+	return TRUE;
 }
 
 void CVssPrompt::OnOK() 

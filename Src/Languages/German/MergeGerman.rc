@@ -1499,7 +1499,7 @@ BEGIN
     IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
 END
 
-// SAVING FILE (+ VERSION CONTROL)
+// SAVING FILE
 STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Speichern unter"
@@ -1508,16 +1508,22 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Fehler beim Prüfen des Zielverzeichnisses auf Schreibschutz"
     IDS_ERROR_BACKUP        "Fehler beim Erstellen einer Sicherheitskopie"
     IDS_BACKUP_FAILED_PROMPT "Es konnte keine Sicherheitskopie der Originaldatei erzeugt werden.\nWollen Sie trotzdem fortfahren?"
-    IDS_NOPROJECT           "Sie müssen einen SourceSafe-Projektpfad angeben um fortzufahren (z.B.: $/MeinProjekt)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-    IDS_VSSERROR            "SourceSafe hat beim Versuch die Datei auszuchecken einen Fehler gemeldet. Der Vorgang kann nicht fortgesetzt werden..."
-    IDS_VSS_RUN_ERROR       "Fehler beim Versionieren."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
     IDS_FILESAVE_FAILED     "Fehler beim Speichern von %1. Wollen Sie die Datei unter einem anderen Namen speichern?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
+END
+
+// VSS
+STRINGTABLE
+BEGIN
+    IDS_NOPROJECT           "Sie müssen einen SourceSafe-Projektpfad angeben um fortzufahren (z.B.: $/MeinProjekt)"
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSSERROR            "SourceSafe hat beim Versuch die Datei auszuchecken einen Fehler gemeldet. Der Vorgang kann nicht fortgesetzt werden..."
+    IDS_VSS_RUN_ERROR       "Fehler beim Versionieren."
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
+    IDS_VSS_NODATABASES     "No VSS database(s) found!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

@@ -1503,16 +1503,22 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Chyba pri zisùovanÌ moûnosti z·pisu"
     IDS_ERROR_BACKUP        "Chyba pri z·lohovanÌ s˙boru"
     IDS_BACKUP_FAILED_PROMPT "Nemoûno z·lohovaù pÙvodny s˙bor.\nPokraËovaù?"
-    IDS_NOPROJECT           "MusÌte nastaviù cestu k projektu SourceSafe (napr.: $/MojProjekt)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-    IDS_VSSERROR            "SourceSafe vr·til chybu pri pokuse skontrolovaù s˙bor. Nemoûno pokraËovaù..."
-    IDS_VSS_RUN_ERROR       "Chyba pri sp˙öùanÌ prÌkazu zo SystÈmu VerziÌ (CVS a pod)."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
     IDS_FILESAVE_FAILED     "Z·pis %1 ne˙speön˝. Chceö uloûiù s˙bor pod in˝m menom?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
+END
+
+// VSS
+STRINGTABLE
+BEGIN
+    IDS_NOPROJECT           "MusÌte nastaviù cestu k projektu SourceSafe (napr.: $/MojProjekt)"
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSSERROR            "SourceSafe vr·til chybu pri pokuse skontrolovaù s˙bor. Nemoûno pokraËovaù..."
+    IDS_VSS_RUN_ERROR       "Chyba pri sp˙öùanÌ prÌkazu zo SystÈmu VerziÌ (CVS a pod)."
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
+    IDS_VSS_NODATABASES     "No VSS database(s) found!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

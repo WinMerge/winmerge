@@ -1367,7 +1367,7 @@ BEGIN
     IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
 END
 
-// SAVING FILE (+ VERSION CONTROL)
+// SAVING FILE
 STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "另存为"
@@ -1376,16 +1376,22 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "错误检查目标写入性"
     IDS_ERROR_BACKUP        "错误备份文件"
     IDS_BACKUP_FAILED_PROMPT "无法备份原始的文件。\n无论如何要继续吗？"
-    IDS_NOPROJECT           "您必须指定一个 SourceSafe 项目路径以便继续 (例如：  $/MyProject)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-    IDS_VSSERROR            "尝试检查文件时版本系统返回一个错误。 无法继续..."
-    IDS_VSS_RUN_ERROR       "执行版本系统命令错误。"
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
     IDS_FILESAVE_FAILED     "保存 %1 失败。您要以一个不同的称保存文件吗？"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
+END
+
+// VSS
+STRINGTABLE
+BEGIN
+    IDS_NOPROJECT           "您必须指定一个 SourceSafe 项目路径以便继续 (例如：  $/MyProject)"
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSSERROR            "尝试检查文件时版本系统返回一个错误。 无法继续..."
+    IDS_VSS_RUN_ERROR       "执行版本系统命令错误。"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
+    IDS_VSS_NODATABASES     "No VSS database(s) found!"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
