@@ -1,3 +1,7 @@
+2003-11-16 Perry
+ PATCH: [ 841897 ] Bail out of LoadFromFile if see embedded zeros
+  WinMerge: MergeDoc.cpp
+
 2003-11-16 Kimmo
  BUG: [ 818416 ] is stat population missing from RunFileDiff ?
   WinMerge: DiffWrapper.cpp

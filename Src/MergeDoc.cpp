@@ -1180,6 +1180,13 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 		do {
 			done = !pufile->ReadString(line, eol);
 
+
+			if (pufile->GetTxtStats().nzeros)
+			{
+				nRetVal = FRESULT_BINARY;
+				goto LoadFromFileExit;
+			}
+
 			// if last line had no eol, we can quit
 			if (done && preveol.IsEmpty())
 				break;
@@ -1269,6 +1276,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 			readOnly = TRUE;
 	}
 	
+LoadFromFileExit:
 
 	// delete the file that unpacking may have created
 	if (_tcscmp(pszFileNameInit, pszFileName) != 0)
