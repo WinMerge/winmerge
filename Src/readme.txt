@@ -1,3 +1,7 @@
+2003-10-27 Laoran
+ BUG: [ 830917 ] Rescan effects when validate changes in options
+  WinMerge: MainFrm.cpp
+
 2003-10-26 Laoran
  PATCH: [ 827332 ] detach buffer during load and rescan
   WinMerge: GhostTextView.cpp GhostTextView.h MergeDiffDetailView.cpp MergeDiffDetailView.h

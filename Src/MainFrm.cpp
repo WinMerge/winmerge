@@ -1039,10 +1039,7 @@ void CMainFrame::OnOptions()
 
 			if (pMergeDoc->SaveHelper())
 			{
-				int nRescanResult = RESCAN_OK;
-				nRescanResult = pMergeDoc->Rescan(TRUE);
-				if (nRescanResult != RESCAN_OK)
-					pMergeDoc->ShowRescanError(nRescanResult);
+				pMergeDoc->FlushAndRescan(TRUE);
 			}
 			// mods have been made, so just warn
 			else
