@@ -1,3 +1,8 @@
+2004-04-16 Laoran
+ updated swedish translation
+  Submitted by Hans Ericson <hans.ericson@bredband.net>
+  Languages/Swedish: MergeSwedish.rc
+
 2004-04-16 Kimmo
  RFE: [ 934446 ] Syntax highlighting for XML files
   Submitted by Tim Gerundt
