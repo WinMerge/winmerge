@@ -196,6 +196,10 @@ SOURCE=.\DiffThread.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DiffWrapper.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\DirActions.cpp
 # End Source File
 # Begin Source File
@@ -669,6 +673,10 @@ SOURCE=.\DiffContext.h
 # Begin Source File
 
 SOURCE=.\DiffThread.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DiffWrapper.h
 # End Source File
 # Begin Source File
 

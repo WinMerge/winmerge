@@ -18,14 +18,18 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// MergeDoc.cpp : implementation of the CMergeDoc class
-//
+/** 
+ * @file  MergeDoc.cpp
+ *
+ * @brief Implementation file for CMergeDoc
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
 #include "Merge.h"
 #include "direct.h"
-
 #include "MainFrm.h"
 
 #include "diff.h"
@@ -48,6 +52,9 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 
+/**
+ * @brief EOL types
+ */
 static LPCTSTR crlfs[] =
 {
 	_T ("\x0d\x0a"), //  DOS/Windows style
@@ -175,7 +182,6 @@ BOOL CMergeDoc::OnNewDocument()
 	CString s;
 	VERIFY(s.LoadString(IDS_FILE_COMPARISON_TITLE));
 	SetTitle(s);
-
 	
 	m_ltBuf.InitNew ();
 	m_rtBuf.InitNew ();
@@ -217,11 +223,26 @@ void CMergeDoc::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc commands
 
-
-
-// Save files under edit to temp files & compare again, to update diffs on screen
+/**
+* @brief Save files to temp files & compare again.
+*
+* @param bForced If TRUE, suppressing is ignored and rescan is done always
+*
+* @return Tells status of rescan done (OK, suppressed, etc)
+*
+* @note Rescan() ALWAYS compares temp files. Actual user files are not
+* touched by Rescan().
+*
+* @sa CDiffWrapper::RunFileDiff()
+*
+*/
 int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 {
+	DIFFSETTINGS diffSettings;
+	DIFFSTATUS status;
+	BOOL diffSuccess;
+	int nResult = RESCAN_OK;
+
 	if (!bForced)
 	{
 		if (!m_bEnableRescan)
@@ -253,281 +274,69 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	m_ltBuf.SaveToFile(m_strTempLeftFile, TRUE, CRLF_STYLE_AUTOMATIC, FALSE);
 	m_rtBuf.SaveToFile(m_strTempRightFile, TRUE, CRLF_STYLE_AUTOMATIC, FALSE);
 
-	// perform rescan
-	struct file_data inf[2];
-	char *free0=NULL,*free1=NULL;
-	CString sdir0, sdir1, sname0, sname1, sext0, sext1;
-	int val,failed=0, depth=0;
-	bool same_files=FALSE;
-	struct change *e, *p;
-	struct change *script=NULL;
-	int nResult = RESCAN_OK;
+	// Set up DiffWrapper
+	m_diffWrapper.SetCompareFiles(m_strTempLeftFile, m_strTempRightFile);
+	m_diffWrapper.SetDiffList(&m_diffs);
+	m_diffWrapper.SetUseDiffList(TRUE);		// Add diffs to list
+	
+	// Global diff-options
+	diffSettings.outputStyle = output_style;
+	diffSettings.context = context;
+	diffSettings.alwaysText = always_text_flag;
+	diffSettings.horizLines = horizon_lines;
+	diffSettings.ignoreSpaceChange = ignore_space_change_flag;
+	diffSettings.ignoreAllSpace = ignore_all_space_flag;
+	diffSettings.ignoreBlankLines = ignore_blank_lines_flag;
+	diffSettings.ignoreCase = ignore_case_flag;
+	diffSettings.heuristic = heuristic;
+	diffSettings.recursive = 0;		// File scan is always non-recursive!
+	m_diffWrapper.SetOptions(&diffSettings);
 
+	// Clear diff list
 	m_diffs.RemoveAll();
-	m_nDiffs=0;
-	m_nCurDiff=-1;
-	
-	SplitFilename(m_strTempLeftFile, &sdir0, &sname0, 0);
-	SplitFilename(m_strTempRightFile, &sdir1, &sname1, 0);
-	ZeroMemory(&inf[0], sizeof(inf[0]));
-	ZeroMemory(&inf[1], sizeof(inf[1]));
-	
-	/* Both exist and neither is a directory.  */
-	int o_binary = always_text_flag ? 0:O_BINARY;
-	
-	/* Open the files and record their descriptors.  */
-	if (sdir0.IsEmpty())
-		inf[0].name = sname0;
-	else
-		inf[0].name = free0 = dir_file_pathname (sdir0, sname0);
-	inf[0].desc = -2;
-	if (sdir1.IsEmpty())
-		inf[1].name = sname1;
-	else
-		inf[1].name = free1 = dir_file_pathname (sdir1, sname1);
-	inf[1].desc = -2;
-	if (inf[0].desc == -2)
+	m_nDiffs = 0;
+	m_nCurDiff = -1;
+
+	// Run diff
+	diffSuccess = m_diffWrapper.RunFileDiff();
+
+	// Read diff-status
+	m_diffWrapper.GetDiffStatus(&status);
+	m_nDiffs = m_diffs.GetSize();
+
+	// If comparing whitespaces and
+	// other file has EOL before EOF and other not...
+	if (status.bLeftMissingNL != status.bRightMissingNL &&
+		!mf->m_nIgnoreWhitespace)
 	{
-		if ((inf[0].desc = open (inf[0].name, O_RDONLY|o_binary, 0)) < 0)
-		{
-			perror_with_name (inf[0].name);
-			failed = 1;
-		}
-		if (inf[1].desc == -2)
-		{
-			if (same_files)
-				inf[1].desc = inf[0].desc;
-			else if ((inf[1].desc = open (inf[1].name, O_RDONLY|o_binary, 0)) < 0)
-			{
-				perror_with_name (inf[1].name);
-				failed = 1;
-			}
-			
-			/* Compare the files, if no error was found.  */
-			int diff_flag=0;
-
-			script = diff_2_files (inf, depth, &diff_flag);
-
-			// throw the diff into a temp file
-			char lpBuffer[MAX_PATH];       // path buffer
-			GetTempPath(MAX_PATH,lpBuffer);		// get path to Temp folder
-			CString path = CString(lpBuffer) + _T("Diff.txt");
-
-			outfile = fopen(path, "w+");
-			if (outfile != NULL)
-			{
-				print_normal_script(script);
-				fclose(outfile);
-				outfile=NULL;
-			}
-			
-			struct change *next = script;
-			int trans_a0, trans_b0, trans_a1, trans_b1;
-			int first0, last0, first1, last1, deletes, inserts, op;
-			struct change *thisob, *end;
-			
-			while (next)
-			{
-				/* Find a set of changes that belong together.  */
-				thisob = next;
-				end = find_change(next);
-				
-				/* Disconnect them from the rest of the changes,
-				making them a hunk, and remember the rest for next iteration.  */
-				next = end->link;
-				end->link = 0;
-#ifdef DEBUG
-				debug_script (thisob);
-#endif
-				
-				/* Print thisob hunk.  */
-				//(*printfun) (thisob);
-				{					
-					/* Determine range of line numbers involved in each file.  */
-					analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
-					if (!(!deletes && !inserts))
-					{
-						if (deletes && inserts)
-							op = OP_DIFF;
-						else if (deletes)
-							op = OP_LEFTONLY;
-						else
-							op = OP_RIGHTONLY;
-						
-						/* Print the lines that the first file has.  */
-						translate_range (&inf[0], first0, last0, &trans_a0, &trans_b0);
-						translate_range (&inf[1], first1, last1, &trans_a1, &trans_b1);
-						AddDiffRange(trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (BYTE)op);
-						TRACE("left=%d,%d   right=%d,%d   op=%d\n",trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
-					}
-				}
-				
-				/* Reconnect the script so it will all be freed properly.  */
-				end->link = next;
-			}
-			
-			// cleanup the script
-			for (e = script; e; e = p)
-			{
-				p = e->link;
-				free (e);
-			}
-
-			// If comparing whitespaces and
-			// other file has EOL before EOF and other not...
-			if (inf[0].missing_newline != inf[1].missing_newline &&
-				!mf->m_nIgnoreWhitespace)
-			{
-				// ..lasf DIFFRANGE of file which has EOL must be
-				// fixed to contain last line too
-				FixLastDiffRange(inf[1].missing_newline);
-			}
-			
-			cleanup_file_buffers(inf);
-			
-			/* Close the file descriptors.  */
-			if (inf[0].desc >= 0 && close (inf[0].desc) != 0)
-			{
-				perror_with_name (inf[0].name);
-				val = 2;
-			}
-			if (inf[1].desc >= 0 && inf[0].desc != inf[1].desc
-				&& close (inf[1].desc) != 0)
-			{
-				perror_with_name (inf[1].name);
-				val = 2;
-			}
-			
-			// Binary files or errors?
-			if (diff_flag > 0)
-				nResult = RESCAN_BINARIES;
-			else if (failed)
-				nResult = RESCAN_FILE_ERR;
-			else
-			{
-				// Identical files are also updated
-				if (m_nDiffs == 0)
-					nResult = RESCAN_IDENTICAL;
-
-				// display the files
-				PrimeTextBuffers();
-				m_pLeftView->PrimeListWithFile();
-				m_pRightView->PrimeListWithFile();
-
-				// PrimeListWithFile will call resetview which resets tabs
-//				mf->m_pLeft->SetTabSize(mf->m_nTabSize);
-//				mf->m_pRight->SetTabSize(mf->m_nTabSize);
-
-				/*TODO: int lcnt = m_ltBuf.GetLineCount();
-				int rcnt = m_rtBuf.GetLineCount();
-				if (lcnt < rcnt)
-				{
-					m_diffs[m_nDiffs-1].dbegin0 = lcnt;
-					m_diffs[m_nDiffs-1].dend0 = rcnt;
-					m_diffs[m_nDiffs-1].blank0 = lcnt;
-				}
-				else if (rcnt < lcnt)
-				{
-					m_diffs[m_nDiffs-1].dbegin1 = rcnt;
-					m_diffs[m_nDiffs-1].dend1 = lcnt;
-					m_diffs[m_nDiffs-1].blank1 = rcnt;
-				}
-
-				while (lcnt < rcnt)
-				{
-					mf->m_pLeft->AddItem(lcnt, 0, "");
-					mf->m_pLeft->m_pList->SetItemData(lcnt, 1);
-					lcnt++;
-				}
-				while (rcnt < lcnt)
-				{
-					mf->m_pRight->AddItem(rcnt, 0, "");
-					mf->m_pRight->m_pList->SetItemData(rcnt, 1);
-					rcnt++;
-				}*/
-			}
-		}
+		// ..lasf DIFFRANGE of file which has EOL must be
+		// fixed to contain last line too
+		m_diffWrapper.FixLastDiffRange(m_ltBuf.GetLineCount(), m_rtBuf.GetLineCount(),
+				status.bRightMissingNL);
 	}
-	
-	if (free0)
-		free (free0);
-	if (free1)
-		free (free1);
 
+	// Determine errors and binary file compares
+	if (!diffSuccess)
+		nResult = RESCAN_FILE_ERR;
+	else if (status.bBinaries)
+		nResult = RESCAN_BINARIES;
+	else
+	{
+		// Identical files are also updated
+		if (m_nDiffs == 0)
+			nResult = RESCAN_IDENTICAL;
+
+		// Analyse diff-list (updating real line-numbers)
+		PrimeTextBuffers();
+		
+		// Display files
+		m_pLeftView->PrimeListWithFile();
+		m_pRightView->PrimeListWithFile();
+	}
 	return nResult;
 }
 
-void CMergeDoc::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op)
-{
-	TRY {
-		DIFFRANGE dr = {0};
-		dr.begin0 = begin0;
-		dr.end0 = end0;
-		dr.begin1 = begin1;
-		dr.end1 = end1;
-		dr.op = op;
-		dr.blank0 = dr.blank1 = -1;
-		m_diffs.SetAtGrow(m_nDiffs, dr);
-		m_nDiffs++;
-	}
-	CATCH_ALL(e)
-	{
-		TCHAR msg[1024] = {0};
-		e->GetErrorMessage(msg, 1024);
-		AfxMessageBox(msg, MB_ICONSTOP);
-	}
-	END_CATCH_ALL;
-}
-
-// Expand last DIFFRANGE of file by one line to contain last line
-// after EOL
-void CMergeDoc::FixLastDiffRange(BOOL left)
-{
-	DIFFRANGE dr = {0};
-	int count = m_diffs.GetSize();
-	if (count > 0)
-	{
-		dr = m_diffs.GetAt(count - 1);
-
-		if (left)
-		{
-			if (dr.op == OP_RIGHTONLY)
-				dr.op = OP_DIFF;
-			dr.end0++;
-		}
-		else
-		{
-			if (dr.op == OP_LEFTONLY)
-				dr.op = OP_DIFF;
-			dr.end1++;
-		}
-
-		m_diffs.SetAt(count - 1, dr); 
-	}
-	else 
-	{
-		// we have to create the DIFF
-		dr.end0   = m_ltBuf.GetLineCount() - 1;
-		dr.end1   = m_rtBuf.GetLineCount() - 1;
-		if (left)
-		{
-			dr.begin0 = dr.end0;
-			dr.begin1 = dr.end1 + 1;
-			dr.op = OP_LEFTONLY;
-		}
-		else
-		{
-			dr.begin0 = dr.end0 + 1;
-			dr.begin1 = dr.end1;
-			dr.op = OP_RIGHTONLY;
-		}
-		ASSERT(dr.begin0 == dr.begin1);
-
-		AddDiffRange (dr.begin0, dr.end0, dr.begin1, dr.end1, dr.op); 
-	}
-}
-
-
+/// Prints (error) message by rescan resultcode
 void CMergeDoc::ShowRescanError(int nRescanResult)
 {
 	CString s;
@@ -663,13 +472,13 @@ private:
 	BOOL m_bSuppress;
 };
 
-// Copy all diffs from one side to the other (as specified by caller)
+/// Copy all diffs from one side to the other (as specified by caller)
 void CMergeDoc::CopyAllList(bool bSrcLeft)
 {
 	RescanSuppress suppressRescan(*this);
 	
-	// Note we don't care about m_nDiff count to become zero,
-	// because we don't rescan() it does not change
+	// Note we don't care about m_nDiffs count to become zero,
+	// because we don't rescan() so it does not change
 
 	// copy from bottom up is more efficient
 	for(int i = m_nDiffs-1; i>=0; --i)
@@ -681,6 +490,7 @@ void CMergeDoc::CopyAllList(bool bSrcLeft)
 	FlushAndRescan();
 }
 
+/// Copies selected (=current) diff to another side
 void CMergeDoc::ListCopy(bool bSrcLeft)
 {
 	// suppress Rescan during this method
@@ -965,7 +775,7 @@ CString CMergeDoc::Tabify(LPCTSTR szText)
 	return strResult;
 }*/
 
-// Checks if line is inside diff
+/// Checks if line is inside diff
 BOOL CMergeDoc::LineInDiff(UINT nLine, UINT nDiff)
 {
 	ASSERT(nDiff >= 0 && nDiff <= m_nDiffs);
@@ -976,7 +786,7 @@ BOOL CMergeDoc::LineInDiff(UINT nLine, UINT nDiff)
 		return FALSE;
 }
 
-// Returns order num of diff for given line
+/// Returns order num of diff for given line
 int CMergeDoc::LineToDiff(UINT nLine)
 {
 	for (UINT i = 0; i < m_nDiffs; i++)
@@ -1083,7 +893,7 @@ void CMergeDoc::CDiffTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
 
 
 
-// Try to determine current CRLF mode based on first line
+/// Try to determine current CRLF mode based on first line
 int CMergeDoc::CDiffTextBuffer::DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength)
 {
 	WORD wLoopSize = 0xffff;
@@ -1118,7 +928,7 @@ int CMergeDoc::CDiffTextBuffer::DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength)
 	return nCrlfStyle;
 }
 
-// Reads one line from filebuffer and inserts to textbuffer
+/// Reads one line from filebuffer and inserts to textbuffer
 void CMergeDoc::CDiffTextBuffer::ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen /* =0 */)
 {
 	if (m_nSourceEncoding >= 0)
@@ -1126,11 +936,13 @@ void CMergeDoc::CDiffTextBuffer::ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dw
 	InsertLine(lpLineBegin, dwLineLen);
 }
 
+/// Sets path for temporary files
 void CMergeDoc::CDiffTextBuffer::SetTempPath(CString path)
 {
 	m_strTempPath = path;
 }
 
+/// Loads file from disk to buffer
 int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/)
 {
@@ -1231,6 +1043,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 	return nRetVal;
 }
 
+/// Saves file from buffer to disk
 // NOTE: bTempFile is FALSE if we are saving user files and
 // TRUE if we are saving workin-temp-files for diff-engine
 BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
@@ -1332,7 +1145,7 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	return bSaveSuccess;
 }
 
-// Replace text of line (no change to eol)
+/// Replace text of line (no change to eol)
 void CMergeDoc::CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLine, const CString &strText)
 {
 	if (GetLineLength(nLine)>0)
@@ -1341,7 +1154,8 @@ void CMergeDoc::CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLi
 	if (! strText.IsEmpty())
 		InsertText(pSource, nLine, 0, strText, endl,endc);
 }
-// return pointer to the eol chars of this string, or pointer to empty string if none
+
+/// Return pointer to the eol chars of this string, or pointer to empty string if none
 LPCTSTR getEol(const CString &str)
 {
 	if (str.GetLength()>1 && str[str.GetLength()-2]=='\r' && str[str.GetLength()-1]=='\n')
@@ -1351,7 +1165,7 @@ LPCTSTR getEol(const CString &str)
 	return _T("");
 }
 
-// Replace line (removing any eol, and only including one if in strText)
+/// Replace line (removing any eol, and only including one if in strText)
 void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString &strText)
 {
 	if (_tcscmp(GetLineEol(nLine), getEol(strText)) == 0)
@@ -1375,6 +1189,7 @@ void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int
 		InsertText(pSource, nLine, 0, strText, endl,endc);
 }
 
+/// Determine path for temporary files and init those files
 BOOL CMergeDoc::InitTempFiles(const CString& srcPathL, const CString& strPathR)
 {
 	TCHAR strTempPath[MAX_PATH] = {0};
@@ -1411,6 +1226,7 @@ BOOL CMergeDoc::InitTempFiles(const CString& srcPathL, const CString& strPathR)
 	return TRUE;
 }
 
+/// Remove temporary files
 void CMergeDoc::CleanupTempFiles()
 {
 	if (!m_strTempLeftFile.IsEmpty())
@@ -1531,8 +1347,6 @@ bool CMergeDoc::CDiffTextBuffer::curUndoGroup()
 {
 	return (m_aUndoBuf.GetSize()!=0 && m_aUndoBuf[0].m_dwFlags&UNDO_BEGINGROUP);
 }
-
-
 
 void CMergeDoc::PrimeTextBuffers()
 {

@@ -1,3 +1,8 @@
+2003-08-22 Kimmo
+ PATCH: [ 787495 ] Create diffutils class (CDiffWrapper)
+  WinMerge: Merge.dsp MergeDoc.h MergeDoc.cpp
+   Added: DiffWrapper.h DiffWrapper.cpp
+
 2003-08-20 Perry
  PATCH: [ 791924 ] Fix sorting when columns are reordered
   WinMerge: DirView.cpp

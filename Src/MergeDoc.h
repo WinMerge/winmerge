@@ -17,9 +17,13 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// MergeDoc.h : interface of the CMergeDoc class
-//
-/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  MergeDoc.h
+ *
+ * @brief Declaration of CMergeDoc class
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #if !defined(AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
@@ -31,19 +35,11 @@
 #include "GhostTextBuffer.h"
 #include <vector>
 #include "afxtempl.h"
+#include "DiffWrapper.h"
 
-#define OP_NONE			0
-#define OP_LEFTONLY		1
-#define OP_DIFF			2
-#define OP_RIGHTONLY	3
-
-typedef struct tagDIFFRANGE {
-	UINT begin0,end0,begin1,end1;
-	UINT dbegin0,dend0,dbegin1,dend1;
-	int blank0,blank1;
-	BYTE op;
-}DIFFRANGE;
-
+/**
+ * @brief Return statuses of file rescan
+ */
 enum
 {
 	RESCAN_OK = 0,
@@ -176,8 +172,6 @@ public:
 
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(BOOL bForced = FALSE);
-	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
-	void FixLastDiffRange(BOOL left);
 	void ShowRescanError(int nRescanResult);
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	BOOL Undo();
@@ -241,6 +235,7 @@ protected:
 	CDirDoc * m_pDirDoc;
 	BOOL m_bEnableRescan;
 	COleDateTime m_LastRescan;
+	CDiffWrapper m_diffWrapper;
 
 // friend access
 	friend class RescanSuppress;
