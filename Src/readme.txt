@@ -1,3 +1,5 @@
+2004-03-06 WinMerge experimental release 2.1.5.13 (cvs)
+
 2004-03-05 Kimmo
  PATCH: [ 909980 ] Fix buffer types and descriptions
   Src: MergeDoc.cpp MergeDoc.h
