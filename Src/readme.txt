@@ -9,6 +9,11 @@
  BUG: [ 893410 ] Typo in IDS_DIFF_FILEOVERWRITE
   Src: Merge.rc
   Languages: *.rc
+ RFE: [ 897975 ] Syntax highlighting for INI files
+   Submitted by Tim Gerundt
+   Src: Merge.dsp
+   editlib: ccrystaltextview.cpp ccrystaltextview.h
+   editlib new file: ini.cpp
 
 2004-02-18 Jochen
  PATCH: [ 889357 ] Attempt to improve DirScan speed

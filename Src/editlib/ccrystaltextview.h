@@ -596,6 +596,7 @@ public :
     DWORD ParseLineDcl (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
     DWORD ParseLineFortran (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
     DWORD ParseLineHtml (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
+    DWORD ParseLineIni (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
     DWORD ParseLineIS (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
     DWORD ParseLineJava (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
     DWORD ParseLineLisp (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
@@ -666,6 +667,7 @@ public :
       SRC_DCL,
       SRC_FORTRAN,
       SRC_HTML,
+      SRC_INI,
       SRC_INSTALLSHIELD,
       SRC_JAVA,
       SRC_LISP,
