@@ -24,6 +24,12 @@
  PATCH: [ 872032 ] Add SEH around calls to load plugins
   WinMerge: Plugins.cpp
 
+2004-01-07 jtuc
+ Added new module Merge7z
+  Merge7z: Merge7z.h Merge7z311.cpp Merge7z311.dsp Merge7z312.dsp
+   Merge7z313.dsp Merge7zCommon.cpp Merge7zCommon.h StdAfx.cpp
+   StdAfx.h tools.cpp tools.h
+
 2004-01-07 Kimmo
  PATCH: [ 856396 ] Browse folders in non-recursive directory compare
   WinMerge: DirDoc.h DirDoc.cpp DirScan.cpp DirView.h DirView.cpp
