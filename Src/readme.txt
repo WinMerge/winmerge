@@ -1,3 +1,9 @@
+2004-01-14 Kimmo
+ PATCH: [ 1101919 ] Russian Readme.rtf
+  Submitted by Dmitriy S. Aleshkowskiy
+  Docs/Users/Languages: Read Me-Russian.rtf
+  InnoSetup: WinMerge Localized.iss
+
 2004-01-13 Kimmo
  PATCH: [ 1001341 ] Update edit view status bar on language change
   Submitted by Perry

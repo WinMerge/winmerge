@@ -165,7 +165,7 @@ Name: Korean; MessagesFile: Languages\Korean.isl
 Name: Norwegian; MessagesFile: Languages\Norwegian.isl
 Name: Polish; MessagesFile: Languages\Polish.isl
 Name: Portuguese; MessagesFile: Languages\Brazilian_Portuguese.isl
-Name: Russian; MessagesFile: Languages\Russian.isl
+Name: Russian; MessagesFile: Languages\Russian.isl; InfoAfterFile: ..\Docs\Users\Languages\Read Me-Russian.rtf
 Name: Slovak; MessagesFile: Languages\Slovak.isl
 Name: Spanish; MessagesFile: Languages\Spanish.isl
 Name: Swedish; MessagesFile: Languages\Swedish.isl; InfoAfterFile: ..\Docs\Users\Languages\Read Me-Swedish.rtf
