@@ -800,7 +800,7 @@ BOOL UniStdioFile::WriteString(const CString & line)
 	int srcbytes = line.GetLength() * sizeof(TCHAR);
 	bool lossy = ucr::convert(unicoding1, codepage1, src, srcbytes, (ucr::UNICODESET)m_unicoding, m_codepage, buff);
 	// TODO: What to do about lossy conversion ?
-	unsigned int wbytes = fwrite(buff->ptr, buff->used, 1, m_fp);
+	unsigned int wbytes = fwrite(buff->ptr, 1, buff->used, m_fp);
 	if (wbytes != buff->used)
 		return FALSE;
 	return TRUE;

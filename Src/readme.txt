@@ -1,3 +1,7 @@
+2004-01-16 Perry
+ Fix bug in UniFile::WriteString counting of written bytes.
+  Src/Common/UniFile.cpp
+
 2004-01-15 Kimmo
  PATCH: [ 873940 ] Diff navigation code cleanups
   src: MergeEditView.cpp
@@ -7,7 +11,7 @@
 2004-01-15 Perry
  Remove rcs/cvs ID line from unicoder.* (because I share these elsewhere)
   src/WinMerge/Common: unicoder.cpp unicoder.h
-Fix bug in unicoder.cpp: WideCharToMultiByte: lpDefaultChar & lpUsedDefaultChar must be NULL when using UTF-8.
+ Fix bug in unicoder.cpp: WideCharToMultiByte: lpDefaultChar & lpUsedDefaultChar must be NULL when using UTF-8.
   src/WinMerge/Common: unicoder.cpp
 
 2004-01-13 Perry
