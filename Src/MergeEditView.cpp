@@ -1396,6 +1396,10 @@ BOOL CMergeEditView::MergeModeKeyDown(MSG* pMsg)
 	BOOL bHandled = FALSE;
 	BOOL bCtrlKey = ::GetAsyncKeyState(VK_CONTROL);
 
+	// Allow default text selection when SHIFT pressed
+	if (::GetAsyncKeyState(VK_SHIFT))
+		return FALSE;
+
 	// If we are in merging mode (merge with cursor keys)
 	// handle some keys here
 	switch (pMsg->wParam)

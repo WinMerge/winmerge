@@ -1,6 +1,8 @@
 2004-04-25 Kimmo
  PATCH: [ 941524 ] Reset dircompare column widths
   Src: DirColsDlg.cpp DirColsDlg.h DirView.cpp DirView.h DirViewColHandler.cpp
+ PATCH: [ 941545 ] Fix Shift-Arrow to select text in merge mode
+  Src: MergeEditView.cpp
 
 2004-04-25 Perry
  More removing obsolete keywords to sync languages to English
