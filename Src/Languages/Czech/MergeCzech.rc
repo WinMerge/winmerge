@@ -135,6 +135,8 @@ BEGIN
         MENUITEM "&Zvolit písmo...",            ID_VIEW_SELECTFONT
         MENUITEM "Použít základní písm&o",      ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
+        MENUITEM "&View Whitespace",            ID_VIEW_WHITESPACE
+        MENUITEM SEPARATOR
         MENUITEM "&Panel nástrojù",             ID_VIEW_TOOLBAR
         MENUITEM "&Stavový øádek",              ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
@@ -316,7 +318,7 @@ FONT 8, "MS Sans Serif"
 BEGIN
     PUSHBUTTON      "OK",IDOK,154,16,52,14
     PUSHBUTTON      "Storno",IDCANCEL,154,33,52,14
-    LISTBOX         30001,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_TABSTOP
     LTEXT           "Dostupné jazyky:",IDC_STATIC,7,7,66,8
 END
@@ -350,7 +352,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "999.999.999.999\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "© 2000 Dean P. Grimm\0"
+            VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", "\0"
@@ -379,9 +381,9 @@ BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 191
+        RIGHTMARGIN, 216
         TOPMARGIN, 7
-        BOTTOMMARGIN, 83
+        BOTTOMMARGIN, 115
     END
 
     IDD_OPEN, DIALOG
@@ -392,26 +394,19 @@ BEGIN
         BOTTOMMARGIN, 91
     END
 
-    IDD_EDITFILE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 503
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 343
-    END
-
     IDD_VSS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 251
         TOPMARGIN, 7
-        BOTTOMMARGIN, 97
+        BOTTOMMARGIN, 141
     END
 
     IDD_PROP_VSS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 252
+        VERTGUIDE, 85
         TOPMARGIN, 7
         BOTTOMMARGIN, 150
     END
@@ -439,7 +434,6 @@ BEGIN
     SEPARATOR
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
-
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -472,7 +466,12 @@ IDB_UNKNOWN             BITMAP  DISCARDABLE     "res\\unknown.bmp"
 IDB_BINARY              BITMAP  DISCARDABLE     "res\\binary.bmp"
 IDB_LFILE               BITMAP  DISCARDABLE     "res\\lfile.bmp"
 IDB_RFILE               BITMAP  DISCARDABLE     "res\\rfile.bmp"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
 
+IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //

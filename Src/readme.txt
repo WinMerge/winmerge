@@ -1,3 +1,6 @@
+2003-02-21 Perry
+ Sync'ing all language resources to English version.
+
 2003-02-20 Perry
  [ 689876 ] Patch to fix bug # 689869 (ASSERT on Rescan)
   WinMerge:

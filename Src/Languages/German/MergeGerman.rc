@@ -21,6 +21,43 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 #pragma code_page(1252)
 #endif //_WIN32
 
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_GERMAN, SUBLANG_GERMAN\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Merge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Icon
@@ -54,7 +91,6 @@ BEGIN
         MENUITEM "Rückgängig",                  ID_UNDO
         MENUITEM SEPARATOR
         MENUITEM "Änderungen speichern...",     ID_POPUP_SAVE
-        MENUITEM "Datei bearbeiten",            ID_POPUP_EDITFILE
     END
 END
 
@@ -69,10 +105,15 @@ BEGIN
     END
     POPUP "&Bearbeiten"
     BEGIN
-        MENUITEM "Rück&gängig\tStrg+Z",         ID_UNDO
+        MENUITEM "Rück&gängig\tStrg+Z",         ID_EDIT_UNDO
+        MENUITEM "&Redo\tStrg+Y",               ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "&Nächster Unterschied\tTab",  ID_NEXTDIFF
-        MENUITEM "&Voriger Unterschied\tUmsch+Tab", ID_PREVDIFF
+        MENUITEM "&Nächster Unterschied\tAlt+Down", ID_NEXTDIFF
+        MENUITEM "&Voriger Unterschied\tAlt+Up", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
+        MENUITEM "Last &Difference\tAlt+End",   ID_LASTDIFF
         MENUITEM SEPARATOR
         MENUITEM "Nach &rechts kopieren\tPfeil rechts", ID_L2R
         MENUITEM "Nach &links kopieren\tPfeil links", ID_R2L
@@ -87,12 +128,15 @@ BEGIN
         MENUITEM "&Identische Dateien anzeigen", ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "&Unterschiedliche Dateien Anzeigen", 
                                                 ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "&Nur einem Verzeichnis vorhandene Dateien anzeigen", 
-                                                ID_OPTIONS_SHOWUNIQUE
+        MENUITEM "Show Le&ft Unique Files",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Files",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "*.&BAK-Dateien verstecken",   ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Sch&rift auswählen...",       ID_VIEW_SELECTFONT
         MENUITEM "St&andard-Schrift verwenden", ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&View Whitespace",            ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
         MENUITEM "&Symbolleiste",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
@@ -122,6 +166,14 @@ BEGIN
     BEGIN
         MENUITEM "Datei nach links kopieren",   ID_DIR_COPY_FILE_TO_LEFT
         MENUITEM "Datei nach rechts kopieren",  ID_DIR_COPY_FILE_TO_RIGHT
+        MENUITEM "Delete left",                 ID_DIR_DEL_LEFT
+        MENUITEM "Delete right",                ID_DIR_DEL_RIGHT
+        MENUITEM "Delete both",                 ID_DIR_DEL_BOTH
+        MENUITEM SEPARATOR
+        MENUITEM "Open left",                   ID_DIR_OPEN_LEFT
+        MENUITEM "Open left with...",           ID_DIR_OPEN_LEFT_WITH
+        MENUITEM "Open right",                  ID_DIR_OPEN_RIGHT
+        MENUITEM "Open right with...",          ID_DIR_OPEN_RIGHT_WITH
     END
 END
 
@@ -161,19 +213,23 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 198, 90
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 122
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Info über WinMerge"
 FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
-    LTEXT           "WinMerge",IDC_STATIC,63,18,63,8,SS_NOPREFIX
-    DEFPUSHBUTTON   "OK",IDOK,159,7,32,14,WS_GROUP
-    LTEXT           "Version 1.0",IDC_VERSION,64,28,127,8,SS_NOPREFIX
+    LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
+    LTEXT           "Version 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
     LTEXT           "Alle Rechte vorbehalten.",IDC_STATIC,7,60,170,8
-    LTEXT           "Besuchen Sie die WinMerge HomePage!",IDC_WWW,7,76,184,8
-    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,72,184,1
-    LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,184,8
+    LTEXT           "Besuchen Sie die WinMerge HomePage!",IDC_WWW,7,107,184,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
+    LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
+    LTEXT           "Syntax Highlighting Edit View by Andrei Stcherbatchenko ",
+                    IDC_STATIC,7,71,209,8
+    LTEXT           "Various Syntaxes by Ferdinand Prantl",IDC_STATIC,7,81,
+                    209,8
 END
 
 IDD_OPEN DIALOG DISCARDABLE  0, 0, 359, 98
@@ -200,49 +256,25 @@ BEGIN
                     7,7,286,84
 END
 
-IDD_EDITFILE DIALOG DISCARDABLE  0, 0, 510, 350
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Dialog"
-FONT 8, "MS Sans Serif"
-BEGIN
-    PUSHBUTTON      "&Speichern",IDOK,453,7,50,14
-    PUSHBUTTON      "Abbrechen",IDCANCEL,453,24,50,14
-    EDITTEXT        IDC_FILE_EDIT,7,7,437,336,ES_MULTILINE | ES_NOHIDESEL | 
-                    ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    PUSHBUTTON      "&Ausschneiden",IDC_CUT,453,64,50,14
-    PUSHBUTTON      "&Kopieren",IDC_COPY,453,82,50,14
-    PUSHBUTTON      "&Einfügen",IDC_PASTE,453,99,50,14
-    PUSHBUTTON      "&Rückgängig",IDC_UNDO,453,117,50,14
-END
-
-IDD_VSS DIALOG DISCARDABLE  0, 0, 258, 105
+IDD_VSS DIALOG DISCARDABLE  0, 0, 258, 149
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Visual SourceSafe"
 FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,244,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    DEFPUSHBUTTON   "Auschecken",IDOK,16,83,65,14
-    PUSHBUTTON      "Abbrechen",IDCANCEL,176,83,65,14
-    PUSHBUTTON      "Speichern unter...",IDSAVEAS,96,83,65,14
+    DEFPUSHBUTTON   "Auschecken",IDOK,16,121,65,14
+    PUSHBUTTON      "Abbrechen",IDCANCEL,176,121,65,14
+    PUSHBUTTON      "Speichern unter...",IDSAVEAS,96,121,65,14
     LTEXT           "Projekt:",IDC_STATIC,9,61,25,8
     COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "User:",IDC_STATIC,13,80,18,8
+    EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_STATIC,127,79,34,8
+    EDITTEXT        IDC_PASSWORD,162,78,70,14,ES_PASSWORD | ES_AUTOHSCROLL
 END
 
-IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "SourceSafe"
-FONT 8, "MS Sans Serif"
-BEGIN
-    GROUPBOX        "Einstellungen",IDC_STATIC,7,7,245,54
-    CONTROL         "Visual &SourceSafe Integration aktivieren",
-                    IDC_DOVSS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,
-                    21,142,10
-    LTEXT           "&Pfad zu SS.EXE:",IDC_VSS_L1,16,42,54,8
-    EDITTEXT        IDC_PATH_EDIT,72,40,131,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "&Suchen...",IDC_BROWSE_BUTTON,206,40,42,12
-END
 
 IDD_PROPPAGE_LARGE DIALOG DISCARDABLE  0, 0, 235, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
@@ -255,15 +287,27 @@ BEGIN
     CONTROL         "Anzeige automatisch auf den ersten Unterschied &positionieren",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     17,33,210,10
-    CONTROL         "&Leerraum ignorieren",IDC_WHITESPACE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,45,78,10
     CONTROL         "Leer&zeilen ignorieren",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,81,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,45,81,10
     CONTROL         "&Groß-/Kleinschreibung ignorieren",IDC_IGNCASE_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,69,119,10
-    GROUPBOX        "Tabulatoren",IDC_STATIC,7,89,221,30
-    LTEXT           "&Tabulator-Größe:",IDC_STATIC,15,103,54,8
-    EDITTEXT        IDC_TAB_EDIT,72,101,27,12,ES_AUTOHSCROLL
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,57,119,10
+    CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,81,87,10
+    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,128,45,82,10
+    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,128,57,100,10
+    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,128,69,83,10
+    GROUPBOX        "Tabulatoren",IDC_STATIC,7,105,221,30
+    LTEXT           "&Tabulator-Größe:",IDC_STATIC,15,119,54,8
+    EDITTEXT        IDC_TAB_EDIT,72,117,27,12,ES_AUTOHSCROLL
+    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,68,69,10
+    CONTROL         "Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,99,112,51,10
+    CONTROL         "Insert Spaces",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,99,123,59,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -273,7 +317,7 @@ FONT 8, "MS Sans Serif"
 BEGIN
     PUSHBUTTON      "OK",IDOK,154,16,52,14
     PUSHBUTTON      "Abbrechen",IDCANCEL,154,33,52,14
-    LISTBOX         30001,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_TABSTOP
     LTEXT           "Verfügbare Sprachen:",IDC_STATIC,7,7,70,8
 END
@@ -304,10 +348,10 @@ BEGIN
         BEGIN
             VALUE "Comments", "Translated by Winfried Peter\0"
             VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "WinMerge\0"
+            VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "999.999.999.999\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "© 2000 Dean P. Grimm\0"
+            VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", "\0"
@@ -336,9 +380,9 @@ BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 191
+        RIGHTMARGIN, 216
         TOPMARGIN, 7
-        BOTTOMMARGIN, 83
+        BOTTOMMARGIN, 115
     END
 
     IDD_OPEN, DIALOG
@@ -349,26 +393,19 @@ BEGIN
         BOTTOMMARGIN, 91
     END
 
-    IDD_EDITFILE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 503
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 343
-    END
-
     IDD_VSS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 251
         TOPMARGIN, 7
-        BOTTOMMARGIN, 97
+        BOTTOMMARGIN, 141
     END
 
     IDD_PROP_VSS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 252
+        VERTGUIDE, 85
         TOPMARGIN, 7
         BOTTOMMARGIN, 150
     END
@@ -394,10 +431,14 @@ BEGIN
     BUTTON      ID_FILE_OPEN
     BUTTON      ID_FILE_SAVE
     SEPARATOR
-    BUTTON      ID_UNDO
+    BUTTON      ID_EDIT_UNDO
+    BUTTON      ID_EDIT_REDO
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
+    BUTTON      ID_LASTDIFF
+    BUTTON      ID_CURDIFF
+    BUTTON      ID_FIRSTDIFF
     SEPARATOR
     BUTTON      ID_L2R
     BUTTON      ID_R2L
@@ -421,44 +462,18 @@ IDB_EQUAL               BITMAP  DISCARDABLE     "res\\equal.bmp"
 IDB_NOTEQUAL            BITMAP  DISCARDABLE     "res\\notequal.bmp"
 IDB_RFOLDER             BITMAP  DISCARDABLE     "res\\rfolder.bmp"
 IDB_UNKNOWN             BITMAP  DISCARDABLE     "res\\unknown.bmp"
-IDB_BINARY              BITMAP  DISCARDABLE     "res\\binary.bmp"
+IDB_BINARYSAME          BITMAP  DISCARDABLE     "res\\binary.bmp"
+IDB_LFILE               BITMAP  DISCARDABLE     "res\\lfile.bmp"
+IDB_RFILE               BITMAP  DISCARDABLE     "res\\rfile.bmp"
+IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
 
-#ifdef APSTUDIO_INVOKED
+
 /////////////////////////////////////////////////////////////////////////////
 //
-// TEXTINCLUDE
+// Cursor
 //
 
-1 TEXTINCLUDE DISCARDABLE 
-BEGIN
-    "resource.h\0"
-END
-
-2 TEXTINCLUDE DISCARDABLE 
-BEGIN
-    "#include ""afxres.h""\r\n"
-    "\0"
-END
-
-3 TEXTINCLUDE DISCARDABLE 
-BEGIN
-    "#define _AFX_NO_OLE_RESOURCES\r\n"
-    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
-    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
-    "\r\n"
-    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)\r\n"
-    "#ifdef _WIN32\r\n"
-    "LANGUAGE LANG_GERMAN, SUBLANG_GERMAN\r\n"
-    "#pragma code_page(1252)\r\n"
-    "#endif\r\n"
-    "#include ""res\\Merge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
-    "#include ""afxres.rc""         // Standard components\r\n"
-    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
-    "#endif\0"
-END
-
-#endif    // APSTUDIO_INVOKED
-
+IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -669,137 +684,8 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Beendet die Seitenansicht.\nSeitenansicht beenden"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_AFRIKAANS           "Afrikaans"
-    IDS_ALBANIAN            "Albanian"
-    IDS_ARABIC_SAUDI        "Arabic (Saudi Arabian)"
-    IDS_ARABIC_IRAQ         "Arabic (Iraq)"
-    IDS_ARABIC_EGYPT        "Arabic (Egyptian)"
-    IDS_ARABIC_LIBYA        "Arabic (Libyan)"
-    IDS_ARABIC_ALGERIA      "Arabic (Algerian)"
-    IDS_ARABIC_MOROCCO      "Arabic (Moroccan)"
-    IDS_ARABIC_TUNISIA      "Arabic (Tunisian)"
-    IDS_ARABIC_OMAN         "Arabic (Oman)"
-    IDS_ARABIC_YEMEN        "Arabic (Yemen)"
-    IDS_ARABIC_SYRIA        "Arabic (Syrian)"
-    IDS_ARABIC_JORDAN       "Arabic (Jordan)"
-END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_ARABIC_LEBANON      "Arabic (Lebanon)"
-    IDS_ARABIC_KUWAIT       "Arabic (Kuwait)"
-    IDS_ARABIC_UAE          "Arabic (UAE)"
-    IDS_ARABIC_BAHRAIN      "Arabic (Bahrain)"
-    IDS_ARABIC_QATAR        "Arabic (Qatar)"
-    IDS_BASQUE              "Basque"
-    IDS_BELARUSIAN          "Belarusian"
-    IDS_BULGARIAN           "Bulgarian"
-    IDS_CATALAN             "Catalan"
-    IDS_CHINESE_TRADITIONAL "Chinese (Trad)"
-    IDS_CHINESE_SIMPLIFIED  "Chinese (Simple)"
-    IDS_CHINESE_HONGKONG    "Chinese (Hong Kong)"
-    IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
-    IDS_CROATIAN            "Croatian"
-    IDS_CZECH               "Cesko"
-    IDS_DANISH              "Danish"
-END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_DUTCH               "Nederlandse"
-    IDS_ENGLISH_US          "English (US)"
-    IDS_ENGLISH_UK          "English (UK)"
-    IDS_ENGLISH_AUS         "English (Australian)"
-    IDS_ENGLISH_CAN         "English (Canadian)"
-    IDS_ENGLISH_NZ          "English (New Zealand)"
-    IDS_ENGLISH_EIRE        "English (Irish)"
-    IDS_ENGLISH_SOUTH_AFRICA "English (So. African)"
-    IDS_ENGLISH_JAMAICA     "English (Jamaican)"
-    IDS_ENGLISH_CARIBBEAN   "English (Caribbean)"
-    IDS_ENGLISH_BELIZE      "English (Belize)"
-    IDS_ENGLISH_TRINIDAD    "English (Trinidad)"
-    IDS_ESTONIAN            "Estonian"
-    IDS_FAEROESE            "Faeroese"
-    IDS_FARSI               "Farsi"
-    IDS_FINNISH             "Finnish"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_FRENCH              "Francais"
-    IDS_FRENCH_BELGIAN      "Francais (Belgique)"
-    IDS_FRENCH_CANADIAN     "Francais (Canada)"
-    IDS_FRENCH_SWISS        "Francais (Suisse)"
-    IDS_FRENCH_LUXEMBOURG   "Francais (Luxembourg)"
-    IDS_GERMAN              "Deutsch (Deutschland)"
-    IDS_GERMAN_SWISS        "Deutsch (Schweiz)"
-    IDS_GERMAN_AUSTRIAN     "Deutsch (Österreich)"
-    IDS_GERMAN_LUXEMBOURG   "Deutsch (Luxemburg)"
-    IDS_GERMAN_LIECHTENSTEIN "Deutsch (Liechtenstein)"
-    IDS_GREEK               "Greek"
-    IDS_HEBREW              "Hebrew"
-    IDS_HUNGARIAN           "Hungarian"
-    IDS_ICELANDIC           "Icelandic"
-    IDS_INDONESIAN          "Indonesian"
-    IDS_ITALIAN             "Italiano"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_ITALIAN_SWISS       "Italiano (Svizzera)"
-    IDS_JAPANESE            "Japanese"
-    IDS_KOREAN              "Korean"
-    IDS_KOREAN_JOHAB        "Korean (Johab)"
-    IDS_LATVIAN             "Latvian"
-    IDS_LITHUANIAN          "Lithuanian"
-    IDS_NORWEGIAN_BOKMAL    "Norwegian (Bokmal)"
-    IDS_NORWEGIAN_NYNORSK   "Norwegian (Nynorsk)"
-    IDS_POLISH              "Polish"
-    IDS_PORTUGUESE          "Portugese"
-    IDS_PORTUGUESE_BRAZILIAN "Portugese (Brazil)"
-    IDS_ROMANIAN            "Romanian"
-    IDS_RUSSIAN             "Russian"
-    IDS_SERBIAN_LATIN       "Serbian (Latin)"
-    IDS_SERBIAN_CYRILLIC    "Serbian (Cyrillic)"
-    IDS_SLOVAK              "Slovak"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_SLOVENIAN           "Slovenian"
-    IDS_SPANISH             "Español"
-    IDS_SPANISH_MEXICAN     "Español (Mexicano)"
-    IDS_SPANISH_MODERN      "Español (Moderno)"
-    IDS_SPANISH_GUATEMALA   "Español (Guatemala)"
-    IDS_SPANISH_COSTA_RICA  "Español (Costa Rica)"
-    IDS_SPANISH_PANAMA      "Español (Panamá)"
-    IDS_SPANISH_DOMINICAN   "Español (Dominicano)"
-    IDS_SPANISH_VENEZUELA   "Español (Venezuela)"
-    IDS_SPANISH_COLOMBIA    "Español (Colombiano)"
-    IDS_SPANISH_PERU        "Español (Peru)"
-    IDS_SPANISH_ARGENTINA   "Español (Argentina)"
-    IDS_SPANISH_ECUADOR     "Español (Ecuador)"
-    IDS_SPANISH_CHILE       "Español (Chile)"
-    IDS_SPANISH_URUGUAY     "Español (Uruguay)"
-    IDS_SPANISH_PARAGUAY    "Español (Paraguay)"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_SPANISH_BOLIVIA     "Español (Bolivia)"
-    IDS_SPANISH_EL_SALVADOR "Español (El Salvador)"
-    IDS_SPANISH_HONDURAS    "Español (Hondureño)"
-    IDS_SPANISH_NICARAGUA   "Español (Nicaragua)"
-    IDS_SPANISH_PUERTO_RICO "Español (Puerto Rico)"
-    IDS_SWEDISH             "Swedish"
-    IDS_SWEDISH_FINLAND     "Swedish (Finland)"
-    IDS_THAI                "Thai"
-    IDS_TURKISH             "Turkish"
-    IDS_UKRANIAN            "Ukranian"
-    IDS_VIETNAMESE          "Vietnamese"
-END
 
 #endif    // German (Germany) resources
 /////////////////////////////////////////////////////////////////////////////

@@ -88,12 +88,13 @@
 #define IDS_CONFIRM_COPY_SINGLE         189
 #define IDS_CONFIRM_DELETE_SINGLE       190
 #define IDS_BIN_FILES_SAME              191
+#define IDS_FILESAVE_FAILED             192
+#define IDS_ERROR_FILE_NOT_FOUND        193
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
 #define IDB_UNKNOWN                     216
 #define IDB_BINARYSAME                  217
-
 #define IDB_LFILE                       218
 #define IDB_RFILE                       219
 #define IDB_SPLASH                      220
@@ -101,7 +102,6 @@
 #define IDB_OLDSPLASH                   222
 #define IDB_LFOLDER                     223
 #define IDB_BINARYDIFF                  224
-
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -145,6 +145,7 @@
 #define IDC_PROP_INSERT_TABS            1034
 #define IDC_PROP_INSERT_SPACES          1035
 #define IDC_ASSOC_DIRECTORY             1036
+#define IDC_LANGUAGE_LIST               1037
 #define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
 #define IDD_PROPSYNTAX                  30001
@@ -321,6 +322,7 @@
 #define ID_DIR_OPEN_RIGHT               32815
 #define ID_DIR_OPEN_RIGHT_WITH          32816
 #define ID_OPTIONS_SHOWBINARIES         32817
+#define ID_VIEW_WHITESPACE              32818
 
 // Next default values for new objects
 // 
@@ -328,8 +330,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        114
-#define _APS_NEXT_COMMAND_VALUE         32818
-#define _APS_NEXT_CONTROL_VALUE         1037
+#define _APS_NEXT_COMMAND_VALUE         32819
+#define _APS_NEXT_CONTROL_VALUE         1038
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

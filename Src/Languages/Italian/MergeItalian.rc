@@ -103,7 +103,7 @@ BEGIN
     END
     POPUP "&Modifica"
     BEGIN
-        MENUITEM "&Annulla\tCtrl+Z",            ID_UNDO
+        MENUITEM "&Annulla\tCtrl+Z",            ID_EDIT_UNDO
         MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "&Differenza successiva\tAlt+Down", ID_NEXTDIFF
@@ -125,13 +125,15 @@ BEGIN
     BEGIN
         MENUITEM "&Mostra file identici",       ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "Mos&tra file con differenze", ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Most&ra file unici",          ID_OPTIONS_SHOWUNIQUE
         MENUITEM "Mostra file unici de sinistra", ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "Mostra file unici de destra", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "&Nascondi file *.BAK",        ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "&Carattere...",               ID_VIEW_SELECTFONT
         MENUITEM "&Usa carattere predefinito",  ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&View Whitespace",            ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
         MENUITEM "Barra degli &strumenti",      ID_VIEW_TOOLBAR
         MENUITEM "&Barra di stato",             ID_VIEW_STATUS_BAR
@@ -169,7 +171,6 @@ BEGIN
         MENUITEM "Open left with...",           ID_DIR_OPEN_LEFT_WITH
         MENUITEM "Open right",                  ID_DIR_OPEN_RIGHT
         MENUITEM "Open right with...",          ID_DIR_OPEN_RIGHT_WITH
-
     END
 END
 
@@ -329,70 +330,11 @@ FONT 8, "MS Sans Serif"
 BEGIN
     PUSHBUTTON      "OK",IDOK,154,16,52,14
     PUSHBUTTON      "Annulla",IDCANCEL,154,33,52,14
-    LISTBOX         30001,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_TABSTOP
     LTEXT           "Lingue disponibili:",IDC_STATIC,7,7,56,8
 END
-IDD_CLEARCASE DIALOG DISCARDABLE  0, 0, 279, 111
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Rational Clearcase"
-FONT 8, "MS Sans Serif"
-BEGIN
-    DEFPUSHBUTTON   "CheckOut",IDOK,35,90,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,194,90,50,14
-    PUSHBUTTON      "Save As...",IDSAVEAS,114,90,50,14
-    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
-                    ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    LTEXT           "Comments",IDC_STATIC,18,7,34,10
-END
 
-IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Hilighting"
-FONT 8, "MS Sans Serif"
-BEGIN
-    CONTROL         "Hilight syntax",IDC_HILITE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,57,10
-END
-
-IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Filter"
-FONT 8, "MS Sans Serif"
-BEGIN
-    CONTROL         "Ignore lines matching the follow patterns",
-                    IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                    7,221,15
-    LTEXT           "Regular Expressions (one per line):",IDC_STATIC,7,28,
-                    221,8
-    EDITTEXT        IDC_EDITPATTERN,7,39,221,96,ES_MULTILINE | 
-                    ES_AUTOHSCROLL | ES_WANTRETURN
-END
-
-IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Colors"
-FONT 8, "MS Sans Serif", 0, 0, 0x1
-BEGIN
-    LTEXT           "Difference:",IDC_STATIC,15,18,36,8
-    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,15,17,14,WS_EX_TRANSPARENT | 
-                    WS_EX_CLIENTEDGE
-    LTEXT           "Selected Difference:",IDC_STATIC,14,36,66,8
-    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,33,17,14,WS_EX_TRANSPARENT | 
-                    WS_EX_CLIENTEDGE
-END
-
-IDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Dialog"
-FONT 8, "MS Sans Serif"
-BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,106,136,50,14
-    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | 
-                    WS_VSCROLL
-END
 
 
 #ifndef _MAC
@@ -423,7 +365,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "999.999.999.999\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "© 1996-20001 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", "\0"
@@ -465,19 +407,19 @@ BEGIN
         BOTTOMMARGIN, 91
     END
 
-
     IDD_VSS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 251
         TOPMARGIN, 7
-        BOTTOMMARGIN, 97
+        BOTTOMMARGIN, 141
     END
 
     IDD_PROP_VSS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 252
+        VERTGUIDE, 85
         TOPMARGIN, 7
         BOTTOMMARGIN, 150
     END
@@ -486,6 +428,7 @@ BEGIN
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 228
+        VERTGUIDE, 128
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
     END
@@ -525,7 +468,6 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
     END
-
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -571,9 +513,11 @@ IDB_EQUAL               BITMAP  DISCARDABLE     "res\\equal.bmp"
 IDB_NOTEQUAL            BITMAP  DISCARDABLE     "res\\notequal.bmp"
 IDB_RFOLDER             BITMAP  DISCARDABLE     "res\\rfolder.bmp"
 IDB_UNKNOWN             BITMAP  DISCARDABLE     "res\\unknown.bmp"
-IDB_BINARY              BITMAP  DISCARDABLE     "res\\binary.bmp"
+IDB_BINARYSAME          BITMAP  DISCARDABLE     "res\\binary.bmp"
 IDB_LFILE               BITMAP  DISCARDABLE     "res\\lfile.bmp"
 IDB_RFILE               BITMAP  DISCARDABLE     "res\\rfile.bmp"
+IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -796,138 +740,6 @@ BEGIN
     IDS_SAVEVSS_FMT         "%1 è un file di sola lettura. Vuoi estrarlo da SourceSafe, o salvarlo con un nome differente?"
     IDS_VSSERROR            "SourceSafe ha generato un errore tentando di estrarre il file. Impossibile continuare..."
     IDS_NOPROJECT           "È necessario specificare il percorso di un progetto SourceSafe per continuare (es:  $/MioProgetto)"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_AFRIKAANS           "Afrikaans"
-    IDS_ALBANIAN            "Albanian"
-    IDS_ARABIC_SAUDI        "Arabic (Saudi Arabian)"
-    IDS_ARABIC_IRAQ         "Arabic (Iraq)"
-    IDS_ARABIC_EGYPT        "Arabic (Egyptian)"
-    IDS_ARABIC_LIBYA        "Arabic (Libyan)"
-    IDS_ARABIC_ALGERIA      "Arabic (Algerian)"
-    IDS_ARABIC_MOROCCO      "Arabic (Moroccan)"
-    IDS_ARABIC_TUNISIA      "Arabic (Tunisian)"
-    IDS_ARABIC_OMAN         "Arabic (Oman)"
-    IDS_ARABIC_YEMEN        "Arabic (Yemen)"
-    IDS_ARABIC_SYRIA        "Arabic (Syrian)"
-    IDS_ARABIC_JORDAN       "Arabic (Jordan)"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_ARABIC_LEBANON      "Arabic (Lebanon)"
-    IDS_ARABIC_KUWAIT       "Arabic (Kuwait)"
-    IDS_ARABIC_UAE          "Arabic (UAE)"
-    IDS_ARABIC_BAHRAIN      "Arabic (Bahrain)"
-    IDS_ARABIC_QATAR        "Arabic (Qatar)"
-    IDS_BASQUE              "Basque"
-    IDS_BELARUSIAN          "Belarusian"
-    IDS_BULGARIAN           "Bulgarian"
-    IDS_CATALAN             "Catalan"
-    IDS_CHINESE_TRADITIONAL "Chinese (Trad)"
-    IDS_CHINESE_SIMPLIFIED  "Chinese (Simple)"
-    IDS_CHINESE_HONGKONG    "Chinese (Hong Kong)"
-    IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
-    IDS_CROATIAN            "Croatian"
-    IDS_CZECH               "Cesko"
-    IDS_DANISH              "Danish"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_DUTCH               "Nederlandse"
-    IDS_ENGLISH_US          "English (US)"
-    IDS_ENGLISH_UK          "English (UK)"
-    IDS_ENGLISH_AUS         "English (Australian)"
-    IDS_ENGLISH_CAN         "English (Canadian)"
-    IDS_ENGLISH_NZ          "English (New Zealand)"
-    IDS_ENGLISH_EIRE        "English (Irish)"
-    IDS_ENGLISH_SOUTH_AFRICA "English (So. African)"
-    IDS_ENGLISH_JAMAICA     "English (Jamaican)"
-    IDS_ENGLISH_CARIBBEAN   "English (Caribbean)"
-    IDS_ENGLISH_BELIZE      "English (Belize)"
-    IDS_ENGLISH_TRINIDAD    "English (Trinidad)"
-    IDS_ESTONIAN            "Estonian"
-    IDS_FAEROESE            "Faeroese"
-    IDS_FARSI               "Farsi"
-    IDS_FINNISH             "Finnish"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_FRENCH              "Francais"
-    IDS_FRENCH_BELGIAN      "Francais (Belgique)"
-    IDS_FRENCH_CANADIAN     "Francais (Canada)"
-    IDS_FRENCH_SWISS        "Francais (Suisse)"
-    IDS_FRENCH_LUXEMBOURG   "Francais (Luxembourg)"
-    IDS_GERMAN              "Deutsch (Deutschland)"
-    IDS_GERMAN_SWISS        "Deutsch (Schweiz)"
-    IDS_GERMAN_AUSTRIAN     "Deutsch (Österreich)"
-    IDS_GERMAN_LUXEMBOURG   "Deutsch (Luxemburg)"
-    IDS_GERMAN_LIECHTENSTEIN "Deutsch (Liechtenstein)"
-    IDS_GREEK               "Greek"
-    IDS_HEBREW              "Hebrew"
-    IDS_HUNGARIAN           "Hungarian"
-    IDS_ICELANDIC           "Icelandic"
-    IDS_INDONESIAN          "Indonesian"
-    IDS_ITALIAN             "Italiano"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_ITALIAN_SWISS       "Italiano (Svizzera)"
-    IDS_JAPANESE            "Japanese"
-    IDS_KOREAN              "Korean"
-    IDS_KOREAN_JOHAB        "Korean (Johab)"
-    IDS_LATVIAN             "Latvian"
-    IDS_LITHUANIAN          "Lithuanian"
-    IDS_NORWEGIAN_BOKMAL    "Norwegian (Bokmal)"
-    IDS_NORWEGIAN_NYNORSK   "Norwegian (Nynorsk)"
-    IDS_POLISH              "Polish"
-    IDS_PORTUGUESE          "Portugese"
-    IDS_PORTUGUESE_BRAZILIAN "Portugese (Brazil)"
-    IDS_ROMANIAN            "Romanian"
-    IDS_RUSSIAN             "Russian"
-    IDS_SERBIAN_LATIN       "Serbian (Latin)"
-    IDS_SERBIAN_CYRILLIC    "Serbian (Cyrillic)"
-    IDS_SLOVAK              "Slovak"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_SLOVENIAN           "Slovenian"
-    IDS_SPANISH             "Español"
-    IDS_SPANISH_MEXICAN     "Español (Mexicano)"
-    IDS_SPANISH_MODERN      "Español (Moderno)"
-    IDS_SPANISH_GUATEMALA   "Español (Guatemala)"
-    IDS_SPANISH_COSTA_RICA  "Español (Costa Rica)"
-    IDS_SPANISH_PANAMA      "Español (Panamá)"
-    IDS_SPANISH_DOMINICAN   "Español (Dominicano)"
-    IDS_SPANISH_VENEZUELA   "Español (Venezuela)"
-    IDS_SPANISH_COLOMBIA    "Español (Colombiano)"
-    IDS_SPANISH_PERU        "Español (Peru)"
-    IDS_SPANISH_ARGENTINA   "Español (Argentina)"
-    IDS_SPANISH_ECUADOR     "Español (Ecuador)"
-    IDS_SPANISH_CHILE       "Español (Chile)"
-    IDS_SPANISH_URUGUAY     "Español (Uruguay)"
-    IDS_SPANISH_PARAGUAY    "Español (Paraguay)"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_SPANISH_BOLIVIA     "Español (Bolivia)"
-    IDS_SPANISH_EL_SALVADOR "Español (El Salvador)"
-    IDS_SPANISH_HONDURAS    "Español (Hondureño)"
-    IDS_SPANISH_NICARAGUA   "Español (Nicaragua)"
-    IDS_SPANISH_PUERTO_RICO "Español (Puerto Rico)"
-    IDS_SWEDISH             "Swedish"
-    IDS_SWEDISH_FINLAND     "Swedish (Finland)"
-    IDS_THAI                "Thai"
-    IDS_TURKISH             "Turkish"
-    IDS_UKRANIAN            "Ukranian"
-    IDS_VIETNAMESE          "Vietnamese"
 END
 
 STRINGTABLE DISCARDABLE 
