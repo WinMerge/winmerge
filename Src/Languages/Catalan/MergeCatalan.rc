@@ -140,7 +140,7 @@ BEGIN
         MENUITEM "&Cerca...\tCtrl+F",           ID_EDIT_FIND
         MENUITEM "Subst&itueix...\tCtrl+H",     ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        MENUITEM "&Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM "&Go To...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Opcions...",                 ID_OPTIONS
         MENUITEM SEPARATOR
@@ -225,18 +225,18 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        POPUP "Copy"
+        POPUP "&Copy"
         BEGIN
-            MENUITEM "Left to Right",               ID_DIR_COPY_LEFT_TO_RIGHT
-            MENUITEM "Left to ...",                 ID_DIR_COPY_LEFT_TO_BROWSE
-            MENUITEM "Right to Left",               ID_DIR_COPY_RIGHT_TO_LEFT
-            MENUITEM "Right to ...",                ID_DIR_COPY_RIGHT_TO_BROWSE
+            MENUITEM "&Left to Right",              ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "L&eft to...",                 ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "&Right to Left",              ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "R&ight to...",                ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "Delete"
+        POPUP "&Delete"
         BEGIN
-            MENUITEM "Left",                        ID_DIR_DEL_LEFT
-            MENUITEM "Right",                       ID_DIR_DEL_RIGHT
-            MENUITEM "Both",                        ID_DIR_DEL_BOTH
+            MENUITEM "&Left",                       ID_DIR_DEL_LEFT
+            MENUITEM "&Right",                      ID_DIR_DEL_RIGHT
+            MENUITEM "&Both",                       ID_DIR_DEL_BOTH
         END
         MENUITEM SEPARATOR
         POPUP "Obre l'esquerre"
@@ -252,15 +252,15 @@ BEGIN
             MENUITEM "amb...",                     ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        POPUP "Zip"
+        POPUP "&Zip"
         BEGIN
-            MENUITEM "Zip left side %1 file(s) from %2 selected item(s)", 
+            MENUITEM "Zip &Left Side %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_LEFT
-            MENUITEM "Zip right side %1 file(s) from %2 selected item(s)", 
+            MENUITEM "Zip &Right Side %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_RIGHT
-            MENUITEM "Zip both sides %1 file(s) from %2 selected item(s)", 
+            MENUITEM "Zip &Both Sides %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_BOTH
-            MENUITEM "Zip both sides diffs only %1 file(s) from %2 of %3 selected item(s)", 
+            MENUITEM "Zip Both &Sides Diffs Only %1 File(s) from %2 of %3 Selected Item(s)",
                                                     ID_DIR_ZIP_BOTH_DIFFS_ONLY
 
         END
@@ -1087,7 +1087,7 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl-N)"
+    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
     ID_FILE_OPEN            "Obre un document existent\nObrir (Ctrl+O)"
     ID_FILE_CLOSE           "Tanca el document actiu\nTanca"
     ID_FILE_SAVE            "Desa el document actiu\nDesa (Ctrl+S)"
@@ -1260,9 +1260,9 @@ BEGIN
     IDS_DELETE_FILE_FAILED  "Ha fallat la supressió del fitxer %1 failed: %2"
     IDS_CONFIRM_DELETE_DIR  "Voleu suprimir el directori %1?"
     IDS_REMOVE_DIR_FAILED   "Ha fallat la supressió del directori: %1"
-    IDS_COPY_TO_LEFT        "Right to left (%1)"
+    IDS_COPY_TO_LEFT        "Right to Left (%1)"
     IDS_DEL_BOTH_FMT        "Both (%1)"
-    IDS_COPY_TO_RIGHT       "Left to right (%1)"
+    IDS_COPY_TO_RIGHT       "Left to Right (%1)"
     IDS_COLHDR_LSIZE        "Tamany esquerra"
     IDS_DELETE_DIR_FAILED   "Ha fallat la supressió del directori %1: %s"
     IDS_COPY_FILE_FAILED    "Ha fallat la còpia del fitxer %1: %2"
@@ -1344,8 +1344,8 @@ BEGIN
     IDS_DEL_LEFT_FMT2       "Left (%1 of %2)"
     IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
     IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
-    IDS_COPY_TO_LEFT2       "Right to left (%1 of %2)"
-    IDS_COPY_TO_RIGHT2      "Left to right (%1 of%2)"
+    IDS_COPY_TO_LEFT2       "Right to Left (%1 of %2)"
+    IDS_COPY_TO_RIGHT2      "Left to Right (%1 of %2)"
     IDS_DIRSEL_TAG          "Directory Selection"
 END
 
@@ -1669,6 +1669,7 @@ LANGUAGE LANG_CATALAN, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 
 

@@ -96,7 +96,7 @@ IDR_MAINFRAME MENU PRELOAD DISCARDABLE
 BEGIN
     POPUP "&Arkiv"
     BEGIN
-        MENUITEM "New\tCtrl+N",                 ID_FILE_NEW
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Öppna...\tCtrl+O",           ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "&Spara\tCtrl+S",              ID_FILE_SAVE
@@ -116,9 +116,9 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Format för"
         BEGIN
-            MENUITEM "DOS (CRLF)",                  ID_EOL_TO_DOS
-            MENUITEM "UNIX (LF)",                   ID_EOL_TO_UNIX
-            MENUITEM "MAC (CR)",                    ID_EOL_TO_MAC
+            MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
+            MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
+            MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
         MENUITEM "&Avsluta\tEsc",               ID_APP_EXIT
@@ -139,7 +139,7 @@ BEGIN
         MENUITEM "S&ök...\tCtrl+F",             ID_EDIT_FIND
         MENUITEM "&Ersätt...\tCtrl+H",          ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        MENUITEM "&Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM "&Go To...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "E&genskaper...",              ID_OPTIONS
         MENUITEM SEPARATOR
@@ -178,8 +178,8 @@ BEGIN
         MENUITEM "Kopiera till &höger\tAlt+Höger", ID_L2R
         MENUITEM "Kopiera till &vänster\tAlt+Vänster", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Copy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
-        MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
+        MENUITEM "C&opy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
+        MENUITEM "Copy &to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
         MENUITEM SEPARATOR
         MENUITEM "Kopiera allt &till höger",    ID_ALL_RIGHT
         MENUITEM "Kopiera allt t&ill vänster",  ID_ALL_LEFT
@@ -194,10 +194,10 @@ BEGIN
     END
     POPUP "&Plugins"
     BEGIN
-        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
-        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
+        MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "&Edit with Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
     END
     POPUP "F&önster"
     BEGIN
@@ -213,7 +213,7 @@ BEGIN
     BEGIN
         MENUITEM "&Innehåll...",                ID_HELP_CONTENTS
         MENUITEM SEPARATOR
-        MENUITEM "Configuration...",            ID_HELP_GETCONFIG
+        MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM SEPARATOR
         MENUITEM "GNU General Public License...", ID_HELP_GNULICENSE
         MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
@@ -224,42 +224,42 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        POPUP "Copy"
+        POPUP "&Copy"
         BEGIN
-            MENUITEM "Left to Right",               ID_DIR_COPY_LEFT_TO_RIGHT
-            MENUITEM "Left to ...",                 ID_DIR_COPY_LEFT_TO_BROWSE
-            MENUITEM "Right to Left",               ID_DIR_COPY_RIGHT_TO_LEFT
-            MENUITEM "Right to ...",                ID_DIR_COPY_RIGHT_TO_BROWSE
+            MENUITEM "&Left to Right",              ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "L&eft to...",                 ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "&Right to Left",              ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "R&ight to...",                ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "Delete"
+        POPUP "&Delete"
         BEGIN
-            MENUITEM "Left",                        ID_DIR_DEL_LEFT
-            MENUITEM "Right",                       ID_DIR_DEL_RIGHT
-            MENUITEM "Both",                        ID_DIR_DEL_BOTH
-        END
-        MENUITEM SEPARATOR
-        POPUP "Öppna vänster"
-        BEGIN
-            MENUITEM "with registered application", ID_DIR_OPEN_LEFT
-            MENUITEM "with external editor",        ID_DIR_OPEN_LEFT_WITHEDITOR
-            MENUITEM "med...",                     ID_DIR_OPEN_LEFT_WITH
-        END
-        POPUP "Öppna högra"
-        BEGIN
-            MENUITEM "with registered application", ID_DIR_OPEN_RIGHT
-            MENUITEM "with external editor",        ID_DIR_OPEN_RIGHT_WITHEDITOR
-            MENUITEM "med...",                     ID_DIR_OPEN_RIGHT_WITH
+            MENUITEM "&Left",                       ID_DIR_DEL_LEFT
+            MENUITEM "&Right",                      ID_DIR_DEL_RIGHT
+            MENUITEM "&Both",                       ID_DIR_DEL_BOTH
         END
         MENUITEM SEPARATOR
-        POPUP "Zip"
+        POPUP "&Open Left"
         BEGIN
-            MENUITEM "Zip left side %1 file(s) from %2 selected item(s)", 
+            MENUITEM "with &Registered Application", ID_DIR_OPEN_LEFT
+            MENUITEM "with &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
+            MENUITEM "&with...",                    ID_DIR_OPEN_LEFT_WITH
+        END
+        POPUP "O&pen Right"
+        BEGIN
+            MENUITEM "with &Registered Application", ID_DIR_OPEN_RIGHT
+            MENUITEM "with &External Editor",       ID_DIR_OPEN_RIGHT_WITHEDITOR
+            MENUITEM "&with...",                    ID_DIR_OPEN_RIGHT_WITH
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Zip"
+        BEGIN
+            MENUITEM "Zip &Left Side %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_LEFT
-            MENUITEM "Zip right side %1 file(s) from %2 selected item(s)", 
+            MENUITEM "Zip &Right Side %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_RIGHT
-            MENUITEM "Zip both sides %1 file(s) from %2 selected item(s)", 
+            MENUITEM "Zip &Both Sides %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_BOTH
-            MENUITEM "Zip both sides diffs only %1 file(s) from %2 of %3 selected item(s)", 
+            MENUITEM "Zip Both &Sides Diffs Only %1 File(s) from %2 of %3 Selected Item(s)",
                                                     ID_DIR_ZIP_BOTH_DIFFS_ONLY
 
         END
@@ -1071,7 +1071,7 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl-N)"
+    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
     ID_FILE_OPEN            "Öppna ett befintligt dokument\nÖppna (Ctrl+O)"
     ID_FILE_CLOSE           "Stäng det aktiva dokumentet\nStäng"
     ID_FILE_SAVE            "Spara det aktiva dokumentet\nSpara (Ctrl+S)"
@@ -1328,8 +1328,8 @@ BEGIN
     IDS_DEL_LEFT_FMT2       "Left (%1 of %2)"
     IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
     IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
-    IDS_COPY_TO_LEFT2       "Right to left (%1 of %2)"
-    IDS_COPY_TO_RIGHT2      "Left to right (%1 of%2)"
+    IDS_COPY_TO_LEFT2       "Right to Left (%1 of %2)"
+    IDS_COPY_TO_RIGHT2      "Left to Right (%1 of %2)"
     IDS_DIRSEL_TAG          "Directory Selection"
 END
 
@@ -1490,6 +1490,7 @@ LANGUAGE LANG_SWEDISH, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 
 

@@ -97,7 +97,7 @@ IDR_MAINFRAME MENU PRELOAD DISCARDABLE
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "New\tCtrl+N",                 ID_FILE_NEW
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
@@ -112,14 +112,14 @@ BEGIN
             MENUITEM "Save &As...",                 ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "L&eft read-only",             ID_FILE_LEFT_READONLY
-        MENUITEM "R&ight read-only",            ID_FILE_RIGHT_READONLY
+        MENUITEM "L&eft Read-only",             ID_FILE_LEFT_READONLY
+        MENUITEM "Ri&ght Read-only",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
         POPUP "Format for"
         BEGIN
-            MENUITEM "DOS (CRLF)",                  ID_EOL_TO_DOS
-            MENUITEM "UNIX (LF)",                   ID_EOL_TO_UNIX
-            MENUITEM "MAC (CR)",                    ID_EOL_TO_MAC
+            MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
+            MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
+            MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
         MENUITEM "E&xit\tEsc",                  ID_APP_EXIT
@@ -135,12 +135,12 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
+        MENUITEM "&Highlight Line Diff\tF4",    ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "F&ind...\tCtrl+F",            ID_EDIT_FIND
         MENUITEM "Repla&ce...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        MENUITEM "&Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM "&Go To...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Options...",                 ID_OPTIONS
         MENUITEM SEPARATOR
@@ -173,14 +173,14 @@ BEGIN
         MENUITEM "&Previous Difference\tAlt+Up", ID_PREVDIFF
         MENUITEM SEPARATOR
         MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
-        MENUITEM "&Curre&nt Difference\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
         MENUITEM "&Last Difference\tAlt+End",   ID_LASTDIFF
         MENUITEM SEPARATOR
         MENUITEM "Copy to &Right\tAlt+Right",   ID_L2R
         MENUITEM "Copy to L&eft\tAlt+Left",     ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Copy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
-        MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
+        MENUITEM "C&opy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
+        MENUITEM "Copy &to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
         MENUITEM SEPARATOR
         MENUITEM "Copy &All to Right",          ID_ALL_RIGHT
         MENUITEM "Cop&y All to Left",           ID_ALL_LEFT
@@ -195,14 +195,14 @@ BEGIN
     END
     POPUP "&Plugins"
     BEGIN
-        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
-        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
+        MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "&Edit with Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
     END
     POPUP "&Window"
     BEGIN
-        MENUITEM "Close",                       ID_FILE_CLOSE
+        MENUITEM "Cl&ose",                      ID_FILE_CLOSE
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -214,9 +214,9 @@ BEGIN
     BEGIN
         MENUITEM "&Contents...",                ID_HELP_CONTENTS
         MENUITEM SEPARATOR
-        MENUITEM "Configuration...",            ID_HELP_GETCONFIG
+        MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM SEPARATOR
-        MENUITEM "GNU Public License...",       ID_HELP_GNULICENSE
+        MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
         MENUITEM "&About WinMerge...",          ID_APP_ABOUT
     END
 END
@@ -225,49 +225,49 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        POPUP "Copy"
+        POPUP "&Copy"
         BEGIN
-            MENUITEM "Left to Right",               ID_DIR_COPY_LEFT_TO_RIGHT
-            MENUITEM "Left to ...",                 ID_DIR_COPY_LEFT_TO_BROWSE
-            MENUITEM "Right to Left",               ID_DIR_COPY_RIGHT_TO_LEFT
-            MENUITEM "Right to ...",                ID_DIR_COPY_RIGHT_TO_BROWSE
+            MENUITEM "&Left to Right",              ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "L&eft to...",                 ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "&Right to Left",              ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "R&ight to...",                ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "Delete"
+        POPUP "&Delete"
         BEGIN
-            MENUITEM "Left",                        ID_DIR_DEL_LEFT
-            MENUITEM "Right",                       ID_DIR_DEL_RIGHT
-            MENUITEM "Both",                        ID_DIR_DEL_BOTH
-        END
-        MENUITEM SEPARATOR
-        POPUP "Open left"
-        BEGIN
-            MENUITEM "with registered application", ID_DIR_OPEN_LEFT
-            MENUITEM "with external editor",        ID_DIR_OPEN_LEFT_WITHEDITOR
-            MENUITEM "with...",                     ID_DIR_OPEN_LEFT_WITH
-        END
-        POPUP "Open right"
-        BEGIN
-            MENUITEM "with registered application", ID_DIR_OPEN_RIGHT
-            MENUITEM "with external editor",        ID_DIR_OPEN_RIGHT_WITHEDITOR
-            MENUITEM "with...",                     ID_DIR_OPEN_RIGHT_WITH
+            MENUITEM "&Left",                       ID_DIR_DEL_LEFT
+            MENUITEM "&Right",                      ID_DIR_DEL_RIGHT
+            MENUITEM "&Both",                       ID_DIR_DEL_BOTH
         END
         MENUITEM SEPARATOR
-        POPUP "Zip"
+        POPUP "&Open Left"
         BEGIN
-            MENUITEM "Zip left side %1 file(s) from %2 selected item(s)", 
+            MENUITEM "with &Registered Application", ID_DIR_OPEN_LEFT
+            MENUITEM "with &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
+            MENUITEM "&with...",                    ID_DIR_OPEN_LEFT_WITH
+        END
+        POPUP "O&pen Right"
+        BEGIN
+            MENUITEM "with &Registered Application", ID_DIR_OPEN_RIGHT
+            MENUITEM "with &External Editor",       ID_DIR_OPEN_RIGHT_WITHEDITOR
+            MENUITEM "&with...",                    ID_DIR_OPEN_RIGHT_WITH
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Zip"
+        BEGIN
+            MENUITEM "Zip &Left Side %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_LEFT
-            MENUITEM "Zip right side %1 file(s) from %2 selected item(s)", 
+            MENUITEM "Zip &Right Side %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_RIGHT
-            MENUITEM "Zip both sides %1 file(s) from %2 selected item(s)", 
+            MENUITEM "Zip &Both Sides %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_BOTH
-            MENUITEM "Zip both sides diffs only %1 file(s) from %2 of %3 selected item(s)", 
+            MENUITEM "Zip Both &Sides Diffs Only %1 File(s) from %2 of %3 Selected Item(s)",
                                                     ID_DIR_ZIP_BOTH_DIFFS_ONLY
 
         END
     END
     POPUP "_HDR_POPUP_"
     BEGIN
-        MENUITEM "Edit columns",                ID_EDIT_COLUMNS
+        MENUITEM "&Edit Columns...",            ID_EDIT_COLUMNS
     END
 END
 
@@ -275,8 +275,8 @@ IDR_POPUP_EDITOR_HEADERBAR MENU DISCARDABLE
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Copy full Path",              ID_EDITOR_COPY_PATH
-        MENUITEM "Copy Filename",               ID_EDITOR_COPY_FILENAME
+        MENUITEM "&Copy Full Path",             ID_EDITOR_COPY_PATH
+        MENUITEM "Copy &Filename",              ID_EDITOR_COPY_FILENAME
     END
 END
 
@@ -1072,7 +1072,7 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl-N)"
+    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
     ID_FILE_OPEN            "Open an existing document\nOpen (Ctrl+O)"
     ID_FILE_CLOSE           "Close the active document\nClose"
     ID_FILE_SAVE            "Save the active document\nSave (Ctrl+S)"
@@ -1136,8 +1136,8 @@ BEGIN
     ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
     ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
     ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
-    ID_EDIT_UNDO            "Undo the last action\nUndo"
-    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+    ID_EDIT_UNDO            "Undo the last action\nUndo (Ctrl+Z)"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo (Ctrl+Y)"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1245,9 +1245,9 @@ BEGIN
     IDS_DELETE_FILE_FAILED  "Delete file %1 failed: %2"
     IDS_CONFIRM_DELETE_DIR  "Delete directory %1?"
     IDS_REMOVE_DIR_FAILED   "Remove directory failed: %1"
-    IDS_COPY_TO_LEFT        "Right to left (%1)"
+    IDS_COPY_TO_LEFT        "Right to Left (%1)"
     IDS_DEL_BOTH_FMT        "Both (%1)"
-    IDS_COPY_TO_RIGHT       "Left to right (%1)"
+    IDS_COPY_TO_RIGHT       "Left to Right (%1)"
     IDS_COLHDR_LSIZE        "Left Size"
     IDS_DELETE_DIR_FAILED   "Delete directory %1 failed: %s"
     IDS_COPY_FILE_FAILED    "Copying file %1 failed: %2"
@@ -1329,8 +1329,8 @@ BEGIN
     IDS_DEL_LEFT_FMT2       "Left (%1 of %2)"
     IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
     IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
-    IDS_COPY_TO_LEFT2       "Right to left (%1 of %2)"
-    IDS_COPY_TO_RIGHT2      "Left to right (%1 of%2)"
+    IDS_COPY_TO_LEFT2       "Right to Left (%1 of %2)"
+    IDS_COPY_TO_RIGHT2      "Left to Right (%1 of %2)"
     IDS_DIRSEL_TAG          "Directory Selection"
 END
 
@@ -1540,12 +1540,12 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_L2R                  "Copy the selected text to the right file\nCopy Right (Alt Right)"
-    ID_R2L                  "Copy the selected text to the left file\nCopy Left (Alt Left)"
+    ID_L2R                  "Copy the selected text to the right file\nCopy Right (Alt+Right)"
+    ID_R2L                  "Copy the selected text to the left file\nCopy Left (Alt+Left)"
     ID_OPTIONS_SHOWIDENTICAL "Displays files that are exactly the same"
     ID_OPTIONS_SHOWDIFFERENT "Displays files that have differences"
-    ID_PREVDIFF             "Scroll to the previous difference\nPrev Diff (Alt Up)"
-    ID_NEXTDIFF             "Scroll to the next difference\nNext Diff (Alt Down)"
+    ID_PREVDIFF             "Scroll to the previous difference\nPrev Diff (Alt+Up)"
+    ID_NEXTDIFF             "Scroll to the next difference\nNext Diff (Alt+Down)"
     ID_OPTIONS_BACKUPORIGINALFILE
                             "Save a copy of the original as *.bak\nBackup"
 END
@@ -1594,7 +1594,7 @@ BEGIN
     ID_VIEW_WHITESPACE      "Shows whitespace characters"
     ID_REFRESH              "Refresh display\nRefresh (F5)"
     ID_SHOWLINEDIFF         "Highlight difference in current line\nDiff in Current Line (F4)"
-    ID_EDITOR_COPY_PATH     "Copy full Path"
+    ID_EDITOR_COPY_PATH     "Copy Full Path"
     ID_EDITOR_COPY_FILENAME "Copy Filename"
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
     ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
@@ -1612,8 +1612,8 @@ BEGIN
     ID_FILE_SAVE_RIGHT      "Save the right file"
     ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
     ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
-    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
-    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
+    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
+    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and Advance (Ctrl+Alt+Right)"
 END
 
 STRINGTABLE DISCARDABLE

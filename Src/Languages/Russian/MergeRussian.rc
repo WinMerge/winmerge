@@ -117,9 +117,9 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Вид каретки..."
         BEGIN
-            MENUITEM "DOS (CRLF)",                  ID_EOL_TO_DOS
-            MENUITEM "UNIX (LF)",                   ID_EOL_TO_UNIX
-            MENUITEM "MAC (CR)",                    ID_EOL_TO_MAC
+            MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
+            MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
+            MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
         MENUITEM "В&ыход\tEsc",                 ID_APP_EXIT
@@ -258,15 +258,15 @@ BEGIN
             MENUITEM "С помощью...",                ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        POPUP "Zip"
+        POPUP "&Zip"
         BEGIN
-            MENUITEM "Zip left side %1 file(s) from %2 selected item(s)", 
+            MENUITEM "Zip &Left Side %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_LEFT
-            MENUITEM "Zip right side %1 file(s) from %2 selected item(s)", 
+            MENUITEM "Zip &Right Side %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_RIGHT
-            MENUITEM "Zip both sides %1 file(s) from %2 selected item(s)", 
+            MENUITEM "Zip &Both Sides %1 File(s) from %2 Selected Item(s)",
                                                     ID_DIR_ZIP_BOTH
-            MENUITEM "Zip both sides diffs only %1 file(s) from %2 of %3 selected item(s)", 
+            MENUITEM "Zip Both &Sides Diffs Only %1 File(s) from %2 of %3 Selected Item(s)",
                                                     ID_DIR_ZIP_BOTH_DIFFS_ONLY
 
         END

@@ -1,3 +1,8 @@
+2004-01-31 Kimmo
+ PATCH: [ 887283 ] Menu cleanup
+  scr: Merge.rc
+  Languages: *.rc
+
 2004-01-31 Perry
  BUG: [ 887957 ] Some builds of ShellExtension need include dir fixed
   ShellExtension: ShellExtension.dsp
