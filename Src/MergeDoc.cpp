@@ -1440,7 +1440,8 @@ void CMergeDoc::OnFileSave()
 	if ((bLModified && bLSaveSuccess) || 
 		(bRModified && bRSaveSuccess))
 	{
-		if (m_pDirDoc)
+		// If DirDoc contains diffs
+		if (m_pDirDoc->m_pCtxt)
 		{
 			m_pDirDoc->UpdateItemTimes(m_strLeftFile,
 				m_strRightFile);
@@ -1660,7 +1661,8 @@ BOOL CMergeDoc::SaveHelper()
 	if ((bLModified && bLSaveSuccess) ||
 		 (bRModified && bRSaveSuccess))
 	{
-		if (m_pDirDoc)
+		// If DirDoc contains diffs
+		if (m_pDirDoc->m_pCtxt)
 		{
 			m_pDirDoc->UpdateItemTimes(m_strLeftFile, m_strRightFile);
 			if (m_nDiffs == 0)

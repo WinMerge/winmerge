@@ -1,3 +1,7 @@
+2003-05-03 Kimmo
+ BUG:[ 731486 ] Crash after save
+  WinMerge: MergeDoc.cpp
+
 2003-05-02 Kimmo
  BUG: [ 724726 ] Status bar says "Rescanning" the first time
   WinMerge: Merge.rc
