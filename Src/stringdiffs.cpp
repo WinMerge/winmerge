@@ -69,12 +69,8 @@ stringdiffs::BuildWordDiffList()
 insame:
 	if (w1 == m_words1.GetSize() || w2 == m_words2.GetSize())
 	{
-		int i1 = 0;
-		if (w1>0)
-			i1 = m_words1[w1-1].end+1;
-		int i2 = 0;
-		if (w2>0)
-			i2 = m_words2[w2-1].end+1;
+		int i1 = (w1>0 ? m_words1[w1-1].end+1 : 0); // after end of word before w1
+		int i2 = (w2>0 ? m_words2[w2-1].end+1 : 0); // after end of word before w2
 		// Done, but handle trailing spaces
 		while (i1 < m_str1.GetLength() && i2 < m_str2.GetLength()
 			&& isWhitespace(m_str1[i1]) && isWhitespace(m_str2[i2]))
@@ -95,6 +91,48 @@ insame:
 		}
 		return;
 	}
+	// Check whitespace before current words for difference, if appropriate
+	if (m_whitespace==0)
+	{
+		// Compare all whitespace
+		int i1 = (w1>0 ? m_words1[w1-1].end+1 : 0); // after end of word before w1
+		int i2 = (w2>0 ? m_words2[w2-1].end+1 : 0); // after end of word before w2
+		while (i1<m_words1[w1].start || i2<m_words2[w2].start)
+		{
+			if (i1==m_words1[w1].start || i2==m_words2[w2].start
+				|| m_str1[i1] != m_str2[i2])
+			{
+				// Found a difference
+				break;
+			}
+			// Not difference, keep looking
+			++i1;
+			++i2;
+		}
+		if (i1<m_words1[w1].start || i2<m_words2[w2].start)
+		{
+			// Found a difference
+			// Now backtrack from next word to find end of difference
+			int e1 = m_words1[w1].start-1;
+			int e2 = m_words2[w2].start-1;
+			while (e1>i1 && e2>i2)
+			{
+				if (m_str1[e1] != m_str2[e2])
+				{
+					// Found a difference
+					break;
+				}
+				// Not difference, keep looking
+				--e1;
+				--e2;
+			}
+			// Add the difference we've found
+			wdiff wdf(i1, e1, i2, e2);
+			m_wdiffs.Add(wdf);
+		}
+		
+	}
+	// Now check current words for difference
 	if (!AreWordsSame(m_words1[w1], m_words2[w2]))
 		goto startdiff;
 	++w1;
@@ -133,35 +171,32 @@ startdiff:
 		// w1 is valid because it is the word after us
 		// w1-1 >= bw1 is valid because it is the word at the start of this diff
 
-		// Add a diff from start to before sync
+		// Add a diff from start to just before sync word
 		int s1 = m_words1[bw1].start;
-		int e1 = w1 ? m_words1[w1-1].end : 0;
+		int e1 = 0; // placeholder, set below
 		int s2 = m_words2[bw2].start;
-		int e2 = w2 ? m_words2[w2-1].end : 0;
+		int e2 = 0; // placeholder, set below
 		if (m_whitespace == 0)
 		{
-			// Compare all whitespace
-			// gobble up non-matching trailing whitespace
-			while (e1 < m_words1[w1].start-1
-				&& e2 < m_words2[w2].start-1
-				&& !caseMatch(m_str1[e1+1], m_str2[e2+1]))
+			// Grab all the trailing whitespace for our diff
+			e1 = m_words1[w1].start-1;
+			e2 = m_words2[w2].start-1;
+			// Now backtrack over matching whitespace
+			int pe1 = (w1 ? m_words1[w1-1].end+1 : -1);
+			int pe2 = (w2 ? m_words2[w2-1].end+1 : -1);
+			while (e1 > pe1
+				&& e2 > pe2
+				&& m_str1[e1] == m_str2[e2])
 			{
-				++e1;
-				++e2;
+				--e1;
+				--e2;
 			}
-			// if only whitespace on one side, gobble it up
-			if (e2 == m_words2[w2].start-1 && e1>=s1)
-				while (e1 < m_words1[w1].start-1)
-					++e1;
-			if (e1 == m_words1[w1].start-1 && e2>=s2)
-				while (e2 < m_words1[w2].start-1)
-					++e2;
 		}
 		else
 		{
-			// gobble up everything til next words
-			e1 = m_words1[w1].start-1;
-			e2 = m_words2[w2].start-1;
+			// ignore whitespace, so leave it out of diff
+			e1 = (w1 ? m_words1[w1-1].end+1 : -1);
+			e2 = (w2 ? m_words2[w2-1].end+1 : -1);
 		}
 		wdiff wdf(s1, e1, s2, e2);
 		m_wdiffs.Add(wdf);
