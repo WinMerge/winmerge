@@ -3,10 +3,78 @@
   <sect2>
     <title>Getting files</title>
     <para>Latest releases can be always downloaded from WinMerge homepage: <ulink url="http://www.winmerge.org/">WinMerge.org</ulink>. Note that there may be some delay updating homepages for releases, but project statuspage at <ulink url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink> shows latest files. There is also mailing-list for release announcements. Stable releases are also available in several file download sites.</para>
+    <para>WinMerge can be installed using installer or by unzipping files from archive.</para>
   </sect2>
   <sect2>
-    <title>Running install program</title>
-    <para>Install program asks location where WinMerge is installed, installs files, configures shell integration and adds WinMerge to <guimenu>Start</guimenu>-menu.</para>
+    <title>Using installer (recommended)</title>
+    <para>This is recommeded for most users. Installer asks location where WinMerge is installed, installs files, configures shell integration and adds WinMerge to <guimenu>Start</guimenu>-menu. To install WinMerge:</para>
+    <orderedlist>
+      <listitem>
+        <para>Start installer executable (usually named <filename>WinMerge-[version]-setup.exe</filename>)</para>
+      </listitem>
+      <listitem>
+        <para>Select <guilabel>Next</guilabel>-button in welcome screen</para>
+      </listitem>
+      <listitem>
+        <para>Select <guilabel>Next</guilabel>-button in licence screen</para>
+      </listitem>
+      <listitem>
+        <para>Select location for WinMerge and select <guilabel>Next</guilabel>-button. It is recommended to install WinMerge in own directory.</para>
+      </listitem>
+      <listitem>
+        <para>Select components installed or one of preconfigured combinations. <guilabel>Typical</guilabel> configuration is recommended for most users. In addition to components already selected by <guilabel>Typical</guilabel>, language file(s) could be choosed. Components are:</para>
+        <itemizedlist>
+          <listitem>
+            <para><guilabel>WinMerge core files</guilabel> - cannot be unselected - WinMerge executable files</para>
+          </listitem>
+          <listitem>
+            <para><guilabel>Application Runtimes</guilabel> - cannot be unselected - needed DLL files</para>
+          </listitem>
+          <listitem>
+            <para><guilabel>User's Guide</guilabel> - HTML user guide/manual - if it is not installed WinMerge opens manual from <ulink url="http://www.winmerge.org/">WinMerge.org</ulink></para>
+          </listitem>
+          <listitem>
+            <para><guilabel>Filters</guilabel> - file filter files</para>
+          </listitem>
+          <listitem>
+            <para><guilabel>Plugins</guilabel> - plugins and scripts</para>
+          </listitem>
+          <listitem>
+            <para><guilabel>Languages</guilabel> - WinMerge translation files. After installing translation file user interface language can be selected from menu <guilabel>View/Language</guilabel>.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>Select <guilabel>Start</guilabel>-menu folder or disable creating it.</para>
+      </listitem>
+      <listitem>
+        <para>Select additional tasks:<itemizedlist>
+            <listitem>
+              <para><guilabel>Enable Explorer context menu integration</guilabel> - Enables basic WinMerge shell integration (can be later enabled from options).</para>
+            </listitem>
+            <listitem>
+              <para><guilabel>Integrate with TortoiseCVS</guilabel> - sets WinMerge to TortoiseCVS diff application.</para>
+            </listitem>
+            <listitem>
+              <para><guilabel>Create a Desktop Icon</guilabel> - adds WinMerge icon to Desktop</para>
+            </listitem>
+            <listitem>
+              <para><guilabel>Create a Quick Launch Icon</guilabel> - adds WinMerge icon to Quick Launch bar</para>
+            </listitem>
+          </itemizedlist></para>
+      </listitem>
+      <listitem>
+        <para>Verify install selections and select <guilabel>Install</guilabel> button to continue.</para>
+      </listitem>
+      <listitem>
+        <para>After installer has copied files final screen appears with two checkboxes asking if created WinMerge Start-menu folder should be opened and if WinMerge application should be started.</para>
+      </listitem>
+    </orderedlist>
+  </sect2>
+  <sect2>
+    <title>Unzipping from archive</title>
+    <para>This is for experienced users. Archive files are smaller to download and faster to install.</para>
+    <para>WinMerge is pretty much independent from other system components. WinMerge doesn't integrate tightly to Windows or use lots of dlls. <filename>WinMerge[U].exe</filename> itself is dependent of <filename>MFC42[U].dll</filename> (and <filename>MSVCRT.dll</filename>) in addition to some system DLLs. So if mentioned DLLs already are installed to system, only <filename>WinMerge[U].exe</filename> is needed to run WinMerge.</para>
   </sect2>
   <sect2>
     <title>Shell integration</title>

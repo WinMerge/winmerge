@@ -1,3 +1,7 @@
+2004-10-20 Kimmo
+ PATCH: [ 1050306 ] Docs: Describe installing phases and unzipping from archive
+  Manual: Install.xml
+
 2004-10-19 Kimmo
  PATCH: [ 1049511 ] Docs: Add FAQ item about rescan delaying
   Manual: Faq.xml
