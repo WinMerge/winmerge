@@ -290,8 +290,29 @@ BOOL CDiffWrapper::RunFileDiff()
 		outfile = NULL;
 	}
 #endif
+
+	// First determine what happened during comparison
+	// If there were errors or files were binaries, don't bother
+	// creating diff-lists or patches
+	
+	// diff_2_files set bin_flag to -1 if different binary
+	// diff_2_files set bin_flag to +1 if same binary
+	if (bin_flag != 0)
+	{
+		m_status.bBinaries = TRUE;
+		if (bin_flag == -1)
+			m_status.bBinariesIdentical = FALSE;
+		else
+			m_status.bBinariesIdentical = TRUE;
+	}
+	else
+		m_status.bBinaries = FALSE;
+	m_status.bLeftMissingNL = inf[0].missing_newline;
+	m_status.bRightMissingNL = inf[1].missing_newline;
+
+
 	// Create patch file
-	if (m_bCreatePatchFile)
+	if (!m_status.bBinaries && m_bCreatePatchFile)
 	{
 		outfile = NULL;
 		if (!m_sPatchFile.IsEmpty())
@@ -319,32 +340,25 @@ BOOL CDiffWrapper::RunFileDiff()
 				print_context_header(inf, 0);
 				print_context_script(script, 0);
 				break;
-				
 			case OUTPUT_UNIFIED:
 				print_context_header(inf, 1);
 				print_context_script(script, 1);
 				break;
-				
 			case OUTPUT_ED:
 				print_ed_script(script);
 				break;
-				
 			case OUTPUT_FORWARD_ED:
 				pr_forward_ed_script(script);
 				break;
-				
 			case OUTPUT_RCS:
 				print_rcs_script(script);
 				break;
-				
 			case OUTPUT_NORMAL:
 				print_normal_script(script);
 				break;
-				
 			case OUTPUT_IFDEF:
 				print_ifdef_script(script);
 				break;
-				
 			case OUTPUT_SDIFF:
 				print_sdiff_script(script);
 			}
@@ -358,7 +372,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	
 	// Go through diffs adding them to WinMerge's diff list
 	// This is done on every WinMerge's doc rescan!
-	if (m_bUseDiffList)
+	if (!m_status.bBinaries && m_bUseDiffList)
 	{
 		struct change *next = script;
 		int trans_a0, trans_b0, trans_a1, trans_b1;
@@ -462,21 +476,6 @@ BOOL CDiffWrapper::RunFileDiff()
 		}
 		strFile2Temp.Empty();
 	}
-
-	// diff_2_files set bin_flag to -1 if different binary
-	// diff_2_files set bin_flag to +1 if same binary
-	if (bin_flag != 0)
-	{
-		m_status.bBinaries = TRUE;
-		if (bin_flag == -1)
-			m_status.bBinariesIdentical = FALSE;
-		else
-			m_status.bBinariesIdentical = TRUE;
-	}
-	else
-		m_status.bBinaries = FALSE;
-	m_status.bLeftMissingNL = inf[0].missing_newline;
-	m_status.bRightMissingNL = inf[1].missing_newline;
 
 	SwapToGlobalSettings();
 	return TRUE;
