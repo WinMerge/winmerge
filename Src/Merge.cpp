@@ -100,7 +100,7 @@ BOOL CMergeApp::InitInstance()
 	{
 		CCommandLineInfo cmdInfo;
 		ParseCommandLine(cmdInfo);
-		CSplashWnd::EnableSplashScreen(cmdInfo.m_bShowSplash);
+		CSplashWnd::EnableSplashScreen(cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew);
 	}
 
 	// Standard initialization
