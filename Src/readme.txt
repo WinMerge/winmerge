@@ -1,3 +1,7 @@
+2003-09-25 Perry
+ fix BUG: [ 812547 ] copy to clipboard crash in WinMergeU.exe
+  WinMerge/editlib: ccrystaltextview2.cpp
+
 2003-09-25 Kimmo
  PATCH: [ 811307 ] Open dirview column dialog from menu
   WinMerge: DirView.h DirView.cpp Merge.rc resource.h

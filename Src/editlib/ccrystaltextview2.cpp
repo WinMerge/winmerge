@@ -1185,7 +1185,12 @@ PutToClipboard (LPCTSTR pszText)
           LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
           _tcscpy (pszData, (LPTSTR) pszText);
           GlobalUnlock (hData);
-          bOK = SetClipboardData (CF_TEXT, hData) != NULL;
+#ifdef _UNICODE
+	   UINT fmt = CF_UNICODETEXT;
+#else
+	   UINT fmt = CF_TEXT;
+#endif // _UNICODE
+          bOK = SetClipboardData (fmt, hData) != NULL;
         }
       CloseClipboard ();
     }
