@@ -315,7 +315,7 @@ BEGIN
     CONTROL         "&Backup originale filer",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,19,81,10
     CONTROL         "Automatisk &scroll til første forskjell",IDC_SCROLL_CHECK,
-                    "Knapp",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,117,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,117,10
     CONTROL         "Ignorer blan&ke linjer",IDC_IGNBLANKS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,41,77,10
     CONTROL         "Ignorer store/små &bokstaver",IDC_IGNCASE_CHECK,"Button",
@@ -364,7 +364,7 @@ BEGIN
     CONTROL         "Sammenlign bare &hele ord",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
     CONTROL         "Sammenlign store/små &bokstaver",IDC_EDIT_MATCH_CASE,
-                    "Knapp",BS_AUTOCHECKBOX | WS_TABSTOP,4,40,121,12
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,40,121,12
     CONTROL         "Regulært &uttrykk",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,54,77,12
     CONTROL         "&Opp",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
@@ -389,7 +389,7 @@ BEGIN
     CONTROL         "Sammenlign bare &hele ord",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
     CONTROL         "Sammenlign store/små &bokstaver",IDC_EDIT_MATCH_CASE,
-                    "Knapp",BS_AUTOCHECKBOX | WS_TABSTOP,5,60,107,12
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,60,107,12
     CONTROL         "Regulært &uttrykk",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,74,77,12
     CONTROL         "&Valgte",IDC_EDIT_SCOPE_SELECTION,"Button",
