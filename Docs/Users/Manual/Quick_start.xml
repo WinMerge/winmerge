@@ -1,0 +1,33 @@
+<sect1>
+  <title>Quick start</title>
+  <sect2>
+    <title>Opening files and directories</title>
+    <para>Start WinMerge and select "Open" from File-menu, from toolbar or press Ctrl-O. File/directory selection dialog is shown:</para>
+    <para><mediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/Open_dlg1.jpg" format="JPG"/>
+        </imageobject>
+      </mediaobject></para>
+    <para>The Open dialog has two fields that are used to specify files/directories to compare. Comparison objects can be specified in one of four ways:</para>
+    <para><orderedlist>
+        <listitem>
+          <para>Enter the path names directly into the edit fields</para>
+        </listitem>
+        <listitem>
+          <para>Click the Browse button and use the file chooser to navigate to the desired object</para>
+        </listitem>
+        <listitem>
+          <para>Expand the combo box and select a previously entered path (WinMerge remembers the last 20)</para>
+        </listitem>
+        <listitem>
+          <para>Drag &amp; drop something into the edit field from Explorer</para>
+        </listitem>
+      </orderedlist></para>
+    <para>Directory can be selected from Windows Open dialog (opens when "Browse"-button is selected) by browsing into directory to open and selecting "Open"-button. It does not require selecting a file.</para>
+    <para><note>
+        <para>There can be only file &amp; file or directory &amp; directory to open for compare. If there is file &amp; directory or other one of files/directories cannot be found WinMerge disables "OK"-button in dialog.</para>
+      </note>Set of files to compare can be restricted by typing filename extensions wanted to compare into "Extensions"-field. Multiple extensions can be given by separating extensions with semicolon. For example: *.cpp;*.hpp;*.c;*.h. There is very powerful way to specify set of files and directories using file filters.</para>
+    <para>"Recursive" -checkbox controls if subdirectories of selected directories are included in compare results.</para>
+    <para>Rest of controls in this dialog are for plugins.</para>
+  </sect2>
+</sect1>

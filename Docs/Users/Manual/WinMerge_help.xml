@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="file://localhost/C:/Program%20Files/Morphon/XML-Editor%203.1.4/Examples/docbook/docbook.css" type="text/css"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY Plugins SYSTEM "Plugins.xml">
+<!ENTITY FAQ SYSTEM "Faq.xml">
+<!ENTITY IntroductDiffing SYSTEM "Intro_diffs.xml">
+<!ENTITY Configuration SYSTEM "Configuration.xml">
+<!ENTITY CompareDirs SYSTEM "Compare_dirs.xml">
+<!ENTITY QuickStart SYSTEM "Quick_start.xml">
+<!ENTITY Introduction SYSTEM "Introduction.xml">
+<!ENTITY Locales SYSTEM "Locales.xml">
+<!ENTITY About_doc SYSTEM "About_doc.xml">
+<!ENTITY WhatsNew21 SYSTEM "Whatsnew_2_1.xml">
+<!ENTITY CommandLine SYSTEM "Command_line.xml">
+<!ENTITY ShortCuts SYSTEM "Shortcut_keys.xml">
+<!ENTITY Filters SYSTEM "Filters.xml">
+<!ENTITY CompareFiles SYSTEM "Compare_files.xml">
+<!ENTITY Install SYSTEM "Install.xml">
+]>
+<article>
+  <articleinfo>
+    <title>WinMerge 2.1 user guide</title>
+  </articleinfo>
+  <note>
+    <para>This guide is based on 2.1.6.0 beta release.</para>
+  </note>
+  &About_doc;
+  &Introduction;
+  &WhatsNew21;
+  &Install;
+  &IntroductDiffing;
+  &QuickStart;
+  &CompareDirs;
+  &CompareFiles;
+  &Configuration;
+  &Locales;
+  &Plugins;
+  &Filters;
+  &CommandLine;
+  &FAQ;
+  &ShortCuts;
+</article>

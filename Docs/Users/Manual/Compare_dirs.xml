@@ -1,0 +1,155 @@
+<sect1>
+  <title>Comparing directories</title>
+  <para>Directory compare shows all files and subdirectries found from compared directories as list. Directory compare allows synchronising directories by copying and deleting files. Directory compare view can be versatile customised.</para>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="screenshots/dircomp1.jpg" format="JPG"/>
+    </imageobject>
+  </mediaobject>
+  <para>Directory compare has two different modes: non-recursive and recursive. Mode is selected in Open-dialog.<itemizedlist>
+      <listitem>
+        <para>In non-recursive compare only files in selected directories are shown. Subdirectories are not shown</para>
+      </listitem>
+      <listitem>
+        <para>In recursive compare files selected directories and in all subdirectories are shown. Unique (only in other side) subdirectories are also shown. </para>
+      </listitem>
+    </itemizedlist></para>
+  <sect2>
+    <title>Directory compare statusbar</title>
+    <para>During directory compare proceeds, following statusbar is shown:</para>
+    <para><mediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/Dircomp_status1.gif" format="GIF"/>
+        </imageobject>
+      </mediaobject></para>
+    <para>Directory compare can be stopped by selecting "Stop"-button and results for files and directories compared so far are shown. After directory compare finishes, "Stop" button text is changed to "Press any key". Now statusbar can be closed by selecting that button or pressing any key from keyboard.</para>
+    <para><mediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/Dircomp_status2.gif" format="GIF"/>
+        </imageobject>
+      </mediaobject></para>
+  </sect2>
+  <sect2>
+    <title>Compare results</title>
+    <para>Files and directories are compared and divided into several categories:<simplelist>
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/equal.bmp" format="BMP"/>
+            </imageobject>
+          </inlinemediaobject> Identical text files</member>
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/notequal.bmp" format="BMP"/>
+            </imageobject>
+          </inlinemediaobject> Differing text files</member>
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/binary.bmp" format="BMP"/>
+            </imageobject>
+          </inlinemediaobject> Identical binary files</member>
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/binarydiff.bmp" format="BMP"/>
+            </imageobject>
+          </inlinemediaobject> Differing binary files</member>
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/lfolder.bmp" format="BMP"/>
+            </imageobject>
+          </inlinemediaobject> Left-only folders</member>
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/rfolder.bmp" format="BMP"/>
+            </imageobject>
+          </inlinemediaobject> Right-only folders</member>
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/lfile.bmp" format="BMP"/>
+            </imageobject>
+          </inlinemediaobject> Left-only files</member>
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/rfile.bmp" format="BMP"/>
+            </imageobject>
+          </inlinemediaobject> Right-only files</member>
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/folderskip.bmp" format="BMP"/>
+            </imageobject>
+          </inlinemediaobject> Skipped directories (filtered out)</member>
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/fileskip.bmp" format="BMP"/>
+            </imageobject>
+          </inlinemediaobject> Skipped files (filtered out)</member>
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/unknown.bmp" format="BMP"/>
+            </imageobject>
+          </inlinemediaobject> Directories &amp; files that couldn't be compared. This usually happens when other program has locked the file.</member>
+      </simplelist></para>
+  </sect2>
+  <sect2>
+    <title>Selecting files to show</title>
+    <para>In "View" menu there are several choises for selecting which categories listed above to show/hide.</para>
+    <itemizedlist>
+      <listitem>
+        <para>Show identical files - shows and hides files detected as identical</para>
+      </listitem>
+      <listitem>
+        <para>Show different files - shows and hides files detected as different</para>
+      </listitem>
+      <listitem>
+        <para>Show left unique files - shows and hides files and directories present only in left side</para>
+      </listitem>
+      <listitem>
+        <para>Show right unique files - shows and hides files and directories present only in right side</para>
+      </listitem>
+      <listitem>
+        <para>Show binary files - shows and hides files detected as binaries</para>
+      </listitem>
+      <listitem>
+        <para>Show skipped files - shows and hides files and directories filtered out by file filters</para>
+      </listitem>
+      <listitem>
+        <para>Hide *.BAK files - shows and hides *.bak files</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2>
+    <title>Navigation in directory compare</title>
+    <para>In addition moving selection using mouse or keyboard, also Merge-menu navigation commands, toolbar buttons and shortcut keys can be used. For example "Next diff" finds next different file and selects it.</para>
+    <note>
+      <para>Unique files and directories are considered as different ones.</para>
+    </note>
+    <para>Multiple files/directories can be selected. However not all operations are possible with multi-selection.</para>
+  </sect2>
+  <sect2>
+    <title>File operations in directory compare</title>
+    <para>Directory compare allows user to copy and delete files and directories (Copying folders is not supported in current WinMerge releases). File operations are available through context menu. Also files can be opened to associated program or into external editor.</para>
+    <para>Most common operation is copying files. File can be copied from side to side using Merge-menu items, toolbar buttons and context menu. If multiple files are selected, or file to overwrite is read-only, confirmation dialog is shown.</para>
+  </sect2>
+  <sect2>
+    <title>Customising directory compare</title>
+    <para>There are many ways to customize directory compare:<itemizedlist>
+        <listitem>
+          <para>Sorting by column</para>
+        </listitem>
+        <listitem>
+          <para>Selecting visible columns</para>
+        </listitem>
+        <listitem>
+          <para>Changing order of columns</para>
+        </listitem>
+      </itemizedlist></para>
+  </sect2>
+  <sect2>
+    <title>Protecting directories / read-only directories</title>
+    <para>If user wants to protect one or both sides from changes, user can set them to read-only from File-menu.</para>
+    <important>
+      <para>Setting read-only protects files and directories in current compare view only.</para>
+    </important>
+    <para>Protected status is inherited to opened files from directory compare. If user compares two directories, sets another to protected and opens two files for comparing, file opened from protected side has protection set too.</para>
+    <para>Protection status is shown in statusbar, there are panes for left and right side.</para>
+  </sect2>
+</sect1>

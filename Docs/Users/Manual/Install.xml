@@ -1,0 +1,15 @@
+<sect1>
+  <title>Getting and installing WinMerge</title>
+  <sect2>
+    <title>Getting files</title>
+    <para>Latest (beta) releases can be always downloaded from WinMerge homepage: <ulink url="http://winmerge.sourceforge.net/">http://www.winmerge.org/</ulink>. Note that there may be some delay updating homepages for releases, but project statuspage at <ulink url="https://sourceforge.net/projects/winmerge/">http://sourceforge.net/projects/winmerge/</ulink>shows latest files. There is also mailing-list for release announcements.</para>
+  </sect2>
+  <sect2>
+    <title>Running install program</title>
+    <para>Install program asks location where WinMerge is installed, installs files, configures shell integration and adds WinMerge to start-menu.</para>
+  </sect2>
+  <sect2>
+    <title>Shell integration</title>
+    <para>If install program is not used, shell integration dll (ShellExtension.dll) must be registered separately. This is done by running register.bat from WinMerge directory.</para>
+  </sect2>
+</sect1>

@@ -1,0 +1,107 @@
+<sect1>
+  <title>Comparing files</title>
+  <para>File compare window is basically two files opened to editor into two horizontal panes. Editing files is the big difference between 1.7.1 and newer versions. Editing allows user to make changes to files other than just merging differences. Its easy to make little changes when merging. WinMerge is not and can't be as good in editing than most other editor programs are. So WinMerge makes it easy to open selected files from directory compare.</para>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="screenshots/filecomp1.gif" format="GIF"/>
+    </imageobject>
+  </mediaobject>
+  <sect2>
+    <title>Showing the differences</title>
+    <para>WinMerge uses different (user configurable) colors to hilight and select differences. By default WinMerge shows different lines with yellow background and missing lines with gray background. If user selects the difference, it is shown with red background and missing lines with milder red.</para>
+  </sect2>
+  <sect2>
+    <title>Amount of differences and selected difference</title>
+    <para>First thing user should notice is amount of differences shown on statusbar. There can be three formats for text:<itemizedlist>
+        <listitem>
+          <para>"Identical" meaning there are no differences</para>
+        </listitem>
+        <listitem>
+          <para>"X differences" telling amount of differences when no difference is selected</para>
+        </listitem>
+        <listitem>
+          <para>"Difference X of Y" telling total amount of differences (Y) and number of selected difference (X)</para>
+        </listitem>
+      </itemizedlist></para>
+  </sect2>
+  <sect2>
+    <title>Difference navigation commands</title>
+    <para>Difference navigation commands are in "Merge" menu:</para>
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/merge_menu.jpg" format="JPG"/>
+        </imageobject>
+      </inlinemediaobject></para>
+    <sect3>
+      <title>Selecting a difference</title>
+      <para>Before difference can be merged, it must be selected. Selecting can happen by difference navigation keys/items (see below) or by selecting wanted difference directly:</para>
+      <itemizedlist>
+        <listitem>
+          <para>Double-click over difference with mouse</para>
+        </listitem>
+        <listitem>
+          <para>Move cursor inside difference and select it with "Current Difference".</para>
+        </listitem>
+      </itemizedlist>
+    </sect3>
+    <sect3>
+      <title>Navigating differences</title>
+      <para>Merge-menu has items for navigating to next/previous and first/last difference. Navigation is always done based on current cursor location. So Next difference -command selects next difference from cursor, not from current selected difference.</para>
+    </sect3>
+    <sect3>
+      <title>Current difference -command</title>
+      <para>This command has two important functions:<simplelist type="vert">
+          <member>If there is no difference selected and cursor is inside difference, it selects this difference. This is very handy way to select difference from keyboard.</member>
+          <member>If there is selected difference, it scrolls to selected difference. This is handy if user has scrolled selected difference out of screen.</member>
+        </simplelist></para>
+    </sect3>
+  </sect2>
+  <sect2>
+    <title>Merging differences</title>
+    <para>Merging commands are located in Merge-menu after navigation commands. Basically there are only two types of merging commands - copy difference from right to left and copy difference from left to right. Additional commands make merging several differences easier.</para>
+    <para>"Copy to Right" and "Copy to Left" copy difference from side to side. At simplest this means replacing text in destination difference with text in source difference. But because difference can contain also removed lines, new lines may be created or some lines removed.</para>
+    <para>WinMerge rescans files after every merging operation. This is done to ensure differences were copied correctly and all changes after last rescanning are taken care of. If automatic rescan -option is not set, user may have edited files and differences may not have shown correctly before merging. If result of merging is not what were wanted, user can undo merging operation.</para>
+    <important>
+      <para>It is strongly adviced to run Rescan (F5) before merging differences if automatic rescan is set off.</para>
+    </important>
+    <para>Copy to Right/Left and Advance -commands merge current difference and then select next difference (if there is one). Using these commands makes merging several differences easier and faster.</para>
+    <para>Copy All to Right/Left -commands sync two open files merging all differences.</para>
+    <para>Copy diffs in Left/Right selection to Right/Left -commands allow user to select several differences and merge them in one command. User can even select whole file and then merge all differences with one command. These commands are handy when there are several small differences that should be merged. Its easier and faster to select those differences first and then merge with these commands than merging those differences one by one.</para>
+  </sect2>
+  <sect2>
+    <title>Refreshing</title>
+    <para>Refreshing updates differences after changes are made to files. Its important to do refresh before merging changes between files.<note>
+        <para>Refresh does not reload file. That means, if another programs has updated files etc, those changes are not seen. Refresh updates differences according changes user has done.</para>
+      </note></para>
+  </sect2>
+  <sect2>
+    <title>Editing files</title>
+    <para>Normal editing features work in WinMerge editor. User can type and delete text, select text, copy, cut and paste text etc.</para>
+  </sect2>
+  <sect2>
+    <title>File headerbar</title>
+    <para>File headerbar has many functionalities. See screenshot below:</para>
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/File_headerbar1.jpg" format="JPG"/>
+        </imageobject>
+      </inlinemediaobject></para>
+    <para>Firstly, headerbar shows filename and full path for file. Headerbar also shows:<itemizedlist>
+        <listitem>
+          <para>current active file with sunken border (like in screenshot), non-active file is shown with flat headerbar.</para>
+        </listitem>
+        <listitem>
+          <para>if file has unsaved changes. This is indicated by adding asterisk (*) before filename, like in screenshot.</para>
+        </listitem>
+      </itemizedlist></para>
+  </sect2>
+  <sect2>
+    <title>Difference inside line</title>
+    <para>Many times it is useful to see exact differences inside lines. WinMerge can highlight different area between lines. This feature is called "Highlight file diff". It is available in Edit-menu, toolbar and shortcut key (F4). In screenshot below there is one difference highlighted. First time whole difference area in one line is highlighted. Repeating cycles through individual changed words.</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshots/linediff.gif" format="GIF"/>
+      </imageobject>
+    </mediaobject>
+  </sect2>
+</sect1>

@@ -1,0 +1,70 @@
+<sect1>
+  <title>What's new in 2.1</title>
+  <sect2>
+    <title>Unicode support</title>
+    <para>WinMerge 2.1 is distributed with ANSI executable (WinMerge.exe) for Windows 95/98/ME and UNICODE executable (WinMergeU.exe) for Windows NT /200/XP. UNICODE executable supports UCS-2 and UTF-8 UNICODE files and UNICODE filenames.</para>
+  </sect2>
+  <sect2>
+    <title>Shell integration</title>
+    <para>WinMerge 2.1 can be integrated into Windows Shell. Shell integration adds "Winmerge" menuitem to Windows Explorer's context menu for easy and fast comparing files and directories.</para>
+  </sect2>
+  <sect2>
+    <title>Generating patches</title>
+    <para>GNU/diffutils compatible patch files can be created from two files. Several formats and compare options are supported.</para>
+  </sect2>
+  <sect2>
+    <title>Plugins</title>
+    <para>Plugins are now supported to preprocess files before actual compare or to extend editor functionality. Plugins can be programmed using several languages supporting COM. Example plugins are included.</para>
+  </sect2>
+  <sect2>
+    <title>Improved directory compare</title>
+    <para>Many new features and improvements:</para>
+    <itemizedlist>
+      <listitem>
+        <para>More columns added (e.g. file attributes), shown columns can be selected and reordered.</para>
+      </listitem>
+      <listitem>
+        <para>Filtered items have now own category and icons. Filtered items can be set to hidden/visible from View-menu.</para>
+      </listitem>
+      <listitem>
+        <para>Floating statusbar during compare process, compare can be stopped and files/dirs compared so far are shown</para>
+      </listitem>
+      <listitem>
+        <para>Newer file/dir is shown with asterisk (*) in date field</para>
+      </listitem>
+      <listitem>
+        <para>One or both directories can be set read-only, preventing accidental overwrites</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2>
+    <title>Improved file compare</title>
+    <para>Many new features and improvements:</para>
+    <itemizedlist>
+      <listitem>
+        <para>Rewritten undo/redo code</para>
+      </listitem>
+      <listitem>
+        <para>Fixed "Ignore blank lines" feature</para>
+      </listitem>
+      <listitem>
+        <para>Enchanged EOL handling (if feature enabled, documents can contain several EOL styles)</para>
+      </listitem>
+      <listitem>
+        <para>Linenumber, column and line length shown in statusbar</para>
+      </listitem>
+      <listitem>
+        <para>One ot both files can be set read-only to prevent accidentally changing file</para>
+      </listitem>
+      <listitem>
+        <para>Copy difference to left/right and advance to next makes merging faster</para>
+      </listitem>
+      <listitem>
+        <para>Diff pane to show current difference in two vertical panes</para>
+      </listitem>
+      <listitem>
+        <para>Feature to highlight difference in lines</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+</sect1>

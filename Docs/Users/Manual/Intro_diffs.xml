@@ -1,0 +1,21 @@
+<sect1>
+  <title>File differences - What user should know about comparing files</title>
+  <para>Introduction chapter says WinMerge finds and shows differences between files. So user compares two files one knows are different and gets surprised - WinMerge tells there is 5 differences, but there are more different words in one line!</para>
+  <sect2>
+    <title>What is a difference?</title>
+    <para>WinMerge compares lines. Winmerge does not compare words or letters. WinMerge finds lines that are different between files or missing from other file. One difference shown for user, and in this document, contains one or more different or missing lines.</para>
+    <para>Comparing lines is good and efficient way to handle differences in text files (obviously it does not work for binary files). And most importantly it makes WinMerge user interface simple and intuitive to use. Lets look at one simple example:<example>
+        <title>Two files with multiple differences</title>
+        <para>File1:<screen format="linespecific">WinMerge detects differences in lines,
+it does not look single characters.
+That's because lines are a lot easier and
+faster to compare and merge than characters.
+Believe or not.</screen></para>
+        <para>File2:<screen format="linespecific">WinMerge detects differences in lines,
+but it doesn't look for single characters.
+Believe or not.</screen></para>
+      </example></para>
+    <para>Those two texts contain several differences in lines and several different lines, but only one difference that WinMerge shows for user. For WinMerge, difference is lines 2-4 in first file and line 2 in second file. So WinMerge can show those lines as difference.</para>
+    <para></para>
+  </sect2>
+</sect1>
