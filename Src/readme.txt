@@ -1,3 +1,7 @@
+2003-11-30 Perry
+  Added comment giving Unicode for hanguko (Korean in Hangul alphabet)
+  common: LanguageSelect.cpp: Korean/MergeKorean.rc
+
 2003-11-29 Laoran
  PATCH: [ 847884 ] Remove obsolete registry keys
   WinMerge: PropRegistry.cpp PropRegistry.h
