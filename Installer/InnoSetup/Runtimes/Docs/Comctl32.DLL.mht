@@ -1,0 +1,2350 @@
+From: <Saved by Microsoft Internet Explorer 5>
+Subject: Download details: Platform SDK Comctl32 Redistributables 5.80.2614.3600 (x86)
+Date: Fri, 12 Mar 2004 03:08:48 -0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0000_01C407DF.568C8E50";
+	type="text/html"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2800.1165
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.microsoft.com/downloads/details.aspx?FamilyID=cb2cf3a2-8025-4e8f-8511-9b476a8d35d2&DisplayLang=en
+
+=EF=BB=BF<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Download details: Platform SDK Comctl32 =
+Redistributables 5.80.2614.3600 (x86)</TITLE>
+<META=20
+content=3D"This is the ComCtl32 redistributable (x86) for Windows 9x and =
+Windows NT 4.0."=20
+name=3DDescription>
+<META content=3Den name=3Dms.locale>
+<META http-equiv=3DContent-Type content=3D"text/html; charset=3DUTF-8">
+<SCRIPT language=3DJavaScript=20
+src=3D"http://www.microsoft.com/library/toolbar/logicaluri.js"></SCRIPT>
+
+<SCRIPT =
+language=3DJavaScript>setLogicalURI("/downloads/details.aspx?DisplayLang=3D=
+en_FamilyID=3Dcb2cf3a2-8025-4e8f-8511-9b476a8d35d2")</SCRIPT>
+
+<SCRIPT language=3DJScript>
+function replaceAnchor()
+{
+	// Only do this if in IE5 or up.
+	var sAV =3D navigator.appVersion.toLowerCase();
+	var iMSIE =3D sAV.indexOf("msie");
+	if (iMSIE >=3D 1 && parseInt(sAV.charAt(iMSIE + 5)))
+	{
+		btnDownload.style.display =3D "none";
+		var buttonHtml =3D "<button class=3D'downloadButton' =
+onclick=3D'javascript:window.location.href=3DbtnDownload.href'>" + =
+btnDownload.innerHTML + "</button>";
+		document.write(buttonHtml);
+	}
+}
+</SCRIPT>
+
+<SCRIPT language=3DJavascript=20
+src=3D"http://www.microsoft.com/library/mnp/2/aspx/js.aspx?&amp;name=3DMe=
+nu"=20
+type=3Dtext/javascript></SCRIPT>
+
+<SCRIPT language=3DJavascript=20
+src=3D"http://www.microsoft.com/DOWNLOADS/mnp_utility.mspx/menujs?mnpshel=
+l=3D%2fdownloads%2f2%2floc%2fen%2fshell.config&amp;displaylang=3Den&amp;c=
+licktrax=3DFalse"=20
+type=3Dtext/javascript></SCRIPT>
+<LINK=20
+href=3D"http://www.microsoft.com/library/mnp/2/aspx/css.aspx?locale=3Den-=
+us&amp;name=3DMenu&amp;static=3DPage"=20
+type=3Dtext/css rel=3DStylesheet><LINK=20
+href=3D"http://www.microsoft.com/library/toolbar/3.0/css.aspx?c=3D/downlo=
+ads/2/loc/en/shell.config"=20
+type=3Dtext/css rel=3Dstylesheet>
+<SCRIPT language=3DJavaScript>var doImage =3D doImage;
+var TType =3D TType;
+
+function mhHover(tbl, idx, cls)
+{
+	var t, d;
+	if (document.getElementById)
+		t =3D document.getElementById(tbl);
+	else
+		t =3D document.all(tbl);
+	if (t =3D=3D null) return;
+	if (t.getElementsByTagName)
+		d =3D t.getElementsByTagName("TD");
+	else
+		d =3D t.all.tags("TD");
+	if (d =3D=3D null) return;
+	if (d.length <=3D idx) return;
+	d[idx].className =3D cls;
+}
+
+function setMSResearch() {
+  var time =3D new Date();
+  if( document.cookie.indexOf( 'msresearch=3D1 ') =3D=3D -1 ) {
+    document.cookie =3D 'msresearch=3D' + time.getTime() + ':' + escape( =
+document.location) + ':' + escape( document.referrer) + '; path=3D/; =
+domain=3D.microsoft.com; ';
+  }
+}
+
+function footerjs(doc)
+{
+	if (doImage =3D=3D null)
+	{
+		var tt =3D TType =3D=3D null ? "PV" : TType;
+		doc.write('<layer visibility=3D"hide"><div style=3D"display:none"><img =
+src=3D"http://c.microsoft.com/trans_pixel.asp?source=3Dwww&TYPE=3D' + tt =
++ '&p=3Ddownloads" width=3D0 height=3D0 hspace=3D0 vspace=3D0 border=3D0 =
+/></div></layer>');
+	}
+
+	if( ( document.cookie.indexOf( 'msresearch=3D1 ') =3D=3D -1 )=20
+	 && ( document.cookie.indexOf( 'msresearch=3D')   !=3D -1 ) ) {
+	  setInterval( "setMSResearch()", 1000 );
+	}
+}</SCRIPT>
+<LINK href=3D"http://www.microsoft.com/downloads/2/loc/en/DC.css" =
+type=3Dtext/css=20
+rel=3DSTYLESHEET>
+<META content=3D"MSHTML 6.00.2800.1400" name=3DGENERATOR></HEAD>
+<BODY><BASEFONT face=3D"Verdana, Arial, Helvetica"><A name=3Dtop></A>
+<SCRIPT language=3DJavascript>
+				if (self.name =3D=3D "MNPMainFrame") top.location.href =3D =
+self.location.href;
+			</SCRIPT>
+
+<DIV id=3DmsviMasthead=20
+xmlns:Utility=3D"http://www.microsoft.com/MSCOM/VisualIdentity/Utility">
+<TABLE cellSpacing=3D0 cellPadding=3D0 width=3D"100%" border=3D0>
+  <TBODY>
+  <TR>
+    <TD width=3D"100%">
+      <TABLE height=3D22 cellSpacing=3D0 cellPadding=3D0 width=3D"100%" =
+border=3D0>
+        <TBODY>
+        <TR>
+          <TD id=3DmsviRegionIdGraphic bgColor=3D#4b92d9></TD>
+          <TD id=3DmsviRegionGradient1=20
+          style=3D"FILTER: =
+progid:DXImageTransform.Microsoft.Gradient(startColorStr=3D'#4B92D9', =
+endColorStr=3D'#CEDFF6', gradientType=3D'1')"=20
+          width=3D"50%"></TD>
+          <TD id=3DmsviRegionGradient2=20
+          style=3D"FILTER: =
+progid:DXImageTransform.Microsoft.Gradient(startColorStr=3D'#CEDFF6', =
+endColorStr=3D'#1E77D3', gradientType=3D'1')"=20
+          width=3D"50%"></TD></TR></TBODY></TABLE></TD>
+    <TD id=3DmsviGlobalToolbar dir=3Dltr noWrap align=3Dleft =
+bgColor=3D#1e77d3=20
+height=3D22>
+      <TABLE cellSpacing=3D0 cellPadding=3D0 border=3D0>
+        <TBODY>
+        <TR>
+          <TD class=3Dgt0 onmouseover=3D"mhHover('msviGlobalToolbar', 0, =
+'gt1')"=20
+          onmouseout=3D"mhHover('msviGlobalToolbar', 0, 'gt0')" =
+noWrap><A=20
+            href=3D"http://www.microsoft.com/">Microsoft.com =
+Home</A></TD>
+          <TD class=3Dgtsep>|</TD>
+          <TD class=3Dgt0 onmouseover=3D"mhHover('msviGlobalToolbar', 2, =
+'gt1')"=20
+          onmouseout=3D"mhHover('msviGlobalToolbar', 2, 'gt0')" =
+noWrap><A=20
+            =
+href=3D"http://www.microsoft.com/library/toolbar/3.0/sitemap/en-us.mspx">=
+Site=20
+            Map</A></TD></TR></TBODY></TABLE></TD></TR>
+  <TR vAlign=3Dtop>
+    <TD width=3D"100%">
+      <TABLE height=3D42 cellSpacing=3D0 cellPadding=3D0 width=3D"100%" =
+border=3D0>
+        <TBODY>
+        <TR vAlign=3Dtop>
+          <TD id=3DmsviBrandBanner bgColor=3D#0a6cce><A=20
+            href=3D"http://www.microsoft.com/"><IMG title=3D"" =
+height=3D42=20
+            alt=3DMicrosoft=20
+            =
+src=3D"http://www.microsoft.com/library/toolbar/3.0/images/banners/ms_mas=
+thead_ltr.gif"=20
+            width=3D136 border=3D0></A></TD>
+          <TD=20
+          style=3D"FILTER: =
+progid:DXImageTransform.Microsoft.Gradient(startColorStr=3D'#0A6CCE', =
+endColorStr=3D'#FFFFFF', gradientType=3D'1')"=20
+          width=3D"100%"></TD></TR></TBODY></TABLE></TD>
+    <TD id=3DmsviGlobalSearch bgColor=3D#ffffff>Search Microsoft.com =
+for:<BR>
+      <FORM id=3DmsviSearchForm =
+action=3D/library/toolbar/3.0/search.aspx><INPUT=20
+      type=3Dhidden value=3Den-us name=3DView><INPUT type=3Dhidden =
+value=3Dutf-8=20
+      name=3Dcharset><NOBR>
+      <DIV style=3D"HEIGHT: 18px"><INPUT id=3DmsviSearchBox =
+maxLength=3D255 name=3Dqu><INPUT id=3DmsviGoButton type=3Dsubmit =
+value=3DGo></DIV></NOBR></FORM></TD></TR></TBODY></TABLE>
+<TABLE id=3DmsviSubbanner cellSpacing=3D0 cellPadding=3D0 width=3D"100%" =
+bgColor=3D#003399=20
+border=3D0>
+  <TBODY>
+  <TR>
+    <TD><IMG title=3D"" height=3D26 alt=3D"Download Center"=20
+      =
+src=3D"http://www.microsoft.com/library/toolbar/3.0/subbanner.aspx?t=3DRG=
+93bmxvYWQgQ2VudGVy&amp;f=3DFFFFFF&amp;b=3D003399&amp;s=3D5A7CBC&amp;r=3DF=
+alse&amp;font=3DSegoe%2c+13pt&amp;v=3D0&amp;c=3DtgmuT99vX46M03KBkRSUZF7vm=
+O4%3d"=20
+      width=3D467 border=3D0></TD>
+    <TD width=3D"100%">&nbsp;</TD></TR></TBODY></TABLE></DIV>
+<TABLE dir=3Dltr cellSpacing=3D0 cellPadding=3D0 width=3D"100%" =
+border=3D0>
+  <TBODY>
+  <TR vAlign=3Dtop>
+    <TD style=3D"OVERFLOW-X: hidden" width=3D181 height=3D"100%">
+      <DIV class=3DmnpMenuTop id=3DmnpMenuTop dir=3Dltr=20
+      style=3D"OVERFLOW-X: hidden; WIDTH: 181px" =
+url=3D"/downloads/details.aspx">
+      <DIV class=3DmnpInherit>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den">=
+Download=20
+      Center Home</A></DIV>
+      <DIV class=3DmnpMenuBorder style=3D"WIDTH: 180px"></DIV>
+      <DIV class=3DmnpMenuLabel>Download Categories</DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den&a=
+mp;categoryid=3D1">Games</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den&a=
+mp;categoryid=3D2">DirectX</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den&a=
+mp;categoryid=3D6">Internet</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den&a=
+mp;categoryid=3D7">Windows=20
+      (Security &amp; Updates)</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den&a=
+mp;categoryid=3D4">Windows=20
+      Media</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den&a=
+mp;categoryid=3D3">Drivers</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den&a=
+mp;categoryid=3D9">Office=20
+      and Home Applications</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den&a=
+mp;categoryid=3D8">Mobile=20
+      Devices</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den&a=
+mp;categoryid=3D5">Macintosh=20
+      &amp; Other Platforms</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den&a=
+mp;categoryid=3D11">Server=20
+      Applications</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den&a=
+mp;categoryid=3D12">System=20
+      Management Tools</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/search.aspx?displaylang=3Den&a=
+mp;categoryid=3D10">Development=20
+      Resources</A></DIV>
+      <DIV class=3DmnpMenuBorder style=3D"WIDTH: 180px"></DIV>
+      <DIV class=3DmnpMenuLabel>Resources</DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/help.aspx?displaylang=3Den">Do=
+wnload=20
+      Center Help</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/relatedsites.aspx?displaylang=3D=
+en">Related=20
+      Download Sites</A></DIV>
+      <DIV class=3DmnpMenuRow=20
+      style=3D"BORDER-LEFT-COLOR: #f1f1f1; BACKGROUND: #f1f1f1; =
+OVERFLOW-X: hidden; BORDER-BOTTOM-COLOR: #f1f1f1; WIDTH: 176px; =
+BORDER-TOP-COLOR: #f1f1f1; BORDER-RIGHT-COLOR: #f1f1f1"><IMG=20
+      class=3DmnpMenuArrow title=3D"" style=3D"LEFT: 166px; VISIBILITY: =
+hidden"=20
+      height=3D7 alt=3D*=20
+      src=3D"http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif" =
+width=3D4=20
+      border=3D0><A=20
+      =
+href=3D"http://www.microsoft.com/downloads/updateservices.aspx?displaylan=
+g=3Den">Automatic=20
+      Update Services</A></DIV>
+      <DIV class=3DmnpMenuBorder=20
+      style=3D"MARGIN-BOTTOM: 0px; WIDTH: 180px"></DIV></DIV></DIV>
+      <DIV class=3DmnpAds=20
+      style=3D"BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 0px =
+solid; BACKGROUND: #f1f1f1; MARGIN-BOTTOM: 20px; BORDER-LEFT: #999999 =
+0px solid; WIDTH: 181px; BORDER-BOTTOM: #999999 0px solid; HEIGHT: =
+100%">
+      <CENTER>
+      <DIV=20
+      style=3D"BACKGROUND: none transparent scroll repeat 0% 0%; HEIGHT: =
+20px"></DIV><A=20
+      href=3D"http://go.microsoft.com/?LinkID=3D275695"><IMG alt=3D""=20
+      =
+src=3D"http://www.microsoft.com/homepage/images/2003/CRM/consumer.gif"=20
+      border=3D0></A><BR></CENTER></DIV></TD>
+    <TD dir=3Dltr width=3D"100%">
+      <TABLE cellSpacing=3D0 cellPadding=3D0 width=3D"100%" border=3D0>
+        <TBODY>
+        <TR>
+          <TD width=3D20><IMG height=3D10 alt=3D""=20
+            src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif" =
+
+          width=3D20></TD>
+          <TD><IMG height=3D10 alt=3D""=20
+            src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif" =
+
+          width=3D500></TD>
+          <TD width=3D20><IMG height=3D10 alt=3D""=20
+            src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif" =
+
+          width=3D20></TD></TR>
+        <TR>
+          <TD width=3D20><IMG height=3D1 alt=3D""=20
+            src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif" =
+
+          width=3D20></TD>
+          <TD vAlign=3Dtop align=3Dleft>
+            <H1 class=3DpageHeading>Platform SDK Comctl32 =
+Redistributables=20
+            5.80.2614.3600 (x86)</H1>
+            <P>This is the ComCtl32 redistributable (x86) for Windows 9x =
+and=20
+            Windows NT 4.0.</P><BR>
+            <TABLE cellSpacing=3D0 cellPadding=3D0 border=3D0>
+              <TBODY>
+              <TR>
+                <TD vAlign=3Dtop>
+                  <TABLE class=3DquickInfo borderColor=3D#cccccc =
+cellSpacing=3D0=20
+                  cellPadding=3D3 rules=3Drows border=3D1>
+                    <TBODY>
+                    <TR>
+                      <TD align=3Dleft bgColor=3D#0066cc =
+colSpan=3D2><IMG height=3D1=20
+                        alt=3D""=20
+                        =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                        width=3D300><BR><FONT color=3D#ffffff><B=20
+                        class=3DquickInfoTitle>Quick =
+Info</B></FONT></TD></TR>
+                    <TR>
+                      <TD bgColor=3D#f1f1f1>
+                        <P class=3DquickInfoItem><B>Download =
+Size:</B></P></TD>
+                      <TD bgColor=3D#f1f1f1>
+                        <P class=3DquickInfoItem>499 KB - 510 =
+KB</P></TD></TR>
+                    <TR>
+                      <TD>
+                        <P class=3DquickInfoItem><B>Date =
+Published:</B></P></TD>
+                      <TD>
+                        <P class=3DquickInfoItem>9/14/1999</P></TD></TR>
+                    <TR>
+                      <TD bgColor=3D#f1f1f1>
+                        <P =
+class=3DquickInfoItem><B>Version:</B></P></TD>
+                      <TD bgColor=3D#f1f1f1>
+                        <P=20
+                  =
+class=3DquickInfoItem>5.80.2614.3600</P></TD></TR></TBODY></TABLE>
+                  <H2 class=3DsubHeadingHeavy>Overview</H2><FONT=20
+                  class=3DdetailsContent>This is the ComCtl32 =
+redistributable=20
+                  (x86) for Windows 9x and Windows NT 4.0.</FONT></TD>
+                <TD><IMG height=3D1 alt=3D""=20
+                  =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                  width=3D15></TD>
+                <TD vAlign=3Dtop>
+                  <TABLE cellSpacing=3D0 cellPadding=3D0 width=3D175>
+                    <TBODY>
+                    <TR>
+                      <TD vAlign=3Dtop align=3Dleft>
+                        <TABLE cellSpacing=3D0 cellPadding=3D0 =
+width=3D165 border=3D0>
+                          <TBODY>
+                          <TR>
+                            <TD bgColor=3D#0066cc colSpan=3D2><IMG =
+height=3D3 alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/border_top_left.gif"=20
+                              width=3D7></IMG></TD>
+                            <TD bgColor=3D#0066cc><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D1></TD>
+                            <TD bgColor=3D#0066cc colSpan=3D2><IMG =
+height=3D3 alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/border_top_right.gif"=20
+                              width=3D7></IMG></TD></TR>
+                          <TR>
+                            <TD bgColor=3D#999999><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D1></TD>
+                            <TD bgColor=3D#f1f1f1><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D6></TD>
+                            <TD bgColor=3D#f1f1f1><IMG height=3D12 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D151></TD>
+                            <TD bgColor=3D#f1f1f1><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D6></TD>
+                            <TD bgColor=3D#999999><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D1></TD></TR>
+                          <TR>
+                            <TD bgColor=3D#999999><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D1></TD>
+                            <TD bgColor=3D#f1f1f1><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D1></TD>
+                            <TD class=3DcontainerContent =
+bgColor=3D#f1f1f1><FONT=20
+                              class=3DcontainerContentLarge><B=20
+                              class=3DcontainerSectionHeading>Platform =
+SDK=20
+                              Comctl32 Redistributables 5.80.2614.3600=20
+                              (x86)</B><BR>English</FONT><BR><FONT=20
+                              class=3DcontainerContentLarge><BR><A=20
+                              =
+href=3D"http://www.microsoft.com/downloads/details.aspx?FamilyID=3Dcb2cf3=
+a2-8025-4e8f-8511-9b476a8d35d2&amp;DisplayLang=3Den#filelist">Download=20
+                              files below</A></FONT></TD>
+                            <TD bgColor=3D#f1f1f1><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D1></TD>
+                            <TD bgColor=3D#999999><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D1></TD></TR>
+                          <TR>
+                            <TD bgColor=3D#999999><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D1></TD>
+                            <TD bgColor=3D#f1f1f1><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D6></TD>
+                            <TD bgColor=3D#f1f1f1><IMG height=3D12 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D151></TD>
+                            <TD bgColor=3D#f1f1f1><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D6></TD>
+                            <TD bgColor=3D#999999><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D1></TD></TR>
+                          <TR>
+                            <TD align=3Dleft width=3D7 colSpan=3D2 =
+height=3D3><IMG=20
+                              height=3D3 alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/border_bttm_left.gif"=20
+                              width=3D7></IMG></TD>
+                            <TD bgColor=3D#0066cc><IMG height=3D1 =
+alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              width=3D1></TD>
+                            <TD align=3Dright width=3D7 colSpan=3D2 =
+height=3D3><IMG=20
+                              height=3D3 alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/border_bttm_right.gif"=20
+                              width=3D7></IMG></TD></TR>
+                          <TR>
+                            <TD colSpan=3D5><IMG height=3D12 alt=3D""=20
+                              =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                              =
+width=3D1></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR><=
+/TBODY></TABLE>
+            <TABLE class=3DdetailsContainer>
+              <TBODY>
+              <TR>
+                <TD>
+                  <H2 class=3DsubHeadingHeavy>System Requirements</H2>
+                  <UL>
+                    <LI>
+                    <P><B>Supported Operating Systems: </B>Windows 95, =
+Windows=20
+                    98, Windows NT</P></LI></UL><FONT =
+class=3DdetailsContent>-=20
+                  Windows 9x or Windows NT =
+4.0<BR></FONT></TD></TR></TBODY></TABLE>
+            <TABLE class=3DsectionDivider cellSpacing=3D0 =
+cellPadding=3D0=20
+width=3D"100%">
+              <TBODY>
+              <TR>
+                <TD width=3D37><IMG alt=3D""=20
+                  =
+src=3D"http://www.microsoft.com/downloads/2/img/sectiondvdr_cc.gif"></TD>=
+
+                <TD align=3Dleft width=3D"100%">
+                  <HR color=3D#cccccc noShade SIZE=3D1>
+                </TD></TR></TBODY></TABLE>
+            <TABLE class=3DdetailsContainer>
+              <TBODY>
+              <TR>
+                <TD>
+                  <H2 class=3DsectionHeading>Instructions</H2><FONT=20
+                  class=3DdetailsContent>Version:<BR>This includes the=20
+                  comctl32.dll from Internet Explorer version=20
+                  5.0.<BR><BR>Languages:<BR>This version of comctl32.dll =
+will=20
+                  work on the 29 languages that Win98 shipped in. It =
+will=20
+                  automatically use the correct =
+language.<BR>IMPORTANT:<BR>Never=20
+                  install comctl32.dll without using this installer.=20
+                  <BR><BR>Command Line Arguements:<BR>/Q - Quiet mode. =
+This=20
+                  includes rebooting if necessary.<BR>/T: - Specifies =
+temporary=20
+                  working folder.<BR></FONT></TD></TR></TBODY></TABLE><A =
+
+            name=3Dfilelist></A>
+            <TABLE class=3DsectionDivider cellSpacing=3D0 =
+cellPadding=3D0=20
+width=3D"100%">
+              <TBODY>
+              <TR>
+                <TD width=3D37><IMG alt=3D""=20
+                  =
+src=3D"http://www.microsoft.com/downloads/2/img/sectiondvdr_cc.gif"></TD>=
+
+                <TD width=3D"100%">
+                  <HR color=3D#cccccc noShade SIZE=3D1>
+                </TD></TR></TBODY></TABLE>
+            <H2 class=3DsectionHeading>Files in this Download</H2>
+            <P class=3DdetailsContent>Below are links to the separate =
+files=20
+            available for this download.</P>
+            <TABLE class=3DquickInfo borderColor=3D#cccccc =
+cellSpacing=3D0=20
+            cellPadding=3D3 rules=3Drows width=3D400 border=3D1>
+              <TBODY>
+              <TR bgColor=3D#dddddd>
+                <TD>
+                  <P class=3DmultipartHeader><B>File Name:</B></P></TD>
+                <TD><IMG height=3D1 alt=3D""=20
+                  =
+src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif"=20
+                  width=3D20></TD>
+                <TD width=3D"100%">
+                  <P class=3DmultipartHeader><B>File =
+Size</B></P></TD></TR>
+              <TR>
+                <TD>
+                  <P class=3DmultipartContent><A=20
+                  =
+href=3D"http://download.microsoft.com/download/platformsdk/Comctl32/5.80.=
+2614.3600/W9XNT4/EN-US/50comupd.exe">50comupd.exe</A></P></TD>
+                <TD>&nbsp;</TD>
+                <TD>
+                  <P class=3DmultipartContent>499 KB</P></TD></TR>
+              <TR bgColor=3D#f1f1f1>
+                <TD>
+                  <P class=3DmultipartContent><A=20
+                  =
+href=3D"http://download.microsoft.com/download/platformsdk/Comctl32/5.80.=
+2614.3600/W9XNT4/EN-US/license.htm">license.htm</A></P></TD>
+                <TD>&nbsp;</TD>
+                <TD>
+                  <P class=3DmultipartContent>11 KB</P></TD></TR>
+              <TR>
+                <TD>
+                  <P class=3DmultipartContent><A=20
+                  =
+href=3D"http://download.microsoft.com/download/platformsdk/Comctl32/5.80.=
+2614.3600/W9XNT4/EN-US/readme.htm">readme.htm</A></P></TD>
+                <TD>&nbsp;</TD>
+                <TD>
+                  <P class=3DmultipartContent>1=20
+            KB</P></TD></TR></TBODY></TABLE><BR><BR><BR></TD>
+          <TD width=3D20><IMG height=3D1 alt=3D""=20
+            src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif" =
+
+          width=3D20></TD></TR>
+        <TR>
+          <TD width=3D20><IMG height=3D15 alt=3D""=20
+            src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif" =
+
+          width=3D20></TD>
+          <TD><IMG height=3D15 alt=3D""=20
+            src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif" =
+
+          width=3D500></TD>
+          <TD width=3D20><IMG height=3D15 alt=3D""=20
+            src=3D"http://www.microsoft.com/downloads/2/img/1ptrans.gif" =
+
+          =
+width=3D20></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><BR=20
+style=3D"OVERFLOW: hidden; LINE-HEIGHT: 1px" clear=3Dall>
+<TABLE id=3DmsviFooter cellSpacing=3D0 cellPadding=3D0 width=3D"100%">
+  <TBODY>
+  <TR vAlign=3Dbottom>
+    <TD id=3DmsviFooter2=20
+    style=3D"FILTER: =
+progid:DXImageTransform.Microsoft.Gradient(startColorStr=3D'#FFFFFF', =
+endColorStr=3D'#3F8CDA', gradientType=3D'1')">
+      <DIV id=3DmsviLocalFooter><NOBR><A=20
+      href=3D"http://go.microsoft.com/?linkid=3D317027">Manage Your =
+Profile</A>=20
+      |</NOBR><WBR><NOBR><A=20
+      =
+href=3D"http://www.microsoft.com/isapi/goregwiz.asp?target=3D/contactus/c=
+ontactus.asp"=20
+      target=3D_parent>Contact Us</A></NOBR></DIV>
+      <DIV id=3DmsviGlobalFooter><SPAN dir=3Dltr>=C2=A92004 Microsoft =
+Corporation. All=20
+      rights reserved.&nbsp;</SPAN><NOBR><A=20
+      href=3D"http://www.microsoft.com/info/cpyright.mspx">Terms of =
+Use</A>=20
+      |</NOBR><WBR><NOBR><A=20
+      href=3D"http://www.microsoft.com/info/privacy.mspx">Privacy=20
+      Statement</A></NOBR></DIV></TD></TR></TBODY></TABLE>
+<SCRIPT language=3Djavascript>var msviFooter2;if =
+(document.getElementById){msviFooter2 =3D =
+document.getElementById("msviFooter2");msviFooter2.style.filter =3D =
+"";}</SCRIPT>
+
+<TABLE height=3D58 cellSpacing=3D0 cellPadding=3D0 width=3D"100%">
+  <TBODY>
+  <TR vAlign=3Dtop>
+    <TD>
+      <DIV style=3D"WIDTH: 200px"></DIV></TD>
+    <TD=20
+    style=3D"FILTER: =
+progid:DXImageTransform.Microsoft.Gradient(startColorStr=3D'#FFFFFF', =
+endColorStr=3D'#3F8CDA', gradientType=3D'1')"=20
+    width=3D"100%"></TD></TR></TBODY></TABLE><LAYER visibility=3D"hide">
+<DIV style=3D"DISPLAY: none"><IMG height=3D0 hspace=3D0=20
+src=3D"http://c.microsoft.com/trans_pixel.asp?source=3Dwww&amp;TYPE=3DPV&=
+amp;p=3Ddownloads"=20
+width=3D0 border=3D0></DIV></LAYER></BASEFONT></BODY></HTML>
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.microsoft.com/library/toolbar/3.0/images/banners/ms_masthead_ltr.gif
+
+R0lGODlhiAAqAMQAAApszv///4S15sLa80eR2vD2/Bl10eDt+TiI16PI7dHj9maj4Cl+1JO+6Vea
+3Xat5LLR8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAA
+AAAALAAAAACIACoAAAX/ICCOZGmeaKqubOu+cCzPdG3feK7vfO//wKBwSCwaj8ikcslsOp/QqHRK
+rVpzjYF2O0CQCNytABAmXGkIgVrA0B0C8HjAPBrI4wLEvX2GGexyBgwEhAQGMwx3cXQAeopzC3IF
+fTENdwcAEHKMMA6PcyMJnwAEawILlC8GBXJ5AG9xNJaPDyKJjwpFCIReKruFKwaFhyaecbkAt3AD
+NICKYwCijw1/XL3JDbABBQmcXA0ACwMHZgQJrHHcxCMEmooQnCILCncKDiIIWtrbWvTpWqQI3Gvx
+KcAYZYoWELgjwsCsafjkJPAXAMBDRQWuSSs4sBFFRQkAPCj4CROBBwiu/6VY+GnMRkUMBMjJZeAj
+LZGfBtjEeEjmzAHo4GBqFLTlS5JxQvLio2JkS4R3JjkLQM1mAwFFJx1Ndweeg4/g9tUixRBBVoU+
+4RSAoPPOFklaUAljqsJdHG0CHu4LAAHAnQUXQQEwFgfBXqF3wIkgHABTV2KmxnzMOOLjvUh3I8Zh
+NmPvxgZBj+a5wxLPiHxcSsep9XGoCNUViy5r4GAd5tUkprqUKMIpHGgxoB5IG3Q4ad/bkAdYV+xv
+I+fsGKZ9lOCQ3W0ldAP4OPZlPBeMAySYHmfB9YovIVzvm2I6Z+XMb2O3SDLXvpAkxBq402sf8xeB
+LUBeYwAUZV8r2qUwFf8qAEw3CQnucMMUA9l8Eh5wz20CW0MzNbPHgA9ARQ1pCSYTmSNxQNbhaeJ1
+ZIIBX91BHoMivDSJe4vxNsMlDUZlgHwBOBAeGToSmQ5jyOAUSEM7tRKdHA/so1g4MmYih2LTYfgC
+bCGRN0ZgMXWonAAOTGUQcvgl05VANpE3gIpyMGAjWvWIUNRAUw0gZAzKoeLgIa0ZCUdIqyDFzHU0
+WomUAIW65ZmaSBXQBlR8mGlQDOe1kaUIXfklB4NA3lHdK3KoVFNBBYCKVAAKEBPqTK7K4dqA362w
+z1DEHQIbSvyxc5ietkjyYmDbJEBXOyVpCYYiByR6EXsAGCDAPlQgIKAwAATQ5YIwajxQa0OlrIFS
+CtZ2q1Iq6Kar7rrstuvuu/DGK++89NZr77345qsvDCEAADs=
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://www.microsoft.com/library/toolbar/3.0/subbanner.aspx?t=RG93bmxvYWQgQ2VudGVy&f=FFFFFF&b=003399&s=5A7CBC&r=False&font=Segoe%2c+13pt&v=0&c=tgmuT99vX46M03KBkRSUZF7vmO4%3d
+
+/9j/4AAQSkZJRgABAQEAGAAYAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB
+AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEB
+AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCAAaAdMDASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+Xevp
+L4G/sd/tSftMaVr2u/s//Ab4mfF7R/C2o2ekeItS8CeGL/XrPRtT1C2lvLGw1Ce0Rkt7q6tYZbiC
+FyHkijd1BCmvm2v0l0H/AJRAfFb/ALSS/s//APrMH7S9f7g8R5hjsuweFll0sJDF43NsqyyFXG4e
+tisPRjmGNpYapWnhqGLwNSs6cJylCCxVFOVrysmn/AOV4bD4mvWWKVaVHD4LGYuUMPVhRq1HhqEq
+kYRq1KOIhTUpJKUnRqaXsr6r4n+LHwW+MHwH8VSeBvjZ8LviD8JPGMdtHenwx8R/CGveDNcksJnk
+jg1CDTvEFhYXNzp1w8UgttQt45bO52MYJ5ApNeZV+2vwE8JeLP2uv+CfXwx+C3xW8VX7eb/wU7/Z
+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
+/bn/ALaY7dT9T/Oihup+p/nRXWc5/9k=
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.microsoft.com/library/mnp/2/gif/arrowLTR.gif
+
+R0lGODlhBAAHAPcAAP8zAP///////+7u7tfX18zMzMHBwaqqqpmZmQAAAAAAAAAAAAAAAAAAAAAA
+AAAAAG91dC1iYXNpYy5naWYAAAAAAAAAAAAAAAAAAAAAAAAAAAAXABRH6HfQmxcA0JsXACIC+38H
+AAAA7PQSADVa6HcgPRMAJvkXADT5FwB+8xcAnvMXACCwFwCk9hIAAAAAAAAAXy2oAF8t4PQSADz2
+EgDM9RIAAAAAACD1EgB+L/h3AABfLQEAAAACAAAArPUSAKgAXy0AEF8t2CNfLQEAAAC8aPh3CQQA
+AAAQXy0AAAAAbPUSACQAAABxI/h3SA0TAAAAEwAkAAAAAAAAAET1EgAAAgAA/PYSAEWQ+3ewI/h3
+/////wz3EgDgo/x396P8dwAAAAAAAAAAKPoSAAIAAADU9RIApPYSACx5AAAAAAAACQQAABgVXy0J
+BAAAeAETACCwFwCgmQEA2CNfLQAAAAABAAAAzPUSAAAAAAA49RIAPPYSAAAAAABFkPt3oJkBAP//
+//8AEF8tjPUSALD/EgAgsBcAeAETACCwFwB4ARMAGLAXAHlr+HcAAF8tsDBfLTj2EgAAAAAAt1Do
+dwAAXy2wMF8tOPYSAAAAAACk9hIALHkAAAAAAACwMF8tEAAAAAkAAACo9hIA/gAAAGz2EgCIZeF3
+aFtIAP4AAACE9hIA7m5gLRIAAAAAAAAA/gAAAAAAAACY9hIADmnhdwAAAADubmAtCQAAAKj2EgAJ
+AAAAAAAAAHZbSADK0EcAzvQXAGD0FwCrqUIAAABfLe5uYC1oW0gA/wAAAAAAEwDnBQAAaPYXAGD2
+FwBoARMAAPcSACQAAAAseQAAAPQXAAAAAACA9xcAuCYYAHgBEwBg9hcAaPYXACABAAABAAAABgJk
+AwYCZANI9xIARZD7d3Af+Hf/////WPcSAMwy6HcAABMACAAUABgBAABg9BcAAAAAAAAAAAAAAAAA
+AAAAAMTARADD9hcARMkVAMf2FwCH+hIA/////2j2FwAuwUQAw/YXACH5BAEAAAIALAAAAAAEAAcA
+QAgSABMIGJigoICCAgUSVIgQ4cCAADs=
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.microsoft.com/homepage/images/2003/CRM/consumer.gif
+
+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
+fv/3gB/4gp8EQQAAOw==
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.microsoft.com/downloads/2/img/1ptrans.gif
+
+R0lGODlhAQABAIAAAP8zzAAAACH5BAEAAAAALAAAAAABAAEAQAIChFEAOwA=
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.microsoft.com/downloads/2/img/border_top_left.gif
+
+R0lGODlhBwADAIAAAABmzP///yH5BAAAAAAALAAAAAAHAAMAAAIEDI6pWgA7
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.microsoft.com/downloads/2/img/border_top_right.gif
+
+R0lGODlhBwADAIAAAABmzP///yH5BAAAAAAALAAAAAAHAAMAAAIFhB+nawUAOw==
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.microsoft.com/downloads/2/img/border_bttm_left.gif
+
+R0lGODlhBwADAIAAAABmzP///yH5BAAAAAAALAAAAAAHAAMAAAIFhI8YCQUAOw==
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.microsoft.com/downloads/2/img/border_bttm_right.gif
+
+R0lGODlhBwADAIAAAABmzP///yH5BAAAAAAALAAAAAAHAAMAAAIEhI+ZUQA7
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://www.microsoft.com/downloads/2/img/sectiondvdr_cc.gif
+
+R0lGODlhJQALAIAAAP///8zMzCH5BAAAAAAALAAAAAAlAAsAAAIqhI+pyw0BY1gyOlUhzTfliXHd
+8W2V+aXqOpKi945leLZP7NbtDOv2fygAADs=
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: http://c.microsoft.com/trans_pixel.asp?source=www&TYPE=PV&p=downloads
+
+R0lGODlhAQABAIAAAP8zzAAAACH5BAEAAAAALAAAAAABAAEAQAIChFEAOwA=
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.microsoft.com/library/mnp/2/aspx/css.aspx?locale=en-us&name=Menu&static=Page
+
+.mnpMenuTop {
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 0px solid; =
+FONT-SIZE: small; BACKGROUND: #f1f1f1; BORDER-LEFT: #999999 0px solid; =
+PADDING-TOP: 2px; BORDER-BOTTOM: #999999 0px solid
+}
+.mnpMenuSub {
+	BORDER-RIGHT: #999999 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: =
+#999999 1px solid; PADDING-LEFT: 0px; BACKGROUND: #f1f1f1; =
+PADDING-BOTTOM: 2px; BORDER-LEFT: #999999 1px solid; PADDING-TOP: 2px; =
+BORDER-BOTTOM: #999999 1px solid; POSITION: absolute
+}
+.mnpMenuRow {
+	BORDER-RIGHT: 1px solid; PADDING-RIGHT: 15px; BORDER-TOP: 1px solid; =
+PADDING-LEFT: 6px; PADDING-BOTTOM: 3px; MARGIN: 0px 2px; BORDER-LEFT: =
+1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 1px; BORDER-BOTTOM: =
+1px solid
+}
+.mnpMenuRow A {
+	FONT-WEIGHT: normal; BACKGROUND: none transparent scroll repeat 0% 0%; =
+COLOR: black; TEXT-DECORATION: none
+}
+.mnpMenuRow A:visited {
+	FONT-WEIGHT: normal; BACKGROUND: none transparent scroll repeat 0% 0%; =
+COLOR: black; TEXT-DECORATION: none
+}
+.mnpMenuRow A:hover {
+	FONT-WEIGHT: normal; BACKGROUND: none transparent scroll repeat 0% 0%; =
+COLOR: black; TEXT-DECORATION: none
+}
+.mnpMenuLabel {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 4px; BACKGROUND: #f1f1f1; =
+PADDING-BOTTOM: 4px; COLOR: black; PADDING-TOP: 2px
+}
+.mnpMenuBorder {
+	BACKGROUND: #999999; MARGIN: 2px 0px; OVERFLOW: hidden; HEIGHT: 1px
+}
+.mnpMenuArrow {
+	MARGIN-TOP: 4px; POSITION: absolute
+}
+.mnpMenuScroller {
+	BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid; MARGIN: 0px 2px; =
+OVERFLOW: hidden; BORDER-LEFT: 1px solid; PADDING-TOP: 4px; =
+BORDER-BOTTOM: 1px solid; HEIGHT: 19px; TEXT-ALIGN: center
+}
+.mnpMenuScrollArea {
+	BACKGROUND: none transparent scroll repeat 0% 0%; OVERFLOW: hidden
+}
+.mnpAds {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.mnpAds A {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.mnpAds A:link {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.mnpAds A:visited {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.mnpAds A:hover {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.mnpInherit {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.mnpMenuLabel {
+	FONT: bold 70% Verdana
+}
+.mnpMenuRow {
+	FONT: 70% Verdana
+}
+BODY {
+	MARGIN: 0px
+}
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.microsoft.com/library/toolbar/3.0/css.aspx?c=/downloads/2/loc/en/shell.config
+
+BODY {
+	MARGIN: 0px
+}
+#msviRegionIdGraphic {
+	PADDING-LEFT: 7px
+}
+#msviGlobalToolbar {
+	PADDING-LEFT: 1px
+}
+#msviGlobalToolbar A {
+	FONT: 65% Verdana; COLOR: #ffffff; TEXT-DECORATION: none
+}
+.gt0 {
+	BORDER-RIGHT: #1e77d3 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: =
+#1e77d3 1px solid; PADDING-LEFT: 4px; FONT-SIZE: 100%; PADDING-BOTTOM: =
+2px; BORDER-LEFT: #1e77d3 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: =
+#1e77d3 1px solid
+}
+.gt1 {
+	BORDER-RIGHT: #a1c6eb 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: =
+#a1c6eb 1px solid; PADDING-LEFT: 4px; FONT-SIZE: 100%; BACKGROUND: =
+#3484d7; PADDING-BOTTOM: 2px; BORDER-LEFT: #a1c6eb 1px solid; =
+PADDING-TOP: 0px; BORDER-BOTTOM: #a1c6eb 1px solid
+}
+.gtsep {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 2px; FONT: 65% =
+Verdana; COLOR: #a1c6eb; PADDING-TOP: 0px
+}
+#msviBanner {
+	TEXT-ALIGN: right
+}
+#msviGlobalSearch {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 6px; FONT: 65% Verdana; PADDING-TOP: =
+5px; TEXT-ALIGN: left
+}
+#msviSearchForm {
+	MARGIN: -1px 0px 0px
+}
+#msviSearchBox {
+	FONT: 110% Tahoma; WIDTH: 235px; xheight: 18px
+}
+#msviGoButton {
+	PADDING-RIGHT: 0.2em; PADDING-LEFT: 0.2em; PADDING-BOTTOM: 0em; FONT: =
+110% Tahoma; MARGIN-LEFT: 6px; PADDING-TOP: 0em; POSITION: relative; =
+TOP: 1px
+}
+#msviNoSearch {
+	WIDTH: 271px
+}
+#msviMastheadHR {
+	BACKGROUND: #003499; OVERFLOW: hidden; HEIGHT: 1px
+}
+#msviLocalToolbar {
+	PADDING-RIGHT: 0px; BORDER-TOP: #999 1px solid; PADDING-LEFT: 0px; =
+FONT-SIZE: 100%; BACKGROUND: #f1f1f1; PADDING-BOTTOM: 1px; PADDING-TOP: =
+2px; BORDER-BOTTOM: #999 1px solid
+}
+#msviLocalToolbar TD {
+	FONT-SIZE: 100%
+}
+#msviLocalToolbar A {
+	FONT: 70% Verdana; COLOR: black; TEXT-DECORATION: none
+}
+.lt0 {
+	BORDER-RIGHT: #f1f1f1 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: =
+#f1f1f1 1px solid; PADDING-LEFT: 6px; BACKGROUND: #f1f1f1; =
+PADDING-BOTTOM: 0px; BORDER-LEFT: #f1f1f1 1px solid; PADDING-TOP: 0px; =
+BORDER-BOTTOM: #f1f1f1 1px solid
+}
+.lt1 {
+	BORDER-RIGHT: #999 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: #999 1px =
+solid; PADDING-LEFT: 6px; BACKGROUND: #ccc; PADDING-BOTTOM: 0px; =
+BORDER-LEFT: #999 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #999 1px =
+solid
+}
+.ltsep {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 0px; FONT: 70% =
+Verdana; COLOR: #a9a9a9; PADDING-TOP: 0px
+}
+.localToolbar FORM {
+	MARGIN: 0px
+}
+.localToolbar INPUT {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; FONT: 70% =
+Tahoma, Helvetica; MARGIN-RIGHT: 8px; PADDING-TOP: 0px
+}
+#msviHomePageLink {
+	PADDING-LEFT: 2px; WIDTH: 177px
+}
+#msviHomePageLink TD {
+	FONT-SIZE: 100%
+}
+#msviHomePageLink A {
+	BORDER-RIGHT: #f1f1f1 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: =
+#f1f1f1 1px solid; DISPLAY: block; PADDING-LEFT: 6px; BACKGROUND: =
+#f1f1f1; PADDING-BOTTOM: 2px; MARGIN: 0px; BORDER-LEFT: #f1f1f1 1px =
+solid; PADDING-TOP: 2px; BORDER-BOTTOM: #f1f1f1 1px solid; WHITE-SPACE: =
+nowrap
+}
+#msviHomePageLink A:hover {
+	BORDER-RIGHT: #999 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: #999 1px =
+solid; DISPLAY: block; PADDING-LEFT: 6px; BACKGROUND: #ccc; =
+PADDING-BOTTOM: 2px; MARGIN: 0px; BORDER-LEFT: #999 1px solid; =
+PADDING-TOP: 2px; BORDER-BOTTOM: #999 1px solid
+}
+#msviFooter {
+	BORDER-TOP: #003499 1px solid; FONT: 70% Tahoma, Helvetica; POSITION: =
+absolute
+}
+#msviFooter TD {
+	FONT-SIZE: 100%
+}
+#msviLocalFooter {
+	PADDING-LEFT: 10px; MARGIN: 0px; PADDING-TOP: 8px
+}
+#msviGlobalFooter {
+	PADDING-LEFT: 10px; PADDING-BOTTOM: 13px; MARGIN: 0px; PADDING-TOP: =
+10px
+}
+#msviFooter A {
+	FONT-WEIGHT: normal; BACKGROUND: none transparent scroll repeat 0% 0%; =
+COLOR: #03c; MARGIN-RIGHT: 2px
+}
+#msviFooter A:visited {
+	FONT-WEIGHT: normal; BACKGROUND: none transparent scroll repeat 0% 0%; =
+COLOR: #03c
+}
+#msviFooter A:hover {
+	FONT-WEIGHT: normal; BACKGROUND: none transparent scroll repeat 0% 0%; =
+COLOR: #f60
+}
+#msviFooter NOBR {
+	COLOR: #a9a9a9; MARGIN-RIGHT: 5px
+}
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: text/css;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.microsoft.com/downloads/2/loc/en/DC.css
+
+P {
+	FONT-SIZE: 70%; MARGIN-BOTTOM: 0.3em; LINE-HEIGHT: 130%; FONT-FAMILY: =
+Verdana, Arial; TEXT-ALIGN: left; fontSize: 80%
+}
+UL {
+	MARGIN-TOP: 0.3em; MARGIN-BOTTOM: 0.3em
+}
+LI P {
+	MARGIN-BOTTOM: 0.4em; FONT-FAMILY: Verdana, Arial
+}
+TD TD A {
+	COLOR: #003399
+}
+TD TD A:active {
+=09
+}
+TD TD A:visited {
+	COLOR: #990099
+}
+TD TD A:hover {
+	COLOR: #ff3300
+}
+TD TD A.inline:visited {
+	COLOR: #003399
+}
+P.dcMinorHeading {
+	MARGIN-TOP: 0em; FONT-WEIGHT: normal; FONT-SIZE: 65%; MARGIN-BOTTOM: =
+0.4em; FONT-FAMILY: Verdana, Arial; fontSize: 75%; marginBottom: 0em; =
+marginTop: 0em
+}
+H1.pageHeading {
+	MARGIN-TOP: 0em; FONT-WEIGHT: bold; FONT-SIZE: 100%; MARGIN-BOTTOM: =
+0.3em; FONT-FAMILY: Verdana, Arial; TEXT-ALIGN: left; fontSize: medium; =
+marginBottom: .3em
+}
+H2.subHeading {
+	MARGIN-TOP: 0em; FONT-WEIGHT: bold; FONT-SIZE: 95%; MARGIN-BOTTOM: 0em; =
+FONT-FAMILY: Verdana, Arial; TEXT-ALIGN: left; fontSize: 95%
+}
+.error {
+	FONT-WEIGHT: bold; FONT-SIZE: 70%; MARGIN-BOTTOM: 1.5em; COLOR: red; =
+FONT-FAMILY: Verdana, Arial; fontSize: 70%
+}
+.searchCriteriaHeading {
+	FONT-SIZE: 85%; FONT-FAMILY: Verdana, Arial; fontSize: x-small
+}
+P.searchItem {
+	MARGIN-TOP: 0.8em; MARGIN-BOTTOM: 1.2em
+}
+.searchDropDown {
+	MARGIN-TOP: 0.3em; FONT-SIZE: 8pt; WIDTH: 260px; FONT-FAMILY: Tahoma, =
+Arial; fontSize: x-small
+}
+.searchTextBox {
+	MARGIN-TOP: 0.3em; FONT-SIZE: 8pt; WIDTH: 260px; FONT-FAMILY: Tahoma, =
+Arial; fontSize: medium%
+}
+OL.topDownloads {
+	MARGIN-TOP: 0.5em; FONT-WEIGHT: bold; FONT-SIZE: 70%; MARGIN-BOTTOM: =
+0em; FONT-FAMILY: Verdana, Arial; fontSize: 75%; marginLeft: 0em; =
+lineHeight: 1.1em
+}
+LI.topDownloads {
+	MARGIN-BOTTOM: 0.5em; marginBottom: 0em
+}
+A.topDownloads {
+	FONT-WEIGHT: normal; FONT-FAMILY: Verdana, Arial
+}
+.topDownloadsToggle {
+	MARGIN-TOP: 8px; FONT-SIZE: 100%; MARGIN-BOTTOM: 8px; MARGIN-LEFT: =
+-13px; FONT-FAMILY: Verdana, Arial; TEXT-DECORATION: none; fontSize: =
+90%; marginLeft: -11px
+}
+P.resultsNumber {
+	FONT-WEIGHT: bold; FONT-SIZE: 70%; FONT-FAMILY: Verdana, Arial
+}
+P.resultsTitle {
+	FONT-WEIGHT: bold; FONT-SIZE: 70%; MARGIN-BOTTOM: 0.2em; FONT-FAMILY: =
+Verdana, Arial; marginBottom: .3em
+}
+P.resultsText {
+	MARGIN-TOP: 0.1em; FONT-SIZE: 70%; MARGIN-BOTTOM: 0.2em; FONT-FAMILY: =
+Verdana, Arial; marginBottom: .1em; marginTop: .1em; lineHeight: .8em
+}
+P.resultsDetails {
+	MARGIN-TOP: 0.1em; FONT-SIZE: 70%; MARGIN-BOTTOM: 0.5em; FONT-FAMILY: =
+Verdana, Arial; fontSize: 95%
+}
+P.resultsKeywords {
+	MARGIN-TOP: 0em; FONT-SIZE: 75%; MARGIN-BOTTOM: 0em; LINE-HEIGHT: =
+1.3em; FONT-FAMILY: Verdana, Arial; marginBottom: 0em; marginTop: 0em; =
+lineHeight: 1em
+}
+P.resultsCriteria {
+	MARGIN-TOP: 0em; FONT-SIZE: 65%; MARGIN-BOTTOM: 0.5em; LINE-HEIGHT: =
+1.3em; FONT-FAMILY: Verdana, Arial; marginBottom: .5em; marginTop: 0em; =
+lineHeight: 1em
+}
+P.resultsPosition {
+	MARGIN-TOP: 1em; FONT-SIZE: 80%; MARGIN-BOTTOM: 1em; LINE-HEIGHT: =
+1.3em; FONT-FAMILY: Verdana, Arial; fontSize: 100%; marginBottom: 1em; =
+marginTop: 1em; lineHeight: 1em
+}
+P.resultsPopularityDescription {
+	MARGIN-TOP: 1.5em; FONT-SIZE: 70%; FONT-FAMILY: Verdana, Arial; =
+fontSize: 75%
+}
+P.resultsNextOrPrevious {
+	MARGIN-TOP: 1em; FONT-SIZE: 70%; LINE-HEIGHT: 1.3em; FONT-FAMILY: =
+Verdana, Arial; fontsize: 75%
+}
+.invalidFilter {
+	COLOR: red
+}
+.sectionTitle {
+	FONT-SIZE: 65%; FONT-FAMILY: Verdana, Arial; fontSize: 65%
+}
+H2.subHeadingHeavy {
+	MARGIN-TOP: 1.5em; FONT-WEIGHT: bold; FONT-SIZE: 80%; MARGIN-BOTTOM: =
+0.5em; FONT-FAMILY: Verdana, Arial; TEXT-ALIGN: left; fontSize: 80%
+}
+H2.sectionHeading {
+	FONT-WEIGHT: bold; FONT-SIZE: 95%; MARGIN-BOTTOM: 0.3em; COLOR: =
+#0099ff; FONT-FAMILY: Verdana, Arial; TEXT-ALIGN: left; fontSize: 100%; =
+marginBottom: .3em
+}
+.detailsContainer {
+	MARGIN-TOP: 0em; MARGIN-BOTTOM: 0em; marginBottom: 0em; marginTop: 0em
+}
+FONT.detailsContent {
+	FONT-SIZE: 70%; LINE-HEIGHT: 130%; FONT-FAMILY: Verdana, Arial; =
+fontSize: small
+}
+TABLE.sectionDivider {
+	MARGIN-TOP: 0.7em; MARGIN-BOTTOM: 0.2em
+}
+.downloadButton {
+	MARGIN-TOP: 10px; FONT-WEIGHT: bold; FONT-SIZE: 70%; FONT-FAMILY: =
+Verdana, Arial; fontSize: x-small
+}
+P.multipartHeader {
+	MARGIN-TOP: 0em; FONT-SIZE: 70%; MARGIN-BOTTOM: 0em; fontSize: 75%
+}
+P.multipartContent {
+	FONT-SIZE: 70%; fontsize: 75%
+}
+TABLE.quickInfo {
+	BORDER-COLLAPSE: collapse
+}
+.quickInfoTitle {
+	FONT-SIZE: 70%; FONT-FAMILY: Verdana, Arial; fontSize: 75%
+}
+.quickInfoItem {
+	FONT-SIZE: 70%; FONT-FAMILY: Verdana, Arial; fontSize: 75%
+}
+.containerTitle {
+	FONT-SIZE: 65%; FONT-FAMILY: Verdana, Arial; fontSize: x-small
+}
+.containerSectionHeading {
+	FONT-SIZE: 100%; FONT-FAMILY: Verdana, Arial; fontSize: x-small
+}
+.containerTextBox {
+	MARGIN-TOP: 3px; WIDTH: 117px; FONT-FAMILY: Verdana, Arial; HEIGHT: =
+18px
+}
+.containerListBox {
+	MARGIN-TOP: 3px; FONT-SIZE: 8pt; FONT-FAMILY: Tahoma, Arial
+}
+.containerUL {
+	MARGIN-TOP: -0.2em; COLOR: #003399; fontSize: x-small; marginBottom: =
+0px; marginLeft: -25px
+}
+.containerUL LI {
+	MARGIN-BOTTOM: 0.4em; MARGIN-LEFT: -2.2em; marginBottom: 0em; =
+marginLeft: 0em
+}
+.containerContent {
+	FONT-SIZE: 65%; FONT-FAMILY: Verdana, Arial; fontSize: 75%
+}
+.containerContentLarge {
+	FONT-SIZE: 108%; FONT-FAMILY: Verdana, Arial
+}
+.dlContainerContent {
+	FONT-SIZE: 70%; FONT-FAMILY: Verdana, Arial; fontSize: 75%
+}
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: application/x-javascript
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.microsoft.com/library/toolbar/logicaluri.js
+
+var __LogicalURI =3D "";
+var doImage=3D1; // not null.
+var TType =3D TType;
+
+function setLogicalURI(p)
+{
+  __LogicalURI =3D p;
+  var a =3D new Array();
+  a[0] =3D __prepTrackingString(window.location.hostname, 7);
+  if (TType =3D=3D null)
+  {=09
+	a[1] =3D __prepTrackingString('PV', 8);
+  }
+  else
+  {
+ 	a[1] =3D __prepTrackingString(TType, 8);
+  }
+  a[2] =3D ltrim(__prepTrackingString(window.location.pathname, 0));
+  if( '' !=3D window.document.referrer)
+  {
+ 	a[a.length] =3D =
+ltrim(__prepTrackingString(window.document.referrer,5));
+  }
+  if (navigator.userAgent.indexOf("SunOS") =3D=3D -1 && =
+navigator.userAgent.indexOf("Linux") =3D=3D -1)
+  {
+ 	__buildIMG(a);
+  }
+}
+
+function __buildIMG(pArr)
+{
+	var TG =3D '<LAYER visibility=3D"hide"><div =
+style=3D"display:none;"><IMG src=3D"' + location.protocol + =
+'//c.microsoft.com/trans_pixel.asp?';
+	for(var i=3D0; i<pArr.length; i++)
+	{
+		if(0 =3D=3D i)
+		{
+			TG +=3D  pArr[i];
+		}
+		else
+		{
+			TG +=3D '&' + pArr[i];
+		}
+	}
+	TG +=3D'" height=3D"0" width=3D"0" hspace=3D"0" vspace=3D"0" =
+Border=3D"0"></div></layer>';
+	document.write(TG);
+}
+function __prepTrackingString(ts, type)
+{
+	var rArray;
+	var rString;
+	var pName =3D '';
+	if (0 =3D=3D type)
+	{
+		pName =3D 'p=3D';
+		rString =3D ts.substring(1);
+		rArray =3D rString.split('/');
+	}
+	if (1 =3D=3D type)
+	{
+		pName =3D 'qs=3D';
+		rString =3D ts.substring(1);
+		rArray =3D rString.split('&');	=09
+	}
+	if (2 =3D=3D type)
+	{
+		pName =3D 'f=3D';
+		rString =3D escape(ts);
+		return pName + rString;
+	}
+	if (3 =3D=3D type)
+	{
+		pName =3D 'tPage=3D';
+		rString =3D escape(ts);
+		return pName+rString;
+	}
+	if (4 =3D=3D type)
+	{
+		pName =3D 'sPage=3D';
+		rString =3D escape(ts);
+		return pName + rString;
+	}
+	if (5 =3D=3D type)
+	{
+		pName =3D 'r=3D';
+		rString =3D escape(ts);
+		return pName + rString;
+	}
+	if (6 =3D=3D type)
+	{
+		pName =3D 'MSID=3D';
+		rString =3D escape(ts);
+		return pName + rString;
+	}
+	if (7 =3D=3D type)
+	{
+		pName =3D 'source=3D';
+		rString =3D ts.toLowerCase();
+		if(rString.indexOf("microsoft.com") !=3D -1)
+		{
+			rString =3D rString.substring(0,rString.indexOf("microsoft.com"));
+			if('' =3D=3D rString)
+			{
+				rString =3D "www";
+			}=09
+			else
+			{
+				rString =3D rString.substring(0,rString.length -1);
+			}
+		}
+		return pName + rString;
+	}
+	if (8 =3D=3D type)
+	{
+		pName =3D 'TYPE=3D';
+		rString =3D escape(ts);
+		return pName + rString;
+	}
+	rString =3D '';
+	if(null !=3D rArray)
+	{
+		if(0 =3D=3D type)
+		{
+			for( j=3D0; j < rArray.length - 1; j++)
+			{=09
+				rString +=3D rArray[j] + '_'; =20
+			}=20
+		}
+		else
+		{
+			for( j=3D0; j < rArray.length  ; j++)
+			{
+				rString +=3D rArray[j] + '_'; =20
+			}=20
+		}
+	}
+	rString =3D rString.substring(0, rString.length - 1);  	 =09
+        if(__LogicalURI !=3D '')
+          if(0=3D=3Dtype)
+             return pName + __LogicalURI;
+	return pName + rString;
+}
+
+function ltrim(s)
+{
+  var nCount =3D 0;
+  var nLen =3D s.length;
+  for(var i=3D0;i<nLen;i++)
+  {
+    if(s.charAt(i) =3D=3D ' ')
+      nCount++;
+    else
+      break;
+  }
+  if(nCount!=3D0)
+  {
+    return s.substring(nCount);
+  }   =20
+  else
+    return s;
+}
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://www.microsoft.com/library/mnp/2/aspx/js.aspx?&name=Menu
+
+
+var mnpMenuTop =3D null;
+var mnpMenuKill =3D null;
+var mnpMenuPopup =3D null;
+var mnpMenuUrl =3D null;
+var mnpMenuParent =3D null;
+var mnpMenuScrollTimer =3D null;
+var mnpMenuShadows =3D new Array();
+var mnpMenuDirSave =3D "LTR";
+var mnpMenuCTSave =3D false;
+var mnpMenuRenderStart =3D null;
+var mnpMenuShadowsEnabled =3D true;
+
+window.attachEvent("onload", mnpMenuInit);
+
+function mnpMenuInit()
+{
+	try
+	{
+		mnpMenuDirSave =3D mnpMenuDir();
+		mnpMenuCTSave =3D mnpMenuCT();
+	}
+	catch(e)
+	{
+		return;
+	}
+	mnpMenuTop =3D document.getElementById("mnpMenuTop");
+	mnpMenuUrl =3D mnpMenuTop.getAttribute("url");
+	mnpMenuParent =3D mnpMenuTop.getAttribute("parent");
+	mnpMenuAttach(mnpMenuTop);
+}
+
+function mnpPage(label, url, target, menu, linkID)
+{
+	this.label =3D label;
+	this.url =3D url;
+	this.target =3D target;
+	this.menu =3D menu;
+	this.linkID =3D linkID;
+}
+
+function mnpLabel(label)
+{
+	this.label =3D label;
+}
+
+function mnpMenuEnter()
+{
+	if (mnpMenuKill)
+	{
+		window.clearTimeout(mnpMenuKill);
+		mnpMenuKill =3D null;
+	}
+}
+
+function mnpMenuLeave()
+{
+	mnpMenuKill =3D window.setTimeout("mnpMenuKiller()", 200);
+}
+
+function mnpMenuKiller()
+{
+	mnpKillMenu(mnpMenuTop.getAttribute("currentMenu"));
+	mnpMenuTop.removeAttribute("currentMenu");
+}
+
+function mnpMenuAttach(el)
+{
+	el.attachEvent("onmouseenter", mnpMenuEnter);
+	el.attachEvent("onmouseleave", mnpMenuLeave);
+	var divs =3D el.getElementsByTagName("DIV");
+	for (var i=3D0; i < divs.length; i++)
+	{
+		var div =3D divs.item(i);
+		if (div.className =3D=3D "mnpMenuRow")
+		{
+			div.attachEvent("onmouseenter", mnpMenuMouseover);
+			div.attachEvent("onmouseleave", mnpMenuMouseout);
+			div.attachEvent("onmousedown", mnpMenuMousedown);
+			div.attachEvent("onmouseup", mnpMenuMouseup);
+			div.setAttribute("save-background", div.style.background);
+			div.setAttribute("save-border", div.style.borderColor);
+			var a =3D div.getElementsByTagName("A");
+			if (a.length > 0)
+			{
+				var a0 =3D a[0];
+				if (a0.getAttribute("aoff"))
+					a0.outerHTML =3D a0.innerHTML;
+				else
+				{
+					div.setAttribute("status", a0.href);
+					div.attachEvent("onclick", mnpMenuClick);
+				}
+			}
+			if (div.getAttribute("menu"))
+			{
+				var imgs =3D div.getElementsByTagName("IMG");
+				if (imgs.length > 0)
+				{
+					var img =3D imgs[0];
+					img.style.visibility =3D "visible";
+				}
+				else
+				{
+					var x;
+					if (mnpMenuDirSave =3D=3D "LTR")
+						x =3D (div.offsetWidth - 10) + "px";
+					else if (mnpMenuTop.contains(div))
+						x =3D "4px";
+					else
+						x =3D "6px";
+					var img =3D "<IMG src=3D'/library/mnp/2/gif/arrow" + mnpMenuDirSave =
++ ".gif' width=3D'4' height=3D'7' border=3D'0' class=3D'mnpMenuArrow' =
+style=3D'left: " + x + "' />";
+					div.insertAdjacentHTML("afterBegin", img);
+				}
+			}
+		}
+	}
+}
+
+function mnpMenuClick()
+{
+	var div =3D window.event.srcElement;
+	var a =3D div.getElementsByTagName("A");
+	if (a.length =3D=3D 0) return;
+	if (window.event.shiftKey)
+	{
+		var target =3D a[0].target;
+		a[0].target =3D "_new";
+		a[0].click();
+		a[0].target =3D target;
+	}
+	else
+		a[0].click();
+}
+
+function mnpKillMenu(id)
+{
+	if (id =3D=3D null) return;
+	var menu =3D document.getElementById(id);
+	var current =3D menu.getAttribute("currentMenu");
+	if (current)=20
+	{
+		mnpKillMenu(current);
+		menu.removeAttribute("currentMenu");
+	}
+	var temp =3D mnpMenuShadows[id];
+	if (temp)
+	{
+		var i;
+		for (i=3D0; i<temp.length; i++)
+			if (temp[i])
+				document.body.removeChild(temp[i]);
+		mnpMenuShadows[id] =3D null;
+	}
+	var parent =3D =
+document.getElementById(menu.getAttribute("parentMenu"));
+	var rows =3D parent.getElementsByTagName("DIV");
+	for (var i=3D0; i<rows.length; i++)
+	{
+		var row =3D rows.item(i);
+		var m =3D row.getAttribute("menu");
+		if (m =3D=3D id)
+		{
+			row.style.background =3D row.getAttribute("save-background");
+			row.style.borderColor =3D row.getAttribute("save-border");
+		}
+	}
+	show_elements("SELECT", menu);
+	show_elements("OBJECT", menu);
+	menu.style.display =3D "none";
+}
+
+function mnpMenuOpen(id, parentId, x, y)
+{
+	var parent;
+	try
+	{
+		parent =3D document.getElementById(parentId);
+	}
+	catch(e)
+	{
+		return;
+	}
+	var current =3D parent.getAttribute("currentMenu");
+	if (id =3D=3D current) return;
+	mnpKillMenu(current);
+	if (id)
+		parent.setAttribute("currentMenu", id);
+	else
+	{
+		parent.removeAttribute("currentMenu");
+		return;
+	}
+=09
+	var div =3D document.getElementById(id);
+	if (div =3D=3D null)
+	{
+		var menu =3D eval("new " + id + "()");
+		var html =3D "<DIV id=3D'" + id + "' class=3D'mnpMenuSub' dir=3D'" + =
+mnpMenuDirSave + "'>";
+		html +=3D "<DIV class=3D'mnpMenuScroller' style=3D'display: none; =
+background: #F1F1F1; border-color: #F1F1F1' =
+onmouseenter=3D'mnpStartScroll(-1)' =
+onmouseleave=3D'mnpStopScroll()'><IMG =
+src=3D'/library/mnp/2/gif/up_disabled.gif' width=3D'7' height=3D'9' =
+/></DIV>";
+		html +=3D "<DIV class=3D'mnpMenuScrollArea'>";
+		var isThisPage =3D false;
+		for (var i=3D0; i<menu.items.length; i++)
+		{
+			var item =3D menu.items[i];
+			var url =3D item.url;
+			if (url =3D=3D mnpMenuUrl)
+			{
+				isThisPage =3D true;
+				break;
+			}
+		}
+		for (var i=3D0; i<menu.items.length; i++)
+		{
+			var item =3D menu.items[i];
+			var label =3D item.label;
+			var re =3D /'/g;
+			var url =3D item.url;
+			if (url)
+				url =3D url.replace(re, "&#39;");
+			var target =3D item.target;
+			var submenu =3D item.menu;
+			var linkID =3D item.linkID;
+			html +=3D "<DIV";
+			if (submenu)
+				html +=3D " menu=3D'" + submenu + "'";
+			if (url)
+			{
+				html +=3D " class=3D'mnpMenuRow'";
+				if (url =3D=3D mnpMenuUrl)
+					html +=3D " style=3D'border-color: #999999; background: white; =
+cursor: default";
+				else if (!isThisPage && (url =3D=3D mnpMenuParent))
+					html +=3D " style=3D'border-color: #999999; background: #F1F1F1";
+				else
+					html +=3D " style=3D'border-color: #F1F1F1; background: #F1F1F1";
+				if (mnpMenuDirSave =3D=3D "LTR")
+					html +=3D "; padding-left: 11px";
+				else
+					html +=3D "; padding-right: 11px";
+				html +=3D "'";
+			}
+			else
+				html +=3D " class=3D'mnpMenuLabel'";
+			html +=3D ">";
+			if (url && (url !=3D mnpMenuUrl))
+			{
+				var targetAttr =3D target =3D=3D "" ? "" : " target=3D'" + target + =
+"'";
+				if (mnpMenuCTSave)
+					html +=3D "<A href=3D'" + url + "'" + targetAttr + " =
+LinkArea=3D'Left Nav' LinkID=3D'Flyout" + linkID + "' =
+onclick=3D'trackInfo(this)'>" + label + "</A>";
+				else
+					html +=3D "<A href=3D'" + url + "'" + targetAttr + ">" + label + =
+"</A>";
+			}
+			else
+				html +=3D "<SPAN>" + label + "</SPAN>";
+			html +=3D "</DIV>";
+		}
+		html +=3D "</DIV>";
+		html +=3D "<DIV class=3D'mnpMenuScroller' style=3D'display:none; =
+background: #F1F1F1; border-color: #F1F1F1' =
+onmouseenter=3D'mnpStartScroll(+1)' =
+onmouseleave=3D'mnpStopScroll()'><IMG =
+src=3D'/library/mnp/2/gif/down_enabled.gif' width=3D'7' height=3D'9' =
+/></DIV>";
+		html +=3D "</DIV>";
+		document.body.insertAdjacentHTML("afterBegin", html);
+		var div =3D document.getElementById(id);
+		var sa =3D div.childNodes.item(1);
+		var max =3D 0;
+		for (var i=3D0; i<sa.childNodes.length; i++)
+		{
+			var it =3D sa.childNodes.item(i).childNodes.item(0);
+			var w =3D it.offsetWidth;
+			if (w > max) max =3D w;
+		}
+		max +=3D 34;
+		if (max < 100) max =3D 100;
+		else if (max > 410) max =3D 410;
+		div.style.width =3D max + "px";
+		for (var i=3D0; i<sa.childNodes.length; i++)
+		{
+			var it =3D sa.childNodes.item(i);
+			if (it.className =3D=3D "mnpMenuRow")
+				it.style.width =3D (max - 6) + "px";
+		}
+		mnpMenuAttach(div);
+		div.setAttribute("parentMenu", parentId);
+	}
+	else
+	{
+		div.style.display =3D "";
+	}
+	var bodyHeight =3D document.body.clientHeight;
+	var bodyTop =3D document.body.scrollTop;
+	var bodyWidth =3D document.body.clientWidth;
+	var bodyLeft =3D document.body.scrollLeft;
+	var up =3D div.children.item(0);
+	var box =3D up.nextSibling;
+	var down =3D box.nextSibling;
+	up.style.display =3D "none";
+	down.style.display =3D "none";
+	box.style.height =3D "";
+	if (div.offsetHeight > bodyHeight)
+	{
+		up.style.display =3D "";
+		up.childNodes.item(0).src =3D "/library/mnp/2/gif/up_disabled.gif";
+		down.style.display =3D "";
+		down.childNodes.item(0).src =3D "/library/mnp/2/gif/down_enabled.gif";
+		box.style.height =3D (bodyHeight - up.offsetHeight - down.offsetHeight =
+- 6) + "px";
+	}
+	var bodyBottom =3D bodyTop + bodyHeight;
+	if (y + div.offsetHeight > bodyBottom)
+	{
+		y -=3D div.offsetHeight - 25;
+		if (y < bodyTop)
+			y =3D bodyTop + (bodyHeight - div.offsetHeight) / 2;
+	}
+	if (mnpMenuDirSave =3D=3D "RTL")
+		x -=3D div.offsetWidth;
+	div.style.left =3D x + "px";
+	div.style.top =3D y + "px";
+	div.style.zIndex =3D parent.style.zIndex + 10;
+	if (div.offsetLeft + div.offsetWidth > bodyWidth + bodyLeft)
+		document.body.scrollLeft =3D div.offsetLeft + div.offsetWidth - =
+bodyWidth;
+	hide_elements("SELECT", div);
+	hide_elements("OBJECT", div);
+	if (mnpMenuShadowsEnabled)
+	{
+		mnpMenuShadows[id] =3D mnpMenuShadow(div, "#666666", 4, =
+div.offsetWidth, div.offsetHeight);
+		mnpMenuRenderStart =3D mnpMenuTime();
+		window.setTimeout("mnpMeasureRenderTime()", 1);
+	}
+}
+
+function mnpMeasureRenderTime()
+{
+	var msec =3D mnpMenuTime() - mnpMenuRenderStart;
+	if (msec > 100)
+	{
+		// client is slow or document is huge, so disable shadows
+		mnpMenuShadowsEnabled =3D false;
+	}
+}
+
+function mnpMenuPt(el)
+{
+	this.left =3D 0;
+	this.top =3D 0;
+	while (el)
+	{
+		this.left +=3D el.offsetLeft;
+		this.top +=3D el.offsetTop;
+		el =3D el.offsetParent;
+	}
+}
+
+function mnpMenuMouseover()
+{
+	var div =3D window.event.srcElement;
+	var status =3D div.getAttribute("status");
+	if (status) window.status =3D status;
+	div.style.background =3D "#CCCCCC";
+	div.style.borderColor =3D "#999999";
+	var pt =3D new mnpMenuPt(div);
+	var x;
+	if (mnpMenuDirSave =3D=3D "LTR")
+		x =3D pt.left + div.offsetWidth - 1;
+	else
+		x =3D pt.left + 2;
+	var y =3D pt.top - 3;
+	var menu =3D div.getAttribute("menu");
+	if (menu)
+		menu =3D "'" + menu + "'";
+	else
+		menu =3D "null";
+	if (mnpMenuPopup)
+		window.clearTimeout(mnpMenuPopup);
+	var parent =3D div.parentElement.parentElement;
+	mnpMenuPopup =3D window.setTimeout("mnpMenuOpen(" + menu + ", '" + =
+parent.id + "', " + x + ", " + y + ")", 200);
+}
+
+function mnpMenuMouseout()
+{
+	var div =3D window.event.srcElement;
+	window.status =3D "";
+	var menu =3D div.getAttribute("menu");
+	if (menu !=3D null && menu =3D=3D =
+div.parentElement.parentElement.getAttribute("currentMenu"))
+	{
+		div.style.background =3D "#CCCCCC";
+		div.style.borderColor =3D "#CCCCCC";
+	}
+	else
+	{
+		div.style.background =3D div.getAttribute("save-background");
+		div.style.borderColor =3D div.getAttribute("save-border");
+	}
+	if (mnpMenuPopup)
+	{
+		window.clearTimeout(mnpMenuPopup);
+		mnpMenuPopup =3D null;
+	}
+}
+
+function mnpMenuMousedown()
+{
+	var div =3D window.event.srcElement;
+	if (div.tagName !=3D "DIV") div =3D div.parentElement;
+	div.style.background =3D "#999999";
+}
+
+function mnpMenuMouseup()
+{
+	var div =3D window.event.srcElement;
+	if (div.tagName !=3D "DIV") div =3D div.parentElement;
+	div.style.background =3D div.getAttribute("save-background");
+}
+
+function mnpMenuTime()
+{
+	var time =3D new Date();
+	return time.valueOf();
+}
+
+function mnpStartScroll(dy)
+{
+	var src =3D window.event.srcElement;
+	src.style.background =3D "#CCCCCC";
+	src.style.borderColor =3D "#999999";
+	var div =3D src.parentElement;
+	div.setAttribute("scrollTime0", mnpMenuTime());
+	div.setAttribute("scrollTop0", div.childNodes.item(1).scrollTop);
+	mnpMenuScrollTimer =3D window.setInterval("mnpMenuScroll('" + div.id + =
+"', " + dy + ")", 35);
+}
+
+function mnpStopScroll()
+{
+	var src =3D window.event.srcElement;
+	src.style.background =3D "#F1F1F1";
+	src.style.borderColor =3D "#F1F1F1";
+	if (mnpMenuScrollTimer)
+		window.clearInterval(mnpMenuScrollTimer);
+	mnpMenuScrollTimer =3D null;
+}
+
+function mnpMenuScroll(id, dy)
+{
+	var div =3D document.getElementById(id);
+	var current =3D div.getAttribute("currentMenu");
+	if (current)
+	{
+		mnpKillMenu(current);
+		div.removeAttribute("currentMenu");
+	}
+	var box =3D div.childNodes.item(1);
+	var y =3D div.getAttribute("scrollTop0") + Math.round((mnpMenuTime() - =
+div.getAttribute("scrollTime0")) * 0.150) * dy
+	box.scrollTop =3D y;
+	if (y !=3D box.scrollTop)
+	{
+		window.clearInterval(mnpMenuScrollTimer);
+		mnpMenuScrollTimer =3D null;
+		if (box.scrollTop =3D=3D 0)
+			div.childNodes.item(0).childNodes.item(0).src =3D =
+"/library/mnp/2/gif/up_disabled.gif";
+		else
+			div.childNodes.item(2).childNodes.item(0).src =3D =
+"/library/mnp/2/gif/down_disabled.gif";
+	}
+	else if (dy < 0)
+		div.childNodes.item(2).childNodes.item(0).src =3D =
+"/library/mnp/2/gif/down_enabled.gif";
+	else
+		div.childNodes.item(0).childNodes.item(0).src =3D =
+"/library/mnp/2/gif/up_enabled.gif";
+}
+
+function mnpMenuShadow(el, color, size, width, height)
+{
+	var temp =3D new Array();
+	var i;
+	for (i=3Dsize; i>0; i--)
+	{
+		var rect =3D document.createElement('div');
+		var rs =3D rect.style
+		rs.position =3D 'absolute';
+		rs.left =3D (el.style.posLeft + i) + 'px';
+		rs.top =3D (el.style.posTop + i) + 'px';
+		rs.width =3D width + 'px';
+		rs.height =3D height + 'px';
+		rs.zIndex =3D el.style.zIndex - i;
+		rs.backgroundColor =3D color;
+		var opacity =3D 1 - i / (i + 1);
+		rs.filter =3D 'alpha(opacity=3D' + (100 * opacity) + ')';
+		document.body.appendChild(rect);
+		temp[i] =3D rect;
+	}
+	return temp;
+}
+
+function hide_elements(tagName, menu)
+{
+	windowed_element_visibility(tagName, -1, menu)
+}
+
+function show_elements(tagName, menu)
+{
+	windowed_element_visibility(tagName, +1, menu)
+}
+
+function windowed_element_visibility(tagName, change, menu)
+{
+	var els =3D document.getElementsByTagName(tagName)
+	var i
+	var rect =3D new element_rect(menu)
+	for (i=3D0; i < els.length; i++)
+	{
+		var el =3D els.item(i)
+		if (elements_overlap(el, rect))
+		{
+			if (el.visLevel)
+				el.visLevel +=3D change
+			else
+				el.visLevel =3D change
+			if (el.visLevel =3D=3D -1 && change =3D=3D -1)
+			{
+				el.visibilitySave =3D el.style.visibility;
+				el.style.visibility =3D "hidden";
+			}
+			else if (el.visLevel =3D=3D 0 && change =3D=3D +1)
+			{
+				el.style.visibility =3D el.visibilitySave;
+			}
+		}
+	}
+}
+
+function element_rect(el)
+{
+	var left =3D 0
+	var top =3D 0
+	this.width =3D el.offsetWidth
+	this.height =3D el.offsetHeight
+	while (el)
+	{
+		left +=3D el.offsetLeft
+		top +=3D el.offsetTop
+		el =3D el.offsetParent
+	}
+	this.left =3D left;
+	this.top =3D top;
+}
+
+function elements_overlap(el, rect)
+{
+	var r =3D new element_rect(el);
+	return ((r.left < rect.left + rect.width) && (r.left + r.width > =
+rect.left) && (r.top < rect.top + rect.height) && (r.top + r.height > =
+rect.top))
+}
+
+------=_NextPart_000_0000_01C407DF.568C8E50
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: 7bit
+Content-Location: http://www.microsoft.com/DOWNLOADS/mnp_utility.mspx/menujs?mnpshell=%2fdownloads%2f2%2floc%2fen%2fshell.config&displaylang=en&clicktrax=False
+
+
+
+function mnpMenuDir()
+{
+	return "LTR";
+}
+
+function mnpMenuCT()
+{
+	
+	return false;
+}
+
+
+------=_NextPart_000_0000_01C407DF.568C8E50--
