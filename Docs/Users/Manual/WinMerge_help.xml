@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet href="file://localhost/C:/Program%20Files/Morphon/XML-Editor%203.1.4/Examples/docbook/docbook.css" type="text/css"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
 <!ENTITY Plugins SYSTEM "Plugins.xml">
 <!ENTITY FAQ SYSTEM "Faq.xml">

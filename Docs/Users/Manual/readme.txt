@@ -2,6 +2,8 @@
  PATCH: [ 930704 ] WinMerge 2.1 User Guide (Manual) 
   reformat Command_line.xml - Submitted by Tim Gerundt
   Manual: Command_line.xml
+ Remove bogus stylesheet definition
+  Manual: WinMerge_help.xml
 
 2004-03-22 Seier
  The DocBook version of the manual was revised to reference GIF versions of
