@@ -1,3 +1,5 @@
+2003-09-20 WinMerge experimental release 2.1.1.7 (Unicode handling patch)
+
 2003-09-20 Kimmo
  Make directory compare Window to remember maximized state
   WinMerge: DirFrame.h DirFrame.cpp
