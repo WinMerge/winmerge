@@ -1,6 +1,7 @@
 2003-03-05 Perry
  Added new subdir Languages/Danish/res
   PATCH: [ 695857 ] Fix directory handling, & UNC paths, & shortnames
+ Fix Danish language files: Update resource.h and update language dialogbox to use IDC_LANGUAGE_LIST.
 
 2003-03-04
  BUG: [ 684622 ] Escape key closes whole program
