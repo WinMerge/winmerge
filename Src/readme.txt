@@ -1,3 +1,7 @@
+2003-09-27 Laoran
+ delete NDEBUG from ReleaseMinsize preprocessor definitions
+  WinMerge: Merge.dsp
+
 2003-09-27 Perry
  PATCH: [ 809149 ] Handle Unicode files
   common: unicoder.cpp unicoder.h
