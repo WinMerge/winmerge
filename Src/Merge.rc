@@ -105,6 +105,7 @@ BEGIN
     POPUP "&Edit"
     BEGIN
         MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "&Next Difference\tTab",       ID_NEXTDIFF
         MENUITEM "&Previous Difference\tShift+Tab", ID_PREVDIFF
@@ -502,7 +503,7 @@ BEGIN
     BUTTON      ID_FILE_SAVE
     SEPARATOR
     BUTTON      ID_EDIT_UNDO
-    SEPARATOR
+    BUTTON      ID_EDIT_REDO
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
     BUTTON      ID_LASTDIFF
