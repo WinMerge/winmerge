@@ -35,6 +35,17 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CEditorFilePathBar construction destruction
 
+CEditorFilePathBar::CEditorFilePathBar()
+: m_pFont(NULL)
+{
+}
+
+CEditorFilePathBar::~CEditorFilePathBar()
+{
+	delete m_pFont;
+}
+
+
 BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 {
 	if (! CDialogBar::Create(pParentWnd, CEditorFilePathBar::IDD, 
@@ -53,16 +64,37 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 
 /////////////////////////////////////////////////////////////////////////////
 
-
-
-// return TRUE if parent must recompute layout
-BOOL CEditorFilePathBar::LookLikeThisWnd(CWnd * pWnd)
+/**
+ * @brief Set look of headerbars similar to other window.
+ *
+ * @param [in] pWnd Pointer to window we want to imitate
+ * @return TRUE if parent must recompute layout
+ */
+BOOL CEditorFilePathBar::LookLikeThisWnd(const CWnd * pWnd)
 {
-	// same font
+	// Update font. Note that we must delete previous font
+	// before creating a new one.
 	CFont * pFont = pWnd->GetFont();
-	m_EditLeft.SetFont(pFont);
-	m_EditRight.SetFont(pFont);
-	// and same dimensions
+	if (pFont)
+	{
+		if (m_pFont != NULL)
+			delete m_pFont;
+
+		m_pFont = new CFont();
+
+		if (m_pFont != NULL)
+		{
+			LOGFONT lfFont = {0};
+			if (pFont->GetLogFont(&lfFont))
+			{
+				m_pFont->CreateFontIndirect(&lfFont);
+				m_EditLeft.SetFont(m_pFont);
+				m_EditRight.SetFont(m_pFont);
+			}
+		}
+	}
+
+	// Set same dimensions (than window we imitate)
 	CRect rectNew;
 	pWnd->GetWindowRect(rectNew);
 	CRect rectCurrent;

@@ -48,12 +48,15 @@ public:
 class CEditorFilePathBar : public CDialogBar, public IHeaderBar
 {
 public : 
+	CEditorFilePathBar();
+	~CEditorFilePathBar();
+
 	BOOL Create( CWnd* pParentWnd);
 
 // Dialog Data
 	enum { IDD = IDD_EDITOR_HEADERBAR };
 
-	BOOL LookLikeThisWnd(CWnd * pWnd);
+	BOOL LookLikeThisWnd(const CWnd * pWnd);
 	void Resize();
 	void Resize(int leftWidth, int rightWidth);
 
@@ -68,6 +71,7 @@ protected:
 private:
 	// this dialog uses custom edit boxes
 	CFilepathEdit m_EditLeft, m_EditRight;
+	CFont * m_pFont; /**< Font for editcontrols */
 };
 
 

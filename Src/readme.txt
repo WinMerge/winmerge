@@ -1,3 +1,7 @@
+2005-03-08 Kimmo
+ PATCH: [ 1158456 ] Fix setting font for headerbar editcontrols
+  Src: EditorFilepathBar.cpp EditorFilepathBar.h
+
 2005-03-07 Perry
  PATCH: [ 1157859 ] Add LVS_SHOWSELALWAYS style to dirview
  Postlude: Alter WindowStyle_Add to call CWnd::ModifyStyle.
