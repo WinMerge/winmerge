@@ -444,6 +444,10 @@ void CChildFrame::UpdateHeaderSizes()
 	}
 }
 
+IHeaderBar * CChildFrame::GetHeaderInterface() {
+	return &m_wndFilePathBar;
+}
+
 BOOL CChildFrame::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult) 
 {
 	// TODO: Add your specialized code here and/or call the base class
@@ -464,11 +468,6 @@ void CChildFrame::OnTimer(UINT nIDEvent)
 		}
 	}
 	CMDIChildWnd::OnTimer(nIDEvent);
-}
-
-void CChildFrame::SetHeaderText(int nPane, const CString &text)
-{
-	m_wndFilePathBar.SetFilePath(nPane, text);
 }
 
 /// Document commanding us to close

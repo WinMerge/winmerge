@@ -239,6 +239,12 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_msgUpdateStatus = MSG_STAT_UPDATE;
 	paths_normalize(m_pCtxt->m_strNormalizedLeft);
 	paths_normalize(m_pCtxt->m_strNormalizedRight);
+	UpdateHeaderPath(TRUE);
+	UpdateHeaderPath(FALSE);
+	// draw the headers as active ones
+	CDirFrame *pf = m_pDirView->GetParentFrame();
+	pf->GetHeaderInterface()->SetActive(0, TRUE);
+	pf->GetHeaderInterface()->SetActive(1, TRUE);
 
 	if (m_pFilterGlobal == NULL)
 		m_pFilterGlobal = new DirDocFilterGlobal;
@@ -259,9 +265,10 @@ void CDirDoc::Rescan()
 	m_diffThread.CompareDirectories(m_pCtxt->m_strNormalizedLeft,
 			m_pCtxt->m_strNormalizedRight, m_bRecursive);
 
-	CString s;
-	AfxFormatString2(s, IDS_DIRECTORY_WINDOW_STATUS_FMT, m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
-	((CDirFrame*)(m_pDirView->GetParent()))->SetStatus(s);
+	// the directories are now displayed in the headerbar
+	// CString s;
+	// AfxFormatString2(s, IDS_DIRECTORY_WINDOW_STATUS_FMT, m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
+	// ((CDirFrame*)(m_pDirView->GetParent()))->SetStatus(s);
 }
 
 // return true if we need to hide this item because it is a backup
@@ -687,3 +694,34 @@ BOOL DirDocFilterByExtension::includeFile(LPCTSTR szFileName)
 	return (! m_rgx.RegFind(szFileName));
 }
 
+/**
+ * @brief Write path and filename to headerbar
+ * @note SetWholeText() does not repaint unchanged text
+ */
+void CDirDoc::UpdateHeaderPath(BOOL bLeft)
+{
+	CDirFrame *pf = m_pDirView->GetParentFrame();
+	ASSERT(pf);
+	int nPane = 0;
+	CString sText;
+	BOOL bChanges = FALSE;
+
+	if (bLeft)
+	{
+		if (!mf->m_strLeftDesc.IsEmpty())
+			sText = mf->m_strLeftDesc;
+		else
+			sText = m_pCtxt->m_strLeft;
+		nPane = 0;
+	}
+	else
+	{
+		if (!mf->m_strRightDesc.IsEmpty())
+			sText = mf->m_strRightDesc;
+		else
+			sText = m_pCtxt->m_strRight;
+		nPane = 1;
+	}
+
+	pf->GetHeaderInterface()->SetText(nPane, sText);
+}

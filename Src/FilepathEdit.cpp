@@ -131,6 +131,7 @@ int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath)
 
 BOOL CFilepathEdit::SubClassEdit(UINT nID, CWnd* pParent)
 {
+	m_bActive = FALSE;
 	return SubclassDlgItem(nID, pParent);
 };
 
@@ -254,7 +255,8 @@ void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 /////////////////////////////////////////////////////////////////////////////
 // CFilepathEdit message handlers
 BEGIN_MESSAGE_MAP(CFilepathEdit, CEdit)
-  ON_WM_CONTEXTMENU()
+	ON_WM_CONTEXTMENU()
+	ON_WM_NCPAINT()
 END_MESSAGE_MAP()
 
 
@@ -277,9 +279,12 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		CMenu* pPopup = menu.GetSubMenu(0);
 		ASSERT(pPopup != NULL);
 
+		if (wholeText.Right(1) == '\\')
+			// no filename, we have to disable the unwanted menu entry
+			pPopup->EnableMenuItem(ID_EDITOR_COPY_FILENAME, MF_GRAYED);
+
 		// invoke context menu
 		// we don't want to use the main application handlers, so we use flags TPM_NONOTIFY | TPM_RETURNCMD
-		// we have to disable unwanted menu entries (everything is enabled so nothing to do)
 		// and handle the command after TrackPopupMenu
 		int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY  | TPM_RETURNCMD, point.x, point.y, this);
 		if (command != ID_EDITOR_COPY_FILENAME && command != ID_EDITOR_COPY_PATH)
@@ -311,3 +316,36 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 	}
 }
 
+void CFilepathEdit::SetActive(BOOL bActive)
+{
+	m_bActive = bActive;
+
+	CRect rcWnd;
+	GetWindowRect(&rcWnd);
+
+	// Cause non-client calculation and paint
+	SetWindowPos( NULL,
+                rcWnd.left,
+                rcWnd.top,
+                rcWnd.Width(),
+                rcWnd.Height(),
+                SWP_DRAWFRAME | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOACTIVATE | SWP_NOCOPYBITS 
+              );
+}
+
+void CFilepathEdit::OnNcPaint()
+{
+#ifdef NO_BORDER_CHANGE
+	int m_bActive = TRUE;
+#endif
+
+	if (m_bActive == TRUE)
+	{
+		CEdit::OnNcPaint(); // do default
+	}
+	else
+	{
+		// no border for inactive views
+	}
+
+}

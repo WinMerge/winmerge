@@ -2411,7 +2411,7 @@ void CMergeDoc::ReadSettings()
 
 /**
  * @brief Write path and filename to headerbar
- * @note SetHeaderText() does not repaint unchanged text
+ * @note SetText() does not repaint unchanged text
  */
 void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 {
@@ -2443,5 +2443,16 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 	if (bChanges)
 		sText.Insert(0, _T("* "));
 
-	pf->SetHeaderText(nPane, sText);
+	pf->GetHeaderInterface()->SetText(nPane, sText);
+}
+
+/**
+ * @brief Paint differently the headerbar of the active view
+ */
+void CMergeDoc::UpdateHeaderActivity(BOOL bLeft, BOOL bActivate)
+{
+	CChildFrame *pf = GetParentFrame();
+	ASSERT(pf);
+	int nPane = (bLeft) ? 0 : 1;
+	pf->GetHeaderInterface()->SetActive(nPane, bActivate);
 }

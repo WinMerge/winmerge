@@ -76,6 +76,33 @@ BOOL CEditorFilePathBar::LookLikeThisWnd(CWnd * pWnd)
 	return FALSE;
 }
 
+/** 
+ * @brief resize both controls to an equal size
+ */
+void CEditorFilePathBar::Resize()
+{
+	if (m_hWnd == NULL)
+		return;
+
+	WINDOWPLACEMENT infoBar;
+	GetWindowPlacement(&infoBar);
+
+	WINDOWPLACEMENT info1;
+	m_EditLeft.GetWindowPlacement(&info1);
+	info1.rcNormalPosition.right = infoBar.rcNormalPosition.right/2 - 2;
+	m_EditLeft.SetWindowPlacement(&info1);
+	m_EditLeft.RefreshDisplayText();
+
+	WINDOWPLACEMENT info2;
+	m_EditRight.GetWindowPlacement(&info2);
+	info2.rcNormalPosition.left = infoBar.rcNormalPosition.right/2 + 2;
+	info2.rcNormalPosition.right = infoBar.rcNormalPosition.right;
+	m_EditRight.SetWindowPlacement(&info2);
+	m_EditRight.RefreshDisplayText();
+}
+/** 
+ * @brief resize both controls to given sizes (the ones of the splitter views)
+ */
 void CEditorFilePathBar::Resize(int leftWidth, int rightWidth)
 {
 	WINDOWPLACEMENT info1;
@@ -91,15 +118,6 @@ void CEditorFilePathBar::Resize(int leftWidth, int rightWidth)
 	info1.rcNormalPosition.right = info1.rcNormalPosition.left + rightWidth + 4;
 	m_EditRight.SetWindowPlacement(&info1);
 	m_EditRight.RefreshDisplayText();
-}
-
-void CEditorFilePathBar::SetFilePath(int pane, const CString &text)
-{
-	ASSERT(pane == 0 || pane == 1);
-	if (pane == 0)
-		m_EditLeft.SetWholeText(text);
-	else
-		m_EditRight.SetWholeText(text);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -154,5 +172,26 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 
 }
 
+/** 
+ * @brief Set the path for one side
+ */
+void CEditorFilePathBar::SetText(int pane, LPCTSTR lpszString)
+{
+	ASSERT (pane >= 0 && pane < 2);
+	if (pane == 0)
+		m_EditLeft.SetWholeText(lpszString);
+	else
+		m_EditRight.SetWholeText(lpszString);
+}
 
-
+/** 
+ * @brief Set the active status for one status (change the appearance)
+ */
+void CEditorFilePathBar::SetActive(int pane, BOOL bActive)
+{
+	ASSERT (pane >= 0 && pane < 2);
+	if (pane == 0)
+		m_EditLeft.SetActive(bActive);
+	else
+		m_EditRight.SetActive(bActive);
+}

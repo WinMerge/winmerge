@@ -41,25 +41,35 @@
 int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath);
 
 
+/** 
+ * @brief Read-only control to display a filepath. 
+ * The path is compacted (with ellipsis) to fill in the area. 
+ * The tooltip displays the entire path. 
+ * ContextMenu offers two copy functions : copy path, copy filename
+ */
 class CFilepathEdit : public CEdit
 {
 public : 
 	BOOL SubClassEdit(UINT nID, CWnd* pParent);
-
-	void GetWholeText( CString& rString ) const;
-	void SetWholeText(LPCTSTR lpszString );
 	void RefreshDisplayText();
 	LPCTSTR GetUpdatedTipText(CDC * pDC, int maxWidth);
 
+	void SetActive(BOOL bActive);
+	void SetWholeText(LPCTSTR lpszString );
+
 protected:
 	afx_msg void OnContextMenu(CWnd*, CPoint point);
+	afx_msg void OnNcPaint( );
 	DECLARE_MESSAGE_MAP();
+
+	void GetWholeText( CString& rString ) const;
 
 private:
 	void CustomCopy(int iBegin, int iEnd =-1);
 
 	CString toolTipString;
 	CString wholeText;
+	BOOL m_bActive;
 };
 
 

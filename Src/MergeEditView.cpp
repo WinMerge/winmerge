@@ -269,9 +269,10 @@ void CMergeEditView::OnInitialUpdate()
 
 void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)
 {
-	// TODO: Add your specialized code here and/or call the base class
-
 	CCrystalEditViewEx::OnActivateView(bActivate, pActivateView, pDeactiveView);
+
+	CMergeDoc* pDoc = GetDocument();
+	pDoc->UpdateHeaderActivity(m_bIsLeft, bActivate);
 }
 
 /**
@@ -1342,7 +1343,7 @@ void CMergeEditView::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(bReadOnly);
 }
 
-/// Store our interface we use to display status line info
+/// Store interface we use to display status line info
 void CMergeEditView::SetStatusInterface(IMergeEditStatus * piMergeEditStatus)
 {
 	ASSERT(!m_piMergeEditStatus);

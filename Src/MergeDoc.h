@@ -198,6 +198,7 @@ public:
 	CString m_strLeftFile, m_strRightFile;
 
 	void UpdateHeaderPath(BOOL bLeft);
+	void UpdateHeaderActivity(BOOL bLeft, BOOL bActivate);
 	void ReadSettings();
 	BOOL OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft = FALSE, BOOL bRORight = FALSE);

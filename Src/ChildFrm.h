@@ -39,6 +39,7 @@ class CChildFrame : public CMDIChildWnd
 	DECLARE_DYNCREATE(CChildFrame)
 public:
 	CChildFrame();
+	IHeaderBar * GetHeaderInterface();
 
 // Attributes
 protected:
@@ -93,7 +94,6 @@ public:
 // Implementation
 public:
 	void UpdateDiffDockbarHeight(int DiffPanelHeight);
-	void SetHeaderText(int nPane, const CString& text);
 	void SavePosition();
 	virtual ~CChildFrame();
 	void CloseNow();

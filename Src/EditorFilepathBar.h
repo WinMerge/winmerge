@@ -31,9 +31,21 @@
 
 #include "FilepathEdit.h"
 
+/**
+ * Interface to update the header data
+ */
+class IHeaderBar
+{
+public:
+	virtual void SetText(int pane, LPCTSTR lpszString) = 0;
+	virtual void SetActive(int pane, BOOL bActive) = 0;
+};
 
 
-class CEditorFilePathBar : public CDialogBar
+/**
+ * @brief dialog bar with two controls for left/right path
+ */
+class CEditorFilePathBar : public CDialogBar, public IHeaderBar
 {
 public : 
 	BOOL Create( CWnd* pParentWnd);
@@ -42,9 +54,12 @@ public :
 	enum { IDD = IDD_EDITOR_HEADERBAR };
 
 	BOOL LookLikeThisWnd(CWnd * pWnd);
+	void Resize();
 	void Resize(int leftWidth, int rightWidth);
 
-	void SetFilePath(int pane, const CString &text);
+	// Implement IFilepathHeaders
+	void SetText(int pane, LPCTSTR lpszString);
+	void SetActive(int pane, BOOL bActive);
 
 protected:
 	BOOL OnToolTipNotify( UINT id, NMHDR * pTTTStruct, LRESULT * pResult );

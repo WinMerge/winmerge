@@ -103,6 +103,7 @@ public:
 	CDiffThread m_diffThread;
 	void SetDiffStatus(UINT diffcode, UINT mask, int idx);
 	void SetDiffContext(CDiffContext *pCtxt);
+	void UpdateHeaderPath(BOOL bLeft);
 
 #ifdef _DEBUG
 	virtual void AssertValid() const;

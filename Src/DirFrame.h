@@ -33,6 +33,8 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
+#include "EditorFilepathBar.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // CDirFrame frame
 
@@ -53,6 +55,7 @@ public:
 	void SetStatus(LPCTSTR szStatus);
 	CStatusBar  m_wndStatusBar;
 	void SetClosableCallback(bool (*canclose)(void *), void * param);
+	IHeaderBar * GetHeaderInterface();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -69,6 +72,7 @@ public:
 #endif
 
 protected:
+	CEditorFilePathBar m_wndFilePathBar;
 	virtual ~CDirFrame();
 
 	// Generated message map functions
@@ -76,6 +80,7 @@ protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnClose();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

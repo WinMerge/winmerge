@@ -30,6 +30,7 @@
 #include "stdafx.h"
 #include "Merge.h"
 #include "DirFrame.h"
+#include "FilepathEdit.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -73,6 +74,7 @@ BEGIN_MESSAGE_MAP(CDirFrame, CMDIChildWnd)
 	ON_WM_CREATE()
 	ON_UPDATE_COMMAND_UI(ID_DIFFNUM, OnUpdateStatusNum)
 	ON_WM_CLOSE()
+	ON_WM_SIZE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -99,6 +101,13 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CMDIChildWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
+
+	// Merge frame has a header bar at top
+	if (!m_wndFilePathBar.Create(this))
+	{
+		TRACE0("Failed to create dialog bar\n");
+		return -1;      // fail to create
+	}	
 
 	// Directory frame has a status bar
 	if (!m_wndStatusBar.Create(this) ||
@@ -127,6 +136,13 @@ void CDirFrame::SetStatus(LPCTSTR szStatus)
 }
 
 /**
+ * @brief Get the interface to the header (path) bar
+ */
+IHeaderBar * CDirFrame::GetHeaderInterface() {
+	return &m_wndFilePathBar;
+}
+
+/**
  * @brief Restore maximized state of directory compare window
  */
 void CDirFrame::ActivateFrame(int nCmdShow) 
@@ -135,6 +151,10 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 		nCmdShow = SW_MAXIMIZE;
 
 	CMDIChildWnd::ActivateFrame(nCmdShow);
+
+	// prepare file path bar to look as a status bar
+	if (m_wndFilePathBar.LookLikeThisWnd(&m_wndStatusBar) == TRUE)
+		RecalcLayout();
 }
 
 void CDirFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
@@ -174,4 +194,11 @@ BOOL CDirFrame::DestroyWindow()
 	theApp.WriteProfileInt(_T("Settings"), _T("DirViewMax"), (wp.showCmd == SW_MAXIMIZE));
 	
 	return CMDIChildWnd::DestroyWindow();
+}
+
+void CDirFrame::OnSize(UINT nType, int cx, int cy) 
+{
+	CMDIChildWnd::OnSize(nType, cx, cy);
+	
+	m_wndFilePathBar.Resize();
 }

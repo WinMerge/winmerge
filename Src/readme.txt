@@ -1,3 +1,8 @@
+2003-10-21 Laoran
+ PATCH: [ 826048 ] headerbar improvements
+  WinMerge: ChildFrm.cpp ChildFrm.h DirDoc.cpp DirDoc.h DirFrame.cpp DirFrame.h EditorFilepathBar.cpp
+   EditorFilepathBar.h FilepathEdit.cpp FilepathEdit.h MergeDoc.cpp MergeDoc.h MergeEditView.cpp
+
 2003-10-21 Kimmo
  PATCH: [ 826149 ] Improved "Merge.ico" and "MergeDoc.ico"
   From Tim Gerundt
