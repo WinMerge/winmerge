@@ -104,7 +104,7 @@ class CDiffTextBuffer : public CGhostTextBuffer
 		friend class CMergeDoc;
 private :
 		CMergeDoc * m_pOwnerDoc;
-		BOOL m_bIsLeft;
+		BOOL m_bIsLeft; /**< Left/Right side */
 		BOOL FlagIsSet(UINT line, DWORD flag);
 		CString m_strTempPath;
 		int unpackerSubcode;
@@ -201,8 +201,8 @@ public :
 
 // Begin declaration of CMergeDoc
 
-	CDiffTextBuffer m_ltBuf;
-	CDiffTextBuffer m_rtBuf;
+	CDiffTextBuffer m_ltBuf; /**< Left side text buffer */
+	CDiffTextBuffer m_rtBuf; /**< Right side text buffer */
 
 protected: // create from serialization only
 	CMergeDoc();
@@ -213,8 +213,8 @@ protected: // create from serialization only
 public:	
 	CPtrList m_undoList;
 	CArray<DIFFRANGE,DIFFRANGE> m_diffs;
-	UINT m_nDiffs;
-	UINT m_nTrivialDiffs;
+	UINT m_nDiffs; /**< Amount of diffs */
+	UINT m_nTrivialDiffs; /**< Amount of trivial (ignored) diffs */
 	CString m_strLeftFile, m_strRightFile;
 
 	void UpdateHeaderPath(BOOL bLeft);
@@ -283,7 +283,7 @@ public:
 
 // Implementation data
 protected:
-	int m_nCurDiff;		// 0-based index, -1 if no diff selected
+	int m_nCurDiff; /**< 0-based index, -1 if no diff selected */
 	CString m_strTempRightFile;
 	CString m_strTempLeftFile;
 	CMergeEditView * m_pLeftView;
@@ -291,8 +291,8 @@ protected:
 	CMergeDiffDetailView * m_pLeftDetailView;
 	CMergeDiffDetailView * m_pRightDetailView;
 	CDirDoc * m_pDirDoc;
-	BOOL m_bEnableRescan;
-	COleDateTime m_LastRescan;
+	BOOL m_bEnableRescan; /**< Automatic rescan enabled/disabled */
+	COleDateTime m_LastRescan; /**< Time of last rescan (for delaying) */ 
 	CDiffWrapper m_diffWrapper;
 	/// information about the file packer/unpacker
 	PackingInfo * m_pInfoUnpacker;

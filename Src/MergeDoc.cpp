@@ -677,6 +677,7 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &bLastErrorCode, BOOL bLeft, Pac
 	CString s;
 	CString strSavePath;
 	CString title;
+	int answer = IDYES;
 
 	ASSERT (bLastErrorCode != SAVE_DONE);
 
@@ -692,8 +693,12 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &bLastErrorCode, BOOL bLeft, Pac
 		AfxFormatString1(s, IDS_FILESAVE_FAILED, strPath);
 	}
 
-	// display a message box
-	switch(AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION))
+	// If path is empty, we are saving scracthpad and don't want
+	// messagebox shown. Answer is initialised to IDYES.
+	if (!strPath.IsEmpty())
+		answer = AfxMessageBox(s, MB_YESNO | MB_ICONQUESTION);
+
+	switch (answer)
 	{
 	case IDYES:
 		VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
@@ -707,6 +712,16 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &bLastErrorCode, BOOL bLeft, Pac
 
 			if (bLastErrorCode == SAVE_DONE)
 			{
+				// We were saving scratchpad, so empty description so that filename
+				// is shown on headerbar for now on.
+				if (strPath.IsEmpty())
+				{
+					if (bLeft)
+						mf->m_strLeftDesc.Empty();
+					else
+						mf->m_strRightDesc.Empty();
+				}
+					
 				strPath = strSavePath;
 				UpdateHeaderPath(bLeft);
 			}
@@ -736,7 +751,7 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &bLastErrorCode, BOOL bLeft, Pac
 * @note Return value does not tell if SAVING succeeded. Caller must
 * Check value of bSaveSuccess parameter after calling this function!
 *
-* @sa
+* @sa CMergeDoc::TrySaveAs()
 *
 */
 BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
@@ -775,15 +790,22 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 
 	// FALSE as long as the user is not satisfied
 	// TRUE if saving succeeds, even with another filename, or if the user cancels
-	BOOL result;
+	BOOL result = FALSE;
 	// the error code from the latest save operation, 
 	// or SAVE_DONE when the save succeeds
 	// TODO: Shall we return this code in addition to bSaveSuccess ?
 	int bSaveErrorCode;
 	if(bLeft)
 	{
-		bSaveErrorCode = m_ltBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
-		if(bSaveErrorCode == SAVE_DONE)
+		if (!strSavePath.IsEmpty())
+			bSaveErrorCode = m_ltBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
+		else
+		{
+			BOOL bSaveAsSuccess;
+			result = TrySaveAs(strSavePath, bSaveAsSuccess, TRUE, &infoTempUnpacker);
+		}
+			
+		if(bSaveErrorCode == SAVE_DONE || result)
 		{
 			m_strLeftFile = strSavePath;
 			UpdateHeaderPath(TRUE);
@@ -800,8 +822,15 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	}
 	else
 	{
-		bSaveErrorCode = m_rtBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
-		if(bSaveErrorCode == SAVE_DONE)
+		if (!strSavePath.IsEmpty())
+			bSaveSuccess = m_rtBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
+		else
+		{
+			BOOL bSaveAsSuccess;
+			result = TrySaveAs(strSavePath, bSaveAsSuccess, FALSE, &infoTempUnpacker);
+		}
+
+		if(bSaveSuccess == SAVE_DONE || result)
 		{
 			m_strRightFile = strSavePath;
 			UpdateHeaderPath(FALSE);
@@ -1034,7 +1063,6 @@ int CMergeDoc::CDiffTextBuffer::NoteCRLFStyleFromBuffer(TCHAR *lpLineBegin, DWOR
 	count[iStyle] ++;
 	return iStyle;
 }
-
 
 /// Reads one line from filebuffer and inserts to textbuffer
 void CMergeDoc::CDiffTextBuffer::ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineNum, DWORD dwLineLen /* =0 */)
@@ -1520,18 +1548,25 @@ BOOL CMergeDoc::InitTempFiles(const CString& srcPathL, const CString& strPathR)
 		::GetTempFileName (strTempPath, _T ("_LT"), 0, name);
 		m_strTempLeftFile = name;
 
-		if (!::CopyFile(srcPathL, m_strTempLeftFile, FALSE))
-			return FALSE;
+		if (!srcPathL.IsEmpty())
+		{
+			if (!::CopyFile(srcPathL, m_strTempLeftFile, FALSE))
+				return FALSE;
+		}
 		::SetFileAttributes(m_strTempLeftFile, FILE_ATTRIBUTE_NORMAL);
 	}
+	
 	if (m_strTempRightFile.IsEmpty())
 	{
 		TCHAR name[MAX_PATH];
 		::GetTempFileName (strTempPath, _T ("_RT"), 0, name);
 		m_strTempRightFile = name;
 
-		if (!::CopyFile(strPathR, m_strTempRightFile, FALSE))
-			return FALSE;
+		if (!strPathR.IsEmpty())
+		{
+			if (!::CopyFile(strPathR, m_strTempRightFile, FALSE))
+				return FALSE;
+		}
 		::SetFileAttributes(m_strTempRightFile, FILE_ATTRIBUTE_NORMAL);
 	}
 	return TRUE;
@@ -2071,6 +2106,10 @@ void CMergeDoc::PrimeTextBuffers()
 /**
  * @brief Saves file if file is modified. If file is
  * opened from directory compare, status there is updated.
+ * @note If filename is empty, we assume scratchpads are saved,
+ * so instead of filename, description is shown.
+ * @todo If we have filename and description for file, what should
+ * we do after saving to different filename? Empty description?
  */
 BOOL CMergeDoc::SaveHelper()
 {
@@ -2081,38 +2120,46 @@ BOOL CMergeDoc::SaveHelper()
 	BOOL bLModified = FALSE;
 	BOOL bRModified = FALSE;
 
-	AfxFormatString1(s, IDS_SAVE_FMT, m_strLeftFile); 
 	if (m_ltBuf.IsModified())
 	{
+		if (!m_strLeftFile.IsEmpty())
+			AfxFormatString1(s, IDS_SAVE_FMT, m_strLeftFile);
+		else
+			AfxFormatString1(s, IDS_SAVE_FMT, mf->m_strLeftDesc);
+	
 		bLModified = TRUE;
 		switch(AfxMessageBox(s, MB_YESNOCANCEL|MB_ICONQUESTION))
 		{
 		case IDYES:
 			if (!DoSave(m_strLeftFile, bLSaveSuccess, TRUE))
-				result=FALSE;
+				result = FALSE;
 			break;
 		case IDNO:
 			break;
 		default:  // IDCANCEL
-			result=FALSE;
+			result = FALSE;
 			break;
 		}
 	}
 
-	AfxFormatString1(s, IDS_SAVE_FMT, m_strRightFile); 
 	if (m_rtBuf.IsModified())
 	{
+		if (!m_strRightFile.IsEmpty())
+			AfxFormatString1(s, IDS_SAVE_FMT, m_strRightFile);
+		else
+			AfxFormatString1(s, IDS_SAVE_FMT, mf->m_strRightDesc);
+
 		bRModified = TRUE;
 		switch(AfxMessageBox(s, MB_YESNOCANCEL|MB_ICONQUESTION))
 		{
 		case IDYES:
 			if (!DoSave(m_strRightFile, bRSaveSuccess, FALSE))
-				result=FALSE;
+				result = FALSE;
 			break;
 		case IDNO:
 			break;
 		default:  // IDCANCEL
-			result=FALSE;
+			result = FALSE;
 			break;
 		}
 	}
@@ -2525,14 +2572,29 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 
 	// Load left side file
 	BOOL bLeft = TRUE;
-	int nLeftSuccess = LoadFile(sLeftFile, bLeft, bROLeft, cpleft);
+	int nLeftSuccess = FRESULT_ERROR;
+	if (!sLeftFile.IsEmpty())
+	{
+		// Load left side file
+		nLeftSuccess = LoadFile(sLeftFile, TRUE, bROLeft, cpleft);
+	}
+	else
+	{
+		m_ltBuf.InitNew();
+		nLeftSuccess = FRESULT_OK;
+	}
 	
 	// Load right side only if left side was succesfully loaded
 	int nRightSuccess = FRESULT_ERROR;
-	if (nLeftSuccess == FRESULT_OK)
+	if (!sRightFile.IsEmpty())
 	{
-		bLeft = FALSE;
-		nRightSuccess = LoadFile(sRightFile, bLeft, bRORight, cpright);
+		if (nLeftSuccess == FRESULT_OK)
+			nRightSuccess = LoadFile(sRightFile, FALSE, bRORight, cpright);
+	}
+	else
+	{
+		m_rtBuf.InitNew();
+		nRightSuccess = FRESULT_OK;
 	}
 
 	// Bail out if either side failed
@@ -2636,7 +2698,9 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		pRight->SetInsertTabs(bInsertTabs);
 
 		// Inform user that files are identical
-		if (nRescanResult == RESCAN_IDENTICAL)
+		// Don't show message if new buffers created
+		if (nRescanResult == RESCAN_IDENTICAL &&
+			(!sLeftFile.IsEmpty() || !sRightFile.IsEmpty()))
 			ShowRescanError(nRescanResult);
 	}
 	else

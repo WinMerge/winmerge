@@ -113,6 +113,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnUpdatePluginUnpackMode)
 	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
+	ON_COMMAND(ID_FILE_NEW, OnFileNew)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -131,9 +132,12 @@ static UINT indicators[] =
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame construction/destruction
 
+/**
+ * @brief MainFrame constructor. Loads settings from registry.
+ * @todo Preference for logging?
+ */
 CMainFrame::CMainFrame()
 {
-
 	m_bFontSpecified=FALSE;
 	m_strSaveAsPath = _T("");
 	m_bFirstTime = TRUE;
@@ -169,7 +173,6 @@ CMainFrame::CMainFrame()
 
 	if (m_sExtEditorPath.IsEmpty())
 		m_sExtEditorPath = GetDefaultEditor();
-
 
 	if (m_strVssPath.IsEmpty())
 	{
@@ -2298,4 +2301,38 @@ void CMainFrame::OnSaveConfigData()
 		CString sFileName = configLog.GetFileName();
 		OpenFileToExternalEditor(sFileName);
 	}
+}
+
+/**
+ * @brief Open two new empty docs, 'Scratchpads'
+ * 
+ * Allows user to open two empty docs, to paste text to
+ * compare from clipboard.
+ * @note File filenames are set emptys and filedescriptors
+ * are loaded from resource.
+ * @sa CMergeDoc::OpenDocs()
+ * @sa CMergeDoc::TrySaveAs()
+ */
+void CMainFrame::OnFileNew() 
+{
+	BOOL docNull;
+	CDirDoc *pDirDoc = GetDirDocToShow(&docNull);
+
+	// If the dirdoc we are supposed to use is busy doing a diff, bail out
+	UINT threadState = pDirDoc->m_diffThread.GetThreadState();
+	if (threadState == THREAD_COMPARING)
+		return;
+
+	if (!docNull)
+	{
+		// If reusing an existing doc, give it a chance to save its data
+		// and close any merge views, and clear its window
+		if (!pDirDoc->ReusingDirDoc())
+			return;
+	}
+	
+	// Load emptyfile descriptors and open empty docs
+	VERIFY(m_strLeftDesc.LoadString(IDS_EMPTY_LEFT_FILE));
+	VERIFY(m_strRightDesc.LoadString(IDS_EMPTY_RIGHT_FILE));
+	ShowMergeDoc(pDirDoc, _T(""), _T(""), FALSE, FALSE, 0, 0);
 }

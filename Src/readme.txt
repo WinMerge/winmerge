@@ -1,3 +1,10 @@
+2003-11-22 Kimmo
+ PATCH: [ 820676 ] Scratchpad
+  WinMerge: MainFrm.h MainFrm.cpp Merge.rc MergeDoc.h MergeDoc.cpp resource.h
+  WinMerge/res: Toolbar.bmp
+  Languages:  *.rc resource.h
+  Languages/res: Toolbar.bmp
+
 2003-11-22 Perry
  PATCH: [ 844780 ] MergeDoc code cleanup
  (removed AssertValid, Dump, and unused Serialize body)

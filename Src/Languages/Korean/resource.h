@@ -153,6 +153,8 @@
 #define IDS_USERCHOICE_AUTOMATIC        243
 #define IDS_SUGGEST_IGNOREEOL           244
 #define IDS_SUGGEST_PRESERVEEOL         245
+#define IDS_EMPTY_LEFT_FILE             246
+#define IDS_EMPTY_RIGHT_FILE            247
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

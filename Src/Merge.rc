@@ -99,7 +99,9 @@ IDR_MAINFRAME MENU PRELOAD DISCARDABLE
 BEGIN
     POPUP "&File"
     BEGIN
+        MENUITEM "New\tCtrl+N",                 ID_FILE_NEW
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
         POPUP "Save &Left"
         BEGIN
@@ -906,6 +908,7 @@ END
 
 IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
 BEGIN
+    BUTTON      ID_FILE_NEW
     BUTTON      ID_FILE_OPEN
     BUTTON      ID_FILE_SAVE
     SEPARATOR
@@ -1006,7 +1009,7 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_NEW             "Create empty documents\nNew Documents(Ctrl-N)"
     ID_FILE_OPEN            "Open an existing document\nOpen (Ctrl+O)"
     ID_FILE_CLOSE           "Close the active document\nClose"
     ID_FILE_SAVE            "Save the active document\nSave (Ctrl+S)"
@@ -1530,6 +1533,8 @@ BEGIN
     IDS_USERCHOICE_AUTOMATIC "<Automatic>"
     IDS_SUGGEST_IGNOREEOL   "The files have a different EOL type.\nWith the current options, all lines will differ.\nDo you want to ignore EOL differences for these files ?\n\nAdvanced user : if the EOL are not unified in your files,\n you may rather set the option '%1'."
     IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
+    IDS_EMPTY_LEFT_FILE     "Untitled left"
+    IDS_EMPTY_RIGHT_FILE	"Untitled right"
 END
 
 #endif    // English (U.S.) resources

@@ -120,10 +120,10 @@ protected:
 // Public implementation data
 public:
 	BOOL m_bFirstTime;
-	CString m_strSaveAsPath;
-	BOOL m_bIgnoreRegExp;
-	CString m_sPattern;
-	UINT m_nTabSize;
+	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
+	BOOL m_bIgnoreRegExp; /**< Are regular expression linefilters enabled? */
+	CString m_sPattern; /**< Regular expression linefilters */
+	UINT m_nTabSize; /**< Tabsize in spaces in editor */
 	CString m_strVssPath;
 	CString m_strVssProjectBase;
 	CString m_strVssUser;      // BSP - Visual Source Safe User ID
@@ -133,10 +133,10 @@ public:
 
 	int m_nVerSys;
 	BOOL m_bHideBak;
-	BOOL m_bScrollToFirst;
-	UINT m_nTabType;
-	BOOL m_bViewWhitespace;
-	CString m_sExtEditorPath;
+	BOOL m_bScrollToFirst; /**< Scroll to first diff automatically */
+	UINT m_nTabType; /**< 0-editor inserts tabs, 1-editor inserts spaces */
+	BOOL m_bViewWhitespace; /**< Is whitespace view enabled */
+	CString m_sExtEditorPath; /**< Path to external editor */
 	CString m_strLeftDesc;
 	CString m_strRightDesc;
 	BOOL m_CheckOutMulti;
@@ -201,6 +201,7 @@ protected:
 	afx_msg void OnPluginUnpackMode(UINT nID);
 	afx_msg void OnUpdatePluginUnpackMode(CCmdUI* pCmdUI);
 	afx_msg void OnSaveConfigData();
+	afx_msg void OnFileNew();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
