@@ -1550,7 +1550,7 @@ BEGIN
     ID_FILE_SAVE_RIGHT      "Speichert die rechte Datei."
     ID_FILE_SAVEAS_LEFT     "Speichert die linke Datei unter..."
     ID_FILE_SAVEAS_RIGHT    "Speichert die rechte Datei unter..."
-    ID_R2LNEXT              "Kopiere Unterschied nach Links und springe zum nächsten Unterschied.\nNach rechts kopieren und fortschreiten (Strg+Alt+Links)"
+    ID_R2LNEXT              "Kopiere Unterschied nach Links und springe zum nächsten Unterschied.\nNach links kopieren und fortschreiten (Strg+Alt+Links)"
     ID_L2RNEXT              "Kopiere Unterschied nach Rechts und springe zum nächsten Unterschied.\nNach rechts kopieren und fortschreiten (Strg+Alt+Rechts)"
 END
 

@@ -1,3 +1,7 @@
+2004-04-03 Laoran
+ BUG: [ 930995 ] Cursor help text ...
+  Src/Languages/German: MergeGerman.rc
+
 2004-04-05 Kimmo
  PATCH: [ 929155 ] Add identical folders to dircompare statepane
   Src: DirCompStateBar.cpp DirCompStateBar.h DirView.cpp Merge.dsp
