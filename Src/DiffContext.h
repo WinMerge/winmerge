@@ -71,7 +71,8 @@ struct DiffFileInfo
 	CString version; /**< string of fixed file version, eg, 1.2.3.4 */
 	CString spath; /**< fully qualified directory of file */
 	FileFlags flags; /**< file attributes */
-	DiffFileInfo() : mtime(0), ctime(0), size(0) { }
+	int codepage; /**< 8bit codepage, if applicable, 0 is unknown or N/A */
+	DiffFileInfo() : mtime(0), ctime(0), size(0), codepage(0) { }
 	// We could stash a pointer here to the parent DIFFITEM
 	// but, I ran into trouble with, I think, the DIFFITEM copy constructor
 };

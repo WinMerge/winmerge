@@ -303,7 +303,9 @@ void CMainFrame::OnFileOpen()
 }
 
 /// Creates new MergeDoc instance and shows documents
-void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft, BOOL bRORight, PackingInfo * infoUnpacker /*= NULL*/)
+void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight,
+	BOOL bROLeft, BOOL bRORight,  int cpleft, int cpright,
+	PackingInfo * infoUnpacker /*= NULL*/)
 {
 	BOOL docNull;
 	BOOL bOpenSuccess = FALSE;
@@ -317,7 +319,7 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	pMergeDoc->SetUnpacker(infoUnpacker);
 
 	bOpenSuccess = pMergeDoc->OpenDocs(szLeft, szRight,
-			bROLeft, bRORight);
+			bROLeft, bRORight, cpleft, cpright);
 
 	if (bOpenSuccess)
 	{
@@ -1164,6 +1166,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	CString strRight(pszRight);
 	CString strExt;
 	PackingInfo infoUnpacker;
+	int cpleft=0, cpright=0; // 8-bit codepages
 
 	BOOL bRORight = dwLeftFlags & FFILEOPEN_READONLY;
 	BOOL bROLeft = dwRightFlags & FFILEOPEN_READONLY;
@@ -1200,6 +1203,9 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		strExt = dlg.m_strParsedExt;
 		infoUnpacker = dlg.m_infoHandler;
 		pathsType = static_cast<PATH_EXISTENCE>(dlg.m_pathsType);
+		// TODO: add codepage options to open dialog ?
+		cpleft = 0;
+		cpright = 0;
 	}
 	else
 	{
@@ -1275,7 +1281,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		if (files_isFileReadOnly(strRight))
 			bRORight = TRUE;
 	
-		ShowMergeDoc(pDirDoc, strLeft, strRight, bROLeft, bRORight, &infoUnpacker);
+		ShowMergeDoc(pDirDoc, strLeft, strRight, bROLeft, bRORight,
+			cpleft, cpright, &infoUnpacker);
 	}
 	return TRUE;
 }
@@ -1667,6 +1674,8 @@ void CMainFrame::OnViewSelectfont()
 	memset(&cf, 0, sizeof(CHOOSEFONT));
 	cf.lStructSize = sizeof(CHOOSEFONT);
 	cf.Flags = CF_INITTOLOGFONTSTRUCT|CF_FORCEFONTEXIST|CF_SCREENFONTS|CF_FIXEDPITCHONLY;
+	// CF_FIXEDPITCHONLY = 0x00004000L
+	// in case you are a developer and want to disable it to test with, eg, a Chinese capable font
 	cf.lpLogFont = &m_lfDiff;
 	if (ChooseFont(&cf))
 	{

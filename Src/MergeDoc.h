@@ -119,7 +119,7 @@ public :
 		void ReplaceLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 		void ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 
-		BOOL LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker, CString filteredFilenames, BOOL & readOnly, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
+		BOOL LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker, CString filteredFilenames, BOOL & readOnly, int nCrlfStyle, int codepage);
 		BOOL SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, PackingInfo * infoUnpacker = NULL,
 				int nCrlfStyle = CRLF_STYLE_AUTOMATIC, BOOL bClearModifiedFlag = TRUE );
 
@@ -201,8 +201,8 @@ public:
 	void UpdateHeaderActivity(BOOL bLeft, BOOL bActivate);
 	void ReadSettings();
 	BOOL OpenDocs(CString sLeftFile, CString sRightFile,
-		BOOL bROLeft = FALSE, BOOL bRORight = FALSE);
-	int LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly);
+		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright);
+	int LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int codepage);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(BOOL bForced = FALSE);
 	void ShowRescanError(int nRescanResult);

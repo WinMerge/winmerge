@@ -4,6 +4,9 @@
  Add byte counts, and remove doubled line returns for load timing traces.
   WinMerge: MergeDoc.cpp
   common: UniMemFile.h
+ PATCH: [ 826584 ] User-specified codepage conversions
+  WinMerge: DiffContext.h DirView.cpp MainFrm.cpp MainFrm.h
+   MergeDoc.cpp MergeDoc.h
 
 2003-10-24 Kimmo
  PATCH: [ 828283 ] Open Read-only files as such

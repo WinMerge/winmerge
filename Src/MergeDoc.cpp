@@ -1090,7 +1090,7 @@ GetLineByteTimeReport(UINT lines, UINT bytes, const COleDateTime & start)
  * @brief Load file from disk into buffer
  */
 int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInfo * infoUnpacker, CString sToFindUnpacker, BOOL & readOnly,
-		int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/)
+		int nCrlfStyle, int codepage)
 {
 	// Unpacking the file here, save the result in a temporary file
 	CString sFileName = pszFileNameInit;
@@ -1133,7 +1133,10 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 
 	if (pufile->OpenReadOnly())
 	{
-		pufile->ReadBom();
+		// Recognize Unicode files with BOM (byte order mark)
+		// or else, use the codepage we were given to interpret the 8-bit characters
+		if (!pufile->ReadBom())
+			pufile->SetCodepage(codepage);
 		UINT lineno = 0;
 		CString line, eol, preveol;
 		bool done = false;
@@ -2274,6 +2277,8 @@ RECT CMergeDoc::Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOt
 *
 * @param sFileName File to open
 * @param bLeft Left/right-side file
+* @param readOnly whether file is read-only
+* @param codepage relevant 8-bit codepage if any (0 if none or unknown)
 *
 * @return Tells if files were loaded succesfully
 *
@@ -2282,7 +2287,7 @@ RECT CMergeDoc::Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOt
 * @sa CMergeDoc::OpenDocs()
 *
 */
-int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly)
+int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int codepage)
 {
 	CDiffTextBuffer *pBuf;
 	CString sError;
@@ -2299,7 +2304,8 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly)
 		m_strRightFile = sFileName;
 	}
 
-	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker, m_strBothFilenames, readOnly);
+	int nCrlfStyle = CRLF_STYLE_AUTOMATIC;
+	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker, m_strBothFilenames, readOnly, nCrlfStyle, codepage);
 
 	if (retVal != FRESULT_OK)
 	{
@@ -2328,6 +2334,8 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly)
 * @param sRightFile File to open to right side
 * @param bROLeft Is left file read-only
 * @param bRORight Is right file read-only
+* @param cpleft Is left file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
+* @param cpright Is right file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
 *
 * @return Tells if files were loaded and scanned succesfully
 *
@@ -2337,7 +2345,7 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly)
 *
 */
 BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
-		BOOL bROLeft, BOOL bRORight)
+		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright)
 {
 	DIFFOPTIONS diffOptions = {0};
 	int nRescanResult = RESCAN_OK;
@@ -2352,12 +2360,16 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	m_strBothFilenames = sLeftFile + "|" + sRightFile;
 
 	// Load left side file
-	int nLeftSuccess = LoadFile(sLeftFile, TRUE, bROLeft);
+	BOOL bLeft = TRUE;
+	int nLeftSuccess = LoadFile(sLeftFile, bLeft, bROLeft, cpleft);
 	
 	// Load right side only if left side was succesfully loaded
 	int nRightSuccess = FRESULT_ERROR;
 	if (nLeftSuccess == FRESULT_OK)
-		nRightSuccess = LoadFile(sRightFile, FALSE, bRORight);
+	{
+		bLeft = FALSE;
+		nRightSuccess = LoadFile(sRightFile, bLeft, bRORight, cpright);
+	}
 
 	// Bail out if either side failed
 	if (nLeftSuccess != FRESULT_OK || nRightSuccess != FRESULT_OK)

@@ -629,7 +629,9 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 
 			GetItemFileNames(sel, left, right);
 			mf->ShowMergeDoc(GetDocument(), left, right,
-				bLeftRO, bRightRO, infoUnpacker);
+				bLeftRO, bRightRO,
+				di.left.codepage, di.right.codepage,
+				infoUnpacker);
 		}
 	}
 }
