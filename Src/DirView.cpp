@@ -1603,6 +1603,7 @@ void CDirView::OnEditCopy()
  * @brief Create a string report for the viewed diffed directory list
  * @note This function assumes longest header length is < 160.
  * @note DOS-EOL style is used for reports.
+ * @todo Error handling for listcontrol access!
  */
 CString CDirView::GenerateReport()
 {
@@ -1625,8 +1626,9 @@ CString CDirView::GenerateReport()
 		LVCOLUMN lvc;
 		lvc.mask = LVCF_TEXT;
 		lvc.pszText = &columnName[0];
-		m_pList->GetColumn(currCol, &lvc);
-		report += lvc.pszText;
+		lvc.cchTextMax = countof(columnName);
+		if (m_pList->GetColumn(currCol, &lvc))
+			report += lvc.pszText;
 		report += cSeparator;
 	}
 

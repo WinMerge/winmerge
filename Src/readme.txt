@@ -1,3 +1,7 @@
+2003-11-28 Kimmo
+ BUG: [ 848725 ] Crash trying to generate report
+  WinMerge: DirView.cpp
+
 2003-11-27 Perry
  PATCH: [ 849424 ] Fix worddiffs for whitespace
  Handle Sensitive to whitespace in stringdiffs.
