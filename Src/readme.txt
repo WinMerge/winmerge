@@ -1,3 +1,8 @@
+2004-04-14 Kimmo
+ BUG: [ 926578 ] Division by zero exception
+  Fix tabsize limits in options dialog
+  Src: PropEditor.cpp
+
 2004-04-13 Jochen
  PATCH: [ 889357 ] Attempt to improve DirScan speed -- updated patch from 2004-03-18
   Src: 7zCommon.cpp 7zCommon.h DiffContext.cpp DiffContext.h DiffFileInfo.h

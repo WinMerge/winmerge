@@ -39,7 +39,7 @@ void CPropEditor::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
 	DDX_Check(pDX, IDC_AUTOMRESCAN_CHECK, m_bAutomaticRescan);
 	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
-	DDV_MinMaxInt(pDX, m_nTabSize, 0, MAX_TABSIZE);
+	DDV_MinMaxInt(pDX, m_nTabSize, 1, MAX_TABSIZE);
 	//}}AFX_DATA_MAP
 }
 
