@@ -128,7 +128,7 @@ BOOL DiffList::LineInDiff(UINT nLine, UINT nDiff) const
 int DiffList::LineToDiff(UINT nLine) const
 {
 	const int nDiffCount = m_diffs.GetSize();
-	for (UINT i = 0; i < nDiffCount; i++)
+	for (int i = 0; i < nDiffCount; i++)
 	{
 		if (LineInDiff(nLine, i))
 			return i;
@@ -180,7 +180,7 @@ BOOL DiffList::GetNextDiff(int nLine, int &nDiff) const
 	{
 		bInDiff = FALSE;
 		const int nDiffCount = m_diffs.GetSize();
-		for (UINT i = 0; i < nDiffCount; i++)
+		for (int i = 0; i < nDiffCount; i++)
 		{
 			if ((int)m_diffs[i].dbegin0 >= nLine)
 			{
@@ -223,7 +223,7 @@ int DiffList::NextDiffFromLine(UINT nLine) const
 	int nDiff = -1;
 	const int nDiffCount = m_diffs.GetSize();
 
-	for (UINT i = 0; i < nDiffCount; i++)
+	for (int i = 0; i < nDiffCount; i++)
 	{
 		if (m_diffs[i].dbegin0 >= nLine)
 		{
