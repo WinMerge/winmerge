@@ -633,9 +633,6 @@ BOOL CDirDoc::UpdateItemTimes(LPCTSTR pathLeft, LPCTSTR pathRight)
 // in which case this aborts and returns FALSE
 BOOL CDirDoc::ReusingDirDoc()
 {
-	// clear diff display
-	ASSERT(m_pDirView);
-	m_pDirView->DeleteAllDisplayItems();
 
 	// Inform all of our merge docs that we're closing
 	for (POSITION pos = m_MergeDocs.GetHeadPosition(); pos; )
@@ -644,6 +641,10 @@ BOOL CDirDoc::ReusingDirDoc()
 		if (!pMergeDoc->CloseNow())
 			return FALSE;
 	}
+
+	// clear diff display
+	ASSERT(m_pDirView);
+	m_pDirView->DeleteAllDisplayItems();
 
 	return TRUE;
 }

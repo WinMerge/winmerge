@@ -1,3 +1,7 @@
+2003-07-18 Perry
+ PATCH: [ 767147 ] Don't clear existing dirdoc until user saves
+  WinMerge: DirDoc.cpp
+
 2003-07-18 Kimmo
  PATCH: [ 772843 ] Remember custom colors
   WinMerge: PropColors.h PropColors.cpp
