@@ -1,3 +1,16 @@
+Plugins use an ActiveX interface.
+Plugins may be written in any format that supports this interface. Known formats
+are :
+	C++ COM component
+	VB ActiveX dll
+	scriptlets (VBS,JS)
+
+Limitation : because of thread issues, scriptlets only work for CONTEXT_MENU plugins.
+Any help on this point would be welcome.
+
+
+
+
 Properties syntax :
 				
 PluginEvent
@@ -41,17 +54,15 @@ FILE_PACK_UNPACK	Functions names (mandatory) and parameters :
 				STDMETHOD(PackFile)    ([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)
 			VB	Public Function UnpackFile  (BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean
 				Public Function PackFile    (BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, subcode As Long) As Boolean
-			VBS	Not supported
 
 BUFFER_PACK_UNPACK	Functions names (mandatory) and parameters : 
 			VC++	STDMETHOD(UnpackBufferA)  ([in] SAFEARRAY ** pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [in] INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)
 				STDMETHOD(PackBufferA)    ([in] SAFEARRAY ** pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [in] INT subcode, [out, retval] VARIANT_BOOL * pbSuccess)
 			VB	Public Function UnpackBufferA  (ByRef buffer() As Byte, ByRef size As Long, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean
 				Public Function PackBufferA    (ByRef buffer() As Byte, ByRef size As Long, ByRef bChanged As Boolean, subcode As Long) As Boolean
-			VBS	Not supported
 
 
-Additionnal to write a C++ plugin : 	
+Additionnal steps to write a plugin in C++ : 	
 
 * do not register the dll : delete everything in 'settings'->'custom build'
 * do not register the dll : delete the file .rgs, and the registry section in the file .rc
