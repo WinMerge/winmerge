@@ -4,6 +4,15 @@ body {
 	background-color: white;
 }
 
+#nav {
+	display: none;
+}
+
+#content {
+	padding-left: 0;
+	vertical-align: top;
+}
+
 h1, h2, h3, h4 {
 	font-family: serif;
 	font-weight: bold;
@@ -16,16 +25,6 @@ p.important {
 li.toc {
 	list-style-image: url();
 	line-height: 125%;
-}
-
-p.lefthead {
-	font-size: larger;
-	font-weight: bold;
-	text-align: center;
-}
-
-p.lefttext {
-	text-align: left;
 }
 
 .noprint {

@@ -1,8 +1,13 @@
+2004-11-05 Kimmo
+ PATCH: [ 1054840 ] New homepage menu
+  Submitted by Tim Gerundt
+  Web: page.inc
+  Web/css: all.css print.css
+
 2004-11-03 Kimmo
  PATCH: [ 1059294 ] Update Catalan translation status for 2.2
   Also updates Korean translation status
   Web\developer\l10n: status.xml
-
 
 2004-11-02 Kimmo
  PATCH: [ 1057716 ] Web: Add Hungarian to translations-table

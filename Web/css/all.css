@@ -4,6 +4,32 @@ body {
 	background-color: white;
 }
 
+#nav {
+	padding: 5px;
+	vertical-align: top;
+	background-color: #C0C0C0;
+	border: 1px solid #808080;
+}
+
+#nav h2 {
+	font-family: sans-serif;
+	font-size: medium;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+}
+
+#nav ul {
+	margin-top: 0;
+	padding-top: 0;
+	margin-left: 0.5em;
+	padding-left: 0.5em;
+}
+
+#content {
+	padding-left: 10px;
+	vertical-align: top;
+}
+
 h1, h2, h3, h4 {
 	font-family: serif;
 	font-weight: bold;
@@ -16,14 +42,4 @@ p.important {
 li.toc {
 	list-style-image: url(../images/arrow_small.gif);
 	line-height: 125%;
-}
-
-p.lefthead {
-	font-size: larger;
-	font-weight: bold;
-	text-align: center;
-}
-
-p.lefttext {
-	text-align: left;
 }
