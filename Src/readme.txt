@@ -1,6 +1,8 @@
 2003-11-05 Perry
  Typofix: "Wiew Whitespaces" -> "View Whitespace"
   WinMerge: ConfigLog.cpp
+ Update language count mentioned in readme-developers.html
+  Docs: readme-developers.html
 
 2003-11-05 Kimmo
  BUG: [ 829435 ] Fix character classification routines for UNICODE
