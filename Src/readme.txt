@@ -2,6 +2,9 @@
  PATCH: [ 1034550 ] Catalan translation update
   Submitted by Jordi Vilar
   Src/Languages/Catalan: MergeCatalan.rc
+ PATCH: [ 1034557 ] Swedish translation update
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2004-09-24 Kimmo
  PATCH: [ 1033678 ] Better description for 'Reset messageboxes'
