@@ -219,6 +219,9 @@ void CDirDoc::Rescan()
 	if (threadState == THREAD_COMPARING)
 		return;
 
+	// Clear display before new compare
+	Redisplay();
+
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
 
 	gLog.Write(_T("Starting directory scan:\r\n\tLeft: %s\r\n\tRight: %s\r\n"),
@@ -247,14 +250,9 @@ void CDirDoc::Rescan()
 	m_diffThread.CompareDirectories(m_pCtxt->m_strNormalizedLeft,
 			m_pCtxt->m_strNormalizedRight, m_bRecursive);
 
-	gLog.Write(_T("Directory scan complete\r\n"));
-
 	CString s;
 	AfxFormatString2(s, IDS_DIRECTORY_WINDOW_STATUS_FMT, m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
 	((CDirFrame*)(m_pDirView->GetParent()))->SetStatus(s);
-
-	// Needed to clear display
-	Redisplay();
 }
 
 // return true if we need to hide this item because it is a backup
@@ -553,6 +551,7 @@ void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unifie
  */
 void CDirDoc::CompareReady()
 {
+	gLog.Write(_T("Directory scan complete\r\n"));
 	m_diffWrapper.EndDirectoryDiff();
 }
 

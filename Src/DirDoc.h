@@ -44,8 +44,8 @@ class DirDocFilter;
 /**
  * @brief User-defined Windows-messages
  */
-const UINT MSG_UI_UPDATE = WM_USER;
-const UINT MSG_STAT_UPDATE = WM_USER + 1;
+const UINT MSG_UI_UPDATE = WM_USER + 1;
+const UINT MSG_STAT_UPDATE = WM_USER + 2;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc document

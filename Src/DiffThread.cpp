@@ -119,6 +119,6 @@ UINT DiffThread(LPVOID lpParam)
 	
 	// Send message to UI to update
 	diffParam.nThreadState = THREAD_COMPLETED;
-	SendMessage(hWnd, msgID, NULL, NULL);
+	PostMessage(hWnd, msgID, NULL, NULL);
 	return 1;
 }
