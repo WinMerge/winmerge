@@ -115,6 +115,7 @@ UINT CDiffThread::CompareDirectories(CString dir1, CString dir2, BOOL bRecursive
 	m_pDiffParm->msgUIUpdate = m_msgUpdateUI;
 	m_pDiffParm->hWindow = m_hWnd;
 	m_pDiffParm->m_pAbortgate = m_pAbortgate;
+	m_bAborting = FALSE;
 
 	m_pDiffParm->nThreadState = THREAD_COMPARING;
 	m_thread = AfxBeginThread(DiffThread, m_pDiffParm);

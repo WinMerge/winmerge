@@ -88,8 +88,6 @@ public:
 // Operations
 public:
 	BOOL DeleteFileOrError(LPCTSTR szFile);
-	void rptStatus(UINT diffcode);
-	void clearStatus();
 	BOOL SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
 	BOOL DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
@@ -198,7 +196,6 @@ protected:
 	afx_msg void OnUpdateViewWhitespace(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGeneratePatch();
 	afx_msg void OnDropFiles(HDROP dropInfo);
-	afx_msg LRESULT OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam);
 	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg void OnPluginUnpackMode(UINT nID);
 	afx_msg void OnUpdatePluginUnpackMode(CCmdUI* pCmdUI);

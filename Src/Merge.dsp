@@ -473,6 +473,10 @@ SOURCE=.\DirColsDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DirCompStateBar.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\DirDoc.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -1479,6 +1483,10 @@ SOURCE=.\DiffWrapper.h
 # Begin Source File
 
 SOURCE=.\DirColsDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DirCompStateBar.h
 # End Source File
 # Begin Source File
 

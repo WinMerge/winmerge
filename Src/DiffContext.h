@@ -165,7 +165,7 @@ public:
 	IDiffFilter * m_piFilterUI;
 	IDiffFilter * m_piFilterGlobal;
 	UINT m_msgUpdateStatus;
-	HWND m_hMainFrame;
+	HWND m_hDirFrame;
 
 	struct dirdata ddLeft, ddRight;
 	char *pNamesLeft;

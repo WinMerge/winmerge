@@ -84,8 +84,10 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copy all diffs to other side...", 
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
+
         MENUITEM "Copy all diffs from other side...", 
                                                 ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+
         MENUITEM SEPARATOR
         MENUITEM "Undo",                        ID_UNDO
         MENUITEM SEPARATOR
@@ -227,12 +229,14 @@ BEGIN
         BEGIN
             MENUITEM "with registered application", ID_DIR_OPEN_LEFT
             MENUITEM "with external editor",        ID_DIR_OPEN_LEFT_WITHEDITOR
+
             MENUITEM "with...",                     ID_DIR_OPEN_LEFT_WITH
         END
         POPUP "Open right"
         BEGIN
             MENUITEM "with registered application", ID_DIR_OPEN_RIGHT
             MENUITEM "with external editor",        ID_DIR_OPEN_RIGHT_WITHEDITOR
+
             MENUITEM "with...",                     ID_DIR_OPEN_RIGHT_WITH
         END
     END
@@ -692,6 +696,53 @@ BEGIN
                     ES_READONLY
 END
 
+IDD_DIRCOMPSTATE DIALOGEX 0, 0, 382, 41
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         223,IDC_STATIC,"Static",SS_BITMAP,7,7,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         213,IDC_STATIC,"Static",SS_BITMAP,62,7,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         214,IDC_STATIC,"Static",SS_BITMAP,62,22,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         215,IDC_STATIC,"Static",SS_BITMAP,7,23,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         216,IDC_STATIC,"Static",SS_BITMAP,268,7,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         217,IDC_STATIC,"Static",SS_BITMAP,112,7,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         218,IDC_STATIC,"Static",SS_BITMAP,163,7,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         219,IDC_STATIC,"Static",SS_BITMAP,164,22,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         224,IDC_STATIC,"Static",SS_BITMAP,112,22,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         226,IDC_STATIC,"Static",SS_BITMAP,213,7,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         227,IDC_STATIC,"Static",SS_BITMAP,214,23,12,11,
+                    WS_EX_STATICEDGE
+    RTEXT           "",IDC_COUNT_LFOLDER,24,9,19,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_RFOLDER,24,25,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_EQUAL,77,10,19,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_NOTEQUAL,78,25,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_BINARYSAME,128,9,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_BINARYDIFF,127,25,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_LFILE,180,10,19,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_RFILE,180,25,19,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_FOLDERSKIP,230,10,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_FILESKIP,230,24,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_UNKNOWN,284,10,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    PUSHBUTTON      "Stop",IDC_COMPARISON_STOP,317,14,60,14
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -843,7 +894,6 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 266
         TOPMARGIN, 7
-        BOTTOMMARGIN, 155
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -1195,6 +1245,12 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_COMPARISON_STOP     "Stop"
+    IDC_COMPARISON_CLOSE    "Press any key"
 END
 
 STRINGTABLE DISCARDABLE 

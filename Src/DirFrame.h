@@ -34,6 +34,7 @@
 #endif // _MSC_VER >= 1000
 
 #include "EditorFilepathBar.h"
+#include "DirCompStateBar.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirFrame frame
@@ -56,6 +57,10 @@ public:
 	CStatusBar  m_wndStatusBar;
 	void SetClosableCallback(bool (*canclose)(void *), void * param);
 	IHeaderBar * GetHeaderInterface();
+	void rptStatus(UINT diffcode);
+	void clearStatus();
+	void ShowProcessingBar(BOOL bShow);
+	void NotifyHideStateBar();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -73,7 +78,22 @@ public:
 
 protected:
 	CEditorFilePathBar m_wndFilePathBar;
+	CDirCompStateBar m_wndCompStateBar;
+	/* @brief The state bar is active when 
+	 * <ul>
+	 *	<li> visible 
+	 *	<li> the frame is unactive, and the state bar was visible when the frame was active
+	 * </ul>
+	 */
+	BOOL bStateBarIsActive;
+	/* @brief Track the activity of this frame, without delay.
+	 * This flag must be updated when CMDIChildWnd::OnMDIActivate is called. 
+	 * GetParentFrame()->GetActiveFrame() introduces some delay.
+	 */
+	BOOL bFrameIsActive;
+
 	virtual ~CDirFrame();
+	void ShowControlBar( CControlBar* pBar, BOOL bShow, BOOL bDelay );
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirFrame)
@@ -81,6 +101,8 @@ protected:
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnClose();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg LRESULT OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam);
+	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

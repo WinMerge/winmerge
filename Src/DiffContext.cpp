@@ -56,7 +56,7 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 	m_piFilterUI = 0;
 	m_piFilterGlobal = 0;
 	m_msgUpdateStatus = 0;
-	m_hMainFrame = NULL;
+	m_hDirFrame = NULL;
 }
 
 CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
@@ -74,7 +74,7 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	m_piFilterUI = src.m_piFilterUI;
 	m_piFilterGlobal = src.m_piFilterGlobal;
 	m_msgUpdateStatus = src.m_msgUpdateStatus;
-	m_hMainFrame = src.m_hMainFrame;
+	m_hDirFrame = src.m_hDirFrame;
 
 	pNamesLeft = NULL;
 	pNamesRight = NULL;
@@ -141,7 +141,7 @@ void CDiffContext::AddDiff(DIFFITEM di)
 
 	m_pList->AddTail(di);
 	// ignore return value
-	PostMessage(m_hMainFrame, m_msgUpdateStatus, di.diffcode, NULL);
+	PostMessage(m_hDirFrame, m_msgUpdateStatus, di.diffcode, NULL);
 }
 
 void CDiffContext::RemoveDiff(POSITION diffpos)

@@ -220,6 +220,8 @@ void CDirDoc::Rescan()
 {
 	if (!m_pCtxt) return;
 
+	CDirFrame *pf = m_pDirView->GetParentFrame();
+
 	// If we're already doing a rescan, bail out
 	UINT threadState = m_diffThread.GetThreadState();
 	if (threadState == THREAD_COMPARING)
@@ -229,20 +231,20 @@ void CDirDoc::Rescan()
 
 	gLog.Write(_T("Starting directory scan:\r\n\tLeft: %s\r\n\tRight: %s\r\n"),
 			m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
+	pf->clearStatus();
+	pf->ShowProcessingBar(TRUE);
 	m_pCtxt->RemoveAll();
-	mf->clearStatus();
 
 	// fix up for diff code (remove trailing slashes etc)
 	m_pCtxt->m_strNormalizedLeft = m_pCtxt->m_strLeft;
 	m_pCtxt->m_strNormalizedRight = m_pCtxt->m_strRight;
-	m_pCtxt->m_hMainFrame = mf->GetSafeHwnd();
+	m_pCtxt->m_hDirFrame = pf->GetSafeHwnd();
 	m_pCtxt->m_msgUpdateStatus = MSG_STAT_UPDATE;
 	paths_normalize(m_pCtxt->m_strNormalizedLeft);
 	paths_normalize(m_pCtxt->m_strNormalizedRight);
 	UpdateHeaderPath(TRUE);
 	UpdateHeaderPath(FALSE);
 	// draw the headers as active ones
-	CDirFrame *pf = m_pDirView->GetParentFrame();
 	pf->GetHeaderInterface()->SetActive(0, TRUE);
 	pf->GetHeaderInterface()->SetActive(1, TRUE);
 
@@ -514,6 +516,10 @@ BOOL CDirDoc::ReusingDirDoc()
 	ASSERT(m_pDirView);
 	m_pDirView->DeleteAllDisplayItems();
 
+	// hide the floating state bar
+	CDirFrame *pf = m_pDirView->GetParentFrame();
+	pf->ShowProcessingBar(FALSE);
+
 	// delete comparison parameters and results
 	if (m_pCtxt != NULL)
 		delete m_pCtxt;
@@ -576,6 +582,10 @@ void CDirDoc::CompareReady()
 	// finish the cursor (the hourglass/pointer combo) we had open during display
 	delete m_statusCursor;
 	m_statusCursor = 0;
+
+	// hide the floating state bar
+	// CDirFrame *pf = m_pDirView->GetParentFrame();
+	// pf->ShowProcessingBar(FALSE);
 
 	m_diffWrapper.EndDirectoryDiff();
 }

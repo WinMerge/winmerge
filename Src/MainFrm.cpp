@@ -109,7 +109,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_WM_DROPFILES()
-	ON_MESSAGE(MSG_STAT_UPDATE, OnUpdateStatusMessage)
 	ON_WM_SETCURSOR()
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnUpdatePluginUnpackMode)
@@ -123,7 +122,6 @@ END_MESSAGE_MAP()
 static UINT indicators[] =
 {
 	ID_SEPARATOR,           // status line indicator
-	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_INDICATOR_CAPS,
 	ID_INDICATOR_NUM,
@@ -235,7 +233,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 	m_wndStatusBar.SetPaneInfo(1, ID_DIFFNUM, 0, 150); 
-	m_wndStatusBar.SetPaneInfo(2, ID_DIFFSTATUS, 0, 250); 
 
 	// TODO: Remove this if you don't want tool tips or a resizeable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
@@ -1069,97 +1066,6 @@ void CMainFrame::OnOptions()
 			pDirDoc->ReadSettings();
 		}
 	}
-}
-
-// clear counters used to track diff progress
-void CMainFrame::clearStatus()
-{
-	m_nStatusFileSame = m_nStatusFileBinSame = m_nStatusFileDiff = m_nStatusFileBinDiff = m_nStatusFileError
-		 = m_nStatusLeftFileOnly = m_nStatusLeftDirOnly = m_nStatusRightFileOnly = m_nStatusRightDirOnly
-		 = 0;
-}
-
-// diff completed another file
-void CMainFrame::rptStatus(UINT diffcode)
-{
-	// TODO: This is a mess
-	// How do we fix this ?
-	DIFFITEM di;
-	di.diffcode = diffcode;
-	if (di.isSideLeft())
-	{
-		if (di.isDirectory())
-		{
-			++m_nStatusLeftDirOnly;
-		}
-		else
-		{
-			++m_nStatusLeftFileOnly;
-		}
-	}
-	else if (di.isSideRight())
-	{
-		if (di.isDirectory())
-		{
-			++m_nStatusRightDirOnly;
-		}
-		else
-		{
-			++m_nStatusRightFileOnly;
-		}
-	}
-	else
-	{
-		if (di.isResultSkipped())
-		{
-			// what about skipped items ?
-		}
-		else if (di.isResultError())
-		{
-			// could be directory error ?
-			++m_nStatusFileError;
-		}
-		// Now we know it was on both sides & compared!
-		else if (di.isResultSame())
-		{
-			if (di.isBin())
-			{
-				++m_nStatusFileBinSame;
-			}
-			else
-			{
-				++m_nStatusFileSame;
-			}
-		}
-		else
-		{
-			// presumably it is diff
-			if (di.isDirectory())
-			{
-				// this doesn't happen right now, but it will
-				// TODO
-			}
-			else
-			{
-				if (di.isBin())
-				{
-					++m_nStatusFileBinDiff;
-				}
-				else
-				{
-					++m_nStatusFileDiff;
-				}
-			}
-		}
-	}
-
-	CString s;
-	// TODO: Load the format string from resource
-	s.Format(_T("s:%d bs:%d d:%d bd:%d lf:%d ld:%d rf:%d rd:%d e:%d")
-		, m_nStatusFileSame, m_nStatusFileBinSame, m_nStatusFileDiff, m_nStatusFileBinDiff
-		, m_nStatusLeftFileOnly, m_nStatusLeftDirOnly, m_nStatusRightFileOnly, m_nStatusRightDirOnly
-		, m_nStatusFileError);
-	m_wndStatusBar.SetPaneText(2, s);
 }
 
 /**
@@ -2267,15 +2173,6 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 	// If Ctrl pressed, do recursive compare
 	BOOL ctrlKey = ::GetAsyncKeyState(VK_CONTROL);
 	DoFileOpen(files[0], files[1], FFILEOPEN_NONE, FFILEOPEN_NONE, ctrlKey);
-}
-
-LRESULT CMainFrame::OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam)
-{
-	if (wParam == 0xFF)
-		clearStatus();
-	else
-		rptStatus(wParam);
-	return 0; // return value not meaningful
 }
 
 BOOL CMainFrame::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) 
