@@ -31,6 +31,19 @@
       <para>When enabled: Open-dialog checks both paths given for validity and doesn't enable "OK" button until both paths are valid. Unfortunately this checking needs little delay and some users find this delay annoying.</para>
       <para>When disabled: Open-dialog enabled "OK" button by default and lets user to try to open all paths. However error message is shown if path is not valid. This is faster to use, there is no any delay in enabling "OK". But user must look at error-dialogs.</para>
     </sect3>
+    <sect3>
+      <title>Use codepage info (html, rc) for Load/save</title>
+      <important>
+        <para>Uncheck this option in WinMerge.exe. Characters conversions can result in lossy conversions and the risk is very high. WinMerge.exe can display files only with your current codepage.</para>
+      </important>
+      <para>This option is interesting when your documents use a codepage different from your current codepage (your current codepage is the codepage of your Windows configuration). </para>
+      <para>For example, you may merge two slovak or two japanese files in an english environment. With the required fonts, and this option set, your slovak, or japanese, files will be displayed with slovak, or japanese, characters. </para>
+      <para>Actually, WinMerge detects the codepage for these extensions : .html and .rc (resource files for VC++). </para>
+      <para>WinMerge also detects a codepage difference between the left/right files. To avoid lossy conversions during merge/copy/paste, WinMerges proposes you to ignore the codepage information. </para>
+      <caution>
+        <para>When you paste/copy text to an external application, the external application must use the same codepage as WinMerge does. If your external editor does not support custom codepages, disable this option. Refer to the documentation for your external editor (for copying to WinMerge, Internet Explorer offers codepage selection).</para>
+      </caution>
+    </sect3>
   </sect2>
   <sect2>
     <title>Compare options</title>

@@ -1,3 +1,7 @@
+2004-06-21 Laoran
+ PATCH: [ 974657 ] Paragraph for option "auto-detect codepage"
+  Manual: Configuration.xml
+
 2004-06-19 Laoran
  PATCH: [ 973592 ] Userdocs : Plugins
   Manual: Plugins.xml
