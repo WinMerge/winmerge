@@ -4649,6 +4649,11 @@ void CCrystalTextView::SetDisableDragAndDrop (BOOL bDDAD)
 BOOL CCrystalTextView::
 OnMouseWheel (UINT nFlags, short zDelta, CPoint pt)
 {
+  SCROLLINFO si = {0};
+  si.cbSize = sizeof (si);
+  si.fMask = SIF_PAGE | SIF_RANGE;
+  VERIFY (GetScrollInfo (SB_VERT, &si));
+
   // -> HE
 // int nPageLines = GetScreenLines();
   int nSubLineCount = GetSubLineCount();
@@ -4657,8 +4662,8 @@ OnMouseWheel (UINT nFlags, short zDelta, CPoint pt)
 
   if (nNewTopSubLine < 0)
     nNewTopSubLine = 0;
-  if (nNewTopSubLine >= nSubLineCount)
-    nNewTopSubLine = nSubLineCount - 1;
+  if (nNewTopSubLine > (si.nMax - si.nPage + 1))
+    nNewTopSubLine = si.nMax - si.nPage + 1;
 
   ScrollToSubLine(nNewTopSubLine, TRUE);
   UpdateSiblingScrollPos(FALSE);

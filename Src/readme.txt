@@ -1,3 +1,7 @@
+2003-10-23 Kimmo
+ BUG: [ 815147 ] Scrollwheel scrolls too far at end of file
+  editlib: ccrystaltextview.cpp
+
 2003-10-23 Laoran
  PATCH: [ 827615 ] Speed up display of large differences - attachment
   Submitted by Hern Chen
