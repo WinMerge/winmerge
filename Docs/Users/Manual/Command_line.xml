@@ -6,64 +6,64 @@
         <command moreinfo="none">WinMerge</command>
         <arg choice="opt" rep="norepeat"><option>/r</option></arg>
         <arg choice="opt" rep="norepeat"><option>/e</option></arg>
-        <arg><option></option>/f filter</arg>
+        <arg choice="opt" rep="norepeat"><option>/f</option> <replaceable>filter</replaceable></arg>
         <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
         <arg choice="opt" rep="norepeat"><option>/ur</option></arg>
         <arg choice="opt" rep="norepeat"><option>/ub</option></arg>
-        <arg><option>/wl</option></arg>
-        <arg><option>/wr</option></arg>
-        <arg choice="opt" rep="norepeat">/dl <replaceable>leftdesc</replaceable></arg>
-        <arg choice="opt" rep="norepeat">/dr <replaceable>rightdesc</replaceable></arg>
+        <arg choice="opt" rep="norepeat"><option>/wl</option></arg>
+        <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
+        <arg choice="opt" rep="norepeat"><option>/dl</option> <replaceable>leftdesc</replaceable></arg>
+        <arg choice="opt" rep="norepeat"><option>/dr</option> <replaceable>rightdesc</replaceable></arg>
         <arg choice="plain" rep="norepeat"><replaceable>leftpath</replaceable></arg>
         <arg choice="plain" rep="norepeat"><replaceable>rightpath</replaceable></arg>
         <arg choice="opt" rep="norepeat"><replaceable>outputpath</replaceable></arg>
       </cmdsynopsis></screen></para>
   <itemizedlist>
     <listitem>
-      <para>/? or -? displays help message</para>
+      <para><option>/?</option> or <option>-?</option> displays help message</para>
     </listitem>
     <listitem>
-      <para>/r or -r tells winmerge to compare directories recursively</para>
+      <para><option>/r</option> or <option>-r</option> tells winmerge to compare directories recursively</para>
     </listitem>
     <listitem>
-      <para>/e or -e allows WinMerge to be closed with a single esc keypress</para>
+      <para><option>/e</option> or <option>-e</option> allows WinMerge to be closed with a single esc keypress</para>
     </listitem>
     <listitem>
-      <para>/f or -f allows selecting filter used. Filter can be filemask like "*.h *.cpp" or name of filefilter like "XML/HTML Devel". Quotation marks must be used if filter mask or name contains spaces</para>
+      <para><option>/f</option> or <option>-f</option> allows selecting filter used. Filter can be filemask like "*.h *.cpp" or name of filefilter like "XML/HTML Devel". Quotation marks must be used if filter mask or name contains spaces</para>
     </listitem>
     <listitem>
-      <para>/ul or -ul tells winmerge to not add left path to MRU</para>
+      <para><option>/ul</option> or <option>-ul</option> tells winmerge to not add left path to MRU</para>
     </listitem>
     <listitem>
-      <para>/ur or -ur tells winmerge to not add right path to MRU</para>
+      <para><option>/ur</option> or <option>-ur</option> tells winmerge to not add right path to MRU</para>
     </listitem>
     <listitem>
-      <para>/ub or -ub tells winmerge to not add both paths to MRU</para>
+      <para><option>/ub</option> or <option>-ub</option> tells winmerge to not add both paths to MRU</para>
     </listitem>
     <listitem>
-      <para>/wl or -wl initially opens left side as read-only</para>
+      <para><option>/wl</option> or <option>-wl</option> initially opens left side as read-only</para>
     </listitem>
     <listitem>
-      <para>/wr or -wr initially opens right side as read-only</para>
+      <para><option>/wr</option> or <option>-wr</option> initially opens right side as read-only</para>
     </listitem>
     <listitem>
-      <para>/dl or -dl adds a description for left side shown instead of directory/filename</para>
+      <para><option>/dl</option> or <option>-dl</option> adds a description for left side shown instead of directory/filename</para>
     </listitem>
     <listitem>
-      <para>/dr or -dr adds a description for right side shown instead of directory/filename</para>
+      <para><option>/dr</option> or <option>-dr</option> adds a description for right side shown instead of directory/filename</para>
     </listitem>
     <listitem>
-      <para>leftpath is the directory or filename to open on the left side</para>
+      <para><replaceable>leftpath</replaceable> is the directory or filename to open on the left side</para>
     </listitem>
     <listitem>
-      <para>rightpath is the directory or filename to open on the right side</para>
+      <para><replaceable>rightpath</replaceable> is the directory or filename to open on the right side</para>
     </listitem>
     <listitem>
-      <para>outputpath is an optional output directory where you want merged files to be saved</para>
+      <para><replaceable>outputpath</replaceable> is an optional output directory where you want merged files to be saved</para>
     </listitem>
   </itemizedlist>
   <note>
-    <para>leftpath and rightpath both has to be files or both has to be directories</para>
+    <para><replaceable>leftpath</replaceable> and <replaceable>rightpath</replaceable> both has to be files or both has to be directories</para>
   </note>
   <para>If both paths are not files or directories or one of paths is non-existant WinMerge shows Open-dialog for user to choose proper paths to open.</para>
 </sect1>

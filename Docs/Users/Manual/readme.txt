@@ -1,3 +1,8 @@
+2004-09-25 Kimmo
+ PATCH: [ 1034558 ] Docs: More meta-informations
+  Submitted by Tim Gerundt
+  Manual: Command_line.xml Faq.xml Shortcut_keys.xml
+
 2004-09-14 Kimmo
  PATCH: [ 1027592 ] Docs: Update FAQ
   Manual: Faq.xml

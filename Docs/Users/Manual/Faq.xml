@@ -5,17 +5,17 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>Why is there two executable files, WinMerge.exe and WinMergeU.exe?</para>
+          <para>Why is there two executable files, <filename>WinMerge.exe</filename> and <filename>WinMergeU.exe</filename>?</para>
         </question>
         <answer>
           <itemizedlist>
             <listitem>
-              <para>WinMerge.exe is ANSI executable which works in all 32-bit Windows systems. It does not have Unicode support.</para>
+              <para><filename>WinMerge.exe</filename> is ANSI executable which works in all 32-bit Windows systems. It does not have Unicode support.</para>
               <para>Internally, it stores only ANSI characters (256 possibilities). If you open an Unicode (65536 possible characters) file, the characters must be converted to the ANSI character set. Conversion can be approximative (accents are lost), or impossible (characters appear as "?").</para>
-              <para>WinMerge.exe can neither open files when filename is not writeable in the current ANSI set.</para>
+              <para><filename>WinMerge.exe</filename> can neither open files when filename is not writeable in the current ANSI set.</para>
             </listitem>
             <listitem>
-              <para>WinMergeU.exe is Unicode enabled executable which works in Windows NT4, Windows 2000 and newer systems.</para>
+              <para><filename>WinMergeU.exe</filename> is Unicode enabled executable which works in Windows NT4, Windows 2000 and newer systems.</para>
             </listitem>
           </itemizedlist>
         </answer>
@@ -25,7 +25,7 @@
           <para>That splash screen is annoying, how do I turn it off?</para>
         </question>
         <answer>
-          <para>From menu, select Edit -&gt; Options... -&gt; Disable Splash Screen</para>
+          <para>From menu, select <menuchoice><guimenu>Edit</guimenu><guimenuitem>Options...</guimenuitem><guimenuitem>General</guimenuitem><guimenuitem>Disable Splash Screen</guimenuitem></menuchoice></para>
         </answer>
       </qandaentry>
       <qandaentry>
@@ -33,7 +33,7 @@
           <para>When wanting to compare directories, I cannot select a directory in Browse?</para>
         </question>
         <answer>
-          <para>Are you trying to select a directory by clicking on it in the upper part of the Open File dialog ? The OpenFile dialog will then open it, and you have to push Ok again to get out.</para>
+          <para>Are you trying to select a directory by clicking on it in the upper part of the Open File dialog ? The Open File dialog will then open it, and you have to push <guibutton>Ok</guibutton> again to get out.</para>
         </answer>
       </qandaentry>
       <qandaentry>
@@ -49,7 +49,7 @@
           <para>Do you have any plans to support other operating systems than Windows?</para>
         </question>
         <answer>
-          <para>Not currently. If somebody wants to help/work with cross-platform support (using wxWidgets for example) we are interested of course.</para>
+          <para>Not currently. If somebody wants to help/work with cross-platform support (using <ulink url="http://www.wxwidgets.org/">wxWidgets</ulink> for example) we are interested of course.</para>
         </answer>
       </qandaentry>
       <qandaentry>
@@ -67,18 +67,18 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>WinMerge says "Binary files are different", but I am not comparing binary files?</para>
+          <para>WinMerge says "<guilabel>Binary files are different</guilabel>", but I am not comparing binary files?</para>
         </question>
         <answer>
-          <para>If you are using WinMerge.exe (not WinMergeU.exe), then your files may be Unicode files. WinMerge.exe cannot handle Unicode files. Please try comparing files with WinMergeU.exe if you have Windows NT4, Windows 2000 or newer Windows version.</para>
+          <para>If you are using <filename>WinMerge.exe</filename> (not <filename>WinMergeU.exe</filename>), then your files may be Unicode files. <filename>WinMerge.exe</filename> cannot handle Unicode files. Please try comparing files with <filename>WinMergeU.exe</filename> if you have Windows NT4, Windows 2000 or newer Windows version.</para>
         </answer>
       </qandaentry>
       <qandaentry>
         <question>
-          <para>WinMerge cannot compare registry files (*.reg)?</para>
+          <para>WinMerge cannot compare registry files (<filename><replaceable>*</replaceable>.reg</filename>)?</para>
         </question>
         <answer>
-          <para>Windows registry files (*.reg) are Unicode files (UTF-16 or UCS-2) -- see previous answer.</para>
+          <para>Windows registry files (<filename><replaceable>*</replaceable>.reg</filename>) are Unicode files (UTF-16 or UCS-2) -- see previous answer.</para>
         </answer>
       </qandaentry>
       <qandaentry>
@@ -99,7 +99,7 @@
           <para>Some characters are cut in half?</para>
         </question>
         <answer>
-          <para>Try selecting a different font from menu View -&gt; Select Font...</para>
+          <para>Try selecting a different font from menu <menuchoice><guimenu>View</guimenu><guimenuitem>Select Font...</guimenuitem></menuchoice></para>
         </answer>
       </qandaentry>
       <qandaentry>
@@ -116,8 +116,8 @@
         </question>
         <answer>
           <para>This is what we call a "lossy" conversion.</para>
-          <para>For Unicode files (UCS-2, UTF-8), use WinMergeU.exe.</para>
-          <para>For ANSI files, this is propably due to code-page problem. If 'Use codepage info' is selected from options, turn that off and see if it helps.</para>
+          <para>For Unicode files (UCS-2, UTF-8), use <filename>WinMergeU.exe</filename>.</para>
+          <para>For ANSI files, this is propably due to code-page problem. If "<guilabel>Use codepage info</guilabel>" is selected from <guimenuitem>Options</guimenuitem>, turn that off and see if it helps.</para>
         </answer>
       </qandaentry>
       <qandaentry>
@@ -135,10 +135,10 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>I want that WinMerge is closed with single ESC press after I'm done?</para>
+          <para>I want that WinMerge is closed with single <keycap>ESC</keycap> press after I'm done?</para>
         </question>
         <answer>
-          <para>Use -e commandline switch.</para>
+          <para>Use <option>-e</option> commandline switch.</para>
         </answer>
       </qandaentry>
       <qandaentry>
@@ -146,7 +146,7 @@
           <para>How can I avoid temporary paths filling Open-dialog history lists?</para>
         </question>
         <answer>
-          <para>Tell program to invoke WinMerge with the /ub option, which tells WinMerge to not add the files to the MRU.</para>
+          <para>Tell program to invoke WinMerge with the <option>/ub</option> option, which tells WinMerge to not add the files to the MRU.</para>
         </answer>
       </qandaentry>
       <qandaentry>
@@ -157,10 +157,10 @@
           <para>Create a batch file where you add one of these lines (but not both):</para>
           <itemizedlist>
             <listitem>
-              <screen>CALL "&lt;winmerge path&gt;\WinMerge" /ub %1 %2</screen>
+              <screen>CALL "<replaceable>&lt;winmerge path&gt;\WinMerge</replaceable>" /ub %1 %2</screen>
             </listitem>
             <listitem>
-              <screen>start "WinMerge" "&lt;winmerge path&gt;" /ub %1 %2</screen>
+              <screen>start "WinMerge" "<replaceable>&lt;winmerge path&gt;</replaceable>" /ub %1 %2</screen>
             </listitem>
           </itemizedlist>
           <para>And then call this batch file from program.</para>
@@ -173,10 +173,10 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>How can I open 'Perry-style' patch files WinMerge developers use when submitting pathes?</para>
+          <para>How can I open "Perry-style" patch files WinMerge developers use when submitting pathes?</para>
         </question>
         <answer>
-          <para>'Perry-style' patches are zip-files containing original and changed files in different directories. WinMerge has internal support (surprise?) for handling these files. Just select zip file in guestion to left side and right side and WinMerge opens zip files contents to directory compare comparing original and altered files.</para>
+          <para>"Perry-style" patches are zip-files containing original and changed files in different directories. WinMerge has internal support (surprise?) for handling these files. Just select zip file in guestion to left side and right side and WinMerge opens zip files contents to directory compare comparing original and altered files.</para>
         </answer>
       </qandaentry>
     </qandaset>

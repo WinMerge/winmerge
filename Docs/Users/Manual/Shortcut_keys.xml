@@ -12,47 +12,47 @@
       </thead>
       <tbody>
         <row>
-          <entry>Enter</entry>
+          <entry><keycap>Enter</keycap></entry>
           <entry>Open selected item (if folder, open it)</entry>
         </row>
         <row>
-          <entry>Backspace</entry>
+          <entry><keycap>Backspace</keycap></entry>
           <entry>Open parent folder if possible (only available when subfolders are not included in compare)</entry>
         </row>
         <row>
-          <entry>F5</entry>
+          <entry><keycap>F5</keycap></entry>
           <entry>Rescan directories</entry>
         </row>
         <row>
-          <entry>Alt + Home</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>Home</keycap></keycombo></entry>
           <entry>Go to first different file/directoriy</entry>
         </row>
         <row>
-          <entry>Alt + End</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>End</keycap></keycombo></entry>
           <entry>Go to last different file/directoriy</entry>
         </row>
         <row>
-          <entry>Alt + Enter</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>Enter</keycap></keycombo></entry>
           <entry>Go to currently selected item (if scrolled off-screen)</entry>
         </row>
         <row>
-          <entry>Alt + Up Arrow</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>Up Arrow</keycap></keycombo></entry>
           <entry>Go to previous different file/directory</entry>
         </row>
         <row>
-          <entry>Alt + Down Arrow</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>Down Arrow</keycap></keycombo></entry>
           <entry>Go to next different file/directory</entry>
         </row>
         <row>
-          <entry>Alt + Left Arrow</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>Left Arrow</keycap></keycombo></entry>
           <entry>Copy selected items from right to left</entry>
         </row>
         <row>
-          <entry>Alt + Right Arrow</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>Right Arrow</keycap></keycombo></entry>
           <entry>Copy selected items from left to right</entry>
         </row>
         <row>
-          <entry>Ctrl + C</entry>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>C</keycap></keycombo></entry>
           <entry>Copy selected items to clipboard (format simple report)</entry>
         </row>
       </tbody>
@@ -69,43 +69,43 @@
       </thead>
       <tbody>
         <row>
-          <entry>Esc</entry>
+          <entry><keycap>Esc</keycap></entry>
           <entry>Close window (if enabled in options)</entry>
         </row>
         <row>
-          <entry>F5</entry>
+          <entry><keycap>F5</keycap></entry>
           <entry>Refresh</entry>
         </row>
         <row>
-          <entry>F6</entry>
+          <entry><keycap>F6</keycap></entry>
           <entry>Change pane (active file)</entry>
         </row>
         <row>
-          <entry>F4</entry>
+          <entry><keycap>F4</keycap></entry>
           <entry>Show line difference</entry>
         </row>
         <row>
-          <entry>Ctrl + G</entry>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>G</keycap></keycombo></entry>
           <entry>Go to difference or line</entry>
         </row>
         <row>
-          <entry>Ctrl + F</entry>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>F</keycap></keycombo></entry>
           <entry>Find text</entry>
         </row>
         <row>
-          <entry>F3</entry>
+          <entry><keycap>F3</keycap></entry>
           <entry>Find again</entry>
         </row>
         <row>
-          <entry>Ctrl + H</entry>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>H</keycap></keycombo></entry>
           <entry>Replace text with another text</entry>
         </row>
         <row>
-          <entry>Ctrl + Z</entry>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>Z</keycap></keycombo></entry>
           <entry>Undo last action</entry>
         </row>
         <row>
-          <entry>Ctrl + Y</entry>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>Y</keycap></keycombo></entry>
           <entry>Redo previously undone action</entry>
         </row>
       </tbody>
@@ -122,39 +122,39 @@
       </thead>
       <tbody>
         <row>
-          <entry>Alt + Home</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>Home</keycap></keycombo></entry>
           <entry>Go to first difference</entry>
         </row>
         <row>
-          <entry>Alt + End</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>End</keycap></keycombo></entry>
           <entry>Go to last difference</entry>
         </row>
         <row>
-          <entry>Alt + Enter</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>Enter</keycap></keycombo></entry>
           <entry>Go to current difference or select difference</entry>
         </row>
         <row>
-          <entry>Alt + Up Arrow</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>Up Arrow</keycap></keycombo></entry>
           <entry>Go to previous difference</entry>
         </row>
         <row>
-          <entry>Alt + Down Arrow</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>Down Arrow</keycap></keycombo></entry>
           <entry>Go to next difference</entry>
         </row>
         <row>
-          <entry>Alt + Left Arrow</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>Left Arrow</keycap></keycombo></entry>
           <entry>Copy difference from right side to left side</entry>
         </row>
         <row>
-          <entry>Alt + Right Arrow</entry>
+          <entry><keycombo><keycap>Alt</keycap><keycap>Right Arrow</keycap></keycombo></entry>
           <entry>Copy difference from left side to right side</entry>
         </row>
         <row>
-          <entry>Ctrl + Alt + Left Arrow</entry>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>Left Arrow</keycap></keycombo></entry>
           <entry>Copy difference from right side to left side and select next difference</entry>
         </row>
         <row>
-          <entry>Ctrl + Alt + Right Arrow</entry>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>Right Arrow</keycap></keycombo></entry>
           <entry>Copy difference from left side to right side and select next difference</entry>
         </row>
       </tbody>
@@ -171,27 +171,27 @@
       </thead>
       <tbody>
         <row>
-          <entry>Up Arrow</entry>
+          <entry><keycap>Up Arrow</keycap></entry>
           <entry>Go to previous difference</entry>
         </row>
         <row>
-          <entry>Down Arrow</entry>
+          <entry><keycap>Down Arrow</keycap></entry>
           <entry>Go to next difference</entry>
         </row>
         <row>
-          <entry>Left Arrow</entry>
+          <entry><keycap>Left Arrow</keycap></entry>
           <entry>Copy difference from right side to left side</entry>
         </row>
         <row>
-          <entry>Right Arrow</entry>
+          <entry><keycap>Right Arrow</keycap></entry>
           <entry>Copy difference from left side to right side</entry>
         </row>
         <row>
-          <entry>Ctrl + Alt + Left Arrow</entry>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>Left Arrow</keycap></keycombo></entry>
           <entry>Copy difference from right side to left side and select next difference</entry>
         </row>
         <row>
-          <entry>Ctrl + Alt + Right Arrow</entry>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>Right Arrow</keycap></keycombo></entry>
           <entry>Copy difference from left side to right side and select next difference</entry>
         </row>
       </tbody>
