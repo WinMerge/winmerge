@@ -2,6 +2,8 @@
  PATCH: [ 1033678 ] Better description for 'Reset messageboxes'
   Src: Merge.rc
   Src/Languages: *.rc
+ Open WinMerge manual from http://winmerge.org/2.2/manual/index.html
+  Src: MainFrm.cpp
 
 2004-09-23 Kimmo
  PATCH: [ 1032841 ] Add 'DiffEngine' filegroup to project file

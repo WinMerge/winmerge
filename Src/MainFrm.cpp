@@ -149,6 +149,9 @@ static UINT indicators[] =
 	ID_INDICATOR_SCRL,
 };
 
+static const TCHAR DocsPath[] = _T("\\Docs\\index.html");
+static const TCHAR DocsURL[] = _T("http://winmerge.org/2.2/manual/index.html");
+
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame construction/destruction
 
@@ -1693,14 +1696,13 @@ void CMainFrame::UpdateResources()
 
 void CMainFrame::OnHelpContents() 
 {
-	CString spath = GetModulePath(0) + _T("\\Docs\\index.html");
-	CString url = _T("http://winmerge.org/docs20/index.html");
+	CString spath = GetModulePath(0) + DocsPath;
 
 	CFileStatus status;
 	if (CFile::GetStatus(spath, status))
 		ShellExecute(NULL, _T("open"), spath, NULL, NULL, SW_SHOWNORMAL);
 	else
-		ShellExecute(NULL, _T("open"), url, NULL, NULL, SW_SHOWNORMAL);
+		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
 
 }
 
