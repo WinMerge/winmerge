@@ -54,6 +54,9 @@ void CLocationView::SetConnectMovedBlocks(int displayMovedBlocks)
 
 	mf->m_options.SaveOption(OPT_CONNECT_MOVED_BLOCKS, displayMovedBlocks);
 	m_displayMovedBlocks = displayMovedBlocks;
+	if (this->GetSafeHwnd() != NULL)
+		if (IsWindowVisible())
+			Invalidate();
 }
 
 /////////////////////////////////////////////////////////////////////////////

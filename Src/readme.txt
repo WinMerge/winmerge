@@ -1,4 +1,6 @@
 2004-06-11 Laoran
+ PATCH: [ 970991 ] Force redraw after changing moved block option
+  Src: LocationView.cpp
  PATCH: [ 970221 ] Keep overlay mode after Rescan
   Src/editlib: ccrystaltextview.cpp
 
