@@ -161,7 +161,7 @@ void CMergeDiffDetailView::OnInitialUpdate()
 	SetFont(dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff);
 
 	lineBegin = 0;
-	diffLength = 1;
+	diffLength = 0;
 	displayLength = NROWS_INIT;
 }
 
@@ -222,7 +222,7 @@ void CMergeDiffDetailView::OnDisplayDiff(int nDiff /*=0*/)
 	if (nDiff < 0 || nDiff >= pd->m_nDiffs)
 	{
 		newlineBegin = 0;
-		newdiffLength = 1;
+		newdiffLength = 0;
 	}
 	else
 	{
@@ -255,15 +255,32 @@ void CMergeDiffDetailView::OnDisplayDiff(int nDiff /*=0*/)
 
 }
 
-
+/**
+ * @brief Adjust the point to remain in the displayed diff
+ *
+ * @return Tells if the point has been changed
+ */
 BOOL CMergeDiffDetailView::EnsureInDiff(CPoint & pt)
 {
+	// first get the degenerate case out of the way
+	// no diff ?
+	if (diffLength == 0)
+	{
+		if (pt.y == lineBegin && pt.x == 0)
+			return FALSE;
+		pt.y = lineBegin;
+		pt.x = 0;
+		return TRUE;
+	}
+
+	// not above diff
 	if (pt.y < lineBegin)
 	{
 		pt.y = lineBegin;
 		pt.x = 0;
 		return TRUE;
 	}
+	// not below diff
 	if (pt.y > lineBegin + diffLength - 1)
 	{
 		pt.y = lineBegin + diffLength - 1;
@@ -340,7 +357,7 @@ void CMergeDiffDetailView::UpdateSiblingScrollPos (BOOL bHorz)
 			// only modification from code in MergeEditView.cpp
 			// Where are we now, are we still in a diff ? So set to no diff
 			nNewTopLine = lineBegin = 0;
-			diffLength = 1;
+			diffLength = 0;
 
 			ScrollToLine(nNewTopLine);
 		}
