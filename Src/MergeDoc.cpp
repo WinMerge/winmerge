@@ -1580,13 +1580,21 @@ void CMergeDoc::OnFileSaveAsRight()
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
 	CString sIdx,sCnt,s;
-	if (GetCurrentDiff() < 0 &&  m_nDiffs <= 0)
-		s = _T("");
+	
+	// Files are identical - show text "Identical"
+	if (m_nDiffs <= 0)
+		VERIFY(s.LoadString(IDS_IDENTICAL));
+	
+	// There are differences, but no selected diff
+	// - show amount of diffs
 	else if (GetCurrentDiff() < 0)
 	{
 		sCnt.Format(_T("%ld"), m_nDiffs);
 		AfxFormatString1(s, IDS_NO_DIFF_SEL_FMT, sCnt); 
 	}
+	
+	// There are differences and diff selected
+	// - show diff number and amount of diffs
 	else
 	{
 		sIdx.Format(_T("%ld"), GetCurrentDiff()+1);

@@ -1,3 +1,6 @@
+2003-10-05 Kimmo
+ Show text "Identical" on diffnumber panel when files are identical
+
 2003-10-05 Laoran
  BUG: [ 817766 ] Dir compare speed drop after 2.0
   WinMerge: DiffContext.cpp
