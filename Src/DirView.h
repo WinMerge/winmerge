@@ -49,6 +49,9 @@ class PackingInfo;
 
 namespace varprop { struct VariantValue; }
 
+/** Default column width in directory compare */
+const UINT DefColumnWidth = 150;
+
 /** View displaying results of a diff, one row per file */
 class CDirView : public CListViewEx
 {

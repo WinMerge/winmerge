@@ -1664,7 +1664,7 @@ void CDirView::SetColumnWidths()
 		if (phy >= 0)
 		{
 			CString sWidthKey = GetColRegValueNameBase(i) + _T("_Width");
-			int w = max(10, theApp.GetProfileInt(_T("DirView"), sWidthKey, 150));
+			int w = max(10, theApp.GetProfileInt(_T("DirView"), sWidthKey, DefColumnWidth));
 			GetListCtrl().SetColumnWidth(m_colorder[i], w);
 		}
 	}
@@ -2116,3 +2116,20 @@ void CDirView::OnUpdatePluginPredifferMode(CCmdUI* pCmdUI)
 	// and they may not all have the same setting
 	// so I'm not trying this right now
 }
+
+/**
+ * @brief Resets column widths to defaults.
+ */
+void CDirView::ResetColumnWidths()
+{
+	for (int i=0; i < m_numcols; i++)
+	{
+		int phy = ColLogToPhys(i);
+		if (phy >= 0)
+		{
+			CString sWidthKey = GetColRegValueNameBase(i) + _T("_Width");
+			theApp.WriteProfileInt(_T("DirView"), sWidthKey, DefColumnWidth);
+		}
+	}
+}
+

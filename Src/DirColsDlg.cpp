@@ -27,6 +27,7 @@ CDirColsDlg::CDirColsDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CDirColsDlg::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CDirColsDlg)
+	m_bReset = FALSE;
 	//}}AFX_DATA_INIT
 }
 
@@ -248,6 +249,7 @@ void CDirColsDlg::OnOK()
  */
 void CDirColsDlg::OnDefaults()
 {
+	m_bReset = TRUE;
 	m_list_show.ResetContent();
 	m_list_hide.ResetContent();
 	LoadDefLists();

@@ -435,6 +435,9 @@ ToDoDeleteThisValidateColumnOrdering();
 	if (dlg.DoModal() != IDOK)
 		return;
 
+	if (dlg.m_bReset)
+		ResetColumnWidths();
+
 	// Reset our data to reflect the new data from the dialog
 	const CDirColsDlg::ColumnArray & cols = dlg.GetColumns();
 	ClearColumnOrders();

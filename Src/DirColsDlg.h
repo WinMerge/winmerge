@@ -47,6 +47,7 @@ public:
 	enum { IDD = IDD_DIRCOLS };
 	CListBox	m_list_show;
 	CListBox	m_list_hide;
+	BOOL		m_bReset;
 	//}}AFX_DATA
 
 
