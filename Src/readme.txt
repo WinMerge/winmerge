@@ -1,3 +1,8 @@
+2004-08-25 Kimmo
+ PATCH: [ 1008755 ] avoid flickering when diff view opens
+  Don't update desktop icon (from Takashi Sawanaka)
+  Src: ChildFrm.cpp
+
 2004-08-23 Kimmo
  PATCH: [ 1013715 ] Catalan translation update
   Submitted by Jordi Vilar

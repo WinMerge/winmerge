@@ -333,6 +333,46 @@ BOOL CChildFrame::EnsureValidDockState(CDockState& state)
 	return TRUE;
 }
 
+static LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch (uMsg) {
+	case WM_NCPAINT:
+	case WM_PAINT:
+	case WM_SIZE:
+		return 0;
+	case WM_NCACTIVATE:
+		return 1;
+	default:
+		{
+		WNDPROC pfnOldWndProc = (WNDPROC)GetProp(hwnd, _T("OldWndProc"));
+		return CallWindowProc(pfnOldWndProc, hwnd, uMsg, wParam, lParam);
+		}
+	}
+}
+
+/**
+ * @brief Alternative LockWindowUpdate(hWnd) API. See the comment near the code that calls this function.
+ */
+static BOOL MyLockWindowUpdate(HWND hwnd)
+{
+	WNDPROC pfnOldWndProc;
+
+	pfnOldWndProc = (WNDPROC)SetWindowLong(hwnd, GWL_WNDPROC, (LONG)WndProc);
+	SetProp(hwnd, _T("OldWndProc"), (HANDLE)pfnOldWndProc);
+	return TRUE;
+}
+
+/**
+ * @brief Alternative LockWindowUpdate(NULL) API. See the comment near the code that calls this function.
+ */
+static BOOL MyUnlockWindowUpdate(HWND hwnd)
+{
+	WNDPROC pfnOldWndProc = (WNDPROC)RemoveProp(hwnd, _T("OldWndProc"));
+	if (pfnOldWndProc)
+		SetWindowLong(hwnd, GWL_WNDPROC, (LONG)pfnOldWndProc);
+	return TRUE;
+}
+
 void CChildFrame::ActivateFrame(int nCmdShow) 
 {
 	BOOL bMaximized = FALSE;
@@ -369,8 +409,21 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 
 	if (bMaximized)
 	{
+		// If ActivateFrame() is called without tricks, Resizing panes in MergeView window could be visible.
+		// Here, two tricks are used.
+		// [First trick]
+		// To complete resizing panes before displaying MergeView window, 
+		// it needs to send WM_SIZE message with SIZE_MAXIMIZED to MergeView window before calling ActivateFrame().
+		// [Second trick]
+		// But it causes side effect that DirView window becomes restored window from maximized window
+		// and the process could be visible.
+		// To avoid it, it needs to block the redrawing DirView window.
+		// I had tried to use LockWindowUpdate for this purpose. However, it had caused flickering desktop icons.
+		// So instead of using LockWindowUpdate(), 
+		// I wrote My[Lock/Unlock]WindowUpdate() function that uses subclassing window.
+		// 
 		if (oldActiveFrame)
-			oldActiveFrame->LockWindowUpdate();
+			MyLockWindowUpdate(oldActiveFrame->m_hWnd);
 		
 		RECT rc;
 		GetClientRect(&rc);
@@ -379,7 +432,7 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 		CMDIChildWnd::ActivateFrame(nCmdShow);
 
 		if (oldActiveFrame)
-			oldActiveFrame->UnlockWindowUpdate();
+			MyUnlockWindowUpdate(oldActiveFrame->m_hWnd);
 	}
 	else
 	{
