@@ -179,7 +179,11 @@ void CVersionInfo::QueryValue(LPCTSTR szId, CString& s)
 		&uVersionLen);
 	
 	if(bRetCode)
+	{
 		s = lpVersion;
+		s.TrimLeft();
+		s.TrimRight();
+	}
 	else
 		s = _T("");
 }
