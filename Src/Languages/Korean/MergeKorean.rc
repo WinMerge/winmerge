@@ -483,8 +483,10 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "바꾸기"
 FONT 8, "MS Shell Dlg"
 BEGIN
+    LTEXT           "찾을 내용(&N):",IDC_STATIC,4,9,48,8
     COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "바꿀 내용(&P):",IDC_STATIC,4,26,48,8
     COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "단어 단위로(&W)",IDC_EDIT_WHOLE_WORD,"Button",
@@ -493,6 +495,8 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,60,76,12
     CONTROL         "정규 표현식(&E)",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,74,77,12
+    CONTROL         "&Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,88,84,12
     CONTROL         "현재 파일(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,102,57,59,10
     CONTROL         "모든 파일(&O)",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
@@ -501,11 +505,7 @@ BEGIN
     PUSHBUTTON      "바꾸기(&R)",IDC_EDIT_REPLACE,174,21,57,14
     PUSHBUTTON      "모두 바꾸기(&A)",IDC_EDIT_REPLACE_ALL,174,38,57,14
     PUSHBUTTON      "취소",IDCANCEL,174,55,57,14
-    LTEXT           "찾을 내용(&N):",IDC_STATIC,4,9,48,8
-    LTEXT           "바꿀 내용(&P):",IDC_STATIC,4,26,48,8
     GROUPBOX        "적용 범위",IDC_STATIC,97,46,71,39,WS_GROUP
-    CONTROL         "Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,88,84,12
 END
 
 IDD_CLEARCASE DIALOGEX 0, 0, 279, 111

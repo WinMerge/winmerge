@@ -533,8 +533,10 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Замена"
 FONT 8, "MS Shell Dlg"
 BEGIN
+    LTEXT           "&Поиск:",IDC_STATIC,4,9,48,8
     COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "За&мена: ",IDC_STATIC,4,26,48,8
     COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Искать слова &целиком",IDC_EDIT_WHOLE_WORD,"Button",
@@ -543,6 +545,9 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,60,89,12
     CONTROL         "Ре&гулярные выражения",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,74,93,12
+    CONTROL         "Не останавливаться при достижении конца файла",
+                    IDC_EDIT_SCOPE_DONT_WRAP,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,5,88,186,12
     CONTROL         "В вы&деленном",IDC_EDIT_SCOPE_SELECTION,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,106,57,64,10
     CONTROL         "Во всем &файле",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
@@ -551,12 +556,7 @@ BEGIN
     PUSHBUTTON      "&Заменить",IDC_EDIT_REPLACE,177,21,57,14
     PUSHBUTTON      "З&аменить все",IDC_EDIT_REPLACE_ALL,177,38,57,14
     PUSHBUTTON      "Отмена",IDCANCEL,177,55,57,14
-    LTEXT           "&Поиск:",IDC_STATIC,4,9,48,8
-    LTEXT           "За&мена: ",IDC_STATIC,4,26,48,8
     GROUPBOX        "Заменить",IDC_STATIC,102,46,71,39,WS_GROUP
-    CONTROL         "Не останавливаться при достижении конца файла",
-                    IDC_EDIT_SCOPE_DONT_WRAP,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,5,88,186,12
 END
 
 IDD_CLEARCASE DIALOGEX 0, 0, 279, 111

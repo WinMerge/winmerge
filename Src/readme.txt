@@ -1,3 +1,9 @@
+2004-05-30 Kimmo
+ PATCH: [ 963019 ] keyboard shortcuts in replace dialog
+  Submitted by Takashi Sawanaka
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2004-05-30 Laoran
  BUG: [ 909779 ] Uninitialised variable in CGhostTextBuffer::DeleteText() ; fix the fix !
   Src: GhostTextBuffer.cpp

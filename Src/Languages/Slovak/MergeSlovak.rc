@@ -520,8 +520,10 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Nahra?"
 FONT 8, "MS Shell Dlg"
 BEGIN
+    LTEXT           "&Hæadaj:",IDC_STATIC,4,9,48,8
     COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Nahradiù:",IDC_STATIC,4,26,48,8
     COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Iba celÈ slov·",IDC_EDIT_WHOLE_WORD,"Button",
@@ -530,6 +532,8 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,60,88,12
     CONTROL         "Regul·rny v˝raz",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,74,86,12
+    CONTROL         "&Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,88,84,12
     CONTROL         "V˝bere",IDC_EDIT_SCOPE_SELECTION,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,102,57,59,10
     CONTROL         "Celom s˙bore",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
@@ -538,11 +542,7 @@ BEGIN
     PUSHBUTTON      "NahraÔ",IDC_EDIT_REPLACE,174,21,52,14
     PUSHBUTTON      "NahraÔ vöetko",IDC_EDIT_REPLACE_ALL,174,38,52,14
     PUSHBUTTON      "Storno",IDCANCEL,174,55,52,14
-    LTEXT           "&Hæadaj:",IDC_STATIC,4,9,48,8
-    LTEXT           "Nahradiù:",IDC_STATIC,4,26,48,8
     GROUPBOX        "Nahradiù vo",IDC_STATIC,97,46,71,39,WS_GROUP
-    CONTROL         "Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,88,84,12
 END
 
 IDD_CLEARCASE DIALOGEX 0, 0, 279, 111
