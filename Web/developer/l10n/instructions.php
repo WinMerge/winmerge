@@ -26,12 +26,12 @@
 
 <p>You only have to translate the strings between the quotes in <code>Merge.rc</code>. Here is an example. The English version looks like this:</p>
 
-<pre>
+<pre class="code">
     CONTROL         "Insert &amp;Spaces",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,77,72,59,10
 </pre>
 <p>And here is the translation into Danish:</p>
-<pre>
+<pre class="code">
     CONTROL         "Indsæt &amp;mellemrum",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,77,72,59,10
 </pre>
@@ -45,11 +45,11 @@
 </ul>
 
 <p>Please find this line in <code>Merge.rc</code></p>
-<pre>
+<pre class="code">
             VALUE "FileDescription", "WinMerge Application\0"
 </pre>
 <p>Just before that line, we recommend you put a line like this with your own name in it.</p>
-<pre>
+<pre class="code">
             VALUE "Comments", "Translated by Christian List\0"
 </pre>
 <p>This ensures that you get credit for the translation. We will of course also add your name to the table below.</p>

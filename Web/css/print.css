@@ -27,6 +27,13 @@ p.important {
 	font-weight: bold;
 }
 
+pre.code {
+	margin: 0;
+	padding: 5px;
+	background-color: #FFFFFF;
+	border: 1px solid black;
+}
+
 .noprint {
 	display: none;
 }

@@ -1,3 +1,8 @@
+2004-11-20 Tim
+ PATCH: [ 1070058 ] Web: Add border to pre
+  Web\css: all.css print.css
+  Web\developer\l10n: instructions.php
+
 2004-11-19 Tim
  PATCH: [ 1068999 ] Web: Revamp 'Downloads' menu
   Web: index.php page.inc

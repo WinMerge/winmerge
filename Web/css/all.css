@@ -43,3 +43,10 @@ h1, h2, h3, h4 {
 p.important {
 	font-weight: bold;
 }
+
+pre.code {
+	margin: 0 25px 0 25px;
+	padding: 5px;
+	background-color: #EEEEEE;
+	border: 1px solid black;
+}
