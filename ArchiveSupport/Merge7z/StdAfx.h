@@ -22,6 +22,8 @@ typedef INT_PTR LONG_PTR;
 #ifndef ListView_SetCheckState
 #define	ListView_SetCheckState(hLv, iItem, bCheck) ListView_SetItemState(hLv, iItem, bCheck ? INDEXTOSTATEIMAGEMASK(2) : INDEXTOSTATEIMAGEMASK(1), LVIS_STATEIMAGEMASK)
 #endif
+
+typedef unsigned short UINT16, *PUINT16;
 //</jtuc>
 
 #define LANG        

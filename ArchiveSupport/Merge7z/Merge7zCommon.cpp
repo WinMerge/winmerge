@@ -30,17 +30,10 @@ DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
 2003/12/16	Jochen Tucht		GuessFormat() now checks for directory
 2004/03/18	Jochen Tucht		Experimental DllGetVersion() based on rcsid.
-
+2004/10/10	Jochen Tucht		DllGetVersion() based on new REVISION.TXT
 */
 
 #include "stdafx.h"
-
-// include rcsid from module definition file (contains change log)
-#include "Merge7z.def"
-
-#define INITGUID
-#include <initguid.h>
-
 #include "Merge7zCommon.h"
 
 HINSTANCE g_hInstance;
@@ -295,17 +288,23 @@ EXTERN_C
 
 EXTERN_C HRESULT CALLBACK DllGetVersion(DLLVERSIONINFO *pdvi)
 {
-	static const DLLVERSIONINFO dvi = { sizeof dvi, 0, 0, 0, DLLVER_PLATFORM_WINDOWS };
-	CopyMemory(pdvi, &dvi, pdvi->cbSize < dvi.cbSize ? pdvi->cbSize : dvi.cbSize);
-	if (pdvi->cbSize > dvi.cbSize)
-		pdvi->cbSize = dvi.cbSize;
-	if (LPCSTR minor = StrRChrA(rcsid, 0, '.'))
+	// Compute dwBuild from revision.txt
+	static const DWORD dwBuild = sizeof""
+#	define MAJOR_REVISION(N) "*"
+#	include "revision.txt"
+#	undef MAJOR_REVISION
+	;
+	// Compute dwVersion from revision.txt
+	static const DWORD dwVersion = sizeof""
+#	define MAJOR_REVISION(N) * 0 + (1UL << 16) + sizeof""
+#	include "revision.txt"
+#	undef MAJOR_REVISION
+	- 1;
+	static const DLLVERSIONINFO dvi =
 	{
-		pdvi->dwMinorVersion = StrToIntA(minor + 1);
-		if (LPCSTR major = StrRChrA(rcsid, minor, ' '))
-		{
-			pdvi->dwMajorVersion = StrToIntA(major + 1);
-		}
-	}
+		sizeof dvi,
+		HIWORD(dwVersion), LOWORD(dwVersion), dwBuild, DLLVER_PLATFORM_WINDOWS
+	};
+	CopyMemory(pdvi, &dvi, pdvi->cbSize < dvi.cbSize ? pdvi->cbSize : dvi.cbSize);
 	return S_OK;
 }

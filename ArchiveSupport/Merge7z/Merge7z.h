@@ -36,6 +36,7 @@ interface Merge7z
 					Name = 32,
 					FullPath = 64,
 					CheckIfPresent = 128,
+					Recurse = 256,
 					NeedFindFile = Attributes|CreationTime|LastAccessTime|LastWriteTime|Size|Name
 				};
 				UINT32 Item;

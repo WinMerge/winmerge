@@ -1,12 +1,13 @@
-/* File:	Merge7z311.cpp
- * Author:	Jochen Tucht 2003/12/09
+/* File:	Merge7z409.cpp
+ * Author:	Jochen Tucht 2003/10/17
  *			Copyright (C) Jochen Tucht
  *
  * Purpose:	Provide a handy C++ interface to access 7Zip services
  *
- * Remarks:	Based on 7z311 sources. May or may not compile/run with earlier or
- *			later versions. See Merge7z311.dsp for dependencies. Some less
- *			version-dependent parts of code reside in Merge7zCommon.cpp.
+ * Remarks:	Derived from Merge7z311.cpp. Adapted to 7z409b sources. May or may
+ *			not compile/run with earlier or later versions. See Merge7z409.dsp
+ *			for dependencies. Some less version-dependent parts of code reside
+ *			in Merge7zCommon.cpp.
  *
  *	*** SECURITY ALERT ***
  *	Be aware of 2. a) of the GNU General Public License. Please log your changes
@@ -45,11 +46,10 @@ DATE:		BY:					DESCRIPTION:
 
 #include "7zip/FileManager/OpenCallback.h"
 #include "7zip/FileManager/ExtractCallback.h"
-#include "7zip/FileManager/UpdateCallback100.h"
 #include "7zip/UI/Common/EnumDirItems.h"
 
-#include "7zip/UI/Agent/ArchiveExtractCallback.h"
-#include "7zip/UI/Agent/ArchiveUpdateCallback.h"
+#include "7zip/UI/Common/ArchiveExtractCallback.h"
+#include "7zip/UI/GUI/UpdateCallbackGUI.h"
 
 /**
  * @brief Extraction thread
@@ -113,8 +113,8 @@ HRESULT Format7zDLL::Interface::DeCompressArchive(HWND hwndParent, LPCTSTR path,
 		(archive = GetInArchive()) -> AddRef();
 		(file = new CInFileStream) -> AddRef();
 		(callback = new COpenArchiveCallback) -> AddRef();
-		callback->_passwordIsDefined = false;
-		callback->_parentWindow = hwndParent;
+		callback->PasswordIsDefined = false;
+		callback->ParentWindow = hwndParent;
 		/*CMyComBSTR password;
 		callback->CryptoGetTextPassword(&password);*/
 		if COMPLAIN(!file->Open(path))
@@ -164,14 +164,10 @@ HRESULT Format7zDLL::Interface::DeCompressArchive(HWND hwndParent, LPCTSTR path,
 
 		(extractCallbackSpec2 = new CExtractCallbackImp) -> AddRef();
 
-		extractCallbackSpec2->Init
-		(
-			NExtractionMode::NOverwrite::kWithoutPrompt,	// overwriteMode
-			false,											// passwordIsDefined
-			UString()										// password
-		);
+		extractCallbackSpec2->Init();
 
-		extractCallbackSpec2->_parentWindow = hwndParent;
+		extractCallbackSpec2->ParentWindow = hwndParent;
+		extractCallbackSpec2->OverwriteMode = NExtract::NOverwriteMode::kWithoutPrompt;
 
 		extractCallbackSpec2->ProgressDialog.MainWindow = 0;
 		(extractCallbackSpec = new CArchiveExtractCallback) -> AddRef();
@@ -180,9 +176,10 @@ HRESULT Format7zDLL::Interface::DeCompressArchive(HWND hwndParent, LPCTSTR path,
 		(
 			archive, 
 			extractCallbackSpec2,
+			false,											//stdOutMode
 			GetUnicodeString(folder),
-			NExtractionMode::NPath::kFullPathnames, 
-			NExtractionMode::NOverwrite::kWithoutPrompt,
+			NExtract::NPathMode::kFullPathnames, 
+			NExtract::NOverwriteMode::kWithoutPrompt,
 			UStringVector(),
 			ustrDefaultName, 
 			fileInfo.LastWriteTime,
@@ -224,16 +221,16 @@ class CThreadUpdateCompress : CThread
 protected:
 	DWORD Process()
 	{
-		updateCallback100->ProgressDialog.WaitCreating();
+		updateCallbackGUI->ProgressDialog.WaitCreating();
 		result = outArchive->UpdateItems(file, numItems, updateCallbackSpec);
-		updateCallback100->ProgressDialog.MyClose();
+		updateCallbackGUI->ProgressDialog.MyClose();
 		return 0;
 	}
 	static DWORD WINAPI Process(void *param)
 	{
 		return ((CThreadUpdateCompress *)param)->Process();
 	}
-	CUpdateCallback100Imp *updateCallback100;
+	CUpdateCallbackGUI *updateCallbackGUI;
 	IOutArchive *outArchive;
 	CArchiveUpdateCallback *updateCallbackSpec;
 	COutFileStream *file;
@@ -242,14 +239,14 @@ public:
 	UINT32 numItems;
 	CThreadUpdateCompress
 	(
-		CUpdateCallback100Imp *updateCallback100,
+		CUpdateCallbackGUI *updateCallbackGUI,
 		IOutArchive *outArchive,
 		CArchiveUpdateCallback *updateCallbackSpec,
 		UINT32 numItems,
 		COutFileStream *file,
 		const CSysString &title
 	):
-		updateCallback100(updateCallback100),
+		updateCallbackGUI(updateCallbackGUI),
 		outArchive(outArchive),
 		updateCallbackSpec(updateCallbackSpec),
 		numItems(numItems),
@@ -260,7 +257,7 @@ public:
 		{
 			Complain(_T("Failed to create extraction thread"));
 		}
-		updateCallback100->StartProgressDialog(GetUnicodeString(title));
+		updateCallbackGUI->StartProgressDialog(GetUnicodeString(title));
 	}
 };
 
@@ -303,7 +300,7 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 	COutFileStream *file = 0;
 	COpenArchiveCallback *callback = 0;
 	CArchiveUpdateCallback *updateCallbackSpec = 0;
-	CUpdateCallback100Imp *updateCallback100 = 0;
+	CUpdateCallbackGUI *updateCallbackGUI = 0;
 	HRESULT result = 0;
 	try
 	{
@@ -313,22 +310,16 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 		(outArchive = GetOutArchive()) -> AddRef();
 		(file = new COutFileStream) -> AddRef();
 		(callback = new COpenArchiveCallback) -> AddRef();
-		callback->_passwordIsDefined = false;
-		callback->_parentWindow = hwndParent;
+		callback->PasswordIsDefined = false;
+		callback->ParentWindow = hwndParent;
 		/*CMyComBSTR password;
 		callback->CryptoGetTextPassword(&password);*/
-		if COMPLAIN(!file->Open(path))
+		if COMPLAIN(!file->Create(path, true))
 		{
 			ComplainCantOpen(path);
 		}
 		(updateCallbackSpec = new CArchiveUpdateCallback) -> AddRef();
-		(updateCallback100 = new CUpdateCallback100Imp) -> AddRef();
-		updateCallback100->Init
-		(
-			hwndParent,
-			false,											// passwordIsDefined
-			UString()										// password
-		);
+		(updateCallbackGUI = new CUpdateCallbackGUI);// -> AddRef();
 
 		// First fill the items to compress
 		CObjectVector<CDirItem> dirItems;
@@ -423,12 +414,14 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 		CObjectVector<CArchiveItem> archiveItems;
 
 		// Now compress...
-		updateCallbackSpec->Init(UString()/*folderPrefix*/, &dirItems, &archiveItems, 
-			&operationChain, NULL, updateCallback100);
+		updateCallbackSpec->DirItems = &dirItems;
+		updateCallbackSpec->ArchiveItems = &archiveItems;
+		updateCallbackSpec->UpdatePairs = &operationChain;
+		updateCallbackSpec->Callback = updateCallbackGUI;
 
 		result = CThreadUpdateCompress
 		(
-			updateCallback100,
+			updateCallbackGUI,
 			outArchive,
 			updateCallbackSpec,
 			operationChain.Size(),
@@ -450,7 +443,7 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 	//	loose!
 	Release(static_cast<IArchiveUpdateCallback*>(updateCallbackSpec));
 	Release(outArchive);
-	Release(static_cast<IFolderArchiveUpdateCallback*>(updateCallback100));
+	delete updateCallbackGUI;
 	Release(static_cast<IOutStream*>(file));
 	Release(static_cast<IArchiveOpenCallback*>(callback));
 	return result;

@@ -1,0 +1,13 @@
+//	 DATE:		BY:				DESCRIPTION:
+//	 ==========	===============	================================================
+
+MAJOR_REVISION(1)
+"*"//2003/12/16	Jochen Tucht	GuessFormat() now checks for directory
+"*"//2004/03/15	Jochen Tucht	Fix Visual Studio 2003 build issue
+"*"//2004/04/13	Jochen Tucht	Experimental DllGetVersion() based on rcsid.
+
+MAJOR_REVISION(2)
+//2004/10/10	Jochen Tucht
+//-	DllGetVersion() no longer based on rcsid.
+//	Revision numbers will be generated from new file REVISION.TXT.
+"*"//2004/10/10	Jochen Tucht	Support 7z409 beta

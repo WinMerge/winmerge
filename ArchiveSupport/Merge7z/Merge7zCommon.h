@@ -1,7 +1,5 @@
 // includes from 7-Zip sources
 #include "7zip/Archive/IArchive.h"
-#include "7zip/UI/Agent/ArchiveExtractCallback.h"
-#include "7zip/UI/Agent/ArchiveUpdateCallback.h"
 #include "Common/StringConvert.h"
 #include "Windows/PropVariant.h"
 #include "Windows/PropVariantConversions.h"
