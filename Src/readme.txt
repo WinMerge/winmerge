@@ -3,6 +3,8 @@
   WinMerge: MainFrm.cpp MergeDoc.cpp Paths.h Paths.cpp
 
 2003-11-02 Laoran
+ Creation of directory Docs
+  WinMerge(moved to Docs): readme-developers.html readme-developers-MakePatchDirs.html
  BUG: [ 834490 ] Ignore blank lines disabled when ignore EOL
   WinMerge: UTIL.C
 
