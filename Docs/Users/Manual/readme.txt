@@ -1,6 +1,8 @@
 2004-09-26 Kimmo
  BUG: [ 1034759 ] 2.2 docs: Need a space in Versioncontrol
   Manual: Version_control.xml
+ BUG: [ 1034761 ] 2.2 docs: minor tweaks (from Perry)
+  Manual: Whatsnew_2_1.xml
 
 2004-09-25 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations

@@ -2,7 +2,7 @@
   <title>What's new in 2.2</title>
   <sect2>
     <title>Unicode support</title>
-    <para>WinMerge 2.2 is distributed with Ansi executable (WinMerge.exe) for Windows 95/98/ME and Unicode executable (WinMergeU.exe) for Windows NT /200/XP. Unicode executable supports UCS-2 and UTF-8. files and filenames.</para>
+    <para>WinMerge 2.2 is distributed with ANSI executable (WinMerge.exe) for Windows 95/98/ME and Unicode executable (WinMergeU.exe) for Windows NT /200/XP. Unicode executable supports UCS-2 and UTF-8 files and filenames.</para>
     <note>
       <para>It is unfortunate that two executable files are needed. But there is no currently way to get only one executable working. MS Unicode layer does not help WinMerge since WinMerge needs to be comparing files in different codepages.</para>
     </note>
