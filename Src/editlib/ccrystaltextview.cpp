@@ -1444,7 +1444,7 @@ GetColor (int nColorIndex)
 }
 
 DWORD CCrystalTextView::
-GetLineFlags (int nLineIndex)
+GetLineFlags (int nLineIndex) const
 {
   if (m_pTextBuffer == NULL)
     return 0;
@@ -2480,7 +2480,7 @@ void CCrystalTextView::GetLineBySubLine( int nSubLineIndex, int &nLine, int &nSu
 //END SW
 
 int CCrystalTextView::
-GetLineLength (int nLineIndex)
+GetLineLength (int nLineIndex) const
 {
   if (m_pTextBuffer == NULL)
     return 0;
@@ -2488,7 +2488,7 @@ GetLineLength (int nLineIndex)
 }
 
 LPCTSTR CCrystalTextView::
-GetLineChars (int nLineIndex)
+GetLineChars (int nLineIndex) const
 {
   if (m_pTextBuffer == NULL)
     return NULL;
@@ -2661,33 +2661,31 @@ UpdateSiblingScrollPos (BOOL bHorz)
       ASSERT (nCurrentCol >= 0 && nCurrentCol < pSplitterWnd->GetColumnCount ());
 
       if (bHorz)
-    {
+        {
           int nCols = pSplitterWnd->GetColumnCount ();
           for (int nCol = 0; nCol < nCols; nCol++)
-      {
+            {
               if (nCol != nCurrentCol)  //  We don't need to update ourselves
-        {
-          CCrystalTextView *pSiblingView = GetSiblingView (nCurrentRow, nCol);
-          if (pSiblingView != NULL)
-            pSiblingView->OnUpdateSibling (this, FALSE);
+                {
+                  CCrystalTextView *pSiblingView = GetSiblingView (nCurrentRow, nCol);
+                  if (pSiblingView != NULL)
+                    pSiblingView->OnUpdateSibling (this, FALSE);
+                }
+            }
         }
-      }
-    }
       else
-    {
+        {
           int nRows = pSplitterWnd->GetRowCount ();
           for (int nRow = 0; nRow < nRows; nRow++)
-      {
+            {
               if (nRow != nCurrentRow)  //  We don't need to update ourselves
-        {
-          CCrystalTextView *pSiblingView = GetSiblingView (nRow, nCurrentCol);
-          if (pSiblingView != NULL)
-            pSiblingView->OnUpdateSibling (this, FALSE);
+                {
+                  CCrystalTextView *pSiblingView = GetSiblingView (nRow, nCurrentCol);
+                  if (pSiblingView != NULL)
+                    pSiblingView->OnUpdateSibling (this, FALSE);
+                }
+            }
         }
-      }
-    }
-    
-
     }
 }
 
@@ -3621,7 +3619,7 @@ PreTranslateMessage (MSG * pMsg)
 }
 
 CPoint CCrystalTextView::
-GetCursorPos ()
+GetCursorPos () const
 {
   return m_ptCursorPos;
 }

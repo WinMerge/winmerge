@@ -666,7 +666,7 @@ SetCRLFMode (int nCRLFMode)
 }
 
 int CCrystalTextBuffer::
-GetLineCount ()
+GetLineCount () const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -676,7 +676,7 @@ GetLineCount ()
 
 // number of characters in line (excluding any trailing eol characters)
 int CCrystalTextBuffer::
-GetLineLength (int nLine)
+GetLineLength (int nLine) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -686,7 +686,7 @@ GetLineLength (int nLine)
 
 // number of characters in line (including any trailing eol characters)
 int CCrystalTextBuffer::
-GetFullLineLength (int nLine)
+GetFullLineLength (int nLine) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -696,7 +696,7 @@ GetFullLineLength (int nLine)
 
 // get pointer to any trailing eol characters (pointer to empty string if none)
 LPCTSTR CCrystalTextBuffer::
-GetLineEol (int nLine)
+GetLineEol (int nLine) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   if (m_aLines[nLine].m_nEolChars)
@@ -706,7 +706,7 @@ GetLineEol (int nLine)
 }
 
 LPTSTR CCrystalTextBuffer::
-GetLineChars (int nLine)
+GetLineChars (int nLine) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -715,7 +715,7 @@ GetLineChars (int nLine)
 }
 
 DWORD CCrystalTextBuffer::
-GetLineFlags (int nLine)
+GetLineFlags (int nLine) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -2113,7 +2113,6 @@ int CCrystalTextBuffer::ComputeRealLine(int nApparentLine)
   return m_RealityBlocks[blo].nStartReal;
 }
 
-
 // return apparent line for this underlying real line
 // if real line is out of bounds, return last valid apparent line + 1
 int CCrystalTextBuffer::ComputeApparentLine(int nRealLine)
@@ -2146,8 +2145,6 @@ int CCrystalTextBuffer::ComputeApparentLine(int nRealLine)
   ASSERT(0);
   return -1;
 }
-
-
 
 // return underlying real line and ghost adjustment as
 // nApparentLine = apparent(nRealLine) - nGhostAdjustment 
@@ -2198,8 +2195,6 @@ int CCrystalTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine, int
   decToReal = m_RealityBlocks[blo].nStartApparent - nApparentLine;
   return m_RealityBlocks[blo].nStartReal;
 }
-
-
 
 // return apparent line for this underlying real line, with adjustment
 // returns nApparent = apparent(nReal) - decToReal
@@ -2324,14 +2319,6 @@ inReality:
   goto inReality;
 }
 
-
-
-
-
-
-
-
-
 // we recompute EOL from the real line before nStartLine to nEndLine
 void  CCrystalTextBuffer::RecomputeEOL(CCrystalTextView * pSource, int nStartLine, int nEndLine)
 {
@@ -2384,8 +2371,8 @@ void  CCrystalTextBuffer::RecomputeEOL(CCrystalTextView * pSource, int nStartLin
       }
 }
 
-
-
+// Check all lines, and ASSERT if reality blocks differ from flags
+// This means that this only has effect in DEBUG build
 void CCrystalTextBuffer::checkFlagsFromReality(BOOL bFlag) {
   int bmax = m_RealityBlocks.GetUpperBound();
   int b;

@@ -1742,3 +1742,158 @@ BOOL CMergeDoc::CloseNow()
 	GetParentFrame()->CloseNow();
 	return TRUE;
 }
+
+// return true if characters match
+static bool casematch(BOOL case_sensitive, TCHAR ch1, TCHAR ch2)
+{
+	if (case_sensitive) 
+		return ch1==ch2;
+	else 
+		return toupper(ch1)==toupper(ch2);
+}
+
+// find first difference between str1 and str2
+// whitespace==1 means ignore changes
+// whitespace==2 means ignore all whitespace
+static int firstdiff(BOOL case_sensitive, int whitespace, const CString & str1, const CString & str2)
+{
+	int i1=0, i2=0;
+	while (1)
+	{
+		if (whitespace==2)
+		{
+			// we don't care at all about whitespace
+			// skip all whitespace on boths ides
+			while (i1<str1.GetLength() && isspace(str1[i1]))
+				++i1;
+			while (i2<str2.GetLength() && isspace(str2[i2]))
+				++i2;
+			if (i1==str1.GetLength())
+				return (i2==str2.GetLength()) ? -1 : i1;
+			if (i2==str2.GetLength())
+				return i1;
+		}
+		else if (whitespace==1)
+		{
+			// we don't care about whitespace changes
+			if (i1==str1.GetLength())
+				return -1;
+			if (i2==str2.GetLength())
+				return i1;
+			if (isspace(str1[i1]))
+			{
+				if (!isspace(str2[i2]))
+					return i1;
+				// skip whitespace run on both sides
+				while (i1<str1.GetLength() && isspace(str1[i1]))
+					++i1;
+				if (i1==str1.GetLength())
+					return -1;
+				while (i2<str2.GetLength() && isspace(str2[i2]))
+					++i2;
+				if (i2==str2.GetLength())
+					return i1;
+			}
+		}
+		else
+		{
+			// whitespace is like all other characters
+			if (i1==str1.GetLength())
+				return (i2==str2.GetLength()) ? -1 : i1;
+			if (i2==str2.GetLength())
+				return i1;
+		}
+		if (!casematch(case_sensitive, str1[i1], str2[i2]))
+			return i1;
+		++i1;
+		++i2;
+	}
+}
+
+// find last difference between str1 and str2
+// whitespace==1 means ignore changes
+// whitespace==2 means ignore all whitespace
+static int lastdiff(BOOL case_sensitive, int whitespace, const CString & str1, const CString & str2)
+{
+	int i1=str1.GetLength()-1, i2=str2.GetLength()-1;
+	while (1)
+	{
+		if (whitespace==2)
+		{
+			// we don't care at all about whitespace
+			// skip all whitespace on boths ides
+			while (i1>=0 && isspace(str1[i1]))
+				--i1;
+			while (i2>=0 && isspace(str2[i2]))
+				--i2;
+			if (i1<0)
+				return (i2<0) ? -1 : 0;
+			if (i2<0)
+				return i1;
+		}
+		else if (whitespace==1)
+		{
+			// we don't care about whitespace changes
+			if (i1<0)
+				return -1;
+			if (i2<0)
+				return i1;
+			if (isspace(str1[i1]))
+			{
+				if (!isspace(str2[i2]))
+					return i1;
+				// skip whitespace run on both sides
+				while (i1>=0 && isspace(str1[i1]))
+					--i1;
+				if (i1<0)
+					return -1;
+				while (i2>=0 && isspace(str2[i2]))
+					--i2;
+				if (i2<0)
+					return i1;
+			}
+		}
+		else
+		{
+			// whitespace is like all other characters
+			if (i1<0)
+				return (i2<0) ? -1 : 0;
+			if (i2<0)
+				return i1;
+		}
+		if (!casematch(case_sensitive, str1[i1], str2[i2]))
+			return i1;
+		--i1;
+		--i2;
+	}
+}
+
+// Highlight difference in current line
+void CMergeDoc::Showlinediff(CMergeEditView * pView)
+{
+	CMergeEditView * pOther = (pView == m_pLeftView ? m_pRightView : m_pLeftView);
+
+	int line = pView->GetCursorPos().y;
+	int width = pView->GetLineLength(line);
+
+	CString str1 = pView->GetLineChars(line);
+	CString str2 = pOther->GetLineChars(line);
+
+	int begin = firstdiff(!mf->m_bIgnoreCase, mf->m_nIgnoreWhitespace, str1, str2);
+
+	if (begin<0)
+	{
+		MessageBox(0, _T("No difference"), _T("Line difference"), MB_OK);
+		return;
+	}
+	if (begin>=width)
+		begin = width;
+
+	int end = lastdiff(!mf->m_bIgnoreCase, mf->m_nIgnoreWhitespace, str1, str2)+1;
+	if (end>=width)
+		end = width;
+
+	CPoint ptBegin(begin,line), ptEnd(end,line);
+	pView->SelectArea(ptBegin, ptEnd);
+	pView->SetCursorPos(ptBegin);
+}

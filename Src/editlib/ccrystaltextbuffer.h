@@ -314,12 +314,12 @@ public :
     void RemoveView (CCrystalTextView * pView);
 
     //  Text access functions
-    int GetLineCount ();
-    int GetLineLength (int nLine);
-    int GetFullLineLength (int nLine); // including EOLs
-    LPCTSTR GetLineEol (int nLine);
-    LPTSTR GetLineChars (int nLine);
-    DWORD GetLineFlags (int nLine);
+    int GetLineCount () const;
+    int GetLineLength (int nLine) const;
+    int GetFullLineLength (int nLine) const; // including EOLs
+    LPCTSTR GetLineEol (int nLine) const;
+    LPTSTR GetLineChars (int nLine) const;
+    DWORD GetLineFlags (int nLine) const;
     int GetLineWithFlag (DWORD dwFlag);
     void SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet, BOOL bRemoveFromPreviousLine = TRUE, BOOL bUpdate=TRUE);
     void GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & text, LPCTSTR pszCRLF = NULL);

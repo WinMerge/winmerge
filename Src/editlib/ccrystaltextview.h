@@ -384,10 +384,12 @@ protected :
 	virtual void GetLineBySubLine( int nSubLineIndex, int &nLine, int &nSubLine );
 	//END SW
 
-    virtual int GetLineLength (int nLineIndex);
+public:
+    virtual int GetLineLength (int nLineIndex) const;
     virtual int GetLineActualLength (int nLineIndex);
-    virtual LPCTSTR GetLineChars (int nLineIndex);
-    virtual DWORD GetLineFlags (int nLineIndex);
+    virtual LPCTSTR GetLineChars (int nLineIndex) const;
+protected:
+    virtual DWORD GetLineFlags (int nLineIndex) const;
     virtual void GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text);
 
     //  Clipboard overridable
@@ -740,7 +742,7 @@ public :
     virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex = -1);
 
     //  Attributes
-    CPoint GetCursorPos ();
+    CPoint GetCursorPos () const;
     void SetCursorPos (const CPoint & ptCursorPos);
     void ShowCursor ();
     void HideCursor ();

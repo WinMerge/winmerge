@@ -73,6 +73,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_WM_TIMER()
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
+	ON_COMMAND(ID_SHOWLINEDIFF, OnShowlinediff)
+	ON_UPDATE_COMMAND_UI(ID_SHOWLINEDIFF, OnUpdateShowlinediff)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -868,4 +870,16 @@ OnUpdateCaret()
 		}
 		m_piMergeEditStatus->SetLineInfo(sLine, chars, sEol);
 	}
+}
+
+// Highlight difference in current line
+void CMergeEditView::OnShowlinediff() 
+{
+	// Pass this to the document, to compare this file to other
+	GetDocument()->Showlinediff(this);
+}
+
+void CMergeEditView::OnUpdateShowlinediff(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(TRUE);
 }

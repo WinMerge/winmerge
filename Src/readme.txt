@@ -1,6 +1,9 @@
 2003-07-18 Perry
  PATCH: [ 767147 ] Don't clear existing dirdoc until user saves
   WinMerge: DirDoc.cpp
+ PATCH: [ 763616 ] New menu item: Highlight line diff
+  WinMerge: Merge.rc MergeDoc.cpp MergeDoc.h MergeEditView.cpp MergeEditView.h resource.h
+  editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h ccrystaltextview.cpp ccrystaltextview.h
 
 2003-07-18 Kimmo
  PATCH: [ 772843 ] Remember custom colors

@@ -56,6 +56,7 @@ public:
 	BOOL IsModified() { return (LocateTextBuffer()->IsModified()); }
 	BOOL PrimeListWithFile();
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
+	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 
 
 // Overrides
@@ -118,6 +119,8 @@ protected:
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnRefresh();
 	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
+	afx_msg void OnShowlinediff();
+	afx_msg void OnUpdateShowlinediff(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

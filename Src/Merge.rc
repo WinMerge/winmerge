@@ -111,6 +111,8 @@ BEGIN
         MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
         MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Highlight Line Diff",         ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
         MENUITEM "Ne&xt Difference\tAlt+Down",  ID_NEXTDIFF
         MENUITEM "Pre&vious Difference\tAlt+Up", ID_PREVDIFF
         MENUITEM SEPARATOR
@@ -210,6 +212,7 @@ BEGIN
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_FIND_PREVIOUS,  VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1133,6 +1136,7 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "Displays binary files"
     ID_VIEW_WHITESPACE      "Shows whitespace characters"
     ID_REFRESH              "Refresh display\nRefresh (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
 END
 
 STRINGTABLE DISCARDABLE 

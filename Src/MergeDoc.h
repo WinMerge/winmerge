@@ -181,6 +181,7 @@ public:
 	int LineToDiff(UINT nLine);
 	BOOL LineInDiff(UINT nLine, UINT nDiff);
 	void SetDiffViewMode(BOOL bEnable);
+	void Showlinediff(CMergeEditView * pView);
 	
 	void SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight);
 	void SetDirDoc(CDirDoc * pDirDoc);
