@@ -196,10 +196,6 @@ SOURCE=.\DiffThread.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\Dir.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\DirActions.cpp
 # End Source File
 # Begin Source File
@@ -243,6 +239,10 @@ SOURCE=.\DirFrame.cpp
 
 !ENDIF 
 
+# End Source File
+# Begin Source File
+
+SOURCE=.\DirScan.cpp
 # End Source File
 # Begin Source File
 
@@ -665,6 +665,10 @@ SOURCE=.\DIRENT.H
 # Begin Source File
 
 SOURCE=.\DirFrame.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DirScan.h
 # End Source File
 # Begin Source File
 

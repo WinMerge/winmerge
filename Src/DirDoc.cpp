@@ -203,6 +203,7 @@ diff_dirs2 (filevec, handle_file, depth)
   return val;
 }*/
 
+// Perform directory comparison again from scratch
 void CDirDoc::Rescan()
 {
 	if (!m_pCtxt) return;

@@ -27,6 +27,8 @@ struct dirdata
 #define FILE_BINDIFF     6
 #define FILE_LDIRUNIQUE  7
 #define FILE_RDIRUNIQUE  8
+#define FILE_SKIP        9
+#define FILE_DIRSKIP    10
 
 struct DIFFITEM
 {

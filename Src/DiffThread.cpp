@@ -2,11 +2,11 @@
 #include "diffcontext.h"
 #include "diffthread.h"
 #include "diff.h"
+#include "DirScan.h"
 
 // Static structure for sharing data with thread
 static DiffFuncStruct diffParam;
 
-int compare_files (LPCTSTR, LPCTSTR, LPCTSTR, LPCTSTR, CDiffContext*, int);
 
 CDiffThread::CDiffThread()
 {
@@ -27,6 +27,8 @@ CDiffContext * CDiffThread::SetContext(CDiffContext * pCtx)
 	return pTempContext;
 }
 
+// Launch worker thread
+// called on main thread
 UINT CDiffThread::CompareDirectories(CString dir1, CString dir2)
 {
 	diffParam.path1 = dir1;
@@ -56,16 +58,18 @@ UINT CDiffThread::GetThreadState()
 	return diffParam.nThreadState;
 }
 
+// called on worker thread
 UINT DiffThread(LPVOID lpParam)
 {
 	DiffFuncStruct *myStruct = (DiffFuncStruct *) lpParam;
 	HWND hWnd = myStruct->hWindow;
 	UINT msgID = myStruct->msgUIUpdate;
 
-	compare_files (0, (char const *)(LPCTSTR)myStruct->path1, 
-			       0, (char const *)(LPCTSTR)myStruct->path2,
-				   myStruct->context, 0);
-
+	bool casesensitive = false;
+	int depth = -1;
+	CString subdir; // blank to start at roots specified in diff context
+	DirScan(subdir, myStruct->context, casesensitive, depth);
+	
 	// Send message to UI to update
 	diffParam.nThreadState = THREAD_COMPLETED;
 	SendMessage(hWnd, msgID, NULL, NULL);
