@@ -39,3 +39,6 @@ Add new items to bottom
  Add new files (forgotten in first check in):
   MakePatchDirs_ja.dsp MakePatchDirs_ja.rc MakePatchDirs_sat.cpp 
   Satellites.cpp Satellites.h
+
+2004-10-28, Kimmo Varis
+ WinMerge PATCH#1055341: New MakePatchDirs.ico (submitted by Tim Gerundt)
