@@ -10,6 +10,9 @@
 #define CONTEXT_LINES   5
 
 
+#define FLAG_RESCAN_WAITS_FOR_IDLE   1
+
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView view
 #ifndef __EDTLIB_H
@@ -35,6 +38,13 @@ public:
 protected:
 	// Controls if rescan is done after edit events
 	BOOL m_bAutomaticRescan;
+
+private:
+	/** 
+	This flag is set when we receive an OnTimer command, and we want 
+	to wait for theApp::OnIdle before processing it 
+	*/
+	BOOL fTimerWaitingForIdle;
 
 // Operations
 public:

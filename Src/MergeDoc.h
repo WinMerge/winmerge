@@ -164,8 +164,7 @@ public:
 	UINT m_nDiffs;
 	CString m_strLeftFile, m_strRightFile;
 
-	void SetNeedRescan();
-	void RescanIfNeeded();
+	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(BOOL bForced = FALSE);
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
 	void FixLastDiffRange(BOOL left);
@@ -231,7 +230,6 @@ protected:
 	CMergeEditView * m_pRightView;
 	CDirDoc * m_pDirDoc;
 	BOOL m_bEnableRescan;
-	BOOL m_bNeedIdleRescan;
 	COleDateTime m_LastRescan;
 
 // friend access

@@ -79,7 +79,6 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	m_strTempLeftFile;
 	m_strTempRightFile;
 	m_bEnableRescan = TRUE;
-	m_bNeedIdleRescan = FALSE;
 	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
 	m_pLeftView=NULL;
@@ -241,7 +240,6 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 			return RESCAN_SUPPRESSED;
 	}
 
-	m_bNeedIdleRescan = FALSE;
 	m_LastRescan = COleDateTime::GetCurrentTime();
 
 	// store modified status
@@ -1703,26 +1701,15 @@ BOOL CMergeDoc::SaveHelper()
 	return result;
 }
 
-// View requests we rescan when convenient
-void CMergeDoc::SetNeedRescan()
+/** Rescan only if we did not Rescan during the last timeOutInSecond seconds*/
+void CMergeDoc::RescanIfNeeded(float timeOutInSecond)
 {
-	m_bNeedIdleRescan = TRUE;
-}
-
-void CMergeDoc::RescanIfNeeded()
-{
-	// Rescan if we were asked for a rescan when convenient
-	// AND if we've not rescanned in at least a second
-	if (m_bNeedIdleRescan)
-	{
-		m_bNeedIdleRescan = FALSE;
-		COleDateTimeSpan elapsed = COleDateTime::GetCurrentTime() - m_LastRescan;
-		if (elapsed.GetTotalSeconds() >= 1)
-		{
-			WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
-			FlushAndRescan();
-		}
-	}
+	// if we did not rescan during the request timeOut, Rescan
+	// else we did Rescan after the request, so do nothing
+	COleDateTimeSpan elapsed = COleDateTime::GetCurrentTime() - m_LastRescan;
+	if (elapsed.GetTotalSeconds() >= timeOutInSecond)
+		// (laoran 08-01-2003) maybe should be FlushAndRescan(TRUE) ??
+		FlushAndRescan();
 }
 
 // We have two child views (left & right), so we keep pointers directly

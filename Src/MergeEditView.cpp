@@ -31,6 +31,7 @@ CMergeEditView::CMergeEditView()
 	m_piMergeEditStatus = 0;
 	SetParser(&m_xParser);
 	m_bAutomaticRescan = FALSE;
+	fTimerWaitingForIdle = 0;
 }
 
 CMergeEditView::~CMergeEditView()
@@ -766,24 +767,37 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 	}
 }
 
+
 void CMergeEditView::OnTimer(UINT nIDEvent) 
 {
-	// We get two kinds of timers
-	// IDT_RESCAN means it has been a while since the user last made a change
-	// so we'd like to do a rescan as soon as feasible
-	// IDLE_TIMER means the application is idling, so now it is feasible to rescan
-	// If we get the idle timer, we pass the buck to the document (ie, it may
-	// still skip the rescan if it just did one recently).
+	// Maybe we want theApp::OnIdle to proceed before processing a timer message
+	// ...but for this the queue must be empty 
+	// The timer message is a low priority message but the queue is maybe not yet empty
+	// So we set a flag, wait for OnIdle to proceed, then come back here...
+	// We come back here with a IDLE_TIMER OnTimer message (send with SendMessage
+	// not with SetTimer so there is no delay)
+
+	// IDT_RESCAN was posted because the app wanted to do a flushAndRescan with some delay
+
+	// IDLE_TIMER is the false timer used to come back here after OnIdle
+	// fTimerWaitingForIdle is a bool to store the commands waiting for idle
+	// (one normal timer = one flag = one command)
 
 	if (nIDEvent == IDT_RESCAN)
 	{
 		KillTimer(IDT_RESCAN);
-		GetDocument()->SetNeedRescan();
+		fTimerWaitingForIdle |= FLAG_RESCAN_WAITS_FOR_IDLE; 
+		// notify the app to come back after OnIdle
 		theApp.SetNeedIdleTimer();
 	}
-	else if (nIDEvent == IDLE_TIMER)
+	
+	if (nIDEvent == IDLE_TIMER)
 	{
-		GetDocument()->RescanIfNeeded();
+		// not a real timer, just come back after OnIdle
+		// look to flags to know what to do
+		if (fTimerWaitingForIdle & FLAG_RESCAN_WAITS_FOR_IDLE)
+			GetDocument()->RescanIfNeeded(RESCAN_TIMEOUT/1000);
+		fTimerWaitingForIdle = 0; 
 	}
 
 	CCrystalEditViewEx::OnTimer(nIDEvent);

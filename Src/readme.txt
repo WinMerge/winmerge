@@ -1,3 +1,7 @@
+2003-08-05 Laoran
+ PATCH: [ 781582 ] Timer for FlushAndRescan
+  WinMerge: MergeDoc.cpp MergeDoc.h MergeEditView.cpp MergeEditView.h
+
 2003-08-04 Laoran
  PATCH: [ 782866 ] round off in CMergeDoc::RescanIfNeeded
   WinMerge: MergeDoc.cpp
