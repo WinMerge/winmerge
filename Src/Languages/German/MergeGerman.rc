@@ -1001,7 +1001,7 @@ BEGIN
     CONTROL         "Entsprechend der WinMerge Benutzeroberfläche",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,33,210,10
     CONTROL         "Benutzerdefinierter Zeichensatz:",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,46,220,10
+                    BS_AUTORADIOBUTTON,13,46,117,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,133,45,56,13,ES_AUTOHSCROLL
     GROUPBOX        "Standard-Zeichensatz für ANSI-Dateien",IDC_STATIC,7,7,221,58
 END

@@ -2,6 +2,9 @@
  PATCH: [ 1112636 ] Suggest cosmetic change in DiffFileData::OpenFiles
   (new method DiffFileData::Filepath::AssignPath)
   Src: DiffWrapper.cpp DiffWrapper.h
+ BUG [ 1144425 ] German: Options/codepage dlg needs adjust
+  (Fix by Tim Gerundt)
+  Languages: MergeGerman.rc
 
 2005-02-27 Kimmo
  BUG: [ 1153017 ] FileFilterHelper::SetFilter ASSERTS on empty string
