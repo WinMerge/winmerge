@@ -1,3 +1,5 @@
+2004-09-15 WinMerge experimental release 2.1.7.14 (cvs)
+
 2004-09-15 Kimmo
  PATCH: [ 1027936 ] Fix statusbar display for ghost lines
   Src: MergeEditView.cpp
