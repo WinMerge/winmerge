@@ -1,3 +1,7 @@
+2004-06-13 Laoran
+ plugins doc : new sections, how to write and debug plugins
+  Plugins: readme_developpers.txt syntax.txt
+
 2004-06-10 Laoran
  PATCH: [ 969667 ] Ignore positions/tabbed columns (plugins)
   Plugins: list of sources.txt
