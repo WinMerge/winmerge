@@ -1,6 +1,8 @@
 2003-04-26 Kimmo
  PATCH: [ 726330 ] Saving before refresh
   WinMerge: MergeDoc.h MergeDoc.cpp MergeEditView.cpp
+ PATCH: [ 727455 ] Autoscroll first diff for dir compare
+  WinMerge: DirView.h MainFrm.cpp
 
 2003-04-25 Kimmo
  PATCH: [ 727104 ] Disable margins for unknown filetypes

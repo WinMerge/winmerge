@@ -77,6 +77,7 @@ public:
 	int GetFirstSelectedInd();
 	DIFFITEM GetNextSelectedInd(int &ind);
 	DIFFITEM GetItemAt(int ind);
+	void GotoFirstDiff() { OnFirstdiff(); };
 
 // Implementation types
 private:

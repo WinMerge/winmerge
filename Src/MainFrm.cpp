@@ -966,6 +966,12 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				pDirDoc->SetDiffContext(pCtxt);
 				pCtxt->SetRegExp(strExt);
 				pDirDoc->Rescan();
+				if (m_bScrollToFirst)
+				{
+					CDirView * pDirView = pDirDoc->GetMainView();
+					pDirView->GotoFirstDiff();
+				}
+
 			}
 			pCtxt->ClearStatus();
 		}
