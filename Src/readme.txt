@@ -1,3 +1,7 @@
+2003-10-24 Laoran
+ Fix unifile code to initialize txtstats.nlosses (see comments in BUG [ 828924 ])
+  common: UniFile.h
+
 2003-10-23 Perry
  PATCH: [ 828619 ] Prevent closing dir doc whilst scanning
   WinMerge: DirDoc.cpp DirDoc.h

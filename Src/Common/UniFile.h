@@ -49,7 +49,7 @@ public:
 		int nzeros;
 		int nlosses;
 		txtstats() { clear(); }
-		void clear() { ncrs = nlfs = ncrlfs = nzeros = 0; }
+		void clear() { ncrs = nlfs = ncrlfs = nzeros = nlosses = 0; }
 	};
 	virtual const txtstats & GetTxtStats() const = 0;
 };
