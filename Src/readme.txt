@@ -1,6 +1,10 @@
+2004-10-18 Perry
+ PATCH: [ 1048412 ] Log font info in configuration
+  Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp
+
 2004-10-17 Perry
  PATCH: [ 1048405 ] Delete old, commented out line in ConfigLog.cpp
-  Src/ConfigLog.cpp
+  Src: ConfigLog.cpp
 
 2004-10-17 Jochen
  PATCH: [ 1043909 ] Add support for 7-Zip 4.09, plus DSPs for 4.07 and 4.08

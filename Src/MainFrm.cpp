@@ -2453,6 +2453,9 @@ void CMainFrame::OnSaveConfigData()
 	configLog.m_cpSettings.nDefaultCustomValue = m_options.GetInt(OPT_CP_DEFAULT_CUSTOM);
 	configLog.m_cpSettings.bDetectCodepage = m_options.GetInt(OPT_CP_DETECT);
 
+	configLog.m_fontSettings.nCharset = m_lfDiff.lfCharSet;
+	configLog.m_fontSettings.sFacename = m_lfDiff.lfFaceName;
+
 	if (configLog.WriteLogFile(sError))
 	{
 		CString sFileName = configLog.GetFileName();

@@ -89,6 +89,36 @@ static void WriteLocaleSettings(CStdioFile & file, LCID locid, LPCTSTR title)
 	file.WriteString(Fmt(_T("  ISO Language code: %s\n"), GetLocaleString(locid, LOCALE_SISO639LANGNAME)));
 }
 
+/**
+ * @brief Return Windows font charset constant name from constant value, eg, FontCharsetName() => "Hebrew"
+ */
+static CString FontCharsetName(BYTE charset)
+{
+	switch(charset)
+	{
+	case ANSI_CHARSET: return _T("Ansi");
+	case BALTIC_CHARSET: return _T("Baltic");
+	case CHINESEBIG5_CHARSET: return _T("Chinese Big5");
+	case DEFAULT_CHARSET: return _T("Default");
+	case EASTEUROPE_CHARSET: return _T("East Europe");
+	case GB2312_CHARSET: return _T("Chinese GB2312");
+	case GREEK_CHARSET: return _T("Greek");
+	case HANGUL_CHARSET: return _T("Korean Hangul");
+	case MAC_CHARSET: return _T("Mac");
+	case OEM_CHARSET: return _T("OEM");
+	case RUSSIAN_CHARSET: return _T("Russian");
+	case SHIFTJIS_CHARSET: return _T("Japanese Shift-JIS");
+	case SYMBOL_CHARSET: return _T("Symbol");
+	case TURKISH_CHARSET: return _T("Turkish");
+	case VIETNAMESE_CHARSET: return _T("Vietnamese");
+	case JOHAB_CHARSET: return _T("Korean Johab");
+	case ARABIC_CHARSET: return _T("Arabic");
+	case HEBREW_CHARSET: return _T("Hebrew");
+	case THAI_CHARSET: return _T("Thai");
+	default: return _T("Unknown");
+	}
+}
+
 /** 
  * @brief Write logfile
  */
@@ -280,6 +310,12 @@ BOOL CConfigLog::WriteLogFile(CString &sError)
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
+
+// Font settings
+	file.WriteString(_T("\n Font:\n"));
+	file.WriteString(Fmt(_T("  Font facename: %s\n"), m_fontSettings.sFacename));
+	file.WriteString(Fmt(_T("  Font charset: %d (%s)\n"), m_fontSettings.nCharset, 
+		FontCharsetName(m_fontSettings.nCharset)));
 
 // System settings
 	file.WriteString(_T("\nSystem settings:\n"));

@@ -64,6 +64,15 @@ struct CPSETTINGS
 };
 
 /** 
+ * @brief Major Font WinMerge settings
+ */
+struct FONTSETTINGS
+{
+	BYTE nCharset;
+	CString sFacename;
+};
+
+/** 
  * @brief Class for saving configuration log file
  */
 class CConfigLog
@@ -74,6 +83,7 @@ public:
 	VIEWSETTINGS m_viewSettings;
 	MISCSETTINGS m_miscSettings;
 	CPSETTINGS m_cpSettings;
+	FONTSETTINGS m_fontSettings;
 
 	CString GetFileName() const;
 	void WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile & file);
