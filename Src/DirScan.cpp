@@ -371,9 +371,15 @@ static void FilterAdd(const CString & sDir, const fentry * lent, const fentry * 
 	_int64 rmtime=0, lmtime=0, rctime=0, lctime=0;
 	_int64 lsize=0, rsize=0;
 	int lattrs=0, rattrs=0;
+
+	// We must store both paths - we cannot get paths later
+	// and we need unique item paths for example when items
+	// change to identical
+	leftdir = paths_ConcatPath(pCtxt->m_strNormalizedLeft, sDir);
+	rightdir = paths_ConcatPath(pCtxt->m_strNormalizedRight, sDir);
+
 	if (lent)
 	{
-		leftdir = paths_ConcatPath(pCtxt->m_strNormalizedLeft, sDir);
 		lmtime = lent->mtime;
 		lctime = lent->ctime;
 		lsize = lent->size;
@@ -382,7 +388,6 @@ static void FilterAdd(const CString & sDir, const fentry * lent, const fentry * 
 	}
 	if (rent)
 	{
-		rightdir = paths_ConcatPath(pCtxt->m_strNormalizedRight, sDir);
 		rmtime = rent->mtime;
 		rctime = rent->ctime;
 		rsize = rent->size;

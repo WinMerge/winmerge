@@ -1,3 +1,8 @@
+2003-11-14 Kimmo
+ PATCH: [ 841767 ] Store unique item path
+  Fixes bug: #840547 Copying unique file does not update date and size
+  WinMerge: DirScan.cpp
+
 2003-11-14 Laoran 
  BUG: [ 838272 ] corrupt string operations in lwdisp.c
   common: lwdisp.c lwdisp.h
