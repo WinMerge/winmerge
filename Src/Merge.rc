@@ -944,7 +944,7 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_DEL_RIGHT_FMT       "Del right: %1"
+    IDS_DEL_RIGHT_FMT       "Delete right: %1"
     IDS_DELETE_FILE_FAILED  "Delete file failed: %1"
     IDS_CONFIRM_DELETE_DIR  "Delete directory %1?"
     IDS_REMOVE_DIR_FAILED   "Remove directory failed: %1"
