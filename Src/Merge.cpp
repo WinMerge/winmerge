@@ -68,7 +68,7 @@ extern CLogFile gLog;
 // CMergeApp construction
 
 CMergeApp::CMergeApp()
-: m_lang(IDR_MAINFRAME, IDR_MAINFRAME)
+: m_lang(IDR_MAINFRAME, IDR_MAINFRAME), m_clrDiff(RGB(255,255,92)), m_clrSelDiff(RGB(255,0,92))
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
@@ -116,6 +116,9 @@ BOOL CMergeApp::InitInstance()
 
 	m_bDisableSplash = GetProfileInt(_T("Settings"), _T("DisableSplash"), FALSE);
 	m_bHiliteSyntax = GetProfileInt(_T("Settings"), _T("HiliteSyntax"), TRUE)!=0;
+
+	m_clrDiff    = GetProfileInt(_T("Settings"), _T("DifferenceColor"), m_clrDiff);
+	m_clrSelDiff = GetProfileInt(_T("Settings"), _T("SelectedDifferenceColor"), m_clrSelDiff);
 
 	// CG: The following block was added by the Splash Screen component.
 	{
@@ -493,3 +496,24 @@ void SillyTestCrap()
 
 }
 #endif
+
+
+void CMergeApp::SetDiffColor( COLORREF clrValue )
+{
+	m_clrDiff = clrValue;
+}
+
+
+void CMergeApp::SetSelDiffColor( COLORREF clrValue )
+{
+	m_clrSelDiff = clrValue;
+}
+
+
+int CMergeApp::ExitInstance() 
+{
+	WriteProfileInt(_T("Settings"), _T("DifferenceColor"), m_clrDiff);
+	WriteProfileInt(_T("Settings"), _T("SelectedDifferenceColor"), m_clrSelDiff);
+	
+	return CWinApp::ExitInstance();
+}

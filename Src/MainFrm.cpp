@@ -42,6 +42,7 @@
 #include "PropVss.h"
 #include "PropGeneral.h"
 #include "PropFilter.h"
+#include "PropColors.h"
 #include "RegKey.h"
 #include "logfile.h"
 #include "PropSyntax.h"
@@ -579,10 +580,12 @@ void CMainFrame::OnProperties()
 	CPropGeneral gen;
 	CPropSyntax syn;
 	CPropFilter filter;
+	CPropColors colors( theApp.GetDiffColor(), theApp.GetSelDiffColor() );
 	sht.AddPage(&gen);
 	sht.AddPage(&syn);
 	sht.AddPage(&filter);
 	sht.AddPage(&vss);
+	sht.AddPage(&colors);
 	
 	vss.m_nVerSys = m_nVerSys;
 	vss.m_strPath = m_strVssPath;
@@ -619,6 +622,9 @@ void CMainFrame::OnProperties()
 		
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
 		m_sPattern = filter.m_sPattern;
+
+		theApp.SetDiffColor( colors.m_clrDiff );
+		theApp.SetSelDiffColor( colors.m_clrSelDiff );
 
 		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreSpace"), m_nIgnoreWhitespace);

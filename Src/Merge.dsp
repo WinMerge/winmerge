@@ -147,6 +147,10 @@ SOURCE=.\CMPBUF.C
 # End Source File
 # Begin Source File
 
+SOURCE=.\ColorButton.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\CONTEXT.C
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -400,6 +404,10 @@ SOURCE=.\OpenDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropColors.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropFilter.cpp
 # End Source File
 # Begin Source File
@@ -584,6 +592,10 @@ SOURCE=.\CMPBUF.H
 # End Source File
 # Begin Source File
 
+SOURCE=.\ColorButton.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\CONFIG.H
 # End Source File
 # Begin Source File
@@ -657,6 +669,10 @@ SOURCE=.\MergeEditView.h
 # Begin Source File
 
 SOURCE=.\OpenDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PropColors.h
 # End Source File
 # Begin Source File
 

@@ -45,16 +45,24 @@ class CMergeApp : public CWinApp
 public:
 	BOOL m_bHiliteSyntax;
 	BOOL m_bDisableSplash;
+	COLORREF	m_clrDiff;		// The difference color
+	COLORREF	m_clrSelDiff;	// The selected difference color
+
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	CLanguageSelect m_lang;
 	CMergeApp();
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
+	COLORREF	GetDiffColor	( void ) const { return m_clrDiff; }
+	COLORREF	GetSelDiffColor	( void ) const { return m_clrSelDiff; }
+	void	SetDiffColor	( COLORREF clrValue );
+	void	SetSelDiffColor	( COLORREF clrValue );
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMergeApp)
 	public:
 	virtual BOOL InitInstance();
+	virtual int ExitInstance();
 	//}}AFX_VIRTUAL
 
 // Implementation

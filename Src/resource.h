@@ -111,9 +111,12 @@
 #define IDC_WHITESPACE                  1026
 #define IDC_USER                        1027
 #define IDC_PASSWORD                    1028
+#define IDC_DIFFERENCE_COLOR            1031
+#define IDC_SEL_DIFFERENCE_COLOR        1032
 #define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
 #define IDD_PROPSYNTAX                  30001
+#define IDD_PROPPAGE_COLORS             30002
 #define IDS_AFRIKAANS                   30003
 #define IDS_ALBANIAN                    30004
 #define IDS_ARABIC_SAUDI                30005
@@ -259,7 +262,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32807
-#define _APS_NEXT_CONTROL_VALUE         1029
+#define _APS_NEXT_CONTROL_VALUE         1032
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif

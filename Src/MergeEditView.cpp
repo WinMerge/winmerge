@@ -173,9 +173,9 @@ void CMergeEditView::GetLineColors (int nLineIndex, COLORREF & crBkgnd,
   if (dwLineFlags & LF_DIFF)
   {
 	  if (IsLineInCurrentDiff(nLineIndex))
-		crBkgnd = RGB(255,0,0);
+		crBkgnd = theApp.GetSelDiffColor();
 	  else
-		crBkgnd = RGB(255,255,92);
+		crBkgnd = theApp.GetDiffColor();
       crText = RGB(0,0,0);
 	  bDrawWhitespace = TRUE;
       return;
@@ -183,7 +183,7 @@ void CMergeEditView::GetLineColors (int nLineIndex, COLORREF & crBkgnd,
   else if (dwLineFlags & LF_DELETED)
   {
       if (IsLineInCurrentDiff(nLineIndex))
-		crBkgnd = RGB(255,0,0);
+		crBkgnd = theApp.GetSelDiffColor();
 	  else
 		crBkgnd = RGB(192,192,192);
       crText = RGB(0,0,0);
@@ -193,9 +193,9 @@ void CMergeEditView::GetLineColors (int nLineIndex, COLORREF & crBkgnd,
   else if (dwLineFlags & LF_LEFT_ONLY)
   {
 	  if (IsLineInCurrentDiff(nLineIndex))
-		crBkgnd = RGB(255,0,0);
+		crBkgnd = theApp.GetSelDiffColor();
 	  else if (m_bIsLeft)
-		crBkgnd = RGB(255,255,92);
+		crBkgnd = theApp.GetDiffColor();
 	  else
 		crBkgnd = RGB(192,192,192);
       crText = RGB(0,0,0);
@@ -205,11 +205,11 @@ void CMergeEditView::GetLineColors (int nLineIndex, COLORREF & crBkgnd,
   else if (dwLineFlags & LF_RIGHT_ONLY)
   {
 	  if (IsLineInCurrentDiff(nLineIndex))
-		crBkgnd = RGB(255,0,0);
+		crBkgnd = theApp.GetSelDiffColor();
 	  else if (m_bIsLeft)
 		crBkgnd = RGB(192,192,192);
 	  else
-		crBkgnd = RGB(255,255,92);
+		crBkgnd = theApp.GetDiffColor();
       crText = RGB(0,0,0);
 	  bDrawWhitespace = TRUE;
       return;
