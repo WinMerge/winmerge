@@ -6,6 +6,8 @@
   WinMerge: DirScan.cpp
  PATCH: [ 847138 ] Initialize some variables in Plugins functions
   WinMerge: Plugins.cpp
+ PATCH: [ 847149 ] Fix typo in DirScan (i->j)
+  WinMerge: DirScan.cpp
 
 2003-11-21 Laoran
  BUG: [ 846450 ] "Winmerge executable:" label missing from registry options

@@ -186,7 +186,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			else
 			{
 
-				int code = prepAndCompareTwoFiles(leftFiles[i], rightFiles[i], 
+				int code = prepAndCompareTwoFiles(leftFiles[i], rightFiles[j], 
 					sLeftDir, sRightDir);
 				
 				// report result back to caller
