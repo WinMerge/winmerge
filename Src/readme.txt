@@ -1,3 +1,8 @@
+2004-06-06 Kimmo
+ BUG: [ 959729 ] View menu show-items disabled in mergeview
+  Second try, renumber items in editlib/editcmd.h
+  Src/editlib/editcmd.h
+
 2004-06-06 Laoran
  update for MergeSwedish.rc ; contribution from Hans Eriksson
   Language/Swedish: MergeSwedish.rc
