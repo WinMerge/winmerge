@@ -1,3 +1,7 @@
+2004-03-11 Kimmo
+ PATCH: [ 913792 ] Cache color options for MergeView
+  Src: MergeDoc.cpp MergeEditView.cpp MergeEditView.h
+
 2004-03-10 Kimmo
  Fix for OptionsMgr bugs when loading string options from registry
   UNICODE strings were not handled correctly, incorrect buffer lengths

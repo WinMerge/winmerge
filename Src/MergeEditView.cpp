@@ -65,6 +65,17 @@ CMergeEditView::CMergeEditView()
 	SetParser(&m_xParser);
 	m_bAutomaticRescan = FALSE;
 	fTimerWaitingForIdle = 0;
+
+	m_bSyntaxHighlight = mf->m_options.GetInt(OPT_SYNTAX_HIGHLIGHT);
+	m_cachedColors.clrDiff = mf->m_options.GetInt(OPT_CLR_DIFF);
+	m_cachedColors.clrSelDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF);
+	m_cachedColors.clrDiffDeleted = mf->m_options.GetInt(OPT_CLR_DIFF_DELETED);
+	m_cachedColors.clrSelDiffDeleted = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
+	m_cachedColors.clrDiffText = mf->m_options.GetInt(OPT_CLR_DIFF_TEXT);
+	m_cachedColors.clrSelDiffText = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
+	m_cachedColors.clrTrivial = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF);
+	m_cachedColors.clrTrivialDeleted = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
+
 }
 
 CMergeEditView::~CMergeEditView()
@@ -293,7 +304,7 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 	// Line inside diff
 	if (dwLineFlags & LF_WINMERGE_FLAGS)
 	{
-		crText = mf->m_options.GetInt(OPT_CLR_DIFF_TEXT);
+		crText = m_cachedColors.clrDiffText;
 		bDrawWhitespace = TRUE;
 		BOOL lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);
 
@@ -301,13 +312,13 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 		{
 			if (lineInCurrentDiff)
 			{
-				crBkgnd = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF);
-				crText = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
+				crBkgnd = m_cachedColors.clrSelDiff;
+				crText = m_cachedColors.clrSelDiffText;
 			}
 			else
 			{
-				crBkgnd = mf->m_options.GetInt(OPT_CLR_DIFF);
-				crText = mf->m_options.GetInt(OPT_CLR_DIFF_TEXT);
+				crBkgnd = m_cachedColors.clrDiff;
+				crText = m_cachedColors.clrDiffText;
 			}
 			return;
 		}
@@ -316,25 +327,24 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 			// trivial diff can not be selected
 			if (dwLineFlags & LF_GHOST)
 				// ghost lines in trivial diff has their own color
-				crBkgnd = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
+				crBkgnd = m_cachedColors.clrTrivialDeleted;
 			else
-				crBkgnd = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF);
+				crBkgnd = m_cachedColors.clrTrivial;
 			return;
 		}
 		else if (dwLineFlags & LF_GHOST)
 		{
 			if (lineInCurrentDiff)
-				crBkgnd = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
+				crBkgnd = m_cachedColors.clrSelDiffDeleted;
 			else
-				crBkgnd = mf->m_options.GetInt(OPT_CLR_DIFF_DELETED);
+				crBkgnd = m_cachedColors.clrDiffDeleted;
 			return;
 		}
-
 	}
 	else
 	{
 		// Line not inside diff,
-		if (!mf->m_options.GetInt(OPT_SYNTAX_HIGHLIGHT))
+		if (!m_bSyntaxHighlight)
 		{
 			// If no syntax hilighting, get windows default colors
 			crBkgnd = GetSysColor (COLOR_WINDOW);
@@ -1842,3 +1852,20 @@ void CMergeEditView::OnUpdateWMGoto(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(TRUE);
 }
+
+/**
+ * @brief Reload cached options.
+ */
+void CMergeEditView::RefreshOptions()
+{ 
+	m_bSyntaxHighlight = mf->m_options.GetInt(OPT_SYNTAX_HIGHLIGHT);
+	m_cachedColors.clrDiff = mf->m_options.GetInt(OPT_CLR_DIFF);
+	m_cachedColors.clrSelDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF);
+	m_cachedColors.clrDiffDeleted = mf->m_options.GetInt(OPT_CLR_DIFF_DELETED);
+	m_cachedColors.clrSelDiffDeleted = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
+	m_cachedColors.clrDiffText = mf->m_options.GetInt(OPT_CLR_DIFF_TEXT);
+	m_cachedColors.clrSelDiffText = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
+	m_cachedColors.clrTrivial = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF);
+	m_cachedColors.clrTrivialDeleted = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
+}
+

@@ -29,6 +29,22 @@
 #if !defined(AFX_MERGEEDITVIEW_H__0CE31CFD_4BEE_4378_ADB4_B7C9F50A9F53__INCLUDED_)
 #define AFX_MERGEEDITVIEW_H__0CE31CFD_4BEE_4378_ADB4_B7C9F50A9F53__INCLUDED_
 
+/** 
+ * @brief Color settings.
+ */
+struct COLORSETTINGS
+{
+	COLORREF	clrDiff;			// The difference color
+	COLORREF	clrSelDiff;			// The selected difference color
+	COLORREF	clrDiffDeleted;		// The difference deleted color
+	COLORREF	clrSelDiffDeleted;	// The selected difference deleted color
+	COLORREF	clrDiffText;		// The difference text color
+	COLORREF	clrSelDiffText;		// The selected difference text color
+	COLORREF	clrTrivial;			// The blank line change
+	COLORREF	clrTrivialDeleted;	// The missing blank line
+	COLORREF	clrFileLeftNewer;	// The left file newer color (dir view)
+	COLORREF	clrFileRightNewer;	// The right file newer color (dir view)
+};
 
 /** 
  * @brief Non-diff lines shown above diff when scrolling to it
@@ -100,7 +116,7 @@ public:
 	IMergeEditStatus * m_piMergeEditStatus; // interface to status bar
 
 protected:
-	// Controls if rescan is done after edit events
+	/** Controls if rescan is done after edit events */
 	BOOL m_bAutomaticRescan;
 
 private:
@@ -109,9 +125,12 @@ private:
 	to wait for theApp::OnIdle before processing it 
 	*/
 	BOOL fTimerWaitingForIdle;
+	COLORSETTINGS m_cachedColors; /**< Cached color settings */
+	BOOL m_bSyntaxHighlight; /**< Cached setting for syntax highlight */
 
 // Operations
 public:
+	void RefreshOptions();
 	BOOL EnableRescan(BOOL bEnable);
 	BOOL IsReadOnly(BOOL bLeft);
 	void ShowDiff(BOOL bScroll, BOOL bSelectText);

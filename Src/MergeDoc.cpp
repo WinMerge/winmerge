@@ -2670,6 +2670,10 @@ void CMergeDoc::RefreshOptions()
 	options.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
 
 	m_diffWrapper.SetOptions(&options);
+
+	// Refresh view options
+	m_pLeftView->RefreshOptions();
+	m_pRightView->RefreshOptions();
 }
 
 /**
