@@ -13,7 +13,7 @@ h1, h2, h3, h4
 
 li.toc
 {
-	list-style-image : url(images/redswirl.gif);
+	list-style-image : url(images/arrow_small.gif);
 	line-height : 125%;
 }
 
