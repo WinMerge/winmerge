@@ -4,6 +4,9 @@
   Manual: Command_line.xml
  Remove bogus stylesheet definition
   Manual: WinMerge_help.xml
+ PATCH: [ 931208 ] Missing screenshots and xsl typo
+  Manual: Compare_Dirs.xml Manual.xsl
+  Screenshots new files: dircomp1.gif filecomp1.gif linediff.gif
 
 2004-03-22 Seier
  The DocBook version of the manual was revised to reference GIF versions of

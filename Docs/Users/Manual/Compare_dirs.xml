@@ -3,7 +3,7 @@
   <para>Directory compare shows all files and subdirectries found from compared directories as list. Directory compare allows synchronising directories by copying and deleting files. Directory compare view can be versatile customised.</para>
   <mediaobject>
     <imageobject>
-      <imagedata fileref="screenshots/dircomp1.jpg" format="JPG"/>
+      <imagedata fileref="screenshots/dircomp1.gif" format="GIF"/>
     </imageobject>
   </mediaobject>
   <para>Directory compare has two different modes: non-recursive and recursive. Mode is selected in Open-dialog.<itemizedlist>
