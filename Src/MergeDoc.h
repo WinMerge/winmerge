@@ -280,10 +280,6 @@ public:
 	UINT CountPrevBlanks(UINT nCurLine, BOOL bLeft);
 	virtual ~CMergeDoc();
 	virtual void OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName);
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
 
 // Implementation data
 protected:

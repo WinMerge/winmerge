@@ -219,30 +219,8 @@ void CMergeDoc::SetUnpacker(PackingInfo * infoNewHandler)
 
 void CMergeDoc::Serialize(CArchive& ar)
 {
-	if (ar.IsStoring())
-	{
-		// TODO: add storing code here
-	}
-	else
-	{
-		// TODO: add loading code here
-	}
+	ASSERT(0); // we do not use CDocument serialization
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// CMergeDoc diagnostics
-
-#ifdef _DEBUG
-void CMergeDoc::AssertValid() const
-{
-	CDocument::AssertValid();
-}
-
-void CMergeDoc::Dump(CDumpContext& dc) const
-{
-	CDocument::Dump(dc);
-}
-#endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc commands

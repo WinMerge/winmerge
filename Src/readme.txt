@@ -1,3 +1,8 @@
+2003-11-22 Perry
+ PATCH: [ 844780 ] MergeDoc code cleanup
+ (removed AssertValid, Dump, and unused Serialize body)
+  WinMerge: MergeDoc.cpp MergeDoc.h
+
 2003-11-21 Laoran
  BUG: [ 846450 ] "Winmerge executable:" label missing from registry options
   WinMerge: Merge.rc
