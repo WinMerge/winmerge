@@ -90,6 +90,10 @@ public:
 	void PushCursors ();
 
 	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, int nCrlfStyle =CRLF_STYLE_AUTOMATIC );
+	/** 
+	 * @brief Override this drag-n-drop function to call GetTextWithoutEmptys
+	 */
+	virtual HGLOBAL PrepareDragData ();
 
 	int ComputeApparentLine (int nRealLine) const;
 	int ComputeRealLine (int nApparentLine) const;

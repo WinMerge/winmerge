@@ -1,4 +1,6 @@
 2003-10-25 Laoran
+ BUG: [ 830121 ] drag&drop changes ghost lines to real lines
+  WinMerge: GhostTextView.cpp GhostTextView.h
  fix for context menu when the selection is empty
   WinMerge: MergeEditView.cpp
  fix in PopCursors for ptLastChange
