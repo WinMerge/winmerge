@@ -87,6 +87,9 @@ h1, h2, h3, h4 {
 }
 
 p.important {
+	padding: 5px;
+	background-color: #EEEEEE;
+	border: 1px solid red;
 	font-weight: bold;
 }
 

@@ -46,6 +46,9 @@ h1, h2, h3, h4 {
 }
 
 p.important {
+	padding: 5px;
+	background-color: #FFFFFF;
+	border: 1px solid black;
 	font-weight: bold;
 }
 

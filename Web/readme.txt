@@ -1,6 +1,8 @@
 2005-02-18 Tim
- PATCH: [ 1064389 ] Web: Switch easier between versions
+ RFE: [ 1064389 ] Web: Switch easier between versions
   Web: page.inc
+  Web\css: all.css print.css
+ PATCH: [ 1144106 ] Web: Highlight CSS class 'important'
   Web\css: all.css print.css
 
 2005-02-08 Tim
