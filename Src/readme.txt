@@ -7,6 +7,9 @@
   WinMerge: DirView.cpp DirViewColHandler.cpp
  BUG: [ 840785 ] Menu: Plugins | Automatic/Manual inconsistent
   WinMerge: MainFrm.cpp
+ Code cleanup: use SetDiffCompare() and SetDiffSide()
+  (I think those functions were designed to be used instead of SetDiffStatus())
+  WinMerge: DirActions.cpp
 
 2003-11-13 Laoran 
  modify the assert in GetText/GetTextWithoutEmptys (see patch #837480)

@@ -302,8 +302,8 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 			// copy single file, and update status immediately
 			if (mf->SyncFiles(act.src, act.dest, &s))
 			{
-				GetDocument()->SetDiffStatus(DIFFCODE::SAME, DIFFCODE::COMPAREFLAGS, act.idx);
-				GetDocument()->SetDiffStatus(DIFFCODE::BOTH, DIFFCODE::SIDEFLAG, act.idx);
+				GetDocument()->SetDiffSide(DIFFCODE::BOTH, act.idx);
+				GetDocument()->SetDiffCompare(DIFFCODE::SAME, act.idx);
 			}
 			else
 			{
@@ -346,8 +346,8 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 					}
 					else
 					{
-						GetDocument()->SetDiffStatus(DIFFCODE::RIGHT, DIFFCODE::SIDEFLAG, act.idx);
-						GetDocument()->SetDiffStatus(DIFFCODE::NOCMP, DIFFCODE::COMPAREFLAGS, act.idx);
+						GetDocument()->SetDiffSide(DIFFCODE::RIGHT, act.idx);
+						GetDocument()->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
 					}
 				}
 				else
@@ -370,8 +370,8 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 					}
 					else
 					{
-						GetDocument()->SetDiffStatus(DIFFCODE::LEFT, DIFFCODE::SIDEFLAG, act.idx);
-						GetDocument()->SetDiffStatus(DIFFCODE::NOCMP, DIFFCODE::COMPAREFLAGS, act.idx);
+						GetDocument()->SetDiffSide(DIFFCODE::LEFT, act.idx);
+						GetDocument()->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
 					}
 				}
 				else
