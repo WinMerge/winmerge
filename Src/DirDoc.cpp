@@ -239,6 +239,9 @@ void CDirDoc::Rescan()
 
 	m_pCtxt->m_piFilter = m_pFilter;
 
+	// Empty display before new compare
+	m_pDirView->DeleteAllDisplayItems();
+
 	m_diffWrapper.StartDirectoryDiff();
 	
 	m_diffThread.SetContext(m_pCtxt);
@@ -246,10 +249,6 @@ void CDirDoc::Rescan()
 	m_diffThread.SetMessageIDs(MSG_UI_UPDATE, MSG_STAT_UPDATE);
 	m_diffThread.CompareDirectories(m_pCtxt->m_strNormalizedLeft,
 			m_pCtxt->m_strNormalizedRight, m_bRecursive);
-
-	// Clear display before new compare
-	// NOTE: this must be run after thread is started!
-	Redisplay();
 
 	CString s;
 	AfxFormatString2(s, IDS_DIRECTORY_WINDOW_STATUS_FMT, m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
