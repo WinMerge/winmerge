@@ -1,3 +1,7 @@
+2004-02-04 Laoran
+ Correcting the path for the original resource.h
+  Languages: UpdateAll_resource_h.bat
+
 2004-02-03 Perry
  PATCH: [ 882683 ] Combine transform code in DirScan.cpp
   Src: DirScan.cpp FileTransform.cpp FileTransform.h MergeDoc.cpp
