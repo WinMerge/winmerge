@@ -1295,13 +1295,13 @@ void CMergeDoc::OnFileSave()
 	BOOL bLModified = FALSE;
 	BOOL bRModified = FALSE;
 
-	if (m_ltBuf.IsModified())
+	if (m_ltBuf.IsModified() && !m_ltBuf.GetReadOnly())
 	{
 		bLModified = TRUE;
 		DoSave(m_strLeftFile, bLSaveSuccess, TRUE );
 	}
 
-	if (m_rtBuf.IsModified())
+	if (m_rtBuf.IsModified() && !m_rtBuf.GetReadOnly())
 	{
 		bRModified = TRUE;
 		DoSave(m_strRightFile, bRSaveSuccess, FALSE);
@@ -1470,11 +1470,8 @@ void CMergeDoc::PrimeTextBuffers()
 		}
 	}
 
-	m_ltBuf.SetReadOnly(FALSE);
 	m_ltBuf.FinishLoading();
-	m_rtBuf.SetReadOnly(FALSE);
 	m_rtBuf.FinishLoading();
-
 }
 
 BOOL CMergeDoc::SaveHelper()
@@ -1802,6 +1799,8 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft)
 *
 * @param sLeftFile File to open to left side
 * @param sRightFile File to open to right side
+* @param bROLeft Is left file read-only
+* @param bRORight Is right file read-only
 *
 * @return Tells if files were loaded and scanned succesfully
 *
@@ -1810,7 +1809,8 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft)
 * @sa CMainFrame::ShowMergeDoc()
 *
 */
-BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile)
+BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
+		BOOL bROLeft, BOOL bRORight)
 {
 	int nRescanResult = RESCAN_OK;
 	CChildFrame *pf = GetParentFrame();
@@ -1836,6 +1836,10 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile)
 		return FALSE;
 	}
 	
+	// Set read-only statuses
+	m_ltBuf.SetReadOnly(bROLeft);
+	m_rtBuf.SetReadOnly(bRORight);
+
 	nRescanResult = Rescan();
 
 	// Open different and identical files

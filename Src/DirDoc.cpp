@@ -321,7 +321,7 @@ static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 
 void CDirDoc::Redisplay()
 {
-m_pDirView->ToDoDeleteThisValidateColumnOrdering();
+	m_pDirView->ToDoDeleteThisValidateColumnOrdering();
 
 	if (m_pCtxt == NULL)
 		return;
@@ -348,7 +348,7 @@ m_pDirView->ToDoDeleteThisValidateColumnOrdering();
 			cnt++;
 		}
 	}
-m_pDirView->ToDoDeleteThisValidateColumnOrdering();
+	m_pDirView->ToDoDeleteThisValidateColumnOrdering();
 }
 
 CDirView * CDirDoc::GetMainView()
@@ -582,4 +582,29 @@ void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unifie
 
 	// Update view
 	UpdateScreenItemStatus(ind, current);
+}
+
+/**
+ * @brief Set left/right side readonly-status
+ * @param bLeft Select side to set (TRUE = left)
+ * @param bReadOnly New status of selected side
+ */
+void CDirDoc::SetReadOnly(BOOL bLeft, BOOL bReadOnly)
+{
+	if (bLeft)
+		m_bROLeft = bReadOnly;
+	else
+		m_bRORight = bReadOnly;
+}
+
+/**
+ * @brief Return left/right side readonly-status
+ * @param bLeft Select side to ask (TRUE = left)
+ */
+BOOL CDirDoc::GetReadOnly(BOOL bLeft) const
+{
+	if (bLeft)
+		return m_bROLeft;
+	else
+		return m_bRORight;
 }

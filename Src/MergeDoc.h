@@ -77,6 +77,9 @@ public:
 class CChildFrame;
 class CDirDoc;
 
+/**
+ * @brief Document class for merging two files
+ */
 class CMergeDoc : public CDocument
 {
 // Attributes
@@ -179,7 +182,8 @@ public:
 	UINT m_nDiffs;
 	CString m_strLeftFile, m_strRightFile;
 
-	BOOL OpenDocs(CString sLeftFile, CString sRightFile);
+	BOOL OpenDocs(CString sLeftFile, CString sRightFile,
+		BOOL bROLeft = FALSE, BOOL bRORight = FALSE);
 	int LoadFile(CString sFileName, BOOL bLeft);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(BOOL bForced = FALSE);

@@ -17,10 +17,13 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// MainFrm.h : interface of the CMainFrame class
-//
-/////////////////////////////////////////////////////////////////////////////
-//
+/** 
+ * @file  MainFrm.h
+ *
+ * @brief Declaration file for CMainFrame
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #if !defined(AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
@@ -37,7 +40,8 @@
 enum
 {
 	FFILEOPEN_NONE		= 0x0000,
-	FFILEOPEN_NOMRU		= 0x0001
+	FFILEOPEN_NOMRU		= 0x0001,
+	FFILEOPEN_READONLY	= 0x0002,
 };
 
 class CDiffView;
@@ -51,6 +55,9 @@ typedef CTypedPtrList<CPtrList, CDirView *> DirViewList;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocList;
 typedef CTypedPtrList<CPtrList, CDirDoc *> DirDocList;
 
+/**
+ * @brief Frame class containing save-routines etc
+ */
 class CMainFrame : public CMDIFrameWnd
 {
 	DECLARE_DYNAMIC(CMainFrame)
@@ -81,7 +88,7 @@ public:
 	void UpdateCurrentFileStatus(CDirDoc * pDirDoc, UINT nStatus, int idx);
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
 		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE);
-	void ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight);
+	void ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft = FALSE, BOOL bRORight = FALSE);
 	void UpdateResources();
 	HMENU NewDefaultMenu();
 	BOOL CreateBackup(LPCTSTR pszPath);

@@ -230,13 +230,13 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 void CDirView::ReloadColumns()
 {
 	LoadColumnHeaderItems();
-ToDoDeleteThisValidateColumnOrdering();
+	ToDoDeleteThisValidateColumnOrdering();
 
-ToDoDeleteThisValidateColumnOrdering();
+	ToDoDeleteThisValidateColumnOrdering();
 	UpdateColumnNames();
-ToDoDeleteThisValidateColumnOrdering();
+	ToDoDeleteThisValidateColumnOrdering();
 	SetColumnWidths();
-ToDoDeleteThisValidateColumnOrdering();
+	ToDoDeleteThisValidateColumnOrdering();
 }
 
 /**
@@ -353,7 +353,7 @@ ToDoDeleteThisValidateColumnOrdering();
 	
 }	
 
-// Make a string out of a number
+/// Make a string out of a number
 // TODO: Ought to introduce commas every three digits, except this is locale-specific
 // How to do this with locale sensitivity ?
 CString NumToStr(int n)
@@ -363,7 +363,7 @@ CString NumToStr(int n)
 	return s;
 }
 
-// Change menu item by using string resource
+/// Change menu item by using string resource
 // (Question: Why don't we just remove it from the menu resource entirely & do an Add here ?)
 void CDirView::ModifyPopup(CMenu * pPopup, int nStringResource, int nMenuId, LPCTSTR szPath)
 {
@@ -388,77 +388,88 @@ void CDirView::OnDirCopyFileToRight()
 	DoCopyFileToRight();
 }
 
-// User chose (context men) Copy from right to left
+/// User chose (context men) Copy from right to left
 void CDirView::OnCtxtDirCopyFileToLeft()
 {
 	DoCopyFileToLeft();
 }
-// User chose (context menu) Copy from left to right
+/// User chose (context menu) Copy from left to right
 void CDirView::OnCtxtDirCopyFileToRight()
 {
 	DoCopyFileToRight();
 }
 
-// Update context menu Copy Right to Left item
+/// Update context menu Copy Right to Left item
 void CDirView::OnUpdateCtxtDirCopyFileToLeft(CCmdUI* pCmdUI) 
 {
 	DoUpdateDirCopyFileToLeft(pCmdUI, eContext);
 }
-// Update context menu Copy Left to Right item
+/// Update context menu Copy Left to Right item
 void CDirView::OnUpdateCtxtDirCopyFileToRight(CCmdUI* pCmdUI) 
 {
 	DoUpdateDirCopyFileToRight(pCmdUI, eContext);
 }
 
-// Update main menu Copy Right to Left item
+/// Update main menu Copy Right to Left item
 void CDirView::OnUpdateDirCopyFileToLeft(CCmdUI* pCmdUI) 
 {
 	DoUpdateDirCopyFileToLeft(pCmdUI, eMain);
 }
-// Update main menu Copy Left to Right item
+/// Update main menu Copy Left to Right item
 void CDirView::OnUpdateDirCopyFileToRight(CCmdUI* pCmdUI) 
 {
 	DoUpdateDirCopyFileToRight(pCmdUI, eMain);
 }
 
-// Should Copy to Left be enabled or disabled ? (both main menu & context menu use this)
+/// Should Copy to Left be enabled or disabled ? (both main menu & context menu use this)
 void CDirView::DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI, eMenuType menuType)
 {
-	int sel=-1;
-	int legalcount=0, selcount=0;
-	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	if (GetDocument()->GetReadOnly(TRUE))
+		pCmdUI->Enable(FALSE);
+	else
 	{
-		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemCopyableToLeft(di.code))
-			++legalcount;
-		++selcount;
-	}
-	pCmdUI->Enable(legalcount>0);
-	if (menuType==eContext)
-	{
-		CString s;
-		AfxFormatString2(s, IDS_COPY_TO_LEFT, NumToStr(legalcount), NumToStr(selcount));
-		pCmdUI->SetText(s);
+		int sel=-1;
+		int legalcount=0, selcount=0;
+		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+		{
+			const DIFFITEM& di = GetDiffItem(sel);
+			if (IsItemCopyableToLeft(di.code))
+				++legalcount;
+			++selcount;
+		}
+		pCmdUI->Enable(legalcount>0);
+		if (menuType==eContext)
+		{
+			CString s;
+			AfxFormatString2(s, IDS_COPY_TO_LEFT, NumToStr(legalcount), NumToStr(selcount));
+			pCmdUI->SetText(s);
+		}
 	}
 }
-// Should Copy to Right be enabled or disabled ? (both main menu & context menu use this)
+
+/// Should Copy to Right be enabled or disabled ? (both main menu & context menu use this)
 void CDirView::DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI, eMenuType menuType)
 {
-	int sel=-1;
-	int legalcount=0, selcount=0;
-	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	if (GetDocument()->GetReadOnly(FALSE))
+		pCmdUI->Enable(FALSE);
+	else
 	{
-		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemCopyableToRight(di.code))
-			++legalcount;
-		++selcount;
-	}
-	pCmdUI->Enable(legalcount>0);
-	if (menuType==eContext)
-	{
-		CString s;
-		AfxFormatString2(s, IDS_COPY_TO_RIGHT, NumToStr(legalcount), NumToStr(selcount));
-		pCmdUI->SetText(s);
+		int sel=-1;
+		int legalcount=0, selcount=0;
+		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+		{
+			const DIFFITEM& di = GetDiffItem(sel);
+			if (IsItemCopyableToRight(di.code))
+				++legalcount;
+			++selcount;
+		}
+		pCmdUI->Enable(legalcount>0);
+		if (menuType==eContext)
+		{
+			CString s;
+			AfxFormatString2(s, IDS_COPY_TO_RIGHT, NumToStr(legalcount), NumToStr(selcount));
+			pCmdUI->SetText(s);
+		}
 	}
 }
 
@@ -532,7 +543,9 @@ void CDirView::OpenSelection()
 			{
 				CString left, right;
 				GetItemFileNames(sel, left, right);
-				mf->ShowMergeDoc(GetDocument(), left, right);
+				mf->ShowMergeDoc(GetDocument(), left, right,
+					GetDocument()->GetReadOnly(TRUE),
+					GetDocument()->GetReadOnly(FALSE));
 			}
 			break;
 		case FILE_LDIRUNIQUE:
@@ -562,91 +575,108 @@ void CDirView::OpenSelection()
 	}
 }
 
-// User chose (context menu) delete left
+/// User chose (context menu) delete left
 void CDirView::OnCtxtDirDelLeft()
 {
 	DoDelLeft();
 }
-// User chose (context menu) delete right
+
+/// User chose (context menu) delete right
 void CDirView::OnCtxtDirDelRight()
 {
 	DoDelRight();
 }
-// User chose (context menu) delete both
+
+/// User chose (context menu) delete both
 void CDirView::OnCtxtDirDelBoth()
 {
 	DoDelBoth();
 }
 
-
-// Enable/disable Delete Left menu choice on context menu
+/// Enable/disable Delete Left menu choice on context menu
 void CDirView::OnUpdateCtxtDirDelLeft(CCmdUI* pCmdUI)
 {
 	DoUpdateCtxtDirDelLeft(pCmdUI);
 }
 
-// Enable/disable Delete Right menu choice on context menu
+/// Enable/disable Delete Right menu choice on context menu
 void CDirView::OnUpdateCtxtDirDelRight(CCmdUI* pCmdUI) 
 {
 	DoUpdateCtxtDirDelRight(pCmdUI);
 }
-// Enable/disable Delete Both menu choice on context menu
+/// Enable/disable Delete Both menu choice on context menu
 void CDirView::OnUpdateCtxtDirDelBoth(CCmdUI* pCmdUI) 
 {
 	DoUpdateCtxtDirDelBoth(pCmdUI);
 }
 
-// Should Delete left be enabled or disabled ?
+/// Should Delete left be enabled or disabled ?
 void CDirView::DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI)
 {
-	int sel=-1;
-	int count=0, total=0;
-	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	if (GetDocument()->GetReadOnly(TRUE))
+		pCmdUI->Enable(FALSE);
+	else
 	{
-		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemDeletableOnLeft(di.code))
-			++count;
-		++total;
+		int sel=-1;
+		int count=0, total=0;
+		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+		{
+			const DIFFITEM& di = GetDiffItem(sel);
+			if (IsItemDeletableOnLeft(di.code))
+				++count;
+			++total;
+		}
+		pCmdUI->Enable(count>0);
+		CString s;
+		AfxFormatString2(s, IDS_DEL_LEFT_FMT, NumToStr(count), NumToStr(total));
+		pCmdUI->SetText(s);
 	}
-	pCmdUI->Enable(count>0);
-	CString s;
-	AfxFormatString2(s, IDS_DEL_LEFT_FMT, NumToStr(count), NumToStr(total));
-	pCmdUI->SetText(s);
-}
-// Should Delete right be enabled or disabled ?
-void CDirView::DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI) 
-{
-	int sel=-1;
-	int count=0, total=0;
-	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
-	{
-		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemDeletableOnRight(di.code))
-			++count;
-		++total;
-	}
-	pCmdUI->Enable(count>0);
-	CString s;
-	AfxFormatString2(s, IDS_DEL_RIGHT_FMT, NumToStr(count), NumToStr(total));
-	pCmdUI->SetText(s);
 }
 
-// Should Delete both be enabled or disabled ?
+/// Should Delete right be enabled or disabled ?
+void CDirView::DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI) 
+{
+	if (GetDocument()->GetReadOnly(FALSE))
+		pCmdUI->Enable(FALSE);
+	else
+	{
+		int sel=-1;
+		int count=0, total=0;
+		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+		{
+			const DIFFITEM& di = GetDiffItem(sel);
+			if (IsItemDeletableOnRight(di.code))
+				++count;
+			++total;
+		}
+		pCmdUI->Enable(count>0);
+		CString s;
+		AfxFormatString2(s, IDS_DEL_RIGHT_FMT, NumToStr(count), NumToStr(total));
+		pCmdUI->SetText(s);
+	}
+}
+
+/// Should Delete both be enabled or disabled ?
 void CDirView::DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI) 
 {
-	int sel=-1;
-	int count=0, total=0;
-	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	if (GetDocument()->GetReadOnly(TRUE) || GetDocument()->GetReadOnly(FALSE))
+		pCmdUI->Enable(FALSE);
+	else
 	{
-		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemDeletableOnBoth(di.code))
-			++count;
-		++total;
+		int sel=-1;
+		int count=0, total=0;
+		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+		{
+			const DIFFITEM& di = GetDiffItem(sel);
+			if (IsItemDeletableOnBoth(di.code))
+				++count;
+			++total;
+		}
+		pCmdUI->Enable(count>0);
+		CString s;
+		AfxFormatString2(s, IDS_DEL_BOTH_FMT, NumToStr(count), NumToStr(total));
+		pCmdUI->SetText(s);
 	}
-	pCmdUI->Enable(count>0);
-	CString s;
-	AfxFormatString2(s, IDS_DEL_BOTH_FMT, NumToStr(count), NumToStr(total));
-	pCmdUI->SetText(s);
 }
 
 POSITION CDirView::GetItemKey(int idx) const

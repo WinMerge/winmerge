@@ -40,12 +40,18 @@ class CMergeDoc;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocPtrList;
 class DirDocFilter;
 
+/**
+ * @brief User-defined Windows-messages
+ */
 const UINT MSG_UI_UPDATE = WM_USER;
 const UINT MSG_STAT_UPDATE = WM_USER + 1;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc document
 
+/**
+ * @brief Documentclass for directory compare
+ */
 class CDirDoc : public CDocument
 {
 protected:
@@ -72,6 +78,8 @@ public:
 
 // Implementation
 public:
+	BOOL GetReadOnly(BOOL bLeft) const;
+	void SetReadOnly(BOOL bLeft, BOOL bReadOnly);
 	void UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unified);
 	POSITION FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight);
 	void SetDiffContext(CDiffContext *pCtxt);
@@ -107,9 +115,11 @@ private:
 	CDirView *m_pDirView;
 	MergeDocPtrList m_MergeDocs;
 	BOOL m_bReuseMergeDocs; // policy to reuse existing merge docs
+	BOOL m_bROLeft;
+	BOOL m_bRORight;
 };
 
-// callback for file/directory filtering during diff
+/// callback for file/directory filtering during diff
 // actually we just forward these calls to the app, to CMergeApp::includeFile & includeDir
 class DirDocFilter : public IDiffFilter
 {

@@ -1,3 +1,9 @@
+2003-08-27 Kimmo
+ PATCH: [ 784302 ] Implement Read-only for files and dirs
+  Only background changes, no UI changes
+  WinMerge: DirDoc.h DirDoc.cpp DirView.cpp MainFrm.h MainFrm.cpp
+   MergeDoc.h MergeDoc.cpp MergeEditView.h MergeEditView.cpp
+
 2003-08-27 Perry
  Add new colhdrs from patch#781529 to Brazilian.
  Reorder ChineseSimplified string tables to match English, and add missing entries.

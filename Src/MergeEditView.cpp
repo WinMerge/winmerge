@@ -1,5 +1,30 @@
-// MergeEditView.cpp : implementation file
+/////////////////////////////////////////////////////////////////////////////
+//    WinMerge:  an interactive diff/merge utility
+//    Copyright (C) 1997-2000  Thingamahoochie Software
+//    Author: Dean Grimm
 //
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  MergeEditView.cpp
+ *
+ * @brief Implementation of the CMergeEditView class
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "merge.h"
@@ -387,11 +412,15 @@ void CMergeEditView::OnUpdateEditCopy(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnEditCut()
 {
+	if (IsReadOnly(m_bIsLeft))
+		return;
+
 	CPoint ptSelStart, ptSelEnd;
 	CMergeDoc * pDoc = GetDocument();
 	GetSelection(ptSelStart, ptSelEnd);
 
-	if ( ptSelStart == ptSelEnd )
+	// Nothing selected
+	if (ptSelStart == ptSelEnd)
 		return;
 
 	CString text;
@@ -423,22 +452,34 @@ void CMergeEditView::OnEditCut()
 
 void CMergeEditView::OnUpdateEditCut(CCmdUI* pCmdUI)
 {
-	CCrystalEditViewEx::OnUpdateEditCut(pCmdUI);
+	if (!IsReadOnly(m_bIsLeft))
+		CCrystalEditViewEx::OnUpdateEditCut(pCmdUI);
+	else
+		pCmdUI->Enable(FALSE);
 }
 
 void CMergeEditView::OnEditPaste()
 {
+	if (IsReadOnly(m_bIsLeft))
+		return;
+
 	CCrystalEditViewEx::Paste();
 	m_pTextBuffer->SetModified(TRUE);
 }
 
 void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
 {
-	CCrystalEditViewEx::OnUpdateEditPaste(pCmdUI);
+	if (!IsReadOnly(m_bIsLeft))
+		CCrystalEditViewEx::OnUpdateEditPaste(pCmdUI);
+	else
+		pCmdUI->Enable(FALSE);
 }
 
 void CMergeEditView::OnEditUndo()
 {
+	if (IsReadOnly(m_bIsLeft))
+		return;
+
 	CMergeDoc* pDoc = GetDocument();
 	CMergeEditView *tgt = *(pDoc->curUndo-1);
 	if(tgt==this)
@@ -578,6 +619,7 @@ void CMergeEditView::SelectNone()
 	UpdateCaret();
 }
 
+/// Check if line is inside currently selected diff
 BOOL CMergeEditView::IsLineInCurrentDiff(int nLine)
 {
 	CMergeDoc *pd = GetDocument();
@@ -625,28 +667,40 @@ void CMergeEditView::UpdateLineLengths()
 
 void CMergeEditView::OnL2r()
 {
+	if (IsReadOnly(FALSE))
+		return;
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
 	GetDocument()->ListCopy(true);
 }
 
 void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+	if (!IsReadOnly(FALSE))
+		pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+	else
+		pCmdUI->Enable(FALSE);
 }
 
 void CMergeEditView::OnR2l()
 {
+	if (IsReadOnly(TRUE))
+		return;
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
 	GetDocument()->ListCopy(false);
 }
 
 void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+	if (!IsReadOnly(TRUE))
+		pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+	else
+		pCmdUI->Enable(FALSE);
 }
 
 void CMergeEditView::OnAllLeft()
 {
+	if (IsReadOnly(TRUE))
+		return;
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYALL2L));
 
 	GetDocument()->CopyAllList(false);
@@ -654,11 +708,17 @@ void CMergeEditView::OnAllLeft()
 
 void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetDocument()->m_nDiffs!=0);
+	if (!IsReadOnly(TRUE))
+		pCmdUI->Enable(GetDocument()->m_nDiffs!=0);
+	else
+		pCmdUI->Enable(FALSE);
 }
 
 void CMergeEditView::OnAllRight()
 {
+	if (IsReadOnly(FALSE))
+		return;
+
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYALL2R));
 
 	GetDocument()->CopyAllList(true);
@@ -666,11 +726,17 @@ void CMergeEditView::OnAllRight()
 
 void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetDocument()->m_nDiffs!=0);
+	if (!IsReadOnly(FALSE))
+		pCmdUI->Enable(GetDocument()->m_nDiffs!=0);
+	else
+		pCmdUI->Enable(FALSE);
 }
 
 void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 {
+	if (IsReadOnly(m_bIsLeft))
+		return;
+
 	CMergeDoc* pDoc = GetDocument();
 
 	// simple hook for multiplex undo operations
@@ -709,6 +775,9 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 
 void CMergeEditView::OnEditRedo()
 {
+	if (IsReadOnly(m_bIsLeft))
+		return;
+
 	CMergeDoc* pDoc = GetDocument();
 	CMergeEditView *tgt = *(pDoc->curUndo);
 	if(tgt==this)
@@ -734,7 +803,6 @@ void CMergeEditView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 void CMergeEditView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
 	CCrystalEditViewEx::OnUpdate(pSender, lHint, pHint);
-	// ShowDiff(FALSE, FALSE);
 }
 
 void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
@@ -802,6 +870,18 @@ void CMergeEditView::OnTimer(UINT nIDEvent)
 	}
 
 	CCrystalEditViewEx::OnTimer(nIDEvent);
+}
+
+BOOL CMergeEditView::IsReadOnly(BOOL bLeft)
+{
+	CCrystalTextBuffer *pBuf = NULL;
+
+	if (bLeft)
+		pBuf = &GetDocument()->m_ltBuf;
+	else
+		pBuf = &GetDocument()->m_rtBuf;
+
+	return pBuf->GetReadOnly();
 }
 
 void CMergeEditView::OnRefresh()

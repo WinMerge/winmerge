@@ -301,7 +301,7 @@ void CMainFrame::OnFileOpen()
 }
 
 /// Creates new MergeDoc instance and shows documents
-void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight)
+void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft, BOOL bRORight)
 {
 	BOOL docNull;
 	BOOL bOpenSuccess = FALSE;
@@ -311,7 +311,8 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	ASSERT(pMergeDoc);		// must ASSERT to get an answer to the question below ;-)
 	if (!pMergeDoc) return; // when does this happen ?
 
-	bOpenSuccess = pMergeDoc->OpenDocs(szLeft, szRight);
+	bOpenSuccess = pMergeDoc->OpenDocs(szLeft, szRight,
+			bROLeft, bRORight);
 
 	if (bOpenSuccess)
 	{
@@ -940,6 +941,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			CDiffContext *pCtxt = new CDiffContext(strLeft, strRight);
 			if (pCtxt != NULL)
 			{
+				pDirDoc->SetReadOnly(TRUE, FALSE);
+				pDirDoc->SetReadOnly(FALSE, FALSE);
 				pDirDoc->SetDiffContext(pCtxt);
 				pCtxt->SetRegExp(strExt);
 				pDirDoc->Rescan();
@@ -948,7 +951,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 					CDirView * pDirView = pDirDoc->GetMainView();
 					pDirView->GotoFirstDiff();
 				}
-
 			}
 		}
 	}
