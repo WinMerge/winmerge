@@ -3101,3 +3101,13 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 		CDocument::SetTitle(strTitle);	
 	}	
 }
+
+/**
+ * @brief Update any resources necessary after a GUI language change
+ */
+void CMergeDoc::UpdateResources()
+{
+	GetParentFrame()->UpdateResources();
+	GetLeftView()->UpdateResources();
+	GetRightView()->UpdateResources();
+}

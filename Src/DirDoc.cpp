@@ -360,7 +360,9 @@ void CDirDoc::InitStatusStrings()
 
 }
 
-/// Update any language-dependent data
+/**
+ * @brief Update any resources necessary after a GUI language change
+ */
 void CDirDoc::UpdateResources()
 {
 	m_pDirView->UpdateResources();

@@ -720,7 +720,7 @@ void CDirView::DoUpdateDirCopyLeftToRight(CCmdUI* pCmdUI, eMenuType menuType)
 }
 
 /**
- * @brief Update any language-dependent data
+ * @brief Update any resources necessary after a GUI language change
  */
 void CDirView::UpdateResources()
 {

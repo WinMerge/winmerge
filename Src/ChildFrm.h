@@ -62,6 +62,7 @@ protected:
 		// Implement MergeEditStatus
 		void SetLineInfo(LPCTSTR szLine, int nColumn, int nColumns,
 			int nChar, int nChars, LPCTSTR szEol);
+		void UpdateResources();
 	protected:
 		void Update();
 	private:
@@ -78,9 +79,10 @@ protected:
 	friend class MergeStatus; // MergeStatus accesses status bar
 	MergeStatus m_leftStatus;
 	MergeStatus m_rightStatus;
-public:
 
 // Operations
+public:
+	void UpdateResources();
 private:
 	BOOL EnsureValidDockState(CDockState& state);
 

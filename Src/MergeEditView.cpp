@@ -207,7 +207,9 @@ void CMergeEditView::DoScroll(UINT code, UINT pos, BOOL bDoScroll)
 	CCrystalEditViewEx::OnVScroll(code, pos, NULL);
 }
 
-/// Update any language-dependent data
+/**
+ * @brief Update any resources necessary after a GUI language change
+ */
 void CMergeEditView::UpdateResources()
 {
 }

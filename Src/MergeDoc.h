@@ -200,6 +200,7 @@ public:
 	void UpdateHeaderPath(BOOL bLeft);
 	void UpdateHeaderActivity(BOOL bLeft, BOOL bActivate);
 	void RefreshOptions();
+	void UpdateResources();
 	BOOL OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright);
 	void CompareBinaries(CString sLeftFile, CString sRightFile, int nLeftSuccess, int nRightSuccess);

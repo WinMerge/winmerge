@@ -1,3 +1,9 @@
+2004-01-13 Kimmo
+ PATCH: [ 1001341 ] Update edit view status bar on language change
+  Submitted by Perry
+  Src: ChildFrm.cpp ChildFrm.h DirDoc.cpp DirFrame.cpp DirView.cpp
+   MainFrm.cpp MergeDoc.cpp MergeDoc.h MergeEditView.cpp 
+
 2005-01-12 Kimmo
  PATCH: [ 1100462 ] Center find result in file compare
   Src/editlib: ccrystaltextview.cpp

@@ -94,7 +94,9 @@ void CMergeDiffDetailView::DoScroll(UINT code, UINT pos, BOOL bDoScroll)
 	CCrystalTextView::OnVScroll(code, pos, NULL);
 }
 
-/// Update any language-dependent data
+/**
+ * @brief Update any resources necessary after a GUI language change
+ */
 void CMergeDiffDetailView::UpdateResources()
 {
 }

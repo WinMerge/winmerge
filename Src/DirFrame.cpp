@@ -190,7 +190,7 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 }
 
 /**
- * @brief Called when language changes
+ * @brief Update any resources necessary after a GUI language change
  */
 void CDirFrame::UpdateResources()
 {

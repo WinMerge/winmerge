@@ -617,6 +617,14 @@ void CChildFrame::MergeStatus::Update()
 	}
 }
 
+/**
+ * @brief Update any resources necessary after a GUI language change
+ */
+void CChildFrame::MergeStatus::UpdateResources()
+{
+	Update();
+}
+
 /// Visible representation of eol
 static CString EolString(const CString & sEol)
 {
@@ -644,4 +652,13 @@ void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
 		m_sEolDisplay = EolString(m_sEol);
 		Update();
 	}
+}
+
+/**
+ * @brief Update any resources necessary after a GUI language change
+ */
+void CChildFrame::UpdateResources()
+{
+	m_leftStatus.UpdateResources();
+	m_rightStatus.UpdateResources();
 }
