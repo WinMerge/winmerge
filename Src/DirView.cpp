@@ -521,7 +521,7 @@ void CDirView::SortColumnsAppropriately()
 {
 	if (m_sortColumn == -1) return;
 
-	m_ctlSortHeader.SetSortImage(m_sortColumn, m_bSortAscending);
+	m_ctlSortHeader.SetSortImage(ColLogToPhys(m_sortColumn), m_bSortAscending);
 	//sort using static CompareFunc comparison function
 	GetListCtrl ().SortItems (CompareFunc, reinterpret_cast<DWORD>(this));//pNMListView->iSubItem);
 }

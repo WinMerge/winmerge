@@ -1,6 +1,8 @@
 2003-09-07 Perry
  PATCH: [ 802132 ] Resort dir columns after redisplay
   WinMerge: DirView.h DirView.cpp DirDoc.cpp
+ Fix bug [ 798404 ] Reordering dirview columns does not preserve sorting column
+  WinMerge: DirView.cpp
 
 2003-09-07 Laoran
  PATCH: [ 799464 ] preserve positions during Rescan (2.1)
