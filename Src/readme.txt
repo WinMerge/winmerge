@@ -1,3 +1,8 @@
+2005-03-03 Perry
+ PATCH: [ 1151951 ] Alter getRightFilepath for root paths
+ re: BUG: [ 1105933 ] Problem accessing files in network shares and removables
+  Src: DiffContext.cpp
+
 2005-03-02 Kimmo
  BUG: [ 975226 ] Editor: Always refresh with Del-Key
   Fix submitted by Takashi Sawanaka

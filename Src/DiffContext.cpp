@@ -298,7 +298,7 @@ CString DIFFITEM::getLeftFilepath(const CDiffContext *pCtxt) const
 		sPath = pCtxt->m_strNormalizedLeft;
 		if (sSubdir.GetLength())
 		{
-			sPath += _T("\\") + sSubdir;
+            sPath = paths_ConcatPath(sPath, sSubdir);
 		}
 	}
 	return sPath;
@@ -313,7 +313,7 @@ CString DIFFITEM::getRightFilepath(const CDiffContext *pCtxt) const
 		sPath = pCtxt->m_strNormalizedRight;
 		if (sSubdir.GetLength())
 		{
-			sPath += _T("\\") + sSubdir;
+            sPath = paths_ConcatPath(sPath, sSubdir);
 		}
 	}
 	return sPath;
