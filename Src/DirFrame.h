@@ -50,6 +50,7 @@ public:
 // Operations
 public:
 	void SetStatus(LPCTSTR szStatus);
+	void SetFilter(LPCTSTR szFilter);
 	CStatusBar  m_wndStatusBar;
 	void SetClosableCallback(bool (*canclose)(void *), void * param);
 	IHeaderBar * GetHeaderInterface();

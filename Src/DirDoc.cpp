@@ -202,6 +202,9 @@ void CDirDoc::Rescan()
 
 	m_pCtxt->m_piFilterGlobal = &theApp.m_globalFileFilter;
 
+	// Show active filter name in statusbar
+	pf->SetFilter(theApp.m_globalFileFilter.GetFilter());
+
 	// Empty display before new compare
 	m_pDirView->DeleteAllDisplayItems();
 

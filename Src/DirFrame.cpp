@@ -40,11 +40,27 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /**
+ * @brief Statusbar pane indexes
+ */
+enum
+{
+	PANE_FILTER = 1,
+	PANE_LEFT_RO,
+	PANE_RIGHT_RO,
+};
+
+/**
+ * @brief Width of filter name pane in statusbar
+ */
+const int FILTER_PANEL_WIDTH = 180;
+
+/**
  * @brief Bottom statusbar panels and indicators
  */
 static UINT indicators[] =
 {
 	ID_SEPARATOR,           // status line indicator
+	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
 };
@@ -119,10 +135,11 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	
 	CString sText;
 	VERIFY(sText.LoadString(IDS_STATUSBAR_READONLY));
-	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_LEFTDIR_RO, 0, RO_PANEL_WIDTH);
-	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_RIGHTDIR_RO, 0, RO_PANEL_WIDTH);
-	m_wndStatusBar.SetPaneText(1, sText, TRUE); 
-	m_wndStatusBar.SetPaneText(2, sText, TRUE);
+	m_wndStatusBar.SetPaneInfo(PANE_FILTER, ID_STATUS_FILTER, 0, FILTER_PANEL_WIDTH);
+	m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTDIR_RO, 0, RO_PANEL_WIDTH);
+	m_wndStatusBar.SetPaneInfo(PANE_RIGHT_RO, ID_STATUS_RIGHTDIR_RO, 0, RO_PANEL_WIDTH);
+	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText, TRUE); 
+	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText, TRUE);
 	return 0;
 }
 
@@ -150,6 +167,15 @@ bool CDirFrame::CreateStateBar()
 void CDirFrame::SetStatus(LPCTSTR szStatus)
 {
 	m_wndStatusBar.SetPaneText(0, szStatus);
+}
+
+/**
+ * @brief Set active filter name to statusbar
+ * @param [in] szFilter Filtername to show
+ */
+void CDirFrame::SetFilter(LPCTSTR szFilter)
+{
+	m_wndStatusBar.SetPaneText(PANE_FILTER, szFilter);
 }
 
 /**

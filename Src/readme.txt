@@ -1,3 +1,8 @@
+2005-01-23 Kimmo
+ PATCH: [ 1107508 ] Add dirview statusbar panel showing current filter name
+  Src: DirDoc.cpp DirFrame.cpp DirFrame.h resource.h
+  Languages: resource.h
+
 2005-01-23 Perry
  PATCH: [ 1107516 ] Suggest code simplification for DiffFileInfo ctr
   Src: DiffFileInfo.h

@@ -809,7 +809,7 @@
 #define ID_STATUS_LEFTFILE_INFO         32967
 #define ID_STATUS_RIGHTFILE_EOL         32968
 #define ID_STATUS_LEFTFILE_EOL          32969
-
+#define ID_STATUS_FILTER                32970
 #define ID_DIR_ZIP_LEFT                 32976
 #define ID_DIR_ZIP_RIGHT                32977
 #define ID_DIR_ZIP_BOTH                 32978
