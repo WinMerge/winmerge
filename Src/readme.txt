@@ -5,6 +5,8 @@
   Docs\Developers: readme-developers.html
  PATCH: [ 964661 ] Remove unneeded include from DirDoc.h
   Src: 7Common.cpp DirDoc.h
+ PATCH: [ 964664 ] Remove another unneeded include from DirDoc.h
+  Src: 7Common.h DirDoc.h
 
 2004-06-01 Kimmo
  BUG: [ 963820 ] Cutting off trailing chars in opendlg

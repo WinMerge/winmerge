@@ -30,8 +30,6 @@
 #define AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_
 #pragma once
 
-
-#include "DirView.h"
 #include "DiffContext.h"
 #include "diffThread.h"
 #include "DiffWrapper.h"
@@ -44,6 +42,7 @@
 #include "RegExp.h"
 #endif
 
+class CDirView;
 class CMergeDoc;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocPtrList;
 class DirDocFilterGlobal;
