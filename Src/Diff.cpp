@@ -165,6 +165,9 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
   int failed = 0;
   LPTSTR free0 = 0, free1 = 0;
 
+  memset(&inf[0], 0, sizeof(struct file_data));
+  memset(&inf[1], 0, sizeof(struct file_data));
+
   /* If this is directory comparison, perhaps we have a file
      that exists only in one of the directories.
      If so, just print a message to that effect.  */
