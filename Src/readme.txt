@@ -1,3 +1,7 @@
+2004-07-01 Kimmo
+ PATCH: [ 982683 ] Clear results only after user chooses new files or folders
+  Src: MainFrm.cpp
+
 2004-06-29 Laoran
  BUG: [ 981796 ] Dir compare : rescan clears "auto-prediffer"
   Src: DirView.cpp

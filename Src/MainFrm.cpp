@@ -1419,14 +1419,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	if (threadState == THREAD_COMPARING)
 		return FALSE;
 
-	if (!docNull)
-	{
-		// If reusing an existing doc, give it a chance to save its data
-		// and close any merge views, and clear its window
-		if (!pDirDoc->ReusingDirDoc())
-			return FALSE;
-	}
-
 	// pop up dialog unless arguments exist (and are compatible)
 	PATH_EXISTENCE pathsType = GetPairComparability(strLeft, strRight);
 	if (pathsType == DOES_NOT_EXIST)
@@ -1455,6 +1447,14 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			addToMru(pszLeft, _T("Files\\Left"));
 		if (!(dwRightFlags & FFILEOPEN_NOMRU))
 			addToMru(pszRight, _T("Files\\Right"));
+	}
+
+	if (!docNull)
+	{
+		// If reusing an existing doc, give it a chance to save its data
+		// and close any merge views, and clear its window
+		if (!pDirDoc->ReusingDirDoc())
+			return FALSE;
 	}
 
 	if (1)
