@@ -2,6 +2,9 @@
  PATCH: [ 1043825 ] revised wording for merge mode manual
   Submitted by Perry
   Manual: Compare_files.xml
+ PATCH: [ 1048295 ] Suggested fixes to 2.2 manual
+  Submitted by Perry
+  Manual: Plugins.xml
 
 2004-10-09 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations

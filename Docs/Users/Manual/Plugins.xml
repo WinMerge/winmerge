@@ -28,7 +28,7 @@
       <para>Sometimes the transformed file can be packed back. Then you may merge and save the transformed file. Packing is done automatically in this case. See the plugin details to know if it supports packing back. </para>
       <para>Example plugin : decompress Delphi4 binary files (extension .dfm).</para>
       <note>
-        <para>When you compare directories, WinMerge doesn't need to display the files, but the diffing process can give a different result when you compare compressed and not compressed files (for example, uncompressed files maybe be identical, but the compressed files may differ if they include the date of creation). WinMerge applies the unpacker in all situations, and you are sure to have the same result when you compare directories, or when you merge two versions of a file.</para>
+        <para>When you compare directories, WinMerge doesn't need to display the files, but the diffing process can give a different result when you compare compressed and not compressed files (for example, uncompressed files may be identical, but the compressed files may differ if they include the date of creation). WinMerge applies the unpacker in all situations, and you are sure to have the same result when you compare directories, or when you merge two versions of a file.</para>
       </note>
     </sect3>
     <sect3>
@@ -84,11 +84,11 @@
     <title>Plugin details</title>
     <para>A file <filename>Plugins.txt</filename> is created during the setup process. It documents each installed plugin : category, suggested file extensions, whether pack is available for unpack plugins, quick description.</para>
     <para>If you don't use the <filename>setup.exe</filename>, the file is in the subdirectory "<filename class="directory">MergePlugins</filename>" and called <filename>list.txt</filename>. </para>
-    <para>Developpers may find information and code of examples in the source package, under the directory "<filename class="directory">Plugins</filename>".</para>
+    <para>Developers may find information and code of examples in the source package, under the directory "<filename class="directory">Plugins</filename>".</para>
   </sect2>
   <sect2>
     <title>Windows Script Host</title>
-    <para>Some editor complements need this optionnal component from Microsoft. </para>
+    <para>Some editor complements need this optional component from Microsoft. </para>
     <para>If the list of editor complements does not present all editor plugins, this component is probably missing.</para>
     <para>You can check easily. WinMerge informs you with a comment at the bottom of the list.</para>
     <para>You may install WSH on any version of Windows (need IE 4.0). Download it from <ulink url="http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp">MSDN Library</ulink>.</para>
