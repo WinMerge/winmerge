@@ -90,6 +90,7 @@
 #include "filesup.h"
 #include "registry.h"
 #include "gotodlg.h"
+#include "Merge.h"
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
