@@ -1,7 +1,7 @@
 //*************************************************************************
 // BCMenu.h : header file
-// Version : 3.033
-// Date : April 2002
+// Version : 3.034
+// Date : May 2002
 // Author : Brent Corkum
 // Email :  corkum@rocscience.com
 // Latest Version : http://www.rocscience.com/~corkum/BCMenu.html

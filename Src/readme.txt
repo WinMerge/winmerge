@@ -1,3 +1,7 @@
+2004-01-21 Kimmo
+ PATCH: [ 880898 ] BCMenu update to v3.034
+  src: BCMenu.h BCMenu.cpp
+
 2004-01-20 WinMerge experimental release 2.1.5.7 (cvs)
 
 2004-01-20 Jochen

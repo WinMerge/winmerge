@@ -1,7 +1,7 @@
 //*************************************************************************
 // BCMenu.cpp : implementation file
-// Version : 3.033
-// Date : April 2002
+// Version : 3.034
+// Date : May 2002
 // Author : Brent Corkum
 // Email :  corkum@rocscience.com
 // Latest Version : http://www.rocscience.com/~corkum/BCMenu.html
@@ -254,8 +254,10 @@ BOOL BCMenu::DestroyMenu()
 			if(m_AllSubMenus[n]==m_SubMenus[m])m_AllSubMenus.RemoveAt(n);
 		}
 		CMenu *ptr=FromHandle(m_SubMenus[m]);
-		BOOL flag=ptr->IsKindOf(RUNTIME_CLASS( BCMenu ));
-		if(flag)delete((BCMenu *)ptr);
+		if(ptr){
+			BOOL flag=ptr->IsKindOf(RUNTIME_CLASS( BCMenu ));
+			if(flag)delete((BCMenu *)ptr);
+		}
 	}
 	m_SubMenus.RemoveAll();
 	// Destroy menu data
@@ -1136,7 +1138,7 @@ BOOL BCMenu::InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT nI
 			if(nPosition<(UINT)menustart)menustart=0;
 		}
 		m_AllSubMenus.Add((HMENU)nID);
-		m_SubMenus.InsertAt(nPosition,(HMENU)nID);
+		m_SubMenus.Add((HMENU)nID);
 	}
 
 	//Stephane Clog suggested adding this, believe it or not it's in the help 
@@ -1193,7 +1195,7 @@ BOOL BCMenu::InsertODMenuW(UINT nPosition,wchar_t *lpstrText,UINT nFlags,UINT nI
 	
 	if(nFlags & MF_POPUP){
 		m_AllSubMenus.Add((HMENU)nID);
-		m_SubMenus.InsertAt(nPosition,(HMENU)nID);
+		m_SubMenus.Add((HMENU)nID);
 	}
 	
 	//Stephane Clog suggested adding this, believe it or not it's in the help 
@@ -2853,8 +2855,10 @@ BCMenu* BCMenu::GetSubBCMenu(wchar_t* lpszSubMenuName)
 	if(mdata){
 		HMENU bchmenu=(HMENU)mdata->nID;
 		CMenu *ptr=FromHandle(bchmenu);
-		BOOL flag=ptr->IsKindOf(RUNTIME_CLASS( BCMenu ));
-		if(flag)return((BCMenu *)ptr);
+		if(ptr){
+			BOOL flag=ptr->IsKindOf(RUNTIME_CLASS( BCMenu ));
+			if(flag)return((BCMenu *)ptr);
+		}
 	}
 	return NULL;
 }
