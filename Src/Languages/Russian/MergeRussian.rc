@@ -1270,7 +1270,7 @@ BEGIN
     IDS_DIFF_SELECTEDFILES  "[%1 файлов выбрано]"
     IDS_DIFF_NORMAL         "Нормальный"
     IDS_DIFF_CONTEXT        "Контекст"
-    IDS_DIFF_UNIFIED        "Объединенный"
+    IDS_DIFF_UNIFIED        "Унифицированный"
     IDS_FILEPACK_FAILED_LEFT 
                             "Плагин '%2' не может запаковать ваши изменения обратно в файл слева '%1'.\n\nОригинал останется не измененным.\n\nХотите сохранить распакованную версию в другой файл?"
     IDS_FILEPACK_FAILED_RIGHT 
