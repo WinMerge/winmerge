@@ -1,3 +1,8 @@
+2004-04-07 Laoran
+ BUG: [ 930995 ] Cursor help text ... ; part two : inversion in menu
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2004-04-07 Kimmo
  PATCH: [ 930495 ] Log delete file errors from FileTransform.cpp
   Src: FileTransform.cpp

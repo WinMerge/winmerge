@@ -186,8 +186,8 @@ BEGIN
         MENUITEM "Kopiera till &höger\tAlt+Höger", ID_L2R
         MENUITEM "Kopiera till &vänster\tAlt+Vänster", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "C&opy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
-        MENUITEM "Copy &to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
+        MENUITEM "C&opy to Right and Advance\tAlt+Ctrl+Right", ID_L2RNEXT
+        MENUITEM "Copy &to Left and Advance\tAlt+Ctrl+Left", ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "Kopiera allt &till höger",    ID_ALL_RIGHT
         MENUITEM "Kopiera allt t&ill vänster",  ID_ALL_LEFT

@@ -187,8 +187,8 @@ BEGIN
         MENUITEM "Kopiuj na prawa\tAlt+Right",  ID_L2R
         MENUITEM "Kopiuj na lewa\tAlt+Left",    ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Copy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
-        MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
+        MENUITEM "Copy to Right and Advance\tAlt+Ctrl+Right", ID_L2RNEXT
+        MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "Kopiuj wszystko na prawa",    ID_ALL_RIGHT
         MENUITEM "Kopiuj wszystko na lewa",     ID_ALL_LEFT

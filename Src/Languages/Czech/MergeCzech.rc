@@ -187,8 +187,8 @@ BEGIN
         MENUITEM "Kopírovat vp&ravo\tŠipka vpravo", ID_L2R
         MENUITEM "Kopírovat vl&evo\tŠipka vlevo", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "C&opy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
-        MENUITEM "Copy &to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
+        MENUITEM "C&opy to Right and Advance\tAlt+Ctrl+Right", ID_L2RNEXT
+        MENUITEM "Copy &to Left and Advance\tAlt+Ctrl+Left", ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "Kopírovat vše vpravo",        ID_ALL_RIGHT
         MENUITEM "Kopírovat vše vlevo",         ID_ALL_LEFT

@@ -187,8 +187,8 @@ BEGIN
         MENUITEM "Копирай в &дясно\tAlt+Right",   ID_L2R
         MENUITEM "Копирай в л&яво\tAlt+Left",     ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "К&опирай в дясно и се премести\tAlt+Ctrl+Right", ID_R2LNEXT
-        MENUITEM "Копирай &в ляво и се премести\tAlt+Ctrl+Left", ID_L2RNEXT
+        MENUITEM "К&опирай в дясно и се премести\tAlt+Ctrl+Right", ID_L2RNEXT
+        MENUITEM "Копирай &в ляво и се премести\tAlt+Ctrl+Left", ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "Копирай &всичко в дясно",          ID_ALL_RIGHT
         MENUITEM "Копира&Й всичко в ляво",           ID_ALL_LEFT

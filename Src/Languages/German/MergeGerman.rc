@@ -192,8 +192,8 @@ BEGIN
         MENUITEM "Nach rechts kopieren\tAlt+Rechts", ID_L2R
         MENUITEM "Nach links kopieren\tAlt+Links", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Nach rechts kopieren und fortschreiten\tAlt+Strg+Rechts", ID_R2LNEXT
-        MENUITEM "Nach links kopieren und fortschreiten\tAlt+Strg+Links", ID_L2RNEXT
+        MENUITEM "Nach rechts kopieren und fortschreiten\tAlt+Strg+Rechts", ID_L2RNEXT
+        MENUITEM "Nach links kopieren und fortschreiten\tAlt+Strg+Links", ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "Alles nach rechts kopieren",  ID_ALL_RIGHT
         MENUITEM "Alles nach links kopieren",   ID_ALL_LEFT

@@ -188,9 +188,9 @@ BEGIN
         MENUITEM "Скопировать на &левую панель\tAlt+Left", ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "Скопировать на правую панель и перейти к следующему\tAlt+Ctrl+Right", 
-                                                ID_R2LNEXT
-        MENUITEM "Скопировать на левую панель и перейти к следующему\tAlt+Ctrl+Left", 
                                                 ID_L2RNEXT
+        MENUITEM "Скопировать на левую панель и перейти к следующему\tAlt+Ctrl+Left",
+                                                ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "Ск&опировать все на правую панель", ID_ALL_RIGHT
         MENUITEM "Скоп&ировать все на левую панель", ID_ALL_LEFT

@@ -187,8 +187,8 @@ BEGIN
         MENUITEM "Copia a la &dreta\tAlt+Right", ID_L2R
         MENUITEM "Copia a l'&esquerra\tAlt+Left", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Copia a la dreta i avança\tAlt+Ctrl+Right", ID_R2LNEXT
-        MENUITEM "Copia a l'esquerra i avança\tAlt+Ctrl+Left", ID_L2RNEXT
+        MENUITEM "Copia a la dreta i avança\tAlt+Ctrl+Right", ID_L2RNEXT
+        MENUITEM "Copia a l'esquerra i avança\tAlt+Ctrl+Left", ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "Copia-ho tot a la dreta",     ID_ALL_RIGHT
         MENUITEM "Copia-ho tot a l'esquerra",   ID_ALL_LEFT
