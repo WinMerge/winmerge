@@ -31,6 +31,7 @@
 
 #include <direct.h>
 #include "MainFrm.h"
+#include "DirFrame.h"		// Include type information
 #include "ChildFrm.h"
 #include "DirView.h"
 #include "DirDoc.h"
@@ -2111,7 +2112,7 @@ void CMainFrame::OnToolsGeneratePatch()
 	CFrameWnd * pFrame = GetActiveFrame();
 	BOOL bOpenDialog = TRUE;
 
-	// Mergedoc open?
+	// Mergedoc active?
 	if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
 	{
 		// Add open files to patch-list
@@ -2127,6 +2128,31 @@ void CMainFrame::OnToolsGeneratePatch()
 				bOpenDialog = FALSE;
 			}
 			patcher.AddFiles(pMergeDoc->m_strLeftFile, pMergeDoc->m_strRightFile);
+		}
+	}
+	// Dirview active
+	else if (pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
+	{
+		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
+		CDirView *pView = pDoc->GetMainView();
+
+		// Get first selected item from dirview to patch dialog
+		int ind = pView->GetFirstSelectedInd();
+		if (ind != -1)
+		{
+			DIFFITEM item = pView->GetItemAt(ind);
+		
+			if (!item.isBin() && !item.isDirectory() &&	!item.isResultError())
+			{
+				CString leftFile = item.getLeftFilepath();
+				if (!leftFile.IsEmpty())
+					leftFile += _T("\\") + item.sfilename;
+				CString rightFile = item.getRightFilepath();
+				if (!rightFile.IsEmpty())
+					rightFile += _T("\\") + item.sfilename;
+				
+				patcher.AddFiles(leftFile, rightFile);
+			}
 		}
 	}
 

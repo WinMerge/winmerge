@@ -1,3 +1,8 @@
+2003-10-16 Kimmo
+ Get first selected file from directory compare to
+  Patch Generate dialog
+  WinMerge: MainFrm.cpp
+
 2003-10-15 Kimmo
  PATCH: [ 823382 ] Save As should update filename
   WinMerge: MergeDoc.h MergeDoc.cpp
