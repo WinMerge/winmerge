@@ -1018,10 +1018,10 @@ OnUpdateCaret()
 		int nScreenLine = GetCursorPos().y;
 		int nRealLine = ComputeRealLine(nScreenLine);
 		CString sLine;
-		int chars = GetLineLength(nScreenLine);
-		CString sEol = GetTextBufferEol(nScreenLine);
+		int chars;
+		CString sEol;
 		// Is this a ghost line ?
-		if (!m_pTextBuffer->GetFullLineLength(nScreenLine))
+		if (m_pTextBuffer->GetLineFlags(nScreenLine) & LF_GHOST)
 		{
 			// Ghost lines display eg "Line 12-13"
 			sLine.Format(_T("%d-%d"), nRealLine, nRealLine+1);
