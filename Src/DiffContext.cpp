@@ -78,6 +78,22 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszR
 	di.ltime = ltime;
 	di.rtime = rtime;
 	di.code = code;
+
+    // BSP - Capture the extension; from the end of the file name to the last '.'     
+	int j = 0;
+	TCHAR *pDest = _tcsrchr(pszFilename, _T('.') );
+
+	if(pDest)	// handle no extensions case.
+	{
+		++pDest;	// advance past dot.
+		while(*pDest!=_T('\0'))
+		{
+			di.extension[j++] = tolower(*pDest++);
+		}
+	}
+	di.extension[j] = _T('\0');
+
+
 	m_pList->AddTail(di);
 }
 
