@@ -530,7 +530,8 @@ void CMergeDoc::ShowRescanError(int nRescanResult,
 	// Files are not binaries, but they are identical
 	if (bIdentical)
 	{
-		if (m_strLeftFile == m_strRightFile)
+		if (!m_strLeftFile.IsEmpty() && !m_strRightFile.IsEmpty() && 
+			m_strLeftFile == m_strRightFile)
 		{
 			// compare file to itself, a custom message so user may hide the message in this case only
 			VERIFY(s.LoadString(IDS_FILE_TO_ITSELF));
