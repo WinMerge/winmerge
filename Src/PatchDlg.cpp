@@ -74,6 +74,7 @@ void CPatchDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_CBStringExact(pDX, IDC_DIFF_FILE1, m_file1);
 	DDX_CBStringExact(pDX, IDC_DIFF_FILE2, m_file2);
 	DDX_CBStringExact(pDX, IDC_DIFF_FILERESULT, m_fileResult);
+	DDX_Check(pDX, IDC_DIFF_OPENTOEDITOR, m_openToEditor);
 	//}}AFX_DATA_MAP
 }
 
@@ -87,6 +88,7 @@ BEGIN_MESSAGE_MAP(CPatchDlg, CDialog)
 	ON_CBN_SELCHANGE(IDC_DIFF_FILE2, OnSelchangeFile2Combo)
 	ON_CBN_SELCHANGE(IDC_DIFF_FILERESULT, OnSelchangeResultCombo)
 	ON_CBN_SELCHANGE(IDC_DIFF_STYLE, OnSelchangeDiffStyle)
+	ON_BN_CLICKED(IDC_DIFF_SWAPFILES, OnDiffSwapFiles)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -243,7 +245,7 @@ void CPatchDlg::OnDiffBrowseFile1()
 	if (SelectFile(s, folder, title, NULL, TRUE))
 	{
 		ChangeFile(s, TRUE);
-		UpdateData(FALSE);
+		m_ctlFile1.SetWindowText(s);
 	}
 }
 
@@ -261,7 +263,7 @@ void CPatchDlg::OnDiffBrowseFile2()
 	if (SelectFile(s, folder, title, NULL, TRUE))
 	{
 		ChangeFile(s, FALSE);
-		UpdateData(FALSE);
+		m_ctlFile2.SetWindowText(s);
 	}
 }
 
@@ -316,7 +318,7 @@ void CPatchDlg::OnDiffBrowseResult()
 	{
 		SplitFilename(s, &folder, &name, NULL);
 		m_fileResult = s;
-		UpdateData(FALSE);
+		m_ctlResult.SetWindowText(s);
 	}
 }
 
@@ -332,7 +334,7 @@ void CPatchDlg::OnSelchangeFile1Combo()
 		m_ctlFile1.GetLBText(sel, file);
 		m_ctlFile1.SetWindowText(file);
 		ChangeFile(file, TRUE);
-		UpdateData(FALSE);
+		m_file1 = file;
 	}
 }
 
@@ -348,7 +350,7 @@ void CPatchDlg::OnSelchangeFile2Combo()
 		m_ctlFile2.GetLBText(sel, file);
 		m_ctlFile2.SetWindowText(file);
 		ChangeFile(file, FALSE);
-		UpdateData(FALSE);
+		m_file2 = file;
 
 	}
 }
@@ -363,7 +365,6 @@ void CPatchDlg::OnSelchangeResultCombo()
 	{
 		m_ctlResult.GetLBText(sel, m_fileResult);
 		m_ctlResult.SetWindowText(m_fileResult);
-		UpdateData(TRUE);
 	}
 }
 
@@ -390,6 +391,33 @@ void CPatchDlg::OnSelchangeDiffStyle()
 		m_comboContext.SetCurSel(0);
 		m_comboContext.EnableWindow(FALSE);
 	}
+}
+
+/** 
+ * @brief Swap filenames on file1 and file2
+ */
+void CPatchDlg::OnDiffSwapFiles()
+{
+	CString file1;
+	CString file2;
+	PATCHFILES files;
+
+	m_ctlFile1.GetWindowText(file1);
+	m_ctlFile2.GetWindowText(file2);
+
+	m_ctlFile1.SetWindowText(file2);
+	m_ctlFile2.SetWindowText(file1);
+	m_file1 = file2;
+	m_file2 = file1;
+
+	// Empty list
+	while (!m_fileList.IsEmpty())
+		m_fileList.RemoveTail();
+
+	// Add swapped files
+	files.lfile = file2;
+	files.rfile = file1;
+	AddItem(files);
 }
 
 /** 

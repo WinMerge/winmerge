@@ -1,3 +1,9 @@
+2003-10-26 Kimmo
+ PATCH: [ 829570 ] Open patches after creation
+  WinMerge: DirActions.cpp MainFrm.h MainFrm.cpp Merge.rc PatchDlg.c
+   PatchDlg.cpp PatchTool.h PatchTool.cpp resource.h
+  Languages: *.rc resource.h
+
 2003-10-25 Laoran
  BUG: [ 830121 ] drag&drop changes ghost lines to real lines
   WinMerge: GhostTextView.cpp GhostTextView.h

@@ -243,6 +243,8 @@
 #define IDC_SELECT_UNPACKER             1090
 #define IDC_EXT_EDITOR_BROWSE           1091
 #define IDC_EXT_EDITOR_PATH             1092
+#define IDC_DIFF_SWAPFILES              1093
+#define IDC_DIFF_OPENTOEDITOR           1094
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -485,7 +487,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        120
 #define _APS_NEXT_COMMAND_VALUE         32855
-#define _APS_NEXT_CONTROL_VALUE         1093
+#define _APS_NEXT_CONTROL_VALUE         1095
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

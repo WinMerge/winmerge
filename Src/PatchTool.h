@@ -35,14 +35,18 @@ class CPatchTool
 public:
 	void AddFiles(CString file1, CString file2);
 	int CreatePatch();
+	CString GetPatchFile() const;
+	BOOL GetOpenToEditor() const;
 
-private:
+protected:
 	BOOL ShowDialog();
 
+private:
 	CList<PATCHFILES,PATCHFILES> m_fileList;
-	CString m_sPatchFile;
 	CDiffWrapper m_diffWrapper;
 	CPatchDlg m_dlgPatch;
+	CString m_sPatchFile;
+	BOOL m_bOpenToEditor;
 };
 
 #endif	// _PATCHTOOL_H_

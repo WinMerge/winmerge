@@ -102,6 +102,7 @@ public:
 	BOOL SaveToVersionControl(CString& strSavePath);
 	CString SetStatus(LPCTSTR status);
 	void ApplyViewWhitespace();
+	BOOL OpenFileToExternalEditor(CString file);
 
 // Overrides
 	// ClassWizard generated virtual function overrides

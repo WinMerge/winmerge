@@ -555,45 +555,5 @@ void CDirView::DoOpenWithEditor(SIDE_TYPE stype)
 	CString file = GetSelectedFileName(stype);
 	if (file.IsEmpty()) return;
 
-	CString ext;
-	SplitFilename(mf->m_sExtEditorPath, NULL, NULL, &ext);
-	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
-	{
-		// Check if file exists
-		CFileStatus status;
-		if (CFile::GetStatus(mf->m_sExtEditorPath, status))
-		{
-			// Format command line
-			CString strCommandLine = _T("\"") + mf->m_sExtEditorPath + _T("\" \"") +
-				file + _T("\"");
-
-			BOOL retVal = FALSE;
-			STARTUPINFO stInfo = {0};
-			stInfo.cb = sizeof(STARTUPINFO);
-			PROCESS_INFORMATION processInfo;
-
-			retVal = CreateProcess(NULL, (LPTSTR)(LPCTSTR) strCommandLine,
-				NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
-				&stInfo, &processInfo);
-
-			if (!retVal)
-			{
-				CString msg;
-				AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, mf->m_sExtEditorPath);
-				AfxMessageBox(msg, MB_ICONSTOP);
-			}
-		}
-		else
-		{
-			CString msg;
-			AfxFormatString1(msg, IDS_ERROR_FILE_NOT_FOUND, mf->m_sExtEditorPath);
-			AfxMessageBox(msg, MB_ICONSTOP);
-		}
-	}
-	else
-	{
-		CString msg;
-		AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, mf->m_sExtEditorPath);
-		AfxMessageBox(msg, MB_ICONSTOP);
-	}
+	mf->OpenFileToExternalEditor(file);
 }

@@ -2190,8 +2190,15 @@ void CMainFrame::OnToolsGeneratePatch()
 	}
 
 	if (bOpenDialog)
-		patcher.CreatePatch();
-
+	{
+		if (patcher.CreatePatch())
+		{
+			if (patcher.GetOpenToEditor())
+			{
+				OpenFileToExternalEditor(patcher.GetPatchFile());
+			}
+		}
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -2290,4 +2297,53 @@ void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(UNPACK_MANUAL == bUnpackerMode);
 	if (pCmdUI->m_nID == ID_UNPACK_AUTO)
 		pCmdUI->SetCheck(UNPACK_AUTO == bUnpackerMode);
+}
+
+/**
+ * @brief Open given file to external editor specified in options
+ */
+BOOL CMainFrame::OpenFileToExternalEditor(CString file)
+{
+	CString ext;
+	SplitFilename(m_sExtEditorPath, NULL, NULL, &ext);
+	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
+	{
+		// Check if file exists
+		CFileStatus status;
+		if (CFile::GetStatus(m_sExtEditorPath, status))
+		{
+			// Format command line
+			CString strCommandLine = _T("\"") + m_sExtEditorPath + _T("\" \"") +
+				file + _T("\"");
+
+			BOOL retVal = FALSE;
+			STARTUPINFO stInfo = {0};
+			stInfo.cb = sizeof(STARTUPINFO);
+			PROCESS_INFORMATION processInfo;
+
+			retVal = CreateProcess(NULL, (LPTSTR)(LPCTSTR) strCommandLine,
+				NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
+				&stInfo, &processInfo);
+
+			if (!retVal)
+			{
+				CString msg;
+				AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, m_sExtEditorPath);
+				AfxMessageBox(msg, MB_ICONSTOP);
+			}
+		}
+		else
+		{
+			CString msg;
+			AfxFormatString1(msg, IDS_ERROR_FILE_NOT_FOUND, m_sExtEditorPath);
+			AfxMessageBox(msg, MB_ICONSTOP);
+		}
+	}
+	else
+	{
+		CString msg;
+		AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, m_sExtEditorPath);
+		AfxMessageBox(msg, MB_ICONSTOP);
+	}
+	return TRUE;
 }

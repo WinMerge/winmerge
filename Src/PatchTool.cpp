@@ -50,6 +50,7 @@ int CPatchTool::CreatePatch()
 	DIFFSTATUS status = {0};
 	BOOL bResult = TRUE;
 	BOOL bDiffSuccess;
+	int retVal = 0;
 
 	// If files already inserted, add them to dialog
 	int count = m_fileList.GetCount();
@@ -94,11 +95,18 @@ int CPatchTool::CreatePatch()
 			// Append next files...
 			m_diffWrapper.SetAppendFiles(TRUE);
 		}
+		
 		if (bResult && fileCount > 0)
+		{
 			AfxMessageBox(IDS_DIFF_SUCCEEDED, MB_ICONINFORMATION);
+			
+			m_sPatchFile = m_dlgPatch.m_fileResult;
+			m_bOpenToEditor = m_dlgPatch.m_openToEditor;
+			retVal = 1;
+		}
 	}
 	m_dlgPatch.ClearItems();
-	return 1;
+	return retVal;
 }
 
 /** 
@@ -143,4 +151,21 @@ BOOL CPatchTool::ShowDialog()
 		return FALSE;
 
 	return bRetVal;
+}
+
+/** 
+ * @brief Returns filename and path for patch-file
+ */
+CString CPatchTool::GetPatchFile() const
+{
+	return m_sPatchFile;
+}
+
+/** 
+ * @brief Returns TRUE if user wants to open patch file
+ * to external editor (specified in WinMerge options).
+ */
+BOOL CPatchTool::GetOpenToEditor() const
+{
+	return m_bOpenToEditor;
 }

@@ -63,18 +63,19 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CPatchDlg)
 	enum { IDD = IDD_GENERATE_PATCH };
-	CComboBox	m_comboStyle;
-	CComboBox	m_comboContext;
-	BOOL	m_caseSensitive;
+	CComboBox m_comboStyle;
+	CComboBox m_comboContext;
+	BOOL m_caseSensitive;
 	CSuperComboBox m_ctlFile1;
 	CSuperComboBox m_ctlFile2;
 	CSuperComboBox m_ctlResult;
 	CString	m_file1;
 	CString	m_file2;
 	CString	m_fileResult;
-	BOOL	m_ignoreBlanks;
-	int		m_whitespaceCompare;
-	BOOL	m_appendFile;
+	BOOL m_ignoreBlanks;
+	int m_whitespaceCompare;
+	BOOL m_appendFile;
+	BOOL m_openToEditor;
 	//}}AFX_DATA
 
 	enum output_style m_outputStyle;
@@ -105,6 +106,7 @@ protected:
 	afx_msg void OnSelchangeFile2Combo();
 	afx_msg void OnSelchangeResultCombo();
 	afx_msg void OnSelchangeDiffStyle();
+	afx_msg void OnDiffSwapFiles();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
