@@ -3,17 +3,19 @@
 "*"//2003/12/16	Jochen Tucht	GuessFormat() now checks for directory
 "*"//2004/03/15	Jochen Tucht	Fix Visual Studio 2003 build issue
 "*"//2004/04/13	Jochen Tucht	Experimental DllGetVersion() based on rcsid.
+"*"//2004/08/19	Laurent Ganier	Compression of folders
+//								Through EnumerateDirectory (from code of 7zip)
 
 VERSION(2,1)
 
-//2004/10/10	Jochen Tucht	DllGetVersion() no longer based on rcsid.
-//Revision numbers will be generated from new file REVISION.TXT.
-"*"//2004/10/10	Jochen Tucht: Support 7z409 beta
-"*"
-"*"
+"*"//2004/10/10	Jochen Tucht	Support 7z409 beta. DllGetVersion() no longer
+//based on rcsid. Revision numbers will be generated from new file REVISION.TXT.
+
+"*"//2004/10/17	Jochen Tucht	Leave decision whether to recurse into folders
+//to enumerator (Mask.Recurse)
+
 "*"//2004/10/18 Jochen Tucht	Change generation of revision numbers to allow
 //for arbitrary version numbers at any stage without affecting build number.
 //Merge7z may now follow a WinMerge-like versioning policy, or just use same
 //version numbers as WinMerge, yet provide a build number simply reflecting
 //the number of changes recorded in this revision.txt.
-//(Two extra "*" needed to yield a higher build number than with first approach)
