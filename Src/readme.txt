@@ -1,6 +1,10 @@
 2004-05-25 Kimmo
  PATCH: [ 959627 ] Fix crash when opening context menu for '..' item in dirview
   Src: DirActions.cpp DirView.cpp
+ BUG: [ 880104 ] CCCPrompt--does it work at all?
+  Disable "Save as..." button since its not used
+  Src: Merge.rc
+  Src/Languages: *.rc
 
 2004-05-25 Perry
  PATCH: [ 950243 ] 2 minor updates to developers docs
