@@ -762,6 +762,17 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 
 void CMainFrame::OnClose() 
 {
+	// check if we have a diff window open and need to save
+	if ((m_pLeft && m_pLeft->IsModified())
+		|| (m_pRight && m_pRight->IsModified()))
+	{
+		if (m_pLeft->IsModified() && !m_pLeft->SaveHelper())
+				return;
+		if (m_pRight->IsModified() && !m_pRight->SaveHelper())
+				return;
+	}
+	
+
 	WINDOWPLACEMENT wp;
 	GetWindowPlacement(&wp);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainLeft"),wp.rcNormalPosition.left);
