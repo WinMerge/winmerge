@@ -595,6 +595,9 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 				if(pt.y>=cd_blank && pt.y<=cd_dend)
 				{
 					pt.y = cd_blank-1;
+					// If removing first line, set X to 0^M
+					// Calculating line length is unneccessary work
+					pt.x = 0;
 					active->SetCursorPos(pt);
 				}
 				dbuf.DeleteText(NULL, cd_blank-1, dbuf.GetLineLength(cd_blank-1), cd_dend, dbuf.GetLineLength(cd_dend), CE_ACTION_DELETE, FALSE);
