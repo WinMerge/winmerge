@@ -281,6 +281,14 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 			// remove flag specifier
 			++pszParam;
 
+			// -? for help
+			if (!_tcsicmp(pszParam, _T("?")))
+			{
+				CString s;
+				VERIFY(s.LoadString(IDS_QUICKHELP));
+				AfxMessageBox(s, MB_ICONINFORMATION);
+			}
+
 			// -r to compare recursively
 			if (!_tcsicmp(pszParam, _T("r")))
 				recurse = TRUE;

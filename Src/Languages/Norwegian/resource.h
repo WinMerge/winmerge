@@ -147,6 +147,7 @@
 #define IDS_DIFF_UNIFIED                236
 #define IDS_FILEPACK_FAILED_LEFT        237
 #define IDS_FILEPACK_FAILED_RIGHT       238
+#define IDS_QUICKHELP                   239
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

@@ -6,6 +6,9 @@
   WinMerge: DirScan.cpp
 
 2003-10-24 Laoran
+ PATCH: [ 829266 ] commandline help
+  WinMerge: Merge.cpp Merge.rc resource.h
+  Languages: *.rc resource.h
  enabling filters in unicode build
   WinMerge: Dirdoc.cpp
  BUG: [ 829453 ] dropping file in a SuperComboBox, Unicode build
