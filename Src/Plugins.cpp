@@ -111,8 +111,8 @@ BOOL SearchScriptForMethodName(LPDISPATCH piDispatch, WCHAR * functionName)
 {
 	BOOL bFound = FALSE;
 
-	BSTR * namesArray;
-	int * IdArray;
+	BSTR * namesArray=0;
+	int * IdArray=0;
 	int nFnc = GetMethodsFromScript(piDispatch, namesArray, IdArray);
 	delete [] IdArray;
 
@@ -132,8 +132,8 @@ BOOL SearchScriptForDefinedProperties(LPDISPATCH piDispatch, WCHAR * functionNam
 {
 	BOOL bFound = FALSE;
 
-	BSTR * namesArray;
-	int * IdArray;
+	BSTR * namesArray=0;
+	int * IdArray=0;
 	int nFnc = GetPropertyGetsFromScript(piDispatch, namesArray, IdArray);
 	delete [] IdArray;
 

@@ -4,6 +4,8 @@
   WinMerge: MergeDoc.cpp MergeDoc.h
  PATCH: [ 847126 ] Split large function in DirScan into 2 pieces
   WinMerge: DirScan.cpp
+ PATCH: [ 847138 ] Initialize some variables in Plugins functions
+  WinMerge: Plugins.cpp
 
 2003-11-21 Laoran
  BUG: [ 846450 ] "Winmerge executable:" label missing from registry options
