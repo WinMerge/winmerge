@@ -1,4 +1,6 @@
 2003-11-11 Laoran
+ fix for syntax highlight in left pane view
+  WinMerge: MergeDoc.cpp
  update global options dialog : 'Allow mixing EOL' -> 'preserve original EOL chars'
  update global options dialog : 'ignore EOL' like in 2.0 
   WinMerge: Merge.rc PropGeneral.cpp PropGeneral.h

@@ -2442,7 +2442,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	m_pRightView->AttachToBuffer();
 	m_pLeftDetailView->AttachToBuffer();
 	m_pRightDetailView->AttachToBuffer();
-		
+
 	// Set read-only statuses
 	m_ltBuf.SetReadOnly(bROLeft);
 	m_rtBuf.SetReadOnly(bRORight);
@@ -2470,10 +2470,9 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		CString sext;
 		SplitFilename(sLeftFile, 0, 0, &sext);
 		pLeft->SetTextType(sext);
+		pLeftDetail->SetTextType(sext);
 		SplitFilename(sRightFile, 0, 0, &sext);
 		pRight->SetTextType(sext);
-
-		pLeftDetail->SetTextType(sext);
 		pRightDetail->SetTextType(sext);
 
 		// SetTextType will revert to language dependent defaults for tab
