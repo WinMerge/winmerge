@@ -49,6 +49,7 @@ fetch_verinfo()
 int
 Ucs4_to_Utf8(UINT unich, unsigned char * utf8)
 {
+#pragma warning(disable: 4244) // possible loss of data due to type conversion
 	if (unich <= 0x7f)
 	{
 		utf8[0] = (unsigned char)unich;
@@ -101,6 +102,7 @@ Ucs4_to_Utf8(UINT unich, unsigned char * utf8)
 		utf8[0] = '?';
 		return 1;
 	}
+#pragma warning(default: 4244) // possible loss of data due to type conversion
 }
 
 /**
@@ -205,6 +207,7 @@ GetUtf8Char(unsigned char * str)
  */
 int to_utf8_advance(UINT u, unsigned char * &lpd)
 {
+#pragma warning(disable: 4244) // possible loss of data due to type conversion
 	if (u < 0x80)
 	{
 		*lpd++ = u;
@@ -255,6 +258,7 @@ int to_utf8_advance(UINT u, unsigned char * &lpd)
 		*lpd++ = '?';
 		return 1;
 	}
+#pragma warning(default: 4244) // possible loss of data due to type conversion
 }
 
 /**
@@ -296,7 +300,7 @@ CString maketchar(UINT unich, bool & lossy, UINT codepage)
 		CString s = (TCHAR)unich;
 		return s;
 	}
-	wchar_t wch = unich;
+	wchar_t wch = (wchar_t)unich;
 	if (!lossy)
 	{
 		static bool vercheck=false;
@@ -312,7 +316,7 @@ CString maketchar(UINT unich, bool & lossy, UINT codepage)
 		TCHAR outch;
 		BOOL defaulted=FALSE;
 		DWORD flags = has_no_best_fit ? WC_NO_BEST_FIT_CHARS : 0;
-		if (WideCharToMultiByte(CP_ACP, flags, &wch, 1, &outch, 1, NULL, &defaulted)
+		if (WideCharToMultiByte(codepage, flags, &wch, 1, &outch, 1, NULL, &defaulted)
 			&& !defaulted)
 		{
 			CString s = outch;
@@ -323,7 +327,7 @@ CString maketchar(UINT unich, bool & lossy, UINT codepage)
 	// already lossy, so make our best shot
 	DWORD flags = WC_COMPOSITECHECK+WC_DISCARDNS+WC_SEPCHARS+WC_DEFAULTCHAR;
 	TCHAR outbuff[16];
-	int n = WideCharToMultiByte(CP_ACP, flags, &wch, 1, outbuff, sizeof(outbuff)-1, NULL, NULL);
+	int n = WideCharToMultiByte(codepage, flags, &wch, 1, outbuff, sizeof(outbuff)-1, NULL, NULL);
 	if (n>0)
 	{
 		outbuff[n] =0;
@@ -337,7 +341,7 @@ CString maketchar(UINT unich, bool & lossy, UINT codepage)
  * @brief convert 8-bit character input to Unicode codepoint and return it
  */
 UINT
-byteToUnicode (byte ch)
+byteToUnicode (unsigned char ch)
 {
 	static bool vercheck=false;
 	static UINT codepage = CP_ACP;
@@ -356,11 +360,11 @@ byteToUnicode (byte ch)
  * @brief convert 8-bit character input to Unicode codepoint and return it
  */
 UINT
-byteToUnicode (byte ch, UINT codepage)
+byteToUnicode (unsigned char ch, UINT codepage)
 {
 
-	if ((unsigned char)ch < 0x80)
-		return (unsigned char)ch;
+	if (ch < 0x80)
+		return ch;
 
 	DWORD flags = 0;
 	wchar_t wbuff;
@@ -408,8 +412,8 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset)
 		for (int i=0; i<src.GetLength(); ++i)
 		{
 			UINT u = src[i];
-			*lpd++ = (u >> 8);
-			*lpd++ = (u & 0xFF);
+			*lpd++ = (unsigned char)(u >> 8);
+			*lpd++ = (unsigned char)(u & 0xFF);
 		}
 	}
 	else if (codeset == UTF8)
@@ -426,7 +430,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset)
 		{
 			UINT u = src[i];
 			if (u <= 0xFF)
-				*lpd++ = u;
+				*lpd++ = (unsigned char)u;
 			else
 				*lpd++ = '?';
 		}
@@ -443,7 +447,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset)
 		for (int i=0; i<src.GetLength(); ++i)
 		{
 			UINT u = src[i];
-			*lpd++ = u;
+			*lpd++ = (unsigned char)u;
 			*lpd++ = 0;
 		}
 	}
@@ -453,7 +457,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset)
 		{
 			UINT u = src[i];
 			*lpd++ = 0;
-			*lpd++ = u;
+			*lpd++ = (unsigned char)u;
 		}
 	}
 	else if (codeset == UTF8)
@@ -475,7 +479,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset)
  * @brief Extract character from pointer, handling UCS-2 codesets (doesn't handle UTF-8)
  */
 UINT
-get_unicode_char(byte * ptr, UNICODESET codeset)
+get_unicode_char(unsigned char * ptr, UNICODESET codeset)
 {
 	UINT ch;
 	switch (codeset)

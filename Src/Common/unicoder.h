@@ -22,11 +22,11 @@ UINT GetUtf8Char(unsigned char * str);
 int to_utf8_advance(UINT u, unsigned char * &lpd);
 CString maketchar(UINT ch, bool & lossy);
 void convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset);
-UINT get_unicode_char(byte * ptr, UNICODESET codeset);
+UINT get_unicode_char(unsigned char * ptr, UNICODESET codeset);
 CString maketchar(UINT unich, bool & lossy);
 CString maketchar(UINT unich, bool & lossy, UINT codepage);
-UINT byteToUnicode(byte ch);
-UINT byteToUnicode(byte ch, UINT codepage);
+UINT byteToUnicode(unsigned char ch);
+UINT byteToUnicode(unsigned char ch, UINT codepage);
 
 
 } // namespace ucr
