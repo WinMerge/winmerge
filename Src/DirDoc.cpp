@@ -201,6 +201,70 @@ void CDirDoc::Rescan()
 	EndWaitCursor();
 }
 
+// return true if we need to hide this item because it is a backup
+static bool IsItemHiddenBackup(const DIFFITEM & di)
+{
+	return mf->m_bHideBak && FileExtMatches(di.sfilename,BACKUP_FILE_EXT);
+}
+
+// returns path of item if user wants to see this item
+// preferably left path, but right path if a right-only item
+static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
+{
+	if (IsItemHiddenBackup(di))
+		return 0;
+
+	LPCTSTR p = 0;
+
+	BOOL leftside = (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE);
+	BOOL rightside = (di.code==FILE_RUNIQUE || di.code==FILE_RDIRUNIQUE);
+
+	switch (di.code)
+	{
+	case FILE_DIFF:
+		if (mf->m_bShowDiff)
+		{
+			p = _tcsninc(di.slpath, llen);
+		}
+		break;
+	case FILE_BINSAME:
+		if (mf->m_bShowIdent && mf->m_bShowBinaries)
+		{
+			p = _tcsninc(di.slpath, llen);
+		}
+		break;
+	case FILE_BINDIFF:
+		if (mf->m_bShowDiff && mf->m_bShowBinaries)
+		{
+			p = _tcsninc(di.slpath, llen);
+		}
+		break;
+	case FILE_LUNIQUE:
+	case FILE_RUNIQUE:
+	case FILE_LDIRUNIQUE:
+	case FILE_RDIRUNIQUE:
+		if ((mf->m_bShowUniqueLeft && leftside) 
+			|| (mf->m_bShowUniqueRight && rightside))
+		{
+			if (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE)
+				p = _tcsninc(di.slpath, llen);
+			else
+				p = _tcsninc(di.srpath, rlen);
+		}
+		break;
+	case FILE_SAME:
+		if (mf->m_bShowIdent)
+		{
+			p = _tcsninc(di.slpath, llen);
+		}
+		break;
+	default: // error
+		p = _tcsninc(di.slpath, llen);
+		break;
+	}
+	return p;
+}
+
 void CDirDoc::Redisplay()
 {
 	if (m_pCtxt == NULL)
@@ -219,61 +283,12 @@ void CDirDoc::Redisplay()
 		POSITION curdiffpos = diffpos;
 		DIFFITEM di = m_pCtxt->GetNextDiffPosition(diffpos);
 
-		LPCTSTR p=NULL;
+		LPCTSTR p=GetItemPathIfShowable(di, llen, rlen);
 
-		BOOL leftside = (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE);
-		BOOL rightside = (di.code==FILE_RUNIQUE || di.code==FILE_RDIRUNIQUE);
-		switch (di.code)
-		{
-		case FILE_DIFF:
-			if (mf->m_bShowDiff
-				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
-			{
-				p = _tcsninc(di.lpath, llen);
-			}
-			break;
-		case FILE_BINSAME:
-			if (mf->m_bShowIdent && mf->m_bShowBinaries
-				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
-			{
-				p = _tcsninc(di.lpath, llen);
-			}
-			break;
-		case FILE_BINDIFF:
-			if (mf->m_bShowDiff && mf->m_bShowBinaries
-				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
-			{
-				p = _tcsninc(di.lpath, llen);
-			}
-			break;
-		case FILE_LUNIQUE:
-		case FILE_RUNIQUE:
-		case FILE_LDIRUNIQUE:
-		case FILE_RDIRUNIQUE:
-			if (((mf->m_bShowUniqueLeft && leftside) || (mf->m_bShowUniqueRight && rightside))
-				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
-			{
-				if (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE)
-					p = _tcsninc(di.lpath, llen);
-				else
-					p = _tcsninc(di.rpath, rlen);
-			}
-			break;
-		case FILE_SAME:
-			if (mf->m_bShowIdent
-				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
-			{
-				p = _tcsninc(di.lpath, llen);
-			}
-			break;
-		default: // error
-			p = _tcsninc(di.lpath, llen);
-			break;
-		}
 		if (p)
 		{
-			m_pView->AddItem(cnt, DV_NAME, di.filename);
-			m_pView->AddItem(cnt, DV_EXT, di.extension); // BSP - Add the current file extension
+			m_pView->AddItem(cnt, DV_NAME, di.sfilename);
+			m_pView->AddItem(cnt, DV_EXT, di.sext); // BSP - Add the current file extension
 			s = _T(".");
 			s += p;
 			m_pView->AddItem(cnt, DV_PATH, s);
@@ -312,10 +327,10 @@ static long GetModTime(LPCTSTR szPath)
 
 static void UpdateTimes(DIFFITEM * pdi)
 {
-	CString sLeft = (CString)pdi->lpath + _T("\\") + pdi->filename;
+	CString sLeft = (CString)pdi->slpath + _T("\\") + pdi->sfilename;
 	pdi->ltime = GetFileModTime(sLeft);
 
-	CString sRight = (CString)pdi->rpath + _T("\\") + pdi->filename;
+	CString sRight = (CString)pdi->srpath + _T("\\") + pdi->sfilename;
 	pdi->rtime = GetFileModTime(sRight);
 }
 
@@ -365,12 +380,12 @@ void CDirDoc::UpdateItemStatus(UINT nIdx)
 		break;
 	case FILE_LUNIQUE:
 	case FILE_LDIRUNIQUE:
-		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.lpath);
+		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.slpath);
 		SetItemStatus(nIdx, s, di.code, &di.ltime, NULL);
 		break;
 	case FILE_RUNIQUE:
 	case FILE_RDIRUNIQUE:
-		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.rpath);
+		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.srpath);
 		SetItemStatus(nIdx, s, di.code, NULL, &di.rtime);
 		break;
 	case FILE_SAME:
@@ -469,13 +484,13 @@ BOOL CDirDoc::UpdateItemStatus(LPCTSTR pathLeft, LPCTSTR pathRight,
 		current = m_pCtxt->GetNextDiffPosition(pos);
 
 		// Path can contain (because of difftools?) '/' and '\'
-		// so for comparing purposes, convert whole path to use '/'
-		replace_char(current.rpath, '/', '\\');
-		replace_char(current.lpath, '/', '\\');
+		// so for comparing purposes, convert whole path to use '\'
+		current.srpath.Replace('/', '\\');
+		current.slpath.Replace('/', '\\');
 
-		if (path1 == current.lpath &&
-			path2 == current.rpath &&
-			file1 == current.filename)
+		if (path1 == current.slpath &&
+			path2 == current.srpath &&
+			file1 == current.sfilename)
 		{
 			// Right item found!
 			// Get index at view, update status to context

@@ -1,5 +1,9 @@
 2003-02-21 Perry
- Sync'ing all language resources to English version.
+ Sync'ed all language resources to English version.
+ [ 684300 ] Stringified Diffitems
+   + combined & modularized code in DirDoc.cpp
+  WinMerge:
+   DiffContext.cpp DiffContext.h DirDoc.cpp DirView.cpp DirView.h
 
 2003-02-20 Perry
  [ 689876 ] Patch to fix bug # 689869 (ASSERT on Rescan)

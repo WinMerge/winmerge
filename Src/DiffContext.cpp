@@ -80,9 +80,9 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszR
 						   long ltime, long rtime, BYTE code)
 {
 	DIFFITEM di;
-	strcpy(di.filename,pszFilename);
-	strcpy(di.lpath, pszLeftDir);
-	strcpy(di.rpath, pszRightDir);
+	di.sfilename = pszFilename;
+	di.slpath = pszLeftDir;
+	di.srpath = pszRightDir;
 	di.ltime = ltime;
 	di.rtime = rtime;
 	di.code = code;
@@ -93,18 +93,13 @@ void CDiffContext::AddDiff(DIFFITEM di)
 {
 	// BSP - Capture the extension; from the end of the file name to the last '.'     
 	int j = 0;
-	TCHAR *pDest = _tcsrchr(di.filename, _T('.') );
+	TCHAR *pDest = _tcsrchr(di.sfilename, _T('.') );
 
 	if(pDest)	// handle no extensions case.
 	{
-		++pDest;	// advance past dot.
-		while(*pDest!=_T('\0'))
-		{
-			di.extension[j++] = tolower(*pDest++);
-		}
+		di.sext = pDest+1; // skip dot
+		di.sext.MakeLower();
 	}
-	di.extension[j] = _T('\0');
-
 
 	m_pList->AddTail(di);
 

@@ -17,14 +17,7 @@ struct dirdata
   char *data;	/* Allocated storage for file names.  */
 };
 
-typedef struct tagDIFFITEM {
-	TCHAR filename[_MAX_FNAME];
-	TCHAR extension[_MAX_EXT];
-	TCHAR lpath[MAX_PATH], rpath[MAX_PATH];
-	long ltime, rtime;
-	BYTE code;
-}DIFFITEM;
-
+// values for DIFFITEM.code
 #define FILE_LUNIQUE     0
 #define FILE_RUNIQUE     1
 #define FILE_DIFF        2
@@ -34,6 +27,17 @@ typedef struct tagDIFFITEM {
 #define FILE_BINDIFF     6
 #define FILE_LDIRUNIQUE  7
 #define FILE_RDIRUNIQUE  8
+
+struct DIFFITEM
+{
+	CString sfilename;
+	CString sext;
+	CString slpath;
+	CString srpath;
+	long ltime, rtime;
+	BYTE code;
+	DIFFITEM() : ltime(0), rtime(0), code(FILE_ERROR) { }
+};
 
 class IDiffStatus
 {

@@ -40,8 +40,7 @@
 #include "SortHeaderCtrl.h"
 
 
-struct tagDIFFITEM;
-typedef struct tagDIFFITEM DIFFITEM;
+struct DIFFITEM;
 
 class CDiffContext;
 

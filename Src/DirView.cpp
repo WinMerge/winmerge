@@ -406,10 +406,10 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 	switch (pView->m_sortColumn)
 	{
 	case DV_NAME: // File name.
-		retVal = _tcscmp(lDi.filename, rDi.filename);
+		retVal = lDi.sfilename.CompareNoCase(rDi.sfilename);
 		break;
 	case DV_PATH: // File Path.
-		retVal =  _tcscmp(lDi.lpath, rDi.lpath);
+		retVal =  lDi.slpath.CompareNoCase(rDi.slpath);
 		break;
 	case DV_STATUS: // Diff Status.
 		retVal = rDi.code-lDi.code;
@@ -420,8 +420,8 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 	case DV_RTIME: // Diff Status.
 		retVal = lDi.rtime-rDi.rtime;
 		break;
-	case DV_EXT: // File extension.                    // BSP - Provide a comparison by file extension
-		retVal = _tcscmp(lDi.extension, rDi.extension);
+	case DV_EXT: // File extension.
+		retVal = lDi.sext.CompareNoCase(rDi.sext);
 		break;
 	}
 	// return compare result, considering sort direction
@@ -770,7 +770,7 @@ int CDirView::GetFirstSelectedInd()
 
 DIFFITEM CDirView::GetNextSelectedInd(int &ind)
 {
-	DIFFITEM di = {0};
+	DIFFITEM di;
 	int sel =- 1;
 
 	sel = m_pList->GetNextItem(ind, LVNI_SELECTED);
@@ -782,7 +782,7 @@ DIFFITEM CDirView::GetNextSelectedInd(int &ind)
 
 DIFFITEM CDirView::GetItemAt(int ind)
 {
-	DIFFITEM di = { 0 };
+	DIFFITEM di;
 	if (ind != -1)
 	{	
 		di = GetDiffItem(ind);
@@ -794,7 +794,7 @@ DIFFITEM CDirView::GetItemAt(int ind)
 // If none or one item selected select found item
 void CDirView::OnFirstdiff()
 {
-	DIFFITEM di = {0};
+	DIFFITEM di;
 	const int count = m_pList->GetItemCount();
 	BOOL found = FALSE;
 	int i = 0;
@@ -826,7 +826,7 @@ void CDirView::OnUpdateFirstdiff(CCmdUI* pCmdUI)
 // If none or one item selected select found item
 void CDirView::OnLastdiff()
 {
-	DIFFITEM di = {0};
+	DIFFITEM di;
 	BOOL found = FALSE;
 	const int count = m_pList->GetItemCount();
 	int i = count - 1;
@@ -860,7 +860,7 @@ void CDirView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 // If none or one item selected select found item
 void CDirView::OnNextdiff()
 {
-	DIFFITEM di = {0};
+	DIFFITEM di;
 	const int count = m_pList->GetItemCount();
 	BOOL found = FALSE;
 	int i = GetFocusedItem();
@@ -897,7 +897,7 @@ void CDirView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 // If none or one item selected select found item
 void CDirView::OnPrevdiff()
 {
-	DIFFITEM di = {0};
+	DIFFITEM di;
 	BOOL found = FALSE;
 	int i = GetFocusedItem();
 	int currentInd = 0;
@@ -988,7 +988,7 @@ int CDirView::GetFocusedItem()
 
 int CDirView::GetFirstDifferentItem()
 {
-	DIFFITEM di = {0};
+	DIFFITEM di;
 	const int count = m_pList->GetItemCount();
 	BOOL found = FALSE;
 	int i = 0;
@@ -1009,7 +1009,7 @@ int CDirView::GetFirstDifferentItem()
 
 int CDirView::GetLastDifferentItem()
 {
-	DIFFITEM di = {0};
+	DIFFITEM di;
 	const int count = m_pList->GetItemCount();
 	BOOL found = FALSE;
 	int i = count - 1;
