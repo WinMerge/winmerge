@@ -769,8 +769,7 @@ void CDirView::OpenParentDirectory()
 	CString rightParent = paths_GetParentPath(right);
 
 	if (paths_DoesPathExist(leftParent) == IS_EXISTING_DIR &&
-			paths_DoesPathExist(rightParent) == IS_EXISTING_DIR &&
-			bAllowUpwardDirectory(left, right))
+			paths_DoesPathExist(rightParent) == IS_EXISTING_DIR)
 		mf->DoFileOpen(leftParent, rightParent,
 			FFILEOPEN_NOMRU, FFILEOPEN_NOMRU);
 }
