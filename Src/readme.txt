@@ -8,6 +8,10 @@
   InnoSetup/Languages: *.isl (except Swedish.isl)
  PATCH: [ 950236 ] Set DIFFCODE::BOTH correctly
   Src: DirScan.cpp
+ PATCH: [ 942021 ] Propose translation of language names
+  Src: Merge.rc
+  Src/Common: LanguageSelect.cpp LanguageSelect.h
+  Src/Languages: *.rc
 
 2004-05-12 Kimmo
  PATCH: [ 948448 ] Remove WinMerge.exe path from system options

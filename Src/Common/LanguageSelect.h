@@ -1,11 +1,10 @@
+// LanguageSelect.h : header file
+//
+// Dialog to choose language of user interface
+
 #if !defined(AFX_LANGUAGESELECT_H__4395A84F_E8DF_11D1_BBCB_00A024706EDC__INCLUDED_)
 #define AFX_LANGUAGESELECT_H__4395A84F_E8DF_11D1_BBCB_00A024706EDC__INCLUDED_
 
-#if _MSC_VER >= 1000
-#pragma once
-#endif // _MSC_VER >= 1000
-// LanguageSelect.h : header file
-//
 #include "logfile.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -49,6 +48,7 @@ private:
 	CString GetPath( LPCTSTR FileName);
 	
 	CString GetLanguageString( WORD LangId );
+	CString GetNativeLanguageNameString( int idx );
 
 // Dialog Data
 	//{{AFX_DATA(CLanguageSelect)

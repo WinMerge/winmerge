@@ -1615,7 +1615,178 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
 END
 
-// LANGAGE NAME STRINGS : ONLY IN ENGLISH FILE
+// LANGAGE NAMES #1
+STRINGTABLE
+BEGIN
+    IDS_AFRIKAANS           "afrikaans"
+    IDS_ALBANIAN            "albanés"
+    IDS_ARABIC_SAUDI        "árabe (Saudi Arabian)"
+    IDS_ARABIC_IRAQ         "árabe (Iraq)"
+    IDS_ARABIC_EGYPT        "árabe (Egyptian)"
+    IDS_ARABIC_LIBYA        "árabe (Libyan)"
+    IDS_ARABIC_ALGERIA      "árabe (Algerian)"
+    IDS_ARABIC_MOROCCO      "árabe (Moroccan)"
+    IDS_ARABIC_TUNISIA      "árabe (Tunisian)"
+    IDS_ARABIC_OMAN         "árabe (Oman)"
+    IDS_ARABIC_YEMEN        "árabe (Yemen)"
+    IDS_ARABIC_SYRIA        "árabe (Syrian)"
+    IDS_ARABIC_JORDAN       "árabe (Jordan)"
+END
+
+// LANGAGE NAMES #2
+STRINGTABLE
+BEGIN
+    IDS_ARABIC_LEBANON      "árabe (Lebanon)"
+    IDS_ARABIC_KUWAIT       "árabe (Kuwait)"
+    IDS_ARABIC_UAE          "árabe (UAE)"
+    IDS_ARABIC_BAHRAIN      "árabe (Bahrain)"
+    IDS_ARABIC_QATAR        "árabe (Qatar)"
+    IDS_ARMENIAN            "armenio"
+    IDS_AZERI_LATIN         "Azeri (Latin)"
+    IDS_AZERI_CYRILLIC      "Azeri (Cyrillic)"
+    IDS_BASQUE              "Basque"
+    IDS_BELARUSIAN          "Belarusian"
+    IDS_BULGARIAN           "búlgaro"
+    IDS_CATALAN             "catalán"
+    IDS_CHINESE_TRADITIONAL "Chinese (Traditional)"
+    IDS_CHINESE_SIMPLIFIED  "Chinese (Simplified)"
+    IDS_CHINESE_HONGKONG    "Chinese (Hong Kong)"
+    IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
+END
+
+// LANGAGE NAMES #3
+STRINGTABLE
+BEGIN
+    IDS_CHINESE_MACAU       "Chinese (Macau SAR)"
+    IDS_CROATIAN            "Croatian"
+    IDS_CZECH               "Czech"
+    IDS_DANISH              "Dansk"
+    IDS_DUTCH               "Dutch"
+    IDS_DUTCH_BELGIAN       "Dutch (Belgium)"
+    IDS_ENGLISH_US          "inglés (US)"
+    IDS_ENGLISH_UK          "inglés (UK)"
+    IDS_ENGLISH_AUS         "inglés (Australian)"
+    IDS_ENGLISH_CAN         "inglés (Canadian)"
+    IDS_ENGLISH_NZ          "inglés (New Zealand)"
+    IDS_ENGLISH_EIRE        "inglés (Irish)"
+    IDS_ENGLISH_SOUTH_AFRICA "inglés (So. African)"
+    IDS_ENGLISH_JAMAICA     "inglés (Jamaican)"
+    IDS_ENGLISH_CARIBBEAN   "inglés (Caribbean)"
+    IDS_ENGLISH_BELIZE      "inglés (Belize)"
+END
+
+// LANGAGE NAMES #4
+STRINGTABLE
+BEGIN
+    IDS_ENGLISH_TRINIDAD    "inglés (Trinidad)"
+    IDS_ENGLISH_ZIMBABWE    "inglés (Zimbabwe)"
+    IDS_ENGLISH_PHILIPPINES "inglés (Philippines)"
+    IDS_ESTONIAN            "Eesti"
+    IDS_FAEROESE            "Faeroese"
+    IDS_FARSI               "Farsi"
+    IDS_FINNISH             "Suomi"
+    IDS_FRENCH              "Francés"
+    IDS_FRENCH_BELGIAN      "Francés (Belgique)"
+    IDS_FRENCH_CANADIAN     "Francés (Canada)"
+    IDS_FRENCH_SWISS        "Francés (Switzerland)"
+    IDS_FRENCH_LUXEMBOURG   "Francés (Luxembourg)"
+    IDS_FRENCH_MONACO       "Francés (Monaco)"
+    IDS_GEORGIAN            "Georgian"
+    IDS_GERMAN              "alemán (Germany)"
+    IDS_GERMAN_SWISS        "alemán (Switzerland)"
+END
+
+// LANGAGE NAMES #5
+STRINGTABLE
+BEGIN
+    IDS_GERMAN_AUSTRIAN     "alemán (Austria)"
+    IDS_GERMAN_LUXEMBOURG   "alemán (Luxembourg)"
+    IDS_GERMAN_LIECHTENSTEIN "alemán (Liechtenstein)"
+    IDS_GREEK               "Greek"
+    IDS_HEBREW              "Hebrew"
+    IDS_HINDI               "Hindi"
+    IDS_HUNGARIAN           "Hungarian"
+    IDS_ICELANDIC           "Icelandic"
+    IDS_INDONESIAN          "Indonesian"
+    IDS_ITALIAN             "Italian"
+    IDS_ITALIAN_SWISS       "Italian (Swiss)"
+    IDS_JAPANESE            "japonés"
+    IDS_KASHMIRI            "Kashmiri (India)"
+    IDS_KAZAK               "Kazakh"
+    IDS_KOREAN              "Korean"
+    IDS_KOREAN_JOHAB        "Korean (Johab)"
+END
+
+// LANGAGE NAMES #6
+STRINGTABLE
+BEGIN
+    IDS_LATVIAN             "Latvian"
+    IDS_LITHUANIAN          "lituano"
+    IDS_MALAY_MALAYSIA      "Malay (Malaysian)"
+    IDS_MALAY_BRUNEI_DARUSSALAM "Malay (Brunei Darussalam)"
+    IDS_MANIPURI            "Manipuri"
+    IDS_NORWEGIAN_BOKMAL    "Norwegian (Bokmal)"
+    IDS_NORWEGIAN_NYNORSK   "Norwegian (Nynorsk)"
+    IDS_POLISH              "Polski"
+    IDS_PORTUGUESE          "Portugese"
+    IDS_PORTUGUESE_BRAZILIAN "Portugese (Brazil)"
+    IDS_ROMANIAN            "Romanian"
+    IDS_RUSSIAN             "Russian"
+    IDS_SANSKRIT            "Sanskrit"
+    IDS_SERBIAN_LATIN       "Serbian (Latin)"
+    IDS_SERBIAN_CYRILLIC    "Serbian (Cyrillic)"
+    IDS_SINDHI              "Sindhi"
+END
+
+// LANGAGE NAMES #7
+STRINGTABLE
+BEGIN
+    IDS_SLOVAK              "Slovak"
+    IDS_SLOVENIAN           "Slovenian"
+    IDS_SPANISH             "español"
+    IDS_SPANISH_MEXICAN     "español (Mexican)"
+    IDS_SPANISH_MODERN      "español (Modern)"
+    IDS_SPANISH_GUATEMALA   "español (Guatemala)"
+    IDS_SPANISH_COSTA_RICA  "español (Costa Rica)"
+    IDS_SPANISH_PANAMA      "español (Panama)"
+    IDS_SPANISH_DOMINICAN   "español (Dominican)"
+    IDS_SPANISH_VENEZUELA   "español (Venezuela)"
+    IDS_SPANISH_COLOMBIA    "español (Colombia)"
+    IDS_SPANISH_PERU        "español (Peru)"
+    IDS_SPANISH_ARGENTINA   "español (Argentina)"
+    IDS_SPANISH_ECUADOR     "español (Ecuador)"
+    IDS_SPANISH_CHILE       "español (Chile)"
+    IDS_SPANISH_URUGUAY     "español (Uruguay)"
+END
+
+// LANGAGE NAMES #8
+STRINGTABLE
+BEGIN
+    IDS_SPANISH_PARAGUAY    "español (Paraguay)"
+    IDS_SPANISH_BOLIVIA     "español (Bolivia)"
+    IDS_SPANISH_EL_SALVADOR "español (El Salvador)"
+    IDS_SPANISH_HONDURAS    "español (Honduras)"
+    IDS_SPANISH_NICARAGUA   "español (Nicaragua)"
+    IDS_SPANISH_PUERTO_RICO "español (Puerto Rico)"
+    IDS_SWAHILI             "Swahili (Kenya)"
+    IDS_SWEDISH             "Swedish"
+    IDS_SWEDISH_FINLAND     "Swedish (Finland)"
+    IDS_TAMIL               "Tamil"
+    IDS_TATAR               "Tatar (Tatarstan)"
+    IDS_THAI                "tailandés"
+    IDS_TURKISH             "turco"
+    IDS_UKRANIAN            "ucraniano"
+    IDS_URDU_PAKISTAN       "Urdu (Pakistan)"
+    IDS_URDU_INDIA          "Urdu (India)"
+END
+
+// LANGAGE NAMES #9
+STRINGTABLE
+BEGIN
+    IDS_UZBEK_LATIN         "Uzbek (Latin)"
+    IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
+    IDS_VIETNAMESE          "vietnamita"
+END
 
 // MENU STRINGS
 // FILE MENU
