@@ -1,3 +1,8 @@
+2005-03-28 Kimmo
+ PATCH: [ 1169997 ] catalan translation update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
+
 2005-03-23 Kimmo
  PATCH: [ 1168733 ] Doc for options
   Docs/Developers new file: Options.html

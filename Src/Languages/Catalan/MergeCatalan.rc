@@ -82,8 +82,8 @@ BEGIN
         MENUITEM "Copia a la &dreta",            ID_L2R
         MENUITEM "Copia a l'&esquerra",          ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
-        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
+        MENUITEM "Re&ssalta les paraules diferents de la línia", ID_SHOWLINEWORDDIFF
+        MENUITEM "Ress&alta els caracters diferents de la línia", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Desfés",                      ID_EDIT_UNDO
         MENUITEM "Re&fés",                       ID_EDIT_REDO
@@ -102,7 +102,7 @@ BEGIN
     BEGIN
         MENUITEM "&Nou\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Obre...\tCtrl+O",            ID_FILE_OPEN
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Obre un &projecte...\tCtrl+J", ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Desa\tCtrl+S",               ID_FILE_SAVE
         POPUP "Desa l'&Esquerra"
@@ -141,8 +141,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Selecciona-ho &tot\tCtrl+A",  ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
+        MENUITEM "R&essalta les paraules diferents de la línia\tF4", ID_SHOWLINEWORDDIFF
+        MENUITEM "Re&ssalta els caracters diferents de la línia\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Cerca...\tCtrl+F",           ID_EDIT_FIND
         MENUITEM "Subst&itueix...\tCtrl+H",     ID_EDIT_REPLACE
@@ -152,9 +152,9 @@ BEGIN
             MENUITEM "< Buit >",                ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
-        POPUP "Advanced"
+        POPUP "Avançat"
         BEGIN
-            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
+            MENUITEM "&Copia amb el número de línia\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
         MENUITEM "&Vés a...\tCtrl+G",           ID_EDIT_WMGOTO
@@ -176,7 +176,7 @@ BEGIN
         MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "Mostra els es&pais",          ID_VIEW_WHITESPACE
-        MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
+        MENUITEM "&Veure les diferències de la línia", ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
         MENUITEM "Barra d'ei&nes",              ID_VIEW_TOOLBAR
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
@@ -271,7 +271,7 @@ BEGIN
             MENUITEM "De la &dreta",                ID_DIR_DEL_RIGHT
             MENUITEM "D'&ambdós costats",           ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "&Amaga els fitxers",              ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Obre l'&esquerra"
         BEGIN
@@ -414,7 +414,7 @@ BEGIN
     PUSHBUTTON      "Mostra'l...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
 END
 
-IDD_OPEN DIALOGEX 0, 0, 364, 126
+IDD_OPEN DIALOGEX 0, 0, 376, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU |
     WS_THICKFRAME
 CAPTION "Tria de fitxers o directoris..."
@@ -441,11 +441,11 @@ BEGIN
     CONTROL         "&Inclou-hi les subcarpetes",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,76,86,161,10
     LTEXT           "Estat:",IDC_OPEN_STATUS,15,102,182,8
-    DEFPUSHBUTTON   "D'acord",IDOK,306,11,50,14
-    PUSHBUTTON      "Cancel·la",IDCANCEL,306,28,50,14
+    DEFPUSHBUTTON   "D'acord",IDOK,306,11,62,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,306,28,62,14
     GROUPBOX        "Fitxers o directoris a comparar",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
-    PUSHBUTTON   "Save project",IDC_SAVEPROJECT,306,56,50,14
+    PUSHBUTTON      "Desa el projecte",IDC_SAVEPROJECT,306,56,62,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -614,11 +614,11 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Colors"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    RTEXT           "Diferència:",IDC_STATIC,7,29,90,8
+    RTEXT           "Diferència:",IDC_STATIC,7,29,102,8
     CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Diferència seleccionada:",IDC_STATIC,7,49,90,8
+    RTEXT           "Diferència seleccionada:",IDC_STATIC,7,49,102,8
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -640,7 +640,7 @@ BEGIN
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,69,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Diferència ignorada:",IDC_STATIC,7,69,90,8
+    RTEXT           "Diferència ignorada:",IDC_STATIC,7,69,102,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,156,69,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -650,7 +650,7 @@ BEGIN
     CONTROL         "Dif",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Text mogut:",IDC_STATIC,7,89,90,8
+    RTEXT           "Text mogut:",IDC_STATIC,7,89,102,8
     CONTROL         "Dif",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -660,21 +660,21 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Text mogut seleccionat:",IDC_STATIC,7,109,90,8
+    RTEXT           "Text mogut seleccionat:",IDC_STATIC,7,109,102,8
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Word Difference:",IDC_STATIC,7,129,90,8
+    RTEXT           "Paraula diferent:",IDC_STATIC,7,129,102,8
     CONTROL         "Dif",IDC_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_WORDDIFFERENCE_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Word Diff:",IDC_STATIC,7,149,90,8
+    RTEXT           "Paraula diferent seleccionada:",IDC_STATIC,7,149,102,8
     CONTROL         "Dif",IDC_SEL_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,149,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -941,7 +941,7 @@ BEGIN
     CONTROL         "&Preserva els caracters de salt de línia originals",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "Tabulacions",IDC_STATIC,7,54,221,33,WS_GROUP
-    LTEXT           "&Tamany de les tabulacions:",IDC_STATIC,15,68,88,8
+    LTEXT           "&Mida de les tabulacions:",IDC_STATIC,15,68,88,8
     EDITTEXT        IDC_TAB_EDIT,103,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "&Insereix tabulacions",IDC_PROP_INSERT_TABS,"Button",
@@ -965,9 +965,9 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,188,114,50,14
+    PUSHBUTTON      "Nou...",IDC_FILTERFILE_NEWBTN,188,114,50,14
     PUSHBUTTON      "Edita...",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "Suprimeix...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -1015,43 +1015,43 @@ END
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245
 STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_NOPARENTNOTIFY
-CAPTION "WinMerge - Archive support disabled"
+CAPTION "WinMerge - Suport d'arxivament inhabilitat"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Unable to detect 7-Zip version (not installed?)",107,2,2,296,20
+    LTEXT           "No es pot detectat la versió del 7-Zip (potser no està instal·lat?)",107,2,2,296,20
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,26,296,1
-    LTEXT           "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\nessential components to be copied to the program directory for standalone operation.\nThere must also be an appropriate interface plugin (Merge7z*.dll) on the path.",
+    LTEXT           "El suport d'arxivament requereix que el 7-Zip 3.11 o posterior estigui instal·lat al vostre\nordinador, o els seus components essencials estiguin copiats al directori del programa per a\nun funcionament independent. També cal un connector d'enllaç adient (Merge7z*.dll) al camí.",
                     IDC_STATIC,2,30,296,28
-    LTEXT           "Please use the version of 7-Zip recommended below until interface plugins for later\nversions become available.",
+    LTEXT           "Useu la versió del 7-Zip recomanada a continuació fins que hi hagi connectors d'enllaç\ndisponibles per a versions posteriors.",
                     IDC_STATIC,2,58,296,18
-    CTEXT           "Version",IDC_STATIC,146,78,56,20,SS_CENTERIMAGE |
+    CTEXT           "Versió",IDC_STATIC,146,78,56,20,SS_CENTERIMAGE |
                     SS_SUNKEN
-    CTEXT           "Plugin required\n(dllbuild %04u)",102,204,78,94,20,
+    CTEXT           "Connector requerit\n(dllbuild %04u)",102,204,78,94,20,
                     SS_SUNKEN
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,100,142,10,
+    LTEXT           "Versió recomanada del 7-Zip:",IDC_STATIC,2,100,142,10,
                     SS_CENTERIMAGE
     CTEXT           "0.00",110,146,100,20,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "present",109,168,100,34,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "Merge7z000U.dll",111,204,100,58,10,SS_CENTERIMAGE | 
                     SS_SUNKEN
     CTEXT           "present",112,264,100,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "7-Zip software installed on your computer:",IDC_STATIC,
+    LTEXT           "Programari del 7-Zip instal·lada al vostre ordinador:",IDC_STATIC,
                     2,112,142,10,SS_CENTERIMAGE
-    CTEXT           "none",120,146,112,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "cap",120,146,112,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",121,204,112,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "missing",122,264,112,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "7-Zip components for standalone operation:",IDC_STATIC,
+    CTEXT           "absent",122,264,112,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Components del 7-Zip per a funcionament independent:",IDC_STATIC,
                     2,124,142,10,SS_CENTERIMAGE
-    CTEXT           "none",130,146,124,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "cap",130,146,124,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",131,204,124,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "outdated",132,264,124,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "Plugins on path:",9001,2,140,100,8
-    CONTROL         "Don't display this &message again.\n(You can always recall this message from help menu.)",
+    CTEXT           "antiquat",132,264,124,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Camí als connectors:",9001,2,140,100,8
+    CONTROL         "&No tornis a mostrar aquest missatge.\n(Sempre podeu recuperar aquest missatge des de l'ajuda)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
                     WS_TABSTOP,2,225,218,18
-    DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
-    CONTROL         "Plugin Download",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
-                    236,140,62,10
+    DEFPUSHBUTTON   "D'acord",IDOK,236,226,50,14,WS_GROUP
+    CONTROL         "Baixada del connector",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
+                    224,140,74,10
     LISTBOX         105,2,150,296,72,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
@@ -1059,12 +1059,12 @@ END
 IDD_PREFERENCES DIALOGEX 0, 0, 352, 260
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Options"
+CAPTION "Opcions"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,187,237,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,241,237,50,14
-    PUSHBUTTON      "Help",IDC_TREEOPT_HELP,295,237,50,14
+    DEFPUSHBUTTON   "D'acord",IDOK,187,237,50,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,241,237,50,14
+    PUSHBUTTON      "Ajuda",IDC_TREEOPT_HELP,295,237,50,14
     CONTROL         "Tree1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
@@ -1256,7 +1256,7 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Canvia la impressora i les opcions d'impressió\nConfiguració d'impressió"
     ID_FILE_PRINT           "Imprimeix el document actiu\nImprimeix"
     ID_FILE_PRINT_PREVIEW   "Visualitza pàgines senceres\nVisualització prèvia de la impressió"
-    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+    ID_FILE_OPENPROJECT     "Obre un fitxer de projecte\nFitxer de projecte (Ctrl+J)"
 END
 
 STRINGTABLE
@@ -1403,12 +1403,12 @@ END
 STRINGTABLE
 BEGIN
 	IDS_OPTIONSPG_GENERAL     "General"
-	IDS_OPTIONSPG_COMPARE     "Compare"
+	IDS_OPTIONSPG_COMPARE     "Comparació"
 	IDS_OPTIONSPG_EDITOR      "Editor"
 	IDS_OPTIONSPG_COLORS      "Colors"
-	IDS_OPTIONSPG_SYSTEM      "System"
-	IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
-	IDS_OPTIONSPG_CODEPAGE     "Codepage"
+	IDS_OPTIONSPG_SYSTEM      "Sistema"
+	IDS_OPTIONSPG_VERSIONCONTROL "Control de versions"
+	IDS_OPTIONSPG_CODEPAGE     "Pàgina de codis"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1448,15 +1448,15 @@ BEGIN
     IDS_OPEN_TITLE          "Obre"
     IDS_PROGRAMFILES        "Programes|*.exe;*.bat;*.cmd|Tots els fitxers (*.*)|*.*||"
     IDS_ALLFILES            "Tots els fitxers (*.*)|*.*||"
-    IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+    IDS_PROJECTFILES        "Fitxers de projecte del WinMerge (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
 END
 
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
-    IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    IDS_COMPMETHOD_FULL_CONTENTS "Tot el contingut"
+    IDS_COMPMETHOD_QUICK_CONTENTS "Contingut en un cop d'ull"
     IDS_COMPMETHOD_MODDATE  "Data de modificació"
 END
 
@@ -1467,9 +1467,9 @@ BEGIN
     IDS_FILTERFILE_PATHTITLE "Ubicació"
     IDS_FILTER_TITLE        "Filtres"
     IDS_FILTER_PREFIX       "[F] "
-    IDS_FILTERFILE_DESCTITLE "Description"
-    IDS_FILEFILTER_SAVENEW  "Select filename for new filter"
-    IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
+    IDS_FILTERFILE_DESCTITLE "Descripció"
+    IDS_FILEFILTER_SAVENEW  "Selecciona un nom de fitxer per al nou filtre"
+    IDS_FILEFILTER_FILEMASK "Filtres de fitxer (*.flt)|*.flt|Tots els fitxers (*.*)|*.*||"
 END
 
 // VERSION CONTROL OPTIONS
@@ -1573,9 +1573,9 @@ END
 // VSS system
 STRINGTABLE
 BEGIN
-    IDS_VCS_NONE            "None"
-    IDS_VCS_VSS4            "Visual SourceSafe (less than 5.0)"
-    IDS_VCS_VSS5            "Visual SourceSafe (5.0 and above)"
+    IDS_VCS_NONE            "Cap"
+    IDS_VCS_VSS4            "Visual SourceSafe (anterior al 5.0)"
+    IDS_VCS_VSS5            "Visual SourceSafe (5.0 i posterior)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
 END
 
@@ -1589,7 +1589,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "Suprimeix els elements seleccionats a l'esquerra"
     ID_DIR_DEL_RIGHT        "Suprimeix els elements seleccionats a la dreta"
     ID_DIR_DEL_BOTH         "Suprimeix els element(s) seleccionat(s) a ambdues bandes"
-    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
+    ID_DIR_HIDE_FILENAMES   "Amaga el(s) element(s) seleccionat(s) (filtratge al vol)"
     IDS_COPY_TO_LEFT        "Dreta a esquerra (%1)"
     IDS_COPY_TO_RIGHT       "Esquerra a dreta (%1)"
     IDS_COPY_TO_LEFT2       "Dreta a esquerra (%1 de %2)"
@@ -1673,8 +1673,8 @@ BEGIN
     IDS_COLHDR_LTIMEM       "Data esquerra"
     IDS_COLHDR_RTIMEM       "Data dreta"
     IDS_COLHDR_EXTENSION    "Extensió"
-    IDS_COLHDR_LSIZE        "Tamany esquerra"
-    IDS_COLHDR_RSIZE        "Tamany dreta"
+    IDS_COLHDR_LSIZE        "Mida esquerra"
+    IDS_COLHDR_RSIZE        "Mida dreta"
     IDS_COLHDR_LTIMEC       "Data de creació esquerra"
     IDS_COLHDR_RTIMEC       "Data de creació dreta"
     IDS_COLHDR_NEWER        "Fitxer més nou"
@@ -1728,8 +1728,8 @@ BEGIN
     IDS_COLDESC_LTIMEM      "Data de modificació del costat esquerre."
     IDS_COLDESC_RTIMEM      "Data de modificació del costat dret."
     IDS_COLDESC_EXTENSION   "Extensió del fitxer."
-    IDS_COLDESC_LSIZE       "Tamany en bytes del fitxer esquerre."
-    IDS_COLDESC_RSIZE       "Tamany en bytes del fitxer dret."
+    IDS_COLDESC_LSIZE       "Mida en bytes del fitxer esquerre."
+    IDS_COLDESC_RSIZE       "Mida en bytes del fitxer dret."
     IDS_COLDESC_LTIMEC      "Data de creació del fitxer esquerre."
     IDS_COLDESC_RTIMEC      "Data de creació del fitxer dret."
     IDS_COLDESC_NEWER       "Diu quin costat te una data de modificació més recent."
@@ -1760,12 +1760,12 @@ BEGIN
     IDS_FILEBINARY          "Els fitxers binaris no es poden comparar visualment."
     IDS_TEMP_FILEERROR      "No s'han pogut obrir els fitxers temporals. Comproveu els ajustos de camí temporal."
     IDS_FILEISDIR           "Els fitxers de directori no es poden comparar visualment."
-    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
-                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
-                            Note: If you always want to treat all carriage return types \
-                            as equivalent, set the option 'Ignore carriage return \
-                            differences..' in the Compare tab of the options dialog\
-                            (available under Edit/Options)."
+    IDS_SUGGEST_IGNOREEOL   "Els fitxers tenen salts de línia de diferent mena.\n\n
+                            Voleu tractar tots els salts de línia com equivalents per a aquesta comparacio?\n\n
+                            Nota: Si voleu tractar els salts de línia sempre com\n
+                            equivalents, especifiqueu l'opció 'Ignora diferències de\n
+                            salt de línia...' al quadre d'opcions (disponible des del\n
+                            menú Edita/Opcions...)."
     IDS_SUGGEST_PRESERVEEOL "Els salts de línia són de diferent mena (DOS/UNIX/MAC) al fitxer '%1'.\nAmb les opcions actual, s'unificaran al tipus principal.\nVoleu canviar les opcions i preservar les diferents menes de salt de línia?"
     IDS_PREDIFFER_ERROR     "Hi ha hagut un error prediferenciant el fitxer '%1' amb el connector '%2'. No es tornarà a aplicar la prediferenciació."
     IDS_SUGGEST_IGNORECODEPAGE "Els fitxers de l'esquerra (cp%d) i de la dreta (cp%d) no tenen la mateixa pàgina de codis.\nEn mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\nVoleu ignorar la informació de pàgina de codis?"
@@ -1870,8 +1870,8 @@ BEGIN
     IDS_ARABIC_BAHRAIN      "Àrab (Bahrain)"
     IDS_ARABIC_QATAR        "Àrab (Qatar)"
     IDS_ARMENIAN            "Armeni"
-    IDS_AZERI_LATIN         "Azeri (Llatí)"
-    IDS_AZERI_CYRILLIC      "Azeri (Ciríl·lic)"
+    IDS_AZERI_LATIN         "Àzeri (Llatí)"
+    IDS_AZERI_CYRILLIC      "Àzeri (Ciríl·lic)"
     IDS_BASQUE              "Basc"
     IDS_BELARUSIAN          "Bielorús"
     IDS_BULGARIAN           "Búlgar"
@@ -1909,7 +1909,7 @@ BEGIN
     IDS_ENGLISH_TRINIDAD    "Anglès (Trinidad)"
     IDS_ENGLISH_ZIMBABWE    "Anglès (Zimbabwe)"
     IDS_ENGLISH_PHILIPPINES "Anglès (Filipines)"
-    IDS_ESTONIAN            "Eesti"
+    IDS_ESTONIAN            "Estonià"
     IDS_FAEROESE            "Feroès"
     IDS_FARSI               "Farsi"
     IDS_FINNISH             "Finès"
@@ -1996,12 +1996,12 @@ BEGIN
     IDS_SPANISH_HONDURAS    "Castellà (Honduras)"
     IDS_SPANISH_NICARAGUA   "Castellà (Nicaragua)"
     IDS_SPANISH_PUERTO_RICO "Castellà (Puerto Rico)"
-    IDS_SWAHILI             "Swahili (Kènia)"
+    IDS_SWAHILI             "Suahili (Kènia)"
     IDS_SWEDISH             "Suec"
     IDS_SWEDISH_FINLAND     "Suec (Finlàndia)"
-    IDS_TAMIL               "Tamil"
+    IDS_TAMIL               "Tàmil"
     IDS_TATAR               "Tatar (Tatarstan)"
-    IDS_THAI                "Thai"
+    IDS_THAI                "Tai"
     IDS_TURKISH             "Turc"
     IDS_UKRANIAN            "Ucraïnès"
     IDS_URDU_PAKISTAN       "Urdu (Pakistan)"
@@ -2019,12 +2019,12 @@ END
 // CODEPAGE GEOGRAPHIC GROUPS
 STRINGTABLE
 BEGIN
-	IDS_CPG_WESTERN_EUROPEAN        "Western European"
-	IDS_CPG_EASTERN_EUROPEAN        "Eastern European"
-	IDS_CPG_EAST_ASIAN              "East Asian"
-	IDS_CPG_SOUTH_ASIAN             "SE & SW Asian"
-	IDS_CPG_MIDDLE_EASTERN          "Middle Eastern"
-	IDS_CPG_NA                      "Not applicable"
+	IDS_CPG_WESTERN_EUROPEAN        "Europeu occidental"
+	IDS_CPG_EASTERN_EUROPEAN        "Europeu oriental"
+	IDS_CPG_EAST_ASIAN              "Est asiàtic"
+	IDS_CPG_SOUTH_ASIAN             "Sudest i sudoest asiàtic"
+	IDS_CPG_MIDDLE_EASTERN          "Orient Mitjà"
+	IDS_CPG_NA                      "No aplicable"
 END
 
 // CODEPAGE PLATFORM GROUPS
@@ -2034,70 +2034,70 @@ BEGIN
 	IDS_CPP_DOS                     "MS-DOS"
 	IDS_CPP_MACINTOSH               "Macintosh"
 	IDS_CPP_IBM                     "IBM"
-	IDS_CPP_NA                      "Not applicable"
+	IDS_CPP_NA                      "No aplicable"
 END
 
 // CODEPAGES #1 (IBM)
 STRINGTABLE
 BEGIN
 	IDS_CP_EBCDIC                   "EBCDIC"
-	IDS_CP_IBM_EBCDIC_CYRILLIC      "IBM EBCDIC Cyrillic"
+	IDS_CP_IBM_EBCDIC_CYRILLIC      "IBM EBCDIC Ciríl·lic"
 END
 
 // CODEPAGES #1 (DOS)
 STRINGTABLE
 BEGIN
-	IDS_CP_DOS_US                   "MS-DOS Latin US"
-	IDS_CP_DOS_ARABIC               "MS-DOS Arabic"
-	IDS_CP_DOS_GREEK                "MS-DOS Greek"
-	IDS_CP_DOS_BALTIC               "MS-DOS Baltic Rim"
-	IDS_CP_DOS_LATIN1               "MS-DOS Latin 1"
-	IDS_CP_DOS_GREEK1               "MS-DOS Greek 1"
-	IDS_CP_DOS_LATIN2               "MS-DOS Latin 2"
-	IDS_CP_DOS_CYRILLIC             "MS-DOS Cyrillic"
-	IDS_CP_DOS_TURKISH              "MS-DOS Turkish"
-	IDS_CP_DOS_PORTUGUESE           "MS-DOS Portuguese"
+	IDS_CP_DOS_US                   "MS-DOS Llatí US"
+	IDS_CP_DOS_ARABIC               "MS-DOS Àrab"
+	IDS_CP_DOS_GREEK                "MS-DOS Grec"
+	IDS_CP_DOS_BALTIC               "MS-DOS Bàltic Rim"
+	IDS_CP_DOS_LATIN1               "MS-DOS Llatí 1"
+	IDS_CP_DOS_GREEK1               "MS-DOS Grec 1"
+	IDS_CP_DOS_LATIN2               "MS-DOS Llatí 2"
+	IDS_CP_DOS_CYRILLIC             "MS-DOS Ciril·lic"
+	IDS_CP_DOS_TURKISH              "MS-DOS Turc"
+	IDS_CP_DOS_PORTUGUESE           "MS-DOS Portuguès"
 END
 
 // CODEPAGES #2 (more DOS)
 STRINGTABLE
 BEGIN
-	IDS_CP_DOS_ICELANDIC            "MS-DOS Icelandic"
-	IDS_CP_DOS_HEBREW               "MS-DOS Hebrew"
-	IDS_CP_DOS_FRENCH_CANADA        "MS-DOS French Canada"
-	IDS_CP_DOS_NORDIC               "MS-DOS Nordic"
-	IDS_CP_DOS_CYRILLIC_CIS1        "MS-DOS Cyrillic CIS 1"
-	IDS_CP_DOS_GREEK2               "MS-DOS Greek 2"
+	IDS_CP_DOS_ICELANDIC            "MS-DOS Islandès"
+	IDS_CP_DOS_HEBREW               "MS-DOS Hebreu"
+	IDS_CP_DOS_FRENCH_CANADA        "MS-DOS Canada francès"
+	IDS_CP_DOS_NORDIC               "MS-DOS Nòrdic"
+	IDS_CP_DOS_CYRILLIC_CIS1        "MS-DOS Ciril·lic CIS 1"
+	IDS_CP_DOS_GREEK2               "MS-DOS Grec 2"
 END
 
 // CODEPAGES #3 (Windows)
 STRINGTABLE
 BEGIN
-	IDS_CP_WINDOWS_THAI             "Windows Thai"
-	IDS_CP_WINDOWS_JAPANESE         "Windows Japanese"
-	IDS_CP_WINDOWS_CHINESE_SIMP     "Windows Simplified Chinese"
-	IDS_CP_WINDOWS_KOREAN           "Windows Korean"
-	IDS_CP_WINDOWS_CHINESE_TRAD     "Windows Traditional Chinese"
-	IDS_CP_WINDOWS_LATIN2           "Windows Latin 2"
-	IDS_CP_WINDOWS_CYRILLIC         "Windows Cyrillic (Slavic)"
-	IDS_CP_WINDOWS_LATIN1           "Windows Latin 1"
-	IDS_CP_WINDOWS_GREEK            "Windows Greek"
-	IDS_CP_WINDOWS_TURKISH          "Windows Latin 5 (Turkish)"
-	IDS_CP_WINDOWS_HEBREW           "Windows Hebrew"
-	IDS_CP_WINDOWS_ARABIC           "Windows Arabic"
-	IDS_CP_WINDOWS_BALTIC           "Windows Baltic Rim"
-	IDS_CP_WINDOWS_VIETNAM          "Windows Vietnamese"
+	IDS_CP_WINDOWS_THAI             "Windows Tai"
+	IDS_CP_WINDOWS_JAPANESE         "Windows Japonès"
+	IDS_CP_WINDOWS_CHINESE_SIMP     "Windows Xinès simplificat"
+	IDS_CP_WINDOWS_KOREAN           "Windows Koreà"
+	IDS_CP_WINDOWS_CHINESE_TRAD     "Windows Xinès tradicional"
+	IDS_CP_WINDOWS_LATIN2           "Windows Llatí 2"
+	IDS_CP_WINDOWS_CYRILLIC         "Windows Ciril·lic (Eslau)"
+	IDS_CP_WINDOWS_LATIN1           "Windows Llatí 1"
+	IDS_CP_WINDOWS_GREEK            "Windows Grec"
+	IDS_CP_WINDOWS_TURKISH          "Windows Llatí 5 (Turc)"
+	IDS_CP_WINDOWS_HEBREW           "Windows Hebreu"
+	IDS_CP_WINDOWS_ARABIC           "Windows Àrab"
+	IDS_CP_WINDOWS_BALTIC           "Windows Bàltic Rim"
+	IDS_CP_WINDOWS_VIETNAM          "Windows Vietnamita"
 END
 
 // CODEPAGES #4 (Macintosh)
 STRINGTABLE
 BEGIN
-	IDS_CP_MACINTOSH_ROMAN          "Macintosh Roman"
-	IDS_CP_MACINTOSH_GREEK          "Macintosh Greek"
-	IDS_CP_MACINTOSH_CYRILLIC       "Macintosh Cyrillic"
+	IDS_CP_MACINTOSH_ROMAN          "Macintosh Romà"
+	IDS_CP_MACINTOSH_GREEK          "Macintosh Grec"
+	IDS_CP_MACINTOSH_CYRILLIC       "Macintosh Ciril·lic"
 	IDS_CP_MACINTOSH_CENTRAL_EUROPE "Macintosh "
-	IDS_CP_MACINTOSH_ICELANDIC      "Macintosh Central Europe"
-	IDS_CP_MACINTOSH_TURKISH        "Macintosh Turkish"
+	IDS_CP_MACINTOSH_ICELANDIC      "Macintosh Europa central"
+	IDS_CP_MACINTOSH_TURKISH        "Macintosh Turc"
 END
 
 // CODEPAGES #5 (Extra (alias) information)
@@ -2106,13 +2106,13 @@ BEGIN
 	IDS_CP_WINDOWS_JAPANESE_EXTRA   ""
 	IDS_CP_WINDOWS_CHINESE_SIMP_EXTRA ""
 	IDS_CP_WINDOWS_KOREAN_EXTRA     ""
-	IDS_CP_WINDOWS_LATIN2_EXTRA     "Approximates ISO-8859-2"
+	IDS_CP_WINDOWS_LATIN2_EXTRA     "Semblant a ISO-8859-2"
 	IDS_CP_WINDOWS_CHINESE_TRAD_EXTRA ""
 	IDS_CP_WINDOWS_CYRILLIC_EXTRA   ""
-	IDS_CP_WINDOWS_LATIN1_EXTRA     "Approximates ISO-8859-1"
-	IDS_CP_WINDOWS_GREEK_EXTRA      "Approximates ISO-8859-7"
-	IDS_CP_WINDOWS_TURKISH_EXTRA    "Approximates ISO-8859-9"
-	IDS_CP_WINDOWS_HEBREW_EXTRA     "Approximates ISO-8859-8"
+	IDS_CP_WINDOWS_LATIN1_EXTRA     "Semblant a ISO-8859-1"
+	IDS_CP_WINDOWS_GREEK_EXTRA      "Semblant a ISO-8859-7"
+	IDS_CP_WINDOWS_TURKISH_EXTRA    "Semblant a ISO-8859-9"
+	IDS_CP_WINDOWS_HEBREW_EXTRA     "Semblant a ISO-8859-8"
 END
 
 // MENU STRINGS
@@ -2134,12 +2134,12 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
-    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
+    ID_SHOWLINEWORDDIFF     "Ressalta les paraules diferents a la línia actual\nParaules diferents a la línia actual (F4)"
+    ID_SHOWLINECHARDIFF     "Ressalta els caracters diferents a la línia actual\nCaracters diferents a la línia actual (Shift+F4)"
     ID_EDIT_WMGOTO          "Va fins a una línia o una diferència\nVés a (Ctrl+G)"
     ID_OPTIONS              "Especifica opcions del programa\nOpcions"
     ID_REFRESH              "Actualitza la visualització\nActualitza (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "Copia les línies seleccionades al Porta-retalls afegint-hi els números de línia al inici de línia"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2156,14 +2156,14 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
-    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
+    ID_VIEW_SELECTFONT      "Selecciona el tipus de lletra per a les visualitzacions de diferències\nSelecciona tipus de lletra per a diferències"
+    ID_VIEW_USEDEFAULTFONT  "Recupera el tipus de lletra del sistema per a la visualització de diferències\nTipus de lletra del sistema"
     ID_VIEW_WHITESPACE      "Mostra els caràcters d'espais"
     ID_VIEW_DETAIL_BAR      "Mostra la subfinestra de diferències"
     ID_VIEW_LOCATION_BAR    "Mostra la subfinestra d'ubicació amb una image general dels fitxers"
     ID_VIEW_DIR_STATEPANE   "Mostra la subfinestra d'estat de comparació de directori"
     ID_VIEW_LANGUAGE        "Selecciona l'idioma de la interfície d'usuari\nIdioma"
-    ID_VIEW_LINEDIFFS       "Shows differences inside lines with different color\nShow Line Diff"
+    ID_VIEW_LINEDIFFS       "Mostra les diferències dins les línies en un color diferent\nMostra les diferències de línia"
 END
 
 // MERGE MENU
