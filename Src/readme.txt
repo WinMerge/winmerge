@@ -11,6 +11,9 @@
  PATCH: [ 1107686 ] Fix LANGAGE to LANGUAGE in Merge.rc
   Src: Merge.rc
   Languages: *.rc
+ PATCH: [ 1103530 ] Include codepages in "force unification" question
+  Placeholder in Japanese text.
+  Languages/Japanese: MergeJapanese.rc
 
 2005-01-22 Perry
  PATCH: [ 1107484 ] Fix broken version columns
