@@ -1,3 +1,8 @@
+2004-01-24 Perry
+ [ 882650 ] Move temp build files out of Build into BuildTmp
+  Src: Merge.dsp
+  MakeResDll: MakeResDll.dsp
+
 2004-01-23 Kimmo
  PATCH: [ 881602 ] Don't allow canceling saving when its pointless
   src: MainFrm.cpp MergeDiffDetailView.cpp MergeDoc.cpp MergeDoc.h MergeEditView.cpp

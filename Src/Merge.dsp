@@ -42,8 +42,8 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 6
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "..\Build\MergeRelease"
-# PROP Intermediate_Dir "..\Build\MergeRelease"
+# PROP Output_Dir "..\BuildTmp\MergeRelease"
+# PROP Intermediate_Dir "..\BuildTmp\MergeRelease"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
@@ -75,8 +75,8 @@ PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 6
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "..\Build\MergeReleaseMinsize"
-# PROP Intermediate_Dir "..\Build\MergeReleaseMinsize"
+# PROP Output_Dir "..\BuildTmp\MergeReleaseMinsize"
+# PROP Intermediate_Dir "..\BuildTmp\MergeReleaseMinsize"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W4 /GR /GX /Zi /Od /I "." /I "..\common" /I ".\editlib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /Yu"stdafx.h" /FD /c
@@ -108,8 +108,8 @@ PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 6
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "..\Build\MergeDebug"
-# PROP Intermediate_Dir "..\Build\MergeDebug"
+# PROP Output_Dir "..\BuildTmp\MergeDebug"
+# PROP Intermediate_Dir "..\BuildTmp\MergeDebug"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
@@ -135,8 +135,8 @@ LINK32=link.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 6
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "..\Build\MergeUnicodeRelease"
-# PROP Intermediate_Dir "..\Build\MergeUnicodeRelease"
+# PROP Output_Dir "..\BuildTmp\MergeUnicodeRelease"
+# PROP Intermediate_Dir "..\BuildTmp\MergeUnicodeRelease"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W4 /GR /GX /Zi /Od /I "." /I "..\common" /I ".\editlib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /Yu"stdafx.h" /FD /c
@@ -169,8 +169,8 @@ PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 6
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "..\Build\MergeUnicodeReleaseMinsize"
-# PROP Intermediate_Dir "..\Build\MergeUnicodeReleaseMinsize"
+# PROP Output_Dir "..\BuildTmp\MergeUnicodeReleaseMinsize"
+# PROP Intermediate_Dir "..\BuildTmp\MergeUnicodeReleaseMinsize"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W4 /GR /GX /Zi /Od /I "." /I "..\common" /I ".\editlib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /FD /c
@@ -203,8 +203,8 @@ PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 6
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "..\Build\MergeUnicodeDebug"
-# PROP Intermediate_Dir "..\Build\MergeUnicodeDebug"
+# PROP Output_Dir "..\BuildTmp\MergeUnicodeDebug"
+# PROP Intermediate_Dir "..\BuildTmp\MergeUnicodeDebug"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "." /I "..\common" /I ".\editlib" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /FR /Yu"stdafx.h" /FD /c
