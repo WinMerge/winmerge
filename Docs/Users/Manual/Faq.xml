@@ -107,7 +107,9 @@
           <para>I see question marks instead of letters in files?</para>
         </question>
         <answer>
-          <para>This is propably due to code-page problem. If 'Use codepage info' is selected from options, turn that off and see if it helps.</para>
+          <para>This is what we call a "lossy" conversion.
+          <para>For Unicode files (UCS-2, UTF-8), use WinMergeU.exe.</para>
+          <para>For ANSI files, this is propably due to code-page problem. If 'Use codepage info' is selected from options, turn that off and see if it helps.</para>
         </answer>
       </qandaentry>
       <qandaentry>
