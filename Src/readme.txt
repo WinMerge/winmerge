@@ -1,3 +1,6 @@
+2003-03-07 Perry
+ PATCH: [ 699580 ] Fix paths.cpp
+  WinMerge: paths.cpp
 2003-03-07 Kimmo
  PATCH: [ 698754 ] Update filetimes after save
   WinMerge: DiffContext.h DiffContext.cpp DirDoc.h DirDoc.cpp MergeDoc.cpp

@@ -141,7 +141,7 @@ CString paths_GetLongPath(const CString & sPath)
 		TCHAR curdir[_MAX_PATH];
 		if (!GetCurrentDirectory(sizeof(curdir)/sizeof(curdir[0]), curdir))
 			return sPath;
-		sBuffer = curdir + '\\' + sBuffer;
+		sBuffer = (CString)curdir + '\\' + sBuffer;
 	}
 	LPTSTR ptr = sBuffer.GetBuffer(0), end;
 	// skip over root slash
@@ -152,11 +152,21 @@ CString paths_GetLongPath(const CString & sPath)
 	ptr = &end[1];
 	// now walk down each directory
 	// using CFileFind to get its long name
-	while (0 != (end = _tcschr(ptr, '\\')))
+	while (ptr)
 	{
-		*end = 0;
-		sTemp = sLong + '\\' + ptr;
-		ptr = &end[1];
+		end = _tcschr(ptr, '\\');
+		if (!end)
+		{
+			// on last component (probably filename)
+			sTemp = sLong + '\\' + ptr;
+			ptr = 0;
+		}
+		else
+		{
+			*end = 0;
+			sTemp = sLong + _T("\\") + ptr;
+			ptr = &end[1];
+		}
 		// (Couldn't get info for just the directory from CFindFile)
 		WIN32_FIND_DATA ffd;
 		HANDLE h = FindFirstFile(sTemp, &ffd);
