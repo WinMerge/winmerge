@@ -12,12 +12,16 @@ or
 
 The remainder of this file contains specific instructions for each localized language.  Please look for your language within this file.  If it's not listed here or you have any other questions please let Seier Blackburn know at MyPurchases@Yahoo.com.  
 
-The following languages do not need translating:
-Bulgarian, Chinese (Simplified), Chinese (Traditional), Czech, Danish, Dutch, French, German, Italian, Korean, Norwegian, Polish, Russian, and Swedish
+The following languages do not need translating outside of the [CustomMessages] section at the bottom of the .ISL file for your language:
+Bulgarian, Chinese (Simplified), Chinese (Traditional), Czech, Danish, Dutch, French, German, Italian, Korean, Norwegian, Polish, Russian, Slovak, and Swedish. Catalan, Brazillian, and Spanish need to translated more carefully.  Please see the sections to translate below.
 
-Once you've translated your file.  Please add it to the CVS and submit it as a patch assigning it to Seier and categorizing it as an installer issue. 
+Once you've translated your file.  Please commit your changes to the CVS (/InnoSetup/Langauges/YourLanguage.iss) and submit it as a patch assigning it to Seier and titling the patch as "Inno Setup Localization: SomeLanguage".  
 
-The good news is not only will your translation be helpful to our project, but countless other installers will now speak your language.  I will be submitting all these translations to the Inno Setup project for inclusion :).  
+The good news is not only will your translation be helpful to our project, but countless other installers will now speak your language.  I will be submitting all these translations to the Inno Setup project for inclusion :).  If you want to proof read the rest of the translated text you're more than welcome to.  Also please feel free to add your name to the top of the file:
+
+;Translated by: John Doe 
+
+Here are three languages that have specific lines in addition to the custom messages section that need to be translated.  In case you were wondering the [CustomMessages] section is for text specific to our installer like "Filters" for example.  
  
 [Catalan]
 File=Catalan.isl
@@ -43,32 +47,5 @@ Line2=SelectDirLabel3
 Line3=SelectDirBrowseLabel
 Line4=SelectStartMenuFolderBrowseLabel
 
-[Slovak]
-File=Slovak.isl
-LinesToTranslate=15
-Line1=SelectStartMenuFolderLabel3
-Line2=SelectDirLabel3
-Line3=SelectDirBrowseLabel
-Line4=SelectStartMenuFolderBrowseLabel
-Line5=BrowseDialogLabel
-Line6=BrowseDialogTitle
-Line7=BrowseDialogLabel
-Line8=NewFolderName
-Line9=ButtonWizardBrowse
-Line10=ButtonNewFolder
-Line11=DirNameTooLong
-Line12=InvalidDirName
-Line13=GroupNameTooLong
-Line14=InvalidGroupName
-Line15=UninstallOpenError
-
-
-
-
-
-
-
- 
-
-
-
+Thanks for all your help,
+Seier Blackburn
