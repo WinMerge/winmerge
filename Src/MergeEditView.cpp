@@ -1473,7 +1473,7 @@ BOOL CMergeEditView::MergeModeKeyDown(MSG* pMsg)
 /**
  * @brief Called before messages are translated.
  *
- * Checks if <ESC> were pressed, saves and closes doc.
+ * Checks if ESC key was pressed, saves and closes doc.
  * Also if in merge mode traps cursor keys.
  */
 BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
@@ -1579,7 +1579,7 @@ void CMergeEditView::SetStatusInterface(IMergeEditStatus * piMergeEditStatus)
 
 /**
  * @brief Update statusbar info, Override from CCrystalTextView
- * @Note we tab-expand column, but we don't tab-expand char count,
+ * @note we tab-expand column, but we don't tab-expand char count,
  * since we want to show how many chars there are and tab is just one
  * character although it expands to several spaces.
  */
@@ -1603,22 +1603,24 @@ OnUpdateCaret()
 		{
 			// Ghost lines display eg "Line 12-13"
 			sLine.Format(_T("%d-%d"), nRealLine, nRealLine+1);
+			sEol = _T("hidden");
 		}
 		else
 		{
 			// Regular lines display eg "Line 13 Characters: 25 EOL: CRLF"
 			sLine.Format(_T("%d"), nRealLine+1);
-			curChar = cursorPos.x;
+			curChar = cursorPos.x + 1;
 			chars = GetLineLength(nScreenLine);
-			column = CalculateActualOffset(nScreenLine, cursorPos.x);
-			columns = CalculateActualOffset(nScreenLine, chars);
+			column = CalculateActualOffset(nScreenLine, cursorPos.x) + 1;
+			columns = CalculateActualOffset(nScreenLine, chars) + 1;
+			chars++;
 			if (mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
 				sEol = GetTextBufferEol(nScreenLine);
 			else
 				sEol = _T("hidden");
 		}
-		m_piMergeEditStatus->SetLineInfo(sLine, column + 1, columns + 1,
-			curChar + 1, chars + 1, sEol);
+		m_piMergeEditStatus->SetLineInfo(sLine, column, columns,
+			curChar, chars, sEol);
 	}
 }
 

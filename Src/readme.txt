@@ -1,3 +1,7 @@
+2004-09-15 Kimmo
+ PATCH: [ 1027936 ] Fix statusbar display for ghost lines
+  Src: MergeEditView.cpp
+
 2004-09-14 Kimmo
  PATCH: [ 1027118 ] Separate items for Copy Path in dircompare context menu
   Src: DirView.cpp DirView.h Merge.rc resource.h
