@@ -144,9 +144,11 @@ void COpenDlg::OnOK()
 {
 	UpdateData(TRUE);
 
-	m_ctlLeft.SaveState(_T("Files\\Left"));
-	m_ctlRight.SaveState(_T("Files\\Right"));
-	m_ctlExt.SaveState(_T("Files\\Ext"));
+	if (m_strLeft.Right(1)==_T(':'))
+		m_strLeft += _T("\\");
+	if (m_strRight.Right(1)==_T(':'))
+		m_strRight += _T("\\");
+	UpdateData(FALSE);
 
 	// parse the extensions
 	// replace all *. with .*\\.
@@ -176,6 +178,10 @@ void COpenDlg::OnOK()
 		strPattern += _T(")$");
 		m_strParsedExt = strPattern;
 	}
+
+	m_ctlLeft.SaveState(_T("Files\\Left"));
+	m_ctlRight.SaveState(_T("Files\\Right"));
+	m_ctlExt.SaveState(_T("Files\\Ext"));
 
 	CDialog::OnOK();
 }
@@ -278,15 +284,43 @@ void COpenDlg::OnKillfocusRightCombo()
 
 BOOL COpenDlg::IsFileOk(CString & strFile, BOOL *pbDir /*= NULL*/)
 {
+	BOOL bResult=FALSE;
 	CFileStatus status;
 	CString s(strFile);
 
 	while (s.Right(1) == _T('\\') || s.Right(1) == _T('/'))
 		s = s.Left(s.GetLength()-1);
-	
-	BOOL bResult = CFile::GetStatus(strFile, status);
-	if (pbDir != NULL)
-		*pbDir = (status.m_attribute & CFile::Attribute::directory);
+
+	// fix bug #121116
+	// I guess GetStatus doesn't like stuff like "F:"
+	if (s.GetLength()==2 && s.Right(1) == _T(':'))
+	{
+		TCHAR temp[100];
+		TCHAR drive = toupper(s.GetAt(0));
+
+		if (GetLogicalDriveStrings(100,temp))
+		{
+			LPTSTR p;
+			for (p=temp; *p != _T('\0'); )
+			{
+				if (toupper(*p) == drive)
+				{
+					bResult=TRUE;
+					break;
+				}
+				p = _tcsninc(p,_tcslen(p)+1);
+			}
+		}
+
+		if (pbDir != NULL)
+			*pbDir = TRUE;
+	}
+	else
+	{
+		bResult = CFile::GetStatus(s, status);
+		if (pbDir != NULL)
+			*pbDir = (status.m_attribute & CFile::Attribute::directory);
+	}
 
 	return bResult;
 }
