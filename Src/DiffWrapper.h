@@ -17,7 +17,7 @@
 /** 
  * @file  DiffWrapper.h
  *
- * @brief Declaration file for CDirColsDlg
+ * @brief Declaration file for CDiffWrapper
  *
  * @date  Created: 2003-08-22
  */
