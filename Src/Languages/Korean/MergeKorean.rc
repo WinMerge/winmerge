@@ -198,6 +198,7 @@ BEGIN
         MENUITEM "목차(&C)...\tF1",             ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
+        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "GNU Public License...",       ID_HELP_GNULICENSE
         MENUITEM "WinMerge 정보(&A)...",        ID_APP_ABOUT
@@ -899,7 +900,7 @@ IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Save modified files?"
-FONT 8, "MS Shell Dlg", 400, 0, 0x1
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Left side file",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
     EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL |
@@ -936,6 +937,40 @@ BEGIN
                     BS_AUTORADIOBUTTON,13,46,77,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
     GROUPBOX        "Default codepage for ANSI files",IDC_STATIC,7,7,221,58
+END
+
+IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 276, 186
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "WinMerge"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Archive support is disabled. In order to enable archive support, please install a version of 7-Zip that WinMerge can interface, and place a copy of the appropriate interface plugin (Merge7z*.dll) in your WinMerge directory.",
+                    IDC_STATIC,2,2,272,32
+    LTEXT           "WinMerge can interface 7-Zip 3.11 and above, provided the appropriate interface plugin is available. Please use the version of 7-Zip recommended below until interface plugins for later versions become available.",
+                    IDC_STATIC,2,34,272,32
+    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,70,131,8
+    EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
+                    WS_BORDER | WS_GROUP | NOT WS_TABSTOP
+    LTEXT           "Interface plugin required:",IDC_STATIC,2,82,86,8
+    EDITTEXT        102,214,82,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
+                    WS_BORDER | WS_GROUP | NOT WS_TABSTOP
+    LTEXT           "Version of 7-Zip currently installed on your computer:",
+                    IDC_STATIC,2,98,208,8
+    EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
+                    WS_BORDER | WS_GROUP | NOT WS_TABSTOP
+    LTEXT           "Version of local 7-Zip components found in WinMerge directory:",
+                    IDC_STATIC,2,110,208,8
+    EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
+                    WS_BORDER | WS_GROUP | NOT WS_TABSTOP
+    LTEXT           "Interface plugins found in WinMerge directory:",
+                    IDC_STATIC,2,130,168,28
+    LISTBOX         105,174,130,100,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_GROUP
+    CONTROL         "Don't display this &message again.\n(You can allways recall this message from help menu.)",
+                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
+                    WS_TABSTOP,2,164,202,20
+    DEFPUSHBUTTON   "OK",IDOK,208,170,50,14,WS_GROUP
 END
 
 #ifndef _MAC

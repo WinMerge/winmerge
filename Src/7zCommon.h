@@ -92,3 +92,8 @@ public:
 };
 
 int NTAPI HasZipSupport();
+void NTAPI Recall7ZipMismatchError();
+
+DWORD NTAPI VersionOf7zInstalled();
+DWORD NTAPI VersionOf7zLocal();
+

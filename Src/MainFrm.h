@@ -223,6 +223,8 @@ protected:
 	afx_msg void OnSaveConfigData();
 	afx_msg void OnFileNew();
 	afx_msg void OnToolsFilters();
+	afx_msg void OnHelpMerge7zmismatch();
+	afx_msg void OnUpdateHelpMerge7zmismatch(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

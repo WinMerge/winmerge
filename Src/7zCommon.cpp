@@ -55,7 +55,7 @@ DATE:		BY:					DESCRIPTION:
 2004/01/25	Jochen Tucht		Fix bad default for OPENFILENAME::nFilterIndex
 2004/03/15	Jochen Tucht		Fix Visual Studio 2003 build issue
 2004/04/13	Jochen Tucht		Avoid StrNCat to get away with shlwapi 4.71
-2004/09/01	Kimmo Varis			Add HasZipSupport() (code from Jochen)
+2004/08/25	Jochen Tucht		More explicit error message
 
 */
 
@@ -78,6 +78,136 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /**
+ * @brief Exception class for more explicit error message.
+ */
+class C7ZipMismatchException : public CException
+{
+public:
+	C7ZipMismatchException(DWORD dwVer7zInstalled, DWORD dwVer7zLocal, BOOL bShowAllways = FALSE)
+	{
+		m_dwVer7zInstalled = dwVer7zInstalled;
+		m_dwVer7zLocal = dwVer7zLocal;
+		m_bShowAllways = bShowAllways;
+	}
+	virtual int ReportError(UINT nType = MB_OK, UINT nMessageID = 0);
+protected:
+	DWORD m_dwVer7zInstalled;
+	DWORD m_dwVer7zLocal;
+	BOOL m_bShowAllways;
+	static const DWORD m_dwVer7zRecommended;
+	static const TCHAR m_strRegistryKey[];
+	static BOOL CALLBACK DlgProc(HWND, UINT, WPARAM, LPARAM);
+	static int FormatVersion(LPTSTR, DWORD);
+};
+
+/**
+ * @brief Recommended version of 7-Zip.
+ */
+const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(13,3);
+
+/**
+ * @brief Registry key for C7ZipMismatchException's ReportError() popup.
+ */
+const TCHAR C7ZipMismatchException::m_strRegistryKey[] = _T("7ZipMismatch");
+
+/**
+ * @brief Format a DLL version number.
+ */
+int C7ZipMismatchException::FormatVersion(LPTSTR pcText, DWORD dwVersion)
+{
+	return wsprintf
+	(
+		pcText, dwVersion ? _T("%u.%u") : _T("-/-"),
+		UINT HIWORD(dwVersion),
+		UINT LOWORD(dwVersion)
+	);
+}
+
+/**
+ * @brief DLGPROC for C7ZipMismatchException's ReportError() popup.
+ */
+BOOL CALLBACK C7ZipMismatchException::DlgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	switch (uMsg)
+	{
+		case WM_INITDIALOG:
+		{
+			C7ZipMismatchException *pThis = (C7ZipMismatchException *)lParam;
+			TCHAR cText[MAX_PATH];
+			FormatVersion(cText, pThis->m_dwVer7zRecommended);
+			SetDlgItemText(hWnd, 101, cText);
+			wsprintf
+			(
+				cText,
+				sizeof(TCHAR) == sizeof(WCHAR) ? _T("Merge7z%u%uU.dll") : _T("Merge7z%u%u.dll"),
+				UINT HIWORD(pThis->m_dwVer7zRecommended),
+				UINT LOWORD(pThis->m_dwVer7zRecommended)
+			);
+			SetDlgItemText(hWnd, 102, cText);
+			FormatVersion(cText, pThis->m_dwVer7zInstalled);
+			SetDlgItemText(hWnd, 103, cText);
+			FormatVersion(cText, pThis->m_dwVer7zLocal);
+			SetDlgItemText(hWnd, 104, cText);
+			GetModuleFileName(0, cText, MAX_PATH);
+			PathRemoveFileSpec(cText);
+			PathAppend(cText, _T("Merge7z*.dll"));
+			DlgDirList(hWnd, cText, 105, 0, 0);
+			if (SendDlgItemMessage(hWnd, 105, LB_GETCOUNT, 0, 0) == 0)
+			{
+				SendDlgItemMessage(hWnd, 105, LB_ADDSTRING, 0, (LPARAM) _T("-/-"));
+			}
+			HICON hIcon = LoadIcon(0, IDI_EXCLAMATION);
+			SendMessage(hWnd, WM_SETICON, ICON_BIG, (LPARAM) hIcon);
+			SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM) hIcon);
+			if (pThis->m_bShowAllways)
+			{
+				ShowWindow(GetDlgItem(hWnd, 106), SW_HIDE);
+			}
+		} return TRUE;
+		case WM_COMMAND:
+		{
+			switch (wParam)
+			{
+				case IDOK:
+				case IDCANCEL:
+				{
+					int nDontShowAgain = SendDlgItemMessage(hWnd, 106, BM_GETCHECK, 0, 0);
+					EndDialog(hWnd, MAKEWORD(IDOK, nDontShowAgain));
+				} break;
+			}
+		} return TRUE;
+	}
+	return FALSE;
+}
+
+/**
+ * @brief Tell user what went wrong and how she can help.
+ */
+int C7ZipMismatchException::ReportError(UINT nType, UINT nMessageID)
+{
+	int response = -1;
+	if (!m_bShowAllways)
+	{
+		response = theApp.GetProfileInt(REGISTRY_SECTION_MESSAGEBOX, m_strRegistryKey, -1);
+	}
+	if (response == -1)
+	{
+		HWND hwndOwner = CWnd::GetSafeOwner()->GetSafeHwnd();
+		MessageBeep(nType & MB_ICONMASK);
+		response = DialogBoxParam(AfxGetResourceHandle(), MAKEINTRESOURCE(IDD_MERGE7ZMISMATCH), hwndOwner, DlgProc, (LPARAM)this);
+		if (response == -1)
+		{
+			response = DialogBoxParam(GetModuleHandle(0), MAKEINTRESOURCE(IDD_MERGE7ZMISMATCH), hwndOwner, DlgProc, (LPARAM)this);
+		}
+		if (HIBYTE(response) == 1)
+		{
+			theApp.WriteProfileInt(REGISTRY_SECTION_MESSAGEBOX, m_strRegistryKey, response = int LOBYTE(response));
+		}
+	}
+	return response;
+}
+
+/**
  * @brief Check whether archive support is available.
  */
 int NTAPI HasZipSupport()
@@ -98,6 +228,19 @@ int NTAPI HasZipSupport()
 		}
 	}
 	return HasZipSupport;
+}
+
+/**
+ * @brief Tell user why archive support is not available.
+ */
+void NTAPI Recall7ZipMismatchError()
+{
+	C7ZipMismatchException
+	(
+		VersionOf7zInstalled(),
+		VersionOf7zLocal(),
+		TRUE
+	).ReportError(MB_ICONSTOP);
 }
 
 /**
@@ -220,7 +363,7 @@ static HMODULE DllProxyHelper(LPCSTR *export, ...)
 /**
  * @brief Return version of installed 7-Zip.
  */
-static DWORD VersionOf7zInstalled()
+DWORD NTAPI VersionOf7zInstalled()
 {
 	static const TCHAR szSubKey[] = _T("Software\\7-Zip");
 	static const TCHAR szValue[] = _T("Path");
@@ -235,7 +378,7 @@ static DWORD VersionOf7zInstalled()
 /**
  * @brief Return version of 7-Zip from WinMerge distribution.
  */
-static DWORD VersionOf7zLocal()
+DWORD NTAPI VersionOf7zLocal()
 {
 	TCHAR path[MAX_PATH];
 	GetModuleFileName(0, path, sizeof path/sizeof*path);
@@ -281,7 +424,11 @@ interface Merge7z *Merge7z::Proxy::operator->()
 				// reveal where the error occured.
 				pSilentException = new CSilentException;
 			} while (flags == ~0); // 7-Zip not present: Don't care about Merge7z.
-			ComplainNotFound("Merge7z*.dll");
+			throw new C7ZipMismatchException
+			(
+				VersionOf7zInstalled(),
+				VersionOf7zLocal()
+			);
 		}
 		((interface Merge7z *)Merge7z[1])->Initialize(flags);
 	}

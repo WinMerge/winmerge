@@ -12,7 +12,7 @@
 #define IDR_POPUP_DIRVIEW               105
 #define IDR_POPUP_LOCATIONBAR           106
 #define IDD_SAVECLOSING                 107
-
+#define IDD_MERGE7ZMISMATCH             108
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
 #define IDD_OPEN                        202
@@ -736,7 +736,7 @@
 #define ID_LOCBAR_GOTODIFF              33091
 #define ID_LOCBAR_GOTODIFF_FMT          33092
 #define ID_LOCBAR_GOTOLINE_FMT          33093
-
+#define ID_HELP_MERGE7ZMISMATCH         33094
 
 // Next default values for new objects
 // 
@@ -744,7 +744,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        224
-#define _APS_NEXT_COMMAND_VALUE         33094
+#define _APS_NEXT_COMMAND_VALUE         33095
 #define _APS_NEXT_CONTROL_VALUE         1151
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

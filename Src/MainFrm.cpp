@@ -131,6 +131,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
+	ON_COMMAND(ID_HELP_MERGE7ZMISMATCH, OnHelpMerge7zmismatch)
+	ON_UPDATE_COMMAND_UI(ID_HELP_MERGE7ZMISMATCH, OnUpdateHelpMerge7zmismatch)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2588,4 +2590,23 @@ void CMainFrame::ShowVSSError(CException *e, CString strItem)
 void CMainFrame::ShowHelp()
 {
 	OnHelpContents();
+}
+
+/**
+ * @brief Tell user why archive support is not available.
+ */
+void CMainFrame::OnHelpMerge7zmismatch() 
+{
+	Recall7ZipMismatchError();
+}
+
+/**
+ * @brief Remove ID_HELP_MERGE7ZMISMATCH if archive support is available.
+ */
+void CMainFrame::OnUpdateHelpMerge7zmismatch(CCmdUI* pCmdUI) 
+{
+	if (HasZipSupport())
+	{
+		pCmdUI->m_pMenu->RemoveMenu(ID_HELP_MERGE7ZMISMATCH, MF_BYCOMMAND);
+	}
 }

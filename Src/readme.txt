@@ -6,6 +6,10 @@
  BUG: [ 1021003 ] Unicode builds do not read ansi files properly (UniFile.cpp)
   Fix what seems to be invalid #ifdef'ing for unicode build
   Src/Common: UniFile.cpp
+ PATCH: [ 1014455 ] more explicit error message if archive support not available
+  Submitted by Jochen
+  Src: 7zCommon.cpp 7zCommon.h MainFrm.cpp MainFrm.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
 
 2004-09-01 Kimmo
  PATCH: [ 1019759 ] Allow D&D projectfile to main window
