@@ -78,10 +78,6 @@ static BOOL PathCompactPathDynamic(HDC hdc, LPTSTR lpszPath, UINT dx)
 	return (*pathproc)(hdc, lpszPath, dx);
 }
 
-
-
-
-
 // format a path in a pDC box of width maxWidth
 // try to cut lines only at slash characters
 int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath)
@@ -130,9 +126,6 @@ int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath)
 	return nLines;
 }
 
-
-
-
 /////////////////////////////////////////////////////////////////////////////
 // CFilepathEdit construction/destruction
 
@@ -153,6 +146,9 @@ void CFilepathEdit::GetWholeText(CString& rString) const
 // and set the display text (truncate it if necessary)
 void CFilepathEdit::SetWholeText(LPCTSTR lpszString)
 {
+	if (_tcscmp(wholeText, lpszString) == 0)
+		return;
+
 	if (lpszString != 0)
 		wholeText = lpszString;
 
@@ -206,9 +202,6 @@ void CFilepathEdit::RefreshDisplayText()
 
 	SetWindowText(line);
 }
-
-
-
 
 // updates and returns the tooltip for this edit box
 LPCTSTR CFilepathEdit::GetUpdatedTipText(CDC * pDC, int maxWidth)

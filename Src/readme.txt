@@ -1,6 +1,9 @@
 2003-09-21 Kimmo
  BUG: [ 807766 ] File filter rules not applied to unique items (2.1)
   WinMerge: DirScan.cpp
+ Optimise CFilePathEdit to not change text when same text given again
+  By Laoran (PATCH "#809902 Show if file is changed" comments)
+  WinMerge: FilePathEdit.cpp
 
 2003-09-20 WinMerge experimental release 2.1.1.7 (Unicode handling patch)
 
