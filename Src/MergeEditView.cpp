@@ -191,7 +191,7 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 				crBkgnd = theApp.GetDiffColor();
 			return;
 		}
-		else if (dwLineFlags & LF_DELETED)
+		else if (dwLineFlags & LF_GHOST)
 		{
 			if (lineInCurrentDiff)
 				crBkgnd = theApp.GetSelDiffColor();
@@ -199,26 +199,7 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 				crBkgnd = RGB(192, 192, 192);
 			return;
 		}
-		else if (dwLineFlags & LF_LEFT_ONLY)
-		{
-			if (lineInCurrentDiff)
-				crBkgnd = theApp.GetSelDiffColor();
-			else if (m_bIsLeft)
-				crBkgnd = theApp.GetDiffColor();
-			else
-				crBkgnd = RGB(192, 192, 192);
-			return;
-		}
-		else if (dwLineFlags & LF_RIGHT_ONLY)
-		{
-			if (lineInCurrentDiff)
-				crBkgnd = theApp.GetSelDiffColor();
-			else if (m_bIsLeft)
-				crBkgnd = RGB(192, 192, 192);
-			else
-				crBkgnd = theApp.GetDiffColor();
-			return;
-		}
+
 	}
 	else
 	{

@@ -1460,7 +1460,7 @@ void CMergeDoc::PrimeTextBuffers()
 				curDiff.blank0 = -1;
 				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
 				{
-					m_ltBuf.SetLineFlag(i, LF_LEFT_ONLY, TRUE, FALSE, FALSE);
+					m_ltBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
 				}
 			}
 			// right side
@@ -1473,7 +1473,7 @@ void CMergeDoc::PrimeTextBuffers()
 				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
 				{
 					m_rtBuf.InsertLine(NULL, 0, i);
-					m_rtBuf.SetLineFlag(i, LF_LEFT_ONLY, TRUE, FALSE, FALSE);
+					m_rtBuf.SetLineFlag(i, LF_GHOST, TRUE, FALSE, FALSE);
 					++RightExtras;
 				}
 			}
@@ -1487,7 +1487,7 @@ void CMergeDoc::PrimeTextBuffers()
 				curDiff.blank1 = -1;
 				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
 				{
-					m_rtBuf.SetLineFlag(i, LF_RIGHT_ONLY, TRUE, FALSE, FALSE);
+					m_rtBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
 				}
 			}
 			// left side
@@ -1499,7 +1499,7 @@ void CMergeDoc::PrimeTextBuffers()
 				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
 				{
 					m_ltBuf.InsertLine(NULL, 0, i);
-					m_ltBuf.SetLineFlag(i, LF_RIGHT_ONLY, TRUE, FALSE, FALSE);
+					m_ltBuf.SetLineFlag(i, LF_GHOST, TRUE, FALSE, FALSE);
 					++LeftExtras;
 				}
 			}
@@ -1525,7 +1525,7 @@ void CMergeDoc::PrimeTextBuffers()
 					{
 						int idx = curDiff.blank0+b;
 						m_ltBuf.InsertLine(NULL, 0, idx);
-						m_ltBuf.SetLineFlag(idx, LF_RIGHT_ONLY, TRUE, FALSE, FALSE);
+						m_ltBuf.SetLineFlag(idx, LF_GHOST, TRUE, FALSE, FALSE);
 						curDiff.dend0++;
 						LeftExtras++;
 					}
@@ -1551,7 +1551,7 @@ void CMergeDoc::PrimeTextBuffers()
 					{
 						int idx = curDiff.blank1+b;
 						m_rtBuf.InsertLine(NULL, 0, idx);
-						m_rtBuf.SetLineFlag(idx, LF_LEFT_ONLY, TRUE, FALSE, FALSE);
+						m_rtBuf.SetLineFlag(idx, LF_GHOST, TRUE, FALSE, FALSE);
 						curDiff.dend1++;
 						++RightExtras;
 					}

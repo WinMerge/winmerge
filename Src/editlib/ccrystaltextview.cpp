@@ -215,13 +215,13 @@ ON_COMMAND (ID_VIEW_SELMARGIN, OnSelMargin)
 ON_UPDATE_COMMAND_UI (ID_VIEW_WORDWRAP, OnUpdateWordWrap)
 ON_COMMAND (ID_VIEW_WORDWRAP, OnWordWrap)
 ON_COMMAND (ID_FORCE_REDRAW, OnForceRedraw)
-	//BEGIN SW
-	// incremental search
-	ON_COMMAND(ID_EDIT_FIND_INCREMENTAL_FORWARD, OnEditFindIncrementalForward)
-	ON_COMMAND(ID_EDIT_FIND_INCREMENTAL_BACKWARD, OnEditFindIncrementalBackward)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_FIND_INCREMENTAL_FORWARD, OnUpdateEditFindIncrementalForward)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_FIND_INCREMENTAL_BACKWARD, OnUpdateEditFindIncrementalBackward)
-	//END SW
+  //BEGIN SW
+  // incremental search
+  ON_COMMAND(ID_EDIT_FIND_INCREMENTAL_FORWARD, OnEditFindIncrementalForward)
+  ON_COMMAND(ID_EDIT_FIND_INCREMENTAL_BACKWARD, OnEditFindIncrementalBackward)
+  ON_UPDATE_COMMAND_UI(ID_EDIT_FIND_INCREMENTAL_FORWARD, OnUpdateEditFindIncrementalForward)
+  ON_UPDATE_COMMAND_UI(ID_EDIT_FIND_INCREMENTAL_BACKWARD, OnUpdateEditFindIncrementalBackward)
+  //END SW
 END_MESSAGE_MAP ()
 
 #define EXPAND_PRIMITIVE(impl, func)    \
@@ -484,52 +484,52 @@ CCrystalTextView::CCrystalTextView ()
 
 CCrystalTextView::~CCrystalTextView ()
 {
-	ASSERT (m_hAccel == NULL);
-	ASSERT (m_pCacheBitmap == NULL);
-	ASSERT (m_pTextBuffer == NULL);   //  Must be correctly detached
-	
-	if (m_pszLastFindWhat != NULL)
-	{
-		free (m_pszLastFindWhat);
-		m_pszLastFindWhat=NULL;
-	}
-	if (m_pdwParseCookies != NULL)
-	{
-		delete[] m_pdwParseCookies;
-		m_pdwParseCookies = NULL;
-	}
-	if (m_pnActualLineLength != NULL)
-	{
-		delete[] m_pnActualLineLength;
-		m_pnActualLineLength = NULL;
-	}
-	if (m_rxnode)
-	{
-		RxFree (m_rxnode);
-		m_rxnode = NULL;
-	}
-	if (m_pszMatched)
-	{
-		delete[] m_pszMatched;
-		m_pszMatched = NULL;
-	}
-	//BEGIN SW
-	if( m_panSubLines )
-	{
-		delete m_panSubLines;
-		m_panSubLines = NULL;
-	}
-	if( m_pstrIncrementalSearchString )
-	{
-		delete m_pstrIncrementalSearchString;
-		m_pstrIncrementalSearchString = NULL;
-	}
-	if( m_pstrIncrementalSearchStringOld )
-	{
-		delete m_pstrIncrementalSearchStringOld;
-		m_pstrIncrementalSearchStringOld = NULL;
-	}
-	//END SW
+  ASSERT (m_hAccel == NULL);
+  ASSERT (m_pCacheBitmap == NULL);
+  ASSERT (m_pTextBuffer == NULL);   //  Must be correctly detached
+  
+  if (m_pszLastFindWhat != NULL)
+    {
+      free (m_pszLastFindWhat);
+      m_pszLastFindWhat=NULL;
+    }
+  if (m_pdwParseCookies != NULL)
+    {
+      delete[] m_pdwParseCookies;
+      m_pdwParseCookies = NULL;
+    }
+  if (m_pnActualLineLength != NULL)
+    {
+      delete[] m_pnActualLineLength;
+      m_pnActualLineLength = NULL;
+    }
+  if (m_rxnode)
+    {
+      RxFree (m_rxnode);
+      m_rxnode = NULL;
+    }
+  if (m_pszMatched)
+    {
+      delete[] m_pszMatched;
+      m_pszMatched = NULL;
+    }
+  //BEGIN SW
+  if( m_panSubLines )
+    {
+      delete m_panSubLines;
+      m_panSubLines = NULL;
+    }
+  if( m_pstrIncrementalSearchString )
+    {
+      delete m_pstrIncrementalSearchString;
+      m_pstrIncrementalSearchString = NULL;
+    }
+  if( m_pstrIncrementalSearchStringOld )
+    {
+      delete m_pstrIncrementalSearchStringOld;
+      m_pstrIncrementalSearchStringOld = NULL;
+    }
+  //END SW
 }
 
 BOOL CCrystalTextView::
@@ -540,16 +540,16 @@ PreCreateWindow (CREATESTRUCT & cs)
     {
       //  View must always create its own scrollbars,
       //  if only it's not used within splitter
-		//BEGIN SW
-		if( m_bWordWrap )
-			// we do not need a horizontal scroll bar, if we wrap the lines
-			cs.style|= WS_VSCROLL;
-		else
-			cs.style |= (WS_HSCROLL | WS_VSCROLL);
-		/*ORIGINAL
-		cs.style |= (WS_HSCROLL | WS_VSCROLL);
-		*/
-		//END SW
+    //BEGIN SW
+    if( m_bWordWrap )
+      // we do not need a horizontal scroll bar, if we wrap the lines
+      cs.style|= WS_VSCROLL;
+    else
+      cs.style |= (WS_HSCROLL | WS_VSCROLL);
+    /*ORIGINAL
+    cs.style |= (WS_HSCROLL | WS_VSCROLL);
+    */
+    //END SW
     }
   cs.lpszClass = AfxRegisterWndClass (CS_DBLCLKS);
   return CView::PreCreateWindow (cs);
@@ -630,12 +630,12 @@ GetLineActualLength (int nLineIndex)
 void CCrystalTextView::
 ScrollToChar (int nNewOffsetChar, BOOL bNoSmoothScroll /*= FALSE*/ , BOOL bTrackScrollBar /*= TRUE*/ )
 {
-	//BEGIN SW
-	// no horizontal scrolling, when word wrapping is enabled
-	if( m_bWordWrap )
-		return;
-	//END SW
-	
+  //BEGIN SW
+  // no horizontal scrolling, when word wrapping is enabled
+  if( m_bWordWrap )
+    return;
+  //END SW
+  
   //  For now, ignoring bNoSmoothScroll and m_bSmoothScroll
   if (m_nOffsetChar != nNewOffsetChar)
     {
@@ -653,129 +653,129 @@ ScrollToChar (int nNewOffsetChar, BOOL bNoSmoothScroll /*= FALSE*/ , BOOL bTrack
 
 //BEGIN SW
 void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine, 
-									BOOL bNoSmoothScroll /*= FALSE*/, BOOL bTrackScrollBar /*= TRUE*/ )
+                  BOOL bNoSmoothScroll /*= FALSE*/, BOOL bTrackScrollBar /*= TRUE*/ )
 {
-	if (m_nTopSubLine != nNewTopSubLine)
-	{
-		if (bNoSmoothScroll || ! m_bSmoothScroll)
-		{
-			int nScrollLines = m_nTopSubLine - nNewTopSubLine;
-			m_nTopSubLine = nNewTopSubLine;
-			// OnDraw() uses m_nTopLine to determine topline
-			m_nTopLine = m_nTopSubLine;
-			ScrollWindow(0, nScrollLines * GetLineHeight());
-			UpdateWindow();
-			if (bTrackScrollBar)
-				RecalcVertScrollBar(TRUE);
-		}
-		else
-		{
-			//	Do smooth scrolling
-			int nLineHeight = GetLineHeight();
-			if (m_nTopSubLine > nNewTopSubLine)
-			{
-				int nIncrement = (m_nTopSubLine - nNewTopSubLine) / SMOOTH_SCROLL_FACTOR + 1;
-				while (m_nTopSubLine != nNewTopSubLine)
-				{
-					int nTopSubLine = m_nTopSubLine - nIncrement;
-					if (nTopSubLine < nNewTopSubLine)
-						nTopSubLine = nNewTopSubLine;
-					int nScrollLines = nTopSubLine - m_nTopSubLine;
-					m_nTopSubLine = nTopSubLine;
-					ScrollWindow(0, - nLineHeight * nScrollLines);
-					UpdateWindow();
-					if (bTrackScrollBar)
-						RecalcVertScrollBar(TRUE);
-				}
-			}
-			else
-			{
-				int nIncrement = (nNewTopSubLine - m_nTopSubLine) / SMOOTH_SCROLL_FACTOR + 1;
-				while (m_nTopSubLine != nNewTopSubLine)
-				{
-					int nTopSubLine = m_nTopSubLine + nIncrement;
-					if (nTopSubLine > nNewTopSubLine)
-						nTopSubLine = nNewTopSubLine;
-					int nScrollLines = nTopSubLine - m_nTopSubLine;
-					m_nTopSubLine = nTopSubLine;
-					ScrollWindow(0, - nLineHeight * nScrollLines);
-					UpdateWindow();
-					if (bTrackScrollBar)
-						RecalcVertScrollBar(TRUE);
-				}
-			}
-		}
-		int nDummy;
-		GetLineBySubLine( m_nTopSubLine, m_nTopLine, nDummy );
-		InvalidateRect( NULL );	// repaint whole window
-	}
+  if (m_nTopSubLine != nNewTopSubLine)
+    {
+      if (bNoSmoothScroll || ! m_bSmoothScroll)
+        {
+          int nScrollLines = m_nTopSubLine - nNewTopSubLine;
+          m_nTopSubLine = nNewTopSubLine;
+          // OnDraw() uses m_nTopLine to determine topline
+          m_nTopLine = m_nTopSubLine;
+          ScrollWindow(0, nScrollLines * GetLineHeight());
+          UpdateWindow();
+          if (bTrackScrollBar)
+          RecalcVertScrollBar(TRUE);
+        }
+      else
+        {
+          //	Do smooth scrolling
+          int nLineHeight = GetLineHeight();
+          if (m_nTopSubLine > nNewTopSubLine)
+            {
+              int nIncrement = (m_nTopSubLine - nNewTopSubLine) / SMOOTH_SCROLL_FACTOR + 1;
+              while (m_nTopSubLine != nNewTopSubLine)
+                {
+                  int nTopSubLine = m_nTopSubLine - nIncrement;
+                  if (nTopSubLine < nNewTopSubLine)
+                    nTopSubLine = nNewTopSubLine;
+                  int nScrollLines = nTopSubLine - m_nTopSubLine;
+                  m_nTopSubLine = nTopSubLine;
+                  ScrollWindow(0, - nLineHeight * nScrollLines);
+                  UpdateWindow();
+                  if (bTrackScrollBar)
+                    RecalcVertScrollBar(TRUE);
+                }
+            }
+          else
+            {
+              int nIncrement = (nNewTopSubLine - m_nTopSubLine) / SMOOTH_SCROLL_FACTOR + 1;
+              while (m_nTopSubLine != nNewTopSubLine)
+                {
+                  int nTopSubLine = m_nTopSubLine + nIncrement;
+                  if (nTopSubLine > nNewTopSubLine)
+                  nTopSubLine = nNewTopSubLine;
+                  int nScrollLines = nTopSubLine - m_nTopSubLine;
+                  m_nTopSubLine = nTopSubLine;
+                  ScrollWindow(0, - nLineHeight * nScrollLines);
+                  UpdateWindow();
+                  if (bTrackScrollBar)
+                    RecalcVertScrollBar(TRUE);
+                }
+            }
+        }
+      int nDummy;
+      GetLineBySubLine( m_nTopSubLine, m_nTopLine, nDummy );
+      InvalidateRect( NULL );	// repaint whole window
+    }
 }
 
 /*void CCrystalTextView::GoToLine( int nLine )
 {
-	SetCursorPos( CPoint( 0, (nLine > 0)? nLine - 1 : 0 ) );
-	EnsureVisible( GetCursorPos() );
+  SetCursorPos( CPoint( 0, (nLine > 0)? nLine - 1 : 0 ) );
+  EnsureVisible( GetCursorPos() );
 }*/
 //END SW
 
 void CCrystalTextView::
 ScrollToLine (int nNewTopLine, BOOL bNoSmoothScroll /*= FALSE*/ , BOOL bTrackScrollBar /*= TRUE*/ )
 {
-	//BEGIN SW
-	if( m_nTopLine != nNewTopLine )
-		ScrollToSubLine( GetSubLineIndex( nNewTopLine ), bNoSmoothScroll, bTrackScrollBar );
+  //BEGIN SW
+  if( m_nTopLine != nNewTopLine )
+    ScrollToSubLine( GetSubLineIndex( nNewTopLine ), bNoSmoothScroll, bTrackScrollBar );
 
-	/*ORIGINAL
-	if (m_nTopLine != nNewTopLine)
-	{
-		if (bNoSmoothScroll || ! m_bSmoothScroll)
-		{
-			int nScrollLines = m_nTopLine - nNewTopLine;
-			m_nTopLine = nNewTopLine;
-			ScrollWindow(0, nScrollLines * GetLineHeight());
-			UpdateWindow();
-			if (bTrackScrollBar)
-				RecalcVertScrollBar(TRUE);
-		}
-		else
-		{
-			//	Do smooth scrolling
-			int nLineHeight = GetLineHeight();
-			if (m_nTopLine > nNewTopLine)
-			{
-				int nIncrement = (m_nTopLine - nNewTopLine) / SMOOTH_SCROLL_FACTOR + 1;
-				while (m_nTopLine != nNewTopLine)
-				{
-					int nTopLine = m_nTopLine - nIncrement;
-					if (nTopLine < nNewTopLine)
-						nTopLine = nNewTopLine;
-					int nScrollLines = nTopLine - m_nTopLine;
-					m_nTopLine = nTopLine;
-					ScrollWindow(0, - nLineHeight * nScrollLines);
-					UpdateWindow();
-					if (bTrackScrollBar)
-						RecalcVertScrollBar(TRUE);
-				}
-			}
-			else
-			{
-				int nIncrement = (nNewTopLine - m_nTopLine) / SMOOTH_SCROLL_FACTOR + 1;
-				while (m_nTopLine != nNewTopLine)
-				{
-					int nTopLine = m_nTopLine + nIncrement;
-					if (nTopLine > nNewTopLine)
-						nTopLine = nNewTopLine;
-					int nScrollLines = nTopLine - m_nTopLine;
-					m_nTopLine = nTopLine;
-					ScrollWindow(0, - nLineHeight * nScrollLines);
-					UpdateWindow();
-					if (bTrackScrollBar)
-						RecalcVertScrollBar(TRUE);
-				}
-			}
-		}
-	}
-	*///END SW
+  /*ORIGINAL
+  if (m_nTopLine != nNewTopLine)
+  {
+    if (bNoSmoothScroll || ! m_bSmoothScroll)
+    {
+      int nScrollLines = m_nTopLine - nNewTopLine;
+      m_nTopLine = nNewTopLine;
+      ScrollWindow(0, nScrollLines * GetLineHeight());
+      UpdateWindow();
+      if (bTrackScrollBar)
+        RecalcVertScrollBar(TRUE);
+    }
+    else
+    {
+      //	Do smooth scrolling
+      int nLineHeight = GetLineHeight();
+      if (m_nTopLine > nNewTopLine)
+      {
+        int nIncrement = (m_nTopLine - nNewTopLine) / SMOOTH_SCROLL_FACTOR + 1;
+        while (m_nTopLine != nNewTopLine)
+        {
+          int nTopLine = m_nTopLine - nIncrement;
+          if (nTopLine < nNewTopLine)
+            nTopLine = nNewTopLine;
+          int nScrollLines = nTopLine - m_nTopLine;
+          m_nTopLine = nTopLine;
+          ScrollWindow(0, - nLineHeight * nScrollLines);
+          UpdateWindow();
+          if (bTrackScrollBar)
+            RecalcVertScrollBar(TRUE);
+        }
+      }
+      else
+      {
+        int nIncrement = (nNewTopLine - m_nTopLine) / SMOOTH_SCROLL_FACTOR + 1;
+        while (m_nTopLine != nNewTopLine)
+        {
+          int nTopLine = m_nTopLine + nIncrement;
+          if (nTopLine > nNewTopLine)
+            nTopLine = nNewTopLine;
+          int nScrollLines = nTopLine - m_nTopLine;
+          m_nTopLine = nTopLine;
+          ScrollWindow(0, - nLineHeight * nScrollLines);
+          UpdateWindow();
+          if (bTrackScrollBar)
+            RecalcVertScrollBar(TRUE);
+        }
+      }
+    }
+  }
+  *///END SW
 }
 
 void CCrystalTextView::
@@ -918,7 +918,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
 
                   dwDrawnChars += dwCharsToDraw;
                   ptDraw.x += nCharWidth * dwCharsToDraw;
-        }
+                }
             }
           else
             {
@@ -1023,7 +1023,7 @@ GetLineColors (int nLineIndex, COLORREF & crBkgnd,
       crBkgnd = RGB(255,255,92);
       return;
     }
-  if (dwLineFlags & LF_DELETED)
+  if (dwLineFlags & LF_GHOST)
     {
       crBkgnd = RGB(192,192,192);
       return;
@@ -1072,69 +1072,69 @@ GetParseCookie (int nLineIndex)
 //BEGIN SW
 void CCrystalTextView::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks )
 {
-	// There must be a parser attached to this view
-	if( !m_pParser )
-		return;
+  // There must be a parser attached to this view
+  if( !m_pParser )
+    return;
 
-	m_pParser->WrapLine( nLineIndex, nMaxLineWidth, anBreaks, nBreaks );
+  m_pParser->WrapLine( nLineIndex, nMaxLineWidth, anBreaks, nBreaks );
 }
 
 
 void CCrystalTextView::WrapLineCached( 
-										int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks )
+                    int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks )
 {
-	// if word wrap is not active, there is not any break in the line
-	if( !m_bWordWrap )
-	{
-		nBreaks = 0;
-		return;
-	}
+  // if word wrap is not active, there is not any break in the line
+  if( !m_bWordWrap )
+  {
+    nBreaks = 0;
+    return;
+  }
 
-	// word wrap is active
-	if( nLineIndex < m_panSubLines->GetSize() && !anBreaks && (*m_panSubLines)[nLineIndex] > -1 )
-		// return cached data
-		nBreaks = (*m_panSubLines)[nLineIndex] - 1;
-	else
-	{
-		// recompute line wrap
-		nBreaks = 0;
-		WrapLine( nLineIndex, nMaxLineWidth, anBreaks, nBreaks );
+  // word wrap is active
+  if( nLineIndex < m_panSubLines->GetSize() && !anBreaks && (*m_panSubLines)[nLineIndex] > -1 )
+    // return cached data
+    nBreaks = (*m_panSubLines)[nLineIndex] - 1;
+  else
+  {
+    // recompute line wrap
+    nBreaks = 0;
+    WrapLine( nLineIndex, nMaxLineWidth, anBreaks, nBreaks );
 
-		// cache data
-		ASSERT( nBreaks > -1 );
-		m_panSubLines->SetAtGrow( nLineIndex, nBreaks + 1 );
+    // cache data
+    ASSERT( nBreaks > -1 );
+    m_panSubLines->SetAtGrow( nLineIndex, nBreaks + 1 );
 
-		// RecalcVertScrollBar();
-	}
+    // RecalcVertScrollBar();
+  }
 }
 
 
 void CCrystalTextView::InvalidateLineCache( int nLineIndex1, int nLineIndex2 /*= -1*/ )
 {
-	// invalidate cached sub line count
+  // invalidate cached sub line count
 
-	if( nLineIndex2 == -1 && nLineIndex1 < m_panSubLines->GetSize() )
-		for( int i = nLineIndex1; i < m_panSubLines->GetSize(); i++ )
-			(*m_panSubLines)[i] = -1;
-	else
-	{
-		if( nLineIndex1 > nLineIndex2 )
-		{
-			int	nStorage = nLineIndex1;
-			nLineIndex1 = nLineIndex2;
-			nLineIndex2 = nStorage;
-		}
+  if( nLineIndex2 == -1 && nLineIndex1 < m_panSubLines->GetSize() )
+    for( int i = nLineIndex1; i < m_panSubLines->GetSize(); i++ )
+      (*m_panSubLines)[i] = -1;
+  else
+    {
+      if( nLineIndex1 > nLineIndex2 )
+        {
+          int	nStorage = nLineIndex1;
+          nLineIndex1 = nLineIndex2;
+          nLineIndex2 = nStorage;
+        }
 
-		if( nLineIndex1 >= m_panSubLines->GetSize() )
-			return;
+    if( nLineIndex1 >= m_panSubLines->GetSize() )
+      return;
 
-		if( nLineIndex2 >= m_panSubLines->GetSize() )
-			nLineIndex2 = m_panSubLines->GetUpperBound();
+    if( nLineIndex2 >= m_panSubLines->GetSize() )
+      nLineIndex2 = m_panSubLines->GetUpperBound();
 
-		for( int i = nLineIndex1; i <= nLineIndex2; i++ )
-			if( i >= 0 && i < m_panSubLines->GetSize() )
-				(*m_panSubLines)[i] = -1;
-	}
+    for( int i = nLineIndex1; i <= nLineIndex2; i++ )
+      if( i >= 0 && i < m_panSubLines->GetSize() )
+        (*m_panSubLines)[i] = -1;
+  }
 }
 
 
@@ -1143,108 +1143,108 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
          COLORREF crText, COLORREF crBkgnd, BOOL bDrawWhitespace,
          LPCTSTR pszChars, int nOffset, int nCount, CPoint ptTextPos )
 {
-	CPoint	originalOrigin = ptOrigin;
-	CRect		frect = rcClip;
-	const int nLineLength = GetLineLength( ptTextPos.y );
-	const int nLineHeight = GetLineHeight();
+  CPoint	originalOrigin = ptOrigin;
+  CRect		frect = rcClip;
+  const int nLineLength = GetLineLength( ptTextPos.y );
+  const int nLineHeight = GetLineHeight();
 
-	frect.top = ptOrigin.y;
-	frect.bottom = frect.top + nLineHeight;
+  frect.top = ptOrigin.y;
+  frect.bottom = frect.top + nLineHeight;
 
-	ASSERT( nActualItem < nBlocks );
+  ASSERT( nActualItem < nBlocks );
 
-	if (crText == CLR_NONE)
-		pdc->SetTextColor(GetColor(pBuf[nActualItem].m_nColorIndex));
-	pdc->SelectObject(
-		GetFont(GetItalic(pBuf[nActualItem].m_nColorIndex), 
-		GetBold(pBuf[nActualItem].m_nColorIndex)));
+  if (crText == CLR_NONE)
+    pdc->SetTextColor(GetColor(pBuf[nActualItem].m_nColorIndex));
+  pdc->SelectObject(
+    GetFont(GetItalic(pBuf[nActualItem].m_nColorIndex), 
+    GetBold(pBuf[nActualItem].m_nColorIndex)));
 
-	if( nBlocks > 0 && nActualItem < nBlocks - 1 && 
-		pBuf[nActualItem + 1].m_nCharPos >= nOffset && 
-		pBuf[nActualItem + 1].m_nCharPos <= nOffset + nCount )
-	{
-		ASSERT(pBuf[nActualItem].m_nCharPos >= 0 &&
-			 pBuf[nActualItem].m_nCharPos <= nLineLength);
+  if( nBlocks > 0 && nActualItem < nBlocks - 1 && 
+    pBuf[nActualItem + 1].m_nCharPos >= nOffset && 
+    pBuf[nActualItem + 1].m_nCharPos <= nOffset + nCount )
+    {
+      ASSERT(pBuf[nActualItem].m_nCharPos >= 0 &&
+         pBuf[nActualItem].m_nCharPos <= nLineLength);
 
-		/*
-		pdc->SelectObject(GetFont(GetItalic(COLORINDEX_NORMALTEXT), GetBold(COLORINDEX_NORMALTEXT)));
-		DrawLineHelper(
-			pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex, pszChars, 
-			nOffset, pBuf[nActualItem].m_nCharPos, ptTextPos);
-		*/
-		for (int I = nActualItem; I < nBlocks - 1 &&
-			pBuf[I + 1].m_nCharPos <= nOffset + nCount; I ++)
-		{
-			ASSERT(pBuf[I].m_nCharPos >= 0 && pBuf[I].m_nCharPos <= nLineLength);
-			if (crText == CLR_NONE)
-				pdc->SetTextColor(GetColor(pBuf[I].m_nColorIndex));
+      /*
+      pdc->SelectObject(GetFont(GetItalic(COLORINDEX_NORMALTEXT), GetBold(COLORINDEX_NORMALTEXT)));
+      DrawLineHelper(
+        pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex, pszChars, 
+        nOffset, pBuf[nActualItem].m_nCharPos, ptTextPos);
+      */
+      for (int I = nActualItem; I < nBlocks - 1 &&
+        pBuf[I + 1].m_nCharPos <= nOffset + nCount; I ++)
+        {
+          ASSERT(pBuf[I].m_nCharPos >= 0 && pBuf[I].m_nCharPos <= nLineLength);
+          if (crText == CLR_NONE)
+            pdc->SetTextColor(GetColor(pBuf[I].m_nColorIndex));
 
-			// GetFont() returns font in internal font table
-			pdc->SelectObject(GetFont(GetItalic(pBuf[I].m_nColorIndex),
-				GetBold(pBuf[I].m_nColorIndex)));
+          // GetFont() returns font in internal font table
+          pdc->SelectObject(GetFont(GetItalic(pBuf[I].m_nColorIndex),
+            GetBold(pBuf[I].m_nColorIndex)));
 
-			int nOffsetToUse = (nOffset > pBuf[I].m_nCharPos) ?
-				 nOffset : pBuf[I].m_nCharPos;
-			DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[I].m_nColorIndex, pszChars,
-					(nOffset > pBuf[I].m_nCharPos)? nOffset : pBuf[I].m_nCharPos, 
-					pBuf[I + 1].m_nCharPos - nOffsetToUse,
-					CPoint( nOffsetToUse, ptTextPos.y ));
-		}
+          int nOffsetToUse = (nOffset > pBuf[I].m_nCharPos) ?
+             nOffset : pBuf[I].m_nCharPos;
+          DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[I].m_nColorIndex, pszChars,
+              (nOffset > pBuf[I].m_nCharPos)? nOffset : pBuf[I].m_nCharPos, 
+              pBuf[I + 1].m_nCharPos - nOffsetToUse,
+              CPoint( nOffsetToUse, ptTextPos.y ));
+        }
 
-		nActualItem = I;
+      nActualItem = I;
 
-		ASSERT(pBuf[nActualItem].m_nCharPos >= 0 &&
-			pBuf[nActualItem].m_nCharPos <= nLineLength);
-		if (crText == CLR_NONE)
-			pdc->SetTextColor(GetColor(pBuf[nActualItem].m_nColorIndex));
+      ASSERT(pBuf[nActualItem].m_nCharPos >= 0 &&
+        pBuf[nActualItem].m_nCharPos <= nLineLength);
+      if (crText == CLR_NONE)
+        pdc->SetTextColor(GetColor(pBuf[nActualItem].m_nColorIndex));
 
-		pdc->SelectObject(GetFont(GetItalic(pBuf[nActualItem].m_nColorIndex),
-							GetBold(pBuf[nActualItem].m_nColorIndex)));
-		DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex,
-						pszChars, pBuf[nActualItem].m_nCharPos,
-						nOffset + nCount - pBuf[nActualItem].m_nCharPos,
-							CPoint(pBuf[nActualItem].m_nCharPos, ptTextPos.y));
-	}
-	else
-	{
-		DrawLineHelper(
-			pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex, 
-			pszChars, nOffset, nCount, ptTextPos);
-	}
+      pdc->SelectObject(GetFont(GetItalic(pBuf[nActualItem].m_nColorIndex),
+                GetBold(pBuf[nActualItem].m_nColorIndex)));
+      DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex,
+              pszChars, pBuf[nActualItem].m_nCharPos,
+              nOffset + nCount - pBuf[nActualItem].m_nCharPos,
+              CPoint(pBuf[nActualItem].m_nCharPos, ptTextPos.y));
+    }
+  else
+    {
+      DrawLineHelper(
+              pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex, 
+              pszChars, nOffset, nCount, ptTextPos);
+    }
 
-	// Draw space on the right of the text
+  // Draw space on the right of the text
 
-	frect.left = ptOrigin.x;
+  frect.left = ptOrigin.x;
 
-	if ((m_bFocused || m_bShowInactiveSelection) 
-		&& IsInsideSelBlock(CPoint(nLineLength, ptTextPos.y)) 
-		&& (nOffset + nCount) == nLineLength )
-	{
-		if (frect.left >= rcClip.left)
-		{
-			const int nCharWidth = GetCharWidth();
-			pdc->FillSolidRect(frect.left, frect.top, nCharWidth, frect.Height(),
-					GetColor(COLORINDEX_SELBKGND));
-			frect.left += nCharWidth;
-		}
-	}
-	if (frect.left < rcClip.left)
-		frect.left = rcClip.left;
+  if ((m_bFocused || m_bShowInactiveSelection) 
+    && IsInsideSelBlock(CPoint(nLineLength, ptTextPos.y)) 
+    && (nOffset + nCount) == nLineLength )
+    {
+      if (frect.left >= rcClip.left)
+        {
+          const int nCharWidth = GetCharWidth();
+          pdc->FillSolidRect(frect.left, frect.top, nCharWidth, frect.Height(),
+              GetColor(COLORINDEX_SELBKGND));
+          frect.left += nCharWidth;
+        }
+    }
+  if (frect.left < rcClip.left)
+    frect.left = rcClip.left;
 
-	if (frect.right > frect.left)
-		pdc->FillSolidRect(frect, bDrawWhitespace ?
-			crBkgnd : GetColor(COLORINDEX_WHITESPACE));
+  if (frect.right > frect.left)
+    pdc->FillSolidRect(frect, bDrawWhitespace ?
+      crBkgnd : GetColor(COLORINDEX_WHITESPACE));
 
-	// set origin to beginning of next screen line
-	ptOrigin.x = originalOrigin.x;
-	ptOrigin.y+= nLineHeight;
+  // set origin to beginning of next screen line
+  ptOrigin.x = originalOrigin.x;
+  ptOrigin.y+= nLineHeight;
 }
 //END SW
 
 class IntArray : public CArray<int, int>
 {
 public:
-	explicit IntArray(int len) { SetSize(len); }
+  explicit IntArray(int len) { SetSize(len); }
 };
 
 void CCrystalTextView::
@@ -1270,34 +1270,34 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   int nLength = GetLineLength (nLineIndex);
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   if (m_bViewEols)
-  { // Display EOL (end of line) characters
+    { // Display EOL (end of line) characters
       if (pszChars[nLength]=='\r' && pszChars[nLength+1]=='\n')
         nLength += 2;
       else if (pszChars[nLength]=='\r' || pszChars[nLength]=='\n')
         nLength += 1;
-  }
+    }
   //  Parse the line
   DWORD dwCookie = GetParseCookie (nLineIndex - 1);
   TEXTBLOCK *pBuf = new TEXTBLOCK[(nLength+1) * 3]; // be aware of nLength == 0
   int nBlocks = 0;
-	//BEGIN SW
-	// insert at least one textblock of normal color at the beginning
-	pBuf[0].m_nCharPos = 0;
-	pBuf[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
-	nBlocks++;
-	//END SW
+  //BEGIN SW
+  // insert at least one textblock of normal color at the beginning
+  pBuf[0].m_nCharPos = 0;
+  pBuf[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
+  nBlocks++;
+  //END SW
   m_pdwParseCookies[nLineIndex] = ParseLine (dwCookie, nLineIndex, pBuf, nBlocks);
   ASSERT (m_pdwParseCookies[nLineIndex] != (DWORD) - 1);
 
-	//BEGIN SW
-	int nActualItem = 0;
+  //BEGIN SW
+  int nActualItem = 0;
 
-	// Wrap the line
-	IntArray anBreaks(nLength);
-	int	nBreaks = 0;
+  // Wrap the line
+  IntArray anBreaks(nLength);
+  int	nBreaks = 0;
 
-	WrapLineCached( nLineIndex, GetScreenChars(), anBreaks.GetData(), nBreaks );
-	//END SW
+  WrapLineCached( nLineIndex, GetScreenChars(), anBreaks.GetData(), nBreaks );
+  //END SW
 
   //  Draw the line text
   CPoint origin (rc.left - m_nOffsetChar * nCharWidth, rc.top);
@@ -1306,99 +1306,99 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
     pdc->SetTextColor (crText);
 // BOOL bColorSet = FALSE;
 
-	//BEGIN SW
-	/*ORIGINAL
-	if (nBlocks > 0)
-	{
-		ASSERT(pBuf[0].m_nCharPos >= 0 && pBuf[0].m_nCharPos <= nLength);
-		if (crText == CLR_NONE)
-			pdc->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
-		pdc->SelectObject(GetFont(GetItalic(COLORINDEX_NORMALTEXT), GetBold(COLORINDEX_NORMALTEXT)));
-		DrawLineHelper(pdc, origin, rc, COLORINDEX_NORMALTEXT, pszChars, 0, pBuf[0].m_nCharPos, CPoint(0, nLineIndex));
-		for (int I = 0; I < nBlocks - 1; I ++)
-		{
-			ASSERT(pBuf[I].m_nCharPos >= 0 && pBuf[I].m_nCharPos <= nLength);
-			if (crText == CLR_NONE)
-				pdc->SetTextColor(GetColor(pBuf[I].m_nColorIndex));
-			pdc->SelectObject(GetFont(GetItalic(pBuf[I].m_nColorIndex), GetBold(pBuf[I].m_nColorIndex)));
-			DrawLineHelper(pdc, origin, rc, pBuf[I].m_nColorIndex, pszChars,
-							pBuf[I].m_nCharPos, pBuf[I + 1].m_nCharPos - pBuf[I].m_nCharPos,
-							CPoint(pBuf[I].m_nCharPos, nLineIndex));
-		}
-		ASSERT(pBuf[nBlocks - 1].m_nCharPos >= 0 && pBuf[nBlocks - 1].m_nCharPos <= nLength);
-		if (crText == CLR_NONE)
-			pdc->SetTextColor(GetColor(pBuf[nBlocks - 1].m_nColorIndex));
-		pdc->SelectObject(GetFont(GetItalic(pBuf[nBlocks - 1].m_nColorIndex),
-							GetBold(pBuf[nBlocks - 1].m_nColorIndex)));
-		DrawLineHelper(pdc, origin, rc, pBuf[nBlocks - 1].m_nColorIndex, pszChars,
-							pBuf[nBlocks - 1].m_nCharPos, nLength - pBuf[nBlocks - 1].m_nCharPos,
-							CPoint(pBuf[nBlocks - 1].m_nCharPos, nLineIndex));
-	}
-	else
-	*/
-	//END SW
+  //BEGIN SW
+  /*ORIGINAL
+  if (nBlocks > 0)
+  {
+    ASSERT(pBuf[0].m_nCharPos >= 0 && pBuf[0].m_nCharPos <= nLength);
+    if (crText == CLR_NONE)
+      pdc->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
+    pdc->SelectObject(GetFont(GetItalic(COLORINDEX_NORMALTEXT), GetBold(COLORINDEX_NORMALTEXT)));
+    DrawLineHelper(pdc, origin, rc, COLORINDEX_NORMALTEXT, pszChars, 0, pBuf[0].m_nCharPos, CPoint(0, nLineIndex));
+    for (int I = 0; I < nBlocks - 1; I ++)
+    {
+      ASSERT(pBuf[I].m_nCharPos >= 0 && pBuf[I].m_nCharPos <= nLength);
+      if (crText == CLR_NONE)
+        pdc->SetTextColor(GetColor(pBuf[I].m_nColorIndex));
+      pdc->SelectObject(GetFont(GetItalic(pBuf[I].m_nColorIndex), GetBold(pBuf[I].m_nColorIndex)));
+      DrawLineHelper(pdc, origin, rc, pBuf[I].m_nColorIndex, pszChars,
+              pBuf[I].m_nCharPos, pBuf[I + 1].m_nCharPos - pBuf[I].m_nCharPos,
+              CPoint(pBuf[I].m_nCharPos, nLineIndex));
+    }
+    ASSERT(pBuf[nBlocks - 1].m_nCharPos >= 0 && pBuf[nBlocks - 1].m_nCharPos <= nLength);
+    if (crText == CLR_NONE)
+      pdc->SetTextColor(GetColor(pBuf[nBlocks - 1].m_nColorIndex));
+    pdc->SelectObject(GetFont(GetItalic(pBuf[nBlocks - 1].m_nColorIndex),
+              GetBold(pBuf[nBlocks - 1].m_nColorIndex)));
+    DrawLineHelper(pdc, origin, rc, pBuf[nBlocks - 1].m_nColorIndex, pszChars,
+              pBuf[nBlocks - 1].m_nCharPos, nLength - pBuf[nBlocks - 1].m_nCharPos,
+              CPoint(pBuf[nBlocks - 1].m_nCharPos, nLineIndex));
+  }
+  else
+  */
+  //END SW
 
-	// BEGIN SW
-	if( nBreaks > 0 )
-	{
-		// Draw all the screen lines of the wrapped line
-		ASSERT( anBreaks[0] < nLength );
-		
-		// draw start of line to first break
-		DrawScreenLine(
-			pdc, origin, rc,
-			pBuf, nBlocks, nActualItem,
-			crText, crBkgnd, bDrawWhitespace,
-			pszChars, 0, anBreaks[0], CPoint( 0, nLineIndex ) );
-		
-		// draw from first break to last break
-		for( int i = 0; i < nBreaks - 1; i++ )
-		{
-			ASSERT( anBreaks[i] >= 0 && anBreaks[i] < nLength );
-			DrawScreenLine(
-				pdc, origin, rc,
-				pBuf, nBlocks, nActualItem,
-				crText, crBkgnd, bDrawWhitespace,
-				pszChars, anBreaks[i], anBreaks[i + 1] - anBreaks[i],
-				CPoint( anBreaks[i], nLineIndex ) );
-		}
-		
-		// draw from last break till end of line
-		DrawScreenLine(
-			pdc, origin, rc,
-			pBuf, nBlocks, nActualItem,
-			crText, crBkgnd, bDrawWhitespace,
-			pszChars, anBreaks[i], nLength - anBreaks[i],
-			CPoint( anBreaks[i], nLineIndex ) );
-	}
-	else
-		DrawScreenLine(
-		pdc, origin, rc,
-		pBuf, nBlocks, nActualItem,
-		crText, crBkgnd, bDrawWhitespace,
-		pszChars, 0, nLength, CPoint(0, nLineIndex));
+  // BEGIN SW
+  if( nBreaks > 0 )
+    {
+      // Draw all the screen lines of the wrapped line
+      ASSERT( anBreaks[0] < nLength );
+    
+      // draw start of line to first break
+      DrawScreenLine(
+        pdc, origin, rc,
+        pBuf, nBlocks, nActualItem,
+        crText, crBkgnd, bDrawWhitespace,
+        pszChars, 0, anBreaks[0], CPoint( 0, nLineIndex ) );
+    
+      // draw from first break to last break
+      for( int i = 0; i < nBreaks - 1; i++ )
+        {
+          ASSERT( anBreaks[i] >= 0 && anBreaks[i] < nLength );
+          DrawScreenLine(
+            pdc, origin, rc,
+            pBuf, nBlocks, nActualItem,
+            crText, crBkgnd, bDrawWhitespace,
+            pszChars, anBreaks[i], anBreaks[i + 1] - anBreaks[i],
+            CPoint( anBreaks[i], nLineIndex ) );
+        }
+    
+      // draw from last break till end of line
+      DrawScreenLine(
+        pdc, origin, rc,
+        pBuf, nBlocks, nActualItem,
+        crText, crBkgnd, bDrawWhitespace,
+        pszChars, anBreaks[i], nLength - anBreaks[i],
+        CPoint( anBreaks[i], nLineIndex ) );
+    }
+  else
+      DrawScreenLine(
+        pdc, origin, rc,
+        pBuf, nBlocks, nActualItem,
+        crText, crBkgnd, bDrawWhitespace,
+        pszChars, 0, nLength, CPoint(0, nLineIndex));
 
-	//	Draw whitespaces to the left of the text
-	//BEGIN SW
-	// Drawing is now realized by DrawScreenLine()
-	/*ORIGINAL
-	CRect frect = rc;
-	if (origin.x > frect.left)
-		frect.left = origin.x;
-	if (frect.right > frect.left)
-	{
-		if ((m_bFocused || m_bShowInactiveSelection) && IsInsideSelBlock(CPoint(nLength, nLineIndex)))
-		{
-			pdc->FillSolidRect(frect.left, frect.top, GetCharWidth(), frect.Height(),
-												GetColor(COLORINDEX_SELBKGND));
-			frect.left += GetCharWidth();
-		}
-		if (frect.right > frect.left)
-			pdc->FillSolidRect(frect, bDrawWhitespace ? crBkgnd : GetColor(COLORINDEX_WHITESPACE));
-	}
-	*/
-	//END SW
-	delete[] pBuf;
+  //	Draw whitespaces to the left of the text
+  //BEGIN SW
+  // Drawing is now realized by DrawScreenLine()
+  /*ORIGINAL
+  CRect frect = rc;
+  if (origin.x > frect.left)
+    frect.left = origin.x;
+  if (frect.right > frect.left)
+  {
+    if ((m_bFocused || m_bShowInactiveSelection) && IsInsideSelBlock(CPoint(nLength, nLineIndex)))
+    {
+      pdc->FillSolidRect(frect.left, frect.top, GetCharWidth(), frect.Height(),
+                        GetColor(COLORINDEX_SELBKGND));
+      frect.left += GetCharWidth();
+    }
+    if (frect.right > frect.left)
+      pdc->FillSolidRect(frect, bDrawWhitespace ? crBkgnd : GetColor(COLORINDEX_WHITESPACE));
+  }
+  */
+  //END SW
+  delete[] pBuf;
 }
 
 COLORREF CCrystalTextView::
@@ -1501,12 +1501,12 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex)
           m_pIcons = new CImageList;
           VERIFY (m_pIcons->Create (IDR_MARGIN_ICONS, 16, 16, RGB (255, 255, 255)));
         }
-		//BEGIN SW
-		CPoint pt(rect.left + 2, rect.top + (GetLineHeight() - 16) / 2);
-		/*ORIGINAL
-		CPoint pt(rect.left + 2, rect.top + (rect.Height() - 16) / 2);
-		*///END SW
-		VERIFY(m_pIcons->Draw(pdc, nImageIndex, pt, ILD_TRANSPARENT));
+    //BEGIN SW
+    CPoint pt(rect.left + 2, rect.top + (GetLineHeight() - 16) / 2);
+    /*ORIGINAL
+    CPoint pt(rect.left + 2, rect.top + (rect.Height() - 16) / 2);
+    *///END SW
+    VERIFY(m_pIcons->Draw(pdc, nImageIndex, pt, ILD_TRANSPARENT));
       VERIFY (m_pIcons->Draw (pdc, nImageIndex, pt, ILD_TRANSPARENT));
     }
 }
@@ -1579,34 +1579,34 @@ OnDraw (CDC * pdc)
   rcLine.bottom = rcLine.top + nLineHeight;
   CRect rcCacheMargin (0, 0, GetMarginWidth (), nLineHeight);
   CRect rcCacheLine (GetMarginWidth (), 0, rcLine.Width (), nLineHeight);
-	//BEGIN SW
-	// initialize rects
-	int		nSubLineOffset = GetSubLineIndex( m_nTopLine ) - m_nTopSubLine;
-	if( nSubLineOffset < 0 )
-	{
-		rcCacheMargin.OffsetRect( 0, nSubLineOffset * nLineHeight );
-		rcCacheLine.OffsetRect( 0, nSubLineOffset * nLineHeight );
-	}
+  //BEGIN SW
+  // initialize rects
+  int		nSubLineOffset = GetSubLineIndex( m_nTopLine ) - m_nTopSubLine;
+  if( nSubLineOffset < 0 )
+  {
+    rcCacheMargin.OffsetRect( 0, nSubLineOffset * nLineHeight );
+    rcCacheLine.OffsetRect( 0, nSubLineOffset * nLineHeight );
+  }
 
-	int		nBreaks;
-	const int nMaxLineChars = GetScreenChars();
-	//END SW
+  int		nBreaks;
+  const int nMaxLineChars = GetScreenChars();
+  //END SW
 
   int nCurrentLine = m_nTopLine;
   while (rcLine.top < rcClient.bottom)
     {
-		//BEGIN SW
-		nBreaks = 0;
-		if( nCurrentLine < nLineCount /*&& GetLineLength( nCurrentLine ) > nMaxLineChars*/ )
-			WrapLineCached( nCurrentLine, nMaxLineChars, NULL, nBreaks );
+      //BEGIN SW
+      nBreaks = 0;
+      if( nCurrentLine < nLineCount /*&& GetLineLength( nCurrentLine ) > nMaxLineChars*/ )
+        WrapLineCached( nCurrentLine, nMaxLineChars, NULL, nBreaks );
 
-		rcLine.bottom = rcLine.top + (nBreaks + 1) * nLineHeight;
-		rcCacheLine.bottom = rcCacheLine.top + rcLine.Height();
-		rcCacheMargin.bottom = rcCacheMargin.top + rcLine.Height();
+      rcLine.bottom = rcLine.top + (nBreaks + 1) * nLineHeight;
+      rcCacheLine.bottom = rcCacheLine.top + rcLine.Height();
+      rcCacheMargin.bottom = rcCacheMargin.top + rcLine.Height();
 
-		if( rcCacheLine.top < 0 )
-			rcLine.bottom+= rcCacheLine.top;
-		//END SW
+      if( rcCacheLine.top < 0 )
+        rcLine.bottom+= rcCacheLine.top;
+      //END SW
       if (nCurrentLine < nLineCount)
         {
           DrawMargin (&cacheDC, rcCacheMargin, nCurrentLine);
@@ -1621,14 +1621,14 @@ OnDraw (CDC * pdc)
       VERIFY (pdc->BitBlt (rcLine.left, rcLine.top, rcLine.Width (), rcLine.Height (), &cacheDC, 0, 0, SRCCOPY));
 
       nCurrentLine++;
-		//BEGIN SW
-		rcLine.top = rcLine.bottom;
-		rcCacheLine.top = 0;
-		rcCacheMargin.top = 0;
-		/*ORIGINAL
-		rcLine.OffsetRect(0, nLineHeight);
-		*/
-		//END SW
+      //BEGIN SW
+      rcLine.top = rcLine.bottom;
+      rcCacheLine.top = 0;
+      rcCacheMargin.top = 0;
+      /*ORIGINAL
+      rcLine.OffsetRect(0, nLineHeight);
+      */
+      //END SW
     }
 
   cacheDC.SelectObject (pOldBitmap);
@@ -1839,171 +1839,171 @@ GetLineHeight ()
 //BEGIN SW
 int CCrystalTextView::GetSubLines( int nLineIndex )
 {
-	/*
-	if( GetLineLength( nLineIndex ) <= GetScreenChars() )
-		return 1;
-	*/
-	// get number of wrapped lines, this line contains of
-	int	nBreaks = 0;
-	WrapLineCached( nLineIndex, GetScreenChars(), NULL, nBreaks );
+  /*
+  if( GetLineLength( nLineIndex ) <= GetScreenChars() )
+    return 1;
+  */
+  // get number of wrapped lines, this line contains of
+  int	nBreaks = 0;
+  WrapLineCached( nLineIndex, GetScreenChars(), NULL, nBreaks );
 
-	return nBreaks + 1;
+  return nBreaks + 1;
 }
 
 int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &charPoint )
 {
-	// if we do not wrap lines, y is allways 0 and x is equl to nCharPos
-	if( !m_bWordWrap )
-	{
-		charPoint.x = nCharPos;
-		charPoint.y = 0;
-	}
+  // if we do not wrap lines, y is allways 0 and x is equl to nCharPos
+  if( !m_bWordWrap )
+    {
+      charPoint.x = nCharPos;
+      charPoint.y = 0;
+    }
 
-	// calculate point out of char pos
-	/*
-	if( GetLineLength( nLineIndex ) <= GetScreenChars() )
-	{
-		// line is not wrapped
-		charPoint.x = nCharPos;
-		charPoint.y = 0;
-		return 0;
-	}
-	*/
+  // calculate point out of char pos
+  /*
+  if( GetLineLength( nLineIndex ) <= GetScreenChars() )
+  {
+    // line is not wrapped
+    charPoint.x = nCharPos;
+    charPoint.y = 0;
+    return 0;
+  }
+  */
 
-	// line is wrapped
-	int *anBreaks = new int[GetLineLength( nLineIndex )];
-	int	nBreaks = 0;
+  // line is wrapped
+  int *anBreaks = new int[GetLineLength( nLineIndex )];
+  int	nBreaks = 0;
 
-	WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
+  WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
 
-	for( int i = nBreaks - 1; i >= 0 && nCharPos < anBreaks[i]; i-- );
+  for( int i = nBreaks - 1; i >= 0 && nCharPos < anBreaks[i]; i-- );
 
-	charPoint.x = (i >= 0)? nCharPos - anBreaks[i] : nCharPos;
-	charPoint.y = i + 1;
+  charPoint.x = (i >= 0)? nCharPos - anBreaks[i] : nCharPos;
+  charPoint.y = i + 1;
 
-	int nReturnVal = (i >= 0)? anBreaks[i] : 0;
-	delete[] anBreaks;
+  int nReturnVal = (i >= 0)? anBreaks[i] : 0;
+  delete[] anBreaks;
 
-	return nReturnVal;
+  return nReturnVal;
 }
 
 int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoint )
 {
-	// calculate char pos out of point
-	const int nLength = GetLineLength( nLineIndex );
-	const int nScreenChars = GetScreenChars();
-	LPCTSTR	szLine = GetLineChars( nLineIndex );
+  // calculate char pos out of point
+  const int nLength = GetLineLength( nLineIndex );
+  const int nScreenChars = GetScreenChars();
+  LPCTSTR	szLine = GetLineChars( nLineIndex );
 
-	// wrap line
-	int *anBreaks = new int[nLength];
-	int	nBreaks = 0;
+  // wrap line
+  int *anBreaks = new int[nLength];
+  int	nBreaks = 0;
 
-	WrapLineCached( nLineIndex, nScreenChars, anBreaks, nBreaks );
+  WrapLineCached( nLineIndex, nScreenChars, anBreaks, nBreaks );
 
-	// find char pos that matches cursor position
-	int nXPos = 0;
-	int nYPos = 0;
-	int	nCurPos = 0;
-	const int nTabSize = GetTabSize();
+  // find char pos that matches cursor position
+  int nXPos = 0;
+  int nYPos = 0;
+  int	nCurPos = 0;
+  const int nTabSize = GetTabSize();
 
-	for( int nIndex = 0; nIndex < nLength; nIndex++ )
-	{
-		if( nBreaks && nIndex == anBreaks[nYPos] )
-		{
-			nXPos = 0;
-			nYPos++;
-		}
+  for( int nIndex = 0; nIndex < nLength; nIndex++ )
+    {
+      if( nBreaks && nIndex == anBreaks[nYPos] )
+        {
+          nXPos = 0;
+          nYPos++;
+        }
 
-		if (szLine[nIndex] == _T('\t'))
-		{
-			const int nOffset = nTabSize - nCurPos % nTabSize;
-			nXPos += nOffset;
-			nCurPos += nOffset;
-		}
-		else
-		{
-			nXPos++;
-			nCurPos++;
-		}
+      if (szLine[nIndex] == _T('\t'))
+        {
+          const int nOffset = nTabSize - nCurPos % nTabSize;
+          nXPos += nOffset;
+          nCurPos += nOffset;
+        }
+      else
+        {
+          nXPos++;
+          nCurPos++;
+        }
 
-		if( nXPos > curPoint.x && nYPos == curPoint.y )
-			break;
-		else if( nYPos > curPoint.y )
-		{
-			nIndex--;
-			break;
-		}
-	}
-	delete[] anBreaks;
+      if( nXPos > curPoint.x && nYPos == curPoint.y )
+        break;
+      else if( nYPos > curPoint.y )
+        {
+          nIndex--;
+          break;
+        }
+    }
+  delete[] anBreaks;
 
-	return nIndex;	
+  return nIndex;	
 }
 
 void CCrystalTextView::SubLineCursorPosToTextPos( const CPoint &subLineCurPos, CPoint &textPos )
 {
-	// Get line breaks
-	int	nSubLineOffset, nLine;
+  // Get line breaks
+  int	nSubLineOffset, nLine;
 
-	GetLineBySubLine( subLineCurPos.y, nLine, nSubLineOffset );
+  GetLineBySubLine( subLineCurPos.y, nLine, nSubLineOffset );
 
-	// compute cursor-position
-	textPos.x = CursorPointToCharPos( nLine, CPoint( subLineCurPos.x, nSubLineOffset ) );
-	textPos.y = nLine;
+  // compute cursor-position
+  textPos.x = CursorPointToCharPos( nLine, CPoint( subLineCurPos.x, nSubLineOffset ) );
+  textPos.y = nLine;
 }
 
 int CCrystalTextView::SubLineEndToCharPos( int nLineIndex, int nSubLineOffset )
 {
-	const int nLength = GetLineLength( nLineIndex );
+  const int nLength = GetLineLength( nLineIndex );
 
-	// if word wrapping is disabled, the end is equal to the length of the line -1
-	if( !m_bWordWrap /*|| nLength <= GetScreenChars()*/ )
-		return nLength;
+  // if word wrapping is disabled, the end is equal to the length of the line -1
+  if( !m_bWordWrap /*|| nLength <= GetScreenChars()*/ )
+    return nLength;
 
-	// wrap line
-	int *anBreaks = new int[nLength];
-	int	nBreaks = 0;
+  // wrap line
+  int *anBreaks = new int[nLength];
+  int	nBreaks = 0;
 
-	WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
+  WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
 
-	// if there is no break inside the line or the given subline is the last
-	// one in this line...
-	if( !nBreaks || nSubLineOffset == nBreaks )
-		return nLength;
+  // if there is no break inside the line or the given subline is the last
+  // one in this line...
+  if( !nBreaks || nSubLineOffset == nBreaks )
+    return nLength;
 
-	// compute character position for end of subline
-	ASSERT( nSubLineOffset >= 0 && nSubLineOffset <= nBreaks );
-	
-	int nReturnVal = anBreaks[nSubLineOffset] - 1;
-	delete[] anBreaks;
+  // compute character position for end of subline
+  ASSERT( nSubLineOffset >= 0 && nSubLineOffset <= nBreaks );
+  
+  int nReturnVal = anBreaks[nSubLineOffset] - 1;
+  delete[] anBreaks;
 
-	return nReturnVal;
+  return nReturnVal;
 }
 
 int CCrystalTextView::SubLineHomeToCharPos( int nLineIndex, int nSubLineOffset )
 {
-	int		nLength = GetLineLength( nLineIndex );
+  int		nLength = GetLineLength( nLineIndex );
 
-	// if word wrapping is disabled, the start is 0
-	if( !m_bWordWrap /*|| nLength <= GetScreenChars() */|| nSubLineOffset == 0 )
-		return 0;
+  // if word wrapping is disabled, the start is 0
+  if( !m_bWordWrap /*|| nLength <= GetScreenChars() */|| nSubLineOffset == 0 )
+    return 0;
 
-	// wrap line
-	int *anBreaks = new int[nLength];
-	int	nBreaks = 0;
+  // wrap line
+  int *anBreaks = new int[nLength];
+  int	nBreaks = 0;
 
-	WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
+  WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
 
-	// if there is no break inside the line...
-	if( !nBreaks )
-		return 0;
+  // if there is no break inside the line...
+  if( !nBreaks )
+    return 0;
 
-	// compute character position for end of subline
-	ASSERT( nSubLineOffset > 0 && nSubLineOffset <= nBreaks );
-	
-	int nReturnVal = anBreaks[nSubLineOffset - 1];
-	delete[] anBreaks;
+  // compute character position for end of subline
+  ASSERT( nSubLineOffset > 0 && nSubLineOffset <= nBreaks );
+  
+  int nReturnVal = anBreaks[nSubLineOffset - 1];
+  delete[] anBreaks;
 
-	return nReturnVal;
+  return nReturnVal;
 }
 //END SW
 
@@ -2405,68 +2405,68 @@ GetLineCount ()
 //BEGIN SW
 int CCrystalTextView::GetSubLineCount()
 {
-	const int nLineCount = GetLineCount();
+  const int nLineCount = GetLineCount();
 
-	// if we do not wrap words, number of sub lines is
-	// equal to number of lines
-	if( !m_bWordWrap )
-		return nLineCount;
+  // if we do not wrap words, number of sub lines is
+  // equal to number of lines
+  if( !m_bWordWrap )
+    return nLineCount;
 
-	// calculate number of sub lines
-	int nSubLineCount = 0;
+  // calculate number of sub lines
+  int nSubLineCount = 0;
 
-	for( int i = 0; i < nLineCount; i++ )
-		nSubLineCount+= GetSubLines( i );
+  for( int i = 0; i < nLineCount; i++ )
+    nSubLineCount+= GetSubLines( i );
 
-	return nSubLineCount;
+  return nSubLineCount;
 }
 
 int CCrystalTextView::GetSubLineIndex( int nLineIndex )
 {
-	// if we do not wrap words, subline index of this line is equal to its index
-	if( !m_bWordWrap )
-		return nLineIndex;
+  // if we do not wrap words, subline index of this line is equal to its index
+  if( !m_bWordWrap )
+    return nLineIndex;
 
-	// calculate subline index of the line
-	int	nSubLineCount = 0;
-	int nLineCount = GetLineCount();
+  // calculate subline index of the line
+  int	nSubLineCount = 0;
+  int nLineCount = GetLineCount();
 
-	if( nLineIndex >= nLineCount )
-		nLineIndex = nLineCount - 1;
+  if( nLineIndex >= nLineCount )
+    nLineIndex = nLineCount - 1;
 
-	for( int i = 0; i < nLineIndex; i++ )
-		nSubLineCount+= GetSubLines( i );
+  for( int i = 0; i < nLineIndex; i++ )
+    nSubLineCount+= GetSubLines( i );
 
-	return nSubLineCount;
+  return nSubLineCount;
 }
 
 void CCrystalTextView::GetLineBySubLine( int nSubLineIndex, int &nLine, int &nSubLine )
 {
-	ASSERT( nSubLineIndex < GetSubLineCount() );
+  ASSERT( nSubLineIndex < GetSubLineCount() );
 
-	// if we do not wrap words, nLine is equal to nSubLineIndex and nSubLine is allways 0
-	if( !m_bWordWrap )
-	{
-		nLine = nSubLineIndex;
-		nSubLine = 0;
-	}
+  // if we do not wrap words, nLine is equal to nSubLineIndex and nSubLine is allways 0
+  if( !m_bWordWrap )
+    {
+      nLine = nSubLineIndex;
+      nSubLine = 0;
+    }
 
-	// compute result
-	int	nSubLineCount = 0;
-	int nLastSubLines = 0;
-	const int nLineCount = GetLineCount();
+  // compute result
+  int	nSubLineCount = 0;
+  int nLastSubLines = 0;
+  const int nLineCount = GetLineCount();
 
-	for( int i = 0; i < nLineCount; i++ )
-	{
-		nLastSubLines = GetSubLines( i );
-		nSubLineCount += nLastSubLines;
-		if( !(nSubLineCount <= nSubLineIndex) )
-			break;
-	}
+  for( int i = 0; i < nLineCount; i++ )
+    {
+      nLastSubLines = GetSubLines( i );
+      nSubLineCount += nLastSubLines;
+      if( !(nSubLineCount <= nSubLineIndex) )
+        break;
+    }
 
-	ASSERT( i < nLineCount );
-	nLine = i;
-	nSubLine = nSubLineIndex - (nSubLineCount - nLastSubLines);
+  ASSERT( i < nLineCount );
+  nLine = i;
+  nSubLine = nSubLineIndex - (nSubLineCount - nLastSubLines);
 }
 //END SW
 
@@ -2606,11 +2606,11 @@ OnSize (UINT nType, int cx, int cy)
 {
   CView::OnSize (nType, cx, cy);
 
-	//BEGIN SW
-	// get char position of top left visible character with old cached word wrap
-	CPoint	topPos;
-	SubLineCursorPosToTextPos( CPoint( 0, m_nTopSubLine ), topPos );
-	//END SW
+  //BEGIN SW
+  // get char position of top left visible character with old cached word wrap
+  CPoint	topPos;
+  SubLineCursorPosToTextPos( CPoint( 0, m_nTopSubLine ), topPos );
+  //END SW
 
   if (m_pCacheBitmap != NULL)
     {
@@ -2621,18 +2621,18 @@ OnSize (UINT nType, int cx, int cy)
   m_nScreenLines = -1;
   m_nScreenChars = -1;
 
-	//BEGIN SW
-	// we have to recompute the line wrapping
-	InvalidateLineCache( 0, -1 );
+  //BEGIN SW
+  // we have to recompute the line wrapping
+  InvalidateLineCache( 0, -1 );
 
-	// compute new top sub line
-	CPoint	topSubLine;
-	CharPosToPoint( topPos.y, topPos.x, topSubLine );
-	m_nTopSubLine = topPos.y + topSubLine.y;
+  // compute new top sub line
+  CPoint	topSubLine;
+  CharPosToPoint( topPos.y, topPos.x, topSubLine );
+  m_nTopSubLine = topPos.y + topSubLine.y;
 
-	// set caret to right position
-	UpdateCaret();
-	//END SW
+  // set caret to right position
+  UpdateCaret();
+  //END SW
 
   RecalcVertScrollBar ();
   RecalcHorzScrollBar ();
@@ -2652,32 +2652,32 @@ UpdateSiblingScrollPos (BOOL bHorz)
       ASSERT (nCurrentCol >= 0 && nCurrentCol < pSplitterWnd->GetColumnCount ());
 
       if (bHorz)
-	  {
+    {
           int nCols = pSplitterWnd->GetColumnCount ();
           for (int nCol = 0; nCol < nCols; nCol++)
-		  {
+      {
               if (nCol != nCurrentCol)  //  We don't need to update ourselves
-			  {
-				  CCrystalTextView *pSiblingView = GetSiblingView (nCurrentRow, nCol);
-				  if (pSiblingView != NULL)
-					  pSiblingView->OnUpdateSibling (this, FALSE);
-			  }
-		  }
-	  }
+        {
+          CCrystalTextView *pSiblingView = GetSiblingView (nCurrentRow, nCol);
+          if (pSiblingView != NULL)
+            pSiblingView->OnUpdateSibling (this, FALSE);
+        }
+      }
+    }
       else
-	  {
+    {
           int nRows = pSplitterWnd->GetRowCount ();
           for (int nRow = 0; nRow < nRows; nRow++)
-		  {
+      {
               if (nRow != nCurrentRow)  //  We don't need to update ourselves
-			  {
-				  CCrystalTextView *pSiblingView = GetSiblingView (nRow, nCurrentCol);
-				  if (pSiblingView != NULL)
-					  pSiblingView->OnUpdateSibling (this, FALSE);
-			  }
-		  }
-	  }
-	  
+        {
+          CCrystalTextView *pSiblingView = GetSiblingView (nRow, nCurrentCol);
+          if (pSiblingView != NULL)
+            pSiblingView->OnUpdateSibling (this, FALSE);
+        }
+      }
+    }
+    
 
     }
 }
@@ -2930,127 +2930,127 @@ OnSetCursor (CWnd * pWnd, UINT nHitTest, UINT message)
 CPoint CCrystalTextView::
 ClientToText (const CPoint & point)
 {
-	//BEGIN SW
-	const int nSubLineCount = GetSubLineCount();
-	const int nLineCount = GetLineCount();
+  //BEGIN SW
+  const int nSubLineCount = GetSubLineCount();
+  const int nLineCount = GetLineCount();
 
-	CPoint pt;
-	pt.y = m_nTopSubLine + point.y / GetLineHeight();
-	if (pt.y >= nSubLineCount)
-		pt.y = nSubLineCount - 1;
-	if (pt.y < 0)
-		pt.y = 0;
+  CPoint pt;
+  pt.y = m_nTopSubLine + point.y / GetLineHeight();
+  if (pt.y >= nSubLineCount)
+    pt.y = nSubLineCount - 1;
+  if (pt.y < 0)
+    pt.y = 0;
 
-	int nLine;
-	int nSubLineOffset;
-	int nOffsetChar = m_nOffsetChar;
+  int nLine;
+  int nSubLineOffset;
+  int nOffsetChar = m_nOffsetChar;
 
-	GetLineBySubLine( pt.y, nLine, nSubLineOffset );
-	pt.y = nLine;
+  GetLineBySubLine( pt.y, nLine, nSubLineOffset );
+  pt.y = nLine;
 
-	LPCTSTR pszLine = NULL;
-	int	nLength = 0;
-	int *anBreaks = NULL;
-	int	nBreaks = 0;
+  LPCTSTR pszLine = NULL;
+  int	nLength = 0;
+  int *anBreaks = NULL;
+  int	nBreaks = 0;
 
-	if (pt.y >= 0 && pt.y < nLineCount)
-	{
-		nLength = GetLineLength( pt.y );
-		anBreaks = new int[nLength];
-		pszLine = GetLineChars(pt.y);
-		WrapLineCached( pt.y, GetScreenChars(), anBreaks, nBreaks );
+  if (pt.y >= 0 && pt.y < nLineCount)
+    {
+      nLength = GetLineLength( pt.y );
+      anBreaks = new int[nLength];
+      pszLine = GetLineChars(pt.y);
+      WrapLineCached( pt.y, GetScreenChars(), anBreaks, nBreaks );
 
-		if( nSubLineOffset > 0 )
-			nOffsetChar = anBreaks[nSubLineOffset - 1];
-		if( nBreaks > nSubLineOffset )
-			nLength = anBreaks[nSubLineOffset] - 1;
-	}
+      if( nSubLineOffset > 0 )
+        nOffsetChar = anBreaks[nSubLineOffset - 1];
+      if( nBreaks > nSubLineOffset )
+        nLength = anBreaks[nSubLineOffset] - 1;
+    }
 
-	int nPos = nOffsetChar + (point.x - GetMarginWidth()) / GetCharWidth();
-	if (nPos < 0)
-		nPos = 0;
+  int nPos = nOffsetChar + (point.x - GetMarginWidth()) / GetCharWidth();
+  if (nPos < 0)
+    nPos = 0;
 
-	int nIndex = 0, nCurPos = 0, n = 0, i = 0;
-	const int nTabSize = GetTabSize();
+  int nIndex = 0, nCurPos = 0, n = 0, i = 0;
+  const int nTabSize = GetTabSize();
 
-	/*
-	if( m_bWordWrap )
-		nCurPos = nIndex = nOffsetChar;
-	*/
+  /*
+  if( m_bWordWrap )
+    nCurPos = nIndex = nOffsetChar;
+  */
 
-	while (nIndex < nLength)
-	{
-		if( nBreaks && nIndex == anBreaks[i] )
-		{
-			n = nIndex;
-			i++;
-		}
+  while (nIndex < nLength)
+    {
+      if( nBreaks && nIndex == anBreaks[i] )
+        {
+          n = nIndex;
+          i++;
+        }
 
-		if (pszLine[nIndex] == _T('\t'))
-		{
-			const int nOffset = nTabSize - nCurPos % nTabSize;
-			n += nOffset;
-			nCurPos += nOffset;
-		}
-		else
-		{
-			n++;
-			nCurPos ++;
-		}
+      if (pszLine[nIndex] == _T('\t'))
+        {
+          const int nOffset = nTabSize - nCurPos % nTabSize;
+          n += nOffset;
+          nCurPos += nOffset;
+        }
+      else
+        {
+          n++;
+          nCurPos ++;
+        }
 
-		if (n > nPos && i == nSubLineOffset)
-			break;
+      if (n > nPos && i == nSubLineOffset)
+        break;
 
-		nIndex ++;
-	}
+      nIndex ++;
+    }
 
-	delete[] anBreaks;
+  delete[] anBreaks;
 
-	ASSERT(nIndex >= 0 && nIndex <= nLength);
-	pt.x = nIndex;
-	return pt;
+  ASSERT(nIndex >= 0 && nIndex <= nLength);
+  pt.x = nIndex;
+  return pt;
 
-	/*ORIGINAL
-	int nLineCount = GetLineCount();
+  /*ORIGINAL
+  int nLineCount = GetLineCount();
 
-	CPoint pt;
-	pt.y = m_nTopLine + point.y / GetLineHeight();
-	if (pt.y >= nLineCount)
-		pt.y = nLineCount - 1;
-	if (pt.y < 0)
-		pt.y = 0;
+  CPoint pt;
+  pt.y = m_nTopLine + point.y / GetLineHeight();
+  if (pt.y >= nLineCount)
+    pt.y = nLineCount - 1;
+  if (pt.y < 0)
+    pt.y = 0;
 
-	int nLength = 0;
-	LPCTSTR pszLine = NULL;
-	if (pt.y >= 0 && pt.y < nLineCount)
-	{
-		nLength = GetLineLength(pt.y);
-		pszLine = GetLineChars(pt.y);
-	}
+  int nLength = 0;
+  LPCTSTR pszLine = NULL;
+  if (pt.y >= 0 && pt.y < nLineCount)
+  {
+    nLength = GetLineLength(pt.y);
+    pszLine = GetLineChars(pt.y);
+  }
 
-	int nPos = m_nOffsetChar + (point.x - GetMarginWidth()) / GetCharWidth();
-	if (nPos < 0)
-		nPos = 0;
+  int nPos = m_nOffsetChar + (point.x - GetMarginWidth()) / GetCharWidth();
+  if (nPos < 0)
+    nPos = 0;
 
-	int nIndex = 0, nCurPos = 0;
-	int nTabSize = GetTabSize();
-	while (nIndex < nLength)
-	{
-		if (pszLine[nIndex] == _T('\t'))
-			nCurPos += (nTabSize - nCurPos % nTabSize);
-		else
-			nCurPos ++;
+  int nIndex = 0, nCurPos = 0;
+  int nTabSize = GetTabSize();
+  while (nIndex < nLength)
+  {
+    if (pszLine[nIndex] == _T('\t'))
+      nCurPos += (nTabSize - nCurPos % nTabSize);
+    else
+      nCurPos ++;
 
-		if (nCurPos > nPos)
-			break;
+    if (nCurPos > nPos)
+      break;
 
-		nIndex ++;
-	}
+    nIndex ++;
+  }
 
-	ASSERT(nIndex >= 0 && nIndex <= nLength);
-	pt.x = nIndex;
-	return pt;
-	*///END SW
+  ASSERT(nIndex >= 0 && nIndex <= nLength);
+  pt.x = nIndex;
+  return pt;
+  *///END SW
 }
 
 #ifdef _DEBUG
@@ -3094,43 +3094,43 @@ TextToClient (const CPoint & point)
   LPCTSTR pszLine = GetLineChars (point.y);
 
   CPoint pt;
-	//BEGIN SW
-	CPoint	charPoint;
-	int			nSubLineStart = CharPosToPoint( point.y, point.x, charPoint );
-	charPoint.y+= GetSubLineIndex( point.y );
+  //BEGIN SW
+  CPoint	charPoint;
+  int			nSubLineStart = CharPosToPoint( point.y, point.x, charPoint );
+  charPoint.y+= GetSubLineIndex( point.y );
 
-	// compute y-position
-	pt.y = (charPoint.y - m_nTopSubLine) * GetLineHeight();
+  // compute y-position
+  pt.y = (charPoint.y - m_nTopSubLine) * GetLineHeight();
 
-	// if pt.x is null, we know the result
-	if( charPoint.x == 0 )
-	{
-		pt.x = GetMarginWidth();
-		return pt;
-	}
+  // if pt.x is null, we know the result
+  if( charPoint.x == 0 )
+    {
+      pt.x = GetMarginWidth();
+      return pt;
+    }
 
-	// we have to calculate x-position
-	int	nPreOffset = 0;
-	/*ORIGINAL
-	pt.y = (point.y - m_nTopLine) * GetLineHeight();
-	*/
-	//END SW
+  // we have to calculate x-position
+  int	nPreOffset = 0;
+  /*ORIGINAL
+  pt.y = (point.y - m_nTopLine) * GetLineHeight();
+  */
+  //END SW
   pt.x = 0;
   int nTabSize = GetTabSize ();
   for (int nIndex = 0; nIndex < point.x; nIndex++)
     {
-		//BEGIN SW
-		if( nIndex == nSubLineStart )
-			nPreOffset = pt.x;
-		//END SW
+      //BEGIN SW
+      if( nIndex == nSubLineStart )
+        nPreOffset = pt.x;
+      //END SW
       if (pszLine[nIndex] == _T ('\t'))
         pt.x += (nTabSize - pt.x % nTabSize);
       else
         pt.x++;
     }
-	//BEGIN SW
-	pt.x-= nPreOffset;
-	//END SW
+  //BEGIN SW
+  pt.x-= nPreOffset;
+  //END SW
 
   pt.x = (pt.x - m_nOffsetChar) * GetCharWidth () + GetMarginWidth ();
   return pt;
@@ -3147,12 +3147,12 @@ InvalidateLines (int nLine1, int nLine2, BOOL bInvalidateMargin /*= FALSE*/ )
       GetClientRect (&rcInvalid);
       if (!bInvalidateMargin)
         rcInvalid.left += GetMarginWidth ();
-		//BEGIN SW
-		rcInvalid.top = (GetSubLineIndex( nLine1 ) - m_nTopSubLine) * nLineHeight;
-		/*ORIGINAL
-		rcInvalid.top = (nLine1 - m_nTopLine) * GetLineHeight();
-		*/
-		//END SW
+      //BEGIN SW
+      rcInvalid.top = (GetSubLineIndex( nLine1 ) - m_nTopSubLine) * nLineHeight;
+      /*ORIGINAL
+      rcInvalid.top = (nLine1 - m_nTopLine) * GetLineHeight();
+      */
+      //END SW
       InvalidateRect (&rcInvalid, FALSE);
     }
   else
@@ -3167,14 +3167,14 @@ InvalidateLines (int nLine1, int nLine2, BOOL bInvalidateMargin /*= FALSE*/ )
       GetClientRect (&rcInvalid);
       if (!bInvalidateMargin)
         rcInvalid.left += GetMarginWidth ();
-		//BEGIN SW
-		rcInvalid.top = (GetSubLineIndex( nLine1 ) - m_nTopSubLine) * nLineHeight;
-		rcInvalid.bottom = (GetSubLineIndex( nLine2 ) - m_nTopSubLine + GetSubLines( nLine2 )) * nLineHeight;
-		/*ORIGINAL
-		rcInvalid.top = (nLine1 - m_nTopLine) * GetLineHeight();
-		rcInvalid.bottom = (nLine2 - m_nTopLine + 1) * GetLineHeight();
-		*/
-		//END SW
+      //BEGIN SW
+      rcInvalid.top = (GetSubLineIndex( nLine1 ) - m_nTopSubLine) * nLineHeight;
+      rcInvalid.bottom = (GetSubLineIndex( nLine2 ) - m_nTopSubLine + GetSubLines( nLine2 )) * nLineHeight;
+      /*ORIGINAL
+      rcInvalid.top = (nLine1 - m_nTopLine) * GetLineHeight();
+      rcInvalid.bottom = (nLine2 - m_nTopLine + 1) * GetLineHeight();
+      */
+      //END SW
       InvalidateRect (&rcInvalid, FALSE);
     }
 }
@@ -3236,42 +3236,42 @@ CalculateActualOffset (int nLineIndex, int nCharIndex)
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   int nOffset = 0;
   const int nTabSize = GetTabSize ();
-	//BEGIN SW
-	int			*anBreaks = new int[nLength];
-	int			nBreaks = 0;
+  //BEGIN SW
+  int			*anBreaks = new int[nLength];
+  int			nBreaks = 0;
 
-	/*if( nLength > GetScreenChars() )*/
-	WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
+  /*if( nLength > GetScreenChars() )*/
+  WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
 
-	int	nPreOffset = 0;
-	int	nPreBreak = 0;
+  int	nPreOffset = 0;
+  int	nPreBreak = 0;
 
-	if( nBreaks )
-	{
-		for( int J = nBreaks - 1; J >= 0 && nCharIndex < anBreaks[J]; J-- );
-		nPreBreak = anBreaks[J];
-	}
-	delete[] anBreaks;
-	//END SW
+  if( nBreaks )
+  {
+    for( int J = nBreaks - 1; J >= 0 && nCharIndex < anBreaks[J]; J-- );
+    nPreBreak = anBreaks[J];
+  }
+  delete[] anBreaks;
+  //END SW
   for (int I = 0; I < nCharIndex; I++)
     {
-		//BEGIN SW
-		if( nPreBreak == I && nBreaks )
-			nPreOffset = nOffset;
-		//END SW
+      //BEGIN SW
+      if( nPreBreak == I && nBreaks )
+      nPreOffset = nOffset;
+      //END SW
       if (pszChars[I] == _T ('\t'))
         nOffset += (nTabSize - nOffset % nTabSize);
       else
         nOffset++;
     }
-	//BEGIN SW
-	if( nPreBreak == I && nBreaks )
-		return 0;
-	else
-		return nOffset - nPreOffset;
-	/*ORIGINAL
-	return nOffset;
-	*///END SW
+  //BEGIN SW
+  if( nPreBreak == I && nBreaks )
+    return 0;
+  else
+    return nOffset - nPreOffset;
+  /*ORIGINAL
+  return nOffset;
+  *///END SW
 }
 
 int CCrystalTextView::
@@ -3304,67 +3304,67 @@ void CCrystalTextView::
 EnsureVisible (CPoint pt)
 {
   //  Scroll vertically
-	//BEGIN SW
-	int			nSubLineCount = GetSubLineCount();
-	int			nNewTopSubLine = m_nTopSubLine;
-	CPoint	subLinePos;
+  //BEGIN SW
+  int			nSubLineCount = GetSubLineCount();
+  int			nNewTopSubLine = m_nTopSubLine;
+  CPoint	subLinePos;
 
-	CharPosToPoint( pt.y, pt.x, subLinePos );
-	subLinePos.y+= GetSubLineIndex( pt.y );
+  CharPosToPoint( pt.y, pt.x, subLinePos );
+  subLinePos.y+= GetSubLineIndex( pt.y );
 
-	if( subLinePos.y >= nNewTopSubLine + GetScreenLines() )
-		nNewTopSubLine = subLinePos.y - GetScreenLines() + 1;
-	if( subLinePos.y < nNewTopSubLine )
-		nNewTopSubLine = subLinePos.y;
+  if( subLinePos.y >= nNewTopSubLine + GetScreenLines() )
+    nNewTopSubLine = subLinePos.y - GetScreenLines() + 1;
+  if( subLinePos.y < nNewTopSubLine )
+    nNewTopSubLine = subLinePos.y;
 
-	if( nNewTopSubLine < 0 )
-		nNewTopSubLine = 0;
-	if( nNewTopSubLine >= nSubLineCount )
-		nNewTopSubLine = nSubLineCount - 1;
-	
-	// WINMERGE: This line fixes (cursor) slowdown after merges!
-	// I don't know exactly why, but propably we are setting
-	// m_nTopLine to zero in ResetView() and are not setting to
-	// valid value again.  Maybe this is a good place to set it?
-	m_nTopLine = nNewTopSubLine;
+  if( nNewTopSubLine < 0 )
+    nNewTopSubLine = 0;
+  if( nNewTopSubLine >= nSubLineCount )
+    nNewTopSubLine = nSubLineCount - 1;
+  
+  // WINMERGE: This line fixes (cursor) slowdown after merges!
+  // I don't know exactly why, but propably we are setting
+  // m_nTopLine to zero in ResetView() and are not setting to
+  // valid value again.  Maybe this is a good place to set it?
+  m_nTopLine = nNewTopSubLine;
 
-	if( nNewTopSubLine != m_nTopSubLine )
-	{
-		ScrollToSubLine( nNewTopSubLine );
-		UpdateCaret();
-		UpdateSiblingScrollPos( FALSE );
-	}
-	/*ORIGINAL
-	int nLineCount = GetLineCount();
-	int nNewTopLine = m_nTopLine;
-	if (pt.y >= nNewTopLine + GetScreenLines())
-	{
-		nNewTopLine = pt.y - GetScreenLines() + 1;
-	}
-	if (pt.y < nNewTopLine)
-	{
-		nNewTopLine = pt.y;
-	}
+  if( nNewTopSubLine != m_nTopSubLine )
+    {
+      ScrollToSubLine( nNewTopSubLine );
+      UpdateCaret();
+      UpdateSiblingScrollPos( FALSE );
+    }
+  /*ORIGINAL
+  int nLineCount = GetLineCount();
+  int nNewTopLine = m_nTopLine;
+  if (pt.y >= nNewTopLine + GetScreenLines())
+  {
+    nNewTopLine = pt.y - GetScreenLines() + 1;
+  }
+  if (pt.y < nNewTopLine)
+  {
+    nNewTopLine = pt.y;
+  }
 
-	if (nNewTopLine < 0)
-		nNewTopLine = 0;
-	if (nNewTopLine >= nLineCount)
-		nNewTopLine = nLineCount - 1;
+  if (nNewTopLine < 0)
+    nNewTopLine = 0;
+  if (nNewTopLine >= nLineCount)
+    nNewTopLine = nLineCount - 1;
 
-	if (m_nTopLine != nNewTopLine)
-	{
-		ScrollToLine(nNewTopLine);
-		UpdateSiblingScrollPos(TRUE);
-	}
-	*/
-	//END SW
+  if (m_nTopLine != nNewTopLine)
+  {
+    ScrollToLine(nNewTopLine);
+    UpdateSiblingScrollPos(TRUE);
+  }
+  */
+  //END SW
 
   //  Scroll horizontally
-	//BEGIN SW
-	// we do not need horizontally scrolling, if we wrap the words
-	if( m_bWordWrap )
-		return;
-	//END SW
+  //BEGIN SW
+  // we do not need horizontally scrolling, if we wrap the words
+  if( m_bWordWrap )
+    return;
+  //END SW
   int nActualPos = CalculateActualOffset (pt.y, pt.x);
   int nNewOffset = m_nOffsetChar;
   const int nScreenChars = GetScreenChars ();
@@ -3456,9 +3456,9 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
         {
           ASSERT (m_nActualLengthArraySize == nLineCount);
           m_pnActualLineLength[nLineIndex] = -1;
-			//BEGIN SW
-			InvalidateLineCache( nLineIndex, nLineIndex );
-			//END SW
+      //BEGIN SW
+      InvalidateLineCache( nLineIndex, nLineIndex );
+      //END SW
         }
       //  Repaint the lines
       InvalidateLines (nLineIndex, -1, TRUE);
@@ -3498,9 +3498,9 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
             }
           memset (m_pnActualLineLength + nLineIndex, 0xff, sizeof (DWORD) * (m_nActualLengthArraySize - nLineIndex));
         }
-		//BEGIN SW
-		InvalidateLineCache( nLineIndex, -1 );
-		//END SW
+    //BEGIN SW
+    InvalidateLineCache( nLineIndex, -1 );
+    //END SW
       //  Repaint the lines
       InvalidateLines (nLineIndex, -1, TRUE);
     }
@@ -3687,10 +3687,10 @@ OnUpdateIndicatorPosition (CCmdUI * pCmdUI)
                                                    // VVV m_ptCursorPos.x + 1 ???
   stat.Format (_T ("Ln %d, Col %d"), m_ptCursorPos.y + 1, m_nIdealCharPos + 1);
   pCmdUI->SetText (stat);
-	//BEGIN SW
-	if( pCmdUI->m_pOther && pCmdUI->m_pOther->IsKindOf( RUNTIME_CLASS(CStatusBar) ) )
-		OnUpdateStatusMessage( (CStatusBar*)pCmdUI->m_pOther );
-	//END SW
+  //BEGIN SW
+  if( pCmdUI->m_pOther && pCmdUI->m_pOther->IsKindOf( RUNTIME_CLASS(CStatusBar) ) )
+    OnUpdateStatusMessage( (CStatusBar*)pCmdUI->m_pOther );
+  //END SW
 }
 
 void CCrystalTextView::
@@ -4041,16 +4041,16 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                 }
               else
                 {
-				nLineLength = GetLineLength(ptCurrentPos.y);
-				//BEGIN SW+FP
+                  nLineLength = GetLineLength(ptCurrentPos.y);
+                  //BEGIN SW+FP
                   if (ptCurrentPos.x == -1)
                     {
                       ptCurrentPos.x = nLineLength;
                     }
                   else
-				if( ptCurrentPos.x >= nLineLength )
-					ptCurrentPos.x = nLineLength - 1;
-				/*ORIGINAL
+                    if( ptCurrentPos.x >= nLineLength )
+                      ptCurrentPos.x = nLineLength - 1;
+                  /*ORIGINAL
                   if (ptCurrentPos.x == -1)
                     {
                       nLineLength = GetLineLength (ptCurrentPos.y);
@@ -4064,50 +4064,50 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                       ptCurrentPos.y--;
                       continue;
                     }
-				*///END SW
+                  *///END SW
 
                   LPCTSTR pszChars = GetLineChars (ptCurrentPos.y);
-				//BEGIN SW
-				_tcsncpy(line.GetBuffer(ptCurrentPos.x + 2), pszChars, ptCurrentPos.x + 1);
-				/*ORIGINAL
+                  //BEGIN SW
+                  _tcsncpy(line.GetBuffer(ptCurrentPos.x + 2), pszChars, ptCurrentPos.x + 1);
+                  /*ORIGINAL
                   LPTSTR pszBuf = line.GetBuffer (nLineLength + 1);
                   _tcsncpy (pszBuf, pszChars, nLineLength);
                   pszBuf[nLineLength] = _T ('\0');
-				*///END SW
+                  *///END SW
                   line.ReleaseBuffer (ptCurrentPos.x + 1);
                   if ((dwFlags & FIND_MATCH_CASE) == 0)
                     line.MakeUpper ();
                 }
 
-				//BEGIN SW
-				int	nFoundPos = -1;
-				int	nMatchLen = what.GetLength();
-				int	nLineLen = line.GetLength();
-				int	nPos;
-				do
-				{
-					nPos = ::FindStringHelper(line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
-					if( nPos >= 0 )
-					{
-						nFoundPos = (nFoundPos == -1)? nPos : nFoundPos + nPos;
-						nFoundPos+= nMatchLen;
-						line = line.Right( nLineLen - (nMatchLen + nPos) );
-						nLineLen = line.GetLength();
-					}
-				}
-				while( nPos >= 0 );
+              //BEGIN SW
+              int	nFoundPos = -1;
+              int	nMatchLen = what.GetLength();
+              int	nLineLen = line.GetLength();
+              int	nPos;
+              do
+                {
+                  nPos = ::FindStringHelper(line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
+                  if( nPos >= 0 )
+                    {
+                      nFoundPos = (nFoundPos == -1)? nPos : nFoundPos + nPos;
+                      nFoundPos+= nMatchLen;
+                      line = line.Right( nLineLen - (nMatchLen + nPos) );
+                      nLineLen = line.GetLength();
+                    }
+                }
+              while( nPos >= 0 );
 
-				if( nFoundPos >= 0 )	// Found text!
-				{
-					ptCurrentPos.x = nFoundPos - nMatchLen;
-					*pptFoundPos = ptCurrentPos;
-					return TRUE;
-				}
+              if( nFoundPos >= 0 )	// Found text!
+                {
+                  ptCurrentPos.x = nFoundPos - nMatchLen;
+                  *pptFoundPos = ptCurrentPos;
+                  return TRUE;
+                }
 
-				ptCurrentPos.y--;
-				if( ptCurrentPos.y >= 0 )
-					ptCurrentPos.x = GetLineLength( ptCurrentPos.y );
-				/*ORIGINAL
+              ptCurrentPos.y--;
+              if( ptCurrentPos.y >= 0 )
+                ptCurrentPos.x = GetLineLength( ptCurrentPos.y );
+              /*ORIGINAL
               int nPos =::FindStringHelper (line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
               if (nPos >= 0)    //  Found text!
                 {
@@ -4142,7 +4142,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
 
               ptCurrentPos.x = -1;
               ptCurrentPos.y--;
-				*///END SW
+              *///END SW
             }
 
           //  Beginning of text reached
@@ -4311,7 +4311,7 @@ OnEditFind ()
         {
           LPCTSTR pszChars = GetLineChars (ptSelStart.y);
           int nChars = ptSelEnd.x - ptSelStart.x;
-		      _tcsncpy (dlg.m_sText.GetBuffer (nChars + 1), pszChars + ptSelStart.x, nChars);
+          _tcsncpy (dlg.m_sText.GetBuffer (nChars + 1), pszChars + ptSelStart.x, nChars);
           dlg.m_sText.ReleaseBuffer (nChars);
         }
     }
@@ -4372,19 +4372,19 @@ OnEditRepeat ()
   if (bEnable)
     {
       CPoint ptFoundPos;
-		//BEGIN SW
-		// for correct backward search we need some changes:
-		CPoint ptSearchPos = m_ptCursorPos;
-		if( m_dwLastSearchFlags & FIND_DIRECTION_UP && IsSelection() )
-		{
-			CPoint	ptDummy;
-			GetSelection( ptSearchPos, ptDummy );
-		}
+      //BEGIN SW
+      // for correct backward search we need some changes:
+      CPoint ptSearchPos = m_ptCursorPos;
+      if( m_dwLastSearchFlags & FIND_DIRECTION_UP && IsSelection() )
+        {
+          CPoint	ptDummy;
+          GetSelection( ptSearchPos, ptDummy );
+        }
 
-		if (! FindText(sText, ptSearchPos, m_dwLastSearchFlags, TRUE, &ptFoundPos))
-		/*ORIGINAL
-		if (! FindText(sText, m_ptCursorPos, m_dwLastSearchFlags, TRUE, &ptFoundPos))
-		*///END SW
+      if (! FindText(sText, ptSearchPos, m_dwLastSearchFlags, TRUE, &ptFoundPos))
+      /*ORIGINAL
+      if (! FindText(sText, m_ptCursorPos, m_dwLastSearchFlags, TRUE, &ptFoundPos))
+      *///END SW
         {
           CString prompt;
           prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, sText);
@@ -4655,20 +4655,20 @@ void CCrystalTextView::SetDisableDragAndDrop (BOOL bDDAD)
 BOOL CCrystalTextView::
 OnMouseWheel (UINT nFlags, short zDelta, CPoint pt)
 {
-	// -> HE
+  // -> HE
 // int nPageLines = GetScreenLines();
-	int nSubLineCount = GetSubLineCount();
+  int nSubLineCount = GetSubLineCount();
 
-	int nNewTopSubLine= m_nTopSubLine - zDelta / 40;
+  int nNewTopSubLine= m_nTopSubLine - zDelta / 40;
 
-	if (nNewTopSubLine < 0)
-		nNewTopSubLine = 0;
-	if (nNewTopSubLine >= nSubLineCount)
-		nNewTopSubLine = nSubLineCount - 1;
+  if (nNewTopSubLine < 0)
+    nNewTopSubLine = 0;
+  if (nNewTopSubLine >= nSubLineCount)
+    nNewTopSubLine = nSubLineCount - 1;
 
-	ScrollToSubLine(nNewTopSubLine, TRUE);
-	UpdateSiblingScrollPos(FALSE);
-	// <- HE
+  ScrollToSubLine(nNewTopSubLine, TRUE);
+  UpdateSiblingScrollPos(FALSE);
+  // <- HE
 /* Old
   int nLineCount = GetLineCount ();
 
@@ -5039,27 +5039,27 @@ OnForceRedraw ()
 //BEGIN SW
 BOOL CCrystalTextView::GetWordWrapping() const
 {
-	return m_bWordWrap;
+  return m_bWordWrap;
 }
 
 void CCrystalTextView::SetWordWrapping( BOOL bWordWrap )
 {
-	m_bWordWrap = bWordWrap;
+  m_bWordWrap = bWordWrap;
 
-	if( IsWindow( m_hWnd ) )
-		InvalidateLines( 0, -1, TRUE );
+  if( IsWindow( m_hWnd ) )
+    InvalidateLines( 0, -1, TRUE );
 }
 
 CCrystalParser *CCrystalTextView::SetParser( CCrystalParser *pParser )
 {
-	CCrystalParser	*pOldParser = m_pParser;
+  CCrystalParser	*pOldParser = m_pParser;
 
-	m_pParser = pParser;
+  m_pParser = pParser;
 
-	if( pParser )
-		pParser->m_pTextView = this;
+  if( pParser )
+    pParser->m_pTextView = this;
 
-	return pOldParser;
+  return pOldParser;
 }
 //END SW
 
@@ -5068,191 +5068,191 @@ CCrystalParser *CCrystalTextView::SetParser( CCrystalParser *pParser )
 // incremental search imlementation
 BOOL CCrystalTextView::OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDLERINFO *pHandlerInfo )
 {
-	// just look for commands
-	if( nCode != CN_COMMAND || pExtra )
-		return CView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
+  // just look for commands
+  if( nCode != CN_COMMAND || pExtra )
+    return CView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
 
-	// handle code:
-	// each command that is not related to incremental search
-	// ends the incremental search
-	if( nID == ID_EDIT_FIND_INCREMENTAL_FORWARD || 
-		nID == ID_EDIT_FIND_INCREMENTAL_BACKWARD || 
-		nID == ID_EDIT_DELETE_BACK )
-		return CView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
+  // handle code:
+  // each command that is not related to incremental search
+  // ends the incremental search
+  if( nID == ID_EDIT_FIND_INCREMENTAL_FORWARD || 
+    nID == ID_EDIT_FIND_INCREMENTAL_BACKWARD || 
+    nID == ID_EDIT_DELETE_BACK )
+    return CView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
 
-	if( nID >= ID_EDIT_FIRST && nID <= ID_EDIT_LAST )
-		m_bIncrementalSearchForward = m_bIncrementalSearchBackward = FALSE;
+  if( nID >= ID_EDIT_FIRST && nID <= ID_EDIT_LAST )
+    m_bIncrementalSearchForward = m_bIncrementalSearchBackward = FALSE;
 
-	return CView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
+  return CView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
 }
 
 void CCrystalTextView::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
 {
-	CView::OnChar( nChar, nRepCnt, nFlags );
+  CView::OnChar( nChar, nRepCnt, nFlags );
 
-	// we only have to handle character-input, if we are in incremental search mode
-	if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )
-		return;
+  // we only have to handle character-input, if we are in incremental search mode
+  if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )
+    return;
 
-	// exit incremental search, when Escape is pressed
-	if( nChar == VK_ESCAPE )
-	{
-		// if not end incremental search
-		m_bIncrementalSearchForward = m_bIncrementalSearchBackward = FALSE;
-		SetSelection( m_selStartBeforeIncrementalSearch, m_selEndBeforeIncrementalSearch );
-		SetCursorPos( m_cursorPosBeforeIncrementalSearch );
-		EnsureVisible( m_cursorPosBeforeIncrementalSearch );
-		return;
-	}
+  // exit incremental search, when Escape is pressed
+  if( nChar == VK_ESCAPE )
+    {
+      // if not end incremental search
+      m_bIncrementalSearchForward = m_bIncrementalSearchBackward = FALSE;
+      SetSelection( m_selStartBeforeIncrementalSearch, m_selEndBeforeIncrementalSearch );
+      SetCursorPos( m_cursorPosBeforeIncrementalSearch );
+      EnsureVisible( m_cursorPosBeforeIncrementalSearch );
+      return;
+    }
 
   // exit incremental search without destroying selection
   if( nChar == VK_RETURN )
-  {
-    m_bIncrementalSearchForward = m_bIncrementalSearchBackward = FALSE;
-    return;
-  }
+    {
+      m_bIncrementalSearchForward = m_bIncrementalSearchBackward = FALSE;
+      return;
+    }
 
-	// is the character valid for incremental search?
-	if( !_istgraph( nChar ) && !(nChar == _T(' ')) && !(nChar == _T('\t')) )
-	{
-		// if not end incremental search
-		m_bIncrementalSearchForward = m_bIncrementalSearchBackward = FALSE;
-		return;
-	}
+  // is the character valid for incremental search?
+  if( !_istgraph( nChar ) && !(nChar == _T(' ')) && !(nChar == _T('\t')) )
+    {
+      // if not end incremental search
+      m_bIncrementalSearchForward = m_bIncrementalSearchBackward = FALSE;
+      return;
+    }
 
-	// if last search was not successfull do not add a new character
-	if( !m_bIncrementalFound )
-	{
-		MessageBeep( MB_OK );
-		return;
-	}
+  // if last search was not successfull do not add a new character
+  if( !m_bIncrementalFound )
+    {
+      MessageBeep( MB_OK );
+      return;
+    }
 
-	// add character to incremental search string and search
-	*m_pstrIncrementalSearchString += (TCHAR) nChar;
-	OnEditFindIncremental();
+  // add character to incremental search string and search
+  *m_pstrIncrementalSearchString += (TCHAR) nChar;
+  OnEditFindIncremental();
 }
 
 
 void CCrystalTextView::OnEditDeleteBack() 
 {
-	if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )
-		return;
+  if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )
+    return;
 
-	// remove last character from search string
-	if( m_pstrIncrementalSearchString->IsEmpty() )
-		return;
+  // remove last character from search string
+  if( m_pstrIncrementalSearchString->IsEmpty() )
+    return;
 
-	*m_pstrIncrementalSearchString = m_pstrIncrementalSearchString->Left( m_pstrIncrementalSearchString->GetLength() - 1 );
-	OnEditFindIncremental();
+  *m_pstrIncrementalSearchString = m_pstrIncrementalSearchString->Left( m_pstrIncrementalSearchString->GetLength() - 1 );
+  OnEditFindIncremental();
 }
 
 
 void CCrystalTextView::OnEditFindIncremental( BOOL bFindNextOccurence /*= FALSE*/ )
 {
-	// when string is empty, then goto position where the search starts
-	if( m_pstrIncrementalSearchString->IsEmpty() )
-	{
-		SetSelection( m_incrementalSearchStartPos, m_incrementalSearchStartPos );
-		SetCursorPos( m_incrementalSearchStartPos );
-		EnsureVisible( m_incrementalSearchStartPos );
-		return;
-	}
+  // when string is empty, then goto position where the search starts
+  if( m_pstrIncrementalSearchString->IsEmpty() )
+    {
+      SetSelection( m_incrementalSearchStartPos, m_incrementalSearchStartPos );
+      SetCursorPos( m_incrementalSearchStartPos );
+      EnsureVisible( m_incrementalSearchStartPos );
+      return;
+    }
 
-	// otherwise search next occurence of search string, 
-	// starting at current cursor position
-	CPoint	matchStart, matchEnd;
+  // otherwise search next occurence of search string, 
+  // starting at current cursor position
+  CPoint	matchStart, matchEnd;
 
-	// calculate start point for search
-	if( bFindNextOccurence )
-	{
-		CPoint	selStart, selEnd;
-		GetSelection( selStart, selEnd );
-		m_incrementalSearchStartPos = (m_bIncrementalSearchBackward)? selStart : selEnd;
-	}
+  // calculate start point for search
+  if( bFindNextOccurence )
+    {
+      CPoint	selStart, selEnd;
+      GetSelection( selStart, selEnd );
+      m_incrementalSearchStartPos = (m_bIncrementalSearchBackward)? selStart : selEnd;
+    }
 
-	m_bIncrementalFound = FindText( 
-		*m_pstrIncrementalSearchString,
-		m_incrementalSearchStartPos,
-		m_bIncrementalSearchBackward? FIND_DIRECTION_UP : 0,
-		TRUE,
-		&matchStart );
+  m_bIncrementalFound = FindText( 
+    *m_pstrIncrementalSearchString,
+    m_incrementalSearchStartPos,
+    m_bIncrementalSearchBackward? FIND_DIRECTION_UP : 0,
+    TRUE,
+    &matchStart );
 
-	if( !m_bIncrementalFound )
-	{
-		MessageBeep( MB_OK );
-		return;
-	}
+  if( !m_bIncrementalFound )
+    {
+      MessageBeep( MB_OK );
+      return;
+    }
 
-	// select found text and set cursor to end of match
-	matchEnd = matchStart;
-	matchEnd.x+= m_pstrIncrementalSearchString->GetLength();
-	SetSelection( matchStart, matchEnd );
-	SetCursorPos( matchEnd );
-	EnsureVisible( matchEnd );
+  // select found text and set cursor to end of match
+  matchEnd = matchStart;
+  matchEnd.x+= m_pstrIncrementalSearchString->GetLength();
+  SetSelection( matchStart, matchEnd );
+  SetCursorPos( matchEnd );
+  EnsureVisible( matchEnd );
 }
 
 
 
 void CCrystalTextView::OnEditFindIncrementalForward()
 {
-	if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )
-	{
-		// initialize
-		if( !m_pstrIncrementalSearchString->IsEmpty() )
-			*m_pstrIncrementalSearchStringOld = *m_pstrIncrementalSearchString;
-		m_pstrIncrementalSearchString->Empty();
-		m_incrementalSearchStartPos = m_cursorPosBeforeIncrementalSearch = m_ptCursorPos;
-		GetSelection( m_selStartBeforeIncrementalSearch, m_selEndBeforeIncrementalSearch );
-	}
-	else if( m_bIncrementalSearchForward )
-	{
-		if( m_pstrIncrementalSearchString->IsEmpty() )
-		{
-			*m_pstrIncrementalSearchString = *m_pstrIncrementalSearchStringOld;
-			m_pstrIncrementalSearchStringOld->Empty();
-			OnEditFindIncremental();
-		}
-		else
-			OnEditFindIncremental( TRUE );
+  if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )
+    {
+      // initialize
+      if( !m_pstrIncrementalSearchString->IsEmpty() )
+        *m_pstrIncrementalSearchStringOld = *m_pstrIncrementalSearchString;
+      m_pstrIncrementalSearchString->Empty();
+      m_incrementalSearchStartPos = m_cursorPosBeforeIncrementalSearch = m_ptCursorPos;
+      GetSelection( m_selStartBeforeIncrementalSearch, m_selEndBeforeIncrementalSearch );
+    }
+  else if( m_bIncrementalSearchForward )
+    {
+      if( m_pstrIncrementalSearchString->IsEmpty() )
+        {
+          *m_pstrIncrementalSearchString = *m_pstrIncrementalSearchStringOld;
+          m_pstrIncrementalSearchStringOld->Empty();
+          OnEditFindIncremental();
+        }
+      else
+        OnEditFindIncremental( TRUE );
 
-		return;
-	}
+      return;
+    }
 
-	m_bIncrementalSearchForward = TRUE;
-	m_bIncrementalSearchBackward = FALSE;
-	m_bIncrementalFound = TRUE;
-	OnEditFindIncremental();
+  m_bIncrementalSearchForward = TRUE;
+  m_bIncrementalSearchBackward = FALSE;
+  m_bIncrementalFound = TRUE;
+  OnEditFindIncremental();
 }
 
 void CCrystalTextView::OnEditFindIncrementalBackward()
 {
-	if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )
-	{
-		// initialize
-		if( !m_pstrIncrementalSearchString->IsEmpty() )
-			*m_pstrIncrementalSearchStringOld = *m_pstrIncrementalSearchString;
-		m_pstrIncrementalSearchString->Empty();
-		GetSelection( m_selStartBeforeIncrementalSearch, m_selEndBeforeIncrementalSearch );
-		m_incrementalSearchStartPos = m_cursorPosBeforeIncrementalSearch = m_ptCursorPos;
-	}
-	else if( m_bIncrementalSearchBackward )
-	{
-		if( m_pstrIncrementalSearchString->IsEmpty() )
-		{
-			*m_pstrIncrementalSearchString = *m_pstrIncrementalSearchStringOld;
-			m_pstrIncrementalSearchStringOld->Empty();
-			OnEditFindIncremental();
-		}
-		else
-			OnEditFindIncremental( TRUE );
+  if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )
+    {
+      // initialize
+      if( !m_pstrIncrementalSearchString->IsEmpty() )
+        *m_pstrIncrementalSearchStringOld = *m_pstrIncrementalSearchString;
+      m_pstrIncrementalSearchString->Empty();
+      GetSelection( m_selStartBeforeIncrementalSearch, m_selEndBeforeIncrementalSearch );
+      m_incrementalSearchStartPos = m_cursorPosBeforeIncrementalSearch = m_ptCursorPos;
+    }
+  else if( m_bIncrementalSearchBackward )
+    {
+      if( m_pstrIncrementalSearchString->IsEmpty() )
+        {
+          *m_pstrIncrementalSearchString = *m_pstrIncrementalSearchStringOld;
+          m_pstrIncrementalSearchStringOld->Empty();
+          OnEditFindIncremental();
+        }
+      else
+        OnEditFindIncremental( TRUE );
 
-		return;
-	}
+      return;
+    }
 
-	m_bIncrementalSearchForward = FALSE;
-	m_bIncrementalSearchBackward = TRUE;
-	m_bIncrementalFound = TRUE;
-	OnEditFindIncremental();
+  m_bIncrementalSearchForward = FALSE;
+  m_bIncrementalSearchBackward = TRUE;
+  m_bIncrementalFound = TRUE;
+  OnEditFindIncremental();
 }
 
 void CCrystalTextView::OnUpdateEditFindIncrementalForward(CCmdUI* pCmdUI)
@@ -5279,35 +5279,35 @@ void CCrystalTextView::OnUpdateEditFindIncrementalBackward(CCmdUI* pCmdUI)
 
 void CCrystalTextView::OnUpdateStatusMessage( CStatusBar *pStatusBar )
 {
-	static BOOL	bUpdatedAtLastCall = FALSE;
+  static BOOL	bUpdatedAtLastCall = FALSE;
 
-	ASSERT( pStatusBar && IsWindow( pStatusBar->m_hWnd ) );
-	if( !pStatusBar || !IsWindow( pStatusBar->m_hWnd ) )
-		return;
+  ASSERT( pStatusBar && IsWindow( pStatusBar->m_hWnd ) );
+  if( !pStatusBar || !IsWindow( pStatusBar->m_hWnd ) )
+    return;
 
-	if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )
-	{
-		if( bUpdatedAtLastCall )
-			pStatusBar->SetPaneText( 0, CString( (LPCTSTR)AFX_IDS_IDLEMESSAGE ) );
+  if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )
+    {
+      if( bUpdatedAtLastCall )
+        pStatusBar->SetPaneText( 0, CString( (LPCTSTR)AFX_IDS_IDLEMESSAGE ) );
 
-		bUpdatedAtLastCall = FALSE;
+      bUpdatedAtLastCall = FALSE;
 
-		return;
-	}
+      return;
+    }
 
-	CString	strFormat;
-	if( !m_bIncrementalFound )
-		strFormat.Format( IDS_FIND_INCREMENTAL_FAILED, *m_pstrIncrementalSearchString );
-	else if( m_bIncrementalSearchForward )
-		strFormat.Format( IDS_FIND_INCREMENTAL_FORWARD, *m_pstrIncrementalSearchString );
-	else if( m_bIncrementalSearchBackward )
-		strFormat.Format( IDS_FIND_INCREMENTAL_BACKWARD, *m_pstrIncrementalSearchString );
+  CString	strFormat;
+  if( !m_bIncrementalFound )
+    strFormat.Format( IDS_FIND_INCREMENTAL_FAILED, *m_pstrIncrementalSearchString );
+  else if( m_bIncrementalSearchForward )
+    strFormat.Format( IDS_FIND_INCREMENTAL_FORWARD, *m_pstrIncrementalSearchString );
+  else if( m_bIncrementalSearchBackward )
+    strFormat.Format( IDS_FIND_INCREMENTAL_BACKWARD, *m_pstrIncrementalSearchString );
 
-	if( strFormat.IsEmpty() )
-		return;
+  if( strFormat.IsEmpty() )
+    return;
 
-	pStatusBar->SetPaneText( 0, strFormat );
-	bUpdatedAtLastCall = TRUE;
+  pStatusBar->SetPaneText( 0, strFormat );
+  bUpdatedAtLastCall = TRUE;
 }
 //END SW
 
@@ -5323,7 +5323,7 @@ CString CCrystalTextView::GetTextBufferEol(int nLine) const
 
 int CCrystalTextView::ComputeRealLine (int nApparentLine) const
 {
-	return m_pTextBuffer->ComputeRealLine(nApparentLine);
+  return m_pTextBuffer->ComputeRealLine(nApparentLine);
 }
 
 ////////////////////////////////////////////////////////////////////////////

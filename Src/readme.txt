@@ -1,4 +1,9 @@
 2003-07-08 Laoran
+ PATCH: [ 767159 ] merge LF_RIGHT_ONLY and LF_LEFT_ONLY -> LF_GHOST 
+  WinMerge: MergeDoc.cpp MergeEditView.cpp
+  editlib: ccrystaltextbuffer.h ccrystaltextview.cpp
+
+2003-07-08 Laoran
  PATCH: [ 767051 ] code cleanup for GetTextWithoutEmptys 
   WinMerge: MergeDoc.cpp  MergeDoc.h MergeEditView.cpp
   editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h
