@@ -1,3 +1,7 @@
+2003-11-24 Laoran
+ BUG: [ 848461 ] Toggle 'show different files' is broken (thanks to Kimmo)
+  WinMerge: DirDoc.cpp
+
 2003-11-24 Perry
  Improvements to language names in LanguageSelect.cpp (and reference URLs), from Laurent.
  common: LanguageSelect.cpp

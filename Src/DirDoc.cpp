@@ -302,6 +302,8 @@ static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 		return 0;
 	if (di.isResultSkipped() && !mf->m_bShowSkipped)
 		return 0;
+	if (!di.isResultSame() && !di.isResultSkipped() && !mf->m_bShowDiff)
+		return 0;
 
 	// left/right filters
 	if (di.isSideLeft() && !mf->m_bShowUniqueLeft)
