@@ -106,9 +106,14 @@ BEGIN
     POPUP "Úpr&avy"
     BEGIN
         MENUITEM "&Zpìt\tCtrl+Z",               ID_UNDO
+        MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "&Následující rozdíl\tTab",    ID_NEXTDIFF
-        MENUITEM "&Pøedchozí rozdíl\tShift+Tab", ID_PREVDIFF
+        MENUITEM "&Následující rozdíl\tTAlt+Down",  ID_NEXTDIFF
+        MENUITEM "&Pøedchozí rozdíl\tAlt+Up", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
+        MENUITEM "Last &Difference\tAlt+End",   ID_LASTDIFF
         MENUITEM SEPARATOR
         MENUITEM "Kopírovat vp&ravo\tŠipka vpravo", ID_L2R
         MENUITEM "Kopírovat v&levo\tŠipka vlevo", ID_R2L
@@ -122,7 +127,9 @@ BEGIN
     BEGIN
         MENUITEM "Zobrazit &identické soubory", ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "Zobrazit roz&dílné soubory",  ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Zobrazit &unikátní soubory",  ID_OPTIONS_SHOWUNIQUE
+        MENUITEM "Show Le&ft Unique Files",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Files",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Skrýt soubory s pøíponou *.&BAK", ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "&Zvolit písmo...",            ID_VIEW_SELECTFONT
@@ -156,6 +163,14 @@ BEGIN
     BEGIN
         MENUITEM "Kopírovat soubor vlevo",      ID_DIR_COPY_FILE_TO_LEFT
         MENUITEM "Kopírovat soubor vpravo",     ID_DIR_COPY_FILE_TO_RIGHT
+        MENUITEM "Delete left",                 ID_DIR_DEL_LEFT
+        MENUITEM "Delete right",                ID_DIR_DEL_RIGHT
+        MENUITEM "Delete both",                 ID_DIR_DEL_BOTH
+        MENUITEM SEPARATOR
+        MENUITEM "Open left",                   ID_DIR_OPEN_LEFT
+        MENUITEM "Open left with...",           ID_DIR_OPEN_LEFT_WITH
+        MENUITEM "Open right",                  ID_DIR_OPEN_RIGHT
+        MENUITEM "Open right with...",          ID_DIR_OPEN_RIGHT_WITH
     END
 END
 
@@ -190,26 +205,29 @@ BEGIN
 END
 
 
-
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 198, 90
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 122
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "O programu"
 FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
     LTEXT           "WinMerge",IDC_STATIC,63,18,63,8,SS_NOPREFIX
-    DEFPUSHBUTTON   "OK",IDOK,159,7,32,14,WS_GROUP
-    LTEXT           "Verze 1.0",IDC_VERSION,64,28,127,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
+    LTEXT           "Verze 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
     LTEXT           "Všechna práva vyhrazena.",IDC_STATIC,7,60,170,8
-    LTEXT           "Navštivte www stránku programu WinMerge!",IDC_WWW,7,76,
+    LTEXT           "Navštivte www stránku programu WinMerge!",IDC_WWW,7,107,
                     184,8
-    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,72,184,1
-    LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,184,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
+    LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
+LTEXT           "Syntax Highlighting Edit View by Andrei Stcherbatchenko ",
+                    IDC_STATIC,7,71,209,8
+    LTEXT           "Various Syntaxes by Ferdinand Prantl",IDC_STATIC,7,81,
+                    209,8
 END
 
 IDD_OPEN DIALOGEX 0, 0, 374, 98
@@ -238,47 +256,23 @@ BEGIN
                     84
 END
 
-IDD_EDITFILE DIALOG DISCARDABLE  0, 0, 510, 350
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Dialog"
-FONT 8, "MS Sans Serif"
-BEGIN
-    PUSHBUTTON      "Uložit",IDOK,453,7,50,14
-    PUSHBUTTON      "Storno",IDCANCEL,453,24,50,14
-    EDITTEXT        IDC_FILE_EDIT,7,7,437,336,ES_MULTILINE | ES_NOHIDESEL | 
-                    ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    PUSHBUTTON      "&Vyjmout",IDC_CUT,453,64,50,14
-    PUSHBUTTON      "&Kopírovat",IDC_COPY,453,82,50,14
-    PUSHBUTTON      "V&ložit",IDC_PASTE,453,99,50,14
-    PUSHBUTTON      "&Zpìt",IDC_UNDO,453,117,50,14
-END
-
-IDD_VSS DIALOG DISCARDABLE  0, 0, 258, 105
+IDD_VSS DIALOG DISCARDABLE  0, 0, 258, 149
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Visual SourceSafe"
 FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,244,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    DEFPUSHBUTTON   "Zkontrolovat",IDOK,33,83,50,14
-    PUSHBUTTON      "Storno",IDCANCEL,173,83,50,14
-    PUSHBUTTON      "Uložit jako...",IDSAVEAS,103,83,50,14
+    DEFPUSHBUTTON   "Zkontrolovat",IDOK,33,121,50,14
+    PUSHBUTTON      "Storno",IDCANCEL,173,121,50,14
+    PUSHBUTTON      "Uložit jako...",IDSAVEAS,103,121,50,14
     LTEXT           "Projekt:",IDC_STATIC,9,61,25,8
     COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-END
-
-IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "SourceSafe"
-FONT 8, "MS Sans Serif"
-BEGIN
-    GROUPBOX        "Nastavení",IDC_STATIC,7,7,245,66
-    CONTROL         "Povolit integraci s Visual &SourceSafe",IDC_DOVSS_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,21,202,10
-    LTEXT           "&Cesta k souboru SS.EXE:",IDC_VSS_L1,16,42,87,8
-    EDITTEXT        IDC_PATH_EDIT,104,40,142,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "&Procházet...",IDC_BROWSE_BUTTON,196,55,50,12
+    LTEXT           "User:",IDC_STATIC,13,80,18,8
+    EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_STATIC,127,79,34,8
+    EDITTEXT        IDC_PASSWORD,162,78,70,14,ES_PASSWORD | ES_AUTOHSCROLL
 END
 
 IDD_PROPPAGE_LARGE DIALOG DISCARDABLE  0, 0, 235, 156
@@ -286,20 +280,33 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Obecné"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Nastavení",IDC_STATIC,7,7,221,78
+    GROUPBOX        "Nastavení",IDC_STATIC,7,7,242,92
     CONTROL         "&Zálohovat originální soubory",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,21,202,10
-    CONTROL         "Automatický &skok na první rozdíl",IDC_SCROLL_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,33,202,10
-    CONTROL         "&Ignorovat prázdné místo v øádce",IDC_WHITESPACE_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,45,202,10
+    CONTROL         "Automatický &skok na první rozdíl",
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    17,33,129,10
     CONTROL         "Ignorovat prázdné øád&ky",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,202,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,45,71,10
     CONTROL         "Ignorovat m&alá/VELKÁ",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,69,202,10
-    GROUPBOX        "Tabelátory",IDC_STATIC,7,92,221,30
-    LTEXT           "&Nastavení tabulátorù:",IDC_STATIC,15,106,74,8
-    EDITTEXT        IDC_TAB_EDIT,93,105,27,12,ES_AUTOHSCROLL
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,53,10
+    CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,81,87,10
+    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,128,45,82,10
+    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,128,57,100,10
+    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,128,69,83,10
+    GROUPBOX        "Tabelátory",IDC_STATIC,7,105,221,30,WS_GROUP
+    LTEXT           "&Nastavení tabulátorù:",IDC_STATIC,15,119,30,8
+    EDITTEXT        IDC_TAB_EDIT,47,117,27,12,ES_AUTOHSCROLL
+    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,68,69,10
+    CONTROL         "Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,99,112,51,10
+    CONTROL         "Insert Spaces",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,99,123,59,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -430,10 +437,15 @@ BEGIN
     BUTTON      ID_FILE_OPEN
     BUTTON      ID_FILE_SAVE
     SEPARATOR
-    BUTTON      ID_UNDO
+    BUTTON      ID_EDIT_UNDO
+    BUTTON      ID_EDIT_REDO
+
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
+    BUTTON      ID_LASTDIFF
+    BUTTON      ID_CURDIFF
+    BUTTON      ID_FIRSTDIFF
     SEPARATOR
     BUTTON      ID_L2R
     BUTTON      ID_R2L

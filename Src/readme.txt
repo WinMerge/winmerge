@@ -12,6 +12,8 @@
   Languages:
    Czech\MergeCzech.rc Dutch\MergeDutch.rc French\MergeFrench.rc
    German\MergeGerman.rc Italian\MergeItalian.rc Spanish\MergeSpanish.rc
+  [ 689896 ] Update to sync Czech resource
+    Czech\MergeCzech.rc
 
 2003-02-18 Christian
   Removed annoying SourceSafe path from Merge.dsp
