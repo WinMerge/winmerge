@@ -965,7 +965,7 @@ void CMergeEditView::OnL2r()
 		return;
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
-	GetDocument()->ListCopy(true);
+	GetDocument()->ListCopy(true, !!m_bIsLeft);
 }
 
 /**
@@ -993,7 +993,7 @@ void CMergeEditView::OnR2l()
 		return;
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
-	GetDocument()->ListCopy(false);
+	GetDocument()->ListCopy(false, !!m_bIsLeft);
 }
 
 /**
@@ -1018,7 +1018,7 @@ void CMergeEditView::OnAllLeft()
 		return;
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYALL2L));
 
-	GetDocument()->CopyAllList(false);
+	GetDocument()->CopyAllList(false, !!m_bIsLeft);
 }
 
 /**
@@ -1044,7 +1044,7 @@ void CMergeEditView::OnAllRight()
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYALL2R));
 
-	GetDocument()->CopyAllList(true);
+	GetDocument()->CopyAllList(true, !!m_bIsLeft);
 }
 
 /**
@@ -1080,7 +1080,7 @@ void CMergeEditView::OnMultipleLeft()
 	if (lastDiff < firstDiff)
 		return;
 
-	GetDocument()->CopyMultipleList(false, firstDiff, lastDiff);
+	GetDocument()->CopyMultipleList(false, !!m_bIsLeft, firstDiff, lastDiff);
 }
 
 /**
@@ -1127,7 +1127,7 @@ void CMergeEditView::OnMultipleRight()
 	if (lastDiff < firstDiff)
 		return;
 
-	GetDocument()->CopyMultipleList(true, firstDiff, lastDiff);
+	GetDocument()->CopyMultipleList(true, !!m_bIsLeft, firstDiff, lastDiff);
 }
 
 /**

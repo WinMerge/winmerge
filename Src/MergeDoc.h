@@ -209,9 +209,9 @@ public:
 	void ShowRescanError(int nRescanResult, BOOL bBinary, BOOL bIdentical);
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	BOOL Undo();
-	void CopyAllList(bool bSrcLeft);
-	void CopyMultipleList(bool bSrcLeft, int firstDiff, int lastDiff);
-	void ListCopy(bool bSrcLeft);
+	void CopyAllList(bool bSrcLeft, bool bCurrentLeft);
+	void CopyMultipleList(bool bSrcLeft, bool bCurrentLeft, int firstDiff, int lastDiff);
+	void ListCopy(bool bSrcLeft, bool bCurrentLeft);
 	BOOL TrySaveAs(CString &strPath, int &nLastErrorCode, CString & sError,
 		BOOL bLeft, PackingInfo * pInfoTempUnpacker);
 	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);

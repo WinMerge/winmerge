@@ -628,15 +628,34 @@ private:
 	BOOL m_bSuppress;
 };
 
-/// Copy all diffs from one side to the other (as specified by caller)
-void CMergeDoc::CopyAllList(bool bSrcLeft)
+/**
+ * @brief Copy all diffs from one side to side.
+ * @param [in] bSrcLeft Source side from which diff is copied
+ * @param [in] bCurrentLeft Currently active view (where cursor is)
+ */
+void CMergeDoc::CopyAllList(bool bSrcLeft, bool bCurrentLeft)
 {
-	CopyMultipleList(bSrcLeft, 0, m_diffList.GetSize() - 1);
+	CopyMultipleList(bSrcLeft, bCurrentLeft, 0, m_diffList.GetSize() - 1);
 }
 
-/// Copy some diffs from one side to the other (as specified by caller)
-void CMergeDoc::CopyMultipleList(bool bSrcLeft, int firstDiff, int lastDiff)
+/**
+ * @brief Copy range of diffs from one side to side.
+ * @param [in] bSrcLeft Source side from which diff is copied
+ * @param [in] bCurrentLeft Currently active view (where cursor is)
+ * @param [in] firstDiff First diff copied (0-based index)
+ * @param [in] lastDiff Last diff copied (0-based index)
+ */
+void CMergeDoc::CopyMultipleList(bool bSrcLeft, bool bCurrentLeft, int firstDiff, int lastDiff)
 {
+#ifdef _DEBUG
+	if (firstDiff > lastDiff)
+		_RPTF0(_CRT_ERROR, "Invalid diff range (firstDiff > lastDiff)!");
+	if (firstDiff < 0)
+		_RPTF0(_CRT_ERROR, "Invalid diff range (firstDiff < 0)!");
+	if (lastDiff > m_diffList.GetSize() - 1)
+		_RPTF0(_CRT_ERROR, "Invalid diff range (lastDiff < diffcount)!");
+#endif
+
 	lastDiff = min(m_diffList.GetSize() - 1, lastDiff);
 	firstDiff = max(0, firstDiff);
 	if (firstDiff > lastDiff)
@@ -651,14 +670,18 @@ void CMergeDoc::CopyMultipleList(bool bSrcLeft, int firstDiff, int lastDiff)
 	for(int i = lastDiff; i>=firstDiff; --i)
 	{
 		SetCurrentDiff(i);
-		ListCopy(bSrcLeft);
+		ListCopy(bSrcLeft, bCurrentLeft);
 	}
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
 }
 
-/// Copies selected (=current) diff to another side
-void CMergeDoc::ListCopy(bool bSrcLeft)
+/**
+ * @brief Copy selected (=current) difference from from side to side.
+ * @param [in] bSrcLeft Source side from which diff is copied
+ * @param [in] bCurrentLeft Currently active view (where cursor is)
+ */
+void CMergeDoc::ListCopy(bool bSrcLeft, bool bCurrentLeft)
 {
 	// suppress Rescan during this method
 	// (Not only do we not want to rescan a lot of times, but
@@ -677,6 +700,21 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 		int cd_dbegin = bSrcLeft? cd.dbegin0:cd.dbegin1;
 		int cd_dend = bSrcLeft? cd.dend0:cd.dend1;
 		int cd_blank = bSrcLeft? cd.blank0:cd.blank1;
+
+		// If we remove whole diff from current view, we must fix cursor
+		// position first. Normally we would move to end of previous line,
+		// but we want to move to begin of that line for usability.
+		if ((cd.op == OP_LEFTONLY && bCurrentLeft == true) ||
+			(cd.op == OP_RIGHTONLY && bCurrentLeft == false))
+		{
+			CCrystalTextView * pCurView = bCurrentLeft ?
+				m_pLeftView : m_pRightView;
+			CPoint currentPos = pCurView->GetCursorPos();
+			currentPos.x = 0;
+			if (currentPos.y > 0)
+				currentPos.y--;
+			pCurView->SetCursorPos(currentPos);
+		}
 
 		// TODO: add the undo action
 
