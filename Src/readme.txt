@@ -1,3 +1,7 @@
+2004-10-25 Perry
+ PATCH: [ 1003457 ] Move difflist to new class DiffList
+  Src: DiffList.cpp DiffList.h
+
 2004-10-25 Kimmo
  PATCH: [ 1003457 ] Move difflist to new class DiffList
   Src: DiffWrapper.cpp DiffWrapper.h LocationView.h Merge.dsp
