@@ -1,3 +1,8 @@
+2004-08-14 Kimmo
+ PATCH: [ 1008755 ] avoid flickering when diff view opens
+  Submitted by Takashi Sawanaka
+  Src: ChildFrm.cpp DiffViewBar.cpp
+
 2004-08-13 Kimmo
  BUG: [ 1007320 ] VB Syntax highlighting: Wrong masking from "
   Src/editlib: basic.cpp

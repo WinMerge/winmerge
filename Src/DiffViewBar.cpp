@@ -96,7 +96,7 @@ int CDiffViewBar::GetPanelHeight()
 /// update height for both panels
 void CDiffViewBar::UpdateBarHeight(int DiffPanelHeight)
 {
-	if (IsWindowVisible() == FALSE)
+	if (m_pwndDetailSplitter == NULL || ::IsWindow(m_pwndDetailSplitter->m_hWnd) == FALSE)
 		return;
 
 	// first resize the splitter

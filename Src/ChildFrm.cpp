@@ -335,6 +335,9 @@ BOOL CChildFrame::EnsureValidDockState(CDockState& state)
 
 void CChildFrame::ActivateFrame(int nCmdShow) 
 {
+	BOOL bMaximized = FALSE;
+	CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
+
 	if (!m_bActivated) 
 	{
 		m_bActivated = TRUE;
@@ -342,8 +345,6 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 		// TODO : delete oldkey /*		if(theApp.GetProfileInt(_T("Settings"), _T("LeftMax"), TRUE))
 		// TODO : delete oldkey /*		if(theApp.GetProfileInt(_T("Settings"), _T("DirViewMax"), TRUE))
 		// get the active child frame, and a flag whether it is maximized
-		BOOL bMaximized;
-		CMDIChildWnd * oldActiveFrame = GetMDIFrame()->MDIGetActive(&bMaximized);
 		if (oldActiveFrame == NULL)
 			// for the first frame, get the restored/maximized state from the registry
 			bMaximized = theApp.GetProfileInt(_T("Settings"), _T("ActiveFrameMax"), FALSE);
@@ -352,8 +353,6 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 		else
 			nCmdShow = SW_SHOWNORMAL;
 	}
-	CMDIChildWnd::ActivateFrame(nCmdShow);
-	UpdateHeaderSizes();
 
 	// load the bars layout
 	// initialize the diff pane state with default dimension
@@ -367,6 +366,27 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
 	m_wndLocationBar.LoadState(_T("Settings"));
 	m_wndDetailBar.LoadState(_T("Settings"));
+
+	if (bMaximized)
+	{
+		if (oldActiveFrame)
+			oldActiveFrame->LockWindowUpdate();
+		
+		RECT rc;
+		GetClientRect(&rc);
+		SendMessage(WM_SIZE, SIZE_MAXIMIZED, MAKELPARAM(rc.right, rc.bottom));
+
+		CMDIChildWnd::ActivateFrame(nCmdShow);
+
+		if (oldActiveFrame)
+			oldActiveFrame->UnlockWindowUpdate();
+	}
+	else
+	{
+		RecalcLayout();
+
+		CMDIChildWnd::ActivateFrame(nCmdShow);
+	}
 }
 
 BOOL CChildFrame::DestroyWindow() 
