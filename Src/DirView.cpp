@@ -484,8 +484,16 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 	}
 	else
 	{
-		m_bSortAscending = true;
 		m_sortColumn = pNMListView->iSubItem;
+		// date columns get default descending sort.
+		if(m_sortColumn==3 || m_sortColumn==4)
+		{
+			m_bSortAscending = false;
+		}
+		else
+		{
+			m_bSortAscending = true;
+		}
 	}
 	m_ctlSortHeader.SetSortImage(m_sortColumn, m_bSortAscending);
 
