@@ -660,7 +660,8 @@ BOOL DirDocFilterGlobal::includeDir(LPCTSTR szDirName)
 #ifdef _UNICODE
 	// TODO
 	// regexp has some problem in Unicode ? 2003-09-14
-	return TRUE;
+	// but 2003-10-24 let's test it
+	// return TRUE;
 #endif
 	// preprend a backslash if there is none
 	CString strDirName;
@@ -674,7 +675,8 @@ BOOL DirDocFilterGlobal::includeFile(LPCTSTR szFileName)
 #ifdef _UNICODE
 	// TODO
 	// regexp has some problem in Unicode ? 2003-09-14
-	return TRUE;
+	// but 2003-10-24 let's test it
+	// return TRUE;
 #endif
 	// preprend a backslash if there is none
 	CString strFileName;
@@ -699,7 +701,8 @@ BOOL DirDocFilterByExtension::includeFile(LPCTSTR szFileName)
 #ifdef _UNICODE
 	// TODO
 	// regexp has some problem in Unicode ? 2003-09-14
-	return TRUE;
+	// but 2003-10-24 let's test it
+	// return TRUE;
 #endif
 	// preprend a backslash if there is none
 	CString strFileName;

@@ -6,6 +6,8 @@
   WinMerge: DirScan.cpp
 
 2003-10-24 Laoran
+ enabling filters in unicode build
+  WinMerge: Dirdoc.cpp
  BUG: [ 829453 ] dropping file in a SuperComboBox, Unicode build
   common: SuperComboBox.cpp
  Fix unifile code to initialize txtstats.nlosses (see comments in BUG [ 828924 ])
