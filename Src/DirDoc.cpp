@@ -69,8 +69,7 @@ CDirDoc::CDirDoc()
 
 CDirDoc::~CDirDoc()
 {
-	if (m_pCtxt != NULL)
-		delete m_pCtxt;
+	delete m_pCtxt;
 	// Inform all of our merge docs that we're closing
 	for (POSITION pos = m_MergeDocs.GetHeadPosition(); pos; )
 	{
@@ -78,10 +77,8 @@ CDirDoc::~CDirDoc()
 		pMergeDoc->DirDocClosing(this);
 	}
 	
-	if (m_pFilterGlobal != NULL)
-		delete m_pFilterGlobal;
-	if (m_pFilterUI != NULL)
-		delete m_pFilterUI;
+	delete m_pFilterGlobal;
+	delete m_pFilterUI;
 }
 
 // callback we give our frame

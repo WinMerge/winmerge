@@ -1,3 +1,7 @@
+2003-11-17 Perry
+ [ 843526 ] cosmetic changes from the archives patch
+  WinMerge: DirDoc.cpp DirDoc.h MainFrm.cpp
+
 2003-11-16 Perry
  PATCH: [ 841897 ] Bail out of LoadFromFile if see embedded zeros
   WinMerge: MergeDoc.cpp

@@ -1112,7 +1112,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	}
 
 	// pop up dialog unless arguments exist (and are compatible)
-	PATH_EXISTENCE pathsType = GetPairComparability(pszLeft, pszRight);
+	PATH_EXISTENCE pathsType = GetPairComparability(strLeft, strRight);
 	if (pathsType == DOES_NOT_EXIST)
 	{
 		COpenDlg dlg;
@@ -1247,8 +1247,8 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 // trim trailing line returns
 static void RemoveLineReturns(CString & str)
 {
-	str.Replace(_T("\n"), _T(""));
-	str.Replace(_T("\r"), _T(""));
+	str.Remove('\n');
+	str.Remove('\r');
 }
 
 // TODO: Can we move this into DirActions.cpp ?

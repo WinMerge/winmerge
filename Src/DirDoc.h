@@ -46,8 +46,8 @@ class CustomStatusCursor;
 /**
  * @brief User-defined Windows-messages
  */
-const UINT MSG_UI_UPDATE = WM_USER + 1;
-const UINT MSG_STAT_UPDATE = WM_USER + 2;
+const UINT MSG_UI_UPDATE = WM_APP + 0;
+const UINT MSG_STAT_UPDATE = WM_APP + 1;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc document
