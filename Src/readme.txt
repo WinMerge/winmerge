@@ -1,3 +1,7 @@
+2003-11-07 Perry
+ Updated Catalan translation (from Jordi Vilar, the translation author)
+  Languages: Catalan/MergeCatalan.rc
+
 2003-11-06 Laoran
  [ 836870 ] Scrollbar "bounces back" in diff pane.
   editlib: ccrystaltextview.cpp
