@@ -346,37 +346,21 @@ void CPropColors::OnSelMovedTextColor()
  */
 void CPropColors::OnDefaults()
 {
-	m_pOptionsMgr->Reset(OPT_CLR_DIFF);
-	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_DIFF);
-	m_pOptionsMgr->Reset(OPT_CLR_DIFF_DELETED);
-	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_DIFF_DELETED);
-	m_pOptionsMgr->Reset(OPT_CLR_DIFF_TEXT);
-	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_DIFF_TEXT);
-	m_pOptionsMgr->Reset(OPT_CLR_TRIVIAL_DIFF);
-	m_pOptionsMgr->Reset(OPT_CLR_TRIVIAL_DIFF_DELETED);
-	m_pOptionsMgr->Reset(OPT_CLR_TRIVIAL_DIFF_TEXT);
-	m_pOptionsMgr->Reset(OPT_CLR_MOVEDBLOCK);
-	m_pOptionsMgr->Reset(OPT_CLR_MOVEDBLOCK_DELETED);
-	m_pOptionsMgr->Reset(OPT_CLR_MOVEDBLOCK_TEXT);
-	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_MOVEDBLOCK);
-	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
-	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
-
-	m_clrDiff = m_pOptionsMgr->GetInt(OPT_CLR_DIFF);
-	m_clrSelDiff = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
-	m_clrDiffDeleted = m_pOptionsMgr->GetInt(OPT_CLR_DIFF_DELETED);
-	m_clrSelDiffDeleted = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
-	m_clrDiffText = m_pOptionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
-	m_clrSelDiffText = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
-	m_clrTrivial = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF);
-	m_clrTrivialDeleted = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
-	m_clrTrivialText = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
-	m_clrMoved = m_pOptionsMgr->GetInt(OPT_CLR_MOVEDBLOCK);
-	m_clrMovedDeleted = m_pOptionsMgr->GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
-	m_clrMovedText = m_pOptionsMgr->GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
-	m_clrSelMoved = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
-	m_clrSelMovedDeleted = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
-	m_clrSelMovedText = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
+	m_pOptionsMgr->GetDefault(OPT_CLR_DIFF, m_clrDiff);
+	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_DIFF, m_clrSelDiff);
+	m_pOptionsMgr->GetDefault(OPT_CLR_DIFF_DELETED, m_clrDiffDeleted);
+	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_DIFF_DELETED, m_clrSelDiffDeleted);
+	m_pOptionsMgr->GetDefault(OPT_CLR_DIFF_TEXT, m_clrDiffText);
+	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_DIFF_TEXT, m_clrSelDiffText);
+	m_pOptionsMgr->GetDefault(OPT_CLR_TRIVIAL_DIFF, m_clrTrivial);
+	m_pOptionsMgr->GetDefault(OPT_CLR_TRIVIAL_DIFF_DELETED, m_clrTrivialDeleted);
+	m_pOptionsMgr->GetDefault(OPT_CLR_TRIVIAL_DIFF_TEXT, m_clrTrivialText);
+	m_pOptionsMgr->GetDefault(OPT_CLR_MOVEDBLOCK, m_clrMoved);
+	m_pOptionsMgr->GetDefault(OPT_CLR_MOVEDBLOCK_DELETED, m_clrMovedDeleted);
+	m_pOptionsMgr->GetDefault(OPT_CLR_MOVEDBLOCK_TEXT, m_clrMovedText);
+	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_MOVEDBLOCK, m_clrSelMoved);
+	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, m_clrSelMovedDeleted);
+	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, m_clrSelMovedText);
 
 	m_cDiff.SetColor(m_clrDiff);
 	m_cSelDiff.SetColor(m_clrSelDiff);

@@ -1,6 +1,9 @@
 2004-08-26 Kimmo
  BUG: [ 1016056 ] Panes don't remember settings when new file is opened
   Src: ChildFrm.cpp
+ PATCH: [ 1016282 ] Add GetDefault() to COptionsMgr
+  Src: PropColors.cpp
+  Src/Common: OptionsMgr.cpp OptionsMgr.h
 
 2004-08-25 Kimmo
  PATCH: [ 1008755 ] avoid flickering when diff view opens

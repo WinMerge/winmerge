@@ -288,6 +288,56 @@ int COptionsMgr::Reset(CString name)
 }
 
 /**
+ * @brief Return default string value
+ */
+int COptionsMgr::GetDefault(CString name, CString & value) const
+{
+	COption tmpOption;
+	BOOL optionFound = FALSE;
+	int retVal = OPT_OK;
+
+	optionFound = m_optionsMap.Lookup(name, tmpOption);
+	if (optionFound == TRUE)
+	{
+		varprop::VariantValue val = tmpOption.GetDefault();
+		if (val.isString())
+			value = val.getString();
+		else
+			retVal = OPT_WRONG_TYPE;
+	}
+	else
+	{
+		retVal = OPT_NOTFOUND;
+	}
+	return retVal;
+}
+
+/**
+ * @brief Return default number value
+ */
+int COptionsMgr::GetDefault(CString name, DWORD & value) const
+{
+	COption tmpOption;
+	BOOL optionFound = FALSE;
+	int retVal = OPT_OK;
+
+	optionFound = m_optionsMap.Lookup(name, tmpOption);
+	if (optionFound == TRUE)
+	{
+		varprop::VariantValue val = tmpOption.GetDefault();
+		if (val.isInt())
+			value = val.getInt();
+		else
+			retVal = OPT_WRONG_TYPE;
+	}
+	else
+	{
+		retVal = OPT_NOTFOUND;
+	}
+	return retVal;
+}
+
+/**
  * @brief Split option name to path (in registry) and
  * valuename (in registry).
  *
