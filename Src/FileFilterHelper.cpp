@@ -211,6 +211,7 @@ void FileFilterHelper::EditFileFilter(LPCTSTR szFileFilterPath)
 
 /**
  * @brief Load in all filter patterns in a directory (unless already in map)
+ * sPattern is directory wildcard such as "C:\Program Files\WinMerge\Filters\*.flt"
  */
 void FileFilterHelper::LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int, int> & patternsLoaded, const CString & sPattern)
 {

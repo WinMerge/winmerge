@@ -7,6 +7,9 @@
  BUG: [ 1038897 ] Weird comment in DiffWrapper.cpp
   cosmetic: removing obsolete comment, improving existing comments
   Src: DiffWrapper.cpp
+ Cosmetic: Add more explanation to function header of 
+  FileFilterHelper::LoadFileFilterDirPattern.
+ Src: FileFilterHelper.cpp
 
 2005-02-26 Jochen
  PATCH: [ 1152256 ] UniFile may fail to read last line
