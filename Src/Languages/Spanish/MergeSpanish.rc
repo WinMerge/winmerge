@@ -193,19 +193,18 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 198, 103
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 198, 90
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Sobre WinMerge"
 FONT 8, "MS Sans Serif"
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
-    LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
-    LTEXT           "© 1999 ",IDC_STATIC,7,49,27,8
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
+    LTEXT           "WinMerge",IDC_STATIC,63,18,63,8,SS_NOPREFIX
+    LTEXT           "© 2000",IDC_STATIC,7,49,25,8
     DEFPUSHBUTTON   "Aceptar",IDOK,154,7,37,14,WS_GROUP
-    LTEXT           "Versión 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
+    LTEXT           "Versión 1.0",IDC_VERSION,64,28,127,8,SS_NOPREFIX
     LTEXT           "Derechos reservados.",IDC_STATIC,7,60,170,8
     LTEXT           "¡Visitar al WinMerge HomePage!",IDC_WWW,7,76,184,8
-    LTEXT           "grimmd@geocities.com",IDC_EMAIL,7,88,170,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,72,184,1
     LTEXT           "Thingamahoochie Software",IDC_COMPANY,35,49,91,8
 END
@@ -372,7 +371,7 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 191
         TOPMARGIN, 7
-        BOTTOMMARGIN, 96
+        BOTTOMMARGIN, 83
     END
 
     IDD_OPEN, DIALOG
@@ -659,55 +658,63 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_AFRIKAANS           "Afrikaans"
-    IDS_ALBANIAN            "Albanian"
-    IDS_ARABIC_SAUDI        "Árabe (Saudi Arabian)"
-    IDS_ARABIC_IRAQ         "Árabe (Iraq)"
-    IDS_ARABIC_EGYPT        "Árabe (Egyptian)"
-    IDS_ARABIC_LIBYA        "Árabe (Libyan)"
-    IDS_ARABIC_ALGERIA      "Árabe (Algerian)"
-    IDS_ARABIC_MOROCCO      "Árabe (Moroccan)"
-    IDS_ARABIC_TUNISIA      "Árabe (Tunisian)"
-    IDS_ARABIC_OMAN         "Árabe (Oman)"
-    IDS_ARABIC_YEMEN        "Árabe (Yemen)"
-    IDS_ARABIC_SYRIA        "Árabe (Syrian)"
-    IDS_ARABIC_JORDAN       "Árabe (Jordan)"
+    IDS_FILENAME_HEADER     "Nombre"
+    IDS_DIR_HEADER          "Directorio"
+    IDS_RESULT_HEADER       "Resultado"
+    IDS_FILE_COMPARISON_TITLE "Comparación de Archivos"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ARABIC_LEBANON      "Árabe (Lebanon)"
-    IDS_ARABIC_KUWAIT       "Árabe (Kuwait)"
-    IDS_ARABIC_UAE          "Árabe (UAE)"
-    IDS_ARABIC_BAHRAIN      "Árabe (Bahrain)"
-    IDS_ARABIC_QATAR        "Árabe (Qatar)"
+    IDS_AFRIKAANS           "Afrikaans"
+    IDS_ALBANIAN            "Albanian"
+    IDS_ARABIC_SAUDI        "Arabic (Saudi Arabian)"
+    IDS_ARABIC_IRAQ         "Arabic (Iraq)"
+    IDS_ARABIC_EGYPT        "Arabic (Egyptian)"
+    IDS_ARABIC_LIBYA        "Arabic (Libyan)"
+    IDS_ARABIC_ALGERIA      "Arabic (Algerian)"
+    IDS_ARABIC_MOROCCO      "Arabic (Moroccan)"
+    IDS_ARABIC_TUNISIA      "Arabic (Tunisian)"
+    IDS_ARABIC_OMAN         "Arabic (Oman)"
+    IDS_ARABIC_YEMEN        "Arabic (Yemen)"
+    IDS_ARABIC_SYRIA        "Arabic (Syrian)"
+    IDS_ARABIC_JORDAN       "Arabic (Jordan)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ARABIC_LEBANON      "Arabic (Lebanon)"
+    IDS_ARABIC_KUWAIT       "Arabic (Kuwait)"
+    IDS_ARABIC_UAE          "Arabic (UAE)"
+    IDS_ARABIC_BAHRAIN      "Arabic (Bahrain)"
+    IDS_ARABIC_QATAR        "Arabic (Qatar)"
     IDS_BASQUE              "Basque"
     IDS_BELARUSIAN          "Belarusian"
     IDS_BULGARIAN           "Bulgarian"
     IDS_CATALAN             "Catalan"
-    IDS_CHINESE_TRADITIONAL "Chino (Trad)"
-    IDS_CHINESE_SIMPLIFIED  "Chino (Simple)"
-    IDS_CHINESE_HONGKONG    "Chino (Hong Kong)"
-    IDS_CHINESE_SINGAPORE   "Chino (Singapore)"
+    IDS_CHINESE_TRADITIONAL "Chinese (Trad)"
+    IDS_CHINESE_SIMPLIFIED  "Chinese (Simple)"
+    IDS_CHINESE_HONGKONG    "Chinese (Hong Kong)"
+    IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
     IDS_CROATIAN            "Croatian"
-    IDS_CZECH               "Czechslovakian"
+    IDS_CZECH               "Cesko"
     IDS_DANISH              "Danish"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_DUTCH               "Dutch"
-    IDS_ENGLISH_US          "Inglés (EEUU)"
-    IDS_ENGLISH_UK          "Inglés (Inglaterra)"
-    IDS_ENGLISH_AUS         "Inglés (Australian)"
-    IDS_ENGLISH_CAN         "Inglés (Canadian)"
-    IDS_ENGLISH_NZ          "Inglés (New Zealand)"
-    IDS_ENGLISH_EIRE        "Inglés (Irlanda)"
-    IDS_ENGLISH_SOUTH_AFRICA "Inglés (So. African)"
-    IDS_ENGLISH_JAMAICA     "Inglés (Jamaica)"
-    IDS_ENGLISH_CARIBBEAN   "Inglés (Caribe)"
-    IDS_ENGLISH_BELIZE      "Inglés (Belize)"
-    IDS_ENGLISH_TRINIDAD    "Inglés (Trinidad)"
+    IDS_DUTCH               "Nederlandse"
+    IDS_ENGLISH_US          "English (US)"
+    IDS_ENGLISH_UK          "English (UK)"
+    IDS_ENGLISH_AUS         "English (Australian)"
+    IDS_ENGLISH_CAN         "English (Canadian)"
+    IDS_ENGLISH_NZ          "English (New Zealand)"
+    IDS_ENGLISH_EIRE        "English (Irish)"
+    IDS_ENGLISH_SOUTH_AFRICA "English (So. African)"
+    IDS_ENGLISH_JAMAICA     "English (Jamaican)"
+    IDS_ENGLISH_CARIBBEAN   "English (Caribbean)"
+    IDS_ENGLISH_BELIZE      "English (Belize)"
+    IDS_ENGLISH_TRINIDAD    "English (Trinidad)"
     IDS_ESTONIAN            "Estonian"
     IDS_FAEROESE            "Faeroese"
     IDS_FARSI               "Farsi"
@@ -716,16 +723,16 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_FRENCH              "Frances"
-    IDS_FRENCH_BELGIAN      "Frances (Belgian)"
-    IDS_FRENCH_CANADIAN     "Frances (Canadian)"
-    IDS_FRENCH_SWISS        "Frances (Swiss)"
-    IDS_FRENCH_LUXEMBOURG   "Frances (Lux)"
-    IDS_GERMAN              "Aleman"
-    IDS_GERMAN_SWISS        "Aleman (Swiss)"
-    IDS_GERMAN_AUSTRIAN     "Aleman (Austrian)"
-    IDS_GERMAN_LUXEMBOURG   "Aleman (Lux)"
-    IDS_GERMAN_LIECHTENSTEIN "Aleman (Liecht)"
+    IDS_FRENCH              "Francais"
+    IDS_FRENCH_BELGIAN      "Francais (Belgique)"
+    IDS_FRENCH_CANADIAN     "Francais (Canada)"
+    IDS_FRENCH_SWISS        "Francais (Suisse)"
+    IDS_FRENCH_LUXEMBOURG   "Francais (Luxembourg)"
+    IDS_GERMAN              "Deutsch (Deutschland)"
+    IDS_GERMAN_SWISS        "Deutsch (Schweiz)"
+    IDS_GERMAN_AUSTRIAN     "Deutsch (Österreich)"
+    IDS_GERMAN_LUXEMBOURG   "Deutsch (Luxemburg)"
+    IDS_GERMAN_LIECHTENSTEIN "Deutsch (Liechtenstein)"
     IDS_GREEK               "Greek"
     IDS_HEBREW              "Hebrew"
     IDS_HUNGARIAN           "Hungarian"
@@ -736,17 +743,17 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ITALIAN_SWISS       "Italiano (Swiss)"
-    IDS_JAPANESE            "Japones"
-    IDS_KOREAN              "Koreano"
-    IDS_KOREAN_JOHAB        "Koreano (Johab)"
+    IDS_ITALIAN_SWISS       "Italiano (Svizzera)"
+    IDS_JAPANESE            "Japanese"
+    IDS_KOREAN              "Korean"
+    IDS_KOREAN_JOHAB        "Korean (Johab)"
     IDS_LATVIAN             "Latvian"
     IDS_LITHUANIAN          "Lithuanian"
     IDS_NORWEGIAN_BOKMAL    "Norwegian (Bokmal)"
     IDS_NORWEGIAN_NYNORSK   "Norwegian (Nynorsk)"
     IDS_POLISH              "Polish"
-    IDS_PORTUGUESE          "Portugés"
-    IDS_PORTUGUESE_BRAZILIAN "Portugés (Brazil)"
+    IDS_PORTUGUESE          "Portugese"
+    IDS_PORTUGUESE_BRAZILIAN "Portugese (Brazil)"
     IDS_ROMANIAN            "Romanian"
     IDS_RUSSIAN             "Russian"
     IDS_SERBIAN_LATIN       "Serbian (Latin)"
@@ -762,10 +769,10 @@ BEGIN
     IDS_SPANISH_MODERN      "Español (Moderno)"
     IDS_SPANISH_GUATEMALA   "Español (Guatemala)"
     IDS_SPANISH_COSTA_RICA  "Español (Costa Rica)"
-    IDS_SPANISH_PANAMA      "Español (Panama)"
-    IDS_SPANISH_DOMINICAN   "Español (Dominican)"
+    IDS_SPANISH_PANAMA      "Español (Panamá)"
+    IDS_SPANISH_DOMINICAN   "Español (Dominicano)"
     IDS_SPANISH_VENEZUELA   "Español (Venezuela)"
-    IDS_SPANISH_COLOMBIA    "Español (Colombia)"
+    IDS_SPANISH_COLOMBIA    "Español (Colombiano)"
     IDS_SPANISH_PERU        "Español (Peru)"
     IDS_SPANISH_ARGENTINA   "Español (Argentina)"
     IDS_SPANISH_ECUADOR     "Español (Ecuador)"
@@ -778,7 +785,7 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SPANISH_BOLIVIA     "Español (Bolivia)"
     IDS_SPANISH_EL_SALVADOR "Español (El Salvador)"
-    IDS_SPANISH_HONDURAS    "Español (Honduras)"
+    IDS_SPANISH_HONDURAS    "Español (Hondureño)"
     IDS_SPANISH_NICARAGUA   "Español (Nicaragua)"
     IDS_SPANISH_PUERTO_RICO "Español (Puerto Rico)"
     IDS_SWEDISH             "Swedish"
@@ -787,14 +794,6 @@ BEGIN
     IDS_TURKISH             "Turkish"
     IDS_UKRANIAN            "Ukranian"
     IDS_VIETNAMESE          "Vietnamese"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_FILENAME_HEADER     "Nombre"
-    IDS_DIR_HEADER          "Directorio"
-    IDS_RESULT_HEADER       "Resultado"
-    IDS_FILE_COMPARISON_TITLE "Comparación de Archivos"
 END
 
 #endif    // Spanish (Modern) resources
