@@ -2,7 +2,7 @@
  *  @file   unicoder.cpp
  *  @author Perry Rapp, Creator, 2003-2004
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-01-15 (Perry)
+ *  @date   Edited:  2004-03-26 (Laurent)
  *
  *  @brief  Implementation of utility unicode conversion routines
  */

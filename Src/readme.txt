@@ -1,3 +1,7 @@
+2004-05-25 Perry
+ (cosmetic) Update edit dates in file headers
+  Src/Common: unicoder.cpp unicoder.h
+
 2004-05-25 Kimmo
  PATCH: [ 959627 ] Fix crash when opening context menu for '..' item in dirview
   Src: DirActions.cpp DirView.cpp

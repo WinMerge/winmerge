@@ -2,7 +2,7 @@
  *  @file   unicoder.h
  *  @author Perry Rapp, Creator, 2003-2004
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-01-14 (Perry)
+ *  @date   Edited:  2004-03-26 (Laurent)
  *
  *  @brief  Declaration of utility unicode conversion routines
  */ 
