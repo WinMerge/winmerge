@@ -2,6 +2,8 @@
 // Microsoft Developer Studio generated include file.
 // Used by Merge.rc
 //
+// $Id$
+
 #define IDC_CUT                         3
 #define IDC_COPY                        4
 #define IDC_PASTE                       5
@@ -479,6 +481,7 @@
 #define ID_UNPACK_AUTO                  32852
 #define ID_DIR_OPEN_LEFT_WITHEDITOR     32853
 #define ID_DIR_OPEN_RIGHT_WITHEDITOR    32854
+#define ID_HELP_GETCONFIG               32855
 
 // Next default values for new objects
 // 
@@ -486,7 +489,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        120
-#define _APS_NEXT_COMMAND_VALUE         32855
+#define _APS_NEXT_COMMAND_VALUE         32856
 #define _APS_NEXT_CONTROL_VALUE         1095
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

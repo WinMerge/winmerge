@@ -365,6 +365,10 @@ SOURCE=.\ColorButton.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ConfigLog.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\CONTEXT.C
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -1435,6 +1439,10 @@ SOURCE=.\ColorButton.h
 # Begin Source File
 
 SOURCE=.\CONFIG.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\ConfigLog.h
 # End Source File
 # Begin Source File
 

@@ -60,6 +60,7 @@
 #include "FileTransform.h"
 #include "SelectUnpackerDlg.h"
 #include "files.h"
+#include "ConfigLog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -112,6 +113,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_SETCURSOR()
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnUpdatePluginUnpackMode)
+	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2368,4 +2370,32 @@ CString CMainFrame::GetDefaultEditor()
 	path.ReleaseBuffer();
 	path += _T("\\NOTEPAD.EXE");
 	return path;
+}
+
+/**
+ * @brief Save WinMerge configuration and info to file
+ */
+void CMainFrame::OnSaveConfigData()
+{
+	CConfigLog configLog;
+	
+	configLog.viewSettings.bShowIdent = m_bShowIdent;
+	configLog.viewSettings.bShowDiff = m_bShowDiff;
+	configLog.viewSettings.bShowUniqueLeft = m_bShowUniqueLeft;
+	configLog.viewSettings.bShowUniqueRight = m_bShowUniqueRight;
+	configLog.viewSettings.bShowBinaries = m_bShowBinaries;
+	configLog.viewSettings.bShowSkipped = m_bShowSkipped;
+	configLog.viewSettings.bHideBak = m_bHideBak;
+
+	configLog.miscSettings.bAutomaticRescan = m_bAutomaticRescan;
+	configLog.miscSettings.bAllowMixedEol = m_bAllowMixedEol;
+	configLog.miscSettings.bScrollToFirst = m_bScrollToFirst;
+	configLog.miscSettings.bBackup = m_bBackup;
+	configLog.miscSettings.bViewWhitespace = m_bViewWhitespace;
+
+	if (configLog.WriteLogFile())
+	{
+		CString sFileName = configLog.GetFileName();
+		OpenFileToExternalEditor(sFileName);
+	}
 }

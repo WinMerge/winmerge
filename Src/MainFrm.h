@@ -202,6 +202,7 @@ protected:
 	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg void OnPluginUnpackMode(UINT nID);
 	afx_msg void OnUpdatePluginUnpackMode(CCmdUI* pCmdUI);
+	afx_msg void OnSaveConfigData();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

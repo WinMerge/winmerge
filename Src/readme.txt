@@ -1,3 +1,9 @@
+2003-11-04 Kimmo
+ PATCH: [ 831052 ] Write version and configuration info
+  WinMerge: MainFrm.h MainFrm.cpp Merge.dsp Merge.rc resource.h
+  WinMerge new files: ConfigLog.h ConfigLog.cpp
+  Languages: *.rc resource.h
+
 2003-11-03 Laoran
  PATCH: [ 834122 ] Add Error Handling around calls to plug-ins
   WinMerge: Merge.rc MergeDoc.cpp Plugins.cpp Plugins.h files.h resource.h

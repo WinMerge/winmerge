@@ -207,6 +207,8 @@ BEGIN
     BEGIN
         MENUITEM "O&bsah...",                   ID_HELP_CONTENTS
         MENUITEM SEPARATOR
+        MENUITEM "Configuration...",            ID_HELP_GETCONFIG
+        MENUITEM SEPARATOR
         MENUITEM "GNU Public License...",       ID_HELP_GNULICENSE
         MENUITEM "&O programe...",              ID_APP_ABOUT
     END
