@@ -102,6 +102,7 @@ public:
 	CString GetDefaultEditor();
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
+	void GetFullVSSPath(CString strSavePath, BOOL & bVCProj);
 
 // Overrides
 	// ClassWizard generated virtual function overrides

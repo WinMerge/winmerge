@@ -6,6 +6,9 @@
   Also inform user if VSS databases not found
   Src: Merge.rc resource.h VssPrompt.cpp
   Src/Languages: *.rc resource.h
+ PATCH: [ 970478 ] Cleanup VCS/VSS code part 1
+  Src: MainFrm.cpp MainFrm.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
 
 2004-06-10 Laoran
  PATCH: [ 968887 ] UI for codepage detection
