@@ -2,6 +2,9 @@
  PATCH: [ 913686 ] Home Page on new winmerge.org domain
   The download sites can't find the new location, PAD changed back to old location
   Web: WinMergePAD.xml
+ PATCH: [ 916197 ] Split website into smaller parts
+  Web: .htaccess index.php page.inc
+  Web/developer: index.php needed.php translate.php wincvs.php
 
 2004-03-11 Christian
  PATCH: [ 913686 ] Home Page on new winmerge.org domain
