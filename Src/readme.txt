@@ -1,6 +1,10 @@
 2005-03-06 Perry
  PATCH: [ 1157524 ] Fix view line length
   editlib: ccrystaltextview.cpp ccrystaltextview.h
+ PATCH: [ 964676 ] rc file lacks bytes after DIALOGEX defs
+  Add 0,0,0x1 to any FONT line lacking it, for all DIALOGEX dialogs
+  Src: Merge.rc
+  Languages: Merge*.rc
 
 2005-03-05 Perry
  Rename CDirFrame::SetFilter to CDirFrame::SetFilterStatusDisplay for easier greps.
