@@ -1,4 +1,6 @@
 2003-09-08 Laoran
+ PATCH: [ 802373 ] undo/redo/onEditOperation when RO (2.1)
+  WinMerge: MergeEditView.cpp
  PATCH: [ 802359 ] display in diff pane when no diff (2.1)
   WinMerge: MergeDiffDetailView.cpp
 

@@ -499,13 +499,13 @@ void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnEditUndo()
 {
-	if (IsReadOnly(m_bIsLeft))
-		return;
-
 	CMergeDoc* pDoc = GetDocument();
 	CMergeEditView *tgt = *(pDoc->curUndo-1);
 	if(tgt==this)
 	{
+		if (IsReadOnly(m_bIsLeft))
+			return;
+
 		GetParentFrame()->SetActiveView(this, TRUE);
 		if(CCrystalEditViewEx::OnEditUndo()) 
 		{
@@ -521,10 +521,11 @@ void CMergeEditView::OnEditUndo()
 
 void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 {
-	if (!IsReadOnly(m_bIsLeft))
+	CMergeDoc* pDoc = GetDocument();
+	if (pDoc->curUndo!=pDoc->undoTgt.begin())
 	{
-		CMergeDoc* pDoc = GetDocument();
-		pCmdUI->Enable(pDoc->curUndo!=pDoc->undoTgt.begin());
+		CMergeEditView *tgt = *(pDoc->curUndo-1);
+		pCmdUI->Enable( !IsReadOnly(tgt->m_bIsLeft));
 	}
 	else
 		pCmdUI->Enable(FALSE);
@@ -809,7 +810,11 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 {
 	if (IsReadOnly(m_bIsLeft))
+	{
+		// We must not arrive here, and assert helps detect troubles
+		ASSERT(0);
 		return;
+	}
 
 	CMergeDoc* pDoc = GetDocument();
 
@@ -849,13 +854,13 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 
 void CMergeEditView::OnEditRedo()
 {
-	if (IsReadOnly(m_bIsLeft))
-		return;
-
 	CMergeDoc* pDoc = GetDocument();
 	CMergeEditView *tgt = *(pDoc->curUndo);
 	if(tgt==this)
 	{
+		if (IsReadOnly(m_bIsLeft))
+			return;
+
 		GetParentFrame()->SetActiveView(this, TRUE);
 		if(CCrystalEditViewEx::OnEditRedo()) 
 		{
@@ -871,10 +876,11 @@ void CMergeEditView::OnEditRedo()
 
 void CMergeEditView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 {
-	if (!IsReadOnly(m_bIsLeft))
+	CMergeDoc* pDoc = GetDocument();
+	if (pDoc->curUndo!=pDoc->undoTgt.end())
 	{
-		CMergeDoc* pDoc = GetDocument();
-		pCmdUI->Enable(pDoc->curUndo!=pDoc->undoTgt.end());
+		CMergeEditView *tgt = *(pDoc->curUndo);
+		pCmdUI->Enable( !IsReadOnly(tgt->m_bIsLeft));
 	}
 	else
 		pCmdUI->Enable(FALSE);
