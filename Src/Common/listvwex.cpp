@@ -151,6 +151,8 @@ void CListViewEx::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	}
 	else
 	{
+		clrTextSave=pDC->SetTextColor(m_clrText);
+		clrBkSave=pDC->SetBkColor(m_clrTextBk);
 		CBrush brush(m_clrTextBk);
 		pDC->FillRect(rcAllLabels,&brush);
 	}
@@ -249,13 +251,9 @@ void CListViewEx::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	if(lvi.state & LVIS_FOCUSED && bFocus)
 		pDC->DrawFocusRect(rcAllLabels);
 
-// set original colors if item was selected
-
-	if(bSelected)
-	{
-	        pDC->SetTextColor(clrTextSave);
-		pDC->SetBkColor(clrBkSave);
-	}
+// set original colors
+	pDC->SetTextColor(clrTextSave);
+	pDC->SetBkColor(clrBkSave);
 }
 
 LPCTSTR CListViewEx::MakeShortString(CDC* pDC, LPCTSTR lpszLong, int nColumnLen, int nOffset)
