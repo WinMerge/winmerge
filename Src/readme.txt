@@ -1,6 +1,8 @@
 2004-02-03 Perry
  PATCH: [ 882683 ] Combine transform code in DirScan.cpp
   Src: DirScan.cpp FileTransform.cpp FileTransform.h MergeDoc.cpp
+ PATCH: [ 890019 ] Fix diff_flag to bin_flag in CDiffWrapper::RunFileDiff
+  Src: DiffWrapper.cpp
 
 2004-02-03 Kimmo
  Fix "Copy Right to.." (copy/paste error)

@@ -213,10 +213,10 @@ BOOL CDiffWrapper::RunFileDiff()
 	file_data * inf = diffdata.m_inf;
 
 	/* Compare the files, if no error was found.  */
-	int diff_flag = 0;
+	int bin_flag = 0;
 
 	// Diff files. depth is zero because we are not comparing dirs
-	script = diff_2_files (inf, 0, &diff_flag);
+	script = diff_2_files (inf, 0, &bin_flag);
 
 	// We don't anymore create diff-files for every rescan.
 	// User can create patch-file whenever one wants to.
@@ -391,7 +391,7 @@ BOOL CDiffWrapper::RunFileDiff()
 		strFile2Temp.Empty();
 	}
 
-	m_status.bBinaries = diff_flag > 0;
+	m_status.bBinaries = bin_flag > 0;
 	m_status.bLeftMissingNL = inf[0].missing_newline;
 	m_status.bRightMissingNL = inf[1].missing_newline;
 	
