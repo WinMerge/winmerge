@@ -660,7 +660,7 @@ public :
         TCHAR exts[256];
         DWORD (CCrystalTextView:: * ParseLineX) (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
         DWORD flags;
-        DWORD tabsize;
+//        DWORD tabsize;
         TCHAR opencomment[8];
         TCHAR closecomment[8];
         TCHAR commentline[8];

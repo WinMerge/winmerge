@@ -301,6 +301,12 @@ DoSetTextType (TextDefinition *def)
 {
   m_CurSourceDef = def;
   SetFlags (def->flags);
+
+// Do not set these
+// EOL is determined from file, tabsize and viewtabs are
+// global WinMerge settings, selection margin is not needed
+// and wordwrapping must be false always
+#if 0
   SetWordWrapping ((def->flags & SRCOPT_WORDWRAP) != FALSE);
   SetSelectionMargin ((def->flags & SRCOPT_SELMARGIN) != FALSE);
   SetTabSize (def->tabsize);
@@ -323,6 +329,7 @@ DoSetTextType (TextDefinition *def)
       nEoln = -1;
     }
   SetCRLFMode (nEoln);
+#endif
   return true;
 }
 
@@ -393,7 +400,7 @@ LoadSettings ()
             {
               reg1.LoadString (_T ("Extensions"), def->exts, countof (def->exts));
               reg1.LoadNumber (_T ("Flags"), &def->flags);
-              reg1.LoadNumber (_T ("TabSize"), &def->tabsize);
+//              reg1.LoadNumber (_T ("TabSize"), &def->tabsize);
               reg1.LoadString (_T ("OpenComment"), def->opencomment, countof (def->opencomment));
               reg1.LoadString (_T ("CloseComment"), def->closecomment, countof (def->closecomment));
               reg1.LoadString (_T ("CommentLine"), def->commentline, countof (def->commentline));
@@ -436,7 +443,7 @@ SaveSettings ()
             {
               VERIFY (reg1.SaveString (_T ("Extensions"), def->exts));
               VERIFY (reg1.SaveNumber (_T ("Flags"), def->flags));
-              VERIFY (reg1.SaveNumber (_T ("TabSize"), def->tabsize));
+//              VERIFY (reg1.SaveNumber (_T ("TabSize"), def->tabsize));
               VERIFY (reg1.SaveString (_T ("OpenComment"), def->opencomment));
               VERIFY (reg1.SaveString (_T ("CloseComment"), def->closecomment));
               VERIFY (reg1.SaveString (_T ("CommentLine"), def->commentline));
@@ -452,18 +459,18 @@ CCrystalTextView::CCrystalTextView ()
   AFX_ZERO_INIT_OBJECT (CView);
   m_rxnode = NULL;
   m_pszMatched = NULL;
-  m_bSelMargin = TRUE;
+  m_bSelMargin = FALSE;
   m_bWordWrap = FALSE;
-	//BEGIN SW
-	m_panSubLines = new CArray<int, int>();
-	ASSERT( m_panSubLines );
-	m_panSubLines->SetSize( 0, 4096 );
+  //BEGIN SW
+  m_panSubLines = new CArray<int, int>();
+  ASSERT( m_panSubLines );
+  m_panSubLines->SetSize( 0, 4096 );
 
-	m_pstrIncrementalSearchString = new CString;
-	ASSERT( m_pstrIncrementalSearchString );
-	m_pstrIncrementalSearchStringOld = new CString;
-	ASSERT( m_pstrIncrementalSearchStringOld );
-	//END SW
+  m_pstrIncrementalSearchString = new CString;
+  ASSERT( m_pstrIncrementalSearchString );
+  m_pstrIncrementalSearchStringOld = new CString;
+  ASSERT( m_pstrIncrementalSearchStringOld );
+  //END SW
   ResetView ();
   SetTextType (SRC_PLAIN);
   m_bSingle = false; // needed to be set in descendat classes

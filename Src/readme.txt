@@ -1,3 +1,7 @@
+2003-04-25 Kimmo
+ PATCH: [ 727104 ] Disable margins for unknown filetypes
+  editlib: ccrystaltextview.h ccrystaltextview.cpp
+
 2003-04-23 Kimmo
  PATCH: [ 721939 ] Wider horiz scroll + more space after last char
   editlib: ccrystaltextview.cpp
