@@ -1,3 +1,7 @@
+2003-10-25 Perry
+ Fix spelling of "delimiter" in comments.
+  WinMerge: MainFrm.cpp
+
 2003-10-25 WinMerge experimental release 2.1.3.5 (cvs)
 
 2003-10-25 Perry

@@ -468,8 +468,8 @@ void CMainFrame::OnHelpGnulicense()
  * @brief Reads words from a file deliminated by charset
  *
  * Reads words from a file deliminated by charset with one slight twist.
- * If the next char in the file to be read is one of the characters inside the delimator,
- * then the word returned will be a word consisting only of delimators.
+ * If the next char in the file to be read is one of the characters inside the delimiter,
+ * then the word returned will be a word consisting only of delimiters.
  * 
  * @note pfile is not incremented past the word returned
  */
@@ -498,7 +498,7 @@ BOOL CMainFrame::GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset)
 					if (ctemp == *pcharset)
 						break;
 				}
-				if (*pcharset != NULL)//means that cbuffer[0] is a delimator character
+				if (*pcharset != NULL)//means that cbuffer[0] is a delimiter character
 					delimword = TRUE;
 				FirstRead = TRUE;
 			}
@@ -522,7 +522,7 @@ BOOL CMainFrame::GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset)
 				{
 					for (pcharset = charset;*pcharset;pcharset++)
 					{						
-						//if next char is equal to a delimator or we want delimwords stop the adding
+						//if next char is equal to a delimiter or we want delimwords stop the adding
 						if (ctemp == *pcharset)
 						{
 							SetFilePointer(pfile,-1,NULL,FILE_CURRENT);
@@ -542,7 +542,7 @@ BOOL CMainFrame::GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset)
 					delimMatch = FALSE;
 					for (pcharset = charset;*pcharset;pcharset++)
 					{						
-						//if next char is equal to a delimator or we want delimwords stop the adding
+						//if next char is equal to a delimiter or we want delimwords stop the adding
 						if (ctemp == *pcharset)
 						{
 							delimMatch = TRUE;
@@ -1582,7 +1582,7 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
 					WriteFile(tfile, stemp, stemp.GetLength(),
 						&numwritten, NULL);
 					GetWordFile(hfile, buffer, _T(",\n"));//for junking
-					GetWordFile(hfile, buffer, _T(",\n"));//get the next delimator
+					GetWordFile(hfile, buffer, _T(",\n"));//get the next delimiter
 					if (!_tcscmp(buffer, _T("\n")))
 					{
 						WriteFile(tfile, _T("\""), 1, &numwritten, NULL);						
