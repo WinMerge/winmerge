@@ -1,3 +1,8 @@
+2003-05-29 Christian
+ PATCH: Applied [ 745223 ] Fix pasting different EOL types
+  edilib: ccrystaltextbuffer.cpp
+ BUG: [ 744990 ] Pasting to the right
+
 2003-05-29 Kimmo
  Made new folder \Filters for filter files.  Added Perry's original filter files
  working with beta 1.9.2.2

@@ -62,7 +62,7 @@
 #include "ccrystaltextview.h"
 #include "filesup.h"
 #include "cs2cs.h"
-#include <mbctype.h> 
+#include <mbctype.h>
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")
@@ -348,39 +348,39 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 {
 	ASSERT (!m_bInit);
 	ASSERT (m_aLines.GetSize () == 0);
-	
+
 	HANDLE hFile = NULL;
 	int nCurrentMax = 256;
 	LPTSTR pcLineBuf = new TCHAR[nCurrentMax];
-	
+
 	BOOL bSuccess = FALSE;
-	
+
 	int nExt = GetExtPosition (pszFileName);
 	if (pszFileName[nExt] == _T ('.'))
 		nExt++;
 	CCrystalTextView::TextDefinition *def = CCrystalTextView::GetTextType (pszFileName + nExt);
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
-	
+
 	__try
 	{
 		DWORD dwFileAttributes =::GetFileAttributes (pszFileName);
 		if (dwFileAttributes == (DWORD) - 1)
 			__leave;
-		
+
 		hFile =::CreateFile (pszFileName, GENERIC_READ, FILE_SHARE_READ + FILE_SHARE_WRITE, NULL,
 			OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL);
 		if (hFile == INVALID_HANDLE_VALUE)
 			__leave;
-		
+
         int nCurrentLength = 0;
-		
+
         const DWORD dwBufSize = 32768;
         LPTSTR pcBuf = (LPTSTR) _alloca (dwBufSize);
         DWORD dwCurSize;
         if (!::ReadFile (hFile, pcBuf, dwBufSize, &dwCurSize, NULL))
 			__leave;
-		
+
 		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
 		{
 			//  Try to determine current CRLF mode based on first line
@@ -410,12 +410,12 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 				}
 			}
 		}
-		
+
 		ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
 		m_nCRLFMode = nCrlfStyle;
-		
+
 		m_aLines.SetSize (0, 4096);
-		
+
 		DWORD dwBufPtr = 0;
 		while (dwBufPtr < dwCurSize)
 		{
@@ -427,7 +427,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 					__leave;
 				dwBufPtr = 0;
 			}
-			
+
 			pcLineBuf[nCurrentLength] = c;
 			nCurrentLength++;
 			if (nCurrentLength == nCurrentMax)
@@ -439,7 +439,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 				delete[] pcLineBuf;
 				pcLineBuf = pcNewBuf;
 			}
-			
+
 			// detect both types of EOL for each line
 			// handles mixed mode files.
 			// Perry (2002-11-26): What about MAC files ? They don't have 0x0A at all. I think this doesn't handle them.
@@ -462,12 +462,12 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 				InsertLine (pcLineBuf);
 			}
 		}
-		
+
 		pcLineBuf[nCurrentLength] = 0;
 		InsertLine (pcLineBuf);
-		
+
 		ASSERT (m_aLines.GetSize () > 0);   //  At least one empty line must present
-		
+
 		m_bInit = TRUE;
 		m_bReadOnly = (dwFileAttributes & FILE_ATTRIBUTE_READONLY) != 0;
 		m_bModified = FALSE;
@@ -476,7 +476,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 		m_nSyncPosition = m_nUndoPosition = 0;
 		ASSERT (m_aUndoBuf.GetSize () == 0);
 		bSuccess = TRUE;
-		
+
 		RetypeViews (pszFileName);
 		UpdateViews (NULL, NULL, UPDATE_RESET);
   }
@@ -496,8 +496,8 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 
 // WinMerge has own routine for saving
 #if 0
-BOOL CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName, 
-									int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/, 
+BOOL CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
+									int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
 									BOOL bClearModifiedFlag /*= TRUE*/)
 {
   ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
@@ -984,7 +984,9 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
   for (;;)
     {
       nTextPos = 0;
-      while (pszText[nTextPos] != 0 && pszText[nTextPos] != _T ('\r'))
+      while (pszText[nTextPos] != 0 &&
+	      pszText[nTextPos] != _T ('\r') &&
+          pszText[nTextPos] != _T ('\n'))
         nTextPos++;
 
       if (nCurrentLine == nLine)
@@ -1006,17 +1008,18 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
         }
 
       nCurrentLine++;
-      nTextPos++;
 
-      if (pszText[nTextPos] == _T ('\n'))
+      // Handle all three different EOL-styles!
+	  if (pszText[nTextPos] == _T ('\r') ||
+	      pszText[nTextPos] == _T ('\n'))
         {
           nTextPos++;
-        }
-      else
-        {
-          ASSERT (FALSE);       //  Invalid line-end format passed
 
-        }
+	      // DOS-style "\r\n"
+	      if (pszText[nTextPos] == _T ('\n') &&
+	          pszText[nTextPos - 1] == _T ('\r'))
+            nTextPos++;
+	    }
 
       pszText += nTextPos;
     }
