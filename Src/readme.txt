@@ -1,3 +1,5 @@
+2003-03-27 WinMerge beta 2.1.6.0 released
+
 2004-03-26 Perry
  Src/Languages: Bulgarian/MergeBulgarian.rc
   Many cosmetic changes to make MergeBulgarian.rc match Merge.rc (mostly dropping obsolete keywords).
