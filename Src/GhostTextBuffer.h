@@ -67,8 +67,6 @@ protected :
 	enum
 	{
 		UNDO_INSERT = 0x0001,
-		UNDO_VALID_FIRST = 0x0010,
-		UNDO_VALID_LAST  = 0x0020,
 		UNDO_BEGINGROUP = 0x0100
 	};
 
@@ -76,7 +74,7 @@ protected :
 	Support For Descriptions On Undo/Redo Actions
 
 	We need a structure to remember richer information position
-	and the two new flags UNDO_VALID_FIRST/UNDO_VALID_LAST
+	and the number of real lines inserted/deleted (to set ghost lines during undo)
 
 	This flags are parameters of AddUndoRecord ; so AddUndoRecord
 	is not the virtual version of CCrystalTextBuffer::AddUndoRecord
@@ -104,6 +102,7 @@ protected :
 		CPoint m_redo_ptStartPos, m_redo_ptEndPos;  // Block of text participating
 		int    m_redo_ptStartPos_nGhost, m_redo_ptEndPos_nGhost;
 
+		int m_nRealLinesChanged;  //  Help to set real/ghost lines 
 		int m_nAction;            //  For information only: action type
 
 private :
@@ -146,6 +145,7 @@ public :
 			m_redo_ptStartPos_nGhost = src.m_redo_ptStartPos_nGhost;
 			m_redo_ptEndPos = src.m_redo_ptEndPos;
 			m_redo_ptEndPos_nGhost = src.m_redo_ptEndPos_nGhost;
+			m_nRealLinesChanged = src.m_nRealLinesChanged;
 			SetText(src.GetText());
 			return *this;
 		}
@@ -185,7 +185,7 @@ protected:
 
 	// [JRT] Support For Descriptions On Undo/Redo Actions
 	virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-                              LPCTSTR pszText, int flags, int nActionType = CE_ACTION_UNKNOWN);
+                              LPCTSTR pszText, int nRealLinesChanged, int nActionType = CE_ACTION_UNKNOWN);
 
 private:
 	// A RealityBlock is a block of lines with no ghost lines

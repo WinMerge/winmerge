@@ -114,7 +114,7 @@ private :
 public :
 		void SetTempPath(CString path);
 		virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-                        LPCTSTR pszText, int flags, int nActionType = CE_ACTION_UNKNOWN);
+                        LPCTSTR pszText, int nLinesToValidate, int nActionType = CE_ACTION_UNKNOWN);
 		bool curUndoGroup();
 		void ReplaceLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 		void ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);

@@ -1,4 +1,6 @@
 2003-11-11 Laoran
+ PATCH: [ 838530 ] Simplify GhostTextBuffer for Undo
+  WinMerge: GhostTextBuffer.cpp GhostTextBuffer.h MergeDoc.cpp MergeDoc.h
  PATCH: [ 839970 ] Moving from LoadFromFile to OpenDocs all view functions
   WinMerge: MergeDoc.cpp
 
