@@ -30,7 +30,6 @@
 
 #include "GhostTextBuffer.h"
 #include <vector>
-#include "afxtempl.h"
 #include "DiffWrapper.h"
 
 

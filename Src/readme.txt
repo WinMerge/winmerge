@@ -7,6 +7,9 @@
  PATCH: [ 908211 ] DiffContext.h should not include RegExp.h
   Submitted by Perry
   Src: DiffContext.h DirDoc.h
+ BUG: [ 908217 ] MergeDoc has incorrect include
+  Submitted by Perry
+  Src: MergeDoc.h
   
 2004-03-02 Kimmo
  PATCH: [ 907087 ] Allow commandline switches for external editor
