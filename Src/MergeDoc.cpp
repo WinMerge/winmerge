@@ -2815,10 +2815,6 @@ void CMergeDoc::CompareBinaries(CString sLeftFile, CString sRightFile, int nLeft
 		int nRescanResult = Rescan(bBinary, bIdentical);
 	}
 
-	// We MUST destroy frame before showing messagebox to avoid drawing frame
-	// when messagebox is shown!
-	GetParentFrame()->DestroyWindow();
-
 	if (nRescanResult == RESCAN_OK)
 	{
 		// Format message shown to user: both files are binaries
