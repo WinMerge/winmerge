@@ -2,6 +2,9 @@
  PATCH: [ 1057661 ] Installer: Install Hungarian lang file
   InnoSetup: WinMerge Localized.iss
   InnoSetup/Languages: *.isl
+ PATCH: [ 1058121 ] Updated Swedish.isl
+  Submitted by Hans Eriksson
+  InnoSetup/Languages: Swedish.isl
 
 2004-10-31 Kimmo
  PATCH: [ 1056383 ] Install Merge7z40x.dll
