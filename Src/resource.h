@@ -41,6 +41,7 @@
 #define IDS_BACKUP_FAILED_PROMPT        146
 #define IDS_PROPERTIES_TITLE            147
 #define IDS_OPEN_TITLE                  148
+#define IDS_CONFIRM_DELETE              149
 #define IDS_EDIT_WINDOW_TITLE_FMT       150
 #define IDS_FILESSAME                   151
 #define IDS_FILEUNIQUE                  152

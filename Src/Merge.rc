@@ -728,6 +728,7 @@ BEGIN
                             "Unable to backup original file.\nContinue anyway?"
     IDS_PROPERTIES_TITLE    "Properties"
     IDS_OPEN_TITLE          "Open"
+    IDS_CONFIRM_DELETE      "Delete %1?"
     IDS_EDIT_WINDOW_TITLE_FMT "Edit %1"
     IDS_FILESSAME           "The selected files are identical."
     IDS_FILEUNIQUE          "The selected file didn't exist in both directories and therefore couldn't be compared."

@@ -56,10 +56,10 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_WM_CONTEXTMENU()
 	//{{AFX_MSG_MAP(CDirView)
 	ON_WM_LBUTTONDBLCLK()
-	ON_COMMAND(ID_DIR_COPY_FILE_TO_LEFT, OnDirCopyFileToLeft)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILE_TO_LEFT, OnUpdateDirCopyFileToLeft)
-	ON_COMMAND(ID_DIR_COPY_FILE_TO_RIGHT, OnDirCopyFileToRight)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILE_TO_RIGHT, OnUpdateDirCopyFileToRight)
+	ON_COMMAND(ID_R2L, OnDirCopyFileToLeft)
+	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateDirCopyFileToLeft)
+	ON_COMMAND(ID_L2R, OnDirCopyFileToRight)
+	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateDirCopyFileToRight)
 	ON_WM_DESTROY()
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
@@ -278,11 +278,16 @@ void CDirView::OnDirCopyFileToLeft()
 		DIFFITEM di = pd->m_pCtxt->m_dirlist.GetAt(pos);
 		switch(di.code)
 		{
-		case FILE_LDIRUNIQUE:
-		case FILE_RDIRUNIQUE:
 		case FILE_LUNIQUE:
-		case FILE_SAME:
-			//pCmdUI->Enable(FALSE);
+			AfxFormatString1(s, IDS_CONFIRM_DELETE, slFile);
+			if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION)==IDYES)
+			{
+				if(DeleteFile(slFile))
+				{
+					pd->m_pCtxt->m_dirlist.RemoveAt(pos);
+					GetListCtrl().DeleteItem(sel);
+				}
+			}
 			break;
 		case FILE_RUNIQUE:
 		case FILE_DIFF:
@@ -295,7 +300,12 @@ void CDirView::OnDirCopyFileToLeft()
 					mf->UpdateCurrentFileStatus(FILE_SAME);
 				}
 			}
-
+			break;
+		case FILE_LDIRUNIQUE:
+		case FILE_RDIRUNIQUE:
+		case FILE_SAME:
+		default:
+			//pCmdUI->Enable(FALSE);
 			break;
 		}
 	}
@@ -311,18 +321,23 @@ void CDirView::OnUpdateDirCopyFileToLeft(CCmdUI* pCmdUI)
 		DIFFITEM di = pd->m_pCtxt->m_dirlist.GetAt(pos);
 		switch(di.code)
 		{
-		case FILE_SAME:
 		case FILE_LUNIQUE:
-		case FILE_LDIRUNIQUE:
-		case FILE_RDIRUNIQUE:
-			pCmdUI->Enable(FALSE);
-			break;
 		case FILE_RUNIQUE:
 		case FILE_DIFF:
 		case FILE_BINDIFF:
 			pCmdUI->Enable(TRUE);
 			break;
+		case FILE_SAME:
+		case FILE_LDIRUNIQUE:
+		case FILE_RDIRUNIQUE:
+		default:
+			pCmdUI->Enable(FALSE);
+			break;
 		}
+	}
+	else
+	{
+		pCmdUI->Enable(FALSE);
 	}
 }
 
@@ -342,10 +357,15 @@ void CDirView::OnDirCopyFileToRight()
 		switch(di.code)
 		{
 		case FILE_RUNIQUE:
-		case FILE_LDIRUNIQUE:
-		case FILE_RDIRUNIQUE:
-		case FILE_SAME:
-			//pCmdUI->Enable(FALSE);
+			AfxFormatString1(s, IDS_CONFIRM_DELETE, srFile);
+			if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION)==IDYES)
+			{
+				if(DeleteFile(srFile))
+				{
+					pd->m_pCtxt->m_dirlist.RemoveAt(pos);
+					GetListCtrl().DeleteItem(sel);
+				}
+			}
 			break;
 		case FILE_LUNIQUE:
 		case FILE_DIFF:
@@ -359,7 +379,12 @@ void CDirView::OnDirCopyFileToRight()
 					mf->UpdateCurrentFileStatus(FILE_SAME);
 				}
 			}
-
+			break;
+		case FILE_LDIRUNIQUE:
+		case FILE_RDIRUNIQUE:
+		case FILE_SAME:
+		default:
+			//pCmdUI->Enable(FALSE);
 			break;
 		}
 	}
@@ -376,17 +401,22 @@ void CDirView::OnUpdateDirCopyFileToRight(CCmdUI* pCmdUI)
 		switch(di.code)
 		{
 		case FILE_RUNIQUE:
-		case FILE_LDIRUNIQUE:
-		case FILE_RDIRUNIQUE:
-		case FILE_SAME:
-			pCmdUI->Enable(FALSE);
-			break;
 		case FILE_LUNIQUE:
 		case FILE_DIFF:
 		case FILE_BINDIFF:
 			pCmdUI->Enable(TRUE);
 			break;
+		case FILE_LDIRUNIQUE:
+		case FILE_RDIRUNIQUE:
+		case FILE_SAME:
+		default:
+			pCmdUI->Enable(FALSE);
+			break;
 		}
+	}
+	else
+	{
+		pCmdUI->Enable(FALSE);
 	}
 }
 
