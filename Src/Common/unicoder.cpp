@@ -703,8 +703,7 @@ CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, int c
 	wlen = n;
 	int clen = wlen * 2 + 6;
 	BOOL defaulted=FALSE;
-	LPSTR cdest = reinterpret_cast<LPSTR>(dest);
-	n = WideCharToMultiByte(cpout, flags, wbuff, n, cdest, destsize-1, NULL, &defaulted);
+	n = WideCharToMultiByte(cpout, flags, wbuff, n, dest, destsize-1, NULL, &defaulted);
 	dest[n] = 0;
 	delete [] wbuff;
 	if (lossy)
