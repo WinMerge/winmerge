@@ -1,8 +1,10 @@
 2004-02-20 Perry
- Fix CopyAll.bat for new directory structure
+ Fix CopyAll.bat for new directory structure.
   Src: Languages\CopyAll.bat
  Add GetClipTcharTextFormat (needed by coretools now) to StdAfx.*
   MakeResDll: StdAfx.cpp StdAfx.h
+ Fix MakeResDll.dsp to compile (new directory structure).
+  MakeResDll\MakeResDll.dsp
 
 2004-02-20 WinMerge experimental release 2.1.5.11 (cvs)
 
