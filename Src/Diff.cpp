@@ -58,38 +58,50 @@ int recursive;
 /* Compare two specified files
    This is self-contained; it opens the files and closes them.
 
-   Value is 0 if files are the same, 1 if different,
-   2 if there is a problem opening them.  */
-
-int
-just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth)
+  Returns false if cannot open files.
+  Otherwise, sets out parameters diff (are files different?) and bin (are files binary?)
+*/
+bool
+just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin)
 {
 	struct file_data inf[2];
 
 	ZeroMemory(&inf[0], sizeof(inf[0]));
 	ZeroMemory(&inf[1], sizeof(inf[1]));
 
+	// TODO: This is going to break on filepaths not representable in the
+	// current 8 bit codeset
 	USES_CONVERSION;
 	inf[0].name = T2CA(filepath1);
 	inf[1].name = T2CA(filepath2);
 
+	for (int i=0; i<2; ++i)
+	{
+		if (stat(inf[i].name, &inf[i].stat) != 0)
+		{
+			return false;
+		}
+	}
+
 	inf[0].desc = open(inf[0].name, O_RDONLY|O_BINARY, 0);
 	if (inf[0].desc < 0)
 	{
-		return 2;
+		return false;
 	}
 	inf[1].desc = open(inf[1].name, O_RDONLY|O_BINARY, 0);
 	if (inf[1].desc < 0)
 	{
 		close(inf[0].desc);
-		return 2;
+		return false;
 	}
 
-	int diff_flag=0;
+	int bin_flag=0;
 
 	// Do the actual comparison (generating a change script)
-	int val = 0;
-	struct change *script = diff_2_files (inf, depth, &diff_flag);
+	bool failed = false;
+	struct change *script = diff_2_files (inf, depth, &bin_flag);
+
+	*diff = false;
 
 	// Free change script (which we don't want)
 	if (script != NULL)
@@ -100,8 +112,14 @@ just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth)
 			p = e->link;
 			free (e);
 		}
-		val = 1; /* different */
+		*diff = true;
 	}
+
+	// diff_2_files set bin_flag to -1 if different binary
+	// diff_2_files set bin_flag to +1 if same binary
+	*bin = (bin_flag != 0);
+	if (bin_flag < 0)
+		*diff = true;
 
 	// Tell diff code to cleanup
 	cleanup_file_buffers(inf);
@@ -109,14 +127,14 @@ just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth)
 	// close open file handles
 	if (close(inf[0].desc) != 0)
 	{
-		val = 2;
+		failed = true;
 	}
 	if (close(inf[1].desc) != 0)
 	{
-		val = 2;
+		failed = true;
 	}
 
-	return val;
+	return !failed;
 }
 
 

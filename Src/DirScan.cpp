@@ -13,7 +13,7 @@
 #include "paths.h"
 #include "unidiff.h"
 
-extern int just_compare_files (LPCTSTR, LPCTSTR, int);
+extern bool just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin);
 extern CLogFile gLog;
 
 #ifdef _DEBUG
@@ -188,30 +188,24 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 				unidiff_PrepFile(filepath1, &leftFiles[i].attrs);
 				unidiff_PrepFile(filepath2, &rightFiles[j].attrs);
 
-				int res = just_compare_files (filepath1, filepath2, 0);
-				// Outstanding problem 
-				// Diff didn't tell us if the file is binary
-				if (res == 0)
+				// Actually compare the files
+				// just_compare_files is a fairly thin front-end to diffutils
+				bool diff=false, bin=false;
+				bool compareok = just_compare_files (filepath1, filepath2, 0, &diff, &bin);
+
+				// assemble bit flags for result code
+				int code = DIFFCODE::FILE;
+				if (!compareok)
 				{
-					// same
-					FilterAdd(subdir, &leftFiles[i], &rightFiles[j], DIFFCODE::SAME+DIFFCODE::FILE, pCtxt);
+					code |= DIFFCODE::CMPERR;
 				}
-				else if (res == 1)
+				else
 				{
-					// different
-					FilterAdd(subdir, &leftFiles[i], &rightFiles[j], DIFFCODE::DIFF+DIFFCODE::FILE, pCtxt);
+					code |= (diff ? DIFFCODE::DIFF : DIFFCODE::SAME);
+					code |= (bin ? DIFFCODE::BIN : DIFFCODE::TEXT);
 				}
-				else 
-				{
-					if (res > 10)
-					{
-						// Program error
-						// We passed something invalid to compare_files
-						ASSERT(0);
-					}
-					// error
-					FilterAdd(subdir, &leftFiles[i], &rightFiles[j], DIFFCODE::CMPERR+DIFFCODE::FILE, pCtxt);
-				}
+				// report result back to caller
+				FilterAdd(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt);
 			}
 			++i;
 			++j;
