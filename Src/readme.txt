@@ -1,3 +1,8 @@
+2004-11-20 Kimmo
+ PATCH: [ 1058142 ] update coloring of batch file
+  Submitted by Andre Arpin
+  Src/editlib: batch.cpp
+
 2004-11-17 Kimmo
  PATCH: [ 1067374 ] Norwegian translation for 2.2.0
   Submitted by Hans Fr. Nordhaug
