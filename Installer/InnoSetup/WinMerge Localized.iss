@@ -21,12 +21,8 @@
 ; #  Create instructions and a sample language file using the Inno Setup Translator Tool (http://www2.arnes.si/~sopjsimo/translator.html)
 ; #  Seier will need to apply this {#AppVersion} directive to all localizations:
 ;        English.SetupAppTitle=Setup - WinMerge {#AppVersion}
-; #  Get "Read Me.rtf" translated into 18 other languages
 ;
 ; Bugs & Other Priority Items:
-; #  Component: "Languages" still needs to be localized
-; #  Get All Inno Setup .ISLs localized
-; #  Get All Inno Setup CustomMessages Localized
 ; #  Add the Windows Scripting Host if the user chooses the plugins (*.SCT)
 ; #  UnpackDFM.dll requires ADVAPI32.dll, we'll have to bundle IE or at least display a warning :).  Also figure out if Delphi 4+ /Free Pascal wouldn't
 ;    install this to begin with
@@ -35,7 +31,6 @@
 ; #  Add WinMerge to the user's path so they can execute comparison's from a Dos Prompt (Cmd.exe/Command.exe)
 ; #  We need to unregister, and delete the ShellExtension Dll if the user doesn't want it, during installation
 ; #  When Explorer.exe is restarted we should record what windows were present before hand and restore them afterwards.
-; #  Figure out how TortoiseCVS got Inno Setup to do the tree view, by using the CVS and checking out their code
 
 ; #  Display integration options in gray rather than hiding them if the user doesn't have the application in question installed
 ; #  Put Plugins.txt in docs and shortcut to it in \Plugins
@@ -45,9 +40,10 @@
 ; #  Write code to detect "\Programs\WinMerge\WinMerge" type start menu installs
 ;
 ; #  Application Integration:
-; #  We need to backup the previously integrated viewer in TortoiseCVS, at uninstallation ([UninstallRun] Regedit -S Tortoise.reg) or when the user deselects it this will need to be uninstalled
+; #  We need to backup the previously integrated viewer in TortoiseCVS, at uninstallation ([UninstallRun] Regedit -S Tortoise.reg)
+;    or when the user deselects it this will need to be uninstalled
 ; #  Automatically detect and configure WinMerge to work with Visual Source Safe
-; #  We need to add support for Tortoises' SubVersion program mimicing our support settings for TortoiseCVS if possible
+; #  We need to add support for Tortoises' SubVersion program mimicking our support settings for TortoiseCVS if possible
 ; #  If the user happens to have Syn Text Editor installed then we'll make that the default text editor rather than notepad.
 ; #  If the user has ultra-edit installed then offer to use it as the text editor
 ; #  If the user has Aedix installed then offer to use it as the text editor
@@ -61,7 +57,7 @@
 ; Things that make the user's life easier:
 ; #  Evaluate current default settings in WinMerge and bug those that don't make sense
 ; #  Create instructions and a sample language file using the Inno Setup Translator Tool (http://www2.arnes.si/~sopjsimo/translator.html)
-; #  Add WinMerge is running would you like to close it now support with programmatic termination
+; #  Add "WinMerge is running would you like to close it now?" support with programmatic termination
 ;     -Note: We'll need to add a declares statement to our ISX code so that we can use FindWindowEx directly or a mutex search or two
 ; #  Evaluate current default settings in WinMerge and bug those that don't make sense
 ; #  Rather than requiring users to restart we could just kill all intances of Explorer.exe, but we'll need to prompt the user first and restart it
@@ -71,7 +67,7 @@
 ; #  Add a Desktop.ini file to our \Program Files\WinMerge folder
 ;    Warn users about the reprocussions for enhancing their folder icon.  Or figure out how to keep these folders visible at a command-prompt.
 ; #  Make an uninstall icon and use it: UninstallIconFile=..\src\res\Merge.ico
-; #  Make a Floppy Disk /Low Bandwidth Edition of the WinMerge Installer that doesn't include outdated (3.11, 3.12) 7-Zip Support or the Language files
+; #  Make a Floppy Disk /Low Bandwidth Edition of the WinMerge Installer that doesn't include outdated 7-Zip Support (3.11, 3.12) or the Language files
 ;     If the user requires any of these we'll download it on the fly.  (maybe that should be the default behavior from the get go?)
 ; #  See about getting a higher resolution copy of the Users's Guide.ico source art from somebody (A 32x32, and or 48x48 would be nice)
 ; #  Create a switch for the installer to unzip all of the included binaries as if it were a zip file.
@@ -81,7 +77,7 @@
 ;      3.  Users's Guide
 ;      4.  WinMerge on the Web
 ;      5.  Uninstall WinMerge
-; #  Create the ability to install to and update two start menu groups simultaneously
+; #  Create the ability to install to two start menu groups simultaneously
 ;
 ; Misc
 ; #  Determine whether NT 3.51 with a 3.0 or higher version of IE can run our application I don't want the system requirements
@@ -89,10 +85,6 @@
 ;
 ; Not yet possible (Limited by Inno Setup):
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
-
-;
-; Ask in the Inno Setup Newsgroup:
-; #  Perry wanted a Select All button to appear on the components page.  Let's just ask Jordan Russell or Martijn Laan if they'll do it :).
 
 #define AppVersion GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe"), 1, 5)
