@@ -435,14 +435,27 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 		|| (inf[1].desc>0 && FileIsBinary(inf[1].desc)));
 	if (bBinary)
 	{
-	    if (inf[0].stat.st_size != inf[1].stat.st_size
+		// close open file handles
+	    if (inf[0].desc >= 0 && close (inf[0].desc) != 0)
+	    {
+		perror_with_name (inf[0].name);
+		val = 2;
+	    }
+	    if (inf[1].desc >= 0 && inf[0].desc != inf[1].desc
+		&& close (inf[1].desc) != 0)
+	    {
+		perror_with_name (inf[1].name);
+		val = 2;
+	    }
+
+		if (inf[0].stat.st_size != inf[1].stat.st_size
 		|| inf[0].stat.st_mtime != inf[1].stat.st_mtime)
 	    {
 		val = 1;
 		pCtx->AddDiff(name0, dir0, dir1, FILE_BINDIFF);
 		    if (gWriteLog) gLog.Write(_T("\tbinary.\r\n"));
 	    }
-	    else
+	    else if(val==2)
 	    {
 		pCtx->AddDiff(name0, dir0, dir1, FILE_ERROR);
 		if (gWriteLog) gLog.Write(_T("\t%s.\r\n"), val==2? "error":"different");
