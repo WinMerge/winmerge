@@ -1,3 +1,8 @@
+2004-04-18 Kimmo
+ PATCH: [ 934738 ] CopyLeftTo/CopyRightTo Including Common Subdirectories
+  Submitted by Ben (?) - some modifications by Kimmo
+  Src: DirActions.cpp
+  
 2004-04-17 Kimmo
  PATCH: [ 910557 ] Location Bar
   Submitted by Vincent Osele

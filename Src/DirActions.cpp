@@ -210,6 +210,9 @@ void CDirView::DoDelBoth()
 
 /**
  * @brief Copy selected left-side files to user-specified directory
+ *
+ * When copying files from recursive compare file subdirectory is also
+ * read so directory structure is preserved.
  * @note CShellFileOp takes care of much of error handling
  */
 void CDirView::DoCopyLeftTo()
@@ -224,7 +227,8 @@ void CDirView::DoCopyLeftTo()
 		return;
 
 	fileOp.SetOperationFlags(FO_COPY, this, FOF_NOCONFIRMMKDIR);
-	fileOp.AddDestFile(destPath);
+	if (!GetDocument()->GetRecursive())
+		fileOp.AddDestFile(destPath);
 
 	int sel = -1;
 	CString slFile, srFile;
@@ -234,6 +238,15 @@ void CDirView::DoCopyLeftTo()
 
 		if (IsItemCopyableToOnLeft(di))
 		{
+			if (GetDocument()->GetRecursive())
+			{
+				CString sFullDest(destPath);
+				sFullDest += _T("\\");
+				if (!di.sSubdir.IsEmpty())
+					sFullDest += di.sSubdir + _T("\\");
+				sFullDest += di.sfilename;
+				fileOp.AddDestFile(sFullDest);
+			}
 			GetItemFileNames(sel, slFile, srFile);
 			fileOp.AddSourceFile(slFile);
 		}
@@ -248,6 +261,9 @@ void CDirView::DoCopyLeftTo()
 
 /**
  * @brief Copy selected righ-side files to user-specified directory
+ *
+ * When copying files from recursive compare file subdirectory is also
+ * read so directory structure is preserved.
  * @note CShellFileOp takes care of much of error handling
  */
 void CDirView::DoCopyRightTo()
@@ -262,7 +278,8 @@ void CDirView::DoCopyRightTo()
 		return;
 
 	fileOp.SetOperationFlags(FO_COPY, this, FOF_NOCONFIRMMKDIR);
-	fileOp.AddDestFile(destPath);
+	if (!GetDocument()->GetRecursive())
+		fileOp.AddDestFile(destPath);
 
 	int sel = -1;
 	CString slFile, srFile;
@@ -272,6 +289,15 @@ void CDirView::DoCopyRightTo()
 
 		if (IsItemCopyableToOnRight(di))
 		{
+			if (GetDocument()->GetRecursive())
+			{
+				CString sFullDest(destPath);
+				sFullDest += _T("\\");
+				if (!di.sSubdir.IsEmpty())
+					sFullDest += di.sSubdir + _T("\\");
+				sFullDest += di.sfilename;
+				fileOp.AddDestFile(sFullDest);
+			}
 			GetItemFileNames(sel, slFile, srFile);
 			fileOp.AddSourceFile(srFile);
 		}
