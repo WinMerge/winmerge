@@ -30,6 +30,7 @@
 #include "Merge.h"
 
 #include <direct.h>
+#include <mlang.h>
 #include "MainFrm.h"
 #include "DirFrame.h"		// Include type information
 #include "ChildFrm.h"
