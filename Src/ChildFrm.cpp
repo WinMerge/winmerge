@@ -25,7 +25,6 @@
 #include "Merge.h"
 
 #include "ChildFrm.h"
-#include "DiffView.h"
 #include "MainFrm.h"
 #include "MergeEditView.h"
 

@@ -26,7 +26,6 @@
 #include "direct.h"
 
 #include "MainFrm.h"
-#include "DiffView.h"
 
 #include "diff.h"
 #include "getopt.h"
@@ -90,7 +89,7 @@ void CMergeDoc::DeleteContents ()
   CleanupTempFiles();
 }
 
-void CMergeDoc::OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName)
+void CMergeDoc::OnFileEvent (WPARAM /*wEvent*/, LPCTSTR /*pszPathName*/)
 {
   /*if (!(theApp.m_dwFlags & EP_NOTIFY_CHANGES))
     return;

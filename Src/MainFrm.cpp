@@ -27,7 +27,6 @@
 #include <direct.h>
 #include "MainFrm.h"
 #include "ChildFrm.h"
-#include "DiffView.h"
 #include "DirView.h"
 #include "DirDoc.h"
 #include "OpenDlg.h"

@@ -29,7 +29,6 @@
 #include "DirFrame.h"
 #include "MergeDoc.h"
 #include "DirDoc.h"
-#include "DiffView.h"
 #include "DirView.h"
 #include "Splash.h"
 #include "version.h"

@@ -535,7 +535,7 @@ void CMergeEditView::OnAllLeft()
 	
 }
 
-void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI) 
+void CMergeEditView::OnUpdateAllLeft(CCmdUI* /*pCmdUI*/) 
 {
 	// TODO: Add your command update UI handler code here
 	
@@ -547,7 +547,7 @@ void CMergeEditView::OnAllRight()
 	
 }
 
-void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI) 
+void CMergeEditView::OnUpdateAllRight(CCmdUI* /*pCmdUI*/) 
 {
 	// TODO: Add your command update UI handler code here
 	
@@ -616,7 +616,7 @@ void CMergeEditView::OnEditUndo()
 	
 }
 
-void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI) 
+void CMergeEditView::OnUpdateEditUndo(CCmdUI* /*pCmdUI*/) 
 {
 	// TODO: Add your command update UI handler code here
 	
