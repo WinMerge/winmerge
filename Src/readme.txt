@@ -1,3 +1,8 @@
+2004-03-14 Kimmo
+ RFE [ 897975 ] Syntax highlighting for INI files
+  Color "[...]"
+  Src/editlib: ini.cpp
+
 2004-03-13 Kimmo
  Add User Manual draft to CVS
   Docs/Users/Manual: *.*

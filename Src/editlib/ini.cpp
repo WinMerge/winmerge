@@ -1,9 +1,10 @@
 ///////////////////////////////////////////////////////////////////////////
 //  File:    ini.cpp
-//  Version: 1.1.0.4
-//  Updated: 19-Jul-1998
+//  Version: 1.1.
+//  Updated: 14-Mar-2004
 //
-//  Copyright:  Ferdinand Prantl, portions by Stcherbatchenko Andrei
+//  Copyright:  Ferdinand Prantl, portions by Stcherbatchenko Andrei,
+//              Tim Gerundt, Kimmo Varis
 //  E-mail:     prantl@ff.cuni.cz
 //
 //  INI syntax highlighing definition
@@ -22,33 +23,6 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-
-//  C++ keywords (MSVC5.0 + POET5.0)
-static LPTSTR s_apszIniKeywordList[] =
-  {
-    _T ("["),
-    _T ("]"),
-    _T ("="),
-    NULL
-  };
-
-static BOOL
-IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != NULL; L++)
-    {
-      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return TRUE;
-    }
-  return FALSE;
-}
-
-static BOOL
-IsIniKeyword (LPCTSTR pszChars, int nLength)
-{
-  return IsXKeyword (s_apszIniKeywordList, pszChars, nLength);
-}
 
 static BOOL
 IsIniNumber (LPCTSTR pszChars, int nLength)
@@ -91,6 +65,7 @@ if (pBuf != NULL)\
 #define COOKIE_EXT_COMMENT      0x0004
 #define COOKIE_STRING           0x0008
 #define COOKIE_CHAR             0x0010
+#define COOKIE_SECTION          0x0020
 
 DWORD CCrystalTextView::
 ParseLineIni (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
@@ -118,6 +93,10 @@ ParseLineIni (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItem
           else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_STRING);
+            }
+          else if (dwCookie & COOKIE_SECTION)
+            {
+              DEFINE_BLOCK (nPos, COLORINDEX_FUNCNAME);
             }
           else
             {
@@ -170,6 +149,16 @@ out:
           continue;
         }
 
+      // Section header [...]
+      if (dwCookie & COOKIE_SECTION)
+        {
+          if (pszChars[I] == ']' && (I == 0 || I == 1 && pszChars[I - 1] != '\\' || I >= 2 && (pszChars[I - 1] != '\\' || pszChars[I - 1] == '\\' && pszChars[I - 2] == '\\')))
+            {
+              dwCookie &= ~COOKIE_SECTION;
+              bRedefineBlock = TRUE;
+            }
+          continue;
+        }
       if (pszChars[I] == ';')
         {
           DEFINE_BLOCK (I, COLORINDEX_COMMENT);
@@ -195,6 +184,17 @@ out:
             }
         }
 
+      // Section header [...]
+      if (pszChars[I] == '[')
+        {
+          if (!I || !xisalnum (pszChars[I - 1]))
+            {
+              DEFINE_BLOCK (I, COLORINDEX_FUNCNAME);
+              dwCookie |= COOKIE_SECTION;
+              continue;
+            }
+        }
+
       if (bFirstChar)
         {
           if (!_istspace (pszChars[I]))
@@ -214,11 +214,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              if (IsIniKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-                }
-              else if (IsIniNumber (pszChars + nIdentBegin, I - nIdentBegin))
+              if (IsIniNumber (pszChars + nIdentBegin, I - nIdentBegin))
                 {
                   DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
                 }
@@ -251,11 +247,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      if (IsIniKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-        }
-      else if (IsIniNumber (pszChars + nIdentBegin, I - nIdentBegin))
+      if (IsIniNumber (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
         }
