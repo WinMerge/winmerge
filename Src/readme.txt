@@ -1,3 +1,7 @@
+2005-02-23 Kimmo
+ PATCH: [ 1149081 ] Invalid string compare in CChildFrm.cpp
+  Src: ChildFrm.cpp
+
 2005-02-22 Kimmo
  PATCH: [ 1145522 ] fix crash on search
   Submitted by Takashi Sawanaka
