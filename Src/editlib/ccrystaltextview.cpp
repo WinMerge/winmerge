@@ -1566,7 +1566,7 @@ OnDraw (CDC * pdc)
   PrepareSelBounds ();
 
   // if the private arrays (m_pdwParseCookies and m_pnActualLineLength) 
-  // are defined, check they are in phase wih the text buffer
+  // are defined, check they are in phase with the text buffer
   // as the access to these arrays is not protected (simple arrays not CArray) 
   if (m_pdwParseCookies != NULL)
     ASSERT(m_nParseArraySize == nLineCount);
