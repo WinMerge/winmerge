@@ -1,0 +1,1437 @@
+//Microsoft Developer Studio generated resource script.
+//
+// $Id:
+
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Catalan resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CAT)
+#ifdef _WIN32
+LANGUAGE LANG_CATALAN, SUBLANG_DEFAULT
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CAT)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_CATALAN, SUBLANG_DEFAULT\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Merge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Merge.ico"
+IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_POPUP_DIFFVIEW MENU DISCARDABLE 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Copia &a l'altra banda",      ID_POPUP_COPYTOOTHERSIDE
+        MENUITEM "Copia &de l'altra banda",     ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM SEPARATOR
+        MENUITEM "Copia &totes les diferències a l'altra banda...", 
+                                                ID_POPUP_COPYALLDIFFSTOOTHERSIDE
+        MENUITEM "Copia t&otes les diferències de l'altra banda...", 
+                                                ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+        MENUITEM SEPARATOR
+        MENUITEM "&Desfés",                     ID_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "De&sa els canvis...",         ID_POPUP_SAVE
+    END
+END
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&Fitxer"
+    BEGIN
+        MENUITEM "&Obre...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Desa\tCtrl+S",               ID_FILE_SAVE
+        POPUP "Desa l'&Esquerra"
+        BEGIN
+            MENUITEM "&Desa",                       ID_FILE_SAVE_LEFT
+            MENUITEM "&Anomena i desa...",          ID_FILE_SAVEAS_LEFT
+        END
+        POPUP "Desa la D&reta"
+        BEGIN
+            MENUITEM "&Desa",                       ID_FILE_SAVE_RIGHT
+            MENUITEM "&Anomena i desa...",          ID_FILE_SAVEAS_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Fes l'es&querra només de lectura", ID_FILE_LEFT_READONLY
+        MENUITEM "Fes la dre&ta només de lectura", ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        POPUP "&Formata per a"
+        BEGIN
+            MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
+            MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
+            MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Surt\tEsc",                  ID_APP_EXIT
+    END
+    POPUP "E&dita"
+    BEGIN
+        MENUITEM "&Desfés\tCtrl+Z",             ID_EDIT_UNDO
+        MENUITEM "Re&fés\tCtrl+Y",              ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "&Retalla\tCtrl+X",            ID_EDIT_CUT
+        MENUITEM "C&opia\tCtrl+C",              ID_EDIT_COPY
+        MENUITEM "Engan&xa\tCtrl+V",            ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "R&essalta les diferències de línia\tF4", ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Cerca...\tCtrl+F",           ID_EDIT_FIND
+        MENUITEM "Subst&itueix...\tCtrl+H",     ID_EDIT_REPLACE
+        MENUITEM SEPARATOR
+        MENUITEM "&Opcions...",                 ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "Actualit&za\tF5",             ID_REFRESH
+    END
+    POPUP "&Visualització"
+    BEGIN
+        MENUITEM "Mostra els fitxers &idèntics", ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Mostra els fitxers di&ferents", ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Mostra els fitxers existents únicament a l'&esquerra", ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Mostra els fitxers existents únicament a la &dreta", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Mostra els fitxers &binaris", ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Mostra els fitxers &omesos",  ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Amaga els fitxers *.BA&K",    ID_HIDE_BACKUP_FILES
+        MENUITEM SEPARATOR
+        MENUITEM "&Tipus de lletra...",         ID_VIEW_SELECTFONT
+        MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "Mostra els es&pais",          ID_VIEW_WHITESPACE
+        MENUITEM SEPARATOR
+        MENUITEM "Barra d'ei&nes",              ID_VIEW_TOOLBAR
+        MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
+        MENUITEM "Subfinest&ra de diferències", ID_VIEW_DETAIL_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
+    END
+    POPUP "F&usió"
+    BEGIN
+        MENUITEM "&Propera diferència\tAlt+Down", ID_NEXTDIFF
+        MENUITEM "Diferència a&nterior\tAlt+Up", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Pri&mera diferència\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "Diferència &actual\tAlt+Enter", ID_CURDIFF
+        MENUITEM "Da&rrera diferència\tAlt+End", ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Copia a la &dreta\tAlt+Right", ID_L2R
+        MENUITEM "Copia a l'&esquerra\tAlt+Left", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Copia a la dreta i avança\tAlt+Ctrl+Right", ID_R2LNEXT
+        MENUITEM "Copia a l'esquerra i avança\tAlt+Ctrl+Left", ID_L2RNEXT
+        MENUITEM SEPARATOR
+        MENUITEM "Copia-ho tot a la dreta",     ID_ALL_RIGHT
+        MENUITEM "Copia-ho tot a l'esquerra",   ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "Copia les diferències de la selecció esquerra a la dreta", ID_MULTIPLE_RIGHT
+        MENUITEM "Copia les diferències de la selecció dreta a l'esquerra", ID_MULTIPLE_LEFT
+    END
+    POPUP "&Eines"
+    BEGIN
+        MENUITEM "&Personalitza les columnes...", ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Genera un fitxer de diferències...", ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "Fi&nestra"
+    BEGIN
+        MENUITEM "&Tanca",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Finestres en mosaic &horitzontal", ID_WINDOW_TILE_HORZ
+        MENUITEM "Finestres en mosaic &vertical", ID_WINDOW_TILE_VERT
+        MENUITEM "Finestres en &cascada",       ID_WINDOW_CASCADE
+    END
+    POPUP "&Ajuda"
+    BEGIN
+        MENUITEM "&Temes de l'ajuda...",        ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "&Llicència Pública General de GNU...", ID_HELP_GNULICENSE
+        MENUITEM "&Quant al WinMerge...",       ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_DIRVIEW MENU 
+BEGIN
+    POPUP "_ITEM_POPUP_"
+    BEGIN
+        MENUITEM "Copia el fitxer a l'&esquerra", ID_DIR_COPY_FILE_TO_LEFT
+        MENUITEM "Copia el fitxer a la &dreta", ID_DIR_COPY_FILE_TO_RIGHT
+        MENUITEM "S&uprimeix de l'esquerra",    ID_DIR_DEL_LEFT
+        MENUITEM "Su&primeix de la dreta",      ID_DIR_DEL_RIGHT
+        MENUITEM "Suprimeix d'&ambdues bandes", ID_DIR_DEL_BOTH
+        MENUITEM SEPARATOR
+        MENUITEM "Obre el fitxer de l'e&squerra", ID_DIR_OPEN_LEFT
+        MENUITEM "Obre el fitxer de l'es&querra amb...", ID_DIR_OPEN_LEFT_WITH
+        MENUITEM "Obre el fitxer de la d&reta", ID_DIR_OPEN_RIGHT
+        MENUITEM "Obre el fitxer de la dre&ta amb...", ID_DIR_OPEN_RIGHT_WITH
+    END
+    POPUP "_HDR_POPUP_"
+    BEGIN
+        MENUITEM "&Edita les columnes",         ID_EDIT_COLUMNS
+    END
+END
+
+IDR_POPUP_EDITOR_HEADERBAR MENU 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Copia el camí sencer al fitxer", ID_EDITOR_COPY_PATH
+        MENUITEM "C&opia el nom del fitxer",    ID_EDITOR_COPY_FILENAME
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
+    VK_F3,          ID_EDIT_FIND_PREVIOUS,  VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
+    VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_LEFT,        ID_R2L,                 VIRTKEY, ALT, NOINVERT
+    VK_LEFT,        ID_R2LNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
+    VK_RETURN,      ID_CURDIFF,             VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
+    VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 122
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Quant al WinMerge"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "D'acord",IDOK,184,7,32,14,WS_GROUP
+    LTEXT           "Versió 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
+    LTEXT           "(Muntatge Privat)",IDC_PRIVATEBUILD,63,33,153,8
+    LTEXT           "Tots els drets reservats.",IDC_STATIC,7,60,170,8
+    LTEXT           "Visiteu la plana web de WinMerge!",IDC_WWW,7,107,209,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
+    LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
+    LTEXT           "Syntax Highlighting Edit View by Andrei Stcherbatchenko ",
+                    IDC_STATIC,7,71,209,8
+    LTEXT           "Various Syntaxes by Ferdinand Prantl",IDC_STATIC,7,81,
+                    209,8
+END
+
+IDD_OPEN DIALOGEX 0, 0, 352, 97
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Tria de fitxers o directoris..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "&Esquerra:",IDC_STATIC,16,24,37,8
+    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
+    PUSHBUTTON      "&Navega...",IDC_LEFT_BUTTON,241,22,38,12
+    LTEXT           "&Dreta:",IDC_STATIC,16,40,37,8
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
+    PUSHBUTTON      "Navega...",IDC_RIGHT_BUTTON,241,38,38,12
+    LTEXT           "E&xtensions:",IDC_STATIC,16,56,37,8
+    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Re&cursiu",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,56,77,48,10
+    DEFPUSHBUTTON   "D'acord",IDOK,295,11,50,14
+    PUSHBUTTON      "Anul·la",IDCANCEL,295,28,50,14
+    GROUPBOX        "Fitxers o directoris a comparar",IDC_FILES_DIRS_GROUP,7,
+                    7,279,83
+END
+
+IDD_VSS DIALOGEX 0, 0, 257, 159
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Visual SourceSafe"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
+    LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
+    DEFPUSHBUTTON   "Extreu",IDOK,47,132,62,14
+    PUSHBUTTON      "Anul·la",IDCANCEL,187,132,62,14
+    PUSHBUTTON      "Anomena i desa...",IDSAVEAS,116,132,62,14
+    LTEXT           "Projecte:",IDC_STATIC,9,81,27,8
+    COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Usuari:",IDC_STATIC,9,99,27,8
+    EDITTEXT        IDC_USER,48,96,58,14,ES_AUTOHSCROLL
+    LTEXT           "Contrasenya:",IDC_STATIC,117,99,42,8
+    EDITTEXT        IDC_PASSWORD,162,96,70,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Base de dades:",IDC_STATIC,9,62,29,16
+    COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Aplica a tots els elements",IDC_MULTI_CHECKOUT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,48,117,95,8
+    CONTROL         "Enllaça amb el projecte de destinació del VSS",IDC_VCPROJ_SYNC,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,158,113,93,14
+END
+
+IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Sistema de control de versions"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Ajustos",IDC_STATIC,7,7,245,54
+    LTEXT           "&Camí al cleartool.exe:",IDC_VSS_L1,16,42,68,8
+    EDITTEXT        IDC_PATH_EDIT,85,40,116,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Navega...",IDC_BROWSE_BUTTON,206,40,42,12
+    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Sistema de control de &versions",IDC_STATIC,16,19,60,16
+END
+
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 299, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "General"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Ajustos",IDC_STATIC,7,7,285,94
+    CONTROL         "&Guarda còpia del fitxer original",IDC_BACKUP_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,19,125,10
+    CONTROL         "Desplaça automàticament fins la primera diferència",
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    17,30,211,10
+    CONTROL         "Ignora les línies en blanc",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,108,10
+    CONTROL         "Ignora majúscules/minúscules",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,108,10
+    CONTROL         "&Inhabilita la pantalla de benvinguda",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,127,10
+    CONTROL         "&Re-explora automàticament",IDC_AUTOMRESCAN_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,74,108,10
+    CONTROL         "Permet la barreja de tipus de marques de final de línia",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,17,82,108,16
+    CONTROL         "Compara els espais",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,149,45,82,10
+    CONTROL         "Compara la marca de final de línia",IDC_EOL_SENSITIVE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,161,56,124,10
+    CONTROL         "Ignora els canvis en els espais",IDC_WHITE_CHANGE,
+                    "Button",BS_AUTORADIOBUTTON,149,67,111,10
+    CONTROL         "Ignora tots els espais",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,149,78,83,10
+    GROUPBOX        "Tabulacions",IDC_STATIC,7,105,285,30,WS_GROUP
+    LTEXT           "&Tamany de les tabulacions:",IDC_STATIC,15,119,30,8
+    EDITTEXT        IDC_TAB_EDIT,47,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
+    CONTROL         "Insereix &tabulacions",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,79,113,85,10
+    CONTROL         "I&nsereix espais",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,79,122,59,10
+END
+
+IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Idioma"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "D'acord",IDOK,154,16,52,14
+    PUSHBUTTON      "Anul·la",IDCANCEL,154,33,52,14
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Idiomes disponibles:",IDC_STATIC,7,7,66,8
+END
+
+IDD_EDIT_FIND DIALOG FIXED IMPURE  30, 73, 236, 68
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Cerca"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    COMBOBOX        IDC_EDIT_FINDTEXT,41,6,135,138,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "N&omés paraules senceres",IDC_EDIT_WHOLE_WORD,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
+    CONTROL         "&Distingeix entre majúscules i minúscules",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,4,37,96,18
+    CONTROL         "&Expressió regular",IDC_EDIT_REGEXP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,54,77,12
+    CONTROL         "A&munt",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,111,36,35,12
+    CONTROL         "A&vall",IDC_EDIT_DIRECTION_DOWN,"Button",
+                    BS_AUTORADIOBUTTON,111,48,35,12
+    DEFPUSHBUTTON   "&Següent",IDOK,182,5,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel·la",IDCANCEL,182,23,50,14
+    LTEXT           "&Cerca:",IDC_STATIC,4,8,36,8
+    GROUPBOX        "Direcció",IDC_STATIC,107,26,68,38,WS_GROUP
+END
+
+IDD_EDIT_REPLACE DIALOG FIXED IMPURE  36, 44, 243, 89
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Substitueix"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "N&omés paraules senceres",IDC_EDIT_WHOLE_WORD,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,96,12
+    CONTROL         "&Distingeix entre majúscules i minúscules",
+                    IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | 
+                    BS_MULTILINE | WS_TABSTOP,5,58,94,16
+    CONTROL         "&Expressió regular",IDC_EDIT_REGEXP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,74,77,12
+    CONTROL         "&Selecció",IDC_EDIT_SCOPE_SELECTION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,107,57,58,10
+    CONTROL         "Fitxer sencer",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
+                    BS_AUTORADIOBUTTON,107,70,58,10
+    DEFPUSHBUTTON   "&Següent",IDC_EDIT_SKIP,174,4,63,14,WS_GROUP
+    PUSHBUTTON      "S&ubstitueix-ho",IDC_EDIT_REPLACE,174,21,63,14
+    PUSHBUTTON      "Su&bstitueix-ho tot",IDC_EDIT_REPLACE_ALL,174,38,63,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,174,55,63,14
+    LTEXT           "&Cerca:",IDC_STATIC,4,9,48,8
+    LTEXT           "Substitueix-ho p&er:",IDC_STATIC,4,22,48,17
+    GROUPBOX        "Substitueix a",IDC_STATIC,103,46,65,39,WS_GROUP
+END
+
+IDD_CLEARCASE DIALOG DISCARDABLE  0, 0, 279, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Rational Clearcase"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Extreu",IDOK,27,90,67,14
+    PUSHBUTTON      "Anul·la",IDCANCEL,186,90,67,14
+    PUSHBUTTON      "Anomena i desa...",IDSAVEAS,106,90,67,14
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Comentaris",IDC_STATIC,18,7,38,10
+END
+
+IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Ressaltat"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Ressalta la sintaxi",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,166,10
+END
+
+IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Filtre"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Ignora les línies coincidents amb el següents patrons",
+                    IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    7,221,15
+    LTEXT           "Expressions regulars (una per línia):",IDC_STATIC,7,28,
+                    221,8
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+    LTEXT           "Filtre de fitxer:",IDC_STATIC,7,128,60,10
+    COMBOBOX        IDC_FILE_FILTER,73,126,117,63,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Edita",IDC_EDIT_FILE_FILTER,194,126,34,13,WS_DISABLED
+END
+
+IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Colors"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Diferència:",IDC_STATIC,17,29,79,8
+    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,98,29,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    LTEXT           "Diferència seleccionada:",IDC_STATIC,17,49,79,8
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,98,49,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    LTEXT           "Fons",IDC_STATIC,98,15,16,8
+    LTEXT           "Línia absent",IDC_STATIC,140,15,20,8
+    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,141,49,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,184,29,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    LTEXT           "Text",IDC_STATIC,184,15,15,8
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    LTEXT           "Diferència ignorada:",IDC_STATIC,17,69,79,8
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,141,69,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+END
+
+IDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Diàleg"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "D'acord",IDOK,106,136,50,14
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | 
+                    WS_VSCROLL
+END
+
+IDD_PROPPAGE_REGISTRY DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Registre"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "&Afegeix menú contextual a l'explorador del Windows",IDC_EXPLORER_CONTEXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,222,10
+    EDITTEXT        IDC_WINMERGE_PATH,7,19,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Navega...",IDC_WINMERGE_PATH_BROWSE,180,19,50,14
+    PUSHBUTTON      "&Desa el camí",IDC_WINMERGE_PATH_SAVE,7,36,50,14
+END
+
+IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 259, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Generador de fitxer de diferències"
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_DIFF_FILE1,37,7,158,93,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Navega...",IDC_DIFF_BROWSE_FILE1,202,7,50,14
+    COMBOBOX        IDC_DIFF_FILE2,37,24,158,96,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Navega...",IDC_DIFF_BROWSE_FILE2,202,24,50,14
+    COMBOBOX        IDC_DIFF_FILERESULT,37,45,158,96,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Navega...",IDC_DIFF_BROWSE_RESULT,202,45,50,14
+    CONTROL         "Afegeix al final del fitxer existent",IDC_DIFF_APPENDFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,37,61,115,10
+    COMBOBOX        IDC_DIFF_STYLE,44,85,48,68,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_DIFF_CONTEXT,44,101,48,65,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Distingeix entre majúscules i minúscules",IDC_DIFF_CASESENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,120,94,20
+    CONTROL         "Compara",IDC_DIFF_WHITESPACE_COMPARE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,113,85,44,10
+    CONTROL         "Ignora els canvis",IDC_DIFF_WHITESPACE_IGNORE,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,113,97,80,10
+    CONTROL         "Ignora'ls tots",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,113,109,55,10
+    CONTROL         "Ignora les línies en blanc",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,122,130,10
+    DEFPUSHBUTTON   "D'acord",IDOK,148,141,50,14
+    PUSHBUTTON      "Anul·la",IDCANCEL,202,141,50,14
+    LTEXT           "Fitxer 1:",IDC_STATIC,7,10,26,8
+    LTEXT           "Fitxer 2:",IDC_STATIC,7,27,26,8
+    LTEXT           "Resultat:",IDC_STATIC,7,48,29,8
+    LTEXT           "Estil:",IDC_STATIC,13,88,16,8
+    LTEXT           "Context:",IDC_STATIC,13,102,27,8
+    GROUPBOX        "Espais",IDC_STATIC,107,74,144,62
+    GROUPBOX        "Format",IDC_STATIC,7,74,94,46
+END
+
+IDD_EDITOR_HEADERBAR DIALOGEX 0, 0, 373, 12
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_STATIC_TITLE_LEFT,0,2,160,12,ES_AUTOHSCROLL | 
+                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
+                    WS_TABSTOP,WS_EX_STATICEDGE
+    EDITTEXT        IDC_STATIC_TITLE_RIGHT,163,2,160,12,ES_AUTOHSCROLL | 
+                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
+                    WS_TABSTOP,WS_EX_STATICEDGE
+END
+
+IDD_DIRCOLS DIALOG DISCARDABLE  0, 0, 283, 143
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Visualització de columnes"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "D'acord",IDOK,141,119,50,14
+    PUSHBUTTON      "Anul·la",IDCANCEL,81,119,50,14
+    GROUPBOX        "Mostra les columnes",IDC_GROUP_SHOW,7,7,124,100
+    LISTBOX         IDC_LIST_SHOW,55,20,66,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "A&munt",IDC_UP,15,33,29,13
+    PUSHBUTTON      "A&vall",IDC_DOWN,15,57,29,13
+    GROUPBOX        "Amaga les columnes",IDC_GROUP_HIDE,181,7,85,103
+    LISTBOX         IDC_LIST_HIDE,192,20,66,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "<<",IDC_ADD,141,31,29,11
+    PUSHBUTTON      ">>",IDC_REMOVE,141,66,29,11
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x9L
+#else
+ FILEFLAGS 0x8L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040304b0"
+        BEGIN
+            VALUE "Comments", "Traducció al català per Jordi Vilar\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "Applicació WinMerge\0"
+            VALUE "FileVersion", "000.000.000.000\0"
+            VALUE "InternalName", "WinMerge\0"
+            VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "WinMerge.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "WinMerge\0"
+            VALUE "ProductVersion", "000.000.000.000\0"
+            VALUE "SpecialBuild", "\0"
+        END
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "Catalan translation by Jordi Vilar\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "WinMerge Application\0"
+            VALUE "FileVersion", "000.000.000.000\0"
+            VALUE "InternalName", "WinMerge\0"
+            VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "WinMerge.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "WinMerge\0"
+            VALUE "ProductVersion", "000.000.000.000\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x403, 1200, 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 216
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 115
+    END
+
+    IDD_OPEN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 345
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 90
+    END
+
+    IDD_VSS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 141
+    END
+
+    IDD_PROP_VSS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        VERTGUIDE, 85
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 150
+    END
+
+    IDD_PROPPAGE_LARGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        VERTGUIDE, 125
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_CLEARCASE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 272
+        VERTGUIDE, 18
+        VERTGUIDE, 35
+        VERTGUIDE, 244
+        VERTGUIDE, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 104
+    END
+
+    IDD_PROPSYNTAX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_PROPPAGE_FILTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_PROPPAGE_COLORS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_EDITOR_HEADERBAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 366
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 4
+    END
+
+    IDD_DIRCOLS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 266
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 155
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_UNDO
+    BUTTON      ID_EDIT_REDO
+    SEPARATOR
+    BUTTON      ID_NEXTDIFF
+    BUTTON      ID_PREVDIFF
+    BUTTON      ID_LASTDIFF
+    BUTTON      ID_CURDIFF
+    BUTTON      ID_FIRSTDIFF
+    SEPARATOR
+    BUTTON      ID_L2R
+    BUTTON      ID_R2L
+    SEPARATOR
+    BUTTON      ID_L2RNEXT
+    BUTTON      ID_R2LNEXT
+    SEPARATOR
+    BUTTON      ID_OPTIONS
+    SEPARATOR
+    BUTTON      ID_ALL_RIGHT
+    BUTTON      ID_ALL_LEFT
+    SEPARATOR
+    BUTTON      ID_REFRESH
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDB_SPLASH              BITMAP  DISCARDABLE     "res\\splash1.bmp"
+IDB_LFOLDER             BITMAP  DISCARDABLE     "res\\folder1.bmp"
+IDB_EQUAL               BITMAP  DISCARDABLE     "res\\equal.bmp"
+IDB_NOTEQUAL            BITMAP  DISCARDABLE     "res\\notequal.bmp"
+IDB_RFOLDER             BITMAP  DISCARDABLE     "res\\rfolder.bmp"
+IDB_UNKNOWN             BITMAP  DISCARDABLE     "res\\unknown.bmp"
+IDB_BINARYSAME          BITMAP  DISCARDABLE     "res\\binary.bmp"
+IDB_LFILE               BITMAP  DISCARDABLE     "res\\lfile.bmp"
+IDB_RFILE               BITMAP  DISCARDABLE     "res\\rfile.bmp"
+IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
+IDB_FOLDERSKIP          BITMAP  DISCARDABLE     "res\\folderskip.bmp"
+IDB_FILESKIP            BITMAP  DISCARDABLE     "res\\fileskip.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_PROP_VSS DLGINIT
+BEGIN
+    IDC_VER_SYS, 0x403, 5, 0
+0x6f4e, 0x656e, "\000" 
+    IDC_VER_SYS, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
+0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029, 
+    IDC_VER_SYS, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
+0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029, 
+    IDC_VER_SYS, 0x403, 19, 0
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
+"\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nDocument WinMerge"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge aquest directori"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDS_VERSION_FMT         "Versió %1 - Català"
+    IDS_ALLFILES            "Tots els fitxers (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "Esteu segur que voleu copiar totes les diferències al fitxer de l'esquerra?"
+    IDS_CONFIRM_ALL_RIGHT   "Esteu segur que voleu copiar totes les diferències al fitxer de la dreta?"
+    IDS_ERRORS_TITLE        "%1 Error(s)"
+    IDS_CONFIRM_COPY2DIR    "Esteu segur que voleu copiar %1 de %2 element(s) seleccionat(s)?"
+    IDS_FONT_CHANGE         "El canvi triat de tipus de lletra no serà aplicat a totes les finestres de diferències visibles actualment."
+    IDS_DIRECTORY_WINDOW_TITLE "Resultats de la comparació dels directoris"
+    IDS_DIRECTORY_WINDOW_STATUS_FMT "Resultats per a %1 i %2"
+    IDS_FILES_ARE_DIFFERENT "Els fitxers són diferents"
+    IDS_BIN_FILES_DIFF      "Els fitxers binaris són diferents"
+    IDS_ONLY_IN_FMT         "Només a %1"
+    IDS_IDENTICAL           "Idèntics"
+    IDS_CANT_COMPARE_FILES  "No es pot comparar els fitxers"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "WinMerge"
+    AFX_IDS_IDLEMESSAGE     "Preparat"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Crea un document nou\nNou"
+    ID_FILE_OPEN            "Obre un document existent\nObrir (Ctrl+O)"
+    ID_FILE_CLOSE           "Tanca el document actiu\nTanca"
+    ID_FILE_SAVE            "Desa el document actiu\nDesa (Ctrl+S)"
+    ID_FILE_SAVE_AS         "Desa el document actiu amb un nom nou\nAnomena i desa"
+    ID_FILE_PAGE_SETUP      "Canvia les opcions d'impressió\nFormat de pàgina"
+    ID_FILE_PRINT_SETUP     "Canvia la impressora i les opcions d'impressió\nConfiguració d'impressió"
+    ID_FILE_PRINT           "Imprimeix el document actiu\nImprimeix"
+    ID_FILE_PRINT_PREVIEW   "Visualitza págines senceres\nVisualització prèvia de la impressió"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Visualitza informació del programa, número de versió i copyright\nQuant a"
+    ID_APP_EXIT             "Surt de l'aplicació i us demana que deseu els documents\nSurt"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Obre aquest document"
+    ID_FILE_MRU_FILE2       "Obre aquest document"
+    ID_FILE_MRU_FILE3       "Obre aquest document"
+    ID_FILE_MRU_FILE4       "Obre aquest document"
+    ID_FILE_MRU_FILE5       "Obre aquest document"
+    ID_FILE_MRU_FILE6       "Obre aquest document"
+    ID_FILE_MRU_FILE7       "Obre aquest document"
+    ID_FILE_MRU_FILE8       "Obre aquest document"
+    ID_FILE_MRU_FILE9       "Obre aquest document"
+    ID_FILE_MRU_FILE10      "Obre aquest document"
+    ID_FILE_MRU_FILE11      "Obre aquest document"
+    ID_FILE_MRU_FILE12      "Obre aquest document"
+    ID_FILE_MRU_FILE13      "Obre aquest document"
+    ID_FILE_MRU_FILE14      "Obre aquest document"
+    ID_FILE_MRU_FILE15      "Obre aquest document"
+    ID_FILE_MRU_FILE16      "Obre aquest document"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Canvia a la següent subfinestra\nSunfinestra següent"
+    ID_PREV_PANE            "Canvia de nou a la subfinestra anterior\nSubfinestra prèvia"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_NEW           "Obre una altra finestra per al document actiu\nFinestra nova"
+    ID_WINDOW_ARRANGE       "Organitza les icones a la part inferior de la finestra\nOrganitza les icones"
+    ID_WINDOW_CASCADE       "Organitza les finestres per a que se sobreposin\nFinestres en cascada"
+    ID_WINDOW_TILE_HORZ     "Organitza les finestres en mosaic\nFinestres en mosaic"
+    ID_WINDOW_TILE_VERT     "Organitza les finestres en mosaic\nFinestres en mosaic"
+    ID_WINDOW_SPLIT         "Divideix la finestra activa en subfinestres\nDivideix"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Suprimeix la selecció\nSuprimeix"
+    ID_EDIT_CLEAR_ALL       "Suprimeix-ho tot\nSuprimeix-ho tot"
+    ID_EDIT_COPY            "Copia els elements seleccionats al Porta-retalls\nCopia"
+    ID_EDIT_CUT             "Elimina els elements seleccionats i els copia al Porta-retalls\nRetalla"
+    ID_EDIT_FIND            "Cerca el text especificat\nCerca"
+    ID_EDIT_PASTE           "Insereix el contingut del Porta-retalls\nEnganxa"
+    ID_EDIT_REPEAT          "Repeteix la darrera acció\nRepeteix"
+    ID_EDIT_REPLACE         "Substitueix un text específic per un altre de diferent\nSubstitueix"
+    ID_EDIT_SELECT_ALL      "Selecciona el document sencer\nSelecciona-ho tot"
+    ID_EDIT_UNDO            "Desfà la darrera acció\nDesfés"
+    ID_EDIT_REDO            "Refà la darrera acció desfeta\nRefés"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Mostra o amaga la barra d'eines\nBarra d'eines"
+    ID_VIEW_STATUS_BAR      "Mostra o amaga la barra d'estat\nBarra d'estat"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Canvia la mida de la finestra"
+    AFX_IDS_SCMOVE          "Canvia la posició de la finestra"
+    AFX_IDS_SCMINIMIZE      "Redueix la finestra a una icona"
+    AFX_IDS_SCMAXIMIZE      "Engrandeix la finestra a la mida màxima"
+    AFX_IDS_SCNEXTWINDOW    "Canvia a la següent finestra de document"
+    AFX_IDS_SCPREVWINDOW    "Canvia a la finestra de document prèvia"
+    AFX_IDS_SCCLOSE         "Tanca la finestra activa i demana per desar el document"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restaura la finestra a la mida normal"
+    AFX_IDS_SCTASKLIST      "Activa la llista de tasques"
+    AFX_IDS_MDICHILD        "Activa aquesta finestra"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Tanca el mode de visualització prèvia\nTanca"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_L2R                  "Copia el text seleccionat al fitxer de la dreta\nCopia al fitxer de la dreta (Alt Dreta)"
+    ID_R2L                  "Copia el text seleccionat al fitxer de l'esquerra\nCopia al fitxer de l'esquerra (Alt Esquerra)"
+    ID_OPTIONS_SHOWIDENTICAL "Visualitza fitxers que singuin exactament idèntics"
+    ID_OPTIONS_SHOWDIFFERENT "Visualitza fitxers que tinguin diferències"
+    ID_PREVDIFF             "Desplaça fins a la diferència anterior\nDiferència anterior (Alt Amunt)"
+    ID_NEXTDIFF             "Desplaça fins a la següent diferència\nPropera diferència (Alt Avall)"
+    ID_OPTIONS_BACKUPORIGINALFILE 
+                            "Desa una còpia de l'original com a *.bak\nCòpia de seguretat"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
+                            "Desplaça automàticament a la primera diferència\nDesplaça a la primera"
+    ID_OPTIONS_IGNOREWHITESPACE "Ignora els espais en comparar fitxers"
+    ID_HIDE_BACKUP_FILES    "Amaga fitxers amb extensió bak"
+    ID_HELP_GNULICENSE      "Mostra la Llicència Pública General de GNU"
+    ID_USEVSS               "Intenta extreure fitxers només de lectura del SourceSafe"
+    ID_OPTIONS              "Especifica opcions del programa\nOpcions"
+    ID_ALL_LEFT             "Copia totes les diferènces al fitxer de l'esquerra\nTot a l'esquerra"
+    ID_ALL_RIGHT            "Copia totes les diferènces al fitxer de la dreta\nTot a la dreta"
+    ID_VIEW_SELECTFONT      "Selecciona el tipus de lletra per a les visualitzacions de diferències\nSelecciona tipus de lletra per a diferències"
+    ID_VIEW_USEDEFAULTFONT  "Recupera el tipus de lletra del sistema per a la visualització de diferències\nTipus de lletra del sistema"
+    ID_DIR_COPY_FILE_TO_LEFT "Copia el fitxer seleccionat al directori indicat"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_COPY_FILE_TO_RIGHT "Copia el fitxer seleccionat al directori indicat"
+    ID_VIEW_LANGUAGE        "Selecciona l'idioma de l'interfície d'usuari\nIdioma"
+    ID_HELP_CONTENTS        "Visualitza la Guia de l'Usuari del WinMerge\nAjuda"
+    ID_FIRSTDIFF            "Desplaça a la primera diferència\nPrimera diferència (Alt+Inici)"
+    ID_CURDIFF              "Desplaça a la diferència actual\nDiferència actual (Alt+Retorn)"
+    ID_LASTDIFF             "Desplaça a la darrera diferència\nDarrera diferència (Alt+Fi)"
+    ID_DIFFNUM              "lloc"
+    ID_DIR_DEL_LEFT         "Suprimeix els elements seleccionats a l'esquerra"
+    ID_DIR_DEL_RIGHT        "Suprimeix els elements seleccionats a la dreta"
+    ID_DIFFSTATUS           "Lloc per al compte d'estat"
+    ID_OPTIONS_SHOWUNIQUELEFT "Visualualitza els fitxers existents únicament a l'esquerra"
+    ID_OPTIONS_SHOWUNIQUERIGHT 
+                            "Visualitza els fitxers existents únicament a la dreta"
+    ID_DIR_DEL_BOTH         "Suprimeix els element(s) seleccionat(s) a ambdues bandes"
+    ID_DIR_OPEN_LEFT        "Obre el fitxer de l'esquerra"
+    ID_DIR_OPEN_LEFT_WITH   "Obre el fitxer de l'esquerra amb..."
+    ID_DIR_OPEN_RIGHT       "Obre el fitxer de la dreta"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "Obre el fitxer de la dreta amb..."
+    ID_OPTIONS_SHOWBINARIES "Visualitza els fitxers binaris"
+    ID_VIEW_WHITESPACE      "Mostra els caràcters d'espais"
+    ID_REFRESH              "Actualitza la visualització\nActualitza (F5)"
+    ID_SHOWLINEDIFF         "Ressalta les diferències a la línia actual"
+    ID_EDITOR_COPY_PATH     "Copia el camí sencer al fitxer"
+    ID_EDITOR_COPY_FILENAME "Copia el nom del fixer"
+    ID_VIEW_DETAIL_BAR      "Intercanvia la subfinestra de diferències"
+    ID_FILE_LEFT_READONLY   "Canvia l'estat de només de lectura per a l'esquerra"
+    ID_FILE_RIGHT_READONLY  "Canvia l'estat de només de lectura per a la dreta"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EOL_TO_DOS           "Converteix la marca de final de línia al mode del DOS"
+    ID_EOL_TO_UNIX          "Converteix la marca de final de línia al mode del UNIX"
+    ID_EOL_TO_MAC           "Converteix la marca de final de línia al mode del MAC"
+    ID_OPTIONS_SHOWSKIPPED  "Visualitza els fitxers omesos"
+    ID_FILE_SAVE_LEFT       "Desa el fitxer de l'esquerra"
+    ID_FILE_SAVE_RIGHT      "Desa el fitxer de la dreta"
+    ID_FILE_SAVEAS_LEFT     "Desa i anomena el fitxer de l'esquerra..."
+    ID_FILE_SAVEAS_RIGHT    "Desa i anomena el fitxer de la dreta..."
+    ID_R2LNEXT              "Copia la diferència a l'esquerra i avança a la següent\nCopia a l'esquerra i avança (Ctrl Alt Left)"
+    ID_L2RNEXT              "Copia la diferència a la dreta i avança a al següent\nCopia a la dreta i avança (Ctrl Alt Right)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SAVE_AS_TITLE       "Anomena i desa"
+    IDS_SELECT_FILES_OR_FOLDERS 
+                            "Seleccioneu o bé dos fitxers o bé dos directoris"
+    IDS_BACKUP_FAILED_PROMPT 
+                            "No es pot desar una còpia de seguretat del fitxer original.\nVoleu continuar en qualsevol cas?"
+    IDS_OPTIONS_TITLE       "Opcions"
+    IDS_OPEN_TITLE          "Obre"
+    IDS_CONFIRM_DELETE_FILE "Esteu segur que voleu suprimir el fitxer %1?"
+    IDS_EDIT_WINDOW_TITLE_FMT "Edita %1"
+    IDS_FILESSAME           "Els fitxers seleccionats són idèntics."
+    IDS_FILEUNIQUE          "El fitxer seleccionat no existeix a tots dos directories i per tant no es pot comparar."
+    IDS_FILEERROR           "S'ha produït un error en comparar els fitxers."
+    IDS_SAVEREADONLY_FMT    "El fitxer %1 està marcat com a només de lectua. Voldríeu substituir el fitxer només de lectura? (No es tracta de desar amb un nom nou.)"
+    IDS_SAVE_FMT            "Voleu desar els canvis a %1?"
+    IDS_FILEBINARY          "Els fitxers binaris no es poden comparar visualment."
+    IDS_SAVEVSS_FMT         "El fitxer %1 és marcat com només de lectura. Voleu extreure'l d'un sistema de control de versions o desar-lo amb un nom diferent?"
+    IDS_VSSERROR            "El sistema de control de versions ha retornat un error en extreure el fitxer. No es pot continuar..."
+    IDS_NOPROJECT           "Cal que especifiqueu el camí a un projecte del SourceSafe per tal de continuar (p.ex.:  $/MyProject)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_COLHDR_FILENAME     "Nom"
+    IDS_COLHDR_DIR          "Directori"
+    IDS_COLHDR_RESULT       "Resultat de la comparació"
+    IDS_FILE_COMPARISON_TITLE "Comparació de fitxers"
+    IDS_DIFF_NUMBER_STATUS_FMT "Diferència %1 de %2"
+    IDS_NO_DIFF_SEL_FMT     "S'han trobat %1 diferènces"
+    IDS_FILEISDIR           "Els fitxers de directori no es poden comparar visualment."
+    IDS_CC_CMD              "&Camí al cleartool.exe :"
+    IDS_VSS_CMD             "&Camí al SS.EXE :"
+    IDS_VSS_RUN_ERROR       "S'ha produït un error en executar una ordre del sistema de control de versions."
+    IDS_DIFF_OPEN_NO_SET_PROPS 
+                            "S'han fet modificacions a la sessió de comparació de fitxers actual i alguns ajustos poden no entrar en vigor fins que no en sigui recomençada."
+    IDS_COLHDR_LTIMEM       "Data esquerra"
+    IDS_COLHDR_RTIMEM       "Data dreta"
+    IDS_COLHDR_EXTENSION    "Extensió"
+    IDS_CONFIRM_DELETE_ITEMS 
+                            "Esteu segur que voleu suprimir %1 del(s) %2 element(s) seleccionat(s)?"
+    IDS_DEL_LEFT_FMT        "Suprimeix %1 del(s) %2 element(s) seleccionat(s) de l'esquerra"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DEL_RIGHT_FMT       "Suprimeix %1 del(s) %2 element(s) seleccionat(s) de la dreta"
+    IDS_DELETE_FILE_FAILED  "Ha fallat la supressió del fitxer %1 failed: %2"
+    IDS_CONFIRM_DELETE_DIR  "Voleu suprimir el directori %1?"
+    IDS_REMOVE_DIR_FAILED   "Ha fallat la supressió del directori: %1"
+    IDS_COPY_TO_LEFT        "Copia %1 del(s) %2 element(s) seleccionat(s) a l'esquerra"
+    IDS_DEL_BOTH_FMT        "Suprimeix %1 del(s) %2 element(s) seleccionat(s) d'ambdues bandes"
+    IDS_COPY_TO_RIGHT       "Copia %1 del(s) %2 element(s) seleccionat(s) a la dreta"
+    IDS_COLHDR_LSIZE        "Tamany esquerra"
+    IDS_DELETE_DIR_FAILED   "Ha fallat la supressió del directori %1: %s"
+    IDS_COPY_FILE_FAILED    "Ha fallat la còpia del fitxer %1: %2"
+    IDS_COPY_DIR_FAILED     "Ha fallat la còpia del directori %1: %2"
+    IDS_ERROR_FILE_WRITEABLE "Hi ha hagut un error comprovant l'escrivibilitat de la destinació"
+    IDS_ERROR_BACKUP        "Hi ha hagut un error en crear una còpia de seguretat del fitxer"
+    IDS_CONFIRM_COPY_SINGLE "Esteu segur que voleu copiar %1 a %2?"
+    IDS_CONFIRM_DELETE_SINGLE "Esteu segur que voleu suprimir %1?"
+    IDS_BIN_FILES_SAME      "Els fitxers binaris són idèntics"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FILESAVE_FAILED     "Ha fallat el desat de %1. Voleu desar-lo amb un nom diferent?"
+    IDS_ERROR_FILE_NOT_FOUND "El fitxer no s'ha trobat: %1"
+    IDS_ERROR_INCOMPARABLE  "Seleciona dos directoris o fitxers existents per a comparar"
+    IDS_STATUS_RESCANNING   "S'estan examinant els fitxers..."
+    IDS_STATUS_OPENING_SELECTION "S'està obrint la selecció"
+    IDS_STATUS_COPYL2R      "S'està copiant de l'esquerra a la dreta"
+    IDS_STATUS_COPYR2L      "S'està copiant de la dreta a l'esquerra"
+    IDS_STATUS_COPYALL2L    "S'està copiant tot a l'esquerra"
+    IDS_STATUS_COPYALL2R    "S'està copiant tot a la dreta"
+    IDS_PROGRAMFILES        "Programes|*.exe;*.bat;*.cmd|Tots els fitxers (*.*)|*.*||"
+    IDS_COLHDR_RSIZE        "Tamany dreta"
+    IDS_COLHDR_LTIMEC       "Data de creació esquerra"
+    IDS_COLHDR_RTIMEC       "Data de creació dreta"
+    IDS_COLHDR_NEWER        "Fitxer més nou"
+    IDS_COLHDR_LVERSION     "Versió del fitxer esquerra"
+    IDS_COLHDR_RVERSION     "Versió del fitxer dreta"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LEFTONLY            "Només l'esquerre"
+    IDS_RIGHTONLY           "Només el dret"
+    IDS_COLHDR_RESULT_ABBR  "Resultat breu"
+    IDS_COLHDR_LATTRIBUTES  "Atributs esquerra"
+    IDS_COLHDR_RATTRIBUTES  "Atributs dreta"
+    IDS_FILE_SKIPPED        "Fitxer omès"
+    IDS_DIR_SKIPPED         "Directori omès"
+    IDS_STATUSBAR_READONLY  "RO"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PRIVATEBUILD_FMT    "Muntatge privat: %1"
+    IDS_FILEWRITE_ERROR     "No s'ha pogut escriure al fitxer  %1."
+    IDS_DIFF_SUCCEEDED      "El fitxer de diferències s'ha generat amb èxit."
+    IDS_DIFF_ITEM1NOTFOUND  "1. no s'ha trobat l'element o aquest és un directori!"
+    IDS_DIFF_ITEM2NOTFOUND  "2. no s'ha trobat l'element o aquest és un directori!"
+    IDS_DIFF_FILEOVERWRITE  "El fitxer de resultat existeix, el voleu sobreescriure?"
+    IDS_DIFF_SELECTEDFILES  "[%1 fitxers seleccionats]"
+    IDS_DIFF_NORMAL         "Normal"
+    IDS_DIFF_CONTEXT        "Context"
+    IDS_DIFF_UNIFIED        "Unificat"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NUM_REPLACED        "S'ha substituït %1 cadena(s)."
+    IDS_EDIT_TEXT_NOT_FOUND "No s'ha trobat la cadena ""%s"""
+    IDS_LINE_STATUS_INFO_EOL "Línia: %s Caràcters: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Línia: %s"
+    IDS_LINE_STATUS_INFO    "Línia: %s Caràcters: %d"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH 
+                            "La carpeta de treball del VSS i la ubicació del fitxer actual no concorden. Voleu continuar?"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Clica amb el botó principal al camí a copiar"
+    IDC_STATIC_TITLE_RIGHT  "Clica amb el botó principal al camí a copiar"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_AFRIKAANS           "Afrikaans"
+    IDS_ALBANIAN            "Albanian"
+    IDS_ARABIC_SAUDI        "Arabic (Saudi Arabian)"
+    IDS_ARABIC_IRAQ         "Arabic (Iraq)"
+    IDS_ARABIC_EGYPT        "Arabic (Egyptian)"
+    IDS_ARABIC_LIBYA        "Arabic (Libyan)"
+    IDS_ARABIC_ALGERIA      "Arabic (Algerian)"
+    IDS_ARABIC_MOROCCO      "Arabic (Moroccan)"
+    IDS_ARABIC_TUNISIA      "Arabic (Tunisian)"
+    IDS_ARABIC_OMAN         "Arabic (Oman)"
+    IDS_ARABIC_YEMEN        "Arabic (Yemen)"
+    IDS_ARABIC_SYRIA        "Arabic (Syrian)"
+    IDS_ARABIC_JORDAN       "Arabic (Jordan)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ARABIC_LEBANON      "Arabic (Lebanon)"
+    IDS_ARABIC_KUWAIT       "Arabic (Kuwait)"
+    IDS_ARABIC_UAE          "Arabic (UAE)"
+    IDS_ARABIC_BAHRAIN      "Arabic (Bahrain)"
+    IDS_ARABIC_QATAR        "Arabic (Qatar)"
+    IDS_ARMENIAN            "Armenian"
+    IDS_AZERI_LATIN         "Azeri (Latin)"
+    IDS_AZERI_CYRILLIC      "Azeri (Cyrillic)"
+    IDS_BASQUE              "Basque"
+    IDS_BELARUSIAN          "Belarusian"
+    IDS_BULGARIAN           "Bulgarian"
+    IDS_CATALAN             "Catalan"
+    IDS_CHINESE_TRADITIONAL "Chinese (Traditional)"
+    IDS_CHINESE_SIMPLIFIED  "Chinese (Simplified)"
+    IDS_CHINESE_HONGKONG    "Chinese (Hong Kong)"
+    IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CHINESE_MACAU       "Chinese (Macau SAR)"
+    IDS_CROATIAN            "Croatian"
+    IDS_CZECH               "Cesko"
+    IDS_DANISH              "Dansk"
+    IDS_DUTCH               "Nederlandse"
+    IDS_DUTCH_BELGIAN       "Nederlandse (Belgium)"
+    IDS_ENGLISH_US          "English (US)"
+    IDS_ENGLISH_UK          "English (UK)"
+    IDS_ENGLISH_AUS         "English (Australian)"
+    IDS_ENGLISH_CAN         "English (Canadian)"
+    IDS_ENGLISH_NZ          "English (New Zealand)"
+    IDS_ENGLISH_EIRE        "English (Irish)"
+    IDS_ENGLISH_SOUTH_AFRICA "English (So. African)"
+    IDS_ENGLISH_JAMAICA     "English (Jamaican)"
+    IDS_ENGLISH_CARIBBEAN   "English (Caribbean)"
+    IDS_ENGLISH_BELIZE      "English (Belize)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ENGLISH_TRINIDAD    "English (Trinidad)"
+    IDS_ENGLISH_ZIMBABWE    "English (Zimbabwe)"
+    IDS_ENGLISH_PHILIPPINES "English (Philippines)"
+    IDS_ESTONIAN            "Eesti"
+    IDS_FAEROESE            "Faeroese"
+    IDS_FARSI               "Farsi"
+    IDS_FINNISH             "Suomi"
+    IDS_FRENCH              "Francais"
+    IDS_FRENCH_BELGIAN      "Francais (Belgique)"
+    IDS_FRENCH_CANADIAN     "Francais (Canada)"
+    IDS_FRENCH_SWISS        "Francais (Suisse)"
+    IDS_FRENCH_LUXEMBOURG   "Francais (Luxembourg)"
+    IDS_FRENCH_MONACO       "Francais (Monaco)"
+    IDS_GEORGIAN            "Georgian"
+    IDS_GERMAN              "Deutsch (Deutschland)"
+    IDS_GERMAN_SWISS        "Deutsch (Schweiz)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_GERMAN_AUSTRIAN     "Deutsch (Österreich)"
+    IDS_GERMAN_LUXEMBOURG   "Deutsch (Luxemburg)"
+    IDS_GERMAN_LIECHTENSTEIN "Deutsch (Liechtenstein)"
+    IDS_GREEK               "Greek"
+    IDS_HEBREW              "Hebrew"
+    IDS_HINDI               "Hindi"
+    IDS_HUNGARIAN           "Hungarian"
+    IDS_ICELANDIC           "Icelandic"
+    IDS_INDONESIAN          "Indonesian"
+    IDS_ITALIAN             "Italiano"
+    IDS_ITALIAN_SWISS       "Italiano (Svizzera)"
+    IDS_JAPANESE            "Japanese"
+    IDS_KASHMIRI            "Kashmiri (India)"
+    IDS_KAZAK               "Kazakh"
+    IDS_KOREAN              "Korean"
+    IDS_KOREAN_JOHAB        "Korean (Johab)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LATVIAN             "Latvian"
+    IDS_LITHUANIAN          "Lithuanian"
+    IDS_MALAY_MALAYSIA      "Malay (Malaysian)"
+    IDS_MALAY_BRUNEI_DARUSSALAM "Malay (Brunei Darussalam)"
+    IDS_MANIPURI            "Manipuri"
+    IDS_NORWEGIAN_BOKMAL    "Norsk (Bokmål)"
+    IDS_NORWEGIAN_NYNORSK   "Norsk (Nynorsk)"
+    IDS_POLISH              "Polski"
+    IDS_PORTUGUESE          "Portugese"
+    IDS_PORTUGUESE_BRAZILIAN "Portugese (Brazil)"
+    IDS_ROMANIAN            "Romanian"
+    IDS_RUSSIAN             "Russian"
+    IDS_SANSKRIT            "Sanskrit"
+    IDS_SERBIAN_LATIN       "Serbian (Latin)"
+    IDS_SERBIAN_CYRILLIC    "Serbian (Cyrillic)"
+    IDS_SINDHI              "Sindhi"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SLOVAK              "Slovak"
+    IDS_SLOVENIAN           "Slovensko"
+    IDS_SPANISH             "Español"
+    IDS_SPANISH_MEXICAN     "Español (Mexicano)"
+    IDS_SPANISH_MODERN      "Español (Moderno)"
+    IDS_SPANISH_GUATEMALA   "Español (Guatemala)"
+    IDS_SPANISH_COSTA_RICA  "Español (Costa Rica)"
+    IDS_SPANISH_PANAMA      "Español (Panamá)"
+    IDS_SPANISH_DOMINICAN   "Español (Dominicano)"
+    IDS_SPANISH_VENEZUELA   "Español (Venezuela)"
+    IDS_SPANISH_COLOMBIA    "Español (Colombiano)"
+    IDS_SPANISH_PERU        "Español (Peru)"
+    IDS_SPANISH_ARGENTINA   "Español (Argentina)"
+    IDS_SPANISH_ECUADOR     "Español (Ecuador)"
+    IDS_SPANISH_CHILE       "Español (Chile)"
+    IDS_SPANISH_URUGUAY     "Español (Uruguay)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SPANISH_PARAGUAY    "Español (Paraguay)"
+    IDS_SPANISH_BOLIVIA     "Español (Bolivia)"
+    IDS_SPANISH_EL_SALVADOR "Español (El Salvador)"
+    IDS_SPANISH_HONDURAS    "Español (Hondureño)"
+    IDS_SPANISH_NICARAGUA   "Español (Nicaragua)"
+    IDS_SPANISH_PUERTO_RICO "Español (Puerto Rico)"
+    IDS_SWAHILI             "Swahili (Kenya)"
+    IDS_SWEDISH             "Svenska"
+    IDS_SWEDISH_FINLAND     "Svenska (Suomi)"
+    IDS_TAMIL               "Tamil"
+    IDS_TATAR               "Tatar (Tatarstan)"
+    IDS_THAI                "Thai"
+    IDS_TURKISH             "Turkish"
+    IDS_UKRANIAN            "Ukranian"
+    IDS_URDU_PAKISTAN       "Urdu (Pakistan)"
+    IDS_URDU_INDIA          "Urdu (India)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_UZBEK_LATIN         "Uzbek (Latin)"
+    IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
+    IDS_VIETNAMESE          "Vietnamese"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_MULTIPLE_RIGHT       "Copia les diferències del text seleccionat a la subfinestra esquerra al fitxer de la dreta"
+    ID_MULTIPLE_LEFT        "Copia les diferències del text seleccionat a la subfinestra dreta al fitxer de l'esquerra"
+END
+
+#endif    // Catalan resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CAT)
+#ifdef _WIN32
+LANGUAGE LANG_CATALAN, SUBLANG_DEFAULT
+#pragma code_page(1252)
+#endif
+#include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
