@@ -374,15 +374,17 @@ static long GetModTime(LPCTSTR szPath)
 
 
 /**
- * @brief Update in-memory diffitem status from disk
+ * @brief Update in-memory diffitem status from disk and tell view
  */
 void CDirDoc::ReloadItemStatus(UINT nIdx)
 {
 	POSITION diffpos = m_pDirView->GetItemKey(nIdx);
-	DIFFITEM di = m_pCtxt->GetDiffAt(diffpos);
 
-	m_pCtxt->UpdateInfoFromDisk(di); // in case just copied (into existence) or modified
-	UpdateScreenItemStatus(nIdx, di);
+	m_pCtxt->UpdateStatusFromDisk(diffpos); // in case just copied (into existence) or modified
+
+	// Update view
+	const DIFFITEM & updated = m_pCtxt->GetDiffAt(diffpos);
+	UpdateScreenItemStatus(nIdx, updated);
 }
 
 /**
@@ -551,18 +553,11 @@ void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unifie
 	ASSERT(pos);
 	int ind = m_pDirView->GetItemIndex((DWORD)pos);
 
-	// Get index at view, update filetimes to context
-	// and tell view to update found item
-	m_pCtxt->UpdateStatusFromDisk(pos);
-
 	// Figure out new status code
 	UINT diffcode = (unified ? DIFFCODE::SAME : DIFFCODE::DIFF);
-	// Save new status code to diff context memory
-	m_pCtxt->SetDiffStatusCode(pos, diffcode, DIFFCODE::COMPAREFLAGS);
 
-	// Update view
-	const DIFFITEM & updated = m_pCtxt->GetDiffAt(pos);
-	UpdateScreenItemStatus(ind, updated);
+	// Update both view and diff context memory
+	SetDiffStatus(diffcode, DIFFCODE::COMPAREFLAGS, ind);
 }
 
 /**
@@ -645,9 +640,10 @@ void CDirDoc::SetDiffStatus(UINT diffcode, UINT mask, int idx)
 	// TODO: Why is the update broken into these pieces ?
 	// Someone could figure out these pieces and probably simplify this.
 
-	// update DIFFITEM code
+	// update DIFFITEM code (comparison result)
 	m_pCtxt->SetDiffStatusCode(diffpos, diffcode, mask);
-	// update DIFFITEM time, and also tell views
+
+	// update DIFFITEM time (and other disk info), and tell views
 	ReloadItemStatus(idx);
 }
 

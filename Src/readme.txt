@@ -1,3 +1,7 @@
+2003-10-17 Laoran
+ PATCH: [ 823074 ] DiffContext not updated
+  WinMerge: DirDoc.cpp
+
 2003-10-16 Kimmo
  Get first selected file from directory compare to
   Patch Generate dialog
