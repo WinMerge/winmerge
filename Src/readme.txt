@@ -1,7 +1,8 @@
 2004-03-17 Seier
-  Modified  \ShellExtension\Register.bat to also UnRegister via a /U (case-insensitive) parameter.  
-  I also added an UnRegister.bat which does nothing more than call Register.bat with the /u switch.  
-
+  -Modified  \ShellExtension\Register.bat to also UnRegister via a /U (case-insensitive) parameter.  
+    I also added an UnRegister.bat which does nothing more than call Register.bat with the /u switch.  
+  -If you're wondering where a particular file went and why please see \Docs\Developers\File Migration Log.htm.  
+    Everyone can use this file from now on.
 
 2004-03-17 Kimmo
  PATCH: [ 913743 ] Icons for menuitems (RFE 873697)
