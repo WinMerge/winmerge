@@ -1,3 +1,7 @@
+2005-02-01 Kimmo
+ Backout fix for bug [ 1110826 ] Regex $ breaks linefilter
+  Src: MainFrm.cpp
+
 2005-01-30 Kimmo
  BUG: [ 1110826 ] Regex $ breaks linefilter
   Src: MainFrm.cpp

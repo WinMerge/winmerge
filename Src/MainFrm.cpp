@@ -1852,11 +1852,7 @@ void CMainFrame::RebuildRegExpList(BOOL bShowError)
 		token = _tcstok(tmp, sep);
 		while (token && valid)
 		{
-			// Add '\n' to end of token as regexp parser likes it,
-			// and it makes regexps ending with '$' work.
-			_tcsncpy(tokenStr, token, _tcslen(token));
-			_tcsncat(tokenStr, _T("\n"), 1);
-			valid = add_regexp(&ignore_regexp_list, T2A(tokenStr), bShowError);
+			valid = add_regexp(&ignore_regexp_list, T2A(token), bShowError);
 			token = _tcstok(NULL, sep);
 		}
 	}
