@@ -47,12 +47,16 @@ BEGIN_MESSAGE_MAP(CDirColsDlg, CDialog)
 	ON_BN_CLICKED(IDC_DOWN, OnDown)
 	ON_BN_CLICKED(IDC_ADD, OnAdd)
 	ON_BN_CLICKED(IDC_REMOVE, OnRemove)
+	ON_BN_CLICKED(IDC_COLDLG_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirColsDlg message handlers
 
+/**
+ * @brief Dialog initialisation. Load column lists.
+ */
 BOOL CDirColsDlg::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
@@ -73,6 +77,22 @@ void CDirColsDlg::LoadLists()
 		const column & c = m_cols[i];
 		CListBox * list = (c.phy_col >= 0) ? &m_list_show : &m_list_hide;
 		int x = list->AddString(m_cols[i].name);
+		list->SetItemData(x, c.log_col);
+	}
+	SortArrayToLogicalOrder();
+	UpdateEnables();
+}
+
+/**
+ * @brief Load listboxes on screen from defaults column array
+ */
+void CDirColsDlg::LoadDefLists()
+{
+	for (int i=0; i<m_cols.GetSize(); ++i)
+	{
+		const column & c = m_defCols[i];
+		CListBox * list = (c.phy_col >= 0) ? &m_list_show : &m_list_hide;
+		int x = list->AddString(m_defCols[i].name);
 		list->SetItemData(x, c.log_col);
 	}
 	SortArrayToLogicalOrder();
@@ -221,4 +241,14 @@ void CDirColsDlg::OnOK()
 	}
 	
 	CDialog::OnOK();
+}
+
+/**
+ * @brief Empty lists and load default columns and order.
+ */
+void CDirColsDlg::OnDefaults()
+{
+	m_list_show.ResetContent();
+	m_list_hide.ResetContent();
+	LoadDefLists();
 }

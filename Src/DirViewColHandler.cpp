@@ -421,6 +421,15 @@ ToDoDeleteThisValidateColumnOrdering();
 			dlg.AddColumn(GetColDisplayName(l), l);
 		}
 	}
+
+	// Add default order of columns for resetting to defaults
+	for (l = 0; l < GetColLogCount(); ++l)
+	{
+		int phy = GetColDefaultOrder(l);
+		int log = ColPhysToLog(col);
+		dlg.AddDefColumn(GetColDisplayName(l), log, phy);
+	}
+
 	if (dlg.DoModal() != IDOK)
 		return;
 

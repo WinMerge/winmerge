@@ -38,6 +38,8 @@ public:
 	CDirColsDlg(CWnd* pParent = NULL);   // standard constructor
 	void AddColumn(CString name, int log, int phy=-1)
 		{ column c(name, log, phy); m_cols.Add(c); }
+	void AddDefColumn(CString name, int log, int phy=-1)
+		{ column c(name, log, phy); m_defCols.Add(c); }
 	const ColumnArray & GetColumns() const { return m_cols; }
 
 // Dialog Data
@@ -58,6 +60,7 @@ public:
 // Implementation methods
 protected:
 	void LoadLists();
+	void LoadDefLists();
 	void MoveItems(CListBox * list1, CListBox * list2, bool top);
 	void UpdateEnables();
 	void SortArrayToLogicalOrder();
@@ -66,6 +69,7 @@ protected:
 // Implementation data
 private:
 	ColumnArray m_cols;
+	ColumnArray m_defCols;
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirColsDlg)
@@ -75,6 +79,7 @@ private:
 	afx_msg void OnAdd();
 	afx_msg void OnRemove();
 	virtual void OnOK();
+	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

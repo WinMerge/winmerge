@@ -2,6 +2,9 @@
  BUG: [ 926578 ] Division by zero exception
   Fix tabsize limits in options dialog
   Src: PropEditor.cpp
+ PATCH: [ 934344 ] Reset dircompare columns
+  Src: DirColsDlg.cpp DirColsDlg.h DirViewColHandler.cpp Merge.rc resource.h
+  Languages: *.rc resource.h
 
 2004-04-13 Jochen
  PATCH: [ 889357 ] Attempt to improve DirScan speed -- updated patch from 2004-03-18
