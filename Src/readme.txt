@@ -2,8 +2,10 @@
  Remove most of obsolete keywords in rc file (a la Merge.rc 1.149, which didn't have them)
   Src: Merge.rc
  PATCH: [ 927000 ] Russian translation update (based on 1.32)
-  (Not applied exactly, but updated to match current English Merge.rc (mostly removing obsolete keywords)
+  (Not applied exactly, but updated to match current English Merge.rc (mostly removing obsolete keywords).
   Languages: Russian/MergeRussian.rc
+ Merge Portuguese Brazilian to current English Merge.rc (mostly removing obsolete keywords).
+  Languages: Brazilian/MergeBrazilian.rc
 
 2004-03-31 Kimmo
  PATCH: [ 924521 ] Add context menu for file compare
