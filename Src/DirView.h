@@ -36,6 +36,7 @@
 // CDirView view
 #include <afxcview.h>
 #include "listvwex.h"
+#include "SortHeaderCtrl.h"
 
 class CDirDoc;
 
@@ -49,6 +50,7 @@ protected:
 	CImageList m_imageList;
 public:
 	CDirDoc* GetDocument(); // non-debug version is inline
+	CSortHeaderCtrl		m_ctlSortHeader;
 
 // Operations
 public:
@@ -87,6 +89,8 @@ protected:
 	afx_msg void OnUpdateDirCopyFileToLeft(CCmdUI* pCmdUI);
 	afx_msg void OnDirCopyFileToRight();
 	afx_msg void OnUpdateDirCopyFileToRight(CCmdUI* pCmdUI);
+	afx_msg void OnDestroy();
+	afx_msg void OnSetFocus(CWnd* pOldWnd);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

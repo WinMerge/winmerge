@@ -60,6 +60,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILE_TO_LEFT, OnUpdateDirCopyFileToLeft)
 	ON_COMMAND(ID_DIR_COPY_FILE_TO_RIGHT, OnDirCopyFileToRight)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILE_TO_RIGHT, OnUpdateDirCopyFileToRight)
+	ON_WM_DESTROY()
+	ON_WM_SETFOCUS()
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 END_MESSAGE_MAP()
@@ -103,13 +105,35 @@ void CDirView::OnInitialUpdate()
 	m_sortColumn = -1;	// start up in no sorted order.
 	m_pList = &GetListCtrl();
 	GetDocument()->m_pView = this;
-	
 
-	m_pList->InsertColumn(DV_NAME, _T("Filename"), LVCFMT_LEFT, 150);
-	m_pList->InsertColumn(DV_PATH, _T("Directory"), LVCFMT_LEFT, 200);
-	m_pList->InsertColumn(DV_STATUS, _T("Comparison result"), LVCFMT_LEFT, 250);
-	m_pList->InsertColumn(DV_LTIME, _T("Left Time"), LVCFMT_LEFT, 150);
-	m_pList->InsertColumn(DV_RTIME, _T("Right Time"), LVCFMT_LEFT, 150);
+    // Replace standard header with sort header
+    if (HWND hWnd = ListView_GetHeader(m_pList->m_hWnd))
+            m_ctlSortHeader.SubclassWindow(hWnd);
+        
+	
+	int w;
+	CString sKey;
+	CString sFmt(_T("WDirHdr%d")), sSect(_T("DirView"));
+
+	sKey.Format(sFmt, DV_NAME);
+	w = max(10, theApp.GetProfileInt(sSect, sKey, 150));
+	m_pList->InsertColumn(DV_NAME, _T("Filename"), LVCFMT_LEFT, w);
+
+	sKey.Format(sFmt, DV_PATH);
+	w = max(10, theApp.GetProfileInt(sSect, sKey, 200));
+	m_pList->InsertColumn(DV_PATH, _T("Directory"), LVCFMT_LEFT, w);
+
+	sKey.Format(sFmt, DV_STATUS);
+	w = max(10, theApp.GetProfileInt(sSect, sKey, 250));
+	m_pList->InsertColumn(DV_STATUS, _T("Comparison result"), LVCFMT_LEFT, w);
+
+	sKey.Format(sFmt, DV_LTIME);
+	w = max(10, theApp.GetProfileInt(sSect, sKey, 150));
+	m_pList->InsertColumn(DV_LTIME, _T("Left Time"), LVCFMT_LEFT, w);
+
+	sKey.Format(sFmt, DV_RTIME);
+	w = max(10, theApp.GetProfileInt(sSect, sKey, 150));
+	m_pList->InsertColumn(DV_RTIME, _T("Right Time"), LVCFMT_LEFT, w);
 
 	CBitmap bm;
 	VERIFY (m_imageList.Create (16, 16, ILC_MASK, 0, 1));
@@ -139,6 +163,8 @@ void CDirView::OnInitialUpdate()
 	bm.Detach();
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
 	UpdateResources();
+
+	//m_ctlSortHeader.SetSortImage(m_sortColumn, m_bSortAscending);
 }
 
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
@@ -473,7 +499,34 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 		m_bSortAscending = true;
 		m_sortColumn = pNMListView->iSubItem;
 	}
+	m_ctlSortHeader.SetSortImage(m_sortColumn, m_bSortAscending);
+
 	//sort using static CompareFunc comparison function
 	GetListCtrl ().SortItems (CompareFunc, reinterpret_cast<DWORD>(this));//pNMListView->iSubItem);
 	*pResult = 0;
+}
+
+void CDirView::OnDestroy() 
+{
+	// save the column widths
+	CListCtrl& ctl = GetListCtrl();
+
+	CHeaderCtrl *phdr = ctl.GetHeaderCtrl();
+	for (int i=0; i < phdr->GetItemCount(); i++)
+	{
+		CString s;
+		s.Format(_T("WDirHdr%d"), i);
+		theApp.WriteProfileInt(_T("DirView"), s, ctl.GetColumnWidth(i));
+	}
+
+	CListViewEx::OnDestroy();
+	
+}
+
+void CDirView::OnSetFocus(CWnd* pOldWnd) 
+{
+	CListViewEx::OnSetFocus(pOldWnd);
+	
+	mf->SetDiffStatus(-1,-1);
+	
 }

@@ -24,3 +24,21 @@
 
 #include "stdafx.h"
 
+int
+xisspecial (int c)
+{
+  return (unsigned) c > (unsigned) _T ('\x7f') || c == _T ('_');
+//  return _tcschr (_T ("ìšèøıáíéóúùïò¾àåœäëöüÌŠÈØİÁÍÉ´OÚÙÏÒ¼ÀÅŒÄËÖÜ§"), c) != NULL;
+}
+
+int
+xisalpha (int c)
+{
+  return isalpha (c) || xisspecial (c);
+}
+
+int
+xisalnum (int c)
+{
+  return isalnum (c) || xisspecial (c);
+}

@@ -99,7 +99,10 @@
 #define IDC_COMPANY                     1016
 #define IDC_COMMENTS                    1017
 #define IDC_VER_SYS                     1018
+#define IDC_HILITE_CHECK                1019
+#define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
+#define IDD_PROPSYNTAX                  30001
 #define IDS_AFRIKAANS                   30003
 #define IDS_ALBANIAN                    30004
 #define IDS_ARABIC_SAUDI                30005
@@ -244,7 +247,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
 #define _APS_NEXT_COMMAND_VALUE         32806
-#define _APS_NEXT_CONTROL_VALUE         1019
+#define _APS_NEXT_CONTROL_VALUE         1020
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif

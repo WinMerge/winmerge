@@ -33,6 +33,7 @@ class CChildFrame : public CMDIChildWnd
 	DECLARE_DYNCREATE(CChildFrame)
 public:
 	CChildFrame();
+	CStatusBar  m_wndStatusBar;
 
 // Attributes
 protected:
@@ -50,10 +51,13 @@ public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	virtual void ActivateFrame(int nCmdShow = -1);
 	virtual BOOL DestroyWindow();
+	protected:
+	virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 	//}}AFX_VIRTUAL
 
 // Implementation
 public:
+	void SetHeaderText(int nPane, const CString& text);
 	void SavePosition();
 	virtual ~CChildFrame();
 #ifdef _DEBUG
@@ -63,11 +67,14 @@ public:
 
 // Generated message map functions
 protected:
+	int m_nLastSplitPos;
+	void UpdateHeaderSizes();
 	BOOL m_bActivated;
 	//{{AFX_MSG(CChildFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnClose();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnTimer(UINT nIDEvent);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

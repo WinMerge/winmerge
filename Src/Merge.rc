@@ -90,7 +90,6 @@ BEGIN
         MENUITEM "Undo",                        ID_UNDO
         MENUITEM SEPARATOR
         MENUITEM "Save Changes...",             ID_POPUP_SAVE
-        MENUITEM "Edit file",                   ID_POPUP_EDITFILE
     END
 END
 
@@ -191,7 +190,6 @@ BEGIN
     VK_TAB,         ID_PREVDIFF,            VIRTKEY, SHIFT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
-    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -200,19 +198,23 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 198, 90
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 122
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About WinMerge"
 FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
-    DEFPUSHBUTTON   "OK",IDOK,159,7,32,14,WS_GROUP
+    DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
     LTEXT           "Version 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
     LTEXT           "All rights reserved.",IDC_STATIC,7,60,170,8
-    LTEXT           "Visit the WinMerge HomePage!",IDC_WWW,7,76,184,8
-    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,72,184,1
-    LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,184,8
+    LTEXT           "Visit the WinMerge HomePage!",IDC_WWW,7,107,209,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
+    LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
+    LTEXT           "Syntax Highlighting Edit View by Andrei Stcherbatchenko ",
+                    IDC_STATIC,7,71,209,8
+    LTEXT           "Various Syntaxes by Ferdinand Prantl",IDC_STATIC,7,81,
+                    209,8
 END
 
 IDD_OPEN DIALOGEX 0, 0, 352, 98
@@ -331,6 +333,15 @@ BEGIN
     LTEXT           "Comments",IDC_STATIC,18,7,34,10
 END
 
+IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Hilighting"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Hilight syntax",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,57,10
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -360,7 +371,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "999.999.999.999\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "© 2000 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", "\0"
@@ -389,9 +400,9 @@ BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 191
+        RIGHTMARGIN, 216
         TOPMARGIN, 7
-        BOTTOMMARGIN, 83
+        BOTTOMMARGIN, 115
     END
 
     IDD_OPEN, DIALOG
@@ -445,6 +456,14 @@ BEGIN
         VERTGUIDE, 261
         TOPMARGIN, 7
         BOTTOMMARGIN, 104
+    END
+
+    IDD_PROPSYNTAX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -512,6 +531,13 @@ BEGIN
     0
 END
 
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //

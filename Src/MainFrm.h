@@ -36,6 +36,7 @@
 class CDiffView;
 class CDirView;
 class CDirDoc;
+class CMergeEditView;
 
 class CMainFrame : public CMDIFrameWnd
 {
@@ -65,6 +66,7 @@ public:
 
 // Implementation
 public:
+	BOOL m_bHiliteSyntax;
 	void SetDiffStatus(int nDiff, int nDiffCnt);
 	BOOL m_bFirstTime;
 	CString m_strSaveAsPath;
@@ -85,7 +87,7 @@ public:
 	BOOL m_bIgnoreWhitespace;
 	BOOL m_bScrollToFirst;
 	void ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight);
-	CDiffView *m_pLeft, *m_pRight;
+	CMergeEditView *m_pLeft, *m_pRight;
 	CMergeDoc *m_pMergeDoc;
 	CDirDoc *m_pDirDoc;
 	virtual ~CMainFrame();

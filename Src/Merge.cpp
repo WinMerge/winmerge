@@ -37,6 +37,7 @@
 #include "logfile.h"
 #include "coretools.h"
 
+#include "MergeEditView.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -127,7 +128,7 @@ BOOL CMergeApp::InitInstance()
 		IDR_MERGETYPE,
 		RUNTIME_CLASS(CMergeDoc),
 		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
-		RUNTIME_CLASS(CDiffView));
+		RUNTIME_CLASS(CMergeEditView));
 	AddDocTemplate(m_pDiffTemplate);
 	m_pDirTemplate = new CMultiDocTemplate(
 		IDR_MERGETYPE,

@@ -21,7 +21,21 @@
 #include <afxtempl.h>
 #include <afxsock.h>
 #include <afxole.h>
+#include <afxtempl.h>
+#include <afxpriv.h>
+#include <afxole.h>
+#include <afxmt.h>
+#include <afxrich.h>
 
+#ifndef countof
+#define countof(array)  (sizeof(array)/sizeof((array)[0]))
+#endif /* countof */
+
+int xisspecial (int c);
+int xisalpha (int c);
+int xisalnum (int c);
+
+#include "edtlib.h"
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 

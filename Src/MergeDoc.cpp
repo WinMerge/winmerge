@@ -33,6 +33,8 @@
 #include "fnmatch.h"
 #include "coretools.h"
 #include "VssPrompt.h"
+#include "MergeEditView.h"
+#include "cs2cs.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -53,12 +55,18 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc construction/destruction
 
-CMergeDoc::CMergeDoc()
+
+#pragma warning(disable:4355)
+CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 {
 	m_diffs.SetSize(64);
 	m_nDiffs=0;
 	m_pView=NULL;
+	m_nCurDiff=-1;
+	m_strTempLeftFile=_T("");
+	m_strTempRightFile=_T("");
 }
+#pragma warning(default:4355)
 
 CMergeDoc::~CMergeDoc()
 {	
@@ -69,6 +77,71 @@ CMergeDoc::~CMergeDoc()
 		delete pitem;
 	}
 	mf->m_pMergeDoc = NULL;
+  CleanupTempFiles();
+  mf->SetDiffStatus(-1,-1); // clear diff status
+}
+
+
+void CMergeDoc::DeleteContents ()
+{
+  CDocument::DeleteContents ();
+  m_ltBuf.FreeAll ();
+  m_rtBuf.FreeAll ();
+  CleanupTempFiles();
+}
+
+void CMergeDoc::OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName)
+{
+  /*if (!(theApp.m_dwFlags & EP_NOTIFY_CHANGES))
+    return;
+	MessageBeep (MB_ICONEXCLAMATION);
+	CFrameWnd *pwndMain= (CFrameWnd*) theApp.GetMainWnd ();
+	ASSERT (pwndMain);
+	if (!pwndMain->IsWindowVisible ())
+          ((CMainFrame*) pwndMain)->FlashUntilFocus ();
+	if (wEvent & FE_MODIFIED)
+  	{
+  	  bool bReload = (theApp.m_dwFlags & EP_AUTO_RELOAD) != 0;
+  	  if (!bReload)
+  	    {
+          CString sMsg;
+          sMsg.Format (IDS_FILE_CHANGED, pszPathName);
+  	      bReload = AfxMessageBox (sMsg, MB_YESNO|MB_ICONQUESTION) == IDYES;
+  	    }
+  	  if (bReload)
+        {
+	        POSITION pos = GetFirstViewPosition ();
+          ASSERT (pos);
+	        CEditPadView *pView;
+          do
+            {
+	            pView = (CEditPadView*) GetNextView (pos);
+              pView->PushCursor ();
+            }
+          while (pos);
+          m_xTextBuffer.FreeAll ();
+          m_xTextBuffer.LoadFromFile (pszPathName);
+	        pos = GetFirstViewPosition ();
+          ASSERT (pos);
+          do
+            {
+	            pView = (CEditPadView*) GetNextView (pos);
+              pView->PopCursor ();
+              HWND hWnd = pView->GetSafeHwnd ();
+              ::RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE|RDW_INTERNALPAINT|RDW_ERASE|RDW_ERASENOW|RDW_UPDATENOW|RDW_NOFRAME);
+            }
+          while (pos);
+        }
+    }
+  else if (wEvent & FE_DELETED)
+    {
+      if (!(theApp.m_dwFlags & EP_AUTO_RELOAD))
+        {
+          CString sMsg;
+          sMsg.Format (IDS_FILE_DELETED, pszPathName);
+        	AfxMessageBox (sMsg, MB_OK|MB_ICONINFORMATION);
+        }
+    }*/
 }
 
 BOOL CMergeDoc::OnNewDocument()
@@ -80,6 +153,9 @@ BOOL CMergeDoc::OnNewDocument()
 	VERIFY(s.LoadString(IDS_FILE_COMPARISON_TITLE));
 	SetTitle(s);
 
+	
+    m_ltBuf.InitNew ();
+    m_rtBuf.InitNew ();
 	return TRUE;
 }
 
@@ -128,14 +204,30 @@ BOOL CMergeDoc::Rescan()
 	struct change *e, *p;
 	struct change *script=NULL;
 	BOOL bResult=FALSE;
+	int nResumeTopLine=0;
 
 	BeginWaitCursor();
 
+	// get the desired files to temp locations so we can edit them dynamically
+	if (!TempFilesExist())
+	{
+		if (!InitTempFiles(m_strLeftFile, m_strRightFile))
+		{
+			return FALSE;
+		}
+	}
+	else
+	{
+		// find the top line to scroll back to
+		nResumeTopLine = mf->m_pLeft->GetScrollPos(SB_VERT)+1;
+	}
+
 	m_diffs.RemoveAll();
 	m_nDiffs=0;
+	m_nCurDiff=-1;
 	
-	split_filename(m_strLeftFile, dir0, name0, NULL);
-	split_filename(m_strRightFile, dir1, name1, NULL); 
+	split_filename(m_strTempLeftFile, dir0, name0, NULL);
+	split_filename(m_strTempRightFile, dir1, name1, NULL); 
 	memset(&inf[0], 0,sizeof(inf[0]));
 	memset(&inf[1], 0,sizeof(inf[1]));
 	
@@ -253,12 +345,12 @@ BOOL CMergeDoc::Rescan()
 			// display the files
 			if (m_nDiffs>0)
 			{
-				mf->m_pLeft->PrimeListWithFile(m_strLeftFile);
-				mf->m_pRight->PrimeListWithFile(m_strRightFile);
+				mf->m_pLeft->PrimeListWithFile(m_strTempLeftFile);
+				mf->m_pRight->PrimeListWithFile(m_strTempRightFile);
 
-				int lcnt = mf->m_pLeft->m_pList->GetItemCount();
-				int rcnt = mf->m_pRight->m_pList->GetItemCount();
-				if (lcnt < rcnt)
+				int lcnt = mf->m_pLeft->GetLineCount();
+				int rcnt = mf->m_pRight->GetLineCount();
+				/*TODO: if (lcnt < rcnt)
 				{
 					m_diffs[m_nDiffs-1].dbegin0 = lcnt;
 					m_diffs[m_nDiffs-1].dend0 = rcnt;
@@ -282,7 +374,7 @@ BOOL CMergeDoc::Rescan()
 					mf->m_pRight->AddItem(rcnt, 0, "");
 					mf->m_pRight->m_pList->SetItemData(rcnt, 1);
 					rcnt++;
-				}
+				}*/
 				bResult=TRUE;
 			}
 			else if (diff_flag)
@@ -306,6 +398,12 @@ BOOL CMergeDoc::Rescan()
 		free (free1);
 
 	EndWaitCursor();
+
+	if (nResumeTopLine>0)
+	{
+		mf->m_pLeft->GoToLine(nResumeTopLine, FALSE);
+		mf->m_pRight->GoToLine(nResumeTopLine, FALSE);
+	}
 	return bResult;
 }
 
@@ -334,7 +432,7 @@ void CMergeDoc::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYT
 }
 
 
-void CMergeDoc::AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CDiffView *pList)
+void CMergeDoc::AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList)
 {
 	CUndoItem *pitem = new CUndoItem;
 	if (pitem != NULL)
@@ -348,7 +446,7 @@ void CMergeDoc::AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, B
 		if (bInsert)
 			for (UINT i=nBegin; i <= nEnd; i++)
 			{
-				CString s = pitem->m_pList->m_pList->GetItemText(i, 0);
+				CString s = pitem->m_pList->GetLineText(i);
 				pitem->list.AddTail(s);
 			}
 
@@ -358,7 +456,7 @@ void CMergeDoc::AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, B
 
 BOOL CMergeDoc::Undo()
 {
-	if (!m_undoList.IsEmpty())
+/*TODO	if (!m_undoList.IsEmpty())
 	{
 		CUndoItem *pitem = (CUndoItem *)m_undoList.RemoveHead();
 		if (pitem != NULL)
@@ -398,42 +496,97 @@ BOOL CMergeDoc::Undo()
 
 			return TRUE;
 		}
-	}
+	}*/
 	return FALSE;
 }
 
 
-void CMergeDoc::ListCopy(CDiffView * pSrcList, CDiffView * pDestList)
+void CMergeDoc::ListCopy(CMergeEditView * pSrcList, CMergeEditView * pDestList)
 {
-	CString s;
-	int sel;
-	int begin,end=-1;
-	begin = sel = pSrcList->m_pList->GetNextItem(-1,LVNI_SELECTED);
-	if (sel==-1)
-		return;
-	while ((sel=pSrcList->m_pList->GetNextItem(sel,LVNI_SELECTED)) != -1)
+	if (pSrcList!=NULL && pDestList!=NULL)
 	{
-		end=sel;
-	}
-	if (end==-1)
-		end=begin;
-		
-	int diff = LineToDiff(begin);
-	if (pDestList->m_bIsLeft)
-	{
-		AddUndoAction(begin, end, diff, m_diffs[diff].blank0, TRUE, pDestList);
-		m_diffs[diff].blank0 = m_diffs[diff].blank1;
-	}
-	else 
-	{
-		AddUndoAction(begin, end, diff, m_diffs[diff].blank1, TRUE, pDestList);
-		m_diffs[diff].blank1 = m_diffs[diff].blank0;
-	}
-	sel=-1;
-	while ((sel=pSrcList->m_pList->GetNextItem(sel,LVNI_SELECTED)) != -1)
-	{
-		s = pSrcList->m_pList->GetItemText(sel,0);
-		pDestList->m_pList->SetItemText(sel,0,s);
+		// make sure we're on a diff
+		int curDiff = GetCurrentDiff();
+		if (curDiff!=-1)
+		{
+			BOOL bSrcLeft = pSrcList->m_bIsLeft;
+			DIFFRANGE &cd = m_diffs[curDiff];
+			CDiffTextBuffer& sbuf = bSrcLeft? m_ltBuf:m_rtBuf;
+			CDiffTextBuffer& dbuf = bSrcLeft? m_rtBuf:m_ltBuf;
+			BOOL bSrcWasMod = sbuf.IsModified();
+			int cd_dbegin = bSrcLeft? cd.dbegin0:cd.dbegin1;
+			int cd_dend = bSrcLeft? cd.dend0:cd.dend1;
+			int cd_blank = bSrcLeft? cd.blank0:cd.blank1;
+
+			// TODO: add the undo action
+
+			// clear the line flags
+			for (int i=cd_dbegin; i <= cd_dend; i++)
+			{
+				sbuf.SetLineFlag(i, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
+				dbuf.SetLineFlag(i, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
+			}
+
+			// if the current diff contains missing lines, remove them from both sides
+			int deleted_lines=0;
+			if (cd_blank>=0)
+			{
+				// text was missing, so delete rest of lines on both sides
+				sbuf.DeleteText(pSrcList, cd_blank, 0, cd_dend+1, 0);
+				dbuf.DeleteText(pDestList, cd_blank, 0, cd_dend+1, 0);
+			    deleted_lines=cd_dend-cd_blank+1;
+			}
+			
+
+			// copy the selected text over
+			CString strLine;
+			int limit;
+			if (cd_blank>=0)
+				limit=cd_blank-1;
+			else
+				limit=cd_dend;
+			for (i=cd_dbegin; i <= limit; i++)
+			{
+				// text exists on left side, so just replace
+				sbuf.GetLine(i, strLine);
+				dbuf.ReplaceLine(i, strLine);
+			}
+
+			//mf->m_pRight->ReplaceSelection(strText, 0);
+			pSrcList->SelectNone();
+			pDestList->SelectNone();
+
+			//pSrcList->InvalidateLines(cd_dbegin, cd_dend);
+			//pDestList->InvalidateLines(cd_dbegin, cd_dend);
+
+			// remove the diff			
+			SetCurrentDiff(-1);
+			m_diffs.RemoveAt(curDiff);
+			m_nDiffs--;
+
+			// adjust remaining diffs
+			if (deleted_lines>0)
+			{
+				for (int i=curDiff; i < (int)m_nDiffs; i++)
+				{
+					DIFFRANGE &cd = m_diffs[i];
+					cd.dbegin0 -= deleted_lines;
+					cd.dbegin1 -= deleted_lines;
+					cd.dend0 -= deleted_lines;
+					cd.dend1 -= deleted_lines;
+					cd.blank0 -= deleted_lines;
+					cd.blank1 -= deleted_lines;
+				}
+			}
+
+			pSrcList->UpdateStatusMessage();
+			pSrcList->Invalidate();
+			pDestList->Invalidate();
+
+			// reset the mod status of the source view because we do make some
+			// changes, but none that concern the source text
+			sbuf.SetModified(bSrcWasMod);
+		}
 	}
 	pDestList->AddMod();
 	pDestList->UpdateWindow();
@@ -441,9 +594,8 @@ void CMergeDoc::ListCopy(CDiffView * pSrcList, CDiffView * pDestList)
 
 
 
-BOOL CMergeDoc::DoSave(LPCTSTR szPath, CListCtrl * pList, BOOL bLeft)
+BOOL CMergeDoc::DoSave(LPCTSTR szPath, CMergeEditView * /*pList*/, BOOL bLeft)
 {
-	HANDLE hf;
 	CString strSavePath(szPath);
 
 	if (!mf->m_strSaveAsPath.IsEmpty())
@@ -470,34 +622,9 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, CListCtrl * pList, BOOL bLeft)
 	if (!mf->CreateBackup(strSavePath))
 		return FALSE;
 
-	if ((hf=FOPEN(strSavePath, GENERIC_WRITE, CREATE_ALWAYS)) != INVALID_HANDLE_VALUE)
-	{
-		CString s;
-		int idx,cnt = pList->GetItemCount();
-		int blank0,blank1;
-		for (int i=0; i < cnt; i++)
-		{
-			idx=LineToDiff(i);
-			s = pList->GetItemText(i,0);
-			if (idx!=-1)
-			{
-				blank0 = m_diffs[idx].blank0;
-				blank1 = m_diffs[idx].blank1;
-				if ((bLeft && (blank0 < 0 || i < blank0))
-				|| (!bLeft && (blank1 < 0 || i < blank1)))
-				{
-					FPRINTF(hf, "%s\r\n", s);
-					//FPRINTF(hf, "%s\r\n", Tabify(s));
-				}
-			}
-			else
-				FPRINTF(hf, "%s\r\n", s);
-			//FPRINTF(hf, "%s\r\n", Tabify(s));
-		}
-		CloseHandle(hf);
-		return TRUE;
-	}
-	return FALSE;
+	if(bLeft)
+		return m_ltBuf.SaveToFile(strSavePath);
+	return m_rtBuf.SaveToFile(strSavePath);
 }
 
 
@@ -594,15 +721,257 @@ UINT CMergeDoc::CountPrevBlanks(UINT nCurLine, BOOL bLeft)
 	return nBlanks;
 }
 
-BOOL CMergeDoc::CanCloseFrame(CFrameWnd* pFrame) 
+BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/) 
 {
 	if (mf->m_pLeft)
 		if (!mf->m_pLeft->SaveHelper())
 			return FALSE;
-
 	
-	BOOL result = CDocument::CanCloseFrame(pFrame);
-	if (result)
-		mf->m_pLeft = mf->m_pRight = NULL;
-	return result;
+	mf->m_pLeft = mf->m_pRight = NULL;
+	return TRUE;
+}
+
+void CMergeDoc::SetCurrentDiff(int nDiff)
+{
+	if (nDiff >= 0 && nDiff < (int)m_nDiffs)
+		m_nCurDiff = nDiff;
+	else
+		m_nCurDiff = -1;
+}
+
+#define FLAGSET(f)   ((m_aLines[nLine].m_dwFlags&(f))==(f))
+
+BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName, 
+											 int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ , 
+											 BOOL bClearModifiedFlag /*= TRUE*/ )
+{
+  ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
+          nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
+  ASSERT (m_bInit);
+  HANDLE hTempFile = INVALID_HANDLE_VALUE;
+  HANDLE hSearch = INVALID_HANDLE_VALUE;
+  TCHAR szTempFileDir[_MAX_PATH + 1];
+  TCHAR szTempFileName[_MAX_PATH + 1];
+  TCHAR szBackupFileName[_MAX_PATH + 1];
+  BOOL bSuccess = FALSE;
+  __try
+  {
+    TCHAR drive[_MAX_PATH], dir[_MAX_PATH], name[_MAX_PATH], ext[_MAX_PATH];
+#ifdef _UNICODE
+    _wsplitpath (pszFileName, drive, dir, name, ext);
+#else
+    _splitpath (pszFileName, drive, dir, name, ext);
+#endif
+    _tcscpy (szTempFileDir, drive);
+    _tcscat (szTempFileDir, dir);
+    _tcscpy (szBackupFileName, pszFileName);
+    _tcscat (szBackupFileName, _T (".bak"));
+
+    if (::GetTempFileName (szTempFileDir, _T ("MRG"), 0, szTempFileName) == 0)
+      __leave;
+
+      hTempFile =::CreateFile (szTempFileName, GENERIC_WRITE, 0, NULL,
+                               CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+      if (hTempFile == INVALID_HANDLE_VALUE)
+        __leave;
+
+        if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+          nCrlfStyle = m_nCRLFMode;
+
+          ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
+          LPCTSTR pszCRLF = crlfs[nCrlfStyle];
+          int nCRLFLength = _tcslen (pszCRLF);
+
+          int nLineCount = m_aLines.GetSize ();
+          for (int nLine = 0; nLine < nLineCount; nLine++)
+            {
+			  // skip blank diff lines
+			  if ((!m_bIsLeft && FLAGSET(LF_LEFT_ONLY))
+				  || (m_bIsLeft && FLAGSET(LF_RIGHT_ONLY)))
+				continue;
+
+              int nLength = m_aLines[nLine].m_nLength;
+              DWORD dwWrittenBytes;
+              if (nLength > 0)
+                {
+                  LPCTSTR pszLine = m_aLines[nLine].m_pcLine;
+                  if (m_nSourceEncoding >= 0)
+                    {
+                      LPTSTR pszBuf;
+                      iconvert_new (m_aLines[nLine].m_pcLine, &pszBuf, 1, m_nSourceEncoding, m_nSourceEncoding == 15);
+                      if (!::WriteFile (hTempFile, pszBuf, nLength, &dwWrittenBytes, NULL))
+                        {
+                          free (pszBuf);
+                          __leave;
+                        }
+                      free (pszBuf);
+                    }
+                  else
+                    if (!::WriteFile (hTempFile, pszLine, nLength, &dwWrittenBytes, NULL))
+                      __leave;
+                  if (nLength != (int) dwWrittenBytes)
+                    __leave;
+                }
+              if (nLine < nLineCount - 1)     //  Last line must not end with CRLF
+
+                {
+                  if (!::WriteFile (hTempFile, pszCRLF, nCRLFLength, &dwWrittenBytes, NULL))
+                    __leave;
+                  if (nCRLFLength != (int) dwWrittenBytes)
+                    __leave;
+                }
+            }
+    ::CloseHandle (hTempFile);
+    hTempFile = INVALID_HANDLE_VALUE;
+
+    if (m_bCreateBackupFile)
+      {
+        WIN32_FIND_DATA wfd;
+        hSearch =::FindFirstFile (pszFileName, &wfd);
+        if (hSearch != INVALID_HANDLE_VALUE)
+          {
+            //  File exist - create backup file
+            ::DeleteFile (szBackupFileName);
+            if (!::MoveFile (pszFileName, szBackupFileName))
+              __leave;
+            ::FindClose (hSearch);
+            hSearch = INVALID_HANDLE_VALUE;
+          }
+      }
+    else
+      {
+        ::DeleteFile (pszFileName);
+      }
+
+    //  Move temporary file to target name
+    if (!::MoveFile (szTempFileName, pszFileName))
+      __leave;
+
+      if (bClearModifiedFlag)
+        {
+          SetModified (FALSE);
+          m_nSyncPosition = m_nUndoPosition;
+        }
+    bSuccess = TRUE;
+  }
+  __finally
+  {
+    if (hSearch != INVALID_HANDLE_VALUE)
+      ::FindClose (hSearch);
+      if (hTempFile != INVALID_HANDLE_VALUE)
+        ::CloseHandle (hTempFile);
+        ::DeleteFile (szTempFileName);
+      }
+      return bSuccess;
+}
+
+void CMergeDoc::CDiffTextBuffer::ReplaceLine(int nLine, const CString &strText)
+{
+  DeleteLine(nLine);
+
+  int endl,endc;
+  InternalInsertText(NULL, nLine, 0, strText, endl,endc);
+}
+
+void CMergeDoc::CDiffTextBuffer::DeleteLine(int nLine)
+{
+	if (GetLineLength(nLine)>0)
+		DeleteText(m_bIsLeft? mf->m_pLeft:mf->m_pRight, nLine, 0, nLine, GetLineLength(nLine));
+}
+
+BOOL CMergeDoc::InitTempFiles(const CString& srcPathL, const CString& strPathR)
+{
+	CleanupTempFiles();
+
+	CString strPath = GetModulePath(NULL);
+	if (m_strTempLeftFile.IsEmpty())
+	{
+		TCHAR name[MAX_PATH];
+		::GetTempFileName (strPath, _T ("_LT"), 0, name);
+		m_strTempLeftFile = name;
+
+		if (!::CopyFile(srcPathL, m_strTempLeftFile, FALSE))
+			return FALSE;
+		::SetFileAttributes(m_strTempLeftFile, FILE_ATTRIBUTE_NORMAL);
+	}
+	if (m_strTempRightFile.IsEmpty())
+	{
+		TCHAR name[MAX_PATH];
+		::GetTempFileName (strPath, _T ("_RT"), 0, name);
+		m_strTempRightFile = name;
+
+		if (!::CopyFile(strPathR, m_strTempRightFile, FALSE))
+			return FALSE;
+		::SetFileAttributes(m_strTempRightFile, FILE_ATTRIBUTE_NORMAL);
+	}
+	return TRUE;
+}
+
+void TraceLastErrorMessage()
+{
+	LPVOID lpMsgBuf;
+	FormatMessage( 
+		FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+		FORMAT_MESSAGE_FROM_SYSTEM | 
+		FORMAT_MESSAGE_IGNORE_INSERTS,
+		NULL,
+		GetLastError(),
+		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
+		(LPTSTR) &lpMsgBuf,
+		0,
+		NULL 
+		);
+	// Process any inserts in lpMsgBuf.
+	// ...
+	// Display the string.
+	//MessageBox( NULL, (LPCTSTR)lpMsgBuf, "Error", MB_OK | MB_ICONINFORMATION );
+	TRACE((LPCTSTR)lpMsgBuf);
+	// Free the buffer.
+	LocalFree( lpMsgBuf );
+ 
+}
+
+void CMergeDoc::CleanupTempFiles()
+{
+	if (!m_strTempLeftFile.IsEmpty())
+	{
+		if (::DeleteFile(m_strTempLeftFile))
+			m_strTempLeftFile = _T("");
+		else
+			TraceLastErrorMessage();
+	}
+	if (!m_strTempRightFile.IsEmpty())
+	{
+		if (::DeleteFile(m_strTempRightFile))
+			m_strTempRightFile = _T("");
+		else
+			TraceLastErrorMessage();
+	}
+}
+
+BOOL CMergeDoc::TempFilesExist()
+{
+	CFileStatus s1,s2;
+	return (!m_strTempLeftFile.IsEmpty() 
+		&& CFile::GetStatus(m_strTempLeftFile, s1)
+		&& !m_strTempRightFile.IsEmpty() 
+		&& CFile::GetStatus(m_strTempRightFile, s2));
+}
+
+void CMergeDoc::FlushAndRescan()
+{
+	if (m_ltBuf.IsModified())
+		m_ltBuf.SaveToFile(m_strTempLeftFile, CRLF_STYLE_AUTOMATIC, FALSE);
+	if (m_rtBuf.IsModified())
+		m_rtBuf.SaveToFile(m_strTempRightFile, CRLF_STYLE_AUTOMATIC, FALSE);
+	CWnd *pFocus =  mf->m_pLeft->GetFocus();
+	mf->m_pLeft->PushCursor();
+	mf->m_pRight->PushCursor();
+	Rescan();
+	mf->m_pLeft->PopCursor();
+	mf->m_pRight->PopCursor();
+	if (pFocus!=NULL)
+		pFocus->SetFocus();
+
+	mf->m_pLeft->UpdateStatusMessage();
 }

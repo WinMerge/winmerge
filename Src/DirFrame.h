@@ -46,6 +46,8 @@ public:
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CDirFrame)
+	public:
+	virtual void ActivateFrame(int nCmdShow = -1);
 	//}}AFX_VIRTUAL
 
 // Implementation

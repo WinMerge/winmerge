@@ -29,6 +29,7 @@
 #endif // _MSC_VER >= 1000
 
 #include "afxtempl.h"
+#include "CCrystalTextBuffer.h"
 
 #define OP_NONE			0
 #define OP_LEFTONLY		1
@@ -42,7 +43,7 @@ typedef struct tagDIFFRANGE {
 	BYTE op;
 }DIFFRANGE;
 
-class CDiffView;
+class CMergeEditView;
 
 class CUndoItem
 {
@@ -50,34 +51,80 @@ public:
 	UINT begin,end,diffidx;
 	int blank;
 	BOOL bInsert;
-	CDiffView *m_pList;
+	CMergeEditView *m_pList;
 	CStringList list;
 };
 
 
 class CMergeDoc : public CDocument
 {
+// Attributes
+public:
+	public :
+class CDiffTextBuffer : public CCrystalTextBuffer
+      {
+private :
+        CMergeDoc * m_pOwnerDoc;
+		BOOL m_bIsLeft;
+public :
+	      void DeleteLine(int nLine);
+	      void ReplaceLine(int nLine, const CString& strText);
+		BOOL SaveToFile (LPCTSTR pszFileName, 
+											 int nCrlfStyle = CRLF_STYLE_AUTOMATIC , 
+											 BOOL bClearModifiedFlag = TRUE );
+
+        CDiffTextBuffer (CMergeDoc * pDoc, BOOL bLeft)
+        {
+          m_pOwnerDoc = pDoc;
+		  m_bIsLeft=bLeft;
+        }
+        BOOL GetLine( int nLineIndex, CString &strLine )
+        {
+	        int		nLineLength = CCrystalTextBuffer::GetLineLength( nLineIndex );
+
+	        if( nLineLength <= 0 )
+		        return FALSE;
+
+	        _tcsncpy ( strLine.GetBuffer( nLineLength ), CCrystalTextBuffer::GetLineChars( nLineIndex ), nLineLength );
+	        strLine.ReleaseBuffer( nLineLength );
+
+	        return TRUE;
+        }
+        virtual void SetModified (BOOL bModified = TRUE)
+        {
+          CCrystalTextBuffer::SetModified (bModified);
+          m_pOwnerDoc->SetModifiedFlag (bModified);
+        }
+		void InsertLine (LPCTSTR pszLine, int nLength = -1, int nPosition = -1)
+		{
+			CCrystalTextBuffer::InsertLine(pszLine, nLength, nPosition);
+		}
+
+      };
+
+    CDiffTextBuffer m_ltBuf;
+    CDiffTextBuffer m_rtBuf;
+
 protected: // create from serialization only
 	CMergeDoc();
 	DECLARE_DYNCREATE(CMergeDoc)
 
-// Attributes
-public:
 	
 	// Operations
 public:	
-	CDiffView * m_pView;
+	CMergeEditView * m_pView;
 	CPtrList m_undoList;
 	CArray<DIFFRANGE,DIFFRANGE> m_diffs;
 	UINT m_nDiffs;
+	int m_nCurDiff;
 	CString m_strLeftFile, m_strRightFile;
 
 	BOOL Rescan();
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
-	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CDiffView *pList);
+	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	BOOL Undo();
-	void ListCopy(CDiffView * pSrcList, CDiffView * pDestList);
-	BOOL DoSave(LPCTSTR szPath, CListCtrl * pList, BOOL bLeft);
+	void ListCopy(CMergeEditView * pSrcList, CMergeEditView * pDestList);
+	BOOL DoSave(LPCTSTR szPath, CMergeEditView * pList, BOOL bLeft);
 	//CString ExpandTabs(LPCTSTR szText);
 	//CString Tabify(LPCTSTR szText);
 	int LineToDiff(UINT nLine);
@@ -90,12 +137,20 @@ public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
 	virtual BOOL CanCloseFrame(CFrameWnd* pFrame);
+	virtual void DeleteContents ();
 	//}}AFX_VIRTUAL
 
 // Implementation
 public:
+	void FlushAndRescan();
+	BOOL TempFilesExist();
+	void CleanupTempFiles();
+	BOOL InitTempFiles(const CString& srcPathL, const CString& strPathR);
+	void SetCurrentDiff(int nDiff);
+	int GetCurrentDiff() { return m_nCurDiff; }
 	UINT CountPrevBlanks(UINT nCurLine, BOOL bLeft);
 	virtual ~CMergeDoc();
+  	virtual void OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName);
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -105,6 +160,8 @@ protected:
 
 // Generated message map functions
 protected:
+	CString m_strTempRightFile;
+	CString m_strTempLeftFile;
 	//{{AFX_MSG(CMergeDoc)
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

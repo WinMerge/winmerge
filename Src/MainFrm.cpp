@@ -31,6 +31,7 @@
 #include "DirView.h"
 #include "DirDoc.h"
 #include "OpenDlg.h"
+#include "MergeEditView.h"
 
 #include "diff.h"
 #include "getopt.h"
@@ -43,6 +44,7 @@
 #include "PropGeneral.h"
 #include "RegKey.h"
 #include "logfile.h"
+#include "PropSyntax.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -117,6 +119,7 @@ CMainFrame::CMainFrame()
 	m_strVssProject = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
 	m_strVssPath = theApp.GetProfileString(_T("Settings"), _T("VssPath"), _T(""));
 	m_nTabSize = theApp.GetProfileInt(_T("Settings"), _T("TabSize"), 4);
+	m_bHiliteSyntax = theApp.GetProfileInt(_T("Settings"), _T("HiliteSyntax"), TRUE)!=0;
 	if (m_strVssPath.IsEmpty())
 	{
 		CRegKeyEx reg;
@@ -224,7 +227,7 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 	if (docNull)
 		m_pMergeDoc = (CMergeDoc*)theApp.m_pDiffTemplate->OpenDocumentFile(NULL);
 	else if (mf->m_pLeft)
-		mf->m_pLeft->SendMessage(WM_COMMAND, ID_FILE_SAVE);
+		m_pLeft->SendMessage(WM_COMMAND, ID_FILE_SAVE);
 
 	if (m_pMergeDoc != NULL)
 	{
@@ -233,9 +236,30 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 		if (m_pMergeDoc->Rescan())
 		{
 			if (docNull)
-				MDIActivate(m_pMergeDoc->m_pView->GetParent());
+			{
+				CWnd* pWnd = m_pMergeDoc->m_pView->GetParent();
+				MDIActivate(pWnd);
+			}
 			else
 				MDINext();
+			
+			// set the document types
+			TCHAR name[MAX_PATH],ext[MAX_PATH];
+			split_filename(szLeft, NULL, name, ext);
+			m_pLeft->SetTextType(ext);
+			split_filename(szRight, NULL, name, ext);
+			m_pRight->SetTextType(ext);
+			
+			
+			// set the frame window header
+			CChildFrame *pf = static_cast<CChildFrame *>(m_pMergeDoc->m_pView->GetParentFrame());
+			if (pf != NULL)
+			{
+				pf->SetHeaderText(0, szLeft);
+				pf->SetHeaderText(1, szRight);
+			}
+
+			mf->m_pLeft->UpdateStatusMessage();
 		}
 		else
 		{
@@ -305,7 +329,16 @@ void CMainFrame::OnUpdateHideBackupFiles(CCmdUI* pCmdUI)
 
 void CMainFrame::OnHelpGnulicense() 
 {
-	ShellExecute(m_hWnd, _T("open"), _T("notepad.exe"),_T("Copying"), NULL, SW_SHOWNORMAL);
+	TCHAR path[MAX_PATH], temp[MAX_PATH];
+	GetModuleFileName(NULL, temp, MAX_PATH);
+	split_filename(temp, path, NULL, NULL);
+	_tcscat(path, _T("\\Copying"));
+
+	CFileStatus status;
+	if (CFile::GetStatus(path, status))
+		ShellExecute(m_hWnd, _T("open"), _T("notepad.exe"),path, NULL, SW_SHOWNORMAL);
+	else
+		ShellExecute(NULL, _T("open"), _T("http://www.gnu.org/copyleft/gpl.html"), NULL, NULL, SW_SHOWNORMAL);
 }
 
 
@@ -447,7 +480,9 @@ void CMainFrame::OnProperties()
 	CPropertySheet sht(IDS_PROPERTIES_TITLE);
 	CPropVss vss;
 	CPropGeneral gen;
+	CPropSyntax syn;
 	sht.AddPage(&gen);
+	sht.AddPage(&syn);
 	sht.AddPage(&vss);
 	
 	vss.m_nVerSys = m_nVerSys;
@@ -459,6 +494,8 @@ void CMainFrame::OnProperties()
 	gen.m_bIgnoreBlankLines = m_bIgnoreBlankLines;
 	gen.m_bScroll = m_bScrollToFirst;
 	gen.m_nTabSize = m_nTabSize;
+
+	syn.m_bHiliteSyntax = m_bHiliteSyntax;
 	
 	if (sht.DoModal()==IDOK)
 	{
@@ -483,6 +520,10 @@ void CMainFrame::OnProperties()
 		theApp.WriteProfileInt(_T("Settings"), _T("TabSize"), m_nTabSize);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreBlankLines"), m_bIgnoreBlankLines);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreCase"), m_bIgnoreCase);
+
+		m_bHiliteSyntax = syn.m_bHiliteSyntax;
+		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), m_bHiliteSyntax);
+
 
 		// make an attempt at rescanning any open diff sessions
 		if (m_pLeft != NULL && m_pRight != NULL)
@@ -687,7 +728,7 @@ void CMainFrame::OnViewSelectfont()
 	CHOOSEFONT cf;
 	memset(&cf, 0, sizeof(CHOOSEFONT));
 	cf.lStructSize = sizeof(CHOOSEFONT);
-	cf.Flags = CF_INITTOLOGFONTSTRUCT|CF_FORCEFONTEXIST|CF_SCREENFONTS|CF_SCRIPTSONLY;
+	cf.Flags = CF_INITTOLOGFONTSTRUCT|CF_FORCEFONTEXIST|CF_SCREENFONTS|CF_FIXEDPITCHONLY;
 	cf.lpLogFont = &m_lfDiff;
 	if (ChooseFont(&cf))
 	{
@@ -714,6 +755,8 @@ void CMainFrame::OnViewSelectfont()
 
 void CMainFrame::GetFontProperties()
 {
+	m_bFontSpecified=FALSE;
+	/*TODO
 	m_bFontSpecified = theApp.GetProfileInt(_T("Font"), _T("Specified"), FALSE)!=FALSE;
 	if (m_bFontSpecified)
 	{
@@ -732,7 +775,7 @@ void CMainFrame::GetFontProperties()
 		m_lfDiff.lfPitchAndFamily = (BYTE)theApp.GetProfileInt(_T("Font"), _T("PitchAndFamily"), FF_SWISS | DEFAULT_PITCH);
 		_tcscpy(m_lfDiff.lfFaceName, theApp.GetProfileString(_T("Font"), _T("FaceName"), _T("MS Sans Serif")));
 	}
-	else
+	else*/
 		memset(&m_lfDiff, 0, sizeof(LOGFONT));
 }
 
@@ -775,7 +818,7 @@ void CMainFrame::OnHelpContents()
 	if (CFile::GetStatus(path, status))
 		ShellExecute(NULL, _T("open"), path, NULL, NULL, SW_SHOWNORMAL);
 	else
-		ShellExecute(NULL, _T("open"), _T("http://www.geocities.com/SiliconValley/Vista/8632/WinMerge/index.html"), NULL, NULL, SW_SHOWNORMAL);
+		ShellExecute(NULL, _T("open"), _T("http://winmerge.sourceforge.net/docs/index.html"), NULL, NULL, SW_SHOWNORMAL);
 
 }
 

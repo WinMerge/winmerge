@@ -27,6 +27,7 @@
 #include "ChildFrm.h"
 #include "DiffView.h"
 #include "MainFrm.h"
+#include "MergeEditView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -44,11 +45,13 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
+	ON_WM_TIMER()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
 {
+	ID_SEPARATOR,
 	ID_SEPARATOR
 };
 
@@ -58,6 +61,7 @@ static UINT indicators[] =
 CChildFrame::CChildFrame()
 {
 	m_bActivated = FALSE;
+	m_nLastSplitPos=0;
 }
 
 CChildFrame::~CChildFrame()
@@ -83,7 +87,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	//	width = rc.Width()/2;
 
 	if (!m_wndSplitter.CreateView(0, 0,
-		RUNTIME_CLASS(CDiffView), CSize(-1, 200), pContext))
+		RUNTIME_CLASS(CMergeEditView), CSize(-1, 200), pContext))
 	{
 		TRACE0("Failed to create first pane\n");
 		return FALSE;
@@ -91,16 +95,16 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	
 	// add the second splitter pane - an input view in column 1
 	if (!m_wndSplitter.CreateView(0, 1,
-		RUNTIME_CLASS(CDiffView), CSize(-1, 200), pContext))
+		RUNTIME_CLASS(CMergeEditView), CSize(-1, 200), pContext))
 	{
 		TRACE0("Failed to create second pane\n");
 		return FALSE;
 	}
 	
-	mf->m_pLeft = (CDiffView *)m_wndSplitter.GetPane(0,0);
+	mf->m_pLeft = (CMergeEditView *)m_wndSplitter.GetPane(0,0);
 	//mf->m_pLeft->OnInitialUpdate();
 	mf->m_pLeft->m_bIsLeft=TRUE;
-	mf->m_pRight = (CDiffView *)m_wndSplitter.GetPane(0,1);
+	mf->m_pRight = (CMergeEditView *)m_wndSplitter.GetPane(0,1);
 	//mf->m_pRight->OnInitialUpdate();
 	mf->m_pRight->m_bIsLeft=FALSE;
 	mf->m_pLeft->UpdateWindow();
@@ -141,8 +145,27 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CMDIChildWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
+
+	ModifyStyle(WS_THICKFRAME,0); // this is necessary to prevent the sizing tab on right
+
+	if (!m_wndStatusBar.Create(this) ||
+		!m_wndStatusBar.SetIndicators(indicators,
+		  sizeof(indicators)/sizeof(UINT)))
+	{
+		TRACE0("Failed to create status bar\n");
+		return -1;      // fail to create
+	}	
+
+	ModifyStyle(0,WS_THICKFRAME);
+
+	m_wndStatusBar.SetBarStyle(CBRS_ALIGN_TOP);
+	m_wndStatusBar.SetPaneStyle(0, SBPS_NORMAL);
+	m_wndStatusBar.SetPaneStyle(1, SBPS_NORMAL);
 	
-	//MDIMaximize();
+	m_wndSplitter.SetScrollStyle(WS_HSCROLL|WS_VSCROLL);
+	m_wndSplitter.RecalcLayout();
+
+	SetTimer(0, 250, NULL); // used to update the title headers
 	return 0;
 }
 
@@ -155,12 +178,17 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 			nCmdShow = SW_SHOWMAXIMIZED;
 		else
 			nCmdShow = SW_SHOWNORMAL;
-	CRect rc;
-	GetClientRect(&rc);
-	m_wndSplitter.SetColumnInfo(0, rc.Width()/2, 10);
-	m_wndSplitter.RecalcLayout();
+		CRect rc;
+		GetClientRect(&rc);
+		m_wndSplitter.SetColumnInfo(0, rc.Width()/2, 10);
+		m_wndSplitter.RecalcLayout();
     }
 	CMDIChildWnd::ActivateFrame(nCmdShow);
+	UpdateHeaderSizes();
+	if (mf->m_pLeft!=NULL)
+	{
+		mf->m_pLeft->UpdateStatusMessage();
+	}
 }
 
 BOOL CChildFrame::DestroyWindow() 
@@ -194,11 +222,52 @@ void CChildFrame::OnSize(UINT nType, int cx, int cy)
 {
 	CMDIChildWnd::OnSize(nType, cx, cy);
 	
-	CRect rc;
-	GetClientRect(&rc);
 	if(IsWindowVisible())
 	{
+		CRect rc;
+		GetClientRect(&rc);		
 		m_wndSplitter.SetColumnInfo(0, rc.Width()/2, 10);
 		m_wndSplitter.RecalcLayout();
+
+		UpdateHeaderSizes();
 	}
+}
+
+void CChildFrame::UpdateHeaderSizes()
+{
+	if(IsWindowVisible())
+	{
+		int w,wmin;
+		m_wndSplitter.GetColumnInfo(0, w, wmin);	
+		m_wndStatusBar.SetPaneInfo(0, ID_SEPARATOR, SBPS_NORMAL, w-1);
+		m_wndStatusBar.SetPaneInfo(1, ID_SEPARATOR, SBPS_STRETCH, 0);
+	}
+
+}
+
+BOOL CChildFrame::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	
+	return CMDIChildWnd::OnNotify(wParam, lParam, pResult);
+}
+
+void CChildFrame::OnTimer(UINT nIDEvent) 
+{
+	if (IsWindowVisible())
+	{
+		int w,wmin;
+		m_wndSplitter.GetColumnInfo(0, w, wmin);
+		if (w != m_nLastSplitPos && w > 0)
+		{
+			UpdateHeaderSizes();
+			m_nLastSplitPos = w;
+		}
+	}
+	CMDIChildWnd::OnTimer(nIDEvent);
+}
+
+void CChildFrame::SetHeaderText(int nPane, const CString &text)
+{
+	m_wndStatusBar.SetPaneText(nPane, text);
 }
