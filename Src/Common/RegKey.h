@@ -15,6 +15,8 @@ public:
 	LONG Open(HKEY hKeyRoot, LPCTSTR pszPath);
 	LONG OpenWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM regsam);
 	LONG OpenNoCreateWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM regsam);
+	bool QueryRegMachine(LPCTSTR key);
+	bool QueryRegUser(LPCTSTR key);
 
 	LONG WriteDword (LPCTSTR pszKey, DWORD dwVal);
 	LONG WriteString (LPCTSTR pszKey, LPCTSTR pszVal);

@@ -48,6 +48,20 @@ LONG CRegKeyEx::OpenNoCreateWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM re
 	return RegOpenKeyEx (hKeyRoot, pszPath, 0L, regsam, &m_hKey);
 }
 
+// Read-only open of registry key under HKEY_LOCAL_MACHINE
+bool
+CRegKeyEx::QueryRegMachine(LPCTSTR key)
+{
+	return OpenNoCreateWithAccess(HKEY_LOCAL_MACHINE, key, KEY_QUERY_VALUE) == ERROR_SUCCESS;
+}
+
+// Read-only open of registry key under HKEY_CURRENT_USER
+bool
+CRegKeyEx::QueryRegUser(LPCTSTR key)
+{
+	return OpenNoCreateWithAccess(HKEY_CURRENT_USER, key, KEY_QUERY_VALUE) == ERROR_SUCCESS;
+}
+
 LONG CRegKeyEx::WriteDword (LPCTSTR pszKey, DWORD dwVal)
 {
 	assert(m_hKey);

@@ -100,7 +100,8 @@ BOOL CVssPrompt::OnInitDialog()
 	ZeroMemory(&cName, MAX_PATH * sizeof(TCHAR));
 	ZeroMemory(&cString, MAX_PATH * sizeof(TCHAR));
 
-	reg.Open(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\Microsoft\\SourceSafe\\Databases"));
+	if (!reg.QueryRegMachine(_T("SOFTWARE\\Microsoft\\SourceSafe\\Databases")))
+		return false;
 	HKEY hreg = reg.GetKey();
 	LONG retval = ERROR_SUCCESS;	
 	while (retval == ERROR_SUCCESS || retval == ERROR_MORE_DATA)

@@ -173,7 +173,7 @@ CMainFrame::CMainFrame()
 	if (m_strVssPath.IsEmpty())
 	{
 		CRegKeyEx reg;
-		if (reg.Open(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\Microsoft\\SourceSafe")) == ERROR_SUCCESS)
+		if (reg.QueryRegMachine(_T("SOFTWARE\\Microsoft\\SourceSafe")))
 		{
 			TCHAR temp[_MAX_PATH] = {0};
 			reg.ReadChars(_T("SCCServerPath"), temp, _MAX_PATH, _T(""));

@@ -1,3 +1,8 @@
+2003-11-07 Perry
+ PATCH: [ 836931 ] Move QueryRegMachine into RegKey
+  common: RegKey.cpp RegKey.h
+  WinMerge: MainFrm.cpp VssPrompt.cpp
+
 2003-11-07 Laoran
  BUG: [ 837980 ] bug in save right as
   WinMerge: MergeDoc.cpp
