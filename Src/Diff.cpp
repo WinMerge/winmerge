@@ -402,8 +402,8 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	    failed = 1;
 	}
 	
-	bool bBinary = (FileIsBinary(inf[0].desc)
-		|| FileIsBinary(inf[1].desc));
+	bool bBinary = ((inf[0].desc>0 && FileIsBinary(inf[0].desc))
+		|| (inf[1].desc>0 && FileIsBinary(inf[1].desc)));
 	if (bBinary)
 	{
 	    if (inf[0].stat.st_size != inf[1].stat.st_size
