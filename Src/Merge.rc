@@ -126,7 +126,8 @@ BEGIN
     BEGIN
         MENUITEM "Show &Identical Files",       ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "Show &Different Files",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Show &Unique Files",          ID_OPTIONS_SHOWUNIQUE
+        MENUITEM "Show Le&ft Unique Files",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Files",    ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Hide *.&BAK Files",           ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
@@ -182,13 +183,13 @@ BEGIN
     VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
     VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
     VK_LEFT,        ID_R2L,                 VIRTKEY, ALT, NOINVERT
-    VK_NEXT,        ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
-    VK_PRIOR,       ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
     VK_RETURN,      ID_CURDIFF,             VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
@@ -294,7 +295,7 @@ BEGIN
     CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,57,53,10
     CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,69,87,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,81,87,10
     CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,128,45,82,10
     CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
@@ -304,6 +305,8 @@ BEGIN
     GROUPBOX        "Tabs",IDC_STATIC,7,105,221,30,WS_GROUP
     LTEXT           "&Tab size:",IDC_STATIC,15,119,30,8
     EDITTEXT        IDC_TAB_EDIT,47,118,27,12,ES_AUTOHSCROLL
+    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,68,69,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -623,9 +626,9 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_FILE_NEW             "Create a new document\nNew"
-    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_OPEN            "Open an existing document\nOpen (Ctrl+O)"
     ID_FILE_CLOSE           "Close the active document\nClose"
-    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE            "Save the active document\nSave (Ctrl+S)"
     ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
     ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
     ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
@@ -721,13 +724,12 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_L2R                  "Copy the selected text to the right file\nCopy Right (Right Arrow)"
-    ID_R2L                  "Copy the selected text to the left file\nCopy Left (Left Arrow)"
+    ID_L2R                  "Copy the selected text to the right file\nCopy Right (Alt Right)"
+    ID_R2L                  "Copy the selected text to the left file\nCopy Left (Alt Left)"
     ID_OPTIONS_SHOWIDENTICAL "Displays files that are exactly the same"
     ID_OPTIONS_SHOWDIFFERENT "Displays files that have differences"
-    ID_OPTIONS_SHOWUNIQUE   "Displays files that exist in only one directory"
-    ID_PREVDIFF             "Scroll to the previous difference\nPrev Diff (Shift+Tab)"
-    ID_NEXTDIFF             "Scroll to the next difference\nNext Diff (Tab)"
+    ID_PREVDIFF             "Scroll to the previous difference\nPrev Diff (Alt Up)"
+    ID_NEXTDIFF             "Scroll to the next difference\nNext Diff (Alt Down)"
     ID_OPTIONS_BACKUPORIGINALFILE 
                             "Save a copy of the original as *.bak\nBackup"
 END
@@ -753,12 +755,16 @@ BEGIN
     ID_DIR_COPY_FILE_TO_RIGHT "Copy selected file to named directory"
     ID_VIEW_LANGUAGE        "Select the current user interfacce language\nLanguage"
     ID_HELP_CONTENTS        "Displays the WinMerge User's Guide\nHelp"
-    ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff"
-    ID_CURDIFF              "Scroll to the current difference\nCurrent Diff"
-    ID_LASTDIFF             "Scroll to the last difference\nLast Diff"
+    ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff (Alt+Home)"
+    ID_CURDIFF              "Scroll to the current difference\nCurrent Diff (Alt+Enter)"
+    ID_LASTDIFF             "Scroll to the last difference\nLast Diff (Alt+End)"
     ID_DIFFNUM              "placeholder"
     ID_DIR_DEL_LEFT         "Delete selected file on left"
     ID_DIR_DEL_RIGHT        "Delete selected file on right"
+    ID_DIFFSTATUS           "placeholder for status count"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays files that exist in only on left side"
+    ID_OPTIONS_SHOWUNIQUERIGHT 
+                            "Displays files that exist in only on right side"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -770,7 +776,7 @@ BEGIN
                             "Unable to backup original file.\nContinue anyway?"
     IDS_PROPERTIES_TITLE    "Properties"
     IDS_OPEN_TITLE          "Open"
-    IDS_CONFIRM_DELETE      "Delete %1?"
+    IDS_CONFIRM_DELETE_FILE "Delete file %1?"
     IDS_EDIT_WINDOW_TITLE_FMT "Edit %1"
     IDS_FILESSAME           "The selected files are identical."
     IDS_FILEUNIQUE          "The selected file didn't exist in both directories and therefore couldn't be compared."
@@ -939,7 +945,9 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_DEL_RIGHT_FMT       "Del right: %1"
-    IDS_DELETE_FAILED       "Delete failed: %1"
+    IDS_DELETE_FILE_FAILED  "Delete file failed: %1"
+    IDS_CONFIRM_DELETE_DIR  "Delete directory %1?"
+    IDS_REMOVE_DIR_FAILED   "Remove directory failed: %1"
 END
 
 #endif    // English (U.S.) resources

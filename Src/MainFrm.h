@@ -46,15 +46,33 @@ public:
 
 // Attributes
 public:	
-	BOOL m_bShowUnique;
+	BOOL m_bShowUniqueLeft;
+	BOOL m_bShowUniqueRight;
 	BOOL m_bShowDiff;
 	BOOL m_bShowIdent;
 	BOOL m_bBackup;
 	LOGFONT m_lfDiff;
 	BOOL m_bFontSpecified;
+	BOOL m_bEolSensitive;
 
 // Operations
 public:
+	CString GetSystemErrorDesc(int nerr);
+	void RemoveLineReturns(CString & str);
+	BOOL DeleteFileOrError(LPCTSTR szFile);
+	BOOL DeleteRecurseDir(LPCTSTR szDir);
+	BOOL ConfirmAndDeleteFile(LPCTSTR szFile);
+	BOOL ConfirmAndDeleteDir(LPCTSTR szDir);
+	void rptStatus(BYTE code);
+	void clearStatus();
+	BOOL SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest);
+	void UpdateCurrentFileStatus(UINT nStatus);
+	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL, BOOL bRecurse = FALSE);
+	void ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight);
+	void UpdateResources();
+	HMENU NewDefaultMenu();
+	BOOL CreateBackup(LPCTSTR pszPath);
+	BOOL CheckSavePath(CString& strSavePath);
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -64,23 +82,20 @@ public:
 	virtual void ActivateFrame(int nCmdShow = -1);
 	//}}AFX_VIRTUAL
 
-// Implementation
+// Implementation methods
+protected:
+	void CleanupFileBufs();
+	virtual ~CMainFrame();
+
+// Public implementation data
 public:
 	BOOL m_bFirstTime;
 	CString m_strSaveAsPath;
-	void CleanupFileBufs();
 	BOOL m_bIgnoreBlankLines;
 	BOOL m_bIgnoreCase;
 	BOOL m_bIgnoreRegExp;
 	CString m_sPattern;
-	void UpdateResources();
-	void UpdateCurrentFileStatus(UINT nStatus);
-	BOOL ConfirmAndDelete(LPCTSTR szFile);
-	BOOL SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest);
-	BOOL CreateBackup(LPCTSTR pszPath);
 	UINT m_nTabSize;
-	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL, BOOL bRecurse = FALSE);
-	BOOL CheckSavePath(CString& strSavePath);
 	CString m_strVssPath;
 	CString m_strVssProject;
 	CString m_strVssUser;      // BSP - Visual Source Safe User ID
@@ -89,12 +104,20 @@ public:
 	BOOL m_bHideBak;
 	int m_nIgnoreWhitespace;
 	BOOL m_bScrollToFirst;
-	void ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight);
 	CMergeEditView *m_pLeft, *m_pRight;
 	CMergeDoc *m_pMergeDoc;
 	CDirDoc *m_pDirDoc;
-	virtual ~CMainFrame();
-	HMENU NewDefaultMenu();
+// Implementation data
+protected:
+	int m_nStatusFileSame;
+	int m_nStatusFileDiff;
+	int m_nStatusFileBinDiff;
+	int m_nStatusFileError;
+	int m_nStatusLeftFileOnly;
+	int m_nStatusLeftDirOnly;
+	int m_nStatusRightFileOnly;
+	int m_nStatusRightDirOnly;
+
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -111,10 +134,12 @@ protected:
 	//{{AFX_MSG(CMainFrame)
 	afx_msg void OnOptionsShowDifferent();
 	afx_msg void OnOptionsShowIdentical();
-	afx_msg void OnOptionsShowUnique();
+	afx_msg void OnOptionsShowUniqueLeft();
+	afx_msg void OnOptionsShowUniqueRight();
 	afx_msg void OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowidentical(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateOptionsShowunique(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI);
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnFileOpen();
 	afx_msg void OnUpdateHideBackupFiles(CCmdUI* pCmdUI);

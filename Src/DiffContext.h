@@ -34,12 +34,18 @@ typedef struct tagDIFFITEM {
 #define FILE_LDIRUNIQUE		6
 #define FILE_RDIRUNIQUE		7
 
+class IDiffStatus
+{
+public:
+	virtual void rptFile(BYTE code)=0;
+};
+
 class CDiffContext  
 {
 public:
 	void SetRegExp(LPCTSTR pszExp);
 	void AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszRightDir, long ltime, long rtime, BYTE code);
-	CDiffContext(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL);
+	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, IDiffStatus * piStatus);
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src);
 	virtual ~CDiffContext();
 
@@ -49,6 +55,8 @@ public:
 	CString m_strRight;
 	CRegExp m_rgx;
 	CString m_strRegExp;
+	IDiffStatus * m_piStatus;
+
 
 	struct dirdata ddLeft, ddRight;
 	char *pNamesLeft;

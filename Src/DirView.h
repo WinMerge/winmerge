@@ -117,9 +117,10 @@ private:
 	void ModifyPopup(CMenu * pPopup, int nStringResource, int nMenuId, LPCTSTR szPath);
 	void DoDelLeft();
 	void DoDelRight();
-	void ConfirmAndDeleteAndUpdate(LPCTSTR szFile, POSITION pos, int sel);
 	void DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI);
+	void ConfirmAndDeleteFileAndUpdate(LPCTSTR szFile, POSITION pos, int sel);
+	void ConfirmAndDeleteDirAndUpdate(LPCTSTR szDir, POSITION pos, int sel);
 
 };
 

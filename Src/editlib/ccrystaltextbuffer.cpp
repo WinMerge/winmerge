@@ -432,11 +432,20 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 			
 			// detect both types of EOL for each line
 			// handles mixed mode files.
+			// Perry (2002-11-26): What about MAC files ? They don't have 0x0A at all. I think this doesn't handle them.
 			if( c==0x0A )
 			{
-				TCHAR prevChar = pcLineBuf[nCurrentLength-2];
+				// 2002-11-26  Perry fixed bug & added optional sensitivity to CR
 				// remove EOL characters
-				pcLineBuf[nCurrentLength - (prevChar==0x0D?2:1) ] = '\0';
+				if (!m_EolSensitive && nCurrentLength>1)
+				{
+					TCHAR prevChar = pcLineBuf[nCurrentLength-2];
+					pcLineBuf[nCurrentLength - (prevChar==0x0D?2:1) ] = '\0';
+				}
+				else
+				{
+					pcLineBuf[nCurrentLength - 1] = '\0';
+				}
 				nCurrentLength = 0;
 				if (m_nSourceEncoding >= 0)
 					iconvert (pcLineBuf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);

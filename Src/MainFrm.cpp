@@ -70,10 +70,12 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	//{{AFX_MSG_MAP(CMainFrame)
 	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENT, OnOptionsShowDifferent)
 	ON_COMMAND(ID_OPTIONS_SHOWIDENTICAL, OnOptionsShowIdentical)
-	ON_COMMAND(ID_OPTIONS_SHOWUNIQUE, OnOptionsShowUnique)
+	ON_COMMAND(ID_OPTIONS_SHOWUNIQUELEFT, OnOptionsShowUniqueLeft)
+	ON_COMMAND(ID_OPTIONS_SHOWUNIQUERIGHT, OnOptionsShowUniqueRight)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENT, OnUpdateOptionsShowdifferent)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWIDENTICAL, OnUpdateOptionsShowidentical)
-	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUE, OnUpdateOptionsShowunique)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUELEFT, OnUpdateOptionsShowuniqueleft)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUERIGHT, OnUpdateOptionsShowuniqueright)
 	ON_WM_CREATE()
 	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
 	ON_UPDATE_COMMAND_UI(ID_HIDE_BACKUP_FILES, OnUpdateHideBackupFiles)
@@ -93,6 +95,7 @@ static UINT indicators[] =
 {
 	ID_SEPARATOR,           // status line indicator
 	ID_SEPARATOR,
+	ID_SEPARATOR,
 	ID_INDICATOR_CAPS,
 	ID_INDICATOR_NUM,
 	ID_INDICATOR_SCRL,
@@ -111,8 +114,10 @@ CMainFrame::CMainFrame()
 	m_bFirstTime = TRUE;
 
 	m_bIgnoreBlankLines = theApp.GetProfileInt(_T("Settings"), _T("IgnoreBlankLines"), FALSE)!=0;
+	m_bEolSensitive = theApp.GetProfileInt(_T("Settings"), _T("EolSensitive"), FALSE)!=0;
 	m_bIgnoreCase = theApp.GetProfileInt(_T("Settings"), _T("IgnoreCase"), FALSE)!=0;
-	m_bShowUnique = theApp.GetProfileInt(_T("Settings"), _T("ShowUnique"), TRUE)!=0;
+	m_bShowUniqueLeft = theApp.GetProfileInt(_T("Settings"), _T("ShowUniqueLeft"), TRUE)!=0;
+	m_bShowUniqueRight = theApp.GetProfileInt(_T("Settings"), _T("ShowUniqueRight"), TRUE)!=0;
 	m_bShowDiff = theApp.GetProfileInt(_T("Settings"), _T("ShowDifferent"), TRUE)!=0;
 	m_bShowIdent = theApp.GetProfileInt(_T("Settings"), _T("ShowIdentical"), TRUE)!=0;
 	m_bBackup = theApp.GetProfileInt(_T("Settings"), _T("BackupFile"), TRUE)!=0;
@@ -158,7 +163,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	length_varies = (m_nIgnoreWhitespace!=0);
 	ignore_case_flag = m_bIgnoreCase;
 	ignore_blank_lines_flag = m_bIgnoreBlankLines;
-	ignore_some_changes = (m_nIgnoreWhitespace!=0) || m_bIgnoreCase || m_bIgnoreBlankLines;
+	ignore_eol_diff = !m_bEolSensitive;
+	ignore_some_changes = (m_nIgnoreWhitespace!=0) || m_bIgnoreCase || m_bIgnoreBlankLines || !m_bEolSensitive;
 	// build the initial reg expression list
 	RebuildRegExpList();
 
@@ -184,6 +190,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 	m_wndStatusBar.SetPaneInfo(1, ID_DIFFNUM, 0, 150); 
+	m_wndStatusBar.SetPaneInfo(2, ID_DIFFSTATUS, 0, 200); 
 
 	// TODO: Remove this if you don't want tool tips or a resizeable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
@@ -258,6 +265,8 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 		m_pMergeDoc->m_strRightFile = szRight;
 		m_pMergeDoc->m_ltBuf.FreeAll();
 		m_pMergeDoc->m_rtBuf.FreeAll();
+		m_pMergeDoc->m_ltBuf.SetEolSensitivity(m_bEolSensitive);
+		m_pMergeDoc->m_rtBuf.SetEolSensitivity(m_bEolSensitive);
 		m_pMergeDoc->m_ltBuf.LoadFromFile(szLeft);
 		m_pMergeDoc->m_rtBuf.LoadFromFile(szRight);
 		
@@ -324,10 +333,18 @@ void CMainFrame::OnOptionsShowIdentical()
 		m_pDirDoc->Redisplay();
 }
 
-void CMainFrame::OnOptionsShowUnique() 
+void CMainFrame::OnOptionsShowUniqueLeft() 
 {
-	m_bShowUnique = !m_bShowUnique;
-	theApp.WriteProfileInt(_T("Settings"), _T("ShowUnique"), m_bShowUnique);
+	m_bShowUniqueLeft = !m_bShowUniqueLeft;
+	theApp.WriteProfileInt(_T("Settings"), _T("ShowUniqueLeft"), m_bShowUniqueLeft);
+	if (m_pDirDoc != NULL)
+		m_pDirDoc->Redisplay();
+}
+
+void CMainFrame::OnOptionsShowUniqueRight() 
+{
+	m_bShowUniqueRight = !m_bShowUniqueRight;
+	theApp.WriteProfileInt(_T("Settings"), _T("ShowUniqueRight"), m_bShowUniqueRight);
 	if (m_pDirDoc != NULL)
 		m_pDirDoc->Redisplay();
 }
@@ -342,11 +359,15 @@ void CMainFrame::OnUpdateOptionsShowidentical(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_bShowIdent);
 }
 
-void CMainFrame::OnUpdateOptionsShowunique(CCmdUI* pCmdUI) 
+void CMainFrame::OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_bShowUnique);
+	pCmdUI->SetCheck(m_bShowUniqueLeft);
 }
 
+void CMainFrame::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_bShowUniqueRight);
+}
 
 
 
@@ -604,6 +625,7 @@ void CMainFrame::OnProperties()
 	gen.m_nIgnoreWhite = m_nIgnoreWhitespace;
 	gen.m_bIgnoreCase = m_bIgnoreCase;
 	gen.m_bIgnoreBlankLines = m_bIgnoreBlankLines;
+	gen.m_bEolSensitive = m_bEolSensitive;
 	gen.m_bScroll = m_bScrollToFirst;
 	gen.m_nTabSize = m_nTabSize;
 	gen.m_bDisableSplash = theApp.m_bDisableSplash;
@@ -626,8 +648,10 @@ void CMainFrame::OnProperties()
 		ignore_all_space_flag = (m_nIgnoreWhitespace==2);
 		ignore_space_change_flag = (m_nIgnoreWhitespace==1);
 		ignore_blank_lines_flag = m_bIgnoreBlankLines = gen.m_bIgnoreBlankLines;
+		m_bEolSensitive = gen.m_bEolSensitive;
+		ignore_eol_diff = !m_bEolSensitive;
 		ignore_case_flag = m_bIgnoreCase = gen.m_bIgnoreCase;
-		ignore_some_changes = (m_nIgnoreWhitespace!=0) || m_bIgnoreCase || m_bIgnoreBlankLines;
+		ignore_some_changes = (m_nIgnoreWhitespace!=0) || m_bIgnoreCase || m_bIgnoreBlankLines || !m_bEolSensitive;
 		length_varies = (m_nIgnoreWhitespace!=0);
 		
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
@@ -669,6 +693,62 @@ void CMainFrame::OnProperties()
 	}
 }
 
+// callback for progress during diff
+class MainFrmStatus : public IDiffStatus
+{
+public:
+	MainFrmStatus(CMainFrame * pFrame) : m_pFrame(pFrame) { m_pFrame->clearStatus(); }
+	virtual void rptFile(BYTE code) { m_pFrame->rptStatus(code); }
+private:
+	CMainFrame * m_pFrame;
+};
+
+// clear counters used to track diff progress
+void CMainFrame::clearStatus()
+{
+	m_nStatusFileSame = m_nStatusFileDiff = m_nStatusFileBinDiff = m_nStatusFileError
+		 = m_nStatusLeftFileOnly = m_nStatusLeftDirOnly = m_nStatusRightFileOnly = m_nStatusRightDirOnly
+		 = 0;
+}
+
+// diff completed another file
+void CMainFrame::rptStatus(BYTE code)
+{
+	switch(code)
+	{
+	case FILE_SAME:
+		++m_nStatusFileSame;
+		break;
+	case FILE_DIFF:
+		++m_nStatusFileDiff;
+		break;
+	case FILE_BINDIFF:
+		++m_nStatusFileBinDiff;
+		break;
+	case FILE_ERROR:
+		++m_nStatusFileError;
+		break;
+	case FILE_LUNIQUE:
+		++m_nStatusLeftFileOnly;
+		break;
+	case FILE_LDIRUNIQUE:
+		++m_nStatusLeftDirOnly;
+		break;
+	case FILE_RUNIQUE:
+		++m_nStatusRightFileOnly;
+		break;
+	case FILE_RDIRUNIQUE:
+		++m_nStatusRightDirOnly;
+		break;
+	}
+	CString s;
+	// AfxFormatString4 doesn't exist
+	s.Format(_T("s:%d d:%d lf:%d ld:%d rf:%d rd:%d bd:%d e:%d")
+		, m_nStatusFileSame, m_nStatusFileDiff, m_nStatusFileBinDiff, m_nStatusFileError
+		, m_nStatusLeftFileOnly, m_nStatusLeftDirOnly, m_nStatusRightFileOnly, m_nStatusRightDirOnly);
+	m_wndStatusBar.SetPaneText(2, s);
+
+}
 
 BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/, BOOL bRecurse /*= FALSE*/)
 {
@@ -727,7 +807,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  _T("\tLeft: %s\r\n")
 				   _T("\tRight: %s\r\n")
 				  _T("\tRecurse: %d\r\n")
-				  _T("\tShowUnique: %d\r\n")
+				  _T("\tShowUniqueLeft: %d\r\n")
+				  _T("\tShowUniqueRight: %d\r\n")
 				  _T("\tShowIdentical: %d\r\n")
 				  _T("\tShowDiff: %d\r\n")
 				  _T("\tHideBak: %d\r\n")
@@ -740,7 +821,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  strLeft,
 				  strRight,
 				  bRecurse,
-				  m_bShowUnique,
+				  m_bShowUniqueLeft,
+				  m_bShowUniqueRight,
 				  m_bShowIdent,
 				  m_bShowDiff,
 				  m_bHideBak,
@@ -759,7 +841,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			m_pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->OpenDocumentFile(NULL);
 		if (m_pDirDoc != NULL)
 		{
-			CDiffContext *pCtxt = new CDiffContext(strLeft, strRight);
+			MainFrmStatus mfst(this);
+			CDiffContext *pCtxt = new CDiffContext(strLeft, strRight, &mfst);
 			if (pCtxt != NULL)
 			{
 				m_pDirDoc->SetDiffContext(pCtxt);
@@ -796,7 +879,7 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 			s.Format(_T("%s\\%s")  BACKUP_FILE_EXT, path, name);
 
 		// get rid of the dest file
-		DeleteFile(s);
+		DeleteFile(s); // (errors are handled from MoveFile below)
 
 		// move the sucker
 		if (!MoveFile(pszPath, s)
@@ -813,8 +896,7 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 }
 
 // Get user language description of error, if available
-static CString
-GetSystemErrorDesc(int nerr)
+CString CMainFrame::GetSystemErrorDesc(int nerr)
 {
 	LPVOID lpMsgBuf;
 	CString str = _T("?");
@@ -838,22 +920,22 @@ GetSystemErrorDesc(int nerr)
 }
 
 // trim trailing line returns
-static void TrimRightLines(CString & str)
+void CMainFrame::RemoveLineReturns(CString & str)
 {
 	str.Replace(_T("\n"), _T(""));
 	str.Replace(_T("\r"), _T(""));
 }
 
 // Delete file (return TRUE if deleted, else put up error & return FALSE)
-static BOOL DeleteOrError(LPCTSTR szFile)
+BOOL CMainFrame::DeleteFileOrError(LPCTSTR szFile)
 {
-	// TODO: 2002-11-22, need to handle deleting directories
 	if (!DeleteFile(szFile))
 	{
 		CString sError = GetSystemErrorDesc(GetLastError());
-		TrimRightLines(sError);
+		RemoveLineReturns(sError);
+		sError += (CString)_T(" [") + szFile + _T("]");
 		CString s;
-		AfxFormatString1(s, IDS_DELETE_FAILED, sError);
+		AfxFormatString1(s, IDS_DELETE_FILE_FAILED, sError);
 		AfxMessageBox(s, MB_OK|MB_ICONSTOP);
 		return FALSE;
 	}
@@ -861,15 +943,64 @@ static BOOL DeleteOrError(LPCTSTR szFile)
 }
 
 // Prompt & delete file (return TRUE if deleted)
-BOOL CMainFrame::ConfirmAndDelete(LPCTSTR szFile)
+BOOL CMainFrame::ConfirmAndDeleteFile(LPCTSTR szFile)
 {
 	CString s;
-	AfxFormatString1(s, IDS_CONFIRM_DELETE, szFile);
+	AfxFormatString1(s, IDS_CONFIRM_DELETE_FILE, szFile);
 	if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION)!=IDYES)
 		return FALSE;
-	return DeleteOrError(szFile);
+	return DeleteFileOrError(szFile);
 }
 
+// Prompt & delete directory (return TRUE if deleted)
+BOOL CMainFrame::ConfirmAndDeleteDir(LPCTSTR szDir)
+{
+	CString s;
+	AfxFormatString1(s, IDS_CONFIRM_DELETE_DIR, szDir);
+	if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION)!=IDYES)
+		return FALSE;
+	return DeleteRecurseDir(szDir);
+}
+
+// delete directory by recursively deleting all contents
+// gives up on first error
+BOOL CMainFrame::DeleteRecurseDir(LPCTSTR szDir)
+{
+	CFileFind finder;
+	CString sSpec = szDir;
+	sSpec += _T("\\*.*");
+	if (finder.FindFile(sSpec))
+	{
+		BOOL done=FALSE;
+		while (!done)
+		{
+			done = !finder.FindNextFile();
+			if (finder.IsDots()) continue;
+			if (finder.IsDirectory())
+			{
+				if (!DeleteRecurseDir(finder.GetFilePath()))
+					return FALSE;
+			}
+			else
+			{
+				if (!DeleteFileOrError(finder.GetFilePath()))
+					return FALSE;
+			}
+		}
+	}
+	finder.Close(); // must close the handle or RemoveDirectory will fail
+	if (!RemoveDirectory(szDir))
+	{
+		CString sError = GetSystemErrorDesc(GetLastError());
+		RemoveLineReturns(sError);
+		sError += (CString)_T(" [") + szDir + _T("]");
+		CString s;
+		AfxFormatString1(s, IDS_DELETE_FILE_FAILED, sError);
+		AfxMessageBox(s, MB_OK|MB_ICONSTOP);
+		return FALSE;
+	}
+	return TRUE;
+}
 
 BOOL CMainFrame::SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest)
 {
@@ -882,7 +1013,7 @@ BOOL CMainFrame::SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest)
 		return FALSE;
 	
 	// Now it's just a matter of copying the right file to the left
-	DeleteFile(strSavePath);
+	DeleteFile(strSavePath); // (errors are handled from CopyFile below)
 	if (!CopyFile(pszSrc, strSavePath, FALSE))
 	{
 		

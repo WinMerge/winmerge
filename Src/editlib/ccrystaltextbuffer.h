@@ -118,6 +118,7 @@ protected :
     BOOL m_bReadOnly;
     BOOL m_bModified;
     int m_nCRLFMode;
+	BOOL m_EolSensitive;
     BOOL m_bCreateBackupFile;
     int m_nUndoBufSize;
     int FindLineWithFlag (DWORD dwFlag);
@@ -271,6 +272,8 @@ public :
     void SetCRLFMode (int nCRLFMode);
     BOOL GetReadOnly () const;
     void SetReadOnly (BOOL bReadOnly = TRUE);
+
+	void SetEolSensitivity(BOOL EolSensitive) { m_EolSensitive = EolSensitive; }
 
     //  Text modification functions
     BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE);

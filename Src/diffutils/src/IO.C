@@ -251,6 +251,7 @@ find_and_hash_each_line (current)
       h = 0;
 
       /* Hash this line until we find a newline. */
+      /* Perry 2002-11-26 added EOL insensitivity */
       if (ignore_case_flag)
 	{
 	  if (ignore_all_space_flag)
@@ -262,6 +263,8 @@ find_and_hash_each_line (current)
 	  else if (ignore_space_change_flag)
 	    while ((c = *p++) != '\n')
 	      {
+		if (ignore_eol_diff && c=='\r' && *p=='\n')
+		  continue;
 		if (isspace (c))
 		  {
 		    while (isspace (c = *p++))
@@ -274,7 +277,11 @@ find_and_hash_each_line (current)
 	      }
 	  else
 	    while ((c = *p++) != '\n')
+	      {
+	      if (ignore_eol_diff && c=='\r' && *p=='\n')
+		continue;
 	      h = HASH (h, isupper (c) ? tolower (c) : c);
+	      }
 	}
       else
 	{
@@ -287,6 +294,8 @@ find_and_hash_each_line (current)
 	  else if (ignore_space_change_flag)
 	    while ((c = *p++) != '\n')
 	      {
+		if (ignore_eol_diff && c=='\r' && *p=='\n')
+		  continue;
 		if (isspace (c))
 		  {
 		    while (isspace (c = *p++))
@@ -299,12 +308,21 @@ find_and_hash_each_line (current)
 	      }
 	  else
 	    while ((c = *p++) != '\n')
+	      {
+	      if (ignore_eol_diff && c=='\r' && *p=='\n')
+		continue;
 	      h = HASH (h, c);
+	      }
 	}
    hashing_done:;
 
       bucket = &buckets[h % nbuckets];
       length = (char const HUGE *) p - ip - ((char const HUGE *) p == incomplete_tail);
+      if (ignore_eol_diff && length>1 && p[-2]=='\r' && p[-1]=='\n')
+	{
+	  ((char HUGE *)p)[-2] = '\n';
+	  --length;
+	}
       for (i = *bucket;  ;  i = eqs[i].next)
 	if (!i)
 	  {

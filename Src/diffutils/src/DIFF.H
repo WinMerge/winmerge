@@ -82,6 +82,9 @@ EXTERN int      horizon_lines;
 /* Ignore changes in horizontal white space (-b).  */
 EXTERN int      ignore_space_change_flag;
 
+/* Ignore end of line differences (at least between UNIX & DOS */
+EXTERN int      ignore_eol_diff;
+
 /* Ignore all horizontal white space (-w).  */
 EXTERN int      ignore_all_space_flag;
 

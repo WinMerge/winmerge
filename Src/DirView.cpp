@@ -224,6 +224,7 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 			pWndPopupOwner = pWndPopupOwner->GetParent();
 
 		// invoke context menu
+		// this will invoke all the OnUpdate methods to enable/disable the individual items
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
 			pWndPopupOwner);
 	}
@@ -251,11 +252,21 @@ void CDirView::OnDirCopyFileToLeft()
 {
 	DoCopyFileToLeft();
 }
+// User chose (main menu) Copy from left to right
+void CDirView::OnDirCopyFileToRight() 
+{
+	DoCopyFileToRight();
+}
 
 // User chose (context men) Copy from right to left
 void CDirView::OnCtxtDirCopyFileToLeft()
 {
 	DoCopyFileToLeft();
+}
+// User chose (context menu) Copy from left to right
+void CDirView::OnCtxtDirCopyFileToRight()
+{
+	DoCopyFileToRight();
 }
 
 // Prompt & copy item from right to left, if legal
@@ -277,7 +288,6 @@ void CDirView::DoCopyFileToLeft()
 	switch(di.code)
 	{
 	case FILE_LUNIQUE:
-		ConfirmAndDeleteAndUpdate(slFile, pos, sel);
 		break;
 	case FILE_RUNIQUE:
 	case FILE_DIFF:
@@ -293,7 +303,52 @@ void CDirView::DoCopyFileToLeft()
 		break;
 	case FILE_LDIRUNIQUE:
 	case FILE_RDIRUNIQUE:
-			// TODO 2002-11-22: Enable uniques also, but must write code to do recursive copy
+		// TODO: Would be nice to allow copying directory
+		// but must write code for recursive copy
+		// and worse, this will make the item display invalid (new items not on it)
+		// Perry 2002-11-26
+	case FILE_SAME:
+	default:
+		// Not allowed, and should have been disabled choices anyway
+		break;
+	}
+}
+// Prompt & copy item from left to right, if legal
+void CDirView::DoCopyFileToRight() 
+{
+	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
+	if (sel == -1) return;
+
+	CString sl, sr, slFile, srFile;
+	if (!GetSelectedDirNames(sl, sr) || !GetSelectedFileNames(slFile, srFile))
+		return;
+
+	CDirDoc *pd = GetDocument();
+	CString s;
+	// find item from document
+	POSITION pos;
+	const DIFFITEM& di = GetDiffItem(sel, pos);
+	// what we do depends on comparison result for this item
+	switch(di.code)
+	{
+	case FILE_RUNIQUE:
+		break;
+	case FILE_LUNIQUE:
+	case FILE_DIFF:
+	case FILE_BINDIFF:
+		AfxFormatString1(s, IDS_CONFIRM_COPY2DIR, sr);
+		if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION)==IDYES)
+		{		
+			CString left, right;
+			if (mf->SyncFiles(slFile, srFile))
+			{
+				mf->UpdateCurrentFileStatus(FILE_SAME);
+			}
+		}
+		break;
+	case FILE_LDIRUNIQUE:
+	case FILE_RDIRUNIQUE:
+			// see comments in DoCopyFileToLeft
 	case FILE_SAME:
 	default:
 		// Not allowed, and should have been disabled choices anyway
@@ -306,11 +361,21 @@ void CDirView::OnUpdateCtxtDirCopyFileToLeft(CCmdUI* pCmdUI)
 {
 	DoUpdateDirCopyFileToLeft(pCmdUI);
 }
+// Update context menu Copy Left to Right item
+void CDirView::OnUpdateCtxtDirCopyFileToRight(CCmdUI* pCmdUI) 
+{
+	DoUpdateDirCopyFileToRight(pCmdUI);
+}
 
 // Update main menu Copy Right to Left item
 void CDirView::OnUpdateDirCopyFileToLeft(CCmdUI* pCmdUI) 
 {
 	DoUpdateDirCopyFileToLeft(pCmdUI);
+}
+// Update main menu Copy Left to Right item
+void CDirView::OnUpdateDirCopyFileToRight(CCmdUI* pCmdUI) 
+{
+	DoUpdateDirCopyFileToRight(pCmdUI);
 }
 
 // Should Copy to Left be enabled or disabled ? (both main menu & context menu use this)
@@ -346,95 +411,13 @@ void CDirView::DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI)
 		break;
 	case FILE_RDIRUNIQUE:
 	// TODO 2002-11-22: Enable unique also, but must write code to do recursive copy
-		pCmdUI->Enable(FALSE);
+		pCmdUI->Enable(TRUE);
 		break;
 	default:
 		pCmdUI->Enable(FALSE);
 		break;
 	}
 }
-
-
-// Prompt & delete file, & remove its data entries
-void CDirView::ConfirmAndDeleteAndUpdate(LPCTSTR szFile, POSITION pos, int sel)
-{
-	// May want an option to suppress these message boxes
-
-	if (!mf->ConfirmAndDelete(szFile))
-		return;
-	// remove item data from document & screen
-	GetDocument()->m_pCtxt->m_dirlist.RemoveAt(pos);
-	GetListCtrl().DeleteItem(sel);
-}
-
-// User chose (main menu) Copy from left to right
-void CDirView::OnDirCopyFileToRight() 
-{
-	DoCopyFileToRight();
-}
-
-// User chose (context menu) Copy from left to right
-void CDirView::OnCtxtDirCopyFileToRight()
-{
-	DoCopyFileToRight();
-}
-
-// Prompt & copy item from left to right, if legal
-void CDirView::DoCopyFileToRight() 
-{
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel == -1) return;
-
-	CString sl, sr, slFile, srFile;
-	if (!GetSelectedDirNames(sl, sr) || !GetSelectedFileNames(slFile, srFile))
-		return;
-
-	CDirDoc *pd = GetDocument();
-	CString s;
-	// find item from document
-	POSITION pos;
-	const DIFFITEM& di = GetDiffItem(sel, pos);
-	// what we do depends on comparison result for this item
-	switch(di.code)
-	{
-	case FILE_RUNIQUE:
-		ConfirmAndDeleteAndUpdate(srFile, pos, sel);
-		break;
-	case FILE_LUNIQUE:
-	case FILE_DIFF:
-	case FILE_BINDIFF:
-		AfxFormatString1(s, IDS_CONFIRM_COPY2DIR, sr);
-		if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION)==IDYES)
-		{		
-			CString left, right;
-			if (mf->SyncFiles(slFile, srFile))
-			{
-				mf->UpdateCurrentFileStatus(FILE_SAME);
-			}
-		}
-		break;
-	case FILE_LDIRUNIQUE:
-	case FILE_RDIRUNIQUE:
-			// TODO 2002-11-22: Enable uniques also, but must write code to do recursive copy
-	case FILE_SAME:
-	default:
-		// Not allowed, and should have been disabled choices anyway
-		break;
-	}
-}
-
-// Update context menu Copy Right to Left item
-void CDirView::OnUpdateCtxtDirCopyFileToRight(CCmdUI* pCmdUI) 
-{
-	DoUpdateDirCopyFileToRight(pCmdUI);
-}
-
-// Update main menu Copy Left to Right item
-void CDirView::OnUpdateDirCopyFileToRight(CCmdUI* pCmdUI) 
-{
-	DoUpdateDirCopyFileToRight(pCmdUI);
-}
-
 // Should Copy to Right be enabled or disabled ? (both main menu & context menu use this)
 void CDirView::DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI) 
 {
@@ -696,6 +679,11 @@ void CDirView::OnCtxtDirDelLeft()
 {
 	DoDelLeft();
 }
+// User chose (context menu) delete right
+void CDirView::OnCtxtDirDelRight()
+{
+	DoDelRight();
+}
 
 // Prompt & delete left, if legal
 void CDirView::DoDelLeft() 
@@ -711,15 +699,60 @@ void CDirView::DoDelLeft()
 	POSITION pos;
 	const DIFFITEM& di = GetDiffItem(sel, pos);
 
-	ConfirmAndDeleteAndUpdate(slFile, pos, sel);
+	// need to know if file or directory
+	switch(di.code)
+	{
+	case FILE_LUNIQUE:
+	case FILE_DIFF:
+	case FILE_BINDIFF:
+		ConfirmAndDeleteFileAndUpdate(slFile, pos, sel);
+		break;
+	case FILE_LDIRUNIQUE:
+		ConfirmAndDeleteDirAndUpdate(slFile, pos, sel);
+		break;
+	}
+}
+// Prompt & delete right, if legal
+void CDirView::DoDelRight() 
+{
+	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
+	if (sel == -1) return;
+
+	CString sl, sr, slFile, srFile;
+	if (!GetSelectedDirNames(sl, sr) || !GetSelectedFileNames(slFile, srFile))
+		return;
+
+	// find item from document
+	POSITION pos;
+	const DIFFITEM& di = GetDiffItem(sel, pos);
+
+	// need to know if file or directory
+	switch(di.code)
+	{
+	case FILE_RUNIQUE:
+	case FILE_DIFF:
+	case FILE_BINDIFF:
+		ConfirmAndDeleteFileAndUpdate(srFile, pos, sel);
+		break;
+	case FILE_RDIRUNIQUE:
+		ConfirmAndDeleteDirAndUpdate(srFile, pos, sel);
+		break;
+	}
 }
 
+// Enable/disable Delete Left menu choice on context menu
 void CDirView::OnUpdateCtxtDirDelLeft(CCmdUI* pCmdUI)
 {
 	DoUpdateCtxtDirDelLeft(pCmdUI);
 }
 
-// Should Delete left be enabled or disabled ? (both main menu & context menu use this)
+// Enable/disable Delete Right menu choice on context menu
+void CDirView::OnUpdateCtxtDirDelRight(CCmdUI* pCmdUI) 
+{
+	DoUpdateCtxtDirDelRight(pCmdUI);
+}
+
+// Should Delete left be enabled or disabled ?
 void CDirView::DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI) 
 {
 	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
@@ -760,34 +793,6 @@ void CDirView::DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI)
 		break;
 	}
 }
-// User chose (context menu) delete right
-void CDirView::OnCtxtDirDelRight()
-{
-	DoDelRight();
-}
-
-// Prompt & delete right, if legal
-void CDirView::DoDelRight() 
-{
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel == -1) return;
-
-	CString sl, sr, slFile, srFile;
-	if (!GetSelectedDirNames(sl, sr) || !GetSelectedFileNames(slFile, srFile))
-		return;
-
-	// find item from document
-	POSITION pos;
-	const DIFFITEM& di = GetDiffItem(sel, pos);
-
-	ConfirmAndDeleteAndUpdate(srFile, pos, sel);
-}
-
-void CDirView::OnUpdateCtxtDirDelRight(CCmdUI* pCmdUI) 
-{
-	DoUpdateCtxtDirDelRight(pCmdUI);
-}
-
 // Should Delete right be enabled or disabled ?
 void CDirView::DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI) 
 {
@@ -828,4 +833,29 @@ void CDirView::DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 		break;
 	}
+}
+
+// Prompt & delete file, & remove its data entries
+void CDirView::ConfirmAndDeleteFileAndUpdate(LPCTSTR szFile, POSITION pos, int sel)
+{
+	// May want an option to suppress these message boxes
+
+	if (!mf->ConfirmAndDeleteFile(szFile))
+		return;
+	// remove item data from document & screen
+	GetDocument()->m_pCtxt->m_dirlist.RemoveAt(pos);
+	GetListCtrl().DeleteItem(sel);
+}
+
+// Prompt & delete directory, & remove its data entries
+void CDirView::ConfirmAndDeleteDirAndUpdate(LPCTSTR szDir, POSITION pos, int sel)
+{
+	// May want an option to suppress these message boxes
+
+	if (!mf->ConfirmAndDeleteDir(szDir))
+		return;
+	// remove item data from document & screen
+	// so, this assumes it is a unique entry (has no children listed)
+	GetDocument()->m_pCtxt->m_dirlist.RemoveAt(pos);
+	GetListCtrl().DeleteItem(sel);
 }

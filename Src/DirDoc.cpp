@@ -222,6 +222,8 @@ void CDirDoc::Redisplay()
 	{
 		curpos = pos;
 		DIFFITEM di = m_pCtxt->m_dirlist.GetNext(pos);
+		BOOL leftside = (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE);
+		BOOL rightside = (di.code==FILE_RUNIQUE || di.code==FILE_RDIRUNIQUE);
 		switch (di.code)
 		{
 		case FILE_DIFF:
@@ -260,7 +262,7 @@ void CDirDoc::Redisplay()
 		case FILE_RUNIQUE:
 		case FILE_LDIRUNIQUE:
 		case FILE_RDIRUNIQUE:
-			if (mf->m_bShowUnique
+			if (((mf->m_bShowUniqueLeft && leftside) || (mf->m_bShowUniqueRight && rightside))
 				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
 			{
 				m_pView->AddItem(cnt, DV_NAME, di.filename);

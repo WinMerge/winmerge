@@ -44,6 +44,7 @@ CPropGeneral::CPropGeneral() : CPropertyPage(CPropGeneral::IDD)
 	m_nTabSize = 0;
 	m_bIgnoreCase = FALSE;
 	m_bIgnoreBlankLines = FALSE;
+	m_bEolSensitive = FALSE;
 	m_bDisableSplash = FALSE;
 	m_nIgnoreWhite = -1;
 	//}}AFX_DATA_INIT
@@ -62,6 +63,7 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
 	DDX_Check(pDX, IDC_IGNCASE_CHECK, m_bIgnoreCase);
 	DDX_Check(pDX, IDC_IGNBLANKS_CHECK, m_bIgnoreBlankLines);
+	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bEolSensitive);
 	DDX_Check(pDX, IDC_DISABLE_SPLASH, m_bDisableSplash);
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	//}}AFX_DATA_MAP

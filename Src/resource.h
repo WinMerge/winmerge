@@ -43,6 +43,7 @@
 #define IDS_PROPERTIES_TITLE            147
 #define IDS_OPEN_TITLE                  148
 #define IDS_CONFIRM_DELETE              149
+#define IDS_CONFIRM_DELETE_FILE         149
 #define IDS_EDIT_WINDOW_TITLE_FMT       150
 #define IDS_FILESSAME                   151
 #define IDS_FILEUNIQUE                  152
@@ -72,6 +73,9 @@
 #define IDS_DEL_LEFT_FMT                175
 #define IDS_DEL_RIGHT_FMT               176
 #define IDS_DELETE_FAILED               177
+#define IDS_DELETE_FILE_FAILED          177
+#define IDS_CONFIRM_DELETE_DIR          178
+#define IDS_REMOVE_DIR_FAILED           179
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
@@ -114,6 +118,7 @@
 #define IDC_WHITE_CHANGE                1025
 #define IDC_WHITESPACE                  1026
 #define IDC_USER                        1027
+#define IDC_EOL_SENSITIVE               1027
 #define IDC_PASSWORD                    1028
 #define IDC_DIFFERENCE_COLOR            1031
 #define IDC_SEL_DIFFERENCE_COLOR        1032
@@ -260,6 +265,9 @@
 #define ID_DIFFNUM                      32806
 #define ID_DIR_DEL_LEFT                 32807
 #define ID_DIR_DEL_RIGHT                32808
+#define ID_DIFFSTATUS                   32809
+#define ID_OPTIONS_SHOWUNIQUELEFT       32810
+#define ID_OPTIONS_SHOWUNIQUERIGHT      32811
 
 // Next default values for new objects
 // 
@@ -267,7 +275,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        135
-#define _APS_NEXT_COMMAND_VALUE         32809
+#define _APS_NEXT_COMMAND_VALUE         32812
 #define _APS_NEXT_CONTROL_VALUE         1032
 #define _APS_NEXT_SYMED_VALUE           106
 #endif

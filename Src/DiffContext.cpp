@@ -36,7 +36,7 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/)
+CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/, IDiffStatus * piStatus)
 {
 	m_bRecurse=FALSE;
 	m_strLeft = pszLeft;
@@ -45,6 +45,7 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 
 	pNamesLeft = NULL;
 	pNamesRight = NULL;
+	m_piStatus = piStatus;
 }
 
 CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
@@ -54,6 +55,7 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	m_strRight = pszRight;
 	m_pList = src.m_pList;
 	SetRegExp(src.m_strRegExp);
+	m_piStatus = src.m_piStatus;
 
 	pNamesLeft = NULL;
 	pNamesRight = NULL;
@@ -95,6 +97,9 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszR
 
 
 	m_pList->AddTail(di);
+
+	if (m_piStatus)
+		m_piStatus->rptFile(code);
 }
 
 void CDiffContext::SetRegExp(LPCTSTR pszExp)
