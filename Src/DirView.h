@@ -138,6 +138,9 @@ protected:
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
 #endif
+	int GetFocusedItem();
+	int GetFirstDifferentItem();
+	int GetLastDifferentItem();
 
 // Implementation data
 protected:
@@ -177,6 +180,16 @@ protected:
 	afx_msg void OnUpdateCtxtDirOpenRightWith(CCmdUI* pCmdUI);
 	afx_msg void OnDestroy();
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnFirstdiff();
+	afx_msg void OnUpdateFirstdiff(CCmdUI* pCmdUI);
+	afx_msg void OnLastdiff();
+	afx_msg void OnUpdateLastdiff(CCmdUI* pCmdUI);
+	afx_msg void OnNextdiff();
+	afx_msg void OnUpdateNextdiff(CCmdUI* pCmdUI);
+	afx_msg void OnPrevdiff();
+	afx_msg void OnUpdatePrevdiff(CCmdUI* pCmdUI);
+	afx_msg void OnCurdiff();
+	afx_msg void OnUpdateCurdiff(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
@@ -192,6 +205,8 @@ private:
 	POSITION GetItemKeyFromData(DWORD dw);
 	DIFFITEM GetDiffItem(int sel);
 	int GetSingleSelectedItem() const;
+	bool IsItemNavigableDiff(const DIFFITEM & di) const;
+	void MoveSelection(int currentInd, int i, int selCount);
 };
 
 

@@ -80,6 +80,16 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT_WITH, OnUpdateCtxtDirOpenRightWith)
 	ON_WM_DESTROY()
 	ON_WM_CHAR()
+	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
+	ON_UPDATE_COMMAND_UI(ID_FIRSTDIFF, OnUpdateFirstdiff)
+	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
+	ON_UPDATE_COMMAND_UI(ID_LASTDIFF, OnUpdateLastdiff)
+	ON_COMMAND(ID_NEXTDIFF, OnNextdiff)
+	ON_UPDATE_COMMAND_UI(ID_NEXTDIFF, OnUpdateNextdiff)
+	ON_COMMAND(ID_PREVDIFF, OnPrevdiff)
+	ON_UPDATE_COMMAND_UI(ID_PREVDIFF, OnUpdatePrevdiff)
+	ON_COMMAND(ID_CURDIFF, OnCurdiff)
+	ON_UPDATE_COMMAND_UI(ID_CURDIFF, OnUpdateCurdiff)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 END_MESSAGE_MAP()
@@ -778,4 +788,269 @@ DIFFITEM CDirView::GetItemAt(int ind)
 		di = GetDiffItem(ind);
 	}
 	return di;
+}
+
+// Go to first diff
+// If none or one item selected select found item
+void CDirView::OnFirstdiff()
+{
+	DIFFITEM di = {0};
+	const int count = m_pList->GetItemCount();
+	BOOL found = FALSE;
+	int i = 0;
+	int currentInd = GetFirstSelectedInd();
+	int selCount = GetSelectedCount();
+
+	while (i < count && found == FALSE)
+	{
+		di = GetItemAt(i);
+		if (IsItemNavigableDiff(di))
+		{
+			MoveSelection(currentInd, i, selCount);
+			found = TRUE;
+		}
+		i++;
+	}
+}
+
+void CDirView::OnUpdateFirstdiff(CCmdUI* pCmdUI)
+{
+	int firstDiff = GetFirstDifferentItem();
+	if (firstDiff > -1)
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
+}
+
+// Go to last diff
+// If none or one item selected select found item
+void CDirView::OnLastdiff()
+{
+	DIFFITEM di = {0};
+	BOOL found = FALSE;
+	const int count = m_pList->GetItemCount();
+	int i = count - 1;
+	int currentInd = GetFirstSelectedInd();
+	int selCount = GetSelectedCount();
+
+	while (i > -1 && found == FALSE)
+	{
+		di = GetItemAt(i);
+		if (IsItemNavigableDiff(di))
+		{
+			MoveSelection(currentInd, i, selCount);
+			found = TRUE;
+		}
+		i--;
+	}
+}
+
+
+
+void CDirView::OnUpdateLastdiff(CCmdUI* pCmdUI)
+{
+	int firstDiff = GetFirstDifferentItem();
+	if (firstDiff > -1)
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
+}
+
+// Go to next diff
+// If none or one item selected select found item
+void CDirView::OnNextdiff()
+{
+	DIFFITEM di = {0};
+	const int count = m_pList->GetItemCount();
+	BOOL found = FALSE;
+	int i = GetFocusedItem();
+	int currentInd = 0;
+	int selCount = GetSelectedCount();
+
+	currentInd = i;
+	i++;
+
+	while (i < count && found == FALSE)
+	{
+		di = GetItemAt(i);
+		if (IsItemNavigableDiff(di))
+		{
+			MoveSelection(currentInd, i, selCount);
+			found = TRUE;
+		}
+		i++;
+	}
+}
+
+
+void CDirView::OnUpdateNextdiff(CCmdUI* pCmdUI)
+{
+	int focused = GetFocusedItem();
+	int lastDiff = GetLastDifferentItem();
+	if (focused < lastDiff)
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
+}
+
+// Go to prev diff
+// If none or one item selected select found item
+void CDirView::OnPrevdiff()
+{
+	DIFFITEM di = {0};
+	BOOL found = FALSE;
+	int i = GetFocusedItem();
+	int currentInd = 0;
+	int selCount = GetSelectedCount();
+
+	currentInd = i;
+	if (i > 0)
+		i--;
+
+	while (i > -1 && found == FALSE)
+	{
+		di = GetItemAt(i);
+		if (IsItemNavigableDiff(di))
+		{
+			MoveSelection(currentInd, i, selCount);
+			found = TRUE;
+		}
+		i--;
+	}
+}
+
+
+void CDirView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
+{
+	int focused = GetFocusedItem();
+	int firstDiff = GetFirstDifferentItem();
+	if (firstDiff < focused)
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
+}
+
+void CDirView::OnCurdiff()
+{
+	const int count = m_pList->GetItemCount();
+	BOOL found = FALSE;
+	int i = GetFirstSelectedInd();
+	BOOL selected = FALSE;
+	BOOL focused = FALSE;
+
+	// No selection - no diff to go
+	if (i == -1)
+		i = count;
+
+	while (i < count && found == FALSE)
+	{
+		selected = m_pList->GetItemState(i, LVIS_SELECTED);
+		focused = m_pList->GetItemState(i, LVIS_FOCUSED);
+			
+		if (selected == LVIS_SELECTED && focused == LVIS_FOCUSED)
+		{
+			m_pList->EnsureVisible(i, FALSE);
+			found = TRUE;
+		}
+		i++;
+	}
+}
+
+void CDirView::OnUpdateCurdiff(CCmdUI* pCmdUI)
+{
+	int selection = GetFirstSelectedInd();	
+	if (selection > -1)
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
+}
+
+int CDirView::GetFocusedItem()
+{
+	int retInd = -1;
+	int i = 0;
+	const int count = m_pList->GetItemCount();
+	BOOL found = FALSE;
+	BOOL focused = FALSE;
+
+	while (i < count && found == FALSE)
+	{
+		focused = m_pList->GetItemState(i, LVIS_FOCUSED);			
+		if (focused == LVIS_FOCUSED)
+		{
+			retInd = i;
+			found = TRUE;
+		}
+		i++;
+	}
+	return retInd;
+}
+
+int CDirView::GetFirstDifferentItem()
+{
+	DIFFITEM di = {0};
+	const int count = m_pList->GetItemCount();
+	BOOL found = FALSE;
+	int i = 0;
+	int foundInd = -1;
+
+	while (i < count && found == FALSE)
+	{
+		di = GetItemAt(i);
+		if (IsItemNavigableDiff(di))
+		{
+			foundInd = i;		
+			found = TRUE;
+		}
+		i++;
+	}
+	return foundInd;
+}
+
+int CDirView::GetLastDifferentItem()
+{
+	DIFFITEM di = {0};
+	const int count = m_pList->GetItemCount();
+	BOOL found = FALSE;
+	int i = count - 1;
+	int foundInd = -1;
+
+	while (i > 0 && found == FALSE)
+	{
+		di = GetItemAt(i);
+		if (IsItemNavigableDiff(di))
+		{
+			foundInd = i;		
+			found = TRUE;
+		}
+		i--;
+	}
+	return foundInd;
+}
+
+// When navigating differences, do we stop at this one ?
+bool CDirView::IsItemNavigableDiff(const DIFFITEM & di) const
+{
+	switch(di.code)
+	{
+	case FILE_DIFF: return true;
+	case FILE_BINDIFF: return true;
+	case FILE_LUNIQUE: return true;
+	case FILE_RUNIQUE: return true;
+	}
+	return false;
+}
+
+// move focus (& selection if only one selected) from currentInd to i
+void CDirView::MoveSelection(int currentInd, int i, int selCount)
+{
+	if (selCount <= 1)
+	{
+		m_pList->SetItemState(currentInd, 0, LVIS_SELECTED);
+		m_pList->SetItemState(currentInd, 0, LVIS_FOCUSED);
+		m_pList->SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
+	}
+
+	m_pList->SetItemState(i, LVIS_FOCUSED, LVIS_FOCUSED);
+	m_pList->EnsureVisible(i, FALSE);
 }

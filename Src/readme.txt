@@ -2,6 +2,9 @@
  [ 689876 ] Patch to fix bug # 689869 (ASSERT on Rescan)
   WinMerge:
    MainFrm.cpp & new resource IDS_ERROR_FILE_NOT_FOUND
+ [ 687574 ] Navigate in directory view
+  WinMerge:
+   DirView.cpp DirView.h
 
 2003-02-18 Christian
   Removed annoying SourceSafe path from Merge.dsp
