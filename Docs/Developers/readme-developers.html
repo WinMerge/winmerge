@@ -1,0 +1,443 @@
+<h3>readme-developers.html Table of Contents</h3>
+
+<ol><li>
+<a href="#Code_changes">Code changes</a>
+</li><li>
+<a href="#MakePatchDirs">MakePatchDirs</a>
+</li><li>
+<a href="#Minor_code_changes_and_bug_fixes">Minor code changes and bug fixes</a>
+</li><li>
+<a href="#Coding_conventions">Coding conventions</a>
+</li><li>
+<a href="#Doxygen_comments">Doxygen comments</a>
+</li><li>
+<a href="#RCS_Ids">RCS Ids</a>
+</li><li>
+<a href="#File_release_numbers">File release numbers</a>
+</li><li>
+<a href="#Packaging_file_releases">Packaging file releases</a>
+</li><li>
+<a href="#Tagging_CVS_when_releasing_files">Tagging CVS when releasing files</a>
+</li><li>
+<a href="#Localization : resources files">Localization : resources files</a>
+</li><li>
+<a href="#Localization : merging and scheduling">Localization : merging and scheduling</a>
+</li><li>
+<a href="#UserManual">User Manual in DocBook/XML</a>
+
+</li></ol>
+
+
+<a name="Code_changes"></a>
+<h3>Code changes</h3>
+
+<p>
+
+In 2003 WinMerge has seen a happy spurt in development activity. Several new
+developers have joined in actively with developer cvs access, and also
+some users have contributed elaborate patches, and participated in ongoing
+discussions.
+
+<p>
+
+This is exciting, and also leads to a fair amount of rapid change, so we
+adopted some guidelines to help safeguard our WinMerge development somewhat.
+
+<p>
+
+The original guidelines suggested were posted to the developer's mailing list
+(which is not archived). What is documented here is the actual procedures
+which we have been following, which are of course similar, as we developed
+our actual procedures based on the original suggested guidelines.
+
+<p>
+
+If you do not like some part of these guidelines, please feel free to
+post a message to the developer's mailing list or the developer's forum
+discussing the matter.
+
+<p>
+
+<ol><li>
+Post development intentions:
+
+<ul><li>
+If you are fixing a bug, put a note in the SourceForge bug report that you're
+fixing it. If there is no SourceForge bug report, create one.
+</li><li>
+If you are implementing a new feature, put a note in the SourceForge RFE
+(request for enhancement) that you're implementing it. If there is no
+SourceForge RFE, create one.
+</li><li>
+If you are rewriting or refactoring code, and the change is not small,
+then post your intent. The developer's mailing list or the developer's
+forum at SourceForge would be good places to post your plan.
+</li></ul>
+
+</li><li>
+
+Before you start developing, make sure to capture
+a snapshot of your starting sources (presumably a pristine copy of cvs
+sources, or of a source zip from a distribution).
+
+</li><li>
+
+Review the sections on <a href="#Coding_conventions">Coding conventions</a>
+and <a href="#Doxygen_comments">Doxygen comments</a>
+
+</li><li>
+
+Develop your new version.
+
+</li><li>
+
+Post your changes as a patch, to the SourceForge patch list. Try to give an
+informative patch title of course. Post to any relevant SourceForge bugs
+or RFEs, giving the patch number and title.
+<p>
+The active developers have often been posting entire original and modified
+files rather than traditional diffs, because obviously all developers
+have access to WinMerge to compare original and modified files, and this
+may be viewed as an infinite line context diff :)
+
+</li><li>
+
+Wait for reactions from other developers (and sometimes active users).
+If you feel impatient, you may solicit review of your patch via the
+developer's mailing list.
+
+</li><li>
+
+After a reasonable amount of time has passed, and no negative reviews
+have been posted (or after you have responded to and dealt reasonably
+with any that have been posted), apply the patch to CVS. (Or ask a
+project member to do so, if you have not yourself developer access to
+the project.)
+
+<p>
+
+What is a reasonable amount of time? That is somewhat subjective, and
+we need to rely on your expertise as the patch developer, but let us
+suggest waiting a few days for minor patches, and at least a week for
+major patches.
+
+
+</li><li>
+
+Add a note in readme.txt telling what files you committed, and what bug/RFE/patch you solved.
+This is very important so everybody else has a change to figure out who did what and when.
+
+</li></ol>
+
+<p>
+
+<a name="MakePatchDirs"></a>
+<h3>MakePatchDirs</h3>
+
+Perry wrote a small program called
+<a href="readme-developers-MakePatchDirs.html">MakePatchDirs</a>, which helps
+in his patch process -- read the link for more information.
+
+
+<a name="Minor_code_changes_and_bug_fixes"></a>
+<h3>Minor code changes and bug fixes</h3>
+
+It is reasonable to post small snippets of code showing small changes
+directly in the text in bug postings, or patch postings. For example, see
+PATCH [ 824987 ] "Change binary-file detection (look only for zeros)", which
+gives the change directly in the text.
+
+<p>
+
+Bugfixes may be treated less formally, especially for simple ones, or for
+fixes to code you know well -- eg, you caused the bug yourself with a
+recent patch :)
+
+<p>
+
+Consider still posting something to the tracker lists, even if it is
+simply a summary in English. If the fix is something like
+"misspelled variable name foo as fooz in many places", it is quite
+understandable that you prefer to just fix the instances rather than
+doing a full patch for it.
+
+
+<a name="Coding_conventions"></a>
+<h3>Coding conventions</h3>
+
+Please conform to the prevalent coding conventions. There are quite a number of
+files which originated elsewhere, and have their own coding conventions; please
+conform to the local one, in whichever files you are at work.
+
+<ol><li>
+
+WinMerge itself uses Microsoft MFC style coding.
+<ul><li>
+Code indents are purely tabs.
+</li><li>
+Curly braces are on their own line, indented at the level of the outer code, and
+code inside the braces is indented one further level.
+</li><li>
+Class member variables are usually prefixed with m_.
+</li><li>
+</ul>
+
+</li><li>
+Crystal Text Editor (WinMerge/editlib/*) and diffutils code (io.c, normal.c, util.c)
+use traditional Unix style coding. analyze.c should be in this format, but we have
+made a mess of it :(
+<ul><li>
+Code indents are spaces, with tabs used to abbreviate eight consecutive spaces.
+</li><li>
+Curly braces are on their own line, indented two spaces, and then the code inside
+the curly braces is indented an additional two spaces.
+</ul>
+
+
+</li></ol>
+
+<a name="Doxygen_comments"></a>
+<h3>Doxygen comments</h3>
+
+We have adopted <a href="http://www.doxygen.org">doxygen</a> style as our desired
+commenting style for functions, classes, files, and so forth, in WinMerge code
+(this applies only to native WinMerge code, not imported files).
+
+<ul><li>
+
+We're using JavaDoc style comments.
+
+</li><li>
+
+It is probably easiest to simply imitate existing examples. The functions in
+DiffThread.cpp are fully doxygen commented (<em>TODO: it would be better to give a
+class example, if anyone knows a fully doxygen commented class</em>).
+
+</li><li>
+
+There is ready to use doxygen config file in docs/developers/doxygen.cfg
+
+</li></ul>
+
+
+<a name="RCS_Ids"></a>
+<h3>RCS Ids</h3>
+
+We have adopted the convention of using RCS id lines near the top of our source
+files (following the doxygen file header comments). Merely add these two lines
+to any new file you add to the repository, and cvs will modify the Id line by
+appending file version and date information at every checkin:
+
+<blockquote>
+// RCS ID line follows -- this is updated by CVS<br>
+// &#36;Id&#36;
+</blockquote>
+
+
+<a name="File_release_numbers"></a>
+<h3>File release numbers</h3>
+
+We are trying to keep a consistent numbering scheme on our file releases, so everybody can figure out what we have released by just looking at the release number. However, some of our older releases do not follow this scheme.
+
+<p>
+<pre>
+2.1.2.0
+|&nbsp;|&nbsp;|&nbsp;|
+|&nbsp;|&nbsp;|&nbsp;`------- This number increases for each experimental,
+|&nbsp;|&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and it is reset after each beta or major release.
+|&nbsp;|&nbsp;`--------- Denotes a beta release, an experimental release
+|&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; or a minor bug fix of a major release.
+|&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; even numbers means "stable" (i.e. a beta).
+|&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; odd numbers means "unstable" (i.e. an experimental).
+|&nbsp;`----------- Denotes a major release.
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; even numbers means "stable".
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; odd numbers means "unstable".
+`------------- Denotes a major release with major changes.
+</pre>
+<p>
+
+In this case the next experimental release will have the number 2.1.3.0 (and then 2.1.3.1 and then 2.1.3.2 and so on)<br>
+The next beta release will have the number 2.1.4.0<br>
+The next major release will have the number 2.2.0.0<br>
+And if we decide to rewrite most of the code, the next major release will have the number 3.0.0.0<br>
+
+<a name="Packaging_file_releases"></a>
+<h3>Packaging file releases</h3>
+
+On SourceForge there is some space to put in Release Notes and Change Notes. For experimental releases make sure to put in a note stating what you would like people to test in this release, and a note telling people that this is indeed experimental, so they should not expect everything to work perfectly. For beta builds we paste in all the changes since the last beta release, so that people can see exactly what changed. For major releases, we paste in the list of changes since the last major release, and this list can become very long.
+
+<p>
+
+We are using <a href="http://www.jrsoftware.org/isinfo.php">InnoSetup</a> to make an installer with WinMerge. This installer is only used for major releases, for other releases we just zip up these files:
+
+<ul>
+<li>WinMerge.exe and WinMergeU.exe</li>
+<li>ShellExtension.dll and register.bat to register it</li>
+<li>All filters from the filters/ directory</li>
+<li>All plugins from the plugins/dlls/ directory. Create a MergePlugins/ directory and copy the plugins to it</li>
+<li>All *.lang files (currently we have 15 languages, counting both Chinese versions)</li>
+</ul>
+
+Please remember to put the version number into both executables. You may use
+<a href="http://www.elphin.com/products/stampver.html">StampVer</a> to stamp
+the version number into the executables after they are compiled; Christian is
+familiar with this process. You may also use the old-fashioned process
+of simply copying all the sources, changing the Merge.rc in the copy using
+the MSVC6 resource editor, and compiling that (Perry has been using this
+manual, low-tech process). Whatever method you use, please double-check the
+executable version numbers before uploading and releasing them.
+
+<p>
+<ul><li>
+<em>TODO: What about versioning ShellExtension.dll ?</em>
+</li></ul>
+
+
+<a name="Tagging_CVS_when_releasing_files"></a>
+<h3>Tagging CVS when releasing files</h3>
+
+When we make a release we always put a note in readme.txt in CVS.
+
+<p>
+
+It is recommended to put a tag in CVS when you make a file release, because that makes it easier to pull a release version when there were code updates before and after it on the same day (because SourceForge doesn't record time of day correctly, and anyway, it it easier to just ask for a tag). The tag should follow the same numbering scheme as used above, with the dots replaced by underscores and prefixed with an R, so the example experimental above would have a tag named R2_1_3_0, the next beta would be named R2_1_4, and the next major release would be named R2_2.
+
+<a name="Localization : resources files"></a>
+<h3>Localization : resources files</h3>
+
+For end users : WinMerge.exe and WinMergeU.exe are always compiled with the english resources. Custom languages are in separate dll files with extension lang, to be placed in WinMerge directory. Language may be changed dynamically through the menu.
+
+<p>
+
+For developers and translators : WinMerge localization is achieved through localization of resources (files with extension rc). Actually there is only one rc file in the project, Merge.rc. Localized versions for this file are to be stored in the Languages/ directory, in the subdirectory created for that language.
+
+<p>
+
+Tips for developers :
+<ul><li>
+the code must use resource strings for all messages, or displayed text (column title ...)
+</li><li>
+strings ID : when applying a patch, you may define new strings (with as ID the first free ID). But probably you wrote your patch from an old version, and someone may have already inserted a patch for this ID. You need to adapt the ID in resource.h to avoid overlapping ID.
+</li><li>
+strings order : that is really annoying with MSVC. It is important to keep the order of strings unchanged, because merging rc files with WinMerge is then a lot easier. Strings are grouped in block according to their ID masked by 0xFFF0. So there are at most 16 strings in a block, but maybe less. MSVC reorders strings between and inside blocks, but never reorder blocks (when a new blocks is created, MSVC always put it at the last position).
+<p>
+Typical method to merge strings in a Merge.rc from a patch with a Merge.rc in CVS :
+<ol><li>
+Add your new strings with WinMerge : resource.h for ID, and Merge.rc.
+</li><li>
+If no overlapping ID, you are finished.
+</li><li>
+Update your ID in resource.h.
+</li><li>
+Open your resource file in MSVC. Force compilation (I just change a string twice, add a space, delete this space, then save). So MSVC classes new strings in blocks (possibly creating new blocks) according to the ID updated in 3.
+</li></ol>
+Note : Blocks are not really ordered (there order comes from history), it is not a problem as MSVC never reorders blocks after creation. If you use another tool to change resources, please make sure that the blocks order is unchanged.
+</li><li>
+localized resources must be updated regularly with new resources from Merge.rc. Older localized dll may crash with a recent version of WinMerge (missing dialogs). See below.
+</li></ul>
+
+<p>
+
+Tips for translators :
+<ul><li>
+do not move around things in resource files (MSVC or WinMerge are OK, but maybe you'll use other tools)
+</li><li>
+first translation : the order of blocks is different in 2.0 and 2.1 (bug). You have to reorder the blocks if you build your 2.1 localization from your 2.0 one.
+</li><li>
+you may localize the layout. Avoid to localize the alignment flag, rather change coordinates.
+</li></ul>
+
+<a name="Localization : merging and scheduling"></a>
+<h3>Localization : merging and scheduling</h3>
+
+Issues :
+<ul><li>
+It is long to update 15 languages for just one patch. But reducing the frequency of such updates is maybe not a progress : 5 small updates are long but easy, 1 big update is quick and more complex.
+</li><li>
+merging of layout : translator may change layout, then when developers insert new controls, moved and new controls may overlap. Visual check of 15 dialogs is definitively too long for a single patch update.
+</li><li>
+delays in localization : translators generally need some weeks to translate, so their version is already outdated when the localization is complete, and merging with CVS must be done again
+</li></ul>
+
+<p>
+
+Global rules for localized resource files :
+<ul><li>
+Translators localize just betas or releases. They don't localize CVS or experimentals (they don't have to, they may if they will, then they do the merging themselves).
+</li><li>
+Patches : developers update the files : add new items, remove deleted ones, move moved items (controls going from one dialog to another one). No care of layout or visual check of dialogs. With such updates, languages dll are valid (no crash). <em>We may reduce this work to the languages used by experimental testers (and, for other languages, for the next beta/release, reapply together all patches since the last beta/release localization).</em>
+</li><li>
+Good synchronization is required between developers and translators for the latest beta/release. For older versions, translators are free. The latest beta/release is the latest build which is either a beta or either a release.
+</li><li>
+developers do not change resources for beta/release after their creation. Only localization/layout changes may be applied.
+</li></ul>
+
+<p>
+
+Typical steps for a new beta/release :
+<ol><li>
+Layout of dialogs. Visual check. Probably a developer work (for speed, and maybe the language has no more translator). Update the CVS after this step.
+</li><li>
+Branch the localized resource for the beta/release. Build the dll.
+</li><li>
+Beginning of localization. The translators gets the localized resource.
+</li><li>
+...
+</li><li>
+Translator applies his localization to the branch. Rebuild the dll.
+</li><li>
+CVS localization. developers merge the changes from 4 to the current CVS. The layout may be merged only partially, as anyway it will be checked for the next beta/release.
+</li></ol>
+Steps 3,4,5,6 may be reproduced. As long as the impacted beta/release is the last one, step 6 is necessary (or the changes will be lost in the next beta/release). But step 6 is done by developers only once (per language and per beta/release), after it is the translator's job. Please localize once and well rather than in small chunks !
+
+<p>
+
+Merging tools for resources : WinMerge of course, plus the plugin 'RCLocalizationHelper.dll'.
+Most text/layout differences are ignored, so new/deleted/moved items appears clearly. Help to merge patches, and to merge a newly localized resource to its CVS version (apply the CVS changes to the newly localized resource). Contrary to a lot of (bad) localization tools, this method preserves the layout done by the translator. There are good localization tools however, and we will welcome with pleasure anyone with such a tool in the project.
+
+<a name="UserManual"></a>
+<h3>User Manual in DocBook/XML</h3>
+
+Useful DocBook resources:
+<a href="http://www.docbook.org/">Official DocBook homepage</a><br>
+<a href="http://www.docbook.org/wiki/moin.cgi/">DocBook Wiki</a>
+
+<p>
+Installing tools needed:<br>
+<a href="http://supportweb.cs.bham.ac.uk/documentation/tutorials/docsystem/build/tutorials/docbooksys/segmentedhtml/">Good instructions</a>
+<br>
+Read ch 3. about how to install Windows environment. Note that only libxml and
+DocBook DTD are needed for creating HTML documentation.
+<br>
+<a href="ftp://ftp.zlatkovic.com/pub/libxml/">libxml download</a><br>
+There is also eDE <a href="http://docbook.e-novative.de/">http://docbook.e-novative.de/</a>
+which is easy to setup environment for DocBook, and its GPL.
+
+
+<p>
+Docbook support in SourceForge<br>
+SourceForge has Docbook tools installed, and they can be used from
+shell server. Tools we are interested in:
+<ol><li>
+docbook2html
+</li><li>
+docbook2pdf
+</li><li>
+docbook2txt
+</li><li>
+(docbook2rtf)
+</li></ol>
+
+<p>
+Editing manual
+<br>
+I'ts XML, so you can use XML editor or your favourite text editor. Note that
+XML requires document to well formed, unlike HTML, before it can be processed.
+So if possible, make sure your DocBook is well formed before submitting document
+patches.
+<p>
+See these tutorials for editing DocBook:
+<a href="http://newbiedoc.sourceforge.net/metadoc/docbook-guide.html.en">NewbieDoc
+DocBook guide</a><br>
+<a href="http://www.codeproject.com/winhelp/docbook_howto.asp">Creating HTML
+help from DocBook</a>
