@@ -194,6 +194,8 @@
 #define IDB_EDIT_REPLACE                276
 #define IDB_VIEW_LANGUAGE               277
 #define IDB_VIEW_SELECTFONT             278
+#define IDB_FILE_EXIT                   279
+#define IDB_HELP_CONTENTS               280
 #define ID_SCRIPT_FIRST                 900
 #define ID_SCRIPT_LAST                  999
 #define IDC_LEFT_EDIT                   1000
@@ -570,7 +572,7 @@
 #define ID_RELOAD_PLUGINS               32866
 
 // Next default values for new objects
-// 
+//
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1

@@ -1020,6 +1020,8 @@ IDB_EDIT_GOTO           BITMAP                  "res\\go_to.bmp"
 IDB_EDIT_REPLACE        BITMAP                  "res\\replace.bmp"
 IDB_VIEW_LANGUAGE       BITMAP                  "res\\language.bmp"
 IDB_VIEW_SELECTFONT     BITMAP                  "res\\select_font.bmp"
+IDB_FILE_EXIT           BITMAP                  "res\\exit.bmp"
+IDB_HELP_CONTENTS       BITMAP                  "res\\help_contents.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
