@@ -1,6 +1,8 @@
 2005-01-21 Kimmo
  BUG: [ 1002327 ] "Untitled left" not translated when language switches
   Src: MergeDoc.cpp
+ PATCH: [ 1106330 ] Change position in locationpane with single mouseclick
+  Src: LocationView.cpp LocationView.h
 
 2005-01-20 Kimmo
  PATCH: [ 1105640 ] Properly update locationpane visible area indicator

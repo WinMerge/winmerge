@@ -60,7 +60,7 @@ CLocationView::CLocationView()
 
 BEGIN_MESSAGE_MAP(CLocationView, CView)
 	//{{AFX_MSG_MAP(CLocationView)
-	ON_WM_LBUTTONDBLCLK()
+	ON_WM_LBUTTONDOWN()
 	ON_WM_CONTEXTMENU()
 	ON_WM_CLOSE()
 	//}}AFX_MSG_MAP
@@ -340,11 +340,11 @@ void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border)
 	}
 }
 
-/// User left double-clicked mouse
-void CLocationView::OnLButtonDblClk(UINT nFlags, CPoint point) 
+/// User pushed left mousebutton
+void CLocationView::OnLButtonDown(UINT nFlags, CPoint point) 
 {
 	if (!GotoLocation(point))
-		CView::OnLButtonDblClk(nFlags, point);
+		CView::OnLButtonDown(nFlags, point);
 }
 
 /// Move both views to point given (if in one of the file columns, else return FALSE)
