@@ -6,7 +6,6 @@ Plugins may be written in any format that supports this interface. Examples are 
 	Delphi
 
 Limitation : scriptlets only work for EDITOR_SCRIPT plugins.
-The plugins code is being rewritten, and in the next version, scriptlet will work for any event.
 
 
 Properties syntax
@@ -71,3 +70,7 @@ Additionnal steps to write a plugin in C++
 	SAFEARRAY * 		SAFEARRAY(unsigned char)
 	SAFEARRAY ** 		SAFEARRAY(unsigned char) *
 
+Or an easier method : 
+1) Select a C++ plugin with the same API
+2) Rename the files cpp,def,dsp,idl,rc : replace [name of old plugin] with [name of your plugin]
+3) In all the files, replace all instances of [name of old plugin] with [name of your plugin]

@@ -1,3 +1,8 @@
+2004-06-10 Laoran
+ update plugins text doc :
+  Plugins: readme_developpers.txt syntax.txt
+  Plugins/dlls Add: readme_users.txt
+
 2004-04-08 Laoran
  Creation of 'readme_developpers.txt' and of a 'readme.txt' to log patches
  Rename 'list of sources.txt' to 'list_of_sources.txt'
