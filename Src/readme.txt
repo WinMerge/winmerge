@@ -1,4 +1,9 @@
-2003-09-26 WinMerge experimental release 2.1.3.0 (cvs)
+2003-10-12 Kimmo
+ PATCH: [ 817079 ] New Copy to Left/Right icons
+  WinMerge/res: Toolbar.bmp
+  Languages/res: Toolbar.bmp
+
+2003-10-11 WinMerge experimental release 2.1.3.0 (cvs)
 
 2003-10-11 Perry
  PATCH: [ 821532 ] Fix CmpResults After Delete
