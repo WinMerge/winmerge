@@ -307,7 +307,7 @@ Name: {app}\MergeNorwegian.lang; Type: files; Check: ComponentDisabled('Norwegia
 Name: {app}\MergePolish.lang; Type: files; Check: ComponentDisabled('Polish')
 Name: {app}\MergeSlovak.lang; Type: files; Check: ComponentDisabled('Slovak')
 Name: {app}\MergeSpanish.lang; Type: files; Check: ComponentDisabled('Spanish')
-Name: {app}\MergeRussian.lang; Type: files; Check: ComponentDisabled('Rusian')
+Name: {app}\MergeRussian.lang; Type: files; Check: ComponentDisabled('Russian')
 Name: {app}\MergeSwedish.lang; Type: files; Check: ComponentDisabled('Swedish')
 Name: {app}\MergePlugins\list.txt; Type: files; Check: ComponentDisabled('Plugins')
 
@@ -320,7 +320,7 @@ Name: {app}\WinMerge.url; Type: files
 Name: {app}\Read Me.rtf; Type: files
 Name: {app}\Contributors.rtf; Type: files
 
-;Remove deprecated Conributors file
+;Remove deprecated Contributors file
 Name: {app}\Docs\Contributors.rtf; Type: files
 
 ;This removes the quick launch icon in case the user chooses not to install it after previously having it installed
