@@ -46,6 +46,7 @@
 #include "FileFilterHelper.h"
 #include "Plugins.h"
 #include "DirScan.h" // for DirScan_InitializeDefaultCodepage
+#include "ProjectFile.h"
 
 #include "MergeEditView.h"
 #ifdef _DEBUG
@@ -224,7 +225,17 @@ BOOL CMergeApp::InitInstance()
 	// Split commandline arguments into files & flags & recursive flag
 	ParseArgs(pMainFrame, files, nFiles, recurse, dwLeftFlags, dwRightFlags);
 
-	if (nFiles>2)
+	if (LoadProjectFile(files, recurse))
+	{
+		if (!files[0].IsEmpty())
+			dwLeftFlags |= FFILEOPEN_PROJECT;
+		if (!files[1].IsEmpty())
+			dwRightFlags |= FFILEOPEN_PROJECT;
+		pMainFrame->m_strSaveAsPath = _T("");
+		pMainFrame->DoFileOpen(files[0], files[1],
+			dwLeftFlags, dwRightFlags, recurse);
+	}
+	else if (nFiles>2)
 	{
 		dwLeftFlags |= FFILEOPEN_CMDLINE;
 		dwRightFlags |= FFILEOPEN_CMDLINE;
@@ -710,7 +721,7 @@ void CAboutDlg::OnBnClickedOpenContributors()
 		// values < 32 are errors (ref to MSDN)
 		if ((int)ret < 32)
 		{
-			// Try to open with ssociated application (.rtf)
+			// Try to open with associated application (.rtf)
 			ret = ShellExecute(m_hWnd, _T("open"), docPath, NULL, NULL, SW_SHOWNORMAL);
 			if ((int)ret < 32)
 			{
@@ -726,4 +737,55 @@ void CAboutDlg::OnBnClickedOpenContributors()
 		AfxFormatString1(msg, IDS_ERROR_FILE_NOT_FOUND, docPath);
 		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
 	}
+}
+
+/** 
+ * @brief Read paths and filter from project file.
+ */
+BOOL CMergeApp::LoadProjectFile(CStringArray & files, BOOL & recursive)
+{
+	CString filterPrefix;
+	CString err;
+	ProjectFile pfile;
+	CString ProjectFileName;
+	CString ext;
+
+	SplitFilename(files[0], NULL, NULL, &ext);
+	if (ext == PROJECTFILE_EXT)
+		ProjectFileName = files[0];
+	else
+	{
+		SplitFilename(files[1], NULL, NULL, &ext);
+		if (ext == PROJECTFILE_EXT)
+			ProjectFileName = files[1];
+		else
+			return FALSE;
+	}
+
+	if (!ProjectFileName.IsEmpty())
+	{
+		if (!pfile.Read(ProjectFileName, &err))
+		{
+			if (!err.IsEmpty())
+			{
+				CString msg;
+				AfxFormatString2(msg, IDS_ERROR_FILEOPEN, ProjectFileName, err);
+				AfxMessageBox(msg, MB_ICONSTOP);
+			}
+			return FALSE;
+		}
+		else
+		{
+			pfile.GetPaths(files[0], files[1], recursive);
+			if (pfile.HasFilter())
+			{
+				CString filter = pfile.GetFilter();
+				filter.TrimLeft();
+				filter.TrimRight();
+				m_globalFileFilter.SetFilter(filter);
+			}
+		}
+		return TRUE;
+	}
+	return FALSE;
 }

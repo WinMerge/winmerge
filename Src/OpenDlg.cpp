@@ -34,6 +34,7 @@
 #include "SelectUnpackerDlg.h"
 #include "OptionsDef.h"
 #include "MainFrm.h"
+#include "ProjectFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -54,11 +55,7 @@ COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(COpenDlg::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(COpenDlg)
-	m_strLeft = _T("");
-	m_strRight = _T("");
 	m_bRecurse = FALSE;
-	m_strExt = _T("");
-	m_strUnpacker = _T("");
 	//}}AFX_DATA_INIT
 
 	m_pathsType = DOES_NOT_EXIST;
@@ -111,7 +108,7 @@ END_MESSAGE_MAP()
 void COpenDlg::OnLeftButton()
 {
 	CString s;
-	CString sfolder, sname;
+	CString sfolder, sname, sext;
 	CString dirSelTag;
 	CFileStatus status;
 	UpdateData(TRUE); 
@@ -124,11 +121,11 @@ void COpenDlg::OnLeftButton()
 		sfolder = GetPathOnly(m_strLeft);
 	if (SelectFile(s, sfolder))
 	{
-		SplitFilename(s, &sfolder, &sname, 0);
-		if (sname == dirSelTag)
-		{
+		SplitFilename(s, &sfolder, &sname, &sext);
+		if (sext == PROJECTFILE_EXT)
+			LoadProjectFile(s);
+		else if (sname == dirSelTag)
 			m_strLeft = sfolder + '\\';
-		}
 		else
 			m_strLeft = s;
 		UpdateData(FALSE);
@@ -142,7 +139,7 @@ void COpenDlg::OnLeftButton()
 void COpenDlg::OnRightButton() 
 {
 	CString s;
-	CString sfolder, sname;
+	CString sfolder, sname, sext;
 	CString dirSelTag;
 	CFileStatus status;
 	UpdateData(TRUE);
@@ -155,8 +152,10 @@ void COpenDlg::OnRightButton()
 		sfolder = GetPathOnly(m_strRight);
 	if (SelectFile(s, sfolder))
 	{
-		SplitFilename(s, &sfolder, &sname, 0);
-		if (sname == dirSelTag)
+		SplitFilename(s, &sfolder, &sname, &sext);
+		if (sext == PROJECTFILE_EXT)
+			LoadProjectFile(s);
+		else if (sname == dirSelTag)
 			m_strRight = sfolder + '\\';
 		else
 			m_strRight = s;
@@ -512,4 +511,44 @@ void COpenDlg::CenterToMainFrame()
 
 	SetWindowPos(&CWnd::wndTop, x, y, rectBar.right,
 		rectBar.bottom, SWP_NOOWNERZORDER | SWP_NOSIZE );
+}
+
+/** 
+ * @brief Read paths and filter from project file.
+ */
+BOOL COpenDlg::LoadProjectFile(CString path)
+{
+	CString filterPrefix;
+	CString err;
+	ProjectFile pfile;
+
+	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
+	if (!pfile.Read(path, &err))
+	{
+		if (!err.IsEmpty())
+		{
+			CString msg;
+			AfxFormatString2(msg, IDS_ERROR_FILEOPEN, path, err);
+			AfxMessageBox(msg, MB_ICONSTOP);
+		}
+		return FALSE;
+	}
+	else
+	{
+		if (pfile.HasLeft())
+			m_strLeft = pfile.GetLeft();
+		if (pfile.HasRight())
+			m_strRight = pfile.GetRight();
+		if (pfile.HasFilter())
+		{
+			m_strExt = pfile.GetFilter();
+			m_strExt.TrimLeft();
+			m_strExt.TrimRight();
+			if (m_strExt[0] != '*')
+				m_strExt.Insert(0, filterPrefix);
+		}
+		if (pfile.HasSubfolders())
+			m_bRecurse = (pfile.GetSubfolders() == 1);
+	}
+	return TRUE;
 }

@@ -6,6 +6,9 @@
   Src: DirView.cpp
  PATCH: [ 1002887 ] Enable Change Pane menuitem for Diff Pane
   Src: MergeDiffDetailView.cpp MergeDoffDetailView.h
+ PATCH: [ 1000020 ] Simple project files (no GUI)
+  Src: MainFrm.cpp MainFrm.h Merge.cpp Merge.dsp Merge.h OpenDlg.cpp OpenDlg.h
+  Src new files: ProjectFile.cpp ProjectFile.h
   
 2004-08-03 Kimmo
  PATCH: [ 1002333 ] Set default filter to *.* when starting WinMerge

@@ -82,6 +82,8 @@ protected:
 	void InitializeFileFilters();
 	void ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
 		DWORD & dwLeftFlags, DWORD & dwRightFlags);
+	BOOL LoadProjectFile(CStringArray & files, BOOL & recursive);
+
 
 
 	//{{AFX_MSG(CMergeApp)

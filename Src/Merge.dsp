@@ -839,6 +839,10 @@ SOURCE=.\Plugins.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ProjectFile.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropColors.cpp
 # End Source File
 # Begin Source File
@@ -1400,6 +1404,10 @@ SOURCE=.\PluginManager.h
 # Begin Source File
 
 SOURCE=.\Plugins.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ProjectFile.h
 # End Source File
 # Begin Source File
 
