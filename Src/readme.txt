@@ -1,3 +1,5 @@
+2004-02-07 WinMerge experimental release 2.1.5.9 (cvs)
+
 2004-02-07 Kimmo
  BUG: [ 892115 ] Directory compare always recursive
   Src: DirScan.cpp
