@@ -94,7 +94,6 @@ void CFindTextDlg::OnOK ()
 {
   if (UpdateData ())
     {
-      m_ctlFindText.FillCurrent();
       UpdateLastSearch ();
 
       ASSERT (m_pBuddy != NULL);
@@ -107,6 +106,8 @@ void CFindTextDlg::OnOK ()
         dwSearchFlags |= FIND_REGEXP;
       if (m_nDirection == 0)
         dwSearchFlags |= FIND_DIRECTION_UP;
+
+      m_ctlFindText.SaveState(_T("Files\\FindInFile"));
 
       CPoint ptTextPos;
       if (!m_pBuddy->FindText (m_sText, m_ptCurrentPos, dwSearchFlags, TRUE, &ptTextPos))
@@ -156,10 +157,8 @@ OnInitDialog ()
 {
   CDialog::OnInitDialog ();
 
+  m_ctlFindText.LoadState(_T("Files\\FindInFile"));
   UpdateData (FALSE);
-  m_ctlFindText.m_sGroup = _T ("FindText");
-  m_ctlFindText.OnSetfocus ();
-  
   UpdateControls();
 
   return TRUE;

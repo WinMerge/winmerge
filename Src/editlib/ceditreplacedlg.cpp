@@ -148,12 +148,10 @@ OnInitDialog ()
 {
   CDialog::OnInitDialog ();
 
-  m_ctlReplText.m_sGroup = _T ("ReplaceText");
-  m_ctlReplText.OnSetfocus ();
+  m_ctlFindText.LoadState(_T("Files\\ReplaceInFile"));
+  m_ctlReplText.LoadState(_T("Files\\ReplaceWithInFile"));
   GetDlgItem (IDC_EDIT_REPLACE_WITH)->GetWindowText (m_sNewText);
   UpdateData (FALSE);
-  m_ctlFindText.m_sGroup = _T ("FindText");
-  m_ctlFindText.OnSetfocus ();
 
   UpdateControls();
   GetDlgItem (IDC_EDIT_SCOPE_SELECTION)->EnableWindow (m_bEnableScopeSelection);
@@ -261,7 +259,8 @@ OnEditSkip ()
   if (!UpdateData ())
     return;
   
-  m_ctlFindText.FillCurrent();
+  m_ctlFindText.SaveState(_T("Files\\ReplaceInFile"));
+  m_ctlReplText.SaveState(_T("Files\\ReplaceWithInFile"));
   UpdateLastSearch ();
 
   CButton *pSkip = (CButton*) GetDlgItem (IDC_EDIT_SKIP);
@@ -320,7 +319,8 @@ OnEditReplace ()
   if (!UpdateData ())
     return;
 
-  m_ctlFindText.FillCurrent();
+  m_ctlFindText.SaveState(_T("Files\\ReplaceInFile"));
+  m_ctlReplText.SaveState(_T("Files\\ReplaceWithInFile"));
   UpdateLastSearch ();
 
   if (!m_bFound)
@@ -393,7 +393,8 @@ OnEditReplaceAll ()
   if (!UpdateData ())
     return;
 
-  m_ctlFindText.FillCurrent();
+  m_ctlFindText.SaveState(_T("Files\\ReplaceInFile"));
+  m_ctlReplText.SaveState(_T("Files\\ReplaceWithInFile"));
   UpdateLastSearch ();
 
   int nNumReplaced = 0;

@@ -32,7 +32,7 @@
 #endif // _MSC_VER >= 1000
 
 #include "resource.h"
-#include "memcombo.h"
+#include "SuperComboBox.h"
 
 class CCrystalTextView;
 
@@ -74,7 +74,7 @@ public :
     // Dialog Data
     //{{AFX_DATA(CFindTextDlg)
   enum { IDD = IDD_EDIT_FIND };
-    CMemComboBox m_ctlFindText;
+    CSuperComboBox m_ctlFindText;
     CButton m_ctlWholeWord;
     int m_nDirection;
     BOOL m_bMatchCase;

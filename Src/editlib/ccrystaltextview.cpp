@@ -4550,7 +4550,7 @@ OnEditRepeat ()
     sText = m_pszLastFindWhat;
   else
     {
-      bEnable = CMemComboBox::groups.Lookup (_T ("FindText"), sText) && !sText.IsEmpty ();
+      bEnable = !sText.IsEmpty ();
       if (bEnable)
         {
           int pos = sText.Find (_T('\n'));

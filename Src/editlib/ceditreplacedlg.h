@@ -34,7 +34,7 @@
 //
 
 #include "resource.h"
-#include "memcombo.h"
+#include "SuperComboBox.h"
 #include "cfindtextdlg.h" // for structure LastSearchInfos
 
 class CCrystalEditView;
@@ -69,8 +69,8 @@ public :
     // Dialog Data
     //{{AFX_DATA(CEditReplaceDlg)
   enum { IDD = IDD_EDIT_REPLACE };
-    CMemComboBox m_ctlFindText;
-    CMemComboBox m_ctlReplText;
+    CSuperComboBox m_ctlFindText;
+    CSuperComboBox m_ctlReplText;
     CButton m_ctlWholeWord;
     BOOL m_bMatchCase;
     BOOL m_bWholeWord;

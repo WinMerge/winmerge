@@ -1,6 +1,9 @@
 2004-12-17 Kimmo
  PATCH: [ 1086601 ] Dircompare statepane miscounting skipped items
   Src: DirCompStateBar.cpp
+ PATCH: [ 1086745 ] Find- and Replace-dialogs to remember strings too
+  Src/editlib: ccrystaltextview.cpp ceditreplacedlg.cpp ceditreplacedlg.h
+   cfindtextdlg.cpp cfindtextdlg.h
 
 2004-12-15 Tim
  RFE: [ 1085099 ] 'fileskip.bmp' looks to similar like 'equal.bmp'
