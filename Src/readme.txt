@@ -1,6 +1,9 @@
 2003-07-24 Kimmo
- PATCH: [ 776525 ] Close doc after failed load
-  WinMerge: MainFrm.cpp
+ PATCH: [ 776106 ] Fix for TEMP dir error
+  Submitted by Laoran
+  WinMerge: MergeDoc.cpp
+
+2003-07-24 Perry
  PATCH: [ 766287 ] Use our own dir traversal (instead of diff's)
   WinMerge: Diff.cpp DiffContext.h DiffThread.cpp DirDoc.cpp Merge.dsp 
    DirScan.h DirScan.cpp
@@ -10,6 +13,10 @@
   MakeResDll: MakeResDll.cpp MakeResDll.rc
  Added F4 accelerator to all languages besides English
   Languages: all *.rc files
+
+2003-07-24 Kimmo
+ PATCH: [ 776525 ] Close doc after failed load
+  WinMerge: MainFrm.cpp
 
 2003-07-23 Perry
  PATCH: [ 776046 ] Fixes for <Highlight Line Diff> menu item

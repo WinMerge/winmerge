@@ -260,7 +260,7 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	if (!TempFilesExist())
 	{
 		if (!InitTempFiles(m_strLeftFile, m_strRightFile))
-			return FALSE;
+			return RESCAN_FILE_ERR;
 	}
 
 	// output to temp file
