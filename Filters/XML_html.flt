@@ -1,0 +1,26 @@
+## This is a directory/file filter for WinMerge
+## This filter lets through only files XML/HTML developer cares about
+name: XML/HTML Devel
+
+## This is an exclusive filter
+## (it lets through only matching files)
+def: exclude
+
+## Filters for filenames begin with f:
+## Filters for directories begin with d:
+## (Inline comments begin with " ##" and extend to the end of the line)
+
+f: \.xml$ ## XML files
+f: \.xlst$
+f: \.dtd$
+f: \.html$ ## HTML files
+f: \.htm$
+f: \.css$ ## CSS style files
+f: \\gif$ ## Pictures
+f: \.bmp$
+f: \.jpg$
+f: \.png$
+f: \.js$ ## Java-script
+
+d: \\*$ ## Subdirectories
+

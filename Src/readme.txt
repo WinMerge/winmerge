@@ -1,3 +1,7 @@
+2003-12-01 Kimmo
+ PATCH: [ 852062 ] XML/HTML file filter
+ Filters: new file XML_html.flt
+
 2003-11-30 Perry
   Added comment giving Unicode for hanguko (Korean in Hangul alphabet)
   common: LanguageSelect.cpp: Korean/MergeKorean.rc
