@@ -2,7 +2,7 @@
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2003-10-21 (Perry)
+ *  @date   Edited:  2003-11-14 (Perry)
  *
  *  @brief Implementation of Memory-Mapped Unicode enabled file class
  */
@@ -162,7 +162,9 @@ bool UniMemFile::DoOpen(DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenC
 
 	if (sizelo == 0)
 	{
-		// Empty file (but should be accepted anyway)
+		// Allow opening empty file, but memory mapping doesn't work on such
+		// m_base and m_current are 0 from the Close call above
+		// so ReadString will correctly return empty EOF immediately
 		m_lineno = 0;
 		return true;
 	}
@@ -369,7 +371,8 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 				break;
 			}
 		}
-		line = ucr::maketstring(m_current, eolptr-m_current, m_codepage);
+		bool lossy=false;
+		line = ucr::maketstring((LPCSTR)m_current, eolptr-m_current, m_codepage, &lossy);
 		if (!eof)
 		{
 			eol += (TCHAR)*eolptr;
@@ -378,6 +381,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 			++m_lineno;
 		}
 		m_current = eolptr + eol.GetLength();
+		// TODO: What do we do if save was lossy ?
 		return !eof;
 	}
 

@@ -1,6 +1,9 @@
 2003-11-15 Perry
  PATCH: [ 838290 ] Move inf creation down in RunFileDiff (cosmetic)
   WinMerge: DiffWrapper.cpp
+ PATCH: [ 841878 ] Fix wchar to char conversions at save
+  WinMerge: MergeDoc.cpp MergeDoc.h
+  common: unicoder.cpp unicoder.h UniFile.cpp UniFile.h
 
 2003-11-15 WinMerge experimental release 2.1.3.9 (cvs)
 

@@ -254,11 +254,10 @@ static void SaveBuffForDiff(CMergeDoc::CDiffTextBuffer & buf, const CString & fi
 {
 	// we subvert the buffer's memory of the original file encoding
 	int temp=buf.m_nSourceEncoding;
+	int unicoding = buf.getUnicoding();
 
-	if (sizeof(TCHAR)>1 
-		|| buf.m_nSourceEncoding==-20 // source file was UCS-2LE
-		|| buf.m_nSourceEncoding==-21 // source file was UCS-2BE
-		|| buf.m_nSourceEncoding==-22) // source file was UTF-8
+	// If Unicode build, or file was in Unicode
+	if (sizeof(TCHAR)>1 || unicoding!=ucr::NONE)
 	{
 		buf.m_nSourceEncoding = -20; // write as UCS-2LE (for preprocessing)
 	}
@@ -1263,18 +1262,9 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 			nRetVal = FRESULT_OK_IMPURE;
 
 		// stash original encoding away
-		switch (pufile->GetUnicoding())
-		{
-		case ucr::UCS2LE:
-			m_nSourceEncoding = -20;
-			break;
-		case ucr::UCS2BE:
-			m_nSourceEncoding = -21;
-			break;
-		case ucr::UTF8:
-			m_nSourceEncoding = -22;
-			break;
-		}
+		m_unicoding = pufile->GetUnicoding();
+		m_codepage = pufile->GetCodepage();
+
 		if (pufile->GetTxtStats().nlosses)
 			readOnly = TRUE;
 	}
@@ -1326,17 +1316,17 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	UINT nchars = text.GetLength();
 
 	UINT nbytes = -1;
-	if (m_nSourceEncoding == -20)
+	if (m_unicoding == ucr::UCS2LE)
 	{
 		// UCS-2LE (+ 2 byte BOM)
 		nbytes = 2 * nchars + 2;
 	}
-	else if (m_nSourceEncoding == -21)
+	else if (m_unicoding == ucr::UCS2BE)
 	{
 		// UCS-2BE (+ 2 byte BOM)
 		nbytes = 2 * nchars + 2;
 	}
-	else if (m_nSourceEncoding == -22)
+	else if (m_unicoding == ucr::UTF8)
 	{
 		// UTF-8 (+ 3 byte BOM)
 		nbytes = ucr::Utf8len_of_string(text) + 3;
@@ -1374,24 +1364,18 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		// Should these Unicode codeset conversions be moved
 		// into the iconvert (editlib/cs2cs.*) module ?
 
-		if (m_nSourceEncoding == -20)
+		if (m_unicoding != ucr::NONE)
 		{
-			ucr::convertToBuffer(text, fileData.pMapBase, ucr::UCS2LE);
-		}
-		else if (m_nSourceEncoding == -21)
-		{
-			ucr::convertToBuffer(text, fileData.pMapBase, ucr::UCS2BE);
-		}
-		else if (m_nSourceEncoding == -22)
-		{
-			ucr::convertToBuffer(text, fileData.pMapBase, ucr::UTF8);
+			ucr::writeBom(fileData.pMapBase, (ucr::UNICODESET)m_unicoding);
+			ucr::convertToBuffer(text, fileData.pMapBase, (ucr::UNICODESET)m_unicoding, m_codepage);
 		}
 		else 
 		{
 #ifdef _UNICODE
-			// (We're ignoring m_nSourceEncoding here, which ought to be relevant
-			// altho I don't think it ever gets set right now -- Perry, 2003-09-24)
-			ucr::convertToBuffer(text, fileData.pMapBase, ucr::NONE);
+			// WinMerge doesn't use crystal's m_nSourceEncoding
+			// which anyway never gets set
+			// WinMerge uses its own buffer's m_unicoding and m_codepage
+			ucr::convertToBuffer(text, fileData.pMapBase, (ucr::UNICODESET)m_unicoding, m_codepage);
 #else
 			if (m_nSourceEncoding >= 0)
 			{

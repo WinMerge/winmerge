@@ -2,7 +2,7 @@
  *  @file   unicoder.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2003-10-21 (Perry)
+ *  @date   Edited:  2003-11-09 (Perry)
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
@@ -44,6 +44,18 @@ fetch_verinfo()
 	f_osvi.dwOSVersionInfoSize = sizeof(f_osvi);
 	GetVersionEx(&f_osvi);
 	f_osvi_fetched = true;
+}
+
+static LPCTSTR f_unicodesetNames[] = { _T("<NONE>"), _T("UCS-2LE"), _T("UCS-2BE"), _T("UTF-8") };
+/**
+ * @brief return string for enum value
+ */
+CString GetUnicodesetName(UNICODESET codeset)
+{
+	if (codeset>=0 && codeset<sizeof(f_unicodesetNames)/sizeof(f_unicodesetNames[0]))
+		return f_unicodesetNames[codeset];
+	else
+		return _T("?");
 }
 
 /**
@@ -383,36 +395,77 @@ byteToUnicode (unsigned char ch, UINT codepage)
 }
 
 /**
- * @brief Write src string (TCHAR) to destination buffer in codeset specified.
- *
- * This is designed for use writing to memory-mapped file.
- * NB: for loop is deliberately repeated inside the if statements (for speed)
+ * @brief Get appropriate default codepage for this operating system
  */
-void
-convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset)
+int
+getDefaultCodepage()
+{
+	// default codepage is CP_THREAD_ACP if available, else CP_ACP
+	static bool vercheck=false;
+	static int defcodepage = CP_ACP;
+	if (!vercheck)
+	{
+		if (!f_osvi_fetched) fetch_verinfo();
+		// Need 2000 or better for CP_THREAD_ACP
+		if (f_osvi.dwMajorVersion>=5)
+			defcodepage = CP_THREAD_ACP;
+		vercheck = true;
+	}
+	return defcodepage;
+}
+
+/**
+ * @brief Write appropriate BOM (Unicode byte order marker)
+ * returns #bytes written
+ */
+int
+writeBom(LPVOID dest, UNICODESET codeset)
 {
 	unsigned char * lpd = reinterpret_cast<unsigned char *>(dest);
+	// write Unicode byte order marker (BOM)
 	if (codeset == UCS2LE)
 	{
 		*lpd++ = 0xFF;
 		*lpd++ = 0xFE;
+		return 2;
 	}
 	else if (codeset == UCS2BE)
 	{
 		*lpd++ = 0xFE;
 		*lpd++ = 0xFF;
+		return 2;
 	}
 	else if (codeset == UTF8)
 	{
 		*lpd++ = 0xEF;
 		*lpd++ = 0xBB;
 		*lpd++ = 0xBF;
+		return 3;
 	}
+	return 0;
+}
+
+/**
+ * @brief Write src string (TCHAR) to destination buffer in codeset specified.
+ *
+ * In ANSI build, source string is assumed to be in defcodepage.
+ * This is designed for use writing to memory-mapped file.
+ * NB: Destination is not zero-terminated!
+ */
+int
+convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset, int codepage)
+{
+	static int defcodepage = getDefaultCodepage();
+
+	unsigned char * lpd = reinterpret_cast<unsigned char *>(dest);
+	unsigned char * start = lpd;
+
 #ifdef _UNICODE
 	if (codeset == UCS2LE)
 	{
-		CopyMemory(lpd, src, src.GetLength() * 2);
-		return;
+		int nbytes = src.GetLength() * 2;
+		CopyMemory(lpd, src, nbytes);
+		return nbytes;
 	}
 	else if (codeset == UCS2BE)
 	{
@@ -422,6 +475,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset)
 			*lpd++ = (unsigned char)(u >> 8);
 			*lpd++ = (unsigned char)(u & 0xFF);
 		}
+		return lpd - start;
 	}
 	else if (codeset == UTF8)
 	{
@@ -430,24 +484,23 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset)
 			UINT u = src[i];
 			ucr::to_utf8_advance(u, lpd);
 		}
-	}
-	else if (codeset == NONE)
-	{
-		for (int i=0; i<src.GetLength(); ++i)
-		{
-			UINT u = src[i];
-			if (u <= 0xFF)
-				*lpd++ = (unsigned char)u;
-			else
-				*lpd++ = '?';
-		}
+		return lpd - start;
 	}
 	else
 	{
-		ASSERT(0);
+		ASSERT(codeset == NONE); // there aren't any other values in UNICODESET
+		// Write wchars to chars
+		DWORD flags = 0;
+		// Take a swag at the maximum length :(
+		int maxlen = src.GetLength() * 3;
+		BOOL replaced=FALSE;
+		int nbytes = WideCharToMultiByte(codepage, flags, src, src.GetLength(), (char *)lpd, maxlen, NULL, &replaced);
+		// TODO: Ought to output replaced flag to caller
+		return nbytes;
 	}
+
 #else
-	// We really need the codeset of the 8-bit source
+	// ANSI build, TCHAR=char
 
 	if (codeset == UCS2LE)
 	{
@@ -457,6 +510,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset)
 			*lpd++ = (unsigned char)u;
 			*lpd++ = 0;
 		}
+		return lpd - start;
 	}
 	else if (codeset == UCS2BE)
 	{
@@ -466,6 +520,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset)
 			*lpd++ = 0;
 			*lpd++ = (unsigned char)u;
 		}
+		return lpd - start;
 	}
 	else if (codeset == UTF8)
 	{
@@ -474,10 +529,23 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset)
 			UINT u = src[i];
 			to_utf8_advance(u, lpd);
 		}
+		return lpd - start;
 	}
 	else
 	{
-		ASSERT(0);
+		ASSERT(codeset == NONE); // there aren't any other values in UNICODESET
+
+		if (codepage == defcodepage)
+		{
+			// trivial case, string is already in the correct codepage
+			CopyMemory(lpd, (LPCTSTR)src, src.GetLength());
+			return src.GetLength();
+		}
+		bool lossy=false;
+		// Take a swag at the maximum length :(
+		int maxlen = src.GetLength() * 3;
+		int nbytes = CrossConvert(src, src.GetLength(), (LPSTR)lpd, maxlen, defcodepage, codepage, &lossy);
+		return nbytes;
 	}
 #endif
 }
@@ -498,7 +566,9 @@ get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codepage)
 		ch = (ptr[0] << 8) + ptr[1];
 		break;
 	default:
-		ch = (codepage ? byteToUnicode(*ptr, codepage) : byteToUnicode(*ptr));
+		// TODO: How do we recognize valid codepage ?
+		// if not, use byteToUnicode(*ptr)
+		ch = byteToUnicode(*ptr, codepage);
 	}
 	return ch;
 }
@@ -510,73 +580,97 @@ get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codepage)
  *  In fact, this doesn't even know. Probably going to have to make
  *  two passes, the first with MB_ERR_INVALID_CHARS. Ugh. :(
  */
-CString maketstring(unsigned char * lpd, UINT len, int codepage)
+CString maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
 {
-	static bool vercheck=false;
-	static int defcodepage = CP_ACP;
-	if (!vercheck)
-	{
-		if (!f_osvi_fetched) fetch_verinfo();
-		// Need 2000 or better for CP_THREAD_ACP
-		if (f_osvi.dwMajorVersion>=5)
-			defcodepage = CP_THREAD_ACP;
-		vercheck = true;
-	}
+	static int defcodepage = getDefaultCodepage();
+
 	if (!len) return _T("");
 	if (!codepage)
 		codepage = defcodepage;
 
-	if (codepage == defcodepage)
-	{
-		// trivial case, they want the bytes in the file interpreted in our current codepage
-#ifndef UNICODE
-		return lpd;
-#else
-		CString s;
-		for (UINT i=0; i<len; ++i)
-			s += (wchar_t)(*lpd++);
-		return s;
-#endif
-	}
-
+#ifdef UNICODE
 	// Convert input to Unicode, using specified codepage
+	// TCHAR is wchar_t, so convert into CString (str)
+	CString str = lpd; // TODO: fix 2003-11-13
 	DWORD flags = 0;
 	int wlen = len*2+6;
-	wchar_t * wbuff = new wchar_t[wlen];
+	LPWSTR wbuff = str.GetBuffer(wlen);
 	int n = MultiByteToWideChar(codepage, flags, (LPCSTR)lpd, len, wbuff, wlen-1);
-	if (!n)
-	{
-		delete [] wbuff;
-		return _T("?");
-	}
-	wbuff[n] = 0; // zero-terminate string
-
-#ifdef UNICODE
-	// wchar_t is TCHAR, so we're done
-	CString str = wbuff;
-	delete [] wbuff;
-	return str;
-#else
-	// Now convert to TCHAR (which means defcodepage)
-	flags = WC_NO_BEST_FIT_CHARS; // TODO: Think about this
-	CString str;
-	wlen = n;
-	int clen = wlen * 2 + 6;
-	LPSTR cbuff = str.GetBuffer(clen);
-	BOOL defaulted=FALSE;
-	n = WideCharToMultiByte(defcodepage, flags, wbuff, n, cbuff, clen-1, NULL, &defaulted);
 	if (n)
 	{
-		cbuff[n] = 0; // zero-terminate string
-		str.ReleaseBuffer();
+		str.ReleaseBuffer(n);
 	}
 	else
 	{
 		str = _T("?");
 	}
-	delete [] wbuff;
+	return str;
+
+#else
+	if (codepage == defcodepage)
+	{
+		// trivial case, they want the bytes in the file interpreted in our current codepage
+		return lpd;
+	}
+
+	CString str = CrossConvertToStringA(lpd, len, codepage, defcodepage, lossy);
 	return str;
 #endif
+}
+
+/**
+ * @brief (ANSI build only) Convert from one 8 bit codepage to another
+ */
+#ifndef UNICODE
+CString
+CrossConvertToStringA(LPCSTR src, UINT srclen, int cpin, int cpout, bool * lossy)
+{
+
+	CString str;
+	int wlen = srclen*2+6;
+	int clen = wlen * 2 + 6;
+	LPSTR cbuff = str.GetBuffer(clen);
+	int nbytes = CrossConvert(src, srclen, cbuff, clen, cpin, cpout, lossy);
+	str.ReleaseBuffer(nbytes);
+	return str;
+}
+#endif
+
+/**
+ * @brief Convert from one 8-bit codepage to another
+ *
+ * destsize must be at least 2
+ */
+int
+CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, int cpout, bool * lossy)
+{
+	ASSERT(destsize > 1);
+
+	// Convert input to Unicode, using specified codepage
+	DWORD flags = 0;
+	int wlen = srclen*2+6;
+	wchar_t * wbuff = new wchar_t[wlen];
+	int n = MultiByteToWideChar(cpin, flags, (LPCSTR)src, srclen, wbuff, wlen-1);
+	if (!n)
+	{
+		delete [] wbuff;
+		dest[0] = '?';
+		return 1;
+	}
+	wbuff[n] = 0; // zero-terminate string
+
+	// Now convert to TCHAR (which means defcodepage)
+	flags = WC_NO_BEST_FIT_CHARS; // TODO: Think about this
+	wlen = n;
+	int clen = wlen * 2 + 6;
+	BOOL defaulted=FALSE;
+	LPSTR cdest = reinterpret_cast<LPSTR>(dest);
+	n = WideCharToMultiByte(cpout, flags, wbuff, n, cdest, destsize-1, NULL, &defaulted);
+	dest[n] = 0;
+	delete [] wbuff;
+	if (lossy)
+		*lossy = !!defaulted;
+	return n;
 }
 
 } // namespace ucr

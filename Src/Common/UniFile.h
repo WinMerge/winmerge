@@ -1,8 +1,8 @@
 /** 
  *  @file   UniFile.h
  *  @author Perry Rapp, Creator, 2003
- *  @date   Created: 2003-10
- *  @date   Edited:  2003-10-21 (Perry)
+ *  @date   Created: 2003-10 (Perry)
+ *  @date   Edited:  2003-11-15 (Perry)
  *
  *  @brief  Declaration of Memory-Mapped Unicode enabled file class
  */
@@ -32,10 +32,13 @@ public:
 
 	virtual CString GetFullyQualifiedPath() const = 0;
 
-	virtual UniError GetLastUniError() const = 0;
+	virtual const UniError & GetLastUniError() const = 0;
 
 	virtual bool ReadBom() = 0;
-	virtual int GetUnicoding() = 0;
+	virtual int GetUnicoding() const = 0;
+	virtual void SetUnicoding(int unicoding) = 0;
+
+	virtual int GetCodepage() const = 0;
 	virtual void SetCodepage(int codepage) = 0;
 
 	virtual BOOL ReadString(CString & line) = 0;
@@ -56,9 +59,8 @@ public:
 	virtual const txtstats & GetTxtStats() const = 0;
 };
 
-
 /**
- * @brief Memory-Mapped disk file
+ * @brief Memory-Mapped disk file (read-only access)
  */
 class UniMemFile : public UniFile
 {
@@ -77,10 +79,13 @@ public:
 	virtual CString GetFullyQualifiedPath() const { return m_filepath; }
 	const CFileStatus & GetFileStatus() const { return m_filestatus; }
 
-	virtual UniError GetLastUniError() const { return m_lastError; }
+	virtual const UniError & GetLastUniError() const { return m_lastError; }
 
 	virtual bool ReadBom();
-	virtual int GetUnicoding() { return m_unicoding; }
+	virtual int GetUnicoding() const { return m_unicoding; }
+	virtual void SetUnicoding(int unicoding) { m_unicoding = unicoding; }
+
+	virtual int GetCodepage() const { return m_codepage; }
 	virtual void SetCodepage(int codepage) { m_codepage = codepage; }
 
 	virtual BOOL ReadString(CString & line);

@@ -108,6 +108,8 @@ private :
 		BOOL FlagIsSet(UINT line, DWORD flag);
 		CString m_strTempPath;
 		int unpackerSubcode;
+		int m_unicoding; /**< Unicode encoding from ucr::UNICODESET */
+		int m_codepage; /**< @brief 8-bit codepage, if relevant m_unicoding==ucr::NONE */
 
 		int NoteCRLFStyleFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
 		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineNum, DWORD dwLineLen = 0);
@@ -122,11 +124,15 @@ public :
 		BOOL LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker, CString filteredFilenames, BOOL & readOnly, int nCrlfStyle, int codepage);
 		BOOL SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, PackingInfo * infoUnpacker = NULL,
 				int nCrlfStyle = CRLF_STYLE_AUTOMATIC, BOOL bClearModifiedFlag = TRUE );
+		int getUnicoding() const { return m_unicoding; }
 
 		CDiffTextBuffer (CMergeDoc * pDoc, BOOL bLeft)
 		{
 			m_pOwnerDoc = pDoc;
 			m_bIsLeft=bLeft;
+			unpackerSubcode = 0;
+			m_unicoding = 0;
+			m_codepage = 0;
 		}
 		// If line has text (excluding eol), set strLine to text (excluding eol)
 		BOOL GetLine( int nLineIndex, CString &strLine ) 
