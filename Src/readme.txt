@@ -1,3 +1,7 @@
+2003-11-02 Laoran
+ BUG: [ 834490 ] Ignore blank lines disabled when ignore EOL
+  WinMerge: UTIL.C
+
 2003-11-01 Kimmo
  BUG: [ 833096 ] Left/right-only status overwrites skipped-status
   WinMerge: DirViewColItems.cpp

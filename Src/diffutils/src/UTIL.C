@@ -769,7 +769,7 @@ analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts)
       show_to += next->inserted;
 
       for (i = next->line0; i <= l0 && trivial; i++)
-	if (!ignore_blank_lines_flag || !iseolch(files[0].linbuf[i][0]))
+	if (!ignore_blank_lines_flag || (!iseolch(files[0].linbuf[i][0]) && files[0].linbuf[i][0] != 0))
 	  {
 	    struct regexp_list *r;
 	    char const HUGE *line = files[0].linbuf[i];
@@ -785,7 +785,7 @@ analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts)
 	  }
 
       for (i = next->line1; i <= l1 && trivial; i++)
-	if (!ignore_blank_lines_flag || !iseolch(files[1].linbuf[i][0]))
+	if (!ignore_blank_lines_flag || (!iseolch(files[1].linbuf[i][0]) && files[1].linbuf[i][0] != 0))
 	  {
 	    struct regexp_list *r;
 	    char const HUGE *line = files[1].linbuf[i];
