@@ -82,7 +82,7 @@ BEGIN
         MENUITEM "&Copia a destra",             ID_L2R
         MENUITEM "Co&pia a sinistra",           ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Evidenzia linea con differenza", ID_SHOWLINEDIFF
+        MENUITEM "&Evidenzia differenze di linee", ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Annulla",                    ID_EDIT_UNDO
         MENUITEM "&Ripristina",                 ID_EDIT_REDO
@@ -139,7 +139,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Selezion&a tutto\tCtrl+A",    ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Diff\tF4",    ID_SHOWLINEDIFF
+        MENUITEM "&Evidenzia differenze di linee\tF4",    ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "Tro&va...\tCtrl+F",            ID_EDIT_FIND
         MENUITEM "Sostit&uisci...\tCtrl+H",         ID_EDIT_REPLACE
@@ -393,7 +393,8 @@ BEGIN
     LTEXT           "Visita la pagina web di WinMerge!",IDC_WWW,7,107,184,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
-    LTEXT           "La lista di quelli che hanno contribuito si trova nel file",IDC_STATIC,7,81,208,8
+    LTEXT           "La lista di coloro che hanno contribuito si trova nel file",
+                     IDC_STATIC,7,81,208,8
     LTEXT           "Contributors.txt",IDC_STATIC,7,91,153,8
     PUSHBUTTON      "Visualizza...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
 END
@@ -404,30 +405,31 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU |
 CAPTION "Seleziona i file o le cartelle..."
 FONT 8, "MS Shell Dlg"
 BEGIN
-    RTEXT           "&Sinistra:",IDC_STATIC,13,24,40,8
-    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
+    RTEXT           "&Sinistra:",IDC_STATIC,13,24,60,8
+    COMBOBOX        IDC_LEFT_COMBO,76,22,162,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "S&foglia...",IDC_LEFT_BUTTON,242,22,50,12
-    RTEXT           "&Destra:",IDC_STATIC,13,40,40,8
-    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
+    RTEXT           "&Destra:",IDC_STATIC,13,40,60,8
+    COMBOBOX        IDC_RIGHT_COMBO,76,38,162,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "Sfo&glia...",IDC_RIGHT_BUTTON,242,38,50,12
-    RTEXT           "&Filtro:",IDC_STATIC,13,56,40,8
-    COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN |
+    PUSHBUTTON      "Sf&oglia...",IDC_RIGHT_BUTTON,242,38,50,12
+    RTEXT           "&Filtro:",IDC_STATIC,13,56,60,8
+    COMBOBOX        IDC_EXT_COMBO,76,54,161,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Seleziona...",IDC_SELECT_FILTER,242,54,50,12
-    RTEXT           "Scompa&ttatore:",IDC_STATIC,13,72,40,8
-    EDITTEXT        IDC_UNPACKER_EDIT,56,70,181,12,ES_AUTOHSCROLL |
+    PUSHBUTTON      "S&eleziona...",IDC_SELECT_FILTER,242,54,50,12
+    RTEXT           "Scompa&ttatore:",IDC_STATIC,9,72,64,8
+    EDITTEXT        IDC_UNPACKER_EDIT,76,70,161,12,ES_AUTOHSCROLL |
                     ES_READONLY
     PUSHBUTTON      "Sele&ziona...",IDC_SELECT_UNPACKER,242,70,50,12
     CONTROL         "&Includi sottocartelle",IDC_RECURS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,56,86,181,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,76,86,161,10
     LTEXT           "Stato:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "OK",IDOK,306,11,50,14
     PUSHBUTTON      "Annulla",IDCANCEL,306,28,50,14
-    GROUPBOX        "File o cartelle da confrontare",IDC_FILES_DIRS_GROUP,7,7,292,111
+    GROUPBOX        "File o cartelle da confrontare",IDC_FILES_DIRS_GROUP,7,
+                    7,292,111
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -480,23 +482,23 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,118,10
     CONTROL         "&Visualizza automaticamente la prima differenza",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,17,161,10
+                    7,17,211,10
     CONTROL         "&Disattiva schermata iniziale",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,87,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "&Chiudi automaticamente pannello confronto rapido cartelle",IDC_CMPPANE_AUTOCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "C&hiudi finestra con ESC",IDC_ESC_CLOSES_WINDOW,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,90,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
     CONTROL         "Verifica automaticamente i percorsi nella finestra Apri",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,57,143,10
-    CONTROL         "Usa info sul codice pagina (html,rc) per caricare/salvare - richiesto riavvio sessione",
+                    WS_TABSTOP,7,57,189,10
+    CONTROL         "Usa info su codice pag.(html,rc) per caricare/salvare - richiesto riavvio sessione",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,67,240,10
-    PUSHBUTTON      "Ripristina",IDC_RESET_ALL_MESSAGE_BOXES,167,87,49,13,NOT
+                    WS_TABSTOP,7,67,290,10
+    PUSHBUTTON      "Ripristina",IDC_RESET_ALL_MESSAGE_BOXES,218,87,49,13,NOT
                     WS_TABSTOP
-    LTEXT           "Premi il pulsante per ripristinare tutti i messaggi di avviso",IDC_STATIC,7,
-                    89,157,8
+    LTEXT           "Premi pulsante per ripristinare tutti i messaggi di avviso",IDC_STATIC,7,
+                    89,215,8
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
@@ -672,8 +674,8 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Sistema"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    CONTROL         "&Posiziona i file eleminati nel Cestino",IDC_USE_RECYCLE_BIN,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,114,10
+    CONTROL         "&Posiziona i file eliminati nel cestino",IDC_USE_RECYCLE_BIN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,164,10
     CONTROL         "&Aggiungi al menu contestuale di Explorer",IDC_EXPLORER_CONTEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,167,10
     CONTROL         "Atti&va menu avanzato",IDC_EXPLORER_ADVANCED,"Button",
@@ -773,15 +775,15 @@ FONT 8, "MS Shell Dlg"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,87,99,50,14
     PUSHBUTTON      "Annulla",IDCANCEL,156,99,50,14
-    LTEXT           "Scompattatore di file:",IDC_STATIC,7,18,50,10
+    LTEXT           "Scompattatore di file:",IDC_STATIC,7,18,91,10
     COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "Visualizza tutti gli scompattatori, non verificare l'estensione",
                     IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX |
-                    BS_LEFTTEXT | WS_TABSTOP,7,74,202,13
-    LTEXT           "Lista delle estensioni:",IDC_STATIC,7,36,49,10
+                    BS_LEFTTEXT | WS_TABSTOP,7,74,218,13
+    LTEXT           "Lista delle estensioni:",IDC_STATIC,7,36,88,10
     LTEXT           "Descrizione:",IDC_STATIC,7,52,47,10
-    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,176,12,
+    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,188,12,
                     ES_AUTOHSCROLL | ES_READONLY
     EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL |
                     ES_READONLY
@@ -855,11 +857,11 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Vai a"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "Va&i a:",IDC_STATIC,7,9,18,8
+    LTEXT           "Va&i a:",IDC_STATIC,7,9,25,8
     EDITTEXT        IDC_WMGOTO_PARAM,33,7,93,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "File",IDC_STATIC,7,27,48,35
     CONTROL         "&Sinistra",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
-                    WS_GROUP,13,38,28,10
+                    WS_GROUP,13,38,40,10
     CONTROL         "&Destra",IDC_WMGOTO_FILERIGHT,"Button",BS_AUTORADIOBUTTON,
                     13,48,33,10
     GROUPBOX        "Vai a ...",IDC_STATIC,61,27,63,35
@@ -913,14 +915,14 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Conserva caratteri di fine linea originali",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
-    GROUPBOX        "Tabulazioni",IDC_STATIC,7,54,221,33,WS_GROUP
-    LTEXT           "&Dim. tabul.:",IDC_STATIC,15,68,92,8
+    GROUPBOX        "Tabulazioni",IDC_STATIC,7,54,285,30,WS_GROUP
+    LTEXT           "&Dimensioni:",IDC_STATIC,15,68,30,8
     EDITTEXT        IDC_TAB_EDIT,47,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
-    CONTROL         "Inser. tabulaz.",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,140,63,51,10
-    CONTROL         "Inserisci spazi",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,140,72,59,10
+    CONTROL         "&Inserisci tabulazioni",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,77,63,85,10
+    CONTROL         "In&serisci spazi",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,77,72,59,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -944,25 +946,25 @@ END
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Save modified files?"
+CAPTION "Salvare i file modificati?"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    GROUPBOX        "Left side file",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
+    GROUPBOX        "File sul lato sinistro",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
     EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "&Save changes",IDC_SAVECLOSING_SAVELEFT,"Button",
+    CONTROL         "&Salva modifiche",IDC_SAVECLOSING_SAVELEFT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
-    CONTROL         "&Discard changes",IDC_SAVECLOSING_DISCARDLEFT,"Button",
+    CONTROL         "S&carta modifiche",IDC_SAVECLOSING_DISCARDLEFT,"Button",
                     BS_AUTORADIOBUTTON,16,46,230,10
-    GROUPBOX        "Right side file",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
+    GROUPBOX        "File sul lato destro",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
     EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "S&ave changes",IDC_SAVECLOSING_SAVERIGHT,"Button",
+    CONTROL         "S&alva modifiche",IDC_SAVECLOSING_SAVERIGHT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
-    CONTROL         "Dis&card changes",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
+    CONTROL         "Sca&rta modifiche",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
     DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,205,133,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,205,133,50,14
 END
 
 #ifndef _MAC
@@ -1369,7 +1371,7 @@ END
 STRINGTABLE
 BEGIN
     IDC_COMPARISON_STOP     "Stop"
-    IDC_COMPARISON_CLOSE    "Premi un pulsante qualsiasi"
+    IDC_COMPARISON_CLOSE    "Premi qualsiasi pulsante"
 END
 
 // EDITOR : FILENAME BAR
@@ -1410,7 +1412,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge su questa cartella"
-    IDS_VERSION_FMT         "Versione %1 - italiano"
+    IDS_VERSION_FMT         "Versione %1 - Italiano"
     IDS_QUICKHELP           "Sintassi : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl descsx] [/dr descdx] percsx percdx [percoutput]\n\ndove:
       /? o -? visualizza questo aiuto
       /r o -r indica a winmerge di confrontare le cartelle ricorsivamente
@@ -1488,7 +1490,7 @@ BEGIN
     IDS_STATUS_COPYALL2R    "Copiatura completa a destra"
     IDS_STATUS_COPYFILES    "Copiatura dei file..."
     IDS_STATUS_DELETEFILES  "Eliminazione dei file..."
-    IDS_STATUS_MOVEFILES    "Moving files..."
+    IDS_STATUS_MOVEFILES    "Spostamento dei file..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1585,10 +1587,10 @@ BEGIN
     IDS_DEL_RIGHT_FMT2      "Destra (%1 su %2)"
     IDS_DEL_BOTH_FMT2       "Entrambi (%1 su %2)"
     IDS_SELECT_DESTFOLDER   "Seleziona cartella di destinazione"
-    IDS_MOVE_LEFT_TO        "Left to... (%1)"
-    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
-    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
-    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
+    IDS_MOVE_LEFT_TO        "Sinistra in... (%1)"
+    IDS_MOVE_RIGHT_TO       "Destra in... (%1)"
+    IDS_MOVE_LEFT_TO2       "Sinistra in... (%1 su %2)"
+    IDS_MOVE_RIGHT_TO2      "Destra in... (%1 su %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1626,9 +1628,9 @@ BEGIN
     ID_DIR_ZIP_BOTH         "Aggiunge elementi di entrambi i lati a un archivio"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Aggiunge gli elementi diversi a un archivio (entrambi i lati)"
     ID_DIR_MOVE_LEFT_TO_BROWSE 
-                            "Move selected file on left to custom directory"
+                            "Sposta il file selezionato sulla sinistra in una cartella personalizzata"
     ID_DIR_MOVE_RIGHT_TO_BROWSE 
-                            "Move selected file on right to custom directory"
+                            "Sposta il file selezionato sulla destra in una cartella personalizzata"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
@@ -1679,9 +1681,9 @@ BEGIN
     IDS_IDENTICAL           "Identici"
     IDS_BIN_FILES_DIFF      "I file non di testo contengono delle differenze"
     IDS_FILES_ARE_DIFFERENT "I file contengono delle differenze"
-    IDS_LEFTONLY            "Left Only"
-    IDS_RIGHTONLY           "Right Only"
-    IDS_DIFFERENT           "Different"
+    IDS_LEFTONLY            "Solo a sinistra"
+    IDS_RIGHTONLY           "Solo a destra"
+    IDS_DIFFERENT           "Diverse"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
@@ -1777,7 +1779,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_DIR_RESULTS_EMPTIED "Current directory comparison results will be cleared."
+    IDS_DIR_RESULTS_EMPTIED "Gli attuali risultati del confronto tra cartelle verranno cancellati."
 END
 
 // LANGAGE NAMES #1
@@ -1807,14 +1809,14 @@ BEGIN
     IDS_ARABIC_BAHRAIN      "Arabo (Bahrain)"
     IDS_ARABIC_QATAR        "Arabo (Qatar)"
     IDS_ARMENIAN            "Armeno"
-    IDS_AZERI_LATIN         "Azero (Latino)"
-    IDS_AZERI_CYRILLIC      "Azero (Cirillico)"
+    IDS_AZERI_LATIN         "Azero (latino)"
+    IDS_AZERI_CYRILLIC      "Azero (cirillico)"
     IDS_BASQUE              "Basco"
     IDS_BELARUSIAN          "Bielorusso"
     IDS_BULGARIAN           "Bulgaro"
     IDS_CATALAN             "Catalano"
-    IDS_CHINESE_TRADITIONAL "Cinese (Tradizionale)"
-    IDS_CHINESE_SIMPLIFIED  "Cinese (Semplificato)"
+    IDS_CHINESE_TRADITIONAL "Cinese (tradizionale)"
+    IDS_CHINESE_SIMPLIFIED  "Cinese (semplificato)"
     IDS_CHINESE_HONGKONG    "Cinese (Hong Kong)"
     IDS_CHINESE_SINGAPORE   "Cinese (Singapore)"
 END
@@ -1828,7 +1830,7 @@ BEGIN
     IDS_DANISH              "Danese"
     IDS_DUTCH               "Olandese"
     IDS_DUTCH_BELGIAN       "Olandese (Belgio)"
-    IDS_ENGLISH_US          "Inglese (US)"
+    IDS_ENGLISH_US          "Inglese (USA)"
     IDS_ENGLISH_UK          "Inglese (UK)"
     IDS_ENGLISH_AUS         "Inglese (Australia)"
     IDS_ENGLISH_CAN         "Inglese (Canada)"
@@ -1898,8 +1900,8 @@ BEGIN
     IDS_ROMANIAN            "Rumeno"
     IDS_RUSSIAN             "Russo"
     IDS_SANSKRIT            "Sanscrito"
-    IDS_SERBIAN_LATIN       "Serbo (Latino)"
-    IDS_SERBIAN_CYRILLIC    "Serbo (Cirillico)"
+    IDS_SERBIAN_LATIN       "Serbo (latino)"
+    IDS_SERBIAN_CYRILLIC    "Serbo (cirillico)"
     IDS_SINDHI              "Sindhi"
 END
 
@@ -1910,7 +1912,7 @@ BEGIN
     IDS_SLOVENIAN           "Sloveno"
     IDS_SPANISH             "Spagnolo"
     IDS_SPANISH_MEXICAN     "Spagnolo (Messico)"
-    IDS_SPANISH_MODERN      "Spagnolo (Moderno)"
+    IDS_SPANISH_MODERN      "Spagnolo (moderno)"
     IDS_SPANISH_GUATEMALA   "Spagnolo (Guatemala)"
     IDS_SPANISH_COSTA_RICA  "Spagnolo (Costa Rica)"
     IDS_SPANISH_PANAMA      "Spagnolo (Panama)"
@@ -1948,8 +1950,8 @@ END
 // LANGAGE NAMES #9
 STRINGTABLE
 BEGIN
-    IDS_UZBEK_LATIN         "Uzbeco (Latino)"
-    IDS_UZBEK_CYRILLIC      "Uzbeco (Cirillico)"
+    IDS_UZBEK_LATIN         "Uzbeco (latino)"
+    IDS_UZBEK_CYRILLIC      "Uzbeco (cirillico)"
     IDS_VIETNAMESE          "Vietnamita"
 END
 

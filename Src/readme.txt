@@ -1,3 +1,8 @@
+2004-08-04 Kimmo
+ PATCH: [ 1001981 ] Italian translation updated
+  Submitted by Andrea Decorte
+  Src/Languages/Italian: MergeItalian.rc
+  
 2004-08-03 Kimmo
  PATCH: [ 1002333 ] Set default filter to *.* when starting WinMerge
   Src: Merge.cpp
