@@ -18,6 +18,7 @@
 ;
 ;Installer Todo List:
 ; #  Automatically detect and configure WinMerge to work with Visual Source Safe
+; #  We need to add support for Tortoises' SubVersion program mimicing our support settings for TortoiseCVS if possible
 ; #  Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL
 ; #  Add a Desktop.ini file to our \Program Files\WinMerge folder
 ; #  Test and distribute the files contained within "MergePlugins (From 2140).7z" or in the folder MergePlugins of "WinMerge2140-exe.7z"
@@ -47,6 +48,15 @@
 ; #  Set the order of icons within the start menu (we'll have to use a registry hack since Inno Setup doesn't yet have this level of granularity).
 ; #  Create a switch for the installer to unzip all of the included binaries as if it were a zip file.
 ; #  Perry wanted a Select All button to appear on the components page.  Let's just ask Jordan Russell or Martijn Laan if they'll do it :).
+; #  Provide the option to or not to assign the Ctrl+Alt+M accelerator to WinMerge.
+; #  Using the registry set the order our icons appear within their group in the start menu.:
+;      1.  WinMerge
+;      2.  Read Me
+;      3.  Users's Guide
+;      4.  WinMerge on the Web
+;      5.  Uninstall WinMerge
+; #  We need to determine if our application can cooperate with WinCVS and if so how
+
 
 
 
@@ -283,8 +293,7 @@ Source: Runtimes\msvcrt.dll; DestDir: {sys}; Flags: restartreplace uninsneveruni
 Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile
 ; end VC system files
 
-Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete; MinVersion: 4, 0
-
+Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
 Source: ..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(313)
@@ -393,7 +402,8 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueNa
 Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName}
 Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: DiffAsUnicode; ValueData: $00000001
 
-;If WinMerge.exe is installed then we'll automatically configure WinMerge as the merging application
+;Tells TortoiseCVS to use WinMerge as its differencing application (this happens whether or not Tortoise is current installed, that way
+;if it is installed at a later date this will automatically support it)
 Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Merge Application; ValueData: {app}\{code:ExeName}
 Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: MergeAsUnicode; ValueData: $00000001
 
