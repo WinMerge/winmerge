@@ -133,36 +133,37 @@
      */
     function getMenu() {
       $temp .= "<h2><a href=\"/index.php\">Users</a></h2>\n";
-      $temp .= "<ul>\n";
       switch ($this->_version) {
         case WINMERGE_1_7: //if WinMerge 1.7 ...
-          $temp .= "  <li><a href=\"/1.7/docs/index.html\">WinMerge User's Guide</a></li>\n";
+          $temp .= "<ul>\n";
+          $temp .= "  <li><a href=\"/1.7/docs/index.html\">User's Guide</a></li>\n";
+          $temp .= "  <li><a href=\"/1.7/changes.php\">Change History</a></li>\n";
+          $temp .= "</ul>\n";
           break;
         case WINMERGE_2_0: //if WinMerge 2.0 ...
-          $temp .= "  <li><a href=\"/2.0/docs/index.html\">WinMerge User's Guide</a></li>\n";
+          $temp .= "<ul>\n";
+          $temp .= "  <li><a href=\"/2.0/docs/index.html\">User's Guide</a></li>\n";
+          $temp .= "  <li><a href=\"/2.0/changes.php\">Change History</a></li>\n";
+          $temp .= "</ul>\n";
           break;
         case WINMERGE_2_2: //if WinMerge 2.2 ...
+          $temp .= "<ul>\n";
+          $temp .= "  <li><a href=\"/2.2/manual/index.html\">Manual</a></li>\n";
           $temp .= "  <li><a href=\"/2.2/screenshots.php\">Screenshots</a></li>\n";
-          $temp .= "  <li><a href=\"/2.2/manual/index.html\">WinMerge Manual</a></li>\n";
+          $temp .= "  <li><a href=\"/2.2/changes.php\">Change History</a></li>\n";
+          $temp .= "</ul>\n";
           break;
       }
+      $temp .= "<h2>Support</h2>\n";
+      $temp .= "<ul>\n";
       $temp .= "  <li><a href=\"http://sourceforge.net/mail/?group_id=13216\">Mailing Lists</a></li>\n";
       $temp .= "  <li><a href=\"http://sourceforge.net/forum/?group_id=13216\">Discussion Forums</a></li>\n";
       $temp .= "</ul>\n";
       $temp .= "<ul>\n";
       $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216\">Submit a Bug Report</a></li>\n";
       $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216\">Submit a Feature Request</a></li>\n";
-      switch ($this->_version) {
-        case WINMERGE_1_7: //if WinMerge 1.7 ...
-          $temp .= "  <li><a href=\"/1.7/changes.php\">Change History</a></li>\n";
-          break;
-        case WINMERGE_2_0: //if WinMerge 2.0 ...
-          $temp .= "  <li><a href=\"/2.0/changes.php\">Change History</a></li>\n";
-          break;
-        case WINMERGE_2_2: //if WinMerge 2.2 ...
-          $temp .= "  <li><a href=\"/2.2/changes.php\">Change History</a></li>\n";
-          break;
-      }
+      $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=213216\">Submit a Support Request</a></li>\n";
+      $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216\">Submit a Patch</a></li>\n";
       $temp .= "</ul>\n";
       $temp .= "<p align=\"center\">\n";
       $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\">\n";
@@ -172,7 +173,6 @@
       $temp .= "<h2><a href=\"/developer/index.php\">Developers</a></h2>\n";
       $temp .= "<ul>\n";
       $temp .= "  <li><a href=\"http://sourceforge.net/projects/winmerge/\">Project Home</a></li>\n";
-      $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216\">Submit a Patch</a></li>\n";
       $temp .= "  <li>CVS\n";
       $temp .= "    <ul>\n";
       $temp .= "      <li><a href=\"http://cvs.sourceforge.net/viewcvs.py/winmerge/\">Go to CVSWeb</a></li>\n";
