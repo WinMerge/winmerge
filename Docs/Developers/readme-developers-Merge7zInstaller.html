@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Building Merge7zInstaller</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<h2>Building Merge7zInstaller</h2>
+
+<h3>Needed binaries/sources:</h3>
+<ul>
+  <li><a href="http://www.7-zip.org/">7-zip</a> 3.13 binary distribution.
+    Unzipped source package won't work since we need exact directory structure of installed 7-zip.</li>
+  <li>UPX executable file packer from <a href="http://upx.sourceforge.net">upx.sourceforge.net</a>.</li>
+  <li>Sources from 7-zip versions 3.11 - 3.13 and 4.07 - 4.14.</li>
+</ul>
+
+<h3>Before compiling:</h3>
+<ol>
+  <li>Install/unzip UPX so that executable is in <code>$PATH$</code> (or alter
+    Merge7zInstaller project's post-build setting so it finds UPX).</li>
+  <li>Copy existing 7-zip 3.13 install directory structure to 
+    <code>../../../7z313bin</code>, relative to location of <code>Merge7zInstaller.dsp</code>.
+    For example if <code>Merge7zInstaller.dsp</code> resides in
+    <code>C:\cvshome1\WinMerge\Merge7zInstaller</code>, then 7-Zip 3.13 has to be
+    installed to <code>C:\7z313bin</code>.</li>
+</ol>
+
+<h3>Compiling:</h3>
+<ol>
+  <li>Compile <code>Merge7z*.DLLs</code> for all 7-zip versions mentioned (ANSI and UNICODE!)
+    This creates DLL files to <code>/Build/MergeRelease</code> and <code>/Build/MergeUnicodeRelease</code>.</li>
+  <li>Compile Merge7zInstaller project.</li>
+</ol>
+
+<h3>Result:</h3>
+<p>After successful compile, <code>Merge7zInstaller.exe</code> is created in
+<code>Merge7zInstaller/Release</code> or <code>Merge7zInstaller/Debug</code>.</p>
+</body>
+</html>
