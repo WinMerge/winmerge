@@ -1,3 +1,8 @@
+2004-06-21 Kimmo
+ BUG: [ 974662 ] Inconsistent menutexts for dircompare column dialog
+  Scr: DirView.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2004-06-21 Laoran
  PATCH: [ 975187 ] getDefaultCodepage, use UI language only when UI not english
   Src/common: unicoder.cpp

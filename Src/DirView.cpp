@@ -139,7 +139,6 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_REFRESH, OnUpdateRefresh)
 	ON_WM_TIMER()
 	ON_WM_MOUSEMOVE()
-	ON_COMMAND(ID_EDIT_COLUMNS, OnEditColumns)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTDIR_RO, OnUpdateStatusRightRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTDIR_RO, OnUpdateStatusLeftRO)
 	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
@@ -1883,7 +1882,6 @@ void CDirView::OnCustomizeColumns()
 	// Located in DirViewColHandler.cpp
 	CDirView::OnEditColumns();
 }
-
 
 void CDirView::OnCtxtOpenWithUnpacker() 
 {

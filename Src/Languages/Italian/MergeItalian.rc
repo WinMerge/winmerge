@@ -289,7 +289,7 @@ BEGIN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
-        MENUITEM "&Edit Columns...",            ID_EDIT_COLUMNS
+        MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
     END
 END
 

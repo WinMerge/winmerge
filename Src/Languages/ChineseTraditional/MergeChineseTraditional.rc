@@ -289,7 +289,7 @@ BEGIN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
-        MENUITEM "&Edit Columns...",            ID_EDIT_COLUMNS
+        MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
     END
 END
 
@@ -311,7 +311,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_LOCATIONBAR MENU 
+IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -2010,7 +2010,7 @@ BEGIN
 END
 
 // LOCATIONBAR CONTEXT MENU
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_DISPLAY_MOVED_NONE   "Do not display moved blocks"
     ID_DISPLAY_MOVED_ALL    "Display all moved blacks"

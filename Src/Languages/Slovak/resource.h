@@ -682,8 +682,6 @@
 #define IDS_USERCHOICE_NONE             32933
 #define IDS_USERCHOICE_AUTOMATIC        32934
 
-#define ID_EDIT_COLUMNS                 32944
-
 #define ID_STATUS_MERGINGMODE           32960
 #define ID_STATUS_DIFFNUM               32961
 #define ID_STATUS_RIGHTDIR_RO           32962

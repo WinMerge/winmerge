@@ -277,20 +277,20 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "圧縮(&Z)"
         BEGIN
-            MENUITEM "選択された%2個の項目の内、左側 %1個のファイルを圧縮します(&L)", 
+            MENUITEM "選択された%2個の項目の内、左側 %1個のファイルを圧縮します(&L)",
                                                     ID_DIR_ZIP_LEFT
-            MENUITEM "選択された%2個の項目の内、右側 %1個のファイルを圧縮します(&R)", 
+            MENUITEM "選択された%2個の項目の内、右側 %1個のファイルを圧縮します(&R)",
                                                     ID_DIR_ZIP_RIGHT
-            MENUITEM "選択された%2個の項目の内、両側 %1個のファイルを圧縮します(&B)", 
+            MENUITEM "選択された%2個の項目の内、両側 %1個のファイルを圧縮します(&B)",
                                                     ID_DIR_ZIP_BOTH
-            MENUITEM "選択された%3個の項目から差異のある%2個の項目の内、両側 %1個のファイルのみを圧縮します(&S)", 
+            MENUITEM "選択された%3個の項目から差異のある%2個の項目の内、両側 %1個のファイルのみを圧縮します(&S)",
                                                     ID_DIR_ZIP_BOTH_DIFFS_ONLY
 
         END
     END
     POPUP "_HDR_POPUP_"
     BEGIN
-        MENUITEM "列の設定(&E)",                ID_EDIT_COLUMNS
+        MENUITEM "列の設定(&C)...",             ID_TOOLS_CUSTOMIZECOLUMNS
     END
 END
 
@@ -312,7 +312,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_LOCATIONBAR MENU 
+IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -656,7 +656,7 @@ BEGIN
 END
 
 IDD_OUTPUT DIALOGEX 0, 0, 278, 157
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "ダイアログ"
 FONT 8, "MS Shell Dlg"
@@ -1274,19 +1274,19 @@ STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "このディレクトリをWinMergeで開く"
     IDS_VERSION_FMT         "Version %1 - Japanese"
-    IDS_QUICKHELP           "シンタックス : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere: 
-      /? or -? このヘルプを表示します 
-      /r or -r 再帰的にディレクトリを比較します 
-      /e or -e Escキーの押下でWinMergeを終了します 
-      /ul or -ul 左パスをMRUに追加しません 
-      /ur or -ur 右パスをMRUに追加しません 
-      /ub or -ub 両方のパスをMRUに追加しません 
-      /wl or -wl 左側を読み取り専用で開きます 
-      /wr or -wr 右側を読み取り専用で開きます 
-      /dl or -dl ディレクトリ/ファイル名の代わりに説明文を左側に表示します 
-      /dr or -dr ディレクトリ/ファイル名の代わりに説明文を右側に表示します 
-      leftpath は、左側で開くディレクトリまたはファイル名です 
-      rightpath 右側で開くディレクトリまたはファイル名です 
+    IDS_QUICKHELP           "シンタックス : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
+      /? or -? このヘルプを表示します
+      /r or -r 再帰的にディレクトリを比較します
+      /e or -e Escキーの押下でWinMergeを終了します
+      /ul or -ul 左パスをMRUに追加しません
+      /ur or -ur 右パスをMRUに追加しません
+      /ub or -ub 両方のパスをMRUに追加しません
+      /wl or -wl 左側を読み取り専用で開きます
+      /wr or -wr 右側を読み取り専用で開きます
+      /dl or -dl ディレクトリ/ファイル名の代わりに説明文を左側に表示します
+      /dr or -dr ディレクトリ/ファイル名の代わりに説明文を右側に表示します
+      leftpath は、左側で開くディレクトリまたはファイル名です
+      rightpath 右側で開くディレクトリまたはファイル名です
       outputpath は、省略可能なマージされたファイルの保存先ディレクトリです"
 END
 
@@ -1913,7 +1913,7 @@ BEGIN
 END
 
 // LOCATIONBAR CONTEXT MENU
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_DISPLAY_MOVED_NONE   "移動ブロックを表示しません"
     ID_DISPLAY_MOVED_ALL    "全ての移動ブロックを表示します"
