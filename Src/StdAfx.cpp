@@ -28,32 +28,44 @@
 // Logging
 CLogFile gLog;
 
-// fix any nonascii characters
-// which got sign-extended to become negative integers
+// Convert any negative inputs to negative char equivalents
+// This is aimed at correcting any chars mistakenly 
+// sign-extended to negative ints.
+// This is ok for the UNICODE build because UCS-2LE code bytes
+// do not extend as high as 2Gig (actually even full Unicode
+// codepoints don't extend that high).
 int normch(int c)
 {
 	return (unsigned char)(char)c;
 }
 
+// Returns nonzero if input is outside ASCII or is underline
 int
 xisspecial (int c)
 {
   return normch(c) > (unsigned) _T ('\x7f') || c == _T ('_');
+// Apparently someone once tried to enumerate all the alphabetic letters in
+// the upper half of some codepage, probably CP-1252
 //  return _tcschr (_T ("ì?èø?ıáíéóúùïò¾àå?äëöüÌ?ÈØ?İÁÍÉ´OÚÙÏÒ¼ÀÅ?ÄËÖÜ§"), c) != NULL;
 }
 
+// Returns non-zero if input is alphabetic or "special" (see xisspecial)
+// Also converts any negative inputs to negative char equivalents (see normch)
 int
 xisalpha (int c)
 {
   return _istalpha (normch(c)) || xisspecial (normch(c));
 }
 
+// Returns non-zero if input is alphanumeric or "special" (see xisspecial)
+// Also converts any negative inputs to negative char equivalents (see normch)
 int
 xisalnum (int c)
 {
   return _istalnum (normch(c)) || xisspecial (normch(c));
 }
 
+// Load string resource and return as CString
 CString LoadResString(int id)
 {
 	CString s;

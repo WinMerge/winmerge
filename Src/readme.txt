@@ -1,3 +1,7 @@
+2004-02-08 Perry
+ Add header comments to functions lacking such in StdAfx.cpp
+  Src: StdAfx.cpp
+
 2004-02-08 Kimmo
  PATCH: [ 892509 ] Reset dircompare statuspane before new compare
   Src: DirCompStateBar.cpp DirCompStateBar.h DirFrame.cpp
