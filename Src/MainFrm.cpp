@@ -1834,6 +1834,7 @@ void CMainFrame::RebuildRegExpList(BOOL bShowError)
 	USES_CONVERSION;
 
 	TCHAR tmp[_MAX_PATH] = {0};
+	TCHAR tokenStr[_MAX_PATH] = {0};
 	TCHAR* token;
 	TCHAR sep[] = _T("\r\n");
 	BOOL valid = TRUE;
@@ -1851,7 +1852,11 @@ void CMainFrame::RebuildRegExpList(BOOL bShowError)
 		token = _tcstok(tmp, sep);
 		while (token && valid)
 		{
-			valid = add_regexp(&ignore_regexp_list, T2A(token), bShowError);
+			// Add '\n' to end of token as regexp parser likes it,
+			// and it makes regexps ending with '$' work.
+			_tcsncpy(tokenStr, token, _tcslen(token));
+			_tcsncat(tokenStr, _T("\n"), 1);
+			valid = add_regexp(&ignore_regexp_list, T2A(tokenStr), bShowError);
 			token = _tcstok(NULL, sep);
 		}
 	}

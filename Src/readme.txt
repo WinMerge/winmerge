@@ -1,3 +1,7 @@
+2005-01-30 Kimmo
+ BUG: [ 1110826 ] Regex $ breaks linefilter
+  Src: MainFrm.cpp
+
 2005-01-29 Kimmo
  PATCH: [ 1108716 ] Load lang files from 'Languages' subdirectory
   Src/Common: LanguageSelect.cpp
