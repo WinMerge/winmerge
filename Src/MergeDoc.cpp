@@ -90,12 +90,14 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 
 CMergeDoc::~CMergeDoc()
 {	
-	CUndoItem *pitem;
+//<jtuc 2003-06-28>
+	/*CUndoItem *pitem;
 	while (!m_undoList.IsEmpty())
 	{
 		pitem = (CUndoItem*)m_undoList.RemoveHead();
 		delete pitem;
-	}
+	}*/
+//</jtuc>
 	if (m_pDirDoc)
 	{
 		m_pDirDoc->MergeDocClosing(this);
@@ -562,6 +564,21 @@ void CMergeDoc::ShowRescanError(int nRescanResult)
 	}
 }
 
+
+//<jtuc 2003-06-28>
+void CMergeDoc::CDiffTextBuffer::AddUndoRecord(BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int flags, int nActionType /*= CE_ACTION_UNKNOWN*/)
+{
+	CCrystalTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText, flags, nActionType);
+	if (m_aUndoBuf[m_nUndoPosition - 1].m_dwFlags & UNDO_BEGINGROUP)
+	{
+		m_pOwnerDoc->undoTgt.erase(m_pOwnerDoc->curUndo, m_pOwnerDoc->undoTgt.end());
+		m_pOwnerDoc->undoTgt.push_back(m_bIsLeft ? m_pOwnerDoc->m_pLeftView : m_pOwnerDoc->m_pRightView);
+		m_pOwnerDoc->curUndo = m_pOwnerDoc->undoTgt.end();
+	}
+}
+//<jtuc>
+
+/*
 void CMergeDoc::AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList)
 {
 	CUndoItem *pitem = new CUndoItem;
@@ -583,6 +600,7 @@ void CMergeDoc::AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, B
 		m_undoList.AddHead(pitem);
 	}
 }
+*/
 
 BOOL CMergeDoc::Undo()
 {
@@ -1273,7 +1291,8 @@ void CMergeDoc::CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLi
 	if (GetLineLength(nLine)>0)
 		DeleteText(pSource, nLine, 0, nLine, GetLineLength(nLine));
 	int endl,endc;
-	InsertText(pSource, nLine, 0, strText, endl,endc);
+	if (! strText.IsEmpty())
+		InsertText(pSource, nLine, 0, strText, endl,endc);
 }
 // return pointer to the eol chars of this string, or pointer to empty string if none
 LPCTSTR getEol(const CString &str)
@@ -1305,7 +1324,8 @@ void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int
 	if (GetFullLineLength(nLine))
 		DeleteText(pSource, nLine, 0, nLine+1, 0); 
 	int endl,endc;
-	InsertText(pSource, nLine, 0, strText, endl,endc);
+	if (! strText.IsEmpty())
+		InsertText(pSource, nLine, 0, strText, endl,endc);
 }
 
 BOOL CMergeDoc::InitTempFiles(const CString& srcPathL, const CString& strPathR)
@@ -1399,10 +1419,10 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 	if (curView)
 		curView->EnsureVisible(curView->GetCursorPos());
 
-		// Show possible error after updating screen
-		if (nRescanResult != RESCAN_OK &&
-				nRescanResult != RESCAN_SUPPRESSED)
-			ShowRescanError(nRescanResult);
+	// Show possible error after updating screen
+	if (nRescanResult != RESCAN_OK &&
+			nRescanResult != RESCAN_SUPPRESSED)
+		ShowRescanError(nRescanResult);
 }
 
 void CMergeDoc::OnFileSave() 

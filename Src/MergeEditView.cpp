@@ -439,9 +439,11 @@ void CMergeEditView::OnEditUndo()
 	CMergeEditView *tgt = *(pDoc->curUndo-1);
 	if(tgt==this)
 	{
-		CCrystalEditViewEx::OnEditUndo();
-		--pDoc->curUndo;
-		pDoc->FlushAndRescan();
+		if(CCrystalEditViewEx::OnEditUndo()) 
+		{
+			--pDoc->curUndo;
+			pDoc->FlushAndRescan();
+		}
 	}
 	else
 	{
@@ -668,12 +670,14 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 	CMergeDoc* pDoc = GetDocument();
 
 	// simple hook for multiplex undo operations
-	if(dynamic_cast<CMergeDoc::CDiffTextBuffer*>(m_pTextBuffer)->curUndoGroup())
+	// deleted by jtuc 2003-06-28
+	// now AddUndoRecords does it (so we don't create entry for OnEditOperation with no Undo data in m_pTextBuffer)
+	/*if(dynamic_cast<CMergeDoc::CDiffTextBuffer*>(m_pTextBuffer)->curUndoGroup())
 	{
 		pDoc->undoTgt.erase(pDoc->curUndo, pDoc->undoTgt.end());
 		pDoc->undoTgt.push_back(this);
 		pDoc->curUndo = pDoc->undoTgt.end();
-	}
+	}*/
 
 	// perform original function
 	CCrystalEditViewEx::OnEditOperation(nAction, pszText);
@@ -705,9 +709,11 @@ void CMergeEditView::OnEditRedo()
 	CMergeEditView *tgt = *(pDoc->curUndo);
 	if(tgt==this)
 	{
-		CCrystalEditViewEx::OnEditRedo();
-		++pDoc->curUndo;
-		pDoc->FlushAndRescan();
+		if(CCrystalEditViewEx::OnEditRedo()) 
+		{
+			++pDoc->curUndo;
+			pDoc->FlushAndRescan();
+		}
 	}
 	else
 	{

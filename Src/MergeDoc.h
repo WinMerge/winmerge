@@ -55,6 +55,8 @@ enum
 
 class CMergeEditView;
 
+//<jtuc 2003-06-28>
+/*
 class CUndoItem
 {
 public:
@@ -64,6 +66,8 @@ public:
 	CMergeEditView *m_pList;
 	CStringList list;
 };
+*/
+//<jtuc>
 
 class CChildFrame;
 class CDirDoc;
@@ -85,6 +89,8 @@ private :
 		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
 public :
 		void SetTempPath(CString path);
+		virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
+                        LPCTSTR pszText, int flags, int nActionType = CE_ACTION_UNKNOWN);
 		bool curUndoGroup();
 		void ReplaceLine(CCrystalTextView * pSource, int nLine, const CString& strText);
 		void ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString& strText);
@@ -137,7 +143,7 @@ public :
 			CCrystalTextBuffer::InsertLine(pszLine, nLength, nPosition);
 		}
 
-	};
+	} friend;
 
 // End declaration of CMergeDoc::CDiffTextBuffer
 

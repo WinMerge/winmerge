@@ -1418,21 +1418,23 @@ OnUpdateEditUndo (CCmdUI * pCmdUI)
     }
 }
 
-void CCrystalEditView::
+BOOL CCrystalEditView::
 OnEditUndo ()
 {
   if (m_pTextBuffer != NULL && m_pTextBuffer->CanUndo ())
     {
       CPoint ptCursorPos;
-      if (m_pTextBuffer->Undo (ptCursorPos))
+      if (m_pTextBuffer->Undo (this, ptCursorPos))
         {
           ASSERT_VALIDTEXTPOS (ptCursorPos);
           SetAnchor (ptCursorPos);
           SetSelection (ptCursorPos, ptCursorPos);
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);
+          return TRUE;
         }
     }
+  return FALSE;
 }
 
 //  [JRT]
@@ -1442,21 +1444,23 @@ SetDisableBSAtSOL (BOOL bDisableBSAtSOL)
   m_bDisableBSAtSOL = bDisableBSAtSOL;
 }
 
-void CCrystalEditView::
+BOOL CCrystalEditView::
 OnEditRedo ()
 {
   if (m_pTextBuffer != NULL && m_pTextBuffer->CanRedo ())
     {
       CPoint ptCursorPos;
-      if (m_pTextBuffer->Redo (ptCursorPos))
+      if (m_pTextBuffer->Redo (this, ptCursorPos))
         {
           ASSERT_VALIDTEXTPOS (ptCursorPos);
           SetAnchor (ptCursorPos);
           SetSelection (ptCursorPos, ptCursorPos);
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);
+          return TRUE;
         }
     }
+  return FALSE;
 }
 
 void CCrystalEditView::

@@ -317,6 +317,10 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	pMergeDoc->m_rtBuf.FreeAll();
 	pMergeDoc->m_ltBuf.SetEolSensitivity(m_bEolSensitive);
 	pMergeDoc->m_rtBuf.SetEolSensitivity(m_bEolSensitive);
+//<jtuc 2003-06-28>	
+	pMergeDoc->undoTgt.clear();
+	pMergeDoc->curUndo = pMergeDoc->undoTgt.begin();
+//</jtuc>
 
 	// Load left side
 	int nLeftSuccess = pMergeDoc->m_ltBuf.LoadFromFile(szLeft);

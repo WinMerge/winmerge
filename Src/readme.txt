@@ -1,3 +1,8 @@
+2003-07-18 Laoran
+ PATCH : [ 771587 ] Undo/Redo functions 
+  WinMerge: MainFrm.cpp MergeDoc.cpp MergeDoc.h MergeEditView.cpp
+  editlib: ccrystaleditview.cpp ccrystaleditview.h ccrystaltextbuffer.cpp ccrystaltextbuffer.h 
+
 2003-07-17 Laoran
  PATCH : [ 772908 ] ResetView must reset m_nTopSubLine
   editlib: ccrystaltextview.cpp

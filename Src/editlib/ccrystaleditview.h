@@ -152,9 +152,9 @@ protected :
     afx_msg void OnDestroy ();
     afx_msg void OnEditReplace ();
     afx_msg void OnUpdateEditUndo (CCmdUI * pCmdUI);
-    afx_msg void OnEditUndo ();
+    afx_msg BOOL OnEditUndo ();
     afx_msg void OnUpdateEditRedo (CCmdUI * pCmdUI);
-    afx_msg void OnEditRedo ();
+    afx_msg BOOL OnEditRedo ();
     afx_msg void OnUpdateEditAutoComplete (CCmdUI * pCmdUI);
     afx_msg void OnEditAutoComplete ();
     afx_msg void OnUpdateEditAutoExpand (CCmdUI * pCmdUI);

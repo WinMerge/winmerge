@@ -146,6 +146,8 @@ protected :
     enum
     {
       UNDO_INSERT = 0x0001,
+      UNDO_VALID_FIRST = 0x0010,
+      UNDO_VALID_LAST  = 0x0020,
       UNDO_BEGINGROUP = 0x0100
     };
 
@@ -158,8 +160,17 @@ protected :
         // File line numbers do not count ghost lines
         // (ghost lines are lines with no text and no EOL chars, which are
         //  used by WinMerge as left-only or right-only placeholders)
+        // All the stored line number needed are real !
 
         CPoint m_ptStartPos, m_ptEndPos;  //  Block of text participating
+        int m_ptStartPos_nGhost, m_ptEndPos_nGhost;
+
+        // Redo records store file line numbers, not screen line numbers
+        // they store the file number of the previous real line
+        // and (apparentLine - ComputeApparentLine(previousRealLine))
+
+        CPoint m_redo_ptStartPos, m_redo_ptEndPos;  //  Block of text participating
+        int    m_redo_ptStartPos_nGhost, m_redo_ptEndPos_nGhost;
 
         int m_nAction;            //  For information only: action type
 
@@ -195,8 +206,14 @@ public :
         {
           m_dwFlags = src.m_dwFlags;
           m_ptStartPos = src.m_ptStartPos;
+          m_ptStartPos_nGhost = src.m_ptStartPos_nGhost;
           m_ptEndPos = src.m_ptEndPos;
+          m_ptEndPos_nGhost = src.m_ptEndPos_nGhost;
           m_nAction = src.m_nAction;
+          m_redo_ptStartPos = src.m_redo_ptStartPos;
+          m_redo_ptStartPos_nGhost = src.m_redo_ptStartPos_nGhost;
+          m_redo_ptEndPos = src.m_redo_ptEndPos;
+          m_redo_ptEndPos_nGhost = src.m_redo_ptEndPos_nGhost;
           SetText(src.GetText());
           return *this;
         }
@@ -264,8 +281,8 @@ public :
     CString StripTail (int i, int bytes);
 
     //  [JRT] Support For Descriptions On Undo/Redo Actions
-    void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-                        LPCTSTR pszText, int nActionType = CE_ACTION_UNKNOWN);
+    virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
+                                LPCTSTR pszText, int flags, int nActionType = CE_ACTION_UNKNOWN);
 
     //  Overridable: provide action description
     virtual BOOL GetActionDescription (int nAction, CString & desc);
@@ -320,15 +337,15 @@ public :
 
     //  Text modification functions
     BOOL InsertGhostLine (CCrystalTextView * pSource, int nLine);
-    BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE);
-    BOOL DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE);
+    BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE, BOOL bHistory =TRUE);
+    BOOL DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE, BOOL bHistory =TRUE);
     void FinishLoading();
 
     //  Undo/Redo
     BOOL CanUndo ();
     BOOL CanRedo ();
-    BOOL Undo (CPoint & ptCursorPos);
-    BOOL Redo (CPoint & ptCursorPos);
+    BOOL Undo (CCrystalTextView * pSource, CPoint & ptCursorPos);
+    BOOL Redo (CCrystalTextView * pSource, CPoint & ptCursorPos);
 
     //  Undo grouping
     void BeginUndoGroup (BOOL bMergeWithPrevious = FALSE);
