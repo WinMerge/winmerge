@@ -1033,8 +1033,7 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 	CFileStatus status;
 
 	// create backup copy of file if destination file exists
-	if (m_bBackup
-		&& CFile::GetStatus(pszPath, status))
+	if (m_bBackup && CFile::GetStatus(pszPath, status))
 	{
 		// build the backup filename
 		CString spath, sname, sext;
@@ -1045,16 +1044,13 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 		else
 			s.Format(_T("%s\\%s")  BACKUP_FILE_EXT, spath, sname);
 
-		// get rid of the dest file
-		DeleteFile(s); // (errors are handled from MoveFile below)
-
-		// move the sucker
-		if (!MoveFile(pszPath, s)
-			&& AfxMessageBox(IDS_BACKUP_FAILED_PROMPT, MB_YESNO|MB_ICONQUESTION) != IDYES)
+		// Copy the file
+		if (!CopyFile(pszPath, s, FALSE))
 		{
-			return FALSE;
+			if (AfxMessageBox(IDS_BACKUP_FAILED_PROMPT,
+					MB_YESNO | MB_ICONQUESTION) != IDYES)
+				return FALSE;
 		}
-
 		return TRUE;
 	}
 
@@ -1169,7 +1165,6 @@ BOOL CMainFrame::DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
 	}
 	
 	// Now it's just a matter of copying the right file to the left
-	DeleteFile(strSavePath); // (errors are handled from CopyFile below)
 	if (!CopyFile(pszSrc, strSavePath, FALSE))
 	{
 		*psError = GetSysError(GetLastError());
@@ -1364,7 +1359,7 @@ void CMainFrame::OnClose()
 			|| (pRight && pRight->IsModified()))
 		{
 			if (!pMergeDoc->SaveHelper())
-					return;
+				return;
 			else
 			{
 				// Set modified status to false so that we are not asking
