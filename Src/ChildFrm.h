@@ -28,7 +28,7 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
-//#include "SplitterWndEx.h"
+#include "SplitterWndEx.h"
 
 class CChildFrame : public CMDIChildWnd
 {
@@ -39,7 +39,7 @@ public:
 
 // Attributes
 protected:
-	CSplitterWnd m_wndSplitter;
+	CSplitterWndEx m_wndSplitter;
 public:
 
 // Operations
