@@ -1152,7 +1152,7 @@ void CMainFrame::OnViewSelectfont()
 		AfxMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION);
 
 		MergeEditViewList editViews;
-		GetAllViews(&editViews, NULL);
+		GetAllViews(&editViews, NULL, NULL);
 		for (POSITION pos = editViews.GetHeadPosition(); pos; editViews.GetNext(pos))
 		{
 			CMergeEditView * pEditView = editViews.GetAt(pos);
@@ -1488,7 +1488,7 @@ void CMainFrame::GetAllDirDocs(DirDocList * pDirDocs)
 }
 
 /// Get pointers to all views into typed lists (both arguments are optional)
-void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, DirViewList * pDirViews)
+void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, MergeDetailViewList * pDetailViews, DirViewList * pDirViews)
 {
 	for (POSITION pos = AfxGetApp()->GetFirstDocTemplatePosition(); pos; )
 	{
@@ -1503,12 +1503,22 @@ void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, DirViewList * pDirV
 				CView * pView = pDoc->GetNextView(pos3);
 				if (pMergeDoc)
 				{
-					if (pEditViews)
+					if (pEditViews || pDetailViews)
 					{
-						// a merge doc only has merge edit views
+						// a merge doc only has merge edit views or diff detail views
 						CMergeEditView * pEditView = dynamic_cast<CMergeEditView *>(pView);
-						ASSERT(pEditView);
-						pEditViews->AddTail(pEditView);
+						CMergeDiffDetailView * pDetailView = dynamic_cast<CMergeDiffDetailView *>(pView);
+						ASSERT(pEditView || pDetailView);
+						if (pEditView)
+						{
+							if (pEditViews)
+								pEditViews->AddTail(pEditView);
+						}
+						else if (pDetailView)
+						{
+							if (pDetailViews)
+								pDetailViews->AddTail(pDetailView);
+						}
 					}
 				}
 				else if (pDirDoc)

@@ -1,3 +1,7 @@
+2003-09-09 Laoran
+ FIX ASSERT in GetAllViews during a merge session
+  WinMerge: MainFrm.cpp MainFrm.h
+ 
 2003-09-08 Laoran
  PATCH: [ 799633 ] context menu with scriptlet, from Jochen Tucht
   WinMerge: Merge.dsp MergeEditView.cpp MergeEditView.h

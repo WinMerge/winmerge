@@ -51,9 +51,11 @@ class CDiffView;
 class CDirView;
 class CDirDoc;
 class CMergeEditView;
+class CMergeDiffDetailView;
 
 // typed lists (homogenous pointer lists)
 typedef CTypedPtrList<CPtrList, CMergeEditView *> MergeEditViewList;
+typedef CTypedPtrList<CPtrList, CMergeDiffDetailView *> MergeDetailViewList;
 typedef CTypedPtrList<CPtrList, CDirView *> DirViewList;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocList;
 typedef CTypedPtrList<CPtrList, CDirDoc *> DirDocList;
@@ -192,7 +194,7 @@ private:
 	void RebuildRegExpList();
 	// destroy the regular expression list and free up the memory
 	void FreeRegExpList();
-	void GetAllViews(MergeEditViewList * pEditViews, DirViewList * pDirViews);
+	void GetAllViews(MergeEditViewList * pEditViews, MergeDetailViewList * pDetailViews, DirViewList * pDirViews);
 	void GetAllMergeDocs(MergeDocList * pMergeDocs);
 	void GetAllDirDocs(DirDocList * pDirDocs);
 	void RedisplayAllDirDocs();
