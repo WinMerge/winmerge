@@ -159,6 +159,12 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 	parsedTextFile->lines.RemoveAll();
 	textline newline;
 	newline.start = 0;
+	// Manually grow line array exponentially
+	int arraysize = 500;
+	int lineno = 0;
+
+
+	parsedTextFile->lines.SetSize(500);
 	
 	// Check for Unicode BOM (byte order mark)
 	// (We don't check for UCS-4 marks)
@@ -304,12 +310,23 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 		}
 		if (newline.end >= 0)
 		{
-			parsedTextFile->lines.Add(newline);
+			// Manually grow line array exponentially
+			if (lineno == arraysize)
+			{
+				arraysize *= 2;
+				parsedTextFile->lines.SetSize(arraysize);
+				
+			}
+			parsedTextFile->lines[lineno] = newline;
+			++lineno;
 			newline.start = dwBytesRead;
 			newline.end = -1;
 			newline.sline = _T("");
 		}
 	}
+
+	// fix array size (due to our manual exponential growth
+	parsedTextFile->lines.SetSize(lineno);
 
 	if (bBinary)
 	{

@@ -7,6 +7,10 @@
   Languages: Catalan/MergeCatalan.rc
  PATCH: [ 818427 ] Fix hashing for mac lines and "ignore EOLs"
   WinMerge: IO.C MergeDoc.cpp UTIL.C
+ Reapply PATCH: [ 818865 ] Exponentially grow text line array
+ I lost it applying PATCH: [ 820364 ] Fix handling of non-ASCII 8-bit files
+ from files.cpp cvs version 1.13 to 1.14.
+  WinMerge: files.cpp
 
 2003-10-18 Laoran
  Add a backslash in front of relative path used to test for filter (as in 2.0)
