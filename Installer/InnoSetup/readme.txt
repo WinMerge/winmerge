@@ -1,3 +1,7 @@
+2004-10-24 Perry
+ PATCH: [ 1047249 ] Typo in installer at "Brazilian"
+  InnoSetup/Languages/*.isl Localization Instructions.txt
+
 2004-10-23 Kimmo
  PATCH: [ 1051593 ] Install XP manifest file for Ansi build
   InnoSetup: WinMerge Localized.iss

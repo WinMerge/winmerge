@@ -13,9 +13,9 @@ or
 The remainder of this file contains specific instructions for each localized language.  Please look for your language within this file.  If it's not listed here or you have any other questions please let Seier Blackburn know at MyPurchases@Yahoo.com.  
 
 The following languages do not need translating outside of the [CustomMessages] section at the bottom of the .ISL file for your language:
-Bulgarian, Chinese (Simplified), Chinese (Traditional), Czech, Danish, Dutch, French, German, Italian, Korean, Norwegian, Polish, Russian, Slovak, and Swedish. Catalan, Brazillian, and Spanish need to translated more carefully.  Please see the sections to translate below.
+Bulgarian, Chinese (Simplified), Chinese (Traditional), Czech, Danish, Dutch, French, German, Italian, Korean, Norwegian, Polish, Russian, Slovak, and Swedish. Catalan, Portuguese (Brazilian), and Spanish need to be translated more carefully.  Please see the sections to translate below.
 
-Once you've translated your file.  Please commit your changes to the CVS (/InnoSetup/Langauges/YourLanguage.iss) and submit it as a patch assigning it to Seier and titling the patch as "Inno Setup Localization: SomeLanguage".  
+Once you've translated your file.  Please commit your changes to the CVS (/InnoSetup/Languages/YourLanguage.iss) and submit it as a patch assigning it to Seier and titling the patch as "Inno Setup Localization: SomeLanguage".  
 
 The good news is not only will your translation be helpful to our project, but countless other installers will now speak your language.  I will be submitting all these translations to the Inno Setup project for inclusion :).  If you want to proof read the rest of the translated text you're more than welcome to.  Also please feel free to add your name to the top of the file:
 
