@@ -1162,10 +1162,21 @@ Copy ()
   PutToClipboard (text);
 }
 
+static int
+GetClipTcharTextFormat()
+{
+#ifdef _UNICODE
+  return CF_UNICODETEXT;
+#else
+  return CF_TEXT;
+#endif // _UNICODE
+}
+
 BOOL CCrystalTextView::
 TextInClipboard ()
 {
-  return IsClipboardFormatAvailable (CF_TEXT);
+  UINT fmt = GetClipTcharTextFormat();
+  return IsClipboardFormatAvailable (fmt);
 }
 
 BOOL CCrystalTextView::
@@ -1183,13 +1194,9 @@ PutToClipboard (LPCTSTR pszText)
       if (hData != NULL)
         {
           LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
-          _tcscpy (pszData, (LPTSTR) pszText);
+          _tcscpy (pszData, pszText);
           GlobalUnlock (hData);
-#ifdef _UNICODE
-	   UINT fmt = CF_UNICODETEXT;
-#else
-	   UINT fmt = CF_TEXT;
-#endif // _UNICODE
+          UINT fmt = GetClipTcharTextFormat();
           bOK = SetClipboardData (fmt, hData) != NULL;
         }
       CloseClipboard ();
@@ -1203,7 +1210,8 @@ GetFromClipboard (CString & text)
   BOOL bSuccess = FALSE;
   if (OpenClipboard ())
     {
-      HGLOBAL hData = GetClipboardData (CF_TEXT);
+      UINT fmt = GetClipTcharTextFormat();
+      HGLOBAL hData = GetClipboardData (fmt);
       if (hData != NULL)
         {
           LPTSTR pszData = (LPTSTR) GlobalLock (hData);
