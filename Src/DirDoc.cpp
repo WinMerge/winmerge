@@ -740,3 +740,15 @@ void CDirDoc::UpdateHeaderPath(BOOL bLeft)
 
 	pf->GetHeaderInterface()->SetText(nPane, sText);
 }
+
+/**
+ * @brief virtual override called just before document is saved and closed
+ */
+BOOL CDirDoc::SaveModified() 
+{
+	// Do not allow closing if there is a thread running
+	if (m_diffThread.GetThreadState() == THREAD_COMPARING)
+		return FALSE;
+	
+	return CDocument::SaveModified();
+}

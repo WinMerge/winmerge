@@ -77,6 +77,7 @@ public:
 	virtual void Serialize(CArchive& ar);   // overridden for document i/o
 	protected:
 	virtual BOOL OnNewDocument();
+	virtual BOOL SaveModified();
 	//}}AFX_VIRTUAL
 
 // Implementation

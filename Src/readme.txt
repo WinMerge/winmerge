@@ -1,3 +1,7 @@
+2003-10-23 Perry
+ BUG: [ 828619 ] Prevent closing dir doc whilst scanning
+  WinMerge: DirDoc.cpp DirDoc.h
+
 2003-10-23 Kimmo
  BUG: [ 815147 ] Scrollwheel scrolls too far at end of file
   editlib: ccrystaltextview.cpp
