@@ -143,6 +143,7 @@ BOOL CMergeApp::InitInstance()
 	BOOL bDisableSplash	= GetProfileInt(_T("Settings"), _T("DisableSplash"), FALSE);
 
 	InitializeFileFilters();
+	m_globalFileFilter.SetFilter(_T("*.*"));
 
 	// CG: The following block was added by the Splash Screen component.
 	{
