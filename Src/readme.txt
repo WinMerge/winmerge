@@ -1,3 +1,8 @@
+2004-10-02 Kimmo
+ PATCH: [ 1039001 ] Swedish translation update
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2004-10-01 Perry
  PATCH: [ 1038749 ] Fix whitespace display
   Src/editlib: ccrystaltextview.cpp

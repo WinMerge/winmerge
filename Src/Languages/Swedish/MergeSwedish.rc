@@ -908,7 +908,7 @@ BEGIN
                     WS_TABSTOP,18,18,204,10
     CONTROL         "Automatisk &uppdatering",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
-    CONTROL         "Tillåt blandade EOL-typer",IDC_MIXED_EOL,"Button",
+    CONTROL         "Tillåt blandade radslutstyper",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "Tabulator",IDC_STATIC,7,54,245,33,WS_GROUP
     LTEXT           "&Tabulatorsteg:",IDC_STATIC,15,68,50,8
@@ -1413,7 +1413,7 @@ END
 // OPTIONS NAME TO PRESERVE/UNIFY EOL
 STRINGTABLE
 BEGIN
-    IDC_MIXED_EOL           "Tillåt blandade EOL-typer"
+    IDC_MIXED_EOL           "Tillåt blandade radslutstyper"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
@@ -1790,7 +1790,7 @@ BEGIN
     IDS_FILEBINARY          "Binära filer kan inte jämföras visuellt."
     IDS_TEMP_FILEERROR      "Temporära filer kunde inte skapas. Kontrollera inställningarna för dina temporära sökvägar."
     IDS_FILEISDIR           "Mappar kan inte jämföras visuellt."
-    IDS_SUGGEST_IGNOREEOL   "Filerna har olika EOL typer.\nMed de aktuella inställningarna , kommer alla rader att vara olika.\nVill du ignorera EOL skillnader för dessa filer ?\n\nAvancerad användare : om EOL inte är lika i dina filer,\n kan du hellre ställa in inställningen '%1'."
+    IDS_SUGGEST_IGNOREEOL   "Filerna har olika radslutstyper.\nMed de aktuella inställningarna , kommer alla rader att vara olika.\nVill du ignorera radslutsskillnader för dessa filer ?\n\nAvancerad användare : om radslut inte är lika i dina filer,\n kan du hellre ställa in inställningen '%1'."
     IDS_SUGGEST_PRESERVEEOL "Radsluten är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika radsluten ?"
     IDS_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
     IDS_SUGGEST_IGNORECODEPAGE "Vänster och höger fil har inte samma codepage. \nAtt visa varje fil i dess egen codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer codepage informationen. Önskar du detta ?"
@@ -1845,27 +1845,27 @@ END
 // Regular expression errors
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_ERROR        "Regular expression error"
-    IDS_REGEXP_NOMATCH      "No match"
-    IDS_REGEXP_INVALID      "Invalid regular expression"
-    IDS_REGEXP_COLL_CHAR    "Invalid collation character"
-    IDS_REGEXP_CHAR_CLASS   "Invalid character class name"
-    IDS_REGEXP_TRAILING_BS  "Trailing backslash"
-    IDS_REGEXP_INVALID_BACKREF "Invalid back reference"
-    IDS_REGEXP_UNMATCHED_BRACK "Unmatched [ or [^"
-    IDS_REGEXP_UNMATCHED_PAREN "Unmatched ( or \\("
-    IDS_REGEXP_UNMATCHED_BRACE "Unmatched \\{"
-    IDS_REGEXP_INVALID_BRACE "Invalid content of \\{\\}"
-    IDS_REGEXP_RANGE_END    "Invalid range end"
-    IDS_REGEXP_OUTOFMEM     "Out of memory"
-    IDS_REGEXP_INVALID_PREV_EXP "Invalid preceding regular expression"
-    IDS_REGEXP_PREMATURE_END "Premature end of regular expression"
-    IDS_REGEXP_TOO_BIG      "Regular expression too big"
+    IDS_REGEXP_ERROR        "Fel på reguljärt uttryck"
+    IDS_REGEXP_NOMATCH      "Ingen träff"
+    IDS_REGEXP_INVALID      "Ogiltigt reguljärt uttryck"
+    IDS_REGEXP_COLL_CHAR    "Ogiltigt repetitionstecken"
+    IDS_REGEXP_CHAR_CLASS   "Ogiltigt teckenklassnamn"
+    IDS_REGEXP_TRAILING_BS  "Bakåtlutat snedstreck sist på en rad"
+    IDS_REGEXP_INVALID_BACKREF "Felaktig tillbakareferens"
+    IDS_REGEXP_UNMATCHED_BRACK "Inte matchande [ eller [^"
+    IDS_REGEXP_UNMATCHED_PAREN "Inte matchande ( eller \\("
+    IDS_REGEXP_UNMATCHED_BRACE "Inte matchande \\{"
+    IDS_REGEXP_INVALID_BRACE "Felaktigt innehåll av \\{\\}"
+    IDS_REGEXP_RANGE_END    "Felaktigt intervallslut"
+    IDS_REGEXP_OUTOFMEM     "Slut på minne"
+    IDS_REGEXP_INVALID_PREV_EXP "Ogiltigt föregående reguljärt uttryck"
+    IDS_REGEXP_PREMATURE_END "För tidigt slut på reguljärt uttryck"
+    IDS_REGEXP_TOO_BIG      "Reguljärt uttryck är för stort"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_UNMATCHED_RPAREN "Unmatched ) or \\)"
+    IDS_REGEXP_UNMATCHED_RPAREN "Inte matchande ) eller \\)"
 END
 
 // LANGAGE NAMES #1
