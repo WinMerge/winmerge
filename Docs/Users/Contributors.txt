@@ -92,6 +92,7 @@ Other Contributors:
 
 
 WinMerge includes code from:
+* Brent Corkum (BCMenu)
 * Paul DiLascia (CStaticLink) 
 * Michael Dunn (CShellFileOp)
 * Michael P. Mehl (CMessageBoxDialog)
@@ -99,7 +100,6 @@ WinMerge includes code from:
 * Ferdinand Prantl (CrystalEditor syntax rules)
 * Henry Spencer (CRegExp)
 * Andrei Stcherbatchenko (CrystalEditor)
-
 
 *** NOTE ***
 If your name is missing please send email us to:
