@@ -870,11 +870,13 @@ CString CMergeDoc::Tabify(LPCTSTR szText)
 }*/
 
 /**
- * @brief Checks if line is inside diff
+ * @brief Checks if line is inside given diff
+ * @param nline Linenumber to text buffer (not "real" number)
+ * @param ndiff Index to diff table
  */
 BOOL CMergeDoc::LineInDiff(UINT nLine, UINT nDiff)
 {
-	ASSERT(nDiff >= 0 && nDiff <= m_nDiffs);
+	ASSERT(nDiff <= m_nDiffs);
 	if (nLine >= m_diffs[nDiff].dbegin0 &&
 			nLine <= m_diffs[nDiff].dend0)
 		return TRUE;
@@ -883,7 +885,8 @@ BOOL CMergeDoc::LineInDiff(UINT nLine, UINT nDiff)
 }
 
 /**
- * @brief Returns order num of diff for given line
+ * @brief Checks if given line is inside diff and
+ * returns index to diff table. Returns -1 if line not inside diff.
  */
 int CMergeDoc::LineToDiff(UINT nLine)
 {
@@ -1979,9 +1982,6 @@ void CMergeDoc::PrimeTextBuffers()
 		{
 			m_diffs[i] = newdiffs[i];
 		}
-		
-		// Update normal diffs count
-		m_nDiffs -= m_nTrivialDiffs;
 	}
 
 	m_ltBuf.FinishLoading();

@@ -1,3 +1,7 @@
+2003-11-07 Kimmo
+ BUG: [ 837760 ] regression since 2.1.3.6 (diff array)
+  WinMerge: MergeDoc.cpp
+
 2003-11-07 Perry
  Updated Catalan translation (from Jordi Vilar, the translation author)
   Languages: Catalan/MergeCatalan.rc
