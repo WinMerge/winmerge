@@ -2303,6 +2303,8 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 {
 	CString ext;
 	SplitFilename(m_sExtEditorPath, NULL, NULL, &ext);
+	ext.MakeLower();
+
 	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
 	{
 		// Check if file exists

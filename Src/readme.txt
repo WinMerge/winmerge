@@ -1,3 +1,7 @@
+2003-10-30 Kimmo
+ Compare filename extensions as lowercase (before calling external editor)
+  WinMerge: MainFrm.cpp
+
 2003-10-30 Laoran
  PATCH: [ 830132 ] open empty file
   common: UniFile.cpp
