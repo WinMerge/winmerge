@@ -5,6 +5,9 @@
   Manual: Open_paths.xml
  PATCH: [ 1037345 ] Docs: Rephrase AboutDoc and add link to Quick start
   Manual: About_Doc.xml
+ Revision to 0.4 for 2.2RC
+  Manual: WinMerge_help.xml
+
 
 2004-09-29 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations
