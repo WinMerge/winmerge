@@ -1,8 +1,9 @@
 /**
  *  @file   UniFile.cpp
- *  @author Perry Rapp, Creator, 2003
+ *  @author Perry Rapp, Creator, 2003-2005
+ *  @author Kimmo Varis, 2004-2005
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-02-19 (Kimmo Varis)
+ *  @date   Edited:  2005-02-20 (Perry Rapp)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -15,6 +16,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 #include "stdafx.h"
+#include <sys/stat.h>
 #include "UniFile.h"
 #include "unicoder.h"
 #include "codepage.h"
@@ -70,7 +72,7 @@ void UniLocalFile::Clear()
  */
 bool UniLocalFile::DoGetFileStatus()
 {
-	_stati64 fstats = {0};
+	struct _stati64 fstats = {0};
 	m_statusFetched = -1;
 	m_lastError.ClearError();
 

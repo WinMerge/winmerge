@@ -1,3 +1,8 @@
+2005-02-20 Perry
+ BUG: [ 1144917 ] cvs source does not compile: '_stati64' : undeclared identif
+  Fix ANSI compilation of stati64
+  Src/Common: UniFile.cpp
+
 2005-02-20 Kimmo
  PATCH: [ 1144588 ] Remove show bak files setting from configlog
   Src: ConfigLog.cpp ConfigLog.h
