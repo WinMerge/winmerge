@@ -1,6 +1,8 @@
 2003-10-31 Kimmo
  Remove whitespaces from begin and end of ShellExtension.dll path
   WinMerge: PropRegistry.cpp
+ PATCH: [ 833681 ] Fix default editor for external editor
+  WinMerge: MainFrm.h MainFrm.cpp
 
 2003-10-31 Laoran
  fix Plugins PACK_UNPACK when nothing changes (+ update functions name)

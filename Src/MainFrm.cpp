@@ -162,9 +162,13 @@ CMainFrame::CMainFrame()
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
 	m_bAllowMixedEol = theApp.GetProfileInt(_T("Settings"), _T("AllowMixedEOL"), NULL);
 	theApp.SetFileFilterPath(theApp.GetProfileString(_T("Settings"), _T("FileFilterPath"), _T("")));
-	m_sExtEditorPath = theApp.GetProfileString(_T("Settings"), _T("ExternalEditor"), _T("notepad.exe"));
+	m_sExtEditorPath = theApp.GetProfileString(_T("Settings"), _T("ExternalEditor"), _T(""));
 	m_bReuseDirDoc = TRUE;
 	// TODO: read preference for logging
+
+	if (m_sExtEditorPath.IsEmpty())
+		m_sExtEditorPath = GetDefaultEditor();
+
 
 	if (m_strVssPath.IsEmpty())
 	{
@@ -973,6 +977,10 @@ void CMainFrame::OnOptions()
 		theApp.SetFileFilterPath(filter.m_sFileFilterPath);
 
 		m_sExtEditorPath = regpage.m_strEditorPath;
+		m_sExtEditorPath.TrimLeft();
+		m_sExtEditorPath.TrimRight();
+		if (m_sExtEditorPath.IsEmpty())
+			m_sExtEditorPath = GetDefaultEditor();
 
 		theApp.SetDiffColor(colors.m_clrDiff);
 		theApp.SetSelDiffColor(colors.m_clrSelDiff);
@@ -2345,4 +2353,16 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 		AfxMessageBox(msg, MB_ICONSTOP);
 	}
 	return TRUE;
+}
+
+/**
+ * @brief Get default editor path
+ */
+CString CMainFrame::GetDefaultEditor()
+{
+	CString path;
+	GetWindowsDirectory(path.GetBuffer(MAX_PATH), MAX_PATH);
+	path.ReleaseBuffer();
+	path += _T("\\NOTEPAD.EXE");
+	return path;
 }

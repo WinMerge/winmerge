@@ -103,6 +103,7 @@ public:
 	CString SetStatus(LPCTSTR status);
 	void ApplyViewWhitespace();
 	BOOL OpenFileToExternalEditor(CString file);
+	CString GetDefaultEditor();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
