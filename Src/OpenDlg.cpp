@@ -170,32 +170,48 @@ void COpenDlg::OnOK()
 	KillTimer(IDT_CHECKFILES);
 
 	// parse the extensions
-	// replace all *. with .*\\.
-
-	static const TCHAR pszSeps[] = _T("; |*%^&.,\\/<>:\"'`?\t\r\n");
+	static const TCHAR pszSeps[] = _T("; |%^&,\\/<>:\"'`?\t\r\n");
 
 	TCHAR ext[2048];
 	// no need to trim before tokenizing
 	_tcscpy(ext, m_strExt);
-	LPTSTR p;
-	CString strPattern(_T("^.*\\.("));
+	LPTSTR p, pbreak;
+	CString strPattern;
 
 	p = _tcstok(ext, pszSeps);
-	if (p == NULL)
+	while (p != NULL)
+	{
+		strPattern += _T(".*");
+		while ((pbreak = _tcspbrk(p,  _T(".*"))) != NULL)
+		{
+			TCHAR c = *pbreak;
+			*pbreak = 0;
+			strPattern += p;
+
+			if (c == _T('*'))
+				// replace all * with .*
+				strPattern += _T(".*");
+			if (c == _T('.'))
+				// replace all . with \\.
+				strPattern += _T("\\.");
+			p = pbreak + 1;
+		}
+		strPattern += p;
+
+		p = _tcstok(NULL, pszSeps);
+		if (p != NULL)
+			strPattern += _T('|');
+	}
+
+	if (strPattern.IsEmpty())
 		m_strParsedExt = _T(".*");
 	else
 	{
-		while (p != NULL)
-		{
-			strPattern += _tcslwr(p);
-			strPattern += _T('|');	
-			strPattern += _tcsupr(p);	
-			p = _tcstok(NULL, pszSeps);
-			if (p != NULL)
-				strPattern += _T('|');
-		}
-		strPattern += _T(")$");
-		m_strParsedExt = strPattern;
+		m_strParsedExt = _T("^(");
+		strPattern.MakeLower();
+		m_strParsedExt += strPattern + _T("|");
+		strPattern.MakeUpper();
+		m_strParsedExt += strPattern + _T(")$");
 	}
 
 	m_ctlLeft.SaveState(_T("Files\\Left"));

@@ -1,3 +1,7 @@
+2003-11-06 Laoran
+ BUG: [ 836384 ] File extension wildcards does not work. 
+  WinMerge: OpenDlg.cpp
+
 2003-11-05 Perry
  Typofix: "Wiew Whitespaces" -> "View Whitespace"
   WinMerge: ConfigLog.cpp
