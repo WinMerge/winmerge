@@ -54,14 +54,15 @@ enum
 };
 
 /**
- * @brief Return code of SaveToFile 
+ * @brief File saving statuses
  */
 enum
 {
-	SAVE_DONE = 0,
-	SAVE_FAILED,
-	SAVE_PACK_FAILED,
-	SAVE_NO_FILENAME,
+	SAVE_DONE = 0, /**< Saving succeeded */  
+	SAVE_FAILED, /**< Saving failed */  
+	SAVE_PACK_FAILED, /**< Plugin failed to pack file */  
+	SAVE_NO_FILENAME, /**< File has no filename */  
+	SAVE_CANCELLED, /**< Saving was cancelled */  
 };
 
 class CMergeEditView;
@@ -230,6 +231,7 @@ public:
 	void ListCopy(bool bSrcLeft);
 	BOOL TrySaveAs(CString &strPath, int &nLastErrorCode, BOOL bLeft, PackingInfo * pInfoTempUnpacker);
 	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
+	BOOL DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
 	//CString ExpandTabs(LPCTSTR szText);
 	//CString Tabify(LPCTSTR szText);
 	int LineToDiff(UINT nLine);
@@ -328,5 +330,4 @@ private:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
-
 

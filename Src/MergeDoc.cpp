@@ -660,31 +660,43 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 }
 
 /**
- * @brief Display an error message, ask from filename to save from user and save file
- * @param [in, out] strPath 
- * [in] : Initial path shown to user,
- * [out] : path to new filename returned if saving succeeds
- * @param [in, out] bLastErrorCode 
- * [in] : error code of the previous try. We use it to display the appropriate message
- * [out] : error code of this try, or SAVE_DONE if OK
+ * @brief Save file with new filename.
  *
- * @return FALSE as long as the user is not satisfied
- * TRUE if saving succeeds, or if the user cancels
+ * This function is called by CMergeDoc::DoSave() or CMergeDoc::DoSAveAs()
+ * to save file with new filename. CMergeDoc::DoSave() calls if saving with
+ * normal filename fails, to let user choose another filename/location.
+ * Also, if file is unnamed file (e.g. scratchpad) then it must be saved
+ * using this function.
+ * @param [in, out] strPath 
+ * [in] : Initial path shown to user
+ * [out] : Path to new filename if saving succeeds
+ * @param [in, out] nSaveResult 
+ * [in] : Statuscode telling why we ended up here. Maybe the result of
+ * previous save.
+ * [out] : Statuscode of this saving try
+ * @return FALSE as long as the user is not satisfied. Calling function
+ * should not continue until TRUE is returned.
+ * @sa CMergeDoc::DoSave()
+ * @sa CMergeDoc::DoSaveAs()
+ * @sa CMergeDoc::CDiffTextBuffer::SaveToFile()
  */
-BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nLastErrorCode, BOOL bLeft, PackingInfo * pInfoTempUnpacker)
+BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, BOOL bLeft,
+	PackingInfo * pInfoTempUnpacker)
 {
-	BOOL result = TRUE;
 	CString s;
-	CString strSavePath;
+	CString strSavePath; // New path for next saving try
 	CString title;
+	BOOL result = TRUE;
 	int answer = IDYES;
 
-	ASSERT (nLastErrorCode != SAVE_DONE);
+	// We shouldn't get here if saving is succeed before
+	ASSERT(nSaveResult != SAVE_DONE);
 
-	// select message text according to the error code of the revious try
-	if (nLastErrorCode == SAVE_PACK_FAILED)
+	// Select message based on reason function called
+	if (nSaveResult == SAVE_PACK_FAILED)
 	{
-		AfxFormatString2(s, bLeft ? IDS_FILEPACK_FAILED_LEFT : IDS_FILEPACK_FAILED_RIGHT, strPath, pInfoTempUnpacker->pluginName);
+		AfxFormatString2(s, bLeft ? IDS_FILEPACK_FAILED_LEFT :
+			IDS_FILEPACK_FAILED_RIGHT, strPath, pInfoTempUnpacker->pluginName);
 		// replace the unpacker with a "do nothing" unpacker
 		pInfoTempUnpacker->Initialize(UNPACK_MANUAL);
 	}
@@ -695,7 +707,7 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nLastErrorCode, BOOL bLeft, Pac
 
 	// SAVE_NO_FILENAME is temporarily used for scratchpad.
 	// So don't ask about saving in that case.
-	if (nLastErrorCode != SAVE_NO_FILENAME)
+	if (nSaveResult != SAVE_NO_FILENAME)
 		answer = AfxMessageBox(s, MB_YESNO | MB_ICONQUESTION);
 
 	switch (answer)
@@ -706,12 +718,13 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nLastErrorCode, BOOL bLeft, Pac
 		{
 			CDiffTextBuffer *pBuffer = bLeft ? &m_ltBuf : &m_rtBuf;
 			strSavePath = s;
-			nLastErrorCode = pBuffer->SaveToFile(strSavePath, FALSE, pInfoTempUnpacker);
+			nSaveResult = pBuffer->SaveToFile(strSavePath, FALSE,
+				pInfoTempUnpacker);
 
-			if (nLastErrorCode == SAVE_DONE)
+			if (nSaveResult == SAVE_DONE)
 			{
-				// We were saving scratchpad, so empty description so that filename
-				// is shown on headerbar for now on.
+				// We are saving scratchpad, so empty description so that
+				// filename is shown on headerbar for now on.
 				if (strPath.IsEmpty())
 				{
 					if (bLeft)
@@ -726,8 +739,12 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nLastErrorCode, BOOL bLeft, Pac
 			else
 				result = FALSE;
 		}
+		else
+			nSaveResult = SAVE_CANCELLED;
 		break;
+
 	case IDNO:
+		nSaveResult = SAVE_CANCELLED;
 		break;
 	}
 	return result;
@@ -818,7 +835,64 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 			m_strLeftFile = strSavePath;
 		else
 			m_strRightFile = strSavePath;
-		
+		UpdateHeaderPath(bLeft);
+		bSaveSuccess = TRUE;
+		result = TRUE;
+	}
+	return result;
+}
+
+/**
+ * @brief Save file with different filename.
+ *
+ * Safe top-level file saving function. Asks user to select filename
+ * and path. Does not create backups.
+ * @param [in] szPath Path where to save including filename. Can be
+ * empty/NULL if new file is created (scratchpad) without filename.
+ * @param [out] bSaveSuccess Will contain information about save success with
+ * the original name (to determine if file statuses should be changed)
+ * @param [in] bLeft If TRUE we are saving left(side) file, else right file
+ * @return Tells if caller can continue (no errors happened)
+ * @note Return value does not tell if SAVING succeeded. Caller must
+ * Check value of bSaveSuccess parameter after calling this function!
+ * @sa CMergeDoc::TrySaveAs()
+ * @sa CMainFrame::CheckSavePath()
+ * @sa CMergeDoc::CDiffTextBuffer::SaveToFile()
+ */
+BOOL CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
+{
+	CString strSavePath(szPath);
+
+	// use a temp packer
+	// first copy the m_pInfoUnpacker
+	// if an error arises during packing, change and take a "do nothing" packer
+	PackingInfo infoTempUnpacker = *m_pInfoUnpacker;
+
+	bSaveSuccess = FALSE;
+	// FALSE as long as the user is not satisfied
+	// TRUE if saving succeeds, even with another filename, or if the user cancels
+	BOOL result = FALSE;
+	// the error code from the latest save operation, 
+	// or SAVE_DONE when the save succeeds
+	// TODO: Shall we return this code in addition to bSaveSuccess ?
+	int nSaveErrorCode = SAVE_DONE;
+	CDiffTextBuffer *pBuffer = bLeft ? &m_ltBuf : &m_rtBuf;
+
+	// Use SAVE_NO_FILENAME to prevent asking about error
+	nSaveErrorCode = SAVE_NO_FILENAME;
+
+	// Loop until user succeeds saving or cancels
+	do
+		result = TrySaveAs(strSavePath, nSaveErrorCode, bLeft, &infoTempUnpacker);
+	while (!result);
+
+	// Saving succeeded with given/selected filename
+	if (nSaveErrorCode == SAVE_DONE)
+	{
+		if (bLeft)
+			m_strLeftFile = strSavePath;
+		else
+			m_strRightFile = strSavePath;
 		UpdateHeaderPath(bLeft);
 		bSaveSuccess = TRUE;
 		result = TRUE;
@@ -1698,34 +1772,10 @@ void CMergeDoc::OnFileSaveRight()
  */
 void CMergeDoc::OnFileSaveAsLeft()
 {
-	BOOL result = TRUE;
 	CString s;
-	CString title;
-	int nSaveErrorCode;
+	BOOL bSaveResult = FALSE;
 	
-	// use a temp packer
-	// first copy the m_pInfoUnpacker
-	// if an error arises during packing, change and take a "do nothing" packer
-	PackingInfo infoTempUnpacker = *m_pInfoUnpacker;
-
-	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
-	if (SelectFile(s, m_strLeftFile, title, NULL, FALSE))
-	{
-		nSaveErrorCode = m_ltBuf.SaveToFile(s, FALSE, &infoTempUnpacker);
-		if(nSaveErrorCode != SAVE_DONE)
-		{
-			// Saving failed, user may save to another location if wants to
-			do
-				result = TrySaveAs(s, nSaveErrorCode, TRUE, &infoTempUnpacker);
-			while (!result);
-		}
-		else
-		{
-			// Update filename
-			m_strLeftFile = s;
-			UpdateHeaderPath(TRUE);
-		}
-	}
+	DoSaveAs(s, bSaveResult, TRUE);
 }
 
 /**
@@ -1733,34 +1783,10 @@ void CMergeDoc::OnFileSaveAsLeft()
  */
 void CMergeDoc::OnFileSaveAsRight()
 {
-	BOOL result = TRUE;
 	CString s;
-	CString title;
-	int nSaveErrorCode;
+	BOOL bSaveResult = FALSE;
 	
-	// use a temp packer
-	// first copy the m_pInfoUnpacker
-	// if an error arises during packing, change and take a "do nothing" packer
-	PackingInfo infoTempUnpacker = *m_pInfoUnpacker;
-
-	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
-	if (SelectFile(s, m_strRightFile, title, NULL, FALSE))
-	{
-		nSaveErrorCode = m_rtBuf.SaveToFile(s, FALSE, &infoTempUnpacker);
-		if(nSaveErrorCode != SAVE_DONE)
-		{
-			// Saving failed, user may save to another location if wants to
-			do
-				result = TrySaveAs(s, nSaveErrorCode, FALSE, &infoTempUnpacker);
-			while (!result);
-		}
-		else
-		{
-			// Update filename
-			m_strRightFile = s;
-			UpdateHeaderPath(FALSE);
-		}
-	}
+	DoSaveAs(s, bSaveResult, FALSE);
 }
 
 /**

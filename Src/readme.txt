@@ -3,6 +3,8 @@
   src: MainFrm.cpp Merge.rc PropCompare.cpp PropCompare.h
    PropGeneral.cpp PropGeneral.h
   Languages: *.rc
+ PATCH: [ 887085 ] CMergeDoc::TrySaveAs() cleanup
+  src: MergeDoc.cpp MergeDoc.h
 
 2004-01-31 Laoran
  BUG: [ 885018 ] Crash when trying to save scratchpad
