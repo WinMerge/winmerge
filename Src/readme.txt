@@ -1,3 +1,7 @@
+2003-08-04 Laoran
+ PATCH: [ 782866 ] round off in CMergeDoc::RescanIfNeeded
+  WinMerge: MergeDoc.cpp
+
 2003-08-04 Kimmo
  PATCH: [ 780359 ] Open identical files
   WinMerge: DirView.cpp MainFrm.cpp

@@ -1717,7 +1717,7 @@ void CMergeDoc::RescanIfNeeded()
 	{
 		m_bNeedIdleRescan = FALSE;
 		COleDateTimeSpan elapsed = COleDateTime::GetCurrentTime() - m_LastRescan;
-		if (elapsed.GetTotalSeconds() > 1)
+		if (elapsed.GetTotalSeconds() >= 1)
 		{
 			WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
 			FlushAndRescan();
