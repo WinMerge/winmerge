@@ -1,3 +1,5 @@
+2004-05-29 WinMerge experimental release 2.1.7.5 (cvs)
+
 2004-05-28 Kimmo
  BUG: [ 959729 ] View menu show-items disabled in mergeview
   Src/editlib: editcmd.h
