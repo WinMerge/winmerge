@@ -1,87 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <sect1 id="Locales">
   <title>Locale support</title>
-  <para>Keeping with the spirit in which WinMerge was created, I decided one day to diddle with UI localization using resource DLLs.  By virtue of that effort, combined with the gracious contributions of several good people, you can now use WinMerge in your own native language.</para>
+
+  <para>Keeping with the spirit in which WinMerge was created, I decided one
+  day to diddle with UI localization using resource DLLs. By virtue of that
+  effort, combined with the gracious contributions of several good people, you
+  can now use WinMerge in your own native language.</para>
+
   <note>
-    <para>The language DLLs allow to using a different interface language than English, but does not change other locale issues (such as how large numbers are broken up, or how words are alphabetized).</para>
+    <para>The language DLLs allow to using a different interface language than
+    English, but does not change other locale issues (such as how large
+    numbers are broken up, or how words are alphabetized).</para>
   </note>
-  <para>At the time of this writing, language DLLs are available from <ulink url="http://www.winmerge.org/">WinMerge.org</ulink> for the following languages:</para>
+
+  <para>At the time of this writing, language DLLs are available from <ulink
+  url="http://www.winmerge.org/">WinMerge.org</ulink> for the following
+  languages:</para>
+
   <itemizedlist>
     <listitem>
       <para>Portuguese (Brazilian)</para>
     </listitem>
+
     <listitem>
       <para>Bulgarian</para>
     </listitem>
+
     <listitem>
       <para>Catalan</para>
     </listitem>
+
     <listitem>
       <para>Chinese (both Simplified and Traditional)</para>
     </listitem>
+
     <listitem>
       <para>Czech</para>
     </listitem>
+
     <listitem>
       <para>Danish</para>
     </listitem>
+
     <listitem>
       <para>Dutch</para>
     </listitem>
+
     <listitem>
       <para>French</para>
     </listitem>
+
     <listitem>
       <para>German</para>
     </listitem>
+
+    <listitem>
+      <para>Hungarian</para>
+    </listitem>
+
     <listitem>
       <para>Italian</para>
     </listitem>
+
     <listitem>
       <para>Japanese</para>
     </listitem>
+
     <listitem>
       <para>Korean</para>
     </listitem>
+
     <listitem>
       <para>Norwegian</para>
     </listitem>
+
     <listitem>
       <para>Polish</para>
     </listitem>
+
     <listitem>
       <para>Russian</para>
     </listitem>
+
     <listitem>
       <para>Slovak</para>
     </listitem>
+
     <listitem>
       <para>Spanish</para>
     </listitem>
+
     <listitem>
       <para>Swedish</para>
     </listitem>
   </itemizedlist>
-  <para>If you would like to add your language to the list, look at the <ulink url="http://www.winmerge.org/developer/l10n/index.php">on-line documentation</ulink> for the details on how to do it.</para>
+
+  <para>If you would like to add your language to the list, look at the <ulink
+  url="http://www.winmerge.org/developer/l10n/index.php">on-line
+  documentation</ulink> for the details on how to do it. All translations are
+  not complete so it would be nice if you can help improving them too. Translating
+  (or improving translation) does not require you to have all compile tools or
+  knowledge of WinMerge internals. Just read instructions from above link. And
+  if you have problems ask help from us in one of <ulink
+  url="http://sourceforge.net/forum/?group_id=13216">WinMerge
+  forums</ulink>.</para>
+
   <sect2>
     <title>Configuration</title>
-    <para>In order to change the current UI language, you must do the following:</para>
+
+    <para>In order to change the current UI language, you must do the
+    following:</para>
+
     <orderedlist>
       <listitem>
-        <para>Download the desired language DLL from the <ulink url="http://sourceforge.net/project/showfiles.php?group_id=13216">WinMerge download site</ulink>.</para>
+        <para>Download the desired language DLL from the <ulink
+        url="http://sourceforge.net/project/showfiles.php?group_id=13216">WinMerge
+        download site</ulink>.</para>
       </listitem>
+
       <listitem>
-        <para>Unzip the downloaded file into the same directory where <filename>WinMerge.exe</filename> is located. Note that the language DLL has a <filename class="extension">.lang</filename> extension.</para>
+        <para>Unzip the downloaded file into the same directory where
+        <filename>WinMerge.exe</filename> is located. Note that the language
+        DLL has a <filename class="extension">.lang</filename>
+        extension.</para>
       </listitem>
+
       <listitem>
         <para>Run WinMerge</para>
       </listitem>
+
       <listitem>
-        <para>Select <guimenuitem>Language</guimenuitem> from the <guimenu>View</guimenu> menu</para>
+        <para>Select <guimenuitem>Language</guimenuitem> from the
+        <guimenu>View</guimenu> menu</para>
       </listitem>
+
       <listitem>
         <para>Select your language and click <guibutton>OK</guibutton></para>
       </listitem>
     </orderedlist>
-    <para>Note that the WinMerge UI instantly updates to the selected language.</para>
+
+    <para>Note that the WinMerge UI instantly updates to the selected
+    language.</para>
   </sect2>
 </sect1>

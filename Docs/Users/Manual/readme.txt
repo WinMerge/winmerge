@@ -1,3 +1,7 @@
+2005-02-15 Kimmo
+ PaTCH: [ 1122699 ] Docs: Missing Hungarian translation, info about translations
+  Manual: Locales.xml
+
 2005-01-24 Kimmo
  Update version to 1.1.0 (for 2.3.x docs), add Perry to contributors
   Manual: WinMerge_help.xml
