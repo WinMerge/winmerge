@@ -339,7 +339,7 @@ Filename: {app}\WinMerge.url; Section: InternetShortcut; Key: URL; String: http:
 
 [Icons]
 ;Start Menu Icons
-Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; HotKey: Ctrl+Alt+M
+Name: {group}\WinMerge; Filename: {app}\{code:ExeName};
 Name: {group}\Read Me; Filename: {app}\Docs\Read Me.rtf; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\User's Guide; Filename: {app}\Docs\User's Guide\Index.html; IconFileName: {app}\Docs\User's Guide\Art\User's Guide.ico; Components: docs
 Name: {group}\WinMerge on the Web; Filename: {app}\WinMerge.url

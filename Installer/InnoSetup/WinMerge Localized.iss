@@ -520,7 +520,7 @@ Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; 
 
 [Icons]
 ;Start Menu Icons
-Name: {group}\WinMerge; Filename: {app}\{code:ExeName}; HotKey: Ctrl+Alt+M
+Name: {group}\WinMerge; Filename: {app}\{code:ExeName};
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\Read Me.rtf; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\Plugins.txt; Filename: {app}\Docs\Plugins.txt; Check: InstallPluginsText
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\User's Guide\Index.html; IconFileName: {app}\Docs\User's Guide\Art\User's Guide.ico; Components: docs

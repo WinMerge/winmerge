@@ -2,6 +2,9 @@
  PATCH: [ 1041129 ] Updated Swedish.isl
   Submitted by Hans Eriksson
   InnoSetup/Languages: Swedish.isl
+ PATCH: [ 1041679 ] Installer sets Alt+Ctrl+M hotkey for WinMerge
+  Remove hotkey
+  InnoSetup: WinMerge Localized.iss  WinMerge.iss
 
 2004-10-04 Kimmo
  PATCH: [ 1039849 ] Swedish translation for installer
