@@ -1,3 +1,8 @@
+2003-07-07 Kimmo
+ PATCH: [ 767204 ] Fix for assert when rescanning with selection
+  Submitted by Gilbert Wellisch
+  editlib: ccrystaltextview.cpp
+
 2003-07-05 Laoran
  PATCH: [ 765399 ] resize m_pdwParseCookies before GoToLine
   WinMerge: MergeDoc.cpp  MergeEditView.cpp

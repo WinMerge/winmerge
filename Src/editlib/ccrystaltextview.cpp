@@ -465,6 +465,7 @@ CCrystalTextView::CCrystalTextView ()
   m_pszMatched = NULL;
   m_bSelMargin = FALSE;
   m_bWordWrap = FALSE;
+  m_bDragSelection = FALSE;
   //BEGIN SW
   m_panSubLines = new CArray<int, int>();
   ASSERT( m_panSubLines );
@@ -1677,6 +1678,11 @@ ResetView ()
   m_ptCursorPos.x = 0;
   m_ptCursorPos.y = 0;
   m_ptSelStart = m_ptSelEnd = m_ptCursorPos;
+  if (m_bDragSelection)
+    {
+      ReleaseCapture ();
+      KillTimer (m_nDragSelTimer);
+    }
   m_bDragSelection = FALSE;
   m_bVertScrollBarLocked = FALSE;
   m_bHorzScrollBarLocked = FALSE;
