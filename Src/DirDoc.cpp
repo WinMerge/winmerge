@@ -189,7 +189,7 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_hDirFrame = pf->GetSafeHwnd();
 	m_pCtxt->m_msgUpdateStatus = MSG_STAT_UPDATE;
 	m_pCtxt->m_bGuessEncoding = mf->m_options.GetBool(OPT_CP_DETECT);
-	m_pCtxt->m_nCompMethod = mf->m_nCompMethod;
+	m_pCtxt->m_nCompMethod = mf->m_options.GetInt(OPT_CMP_METHOD);
 	UpdateHeaderPath(TRUE);
 	UpdateHeaderPath(FALSE);
 	// draw the headers as active ones

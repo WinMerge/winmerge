@@ -153,11 +153,6 @@ public:
 	BOOL m_bVssSuppressPathCheck; /**< Suppresses VSS int code asking about different path */
 	/*@}*/
 
-    // This is ugly hack to workaround problem we don't have any
-	// access to compare options from dirscan() (dirscan.cpp)
-	// Please fixme!
-	int m_nCompMethod; /**< CompareMethod : CPropCompare::BY_CONTENTS or CPropCompare::BY_DATE */
-
 	/**
 	 * @name Textual labels/descriptors
 	 * These descriptors overwrite dir/filename usually shown in headerbar

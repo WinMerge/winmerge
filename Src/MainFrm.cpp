@@ -210,8 +210,6 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT);
 	m_options.InitOption(OPT_CMP_MOVED_BLOCKS, false);
 
-	m_nCompMethod = m_options.GetInt(OPT_CMP_METHOD);
-
 	m_options.InitOption(OPT_CLR_DIFF, (int)RGB(239,203,5));
 	m_options.InitOption(OPT_CLR_SELECTED_DIFF, (int)RGB(239,119,116));
 	m_options.InitOption(OPT_CLR_DIFF_DELETED, (int)RGB(192, 192, 192));
@@ -1228,8 +1226,6 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CMP_IGNORE_CASE, compage.m_bIgnoreCase == TRUE);
 		m_options.SaveOption(OPT_CMP_METHOD, compage.m_compareMethod);
 		m_options.SaveOption(OPT_CMP_MOVED_BLOCKS, compage.m_bMovedBlocks == TRUE);
-		
-		m_nCompMethod = compage.m_compareMethod;
 
 		m_options.SaveOption(OPT_TAB_SIZE, (int)editor.m_nTabSize);
 		m_options.SaveOption(OPT_TAB_TYPE, (int)editor.m_nTabType);

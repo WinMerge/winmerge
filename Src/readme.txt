@@ -1,3 +1,7 @@
+2005-03-11 Kimmo
+ PATCH: [ 1160923 ] Remove CMainFrame::m_nCompMethod (ugly hack)
+  Src: DirDoc.cpp MainFrm.cpp MainFrm.h
+
 2005-03-10 Kimmo
  PATCH: [ 1160064 ] Undo for Copy All
   Src: MergeDoc.cpp MergeDoc.h
