@@ -1,3 +1,9 @@
+2005-03-25 Tim
+ PATCH: [ 1170267 ] Website changes for new stable release 2.2.2
+  Web: index.php WinMergePAD.xml
+  Web\2.2: changes.txt index.php
+  Web\developer\l10n: status.php
+
 2005-03-23 Tim
  RFE: [ 1169348 ] Update for translation statuses
   Web\developer\l10n: status.xml

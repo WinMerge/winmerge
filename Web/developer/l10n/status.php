@@ -118,8 +118,11 @@ releases.</p>
   print("</table>\n");
 ?>
 
-<p>Release 2.0 language versions also works with release 2.0.2.<br />
-Release 1.4 language versions also works with release 1.7.</p>
+<ul>
+  <li>Release 2.2 language versions also works with release 2.2.2.</li>
+  <li>Release 2.0 language versions also works with release 2.0.2.</li>
+  <li>Release 1.4 language versions also works with release 1.7.</li>
+</ul>
 
 <p>If you would like to update any of these translations or add another translation, then please follow <a href="instructions.php">these instructions</a>.</p>
 <?php

@@ -1,3 +1,258 @@
+2005-03-23 2.2.2 Stable Release
+
+2005-03-22 Kimmo
+ BUG: [ 1143619 ] Unicode chars in filename display as '_'
+  Src: Merge.rc
+  Src/Languages: Merge*.rc
+ BUG: [ 1162037 ] Missing localization (German)
+  Add couple of accel keys (patch from Tim)
+   Src/Languages/German: MergeGerman.rc
+ PATCH: [ 1165515 ] Improve drawing location pane moved block lines
+  Src: LocationView.cpp LocationView.h
+ BUG: [ 1154153 ] Poor font choice for default font
+  Fix submitted by Takashi Sawanaka
+  Src: MainFrm.cpp
+
+2005-03-21 Kimmo
+ PATCH: [ 1160064 ] Undo for Copy All
+  Src: MergeDoc.cpp MergeDoc.h
+
+2005-03-19 Perry
+ PATCH: [ 964676 ] rc file lacks bytes after DIALOGEX defs
+  Src: Merge.rc
+  Src/Languages: Merge*.rc
+
+2005-03-18 Perry
+ PATCH: [ 967230 ] Initialize default language from locale
+  Src/Common: LanguageSelect.cpp LanguageSelect.h
+
+2005-03-17 Jochen
+ Pass LANGID to Merge7z::Initialize as HIWORD(dwFlags)
+  Src: 7zCommon.cpp
+
+2005-03-16 Kimmo
+ PATCH: [ 1147039 ] experimental patch for colored word diff
+  Merge some translated strings from trunk (from Takashi Sawanaka)
+   Languages: Japanese/MergeJapanese.rc
+ PATCH: [ 1158136 ] Spanish translation revised
+  Submitted by Jesus M. Delgado 'Mack'
+   Languages/Spanish: MergeSpanish.rc
+
+2005-03-16 Tim
+ PATCH: [ 1156198 ] Non-standard html in developer docs
+  Docs/Developers: readme-developers-*.html
+
+2005-03-14 Kimmo
+ BUG: [ 1162374 ] Recent WinMerge doesn't support NT4
+  Src/Common: UniFile.cpp
+ PATCH: [ 1159112 ] Swedish translation revision
+  Submitted by Hans Eriksson
+  Languages/Swedish: MergeSwedish.rc
+
+2005-03-13 Jochen
+ Read 7-Zip version from 7zip_pad.xml
+ Add archive support related stuff to ConfigLog
+ Provide substitute for DlgDirList, which does not handle long filenames on Windows 98
+  (should fix BUG [1090513])
+  Src new files: dllpstub.cpp dllpstub.h markdown.cpp markdown.h
+  Src: Merge.dsp 7zCommon.cpp 7zCommon.h ConfigLog.cpp ConfigLog.h paths.cpp paths.h
+  Src/common: version.cpp version.h
+
+2005-03-13 Perry
+ PATCH: [ 1103542 ] Declare _MBCS in ANSI builds
+  Src: Merge.dsp
+
+2005-03-11 Kimmo
+ Fix invalid compare for VSS dialog returnvalue
+  Src: MainFrm.cpp
+
+2005-03-10 Kimmo
+ PATCH: [ 1158456 ] Fix setting font for headerbar editcontrols
+  Src: EditorFilepathBar.cpp EditorFilepathBar.h
+ PATCH: [ 1158484 ] Fix assert from headerbar-setactive() when closing views
+  Src: EditorFilepathBar.cpp EditorFilepathBar.h
+
+2005-03-09 Kimmo
+ PATCH: [ 1153870 ] Disable redrawing dir compare view while adding items
+  Src: DirDoc.cpp
+
+2005-03-08 Kimmo
+ Merge UniFile file open/stat changes from trunk:
+ PATCH: [ 1124380 ] Use _tstati64() in UniLocalFile::DoGetFileStatus()
+  Common: UniFile.cpp UniFile.h
+ PATCH: [ 1144059 ] Allow getting filestatus from open file in UniXXXFile
+  Common: UniFile.cpp UniFile.h
+ Remove line missed in patch [ 1144588 ] Remove show bak files setting from configlog
+  Src: MainFrm.cpp
+
+2005-03-08 Perry
+ PATCH [ 1151951 ] Alter getRightFilepath for root paths
+  Src: DiffContext.cpp
+ PATCH [ 1151949 ] Fix CDirDoc::FindItemFromPaths for root
+  Src: DirDoc.cpp
+
+2005-03-05 Perry
+ PATCH [ 1157015 ] Spanish translation update
+  (Backport from cvs trunk)
+  Languages: MergeSpanish.rc
+
+2005-03-03 Kimmo
+ BUG: [ 975226 ] Editor: Always refresh with Del-Key
+  Fix submitted by Takashi Sawanaka
+  Src: MergeEditView.cpp
+
+2005-03-02 Kimmo
+ PATCH: [ 1153091 ] Fix selecting default font from View menu
+  Src: MainFrm.cpp MainFrm.h OptionsDef.h
+
+2005-02-28 Perry
+ BUG [ 1144425 ] German: Options/codepage dlg needs adjust
+  (Fix by Tim Gerundt)
+  Languages: MergeGerman.rc
+
+2005-02-27 Perry
+ PATCH: [ 1152967 ] Fix re_match_2 declaration warnings
+  Src/diffutils/lib: REGEX.C
+
+2005-02-26 Jochen
+ PATCH: [ 1152256 ] UniFile may fail to read last line
+  Src/Common: UniFile.cpp
+
+2005-02-25 Kimmo
+ PATCH: [ 1123539 ] Small improvement for code creating backup copy
+  Src: MainFrm.cpp
+
+2005-02-24 Kimmo
+ PATCH: [ 1149365 ] Check linenumber to goto for upper limit
+  Src: MergeEditView.cpp
+ PATCH: [ 1149388 ] Check for previous compare text before find again
+  Src/editlib: ccrystaltextview.cpp
+
+2005-02-22 Kimmo
+ PATCH: [ 1145522 ] fix crash on search
+  Submitted by Takashi Sawanaka
+  Src/editlib: ccrystaltextview.cpp
+
+2005-02-20 Kimmo
+ PATCH: [ 1144588 ] Remove show bak files setting from configlog
+  Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp OptionsDef.h
+
+2005-02-11 Kimmo
+ PATCH: [ 1112111 ] Confusing message for identical scratchpads
+  Src: MergeDoc.cpp
+
+2005-02-08 Kimmo
+ PATCH: [ 1117375 ] Rememer status/toolbar visible status
+  Src: MainFrm.cpp MainFrm.h OptionsDef.h
+
+2005-01-30 Jochen
+ PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue) UniFile part
+  Src: MergeDoc.cpp
+  Src/common: UniFile.cpp UniFile.h
+
+2005-01-30 Kimmo
+ Merge Location Pane improvements from CVS trunk/2.3
+ PATCH: [ 1094474 ] Visible area indicator for location pane
+ PATCH: [ 1105640 ] Properly update locationpane visible area indicator
+  Src: LocationView.cpp LocationView.h MergeEditView.cpp MergeEditView.h
+
+2005-01-27 Kimmo
+ PATCH: [ 1106383 ] Show few chars of 'context' when horizontal scrolling lines
+  Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
+  View scrolling optimisation from Takashi Sawanaka
+  Src/editlib: ccrystaltextview.cpp
+
+2005-01-23 Kimmo
+ Update MASM filter file
+  Submitted by Matt Bossard (to forum)
+  Filters: MASM.flt
+
+2005-01-21 Perry
+ PATCH: [ 1048412 ] Log font info in configuration
+  Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp
+ Also remove old variable bDetectCodepage in MISCSETTINGS struct.
+
+2005-01-20 Kimmo
+ PATCH: [ 1086745 ] Find- and Replace-dialogs to remember strings too
+  Src/editlib: ccrystaltextview.cpp ceditreplacedlg.cpp ceditreplacedlg.h
+   cfindtextdlg.cpp cfindtextdlg.h
+ Add new MASM filter file
+  Submitted by Matt Bossard (to forum)
+  Filters new file: MASM.flt
+
+2005-01-14 Kimmo
+ PATCH: [ 1101919 ] Russian Readme.rtf
+  Submitted by Dmitriy S. Aleshkowskiy
+  Docs/Users/Languages: Read Me-Russian.rtf
+  InnoSetup: WinMerge Localized.iss
+
+2005-01-13 Kimmo
+ PATCH: [ 1100462 ] Center find result in file compare
+  Src/editlib: ccrystaltextview.cpp
+
+2005-01-11 Kimmo
+ PATCH: [ 1053475 ] Exponentially grow long lines when reading
+  Submitted by Perry
+  Src/Common: UniFile.cpp UniFile.h
+  Src: Merge.dsp MergeDoc.cpp
+ BUG: [ 1064942 ] Copyright notice????
+  Bumped copyright year to continue through 2005
+   Src: Merge.rc
+
+2005-01-08 Kimmo
+ PATCH: [ 1098340 ] crash rarely when starting many winmerge continuously
+  Anonymous submission
+  Src: FileFilterMgr.cpp
+ PATCH: [ 1088049 ] Ask about saving when Window/Close is selected
+  Src: MergeEditView.cpp MergeEditView.h
+
+2005-01-05 Kimmo
+ PATCH: [ 1094467 ] Update contributors: Tim is now developer
+  Docs/Users: Contributors.txt
+
+2004-12-27 Tim
+ RFE: [ 1085099 ] 'fileskip.bmp' looks to similar like 'equal.bmp'
+  Src/res: fileskip.bmp
+  Languages: fileskip.bmp
+
+2004-12-19 Kimmo
+ PATCH: [ 1065462 ] Show all skipped items when selected so
+  Src: DirDoc.cpp
+
+2004-12-17 Kimmo
+ PATCH: [ 1086601 ] Dircompare statepane miscounting skipped items
+  Src: DirCompStateBar.cpp
+ PATCH: [ 1068011 ] Partial French translation
+  Submitted by Matthieu Pupat
+  Src/Languages/French: MergeFrench.rc
+  Docs/Users: Contributors.txt
+ PATCH: [ 1058142 ] update coloring of batch file
+  Submitted by Andre Arpin
+  Src/editlib: batch.cpp
+ PATCH: [ 1057062 ] Separate Skipped flags from compare result flags
+  Src: DiffContext.h DirCompStateBar.cpp DirDoc.cpp DirScan.cpp
+   DirView.cpp DirViewColItems.cpp
+
+2004-12-04 Kimmo
+ PATCH: [ 1078505 ] Use DOS eol as filename/pathname clipboard separator
+  Src: DirView.cpp
+
+2004-12-03 Kimmo
+ PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
+  Additional optimisation from Takashi Sawanaka
+  Src/editlib: ccrystaltextview.cpp
+
+2004-12-01 Kimmo
+ PATCH: [ 1075591 ] Disable file filter edit button for no filter selection
+  Src: FileFiltersDlg.cpp FileFiltersDlg.h
+
+2004-11-17 Kimmo
+ PATCH: [ 1067374 ] Norwegian translation for 2.2.0
+  Submitted by Hans Fr. Nordhaug
+  Src/Languages/Norwegian: MergeNorwegian.rc
+
+
 2004-11-10 2.2 Stable Release
 
 2004-11-10 Kimmo
