@@ -136,9 +136,9 @@ void CSelectUnpackerDlg::SetInitialInfoHandler(PackingInfo * infoHandler)
 const PackingInfo CSelectUnpackerDlg::GetInfoHandler()
 {
 	if (m_pPlugin == noPlugin)
-		return PackingInfo(UNPACK_MANUAL);
+		return PackingInfo(PLUGIN_MANUAL);
 	else if (m_pPlugin == automaticPlugin)
-		return PackingInfo( !UNPACK_MANUAL);
+		return PackingInfo(PLUGIN_AUTO);
 	else
 	{
 		// build a real plugin unpacker

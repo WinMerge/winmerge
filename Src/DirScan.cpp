@@ -272,7 +272,7 @@ static bool Unpack(CString & filepathTransformed,
  * caller has to DeleteFile filepathTransformed, if it differs from filepath
  */
 static bool Transform(const CString & filepath, CString & filepathTransformed,
-	const CString & filteredFilenames, PackingInfo * infoPrediffer, int fd)
+	const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd)
 {
 	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
 
@@ -291,8 +291,16 @@ static bool Transform(const CString & filepath, CString & filepathTransformed,
 
 	// third step : prediff (plugins)
 	bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
-	if (!FileTransform_Prediffing(filepathTransformed, filteredFilenames, infoPrediffer, bMayOverwrite))
-		return false;
+	if (infoPrediffer->bToBeScanned)
+	{
+		if (!FileTransform_Prediffing(filepathTransformed, filteredFilenames, infoPrediffer, bMayOverwrite))
+			return false;
+	}
+	else
+	{
+		if (!FileTransform_Prediffing(filepathTransformed, *infoPrediffer, bMayOverwrite))
+			return false;
+	}
 
 	if (bom.unicoding)
 	{
@@ -320,8 +328,8 @@ prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2, int
 	// text used for automatic mode : plugin filter must match it
 	CString filteredFilenames = filepath1 + "|" + filepath2;
 	// Use temporary plugins info
-	PackingInfo infoUnpacker(m_bUnpackerMode);
-	PackingInfo infoPrediffer(m_bPredifferMode);
+	PackingInfo infoUnpacker;
+	PrediffingInfo infoPrediffer;
 
 	// plugin may alter filepaths to temp copies (which we delete before returning in all cases)
 	CString filepathUnpacked1 = filepath1;

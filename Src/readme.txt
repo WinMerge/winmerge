@@ -2,6 +2,10 @@
  PATCH: [ 911350 ] Restore default compare options
   Src: MainFrm.cpp Merge.rc PropCompare.cpp PropCompare.h resource.h
   Languages: *.rc resource.h
+ PATCH: [ 892397 ] Distinguish prediffer from unpacker
+  Submitted by Laoran
+  Src: DiffWrapper.cpp DirScan.cpp FileTransform.cpp FileTransform.h
+   MainFrm.cpp MergeDoc.cpp SelectUnpackerDlg.cpp 
 
 2004-03-07 Kimmo
  PATCH: [ 911114 ] DiffOptions to new system

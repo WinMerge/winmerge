@@ -39,8 +39,8 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 
-BOOL m_bUnpackerMode = UNPACK_MANUAL;
-BOOL m_bPredifferMode = PREDIFF_MANUAL;
+BOOL g_bUnpackerMode = PLUGIN_MANUAL;
+BOOL g_bPredifferMode = PLUGIN_MANUAL;
 
 /**
  * @brief Category of transformation : define the transformation events
@@ -264,7 +264,7 @@ BOOL FileTransform_Unpacking(CString & filepath, CString filteredText, PackingIn
 // transformation prediffing
     
 // known handler
-BOOL FileTransform_Prediffing(CString & filepath, PackingInfo handler, BOOL bMayOverwrite)
+BOOL FileTransform_Prediffing(CString & filepath, PrediffingInfo handler, BOOL bMayOverwrite)
 {
 	// no handler : return true
 	if (handler.pluginName.IsEmpty())
@@ -319,7 +319,7 @@ BOOL FileTransform_Prediffing(CString & filepath, PackingInfo handler, BOOL bMay
 
 
 // scan plugins for the first handler
-BOOL FileTransform_Prediffing(CString & filepath, CString filteredText, PackingInfo * handler, BOOL bMayOverwrite)
+BOOL FileTransform_Prediffing(CString & filepath, CString filteredText, PrediffingInfo * handler, BOOL bMayOverwrite)
 {
 	storageForPlugins bufferData;
 	// detect Ansi or Unicode file
@@ -385,9 +385,8 @@ BOOL FileTransform_Prediffing(CString & filepath, CString filteredText, PackingI
 
 	if (bHandled == FALSE)
 	{
-		// we didn't find any unpacker, that is OK anyway
+		// we didn't find any prediffer, that is OK anyway
 		handler->pluginName = _T("");
-		handler->subcode = 0;
 		bHandled = TRUE;
 	}
 

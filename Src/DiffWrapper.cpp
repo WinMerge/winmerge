@@ -195,10 +195,18 @@ BOOL CDiffWrapper::RunFileDiff()
 	// NOTE: FileTransform_UCS2ToUTF8() may create new temp
 	// files and return new names, those created temp files
 	// are deleted in end of function.
-	PackingInfo infoPrediffer;
-	FileTransform_Prediffing(strFile1Temp, m_sToFindUnpacker,
-		&infoPrediffer, TRUE);
+	PrediffingInfo infoPrediffer;
+	if (infoPrediffer.bToBeScanned)
+	{
+		FileTransform_Prediffing(strFile1Temp, m_sToFindUnpacker, &infoPrediffer, TRUE);
+	}
+	else
+	{
+		FileTransform_Prediffing(strFile1Temp, infoPrediffer, TRUE);
+	}
 	FileTransform_UCS2ToUTF8(strFile1Temp, TRUE);
+	// we use the same plugin for both files, so it must be defined before second file
+	ASSERT(infoPrediffer.bToBeScanned == FALSE);
 	FileTransform_Prediffing(strFile2Temp, infoPrediffer, TRUE);
 	FileTransform_UCS2ToUTF8(strFile2Temp, TRUE);
 

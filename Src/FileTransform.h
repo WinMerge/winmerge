@@ -37,12 +37,12 @@ typedef CTypedPtrList<CPtrList, CRegExp*>RegList;
 
 
 /**
- * @brief Modes for unpacking
+ * @brief Modes for plugin
  */
 enum 
 {
-	UNPACK_MANUAL,
-	UNPACK_AUTO,
+	PLUGIN_MANUAL,
+	PLUGIN_AUTO,
 };
 
 /**
@@ -54,8 +54,8 @@ enum
 	PREDIFF_AUTO,
 };
 
-extern BOOL m_bUnpackerMode;
-extern BOOL m_bPredifferMode;
+extern BOOL g_bUnpackerMode;
+extern BOOL g_bPredifferMode;
 
 
 /**
@@ -68,20 +68,19 @@ extern LPCWSTR TransformationCategories[];
 
 
 /**
- * @brief Unpacking info kept during merge session to use the correct packer
+ * @brief Plugin information for a given file
  *
- * @note Can be be passed between threads, except for Unicode packing/unpacking
+ * @note Can be be passed/copied between threads
  */
-class PackingInfo
+class PluginForFile
 {
 public:
-	void Initialize(BOOL bLocalUnpackerMode)
+	void Initialize(BOOL bMode)
 	{
 		// init functions as a valid "do nothing" unpacker
-		subcode = 0;
 		bWithFile = FALSE;
 		// and init bAutomatic flag and name according to global variable
-		if (bLocalUnpackerMode == UNPACK_MANUAL)
+		if (bMode == PLUGIN_MANUAL)
 		{			
 			pluginName.Empty();
 			bToBeScanned = FALSE;
@@ -92,28 +91,61 @@ public:
 			bToBeScanned = TRUE;
 		}
 	};
-	PackingInfo() 
+	PluginForFile(BOOL bMode) 
 	{
-		Initialize(m_bUnpackerMode);
-	};
-	PackingInfo(BOOL bLocalUnpackerMode) 
-	{
-		Initialize(bLocalUnpackerMode);
+		Initialize(bMode);
 	};
 
-/*  operator=(PackingInfo * newInfo) 
+/*	operator=(PluginForFile * newInfo) 
+	{
+		bToBeScanned = newInfo->bToBeScanned;
+		pluginName = newInfo->pluginName;
+		bWithFile = newInfo->bWithFile;
+	}*/
+
+public:
+	/// TRUE if the plugin will be defined during the first use (through scan of all available plugins)
+	BOOL    bToBeScanned;
+	/// plugin name when it is defined
+	CString pluginName;
+	/// TRUE is the plugins exchange data through a file, FALSE is the data is passed as parameter (BSTR/ARRAY)
+	BOOL    bWithFile;
+};
+
+/**
+ * @brief Unpacking/packing information for a given file
+ *
+ * @note Can be be copied between threads
+ * Each thread really needs its own instance so that subcode is really defined
+ * during the unpacking (open file) of the thread
+ */
+class PackingInfo : public PluginForFile
+{
+public:
+	PackingInfo() : PluginForFile(g_bUnpackerMode)	{ ; };
+	PackingInfo(BOOL bForcedMode) : PluginForFile(bForcedMode)	{ ; };
+/*	operator=(PackingInfo * newInfo) 
 	{
 		bToBeScanned = newInfo->bToBeScanned;
 		pluginName = newInfo->pluginName;
 		subcode = newInfo->subcode;
 		bWithFile = newInfo->bWithFile;
 	}*/
-
 public:
-	BOOL										bToBeScanned;
-	CString									pluginName;
-	int											subcode;
-	BOOL										bWithFile;
+	/// keep some info from unpacking for packing
+	int subcode;
+};
+
+/**
+ * @brief Prediffing information for a given file
+ *
+ * @note Can be be passed/copied between threads
+ */
+class PrediffingInfo : public PluginForFile
+{
+public:
+	PrediffingInfo() : PluginForFile(g_bPredifferMode)	{ ; };
+	PrediffingInfo(BOOL bForcedMode) : PluginForFile(bForcedMode)	{ ; };
 };
 
 
@@ -176,13 +208,13 @@ BOOL FileTransform_NormalizeUnicode(CString & filepath, BOOL bMayOverwrite);
  * @note Event FILE_PREDIFF BUFFER_PREDIFF
  * Apply only the first correct handler
  */
-BOOL FileTransform_Prediffing(CString & filepath, CString filteredText, PackingInfo * handler, BOOL bMayOverwrite);
+BOOL FileTransform_Prediffing(CString & filepath, CString filteredText, PrediffingInfo * handler, BOOL bMayOverwrite);
 /**
  * @brief Prepare one file for diffing, known handler
  *
  * @param filepath : [in, out] Most plugins change this filename
  */
-BOOL FileTransform_Prediffing(CString & filepath, PackingInfo handler, BOOL bMayOverwrite);
+BOOL FileTransform_Prediffing(CString & filepath, PrediffingInfo handler, BOOL bMayOverwrite);
 
 
 /**

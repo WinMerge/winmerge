@@ -720,7 +720,7 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, BOOL bLeft,
 		AfxFormatString2(s, bLeft ? IDS_FILEPACK_FAILED_LEFT :
 			IDS_FILEPACK_FAILED_RIGHT, strPath, pInfoTempUnpacker->pluginName);
 		// replace the unpacker with a "do nothing" unpacker
-		pInfoTempUnpacker->Initialize(UNPACK_MANUAL);
+		pInfoTempUnpacker->Initialize(PLUGIN_MANUAL);
 	}
 	else
 	{
@@ -2521,7 +2521,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	// scratchpad : we don't call LoadFile, so
 	// we need to initialize the unpacker as a "do nothing" one
 	if (sLeftFile.IsEmpty() && sRightFile.IsEmpty())
-		m_pInfoUnpacker->Initialize(UNPACK_MANUAL);
+		m_pInfoUnpacker->Initialize(PLUGIN_MANUAL);
 
 	// Bail out if either side failed
 	if (nLeftSuccess != FRESULT_OK || nRightSuccess != FRESULT_OK)

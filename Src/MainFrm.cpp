@@ -215,8 +215,10 @@ CMainFrame::CMainFrame()
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
 	theApp.SetFileFilterPath(theApp.GetProfileString(_T("Settings"), _T("FileFilterPath"), _T("")));
-	m_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), UNPACK_MANUAL);
-	m_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PREDIFF_MANUAL);
+	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
+	// uncomment this when the GUI allows to toggle the mode
+//	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
+
 
 	m_bReuseDirDoc = TRUE;
 	// TODO: read preference for logging
@@ -2266,21 +2268,21 @@ void CMainFrame::OnPluginUnpackMode(UINT nID )
 	switch (nID)
 	{
 	case ID_UNPACK_MANUAL:
-		m_bUnpackerMode = UNPACK_MANUAL;
+		g_bUnpackerMode = PLUGIN_MANUAL;
 		break;
 	case ID_UNPACK_AUTO:
-		m_bUnpackerMode = UNPACK_AUTO;
+		g_bUnpackerMode = PLUGIN_AUTO;
 		break;
 	}
-	theApp.WriteProfileInt(_T("Settings"), _T("UnpackerMode"), m_bUnpackerMode);
+	theApp.WriteProfileInt(_T("Settings"), _T("UnpackerMode"), g_bUnpackerMode);
 }
 
 void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI) 
 {
 	if (pCmdUI->m_nID == ID_UNPACK_MANUAL)
-		pCmdUI->SetRadio(UNPACK_MANUAL == m_bUnpackerMode);
+		pCmdUI->SetRadio(PLUGIN_MANUAL == g_bUnpackerMode);
 	if (pCmdUI->m_nID == ID_UNPACK_AUTO)
-		pCmdUI->SetRadio(UNPACK_AUTO == m_bUnpackerMode);
+		pCmdUI->SetRadio(PLUGIN_AUTO == g_bUnpackerMode);
 }
 
 /**
