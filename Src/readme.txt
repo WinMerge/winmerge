@@ -1,3 +1,5 @@
+2003-11-18 WinMerge beta 2.1.4.0 released
+
 2003-11-18 Laoran
  PATCH: [ 842817 ] Initialize OpenDlg extension filter to blank
  fix proposed by Perry
