@@ -22,7 +22,6 @@ static char THIS_FILE[] = __FILE__;
 void
 WindowStyle_Add(CWnd * pwnd, DWORD newStyle)
 {
-	DWORD style = pwnd->GetStyle();
-	style |= newStyle;
-	SetWindowLong(pwnd->m_hWnd, GWL_STYLE, style);
+	DWORD removeStyle = 0;
+	pwnd->ModifyStyle(removeStyle, newStyle, 0);
 }

@@ -1,3 +1,8 @@
+2005-03-07 Perry
+ PATCH: [ 1157859 ] Add LVS_SHOWSELALWAYS style to dirview
+ Postlude: Alter WindowStyle_Add to call CWnd::ModifyStyle.
+  Src/Common: WindowStyle.cpp
+
 2005-03-06 Tim
  PATCH: [ 1156198 ] Non-standard html in developer docs
   Docs/Developers: readme-developers-*.html
