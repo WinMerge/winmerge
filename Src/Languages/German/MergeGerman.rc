@@ -1334,7 +1334,7 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "Zeigt Binärdateien an"
     ID_VIEW_WHITESPACE      "Zeigt Leerzeichen An"
     ID_REFRESH              "Aktualisiert die Anzeige\nAktualisieren (F5)"
-    ID_SHOWLINEDIFF         "Hebt den Unterschied in der aktuellen Zeile hervor."
+    ID_SHOWLINEDIFF         "Hebt den Unterschied in der aktuellen Zeile hervor.\nUnterschied in der aktuellen Zeile (F4)"
     ID_EDITOR_COPY_PATH     "Kopiere vollständigen Pfad"
     ID_EDITOR_COPY_FILENAME "Kopiere Dateiname"
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"

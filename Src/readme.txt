@@ -1,3 +1,8 @@
+2003-11-16 Laoran 
+ BUG: [ 842746 ] Highlight diff tool button lacks tooltip
+  WinMerge: Merge.rc
+  Languages: *.rc
+  
 2003-11-15 Perry
  PATCH: [ 838290 ] Move inf creation down in RunFileDiff (cosmetic)
   WinMerge: DiffWrapper.cpp

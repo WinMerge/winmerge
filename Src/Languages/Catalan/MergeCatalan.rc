@@ -1503,7 +1503,7 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "Visualitza els fitxers binaris"
     ID_VIEW_WHITESPACE      "Mostra els caràcters d'espais"
     ID_REFRESH              "Actualitza la visualització\nActualitza (F5)"
-    ID_SHOWLINEDIFF         "Ressalta les diferències a la línia actual"
+    ID_SHOWLINEDIFF         "Ressalta les diferències a la línia actual\nDiferències a la Línia Actual (F4)"
     ID_EDITOR_COPY_PATH     "Copia el camí sencer al fitxer"
     ID_EDITOR_COPY_FILENAME "Copia el nom del fixer"
     ID_VIEW_DETAIL_BAR      "Intercanvia la subfinestra de diferències"

@@ -1330,7 +1330,7 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "Afficher les fichiers binaires"
     ID_VIEW_WHITESPACE      "Afficher les espaces"
     ID_REFRESH              "Actualiser l'affichage\nActualiser (F5)"
-    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_SHOWLINEDIFF         "Highlight difference in current line\nDiff in Current Line (F4)"
     ID_EDITOR_COPY_PATH     "Copier le chemin complet"
     ID_EDITOR_COPY_FILENAME "Copier le nom du fichier"
     ID_VIEW_DETAIL_BAR      "Montrer/cacher le détail de la différence courante"

@@ -1190,7 +1190,7 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "显示二进制文件"
     ID_VIEW_WHITESPACE      "显示空白和制表符字符"
     ID_REFRESH              "更新显示\n更新 (F5)"
-    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_SHOWLINEDIFF         "Highlight difference in current line\nDiff in Current Line (F4)"
     ID_EDITOR_COPY_PATH     "Copy full Path"
     ID_EDITOR_COPY_FILENAME "Copy Filename"
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"

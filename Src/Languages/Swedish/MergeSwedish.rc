@@ -1321,7 +1321,7 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "Visar binära filer"
     ID_VIEW_WHITESPACE      "Visa ett tecken för mellanslag"
     ID_REFRESH              "Uppdatera innehållet\nUppdatera (F5)"
-    ID_SHOWLINEDIFF         "Markera skillnader på aktuell rad"
+    ID_SHOWLINEDIFF         "Markera skillnader på aktuell rad\nSkillnader på Aktuell Rad (F4)"
     ID_EDITOR_COPY_PATH     "Kopiera hela sökvägen"
     ID_EDITOR_COPY_FILENAME "Kopiera filnamn"
     ID_VIEW_DETAIL_BAR      "Visa eller göm skillnadsfältet\nVäxla skillnadsfältet"

@@ -1455,7 +1455,7 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "바이너리 파일을 봅니다."
     ID_VIEW_WHITESPACE      "공백문자(whitespace character)를 봅니다."
     ID_REFRESH              "새로 고침\n새로 고침 (F5)"
-    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_SHOWLINEDIFF         "Highlight difference in current line\nDiff in Current Line (F4)"
     ID_EDITOR_COPY_PATH     "Copy full Path"
     ID_EDITOR_COPY_FILENAME "Copy Filename"
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
