@@ -78,15 +78,31 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 			TRACE(_T("Candidate right: rightDirs[j]=%s\n"), rightDirs[j]);
 		if (i<leftDirs.GetSize() && (j==rightDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)<0))
 		{
+			int nDiffCode = DIFFCODE::LEFT + DIFFCODE::DIR;
+
+			// Test against filter
+			// If comparing non-recursively filter out subdirectories
+			CString newsub = subprefix + leftDirs[i].name;
+			if (!depth || !pCtxt->m_piFilter->includeDir(newsub))
+				nDiffCode |= DIFFCODE::SKIPPED;
+
 			// Advance left pointer over left-only entry, and then retest with new pointers
-			FilterAdd(subdir, &leftDirs[i], 0, DIFFCODE::LEFT+DIFFCODE::DIR, pCtxt);
+			FilterAdd(subdir, &leftDirs[i], 0, nDiffCode, pCtxt);
 			++i;
 			continue;
 		}
 		if (j<rightDirs.GetSize() && (i==leftDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)>0))
 		{
+			int nDiffCode = DIFFCODE::RIGHT + DIFFCODE::DIR;
+
+			// Test against filter
+			// If comparing non-recursively filter out subdirectories
+			CString newsub = subprefix + rightDirs[j].name;
+			if (!depth || !pCtxt->m_piFilter->includeDir(newsub))
+				nDiffCode |= DIFFCODE::SKIPPED;
+
 			// Advance right pointer over right-only entry, and then retest with new pointers
-			FilterAdd(subdir, 0, &rightDirs[j], DIFFCODE::RIGHT+DIFFCODE::DIR, pCtxt);
+			FilterAdd(subdir, 0, &rightDirs[j], nDiffCode, pCtxt);
 			++j;
 			continue;
 		}
@@ -121,15 +137,29 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 			TRACE(_T("Candidate right: rightFiles[j]=%s\n"), rightFiles[j]);
 		if (i<leftFiles.GetSize() && (j==rightFiles.GetSize() || collstr(leftFiles[i].name, rightFiles[j].name, casesensitive)<0))
 		{
+			int nDiffCode = DIFFCODE::LEFT + DIFFCODE::FILE;
+
+			// Test against filter
+			CString newsubfile = subprefix + leftFiles[i].name;
+			if (!pCtxt->m_piFilter->includeFile(newsubfile))
+				nDiffCode |= DIFFCODE::SKIPPED;
+
 			// Advance left pointer over left-only entry, and then retest with new pointers
-			FilterAdd(subdir, &leftFiles[i], 0, DIFFCODE::LEFT+DIFFCODE::FILE, pCtxt);
+			FilterAdd(subdir, &leftFiles[i], 0, nDiffCode, pCtxt);
 			++i;
 			continue;
 		}
 		if (j<rightFiles.GetSize() && (i==leftFiles.GetSize() || collstr(leftFiles[i].name, rightFiles[j].name, casesensitive)>0))
 		{
+			int nDiffCode = DIFFCODE::RIGHT + DIFFCODE::FILE;
+
+			// Test against filter
+			CString newsubfile = subprefix + rightFiles[j].name;
+			if (!pCtxt->m_piFilter->includeFile(newsubfile))
+				nDiffCode |= DIFFCODE::SKIPPED;
+
 			// Advance right pointer over right-only entry, and then retest with new pointers
-			FilterAdd(subdir, 0, &rightFiles[j], DIFFCODE::RIGHT+DIFFCODE::FILE, pCtxt);
+			FilterAdd(subdir, 0, &rightFiles[j], nDiffCode, pCtxt);
 			++j;
 			continue;
 		}
