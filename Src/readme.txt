@@ -1,4 +1,9 @@
-2004-04-07 Kimmo
+2004-03-08 Kimmo
+ PATCH: [ 911350 ] Restore default compare options
+  Src: MainFrm.cpp Merge.rc PropCompare.cpp PropCompare.h resource.h
+  Languages: *.rc resource.h
+
+2004-03-07 Kimmo
  PATCH: [ 911114 ] DiffOptions to new system
   Src: ConfigLog.cpp ConfigLog.h DiffWrapper.cpp DiffWrapper.h DirDoc.cpp
    DirDoc.h MainFrm.cpp MainFrm.h MergeDoc.cpp MergeDoc.h OptionsDef.h

@@ -976,7 +976,7 @@ void CMainFrame::OnOptions()
 	CPropFilter filter(&fileFilters, selectedFilter);
 	CPropColors colors(&m_options);
 	CPropRegistry regpage;
-    CPropCompare compage;
+    CPropCompare compage(&m_options);
 	CPropEditor editor;
    
 	sht.AddPage(&gen);

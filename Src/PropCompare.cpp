@@ -1,9 +1,16 @@
-// PropCompare.cpp : implementation file
-//
+/** 
+ * @file  PropColors.cpp
+ *
+ * @brief Implementation of CPropCompare propertysheet
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "merge.h"
 #include "PropCompare.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -14,9 +21,10 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CPropCompare property page
 
-IMPLEMENT_DYNCREATE(CPropCompare, CPropertyPage)
-
-CPropCompare::CPropCompare() : CPropertyPage(CPropCompare::IDD)
+/** 
+ * @brief Constructor
+ */
+CPropCompare::CPropCompare(COptionsMgr *optionsMgr) : CPropertyPage(CPropCompare::IDD)
 {
 	//{{AFX_DATA_INIT(CPropCompare)
 	m_compareMethod = -1;
@@ -25,10 +33,8 @@ CPropCompare::CPropCompare() : CPropertyPage(CPropCompare::IDD)
 	m_bEolSensitive = FALSE;
 	m_nIgnoreWhite = -1;
 	//}}AFX_DATA_INIT
-}
 
-CPropCompare::~CPropCompare()
-{
+	m_pOptionsMgr = optionsMgr;
 }
 
 void CPropCompare::DoDataExchange(CDataExchange* pDX)
@@ -46,13 +52,16 @@ void CPropCompare::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CPropCompare, CPropertyPage)
 	//{{AFX_MSG_MAP(CPropCompare)
-		// NOTE: the ClassWizard will add message map macros here
+	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropCompare message handlers
 
+/** 
+ * @brief Called before propertysheet is drawn
+ */
 BOOL CPropCompare::OnInitDialog() 
 {
 	CPropertyPage::OnInitDialog();
@@ -67,4 +76,24 @@ BOOL CPropCompare::OnInitDialog()
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+/** 
+ * @brief Sets options to defaults
+ */
+void CPropCompare::OnDefaults()
+{
+	m_pOptionsMgr->Reset(OPT_CMP_IGNORE_WHITESPACE);
+	m_pOptionsMgr->Reset(OPT_CMP_IGNORE_BLANKLINES);
+	m_pOptionsMgr->Reset(OPT_CMP_IGNORE_CASE);
+	m_pOptionsMgr->Reset(OPT_CMP_EOL_SENSITIVE);
+	m_pOptionsMgr->Reset(OPT_CMP_METHOD);
+
+	m_compareMethod = m_pOptionsMgr->GetInt(OPT_CMP_METHOD);
+	m_nIgnoreWhite = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	m_bEolSensitive = m_pOptionsMgr->GetInt(OPT_CMP_EOL_SENSITIVE);
+	m_bIgnoreBlankLines = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_BLANKLINES);
+	m_bIgnoreCase = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_CASE);
+
+	UpdateData(FALSE);
 }

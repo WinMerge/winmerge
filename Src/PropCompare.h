@@ -1,30 +1,41 @@
-// PropCompare.h : header file
-//
+/** 
+ * @file  PropCompare.cpp
+ *
+ * @brief Implementation of CPropCompare propertysheet
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #ifndef _PROPPAGE_COMPARE_H_
 #define _PROPPAGE_COMPARE_H_
+
+class COptionsMgr;
 
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropCompare dialog
 
 /**
- * class CPropCompare Property page to set the compare method for files.
- *                     Currently 2 methods are available: - compare by contents, 
- *                                                        - compare by modified date
+ * @brief Property page to set compare options for WinMerge.
  *
- * @author Tim Musschoot
+ * Whitespace compare:
+ *  - Compare all whitespaces, recommended for merging!
+ *  - Ignore changes in whitespaces (amount of spaces etc)
+ *  - Ignore all whitespace characters
+ *
+ * Compare methods:
+ *  - compare by contents
+ *  - compare by modified date
+ *
+ * @author Tim Musschoot, several modifications by Kimmo Varis
  */
 class CPropCompare : public CPropertyPage
 {
-	DECLARE_DYNCREATE(CPropCompare)
-
 // Construction
 public:
     enum CompareMethod { BY_CONTENTS, BY_DATE};
 
-	CPropCompare();
-	~CPropCompare();
+	CPropCompare(COptionsMgr *optionsMgr);
 
 // Dialog Data
 	//{{AFX_DATA(CPropCompare)
@@ -38,7 +49,7 @@ public:
 
 
 // Overrides
-	// ClassWizard generate virtual function overrides
+	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CPropCompare)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
@@ -48,10 +59,13 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(CPropCompare)
-	virtual BOOL OnInitDialog();
+	afx_msg BOOL OnInitDialog();
+	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
+private:
+	COptionsMgr * m_pOptionsMgr;
 };
 
 //{{AFX_INSERT_LOCATION}}
