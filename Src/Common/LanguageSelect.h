@@ -44,8 +44,9 @@ private:
 	void	GetDllsAt( LPCTSTR SearchPath, CStringArray& DllAry );
 	BOOL	GetLanguage( const CString& DllName, WORD& uiLanguage ) ;
 	
-	UINT	GetDocResId();
+	UINT    GetDocResId();
 	CString GetPath( LPCTSTR FileName);
+	CString GetLanguagePath(LPCTSTR FileName);
 	
 	CString GetLanguageString( WORD LangId );
 	CString GetNativeLanguageNameString( int idx );

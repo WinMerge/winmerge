@@ -1,3 +1,9 @@
+2005-02-20 Perry
+ BUG [ 1144978 ] No languages available in development
+  Fix CopyAll.bat, and cosmetic changes to LanguageSelect.*
+  Src/Common: LanguageSelect.cpp LanguageSelect.h
+  Languages: CopyAll.bat
+
 2005-02-20 Tim
  Fix 'cliboard' typo in rc files.
   Languages: *.rc

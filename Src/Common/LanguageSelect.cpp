@@ -263,6 +263,9 @@ BOOL  CLanguageSelect::SetLanguage(WORD wLangId)
 }
 
 
+/**
+ * @brief Load & configure WinMerge to use resources from specified DLL
+ */
 BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/) 
 {
 	// reset the resource handle to point to the current file
@@ -293,6 +296,9 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 }
 
 
+/**
+ * @brief Convert specified Language ID into resource filename, if we have one for it
+ */
 CString CLanguageSelect::GetDllName( WORD wLangId ) 
 {
 	TCHAR fullpath[MAX_PATH+1];
@@ -302,7 +308,7 @@ CString CLanguageSelect::GetDllName( WORD wLangId )
 		CStringArray dlls;
 		WORD wDllLang;
 		
-		CString strPath = GetPath(fullpath);
+		CString strPath = GetLanguagePath(fullpath);
 		GetDllsAt(strPath, dlls);
 		
 		for (int i = 0; i < dlls.GetSize(); i++)
@@ -319,6 +325,9 @@ CString CLanguageSelect::GetDllName( WORD wLangId )
 }
 
 
+/**
+ * @brief Load array with all Merge language resource files at given directory
+ */
 void CLanguageSelect::GetDllsAt(LPCTSTR szSearchPath, CStringArray& dlls )
 {
 	WIN32_FIND_DATA ffi;
@@ -430,6 +439,9 @@ typedef long GetDllLangProc();
 	return bRes;
 }*/
 
+/**
+ * @brief Return path part of fully qualified filename
+ */
 CString CLanguageSelect::GetPath( LPCTSTR FileName)
 {
 	TCHAR drive[_MAX_DRIVE];
@@ -445,8 +457,16 @@ CString CLanguageSelect::GetPath( LPCTSTR FileName)
 		&& Path.Right(1) != _T('/'))
 		Path += _T('\\');
 
+	return Path;
+}
+
+/**
+ * @brief Build Language subdirectory from fully qualified exe filename
+ */
+CString CLanguageSelect::GetLanguagePath(LPCTSTR FileName)
+{
+	CString Path = GetPath(FileName);
 	Path += szRelativePath;
-	
 	return Path;
 }
 
@@ -459,7 +479,7 @@ void CLanguageSelect::GetAvailLangs( CWordArray& wLanguageAry,
 	
 	if ( GetModuleFileName(m_hModule, filespec, _MAX_PATH ))
 	{
-		strPath = GetPath(filespec);
+		strPath = GetLanguagePath(filespec);
 		CStringArray dlls;
 		
 		GetDllsAt(strPath, dlls );
