@@ -3,6 +3,8 @@
   Also added option to disable it in "System" options
   DirActions.cpp MainFrm.cpp Merge.rc OptionsDef.h PropRegistry.cpp
   PropRegistry.h resource.h
+ Fix copy/paste error
+  Src: DirActions.cpp
 
 2004-02-26 Kimmo
  PATCH: [ 903670 ] Copy Folder (and convert to CShellFileOp)
