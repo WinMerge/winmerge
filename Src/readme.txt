@@ -1,6 +1,13 @@
+2004-01-26 Jochen
+ Avoid copying DIFFITEMs
+  This badly slowed down DirView sorting and navigation.
+  src: DirViewColHandler.cpp DirView.cpp DirView.h 7zCommon.cpp 7zCommon.h
+ Fix ASSERT in vc98/mfc/src/olevar.cpp when sorting DirView by date
+  src: DirViewColItems.cpp
+
 2004-01-25 Jochen
  Fix bad default for OPENFILENAME::nFilterIndex
-  Src: 7zCommon.cpp
+  src: 7zCommon.cpp
 
 2004-01-24 Perry
  [ 882650 ] Move temp build files out of Build into BuildTmp

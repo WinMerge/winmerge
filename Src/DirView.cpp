@@ -975,14 +975,14 @@ void CDirView::SetItemKey(int idx, POSITION diffpos)
 /**
  * Given index in list control, get its associated DIFFITEM data
  */
-DIFFITEM CDirView::GetDiffItem(int sel)
+const DIFFITEM &CDirView::GetDiffItem(int sel)
 {
 	POSITION diffpos = GetItemKey(sel);
 	
 	// If it is special item, return empty DIFFITEM
 	if (diffpos == (POSITION) -1)
 	{
-		DIFFITEM item;
+		static DIFFITEM item;
 		return item;
 	}
 	return GetDiffContext()->GetDiffAt((POSITION)diffpos);
@@ -1149,13 +1149,10 @@ UINT CDirView::GetSelectedCount() const
 
 int CDirView::GetFirstSelectedInd()
 {
-	int sel =- 1;
-	sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
-	
-	return sel;
+	return m_pList->GetNextItem(-1, LVNI_SELECTED);
 }
 
-DIFFITEM CDirView::GetNextSelectedInd(int &ind)
+/*DIFFITEM CDirView::GetNextSelectedInd(int &ind)
 {
 	DIFFITEM di;
 	int sel =- 1;
@@ -1165,15 +1162,17 @@ DIFFITEM CDirView::GetNextSelectedInd(int &ind)
 	ind = sel;
 	
 	return di;
-}
+}*/
 
-DIFFITEM CDirView::GetItemAt(int ind)
+const DIFFITEM &CDirView::GetItemAt(int ind)
 {
-	DIFFITEM di;
 	if (ind != -1)
 	{	
-		di = GetDiffItem(ind);
+		return GetDiffItem(ind);
 	}
+	// 26.01.2004 jtuc: seems to be nerver reached...
+	ASSERT(FALSE);
+	static const DIFFITEM di;
 	return di;
 }
 
@@ -1183,7 +1182,6 @@ DIFFITEM CDirView::GetItemAt(int ind)
 void CDirView::OnFirstdiff()
 {
 	ASSERT(m_pList);
-	DIFFITEM di;
 	const int count = m_pList->GetItemCount();
 	BOOL found = FALSE;
 	int i = 0;
@@ -1192,7 +1190,7 @@ void CDirView::OnFirstdiff()
 
 	while (i < count && found == FALSE)
 	{
-		di = GetItemAt(i);
+		const DIFFITEM &di = GetItemAt(i);
 		if (IsItemNavigableDiff(di))
 		{
 			MoveSelection(currentInd, i, selCount);
@@ -1215,7 +1213,6 @@ void CDirView::OnUpdateFirstdiff(CCmdUI* pCmdUI)
 // If none or one item selected select found item
 void CDirView::OnLastdiff()
 {
-	DIFFITEM di;
 	BOOL found = FALSE;
 	const int count = m_pList->GetItemCount();
 	int i = count - 1;
@@ -1224,7 +1221,7 @@ void CDirView::OnLastdiff()
 
 	while (i > -1 && found == FALSE)
 	{
-		di = GetItemAt(i);
+		const DIFFITEM &di = GetItemAt(i);
 		if (IsItemNavigableDiff(di))
 		{
 			MoveSelection(currentInd, i, selCount);
@@ -1247,7 +1244,6 @@ void CDirView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 // If none or one item selected select found item
 void CDirView::OnNextdiff()
 {
-	DIFFITEM di;
 	const int count = m_pList->GetItemCount();
 	BOOL found = FALSE;
 	int i = GetFocusedItem();
@@ -1259,7 +1255,7 @@ void CDirView::OnNextdiff()
 
 	while (i < count && found == FALSE)
 	{
-		di = GetItemAt(i);
+		const DIFFITEM &di = GetItemAt(i);
 		if (IsItemNavigableDiff(di))
 		{
 			MoveSelection(currentInd, i, selCount);
@@ -1287,7 +1283,6 @@ void CDirView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 // If none or one item selected select found item
 void CDirView::OnPrevdiff()
 {
-	DIFFITEM di;
 	BOOL found = FALSE;
 	int i = GetFocusedItem();
 	int currentInd = 0;
@@ -1299,7 +1294,7 @@ void CDirView::OnPrevdiff()
 
 	while (i > -1 && found == FALSE)
 	{
-		di = GetItemAt(i);
+		const DIFFITEM &di = GetItemAt(i);
 		if (IsItemNavigableDiff(di))
 		{
 			MoveSelection(currentInd, i, selCount);
@@ -1381,7 +1376,6 @@ int CDirView::GetFocusedItem()
 
 int CDirView::GetFirstDifferentItem()
 {
-	DIFFITEM di;
 	const int count = m_pList->GetItemCount();
 	BOOL found = FALSE;
 	int i = 0;
@@ -1389,7 +1383,7 @@ int CDirView::GetFirstDifferentItem()
 
 	while (i < count && found == FALSE)
 	{
-		di = GetItemAt(i);
+		const DIFFITEM &di = GetItemAt(i);
 		if (IsItemNavigableDiff(di))
 		{
 			foundInd = i;		
@@ -1402,7 +1396,6 @@ int CDirView::GetFirstDifferentItem()
 
 int CDirView::GetLastDifferentItem()
 {
-	DIFFITEM di;
 	const int count = m_pList->GetItemCount();
 	BOOL found = FALSE;
 	int i = count - 1;
@@ -1410,7 +1403,7 @@ int CDirView::GetLastDifferentItem()
 
 	while (i > 0 && found == FALSE)
 	{
-		di = GetItemAt(i);
+		const DIFFITEM &di = GetItemAt(i);
 		if (IsItemNavigableDiff(di))
 		{
 			foundInd = i;		
@@ -1996,3 +1989,4 @@ void CDirView::OnUpdateSelectAll(CCmdUI* pCmdUI)
 	else
 		pCmdUI->Enable(FALSE);
 }
+

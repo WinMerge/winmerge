@@ -69,7 +69,7 @@ private:
 	CMapStringToPtr m_rgImpliedFoldersLeft;
 	CMapStringToPtr m_rgImpliedFoldersRight;
 //	helper methods
-	DIFFITEM Next();
+	const DIFFITEM &Next();
 public:
 	enum
 	{
@@ -85,4 +85,5 @@ public:
 	virtual Merge7z::Envelope *Enum(Item &);
 	void CompressArchive(LPCTSTR = 0);
 };
+
 

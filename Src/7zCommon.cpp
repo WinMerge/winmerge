@@ -340,7 +340,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 		// Collect implied folders
 		for (UINT i = Open() ; i-- ; )
 		{
-			DIFFITEM di = Next();
+			const DIFFITEM &di = Next();
 			if ((m_nFlags & DiffsOnly) && !m_pView->IsItemNavigableDiff(di))
 			{
 				continue;
@@ -395,7 +395,7 @@ UINT CDirView::DirItemEnumerator::Open()
 /**
  * @brief Return next item.
  */
-DIFFITEM CDirView::DirItemEnumerator::Next()
+const DIFFITEM &CDirView::DirItemEnumerator::Next()
 {
 	enum {nMask = LVNI_FOCUSED|LVNI_SELECTED|LVNI_CUT|LVNI_DROPHILITED};
 	while ((m_nIndex = pView(m_pView)->GetNextItem(m_nIndex, m_nFlags & nMask)) == -1)
@@ -422,7 +422,7 @@ DIFFITEM CDirView::DirItemEnumerator::Next()
  */
 Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 {
-	DIFFITEM di = Next();
+	const DIFFITEM &di = Next();
 
 	if ((m_nFlags & DiffsOnly) && !m_pView->IsItemNavigableDiff(di))
 	{
@@ -584,4 +584,5 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 	afxDump << m_rgImpliedFoldersRight;
 #endif
 }
+
 

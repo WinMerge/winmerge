@@ -81,10 +81,15 @@ static int cmpdiffcode(int diffcode1, int diffcode2)
  */
 static int cmptime(COleDateTime t1, COleDateTime t2)
 {
-	if (t1>t2)
-		return 1;
-	if (t1<t2)
-		return -1;
+	if (int cmp = t2.GetStatus() - t1.GetStatus())
+		return cmp;
+	if (t1.GetStatus() == COleDateTime::valid)
+	{
+		if (t1>t2)
+			return 1;
+		if (t1<t2)
+			return -1;
+	}
 	return 0;
 }
 /**
@@ -463,4 +468,5 @@ int CDirView::GenericSortItem(const varprop::VariantValue * lvar, const varprop:
 	ASSERT(0);
 	return 0;
 }
+
 

@@ -84,8 +84,8 @@ public:
 
 	UINT GetSelectedCount() const;
 	int GetFirstSelectedInd();
-	DIFFITEM GetNextSelectedInd(int &ind);
-	DIFFITEM GetItemAt(int ind);
+	//DIFFITEM GetNextSelectedInd(int &ind);
+	const DIFFITEM &GetItemAt(int ind);
 	void GotoFirstDiff() { OnFirstdiff(); };
 	int AddSpecialItems();
 	void AddParentFolderItem();
@@ -300,7 +300,7 @@ private:
 	void DoUpdateCtxtDirCopyLeftTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI);
 	POSITION GetItemKeyFromData(DWORD dw) const;
-	DIFFITEM GetDiffItem(int sel);
+	const DIFFITEM &GetDiffItem(int sel);
 	int GetSingleSelectedItem() const;
 	bool IsItemNavigableDiff(const DIFFITEM & di) const;
 	void MoveSelection(int currentInd, int i, int selCount);
@@ -328,4 +328,5 @@ CString NumToStr(int n);
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_)
+
 

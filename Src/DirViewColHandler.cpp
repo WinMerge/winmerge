@@ -132,8 +132,8 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 	
 	POSITION diffposl = pView->GetItemKeyFromData(lParam1);
 	POSITION diffposr = pView->GetItemKeyFromData(lParam2);
-	DIFFITEM ldi = pView->GetDiffContext()->GetDiffAt(diffposl);
-	DIFFITEM rdi = pView->GetDiffContext()->GetDiffAt(diffposr);
+	DIFFITEM &ldi = pView->GetDiffContext()->GetDiffAt(diffposl);
+	DIFFITEM &rdi = pView->GetDiffContext()->GetDiffAt(diffposr);
 
 	// compare 'left' and 'right' parameters as appropriate
 	int retVal = ColSort(pView->m_sortColumn, ldi, rdi);
@@ -448,3 +448,4 @@ ToDoDeleteThisValidateColumnOrdering();
 	}
 	ValidateColumnOrdering();
 }
+
