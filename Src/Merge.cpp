@@ -112,7 +112,7 @@ BOOL CMergeApp::InitInstance()
 	// such as the name of your company or organization.
 	SetRegistryKey(_T("Thingamahoochie"));
 
-	LoadStdProfileSettings();  // Load standard INI file options (including MRU)
+	LoadStdProfileSettings(0);  // Load standard INI file options (including MRU)
 
 	m_bDisableSplash = GetProfileInt(_T("Settings"), _T("DisableSplash"), FALSE);
 	m_bHiliteSyntax = GetProfileInt(_T("Settings"), _T("HiliteSyntax"), TRUE)!=0;
