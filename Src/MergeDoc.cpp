@@ -1188,6 +1188,7 @@ void CMergeDoc::CDiffTextBuffer::prepareForRescan()
 	{
 		SetLineFlag(ct, LF_DIFF, FALSE, FALSE, FALSE);
 		SetLineFlag(ct, LF_TRIVIAL, FALSE, FALSE, FALSE);
+		SetLineFlag(ct, LF_MOVED, FALSE, FALSE, FALSE);
 	}
 }
 

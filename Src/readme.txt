@@ -2,6 +2,8 @@
  PATCH: [ 920530 ] Remember Patch-dialog settings
   Src: Merge.rc PatchDlg.cpp PatchDlg.h resource.h
   Languages: *.rc resource.h
+ BUG: [ 920965 ] Merging moved block messes up linecolors
+  Src: MergeDoc.cpp
 
 2004-03-21 Seier
   Patch: [ 919134 ] I added the \InnoSetup\Runtimes\OleAut32.dll necessary for others to compile the WinMerge.iss script.  Sorry about that.  
