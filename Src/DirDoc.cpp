@@ -452,6 +452,7 @@ void CDirDoc::InitStatusStrings()
 
 }
 
+/// Update any language-dependent data
 void CDirDoc::UpdateResources()
 {
 	m_pDirView->UpdateColumnNames();

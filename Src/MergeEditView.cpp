@@ -120,9 +120,9 @@ void CMergeEditView::DoScroll(UINT code, UINT pos, BOOL bDoScroll)
 	CCrystalEditViewEx::OnVScroll(code, pos, NULL);
 }
 
+/// Update any language-dependent data
 void CMergeEditView::UpdateResources()
 {
-
 }
 
 BOOL CMergeEditView::PrimeListWithFile()

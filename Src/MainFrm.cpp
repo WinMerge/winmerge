@@ -1260,6 +1260,7 @@ void CMainFrame::OnUpdateViewUsedefaultfont(CCmdUI* pCmdUI)
 	pCmdUI->Enable(m_bFontSpecified);
 }
 
+/// Update any language-dependent data
 void CMainFrame::UpdateResources()
 {
 	m_wndStatusBar.SetPaneText(0, LoadResString(AFX_IDS_IDLEMESSAGE));
