@@ -23,8 +23,8 @@
 
 #include "stdafx.h"
 #include "merge.h"
+#include "MainFrm.h" // VCS_* constants
 #include "PropVss.h"
-#include "dirtools.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -40,7 +40,6 @@ IMPLEMENT_DYNCREATE(CPropVss, CPropertyPage)
 CPropVss::CPropVss() : CPropertyPage(CPropVss::IDD)
 {
 	//{{AFX_DATA_INIT(CPropVss)
-	m_strPath = _T("");
 	m_nVerSys = -1;
 	//}}AFX_DATA_INIT
 }
@@ -61,7 +60,6 @@ void CPropVss::DoDataExchange(CDataExchange* pDX)
 	//}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CPropVss, CPropertyPage)
 	//{{AFX_MSG_MAP(CPropVss)
 	ON_BN_CLICKED(IDC_BROWSE_BUTTON, OnBrowseButton)
@@ -72,54 +70,32 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CPropVss message handlers
 
-BOOL ChooseFile( CString& strResult, 
-				 LPCTSTR szStartPath /* = NULL */, 
-				 LPCTSTR szCaption /* = "Open" */, 
-				 LPCTSTR szFilter /* = "All Files (*.*)|*.*||" */, 
-				 BOOL bOpenDlg /* = TRUE */) 
-// displays a shell file selector
-{
-	CFileDialog dlg(bOpenDlg, NULL, NULL, 
-				    OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | (bOpenDlg? OFN_FILEMUSTEXIST:0) , szFilter);
-	dlg.m_ofn.lpstrTitle = (LPTSTR)szCaption;
-	dlg.m_ofn.lpstrInitialDir = (LPTSTR)szStartPath;
-	if (dlg.DoModal()==IDOK)
-	{
-	 	strResult = dlg.GetPathName(); 
-		return TRUE;
-	}
-	strResult = _T("");
-	return FALSE;	   
-}
-
 void CPropVss::OnBrowseButton() 
 {
 	CString s;
-	if (ChooseFile(s))
+	if (SelectFile(s))
 	{
-		UpdateData(TRUE);
 		m_strPath = s;
-		UpdateData(FALSE);
+		m_ctlPath.SetWindowText(s);
 	}
-	
 }
 
 BOOL CPropVss::OnInitDialog() 
 {
 	CPropertyPage::OnInitDialog();
-	
+
 	UpdateData(FALSE);
 	OnSelendokVerSys();
-	
-	return TRUE;  
+
+	return TRUE;
 }
 
 void CPropVss::OnSelendokVerSys() 
 {
 	UpdateData(TRUE);
-	CString tempStr((LPCSTR)(m_nVerSys==3?IDS_CC_CMD:IDS_VSS_CMD));
+	CString tempStr((LPCTSTR)(m_nVerSys == VCS_CLEARCASE ? IDS_CC_CMD : IDS_VSS_CMD));
 	m_ctlVssL1.SetWindowText(tempStr);
-	m_ctlPath.EnableWindow(m_nVerSys==1 || m_nVerSys==3);
-	m_ctlVssL1.EnableWindow(m_nVerSys==1 || m_nVerSys==3);
-	m_ctlBrowse.EnableWindow(m_nVerSys==1 || m_nVerSys==3);
+	m_ctlPath.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
+	m_ctlVssL1.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
+	m_ctlBrowse.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
 }

@@ -1,3 +1,7 @@
+2004-09-10 Kimmo
+ PATCH: [ 1025411 ] Cleanup PropVSS.cpp
+  Src: PropVss.cpp
+
 2004-09-09 Kimmo
  PATCH: [ 1025052 ] Italian translation updated for latest experimental version
   Submitted by Andrea Decorte
