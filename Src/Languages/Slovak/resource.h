@@ -289,6 +289,7 @@
 #define IDC_EDIT_DIRECTION_DOWN         8612
 #define IDC_EDIT_SCOPE_SELECTION        8613
 #define IDC_EDIT_SCOPE_WHOLE_FILE       8614
+#define IDC_EDIT_SCOPE_DONT_WRAP        8615
 #define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
 #define IDD_PROPSYNTAX                  30001
