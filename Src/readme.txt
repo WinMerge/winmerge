@@ -1,5 +1,6 @@
 2004-01-20 Jochen
  Fix bug 880320
+  New class CSilentException to be thrown on subsequent failures in proxy linking to merge7z*.dll.
   src: Merge7zCommon.cpp Merge7zCommon.h MainFrm.cpp
   
 2004-01-19 Jochen
