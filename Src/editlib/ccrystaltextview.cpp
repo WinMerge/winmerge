@@ -3825,7 +3825,7 @@ PrepareDragData ()
 
   CString text;
   GetText (m_ptDrawSelStart, m_ptDrawSelEnd, text);
-  HGLOBAL hData =::GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, _tcslen (text) + 1);
+  HGLOBAL hData =::GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, (_tcslen (text)+1)*sizeof(TCHAR));
   if (hData == NULL)
     return NULL;
 

@@ -1,3 +1,7 @@
+2003-10-14 Laoran
+ BUG: [ 822844 ] Drag & Drop crashes on Unicode build (correcting memory allocation)
+  editlib: ccrystaltextview.cpp
+
 2003-10-13 Laoran
  PATCH: [ 821821 ] Merge multiple diffs 
   WinMerge: Merge.rc MergeDoc.cpp MergeDoc.h MergeEditView.cpp MergeEditView.h resource.h
