@@ -3,6 +3,8 @@
   Src: MainFrm.cpp Merge.rc MergeDoc.cpp MergeDoc.h MergeEdiView.cpp
    MergeEditView.h OptionsDef.h resource.h
   Languages: *.rc resource.h
+ BUG: [ 939548 ] Location bar crash if diff at end missing last line EOL
+  Src: LocationView.cpp
 
 2004-04-20 WinMerge experimental release 2.1.7.0 (cvs)
 

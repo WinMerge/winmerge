@@ -83,7 +83,7 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	const int w = rc.Width() / 4;
 	const int x = (rc.Width() - 2 * w) / 3;
-	const int nbLines = m_view0->GetLineCount();
+	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
 	COLORREF cr0 = CLR_NONE; // Left side color
 	COLORREF cr1 = CLR_NONE; // Right side color
 	COLORREF crt = CLR_NONE; // Text color
@@ -138,7 +138,7 @@ BOOL CLocationView::GetNextRect(int &nLineIndex)
 	CMergeDoc *pDoc = GetDocument();
 	BOOL bInDiff = FALSE;
 	int nextDiff = -1;
-	int nbLines = pDoc->GetLineCount(TRUE);
+	const int nbLines = min(pDoc->GetLineCount(TRUE), pDoc->GetLineCount(FALSE));
 	
 	++nLineIndex;
 	if (nLineIndex >= nbLines)
