@@ -197,6 +197,7 @@ protected:
 	afx_msg void OnCurdiff();
 	afx_msg void OnUpdateCurdiff(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateSave(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateUIMessage(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnRefresh();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

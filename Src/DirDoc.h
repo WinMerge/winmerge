@@ -25,11 +25,17 @@
 #endif // _MSC_VER >= 1000
 // DirDoc.h : header file
 //
+#include "Merge.h"		// DirDocFilter theApp
 #include "DirView.h"
 #include "DiffContext.h"
+#include "diffThread.h"
 
 class CMergeDoc;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocPtrList;
+class DirDocFilter;
+
+const UINT MSG_UI_UPDATE = WM_USER;
+const UINT MSG_STAT_UPDATE = WM_USER + 1;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc document
@@ -91,10 +97,20 @@ protected:
 
 	// Implementation data
 private:
+	DirDocFilter * m_pFilter;
+	CDiffThread m_diffThread;
 	CDirView *m_pDirView;
 	MergeDocPtrList m_MergeDocs;
 	BOOL m_bReuseMergeDocs; // policy to reuse existing merge docs
+};
 
+// callback for file/directory filtering during diff
+// actually we just forward these calls to the app, to CMergeApp::includeFile & includeDir
+class DirDocFilter : public IDiffFilter
+{
+public:
+	virtual BOOL includeFile(LPCTSTR szFileName) { return theApp.includeFile(szFileName); }
+	virtual BOOL includeDir(LPCTSTR szDirName) { return theApp.includeDir(szDirName); }
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -192,6 +192,10 @@ SOURCE=.\DiffContext.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DiffThread.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Dir.cpp
 # End Source File
 # Begin Source File
@@ -645,6 +649,10 @@ SOURCE=.\DIFF.H
 # Begin Source File
 
 SOURCE=.\DiffContext.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DiffThread.h
 # End Source File
 # Begin Source File
 

@@ -93,6 +93,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_CURDIFF, OnCurdiff)
 	ON_UPDATE_COMMAND_UI(ID_CURDIFF, OnUpdateCurdiff)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateSave)
+	ON_MESSAGE(MSG_UI_UPDATE, OnUpdateUIMessage)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
@@ -1106,4 +1107,11 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 		return FALSE;
 	}
 	return CListViewEx::PreTranslateMessage(pMsg);
+}
+
+void CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam )
+{
+	GetDocument()->Redisplay();
+	if (mf->m_bScrollToFirst)
+		OnFirstdiff();
 }

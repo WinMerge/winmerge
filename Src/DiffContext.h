@@ -88,9 +88,9 @@ public:
 	CString m_strNormalizedRight;
 	CRegExp m_rgx;
 	CString m_strRegExp;
-	IDiffStatus * m_piStatus;
 	IDiffFilter * m_piFilter;
-
+	UINT m_msgUpdateStatus;
+	HWND m_hMainFrame;
 
 	struct dirdata ddLeft, ddRight;
 	char *pNamesLeft;

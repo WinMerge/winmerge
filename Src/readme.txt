@@ -1,3 +1,9 @@
+2003-07-10 Kimmo
+ PATCH: [ 766727 ] Threaded dir compare
+  WinMerge: DiffContext.h DiffContext.cpp DirDoc.h DirDoc.cpp
+   DirView.h DirView.cpp MainFrm.h MainFrm.cpp Merge.dsp
+   New files: DiffThread.h DiffThread.cpp
+
 2003-07-10 Laoran
  PATCH: [ 768378 ] use Rescan Timer for Replace All 
   WinMerge: MergeEditView.cpp

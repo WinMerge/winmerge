@@ -45,8 +45,9 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 
 	pNamesLeft = NULL;
 	pNamesRight = NULL;
-	m_piStatus = 0;
 	m_piFilter = 0;
+	m_msgUpdateStatus = 0;
+	m_hMainFrame = NULL;
 }
 
 CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
@@ -62,8 +63,9 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	m_strRight = pszRight;
 	m_pList = src.m_pList;
 	SetRegExp(src.m_strRegExp);
-	m_piStatus = src.m_piStatus;
 	m_piFilter = src.m_piFilter;
+	m_msgUpdateStatus = src.m_msgUpdateStatus;
+	m_hMainFrame = src.m_hMainFrame;
 
 	pNamesLeft = NULL;
 	pNamesRight = NULL;
@@ -94,7 +96,6 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszR
 void CDiffContext::AddDiff(DIFFITEM di)
 {
 	// BSP - Capture the extension; from the end of the file name to the last '.'     
-	int j = 0;
 	TCHAR *pDest = _tcsrchr(di.sfilename, _T('.') );
 
 	if(pDest)	// handle no extensions case.
@@ -104,9 +105,7 @@ void CDiffContext::AddDiff(DIFFITEM di)
 	}
 
 	m_pList->AddTail(di);
-
-	if (m_piStatus)
-		m_piStatus->rptFile(di.code);
+	SendMessage(m_hMainFrame, m_msgUpdateStatus, di.code, NULL);
 }
 
 void CDiffContext::RemoveDiff(POSITION diffpos)

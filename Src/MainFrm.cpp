@@ -98,6 +98,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
 	ON_WM_DROPFILES()
+	ON_MESSAGE(MSG_STAT_UPDATE, OnUpdateStatusMessage)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1648,3 +1649,10 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 	DoFileOpen(files[0], files[1], FFILEOPEN_NONE, FFILEOPEN_NONE, ctrlKey);
 }
 
+void CMainFrame::OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam)
+{
+	if (wParam == 0xFF)
+		clearStatus();
+	else
+		rptStatus(wParam);
+}
