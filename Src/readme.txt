@@ -1,3 +1,5 @@
+2005-03-01 WinMerge experimental release 2.3.1.5 (cvs)
+
 2005-03-01 Kimmo
  PATCH: [ 1153870 ] Disable redrawing dir compare view while adding items
   Src: DirDoc.cpp
