@@ -36,7 +36,7 @@ static void FilterAdd(const CString & sDir, const fentry * lent, const fentry *r
 typedef int (CString::*cmpmth)(LPCTSTR sz) const;
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object).*(ptrToMember))
 
-// Compare two directories & output all results found via calls to to FilterAdd
+// Compare two directories & output all results found via calls to FilterAdd
 // base directories to compare are in the CDiffContext
 // and this call is responsible for diff'ing just the subdir specified
 // (ie, if subdir is empty, this is the base call)
