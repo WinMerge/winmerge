@@ -179,7 +179,10 @@ void CDirView::OnInitialUpdate()
 	VERIFY (bm.LoadBitmap (IDB_UNKNOWN));
 	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
 	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_BINARY));
+	VERIFY (bm.LoadBitmap (IDB_BINARYSAME));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_BINARYDIFF));
 	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
 	bm.Detach();
 	VERIFY (bm.LoadBitmap (IDB_LFOLDER));
@@ -516,6 +519,7 @@ void CDirView::OpenSelection()
 			}
 			break;
 		case FILE_BINDIFF:
+		case FILE_BINSAME:
 			{
 				CString s;
 				VERIFY(s.LoadString(IDS_FILEBINARY));

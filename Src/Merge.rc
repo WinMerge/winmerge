@@ -570,9 +570,10 @@ IDB_EQUAL               BITMAP  DISCARDABLE     "res\\equal.bmp"
 IDB_NOTEQUAL            BITMAP  DISCARDABLE     "res\\notequal.bmp"
 IDB_RFOLDER             BITMAP  DISCARDABLE     "res\\rfolder.bmp"
 IDB_UNKNOWN             BITMAP  DISCARDABLE     "res\\unknown.bmp"
-IDB_BINARY              BITMAP  DISCARDABLE     "res\\binary.bmp"
+IDB_BINARYSAME          BITMAP  DISCARDABLE     "res\\binary.bmp"
 IDB_LFILE               BITMAP  DISCARDABLE     "res\\lfile.bmp"
 IDB_RFILE               BITMAP  DISCARDABLE     "res\\rfile.bmp"
+IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1017,6 +1018,7 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
+    IDS_BIN_FILES_SAME      "Binary files are identical"
 END
 
 #endif    // English (U.S.) resources

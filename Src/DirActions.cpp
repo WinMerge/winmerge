@@ -81,6 +81,7 @@ void CDirView::DoCopyFileToLeft()
 			act.src = srFile;
 			act.dest = slFile;
 			act.idx = sel;
+			act.code = di.code;
 			act.dirflag = IsItemCodeDir(di.code);
 			actionList.actions.AddTail(act);
 		}
@@ -106,6 +107,7 @@ void CDirView::DoCopyFileToRight()
 			act.dest = srFile;
 			act.dirflag = IsItemCodeDir(di.code);
 			act.idx = sel;
+			act.code = di.code;
 			actionList.actions.AddTail(act);
 		}
 		++actionList.selcount;
@@ -130,6 +132,7 @@ void CDirView::DoDelLeft()
 			act.src = slFile;
 			act.dirflag = IsItemCodeDir(di.code);
 			act.idx = sel;
+			act.code = di.code;
 			actionList.actions.AddTail(act);
 		}
 		++actionList.selcount;
@@ -154,6 +157,7 @@ void CDirView::DoDelRight()
 			act.src = srFile;
 			act.dirflag = IsItemCodeDir(di.code);
 			act.idx = sel;
+			act.code = di.code;
 			actionList.actions.AddTail(act);
 		}
 		++actionList.selcount;
@@ -179,6 +183,7 @@ void CDirView::DoDelBoth()
 			act.dest = slFile;
 			act.dirflag = IsItemCodeDir(di.code);
 			act.idx = sel;
+			act.code = di.code;
 			actionList.actions.AddTail(act);
 		}
 		++actionList.selcount;
@@ -291,7 +296,10 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 			// copy single file, and update status immediately
 			if (mf->SyncFiles(act.src, act.dest, &s))
 			{
-				mf->UpdateCurrentFileStatus(FILE_SAME, act.idx);
+				if (act.code == FILE_BINDIFF)
+					mf->UpdateCurrentFileStatus(FILE_BINSAME, act.idx);
+				else
+					mf->UpdateCurrentFileStatus(FILE_SAME, act.idx);
 			}
 			else
 			{
@@ -420,6 +428,7 @@ BOOL CDirView::IsItemDeletableOnLeft(int code)
 	{
 	case FILE_LUNIQUE:
 	case FILE_DIFF:
+	case FILE_BINSAME:
 	case FILE_BINDIFF:
 	case FILE_SAME:
 	case FILE_LDIRUNIQUE:
@@ -434,6 +443,7 @@ BOOL CDirView::IsItemDeletableOnRight(int code)
 	{
 	case FILE_RUNIQUE:
 	case FILE_DIFF:
+	case FILE_BINSAME:
 	case FILE_BINDIFF:
 	case FILE_SAME:
 	case FILE_RDIRUNIQUE:
@@ -447,6 +457,7 @@ BOOL CDirView::IsItemDeletableOnBoth(int code)
 	switch(code)
 	{
 	case FILE_DIFF:
+	case FILE_BINSAME:
 	case FILE_BINDIFF:
 	case FILE_SAME:
 		return TRUE;
@@ -461,6 +472,7 @@ BOOL CDirView::IsItemOpenableOnLeft(int code)
 	{
 	case FILE_LUNIQUE:
 	case FILE_DIFF:
+	case FILE_BINSAME:
 	case FILE_BINDIFF:
 	case FILE_SAME:
 		return TRUE;
@@ -474,6 +486,7 @@ BOOL CDirView::IsItemOpenableOnRight(int code)
 	{
 	case FILE_RUNIQUE:
 	case FILE_DIFF:
+	case FILE_BINSAME:
 	case FILE_BINDIFF:
 	case FILE_SAME:
 		return TRUE;

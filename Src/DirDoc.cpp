@@ -232,6 +232,7 @@ void CDirDoc::Redisplay()
 				p = _tcsninc(di.lpath, llen);
 			}
 			break;
+		case FILE_BINSAME:
 		case FILE_BINDIFF:
 			if (mf->m_bShowDiff
 				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
@@ -351,6 +352,10 @@ void CDirDoc::UpdateItemStatus(UINT nIdx)
 	case FILE_BINDIFF:
 		VERIFY(s.LoadString(IDS_BIN_FILES_DIFF));
 		SetItemStatus(nIdx, s, FILE_BINDIFF, &di.ltime, &di.rtime);
+		break;
+	case FILE_BINSAME:
+		VERIFY(s.LoadString(IDS_BIN_FILES_SAME));
+		SetItemStatus(nIdx, s, FILE_BINSAME, &di.ltime, &di.rtime);
 		break;
 	case FILE_LUNIQUE:
 	case FILE_LDIRUNIQUE:

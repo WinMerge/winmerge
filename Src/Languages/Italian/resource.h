@@ -87,17 +87,20 @@
 #define IDS_ERROR_BACKUP                188
 #define IDS_CONFIRM_COPY_SINGLE         189
 #define IDS_CONFIRM_DELETE_SINGLE       190
+#define IDS_BIN_FILES_SAME              191
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
 #define IDB_UNKNOWN                     216
-#define IDB_BINARY                      217
+#define IDB_BINARYSAME                  217
+
 #define IDB_LFILE                       218
 #define IDB_RFILE                       219
 #define IDB_SPLASH                      220
 #define IDB_WINMERGE                    221
 #define IDB_OLDSPLASH                   222
 #define IDB_LFOLDER                     223
+#define IDB_BINARYDIFF                  224
 
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
@@ -322,7 +325,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        113
+#define _APS_NEXT_RESOURCE_VALUE        225
 #define _APS_NEXT_COMMAND_VALUE         32817
 #define _APS_NEXT_CONTROL_VALUE         1036
 #define _APS_NEXT_SYMED_VALUE           108

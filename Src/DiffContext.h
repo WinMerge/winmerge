@@ -25,14 +25,15 @@ typedef struct tagDIFFITEM {
 	BYTE code;
 }DIFFITEM;
 
-#define FILE_LUNIQUE		0
-#define FILE_RUNIQUE		1
-#define FILE_DIFF		2
-#define FILE_SAME		3
-#define FILE_ERROR		4
-#define FILE_BINDIFF	5
-#define FILE_LDIRUNIQUE		6
-#define FILE_RDIRUNIQUE		7
+#define FILE_LUNIQUE     0
+#define FILE_RUNIQUE     1
+#define FILE_DIFF        2
+#define FILE_SAME        3
+#define FILE_ERROR       4
+#define FILE_BINSAME     5
+#define FILE_BINDIFF     6
+#define FILE_LDIRUNIQUE  7
+#define FILE_RDIRUNIQUE  8
 
 class IDiffStatus
 {

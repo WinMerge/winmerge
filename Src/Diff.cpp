@@ -497,9 +497,11 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	    }
 	    else 
 	    {
-			val = 0;
-			//pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_SAME);
-			//	if (gWriteLog) gLog.Write(_T("\tidentical.\r\n"));
+			// To not add as same file
+			// This should be done more cleanly in future
+			val = 1;
+			pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_BINSAME);
+			gLog.Write(_T("\tsame binary.\r\n"));
 	    }
 	}
 	else
