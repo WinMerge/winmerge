@@ -1,3 +1,7 @@
+2004-08-11 Kimmo
+ PATCH: [ 1006475 ] Don't save editor settings to different key in registry
+  Src/editlib: editreg.h
+
 2004-08-10 Kimmo
  BUG: [ 1006164 ] accelerator conflict
   Src: Merge.rc

@@ -27,10 +27,10 @@
 #define __EDITREG_H__INCLUDED__
 
 //  Registry keys & values
-#define REG_EDITPAD         _T ("Software\\EditPad")
-#define REG_EDITPAD_MULTI   _T ("Software\\EditPad\\Multi")
-#define REG_EDITPAD_SINGLE  _T ("Software\\EditPad\\Single")
-#define REG_EDITPAD_IDE     _T ("Software\\EditPad\\IDE")
+#define REG_EDITPAD         _T ("Software\\Thingamahoochie\\WinMerge\\Editor")
+#define REG_EDITPAD_MULTI   _T ("Software\\Thingamahoochie\\WinMerge\\Editor\\Multi")
+#define REG_EDITPAD_SINGLE  _T ("Software\\Thingamahoochie\\WinMerge\\Editor\\Single")
+#define REG_EDITPAD_IDE     _T ("Software\\Thingamahoochie\\WinMerge\\Editor\\IDE")
 #define REG_EDITPAD_VERSION 0x0108000d
 #define MAX_REMEMBERED 100
 #define REMEMBERED_TO_REMOVE 10
