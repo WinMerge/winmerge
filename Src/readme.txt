@@ -1,3 +1,7 @@
+2004-02-07 Laoran
+ BUG: [ 892158 ] Empty lines added to end of file
+  Src: MergeDoc.cpp
+
 2004-02-07 WinMerge experimental release 2.1.5.9 (cvs)
 
 2004-02-07 Kimmo

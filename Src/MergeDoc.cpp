@@ -1423,6 +1423,7 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 
 	file.WriteBom();
 
+	// line loop : get each real line and write it in the file
 	CString sLine;
 	CString sEol = GetStringEol(nCrlfStyle);
 	int nLineCount = m_aLines.GetSize();
@@ -1430,18 +1431,36 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	{
 		if (GetLineFlags(line) & LF_GHOST)
 			continue;
+
+		// get the characters of the line (excluding EOL)
 		if (GetLineLength(line) > 0)
 			GetText(line, 0, line, GetLineLength(line), sLine, 0);
 		else
 			sLine = _T("");
+
+		// last real line ?
+		if (line == ApparentLastRealLine())
+		{
+			// last real line is never EOL terminated
+			ASSERT (_tcslen(GetLineEol(line)) == 0);
+			// write the line and exit loop
+			file.WriteString(sLine);
+			break;
+		}
+
+		// normal real line : append an EOL
 		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
 		{
+			// either the EOL of the line (when preserve original EOL chars is on)
 			sLine += GetLineEol(line);
 		}
 		else
 		{
+			// or the default EOL for this file
 			sLine += sEol;
 		}
+
+		// write this line to the file (codeset or unicode conversions are done there)
 		file.WriteString(sLine);
 	}
 	file.Close();
