@@ -1,7 +1,7 @@
 2003-10-02 Perry
  PATCH: [ 815483 ] Fix file stat structure (lost in dirscan patch)
   WinMerge: Diff.cpp DirScan.cpp
- PATCH: [ 815516 ] Utf8len_of_string is wrong
+ PATCH: [ 815523 ] Fix utf8len_of_string
   common: unicoder.cpp
 
 2003-09-30 Perry
