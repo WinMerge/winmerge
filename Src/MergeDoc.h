@@ -56,6 +56,8 @@ public:
 	CStringList list;
 };
 
+class CChildFrame;
+class CDirDoc;
 
 class CMergeDoc : public CDocument
 {
@@ -127,7 +129,6 @@ protected: // create from serialization only
 	
 	// Operations
 public:	
-	CMergeEditView * m_pView;
 	CPtrList m_undoList;
 	CArray<DIFFRANGE,DIFFRANGE> m_diffs;
 	UINT m_nDiffs;
@@ -149,6 +150,12 @@ public:
 	int LineToDiff(UINT nLine);
 	void SetDiffViewMode(BOOL bEnable);
 	
+	void SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight);
+	void SetDirDoc(CDirDoc * pDirDoc);
+	CMergeEditView * GetLeftView() { return m_pLeftView; }
+	CMergeEditView * GetRightView() { return m_pRightView; }
+	CChildFrame * GetParentFrame();
+
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMergeDoc)
@@ -179,16 +186,23 @@ public:
 	virtual void Dump(CDumpContext& dc) const;
 #endif
 
-protected:
-
-// Generated message map functions
+// Implementation data
 protected:
 	CString m_strTempRightFile;
 	CString m_strTempLeftFile;
+	CMergeEditView * m_pLeftView;
+	CMergeEditView * m_pRightView;
+	CDirDoc * m_pDirDoc;
 	BOOL m_bEnableRescan;
 	BOOL m_bNeedIdleRescan;
 	COleDateTime m_LastRescan;
+
+// friend access
 	friend class RescanSuppress;
+
+
+// Generated message map functions
+protected:
 	//{{AFX_MSG(CMergeDoc)
 	afx_msg void OnFileSave();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);

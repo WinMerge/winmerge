@@ -158,7 +158,6 @@ void CMergeEditView::OnInitialUpdate()
 {
 	CCrystalEditViewEx::OnInitialUpdate();
 	SetFont(dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff);
-	GetDocument()->m_pView = this;
 }
 
 void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView)

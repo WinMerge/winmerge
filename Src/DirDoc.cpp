@@ -53,13 +53,13 @@ IMPLEMENT_DYNCREATE(CDirDoc, CDocument)
 
 CDirDoc::CDirDoc()
 {
-	m_pView = NULL;
+	m_pDirView = NULL;
 	m_pCtxt=NULL;
+	m_pMergeDoc = NULL;
 }
 
 CDirDoc::~CDirDoc()
 {
-	mf->m_pDirDoc = NULL;
 	if (m_pCtxt != NULL)
 		delete m_pCtxt;
 }
@@ -203,7 +203,7 @@ void CDirDoc::Rescan()
 
 	CString s;
 	AfxFormatString2(s, IDS_DIRECTORY_WINDOW_STATUS_FMT, m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
-	((CDirFrame*)(m_pView->GetParent()))->SetStatus(s);
+	((CDirFrame*)(m_pDirView->GetParent()))->SetStatus(s);
 	Redisplay();
 
 	EndWaitCursor();
@@ -283,7 +283,7 @@ void CDirDoc::Redisplay()
 	int llen = m_pCtxt->m_strNormalizedLeft.GetLength();
 	int rlen = m_pCtxt->m_strNormalizedRight.GetLength();
 
-	m_pView->DeleteAllDisplayItems();
+	m_pDirView->DeleteAllDisplayItems();
 
 	POSITION diffpos = m_pCtxt->GetFirstDiffPosition();
 	while (diffpos)
@@ -295,12 +295,12 @@ void CDirDoc::Redisplay()
 
 		if (p)
 		{
-			m_pView->AddItem(cnt, DV_NAME, di.sfilename);
-			m_pView->AddItem(cnt, DV_EXT, di.sext); // BSP - Add the current file extension
+			m_pDirView->AddItem(cnt, DV_NAME, di.sfilename);
+			m_pDirView->AddItem(cnt, DV_EXT, di.sext); // BSP - Add the current file extension
 			s = _T(".");
 			s += p;
-			m_pView->AddItem(cnt, DV_PATH, s);
-			m_pView->SetItemKey(cnt, curdiffpos);
+			m_pDirView->AddItem(cnt, DV_PATH, s);
+			m_pDirView->SetItemKey(cnt, curdiffpos);
 			UpdateItemStatus(cnt, di);
 			cnt++;
 		}
@@ -309,6 +309,8 @@ void CDirDoc::Redisplay()
 
 CDirView * CDirDoc::GetMainView()
 {
+	// why are we doing this ? dirdocs only have one view
+
 	POSITION pos = GetFirstViewPosition(), ps2=pos;
 
 	while (pos != NULL)
@@ -316,6 +318,10 @@ CDirView * CDirDoc::GetMainView()
 		CDirView* pView = (CDirView*)GetNextView(pos);
 		if (pView->IsKindOf( RUNTIME_CLASS(CDirView)))
 			return pView;
+		else
+		{
+			ASSERT(0);
+		}
 	}
 	return (CDirView*)GetNextView(ps2);
 }
@@ -351,15 +357,15 @@ TimeString(const time_t * tim)
 
 void CDirDoc::SetItemStatus(UINT nIdx, LPCTSTR szStatus, int image, const time_t * ltime, const time_t * rtime)
 {
-	m_pView->AddItem(nIdx, DV_STATUS, szStatus);
-	m_pView->SetImage(nIdx, image);
-	m_pView->AddItem(nIdx, DV_LTIME, TimeString(ltime));
-	m_pView->AddItem(nIdx, DV_RTIME, TimeString(rtime));
+	m_pDirView->AddItem(nIdx, DV_STATUS, szStatus);
+	m_pDirView->SetImage(nIdx, image);
+	m_pDirView->AddItem(nIdx, DV_LTIME, TimeString(ltime));
+	m_pDirView->AddItem(nIdx, DV_RTIME, TimeString(rtime));
 }
 
 void CDirDoc::UpdateItemStatus(UINT nIdx)
 {
-	POSITION diffpos = m_pView->GetItemKey(nIdx);
+	POSITION diffpos = m_pDirView->GetItemKey(nIdx);
 	DIFFITEM di = m_pCtxt->GetDiffAt(diffpos);
 
 	UpdateTimes(&di); // in case just copied (into existence) or modified
@@ -412,7 +418,7 @@ void CDirDoc::InitStatusStrings()
 
 void CDirDoc::UpdateResources()
 {
-	m_pView->UpdateResources();
+	m_pDirView->UpdateResources();
 
 	CString s;
 	VERIFY(s.LoadString(IDS_DIRECTORY_WINDOW_TITLE));
@@ -500,7 +506,7 @@ BOOL CDirDoc::UpdateItemStatus(LPCTSTR pathLeft, LPCTSTR pathRight,
 			// Right item found!
 			// Get index at view, update status to context
 			// and tell view to update found item
-			int ind = m_pView->GetItemIndex((DWORD)currentPos);
+			int ind = m_pDirView->GetItemIndex((DWORD)currentPos);
 			current.code = (BYTE)status;
 			m_pCtxt->UpdateStatusCode(currentPos, (BYTE)status);
 			UpdateItemStatus(ind, current);
@@ -511,11 +517,29 @@ BOOL CDirDoc::UpdateItemStatus(LPCTSTR pathLeft, LPCTSTR pathRight,
 	return found;
 }
 
-CDirView * CDirDoc::SetView(CDirView * newView)
+// stash away our view pointer
+void CDirDoc::SetDirView(CDirView * newView)
 {
-	CDirView * currentView = m_pView;
-	m_pView = newView;
-	return currentView;
+	CDirView * currentView = m_pDirView;
+	m_pDirView = newView;
+	// MFC has a view list for us, so lets check against it
+	POSITION pos = GetFirstViewPosition();
+	CDirView * temp = static_cast<CDirView *>(GetNextView(pos));
+	ASSERT(temp == m_pDirView); // verify that our stashed pointer is the same as MFC's
+}
+
+// coupling between dirdoc & mergedoc
+void CDirDoc::SetMergeDoc(CMergeDoc * pMergeDoc)
+{
+	ASSERT(pMergeDoc && !m_pMergeDoc);
+	m_pMergeDoc = pMergeDoc;
+}
+
+// coupling between dirdoc & mergedoc
+void CDirDoc::ClearMergeDoc(CMergeDoc * pMergeDoc)
+{
+	ASSERT(m_pMergeDoc == pMergeDoc);
+	m_pMergeDoc = NULL;
 }
 
 BOOL CDirDoc::UpdateItemTimes(LPCTSTR pathLeft, LPCTSTR pathRight)
@@ -562,7 +586,7 @@ BOOL CDirDoc::UpdateItemTimes(LPCTSTR pathLeft, LPCTSTR pathRight)
 			// Right item found!
 			// Get index at view, update filetimes to context
 			// and tell view to update found item
-			int ind = m_pView->GetItemIndex((DWORD) currentPos);
+			int ind = m_pDirView->GetItemIndex((DWORD) currentPos);
 			UpdateTimes(&current);
 			m_pCtxt->UpdateTimes(currentPos, current.ltime, current.rtime);
 			UpdateItemStatus(ind, current);

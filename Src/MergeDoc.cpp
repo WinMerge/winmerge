@@ -65,7 +65,6 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 {
 	m_diffs.SetSize(64);
 	m_nDiffs=0;
-	m_pView=NULL;
 	m_nCurDiff=-1;
 	m_strTempLeftFile=_T("");
 	m_strTempRightFile=_T("");
@@ -73,6 +72,9 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	m_bNeedIdleRescan = FALSE;
 	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
+	m_pLeftView=NULL;
+	m_pRightView=NULL;
+	m_pDirDoc=NULL;
 }
 #pragma warning(default:4355)
 
@@ -84,8 +86,7 @@ CMergeDoc::~CMergeDoc()
 		pitem = (CUndoItem*)m_undoList.RemoveHead();
 		delete pitem;
 	}
-	mf->m_pMergeDoc = NULL;
-
+	m_pDirDoc->ClearMergeDoc(this);
 }
 
 
@@ -402,8 +403,8 @@ BOOL CMergeDoc::Rescan()
 			if (m_nDiffs>0)
 			{
 				PrimeTextBuffers();
-				mf->m_pLeft->PrimeListWithFile();
-				mf->m_pRight->PrimeListWithFile();
+				m_pLeftView->PrimeListWithFile();
+				m_pRightView->PrimeListWithFile();
 
 				// PrimeListWithFile will call resetview which resets tabs
 //				mf->m_pLeft->SetTabSize(mf->m_nTabSize);
@@ -947,7 +948,6 @@ BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/)
 	if (!SaveHelper())
 		return FALSE;
 	
-	mf->m_pLeft = mf->m_pRight = NULL;
 	return TRUE;
 }
 
@@ -1245,12 +1245,12 @@ void CMergeDoc::OnFileSave()
 	if ((bLModified && bLSaveSuccess) || 
 		(bRModified && bRSaveSuccess))
 	{
-		if (mf->m_pDirDoc)
+		if (m_pDirDoc)
 		{
-			mf->m_pDirDoc->UpdateItemTimes(m_strLeftFile,
+			m_pDirDoc->UpdateItemTimes(m_strLeftFile,
 				m_strRightFile);
 			if (m_nDiffs == 0)
-				mf->m_pDirDoc->UpdateItemStatus(m_strLeftFile,
+				m_pDirDoc->UpdateItemStatus(m_strLeftFile,
 					m_strRightFile, FILE_SAME);
 		}
 	}
@@ -1465,13 +1465,12 @@ BOOL CMergeDoc::SaveHelper()
 	if ((bLModified && bLSaveSuccess) ||
 		 (bRModified && bRSaveSuccess))
 	{
-		if (mf->m_pDirDoc)
+		if (m_pDirDoc)
 		{
-			mf->m_pDirDoc->UpdateItemTimes(m_strLeftFile,
-				m_strRightFile);
+			m_pDirDoc->UpdateItemTimes(m_strLeftFile, m_strRightFile);
 			if (m_nDiffs == 0)
-			mf->m_pDirDoc->UpdateItemStatus(m_strLeftFile,
-				m_strRightFile, FILE_SAME);
+				m_pDirDoc->UpdateItemStatus(m_strLeftFile,
+					m_strRightFile, FILE_SAME);
 		}
 	}
 	return result;
@@ -1496,3 +1495,31 @@ void CMergeDoc::RescanIfNeeded()
 	}
 }
 
+// We have two child views (left & right), so we keep pointers directly
+// at them (the MFC view list doesn't have them both)
+void CMergeDoc::SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight)
+{
+	ASSERT(pLeft && !m_pLeftView);
+	m_pLeftView = pLeft;
+	ASSERT(pRight && !m_pRightView);
+	m_pRightView = pRight;
+}
+
+// coupling between dirdoc & mergedoc
+void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
+{
+	ASSERT(pDirDoc && !m_pDirDoc);
+	m_pDirDoc = pDirDoc;
+
+
+
+
+
+
+
+}
+
+CChildFrame * CMergeDoc::GetParentFrame() 
+{
+	return dynamic_cast<CChildFrame *>(m_pLeftView->GetParentFrame()); 
+}

@@ -3,6 +3,10 @@
  WinMerge: DiffContext.h DirDoc.cpp MainFrm.cpp Merge.cpp OpenDlg.cpp OpenDlg.h paths.cpp paths.h
  PATCH: [ 687177 ] Handle more errors during copy/creation
  WinMerge: MainFrm.cpp
+ PATCH: [ 689884 ] Revise doc/view code (allow multiple docs)
+ WinMerge: ChildFrm.cpp DirActions.cpp DirDoc.cpp DirDoc.h DirView.cpp MainFrm.cpp MainFrm.h
+  Merge.cpp MergeDoc.cpp MergeDoc.h MergeEditView.cpp
+ NB: This broke two things in MainFrm--search for TODO: 2003-03-29
 
 2003-03-25 Perry
  PATCH: [ 709575 ] Fix sanity check in CChildFrame::UpdateHeaderSizes()

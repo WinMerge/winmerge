@@ -99,14 +99,16 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		TRACE0("Failed to create second pane\n");
 		return FALSE;
 	}
+
+	// stash left & right pointers into the mergedoc
+	CMergeEditView * pLeft = (CMergeEditView *)m_wndSplitter.GetPane(0,0);
+	CMergeEditView * pRight = (CMergeEditView *)m_wndSplitter.GetPane(0,1);
+	CMergeDoc * pDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);
+	pDoc->SetMergeViews(pLeft, pRight);
+	pLeft->m_bIsLeft = TRUE;
+	pRight->m_bIsLeft = FALSE;
 	
-	mf->m_pLeft = (CMergeEditView *)m_wndSplitter.GetPane(0,0);
-	//mf->m_pLeft->OnInitialUpdate();
-	mf->m_pLeft->m_bIsLeft=TRUE;
-	mf->m_pRight = (CMergeEditView *)m_wndSplitter.GetPane(0,1);
-	//mf->m_pRight->OnInitialUpdate();
-	mf->m_pRight->m_bIsLeft=FALSE;
-	mf->m_pLeft->UpdateWindow();
+
 
 	CRect rc;
 	GetClientRect(&rc);

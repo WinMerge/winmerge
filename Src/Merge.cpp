@@ -365,9 +365,6 @@ BOOL CMergeApp::PreTranslateMessage(MSG* pMsg)
 		else
 		{
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
-			// Clear pointers that is now invalid 
-			((CMainFrame*)m_pMainWnd)->m_pLeft = NULL;
-			((CMainFrame*)m_pMainWnd)->m_pRight = NULL;
 		}
 	}
 

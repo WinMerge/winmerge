@@ -138,7 +138,7 @@ void CDirView::OnInitialUpdate()
 	CListViewEx::OnInitialUpdate();
 	m_sortColumn = -1;	// start up in no sorted order.
 	m_pList = &GetListCtrl();
-	GetDocument()->SetView(this);
+	GetDocument()->SetDirView(this);
 
     // Replace standard header with sort header
     if (HWND hWnd = ListView_GetHeader(m_pList->m_hWnd))
@@ -503,7 +503,7 @@ void CDirView::OpenSelection()
 			{
 				CString left, right;
 				if (GetSelectedFileNames(left, right))
-					mf->ShowMergeDoc(left, right);
+					mf->ShowMergeDoc(GetDocument(), left, right);
 			}
 			break;
 		case FILE_SAME:

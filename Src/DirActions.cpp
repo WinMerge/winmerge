@@ -297,9 +297,9 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 			if (mf->SyncFiles(act.src, act.dest, &s))
 			{
 				if (act.code == FILE_BINDIFF)
-					mf->UpdateCurrentFileStatus(FILE_BINSAME, act.idx);
+					mf->UpdateCurrentFileStatus(GetDocument(), FILE_BINSAME, act.idx);
 				else
-					mf->UpdateCurrentFileStatus(FILE_SAME, act.idx);
+					mf->UpdateCurrentFileStatus(GetDocument(), FILE_SAME, act.idx);
 			}
 			else
 			{
@@ -339,7 +339,7 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 					if (IsItemLeftOnly(code))
 						actionList.deletedItems.AddTail(act.idx);
 					else
-						mf->UpdateCurrentFileStatus(FILE_RUNIQUE, act.idx);
+						mf->UpdateCurrentFileStatus(GetDocument(), FILE_RUNIQUE, act.idx);
 				}
 				else
 				{
@@ -358,7 +358,7 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 					if (IsItemRightOnly(code))
 						actionList.deletedItems.AddTail(act.idx);
 					else
-						mf->UpdateCurrentFileStatus(FILE_LUNIQUE, act.idx);
+						mf->UpdateCurrentFileStatus(GetDocument(), FILE_LUNIQUE, act.idx);
 				}
 				else
 				{

@@ -27,7 +27,7 @@
 //
 #include "DirView.h"
 #include "DiffContext.h"
-
+class CMergeDoc;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc document
@@ -43,6 +43,7 @@ public:
 // Operations
 public:
 	CDirView * GetMainView();
+	CMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -66,8 +67,9 @@ public:
 	void Rescan();
 	CDiffContext *m_pCtxt;
 	virtual ~CDirDoc();
-	CDirView *SetView( CDirView *newView );
-	CDirView *GetView() { return m_pView; }
+	void SetDirView( CDirView *newView ); // TODO Perry
+	void SetMergeDoc(CMergeDoc * pMergeDoc);
+	void ClearMergeDoc(CMergeDoc * pMergeDoc);
 
 #ifdef _DEBUG
 	virtual void AssertValid() const;
@@ -85,7 +87,8 @@ protected:
 
 	// Implementation data
 private:
-	CDirView *m_pView;
+	CDirView *m_pDirView;
+	CMergeDoc *m_pMergeDoc;
 
 };
 

@@ -38,6 +38,12 @@ class CDirView;
 class CDirDoc;
 class CMergeEditView;
 
+// typed lists (homogenous pointer lists)
+typedef CTypedPtrList<CPtrList, CMergeEditView *> MergeEditViewList;
+typedef CTypedPtrList<CPtrList, CDirView *> DirViewList;
+typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocList;
+typedef CTypedPtrList<CPtrList, CDirDoc *> DirDocList;
+
 class CMainFrame : public CMDIFrameWnd
 {
 	DECLARE_DYNAMIC(CMainFrame)
@@ -64,9 +70,9 @@ public:
 	void clearStatus();
 	BOOL SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
 	BOOL DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
-	void UpdateCurrentFileStatus(UINT nStatus, int idx);
+	void UpdateCurrentFileStatus(CDirDoc * pDirDoc, UINT nStatus, int idx);
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL, BOOL bRecurse = FALSE);
-	void ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight);
+	void ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight);
 	void UpdateResources();
 	HMENU NewDefaultMenu();
 	BOOL CreateBackup(LPCTSTR pszPath);
@@ -102,9 +108,6 @@ public:
 	BOOL m_bHideBak;
 	int m_nIgnoreWhitespace;
 	BOOL m_bScrollToFirst;
-	CMergeEditView *m_pLeft, *m_pRight;
-	CMergeDoc *m_pMergeDoc;
-	CDirDoc *m_pDirDoc;
 	UINT m_nTabType;
 	BOOL m_bViewWhitespace;
 
@@ -172,6 +175,12 @@ private:
 	void RebuildRegExpList();
 	// destroy the regular expression list and free up the memory
 	void FreeRegExpList();
+	void GetAllViews(MergeEditViewList * pEditViews, DirViewList * pDirViews);
+	void GetAllMergeDocs(MergeDocList * pMergeDocs);
+	void GetAllDirDocs(DirDocList * pDirDocs);
+	void RedisplayAllDirDocs();
+	CMergeDoc * GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew);
+	CDirDoc * GetDirDocToShow(BOOL * pNew);
 };
 
 extern CMainFrame *mf;

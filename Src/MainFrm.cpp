@@ -114,9 +114,7 @@ static UINT indicators[] =
 
 CMainFrame::CMainFrame()
 {
-	m_pLeft = m_pRight = NULL;
-	m_pMergeDoc=NULL;
-	m_pDirDoc=NULL;
+
 	m_bFontSpecified=FALSE;
 	m_strSaveAsPath = _T("");
 	m_bFirstTime = TRUE;
@@ -268,112 +266,128 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 void CMainFrame::OnFileOpen() 
 {
-	if (m_pMergeDoc)
+/* TODO: 2003-03-29 Perry
+ Commenting this out b/c I don't know how to
+ make it work with [ 689884 ] Revise doc/view code (allow multiple docs)
+
+  	if (m_pMergeDoc)
 	{
 		// Save files and update dirview status if needed
 		if (!m_pMergeDoc->SaveHelper())
 			return;
 	}
+*/
 	DoFileOpen();
 }
 
-void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
+void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight)
 {
-	BOOL docNull = (m_pMergeDoc == NULL);
-	if (docNull)
-		m_pMergeDoc = (CMergeDoc*)theApp.m_pDiffTemplate->OpenDocumentFile(NULL);
-	else if (m_pLeft)
-		m_pLeft->SendMessage(WM_COMMAND, ID_FILE_SAVE);
+	BOOL docNull;
+	CMergeDoc * pMergeDoc = GetMergeDocToShow(pDirDoc, &docNull);
 
-	if (m_pMergeDoc != NULL)
+	if (!pMergeDoc) return; // when does this happen ?
+
+	pMergeDoc->m_strLeftFile = szLeft;
+	pMergeDoc->m_strRightFile = szRight;
+	pMergeDoc->m_ltBuf.FreeAll();
+	pMergeDoc->m_rtBuf.FreeAll();
+	pMergeDoc->m_ltBuf.SetEolSensitivity(m_bEolSensitive);
+	pMergeDoc->m_rtBuf.SetEolSensitivity(m_bEolSensitive);
+
+	
+
+	CString sError;
+	if (!pMergeDoc->m_ltBuf.LoadFromFile(szLeft))
 	{
-		m_pMergeDoc->m_strLeftFile = szLeft;
-		m_pMergeDoc->m_strRightFile = szRight;
-		m_pMergeDoc->m_ltBuf.FreeAll();
-		m_pMergeDoc->m_rtBuf.FreeAll();
-		m_pMergeDoc->m_ltBuf.SetEolSensitivity(m_bEolSensitive);
-		m_pMergeDoc->m_rtBuf.SetEolSensitivity(m_bEolSensitive);
-		CString sError;
-		if (!m_pMergeDoc->m_ltBuf.LoadFromFile(szLeft))
+		pMergeDoc->m_ltBuf.InitNew();
+		AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szLeft);
+	}
+	if (!pMergeDoc->m_rtBuf.LoadFromFile(szRight))
+	{
+		pMergeDoc->m_rtBuf.InitNew();
+		AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szRight);
+	}
+	if (!sError.IsEmpty())
+	{
+		AfxMessageBox(sError, MB_ICONSTOP);
+		// TODO -- should we close the doc ? How ?
+		return;
+	}
+	
+	if (pMergeDoc->Rescan())
+	{
+		if (docNull)
 		{
-			m_pMergeDoc->m_ltBuf.InitNew();
-			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szLeft);
+			CWnd* pWnd = pMergeDoc->GetParentFrame();
+			MDIActivate(pWnd);
 		}
-		if (!m_pMergeDoc->m_rtBuf.LoadFromFile(szRight))
+		else
+			MDINext();
+
+		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
+		CMergeEditView * pRight = pMergeDoc->GetRightView();
+			
+		// scroll to first diff
+		if(m_bScrollToFirst && pMergeDoc->m_diffs.GetSize()!=0)
 		{
-			m_pMergeDoc->m_rtBuf.InitNew();
-			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szRight);
+			pLeft->SelectDiff(0, TRUE, FALSE);
 		}
-		if (!sError.IsEmpty())
-		{
-			AfxMessageBox(sError, MB_ICONSTOP);
-			// TODO -- should we close the doc ? How ?
-			return;
-		}
+
+		// set the document types
+		CString sname, sext;
+		SplitFilename(szLeft, 0, &sname, &sext);
+		pLeft->SetTextType(sext);
+		SplitFilename(szRight, 0, &sname, &sext);
+		pRight->SetTextType(sext);
+
+			
+		// SetTextType will revert to language dependent defaults for tab
+		pLeft->SetTabSize(mf->m_nTabSize);
+		pRight->SetTabSize(mf->m_nTabSize);
+		pLeft->SetViewTabs(mf->m_bViewWhitespace);
+		pRight->SetViewTabs(mf->m_bViewWhitespace);
 		
-		if (m_pMergeDoc->Rescan())
+		// set the frame window header
+		CChildFrame *pf = pMergeDoc->GetParentFrame();
+		if (pf != NULL)
 		{
-			if (docNull)
-			{
-				CWnd* pWnd = m_pMergeDoc->m_pView->GetParent();
-				MDIActivate(pWnd);
-			}
-			else
-				MDINext();
-			
-			// scroll to first diff
-			if(m_bScrollToFirst && m_pMergeDoc->m_diffs.GetSize()!=0)
-			{
-				m_pLeft->SelectDiff(0, TRUE, FALSE);
-			}
+			pf->SetHeaderText(0, szLeft);
+			pf->SetHeaderText(1, szRight);
+		}
 
-			// set the document types
-			CString sname, sext;
-			SplitFilename(szLeft, 0, &sname, &sext);
-			m_pLeft->SetTextType(sext);
-			SplitFilename(szRight, 0, &sname, &sext);
-			m_pRight->SetTextType(sext);
-
-			
-			// SetTextType will revert to language dependent defaults for tab
-			m_pLeft->SetTabSize(mf->m_nTabSize);
-			m_pRight->SetTabSize(mf->m_nTabSize);
-			m_pLeft->SetViewTabs(mf->m_bViewWhitespace);
-			m_pRight->SetViewTabs(mf->m_bViewWhitespace);
-			
-			// set the frame window header
-			CChildFrame *pf = static_cast<CChildFrame *>(m_pMergeDoc->m_pView->GetParentFrame());
-			if (pf != NULL)
-			{
-				pf->SetHeaderText(0, szLeft);
-				pf->SetHeaderText(1, szRight);
-			}
-
-			// Set tab type (tabs/spaces)
-			if ( m_nTabType == 0 )
-			{
-				m_pLeft->SetInsertTabs( TRUE );
-				m_pRight->SetInsertTabs( TRUE );
-			}
-			else
-			{
-				m_pLeft->SetInsertTabs( FALSE );
-				m_pRight->SetInsertTabs( FALSE );
-			}
+		// Set tab type (tabs/spaces)
+		if ( m_nTabType == 0 )
+		{
+			pLeft->SetInsertTabs( TRUE );
+			pRight->SetInsertTabs( TRUE );
 		}
 		else
 		{
-			// CMergeDoc::Rescan fails if files are identical, or 
-			// does not exist on both sides (both of these cases put
-			// up message boxes inside of CMergeDoc::Rescan)
-			// or the really arcane case that the temp files couldn't 
-			// be created, which is too obscure to bother reporting
-			// if you can't write to your temp directory, doing nothing
-			// is graceful enough for that).
-			m_pMergeDoc->m_pView->GetParentFrame()->DestroyWindow();
-			m_pMergeDoc=NULL;
-			m_pLeft = m_pRight = NULL;
+			pLeft->SetInsertTabs( FALSE );
+			pRight->SetInsertTabs( FALSE );
 		}
+	}
+	else
+	{
+		// CMergeDoc::Rescan fails if files are identical, or 
+		// does not exist on both sides (both of these cases put
+		// up message boxes inside of CMergeDoc::Rescan)
+		// or the really arcane case that the temp files couldn't 
+		// be created, which is too obscure to bother reporting
+		// if you can't write to your temp directory, doing nothing
+		// is graceful enough for that).
+		pMergeDoc->GetParentFrame()->DestroyWindow();
+	}
+}
+
+void CMainFrame::RedisplayAllDirDocs()
+{
+	DirDocList dirdocs;
+	GetAllDirDocs(&dirdocs);
+	while (!dirdocs.IsEmpty())
+	{
+		CDirDoc * pDirDoc = dirdocs.RemoveHead();
+		pDirDoc->Redisplay();
 	}
 }
 
@@ -381,40 +395,35 @@ void CMainFrame::OnOptionsShowDifferent()
 {
 	m_bShowDiff = !m_bShowDiff;
 	theApp.WriteProfileInt(_T("Settings"), _T("ShowDifferent"), m_bShowDiff);
-	if (m_pDirDoc != NULL)
-		m_pDirDoc->Redisplay();
+	RedisplayAllDirDocs();
 }
 
 void CMainFrame::OnOptionsShowIdentical() 
 {
 	m_bShowIdent = !m_bShowIdent;
 	theApp.WriteProfileInt(_T("Settings"), _T("ShowIdentical"), m_bShowIdent);
-	if (m_pDirDoc != NULL)
-		m_pDirDoc->Redisplay();
+	RedisplayAllDirDocs();
 }
 
 void CMainFrame::OnOptionsShowUniqueLeft() 
 {
 	m_bShowUniqueLeft = !m_bShowUniqueLeft;
 	theApp.WriteProfileInt(_T("Settings"), _T("ShowUniqueLeft"), m_bShowUniqueLeft);
-	if (m_pDirDoc != NULL)
-		m_pDirDoc->Redisplay();
+	RedisplayAllDirDocs();
 }
 
 void CMainFrame::OnOptionsShowUniqueRight() 
 {
 	m_bShowUniqueRight = !m_bShowUniqueRight;
 	theApp.WriteProfileInt(_T("Settings"), _T("ShowUniqueRight"), m_bShowUniqueRight);
-	if (m_pDirDoc != NULL)
-		m_pDirDoc->Redisplay();
+	RedisplayAllDirDocs();
 }
 
 void CMainFrame::OnOptionsShowBinaries()
 {
 	m_bShowBinaries = !m_bShowBinaries;
 	theApp.WriteProfileInt(_T("Settings"), _T("ShowBinaries"), m_bShowBinaries);
-	if (m_pDirDoc != NULL)
-		m_pDirDoc->Redisplay();
+	RedisplayAllDirDocs();
 }
 
 void CMainFrame::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI) 
@@ -446,8 +455,7 @@ void CMainFrame::OnHideBackupFiles()
 {
 	m_bHideBak = ! m_bHideBak;
 	theApp.WriteProfileInt(_T("Settings"), _T("HideBak"), m_bHideBak);
-	if (m_pDirDoc != NULL)
-		m_pDirDoc->Redisplay();
+	RedisplayAllDirDocs();
 }
 
 void CMainFrame::OnUpdateHideBackupFiles(CCmdUI* pCmdUI) 
@@ -751,30 +759,39 @@ void CMainFrame::OnProperties()
 		RebuildRegExpList();
 
 		// make an attempt at rescanning any open diff sessions
-		if (m_pLeft != NULL && m_pRight != NULL)
+		MergeDocList docs;
+		GetAllMergeDocs(&docs);
+		BOOL savedAll=TRUE;
+		while (!docs.IsEmpty())
 		{
+			CMergeDoc * pMergeDoc = docs.RemoveHead();
+			CMergeEditView * pLeft = pMergeDoc->GetLeftView();
+			CMergeEditView * pRight = pMergeDoc->GetRightView();
+
 			// Set tab type (tabs/spaces)
 			if (m_nTabType == 0)
 			{
-				m_pLeft->SetInsertTabs(TRUE);
-				m_pRight->SetInsertTabs(TRUE);
+				pLeft->SetInsertTabs(TRUE);
+				pRight->SetInsertTabs(TRUE);
 			}
 			else
 			{
-				m_pLeft->SetInsertTabs(FALSE);
-				m_pRight->SetInsertTabs(FALSE);
+				pLeft->SetInsertTabs(FALSE);
+				pRight->SetInsertTabs(FALSE);
 			}
 
-			if (m_pMergeDoc->SaveHelper())
+			if (pMergeDoc->SaveHelper())
 			{
-				m_pMergeDoc->Rescan();
+				pMergeDoc->Rescan();
 			}
 			// mods have been made, so just warn
 			else
 			{
-				AfxMessageBox(IDS_DIFF_OPEN_NO_SET_PROPS,MB_ICONEXCLAMATION);
+				savedAll = FALSE;
 			}
 		}
+		if (!savedAll)
+			AfxMessageBox(IDS_DIFF_OPEN_NO_SET_PROPS,MB_ICONEXCLAMATION);
 	}
 }
 
@@ -909,17 +926,18 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	if (pathsType == IS_EXISTING_DIR)
 	{
 		recursive = bRecurse;
-		if (m_pDirDoc == NULL)
-			m_pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->OpenDocumentFile(NULL);
-		if (m_pDirDoc != NULL)
+		BOOL docNull;
+		CDirDoc * pDirDoc = GetDirDocToShow(&docNull);
+
+		if (pDirDoc)
 		{
 			MainFrmStatus mfst(this);
 			CDiffContext *pCtxt = new CDiffContext(strLeft, strRight, &mfst);
 			if (pCtxt != NULL)
 			{
-				m_pDirDoc->SetDiffContext(pCtxt);
+				pDirDoc->SetDiffContext(pCtxt);
 				pCtxt->SetRegExp(strExt);
-				m_pDirDoc->Rescan();
+				pDirDoc->Rescan();
 			}
 			pCtxt->ClearStatus();
 		}
@@ -927,7 +945,9 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	else
 	{
 		recursive = FALSE;
-		ShowMergeDoc(strLeft, strRight);
+		BOOL docNull;
+		CDirDoc * pDirDoc = GetDirDocToShow(&docNull);
+		ShowMergeDoc(pDirDoc, strLeft, strRight);
 	}
 	return TRUE;
 }
@@ -1109,10 +1129,10 @@ BOOL CMainFrame::DoSyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
 	return TRUE;
 }
 
-void CMainFrame::UpdateCurrentFileStatus(UINT nStatus, int idx)
+void CMainFrame::UpdateCurrentFileStatus(CDirDoc * pDirDoc, UINT nStatus, int idx)
 {
-	ASSERT(m_pDirDoc);
-	CDirView *pv = m_pDirDoc->GetMainView();
+	ASSERT(pDirDoc);
+	CDirView *pv = pDirDoc->GetMainView();
 	ASSERT(pv);
 	// first change it in the dirlist
 	POSITION diffpos = pv->GetItemKey(idx);
@@ -1121,9 +1141,9 @@ void CMainFrame::UpdateCurrentFileStatus(UINT nStatus, int idx)
 	// Someone could figure out these pieces and probably simplify this.
 
 	// update DIFFITEM code
-	m_pDirDoc->m_pCtxt->UpdateStatusCode(diffpos, (BYTE)nStatus);
+	pDirDoc->m_pCtxt->UpdateStatusCode(diffpos, (BYTE)nStatus);
 	// update DIFFITEM time, and also tell views
-	m_pDirDoc->UpdateItemStatus(idx);
+	pDirDoc->UpdateItemStatus(idx);
 	//m_pDirDoc->Redisplay();
 }
 
@@ -1154,6 +1174,14 @@ void CMainFrame::OnViewSelectfont()
 		theApp.WriteProfileString(_T("Font"), _T("FaceName"), m_lfDiff.lfFaceName);
 
 		AfxMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION);
+
+		MergeEditViewList editViews;
+		GetAllViews(&editViews, NULL);
+		for (POSITION pos = editViews.GetHeadPosition(); pos; editViews.GetNext(pos))
+		{
+			CMergeEditView * pEditView = editViews.GetAt(pos);
+			// update pEditView for font change
+		}
 	}
 }
 
@@ -1192,14 +1220,22 @@ void CMainFrame::UpdateResources()
 	VERIFY(s.LoadString(AFX_IDS_IDLEMESSAGE));
 	m_wndStatusBar.SetPaneText(0, s);
 
-	if (m_pDirDoc != NULL)
-		m_pDirDoc->UpdateResources();
+	DirDocList dirdocs;
+	GetAllDirDocs(&dirdocs);
+	while (!dirdocs.IsEmpty())
+	{
+		CDirDoc * pDoc = dirdocs.RemoveHead();
+		pDoc->UpdateResources();
+	}
 
-	if (m_pLeft != NULL)
-		m_pLeft->UpdateResources();
-
-	if (m_pRight != NULL)
-		m_pRight->UpdateResources();
+	MergeDocList mergedocs;
+	GetAllMergeDocs(&mergedocs);
+	while (!mergedocs.IsEmpty())
+	{
+		CMergeDoc * pDoc = mergedocs.RemoveHead();
+		pDoc->GetLeftView()->UpdateResources();
+		pDoc->GetRightView()->UpdateResources();
+	}
 }
 
 void CMainFrame::OnHelpContents() 
@@ -1267,15 +1303,23 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 
 void CMainFrame::OnClose() 
 {
-	// check if we have a diff window open and need to save
-	if ((m_pLeft && m_pLeft->IsModified())
-		|| (m_pRight && m_pRight->IsModified()))
+	// save any dirty edit views
+	MergeDocList mergedocs;
+	GetAllMergeDocs(&mergedocs);
+	for (POSITION pos = mergedocs.GetHeadPosition(); pos; mergedocs.GetNext(pos))
 	{
-		if (!m_pMergeDoc->SaveHelper())
-				return;
+		CMergeDoc * pMergeDoc = mergedocs.GetAt(pos);
+		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
+		CMergeEditView * pRight = pMergeDoc->GetRightView();
+		if ((pLeft && pLeft->IsModified())
+			|| (pRight && pRight->IsModified()))
+		{
+			if (!pMergeDoc->SaveHelper())
+					return;
+		}
 	}
-	
 
+	// save main window position
 	WINDOWPLACEMENT wp;
 	wp.length = sizeof(WINDOWPLACEMENT);
 	GetWindowPlacement(&wp);
@@ -1284,8 +1328,17 @@ void CMainFrame::OnClose()
 	theApp.WriteProfileInt(_T("Settings"), _T("MainRight"),wp.rcNormalPosition.right);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainBottom"),wp.rcNormalPosition.bottom);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainMax"), (wp.showCmd == SW_MAXIMIZE));
-	if(m_pMergeDoc != NULL && m_pLeft)
-		((CChildFrame*)m_pLeft->GetParentFrame())->SavePosition();
+
+	// tell all merge docs to save position
+	while (!mergedocs.IsEmpty())
+	{
+		CMergeDoc * pMergeDoc = mergedocs.RemoveHead();
+		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
+		if (pLeft)
+			pMergeDoc->GetParentFrame()->SavePosition();
+	}
+	
+	
 	CMDIFrameWnd::OnClose();
 }
 
@@ -1384,11 +1437,18 @@ void CMainFrame::OnViewWhitespace()
 	m_bViewWhitespace = !m_bViewWhitespace;
 	theApp.WriteProfileInt(_T("Settings"), _T("ViewWhitespace"), m_bViewWhitespace);
 
-	if (m_pLeft)
-		m_pLeft->SetViewTabs(mf->m_bViewWhitespace);
-
-	if (m_pRight)
-		m_pRight->SetViewTabs(mf->m_bViewWhitespace);
+	MergeDocList mergedocs;
+	GetAllMergeDocs(&mergedocs);
+	while (!mergedocs.IsEmpty())
+	{
+		CMergeDoc * pMergeDoc = mergedocs.RemoveHead();
+		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
+		CMergeEditView * pRight = pMergeDoc->GetRightView();
+		if (pLeft)
+			pLeft->SetViewTabs(mf->m_bViewWhitespace);
+		if (pRight)
+			pRight->SetViewTabs(mf->m_bViewWhitespace);
+	}
 }
 
 void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
@@ -1413,6 +1473,129 @@ void CMainFrame::ConvertPathToSlashes(LPTSTR path)
 	}
 	while (ptr != NULL);
 }
+
+// get list of MergeDocs (documents underlying edit sessions)
+void CMainFrame::GetAllMergeDocs(MergeDocList * pMergeDocs)
+{
+	CMultiDocTemplate * pTemplate = theApp.m_pDiffTemplate;
+	for (POSITION pos = pTemplate->GetFirstDocPosition(); pos; )
+	{
+		CDocument * pDoc = pTemplate->GetNextDoc(pos);
+		CMergeDoc * pMergeDoc = static_cast<CMergeDoc *>(pDoc);
+		pMergeDocs->AddTail(pMergeDoc);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// get list of DirDocs (documents underlying a scan)
+void CMainFrame::GetAllDirDocs(DirDocList * pDirDocs)
+{
+	CMultiDocTemplate * pTemplate = theApp.m_pDirTemplate;
+	for (POSITION pos = pTemplate->GetFirstDocPosition(); pos; )
+	{
+		CDocument * pDoc = pTemplate->GetNextDoc(pos);
+		CDirDoc * pDirDoc = static_cast<CDirDoc *>(pDoc);
+		pDirDocs->AddTail(pDirDoc);
+	}
+}
+
+// get pointers to all views into typed lists (both arguments are optional)
+void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, DirViewList * pDirViews)
+{
+	POSITION pos = AfxGetApp()->GetFirstDocTemplatePosition(); 
+	CDocTemplate * pTemplate;
+	while ((pTemplate = AfxGetApp()->GetNextDocTemplate(pos)))
+	{
+		POSITION pos2 = pTemplate->GetFirstDocPosition();
+		CDocument * pDoc;
+		while ((pDoc = pTemplate->GetNextDoc(pos2)))
+		{
+			POSITION pos3 = pDoc->GetFirstViewPosition();
+			CView * pView;
+			while ((pView = pDoc->GetNextView(pos3)))
+			{
+				CMergeDoc * pMergeDoc = dynamic_cast<CMergeDoc *>(pDoc);
+				if (pMergeDoc)
+				{
+					if (pEditViews)
+					{
+					}
+				}
+				else
+				{
+					CDirDoc * pDirDoc = dynamic_cast<CDirDoc *>(pDoc);
+					if (pDirDoc)
+					{
+						if (pDirViews)
+						{
+						}
+					}
+					else
+					{
+						// There are currently only two types of docs 2003-02-20
+						ASSERT(0);
+					}
+				}
+			}
+		}
+	}
+}
+
+// get pointer to a merge doc for displaying a difference
+// policy of whether to reuse docs is implemented here
+CMergeDoc * CMainFrame::GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
+{
+	// policy -- only one merge doc for each dir doc
+	CMergeDoc * pMergeDoc = pDirDoc->GetMergeDoc();
+	if (pMergeDoc)
+	{
+		pMergeDoc->GetLeftView()->SendMessage(WM_COMMAND, ID_FILE_SAVE);
+		*pNew = FALSE;
+	}
+	else
+	{
+		pMergeDoc = (CMergeDoc*)theApp.m_pDiffTemplate->OpenDocumentFile(NULL);
+		pDirDoc->SetMergeDoc(pMergeDoc);
+		pMergeDoc->SetDirDoc(pDirDoc);
+		*pNew = TRUE;
+	}
+	return pMergeDoc;
+}
+
+// get pointer to a dir doc for displaying a scan
+// policy of whether to reuse docs is implemented here
+CDirDoc * CMainFrame::GetDirDocToShow(BOOL * pNew)
+{
+	// policy -- we only have one open scan
+	CDirDoc * pDirDoc = NULL;
+	POSITION pos = theApp.m_pDirTemplate->GetFirstDocPosition();
+	if (pos)
+	{
+		pDirDoc = static_cast<CDirDoc *>(theApp.m_pDirTemplate->GetNextDoc(pos));
+		*pNew = FALSE;
+	}
+	else
+	{
+		pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->OpenDocumentFile(NULL);
+		*pNew = TRUE;
+	}
+	return pDirDoc;
+}
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1466,12 +1649,16 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 			files[i] = expandedFile;
 	}
 
+/* TODO: 2003-03-29 Perry
+ Commenting this out b/c I don't know how to
+ make it work with [ 689884 ] Revise doc/view code (allow multiple docs)
 	if (m_pMergeDoc != NULL)
 	{
 		// Save files and update dirview status if needed
 		if (!m_pMergeDoc->SaveHelper())
 			return;
 	}
+*/
 	
 	// If Ctrl pressed, do recursive compare
 	BOOL ctrlKey = ::GetAsyncKeyState(VK_CONTROL);
