@@ -1,3 +1,7 @@
+2003-10-17 Kimmo
+ RFE: [ 784695 ] Smarter scroll to diff
+  WinMerge: MergeEditView.cpp
+
 2003-10-17 Laoran
  PATCH: [ 807263 ] Preprocessing patch
   common: dllproxy.c dllproxy.h lwdisp.c lwdisp.h

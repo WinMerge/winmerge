@@ -1136,19 +1136,27 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 		CPoint ptStart, ptEnd;
 		ptStart.x = 0;
 		ptStart.y = pd->m_diffs[nDiff].dbegin0;
+		ptEnd.y = pd->m_diffs[nDiff].dend0;
 
 		if (bScroll)
 		{
-			int line = ptStart.y - CONTEXT_LINES;
-			if (line < 0)
-				line = 0;
-			ScrollToLine(line);
-			SetCursorPos(ptStart);
+			// If diff first line outside current view OR
+			// if diff last line outside current view OR
+			// if diff is bigger than screen
+			if ((ptStart.y < m_nTopLine) ||
+				(ptEnd.y >= m_nTopLine + GetScreenLines()) ||
+				(ptEnd.y - ptStart.y) >= GetScreenLines())
+			{
+				int line = ptStart.y - CONTEXT_LINES;
+				if (line < 0)
+					line = 0;
+				ScrollToLine(line);
+				SetCursorPos(ptStart);
+			}
 		}
 
 		if (bSelectText)
 		{
-			ptEnd.y = pd->m_diffs[nDiff].dend0;
 			ptEnd.x = GetLineLength(ptEnd.y);
 			SetSelection(ptStart, ptEnd);
 			UpdateCaret();
