@@ -1,6 +1,8 @@
 2004-06-23 Kimmo
  PATCH: [ 977587 ] Fix fileattrib handling and show all attribs in dir compare
   Src: DiffFileInfo.cpp DiffFileInfo.h DirScan.cpp DirView.cpp
+ PATCH: [ 977796 ] Make dir compare column cust. dialog usable from keyboard
+  Src: DirColsDlg.cpp DirColsDlg.h
 
 2004-06-22 Kimmo
  PATCH: [ 977475 ] Log DeleteFile() failure in FileTransform.cpp

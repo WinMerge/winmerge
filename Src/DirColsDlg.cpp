@@ -28,9 +28,9 @@ CDirColsDlg::CDirColsDlg(CWnd* pParent /*=NULL*/)
 {
 	//{{AFX_DATA_INIT(CDirColsDlg)
 	m_bReset = FALSE;
+	m_bFromKeyboard = FALSE;
 	//}}AFX_DATA_INIT
 }
-
 
 void CDirColsDlg::DoDataExchange(CDataExchange* pDX)
 {
@@ -141,7 +141,13 @@ void CDirColsDlg::OnUp()
 			int inew = i-1;
 			list->InsertString(inew, str);
 			list->SetItemData(inew, data);
-			list->SetSel(inew);
+			if (m_bFromKeyboard) // If from keyboard, don't move selection anymore
+			{
+				list->SetSel(inew + 1);
+				m_bFromKeyboard = FALSE;
+			}
+			else
+				list->SetSel(inew);
 		}
 	}
 }
@@ -170,7 +176,13 @@ void CDirColsDlg::OnDown()
 			int inew = i+1;
 			list->InsertString(inew, str);
 			list->SetItemData(inew, data);
-			list->SetSel(inew);
+			if (m_bFromKeyboard) // If from keyboard, don't move selection anymore
+			{
+				list->SetSel(inew - 1);
+				m_bFromKeyboard = FALSE;
+			}
+			else
+				list->SetSel(inew);
 		}
 	}
 }
@@ -301,4 +313,47 @@ void CDirColsDlg::OnLbnSelchangeListHide()
 			break;
 		}
 	}
+}
+
+BOOL CDirColsDlg::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_KEYDOWN && pMsg->wParam != VK_CONTROL)
+	{
+		if (GetAsyncKeyState(VK_CONTROL))
+		{
+			HWND hwndFocus = 0;
+			switch (pMsg->wParam)
+			{
+			case VK_LEFT:
+				OnAdd();
+				break;
+			case VK_RIGHT:
+				OnRemove();
+				break;
+			case VK_UP:
+				m_bFromKeyboard = TRUE;
+				OnUp();
+				break;
+			case VK_DOWN:
+				m_bFromKeyboard = TRUE;
+				OnDown();
+				break;
+			case VK_TAB:
+				// When CTRL-TAB pressed, switch focus between listboxes
+				hwndFocus = ::GetFocus();
+				if (m_list_show.GetSafeHwnd() == hwndFocus)
+				{
+					m_list_hide.SetFocus();
+				}
+				else if (m_list_hide.GetSafeHwnd() == hwndFocus)
+				{
+					m_list_show.SetFocus();
+				}
+				break;
+			}	
+			return FALSE;
+		}
+	}
+
+	return CDialog::PreTranslateMessage(pMsg);
 }

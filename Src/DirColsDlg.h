@@ -57,6 +57,7 @@ public:
 	//{{AFX_VIRTUAL(CDirColsDlg)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	//}}AFX_VIRTUAL
 
 // Implementation methods
@@ -72,6 +73,7 @@ protected:
 private:
 	ColumnArray m_cols;
 	ColumnArray m_defCols;
+	BOOL m_bFromKeyboard; /**< Is up/down movement originating from keyboard? */
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirColsDlg)
