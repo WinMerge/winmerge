@@ -1140,7 +1140,6 @@ BEGIN
     ID_EOL_TO_DOS           "Convert EOL to DOS mode"
     ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
     ID_EOL_TO_MAC           "Convert EOL to MAC mode"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
 END
 
 STRINGTABLE DISCARDABLE 
