@@ -1,4 +1,8 @@
 2004-04-20 Laoran
+ BUG:[ 938373 ] Filtering broken - infinite loop when file filtered
+  Src: DirScan.cpp
+
+2004-04-20 Laoran
  updated swedish translation
   Submitted by Hans Ericson <hans.ericson@bredband.net>
   Languages/Swedish: MergeSwedish.rc

@@ -223,24 +223,28 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			if (!pCtxt->m_piFilterUI->includeFile(newsubfile) || !pCtxt->m_piFilterGlobal->includeFile(newsubfile))
 			{
 				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], DIFFCODE::SKIPPED+DIFFCODE::FILE, pCtxt);
+				++i;
+				++j;
 				continue;
 			}
 			LPCTSTR leftname = leftFiles[i].name;
 			LPCTSTR rightname = rightFiles[j].name;
 
-				gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s")
-				, leftname, rightname, (LPCTSTR)sLeftDir, (LPCTSTR)sRightDir);
+			gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s"), 
+			  leftname, rightname, (LPCTSTR)sLeftDir, (LPCTSTR)sRightDir);
 
-				if (mf->m_nCompMethod == 1)
-				{
+			if (mf->m_nCompMethod == 1)
+			{
 					// Compare only by modified date
 				int code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
 					if (leftFiles[i].mtime != rightFiles[j].mtime)
 						code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::DIFF;
 				// report result back to caller
 				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt);
+				++i;
+				++j;
 				continue;
-				}
+			}
 			// Files to compare
 			CString filepath1 = sLeftDir + backslash + leftname;
 			CString filepath2 = sRightDir + backslash + rightname;
