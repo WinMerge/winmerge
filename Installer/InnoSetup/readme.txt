@@ -1,3 +1,7 @@
+2005-02-13 Kimmo
+ PATCH: [ 1121582 ] Install file filter template
+  InnoSetup: WinMerge Localized.iss
+
 2005-02-07 Kimmo
  RFE: [ 1116010 ] Smaller default font
   InnoSetup: WinMerge Localized.iss

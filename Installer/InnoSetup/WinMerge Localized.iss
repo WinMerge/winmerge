@@ -352,6 +352,7 @@ Name: {app}\Filters\Merge_GnuC_loose.flt; Type: Files; Check: ComponentDisabled(
 Name: {app}\Filters\Merge_VC_loose.flt; Type: Files; Check: ComponentDisabled('Filters')
 Name: {app}\Filters\Merge_VB_loose.flt; Type: Files; Check: ComponentDisabled('Filters')
 Name: {app}\Filters\XML_html.flt; Type: Files; Check: ComponentDisabled('Filters')
+Name: {app}\Filters\FileFilter.tmpl; Type: Files; Check: ComponentDisabled('Filters')
 Name: {app}\Filters; Type: DirIfEmpty; Check: ComponentDisabled('Filters')
 
 
@@ -426,6 +427,7 @@ Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}\Languages; Compon
 Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
 
 Source: ..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
+Source: ..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 
 ;Documentation
 Source: ..\Docs\Users\Read Me.rtf; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
