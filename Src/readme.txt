@@ -1,3 +1,5 @@
+2003-11-25 WinMerge experimental release 2.1.5.0 (cvs)
+
 2003-11-24 Perry
  PATCH: [ 847134 ] More commenting for DirScan (doxygenize function comments)
   WinMerge: DirScan.cpp DirScan.h
