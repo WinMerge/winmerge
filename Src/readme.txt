@@ -1,3 +1,5 @@
+2004-01-06 WinMerge experimental release 2.1.5.3 (cvs)
+
 2004-01-06 Perry
  PATCH: [ 869575 ] UniMemFile needs to init charsize to 1
   common: UniFile.cpp
