@@ -1701,7 +1701,7 @@ OnUpdateCaret()
 		if (m_pLocationView)
 		{
 			m_pLocationView->UpdateVisiblePos(m_nTopLine,
-				m_nTopLine + GetScreenChars());
+				m_nTopLine + GetScreenLines());
 		}
 	}
 }
@@ -2352,7 +2352,7 @@ void CMergeEditView::GotoLine(UINT nLine, BOOL bRealLine, BOOL bLeft)
 	CMergeEditView *pLeftView = pDoc->GetLeftView();
 	CMergeEditView *pRightView = pDoc->GetRightView();
 	int nRealLine = nLine;
-	int nApparentLine = 0;
+	int nApparentLine = nLine;
 	int nLineCount = 0;
 
 	// Compute apparent (shown linenumber) line

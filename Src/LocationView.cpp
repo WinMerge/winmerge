@@ -36,7 +36,7 @@ static const double MAX_LINEPIX = 4.0;
 /** 
  * @brief Bars in location pane
  */
-enum
+enum LOCBAR_TYPE
 {
 	BAR_NONE = 0,	/**< No bar in given coords */
 	BAR_LEFT,		/**< Left side bar in given coords */
@@ -351,12 +351,25 @@ void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border)
 /// User pushed left mousebutton
 void CLocationView::OnLButtonDown(UINT nFlags, CPoint point) 
 {
-	if (!GotoLocation(point))
+	if (!GotoLocation(point, FALSE))
 		CView::OnLButtonDown(nFlags, point);
 }
 
-/// Move both views to point given (if in one of the file columns, else return FALSE)
-BOOL CLocationView::GotoLocation(CPoint point)
+/**
+ * @brief Scroll both views to point given.
+ *
+ * Scroll views to given line. There is two ways to scroll, based on
+ * view lines (ghost lines counted in) or on real lines (no ghost lines).
+ * In most cases view lines should be used as it avoids real line number
+ * calculation and is able to scroll to all lines - real line numbers
+ * cannot be used to scroll to ghost lines.
+ *
+ * @param [in] point Point to move to
+ * @param [in] bRealLine TRUE if we want to scroll using real line num,
+ * FALSE if view linenumbers are OK.
+ * @return TRUE if succeeds, FALSE if point not inside bars.
+ */
+BOOL CLocationView::GotoLocation(CPoint point, BOOL bRealLine)
 {
 	CRect rc;
 	GetClientRect(rc);
@@ -369,12 +382,12 @@ BOOL CLocationView::GotoLocation(CPoint point)
 	int bar = IsInsideBar(rc, point);
 	if (bar == BAR_LEFT || bar == BAR_RIGHT)
 	{
-		line = GetLineFromYPos(point.y, rc, bar);
+		line = GetLineFromYPos(point.y, rc, bar, bRealLine);
 	}
 	else
 		return FALSE;
 
-	m_view0->GotoLine(line, TRUE, bar == BAR_LEFT);
+	m_view0->GotoLine(line, bRealLine, bar == BAR_LEFT);
 	if (bar == BAR_LEFT)
 		m_view0->SetFocus();
 	else
@@ -479,13 +492,15 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 }
 
 /** 
- * @brief Calculates real line in file from given YCoord in bar.
+ * @brief Calculates view/real line in file from given YCoord in bar.
  * @param [in] nYCoord ycoord in pane
  * @param [in] rc size of locationpane
  * @param [in] bar bar/file
- * @return 0-based index of real line in file [0...lines-1]
+ * @param [in] bRealLine TRUE if real line is returned, FALSE for view line
+ * @return 0-based index of view/real line in file [0...lines-1]
  */
-int CLocationView::GetLineFromYPos(int nYCoord, CRect rc, int bar)
+int CLocationView::GetLineFromYPos(int nYCoord, CRect rc, int bar,
+	BOOL bRealLine)
 {
 	CMergeDoc* pDoc = GetDocument();
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
@@ -493,9 +508,16 @@ int CLocationView::GetLineFromYPos(int nYCoord, CRect rc, int bar)
 	int nRealLine = -1;
 
 	line--; // Convert linenumber to lineindex
-	if (line > nbLines - 1) // Just to be sure
+	if (line < 0)
+		line = 0;
+	if (line > (nbLines - 1))
 		line = nbLines - 1;
 
+	// We've got a view line now
+	if (bRealLine == FALSE)
+		return line;
+
+	// Get real line (exclude ghost lines)
 	if (bar == BAR_LEFT)
 	{
 		nRealLine = pDoc->m_ltBuf.ComputeRealLine(line);
@@ -554,7 +576,7 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 		nTopLine = pDoc->GetRightView()->GetTopLine();
 	
 	if (nBottomLine == -1)
-		nBottomLine = nTopLine + nScreenLines;;
+		nBottomLine = nTopLine + nScreenLines;
 
 	CRect rc;
 	GetClientRect(rc);

@@ -59,8 +59,8 @@ protected:
 	// Return end of block (diff/non-diff)
 	BOOL GetNextRect(int &nLineIndex);
 	void DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border = FALSE);
-	BOOL GotoLocation(CPoint point);
-	int GetLineFromYPos(int nYCoord, CRect rc, int bar);
+	BOOL GotoLocation(CPoint point, BOOL bRealLine = TRUE);
+	int GetLineFromYPos(int nYCoord, CRect rc, int bar, BOOL bRealLine = TRUE);
 	int IsInsideBar(CRect rc, POINT pt);
 	void DrawVisibleAreaRect(int nTopLine = -1, int nBottomLine = -1);
 	void DrawConnectLines();
