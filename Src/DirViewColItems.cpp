@@ -75,6 +75,9 @@ static CString ColPathGet(const DIFFITEM & di)
 }
 static CString ColStatusGet(const DIFFITEM & di)
 {
+	// Note that order of items does matter. We must check for
+	// skipped items before unique items, for example, so that
+	// skipped unique items are labeled as skipped, not unique.
 	CString s;
 	if (di.isResultError())
 	{
@@ -194,6 +197,13 @@ static CString ColStatusAbbrGet(const DIFFITEM & di)
 	{
 		id = IDS_CANT_COMPARE_FILES;
 	}
+	else if (di.isResultSkipped())
+	{
+		if (di.isDirectory())
+			id = IDS_DIR_SKIPPED;
+		else
+			id = IDS_FILE_SKIPPED;
+	}
 	else if (di.isSideLeft())
 	{
 		id = IDS_LEFTONLY;
@@ -201,13 +211,6 @@ static CString ColStatusAbbrGet(const DIFFITEM & di)
 	else if (di.isSideRight())
 	{
 		id = IDS_RIGHTONLY;
-	}
-	else if (di.isResultSkipped())
-	{
-		if (di.isDirectory())
-			id = IDS_DIR_SKIPPED;
-		else
-			id = IDS_FILE_SKIPPED;
 	}
 	else if (di.isResultSame())
 	{

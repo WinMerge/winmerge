@@ -1,3 +1,7 @@
+2003-11-01 Kimmo
+ BUG: [ 833096 ] Left/right-only status overwrites skipped-status
+  WinMerge: DirViewColItems.cpp
+
 2003-10-31 Kimmo
  Remove whitespaces from begin and end of ShellExtension.dll path
   WinMerge: PropRegistry.cpp
