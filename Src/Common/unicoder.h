@@ -54,5 +54,7 @@ CString CrossConvertToStringA(LPCSTR src, UINT srclen, int cpin, int cpout, bool
 
 } // namespace ucr
 
+bool EqualCodepages(int cp1, int cp2);
+
 #endif // unicoder_h_included
 

@@ -1,4 +1,7 @@
 2004-06-17 Laoran
+ PATCH: [ 972108 ] use getDefaultCodepage for document with no codepage
+  Src: MainFrm.cpp
+  Src/Common: UniFile.cpp unicoder.cpp unicoder.h
  PATCH: [ 973029 ] Scroll when more than 65536 characters
   Src/Common: SplitterWndEx.cpp
   Src/editlib: ccrystaltextview.cpp

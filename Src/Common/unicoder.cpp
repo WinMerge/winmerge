@@ -618,8 +618,10 @@ CString maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
 	static int defcodepage = getDefaultCodepage();
 
 	if (!len) return _T("");
-	if (!codepage)
-		codepage = defcodepage;
+
+	// NO ! codepage = 0 is the value of CP_ACP !
+	// if (!codepage)
+	// 	codepage = defcodepage;
 
 #ifdef UNICODE
 	// Convert input to Unicode, using specified codepage
@@ -640,7 +642,7 @@ CString maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
 	return str;
 
 #else
-	if (codepage == defcodepage)
+	if (EqualCodepages(codepage, ucr::getDefaultCodepage()))
 	{
 		// trivial case, they want the bytes in the file interpreted in our current codepage
 		// Only caveat is that input (lpd) is not zero-terminated
@@ -735,7 +737,7 @@ void buffer::resize(unsigned int needed)
  */
 bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, int srcbytes, UNICODESET unicoding2, int codepage2, buffer * dest)
 {
-	if (unicoding1 == unicoding2 && (unicoding1 || (codepage1 == codepage2)))
+	if (unicoding1 == unicoding2 && (unicoding1 || EqualCodepages(codepage1, codepage2)))
 	{
 		// simple byte copy
 		dest->resize(srcbytes);
@@ -794,4 +796,32 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 }
 
 } // namespace ucr
+
+/**
+ * @brief Change any special codepage constants into real codepage numbers
+ */
+static int NormalizeCodepage(int cp)
+{
+	if (cp == CP_THREAD_ACP) // should only happen on Win2000+
+	{
+		TCHAR buff[32];
+		if (GetLocaleInfo(GetThreadLocale(), LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff)/sizeof(buff[0])))
+			cp = _ttol(buff);
+		else
+			// a valid codepage is better than no codepage
+			cp = GetACP();
+	}
+	if (cp == CP_ACP) cp = GetACP();
+	if (cp == CP_OEMCP) cp = GetOEMCP();
+	return cp;
+}
+
+/**
+ * @brief Compare two codepages for equality
+ */
+bool EqualCodepages(int cp1, int cp2)
+{
+	return (cp1 == cp2)
+		|| (NormalizeCodepage(cp1) == NormalizeCodepage(cp2));
+}
 

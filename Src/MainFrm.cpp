@@ -69,6 +69,7 @@
 #include "FileFiltersDlg.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
+#include "unicoder.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1215,7 +1216,7 @@ void CMainFrame::OnOptions()
 	regpage.m_strEditorPath = m_options.GetString(OPT_EXT_EDITOR_CMD);
 	regpage.GetContextRegValues();
 	regpage.m_bUseRecycleBin = m_options.GetInt(OPT_USE_RECYCLE_BIN);
-	compage.m_compareMethod = m_options.GetInt(OPT_CMP_METHOD);
+    compage.m_compareMethod = m_options.GetInt(OPT_CMP_METHOD);
 	compage.m_nIgnoreWhite = m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	compage.m_bIgnoreBlankLines = m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
 	compage.m_bIgnoreCase = m_options.GetInt(OPT_CMP_IGNORE_CASE);
@@ -1253,7 +1254,7 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CMP_IGNORE_BLANKLINES, compage.m_bIgnoreBlankLines);
 		m_options.SaveOption(OPT_CMP_EOL_SENSITIVE, compage.m_bEolSensitive ? FALSE : TRUE); // Reverse
 		m_options.SaveOption(OPT_CMP_IGNORE_CASE, compage.m_bIgnoreCase);
-		m_options.SaveOption(OPT_CMP_METHOD, compage.m_compareMethod);
+        m_options.SaveOption(OPT_CMP_METHOD, compage.m_compareMethod);
 		m_options.SaveOption(OPT_CMP_MOVED_BLOCKS, compage.m_bMovedBlocks);
 		
 		m_nCompMethod = compage.m_compareMethod;
@@ -1283,7 +1284,7 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK, colors.m_clrSelMoved);
 		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, colors.m_clrSelMovedDeleted);
 		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, colors.m_clrSelMovedText);
-
+		
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
 		SetEOLMixed(editor.m_bAllowMixedEol);
 
@@ -1342,7 +1343,9 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	CString strRight(pszRight);
 	CString strExt;
 	PackingInfo infoUnpacker;
-	int cpleft=0, cpright=0; // 8-bit codepages
+	// TODO: Need to allow user to specify these some day
+	int cpleft=ucr::getDefaultCodepage();
+	int cpright=ucr::getDefaultCodepage();
 
 	BOOL bRORight = dwLeftFlags & FFILEOPEN_READONLY;
 	BOOL bROLeft = dwRightFlags & FFILEOPEN_READONLY;
@@ -1380,8 +1383,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		infoUnpacker = dlg.m_infoHandler;
 		pathsType = static_cast<PATH_EXISTENCE>(dlg.m_pathsType);
 		// TODO: add codepage options to open dialog ?
-		cpleft = 0;
-		cpright = 0;
+		cpleft=ucr::getDefaultCodepage();
+		cpright=ucr::getDefaultCodepage();
 	}
 	else
 	{
@@ -1640,19 +1643,19 @@ void CMainFrame::GetFullVSSPath(CString strSavePath, BOOL & bVCProj)
 	SplitFilename(strSavePath, NULL, NULL, &strExt);
 	if (strExt.CompareNoCase(_T("vcproj")))
 		bVCProj = TRUE;
-	SplitFilename(strSavePath, &spath, NULL, NULL);
-	
+		SplitFilename(strSavePath, &spath, NULL, NULL);
+		
 	strSavePath.Replace('/', '\\');
 	m_strVssProjectBase.Replace('/', '\\');
 
-	//check if m_strVssProjectBase has leading $\\, if not put them in:
+		//check if m_strVssProjectBase has leading $\\, if not put them in:
 	if (m_strVssProjectBase[0] != '$' && m_strVssProjectBase[1] != '\\')
 		m_strVssProjectBase.Insert(0, _T("$\\"));
 
 	strSavePath.MakeLower();
 	m_strVssProjectBase.MakeLower();
-
-	//take out last '\\'
+		
+		//take out last '\\'
 	int nLen = m_strVssProjectBase.GetLength();
 	if (m_strVssProjectBase[nLen - 1] == '\\')
 		m_strVssProjectBase.Delete(nLen - 1, 1);
@@ -1660,24 +1663,24 @@ void CMainFrame::GetFullVSSPath(CString strSavePath, BOOL & bVCProj)
 	CString strSearch = m_strVssProjectBase.Mid(2); // Don't compare first 2
 	int index = strSavePath.Find(strSearch); //Search for project base path
 	if (index > -1)
-	{
+		{
 		index++;
 		m_strVssProjectFull = strSavePath.Mid(index + strSearch.GetLength());
-		if (m_strVssProjectFull[0] == ':')
-		{
+			if (m_strVssProjectFull[0] == ':')
+			{
 			m_strVssProjectFull.Delete(0, 2);
+			}
 		}
-	}
 
-	SplitFilename(m_strVssProjectFull, &spath, NULL, NULL);
+		SplitFilename(m_strVssProjectFull, &spath, NULL, NULL);
 	if (m_strVssProjectBase[m_strVssProjectBase.GetLength() - 1] != '\\')
-	{
+		{
 		m_strVssProjectBase += "\\";
-	}
+		}
 
-	m_strVssProjectFull = m_strVssProjectBase + spath;
-
-	//if sln file, we need to replace ' '  with _T("\\u0020")
+		m_strVssProjectFull = m_strVssProjectBase + spath;
+		
+		//if sln file, we need to replace ' '  with _T("\\u0020")
 	if (!bVCProj)
 		m_strVssProjectFull.Replace( _T(" "), _T("\\u0020"));
 }
@@ -1694,18 +1697,18 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath, CString * psError)
 	BOOL bVCPROJ = FALSE;
 
 	if (::GetTempPath(MAX_PATH, tempPath))
-	{
+			{
 		if (!::GetTempFileName(tempPath, _T ("_LT"), 0, tempFile))
-		{
+				{
 			LogErrorString(_T("CMainFrame::ReLinkVCProj() - couldn't get tempfile!"));
 			return FALSE;
 		}
-	}
-	else
-	{
+				}
+				else
+				{
 		LogErrorString(_T("CMainFrame::ReLinkVCProj() - couldn't get temppath!"));
 		return FALSE;
-	}
+		}
 
 	CString strExt;
 	SplitFilename(strSavePath, NULL, NULL, &strExt);
@@ -2672,7 +2675,8 @@ void CMainFrame::OnFileNew()
 	// Load emptyfile descriptors and open empty docs
 	VERIFY(m_strLeftDesc.LoadString(IDS_EMPTY_LEFT_FILE));
 	VERIFY(m_strRightDesc.LoadString(IDS_EMPTY_RIGHT_FILE));
-	ShowMergeDoc(pDirDoc, _T(""), _T(""), FALSE, FALSE, 0, 0);
+	ShowMergeDoc(pDirDoc, _T(""), _T(""), FALSE, FALSE, 
+	             ucr::getDefaultCodepage(), ucr::getDefaultCodepage());
 	
 	// Empty descriptors now that docs are open
 	m_strLeftDesc.Empty();

@@ -375,7 +375,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 		return TRUE;
 	}
 #else
-	if (m_unicoding == ucr::NONE && !m_codepage)
+	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, ucr::getDefaultCodepage()))
 	{
 		// If there aren't any bytes left in the file, return FALSE to indicate EOF
 		if (m_current - m_base >= m_filesize)
@@ -423,7 +423,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 		return FALSE;
 
 	// Handle 8-bit strings in line chunks because of multibyte codings (eg, 936)
-	if (m_unicoding == ucr::NONE && m_codepage)
+	if (m_unicoding == ucr::NONE)
 	{
 		bool eof=true;
 		for (LPBYTE eolptr = m_current; (eolptr - m_base + (m_charsize-1) < m_filesize); ++eolptr)
@@ -790,7 +790,7 @@ BOOL UniStdioFile::WriteString(const CString & line)
 #ifdef _UNICODE
 	if (m_unicoding == ucr::UCS2LE)
 #else
-	if (m_unicoding == ucr::NONE && m_codepage == ucr::getDefaultCodepage())
+	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, ucr::getDefaultCodepage()))
 #endif
 	{
 		unsigned int bytes = line.GetLength() * sizeof(TCHAR);
