@@ -757,13 +757,16 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 	// the first line inherits the status of the last one 
 	// but exception... if the last line is a ghost, we preserve the status of the first line
 	// (then if we use backspace in a ghost line, we don't delete the previous line)
-	int bFlagException;
 	if (bLastLineGhost)
-		bFlagException = (bFirstLineGhost == 0);
-	if (bLastLineGhost == 0 || bFlagException)
 		SetLineFlag(nStartLine, LF_GHOST, FALSE, FALSE, FALSE);
 	else
-		SetLineFlag(nStartLine, LF_GHOST, TRUE, FALSE, FALSE);
+	{
+		int bFlagException = (bFirstLineGhost == 0);
+		if (bFlagException)
+			SetLineFlag(nStartLine, LF_GHOST, FALSE, FALSE, FALSE);
+		else
+			SetLineFlag(nStartLine, LF_GHOST, TRUE, FALSE, FALSE);
+	}
 
 	// now we can recompute
 	if (nStartLine != nEndLine)

@@ -5,7 +5,10 @@
  PATCH: [ 892397 ] Distinguish prediffer from unpacker
   Submitted by Laoran
   Src: DiffWrapper.cpp DirScan.cpp FileTransform.cpp FileTransform.h
-   MainFrm.cpp MergeDoc.cpp SelectUnpackerDlg.cpp 
+   MainFrm.cpp MergeDoc.cpp SelectUnpackerDlg.cpp
+ BUG: [ 909779 ] Uninitialised variable in CGhostTextBuffer::DeleteText()
+  Fix submitted by Laoran
+  Src: GhostTextBuffer.cpp
 
 2004-03-07 Kimmo
  PATCH: [ 911114 ] DiffOptions to new system
