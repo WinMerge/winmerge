@@ -147,7 +147,7 @@ Name: English; MessagesFile: Languages\English.isl
 
 ;Localizations:
 Name: Bulgarian; MessagesFile: Languages\Bulgarian.isl
-Name: Catalan; MessagesFile: Languages\Catalan.isl
+Name: Catalan; MessagesFile: Languages\Catalan.isl; InfoAfterFile: ..\Docs\Users\Languages\Read Me-Catalan.rtf
 Name: Chinese_Simplified; MessagesFile: Languages\Chinese_Simplified.isl
 Name: Chinese_Traditional; MessagesFile: Languages\Chinese_Traditional.isl
 Name: Czech; MessagesFile: Languages\Czech.isl
