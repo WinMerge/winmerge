@@ -188,8 +188,8 @@ BEGIN
         MENUITEM "Kopiera till &höger\tAlt+Höger", ID_L2R
         MENUITEM "Kopiera till &vänster\tAlt+Vänster", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "K&opiera till höger och gå framåt\tAlt+Ctrl+Right", ID_L2RNEXT
-        MENUITEM "Kopiera &till vänster och gå framåt\tAlt+Ctrl+Left", ID_R2LNEXT
+        MENUITEM "K&opiera till höger och gå framåt\tAlt+Ctrl+Höger", ID_L2RNEXT
+        MENUITEM "Kopiera &till vänster och gå framåt\tAlt+Ctrl+Vänster", ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "Kopiera allt &till höger",    ID_ALL_RIGHT
         MENUITEM "Kopiera allt t&ill vänster",  ID_ALL_LEFT
@@ -277,9 +277,9 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Kop&iera Sökvägar"
         BEGIN
-            MENUITEM "&Vänster (%1 of %2)",         ID_DIR_COPY_PATHNAMES_LEFT
-            MENUITEM "&Höger (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
-            MENUITEM "&Båda (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+            MENUITEM "&Vänster (%1 av %2)",         ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "&Höger (%1 av %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "&Båda (%1 av %2)",            ID_DIR_COPY_PATHNAMES_BOTH
         END
         MENUITEM "Kopiera &Filnamn",                ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
@@ -885,7 +885,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
     CONTROL         "&Ignorera skiftläge",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
-    CONTROL         "Igno&re carriage return differences (DOS/UNIX/MAC)",
+    CONTROL         "Igno&rera skillnader i radslut (DOS/UNIX/MAC)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,80,221,10
     CONTROL         "M&öjliggör detektion av flyttade textblock",IDC_MOVED_BLOCKS,"Button",
@@ -1594,8 +1594,8 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
     IDS_SAVEREADONLY_MULTI  "%1\när markerad bara läsbar. Vill du ändå ändra i den?"
     IDS_FILECHANGED_RESCAN  "Ett annat program har uppdaterat filen\n%1\nsedan WinMerge undersökte den sist.\n\nOm du vill uppdatera filer stäng aktuell filjämförelse och öppna filer igen."
-    IDS_SAVE_LEFT_AS        "Save Left File As"
-    IDS_SAVE_RIGHT_AS       "Save Right File As"
+    IDS_SAVE_LEFT_AS        "Spara vänster fil som"
+    IDS_SAVE_RIGHT_AS       "Spara höger fil som"
 END
 
 // VSS
@@ -1642,8 +1642,8 @@ BEGIN
     IDS_SELECT_DESTFOLDER   "Välj destinationskatalog"
     IDS_MOVE_LEFT_TO        "Vänster till... (%1)"
     IDS_MOVE_RIGHT_TO       "Höger till... (%1)"
-    IDS_MOVE_LEFT_TO2       "Vänster till... (%1 of %2)"
-    IDS_MOVE_RIGHT_TO2      "Höger till... (%1 of %2)"
+    IDS_MOVE_LEFT_TO2       "Vänster till... (%1 av %2)"
+    IDS_MOVE_RIGHT_TO2      "Höger till... (%1 av %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1669,9 +1669,9 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Öppna den högra filen med ..."
     IDS_CANNOT_EXECUTE_FILE "Kan inte starta %1"
     ID_DIR_COPY_FILENAMES   "Kopiera filnamn till klippbordet"
-    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_LEFT "Kopiera vänster sidas sökvägar till klippbordet"
+    ID_DIR_COPY_PATHNAMES_RIGHT "Kopiera höger sidas sökvägar till klippbordet"
+    ID_DIR_COPY_PATHNAMES_BOTH "Kopiera båda sidors sökvägar till klippbordet"
 END
 
 // DIRECTORY DIFFING : 7ZIP
@@ -2073,8 +2073,8 @@ BEGIN
     ID_LASTDIFF             "Går till sista skillnaden\nSista skillnad (Alt+End)"
     ID_L2R                  "Kopierar den valda texten till den högra filen\nKopiera höger (Alt Höger)"
     ID_R2L                  "Kopierar den valda texten till den vänstra filen\nKopiera vänster (Alt Vänster)"
-    ID_L2RNEXT              "Kopierar skillnad till höger och går fram till nästa\nKopiera höger och gå framåt (Ctrl Alt Right)"
-    ID_R2LNEXT              "Kopierar skillnad till vänster och går fram till nästa\nKopiera vänster och gå framåt (Ctrl Alt Left)"
+    ID_L2RNEXT              "Kopierar skillnad till höger och går fram till nästa\nKopiera höger och gå framåt (Ctrl Alt Höger)"
+    ID_R2LNEXT              "Kopierar skillnad till vänster och går fram till nästa\nKopiera vänster och gå framåt (Ctrl Alt Vänster)"
     ID_ALL_RIGHT            "Kopierar alla skillnader till den högra filen\nKopiera allt till höger"
     ID_ALL_LEFT             "Kopierar alla skillnader till den vänstra filen\nKopiera allt till vänster"
     ID_MULTIPLE_RIGHT       "Kopierar skillnader från den valda texten i den vänstra filen till den högra filen"

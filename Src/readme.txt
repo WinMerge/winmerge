@@ -1,3 +1,8 @@
+2004-09-19 Kimmo
+ PATCH: [ 1030490 ] Updated Swedish Translation
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2004-09-17 Kimmo
  PATCH: [ 1029538 ] Reverse 'Ignore carriage return differences' when resetting
   Src: PropCompare.cpp
