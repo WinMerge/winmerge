@@ -1,3 +1,8 @@
+2003-06-27 Laoran
+ PATCH: [ 760745 ] Fix empty search field detection and better history in FindDlg and EditReplaceDlg
+  editlib : ccrystaleditview.cpp ccrystaltextview.cpp ceditreplacedlg.cpp ceditreplacedlg.h
+    cfindtextdlg.cpp cfindtextdlg.h memcombo.cpp memcombo.h
+  
 2003-06-26 Christian
  PATCH: [ 754001 ] 2.0 doc link points to 1.7 docs
   WinMerge: MainFrm.cpp
