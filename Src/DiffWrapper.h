@@ -222,9 +222,20 @@ struct DiffFileData
 	void Reset();
 	void Close() { Reset(); }
 
+	int fd(int); // return 1st or 2nd file descriptor
+	int just_compare_files(int depth, int *ndiffs, int *ntrivialdiffs);
+
 	file_data * m_inf;
 	bool m_used; // whether m_inf has real data
 	CString m_sFilepath[2];
+
+	struct UniFileBom // detect unicode file and quess encoding
+	{
+		UniFileBom(int); // initialize from file descriptor
+		int size;
+		int unicoding;
+		unsigned char buffer[4];
+	};
 
 private:
 	bool DoOpenFiles();

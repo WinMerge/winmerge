@@ -57,16 +57,12 @@ enum
 static CString ColGet(int col, const DIFFITEM & di)
 {
 	// Custom properties have custom get functions
-	ColGetFnc fnc = g_cols[col].getfnc;
-	if (fnc)
-		return (*fnc)(di);
-	// Ok, try to find it as a generic property
-	LPCTSTR propname = g_cols[col].regName;
-	const varprop::VariantValue * varval = di.GetGenericProperty(propname);
-	if (!varval)
-		return _T("");
-	// Format it as a string
-	return CDirView::GetColItemDisplay(*varval);
+	if (ColGetFnc fnc = g_cols[col].getfnc)
+	{
+		return (*fnc)(reinterpret_cast<const char *>(&di) + g_cols[col].offset);
+	}
+	ASSERT(FALSE);
+	return "???";
 }
 
 /**
@@ -75,14 +71,17 @@ static CString ColGet(int col, const DIFFITEM & di)
 static int ColSort(int col, const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
 	// Custom properties have custom sort functions
-	ColSortFnc fnc = g_cols[col].sortfnc;
-	if (fnc)
-		return (*fnc)(ldi, rdi);
-	// Ok, get generic properties, and then we'll use generic sort
-	LPCTSTR propname = g_cols[col].regName;
-	const varprop::VariantValue * lvar = ldi.GetGenericProperty(propname);
-	const varprop::VariantValue * rvar = rdi.GetGenericProperty(propname);
-	return CDirView::GenericSortItem(lvar, rvar);
+	if (ColSortFnc fnc = g_cols[col].sortfnc)
+	{
+		SIZE_T offset = g_cols[col].offset;
+		return (*fnc)
+		(
+			reinterpret_cast<const char *>(&ldi) + offset,
+			reinterpret_cast<const char *>(&rdi) + offset
+		);
+	}
+	ASSERT(FALSE);
+	return 0;
 }
 
 /**
@@ -132,8 +131,8 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 	
 	POSITION diffposl = pView->GetItemKeyFromData(lParam1);
 	POSITION diffposr = pView->GetItemKeyFromData(lParam2);
-	DIFFITEM &ldi = pView->GetDiffContext()->GetDiffAt(diffposl);
-	DIFFITEM &rdi = pView->GetDiffContext()->GetDiffAt(diffposr);
+	const DIFFITEM &ldi = pView->GetDiffContext()->GetDiffAt(diffposl);
+	const DIFFITEM &rdi = pView->GetDiffContext()->GetDiffAt(diffposr);
 
 	// compare 'left' and 'right' parameters as appropriate
 	int retVal = ColSort(pView->m_sortColumn, ldi, rdi);
@@ -150,7 +149,6 @@ int CDirView::AddNewItem(int i)
 	lvItem.iItem = i;
 	lvItem.iSubItem = 0;
 	return GetListCtrl().InsertItem(&lvItem);
-  
 }
 
 /// Set a subitem on an existing item
@@ -183,25 +181,19 @@ void CDirView::UpdateDiffItemStatus(UINT nIdx, DIFFITEM & di)
 {
 	BOOL bLeftNewer = FALSE;
 	BOOL bRightNewer = FALSE;
-
-
-	COleDateTime lmtime = di.GetGenericPropertyTime(_T("Lmtime"));
-	COleDateTime rmtime = di.GetGenericPropertyTime(_T("Rmtime"));
-	if (lmtime.GetStatus() == COleDateTime::valid
-		&& rmtime.GetStatus() == COleDateTime::valid)
+	__int64 lmtime = di.left.mtime;
+	__int64 rmtime = di.right.mtime;
+	if (lmtime && rmtime)
 	{
 		if (lmtime > rmtime)
 		{
-			di.shprops.SetProperty(_T("Snewer"), _T("L"));
 			bLeftNewer = TRUE;
 		}
 		else if (lmtime < rmtime)
 		{
-			di.shprops.SetProperty(_T("Snewer"), _T("R"));
 			bRightNewer = TRUE;
 		}
 	}
-
 	for (int i=0; i<g_ncols; ++i)
 	{
 		int phy = ColLogToPhys(i);

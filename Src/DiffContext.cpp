@@ -105,26 +105,11 @@ static CString GetFixedFileVersion(const CString & path)
 	return ver.GetFixedFileVersion();
 }
 
-/** @brief Convert 64-bit time into COleDateTime */
-static COleDateTime TimeToOleDateTime(__int64 timval)
-{
-#if _MSC_VER < 1300
-		// MSVC6
-	COleDateTime odt = (time_t)timval;
-#else
-		// MSVC7 (VC.NET)
-	COleDateTime odt = timval;
-#endif
-	if (!timval)
-		odt.SetStatus(COleDateTime::null);
-	return odt;
-}
-
 /**
  * @brief Add new diffitem to CDiffContext array
  */
-void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir
-	, LPCTSTR pszLeftDir, LPCTSTR pszRightDir
+void CDiffContext::AddDiff(const CString &pszFilename, const CString &szSubdir
+	, const CString &pszLeftDir, const CString &pszRightDir
 	, __int64 lmtime, __int64 rmtime
 	, __int64 lctime, __int64 rctime
 	, __int64 lsize, __int64 rsize
@@ -138,8 +123,8 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir
 	di.sSubdir = szSubdir;
 	di.left.spath = pszLeftDir;
 	di.right.spath = pszRightDir;
-	di.left.m_props.SetProperty(_T("mtime"), TimeToOleDateTime(lmtime));
-	di.right.m_props.SetProperty(_T("mtime"), TimeToOleDateTime(rmtime));
+	di.left.mtime = lmtime;
+	di.right.mtime = rmtime;
 	di.left.ctime = lctime;
 	di.right.ctime = rctime;
 	di.diffcode = diffcode;
@@ -149,10 +134,10 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir
 	UpdateFieldsNeededForNewItems(di, di.right);
 	di.left.flags.flags += lattrs;
 	di.right.flags.flags += rattrs;
-	if (ndiffs>=0 && ntrivialdiffs>=0)
+	if (ndiffs >= 0 && ntrivialdiffs >= 0)
 	{
-		di.shprops.SetProperty(_T("nsdiffs"), ndiffs-ntrivialdiffs);
-		di.shprops.SetProperty(_T("ndiffs"), ndiffs);
+		di.nsdiffs = ndiffs - ntrivialdiffs;
+		di.ndiffs = ndiffs;
 	}
 	AddDiff(di);
 }
@@ -327,7 +312,7 @@ void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
 		dfi.size = 0;
 		dfi.flags.reset();
 	}
-	dfi.m_props.SetProperty(_T("mtime"), TimeToOleDateTime(mtime64));
+	dfi.mtime = mtime64;
 	GuessEncoding(filepath, &dfi.unicoding, &dfi.codepage);
 }
 
@@ -451,49 +436,4 @@ CString DIFFITEM::getLeftFilepath() const
 CString DIFFITEM::getRightFilepath() const
 {
 	return right.spath;
-}
-
-/**
- * @brief Return generic property of specified name (or NULL if not found)
- */
-const varprop::VariantValue * DIFFITEM::GetGenericProperty(LPCTSTR propname) const
-{
-	if (!propname)
-		return NULL;
-	// Is it a left property, right property, or shared?
-	const varprop::PropertySet * props = 0;
-	if (propname[0] == 'L')
-		props = &this->left.m_props;
-	else if (propname[0] == 'R')
-		props = &this->right.m_props;
-	else 
-		props = &this->shprops;
-	// Look for property in property set we just figured out 
-	// (real property name doesn't include first char)
-	const varprop::Property * prop = props->GetProperty(&propname[1]);
-	if (!prop)
-		return NULL;
-	return &prop->value;
-}
-
-/** @brief Return generic property of specified name, if found & a string (or _T("")) */
-CString DIFFITEM::GetGenericPropertyString(LPCTSTR propname) const
-{
-	const varprop::VariantValue * varval = GetGenericProperty(propname);
-	if (!varval || !varval->isString())
-		return _T("");
-	return varval->getString();
-}
-
-/** @brief Return generic property of specified name, if found & a string (or null time) */
-COleDateTime DIFFITEM::GetGenericPropertyTime(LPCTSTR propname) const
-{
-	const varprop::VariantValue * varval = GetGenericProperty(propname);
-	if (!varval || !varval->isTime())
-	{
-		COleDateTime time;
-		time.SetStatus(COleDateTime::null);
-		return time;
-	}
-	return varval->getTime();
 }

@@ -26,6 +26,8 @@
 
 #include "stdafx.h"
 #include "coretools.h"
+#include "common/unicoder.h"
+#include "diffcontext.h"
 #include "diffwrapper.h"
 #include "diff.h"
 #include "FileTransform.h"
@@ -741,7 +743,7 @@ bool DiffFileData::DoOpenFiles()
 		// Open up file descriptors
 		// Always use O_BINARY mode, to avoid terminating file read on ctrl-Z (DOS EOF)
 		// Also, WinMerge-modified diffutils handles all three major eol styles
-		m_inf[i].desc = _topen(m_sFilepath[i], O_RDONLY|O_BINARY, 0);
+		m_inf[i].desc = _topen(m_sFilepath[i], O_RDONLY|O_BINARY, _S_IREAD);
 		if (m_inf[i].desc < 0)
 			return false;
 
@@ -779,3 +781,77 @@ void DiffFileData::Reset()
 	}
 }
 
+/** @brief Compare two specified files */
+int DiffFileData::just_compare_files(int depth, int *ndiffs, int *ntrivialdiffs)
+{
+	int bin_flag = 0;
+
+	// Do the actual comparison (generating a change script)
+	struct change *script = diff_2_files(m_inf, depth, &bin_flag);
+
+	int code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
+
+	// Free change script (which we don't want)
+	if (script != NULL)
+	{
+		struct change *p,*e;
+		for (e = script; e; e = p)
+		{
+			(*ndiffs)++;
+			if (!e->trivial)
+				code = code & ~DIFFCODE::SAME | DIFFCODE::DIFF;
+			else
+				(*ntrivialdiffs)++;
+			p = e->link;
+			free (e);
+		}
+	}
+
+	// diff_2_files set bin_flag to -1 if different binary
+	// diff_2_files set bin_flag to +1 if same binary
+
+	if (bin_flag != 0)
+		code = code & ~DIFFCODE::TEXT | DIFFCODE::BIN;
+
+	if (bin_flag < 0)
+		code = code & ~DIFFCODE::SAME | DIFFCODE::DIFF;
+
+	return code;
+}
+
+/** @brief return 1st or 2nd file descriptor */
+int DiffFileData::fd(int i)
+{
+	return m_inf[i].desc;
+}
+
+/** @brief detect unicode file and quess encoding */
+DiffFileData::UniFileBom::UniFileBom(int fd)
+{
+	size = 0;
+	unicoding = ucr::NONE;
+	if (fd != -1)
+	{
+		long tmp = _lseek(fd, 0, SEEK_SET);
+		switch (_read(fd, buffer, 3))
+		{
+			case 3:
+				size = 3;
+				unicoding = ucr::UTF8;
+				if (buffer[0] == 0xEF && buffer[1] == 0xBB && buffer[2] == 0xBF)
+					break;
+			case 2:
+				size = 2;
+				unicoding = ucr::UCS2LE;
+				if (buffer[0] == 0xFF && buffer[1] == 0xFE)
+					break;
+				unicoding = ucr::UCS2BE;
+				if (buffer[0] == 0xFE && buffer[1] == 0xFF)
+					break;
+			default:
+				size = 0;
+				unicoding = ucr::NONE;
+		}
+		_lseek(fd, tmp, SEEK_SET);
+	}
+}

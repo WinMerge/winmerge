@@ -12,8 +12,8 @@
 #define DirViewColItems_h
 
 
-typedef CString (*ColGetFnc)(const DIFFITEM & di);
-typedef int (*ColSortFnc)(const DIFFITEM & ldi, const DIFFITEM &rdi);
+typedef CString (*ColGetFnc)(const void *);
+typedef int (*ColSortFnc)(const void *, const void *);
 
 /**
  * @brief Information about one column of dirview list info
@@ -26,6 +26,7 @@ struct DirColInfo
 	int idDesc;
 	ColGetFnc getfnc; /**< Handler giving display string */
 	ColSortFnc sortfnc; /**< Handler for sorting this column */
+	SIZE_T offset;
 	int physicalIndex; /**< Current physical index, -1 if not displayed */
 	bool defSortUp; /**< Does column start with ascending sort (most do) */
 };

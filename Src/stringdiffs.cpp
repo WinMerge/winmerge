@@ -9,7 +9,7 @@
 
 #include "stdafx.h"
 #include "stringdiffs.h"
-int i;
+
 class stuff {
 	int j;
 };

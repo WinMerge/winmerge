@@ -2,20 +2,19 @@
  *  @file DirScan.cpp
  *
  *  @brief Implementation of DirScan (q.v.) and helper functions
- */
+ */ 
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
 #include "DirScan.h"
+#include "common/unicoder.h"
 #include "DiffContext.h"
+#include "DiffWrapper.h"
 #include "logfile.h"
 #include "paths.h"
 #include "FileTransform.h"
 #include "mainfrm.h"
-
-extern bool just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin, int * ndiffs, int *ntrivialdiffs);
-extern CLogFile gLog;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -44,7 +43,7 @@ static void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * fi
 void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * files, bool casesensitive);
 static void Sort(fentryArray * dirs, bool casesensitive);;
 static int collstr(const CString & s1, const CString & s2, bool casesensitive);
-static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry *rent,
+static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry *rent, 
 			    int code, CDiffContext * pCtxt, int ndiffs=-1, int ntrivialdiffs=-1);
 static int prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2, int * ndiffs, int * ntrivialdiffs);
 
@@ -246,15 +245,13 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 }
 
 /**
- * @brief Invoke appropriate plugins for unpacking and prediffing
+ * @brief Invoke appropriate plugins for unpacking
  * return false if anything fails
  * caller has to DeleteFile filepathTransformed, if it differs from filepath
  */
-static bool UnpackAndTransform(const CString & filepath, CString & filepathTransformed,
-	const CString & filteredFilenames, PackingInfo * infoUnpacker, PackingInfo * infoPrediffer, bool toUtf8)
+static bool Unpack(CString & filepathTransformed,
+	const CString & filteredFilenames, PackingInfo * infoUnpacker)
 {
-	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
-
 	// first step : unpack (plugins)
 	if (infoUnpacker->bToBeScanned)
 	{
@@ -266,8 +263,22 @@ static bool UnpackAndTransform(const CString & filepath, CString & filepathTrans
 		if (!FileTransform_Unpacking(filepathTransformed, infoUnpacker, &infoUnpacker->subcode))
 			return false;
 	}
+	return true;
+}
 
-	if (toUtf8)
+/**
+ * @brief Invoke appropriate plugins for prediffing
+ * return false if anything fails
+ * caller has to DeleteFile filepathTransformed, if it differs from filepath
+ */
+static bool Transform(const CString & filepath, CString & filepathTransformed,
+	const CString & filteredFilenames, PackingInfo * infoPrediffer, int fd)
+{
+	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
+
+	DiffFileData::UniFileBom bom = fd; // guess encoding
+
+	if (bom.unicoding && bom.unicoding != ucr::UCS2LE)
 	{
 		// second step : normalize Unicode to OLECHAR (most of time, do nothing) (OLECHAR = UCS-2LE in Windows)
 		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
@@ -283,7 +294,7 @@ static bool UnpackAndTransform(const CString & filepath, CString & filepathTrans
 	if (!FileTransform_Prediffing(filepathTransformed, filteredFilenames, infoPrediffer, bMayOverwrite))
 		return false;
 
-	if (toUtf8)
+	if (bom.unicoding)
 	{
 		// fourth step : prepare for diffing
 		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
@@ -300,14 +311,9 @@ static bool UnpackAndTransform(const CString & filepath, CString & filepathTrans
 static int
 prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2, int * ndiffs, int * ntrivialdiffs)
 {
-	// compareok equals true as long as everything is fine
-	BOOL compareok = TRUE;
-
-	// these hold results of comparison, for constructing return code
-	bool diff=false, bin=false;
-
+	int code = DIFFCODE::FILE | DIFFCODE::CMPERR;
 	// For user chosen plugins, define bAutomaticUnpacker as false and use the chosen infoHandler
-	// but how can we receive the infoHandler ? DirScan actually only
+	// but how can we receive the infoHandler ? DirScan actually only 
 	// returns info, but can not use file dependent information.
 
 	// Transformation happens here
@@ -318,27 +324,38 @@ prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2, int
 	PackingInfo infoPrediffer(m_bPredifferMode);
 
 	// plugin may alter filepaths to temp copies (which we delete before returning in all cases)
-	CString filepathTransformed1 = filepath1;
-	CString filepathTransformed2 = filepath2;
+	CString filepathUnpacked1 = filepath1;
+	CString filepathUnpacked2 = filepath2;
 
-	// TODO: 2004-02-03
-	// Call DiffContext::GuessEncoding to get encodings of both files
-	// and skip the UTF-8 part of file transformations if
-	// - encodings are the same and not unicode
-	// or
-	// - encodings are the same and are UTF-8
-	bool toUtf8 = true; // We will adjust this after we call GuessEncoding & get encoding info
+	CString filepathTransformed1;
+	CString filepathTransformed2;
 
-	// Invoke unpacking & prediff'ing plugins
-	if (!UnpackAndTransform(filepath1, filepathTransformed1, filteredFilenames, &infoUnpacker, &infoPrediffer, toUtf8))
+	DiffFileData diffdata(filepathTransformed1, filepathTransformed2);
+	// Invoke unpacking plugins
+	if (!Unpack(filepathUnpacked1, filteredFilenames, &infoUnpacker))
 		goto exitPrepAndCompare;
 
 	// we use the same plugins for both files, so they must be defined before second file
 	ASSERT(infoUnpacker.bToBeScanned == FALSE);
+
+	if (!Unpack(filepathUnpacked2, filteredFilenames, &infoUnpacker))
+		goto exitPrepAndCompare;
+
+	// As we keep handles open on unpacked files, Transform() may not delete them.
+	// Unpacked files will be deleted at end of this function.
+	diffdata.m_sFilepath[0] = filepathTransformed1 = filepathUnpacked1;
+	diffdata.m_sFilepath[1] = filepathTransformed2 = filepathUnpacked2;
+	if (!diffdata.OpenFiles())
+		goto exitPrepAndCompare;
+
+	// Invoke prediff'ing plugins
+	if (!Transform(filepathUnpacked1, filepathTransformed1, filteredFilenames, &infoPrediffer, diffdata.fd(0)))
+		goto exitPrepAndCompare;
+
+	// we use the same plugins for both files, so they must be defined before second file
 	ASSERT(infoPrediffer.bToBeScanned == FALSE);
 
-	// Invoke unpacking & prediff'ing plugins
-	if (!UnpackAndTransform(filepath2, filepathTransformed2, filteredFilenames, &infoUnpacker, &infoPrediffer, toUtf8))
+	if (!Transform(filepathUnpacked2, filepathTransformed2, filteredFilenames, &infoPrediffer, diffdata.fd(1)))
 		goto exitPrepAndCompare;
 
 	// If options are binary equivalent, we could check for filesize
@@ -348,27 +365,26 @@ prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2, int
 
 	// Actually compare the files
 	// just_compare_files is a fairly thin front-end to diffutils
-	compareok = just_compare_files(filepathTransformed1, filepathTransformed2,
-		0, &diff, &bin, ndiffs, ntrivialdiffs);
+	if (filepathTransformed1 != filepathUnpacked1 || filepathTransformed2 != filepathUnpacked2)
+	{
+		diffdata.m_sFilepath[0] = filepathTransformed1;
+		diffdata.m_sFilepath[1] = filepathTransformed2;
+		if (!diffdata.OpenFiles())
+			goto exitPrepAndCompare;
+	}
+	code = diffdata.just_compare_files(0, ndiffs, ntrivialdiffs);
 
 exitPrepAndCompare:
+	diffdata.Reset();
 	// delete the temp files after comparison
-	if (filepathTransformed1 != filepath1)
-		::DeleteFile(filepathTransformed1);
-	if (filepathTransformed2 != filepath2)
-		::DeleteFile(filepathTransformed2);
-
-	// assemble bit flags for result code
-	int code = DIFFCODE::FILE;
-	if (!compareok)
-	{
-		code |= DIFFCODE::CMPERR;
-	}
-	else
-	{
-		code |= (diff ? DIFFCODE::DIFF : DIFFCODE::SAME);
-		code |= (bin ? DIFFCODE::BIN : DIFFCODE::TEXT);
-	}
+	if (filepathTransformed1 != filepathUnpacked1)
+		VERIFY(::DeleteFile(filepathTransformed1) || gLog::DeleteFileFailed(filepathTransformed1));
+	if (filepathTransformed2 != filepathUnpacked2)
+		VERIFY(::DeleteFile(filepathTransformed2) || gLog::DeleteFileFailed(filepathTransformed2));
+	if (filepathUnpacked1 != filepath1)
+		VERIFY(::DeleteFile(filepathUnpacked1) || gLog::DeleteFileFailed(filepathUnpacked1));
+	if (filepathUnpacked2 != filepath2)
+		VERIFY(::DeleteFile(filepathUnpacked2) || gLog::DeleteFileFailed(filepathUnpacked2));
 	return code;
 }
 

@@ -47,21 +47,12 @@ public:
 	int		m_nRFolder;
 	int		m_nUnknown;
 	CButton	m_ctlStop;
-	CStatic m_ctlLFolder;
-	CStatic m_ctlRFolder;
-	CStatic m_ctlEqual;
-	CStatic m_ctlNotEqual;
-	CStatic m_ctlBinarySame;
-	CStatic m_ctlBinaryDiff;
-	CStatic m_ctlLFile;
-	CStatic m_ctlRFile;
-	CStatic m_ctlFolderSkip;
-	CStatic m_ctlLFileSkip;
-	CStatic m_ctlLUnknown;
 	//}}AFX_DATA
 
 	CString strAbort;
 	CString strClose;
+
+	long m_lElapsed;
 
 // Overrides
 	virtual CSize CalcFixedLayout(BOOL bStretch, BOOL bHorz);

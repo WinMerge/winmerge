@@ -76,17 +76,6 @@ void CDirCompStateBar::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_COUNT_RFOLDER, m_nRFolder);
 	DDX_Text(pDX, IDC_COUNT_UNKNOWN, m_nUnknown);
 	DDX_Control(pDX, IDC_COMPARISON_STOP, m_ctlStop);
-	DDX_Control(pDX, IDC_COUNT_BINARYDIFF, m_ctlBinaryDiff);
-	DDX_Control(pDX, IDC_COUNT_BINARYSAME, m_ctlBinarySame);
-	DDX_Control(pDX, IDC_COUNT_EQUAL, m_ctlEqual);
-	DDX_Control(pDX, IDC_COUNT_FILESKIP, m_ctlLFileSkip);
-	DDX_Control(pDX, IDC_COUNT_FOLDERSKIP, m_ctlFolderSkip);
-	DDX_Control(pDX, IDC_COUNT_LFILE, m_ctlLFile);
-	DDX_Control(pDX, IDC_COUNT_LFOLDER, m_ctlLFolder);
-	DDX_Control(pDX, IDC_COUNT_NOTEQUAL, m_ctlNotEqual);
-	DDX_Control(pDX, IDC_COUNT_RFILE, m_ctlRFile);
-	DDX_Control(pDX, IDC_COUNT_RFOLDER, m_ctlRFolder);
-	DDX_Control(pDX, IDC_COUNT_UNKNOWN, m_ctlLUnknown);
 	//}}AFX_DATA_MAP
 }
 
@@ -158,8 +147,13 @@ void CDirCompStateBar::OnUpdateStop(CCmdUI* pCmdUI)
 		{
 			CString text;
 			m_ctlStop.GetWindowText(text);
-			if (text != strClose) 
+			if (text != strClose)
+			{
 				m_ctlStop.SetWindowText(strClose);
+				m_lElapsed += ::GetTickCount();
+				text.Format(IDS_ELAPSED_TIME, m_lElapsed);
+				pFrameWnd->SetMessageText(text);
+			}
 			// also give the focus to the button (PreTranslateMessage needs it)
 			m_ctlStop.SetFocus();
 		}
@@ -178,21 +172,20 @@ void CDirCompStateBar::OnUpdateStop(CCmdUI* pCmdUI)
  */
 void CDirCompStateBar::AddElement(UINT diffcode)
 {
-	DIFFITEM di;
+	DIFFCODE di = diffcode;
 	
-	di.diffcode = diffcode;
 	if (di.isSideLeft())
 	{
 		// left-only
 		if (di.isDirectory())
 		{
 			++m_nLFolder;
-			UpdateText(&m_ctlLFolder, m_nLFolder);
+			SetDlgItemInt(IDC_COUNT_LFOLDER, m_nLFolder);
 		}
 		else
 		{
 			++m_nLFile;
-			UpdateText(&m_ctlLFile, m_nLFile);
+			SetDlgItemInt(IDC_COUNT_LFILE, m_nLFile);
 		}
 	}
 	else if (di.isSideRight())
@@ -201,12 +194,12 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		if (di.isDirectory())
 		{
 			++m_nRFolder;
-			UpdateText(&m_ctlRFolder, m_nRFolder);
+			SetDlgItemInt(IDC_COUNT_RFOLDER, m_nRFolder);
 		}
 		else
 		{
 			++m_nRFile;
-			UpdateText(&m_ctlRFile, m_nRFile);
+			SetDlgItemInt(IDC_COUNT_RFILE, m_nRFile);
 		}
 	}
 	else if (di.isResultSkipped())
@@ -215,19 +208,19 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		if (di.isDirectory())
 		{
 			++m_nFolderSkip;
-			UpdateText(&m_ctlFolderSkip, m_nFolderSkip);
+			SetDlgItemInt(IDC_COUNT_FOLDERSKIP, m_nFolderSkip);
 		}
 		else
 		{
 			++m_nFileSkip;
-			UpdateText(&m_ctlLFileSkip, m_nFileSkip);
+			SetDlgItemInt(IDC_COUNT_FILESKIP, m_nFileSkip);
 		}
 	}
 	else if (di.isResultError())
 	{
 		// could be directory error ?
 		++m_nUnknown;
-		UpdateText(&m_ctlLUnknown, m_nUnknown);
+		SetDlgItemInt(IDC_COUNT_UNKNOWN, m_nUnknown);
 	}
 	// Now we know it was on both sides & compared!
 	else if (di.isResultSame())
@@ -236,12 +229,12 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		if (di.isBin())
 		{
 			++m_nBinarySame;
-			UpdateText(&m_ctlBinarySame, m_nBinarySame);
+			SetDlgItemInt(IDC_COUNT_BINARYSAME, m_nBinarySame);
 		}
 		else
 		{
 			++m_nEqual;
-			UpdateText(&m_ctlEqual, m_nEqual);
+			SetDlgItemInt(IDC_COUNT_EQUAL, m_nEqual);
 		}
 	}
 	else
@@ -257,12 +250,12 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 			if (di.isBin())
 			{
 				++m_nBinaryDiff;
-				UpdateText(&m_ctlBinaryDiff, m_nBinaryDiff);
+				SetDlgItemInt(IDC_COUNT_BINARYDIFF, m_nBinaryDiff);
 			}
 			else
 			{
 				++m_nNotEqual;
-				UpdateText(&m_ctlNotEqual, m_nNotEqual);
+				SetDlgItemInt(IDC_COUNT_NOTEQUAL, m_nNotEqual);
 			}
 		}
 	}
@@ -304,23 +297,12 @@ void CDirCompStateBar::OnWindowPosChanging( WINDOWPOS* lpwndpos )
 }
 
 /**
- * @brief Set number to given static control
- */
-void CDirCompStateBar::UpdateText(CStatic * ctrl, int num) const
-{
-	ASSERT(ctrl != NULL);
-	TCHAR strNum[20] = {0};
-	
-	_itot(num, strNum, 10);
-	ctrl->SetWindowText(strNum);
-}
-
-/**
  * @brief Resets itemcounts
  */
 void CDirCompStateBar::Reset()
 {
 	ClearStat();
+	m_lElapsed = 0;
+	m_lElapsed -= ::GetTickCount();
 	UpdateData(FALSE);
 }
-

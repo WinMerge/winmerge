@@ -77,22 +77,6 @@ static int cmpdiffcode(int diffcode1, int diffcode2)
 	return diffcode1-diffcode2;	
 }
 /**
- * @brief Function to compare two COleDateTimes for a sort
- */
-static int cmptime(COleDateTime t1, COleDateTime t2)
-{
-	if (int cmp = t2.GetStatus() - t1.GetStatus())
-		return cmp;
-	if (t1.GetStatus() == COleDateTime::valid)
-	{
-		if (t1>t2)
-			return 1;
-		if (t1<t2)
-			return -1;
-	}
-	return 0;
-}
-/**
  * @brief Function to compare two doubles for a sort
  */
 static int cmpfloat(double v1, double v2)
@@ -102,25 +86,26 @@ static int cmpfloat(double v1, double v2)
 	if (v1<v2)
 		return -1;
 	return 0;
-;
 }
-
 /**
  * @{ Functions to display each type of column info
  */
-static CString ColNameGet(const DIFFITEM & di)
+static CString ColNameGet(const void *p) //sfilename
 {
-	return di.sfilename;
+	const CString &r = *static_cast<const CString*>(p);
+	return r;
 }
-static CString ColPathGet(const DIFFITEM & di)
+static CString ColPathGet(const void *p)
 {
-	if (di.sSubdir.IsEmpty())
+	const CString &r = *static_cast<const CString*>(p);
+	if (r.IsEmpty())
 		return _T(".");
 	else
-		return di.sSubdir;
+		return r;
 }
-static CString ColStatusGet(const DIFFITEM & di)
+static CString ColStatusGet(const void *p)
 {
+	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
 	// Note that order of items does matter. We must check for
 	// skipped items before unique items, for example, so that
 	// skipped unique items are labeled as skipped, not unique.
@@ -160,73 +145,60 @@ static CString ColStatusGet(const DIFFITEM & di)
 	}
 	return s;
 }
-static CString ColLctimeGet(const DIFFITEM & di)
+static CString ColTimeGet(const void *p)
 {
-	if (di.left.ctime)
-		return TimeString(&di.left.ctime);
+	const __int64 &r = *static_cast<const __int64*>(p);
+	if (r)
+		return TimeString(&r);
 	else
 		return _T("");
 }
-static CString ColRctimeGet(const DIFFITEM & di)
+static CString ColSizeGet(const void *p)
 {
-	if (di.right.ctime)
-		return TimeString(&di.right.ctime);
-	else
-		return _T("");
-}
-static CString ColExtGet(const DIFFITEM & di)
-{
-	return di.sext;
-}
-static CString ColLsizeGet(const DIFFITEM & di)
-{
+	const __int64 &r = *static_cast<const __int64*>(p);
 	CString s;
-	s.Format(_T("%I64d"), di.left.size);
+	s.Format(_T("%I64d"), r);
 	return locality::GetLocaleStr(s);
 }
-static CString ColRsizeGet(const DIFFITEM & di)
+static CString ColDiffsGet(const void *p)
 {
+	const int &r = *static_cast<const int*>(p);
 	CString s;
-	s.Format(_T("%I64d"), di.right.size);
-	return locality::GetLocaleStr(s);
-}
-
-static CString ColNewerGet(const DIFFITEM & di)
-{
-	const varprop::Property * prop = di.shprops.GetProperty(_T("Snewer"));
-	if (prop && prop->value.isString())
+	if (r != -1)
 	{
-		CString newer = prop->value.getString();
-		if (newer == _T("L"))
-			return _T("<<<");
-		else if (newer == _T("R"))
-			return _T(">>");
-		else
-			return _T("==");
+		s.Format(_T("%ld"), r);
+		s = locality::GetLocaleStr(s);
 	}
-	else if (di.isSideLeft())
+	return s;
+}
+static CString ColNewerGet(const void *p)
+{
+	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
+	if (di.isSideLeft())
 	{
 		return _T("<*<");
 	}
-	else if (di.isSideRight())
+	if (di.isSideRight())
 	{
 		return _T(">*>");
 	}
-	else
+	if (di.left.mtime && di.right.mtime)
 	{
-		return _T("***");
+		if (di.left.mtime > di.right.mtime)
+		{
+			return _T("<<");
+		}
+		if (di.left.mtime < di.right.mtime)
+		{
+			return _T(">>");
+		}
+		return _T("==");
 	}
+	return _T("***");
 }
-static CString ColLverGet(const DIFFITEM & di)
+static CString ColStatusAbbrGet(const void *p)
 {
-	return di.left.version;
-}
-static CString ColRverGet(const DIFFITEM & di)
-{
-	return di.right.version;
-}
-static CString ColStatusAbbrGet(const DIFFITEM & di)
-{
+	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
 	int id;
 
 	// Note that order of items does matter. We must check for
@@ -270,21 +242,15 @@ static CString ColStatusAbbrGet(const DIFFITEM & di)
 	VERIFY(s.LoadString(id));
 	return s;
 }
-static CString ColLattrGet(const DIFFITEM & di)
+static CString ColAttrGet(const void *p)
 {
-	return di.left.flags.toString();
+	const FileFlags &r = *static_cast<const FileFlags *>(p);
+	return r.toString();
 }
-static CString ColRattrGet(const DIFFITEM & di)
+static CString ColEncodingGet(const void *p)
 {
-	return di.right.flags.toString();
-}
-static CString ColLencodingGet(const DIFFITEM & di)
-{
-	return EncodingString(di.left.unicoding, di.left.codepage);
-}
-static CString ColRencodingGet(const DIFFITEM & di)
-{
-	return EncodingString(di.right.unicoding, di.right.codepage);
+	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
+	return EncodingString(r.unicoding, r.codepage);
 }
 /**
  * @}
@@ -293,62 +259,54 @@ static CString ColRencodingGet(const DIFFITEM & di)
 /**
  * @{ Functions to sort each type of column info
  */
-static int ColNameSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
+static int ColNameSort(const void *p, const void *q)
 {
-	return ldi.sfilename.CompareNoCase(rdi.sfilename);
+	const CString &r = *static_cast<const CString*>(p);
+	const CString &s = *static_cast<const CString*>(q);
+	return r.CompareNoCase(s);
 }
-static int ColPathSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
+
+static int ColStatusSort(const void *p, const void *q)
 {
-	return ldi.sSubdir.CompareNoCase(rdi.sSubdir);
-}
-static int ColStatusSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
-{
+	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
+	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
 	return cmpdiffcode(rdi.diffcode, ldi.diffcode);
 }
-static int ColExtSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
+static int ColTimeSort(const void *p, const void *q)
 {
-	return ldi.sext.CompareNoCase(rdi.sext);
+	const __int64 &r = *static_cast<const __int64*>(p);
+	const __int64 &s = *static_cast<const __int64*>(q);
+	return cmp64(r, s);
 }
-static int ColLsizeSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
+static int ColSizeSort(const void *p, const void *q)
 {
-	return cmp64(rdi.left.size, ldi.left.size);
+	const __int64 &r = *static_cast<const __int64*>(p);
+	const __int64 &s = *static_cast<const __int64*>(q);
+	return cmp64(r, s);
 }
-static int ColRsizeSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
+static int ColDiffsSort(const void *p, const void *q)
 {
-	return cmp64(rdi.right.size, ldi.right.size);
+	const int &r = *static_cast<const int*>(p);
+	const int &s = *static_cast<const int*>(q);
+	return r - s;
 }
-static int ColNewerSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
+static int ColNewerSort(const void *p, const void *q)
 {
-	return ColNewerGet(ldi).Compare(ColNewerGet(rdi));
+	return ColNewerGet(p).Compare(ColNewerGet(q));
 }
-static int ColLverSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
+static int ColAttrSort(const void *p, const void *q)
 {
-	return ldi.left.version.Compare(rdi.left.version);
+	const FileFlags &r = *static_cast<const FileFlags *>(p);
+	const FileFlags &s = *static_cast<const FileFlags *>(q);
+	return r.toString().Compare(s.toString());
 }
-static int ColRverSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
+static int ColEncodingSort(const void *p, const void *q)
 {
-	return ldi.right.version.Compare(rdi.right.version);
-}
-static int ColLattrSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
-{
-	return ldi.left.flags.toString().Compare(rdi.left.flags.toString());
-}
-static int ColRattrSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
-{
-	return ldi.right.flags.toString().Compare(rdi.right.flags.toString());
-}
-static int ColLencodingSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
-{
-	__int64 n = cmp64(ldi.left.unicoding, rdi.left.unicoding);
+	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
+	const DiffFileInfo &s = *static_cast<const DiffFileInfo *>(q);
+	__int64 n = cmp64(r.unicoding, s.unicoding);
 	if (n) return n;
-	n = cmp64(ldi.left.codepage, rdi.left.codepage);
-	return n;
-}
-static int ColRencodingSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
-{
-	__int64 n = cmp64(ldi.right.unicoding, rdi.right.unicoding);
-	if (n) return n;
-	n = cmp64(ldi.right.codepage, rdi.right.codepage);
+	n = cmp64(r.codepage, s.codepage);
 	return n;
 }
 /**
@@ -365,26 +323,26 @@ static int ColRencodingSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
  */
 DirColInfo g_cols[] =
 {
-	{ _T("Name"), IDS_COLHDR_FILENAME, -1, &ColNameGet, &ColNameSort, 0, true }
-	, { _T("Path"), IDS_COLHDR_DIR, -1, &ColPathGet, &ColPathSort, 1, true }
-	, { _T("Status"), IDS_COLHDR_RESULT, -1, &ColStatusGet, &ColStatusSort, 2, true}
-	, { _T("Lmtime"), IDS_COLHDR_LTIMEM, -1, NULL, NULL, 3, false }
-	, { _T("Rmtime"), IDS_COLHDR_RTIMEM, -1, NULL, NULL, 4, false }
-	, { _T("Lctime"), IDS_COLHDR_LTIMEC, -1, NULL, NULL, -1, false }
-	, { _T("Rctime"), IDS_COLHDR_RTIMEC, -1, NULL, NULL, -1, false }
-	, { _T("Ext"), IDS_COLHDR_EXTENSION, -1, &ColExtGet, &ColExtSort, 5, true }
-	, { _T("Lsize"), IDS_COLHDR_LSIZE, -1, &ColLsizeGet, &ColLsizeSort, -1, true }
-	, { _T("Rsize"), IDS_COLHDR_RSIZE, -1, &ColRsizeGet, &ColRsizeSort, -1, true }
-	, { _T("Newer"), IDS_COLHDR_NEWER, -1, &ColNewerGet, &ColNewerSort, -1, true }
-	, { _T("Lversion"), IDS_COLHDR_LVERSION, -1, &ColLverGet, &ColLverSort, -1, true }
-	, { _T("Rversion"), IDS_COLHDR_RVERSION, -1, &ColRverGet, &ColRverSort, -1, true }
-	, { _T("StatusAbbr"), IDS_COLHDR_RESULT_ABBR, -1, &ColStatusAbbrGet, &ColStatusSort, -1, true }
-	, { _T("Lattr"), IDS_COLHDR_LATTRIBUTES, -1, &ColLattrGet, &ColLattrSort, -1, true }
-	, { _T("Rattr"), IDS_COLHDR_RATTRIBUTES, -1, &ColRattrGet, &ColRattrSort, -1, true }
-	, { _T("Lencoding"), IDS_COLHDR_LENCODING, -1, &ColLencodingGet, &ColLencodingSort, -1, true }
-	, { _T("Rencoding"), IDS_COLHDR_RENCODING, -1, &ColRencodingGet, &ColRencodingSort, -1, true }
-	, { _T("Sndiffs"), IDS_COLHDR_NDIFFS, -1, NULL, NULL, -1, false }
-	, { _T("Snsdiffs"), IDS_COLHDR_NSDIFFS, -1, NULL, NULL, -1, false }
+	{ _T("Name"), IDS_COLHDR_FILENAME, -1, &ColNameGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, sfilename), 0, true },
+	{ _T("Path"), IDS_COLHDR_DIR, -1, &ColPathGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, sSubdir), 1, true },
+	{ _T("Status"), IDS_COLHDR_RESULT, -1, &ColStatusGet, &ColStatusSort, 0, 2, true},
+	{ _T("Lmtime"), IDS_COLHDR_LTIMEM, -1, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, left.mtime), 3, false },
+	{ _T("Rmtime"), IDS_COLHDR_RTIMEM, -1, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, right.mtime), 4, false },
+	{ _T("Lctime"), IDS_COLHDR_LTIMEC, -1, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, left.ctime), -1, false },
+	{ _T("Rctime"), IDS_COLHDR_RTIMEC, -1, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, right.ctime), -1, false },
+	{ _T("Ext"), IDS_COLHDR_EXTENSION, -1, &ColNameGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, sext), 5, true },
+	{ _T("Lsize"), IDS_COLHDR_LSIZE, -1, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, left.size), -1, false },
+	{ _T("Rsize"), IDS_COLHDR_RSIZE, -1, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, right.size), -1, false },
+	{ _T("Newer"), IDS_COLHDR_NEWER, -1, &ColNewerGet, &ColNewerSort, 0, -1, true },
+	{ _T("Lversion"), IDS_COLHDR_LVERSION, -1, &ColNameGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, left.version), -1, true },
+	{ _T("Rversion"), IDS_COLHDR_RVERSION, -1, &ColNameGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, right.version), -1, true },
+	{ _T("StatusAbbr"), IDS_COLHDR_RESULT_ABBR, -1, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true },
+	{ _T("Lattr"), IDS_COLHDR_LATTRIBUTES, -1, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, left.flags), -1, true },
+	{ _T("Rattr"), IDS_COLHDR_RATTRIBUTES, -1, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, right.flags), -1, true },
+	{ _T("Lencoding"), IDS_COLHDR_LENCODING, -1, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, left), -1, true },
+	{ _T("Rencoding"), IDS_COLHDR_RENCODING, -1, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, right), -1, true },
+	{ _T("Sndiffs"), IDS_COLHDR_NDIFFS, -1, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, ndiffs), -1, false },
+	{ _T("Snsdiffs"), IDS_COLHDR_NSDIFFS, -1, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false },
 };
 
 /**
@@ -411,62 +369,3 @@ int CDirView::GetColDefaultOrder(int col) const
 	ASSERT(col>=0 && col<countof(g_cols));
 	return g_cols[col].physicalIndex;
 }
-
-/**
- * @brief Format and display a generic property
- */
-CString CDirView::GetColItemDisplay(const varprop::VariantValue & var)
-{
-	if (var.isString())
-	{
-		return var.getString();
-	}
-	if (var.isInt())
-	{
-		CString str;
-		str.Format(_T("%d"), var.getInt());
-		return locality::GetLocaleStr(str);
-	}
-	if (var.isTime())
-	{
-		if (var.getTime().GetStatus() != COleDateTime::valid)
-			return _T("");
-		return var.getTime().Format();
-	}
-	if (var.isFloat())
-	{
-		CString str;
-		str.Format(_T("%lf"), var.getFloat());
-		return str;
-	}
-	return _T("?");
-}
-
-/**
- * @brief Compare two generic property values (used in dirview sort)
- */
-int CDirView::GenericSortItem(const varprop::VariantValue * lvar, const varprop::VariantValue * rvar)
-{
-	// If not the same type, simply compare types (this really shouldn't happen anyway)
-	if (!lvar)
-		return rvar ? 1 : 0;
-	if (!rvar)
-		return -1;
-	if (lvar->getType() > rvar->getType())
-		return 1;
-	else if (lvar->getType() < rvar->getType())
-		return -1;
-	// Ok, they're the same type, so we can compare their values
-	if (lvar->isString())
-		return lvar->getString().Compare(rvar->getString());
-	if (lvar->isInt())
-		return cmp64(lvar->getInt(), rvar->getInt());
-	if (lvar->isTime())
-		return cmptime(lvar->getTime(), rvar->getTime());
-	if (lvar->isFloat())
-		return cmpfloat(lvar->getFloat(), rvar->getFloat());
-	ASSERT(0);
-	return 0;
-}
-
-

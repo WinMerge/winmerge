@@ -35,7 +35,7 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 	DWORD dwMapAccess = 0;
 	DWORD dwOpenAccess = 0;
 	DWORD dwFileSizeHigh = 0;
-	DWORD dwSharedMode = 0; // exclusive
+	DWORD dwSharedMode = FILE_SHARE_READ;
 	HANDLE hTemplateFile = NULL; // for creating new file
 	BOOL bSuccess = TRUE;
 

@@ -166,9 +166,6 @@ private:
 	void MoveColumn(int psrc, int pdest);
 	CString GetColRegValueNameBase(int col) const;
 	int GetColDefaultOrder(int col) const;
-public:
-	static CString GetColItemDisplay(const varprop::VariantValue & var);
-	static int GenericSortItem(const varprop::VariantValue * lvar, const varprop::VariantValue * rvar);
 private:
 // End DirViewCols.cpp
 
@@ -328,5 +325,4 @@ CString NumToStr(int n);
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_)
-
 

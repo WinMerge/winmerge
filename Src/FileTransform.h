@@ -101,13 +101,13 @@ public:
 		Initialize(bLocalUnpackerMode);
 	};
 
-  operator=(PackingInfo * newInfo) 
+/*  operator=(PackingInfo * newInfo) 
 	{
 		bToBeScanned = newInfo->bToBeScanned;
 		pluginName = newInfo->pluginName;
 		subcode = newInfo->subcode;
 		bWithFile = newInfo->bWithFile;
-	}
+	}*/
 
 public:
 	BOOL										bToBeScanned;
