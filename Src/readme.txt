@@ -1,3 +1,8 @@
+2004-03-25 Kimmo
+ BUG: [ 918760 ] doxygen.cfg moved
+  Update paths for new location of doxygen.cfg in docs/developers
+  docs/developers: doxygen.cfg
+
 2004-03-24 Laoran
  HideFirstLetter plugin : fix : open input and output file as binary 
   Plugins/HideFirstLetter: WinMergeScript.cpp
