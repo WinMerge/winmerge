@@ -930,7 +930,7 @@ BEGIN
     BEGIN
         BLOCK "041d04b0"
         BEGIN
-            VALUE "Comments", "Translated by Göran Håkansson\0"
+            VALUE "Comments", "Translated by Göran Håkansson, contributions from Hans Eriksson\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "000.000.000.000\0"
