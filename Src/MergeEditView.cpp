@@ -1357,9 +1357,9 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{
-		// Ask about saving unsaved document
+		// Ask about saving unsaved document, allow to cancel closing
 		CMergeDoc *pd = GetDocument();
-		if (pd->SaveHelper())
+		if (pd->SaveHelper(TRUE))
 		{
 			// Set modified status to false so that we are not asking
 			// about saving again
@@ -1810,3 +1810,4 @@ void CMergeEditView::OnUpdateWMGoto(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(TRUE);
 }
+

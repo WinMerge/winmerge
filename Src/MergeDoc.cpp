@@ -960,7 +960,8 @@ UINT CMergeDoc::CountPrevBlanks(UINT nCurLine, BOOL bLeft)
 
 BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/) 
 {
-	if (SaveHelper())
+	// Allow user to cancel closing
+	if (SaveHelper(TRUE))
 	{
 		// Set modified status to false so that we are not asking
 		// about saving again in OnCloseDocument()
@@ -2059,14 +2060,22 @@ void CMergeDoc::PrimeTextBuffers()
 }
 
 /**
- * @brief Saves file if file is modified. If file is
+ * @brief Asks and then saves modified files.
+ *
+ * This function saves modified files. User is asked about saving
+ * both files so user can save file(s) one wants to. Optionally
+ * canceling is allowed for following operation, i.e. when closing
+ * documents selecting cancel does not save or close documents.
  * opened from directory compare, status there is updated.
+ * @sa [in] bAllowCancel If TRUE "Cancel" button is shown.
+ * @return TRUE if user selected Yes/No so next operation can be
+ * executed. If FALSE user choosed "Cancel".
  * @note If filename is empty, we assume scratchpads are saved,
  * so instead of filename, description is shown.
  * @todo If we have filename and description for file, what should
  * we do after saving to different filename? Empty description?
  */
-BOOL CMergeDoc::SaveHelper()
+BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 {
 	BOOL result = TRUE;
 	CString s;
@@ -2075,6 +2084,11 @@ BOOL CMergeDoc::SaveHelper()
 	BOOL bLModified = FALSE;
 	BOOL bRModified = FALSE;
 	BOOL bCancel = FALSE;
+	UINT nDialogType = MB_YESNO;
+
+	// Add "Cancel" button to messagebox
+	if (bAllowCancel)
+		nDialogType = MB_YESNOCANCEL;
 
 	if (m_ltBuf.IsModified())
 	{
@@ -2084,7 +2098,7 @@ BOOL CMergeDoc::SaveHelper()
 			AfxFormatString1(s, IDS_SAVE_FMT, m_strLeftDesc);
 	
 		bLModified = TRUE;
-		switch(AfxMessageBox(s, MB_YESNOCANCEL|MB_ICONQUESTION))
+		switch (AfxMessageBox(s, nDialogType | MB_ICONQUESTION))
 		{
 		case IDYES:
 			if (!DoSave(m_strLeftFile, bLSaveSuccess, TRUE))
@@ -2106,7 +2120,7 @@ BOOL CMergeDoc::SaveHelper()
 			AfxFormatString1(s, IDS_SAVE_FMT, m_strRightDesc);
 
 		bRModified = TRUE;
-		switch(AfxMessageBox(s, MB_YESNOCANCEL|MB_ICONQUESTION))
+		switch (AfxMessageBox(s, nDialogType | MB_ICONQUESTION))
 		{
 		case IDYES:
 			if (!DoSave(m_strRightFile, bRSaveSuccess, FALSE))
@@ -2206,7 +2220,8 @@ void CMergeDoc::DirDocClosing(CDirDoc * pDirDoc)
  */
 BOOL CMergeDoc::CloseNow()
 {
-	if (!SaveHelper())
+	// Allow user to cancel closing
+	if (!SaveHelper(TRUE))
 		return FALSE;
 
 	GetParentFrame()->CloseNow();
@@ -2531,3 +2546,4 @@ void CMergeDoc::UpdateHeaderActivity(BOOL bLeft, BOOL bActivate)
 	int nPane = (bLeft) ? 0 : 1;
 	pf->GetHeaderInterface()->SetActive(nPane, bActivate);
 }
+

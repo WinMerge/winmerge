@@ -269,7 +269,7 @@ private:
 
 // Implementation
 public:
-	BOOL SaveHelper();
+	BOOL SaveHelper(BOOL bAllowCancel);
 	std::vector<CMergeEditView*> undoTgt;
 	std::vector<CMergeEditView*>::iterator curUndo;
 	void FlushAndRescan(BOOL bForced = FALSE);
@@ -327,3 +327,4 @@ private:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
+

@@ -1029,7 +1029,6 @@ void CMainFrame::OnOptions()
 		// make an attempt at rescanning any open diff sessions
 		MergeDocList docs;
 		GetAllMergeDocs(&docs);
-		BOOL savedAll=TRUE;
 		while (!docs.IsEmpty())
 		{
 			CMergeDoc * pMergeDoc = docs.RemoveHead();
@@ -1055,18 +1054,10 @@ void CMainFrame::OnOptions()
 				pRight->SetInsertTabs(FALSE);
 			}
 
-			if (pMergeDoc->SaveHelper())
-			{
-				pMergeDoc->FlushAndRescan(TRUE);
-			}
-			// mods have been made, so just warn
-			else
-			{
-				savedAll = FALSE;
-			}
+			// Allow user to save files or not, cancel is pointless
+			pMergeDoc->SaveHelper(FALSE);
+			pMergeDoc->FlushAndRescan(TRUE);
 		}
-		if (!savedAll)
-			AfxMessageBox(IDS_DIFF_OPEN_NO_SET_PROPS,MB_ICONEXCLAMATION);
 
 		// Update all dirdoc settings
 		DirDocList dirDocs;
@@ -1847,7 +1838,8 @@ void CMainFrame::OnClose()
 		if ((pLeft && pLeft->IsModified())
 			|| (pRight && pRight->IsModified()))
 		{
-			if (!pMergeDoc->SaveHelper())
+			// Allow user to cancel closing
+			if (!pMergeDoc->SaveHelper(TRUE))
 				return;
 			else
 			{
@@ -2167,7 +2159,7 @@ void CMainFrame::OnToolsGeneratePatch()
 			CMergeDoc * pMergeDoc = mergedocs.RemoveHead();
 
 			// If user cancels, don't open create patch-dialog
-			if (!pMergeDoc->SaveHelper())
+			if (!pMergeDoc->SaveHelper(TRUE))
 			{
 				bOpenDialog = FALSE;
 			}
