@@ -2,6 +2,9 @@
  RFE: [ 952959 ] split Are you sure you want to copy into more lines
   Src: Merge.rc
   Src/Languages: *.rc
+ PATCH: [ 1011066 ] Better error message for failed file loading
+  Src: MergeDoc.cpp MergeDoc.h
+  Src/Common: UniFile.cpp
 
 2004-08-17 WinMerge experimental release 2.1.7.11 (cvs)
 

@@ -38,7 +38,8 @@
 
 /**
  * @brief additionnal action code for WinMerge (reserve 100 first codes for CrystalEdit)
- */enum
+ */
+enum
 {
 	CE_ACTION_MERGE = 100,
 };
@@ -133,14 +134,16 @@ private :
 public :
 		void SetTempPath(CString path);
 		virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-                        LPCTSTR pszText, int nLinesToValidate, int nActionType = CE_ACTION_UNKNOWN);
+			LPCTSTR pszText, int nLinesToValidate, int nActionType = CE_ACTION_UNKNOWN);
 		bool curUndoGroup();
 		void ReplaceLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 		void ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 
-		int LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker, CString filteredFilenames, BOOL & readOnly, int nCrlfStyle, int codepage);
+		int LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker,
+			CString filteredFilenames, BOOL & readOnly, int nCrlfStyle,
+			int codepage, CString &sError);
 		int SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, PackingInfo * infoUnpacker = NULL,
-                    int nCrlfStyle = CRLF_STYLE_AUTOMATIC, BOOL bClearModifiedFlag = TRUE );
+			int nCrlfStyle = CRLF_STYLE_AUTOMATIC, BOOL bClearModifiedFlag = TRUE );
 		int getUnicoding() const { return m_unicoding; }
 		void setUnicoding(int value) { m_unicoding = value; }
 		int getCodepage() const { return m_codepage; }

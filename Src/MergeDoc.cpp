@@ -1321,13 +1321,24 @@ GetLineByteTimeReport(UINT lines, UINT bytes, const COleDateTime & start)
 /**
  * @brief Load file from disk into buffer
  *
- * @return FRESULT_OK or FRESULT_OK_IMPURE (load OK, but the EOL are of different types)
+ * @param [in] pszFileNameInit File to load
+ * @param [in] infoUnpacker Unpacker plugin
+ * @param [in] sToFindUnpacker String for finding unpacker plugin
+ * @param [out] readOnly Loading was lossy so file should be read-only
+ * @param [in] nCrlfStyle EOL style used
+ * @param [in] codepage Codepage used
+ * @param [out] sError Error message returned
+ * @return FRESULT_OK when loading succeed or:
+ * - FRESULT_BINARY : file is binary file
+ * - FRESULT_ERROR : loading failed, sError contains error message
+ * - FRESULT_ERROR_UNPACK : plugin failed to unpack
+ * - FRESULT_OK_IMPURE : load OK, but the EOL are of different types
  * or an error code (list in files.h)
- *
- * If this method fails, it calls InitNew so the CDiffTextBuffer is in a valid state
+ * @note If this method fails, it calls InitNew so the CDiffTextBuffer is in a valid state
  */
-int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInfo * infoUnpacker, CString sToFindUnpacker, BOOL & readOnly,
-		int nCrlfStyle, int codepage)
+int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
+		PackingInfo * infoUnpacker, CString sToFindUnpacker, BOOL & readOnly,
+		int nCrlfStyle, int codepage, CString &sError)
 {
 	ASSERT(!m_bInit);
 	ASSERT(m_aLines.GetSize() == 0);
@@ -1374,6 +1385,14 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 	if (!pufile->OpenReadOnly(pszFileName))
 	{
 		nRetVal = FRESULT_ERROR;
+		UniFile::UniError uniErr = pufile->GetLastUniError();
+		if (uniErr.hasError())
+		{
+			if (uniErr.apiname.IsEmpty())
+				sError = uniErr.desc;
+			else
+				sError = GetSysError(uniErr.syserrnum);
+		}
 		InitNew(); // leave crystal editor in valid, empty state
 		goto LoadFromFileExit;
 	}
@@ -2478,10 +2497,10 @@ BOOL CMergeDoc::CloseNow()
 
 /**
  * @brief Loads file to buffer and shows load-errors
- * @param sFileName [in] File to open
- * @param bLeft [in] Left/right-side file
- * @param readOnly [out] whether file is read-only
- * @param codepage [in] relevant 8-bit codepage if any (0 if none or unknown)
+ * @param [in] sFileName File to open
+ * @param [in] bLeft Left/right-side file
+ * @param [out] readOnly whether file is read-only
+ * @param [in] codepage relevant 8-bit codepage if any (0 if none or unknown)
  * @return Tells if files were loaded succesfully
  * @sa CMergeDoc::OpenDocs()
  **/
@@ -2503,7 +2522,9 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 	}
 
 	int nCrlfStyle = CRLF_STYLE_AUTOMATIC;
-	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker, m_strBothFilenames, readOnly, nCrlfStyle, codepage);
+	CString sOpenError;
+	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker,
+		m_strBothFilenames, readOnly, nCrlfStyle, codepage, sOpenError);
 
 	// if CMergeDoc::CDiffTextBuffer::LoadFromFile failed,
 	// it left the pBuf in a valid (but empty) state via a call to InitNew
@@ -2526,7 +2547,11 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 
 	if (retVal == FRESULT_ERROR)
 	{
-		AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, sFileName);
+		// Error from Unifile/system
+		if (!sOpenError.IsEmpty())
+			AfxFormatString2(sError, IDS_ERROR_FILEOPEN, sFileName, sOpenError);
+		else
+			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, sFileName);
 		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 	}
 	else if (retVal == FRESULT_ERROR_UNPACK)

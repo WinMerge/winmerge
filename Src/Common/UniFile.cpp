@@ -2,7 +2,7 @@
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-08-16 (Kimmo Varis)
+ *  @date   Edited:  2004-08-18 (Kimmo Varis)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -55,12 +55,10 @@ void UniLocalFile::Clear()
 {
 	m_statusFetched = 0;
 	ClearFilestatus(m_filestatus);
-	m_lastError.ClearError();
 	m_filesize = 0;
 	m_filepath = _T("");
 	m_filename = _T("");
 	m_lineno = -1;
-	m_lastError.ClearError();
 	m_readbom = false;
 	m_unicoding = ucr::NONE;
 	m_charsize = 1;
