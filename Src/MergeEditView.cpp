@@ -52,7 +52,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_PREVDIFF, OnUpdatePrevdiff)
 	ON_WM_LBUTTONDBLCLK()
 	ON_WM_LBUTTONUP()
-	ON_WM_CHAR()
 	ON_COMMAND(ID_ALL_LEFT, OnAllLeft)
 	ON_UPDATE_COMMAND_UI(ID_ALL_LEFT, OnUpdateAllLeft)
 	ON_COMMAND(ID_ALL_RIGHT, OnAllRight)
@@ -753,28 +752,6 @@ void CMergeEditView::UpdateLineLengths()
 	GetMaxLineLength();
 }
 
-void CMergeEditView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
-{
-
-	BOOL mod = m_pTextBuffer->IsModified();
-	m_pTextBuffer->SetModified(FALSE);
-
-	CCrystalEditViewEx::OnChar(nChar, nRepCnt, nFlags);
-
-	if (m_pTextBuffer->IsModified())
-	{
-		CPoint pos = GetCursorPos();
-		DWORD flags = m_pTextBuffer->GetLineFlags(pos.y);
-		if ((flags&LF_WINMERGE_FLAGS)==0)
-		{
-			GetDocument()->FlushAndRescan();
-			m_pTextBuffer->SetModified(TRUE);
-		}
-	}
-	else
-		m_pTextBuffer->SetModified(mod);
-}
-
 void CMergeEditView::OnL2r() 
 {
 	GetDocument()->ListCopy(true);
@@ -827,3 +804,8 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetDocument()->m_nDiffs!=0);
 }
 
+void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
+{
+	CCrystalEditViewEx::OnEditOperation(nAction, pszText);
+	GetDocument()->FlushAndRescan();
+}

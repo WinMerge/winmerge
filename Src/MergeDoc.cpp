@@ -197,6 +197,8 @@ void CMergeDoc::Dump(CDumpContext& dc) const
 
 BOOL CMergeDoc::Rescan()
 {
+	BOOL ltMod = m_ltBuf.IsModified();
+	BOOL rtMod = m_rtBuf.IsModified();
 	struct file_data inf[2];
 	char *free0=NULL,*free1=NULL;
 	char dir0[MAX_PATH],dir1[MAX_PATH], name0[MAX_PATH], name1[MAX_PATH];
@@ -403,6 +405,8 @@ BOOL CMergeDoc::Rescan()
 		mf->m_pLeft->GoToLine(nResumeTopLine, FALSE);
 		mf->m_pRight->GoToLine(nResumeTopLine, FALSE);
 	}
+	m_ltBuf.SetModified(ltMod);
+	m_rtBuf.SetModified(rtMod);
 	return bResult;
 }
 
@@ -977,14 +981,23 @@ void CMergeDoc::FlushAndRescan()
 		m_ltBuf.SaveToFile(m_strTempLeftFile, CRLF_STYLE_AUTOMATIC, FALSE);
 	if (m_rtBuf.IsModified())
 		m_rtBuf.SaveToFile(m_strTempRightFile, CRLF_STYLE_AUTOMATIC, FALSE);
-	CWnd *pFocus =  mf->m_pLeft->GetFocus();
-	mf->m_pLeft->PushCursor();
-	mf->m_pRight->PushCursor();
-	Rescan();
-	mf->m_pLeft->PopCursor();
-	mf->m_pRight->PopCursor();
-	if (pFocus!=NULL)
-		pFocus->SetFocus();
+
+	CMDIFrameWnd* mainWnd = dynamic_cast<CMDIFrameWnd*>(AfxGetMainWnd());
+	CMDIChildWnd* diffWnd = dynamic_cast<CMDIChildWnd*>(mainWnd->MDIGetActive());
+	CCrystalEditView* curView = dynamic_cast<CCrystalEditView*>(diffWnd->GetActiveView());
+
+	if(curView)
+	{
+		curView->PushCursor();
+		Rescan();
+		UpdateAllViews(NULL);
+		curView->PopCursor();
+	}
+	else
+	{
+		Rescan();
+		UpdateAllViews(NULL);
+	}
 }
 
 void CMergeDoc::OnFileSave() 
