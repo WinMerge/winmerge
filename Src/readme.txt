@@ -1,3 +1,8 @@
+2004-5-10 Kimmo
+ PATCH: [ 951234 ] Use resourceIDs in dircompare statebar bitmpaps
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2004-05-10 Laoran
  apply again modifications to IDS_QUICKHELP, lost during PATCH: [ 947680 ]
   Src: Merge.rc 
