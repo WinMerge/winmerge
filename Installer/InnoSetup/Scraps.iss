@@ -18,6 +18,43 @@ Begin
 
 End;
 
+
+{Modifies the Desktop.ini shortcut's text, note we still need regular Inno Setup to set the file attributes :(}
+Function CustomFolderIcon(Enabled: string);
+  Var
+    {Stores the path to the Desktop.ini file}
+    strFile_Path: string;
+
+    {Stores the text to place inside the ini file}
+    strINI_Text: string;
+  Begin
+    {Determines the path that Desktop.ini should be created or deleted at}
+    strFile_Path := ExpandCOnstant('{app}') + '\desktop.ini';
+
+    {If the user chose to have the installer customize the folder's icon then...}
+    If ShouldProcessEntry('main', 'CustomFolderIcon') = srYes then
+        begin
+            {Generates the text that should be included in the Desktop.ini file}
+            strINI_Text := '[.ShellClassInfo]' + #13;
+            strINI_Text := strINI_Text + 'IconFile=' + ExpandConstant('{app}') + '\' + EXEName('what') + #13;
+            strINI_TExt := strINI_Text + 'IconIndex=1';
+
+
+
+            {Debug  }
+            msgbox('The following file ' + strFile_Path + ' was created with these contents' + #13 + strINI_Text, mbInformation, MB_OK)
+
+            {OverWrites the text contents of Desktop.ini
+            Append=False so it'll overwrite the previous contents}
+            SaveStringToFile(strFile_Path, strINI_Text, False)
+        end
+    {If the user doesn't want a custom folder icon then...}
+    else
+        {Deletes the desktop.ini file so the folder's icon won't be customized}
+        DeleteFile(strFile_Path);
+  End;
+
+
 function InitializeSetup(): Boolean;
 var
     intWinMerge: longInt;
