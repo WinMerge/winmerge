@@ -1,3 +1,7 @@
+2004-09-02 Kimmo
+ PATCH: [ 1020403 ] Allow WinMerge to open files write-locked by another app
+  Src/Common: UniFile.cpp
+
 2004-09-01 Kimmo
  PATCH: [ 1019759 ] Allow D&D projectfile to main window
   Src: MainFrm.cpp

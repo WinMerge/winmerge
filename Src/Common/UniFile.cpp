@@ -2,7 +2,7 @@
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-08-24 (Kimmo Varis)
+ *  @date   Edited:  2004-09-01 (Kimmo Varis)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -184,7 +184,7 @@ bool UniMemFile::GetFileStatus()
 bool UniMemFile::OpenReadOnly(LPCTSTR filename)
 {
 	DWORD dwOpenAccess = GENERIC_READ;
-	DWORD dwOpenShareMode = FILE_SHARE_READ;
+	DWORD dwOpenShareMode = FILE_SHARE_READ | FILE_SHARE_WRITE;
 	DWORD dwOpenCreationDispostion = OPEN_EXISTING;
 	DWORD dwMappingProtect = PAGE_READONLY;
 	DWORD dwMapViewAccess = FILE_MAP_READ;
