@@ -97,12 +97,17 @@ InternalInsertGhostLine (CCrystalTextView * pSource, int nLine)
 
 
 /**
-Get text of specified lines (ghost lines will not contribute text).
-
-CrystalTextBuffer::GetTextWithoutEmptys() is for a buffer with no ghost lines.
-
-CrystalTextBuffer::GetText() returns text including ghost lines.
-*/
+ * @brief Get text of specified lines (ghost lines will not contribute to text).
+ * 
+ * @param nCrlfStyle determines the EOL type in the returned buffer.
+ * If nCrlfStyle equals CRLF_STYLE_AUTOMATIC, we read the EOL from the line buffer
+ * 
+ * @note This function has its base in CrystalTextBuffer
+ * CrystalTextBuffer::GetTextWithoutEmptys() is for a buffer with no ghost lines.
+ * CrystalTextBuffer::GetText() returns text including ghost lines.
+ * These two base functions never read the EOL from the line buffer, they
+ * use CRLF_STYLE_DOS when nCrlfStyle equals CRLF_STYLE_AUTOMATIC.
+ */
 UINT CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
                  int nEndLine, int nEndChar, 
                  CString &text, int nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
@@ -121,23 +126,54 @@ UINT CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 		nBufSize += (GetFullLineLength(i) + 2); // in case we insert EOLs
 	LPTSTR pszBuf = text.GetBuffer(nBufSize);
 
-	for (i=nStartLine; i<=nEndLine; ++i)
+	if (nCrlfStyle != CRLF_STYLE_AUTOMATIC)
 	{
-		int soffset = (i==nStartLine ? nStartChar : 0);
-		int eoffset = (i==nEndLine ? nEndChar : GetFullLineLength(i));
-		int chars = eoffset - soffset;
-		// (Exclude ghost lines, also exclude last line if at position 0)
-		if (chars>0)
+		// we must copy this EOL type only
+		CString sEol = GetStringEol (nCrlfStyle);
+
+		for (i=nStartLine; i<=nEndLine; ++i)
 		{
+			// exclude ghost lines
+			if (GetLineFlags(i) & LF_GHOST)
+				continue;
+
+			// copy the line, excluding the EOL
+			int soffset = (i==nStartLine ? nStartChar : 0);
+			int eoffset = (i==nEndLine ? nEndChar : GetLineLength(i));
+			int chars = eoffset - soffset;
 			LPCTSTR szLine = m_aLines[i].m_pcLine + soffset;
 			CopyMemory(pszBuf, szLine, chars * sizeof(TCHAR));
 			pszBuf += chars;
-			if (i!=ApparentLastRealLine() && GetLineLength(i)==GetFullLineLength(i)
-				&& i < nEndLine)
+
+			// copy the EOL of the requested type
+			if (i!=ApparentLastRealLine())
+			{
+				CopyMemory(pszBuf, sEol, sEol.GetLength());
+				pszBuf += sEol.GetLength();
+			}
+		}
+	} 
+	else 
+	{
+		for (i=nStartLine; i<=nEndLine; ++i)
+		{
+			// exclude ghost lines
+			if (GetLineFlags(i) & LF_GHOST)
+				continue;
+
+			// copy the line including the EOL
+			int soffset = (i==nStartLine ? nStartChar : 0);
+			int eoffset = (i==nEndLine ? nEndChar : GetFullLineLength(i));
+			int chars = eoffset - soffset;
+			LPCTSTR szLine = m_aLines[i].m_pcLine + soffset;
+			CopyMemory(pszBuf, szLine, chars * sizeof(TCHAR));
+			pszBuf += chars;
+
+			// check that we really have an EOL
+			if (i!=ApparentLastRealLine() && GetLineLength(i)==GetFullLineLength(i))
 			{
 				// Oops, real line lacks EOL
 				// (If this happens, editor probably has bug)
-				// We don't check it on nEndLine
 				ASSERT(0);
 				CString sEol = GetStringEol (nCrlfStyle);
 				CopyMemory(pszBuf, sEol, sEol.GetLength());

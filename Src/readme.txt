@@ -1,3 +1,9 @@
+2003-09-11 Laoran
+ PATCH: [ 797821 ] GUI for the file EOL option
+  WinMerge: ChildFrm.cpp GhostTextBuffer.cpp MainFrm.cpp MainFrm.h Merge.rc MergeDoc.cpp 
+   MergeDoc.h MergeEditView.cpp MergeEditView.h PropGeneral.cpp PropGeneral.h resource.h
+  editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h
+
 2003-09-10 Kimmo
  PATCH: [ 802762 ] Optimise printc() in diffutils
   WinMerge: cmp.c

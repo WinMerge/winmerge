@@ -72,6 +72,8 @@ static UINT indicatorsBottom[] =
 	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
+	ID_SEPARATOR,
+	ID_SEPARATOR,
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -80,7 +82,7 @@ static UINT indicatorsBottom[] =
 CChildFrame::CChildFrame()
 #pragma warning(disable:4355) // 'this' : used in base member initializer list
 : m_leftStatus(this, 0)
-, m_rightStatus(this, 2)
+, m_rightStatus(this, 3)
 #pragma warning(default:4355)
 {
 	m_bActivated = FALSE;
@@ -409,17 +411,19 @@ void CChildFrame::UpdateHeaderSizes()
 		// Set bottom statusbar panel widths
 		// Kimmo - I don't know why 4 seems to be right for me
 		int borderWidth = 4; // GetSystemMetrics(SM_CXEDGE);
-		int pane1Width = w - RO_PANEL_WIDTH - borderWidth;
+		int pane1Width = w - 2 * (RO_PANEL_WIDTH + borderWidth);
 		if (pane1Width < borderWidth)
 			pane1Width = borderWidth;
-		int pane2Width = w1 - RO_PANEL_WIDTH - borderWidth;
+		int pane2Width = w1 - 2 * (RO_PANEL_WIDTH + borderWidth);
 		if (pane2Width < borderWidth)
 			pane2Width = borderWidth;
 
-		m_wndStatusBar.SetPaneInfo(0, ID_STATUS_LEFTFILE_INFO, SBPS_NORMAL, pane1Width);
-		m_wndStatusBar.SetPaneInfo(1, ID_STATUS_LEFTFILE_RO, SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
-		m_wndStatusBar.SetPaneInfo(2, ID_STATUS_RIGHTFILE_INFO, SBPS_STRETCH, pane2Width);
-		m_wndStatusBar.SetPaneInfo(3, ID_STATUS_RIGHTFILE_RO, SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+		m_wndStatusBar.SetPaneInfo(0, ID_STATUS_LEFTFILE_INFO,  SBPS_NORMAL, pane1Width);
+		m_wndStatusBar.SetPaneInfo(1, ID_STATUS_LEFTFILE_RO,    SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+		m_wndStatusBar.SetPaneInfo(2, ID_STATUS_LEFTFILE_EOL,   SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+		m_wndStatusBar.SetPaneInfo(3, ID_STATUS_RIGHTFILE_INFO, SBPS_STRETCH, pane2Width);
+		m_wndStatusBar.SetPaneInfo(4, ID_STATUS_RIGHTFILE_RO,   SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+		m_wndStatusBar.SetPaneInfo(5, ID_STATUS_RIGHTFILE_EOL,  SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
 	}
 }
 
@@ -478,9 +482,13 @@ void CChildFrame::MergeStatus::Update()
 		{
 			str.Format(IDS_EMPTY_LINE_STATUS_INFO, m_sLine);
 		}
-		else
+		else if (m_sEolDisplay == _T(""))
 		{
 			str.Format(IDS_LINE_STATUS_INFO, m_sLine, m_nChars, m_sEolDisplay);
+		}
+		else
+		{
+			str.Format(IDS_LINE_STATUS_INFO_EOL, m_sLine, m_nChars, m_sEolDisplay);
 		}
 
 		m_pFrame->m_wndStatusBar.SetPaneText(m_base, str);
@@ -490,6 +498,7 @@ void CChildFrame::MergeStatus::Update()
 // Visible representation of eol
 static CString EolString(const CString & sEol)
 {
+	if (sEol == _T("hidden")) return _T("");
 	if (sEol == _T("\r\n")) return _T("CRLF");
 	if (sEol == _T("\n")) return _T("LF");
 	if (sEol == _T("\r")) return _T("CR");

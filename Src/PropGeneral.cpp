@@ -49,6 +49,7 @@ CPropGeneral::CPropGeneral() : CPropertyPage(CPropGeneral::IDD)
 	m_nIgnoreWhite = -1;
 	m_nTabType = 0;
 	m_bAutomaticRescan = FALSE;
+	m_bAllowMixedEol = FALSE;
 	//}}AFX_DATA_INIT
 }
 
@@ -82,6 +83,7 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	DDX_Radio(pDX, IDC_PROP_INSERT_TABS, m_nTabType);
 	DDX_Check(pDX, IDC_AUTOMRESCAN_CHECK, m_bAutomaticRescan);
+	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
 	//}}AFX_DATA_MAP
 }
 

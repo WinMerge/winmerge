@@ -147,6 +147,7 @@ CMainFrame::CMainFrame()
 	m_nTabType = theApp.GetProfileInt(_T("Settings"), _T("TabType"), 0);
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
+	m_bAllowMixedEol = theApp.GetProfileInt(_T("Settings"), _T("AllowMixedEOL"), NULL);
 	theApp.SetFileFilterName(theApp.GetProfileString(_T("Settings"), _T("FileFilterName"), _T("")));
 	m_bReuseDirDoc = TRUE;
 	// TODO: read preference for logging
@@ -682,6 +683,7 @@ void CMainFrame::OnOptions()
 	vss.m_nVerSys = m_nVerSys;
 	vss.m_strPath = m_strVssPath;
 
+	gen.m_bAllowMixedEol = m_bAllowMixedEol;
 	gen.m_bBackup = m_bBackup;
 	gen.m_nIgnoreWhite = diffOptions.nIgnoreWhitespace;
 	gen.m_bIgnoreCase = diffOptions.bIgnoreCase;
@@ -706,6 +708,7 @@ void CMainFrame::OnOptions()
 		m_bScrollToFirst = gen.m_bScroll;
 		m_nTabSize = gen.m_nTabSize;
 		m_nTabType = gen.m_nTabType;
+		m_bAllowMixedEol = gen.m_bAllowMixedEol;
 		theApp.m_bDisableSplash = gen.m_bDisableSplash;
 		m_bAutomaticRescan = gen.m_bAutomaticRescan;
 
@@ -731,9 +734,11 @@ void CMainFrame::OnOptions()
 		theApp.WriteProfileString(_T("Settings"), _T("VssPath"), m_strVssPath);
 		theApp.WriteProfileInt(_T("Settings"), _T("TabSize"), m_nTabSize);
 		theApp.WriteProfileInt(_T("Settings"), _T("TabType"), m_nTabType);
+		theApp.WriteProfileInt(_T("Settings"), _T("AllowMixedEOL"), m_bAllowMixedEol);
 		theApp.WriteProfileInt(_T("Settings"), _T("AutomaticRescan"), m_bAutomaticRescan);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
 		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
+		theApp.WriteProfileString(_T("Settings"), _T("FileFilterName"), filter.m_sFileFilterName);
 		theApp.WriteProfileInt(_T("Settings"), _T("DisableSplash"), theApp.m_bDisableSplash);
 		theApp.WriteProfileString(_T("Settings"), _T("FileFilterName"), filter.m_sFileFilterName);
 
@@ -911,6 +916,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  _T("\tVerSys: %d\r\n")
 				  _T("\tVssPath: %s\r\n")
 				  _T("\tBackups: %d\r\n")
+				  _T("\tAllowMixedEOL: %d\r\n")
 				  _T("\tScrollToFirst: %d\r\n")
 				  _T("### End Comparison Parameters #############################\r\n"),
 				  strLeft,
@@ -925,6 +931,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  m_nVerSys,
 				  m_strVssPath,
 				  m_bBackup,
+					m_bAllowMixedEol,
 				  m_bScrollToFirst);
 	}
 

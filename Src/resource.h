@@ -174,6 +174,7 @@
 #define IDC_LANGUAGE_LIST               1037
 #define IDC_AUTOMRESCAN_CHECK           1038
 #define IDC_FILE_FILTER                 1039
+#define IDC_MIXED_EOL                   1039
 #define IDC_DIFFERENCE_TEXT_COLOR       1040
 #define IDC_DIFFERENCE_DELETED_COLOR    1041
 #define IDC_SEL_DIFFERENCE_DELETED_COLOR 1042
@@ -196,8 +197,9 @@
 #define IDC_PRIVATEBUILD                1062
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
-#define IDS_LINE_STATUS_INFO            8503
+#define IDS_LINE_STATUS_INFO_EOL        8503
 #define IDS_EMPTY_LINE_STATUS_INFO      8504
+#define IDS_LINE_STATUS_INFO            8505
 #define IDD_EDIT_FIND                   8601
 #define IDD_EDIT_REPLACE                8602
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -404,6 +406,11 @@
 #define ID_STATUS_LEFTFILE_RO           32831
 #define ID_STATUS_RIGHTFILE_INFO        32832
 #define ID_STATUS_LEFTFILE_INFO         32833
+#define ID_STATUS_RIGHTFILE_EOL         32834
+#define ID_STATUS_LEFTFILE_EOL          32835
+#define ID_EOL_TO_DOS                   32836
+#define ID_EOL_TO_UNIX                  32837
+#define ID_EOL_TO_MAC                   32838
 
 // Next default values for new objects
 // 
@@ -411,7 +418,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        118
-#define _APS_NEXT_COMMAND_VALUE         32834
+#define _APS_NEXT_COMMAND_VALUE         32839
 #define _APS_NEXT_CONTROL_VALUE         1063
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

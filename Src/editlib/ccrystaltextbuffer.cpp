@@ -667,6 +667,26 @@ SetCRLFMode (int nCRLFMode)
   ASSERT(m_nCRLFMode==CRLF_STYLE_DOS || m_nCRLFMode==CRLF_STYLE_UNIX || m_nCRLFMode==CRLF_STYLE_MAC);
 }
 
+BOOL CCrystalTextBuffer::
+applyEOLMode()
+{
+	LPCTSTR lpEOLtoApply = GetDefaultEol();
+	BOOL bChanged = FALSE;
+	int i;
+	for (i = 0 ; i < m_aLines.GetSize () ; i++)
+	{
+		// the last real line has no EOL
+		if (m_aLines[i].m_nEolChars == 0)
+			continue;
+		bChanged |= ChangeLineEol(i, lpEOLtoApply);
+	}
+
+	if (bChanged)
+		SetModified(TRUE);
+
+	return bChanged;
+}
+
 int CCrystalTextBuffer::
 GetLineCount () const
 {
@@ -705,6 +725,35 @@ GetLineEol (int nLine) const
     return &m_aLines[nLine].m_pcLine[m_aLines[nLine].Length()];
   else
     return _T("");
+}
+
+BOOL CCrystalTextBuffer::
+ChangeLineEol (int nLine, LPCTSTR lpEOL) 
+{
+  register SLineInfo & li = m_aLines[nLine];
+  int nNewEolChars = _tcslen(lpEOL);
+  if (nNewEolChars == li.m_nEolChars)
+    if (_tcscmp(li.m_pcLine + li.Length(), lpEOL) == 0)
+      return FALSE;
+
+  int nBufNeeded = li.m_nLength + nNewEolChars+1;
+  if (nBufNeeded > li.m_nMax)
+    {
+      li.m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
+      ASSERT (li.m_nMax >= nBufNeeded);
+      TCHAR *pcNewBuf = new TCHAR[li.m_nMax];
+      if (li.FullLength() > 0)
+        memcpy (pcNewBuf, li.m_pcLine, sizeof (TCHAR) * (li.FullLength()+1));
+      delete[] li.m_pcLine;
+      li.m_pcLine = pcNewBuf;
+    }
+  
+  // copy also the 0 to zero-terminate the line
+  memcpy (li.m_pcLine + li.m_nLength, lpEOL, sizeof (TCHAR) * (nNewEolChars+1));
+  li.m_nEolChars = nNewEolChars;
+
+	// modified
+	return TRUE;
 }
 
 LPTSTR CCrystalTextBuffer::

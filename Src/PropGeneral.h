@@ -32,6 +32,7 @@ public:
 	int		m_nIgnoreWhite;
 	int		m_nTabType;
 	BOOL	m_bAutomaticRescan; 
+	BOOL	m_bAllowMixedEol;
 	//}}AFX_DATA
 
 

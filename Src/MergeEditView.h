@@ -201,6 +201,10 @@ protected:
 	afx_msg void OnUpdateRightReadOnly(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusLeftRO(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusRightRO(CCmdUI* pCmdUI);
+	afx_msg void OnConvertEolTo(UINT nID );
+	afx_msg void OnUpdateConvertEolTo(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateStatusLeftEOL(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateStatusRightEOL(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -93,7 +93,7 @@ private :
 		BOOL FlagIsSet(UINT line, DWORD flag);
 		CString m_strTempPath;
 
-		int DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength);
+		int NoteCRLFStyleFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
 		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineNum, DWORD dwLineLen = 0);
 public :
 		void SetTempPath(CString path);

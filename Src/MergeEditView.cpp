@@ -114,6 +114,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTFILE_RO, OnUpdateStatusLeftRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTFILE_RO, OnUpdateStatusRightRO)
+	ON_COMMAND_RANGE(ID_EOL_TO_DOS, ID_EOL_TO_MAC, OnConvertEolTo)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_EOL_TO_DOS, ID_EOL_TO_MAC, OnUpdateConvertEolTo)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTFILE_EOL, OnUpdateStatusLeftEOL)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTFILE_EOL, OnUpdateStatusRightEOL)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -451,10 +455,10 @@ void CMergeEditView::OnEditCut()
 	CString text;
 	if (m_bIsLeft)
 		pDoc->m_ltBuf.GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
-			ptSelEnd.y, ptSelEnd.x, text, m_bIsLeft);
+			ptSelEnd.y, ptSelEnd.x, text);
 	else
 		pDoc->m_rtBuf.GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
-			ptSelEnd.y, ptSelEnd.x, text, m_bIsLeft);
+			ptSelEnd.y, ptSelEnd.x, text);
 
 	PutToClipboard(text);
 
@@ -1080,7 +1084,10 @@ OnUpdateCaret()
 			// Regular lines display eg "Line 13 Characters: 25 EOL: CRLF"
 			sLine.Format(_T("%d"), nRealLine+1);
 			chars = GetLineLength(nScreenLine);
+			if (mf->m_bAllowMixedEol)
 			sEol = GetTextBufferEol(nScreenLine);
+			else
+				sEol = _T("hidden");
 		}
 		m_piMergeEditStatus->SetLineInfo(sLine, chars, sEol);
 	}
@@ -1240,3 +1247,80 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	}
 	::DestroyMenu(hMenu);
 }
+
+/**
+ * @brief Update left EOL mode in status bar
+ */
+void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
+{
+	if (mf->m_bAllowMixedEol)
+		pCmdUI->SetText(_T(""));
+	else
+		GetDocument()->GetLeftView()->OnUpdateIndicatorCRLF(pCmdUI);
+}
+
+/**
+ * @brief Update right EOL mode in status bar
+ */
+void CMergeEditView::OnUpdateStatusRightEOL(CCmdUI* pCmdUI)
+{
+	if (mf->m_bAllowMixedEol)
+		pCmdUI->SetText(_T(""));
+	else
+		GetDocument()->GetRightView()->OnUpdateIndicatorCRLF(pCmdUI);
+}
+
+/**
+ * @brief Change EOL mode and unify all the lines EOL to this new mode
+ */
+void CMergeEditView::OnConvertEolTo(UINT nID ) 
+{
+	int nStyle;
+	switch (nID)
+	{
+		case ID_EOL_TO_DOS:
+			nStyle = CRLF_STYLE_DOS;
+			break;
+		case ID_EOL_TO_UNIX:
+			nStyle = CRLF_STYLE_UNIX;
+			break;
+		case ID_EOL_TO_MAC:
+			nStyle = CRLF_STYLE_MAC;
+			break;
+	}
+	m_pTextBuffer->SetCRLFMode(nStyle);
+
+	// we don't need a derived applyEOLMode for ghost lines as they have no EOL char
+	if (m_pTextBuffer->applyEOLMode())
+	{
+		CMergeDoc *pd = GetDocument();
+		ASSERT(pd);
+		pd->FlushAndRescan(TRUE);
+	}
+}
+
+/**
+ * @brief allow convert to entries in file submenu
+ */
+void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI) 
+{
+	int nStyle;
+	switch (pCmdUI->m_nID)
+	{
+		case ID_EOL_TO_DOS:
+			nStyle = CRLF_STYLE_DOS;
+			break;
+		case ID_EOL_TO_UNIX:
+			nStyle = CRLF_STYLE_UNIX;
+			break;
+		case ID_EOL_TO_MAC:
+			nStyle = CRLF_STYLE_MAC;
+			break;
+	}
+
+	if (mf->m_bAllowMixedEol || nStyle != m_pTextBuffer->GetCRLFMode())
+	pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
+}
+

@@ -286,6 +286,7 @@ public :
     int GetLineLength (int nLine) const;
     int GetFullLineLength (int nLine) const; // including EOLs
     LPCTSTR GetLineEol (int nLine) const;
+    BOOL ChangeLineEol (int nLine, LPCTSTR lpEOL);
     LPTSTR GetLineChars (int nLine) const;
     DWORD GetLineFlags (int nLine) const;
     int GetLineWithFlag (DWORD dwFlag);
@@ -296,6 +297,8 @@ public :
     //  Attributes
     int GetCRLFMode ();
     void SetCRLFMode (int nCRLFMode);
+    /// Adjust all the lines in the buffer to the buffer default EOL Mode
+    virtual BOOL applyEOLMode();
     LPCTSTR CCrystalTextBuffer::GetDefaultEol() const;
     LPCTSTR CCrystalTextBuffer::GetStringEol(int nCRLFMode) const;
     BOOL GetReadOnly () const;

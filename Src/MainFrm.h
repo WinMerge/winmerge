@@ -77,6 +77,7 @@ public:
 	BOOL m_bShowIdent;
 	BOOL m_bShowBinaries;
 	BOOL m_bBackup;
+	BOOL m_bAllowMixedEol;
 	LOGFONT m_lfDiff;
 	BOOL m_bFontSpecified;
 	BOOL m_bReuseDirDoc; // policy to reuse existing dir doc

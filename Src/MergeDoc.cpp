@@ -886,39 +886,48 @@ void CMergeDoc::CDiffTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
 
 
 
-/// Try to determine current CRLF mode based on first line
-int CMergeDoc::CDiffTextBuffer::DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength)
+/**
+ * @brief Helper to determine the most used CRLF mode in the file
+ * Normal call : determine the CRLF mode of the current line
+ * Final call  : parameter lpLineBegin = NULL, return the style of the file
+ *
+ * @note  The lowest CRL_STYLE has the priority in case of equality
+ */
+int CMergeDoc::CDiffTextBuffer::NoteCRLFStyleFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen /* =0 */)
 {
-	WORD wLoopSize = 0xffff;
-	int nCrlfStyle = CRLF_STYLE_DOS;	// Default
-	TCHAR * lpBuffer = (TCHAR *)lpBuf;
+	static int count[3] = {0};
+	int iStyle = -1;
 
-	if (dwLength < 0xffff)
-		wLoopSize = dwLength;
-
-	// Find first linebreak
-	for (DWORD i = 0; i < wLoopSize; i++, lpBuffer++)
+	// give back the result when we ask for it
+	if (lpLineBegin == NULL)
 	{
-		if ((*lpBuffer == _T('\r')) || (*lpBuffer == _T('\n')))
-			break;
+		iStyle = 0;
+		if (count[1] > count[iStyle])
+			iStyle = 1;
+		if (count[2] > count[iStyle])
+			iStyle = 2;
+
+		// reset the counter for the next file
+		count[0] = count[1] = count[2] = 0;
+
+		return iStyle;
 	}
 
-	// By default (or in the case of empty file) use DOS style
-	if (i < wLoopSize)
+	if (dwLineLen >= 1)
 	{
-		//  Otherwise, analyse the first occurance of line-feed character
-		if (*lpBuffer == _T('\n'))
-			nCrlfStyle = CRLF_STYLE_UNIX;
-		else
-		{
-			// Found '\r', CRLF is DOS ('\r\n') or MAC ('\r')
-			if (i < wLoopSize - 1 && *(lpBuffer+1) == _T('\n'))
-				nCrlfStyle = CRLF_STYLE_DOS;
-			else
-				nCrlfStyle = CRLF_STYLE_MAC;
-		}
+		if (lpLineBegin[dwLineLen-1] == _T('\r'))
+			iStyle = CRLF_STYLE_MAC;
+		if (lpLineBegin[dwLineLen-1] == _T('\n'))
+			iStyle = CRLF_STYLE_UNIX;
 	}
-	return nCrlfStyle;
+	if (dwLineLen >= 2)
+	{
+		if (lpLineBegin[dwLineLen-2] == _T('\r') && lpLineBegin[dwLineLen-1] == _T('\n'))
+			iStyle = CRLF_STYLE_DOS;
+	}
+	ASSERT (iStyle != -1);
+	count[iStyle] ++;
+	return iStyle;
 }
 
 /// Reads one line from filebuffer and inserts to textbuffer
@@ -967,13 +976,6 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 	
 	if (nRetVal == FRESULT_OK)
 	{
-		//Try to determine current CRLF mode based on first line
-		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-			nCrlfStyle = DetermineCRLFStyle(fileData.pMapBase, fileData.dwSize);
-
-		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
-		SetCRLFMode(nCrlfStyle);
-		
 		m_aLines.SetSize(dwLines, 4096);
 		
 		DWORD dwBytesRead = 0;
@@ -999,6 +1001,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 
 					// This is an EOL
 					ReadLineFromBuffer(lpLineBegin, nLineNum, lpChar - lpLineBegin);
+					NoteCRLFStyleFromBuffer(lpLineBegin, lpChar - lpLineBegin);
 					nLineNum++;
 					lpLineBegin = lpChar;
 					continue;
@@ -1007,6 +1010,14 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 			lpChar++;
 			dwBytesRead++;
 		}
+		
+		//Try to determine current CRLF mode (most frequent)
+		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+			// special call to NoteCRLFStyleFromBuffer : get the result
+			nCrlfStyle = NoteCRLFStyleFromBuffer(NULL, 0);
+		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
+		SetCRLFMode(nCrlfStyle);
+		
 		// Handle case where file ended with line without EOL
 		if (lpChar > lpLineBegin)
 			// just read the last real line, it has not EOL so it is really the last real
@@ -1063,22 +1074,46 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	TCHAR dir[_MAX_PATH] = {0};
 
 	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-		nCrlfStyle = GetCRLFMode();
+	{
+		if (mf->m_bAllowMixedEol)
+			// keep automatic, GetTextWithoutEmpty will read EOL from the m_aLines array
+			;
+		else
+		{
+			// get the default nCrlfStyle of the CDiffTextBuffer
+			nCrlfStyle = GetCRLFMode();
+			ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
+		}
+	}
+	// we don't need to apply the EOL mode to the m_aLines array
+	// as GetTextWithoutEmpty receives nCrlfStyle as parameter
 	
-	// HACK for MAC files support.  Temp files for diff must
-	// be in unix format
-	if (bTempFile && nCrlfStyle == CRLF_STYLE_MAC)
-		nCrlfStyle = CRLF_STYLE_UNIX;
-
-	ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
-	LPCTSTR pszCRLF = crlfs[nCrlfStyle];
-	int nCRLFLength = _tcslen(pszCRLF);
 	int nLineCount = m_aLines.GetSize();
 	CString text;			
 	int nLastLength = GetFullLineLength(nLineCount-1);
 		
 	UINT nBufSize = GetTextWithoutEmptys(0, 0, nLineCount - 1,
 		nLastLength, text, nCrlfStyle);
+
+	// HACK for MAC files support.  Temp files for diff must be in unix format
+	// this is dirty but should be replaced soon with preprocessing
+	// and preprocessing should be inserted here
+	if (bTempFile)
+	{ 
+		if (nCrlfStyle == CRLF_STYLE_MAC || nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+		{
+			// in place replace
+			LPSTR pbuffer = text.GetBuffer(0);
+			TCHAR tchEolMac = * GetStringEol(CRLF_STYLE_MAC);
+			TCHAR tchEolUnix = * GetStringEol(CRLF_STYLE_UNIX);
+			UINT i;
+			for (i = 0 ; i < nBufSize ; i++)
+				if (pbuffer[i] == tchEolMac)
+					if (i < nBufSize && pbuffer[i+1] != tchEolUnix)
+						pbuffer[i] = tchEolUnix;
+			text.ReleaseBuffer(-1);
+		}
+	}
 	
 	if (!pszFileName)
 		return FALSE;	// No filename, cannot save...
