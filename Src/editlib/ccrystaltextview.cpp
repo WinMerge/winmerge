@@ -4115,6 +4115,14 @@ HighlightText (const CPoint & ptStartPos, int nLength, BOOL bReverse /*= FALSE*/
   m_ptAnchor = m_ptCursorPos;
   SetSelection (ptStartPos, ptEndPos);
   UpdateCaret ();
+  
+  // Scrolls found text to middle of screen if out-of-screen
+  int nScreenLines = GetScreenLines();
+  if (ptStartPos.y < m_nTopLine || ptEndPos.y > m_nTopLine + nScreenLines)
+    {
+      ScrollToLine(ptStartPos.y - nScreenLines / 2);
+      UpdateSiblingScrollPos (FALSE);
+    }
   EnsureVisible (ptStartPos, ptEndPos);
   return TRUE;
 }

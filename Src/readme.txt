@@ -1,3 +1,7 @@
+2005-01-12 Kimmo
+ PATCH: [ 1100462 ] Center find result in file compare
+  Src/editlib: ccrystaltextview.cpp
+
 2005-01-11 WinMerge experimental release 2.3.1.2 (cvs)
 
 2005-01-11 Kimmo
