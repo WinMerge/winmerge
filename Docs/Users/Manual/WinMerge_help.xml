@@ -3,6 +3,7 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
 <!ENTITY Plugins SYSTEM "Plugins.xml">
 <!ENTITY FAQ SYSTEM "Faq.xml">
+<!ENTITY VersionControl SYSTEM "Version_control.xml">
 <!ENTITY IntroductDiffing SYSTEM "Intro_diffs.xml">
 <!ENTITY Configuration SYSTEM "Configuration.xml">
 <!ENTITY OpenPaths SYSTEM "Open_paths.xml">
@@ -10,28 +11,19 @@
 <!ENTITY QuickStart SYSTEM "Quick_start.xml">
 <!ENTITY Introduction SYSTEM "Introduction.xml">
 <!ENTITY Locales SYSTEM "Locales.xml">
-<!ENTITY AboutDoc SYSTEM "About_doc.xml">
 <!ENTITY WhatsNew21 SYSTEM "Whatsnew_2_1.xml">
 <!ENTITY CommandLine SYSTEM "Command_line.xml">
 <!ENTITY ShortCuts SYSTEM "Shortcut_keys.xml">
 <!ENTITY Filters SYSTEM "Filters.xml">
 <!ENTITY CompareFiles SYSTEM "Compare_files.xml">
 <!ENTITY Install SYSTEM "Install.xml">
+<!ENTITY AboutDoc SYSTEM "About_doc.xml">
 ]>
 <article id="index">
   <articleinfo>
     <title>WinMerge 2.2 Manual</title>
     <productname>WinMerge</productname>
-    <releaseinfo><emphasis>Revision 0.1. This is first revision of this manual included in builds.</emphasis></releaseinfo>
-    <revhistory>
-      <revision>
-        <revnumber>0.1</revnumber>
-        <date>2004-09-04</date>
-        <revdescription>
-          <para>First revision included in builds</para>
-        </revdescription>
-      </revision>
-    </revhistory>
+    <releaseinfo><emphasis>Revision 0.2.</emphasis></releaseinfo>
     <copyright>
       <year>2004</year>
       <holder>Thingamahoochie Software.</holder>
@@ -74,6 +66,7 @@
   &Locales;
   &Plugins;
   &Filters;
+  &VersionControl;
   &CommandLine;
   &FAQ;
   &ShortCuts;

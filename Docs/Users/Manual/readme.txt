@@ -1,6 +1,10 @@
 2004-09-14 Kimmo
  PATCH: [ 1027592 ] Docs: Update FAQ
   Manual: Faq.xml
+ PATCH: [ 1027593 ] Docs: Add version control chapter
+  Manual: WinMerge_help.xml
+  Manual new file: Version_control.xml
+  Manual/screenshots new file: sourcesafe1.gif
 
 2004-09-03 Kimmo
  PATCH: [ 1021456 ] Docs: Updates to installation part
