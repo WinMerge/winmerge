@@ -1,4 +1,12 @@
-// SplitterWndEx.cpp: implementation of the CSplitterWndEx class.
+//////////////////////////////////////////////////////////////////////
+/** 
+ * @file  SplitterWndEx.cpp
+ *
+ * @brief Implementation file for CSplitterWndEx
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -14,6 +22,7 @@ static char THIS_FILE[]=__FILE__;
 BEGIN_MESSAGE_MAP(CSplitterWndEx, CSplitterWnd)
 	//{{AFX_MSG_MAP(CSplitterWndEx)
 	ON_WM_HSCROLL()
+	ON_WM_SIZE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -21,14 +30,24 @@ END_MESSAGE_MAP()
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
+IMPLEMENT_DYNCREATE(CSplitterWndEx, CSplitterWnd)
+
 CSplitterWndEx::CSplitterWndEx()
 {
-
+	m_bBarLocked = FALSE;
+	m_bResizePanes = FALSE;
 }
 
 CSplitterWndEx::~CSplitterWndEx()
 {
 
+}
+
+int CSplitterWndEx::HitTest(CPoint pt) const
+{
+	if (m_bBarLocked)
+		return 0;
+	return CSplitterWnd::HitTest(pt);
 }
 
 void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
@@ -68,3 +87,73 @@ void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 	}
 
 }
+
+
+void CSplitterWndEx::EqualizeRows() 
+{
+	if (m_nRows < 2)
+		return;
+
+	int i;
+	int sum = 0;
+	int hmin;
+	for (i = 0 ; i < m_nRows ; i++)
+	{
+		int h;
+		GetRowInfo(i, h, hmin);
+		sum += h;
+	}
+	int hEqual = sum/m_nRows;
+	for (i = 0 ; i < m_nRows-1 ; i++)
+	{
+		SetRowInfo(i, hEqual, hmin);
+		sum -= hEqual;
+	}
+	SetRowInfo(i, sum, hmin);
+
+	RecalcLayout();
+}
+
+void CSplitterWndEx::EqualizeCols() 
+{
+	if (m_nCols < 2)
+		return;
+
+	int i;
+	int sum = 0;
+	int hmin;
+	for (i = 0 ; i < m_nCols ; i++)
+	{
+		int v;
+		GetColumnInfo(i, v, hmin);
+		sum += v;
+	}
+	int vEqual = sum/m_nCols;
+	for (i = 0 ; i < m_nCols-1 ; i++)
+	{
+		SetColumnInfo(i, vEqual, hmin);
+		sum -= vEqual;
+	}
+	SetColumnInfo(i, sum, hmin);
+
+	RecalcLayout();
+}
+
+
+
+
+
+void CSplitterWndEx::OnSize(UINT nType, int cx, int cy) 
+{
+	CSplitterWnd::OnSize(nType, cx, cy);
+
+	// and resize the panes 
+	if (m_bResizePanes)
+	{
+		EqualizeCols();
+		EqualizeRows();
+	}
+
+}
+
+

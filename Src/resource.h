@@ -391,6 +391,7 @@
 #define ID_EDITOR_COPY_PATH             32822
 #define ID_EDIT_COLUMNS                 32822
 #define ID_EDITOR_COPY_FILENAME         32823
+#define ID_VIEW_DETAIL_BAR              32824
 
 // Next default values for new objects
 // 
@@ -398,7 +399,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        118
-#define _APS_NEXT_COMMAND_VALUE         32823
+#define _APS_NEXT_COMMAND_VALUE         32825
 #define _APS_NEXT_CONTROL_VALUE         1061
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

@@ -1,3 +1,12 @@
+2003-08-30 Laoran
+ PATCH: [ 784109 ] layout with two new horizontal panels
+  common new files: sizecbar.cpp sizecbar.h sizecbarg.cpp sizecbarg.h 
+  common: SplitterWndEx.cpp SplitterWndEx.h
+  WinMerge: ChildFrm.cpp ChildFrm.h MainFrm.cpp Merge.dsp Merge.rc MergeDoc.cpp
+   MergeDoc.h MergeEditView.cpp resource.h
+  Winmerge new files: DiffViewBar.cpp DiffViewBar.h MergeDiffDetailView.cpp MergeDiffDetailView.h
+  editlib: ccrystaltextview.h
+
 2003-08-29 Perry
  PATCH: [ 779818 ] Fix number display to be locale & user-pref aware
   (extended to handle larger numbers than 32 bit, for size)

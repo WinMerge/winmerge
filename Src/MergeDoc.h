@@ -58,6 +58,7 @@ enum
 };
 
 class CMergeEditView;
+class CMergeDiffDetailView;
 
 //<jtuc 2003-06-28>
 /*
@@ -200,14 +201,19 @@ public:
 	BOOL LineInDiff(UINT nLine, UINT nDiff);
 	void SetDiffViewMode(BOOL bEnable);
 	void Showlinediff(CMergeEditView * pView);
+	void Showlinediff(CMergeDiffDetailView * pView);
+	RECT Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther);
 	
 	void SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight);
+	void SetMergeDetailViews(CMergeDiffDetailView * pLeft, CMergeDiffDetailView * pRight);
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void DirDocClosing(CDirDoc * pDirDoc);
 	BOOL CloseNow();
 
 	CMergeEditView * GetLeftView() { return m_pLeftView; }
 	CMergeEditView * GetRightView() { return m_pRightView; }
+	CMergeDiffDetailView * GetLeftDetailView() { return m_pLeftDetailView; }
+	CMergeDiffDetailView * GetRightDetailView() { return m_pRightDetailView; }
 	CChildFrame * GetParentFrame();
 
 	// Overrides
@@ -247,6 +253,8 @@ protected:
 	CString m_strTempLeftFile;
 	CMergeEditView * m_pLeftView;
 	CMergeEditView * m_pRightView;
+	CMergeDiffDetailView * m_pLeftDetailView;
+	CMergeDiffDetailView * m_pRightDetailView;
 	CDirDoc * m_pDirDoc;
 	BOOL m_bEnableRescan;
 	COleDateTime m_LastRescan;

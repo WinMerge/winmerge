@@ -31,6 +31,8 @@
 #include "SplitterWndEx.h"
 #include "MergeEditStatus.h"
 #include "EditorFilepathBar.h"
+#include "DiffViewBar.h"
+
 
 class CChildFrame : public CMDIChildWnd
 {
@@ -42,6 +44,8 @@ public:
 protected:
 	CSplitterWndEx m_wndSplitter;
 	CEditorFilePathBar m_wndFilePathBar;
+	CDiffViewBar m_wndDetailBar;
+	CSplitterWndEx m_wndDetailSplitter;
 	CStatusBar m_wndStatusBar;
 	// Object that displays status line info for one side of a merge view
 	class MergeStatus : public IMergeEditStatus
@@ -83,6 +87,7 @@ public:
 
 // Implementation
 public:
+	void UpdateDiffDockbarHeight(int DiffPanelHeight);
 	void SetHeaderText(int nPane, const CString& text);
 	void SavePosition();
 	virtual ~CChildFrame();

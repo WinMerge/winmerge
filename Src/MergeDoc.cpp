@@ -39,6 +39,7 @@
 #include "coretools.h"
 #include "VssPrompt.h"
 #include "MergeEditView.h"
+#include "MergeDiffDetailView.h"
 #include "cs2cs.h"
 #include "childFrm.h"
 #include "dirdoc.h"
@@ -91,6 +92,8 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	curUndo = undoTgt.begin();
 	m_pLeftView=NULL;
 	m_pRightView=NULL;
+	m_pLeftDetailView=NULL;
+	m_pRightDetailView=NULL;
 	m_pDirDoc=NULL;
 }
 #pragma warning(default:4355)
@@ -320,6 +323,8 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 		// Display files
 		m_pLeftView->PrimeListWithFile();
 		m_pRightView->PrimeListWithFile();
+		m_pLeftDetailView->PrimeListWithFile();
+		m_pRightDetailView->PrimeListWithFile();
 	}
 	return nResult;
 }
@@ -1543,6 +1548,15 @@ void CMergeDoc::SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight)
 	m_pRightView = pRight;
 }
 
+// Someone is giving us pointers to our detail views
+void CMergeDoc::SetMergeDetailViews(CMergeDiffDetailView * pLeft, CMergeDiffDetailView * pRight)
+{
+	ASSERT(pLeft && !m_pLeftDetailView);
+	m_pLeftDetailView = pLeft;
+	ASSERT(pRight && !m_pRightDetailView);
+	m_pRightDetailView = pRight;
+}
+
 // DirDoc gives us its identity just after it creates us
 void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
 {
@@ -1701,9 +1715,28 @@ static int lastdiff(BOOL case_sensitive, int whitespace, const CString & str1, c
 /// Highlight difference in current line
 void CMergeDoc::Showlinediff(CMergeEditView * pView)
 {
+	CMergeEditView * pOther = (pView == m_pLeftView ? m_pRightView : m_pLeftView);
+	CRect rectDiff = Computelinediff(pView, pOther);
+	if (rectDiff.top == -1)
+		return;
+	pView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
+	pView->SetCursorPos(rectDiff.TopLeft());
+}
+void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView)
+{
+	CMergeDiffDetailView * pOther = (pView == m_pLeftDetailView ? m_pRightDetailView : m_pLeftDetailView);
+	CRect rectDiff = Computelinediff(pView, pOther);
+	if (rectDiff.top == -1)
+		return;
+	pView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
+	pView->SetCursorPos(rectDiff.TopLeft());
+}
+
+// Returns a rectangle of the difference in the current line 
+RECT CMergeDoc::Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther)
+{
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
-	CMergeEditView * pOther = (pView == m_pLeftView ? m_pRightView : m_pLeftView);
 
 	int line = pView->GetCursorPos().y;
 	int width = pView->GetLineLength(line);
@@ -1716,7 +1749,7 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView)
 	if (begin<0)
 	{
 		MessageBox(0, _T("No difference"), _T("Line difference"), MB_OK);
-		return;
+		return CRect(-1,-1,-1,-1);
 	}
 	if (begin>=width)
 		begin = width;
@@ -1726,8 +1759,7 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView)
 		end = width;
 
 	CPoint ptBegin(begin,line), ptEnd(end,line);
-	pView->SelectArea(ptBegin, ptEnd);
-	pView->SetCursorPos(ptBegin);
+	return CRect(ptBegin, ptEnd);
 }
 
 /**
@@ -1840,7 +1872,9 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	{
 		CMergeEditView * pLeft = GetLeftView();
 		CMergeEditView * pRight = GetRightView();
-			
+		CMergeDiffDetailView * pLeftDetail = GetLeftDetailView();
+		CMergeDiffDetailView * pRightDetail = GetRightDetailView();
+		
 		// scroll to first diff
 		if(mf->m_bScrollToFirst && m_diffs.GetSize() != 0)
 			pLeft->SelectDiff(0, TRUE, FALSE);
@@ -1856,6 +1890,9 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		SplitFilename(sRightFile, 0, 0, &sext);
 		pRight->SetTextType(sext);
 
+		pLeftDetail->SetTextType(sext);
+		pRightDetail->SetTextType(sext);
+
 		// SetTextType will revert to language dependent defaults for tab
 		pLeft->SetTabSize(mf->m_nTabSize);
 		pRight->SetTabSize(mf->m_nTabSize);
@@ -1863,7 +1900,14 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		pRight->SetViewTabs(mf->m_bViewWhitespace);
 		pLeft->SetViewEols(mf->m_bViewWhitespace);
 		pRight->SetViewEols(mf->m_bViewWhitespace);
-	
+
+		pLeftDetail->SetTabSize(mf->m_nTabSize);
+		pRightDetail->SetTabSize(mf->m_nTabSize);
+		pLeftDetail->SetViewTabs(mf->m_bViewWhitespace);
+		pRightDetail->SetViewTabs(mf->m_bViewWhitespace);
+		pLeftDetail->SetViewEols(mf->m_bViewWhitespace);
+		pRightDetail->SetViewEols(mf->m_bViewWhitespace);
+
 		// Enable Backspace at beginning of line
 		pLeft->SetDisableBSAtSOL(FALSE);
 		pRight->SetDisableBSAtSOL(FALSE);

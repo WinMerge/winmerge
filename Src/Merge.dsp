@@ -200,6 +200,10 @@ SOURCE=.\DiffWrapper.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DiffViewBar.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\DirActions.cpp
 # End Source File
 # Begin Source File
@@ -418,6 +422,10 @@ SOURCE=.\Merge.rc
 # End Source File
 # Begin Source File
 
+SOURCE=.\MergeDiffDetailView.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\MergeDoc.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -551,6 +559,14 @@ SOURCE=.\SIDE.C
 
 !ENDIF 
 
+# End Source File
+# Begin Source File
+
+SOURCE=..\common\sizecbar.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\common\sizecbarg.cpp
 # End Source File
 # Begin Source File
 
@@ -700,6 +716,10 @@ SOURCE=.\DirColsDlg.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\DiffViewBar.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\DirDoc.h
 # End Source File
 # Begin Source File
@@ -784,6 +804,10 @@ SOURCE=.\Merge.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\MergeDiffDetailView.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\MergeDoc.h
 # End Source File
 # Begin Source File
@@ -849,6 +873,14 @@ SOURCE=..\common\RegKey.h
 # Begin Source File
 
 SOURCE=.\Resource.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\common\sizecbar.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\common\sizecbarg.h
 # End Source File
 # Begin Source File
 

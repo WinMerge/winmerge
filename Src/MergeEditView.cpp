@@ -29,6 +29,7 @@
 #include "stdafx.h"
 #include "merge.h"
 #include "MergeEditView.h"
+#include "MergeDiffDetailView.h"
 #include "MergeDoc.h"
 #include "MainFrm.h"
 #include "WaitStatusCursor.h"
@@ -344,6 +345,9 @@ void CMergeEditView::SelectDiff(int nDiff, BOOL bScroll /*=TRUE*/, BOOL bSelectT
 	ShowDiff(bScroll, bSelectText);
 	pd->UpdateAllViews(this);
 	UpdateSiblingScrollPos(FALSE);
+
+	// notify either side, as it will notify the other one
+	pd->GetLeftDetailView()->OnDisplayDiff(nDiff);
 }
 
 void CMergeEditView::OnCurdiff()

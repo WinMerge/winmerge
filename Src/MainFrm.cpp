@@ -36,6 +36,7 @@
 #include "DirDoc.h"
 #include "OpenDlg.h"
 #include "MergeEditView.h"
+#include "MergeDiffDetailView.h"
 
 #include "diff.h"
 #include "coretools.h"
@@ -1426,6 +1427,8 @@ void CMainFrame::OnViewWhitespace()
 		CMergeDoc * pMergeDoc = mergedocs.RemoveHead();
 		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
 		CMergeEditView * pRight = pMergeDoc->GetRightView();
+		CMergeDiffDetailView * pLeftDetail = pMergeDoc->GetLeftDetailView();
+		CMergeDiffDetailView * pRightDetail = pMergeDoc->GetRightDetailView();
 		if (pLeft)
 		{
 			pLeft->SetViewTabs(mf->m_bViewWhitespace);
@@ -1435,6 +1438,16 @@ void CMainFrame::OnViewWhitespace()
 		{
 			pRight->SetViewTabs(mf->m_bViewWhitespace);
 			pRight->SetViewEols(mf->m_bViewWhitespace);
+		}
+		if (pLeftDetail)
+		{
+			pLeftDetail->SetViewTabs(mf->m_bViewWhitespace);
+			pLeftDetail->SetViewEols(mf->m_bViewWhitespace);
+		}
+		if (pRightDetail)
+		{
+			pRightDetail->SetViewTabs(mf->m_bViewWhitespace);
+			pRightDetail->SetViewEols(mf->m_bViewWhitespace);
 		}
 	}
 }

@@ -239,7 +239,7 @@ protected :
     BOOL IsSelection ();
     BOOL IsInsideSelection (const CPoint & ptTextPos);
     void GetSelection (CPoint & ptStart, CPoint & ptEnd);
-    void SetSelection (const CPoint & ptStart, const CPoint & ptEnd);
+    virtual void SetSelection (const CPoint & ptStart, const CPoint & ptEnd);
 
     int m_nTopLine, m_nOffsetChar;
     //BEGIN SW
@@ -361,7 +361,7 @@ protected :
 	@param bTrackScrollBar TRUE to recalculate the scroll bar after scrolling,
 		else FALSE.
 	*/
-	void ScrollToSubLine( int nNewTopSubLine, BOOL bNoSmoothScroll = FALSE, BOOL bTrackScrollBar = TRUE );
+	virtual void ScrollToSubLine( int nNewTopSubLine, BOOL bNoSmoothScroll = FALSE, BOOL bTrackScrollBar = TRUE );
 	//END SW
 
     //  Splitter support
@@ -757,12 +757,12 @@ public :
 
     //  Attributes
     CPoint GetCursorPos () const;
-    void SetCursorPos (const CPoint & ptCursorPos);
+    virtual void SetCursorPos (const CPoint & ptCursorPos);
     void ShowCursor ();
     void HideCursor ();
 
     //  Operations
-    void EnsureVisible (CPoint pt);
+    virtual void EnsureVisible (CPoint pt);
 
     //  Text search helpers
     BOOL FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags, BOOL bWrapSearch, CPoint * pptFoundPos);
