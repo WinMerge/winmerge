@@ -66,11 +66,14 @@ public:
 	void LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int, int> & patternsLoaded, const CString & sPattern);
 
 	void UseMask(BOOL bUseMask);
+	void SetMask(LPCTSTR strMask);
 	void SetMaskRegExp(LPCTSTR strRegExp);
 
 	BOOL includeFile(LPCTSTR szFileName);
 	BOOL includeDir(LPCTSTR szDirName);
 
+protected:
+	CString ParseExtensions(CString extensions);
 
 private:
 	FileFilter * m_currentFilter;

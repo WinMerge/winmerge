@@ -33,11 +33,17 @@ FileFilterHelper::FileFilterHelper()
 	m_bUseMask = TRUE;
 }
 
+/** 
+ * @brief Return filtermanager used.
+ */
 FileFilterMgr * FileFilterHelper::GetManager()
 {
 	return m_fileFilterMgr;
 }
 
+/** 
+ * @brief Set filtermanager used.
+ */
 void FileFilterHelper::SetManager(FileFilterMgr * pFilterManager)
 {
 	if (pFilterManager != NULL)
@@ -111,11 +117,26 @@ CString FileFilterHelper::GetFileFilterPath(CString filterName)
 	return path;
 }
 
+/** 
+ * @brief Select between mask and filterfile.
+ */
 void FileFilterHelper::UseMask(BOOL bUseMask)
 {
 	m_bUseMask = bUseMask;
 }
 
+/** 
+ * @brief Set filemask ("*.h *.cpp")
+ */
+void FileFilterHelper::SetMask(LPCTSTR strMask)
+{
+	CString regExp = ParseExtensions(strMask);
+	SetMaskRegExp(regExp);
+}
+
+/** 
+ * @brief Set regexp for filtering.
+ */
 void FileFilterHelper::SetMaskRegExp(LPCTSTR strRegExp)
 {
 	m_rgx.RegComp(strRegExp);
@@ -212,4 +233,51 @@ void FileFilterHelper::LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int, int>
 		m_fileFilterMgr->LoadFromDirectory(sPattern, _T(".flt"));
 	}
 	patternsLoaded[sPattern] = ++n;
+}
+
+/** 
+ * @brief Parse user-given extension list to valid regexp for diffengine.
+ */
+CString FileFilterHelper::ParseExtensions(CString extensions)
+{
+	CString strParsed;
+	CString strPattern;
+	BOOL bFilterAdded = FALSE;
+	static const TCHAR pszSeps[] = _T(" ;|,:");
+
+	extensions += _T(";"); // Add one separator char to end
+	int pos = extensions.FindOneOf(pszSeps);
+	
+	while (pos >= 0)
+	{
+		CString token = extensions.Left(pos); // Get first extension
+		extensions.Delete(0, pos + 1); // Remove extension + separator
+		
+		// Only "*.something" allowed, other ignored
+		if (token.GetLength() > 2 && token[0] == '*' && token[1] == '.')
+		{
+			bFilterAdded = TRUE;
+			strPattern += _T(".*\\.");
+			strPattern += token.Mid(2);
+		}
+		else
+			bFilterAdded = FALSE;
+
+		pos = extensions.FindOneOf(pszSeps); 
+		if (bFilterAdded && pos >= 0)
+			strPattern += _T("|");
+	}
+
+	if (strPattern.IsEmpty())
+		strParsed = _T("*.*");
+	else
+	{
+		// Add 'or' for lowercase and uppercase match
+		strParsed = _T("^(");
+		strPattern.MakeLower();
+		strParsed += strPattern + _T("|");
+		strPattern.MakeUpper();
+		strParsed += strPattern + _T(")$");
+	}
+	return strParsed;
 }

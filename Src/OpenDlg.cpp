@@ -61,7 +61,6 @@ COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
 	m_strUnpacker = _T("");
 	//}}AFX_DATA_INIT
 
-	m_strParsedExt = EMPTY_EXTENSION;
 	m_pathsType = DOES_NOT_EXIST;
 	m_bFileFilterSelected = FALSE;
 }
@@ -197,7 +196,6 @@ void COpenDlg::OnOK()
 		// Remove prefix + space
 		m_strExt.Delete(0, filterPrefix.GetLength());
 		CString path = theApp.m_globalFileFilter.GetFileFilterPath(m_strExt);
-		m_strParsedExt = EMPTY_EXTENSION;
 		m_bFileFilterSelected = TRUE;
 		theApp.m_globalFileFilter.SetFileFilterPath(path);
 		theApp.m_globalFileFilter.UseMask(FALSE);
@@ -207,7 +205,7 @@ void COpenDlg::OnOK()
 		CString strNone;
 		VERIFY(strNone.LoadString(IDS_USERCHOICE_NONE));
 		theApp.m_globalFileFilter.SetFileFilterPath(strNone);
-		m_strParsedExt = ParseExtensions(m_strExt);
+		theApp.m_globalFileFilter.SetMask(m_strExt);
 		m_bFileFilterSelected = FALSE;
 		theApp.m_globalFileFilter.UseMask(TRUE);
 	}
@@ -491,53 +489,6 @@ void COpenDlg::OnSelectFilter()
 		filterName.Insert(0, filterPrefix);
 		SetDlgItemText(IDC_EXT_COMBO, filterName);
 	}
-}
-
-/** 
- * @brief Parse user-given extension list to valid regexp for diffengine.
- */
-CString COpenDlg::ParseExtensions(CString extensions)
-{
-	CString strParsed;
-	CString strPattern;
-	BOOL bFilterAdded = FALSE;
-	static const TCHAR pszSeps[] = _T(" ;|,:");
-
-	extensions += _T(";"); // Add one separator char to end
-	int pos = extensions.FindOneOf(pszSeps);
-	
-	while (pos >= 0)
-	{
-		CString token = extensions.Left(pos); // Get first extension
-		extensions.Delete(0, pos + 1); // Remove extension + separator
-		
-		// Only "*.something" allowed, other ignored
-		if (token.GetLength() > 2 && token[0] == '*' && token[1] == '.')
-		{
-			bFilterAdded = TRUE;
-			strPattern += _T(".*\\.");
-			strPattern += token.Mid(2);
-		}
-		else
-			bFilterAdded = FALSE;
-
-		pos = extensions.FindOneOf(pszSeps); 
-		if (bFilterAdded && pos >= 0)
-			strPattern += _T("|");
-	}
-
-	if (strPattern.IsEmpty())
-		strParsed = EMPTY_EXTENSION;
-	else
-	{
-		// Add 'or' for lowercase and uppercase match
-		strParsed = _T("^(");
-		strPattern.MakeLower();
-		strParsed += strPattern + _T("|");
-		strPattern.MakeUpper();
-		strParsed += strPattern + _T(")$");
-	}
-	return strParsed;
 }
 
 /** 

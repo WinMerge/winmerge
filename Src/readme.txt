@@ -1,3 +1,10 @@
+2004-07-17 Kimmo
+ PATCH: [ 992218 ] Add -f commandline switch for filemask
+  Usage: WinMerge -f "*.ext1 *.ext2" (like in Open-dialog)
+  Src: FileFilterHelper.cpp FileFilterHelper.h MainFrm.cpp Merge.cpp
+   Merge.rc OpenDlg.cpp OpenDlg.h
+  Src/Languages: *.rc
+ 
 2004-07-16 Kimmo
  PATCH: [ 990976 ] FileFilterHelper (filter code cleanup)
   Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirDoc.h DirScan.cpp

@@ -318,6 +318,18 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 					i++;	// Just read next parameter
 				}
 			}
+
+			// -f "mask" - file filter mask ("*.h *.cpp")
+			if (!_tcsicmp(pszParam, _T("f")))
+			{
+				if (i < (__argc - 1))
+				{
+					LPCTSTR pszMask = __targv[i+1];
+					m_globalFileFilter.SetMask(pszMask);
+					i++;	// Just read next parameter
+				}
+			}
+
 		}
 		else
 		{

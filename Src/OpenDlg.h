@@ -66,7 +66,6 @@ public:
 	//}}AFX_DATA
 
 // other public data
-	CString m_strParsedExt;
 	int m_pathsType; // enum from PATH_EXISTENCE in paths.h
 	/// unpacker info
 	PackingInfo m_infoHandler;
@@ -89,7 +88,6 @@ protected:
 	void RemoveTrailingSlash(CString& s);
 	void SetStatus(UINT msgID);
 	void SetUnpackerStatus(UINT msgID);
-	CString ParseExtensions(CString extensions);
 	void CenterToMainFrame();
 
 	// Generated message map functions

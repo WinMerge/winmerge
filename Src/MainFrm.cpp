@@ -1403,7 +1403,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 {
 	CString strLeft(pszLeft);
 	CString strRight(pszRight);
-	CString strExt;
 	PackingInfo infoUnpacker;
 	// TODO: Need to allow user to specify these some day
 	int cpleft= -1; // to be initialized/guessed in ShowMergeDoc
@@ -1433,7 +1432,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		strLeft = dlg.m_strLeft;
 		strRight = dlg.m_strRight;
 		bRecurse = dlg.m_bRecurse;
-		strExt = dlg.m_strParsedExt;
 		infoUnpacker = dlg.m_infoHandler;
 		pathsType = static_cast<PATH_EXISTENCE>(dlg.m_pathsType);
 		// TODO: add codepage options to open dialog ?
@@ -1592,7 +1590,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				pDirDoc->SetReadOnly(TRUE, bROLeft);
 				pDirDoc->SetReadOnly(FALSE, bRORight);
 				pDirDoc->SetRecursive(bRecurse);
-				theApp.m_globalFileFilter.SetMaskRegExp(strExt);
 				pDirDoc->SetDiffContext(pCtxt);
 				pDirDoc->SetDescriptions(m_strLeftDesc, m_strRightDesc);
 				m_strLeftDesc.Empty();

@@ -1411,10 +1411,11 @@ STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "Jämför filerna i den här mappen med WinMerge"
     IDS_VERSION_FMT         "Version %1"
-    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\ndär:
+    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
       /? eller -? visar denna hjälp
       /r eller -r får WinMerge att jämföra kataloger rekursivt
       /e eller -e låter WinMerge stängas med en enkel esc tryckning
+      /f or -f sets filemask for compare
       /ul eller -ul får WinMerge att inte lägga till vänster sökväg till de senast använda filerna
       /ur eller -ur får WinMerge att inte lägga till höger sökväg till de senast använda filerna
       /ub eller -ub får WinMerge att inte lägga till båda sökvägarna till de senast använda filerna
