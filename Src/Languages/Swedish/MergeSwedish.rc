@@ -125,7 +125,7 @@ BEGIN
             MENUITEM "&MAC  (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "Merge Mode\tF9",              ID_FILE_MERGINGMODE
+        MENUITEM "Mergemod\tF9",              ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "&Avsluta",                    ID_APP_EXIT
     END
@@ -151,7 +151,7 @@ BEGIN
             MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
-        POPUP "Avancerad"
+        POPUP "Avancerat"
         BEGIN
             MENUITEM "&Kopiera med radnummer\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
@@ -175,7 +175,7 @@ BEGIN
         MENUITEM "Använd standardtec&kensnitt", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "Visa &mellanslag",            ID_VIEW_WHITESPACE
-        MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
+        MENUITEM "Visa &radskillnader",         ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
         MENUITEM "V&erktygsfält",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusfält",                 ID_VIEW_STATUS_BAR
@@ -467,7 +467,7 @@ BEGIN
     EDITTEXT        IDC_PASSWORD,180,96,70,14,ES_PASSWORD | ES_AUTOHSCROLL
     CONTROL         "Länk till Destination VSS project",IDC_VCPROJ_SYNC,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
-    CONTROL         "Tillämpa på alla items",IDC_MULTI_CHECKOUT,"Button",
+    CONTROL         "Tillämpa på alla objekt",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
     DEFPUSHBUTTON   "Checka ut",IDOK,33,145,50,14
     PUSHBUTTON      "Spara som...",IDC_SAVE_AS,103,145,50,14
@@ -665,14 +665,14 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Word Difference:",IDC_STATIC,7,129,90,8
+    RTEXT           "Ordskillnad:",IDC_STATIC,7,129,90,8
     CONTROL         "Dif",IDC_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_WORDDIFFERENCE_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Word Diff:",IDC_STATIC,7,149,90,8
+    RTEXT           "Vald ordskillnad:",IDC_STATIC,7,149,90,8
     CONTROL         "Dif",IDC_SEL_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,149,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -1004,7 +1004,7 @@ BEGIN
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
     CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
-    CONTROL         "Enligt WinMerges Användargränssnitt",IDC_CP_UI,"Button",
+    CONTROL         "Enligt WinMerges användargränssnitt",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,33,210,10
     CONTROL         "Anpassad codepage :",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,46,77,10
@@ -1511,8 +1511,8 @@ END
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
-    IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    IDS_COMPMETHOD_FULL_CONTENTS "Total jämförelse"
+    IDS_COMPMETHOD_QUICK_CONTENTS "Snabb jämförelse"
     IDS_COMPMETHOD_MODDATE  "Datum för förändring"
 END
 
@@ -1564,7 +1564,7 @@ BEGIN
     IDS_LINE_STATUS_INFO_EOL "Rad: %s  Kolumn: %d/%d  Tecken: %d/%d  Radslut: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Rad: %s"
     IDS_LINE_STATUS_INFO    "Rad: %s  Kolumn: %d/%d  Tecken: %d/%d"
-    IDS_MERGEMODE_MERGING   "Merge mode"
+    IDS_MERGEMODE_MERGING   "Mergemod"
     IDS_DIFF_NUMBER_STATUS_FMT "Skillnad %1 av %2"
     IDS_NO_DIFF_SEL_FMT     "%1 skillnader funna"
     IDS_1_DIFF_FOUND        "1 skillnad funnen"
@@ -1629,9 +1629,9 @@ END
 // VSS system
 STRINGTABLE
 BEGIN
-    IDS_VCS_NONE            "None"
-    IDS_VCS_VSS4            "Visual SourceSafe (less than 5.0)"
-    IDS_VCS_VSS5            "Visual SourceSafe (5.0 and above)"
+    IDS_VCS_NONE            "Ingen"
+    IDS_VCS_VSS4            "Visual SourceSafe (lägre än 5.0)"
+    IDS_VCS_VSS5            "Visual SourceSafe (5.0 eller högre)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
 END
 
@@ -1816,12 +1816,12 @@ BEGIN
     IDS_FILEBINARY          "Binära filer kan inte jämföras visuellt."
     IDS_TEMP_FILEERROR      "Temporära filer kunde inte skapas. Kontrollera inställningarna för dina temporära sökvägar."
     IDS_FILEISDIR           "Mappar kan inte jämföras visuellt."
-    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
-                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
-                            Note: If you always want to treat all carriage return types \
-                            as equivalent, set the option 'Ignore carriage return \
-                            differences..' in the Compare tab of the options dialog\
-                            (available under Edit/Options)."
+    IDS_SUGGEST_IGNOREEOL   "Dessa filer har olika radslutstyper.\n\n\
+                            Vill du betrakta alla radslutstyper som likvärdiga för denna jämförelse?\n\n\
+                            OBS: Om du alltid vill betrakta alla radslutstyper \
+                            som likvärdiga, markera alternativet 'Ignorera radsluts- \
+                            skillnader..' i Jämför-fliken i Egenskaper-dialogen\
+                            (finns under Redigera/Egenskaper)."
     IDS_SUGGEST_PRESERVEEOL "Radsluten är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika radsluten ?"
     IDS_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
     IDS_SUGGEST_IGNORECODEPAGE "Vänster (cp%d) och höger (cp%d) fil har inte samma codepage. \nAtt visa varje fil i dess egen codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer codepage informationen. Önskar du detta ?"
@@ -1927,7 +1927,7 @@ BEGIN
     IDS_ARABIC_QATAR        "Arabiska (Qatar)"
     IDS_ARMENIAN            "Armeniska"
     IDS_AZERI_LATIN         "Azerbajdzjanska (Latinsk)"
-    IDS_AZERI_CYRILLIC      "Azerbajdzjanska (Cyrillisk)"
+    IDS_AZERI_CYRILLIC      "Azerbajdzjanska (Kyrillisk)"
     IDS_BASQUE              "Baskiska"
     IDS_BELARUSIAN          "Vitryska"
     IDS_BULGARIAN           "Bulgariska"
@@ -2018,7 +2018,7 @@ BEGIN
     IDS_RUSSIAN             "Ryska"
     IDS_SANSKRIT            "Sanskrit"
     IDS_SERBIAN_LATIN       "Serbiska (Latinsk)"
-    IDS_SERBIAN_CYRILLIC    "Serbiska (Cyrillisk)"
+    IDS_SERBIAN_CYRILLIC    "Serbiska (Kyrillisk)"
     IDS_SINDHI              "Sindhi"
 END
 
@@ -2068,7 +2068,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_UZBEK_LATIN         "Uzbekiska (Latinsk)"
-    IDS_UZBEK_CYRILLIC      "Uzbekiska (Cyrillisk)"
+    IDS_UZBEK_CYRILLIC      "Uzbekiska (Kyrillisk)"
     IDS_VIETNAMESE          "Vietnamesiska"
 END
 
@@ -2090,85 +2090,85 @@ BEGIN
 	IDS_CPP_DOS                     "MS-DOS"
 	IDS_CPP_MACINTOSH               "Macintosh"
 	IDS_CPP_IBM                     "IBM"
-	IDS_CPP_NA                      "Not applicable"
+	IDS_CPP_NA                      "Inte tillämplig"
 END
 
 // CODEPAGES #1 (IBM)
 STRINGTABLE
 BEGIN
 	IDS_CP_EBCDIC                   "EBCDIC"
-	IDS_CP_IBM_EBCDIC_CYRILLIC      "IBM EBCDIC Cyrillic"
+	IDS_CP_IBM_EBCDIC_CYRILLIC      "IBM EBCDIC Kyrillisk"
 END
 
 // CODEPAGES #1 (DOS)
 STRINGTABLE
 BEGIN
 	IDS_CP_DOS_US                   "MS-DOS Latin US"
-	IDS_CP_DOS_ARABIC               "MS-DOS Arabic"
-	IDS_CP_DOS_GREEK                "MS-DOS Greek"
-	IDS_CP_DOS_BALTIC               "MS-DOS Baltic Rim"
+	IDS_CP_DOS_ARABIC               "MS-DOS Arabiska"
+	IDS_CP_DOS_GREEK                "MS-DOS Grekiska"
+	IDS_CP_DOS_BALTIC               "MS-DOS Baltisk utkant"
 	IDS_CP_DOS_LATIN1               "MS-DOS Latin 1"
-	IDS_CP_DOS_GREEK1               "MS-DOS Greek 1"
+	IDS_CP_DOS_GREEK1               "MS-DOS Grekisk 1"
 	IDS_CP_DOS_LATIN2               "MS-DOS Latin 2"
-	IDS_CP_DOS_CYRILLIC             "MS-DOS Cyrillic"
-	IDS_CP_DOS_TURKISH              "MS-DOS Turkish"
-	IDS_CP_DOS_PORTUGUESE           "MS-DOS Portuguese"
+	IDS_CP_DOS_CYRILLIC             "MS-DOS Kyrillisk"
+	IDS_CP_DOS_TURKISH              "MS-DOS Turkiska"
+	IDS_CP_DOS_PORTUGUESE           "MS-DOS Portugisiska"
 END
 
 // CODEPAGES #2 (more DOS)
 STRINGTABLE
 BEGIN
-	IDS_CP_DOS_ICELANDIC            "MS-DOS Icelandic"
-	IDS_CP_DOS_HEBREW               "MS-DOS Hebrew"
-	IDS_CP_DOS_FRENCH_CANADA        "MS-DOS French Canada"
-	IDS_CP_DOS_NORDIC               "MS-DOS Nordic"
-	IDS_CP_DOS_CYRILLIC_CIS1        "MS-DOS Cyrillic CIS 1"
-	IDS_CP_DOS_GREEK2               "MS-DOS Greek 2"
+	IDS_CP_DOS_ICELANDIC            "MS-DOS Isländska"
+	IDS_CP_DOS_HEBREW               "MS-DOS Hebreiska"
+	IDS_CP_DOS_FRENCH_CANADA        "MS-DOS Franska (Kanadensisk)"
+	IDS_CP_DOS_NORDIC               "MS-DOS Nordisk"
+	IDS_CP_DOS_CYRILLIC_CIS1        "MS-DOS Kyrillisk CIS 1"
+	IDS_CP_DOS_GREEK2               "MS-DOS Grekisk 2"
 END
 
 // CODEPAGES #3 (Windows)
 STRINGTABLE
 BEGIN
-	IDS_CP_WINDOWS_THAI             "Windows Thai"
-	IDS_CP_WINDOWS_JAPANESE         "Windows Japanese"
-	IDS_CP_WINDOWS_CHINESE_SIMP     "Windows Simplified Chinese"
-	IDS_CP_WINDOWS_KOREAN           "Windows Korean"
-	IDS_CP_WINDOWS_CHINESE_TRAD     "Windows Traditional Chinese"
+	IDS_CP_WINDOWS_THAI             "Windows Thailändska"
+	IDS_CP_WINDOWS_JAPANESE         "Windows Japanska"
+	IDS_CP_WINDOWS_CHINESE_SIMP     "Windows Förenklad Kinesiska"
+	IDS_CP_WINDOWS_KOREAN           "Windows Koreanska"
+	IDS_CP_WINDOWS_CHINESE_TRAD     "Windows Traditionell Kinesiska"
 	IDS_CP_WINDOWS_LATIN2           "Windows Latin 2"
-	IDS_CP_WINDOWS_CYRILLIC         "Windows Cyrillic (Slavic)"
+	IDS_CP_WINDOWS_CYRILLIC         "Windows Kyrillisk (Slavisk)"
 	IDS_CP_WINDOWS_LATIN1           "Windows Latin 1"
-	IDS_CP_WINDOWS_GREEK            "Windows Greek"
-	IDS_CP_WINDOWS_TURKISH          "Windows Latin 5 (Turkish)"
-	IDS_CP_WINDOWS_HEBREW           "Windows Hebrew"
-	IDS_CP_WINDOWS_ARABIC           "Windows Arabic"
-	IDS_CP_WINDOWS_BALTIC           "Windows Baltic Rim"
-	IDS_CP_WINDOWS_VIETNAM          "Windows Vietnamese"
+	IDS_CP_WINDOWS_GREEK            "Windows Grekiska"
+	IDS_CP_WINDOWS_TURKISH          "Windows Latin 5 (Turkiska)"
+	IDS_CP_WINDOWS_HEBREW           "Windows Hebreiska"
+	IDS_CP_WINDOWS_ARABIC           "Windows Arabiska"
+	IDS_CP_WINDOWS_BALTIC           "Windows Baltisk utkant"
+	IDS_CP_WINDOWS_VIETNAM          "Windows Vietnamesiska"
 END
 
 // CODEPAGES #4 (Macintosh)
 STRINGTABLE
 BEGIN
-	IDS_CP_MACINTOSH_ROMAN          "Macintosh Roman"
-	IDS_CP_MACINTOSH_GREEK          "Macintosh Greek"
-	IDS_CP_MACINTOSH_CYRILLIC       "Macintosh Cyrillic"
-	IDS_CP_MACINTOSH_CENTRAL_EUROPE "Macintosh "
-	IDS_CP_MACINTOSH_ICELANDIC      "Macintosh Central Europe"
-	IDS_CP_MACINTOSH_TURKISH        "Macintosh Turkish"
+	IDS_CP_MACINTOSH_ROMAN          "Macintosh Romersk"
+	IDS_CP_MACINTOSH_GREEK          "Macintosh Grekiska"
+	IDS_CP_MACINTOSH_CYRILLIC       "Macintosh Kyrillisk"
+	IDS_CP_MACINTOSH_CENTRAL_EUROPE "Macintosh Centraleuropeisk"
+	IDS_CP_MACINTOSH_ICELANDIC      "Macintosh Isländsk"
+	IDS_CP_MACINTOSH_TURKISH        "Macintosh Turkiska"
 END
 
 // CODEPAGES #5 (Extra (alias) information)
 STRINGTABLE
 BEGIN
-	IDS_CP_WINDOWS_JAPANESE_EXTRA   ""
-	IDS_CP_WINDOWS_CHINESE_SIMP_EXTRA ""
-	IDS_CP_WINDOWS_KOREAN_EXTRA     ""
-	IDS_CP_WINDOWS_LATIN2_EXTRA     "Approximates ISO-8859-2"
-	IDS_CP_WINDOWS_CHINESE_TRAD_EXTRA ""
-	IDS_CP_WINDOWS_CYRILLIC_EXTRA   ""
-	IDS_CP_WINDOWS_LATIN1_EXTRA     "Approximates ISO-8859-1"
-	IDS_CP_WINDOWS_GREEK_EXTRA      "Approximates ISO-8859-7"
-	IDS_CP_WINDOWS_TURKISH_EXTRA    "Approximates ISO-8859-9"
-	IDS_CP_WINDOWS_HEBREW_EXTRA     "Approximates ISO-8859-8"
+	IDS_CP_WINDOWS_JAPANESE_EXTRA   "Japanska"
+	IDS_CP_WINDOWS_CHINESE_SIMP_EXTRA "Förenklad Kinesiska"
+	IDS_CP_WINDOWS_KOREAN_EXTRA     "Koreanska"
+	IDS_CP_WINDOWS_LATIN2_EXTRA     "Liknar ISO-8859-2(Latin 2)"
+	IDS_CP_WINDOWS_CHINESE_TRAD_EXTRA "Traditionell Kinesiska"
+	IDS_CP_WINDOWS_CYRILLIC_EXTRA   "Kyrillisk"
+	IDS_CP_WINDOWS_LATIN1_EXTRA     "Liknar ISO-8859-1(Latin 1)"
+	IDS_CP_WINDOWS_GREEK_EXTRA      "Liknar ISO-8859-7(Grekisk)"
+	IDS_CP_WINDOWS_TURKISH_EXTRA    "Liknar ISO-8859-9(Turkisk)"
+	IDS_CP_WINDOWS_HEBREW_EXTRA     "Liknar ISO-8859-8(Hebreisk)"
 END
 
 // MENU STRINGS
@@ -2212,14 +2212,14 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
-    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
+    ID_VIEW_SELECTFONT      "Väljer teckensnitt för fönstren\nVälj teckensnitt"
+    ID_VIEW_USEDEFAULTFONT  "Väljer standardteckensnitt för fönstren\nVälj standardteckensnitt"
     ID_VIEW_WHITESPACE      "Visar ett tecken för mellanslag"
     ID_VIEW_DETAIL_BAR      "Visar eller gömmer skillnadsfältet\nVäxla skillnadsfältet"
     ID_VIEW_LOCATION_BAR    "Skillnadsbilden visar en övergripande bild av filerna"
     ID_VIEW_DIR_STATEPANE   "Visar jämför katalogs Statuspanel"
     ID_VIEW_LANGUAGE        "Väljer språk för användargränssnittet\nSpråk"
-    ID_VIEW_LINEDIFFS       "Shows differences inside lines with different color\nShow Line Diff"
+    ID_VIEW_LINEDIFFS       "Visar skillnader inom rader med olika färg\nVisa radskillnad"
 END
 
 // MERGE MENU
