@@ -1440,6 +1440,7 @@ BEGIN
     IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
     IDS_OPEN_MISMATCH       "Cannot compare file and directory!"
     IDS_FILE_TO_ITSELF      "The same file is opened in both panels."
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
 END
 
 STRINGTABLE 

@@ -224,6 +224,7 @@ CMainFrame::CMainFrame()
 	m_bShowErrors = TRUE;
 	m_CheckOutMulti = FALSE;
 	m_bVCProjSync = FALSE;
+	m_bVssSuppressPathCheck = FALSE;
 
 	m_nVerSys = theApp.GetProfileInt(_T("Settings"), _T("VersionSystem"), 0);
 	m_strVssProjectBase = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
@@ -842,15 +843,9 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 
 /**
 * @brief Saves file to selected version control system
-*
 * @param strSavePath Path where to save including filename
-*
 * @return Tells if caller can continue (no errors happened)
-*
-* @note
-*
 * @sa CheckSavePath()
-*
 */
 BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 {
@@ -865,30 +860,41 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		break;
 	case 1:	// Visual Source Safe
 	{
-			// prompt for user choice
+		// Prompt for user choice
 		CVssPrompt dlg;
-			dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
+		dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
 		dlg.m_strProject = m_strVssProjectBase;
 		dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
 		dlg.m_strPassword = m_strVssPassword;
-		userChoice = dlg.DoModal();
-		// process versioning system specific action
-		if (userChoice==IDOK)
+
+		// Dialog not suppressed - show it and allow user to select "checkout all"
+		if (!m_CheckOutMulti)
 		{
-			WaitStatusCursor waitstatus(_T(""));
+			dlg.m_bMultiCheckouts = FALSE;
+			userChoice = dlg.DoModal();
+			m_CheckOutMulti = dlg.m_bMultiCheckouts;
+		}
+		else // Dialog already shown and user selected to "checkout all"
+			userChoice = IDOK;
+
+		// process versioning system specific action
+		if (userChoice == IDOK)
+		{
+			VERIFY(s.LoadString(IDS_VSS_CHECKOUT_STATUS));
+			WaitStatusCursor waitstatus(s);
 			m_strVssProjectBase = dlg.m_strProject;
 			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), mf->m_strVssProjectBase);
 			CString spath, sname;
-			SplitFilename(strSavePath, &spath, &sname, 0);
+			SplitFilename(strSavePath, &spath, &sname, NULL);
 			if (!spath.IsEmpty())
 			{
-				_chdrive(_totupper(spath[0])-'A'+1);
+				_chdrive(_totupper(spath[0]) - 'A' + 1);
 				_tchdir(spath);
 			}
 			CString args;
 			args.Format(_T("checkout \"%s/%s\""), m_strVssProjectBase, sname);
 			HANDLE hVss = RunIt(m_strVssPath, args, TRUE, FALSE);
-			if (hVss!=INVALID_HANDLE_VALUE)
+			if (hVss != INVALID_HANDLE_VALUE)
 			{
 				WaitForSingleObject(hVss, INFINITE);
 				DWORD code;
@@ -922,22 +928,21 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		dlg.m_strSelectedDatabase = m_strVssDatabase;
 		dlg.m_bVCProjSync = TRUE;
 
+		// Dialog not suppressed - show it and allow user to select "checkout all"
 		if (!m_CheckOutMulti)
 		{
 			dlg.m_bMultiCheckouts = FALSE;
-			//this is when we get the multicheck variable
 			userChoice = dlg.DoModal();
 			m_CheckOutMulti = dlg.m_bMultiCheckouts;
 		}
-		else//skip
-		{
+		else // Dialog already shown and user selected to "checkout all"
 			userChoice = IDOK;
-		}
 
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
-			WaitStatusCursor waitstatus(_T(""));
+			VERIFY(s.LoadString(IDS_VSS_CHECKOUT_STATUS));
+			WaitStatusCursor waitstatus(s);
 			BOOL bOpened = FALSE;
 			m_strVssProjectBase = dlg.m_strProject;
 			m_strVssUser = dlg.m_strUser;
@@ -950,9 +955,9 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			theApp.WriteProfileString(_T("Settings"), _T("VssUser"), m_strVssUser);
 			theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword);
 
-			IVSSDatabase	vssdb;
-			IVSSItems		m_vssis;
-			IVSSItem		m_vssi;
+			IVSSDatabase vssdb;
+			IVSSItems m_vssis;
+			IVSSItem m_vssi;
 
 			COleException *eOleException = new COleException;
 				
@@ -1039,20 +1044,26 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			//  BSP - ...to get the specific source safe item to be checked out
 			m_vssi = vssdb.GetVSSItem( strItem, 0 );
 
-			// BSP - Get the working directory where VSS will put the file...
-			CString strLocalSpec = m_vssi.GetLocalSpec();
-
-			// BSP - ...and compare it to the directory WinMerge is using.
-			if (strLocalSpec.CompareNoCase(strSavePath))
+			if (!m_bVssSuppressPathCheck)
 			{
-				// BSP - if the directories are different, let the user confirm the CheckOut
-				int iRes = AfxMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, 
-				           MB_YESNO | MB_DONT_ASK_AGAIN, IDS_VSSFOLDER_AND_FILE_NOMATCH);
+				// BSP - Get the working directory where VSS will put the file...
+				CString strLocalSpec = m_vssi.GetLocalSpec();
 
-				if (iRes != IDYES)
+				// BSP - ...and compare it to the directory WinMerge is using.
+				if (strLocalSpec.CompareNoCase(strSavePath))
 				{
-					m_CheckOutMulti = FALSE;//reset, we don't want 100 of the same errors
-					return FALSE;   // BSP - if not Yes, bail.
+					// BSP - if the directories are different, let the user confirm the CheckOut
+					int iRes = AfxMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, 
+							MB_YESNO | MB_YES_TO_ALL | MB_ICONQUESTION);
+
+					if (iRes == IDNO)
+					{
+						m_bVssSuppressPathCheck = FALSE;
+						m_CheckOutMulti = FALSE; // Reset, we don't want 100 of the same errors
+						return FALSE;   // No means user has to start from begin
+					}
+					else if (iRes = IDYESTOALL)
+						m_bVssSuppressPathCheck = TRUE; // Don't ask again with selected files
 				}
 			}
 
@@ -1546,8 +1557,8 @@ BOOL CMainFrame::SyncFilesToVCS(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psErr
 		return FALSE;
 	}
 	
-	// If VC project opened from VSS sync first
-	if (m_bVCProjSync)
+	// If VC project opened from VSS sync and version control used
+	if (m_nVerSys > 0 && m_bVCProjSync)
 		return ReLinkVCProj(strSavePath, psError);
 	else
 		return TRUE;

@@ -120,16 +120,22 @@ public:
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bIgnoreRegExp; /**< Are regular expression linefilters enabled? */
 	CString m_sPattern; /**< Regular expression linefilters */
+
+	/**
+	 * @name Version Control System (VCS) integration.
+	 */
+	/*@{*/ 
+	int m_nVerSys; /**< Selected version control system */
 	CString m_strVssPath;
 	CString m_strVssProjectBase;
-	CString m_strVssUser;      // BSP - Visual Source Safe User ID
-	CString m_strVssPassword;      // BSP - Visual Source Safe Password
+	CString m_strVssUser; /**< Visual Source Safe User ID */
+	CString m_strVssPassword; /**< Visual Source Safe Password */
 	CString m_strVssDatabase;
 	CString m_strVssProjectFull;
-
-	int m_nVerSys;
-	BOOL m_CheckOutMulti;
-	BOOL m_bVCProjSync;
+	BOOL m_CheckOutMulti; /**< Suppresses VSS int. code asking checkout for every file */
+	BOOL m_bVCProjSync; /**< VC project opened from VSS sync? */
+	BOOL m_bVssSuppressPathCheck; /**< Suppresses VSS int code asking about different path */
+	/*@}*/
 
     // This is ugly hack to workaround problem we don't have any
 	// access to compare options from dirscan() (dirscan.cpp)

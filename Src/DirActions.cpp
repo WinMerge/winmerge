@@ -366,6 +366,8 @@ BOOL CDirView::ConfirmActionList(const ActionList & actionList)
 /**
  * @brief Perform an array of actions
  * @note There can be only COPY or DELETE actions, not both!
+ * @sa CMainFrame::SaveToVersionControl()
+ * @sa CMainFrame::SyncFilesToVCS()
  */
 void CDirView::PerformActionList(ActionList & actionList)
 {
@@ -375,10 +377,11 @@ void CDirView::PerformActionList(ActionList & actionList)
 	UINT operation = 0;
 	UINT operFlags = 0;
 
-	// Set mainframe variable (VSS):
+	// Reset suppressing VSS dialog for multiple files.
+	// Set in CMainFrame::SaveToVersionControl().
 	mf->m_CheckOutMulti = FALSE;
-	mf->m_bVCProjSync = TRUE;
-	
+	mf->m_bVssSuppressPathCheck = FALSE;
+
 	switch (actionList.atype)
 	{
 	case ActionList::ACT_COPY:

@@ -1,3 +1,8 @@
+2004-05-07 Kimmo
+ PATCH: [ 949428 ] Show VSS dialogs only once
+  Src: DirActions.cpp MainFrm.cpp MainFrm.h Merge.rc resource.h
+  Languages: *.rc resource.h
+
 2004-05-07 Laoran
  PATCH: [ 948366 ] clear moved blocks before Rescan
   Src: DiffWrapper.cpp DiffWrapper.h MergeDoc.cpp

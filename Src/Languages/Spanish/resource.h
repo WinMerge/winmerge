@@ -204,6 +204,7 @@
 #define IDS_OPEN_UNPACKERDISABLED       290
 #define IDS_OPEN_MISMATCH               291
 #define IDS_FILE_TO_ITSELF              292
+#define IDS_VSS_CHECKOUT_STATUS         293
 #define IDD_FILEFILTERS                 304
 #define IDS_FILTERFILE_NAMETITLE        305
 #define IDS_FILTERFILE_PATHTITLE        306
