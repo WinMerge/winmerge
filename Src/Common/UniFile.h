@@ -1,8 +1,8 @@
 /** 
  *  @file   UniFile.h
  *  @author Perry Rapp, Creator, 2003
- *  @date   Created: 2003-10 (Perry)
- *  @date   Edited:  2003-11-15 (Perry)
+ *  @date   Created: 2003-10
+ *  @date   Edited:  2003-11-10 (Perry)
  *
  *  @brief  Declaration of Memory-Mapped Unicode enabled file class
  */
@@ -26,15 +26,18 @@ public:
 		UniError() { ClearError(); }
 	};
 
-	virtual bool OpenReadOnly() = 0;
+	virtual bool OpenReadOnly(LPCTSTR filename) = 0;
 
 	virtual void Close() = 0;
+
+	virtual bool IsOpen() const = 0;
 
 	virtual CString GetFullyQualifiedPath() const = 0;
 
 	virtual const UniError & GetLastUniError() const = 0;
 
 	virtual bool ReadBom() = 0;
+
 	virtual int GetUnicoding() const = 0;
 	virtual void SetUnicoding(int unicoding) = 0;
 
@@ -43,8 +46,11 @@ public:
 
 	virtual BOOL ReadString(CString & line) = 0;
 	virtual BOOL ReadString(CString & line, CString & eol) = 0;
+
 	virtual int GetLineNumber() const = 0;
 	virtual __int64 GetPosition() const = 0;
+
+	virtual BOOL WriteString(const CString & line) = 0;
 
 	struct txtstats
 	{
@@ -60,60 +66,42 @@ public:
 };
 
 /**
- * @brief Memory-Mapped disk file (read-only access)
+ * @brief Local file access code used by both UniMemFile and UniStdioFile
+ *
+ * This class lacks an actual handle to a file
  */
-class UniMemFile : public UniFile
+class UniLocalFile : public UniFile
 {
 public:
-	UniMemFile(LPCTSTR filename);
-	virtual ~UniMemFile() { Close(); }
-
-	virtual bool GetFileStatus();
-
-	virtual bool OpenReadOnly();
-	virtual bool Open();
-	virtual bool Open(DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion, DWORD dwMappingProtect, DWORD dwMapViewAccess);
-
-	void Close();
+	UniLocalFile();
+	void Clear();
 
 	virtual CString GetFullyQualifiedPath() const { return m_filepath; }
 	const CFileStatus & GetFileStatus() const { return m_filestatus; }
 
 	virtual const UniError & GetLastUniError() const { return m_lastError; }
 
-	virtual bool ReadBom();
 	virtual int GetUnicoding() const { return m_unicoding; }
 	virtual void SetUnicoding(int unicoding) { m_unicoding = unicoding; }
 
 	virtual int GetCodepage() const { return m_codepage; }
 	virtual void SetCodepage(int codepage) { m_codepage = codepage; }
 
-	virtual BOOL ReadString(CString & line);
-	virtual BOOL ReadString(CString & line, CString & eol);
 	virtual int GetLineNumber() const { return m_lineno; }
-	virtual __int64 GetPosition() const { return m_current - m_base; }
-
 
 	virtual const txtstats & GetTxtStats() const { return m_txtstats; }
 
-// Implementation methods
 protected:
-	virtual bool DoOpen(DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion, DWORD dwMappingProtect, DWORD dwMapViewAccess);
+	virtual bool DoGetFileStatus(HANDLE handle);
 	virtual void LastError(LPCTSTR apiname, int syserrnum);
 	virtual void LastErrorCustom(LPCTSTR desc);
 
-// Implementation data
-private:
+protected:
 	int m_statusFetched; // 0 not fetched, -1 error, +1 success
 	CFileStatus m_filestatus;
 	__int64 m_filesize;
 	CString m_filepath;
 	CString m_filename;
-	HANDLE m_handle;
-	HANDLE m_hMapping;
-	LPBYTE m_base; // points to base of mapping
-	LPBYTE m_data; // similar to m_base, but after BOM if any
-	LPBYTE m_current; // current location in file
 	int m_lineno; // current 0-based line of m_current
 	UniError m_lastError;
 	bool m_readbom; // whether have tested for BOM
@@ -121,6 +109,89 @@ private:
 	int m_charsize; // 2 for UCS-2, else 1
 	int m_codepage; // only valid if m_unicoding==ucr::NONE;
 	txtstats m_txtstats;
+};
+
+/**
+ * @brief Memory-Mapped disk file (read-only access)
+ */
+class UniMemFile : public UniLocalFile
+{
+public:
+	UniMemFile();
+	virtual ~UniMemFile() { Close(); }
+
+	virtual bool GetFileStatus();
+
+	virtual bool OpenReadOnly(LPCTSTR filename);
+	virtual bool Open(LPCTSTR filename);
+	virtual bool Open(LPCTSTR filename, DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion, DWORD dwMappingProtect, DWORD dwMapViewAccess);
+
+	void Close();
+
+	virtual bool IsOpen() const;
+
+	virtual bool ReadBom();
+
+	virtual BOOL ReadString(CString & line);
+	virtual BOOL ReadString(CString & line, CString & eol);
+
+	virtual __int64 GetPosition() const { return m_current - m_base; }
+
+	virtual BOOL WriteString(const CString & line);
+
+// Implementation methods
+protected:
+	virtual bool DoOpen(LPCTSTR filename, DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion, DWORD dwMappingProtect, DWORD dwMapViewAccess);
+
+// Implementation data
+private:
+	HANDLE m_handle;
+	HANDLE m_hMapping;
+	LPBYTE m_base; // points to base of mapping
+	LPBYTE m_data; // similar to m_base, but after BOM if any
+	LPBYTE m_current; // current location in file
+};
+
+/**
+ * @brief Regular buffered file
+ */
+class UniStdioFile : public UniLocalFile
+{
+public:
+	UniStdioFile();
+	~UniStdioFile();
+
+	virtual bool GetFileStatus();
+
+	virtual bool OpenReadOnly(LPCTSTR filename);
+	virtual bool OpenCreate(LPCTSTR filename);
+	virtual bool Open(LPCTSTR filename, LPCTSTR mode);
+
+	void Close();
+
+	virtual bool IsOpen() const;
+
+	virtual bool ReadBom();
+
+	virtual BOOL ReadString(CString & line);
+	virtual BOOL ReadString(CString & line, CString & eol);
+
+	virtual __int64 GetPosition() const;
+
+	virtual int WriteBom();
+	virtual BOOL WriteString(const CString & line);
+
+// Implementation methods
+protected:
+	virtual bool DoOpen(LPCTSTR filename, LPCTSTR mode);
+	virtual void LastError(LPCTSTR apiname, int syserrnum);
+	virtual void LastErrorCustom(LPCTSTR desc);
+
+// Implementation data
+private:
+	FILE * m_fp;
+	__int64 m_data; // offset after any initial BOM
+	void * m_pucrbuff;
 };
 
 #endif // UniFile_h_included

@@ -1,3 +1,8 @@
+2004-01-11 Perry
+ PATCH: [ 860054 ] Reimplement SaveToFile using stream output
+  common: multiformatText.cpp unicoder.cpp unicoder.h UniFile.cpp UniFile.h
+  WinMerge: DiffContext.cpp MergeDoc.cpp
+
 2004-01-11 Kimmo
  Minor update to 2.2 plan
   Docs: Planning_2_2.txt

@@ -77,8 +77,8 @@ void storageForPlugins::SetDataFileUnicode(LPCTSTR filename, BOOL bOverwrite /*=
 void storageForPlugins::SetDataFileUnknown(LPCTSTR filename, BOOL bOverwrite /*= FALSE*/) 
 {
 	BOOL bIsUnicode = FALSE;
-	UniMemFile ufile(filename);
-	if (ufile.OpenReadOnly())
+	UniMemFile ufile;
+	if (ufile.OpenReadOnly(filename))
 	{
 		bIsUnicode = ufile.ReadBom();
 		ufile.Close();
@@ -598,8 +598,8 @@ static UINT TransformUtf8ToUcs2(LPCSTR pcsUtf, UINT nUtf, LPWSTR psUcs, UINT nUc
 BOOL UnicodeFileToOlechar(CString & filepath, LPCTSTR filepathDst, int & nFileChanged)
 {
 	BOOL bIsUnicode = FALSE;
-	UniMemFile ufile(filepath);
-	if (ufile.OpenReadOnly())
+	UniMemFile ufile;
+	if (ufile.OpenReadOnly(filepath))
 	{
 		bIsUnicode = ufile.ReadBom();
 		ufile.Close();
@@ -690,8 +690,8 @@ BOOL UnicodeFileToOlechar(CString & filepath, LPCTSTR filepathDst, int & nFileCh
 BOOL OlecharToUTF8(CString & filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
 {
 	BOOL bIsUnicode = FALSE;
-	UniMemFile ufile(filepath);
-	if (ufile.OpenReadOnly())
+	UniMemFile ufile;
+	if (ufile.OpenReadOnly(filepath))
 	{
 		bIsUnicode = ufile.ReadBom();
 		ufile.Close();

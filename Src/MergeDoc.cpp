@@ -1177,13 +1177,13 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
 	
-	UniMemFile ufile(pszFileName);
+	UniMemFile ufile;
 	UniFile * pufile = &ufile;
 
 	// Now we only use the UniFile interface
 	// which is something we could implement for HTTP and/or FTP files
 
-	if (pufile->OpenReadOnly())
+	if (pufile->OpenReadOnly(pszFileName))
 	{
 		// Recognize Unicode files with BOM (byte order mark)
 		// or else, use the codepage we were given to interpret the 8-bit characters
@@ -1323,153 +1323,101 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		BOOL bTempFile, PackingInfo * infoUnpacker /*= NULL*/, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ ,
 		BOOL bClearModifiedFlag /*= TRUE*/ )
 {
-	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
-		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
-	ASSERT (m_bInit);
-	MAPPEDFILEDATA fileData = {0};
-	TCHAR szTempFileName[_MAX_PATH] = {0} ;
-	BOOL bOpenSuccess = FALSE;
-	BOOL bSaveSuccess = FALSE;
-
-	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-	{
-		if (mf->m_bAllowMixedEol)
-			// keep automatic, GetTextWithoutEmpty will read EOL from the m_aLines array
-			;
-		else
-		{
-			// get the default nCrlfStyle of the CDiffTextBuffer
-			nCrlfStyle = GetCRLFMode();
-			ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
-		}
-	}
-	// we don't need to apply the EOL mode to the m_aLines array
-	// as GetTextWithoutEmpty receives nCrlfStyle as parameter
-	
-	int nLineCount = m_aLines.GetSize();
-	CString text;			
-	int nLastLength = GetFullLineLength(nLineCount-1);
-		
-	if (nLineCount > 1 || nLastLength > 0)
-		GetTextWithoutEmptys(0, 0, nLineCount - 1, nLastLength, text, nCrlfStyle);
-	UINT nchars = text.GetLength();
-
-	UINT nbytes = -1;
-	if (m_unicoding == ucr::UCS2LE)
-	{
-		// UCS-2LE (+ 2 byte BOM)
-		nbytes = 2 * nchars + 2;
-	}
-	else if (m_unicoding == ucr::UCS2BE)
-	{
-		// UCS-2BE (+ 2 byte BOM)
-		nbytes = 2 * nchars + 2;
-	}
-	else if (m_unicoding == ucr::UTF8)
-	{
-		// UTF-8 (+ 3 byte BOM)
-		nbytes = ucr::Utf8len_of_string(text, text.GetLength()) + 3;
-	}
-	else
-	{
-		// 2003-12-09, Perry:
-		// This is not always correct, and it is not simple to fix, and leads to GPFs when wrong.
-		
-		// In ANSI build, if file encoding matches default thread encoding (TCHAR), this is correct.
-		// Otherwise, if both file encoding and default thread encoding (TCHAR) are single byte encodings,
-		// this is ok. But if multibyte encodings are involved, this may be wrong.
-
-		// In UNICODE build, if file encoding is single byte, this is ok (I think), but if file encoding
-		// is multibyte, this is wrong.
-
-		// Buggy code
-		nbytes = nchars;
-	}
-
-	// Data to save is now in CString text
-
 	if (!pszFileName)
 		return SAVE_FAILED;	// No filename, cannot save...
 
-	if (!bTempFile)
+	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
+		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
+	ASSERT (m_bInit);
+
+
+	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC && !mf->m_bAllowMixedEol)
 	{
-		if (!::GetTempFileName(m_strTempPath, _T("MRG"), 0, szTempFileName))
-			return SAVE_FAILED;  //Nothing to do if even tempfile name fails
+			// get the default nCrlfStyle of the CDiffTextBuffer
+		nCrlfStyle = GetCRLFMode();
+		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
 	}
 
-	// Init filedata struct and open file as memory mapped 
-	if (bTempFile)
-		_tcsncpy(fileData.fileName, pszFileName, countof(fileData.fileName));
-	else
-		_tcsncpy(fileData.fileName, szTempFileName, countof(fileData.fileName));
+	BOOL bOpenSuccess = TRUE;
+	BOOL bSaveSuccess = FALSE;
 
-	fileData.bWritable = TRUE;
-	fileData.dwOpenFlags = CREATE_ALWAYS;
-	fileData.dwSize = nbytes;
-	bOpenSuccess = files_openFileMapped(&fileData);
+	UniStdioFile file;
+	file.SetUnicoding(m_unicoding);
+	file.SetCodepage(m_codepage);
+
+	CString sIntermediateFilename; // used when !bTempFile
+
+	if (bTempFile)
+	{
+		bOpenSuccess = !!file.OpenCreate(pszFileName);
+	}
+	else
+	{
+		LPTSTR intermedBuffer = sIntermediateFilename.GetBuffer(_MAX_PATH);
+		if (!::GetTempFileName(m_strTempPath, _T("MRG"), 0, intermedBuffer))
+			return SAVE_FAILED;  //Nothing to do if even tempfile name fails
+		sIntermediateFilename.ReleaseBuffer();
+		bOpenSuccess = !!file.OpenCreate(sIntermediateFilename);
+	}
+
+	// Why do we continue if !bOpenSuccess ?
 
 	if (bOpenSuccess)
 	{
-		// Should these Unicode codeset conversions be moved
-		// into the iconvert (editlib/cs2cs.*) module ?
+		file.WriteBom();
 
-		if (m_unicoding != ucr::NONE)
+		CString sLine;
+		CString sEol = GetStringEol(nCrlfStyle);
+		int nLineCount = m_aLines.GetSize();
+		for (int line=0; line<nLineCount-1; ++line)
 		{
-			int bom_bytes = ucr::writeBom(fileData.pMapBase, (ucr::UNICODESET)m_unicoding);
-			ucr::convertToBuffer(text, (char*)fileData.pMapBase+bom_bytes, (ucr::UNICODESET)m_unicoding, m_codepage);
-		}
-		else 
-		{
-#ifdef _UNICODE
-			// WinMerge doesn't use crystal's m_nSourceEncoding
-			// which anyway never gets set
-			// WinMerge uses its own buffer's m_unicoding and m_codepage
-			ucr::convertToBuffer(text, fileData.pMapBase, (ucr::UNICODESET)m_unicoding, m_codepage);
-#else
-			if (m_nSourceEncoding >= 0)
+			if (GetLineFlags(line) && LF_GHOST)
+				continue;
+			if (GetLineLength(line) > 0)
+				GetText(line, 0, line, GetLineLength(line), sLine, 0);
+			else
+				sLine = _T("");
+			if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
 			{
-				LPTSTR pszBuf;
-				iconvert_new((LPCTSTR)text, &pszBuf, 1,
-						m_nSourceEncoding, m_nSourceEncoding == 15);
-				CopyMemory(fileData.pMapBase, pszBuf, nbytes);
-				free(pszBuf);
+				sLine += GetLineEol(line);
 			}
 			else
 			{
-				CopyMemory(fileData.pMapBase, (void *)(LPCTSTR)text, nbytes);
+				sLine += sEol;
 			}
-#endif
+			file.WriteString(sLine);
 		}
+		file.Close();
+	}
 
-		// Force flushing of file buffers for user files
-		BOOL bflush = !bTempFile;
-		files_closeFileMapped(&fileData, nbytes, bflush);
-		
+
+	if (bOpenSuccess)
+	{
 		if (!bTempFile)
 		{
 			// If we are saving user files
 			// we need an unpacker/packer, at least a "do nothing" one
 			ASSERT(infoUnpacker != NULL);
 			// repack the file here, overwrite the temporary file we did save in
-			CString csTempFileName = szTempFileName;
+			CString csTempFileName = sIntermediateFilename;
 			infoUnpacker->subcode = unpackerSubcode;
 			if (!FileTransform_Packing(csTempFileName, *infoUnpacker))
 			{
-				::DeleteFile(szTempFileName);
+				::DeleteFile(sIntermediateFilename);
 				// returns now, don't overwrite the original file
 				return SAVE_PACK_FAILED;
 			}
 			// the temp filename may have changed during packing
-			if (csTempFileName != szTempFileName)
+			if (csTempFileName != sIntermediateFilename)
 			{
-				::DeleteFile(szTempFileName);
-				_tcscpy(szTempFileName, csTempFileName);
+				::DeleteFile(sIntermediateFilename);
+				sIntermediateFilename = csTempFileName;
 			}
 
 			// Write tempfile over original file
-			if (::CopyFile(szTempFileName, pszFileName, FALSE))
+			if (::CopyFile(sIntermediateFilename, pszFileName, FALSE))
 			{
-				::DeleteFile(szTempFileName);
+				::DeleteFile(sIntermediateFilename);
 				if (bClearModifiedFlag)
 				{
 					SetModified(FALSE);

@@ -309,9 +309,10 @@ void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
 static void
 GuessEncoding(const CString & filepath, int * unicoding, int * codepage)
 {
-	UniMemFile ufile(filepath);
+	UniMemFile ufile;
 	UniFile * pufile = &ufile;
-	if (!pufile->OpenReadOnly())
+
+	if (!pufile->OpenReadOnly(filepath))
 		return;
 	bool hasbom = pufile->ReadBom();
 	*unicoding = pufile->GetUnicoding();

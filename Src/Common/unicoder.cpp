@@ -52,10 +52,10 @@ static LPCTSTR f_unicodesetNames[] = { _T("<NONE>"), _T("UCS-2LE"), _T("UCS-2BE"
 /**
  * @brief return string for enum value
  */
-CString GetUnicodesetName(UNICODESET codeset)
+CString GetUnicodesetName(UNICODESET unicoding)
 {
-	if (codeset>=0 && codeset<sizeof(f_unicodesetNames)/sizeof(f_unicodesetNames[0]))
-		return f_unicodesetNames[codeset];
+	if (unicoding>=0 && unicoding<sizeof(f_unicodesetNames)/sizeof(f_unicodesetNames[0]))
+		return f_unicodesetNames[unicoding];
 	else
 		return _T("?");
 }
@@ -457,28 +457,39 @@ getDefaultCodepage()
 	return defcodepage;
 }
 
+void getDefaultEncoding(UNICODESET * unicoding, int * codepage)
+{
+#ifdef _UNICODE
+	*unicoding = UCS2LE;
+	*codepage = 0;
+#else
+	*unicoding = NONE;
+	*codepage = getDefaultCodepage();
+#endif
+}
+
 /**
  * @brief Write appropriate BOM (Unicode byte order marker)
  * returns #bytes written
  */
 int
-writeBom(LPVOID dest, UNICODESET codeset)
+writeBom(LPVOID dest, UNICODESET unicoding)
 {
 	unsigned char * lpd = reinterpret_cast<unsigned char *>(dest);
 	// write Unicode byte order marker (BOM)
-	if (codeset == UCS2LE)
+	if (unicoding == UCS2LE)
 	{
 		*lpd++ = 0xFF;
 		*lpd++ = 0xFE;
 		return 2;
 	}
-	else if (codeset == UCS2BE)
+	else if (unicoding == UCS2BE)
 	{
 		*lpd++ = 0xFE;
 		*lpd++ = 0xFF;
 		return 2;
 	}
-	else if (codeset == UTF8)
+	else if (unicoding == UTF8)
 	{
 		*lpd++ = 0xEF;
 		*lpd++ = 0xBB;
@@ -496,7 +507,7 @@ writeBom(LPVOID dest, UNICODESET codeset)
  * NB: Destination is not zero-terminated!
  */
 int
-convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset, int codepage)
+convertToBuffer(const CString & src, LPVOID dest, UNICODESET unicoding, int codepage)
 {
 	static int defcodepage = getDefaultCodepage();
 
@@ -504,13 +515,13 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset, int codepa
 	unsigned char * start = lpd;
 
 #ifdef _UNICODE
-	if (codeset == UCS2LE)
+	if (unicoding == UCS2LE)
 	{
 		int nbytes = src.GetLength() * 2;
 		CopyMemory(lpd, src, nbytes);
 		return nbytes;
 	}
-	else if (codeset == UCS2BE)
+	else if (unicoding == UCS2BE)
 	{
 		for (int i=0; i<src.GetLength(); ++i)
 		{
@@ -520,7 +531,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset, int codepa
 		}
 		return lpd - start;
 	}
-	else if (codeset == UTF8)
+	else if (unicoding == UTF8)
 	{
 		for (int i=0; i<src.GetLength(); ++i)
 		{
@@ -531,7 +542,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset, int codepa
 	}
 	else
 	{
-		ASSERT(codeset == NONE); // there aren't any other values in UNICODESET
+		ASSERT(unicoding == NONE); // there aren't any other values in UNICODESET
 		// Write wchars to chars
 		DWORD flags = 0;
 		// Take a swag at the maximum length :(
@@ -545,7 +556,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset, int codepa
 #else
 	// ANSI build, TCHAR=char
 
-	if (codeset == UCS2LE)
+	if (unicoding == UCS2LE)
 	{
 		for (int i=0; i<src.GetLength(); ++i)
 		{
@@ -555,7 +566,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset, int codepa
 		}
 		return lpd - start;
 	}
-	else if (codeset == UCS2BE)
+	else if (unicoding == UCS2BE)
 	{
 		for (int i=0; i<src.GetLength(); ++i)
 		{
@@ -565,7 +576,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset, int codepa
 		}
 		return lpd - start;
 	}
-	else if (codeset == UTF8)
+	else if (unicoding == UTF8)
 	{
 		for (int i=0; i<src.GetLength(); ++i)
 		{
@@ -576,7 +587,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset, int codepa
 	}
 	else
 	{
-		ASSERT(codeset == NONE); // there aren't any other values in UNICODESET
+		ASSERT(unicoding == NONE); // there aren't any other values in UNICODESET
 
 		if (codepage == defcodepage)
 		{
@@ -716,4 +727,85 @@ CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, int c
 	return n;
 }
 
+buffer::buffer(unsigned int needed)
+{
+	used = 0;
+	size = needed;
+	ptr = (unsigned char *)calloc(size, 1);
+}
+buffer::~buffer()
+{
+	free(ptr);
+}
+void buffer::resize(unsigned int needed)
+{
+	if (size < needed)
+	{
+		size = needed;
+		ptr = (unsigned char *)realloc(ptr, size);
+	}
+}
+
+/**
+ * @brief Convert from one text encoding to another; return false if any lossing conversions
+ */
+bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, int srcbytes, UNICODESET unicoding2, int codepage2, buffer * dest)
+{
+	if (unicoding1 == unicoding2 && (unicoding1 || (codepage1 == codepage2)))
+	{
+		// simple byte copy
+		dest->resize(srcbytes);
+		CopyMemory(dest->ptr, src, srcbytes);
+		dest->used = srcbytes;
+		return true;
+	}
+	if ((unicoding1 == UCS2LE && unicoding2 == UCS2BE)
+		|| (unicoding1 == UCS2BE && unicoding2 == UCS2LE))
+	{
+		// simple byte swap
+		dest->resize(srcbytes);
+		for (int i=0; i<srcbytes; i += 2)
+		{
+			// Byte-swap into destination
+			dest->ptr[i] = src[i+1];
+			dest->ptr[i+1] = src[i];
+		}
+		dest->used = srcbytes;
+		return true;
+	}
+	if (unicoding1 != UCS2LE && unicoding2 != UCS2LE)
+	{
+		// Break problem into two simpler pieces by converting through UCS-2LE
+		buffer intermed(dest->size);
+		bool step1 = convert(unicoding1, codepage1, src, srcbytes, UCS2LE, 0, &intermed);
+		bool step2 = convert(UCS2LE, 0, intermed.ptr, intermed.used, unicoding2, codepage2, dest);
+		return step1 && step2;
+	}
+	if (unicoding1 == UCS2LE)
+	{
+		// From UCS-2LE to 8-bit (or UTF-8)
+
+		int destcp = (unicoding2 == UTF8 ? CP_UTF8 : codepage2);
+		DWORD flags = 0;
+		int bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, srcbytes/2, 0, 0, NULL, NULL);
+		dest->resize(bytes);
+		int losses = 0;
+		bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, srcbytes/2, (char *)dest->ptr, dest->size, NULL, &losses);
+		dest->used = bytes;
+		return losses==0;
+	}
+	else
+	{
+		// From 8-bit (or UTF-8) to UCS-2LE
+		int srccp = (unicoding1 == UTF8 ? CP_UTF8 : codepage1);
+		DWORD flags = 0;
+		int wchars = MultiByteToWideChar(srccp, flags, (LPCSTR)src, srcbytes, 0, 0);
+		dest->resize(wchars*2);
+		wchars = MultiByteToWideChar(srccp, flags, (LPCSTR)src, srcbytes, (LPWSTR)dest->ptr, dest->size/2);
+		dest->used = wchars * 2;
+		return true;
+	}
+}
+
 } // namespace ucr
+

@@ -1,10 +1,10 @@
-/** 
+/**
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-01-05 (Perry)
+ *  @date   Edited:  2003-12-14 (Perry)
  *
- *  @brief Implementation of Memory-Mapped Unicode enabled file class
+ *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
 
 /* The MIT License
@@ -24,54 +24,47 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
-UniMemFile::UniMemFile(LPCTSTR filename)
-: m_statusFetched(0)
-, m_filesize(0)
-, m_handle(INVALID_HANDLE_VALUE)
-, m_hMapping(INVALID_HANDLE_VALUE)
-, m_base(NULL)
-, m_data(NULL)
-, m_current(NULL)
-, m_lineno(-1)
-, m_readbom(false)
-, m_unicoding(ucr::NONE)
-, m_charsize(1)
-, m_codepage(0)
+// Utility
+static void ClearFilestatus(CFileStatus & fileStatus)
 {
-	m_filename = filename;
-	m_filepath = m_filename;
+	fileStatus.m_ctime = 0;
+	fileStatus.m_mtime = 0;
+	fileStatus.m_atime = 0;
+	fileStatus.m_size = 0;
+	fileStatus.m_attribute = 0;
+	fileStatus.m_szFullName[0] = 0;
 }
 
-void UniMemFile::Close()
-{
-	m_lastError.ClearError();
+/////////////
+// UniLocalFile
+/////////////
 
-	if (m_base)
-	{
-		UnmapViewOfFile(m_base);
-		m_base = 0;
-	}
-	m_data = NULL;
-	m_current = NULL;
-	m_lineno = -1;
-	if (m_hMapping != INVALID_HANDLE_VALUE)
-	{
-		CloseHandle(m_hMapping);
-		m_hMapping = INVALID_HANDLE_VALUE;
-	}
-	if (m_handle != INVALID_HANDLE_VALUE)
-	{
-		FlushFileBuffers(m_handle);
-		CloseHandle(m_handle);
-		m_handle = INVALID_HANDLE_VALUE;
-	}
+/** @brief Create disconnected UniLocalFile, but with name */
+UniLocalFile::UniLocalFile()
+{
+	Clear();
+}
+
+/** @brief Reset all variables to empty */
+void UniLocalFile::Clear()
+{
 	m_statusFetched = 0;
+	ClearFilestatus(m_filestatus);
+	m_lastError.ClearError();
+	m_filesize = 0;
+	m_filepath = _T("");
+	m_filename = _T("");
+	m_lineno = -1;
+	m_lastError.ClearError();
 	m_readbom = false;
+	m_unicoding = ucr::NONE;
+	m_charsize = 1;
+	m_codepage = 0;
+	m_txtstats.clear();
 }
 
 /** @brief Get file status into member variables */
-bool UniMemFile::GetFileStatus()
+bool UniLocalFile::DoGetFileStatus(HANDLE handle)
 {
 	m_lastError.ClearError();
 	m_statusFetched = -1;
@@ -83,13 +76,20 @@ bool UniMemFile::GetFileStatus()
 	}
 	m_filepath = m_filestatus.m_szFullName;
 
-	if (m_handle == INVALID_HANDLE_VALUE)
+	bool closehandle = false;
+	if (handle == INVALID_HANDLE_VALUE)
 	{
-		LastErrorCustom(_T("UniMemFile::GetFileStatus called without open file handle"));
-		return false;
+		closehandle = true;
+		handle = CreateFile(m_filepath, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, 0);
+		if (handle == INVALID_HANDLE_VALUE)
+		{
+			int errnum = GetLastError();
+			LastError(_T("CreateFile"), errnum);
+			return false;
+		}
 	}
 	DWORD sizehi=0;
-	DWORD sizelo = GetFileSize(m_handle, &sizehi);
+	DWORD sizelo = GetFileSize(handle, &sizehi);
 	int errnum = GetLastError();
 	if (errnum != NO_ERROR)
 	{
@@ -98,36 +98,111 @@ bool UniMemFile::GetFileStatus()
 	}
 	m_filesize = sizelo + (sizehi << 32);
 	m_statusFetched = 1;
+
+	if (closehandle)
+		CloseHandle(handle);
+
 	return true;
 }
 
+/** @brief Record an API call failure */
+void UniLocalFile::LastError(LPCTSTR apiname, int syserrnum)
+{
+	m_lastError.ClearError();
+
+	m_lastError.apiname = apiname;
+	m_lastError.syserrnum = syserrnum;
+}
+
+/** @brief Record a custom error */
+void UniLocalFile::LastErrorCustom(LPCTSTR desc)
+{
+	m_lastError.ClearError();
+
+	m_lastError.desc = desc;
+}
+
+/////////////
+// UniMemFile
+/////////////
+
+UniMemFile::UniMemFile()
+// CString m_filepath;
+// CString m_filename;
+: m_handle(INVALID_HANDLE_VALUE)
+, m_hMapping(INVALID_HANDLE_VALUE)
+, m_base(NULL)
+, m_data(NULL)
+, m_current(NULL)
+{
+}
+
+void UniMemFile::Close()
+{
+	Clear();
+	if (m_base)
+	{
+		UnmapViewOfFile(m_base);
+		m_base = 0;
+	}
+	m_data = NULL;
+	m_current = NULL;
+	if (m_hMapping != INVALID_HANDLE_VALUE)
+	{
+		CloseHandle(m_hMapping);
+		m_hMapping = INVALID_HANDLE_VALUE;
+	}
+	if (m_handle != INVALID_HANDLE_VALUE)
+	{
+		FlushFileBuffers(m_handle);
+		CloseHandle(m_handle);
+		m_handle = INVALID_HANDLE_VALUE;
+	}
+}
+
+/** @brief Is it currently attached to a file ? */
+bool UniMemFile::IsOpen() const
+{
+	// We don't test the handle here, because we allow "opening" empty file
+	// but memory-mapping doesn't work on that, so that uses a special state
+	// of no handle, but linenumber of 0
+	return m_lineno >= 0;
+}
+
+/** @brief Get file status into member variables */
+bool UniMemFile::GetFileStatus()
+{
+	if (!IsOpen()) return false;
+	return DoGetFileStatus(m_handle);
+}
+
 /** @brief Open file for generic read-only access */
-bool UniMemFile::OpenReadOnly()
+bool UniMemFile::OpenReadOnly(LPCTSTR filename)
 {
 	DWORD dwOpenAccess = GENERIC_READ;
 	DWORD dwOpenShareMode = FILE_SHARE_READ;
 	DWORD dwOpenCreationDispostion = OPEN_EXISTING;
 	DWORD dwMappingProtect = PAGE_READONLY;
 	DWORD dwMapViewAccess = FILE_MAP_READ;
-	return Open(dwOpenAccess, dwOpenShareMode, dwOpenCreationDispostion, dwMappingProtect, dwMapViewAccess);
+	return Open(filename, dwOpenAccess, dwOpenShareMode, dwOpenCreationDispostion, dwMappingProtect, dwMapViewAccess);
 }
 
 /** @brief Open file for generic read-write access */
-bool UniMemFile::Open()
+bool UniMemFile::Open(LPCTSTR filename)
 {
 	DWORD dwOpenAccess = GENERIC_WRITE;
 	DWORD dwOpenShareMode = 0;
 	DWORD dwOpenCreationDispostion = OPEN_EXISTING;
 	DWORD dwMappingProtect = PAGE_READWRITE;
 	DWORD dwMapViewAccess = FILE_MAP_WRITE;
-	return Open(dwOpenAccess, dwOpenShareMode, dwOpenCreationDispostion, dwMappingProtect, dwMapViewAccess);
+	return Open(filename, dwOpenAccess, dwOpenShareMode, dwOpenCreationDispostion, dwMappingProtect, dwMapViewAccess);
 }
 
 /** @brief Open file with specified arguments */
-bool UniMemFile::Open(DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion, DWORD dwMappingProtect, DWORD dwMapViewAccess)
+bool UniMemFile::Open(LPCTSTR filename, DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion, DWORD dwMappingProtect, DWORD dwMapViewAccess)
 {
 	// We use an internal workhorse to make it easy to close on any error
-	if (!DoOpen(dwOpenAccess, dwOpenShareMode, dwOpenCreationDispostion, dwMappingProtect, dwMapViewAccess))
+	if (!DoOpen(filename, dwOpenAccess, dwOpenShareMode, dwOpenCreationDispostion, dwMappingProtect, dwMapViewAccess))
 	{
 		Close();
 		return false;
@@ -136,11 +211,12 @@ bool UniMemFile::Open(DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCre
 }
 
 /** @brief Internal implementation of Open */
-bool UniMemFile::DoOpen(DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion, DWORD dwMappingProtect, DWORD dwMapViewAccess)
+bool UniMemFile::DoOpen(LPCTSTR filename, DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion, DWORD dwMappingProtect, DWORD dwMapViewAccess)
 {
-	if (m_lastError.hasError()) return false;
-
 	Close();
+
+	m_filename = filename;
+	m_filepath = m_filename; // TODO: Make canonical ?
 
 	m_handle = CreateFile(m_filename, dwOpenAccess, dwOpenShareMode, NULL, dwOpenCreationDispostion, 0, 0);
 	if (m_handle == INVALID_HANDLE_VALUE)
@@ -148,8 +224,10 @@ bool UniMemFile::DoOpen(DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenC
 		LastError(_T("CreateFile"), GetLastError());
 		return false;
 	}
+	m_lineno = 0; // GetFileStatus requires file be "open", which means nonnegative line number
 	if (!GetFileStatus())
 		return false;
+	m_lineno = -1;
 
 	DWORD sizehi = (DWORD)(m_filesize >> 32);
 	DWORD sizelo = (DWORD)(m_filesize & 0xFFFFFFFF);
@@ -195,23 +273,6 @@ bool UniMemFile::DoOpen(DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenC
 	return true;
 }
 
-/** @brief Record an API call failure */
-void UniMemFile::LastError(LPCTSTR apiname, int syserrnum)
-{
-	m_lastError.ClearError();
-
-	m_lastError.apiname = apiname;
-	m_lastError.syserrnum = syserrnum;
-}
-
-/** @brief Record a custom error */
-void UniMemFile::LastErrorCustom(LPCTSTR desc)
-{
-	m_lastError.ClearError();
-
-	m_lastError.desc = desc;
-}
-
 /**
  * @brief Check for Unicode BOM (byte order mark) at start of file
  *
@@ -219,7 +280,9 @@ void UniMemFile::LastErrorCustom(LPCTSTR desc)
  */
 bool UniMemFile::ReadBom()
 {
-	byte * lpByte = (byte *)m_base;
+	if (!IsOpen()) return false;
+
+	unsigned char * lpByte = m_base;
 	m_current = m_data = m_base;
 	m_charsize = 1;
 	if (m_filesize >= 2)
@@ -490,3 +553,260 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 	return TRUE;
 }
 
+/**
+ * @brief Write one line (doing any needed conversions)
+ */
+BOOL UniMemFile::WriteString(const CString & line)
+{
+	ASSERT(0); // unimplemented -- currently cannot write to a UniMemFile!
+	return FALSE;
+}
+
+/////////////
+// UniStdioFile
+/////////////
+
+UniStdioFile::UniStdioFile()
+: m_fp(0)
+, m_data(0)
+{
+	m_pucrbuff = new ucr::buffer(128);
+}
+
+UniStdioFile::~UniStdioFile()
+{
+	Close();
+	delete (ucr::buffer *)m_pucrbuff;
+	m_pucrbuff = 0;
+}
+
+void UniStdioFile::Close()
+{
+	m_lastError.ClearError();
+	if (IsOpen())
+	{
+		fclose(m_fp);
+		m_fp = 0;
+	}
+	m_statusFetched = 0;
+	ClearFilestatus(m_filestatus);
+	m_filesize = 0;
+	// preserve m_filepath
+	// preserve m_filename
+	m_data = 0;
+	m_lineno = -1;
+	m_lastError.ClearError();
+	m_readbom = false;
+	// preserve m_unicoding
+	// preserve m_charsize
+	// preserve m_codepage
+	m_txtstats.clear();
+}
+
+/** @brief Is it currently attached to a file ? */
+bool UniStdioFile::IsOpen() const
+{
+	return m_fp != 0;
+}
+
+/** @brief Get file status into member variables */
+bool UniStdioFile::GetFileStatus()
+{
+	if (IsOpen()) return false; // unfortunately we'll hit our lock
+
+	return DoGetFileStatus(INVALID_HANDLE_VALUE); // DoGetFileStatus must open the file itself
+}
+
+bool UniStdioFile::OpenReadOnly(LPCTSTR filename)
+{
+	return Open(filename, _T("rb"));
+}
+bool UniStdioFile::OpenCreate(LPCTSTR filename)
+{
+	return Open(filename, _T("w+b"));
+}
+bool UniStdioFile::Open(LPCTSTR filename, LPCTSTR mode)
+{
+	if (!DoOpen(filename, mode))
+	{
+		Close();
+		return false;
+	}
+	return true;
+}
+
+bool UniStdioFile::DoOpen(LPCTSTR filename, LPCTSTR mode)
+{
+	Close();
+	
+	m_filepath = filename;
+	m_filename = filename; // TODO: Make canonical ?
+
+	// Open it in case we're creating it
+	m_fp = _tfopen(m_filepath, mode);
+	if (!m_fp)
+		return false;
+	// Close it because otherwise GetFileStatus will fail :(
+	fclose(m_fp);
+	m_fp = 0;
+
+	if (!GetFileStatus())
+		return false;
+
+	// reopen it (this closing & reopening is unfortunate)
+	m_fp = _tfopen(m_filepath, mode);
+	if (!m_fp)
+		return false;
+
+	DWORD sizehi = (DWORD)(m_filesize >> 32);
+	DWORD sizelo = (DWORD)(m_filesize & 0xFFFFFFFF);
+
+	if (sizehi)
+	{
+		// TODO: We could do this in MSC_VER 7+ I think
+
+		LastErrorCustom(_T("UniStdioFile cannot handle files over 4 gigabytes"));
+		return false;
+	}
+
+	m_lineno = 0;
+	return true;
+}
+
+/** @brief Record an API call failure */
+void UniStdioFile::LastError(LPCTSTR apiname, int syserrnum)
+{
+	m_lastError.ClearError();
+
+	m_lastError.apiname = apiname;
+	m_lastError.syserrnum = syserrnum;
+}
+
+/** @brief Record a custom error */
+void UniStdioFile::LastErrorCustom(LPCTSTR desc)
+{
+	m_lastError.ClearError();
+
+	m_lastError.desc = desc;
+}
+
+/**
+ * @brief Check for Unicode BOM (byte order mark) at start of file
+ *
+ * @note This code only checks for UCS-2LE, UCS-2BE, and UTF-8 BOMs (no UCS-4).
+ */
+bool UniStdioFile::ReadBom()
+{
+	if (!IsOpen()) return false;
+
+	fseek(m_fp, 0, SEEK_SET);
+
+	// Need three bytes for BOM
+	unsigned char buff[4];
+	int bytes = fread(buff, 1, 3, m_fp);
+	unsigned char * lpByte = (unsigned char *)buff;
+
+	m_data = 0;
+	m_charsize = 1;
+	if (bytes >= 2 && lpByte[0] == 0xFF && lpByte[1] == 0xFE)
+	{
+		m_unicoding = ucr::UCS2LE;
+		m_charsize = 2;
+		m_data = 2;
+	}
+	else if (bytes >= 2 && lpByte[0] == 0xFE && lpByte[1] == 0xFF)
+	{
+		m_unicoding = ucr::UCS2BE;
+		m_charsize = 2;
+		m_data = 2;
+	}
+	else if (bytes >= 3 && lpByte[0] == 0xEF && lpByte[1] == 0xBB && lpByte[2] == 0xBF)
+	{
+		m_unicoding = ucr::UTF8;
+		m_data = 3;
+	}
+	fseek(m_fp, (long)m_data, SEEK_SET);
+	m_readbom = true;
+	return (m_data != 0);
+}
+
+BOOL UniStdioFile::ReadString(CString & line)
+{
+	ASSERT(0); // unimplemented -- currently cannot read from a UniMemFile!
+	return FALSE;
+}
+
+BOOL UniStdioFile::ReadString(CString & line, CString & eol)
+{
+	ASSERT(0); // unimplemented -- currently cannot read from a UniMemFile!
+	return FALSE;
+}
+
+/** @brief Write BOM (byte order mark) if Unicode file */
+int UniStdioFile::WriteBom()
+{
+	if (m_unicoding == ucr::UCS2LE)
+	{
+		unsigned char bom[] = "\xFF\xFE";
+		fseek(m_fp, 0, SEEK_SET);
+		fwrite(bom, 1, 2, m_fp);
+		m_data = 2;
+	}
+	else if (m_unicoding == ucr::UCS2BE)
+	{
+		unsigned char bom[] = "\xFE\xFF";
+		fseek(m_fp, 0, SEEK_SET);
+		fwrite(bom, 1, 2, m_fp);
+		m_data = 2;
+	}
+	else if (m_unicoding == ucr::UCS2BE)
+	{
+		unsigned char bom[] = "\xEF\xBB\xBF";
+		fseek(m_fp, 0, SEEK_SET);
+		fwrite(bom, 1, 2, m_fp);
+		m_data = 3;
+	}
+	else
+	{
+		m_data = 0;
+	}
+	return (int)m_data;
+}
+
+/**
+ * @brief Write one line (doing any needed conversions)
+ */
+BOOL UniStdioFile::WriteString(const CString & line)
+{
+	// shortcut the easy cases
+#ifdef _UNICODE
+	if (m_unicoding == ucr::UCS2LE)
+#else
+	if (m_unicoding == ucr::NONE && m_codepage == ucr::getDefaultCodepage())
+#endif
+	{
+		unsigned int wbytes = fwrite((LPCTSTR)line, line.GetLength(), 1, m_fp);
+		if (wbytes != line.GetLength() * sizeof(TCHAR))
+			return FALSE;
+		return TRUE;
+	}
+
+	ucr::buffer * buff = (ucr::buffer *)m_pucrbuff;
+	ucr::UNICODESET unicoding1=ucr::NONE;
+	int codepage1=0;
+	ucr::getDefaultEncoding(&unicoding1, &codepage1); // What CString & TCHARs represent
+	const unsigned char * src = (const UCHAR *)(LPCTSTR)line;
+	int srcbytes = line.GetLength() * sizeof(TCHAR);
+	bool lossy = ucr::convert(unicoding1, codepage1, src, srcbytes, (ucr::UNICODESET)m_unicoding, m_codepage, buff);
+	// TODO: What to do about lossy conversion ?
+	unsigned int wbytes = fwrite(buff->ptr, buff->used, 1, m_fp);
+	if (wbytes != buff->used)
+		return FALSE;
+	return TRUE;
+}
+
+__int64 UniStdioFile::GetPosition() const
+{
+	if (!IsOpen()) return 0;
+	return ftell(m_fp);
+}
