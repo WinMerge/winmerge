@@ -1,3 +1,8 @@
+2005-03-30 Kimmo
+ PATCH: [ 1173072 ] hungarian translation for current beta (2.3.2.0)
+  Submitted by Márton Balázs
+  Src/Languages: Hungarian/MergeHungarian.rc
+
 2005-03-29 Kimmo
  PATCH: [ 1171805 ] Update italian translation
   Submitted by Andrea Decorte

@@ -82,8 +82,8 @@ BEGIN
         MENUITEM "Átmásol &Jobbra",              ID_L2R
         MENUITEM "Átmásol &Balra",               ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
-        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
+        MENUITEM "A sorban eltérõ szó &kiemelése",   ID_SHOWLINEWORDDIFF
+        MENUITEM "A sorban eltérõ karakter k&iemelése",   ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Visszavonás",                       ID_EDIT_UNDO
         MENUITEM "Még&is",                       ID_EDIT_REDO
@@ -102,7 +102,7 @@ BEGIN
     BEGIN
         MENUITEM "&Új\tCtrl+N",                ID_FILE_NEW
         MENUITEM "M&egnyitás...\tCtrl+O",            ID_FILE_OPEN
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Projekt megnyitása...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Mentés\tCtrl+S",               ID_FILE_SAVE
         POPUP "&Bal oldal mentése"
@@ -119,7 +119,7 @@ BEGIN
         MENUITEM "Bal oldal csak &olvasható",             ID_FILE_LEFT_READONLY
         MENUITEM "Jobb oldal csak o&lvasható",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "&Formázás"
+        POPUP "&Formátum"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
@@ -141,8 +141,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "M&indent kijelöl\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
+        MENUITEM "A sorban eltérõ szó &kiemelése\tF4", ID_SHOWLINEWORDDIFF
+        MENUITEM "A sorban eltérõ karakter k&iemelése\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "Keresé&s...\tCtrl+F",            ID_EDIT_FIND
         MENUITEM "&Csere...\tCtrl+H",         ID_EDIT_REPLACE
@@ -152,9 +152,9 @@ BEGIN
             MENUITEM "< Üres >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
-        POPUP "Advanced"
+        POPUP "Haladó"
         BEGIN
-            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
+            MENUITEM "&Másolás sorszámokkal együtt\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
         MENUITEM "&Ugrás...\tCtrl+G",           ID_EDIT_WMGOTO
@@ -176,7 +176,7 @@ BEGIN
         MENUITEM "Alapértelmezett betûtípus használata",           ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "&Szóközök mutatása",            ID_VIEW_WHITESPACE
-        MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
+        MENUITEM "Sorok &eltérésének mutatása",      ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
         MENUITEM "&Eszköztár",                    ID_VIEW_TOOLBAR
         MENUITEM "&Álapotsor",                 ID_VIEW_STATUS_BAR
@@ -271,7 +271,7 @@ BEGIN
             MENUITEM "&Jobb oldal",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Mindkettõ",                       ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "&Fájlok rejtése",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Bal oldal megnyitása"
         BEGIN
@@ -402,7 +402,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
-    DEFPUSHBUTTON   "Rendben",IDOK,184,7,32,14,WS_GROUP
+    DEFPUSHBUTTON   "Vissza",IDOK,184,7,32,14,WS_GROUP
     LTEXT           "Verziószám: 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
     LTEXT           "Minden jog fenntartva.",IDC_STATIC,7,60,170,8
@@ -434,7 +434,7 @@ BEGIN
     COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Kiválasztás...",IDC_SELECT_FILTER,242,54,50,12
-    RTEXT           "&Kicsomagoló:",IDC_STATIC,13,72,40,8
+    RTEXT           "&Csomagoló:",IDC_STATIC,13,72,40,8
     EDITTEXT        IDC_UNPACKER_EDIT,56,70,181,12,ES_AUTOHSCROLL |
                     ES_READONLY
     PUSHBUTTON      "&Kiválasztás...",IDC_SELECT_UNPACKER,242,70,50,12
@@ -445,7 +445,7 @@ BEGIN
     PUSHBUTTON      "Mégsem",IDCANCEL,306,28,50,14
     GROUPBOX        "Összehasonlítandó fájlok vagy könyvtárak",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
-    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
+    PUSHBUTTON      "Projekt mentése",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -470,7 +470,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
     CONTROL         "Alkalmazás minden elemen",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
-    DEFPUSHBUTTON   "Ellenõriz",IDOK,91,145,50,14
+    DEFPUSHBUTTON   "Ellenõrzés",IDOK,91,145,50,14
     PUSHBUTTON      "Mentés másként...",IDC_SAVE_AS,145,145,50,14
     PUSHBUTTON      "Mégsem",IDCANCEL,200,145,50,14
 END
@@ -533,7 +533,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Keresés"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "&Keresendõ szöveg:",IDC_STATIC,7,9,50,8
+    LTEXT           "&Szöveg:",IDC_STATIC,7,9,50,8
     COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Csak &teljes szavak mutatása",IDC_EDIT_WHOLE_WORD,"Button",
@@ -547,7 +547,7 @@ BEGIN
                     WS_GROUP,154,34,57,10
     CONTROL         "&Le",IDC_EDIT_DIRECTION_DOWN,"Button",
                     BS_AUTORADIOBUTTON,154,44,57,10
-    DEFPUSHBUTTON   "Következõ kere&sése",IDOK,226,7,50,14,WS_GROUP
+    DEFPUSHBUTTON   "Kere&sés",IDOK,226,7,50,14,WS_GROUP
     PUSHBUTTON      "Mégsem",IDCANCEL,226,24,50,14
 END
 
@@ -557,7 +557,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Csere"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "&Keresendõ szöveg:",IDC_STATIC,7,9,65,8
+    LTEXT           "&Szöveg:",IDC_STATIC,7,9,65,8
     COMBOBOX        IDC_EDIT_FINDTEXT,75,7,165,66,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Cs&ere erre:",IDC_STATIC,7,24,65,8
@@ -576,9 +576,9 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
     CONTROL         "Teljes &fájl",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
                     BS_AUTORADIOBUTTON,154,61,80,10
-    DEFPUSHBUTTON   "&Következõ kere&sése",IDC_EDIT_SKIP,247,7,50,14,WS_GROUP
+    DEFPUSHBUTTON   "&Kere&sés",IDC_EDIT_SKIP,247,7,50,14,WS_GROUP
     PUSHBUTTON      "&Csere",IDC_EDIT_REPLACE,247,24,50,14
-    PUSHBUTTON      "Az &összes cseréje",IDC_EDIT_REPLACE_ALL,247,41,50,14
+    PUSHBUTTON      "&Mindet",IDC_EDIT_REPLACE_ALL,247,41,50,14
     PUSHBUTTON      "Mégsem",IDCANCEL,247,58,50,14
 END
 
@@ -668,14 +668,14 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Word Difference:",IDC_STATIC,7,129,90,8
+    RTEXT           "Szó eltérés:",IDC_STATIC,7,129,90,8
     CONTROL         "Dif",IDC_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_WORDDIFFERENCE_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Word Diff:",IDC_STATIC,7,149,90,8
+    RTEXT           "Kijelölt szó eltérés:",IDC_STATIC,7,149,90,8
     CONTROL         "Dif",IDC_SEL_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,149,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -966,7 +966,7 @@ BEGIN
     CONTROL         "Lista1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,188,114,50,14
+    PUSHBUTTON      "Új...",IDC_FILTERFILE_NEWBTN,188,114,50,14
     PUSHBUTTON      "Szerkesztés......",IDC_FILTERFILE_EDITBTN,244,114,50,14
     PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
 END
@@ -1242,7 +1242,7 @@ BEGIN
     ID_FILE_PRINT_SETUP     "A nyomtató és a nyomtatási opciók megváltoztatása\nNyomtatóbeállítás"
     ID_FILE_PRINT           "Az aktív dokumentum nyomtatása\nNyomtatás"
     ID_FILE_PRINT_PREVIEW   "Az oldalak megjelenítése\nNyomtatási elõnézet"
-    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+    ID_FILE_OPENPROJECT     "Projekt fájl megnyitása\nProjekt fájl (Ctrl+J)"
 END
 
 STRINGTABLE
@@ -1349,7 +1349,7 @@ END
 STRINGTABLE
 BEGIN
     IDC_COMPARISON_STOP     "Leállítás"
-    IDC_COMPARISON_CLOSE    "Nyomj meg egy billentyût"
+    IDC_COMPARISON_CLOSE    "Nyomj egy billentyût"
 END
 
 // EDITOR : FILENAME BAR
@@ -1434,15 +1434,15 @@ BEGIN
     IDS_OPEN_TITLE          "Megnyitás"
     IDS_PROGRAMFILES        "Programok|*.exe;*.bat;*.cmd|Minden fájl (*.*)|*.*||"
     IDS_ALLFILES            "Minden fájl (*.*)|*.*||"
-    IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+    IDS_PROJECTFILES        "WinMerge Projekt Fájlok (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
 END
 
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
-    IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    IDS_COMPMETHOD_FULL_CONTENTS "Teljes tartalmak"
+    IDS_COMPMETHOD_QUICK_CONTENTS "Átfutott tartalmak"
     IDS_COMPMETHOD_MODDATE  "Módosítási dátum"
 END
 
@@ -1453,9 +1453,9 @@ BEGIN
     IDS_FILTERFILE_PATHTITLE "Hely"
     IDS_FILTER_TITLE        "Szûrõk"
     IDS_FILTER_PREFIX       "[F] "
-    IDS_FILTERFILE_DESCTITLE "Description"
-    IDS_FILEFILTER_SAVENEW  "Select filename for new filter"
-    IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
+    IDS_FILTERFILE_DESCTITLE "Leírás"
+    IDS_FILEFILTER_SAVENEW  "Válassz fájlnevet az új szûrõhöz"
+    IDS_FILEFILTER_FILEMASK "Fájl szûrõk (*.flt)|*.flt|Minden fájl (*.*)|*.*||"
 END
 
 // VERSION CONTROL OPTIONS
@@ -1494,7 +1494,7 @@ BEGIN
     IDS_LINE_STATUS_INFO_EOL "Sor: %s  Oszlop: %d/%d  Kar: %d/%d  Újsor: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Sor: %s"
     IDS_LINE_STATUS_INFO    "Sor: %s  Oszlop: %d/%d  Kar: %d/%d"
-    IDS_MERGEMODE_MERGING   "Merge"
+    IDS_MERGEMODE_MERGING   "Olvasztás"
     IDS_DIFF_NUMBER_STATUS_FMT "Ennyi különség: %1 ennyibõl: %2"
     IDS_NO_DIFF_SEL_FMT     "%1 különbséget találtam"
     IDS_1_DIFF_FOUND        "1 különbséget találtam"
@@ -1560,8 +1560,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_VCS_NONE            "None"
-    IDS_VCS_VSS4            "Visual SourceSafe (less than 5.0)"
-    IDS_VCS_VSS5            "Visual SourceSafe (5.0 and above)"
+    IDS_VCS_VSS4            "Visual SourceSafe (régebbi mint 5.0)"
+    IDS_VCS_VSS5            "Visual SourceSafe (5.0 vagy újabb)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
 END
 
@@ -1575,7 +1575,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "Kijelölt bal oldali elem törlése"
     ID_DIR_DEL_RIGHT        "Kijelölt jobb oldali elem törlése"
     ID_DIR_DEL_BOTH         "Kijelölt elem(ek) törlése mindkét oldalon"
-    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
+    ID_DIR_HIDE_FILENAMES   "Kijelölt elem(ek) rejtése (gyors szûrés)"
     IDS_COPY_TO_LEFT        "Jobbról balra (%1)"
     IDS_COPY_TO_RIGHT       "Balról jobbra (%1)"
     IDS_COPY_TO_LEFT2       "Jobbról balra (%1 of %2)"
@@ -1693,7 +1693,7 @@ BEGIN
     IDS_BIN_FILES_DIFF      "A bináris fájlok különbözõek"
     IDS_FILES_ARE_DIFFERENT "A fájlok különbözõek"
     IDS_LEFTONLY            "Csak bal oldal"
-    IDS_RIGHTONLY           "Csak jobb olda"
+    IDS_RIGHTONLY           "Csak jobb oldal"
     IDS_DIFFERENT           "Különbözõ"
 END
 
@@ -1746,12 +1746,12 @@ BEGIN
     IDS_FILEBINARY          "Bináris fájlok nem hasonlíthatóak össze vizuálisan."
     IDS_TEMP_FILEERROR      "Nem lehetett létrehozni az ideiglenes fájlokat. Ellenõrizd az ideiglenes könyvtár beállításait."
     IDS_FILEISDIR           "Könyvtárak nem hasonlíthatóak össze vizuálisan."
-    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
-                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
-                            Note: If you always want to treat all carriage return types \
-                            as equivalent, set the option 'Ignore carriage return \
-                            differences..' in the Compare tab of the options dialog\
-                            (available under Edit/Options)."
+    IDS_SUGGEST_IGNOREEOL   "Ezek a fájlok eltérõ sorvége-karaktereket tartalmaznak.\n\n\
+                            Szeretnél minden sorvége karaktert egyezõként vizsgálni ebben az esetben?\n\n\
+                            Megjegyzés: Amennyiben minden esetben ezt az opciót szeretnéd használni, \
+                            kapcsold be a 'Sortörési eltérések kihagyása' \
+                            opciót az Összehasonlítás menüpontban \
+                            (a Szerkesztés/Opciók menüpont alatt találod meg)."
     IDS_SUGGEST_PRESERVEEOL "Az újsor-karakterek különbözõ formátumúak (DOS/UNIX/MAC) ebben a fájlban: '%1'.\n A jelenlegi beállításokkal a leginkább jellemzõ lesz az alapértelmezett.\n Szeretnéd, ha mégis figyelembe venné az eltérõ újsor-karaktereket?"
     IDS_PREDIFFER_ERROR      "Hiba történt ennek a fájlnak az elõvizsgálata közben: '%1' ebben a bõvítményben: '%2'. Az elõvizsgálat ezután nem fog mûködni."
     IDS_SUGGEST_IGNORECODEPAGE "A bal (cp%d) és jobb (cp%d) oldali fájlok nem ugyanazt a kódolást használják. \nA különbözõ kódlapokkal történõ kijelzés könnyebben áttekinthetõ de az olvasztás/törlés kockázatos lehet.\nSzeretnéd mindkét fájlt az alapértelmezett kódlappal megjeleníteni (javasolt)?"
@@ -2120,12 +2120,12 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
-    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
+    ID_SHOWLINEWORDDIFF     "Az aktuális sorban eltérõ szó kiemelése\nSorban eltérõ szó kiemelése (F4)"
+    ID_SHOWLINECHARDIFF     "Az aktuális sorban eltérõ karakter k&iemelése\nSorban eltérõ karakter kiemelése (Shift+F4)"
     ID_EDIT_WMGOTO          "Ugrás sorra vagy eltérésre\nUgrás (Ctrl+G)"
     ID_OPTIONS              "A program beállítása\nBeállítások"
     ID_REFRESH              "Kijezõ frissítése\nFrissítés (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "A kijelölt sorok vágólapra másolása a sorok elejéhez a sorszámokat hozzáfûzve"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2142,14 +2142,14 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
-    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
+    ID_VIEW_SELECTFONT      "Válaszd ki a kívánt betûtípust\nNézet betûtípusának választása"
+    ID_VIEW_USEDEFAULTFONT  "Visszatérés az eredeti rendszer-betûtípushoz megjelenítéshez\nAlapért. betûtípus"
     ID_VIEW_WHITESPACE      "Szóköz karakterek mutatása"
     ID_VIEW_DETAIL_BAR      "Eltérés panel mutatása/rejtése"
     ID_VIEW_LOCATION_BAR    "A Pozíció panel vizuális képet ad az összehasonlított fájlokról"
     ID_VIEW_DIR_STATEPANE   "Könyvtár összehasonlítási állapot panel mutatása"
     ID_VIEW_LANGUAGE        "Add meg a használni kívánt nyelvet\nNyelv"
-    ID_VIEW_LINEDIFFS       "Shows differences inside lines with different color\nShow Line Diff"
+    ID_VIEW_LINEDIFFS       "A sorok közötti különbségek kijelzés más-más színnel\nSorok eltérésének mutatása"
 END
 
 // MERGE MENU
