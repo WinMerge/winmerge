@@ -1,3 +1,7 @@
+2003-07-26 Kimmo
+ BUG: [ 778166 ] Shell integration missing quotes (2.1)
+  ShellExtension: WinMergeShell.cpp
+
 2003-07-25 Laoran
  [ 776114 ] french keyboard shortcut
   Languages: french.rc

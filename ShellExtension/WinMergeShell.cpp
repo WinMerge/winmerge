@@ -178,8 +178,8 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 		return S_FALSE;
 
 	// Format command line, use recursive '/r' switch always
-	CString strCommandLine = strWinMergePath + " /r " +
-			m_strPaths[0] + " " + m_strPaths[1];
+	CString strCommandLine = strWinMergePath + " /r \"" +
+		m_strPaths[0] + "\" \"" + m_strPaths[1] + "\"";
 	
 	STARTUPINFO stInfo = { sizeof(stInfo) };
 	PROCESS_INFORMATION processInfo;
