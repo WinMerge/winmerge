@@ -37,7 +37,7 @@ Line2=SelectDirLabel3
 Line3=SelectDirBrowseLabel
 Line4=SelectStartMenuFolderBrowseLabel
 
-[Brazillian/Portuguese]
+[Brazilian/Portuguese]
 File=Brazilian_Portuguese.isl
 LinesToTranslate=4
 Line1=SelectStartMenuFolderLabel3

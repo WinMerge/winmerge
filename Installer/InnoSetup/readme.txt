@@ -1,3 +1,7 @@
+2004-08-19 Kimmo
+ BUG: [ 938161 ] typo in Localization Instructions
+  Innosetup/Languages: Localization Instructions.txt
+
 2004-07-23 Perry
  PATCH: [ 988503 ] Inno Setup Localization: Catalan
   InnoSetup\Languages: Catalan.isl
