@@ -133,8 +133,8 @@ int FileIsBinary(int fd)
     {
 		for (register int i=0; i < cnt; i++)
 		{
-			if (buf[i] == 0
-				|| (!isprint(buf[i]) && !isspace(buf[i])))
+			if (buf[i] == 0)
+//				|| (!isprint(buf[i]) && !isspace(buf[i])))
 			{
 			bResult=1;
 			break;
@@ -151,8 +151,8 @@ int FileIsBinary(int fd)
 		{
 			for (register int i=0; i < cnt; i++)
 			{
-				if (buf[i] == 0
-					|| (!isprint(buf[i]) && !isspace(buf[i])))
+				if (buf[i] == 0)
+//					|| (!isprint(buf[i]) && !isspace(buf[i])))
 				{
 					bResult=1;
 					break;
