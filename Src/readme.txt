@@ -1,3 +1,8 @@
+2005-04-03 Kimmo
+ PATCH: [ 1175319 ] Dutch translation update
+  Submitted by Michel Coene
+  Src/Languages/Dutch: MergeDutch.rc
+
 2005-04-02 Kimmo
  PATCH: [ 1175065 ] Use view lines when scrolling from location pane
   Src: LocationView.cpp LocationView.h MergeEditView.cpp

@@ -256,15 +256,15 @@ BEGIN
     BEGIN
         POPUP "&Copy"
         BEGIN
-            MENUITEM "&Left to Right",              ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "&Links naar Right",              ID_DIR_COPY_LEFT_TO_RIGHT
             MENUITEM "L&eft to...",                 ID_DIR_COPY_LEFT_TO_BROWSE
-            MENUITEM "&Right to Left",              ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Rechts naar Left",              ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "R&ight to...",                ID_DIR_COPY_RIGHT_TO_BROWSE
         END
         POPUP "&Move"
         BEGIN
-            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
-            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+            MENUITEM "&Links naar...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "&Rechts naar...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
         POPUP "&Delete"
         BEGIN
@@ -412,7 +412,7 @@ BEGIN
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
     LTEXT           "Contributors are listed in",IDC_STATIC,7,81,208,8
     LTEXT           "Contributors.txt",IDC_STATIC,7,91,153,8
-    PUSHBUTTON      "Show...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
+    PUSHBUTTON      "Toon...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
 END
 
 IDD_OPEN DIALOGEX 0, 0, 364, 126
@@ -1349,7 +1349,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
+    ID_FILE_NEW             "Maak leeg document\nNieuw Document (Ctrl+N)"
     ID_FILE_OPEN            "Open een bestaand document.\nOpenen"
     ID_FILE_CLOSE           "Sluit het actieve document.\nSluiten"
     ID_FILE_SAVE            "Actieve document opslaan.\nOpslaan"
@@ -1458,47 +1458,47 @@ END
 // OPTIONS NAME TO PRESERVE/UNIFY EOL
 STRINGTABLE
 BEGIN
-    IDC_MIXED_EOL           "Preserve original EOL chars"
+    IDC_MIXED_EOL           "Bewaar originele EOL karakters"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
 STRINGTABLE
 BEGIN
     IDC_COMPARISON_STOP     "Stop"
-    IDC_COMPARISON_CLOSE    "Press any key"
+    IDC_COMPARISON_CLOSE    "Duw op een toets"
 END
 
 // EDITOR : FILENAME BAR
 STRINGTABLE
 BEGIN
-    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
-    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+    IDC_STATIC_TITLE_LEFT   "Rechtsklikken op het pad om te kopieren"
+    IDC_STATIC_TITLE_RIGHT  "Rechtsklikken op het pad om te kopieren"
 END
 
 // IDS_MESSAGEBOX_OK SYNCHRO
 STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
-    IDS_MESSAGEBOX_CANCEL   "&Cancel"
-    IDS_MESSAGEBOX_ABORT    "&Abort"
-    IDS_MESSAGEBOX_RETRY    "&Retry"
-    IDS_MESSAGEBOX_IGNORE   "&Ignore"
-    IDS_MESSAGEBOX_IGNOREALL "Ignore &all"
-    IDS_MESSAGEBOX_YES      "&Yes"
+    IDS_MESSAGEBOX_CANCEL   "&Annuleren"
+    IDS_MESSAGEBOX_ABORT    "Af&breken"
+    IDS_MESSAGEBOX_RETRY    "&Herproberen"
+    IDS_MESSAGEBOX_IGNORE   "&Ignoreren"
+    IDS_MESSAGEBOX_IGNOREALL "&Alles ignoreren"
+    IDS_MESSAGEBOX_YES      "&Ja"
 END
 
 // "DO NOT SHOW AGAIN" MESSAGEBOXES (2)
 STRINGTABLE
 BEGIN
-    IDS_MESSAGEBOX_YES_TO_ALL "Yes to &all"
-    IDS_MESSAGEBOX_NO       "&No"
-    IDS_MESSAGEBOX_NO_TO_ALL "No to a&ll"
-    IDS_MESSAGEBOX_CONTINUE "&Continue"
-    IDS_MESSAGEBOX_SKIP     "&Skip"
-    IDS_MESSAGEBOX_SKIPALL  "Skip &all"
+    IDS_MESSAGEBOX_YES_TO_ALL "Ja aan &alles"
+    IDS_MESSAGEBOX_NO       "&Nee"
+    IDS_MESSAGEBOX_NO_TO_ALL "Nee aan a&lles"
+    IDS_MESSAGEBOX_CONTINUE "&Doorgaan"
+    IDS_MESSAGEBOX_SKIP     "&Overslaan"
+    IDS_MESSAGEBOX_SKIPALL  "&Alles overslaan"
     IDS_MESSAGEBOX_HELP     "&Help"
-    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
-    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Dit bericht &nooit meer tonen."
+    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Deze vraag nooit meer &stellen."
 END
 
 // Options-dialog page captions
@@ -1539,8 +1539,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_OPTIONS_TITLE       "Eigenschappen (%1)"
-    IDS_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
-    IDS_DIFF_OPEN_NO_SET_PROPS "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
+    IDS_MESSAGE_BOX_ARE_RESET "Alle berichten worden nu opnieuw getoond."
+    IDS_DIFF_OPEN_NO_SET_PROPS "Eigenschappen van de huidige sessie werden aangepast.  Sommige veranderingen worden pas zichtbaar na herstarten."
     IDS_FONT_CHANGE         "De geselecteerde wijziging van font wordt niet verwerkt in de openstaande vensters."
 END
 
@@ -1548,7 +1548,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_OPEN_TITLE          "Open"
-    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+    IDS_PROGRAMFILES        "Programmas|*.exe;*.bat;*.cmd|Alle bestanden (*.*)|*.*||"
     IDS_ALLFILES            "Alle bestanden (*.*)|*.*||"
     IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
@@ -1559,14 +1559,14 @@ STRINGTABLE
 BEGIN
     IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
     IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
-    IDS_COMPMETHOD_MODDATE  "Modified date"
+    IDS_COMPMETHOD_MODDATE  "Laatst veranderd datum"
 END
 
 // FILTER OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_FILTERFILE_NAMETITLE "Name"
-    IDS_FILTERFILE_PATHTITLE "Location"
+    IDS_FILTERFILE_NAMETITLE "Naam"
+    IDS_FILTERFILE_PATHTITLE "Plaats"
     IDS_FILTER_TITLE        "Filters"
     IDS_FILTER_PREFIX       "[F] "
     IDS_FILTERFILE_DESCTITLE "Description"
@@ -1577,8 +1577,8 @@ END
 // VERSION CONTROL OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_CC_CMD              "&Path to cleartool.exe :"
-    IDS_VSS_CMD             "&Path to SS.EXE :"
+    IDS_CC_CMD              "&Pad naar cleartool.exe :"
+    IDS_VSS_CMD             "&Pad naar SS.EXE :"
 END
 
 // WINDOWS TITLES
@@ -1586,22 +1586,22 @@ STRINGTABLE
 BEGIN
     IDS_DIRECTORY_WINDOW_TITLE "Resultaten vergelijking mappen"
     IDS_FILE_COMPARISON_TITLE "Restultaten bestandsvergelijking"
-    IDS_EMPTY_LEFT_FILE     "Untitled left"
-    IDS_EMPTY_RIGHT_FILE    "Untitled right"
+    IDS_EMPTY_LEFT_FILE     "Ongenoemd links"
+    IDS_EMPTY_RIGHT_FILE    "Ongenoemd rechts"
 END
 
 // STATUS BAR : CURRENT OPERATION STATUS
 STRINGTABLE
 BEGIN
-    IDS_STATUS_RESCANNING   "Scanning files..."
-    IDS_STATUS_OPENING_SELECTION "Opening selection"
-    IDS_STATUS_COPYL2R      "Copying Left to Right"
-    IDS_STATUS_COPYR2L      "Copying Right to Left"
-    IDS_STATUS_COPYALL2L    "Copying All to Left"
-    IDS_STATUS_COPYALL2R    "Copying All to Right"
-    IDS_STATUS_COPYFILES    "Copying files..."
-    IDS_STATUS_DELETEFILES  "Deleting files..."
-    IDS_STATUS_MOVEFILES    "Moving files..."
+    IDS_STATUS_RESCANNING   "Scan bestanden..."
+    IDS_STATUS_OPENING_SELECTION "Open selectie"
+    IDS_STATUS_COPYL2R      "Kopieer van links naar rechts"
+    IDS_STATUS_COPYR2L      "Kopieer van rechts naar links"
+    IDS_STATUS_COPYALL2L    "Kopieer alles naar links"
+    IDS_STATUS_COPYALL2R    "Kopieer alles naar rechts"
+    IDS_STATUS_COPYFILES    "Ik kopieer nu de bestanden..."
+    IDS_STATUS_DELETEFILES  "Ik wis nu de bestanden.."
+    IDS_STATUS_MOVEFILES    "Ik verplaats nu de bestanden..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1611,34 +1611,34 @@ BEGIN
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
     IDS_MERGEMODE_MERGING   "Merge"
-    IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
-    IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
-    IDS_1_DIFF_FOUND        "1 Difference Found"
+    IDS_DIFF_NUMBER_STATUS_FMT "Verschil %1 van %2"
+    IDS_NO_DIFF_SEL_FMT     "%1 Verschillen gevonden"
+    IDS_1_DIFF_FOUND        "1 Verschil gevonden"
     IDS_STATUSBAR_READONLY  "RO"
 END
 
 // OPEN DIALOG
 STRINGTABLE
 BEGIN
-    IDS_ERROR_INCOMPARABLE  "Select two existing directories or files to compare"
-    IDS_DIRSEL_TAG          "Directory Selection"
-    IDS_OPEN_FILESDIRS      "Select two directories or two files to compare."
-    IDS_OPEN_LEFTINVALID    "Left path is invalid!"
-    IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
-    IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
+    IDS_ERROR_INCOMPARABLE  "Kies 2 bestaande folders of bestanden om te vergelijken"
+    IDS_DIRSEL_TAG          "Folder keuze"
+    IDS_OPEN_FILESDIRS      "Kies 2 folders of bestanden om te vergelijken"
+    IDS_OPEN_LEFTINVALID    "Linker pad is ongeldig!"
+    IDS_OPEN_RIGHTINVALID   "Rechter pad is ongeldig!"
+    IDS_OPEN_BOTHINVALID    "Beide paden zijn ongeldig!"
     IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
-    IDS_OPEN_MISMATCH       "Cannot compare file and directory!"
+    IDS_OPEN_MISMATCH       "Kan niet een bestand met een folder vergelijken."
 END
 
 // LOADING FILE
 STRINGTABLE
 BEGIN
-    IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
+    IDS_ERROR_FILE_NOT_FOUND "Bestand onvindbaar: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
-    IDS_BINFILES_IDENTICAL   "%1\n%2\n\nare identical binary files."
-    IDS_BINFILES_DIFFERENT   "%1\n%2\n\nare different binary files."
-    IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
-    IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
+    IDS_BINFILES_IDENTICAL  "%1\n%2\n\nzijn identieke binaire bestanden."
+    IDS_BINFILES_DIFFERENT  "%1\n%2\n\nzijn verschillende binaire bestanden."
+    IDS_OTHER_IS_BINARY     "%1\n\nis een binair bestand. Ik kan geen binair bestand met een tekst vergelijken."
+    IDS_ERROR_FILEOPEN      "Kan dit bestand niet openen:\n%1\n\n%2"
 END
 
 // SAVING FILE
@@ -1646,9 +1646,9 @@ STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Opslaan als"
     IDS_SAVE_FMT            "Wijzigingen opslaan in %1?"
-    IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-    IDS_ERROR_FILE_WRITEABLE "Error checking destination writeability"
-    IDS_ERROR_BACKUP        "Error backing up file"
+    IDS_SAVEREADONLY_FMT    "%1 is alleen-lezen. Wilt u een alleen-lezen bestand overschrijven? (Nee om op te slaan onder een andere naam.)"
+    IDS_ERROR_FILE_WRITEABLE "Fout tijdens verificatie schrijfrechten"
+    IDS_ERROR_BACKUP        "Fout tijdens aanmaken veiligheidskopie."
     IDS_BACKUP_FAILED_PROMPT "Kan geen veiligheidskopie maken van originele bestand. \nToch doorgaan?"
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
@@ -1656,8 +1656,8 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
     IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nIf you want to refresh files close current file compare and load files again."
-    IDS_SAVE_LEFT_AS        "Save Left File As"
-    IDS_SAVE_RIGHT_AS       "Save Right File As"
+    IDS_SAVE_LEFT_AS        "Bewaar linker bestand als"
+    IDS_SAVE_RIGHT_AS       "Bewaar rechter bestand als"
 END
 
 // VSS
@@ -1685,37 +1685,38 @@ END
 STRINGTABLE
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT "Kopieer geselecteerde bestand naar aangegeven map"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected file to custom directory"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Kopieer linker bestand naar een andere map"
     ID_DIR_COPY_RIGHT_TO_LEFT "Kopieer geselecteerde bestand naar aangegeven map"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected file to custom directory"
-    ID_DIR_DEL_LEFT         "Delete selected item on left"
-    ID_DIR_DEL_RIGHT        "Delete selected item on right"
-    ID_DIR_DEL_BOTH         "Delete selected item(s) on both sides"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Kopieer rechter bestand naar een andere map"
+    ID_DIR_DEL_LEFT         "Wis geselecteerd item links"
+    ID_DIR_DEL_RIGHT        "Wis geselecteerd item rechts"
+    ID_DIR_DEL_BOTH         "Wis geselecteerd item aan beide kanten"
     ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
-    IDS_COPY_TO_LEFT        "Right to Left (%1)"
-    IDS_COPY_TO_RIGHT       "Left to Right (%1)"
-    IDS_COPY_TO_LEFT2       "Right to Left (%1 of %2)"
-    IDS_COPY_TO_RIGHT2      "Left to Right (%1 of %2)"
-    IDS_COPY_LEFT_TO        "Left to... (%1)"
-    IDS_COPY_RIGHT_TO       "Right to... (%1)"
-    IDS_COPY_LEFT_TO2       "Left to... (%1 of %2)"
-    IDS_COPY_RIGHT_TO2      "Right to... (%1 of %2)"
+    IDS_COPY_TO_LEFT        "Rechts naar Left (%1)"
+    IDS_COPY_TO_RIGHT       "Links naar Right (%1)"
+    IDS_COPY_TO_LEFT2       "Rechts naar Left (%1 of %2)"
+    IDS_COPY_TO_RIGHT2      "Links naar Right (%1 of %2)"
+    IDS_COPY_LEFT_TO        "Links naar... (%1)"
+    IDS_COPY_RIGHT_TO       "Rechts naar... (%1)"
+    IDS_COPY_LEFT_TO2       "Links naar... (%1 of %2)"
+    IDS_COPY_RIGHT_TO2      "Rechts naar... (%1 of %2)"
+
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
 STRINGTABLE
 BEGIN
     IDS_DEL_LEFT_FMT        "Left (%1)"
-    IDS_DEL_RIGHT_FMT       "Right (%1)"
+    IDS_DEL_RIGHT_FMT       "Rechts (%1)"
     IDS_DEL_BOTH_FMT        "Both (%1)"
     IDS_DEL_LEFT_FMT2       "Left (%1 of %2)"
-    IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
+    IDS_DEL_RIGHT_FMT2      "Rechts (%1 of %2)"
     IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
     IDS_SELECT_DESTFOLDER   "Select destination folder"
-    IDS_MOVE_LEFT_TO        "Left to... (%1)"
-    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
-    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
-    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
+    IDS_MOVE_LEFT_TO        "Links naar... (%1)"
+    IDS_MOVE_RIGHT_TO       "Rechts naar... (%1)"
+    IDS_MOVE_LEFT_TO2       "Links naar... (%1 of %2)"
+    IDS_MOVE_RIGHT_TO2      "Rechts naar... (%1 of %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1801,16 +1802,16 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "Kan bestanden niet vergelijken"
-    IDS_FILE_SKIPPED        "File skipped"
-    IDS_DIR_SKIPPED         "Directory skipped"
+    IDS_FILE_SKIPPED        "Bestand overgeslaan"
+    IDS_DIR_SKIPPED         "Map overgeslaan"
     IDS_ONLY_IN_FMT         "Alleen in %1"
-    IDS_BIN_FILES_SAME      "Binary files are identical"
+    IDS_BIN_FILES_SAME      "Binaire bestanden zijn identiek"
     IDS_IDENTICAL           "Identiek"
-    IDS_BIN_FILES_DIFF      "Niet tekst bestanden zijn niet gelijk"
-    IDS_FILES_ARE_DIFFERENT "Bestanden zijn niet gelijk"
-    IDS_LEFTONLY            "Left Only"
-    IDS_RIGHTONLY           "Right Only"
-    IDS_DIFFERENT           "Different"
+    IDS_BIN_FILES_DIFF      "Binaire bestanden verschillen"
+    IDS_FILES_ARE_DIFFERENT "Bestanden verschillen"
+    IDS_LEFTONLY            "Alleen rechts"
+    IDS_RIGHTONLY           "Alleen links"
+    IDS_DIFFERENT           "Verschillend"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
@@ -1824,7 +1825,7 @@ END
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_FILENAME    "Filename or directory name."
+    IDS_COLDESC_FILENAME    "Naam van bestand of map."
     IDS_COLDESC_DIR         "Subdirectory name when subdirectories are included."
     IDS_COLDESC_RESULT      "Comparison result, long form."
     IDS_COLDESC_LTIMEM      "Left side modification date."
@@ -1855,13 +1856,13 @@ END
 // FILE COMPARISON RESULT : MESSAGES
 STRINGTABLE
 BEGIN
-    IDS_FILE_TO_ITSELF      "The same file is opened in both panels."
+    IDS_FILE_TO_ITSELF      "Beide panelen verwijzen naar hetzelfde bestand"
     IDS_FILESSAME           "De geselecteerde bestanden zijn identiek"
     IDS_FILEUNIQUE          "Het geselecteerde bestand bestaat slechts in een map en kon daarom niet vergeleken woren"
     IDS_FILEERROR           "Fout opgetreden tijdens het vergelijken van de bestanden"
-    IDS_FILEBINARY          "Binaire bestanden kunnen niet zichtbaar vergeleken worden."
-    IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
-    IDS_FILEISDIR           "Directory files cannot be visually compared."
+    IDS_FILEBINARY          "Binaire bestanden kunnen niet visueel vergeleken worden."
+    IDS_TEMP_FILEERROR      "Kon geen tijdelijk bestand aanmaken. Kontrolleer uw TEMP instellingen."
+    IDS_FILEISDIR           "Mappen kunnen niet visueel vergeleken worden."
     IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
                             Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
                             Note: If you always want to treat all carriage return types \
@@ -1876,22 +1877,22 @@ END
 // EDITOR : SHOW LINE DIFF
 STRINGTABLE
 BEGIN
-    IDS_LINEDIFF_NODIFF     "No difference"
-    IDS_LINEDIFF_NODIFF_CAPTION "Line difference"
+    IDS_LINEDIFF_NODIFF     "Geen verschil"
+    IDS_LINEDIFF_NODIFF_CAPTION "Regel verschil"
 END
 
 // EDITOR : SEARCH/REPLACE DIALOGS
 STRINGTABLE
 BEGIN
-    IDS_NUM_REPLACED        "Replaced %1 string(s)."
-    IDS_EDIT_TEXT_NOT_FOUND "Cannot find string""%s"""
+    IDS_NUM_REPLACED        "%1 string(s) vervangen."
+    IDS_EDIT_TEXT_NOT_FOUND "Kan string niet vinden:""%s"""
 END
 
 // EDITOR : FILENAME BAR POPUP
 STRINGTABLE
 BEGIN
-    ID_EDITOR_COPY_PATH     "Copy Full Path"
-    ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_EDITOR_COPY_PATH     "Kopieer volledig pad"
+    ID_EDITOR_COPY_FILENAME "Kopieer bestandsnaam"
 END
 
 // CREATE PATCH
