@@ -1664,6 +1664,20 @@ CString CMainFrame::SetStatus(LPCTSTR status)
 void CMainFrame::OnToolsGeneratePatch()
 {
 	CPatchTool patcher;
+	CFrameWnd * pFrame = GetActiveFrame();
+
+	// Mergedoc open?
+	if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+	{
+		// Add open files to patch-list
+		MergeDocList mergedocs;
+		GetAllMergeDocs(&mergedocs);
+		while (!mergedocs.IsEmpty())
+		{
+			CMergeDoc * pMergeDoc = mergedocs.RemoveHead();
+			patcher.AddFiles(pMergeDoc->m_strLeftFile, pMergeDoc->m_strRightFile);
+		}
+	}
 	patcher.CreatePatch();
 }
 

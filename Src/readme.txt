@@ -1,3 +1,7 @@
+2003-09-19 Kimmo
+ Select compared files when opening Generate patch-dialog
+  WinMerge: MainFrm.cpp PatchDlg.cpp 
+
 2003-09-18 Kimmo
  PATCH: [ 803904 ] Create patches
   WinMerge: DiffWrapper.h DiffWrapper.cpp MainFrm.h MainFrm.cpp Merge.dsp

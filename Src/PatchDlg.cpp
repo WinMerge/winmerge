@@ -157,6 +157,28 @@ BOOL CPatchDlg::OnInitDialog()
 	m_ignoreBlanks = TRUE;
 	m_caseSensitive = TRUE;
 	m_whitespaceCompare = 0;
+	int count = m_fileList.GetCount();
+	
+	// If one file added, show filenames on dialog
+	if (count == 1)
+	{
+		PATCHFILES files = m_fileList.GetHead();
+		if (m_file1.IsEmpty())
+			m_file1 = files.lfile;
+
+		if (m_file2.IsEmpty())
+			m_file2 = files.rfile;
+	}
+	else	// Multiple files added, show number of files
+	{
+		CString msg;
+		CString num;
+		num.Format(_T("%d"), count);
+		AfxFormatString1(msg, IDS_DIFF_SELECTEDFILES, num);
+		m_file1 = msg;
+		m_file2 = msg;
+	}
+	
 	UpdateData(FALSE);
 
 	// Add patch styles to combobox
@@ -345,29 +367,7 @@ void CPatchDlg::OnSelchangeDiffStyle()
  */
 void CPatchDlg::AddItem(PATCHFILES pf)
 {
-	int count = 0;
-
 	m_fileList.AddTail(pf);
-	count = m_fileList.GetCount();
-
-	// If one file added, show filenames on dialog
-	if (count == 1)
-	{
-		if (!m_file1.IsEmpty())
-			m_file1 = pf.lfile;
-
-		if (!m_file2.IsEmpty())
-			m_file2 = pf.rfile;
-	}
-	else	// Multiple files added, show number of files
-	{
-		CString msg;
-		CString num;
-		num.Format(_T("%d"), count);
-		AfxFormatString1(msg, IDS_DIFF_SELECTEDFILES, num);
-		m_file1 = msg;
-		m_file2 = msg;
-	}
 }
 
 /** 
