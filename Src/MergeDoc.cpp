@@ -117,6 +117,8 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	m_nLeftBufferType = BUFFER_NORMAL;
 	m_nRightBufferType = BUFFER_NORMAL;
 	m_bMergingMode = mf->m_options.GetInt(OPT_MERGE_MODE);
+	m_bLeftEditAfterRescan = FALSE;
+	m_bRightEditAfterRescan = FALSE;
 
 	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetInt(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
@@ -432,6 +434,9 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		m_pRightView->ReAttachToBuffer();
 		m_pLeftDetailView->ReAttachToBuffer();
 		m_pRightDetailView->ReAttachToBuffer();
+
+		m_bLeftEditAfterRescan = FALSE;
+		m_bRightEditAfterRescan = FALSE;
 	}
 	return nResult;
 }
@@ -1924,8 +1929,12 @@ void CMergeDoc::OnFileSave()
 		// If DirDoc contains diffs
 		if (m_pDirDoc->m_pCtxt)
 		{
-			bool unified = (m_nDiffs==0); // true if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile, unified);
+			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
+				FlushAndRescan(FALSE);
+
+			BOOL bIdentical = (m_nDiffs == 0); // True if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile,
+				m_nDiffs, m_nTrivialDiffs, bIdentical);
 		}
 	}
 }
@@ -1948,11 +1957,15 @@ void CMergeDoc::OnFileSaveLeft()
 	// update status on dir view
 	if (bLModified && bLSaveSuccess)
 	{
-		// If DirDoc contains diffs
+		// If DirDoc contains compare results
 		if (m_pDirDoc->m_pCtxt)
 		{
-			bool unified = (m_nDiffs==0); // true if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile, unified);
+			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
+				FlushAndRescan(FALSE);
+
+			BOOL bIdentical = (m_nDiffs == 0); // True if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile,
+				m_nDiffs, m_nTrivialDiffs, bIdentical);
 		}
 	}
 }
@@ -1975,11 +1988,15 @@ void CMergeDoc::OnFileSaveRight()
 	// update status on dir view
 	if (bRModified && bRSaveSuccess)
 	{
-		// If DirDoc contains diffs
+		// If DirDoc contains compare results
 		if (m_pDirDoc->m_pCtxt)
 		{
-			bool unified = (m_nDiffs==0); // true if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile, unified);
+			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
+				FlushAndRescan(FALSE);
+
+			BOOL bIdentical = (m_nDiffs == 0); // True if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile,
+				m_nDiffs, m_nTrivialDiffs, bIdentical);
 		}
 	}
 }
@@ -2317,7 +2334,7 @@ BOOL CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
  * canceling is allowed for following operation, i.e. when closing
  * documents selecting cancel does not save or close documents.
  * opened from directory compare, status there is updated.
- * @sa [in] bAllowCancel If TRUE "Cancel" button is shown.
+ * @param [in] bAllowCancel If TRUE "Cancel" button is shown.
  * @return TRUE if user selected Yes/No so next operation can be
  * executed. If FALSE user choosed "Cancel".
  * @note If filename is empty, we assume scratchpads are saved,
@@ -2389,11 +2406,15 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 	if ((bLModified && bLSaveSuccess) ||
 		 (bRModified && bRSaveSuccess))
 	{
-		// If DirDoc contains diffs
+		// If directory compare has results
 		if (m_pDirDoc->m_pCtxt)
 		{
-			bool unified = (m_nDiffs==0); // true if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile, unified);
+			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
+				FlushAndRescan(FALSE);
+
+			BOOL bIdentical = (m_nDiffs == 0); // True if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile,
+				m_nDiffs, m_nTrivialDiffs, bIdentical);
 		}
 	}
 
@@ -3009,4 +3030,12 @@ void CMergeDoc::SetDetectMovedBlocks(BOOL bDetectMovedBlocks)
 	mf->m_options.SaveOption(OPT_CMP_MOVED_BLOCKS, bDetectMovedBlocks);
 	m_diffWrapper.SetDetectMovedBlocks(bDetectMovedBlocks);
 	FlushAndRescan();
+}
+
+void CMergeDoc::SetEditedAfterRescan(BOOL bLeft)
+{
+	if (bLeft)
+		m_bLeftEditAfterRescan = TRUE;
+	else
+		m_bRightEditAfterRescan = TRUE;
 }

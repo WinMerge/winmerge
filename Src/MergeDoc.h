@@ -214,6 +214,7 @@ public:
 	int RightLineInMovedBlock(int leftLine);
 	int LeftLineInMovedBlock(int rightLine);
 	void SetDiffViewMode(BOOL bEnable);
+	void SetEditedAfterRescan(BOOL bLeft);
 
 	void SetUnpacker(PackingInfo * infoUnpacker);
 	void SetPrediffer(PrediffingInfo * infoPrediffer);
@@ -291,6 +292,8 @@ protected:
 	BUFFERTYPE m_nLeftBufferType;
 	BUFFERTYPE m_nRightBufferType;
 	BOOL m_bMergingMode; /**< Merging or Edit mode */
+	BOOL m_bLeftEditAfterRescan; /**< Left doc edited after rescanning */
+	BOOL m_bRightEditAfterRescan; /**< Right doc edited after rescanning */
 
 // friend access
 	friend class RescanSuppress;

@@ -554,20 +554,24 @@ CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
 
 /**
  * @brief Update changed item's compare status
- * @param unified true if files became identical, false otherwise.
+ * @param bIdentical TRUE if files became identical, false otherwise.
  * @note Filenames must be same, otherwise function asserts.
  */
-void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unified)
+void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight,
+	UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical)
 {
 	POSITION pos = FindItemFromPaths(pathLeft, pathRight);
 	ASSERT(pos);
 	int ind = m_pDirView->GetItemIndex((DWORD)pos);
 
 	// Figure out new status code
-	UINT diffcode = (unified ? DIFFCODE::SAME : DIFFCODE::DIFF);
+	UINT diffcode = (bIdentical ? DIFFCODE::SAME : DIFFCODE::DIFF);
 
 	// Update both view and diff context memory
 	SetDiffCompare(diffcode, ind);
+
+	if (nDiffs != -1 && nTrivialDiffs != -1)
+		SetDiffCounts(nDiffs, nTrivialDiffs, ind);
 	ReloadItemStatus(ind);
 }
 
@@ -580,11 +584,7 @@ void CDirDoc::CompareReady()
 
 	// finish the cursor (the hourglass/pointer combo) we had open during display
 	delete m_statusCursor;
-	m_statusCursor = 0;
-
-	// hide the floating state bar
-	// CDirFrame *pf = m_pDirView->GetParentFrame();
-	// pf->ShowProcessingBar(FALSE);
+	m_statusCursor = NULL;
 
 	m_diffWrapper.EndDirectoryDiff();
 }

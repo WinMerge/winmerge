@@ -1162,6 +1162,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 	}
 
 	CMergeDoc* pDoc = GetDocument();
+	pDoc->SetEditedAfterRescan(m_bIsLeft);
 
 	// simple hook for multiplex undo operations
 	// deleted by jtuc 2003-06-28

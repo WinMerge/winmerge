@@ -202,6 +202,17 @@ void CDiffContext::SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask)
 }
 
 /**
+ * @brief Update difference counts.
+ */
+void CDiffContext::SetDiffCounts(POSITION diffpos, UINT diffs, UINT ignored)
+{
+	ASSERT(diffpos);
+	DIFFITEM & di = m_pList->GetAt(diffpos);
+	di.ndiffs = diffs + ignored; // see StoreDiffResult() in DirScan.cpp
+	di.nsdiffs = diffs;
+}
+
+/**
  * @brief Update the diffitem passed from disk
  */
 void CDiffContext::UpdateInfoFromDisk(DIFFITEM & di)

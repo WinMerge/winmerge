@@ -1,3 +1,8 @@
+2004-07-02 Kimmo
+ PATCH: [ 982960 ] Rescan when saving to update dir compare status
+  Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirDoc.h MergeDoc.cpp
+   MergeDoc.h MergeEditView.cpp
+
 2004-07-01 Kimmo
  PATCH: [ 982683 ] Clear results only after user chooses new files or folders
   Src: MainFrm.cpp

@@ -88,7 +88,8 @@ public:
 	void SetReadOnly(BOOL bLeft, BOOL bReadOnly);
 	void RefreshOptions();
 	void CompareReady();
-	void UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unified);
+	void UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight,
+		UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical);
 	POSITION FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight);
 	void SetDiffSide(UINT diffcode, int idx);
 	void SetDiffCompare(UINT diffcode, int idx);
@@ -104,6 +105,7 @@ public:
 	void MergeDocClosing(CMergeDoc * pMergeDoc);
 	CDiffThread m_diffThread;
 	void SetDiffStatus(UINT diffcode, UINT mask, int idx);
+	void SetDiffCounts(UINT diffs, UINT ignored, int idx);
 	void SetDiffContext(CDiffContext *pCtxt);
 	void UpdateHeaderPath(BOOL bLeft);
 	void AbortCurrentScan();
