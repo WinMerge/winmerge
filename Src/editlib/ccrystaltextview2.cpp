@@ -1162,6 +1162,9 @@ Copy ()
   PutToClipboard (text);
 }
 
+/**
+ * @brief Get appropriate clipboard format for TCHAR text
+ */
 static int
 GetClipTcharTextFormat()
 {

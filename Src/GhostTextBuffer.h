@@ -209,7 +209,7 @@ public :
 	but maybe it doesn't (if there is an assert to check there is an EOL,
 	or if it adds the default EOL)
 	*/
-	virtual UINT GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, int nCrlfStyle =CRLF_STYLE_AUTOMATIC );
+	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, int nCrlfStyle =CRLF_STYLE_AUTOMATIC );
 
 
 	// Text modification functions

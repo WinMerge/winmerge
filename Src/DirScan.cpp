@@ -11,6 +11,7 @@
 #include "DiffContext.h"
 #include "logfile.h"
 #include "paths.h"
+#include "unidiff.h"
 
 extern int just_compare_files (LPCTSTR, LPCTSTR, int);
 extern CLogFile gLog;
@@ -32,6 +33,7 @@ struct fentry
 	__int64 mtime;
 	__int64 ctime;
 	_int64 size;
+	int attrs;
 };
 typedef CArray<fentry, fentry&> fentryArray;
 
@@ -178,6 +180,14 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 				CString filepath1 = paths_ConcatPath(sLeftDir, leftFiles[i].name);
 				CString filepath2 = paths_ConcatPath(sRightDir, rightFiles[j].name);
 
+				// Do any needed transformations
+				// Primarily we convert UCS-2 to UTF-8
+				// because diffutils can do UTF-8
+				// and the line numbers are the same (unlike byte offsets)
+				// TODO: temp file leak: We're orphaning a set of temp files here ?
+				unidiff_PrepFile(filepath1, &leftFiles[i].attrs);
+				unidiff_PrepFile(filepath2, &rightFiles[j].attrs);
+
 				int res = just_compare_files (filepath1, filepath2, 0);
 				// Outstanding problem 
 				// Diff didn't tell us if the file is binary
@@ -264,6 +274,7 @@ void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 		ent.size = finder.GetLength(); // ULONGLONG
 #endif
 		ent.name = finder.GetFileName();
+		ent.attrs = 0;
 		if (finder.IsDirectory())
 			dirs->Add(ent);
 		else
@@ -311,6 +322,7 @@ static void FilterAdd(const CString & sDir, const fentry * lent, const fentry * 
 	CString name, leftdir, rightdir;
 	_int64 rmtime=0, lmtime=0, rctime=0, lctime=0;
 	_int64 lsize=0, rsize=0;
+	int lattrs=0, rattrs=0;
 	if (lent)
 	{
 		leftdir = paths_ConcatPath(pCtxt->m_strNormalizedLeft, sDir);
@@ -318,6 +330,7 @@ static void FilterAdd(const CString & sDir, const fentry * lent, const fentry * 
 		lctime = lent->ctime;
 		lsize = lent->size;
 		name = lent->name;
+		lattrs = lent->attrs;
 	}
 	if (rent)
 	{
@@ -326,9 +339,10 @@ static void FilterAdd(const CString & sDir, const fentry * lent, const fentry * 
 		rctime = rent->ctime;
 		rsize = rent->size;
 		name = rent->name;
+		rattrs = rent->attrs;
 	}
 	gLog.Write(_T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d")
 		, (LPCTSTR)name, (LPCTSTR)leftdir, (LPCTSTR)rightdir, code);
 	pCtxt->AddDiff(name, sDir, leftdir, rightdir
-		, lmtime, rmtime, lctime, rctime, lsize, rsize, code);
+		, lmtime, rmtime, lctime, rctime, lsize, rsize, code, lattrs, rattrs);
 }

@@ -1,3 +1,11 @@
+2003-09-27 Perry
+ PATCH: [ 809149 ] Handle Unicode files
+  common: unicoder.cpp unicoder.h
+  WinMerge: DiffContext.cpp DiffContext.h DirScan.cpp FileFilterMgr.cpp files.cpp
+   files.h GhostTextBuffer.cpp GhostTextBuffer.cpp.bak GhostTextBuffer.h Merge.dsp
+   MergeDoc.cpp MergeDoc.h unidiff.cpp unidiff.h
+  WinMerge/editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h ccrystaltextview2.cpp
+
 2003-09-26 Perry
  PATCH: [ 811039 ] Identify filters by path to solve problems with reused names
   common: coretools.cpp coretools.h

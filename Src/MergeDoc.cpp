@@ -45,6 +45,8 @@
 #include "dirdoc.h"
 #include "files.h"
 #include "WaitStatusCursor.h"
+#include "unidiff.h"
+#include "unicoder.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -280,6 +282,13 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	// output to temp file
 	m_ltBuf.SaveToFile(m_strTempLeftFile, TRUE, CRLF_STYLE_AUTOMATIC, FALSE);
 	m_rtBuf.SaveToFile(m_strTempRightFile, TRUE, CRLF_STYLE_AUTOMATIC, FALSE);
+
+	// Transform file to UTF-8 if needed
+	// TODO: temp file leak: We're orphaning a set of temp files here ?
+	int attrs=0;
+	unidiff_PrepFile(m_strTempLeftFile, &attrs);
+	attrs=0;
+	unidiff_PrepFile(m_strTempRightFile, &attrs);
 
 	// Set up DiffWrapper
 	m_diffWrapper.SetCompareFiles(m_strTempLeftFile, m_strTempRightFile);
@@ -953,8 +962,37 @@ void CMergeDoc::CDiffTextBuffer::SetTempPath(CString path)
 	m_strTempPath = path;
 }
 
+/**
+ * @brief Examine statistics in textFileStats and return a crystaltextbuffer enum value for line style
+ */
+int GetTextFileStyle(const ParsedTextFile & parsedTextFile)
+{
+	if (parsedTextFile.crlfs >= parsedTextFile.lfs)
+	{
+		if (parsedTextFile.crlfs >= parsedTextFile.crs)
+		{
+			return CRLF_STYLE_DOS;
+		}
+		else
+		{
+			return CRLF_STYLE_MAC;
+		}
+	}
+	else
+	{
+		if (parsedTextFile.lfs >= parsedTextFile.crs)
+		{
+			return CRLF_STYLE_UNIX;
+		}
+		else
+		{
+			return CRLF_STYLE_MAC;
+		}
+	}
+}
+
 /// Loads file from disk to buffer
-int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
+int CMergeDoc::CDiffTextBuffer::LoadFromFile2(LPCTSTR pszFileName, BOOL & readOnly,
 		int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/)
 {
 	ASSERT(!m_bInit);
@@ -963,7 +1001,6 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 	CString sExt;
 	BOOL bSuccess = FALSE;
 	int nRetVal = FRESULT_OK;
-	DWORD dwLines = 0;
 
 	// Set encoding based on extension, if we know one
 	SplitFilename(pszFileName, NULL, NULL, &sExt);
@@ -978,68 +1015,52 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 	fileData.dwOpenFlags = OPEN_EXISTING;
 	bSuccess = files_openFileMapped(&fileData);
 
+	// Inefficiency here
+	// We load up the line array in files_loadLines
+	// only to recopy them all into m_aLines
+	// This wouldn't be bad if it were a CString copy (as CStrings are reference counted)
+	// but I think that AppendLine leads to a new allocation
+	// so we are copying the whole file into textFileStats line buffers
+	// and then recopying it into crystal line buffers
+	// so... perhaps this could be improved.
+
+	ParsedTextFile parsedTextFile;
 	if (bSuccess)
-		nRetVal = files_analyzeFile(&fileData, &dwLines);
+		nRetVal = files_loadLines(&fileData, &parsedTextFile);
 	else
 		nRetVal = FRESULT_ERROR;
 	
 	if (nRetVal == FRESULT_OK)
 	{
-		m_aLines.SetSize(dwLines, 4096);
+		m_aLines.SetSize(parsedTextFile.lines.GetSize(), 4096);
 		
 		DWORD dwBytesRead = 0;
 		TCHAR *lpChar = (TCHAR *)fileData.pMapBase;
 		TCHAR *lpLineBegin = lpChar;
 		int eolChars = 0;
-		DWORD nLineNum = 0;
-		while (dwBytesRead < fileData.dwSize)
+		UINT lineno = 0;
+		for ( ; lineno < parsedTextFile.lines.GetSize(); ++lineno)
 		{
-			TCHAR c = *lpChar;
-			
-			if (c == '\n' || c == '\r')
-			{
-				// Might be an EOL, but check for leading \r of \r\n
-				if (dwBytesRead+1 < fileData.dwSize && lpChar[0]=='\r' && lpChar[1]=='\n')
-				{
-					// This is a \r followed by a \n, so treat it as regular char
-				}
-				else
-				{
-					lpChar++;
-					dwBytesRead++;
+			textline & lp = parsedTextFile.lines.GetAt(lineno);
 
-					// This is an EOL
-					ReadLineFromBuffer(lpLineBegin, nLineNum, lpChar - lpLineBegin);
-					NoteCRLFStyleFromBuffer(lpLineBegin, lpChar - lpLineBegin);
-					nLineNum++;
-					lpLineBegin = lpChar;
-					continue;
-				}
-			}
-			lpChar++;
-			dwBytesRead++;
+			// Skipping iconvert call here
+			// because I don't know if it even works
+			// Perry 2003-09-15
+
+			AppendLine(lineno, lp.sline, lp.sline.GetLength());
 		}
 		
 		//Try to determine current CRLF mode (most frequent)
 		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-			// special call to NoteCRLFStyleFromBuffer : get the result
-			nCrlfStyle = NoteCRLFStyleFromBuffer(NULL, 0);
+		{
+			nCrlfStyle = GetTextFileStyle(parsedTextFile);
+		}
 		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
 		SetCRLFMode(nCrlfStyle);
 		
-		// Handle case where file ended with line without EOL
-		if (lpChar > lpLineBegin)
-			// just read the last real line, it has not EOL so it is really the last real
-			ReadLineFromBuffer(lpLineBegin, nLineNum, lpChar - lpLineBegin);
-		else
-		{
-			// Last line had EOL, so append succeeding real line
-			// ReadLineFromBuffer doesn't work with an empty line, 
-			// so delete last line (it is invalid, it has no buffer) and insert an empty one
-			DeleteLine(nLineNum);
-			InsertLine(_T(""), 0);
-		}
-		ASSERT(m_aLines.GetSize() > 0);   //  At least one empty line must present
+		//  At least one empty line must present
+		// (memory mapping doesn't work for zero-length files)
+		ASSERT(m_aLines.GetSize() > 0);
 		
 		m_bInit = TRUE;
 		m_bModified = FALSE;
@@ -1058,6 +1079,22 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		UpdateViews(NULL, NULL, UPDATE_RESET);
 		m_ptLastChange.x = m_ptLastChange.y = -1;
 		nRetVal = FRESULT_OK;
+
+		// stash original encoding away
+		switch (parsedTextFile.codeset)
+		{
+		case ucr::UCS2LE:
+			m_nSourceEncoding = -20;
+			break;
+		case ucr::UCS2BE:
+			m_nSourceEncoding = -21;
+			break;
+		case ucr::UTF8:
+			m_nSourceEncoding = -22;
+			break;
+		}
+		if (parsedTextFile.lossy)
+			readOnly = TRUE;
 	}
 	
 	files_closeFileMapped(&fileData, 0xFFFFFFFF, FALSE);
@@ -1101,8 +1138,32 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	CString text;			
 	int nLastLength = GetFullLineLength(nLineCount-1);
 		
-	UINT nBufSize = GetTextWithoutEmptys(0, 0, nLineCount - 1,
-		nLastLength, text, nCrlfStyle);
+	GetTextWithoutEmptys(0, 0, nLineCount - 1, nLastLength, text, nCrlfStyle);
+	UINT nchars = text.GetLength();
+
+	UINT nbytes = -1;
+	if (m_nSourceEncoding == -20)
+	{
+		// UCS-2LE (+ 2 byte BOM)
+		nbytes = 2 * nchars + 2;
+	}
+	else if (m_nSourceEncoding == -21)
+	{
+		// UCS-2BE (+ 2 byte BOM)
+		nbytes = 2 * nchars + 2;
+	}
+	else if (m_nSourceEncoding == -22)
+	{
+		// UTF-8 (+ 3 byte BOM)
+		nbytes = ucr::Utf8len_of_string(text) + 3;
+	}
+	else
+	{
+		// 8-bit encoding
+		nbytes = nchars;
+	}
+
+	// Data to save is now in CString text
 
 	// HACK for MAC files support.  Temp files for diff must be in unix format
 	// this is dirty but should be replaced soon with preprocessing
@@ -1116,10 +1177,12 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			TCHAR tchEolMac = * GetStringEol(CRLF_STYLE_MAC);
 			TCHAR tchEolUnix = * GetStringEol(CRLF_STYLE_UNIX);
 			UINT i;
-			for (i = 0 ; i < nBufSize ; i++)
+			for (i = 0 ; i < nchars ; i++)
+			{
 				if (pbuffer[i] == tchEolMac)
-					if (i < nBufSize && pbuffer[i+1] != tchEolUnix)
+					if (i+1 < nchars && pbuffer[i+1] != tchEolUnix)
 						pbuffer[i] = tchEolUnix;
+			}
 			text.ReleaseBuffer(-1);
 		}
 	}
@@ -1141,27 +1204,51 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 
 	fileData.bWritable = TRUE;
 	fileData.dwOpenFlags = CREATE_ALWAYS;
-	fileData.dwSize = nBufSize;
+	fileData.dwSize = nbytes;
 	bOpenSuccess = files_openFileMapped(&fileData);
 
 	if (bOpenSuccess)
 	{
-		if (m_nSourceEncoding >= 0)
+		// Should these Unicode codeset conversions be moved
+		// into the iconvert (editlib/cs2cs.*) module ?
+
+		if (m_nSourceEncoding == -20)
 		{
-			LPTSTR pszBuf;
-			iconvert_new((LPCTSTR)text, &pszBuf, 1,
-					m_nSourceEncoding, m_nSourceEncoding == 15);
-			CopyMemory(fileData.pMapBase, pszBuf, nBufSize);
-			free(pszBuf);
+			ucr::convertToBuffer(text, fileData.pMapBase, ucr::UCS2LE);
 		}
-		else
-			CopyMemory(fileData.pMapBase, (void *)(LPCTSTR)text, nBufSize);
+		else if (m_nSourceEncoding == -21)
+		{
+			ucr::convertToBuffer(text, fileData.pMapBase, ucr::UCS2BE);
+		}
+		else if (m_nSourceEncoding == -22)
+		{
+			ucr::convertToBuffer(text, fileData.pMapBase, ucr::UTF8);
+		}
+		else 
+		{
+#ifdef _UNICODE
+			// (We're ignoring m_nSourceEncoding here, which ought to be relevant
+			// altho I don't think it ever gets set right now -- Perry, 2003-09-24)
+			ucr::convertToBuffer(text, fileData.pMapBase, ucr::NONE);
+#else
+			if (m_nSourceEncoding >= 0)
+			{
+				LPTSTR pszBuf;
+				iconvert_new((LPCTSTR)text, &pszBuf, 1,
+						m_nSourceEncoding, m_nSourceEncoding == 15);
+				CopyMemory(fileData.pMapBase, pszBuf, nbytes);
+				free(pszBuf);
+			}
+			else
+			{
+				CopyMemory(fileData.pMapBase, (void *)(LPCTSTR)text, nbytes);
+			}
+#endif
+		}
 
 		// Force flushing of file buffers for user files
-		if (bTempFile)
-			files_closeFileMapped(&fileData, nBufSize, FALSE);
-		else
-			files_closeFileMapped(&fileData, nBufSize, TRUE);
+		BOOL bflush = !bTempFile;
+		files_closeFileMapped(&fileData, nbytes, bflush);
 		
 		if (!bTempFile)
 		{
@@ -1963,7 +2050,7 @@ RECT CMergeDoc::Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOt
 * @sa CMergeDoc::OpenDocs()
 *
 */
-int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft)
+int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly)
 {
 	CDiffTextBuffer *pBuf;
 	CString sError;
@@ -1982,7 +2069,7 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft)
 
 	// FreeAll() is needed before loading (this is complicated)
 	pBuf->FreeAll();
-	retVal = pBuf->LoadFromFile(sFileName);
+	retVal = pBuf->LoadFromFile2(sFileName, readOnly);
 
 	if (retVal != FRESULT_OK)
 	{
@@ -2032,12 +2119,12 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	curUndo = undoTgt.begin();
 
 	// Load left side file
-	int nLeftSuccess = LoadFile(sLeftFile, TRUE);
+	int nLeftSuccess = LoadFile(sLeftFile, TRUE, bROLeft);
 	
 	// Load right side only if left side was succesfully loaded
 	int nRightSuccess = FRESULT_ERROR;
 	if (nLeftSuccess == FRESULT_OK)
-		nRightSuccess = LoadFile(sRightFile, FALSE);
+		nRightSuccess = LoadFile(sRightFile, FALSE, bRORight);
 
 	// Bail out if either side failed
 	if (nLeftSuccess != FRESULT_OK || nRightSuccess != FRESULT_OK)

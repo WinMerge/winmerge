@@ -93,6 +93,7 @@ void FileFilterMgr::DeleteAllFilters()
 }
 
 // Add a single pattern (if nonempty & valid) to a pattern list
+// str is a temporary variable (ie, it may be altered)
 static void AddFilterPattern(RegList & reglist, CString & str)
 {
 	str.TrimLeft();

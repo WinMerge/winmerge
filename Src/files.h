@@ -51,9 +51,32 @@ struct MAPPEDFILEDATA
 	LPVOID pMapBase;
 };
 
+struct textline
+{
+	int start; // byte offset
+	int end; // byte offset
+	CString sline;
+	typedef enum { EOL_NONE, EOL_CR, EOL_LF, EOL_CRLF } EOLTYPE;
+	EOLTYPE eoltype;
+	textline() : start(-1), end(-1), eoltype(EOL_NONE) { }
+};
+struct ParsedTextFile
+{
+	int crs; /* not including crlfs */
+	int lfs; /* not including crlfs */
+	int crlfs;
+	int codeset;
+	int charsize;
+	bool lossy; /* was codeset conversion reversible ? */
+	CArray<textline, textline> lines;
+
+	ParsedTextFile()
+		: crs(0), lfs(0), crlfs(0), codeset(0), charsize(1), lossy(false)
+		{}
+};
+
 BOOL files_openFileMapped(MAPPEDFILEDATA *fileData);
 BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush);
-int files_readEOL(TBYTE *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive);
-int files_analyzeFile(MAPPEDFILEDATA *fileData, DWORD * dwLineCount);
+int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile);
 
 #endif // _FILES_H

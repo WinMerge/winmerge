@@ -879,14 +879,15 @@ SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet, BOOL bRemoveFromPreviousLine /*
 }
 
 
-// Get text of specified lines
-UINT CCrystalTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
+/**
+ * @brief Get text of specified line range (excluding ghost lines)
+ */
+void CCrystalTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
                  int nEndLine, int nEndChar, 
                  CString &text, int nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
 {
   CString sEol = GetStringEol (nCrlfStyle);
   GetText(nStartLine, nStartChar, nEndLine, nEndChar, text, sEol);
-  return text.GetLength();
 }
 
 

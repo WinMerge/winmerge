@@ -24,6 +24,7 @@
 
 #include "stdafx.h"
 #include "files.h"
+#include "unicoder.h"
 
 /**
  * @brief Open file as memory-mapped file
@@ -146,55 +147,9 @@ BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush)
 	return bSuccess;
 }
 
-/**
- * @brief Reads different EOL formats and returns length of EOL
- * @note This function is safe: it first checks that there are unread bytes,
- * @note so that we do not read past EOF
- */
-int files_readEOL(TBYTE *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive)
-{
-	int eolBytes = 0;
-	
-	// EOL sensitive - ignore '\r' if '\r\n'
-	if (bEOLSensitive)
-	{
-		// If >1 bytes left, there can be '\n' too
-		if (*lpLineEnd == '\r' && bytesLeft > 1)
-		{
-			if (*(lpLineEnd+1) == '\n')
-			{
-				// '\r\n'
-				//*(lpLineEnd+1) = '\0';
-				eolBytes = 2;
-			}
-			else
-			{
-				//*(lpLineEnd) = '\0';
-				eolBytes = 1;
-			}
-		}
-		else
-		{
-			//*(lpLineEnd) = '\0';
-			eolBytes = 1;
-		}
-	}
-	else
-	{
-		if (bytesLeft > 1)
-		{
-			if ( (*lpLineEnd == '\r') && *(lpLineEnd+1) == '\n')
-				eolBytes = 2;
-			else
-				eolBytes = 1;
-		}
-		else
-			eolBytes = 1;
-
-		//*(lpLineEnd) = '\0';
-	}
-	return eolBytes;
-}
+#ifndef WC_NO_BEST_FIT_CHARS
+#define WC_NO_BEST_FIT_CHARS        0x00000400
+#endif
 
 /**
  * @brief Checks Checks memory-mapped for binary data and counts lines
@@ -202,39 +157,143 @@ int files_readEOL(TBYTE *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive)
  * @note This does not work for UNICODE files
  * as WinMerge is not compiled UNICODE enabled
  */
-int files_analyzeFile(MAPPEDFILEDATA *fileData, DWORD * dwLineCount)
+int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 {
 	// Use unsigned type for binary compare
-	TBYTE *lpByte = (TBYTE *)fileData->pMapBase;
+	byte *lpByte = (byte *)fileData->pMapBase;
 	BOOL bBinary = FALSE;
 	DWORD dwBytesRead = 0;
-	*dwLineCount = 1;
+	parsedTextFile->lines.RemoveAll();
+	textline newline;
+	newline.start = 0;
 	
-	while ((dwBytesRead < fileData->dwSize) && (bBinary == FALSE))
+	// Check for Unicode BOM (byte order mark)
+	// (We don't check for UCS-4 marks)
+	// Set stats and start appropriately
+	if (fileData->dwSize >= 2)
 	{
-		// Binary check
-		if (*lpByte < 0x09)
+		if (lpByte[0] == 0xFF && lpByte[1] == 0xFE)
 		{
-			bBinary = TRUE;
-			lpByte++;
-			dwBytesRead++;
+			parsedTextFile->codeset = ucr::UCS2LE;
+			parsedTextFile->charsize = 2;
+			newline.start = 2;
 		}
-		else if (*lpByte == '\r' || *lpByte == '\n')
+		else if (lpByte[0] == 0xFE && lpByte[1] == 0xFF)
 		{
-			const int nEolBytes = files_readEOL(lpByte, fileData->dwSize - dwBytesRead, TRUE);
-			lpByte += nEolBytes;
-			dwBytesRead += nEolBytes;	// Skip EOL chars
-			(*dwLineCount)++;
+			parsedTextFile->codeset = ucr::UCS2BE;
+			parsedTextFile->charsize = 2;
+			newline.start = 2;
+		}
+	}
+	if (fileData->dwSize >=3)
+	{
+		if (lpByte[0] == 0xEF && lpByte[1] == 0xBB && lpByte[2] == 0xBF)
+		{
+			parsedTextFile->codeset = ucr::UTF8;
+			newline.start = 3;
+		}
+	}
+	// skip over any BOM found
+	dwBytesRead = newline.start;
+	lpByte += dwBytesRead;
+
+	// loop through every character in file
+	while ((dwBytesRead +(parsedTextFile->charsize-1) < fileData->dwSize) && (bBinary == FALSE))
+	{
+		UINT ch=0;
+		UINT utf8len=0;
+		if (parsedTextFile->codeset == ucr::UTF8)
+		{
+			// check for end in middle of UTF-8 character
+			// or outside of UCS-2 (len>4)
+			utf8len = ucr::Utf8len_fromLeadByte(*lpByte);
+			if (dwBytesRead + utf8len > fileData->dwSize || utf8len>4)
+			{
+				bBinary = TRUE;
+				break;
+			}
+			ch = ucr::GetUtf8Char(lpByte);
 		}
 		else
 		{
-			lpByte++;
-			dwBytesRead++;
+			ch = ucr::get_unicode_char(lpByte, (ucr::UNICODESET)parsedTextFile->codeset);
+		}
+		// Binary check
+		if (ch < 0x09)
+		{
+			bBinary = TRUE;
+			break;
+		}
+		newline.sline += ucr::maketchar(ch, parsedTextFile->lossy);
+		if (ch == '\r')
+		{
+			bool crlf = false;
+			// check for crlf pair
+			if (dwBytesRead + 2 * parsedTextFile->charsize - 1 < fileData->dwSize)
+			{
+				// For UTF-8, this ch will be wrong if character is non-ASCII
+				// but we only check it against \n here, so it doesn't matter
+				UINT ch = ucr::get_unicode_char(lpByte+parsedTextFile->charsize, (ucr::UNICODESET)parsedTextFile->codeset);
+				if (ch == '\n')
+				{
+					crlf = true;
+					newline.sline += (TCHAR)ch;
+				}
+			}
+			if (crlf)
+			{
+				++parsedTextFile->crlfs;
+				newline.eoltype = textline::EOL_CRLF;
+				// advance an extra character to skip the following lf
+				lpByte += parsedTextFile->charsize;
+				dwBytesRead += parsedTextFile->charsize;
+				newline.end = dwBytesRead;
+			}
+			else
+			{
+				++parsedTextFile->crs;
+				newline.eoltype = textline::EOL_CR;
+				newline.end = dwBytesRead;
+			}
+		}
+		else if (ch == '\n')
+		{
+			++parsedTextFile->lfs;
+			newline.eoltype = textline::EOL_LF;
+			newline.end = dwBytesRead;
+		}
+		// always advance to next character
+		if (parsedTextFile->codeset == ucr::UTF8)
+		{
+			lpByte += utf8len;
+			dwBytesRead += utf8len;
+		}
+		else
+		{
+			lpByte += parsedTextFile->charsize;
+			dwBytesRead += parsedTextFile->charsize;
+		}
+		if (newline.end >= 0)
+		{
+			parsedTextFile->lines.Add(newline);
+			newline.start = dwBytesRead;
+			newline.end = -1;
+			newline.sline = _T("");
 		}
 	}
 
 	if (bBinary)
+	{
 		return FRESULT_BINARY;
+	}
 	else
+	{
+		if (newline.sline.GetLength())
+		{
+			newline.end = dwBytesRead;
+			newline.eoltype = textline::EOL_NONE;
+			parsedTextFile->lines.Add(newline);
+		}
 		return FRESULT_OK;
+	}
 }

@@ -105,6 +105,7 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir
 	, __int64 lctime, __int64 rctime
 	, __int64 lsize, __int64 rsize
 	, int diffcode
+	, int lattrs, int rattrs
 	)
 {
 	DIFFITEM di;
@@ -121,6 +122,8 @@ void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir
 	di.right.size = rsize;
 	UpdateFieldsNeededForNewItems(di, di.left);
 	UpdateFieldsNeededForNewItems(di, di.right);
+	di.left.flags.flags += lattrs;
+	di.right.flags.flags += rattrs;
 	AddDiff(di);
 }
 

@@ -31,29 +31,29 @@ namespace DIFFCODE {
 		COMPAREFLAGS=0x7000, SAME=0x1000, DIFF=0x2000, SKIPPED=0x3000, CMPERR=0x4000
 	};
 };
-// old codes
-/* TODO: delete
-#define FILE_LUNIQUE     0
-#define FILE_RUNIQUE     1
-#define FILE_DIFF        2
-#define FILE_SAME        3
-#define FILE_ERROR       4
-#define FILE_BINSAME     5
-#define FILE_BINDIFF     6
-#define FILE_LDIRUNIQUE  7
-#define FILE_RDIRUNIQUE  8
-#define FILE_SKIP        9
-#define FILE_DIRSKIP    10
-*/
 
 struct FileFlags
 {
 	int flags;
 	FileFlags() : flags(0) { }
-	void reset() { flags = 0; }
-	CString toString() const { return flags ? _T("RO") : _T(""); }
+	void reset() { flags &= 0xFFFFFFFE; }
+	CString toString() const
+		{
+			CString sflags;
+			if (flags & RO)
+				sflags += _T("R");
+			if ((flags & coding) == UTF_8)
+				sflags += _T("8");
+			if ((flags & coding) == UCS_2BE)
+				sflags += _T("B");
+			if ((flags & coding) == UCS_2LE)
+				sflags += _T("L");
+			if ((flags & coding) == UCS_4)
+				sflags += _T("4");
+			return sflags;
+		}
 
-	enum { RO=1 };
+	enum { RO=1, coding=0x7000, UTF_8=0x1000, UCS_4=0x2000, UCS_2BE=0x3000, UCS_2LE=0x4000 };
 };
 
 struct DIFFITEM;
@@ -133,7 +133,8 @@ public:
 	// add & remove differences
 	void AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir, LPCTSTR pszLeftDir, LPCTSTR pszRightDir
 		, __int64 lmtime, __int64 rmtime, __int64 lctime, __int64 rctime
-		, __int64 lsize, __int64 rsize, int diffcode);
+		, __int64 lsize, __int64 rsize, int diffcode
+		, int lattrs=0, int rattrs=0);
 	void AddDiff(DIFFITEM di);
 	void RemoveDiff(POSITION diffpos);
 	void RemoveAll();

@@ -152,7 +152,7 @@ InternalDeleteGhostLine (CCrystalTextView * pSource, int nLine, int nCount)
  * These two base functions never read the EOL from the line buffer, they
  * use CRLF_STYLE_DOS when nCrlfStyle equals CRLF_STYLE_AUTOMATIC.
  */
-UINT CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
+void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
                  int nEndLine, int nEndChar, 
                  CString &text, int nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
 {
@@ -192,7 +192,7 @@ UINT CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 			// copy the EOL of the requested type
 			if (i!=ApparentLastRealLine())
 			{
-				CopyMemory(pszBuf, sEol, sEol.GetLength());
+				CopyMemory(pszBuf, sEol, sEol.GetLength() * sizeof(TCHAR));
 				pszBuf += sEol.GetLength();
 			}
 		}
@@ -228,7 +228,6 @@ UINT CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 	pszBuf[0] = 0;
 	text.ReleaseBuffer();
 	text.FreeExtra();
-	return text.GetLength();
 }
 
 ////////////////////////////////////////////////////////////////////////////
