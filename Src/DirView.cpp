@@ -1191,9 +1191,16 @@ BOOL CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
  */
 void CDirView::FixReordering()
 {
+	// LVCOLUMN.iOrder is present with version 4.70+
+	if (GetDllVersion(_T("shlwapi.dll")) < PACKVERSION(4,70))
+		return;
+
 	LVCOLUMN lvcol;
-	memset(&lvcol, 0, sizeof(lvcol));
 	lvcol.mask = LVCF_ORDER;
+	lvcol.fmt = 0;
+	lvcol.cx = 0;
+	lvcol.pszText = 0;
+	lvcol.iSubItem = 0;
 	for (int i=0; i<m_numcols; ++i)
 	{
 		lvcol.iOrder = i;
@@ -1217,9 +1224,9 @@ void CDirView::LoadColumnHeaderItems()
 	for (int i=0; i<m_dispcols; ++i)
 	{
 		LVCOLUMN lvc;
-		memset(&lvc, 0, sizeof(lvc));
 		lvc.mask = LVCF_FMT+LVCF_SUBITEM+LVCF_TEXT;
 		lvc.fmt = LVCFMT_LEFT;
+		lvc.cx = 0;
 		lvc.pszText = _T("text");
 		lvc.iSubItem = i;
 		m_pList->InsertColumn(i, &lvc);

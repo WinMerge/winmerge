@@ -100,8 +100,9 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 int CDirView::AddNewItem(int i)
 {
 	LV_ITEM lvItem;
-	memset(&lvItem, 0, sizeof(lvItem));
+	lvItem.mask = 0;
 	lvItem.iItem = i;
+	lvItem.iSubItem = 0;
 	return GetListCtrl().InsertItem(&lvItem);
   
 }
@@ -110,7 +111,6 @@ int CDirView::AddNewItem(int i)
 void CDirView::SetSubitem(int item, int phy, LPCTSTR sz)
 {
 	LV_ITEM lvItem;
-	memset(&lvItem, 0, sizeof(lvItem));
 	lvItem.mask = LVIF_TEXT;
 	lvItem.iItem = item;
 	lvItem.iSubItem = phy;

@@ -21,6 +21,8 @@
   WinMerge: DirViewColItems.cpp Merge.rc resource.h
  Bugfix: Fix CDirView::GetItemFileNames to get path properly (as before 2003-08-07).
   WinMerge: DirActions.cpp
+ Bugfix: Remove several memsets of structures whose size varies with common control versions
+  WinMerge: DirView.cpp DirViewColHandler.cpp
 
 2003-08-22 Kimmo
  PATCH: [ 787495 ] Create diffutils class (CDiffWrapper)
