@@ -107,8 +107,8 @@ BEGIN
         MENUITEM "&Deshacer\tCtrl+Z",           ID_EDIT_UNDO
         MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "&Diferencia &Próxima\tAlt+Down", ID_NEXTDIFF
-        MENUITEM "&Diferencia Antes\tAlt+Up",   ID_PREVDIFF
+        MENUITEM "&Diferencia siguiente\tAlt+Down", ID_NEXTDIFF
+        MENUITEM "&Diferencia anterior\tAlt+Up",   ID_PREVDIFF
         MENUITEM SEPARATOR
         MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
         MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
@@ -128,9 +128,9 @@ BEGIN
         MENUITEM "Ver Archivos Diferentes",     ID_OPTIONS_SHOWDIFFERENT
         MENUITEM "Ver Archivos Unicos de izquierdo", ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "Ver Archivos Unicos de derecho", ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Esconder Arvhivos de Tipo *.&BAK", ID_HIDE_BACKUP_FILES
+        MENUITEM "Esconder Archivos de Tipo *.&BAK", ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
-        MENUITEM "Cambiar al Fuente...",        ID_VIEW_SELECTFONT
+        MENUITEM "Cambiar el Fuente...",        ID_VIEW_SELECTFONT
         MENUITEM "Usar Fuente de Sistema",      ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "&Barra de Herramientas",      ID_VIEW_TOOLBAR
@@ -150,7 +150,7 @@ BEGIN
     BEGIN
         MENUITEM "&Contenido...",               ID_HELP_CONTENTS
         MENUITEM SEPARATOR
-        MENUITEM "GNU Licensia Publica...",     ID_HELP_GNULICENSE
+        MENUITEM "Licencia Pública GNU...",     ID_HELP_GNULICENSE
         MENUITEM "&Sobre WinMerge...",          ID_APP_ABOUT
     END
 END
@@ -219,7 +219,7 @@ BEGIN
     DEFPUSHBUTTON   "Aceptar",IDOK,184,7,37,14,WS_GROUP
     LTEXT           "Versión 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
     LTEXT           "Derechos reservados.",IDC_STATIC,7,60,170,8
-    LTEXT           "¡Visitar al WinMerge HomePage!",IDC_WWW,7,107,209,8
+    LTEXT           "¡Visite la página de WinMerge!",IDC_WWW,7,107,209,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
     LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
     LTEXT           "Syntax Highlighting Edit View by Andrei Stcherbatchenko ",
@@ -292,14 +292,14 @@ CAPTION "General"
 FONT 8, "MS Sans Serif"
 BEGIN
     GROUPBOX        "Opciones",IDC_STATIC,7,7,242,92
-    CONTROL         "&Guardar al archivo original",IDC_BACKUP_CHECK,"Button",
+    CONTROL         "&Guardar el archivo original",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,21,98,10
-    CONTROL         "Mover automaticamente a la diferencia primera ",
+    CONTROL         "Moverse automaticamente a la primera diferencia",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     17,33,165,10
     CONTROL         "Ignorar diferencias de lineas vacias",IDC_IGNBLANKS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,45,127,10
-    CONTROL         "Ignorar diferencias del caso",IDC_IGNCASE_CHECK,"Button",
+    CONTROL         "Ignorar diferencias de mayúsculas/minúsculas",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,57,103,10
     CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,81,87,10
@@ -763,7 +763,7 @@ STRINGTABLE DISCARDABLE
 BEGIN
     ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
                             "Mueve automaticamente a la primera diferencia\nScroll First"
-    ID_OPTIONS_IGNOREWHITESPACE "Ignore los espacios en los comparaciones"
+    ID_OPTIONS_IGNOREWHITESPACE "Ignorar los espacios en los comparaciones"
     ID_HIDE_BACKUP_FILES    "Esconde archivos de seguridad"
     ID_HELP_GNULICENSE      "Muestra a la GNU Licensia Publica"
     ID_USEVSS               "Trata de sacar un archivo de SourceSafe"
