@@ -5,6 +5,7 @@
 <!ENTITY FAQ SYSTEM "Faq.xml">
 <!ENTITY IntroductDiffing SYSTEM "Intro_diffs.xml">
 <!ENTITY Configuration SYSTEM "Configuration.xml">
+<!ENTITY OpenPaths SYSTEM "Open_paths.xml">
 <!ENTITY CompareDirs SYSTEM "Compare_dirs.xml">
 <!ENTITY QuickStart SYSTEM "Quick_start.xml">
 <!ENTITY Introduction SYSTEM "Introduction.xml">
@@ -13,9 +14,9 @@
 <!ENTITY WhatsNew21 SYSTEM "Whatsnew_2_1.xml">
 <!ENTITY CommandLine SYSTEM "Command_line.xml">
 <!ENTITY ShortCuts SYSTEM "Shortcut_keys.xml">
-<!ENTITY Filters SYSTEM "Filters.xml">
-<!ENTITY CompareFiles SYSTEM "Compare_files.xml">
 <!ENTITY Install SYSTEM "Install.xml">
+<!ENTITY CompareFiles SYSTEM "Compare_files.xml">
+<!ENTITY Filters SYSTEM "Filters.xml">
 ]>
 <article id="index">
   <articleinfo>
@@ -27,6 +28,7 @@
   &Install;
   &IntroductDiffing;
   &QuickStart;
+  &OpenPaths;
   &CompareDirs;
   &CompareFiles;
   &Configuration;

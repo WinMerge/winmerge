@@ -1,6 +1,9 @@
 2004-08-18 Kimmo
  Use ID as generated html filename for .xsl tools too
   Manual: Manual.xsl
+ PATCH: [ 1011083 ] Docs: More about opening files (project files too)
+  Manual: WinMerge_help.xml
+  Manual new file: Open_paths.xml
 
 2004-08-14 Kimmo
  PATCH: [ 1008785 ] Docs: File compare update
