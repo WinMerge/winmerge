@@ -1530,6 +1530,10 @@ SOURCE=.\EditorFilepathBar.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Exceptions.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\FileFilterMgr.h
 # End Source File
 # Begin Source File

@@ -1,3 +1,8 @@
+2003-11-23 Laoran
+ PATCH: [ 846523 ] error description for plugins error handler
+  WinMerge: Merge.dsp Merge.rc Plugins.cpp
+  WinMerge add: Exceptions.h
+
 2003-11-23 Kimmo
  PATCH: [ 847638 ] Unused member variables in MainFrm.h
   WinMerge: MainFrm.h

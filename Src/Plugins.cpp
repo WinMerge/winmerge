@@ -34,6 +34,7 @@
 #include "RegExp.h"
 #include "FileFilterMgr.h"
 #include "resource.h"
+#include "Exceptions.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -600,20 +601,21 @@ static void reallocBuffer(LPWSTR & pszBuf, UINT & nOldSize, UINT nSize, BOOL bWr
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// wrap invokes with error handling
-// (C++ error handling can handle both SEH and C++ errors)
-// (SEH can handle only SEH or C++(int) errors)
+// wrap invokes with error handlers
 
-static void ShowPluginErrorMessage(LPDISPATCH piScript)
+/**
+ * @brief Display a message box with the plugin name and the error message
+ *
+ * @note Use MessageBox instead of AfxMessageBox so we can set the caption.
+ * VB/VBS plugins has an internal error handler, and a message box with caption,
+ * and we try to reproduce it for other plugins.
+ */
+static void ShowPluginErrorMessage(LPDISPATCH piScript, LPTSTR description)
 {
 	PluginInfo * pInfo = CScriptsOfThread::GetScriptsOfThreads()->GetPluginInfo(piScript);
-	CString s;
 	ASSERT(pInfo != NULL);
-	if (pInfo != NULL)
-		AfxFormatString1(s, IDS_PLUGIN_FAILED, pInfo->name);
-	else
-		AfxFormatString1(s, IDS_PLUGIN_FAILED, _T(""));
-	AfxMessageBox(s, MB_ICONSTOP);
+	ASSERT (description != NULL);	
+	MessageBox(AfxGetMainWnd()->GetSafeHwnd(), description, pInfo->name, MB_ICONSTOP);
 }
 
 /**
@@ -624,13 +626,33 @@ static void ShowPluginErrorMessage(LPDISPATCH piScript)
 static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...)
 {
 	HRESULT h;
+	SE_Handler seh;
+	TCHAR errorText[500];
+	BOOL bExceptionCatched = FALSE;
 	
-	try {
+	try 
+	{
 		h = invokeA(pi, ret, id, op, (VARIANT*)(&op+1));
+	}
+	catch(CException * e) 
+	{
+		// structured exception are catched here thanks to class SE_Exception
+		if (!(e->GetErrorMessage(errorText, 500, NULL)))
+			// don't localize this as we do not localize the known exceptions
+			_tcscpy(errorText, _T("Unknown CException"));
+		e->Delete();
+		bExceptionCatched = TRUE;
 	}
 	catch(...) 
 	{
-		ShowPluginErrorMessage(pi);
+		// don't localize this as we do not localize the known exceptions
+		_tcscpy(errorText, _T("Unknown C++ exception"));
+		bExceptionCatched = TRUE;
+	}
+
+	if (bExceptionCatched)
+	{
+		ShowPluginErrorMessage(pi, errorText);
 		// set h to FAILED
 		h = -1;
 	}
@@ -645,13 +667,33 @@ static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...
 static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, ...)
 {
 	HRESULT h;
+	SE_Handler seh;
+	TCHAR errorText[500];
+	BOOL bExceptionCatched = FALSE;
 	
-	try {
+	try 
+	{
 		h = invokeW(pi, ret, silent, op, (VARIANT*)(&op+1));
+	}
+	catch(CException * e) 
+	{
+		// structured exception are catched here thanks to class SE_Exception
+		if (!(e->GetErrorMessage(errorText, 500, NULL)))
+			// don't localize this as we do not localize the known exceptions
+			_tcscpy(errorText, _T("Unknown CException"));
+		e->Delete();
+		bExceptionCatched = TRUE;
 	}
 	catch(...) 
 	{
-		ShowPluginErrorMessage(pi);
+		// don't localize this as we do not localize the known exceptions
+		_tcscpy(errorText, _T("Unknown C++ exception"));
+		bExceptionCatched = TRUE;
+	}
+
+	if (bExceptionCatched)
+	{
+		ShowPluginErrorMessage(pi, errorText);
 		// set h to FAILED
 		h = -1;
 	}
