@@ -9,10 +9,11 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
+  define ('WINMERGE_USR', 'usr');
   define ('WINMERGE_1_7', '1.7');
   define ('WINMERGE_2_0', '2.0');
   define ('WINMERGE_2_2', '2.2');
-  define ('WINMERGE_DEV', '-');
+  define ('WINMERGE_DEV', 'dev');
 
   /**
    * ...
@@ -92,10 +93,16 @@
       $temp .= "</head>\n\n";
       $temp .= "<body>\n";
       $temp .= "<div id=\"head\">\n";
-      $temp .= "<h1><img src=\"/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge</h1>\n";
+      $temp .= "<h1><a href=\"/index.php\"><img src=\"/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\" border=\"0\"></a> WinMerge</h1>\n";
       $temp .= "</div>\n";
       $temp .= "<div id=\"tabs\">\n";
       $temp .= "<ul>\n";
+      if ($this->_version == WINMERGE_USR) { //if "Users" ...
+        $temp .= "  <li class=\"selected\"><a href=\"/index.php\">Users</a></li>\n";
+      }
+      else { //if NOT "Users" ...
+        $temp .= "  <li><a href=\"/index.php\">Users</a></li>\n";
+      }
       if ($this->_version == WINMERGE_2_2) { //if WinMerge 2.2 ...
         $temp .= "  <li class=\"selected\"><a href=\"/2.2/index.php\">2.2</a></li>\n";
       }
@@ -145,31 +152,92 @@
      * @todo the menu items should swap out to a own file (*.xml for example)
      */
     function getMenu() {
-      $temp .= "<h2><a href=\"/index.php\">Users</a></h2>\n";
       switch ($this->_version) {
         case WINMERGE_1_7: //if WinMerge 1.7 ...
+          $temp .= "<h2><a href=\"/1.7/index.php\">WinMerge 1.7</a></h2>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/1.7/docs/index.html\">User's Guide</a></li>\n";
           $temp .= "  <li><a href=\"/1.7/changes.php\">Change History</a></li>\n";
           $temp .= "</ul>\n";
+          $temp .= "<ul>\n";
+          $temp .= "  <li>Downloads\n";
+          $temp .= "    <ul>\n";
+          $temp .= "      <li><a href=\"http://download.sourceforge.net/winmerge/WinMergeSetup.exe\">WinMerge</a></li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=14951\">Languages</a></li>\n";
+          $temp .= "      <li><a href=\"http://download.sourceforge.net/winmerge/WinMergeDocs1_7.zip\">Documentation</a></li>\n";
+          $temp .= "    </ul>\n";
+          $temp .= "  </li>\n";
+          $temp .= "</ul>\n";
           break;
         case WINMERGE_2_0: //if WinMerge 2.0 ...
+          $temp .= "<h2><a href=\"/2.0/index.php\">WinMerge 2.0</a></h2>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/2.0/docs/index.html\">User's Guide</a></li>\n";
           $temp .= "  <li><a href=\"/2.0/changes.php\">Change History</a></li>\n";
           $temp .= "</ul>\n";
+          $temp .= "<ul>\n";
+          $temp .= "  <li>Downloads\n";
+          $temp .= "    <ul>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=202894\">WinMerge</a></li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=177570\">Languages</a></li>\n";
+          $temp .= "      <li><a href=\"http://prdownloads.sourceforge.net/winmerge/WinMergeDocs2_0.zip\">Documentation</a></li>\n";
+          $temp .= "    </ul>\n";
+          $temp .= "  </li>\n";
+          $temp .= "</ul>\n";
           break;
         case WINMERGE_2_2: //if WinMerge 2.2 ...
+        case WINMERGE_USR: //OR if "Users" ...
+          $temp .= "<h2><a href=\"/2.2/index.php\">WinMerge 2.2</a></h2>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/2.2/manual/index.html\">Manual</a></li>\n";
           $temp .= "  <li><a href=\"/2.2/screenshots.php\">Screenshots</a></li>\n";
           $temp .= "  <li><a href=\"/2.2/changes.php\">Change History</a></li>\n";
+          $temp .= "</ul>\n";
+          $temp .= "<ul>\n";
+          $temp .= "  <li>Downloads\n";
+          $temp .= "    <ul>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=281675\">WinMerge</a></li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=283717\">Languages</a></li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=281681\">Documentation</a></li>\n";
+          $temp .= "    </ul>\n";
+          $temp .= "  </li>\n";
+          $temp .= "</ul>\n";
+          break;
+        case WINMERGE_DEV: //if "Developers" ...
+          $temp .= "<h2><a href=\"/developer/index.php\">Developers</a></h2>\n";
+          $temp .= "<ul>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/projects/winmerge/\">Project Home</a></li>\n";
+          $temp .= "  <li>CVS\n";
+          $temp .= "    <ul>\n";
+          $temp .= "      <li><a href=\"http://cvs.sourceforge.net/viewcvs.py/winmerge/\">Go to CVSWeb</a></li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/cvs/?group_id=13216\">CVS Client Access</a></li>\n";
+          $temp .= "      <li><a href=\"/developer/wincvs.php\">WinCVS Hints</a></li>\n";
+          $temp .= "    </ul>\n";
+          $temp .= "  </li>\n";
+          $temp .= "  <li><a href=\"/developer/l10n/index.php\">Translations</a>\n";
+          $temp .= "    <ul>\n";
+          $temp .= "      <li><a href=\"/developer/l10n/instructions.php\">Instructions</a></li>\n";
+          $temp .= "      <li><a href=\"/developer/l10n/status.php\">Status</a></li>\n";
+          $temp .= "    </ul>\n";
+          $temp .= "  </li>\n";
+          $temp .= "  <li>Downloads\n";
+          $temp .= "    <ul>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248\">Stable versions</a></li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158\">Beta versions</a></li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246\">Experimental builds</a></li>\n";
+          $temp .= "    </ul>\n";
+          $temp .= "  </li>\n";
           $temp .= "</ul>\n";
           break;
       }
       $temp .= "<ul>\n";
       $temp .= "  <li><a href=\"/links.php\">Links</a></li>\n";
       $temp .= "</ul>\n";
+      $temp .= "<p align=\"center\">\n";
+      $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\">\n";
+      $temp .= "    <img src=\"/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate money to WinMerge\">\n";
+      $temp .= "  </a>\n";
+      $temp .= "</p>\n";
       $temp .= "<h2>Support</h2>\n";
       $temp .= "<ul>\n";
       $temp .= "  <li><a href=\"http://sourceforge.net/mail/?group_id=13216\">Mailing Lists</a></li>\n";
@@ -180,57 +248,6 @@
       $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216\">Submit a Feature Request</a></li>\n";
       $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=213216\">Submit a Support Request</a></li>\n";
       $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216\">Submit a Patch</a></li>\n";
-      $temp .= "</ul>\n";
-      $temp .= "<p align=\"center\">\n";
-      $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\">\n";
-      $temp .= "    <img src=\"/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate money to WinMerge\">\n";
-      $temp .= "  </a>\n";
-      $temp .= "</p>\n";
-      $temp .= "<h2><a href=\"/developer/index.php\">Developers</a></h2>\n";
-      $temp .= "<ul>\n";
-      $temp .= "  <li><a href=\"http://sourceforge.net/projects/winmerge/\">Project Home</a></li>\n";
-      $temp .= "  <li>CVS\n";
-      $temp .= "    <ul>\n";
-      $temp .= "      <li><a href=\"http://cvs.sourceforge.net/viewcvs.py/winmerge/\">Go to CVSWeb</a></li>\n";
-      $temp .= "      <li><a href=\"http://sourceforge.net/cvs/?group_id=13216\">CVS Client Access</a></li>\n";
-      $temp .= "      <li><a href=\"/developer/wincvs.php\">WinCVS Hints</a></li>\n";
-      $temp .= "    </ul>\n";
-      $temp .= "  </li>\n";
-      $temp .= "  <li><a href=\"/developer/l10n/index.php\">Translations</a>\n";
-      $temp .= "    <ul>\n";
-      $temp .= "      <li><a href=\"/developer/l10n/instructions.php\">Instructions</a></li>\n";
-      $temp .= "      <li><a href=\"/developer/l10n/status.php\">Status</a></li>\n";
-      $temp .= "    </ul>\n";
-      $temp .= "  </li>\n";
-      $temp .= "</ul>\n";
-      $temp .= "<h2>Downloads</h2>\n";
-      switch ($this->_version) {
-        case WINMERGE_1_7: //if WinMerge 1.7 ...
-          $temp .= "<ul>\n";
-          $temp .= "  <li><a href=\"http://download.sourceforge.net/winmerge/WinMergeSetup.exe\">WinMerge</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=14951\">Languages</a></li>\n";
-          $temp .= "  <li><a href=\"http://download.sourceforge.net/winmerge/WinMergeDocs1_7.zip\">Documentation</a></li>\n";
-          $temp .= "</ul>\n";
-          break;
-        case WINMERGE_2_0: //if WinMerge 2.0 ...
-          $temp .= "<ul>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=202894\">WinMerge</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=177570\">Languages</a></li>\n";
-          $temp .= "  <li><a href=\"http://prdownloads.sourceforge.net/winmerge/WinMergeDocs2_0.zip\">Documentation</a></li>\n";
-          $temp .= "</ul>\n";
-          break;
-        case WINMERGE_2_2: //if WinMerge 2.2 ...
-          $temp .= "<ul>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=281675\">WinMerge</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=283717\">Languages</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=281681\">Documentation</a></li>\n";
-          $temp .= "</ul>\n";
-          break;
-      }
-      $temp .= "<ul>\n";
-      $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248\">Stable versions</a></li>\n";
-      $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158\">Beta versions</a></li>\n";
-      $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246\">Experimental builds</a></li>\n";
       $temp .= "</ul>\n";
       $temp .= "<p align=\"center\">\n";
       $temp .= "  <a href=\"/WinMergePAD.php\">\n";
@@ -252,11 +269,6 @@
       $temp .= "    <img src=\"/images/valid-css.gif\" alt=\"Valid CSS!\" width=\"88\" height=\"31\" border=\"0\">\n";
       $temp .= "  </a>\n";
       $temp .= "</p>\n";
-      //$temp .= "<p align=\"center\">\n";
-      //$temp .= "  <a href=\"http://i3t.org/sponsorship/showaward.jsp?id=1595259\">\n";
-      //$temp .= "    <img src=\"http://i3t.org/sponsorship/emblem.jsp?id=1595259\" alt=\"The I3T Award for Software Excellence\" border=\"0\">\n";
-      //$temp .= "  </a>\n";
-      //$temp .= "</p>\n";
       return $temp;
     }
 

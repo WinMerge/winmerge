@@ -2,7 +2,7 @@
   include('page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Links', WINMERGE_DEV);
+  $page->printHead('WinMerge: Links', WINMERGE_USR);
 ?>
 <h2>Links</h2>
 <h3>Tools</h3>
