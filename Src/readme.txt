@@ -1,3 +1,7 @@
+2004-04-30 Christian
+ PATCH: [ 941982 ] Fix VS6 compilation
+  Src/Common: MessageBoxDialog.cpp MessageBoxDialog.h
+
 2004-04-29 Kimmo
  PATCH: [ 943149 ] Contributors fix
   Src: Merge.cpp Merge.rc

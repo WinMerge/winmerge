@@ -394,7 +394,7 @@ void CMessageBoxDialog::ResetMessageBoxes ( )
  *	displaying the dialog. Otherwise the message box will be displayed in
  *	the normal way.
  */
-INT_PTR CMessageBoxDialog::DoModal ( )
+int CMessageBoxDialog::DoModal ( )
 {
 	// Check whether the result may be retrieved from the registry.
 	if ( ( m_nStyle & MB_DONT_DISPLAY_AGAIN ) ||
