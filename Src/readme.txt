@@ -1,3 +1,7 @@
+2003-06-05 Christian
+ PATCH: [ 749566 ] Updated resource files
+  Languages: all resource.h files and all Merge*.rc files
+
 2003-06-04 Christian
  Updated Czech and Danish resources
   Languages: Czech\resource.h Czech\MergeCzech.rc Danish\resource.h Danish\MergeDanish.rc
