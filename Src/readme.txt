@@ -1,3 +1,7 @@
+2003-07-25 Laoran
+ [ 776114 ] french keyboard shortcut
+  Languages: french.rc
+
 2003-07-25 Kimmo
  PATCH: [ 773296 ] Add shell integration
   Added new module ShellExtension
