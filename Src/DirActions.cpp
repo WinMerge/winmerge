@@ -299,6 +299,7 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 			if (mf->SyncFiles(act.src, act.dest, &s))
 			{
 				GetDocument()->SetDiffStatus(DIFFCODE::SAME, DIFFCODE::COMPAREFLAGS, act.idx);
+				GetDocument()->SetDiffStatus(DIFFCODE::BOTH, DIFFCODE::SIDEFLAG, act.idx);
 			}
 			else
 			{

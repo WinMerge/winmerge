@@ -5,6 +5,8 @@
  PATCH: [ 820364 ] Fix handling of non-ASCII 8-bit files
   common: unicoder.cpp unicoder.h
   WinMerge: files.cpp
+ PATCH: [ 821431 ] Update SideFlag When Copy file
+  WinMerge: DirActions.cpp
 
 2003-10-10 Laoran
  cosmetic change because I want to use BeSweet with source (delete one space !)
