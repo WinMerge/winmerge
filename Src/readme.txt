@@ -1,3 +1,7 @@
+2004-03-26 Laoran
+ [ 847155 ] Utf8len_of_string is wrong for 8-bit
+  Src/Common: unicoder.cpp unicoder.h
+
 2004-03-26 Perry
  Docs/Users: Contributors.rtf
  Add Bulgarian credit to contributors.rtf. Move Portuguese to alphabetically Portuguese.

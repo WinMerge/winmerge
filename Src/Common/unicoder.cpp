@@ -163,25 +163,6 @@ Utf8len_fromCodepoint(UINT ch)
  * @bug Fails for files larger than 2gigs
  */
 UINT
-Utf8len_of_string(LPCSTR text, int size)
-{
-	UINT len=0;
-	for (int i=0; i<size; ++i)
-	{
-		int chlen = Utf8len_fromCodepoint(text[i]);
-		if (chlen < 1) chlen = 1;
-		len += chlen;
-	}
-	return len;
-}
-/**
- * @brief How many bytes will it take to write string as UTF-8 ? 
- *
- * @param size size argument as filemapping are not 0 terminated
- *
- * @bug Fails for files larger than 2gigs
- */
-UINT
 Utf8len_of_string(LPCWSTR text, int size)
 {
 	UINT len=0;

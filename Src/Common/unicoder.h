@@ -28,7 +28,6 @@ CString GetUnicodesetName(UNICODESET codeset);
 int Ucs4_to_Utf8(UINT unich, unsigned char * utf8);
 int Utf8len_fromLeadByte(unsigned char ch);
 int Utf8len_fromCodepoint(UINT ch);
-UINT Utf8len_of_string(LPCSTR text, int size);
 UINT Utf8len_of_string(LPCWSTR text, int size);
 UINT stringlen_of_utf8(LPCSTR text, int size);
 UINT GetUtf8Char(unsigned char * str);
