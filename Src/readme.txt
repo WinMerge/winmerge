@@ -1,6 +1,9 @@
 2003-10-24 Perry
  PATCH: [ 814832 ] Timing traces for loading file
   WinMerge: MergeDoc.cpp
+ Add byte counts, and remove doubled line returns for load timing traces.
+  WinMerge: MergeDoc.cpp
+  common: UniMemFile.h
 
 2003-10-24 Kimmo
  PATCH: [ 828283 ] Open Read-only files as such

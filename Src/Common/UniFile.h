@@ -40,6 +40,7 @@ public:
 	virtual BOOL ReadString(CString & line) = 0;
 	virtual BOOL ReadString(CString & line, CString & eol) = 0;
 	virtual int GetLineNumber() const = 0;
+	virtual __int64 GetPosition() const = 0;
 
 	struct txtstats
 	{
@@ -84,6 +85,7 @@ public:
 	virtual BOOL ReadString(CString & line);
 	virtual BOOL ReadString(CString & line, CString & eol);
 	virtual int GetLineNumber() const { return m_lineno; }
+	virtual __int64 GetPosition() const { return m_current - m_base; }
 
 
 	virtual const txtstats & GetTxtStats() const { return m_txtstats; }

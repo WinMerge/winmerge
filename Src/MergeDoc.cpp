@@ -1079,7 +1079,7 @@ GetLineByteTimeReport(UINT lines, UINT bytes, const COleDateTime & start)
 	COleDateTimeSpan duration = COleDateTime::GetCurrentTime() - start;
 	CString sMinutes = locality::NumToLocaleStr((int)duration.GetTotalMinutes());
 	CString str;
-	str.Format(_T("%s lines (%s byte) saved in %sm%02ds\n")
+	str.Format(_T("%s lines (%s byte) saved in %sm%02ds")
 		, sLines, sBytes, sMinutes
 		, duration.GetSeconds()
 		);
@@ -1170,9 +1170,9 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 			// (at 100, 500, 1000, 5000, etc)
 			if (lineno == next_line_report)
 			{
-				__int64 dwBytesRead = 99;
+				__int64 dwBytesRead = pufile->GetPosition();
 				COleDateTimeSpan duration = COleDateTime::GetCurrentTime() - start;
-				if (duration.GetTotalMinutes() > 1)
+				if (duration.GetTotalMinutes() > 0)
 				{
 					CString strace = GetLineByteTimeReport(lineno, dwBytesRead, start);
 					TRACE(_T("%s\n"), (LPCTSTR)strace);
@@ -1185,9 +1185,9 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 		// Send report of duration to trace (if it took a while)
 		COleDateTime end = COleDateTime::GetCurrentTime();
 		COleDateTimeSpan duration = end - start;
-		if (duration.GetTotalMinutes() > 2)
+		if (duration.GetTotalMinutes() > 0)
 		{
-			__int64 dwBytesRead = 999;
+			__int64 dwBytesRead = pufile->GetPosition();
 			CString strace = GetLineByteTimeReport(lineno, dwBytesRead, start);
 			TRACE(_T("%s\n"), (LPCTSTR)strace);
 		}
