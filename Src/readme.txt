@@ -3,6 +3,8 @@
   WinMerge: PropRegistry.cpp
  PATCH: [ 833681 ] Fix default editor for external editor
   WinMerge: MainFrm.h MainFrm.cpp
+ Change action.code type to match DIFFITEM.code
+  DirView.h
 
 2003-10-31 Laoran
  fix Plugins PACK_UNPACK when nothing changes (+ update functions name)

@@ -102,7 +102,7 @@ public:
 // Implementation types
 private:
 	typedef enum { ACT_COPY=1, ACT_DEL_LEFT, ACT_DEL_RIGHT, ACT_DEL_BOTH } ACT_TYPE;
-	struct action { CString src; CString dest; BOOL dirflag; int idx; BYTE code;};
+	struct action { CString src; CString dest; BOOL dirflag; int idx; int code;};
 	typedef CList<int, int> DeletedItemList; // indices into display list control
 	struct ActionList
 	{
