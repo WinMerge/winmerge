@@ -1,3 +1,7 @@
+2004-06-02 Perry
+ PATCH: [ 964678 ] New MergeJapanese.rc file
+  Src/Languages: Japanese/MergeJapanese.rc etc
+
 2004-06-01 Kimmo
  BUG: [ 963820 ] Cutting off trailing chars in opendlg
   Submitted by Perry
