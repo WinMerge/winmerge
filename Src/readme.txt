@@ -1,3 +1,7 @@
+2003-08-25 Laoran
+  [ 794081 ] Error when dropping a column out of WinMerge
+  WinMerge: DirView.cpp
+  
 2003-08-24 Perry
  Fix paths_GetLongPath to handle trailing . or ..
   (BUGFIX: [ 792074 ] Directory mnemonics . and .. are not honored properly)

@@ -1179,7 +1179,7 @@ BOOL CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
 	int dest = hdr->pitem->iOrder;
 	BOOL allowDrop = TRUE;
 	*pResult = !allowDrop;
-	if (allowDrop && src!=dest)
+	if (allowDrop && src!=dest && dest!=-1)
 	{
 		MoveColumn(src, dest);
 	}
