@@ -3,6 +3,8 @@
   WinMerge: MainFrm.cpp
 
 2003-11-06 Laoran
+ BUG: [ 836868 ] Search and replace field size limited
+  WinMerge : Merge.rc
  BUG: [ 836384 ] File extension wildcards does not work. 
   WinMerge: OpenDlg.cpp
 
