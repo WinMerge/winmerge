@@ -209,10 +209,20 @@ BOOL COpenDlg::OnInitDialog()
 void COpenDlg::UpdateButtonStates()
 {
 	BOOL bLIsDir, bRIsDir;
+	BOOL bLeftOk, bRightOk;
+	BOOL bEnableOK = FALSE;
 	UpdateData(TRUE);
 
-	// only enable OK button if both file exist
-	BOOL bEnableOK = (IsFileOk(m_strLeft, &bLIsDir) && IsFileOk(m_strRight, &bRIsDir));
+	// Only enable OK button if both are exixting files or
+	// both are existing directories
+	bLeftOk = IsFileOk(m_strLeft, &bLIsDir);
+	bRightOk = IsFileOk(m_strRight, &bRIsDir);
+
+	if (bLeftOk && bRightOk)
+	{	
+		if ((bLIsDir && bRIsDir) || (!bLIsDir && !bRIsDir))
+			bEnableOK = TRUE;
+	}
 	m_ctlOk.EnableWindow(bEnableOK);
 	m_ctlRecurse.EnableWindow(bEnableOK && bLIsDir && bRIsDir);
 }

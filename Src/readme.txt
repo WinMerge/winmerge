@@ -1,3 +1,8 @@
+2003-02-26 Kimmo
+ [ 692922 ] Don't try to compare file & directory
+  WinMerge:
+   OpenDlg.cpp
+
 2003-02-24 Kimmo
  [ 687574 ] Navigate in directory view (fix bug in patch)
   WinMerge:
@@ -5,7 +10,6 @@
  [ 686699 ] Check & return file saving success - fix
   WinMerge:  
    MergeDoc.h Mergedoc.cpp
-
 
 2003-02-22 Perry
  [ 650356 ] suggest commenting out several functions
