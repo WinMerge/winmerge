@@ -163,6 +163,8 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("TCHAR"),
     _T ("BYTE"),
     _T ("BOOL"),
+	_T ("VOID"),
+	_T ("LONG"),
     _T ("TRUE"),
     _T ("FALSE"),
     _T ("INT"),
@@ -172,7 +174,16 @@ static LPTSTR s_apszUser1KeywordList[] =
     _T ("WPARAM"),
     _T ("LPARAM"),
     _T ("LRESULT"),
-    _T ("CString"),
+	_T ("BSTR"),
+	_T ("COLORREF"),
+	_T ("LPCSTR"),
+	_T ("LPSTR"),
+	_T ("LPVOID"),
+	_T ("LRESULT"),
+	_T ("WNDPROC"),
+	_T ("POSITION"),
+	_T ("LPRECT"),
+	_T ("HANDLE"),
     NULL
   };
 

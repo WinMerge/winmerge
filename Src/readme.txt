@@ -5,6 +5,8 @@
   Renaming "Properties" to "Options"
   WinMerge: MainFrm.h MainFrm.cpp Merge.rc resource.h
   Updated .rc and resource.h for other languages
+ BUG: [ 718133 ] Inconsistent user keyword list for C/C++ syntax hiligth
+  editlib: cplusplus.cpp
 
 2003-04-27 Kimmo
  BUG: [ 728173 ] Autoscroll first diff breaks syntax hilight
