@@ -1,0 +1,74 @@
+<sect1 id="TextEncoding">
+  <title>Text Encoding (codepages)</title>
+  <sect2>
+    <title>Common scenarios</title>
+    <orderedlist>
+      <listitem>
+        <para>Comparing English files coded in ASCII</para>
+        <para>You may easily use <filename>WinMerge.exe</filename>. You may also use <filename>WinMergeU.exe</filename> (if you are on NT/2000/XP/2003), but it will be slower due to encoding conversion.</para>
+      </listitem>
+      <listitem>
+        <para>Comparing western European files coded in the common windows codepage</para>
+        <para>(See FAQ: How do I tell what encoding my file uses) You may easily use <filename>WinMerge.exe</filename>. You may also use <filename>WinMergeU.exe</filename> (if you are on NT/2000/XP/2003), but it will be slower due to encoding conversion.</para>
+      </listitem>
+      <listitem>
+        <para>Comparing Unicode files</para>
+        <para>You should use <filename>WinMergeU.exe</filename> (if you are on NT/2000/XP/2003) as it will be at least as fast, and may be faster than <filename>WinMerge.exe</filename>, in this scenario. If you are on Win95/98/ME, or if your files are all in English or a western European language, you may get by with <filename>WinMerge.exe</filename>.
+</para>
+      </listitem>
+      <listitem>
+        <para>Comparing multilingual files</para>
+        <para>You should use <filename>WinMergeU.exe</filename> (if you are on NT/2000/XP/2003) in order to be able to see the characters from different languages simultaneously. If you are on Win95/98/ME, then you may attempt to view the files in <filename>WinMerge.exe</filename>, but it is recommended that you do not attempt to merge them.</para>
+      </listitem>
+      <listitem>
+        <para>Comparing East Asian files</para>
+        <para>You should use <filename>WinMergeU.exe</filename> (if you are on NT/2000/XP/2003) in order to correctly display double-wide characters. See the Font section for font recommendations. If you are on Win95/98/ME, then you may attempt to view the files in <filename>WinMerge.exe</filename>, but it is recommended that you do not attempt to merge them.</para>
+      </listitem>
+    </orderedlist>
+  </sect2>
+  <sect2>
+    <title>Explanation</title>
+    <para>Characters (such as "a" or "1" or "&amp;") are represented by computers as numbers, and there is more than one way to do this. A text encoding method is a way to encode the characters into the numbers (bytes) of which a file is comprised. There are for main text encoding families:</para>
+    <itemizedlist>
+      <listitem>
+        <para>ASCII</para>
+        <para>Each character is one byte in the file. This is an old encoding which only supports English letters, numbers, and puncuation.</para>
+      </listitem>
+      <listitem>
+        <para>Windows codepages</para>
+        <para>Each character is one byte in the file. These are used by default by versions of the Windows operating system. Examples include:</para>
+        <itemizedlist>
+          <listitem>
+            <para>1252 (windows-1252) Western European (supports many western European languages including English, French, Spanish, and German)</para>
+          </listitem>
+          <listitem>
+            <para>1251 (windows-1251) Cyrillic (supports Cyrillic languages including Russian and Bulgarian)</para>
+          </listitem>
+          <listitem>
+            <para>1250 (windows-1250) Central European (supports central European Latin-scrypt languages including Polish)</para>
+          </listitem>
+          <listitem>
+            <para>1253 (windows-1253) Greek (supports Greek)</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>ISO codepages</para>
+        <para>Each character is one byte in the file. These have names such as "ISO-8859-1". Some windows codepages approximate some of these. Examples include:</para>
+        <itemizedlist>
+          <listitem>
+            <para>ISO-8851-1 ("Latin-1") This is approximated by windows-1252</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>UCS-2LE (Microsoft's style of Unicode)</para>
+        <para>Each character is two bytes in the file. This supports Unicode 2.0, which is most of the characters in the Unicode character set.</para>
+      </listitem>
+      <listitem>
+        <para>UTF-8</para>
+        <para>Each character may be one, two, three, four, five, or six bytes in the file. This supports the full range of Unicode 3.x.</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+</sect1>

@@ -4,6 +4,8 @@
   Manual: Compare_files.xml Faq.xml WinMerge_help.xml
  Add more outputting-rules to DSSSL file, collected from several sources
   Manual: Manual-html.dsl
+ Forgot to add Text_encoding.xml in patch #1034776
+  Manual new file: Text_encoding.xml
 
 2004-09-26 Kimmo
  BUG: [ 1034759 ] 2.2 docs: Need a space in Versioncontrol
