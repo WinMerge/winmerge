@@ -1,6 +1,8 @@
 2005-03-23 Tim
  RFE: [ 1169348 ] Update for translation statuses
   Web\developer\l10n: status.xml
+ RFE: [ 1085099 ] 'fileskip.bmp' looks to similar like 'equal.bmp'
+  Web\2.2\images: new file dir-compare-status.gif
 
 2005-03-13 Tim
  PATCH: [ 1160257 ] Web: Various navigation updates
