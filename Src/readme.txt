@@ -1,3 +1,7 @@
+2003-04-23 Kimmo
+ PATCH: [ 721939 ] Wider horiz scroll + more space after last char
+  editlib: ccrystaltextview.cpp
+
 2003-04-20 Perry
  Changed dynamic array to be CArray based
   editlib: ccrystaltextview.cpp

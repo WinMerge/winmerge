@@ -2815,7 +2815,8 @@ RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
         }
       si.fMask = SIF_DISABLENOSCROLL | SIF_PAGE | SIF_POS | SIF_RANGE;
       si.nMin = 0;
-      si.nMax = GetMaxLineLength () - 1;
+      // Cheat longer line
+      si.nMax = GetMaxLineLength () * 2 - 1;
       si.nPage = GetScreenChars ();
       si.nPos = m_nOffsetChar;
     }
@@ -2833,7 +2834,8 @@ OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
   VERIFY (GetScrollInfo (SB_HORZ, &si));
 
   int nPageChars = GetScreenChars ();
-  int nMaxLineLength = GetMaxLineLength ();
+  // Cheat longer line
+  int nMaxLineLength = GetMaxLineLength () * 2;
 
   int nNewOffset;
   switch (nSBCode)
@@ -3341,7 +3343,8 @@ EnsureVisible (CPoint pt)
   const int nScreenChars = GetScreenChars ();
   if (nActualPos > nNewOffset + nScreenChars)
     {
-      nNewOffset = nActualPos - nScreenChars;
+      // Add 10 chars width space after line
+      nNewOffset = nActualPos - nScreenChars + 10;
     }
   if (nActualPos < nNewOffset)
     {
@@ -3349,8 +3352,8 @@ EnsureVisible (CPoint pt)
     }
 
   const int nMaxLineLen = GetMaxLineLength ();
-  if (nNewOffset >= nMaxLineLen)
-    nNewOffset = nMaxLineLen - 1;
+  if (nNewOffset >= nMaxLineLen * 2)
+    nNewOffset = nMaxLineLen * 2 - 1;
   if (nNewOffset < 0)
     nNewOffset = 0;
 
