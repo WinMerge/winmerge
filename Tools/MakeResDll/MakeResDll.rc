@@ -54,11 +54,6 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_HELLO               "Hello from MFC!"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
     IDR_MAINFRAME           "ResourceDLL Builder\n\nBuildR\n\n\nBuildResDll.Document\nBuildR Document"
     IDS_BADBASEDIR          "Please locate the Developer Studio main directory"
     IDS_CHOOSEOUTDIR        "Choose the output folder"
