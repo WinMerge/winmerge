@@ -251,6 +251,12 @@ void CDirView::OnInitialUpdate()
 	VERIFY (bm.LoadBitmap (IDB_ERROR));
 	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
 	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_FOLDERUP));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
+	VERIFY (bm.LoadBitmap (IDB_FOLDERUP_DISABLE));
+	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	bm.Detach();
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
 
 	// Restore column orders as they had them last time they ran
@@ -289,6 +295,8 @@ void CDirView::OnInitialUpdate()
 #define DIFFIMG_DIRSKIP    10
 #define DIFFIMG_DIR        11
 #define DIFFIMG_ERROR      12
+#define DIFFIMG_DIRUP      13
+#define DIFFIMG_DIRUP_DISABLE 14
 
 /**
  * @brief Return image index appropriate for this row
@@ -769,7 +777,8 @@ void CDirView::OpenParentDirectory()
 	CString rightParent = paths_GetParentPath(right);
 
 	if (paths_DoesPathExist(leftParent) == IS_EXISTING_DIR &&
-			paths_DoesPathExist(rightParent) == IS_EXISTING_DIR)
+			paths_DoesPathExist(rightParent) == IS_EXISTING_DIR &&
+			AllowUpwardDirectory(left, right))
 		mf->DoFileOpen(leftParent, rightParent,
 			FFILEOPEN_NOMRU, FFILEOPEN_NOMRU);
 }
@@ -1539,15 +1548,15 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 	// Handle special shortcuts here
 	if (pMsg->message == WM_KEYDOWN)
 	{
-		// Check if we got 'ESC pressed' -message
+	// Check if we got 'ESC pressed' -message
 		if (pMsg->wParam == VK_ESCAPE)
+	{
+		if (m_bEscCloses)
 		{
-			if (m_bEscCloses)
-			{
-				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
-				return FALSE;
-			}
+			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+			return FALSE;
 		}
+	}
 		// Check if we got 'Backspace pressed' -message
 		if (pMsg->wParam == VK_BACK)
 		{
@@ -2010,19 +2019,41 @@ int CDirView::AddSpecialItems()
 	if (paths_DoesPathExist(leftParent) == IS_EXISTING_DIR &&
 		paths_DoesPathExist(rightParent) == IS_EXISTING_DIR)
 	{
-		AddParentFolderItem();
+		int bEnable = AllowUpwardDirectory(leftPath, rightPath); 
+		AddParentFolderItem(bEnable);
 		retVal = 1;
 	}
 	return retVal;
 }
 
 /**
+ * @brief Tell if user may use ".." and move to parents directory
+ *
+ * @return TRUE : upward ENABLED : both paths have the same rightmost subdirectory, 
+ * after we go upward, we may come back here with opening this subdirectory
+ * FALSE : upward RESTRICTED : both paths have a different rightmost subdirectory, 
+ * the move can not be reversed (probably these are the original comparison directories)
+ */
+BOOL CDirView::AllowUpwardDirectory(CString leftPath, CString rightPath)
+{
+	int lastSegmentPos = leftPath.ReverseFind(_T('/'));
+	if (lastSegmentPos == -1 || leftPath.ReverseFind(_T('\\')) > lastSegmentPos)
+		lastSegmentPos = leftPath.ReverseFind(_T('\\'));
+	ASSERT (lastSegmentPos != -1);
+	lastSegmentPos ++;
+
+	int nSegmentSize = leftPath.GetLength() - lastSegmentPos;
+
+	return (leftPath.Right(nSegmentSize).CompareNoCase(rightPath.Right(nSegmentSize)) == 0);
+}
+
+/**
  * @brief Add "Parent folder" ("..") item to directory view
  */
-void CDirView::AddParentFolderItem()
+void CDirView::AddParentFolderItem(BOOL bEnable)
 {
 	int i = AddNewItem(0);
-	SetImage(i, DIFFIMG_DIR);
+	SetImage(i, bEnable ? DIFFIMG_DIRUP : DIFFIMG_DIRUP_DISABLE);
 	SetItemKey(i, (POSITION) -1);
 
 	LV_ITEM lvItem;

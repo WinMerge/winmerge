@@ -1,4 +1,7 @@
 2004-05-28 Laoran
+ PATCH: [ 960771 ] disable .. in dirview if upward move is not reversible
+  Src: DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
  PATCH: [ 961304 ] WinDiff-compatible (F7/F8) keybindings for next/prev diff
  submitted by Krzysztof Kowalczyk
   Src: Merge.rc

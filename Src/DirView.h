@@ -90,7 +90,8 @@ public:
 	//DIFFITEM GetNextSelectedInd(int &ind);
 	const DIFFITEM &GetItemAt(int ind);
 	int AddSpecialItems();
-	void AddParentFolderItem();
+	BOOL AllowUpwardDirectory(CString leftPath, CString rightPath);
+	void AddParentFolderItem(BOOL bEnable);
 	void RefreshOptions();
 
 // Implementation types
