@@ -1,3 +1,6 @@
+2004-03-21 Seier
+  Patch: [ 919134 ] I added the \InnoSetup\Runtimes\OleAut32.dll necessary for others to compile the WinMerge.iss script.  Sorry about that.  
+
 2004-03-22 Laoran
  PATCH: [ 909672 ] Undo makes marker messy
   Src: MergeEditView.cpp
@@ -6,7 +9,7 @@
 2004-03-21 Seier
   -The Installer now also installs WinMerge as the merging application in addition being the differencing application.  
   -I compressed Splash1.bmp using RLE (Run Length Encoding [Lossless compression]) and named it as Splash2.bmp.  I only modified the English version.  Please
-     test it out and send me an e-mail if it works and I'll create the RLE versions of all the other images.  PS: the file size went from 163 --> 111KB.  
+   test it out and send me an e-mail if it works and I'll create the RLE versions of all the other images.  PS: the file size went from 163 --> 111KB.  
   -Installer updated to use \ShellExtension\ShellExtension.dll as the new location for that file 
   -Installer will now remove the ComCtlupd.exe at the end of the installation.  
 
