@@ -1,4 +1,9 @@
 2003-07-17 Laoran
+ PATCH : [ 769535 ] Preserve cursor during Rescan
+  WinMerge: MergeDoc.cpp 
+  editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h ccrystaltextview.cpp ccrystaltextview.h
+
+2003-07-17 Laoran
  PATCH: [ 767878 ] Better handling of ghost flag and EOL
   WinMerge: MergeDoc.cpp MergeEditView.cpp
   editlib: ccrystaleditview.cpp ccrystaltextbuffer.cpp ccrystaltextbuffer.h

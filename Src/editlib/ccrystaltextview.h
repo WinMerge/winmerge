@@ -135,6 +135,7 @@ private :
 
     CPoint m_ptDrawSelStart, m_ptDrawSelEnd;
     CPoint m_ptCursorPos, m_ptCursorLast;
+    int    m_ptCursorLast_nGhost;
     CPoint m_ptSelStart, m_ptSelEnd;
     void PrepareSelBounds ();
 

@@ -3800,23 +3800,24 @@ HideCursor ()
 void CCrystalTextView::
 PopCursor ()
 {
-  if (IsValidTextPosY (m_ptCursorLast))
-    {
-      if (!IsValidTextPosX (m_ptCursorLast))
-        m_ptCursorLast.x = 0;
-      ASSERT_VALIDTEXTPOS (m_ptCursorLast);
-      CPoint ptCursorPos = m_ptCursorLast;
-      SetCursorPos (ptCursorPos);
-      SetSelection (ptCursorPos, ptCursorPos);
-      SetAnchor (ptCursorPos);
-      EnsureVisible (ptCursorPos);
-    }
+  CPoint ptCursorLast = m_ptCursorLast;
+  ptCursorLast.y = m_pTextBuffer->ComputeApparentLine(m_ptCursorLast.y, m_ptCursorLast_nGhost);
+  if (ptCursorLast.y >= GetLineCount())
+  {
+    ptCursorLast.y = GetLineCount()-1;
+    ptCursorLast.x = GetLineLength(ptCursorLast.y);
+  }
+  ASSERT_VALIDTEXTPOS (ptCursorLast);
+  SetCursorPos (ptCursorLast);
+  SetSelection (ptCursorLast, ptCursorLast);
+  SetAnchor (ptCursorLast);
 }
 
 void CCrystalTextView::
 PushCursor ()
 {
-  m_ptCursorLast = m_ptCursorPos;
+  m_ptCursorLast.x = m_ptCursorPos.x;
+  m_ptCursorLast.y = m_pTextBuffer->ComputeRealLineAndGhostAdjustment(m_ptCursorPos.y, m_ptCursorLast_nGhost);
 }
 
 DROPEFFECT CCrystalTextView::

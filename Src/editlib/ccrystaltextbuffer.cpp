@@ -1974,6 +1974,129 @@ int CCrystalTextBuffer::ComputeApparentLine(int nRealLine)
 }
 
 
+
+// return underlying real line and ghost adjustment as
+// nApparentLine = apparent(nRealLine) - nGhostAdjustment 
+// nRealLine for ghost lines is the NEXT HIGHER real line (for trailing ghost line, last real line + 1)
+// if nApparentLine is greater than the last valid apparent line, ASSERT
+// ie, lines 0->0, 1->2, 2->4,
+// for argument of 3, return 2, and decToReal = 1
+int CCrystalTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine, int& decToReal)
+{
+  int bmax = m_RealityBlocks.GetUpperBound();
+  // first get the degenerate cases out of the way
+  // empty file ?
+  if (bmax<0) 
+  {
+    decToReal = 0;
+    return 0;
+  }
+
+  // after last apparent line ?
+  ASSERT(nApparentLine < GetLineCount());
+
+  // after last block ?
+  RealityBlock & maxblock = m_RealityBlocks[bmax];
+  if (nApparentLine >= maxblock.nStartApparent + maxblock.nCount)
+  {
+    decToReal = GetLineCount() - nApparentLine;
+    return maxblock.nStartReal + maxblock.nCount;
+  }
+
+  // binary search to find correct (or nearest block)
+  int blo=0, bhi=bmax;
+  int i;
+  while (blo<=bhi)
+    {
+      i = (blo+bhi)/2;
+      RealityBlock & block = m_RealityBlocks[i];
+      if (nApparentLine < block.nStartApparent)
+        bhi = i-1;
+      else if (nApparentLine >= block.nStartApparent + block.nCount)
+        blo = i+1;
+      else // found it inside this block
+      {
+        decToReal = 0;
+        return (nApparentLine - block.nStartApparent) + block.nStartReal;
+      }
+    }
+  // it is a ghost line just before block blo
+  decToReal = m_RealityBlocks[blo].nStartApparent - nApparentLine;
+  return m_RealityBlocks[blo].nStartReal;
+}
+
+
+
+// return apparent line for this underlying real line, with adjustment
+// returns nApparent = apparent(nReal) - decToReal
+// if the previous real line has apparent number   apparent(nReal) - dec, with dec < decToReal,
+//   return apparent(nReal) - dec + 1
+int CCrystalTextBuffer::ComputeApparentLine(int nRealLine, int decToReal)
+{
+  int blo, bhi;
+  int nPreviousBlock;
+  int nApparent;
+  int bmax = m_RealityBlocks.GetUpperBound();
+  // first get the degenerate cases out of the way
+  // empty file ?
+  if (bmax<0)
+    return 0;
+  // after last block ?
+  RealityBlock & maxblock = m_RealityBlocks[bmax];
+  if (nRealLine >= maxblock.nStartReal + maxblock.nCount)
+  {
+    nPreviousBlock = bmax;
+    nApparent = GetLineCount();
+    goto limitWithPreviousBlock;
+  }
+
+  // binary search to find correct (or nearest block)
+  blo=0;
+  bhi=bmax;
+  int i;
+  while (blo<=bhi)
+    {
+      i = (blo+bhi)/2;
+      RealityBlock & block = m_RealityBlocks[i];
+      if (nRealLine < block.nStartReal)
+        bhi = i-1;
+      else if (nRealLine >= block.nStartReal + block.nCount)
+        blo = i+1;
+      else
+      {
+        if (nRealLine > block.nStartReal)
+          // limited by the previous line in this block
+          return (nRealLine - block.nStartReal) + block.nStartApparent;
+        nPreviousBlock = blo - 1;
+        nApparent = (nRealLine - block.nStartReal) + block.nStartApparent;
+        goto limitWithPreviousBlock;
+      }
+    }
+  // Should have found it; all real lines should be in a block
+  ASSERT(0);
+  return -1;
+
+limitWithPreviousBlock:
+  // we must keep above the value lastApparentInPreviousBlock
+  int lastApparentInPreviousBlock;
+  if (nPreviousBlock == -1)
+    lastApparentInPreviousBlock = -1;
+  else
+  {
+    RealityBlock & previousBlock = m_RealityBlocks[nPreviousBlock];
+    lastApparentInPreviousBlock = previousBlock.nStartApparent + previousBlock.nCount - 1;
+  }
+
+  while (decToReal --) 
+  {
+    nApparent --;
+    if (nApparent == lastApparentInPreviousBlock)
+      return nApparent+1;
+  }
+  return nApparent;
+}
+
+
 // Do what we need to do just after we've been reloaded
 void CCrystalTextBuffer::FinishLoading()
 {
@@ -2025,8 +2148,6 @@ inReality:
   ++reality;
   ++i;
   goto inReality;
-
-
 }
 
 

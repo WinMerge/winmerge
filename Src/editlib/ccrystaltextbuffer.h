@@ -382,6 +382,9 @@ public:
     int ApparentLastRealLine() const;
     int ComputeRealLine(int nApparentLine);
     int ComputeApparentLine(int nRealLine);
+    // richer position information   yApparent = apparent(yReal) - yGhost
+    int ComputeRealLineAndGhostAdjustment(int nApparentLine, int& decToReal);
+    int ComputeApparentLine(int nRealLine, int decToReal);
 
 
     void RecomputeRealityMapping();

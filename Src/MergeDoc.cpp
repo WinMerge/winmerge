@@ -1386,26 +1386,23 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 	CCrystalEditView* curView = dynamic_cast<CCrystalEditView*>(diffWnd->GetActiveView());
 
 	int nRescanResult = RESCAN_OK;
-	if(curView)
-	{
-		curView->PushCursor();
-		nRescanResult = Rescan(bForced);
-		UpdateAllViews(NULL);
-		curView->PopCursor();
+
+	m_pLeftView->PushCursor();
+	m_pRightView->PushCursor();
+
+	nRescanResult = Rescan(bForced);
+	UpdateAllViews(NULL);
+
+	m_pLeftView->PopCursor();
+	m_pRightView->PopCursor();
+
+	if (curView)
+		curView->EnsureVisible(curView->GetCursorPos());
+
 		// Show possible error after updating screen
 		if (nRescanResult != RESCAN_OK &&
 				nRescanResult != RESCAN_SUPPRESSED)
 			ShowRescanError(nRescanResult);
-	}
-	else
-	{
-		nRescanResult = Rescan(bForced);
-		UpdateAllViews(NULL);
-		// Show possible error after updating screen
-		if (nRescanResult != RESCAN_OK &&
-				nRescanResult != RESCAN_SUPPRESSED)
-			ShowRescanError(nRescanResult);
-	}
 }
 
 void CMergeDoc::OnFileSave() 
