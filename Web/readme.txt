@@ -2,6 +2,8 @@
  PATCH: [ 1078989 ] Add 'Powered by' images to webserver
   Web: page.inc
   Web\images: project-support.jpg sourceforge.png valid-css.gif valid-html401.gif removed redswirl.gif
+ PATCH: [ 1079132 ] Web: Add 'Languages' link to version 2.2
+  Web: page.inc
 
 2004-12-01 Tim
  RFE: [ 1069633 ] Info about submitting WinMerge to other sites
