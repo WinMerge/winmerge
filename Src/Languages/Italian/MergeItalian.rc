@@ -1831,8 +1831,8 @@ STRINGTABLE
 BEGIN
     IDS_DIR_RESULTS_EMPTIED "Gli attuali risultati del confronto tra cartelle verranno cancellati."
     IDS_NO_ZIP_SUPPORT      "Il supporto per gli archivi non è attivo.\n
-                            Nessuno dei componenti necessari (7-zip e/o Merge7z*.dll) per il supporto sono stati trovati.\n
-                            Guarda il manuale per ulteriori informazioni sugli archivi e come attivare il supporto per essi.."
+                            Nessuno dei componenti necessari (7-zip e/o Merge7z*.dll) per il supporto sono stati trovati.
+                            Guarda il manuale per ulteriori informazioni sugli archivi e come attivare il supporto per essi."
 END
 
 // LANGAGE NAMES #1

@@ -1,3 +1,7 @@
+2004-09-12 Kimmo
+ Fix Italian lang file build error and remove unneeded \n
+  Src/Languages/Italian: MergeItalian.rc
+
 2004-09-10 Kimmo
  PATCH: [ 1025411 ] Cleanup PropVSS.cpp
   Src: PropVss.cpp
