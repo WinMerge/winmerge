@@ -352,10 +352,10 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 		pRight->EnableRescan(m_bAutomaticRescan);
 
 		// set the document types
-		CString sname, sext;
-		SplitFilename(szLeft, 0, &sname, &sext);
+		CString sext;
+		SplitFilename(szLeft, 0, 0, &sext);
 		pLeft->SetTextType(sext);
-		SplitFilename(szRight, 0, &sname, &sext);
+		SplitFilename(szRight, 0, 0, &sext);
 		pRight->SetTextType(sext);
 
 		// SetTextType will revert to language dependent defaults for tab
@@ -505,7 +505,7 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 	// check if file is writeable
 	do
 	{
-		needCheck=FALSE;
+		needCheck = FALSE;
 		if (CFile::GetStatus(strSavePath, status))
 		{
 			if (status.m_attribute & CFile::Attribute::readOnly)
@@ -1639,7 +1639,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 		UINT wPathnameSize = DragQueryFile(dropInfo, x, NULL, 0);
 
 		// Allocate memory to contain full pathname & zero byte
-		char * npszFile = (char *) LocalAlloc(LPTR, wPathnameSize += 1);
+		LPTSTR npszFile = (TCHAR *) LocalAlloc(LPTR, wPathnameSize += 1);
 
 		// If not enough memory, skip this one
 		if (npszFile == NULL) continue;

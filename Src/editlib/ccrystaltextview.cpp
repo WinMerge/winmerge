@@ -841,9 +841,7 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
       CopyMemory(pszBuf, pszChars, sizeof(TCHAR) * nLength);
       nCurPos = nLength;
     }
-
-  pszBuf[nCurPos] = 0;
-  line.ReleaseBuffer();
+  line.ReleaseBuffer(nCurPos);
 }
 
 void CCrystalTextView::
@@ -4012,8 +4010,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                         {
                           LPTSTR pszBuf = item.GetBuffer (nLineLength + 1);
                           _tcsncpy (pszBuf, pszChars, nLineLength);
-                          pszBuf[nLineLength] = _T ('\0');
-                          item.ReleaseBuffer ();
+                          item.ReleaseBuffer (nLineLength);
                           line = item + line;
                         }
                     }
@@ -4056,7 +4053,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                   _tcsncpy (pszBuf, pszChars, nLineLength);
                   pszBuf[nLineLength] = _T ('\0');
 				*///END SW
-                  line.ReleaseBuffer ();
+                  line.ReleaseBuffer (ptCurrentPos.x + 1);
                   if ((dwFlags & FIND_MATCH_CASE) == 0)
                     line.MakeUpper ();
                 }
@@ -4165,8 +4162,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                         {
                           LPTSTR pszBuf = item.GetBuffer (nLineLength + 1);
                           _tcsncpy (pszBuf, pszChars, nLineLength);
-                          pszBuf[nLineLength] = _T ('\0');
-                          item.ReleaseBuffer ();
+                          item.ReleaseBuffer (nLineLength);
                           line += item;
                         }
                     }
@@ -4188,8 +4184,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                   //  Prepare necessary part of line
                   LPTSTR pszBuf = line.GetBuffer (nLineLength + 1);
                   _tcsncpy (pszBuf, pszChars, nLineLength);
-                  pszBuf[nLineLength] = _T ('\0');
-                  line.ReleaseBuffer ();
+                  line.ReleaseBuffer (nLineLength);
                   if ((dwFlags & FIND_MATCH_CASE) == 0)
                     line.MakeUpper ();
                 }
@@ -4198,10 +4193,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
               int nPos =::FindStringHelper (line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
               if (nPos >= 0)
                 {
-                  LPTSTR pszText = line.GetBuffer (nLineLength + 1);
-                  m_pszMatched = _tcsdup (pszText);
-                  line.ReleaseBuffer ();
-                  // m_sMatched = line.Mid (nPos);
+                  m_pszMatched = _tcsdup (line);
                   if (nEolns)
                     {
                       CString item = line.Left (nPos);
@@ -4295,9 +4287,8 @@ OnEditFind ()
         {
           LPCTSTR pszChars = GetLineChars (ptSelStart.y);
           int nChars = ptSelEnd.x - ptSelStart.x;
-          dlg.m_sText.Empty();
-          _tcsncpy (dlg.m_sText.GetBuffer (nChars), pszChars + ptSelStart.x, nChars);
-          dlg.m_sText.ReleaseBuffer ();
+		  _tcsncpy (dlg.m_sText.GetBuffer (nChars + 1), pszChars + ptSelStart.x, nChars);
+          dlg.m_sText.ReleaseBuffer (nChars);
         }
     }
   else

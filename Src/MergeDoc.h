@@ -100,7 +100,7 @@ public :
 				strLine.Empty(); 
 			else 
 			{ 
-				_tcsncpy ( strLine.GetBuffer( nLineLength ), 
+				_tcsncpy ( strLine.GetBuffer( nLineLength + 1 ), 
 					CCrystalTextBuffer::GetLineChars( nLineIndex ), 
 					nLineLength ); 
 				strLine.ReleaseBuffer( nLineLength ); 

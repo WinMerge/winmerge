@@ -1359,9 +1359,8 @@ ReplaceSelection (LPCTSTR pszNewText, DWORD dwFlags)
           if (lpszNewStr && m_nLastReplaceLen > 0)
             {
               LPTSTR buf = text.GetBuffer (m_nLastReplaceLen + 1);
-              _tcsncpy (buf, lpszNewStr, m_nLastReplaceLen + 1);
-              buf [m_nLastReplaceLen] = _T('\0');
-              text.ReleaseBuffer ();
+              _tcsncpy (buf, lpszNewStr, m_nLastReplaceLen);
+              text.ReleaseBuffer (m_nLastReplaceLen);
             }
           else
             text.Empty ();
@@ -1784,8 +1783,7 @@ OnEditAutoComplete ()
       LPTSTR pszBuffer = sText.GetBuffer (nLength + 2);
       *pszBuffer = _T('<');
       _tcsncpy (pszBuffer + 1, pszBegin, nLength);
-      pszBuffer[nLength + 1] = _T('\0');
-      sText.ReleaseBuffer ();
+      sText.ReleaseBuffer (nLength + 1);
       CPoint ptTextPos;
       ptCursorPos.x -= nLength;
       BOOL bFound = FindText (sText, ptCursorPos, FIND_MATCH_CASE|FIND_REGEXP|FIND_DIRECTION_UP, TRUE, &ptTextPos);
@@ -1803,8 +1801,7 @@ OnEditAutoComplete ()
           pszBuffer = sText.GetBuffer (nFound + 1);
           while (nFound-- && xisalnum (*pszText))
             *pszBuffer++ = *pszText++;
-          *pszBuffer = _T('\0');
-          sText.ReleaseBuffer ();
+          sText.ReleaseBuffer (nFound);
           if (!sText.IsEmpty ())
             {
               m_pTextBuffer->BeginUndoGroup ();
@@ -1848,8 +1845,7 @@ OnEditAutoExpand ()
       CString sText, sExpand;
       LPTSTR pszBuffer = sText.GetBuffer (nLength + 1);
       _tcsncpy (pszBuffer, pszBegin, nLength);
-      pszBuffer[nLength] = _T('\0');
-      sText.ReleaseBuffer ();
+      sText.ReleaseBuffer (nLength);
       CPoint ptTextPos;
       ptCursorPos.x -= nLength;
       BOOL bFound = m_mapExpand->Lookup (sText, sExpand);
@@ -2137,7 +2133,7 @@ OnEditSwapCase ()
       LPTSTR pszText = text.GetBuffer (nLen + 1);
       while (*pszText)
         *pszText++ = (TCHAR)(_istlower (*pszText) ? _totupper (*pszText) : _totlower (*pszText));
-      text.ReleaseBuffer ();
+      text.ReleaseBuffer (nLen);
 
       m_pTextBuffer->BeginUndoGroup ();
 
@@ -2202,7 +2198,7 @@ OnEditCapitalize ()
               *pszText = (TCHAR)_totlower (*pszText);
           pszText++;
         }
-      text.ReleaseBuffer ();
+      text.ReleaseBuffer (nLen);
 
       m_pTextBuffer->BeginUndoGroup ();
 
@@ -2271,7 +2267,7 @@ OnEditSentence ()
                 *pszText = (TCHAR)_totlower (*pszText);
           pszText++;
         }
-      text.ReleaseBuffer ();
+      text.ReleaseBuffer (nLen);
 
       m_pTextBuffer->BeginUndoGroup ();
 

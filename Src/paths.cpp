@@ -107,8 +107,6 @@ void paths_normalize(CString & sPath)
 	// remove any trailing slash
 	if (EndsWithSlash(sPath))
 		sPath.Delete(sPath.GetLength()-1);
-
-
 }
 
 // get long name (optionally terminate directories with slash)
@@ -255,14 +253,13 @@ PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight)
 //	http://users.southeast.net/~rhwarner
 CString ExpandShortcut(CString &inFile)
 {
-	CString outFile = "";
+	CString outFile;
 
     // Make sure we have a path
     ASSERT(inFile != _T(""));
 
     IShellLink* psl;
     HRESULT hres;
-    LPTSTR lpsz = inFile.GetBuffer(MAX_PATH);
 
     // Create instance for shell link
     hres = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER,
@@ -276,7 +273,7 @@ CString ExpandShortcut(CString &inFile)
         {
             // Make sure it's ANSI
             WORD wsz[MAX_PATH];
-            ::MultiByteToWideChar(CP_ACP, 0, lpsz, -1, wsz, MAX_PATH);
+            ::MultiByteToWideChar(CP_ACP, 0, inFile, -1, wsz, MAX_PATH);
 
             // Load shortcut
             hres = ppf->Load(wsz, STGM_READ);
@@ -294,8 +291,6 @@ CString ExpandShortcut(CString &inFile)
         }
         psl->Release();
     }
-
-	inFile.ReleaseBuffer();
 
 	// if this fails, outFile == ""
     return outFile;

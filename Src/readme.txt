@@ -1,3 +1,8 @@
+2003-05-26 Kimmo
+ PATCH: [ 743284 ] String fixes
+  WinMerge: DirDoc.cpp DirView.cpp MainFrm.cpp MergeDoc.h paths.cpp
+  editlib: ccrystaleditview.cpp ccrystaltextview.cpp registry.cpp
+
 2003-05-25 Kimmo
  PATCH: [ 742735 ] Fix CCrystalTextBuffer::InsertLine()
   edilib: ccrystaltextbuffer.cpp

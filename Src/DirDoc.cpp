@@ -486,31 +486,25 @@ void CDirDoc::SetDiffContext(CDiffContext *pCtxt)
 	m_pCtxt = pCtxt;
 }
 
-
-
 CString GetPathOnly( const CString& sString )
 {
 	int nIdx = sString.GetLength();
-
 	CString	sReturn;
 
-	while ( nIdx-- ) {
-
-		if ( sString.GetAt(nIdx) == '/' || sString.GetAt(nIdx) == '\\' ) {
-			if ( nIdx > 1 ) {
-				char* pszRet = sReturn.GetBufferSetLength( nIdx );
-				strncpy( pszRet, sString, nIdx );
-				pszRet[nIdx] = '\0';
-				sReturn.ReleaseBuffer();
+	while (nIdx--)
+	{
+		if (sString.GetAt(nIdx) == '/' || sString.GetAt(nIdx) == '\\')
+		{
+			if (nIdx > 1)
+			{
+				LPTSTR pszRet = sReturn.GetBufferSetLength(nIdx + 1);
+				strncpy(pszRet, sString, nIdx);
+				sReturn.ReleaseBuffer(nIdx);
 			}
 		}
 	}
-
 	return sReturn;
 }
-
-
-
 
 BOOL CDirDoc::UpdateItemStatus(LPCTSTR pathLeft, LPCTSTR pathRight,
 							   UINT status)

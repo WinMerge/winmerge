@@ -239,9 +239,8 @@ RegValGetString (const RegVal *pValData, CString &sString)
         || pValData->dwType == REG_LINK || pValData->dwType == REG_MULTI_SZ)
     {
       LPTSTR pszString = sString.GetBuffer (pValData->dwLength + 1);
-      memcpy (pszString, pValData->pszString, pValData->dwLength);
-      pszString [pValData->dwLength] = _T ('\0');
-      sString.ReleaseBuffer ();
+      CopyMemory (pszString, pValData->pszString, pValData->dwLength);
+      sString.ReleaseBuffer (pValData->dwLength);
       return true;
     }
   return false;

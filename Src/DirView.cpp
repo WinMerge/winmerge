@@ -241,7 +241,7 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 		ASSERT(pPopup != NULL);
 
 		// set the menu items with the proper directory names
-		CString s, sl, sr;
+		CString sl, sr;
 		GetSelectedDirNames(sl, sr);
 
 		// find non-child ancestor to use as menu parent
@@ -266,8 +266,7 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 // Make a string out of a number
 // TODO: Ought to introduce commas every three digits, except this is locale-specific
 // How to do this with locale sensitivity ?
-CString
-NumToStr(int n)
+CString NumToStr(int n)
 {
 	CString s;
 	s.Format(_T("%d"), n);
@@ -368,8 +367,6 @@ void CDirView::DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI, eMenuType menuType)
 		pCmdUI->SetText(s);
 	}
 }
-
-
 
 void CDirView::UpdateResources()
 {
@@ -477,10 +474,7 @@ void CDirView::OnDestroy()
 	}
 
 	CListViewEx::OnDestroy();
-	
 }
-
-
 
 void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
 {
@@ -612,6 +606,7 @@ void CDirView::DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI)
 	AfxFormatString2(s, IDS_DEL_RIGHT_FMT, NumToStr(count), NumToStr(total));
 	pCmdUI->SetText(s);
 }
+
 // Should Delete both be enabled or disabled ?
 void CDirView::DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI) 
 {
@@ -629,7 +624,6 @@ void CDirView::DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI)
 	AfxFormatString2(s, IDS_DEL_BOTH_FMT, NumToStr(count), NumToStr(total));
 	pCmdUI->SetText(s);
 }
-
 
 POSITION CDirView::GetItemKey(int idx)
 {
