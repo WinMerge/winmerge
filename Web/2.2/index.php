@@ -7,21 +7,21 @@
 <p>WinMerge is an Open Source visual text file differencing and merging tool for Win32 platforms. It is highly useful for determing what has changed between project versions, and then merging changes between versions.</p>
 <h2>Features</h2>
 <ul>
-  <li class="toc">Visual differencing and merging of text files</li>
-  <li class="toc">Flexible editor with syntax highlighting</li>
-  <li class="toc">Handles DOS, UNIX and MAC text file formats</li>
-  <li class="toc">Unicode support</li>
-  <li class="toc">Difference pane shows current difference in two vertical panes</li>
-  <li class="toc">Location pane shows map of files compared</li>
-  <li class="toc">In-line word difference visualisation</li>
-  <li class="toc">File filters in directory diff</li>
-  <li class="toc">Moved lines detection in file compare</li>
-  <li class="toc">Shell Integration</li>
-  <li class="toc">Rudimentary Visual SourceSafe and Rational ClearCase integration</li>
-  <li class="toc">Archive file support using 7-zip</li>
-  <li class="toc">Plugins</li>
-  <li class="toc">Localizable interface via resource DLL</li>
-  <li class="toc">HTML-based <a href="manual/index.html">Manual</a></li>
+  <li>Visual differencing and merging of text files</li>
+  <li>Flexible editor with syntax highlighting</li>
+  <li>Handles DOS, UNIX and MAC text file formats</li>
+  <li>Unicode support</li>
+  <li>Difference pane shows current difference in two vertical panes</li>
+  <li>Location pane shows map of files compared</li>
+  <li>In-line word difference visualisation</li>
+  <li>File filters in directory diff</li>
+  <li>Moved lines detection in file compare</li>
+  <li>Shell Integration</li>
+  <li>Rudimentary Visual SourceSafe and Rational ClearCase integration</li>
+  <li>Archive file support using 7-zip</li>
+  <li>Plugins</li>
+  <li>Localizable interface via resource DLL</li>
+  <li>HTML-based <a href="manual/index.html">Manual</a></li>
 </ul>
 
 <h2>Screenshot</h2>

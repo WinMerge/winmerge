@@ -8,20 +8,20 @@
 <p>WinMerge is an Open Source visual text file differencing and merging tool for Win32 platforms. It is highly useful for determing what has changed between project versions, and then merging changes between versions.</p>
 <h2>Features</h2>
 <ul>
-  <li class="toc">Visual differencing of text files
-  <li class="toc">Syntax highlighting
-  <li class="toc">Diff a single file, or entire directories
-  <li class="toc">File filters in directory diff
-  <li class="toc">Merge differences
-  <li class="toc">Directory recursion
-  <li class="toc">Integrated editor (with multi-level undo/redo)
-  <li class="toc">Find &amp; Replace
-  <li class="toc">Drag &amp; Drop support
-  <li class="toc">Option for integration with Windows Explorer
-  <li class="toc">Rudimentary Visual SourceSafe and Rational ClearCase integration
-  <li class="toc">Handles DOS, UNIX and MAC text file formats
-  <li class="toc">Localizable interface via resource DLL
-  <li class="toc">HTML-based <a href="docs/index.html">User's Guide</a></li>
+  <li>Visual differencing of text files</li>
+  <li>Syntax highlighting</li>
+  <li>Diff a single file, or entire directories</li>
+  <li>File filters in directory diff</li>
+  <li>Merge differences</li>
+  <li>Directory recursion</li>
+  <li>Integrated editor (with multi-level undo/redo)</li>
+  <li>Find &amp; Replace</li>
+  <li>Drag &amp; Drop support</li>
+  <li>Option for integration with Windows Explorer</li>
+  <li>Rudimentary Visual SourceSafe and Rational ClearCase integration</li>
+  <li>Handles DOS, UNIX and MAC text file formats</li>
+  <li>Localizable interface via resource DLL</li>
+  <li>HTML-based <a href="docs/index.html">User's Guide</a></li>
 </ul>
 
 <h2>Screenshot</h2>

@@ -4,6 +4,13 @@
   Web\1.7: index.php
   Web\2.0: index.php
   Web\2.2: index.php
+ PATCH: [ 1069679 ] Web: Remove class='toc'
+  Web: index.php
+  Web\2.0: index.php
+  Web\2.2: index.php
+  Web\css: all.css print.css
+  Web\developer: index.php needed.php
+  Web\developer\l10n: status.php
 
 2004-11-18 Tim
  PATCH: [ 1068542 ] Update Norwegian translation status

@@ -15,13 +15,13 @@ releases.</p>
 <h3>Maintained or unmaintained?</h3>
 <p>Translations are divided to four categories:</p>
 <ul>
-  <li class="toc"><b><a name="actively">Actively maintained</a></b> - translator(s) send frequent
+  <li><b><a name="actively">Actively maintained</a></b> - translator(s) send frequent
   updates</li>
-  <li class="toc"><b><a name="maintained">Maintained</a></b> - translator(s) (we hope) send updates
+  <li><b><a name="maintained">Maintained</a></b> - translator(s) (we hope) send updates
   when we ask</li>
-  <li class="toc"><b><a name="unmaintained">Unmaintained</a></b> - we haven't heard anything from
+  <li><b><a name="unmaintained">Unmaintained</a></b> - we haven't heard anything from
   translator(s)</li>
-  <li class="toc"><b><a name="unknown">Unknown</a></b> - we got update to latest stable but don't
+  <li><b><a name="unknown">Unknown</a></b> - we got update to latest stable but don't
   know if translator is still interested</li>
 </ul>
 

@@ -25,24 +25,24 @@ Then we will merge them back into the main codebase.</p>
 which will ultimately make all our lives easier:</p>
 
 <ul>
-  <li class="toc">Please consider that WinMerge is translated into
+  <li>Please consider that WinMerge is translated into
     multiple languages, so it is always better to keep UI changes to a
     minimum. Any addition of text to the UI means we have to go back
     to the translators.</li>
-  <li class="toc"><b>Do not</b> make trivial
+  <li><b>Do not</b> make trivial
     changes to existing code, such as deleting blanks, consolidating
     multi-line comments into single line comments, etc. This just adds
     a bunch of needless differences to the code. Besides, if every
     developer massaged the code to fit his/her style, it would be a
     never-ending struggle.</li>
-  <li class="toc">Please try to match existing coding style as
+  <li>Please try to match existing coding style as
     much as possible.</li>
-  <li class="toc">Please make sure to comment your work so we can
+  <li>Please make sure to comment your work so we can
     all understand what you've done (even though I didn't ;-) ).</li>
-  <li class="toc">Please don't make changes that don't relate to
+  <li>Please don't make changes that don't relate to
     the task at hand. If you come across other issues while handling a
     task, please submit them as bugs or patches.</li>
-  <li class="toc">Please don't make changes that aren't on the bug or RFE list;
+  <li>Please don't make changes that aren't on the bug or RFE list;
     if everyone just threw in everything they wanted, the product would
     become a hodge-podge.</li>
 </ul>
