@@ -1,3 +1,8 @@
+2004-11-09 Tim
+ BUG: [ 1061682 ] Links to 2.0 in 2.2 changelist page don't work
+  Web\2.0: changes.php
+  Web\2.2: changes.php
+
 2004-11-06 Kimmo
  PATCH: [ 1061441 ] Point homepage to 2.2RC3 download
   Web: index.php
