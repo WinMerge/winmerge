@@ -1,3 +1,7 @@
+2005-03-13 Kimmo
+ BUG: [ 1162374 ] Recent WinMerge doesn't support NT4
+  Src/Common: UniFile.cpp
+
 2005-03-13 Jochen
  BUG: [ 1162369 ] short path name problem
   Fix paths_GetLongPath(), which erroneously added trailing backslash when passing in short path.

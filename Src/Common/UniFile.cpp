@@ -3,7 +3,7 @@
  *  @author Perry Rapp, Creator, 2003-2005
  *  @author Kimmo Varis, 2004-2005
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-02-26 (Jochen Tucht)
+ *  @date   Edited:  2005-03-13 (Kimmo Varis)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -20,6 +20,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "UniFile.h"
 #include "unicoder.h"
 #include "codepage.h"
+#include "paths.h" // paths_GetLongPath()
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -76,8 +77,7 @@ bool UniLocalFile::DoGetFileStatus()
 	m_statusFetched = -1;
 	m_lastError.ClearError();
 
-	GetLongPathName(m_filepath, m_filepath.GetBuffer(MAX_PATH), MAX_PATH);
-	m_filepath.ReleaseBuffer();
+	m_filepath = paths_GetLongPath(m_filepath);
 
 	if (_tstati64(m_filepath, &fstats) == 0)
 	{
