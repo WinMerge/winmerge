@@ -58,6 +58,7 @@ DATE:		BY:					DESCRIPTION:
 2004/08/25	Jochen Tucht		More explicit error message
 2004/10/17	Jochen Tucht		Leave decision whether to recurse into folders
 								to enumerator (Mask.Recurse)
+2004/11/03	Jochen Tucht		FIX [1048997] as proposed by Kimmo 2004-11-02
 */
 
 // RCS ID line follows -- this is updated by CVS
@@ -223,7 +224,6 @@ int NTAPI HasZipSupport()
 		}
 		catch (CException *e)
 		{
-			e->ReportError(MB_ICONSTOP);
 			e->Delete();
 			HasZipSupport = 0;
 		}
@@ -430,19 +430,18 @@ interface Merge7z *Merge7z::Proxy::operator->()
 					e->Delete();
 				}
 			}
-			do
+			if (flags == ~0)
 			{
+				// 7-Zip not present: Fail silently.
 				static CSilentException *pSilentException = NULL;
-				if (pSilentException)
+				if (pSilentException == NULL)
 				{
-					// This is a subsequent call: Fail silenty.
-					throw pSilentException;
+					// Leave an intentional memory leak so the leak dump will
+					// reveal where the error occured.
+					pSilentException = new CSilentException;
 				}
-				// Create a CSilentException to be thrown on subsequent calls.
-				// Leave an intentional memory leak so the leak dump will
-				// reveal where the error occured.
-				pSilentException = new CSilentException;
-			} while (flags == ~0); // 7-Zip not present: Don't care about Merge7z.
+				throw pSilentException;
+			}
 			throw new C7ZipMismatchException
 			(
 				VersionOf7zInstalled(),

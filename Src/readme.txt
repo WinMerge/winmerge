@@ -1,6 +1,8 @@
 2004-11-09 Jochen
  PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
   Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+ PATCH: [ 1059604 ] Fix bug [1048997] archive popup interferes with Help menu
+  Src: 7zCommon.cpp
 
 2004-11-09 Perry
  PATCH: [ 1050329 ] readme-developers-InnoSetup.html
