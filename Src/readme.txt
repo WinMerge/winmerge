@@ -1,8 +1,10 @@
 2004-05-18 Perry
- continued-PATCH: [ 942021 ] Propose translation of language names
- Src/Languages: MergeBrazilian.rc MergeBulgarian.rc MergeCatalan.rc
-  MergeChineseSimplified.rc MergeChineseTraditional.rc
-  MergeKorean.rc MergeRussian.rc
+ PATCH: (continued) [ 942021 ] Propose translation of language names
+  Src/Languages: MergeBrazilian.rc MergeBulgarian.rc MergeCatalan.rc
+   MergeChineseSimplified.rc MergeChineseTraditional.rc
+   MergeKorean.rc MergeRussian.rc
+ BUG: [ 955550 ] Slovak rc file broken (typo)
+  Src/Languages: MergeSlovak.rc
   
 2004-05-17 Kimmo
  PATCH: [ 955411 ] Remove non-functional firstdiff selection
