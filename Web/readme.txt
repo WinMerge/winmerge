@@ -1,3 +1,9 @@
+2004-10-07 Christian
+ PATCH: [ 1038601 ] Web directory /2.2/
+  Submitted by Tim Gerundt
+  Web/2.2: All files added
+  Web: page.inc
+
 2004-09-30 Christian
  PATCH: [ 929401 ] New website structure
   Submitted by Tim Gerundt

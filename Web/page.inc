@@ -122,11 +122,16 @@
       $temp .= "  </a>\n";
       $temp .= "</p>\n";
       $temp .= "<p class=\"lefthead\"><a href=\"http://winmerge.org/index.php\">Users</a></p>\n";
-      if ($this->_version == WINMERGE_1_7) { //if WinMerge 1.7 ...
-        $temp .= "<p class=\"lefttext\"><a href=\"http://winmerge.org/1.7/docs/index.html\" target=\"_top\">WinMerge User's Guide</a><br>\n";
-      }
-      else { //if NOT WinMerge 1.7 ...
-        $temp .= "<p class=\"lefttext\"><a href=\"http://winmerge.org/docs20/index.html\" target=\"_top\">WinMerge User's Guide</a><br>\n";
+      switch ($this->_version) {
+        case WINMERGE_1_7: //if WinMerge 1.7 ...
+          $temp .= "<p class=\"lefttext\"><a href=\"/1.7/docs/index.html\">WinMerge User's Guide</a><br>\n";
+          break;
+        case WINMERGE_2_0: //if WinMerge 2.0 ...
+          $temp .= "<p class=\"lefttext\"><a href=\"/2.0/docs/index.html\">WinMerge User's Guide</a><br>\n";
+          break;
+        case WINMERGE_2_2: //if WinMerge 2.2 ...
+          $temp .= "<p class=\"lefttext\"><a href=\"/2.2/manual/index.html\">WinMerge Manual</a><br>\n";
+          break;
       }
       $temp .= "  <a href=\"http://sourceforge.net/mail/?group_id=13216\" target=\"_top\">Mailing Lists</a><br>\n";
       $temp .= "  <a href=\"http://sourceforge.net/forum/?group_id=13216\" target=\"_top\">Discussion Forums</a>\n";
@@ -134,11 +139,16 @@
       $temp .= "<p class=\"lefttext\">\n";
       $temp .= "  <a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216\" target=\"_top\">Submit a Bug Report</a><br>\n";
       $temp .= "  <a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216\" target=\"_top\">Submit a Feature Request</a><br>\n";
-      if ($this->_version == WINMERGE_1_7) { //if WinMerge 1.7 ...
-        $temp .= "  <a href=\"http://winmerge.org/1.7/changes.php\" target=\"_top\">Change History</a><br><br>\n";
-      }
-      else { //if NOT WinMerge 1.7 ...
-        $temp .= "  <a href=\"http://winmerge.org/2.0/changes.php\" target=\"_top\">Change History</a><br><br>\n";
+      switch ($this->_version) {
+        case WINMERGE_1_7: //if WinMerge 1.7 ...
+          $temp .= "  <a href=\"/1.7/changes.php\">Change History</a><br><br>\n";
+          break;
+        case WINMERGE_2_0: //if WinMerge 2.0 ...
+          $temp .= "  <a href=\"/2.0/changes.php\">Change History</a><br><br>\n";
+          break;
+        case WINMERGE_2_2: //if WinMerge 2.2 ...
+          $temp .= "  <a href=\"/2.2/changes.php\">Change History</a><br><br>\n";
+          break;
       }
       $temp .= "  <center><a href=\"http://sourceforge.net/donate/index.php?group_id=13216\" target=\"_top\">\n";
       $temp .= "    <img src=\"http://images.sourceforge.net/images/project-support.jpg\"\n";
@@ -154,30 +164,44 @@
       $temp .= "  <a href=\"http://winmerge.org/developer/translate.php\" target=\"_top\">Translate WinMerge!</a>\n";
       $temp .= "</p>\n";
       $temp .= "<p class=\"lefthead\">Downloads</p>\n";
-      if ($this->_version == WINMERGE_1_7) { //if WinMerge 1.7 ...
-        $temp .= "<p class=\"lefttext\">\n";
-        $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/WinMergeSetup.exe\" target=\"_top\">WinMerge Installer</a><br>\n";
-        $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/WinMergeDocs1_7.zip\" target=\"_top\">Documentation</a>\n";
-        $temp .= "</p>\n";
-        $temp .= "<p class=\"lefttext\">\n";
-        $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/MergeCzech.zip\">Czech DLL</a><br>\n";
-        $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/MergeDutch.zip\">Dutch DLL</a><br>\n";
-        $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/MergeFrench.zip\">French DLL</a><br>\n";
-        $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/MergeGerman.zip\">German DLL</a><br>\n";
-        $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/MergeItalian.zip\">Italian DLL</a><br>\n";
-        $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/MergeSpanish.zip\">Spanish DLL</a>\n";
-        $temp .= "</p>\n";
-      }
-      else { //if NOT WinMerge 1.7 ...
-        $temp .= "<p class=\"lefttext\">\n";
-        $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248\" target=\"_top\">WinMerge</a><br>\n";
-        $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403\" target=\"_top\">Language DLL's</a><br>\n";
-        $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254\" target=\"_top\">Documentation</a>\n";
-        $temp .= "</p>\n";
-        $temp .= "<p class=\"lefttext\">\n";
-        $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158\" target=\"_top\">WinMerge Beta builds</a><br>\n";
-        $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246\" target=\"_top\">WinMerge Experimental builds</a>\n";
-        $temp .= "</p>\n";
+      switch ($this->_version) {
+        case WINMERGE_1_7: //if WinMerge 1.7 ...
+          $temp .= "<p class=\"lefttext\">\n";
+          $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/WinMergeSetup.exe\">WinMerge Installer</a><br>\n";
+          $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/WinMergeDocs1_7.zip\">Documentation</a>\n";
+          $temp .= "</p>\n";
+          $temp .= "<p class=\"lefttext\">\n";
+          $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/MergeCzech.zip\">Czech DLL</a><br>\n";
+          $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/MergeDutch.zip\">Dutch DLL</a><br>\n";
+          $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/MergeFrench.zip\">French DLL</a><br>\n";
+          $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/MergeGerman.zip\">German DLL</a><br>\n";
+          $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/MergeItalian.zip\">Italian DLL</a><br>\n";
+          $temp .= "  <a href=\"http://download.sourceforge.net/winmerge/MergeSpanish.zip\">Spanish DLL</a>\n";
+          $temp .= "</p>\n";
+          break;
+        case WINMERGE_2_0: //if WinMerge 2.0 ...
+          $temp .= "<p class=\"lefttext\">\n";
+          $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248\">WinMerge</a><br>\n";
+          $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403\">Language DLL's</a><br>\n";
+          $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254\">Documentation</a>\n";
+          $temp .= "</p>\n";
+          $temp .= "<p class=\"lefttext\">\n";
+          $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158\">WinMerge Beta versions</a><br>\n";
+          $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246\">WinMerge Experimental builds</a>\n";
+          $temp .= "</p>\n";
+          break;
+        case WINMERGE_2_2: //if WinMerge 2.2 ...
+          $temp .= "<p class=\"lefttext\">\n";
+          $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&package_id=29158&release_id=273507\">WinMerge Release Candidate</a><br>\n";
+          //$temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248\">WinMerge</a><br>\n";
+          //$temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403\">Language DLL's</a><br>\n";
+          //$temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254\">Documentation</a>\n";
+          $temp .= "</p>\n";
+          $temp .= "<p class=\"lefttext\">\n";
+          $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158\">WinMerge Beta versions</a><br>\n";
+          $temp .= "  <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246\">WinMerge Experimental builds</a>\n";
+          $temp .= "</p>\n";
+          break;
       }
       $temp .= "<p align=\"center\">\n";
       $temp .= "  <a href=\"http://i3t.org/sponsorship/showaward.jsp?id=1595259\" target=\"_top\">\n";
