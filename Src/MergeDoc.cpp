@@ -294,7 +294,10 @@ BOOL CMergeDoc::Rescan()
 			script = diff_2_files (inf, depth, &diff_flag);
 
 			// throw the diff into a temp file
-			CString path = GetModulePath(NULL) + _T("\\Diff.txt");
+			char lpBuffer[MAX_PATH];       // path buffer
+			GetTempPath(MAX_PATH,lpBuffer);		// get path to Temp folder
+			CString path = CString(lpBuffer) + _T("Diff.txt");
+
 			outfile = fopen(path, "w+");
 			if (outfile != NULL)
 			{
