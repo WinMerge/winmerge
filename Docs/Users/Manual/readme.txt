@@ -8,6 +8,8 @@
  PATCH: [ 1021513 ] Docs: Improve Quickstart
   Manual: Quick_start.xml
   Manual/screenshots: OpenDlg1.gif
+ jade (parser) doesn't like '_' in entity names
+  Manual: WinMerge_help.xml
 
 2004-08-19 Kimmo
  PATCH: [ 1011283 ] Docs: Copy locale documentation from 2.0 docs
