@@ -1,6 +1,33 @@
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or (at
+//    your option) any later version.
+//    
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  files.cpp
+ *
+ * @brief Code file routines
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #include "stdafx.h"
 #include "files.h"
 
+/**
+ * @brief Open file as memory-mapped file
+ */
 BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 {
 	DWORD dwProtectFlag = 0;
@@ -83,6 +110,9 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 	return bSuccess;
 }
 
+/**
+ * @brief Close memory-mapped file
+ */
 BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush)
 {
 	BOOL bSuccess = TRUE;
@@ -116,9 +146,11 @@ BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush)
 	return bSuccess;
 }
 
-// Reads different EOL formats and returns length of EOL
-// This function is safe: it first checks that there are unread bytes,
-// so that we do not read past EOF
+/**
+ * @brief Reads different EOL formats and returns length of EOL
+ * @note This function is safe: it first checks that there are unread bytes,
+ * @note so that we do not read past EOF
+ */
 int files_readEOL(TCHAR *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive)
 {
 	int eolBytes = 0;
@@ -164,11 +196,14 @@ int files_readEOL(TCHAR *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive)
 	return eolBytes;
 }
 
+/**
+ * @brief Checks memory-mapped file for a binary data
+ * @note This does not work for UNICODE files
+ * @note as WinMerge is not compiled UNICODE enabled
+ */
 int files_binCheck(MAPPEDFILEDATA *fileData)
 {
 	// Use unsigned type for binary compare
-	// Note that this does not work for UNICODE files
-	// as WinMerge is not compiled UNICODE enabled
 	TBYTE *lpByte = (TBYTE *)fileData->pMapBase;
 	BOOL bBinary = FALSE;
 	DWORD dwBytesRead = 0;

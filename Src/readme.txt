@@ -2,6 +2,8 @@
  PATCH: [ 787495 ] Create diffutils class (CDiffWrapper)
   WinMerge: Merge.dsp MergeDoc.h MergeDoc.cpp
    Added: DiffWrapper.h DiffWrapper.cpp
+ Adding licence text and comments
+  WinMerge: files.h files.cpp
 
 2003-08-20 Perry
  PATCH: [ 791924 ] Fix sorting when columns are reordered
