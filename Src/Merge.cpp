@@ -66,6 +66,7 @@ BEGIN_MESSAGE_MAP(CMergeApp, CWinApp)
 	//{{AFX_MSG_MAP(CMergeApp)
 	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
 	ON_COMMAND(ID_VIEW_LANGUAGE, OnViewLanguage)
+	ON_COMMAND(ID_HELP, OnHelp)
 	//}}AFX_MSG_MAP
 	// Standard file based document commands
 	//ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
@@ -787,6 +788,13 @@ BOOL CMergeApp::includeDir(LPCTSTR szDirName)
 {
 	if (!m_fileFilterMgr || !m_currentFilter) return TRUE;
 	return m_fileFilterMgr->TestDirNameAgainstFilter(m_currentFilter, szDirName);
+}
+
+/** @brief Open help from mainframe when user presses F1*/
+void CMergeApp::OnHelp()
+{
+	if (mf)
+		mf->ShowHelp();
 }
 
 /** @brief Open Contributors.rtf */

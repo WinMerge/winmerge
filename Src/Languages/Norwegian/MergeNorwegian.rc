@@ -230,7 +230,7 @@ BEGIN
     END
     POPUP "&Hjelp"
     BEGIN
-        MENUITEM "&Innhold...",                 ID_HELP_CONTENTS
+        MENUITEM "&Innhold...\tF1",             ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM SEPARATOR

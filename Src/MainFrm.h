@@ -104,6 +104,7 @@ public:
 	void SelectFilter();
 	void GetFullVSSPath(CString strSavePath, BOOL & bVCProj);
 	void ShowVSSError(CException *e, CString strItem);
+	void ShowHelp();
 
 // Overrides
 	// ClassWizard generated virtual function overrides

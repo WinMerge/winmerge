@@ -2851,3 +2851,11 @@ void CMainFrame::ShowVSSError(CException *e, CString strItem)
 	else
 		e->ReportError(MB_ICONSTOP, IDS_VSS_RUN_ERROR);
 }
+
+/**
+ * @brief Show Help - this is for opening help from outside mainframe.
+ */
+void CMainFrame::ShowHelp()
+{
+	OnHelpContents();
+}

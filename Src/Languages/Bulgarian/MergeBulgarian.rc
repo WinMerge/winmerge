@@ -230,7 +230,7 @@ BEGIN
     END
     POPUP "&Помощ"
     BEGIN
-        MENUITEM "&Съдържание...",                ID_HELP_CONTENTS
+        MENUITEM "&Съдържание...\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "Настрои&ки...",           ID_HELP_GETCONFIG
         MENUITEM SEPARATOR
