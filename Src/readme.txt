@@ -4,6 +4,8 @@
  PATCH: [ 862040 ] CAssureScriptsForThread like WaitCursor
   WinMerge: DiffThread.cpp FileTransform.cpp Merge.cpp Merge.h
    MergeEditView.cpp Plugins.cpp Plugins.h SelectUnpackerDlg.cpp
+ PATCH: [ 860072 ] Allow singlethreaded diffs
+  WinMerge: DiffThread.cpp
 
 
 2004-01-08 Kimmo

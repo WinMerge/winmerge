@@ -30,6 +30,12 @@
 #include "Plugins.h"
 
 
+// Set this to true in order to single step
+// through entire compare process all in a single thread
+// Either edit this line, or breakpoint & change it in CompareDirectories() below
+static bool bSinglethreaded=false;
+
+
 /**
  * @brief Data sent to diff thread
  */
@@ -118,7 +124,16 @@ UINT CDiffThread::CompareDirectories(CString dir1, CString dir2, BOOL bRecursive
 	m_bAborting = FALSE;
 
 	m_pDiffParm->nThreadState = THREAD_COMPARING;
-	m_thread = AfxBeginThread(DiffThread, m_pDiffParm);
+
+	if (bSinglethreaded)
+	{
+		DiffThread(m_pDiffParm);
+	}
+	else
+	{
+		m_thread = AfxBeginThread(DiffThread, m_pDiffParm);
+	}
+
 	return 1;
 }
 
