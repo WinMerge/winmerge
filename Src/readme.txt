@@ -1,3 +1,5 @@
+2005-03-15 WinMerge beta 2.3.2.0 released
+
 2005-03-14 Kimmo
  BUG: [ 1154153 ] Poor font choice for default font
   Fix submitted by Takashi Sawanaka
