@@ -1,3 +1,15 @@
+2004-02-18 Jochen
+ PATCH: [ 889357 ] Attempt to improve DirScan speed
+  The VERIFY(::DeleteFile... ) in prepAndCompareTwoFiles() won't fire as long as
+  the gLog.m_nMaskLevel's LOGLEVEL::LSILENTVERIFY bit is set, which is the case
+  by default.
+  Common: logfile.cpp logfile.h
+  Src: stdafx.cpp stdafx.h Merge.rc resource.h Diff.cpp DiffContext.cpp
+   DiffContext.h DiffWrapper.cpp DiffWrapper.h DirCompStateBar.cpp
+   DirCompStateBar.h DirScan.cpp DirView.h DirViewColHandler.cpp
+   DirViewColItems.cpp DirViewColItems.h files.cpp FileTransform.h
+   stringdiffs.cpp
+
 2004-02-18 Kimmo
  BUG: [ 898745 ] Wrong result for folders (non-recursive compare)
   Src: DirViewColHandler.cpp
