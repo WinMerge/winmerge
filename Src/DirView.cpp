@@ -61,6 +61,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_DIR_COPY_FILE_TO_RIGHT, OnDirCopyFileToRight)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILE_TO_RIGHT, OnUpdateDirCopyFileToRight)
 	//}}AFX_MSG_MAP
+	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -389,4 +390,47 @@ BOOL CDirView::GetSelectedDirNames(CString& strLeft, CString& strRight)
 		strRight = path;
 	}
 	return bResult;
+}
+
+int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort)
+{
+	// initialize structures to obtain required information
+	CDirView* pView = reinterpret_cast<CDirView*>(lParamSort);
+	DIFFITEM lDi = pView->GetDocument()->m_pCtxt->m_dirlist.GetAt( reinterpret_cast<POSITION>(lParam1) );
+	DIFFITEM rDi = pView->GetDocument()->m_pCtxt->m_dirlist.GetAt( reinterpret_cast<POSITION>(lParam2) );
+
+	// compare 'left' and 'right' parameters as appropriate
+	int retVal = 0;		// initialize for default case
+	switch (pView->m_sortColumn)
+	{
+	case DV_NAME: // File name.
+		retVal = _tcscmp(lDi.filename, rDi.filename);
+		break;
+	case DV_PATH: // File Path.
+		retVal =  _tcscmp(lDi.lpath, rDi.lpath);
+		break;
+	case DV_STATUS: // Diff Status.
+		retVal = rDi.code-lDi.code;
+		break;
+	}
+	// return compare result, considering sort direction
+	return (pView->m_bSortAscending)?retVal:-retVal;
+}
+
+void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	// set sort parameters and handle ascending/descending
+	NM_LISTVIEW* pNMListView = (NM_LISTVIEW*) pNMHDR;
+	if(pNMListView->iSubItem==m_sortColumn)
+	{
+		m_bSortAscending = !m_bSortAscending;
+	}
+	else
+	{
+		m_bSortAscending = true;
+		m_sortColumn = pNMListView->iSubItem;
+	}
+	//sort using static CompareFunc comparison function
+	GetListCtrl ().SortItems (CompareFunc, reinterpret_cast<DWORD>(this));//pNMListView->iSubItem);
+	*pResult = 0;
 }

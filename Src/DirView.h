@@ -50,6 +50,7 @@ public:
 
 // Operations
 public:
+	static int CALLBACK CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
 	BOOL GetSelectedDirNames(CString& strLeft, CString& strRight);
 	void UpdateResources();
 	BOOL GetSelectedFileNames(CString& strLeft, CString& strRight);
@@ -74,6 +75,9 @@ protected:
 
 	// Generated message map functions
 protected:
+	bool m_bSortAscending;	// is currently sorted ascending.
+	int m_sortColumn;		// index to column which is sorted
+	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnContextMenu(CWnd*, CPoint point);
 	//{{AFX_MSG(CDirView)
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
