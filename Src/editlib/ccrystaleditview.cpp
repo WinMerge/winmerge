@@ -132,8 +132,8 @@ bool CCrystalEditView::
 DoSetTextType (TextDefinition *def)
 {
   m_CurSourceDef = def;
-  SetAutoIndent ((def->flags & SRCOPT_AUTOINDENT) != FALSE);
-  SetDisableBSAtSOL ((def->flags & SRCOPT_BSATBOL) == FALSE);
+  SetAutoIndent ((def->flags & SRCOPT_AUTOINDENT) != 0);
+  SetDisableBSAtSOL ((def->flags & SRCOPT_BSATBOL) == 0);
   m_mapExpand->RemoveAll ();
   CReg reg;
   CString sKey = REG_EDITPAD _T("\\");
