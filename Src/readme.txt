@@ -1,4 +1,6 @@
 2003-12-04 Laoran
+ BUG: [ 836868 ] Search and replace field size limited (apply to languages)
+  Languages : *.rc
  PATCH: [ 848476 ] Wrap end of file in replace dialog
   WinMerge: Merge.rc resource.h
   editlib: ccrystaleditview.cpp ccrystaltextview.h ceditreplacedlg.cpp ceditreplacedlg.h cfindtextdlg.h
