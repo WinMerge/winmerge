@@ -48,11 +48,11 @@ static char THIS_FILE[] = __FILE__;
 
 
 static LPCTSTR crlfs[] =
-  {
-    _T ("\x0d\x0a"), //  DOS/Windows style
-    _T ("\x0a"),     //  UNIX style
-    _T ("\x0d")      //  Macintosh style
-  };
+{
+	_T ("\x0d\x0a"), //  DOS/Windows style
+	_T ("\x0a"),     //  UNIX style
+	_T ("\x0d")      //  Macintosh style
+};
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
@@ -105,15 +105,15 @@ CMergeDoc::~CMergeDoc()
 
 void CMergeDoc::DeleteContents ()
 {
-  CDocument::DeleteContents ();
-  m_ltBuf.FreeAll ();
-  m_rtBuf.FreeAll ();
-  CleanupTempFiles();
+	CDocument::DeleteContents ();
+	m_ltBuf.FreeAll ();
+	m_rtBuf.FreeAll ();
+	CleanupTempFiles();
 }
 
 void CMergeDoc::OnFileEvent (WPARAM /*wEvent*/, LPCTSTR /*pszPathName*/)
 {
-  /*if (!(theApp.m_dwFlags & EP_NOTIFY_CHANGES))
+	/*if (!(theApp.m_dwFlags & EP_NOTIFY_CHANGES))
     return;
 	MessageBeep (MB_ICONEXCLAMATION);
 	CFrameWnd *pwndMain= (CFrameWnd*) theApp.GetMainWnd ();
@@ -175,8 +175,8 @@ BOOL CMergeDoc::OnNewDocument()
 	SetTitle(s);
 
 	
-    m_ltBuf.InitNew ();
-    m_rtBuf.InitNew ();
+	m_ltBuf.InitNew ();
+	m_rtBuf.InitNew ();
 	return TRUE;
 }
 
@@ -1021,54 +1021,6 @@ BOOL CMergeDoc::CDiffTextBuffer::FlagIsSet(UINT line, DWORD flag)
 	return ((m_aLines[line].m_dwFlags & flag) == flag);
 }
 
-// Get text of specified lines
-// (ghost lines will not contribute text)
-// CrystalTextBuffer::GetText() returns text including ghost lines
-UINT CMergeDoc::CDiffTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
-								 int nEndLine, int nEndChar, 
-								 CString &text, BOOL bLeft, int nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
-{
-	int lines = m_aLines.GetSize();
-	ASSERT(nStartLine >= 0 && nStartLine < lines);
-	ASSERT(nStartChar >= 0 && nStartChar <= GetLineLength(nStartLine));
-	ASSERT(nEndLine >= 0 && nEndLine < lines);
-	ASSERT(nEndChar >= 0 && nEndChar <= GetFullLineLength(nEndLine));
-	ASSERT(nStartLine < nEndLine || nStartLine == nEndLine && 
-		nStartChar < nEndChar);
-
-	// estimate size (upper bound)
-	int nBufSize = 0;
-	for (int i=nStartLine; i<=nEndLine; ++i)
-		nBufSize += (GetFullLineLength(i) + 2); // in case we insert EOLs
-	LPTSTR pszBuf = text.GetBuffer(nBufSize);
-
-	for (i=nStartLine; i<=nEndLine; ++i)
-	{
-		int soffset = (i==nStartLine ? nStartChar : 0);
-		int eoffset = (i==nEndLine ? nEndChar : GetFullLineLength(i));
-		int chars = eoffset - soffset;
-		// (Exclude ghost lines, also exclude last line if at position 0)
-		if (chars>0)
-		{
-			LPCTSTR szLine = m_aLines[i].m_pcLine + soffset;
-			CopyMemory(pszBuf, szLine, chars * sizeof(TCHAR));
-			pszBuf += chars;
-			if (i!=GetLineCount()-1 && GetLineLength(i)==GetFullLineLength(i))
-			{
-				// Oops, line lacks EOL
-				// (If this happens, editor probably has bug)
-				CString sEol = crlfs[nCrlfStyle];
-				CopyMemory(pszBuf, sEol, sEol.GetLength());
-				pszBuf += sEol.GetLength();
-			}
-		}
-	}
-	pszBuf[0] = 0;
-	text.ReleaseBuffer();
-	text.FreeExtra();
-	return text.GetLength();
-}
-
 
 // Try to determine current CRLF mode based on first line
 int CMergeDoc::CDiffTextBuffer::DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength)
@@ -1240,7 +1192,7 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	int nLastLength = GetFullLineLength(nLineCount-1);
 		
 	UINT nBufSize = GetTextWithoutEmptys(0, 0, nLineCount - 1,
-		nLastLength, text, m_bIsLeft, nCrlfStyle);
+		nLastLength, text, nCrlfStyle);
 	
 	if (!pszFileName)
 		return FALSE;	// No filename, cannot save...

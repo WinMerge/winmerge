@@ -72,12 +72,11 @@ class CMergeDoc : public CDocument
 {
 // Attributes
 public:
-	public :
 class CDiffTextBuffer : public CCrystalTextBuffer
-      {
-friend class CMergeDoc;
+	{
+		friend class CMergeDoc;
 private :
-        CMergeDoc * m_pOwnerDoc;
+		CMergeDoc * m_pOwnerDoc;
 		BOOL m_bIsLeft;
 		BOOL FlagIsSet(UINT line, DWORD flag);
 		CString m_strTempPath;
@@ -90,8 +89,6 @@ public :
 		void ReplaceLine(int nLine, const CString& strText);
 		void ReplaceFullLine(int nLine, const CString& strText);
 
-		UINT GetTextWithoutEmptys(int nStartLine, int nStartChar, int nEndLine, int nEndChar, 
-				CString &text, BOOL bLeft, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
 		BOOL LoadFromFile(LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
 		BOOL SaveToFile (LPCTSTR pszFileName, BOOL bTempFile,
 				int nCrlfStyle = CRLF_STYLE_AUTOMATIC, 
@@ -140,14 +137,14 @@ public :
 			CCrystalTextBuffer::InsertLine(pszLine, nLength, nPosition);
 		}
 
-      };
+	};
 
 // End declaration of CMergeDoc::CDiffTextBuffer
 
 // Begin declaration of CMergeDoc
 
-    CDiffTextBuffer m_ltBuf;
-    CDiffTextBuffer m_rtBuf;
+	CDiffTextBuffer m_ltBuf;
+	CDiffTextBuffer m_rtBuf;
 
 protected: // create from serialization only
 	CMergeDoc();
@@ -211,7 +208,7 @@ public:
 	int GetCurrentDiff() { return m_nCurDiff; }
 	UINT CountPrevBlanks(UINT nCurLine, BOOL bLeft);
 	virtual ~CMergeDoc();
-  	virtual void OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName);
+	virtual void OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName);
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

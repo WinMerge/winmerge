@@ -316,9 +316,9 @@ FreeAll ()
   // Undo buffer will be cleared by its destructor
 
   m_bInit = FALSE;
-	//BEGIN SW
-	m_ptLastChange.x = m_ptLastChange.y = -1;
-	//END SW
+  //BEGIN SW
+  m_ptLastChange.x = m_ptLastChange.y = -1;
+  //END SW
 }
 
 BOOL CCrystalTextBuffer::
@@ -339,9 +339,9 @@ InitNew (int nCrlfStyle /*= CRLF_STYLE_DOS*/ )
   m_nUndoBufSize = UNDO_BUF_SIZE;
   ASSERT (m_aUndoBuf.GetSize () == 0);
   UpdateViews (NULL, NULL, UPDATE_RESET);
-	//BEGIN SW
-	m_ptLastChange.x = m_ptLastChange.y = -1;
-	//END SW
+  //BEGIN SW
+  m_ptLastChange.x = m_ptLastChange.y = -1;
+  //END SW
   return TRUE;
 }
 
@@ -377,147 +377,147 @@ static LPCTSTR crlfs[] =
 BOOL CCrystalTextBuffer::
 LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 {
-	ASSERT (!m_bInit);
-	ASSERT (m_aLines.GetSize () == 0);
+  ASSERT (!m_bInit);
+  ASSERT (m_aLines.GetSize () == 0);
 
-	HANDLE hFile = NULL;
-	int nCurrentMax = 256;
-	LPTSTR pcLineBuf = new TCHAR[nCurrentMax];
+  HANDLE hFile = NULL;
+  int nCurrentMax = 256;
+  LPTSTR pcLineBuf = new TCHAR[nCurrentMax];
 
-	BOOL bSuccess = FALSE;
+  BOOL bSuccess = FALSE;
 
-	int nExt = GetExtPosition (pszFileName);
-	if (pszFileName[nExt] == _T ('.'))
-		nExt++;
-	CCrystalTextView::TextDefinition *def = CCrystalTextView::GetTextType (pszFileName + nExt);
-	if (def && def->encoding != -1)
-		m_nSourceEncoding = def->encoding;
+  int nExt = GetExtPosition (pszFileName);
+  if (pszFileName[nExt] == _T ('.'))
+    nExt++;
+  CCrystalTextView::TextDefinition *def = CCrystalTextView::GetTextType (pszFileName + nExt);
+  if (def && def->encoding != -1)
+    m_nSourceEncoding = def->encoding;
 
-	__try
-	{
-		DWORD dwFileAttributes =::GetFileAttributes (pszFileName);
-		if (dwFileAttributes == (DWORD) - 1)
-			__leave;
+  __try
+    {
+      DWORD dwFileAttributes =::GetFileAttributes (pszFileName);
+      if (dwFileAttributes == (DWORD) - 1)
+        __leave;
 
-		hFile =::CreateFile (pszFileName, GENERIC_READ, FILE_SHARE_READ + FILE_SHARE_WRITE, NULL,
-			OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL);
-		if (hFile == INVALID_HANDLE_VALUE)
-			__leave;
+      hFile =::CreateFile (pszFileName, GENERIC_READ, FILE_SHARE_READ + FILE_SHARE_WRITE, NULL,
+        OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL);
+      if (hFile == INVALID_HANDLE_VALUE)
+        __leave;
 
-        int nCurrentLength = 0;
+      int nCurrentLength = 0;
 
-        const DWORD dwBufSize = 32768;
-        LPTSTR pcBuf = (LPTSTR) _alloca (dwBufSize);
-        DWORD dwCurSize;
-        if (!::ReadFile (hFile, pcBuf, dwBufSize, &dwCurSize, NULL))
-			__leave;
+      const DWORD dwBufSize = 32768;
+      LPTSTR pcBuf = (LPTSTR) _alloca (dwBufSize);
+      DWORD dwCurSize;
+      if (!::ReadFile (hFile, pcBuf, dwBufSize, &dwCurSize, NULL))
+        __leave;
 
-		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-		{
-			//  Try to determine current CRLF mode based on first line
-			for (DWORD I = 0; I < dwCurSize; I++)
-			{
-				if ((pcBuf[I] == _T('\x0d')) || (pcBuf[I] == _T('\x0a')))
-                    break;
-			}
-			if (I == dwCurSize)
-			{
-				//  By default (or in the case of empty file), set DOS style
-				nCrlfStyle = CRLF_STYLE_DOS;
-			}
-			else
-			{
-				//  Otherwise, analyse the first occurance of line-feed character
-				if (pcBuf[I] == _T('\x0a'))
-				{
-					nCrlfStyle = CRLF_STYLE_UNIX;
-				}
-				else
-				{
-					if (I < dwCurSize - 1 && pcBuf[I + 1] == _T ('\x0a'))
-                        nCrlfStyle = CRLF_STYLE_DOS;
-					else
-                        nCrlfStyle = CRLF_STYLE_MAC;
-				}
-			}
-		}
+      if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+        {
+          //  Try to determine current CRLF mode based on first line
+          for (DWORD I = 0; I < dwCurSize; I++)
+            {
+              if ((pcBuf[I] == _T('\x0d')) || (pcBuf[I] == _T('\x0a')))
+                break;
+            }
+          if (I == dwCurSize)
+            {
+              //  By default (or in the case of empty file), set DOS style
+              nCrlfStyle = CRLF_STYLE_DOS;
+            }
+          else
+            {
+              //  Otherwise, analyse the first occurance of line-feed character
+              if (pcBuf[I] == _T('\x0a'))
+                {
+                  nCrlfStyle = CRLF_STYLE_UNIX;
+                }
+              else
+                {
+                  if (I < dwCurSize - 1 && pcBuf[I + 1] == _T ('\x0a'))
+                    nCrlfStyle = CRLF_STYLE_DOS;
+                  else
+                    nCrlfStyle = CRLF_STYLE_MAC;
+                }
+            }
+        }
 
-		ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
-		m_nCRLFMode = nCrlfStyle;
+      ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
+      m_nCRLFMode = nCrlfStyle;
 
-		m_aLines.SetSize (0, 4096);
+      m_aLines.SetSize (0, 4096);
 
-		DWORD dwBufPtr = 0;
-		while (dwBufPtr < dwCurSize)
-		{
-			TCHAR c = pcBuf[dwBufPtr];
-			dwBufPtr++;
-			if (dwBufPtr == dwCurSize && dwCurSize == dwBufSize)
-			{
-				if (!::ReadFile (hFile, pcBuf, dwBufSize, &dwCurSize, NULL))
-					__leave;
-				dwBufPtr = 0;
-			}
+      DWORD dwBufPtr = 0;
+      while (dwBufPtr < dwCurSize)
+        {
+          TCHAR c = pcBuf[dwBufPtr];
+          dwBufPtr++;
+          if (dwBufPtr == dwCurSize && dwCurSize == dwBufSize)
+            {
+              if (!::ReadFile (hFile, pcBuf, dwBufSize, &dwCurSize, NULL))
+                __leave;
+              dwBufPtr = 0;
+            }
 
-			pcLineBuf[nCurrentLength] = c;
-			nCurrentLength++;
-			if (nCurrentLength == nCurrentMax)
-			{
-				//  Reallocate line buffer
-				nCurrentMax += 256;
-				LPTSTR pcNewBuf = new TCHAR[nCurrentMax];
-				memcpy (pcNewBuf, pcLineBuf, nCurrentLength);
-				delete[] pcLineBuf;
-				pcLineBuf = pcNewBuf;
-			}
+          pcLineBuf[nCurrentLength] = c;
+          nCurrentLength++;
+          if (nCurrentLength == nCurrentMax)
+            {
+              //  Reallocate line buffer
+              nCurrentMax += 256;
+              LPTSTR pcNewBuf = new TCHAR[nCurrentMax];
+              memcpy (pcNewBuf, pcLineBuf, nCurrentLength);
+              delete[] pcLineBuf;
+              pcLineBuf = pcNewBuf;
+            }
 
-			// detect both types of EOL for each line
-			// handles mixed mode files.
-			// Perry (2002-11-26): What about MAC files ? They don't have 0x0A at all. I think this doesn't handle them.
-			if( c==0x0A )
-			{
-				// 2002-11-26  Perry fixed bug & added optional sensitivity to CR
-				// remove EOL characters
-				if (!m_EolSensitive && nCurrentLength>1)
-				{
-					TCHAR prevChar = pcLineBuf[nCurrentLength-2];
-					pcLineBuf[nCurrentLength - (prevChar==0x0D?2:1) ] = '\0';
-				}
-				else
-				{
-					pcLineBuf[nCurrentLength - 1] = '\0';
-				}
-				nCurrentLength = 0;
-				if (m_nSourceEncoding >= 0)
-					iconvert (pcLineBuf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
-				InsertLine (pcLineBuf);
-			}
-		}
+          // detect both types of EOL for each line
+          // handles mixed mode files.
+          // Perry (2002-11-26): What about MAC files ? They don't have 0x0A at all. I think this doesn't handle them.
+          if( c==0x0A )
+            {
+              // 2002-11-26  Perry fixed bug & added optional sensitivity to CR
+              // remove EOL characters
+              if (!m_EolSensitive && nCurrentLength>1)
+                {
+                  TCHAR prevChar = pcLineBuf[nCurrentLength-2];
+                  pcLineBuf[nCurrentLength - (prevChar==0x0D?2:1) ] = '\0';
+                }
+              else
+                {
+                  pcLineBuf[nCurrentLength - 1] = '\0';
+                }
+              nCurrentLength = 0;
+              if (m_nSourceEncoding >= 0)
+                iconvert (pcLineBuf, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
+              InsertLine (pcLineBuf);
+            }
+        }
 
-		pcLineBuf[nCurrentLength] = 0;
-		InsertLine (pcLineBuf);
+      pcLineBuf[nCurrentLength] = 0;
+      InsertLine (pcLineBuf);
 
-		ASSERT (m_aLines.GetSize () > 0);   //  At least one empty line must present
+      ASSERT (m_aLines.GetSize () > 0);   //  At least one empty line must present
 
-		m_bInit = TRUE;
-		m_bReadOnly = (dwFileAttributes & FILE_ATTRIBUTE_READONLY) != 0;
-		m_bModified = FALSE;
-		m_bUndoGroup = m_bUndoBeginGroup = FALSE;
-		m_nUndoBufSize = UNDO_BUF_SIZE;
-		m_nSyncPosition = m_nUndoPosition = 0;
-		ASSERT (m_aUndoBuf.GetSize () == 0);
-		bSuccess = TRUE;
+      m_bInit = TRUE;
+      m_bReadOnly = (dwFileAttributes & FILE_ATTRIBUTE_READONLY) != 0;
+      m_bModified = FALSE;
+      m_bUndoGroup = m_bUndoBeginGroup = FALSE;
+      m_nUndoBufSize = UNDO_BUF_SIZE;
+      m_nSyncPosition = m_nUndoPosition = 0;
+      ASSERT (m_aUndoBuf.GetSize () == 0);
+      bSuccess = TRUE;
 
-		RetypeViews (pszFileName);
-		UpdateViews (NULL, NULL, UPDATE_RESET);
-  }
+      RetypeViews (pszFileName);
+      UpdateViews (NULL, NULL, UPDATE_RESET);
+    }
   __finally
-  {
-	  if (pcLineBuf != NULL)
-		  delete[] pcLineBuf;
-  }
+    {
+      if (pcLineBuf != NULL)
+        delete[] pcLineBuf;
+    }
   if (hFile != NULL && hFile != INVALID_HANDLE_VALUE)
-	  ::CloseHandle (hFile);
+    ::CloseHandle (hFile);
   //BEGIN SW
   m_ptLastChange.x = m_ptLastChange.y = -1;
   //END SW
@@ -528,8 +528,8 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 // WinMerge has own routine for saving
 #if 0
 BOOL CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
-									int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
-									BOOL bClearModifiedFlag /*= TRUE*/)
+                  int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
+                  BOOL bClearModifiedFlag /*= TRUE*/)
 {
   ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
           nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
@@ -792,10 +792,10 @@ SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet, BOOL bRemoveFromPreviousLine /*
   DWORD dwNewFlags = m_aLines[nLine].m_dwFlags;
   if (bSet)
   {
-	  if (dwFlag==0)
-		  dwNewFlags=0;
-	  else
-		dwNewFlags = dwNewFlags | dwFlag;
+    if (dwFlag==0)
+      dwNewFlags=0;
+    else
+    dwNewFlags = dwNewFlags | dwFlag;
   }
   else
     dwNewFlags = dwNewFlags & ~dwFlag;
@@ -811,8 +811,8 @@ SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet, BOOL bRemoveFromPreviousLine /*
                 {
                   ASSERT ((m_aLines[nPrevLine].m_dwFlags & dwFlag) != 0);
                   m_aLines[nPrevLine].m_dwFlags &= ~dwFlag;
-				  if (bUpdate)
-					UpdateViews (NULL, NULL, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nPrevLine);
+          if (bUpdate)
+          UpdateViews (NULL, NULL, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nPrevLine);
                 }
             }
           else
@@ -823,9 +823,59 @@ SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet, BOOL bRemoveFromPreviousLine /*
 
       m_aLines[nLine].m_dwFlags = dwNewFlags;
       if (bUpdate)
-		  UpdateViews (NULL, NULL, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nLine);
+      UpdateViews (NULL, NULL, UPDATE_SINGLELINE | UPDATE_FLAGSONLY, nLine);
     }
 }
+
+
+// Get text of specified lines
+// (ghost lines will not contribute text)
+// CrystalTextBuffer::GetText() returns text including ghost lines
+UINT CCrystalTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
+                 int nEndLine, int nEndChar, 
+                 CString &text, int nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
+{
+  int lines = m_aLines.GetSize();
+  ASSERT(nStartLine >= 0 && nStartLine < lines);
+  ASSERT(nStartChar >= 0 && nStartChar <= GetLineLength(nStartLine));
+  ASSERT(nEndLine >= 0 && nEndLine < lines);
+  ASSERT(nEndChar >= 0 && nEndChar <= GetFullLineLength(nEndLine));
+  ASSERT(nStartLine < nEndLine || nStartLine == nEndLine && 
+    nStartChar < nEndChar);
+
+  // estimate size (upper bound)
+  int nBufSize = 0;
+  for (int i=nStartLine; i<=nEndLine; ++i)
+    nBufSize += (GetFullLineLength(i) + 2); // in case we insert EOLs
+  LPTSTR pszBuf = text.GetBuffer(nBufSize);
+
+  for (i=nStartLine; i<=nEndLine; ++i)
+    {
+      int soffset = (i==nStartLine ? nStartChar : 0);
+      int eoffset = (i==nEndLine ? nEndChar : GetFullLineLength(i));
+      int chars = eoffset - soffset;
+      // (Exclude ghost lines, also exclude last line if at position 0)
+      if (chars>0)
+        {
+          LPCTSTR szLine = m_aLines[i].m_pcLine + soffset;
+          CopyMemory(pszBuf, szLine, chars * sizeof(TCHAR));
+          pszBuf += chars;
+		    	if (i!=GetLineCount()-1 && GetLineLength(i)==GetFullLineLength(i))
+            {
+              // Oops, real line lacks EOL
+              // (If this happens, editor probably has bug)
+              CString sEol = GetStringEol (nCrlfStyle);
+              CopyMemory(pszBuf, sEol, sEol.GetLength());
+              pszBuf += sEol.GetLength();
+            }
+        }
+    }
+  pszBuf[0] = 0;
+  text.ReleaseBuffer();
+  text.FreeExtra();
+  return text.GetLength();
+}
+
 
 void CCrystalTextBuffer::
 GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & text, LPCTSTR pszCRLF /*= NULL*/ )
@@ -987,7 +1037,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, 
       if (nRestCount > 0)
         {
           sTail = m_aLines[nEndLine].m_pcLine + nEndChar;
-	   ASSERT(sTail.GetLength() == nRestCount);
+     ASSERT(sTail.GetLength() == nRestCount);
         }
 
       int nDelCount = nEndLine - nStartLine;
@@ -1003,16 +1053,16 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, 
           AppendLine (nStartLine, sTail, nRestCount);
         }
 
-	  if (pSource!=NULL)
-		UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nStartLine);
+    if (pSource!=NULL)
+    UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nStartLine);
     }
 
   if (!m_bModified)
     SetModified (TRUE);
-	//BEGIN SW
-	// remember current cursor position as last editing position
-	m_ptLastChange = context.m_ptStart;
-	//END SW
+  //BEGIN SW
+  // remember current cursor position as last editing position
+  m_ptLastChange = context.m_ptStart;
+  //END SW
 
   if (nRealStart != nRealEnd)
   {
@@ -1117,7 +1167,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
               nEndLine = nCurrentLine;
               nEndChar = GetLineLength(nEndLine);
             }
-	   if (!sTail.IsEmpty())
+     if (!sTail.IsEmpty())
             {
               if (haseol)
                 InsertLine(sTail, -1, nEndLine);
@@ -1129,7 +1179,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
                  // We left cursor after last screen line
                  // which is an illegal cursor position
                  // so manufacture a new trailing ghost line
-		   InsertLine(_T(""));
+       InsertLine(_T(""));
             }
           break;
         }
@@ -1149,18 +1199,18 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
 
   if (pSource!=NULL)
   {
-	  if (bNewLines)
-		UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nLine);
-	  else
-		UpdateViews (pSource, &context, UPDATE_SINGLELINE | UPDATE_HORZRANGE, nLine);
+    if (bNewLines)
+    UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nLine);
+    else
+    UpdateViews (pSource, &context, UPDATE_SINGLELINE | UPDATE_HORZRANGE, nLine);
   }
 
   if (!m_bModified)
     SetModified (TRUE);
-	//BEGIN SW
-	// remember current cursor position as last editing position
-	m_ptLastChange = context.m_ptEnd;
-	//END SW
+  //BEGIN SW
+  // remember current cursor position as last editing position
+  m_ptLastChange = context.m_ptEnd;
+  //END SW
   return TRUE;
 }
 
@@ -1431,6 +1481,16 @@ static BOOL HasEol(LPCTSTR szText)
   return (len && iseol(szText[len-1]));
 }
 
+LPCTSTR CCrystalTextBuffer::GetStringEol(int nCRLFMode) const
+{
+  switch(nCRLFMode)
+  {
+  case CRLF_STYLE_DOS: return _T("\r\n");
+  case CRLF_STYLE_UNIX: return _T("\n");
+  case CRLF_STYLE_MAC: return _T("\r");
+  default: return _T("\r\n");
+  }
+}
 LPCTSTR CCrystalTextBuffer::GetDefaultEol() const
 {
   switch(m_nCRLFMode)
@@ -1704,7 +1764,7 @@ IsMBSTrail (int nLine, int nCol)
 //BEGIN SW
 CPoint CCrystalTextBuffer::GetLastChangePos() const
 {
-	return m_ptLastChange;
+  return m_ptLastChange;
 }
 //END SW
 

@@ -30,7 +30,7 @@ CMergeEditView::CMergeEditView()
 	m_nModifications = 0;
 	m_piMergeEditStatus = 0;
 	SetParser(&m_xParser);
-  	m_bAutomaticRescan = FALSE;
+	m_bAutomaticRescan = FALSE;
 }
 
 CMergeEditView::~CMergeEditView()
@@ -240,11 +240,11 @@ void CMergeEditView::UpdateSiblingScrollPos (BOOL bHorz)
 {
 	CSplitterWnd *pSplitterWnd = GetParentSplitter (this, FALSE);
 	if (pSplitterWnd != NULL)
-    {
-        //  See CSplitterWnd::IdFromRowCol() implementation for details
-        int nCurrentRow = (GetDlgCtrlID () - AFX_IDW_PANE_FIRST) / 16;
-        int nCurrentCol = (GetDlgCtrlID () - AFX_IDW_PANE_FIRST) % 16;
-        ASSERT (nCurrentRow >= 0 && nCurrentRow < pSplitterWnd->GetRowCount ());
+	{
+		//  See CSplitterWnd::IdFromRowCol() implementation for details
+		int nCurrentRow = (GetDlgCtrlID () - AFX_IDW_PANE_FIRST) / 16;
+		int nCurrentCol = (GetDlgCtrlID () - AFX_IDW_PANE_FIRST) % 16;
+		ASSERT (nCurrentRow >= 0 && nCurrentRow < pSplitterWnd->GetRowCount ());
 		ASSERT (nCurrentCol >= 0 && nCurrentCol < pSplitterWnd->GetColumnCount ());
 
 		int nRows = pSplitterWnd->GetRowCount ();
@@ -266,40 +266,40 @@ void CMergeEditView::UpdateSiblingScrollPos (BOOL bHorz)
 
 void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz)
 {
-  if (pUpdateSource != this)
-    {
-      ASSERT (pUpdateSource != NULL);
-      ASSERT_KINDOF (CCrystalTextView, pUpdateSource);
-	  CMergeEditView *pSrcView = static_cast<CMergeEditView*>(pUpdateSource);
-      if (!bHorz)  // changed this so bHorz works right
-        {
-          ASSERT (pSrcView->m_nTopLine >= 0);
+	if (pUpdateSource != this)
+	{
+		ASSERT (pUpdateSource != NULL);
+		ASSERT_KINDOF (CCrystalTextView, pUpdateSource);
+		CMergeEditView *pSrcView = static_cast<CMergeEditView*>(pUpdateSource);
+		if (!bHorz)  // changed this so bHorz works right
+		{
+			ASSERT (pSrcView->m_nTopLine >= 0);
 
-		  // This ASSERT is wrong: panes have different files and
-		  // different linecounts
-          // ASSERT (pSrcView->m_nTopLine < GetLineCount ());
-          if (pSrcView->m_nTopLine != m_nTopLine)
-            {
-              ScrollToLine (pSrcView->m_nTopLine, TRUE, FALSE);
-              UpdateCaret ();
-			  RecalcVertScrollBar(TRUE);
-            }
-        }
-      else
-        {
-          ASSERT (pSrcView->m_nOffsetChar >= 0);
+			// This ASSERT is wrong: panes have different files and
+			// different linecounts
+			// ASSERT (pSrcView->m_nTopLine < GetLineCount ());
+			if (pSrcView->m_nTopLine != m_nTopLine)
+			{
+				ScrollToLine (pSrcView->m_nTopLine, TRUE, FALSE);
+				UpdateCaret ();
+				RecalcVertScrollBar(TRUE);
+			}
+		}
+		else
+		{
+			ASSERT (pSrcView->m_nOffsetChar >= 0);
 
-		  // This ASSERT is wrong: panes have different files and
-		  // different linelengths
-          // ASSERT (pSrcView->m_nOffsetChar < GetMaxLineLength ());
-          if (pSrcView->m_nOffsetChar != m_nOffsetChar)
-            {
-              ScrollToChar (pSrcView->m_nOffsetChar, TRUE, FALSE);
-              UpdateCaret ();
-			  RecalcHorzScrollBar(TRUE);
-            }
-        }
-    }
+			// This ASSERT is wrong: panes have different files and
+			// different linelengths
+			// ASSERT (pSrcView->m_nOffsetChar < GetMaxLineLength ());
+			if (pSrcView->m_nOffsetChar != m_nOffsetChar)
+			{
+				ScrollToChar (pSrcView->m_nOffsetChar, TRUE, FALSE);
+				UpdateCaret ();
+				RecalcHorzScrollBar(TRUE);
+			}
+		}
+	}
 }
 
 void CMergeEditView::SelectDiff(int nDiff, BOOL bScroll /*=TRUE*/, BOOL bSelectText /*=TRUE*/)
@@ -366,7 +366,7 @@ void CMergeEditView::OnEditCopy()
 		= m_bIsLeft ? &pDoc->m_ltBuf : &pDoc->m_rtBuf;
 
 	buffer->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
-		ptSelEnd.y, ptSelEnd.x, text, m_bIsLeft); 
+		ptSelEnd.y, ptSelEnd.x, text); 
 
 	PutToClipboard(text);
 }

@@ -200,7 +200,7 @@ public :
           m_ptEndPos = src.m_ptEndPos;
           m_nAction = src.m_nAction;
           SetText(src.GetText());
-	   return *this;
+          return *this;
         }
         ~SUndoRecord () // destructor
         {
@@ -307,11 +307,13 @@ public :
     int GetLineWithFlag (DWORD dwFlag);
     void SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet, BOOL bRemoveFromPreviousLine = TRUE, BOOL bUpdate=TRUE);
     void GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & text, LPCTSTR pszCRLF = NULL);
+    UINT GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, int nCrlfStyle =CRLF_STYLE_AUTOMATIC );
 
     //  Attributes
     int GetCRLFMode ();
     void SetCRLFMode (int nCRLFMode);
     LPCTSTR CCrystalTextBuffer::GetDefaultEol() const;
+    LPCTSTR CCrystalTextBuffer::GetStringEol(int nCRLFMode) const;
     BOOL GetReadOnly () const;
     void SetReadOnly (BOOL bReadOnly = TRUE);
 
@@ -355,7 +357,7 @@ public :
     BOOL GetInsertTabs() const;
     void SetInsertTabs(BOOL bInsertTabs);
 
-   	// Tabbing
+    // Tabbing
     int  GetTabSize();
     void SetTabSize(int nTabSize);
 
