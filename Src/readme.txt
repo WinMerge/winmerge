@@ -2,6 +2,9 @@
  PATCH: [ 1039552 ] Italian translation updated for RC
   Submitted by Andrea Decorte
   Src/Languages/Italian: MergeItalian.rc
+ PATCH: [ 1034854 ] Use "Terminal" font instead of "Courier" as default font.
+  Submitted by Takashi Sawanaka
+  Src: MainFrm.cpp
 
 2004-10-04 Kimmo
  BUG: [ 1037587 ] XML Syntax highlighting: Problems with numbers

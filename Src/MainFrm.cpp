@@ -1643,20 +1643,42 @@ void CMainFrame::OnViewSelectfont()
 
 void CMainFrame::GetFontProperties()
 {
-	m_lfDiff.lfHeight = theApp.GetProfileInt(_T("Font"), _T("Height"), -16);
-	m_lfDiff.lfWidth = theApp.GetProfileInt(_T("Font"), _T("Width"), 0);
-	m_lfDiff.lfEscapement = theApp.GetProfileInt(_T("Font"), _T("Escapement"), 0);
-	m_lfDiff.lfOrientation = theApp.GetProfileInt(_T("Font"), _T("Orientation"), 0);
-	m_lfDiff.lfWeight = theApp.GetProfileInt(_T("Font"), _T("Weight"), FW_NORMAL);
-	m_lfDiff.lfItalic = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Italic"), FALSE);
-	m_lfDiff.lfUnderline = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Underline"), FALSE);
-	m_lfDiff.lfStrikeOut = (BYTE)theApp.GetProfileInt(_T("Font"), _T("StrikeOut"), FALSE);
-	m_lfDiff.lfCharSet = (BYTE)theApp.GetProfileInt(_T("Font"), _T("CharSet"), ANSI_CHARSET);
-	m_lfDiff.lfOutPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("OutPrecision"), OUT_STRING_PRECIS);
-	m_lfDiff.lfClipPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("ClipPrecision"), CLIP_STROKE_PRECIS);
-	m_lfDiff.lfQuality = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Quality"), DRAFT_QUALITY);
-	m_lfDiff.lfPitchAndFamily = (BYTE)theApp.GetProfileInt(_T("Font"), _T("PitchAndFamily"), FF_MODERN | FIXED_PITCH);
-	_tcscpy(m_lfDiff.lfFaceName, theApp.GetProfileString(_T("Font"), _T("FaceName"), _T("Courier")));
+	LOGFONT lfDefault;
+
+	// Use "Terminal" font instead of "Courier" as default font when
+	// system locale font charset is not ANSI_CHARSET
+	GetObject(GetStockObject(OEM_FIXED_FONT), sizeof(LOGFONT), &lfDefault);
+	if (lfDefault.lfCharSet == ANSI_CHARSET)
+	{
+		lfDefault.lfHeight = -16;
+		lfDefault.lfWidth = 0;
+		lfDefault.lfEscapement = 0;
+		lfDefault.lfOrientation = 0;
+		lfDefault.lfWeight = FW_NORMAL;
+		lfDefault.lfItalic = FALSE;
+		lfDefault.lfUnderline = FALSE;
+		lfDefault.lfStrikeOut = FALSE;
+		lfDefault.lfCharSet = ANSI_CHARSET;
+		lfDefault.lfOutPrecision = OUT_STRING_PRECIS;
+		lfDefault.lfClipPrecision = CLIP_STROKE_PRECIS;
+		lfDefault.lfQuality = DRAFT_QUALITY;
+  		lfDefault.lfPitchAndFamily = FF_MODERN | FIXED_PITCH;
+		_tcscpy(lfDefault.lfFaceName, _T("Courier"));
+	}
+	m_lfDiff.lfHeight = theApp.GetProfileInt(_T("Font"), _T("Height"), lfDefault.lfHeight);
+	m_lfDiff.lfWidth = theApp.GetProfileInt(_T("Font"), _T("Width"), lfDefault.lfWidth);
+	m_lfDiff.lfEscapement = theApp.GetProfileInt(_T("Font"), _T("Escapement"), lfDefault.lfEscapement);
+	m_lfDiff.lfOrientation = theApp.GetProfileInt(_T("Font"), _T("Orientation"), lfDefault.lfOrientation);
+	m_lfDiff.lfWeight = theApp.GetProfileInt(_T("Font"), _T("Weight"), lfDefault.lfWeight);
+	m_lfDiff.lfItalic = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Italic"), lfDefault.lfItalic);
+	m_lfDiff.lfUnderline = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Underline"), lfDefault.lfUnderline);
+	m_lfDiff.lfStrikeOut = (BYTE)theApp.GetProfileInt(_T("Font"), _T("StrikeOut"), lfDefault.lfStrikeOut);
+	m_lfDiff.lfCharSet = (BYTE)theApp.GetProfileInt(_T("Font"), _T("CharSet"), lfDefault.lfCharSet);
+	m_lfDiff.lfOutPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("OutPrecision"), lfDefault.lfOutPrecision);
+	m_lfDiff.lfClipPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("ClipPrecision"), lfDefault.lfClipPrecision);
+	m_lfDiff.lfQuality = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Quality"), lfDefault.lfQuality);
+	m_lfDiff.lfPitchAndFamily = (BYTE)theApp.GetProfileInt(_T("Font"), _T("PitchAndFamily"), lfDefault.lfPitchAndFamily);
+	_tcscpy(m_lfDiff.lfFaceName, theApp.GetProfileString(_T("Font"), _T("FaceName"), lfDefault.lfFaceName));
 }
 
 void CMainFrame::OnViewUsedefaultfont() 
