@@ -1,3 +1,7 @@
+2003-08-07 Kimmo
+ PATCH: [ 781013 ] 256 Color icon
+  editlib/res: Merge.ico
+
 2003-08-07 Perry
  Fix GetItemFileNames to not pull its data from listview (b/c columns may be reordered).
  (Various const fixes needed.)
