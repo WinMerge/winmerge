@@ -1293,6 +1293,8 @@ BEGIN
     IDS_STATUS_COPYR2L      "Копирование Справа Налево"
     IDS_STATUS_COPYALL2L    "Копирование всех файлов налево"
     IDS_STATUS_COPYALL2R    "Копирование всех файлов направо"
+    IDS_STATUS_COPYFILES    "Copying files..."
+    IDS_STATUS_DELETEFILES  "Deleting files..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)

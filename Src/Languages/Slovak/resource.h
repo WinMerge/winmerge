@@ -277,6 +277,8 @@
 #define IDS_STATUS_COPYR2L              16819
 #define IDS_STATUS_COPYALL2L            16820
 #define IDS_STATUS_COPYALL2R            16821
+#define IDS_STATUS_COPYFILES            16822
+#define IDS_STATUS_DELETEFILES          16823
 
 #define IDS_LINE_STATUS_INFO_EOL        16832
 #define IDS_EMPTY_LINE_STATUS_INFO      16833

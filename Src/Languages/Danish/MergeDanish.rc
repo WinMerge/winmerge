@@ -1388,6 +1388,8 @@ BEGIN
     IDS_STATUS_COPYR2L      "Kopierer højre til venstre"
     IDS_STATUS_COPYALL2L    "Kopierer alt til venstre"
     IDS_STATUS_COPYALL2R    "Kopierer alt til højre"
+    IDS_STATUS_COPYFILES    "Copying files..."
+    IDS_STATUS_DELETEFILES  "Deleting files..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)

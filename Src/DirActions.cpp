@@ -25,6 +25,7 @@
 #include "paths.h"
 #include "CShellFileOp.h"
 #include "OptionsDef.h"
+#include "WaitStatusCursor.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -74,6 +75,8 @@ static BOOL ConfirmSingleDelete(LPCTSTR filepath)
 // Prompt & copy item from right to left, if legal
 void CDirView::DoCopyRightToLeft()
 {
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
+
 	// First we build a list of desired actions
 	ActionList actionList(ActionList::ACT_COPY);
 	int sel=-1;
@@ -101,6 +104,8 @@ void CDirView::DoCopyRightToLeft()
 // Prompt & copy item from left to right, if legal
 void CDirView::DoCopyLeftToRight()
 {
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
+
 	// First we build a list of desired actions
 	ActionList actionList(ActionList::ACT_COPY);
 	int sel=-1;
@@ -129,6 +134,8 @@ void CDirView::DoCopyLeftToRight()
 // Prompt & delete left, if legal
 void CDirView::DoDelLeft()
 {
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_DELETEFILES));
+
 	// First we build a list of desired actions
 	ActionList actionList(ActionList::ACT_DEL_LEFT);
 	int sel=-1;
@@ -155,6 +162,8 @@ void CDirView::DoDelLeft()
 // Prompt & delete right, if legal
 void CDirView::DoDelRight()
 {
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_DELETEFILES));
+
 	// First we build a list of desired actions
 	ActionList actionList(ActionList::ACT_DEL_RIGHT);
 	int sel=-1;
@@ -182,6 +191,8 @@ void CDirView::DoDelRight()
 // Prompt & delete both, if legal
 void CDirView::DoDelBoth()
 {
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_DELETEFILES));
+
 	// First we build a list of desired actions
 	ActionList actionList(ActionList::ACT_DEL_BOTH);
 	int sel=-1;
@@ -225,6 +236,8 @@ void CDirView::DoCopyLeftTo()
 	VERIFY(msg.LoadString(IDS_SELECT_DESTFOLDER));
 	if (!SelectFolder(destPath, startPath, msg))
 		return;
+
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
 
 	fileOp.SetOperationFlags(FO_COPY, this, FOF_NOCONFIRMMKDIR);
 	if (!GetDocument()->GetRecursive())
@@ -276,6 +289,8 @@ void CDirView::DoCopyRightTo()
 	VERIFY(msg.LoadString(IDS_SELECT_DESTFOLDER));
 	if (!SelectFolder(destPath, startPath, msg))
 		return;
+
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
 
 	fileOp.SetOperationFlags(FO_COPY, this, FOF_NOCONFIRMMKDIR);
 	if (!GetDocument()->GetRecursive())

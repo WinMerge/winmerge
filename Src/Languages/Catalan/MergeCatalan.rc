@@ -1405,6 +1405,8 @@ BEGIN
     IDS_STATUS_COPYR2L      "S'està copiant de la dreta a l'esquerra"
     IDS_STATUS_COPYALL2L    "S'està copiant tot a l'esquerra"
     IDS_STATUS_COPYALL2R    "S'està copiant tot a la dreta"
+    IDS_STATUS_COPYFILES    "Copying files..."
+    IDS_STATUS_DELETEFILES  "Deleting files..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)

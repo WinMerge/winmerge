@@ -1353,6 +1353,8 @@ BEGIN
     IDS_STATUS_COPYR2L      "오른쪽에서 왼쪽으로 복사중"
     IDS_STATUS_COPYALL2L    "왼쪽으로 모두 복사중"
     IDS_STATUS_COPYALL2R    "오른쪽으로 모두 복사중"
+    IDS_STATUS_COPYFILES    "Copying files..."
+    IDS_STATUS_DELETEFILES  "Deleting files..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)

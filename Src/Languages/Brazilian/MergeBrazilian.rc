@@ -1393,6 +1393,8 @@ BEGIN
     IDS_STATUS_COPYR2L      "Copiando da direita para esquerda"
     IDS_STATUS_COPYALL2L    "Copiando tudo para esquerda"
     IDS_STATUS_COPYALL2R    "Copiando tudo para direita"
+    IDS_STATUS_COPYFILES    "Copying files..."
+    IDS_STATUS_DELETEFILES  "Deleting files..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)

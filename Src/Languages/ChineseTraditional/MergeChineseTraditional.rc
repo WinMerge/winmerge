@@ -1377,6 +1377,8 @@ BEGIN
     IDS_STATUS_COPYR2L      "正在複製右邊到左邊"
     IDS_STATUS_COPYALL2L    "正在全部複製到左邊"
     IDS_STATUS_COPYALL2R    "正在全部複製到右邊"
+    IDS_STATUS_COPYFILES    "Copying files..."
+    IDS_STATUS_DELETEFILES  "Deleting files..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)

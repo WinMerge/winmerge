@@ -1,3 +1,8 @@
+2004-05-11 Kimmo
+ PATCH: [ 951404 ] Add statusmessage for dircompare copy/delete ops
+  Src: DirActions.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2004-05-10 Christian
  PATCH: [ 945467 ] Remove ReleaseMinsize and UnicodeReleaseMinsize
   Src: Merge.dsp
