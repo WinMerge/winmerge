@@ -41,6 +41,7 @@ class CMergeDoc;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocPtrList;
 class DirDocFilterGlobal;
 class DirDocFilterByExtension;
+class CustomStatusCursor;
 
 /**
  * @brief User-defined Windows-messages
@@ -129,6 +130,7 @@ private:
 	BOOL m_bROLeft;
 	BOOL m_bRORight;
 	BOOL m_bRecursive;
+	CustomStatusCursor * m_statusCursor;
 };
 
 /**

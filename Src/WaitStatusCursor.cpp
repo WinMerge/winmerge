@@ -21,52 +21,236 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-IStatusDisplay * WaitStatusCursor::c_piStatusDisplay = 0;
+IStatusDisplay * CustomStatusCursor::c_piStatusDisplay = 0;
 
-
-void WaitStatusCursor::SetStatusDisplay(IStatusDisplay * piStatusDisplay)
+void CustomStatusCursor::SetStatusDisplay(IStatusDisplay * piStatusDisplay)
 {
 	c_piStatusDisplay = piStatusDisplay;
 }
 
 
-WaitStatusCursor::WaitStatusCursor(LPCTSTR fmt, ...)
+CStringArray CustomStatusCursor::msgStack;
+CPtrArray CustomStatusCursor::cursorStack;
+CDWordArray CustomStatusCursor::validStack;
+int CustomStatusCursor::stackSize = 0;
+
+CustomStatusCursor::CustomStatusCursor()
 : m_ended(false)
 {
+};
+
+CustomStatusCursor::CustomStatusCursor(HINSTANCE hinst, LPCTSTR lpCursorName, LPCTSTR fmt, ...)
+: m_ended(false)
+{
+	va_list argp;
+	va_start(argp, fmt);
+	Create(hinst, lpCursorName, fmt, argp);
+	va_end(argp);
+}
+
+void CustomStatusCursor::Create(HINSTANCE hinst, LPCTSTR lpCursorName, LPCTSTR fmt, ...)
+{
+	CString m_msg;
+	CString m_oldmsg;
+	HCURSOR m_prevCursor = NULL;
+	HCURSOR m_myCursor = NULL;
+
+	// update status text
 	va_list args;
 	va_start(args, fmt);
 	m_msg.FormatV(fmt, args);
 	va_end(args);
+
 	if (c_piStatusDisplay)
 		m_oldmsg = c_piStatusDisplay->BeginStatus(m_msg);
+
+	// update cursor
+	m_myCursor = ::LoadCursor(hinst, lpCursorName);
+
+	if (m_myCursor)
+	{
+		m_prevCursor = ::SetCursor(m_myCursor);
+	}
+
+//	EnterStackCriticalSection();
+
+	// push info onto the stack
+	ASSERT (stackSize == cursorStack.GetSize());
+	ASSERT (stackSize == msgStack.GetSize());
+	ASSERT (stackSize == validStack.GetSize());
+	if (stackSize == 0)
+	{
+		cursorStack.Add(m_prevCursor);
+		msgStack.Add(m_oldmsg);
+		validStack.Add(1);
+		stackSize ++;
+	}
+	cursorStack.Add(m_myCursor);
+	msgStack.Add(m_msg);
+	validStack.Add(1);
+	stackSize ++;
+
+	// remember position in stack
+	posInStack = cursorStack.GetUpperBound();
+
+//	LeaveStackCriticalSection();
 }
 
-WaitStatusCursor::~WaitStatusCursor()
+CustomStatusCursor::~CustomStatusCursor()
 {
 	End();
 }
 
-void WaitStatusCursor::End()
+void CustomStatusCursor::End()
 {
-	if (!m_ended)
+
+	if (m_ended)
+		return;
+
+	m_ended = true;
+
+//	EnterStackCriticalSection();
+
+	ASSERT (stackSize == cursorStack.GetSize());
+	ASSERT (stackSize == msgStack.GetSize());
+	ASSERT (stackSize == validStack.GetSize());
+
+	// cancel this wait cursor in stack
+	validStack.SetAt(posInStack, 0);
+
+	// restore if this wait cursor is on top of stack 
+	if (posInStack == cursorStack.GetUpperBound())
 	{
-		m_ended = true;
+		// find the last valid cursor
+		int posValid = posInStack-1;
+		while (validStack.GetAt(posValid) == 0)
+			posValid --;
+		ASSERT (posValid >= 0);
+
+		// restore text and cursor
 		if (c_piStatusDisplay)
-			c_piStatusDisplay->EndStatus(m_msg, m_oldmsg);
-		m_msg = _T("");
-		m_oldmsg = _T("");
+			c_piStatusDisplay->EndStatus(msgStack.GetAt(posInStack), msgStack.GetAt(posValid));
+
+		::SetCursor((HICON__ *) cursorStack.GetAt(posValid));
+
+		// delete all invalid entries from top of stack
+		cursorStack.RemoveAt(posValid+1, posInStack - posValid);
+		msgStack.RemoveAt(posValid+1, posInStack - posValid);
+		validStack.RemoveAt(posValid+1, posInStack - posValid);
+		stackSize = posValid+1;
+
+		if (stackSize == 1)
+		{
+			cursorStack.RemoveAt(0);
+			msgStack.RemoveAt(0);
+			validStack.RemoveAt(0);
+			stackSize --;
+		}
 	}
+
+//	LeaveStackCriticalSection();
 }
 
-void WaitStatusCursor::ChangeMsg(LPCTSTR fmt, ...)
+/**
+ * @brief Send new UI message through GUI feedback, if available
+ */
+void CustomStatusCursor::ChangeMsg(LPCTSTR fmt, ...)
 {
+	CString m_msg;
 	va_list args;
 	va_start(args, fmt);
 	m_msg.FormatV(fmt, args);
 	va_end(args);
-	if (c_piStatusDisplay)
-		c_piStatusDisplay->ChangeStatus(m_msg);
+
+//	EnterStackCriticalSection();
+
+	msgStack.SetAt(posInStack, m_msg);
+
+	// change status only if this wait cursor is on top of stack
+	if (posInStack == cursorStack.GetUpperBound())
+	{
+		if (c_piStatusDisplay)
+			c_piStatusDisplay->ChangeStatus(m_msg);
+	}
+
+//	LeaveStackCriticalSection();
 }
 
 
+BOOL CustomStatusCursor::HasWaitCursor()
+{
+//	if (!TryEnterStackCriticalSection())
+//		return FALSE;
 
+	ASSERT (stackSize == cursorStack.GetSize());
+	ASSERT (stackSize == msgStack.GetSize());
+	ASSERT (stackSize == validStack.GetSize());
+	BOOL ret = (stackSize >= 2);
+
+//	LeaveStackCriticalSection();
+
+	return ret;
+}
+
+/**
+ * @brief Same interface as CCmdTarget::RestoreWaitCursor
+ */
+void CustomStatusCursor::RestoreWaitCursor()
+{
+//	if (!TryEnterStackCriticalSection())
+//		return;
+
+	ASSERT (stackSize == cursorStack.GetSize());
+	ASSERT (stackSize == msgStack.GetSize());
+	ASSERT (stackSize == validStack.GetSize());
+
+	// the top of stack is always valid
+	int posValid = stackSize-1;
+	ASSERT(validStack.GetAt(posValid));
+
+	// restore text and cursor
+	if (c_piStatusDisplay)
+		c_piStatusDisplay->ChangeStatus(msgStack.GetAt(posValid));
+
+	::SetCursor((HICON__ *) cursorStack.GetAt(posValid));
+
+//	LeaveStackCriticalSection();
+}
+
+
+/*
+CRITICAL_SECTION CustomStatusCursor::CriticalSectionStack;
+BOOL CustomStatusCursor::bCriticalSectionExist = FALSE;
+/// Flag to implement TryEnterStackCriticalSection (TryEnterCriticalSection not available in w95/98)
+BOOL CustomStatusCursor::bCriticalSectionEntered = FALSE;
+
+
+void CustomStatusCursor::EnterStackCriticalSection()
+{
+	// initialize specific resource if necessary
+	if (!bCriticalSectionExist)
+	{
+		InitializeCriticalSection(&CriticalSectionStack);
+		bCriticalSectionExist = TRUE;
+	}
+
+	// lock specific resource
+	EnterCriticalSection(&CriticalSectionStack);
+	bCriticalSectionEntered = TRUE;
+}
+void CustomStatusCursor::LeaveStackCriticalSection()
+{
+	LeaveCriticalSection(&CriticalSectionStack);
+	bCriticalSectionEntered = FALSE;
+}
+
+BOOL CustomStatusCursor::TryEnterStackCriticalSection()
+{
+	// Test the flag first
+	if (bCriticalSectionEntered)
+		return FALSE;
+
+	EnterStackCriticalSection();
+	return TRUE;
+}
+*/

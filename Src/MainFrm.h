@@ -196,6 +196,7 @@ protected:
 	afx_msg void OnToolsGeneratePatch();
 	afx_msg void OnDropFiles(HDROP dropInfo);
 	afx_msg LRESULT OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam);
+	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

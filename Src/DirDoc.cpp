@@ -61,7 +61,10 @@ CDirDoc::CDirDoc()
 	m_bReuseMergeDocs = TRUE;
 	m_pFilterGlobal = NULL;
 	m_pFilterUI = NULL;
+	m_bROLeft = FALSE;
+	m_bRORight = FALSE;
 	m_bRecursive = FALSE;
+	m_statusCursor = NULL;
 }
 
 CDirDoc::~CDirDoc()
@@ -222,7 +225,7 @@ void CDirDoc::Rescan()
 	if (threadState == THREAD_COMPARING)
 		return;
 
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
+	m_statusCursor = new CustomStatusCursor(0, IDC_APPSTARTING, LoadResString(IDS_STATUS_RESCANNING));
 
 	gLog.Write(_T("Starting directory scan:\r\n\tLeft: %s\r\n\tRight: %s\r\n"),
 			m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
@@ -568,6 +571,11 @@ void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unifie
 void CDirDoc::CompareReady()
 {
 	gLog.Write(_T("Directory scan complete\r\n"));
+
+	// finish the cursor (the hourglass/pointer combo) we had open during display
+	delete m_statusCursor;
+	m_statusCursor = 0;
+
 	m_diffWrapper.EndDirectoryDiff();
 }
 

@@ -105,6 +105,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_WM_DROPFILES()
 	ON_MESSAGE(MSG_STAT_UPDATE, OnUpdateStatusMessage)
+	ON_WM_SETCURSOR()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -236,9 +237,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// CG: The following line was added by the Splash Screen component.
 	CSplashWnd::ShowSplashScreen(this);
 
-	// Start handling status messages from WaitStatusCursors
+	// Start handling status messages from CustomStatusCursors
 	myStatusDisplay.SetFrame(this);
-	WaitStatusCursor::SetStatusDisplay(&myStatusDisplay);
+	CustomStatusCursor::SetStatusDisplay(&myStatusDisplay);
 
 	return 0;
 }
@@ -662,7 +663,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		// process versioning system specific action
 		if (userChoice==IDOK)
 		{
-			CWaitCursor wait;
+			WaitStatusCursor waitstatus(_T(""));
 			m_strVssProjectBase = dlg.m_strProject;
 			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), mf->m_strVssProjectBase);
 			CString spath, sname;
@@ -724,7 +725,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
-			CWaitCursor wait;
+			WaitStatusCursor waitstatus(_T(""));
 			BOOL bOpened = FALSE;
 			m_strVssProjectBase = dlg.m_strProject;
 			m_strVssUser = dlg.m_strUser;
@@ -855,7 +856,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
-			CWaitCursor wait;
+			WaitStatusCursor waitstatus(_T(""));
 			CString spath, sname;
 			SplitFilename(strSavePath, &spath, &sname, 0);
 			if (!spath.IsEmpty())
@@ -1835,8 +1836,8 @@ void CMainFrame::OnClose()
 	}
 	*/
 	
-	// Stop handling status messages from WaitStatusCursors
-	WaitStatusCursor::SetStatusDisplay(0);
+	// Stop handling status messages from CustomStatusCursors
+	CustomStatusCursor::SetStatusDisplay(0);
 	myStatusDisplay.SetFrame(0);
 	
 	CMDIFrameWnd::OnClose();
@@ -2199,4 +2200,14 @@ LRESULT CMainFrame::OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam)
 	else
 		rptStatus(wParam);
 	return 0; // return value not meaningful
+}
+
+BOOL CMainFrame::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) 
+{
+	if (CustomStatusCursor::HasWaitCursor())
+	{
+		CustomStatusCursor::RestoreWaitCursor();
+		return TRUE;
+	}
+	return CMDIFrameWnd::OnSetCursor(pWnd, nHitTest, message);
 }
