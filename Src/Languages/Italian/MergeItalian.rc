@@ -1771,6 +1771,8 @@ BEGIN
     IDS_DIFF_UNIFIED        "Unificato"
     IDS_FILEWRITE_ERROR     "Impossibile scrivere nel file %1."
     IDS_PATH_NOT_ABSOLUTE   "%1\n non è un percorso assoluto!"
+    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
+    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
 END
 
 STRINGTABLE

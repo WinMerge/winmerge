@@ -84,12 +84,24 @@ int CPatchTool::CreatePatch()
 			bDiffSuccess = m_diffWrapper.RunFileDiff();
 			m_diffWrapper.GetDiffStatus(&status);
 
-			if (!bDiffSuccess || status.bPatchFileFailed)
+			if (!bDiffSuccess)
 			{
+				AfxMessageBox(IDS_FILEERROR, MB_ICONSTOP);
 				bResult = FALSE;
+				break;
+			}
+			else if (status.bBinaries)
+			{
+				AfxMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONSTOP);
+				bResult = FALSE;
+				break;
+			}
+			else if (status.bPatchFileFailed)
+			{
 				CString errMsg;
 				AfxFormatString1(errMsg, IDS_FILEWRITE_ERROR, m_dlgPatch.m_fileResult);
 				AfxMessageBox(errMsg, MB_ICONSTOP);
+				bResult = FALSE;
 				break;
 			}
 

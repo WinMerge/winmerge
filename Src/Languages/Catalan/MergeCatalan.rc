@@ -1675,6 +1675,8 @@ BEGIN
     IDS_DIFF_UNIFIED        "Unificat"
     IDS_FILEWRITE_ERROR     "No s'ha pogut escriure al fitxer  %1."
     IDS_PATH_NOT_ABSOLUTE   "%1\n no és pas un camí absolut!"
+    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
+    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
 END
 
 STRINGTABLE

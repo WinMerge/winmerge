@@ -1,3 +1,8 @@
+2004-08-02 Kimmo
+ PATCH: [ 1001111 ] Warn if user selected binary files for patch creating
+  Src: MainFrm.cpp Merge.rc PatchTool.cpp resource.h
+  Src/Languages: *.rc resource.h
+
 2004-08-01 Perry
  PATCH: [ 967405 ] Add Japanese satellite dll to MakePatchDirs
   MakePatchDirs: MakePatchDirs.dsp MakePatchDirs.rc

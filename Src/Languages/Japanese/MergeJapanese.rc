@@ -1662,6 +1662,8 @@ BEGIN
     IDS_DIFF_UNIFIED        "ユニファイド"
     IDS_FILEWRITE_ERROR     "ファイル %1に書き込めません。"
     IDS_PATH_NOT_ABSOLUTE   "%1\n は絶対パスではありません!"
+    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
+    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
 END
 
 STRINGTABLE

@@ -1669,6 +1669,8 @@ BEGIN
     IDS_DIFF_UNIFIED        "Унифицированный"
     IDS_FILEWRITE_ERROR     "Нет возможности записать в файл %1."
     IDS_PATH_NOT_ABSOLUTE   "%1\n ЭТО не абсолютный путь!"
+    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
+    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
 END
 
 STRINGTABLE

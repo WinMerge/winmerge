@@ -1778,6 +1778,8 @@ BEGIN
     IDS_DIFF_UNIFIED        "Unified"
     IDS_FILEWRITE_ERROR     "Konnte nicht in die Datei %1 schreiben."
     IDS_PATH_NOT_ABSOLUTE   "%1\n ist kein absoluter Pfad!"
+    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
+    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
 END
 
 STRINGTABLE

@@ -2434,19 +2434,22 @@ void CMainFrame::OnToolsGeneratePatch()
 		int ind = pView->GetFirstSelectedInd();
 		if (ind != -1)
 		{
-			DIFFITEM item = pView->GetItemAt(ind);
-		
-			if (!item.isBin() && !item.isDirectory() &&	!item.isResultError())
-			{
-				CString leftFile = item.getLeftFilepath(pDoc->m_pCtxt);
-				if (!leftFile.IsEmpty())
-					leftFile += _T("\\") + item.sfilename;
-				CString rightFile = item.getRightFilepath(pDoc->m_pCtxt);
-				if (!rightFile.IsEmpty())
-					rightFile += _T("\\") + item.sfilename;
-				
-				patcher.AddFiles(leftFile, rightFile);
-			}
+			const DIFFITEM item = pView->GetItemAt(ind);
+			if (item.isBin())
+				AfxMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
+					MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_BINARYPATCH);
+			else if (item.isDirectory())
+				AfxMessageBox(IDS_CANNOT_CREATE_DIRPATCH, MB_ICONWARNING |
+					MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_DIRPATCH);
+
+			CString leftFile = item.getLeftFilepath(pDoc->m_pCtxt);
+			if (!leftFile.IsEmpty())
+				leftFile += _T("\\") + item.sfilename;
+			CString rightFile = item.getRightFilepath(pDoc->m_pCtxt);
+			if (!rightFile.IsEmpty())
+				rightFile += _T("\\") + item.sfilename;
+
+			patcher.AddFiles(leftFile, rightFile);
 		}
 	}
 
