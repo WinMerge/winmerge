@@ -1,3 +1,5 @@
+2003-08-19 WinMerge beta 2.1.0.1 released
+
 2003-08-19 Perry
  Change versions in Merge.rc to "000.000.000.000" as recommended by stampver
   (http://www.elphin.com/products/stampver.html).
