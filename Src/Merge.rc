@@ -187,6 +187,13 @@ BEGIN
         MENUITEM "&Customize columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
     END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
+        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
+    END
     POPUP "&Window"
     BEGIN
         MENUITEM "Close",                       ID_FILE_CLOSE
@@ -194,13 +201,6 @@ BEGIN
         MENUITEM "Tile &Horizontally",          ID_WINDOW_TILE_HORZ
         MENUITEM "Tile &Vertically",            ID_WINDOW_TILE_VERT
         MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
-    END
-    POPUP "&Plugins"
-    BEGIN
-        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
-        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
-        MENUITEM SEPARATOR
-        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
     END
     POPUP "&Help"
     BEGIN

@@ -3,6 +3,9 @@
  WinMerge: res\*.bmp res\*.ico
 
 2003-10-21 Laoran
+ BUG: [ 827064 ] Move "Window" menu after "Plugins" menu
+  WinMerge : Merge.rc
+  Languages: *.rc 
  Add a backslash in front of relative path used to test for filter (as in 2.0)
  Undo the previous change (it disturbed the display) and make a new one
   WinMerge: DirScan.cpp DirDoc.cpp
