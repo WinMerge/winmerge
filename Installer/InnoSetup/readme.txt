@@ -1,3 +1,7 @@
+2004-08-26 Kimmo
+ BUG: [ 938556 ] Broken shortcut in cvs in InnoSetup?
+  Removed Languages/Languages.lnk
+
 2004-08-19 Kimmo
  BUG: [ 938161 ] typo in Localization Instructions
   Innosetup/Languages: Localization Instructions.txt
