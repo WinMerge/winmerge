@@ -72,7 +72,9 @@ struct DiffFileInfo
 	CString spath; /**< fully qualified directory of file */
 	FileFlags flags; /**< file attributes */
 	int codepage; /**< 8bit codepage, if applicable, 0 is unknown or N/A */
-	DiffFileInfo() : mtime(0), ctime(0), size(0), codepage(0) { }
+	int unicoding; /**< Unicode encoding (ucr::CODESET) */
+	DiffFileInfo() : mtime(0), ctime(0), size(0), codepage(0), unicoding(0) { }
+	CString getEncodingString() const;
 	// We could stash a pointer here to the parent DIFFITEM
 	// but, I ran into trouble with, I think, the DIFFITEM copy constructor
 };

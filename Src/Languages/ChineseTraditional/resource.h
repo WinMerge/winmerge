@@ -126,7 +126,9 @@
 #define IDB_UNKNOWN                     216
 #define IDS_DIRECTORY_REPORT_TITLE      216
 #define IDB_BINARYSAME                  217
+#define IDS_COLHDR_LENCODING            217
 #define IDB_LFILE                       218
+#define IDS_COLHDR_RENCODING            218
 #define IDB_RFILE                       219
 #define IDB_SPLASH                      220
 #define IDB_WINMERGE                    221

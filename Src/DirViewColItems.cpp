@@ -17,6 +17,7 @@
 #include "resource.h"
 #include "DirViewColItems.h"
 #include "locality.h"
+#include "unicoder.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -41,6 +42,23 @@ TimeString(const __int64 * tim)
 	COleDateTime odt = *tim;
 #endif
 	return odt.Format();
+}
+/**
+ * @brief Return string representation of encoding, eg "UCS-2LE", or "1252"
+ */
+static CString EncodingString(int unicoding, int codepage)
+{
+	if (unicoding == ucr::UCS2LE)
+		return _T("UCS-2LE");
+	if (unicoding == ucr::UCS2BE)
+		return _T("UCS-2BE");
+	if (unicoding == ucr::UTF8)
+		return _T("UTF-8");
+	CString str;
+	LPTSTR s = str.GetBuffer(32);
+	_sntprintf(s, 32, _T("%d"), codepage);
+	str.ReleaseBuffer();
+	return str;
 }
 /**
  * @brief Function to compare two __int64s for a sort
@@ -239,6 +257,14 @@ static CString ColRattrGet(const DIFFITEM & di)
 {
 	return di.right.flags.toString();
 }
+static CString ColLencodingGet(const DIFFITEM & di)
+{
+	return EncodingString(di.left.unicoding, di.left.codepage);
+}
+static CString ColRencodingGet(const DIFFITEM & di)
+{
+	return EncodingString(di.right.unicoding, di.right.codepage);
+}
 /**
  * @}
  */
@@ -306,6 +332,20 @@ static int ColRattrSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
 	return ldi.right.flags.toString().Compare(rdi.right.flags.toString());
 }
+static int ColLencodingSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
+{
+	__int64 n = cmp64(ldi.left.unicoding, rdi.left.unicoding);
+	if (n) return n;
+	n = cmp64(ldi.left.codepage, rdi.left.codepage);
+	return n;
+}
+static int ColRencodingSort(const DIFFITEM & ldi, const DIFFITEM &rdi)
+{
+	__int64 n = cmp64(ldi.right.unicoding, rdi.right.unicoding);
+	if (n) return n;
+	n = cmp64(ldi.right.codepage, rdi.right.codepage);
+	return n;
+}
 /**
  * @}
  */
@@ -331,6 +371,8 @@ DirColInfo g_cols[] =
 	, { _T("StatusAbbr"), IDS_COLHDR_RESULT_ABBR, -1, &ColStatusAbbrGet, &ColStatusSort, -1, true }
 	, { _T("Lattr"), IDS_COLHDR_LATTRIBUTES, -1, &ColLattrGet, &ColLattrSort, -1, true }
 	, { _T("Rattr"), IDS_COLHDR_RATTRIBUTES, -1, &ColRattrGet, &ColRattrSort, -1, true }
+	, { _T("Lencoding"), IDS_COLHDR_LENCODING, -1, &ColLencodingGet, &ColLencodingSort, -1, true }
+	, { _T("Rencoding"), IDS_COLHDR_RENCODING, -1, &ColRencodingGet, &ColRencodingSort, -1, true }
 };
 
 /**

@@ -2,6 +2,10 @@
  PATCH: [ 849424 ] Fix worddiffs for whitespace
  Handle Sensitive to whitespace in stringdiffs.
   WinMerge: MergeDocLineDiffs.cpp stringdiffs.cpp
+ PATCH: [ 842914 ] Add codepage guessing, and codepage column
+ Optional codepage column in dirview. Code to check RC & HTML files for codepage
+  WinMerge: DiffContext.cpp DiffContext.h DirViewColItems.cpp Merge.rc resource.h
+  Languages: All resource.h and *.rc files.
 
 2003-11-26 Perry
  PATCH: [ 842534 ] Move copy & delete ops to submenus in dirview popup
