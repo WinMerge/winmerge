@@ -90,6 +90,8 @@ BOOL CMergeApp::InitInstance()
 	SillyTestCrap();
 #endif
 
+//	_CrtSetBreakAlloc( 11481 );
+
 	// CCrystalEdit Drag and Drop functionality needs AfxOleInit.
 	if(!AfxOleInit())
 	{
@@ -151,6 +153,12 @@ BOOL CMergeApp::InitInstance()
 	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
 		return FALSE;
 	m_pMainWnd = pMainFrame;
+
+	pMainFrame->m_hMenuDefault=pMainFrame->NewDefaultMenu();
+
+	// This simulates a window being opened if you don't have
+	// a default window displayed at startup
+	pMainFrame->OnUpdateFrameMenu(pMainFrame->m_hMenuDefault);
 
 	// Parse command line for standard shell commands, DDE, file open
 	//CCommandLineInfo cmdInfo;

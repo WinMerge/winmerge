@@ -169,7 +169,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//ignore_blank_lines_flag = 1;
 	GetFontProperties();
 	
-	if (!m_wndToolBar.Create(this) ||
+	if (!m_wndToolBar.CreateEx(this,TBSTYLE_FLAT,WS_CHILD|WS_VISIBLE|CBRS_GRIPPER|CBRS_TOP|CBRS_TOOLTIPS|CBRS_FLYBY|CBRS_SIZE_DYNAMIC) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	{
 		TRACE0("Failed to create toolbar\n");
@@ -200,6 +200,16 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	return 0;
 }
+
+
+HMENU CMainFrame::NewDefaultMenu()
+{
+	m_default.LoadMenu(IDR_MAINFRAME);
+	m_default.LoadToolbar(IDR_MAINFRAME);
+	return(m_default.Detach());
+}
+
+
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {

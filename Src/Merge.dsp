@@ -114,6 +114,10 @@ SOURCE=.\ANALYZE.C
 # End Source File
 # Begin Source File
 
+SOURCE=.\BCMenu.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\CCPrompt.cpp
 # End Source File
 # Begin Source File
@@ -578,6 +582,10 @@ SOURCE=D:\data\html\WinMergeChanges.html
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=.\BCMenu.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\CCPrompt.h

@@ -28,6 +28,8 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
+#include "bcmenu.h"
+
 #define BACKUP_FILE_EXT   _T(".bak")
 
 
@@ -91,6 +93,7 @@ public:
 	CMergeDoc *m_pMergeDoc;
 	CDirDoc *m_pDirDoc;
 	virtual ~CMainFrame();
+	HMENU NewDefaultMenu();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -99,6 +102,7 @@ public:
 protected:  // control bar embedded members
 	CStatusBar  m_wndStatusBar;
 	CToolBar    m_wndToolBar;
+	BCMenu		m_default;
 
 // Generated message map functions
 protected:
