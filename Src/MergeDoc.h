@@ -72,7 +72,6 @@ private :
 		BOOL m_bIsLeft;
 		BOOL FlagIsSet(UINT line, DWORD flag);
 
-		BOOL SafeReadFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength);
 		int DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength);
 		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
 public :

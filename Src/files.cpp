@@ -13,13 +13,13 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 	{
 		dwProtectFlag = PAGE_READWRITE;
 		dwMapAccess = FILE_MAP_ALL_ACCESS;
-		dwOpenAccess = GENERIC_READ;
+		dwOpenAccess = GENERIC_READ | GENERIC_WRITE;
 	}
 	else
 	{
 		dwProtectFlag = PAGE_READONLY;
 		dwMapAccess = FILE_MAP_READ;
-		dwOpenAccess = GENERIC_READ | GENERIC_WRITE;
+		dwOpenAccess = GENERIC_READ;
 	}
 
 	fileData->hFile = CreateFile(fileData->fileName,
@@ -30,12 +30,15 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 		bSuccess = FALSE;
 	else
 	{
-		fileData->dwSize = GetFileSize(fileData->hFile,
-			 &dwFileSizeHigh);
-		if (fileData->dwSize == 0xFFFFFFFF || dwFileSizeHigh)
+		if (fileData->dwSize == 0)
 		{
-			fileData->dwSize = 0;
-			bSuccess = FALSE;
+			fileData->dwSize = GetFileSize(fileData->hFile,
+				 &dwFileSizeHigh);
+			if (fileData->dwSize == 0xFFFFFFFF || dwFileSizeHigh)
+			{
+				fileData->dwSize = 0;
+				bSuccess = FALSE;
+			}
 		}
 	}
 		
@@ -176,6 +179,17 @@ BOOL files_safeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength)
 	if (WriteFile(hFile, lpBuf, dwLength, &dwWrittenBytes, NULL))
 	{
 		if (dwLength == dwWrittenBytes)
+			return TRUE;
+	}
+	return FALSE;
+}
+
+BOOL files_safeReadFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength)
+{
+	DWORD dwReadBytes = 0;
+	if (::ReadFile(hFile, lpBuf, dwLength, &dwReadBytes, NULL))
+	{
+		if (dwLength == dwReadBytes)
 			return TRUE;
 	}
 	return FALSE;

@@ -1,6 +1,8 @@
 2003-04-14 Kimmo
  PATCH: [ 720613 ] CDirView leaks imagelist
   WinMerge: DirView.cpp
+ PATCH: [ 720701 ] Use memory-mapped files when saving files
+  WinMerge: files.h files.cpp MergeDoc.h MergeDoc.cpp
 
 2003-04-14 Perry
  PATCH: [ 716475 ] Reduce edtlib.h coupling

@@ -1082,17 +1082,6 @@ UINT CMergeDoc::CDiffTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStart
 	return nBufSize;
 }
 
-BOOL CMergeDoc::CDiffTextBuffer::SafeReadFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength)
-{
-	DWORD dwReadBytes = 0;
-	if (::ReadFile(hFile, lpBuf, dwLength, &dwReadBytes, NULL))
-	{
-		if (dwLength == dwReadBytes)
-			return TRUE;
-	}
-	return FALSE;
-}
-
 // Try to determine current CRLF mode based on first line
 int CMergeDoc::CDiffTextBuffer::DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength)
 {
@@ -1220,13 +1209,29 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
 		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
 	ASSERT (m_bInit);
-	HANDLE hTempFile = INVALID_HANDLE_VALUE;
+	MAPPEDFILEDATA fileData = {0};
 	TCHAR szTempFileDir[_MAX_PATH] = {0};
 	TCHAR szTempFileName[_MAX_PATH] = {0} ;
 	BOOL bSuccess = FALSE;
 	TCHAR drive[_MAX_PATH] = {0};
 	TCHAR dir[_MAX_PATH] = {0};
-	BOOL bWriteFail = FALSE;
+
+	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+		nCrlfStyle = GetCRLFMode();
+	
+	ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
+	LPCTSTR pszCRLF = crlfs[nCrlfStyle];
+	int nCRLFLength = _tcslen(pszCRLF);
+	int nLineCount = m_aLines.GetSize();
+	CString text;			
+	int nLastLength = m_aLines[nLineCount - 1].m_nLength;
+		
+	UINT nBufSize = GetTextWithoutEmptys(0, 0, nLineCount - 1,
+		nLastLength, text, m_bIsLeft, nCrlfStyle);
+	
+	// Remove last CRLF
+	text.Delete(nBufSize - nCRLFLength, nCRLFLength);
+	nBufSize -= nCRLFLength;
 
 	if (pszFileName)
 	{
@@ -1240,59 +1245,42 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	if (::GetTempFileName(szTempFileDir, _T("MRG"), 0, szTempFileName) == 0)
 		return FALSE;  //Nothing to do if even tempfile name fails
 
-	hTempFile =::CreateFile(szTempFileName, GENERIC_WRITE, 0, NULL,
-		CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-	if (hTempFile != INVALID_HANDLE_VALUE)
+	// Init filedata struct and open file as memory mapped 
+	_tcsncpy(fileData.fileName, szTempFileName, sizeof(fileData.fileName));
+	fileData.bWritable = TRUE;
+	fileData.dwOpenFlags = CREATE_ALWAYS;
+	fileData.dwSize = nBufSize;
+	bSuccess = files_openFileMapped(&fileData);
+
+	if (bSuccess)
 	{
-		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-			nCrlfStyle = GetCRLFMode();
-
-		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
-		LPCTSTR pszCRLF = crlfs[nCrlfStyle];
-		int nCRLFLength = _tcslen(pszCRLF);
-		int nLineCount = m_aLines.GetSize();
-		CString text;
-		int nLastLength = m_aLines[nLineCount - 1].m_nLength;
-
-		UINT nBufSize = GetTextWithoutEmptys(0, 0, nLineCount - 1,
-			nLastLength, text, m_bIsLeft, nCrlfStyle);
-
-		// Remove last CRLF
-		text.Delete(nBufSize - nCRLFLength, nCRLFLength);
-		nBufSize -= nCRLFLength;
-
 		if (m_nSourceEncoding >= 0)
 		{
 			LPTSTR pszBuf;
 			iconvert_new((LPCTSTR)text, &pszBuf, 1,
 					m_nSourceEncoding, m_nSourceEncoding == 15);
-			if (!files_safeWriteFile(hTempFile, pszBuf, nBufSize))
-				bWriteFail = TRUE;
+			CopyMemory(fileData.pMapBase, pszBuf, nBufSize);
 			free(pszBuf);
 		}
 		else
-			if (!files_safeWriteFile(hTempFile, (void *)(LPCTSTR)text, nBufSize))
-				bWriteFail = TRUE;
+			CopyMemory(fileData.pMapBase, (void *)(LPCTSTR)text, nBufSize);
 
 		// This means user wants to save file - let's play safe and
 		// force flush buffer to disk
 		if (bClearModifiedFlag)
-			FlushFileBuffers(hTempFile);
-		::CloseHandle (hTempFile);
-		hTempFile = INVALID_HANDLE_VALUE;
-
-		if (bWriteFail == FALSE)
+			files_closeFileMapped(&fileData, nBufSize, TRUE);
+		else
+			files_closeFileMapped(&fileData, nBufSize, FALSE);
+		
+		// Write tempfile over original file
+		if (files_safeReplaceFile(pszFileName, szTempFileName))
 		{
-			// Write tempfile over original file
-			if (files_safeReplaceFile(pszFileName, szTempFileName))
+			if (bClearModifiedFlag)
 			{
-				if (bClearModifiedFlag)
-				{
-					SetModified(FALSE);
-					m_nSyncPosition = m_nUndoPosition;
-				}
-				bSuccess = TRUE;
+				SetModified(FALSE);
+				m_nSyncPosition = m_nUndoPosition;
 			}
+			bSuccess = TRUE;
 		}
 	}
 	return bSuccess;
