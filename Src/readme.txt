@@ -1,3 +1,7 @@
+2003-06-19 Perry
+ PATCH: [ 728153 ] If opening first file fails, don't open second
+  WinMerge: MainFrm.cpp
+
 2003-06-17 Kimmo
  PATCH: [ 755918 ] Fix typo in CCrystalTextView extension list
   editlib: ccrystaltextview.cpp

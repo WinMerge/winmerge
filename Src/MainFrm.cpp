@@ -311,16 +311,19 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	pMergeDoc->m_rtBuf.SetEolSensitivity(m_bEolSensitive);
 
 	CString sError;
+	// Load left side
 	if (!pMergeDoc->m_ltBuf.LoadFromFile(szLeft))
 	{
 		pMergeDoc->m_ltBuf.InitNew();
 		AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szLeft);
 	}
-	if (!pMergeDoc->m_rtBuf.LoadFromFile(szRight))
+	// Load right side (unless left side failed)
+	if (sError.IsEmpty() && !pMergeDoc->m_rtBuf.LoadFromFile(szRight))
 	{
 		pMergeDoc->m_rtBuf.InitNew();
 		AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szRight);
 	}
+	// Bail out if either side failed
 	if (!sError.IsEmpty())
 	{
 		AfxMessageBox(sError, MB_ICONSTOP);
