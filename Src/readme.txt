@@ -1,3 +1,7 @@
+2004-06-11 Laoran
+ PATCH: [ 970221 ] Keep overlay mode after Rescan
+  Src/editlib: ccrystaltextview.cpp
+
 2004-06-11 Kimmo
  BUG: [ 969922 ] inconsistent 'options' dialog behavior
   Fix enabling/disabling 'Apply to unrecognized side' checkbox in Editor options

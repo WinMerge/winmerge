@@ -2570,7 +2570,9 @@ GetLineChars (int nLineIndex) const
 
 /** 
  * @brief Reattach buffer after deleting/inserting ghost lines :
- * no need to reinitialize the horizontal scrollbar
+ * 
+ * @note no need to reinitialize the horizontal scrollbar
+ * no need to reset the editor options (m_bOvrMode, m_bLastReplace)
  */
 void CCrystalTextView::
 ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
@@ -2585,7 +2587,8 @@ ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
   m_pTextBuffer = pBuf;
   if (m_pTextBuffer != NULL)
     m_pTextBuffer->AddView (this);
-  ResetView ();
+  // don't reset CCrystalEditView options
+  CCrystalTextView::ResetView ();
 
   //  Init scrollbars arrows
   CScrollBar *pVertScrollBarCtrl = GetScrollBarCtrl (SB_VERT);
@@ -2637,7 +2640,8 @@ DetachFromBuffer ()
     {
       m_pTextBuffer->RemoveView (this);
       m_pTextBuffer = NULL;
-      ResetView ();
+      // don't reset CCrystalEditView options
+      CCrystalTextView::ResetView ();
     }
 }
 
