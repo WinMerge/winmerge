@@ -107,15 +107,15 @@ BEGIN
         MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
         MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "&Next Difference\tTab",       ID_NEXTDIFF
-        MENUITEM "&Previous Difference\tShift+Tab", ID_PREVDIFF
+        MENUITEM "&Next Difference\tAlt+Down",  ID_NEXTDIFF
+        MENUITEM "&Previous Difference\tAlt+Up", ID_PREVDIFF
         MENUITEM SEPARATOR
         MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
         MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
         MENUITEM "Last &Difference\tAlt+End",   ID_LASTDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Copy to &Right\tArrow right", ID_L2R
-        MENUITEM "Copy to &Left\tArrow left",   ID_R2L
+        MENUITEM "Copy to &Right\tAlt+Right",   ID_L2R
+        MENUITEM "Copy to &Left\tAlt+Left",     ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "Copy &All to Right",          ID_ALL_RIGHT
         MENUITEM "Copy All to L&eft",           ID_ALL_LEFT
