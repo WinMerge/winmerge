@@ -3252,7 +3252,7 @@ static boolean alt_match_null_string_p (),
 /* re_match is like re_match_2 except it takes only a single string.  */
 
 int
-re_match (struct re_pattern_buffer *bufp, char *string, int size, int pos, struct re_registers *regs)
+re_match (struct re_pattern_buffer *bufp, const char *string, int size, int pos, struct re_registers *regs)
  {
   return re_match_2 (bufp, NULL, 0, string, size, pos, regs, size); 
 }
