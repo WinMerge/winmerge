@@ -121,7 +121,6 @@ CMainFrame::CMainFrame()
 	m_strVssProject = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
 	m_strVssPath = theApp.GetProfileString(_T("Settings"), _T("VssPath"), _T(""));
 	m_nTabSize = theApp.GetProfileInt(_T("Settings"), _T("TabSize"), 4);
-	m_bHiliteSyntax = theApp.GetProfileInt(_T("Settings"), _T("HiliteSyntax"), TRUE)!=0;
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
 
@@ -521,7 +520,7 @@ void CMainFrame::OnProperties()
 	gen.m_nTabSize = m_nTabSize;
 	gen.m_bDisableSplash = theApp.m_bDisableSplash;
 
-	syn.m_bHiliteSyntax = m_bHiliteSyntax;
+	syn.m_bHiliteSyntax = theApp.m_bHiliteSyntax;
 	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
 	filter.m_sPattern = m_sPattern;
 	
@@ -558,8 +557,8 @@ void CMainFrame::OnProperties()
 		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
 		theApp.WriteProfileInt(_T("Settings"), _T("DisableSplash"), theApp.m_bDisableSplash);
 
-		m_bHiliteSyntax = syn.m_bHiliteSyntax;
-		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), m_bHiliteSyntax);
+		theApp.m_bHiliteSyntax = syn.m_bHiliteSyntax;
+		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), theApp.m_bHiliteSyntax);
 
 		RebuildRegExpList();
 

@@ -64,7 +64,6 @@ public:
 
 // Implementation
 public:
-	BOOL m_bHiliteSyntax;
 	BOOL m_bFirstTime;
 	CString m_strSaveAsPath;
 	void CleanupFileBufs();

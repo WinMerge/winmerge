@@ -377,8 +377,9 @@ BOOL CMergeDoc::Rescan()
 			// display the files
 			if (m_nDiffs>0)
 			{
-				mf->m_pLeft->PrimeListWithFile(m_strTempLeftFile);
-				mf->m_pRight->PrimeListWithFile(m_strTempRightFile);
+				PrimeTextBuffers();
+				mf->m_pLeft->PrimeListWithFile();
+				mf->m_pRight->PrimeListWithFile();
 
 				// PrimeListWithFile will call resetview which resets tabs
 				mf->m_pLeft->SetTabSize(mf->m_nTabSize);
@@ -1076,4 +1077,139 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 bool CMergeDoc::CDiffTextBuffer::curUndoGroup()
 {
 	return (m_aUndoBuf.GetSize()!=0 && m_aUndoBuf[0].m_dwFlags&UNDO_BEGINGROUP);
+}
+
+
+
+void CMergeDoc::PrimeTextBuffers()
+{
+	CStdioFile file;
+	UINT LeftExtras=0;   // extra lines added to view
+	UINT RightExtras=0;   // extra lines added to view
+
+	CString blankline(_T(""));
+	int blanklen=blankline.GetLength();
+
+	// walk the diff stack and flag the line codes
+	SetCurrentDiff(-1);
+	for (int nDiff=0; nDiff < static_cast<int>(m_nDiffs); ++nDiff)
+	{
+		DIFFRANGE &curDiff = m_diffs[nDiff];
+
+		// handle left-only for the left view
+		switch (curDiff.op)
+		{
+		case OP_LEFTONLY:
+			// left side
+			{
+				// just flag the lines
+				curDiff.dbegin0 = curDiff.begin0+LeftExtras;
+				curDiff.dend0 = curDiff.end0+LeftExtras;
+				curDiff.blank0 = -1;
+				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
+				{
+					m_ltBuf.SetLineFlag(i, LF_LEFT_ONLY, TRUE, FALSE, FALSE);
+				}
+			}
+			// right side
+			{
+
+				// need to insert blanks to compensate for diff on other side
+				curDiff.dbegin1 = curDiff.begin1+RightExtras;
+				curDiff.dend1 = curDiff.dbegin1+(curDiff.end0-curDiff.begin0);
+				curDiff.blank1 = curDiff.dbegin1;
+				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
+				{
+					m_rtBuf.InsertLine(blankline, blanklen, i);
+					m_rtBuf.SetLineFlag(i, LF_LEFT_ONLY, TRUE, FALSE, FALSE);
+					++RightExtras;
+				}
+			}
+			break;
+		case OP_RIGHTONLY:
+			// right side
+			{
+				// just flag the lines
+				curDiff.dbegin1 = curDiff.begin1+RightExtras;
+				curDiff.dend1 = curDiff.end1+RightExtras;
+				curDiff.blank1 = -1;
+				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
+				{
+					m_rtBuf.SetLineFlag(i, LF_RIGHT_ONLY, TRUE, FALSE, FALSE);
+				}
+			}
+			// left side
+			{
+				// need to insert blanks to compensate for diff on other side
+				curDiff.dbegin0 = curDiff.begin0+LeftExtras;
+				curDiff.dend0 = curDiff.dbegin0+(curDiff.end1-curDiff.begin1);
+				curDiff.blank0 = curDiff.dbegin0;
+				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
+				{
+					m_ltBuf.InsertLine(blankline, blanklen, i);
+					m_ltBuf.SetLineFlag(i, LF_RIGHT_ONLY, TRUE, FALSE, FALSE);
+					++LeftExtras;
+				}
+			}
+			break;
+		case OP_DIFF:
+			// left side
+			{
+				// just flag the lines
+				curDiff.dbegin0 = curDiff.begin0+LeftExtras;
+				curDiff.dend0 = curDiff.end0+LeftExtras;
+				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
+				{
+					m_ltBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
+				}
+
+				// insert blanks if needed
+				int blanks = (curDiff.end1-curDiff.begin1)-(curDiff.end0-curDiff.begin0);
+				if (blanks>0)
+				{
+					curDiff.blank0 = curDiff.dend0+1;
+					curDiff.blank1 = -1;
+					for (int b=0; b < blanks; b++)
+					{
+						int idx = curDiff.blank0+b;
+						m_ltBuf.InsertLine(blankline, blanklen, idx);
+						m_ltBuf.SetLineFlag(idx, LF_RIGHT_ONLY, TRUE, FALSE, FALSE);
+						curDiff.dend0++;
+						LeftExtras++;
+					}
+				}
+			}
+			// right side
+			{
+				// just flag the lines
+				curDiff.dbegin1 = curDiff.begin1+RightExtras;
+				curDiff.dend1 = curDiff.end1+RightExtras;
+				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
+				{
+					m_rtBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
+				}
+
+				// insert blanks if needed
+				int blanks = (curDiff.end0-curDiff.begin0)-(curDiff.end1-curDiff.begin1);
+				if (blanks>0)
+				{
+					curDiff.blank1 = curDiff.dend1+1;
+					curDiff.blank0 = -1;
+					for (int b=0; b < blanks; b++)
+					{
+						int idx = curDiff.blank1+b;
+						m_rtBuf.InsertLine(blankline, blanklen, idx);
+						m_rtBuf.SetLineFlag(idx, LF_LEFT_ONLY, TRUE, FALSE, FALSE);
+						curDiff.dend1++;
+						++RightExtras;
+					}
+				}
+			}
+			break;
+		}
+	}
+
+	m_ltBuf.SetReadOnly(FALSE);
+	m_rtBuf.SetReadOnly(FALSE);
+
 }

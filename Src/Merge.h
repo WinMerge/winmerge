@@ -43,6 +43,7 @@
 class CMergeApp : public CWinApp
 {
 public:
+	BOOL m_bHiliteSyntax;
 	BOOL m_bDisableSplash;
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	CLanguageSelect m_lang;

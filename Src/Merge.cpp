@@ -115,6 +115,7 @@ BOOL CMergeApp::InitInstance()
 	LoadStdProfileSettings();  // Load standard INI file options (including MRU)
 
 	m_bDisableSplash = GetProfileInt(_T("Settings"), _T("DisableSplash"), FALSE);
+	m_bHiliteSyntax = GetProfileInt(_T("Settings"), _T("HiliteSyntax"), TRUE)!=0;
 
 	// CG: The following block was added by the Splash Screen component.
 	{

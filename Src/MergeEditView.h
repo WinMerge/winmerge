@@ -33,6 +33,7 @@ public:
 
 // Operations
 public:
+	void ShowDiff(BOOL bScroll, BOOL bSelectText);
 	virtual void OnEditOperation(int nAction, LPCTSTR pszText);
 	void UpdateLineLengths();
 	BOOL IsLineInCurrentDiff(int nLine);
@@ -48,7 +49,7 @@ public:
 	CMergeDoc* GetDocument();
 	void UpdateResources();
 	BOOL IsModified() { return (LocateTextBuffer()->IsModified()); }
-	BOOL PrimeListWithFile(LPCTSTR szFilename);
+	BOOL PrimeListWithFile();
 
 
 // Overrides
@@ -58,6 +59,7 @@ public:
 	virtual void OnInitialUpdate();
 	protected:
 	virtual void OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView);
+	virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
 	//}}AFX_VIRTUAL
 
 // Implementation

@@ -163,141 +163,9 @@ void CMergeEditView::UpdateResources()
 
 }
 
-BOOL CMergeEditView::PrimeListWithFile(LPCTSTR szFilename)
+BOOL CMergeEditView::PrimeListWithFile()
 {
-	CMergeDoc *pd = GetDocument();
-	CStdioFile file;
-	UINT extras=0;   // extra lines added to view
 
-	// get the text buffer for the current view and initialize it
-	CMergeDoc::CDiffTextBuffer *pBuf = static_cast<CMergeDoc::CDiffTextBuffer*>(LocateTextBuffer());
-
-	CString blankline(_T(""));
-	int blanklen=blankline.GetLength();
-
-	// walk the diff stack and flag the line codes
-	pd->SetCurrentDiff(-1);
-	for (int nDiff=0; nDiff < static_cast<int>(pd->m_nDiffs); ++nDiff)
-	{
-		DIFFRANGE &curDiff = pd->m_diffs[nDiff];
-
-		// handle left-only for the left view
-		switch (curDiff.op)
-		{
-		case OP_LEFTONLY:
-			if (m_bIsLeft)
-			{
-				// just flag the lines
-				curDiff.dbegin0 = curDiff.begin0+extras;
-				curDiff.dend0 = curDiff.end0+extras;
-				curDiff.blank0 = -1;
-				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
-				{
-					pBuf->SetLineFlag(i, LF_LEFT_ONLY, TRUE, FALSE, FALSE);
-				}
-			}
-			else
-			{
-				// need to insert blanks to compensate for diff on other side
-				curDiff.dbegin1 = curDiff.begin1+extras;
-				curDiff.dend1 = curDiff.dbegin1+(curDiff.end0-curDiff.begin0);
-				curDiff.blank1 = curDiff.dbegin1;
-				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
-				{
-					pBuf->InsertLine(blankline, blanklen, i);
-					pBuf->SetLineFlag(i, LF_LEFT_ONLY, TRUE, FALSE, FALSE);
-					extras++;
-				}
-			}
-			break;
-		case OP_RIGHTONLY:
-			if (!m_bIsLeft)
-			{
-				// just flag the lines
-				curDiff.dbegin1 = curDiff.begin1+extras;
-				curDiff.dend1 = curDiff.end1+extras;
-				curDiff.blank1 = -1;
-				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
-				{
-					pBuf->SetLineFlag(i, LF_RIGHT_ONLY, TRUE, FALSE, FALSE);
-				}
-			}
-			else
-			{
-				// need to insert blanks to compensate for diff on other side
-				curDiff.dbegin0 = curDiff.begin0+extras;
-				curDiff.dend0 = curDiff.dbegin0+(curDiff.end1-curDiff.begin1);
-				curDiff.blank0 = curDiff.dbegin0;
-				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
-				{
-					pBuf->InsertLine(blankline, blanklen, i);
-					pBuf->SetLineFlag(i, LF_RIGHT_ONLY, TRUE, FALSE, FALSE);
-					extras++;
-				}
-			}
-			break;
-		case OP_DIFF:
-			{
-				if (m_bIsLeft)
-				{
-					// just flag the lines
-					curDiff.dbegin0 = curDiff.begin0+extras;
-					curDiff.dend0 = curDiff.end0+extras;
-					for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
-					{
-						pBuf->SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
-					}
-
-					// insert blanks if needed
-					int blanks = (curDiff.end1-curDiff.begin1)-(curDiff.end0-curDiff.begin0);
-					if (blanks>0)
-					{
-						curDiff.blank0 = curDiff.dend0+1;
-						curDiff.blank1 = -1;
-						for (int b=0; b < blanks; b++)
-						{
-							int idx = curDiff.blank0+b;
-							pBuf->InsertLine(blankline, blanklen, idx);
-							pBuf->SetLineFlag(idx, LF_RIGHT_ONLY, TRUE, FALSE, FALSE);
-							curDiff.dend0++;
-							extras++;
-						}
-					}
-				}
-				else
-				{
-					// just flag the lines
-					curDiff.dbegin1 = curDiff.begin1+extras;
-					curDiff.dend1 = curDiff.end1+extras;
-					for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
-					{
-						pBuf->SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
-					}
-
-					// insert blanks if needed
-					int blanks = (curDiff.end0-curDiff.begin0)-(curDiff.end1-curDiff.begin1);
-					if (blanks>0)
-					{
-						curDiff.blank1 = curDiff.dend1+1;
-						curDiff.blank0 = -1;
-						for (int b=0; b < blanks; b++)
-						{
-							int idx = curDiff.blank1+b;
-							pBuf->InsertLine(blankline, blanklen, idx);
-							pBuf->SetLineFlag(idx, LF_LEFT_ONLY, TRUE, FALSE, FALSE);
-							curDiff.dend1++;
-							extras++;
-						}
-					}
-				}
-
-			}
-			break;
-		}
-	}
-
-
-	pBuf->SetReadOnly(FALSE);
 	SetWordWrapping(FALSE);
 	ResetView();
 	RecalcVertScrollBar();
@@ -346,7 +214,7 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 void CMergeEditView::GetLineColors (int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, BOOL & bDrawWhitespace)
 {
-  if (mf->m_bHiliteSyntax)
+  if (theApp.m_bHiliteSyntax)
 	CCrystalEditViewEx::GetLineColors(nLineIndex, crBkgnd, crText, bDrawWhitespace);
   DWORD dwLineFlags = GetLineFlags (nLineIndex);
   if (dwLineFlags & LF_DIFF)
@@ -393,7 +261,7 @@ void CMergeEditView::GetLineColors (int nLineIndex, COLORREF & crBkgnd,
 	  bDrawWhitespace = TRUE;
       return;
   }  
-  else if (!mf->m_bHiliteSyntax)
+  else if (!theApp.m_bHiliteSyntax)
   {
 	  crBkgnd = RGB(255,255,255);
 	  crText = RGB(0,0,0);
@@ -468,43 +336,11 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHo
 void CMergeEditView::SelectDiff(int nDiff, BOOL bScroll /*=TRUE*/, BOOL bSelectText /*=TRUE*/)
 {
 	CMergeDoc *pd = GetDocument();
-	mf->m_pLeft->SelectNone();
-	mf->m_pRight->SelectNone();
+	SelectNone();
 	pd->SetCurrentDiff(nDiff);
-	if (nDiff >= 0
-		&& nDiff < (int)pd->m_nDiffs)
-	{
-		CPoint ptStart, ptEnd;
-		ptStart.x = 0;
-		ptStart.y = pd->m_diffs[nDiff].dbegin0;
-
-		if (bScroll)
-		{		
-			int line = ptStart.y-CONTEXT_LINES;
-			if (line<0)
-				line=0;
-			mf->m_pLeft->ScrollToLine(line);
-			mf->m_pRight->ScrollToLine(line);
-			SetCursorPos(ptStart);
-		}
-
-		if (bSelectText)
-		{
-			ptEnd.y = pd->m_diffs[nDiff].dend0;
-			ptEnd.x = mf->m_pLeft->GetLineLength(ptEnd.y);
-			mf->m_pLeft->SetSelection(ptStart, ptEnd);
-
-			ptEnd.x = mf->m_pRight->GetLineLength(ptEnd.y);
-			mf->m_pRight->SetSelection(ptStart, ptEnd);
-			UpdateCaret();
-		}
-		else
-		{
-			mf->m_pLeft->Invalidate();
-			mf->m_pRight->Invalidate();
-		}
-
-	}
+	ShowDiff(bScroll, bSelectText);
+	pd->UpdateAllViews(this);
+	UpdateSiblingScrollPos(FALSE);
 }
 
 void CMergeEditView::OnCurdiff() 
@@ -859,4 +695,46 @@ void CMergeEditView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
 	pCmdUI->Enable(pDoc->curUndo!=pDoc->undoTgt.end());
+}
+
+void CMergeEditView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint) 
+{
+	// TODO: Add your specialized code here and/or call the base class
+	CCrystalEditViewEx::OnUpdate(pSender, lHint, pHint);
+	ShowDiff(FALSE, FALSE);
+}
+
+void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
+{
+	CMergeDoc *pd = GetDocument();
+	int nDiff = pd->m_nCurDiff;
+	if (nDiff >= 0
+		&& nDiff < (int)pd->m_nDiffs)
+	{
+		CPoint ptStart, ptEnd;
+		ptStart.x = 0;
+		ptStart.y = pd->m_diffs[nDiff].dbegin0;
+
+		if (bScroll)
+		{		
+			int line = ptStart.y-CONTEXT_LINES;
+			if (line<0)
+				line=0;
+			ScrollToLine(line);
+			SetCursorPos(ptStart);
+		}
+
+		if (bSelectText)
+		{
+			ptEnd.y = pd->m_diffs[nDiff].dend0;
+			ptEnd.x = GetLineLength(ptEnd.y);
+			SetSelection(ptStart, ptEnd);
+
+			UpdateCaret();
+		}
+		else
+		{
+			Invalidate();
+		}
+	}
 }
