@@ -408,14 +408,21 @@ POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 	CString path2, file2;
 	SplitFilename(pathRight, &path2, &file2, 0);
 
+	// Filenames must be identical
+	if (file1 != file2)
+		return NULL;
+
 	// Path can contain (because of difftools?) '/' and '\'
 	// so for comparing purposes, convert whole path to use '\\'
 	path1.Replace('/', '\\');
 	path2.Replace('/', '\\');
 
-	// Filenames must be identical
-	if (file1 != file2)
-		return NULL;
+
+	// Add trailing slash to root paths, to work with getLeftFilepath etc
+	if (path1.GetLength() == 2 && path1[1] == ':')
+		path1 += '\\';
+	if (path2.GetLength() == 2 && path2[1] == ':')
+		path2 += '\\';
 
 	// Get first item
 	DIFFITEM current = m_pCtxt->GetDiffAt(pos);

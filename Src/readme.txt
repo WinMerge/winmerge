@@ -1,3 +1,7 @@
+2005-02-26 Perry
+ PATCH: [ 1151949 ] Fix CDirDoc::FindItemFromPaths for root
+  Src: DirDoc.cpp
+
 2005-02-23 Perry
  PATCH: [ 1145016 ] i18n the version control strings
   Src: Merge.rc PropVss.cpp PropVss.h resource.h
