@@ -1,3 +1,7 @@
+2003-10-11 Perry
+ PATCH: [ 821532 ] Fix CmpResults After Delete
+  WinMerge: DiffContext.h DirActions.cpp
+
 2003-10-11 Laoran
  PATCH: [ 820742 ] use extension filter during Rescan in 2.1
   DiffContext.cpp DiffContext.h DirDoc.cpp DirDoc.h DirScan.cpp MainFrm.cpp

@@ -337,9 +337,14 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 					POSITION diffpos = GetItemKey(act.idx);
 					const DIFFITEM & di = GetDiffContext()->GetDiffAt(diffpos);
 					if (di.isSideLeft())
+					{
 						actionList.deletedItems.AddTail(act.idx);
+					}
 					else
+					{
 						GetDocument()->SetDiffStatus(DIFFCODE::RIGHT, DIFFCODE::SIDEFLAG, act.idx);
+						GetDocument()->SetDiffStatus(DIFFCODE::NOCMP, DIFFCODE::COMPAREFLAGS, act.idx);
+					}
 				}
 				else
 				{
@@ -356,9 +361,14 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 					POSITION diffpos = GetItemKey(act.idx);
 					const DIFFITEM & di = GetDiffContext()->GetDiffAt(diffpos);
 					if (di.isSideRight())
+					{
 						actionList.deletedItems.AddTail(act.idx);
+					}
 					else
+					{
 						GetDocument()->SetDiffStatus(DIFFCODE::LEFT, DIFFCODE::SIDEFLAG, act.idx);
+						GetDocument()->SetDiffStatus(DIFFCODE::NOCMP, DIFFCODE::COMPAREFLAGS, act.idx);
+					}
 				}
 				else
 				{
