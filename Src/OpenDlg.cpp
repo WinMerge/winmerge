@@ -535,10 +535,7 @@ BOOL COpenDlg::LoadProjectFile(CString path)
 	}
 	else
 	{
-		if (pfile.HasLeft())
-			m_strLeft = pfile.GetLeft();
-		if (pfile.HasRight())
-			m_strRight = pfile.GetRight();
+		pfile.GetPaths(m_strLeft, m_strRight, m_bRecurse);
 		if (pfile.HasFilter())
 		{
 			m_strExt = pfile.GetFilter();
@@ -547,8 +544,6 @@ BOOL COpenDlg::LoadProjectFile(CString path)
 			if (m_strExt[0] != '*')
 				m_strExt.Insert(0, filterPrefix);
 		}
-		if (pfile.HasSubfolders())
-			m_bRecurse = (pfile.GetSubfolders() == 1);
 	}
 	return TRUE;
 }
