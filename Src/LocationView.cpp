@@ -23,6 +23,9 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+// Few pixels of empty space around bars
+static const DWORD Y_OFFSET = 5;
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDiffDetailView
 
@@ -102,8 +105,7 @@ void CLocationView::OnDraw(CDC* pDC)
 	const int x = (rc.Width() - 2 * w) / 3;
 	const int x2 = 2 * x + w;
 	const int w2 = 2 * x + 2 * w;
-	const double yOffset = 5; // Few pixels of empty space around bars
-	const double hTotal = rc.Height() - (2 * yOffset); // Height of draw area
+	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
 	COLORREF cr0 = CLR_NONE; // Left side color
 	COLORREF cr1 = CLR_NONE; // Right side color
@@ -124,8 +126,8 @@ void CLocationView::OnDraw(CDC* pDC)
 		nstart0++;
 
 		// here nstart0 = first line of block
-		const double nBeginY = (nstart0) * hTotal / nbLines + yOffset;
-		const double nEndY = (blockHeight + nstart0) * hTotal / nbLines + yOffset;
+		const double nBeginY = (nstart0) * hTotal / nbLines + Y_OFFSET;
+		const double nEndY = (blockHeight + nstart0) * hTotal / nbLines + Y_OFFSET;
 
 		// Draw left side block
 		m_view0->GetLineColors(nstart0, cr0, crt, bwh);
@@ -166,10 +168,10 @@ void CLocationView::OnDraw(CDC* pDC)
 			if (apparent1 != -1)
 			{
 				// Draw connector between moved blocks
-				const double nBeginY0 = (apparent0) * hTotal / nbLines + yOffset;
-				const double nEndY0 = (blockHeight + apparent0) * hTotal / nbLines + yOffset;
-				const double nBeginY1 = (apparent1) * hTotal / nbLines + yOffset;
-				const double nEndY1 = (blockHeight + apparent1) * hTotal / nbLines + yOffset;
+				const double nBeginY0 = (apparent0) * hTotal / nbLines + Y_OFFSET;
+				const double nEndY0 = (blockHeight + apparent0) * hTotal / nbLines + Y_OFFSET;
+				const double nBeginY1 = (apparent1) * hTotal / nbLines + Y_OFFSET;
+				const double nEndY1 = (blockHeight + apparent1) * hTotal / nbLines + Y_OFFSET;
 			
 				CRect r0bis(x, nBeginY0, x + w, nEndY0);
 				CRect r1bis(x2, nBeginY1, w2, nEndY1);
@@ -188,10 +190,10 @@ void CLocationView::OnDraw(CDC* pDC)
 			if (apparent0 != -1)
 			{
 				// Draw connector between moved blocks
-				const double nBeginY0 = (apparent0) * hTotal / nbLines + yOffset;
-				const double nEndY0 = (blockHeight + apparent0) * hTotal / nbLines + yOffset;
-				const double nBeginY1 = (apparent1) * hTotal / nbLines + yOffset;
-				const double nEndY1 = (blockHeight + apparent1) * hTotal / nbLines + yOffset;
+				const double nBeginY0 = (apparent0) * hTotal / nbLines + Y_OFFSET;
+				const double nEndY0 = (blockHeight + apparent0) * hTotal / nbLines + Y_OFFSET;
+				const double nBeginY1 = (apparent1) * hTotal / nbLines + Y_OFFSET;
+				const double nEndY1 = (blockHeight + apparent1) * hTotal / nbLines + Y_OFFSET;
 			
 				CRect r0bis(x, nBeginY0, x + w, nEndY0);
 				CRect r1bis(x2, nBeginY1, w2, nEndY1);
@@ -320,9 +322,7 @@ BOOL CLocationView::GotoLocation(CPoint point)
 	if (!leftside && !rightside)
 		return FALSE;
 
-	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
-
-	int line = point.y * nbLines / rc.Height();
+	const int line = GetLineFromYPos(point.y, rc);
 
 	m_view0->GoToLine(line, false);
 	m_view1->GoToLine(line, false);
@@ -332,7 +332,8 @@ BOOL CLocationView::GotoLocation(CPoint point)
 
 void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point) 
 {
-	if (point.x == -1 && point.y == -1){
+	if (point.x == -1 && point.y == -1)
+	{
 		//keystroke invocation
 		CRect rect;
 		GetClientRect(rect);
@@ -342,11 +343,27 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		point.Offset(5, 5);
 	}
 
+	CRect rc;
+	CPoint pt = point;
+	GetClientRect(rc);
+	ScreenToClient(&pt);
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_LOCATIONBAR));
 
 	BCMenu* pPopup = (BCMenu *) menu.GetSubMenu(0);
 	ASSERT(pPopup != NULL);
+
+	const int nLine = GetLineFromYPos(pt.y, rc);
+	CString strItem;
+	CString strNum;
+	
+	// If cursor over bar, format string with linenumber, else disable item
+	if (nLine > -1)
+		strNum.Format(_T("%d"), nLine);
+	else
+		pPopup->EnableMenuItem(ID_LOCBAR_GOTODIFF, MF_GRAYED);
+	AfxFormatString1(strItem, ID_LOCBAR_GOTOLINE_FMT, strNum);
+	pPopup->SetMenuText(ID_LOCBAR_GOTODIFF, strItem, MF_BYCOMMAND);
 
 	switch (m_displayMovedBlocks)
 	{
@@ -370,7 +387,8 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	switch (command)
 	{
 	case ID_LOCBAR_GOTODIFF:
-		GotoLocation(point);
+		m_view0->GoToLine(nLine, false);
+		m_view1->GoToLine(nLine, false);
 		break;
 	case ID_EDIT_WMGOTO:
 		m_view0->WMGoto();
@@ -388,4 +406,15 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		pDoc->SetDetectMovedBlocks(TRUE);
 		break;
 	}
+}
+
+/// Calculate line in file from given YCoord in locationpane
+int CLocationView::GetLineFromYPos(int nYCoord, CRect rc)
+{
+	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
+	int line = -1;
+
+	if ((nYCoord > Y_OFFSET) && (nYCoord < (rc.Height() - Y_OFFSET)))
+		line = ((double)nbLines / (rc.Height() - Y_OFFSET * 2)) * nYCoord;
+	return line;
 }

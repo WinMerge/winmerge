@@ -1983,6 +1983,7 @@ BEGIN
     ID_DISPLAY_MOVED_FOLLOW_DIFF "Display moved blocks only from current diff"
     ID_LOCBAR_GOTODIFF      "Go to diff under cursor"
     ID_LOCBAR_GOTODIFF_FMT  "G&oto Diff %1 of %2"
+    ID_LOCBAR_GOTOLINE_FMT  "G&oto Line %1"
 END
 
 // END STRINGS SYNCHRO

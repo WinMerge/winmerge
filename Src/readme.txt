@@ -1,3 +1,8 @@
+2004-06-08 Kimmo
+ PATCH: [ 968504 ] Add Goto Line to location pane context menu
+  Src: LocationView.cpp LocationView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2004-06-08 Perry
  [ 967406 ] Add .clw to filtered out files in MakePatchDirs
  Filter out also clw files in MSVC filter. Bump version to 1.2.2.0.

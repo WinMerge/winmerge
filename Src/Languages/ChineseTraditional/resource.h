@@ -698,7 +698,7 @@
 #define ID_DISPLAY_MOVED_FOLLOW_DIFF    33090
 #define ID_LOCBAR_GOTODIFF              33091
 #define ID_LOCBAR_GOTODIFF_FMT          33092
-
+#define ID_LOCBAR_GOTOLINE_FMT          33093
 
 
 // Next default values for new objects
@@ -707,7 +707,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        163
-#define _APS_NEXT_COMMAND_VALUE         33093
+#define _APS_NEXT_COMMAND_VALUE         33094
 #define _APS_NEXT_CONTROL_VALUE         1146
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
