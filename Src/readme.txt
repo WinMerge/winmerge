@@ -1,3 +1,7 @@
+2003-07-12 Laoran
+ PATCH: [ 769122 ] Keep top screen line within the shorter panel
+  WinMerge: MergeEditView.cpp 
+
 2003-07-11 Perry
  PATCH: [ 765150 ] Fix char count in edit view bottom status line
   WinMerge: ChildFrm.cpp ChildFrm.h Merge.rc MergeEditStatus.h 

@@ -228,9 +228,24 @@ void CMergeEditView::UpdateSiblingScrollPos (BOOL bHorz)
 		ASSERT (nCurrentRow >= 0 && nCurrentRow < pSplitterWnd->GetRowCount ());
 		ASSERT (nCurrentCol >= 0 && nCurrentCol < pSplitterWnd->GetColumnCount ());
 
+		// limit the TopLine : must be smaller than GetLineCount for all the panels
+		int newTopLine = m_nTopLine;
 		int nRows = pSplitterWnd->GetRowCount ();
 		int nCols = pSplitterWnd->GetColumnCount ();
 		for (int nRow = 0; nRow < nRows; nRow++)
+		{
+			for (int nCol = 0; nCol < nCols; nCol++)
+			{
+				CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
+				if (pSiblingView != NULL)
+					if (pSiblingView->GetLineCount() <= newTopLine)
+						newTopLine = pSiblingView->GetLineCount()-1;
+			}
+		}
+		if (m_nTopLine != newTopLine) 
+			ScrollToLine(newTopLine);
+
+		for (nRow = 0; nRow < nRows; nRow++)
 		{
 			for (int nCol = 0; nCol < nCols; nCol++)
 			{
