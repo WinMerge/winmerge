@@ -1,3 +1,7 @@
+2004-12-15 Tim
+ PATCH: [ 1084670 ] Web: Use winmerge.org at PAD file
+  Web: WinMergePAD.xml
+
 2004-12-11 Tim
  PATCH: [ 1081625 ] Web: Move screenshots and icons
   Web: .htaccess page.inc index.php WinMergePAD.xml

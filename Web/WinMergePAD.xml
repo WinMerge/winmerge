@@ -85,11 +85,11 @@
 	</Program_Descriptions>
 	<Web_Info>
 		<Application_URLs>
-			<Application_Info_URL>http://winmerge.org/</Application_Info_URL>
-			<Application_Order_URL>http://winmerge.org/</Application_Order_URL>
-			<Application_Screenshot_URL>http://winmerge.sourceforge.net/2.2/images/screenshot.gif</Application_Screenshot_URL>
-			<Application_Icon_URL>http://winmerge.sourceforge.net/2.2/images/icon.gif</Application_Icon_URL>
-			<Application_XML_File_URL>http://winmerge.sourceforge.net/WinMergePAD.xml</Application_XML_File_URL>
+			<Application_Info_URL>http://winmerge.org/2.2/</Application_Info_URL>
+			<Application_Order_URL>http://winmerge.org/2.2/</Application_Order_URL>
+			<Application_Screenshot_URL>http://winmerge.org/2.2/images/screenshot.gif</Application_Screenshot_URL>
+			<Application_Icon_URL>http://winmerge.org/2.2/images/icon.gif</Application_Icon_URL>
+			<Application_XML_File_URL>http://winmerge.org/WinMergePAD.xml</Application_XML_File_URL>
 		</Application_URLs>
 		<Download_URLs>
 			<Primary_Download_URL>http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.0-Setup.exe</Primary_Download_URL>
