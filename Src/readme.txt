@@ -1,3 +1,6 @@
+2003-01-28
+ [ 424579 ] Escape to exit
+
 2003-01-27
  [ 668654 ] Tabtype selection feature
  [ 672554 ] Update DirView after individual merge
