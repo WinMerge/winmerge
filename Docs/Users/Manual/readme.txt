@@ -1,5 +1,9 @@
 2005-02-22 Perry
  Minor grammar proofing
+ Manual: Whatsnew_2_1.xml
+
+2005-02-22 Perry
+ Minor grammar proofing
  Manual: Open_paths.xml
 
 2005-02-22 Perry
