@@ -145,9 +145,9 @@ void CDirView::OnInitialUpdate()
 	m_pList = &GetListCtrl();
 	GetDocument()->SetDirView(this);
 
-    // Replace standard header with sort header
-    if (HWND hWnd = ListView_GetHeader(m_pList->m_hWnd))
-            m_ctlSortHeader.SubclassWindow(hWnd);
+	// Replace standard header with sort header
+	if (HWND hWnd = ListView_GetHeader(m_pList->m_hWnd))
+		m_ctlSortHeader.SubclassWindow(hWnd);
         
 	int w;
 	CString sKey;
@@ -173,7 +173,7 @@ void CDirView::OnInitialUpdate()
 	w = max(10, theApp.GetProfileInt(sSect, sKey, 150));
 	m_pList->InsertColumn(DV_RTIME, _T("Right Time"), LVCFMT_LEFT, w);
 
-    // BSP - Create a column for the extension values
+	// BSP - Create a column for the extension values
 	sKey.Format(sFmt, DV_EXT);
 	w = max(10, theApp.GetProfileInt(sSect, sKey, 150));
 	m_pList->InsertColumn(DV_EXT, _T("Extension"), LVCFMT_LEFT, w);
@@ -418,11 +418,11 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 	case DV_STATUS: // Diff Status.
 		retVal = rDi.code-lDi.code;
 		break;
-	case DV_LTIME: // Diff Status.
+	case DV_LTIME: // Time of left item
 		retVal = rDi.ltime-lDi.ltime;
 		break;
-	case DV_RTIME: // Diff Status.
-		retVal = lDi.rtime-rDi.rtime;
+	case DV_RTIME: // Time of right item
+		retVal = rDi.rtime-lDi.rtime;
 		break;
 	case DV_EXT: // File extension.
 		retVal = lDi.sext.CompareNoCase(rDi.sext);
@@ -444,7 +444,7 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 	{
 		m_sortColumn = pNMListView->iSubItem;
 		// date columns get default descending sort.
-		if(m_sortColumn==3 || m_sortColumn==4)
+		if(m_sortColumn==DV_LTIME || m_sortColumn==DV_RTIME)
 		{
 			m_bSortAscending = false;
 		}

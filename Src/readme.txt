@@ -1,3 +1,7 @@
+2003-07-29 Perry
+ PATCH: [ 779224 ] Fix sort bug in right date
+  WinMerge: DirView.cpp
+
 2003-07-29 Kimmo
  PATCH: [ 779172 ] Saving fix for 2.0 and 2.1
   WinMerge: MergeDoc.cpp
