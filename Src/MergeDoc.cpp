@@ -208,17 +208,15 @@ BOOL CMergeDoc::Rescan()
 	{
 		if(m_ltBuf.GetLineFlags(ct) & LF_RIGHT_ONLY)
 		{
-			m_ltBuf.InternalDeleteText(NULL, ct, 0, ct+1, 0);
+			m_ltBuf.DeleteLine(ct);
 		}
-		m_ltBuf.SetLineFlag(ct, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
 	}
 	for(ct=m_rtBuf.GetLineCount()-1; ct>=0; --ct)
 	{
 		if(m_rtBuf.GetLineFlags(ct) & LF_LEFT_ONLY)
 		{
-			m_rtBuf.InternalDeleteText(NULL, ct, 0, ct+1, 0);
+			m_rtBuf.DeleteLine(ct);
 		}
-		m_rtBuf.SetLineFlag(ct, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
 	}
 
 	// restore modified status
@@ -558,13 +556,38 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 
 		POSITION pos = GetFirstViewPosition();
 		CCrystalTextView* curView = dynamic_cast<CCrystalTextView*>(GetNextView(pos));
+		if(bSrcLeft)
+		{
+			curView = dynamic_cast<CCrystalTextView*>(GetNextView(pos));
+		}
 
 		dbuf.BeginUndoGroup();
 		if (cd_blank>=0)
 		{
 			// text was missing, so delete rest of lines on both sides
 			// delete only on destination side since rescan will clear the other side
-			dbuf.DeleteText(NULL, cd_blank, 0, cd_dend+1, 0, CE_ACTION_UNKNOWN, FALSE);
+			CMergeEditView *active = static_cast<CMergeEditView*>(
+									 static_cast<CMDIFrameWnd*>(AfxGetMainWnd())
+									 ->MDIGetActive()->GetActiveView());
+			CPoint pt = active->GetCursorPos();
+			if(cd_blank==0)
+			{
+				if(pt.y>=cd_blank && pt.y<=cd_dend)
+				{
+					pt.y = cd_blank;
+					active->SetCursorPos(pt);
+				}
+				dbuf.DeleteText(NULL, cd_blank, 0, cd_dend+1, 0, CE_ACTION_DELETE, FALSE);
+			}
+			else
+			{
+				if(pt.y>=cd_blank && pt.y<=cd_dend)
+				{
+					pt.y = cd_blank-1;
+					active->SetCursorPos(pt);
+				}
+				dbuf.DeleteText(NULL, cd_blank-1, dbuf.GetLineLength(cd_blank-1), cd_dend, dbuf.GetLineLength(cd_dend), CE_ACTION_DELETE, FALSE);
+			}
 			deleted_lines=cd_dend-cd_blank+1;
 
 			limit=cd_blank-1;
