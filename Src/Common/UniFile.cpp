@@ -387,7 +387,7 @@ BOOL UniMemFile::ReadString(sbuffer & sline, CString & eol)
 				++m_txtstats.nzeros;
 				return TRUE;
 			}
-			line += wch;
+			sline.Append(wch);
 		}
 		return TRUE;
 	}
