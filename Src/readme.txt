@@ -1,3 +1,7 @@
+2003-10-07 Laoran
+ PATCH: [ 802066 ] diff pane when OnDisplayDiff(-1) (2.1)
+  WinMerge: MergeDiffDetailView.cpp
+
 2003-09-07 Perry
  PATCH: [ 802132 ] Resort dir columns after redisplay
   WinMerge: DirView.h DirView.cpp DirDoc.cpp

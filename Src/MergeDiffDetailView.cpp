@@ -219,7 +219,7 @@ void CMergeDiffDetailView::OnDisplayDiff(int nDiff /*=0*/)
 {
 	int newlineBegin, newdiffLength;
 	CMergeDoc *pd = GetDocument();
-	if (pd->m_nDiffs == 0)
+	if (nDiff < 0 || nDiff >= pd->m_nDiffs)
 	{
 		newlineBegin = 0;
 		newdiffLength = 1;
