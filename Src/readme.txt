@@ -1,3 +1,7 @@
+2003-10-10 Laoran
+ PATCH: [ 818198 ] Colors for "ignore blank lines"
+  Languages: *.rc (except not Brazilian or ChineseSimplified)
+
 2003-10-09 Perry
  PATCH: [ 818865 ] Exponentially grow text line array
   WinMerge: files.cpp
