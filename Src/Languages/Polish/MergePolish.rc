@@ -1461,7 +1461,6 @@ END
 // WINMERGE INFORMATION
 STRINGTABLE
 BEGIN
-    IDS_WINMERGE_THIS_DIRECTORY "Scalaj ten katalog"
     IDS_VERSION_FMT         "Wersja %1"
     IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
       /? or -? displays this help

@@ -1460,7 +1460,6 @@ END
 // WINMERGE INFORMATION
 STRINGTABLE
 BEGIN
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge denne folder"
     IDS_VERSION_FMT         "Versjon %1"
     IDS_QUICKHELP           "Syntaks : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl vbeskr] [/dr hbeskr] vsti hsti [utsti]\n\nhvor:
       /? eller -? viser denne hjelpen

@@ -1364,7 +1364,6 @@ END
 // WINMERGE INFORMATION
 STRINGTABLE
 BEGIN
-    IDS_WINMERGE_THIS_DIRECTORY "Obre aquest directori amb el WinMerge"
     IDS_VERSION_FMT         "Versió %1 - Català"
     IDS_QUICKHELP           "Sintaxi : WinMerge [/r] [/e] [/f màscara/nom] [/ul] [/ur] [/ub] [/dl descesq] [/dr descdreta] camiesq camidreta [camisortida]\n\non:
       /? o -? mostra aquesta ajuda

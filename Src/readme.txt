@@ -1,3 +1,8 @@
+2005-01-09 Kimmo
+ PATCH: [ 1019445 ] IDS_WINMERGE_THIS_DIRECTORY is unused
+  Src: Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2005-01-08 Kimmo
  PATCH: [ 1098340 ] crash rarely when starting many winmerge continuously
   Anonymous submission

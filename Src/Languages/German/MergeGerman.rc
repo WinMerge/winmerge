@@ -1467,7 +1467,6 @@ END
 // WINMERGE INFORMATION
 STRINGTABLE
 BEGIN
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge dieses Verzeichnis"
     IDS_VERSION_FMT         "Version %1 - Deutsch"
     IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f Maske/Name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl LinkeBeschreibung] [/dr RechteBeschreibung] LinkerPfad RechterPfad [AusgabePfad]\n\nWo:
       /? oder -? zeigt diese Hilfe

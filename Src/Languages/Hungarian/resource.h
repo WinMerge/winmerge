@@ -270,7 +270,6 @@
 
 
 
-#define IDS_WINMERGE_THIS_DIRECTORY     16384
 #define IDS_VERSION_FMT                 16385
 #define IDS_QUICKHELP                   16386
 

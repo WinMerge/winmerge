@@ -1462,7 +1462,6 @@ END
 // WINMERGE INFORMATION
 STRINGTABLE
 BEGIN
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge su questa cartella"
     IDS_VERSION_FMT         "Versione %1 - Italiano"
     IDS_QUICKHELP           "Sintassi : WinMerge [/r] [/e] [/f maschera/nome] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl descsx] [/dr descdx] percsx percdx [percoutput]\n\ndove:
       /? o -? visualizza questo aiuto

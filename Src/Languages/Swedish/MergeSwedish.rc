@@ -1460,7 +1460,6 @@ END
 // WINMERGE INFORMATION
 STRINGTABLE
 BEGIN
-    IDS_WINMERGE_THIS_DIRECTORY "Jämför filerna i den här katalogen med WinMerge"
     IDS_VERSION_FMT         "Version %1"
     IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\ndär:
       /? eller -? visar denna hjälp
