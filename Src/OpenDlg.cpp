@@ -32,6 +32,7 @@
 #include "coretools.h"
 #include "paths.h"
 #include "SelectUnpackerDlg.h"
+#include "OptionsDef.h"
 #include "MainFrm.h"
 
 #ifdef _DEBUG
@@ -286,6 +287,14 @@ BOOL COpenDlg::OnInitDialog()
 		}
 	}
 
+	if (!mf->m_options.GetInt(OPT_VERIFY_OPEN_PATHS))
+	{
+		m_ctlOk.EnableWindow(TRUE);
+		m_ctlRecurse.EnableWindow(TRUE); 
+		m_ctlUnpacker.EnableWindow(TRUE);
+		m_ctlSelectUnpacker.EnableWindow(TRUE);
+	}
+
 	UpdateButtonStates();
 
 	m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0)==1;
@@ -309,10 +318,13 @@ void COpenDlg::UpdateButtonStates()
 	
 	// Enable buttons as appropriate
 	PATH_EXISTENCE pathsType = GetPairComparability(m_strLeft, m_strRight);
-	m_ctlOk.EnableWindow(pathsType != DOES_NOT_EXIST);
-	m_ctlRecurse.EnableWindow(pathsType == IS_EXISTING_DIR); 
-	m_ctlUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
-	m_ctlSelectUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
+	if (mf->m_options.GetInt(OPT_VERIFY_OPEN_PATHS))
+	{
+		m_ctlOk.EnableWindow(pathsType != DOES_NOT_EXIST);
+		m_ctlRecurse.EnableWindow(pathsType == IS_EXISTING_DIR); 
+		m_ctlUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
+		m_ctlSelectUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
+	}
 
 	if (paths_DoesPathExist(m_strLeft) == DOES_NOT_EXIST)
 		bLeftInvalid = TRUE;

@@ -173,6 +173,7 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_CREATE_BACKUPS, TRUE);
 	m_options.InitOption(OPT_VIEW_WHITESPACE, FALSE);
 	m_options.InitOption(OPT_SCROLL_TO_FIRST, FALSE);
+	m_options.InitOption(OPT_VERIFY_OPEN_PATHS, TRUE);
 
 	m_options.InitOption(OPT_AUTOMATIC_RESCAN, FALSE);
 	m_options.InitOption(OPT_ALLOW_MIXED_EOL, FALSE);
@@ -1194,6 +1195,7 @@ void CMainFrame::OnOptions()
 	gen.m_bScroll = m_options.GetInt(OPT_SCROLL_TO_FIRST);
 	gen.m_bDisableSplash = m_options.GetInt(OPT_DISABLE_SPLASH);
 	gen.m_bAutoCloseCmpPane = m_options.GetInt(OPT_AUTOCLOSE_CMPPANE);
+	gen.m_bVerifyPaths = m_options.GetInt(OPT_VERIFY_OPEN_PATHS);
 	gen.m_bCloseWindowWithEsc = m_options.GetInt(OPT_CLOSE_WITH_ESC);
 	regpage.m_strEditorPath = m_options.GetString(OPT_EXT_EDITOR_CMD);
 	regpage.GetContextRegValues();
@@ -1220,6 +1222,7 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_SCROLL_TO_FIRST, gen.m_bScroll);
 		m_options.SaveOption(OPT_DISABLE_SPLASH, gen.m_bDisableSplash);
 		m_options.SaveOption(OPT_AUTOCLOSE_CMPPANE, gen.m_bAutoCloseCmpPane);
+		m_options.SaveOption(OPT_VERIFY_OPEN_PATHS, gen.m_bVerifyPaths);
 		m_options.SaveOption(OPT_CLOSE_WITH_ESC, gen.m_bCloseWindowWithEsc);
 		m_options.SaveOption(OPT_USE_RECYCLE_BIN, regpage.m_bUseRecycleBin);
 		regpage.SaveMergePath();

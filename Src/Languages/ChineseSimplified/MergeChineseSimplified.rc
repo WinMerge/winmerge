@@ -458,10 +458,13 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,90,10
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,167,67,49,13,NOT
+    CONTROL         "Automatically verify paths in Open-dialog",
+                    IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,57,143,10
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,167,77,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Press button to reset all message boxes",IDC_STATIC,7,
-                    69,157,8
+                    79,157,8
 END
 
 IDD_LANGUAGE_SELECT DIALOG  0, 0, 213, 111

@@ -1,3 +1,9 @@
+2004-05-24 Kimmo
+ PATCH: [ 959111 ] Optionally don't disable Open-dialog OK-button
+  Src: MainFrm.cpp Merge.rc OpenDlg.cpp OptionsDef.h PropGeneral.cpp
+   PropGeneral.h resource.h
+  Src/Languages: *.rc resource.h
+
 2004-05-24 Perry
  Fix compilation (trailing comma in CCrystalTextView::m_SourceDefs)
   Src/editlib: ccrystaltextview.cpp
