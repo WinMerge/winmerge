@@ -1,3 +1,8 @@
+2005-03-30 Tim
+ PATCH: [ 1172781 ] Web: Misc updates for translations status
+  Web\css: all.css print.css
+  Web\developer\l10n: status.php status.xml
+
 2005-03-25 Tim
  PATCH: [ 1170267 ] Website changes for new stable release 2.2.2
   Web: index.php WinMergePAD.xml

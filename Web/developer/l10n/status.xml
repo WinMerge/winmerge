@@ -43,6 +43,7 @@
       </author>
     </authors>
     <versions>
+      <version>2.3</version>
       <version>2.2</version>
       <version>2.1</version>
       <version>2.0</version>
@@ -116,7 +117,7 @@
   </language>
   <language>
     <name>French</name>
-    <status>4</status>
+    <status>2</status>
     <authors>
       <author>
         <name>Gil Andre</name>
@@ -128,8 +129,14 @@
         <email>ccganier at club-internet dot fr</email>
         <comment>2.1 &amp; 2.0</comment>
       </author>
+      <author>
+        <name>Jean FJ</name>
+        <email>jean-f-j at users.sourceforge dot net</email>
+        <comment>2.2</comment>
+      </author>
     </authors>
     <versions>
+      <version>2.2</version>
       <version>2.1</version>
       <version>2.0</version>
       <version>1.7</version>
@@ -173,6 +180,7 @@
       </author>
     </authors>
     <versions>
+      <version>2.3</version>
       <version>2.2</version>
     </versions>
   </language>
@@ -241,6 +249,7 @@
       </author>
     </authors>
     <versions>
+      <version>2.3</version>
       <version>2.2</version>
       <version>2.0</version>
     </versions>

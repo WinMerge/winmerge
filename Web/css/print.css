@@ -52,6 +52,12 @@ p.important {
 	font-weight: bold;
 }
 
+p.note {
+	padding: 5px;
+	background-color: #FFFFFF;
+	border: 1px solid black;
+}
+
 pre.code {
 	margin-left: 0;
 	margin-right: 0;

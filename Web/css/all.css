@@ -93,6 +93,12 @@ p.important {
 	font-weight: bold;
 }
 
+p.note {
+	padding: 5px;
+	background-color: #EEEEEE;
+	border: 1px solid blue;
+}
+
 pre.code {
 	margin-left: 25px;
 	margin-right: 25px;

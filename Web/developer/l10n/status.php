@@ -10,6 +10,9 @@
 pretty fast, there is no way to keep translations up-to-date in beta
 releases.</p>
 
+<p class="note">Stable bugfix-releases do not have translation changes after
+stable release (for example 2.2.x releases do not have changes after 2.2.0).</p>
+
 <p>The table below shows the releases where a particular language was updated.</p>
 
 <h3>Maintained or unmaintained?</h3>
@@ -119,9 +122,9 @@ releases.</p>
 ?>
 
 <ul>
-  <li>Release 2.2 language versions also works with release 2.2.2.</li>
-  <li>Release 2.0 language versions also works with release 2.0.2.</li>
-  <li>Release 1.4 language versions also works with release 1.7.</li>
+  <li><strong>2.2.2</strong>: Please use version 2.2.2 language files since there are bugfixes in them.</li>
+  <li><strong>2.0.2</strong>: Release 2.0 language versions also works with release 2.0.2.</li>
+  <li><strong>1.7</strong>: Release 1.4 language versions also works with release 1.7.</li>
 </ul>
 
 <p>If you would like to update any of these translations or add another translation, then please follow <a href="instructions.php">these instructions</a>.</p>
