@@ -509,6 +509,7 @@ void CMainFrame::OnProperties()
 	gen.m_bIgnoreBlankLines = m_bIgnoreBlankLines;
 	gen.m_bScroll = m_bScrollToFirst;
 	gen.m_nTabSize = m_nTabSize;
+	gen.m_bDisableSplash = theApp.m_bDisableSplash;
 
 	syn.m_bHiliteSyntax = m_bHiliteSyntax;
 	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
@@ -522,13 +523,14 @@ void CMainFrame::OnProperties()
 		m_bBackup = gen.m_bBackup;
 		m_bScrollToFirst = gen.m_bScroll;
 		m_nTabSize = gen.m_nTabSize;
+		theApp.m_bDisableSplash = gen.m_bDisableSplash;
 
 		ignore_all_space_flag = m_bIgnoreWhitespace = gen.m_bIgnoreWhite;
 		ignore_blank_lines_flag = m_bIgnoreBlankLines = gen.m_bIgnoreBlankLines;
 		ignore_case_flag = m_bIgnoreCase = gen.m_bIgnoreCase;
 		ignore_some_changes = m_bIgnoreWhitespace || m_bIgnoreCase || m_bIgnoreBlankLines;
 		length_varies = m_bIgnoreWhitespace;
-
+		
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
 		m_sPattern = filter.m_sPattern;
 
@@ -542,6 +544,7 @@ void CMainFrame::OnProperties()
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreCase"), m_bIgnoreCase);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
 		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
+		theApp.WriteProfileInt(_T("Settings"), _T("DisableSplash"), theApp.m_bDisableSplash);
 
 		m_bHiliteSyntax = syn.m_bHiliteSyntax;
 		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), m_bHiliteSyntax);
@@ -778,28 +781,20 @@ void CMainFrame::OnViewSelectfont()
 
 void CMainFrame::GetFontProperties()
 {
-	m_bFontSpecified=FALSE;
-	/*TODO
-	m_bFontSpecified = theApp.GetProfileInt(_T("Font"), _T("Specified"), FALSE)!=FALSE;
-	if (m_bFontSpecified)
-	{
-		m_lfDiff.lfHeight = theApp.GetProfileInt(_T("Font"), _T("Height"), 10);
-		m_lfDiff.lfWidth = theApp.GetProfileInt(_T("Font"), _T("Width"), 0);
-		m_lfDiff.lfEscapement = theApp.GetProfileInt(_T("Font"), _T("Escapement"), 0);
-		m_lfDiff.lfOrientation = theApp.GetProfileInt(_T("Font"), _T("Orientation"), 0);
-		m_lfDiff.lfWeight = theApp.GetProfileInt(_T("Font"), _T("Weight"), FW_NORMAL);
-		m_lfDiff.lfItalic = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Italic"), FALSE);
-		m_lfDiff.lfUnderline = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Underline"), FALSE);
-		m_lfDiff.lfStrikeOut = (BYTE)theApp.GetProfileInt(_T("Font"), _T("StrikeOut"), FALSE);
-		m_lfDiff.lfCharSet = (BYTE)theApp.GetProfileInt(_T("Font"), _T("CharSet"), ANSI_CHARSET);
-		m_lfDiff.lfOutPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("OutPrecision"), OUT_TT_PRECIS);
-		m_lfDiff.lfClipPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("ClipPrecision"), CLIP_TT_ALWAYS);
-		m_lfDiff.lfQuality = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Quality"), DEFAULT_QUALITY);
-		m_lfDiff.lfPitchAndFamily = (BYTE)theApp.GetProfileInt(_T("Font"), _T("PitchAndFamily"), FF_SWISS | DEFAULT_PITCH);
-		_tcscpy(m_lfDiff.lfFaceName, theApp.GetProfileString(_T("Font"), _T("FaceName"), _T("MS Sans Serif")));
-	}
-	else*/
-		memset(&m_lfDiff, 0, sizeof(LOGFONT));
+	m_lfDiff.lfHeight = theApp.GetProfileInt(_T("Font"), _T("Height"), 10);
+	m_lfDiff.lfWidth = theApp.GetProfileInt(_T("Font"), _T("Width"), 0);
+	m_lfDiff.lfEscapement = theApp.GetProfileInt(_T("Font"), _T("Escapement"), 0);
+	m_lfDiff.lfOrientation = theApp.GetProfileInt(_T("Font"), _T("Orientation"), 0);
+	m_lfDiff.lfWeight = theApp.GetProfileInt(_T("Font"), _T("Weight"), FW_NORMAL);
+	m_lfDiff.lfItalic = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Italic"), FALSE);
+	m_lfDiff.lfUnderline = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Underline"), FALSE);
+	m_lfDiff.lfStrikeOut = (BYTE)theApp.GetProfileInt(_T("Font"), _T("StrikeOut"), FALSE);
+	m_lfDiff.lfCharSet = (BYTE)theApp.GetProfileInt(_T("Font"), _T("CharSet"), ANSI_CHARSET);
+	m_lfDiff.lfOutPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("OutPrecision"), OUT_TT_PRECIS);
+	m_lfDiff.lfClipPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("ClipPrecision"), CLIP_TT_ALWAYS);
+	m_lfDiff.lfQuality = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Quality"), DEFAULT_QUALITY);
+	m_lfDiff.lfPitchAndFamily = (BYTE)theApp.GetProfileInt(_T("Font"), _T("PitchAndFamily"), FF_SWISS | DEFAULT_PITCH);
+	_tcscpy(m_lfDiff.lfFaceName, theApp.GetProfileString(_T("Font"), _T("FaceName"), _T("MS Sans Serif")));
 }
 
 void CMainFrame::OnViewUsedefaultfont() 

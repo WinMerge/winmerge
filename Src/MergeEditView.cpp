@@ -330,8 +330,8 @@ void CMergeEditView::ResetMod()
 
 void CMergeEditView::OnInitialUpdate() 
 {
-	m_LogFont.lfPitchAndFamily = FIXED_PITCH|FF_DONTCARE;
 	CCrystalEditViewEx::OnInitialUpdate();
+	SetFont(dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff);
 	GetDocument()->m_pView = this;
 }
 
