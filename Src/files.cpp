@@ -147,10 +147,6 @@ BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush)
 	return bSuccess;
 }
 
-#ifndef WC_NO_BEST_FIT_CHARS
-#define WC_NO_BEST_FIT_CHARS        0x00000400
-#endif
-
 /**
  * @brief Checks Checks memory-mapped for binary data and counts lines
  * in textfile.

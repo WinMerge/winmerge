@@ -16,6 +16,11 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+// This is not in older platform sdk versions
+#ifndef WC_NO_BEST_FIT_CHARS
+#define WC_NO_BEST_FIT_CHARS        0x00000400
+#endif
+
 namespace ucr {
 
 /**
