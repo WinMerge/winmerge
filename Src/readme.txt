@@ -5,6 +5,8 @@
  PATCH: [ 1027086 ] Catalan translation Update
   Submitted by Jordi Vilar
   Src/Languages/Catalan: MergeCatalan.rc
+ Add note about changed commandline when using docbook2html in SF.net
+  Docs/Developers: readme-developers.html
 
 2004-09-12 Kimmo
  Fix Italian lang file build error and remove unneeded \n

@@ -483,7 +483,12 @@ etc. File contains comments for settings so they are not repeated here.
 To generate HTML documentation in SF.net shell, copy all XML files, stylesheet
 file and subdirectories to shell server. Then in directory which contains XML
 files, type:<br>
-<b><code>docbook2html -d Manual-html.dsl WinMerge_help.xml</code></b>
+<b><code>docbook2html -d Manual-html.dsl WinMerge_help.xml</code></b><br>
+<b>Note:</b>
+Seems that now also <code>-l /usr/share/sgml/xml.dcl</code> switch is needed. So
+commandline that works (2004-09-13) is:<br>
+<b><code>docbook2html -l /usr/share/sgml/xml.dcl -d Manual-html.dsl WinMerge_help.xml
+</code></b>
 
 <a name="Logging"></a>
 <h3>Logging</h3>
