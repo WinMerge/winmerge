@@ -1,0 +1,961 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Traditional) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+#pragma code_page(950)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL\r\n"
+    "#pragma code_page(950)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Merge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Merge.ico"
+IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_POPUP_DIFFVIEW MENU DISCARDABLE
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "複製到另一邊",                ID_POPUP_COPYTOOTHERSIDE
+        MENUITEM "從另一邊複製",                ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM SEPARATOR
+        MENUITEM "複製所有不同到另一邊...",     ID_POPUP_COPYALLDIFFSTOOTHERSIDE
+        MENUITEM "從另一邊複製所有不同...",     ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+        MENUITEM SEPARATOR
+        MENUITEM "復原",                        ID_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "儲存更改...",                 ID_POPUP_SAVE
+    END
+END
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE
+BEGIN
+    POPUP "檔案(&F)"
+    BEGIN
+        MENUITEM "開啟(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "儲存(&S)\tCtrl+S",            ID_FILE_SAVE
+        MENUITEM SEPARATOR
+        MENUITEM "結束(&X)\tEsc",               ID_APP_EXIT
+    END
+    POPUP "編輯(&E)"
+    BEGIN
+        MENUITEM "復原(&U)\tCtrl+Z",            ID_EDIT_UNDO
+        MENUITEM "重做(&R)\tCtrl+Y",            ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "剪下(&U)\tCtrl+X",            ID_EDIT_CUT
+        MENUITEM "複製(&C)\tCtrl+C",            ID_EDIT_COPY
+        MENUITEM "貼上(&P)\tCtrl+V",            ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "下一不同(&N)\tAlt+Down",      ID_NEXTDIFF
+        MENUITEM "上一不同(&P)\tAlt+Up",        ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "第一個不同(&F)\tAlt+Home",    ID_FIRSTDIFF
+        MENUITEM "目前不同(&C)\tAlt+Enter",     ID_CURDIFF
+        MENUITEM "上次的不同(&D)\tAlt+End",     ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "複製到右邊(&R)\tAlt+Right",   ID_L2R
+        MENUITEM "複製到左邊(&L)\tAlt+Left",    ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "全部複製到右邊(&A)",          ID_ALL_RIGHT
+        MENUITEM "全部複製到左邊(&E)",          ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "尋找(&I)...\tCtrl+F",         ID_EDIT_FIND
+        MENUITEM "取代(&C)...\tCtrl+H",         ID_EDIT_REPLACE
+        MENUITEM SEPARATOR
+        MENUITEM "選項(&O)...",                 ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "更新(&S)\tF5",                ID_REFRESH
+    END
+    POPUP "檢視(&V)"
+    BEGIN
+        MENUITEM "顯示完全相同的檔案(&I)",      ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "顯示不同的檔案(&D)",          ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "顯示左邊單一的檔案(&F)",      ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "顯示右邊單一的檔案(&G)",      ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "顯示二進制檔案(&H)",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "隱藏 *.BAK 檔案(&B)",         ID_HIDE_BACKUP_FILES
+        MENUITEM SEPARATOR
+        MENUITEM "選取字型(&F)...",             ID_VIEW_SELECTFONT
+        MENUITEM "使用預設的字型(&O)",          ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "檢視空白和跳格(&V)",          ID_VIEW_WHITESPACE
+        MENUITEM SEPARATOR
+        MENUITEM "工具列(&T)",                  ID_VIEW_TOOLBAR
+        MENUITEM "狀態列(&S)",                  ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "語言(&L)...",                 ID_VIEW_LANGUAGE
+    END
+    POPUP "視窗(&W)"
+    BEGIN
+        MENUITEM "關閉",                        ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "水平並排(&H)",                ID_WINDOW_TILE_HORZ
+        MENUITEM "垂直並排(&V)",                ID_WINDOW_TILE_VERT
+        MENUITEM "重疊(&C)",                    ID_WINDOW_CASCADE
+    END
+    POPUP "說明(&H)"
+    BEGIN
+        MENUITEM "內容(&C)...",                 ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "GNU 公共授權...",             ID_HELP_GNULICENSE
+        MENUITEM "關於 WinMerge(&A)...",        ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_DIRVIEW MENU DISCARDABLE
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "複製檔案到左邊",              ID_DIR_COPY_FILE_TO_LEFT
+        MENUITEM "複製檔案到右邊",              ID_DIR_COPY_FILE_TO_RIGHT
+        MENUITEM "刪除左邊",                    ID_DIR_DEL_LEFT
+        MENUITEM "刪除右邊",                    ID_DIR_DEL_RIGHT
+        MENUITEM "刪除兩者",                    ID_DIR_DEL_BOTH
+        MENUITEM SEPARATOR
+        MENUITEM "開啟左邊",                    ID_DIR_OPEN_LEFT
+        MENUITEM "開啟左邊以...",               ID_DIR_OPEN_LEFT_WITH
+        MENUITEM "開啟右邊",                    ID_DIR_OPEN_RIGHT
+        MENUITEM "開啟右邊以...",               ID_DIR_OPEN_RIGHT_WITH
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS FIXED IMPURE 
+BEGIN
+    "C",            ID_EDIT_COPY,                  VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,                  VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_EDIT_REPLACE,                  VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,                  VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,                  VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,                  VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,                  VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,                  VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,                  VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,                  VIRTKEY, SHIFT, NOINVERT
+    VK_DOWN,        ID_NEXTDIFF,                  VIRTKEY, ALT, NOINVERT
+    VK_END,         ID_LASTDIFF,                  VIRTKEY, ALT, NOINVERT
+    VK_F3,          ID_EDIT_REPEAT,                  VIRTKEY, NOINVERT
+    VK_F3,          ID_EDIT_FIND_PREVIOUS,                  VIRTKEY, SHIFT, NOINVERT
+    VK_F5,          ID_REFRESH,                  VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,                  VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,                  VIRTKEY, SHIFT, NOINVERT
+    VK_HOME,        ID_FIRSTDIFF,                  VIRTKEY, ALT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,                  VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,                  VIRTKEY, SHIFT, NOINVERT
+    VK_LEFT,        ID_R2L,                  VIRTKEY, ALT, NOINVERT
+    VK_RETURN,      ID_CURDIFF,                  VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2R,                  VIRTKEY, ALT, NOINVERT
+    VK_UP,          ID_PREVDIFF,                  VIRTKEY, ALT, NOINVERT
+    "X",            ID_EDIT_CUT,                  VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG FIXED IMPURE  0, 0, 223, 122
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "關於 WinMerge"
+FONT 9, "新細明體"
+BEGIN
+    ICON            IDR_MAINFRAME,-1,24,14,21,20
+    LTEXT           "WinMerge",-1,63,13,63,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "確定",1,184,7,32,14,WS_GROUP
+    LTEXT           "版本 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
+    LTEXT           "保留所有權利。",-1,7,60,170,8
+    LTEXT           "拜訪 WinMerge 首頁！",IDC_WWW,7,107,209,8
+    CONTROL         "",-1,"Static",SS_ETCHEDHORZ,7,103,209,1
+    LTEXT           "版權(c) 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
+    LTEXT           "語法強調編輯檢視編寫由 Andrei Stcherbatchenko ",-1,7,71,
+                    209,8
+    LTEXT           "不同的語法編寫由 Ferdinand Prantl",-1,7,81,209,8
+END
+
+IDD_OPEN DIALOGEX 0, 0, 352, 98
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "選取檔案或資料夾..."
+FONT 9, "新細明體"
+BEGIN
+    LTEXT           "左邊(&L):",-1,34,24,19,8
+    COMBOBOX        IDC_RIGHT_EDIT,56,22,182,94,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+                    WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
+    PUSHBUTTON      "瀏覽(&B)...",IDC_LEFT_BUTTON,241,22,38,12
+    LTEXT           "右邊(&R):",-1,33,40,20,8
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+                    WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
+    PUSHBUTTON      "瀏覽(&W)...",IDC_RIGHT_BUTTON,241,38,38,12
+    LTEXT           "副檔名(&X):",-1,16,56,37,8
+    COMBOBOX        IDC_MESSAGE,56,54,151,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "子資料夾(&C)",IDC_WHITESPACE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,35,77,57,10
+    DEFPUSHBUTTON   "確定",1,295,11,50,14
+    PUSHBUTTON      "取消",CBRS_SIZE_FIXED,295,28,50,14
+    GROUPBOX        "要比對的檔案或資料夾",-1,7,7,279,84
+END
+
+IDD_VSS DIALOG FIXED IMPURE  0, 0, 258, 149
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Visual SourceSafe"
+FONT 9, "新細明體"
+BEGIN
+    LTEXT           "",-1,7,7,244,47,SS_SUNKEN
+    LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
+    DEFPUSHBUTTON   "檢查",1,33,121,50,14
+    PUSHBUTTON      "取消",CBRS_SIZE_FIXED,173,121,50,14
+    PUSHBUTTON      "另存新檔...",IDSAVEAS,103,121,50,14
+    LTEXT           "專案:",-1,9,61,25,8
+    COMBOBOX        IDC_RIGHT_COMBO,36,58,215,114,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "用戶:",-1,13,80,18,8
+    EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
+    LTEXT           "密碼:",-1,127,79,34,8
+    EDITTEXT        IDC_PASSWORD,162,78,70,14,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+IDD_PROP_VSS DIALOG FIXED IMPURE  0, 0, 259, 157
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "版本系統"
+FONT 9, "新細明體"
+BEGIN
+    GROUPBOX        "設定",-1,7,7,245,54
+    LTEXT           "cleartool.exe 路徑(&P):",IDC_SCROLL_CHECK,16,42,68,8
+    EDITTEXT        IDC_PATH_EDIT,85,40,116,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "瀏覽(&B)...",IDC_BROWSE_BUTTON,206,40,42,12
+    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "版本系統(&V)",-1,16,22,60,10
+END
+
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "一般"
+FONT 9, "新細明體"
+BEGIN
+    GROUPBOX        "設定",-1,7,7,221,94
+    CONTROL         "備份原始的檔案(&B)",IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,17,19,83,10
+    CONTROL         "自動地捲動到第一個不同(&S)",IDC_SCROLL_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,30,129,10
+    CONTROL         "忽略空白列(&K)",IDC_VERSION,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,17,41,71,10
+    CONTROL         "忽略大小寫(&C)",IDC_WWW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,17,52,69,10
+    CONTROL         "敏感對列結束(&E)",IDC_USER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,17,63,74,10
+    CONTROL         "停用引人注目的螢幕(&D)",IDC_DISABLE_SPLASH,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,17,74,100,10
+    CONTROL         "自動重新掃描(&R)",IDC_AUTOMRESCAN_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,17,85,75,10
+    CONTROL         "比對空白和跳格(&W)",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,125,45,87,10
+    CONTROL         "忽略空白和跳格更改(&H)",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,125,56,99,10
+    CONTROL         "忽略所有空白和跳格(&A)",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,125,67,99,10
+    GROUPBOX        "跳格",-1,7,105,221,30,WS_GROUP
+    LTEXT           "跳格大小(&T):",-1,10,119,35,8
+    EDITTEXT        IDC_TAB_EDIT,47,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    CONTROL         "插入跳格字元(&T)",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,79,113,76,10
+    CONTROL         "插入空白(&N)",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,79,122,
+                    59,10
+END
+
+IDD_LANGUAGE_SELECT DIALOG FIXED IMPURE  0, 0, 213, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "語言"
+FONT 9, "新細明體"
+BEGIN
+    PUSHBUTTON      "確定",IDOK,154,16,52,14
+    PUSHBUTTON      "取消",IDCANCEL,154,33,52,14
+    LISTBOX         1037,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "可用的語言:",-1,7,7,66,8
+END
+
+IDD_EDIT_FIND DIALOG FIXED IMPURE  30, 73, 236, 68
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "尋找"
+FONT 9, "新細明體"
+BEGIN
+    COMBOBOX        IDC_EDIT_FINDTEXT,46,6,135,135,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "全字拼寫須相符(&W)",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,4,26,100,12
+    CONTROL         "大小寫須相符(&C)",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,40,75,12
+    CONTROL         "一般運算式(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,54,77,12
+    CONTROL         "上移(&U)",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    111,36,43,12
+    CONTROL         "下移(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",BS_AUTORADIOBUTTON,111,48,41,12
+    DEFPUSHBUTTON   "找下一個(&F)",1,185,5,50,14,WS_GROUP
+    PUSHBUTTON      "取消",CBRS_SIZE_FIXED,185,24,50,14
+    LTEXT           "要找什麼(&N):",-1,1,8,44,8
+    GROUPBOX        "方向",-1,107,26,68,38,WS_GROUP
+END
+
+IDD_EDIT_REPLACE DIALOG FIXED IMPURE  36, 44, 230, 89
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "取代"
+FONT 9, "新細明體"
+BEGIN
+    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "全字拼寫須相符(&W)",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,5,46,91,12
+    CONTROL         "大小寫須相符(&C)",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,5,60,73,12
+    CONTROL         "一般運算式(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,5,74,77,12
+    CONTROL         "選取(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    102,57,59,10
+    CONTROL         "整個檔案(&O)",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",BS_AUTORADIOBUTTON,102,70,
+                    58,10
+    DEFPUSHBUTTON   "找下一個(&F)",8610,174,4,50,14,WS_GROUP
+    PUSHBUTTON      "取代(&R)",IDC_EDIT_REPLACE,174,21,50,14
+    PUSHBUTTON      "全部取代(&A)",IDC_EDIT_REPLACE_ALL,174,38,50,14
+    PUSHBUTTON      "取消",CBRS_SIZE_FIXED,174,55,50,14
+    LTEXT           "要找什麼(&N):",-1,4,9,48,8
+    LTEXT           "取代以(&P):",-1,4,26,48,8
+    GROUPBOX        "取代在",-1,97,46,71,39,WS_GROUP
+END
+
+IDD_CLEARCASE DIALOG FIXED IMPURE  0, 0, 279, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Rational Clearcase"
+FONT 9, "新細明體"
+BEGIN
+    DEFPUSHBUTTON   "勘試",1,35,90,50,14
+    PUSHBUTTON      "取消",CBRS_SIZE_FIXED,194,90,50,14
+    PUSHBUTTON      "另存新檔...",IDSAVEAS,114,90,50,14
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "註解",-1,18,7,34,10
+END
+
+IDD_PROPSYNTAX DIALOG FIXED IMPURE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "強調"
+FONT 9, "新細明體"
+BEGIN
+    CONTROL         "強調語法",IDC_HILITE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    7,57,10
+END
+
+IDD_PROPPAGE_FILTER DIALOG FIXED IMPURE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "濾鏡"
+FONT 9, "新細明體"
+BEGIN
+    CONTROL         "忽略列符合下列的樣式",IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,7,221,15
+    LTEXT           "一般運算式 (每列一個):",-1,7,28,221,8
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | ES_AUTOHSCROLL | 
+                    ES_WANTRETURN
+    LTEXT           "檔案濾鏡:",-1,7,128,60,10
+    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "色彩"
+FONT 9, "新細明體", 0, 0, 0x1
+BEGIN
+    LTEXT           "不同:",-1,15,18,36,8
+    CONTROL         "不同",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,83,15,17,
+                    14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    LTEXT           "選取的不同:",-1,14,36,66,8
+    CONTROL         "不同",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,83,33,17,
+                    14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+END
+
+IDD_OUTPUT DIALOG FIXED IMPURE  0, 0, 278, 157
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 9, "新細明體"
+BEGIN
+    DEFPUSHBUTTON   "確定",1,106,136,50,14
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | WS_VSCROLL
+END
+
+IDD_PROPPAGE_REGISTRY DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "登錄"
+FONT 9, "新細明體", 0, 0, 0x1
+BEGIN
+    CONTROL         "關聯到資料夾",IDC_ASSOC_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,7,221,15
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+1 VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040403B6"
+        BEGIN
+            VALUE "Comments", "Translated by koko\0"
+            VALUE "FileDescription", "WinMerge Application\0"
+            VALUE "FileVersion", "999.999.999.999\0"
+            VALUE "InternalName", "WinMerge\0"
+            VALUE "LegalCopyright", "c 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "OriginalFilename", "WinMerge.EXE\0"
+            VALUE "ProductName", "WinMerge\0"
+            VALUE "ProductVersion", "999.999.999.999\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x404, 950
+    END
+END
+
+#endif    // !_MAC
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR FIXED IMPURE  16, 15
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_UNDO
+    BUTTON      ID_EDIT_REDO
+    SEPARATOR
+    BUTTON      ID_NEXTDIFF
+    BUTTON      ID_PREVDIFF
+    BUTTON      ID_LASTDIFF
+    BUTTON      ID_CURDIFF
+    BUTTON      ID_FIRSTDIFF
+    SEPARATOR
+    BUTTON      ID_L2R
+    BUTTON      ID_R2L
+    SEPARATOR
+    BUTTON      ID_OPTIONS
+    SEPARATOR
+    BUTTON      ID_ALL_RIGHT
+    BUTTON      ID_ALL_LEFT
+    SEPARATOR
+    BUTTON      ID_REFRESH
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDB_SPLASH              BITMAP  DISCARDABLE     "res\\splash1.bmp"
+IDB_LFOLDER             BITMAP  DISCARDABLE     "res\\folder1.bmp"
+IDB_EQUAL               BITMAP  DISCARDABLE     "res\\equal.bmp"
+IDB_NOTEQUAL            BITMAP  DISCARDABLE     "res\\notequal.bmp"
+IDB_RFOLDER             BITMAP  DISCARDABLE     "res\\rfolder.bmp"
+IDB_UNKNOWN             BITMAP  DISCARDABLE     "res\\unknown.bmp"
+IDB_BINARYSAME          BITMAP  DISCARDABLE     "res\\binary.bmp"
+IDB_LFILE               BITMAP  DISCARDABLE     "res\\lfile.bmp"
+IDB_RFILE               BITMAP  DISCARDABLE     "res\\rfile.bmp"
+IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_PROP_VSS DLGINIT
+BEGIN
+    1018, 0x403, 5, 0
+0x6f4e, 0x656e, "\000" 
+    1018, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
+0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029, 
+    1018, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
+0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029, 
+    1018, 0x403, 19, 0
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
+"\000" 
+    0
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDD_OPEN                "WinMerge 這個資料夾"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    CBRS_BORDER_3D          " "
+    129                     " "
+    IDS_VERSION_FMT         "版本 %1"
+    IDS_ALLFILES            "所有檔案 (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "你確定要複製所有不同到左邊檔案嗎？"
+    IDS_CONFIRM_ALL_RIGHT   "你確定要複製所有不同到右邊檔案嗎？"
+    IDS_ERRORS_TITLE        "%1 錯誤"
+    IDS_CONFIRM_COPY2DIR    "你確定要複製 %1 在 %2 選取的項目"
+    IDS_FONT_CHANGE         "選取的字型變更不會套用到任何目前顯現不同的視窗。"
+    IDS_DIRECTORY_WINDOW_TITLE "資料夾比對結果"
+    IDS_DIRECTORY_WINDOW_STATUS_FMT "結果為 %1 和 %2"
+    IDS_FILES_ARE_DIFFERENT "檔案不同"
+    IDS_BIN_FILES_DIFF      "二進制檔案不同"
+    IDS_ONLY_IN_FMT         "只在 %1"
+    IDS_IDENTICAL           "完全相同"
+    IDS_CANT_COMPARE_FILES  "無法比對檔案"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    IDS_SAVE_AS_TITLE       "另存新檔"
+    IDS_SELECT_FILES_OR_FOLDERS "你的選取必須是兩者都是檔案或兩者都是資料夾"
+    IDS_BACKUP_FAILED_PROMPT "無法備份原始的檔案。\n無論如何要繼續嗎？"
+    IDS_OPTIONS_TITLE       "選項"
+    IDS_OPEN_TITLE          "開啟"
+    IDS_CONFIRM_DELETE      "刪除檔案 %1？"
+    IDS_EDIT_WINDOW_TITLE_FMT "編輯 %1"
+    IDS_FILESSAME           "選取的檔案完全相同。"
+    IDS_FILEUNIQUE          "選取的檔案不存在於兩邊的資料夾，因此無法比對。"
+    IDS_FILEERROR           "一個錯誤發生於比對檔案時。"
+    IDS_SAVEREADONLY_FMT    "%1 標記為唯讀。 你要以一個不同的名稱儲存檔案嗎？"
+    IDS_SAVE_FMT            "儲存更改到 %1？"
+    IDS_FILEBINARY          "二進制檔案無法作視覺的比對。"
+    IDS_SAVEVSS_FMT         "%1 標記為唯讀。 你要從版本系統檢查它，還是以一個不同的名稱儲存它？"
+    IDS_VSSERROR            "嘗試檢查檔案時版本系統返回一個錯誤。 無法繼續..."
+    IDS_NOPROJECT           "你必須指定一個 SourceSafe 專案路徑以便繼續 (例如：  $/MyProject)"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    IDS_FILENAME_HEADER     "檔案名稱"
+    IDS_DIR_HEADER          "資料夾"
+    IDS_RESULT_HEADER       "比對結果"
+    IDS_FILE_COMPARISON_TITLE "檔案比對"
+    IDS_DIFF_NUMBER_STATUS_FMT "不同 %1 在 %2"
+    IDS_NO_DIFF_SEL         "%1 不同找到"
+    IDS_FILEISDIR           "資料夾檔案無法做視覺的比對。"
+    IDS_CC_CMD              "cleartool.exe 路徑(&P):"
+    IDS_VSS_CMD             "SS.EXE 路徑(&P):"
+    IDS_VSS_RUN_ERROR       "錯誤執行版本系統指令。"
+    IDS_DIFF_OPEN_NO_SET_PROPS "在目前檔案比對期間已有修改。 在重新啟動目前檔案比對前，一些設定不會生效。"
+    IDS_LTIME_HEADER        "左邊日期"
+    IDS_RTIME_HEADER        "右邊日期"
+    IDS_EXTENSION_HEADER    "副檔名"
+    IDS_CONFIRM_DELETE_ITEMS "你確定要刪除 %1 在 %2 選取的項目嗎？"
+    IDS_DEL_LEFT_FMT        "刪除左邊 %1 在 %2 選取的項目"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    IDS_DEL_RIGHT_FMT       "刪除右邊 %1 在 %2 選取的項目"
+    IDS_DELETE_FAILED       "刪除檔案 %1 失敗： %2"
+    IDS_CONFIRM_DELETE_DIR  "刪除資料夾 %1？"
+    IDS_REMOVE_DIR_FAILED   "移除資料夾失敗： %1"
+    IDS_COPY_TO_LEFT        "複製到左邊 %1 在 %2 選取的項目"
+    IDS_COPY_TO_LEFT_MAIN   "刪除兩邊 %1 在 %2 選取的項目"
+    IDS_COPY_TO_RIGHT       "複製到右邊 %1 在 %2 選取的項目"
+    IDS_DELETE_DIR_FAILED   "刪除資料夾 %1 失敗： %s"
+    IDS_COPY_FILE_FAILED    "正在複製檔案 %1 失敗： %2"
+    IDS_COPY_DIR_FAILED     "正在複製資料夾 %1 失敗： %2"
+    IDS_ERROR_FILE_WRITEABLE "錯誤檢查目標寫入性"
+    IDS_ERROR_BACKUP        "錯誤備份檔案"
+    IDS_CONFIRM_COPY_SINGLE "你確定要複製 %1 到 %2 嗎？"
+    IDS_CONFIRM_DELETE_SINGLE "你確定要刪除 %1 嗎？"
+    IDS_BIN_FILES_SAME      "二進制檔案完全相同"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    IDS_FILESAVE_FAILED     "儲存 %1 失敗。你要以一個不同的名稱儲存檔案嗎？"
+    IDS_ERROR_FILE_NOT_FOUND "檔案找不到: %1"
+    IDS_ERROR_INCOMPARABLE  "選取要比對的兩個現存資料夾或檔案"
+    IDS_STATUS_RESCANNING                     "掃描檔案..."
+    IDS_STATUS_OPENING_SELECTION                     "開啟選取"
+    IDS_STATUS_COPYL2R      "正在複製左邊到右邊"
+    IDS_STATUS_COPYR2L      "正在複製右邊到左邊"
+    IDS_STATUS_COPYALL2L    "正在全部複製到左邊"
+    IDS_STATUS_COPYALL2R    "正在全部複製到右邊"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    IDS_NUM_REPLACED        "已取代 %1 個字串。"
+    IDS_EDIT_TEXT_NOT_FOUND "無法尋找字串「%s」"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    CBRS_ALIGN_BOTTOM       " "
+    32769                   " "
+    32770                   " "
+    ID_L2R                  "複製選取的文字到右邊檔案\n複製右邊 (Alt + Right)"
+    ID_R2L                  "複製選取的文字到左邊檔案\n複製左邊 (Alt + Left)"
+    ID_UNDO                 " "
+    ID_OPTIONS_SHOWIDENTICAL "顯示完全相同的檔案"
+    ID_OPTIONS_SHOWDIFFERENT "顯示有不同的檔案"
+    ID_OPTIONS_SHOWUNIQUE   " "
+    ID_POPUP_COPYTOOTHERSIDE " "
+    ID_POPUP_COPYFROMOTHERSIDE " "
+    ID_PREVDIFF             "捲動到上一個不同\n上一個不同 (Alt + Up)"
+    ID_POPUP_SAVE           " "
+    ID_NEXTDIFF             "捲動到下一個不同\n下一個不同 (Alt + Down)"
+    ID_OPTIONS_BACKUPORIGINALFILE "儲存的這原始的一個副本為 *.bak\n備份"
+    32783                   " "
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE "自動地捲動到這第一個不同\n捲動到第一個"
+    32785                   " "
+    32786                   " "
+    ID_POPUP_EDITFILE       " "
+    ID_OPTIONS_IGNOREWHITESPACE "比對檔案時不管空白和跳格"
+    ID_HIDE_BACKUP_FILES    "隱藏副檔名為 BAK 的檔案"
+    ID_HELP_GNULICENSE      "顯示 GNU 公共授權"
+    ID_USEVSS               "嘗試從 sourcesafe 勘試唯讀檔案"
+    ID_OPTIONS              "設定程式選項\n選項"
+    ID_ALL_LEFT             "複製所有不同到左邊檔案\n所有到左邊"
+    ID_ALL_RIGHT            "複製所有不同到右邊檔案\n所有到右邊"
+    ID_VIEW_SELECTFONT      "選取不同檢視的字型\n選取不同檢視字型"
+    ID_VIEW_USEDEFAULTFONT  "使用預設的系統字型於不同檢視\n預設字型"
+    ID_POPUP_COPYALLDIFFSTOOTHERSIDE " "
+    ID_POPUP_COPYALLDIFFSFROMOTHERSIDE " "
+    ID_DIR_COPY_FILE_TO_LEFT "複製選取的檔案到已命名的資料夾"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    ID_DIR_COPY_FILE_TO_RIGHT "複製選取的檔案到已命名的資料夾"
+    ID_VIEW_LANGUAGE        "選取目前用戶介面語言\n語言"
+    ID_HELP_CONTENTS        "顯示 WinMerge 用戶指引\n說明"
+    ID_FIRSTDIFF            "捲動到第一個不同\n第一個不同 (Alt+Home)"
+    ID_CURDIFF              "捲動到目前不同\n目前不同 (Alt+Enter)"
+    ID_LASTDIFF             "捲動到上次的不同\n上次的不同 (Alt+End)"
+    ID_DIFFNUM              "預留位置"
+    ID_DIR_DEL_LEFT         "刪除在左邊的選取項目"
+    ID_DIR_DEL_RIGHT        "刪除在右邊的選取項目"
+    ID_DIFFSTATUS           "預留位置為狀態計數"
+    ID_OPTIONS_SHOWUNIQUELEFT "顯示只存在於左邊的檔案"
+    ID_OPTIONS_SHOWUNIQUERIGHT "顯示只存在於右邊的檔案"
+    ID_DIR_DEL_BOTH         "刪除兩邊的選取項目"
+    ID_DIR_OPEN_LEFT        "開啟左邊檔案"
+    ID_DIR_OPEN_LEFT_WITH   "開啟左邊檔案以 ..."
+    ID_DIR_OPEN_RIGHT       "開啟右邊檔案"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "開啟右邊檔案以..."
+    ID_OPTIONS_SHOWBINARIES "顯示二進制檔案"
+    ID_VIEW_WHITESPACE      "顯示空白和跳格字元"
+    ID_REFRESH              "更新顯示\n更新 (F5)"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    AFX_IDS_APP_TITLE       "WinMerge"
+    AFX_IDS_IDLEMESSAGE     "就緒"
+    AFX_IDS_HELPMODEMESSAGE " "
+    AFX_IDS_APP_TITLE_EMBEDDING " "
+    AFX_IDS_COMPANY_NAME    " "
+    AFX_IDS_OBJ_TITLE_INPLACE " "
+    57350                   " "
+    57351                   " "
+    57352                   " "
+    57353                   " "
+    57354                   " "
+    57355                   " "
+    57356                   " "
+    57357                   " "
+    57358                   " "
+    57359                   " "
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    ID_FILE_NEW             "建立一個新文件\n新增"
+    ID_FILE_OPEN            "開啟一個現存文件\n開啟 (Ctrl+O)"
+    ID_FILE_CLOSE           "關閉作用中文件\n關閉"
+    ID_FILE_SAVE            "儲存作用中文件\n儲存 (Ctrl+S)"
+    ID_FILE_SAVE_AS         "以一個新名稱儲存作用中文件\n另存新檔"
+    ID_FILE_PAGE_SETUP      "變更列印選項\n版面設定"
+    ID_FILE_PRINT_SETUP     "變更印表機和列印選項\n列印設定"
+    ID_FILE_PRINT           "列印作用中文件\n列印"
+    ID_FILE_PRINT_DIRECT    " "
+    ID_FILE_PRINT_PREVIEW   "顯示整頁\n預覽列印"
+    ID_FILE_UPDATE          " "
+    ID_FILE_SAVE_COPY_AS    " "
+    ID_FILE_SEND_MAIL       " "
+    57613                   " "
+    57614                   " "
+    57615                   " "
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    ID_FILE_MRU_FIRST       "開啟這個文件"
+    ID_FILE_MRU_FILE2       "開啟這個文件"
+    ID_FILE_MRU_FILE3       "開啟這個文件"
+    ID_FILE_MRU_FILE4       "開啟這個文件"
+    ID_FILE_MRU_FILE5       "開啟這個文件"
+    ID_FILE_MRU_FILE6       "開啟這個文件"
+    ID_FILE_MRU_FILE7       "開啟這個文件"
+    ID_FILE_MRU_FILE8       "開啟這個文件"
+    ID_FILE_MRU_FILE9       "開啟這個文件"
+    ID_FILE_MRU_FILE10      "開啟這個文件"
+    ID_FILE_MRU_FILE11      "開啟這個文件"
+    ID_FILE_MRU_FILE12      "開啟這個文件"
+    ID_FILE_MRU_FILE13      "開啟這個文件"
+    ID_FILE_MRU_FILE14      "開啟這個文件"
+    ID_FILE_MRU_FILE15      "開啟這個文件"
+    ID_FILE_MRU_FILE16      "開啟這個文件"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    ID_EDIT_CLEAR           "清除選取的範圍\n刪除"
+    ID_EDIT_CLEAR_ALL       "全部刪除\n全部刪除"
+    ID_EDIT_COPY            "複製選取並放置它到這剪貼簿\n複製"
+    ID_EDIT_CUT             "剪下選取並放置它到剪貼簿\n剪下"
+    ID_EDIT_FIND            "尋找指定文字\n尋找"
+    ID_EDIT_PASTE           "插入剪貼簿內容\n貼上"
+    ID_EDIT_PASTE_LINK      " "
+    ID_EDIT_PASTE_SPECIAL   " "
+    ID_EDIT_REPEAT          "重複上次的動作\n重複"
+    ID_EDIT_REPLACE         "以不同的文字取代特定的文字\n取代"
+    ID_EDIT_SELECT_ALL      "選取整份文件\n全選"
+    ID_EDIT_UNDO            "復原上次的動作\n復原"
+    ID_EDIT_REDO            "重做之前未完成的動作\n重做"
+    57645                   " "
+    57646                   " "
+    57647                   " "
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    ID_WINDOW_NEW           "為作用中文件開啟另一個視窗\n新視窗"
+    ID_WINDOW_ARRANGE       "排列圖示在視窗的底部\n排列圖示"
+    ID_WINDOW_CASCADE       "排列視窗讓它們彼此覆蓋n重疊視窗"
+    ID_WINDOW_TILE_HORZ     "非覆蓋的排列視窗\n並列視窗"
+    ID_WINDOW_TILE_VERT     "非覆蓋的排列視窗\n並列視窗"
+    ID_WINDOW_SPLIT         "分割目前視窗\n分割"
+    57654                   " "
+    57655                   " "
+    57656                   " "
+    57657                   " "
+    57658                   " "
+    57659                   " "
+    57660                   " "
+    57661                   " "
+    57662                   " "
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    ID_APP_ABOUT            "顯示程式資訊，版本號碼和版權\n關於"
+    ID_APP_EXIT             "離開應用程式；提示要儲存文件\n結束"
+    ID_HELP_INDEX           " "
+    ID_HELP_FINDER          " "
+    ID_HELP_USING           " "
+    ID_CONTEXT_HELP         " "
+    ID_HELP                 " "
+    ID_DEFAULT_HELP         " "
+    57672                   " "
+    57673                   " "
+    57674                   " "
+    57675                   " "
+    57676                   " "
+    57677                   " "
+    57678                   " "
+    57679                   " "
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    ID_NEXT_PANE            "切換到下一個視窗\n下一視窗"
+    ID_PREV_PANE            "切換回上一個視窗\n上一視窗"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    ID_VIEW_TOOLBAR         "顯示或隱藏工具列\n切換工具列"
+    ID_VIEW_STATUS_BAR      "顯示或隱藏狀態列\n切換狀態列"
+    59394                   " "
+    59395                   " "
+    59396                   " "
+    59397                   " "
+    59398                   " "
+    59399                   " "
+    59400                   " "
+    59401                   " "
+    59402                   " "
+    59403                   " "
+    59404                   " "
+    59405                   " "
+    59406                   " "
+    59407                   " "
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    AFX_IDS_SCSIZE          "更改視窗大小"
+    AFX_IDS_SCMOVE          "更改視窗位置"
+    AFX_IDS_SCMINIMIZE      "縮小視窗為一個圖示"
+    AFX_IDS_SCMAXIMIZE      "擴大視窗為完整螢幕大小"
+    AFX_IDS_SCNEXTWINDOW    "切換到下一個文件視窗"
+    AFX_IDS_SCPREVWINDOW    "切換到上一個文件視窗"
+    AFX_IDS_SCCLOSE         "關閉作用中視窗並提示到儲存這文件"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    AFX_IDS_SCRESTORE       "將視窗還原成標準的大小"
+    AFX_IDS_SCTASKLIST      "啟用工作清單"
+    AFX_IDS_MDICHILD        "啟用這個視窗"
+END
+
+STRINGTABLE FIXED IMPURE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "關閉預覽列印模式\n取消預覽"
+END
+
+#endif    // Chinese (Traditional) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+#pragma code_page(950)
+#endif
+#include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
+
+
