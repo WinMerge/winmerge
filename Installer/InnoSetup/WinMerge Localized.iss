@@ -291,8 +291,8 @@ Name: {app}\Merge7z312U.dll; Type: files; MinVersion: 0, 4
 Name: {app}\Merge7z313.dll; Type: files; MinVersion: 4, 0
 Name: {app}\Merge7z313U.dll; Type: files; MinVersion: 0, 4
 
-Name: {app}\Merge7z410.dll; Type: files; MinVersion: 4, 0
-Name: {app}\Merge7z410U.dll; Type: files; MinVersion: 0, 4
+Name: {app}\Merge7z412.dll; Type: files; MinVersion: 4, 0
+Name: {app}\Merge7z412U.dll; Type: files; MinVersion: 0, 4
 
 
 ;This won't work, because the file has to be unregistered, and explorer closed, first.
@@ -392,12 +392,12 @@ Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveru
 Source: ..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\Build\MergeUnicodeRelease\Merge7z410U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll(410)
+Source: ..\Build\MergeUnicodeRelease\Merge7z412U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll(412)
 Source: ..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll(313)
 Source: ..\Build\MergeUnicodeRelease\Merge7z312U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll(312)
 Source: ..\Build\MergeUnicodeRelease\Merge7z311U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll(311)
 
-Source: ..\Build\MergeRelease\Merge7z410.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Check: Install7ZipDll(410)
+Source: ..\Build\MergeRelease\Merge7z412.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Check: Install7ZipDll(412)
 Source: ..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Check: Install7ZipDll(313)
 Source: ..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Check: Install7ZipDll(312)
 Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Check: Install7ZipDll(311)

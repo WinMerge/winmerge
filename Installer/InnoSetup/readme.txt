@@ -1,5 +1,10 @@
+2004-11-29 Kimmo
+ PATCH: [ 1074527 ] Installer: add support for Merge7z412
+  InnoSetup: WinMerge Localized.iss 
+
 2004-11-28 Kimmo
  BUG: [ 1067900 ] German language support
+  Fix submitted by Tim Gerundt
   InnoSetup: WinMerge Localized.iss
 
 2004-11-19 Kimmo
