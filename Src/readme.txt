@@ -10,6 +10,8 @@
  PATCH [ 1176741 ] Swedish ReadMe-Swedish.rtf file
   Submitted by Hans Eriksson
   Docs/Users/Languages: Read Me-Swedish.rtf
+ Update contributors file (Add Dutch and French translators)
+  Docs/Users: Contributors.txt
 
 2005-04-03 Kimmo
  PATCH: [ 1175319 ] Dutch translation update

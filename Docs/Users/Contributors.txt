@@ -39,9 +39,11 @@ Localization:
   Christian List
 
 * Dutch:
+  Michel Coene
   Ronald Schaap
 
 * French:	
+  Jean-F Jolin
   Gil Andre 
   Laurent Ganier
   Matthieu Pupat
