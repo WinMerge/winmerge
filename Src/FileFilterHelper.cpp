@@ -245,8 +245,8 @@ CString FileFilterHelper::ParseExtensions(CString extensions)
 		CString token = extensions.Left(pos); // Get first extension
 		extensions.Delete(0, pos + 1); // Remove extension + separator
 		
-		// Only "*.something" allowed, other ignored
-		if (token.GetLength() > 2 && token[0] == '*' && token[1] == '.')
+		// Only "*." or "*.something" allowed, other ignored
+		if (token.GetLength() >= 2 && token[0] == '*' && token[1] == '.')
 		{
 			bFilterAdded = TRUE;
 			strPattern += _T(".*\\.");
