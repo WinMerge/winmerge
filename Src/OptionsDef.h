@@ -36,9 +36,12 @@ const TCHAR OPT_USE_RECYCLE_BIN[] = _T("Settings/UseRecycleBin");
 const TCHAR OPT_AUTOCLOSE_CMPPANE[] = _T("Settings/AutoCloseCmpPane");
 const TCHAR OPT_MERGE_MODE[] = _T("Settings/MergingMode");
 const TCHAR OPT_CLOSE_WITH_ESC[] = _T("Settings/CloseWithEsc");
-const TCHAR OPT_DETECT_CODEPAGE[] = _T("Settings/DetectCodepage");
 const TCHAR OPT_LOGGING[] = _T("Settings/Logging");
 const TCHAR OPT_VERIFY_OPEN_PATHS[] = _T("Settings/VerifyOpenPaths");
+
+const TCHAR OPT_CP_DEFAULT_MODE[] = _T("Settings/CodepageDefaultMode");
+const TCHAR OPT_CP_DEFAULT_CUSTOM[] = _T("Settings/CodepageDefaultCustomValue");
+const TCHAR OPT_CP_DETECT[] = _T("Settings/CodepageDetection");
 
 // Color options
 // The difference color

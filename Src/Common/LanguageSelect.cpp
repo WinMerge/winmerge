@@ -7,6 +7,7 @@
 #include "resource.h"
 #include "LanguageSelect.h"
 #include "MainFrm.h"
+#include "codepage.h"
 #include <locale.h>
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
@@ -555,7 +556,9 @@ void CLanguageSelect::OnOK()
 	if ( lang != m_wCurLanguage )
 	{
 		SetLanguage(lang);
-		
+
+		updateDefaultCodepage(&mf->m_options);
+
 		// Update the current menu
 		if (m_bReloadMenu)
 			ReloadMenu();

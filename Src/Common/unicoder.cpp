@@ -16,6 +16,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #include "StdAfx.h"
 #include "unicoder.h"
+#include "codepage.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -416,43 +417,6 @@ byteToUnicode (unsigned char ch, UINT codepage)
 		return '?';
 }
 
-/**
- * @brief Get appropriate default codepage for this operating system
- */
-int
-getDefaultCodepage()
-{
-	static LCID latestLangId = 0;
-	static int defcodepage;
-
-	// GetThreadLocale is linked to the UI language
-	LCID wLangId = GetThreadLocale();
-	if (wLangId != latestLangId)
-	{
-		latestLangId = wLangId;
-
-		// recompute defcodepage when the language UI changes
-
-		// default value when GetLocaleInfo fails
-		defcodepage = GetACP();
-
-		// default value is the codepage from the user locale
-		TCHAR buff[32];
-		if (GetLocaleInfo(GetUserDefaultLCID(), LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff)/sizeof(buff[0])))
-			defcodepage = _ttol(buff);
-
-		// if user UI is defined (different from default english),
-		// default codepage is the one from the UI
-		BOOL bLanguageUIisSet = ((PRIMARYLANGID(wLangId)!= LANG_ENGLISH) ||
-														 (SUBLANGID(wLangId) != SUBLANG_ENGLISH_US));
-		if (bLanguageUIisSet)
-			if (GetLocaleInfo(wLangId, LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff)/sizeof(buff[0])))
-				defcodepage = _ttol(buff);
-	}
-
-	return defcodepage;
-}
-
 void getDefaultEncoding(UNICODESET * unicoding, int * codepage)
 {
 #ifdef _UNICODE
@@ -659,7 +623,7 @@ CString maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
 	return str;
 
 #else
-	if (EqualCodepages(codepage, ucr::getDefaultCodepage()))
+	if (EqualCodepages(codepage, getDefaultCodepage()))
 	{
 		// trivial case, they want the bytes in the file interpreted in our current codepage
 		// Only caveat is that input (lpd) is not zero-terminated

@@ -5,6 +5,12 @@
  PATCH: [ 1011066 ] Better error message for failed file loading
   Src: MergeDoc.cpp MergeDoc.h
   Src/Common: UniFile.cpp
+ PATCH: [ 1002432 ] codepage UI version 2
+  Src: ConfigLog.cpp ConfigLog.h DirDoc.cpp DirScan.cpp MainFrm.cpp Merge.dsp
+   Merge.rc OptionsDef.h PropGeneral.cpp PropGeneral.h resource.h
+  Src new files: codepage.cpp codepage.h PropCodepage.cpp PropCodepage.h
+  Src/Common: LanguageSelect.cpp multiformatText.cpp unicoder.cpp unicoder.h unifile.cpp
+  Src/Languages: resource.h *.rc
 
 2004-08-17 WinMerge experimental release 2.1.7.11 (cvs)
 

@@ -34,7 +34,6 @@ public:
 	BOOL  m_bAutoCloseCmpPane;
 	BOOL  m_bVerifyPaths;
 	BOOL  m_bCloseWindowWithEsc;
-	BOOL  m_bDetectCodepage;
 	//}}AFX_DATA
 
 

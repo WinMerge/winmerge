@@ -34,6 +34,7 @@
 #include "Plugins.h"
 #include "paths.h"
 #include "unicoder.h"
+#include "codepage.h"
 
 /** 
  * @brief Return logfile name and path
@@ -200,12 +201,6 @@ BOOL CConfigLog::WriteLogFile()
 	else
 		file.WriteString(_T("No\n"));
 
-	file.WriteString(_T("  Detect codepage automatically for RC and HTML files: "));
-	if (m_miscSettings.bDetectCodepage)
-		file.WriteString(_T("Yes\n"));
-	else
-		file.WriteString(_T("No\n"));
-
 	file.WriteString(_T("\n Other settings:\n"));
 	file.WriteString(_T("  Automatic rescan: "));
 	if (m_miscSettings.bAutomaticRescan)
@@ -291,7 +286,15 @@ BOOL CConfigLog::WriteLogFile()
 	WriteLocaleSettings(file, GetThreadLocale(), _T("Locale (Thread)"));
 	WriteLocaleSettings(file, LOCALE_USER_DEFAULT, _T("Locale (User)"));
 	WriteLocaleSettings(file, LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));
-	file.WriteString(Fmt(_T(" unicoder codepage: %d\n"), ucr::getDefaultCodepage()));
+//	file.WriteString(Fmt(_T(" unicoder codepage: %d\n"), getDefaultCodepage()));
+
+// Codepage settings
+	file.WriteString(_T("Detect codepage automatically for RC and HTML files: "));
+	if (m_cpSettings.bDetectCodepage)
+		file.WriteString(_T("Yes\n"));
+	else
+		file.WriteString(_T("No\n"));
+	file.WriteString(Fmt(_T(" unicoder codepage: %d\n"), getDefaultCodepage()));
 
 // Plugins
 	file.WriteString(_T("\nPlugins: "));

@@ -36,6 +36,7 @@
 #define IDD_EDIT_FIND                   220
 #define IDD_EDIT_REPLACE                221
 #define IDD_PROPPAGE_COLORS             222
+#define IDD_PROPPAGE_CODEPAGE           223
 
 #define IDB_ERROR                       300
 #define IDB_EQUAL                       301
@@ -225,6 +226,10 @@
 #define IDC_SAVECLOSING_LEFTFILE        1144
 #define IDC_SAVECLOSING_LEFTFRAME       1145
 #define IDC_SAVECLOSING_RIGHTFRAME      1146
+#define IDC_CP_SYSTEM                   1147
+#define IDC_CP_UI                       1148
+#define IDC_CP_CUSTOM                   1149
+#define IDC_CUSTOM_CP_NUMBER            1150
 
 
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -735,9 +740,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        163
+#define _APS_NEXT_RESOURCE_VALUE        224
 #define _APS_NEXT_COMMAND_VALUE         33094
-#define _APS_NEXT_CONTROL_VALUE         1147
+#define _APS_NEXT_CONTROL_VALUE         1151
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

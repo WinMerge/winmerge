@@ -17,6 +17,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "stdafx.h"
 #include "UniFile.h"
 #include "unicoder.h"
+#include "codepage.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -62,7 +63,7 @@ void UniLocalFile::Clear()
 	m_readbom = false;
 	m_unicoding = ucr::NONE;
 	m_charsize = 1;
-	m_codepage = 0;
+	m_codepage = getDefaultCodepage();
 	m_txtstats.clear();
 }
 
@@ -378,7 +379,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 		return TRUE;
 	}
 #else
-	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, ucr::getDefaultCodepage()))
+	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, getDefaultCodepage()))
 	{
 		// If there aren't any bytes left in the file, return FALSE to indicate EOF
 		if (m_current - m_base >= m_filesize)
@@ -795,7 +796,7 @@ BOOL UniStdioFile::WriteString(const CString & line)
 #ifdef _UNICODE
 	if (m_unicoding == ucr::UCS2LE)
 #else
-	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, ucr::getDefaultCodepage()))
+	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, getDefaultCodepage()))
 #endif
 	{
 		unsigned int bytes = line.GetLength() * sizeof(TCHAR);
@@ -843,7 +844,7 @@ GuessCodepageEncoding(const CString & filepath, int * unicoding, int * codepage,
 	if (!pufile->OpenReadOnly(filepath))
 	{
 		*unicoding = ucr::NONE;
-		*codepage = ucr::getDefaultCodepage();
+		*codepage = getDefaultCodepage();
 		return;
 	}
 	bool hasbom = pufile->ReadBom();

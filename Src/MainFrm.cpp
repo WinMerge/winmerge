@@ -52,6 +52,7 @@
 #include "PropRegistry.h"
 #include "PropCompare.h"
 #include "PropEditor.h"
+#include "PropCodepage.h"
 #include "RegKey.h"
 #include "logfile.h"
 #include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
@@ -72,6 +73,7 @@
 #include "UniFile.h"
 #include "unicoder.h"
 #include "VSSHelper.h"
+#include "codepage.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -188,7 +190,6 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_MERGE_MODE, FALSE);
 	m_options.InitOption(OPT_UNREC_APPLYSYNTAX, FALSE);
 	m_options.InitOption(OPT_CLOSE_WITH_ESC, TRUE);
-	m_options.InitOption(OPT_DETECT_CODEPAGE, FALSE);
 	m_options.InitOption(OPT_LOGGING, 0);
 
 	m_options.InitOption(OPT_CMP_IGNORE_WHITESPACE, 0);
@@ -225,6 +226,12 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_LINEFILTER_ENABLED, FALSE);
 	m_options.InitOption(OPT_LINEFILTER_REGEXP, _T(""));
 	m_options.InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
+
+	m_options.InitOption(OPT_CP_DEFAULT_MODE, 0);
+	m_options.InitOption(OPT_CP_DEFAULT_CUSTOM, GetACP());
+	m_options.InitOption(OPT_CP_DETECT, FALSE);
+
+	updateDefaultCodepage(&m_options);
 
 	m_bShowErrors = TRUE;
 	m_CheckOutMulti = FALSE;
@@ -546,7 +553,7 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	pMergeDoc->SetUnpacker(infoUnpacker);
 
 	// detect codepage
-	BOOL bGuessEncoding = mf->m_options.GetInt(OPT_DETECT_CODEPAGE);
+	BOOL bGuessEncoding = mf->m_options.GetInt(OPT_CP_DETECT);
 	if (cpleft == -1)
 	{
 		CString filepath = szLeft;
@@ -567,7 +574,7 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 		int userChoice = AfxMessageBox(IDS_SUGGEST_IGNORECODEPAGE, 
 		                               MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN);
 		if (userChoice == IDYES)
-			cpleft = cpright = ucr::getDefaultCodepage();
+			cpleft = cpright = getDefaultCodepage();
 	}
 
 	bOpenSuccess = pMergeDoc->OpenDocs(szLeft, szRight,
@@ -1141,6 +1148,8 @@ void CMainFrame::OnOptions()
 	CPropRegistry regpage;
     CPropCompare compage(&m_options);
 	CPropEditor editor;
+	CPropCodepage codepage;
+
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
    
 	sht.AddPage(&gen);
@@ -1149,6 +1158,7 @@ void CMainFrame::OnOptions()
 	sht.AddPage(&vss);
 	sht.AddPage(&colors);
 	sht.AddPage(&regpage);
+	sht.AddPage(&codepage);
 	
 	vss.m_nVerSys = m_nVerSys;
 	vss.m_strPath = m_strVssPath;
@@ -1158,7 +1168,6 @@ void CMainFrame::OnOptions()
 	gen.m_bAutoCloseCmpPane = m_options.GetInt(OPT_AUTOCLOSE_CMPPANE);
 	gen.m_bVerifyPaths = m_options.GetInt(OPT_VERIFY_OPEN_PATHS);
 	gen.m_bCloseWindowWithEsc = m_options.GetInt(OPT_CLOSE_WITH_ESC);
-	gen.m_bDetectCodepage = m_options.GetInt(OPT_DETECT_CODEPAGE);
 	regpage.m_strEditorPath = m_options.GetString(OPT_EXT_EDITOR_CMD);
 	regpage.GetContextRegValues();
 	regpage.m_bUseRecycleBin = m_options.GetInt(OPT_USE_RECYCLE_BIN);
@@ -1174,6 +1183,9 @@ void CMainFrame::OnOptions()
 	editor.m_bHiliteSyntax = m_options.GetInt(OPT_SYNTAX_HIGHLIGHT);
 	editor.m_bAllowMixedEol = m_options.GetInt(OPT_ALLOW_MIXED_EOL);
 	editor.m_bApplySyntax = m_options.GetInt(OPT_UNREC_APPLYSYNTAX);
+	codepage.m_nCodepageSystem = m_options.GetInt(OPT_CP_DEFAULT_MODE);
+	codepage.m_nCustomCodepageValue = m_options.GetInt(OPT_CP_DEFAULT_CUSTOM);
+	codepage.m_bDetectCodepage = m_options.GetInt(OPT_CP_DETECT);
 
 	if (sht.DoModal()==IDOK)
 	{
@@ -1186,7 +1198,6 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_AUTOCLOSE_CMPPANE, gen.m_bAutoCloseCmpPane);
 		m_options.SaveOption(OPT_VERIFY_OPEN_PATHS, gen.m_bVerifyPaths);
 		m_options.SaveOption(OPT_CLOSE_WITH_ESC, gen.m_bCloseWindowWithEsc);
-		m_options.SaveOption(OPT_DETECT_CODEPAGE, gen.m_bDetectCodepage);
 		m_options.SaveOption(OPT_USE_RECYCLE_BIN, regpage.m_bUseRecycleBin);
 		regpage.SaveMergePath();
 		sExtEditor = regpage.m_strEditorPath;
@@ -1230,7 +1241,11 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK, colors.m_clrSelMoved);
 		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, colors.m_clrSelMovedDeleted);
 		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, colors.m_clrSelMovedText);
-		
+		m_options.SaveOption(OPT_CP_DEFAULT_MODE, codepage.m_nCodepageSystem);
+		m_options.SaveOption(OPT_CP_DEFAULT_CUSTOM, codepage.m_nCustomCodepageValue);
+		m_options.SaveOption(OPT_CP_DETECT, codepage.m_bDetectCodepage);
+
+		updateDefaultCodepage(&m_options);
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
 		SetEOLMixed(editor.m_bAllowMixedEol);
 
@@ -2356,7 +2371,10 @@ void CMainFrame::OnSaveConfigData()
 	configLog.m_miscSettings.bBackup = m_options.GetInt(OPT_CREATE_BACKUPS);
 	configLog.m_miscSettings.bViewWhitespace = m_options.GetInt(OPT_VIEW_WHITESPACE);
 	configLog.m_miscSettings.bMovedBlocks = m_options.GetInt(OPT_CMP_MOVED_BLOCKS);
-	configLog.m_miscSettings.bDetectCodepage = m_options.GetInt(OPT_DETECT_CODEPAGE);
+
+	configLog.m_cpSettings.nDefaultMode = m_options.GetInt(OPT_CP_DEFAULT_MODE);
+	configLog.m_cpSettings.nDefaultCustomValue = m_options.GetInt(OPT_CP_DEFAULT_CUSTOM);
+	configLog.m_cpSettings.bDetectCodepage = m_options.GetInt(OPT_CP_DETECT);
 
 	if (configLog.WriteLogFile())
 	{
@@ -2407,8 +2425,8 @@ void CMainFrame::OnFileNew()
 	VERIFY(m_strLeftDesc.LoadString(IDS_EMPTY_LEFT_FILE));
 	VERIFY(m_strRightDesc.LoadString(IDS_EMPTY_RIGHT_FILE));
 	ShowMergeDoc(pDirDoc, _T(""), _T(""), FALSE, FALSE, 
-	             ucr::getDefaultCodepage(), ucr::getDefaultCodepage());
-	
+		getDefaultCodepage(), getDefaultCodepage());
+
 	// Empty descriptors now that docs are open
 	m_strLeftDesc.Empty();
 	m_strRightDesc.Empty();

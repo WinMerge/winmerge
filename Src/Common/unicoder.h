@@ -41,7 +41,6 @@ CString maketchar(UINT unich, bool & lossy);
 CString maketchar(UINT unich, bool & lossy, UINT codepage);
 UINT byteToUnicode(unsigned char ch);
 UINT byteToUnicode(unsigned char ch, UINT codepage);
-int getDefaultCodepage();
 void getDefaultEncoding(UNICODESET * unicoding, int * codepage);
 
 // generic function to do all conversions

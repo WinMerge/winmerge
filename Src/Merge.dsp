@@ -262,6 +262,10 @@ SOURCE=.\diffutils\lib\CMPBUF.C
 # End Source File
 # Begin Source File
 
+SOURCE=.\codepage.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\ColorButton.cpp
 # End Source File
 # Begin Source File
@@ -843,6 +847,10 @@ SOURCE=.\ProjectFile.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropCodepage.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropColors.cpp
 # End Source File
 # Begin Source File
@@ -1175,6 +1183,10 @@ SOURCE=.\diffutils\lib\CMPBUF.H
 # End Source File
 # Begin Source File
 
+SOURCE=.\codepage.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\ColorButton.h
 # End Source File
 # Begin Source File
@@ -1412,6 +1424,10 @@ SOURCE=.\Plugins.h
 # Begin Source File
 
 SOURCE=.\ProjectFile.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PropCodepage.h
 # End Source File
 # Begin Source File
 

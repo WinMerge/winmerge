@@ -17,6 +17,7 @@
 #include "paths.h"
 #include "FileTransform.h"
 #include "mainfrm.h"
+#include "codepage.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -427,6 +428,6 @@ DirScan_InitializeDefaultCodepage()
 	// Set thread default codepage
 	// This is application-wide initialization
 	// but neither MainFrame nor MergeApp included the needed headers
-	DiffFileData::SetDefaultCodepage(ucr::getDefaultCodepage());
+	DiffFileData::SetDefaultCodepage(getDefaultCodepage());
 }
 

@@ -54,6 +54,16 @@ struct MISCSETTINGS
 };
 
 /** 
+ * @brief Codepage WinMerge settings
+ */
+struct CPSETTINGS
+{
+	int nDefaultMode;
+	int nDefaultCustomValue;
+	BOOL bDetectCodepage;
+};
+
+/** 
  * @brief Class for saving configuration log file
  */
 class CConfigLog
@@ -63,6 +73,7 @@ public:
 	DIFFOPTIONS m_diffOptions;
 	VIEWSETTINGS m_viewSettings;
 	MISCSETTINGS m_miscSettings;
+	CPSETTINGS m_cpSettings;
 
 	CString GetFileName() const;
 	void WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile & file);

@@ -33,6 +33,7 @@
 #include "multiformatText.h"
 #include "files.h"
 #include "UniFile.h"
+#include "codepage.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -59,7 +60,7 @@ void storageForPlugins::SetDataFileAnsi(LPCTSTR filename, BOOL bOverwrite /*= FA
 	m_bCurrentIsUnicode = FALSE;
 	m_bCurrentIsFile = TRUE;
 	bOverwriteSourceFile = bOverwrite;
-	codepage = ucr::getDefaultCodepage();
+	codepage = getDefaultCodepage();
 	Initialize();
 }
 void storageForPlugins::SetDataFileUnicode(LPCTSTR filename, BOOL bOverwrite /*= FALSE*/)
@@ -71,7 +72,7 @@ void storageForPlugins::SetDataFileUnicode(LPCTSTR filename, BOOL bOverwrite /*=
 	m_bCurrentIsUnicode = TRUE;
 	m_bCurrentIsFile = TRUE;
 	bOverwriteSourceFile = bOverwrite;
-	codepage = ucr::getDefaultCodepage();
+	codepage = getDefaultCodepage();
 	Initialize();
 }
 void storageForPlugins::SetDataFileUnknown(LPCTSTR filename, BOOL bOverwrite /*= FALSE*/) 
