@@ -657,7 +657,7 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 				if(pt.y>=cd_blank && pt.y<=cd_dend)
 				{
 					pt.y = cd_blank-1;
-					// If removing first line, set X to 0^M
+					// If removing first line, set X to 0
 					// Calculating line length is unneccessary work
 					pt.x = 0;
 					active->SetCursorPos(pt);
@@ -714,7 +714,6 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 			}
 		}
 */
-		UpdateAllViews(NULL);
 
 		// reset the mod status of the source view because we do make some
 		// changes, but none that concern the source text

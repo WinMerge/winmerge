@@ -1,3 +1,7 @@
+2003-05-16 Kimmo
+ PATCH: [ 737709 ] Remove unneeded UpdateAllViews()
+  WinMerge: MergeDoc.cpp
+
 2003-05-14 Kimmo
  PATCH: [ 737692 ] Scrolling optimisation - significant speedup
   editlib: ccrystaltextview.cpp
