@@ -1,3 +1,7 @@
+2004-01-26 Christian
+ PATCH: [ 883303 ] Upgrade WinMerge Home Page
+  Web: index.php winmerge.css WinMergePAD.xml images/redswirl.gif
+
 2004-01-26 Kimmo
  BUG: [ 846034 ] drag and drop files does not set extension
   src: OpenDlg.cpp

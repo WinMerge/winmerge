@@ -1,0 +1,31 @@
+body
+{
+	font-family : sans-serif;
+	background-color : White;
+}
+
+h1, h2, h3, h4
+{
+	font-family: serif;	
+	font-weight: bold;
+	color: #000000;
+}
+
+li.toc
+{
+	list-style-image : url(images/redswirl.gif);
+	line-height : 125%;
+}
+
+P.lefthead
+{
+	font-size : larger;
+	font-weight: bold;
+	text-align: center;
+}
+
+P.lefttext
+{
+	text-align: left;
+}
+

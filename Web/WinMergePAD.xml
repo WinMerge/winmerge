@@ -14,11 +14,11 @@
         <Country />
         <Company_WebSite_URL>http://winmerge.sourceforge.net/</Company_WebSite_URL>
 <Contact_Info>
-        <Author_First_Name>Dean</Author_First_Name>
-        <Author_Last_Name>Grimm</Author_Last_Name>
+        <Author_First_Name>WinMerge team</Author_First_Name>
+        <Author_Last_Name></Author_Last_Name>
         <Author_Email>winmerge-support@lists.sourceforge.net</Author_Email>
-        <Contact_First_Name>Dean</Contact_First_Name>
-        <Contact_Last_Name>Grimm</Contact_Last_Name>
+        <Contact_First_Name>WinMerge team</Contact_First_Name>
+        <Contact_Last_Name></Contact_Last_Name>
         <Contact_Email>winmerge-support@lists.sourceforge.net</Contact_Email>
     </Contact_Info>
 <Support_Info>
