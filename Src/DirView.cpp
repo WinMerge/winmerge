@@ -662,7 +662,7 @@ void CDirView::DoUpdateDirCopyRightToLeft(CCmdUI* pCmdUI, eMenuType menuType)
 		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 		{
 			const DIFFITEM& di = GetDiffItem(sel);
-			if (IsItemCopyableToLeft(di))
+			if (di.diffcode != 0 && IsItemCopyableToLeft(di))
 				++legalcount;
 			++selcount;
 		}
@@ -691,7 +691,7 @@ void CDirView::DoUpdateDirCopyLeftToRight(CCmdUI* pCmdUI, eMenuType menuType)
 		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 		{
 			const DIFFITEM& di = GetDiffItem(sel);
-			if (IsItemCopyableToRight(di))
+			if (di.diffcode != 0 && IsItemCopyableToRight(di))
 				++legalcount;
 			++selcount;
 		}
@@ -896,7 +896,7 @@ void CDirView::DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI)
 		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 		{
 			const DIFFITEM& di = GetDiffItem(sel);
-			if (IsItemDeletableOnLeft(di))
+			if (di.diffcode != 0 && IsItemDeletableOnLeft(di))
 				++count;
 			++total;
 		}
@@ -923,7 +923,7 @@ void CDirView::DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI)
 		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 		{
 			const DIFFITEM& di = GetDiffItem(sel);
-			if (IsItemDeletableOnRight(di))
+			if (di.diffcode != 0 && IsItemDeletableOnRight(di))
 				++count;
 			++total;
 		}
@@ -952,7 +952,7 @@ void CDirView::DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI)
 		while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 		{
 			const DIFFITEM& di = GetDiffItem(sel);
-			if (IsItemDeletableOnBoth(di))
+			if (di.diffcode != 0 && IsItemDeletableOnBoth(di))
 				++count;
 			++total;
 		}
@@ -977,7 +977,7 @@ void CDirView::DoUpdateCtxtDirCopyLeftTo(CCmdUI* pCmdUI)
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemCopyableToOnLeft(di))
+		if (di.diffcode != 0 && IsItemCopyableToOnLeft(di))
 			++count;
 		++total;
 	}
@@ -1001,7 +1001,7 @@ void CDirView::DoUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI)
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemCopyableToOnRight(di))
+		if (di.diffcode != 0 && IsItemCopyableToOnRight(di))
 			++count;
 		++total;
 	}
@@ -1172,7 +1172,7 @@ void CDirView::DoUpdateOpenLeft(CCmdUI* pCmdUI)
 	if (sel != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!IsItemOpenableOnLeft(di))
+		if (di.diffcode == 0 || !IsItemOpenableOnLeft(di))
 			sel = -1;
 	}
 
@@ -1186,7 +1186,7 @@ void CDirView::DoUpdateOpenRight(CCmdUI* pCmdUI)
 	if (sel != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!IsItemOpenableOnRight(di))
+		if (di.diffcode == 0 || !IsItemOpenableOnRight(di))
 			sel = -1;
 	}
 
@@ -1200,7 +1200,7 @@ void CDirView::DoUpdateOpenLeftWith(CCmdUI* pCmdUI)
 	if (sel != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!IsItemOpenableOnLeftWith(di))
+		if (di.diffcode == 0 || !IsItemOpenableOnLeftWith(di))
 			sel = -1;
 	}
 
@@ -1214,7 +1214,7 @@ void CDirView::DoUpdateOpenRightWith(CCmdUI* pCmdUI)
 	if (sel != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!IsItemOpenableOnRightWith(di))
+		if (di.diffcode == 0 || !IsItemOpenableOnRightWith(di))
 			sel = -1;
 	}
 

@@ -7,6 +7,8 @@
   Src/Languages: *.rc resource.h
  PATCH: [ 983721 ] Remove 'don't show again' checkbox from saving messages
   Src: MergeDoc.cpp
+ PATCH: [ 984059 ] Disable merge actions for '...' item in dir compare
+  Src: DirView.cpp
 
 2004-07-01 Kimmo
  PATCH: [ 982683 ] Clear results only after user chooses new files or folders
