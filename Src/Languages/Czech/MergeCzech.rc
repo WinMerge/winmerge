@@ -88,9 +88,9 @@ BEGIN
         MENUITEM "Kopírovat všechny rozdíly z druhé strany...",
                                                 ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "Zpìt",                        ID_UNDO
+        MENUITEM "Zpet",                        ID_UNDO
         MENUITEM SEPARATOR
-        MENUITEM "Uložit zmìny...",             ID_POPUP_SAVE
+        MENUITEM "Uložit zmeny...",             ID_POPUP_SAVE
     END
 END
 
@@ -99,7 +99,7 @@ BEGIN
     POPUP "&Soubor"
     BEGIN
         MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "&Otevøít...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "&Otevrít...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "&Uložit\tCtrl+S",             ID_FILE_SAVE
         POPUP "Save &Left"
@@ -127,7 +127,7 @@ BEGIN
     END
     POPUP "Úpr&avy"
     BEGIN
-        MENUITEM "&Zpìt\tCtrl+Z",               ID_UNDO
+        MENUITEM "&Zpet\tCtrl+Z",               ID_UNDO
         MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "V&yoíznout\tCtrl+X",          ID_EDIT_CUT
@@ -155,15 +155,15 @@ BEGIN
         MENUITEM "Show Ri&ght Unique Files",    ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "Skrýt soubory s pøíponou *.&BAK", ID_HIDE_BACKUP_FILES
+        MENUITEM "Skrýt soubory s príponou *.&BAK", ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "&Zvolit písmo...",            ID_VIEW_SELECTFONT
         MENUITEM "Použít základní písm&o",      ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "&View Whitespace",            ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
-        MENUITEM "&Panel nástrojù",             ID_VIEW_TOOLBAR
-        MENUITEM "&Stavový øádek",              ID_VIEW_STATUS_BAR
+        MENUITEM "&Panel nástroju",             ID_VIEW_TOOLBAR
+        MENUITEM "&Stavový rádek",              ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
@@ -171,7 +171,7 @@ BEGIN
     POPUP "&Merge"
     BEGIN
         MENUITEM "&Následující rozdíl\tTAlt+Down", ID_NEXTDIFF
-        MENUITEM "&Pøedchozí rozdíl\tAlt+Up",   ID_PREVDIFF
+        MENUITEM "&Predchozí rozdíl\tAlt+Up",   ID_PREVDIFF
         MENUITEM SEPARATOR
         MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
         MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
@@ -203,15 +203,15 @@ BEGIN
     END
     POPUP "&Okno"
     BEGIN
-        MENUITEM "Zavøít",                      ID_FILE_CLOSE
+        MENUITEM "Zavrít",                      ID_FILE_CLOSE
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
-        MENUITEM "Dlaždice &vodorovnì",         ID_WINDOW_TILE_HORZ
+        MENUITEM "Dlaždice &vodorovne",         ID_WINDOW_TILE_HORZ
         MENUITEM "Dlaždice &svisle",            ID_WINDOW_TILE_VERT
         MENUITEM "&Kaskáda",                    ID_WINDOW_CASCADE
     END
-    POPUP "Nápo&vìda"
+    POPUP "Nápo&veda"
     BEGIN
         MENUITEM "O&bsah...",                   ID_HELP_CONTENTS
         MENUITEM SEPARATOR
@@ -352,7 +352,7 @@ END
 
 IDD_OPEN DIALOGEX 0, 0, 356, 115
 STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
-CAPTION "Výbìr souborù a adresáøù..."
+CAPTION "Výber souboru a adresáru..."
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     RTEXT           "&Levý:",IDC_STATIC,13,24,40,8
@@ -365,10 +365,10 @@ BEGIN
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "Pr&ocházet...",IDC_RIGHT_BUTTON,241,38,49,12
-    RTEXT           "Pø&ípony:",IDC_STATIC,13,56,40,8
+    RTEXT           "Pr&ípony:",IDC_STATIC,13,56,40,8
     COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "V&noøené adresáøe",IDC_RECURS_CHECK,"Button",
+    CONTROL         "V&norené adresáre",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,35,72,190,10
     RTEXT           "&Unpacker:",IDC_STATIC,13,88,40,8
     EDITTEXT        IDC_UNPACKER_EDIT,56,86,182,12,ES_AUTOHSCROLL |
@@ -376,7 +376,7 @@ BEGIN
     PUSHBUTTON      "Select...",IDC_SELECT_UNPACKER,241,86,49,12
     DEFPUSHBUTTON   "OK",IDOK,307,11,50,14
     PUSHBUTTON      "Storno",IDCANCEL,307,28,50,14
-    GROUPBOX        "Soubory nebo adresáøe pro porovnání",IDC_FILES_DIRS_GROUP,7,7,293,
+    GROUPBOX        "Soubory nebo adresáre pro porovnání",IDC_FILES_DIRS_GROUP,7,7,293,
 101
 END
 
@@ -425,37 +425,25 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Obecné"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Nastavení",IDC_STATIC,7,7,221,94
+    GROUPBOX        "Nastavení",IDC_STATIC,7,7,221,72
     CONTROL         "&Zálohovat originální soubory",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,19,202,10
     CONTROL         "Automatický &skok na první rozdíl",IDC_SCROLL_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,129,10
-    CONTROL         "Ignorovat prázdné øád&ky",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,71,10
-    CONTROL         "Ignorovat m&alá/VELKÁ",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,53,10
     CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,87,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,87,10
     CONTROL         "Automatic &rescan",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,71,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,71,10
     CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
-    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,125,41,82,10
-    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,125,52,96,10
-    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,125,63,83,10
-    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,125,74,69,10
-    GROUPBOX        "Tabelátory",IDC_STATIC,7,105,221,30,WS_GROUP
-    LTEXT           "&Nastavení tabulátorù:",IDC_STATIC,15,119,80,8
-    EDITTEXT        IDC_TAB_EDIT,90,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,103,10
+    GROUPBOX        "Tabelátory",IDC_STATIC,7,83,221,30,WS_GROUP
+    LTEXT           "&Nastavení tabulátoru:",IDC_STATIC,15,97,80,8
+    EDITTEXT        IDC_TAB_EDIT,90,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,120,113,51,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,120,91,51,10
     CONTROL         "Insert Spaces",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,120,122,59,10
+                    BS_AUTORADIOBUTTON,120,100,59,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -791,13 +779,26 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,132,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 190, 111
+IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 236, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "File Compare method:",IDC_STATIC,7,6,70,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,83,6,84,71,CBS_DROPDOWNLIST |
+    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
+    CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,14,19,44,10
+    CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,14,30,96,10
+    CONTROL         "I&gnore all",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
+                    14,41,45,10
+    CONTROL         "Ignorovat prázdné rád&ky",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,71,10
+    CONTROL         "Ignorovat m&alá/VELKÁ",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,71,53,10
+    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,82,69,10
+    LTEXT           "File Compare method:",IDC_STATIC,7,97,70,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
 
@@ -1054,7 +1055,7 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
-    AFX_IDS_IDLEMESSAGE     "Pøipraven"
+    AFX_IDS_IDLEMESSAGE     "Pripraven"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1071,12 +1072,12 @@ END
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
-    ID_FILE_OPEN            "Otevøít existující dokument\nOpen"
-    ID_FILE_CLOSE           "Zavøít aktivní dokument\nClose"
+    ID_FILE_OPEN            "Otevrít existující dokument\nOpen"
+    ID_FILE_CLOSE           "Zavrít aktivní dokument\nClose"
     ID_FILE_SAVE            "Uložit aktivní dokument\nSave"
     ID_FILE_SAVE_AS         "Uložit aktivní dokument pod novým jménem\nSave As"
-    ID_FILE_PAGE_SETUP      "Zmìnit parametry tisku\nPage Setup"
-    ID_FILE_PRINT_SETUP     "Zmìnit tiskárnu a parametry tisku\nPrint Setup"
+    ID_FILE_PAGE_SETUP      "Zmenit parametry tisku\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Zmenit tiskárnu a parametry tisku\nPrint Setup"
     ID_FILE_PRINT           "Vytisknout aktivní dokument\nPrint"
     ID_FILE_PRINT_PREVIEW   "Náhled\nPrint Preview"
 END
@@ -1084,54 +1085,54 @@ END
 // ID_APP_ABOUT SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_APP_ABOUT            "Zobrazit informace o programu, èíslo verze a copyright\nAbout"
-    ID_APP_EXIT             "Ukonèit program dotazem na uložení souborù\nExit"
+    ID_APP_ABOUT            "Zobrazit informace o programu, císlo verze a copyright\nAbout"
+    ID_APP_EXIT             "Ukoncit program dotazem na uložení souboru\nExit"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_FILE_MRU_FILE1       "Otevøít dokument"
-    ID_FILE_MRU_FILE2       "Otevøít dokument"
-    ID_FILE_MRU_FILE3       "Otevøít dokument"
-    ID_FILE_MRU_FILE4       "Otevøít dokument"
-    ID_FILE_MRU_FILE5       "Otevøít dokument"
-    ID_FILE_MRU_FILE6       "Otevøít dokument"
-    ID_FILE_MRU_FILE7       "Otevøít dokument"
-    ID_FILE_MRU_FILE8       "Otevøít dokument"
-    ID_FILE_MRU_FILE9       "Otevøít dokument"
-    ID_FILE_MRU_FILE10      "Otevøít dokument"
-    ID_FILE_MRU_FILE11      "Otevøít dokument"
-    ID_FILE_MRU_FILE12      "Otevøít dokument"
-    ID_FILE_MRU_FILE13      "Otevøít dokument"
-    ID_FILE_MRU_FILE14      "Otevøít dokument"
-    ID_FILE_MRU_FILE15      "Otevøít dokument"
-    ID_FILE_MRU_FILE16      "Otevøít dokument"
+    ID_FILE_MRU_FILE1       "Otevrít dokument"
+    ID_FILE_MRU_FILE2       "Otevrít dokument"
+    ID_FILE_MRU_FILE3       "Otevrít dokument"
+    ID_FILE_MRU_FILE4       "Otevrít dokument"
+    ID_FILE_MRU_FILE5       "Otevrít dokument"
+    ID_FILE_MRU_FILE6       "Otevrít dokument"
+    ID_FILE_MRU_FILE7       "Otevrít dokument"
+    ID_FILE_MRU_FILE8       "Otevrít dokument"
+    ID_FILE_MRU_FILE9       "Otevrít dokument"
+    ID_FILE_MRU_FILE10      "Otevrít dokument"
+    ID_FILE_MRU_FILE11      "Otevrít dokument"
+    ID_FILE_MRU_FILE12      "Otevrít dokument"
+    ID_FILE_MRU_FILE13      "Otevrít dokument"
+    ID_FILE_MRU_FILE14      "Otevrít dokument"
+    ID_FILE_MRU_FILE15      "Otevrít dokument"
+    ID_FILE_MRU_FILE16      "Otevrít dokument"
 END
 
 // ID_NEXT_PANE SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_NEXT_PANE            "Pøepnout na další okno\nNext Pane"
-    ID_PREV_PANE            "Pøepnout na pøedchozí okno\nPrevious Pane"
+    ID_NEXT_PANE            "Prepnout na další okno\nNext Pane"
+    ID_PREV_PANE            "Prepnout na predchozí okno\nPrevious Pane"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_WINDOW_NEW           "Otevøít další okno s aktuálním dokumentem\nNew Window"
-    ID_WINDOW_ARRANGE       "Uspoøádat ikony na spodním okraji okna\nArrange Icons"
+    ID_WINDOW_NEW           "Otevrít další okno s aktuálním dokumentem\nNew Window"
+    ID_WINDOW_ARRANGE       "Usporádat ikony na spodním okraji okna\nArrange Icons"
     ID_WINDOW_CASCADE       "Kaskáda\nCascade Windows"
-    ID_WINDOW_TILE_HORZ     "Dlaždice vodorovnì\nTile Windows"
+    ID_WINDOW_TILE_HORZ     "Dlaždice vodorovne\nTile Windows"
     ID_WINDOW_TILE_VERT     "Dlaždice svisle\nTile Windows"
-    ID_WINDOW_SPLIT         "Rozdìlit aktivní okno\nSplit"
+    ID_WINDOW_SPLIT         "Rozdelit aktivní okno\nSplit"
 END
 
 // ID_EDIT_CLEAR SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_EDIT_CLEAR           "Vymazat výbìr\nErase"
+    ID_EDIT_CLEAR           "Vymazat výber\nErase"
     ID_EDIT_CLEAR_ALL       "Vše smazat\nErase All"
-    ID_EDIT_COPY            "Kopírovat výbìr a uložit do schránky\nCopy"
-    ID_EDIT_CUT             "Vyjmout výbìr a uložit do schránky\nCut"
+    ID_EDIT_COPY            "Kopírovat výber a uložit do schránky\nCopy"
+    ID_EDIT_CUT             "Vyjmout výber a uložit do schránky\nCut"
     ID_EDIT_FIND            "Najít text\nFind"
     ID_EDIT_PASTE           "Vložit obsah schránky\nPaste"
     ID_EDIT_REPEAT          "Opakovat poslední akci\nRepeat"
@@ -1143,19 +1144,19 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_VIEW_TOOLBAR         "Zobrazit nebo skrýt panel nástrojù\nToggle ToolBar"
-    ID_VIEW_STATUS_BAR      "Zobrazit nebo skrýt stavový øádek\nToggle StatusBar"
+    ID_VIEW_TOOLBAR         "Zobrazit nebo skrýt panel nástroju\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Zobrazit nebo skrýt stavový rádek\nToggle StatusBar"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    AFX_IDS_SCSIZE          "Zmìnit velikost okna"
-    AFX_IDS_SCMOVE          "Zmìnit pozici okna"
+    AFX_IDS_SCSIZE          "Zmenit velikost okna"
+    AFX_IDS_SCMOVE          "Zmenit pozici okna"
     AFX_IDS_SCMINIMIZE      "Minimalizovat okno"
-    AFX_IDS_SCMAXIMIZE      "Zvìtšit okno na pùvodní velikost"
-    AFX_IDS_SCNEXTWINDOW    "Pøepnout na další okno"
-    AFX_IDS_SCPREVWINDOW    "Pøepnout na pøedchozí okno"
-    AFX_IDS_SCCLOSE         "Zavøít aktivní okno s možností uložení dokumentù"
+    AFX_IDS_SCMAXIMIZE      "Zvetšit okno na puvodní velikost"
+    AFX_IDS_SCNEXTWINDOW    "Prepnout na další okno"
+    AFX_IDS_SCPREVWINDOW    "Prepnout na predchozí okno"
+    AFX_IDS_SCCLOSE         "Zavrít aktivní okno s možností uložení dokumentu"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1167,7 +1168,7 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "Zavøít tiskový náhled\nCancel Preview"
+    AFX_IDS_PREVIEW_CLOSE   "Zavrít tiskový náhled\nCancel Preview"
 END
 
 STRINGTABLE PRELOAD DISCARDABLE
@@ -1186,8 +1187,8 @@ BEGIN
     IDS_CONFIRM_ALL_RIGHT   "Opravdu chcete zkopírovat všechny rozdíly do souboru vpravo?"
     IDS_ERRORS_TITLE        "%1 Error(s)"
     IDS_CONFIRM_COPY2DIR    "Opravdu chcete kopírovat vybraný soubor do %1?"
-    IDS_FONT_CHANGE         "Zvolená zmìna písmo se neprojeví v právì zobrazených panelech."
-    IDS_DIRECTORY_WINDOW_TITLE "Výsledek porovnání adresáøù"
+    IDS_FONT_CHANGE         "Zvolená zmena písmo se neprojeví v práve zobrazených panelech."
+    IDS_DIRECTORY_WINDOW_TITLE "Výsledek porovnání adresáru"
     IDS_DIRECTORY_WINDOW_STATUS_FMT "Výsledky pro %1 a %2"
     IDS_FILES_ARE_DIFFERENT "Soubory jsou rozdílné"
     IDS_BIN_FILES_DIFF      "Binární soubory jsou rozdílné"
@@ -1201,30 +1202,30 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Uložit jako"
     IDS_SELECT_FILES_OR_FOLDERS
-                            "Musíte zvolit buï jenom soubory nebo jenom adresáøe."
-    IDS_BACKUP_FAILED_PROMPT "Nelze zálohovat pùvodní soubor.\nPokraèovat?"
+                            "Musíte zvolit bud jenom soubory nebo jenom adresáre."
+    IDS_BACKUP_FAILED_PROMPT "Nelze zálohovat puvodní soubor.\nPokracovat?"
     IDS_OPTIONS_TITLE       "Vlastnosti"
-    IDS_OPEN_TITLE          "Otevøít"
+    IDS_OPEN_TITLE          "Otevrít"
     IDS_CONFIRM_DELETE_FILE "Delete file %1?"
     IDS_EDIT_WINDOW_TITLE_FMT "Upravit %1"
     IDS_FILESSAME           "Vybrané soubory jsou shodné."
-    IDS_FILEUNIQUE          "Vybraný soubor neexistuje v obou adresáøích a nelze provést porovnání."
-    IDS_FILEERROR           "Bìhem porovnávání se vyskytla chyba."
+    IDS_FILEUNIQUE          "Vybraný soubor neexistuje v obou adresárích a nelze provést porovnání."
+    IDS_FILEERROR           "Behem porovnávání se vyskytla chyba."
     IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-    IDS_SAVE_FMT            "Uložit zmìny do %1?"
+    IDS_SAVE_FMT            "Uložit zmeny do %1?"
     IDS_FILEBINARY          "Binární soubory nelze porovnat."
-    IDS_SAVEVSS_FMT         "%1 je oznaèen pouze ke ètení. Chcete jej zkontrolovat pomocí SourceSafe nebo uložit pod jiným jménem?"
-    IDS_VSSERROR            "SourceSafe vrátil chybu pøi pokusu zkontrolovat soubor. Nelze pokraèovat..."
-    IDS_NOPROJECT           "Musíte nastavit cestu k projektu SourceSafe (napø.: $/MùjProjekt)"
+    IDS_SAVEVSS_FMT         "%1 je oznacen pouze ke ctení. Chcete jej zkontrolovat pomocí SourceSafe nebo uložit pod jiným jménem?"
+    IDS_VSSERROR            "SourceSafe vrátil chybu pri pokusu zkontrolovat soubor. Nelze pokracovat..."
+    IDS_NOPROJECT           "Musíte nastavit cestu k projektu SourceSafe (napr.: $/MujProjekt)"
 END
 
 // IDS_COLHDR_FILENAME SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Jméno souboru"
-    IDS_COLHDR_DIR          "Adresáø"
+    IDS_COLHDR_DIR          "Adresár"
     IDS_COLHDR_RESULT       "Výsledek porovnání"
-    IDS_FILE_COMPARISON_TITLE "Porovnání souborù"
+    IDS_FILE_COMPARISON_TITLE "Porovnání souboru"
     IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
     IDS_FILEISDIR           "Directory files cannot be visually compared."
@@ -1382,32 +1383,32 @@ BEGIN
     ID_R2L                  "Zkopírovat vybraný text do souboru vlevo\nCopy Left (Left Arrow)"
     ID_OPTIONS_SHOWIDENTICAL "Zobrazit shodné soubory"
     ID_OPTIONS_SHOWDIFFERENT "Zobrazit rozdílné soubory"
-    ID_PREVDIFF             "Skoèit na pøedchozí rozdíl\nPrev Diff (Shift+Tab)"
-    ID_NEXTDIFF             "Skoèit na další rozdíl\nNext Diff (Tab)"
+    ID_PREVDIFF             "Skocit na predchozí rozdíl\nPrev Diff (Shift+Tab)"
+    ID_NEXTDIFF             "Skocit na další rozdíl\nNext Diff (Tab)"
     ID_OPTIONS_BACKUPORIGINALFILE "Uložit záložní kopii souboru\nBackup"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
-                            "Automaticky pøejde na první rozdíl\nScroll First"
-    ID_OPTIONS_IGNOREWHITESPACE "Pøi porovnání nebere v úvahu prázdné místo"
-    ID_HIDE_BACKUP_FILES    "Skrýt soubory s pøíponou BAK"
+                            "Automaticky prejde na první rozdíl\nScroll First"
+    ID_OPTIONS_IGNOREWHITESPACE "Pri porovnání nebere v úvahu prázdné místo"
+    ID_HIDE_BACKUP_FILES    "Skrýt soubory s príponou BAK"
     ID_HELP_GNULICENSE      "Zobrazit GNU licenci"
     ID_USEVSS               "Attempts to checkout read-only files from sourcesafe"
     ID_OPTIONS              "Nastavit možnosti programu\nOptions"
     ID_ALL_LEFT             "Zkopírovat všechny rozdíly do souboru vlevo\nAll Left"
     ID_ALL_RIGHT            "Zkopírovat všechny rozdíly do souboru vpravo\nAll Right"
-    ID_VIEW_SELECTFONT      "Nastavení písma pro zobrazení porovnávaných dokumentù\nSelect Diff Font"
-    ID_VIEW_USEDEFAULTFONT  "Použít systémové písmo pro zobrazení porovnávaných dokumentù\nDefault Font"
-    ID_DIR_COPY_RIGHT_TO_LEFT "Kopírovat vybrané soubory do jiného adresáøe"
+    ID_VIEW_SELECTFONT      "Nastavení písma pro zobrazení porovnávaných dokumentu\nSelect Diff Font"
+    ID_VIEW_USEDEFAULTFONT  "Použít systémové písmo pro zobrazení porovnávaných dokumentu\nDefault Font"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Kopírovat vybrané soubory do jiného adresáre"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "Kopírovat vybrané soubory do jiného adresáøe"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Kopírovat vybrané soubory do jiného adresáre"
     ID_VIEW_LANGUAGE        "Zvolit jazyk pro uživatelské rozhraní\nLanguage"
-    ID_HELP_CONTENTS        "Zobrazit nápovìdu pro program WinMerge\nHelp"
+    ID_HELP_CONTENTS        "Zobrazit nápovedu pro program WinMerge\nHelp"
     ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff (Alt+Home)"
     ID_CURDIFF              "Scroll to the current difference\nCurrent Diff (Alt+Enter)"
     ID_LASTDIFF             "Scroll to the last difference\nLast Diff (Alt+End)"
@@ -1492,6 +1493,8 @@ LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
+
 
 
 

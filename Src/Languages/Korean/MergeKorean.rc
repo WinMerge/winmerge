@@ -390,37 +390,25 @@ STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "일반"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "설정",IDC_STATIC,7,7,221,94
+    GROUPBOX        "설정",IDC_STATIC,7,7,221,72
     CONTROL         "원본 파일 백업(&B)",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,19,75,10
     CONTROL         "처음 다른 부분으로 자동 스코롤(&S)",IDC_SCROLL_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,129,10
-    CONTROL         "공백 라인 무시(&K)",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,81,10
-    CONTROL         "대/소문자 무시(&C)",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,85,10
     CONTROL         "스플래쉬 화면 사용 안함(&D)",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,98,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,98,10
     CONTROL         "자동 리스캔(&R)",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,71,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,71,10
     CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
-    CONTROL         "공백 비교(&W)",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,130,41,82,10
-    CONTROL         "바뀐 공백 무시(&H)",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,130,52,69,10
-    CONTROL         "모든 공백 무시(&A)",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,130,63,83,10
-    CONTROL         "EOL(End of Line)에 민감(&E)",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,130,74,110,10
-    GROUPBOX        "탭(Tabs)",IDC_STATIC,7,105,221,33,WS_GROUP
-    LTEXT           "탭사이즈(&T):",IDC_STATIC,15,119,36,8
-    EDITTEXT        IDC_TAB_EDIT,53,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,103,10
+    GROUPBOX        "탭(Tabs)",IDC_STATIC,7,83,221,33,WS_GROUP
+    LTEXT           "탭사이즈(&T):",IDC_STATIC,15,97,36,8
+    EDITTEXT        IDC_TAB_EDIT,53,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "탭(tab) 삽입(&T)",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,85,113,59,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,85,91,59,10
     CONTROL         "공백(space) 삽입(&N)",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,85,124,82,10
+                    BS_AUTORADIOBUTTON,85,100,82,10
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
@@ -761,8 +749,21 @@ STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "File Compare method:",IDC_STATIC,7,6,70,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,83,6,84,71,CBS_DROPDOWNLIST |
+    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
+    CONTROL         "공백 비교(&W)",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,19,82,10
+    CONTROL         "바뀐 공백 무시(&H)",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,14,30,69,10
+    CONTROL         "모든 공백 무시(&A)",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,14,41,83,10
+    CONTROL         "공백 라인 무시(&K)",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,81,10
+    CONTROL         "대/소문자 무시(&C)",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,71,85,10
+    CONTROL         "EOL(End of Line)에 민감(&E)",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,82,110,10
+    LTEXT           "File Compare method:",IDC_STATIC,7,97,70,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
 
@@ -1674,6 +1675,8 @@ LANGUAGE 9, 1
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
+
 
 
 

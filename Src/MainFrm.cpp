@@ -945,10 +945,6 @@ void CMainFrame::OnOptions()
 
 	gen.m_bAllowMixedEol = m_bAllowMixedEol;
 	gen.m_bBackup = m_bBackup;
-	gen.m_nIgnoreWhite = diffOptions.nIgnoreWhitespace;
-	gen.m_bIgnoreCase = diffOptions.bIgnoreCase;
-	gen.m_bIgnoreBlankLines = diffOptions.bIgnoreBlankLines;
-	gen.m_bEolSensitive = diffOptions.bEolSensitive;
 	gen.m_bScroll = m_bScrollToFirst;
 	gen.m_nTabSize = m_nTabSize;
 	gen.m_nTabType = m_nTabType;
@@ -961,6 +957,10 @@ void CMainFrame::OnOptions()
 	regpage.m_strEditorPath = m_sExtEditorPath;
 	regpage.GetContextRegValues();
     compage.m_compareMethod = m_nCompMethod;
+	compage.m_nIgnoreWhite = diffOptions.nIgnoreWhitespace;
+	compage.m_bIgnoreCase = diffOptions.bIgnoreCase;
+	compage.m_bIgnoreBlankLines = diffOptions.bIgnoreBlankLines;
+	compage.m_bEolSensitive = diffOptions.bEolSensitive;
 	
 	if (sht.DoModal()==IDOK)
 	{
@@ -974,10 +974,10 @@ void CMainFrame::OnOptions()
 		theApp.m_bDisableSplash = gen.m_bDisableSplash;
 		m_bAutomaticRescan = gen.m_bAutomaticRescan;
 
-		diffOptions.nIgnoreWhitespace = gen.m_nIgnoreWhite;
-		diffOptions.bIgnoreBlankLines = gen.m_bIgnoreBlankLines;
-		diffOptions.bEolSensitive = gen.m_bEolSensitive;
-		diffOptions.bIgnoreCase = gen.m_bIgnoreCase;
+		diffOptions.nIgnoreWhitespace = compage.m_nIgnoreWhite;
+		diffOptions.bIgnoreBlankLines = compage.m_bIgnoreBlankLines;
+		diffOptions.bEolSensitive = compage.m_bEolSensitive;
+		diffOptions.bIgnoreCase = compage.m_bIgnoreCase;
 
         m_nCompMethod = compage.m_compareMethod;
 		
@@ -2415,4 +2415,5 @@ void CMainFrame::OnFileNew()
 	VERIFY(m_strRightDesc.LoadString(IDS_EMPTY_RIGHT_FILE));
 	ShowMergeDoc(pDirDoc, _T(""), _T(""), FALSE, FALSE, 0, 0);
 }
+
 

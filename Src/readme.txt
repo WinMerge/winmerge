@@ -1,3 +1,9 @@
+2004-02-01 Kimmo
+ PATCH: [ 885496 ] Move compare options to Compare-page
+  src: MainFrm.cpp Merge.rc PropCompare.cpp PropCompare.h
+   PropGeneral.cpp PropGeneral.h
+  Languages: *.rc
+
 2004-01-31 Laoran
  BUG: [ 885018 ] Crash when trying to save scratchpad
   src: MergeDoc.cpp

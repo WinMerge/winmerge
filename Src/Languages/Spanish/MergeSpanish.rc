@@ -422,39 +422,26 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "General"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Opciones",IDC_STATIC,7,7,243,94
+    GROUPBOX        "Opciones",IDC_STATIC,7,7,243,72
     CONTROL         "&Guardar el archivo original",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,19,98,10
     CONTROL         "Moverse automaticamente a la primera diferencia",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     17,30,175,10
-    CONTROL         "Ignorar diferencias de lineas vacias",
-                    IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,17,41,128,10
-    CONTROL         "Ignorar diferencias may./min.",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,121,10
     CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,87,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,87,10
     CONTROL         "Automatic &rescan",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,71,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,71,10
     CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
-    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,149,41,82,10
-    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,149,52,96,10
-    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,149,63,83,10
-    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,149,74,69,10
-    GROUPBOX        "Tabs",IDC_STATIC,7,105,221,30,WS_GROUP
-    LTEXT           "&Magnitud de Tab:",IDC_STATIC,15,119,60,8
-    EDITTEXT        IDC_TAB_EDIT,75,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,103,10
+    GROUPBOX        "Tabs",IDC_STATIC,7,83,221,30,WS_GROUP
+    LTEXT           "&Magnitud de Tab:",IDC_STATIC,15,97,60,8
+    EDITTEXT        IDC_TAB_EDIT,75,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,105,113,51,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,105,91,51,10
     CONTROL         "Insert Spaces",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,105,122,59,10
+                    BS_AUTORADIOBUTTON,105,100,59,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -790,13 +777,27 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,132,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 190, 111
+IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 236, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "File Compare method:",IDC_STATIC,7,6,70,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,83,6,84,71,CBS_DROPDOWNLIST |
+    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
+    CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,14,19,44,10
+    CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,14,30,96,10
+    CONTROL         "I&gnore all",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
+                    14,41,45,10
+    CONTROL         "Ignorar diferencias de lineas vacias",
+                    IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,7,60,128,10
+    CONTROL         "Ignorar diferencias may./min.",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,71,121,10
+    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,82,71,10
+    LTEXT           "File Compare method:",IDC_STATIC,7,97,70,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
 
@@ -1495,6 +1496,8 @@ LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MODERN
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
+
 
 
 

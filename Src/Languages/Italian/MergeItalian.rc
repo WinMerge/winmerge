@@ -421,39 +421,26 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Generale"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Impostazioni",IDC_STATIC,7,7,221,94
+    GROUPBOX        "Impostazioni",IDC_STATIC,7,7,221,72
     CONTROL         "&Esegui il backup del file originale",IDC_BACKUP_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,19,118,10
     CONTROL         "&Visualizza automaticamente la prima differenza",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     17,30,161,10
-    CONTROL         "I&gnora le linee vuote",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,80,10
-    CONTROL         "Ig&nora differenze maiusc./minusc.",
-                    IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    17,52,105,10
     CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,87,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,87,10
     CONTROL         "Automatic &rescan",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,71,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,71,10
     CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
-    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,128,41,82,10
-    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,128,52,100,10
-    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,128,63,83,10
-    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,128,74,69,10
-    GROUPBOX        "Tabulazioni",IDC_STATIC,7,105,221,30
-    LTEXT           "&Dimensione delle tabulazioni:",IDC_STATIC,15,119,92,8
-    EDITTEXT        IDC_TAB_EDIT,110,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,103,10
+    GROUPBOX        "Tabulazioni",IDC_STATIC,7,83,221,30
+    LTEXT           "&Dimensione delle tabulazioni:",IDC_STATIC,15,97,92,8
+    EDITTEXT        IDC_TAB_EDIT,110,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,140,113,51,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,140,91,51,10
     CONTROL         "Insert Spaces",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,140,122,59,10
+                    BS_AUTORADIOBUTTON,140,100,59,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -789,13 +776,27 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,132,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 190, 111
+IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 236, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "File Compare method:",IDC_STATIC,7,6,70,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,83,6,84,71,CBS_DROPDOWNLIST |
+    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
+    CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,14,19,44,10
+    CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,14,30,96,10
+    CONTROL         "I&gnore all",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
+                    14,41,45,10
+    CONTROL         "I&gnora le linee vuote",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,80,10
+    CONTROL         "Ig&nora differenze maiusc./minusc.",
+                    IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    7,71,105,10
+    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,82,69,10
+    LTEXT           "File Compare method:",IDC_STATIC,7,97,70,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
 
@@ -1492,6 +1493,8 @@ LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
+
 
 
 

@@ -79,12 +79,12 @@ IDR_POPUP_DIFFVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Kopiuj na drug¹ stronê",    ID_POPUP_COPYTOOTHERSIDE
+        MENUITEM "Kopiuj na druga strone",    ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "Kopiuj z drugiej strony",  ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "Kopiuj wszystkie ró¿nice na drug¹ stronê...",
+        MENUITEM "Kopiuj wszystkie róznice na druga strone...",
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-        MENUITEM "Kopiuj wszystkie ró¿nice z drugiej strony...",
+        MENUITEM "Kopiuj wszystkie róznice z drugiej strony...",
                                                 ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
         MENUITEM SEPARATOR
         MENUITEM "Cofnij",                     ID_UNDO
@@ -122,7 +122,7 @@ BEGIN
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "Zakoñcz",                     ID_APP_EXIT
+        MENUITEM "Zakoncz",                     ID_APP_EXIT
     END
     POPUP "&Edycja"
     BEGIN
@@ -138,51 +138,51 @@ BEGIN
         MENUITEM "&Highlight Line Diff\tF4",    ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "W&yszukaj...\tCtrl+F",        ID_EDIT_FIND
-        MENUITEM "&Zast¹p...\tCtrl+H",          ID_EDIT_REPLACE
+        MENUITEM "&Zastap...\tCtrl+H",          ID_EDIT_REPLACE
         MENUITEM SEPARATOR
         MENUITEM "&Go To...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "W³&aœciwoœci...",             ID_OPTIONS
+        MENUITEM "Wl&asciwosci...",             ID_OPTIONS
         MENUITEM SEPARATOR
-        MENUITEM "O&dœwie¿\tF5",                ID_REFRESH
+        MENUITEM "O&dswiez\tF5",                ID_REFRESH
     END
     POPUP "&Widok"
     BEGIN
-        MENUITEM "Poka¿ &identyczne archiwa",   ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Poka¿ &ró¿ne archiwa",        ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Poka¿ &unikatowe dla lewej",  ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Poka¿ u&nikatowe dla prawej", ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Poka¿ pliki &binarne",        ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Pokaz &identyczne archiwa",   ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Pokaz &rózne archiwa",        ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Pokaz &unikatowe dla lewej",  ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Pokaz u&nikatowe dla prawej", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Pokaz pliki &binarne",        ID_OPTIONS_SHOWBINARIES
         MENUITEM "Ukryj pliki *.B&AK",          ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
-        MENUITEM "Zmi&eñ czcionkê...",          ID_VIEW_SELECTFONT
-        MENUITEM "Czcionka &domyœlna",          ID_VIEW_USEDEFAULTFONT
+        MENUITEM "Zmi&en czcionke...",          ID_VIEW_SELECTFONT
+        MENUITEM "Czcionka &domyslna",          ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "&Poka¿ bia³e znaki",          ID_VIEW_WHITESPACE
+        MENUITEM "&Pokaz biale znaki",          ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
-        MENUITEM "Pasek &narzêdzi",             ID_VIEW_TOOLBAR
+        MENUITEM "Pasek &narzedzi",             ID_VIEW_TOOLBAR
         MENUITEM "Pasek s&tanu",                ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
-        MENUITEM "&Jêzyk...",                   ID_VIEW_LANGUAGE
+        MENUITEM "&Jezyk...",                   ID_VIEW_LANGUAGE
 
     END
     POPUP "&Merge"
     BEGIN
-        MENUITEM "&Nastêpna ró¿nica\tAlt+Down", ID_NEXTDIFF
-        MENUITEM "&Poprzednia ró¿nica\tAlt+Up", ID_PREVDIFF
+        MENUITEM "&Nastepna róznica\tAlt+Down", ID_NEXTDIFF
+        MENUITEM "&Poprzednia róznica\tAlt+Up", ID_PREVDIFF
         MENUITEM SEPARATOR
-        MENUITEM "P&ierwszw ró¿nica\tAlt+Home", ID_FIRSTDIFF
-        MENUITEM "&Bie¿¹ca ró¿nica\tAlt+Enter", ID_CURDIFF
-        MENUITEM "Os&tatnia ró¿nica\tAlt+End",  ID_LASTDIFF
+        MENUITEM "P&ierwszw róznica\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Biezaca róznica\tAlt+Enter", ID_CURDIFF
+        MENUITEM "Os&tatnia róznica\tAlt+End",  ID_LASTDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Kopiuj na praw¹\tAlt+Right",  ID_L2R
-        MENUITEM "Kopiuj na lew¹\tAlt+Left",    ID_R2L
+        MENUITEM "Kopiuj na prawa\tAlt+Right",  ID_L2R
+        MENUITEM "Kopiuj na lewa\tAlt+Left",    ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "Copy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
         MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
         MENUITEM SEPARATOR
-        MENUITEM "Kopiuj wszystko na praw¹",    ID_ALL_RIGHT
-        MENUITEM "Kopiuj wszystko na lew¹",     ID_ALL_LEFT
+        MENUITEM "Kopiuj wszystko na prawa",    ID_ALL_RIGHT
+        MENUITEM "Kopiuj wszystko na lewa",     ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "Copy Diffs in Left Selection to Right", ID_MULTIPLE_RIGHT
         MENUITEM "Copy Diffs in Right Selection to Left", ID_MULTIPLE_LEFT
@@ -211,7 +211,7 @@ BEGIN
     END
     POPUP "&Pomoc"
     BEGIN
-        MENUITEM "&Spis treœci...",             ID_HELP_CONTENTS
+        MENUITEM "&Spis tresci...",             ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM SEPARATOR
@@ -337,13 +337,13 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
     LTEXT           "Wersja 1.0",IDC_VERSION,63,23,127,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
-    LTEXT           "Wszelkie prawa zastrze¿one.",IDC_STATIC,7,60,170,8
-    LTEXT           "Zajrzyj na stronê WinMerge!",IDC_WWW,7,119,184,8
+    LTEXT           "Wszelkie prawa zastrzezone.",IDC_STATIC,7,60,170,8
+    LTEXT           "Zajrzyj na strone WinMerge!",IDC_WWW,7,119,184,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,113,209,1
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
-    LTEXT           "Widok edycji z podœwietleniem sk³adni: Andrei Stcherbatchenko ",
+    LTEXT           "Widok edycji z podswietleniem skladni: Andrei Stcherbatchenko ",
                     IDC_STATIC,7,71,209,8
-    LTEXT           "Sk³adnia ró¿nych jezyków: Ferdinand Prantl",IDC_STATIC,7,81,
+    LTEXT           "Skladnia róznych jezyków: Ferdinand Prantl",IDC_STATIC,7,81,
                     209,8
     LTEXT           "Other major contributors include:",IDC_STATIC,7,91,209,
                     8
@@ -388,15 +388,15 @@ FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    DEFPUSHBUTTON   "SprawdŸ",IDOK,53,132,50,14
+    DEFPUSHBUTTON   "Sprawdz",IDOK,53,132,50,14
     PUSHBUTTON      "Anuluj",IDCANCEL,193,132,68,14
     PUSHBUTTON      "Zachowaj jako...",IDSAVEAS,123,132,68,14
     LTEXT           "Projekt:",IDC_STATIC,9,81,25,8
     COMBOBOX        IDC_PROJECT_COMBO,48,78,215,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "U¿ytkownik:",IDC_STATIC,10,99,24,8
+    LTEXT           "Uzytkownik:",IDC_STATIC,10,99,24,8
     EDITTEXT        IDC_USER,48,96,58,14,ES_AUTOHSCROLL
-    LTEXT           "Has³o:",IDC_STATIC,127,99,46,8
+    LTEXT           "Haslo:",IDC_STATIC,127,99,46,8
     EDITTEXT        IDC_PASSWORD,162,97,70,14,ES_PASSWORD | ES_AUTOHSCROLL
     LTEXT           "Database:",IDC_STATIC,9,64,33,13
     COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN |
@@ -409,16 +409,16 @@ END
 
 IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "System œledzenia wersji"
+CAPTION "System sledzenia wersji"
 FONT 8, "MS Sans Serif"
 BEGIN
     GROUPBOX        "Opcje",IDC_STATIC,7,7,245,54
-    LTEXT           "Œ&cie¿ka cleartool.exe:",IDC_VSS_L1,16,42,88,8
+    LTEXT           "S&ciezka cleartool.exe:",IDC_VSS_L1,16,42,88,8
     EDITTEXT        IDC_PATH_EDIT,85,40,94,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "&Przegl¹daj...",IDC_BROWSE_BUTTON,206,40,42,12
+    PUSHBUTTON      "&Przegladaj...",IDC_BROWSE_BUTTON,206,40,42,12
     COMBOBOX        IDC_VER_SYS,85,20,141,41,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
-    LTEXT           "Œledzenie &wersji:",IDC_STATIC,16,22,60,10
+    LTEXT           "Sledzenie &wersji:",IDC_STATIC,16,22,60,10
 END
 
 IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 247, 156
@@ -426,51 +426,39 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Ogólne"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Opcje",IDC_STATIC,7,7,233,94
-    CONTROL         "&Kopia zapasowa orygina³u",
+    GROUPBOX        "Opcje",IDC_STATIC,7,7,233,72
+    CONTROL         "&Kopia zapasowa oryginalu",
                     IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     17,19,145,10
-    CONTROL         "PrzejdŸ automatycznie do pierwszej ró¿nicy",
+    CONTROL         "Przejdz automatycznie do pierwszej róznicy",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     17,30,183,10
-    CONTROL         "Ignoruj ró¿nice pustych linii",IDC_IGNBLANKS_CHECK,"Button",
+    CONTROL         "&Wylacz ekran powitalny",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,41,100,10
-    CONTROL         "Ignoruj ró¿nice wielkoœci liter",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,110,10
-    CONTROL         "&Wy³¹cz ekran powitalny",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,100,10
     CONTROL         "Automatyczny &rescan",IDC_AUTOMRESCAN_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,74,103,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,52,103,10
     CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
-    CONTROL         "Porónwaj &bia³e znaki",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,135,45,83,10
-    CONTROL         "P&omiñ zmiany bia³ych",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,135,56,101,10
-    CONTROL         "Pomiñ wszystkie bia³e",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,135,67,91,10
-    CONTROL         "Rozpoznawanie &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,125,74,100,10
-    GROUPBOX        "Tabulatory",IDC_STATIC,7,105,233,30
-    LTEXT           "&Wielkoœæ :",IDC_STATIC,15,119,71,8
-    EDITTEXT        IDC_TAB_EDIT,90,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,103,10
+    GROUPBOX        "Tabulatory",IDC_STATIC,7,83,233,30
+    LTEXT           "&Wielkosc :",IDC_STATIC,15,97,71,8
+    EDITTEXT        IDC_TAB_EDIT,90,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Wstaw tabulatory",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,79,113,67,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,79,91,67,10
     CONTROL         "Wstaw spacje",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,79,122,78,10
+                    BS_AUTORADIOBUTTON,79,100,78,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Jêzyk"
+CAPTION "Jezyk"
 FONT 8, "MS Sans Serif"
 BEGIN
     PUSHBUTTON      "OK",IDOK,154,16,52,14
     PUSHBUTTON      "Anuluj",IDCANCEL,154,33,52,14
     LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT |
                     WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Dostêpne jêzyki:",IDC_STATIC,7,7,69,8
+    LTEXT           "Dostepne jezyki:",IDC_STATIC,7,7,69,8
 END
 
 IDD_EDIT_FIND DIALOG FIXED IMPURE  30, 73, 236, 68
@@ -480,17 +468,17 @@ FONT 8, "MS Shell Dlg"
 BEGIN
     COMBOBOX        IDC_EDIT_FINDTEXT,46,6,130,138,CBS_DROPDOWN | WS_VSCROLL |
                     CBS_AUTOHSCROLL | WS_TABSTOP
-    CONTROL         "Dopasuj &ca³e s³owa",IDC_EDIT_WHOLE_WORD,"Button",
+    CONTROL         "Dopasuj &cale slowa",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
-    CONTROL         "Wielkoœæ &liter",IDC_EDIT_MATCH_CASE,"Button",
+    CONTROL         "Wielkosc &liter",IDC_EDIT_MATCH_CASE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,40,86,12
-    CONTROL         "Wyra¿enie &regularne",IDC_EDIT_REGEXP,"Button",
+    CONTROL         "Wyrazenie &regularne",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,54,83,12
     CONTROL         "Do &góry",IDC_EDIT_DIRECTION_UP,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,111,36,53,12
-    CONTROL         "&W dó³",IDC_EDIT_DIRECTION_DOWN,"Button",
+    CONTROL         "&W dól",IDC_EDIT_DIRECTION_DOWN,"Button",
                     BS_AUTORADIOBUTTON,111,48,61,12
-    DEFPUSHBUTTON   "&Nastêpny",IDOK,182,5,50,14,WS_GROUP
+    DEFPUSHBUTTON   "&Nastepny",IDOK,182,5,50,14,WS_GROUP
     PUSHBUTTON      "Anuluj",IDCANCEL,182,23,50,14
     LTEXT           "&Szukaj:",IDC_STATIC,4,8,41,8
     GROUPBOX        "Kierunek",IDC_STATIC,107,26,68,38,WS_GROUP
@@ -498,30 +486,30 @@ END
 
 IDD_EDIT_REPLACE DIALOG FIXED IMPURE  36, 44, 236, 89
 STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Zast¹p"
+CAPTION "Zastap"
 FONT 8, "MS Shell Dlg"
 BEGIN
     COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Ca³e &s³owo",IDC_EDIT_WHOLE_WORD,"Button",
+    CONTROL         "Cale &slowo",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
-    CONTROL         "Wielkoœæ &liter",IDC_EDIT_MATCH_CASE,"Button",
+    CONTROL         "Wielkosc &liter",IDC_EDIT_MATCH_CASE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,60,78,12
-    CONTROL         "Wyra¿enie &regularne",IDC_EDIT_REGEXP,"Button",
+    CONTROL         "Wyrazenie &regularne",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,74,81,12
     CONTROL         "&Selekcja",IDC_EDIT_SCOPE_SELECTION,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,102,57,59,10
-    CONTROL         "Ca³y &plik",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
+    CONTROL         "Caly &plik",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
                     BS_AUTORADIOBUTTON,102,70,58,10
-    DEFPUSHBUTTON   "&Nastêny",IDC_EDIT_SKIP,174,4,57,14,WS_GROUP
-    PUSHBUTTON      "&Zast¹p",IDC_EDIT_REPLACE,174,21,57,14
+    DEFPUSHBUTTON   "&Nasteny",IDC_EDIT_SKIP,174,4,57,14,WS_GROUP
+    PUSHBUTTON      "&Zastap",IDC_EDIT_REPLACE,174,21,57,14
     PUSHBUTTON      "&Wszystkie",IDC_EDIT_REPLACE_ALL,174,38,57,14
     PUSHBUTTON      "Anuluj",IDCANCEL,174,55,57,14
-    LTEXT           "Z&najdŸ:",IDC_STATIC,4,9,48,8
-    LTEXT           "Z&ast¹p:",IDC_STATIC,4,26,48,8
-    GROUPBOX        "Zast¹p w",IDC_STATIC,97,46,71,39,WS_GROUP
+    LTEXT           "Z&najdz:",IDC_STATIC,4,9,48,8
+    LTEXT           "Z&astap:",IDC_STATIC,4,26,48,8
+    GROUPBOX        "Zastap w",IDC_STATIC,97,46,71,39,WS_GROUP
     CONTROL         "Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,88,84,12
 END
@@ -531,7 +519,7 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Rational Clearcase"
 FONT 8, "MS Sans Serif"
 BEGIN
-    DEFPUSHBUTTON   "SprawdŸ",IDOK,35,90,68,14
+    DEFPUSHBUTTON   "Sprawdz",IDOK,35,90,68,14
     PUSHBUTTON      "Anuluj",IDCANCEL,194,90,68,14
     PUSHBUTTON      "Zachowaj jako...",IDSAVEAS,114,90,68,14
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
@@ -541,10 +529,10 @@ END
 
 IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Podœwietlanie"
+CAPTION "Podswietlanie"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "Podœwietlaj sk³adniê",IDC_HILITE_CHECK,"Button",
+    CONTROL         "Podswietlaj skladnie",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,75,10
 END
 
@@ -553,10 +541,10 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Filtr"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "Pomiñ wiersze pasuj¹ce do wzorców",
+    CONTROL         "Pomin wiersze pasujace do wzorców",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
-    LTEXT           "Wyra¿enia regularne (jedno/wiersz):",IDC_STATIC,7,28,221,8
+    LTEXT           "Wyrazenia regularne (jedno/wiersz):",IDC_STATIC,7,28,221,8
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
     LTEXT           "Filtr plików:",IDC_STATIC,7,128,60,10
@@ -570,11 +558,11 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Kolory"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    LTEXT           "Ró¿nica:",IDC_STATIC,13,29,66,8
+    LTEXT           "Róznica:",IDC_STATIC,13,29,66,8
     CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,98,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    LTEXT           "Wybrana ró¿nica:",IDC_STATIC,13,49,73,8
+    LTEXT           "Wybrana róznica:",IDC_STATIC,13,49,73,8
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,98,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -793,13 +781,26 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,132,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 190, 111
+IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 236, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "File Compare method:",IDC_STATIC,7,6,70,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,83,6,84,71,CBS_DROPDOWNLIST |
+    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
+    CONTROL         "Porónwaj &biale znaki",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,19,83,10
+    CONTROL         "P&omin zmiany bialych",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,14,30,101,10
+    CONTROL         "Pomin wszystkie biale",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,14,41,91,10
+    CONTROL         "Ignoruj róznice pustych linii",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,100,10
+    CONTROL         "Ignoruj róznice wielkosci liter",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,71,110,10
+    CONTROL         "Rozpoznawanie &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,82,100,10
+    LTEXT           "File Compare method:",IDC_STATIC,7,97,70,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
 
@@ -1072,20 +1073,20 @@ END
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_NEW             "Utwórz nowy dokument\nNowy"
-    ID_FILE_OPEN            "Otwórz istniej¹cy dokument\nOtwórz (Ctrl+O)"
+    ID_FILE_OPEN            "Otwórz istniejacy dokument\nOtwórz (Ctrl+O)"
     ID_FILE_CLOSE           "Zamknij aktywny dokument\nZamknij"
     ID_FILE_SAVE            "Zachowaj aktywny dokument\nZachowaj (Ctrl+S)"
-    ID_FILE_SAVE_AS         "Zachowaj aktywny dokument pod inn¹ nazw¹\nZachowaj jako"
-    ID_FILE_PAGE_SETUP      "Zmieñ opcje wydruku\nUstawienia strony"
-    ID_FILE_PRINT_SETUP     "Zmieñ opcje drukarki i wydruku\nUstawienia wydruku"
-    ID_FILE_PRINT           "Wydrukuj bie¿¹cy dokument\nDrukuj"
-    ID_FILE_PRINT_PREVIEW   "Wyœwietl ca³e strony\nPodgl¹d wydruku"
+    ID_FILE_SAVE_AS         "Zachowaj aktywny dokument pod inna nazwa\nZachowaj jako"
+    ID_FILE_PAGE_SETUP      "Zmien opcje wydruku\nUstawienia strony"
+    ID_FILE_PRINT_SETUP     "Zmien opcje drukarki i wydruku\nUstawienia wydruku"
+    ID_FILE_PRINT           "Wydrukuj biezacy dokument\nDrukuj"
+    ID_FILE_PRINT_PREVIEW   "Wyswietl cale strony\nPodglad wydruku"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_APP_ABOUT            "Wyœwietl informacje o programie, numer wersji i info o prawach autorskich\nO programie"
-    ID_APP_EXIT             "WyjdŸ z programu; program pyta, czy zachowaæ dokumenty\nWyjdŸ"
+    ID_APP_ABOUT            "Wyswietl informacje o programie, numer wersji i info o prawach autorskich\nO programie"
+    ID_APP_EXIT             "Wyjdz z programu; program pyta, czy zachowac dokumenty\nWyjdz"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1110,15 +1111,15 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_NEXT_PANE            "PrzejdŸ do nastêpnego panelu\nNastêpmny panel"
-    ID_PREV_PANE            "Wróæ do poprzedniego panelu\nPoprzedni panel"
+    ID_NEXT_PANE            "Przejdz do nastepnego panelu\nNastepmny panel"
+    ID_PREV_PANE            "Wróc do poprzedniego panelu\nPoprzedni panel"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_WINDOW_NEW           "Otwórz aktywny dokument w nowym oknie\nNowe okno"
-    ID_WINDOW_ARRANGE       "Ustaw ikony u do³u okna\nUstaw ikony"
-    ID_WINDOW_CASCADE       "Ustaw okna w nak³adaj¹c¹ siê kaskadê\nKaskadowo"
+    ID_WINDOW_ARRANGE       "Ustaw ikony u dolu okna\nUstaw ikony"
+    ID_WINDOW_CASCADE       "Ustaw okna w nakladajaca sie kaskade\nKaskadowo"
     ID_WINDOW_TILE_HORZ     "Ustaw okna obok siebie\nObok siebie"
     ID_WINDOW_TILE_VERT     "Ustaw okna obok siebie\nObok siebie"
     ID_WINDOW_SPLIT         "Podziel aktywne okno na panele\nPodziel"
@@ -1126,46 +1127,46 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_EDIT_CLEAR           "Wyma¿ wybór\nWyma¿"
-    ID_EDIT_CLEAR_ALL       "Wyma¿ wszystko\nWyma¿ wszystko"
-    ID_EDIT_COPY            "Kopiuj selekcjê i wstaw do schowka\nKopiuj"
-    ID_EDIT_CUT             "Wytnij selekcjê i wstaw do schowka\nWytnij"
-    ID_EDIT_FIND            "ZnajdŸ wskazany tekst\nWyszukaj"
-    ID_EDIT_PASTE           "Wstaw zawartoœæ schowka\nWklej"
-    ID_EDIT_REPEAT          "Powtórz ostatni¹ czynnoœæ\nPowtórz"
-    ID_EDIT_REPLACE         "Zast¹p dany tekst innym\nZast¹p"
-    ID_EDIT_SELECT_ALL      "Zaznacz ca³y dokument\nZaznacz wszystko"
-    ID_EDIT_UNDO            "Cofnij ostatni¹ czynnoœæ\nCofnij"
-    ID_EDIT_REDO            "Powtórz cofniêt¹ czynnoœæ\nPowtórz"
+    ID_EDIT_CLEAR           "Wymaz wybór\nWymaz"
+    ID_EDIT_CLEAR_ALL       "Wymaz wszystko\nWymaz wszystko"
+    ID_EDIT_COPY            "Kopiuj selekcje i wstaw do schowka\nKopiuj"
+    ID_EDIT_CUT             "Wytnij selekcje i wstaw do schowka\nWytnij"
+    ID_EDIT_FIND            "Znajdz wskazany tekst\nWyszukaj"
+    ID_EDIT_PASTE           "Wstaw zawartosc schowka\nWklej"
+    ID_EDIT_REPEAT          "Powtórz ostatnia czynnosc\nPowtórz"
+    ID_EDIT_REPLACE         "Zastap dany tekst innym\nZastap"
+    ID_EDIT_SELECT_ALL      "Zaznacz caly dokument\nZaznacz wszystko"
+    ID_EDIT_UNDO            "Cofnij ostatnia czynnosc\nCofnij"
+    ID_EDIT_REDO            "Powtórz cofnieta czynnosc\nPowtórz"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_VIEW_TOOLBAR         "Poka¿ lub ukryj pasek narzêdzi\nPrze³¹cz pasek narzêdzi"
-    ID_VIEW_STATUS_BAR      "Poka¿ lub ukryj pasek stanu\nPrze³¹cz pasek stanu"
+    ID_VIEW_TOOLBAR         "Pokaz lub ukryj pasek narzedzi\nPrzelacz pasek narzedzi"
+    ID_VIEW_STATUS_BAR      "Pokaz lub ukryj pasek stanu\nPrzelacz pasek stanu"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    AFX_IDS_SCSIZE          "Zmieñ rozmiar okna"
-    AFX_IDS_SCMOVE          "Zmieñ pozycjê okna"
+    AFX_IDS_SCSIZE          "Zmien rozmiar okna"
+    AFX_IDS_SCMOVE          "Zmien pozycje okna"
     AFX_IDS_SCMINIMIZE      "Zredukuj okno do ikony"
-    AFX_IDS_SCMAXIMIZE      "Maksymalnie powiêksz okno"
-    AFX_IDS_SCNEXTWINDOW    "Prze³¹cz na okno nastêpnego dokumentu"
-    AFX_IDS_SCPREVWINDOW    "Prze³¹cz na okno poprzedniego dokumentu"
-    AFX_IDS_SCCLOSE         "Zamknij aktywne okno; program pyta, czy zachowaæ dokumenty"
+    AFX_IDS_SCMAXIMIZE      "Maksymalnie powieksz okno"
+    AFX_IDS_SCNEXTWINDOW    "Przelacz na okno nastepnego dokumentu"
+    AFX_IDS_SCPREVWINDOW    "Przelacz na okno poprzedniego dokumentu"
+    AFX_IDS_SCCLOSE         "Zamknij aktywne okno; program pyta, czy zachowac dokumenty"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    AFX_IDS_SCRESTORE       "Przywróæ normalny rozmiar okna"
-    AFX_IDS_SCTASKLIST      "W³¹cz listê zadañ"
+    AFX_IDS_SCRESTORE       "Przywróc normalny rozmiar okna"
+    AFX_IDS_SCTASKLIST      "Wlacz liste zadan"
     AFX_IDS_MDICHILD        "Aktywuj to okno"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "Zamknij podgl¹d wydruku\nAnuluj podgl¹d"
+    AFX_IDS_PREVIEW_CLOSE   "Zamknij podglad wydruku\nAnuluj podglad"
 END
 
 STRINGTABLE PRELOAD DISCARDABLE
@@ -1180,39 +1181,39 @@ STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDS_VERSION_FMT         "Wersja %1"
     IDS_ALLFILES            "Wszystkie pliki (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "Czy rzeczywiœcie chcesz skopiowaæ wszystkie ró¿nice na plik po lewej?"
-    IDS_CONFIRM_ALL_RIGHT   "Czy rzeczywiœcie chcesz skopiowaæ wszystkie ró¿nice na plik po prawej?"
-    IDS_ERRORS_TITLE        "%1 - liczba b³êdów"
-    IDS_CONFIRM_COPY2DIR    "Czy rzeczywiœcie chcesz skopiowaæ %1 z %2 wybranych pozycji"
-    IDS_FONT_CHANGE         "Wybrana czcionka nie zostanie zastosowana do widocznych okien z ró¿nicami."
+    IDS_CONFIRM_ALL_LEFT    "Czy rzeczywiscie chcesz skopiowac wszystkie róznice na plik po lewej?"
+    IDS_CONFIRM_ALL_RIGHT   "Czy rzeczywiscie chcesz skopiowac wszystkie róznice na plik po prawej?"
+    IDS_ERRORS_TITLE        "%1 - liczba bledów"
+    IDS_CONFIRM_COPY2DIR    "Czy rzeczywiscie chcesz skopiowac %1 z %2 wybranych pozycji"
+    IDS_FONT_CHANGE         "Wybrana czcionka nie zostanie zastosowana do widocznych okien z róznicami."
     IDS_DIRECTORY_WINDOW_TITLE "Wyniki porównania katalogów"
     IDS_DIRECTORY_WINDOW_STATUS_FMT "Wyniki dla %1 i %2"
-    IDS_FILES_ARE_DIFFERENT "Pliki s¹ rózne"
-    IDS_BIN_FILES_DIFF      "Pliki binarne s¹ równe"
+    IDS_FILES_ARE_DIFFERENT "Pliki sa rózne"
+    IDS_BIN_FILES_DIFF      "Pliki binarne sa równe"
     IDS_ONLY_IN_FMT         "Tylko w %1"
     IDS_IDENTICAL           "Identyczne"
-    IDS_CANT_COMPARE_FILES  "Nie mo¿na porównaæ plików"
+    IDS_CANT_COMPARE_FILES  "Nie mozna porównac plików"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Zachowaj jako"
-    IDS_SELECT_FILES_OR_FOLDERS "Musisz wybraæ albo dwa pliki albo dwa katalogi"
+    IDS_SELECT_FILES_OR_FOLDERS "Musisz wybrac albo dwa pliki albo dwa katalogi"
     IDS_BACKUP_FAILED_PROMPT
-                            "Nie mo¿na zoribæ kopii pliku oryginalnego.\nKontynuowaæ mimo to?"
+                            "Nie mozna zoribc kopii pliku oryginalnego.\nKontynuowac mimo to?"
     IDS_OPTIONS_TITLE       "Opcje"
     IDS_OPEN_TITLE          "Otwórz"
-    IDS_CONFIRM_DELETE_FILE "Usun¹æ plik %1?"
+    IDS_CONFIRM_DELETE_FILE "Usunac plik %1?"
     IDS_EDIT_WINDOW_TITLE_FMT "Edycja %1"
-    IDS_FILESSAME           "Wybrane pliki s¹ identyczne."
+    IDS_FILESSAME           "Wybrane pliki sa identyczne."
     IDS_FILEUNIQUE          "Wybrany plik nie istnieje w obu katalogach i nie podlega porównaniu."
-    IDS_FILEERROR           "B³¹d podczas porównywania plików."
-    IDS_SAVEREADONLY_FMT    "%1 tylko do odczytu. Czy chcesz zachowaæ plik pod inn¹ nazw¹?"
-    IDS_SAVE_FMT            "Zachowaæ zmiany w %1?"
-    IDS_FILEBINARY          "Pliki binarne nie mog¹ byæ porównywane wizualnie."
-    IDS_SAVEVSS_FMT         "%1 tylko do odczytu. Czy chcesz go pobraæ z systemu œledzenia wersji, czy te¿ zachowaæ pod inn¹ nazw¹?"
-    IDS_VSSERROR            "System œledzenia wersji zwróci³ b³¹d podaczas próby pobrania pliku. Nie mo¿na kontynuowac..."
-    IDS_NOPROJECT           "Musisz wskazaæ œcie¿kê projektu SourceSafe aby kontynuowaæ (tj.:  $/MyProject)"
+    IDS_FILEERROR           "Blad podczas porównywania plików."
+    IDS_SAVEREADONLY_FMT    "%1 tylko do odczytu. Czy chcesz zachowac plik pod inna nazwa?"
+    IDS_SAVE_FMT            "Zachowac zmiany w %1?"
+    IDS_FILEBINARY          "Pliki binarne nie moga byc porównywane wizualnie."
+    IDS_SAVEVSS_FMT         "%1 tylko do odczytu. Czy chcesz go pobrac z systemu sledzenia wersji, czy tez zachowac pod inna nazwa?"
+    IDS_VSSERROR            "System sledzenia wersji zwrócil blad podaczas próby pobrania pliku. Nie mozna kontynuowac..."
+    IDS_NOPROJECT           "Musisz wskazac sciezke projektu SourceSafe aby kontynuowac (tj.:  $/MyProject)"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1240,35 +1241,35 @@ END
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_DEL_RIGHT_FMT       "Right (%1)"
-    IDS_DELETE_FILE_FAILED  "Usuwanie pliku %1 nie powiod³o siê: %2"
-    IDS_CONFIRM_DELETE_DIR  "Usun¹æ katalog %1?"
-    IDS_REMOVE_DIR_FAILED   "Usuwanie katalogu nie powiod³o siê: %1"
+    IDS_DELETE_FILE_FAILED  "Usuwanie pliku %1 nie powiodlo sie: %2"
+    IDS_CONFIRM_DELETE_DIR  "Usunac katalog %1?"
+    IDS_REMOVE_DIR_FAILED   "Usuwanie katalogu nie powiodlo sie: %1"
     IDS_COPY_TO_LEFT        "Right to Left (%1)"
     IDS_DEL_BOTH_FMT        "Both (%1)"
     IDS_COPY_TO_RIGHT       "Left to Right (%1)"
     IDS_COLHDR_LSIZE        "Left Size"
-    IDS_DELETE_DIR_FAILED   "Usuwanie katalogu %1 nie powiod³o siê: %2"
-    IDS_COPY_FILE_FAILED    "Kopiowanie pliku %1 nie powiod³o siê: %2"
-    IDS_COPY_DIR_FAILED     "Kopiowanie katalogu %1 nie powiod³o siê: %2"
+    IDS_DELETE_DIR_FAILED   "Usuwanie katalogu %1 nie powiodlo sie: %2"
+    IDS_COPY_FILE_FAILED    "Kopiowanie pliku %1 nie powiodlo sie: %2"
+    IDS_COPY_DIR_FAILED     "Kopiowanie katalogu %1 nie powiodlo sie: %2"
     IDS_ERROR_FILE_WRITEABLE
-                            "B³¹d sprawdzania mo¿liwoœci zapisu w miejscu docelowym"
-    IDS_ERROR_BACKUP        "B³¹ przy tworzeniu kopii zapasowej pliku"
-    IDS_CONFIRM_COPY_SINGLE "Czy rzeczywiœcie chcesz skopiowaæ %1 na %2?"
-    IDS_CONFIRM_DELETE_SINGLE "Czy rzeczywiœcie usun¹æ %1?"
-    IDS_BIN_FILES_SAME      "Pliki binarne s¹ identyczne"
+                            "Blad sprawdzania mozliwosci zapisu w miejscu docelowym"
+    IDS_ERROR_BACKUP        "Bla przy tworzeniu kopii zapasowej pliku"
+    IDS_CONFIRM_COPY_SINGLE "Czy rzeczywiscie chcesz skopiowac %1 na %2?"
+    IDS_CONFIRM_DELETE_SINGLE "Czy rzeczywiscie usunac %1?"
+    IDS_BIN_FILES_SAME      "Pliki binarne sa identyczne"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_FILESAVE_FAILED     "Zachowywanie %1 nie powiod³o siê. Czy chcesz zachowaæ plik pod inn¹ nazw¹?"
+    IDS_FILESAVE_FAILED     "Zachowywanie %1 nie powiodlo sie. Czy chcesz zachowac plik pod inna nazwa?"
     IDS_ERROR_FILE_NOT_FOUND "Nie znaleziono pliku: %1"
     IDS_ERROR_INCOMPARABLE  "Wybierz dwa istniejace katalogi lub pliki do porównania"
     IDS_STATUS_RESCANNING   "Skanowanie plików..."
     IDS_STATUS_OPENING_SELECTION "Otwieranie wybranych"
-    IDS_STATUS_COPYL2R      "Kopiowanie lewej na praw¹"
-    IDS_STATUS_COPYR2L      "Kopiowanie prawej na lew¹"
-    IDS_STATUS_COPYALL2L    "Kopiowanie wszystkich na lew¹"
-    IDS_STATUS_COPYALL2R    "Kopiowanie wszystkich na praw¹"
+    IDS_STATUS_COPYL2R      "Kopiowanie lewej na prawa"
+    IDS_STATUS_COPYR2L      "Kopiowanie prawej na lewa"
+    IDS_STATUS_COPYALL2L    "Kopiowanie wszystkich na lewa"
+    IDS_STATUS_COPYALL2R    "Kopiowanie wszystkich na prawa"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_COLHDR_RSIZE        "Right Size"
     IDS_COLHDR_LTIMEC       "Left Creation Time"
@@ -1363,8 +1364,8 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_NUM_REPLACED        "Zast¹piono %1 sekwencji znaków."
-    IDS_EDIT_TEXT_NOT_FOUND "Nie mo¿na znaleŸæ sekwencji znaków""%s"""
+    IDS_NUM_REPLACED        "Zastapiono %1 sekwencji znaków."
+    IDS_EDIT_TEXT_NOT_FOUND "Nie mozna znalezc sekwencji znaków""%s"""
     IDS_LINE_STATUS_INFO_EOL "Line: %s Column: %d Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
@@ -1377,46 +1378,46 @@ STRINGTABLE DISCARDABLE
 BEGIN
     ID_L2R                  "Kopiuj wybrany teks do prawego pliku\nKopiuj na prawo (Alt Right)"
     ID_R2L                  "Kopiuj wybrany teks do lewego pliku\nKopiuj na lewo (Alt Left)"
-    ID_OPTIONS_SHOWIDENTICAL "Wyœwietla pliki, które s¹ dok³adnie identyczne"
-    ID_OPTIONS_SHOWDIFFERENT "Wyœwietla pliki z ró¿nicami"
-    ID_PREVDIFF             "Przewiñ do poprzedniej ró¿nicy\nPoprz. ró¿n. (Alt Up)"
-    ID_NEXTDIFF             "Przewiñ do nastêpnej ró¿nicy\nNast. ró¿n. (Alt Down)"
+    ID_OPTIONS_SHOWIDENTICAL "Wyswietla pliki, które sa dokladnie identyczne"
+    ID_OPTIONS_SHOWDIFFERENT "Wyswietla pliki z róznicami"
+    ID_PREVDIFF             "Przewin do poprzedniej róznicy\nPoprz. rózn. (Alt Up)"
+    ID_NEXTDIFF             "Przewin do nastepnej róznicy\nNast. rózn. (Alt Down)"
     ID_OPTIONS_BACKUPORIGINALFILE
-                            "Zachowaj kopiê orygina³u jako *.bak\nKopia zapasowa"
+                            "Zachowaj kopie oryginalu jako *.bak\nKopia zapasowa"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
-                            "Automatycznie przewiñ do pierwszej ró¿nicy\nPrzewiñ do pierwszej"
-    ID_OPTIONS_IGNOREWHITESPACE "Pomiñ bia³e znaki przy porównywaniu plików"
+                            "Automatycznie przewin do pierwszej róznicy\nPrzewin do pierwszej"
+    ID_OPTIONS_IGNOREWHITESPACE "Pomin biale znaki przy porównywaniu plików"
     ID_HIDE_BACKUP_FILES    "Ukryj pliki o rozszerzeniu BAK"
-    ID_HELP_GNULICENSE      "Wyœwietl licencjê GNU"
-    ID_USEVSS               "Próbuje pobraæ plik tylko do odczytu z programu Sourcesafe"
+    ID_HELP_GNULICENSE      "Wyswietl licencje GNU"
+    ID_USEVSS               "Próbuje pobrac plik tylko do odczytu z programu Sourcesafe"
     ID_OPTIONS              "Ustaw opcje programu\nOpcje"
-    ID_ALL_LEFT             "Kopiuj wszystkie ró¿nice do lewego pliku\nWszystkie na lewo"
-    ID_ALL_RIGHT            "Kopiuj wszystkie ró¿nice do prawego pliku\nWszystkie na prawo"
-    ID_VIEW_SELECTFONT      "Wybierz czcionkê podgl¹du ró¿nic\nWybierz czcionkê dla ró¿nic"
-    ID_VIEW_USEDEFAULTFONT  "Przywróæ domyœln¹ czcionkê systemow¹ dla podgl¹du ró¿nic\nCzcionka domyœlna"
+    ID_ALL_LEFT             "Kopiuj wszystkie róznice do lewego pliku\nWszystkie na lewo"
+    ID_ALL_RIGHT            "Kopiuj wszystkie róznice do prawego pliku\nWszystkie na prawo"
+    ID_VIEW_SELECTFONT      "Wybierz czcionke podgladu róznic\nWybierz czcionke dla róznic"
+    ID_VIEW_USEDEFAULTFONT  "Przywróc domyslna czcionke systemowa dla podgladu róznic\nCzcionka domyslna"
     ID_DIR_COPY_RIGHT_TO_LEFT "Kopiuj wybrany plik do wskazanego katalogu"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT "Kopiuj wybrany plik do wskazanego katalogu"
-    ID_VIEW_LANGUAGE        "Wybierz jêzyk interfejsu u¿ytkownika\nJêzyk"
-    ID_HELP_CONTENTS        "Wyœwietla podrêcznik u¿ytkownika WinMerge\nPomoc"
-    ID_FIRSTDIFF            "Przewiñ do pierwszej ró¿nicy\nPierwsza (Alt+Home)"
-    ID_CURDIFF              "Przewiñ do bie¿¹cej ró¿nicy\nBie¿¹ca (Alt+Enter)"
-    ID_LASTDIFF             "Przewiñ do ostatniej ró¿nicy\nOstatnia (Alt+End)"
+    ID_VIEW_LANGUAGE        "Wybierz jezyk interfejsu uzytkownika\nJezyk"
+    ID_HELP_CONTENTS        "Wyswietla podrecznik uzytkownika WinMerge\nPomoc"
+    ID_FIRSTDIFF            "Przewin do pierwszej róznicy\nPierwsza (Alt+Home)"
+    ID_CURDIFF              "Przewin do biezacej róznicy\nBiezaca (Alt+Enter)"
+    ID_LASTDIFF             "Przewin do ostatniej róznicy\nOstatnia (Alt+End)"
     ID_DIFFNUM              "placeholder"
-    ID_DIR_DEL_LEFT         "Usuñ wybran¹ pozycjê z lewej"
-    ID_DIR_DEL_RIGHT        "Usuñ wybran¹ pozycjê z prawej"
+    ID_DIR_DEL_LEFT         "Usun wybrana pozycje z lewej"
+    ID_DIR_DEL_RIGHT        "Usun wybrana pozycje z prawej"
     ID_DIFFSTATUS           "placeholder for status count"
-    ID_OPTIONS_SHOWUNIQUELEFT "Wyœwietla pliki istniej¹ce tylko po lewej"
+    ID_OPTIONS_SHOWUNIQUELEFT "Wyswietla pliki istniejace tylko po lewej"
     ID_OPTIONS_SHOWUNIQUERIGHT
-                            "Wyœwietla pliki istniej¹ce tylko po prawej"
-    ID_DIR_DEL_BOTH         "Usuñ wybrane pozycje po obu stronach"
+                            "Wyswietla pliki istniejace tylko po prawej"
+    ID_DIR_DEL_BOTH         "Usun wybrane pozycje po obu stronach"
     ID_DIR_OPEN_LEFT        "Otwórz lewy plik"
     ID_DIR_OPEN_LEFT_WITH   "Otwórz lewy plik w ..."
     ID_DIR_OPEN_RIGHT       "Otwórz prawy plik"
@@ -1425,9 +1426,9 @@ END
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Otwórz prawy plik w..."
-    ID_OPTIONS_SHOWBINARIES "Wyœwietla pliki binarne"
-    ID_VIEW_WHITESPACE      "Pokazuje bia³e znaki"
-    ID_REFRESH              "Odœwie¿ podgl¹d\nOdœwie¿ (F5)"
+    ID_OPTIONS_SHOWBINARIES "Wyswietla pliki binarne"
+    ID_VIEW_WHITESPACE      "Pokazuje biale znaki"
+    ID_REFRESH              "Odswiez podglad\nOdswiez (F5)"
     ID_SHOWLINEDIFF         "Highlight difference in current line\nDiff in Current Line (F4)"
     ID_EDITOR_COPY_PATH     "Copy Full Path"
     ID_EDITOR_COPY_FILENAME "Copy Filename"
@@ -1489,6 +1490,8 @@ LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
+
 
 
 

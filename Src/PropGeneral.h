@@ -26,11 +26,7 @@ public:
 	BOOL	m_bBackup;
 	BOOL	m_bScroll;
 	UINT	m_nTabSize;
-	BOOL	m_bIgnoreCase;
-	BOOL	m_bIgnoreBlankLines;
-	BOOL	m_bEolSensitive;
 	BOOL	m_bDisableSplash;
-	int		m_nIgnoreWhite;
 	int		m_nTabType;
 	BOOL	m_bAutomaticRescan; 
 	BOOL	m_bAllowMixedEol;
@@ -59,3 +55,4 @@ protected:
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_)
+

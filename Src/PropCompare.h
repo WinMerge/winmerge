@@ -30,6 +30,10 @@ public:
 	//{{AFX_DATA(CPropCompare)
 	enum { IDD = IDD_PROPPAGE_COMPARE };
 	int		m_compareMethod;
+	BOOL	m_bEolSensitive;
+	BOOL	m_bIgnoreCase;
+	BOOL	m_bIgnoreBlankLines;
+	int		m_nIgnoreWhite;
 	//}}AFX_DATA
 
 
@@ -54,3 +58,4 @@ protected:
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
 #endif // _PROPPAGE_COMPARE_H_
+

@@ -20,6 +20,10 @@ CPropCompare::CPropCompare() : CPropertyPage(CPropCompare::IDD)
 {
 	//{{AFX_DATA_INIT(CPropCompare)
 	m_compareMethod = -1;
+	m_bIgnoreCase = FALSE;
+	m_bIgnoreBlankLines = FALSE;
+	m_bEolSensitive = FALSE;
+	m_nIgnoreWhite = -1;
 	//}}AFX_DATA_INIT
 }
 
@@ -32,6 +36,10 @@ void CPropCompare::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CPropCompare)
 	DDX_CBIndex(pDX, IDC_COMPAREMETHODCOMBO, m_compareMethod);
+	DDX_Check(pDX, IDC_IGNCASE_CHECK, m_bIgnoreCase);
+	DDX_Check(pDX, IDC_IGNBLANKS_CHECK, m_bIgnoreBlankLines);
+	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bEolSensitive);
+	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	//}}AFX_DATA_MAP
 }
 

@@ -424,39 +424,25 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "HlavnÈ nastavenia"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Nastavenie",IDC_STATIC,7,7,233,94
+    GROUPBOX        "Nastavenie",IDC_STATIC,7,7,233,72
     CONTROL         "&Z·lohovaù origin·lne s˙bory",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,19,202,10
     CONTROL         "Automatick˝ &skok na prv˝ rozdiel",IDC_SCROLL_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,129,10
-    CONTROL         "Ignorovaù pr·zdne riad&ky",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,108,10
-    CONTROL         "Ignorovaù m&alÈ/VEºK…",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,108,10
     CONTROL         "&Nezobrazuj sp˙öùacÌ banner",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,105,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,105,10
     CONTROL         "AutomatickÈ p&reskenovanie",IDC_AUTOMRESCAN_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,74,101,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,52,101,10
     CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
-    CONTROL         "Porovn·vaù &pr·zdne miesto",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,137,41,103,10
-    CONTROL         "Ignoruj &zmeny v pr·zdnom mieste",IDC_WHITE_CHANGE,
-                    "Button",BS_AUTORADIOBUTTON,137,52,96,10
-    CONTROL         "Ignoruj &celÈ pr·zdne miesto",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,137,63,100,10
-    CONTROL         "Citliv˝ na &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,137,80,60,10
-    GROUPBOX        "Tabul·tory",IDC_STATIC,7,105,233,30,WS_GROUP
-    LTEXT           "&Nastavenie tabul·torov:",IDC_STATIC,15,119,76,8
-    EDITTEXT        IDC_TAB_EDIT,95,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,103,10
+    GROUPBOX        "Tabul·tory",IDC_STATIC,7,83,233,30,WS_GROUP
+    LTEXT           "&Nastavenie tabul·torov:",IDC_STATIC,15,97,76,8
+    EDITTEXT        IDC_TAB_EDIT,95,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Vkladaù tabul·tory",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,120,113,73,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,120,91,73,10
     CONTROL         "Vkladaù medzery",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,120,122,69,10
-    LTEXT           "(whitespace)",IDC_STATIC,147,40,90,10
-    LTEXT           "mieste (whitespace)",IDC_STATIC,147,70,85,10
+                    BS_AUTORADIOBUTTON,120,100,69,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -792,13 +778,26 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,132,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 190, 111
+IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 236, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "File Compare method:",IDC_STATIC,7,6,70,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,83,6,84,71,CBS_DROPDOWNLIST |
+    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
+    CONTROL         "Porovn·vaù &pr·zdne miesto",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,19,103,10
+    CONTROL         "Ignoruj &zmeny v pr·zdnom mieste",IDC_WHITE_CHANGE,
+                    "Button",BS_AUTORADIOBUTTON,14,30,96,10
+    CONTROL         "Ignoruj &celÈ pr·zdne miesto",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,14,41,100,10
+    CONTROL         "Ignorovaù pr·zdne riad&ky",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,108,10
+    CONTROL         "Ignorovaù m&alÈ/VEºK…",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,71,108,10
+    CONTROL         "Citliv˝ na &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,82,60,10
+    LTEXT           "File Compare method:",IDC_STATIC,7,97,70,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
 
@@ -1495,6 +1494,8 @@ LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
+
 
 
 

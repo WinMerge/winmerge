@@ -417,35 +417,23 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "一般"
 FONT 9, "新細明體"
 BEGIN
-    GROUPBOX        "設定",IDC_STATIC,7,7,221,94
+    GROUPBOX        "設定",IDC_STATIC,7,7,221,72
     CONTROL         "備份原始的檔案(&B)",IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,19,83,10
     CONTROL         "自動地捲動到第一個不同(&S)",IDC_SCROLL_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,30,129,10
-    CONTROL         "忽略空白列(&K)",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,17,41,71,10
-    CONTROL         "忽略大小寫(&C)",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,17,52,69,10
     CONTROL         "停用引人注目的螢幕(&D)",IDC_DISABLE_SPLASH,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,17,63,100,10
+                    WS_TABSTOP,17,41,100,10
     CONTROL         "自動重新掃描(&R)",IDC_AUTOMRESCAN_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,17,74,75,10
+                    WS_TABSTOP,17,52,75,10
     CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,103,10
-    CONTROL         "比對空白和跳格(&W)",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
-                    WS_GROUP,125,41,87,10
-    CONTROL         "忽略空白和跳格更改(&H)",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,125,52,99,10
-    CONTROL         "忽略所有空白和跳格(&A)",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,125,63,99,10
-    CONTROL         "敏感對列結束(&E)",IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,125,74,74,10
-    GROUPBOX        "跳格",-1,7,105,221,30,WS_GROUP
-    LTEXT           "跳格大小(&T):",IDC_STATIC,10,119,35,8
-    EDITTEXT        IDC_TAB_EDIT,47,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,103,10
+    GROUPBOX        "跳格",IDC_STATIC,7,83,221,30,WS_GROUP
+    LTEXT           "跳格大小(&T):",IDC_STATIC,10,97,35,8
+    EDITTEXT        IDC_TAB_EDIT,47,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
     CONTROL         "插入跳格字元(&T)",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON |
-                    WS_GROUP,79,113,76,10
-    CONTROL         "插入空白(&N)",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,79,122,
+                    WS_GROUP,79,91,76,10
+    CONTROL         "插入空白(&N)",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,79,100,
                     59,10
 END
 
@@ -776,13 +764,26 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,132,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 190, 111
+IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 236, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "File Compare method:",IDC_STATIC,7,6,70,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,83,6,84,71,CBS_DROPDOWNLIST |
+    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
+    CONTROL         "比對空白和跳格(&W)",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,14,19,87,10
+    CONTROL         "忽略空白和跳格更改(&H)",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,14,30,99,10
+    CONTROL         "忽略所有空白和跳格(&A)",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,14,41,99,10
+    CONTROL         "敏感對列結束(&E)",IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,7,60,74,10
+    CONTROL         "忽略空白列(&K)",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,7,71,71,10
+    CONTROL         "忽略大小寫(&C)",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,7,82,69,10
+    LTEXT           "File Compare method:",IDC_STATIC,7,97,70,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
 
@@ -1469,6 +1470,8 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
+
 
 
 

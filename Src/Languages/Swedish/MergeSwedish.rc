@@ -426,38 +426,26 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Generellt"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Inställningar",IDC_STATIC,7,7,245,94
+    GROUPBOX        "Inställningar",IDC_STATIC,7,7,245,72
     CONTROL         "&Gör backup på originalfiler",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,19,98,10
     CONTROL         "Rulla automati&skt till första skillnaden",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     17,30,131,10
-    CONTROL         "Ignorera blan&ka rader",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,83,10
-    CONTROL         "&Ignorera skiftläge",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,70,10
     CONTROL         "&Visa inte Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,91,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,91,10
     CONTROL         "Automatisk &uppdatering",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,96,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,96,10
     CONTROL         "Tillåt blandade EOL-typer",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,95,10
-    CONTROL         "Jämför &mellanslag",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,138,41,71,10
-    CONTROL         "Ignorera mellanslagsä&ndringar",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,138,52,109,10
-    CONTROL         "Ignorera &alla mellanslag",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,138,63,89,10
-    CONTROL         "Känslig för &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,138,74,65,10
-    GROUPBOX        "Tabulator",IDC_STATIC,7,105,245,30,WS_GROUP
-    LTEXT           "&Tabulatorsteg:",IDC_STATIC,15,119,46,8
-    EDITTEXT        IDC_TAB_EDIT,81,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,95,10
+    GROUPBOX        "Tabulator",IDC_STATIC,7,83,245,30,WS_GROUP
+    LTEXT           "&Tabulatorsteg:",IDC_STATIC,15,97,46,8
+    EDITTEXT        IDC_TAB_EDIT,81,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Infoga tabulatorer",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,138,113,71,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,138,91,71,10
     CONTROL         "Infoga mellanslag",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,138,122,71,10
+                    BS_AUTORADIOBUTTON,138,100,71,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 162
@@ -793,13 +781,26 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,132,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 190, 111
+IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 236, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
-    LTEXT           "File Compare method:",IDC_STATIC,7,6,70,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,83,6,84,71,CBS_DROPDOWNLIST |
+    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
+    CONTROL         "Jämför &mellanslag",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,19,71,10
+    CONTROL         "Ignorera mellanslagsä&ndringar",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,14,30,109,10
+    CONTROL         "Ignorera &alla mellanslag",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,14,41,89,10
+    CONTROL         "Ignorera blan&ka rader",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,83,10
+    CONTROL         "&Ignorera skiftläge",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,71,70,10
+    CONTROL         "Känslig för &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,82,65,10
+    LTEXT           "File Compare method:",IDC_STATIC,7,97,70,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
 
@@ -1490,6 +1491,8 @@ LANGUAGE LANG_SWEDISH, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
+
 
 
 
