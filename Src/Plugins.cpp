@@ -239,6 +239,130 @@ BOOL PluginInfo::TestAgainstRegList(LPCTSTR szTest)
 	return FALSE;
 }
 
+/**
+ * @brief Try to load a plugin
+ *
+ * @return true if plugin seems valid
+ */
+static bool LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LPCWSTR transformationEvent)
+{
+	// Search for the class "WinMergeScript"
+	LPDISPATCH lpDispatch = CreateDispatchBySource(scriptletFilepath, L"WinMergeScript");
+	if (lpDispatch == 0)
+		return false;
+
+	// Is this plugin for this transformationEvent ?
+	HRESULT h;
+	VARIANT ret;
+	// invoke method get PluginEvent
+	VariantInit(&ret);
+	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginEvent"))
+		h = ::invokeW(lpDispatch, &ret, L"PluginEvent", opGet[0], NULL);
+	if (FAILED(h) || ret.vt != VT_BSTR || (wcscmp(ret.bstrVal, transformationEvent) != 0))
+	{
+		lpDispatch->Release();
+		return false;
+
+	}
+	VariantClear(&ret);
+
+	// Check that the plugin offers the requested functions
+	// set the mode for the events which uses it
+	BOOL bUnicodeMode = SCRIPT_A | SCRIPT_W;
+	BOOL bFound = TRUE;
+	if (wcscmp(transformationEvent, L"BUFFER_PREDIFF") == 0)
+	{
+		bFound &= SearchScriptForMethodName(lpDispatch, L"PrediffBufferW");
+			bUnicodeMode &= ~SCRIPT_A;
+	}
+	else if (wcscmp(transformationEvent, L"FILE_PREDIFF") == 0)
+	{
+		bFound &= SearchScriptForMethodName(lpDispatch, L"PrediffFile");
+	}
+	else if (wcscmp(transformationEvent, L"BUFFER_PACK_UNPACK") == 0)
+	{
+		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackBufferA");
+		bFound &= SearchScriptForMethodName(lpDispatch, L"PackBufferA");
+		bUnicodeMode &= ~SCRIPT_W;
+	}
+	else if (wcscmp(transformationEvent, L"FILE_PACK_UNPACK") == 0)
+	{
+		bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackFile");
+		bFound &= SearchScriptForMethodName(lpDispatch, L"PackFile");
+		bUnicodeMode &= ~SCRIPT_W;
+	}
+	if (bFound == FALSE)
+	{
+		lpDispatch->Release();
+		return false;
+	}
+
+
+	// get PluginDescription
+	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginDescription"))
+		h = ::invokeW(lpDispatch, &ret, L"PluginDescription", opGet[0], NULL);
+	if (!FAILED(h) && ret.vt == VT_BSTR)
+		plugin.description = ret.bstrVal;
+	else
+		// no description, use filename
+		plugin.description = scriptletFilepath.Mid(scriptletFilepath.ReverseFind('\\') + 1);
+	VariantClear(&ret);
+
+	// get PluginIsAutomatic
+	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginIsAutomatic"))
+		h = ::invokeW(lpDispatch, &ret, L"PluginIsAutomatic", opGet[0], NULL);
+	if (!FAILED(h) && ret.vt == VT_BOOL)
+		plugin.bAutomatic = ret.boolVal;
+	else
+		plugin.bAutomatic = FALSE;
+	VariantClear(&ret);
+
+	// get PluginFileFilters
+	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginFileFilters"))
+		h = ::invokeW(lpDispatch, &ret, L"PluginFileFilters", opGet[0], NULL);
+	if (!FAILED(h) && ret.vt == VT_BSTR)
+		plugin.filtersText= ret.bstrVal;
+	else
+	{
+		plugin.bAutomatic = FALSE;
+		plugin.filtersText = ".";
+	}
+	VariantClear(&ret);
+
+	plugin.LoadFilterString();
+
+	// keep the filename
+	plugin.name	= scriptletFilepath.Mid(scriptletFilepath.ReverseFind('\\')+1);
+
+	plugin.bUnicodeMode = bUnicodeMode;
+
+	plugin.lpDispatch = lpDispatch;
+	return true;
+}
+
+static void ReportPluginLoadFailure(const CString & scriptletFilepath, LPCWSTR transformationEvent)
+{
+	USES_CONVERSION;
+	CString sEvent = OLE2CT(transformationEvent);
+	CString msg;
+	msg.Format(_T("Exception loading plugin for event: %s\r\n%s"), sEvent, scriptletFilepath);
+	AfxMessageBox(msg);
+}
+
+/**
+ * @brief Guard call to LoadPlugin with Windows SEH to trap GPFs
+ *
+ * @return true/false result from LoadPlugin
+ */
+static bool LoadPluginWrapper(PluginInfo & plugin, const CString & scriptletFilepath, LPCWSTR transformationEvent)
+{
+	__try {
+		return LoadPlugin(plugin, scriptletFilepath, transformationEvent);
+	} __except(EXCEPTION_EXECUTE_HANDLER) {
+		ReportPluginLoadFailure(scriptletFilepath, transformationEvent);
+	}
+	return false;
+}
 
 /** 
  * @brief Get available scriptlets for an event
@@ -259,100 +383,14 @@ static PluginArray * GetAvailableScripts( LPCWSTR transformationEvent, BOOL getS
 	int i;
 	for (i = 0 ; i < scriptlets.GetSize() ; i++)
 	{
-		// Search for the class "WinMergeScript"
-		LPDISPATCH lpDispatch = CreateDispatchBySource(scriptlets.GetAt(i), L"WinMergeScript");
-		if (lpDispatch == 0)
-			continue;
-
-		// Is this plugin for this transformationEvent ?
-		HRESULT h;
-		VARIANT ret;
-		// invoke method get PluginEvent
-		VariantInit(&ret);
-		if (SearchScriptForDefinedProperties(lpDispatch, L"PluginEvent"))
-			h = ::invokeW(lpDispatch, &ret, L"PluginEvent", opGet[0], NULL);
-		if (FAILED(h) || ret.vt != VT_BSTR || (wcscmp(ret.bstrVal, transformationEvent) != 0))
-		{
-			lpDispatch->Release();
-			continue;
-		}
-		VariantClear(&ret);
-
-		// Check that the plugin offers the requested functions
-		// set the mode for the events which uses it
-		BOOL bUnicodeMode = SCRIPT_A | SCRIPT_W;
-		BOOL bFound = TRUE;
-		if (wcscmp(transformationEvent, L"BUFFER_PREDIFF") == 0)
-		{
-			bFound &= SearchScriptForMethodName(lpDispatch, L"PrediffBufferW");
-				bUnicodeMode &= ~SCRIPT_A;
-		}
-		else if (wcscmp(transformationEvent, L"FILE_PREDIFF") == 0)
-		{
-			bFound &= SearchScriptForMethodName(lpDispatch, L"PrediffFile");
-		}
-		else if (wcscmp(transformationEvent, L"BUFFER_PACK_UNPACK") == 0)
-		{
-			bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackBufferA");
-			bFound &= SearchScriptForMethodName(lpDispatch, L"PackBufferA");
-			bUnicodeMode &= ~SCRIPT_W;
-		}
-		else if (wcscmp(transformationEvent, L"FILE_PACK_UNPACK") == 0)
-		{
-			bFound &= SearchScriptForMethodName(lpDispatch, L"UnpackFile");
-			bFound &= SearchScriptForMethodName(lpDispatch, L"PackFile");
-			bUnicodeMode &= ~SCRIPT_W;
-		}
-		if (bFound == FALSE)
-		{
-			lpDispatch->Release();
-			continue;
-		}
-
 		// Note all the info about the plugin
 		PluginInfo plugin;
 
-		// get PluginDescription
-		if (SearchScriptForDefinedProperties(lpDispatch, L"PluginDescription"))
-			h = ::invokeW(lpDispatch, &ret, L"PluginDescription", opGet[0], NULL);
-		if (!FAILED(h) && ret.vt == VT_BSTR)
-			plugin.description = ret.bstrVal;
-		else
-			// no description, use filename
-			plugin.description = (scriptlets.GetAt(i)).Mid((scriptlets.GetAt(i)).ReverseFind('\\') + 1);
-		VariantClear(&ret);
-	
-		// get PluginIsAutomatic
-		if (SearchScriptForDefinedProperties(lpDispatch, L"PluginIsAutomatic"))
-			h = ::invokeW(lpDispatch, &ret, L"PluginIsAutomatic", opGet[0], NULL);
-		if (!FAILED(h) && ret.vt == VT_BOOL)
-			plugin.bAutomatic = ret.boolVal;
-		else
-			plugin.bAutomatic = FALSE;
-		VariantClear(&ret);
-
-		// get PluginFileFilters
-		if (SearchScriptForDefinedProperties(lpDispatch, L"PluginFileFilters"))
-			h = ::invokeW(lpDispatch, &ret, L"PluginFileFilters", opGet[0], NULL);
-		if (!FAILED(h) && ret.vt == VT_BSTR)
-			plugin.filtersText= ret.bstrVal;
-		else
+		CString scriptletFilepath = scriptlets.GetAt(i);
+		if (LoadPluginWrapper(plugin, scriptletFilepath, transformationEvent))
 		{
-			plugin.bAutomatic = FALSE;
-			plugin.filtersText = ".";
+			pPlugins->Add(plugin);
 		}
-		VariantClear(&ret);
-
-		plugin.LoadFilterString();
-
-		// keep the filename
-		plugin.name	= scriptlets.GetAt(i).Mid(scriptlets.GetAt(i).ReverseFind('\\')+1);
-
-		plugin.bUnicodeMode = bUnicodeMode;
-
-		plugin.lpDispatch = lpDispatch;
-
-		pPlugins->Add(plugin);
 	}
 
 	return pPlugins;

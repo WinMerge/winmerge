@@ -1,3 +1,7 @@
+2004-01-08 Perry
+ PATCH: [ 872032 ] Add SEH around calls to load plugins
+  WinMerge: Plugins.cpp
+
 2004-01-07 Kimmo
  PATCH: [ 856396 ] Browse folders in non-recursive directory compare
   WinMerge: DirDoc.h DirDoc.cpp DirScan.cpp DirView.h DirView.cpp
