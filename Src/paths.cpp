@@ -268,6 +268,9 @@ CString paths_GetParentPath(CString path)
  */
 BOOL paths_IsPathAbsolute(CString path)
 {
+	if (path.GetLength() < 3)
+		return FALSE;
+	
 	int pos = path.ReverseFind('\\');
 
 	// Absolute path must have "\" and cannot start with it.
@@ -276,13 +279,10 @@ BOOL paths_IsPathAbsolute(CString path)
 		return FALSE;
 
 	// Maybe "X:\blahblah"?
-	if (pos == 2)
-	{
-		if (path[1] == ':')
-			return TRUE;
-		else
-			return FALSE;
-	}
+	if (path[1] == ':' && path[2] == '\\')
+		return TRUE;
+	else
+		return FALSE;
 
 	// So "\\blahblah\"?
 	if (path[0] == '\\' && path[1] == '\\' && pos > 2)

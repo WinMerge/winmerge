@@ -5,6 +5,8 @@
   PropRegistry.h resource.h
  Fix copy/paste error
   Src: DirActions.cpp
+ Better absolute path check (I thought I already applied this)
+  Src: paths.cpp
 
 2004-02-26 Kimmo
  PATCH: [ 903670 ] Copy Folder (and convert to CShellFileOp)
