@@ -7,6 +7,9 @@
   InnoSetup: WinMerge Localized.iss
   InnoSetup/Languages: Catalan.isl
   Docs/Users/Languages: Read Me-Catalan.rtf
+ PATCH [ 1176741 ] Swedish ReadMe-Swedish.rtf file
+  Submitted by Hans Eriksson
+  Docs/Users/Languages: Read Me-Swedish.rtf
 
 2005-04-03 Kimmo
  PATCH: [ 1175319 ] Dutch translation update
