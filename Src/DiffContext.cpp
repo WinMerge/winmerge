@@ -239,22 +239,54 @@ void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
 }
 
 /**
- * @brief Load file versions from disk
+ * @brief Return if this extension is one we expect to have a file version
  */
-void CDiffContext::UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi)
+static bool CheckFileForVersion(LPCTSTR ext)
 {
-	// Check only binary files
-	LPCTSTR ext = PathFindExtension(di.sfilename);
 	if (!lstrcmpi(ext, _T(".EXE")) || !lstrcmpi(ext, _T(".DLL")) || !lstrcmpi(ext, _T(".SYS")) ||
 	    !lstrcmpi(ext, _T(".DRV")) || !lstrcmpi(ext, _T(".OCX")) || !lstrcmpi(ext, _T(".CPL")) ||
 	    !lstrcmpi(ext, _T(".SCR")))
 	{
-		CString spath = &dfi == &di.left ? di.getLeftFilepath(this) : di.getRightFilepath(this);
-		CString filepath = paths_ConcatPath(spath, di.sfilename);
-		dfi.version = GetFixedFileVersion(filepath);
+		return true;
 	}
 	else
-		dfi.version = _T("");
+	{
+		return false;
+	}
+}
+
+/**
+ * @brief Load file versions from disk
+ */
+void CDiffContext::UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi) const
+{
+	// Check only binary files
+	LPCTSTR ext = PathFindExtension(di.sfilename);
+	dfi.version = _T("");
+	dfi.bVersionChecked = true;
+
+	if (di.isDirectory())
+		return;
+	
+	if (!CheckFileForVersion(ext))
+		return;
+
+	CString spath;
+	if (&dfi == &di.left)
+	{
+		if (di.isSideRight())
+			return;
+		spath = di.getLeftFilepath(this);
+	}
+	else
+	{
+		ASSERT(&dfi == &di.right);
+		if (di.isSideLeft())
+			return;
+		spath = di.getRightFilepath(this);
+	}
+	CString filepath = paths_ConcatPath(spath, di.sfilename);
+	dfi.version = GetFixedFileVersion(filepath);
 }
 
 /** @brief Return path to left file, including all but file name */

@@ -1,3 +1,8 @@
+2005-01-22 Perry
+ PATCH: [ 1107484 ] Fix broken version columns
+  Src: DiffContext.cpp DiffContext.h DiffFileInfo.cpp DiffFileInfo.h 
+   DirViewColItems.cpp
+
 2005-01-22 Jochen
  PATCH: [ 1103266 ] Merge7z update (DllBuild_Merge7z_9)
   Merge7z: Merge7z.h Merge7z311.cpp Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp Merge7z407.dsp Merge7z408.dsp

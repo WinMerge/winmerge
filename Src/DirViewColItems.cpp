@@ -215,6 +215,26 @@ static CString ColNewerGet(const CDiffContext *, const void *p)
 	}
 	return _T("***");
 }
+static CString GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, const DiffFileInfo * pfinfo)
+{
+	if (!pfinfo->bVersionChecked)
+	{
+		DIFFITEM & di = const_cast<DIFFITEM &>(*pdi);
+		DiffFileInfo & dfi = const_cast<DiffFileInfo &>(*pfinfo);
+		pCtxt->UpdateVersion(di, dfi);
+	}
+	return pfinfo->version;
+}
+static CString ColLversionGet(const CDiffContext * pCtxt, const void *p)
+{
+	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
+	return GetVersion(pCtxt, &di, &di.left);
+}
+static CString ColRversionGet(const CDiffContext * pCtxt, const void *p)
+{
+	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
+	return GetVersion(pCtxt, &di, &di.right);
+}
 static CString ColStatusAbbrGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
@@ -336,6 +356,14 @@ static int ColNewerSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
 	return ColNewerGet(pCtxt, p).Compare(ColNewerGet(pCtxt, q));
 }
+static int ColLversionSort(const CDiffContext *pCtxt, const void *p, const void *q)
+{
+	return ColLversionGet(pCtxt, p).Compare(ColLversionGet(pCtxt, q));
+}
+static int ColRversionSort(const CDiffContext *pCtxt, const void *p, const void *q)
+{
+	return ColRversionGet(pCtxt, p).Compare(ColRversionGet(pCtxt, q));
+}
 static int ColBinSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
@@ -383,8 +411,8 @@ DirColInfo g_cols[] =
 	{ _T("Lsize"), IDS_COLHDR_LSIZE, IDS_COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, left.size), -1, false },
 	{ _T("Rsize"), IDS_COLHDR_RSIZE, IDS_COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, right.size), -1, false },
 	{ _T("Newer"), IDS_COLHDR_NEWER, IDS_COLDESC_NEWER, &ColNewerGet, &ColNewerSort, 0, -1, true },
-	{ _T("Lversion"), IDS_COLHDR_LVERSION, IDS_COLDESC_LVERSION, &ColNameGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, left.version), -1, true },
-	{ _T("Rversion"), IDS_COLHDR_RVERSION, IDS_COLDESC_RVERSION, &ColNameGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, right.version), -1, true },
+	{ _T("Lversion"), IDS_COLHDR_LVERSION, IDS_COLDESC_LVERSION, &ColLversionGet, &ColLversionSort, 0, -1, true },
+	{ _T("Rversion"), IDS_COLHDR_RVERSION, IDS_COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true },
 	{ _T("StatusAbbr"), IDS_COLHDR_RESULT_ABBR, IDS_COLDESC_RESULT_ABBR, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true },
 	{ _T("Binary"), IDS_COLHDR_BINARY, IDS_COLDESC_BINARY, &ColBinGet, &ColBinSort, 0, -1, true },
 	{ _T("Lattr"), IDS_COLHDR_LATTRIBUTES, IDS_COLDESC_LATTRIBUTES, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, left.flags), -1, true },

@@ -69,7 +69,8 @@ void DiffFileInfo::Clear()
 	ctime = 0;
 	mtime = 0;
 	size = -1;
-	version.Empty();
+	version = _T("");
+	bVersionChecked = false;
 	flags.reset();
 	codepage = 0;
 	unicoding = 0;

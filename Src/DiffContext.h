@@ -121,7 +121,7 @@ public:
 	void AddDiff(DIFFITEM & di);
 	void RemoveDiff(POSITION diffpos);
 	void RemoveAll();
-	void UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi);
+	void UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi) const;
 
 	// to iterate over all differences on list
 	POSITION GetFirstDiffPosition();
