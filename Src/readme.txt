@@ -1,4 +1,7 @@
 2004-05-23 Laoran
+ PATCH: [ 957317 ] Broken menu in Winmerge 2.1.7.3
+  Src: Merge.cpp
+  Src/Common: LanguageSelect.cpp
  typo in russian language : APTION -> CAPTION
   Src/Languages/Russian: MergeRussian.rc
 

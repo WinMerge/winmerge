@@ -196,9 +196,10 @@ BOOL CMergeApp::InitInstance()
 	// m_pDirTemplate->m_hMenuShared = pMainFrame->NewMenu();
 	pMainFrame->m_hMenuDefault = pMainFrame->NewDefaultMenu();
 
-	// This simulates a window being opened if you don't have
-	// a default window displayed at startup
-	pMainFrame->OnUpdateFrameMenu(pMainFrame->m_hMenuDefault);
+	// Set the menu
+	// Note : for Windows98 compatibility, use FromHandle and not Attach/Detach
+	CMenu * pNewMenu = CMenu::FromHandle(pMainFrame->m_hMenuDefault);
+	pMainFrame->MDISetMenu(pNewMenu, NULL);
 
 	// Parse command line for standard shell commands, DDE, file open
 	//CCommandLineInfo cmdInfo;

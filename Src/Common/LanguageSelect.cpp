@@ -483,9 +483,25 @@ void CLanguageSelect::ReloadMenu()
 		HMENU hNewMenu = pMainFrame->NewDefaultMenu(idMenu);
 		if (hNewMenu)
 		{
-			::DestroyMenu(pMainFrame->m_hMenuDefault);
-			pMainFrame->m_hMenuDefault = hNewMenu;
-			pMainFrame->OnUpdateFrameMenu(pMainFrame->m_hMenuDefault);
+			CMenu* pOldMenu = pMainFrame->GetMenu();
+
+			// Note : for Windows98 compatibility, use FromHandle and not Attach/Detach
+			CMenu * pNewMenu = CMenu::FromHandle(hNewMenu);
+			if (pMainFrame->MDISetMenu(pNewMenu, NULL))			 
+			{
+				// Don't delete the old menu
+				// There is a bug in BCMenu or in Windows98 : the new menu does not
+				// appear correctly if we destroy the old one
+//			if (pOldMenu)
+//				pOldMenu->DestroyMenu();
+
+				// m_hMenuDefault is used to redraw the main menu when we close a child frame
+				// if this child frame had a different menu
+				pMainFrame->m_hMenuDefault = hNewMenu;
+
+				// force redrawing the menu bar
+				pMainFrame->DrawMenuBar();  
+			}
 		}
 	}
 }
