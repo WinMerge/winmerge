@@ -27,18 +27,18 @@ LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE DISCARDABLE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE DISCARDABLE
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE DISCARDABLE
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
@@ -73,14 +73,14 @@ IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU DISCARDABLE 
+IDR_POPUP_DIFFVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_POPUP_"
     BEGIN
         MENUITEM "Copia dall'altro lato",       ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "Copia l'altro lato",          ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "Copia tutto dall'altro lato...", 
+        MENUITEM "Copia tutto dall'altro lato...",
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
 
         MENUITEM "Copia tutto l'altro lato...", ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
@@ -92,7 +92,7 @@ BEGIN
     END
 END
 
-IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE
 BEGIN
     POPUP "&File"
     BEGIN
@@ -119,9 +119,9 @@ BEGIN
         MENUITEM "Copia tutto a destra",        ID_ALL_RIGHT
         MENUITEM "Copia tutto a sinistra",      ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "&Opzioni",                    ID_PROPERTIES
+        MENUITEM "&Opzioni",                    ID_OPTIONS
         MENUITEM SEPARATOR
-        MENUITEM "Refresh\tF5",                 ID_REFRESH
+        MENUITEM "Refre&sh\tF5",                 ID_REFRESH
     END
     POPUP "&Visualizza"
     BEGIN
@@ -159,7 +159,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_DIRVIEW MENU DISCARDABLE 
+IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -182,7 +182,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE
 BEGIN
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
@@ -239,17 +239,17 @@ CAPTION "Seleziona i file o le cartelle..."
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     LTEXT           "&Sinistra:",IDC_STATIC,25,24,26,8
-    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN | 
+    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "&S&foglia...",IDC_LEFT_BUTTON,241,22,38,12
     LTEXT           "&Destra:",IDC_STATIC,27,40,24,8
-    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | 
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "Sfo&glia...",IDC_RIGHT_BUTTON,241,38,38,12
     LTEXT           "&Estensioni:",IDC_STATIC,16,56,35,8
-    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN | 
+    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Ricorsivamente",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,35,77,65,10
@@ -269,7 +269,7 @@ BEGIN
     PUSHBUTTON      "Annulla",IDCANCEL,173,121,50,14
     PUSHBUTTON      "Salva come...",IDSAVEAS,103,121,50,14
     LTEXT           "Progetto:",IDC_STATIC,9,61,30,8
-    COMBOBOX        IDC_PROJECT_COMBO,42,58,209,114,CBS_DROPDOWN | 
+    COMBOBOX        IDC_PROJECT_COMBO,42,58,209,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "User:",IDC_STATIC,13,80,18,8
     EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
@@ -286,7 +286,7 @@ BEGIN
     LTEXT           "&Percorso di SS.EXE:",IDC_VSS_L1,16,42,66,8
     EDITTEXT        IDC_PATH_EDIT,85,40,119,12,ES_AUTOHSCROLL
     PUSHBUTTON      "S&foglia...",IDC_BROWSE_BUTTON,206,40,42,12
-    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL | 
+    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "&Versioning System",IDC_STATIC,16,22,60,10
 END
@@ -333,7 +333,7 @@ FONT 8, "MS Sans Serif"
 BEGIN
     PUSHBUTTON      "OK",IDOK,154,16,52,14
     PUSHBUTTON      "Annulla",IDCANCEL,154,33,52,14
-    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "Lingue disponibili:",IDC_STATIC,7,7,56,8
 END
@@ -392,7 +392,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO DISCARDABLE
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
@@ -435,7 +435,7 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
     END
-    
+
     IDD_CLEARCASE, DIALOG
     BEGIN
         LEFTMARGIN, 7
@@ -497,7 +497,7 @@ BEGIN
     BUTTON      ID_L2R
     BUTTON      ID_R2L
     SEPARATOR
-    BUTTON      ID_PROPERTIES
+    BUTTON      ID_OPTIONS
     SEPARATOR
     BUTTON      ID_ALL_RIGHT
     BUTTON      ID_ALL_LEFT
@@ -536,13 +536,13 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDS_VERSION_FMT         "Versione %1 - Italiano"
     IDS_ALLFILES            "Tutti i file (*.*)|*.*||"
@@ -560,13 +560,13 @@ BEGIN
     IDS_CANT_COMPARE_FILES  "Impossibile confrontare i file"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Pronto"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_INDICATOR_EXT        "EST"
     ID_INDICATOR_CAPS       "MA"
@@ -576,7 +576,7 @@ BEGIN
     ID_INDICATOR_REC        "REG"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_NEW             "Crea un nuovo documento\nNuovo"
     ID_FILE_OPEN            "Apre un documento esistente\nApri"
@@ -589,13 +589,13 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Visualizza le pagine per intero\nAnteprima di stampa"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_APP_ABOUT            "Visualizza le informazioni sul programma, il numero di versione e le informazioni di copyright\nInformazioni su"
     ID_APP_EXIT             "Esce dall'applicazione e chiede di salvare i documenti\nEsci"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Apre questo documento"
     ID_FILE_MRU_FILE2       "Apre questo documento"
@@ -615,13 +615,13 @@ BEGIN
     ID_FILE_MRU_FILE16      "Apre questo documento"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_NEXT_PANE            "Passa al riquadro della finestra successivo\nRiquadro successivo"
     ID_PREV_PANE            "Ritorna al riquadro della finestra precedente\nRiquadro precedente"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_WINDOW_NEW           "Apre un'altra finestra per il documento attivo\nNuova finestra"
     ID_WINDOW_ARRANGE       "Dispone le icone nella parte inferiore della finestra\nDisponi icone"
@@ -631,7 +631,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Divide la finestra attiva in riquadri\nDividi"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_EDIT_CLEAR           "Cancella la selezione\nCancella"
     ID_EDIT_CLEAR_ALL       "Cancella tutto\nCancella tutto"
@@ -646,13 +646,13 @@ BEGIN
     ID_EDIT_REDO            "Ripristina l'azione precedentemente annullata\nRipristina"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Mostra o nasconde la barra degli strumenti\nMostra/nascondi barra degli strumenti"
     ID_VIEW_STATUS_BAR      "Mostra o nasconde la barra di stato\nMostra/nascondi barra di stato"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCSIZE          "Modifica le dimensioni della finestra"
     AFX_IDS_SCMOVE          "Modifica la posizione della finestra"
@@ -663,19 +663,19 @@ BEGIN
     AFX_IDS_SCCLOSE         "Chiude la finestra attiva e chiede di salvare i documenti"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCRESTORE       "Ripristina la finestra alle dimensioni normali"
     AFX_IDS_SCTASKLIST      "Attiva l'Elenco dei task"
     AFX_IDS_MDICHILD        "Attiva questa finestra"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Chiude la modalità anteprima di stampa\n Annulla anteprima"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_L2R                  "Copia il testo selezionato dal file di sinistra a quello di destra\nCopia a destra (Freccia destra)"
     ID_R2L                  "Copia il testo selezionato dal file di destra a quello di sinistra\nCopia a sinistra (Freccia sinistra)"
@@ -683,19 +683,19 @@ BEGIN
     ID_OPTIONS_SHOWDIFFERENT "Mostra i file contenenti delle differenze"
     ID_PREVDIFF             "Visualizza la differenza precedente\nDifferenza precedente (Maiusc+Tab)"
     ID_NEXTDIFF             "Visualizza la differenza successiva\nDifferenza successiva (Tab)"
-    ID_OPTIONS_BACKUPORIGINALFILE 
+    ID_OPTIONS_BACKUPORIGINALFILE
                             "Salva una copia del file originale come *.bak\nBackup"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
                             "Visualizza automaticamente la prima differenza\nVisualizza prima differenza"
     ID_OPTIONS_IGNOREWHITESPACE "Ignora gli spazi"
     ID_HIDE_BACKUP_FILES    "Nasconde i file con estensione BAK"
     ID_HELP_GNULICENSE      "Visualizza la licenza pubblica GNU"
     ID_USEVSS               "Tenta di estrarre un file di sola lettura da sourcesafe"
-    ID_PROPERTIES           "Imposta le opzioni del programma\nOpzioni"
+    ID_OPTIONS              "Imposta le opzioni del programma\nOpzioni"
     ID_ALL_LEFT             "Copia tutte le differenze dal file di destra a quello di sinistra\nTutto a sinistra"
     ID_ALL_RIGHT            "Copia tutte le differenze dal file di sinistra a quello di destra\nTutto a destra"
     ID_VIEW_SELECTFONT      "Seleziona il carattere per la finestra di visualizzazione delle differenze\nSeleziona carattere"
@@ -703,7 +703,7 @@ BEGIN
     ID_DIR_COPY_FILE_TO_LEFT "Copia questo file nella cartella di sinistra"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_DIR_COPY_FILE_TO_RIGHT "Copia questo file nella cartella di destra"
     ID_VIEW_LANGUAGE        "Seleziona la lingua dell'interfaccia utente\nLingua"
@@ -716,7 +716,7 @@ BEGIN
     ID_DIR_DEL_RIGHT        "Delete selected item on right"
     ID_DIFFSTATUS           "placeholder for status count"
     ID_OPTIONS_SHOWUNIQUELEFT "Displays files that exist in only on left side"
-    ID_OPTIONS_SHOWUNIQUERIGHT 
+    ID_OPTIONS_SHOWUNIQUERIGHT
                             "Displays files that exist in only on right side"
     ID_DIR_DEL_BOTH         "Delete selected item(s) on both sides"
     ID_DIR_OPEN_LEFT        "Open left file"
@@ -725,14 +725,14 @@ BEGIN
 
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Salva come"
-    IDS_SELECT_FILES_OR_FOLDERS 
+    IDS_SELECT_FILES_OR_FOLDERS
                             "È necessario selezionare una coppia di file o una coppia di cartelle"
-    IDS_BACKUP_FAILED_PROMPT 
+    IDS_BACKUP_FAILED_PROMPT
                             "Impossibile eseguire il backup del file originale.\nVuoi continuare ugualmente?"
-    IDS_PROPERTIES_TITLE    "Opzioni"
+    IDS_OPTIONS_TITLE       "Opzioni"
     IDS_OPEN_TITLE          "Apri"
     IDS_CONFIRM_DELETE_FILE "Delete file %1?"
     IDS_EDIT_WINDOW_TITLE_FMT "Modifica %1"
@@ -747,7 +747,7 @@ BEGIN
     IDS_NOPROJECT           "È necessario specificare il percorso di un progetto SourceSafe per continuare (es:  $/MioProgetto)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_FILENAME_HEADER     "Nome del file"
     IDS_DIR_HEADER          "Cartella"
@@ -759,17 +759,17 @@ BEGIN
     IDS_CC_CMD              "&Path to cleartool.exe :"
     IDS_VSS_CMD             "&Path to SS.EXE :"
     IDS_VSS_RUN_ERROR       "Error executing versioning system command."
-    IDS_DIFF_OPEN_NO_SET_PROPS 
+    IDS_DIFF_OPEN_NO_SET_PROPS
                             "Modifications have been made to the current file comparison session.  Some property settings may not take place until the current file comparison is restarted."
     IDS_LTIME_HEADER        "Left Date"
     IDS_RTIME_HEADER        "Right Date"
     IDS_EXTENSION_HEADER    "Extension"
-    IDS_CONFIRM_DELETE_ITEMS 
+    IDS_CONFIRM_DELETE_ITEMS
                             "Are you sure you want to delete %1 of %2 selected item(s) ?"
     IDS_DEL_LEFT_FMT        "Delete left side %1 of %2 selected item(s)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_DEL_RIGHT_FMT       "Delete right side %1 of %2 selected item(s)"
     IDS_DELETE_FILE_FAILED  "Delete file %1 failed: %2"
@@ -787,7 +787,7 @@ BEGIN
     IDS_CONFIRM_DELETE_SINGLE "Are you sure you want to delete %1?"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
 END
