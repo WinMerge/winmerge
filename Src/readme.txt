@@ -1,3 +1,5 @@
+2004-01-30 WinMerge experimental release 2.1.5.8 (cvs)
+
 2004-01-30 Kimmo
  BUG: [ 887543 ] Word-diff (No difference) messagebox has Cancel-button
   src: MergeDocLineDiffs.cpp
