@@ -28,18 +28,18 @@ LANGUAGE LANG_SWEDISH, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
@@ -66,8 +66,8 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Merge.ico"
-IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
+IDR_MAINFRAME           ICON                    "res\\Merge.ico"
+IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -358,7 +358,7 @@ END
 IDD_ABOUTBOX DIALOGEX 0, 0, 223, 134
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Om WinMerge"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
@@ -787,7 +787,7 @@ BEGIN
     DEFPUSHBUTTON   "Avbryt",IDC_COMPARISON_STOP,327,17,83,14
 END
 
-IDD_WMGOTO DIALOG DISCARDABLE  0, 0, 189, 70
+IDD_WMGOTO DIALOG  0, 0, 189, 70
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Gå till"
 FONT 8, "MS Sans Serif"
@@ -811,7 +811,7 @@ END
 IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 235, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Jämför"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Mellanslag",IDC_STATIC,7,7,221,50
     CONTROL         "Jämför &mellanslag",IDC_WHITESPACE,"Button",
@@ -837,7 +837,7 @@ END
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 259, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Editor"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     CONTROL         "Framhäv syntaxen",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
@@ -1028,7 +1028,7 @@ END
 // Toolbar
 //
 
-IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+IDR_MAINFRAME TOOLBAR  16, 15
 BEGIN
     BUTTON      ID_FILE_NEW
     BUTTON      ID_FILE_OPEN
@@ -1252,7 +1252,7 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Aktiverar det här fönstret"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
@@ -1447,12 +1447,12 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "Högerklicka på sökvägen för att kopiera"
 END
 
-STRINGTABLE  
+STRINGTABLE 
 BEGIN
     IDC_MIXED_EOL           "Tillåt blandade EOL-typer"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDC_COMPARISON_STOP     "Stopp"
     IDC_COMPARISON_CLOSE    "Tryck en tangent"

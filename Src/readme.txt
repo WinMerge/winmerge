@@ -2,6 +2,10 @@
  More removing obsolete keywords to sync languages to English
   Src: Merge.rc
   Languages: MergeBrazilian.rc MergeSpanish.rc MergeSwedish.rc
+ More removing obsolete keywords to sync languages to English
+  Src: Merge.rc
+  Languages: MergeRussian.rc MergeSlovak.rc MergeSpanish.rc
+   MergeSwedish.rc
 
 2004-04-24 Kimmo
  BUG: [ 939245 ] Location Bar don't show diff in first line

@@ -443,7 +443,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,148,117,92,8
 END
 
-IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
+IDD_PROP_VSS DIALOG  0, 0, 259, 157
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Система контроля версий"
 FONT 8, "MS Sans Serif"
@@ -1028,7 +1028,7 @@ END
 // Cursor
 //
 
-IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
+IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1051,6 +1051,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// ID_FILE_NEW SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_FILE_NEW             "Создать пустые документы\nNew Documents (Ctrl-N)"
@@ -1064,6 +1065,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Показывать полные страницы\nPrint Preview"
 END
 
+// ID_APP_ABOUT SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_APP_ABOUT            "Показать информацию о программе, номер версии и копирайт\nAbout"
@@ -1090,6 +1092,7 @@ BEGIN
     ID_FILE_MRU_FILE16      "Открыть этот документ"
 END
 
+// ID_NEXT_PANE SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_NEXT_PANE            "Переключиться на следующюю оконную панель\nNext Pane"
@@ -1106,6 +1109,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Разделить активное окно на панели\nSplit"
 END
 
+// ID_EDIT_CLEAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_EDIT_CLEAR           "Очистить выделение\nErase"
@@ -1121,12 +1125,14 @@ BEGIN
     ID_EDIT_REDO            "Вернуть отмененное действие\nRedo"
 END
 
+// ID_VIEW_TOOLBAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "Показать или спрятать панель инструментов\nToggle ToolBar"
     ID_VIEW_STATUS_BAR      "Показать или спрятать панель статуса\nToggle StatusBar"
 END
 
+// AFX_IDS_SCSIZE SYNCHRO
 STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "Изменить размер окна"
@@ -1159,6 +1165,7 @@ BEGIN
     IDS_ELAPSED_TIME        "Истекшее время: %ld мс"
 END
 
+// IDS_VERSION_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_VERSION_FMT         "Версия %1"
@@ -1221,6 +1228,7 @@ BEGIN
     IDS_DEL_LEFT_FMT        "Слева (%1)"
 END
 
+// IDS_DEL_RIGHT_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_DEL_RIGHT_FMT       "Удалить %1 из %2 выбранных элементов с правой стороны"
@@ -1262,6 +1270,7 @@ BEGIN
     IDS_COLHDR_RVERSION     "Версия файла справа"
 END
 
+// IDS_LEFTONLY SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_LEFTONLY            "Только слева"
@@ -1285,6 +1294,7 @@ BEGIN
     IDS_COLHDR_NSDIFFS      "#sig. отличий"
 END
 
+// IDS_PRIVATEBUILD_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
@@ -1363,6 +1373,7 @@ BEGIN
     IDS_CANNOT_EXECUTE_FILE "Невозможно выполнить %1"
 END
 
+// IDS_MESSAGEBOX_OK SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
@@ -1415,6 +1426,7 @@ BEGIN
     ID_DIR_COPY_RIGHT_TO_LEFT "Скопировать выбранные файлы в указанную папку"
 END
 
+// ID_DIR_COPY_LEFT_TO_RIGHT SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT "Скопировать выбранные файлы в указанную папку"
@@ -1451,6 +1463,7 @@ BEGIN
     ID_FILE_RIGHT_READONLY  "Сменить статус 'только для чтения' файла/папки справа"
 END
 
+// ID_EOL_TO_DOS SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_EOL_TO_DOS           "Преобразовать EOL к стандарту DOS"
