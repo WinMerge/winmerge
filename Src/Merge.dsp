@@ -1042,6 +1042,10 @@ SOURCE=.\OpenDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\common\OptionsMgr.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\OutputDlg.cpp
 # End Source File
 # Begin Source File
@@ -1647,6 +1651,14 @@ SOURCE=.\multimon.h
 # Begin Source File
 
 SOURCE=.\OpenDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\OptionsDef.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\common\OptionsMgr.h
 # End Source File
 # Begin Source File
 

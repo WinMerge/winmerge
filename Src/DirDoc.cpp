@@ -41,6 +41,7 @@
 #include "paths.h"
 #include "WaitStatusCursor.h"
 #include "7zCommon.h"
+#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -267,7 +268,8 @@ void CDirDoc::Rescan()
  */
 static bool IsItemHiddenBackup(const DIFFITEM & di)
 {
-	return mf->m_bHideBak && FileExtMatches(di.sfilename,BACKUP_FILE_EXT);
+	return mf->m_options.GetInt(OPT_HIDE_BACKUP) &&
+		FileExtMatches(di.sfilename,BACKUP_FILE_EXT);
 }
 
 /**
@@ -277,27 +279,34 @@ static bool IsItemHiddenBackup(const DIFFITEM & di)
  */
 static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 {
+	varprop::VariantValue val;
 	if (IsItemHiddenBackup(di))
 		return NULL;
 
 	// file type filters
-	if (di.isBin() && !mf->m_bShowBinaries)
+	val = mf->m_options.Get(OPT_SHOW_BINARIES);
+	if (di.isBin() && val.getInt() == 0)
 		return 0;
 
 	// result filters
-	if (di.isResultSame() && !mf->m_bShowIdent)
+	val = mf->m_options.Get(OPT_SHOW_IDENTICAL);
+	if (di.isResultSame() && val.getInt() == 0)
 		return 0;
 	if (di.isResultError() && !mf->m_bShowErrors)
 		return 0;
-	if (di.isResultSkipped() && !mf->m_bShowSkipped)
+	val = mf->m_options.Get(OPT_SHOW_SKIPPED);
+	if (di.isResultSkipped() && val.getInt() == 0)
 		return 0;
-	if (di.isResultDiff() && !mf->m_bShowDiff)
+	val = mf->m_options.Get(OPT_SHOW_DIFFERENT);
+	if (di.isResultDiff() && val.getInt() == 0)
 		return 0;
 
 	// left/right filters
-	if (di.isSideLeft() && !mf->m_bShowUniqueLeft)
+	val = mf->m_options.Get(OPT_SHOW_UNIQUE_LEFT);
+	if (di.isSideLeft() && val.getInt() == 0)
 		return 0;
-	if (di.isSideRight() && !mf->m_bShowUniqueRight)
+	val = mf->m_options.Get(OPT_SHOW_UNIQUE_RIGHT);
+	if (di.isSideRight() && val.getInt() == 0)
 		return 0;
 
 

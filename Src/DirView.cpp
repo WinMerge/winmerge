@@ -40,6 +40,7 @@
 #include "SelectUnpackerDlg.h"
 #include "paths.h"	// paths_GetParentPath()
 #include "7zCommon.h"
+#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1490,7 +1491,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	pDoc->CompareReady();
 	pDoc->Redisplay();
 	
-	if (mf->m_bScrollToFirst)
+	if (mf->m_options.GetInt(OPT_SCROLL_TO_FIRST))
 		OnFirstdiff();
 	return 0; // return value unused
 }

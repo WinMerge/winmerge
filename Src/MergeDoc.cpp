@@ -49,6 +49,7 @@
 #include "unicoder.h"
 #include "UniFile.h"
 #include "locality.h"
+#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1399,7 +1400,8 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	ASSERT (m_bInit);
 
 
-	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC && !mf->m_bAllowMixedEol)
+	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC &&
+		!mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
 	{
 			// get the default nCrlfStyle of the CDiffTextBuffer
 		nCrlfStyle = GetCRLFMode();
@@ -2323,7 +2325,7 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 		retVal = FRESULT_OK;
 		// By default, WinMerge unifies EOL to the most used type (when diffing or saving)
 		// As some info are lost, we request a confirmation from the user
-		if (!mf->m_bAllowMixedEol)
+		if (!mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
 		{
 			CString s;
 			AfxFormatString1(s, IDS_SUGGEST_PRESERVEEOL, sFileName); 
@@ -2446,7 +2448,8 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	// Check the EOL sensitivity option (do it before Rescan)
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
-	if (m_ltBuf.GetCRLFMode() != m_rtBuf.GetCRLFMode() && !mf->m_bAllowMixedEol && diffOptions.bEolSensitive)
+	if (m_ltBuf.GetCRLFMode() != m_rtBuf.GetCRLFMode() &&
+		!mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL) && diffOptions.bEolSensitive)
 	{
 		// Options and files not are not compatible :
 		// Sensitive to EOL on, allow mixing EOL off, and files have a different EOL style.
@@ -2487,29 +2490,36 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		pRightDetail->SetTextType(sext);
 
 		// scroll to first diff
-		if(mf->m_bScrollToFirst && m_diffs.GetSize() != 0)
+		if (mf->m_options.GetInt(OPT_SCROLL_TO_FIRST) &&
+			m_diffs.GetSize() != 0)
+		{
 			pLeft->SelectDiff(0, TRUE, FALSE);
+		}
 
 		// Enable/disable automatic rescan (rescanning after edit)
-		pLeft->EnableRescan(mf->m_bAutomaticRescan);
-		pRight->EnableRescan(mf->m_bAutomaticRescan);
+		pLeft->EnableRescan(mf->m_options.GetInt(OPT_AUTOMATIC_RESCAN));
+		pRight->EnableRescan(mf->m_options.GetInt(OPT_AUTOMATIC_RESCAN));
 
 		// SetTextType will revert to language dependent defaults for tab
 		pLeft->SetTabSize(mf->m_nTabSize);
 		pRight->SetTabSize(mf->m_nTabSize);
-		pLeft->SetViewTabs(mf->m_bViewWhitespace);
-		pRight->SetViewTabs(mf->m_bViewWhitespace);
-		pLeft->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
-		pRight->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
+		pLeft->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
+		pRight->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
+		pLeft->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
+			mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
+		pRight->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
+			mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
 		pLeft->SetWordWrapping(FALSE);
 		pRight->SetWordWrapping(FALSE);
 
 		pLeftDetail->SetTabSize(mf->m_nTabSize);
 		pRightDetail->SetTabSize(mf->m_nTabSize);
-		pLeftDetail->SetViewTabs(mf->m_bViewWhitespace);
-		pRightDetail->SetViewTabs(mf->m_bViewWhitespace);
-		pLeftDetail->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
-		pRightDetail->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
+		pLeftDetail->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
+		pRightDetail->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
+		pLeftDetail->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
+			mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
+		pRightDetail->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
+			mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
 		pLeftDetail->SetWordWrapping(FALSE);
 		pRightDetail->SetWordWrapping(FALSE);
 

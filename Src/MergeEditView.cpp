@@ -38,6 +38,7 @@
 #include "Plugins.h"
 #include "lwdisp.h"
 #include "WMGotoDlg.h"
+#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1459,7 +1460,7 @@ OnUpdateCaret()
 			// Regular lines display eg "Line 13 Characters: 25 EOL: CRLF"
 			sLine.Format(_T("%d"), nRealLine+1);
 			chars = GetLineLength(nScreenLine);
-			if (mf->m_bAllowMixedEol)
+			if (mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
 			sEol = GetTextBufferEol(nScreenLine);
 			else
 				sEol = _T("hidden");
@@ -1596,7 +1597,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
  */
 void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
 {
-	if (mf->m_bAllowMixedEol)
+	if (mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
 		pCmdUI->SetText(_T(""));
 	else
 		GetDocument()->GetLeftView()->OnUpdateIndicatorCRLF(pCmdUI);
@@ -1607,7 +1608,7 @@ void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnUpdateStatusRightEOL(CCmdUI* pCmdUI)
 {
-	if (mf->m_bAllowMixedEol)
+	if (mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
 		pCmdUI->SetText(_T(""));
 	else
 		GetDocument()->GetRightView()->OnUpdateIndicatorCRLF(pCmdUI);
@@ -1670,8 +1671,11 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 			break;
 	}
 
-	if (mf->m_bAllowMixedEol || nStyle != m_pTextBuffer->GetCRLFMode())
-	pCmdUI->Enable(TRUE);
+	if (mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL) ||
+		nStyle != m_pTextBuffer->GetCRLFMode())
+	{
+		pCmdUI->Enable(TRUE);
+	}
 	else
 		pCmdUI->Enable(FALSE);
 }

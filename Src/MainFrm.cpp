@@ -64,6 +64,8 @@
 #include "ConfigLog.h"
 #include "7zCommon.h"
 #include <shlwapi.h>
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -157,18 +159,24 @@ CMainFrame::CMainFrame()
 	m_strSaveAsPath = _T("");
 	m_bFirstTime = TRUE;
 
-	m_bAutomaticRescan = theApp.GetProfileInt(_T("Settings"), _T("AutomaticRescan"), TRUE)!=0;
-	m_bShowUniqueLeft = theApp.GetProfileInt(_T("Settings"), _T("ShowUniqueLeft"), TRUE)!=0;
-	m_bShowUniqueRight = theApp.GetProfileInt(_T("Settings"), _T("ShowUniqueRight"), TRUE)!=0;
-	m_bShowDiff = theApp.GetProfileInt(_T("Settings"), _T("ShowDifferent"), TRUE)!=0;
-	m_bShowIdent = theApp.GetProfileInt(_T("Settings"), _T("ShowIdentical"), TRUE)!=0;
-	m_bShowBinaries = theApp.GetProfileInt(_T("Settings"), _T("ShowBinaries"), TRUE)!=0;
+	m_options.SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
+
+	m_options.InitOption(OPT_SHOW_UNIQUE_LEFT, TRUE);
+	m_options.InitOption(OPT_SHOW_UNIQUE_RIGHT, TRUE);
+	m_options.InitOption(OPT_SHOW_DIFFERENT, TRUE);
+	m_options.InitOption(OPT_SHOW_IDENTICAL, TRUE);
+	m_options.InitOption(OPT_SHOW_BINARIES, TRUE);
+	m_options.InitOption(OPT_SHOW_SKIPPED, TRUE);
+	m_options.InitOption(OPT_HIDE_BACKUP, TRUE);
+
+	m_options.InitOption(OPT_CREATE_BACKUPS, TRUE);
+	m_options.InitOption(OPT_VIEW_WHITESPACE, FALSE);
+	m_options.InitOption(OPT_SCROLL_TO_FIRST, FALSE);
+
+	m_options.InitOption(OPT_AUTOMATIC_RESCAN, FALSE);
+	m_options.InitOption(OPT_ALLOW_MIXED_EOL, FALSE);
+
 	m_bShowErrors = TRUE;
-	m_bShowSkipped = theApp.GetProfileInt(_T("Settings"), _T("ShowSkipped"), TRUE)!=0;
-	m_bBackup = theApp.GetProfileInt(_T("Settings"), _T("BackupFile"), TRUE)!=0;
-	m_bViewWhitespace = theApp.GetProfileInt(_T("Settings"), _T("ViewWhitespace"), FALSE)!=0;
-	m_bScrollToFirst = theApp.GetProfileInt(_T("Settings"), _T("ScrollToFirst"), FALSE)!=0;
-	m_bHideBak = theApp.GetProfileInt(_T("Settings"), _T("HideBak"), TRUE)!=0;
 	m_nVerSys = theApp.GetProfileInt(_T("Settings"), _T("VersionSystem"), 0);
 	m_strVssProjectBase = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
 	m_strVssUser = theApp.GetProfileString(_T("Settings"), _T("VssUser"), _T(""));
@@ -179,7 +187,6 @@ CMainFrame::CMainFrame()
 	m_nTabType = theApp.GetProfileInt(_T("Settings"), _T("TabType"), 0);
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
-	m_bAllowMixedEol = theApp.GetProfileInt(_T("Settings"), _T("AllowMixedEOL"), NULL);
 	theApp.SetFileFilterPath(theApp.GetProfileString(_T("Settings"), _T("FileFilterPath"), _T("")));
 	m_sExtEditorPath = theApp.GetProfileString(_T("Settings"), _T("ExternalEditor"), _T(""));
 	m_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), UNPACK_MANUAL);
@@ -363,8 +370,10 @@ void CMainFrame::RedisplayAllDirDocs()
  */
 void CMainFrame::OnOptionsShowDifferent() 
 {
-	m_bShowDiff = !m_bShowDiff;
-	theApp.WriteProfileInt(_T("Settings"), _T("ShowDifferent"), m_bShowDiff);
+	varprop::VariantValue val;
+	val = m_options.Get(OPT_SHOW_DIFFERENT);
+	val.SetInt(val.getInt() ? 0 : 1);
+	m_options.SaveOption(OPT_SHOW_DIFFERENT, val);
 	RedisplayAllDirDocs();
 }
 
@@ -373,8 +382,10 @@ void CMainFrame::OnOptionsShowDifferent()
  */
 void CMainFrame::OnOptionsShowIdentical() 
 {
-	m_bShowIdent = !m_bShowIdent;
-	theApp.WriteProfileInt(_T("Settings"), _T("ShowIdentical"), m_bShowIdent);
+	varprop::VariantValue val;
+	val = m_options.Get(OPT_SHOW_IDENTICAL);
+	val.SetInt(val.getInt() ? 0 : 1);
+	m_options.SaveOption(OPT_SHOW_IDENTICAL, val);
 	RedisplayAllDirDocs();
 }
 
@@ -383,8 +394,10 @@ void CMainFrame::OnOptionsShowIdentical()
  */
 void CMainFrame::OnOptionsShowUniqueLeft() 
 {
-	m_bShowUniqueLeft = !m_bShowUniqueLeft;
-	theApp.WriteProfileInt(_T("Settings"), _T("ShowUniqueLeft"), m_bShowUniqueLeft);
+	varprop::VariantValue val;
+	val = m_options.Get(OPT_SHOW_UNIQUE_LEFT);
+	val.SetInt(val.getInt() ? 0 : 1);
+	m_options.SaveOption(OPT_SHOW_UNIQUE_LEFT, val);
 	RedisplayAllDirDocs();
 }
 
@@ -393,8 +406,10 @@ void CMainFrame::OnOptionsShowUniqueLeft()
  */
 void CMainFrame::OnOptionsShowUniqueRight() 
 {
-	m_bShowUniqueRight = !m_bShowUniqueRight;
-	theApp.WriteProfileInt(_T("Settings"), _T("ShowUniqueRight"), m_bShowUniqueRight);
+	varprop::VariantValue val;
+	val = m_options.Get(OPT_SHOW_UNIQUE_RIGHT);
+	val.SetInt(val.getInt() ? 0 : 1);
+	m_options.SaveOption(OPT_SHOW_UNIQUE_RIGHT, val);
 	RedisplayAllDirDocs();
 }
 
@@ -403,8 +418,10 @@ void CMainFrame::OnOptionsShowUniqueRight()
  */
 void CMainFrame::OnOptionsShowBinaries()
 {
-	m_bShowBinaries = !m_bShowBinaries;
-	theApp.WriteProfileInt(_T("Settings"), _T("ShowBinaries"), m_bShowBinaries);
+	varprop::VariantValue val;
+	val = m_options.Get(OPT_SHOW_BINARIES);
+	val.SetInt(val.getInt() ? 0 : 1);
+	m_options.SaveOption(OPT_SHOW_BINARIES, val);
 	RedisplayAllDirDocs();
 }
 
@@ -413,39 +430,41 @@ void CMainFrame::OnOptionsShowBinaries()
  */
 void CMainFrame::OnOptionsShowSkipped()
 {
-	m_bShowSkipped = !m_bShowSkipped;
-	theApp.WriteProfileInt(_T("Settings"), _T("ShowSkipped"), m_bShowSkipped);
+	varprop::VariantValue val;
+	val = m_options.Get(OPT_SHOW_SKIPPED);
+	val.SetInt(val.getInt() ? 0 : 1);
+	m_options.SaveOption(OPT_SHOW_SKIPPED, val);
 	RedisplayAllDirDocs();
 }
 
 void CMainFrame::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_bShowDiff);
+	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_DIFFERENT));
 }
 
 void CMainFrame::OnUpdateOptionsShowidentical(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_bShowIdent);
+	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_IDENTICAL));
 }
 
 void CMainFrame::OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_bShowUniqueLeft);
+	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_UNIQUE_LEFT));
 }
 
 void CMainFrame::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_bShowUniqueRight);
+	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT));
 }
 
 void CMainFrame::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_bShowBinaries);
+	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_BINARIES));
 }
 
 void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck(m_bShowSkipped);
+	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_SKIPPED));
 }
 
 /**
@@ -453,14 +472,16 @@ void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnHideBackupFiles() 
 {
-	m_bHideBak = ! m_bHideBak;
-	theApp.WriteProfileInt(_T("Settings"), _T("HideBak"), m_bHideBak);
+	varprop::VariantValue val;
+	val = m_options.Get(OPT_HIDE_BACKUP);
+	val.SetInt(val.getInt() ? 0 : 1);
+	m_options.SaveOption(OPT_HIDE_BACKUP, val);
 	RedisplayAllDirDocs();
 }
 
 void CMainFrame::OnUpdateHideBackupFiles(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_bHideBak);
+	pCmdUI->SetCheck(m_options.GetInt(OPT_HIDE_BACKUP));
 }
 
 /**
@@ -917,12 +938,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 /// Wrapper to set the global option 'm_bAllowMixedEol'
 void CMainFrame::SetEOLMixed(BOOL bAllow)
 {
-	if (m_bAllowMixedEol == bAllow)
-		return;
-
-	m_bAllowMixedEol = bAllow;
-	theApp.WriteProfileInt(_T("Settings"), _T("AllowMixedEOL"), m_bAllowMixedEol);
-
+	m_options.SaveOption(OPT_ALLOW_MIXED_EOL, bAllow);
 	ApplyViewWhitespace();
 }
 
@@ -956,8 +972,8 @@ void CMainFrame::OnOptions()
 	
 	vss.m_nVerSys = m_nVerSys;
 	vss.m_strPath = m_strVssPath;
-	gen.m_bBackup = m_bBackup;
-	gen.m_bScroll = m_bScrollToFirst;
+	gen.m_bBackup = m_options.GetInt(OPT_CREATE_BACKUPS);
+	gen.m_bScroll = m_options.GetInt(OPT_SCROLL_TO_FIRST);
 	gen.m_bDisableSplash = theApp.m_bDisableSplash;
 	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
 	filter.m_sPattern = m_sPattern;
@@ -970,17 +986,18 @@ void CMainFrame::OnOptions()
 	compage.m_bEolSensitive = diffOptions.bEolSensitive;
 	editor.m_nTabSize = m_nTabSize;
 	editor.m_nTabType = m_nTabType;
-	editor.m_bAutomaticRescan = m_bAutomaticRescan;
+	editor.m_bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
 	editor.m_bHiliteSyntax = theApp.m_bHiliteSyntax;
-	editor.m_bAllowMixedEol = m_bAllowMixedEol;
+	editor.m_bAllowMixedEol = m_options.GetInt(OPT_ALLOW_MIXED_EOL);
 	
 	if (sht.DoModal()==IDOK)
 	{
 		m_nVerSys = vss.m_nVerSys;
 		m_strVssPath = vss.m_strPath;
 		
-		m_bBackup = gen.m_bBackup;
-		m_bScrollToFirst = gen.m_bScroll;
+		m_options.SaveOption(OPT_CREATE_BACKUPS, gen.m_bBackup);
+		m_options.SaveOption(OPT_SCROLL_TO_FIRST, gen.m_bScroll);
+
 		theApp.m_bDisableSplash = gen.m_bDisableSplash;
 
 		diffOptions.nIgnoreWhitespace = compage.m_nIgnoreWhite;
@@ -991,8 +1008,8 @@ void CMainFrame::OnOptions()
 
 		m_nTabSize = editor.m_nTabSize;
 		m_nTabType = editor.m_nTabType;
-		m_bAutomaticRescan = editor.m_bAutomaticRescan;
-		m_bAllowMixedEol = editor.m_bAllowMixedEol;
+		m_options.SaveOption(OPT_AUTOMATIC_RESCAN, editor.m_bAutomaticRescan);
+		m_options.SaveOption(OPT_ALLOW_MIXED_EOL, editor.m_bAllowMixedEol);
 		theApp.m_bHiliteSyntax = editor.m_bHiliteSyntax;
 
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
@@ -1016,12 +1033,9 @@ void CMainFrame::OnOptions()
 		theApp.SetTrivialDeletedColor(colors.m_clrTrivialDeleted);
 
 		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
-		theApp.WriteProfileInt(_T("Settings"), _T("ScrollToFirst"), m_bScrollToFirst);
-		theApp.WriteProfileInt(_T("Settings"), _T("BackupFile"), m_bBackup);
 		theApp.WriteProfileString(_T("Settings"), _T("VssPath"), m_strVssPath);
 		theApp.WriteProfileInt(_T("Settings"), _T("TabSize"), m_nTabSize);
 		theApp.WriteProfileInt(_T("Settings"), _T("TabType"), m_nTabType);
-		theApp.WriteProfileInt(_T("Settings"), _T("AutomaticRescan"), m_bAutomaticRescan);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
 		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
 		theApp.WriteProfileString(_T("Settings"), _T("FileFilterPath"), filter.m_sFileFilterPath);
@@ -1052,8 +1066,8 @@ void CMainFrame::OnOptions()
 			pMergeDoc->ReadSettings();
 			
 			// Enable/disable automatic rescan (rescan after editing)
-			pLeft->EnableRescan(m_bAutomaticRescan);
-			pRight->EnableRescan(m_bAutomaticRescan);
+			pLeft->EnableRescan(m_options.GetInt(OPT_AUTOMATIC_RESCAN));
+			pRight->EnableRescan(m_options.GetInt(OPT_AUTOMATIC_RESCAN));
 
 			// Set tab type (tabs/spaces)
 			if (m_nTabType == 0)
@@ -1165,17 +1179,17 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  strLeft,
 				  strRight,
 				  bRecurse,
-				  m_bShowUniqueLeft,
-				  m_bShowUniqueRight,
-				  m_bShowIdent,
-				  m_bShowDiff,
-				  m_bShowBinaries,
-				  m_bHideBak,
+				  m_options.GetInt(OPT_SHOW_UNIQUE_LEFT),
+				  m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT),
+				  m_options.GetInt(OPT_SHOW_IDENTICAL),
+				  m_options.GetInt(OPT_SHOW_DIFFERENT),
+				  m_options.GetInt(OPT_SHOW_BINARIES),
+				  m_options.GetInt(OPT_HIDE_BACKUP),
 				  m_nVerSys,
 				  m_strVssPath,
-				  m_bBackup,
-					m_bAllowMixedEol,
-				  m_bScrollToFirst);
+				  m_options.GetInt(OPT_CREATE_BACKUPS),
+				  m_options.GetInt(OPT_ALLOW_MIXED_EOL),
+				  m_options.GetInt(OPT_SCROLL_TO_FIRST));
 	}
 
 	try
@@ -1286,7 +1300,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				m_strRightDesc.Empty();
 
 				pDirDoc->Rescan();
-				if (m_bScrollToFirst)
+				if (m_options.GetInt(OPT_SCROLL_TO_FIRST))
 				{
 					CDirView * pDirView = pDirDoc->GetMainView();
 					pDirView->GotoFirstDiff();
@@ -1319,7 +1333,7 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 	CFileStatus status;
 
 	// create backup copy of file if destination file exists
-	if (m_bBackup && CFile::GetStatus(pszPath, status))
+	if (m_options.GetInt(OPT_CREATE_BACKUPS) && CFile::GetStatus(pszPath, status))
 	{
 		// build the backup filename
 		CString spath, sname, sext;
@@ -2017,39 +2031,43 @@ void CMainFrame::ApplyViewWhitespace()
 		CMergeDiffDetailView * pRightDetail = pMergeDoc->GetRightDetailView();
 		if (pLeft)
 		{
-			pLeft->SetViewTabs(mf->m_bViewWhitespace);
-			pLeft->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
+			pLeft->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
+			pLeft->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
+				mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
 		}
 		if (pRight)
 		{
-			pRight->SetViewTabs(mf->m_bViewWhitespace);
-			pRight->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
+			pRight->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
+			pRight->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
+				mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
 		}
 		if (pLeftDetail)
 		{
-			pLeftDetail->SetViewTabs(mf->m_bViewWhitespace);
-			pLeftDetail->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
+			pLeftDetail->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
+			pLeftDetail->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
+				mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
 		}
 		if (pRightDetail)
 		{
-			pRightDetail->SetViewTabs(mf->m_bViewWhitespace);
-			pRightDetail->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
+			pRightDetail->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
+			pRightDetail->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
+				mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
 		}
 	}
 }
 
 void CMainFrame::OnViewWhitespace() 
 {
-	m_bViewWhitespace = !m_bViewWhitespace;
-	theApp.WriteProfileInt(_T("Settings"), _T("ViewWhitespace"), m_bViewWhitespace);
-
+	BOOL bViewWhitespace = m_options.GetInt(OPT_VIEW_WHITESPACE);
+	bViewWhitespace = !bViewWhitespace;
+	m_options.SaveOption(OPT_VIEW_WHITESPACE, bViewWhitespace);
 	ApplyViewWhitespace();
 }
 
 /// Enables View/View Whitespace menuitem when merge view is active
 void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_bViewWhitespace);
+	pCmdUI->SetCheck(m_options.GetInt(OPT_VIEW_WHITESPACE));
 }
 
 /// Get list of MergeDocs (documents underlying edit sessions)
@@ -2391,19 +2409,19 @@ void CMainFrame::OnSaveConfigData()
 {
 	CConfigLog configLog;
 	
-	configLog.viewSettings.bShowIdent = m_bShowIdent;
-	configLog.viewSettings.bShowDiff = m_bShowDiff;
-	configLog.viewSettings.bShowUniqueLeft = m_bShowUniqueLeft;
-	configLog.viewSettings.bShowUniqueRight = m_bShowUniqueRight;
-	configLog.viewSettings.bShowBinaries = m_bShowBinaries;
-	configLog.viewSettings.bShowSkipped = m_bShowSkipped;
-	configLog.viewSettings.bHideBak = m_bHideBak;
+	configLog.viewSettings.bShowIdent = m_options.GetInt(OPT_SHOW_DIFFERENT);
+	configLog.viewSettings.bShowDiff = m_options.GetInt(OPT_SHOW_DIFFERENT);
+	configLog.viewSettings.bShowUniqueLeft = m_options.GetInt(OPT_SHOW_UNIQUE_LEFT);
+	configLog.viewSettings.bShowUniqueRight = m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT);
+	configLog.viewSettings.bShowBinaries = m_options.GetInt(OPT_SHOW_BINARIES);
+	configLog.viewSettings.bShowSkipped = m_options.GetInt(OPT_SHOW_SKIPPED);
+	configLog.viewSettings.bHideBak = m_options.GetInt(OPT_HIDE_BACKUP);
 
-	configLog.miscSettings.bAutomaticRescan = m_bAutomaticRescan;
-	configLog.miscSettings.bAllowMixedEol = m_bAllowMixedEol;
-	configLog.miscSettings.bScrollToFirst = m_bScrollToFirst;
-	configLog.miscSettings.bBackup = m_bBackup;
-	configLog.miscSettings.bViewWhitespace = m_bViewWhitespace;
+	configLog.miscSettings.bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
+	configLog.miscSettings.bAllowMixedEol = m_options.GetInt(OPT_ALLOW_MIXED_EOL);
+	configLog.miscSettings.bScrollToFirst = m_options.GetInt(OPT_SCROLL_TO_FIRST);
+	configLog.miscSettings.bBackup = m_options.GetInt(OPT_CREATE_BACKUPS);
+	configLog.miscSettings.bViewWhitespace = m_options.GetInt(OPT_VIEW_WHITESPACE);
 
 	if (configLog.WriteLogFile())
 	{

@@ -30,6 +30,7 @@
 #define AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
 
 #include "bcmenu.h"
+#include "OptionsMgr.h"
 
 #define BACKUP_FILE_EXT   _T(".bak")
 
@@ -50,12 +51,15 @@ class CMergeDoc;
 class CMergeEditView;
 class CMergeDiffDetailView;
 
+
 // typed lists (homogenous pointer lists)
 typedef CTypedPtrList<CPtrList, CMergeEditView *> MergeEditViewList;
 typedef CTypedPtrList<CPtrList, CMergeDiffDetailView *> MergeDetailViewList;
 typedef CTypedPtrList<CPtrList, CDirView *> DirViewList;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocList;
 typedef CTypedPtrList<CPtrList, CDirDoc *> DirDocList;
+
+class CRegOptions;
 
 /**
  * @brief Frame class containing save-routines etc
@@ -68,19 +72,10 @@ public:
 
 // Attributes
 public:	
-	BOOL m_bShowUniqueLeft;
-	BOOL m_bShowUniqueRight;
-	BOOL m_bShowDiff;
-	BOOL m_bShowIdent;
-	BOOL m_bShowBinaries;
 	BOOL m_bShowErrors;
-	BOOL m_bShowSkipped;
-	BOOL m_bBackup;
-	BOOL m_bAllowMixedEol;
 	LOGFONT m_lfDiff;
 	BOOL m_bFontSpecified;
 	BOOL m_bReuseDirDoc; // policy to reuse existing dir doc
-	BOOL m_bAutomaticRescan;
 
 // Operations
 public:
@@ -116,6 +111,7 @@ protected:
 
 // Public implementation data
 public:
+	CRegOptions m_options;
 	BOOL m_bFirstTime;
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bIgnoreRegExp; /**< Are regular expression linefilters enabled? */
@@ -129,10 +125,7 @@ public:
 	CString m_strVssProjectFull;
 
 	int m_nVerSys;
-	BOOL m_bHideBak;
-	BOOL m_bScrollToFirst; /**< Scroll to first diff automatically */
 	UINT m_nTabType; /**< 0-editor inserts tabs, 1-editor inserts spaces */
-	BOOL m_bViewWhitespace; /**< Is whitespace view enabled */
 	CString m_sExtEditorPath; /**< Path to external editor */
 	CString m_strLeftDesc; /**< Left side description text proxy */
 	CString m_strRightDesc; /**< Right side description text proxy */

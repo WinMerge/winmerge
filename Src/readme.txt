@@ -1,3 +1,10 @@
+2004-02-21 Kimmo
+ PATCH: [ 896153 ] OptionsManager
+  Src/Common: new files OptionsMgr.cpp OptionsMgr.h
+  Src: DirDoc.cpp DirView.cpp MainFrm.cpp MainFrm.h Merge.dsp MergeDoc.cpp
+   MergeEditView.cpp 
+  Src: new file OptionsDef.h
+
 2004-02-20 Perry
  Fix CopyAll.bat for new directory structure.
   Src: Languages\CopyAll.bat
