@@ -1,6 +1,8 @@
 2003-07-29 Perry
  PATCH: [ 779224 ] Fix sort bug in right date
   WinMerge: DirView.cpp
+ bugfix for PATCH: [ 765225]
+  editlib: ccrystaltextview.cpp ccrystaltextview.h
 
 2003-07-29 Kimmo
  PATCH: [ 779172 ] Saving fix for 2.0 and 2.1

@@ -476,7 +476,7 @@ CCrystalTextView::CCrystalTextView ()
   m_pstrIncrementalSearchStringOld = new CString;
   ASSERT( m_pstrIncrementalSearchStringOld );
   //END SW
-  m_ParseCookies = new CArray<int, int>;
+  m_ParseCookies = new CArray<DWORD, DWORD>;
   ResetView ();
   SetTextType (SRC_PLAIN);
   m_bSingle = false; // needed to be set in descendat classes
@@ -528,7 +528,7 @@ CCrystalTextView::~CCrystalTextView ()
   //END SW
   ASSERT(m_ParseCookies);
   delete m_ParseCookies;
-  m_ParseCookies = 0;
+  m_ParseCookies = NULL;
 }
 
 BOOL CCrystalTextView::
@@ -1039,17 +1039,18 @@ GetParseCookie (int nLineIndex)
   if (!m_ParseCookies->GetSize())
     {
       m_ParseCookies->SetSize(nLineCount);
+      // must be initialized to invalid value (DWORD) -1
       for (int i=0; i<nLineCount; ++i)
-        m_ParseCookies->SetAt(i, 0xff);
+        m_ParseCookies->SetAt(i, -1);
     }
 
   if (nLineIndex < 0)
     return 0;
-  if (m_ParseCookies->GetAt(nLineIndex) != (DWORD) - 1)
+  if (m_ParseCookies->GetAt(nLineIndex) != - 1)
     return m_ParseCookies->GetAt(nLineIndex);
 
   int L = nLineIndex;
-  while (L >= 0 && m_ParseCookies->GetAt(L) == (DWORD) - 1)
+  while (L >= 0 && m_ParseCookies->GetAt(L) == - 1)
     L--;
   L++;
 
@@ -1059,9 +1060,9 @@ GetParseCookie (int nLineIndex)
       DWORD dwCookie = 0;
       if (L > 0)
         dwCookie = m_ParseCookies->GetAt(L - 1);
-      ASSERT (dwCookie != (DWORD) - 1);
+      ASSERT (dwCookie != - 1);
       m_ParseCookies->SetAt(L, ParseLine (dwCookie, L, NULL, nBlocks));
-      ASSERT (m_ParseCookies->GetAt(L) != (DWORD) - 1);
+      ASSERT (m_ParseCookies->GetAt(L) != - 1);
       L++;
     }
 
@@ -1286,7 +1287,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   nBlocks++;
   //END SW
   m_ParseCookies->SetAt(nLineIndex, ParseLine (dwCookie, nLineIndex, pBuf, nBlocks));
-  ASSERT (m_ParseCookies->GetAt(nLineIndex) != (DWORD) - 1);
+  ASSERT (m_ParseCookies->GetAt(nLineIndex) != - 1);
 
   //BEGIN SW
   int nActualItem = 0;
@@ -3450,8 +3451,9 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
       if (m_ParseCookies->GetSize())
         {
           ASSERT (m_ParseCookies->GetSize() == nLineCount);
+          // must be reinitialized to invalid value (DWORD) - 1
           for (int i=nLineIndex; i<m_ParseCookies->GetSize(); ++i)
-            m_ParseCookies->SetAt(i, 0xff);
+            m_ParseCookies->SetAt(i, -1);
         }
       //  This line'th actual length must be recalculated
       if (m_pnActualLineLength != NULL)
@@ -3477,11 +3479,12 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
             {
               int oldsize = m_ParseCookies->GetSize(); 
               m_ParseCookies->SetSize(nLineCount);
+              // must be initialized to invalid value (DWORD) - 1
               for (int i=oldsize; i<m_ParseCookies->GetSize(); ++i)
-                m_ParseCookies->SetAt(i, 0xff);
+                m_ParseCookies->SetAt(i, -1);
             }
           for (int i=nLineIndex; i<m_ParseCookies->GetSize(); ++i)
-            m_ParseCookies->SetAt(i, 0xff);
+            m_ParseCookies->SetAt(i, -1);
         }
 
       //  Recalculate actual length for all lines below this
