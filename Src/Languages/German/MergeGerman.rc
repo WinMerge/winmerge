@@ -471,7 +471,6 @@ BEGIN
     IDS_ALLFILES            "Alle Dateien (*.*)|*.*||"
     IDS_CONFIRM_ALL_LEFT    "Sind Sie sicher, dass sie alle Unterschiede in die linke Datei kopieren wollen?"
     IDS_CONFIRM_ALL_RIGHT   "Sind Sie sicher, dass sie alle Unterschiede in die rechte Datei kopieren wollen?"
-    IDS_COPY2DIR_FMT        "Datei nach %1 kopieren"
     IDS_CONFIRM_COPY2DIR    "Sind Sie sicher, dass Sie die ausgewählte Datei nach %1 kopieren wollen?"
     IDS_FONT_CHANGE         "Die Änderung der Schriftart wird auf keines der offenen Differenz-Fenster angewendet werden."
     IDS_DIRECTORY_WINDOW_TITLE "Verzeichnis-Vergleichs Ergebnisse"

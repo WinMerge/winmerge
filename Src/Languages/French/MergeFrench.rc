@@ -474,7 +474,6 @@ BEGIN
     IDS_ALLFILES            "Tous les fichiers (*.*)|*.*||"
     IDS_CONFIRM_ALL_LEFT    "Etes-vous sûr de vouloir copier toutes les différences vers le fichier gauche ?"
     IDS_CONFIRM_ALL_RIGHT   "Etes-vous sûr de vouloir copier toutes les différences vers le fichier droit ?"
-    IDS_COPY2DIR_FMT        "Copier le fichier vers %1"
     IDS_CONFIRM_COPY2DIR    "Etes-vous sûr de vouloir copier toutes les différences vers %1?"
     IDS_FONT_CHANGE         "Le changement de police ne sera pas appliqué aux fenêtres actuellement affichées à l'écran."
     IDS_DIRECTORY_WINDOW_TITLE "Résultats de la comparaison des répertoires"

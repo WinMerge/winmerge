@@ -431,7 +431,6 @@ BEGIN
     IDS_ALLFILES            "Alle bestanden (*.*)|*.*||"
     IDS_CONFIRM_ALL_LEFT    "Weet u zeker dat u alle verschillen naar het linker bestand wil kopiëren?"
     IDS_CONFIRM_ALL_RIGHT   "Weet u zeker dat u alle verschillen naar het rechter bestand wil kopiëren?"
-    IDS_COPY2DIR_FMT        "Kopieer bestand naar %1"
     IDS_CONFIRM_COPY2DIR    "Weet u zeker dat u het geselecteerde bestand  wil kopiëren naar %1?"
     IDS_FONT_CHANGE         "De geselecteerde wijziging van font wordt niet verwerkt in de openstaande vensters."
     IDS_DIRECTORY_WINDOW_TITLE "Resultaten vergelijking mappen"
