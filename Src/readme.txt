@@ -1,3 +1,8 @@
+2004-05-29 Kimmo
+ PATCH: [ 961810 ] Store path for ShellExtension
+  ShellExtension: resource.h ShellExtension.cpp ShellExtension.rc
+   WinMergeShell.cpp WinMergeShell.h
+
 2004-05-29 Perry
  Updated WinMerge Localized.iss from seier (manifest & plugins.txt changes)
   InnoSetup: WinMerge Localized.iss

@@ -1,8 +1,18 @@
 /////////////////////////////////////////////////////////////////////////////
 //    License (GPLv2+):
-//    This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
-//    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or (at
+//    your option) any later version.
+//    
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 // Look at http://www.codeproject.com/shell/ for excellent guide
 // to Windows Shell programming by Michael Dunn.
@@ -49,11 +59,17 @@ END_COM_MAP()
 // IWinMergeShell
 protected:
     CString m_strPaths[2]; /**< Paths for selected items */
+	CString m_strPreviousPath; /**< Previously selected path */
 	HBITMAP m_hMergeBmp; /**< Icon */
-	UINT	m_nSelectedItems; /**< Amount of selected items */
+	UINT m_nSelectedItems; /**< Amount of selected items */
+	DWORD m_dwContextMenuEnabled; /**< Is context menu enabled and in which mode? */
+	DWORD m_dwMenuState; /**< Shown menuitems */
 
 	BOOL GetWinMergeDir(CString &strDir);
 	BOOL CheckExecutable(CString path);
+	int DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
+	int DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
+	CString GetHelpText(int idCmd);
 
 public:
     // IShellExtInit

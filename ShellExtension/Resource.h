@@ -7,6 +7,12 @@
 #define IDR_WINMERGESHELL               102
 #define IDS_CONTEXT_HELP                102
 #define IDS_CONTEXT_HELP_MANYITEMS      103
+#define IDS_COMPARE                     104
+#define IDS_COMPARE_ELLIPSIS            105
+#define IDS_COMPARE_TO                  106
+#define IDS_HELP_SAVETHIS               107
+#define IDS_HELP_COMPARESTORED          108
+#define IDS_HELP_COMPARESAVED           109
 #define IDB_WINMERGE                    202
 
 // Next default values for new objects
