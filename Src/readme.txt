@@ -2,6 +2,8 @@
  PATCH: [ 1001981 ] Italian translation updated
   Submitted by Andrea Decorte
   Src/Languages/Italian: MergeItalian.rc
+ PATCH: [ 1002585 ] Update dir compare statepane counts when reopening
+  Src: DirView.cpp
   
 2004-08-03 Kimmo
  PATCH: [ 1002333 ] Set default filter to *.* when starting WinMerge

@@ -2036,6 +2036,22 @@ CString CDirView::GenerateReport()
 void CDirView::OnDirStatePane()
 {
 	CDirFrame *pf = GetParentFrame();
+	CDiffContext *pCtxt = GetDiffContext();
+	
+	if (pCtxt == NULL)
+		return;
+
+	// Clear and recount item numbers
+	pf->clearStatus();
+	DIFFITEM di;
+	POSITION pos = pCtxt->GetFirstDiffPosition();
+	while (pos)
+	{
+		di = pCtxt->GetDiffAt(pos);
+		pf->rptStatus(di.diffcode);
+		pCtxt->GetNextDiffPosition(pos);
+	}
+
 	pf->ShowProcessingBar(TRUE);
 }
 
