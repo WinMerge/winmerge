@@ -1206,6 +1206,8 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 	return nRetVal;
 }
 
+// NOTE: bTempFile is FALSE if we are saving user files and
+// TRUE if we are saving workin-temp-files for diff-engine
 BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		BOOL bTempFile, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ ,
 		BOOL bClearModifiedFlag /*= TRUE*/ )
@@ -1242,11 +1244,18 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	if (!pszFileName)
 		return FALSE;	// No filename, cannot save...
 
-	if (!::GetTempFileName(m_strTempPath, _T("MRG"), 0, szTempFileName))
-		return FALSE;  //Nothing to do if even tempfile name fails
+	if (!bTempFile)
+	{
+		if (!::GetTempFileName(m_strTempPath, _T("MRG"), 0, szTempFileName))
+			return FALSE;  //Nothing to do if even tempfile name fails
+	}
 
 	// Init filedata struct and open file as memory mapped 
-	_tcsncpy(fileData.fileName, szTempFileName, sizeof(fileData.fileName));
+	if (bTempFile)
+		_tcsncpy(fileData.fileName, pszFileName, sizeof(fileData.fileName));
+	else
+		_tcsncpy(fileData.fileName, szTempFileName, sizeof(fileData.fileName));
+
 	fileData.bWritable = TRUE;
 	fileData.dwOpenFlags = CREATE_ALWAYS;
 	fileData.dwSize = nBufSize;
@@ -1271,10 +1280,22 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		else
 			files_closeFileMapped(&fileData, nBufSize, TRUE);
 		
-		// Write tempfile over original file
-		if (::CopyFile(szTempFileName, pszFileName, FALSE))
+		if (!bTempFile)
 		{
-			::DeleteFile(szTempFileName);
+			// Write tempfile over original file
+			if (::CopyFile(szTempFileName, pszFileName, FALSE))
+			{
+				::DeleteFile(szTempFileName);
+				if (bClearModifiedFlag)
+				{
+					SetModified(FALSE);
+					m_nSyncPosition = m_nUndoPosition;
+				}
+				bSaveSuccess = TRUE;
+			}
+		}
+		else
+		{
 			if (bClearModifiedFlag)
 			{
 				SetModified(FALSE);

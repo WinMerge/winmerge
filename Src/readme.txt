@@ -1,6 +1,8 @@
 2003-07-29 Kimmo
  PATCH: [ 779172 ] Saving fix for 2.0 and 2.1
   WinMerge: MergeDoc.cpp
+ PATCH: [ 779005 ] No temp files when saving local temp files
+  WinMerge: MergeDoc.cpp
 
 2003-07-29 Perry
  Some fixes to MergeChineseTraditional.rc from Koko
