@@ -90,6 +90,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_PREVDIFF, OnUpdatePrevdiff)
 	ON_COMMAND(ID_CURDIFF, OnCurdiff)
 	ON_UPDATE_COMMAND_UI(ID_CURDIFF, OnUpdateCurdiff)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateSave)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 END_MESSAGE_MAP()
@@ -1059,4 +1060,9 @@ void CDirView::MoveSelection(int currentInd, int i, int selCount)
 
 	m_pList->SetItemState(i, LVIS_FOCUSED, LVIS_FOCUSED);
 	m_pList->EnsureVisible(i, FALSE);
+}
+
+void CDirView::OnUpdateSave(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(FALSE);
 }

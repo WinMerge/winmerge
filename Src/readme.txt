@@ -4,6 +4,8 @@
   WinMerge: Merge.cpp
  PATCH: [ 696588 ] Multimonitor + virtual screens support
   WinMerge: MainFrm.cpp Merge.dsp multimon.h
+ BUG: [ 697320 ] Saving enabled when comparing directories
+  WinMerge: DirView.h DirView.cpp
 
 2003-02-28 Kimmo
  BUG: [ 693932 ] Trailing \ on path crashes WinMerge
