@@ -1,3 +1,7 @@
+2004-05-18 Kimmo
+ PATCH: [ 955408 ] Select first item in dir compare
+  Src: DirView.cpp
+
 2004-05-18 Perry
  PATCH: [ 955573 ] Swedish localization of Read Me.rtf
  Docs/User/Languages: Read Me-Swedish.rtf

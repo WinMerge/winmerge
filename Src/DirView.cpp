@@ -1567,6 +1567,9 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	
 	if (mf->m_options.GetInt(OPT_SCROLL_TO_FIRST))
 		OnFirstdiff();
+	else
+		MoveSelection(0, 0, 0);
+
 	return 0; // return value unused
 }
 
