@@ -24,3 +24,7 @@ Add new items to bottom
 2004-01-30, Perry Rapp
  Moved output to ..\Build\Merge*, and temps to ..\BuildTmp\MakeMatchDirs__*.
  Added to WinMerge sourceforge cvs repository.
+
+2004-05-10, Perry Rapp
+ Altered PatchDlgFilter::handle to skip BuildTmp (along with Build that it already skipped).
+ Bump version to 1.2.1.0.

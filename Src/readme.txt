@@ -1,3 +1,7 @@
+2004-05-11 Perry
+ Fix MakePatchDirs to ignore BuildTmp.
+ MakePatchDirs: ChangeLog.txt MakePatchDirs.rc MakePatchDirsDlg.cpp
+ 
 2004-05-11 Kimmo
  PATCH: [ 951404 ] Add statusmessage for dircompare copy/delete ops
   Src: DirActions.cpp Merge.rc resource.h

@@ -240,6 +240,10 @@ bool PatchDlgFilter::handle(bool dir, const CString & subdir, const CString & fi
 		{
 			return false;
 		}
+		if (filebase.CompareNoCase(_T("BuildTmp")) == 0)
+		{
+			return false;
+		}
 
 	}
 	if (m_excludeCvs)
