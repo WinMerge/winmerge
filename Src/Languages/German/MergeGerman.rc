@@ -80,7 +80,7 @@ BEGIN
     POPUP "_POPUP_"
     BEGIN
         MENUITEM "Zur anderen Seite kopieren",  ID_POPUP_COPYTOOTHERSIDE
-        MENUITEM "Von der anderen Seite kopieren",
+        MENUITEM "Von der anderen Seite kopieren", ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
         MENUITEM "Alle Unterschiede zur anderen Seite kopieren...",
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
@@ -1213,7 +1213,7 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "%1 Vorkommen ersetzt."
     IDS_EDIT_TEXT_NOT_FOUND "Kann ""%s"" nicht finden"
-    IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
+    IDS_LINE_STATUS_INFO_EOL "Line: %s Column: %d Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
 END

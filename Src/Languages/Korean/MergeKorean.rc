@@ -1172,7 +1172,7 @@ STRINGTABLE
 BEGIN
     IDS_NUM_REPLACED        "모두 %1 개를 바꾸었습니다."
     IDS_EDIT_TEXT_NOT_FOUND "해당하는 문자열을 찾을 수 없습니다 : ""%s"""
-    IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
+    IDS_LINE_STATUS_INFO_EOL "Line: %s Column: %d Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
 END

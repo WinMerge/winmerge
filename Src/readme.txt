@@ -1,3 +1,8 @@
+2003-10-09 Perry
+ Fix duplicate copy of IDS_LINE_STATUS_INFO (to IDS_LINE_STATUS_INFO_EOL) in most
+  language files. Fix missing id ID_POPUP_COPYFROMOTHERSIDE in German file
+ Languages: *.rc (except not Brazilian or ChineseSimplified)
+
 2003-10-08 Laoran
  BUG: [ 819793 ] Assert when saving after a Dirdoc session
   WinMerge: DirDoc.cpp
