@@ -38,6 +38,13 @@ public:
 	CColorButton	m_cDiffDeleted;
 	CColorButton	m_cSelDiff;
 	CColorButton	m_cDiff;
+	CColorButton	m_cTrivialText;
+	CColorButton	m_cMoved;
+	CColorButton	m_cMovedDeleted;
+	CColorButton	m_cMovedText;
+	CColorButton	m_cSelMoved;
+	CColorButton	m_cSelMovedDeleted;
+	CColorButton	m_cSelMovedText;
 	//}}AFX_DATA
 
 
@@ -49,6 +56,13 @@ public:
 	COLORREF	m_clrSelDiffText;
 	COLORREF	m_clrTrivial;
 	COLORREF	m_clrTrivialDeleted;
+	COLORREF	m_clrTrivialText;
+	COLORREF	m_clrMoved;
+	COLORREF	m_clrMovedDeleted;
+	COLORREF	m_clrMovedText;
+	COLORREF	m_clrSelMoved;
+	COLORREF	m_clrSelMovedDeleted;
+	COLORREF	m_clrSelMovedText;
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
@@ -75,6 +89,13 @@ protected:
 	afx_msg void OnSelDifferenceTextColor();
 	afx_msg void OnTrivialDiffColor();
 	afx_msg void OnTrivialDiffDeletedColor();
+	afx_msg void OnTrivialDiffTextColor();
+	afx_msg void OnMovedColor();
+	afx_msg void OnMovedDeletedColor();
+	afx_msg void OnMovedTextColor();
+	afx_msg void OnSelMovedColor();
+	afx_msg void OnSelMovedDeletedColor();
+	afx_msg void OnSelMovedTextColor();
 	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

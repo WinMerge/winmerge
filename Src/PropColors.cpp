@@ -34,6 +34,13 @@ CPropColors::CPropColors(COptionsMgr *optionsMgr) : CPropertyPage(CPropColors::I
 	m_clrSelDiffText = optionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
 	m_clrTrivial = optionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF);
 	m_clrTrivialDeleted = optionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
+	m_clrTrivialText = optionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
+	m_clrMoved = optionsMgr->GetInt(OPT_CLR_MOVEDBLOCK);
+	m_clrMovedDeleted = optionsMgr->GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
+	m_clrMovedText = optionsMgr->GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
+	m_clrSelMoved = optionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
+	m_clrSelMovedDeleted = optionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
+	m_clrSelMovedText = optionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
 
 	// Set colors for buttons, do NOT invalidate
 	m_cDiff.SetColor(m_clrDiff, FALSE);
@@ -44,6 +51,13 @@ CPropColors::CPropColors(COptionsMgr *optionsMgr) : CPropertyPage(CPropColors::I
 	m_cSelDiffText.SetColor(m_clrSelDiffText, FALSE);
 	m_cTrivial.SetColor(m_clrTrivial, FALSE);
 	m_cTrivialDeleted.SetColor(m_clrTrivialDeleted, FALSE);
+	m_cTrivialText.SetColor(m_clrTrivialText, FALSE);
+	m_cMoved.SetColor(m_clrMoved, FALSE);
+	m_cMovedDeleted.SetColor(m_clrMovedDeleted, FALSE);
+	m_cMovedText.SetColor(m_clrMovedText, FALSE);
+	m_cSelMoved.SetColor(m_clrSelMoved, FALSE);
+	m_cSelMovedDeleted.SetColor(m_clrSelMovedDeleted, FALSE);
+	m_cSelMovedText.SetColor(m_clrSelMovedText, FALSE);
 
 	m_pOptionsMgr = optionsMgr;
 	//}}AFX_DATA_INIT
@@ -61,6 +75,13 @@ void CPropColors::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_DIFFERENCE_DELETED_COLOR, m_cDiffDeleted);
 	DDX_Control(pDX, IDC_SEL_DIFFERENCE_COLOR, m_cSelDiff);
 	DDX_Control(pDX, IDC_DIFFERENCE_COLOR, m_cDiff);
+	DDX_Control(pDX, IDC_TRIVIAL_DIFF_TEXT_COLOR, m_cTrivialText);
+	DDX_Control(pDX, IDC_MOVEDBLOCK_COLOR, m_cMoved);
+	DDX_Control(pDX, IDC_MOVEDBLOCK_DELETED_COLOR, m_cMovedDeleted);
+	DDX_Control(pDX, IDC_MOVEDBLOCK_TEXT_COLOR, m_cMovedText);
+	DDX_Control(pDX, IDC_SEL_MOVEDBLOCK_COLOR, m_cSelMoved);
+	DDX_Control(pDX, IDC_SEL_MOVEDBLOCK_DELETED_COLOR, m_cSelMovedDeleted);
+	DDX_Control(pDX, IDC_SEL_MOVEDBLOCK_TEXT_COLOR, m_cSelMovedText);
 	//}}AFX_DATA_MAP
 }
 
@@ -76,6 +97,13 @@ BEGIN_MESSAGE_MAP(CPropColors, CDialog)
 	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_COLOR, OnTrivialDiffColor)
 	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_DELETED_COLOR, OnTrivialDiffDeletedColor)
 	ON_BN_CLICKED(IDC_COLORDEFAULTS_BTN, OnDefaults)
+	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_TEXT_COLOR, OnTrivialDiffTextColor)
+	ON_BN_CLICKED(IDC_MOVEDBLOCK_COLOR, OnMovedColor)
+	ON_BN_CLICKED(IDC_MOVEDBLOCK_DELETED_COLOR, OnMovedDeletedColor)
+	ON_BN_CLICKED(IDC_MOVEDBLOCK_TEXT_COLOR, OnMovedTextColor)
+	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_COLOR, OnSelMovedColor)
+	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_DELETED_COLOR, OnSelMovedDeletedColor)
+	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_TEXT_COLOR, OnSelMovedTextColor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -215,6 +243,104 @@ void CPropColors::OnTrivialDiffDeletedColor()
 	SaveCustomColors();
 }
 
+void CPropColors::OnTrivialDiffTextColor()
+{
+	CColorDialog dialog(m_clrTrivialText);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrTrivialText = dialog.GetColor();
+		m_cTrivialText.SetColor(m_clrTrivialText);
+	}
+	SaveCustomColors();
+}
+
+void CPropColors::OnMovedColor()
+{
+	CColorDialog dialog(m_clrMoved);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrMoved = dialog.GetColor();
+		m_cMoved.SetColor(m_clrMoved);
+	}
+	SaveCustomColors();
+}
+
+void CPropColors::OnMovedDeletedColor()
+{
+	CColorDialog dialog(m_clrMovedDeleted);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrMovedDeleted = dialog.GetColor();
+		m_cMovedDeleted.SetColor(m_clrMovedDeleted);
+	}
+	SaveCustomColors();
+}
+
+void CPropColors::OnMovedTextColor()
+{
+	CColorDialog dialog(m_clrMovedText);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrMovedText = dialog.GetColor();
+		m_cMovedText.SetColor(m_clrMovedText);
+	}
+	SaveCustomColors();
+}
+
+void CPropColors::OnSelMovedColor()
+{
+	CColorDialog dialog(m_clrSelMoved);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrSelMoved = dialog.GetColor();
+		m_cSelMoved.SetColor(m_clrSelMoved);
+	}
+	SaveCustomColors();
+}
+
+void CPropColors::OnSelMovedDeletedColor()
+{
+	CColorDialog dialog(m_clrSelMovedDeleted);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrSelMovedDeleted = dialog.GetColor();
+		m_cSelMovedDeleted.SetColor(m_clrSelMovedDeleted);
+	}
+	SaveCustomColors();
+}
+
+void CPropColors::OnSelMovedTextColor()
+{
+	CColorDialog dialog(m_clrSelMovedText);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrSelMovedText = dialog.GetColor();
+		m_cSelMovedText.SetColor(m_clrSelMovedText);
+	}
+	SaveCustomColors();
+}
+
 /** 
  * @brief Resets colors to defaults
  */
@@ -228,6 +354,13 @@ void CPropColors::OnDefaults()
 	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_DIFF_TEXT);
 	m_pOptionsMgr->Reset(OPT_CLR_TRIVIAL_DIFF);
 	m_pOptionsMgr->Reset(OPT_CLR_TRIVIAL_DIFF_DELETED);
+	m_pOptionsMgr->Reset(OPT_CLR_TRIVIAL_DIFF_TEXT);
+	m_pOptionsMgr->Reset(OPT_CLR_MOVEDBLOCK);
+	m_pOptionsMgr->Reset(OPT_CLR_MOVEDBLOCK_DELETED);
+	m_pOptionsMgr->Reset(OPT_CLR_MOVEDBLOCK_TEXT);
+	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_MOVEDBLOCK);
+	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
+	m_pOptionsMgr->Reset(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
 
 	m_clrDiff = m_pOptionsMgr->GetInt(OPT_CLR_DIFF);
 	m_clrSelDiff = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
@@ -237,6 +370,13 @@ void CPropColors::OnDefaults()
 	m_clrSelDiffText = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
 	m_clrTrivial = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF);
 	m_clrTrivialDeleted = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
+	m_clrTrivialText = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
+	m_clrMoved = m_pOptionsMgr->GetInt(OPT_CLR_MOVEDBLOCK);
+	m_clrMovedDeleted = m_pOptionsMgr->GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
+	m_clrMovedText = m_pOptionsMgr->GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
+	m_clrSelMoved = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
+	m_clrSelMovedDeleted = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
+	m_clrSelMovedText = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
 
 	m_cDiff.SetColor(m_clrDiff);
 	m_cSelDiff.SetColor(m_clrSelDiff);
@@ -246,6 +386,13 @@ void CPropColors::OnDefaults()
 	m_cSelDiffText.SetColor(m_clrSelDiffText);
 	m_cTrivial.SetColor(m_clrTrivial);
 	m_cTrivialDeleted.SetColor(m_clrTrivialDeleted);
+	m_cTrivialText.SetColor(m_clrTrivialText);
+	m_cMoved.SetColor(m_clrMoved);
+	m_cMovedDeleted.SetColor(m_clrMovedDeleted);
+	m_cMovedText.SetColor(m_clrMovedText);
+	m_cSelMoved.SetColor(m_clrSelMoved);
+	m_cSelMovedDeleted.SetColor(m_clrSelMovedDeleted);
+	m_cSelMovedText.SetColor(m_clrSelMovedText);
 }
 
 /** 

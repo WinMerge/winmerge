@@ -206,6 +206,13 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_CLR_SELECTED_DIFF_TEXT, RGB(0,0,0));
 	m_options.InitOption(OPT_CLR_TRIVIAL_DIFF, RGB(251,242,191));
 	m_options.InitOption(OPT_CLR_TRIVIAL_DIFF_DELETED, RGB(233,233,233));
+	m_options.InitOption(OPT_CLR_TRIVIAL_DIFF_TEXT, RGB(0,0,0));
+	m_options.InitOption(OPT_CLR_MOVEDBLOCK, RGB(228,155,82));
+	m_options.InitOption(OPT_CLR_MOVEDBLOCK_DELETED, RGB(192, 192, 192));
+	m_options.InitOption(OPT_CLR_MOVEDBLOCK_TEXT, RGB(0,0,0));
+	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK, RGB(248,112,78));
+	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, RGB(252, 181, 163));
+	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, RGB(0,0,0));
 
 	// Overwrite WinMerge 2.0 default colors with new colors
 	if (m_options.GetInt(OPT_CLR_DIFF) == RGB(255,255,92))
@@ -1264,7 +1271,14 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CLR_SELECTED_DIFF_TEXT, colors.m_clrSelDiffText);
 		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF, colors.m_clrTrivial);
 		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, colors.m_clrTrivialDeleted);
-		
+		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF_TEXT, colors.m_clrTrivialText);
+		m_options.SaveOption(OPT_CLR_MOVEDBLOCK, colors.m_clrMoved);
+		m_options.SaveOption(OPT_CLR_MOVEDBLOCK_DELETED, colors.m_clrMovedDeleted);
+		m_options.SaveOption(OPT_CLR_MOVEDBLOCK_TEXT, colors.m_clrMovedText);
+		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK, colors.m_clrSelMoved);
+		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, colors.m_clrSelMovedDeleted);
+		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, colors.m_clrSelMovedText);
+
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
 		SetEOLMixed(editor.m_bAllowMixedEol);
 

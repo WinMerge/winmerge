@@ -76,7 +76,13 @@ CMergeEditView::CMergeEditView()
 	m_cachedColors.clrSelDiffText = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
 	m_cachedColors.clrTrivial = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF);
 	m_cachedColors.clrTrivialDeleted = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
-
+	m_cachedColors.clrTrivialText = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
+	m_cachedColors.clrMoved = mf->m_options.GetInt(OPT_CLR_MOVEDBLOCK);
+	m_cachedColors.clrMovedDeleted = mf->m_options.GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
+	m_cachedColors.clrMovedText = mf->m_options.GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
+	m_cachedColors.clrSelMoved = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
+	m_cachedColors.clrSelMovedDeleted = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
+	m_cachedColors.clrSelMovedText = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
 }
 
 CMergeEditView::~CMergeEditView()
@@ -323,18 +329,35 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 		{
 			if (lineInCurrentDiff)
 			{
-				crBkgnd = m_cachedColors.clrSelDiff;
-				crText = m_cachedColors.clrSelDiffText;
+				if (dwLineFlags & LF_MOVED)
+				{
+					if (dwLineFlags & LF_GHOST)
+						crBkgnd = m_cachedColors.clrSelMovedDeleted;
+					else
+						crBkgnd = m_cachedColors.clrSelMoved;
+					crText = m_cachedColors.clrSelMovedText;
+				}
+				else
+				{
+					crBkgnd = m_cachedColors.clrSelDiff;
+					crText = m_cachedColors.clrSelDiffText;
+				}
+			
 			}
 			else
 			{
-				crBkgnd = m_cachedColors.clrDiff;
-				crText = m_cachedColors.clrDiffText;
 				if (dwLineFlags & LF_MOVED)
 				{
-					// TODO: decide how to display moved lines
-					crBkgnd = m_cachedColors.clrSelDiffDeleted;
-					crBkgnd = 0x777777;
+					if (dwLineFlags & LF_GHOST)
+						crBkgnd = m_cachedColors.clrMovedDeleted;
+					else
+						crBkgnd = m_cachedColors.clrMoved;
+					crText = m_cachedColors.clrMovedText;
+				}
+				else
+				{
+					crBkgnd = m_cachedColors.clrDiff;
+					crText = m_cachedColors.clrDiffText;
 				}
 			}
 			return;
@@ -2086,6 +2109,13 @@ void CMergeEditView::RefreshOptions()
 	m_cachedColors.clrSelDiffText = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
 	m_cachedColors.clrTrivial = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF);
 	m_cachedColors.clrTrivialDeleted = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
+	m_cachedColors.clrTrivialText = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
+	m_cachedColors.clrMoved = mf->m_options.GetInt(OPT_CLR_MOVEDBLOCK);
+	m_cachedColors.clrMovedDeleted = mf->m_options.GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
+	m_cachedColors.clrMovedText = mf->m_options.GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
+	m_cachedColors.clrSelMoved = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
+	m_cachedColors.clrSelMovedDeleted = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
+	m_cachedColors.clrSelMovedText = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
 }
 
 /**

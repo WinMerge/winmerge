@@ -1,3 +1,9 @@
+2004-06-09 Kimmo
+ PATCH: [ 969277 ] Color options for moved blocks
+  Src: MainFrm.cpp Merge.rc MergeEditView.cpp MergeEditView.h OptionsDef.h
+   PropColors.cpp PropColors.h resource.h
+  Src/Languages: *.rc resource.h
+
 2004-06-08 Kimmo
  PATCH: [ 968504 ] Add Goto Line to location pane context menu
   Src: LocationView.cpp LocationView.h Merge.rc resource.h

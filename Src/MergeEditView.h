@@ -34,16 +34,21 @@
  */
 struct COLORSETTINGS
 {
-	COLORREF	clrDiff;			// The difference color
-	COLORREF	clrSelDiff;			// The selected difference color
-	COLORREF	clrDiffDeleted;		// The difference deleted color
-	COLORREF	clrSelDiffDeleted;	// The selected difference deleted color
-	COLORREF	clrDiffText;		// The difference text color
-	COLORREF	clrSelDiffText;		// The selected difference text color
-	COLORREF	clrTrivial;			// The blank line change
-	COLORREF	clrTrivialDeleted;	// The missing blank line
-	COLORREF	clrFileLeftNewer;	// The left file newer color (dir view)
-	COLORREF	clrFileRightNewer;	// The right file newer color (dir view)
+	COLORREF	clrDiff;			/**< Difference color */
+	COLORREF	clrSelDiff;			/**< Selected difference color */
+	COLORREF	clrDiffDeleted;		/**< Difference deleted color */
+	COLORREF	clrSelDiffDeleted;	/**< Selected difference deleted color */
+	COLORREF	clrDiffText;		/**< Difference text color */
+	COLORREF	clrSelDiffText;		/**< Selected difference text color */
+	COLORREF	clrTrivial;			/**< Ignored difference color */
+	COLORREF	clrTrivialDeleted;	/**< Ignored difference deleted color */
+	COLORREF	clrTrivialText;		/**< Ignored difference text color */
+	COLORREF	clrMoved;			/**< Moved block color */
+	COLORREF	clrMovedDeleted;	/**< Moved block deleted color */
+	COLORREF	clrMovedText;		/**< Moved block text color */
+	COLORREF	clrSelMoved;		/**< Selected moved block color */
+	COLORREF	clrSelMovedDeleted;	/**< Selected moved block deleted color */
+	COLORREF	clrSelMovedText;	/**< Selected moved block text color */
 };
 
 /** 
