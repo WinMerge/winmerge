@@ -1,3 +1,8 @@
+2004-05-31 Kimmo
+ Backout patch for BUG: [ 959729 ] View menu show-items disabled in mergeview
+  It caused bug #963299 Can't execute 2.1.7.5 under Windows 98
+  Src/editlib/editcmd.h
+
 2004-05-31 Perry
  PATCH: [ 963092 ] Cannot compile LanguageSelect.cpp using MSVC Japanese Ver.
   Src/Common: LanguageSelect.cpp
