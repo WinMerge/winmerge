@@ -1,3 +1,9 @@
+2004-05-28 Laoran
+ PATCH: [ 961304 ] WinDiff-compatible (F7/F8) keybindings for next/prev diff
+ submitted by Krzysztof Kowalczyk
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2004-05-27 Laoran
  PATCH: [ 960996 ] 'backspace' key in dirview for parent directory
   Src: DirView.cpp DirView.h

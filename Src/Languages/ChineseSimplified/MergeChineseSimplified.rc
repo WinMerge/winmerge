@@ -78,17 +78,17 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "复制到右边(&R)",              ID_L2R
-        MENUITEM "复制到左边(&L)",              ID_R2L
+        MENUITEM "?????(&R)",              ID_L2R
+        MENUITEM "?????(&L)",              ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "&Highlight Line Diff",        ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "撤销(&U)",                    ID_EDIT_UNDO
-        MENUITEM "重复(&R)",                    ID_EDIT_REDO
+        MENUITEM "??(&U)",                    ID_EDIT_UNDO
+        MENUITEM "??(&R)",                    ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "剪切(&U)",                    ID_EDIT_CUT
-        MENUITEM "复制(&C)",                    ID_EDIT_COPY
-        MENUITEM "粘贴(&P)",                    ID_EDIT_PASTE
+        MENUITEM "??(&U)",                    ID_EDIT_CUT
+        MENUITEM "??(&C)",                    ID_EDIT_COPY
+        MENUITEM "??(&P)",                    ID_EDIT_PASTE
         MENUITEM SEPARATOR
         MENUITEM "&Goto...",                     ID_EDIT_WMGOTO
     END
@@ -96,12 +96,12 @@ END
 
 IDR_MAINFRAME MENU
 BEGIN
-    POPUP "文件(&F)"
+    POPUP "??(&F)"
     BEGIN
         MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "打开(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "??(&O)...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM SEPARATOR
-        MENUITEM "保存(&S)\tCtrl+S",            ID_FILE_SAVE
+        MENUITEM "??(&S)\tCtrl+S",            ID_FILE_SAVE
         POPUP "Save &Left"
         BEGIN
             MENUITEM "&Save",                       ID_FILE_SAVE_LEFT
@@ -125,23 +125,23 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Merge Mode\tF7",              ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
-        MENUITEM "退出(&X)\tEsc",               ID_APP_EXIT
+        MENUITEM "??(&X)\tEsc",               ID_APP_EXIT
     END
-    POPUP "编辑(&E)"
+    POPUP "??(&E)"
     BEGIN
-        MENUITEM "撤销(&U)\tCtrl+Z",            ID_EDIT_UNDO
-        MENUITEM "重复(&R)\tCtrl+Y",            ID_EDIT_REDO
+        MENUITEM "??(&U)\tCtrl+Z",            ID_EDIT_UNDO
+        MENUITEM "??(&R)\tCtrl+Y",            ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "剪切(&U)\tCtrl+X",            ID_EDIT_CUT
-        MENUITEM "复制(&C)\tCtrl+C",            ID_EDIT_COPY
-        MENUITEM "粘贴(&P)\tCtrl+V",            ID_EDIT_PASTE
+        MENUITEM "??(&U)\tCtrl+X",            ID_EDIT_CUT
+        MENUITEM "??(&C)\tCtrl+C",            ID_EDIT_COPY
+        MENUITEM "??(&P)\tCtrl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
         MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Highlight Line Diff\tF4",    ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "寻找(&I)...\tCtrl+F",         ID_EDIT_FIND
-        MENUITEM "替换(&C)...\tCtrl+H",         ID_EDIT_REPLACE
+        MENUITEM "??(&I)...\tCtrl+F",         ID_EDIT_FIND
+        MENUITEM "??(&C)...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
         POPUP "&Scripts"
         BEGIN
@@ -150,50 +150,50 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Go To...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "选项(&O)...",                 ID_OPTIONS
+        MENUITEM "??(&O)...",                 ID_OPTIONS
         MENUITEM SEPARATOR
-        MENUITEM "更新(&S)\tF5",                ID_REFRESH
+        MENUITEM "??(&S)\tF5",                ID_REFRESH
     END
-    POPUP "视图(&V)"
+    POPUP "??(&V)"
     BEGIN
-        MENUITEM "显示完全相同的文件(&I)",      ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "显示不同的文件(&D)",          ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "显示左边单一的文件(&F)",      ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "显示右边单一的文件(&G)",      ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "显示二进制文件(&H)",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "?????????(&I)",      ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "???????(&D)",          ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "?????????(&F)",      ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "?????????(&G)",      ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "???????(&H)",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "隐藏 *.BAK 文件(&B)",         ID_HIDE_BACKUP_FILES
+        MENUITEM "?? *.BAK ??(&B)",         ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
-        MENUITEM "选择字型(&F)...",             ID_VIEW_SELECTFONT
-        MENUITEM "使用默认字型(&O)",          ID_VIEW_USEDEFAULTFONT
+        MENUITEM "????(&F)...",             ID_VIEW_SELECTFONT
+        MENUITEM "??????(&O)",          ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "显示空白和制表符(&V)",          ID_VIEW_WHITESPACE
+        MENUITEM "????????(&V)",          ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
-        MENUITEM "工具栏(&T)",                  ID_VIEW_TOOLBAR
-        MENUITEM "状态栏(&S)",                  ID_VIEW_STATUS_BAR
+        MENUITEM "???(&T)",                  ID_VIEW_TOOLBAR
+        MENUITEM "???(&S)",                  ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Location &Pane",              ID_VIEW_LOCATION_BAR
         MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
-        MENUITEM "语言(&L)...",                 ID_VIEW_LANGUAGE
+        MENUITEM "??(&L)...",                 ID_VIEW_LANGUAGE
     END
     POPUP "&Merge"
     BEGIN
-        MENUITEM "下一不同(&N)\tAlt+Down",      ID_NEXTDIFF
-        MENUITEM "上一不同(&P)\tAlt+Up",        ID_PREVDIFF
+        MENUITEM "????(&N)\tAlt+Down",      ID_NEXTDIFF
+        MENUITEM "????(&P)\tAlt+Up",        ID_PREVDIFF
         MENUITEM SEPARATOR
-        MENUITEM "第一个不同(&F)\tAlt+Home",    ID_FIRSTDIFF
-        MENUITEM "当前不同(&C)\tAlt+Enter",     ID_CURDIFF
-        MENUITEM "上次的不同(&D)\tAlt+End",     ID_LASTDIFF
+        MENUITEM "?????(&F)\tAlt+Home",    ID_FIRSTDIFF
+        MENUITEM "????(&C)\tAlt+Enter",     ID_CURDIFF
+        MENUITEM "?????(&D)\tAlt+End",     ID_LASTDIFF
         MENUITEM SEPARATOR
-        MENUITEM "复制到右边(&R)\tAlt+Right",   ID_L2R
-        MENUITEM "复制到左边(&L)\tAlt+Left",    ID_R2L
+        MENUITEM "?????(&R)\tAlt+Right",   ID_L2R
+        MENUITEM "?????(&L)\tAlt+Left",    ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "Copy to Right and Advance\tAlt+Ctrl+Right", ID_L2RNEXT
         MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_R2LNEXT
         MENUITEM SEPARATOR
-        MENUITEM "全部复制到右边(&A)",          ID_ALL_RIGHT
-        MENUITEM "全部复制到左边(&E)",          ID_ALL_LEFT
+        MENUITEM "???????(&A)",          ID_ALL_RIGHT
+        MENUITEM "???????(&E)",          ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "Copy Diffs in Left Selection to Right", ID_MULTIPLE_RIGHT
         MENUITEM "Copy Diffs in Right Selection to Left", ID_MULTIPLE_LEFT
@@ -218,24 +218,24 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins (debug)",     ID_RELOAD_PLUGINS
     END
-    POPUP "窗口(&W)"
+    POPUP "??(&W)"
     BEGIN
-        MENUITEM "关闭",                        ID_FILE_CLOSE
+        MENUITEM "??",                        ID_FILE_CLOSE
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
-        MENUITEM "水平并排(&H)",                ID_WINDOW_TILE_HORZ
-        MENUITEM "垂直并排(&V)",                ID_WINDOW_TILE_VERT
-        MENUITEM "重迭(&C)",                    ID_WINDOW_CASCADE
+        MENUITEM "????(&H)",                ID_WINDOW_TILE_HORZ
+        MENUITEM "????(&V)",                ID_WINDOW_TILE_VERT
+        MENUITEM "??(&C)",                    ID_WINDOW_CASCADE
     END
-    POPUP "帮助(&H)"
+    POPUP "??(&H)"
     BEGIN
-        MENUITEM "用户手册(&C)...",                 ID_HELP_CONTENTS
+        MENUITEM "????(&C)...",                 ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM SEPARATOR
-        MENUITEM "GNU 公共授权...",             ID_HELP_GNULICENSE
-        MENUITEM "关于 WinMerge(&A)...",        ID_APP_ABOUT
+        MENUITEM "GNU ????...",             ID_HELP_GNULICENSE
+        MENUITEM "?? WinMerge(&A)...",        ID_APP_ABOUT
     END
 END
 
@@ -331,13 +331,15 @@ BEGIN
     VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F8,          ID_NEXTDIFF,            VIRTKEY, NOINVERT
+    VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
-    VK_F7,          ID_FILE_MERGINGMODE,    VIRTKEY, NOINVERT
+    VK_F9,          ID_FILE_MERGINGMODE,    VIRTKEY, NOINVERT
     VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
     VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
@@ -358,16 +360,16 @@ END
 IDD_ABOUTBOX DIALOGEX 0, 0, 223, 134
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "关于 WinMerge"
+CAPTION "?? WinMerge"
 FONT 8, "MS Shell Dlg"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
-    DEFPUSHBUTTON   "确定",IDOK,184,7,32,14,WS_GROUP
-    LTEXT           "版本 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "??",IDOK,184,7,32,14,WS_GROUP
+    LTEXT           "?? 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
-    LTEXT           "保留所有权利。",IDC_STATIC,7,60,170,8
-    LTEXT           "拜访 WinMerge 首页！",IDC_WWW,7,107,209,8
+    LTEXT           "???????",IDC_STATIC,7,60,170,8
+    LTEXT           "?? WinMerge ???",IDC_WWW,7,107,209,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
     LTEXT           "Contributors are listed in",IDC_STATIC,7,81,208,8
@@ -378,17 +380,17 @@ END
 IDD_OPEN DIALOGEX 0, 0, 364, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
     WS_THICKFRAME
-CAPTION "选择文件或文件夹..."
+CAPTION "????????..."
 FONT 8, "MS Shell Dlg"
 BEGIN
-    RTEXT           "左边(&L):",IDC_STATIC,13,24,40,8
+    RTEXT           "??(&L):",IDC_STATIC,13,24,40,8
     COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
-    PUSHBUTTON      "浏览(&B)...",IDC_LEFT_BUTTON,242,22,50,12
-    RTEXT           "右边(&R):",IDC_STATIC,13,40,40,8
+    PUSHBUTTON      "??(&B)...",IDC_LEFT_BUTTON,242,22,50,12
+    RTEXT           "??(&R):",IDC_STATIC,13,40,40,8
     COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
-    PUSHBUTTON      "浏览(&W)...",IDC_RIGHT_BUTTON,242,38,50,12
+    PUSHBUTTON      "??(&W)...",IDC_RIGHT_BUTTON,242,38,50,12
     RTEXT           "&Filter:",IDC_STATIC,13,56,40,8
     COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP
@@ -400,9 +402,9 @@ BEGIN
     CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,56,86,181,10
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
-    DEFPUSHBUTTON   "确定",IDOK,306,11,50,14
-    PUSHBUTTON      "取消",IDCANCEL,306,28,50,14
-    GROUPBOX        "要比对的文件或文件夹",IDC_FILES_DIRS_GROUP,7,7,292,111
+    DEFPUSHBUTTON   "??",IDOK,306,11,50,14
+    PUSHBUTTON      "??",IDCANCEL,306,28,50,14
+    GROUPBOX        "??????????",IDC_FILES_DIRS_GROUP,7,7,292,111
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -434,28 +436,28 @@ END
 
 IDD_PROP_VSS DIALOGEX 0, 0, 259, 157
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "版本系统"
+CAPTION "????"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    GROUPBOX        "设置",IDC_STATIC,7,7,245,54
-    LTEXT           "cleartool.exe 路径(&P):",IDC_SCROLL_CHECK,16,42,68,8
+    GROUPBOX        "??",IDC_STATIC,7,7,245,54
+    LTEXT           "cleartool.exe ??(&P):",IDC_SCROLL_CHECK,16,42,68,8
     EDITTEXT        IDC_PATH_EDIT,85,40,116,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "浏览(&B)...",IDC_BROWSE_BUTTON,206,40,42,12
+    PUSHBUTTON      "??(&B)...",IDC_BROWSE_BUTTON,206,40,42,12
     COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
-    LTEXT           "版本系统(&V)",IDC_STATIC,16,22,60,10
+    LTEXT           "????(&V)",IDC_STATIC,16,22,60,10
 END
 
 IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "常规"
+CAPTION "??"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    CONTROL         "备份原始文件(&B)",IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "??????(&B)",IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,7,83,10
-    CONTROL         "自动滚动到第一个不同(&S)",IDC_SCROLL_CHECK,"Button",
+    CONTROL         "??????????(&S)",IDC_SCROLL_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,17,129,10
-    CONTROL         "停用引人注目的屏幕(&D)",IDC_DISABLE_SPLASH,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "?????????(&D)",IDC_DISABLE_SPLASH,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,27,100,10
     CONTROL         "&Close compare Statepane automatically",IDC_CMPPANE_AUTOCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
@@ -473,66 +475,66 @@ END
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "语言"
+CAPTION "??"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    PUSHBUTTON      "确定",IDOK,154,16,52,14
-    PUSHBUTTON      "取消",IDCANCEL,154,33,52,14
+    PUSHBUTTON      "??",IDOK,154,16,52,14
+    PUSHBUTTON      "??",IDCANCEL,154,33,52,14
     LISTBOX         1037,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
                     WS_TABSTOP | LBS_SORT
-    LTEXT           "可用的语言:",-1,7,7,66,8
+    LTEXT           "?????:",-1,7,7,66,8
 END
 
 IDD_EDIT_FIND DIALOGEX 30, 73, 236, 68
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "查询"
+CAPTION "??"
 FONT 8, "MS Shell Dlg"
 BEGIN
     COMBOBOX        IDC_EDIT_FINDTEXT,46,6,135,135,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "全字匹配(&W)",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "????(&W)",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX |
                     WS_GROUP | WS_TABSTOP,4,26,100,12
-    CONTROL         "区分大小写(&C)",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "?????(&C)",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,4,40,75,12
-    CONTROL         "使用规则表达式(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "???????(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,4,54,77,12
-    CONTROL         "上移(&U)",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+    CONTROL         "??(&U)",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
                     111,36,43,12
-    CONTROL         "下移(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",BS_AUTORADIOBUTTON,111,48,41,12
-    DEFPUSHBUTTON   "找下一个(&F)",1,185,5,50,14,WS_GROUP
-    PUSHBUTTON      "取消",CBRS_SIZE_FIXED,185,24,50,14
-    LTEXT           "查询内容(&N):",-1,1,8,44,8
-    GROUPBOX        "方向",-1,107,26,68,38,WS_GROUP
+    CONTROL         "??(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",BS_AUTORADIOBUTTON,111,48,41,12
+    DEFPUSHBUTTON   "????(&F)",1,185,5,50,14,WS_GROUP
+    PUSHBUTTON      "??",CBRS_SIZE_FIXED,185,24,50,14
+    LTEXT           "????(&N):",-1,1,8,44,8
+    GROUPBOX        "??",-1,107,26,68,38,WS_GROUP
 END
 
 IDD_EDIT_REPLACE DIALOGEX 36, 44, 230, 103
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "替换"
+CAPTION "??"
 FONT 8, "MS Shell Dlg"
 BEGIN
     COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "全字匹配(&W)",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "????(&W)",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX |
                     WS_GROUP | WS_TABSTOP,5,46,91,12
-    CONTROL         "区分大小写(&C)",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "?????(&C)",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,5,60,73,12
-    CONTROL         "使用规则表达式(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "???????(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,5,74,77,12
-    CONTROL         "选择(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+    CONTROL         "??(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
                     102,57,59,10
-    CONTROL         "整个文件(&O)",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",BS_AUTORADIOBUTTON,102,70,
+    CONTROL         "????(&O)",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",BS_AUTORADIOBUTTON,102,70,
                     58,10
-    DEFPUSHBUTTON   "找下一个(&F)",IDC_EDIT_SKIP,174,4,50,14,WS_GROUP
-    PUSHBUTTON      "替换(&R)",IDC_EDIT_REPLACE,174,21,50,14
-    PUSHBUTTON      "全部替换(&A)",IDC_EDIT_REPLACE_ALL,174,38,50,14
-    PUSHBUTTON      "取消",IDCANCEL,174,55,50,14
-    LTEXT           "查找内容(&N):",IDC_STATIC,4,9,48,8
-    LTEXT           "替换为(&P):",IDC_STATIC,4,26,48,8
-    GROUPBOX        "替换范围",IDC_STATIC,97,46,71,39,WS_GROUP
+    DEFPUSHBUTTON   "????(&F)",IDC_EDIT_SKIP,174,4,50,14,WS_GROUP
+    PUSHBUTTON      "??(&R)",IDC_EDIT_REPLACE,174,21,50,14
+    PUSHBUTTON      "????(&A)",IDC_EDIT_REPLACE_ALL,174,38,50,14
+    PUSHBUTTON      "??",IDCANCEL,174,55,50,14
+    LTEXT           "????(&N):",IDC_STATIC,4,9,48,8
+    LTEXT           "???(&P):",IDC_STATIC,4,26,48,8
+    GROUPBOX        "????",IDC_STATIC,97,46,71,39,WS_GROUP
     CONTROL         "Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,88,84,12
 END
@@ -543,12 +545,12 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Rational Clearcase"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    DEFPUSHBUTTON   "调试",IDOK,35,90,50,14
-    PUSHBUTTON      "取消",IDCANCEL,194,90,50,14
-    PUSHBUTTON      "另存为...",IDC_SAVE_AS,114,90,50,14,NOT WS_VISIBLE
+    DEFPUSHBUTTON   "??",IDOK,35,90,50,14
+    PUSHBUTTON      "??",IDCANCEL,194,90,50,14
+    PUSHBUTTON      "???...",IDC_SAVE_AS,114,90,50,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    LTEXT           "批注",-1,18,7,34,10
+    LTEXT           "??",-1,18,7,34,10
 END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
@@ -556,23 +558,23 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Linefilters"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    CONTROL         "忽略符合下列样式的行",IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "??????????",IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,7,221,15
-    LTEXT           "规则表达式 (每行一个):",-1,7,28,221,8
+    LTEXT           "????? (????):",-1,7,28,221,8
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | ES_AUTOHSCROLL |
                     ES_WANTRETURN
 END
 
 IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "颜色"
+CAPTION "??"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    RTEXT           "不同:",IDC_STATIC,13,29,66,8
-    CONTROL         "不同",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,98,29,17,
+    RTEXT           "??:",IDC_STATIC,13,29,66,8
+    CONTROL         "??",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,98,29,17,
                     14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
-    RTEXT           "已选择:",IDC_STATIC,13,49,66,8
-    CONTROL         "已选择",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,98,49,17,
+    RTEXT           "???:",IDC_STATIC,13,49,66,8
+    CONTROL         "???",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,98,49,17,
                     14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     CTEXT           "Background",IDC_STATIC,81,15,50,8
     CTEXT           "Deleted",IDC_STATIC,130,15,38,8
@@ -602,10 +604,10 @@ END
 IDD_OUTPUT DIALOGEX 0, 0, 278, 157
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "对话框"
+CAPTION "???"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    DEFPUSHBUTTON   "确定",1,106,136,50,14
+    DEFPUSHBUTTON   "??",1,106,136,50,14
     EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | WS_VSCROLL
 END
 
@@ -817,15 +819,15 @@ CAPTION "Compare"
 FONT 8, "MS Shell Dlg"
 BEGIN
     GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
-    CONTROL         "比对空白和制表符(&W)",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
+    CONTROL         "????????(&W)",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,14,19,206,10
-    CONTROL         "忽略空白和制表符更改(&H)",IDC_WHITE_CHANGE,"Button",
+    CONTROL         "??????????(&H)",IDC_WHITE_CHANGE,"Button",
                     BS_AUTORADIOBUTTON,14,30,206,10
-    CONTROL         "忽略所有空白和制表符(&A)",IDC_ALL_WHITE,"Button",
+    CONTROL         "??????????(&A)",IDC_ALL_WHITE,"Button",
                     BS_AUTORADIOBUTTON,14,41,206,10
-    CONTROL         "忽略空白列(&K)",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "?????(&K)",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,60,221,10
-    CONTROL         "敏感对列退出(&E)",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "??????(&E)",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,70,221,10
     CONTROL         "Igno&re carriage return differences (DOS/UNIX/MAC)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
@@ -843,22 +845,22 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
 CAPTION "Editor"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    CONTROL         "强调语法",IDC_HILITE_CHECK,"Button",
+    CONTROL         "????",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
     CONTROL         "Apply to &unrecognized side",
                     IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,18,18,204,10
-    CONTROL         "自动重新扫描(&R)",IDC_AUTOMRESCAN_CHECK,"Button",
+    CONTROL         "??????(&R)",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
-    GROUPBOX        "制表符",IDC_STATIC,7,54,221,33,WS_GROUP
-    LTEXT           "制表符大小(&T):",IDC_STATIC,10,68,35,8
+    GROUPBOX        "???",IDC_STATIC,7,54,221,33,WS_GROUP
+    LTEXT           "?????(&T):",IDC_STATIC,10,68,35,8
     EDITTEXT        IDC_TAB_EDIT,47,66,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
-    CONTROL         "插入制表符(&T)",IDC_PROP_INSERT_TABS,"Button",
+    CONTROL         "?????(&T)",IDC_PROP_INSERT_TABS,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,79,63,76,10
-    CONTROL         "插入空白(&N)",IDC_PROP_INSERT_SPACES,"Button",
+    CONTROL         "????(&N)",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,79,72,59,10
 END
 
@@ -1034,7 +1036,7 @@ IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
 STRINGTABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
-    AFX_IDS_IDLEMESSAGE     "就绪"
+    AFX_IDS_IDLEMESSAGE     "??"
 END
 
 STRINGTABLE
@@ -1050,100 +1052,100 @@ END
 STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
-    ID_FILE_OPEN            "打开一个现存文件\n打开 (Ctrl+O)"
-    ID_FILE_CLOSE           "关闭作用中文件\n关闭"
-    ID_FILE_SAVE            "保存作用中文件\n保存 (Ctrl+S)"
-    ID_FILE_SAVE_AS         "以一个新名称保存作用中文件\n另存新档"
-    ID_FILE_PAGE_SETUP      "变更打印选项\n版面设定"
-    ID_FILE_PRINT_SETUP     "变更打印机和打印选项\n打印设定"
-    ID_FILE_PRINT           "打印作用中文件\n打印"
-    ID_FILE_PRINT_PREVIEW   "显示整页\n预览打印"
+    ID_FILE_OPEN            "????????\n?? (Ctrl+O)"
+    ID_FILE_CLOSE           "???????\n??"
+    ID_FILE_SAVE            "???????\n?? (Ctrl+S)"
+    ID_FILE_SAVE_AS         "?????????????\n????"
+    ID_FILE_PAGE_SETUP      "??????\n????"
+    ID_FILE_PRINT_SETUP     "??????????\n????"
+    ID_FILE_PRINT           "???????\n??"
+    ID_FILE_PRINT_PREVIEW   "????\n????"
 END
 
 STRINGTABLE
 BEGIN
-    ID_APP_ABOUT            "显示程序信息，版本号码和版权\n关于"
-    ID_APP_EXIT             "离开应用程序；提示要保存文件\n退出"
+    ID_APP_ABOUT            "??????????????\n??"
+    ID_APP_EXIT             "??????????????\n??"
 END
 
 STRINGTABLE
 BEGIN
-    ID_FILE_MRU_FIRST       "打开这个文件"
-    ID_FILE_MRU_FILE2       "打开这个文件"
-    ID_FILE_MRU_FILE3       "打开这个文件"
-    ID_FILE_MRU_FILE4       "打开这个文件"
-    ID_FILE_MRU_FILE5       "打开这个文件"
-    ID_FILE_MRU_FILE6       "打开这个文件"
-    ID_FILE_MRU_FILE7       "打开这个文件"
-    ID_FILE_MRU_FILE8       "打开这个文件"
-    ID_FILE_MRU_FILE9       "打开这个文件"
-    ID_FILE_MRU_FILE10      "打开这个文件"
-    ID_FILE_MRU_FILE11      "打开这个文件"
-    ID_FILE_MRU_FILE12      "打开这个文件"
-    ID_FILE_MRU_FILE13      "打开这个文件"
-    ID_FILE_MRU_FILE14      "打开这个文件"
-    ID_FILE_MRU_FILE15      "打开这个文件"
-    ID_FILE_MRU_FILE16      "打开这个文件"
+    ID_FILE_MRU_FIRST       "??????"
+    ID_FILE_MRU_FILE2       "??????"
+    ID_FILE_MRU_FILE3       "??????"
+    ID_FILE_MRU_FILE4       "??????"
+    ID_FILE_MRU_FILE5       "??????"
+    ID_FILE_MRU_FILE6       "??????"
+    ID_FILE_MRU_FILE7       "??????"
+    ID_FILE_MRU_FILE8       "??????"
+    ID_FILE_MRU_FILE9       "??????"
+    ID_FILE_MRU_FILE10      "??????"
+    ID_FILE_MRU_FILE11      "??????"
+    ID_FILE_MRU_FILE12      "??????"
+    ID_FILE_MRU_FILE13      "??????"
+    ID_FILE_MRU_FILE14      "??????"
+    ID_FILE_MRU_FILE15      "??????"
+    ID_FILE_MRU_FILE16      "??????"
 END
 
 STRINGTABLE
 BEGIN
-    ID_NEXT_PANE            "切换到下一个窗口\n下一窗口"
-    ID_PREV_PANE            "切换回上一个窗口\n上一窗口"
+    ID_NEXT_PANE            "????????\n????"
+    ID_PREV_PANE            "????????\n????"
 END
 
 STRINGTABLE
 BEGIN
-    ID_WINDOW_NEW           "为作用中文件打开另一个窗口\n新窗口"
-    ID_WINDOW_ARRANGE       "排列图标在窗口的底部\n排列图标"
-    ID_WINDOW_CASCADE       "排列窗口让它们彼此覆盖n重迭窗口"
-    ID_WINDOW_TILE_HORZ     "非覆盖的排列窗口\n并列窗口"
-    ID_WINDOW_TILE_VERT     "非覆盖的排列窗口\n并列窗口"
-    ID_WINDOW_SPLIT         "分割目前窗口\n分割"
+    ID_WINDOW_NEW           "?????????????\n???"
+    ID_WINDOW_ARRANGE       "??????????\n????"
+    ID_WINDOW_CASCADE       "???????????n????"
+    ID_WINDOW_TILE_HORZ     "????????\n????"
+    ID_WINDOW_TILE_VERT     "????????\n????"
+    ID_WINDOW_SPLIT         "??????\n??"
 END
 
 STRINGTABLE
 BEGIN
-    ID_EDIT_CLEAR           "清除选择的范围\n删除"
-    ID_EDIT_CLEAR_ALL       "全部删除\n全部删除"
-    ID_EDIT_COPY            "复制选择并放置它到这剪贴簿\n复制"
-    ID_EDIT_CUT             "剪切选择并放置它到剪贴簿\n剪切"
-    ID_EDIT_FIND            "寻找指定文字\n寻找"
-    ID_EDIT_PASTE           "插入剪贴簿内容\n粘贴"
-    ID_EDIT_REPEAT          "重复上次的动作\n重复"
-    ID_EDIT_REPLACE         "以不同的文字替换特定的文字\n替换"
-    ID_EDIT_SELECT_ALL      "选择整份文件\n全选"
-    ID_EDIT_UNDO            "撤销上次的动作\n撤销"
-    ID_EDIT_REDO            "重复之前未完成的动作\n重复"
+    ID_EDIT_CLEAR           "???????\n??"
+    ID_EDIT_CLEAR_ALL       "????\n????"
+    ID_EDIT_COPY            "?????????????\n??"
+    ID_EDIT_CUT             "????????????\n??"
+    ID_EDIT_FIND            "??????\n??"
+    ID_EDIT_PASTE           "???????\n??"
+    ID_EDIT_REPEAT          "???????\n??"
+    ID_EDIT_REPLACE         "?????????????\n??"
+    ID_EDIT_SELECT_ALL      "??????\n??"
+    ID_EDIT_UNDO            "???????\n??"
+    ID_EDIT_REDO            "??????????\n??"
 END
 
 STRINGTABLE
 BEGIN
-    ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n切换工具栏"
-    ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n切换状态栏"
+    ID_VIEW_TOOLBAR         "????????\n?????"
+    ID_VIEW_STATUS_BAR      "????????\n?????"
 END
 
 STRINGTABLE
 BEGIN
-    AFX_IDS_SCSIZE          "更改窗口大小"
-    AFX_IDS_SCMOVE          "更改窗口位置"
-    AFX_IDS_SCMINIMIZE      "缩小窗口为一个图标"
-    AFX_IDS_SCMAXIMIZE      "扩大窗口为完整屏幕大小"
-    AFX_IDS_SCNEXTWINDOW    "切换到下一个文件窗口"
-    AFX_IDS_SCPREVWINDOW    "切换到上一个文件窗口"
-    AFX_IDS_SCCLOSE         "关闭作用中窗口并提示到保存这文件"
+    AFX_IDS_SCSIZE          "??????"
+    AFX_IDS_SCMOVE          "??????"
+    AFX_IDS_SCMINIMIZE      "?????????"
+    AFX_IDS_SCMAXIMIZE      "???????????"
+    AFX_IDS_SCNEXTWINDOW    "??????????"
+    AFX_IDS_SCPREVWINDOW    "??????????"
+    AFX_IDS_SCCLOSE         "????????????????"
 END
 
 STRINGTABLE
 BEGIN
-    AFX_IDS_SCRESTORE       "将窗口还原成标准的大小"
-    AFX_IDS_SCTASKLIST      "启用工作清单"
-    AFX_IDS_MDICHILD        "启用这个窗口"
+    AFX_IDS_SCRESTORE       "???????????"
+    AFX_IDS_SCTASKLIST      "??????"
+    AFX_IDS_MDICHILD        "??????"
 END
 
 STRINGTABLE
 BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "关闭预览打印模式\n取消预览"
+    AFX_IDS_PREVIEW_CLOSE   "????????\n????"
 END
 
 // WINMERGE INFORMATION
@@ -1204,8 +1206,8 @@ END
 // WINMERGE INFORMATION
 STRINGTABLE
 BEGIN
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge 这个文件夹"
-    IDS_VERSION_FMT         "版本 %1"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge ?????"
+    IDS_VERSION_FMT         "?? %1"
     IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
       /? or -? displays this help
       /r or -r tells winmerge to compare directories recursively
@@ -1225,18 +1227,18 @@ END
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_OPTIONS_TITLE       "选项"
+    IDS_OPTIONS_TITLE       "??"
     IDS_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
-    IDS_DIFF_OPEN_NO_SET_PROPS "在目前文件比对期间已有修改。 在重新启动目前文件比对前，一些设置不会生效。"
-    IDS_FONT_CHANGE         "选择的字型变更不会套用到任何目前显现不同的窗口。"
+    IDS_DIFF_OPEN_NO_SET_PROPS "?????????????? ??????????????????????"
+    IDS_FONT_CHANGE         "????????????????????????"
 END
 
 // BROWSE FILE
 STRINGTABLE
 BEGIN
-    IDS_OPEN_TITLE          "打开"
+    IDS_OPEN_TITLE          "??"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
-    IDS_ALLFILES            "所有文件 (*.*)|*.*||"
+    IDS_ALLFILES            "???? (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -1258,15 +1260,15 @@ END
 // VERSION CONTROL OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_CC_CMD              "cleartool.exe 路径(&P):"
-    IDS_VSS_CMD             "SS.EXE 路径(&P):"
+    IDS_CC_CMD              "cleartool.exe ??(&P):"
+    IDS_VSS_CMD             "SS.EXE ??(&P):"
 END
 
 // WINDOWS TITLES
 STRINGTABLE
 BEGIN
-    IDS_DIRECTORY_WINDOW_TITLE "文件夹比对结果"
-    IDS_FILE_COMPARISON_TITLE "文件比对"
+    IDS_DIRECTORY_WINDOW_TITLE "???????"
+    IDS_FILE_COMPARISON_TITLE "????"
     IDS_EMPTY_LEFT_FILE     "Untitled left"
     IDS_EMPTY_RIGHT_FILE    "Untitled right"
 END
@@ -1274,12 +1276,12 @@ END
 // STATUS BAR : CURRENT OPERATION STATUS
 STRINGTABLE
 BEGIN
-    IDS_STATUS_RESCANNING                     "扫描文件..."
-    IDS_STATUS_OPENING_SELECTION              "打开选择"
-    IDS_STATUS_COPYL2R      "正在复制左边到右边"
-    IDS_STATUS_COPYR2L      "正在复制右边到左边"
-    IDS_STATUS_COPYALL2L    "正在全部复制到左边"
-    IDS_STATUS_COPYALL2R    "正在全部复制到右边"
+    IDS_STATUS_RESCANNING                     "????..."
+    IDS_STATUS_OPENING_SELECTION              "????"
+    IDS_STATUS_COPYL2R      "?????????"
+    IDS_STATUS_COPYR2L      "?????????"
+    IDS_STATUS_COPYALL2L    "?????????"
+    IDS_STATUS_COPYALL2R    "?????????"
     IDS_STATUS_COPYFILES    "Copying files..."
     IDS_STATUS_DELETEFILES  "Deleting files..."
 END
@@ -1291,15 +1293,15 @@ BEGIN
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
     IDS_MERGEMODE_MERGING   "Merge"
-    IDS_DIFF_NUMBER_STATUS_FMT "不同 %1 在 %2"
-    IDS_NO_DIFF_SEL_FMT         "%1 不同找到"
+    IDS_DIFF_NUMBER_STATUS_FMT "?? %1 ? %2"
+    IDS_NO_DIFF_SEL_FMT         "%1 ????"
     IDS_STATUSBAR_READONLY  "RO"
 END
 
 // OPEN DIALOG
 STRINGTABLE
 BEGIN
-    IDS_ERROR_INCOMPARABLE  "选择要比对的两个现存文件夹或文件"
+    IDS_ERROR_INCOMPARABLE  "????????????????"
     IDS_DIRSEL_TAG          "Directory Selection"
     IDS_OPEN_FILESDIRS      "Select two directories or two files to compare."
     IDS_OPEN_LEFTINVALID    "Left path is invalid!"
@@ -1312,7 +1314,7 @@ END
 // LOADING FILE
 STRINGTABLE
 BEGIN
-    IDS_ERROR_FILE_NOT_FOUND "文件找不到: %1"
+    IDS_ERROR_FILE_NOT_FOUND "?????: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
     IDS_BINFILES_IDENTICAL   "%1\n%2\n\nare identical binary files."
     IDS_BINFILES_DIFFERENT   "%1\n%2\n\nare different binary files."
@@ -1322,18 +1324,18 @@ END
 // SAVING FILE (+ VERSION CONTROL)
 STRINGTABLE
 BEGIN
-    IDS_SAVE_AS_TITLE       "另存为"
-    IDS_SAVE_FMT            "保存更改到 %1？"
+    IDS_SAVE_AS_TITLE       "???"
+    IDS_SAVE_FMT            "????? %1?"
     IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-    IDS_ERROR_FILE_WRITEABLE "错误检查目标写入性"
-    IDS_ERROR_BACKUP        "错误备份文件"
-    IDS_BACKUP_FAILED_PROMPT "无法备份原始的文件。\n无论如何要继续吗？"
-    IDS_NOPROJECT           "您必须指定一个 SourceSafe 项目路径以便继续 (例如：  $/MyProject)"
+    IDS_ERROR_FILE_WRITEABLE "?????????"
+    IDS_ERROR_BACKUP        "??????"
+    IDS_BACKUP_FAILED_PROMPT "??????????\n?????????"
+    IDS_NOPROJECT           "??????? SourceSafe ???????? (???  $/MyProject)"
     IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-    IDS_VSSERROR            "尝试检查文件时版本系统返回一个错误。 无法继续..."
-    IDS_VSS_RUN_ERROR       "执行版本系统命令错误。"
+    IDS_VSSERROR            "?????????????????? ????..."
+    IDS_VSS_RUN_ERROR       "???????????"
     IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
-    IDS_FILESAVE_FAILED     "保存 %1 失败。您要以一个不同的称保存文件吗？"
+    IDS_FILESAVE_FAILED     "?? %1 ???????????????????"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
@@ -1343,13 +1345,13 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "复制选择的文件到已命名的文件夹"
+    ID_DIR_COPY_LEFT_TO_RIGHT "???????????????"
     ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected file to custom directory"
-    ID_DIR_COPY_RIGHT_TO_LEFT "复制选择的文件到已命名的文件夹"
+    ID_DIR_COPY_RIGHT_TO_LEFT "???????????????"
     ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected file to custom directory"
-    ID_DIR_DEL_LEFT         "删除在左边的选择项目"
-    ID_DIR_DEL_RIGHT        "删除在右边的选择项目"
-    ID_DIR_DEL_BOTH         "删除两边的选择项目"
+    ID_DIR_DEL_LEFT         "??????????"
+    ID_DIR_DEL_RIGHT        "??????????"
+    ID_DIR_DEL_BOTH         "?????????"
     IDS_COPY_TO_LEFT        "Right to Left (%1)"
     IDS_COPY_TO_RIGHT       "Left to Right (%1)"
     IDS_COPY_TO_LEFT2       "Right to Left (%1 of %2)"
@@ -1375,24 +1377,24 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
 STRINGTABLE
 BEGIN
-    IDS_CONFIRM_ALL_LEFT    "您确定要复制所有不同到左边文件吗？"
-    IDS_CONFIRM_ALL_RIGHT   "您确定要复制所有不同到右边文件吗？"
-    IDS_CONFIRM_COPY_SINGLE "您确定要复制 %1 到 %2 吗？"
-    IDS_CONFIRM_COPY2DIR    "您确定要复制 %1 在 %2 选择的项目"
-    IDS_CONFIRM_DELETE_ITEMS "您确定要删除 %1 在 %2 选择的项目吗？"
-    IDS_CONFIRM_DELETE_DIR  "删除文件夹 %1？"
-    IDS_CONFIRM_DELETE_SINGLE "您确定要删除 %1 吗？"
+    IDS_CONFIRM_ALL_LEFT    "?????????????????"
+    IDS_CONFIRM_ALL_RIGHT   "?????????????????"
+    IDS_CONFIRM_COPY_SINGLE "?????? %1 ? %2 ??"
+    IDS_CONFIRM_COPY2DIR    "?????? %1 ? %2 ?????"
+    IDS_CONFIRM_DELETE_ITEMS "?????? %1 ? %2 ???????"
+    IDS_CONFIRM_DELETE_DIR  "????? %1?"
+    IDS_CONFIRM_DELETE_SINGLE "?????? %1 ??"
 END
 
 // DIRECTORY DIFFING : OPEN FILE
 STRINGTABLE
 BEGIN
-    ID_DIR_OPEN_LEFT        "打开左边文件"
+    ID_DIR_OPEN_LEFT        "??????"
     ID_DIR_OPEN_LEFT_WITHEDITOR "Open the left file to external editor"
-    ID_DIR_OPEN_LEFT_WITH   "打开左边文件以 ..."
-    ID_DIR_OPEN_RIGHT       "打开右边文件"
+    ID_DIR_OPEN_LEFT_WITH   "??????? ..."
+    ID_DIR_OPEN_RIGHT       "??????"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
-    ID_DIR_OPEN_RIGHT_WITH  "打开右边文件以..."
+    ID_DIR_OPEN_RIGHT_WITH  "???????..."
     IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"
 END
 
@@ -1411,12 +1413,12 @@ END
 // DIRECTORY DIFFING : COLUMN TITLES
 STRINGTABLE
 BEGIN
-    IDS_COLHDR_FILENAME     "文件名称"
-    IDS_COLHDR_DIR          "文件夹"
-    IDS_COLHDR_RESULT       "比对结果"
-    IDS_COLHDR_LTIMEM       "左边日期"
-    IDS_COLHDR_RTIMEM       "右边日期"
-    IDS_COLHDR_EXTENSION    "扩展名"
+    IDS_COLHDR_FILENAME     "????"
+    IDS_COLHDR_DIR          "???"
+    IDS_COLHDR_RESULT       "????"
+    IDS_COLHDR_LTIMEM       "????"
+    IDS_COLHDR_RTIMEM       "????"
+    IDS_COLHDR_EXTENSION    "???"
     IDS_COLHDR_LSIZE        "Left Size"
     IDS_COLHDR_RSIZE        "Right Size"
     IDS_COLHDR_LTIMEC       "Left Creation Time"
@@ -1442,14 +1444,14 @@ END
 // DIRECTORY DIFFING : FILE COMPARISON RESULT, FULL & SHORTENED FORMS
 STRINGTABLE
 BEGIN
-    IDS_CANT_COMPARE_FILES  "无法比对文件"
+    IDS_CANT_COMPARE_FILES  "??????"
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
-    IDS_ONLY_IN_FMT         "只在 %1"
-    IDS_BIN_FILES_SAME      "二进制文件完全相同"
-    IDS_IDENTICAL           "完全相同"
-    IDS_BIN_FILES_DIFF      "二进制文件不同"
-    IDS_FILES_ARE_DIFFERENT "文件不同"
+    IDS_ONLY_IN_FMT         "?? %1"
+    IDS_BIN_FILES_SAME      "?????????"
+    IDS_IDENTICAL           "????"
+    IDS_BIN_FILES_DIFF      "???????"
+    IDS_FILES_ARE_DIFFERENT "????"
     IDS_LEFTONLY            "Left Only"
     IDS_RIGHTONLY           "Right Only"
     IDS_DIFFERENT           "Different"
@@ -1496,12 +1498,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "The same file is opened in both panels."
-    IDS_FILESSAME           "选择的文件完全相同。"
-    IDS_FILEUNIQUE          "选择的文件不存在于两边的文件夹，因此无法比对。"
-    IDS_FILEERROR           "一个错误发生于比对文件时。"
-    IDS_FILEBINARY          "二进制文件无法作视觉的比对。"
+    IDS_FILESSAME           "??????????"
+    IDS_FILEUNIQUE          "???????????????????????"
+    IDS_FILEERROR           "?????????????"
+    IDS_FILEBINARY          "??????????????"
     IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
-    IDS_FILEISDIR           "文件夹文件无法做视觉的比对。"
+    IDS_FILEISDIR           "??????????????"
     IDS_SUGGEST_IGNOREEOL   "The files have a different EOL type.\nWith the current options, all lines will differ.\nDo you want to ignore EOL differences for these files ?\n\nAdvanced user : if the EOL are not unified in your files,\n you may rather set the option '%1'."
     IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
     IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
@@ -1517,8 +1519,8 @@ END
 // EDITOR : SEARCH/REPLACE DIALOGS
 STRINGTABLE
 BEGIN
-    IDS_NUM_REPLACED        "已替换 %1 个字符串。"
-    IDS_EDIT_TEXT_NOT_FOUND "无法寻找字符串「%s」"
+    IDS_NUM_REPLACED        "??? %1 ?????"
+    IDS_EDIT_TEXT_NOT_FOUND "????????%s?"
 END
 
 // EDITOR : FILENAME BAR POPUP
@@ -1737,48 +1739,48 @@ STRINGTABLE
 BEGIN
     ID_SHOWLINEDIFF         "Highlight difference in current line\nDiff in Current Line (F4)"
     ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
-    ID_OPTIONS              "设定程序选项\n选项"
-    ID_REFRESH              "更新显示\n更新 (F5)"
+    ID_OPTIONS              "??????\n??"
+    ID_REFRESH              "????\n?? (F5)"
 END
 
 // VIEW MENU (FILE TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "显示完全相同的文件"
-    ID_OPTIONS_SHOWDIFFERENT "显示有不同的文件"
-    ID_OPTIONS_SHOWUNIQUELEFT "显示只存在于左边的文件"
-    ID_OPTIONS_SHOWUNIQUERIGHT "显示只存在于右边的文件"
-    ID_OPTIONS_SHOWBINARIES "显示二进制文件"
+    ID_OPTIONS_SHOWIDENTICAL "?????????"
+    ID_OPTIONS_SHOWDIFFERENT "????????"
+    ID_OPTIONS_SHOWUNIQUELEFT "???????????"
+    ID_OPTIONS_SHOWUNIQUERIGHT "???????????"
+    ID_OPTIONS_SHOWBINARIES "???????"
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_HIDE_BACKUP_FILES    "隐藏扩展名为 BAK 的文件"
+    ID_HIDE_BACKUP_FILES    "?????? BAK ???"
 END
 
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "选择不同视图的字型\n选择不同视图字型"
-    ID_VIEW_USEDEFAULTFONT  "使用预设的系统字型于不同视图\n预设字型"
-    ID_VIEW_WHITESPACE      "显示空白和制表符字符"
+    ID_VIEW_SELECTFONT      "?????????\n????????"
+    ID_VIEW_USEDEFAULTFONT  "??????????????\n????"
+    ID_VIEW_WHITESPACE      "??????????"
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
     ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
     ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
-    ID_VIEW_LANGUAGE        "选择目前用户接口语言\n语言"
+    ID_VIEW_LANGUAGE        "??????????\n??"
 END
 
 // MERGE MENU
 STRINGTABLE
 BEGIN
-    ID_PREVDIFF             "卷动到上一个不同\n上一个不同 (Alt + Up)"
-    ID_NEXTDIFF             "卷动到下一个不同\n下一个不同 (Alt + Down)"
-    ID_FIRSTDIFF            "卷动到第一个不同\n第一个不同 (Alt+Home)"
-    ID_CURDIFF              "卷动到目前不同\n目前不同 (Alt+Enter)"
-    ID_LASTDIFF             "卷动到上次的不同\n上次的不同 (Alt+End)"
-    ID_L2R                  "复制选择的文字到右边文件\n复制右边 (Alt + Right)"
-    ID_R2L                  "复制选择的文字到左边文件\n复制左边 (Alt + Left)"
+    ID_PREVDIFF             "????????\n????? (Alt + Up)"
+    ID_NEXTDIFF             "????????\n????? (Alt + Down)"
+    ID_FIRSTDIFF            "????????\n????? (Alt+Home)"
+    ID_CURDIFF              "???????\n???? (Alt+Enter)"
+    ID_LASTDIFF             "????????\n????? (Alt+End)"
+    ID_L2R                  "????????????\n???? (Alt + Right)"
+    ID_R2L                  "????????????\n???? (Alt + Left)"
     ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and Advance (Ctrl+Alt+Right)"
     ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
-    ID_ALL_RIGHT            "复制所有不同到右边文件\n所有到右边"
-    ID_ALL_LEFT             "复制所有不同到左边文件\n所有到左边"
+    ID_ALL_RIGHT            "???????????\n?????"
+    ID_ALL_LEFT             "???????????\n?????"
     ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
     ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
 END
@@ -1812,9 +1814,9 @@ END
 // HELP MENU
 STRINGTABLE
 BEGIN
-    ID_HELP_CONTENTS        "显示 WinMerge 用户帮助\n帮助"
+    ID_HELP_CONTENTS        "?? WinMerge ????\n??"
     ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
-    ID_HELP_GNULICENSE      "显示 GNU 公共授权"
+    ID_HELP_GNULICENSE      "?? GNU ????"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
 END
 
