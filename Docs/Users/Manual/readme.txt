@@ -5,6 +5,8 @@
  PATCH: [ 1059076 ] Docs: Difference between 'Col' and 'Ch'
   Submitted by Tim Gerundt
   Manual: Compare_files.xml
+ PATCH: [ 1059117 ] Docs: More instructions for installing from archive
+  Manual: Install.xml
 
 2004-10-28 Kimmo
  Remove unused Open_dlg1.jpg (noticed by Tim Gerundt)
