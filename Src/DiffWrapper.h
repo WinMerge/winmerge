@@ -258,6 +258,7 @@ struct DiffFileData
 	void Close() { Reset(); }
 
 	int just_compare_files(int depth);
+	void GuessEncoding(int side, CDiffContext * pCtxt);
 	int prepAndCompareTwoFiles(CDiffContext * pCtxt, const CString & filepath1, const CString & filepath2);
 
 	file_data * m_inf;

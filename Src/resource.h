@@ -215,6 +215,7 @@
 #define IDC_SELECT_FILTER               1135
 #define IDC_COLDLG_DESC                 1136
 #define IDC_VERIFY_OPEN_PATHS           1137
+#define IDC_DETECT_CODEPAGE             1138
 
 
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -715,7 +716,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        163
 #define _APS_NEXT_COMMAND_VALUE         33094
-#define _APS_NEXT_CONTROL_VALUE         1146
+#define _APS_NEXT_CONTROL_VALUE         1139
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif

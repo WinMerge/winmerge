@@ -159,6 +159,7 @@ public:
 	IPluginInfos * m_piPluginInfos;
 	UINT m_msgUpdateStatus;
 	HWND m_hDirFrame;
+	BOOL m_bGuessEncoding;
 
 	struct dirdata ddLeft, ddRight;
 	char *pNamesLeft;

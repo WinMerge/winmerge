@@ -44,7 +44,8 @@ static char THIS_FILE[]=__FILE__;
 #endif
 
 
-static void GuessEncoding(const CString & filepath, int * unicoding, int * codepage);
+static void GuessCodepageEncoding(const CString & filepath, int * unicoding, int * codepage, 
+                                  BOOL bGuessEncoding);
 static bool demoGuessEncoding_html(UniFile * pufile, int * encoding, int * codepage);
 static bool demoGuessEncoding_rc(UniFile * pufile, int * encoding, int * codepage);
 
@@ -233,14 +234,15 @@ void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
 	CString spath = &dfi == &di.left ? di.getLeftFilepath(this) : di.getRightFilepath(this);
 	CString filepath = paths_ConcatPath(spath, di.sfilename);
 	dfi.Update(filepath);
-	GuessEncoding(filepath, &dfi.unicoding, &dfi.codepage);
+	GuessCodepageEncoding(filepath, &dfi.unicoding, &dfi.codepage, m_bGuessEncoding);
 }
 
 /**
  * @brief Try to deduce encoding for this file
  */
 static void
-GuessEncoding(const CString & filepath, int * unicoding, int * codepage)
+GuessCodepageEncoding(const CString & filepath, int * unicoding, int * codepage,
+                      BOOL bGuessEncoding)
 {
 	UniMemFile ufile;
 	UniFile * pufile = &ufile;
@@ -250,7 +252,7 @@ GuessEncoding(const CString & filepath, int * unicoding, int * codepage)
 	bool hasbom = pufile->ReadBom();
 	*unicoding = pufile->GetUnicoding();
 	*codepage = pufile->GetCodepage();
-	if (!hasbom)
+	if (!hasbom && bGuessEncoding)
 	{
 		// TODO: 
 		// remove these when plugin event implemented for this

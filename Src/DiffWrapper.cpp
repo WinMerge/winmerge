@@ -966,6 +966,16 @@ void DiffFileData::Filepath::GuessEncoding(const char **data, int count)
 	}
 }
 
+/** @brief Guess encoding for one file */
+void DiffFileData::GuessEncoding(int side, CDiffContext * pCtxt)
+{
+	if (!pCtxt->m_bGuessEncoding)
+		return;
+
+	m_sFilepath[side].GuessEncoding(m_inf[side].linbuf + m_inf[side].linbuf_base, 
+	                                m_inf[side].valid_lines - m_inf[side].linbuf_base);
+}
+
 /** @brief Compare two specified files */
 int DiffFileData::just_compare_files(int depth)
 {
@@ -974,9 +984,6 @@ int DiffFileData::just_compare_files(int depth)
 	// Do the actual comparison (generating a change script)
 	BOOL bDetectMovedBlocks = FALSE;
 	struct change *script = diff_2_files (m_inf, depth, &bin_flag, bDetectMovedBlocks);
-
-	m_sFilepath[0].GuessEncoding(m_inf[0].linbuf + m_inf[0].linbuf_base, m_inf[0].valid_lines - m_inf[0].linbuf_base);
-	m_sFilepath[1].GuessEncoding(m_inf[1].linbuf + m_inf[1].linbuf_base, m_inf[1].valid_lines - m_inf[1].linbuf_base);
 
 	int code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
 
@@ -1550,7 +1557,11 @@ DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const CString & filep
 		if (!OpenFiles(filepathTransformed1, filepathTransformed2))
 			goto exitPrepAndCompare;
 	}
+
 	code = just_compare_files(0);
+
+	GuessEncoding(0, pCtxt);
+	GuessEncoding(1, pCtxt);
 
 exitPrepAndCompare:
 	Reset();

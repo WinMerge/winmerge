@@ -1,3 +1,9 @@
+2004-06-10 Laoran
+ PATCH: [ 968887 ] UI for codepage detection
+  Src: DiffContext.cpp DiffContext.h DiffWrapper.cpp DiffWrapper.h DirDoc.cpp
+   MainFrm.cpp Merge.rc OptionsDef.h PropGeneral.cpp PropGeneral.h resource.h
+  Src/Languages: *.rc resource.h
+
 2004-06-09 Kimmo
  PATCH: [ 969277 ] Color options for moved blocks
   Src: MainFrm.cpp Merge.rc MergeEditView.cpp MergeEditView.h OptionsDef.h

@@ -192,6 +192,7 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_strNormalizedRight = m_pCtxt->m_strRight;
 	m_pCtxt->m_hDirFrame = pf->GetSafeHwnd();
 	m_pCtxt->m_msgUpdateStatus = MSG_STAT_UPDATE;
+	m_pCtxt->m_bGuessEncoding = mf->m_options.GetInt(OPT_DETECT_CODEPAGE);
 	paths_normalize(m_pCtxt->m_strNormalizedLeft);
 	paths_normalize(m_pCtxt->m_strNormalizedRight);
 	UpdateHeaderPath(TRUE);

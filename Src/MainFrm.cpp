@@ -187,6 +187,7 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_MERGE_MODE, FALSE);
 	m_options.InitOption(OPT_UNREC_APPLYSYNTAX, FALSE);
 	m_options.InitOption(OPT_CLOSE_WITH_ESC, TRUE);
+	m_options.InitOption(OPT_DETECT_CODEPAGE, FALSE);
 	m_options.InitOption(OPT_LOGGING, 0);
 
 	m_options.InitOption(OPT_CMP_IGNORE_WHITESPACE, 0);
@@ -1208,10 +1209,11 @@ void CMainFrame::OnOptions()
 	gen.m_bAutoCloseCmpPane = m_options.GetInt(OPT_AUTOCLOSE_CMPPANE);
 	gen.m_bVerifyPaths = m_options.GetInt(OPT_VERIFY_OPEN_PATHS);
 	gen.m_bCloseWindowWithEsc = m_options.GetInt(OPT_CLOSE_WITH_ESC);
+	gen.m_bDetectCodepage = m_options.GetInt(OPT_DETECT_CODEPAGE);
 	regpage.m_strEditorPath = m_options.GetString(OPT_EXT_EDITOR_CMD);
 	regpage.GetContextRegValues();
 	regpage.m_bUseRecycleBin = m_options.GetInt(OPT_USE_RECYCLE_BIN);
-    compage.m_compareMethod = m_options.GetInt(OPT_CMP_METHOD);
+	compage.m_compareMethod = m_options.GetInt(OPT_CMP_METHOD);
 	compage.m_nIgnoreWhite = m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	compage.m_bIgnoreBlankLines = m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
 	compage.m_bIgnoreCase = m_options.GetInt(OPT_CMP_IGNORE_CASE);
@@ -1235,6 +1237,7 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_AUTOCLOSE_CMPPANE, gen.m_bAutoCloseCmpPane);
 		m_options.SaveOption(OPT_VERIFY_OPEN_PATHS, gen.m_bVerifyPaths);
 		m_options.SaveOption(OPT_CLOSE_WITH_ESC, gen.m_bCloseWindowWithEsc);
+		m_options.SaveOption(OPT_DETECT_CODEPAGE, gen.m_bDetectCodepage);
 		m_options.SaveOption(OPT_USE_RECYCLE_BIN, regpage.m_bUseRecycleBin);
 		regpage.SaveMergePath();
 		sExtEditor = regpage.m_strEditorPath;
@@ -1248,7 +1251,7 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CMP_IGNORE_BLANKLINES, compage.m_bIgnoreBlankLines);
 		m_options.SaveOption(OPT_CMP_EOL_SENSITIVE, compage.m_bEolSensitive ? FALSE : TRUE); // Reverse
 		m_options.SaveOption(OPT_CMP_IGNORE_CASE, compage.m_bIgnoreCase);
-        m_options.SaveOption(OPT_CMP_METHOD, compage.m_compareMethod);
+		m_options.SaveOption(OPT_CMP_METHOD, compage.m_compareMethod);
 		m_options.SaveOption(OPT_CMP_MOVED_BLOCKS, compage.m_bMovedBlocks);
 		
 		m_nCompMethod = compage.m_compareMethod;
