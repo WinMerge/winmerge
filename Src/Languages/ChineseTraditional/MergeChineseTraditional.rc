@@ -192,7 +192,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS FIXED IMPURE
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
@@ -231,7 +231,7 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG FIXED IMPURE  0, 0, 223, 122
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 122
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "關於 WinMerge"
 FONT 9, "新細明體"
@@ -249,7 +249,7 @@ BEGIN
     LTEXT           "不同的語法編寫由 Ferdinand Prantl",IDC_STATIC,7,81,209,8
 END
 
-IDD_OPEN DIALOGEX 0, 0, 352, 98
+IDD_OPEN DIALOGEX 0, 0, 369, 98
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "選取檔案或資料夾..."
 FONT 9, "新細明體"
@@ -272,7 +272,7 @@ BEGIN
     GROUPBOX        "要比對的檔案或資料夾",IDC_STATIC,7,7,279,84
 END
 
-IDD_VSS DIALOG FIXED IMPURE  0, 0, 258, 149
+IDD_VSS DIALOG DISCARDABLE  0, 0, 258, 149
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Visual SourceSafe"
 FONT 9, "新細明體"
@@ -285,13 +285,13 @@ BEGIN
     LTEXT           "專案:",IDC_STATIC,9,61,25,8
     COMBOBOX        IDC_RIGHT_COMBO,36,58,215,114,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP
-    LTEXT           "用戶:",-1,13,80,18,8
+    LTEXT           "用戶:",IDC_STATIC,13,80,18,8
     EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
     LTEXT           "密碼:",IDC_STATIC,127,79,34,8
     EDITTEXT        IDC_PASSWORD,162,78,70,14,ES_PASSWORD | ES_AUTOHSCROLL
 END
 
-IDD_PROP_VSS DIALOG FIXED IMPURE  0, 0, 259, 157
+IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "版本系統"
 FONT 9, "新細明體"
@@ -332,7 +332,7 @@ BEGIN
     CONTROL         "忽略所有空白和跳格(&A)",IDC_ALL_WHITE,"Button",
                     BS_AUTORADIOBUTTON,125,67,99,10
     GROUPBOX        "跳格",-1,7,105,221,30,WS_GROUP
-    LTEXT           "跳格大小(&T):",-1,10,119,35,8
+    LTEXT           "跳格大小(&T):",IDC_STATIC,10,119,35,8
     EDITTEXT        IDC_TAB_EDIT,47,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
     CONTROL         "插入跳格字元(&T)",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,79,113,76,10
@@ -340,7 +340,7 @@ BEGIN
                     59,10
 END
 
-IDD_LANGUAGE_SELECT DIALOG FIXED IMPURE  0, 0, 213, 111
+IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "語言"
 FONT 9, "新細明體"
@@ -353,7 +353,7 @@ BEGIN
 END
 
 IDD_EDIT_FIND DIALOG FIXED IMPURE  30, 73, 236, 68
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "尋找"
 FONT 9, "新細明體"
 BEGIN
@@ -374,7 +374,7 @@ BEGIN
 END
 
 IDD_EDIT_REPLACE DIALOG FIXED IMPURE  36, 44, 230, 89
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "取代"
 FONT 9, "新細明體"
 BEGIN
@@ -395,13 +395,13 @@ BEGIN
     DEFPUSHBUTTON   "找下一個(&F)",8610,174,4,50,14,WS_GROUP
     PUSHBUTTON      "取代(&R)",IDC_EDIT_REPLACE,174,21,50,14
     PUSHBUTTON      "全部取代(&A)",IDC_EDIT_REPLACE_ALL,174,38,50,14
-    PUSHBUTTON      "取消",CBRS_SIZE_FIXED,174,55,50,14
+    PUSHBUTTON      "取消",IDCANCEL,174,55,50,14
     LTEXT           "要找什麼(&N):",IDC_STATIC,4,9,48,8
     LTEXT           "取代以(&P):",IDC_STATIC,4,26,48,8
     GROUPBOX        "取代在",IDC_STATIC,97,46,71,39,WS_GROUP
 END
 
-IDD_CLEARCASE DIALOG FIXED IMPURE  0, 0, 279, 111
+IDD_CLEARCASE DIALOG DISCARDABLE  0, 0, 279, 111
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Rational Clearcase"
 FONT 9, "新細明體"
@@ -411,10 +411,10 @@ BEGIN
     PUSHBUTTON      "另存新檔...",IDSAVEAS,114,90,50,14
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    LTEXT           "註解",-1,18,7,34,10
+    LTEXT           "註解",IDC_STATIC,18,7,34,10
 END
 
-IDD_PROPSYNTAX DIALOG FIXED IMPURE  0, 0, 235, 156
+IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "強調"
 FONT 9, "新細明體"
@@ -423,17 +423,17 @@ BEGIN
                     7,57,10
 END
 
-IDD_PROPPAGE_FILTER DIALOG FIXED IMPURE  0, 0, 235, 156
+IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "濾鏡"
 FONT 9, "新細明體"
 BEGIN
     CONTROL         "忽略列符合下列的樣式",IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,7,221,15
-    LTEXT           "一般運算式 (每列一個):",-1,7,28,221,8
+    LTEXT           "一般運算式 (每列一個):",IDC_STATIC,7,28,221,8
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | ES_AUTOHSCROLL |
                     ES_WANTRETURN
-    LTEXT           "檔案濾鏡:",-1,7,128,60,10
+    LTEXT           "檔案濾鏡:",IDC_STATIC,7,128,60,10
     COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
 END
@@ -451,7 +451,7 @@ BEGIN
                     14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
 END
 
-IDD_OUTPUT DIALOG FIXED IMPURE  0, 0, 278, 157
+IDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
 FONT 9, "新細明體"
@@ -502,7 +502,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "999.999.999.999\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "c 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "c 1996-2003 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", "999.999.999.999\0"
@@ -516,12 +516,102 @@ END
 
 #endif    // !_MAC
 
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 216
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 115
+    END
+
+    IDD_OPEN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 345
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 91
+    END
+
+    IDD_VSS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 141
+    END
+
+    IDD_PROP_VSS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        VERTGUIDE, 85
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 150
+    END
+
+    IDD_PROPPAGE_LARGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        VERTGUIDE, 128
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_CLEARCASE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 272
+        VERTGUIDE, 18
+        VERTGUIDE, 35
+        VERTGUIDE, 244
+        VERTGUIDE, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 104
+    END
+
+    IDD_PROPSYNTAX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_PROPPAGE_FILTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_PROPPAGE_COLORS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Toolbar
 //
 
-IDR_MAINFRAME TOOLBAR FIXED IMPURE  16, 15
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
 BEGIN
     BUTTON      ID_FILE_OPEN
     BUTTON      ID_FILE_SAVE
@@ -545,6 +635,7 @@ BEGIN
     SEPARATOR
     BUTTON      ID_REFRESH
 END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -570,19 +661,20 @@ IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
 
 IDD_PROP_VSS DLGINIT
 BEGIN
-    1018, 0x403, 5, 0
+    IDC_VER_SYS, 0x403, 5, 0
 0x6f4e, 0x656e, "\000"
-    1018, 0x403, 34, 0
+    IDC_VER_SYS, 0x403, 34, 0
 0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
 0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029,
-    1018, 0x403, 34, 0
+    IDC_VER_SYS, 0x403, 34, 0
 0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
 0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029,
-    1018, 0x403, 19, 0
+    IDC_VER_SYS, 0x403, 19, 0
 0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573,
 "\000"
     0
 END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -596,17 +688,15 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
     IDD_OPEN                "WinMerge 這個資料夾"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
-    CBRS_BORDER_3D          " "
-    129                     " "
     IDS_VERSION_FMT         "版本 %1"
     IDS_ALLFILES            "所有檔案 (*.*)|*.*||"
     IDS_CONFIRM_ALL_LEFT    "你確定要複製所有不同到左邊檔案嗎？"
@@ -623,7 +713,7 @@ BEGIN
     IDS_CANT_COMPARE_FILES  "無法比對檔案"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
     IDS_SAVE_AS_TITLE       "另存新檔"
     IDS_SELECT_FILES_OR_FOLDERS "你的選取必須是兩者都是檔案或兩者都是資料夾"
@@ -643,7 +733,7 @@ BEGIN
     IDS_NOPROJECT           "你必須指定一個 SourceSafe 專案路徑以便繼續 (例如：  $/MyProject)"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_FILENAME_HEADER     "檔案名稱"
     IDS_DIR_HEADER          "資料夾"
@@ -663,7 +753,7 @@ BEGIN
     IDS_DEL_LEFT_FMT        "刪除左邊 %1 在 %2 選取的項目"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_DEL_RIGHT_FMT       "刪除右邊 %1 在 %2 選取的項目"
     IDS_DELETE_FAILED       "刪除檔案 %1 失敗： %2"
@@ -682,7 +772,7 @@ BEGIN
     IDS_BIN_FILES_SAME      "二進制檔案完全相同"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_FILESAVE_FAILED     "儲存 %1 失敗。你要以一個不同的名稱儲存檔案嗎？"
     IDS_ERROR_FILE_NOT_FOUND "檔案找不到: %1"
@@ -695,17 +785,15 @@ BEGIN
     IDS_STATUS_COPYALL2R    "正在全部複製到右邊"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_NUM_REPLACED        "已取代 %1 個字串。"
     IDS_EDIT_TEXT_NOT_FOUND "無法尋找字串「%s」"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
+
 BEGIN
-    CBRS_ALIGN_BOTTOM       " "
-    32769                   " "
-    32770                   " "
     ID_L2R                  "複製選取的文字到右邊檔案\n複製右邊 (Alt + Right)"
     ID_R2L                  "複製選取的文字到左邊檔案\n複製左邊 (Alt + Left)"
     ID_UNDO                 " "
@@ -718,14 +806,11 @@ BEGIN
     ID_POPUP_SAVE           " "
     ID_NEXTDIFF             "捲動到下一個不同\n下一個不同 (Alt + Down)"
     ID_OPTIONS_BACKUPORIGINALFILE "儲存的這原始的一個副本為 *.bak\n備份"
-    32783                   " "
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE "自動地捲動到這第一個不同\n捲動到第一個"
-    32785                   " "
-    32786                   " "
     ID_POPUP_EDITFILE       " "
     ID_OPTIONS_IGNOREWHITESPACE "比對檔案時不管空白和跳格"
     ID_HIDE_BACKUP_FILES    "隱藏副檔名為 BAK 的檔案"
@@ -741,7 +826,7 @@ BEGIN
     ID_DIR_COPY_FILE_TO_LEFT "複製選取的檔案到已命名的資料夾"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_DIR_COPY_FILE_TO_RIGHT "複製選取的檔案到已命名的資料夾"
     ID_VIEW_LANGUAGE        "選取目前用戶介面語言\n語言"
@@ -761,7 +846,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "開啟右邊檔案"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "開啟右邊檔案以..."
     ID_OPTIONS_SHOWBINARIES "顯示二進制檔案"
@@ -769,7 +854,7 @@ BEGIN
     ID_REFRESH              "更新顯示\n更新 (F5)"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "就緒"
@@ -777,19 +862,10 @@ BEGIN
     AFX_IDS_APP_TITLE_EMBEDDING " "
     AFX_IDS_COMPANY_NAME    " "
     AFX_IDS_OBJ_TITLE_INPLACE " "
-    57350                   " "
-    57351                   " "
-    57352                   " "
-    57353                   " "
-    57354                   " "
-    57355                   " "
-    57356                   " "
-    57357                   " "
-    57358                   " "
-    57359                   " "
+
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_FILE_NEW             "建立一個新文件\n新增"
     ID_FILE_OPEN            "開啟一個現存文件\n開啟 (Ctrl+O)"
@@ -804,12 +880,9 @@ BEGIN
     ID_FILE_UPDATE          " "
     ID_FILE_SAVE_COPY_AS    " "
     ID_FILE_SEND_MAIL       " "
-    57613                   " "
-    57614                   " "
-    57615                   " "
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_FILE_MRU_FIRST       "開啟這個文件"
     ID_FILE_MRU_FILE2       "開啟這個文件"
@@ -829,7 +902,7 @@ BEGIN
     ID_FILE_MRU_FILE16      "開啟這個文件"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_EDIT_CLEAR           "清除選取的範圍\n刪除"
     ID_EDIT_CLEAR_ALL       "全部刪除\n全部刪除"
@@ -844,12 +917,9 @@ BEGIN
     ID_EDIT_SELECT_ALL      "選取整份文件\n全選"
     ID_EDIT_UNDO            "復原上次的動作\n復原"
     ID_EDIT_REDO            "重做之前未完成的動作\n重做"
-    57645                   " "
-    57646                   " "
-    57647                   " "
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_WINDOW_NEW           "為作用中文件開啟另一個視窗\n新視窗"
     ID_WINDOW_ARRANGE       "排列圖示在視窗的底部\n排列圖示"
@@ -857,18 +927,9 @@ BEGIN
     ID_WINDOW_TILE_HORZ     "非覆蓋的排列視窗\n並列視窗"
     ID_WINDOW_TILE_VERT     "非覆蓋的排列視窗\n並列視窗"
     ID_WINDOW_SPLIT         "分割目前視窗\n分割"
-    57654                   " "
-    57655                   " "
-    57656                   " "
-    57657                   " "
-    57658                   " "
-    57659                   " "
-    57660                   " "
-    57661                   " "
-    57662                   " "
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_APP_ABOUT            "顯示程式資訊，版本號碼和版權\n關於"
     ID_APP_EXIT             "離開應用程式；提示要儲存文件\n結束"
@@ -878,23 +939,15 @@ BEGIN
     ID_CONTEXT_HELP         " "
     ID_HELP                 " "
     ID_DEFAULT_HELP         " "
-    57672                   " "
-    57673                   " "
-    57674                   " "
-    57675                   " "
-    57676                   " "
-    57677                   " "
-    57678                   " "
-    57679                   " "
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_NEXT_PANE            "切換到下一個視窗\n下一視窗"
     ID_PREV_PANE            "切換回上一個視窗\n上一視窗"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -904,27 +957,13 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "顯示或隱藏工具列\n切換工具列"
     ID_VIEW_STATUS_BAR      "顯示或隱藏狀態列\n切換狀態列"
-    59394                   " "
-    59395                   " "
-    59396                   " "
-    59397                   " "
-    59398                   " "
-    59399                   " "
-    59400                   " "
-    59401                   " "
-    59402                   " "
-    59403                   " "
-    59404                   " "
-    59405                   " "
-    59406                   " "
-    59407                   " "
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     AFX_IDS_SCSIZE          "更改視窗大小"
     AFX_IDS_SCMOVE          "更改視窗位置"
@@ -935,14 +974,14 @@ BEGIN
     AFX_IDS_SCCLOSE         "關閉作用中視窗並提示到儲存這文件"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     AFX_IDS_SCRESTORE       "將視窗還原成標準的大小"
     AFX_IDS_SCTASKLIST      "啟用工作清單"
     AFX_IDS_MDICHILD        "啟用這個視窗"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "關閉預覽列印模式\n取消預覽"
 END

@@ -1,6 +1,8 @@
 2003-08-12 Christian
  PATCH: [ 786618 ] Brazilian Portuguese translation
   Languages: BuilAll.bat and resurrected directory Brazilian
+ PATCH: [ 782820 ] Updated Traditional Chinese for 2.0
+  Languages\ChineseTraditional: MergeChineseTraditional.rc
 
 2003-08-12 Kimmo
  PATCH: [ 785288 ] Overwrite Read-Only file
