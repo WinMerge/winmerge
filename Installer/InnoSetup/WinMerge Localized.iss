@@ -1106,6 +1106,8 @@ Procedure DeletePreviousStartMenu();
 Var
         strOld: string;
         strNew: string;
+        strMessage: string;
+        strShortcut: string;
 Begin
     {Detects the previous start menu group's path, if any}
     strOld := OldGroup();
@@ -1122,16 +1124,45 @@ Begin
             {If the current and previous start menu locations are different then...}
 		    If Uppercase(strOld) <> UpperCase(strNew) Then
 		        Begin
+		            strMessage := ExpandConstant('{cm:DeletePreviousStartMenu}');
+                    strMessage := Format2(strMessage, strOld, strNew);
+
 		              {Display a dialog asking the user if they'd like to delete the previous start menu group}
 		            {If they'd like to delete the previous start menu group then...}
-					If Msgbox('The installer has detected that you changed the location of your start menu from "' + strOld + '" to "' + strNew + '". Would you like to delete the previous start menu folder?', mbConfirmation, mb_YesNo) = mrYes Then
+					If Msgbox(strMessage, mbConfirmation, mb_YesNo) = mrYes Then
 						Begin
-			                {Removes each of the start menu icons to make the folder empty}
-			                DeleteFile(strOld + '\Read Me.lnk')
-			                DeleteFile(strOld + '\Uninstall WinMerge.lnk')
-			                DeleteFile(strOld + '\User''s Guide.lnk')
-			                DeleteFile(strOld + '\WinMerge on the Web.lnk')
-			                DeleteFile(strOld + '\WinMerge.lnk')
+						    strOld := ExpandConstant('{commonstartmenu}\Programs\') + strOld;
+			
+                            {Removes each of the start menu icons to make the folder empty}
+                            strShortcut := strOld + '\' + ExpandConstant('{cm:ReadMe}') + '.lnk';
+			                DeleteFile(strShortcut)
+			                
+			                strShortcut := strOld + '\Read Me.lnk';
+			                DeleteFile(strShortcut)
+			                			
+			                strShortcut := strOld + '\' + ExpandConstant('{cm:UninstallProgram,WinMerge}') + '.lnk';
+			                DeleteFile(strShortcut)
+			                
+			                strShortcut := strOld + '\Uninstall WinMerge.lnk';
+			                DeleteFile(strShortcut)
+			
+			                strShortcut := strOld + '\' + ExpandConstant('{cm:UsersGuide}') + '.lnk';
+                            DeleteFile(strShortcut)
+                            
+                            strShortcut := strOld + '\User''s Guide.lnk';
+			                DeleteFile(strShortcut)
+                            
+                            strShortcut := strOld + '\' + ExpandConstant('{cm:ProgramOnTheWeb,WinMerge}') + '.url';
+			                DeleteFile(strShortcut)
+			                
+			                strShortcut := strOld + '\Winmerge on the Web.lnk';
+			                DeleteFile(strShortcut)
+			                
+			                strShortcut := strOld + '\Winmerge on the Web.url';
+			                DeleteFile(strShortcut)
+			                
+			                strShortcut := strOld + '\WinMerge.lnk';
+			                DeleteFile(strShortcut)
 
 			                {Deletes the empty start menu directory (This has to already be empty in order for this to work, hence the
 			                file deletions above)}
@@ -1156,6 +1187,7 @@ End;
 {This event procedure is queed each time the user changes pages within the installer}
 Procedure CurPageChanged(CurPage: integer);
 Begin
+
     {if the installer reaches the file copy page then...}
     If CurPage = wpInstalling Then
 
