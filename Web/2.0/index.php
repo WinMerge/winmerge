@@ -28,13 +28,13 @@
 <img src="images/screenshot.png" alt="Screenshot of WinMerge">
 
 <h2>Installation</h2>
-<p>Just download the installer and double-click it.</p>
-<p>Or you may simply unzip the binary zip package (eg, <code>WinMerge202-exe.zip</code>) into the desired location, and run
+<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup202.exe">installer</a> and double-click it.</p>
+<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge202-exe.zip">binary zip package</a> into the desired location, and run
 <code>WinMerge.exe</code> or <code>WinMergeU.exe</code> (the latter is the Unicode version, only for use on NT/2000/XP).</p>
 
 <h2>Using WinMerge</h2>
 <p>You can use the <a href="docs/index.html">online User's Guide</a>, or you can
-<a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254">download</a> a copy.</p>
+<a href="http://prdownloads.sourceforge.net/winmerge/WinMergeDocs2_0.zip">download</a> a copy.</p>
 
 <h2>Support</h2>
 <p>WinMerge is an Open Source project, that is covered

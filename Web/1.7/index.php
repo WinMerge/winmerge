@@ -24,10 +24,10 @@ synchronizing tool only (ie: Briefcase), WinMerge is probably not the right tool
   <li>HTML-based <a href="docs/index.html">User's Guide</a></li>
 </ul>
 <h2>Installation</h2>
-<p>Just download the installer and double-click <code>WinMergeSetup.exe</code>.</p>
+<p>Just download the <a href="http://download.sourceforge.net/winmerge/WinMergeSetup.exe">installer</a> and double-click it.</p>
 <h2>Using WinMerge</h2>
-<p>I actually dug up some time and created a simple User's Guide.
-<a href="docs/index.html">Check it out</a>.</p>
+<p>You can use the <a href="docs/index.html">online User's Guide</a>, or you can
+<a href="http://download.sourceforge.net/winmerge/WinMergeDocs1_7.zip">download</a> a copy.</p>
 <h2>Support</h2>
 <p>WinMerge is now an Open Source project, that is covered
 under the <a href="http://www.gnu.org/copyleft/gpl.html">GNU Public License</a>.&nbsp;

@@ -1,3 +1,10 @@
+2004-11-19 Tim
+ PATCH: [ 1068999 ] Web: Revamp 'Downloads' menu
+  Web: index.php page.inc
+  Web\1.7: index.php
+  Web\2.0: index.php
+  Web\2.2: index.php
+
 2004-11-18 Tim
  PATCH: [ 1068542 ] Update Norwegian translation status
   Web\developer\l10n: status.xml
