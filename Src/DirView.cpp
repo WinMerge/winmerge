@@ -406,7 +406,7 @@ static void NTAPI FormatContextMenu(BCMenu *pPopup, UINT uIDItem, int n1, int n2
 {
 	CString s1, s2;
 	pPopup->GetMenuText(uIDItem, s1, MF_BYCOMMAND);
-	s2.FormatMessage((LPTSTR)(LPCTSTR)s1, NumToStr(n1), NumToStr(n2), NumToStr(n3));
+	s2.FormatMessage(s1, NumToStr(n1), NumToStr(n2), NumToStr(n3));
 	pPopup->SetMenuText(uIDItem, s2, MF_BYCOMMAND);
 	if (n1 == 0)
 	{

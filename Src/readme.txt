@@ -1,3 +1,7 @@
+2004-05-13 Perry
+ PATCH: [ 950530 ] Remove unneeded cast in DirView.cpp
+  Src: DirView.cpp
+
 2004-05-12 Kimmo
  PATCH: [ 948448 ] Remove WinMerge.exe path from system options
   Src: Merge.rc PropRegistry.cpp PropRegistry.h resource.h
