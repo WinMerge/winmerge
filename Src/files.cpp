@@ -210,7 +210,7 @@ int files_analyzeFile(MAPPEDFILEDATA *fileData, DWORD * dwLineCount)
 	DWORD dwBytesRead = 0;
 	*dwLineCount = 1;
 	
-	while ((dwBytesRead < fileData->dwSize - 1) && (bBinary == FALSE))
+	while ((dwBytesRead < fileData->dwSize) && (bBinary == FALSE))
 	{
 		// Binary check
 		if (*lpByte < 0x09)

@@ -1,3 +1,7 @@
+2003-09-07 Kimmo
+ BUG: [ 802063 ] files_analyzeFile bug for UNIX file (2.1)
+  WinMerge: files.cpp
+
 2003-09-07 WinMerge experimental release 2.1.1.3 (cvs)
 
 2003-09-07 Kimmo
