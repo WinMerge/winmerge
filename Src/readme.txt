@@ -1,3 +1,7 @@
+2003-11-05 Perry
+ Added doxygen config file.
+  Docs: doxygen.cfg
+
 2003-11-05 Kimmo
  BUG: [ 829435 ] Fix character classification routines for UNICODE
   WinMerge: paths.cpp stdafx.cpp
