@@ -6,6 +6,9 @@
  PATCH: [ 1159112 ] Swedish translation revision
   Submitted by Hans Eriksson
   Languages/Swedish: MergeSwedish.rc
+ PATCH: [ 1158136 ] Spanish translation revised
+  Submitted by Jesus M. Delgado 'Mack'
+  Languages/Spanish: MergeSpanish.rc
 
 2005-03-07 Perry
  PATCH: [ 1157859 ] Add LVS_SHOWSELALWAYS style to dirview
