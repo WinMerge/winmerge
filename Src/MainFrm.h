@@ -124,6 +124,7 @@ public:
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bIgnoreRegExp; /**< Are regular expression linefilters enabled? */
 	CString m_sPattern; /**< Regular expression linefilters */
+	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
 
 	/**
 	 * @name Version Control System (VCS) integration.

@@ -167,6 +167,7 @@ CMainFrame::CMainFrame()
 	m_bFontSpecified=FALSE;
 	m_strSaveAsPath = _T("");
 	m_bFirstTime = TRUE;
+	m_bEscShutdown = FALSE;
 
 	m_options.SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
 
@@ -2704,17 +2705,25 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{
-		if (m_options.GetInt(OPT_CLOSE_WITH_ESC))
+		if (m_bEscShutdown)
 		{
-			MergeDocList docs;
-			GetAllMergeDocs(&docs);
-			DirDocList dirDocs;
-			GetAllDirDocs(&dirDocs);
-
-			if (docs.IsEmpty() && dirDocs.IsEmpty())
+			AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_APP_EXIT);
+			return TRUE;
+		}
+		else
+		{
+			if (m_options.GetInt(OPT_CLOSE_WITH_ESC))
 			{
-				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
-				return FALSE;
+				MergeDocList docs;
+				GetAllMergeDocs(&docs);
+				DirDocList dirDocs;
+				GetAllDirDocs(&dirDocs);
+
+				if (docs.IsEmpty() && dirDocs.IsEmpty())
+				{
+					AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
+					return FALSE;
+				}
 			}
 		}
 	}

@@ -87,7 +87,6 @@ CMergeApp::CMergeApp() :
 , m_lang(IDR_MAINFRAME, IDR_MAINFRAME)
 , m_fileFilterMgr(0)
 , m_currentFilter(0)
-, m_bEscCloses(FALSE)
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
@@ -273,7 +272,7 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 
 			// -e to allow closing with single esc press
 			if (!_tcsicmp(pszParam, _T("e")))
-				m_bEscCloses = TRUE;
+				pMainFrame->m_bEscShutdown = TRUE;
 
 			// -wl to open left path as read-only
 			if (!_tcsicmp(pszParam, _T("wl")))
@@ -535,20 +534,6 @@ BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/,
 
 BOOL CMergeApp::PreTranslateMessage(MSG* pMsg)
 {
-	// Check if we got 'ESC pressed' -message
-	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE)) 
-	{
-		// If /e commandline parameter were given close WinMerge
-		// NOTE: Without /e commandline parameter we only close
-		// active window/dialog. See CDirView::PreTranslateMessage()
-		// and CMergeEditView::PreTranslateMessage()
-		if (m_bEscCloses)
-		{
-			AfxGetMainWnd()->PostMessage(WM_CLOSE);
-			return FALSE;
-		}
-	}
-
 	// CG: The following lines were added by the Splash Screen component.
 	if (CSplashWnd::PreTranslateAppMessage(pMsg))
 		return TRUE;

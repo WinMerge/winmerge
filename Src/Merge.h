@@ -100,7 +100,6 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
-	BOOL m_bEscCloses;
 	FileFilter * m_currentFilter;
 	FileFilterMgr * m_fileFilterMgr;
 	CString m_sFileFilterPath;
