@@ -60,6 +60,7 @@ public:
 	DIFFITEM GetNextDiffPosition(POSITION & diffpos);
 	DIFFITEM GetDiffAt(POSITION diffpos);
 	BYTE GetDiffStatus(POSITION diffpos);
+	int GetDiffCount();
 
 	// change an existing difference
 	void UpdateStatusCode(POSITION diffpos, BYTE status);

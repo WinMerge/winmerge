@@ -1,5 +1,7 @@
 2003-01-27
  [ 668654 ] Tabtype selection feature
+ [ 672554 ] Update DirView after individual merge
+ Fixed [ 225571 ] After individual merge, dirView not updated
 
 2003-01-21
  [ 671037 ] Changes for MSVC.NET

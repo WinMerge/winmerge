@@ -69,6 +69,7 @@ public:
 	POSITION GetItemKey(int idx);
 	void SetItemKey(int idx, POSITION diffpos);
 	void DeleteAllDisplayItems();
+	int GetItemIndex(DWORD key);
 
 
 // Implementation types

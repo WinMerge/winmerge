@@ -652,6 +652,16 @@ void CDirView::DeleteAllDisplayItems()
 	m_pList->DeleteAllItems();
 }
 
+// given key, get index of item which has it stored
+int CDirView::GetItemIndex(DWORD key)
+{
+	LVFINDINFO findInfo;
+
+	findInfo.flags = LVFI_PARAM;  // Search for itemdata
+	findInfo.lParam = key;
+	return m_pList->FindItem( &findInfo );
+}
+
 // User chose (context menu) open left
 void CDirView::OnCtxtDirOpenLeft()
 {

@@ -148,6 +148,10 @@ BYTE CDiffContext::GetDiffStatus(POSITION diffpos)
 	return m_pList->GetAt(diffpos).code;
 }
 
+int CDiffContext::GetDiffCount()
+{
+	return m_pList->GetCount();
+}
 
 void CDiffContext::UpdateStatusCode(POSITION diffpos, BYTE status)
 {

@@ -1311,3 +1311,21 @@ void CMainFrame::addToMru(LPCSTR szItem, LPCSTR szRegSubKey, UINT nMaxItems)
 	// update count
 	AfxGetApp()->WriteProfileInt(szRegSubKey, "Count", cnt);
 }
+
+void CMainFrame::ConvertPathToSlashes(LPTSTR path)
+{
+	TCHAR *ptr = path;
+	TCHAR *ptr2 = NULL;
+
+	do
+	{
+		ptr2 = _tcschr(ptr, '\\');
+		if (ptr2 != NULL)
+		{
+			*ptr2 = _T('/');
+		}
+		ptr = ptr2;
+	}
+	while (ptr != NULL);
+}
+

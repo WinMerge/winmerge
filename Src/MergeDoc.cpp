@@ -28,6 +28,7 @@
 #include "MainFrm.h"
 
 #include "diff.h"
+#include "diffcontext.h"	// FILE_SAME
 #include "getopt.h"
 #include "fnmatch.h"
 #include "coretools.h"
@@ -35,6 +36,7 @@
 #include "MergeEditView.h"
 #include "cs2cs.h"
 #include "childFrm.h"
+#include "dirdoc.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1067,17 +1069,31 @@ void CMergeDoc::FlushAndRescan()
 
 void CMergeDoc::OnFileSave() 
 {
+	int lSave = 1;
+	int rSave = 1;
+
 	if (m_ltBuf.IsModified())
 	{
-		DoSave(m_strLeftFile, TRUE);
+		lSave = DoSave(m_strLeftFile, TRUE);
 	}
 
 	if (m_rtBuf.IsModified())
 	{
-		DoSave(m_strRightFile, FALSE);
+		rSave = DoSave(m_strRightFile, FALSE);
 	}
-}
 
+	// IF saving did not fail and files became identical,
+	// update status on dir view
+	if (lSave && rSave)
+	{
+		if (m_nDiffs == 0)
+		{
+			mf->m_pDirDoc->UpdateItemStatus(m_strLeftFile,
+					m_strRightFile, FILE_SAME);
+		}
+	}
+
+}
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
 	CString sIdx,sCnt,s;
@@ -1274,6 +1290,14 @@ BOOL CMergeDoc::SaveHelper()
 			result=FALSE;
 			break;
 		}
+	}
+
+	// If files became identical, update status on
+	// dir view
+	if (result && m_nDiffs == 0)
+	{
+		mf->m_pDirDoc->UpdateItemStatus(m_strLeftFile,
+				m_strRightFile, FILE_SAME);
 	}
 	return result;
 }

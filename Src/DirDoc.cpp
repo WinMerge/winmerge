@@ -126,10 +126,10 @@ diff_dirs2 (filevec, handle_file, depth)
      int depth;
 {
   struct dirdata dirdata[2];
-  int val = 0;		
+  int val = 0;
   int i;
 
-  // Get sorted contents of both dirs.  
+  // Get sorted contents of both dirs.
   for (i = 0; i < 2; i++)
     if (dir_sort (&filevec[i], &dirdata[i]) != 0)
       {
@@ -145,7 +145,7 @@ diff_dirs2 (filevec, handle_file, depth)
       char const *name1 = filevec[1].name;
 
       // If `-S name' was given, and this is the topmost level of comparison,
-	 //ignore all file names less than the specified starting name. 
+	 //ignore all file names less than the specified starting name.
 
       if (dir_start_file && depth == 0)
 	{
@@ -155,12 +155,12 @@ diff_dirs2 (filevec, handle_file, depth)
 	    names1++;
 	}
 
-      // Loop while files remain in one or both dirs. 
+      // Loop while files remain in one or both dirs.
       while (*names0 || *names1)
 	{
 	  // Compare next name in dir 0 with next name in dir 1.
 	     At the end of a dir,
-	     pretend the "next name" in that dir is very large.  
+	     pretend the "next name" in that dir is very large.
 	  int nameorder = (!*names0 ? 1 : !*names1 ? -1
 			   : stricmp (*names0, *names1));
 	  int v1 = (*handle_file) (name0, 0 < nameorder ? 0 : *names0++,
@@ -192,9 +192,9 @@ void CDirDoc::Rescan()
 			m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
 	m_pCtxt->RemoveAll();
 
-	compare_files (0, (char const *)(LPCTSTR)m_pCtxt->m_strLeft, 
+	compare_files (0, (char const *)(LPCTSTR)m_pCtxt->m_strLeft,
 			       0, (char const *)(LPCTSTR)m_pCtxt->m_strRight, m_pCtxt, 0);
-	
+
 	if (gWriteLog) gLog.Write(_T("Directory scan complete\r\n"));
 
 	CString s;
@@ -224,7 +224,7 @@ void CDirDoc::Redisplay()
 		DIFFITEM di = m_pCtxt->GetNextDiffPosition(diffpos);
 
 		LPCTSTR p=NULL;
-		
+
 		BOOL leftside = (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE);
 		BOOL rightside = (di.code==FILE_RUNIQUE || di.code==FILE_RDIRUNIQUE);
 		switch (di.code)
@@ -281,19 +281,19 @@ void CDirDoc::Redisplay()
 			cnt++;
 		}
 	}
-	
+
 }
 
 CDirView * CDirDoc::GetMainView()
 {
 	POSITION pos = GetFirstViewPosition(), ps2=pos;
-	
+
 	while (pos != NULL)
 	{
 		CDirView* pView = (CDirView*)GetNextView(pos);
 		if (pView->IsKindOf( RUNTIME_CLASS(CDirView)))
 			return pView;
-	}   
+	}
 	return (CDirView*)GetNextView(ps2);
 }
 
@@ -319,9 +319,10 @@ static void UpdateTimes(DIFFITEM * pdi)
 void CDirDoc::UpdateItemStatus(UINT nIdx)
 {
 	CString s,s2;
-	UINT cnt=0;
-	int llen = m_pCtxt->m_strLeft.GetLength();
-	int rlen = m_pCtxt->m_strRight.GetLength();
+//	These are not used currently
+//	UINT cnt=0;
+//	int llen = m_pCtxt->m_strLeft.GetLength();
+//	int rlen = m_pCtxt->m_strRight.GetLength();
 	POSITION diffpos = m_pView->GetItemKey(nIdx);
 	DIFFITEM di = m_pCtxt->GetDiffAt(diffpos);
 	TCHAR sTime[80];
@@ -395,7 +396,7 @@ void CDirDoc::UpdateItemStatus(UINT nIdx)
 
 void CDirDoc::InitStatusStrings()
 {
-	
+
 }
 
 void CDirDoc::UpdateResources()
@@ -415,4 +416,75 @@ void CDirDoc::SetDiffContext(CDiffContext *pCtxt)
 		delete m_pCtxt;
 
 	m_pCtxt = pCtxt;
+}
+
+BOOL CDirDoc::UpdateItemStatus( LPCTSTR pathLeft, LPCTSTR pathRight,
+							   UINT status )
+{
+	TCHAR path1[_MAX_PATH] = {0};
+	TCHAR path2[_MAX_PATH] = {0};
+	TCHAR file1[_MAX_PATH] = {0};
+	TCHAR file2[_MAX_PATH] = {0};
+	TCHAR ext1[_MAX_PATH] = {0};
+	TCHAR ext2[_MAX_PATH] = {0};
+	POSITION pos = m_pCtxt->GetFirstDiffPosition();
+	POSITION currentPos;
+	DIFFITEM current;
+	int count = m_pCtxt->GetDiffCount();
+	int i = 0;
+	BOOL found = FALSE;
+
+	split_filename(pathLeft, path1, file1, ext1);
+	split_filename(pathRight, path2, file2, ext2);
+
+	// Path can contain (because of difftools?) '/' and '\'
+	// so for comparing purposes, convert whole path to use '/'
+	mf->ConvertPathToSlashes(path1);
+	mf->ConvertPathToSlashes(path2);
+
+	// Add extensions back
+	if (ext1 != NULL)
+	{
+		_tcscat(file1, ".");
+		_tcscat(file1, ext1);
+	}
+	if (ext2 != NULL)
+	{
+		_tcscat(file2, ".");
+		_tcscat(file2, ext2);
+	}
+
+	// Filenames must be identical
+	if (_tcsicmp( file1, file2) != 0)
+		return FALSE;
+
+	// Get first item
+	current = m_pCtxt->GetDiffAt(pos);
+
+	while (i < count && found == FALSE)
+	{
+		// Save our current pos before getting next
+		currentPos = pos;
+		current = m_pCtxt->GetNextDiffPosition(pos);
+
+		// Path can contain (because of difftools?) '/' and '\'
+		// so for comparing purposes, convert whole path to use '/'
+		mf->ConvertPathToSlashes(current.rpath);
+		mf->ConvertPathToSlashes(current.lpath);
+
+		if ( (_tcsicmp(current.lpath, path1) == 0) &&
+			(_tcsicmp(current.rpath, path2) == 0) &&
+			(_tcsicmp(current.filename, file1) == 0) )
+		{
+			// Right item found!
+			// Get index at view, update status to context
+			// and tell view to update found item
+			int ind = m_pView->GetItemIndex((DWORD)currentPos);
+			m_pCtxt->UpdateStatusCode(currentPos, (BYTE)status);
+			UpdateItemStatus(ind);
+			found = TRUE;
+		}
+		i++;
+	}
+	return found;
 }
