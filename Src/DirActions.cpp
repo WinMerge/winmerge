@@ -260,7 +260,7 @@ void CDirView::DoCopyRightTo()
 		if (IsItemCopyableToOnRight(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
-			fileOp.AddSourceFile(slFile);
+			fileOp.AddSourceFile(srFile);
 		}
 	}
 
@@ -658,3 +658,4 @@ void CDirView::DoOpenWithEditor(SIDE_TYPE stype)
 
 	mf->OpenFileToExternalEditor(file);
 }
+

@@ -1,3 +1,7 @@
+2004-02-03 Kimmo
+ Fix "Copy Right to.." (copy/paste error)
+ Src/DirActions.cpp
+
 2004-02-01 Perry
  Cosmetic: fix copy&paste error in UniFile.cpp comment.
  Src/Common: UniFile.cpp
