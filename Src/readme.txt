@@ -1,3 +1,7 @@
+2004-02-05 Kimmo
+ Remove doubled entrys from MessageMap
+  Src: MergeEditView.cpp
+
 2004-02-05 Perry
  BUG: [ 876500 ] OlecharToUTF8 doesn't distinguish UCS-2BE?
  Add function header comment to OlecharToUTF8 in multiformatText.cpp
