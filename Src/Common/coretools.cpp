@@ -6,7 +6,6 @@ $Date$
 *******************************************************************************/
 
 #include "stdafx.h"
-//#include "dpp32.h"
 #include <stdio.h>
 #include <io.h>
 #include <string.h>
@@ -14,7 +13,6 @@ $Date$
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <math.h>
-//#include "dpp.h"
 #include "coretools.h"
 #include <winsock.h>
 #include <assert.h>
@@ -76,94 +74,7 @@ DWORD GetFileSizeEx(LPCTSTR szFilename)
 	return 0L;
 }
 
-#if UNUSED_CODE
-// 2002-12-08, These are not used, and the UNICODE versions are wrong (wstrcpy ??)
-void WriteWcsFromMbs(CFile* cf, LPCTSTR szSrc, DWORD dwCount)
-{	
-	static wchar_t wstr[1024];
-	ASSERT(dwCount <= 1024);
-	ASSERT(cf != NULL);
-
-#ifdef UNICODE
-	wstrcpy(wstr, szSrc);
-#else
-	mbstowcs(wstr, szSrc, min(dwCount, _tcslen(szSrc)+1));
-#endif
-	cf->Write(wstr,sizeof(wchar_t)*dwCount);
-}
-
-void WriteWcsFromMbs(CArchive* ar, LPCTSTR szSrc, DWORD dwCount)
-{	
-	static wchar_t wstr[1024];
-	ASSERT(dwCount <= 1024);
-	ASSERT(ar != NULL);
-
-#ifdef UNICODE
-	wstrcpy(wstr, szSrc);
-#else
-	mbstowcs(wstr, szSrc, min(dwCount, _tcslen(szSrc)+1));
-#endif
-	ar->Write(wstr,sizeof(wchar_t)*dwCount);
-}
-
-void WriteWcsFromMbs(HANDLE hf, LPCTSTR szSrc, DWORD dwCount)
-{	
-	static wchar_t wstr[1024];
-	ASSERT(dwCount <= 1024);
-	DWORD dwWrite;
-
-#ifdef UNICODE
-	wstrcpy(wstr, szSrc);
-#else
-	mbstowcs(wstr, szSrc, min(dwCount, _tcslen(szSrc)+1));
-#endif
-	WriteFile(hf, wstr,sizeof(wchar_t)*dwCount, &dwWrite, NULL);
-}
-
-void ReadWcsToMbs(CFile* cf, LPTSTR szDest, DWORD dwCount)
-{
-	static wchar_t wstr[1024];
-	ASSERT(dwCount <= 1024);
-	ASSERT(cf != NULL);
-
-	cf->Read(wstr,sizeof(wchar_t)*dwCount);
-#ifdef UNICODE
-	wstrcpy(szDest, wstr);
-#else
-	wcstombs(szDest, wstr, wcslen(wstr)+1);
-#endif
-}
-
-void ReadWcsToMbs(CArchive* ar, LPTSTR szDest, DWORD dwCount)
-{
-	static wchar_t wstr[1024];
-	ASSERT(dwCount <= 1024);
-	ASSERT(ar != NULL);
-
-	ar->Read(wstr,sizeof(wchar_t)*dwCount);
-#ifdef UNICODE
-	wstrcpy(szDest, wstr);
-#else
-	wcstombs(szDest, wstr, wcslen(wstr)+1);
-#endif
-}
-
-void ReadWcsToMbs(HANDLE hf, LPTSTR szDest, DWORD dwCount)
-{
-	static wchar_t wstr[1024];
-	ASSERT(dwCount <= 1024);
-	DWORD dwRead;
-
-	ReadFile(hf, wstr,sizeof(wchar_t)*dwCount, &dwRead, NULL);
-#ifdef UNICODE
-	wstrcpy(szDest, wstr);
-#else
-	wcstombs(szDest, wstr, wcslen(wstr)+1);
-#endif
-}
-#endif // UNUSED_CODE
-
-
+// Doesn't _tcsclen do this ?
 int tcssubptr(LPCTSTR start, LPCTSTR end)
 {
 	LPCTSTR p = start;
@@ -482,21 +393,7 @@ AddExtension(LPTSTR name, LPCTSTR ext)
 	}
 }
    
-   
-
-BOOL
-is_all_whitespace(LPCTSTR s)
-{
-  LPCTSTR p;
-  for (p=s; *p != _T('\0'); p = _tcsinc(p))
-  {
-    if (!_istspace(*p))
-      return FALSE;
-  }
-  return TRUE;
-}
-
-
+  
 BOOL
 GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s)
 {

@@ -1,3 +1,9 @@
+2003-02-22 Perry
+ [ 650356 ] suggest commenting out several functions
+ [ 684416 ] is_all_whitespace is bad
+  Removed bad unused functions in common/coretools.cpp (& .h)
+  (Did not remove all unused functions, only ones with bugs)
+
 2003-02-21 Perry
  Sync'ed all language resources to English version.
  [ 684300 ] Stringified Diffitems
