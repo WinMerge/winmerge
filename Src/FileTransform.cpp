@@ -29,7 +29,6 @@
 #include "StdAfx.h"
 #include "FileTransform.h"
 #include "Plugins.h"
-#include "UnicodeUtf8.h"
 #include "files.h"
 #include "multiformatText.h"
 

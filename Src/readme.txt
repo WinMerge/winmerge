@@ -1,5 +1,8 @@
 2003-12-11 Laoran
-[ 853147 ] New class for text conversion in plugins
+ remove files UnicodeUtf8, consequence of patch #853147 
+  WinMerge: FileTransform.cpp Merge.dsp
+  WinMerge delete: UnicodeUtf8.cpp UnicodeUtf8.h
+ PATCH: [ 853147 ] New class for text conversion in plugins
   common: unicoder.cpp unicoder.h
   common add: multiformatText.cpp multiformatText.h
   WinMerge: DiffWrapper.cpp DirScan.cpp FileTransform.cpp FileTransform.h Merge.dsp MergeDoc.cpp 

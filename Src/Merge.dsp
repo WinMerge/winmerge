@@ -1338,10 +1338,6 @@ SOURCE=..\common\unicoder.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\UnicodeUtf8.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=..\common\UniFile.cpp
 # End Source File
 # Begin Source File
@@ -1747,10 +1743,6 @@ SOURCE=..\Common\textfile.h
 # Begin Source File
 
 SOURCE=..\common\unicoder.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\UnicodeUtf8.h
 # End Source File
 # Begin Source File
 
