@@ -1,3 +1,7 @@
+2003-06-04 Christian
+ Updated Czech and Danish resources
+  Languages: Czech\resource.h Czech\MergeCzech.rc Danish\resource.h Danish\MergeDanish.rc
+
 2003-06-02 Kimmo
  PATCH: [ 747090 ] Fix scroll handling
   editlib: ccrystaltextview.cpp
