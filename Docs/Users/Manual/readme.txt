@@ -1,3 +1,8 @@
+2005-01-15 Kimmo
+ PATCH: [ 1102485 ] suggestions for Line Filters page of manual
+  Submitted by Perry
+  Manual: Filters.xml
+
 2004-12-16 Tim
  RFE: [ 1085099 ] 'fileskip.bmp' looks to similar like 'equal.bmp'
   Manual/screenshots: Dircomp_status1.gif Dircomp_status2.gif fileskip.gif

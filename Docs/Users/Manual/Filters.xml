@@ -105,13 +105,13 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
     <example>
       <title>Some example line filters</title>
       <screen format="linespecific">^MYTAG$</screen>
-      <para> - Filters lines being exactly <constant>"MYTAG"</constant></para>
+      <para> - Filters out lines being exactly <constant>"MYTAG"</constant></para>
       <screen format="linespecific">^::</screen>
-      <para>- Filters lines beginning with <constant>"::"</constant></para>
+      <para>- Filters out lines beginning with <constant>"::"</constant></para>
       <screen format="linespecific">^/\**.\*/$</screen>
-      <para>- Filters lines beginning with <constant>"/*"</constant> and ending with <constant>"*/"</constant></para>
+      <para>- Filters out lines beginning with <constant>"/*"</constant> and ending with <constant>"*/"</constant></para>
       <screen format="linespecific">^[1-5]00</screen>
-      <para>- Filters lines beginning with numbers 100, 200, 300, 400 &amp; 500</para>
+      <para>- Filters out lines beginning with numbers 100, 200, 300, 400 &amp; 500</para>
     </example>
     <example>
       <title>Line filter rule matching CVS "Id:" -lines:</title>
@@ -119,6 +119,13 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
       <screen>// $Id$</screen>
       <para>And they can be filtered with rule:</para>
       <screen>^// \WId: .*\$</screen>
+    </example>
+    <example>
+      <title>Filter out line number comments in po files:</title>
+      <para>po line number comments are like this:</para>
+      <screen>#: src/filename.c:766</screen>
+      <para>And they can be filtered out with rule:</para>
+      <screen>^#</screen>
     </example>
   </sect2>
 </sect1>
