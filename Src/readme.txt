@@ -3,6 +3,8 @@
   Src: DirCompStateBar.cpp DirCompStateBar.h DirFrame.cpp
  PATCH: [ 890758 ] Fix and tune doxy config file
   Docs: doxygen.cfg
+ BUG: [ 887271 ] Weird context menu position if opened from keyboard
+  Src: MergeEditView.cpp
 
 2004-02-07 Laoran
  BUG: [ 892158 ] Empty lines added to end of file

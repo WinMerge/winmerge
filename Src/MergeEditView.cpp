@@ -1567,6 +1567,17 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	// text is CHAR if compiled without UNICODE, WCHAR with UNICODE
 	CString text = GetSelectedText();
 
+	// Context menu opened using keyboard has no coordinates
+	if (point.x == -1 && point.y == -1)
+	{
+		CRect rect;
+		GetClientRect(rect);
+		ClientToScreen(rect);
+
+		point = rect.TopLeft();
+		point.Offset(5, 5);
+	}
+
 	// prepare the tracking data for the callback
 	CallbackDataForContextMenu data;
 	data.point = point;
@@ -1758,7 +1769,7 @@ void CMergeEditView::OnWMGoto()
 			int nRealLine = _ttoi(dlg.m_strParam) - 1;
 			int nApparentLine = 0;
 			int nLineCount = 0;
-			
+
 			if (nRealLine < 0)
 				nRealLine = 0;
 
@@ -1767,7 +1778,7 @@ void CMergeEditView::OnWMGoto()
 			{
 				if (nRealLine > pDoc->m_ltBuf.GetLineCount() - 1)
 					nRealLine = pDoc->m_ltBuf.GetLineCount() - 1;
-				
+
 				nApparentLine = pDoc->m_ltBuf.ComputeApparentLine(nRealLine);
 			}
 			else
@@ -1808,4 +1819,3 @@ void CMergeEditView::OnUpdateWMGoto(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(TRUE);
 }
-
