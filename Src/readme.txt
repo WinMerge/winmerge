@@ -1,3 +1,8 @@
+2005-02-27 Perry
+ PATCH: [ 1112636 ] Suggest cosmetic change in DiffFileData::OpenFiles
+  (new method DiffFileData::Filepath::AssignPath)
+  Src: DiffWrapper.cpp DiffWrapper.h
+
 2005-02-27 Kimmo
  BUG: [ 1153017 ] FileFilterHelper::SetFilter ASSERTS on empty string
   Src: FileFilterHelper.cpp

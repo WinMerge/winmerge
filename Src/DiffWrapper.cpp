@@ -824,8 +824,8 @@ DiffFileData::~DiffFileData()
 /** @brief Open file descriptors in the inf structure (return false if failure) */
 bool DiffFileData::OpenFiles(LPCTSTR szFilepath1, LPCTSTR szFilepath2)
 {
-	m_sFilepath[0].CString::operator=(szFilepath1);
-	m_sFilepath[1].CString::operator=(szFilepath2);
+	m_sFilepath[0].AssignPath(szFilepath1);
+	m_sFilepath[1].AssignPath(szFilepath2);
 	bool b = DoOpenFiles();
 	if (!b)
 		Reset();

@@ -241,6 +241,7 @@ struct DiffFileData
 		bool Transform(const CString & filepath, CString & filepathTransformed,
 			const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd);
 		void GuessEncoding(const char **data, int count);
+		void AssignPath(const CString & sFilePath) { CString::operator=(sFilePath); }
 	} m_sFilepath[2];
 	int m_ndiffs;
 	int m_ntrivialdiffs;
