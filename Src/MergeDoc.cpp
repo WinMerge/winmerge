@@ -1371,7 +1371,7 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		int nLineCount = m_aLines.GetSize();
 		for (int line=0; line<nLineCount-1; ++line)
 		{
-			if (GetLineFlags(line) && LF_GHOST)
+			if (GetLineFlags(line) & LF_GHOST)
 				continue;
 			if (GetLineLength(line) > 0)
 				GetText(line, 0, line, GetLineLength(line), sLine, 0);

@@ -1,3 +1,7 @@
+2004-01-13 Perry
+ PATCH: [ 876546 ] Fix CMergeDoc::CDiffTextBuffer::SaveToFile ghost line detect
+  src/WinMerge: MergeDoc.cpp
+
 2004-01-13 Jochen
  Start Merge7z integration (to be continued)
   src: 7zCommon.cpp 7zCommon.h DirView.h
