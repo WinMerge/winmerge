@@ -3,6 +3,8 @@
   WinMerge: MainFrm.h MainFrm.cpp Merge.dsp Merge.rc resource.h
   WinMerge new files: ConfigLog.h ConfigLog.cpp
   Languages: *.rc resource.h
+ PATCH: [ 835220 ] Update default colors
+  WinMerge: Merge.cpp
 
 2003-11-03 Laoran
  PATCH: [ 834122 ] Add Error Handling around calls to plug-ins

@@ -163,6 +163,12 @@ BOOL CMergeApp::InitInstance()
 	m_clrTrivial        = GetProfileInt(_T("Settings"), _T("TrivialDifferenceColor"), m_clrTrivial);
 	m_clrTrivialDeleted = GetProfileInt(_T("Settings"), _T("TrivialDifferenceDeletedColor"), m_clrTrivialDeleted);
 
+	// Update old default colors to new colors 
+	if (m_clrDiff == RGB(255,255,92))
+		m_clrDiff = RGB(239,203,5);
+	if (m_clrSelDiff == RGB(255,0,92))
+		m_clrSelDiff = RGB(239,119,116);
+
 	// CG: The following block was added by the Splash Screen component.
 	{
 		CCommandLineInfo cmdInfo;
