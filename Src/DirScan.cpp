@@ -1,6 +1,10 @@
-/////////////////////////////////////////////////////////////////////////////
-// DirScan.cpp : implementation file
-//
+/**
+ *  @file DirScan.cpp
+ *
+ *  @brief Implementation of DirScan and helper functions
+ */ 
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "DirScan.h"
@@ -17,11 +21,14 @@ extern CLogFile gLog;
 static char THIS_FILE[] = __FILE__;
 #endif
 
-// directory or file info
+/**
+ * @brief directory or file info for one row in diff result
+ */
 struct fentry
 {
 	CString name;
 	long mtime;
+	long ctime;
 	_int64 size;
 };
 typedef CArray<fentry, fentry&> fentryArray;;
@@ -213,7 +220,10 @@ void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 		fentry ent;
 		CTime mtim;
 		finder.GetLastWriteTime(mtim);
+		CTime ctim;
+		finder.GetCreationTime(ctim);
 		ent.mtime = mtim.GetTime();
+		ent.ctime = ctim.GetTime();
 		ent.size = finder.GetLength64();
 		ent.name = finder.GetFileName();
 		if (finder.IsDirectory())
@@ -261,23 +271,26 @@ static int collstr(const CString & s1, const CString & s2, bool casesensitive)
 static void FilterAdd(const CString & sDir, const fentry * lent, const fentry * rent, int code, CDiffContext * pCtxt)
 {
 	CString name, leftdir, rightdir;
-	long rtime=0, ltime=0;
+	long rmtime=0, lmtime=0, rctime=0, lctime=0;
 	_int64 lsize=0, rsize=0;
 	if (lent)
 	{
 		leftdir = paths_ConcatPath(pCtxt->m_strNormalizedLeft, sDir);
-		ltime = lent->mtime;
+		lmtime = lent->mtime;
+		lctime = lent->ctime;
 		lsize = lent->size;
 		name = lent->name;
 	}
 	if (rent)
 	{
 		rightdir = paths_ConcatPath(pCtxt->m_strNormalizedRight, sDir);
-		rtime = rent->mtime;
+		rmtime = rent->mtime;
+		rctime = rent->ctime;
 		rsize = rent->size;
 		name = rent->name;
 	}
 	gLog.Write(_T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d")
 		, (LPCTSTR)name, (LPCTSTR)leftdir, (LPCTSTR)rightdir, code);
-	pCtxt->AddDiff(name, leftdir, rightdir, ltime, rtime, code);
+	pCtxt->AddDiff(name, sDir, leftdir, rightdir
+		, lmtime, rmtime, lctime, rctime, lsize, rsize, code);
 }

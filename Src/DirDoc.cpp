@@ -18,7 +18,14 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// DirDoc.cpp : implementation file
+/** 
+ * @file  DirDoc.cpp
+ *
+ * @brief Implementation file for CDirDoc
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 //
 
 #include "stdafx.h"
@@ -267,19 +274,19 @@ static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 	case FILE_DIFF:
 		if (mf->m_bShowDiff)
 		{
-			p = _tcsninc(di.slpath, llen);
+			p = _tcsninc(di.getLeftFilepath(), llen);
 		}
 		break;
 	case FILE_BINSAME:
 		if (mf->m_bShowIdent && mf->m_bShowBinaries)
 		{
-			p = _tcsninc(di.slpath, llen);
+			p = _tcsninc(di.getLeftFilepath(), llen);
 		}
 		break;
 	case FILE_BINDIFF:
 		if (mf->m_bShowDiff && mf->m_bShowBinaries)
 		{
-			p = _tcsninc(di.slpath, llen);
+			p = _tcsninc(di.getLeftFilepath(), llen);
 		}
 		break;
 	case FILE_LUNIQUE:
@@ -290,19 +297,23 @@ static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 			|| (mf->m_bShowUniqueRight && rightside))
 		{
 			if (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE)
-				p = _tcsninc(di.slpath, llen);
+			{
+				p = _tcsninc(di.getLeftFilepath(), llen);
+			}
 			else
-				p = _tcsninc(di.srpath, rlen);
+			{
+				p = _tcsninc(di.getRightFilepath(), rlen);
+			}
 		}
 		break;
 	case FILE_SAME:
 		if (mf->m_bShowIdent)
 		{
-			p = _tcsninc(di.slpath, llen);
+			p = _tcsninc(di.getLeftFilepath(), llen);
 		}
 		break;
 	default: // error
-		p = _tcsninc(di.slpath, llen);
+		p = _tcsninc(di.getLeftFilepath(), llen);
 		break;
 	}
 	return p;
@@ -310,6 +321,8 @@ static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 
 void CDirDoc::Redisplay()
 {
+m_pDirView->ToDoDeleteThisValidateColumnOrdering();
+
 	if (m_pCtxt == NULL)
 		return;
 
@@ -330,17 +343,12 @@ void CDirDoc::Redisplay()
 
 		if (p)
 		{
-			int i = m_pDirView->AddNewItem(cnt);
-			m_pDirView->SetSubitem(i, DV_NAME, di.sfilename); 
-			m_pDirView->SetSubitem(i, DV_EXT, di.sext);
-			s = _T(".");
-			s += p;
-			m_pDirView->SetSubitem(i, DV_PATH, s);
-			m_pDirView->SetItemKey(i, curdiffpos);
-			UpdateItemStatus(i, di);
+			int i = m_pDirView->AddDiffItem(cnt, di, p, curdiffpos);
+			UpdateScreenItemStatus(i, di);
 			cnt++;
 		}
 	}
+m_pDirView->ToDoDeleteThisValidateColumnOrdering();
 }
 
 CDirView * CDirDoc::GetMainView()
@@ -372,80 +380,27 @@ static long GetModTime(LPCTSTR szPath)
 	return mystats.st_mtime;
 }
 
-static void UpdateTimes(DIFFITEM * pdi)
-{
-	CString sLeft = (CString)pdi->slpath + _T("\\") + pdi->sfilename;
-	pdi->ltime = GetFileModTime(sLeft);
 
-	CString sRight = (CString)pdi->srpath + _T("\\") + pdi->sfilename;
-	pdi->rtime = GetFileModTime(sRight);
-}
-
-static CString
-TimeString(const time_t * tim)
-{
-	if (!tim) return _T("---");
-	// _tcsftime does not respect user date customizations from
-	// Regional Options/Configuration Regional; COleDateTime::Format does so.
-	COleDateTime odt = *tim;
-	return odt.Format();
-}
-
-void CDirDoc::SetItemStatus(UINT nIdx, LPCTSTR szStatus, int image, const time_t * ltime, const time_t * rtime)
-{
-	m_pDirView->SetSubitem(nIdx, DV_STATUS, szStatus);
-	m_pDirView->SetImage(nIdx, image);
-	m_pDirView->SetSubitem(nIdx, DV_LTIME, TimeString(ltime));
-	m_pDirView->SetSubitem(nIdx, DV_RTIME, TimeString(rtime));
-}
-
-void CDirDoc::UpdateItemStatus(UINT nIdx)
+/**
+ * @brief Update in-memory diffitem status from disk
+ */
+void CDirDoc::ReloadItemStatus(UINT nIdx)
 {
 	POSITION diffpos = m_pDirView->GetItemKey(nIdx);
 	DIFFITEM di = m_pCtxt->GetDiffAt(diffpos);
 
-	UpdateTimes(&di); // in case just copied (into existence) or modified
-	UpdateItemStatus(nIdx, di);
+	m_pCtxt->UpdateInfoFromDisk(di); // in case just copied (into existence) or modified
+	UpdateScreenItemStatus(nIdx, di);
 }
 
-
-void CDirDoc::UpdateItemStatus(UINT nIdx, DIFFITEM di)
+/**
+ * @brief Push current in-memory diffitem status out to screen for selected item
+ */
+void CDirDoc::UpdateScreenItemStatus(UINT nIdx, DIFFITEM di)
 {
-	CString s;
-	switch (di.code)
-	{
-	case FILE_DIFF:
-		VERIFY(s.LoadString(IDS_FILES_ARE_DIFFERENT));
-		SetItemStatus(nIdx, s, FILE_DIFF, &di.ltime, &di.rtime);
-		break;
-	case FILE_BINDIFF:
-		VERIFY(s.LoadString(IDS_BIN_FILES_DIFF));
-		SetItemStatus(nIdx, s, FILE_BINDIFF, &di.ltime, &di.rtime);
-		break;
-	case FILE_BINSAME:
-		VERIFY(s.LoadString(IDS_BIN_FILES_SAME));
-		SetItemStatus(nIdx, s, FILE_BINSAME, &di.ltime, &di.rtime);
-		break;
-	case FILE_LUNIQUE:
-	case FILE_LDIRUNIQUE:
-		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.slpath);
-		SetItemStatus(nIdx, s, di.code, &di.ltime, NULL);
-		break;
-	case FILE_RUNIQUE:
-	case FILE_RDIRUNIQUE:
-		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.srpath);
-		SetItemStatus(nIdx, s, di.code, NULL, &di.rtime);
-		break;
-	case FILE_SAME:
-		VERIFY(s.LoadString(IDS_IDENTICAL));
-		SetItemStatus(nIdx, s, FILE_SAME, &di.ltime, &di.rtime);
-		break;
-	default: // error
-		VERIFY(s.LoadString(IDS_CANT_COMPARE_FILES));
-		SetItemStatus(nIdx, s, FILE_ERROR, (di.ltime>0 ? &di.ltime : NULL), (di.rtime>0 ? &di.rtime : NULL));
-		break;
-	}
-}
+	m_pDirView->UpdateDiffItemStatus(nIdx, di);
+}	
+
 
 void CDirDoc::InitStatusStrings()
 {
@@ -492,15 +447,13 @@ CString GetPathOnly( const CString& sString )
 	return sReturn;
 }
 
-BOOL CDirDoc::UpdateItemStatus(LPCTSTR pathLeft, LPCTSTR pathRight,
-							   UINT status)
+/**
+ * @brief Find the CDiffContext diffpos of an item from its left & right paths
+ */
+POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 {
 	POSITION pos = m_pCtxt->GetFirstDiffPosition();
 	POSITION currentPos;
-	DIFFITEM current;
-	int count = m_pCtxt->GetDiffCount();
-	int i = 0;
-	BOOL found = FALSE;
 
 	CString path1, file1;
 	SplitFilename(pathLeft, &path1, &file1, 0);
@@ -514,38 +467,26 @@ BOOL CDirDoc::UpdateItemStatus(LPCTSTR pathLeft, LPCTSTR pathRight,
 
 	// Filenames must be identical
 	if (file1 != file2)
-		return FALSE;
+		return NULL;
 
 	// Get first item
-	current = m_pCtxt->GetDiffAt(pos);
+	DIFFITEM current = m_pCtxt->GetDiffAt(pos);
 
-	while (i < count && found == FALSE)
+	int count = m_pCtxt->GetDiffCount();
+	for (int i=0; i < count; ++i)
 	{
 		// Save our current pos before getting next
 		currentPos = pos;
 		current = m_pCtxt->GetNextDiffPosition(pos);
 
-		// Path can contain (because of difftools?) '/' and '\'
-		// so for comparing purposes, convert whole path to use '\'
-		current.srpath.Replace('/', '\\');
-		current.slpath.Replace('/', '\\');
-
-		if (path1 == current.slpath &&
-			path2 == current.srpath &&
+		if (path1 == current.getLeftFilepath() &&
+			path2 == current.getRightFilepath() &&
 			file1 == current.sfilename)
 		{
-			// Right item found!
-			// Get index at view, update status to context
-			// and tell view to update found item
-			int ind = m_pDirView->GetItemIndex((DWORD)currentPos);
-			current.code = (BYTE)status;
-			m_pCtxt->UpdateStatusCode(currentPos, (BYTE)status);
-			UpdateItemStatus(ind, current);
-			found = TRUE;
+			return currentPos;
 		}
-		i++;
 	}
-	return found;
+	return NULL;
 }
 
 // stash away our view pointer
@@ -573,61 +514,6 @@ void CDirDoc::MergeDocClosing(CMergeDoc * pMergeDoc)
 	POSITION pos = m_MergeDocs.Find(pMergeDoc);
 	ASSERT(pos);
 	m_MergeDocs.RemoveAt(pos);
-}
-
-BOOL CDirDoc::UpdateItemTimes(LPCTSTR pathLeft, LPCTSTR pathRight)
-{
-	POSITION pos = m_pCtxt->GetFirstDiffPosition();
-	POSITION currentPos;
-	DIFFITEM current;
-	int count = m_pCtxt->GetDiffCount();
-	int i = 0;
-	BOOL found = FALSE;
-
-	CString path1, file1;
-	SplitFilename(pathLeft, &path1, &file1, 0);
-	CString path2, file2;
-	SplitFilename(pathRight, &path2, &file2, 0);
-
-	// Filenames must be identical
-	if (file1 != file2)
-		return FALSE;
-
-	// Path can contain (because of difftools?) '/' and '\'
-	// so for comparing purposes, convert whole path to use '\\'
-	path1.Replace('/', '\\');
-	path2.Replace('/', '\\');
-
-	// Get first item
-	current = m_pCtxt->GetDiffAt(pos);
-
-	while (i < count && found == FALSE)
-	{
-		// Save our current pos before getting next
-		currentPos = pos;
-		current = m_pCtxt->GetNextDiffPosition( pos );
-
-		// Path can contain (because of difftools?) '/' and '\'
-		// so for comparing purposes, convert whole path to use '\'
-		current.srpath.Replace('/', '\\');
-		current.slpath.Replace('/', '\\');
-
-		if (path1 == current.slpath &&
-			path2 == current.srpath &&
-			file1 == current.sfilename)
-		{
-			// Right item found!
-			// Get index at view, update filetimes to context
-			// and tell view to update found item
-			int ind = m_pDirView->GetItemIndex((DWORD) currentPos);
-			UpdateTimes(&current);
-			m_pCtxt->UpdateTimes(currentPos, current.ltime, current.rtime);
-			UpdateItemStatus(ind, current);
-			found = TRUE;
-		}
-		i++;
-	}
-	return found;
 }
 
 // Prepare for reuse
@@ -674,3 +560,26 @@ CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
 	return pMergeDoc;
 }
 
+/**
+ * @brief Item specified has changed on disk (and is now the same if unified==true).
+ */
+void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unified)
+{
+	POSITION pos = FindItemFromPaths(pathLeft, pathRight);
+	ASSERT(pos);
+	int ind = m_pDirView->GetItemIndex((DWORD)pos);
+
+	// Get index at view, update filetimes to context
+	// and tell view to update found item
+	DIFFITEM current = m_pCtxt->GetDiffAt(pos);
+	m_pCtxt->UpdateInfoFromDisk(current);
+
+	if (unified)
+	{
+		// files have been unified -- that is, they are now identical
+		UINT status = FILE_SAME;
+		m_pCtxt->UpdateStatusCode(pos, (BYTE)status);
+	}
+
+	UpdateScreenItemStatus(ind, current);
+}

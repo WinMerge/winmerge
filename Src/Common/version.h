@@ -1,15 +1,21 @@
-/*******************************************************************************
-FILE: version.h
+/**
+ *  @file version.h
+ *
+ *  @brief Declaration of CVersionInfo class
+ */ 
 
-*******************************************************************************/
 #ifndef VERSIONTOOLS_H
 #define VERSIONTOOLS_H
 
+/**
+ * @brief Class providing access to version information of a file
+ */
 class CVersionInfo
 {
 	LPTSTR   m_lpstrVffInfo;
 	BOOL m_bQueryDone;
 	VS_FIXEDFILEINFO m_FixedFileInfo;
+	DWORD m_dwVerInfoSize; /**< Size of version information block (0 if missing) */
 
 	CString m_strFileName;
 	CString m_strLanguage;
@@ -43,6 +49,7 @@ public:
 	CString GetSpecialBuild();
 	CString GetPrivateBuild();
 	CString GetFixedProductVersion();
+	CString GetFixedFileVersion();
 protected:
 	void GetVersionInfo();
 	void GetFixedVersionInfo();

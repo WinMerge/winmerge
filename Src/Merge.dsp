@@ -204,6 +204,10 @@ SOURCE=.\DirActions.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DirColsDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\DirDoc.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -260,6 +264,14 @@ SOURCE=.\DirView.cpp
 
 !ENDIF 
 
+# End Source File
+# Begin Source File
+
+SOURCE=.\DirViewColHandler.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DirViewColItems.cpp
 # End Source File
 # Begin Source File
 
@@ -680,6 +692,10 @@ SOURCE=.\DiffWrapper.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\DirColsDlg.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\DirDoc.h
 # End Source File
 # Begin Source File
@@ -697,6 +713,10 @@ SOURCE=.\DirScan.h
 # Begin Source File
 
 SOURCE=.\DirView.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DirViewColItems.h
 # End Source File
 # Begin Source File
 

@@ -1,13 +1,14 @@
-// DiffContext.h: interface for the CDiffContext class.
-//
-//////////////////////////////////////////////////////////////////////
+/**
+ *  @file DiffContext.h
+ *
+ *  @brief Declarations of CDiffContext and diff structures
+ */ 
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #if !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)
 #define AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
 
 #include "RegExp.h"
 
@@ -30,15 +31,48 @@ struct dirdata
 #define FILE_SKIP        9
 #define FILE_DIRSKIP    10
 
+struct FileFlags
+{
+	int flags;
+	FileFlags() : flags(0) { }
+	void reset() { flags = 0; }
+	CString toString() const { return flags ? _T("RO") : _T(""); }
+
+	enum { RO=1 };
+};
+
+struct DIFFITEM;
+
+/**
+ * @brief information for file on one side of a diff
+ */
+struct DiffFileInfo
+{
+	long mtime; /**< time of last modification */
+	long ctime; /**< time of creation */
+	__int64 size; /**< file size in bytes */
+	CString version; /**< string of fixed file version, eg, 1.2.3.4 */
+	CString spath; /**< fully qualified directory of file */
+	FileFlags flags; /**< file attributes */
+	DiffFileInfo() : mtime(0), ctime(0), size(0) { }
+	// We could stash a pointer here to the parent DIFFITEM
+	// but, I ran into trouble with, I think, the DIFFITEM copy constructor
+};
+
+/**
+ * @brief information about one diff (including files on both sides)
+ */
 struct DIFFITEM
 {
+	DiffFileInfo left;
+	DiffFileInfo right;
 	CString sfilename;
+	CString sSubdir; //*< Common subdirectory from root of comparison */
 	CString sext;
-	CString slpath;
-	CString srpath;
-	long ltime, rtime;
 	BYTE code;
-	DIFFITEM() : ltime(0), rtime(0), code(FILE_ERROR) { }
+	CString getLeftFilepath() const;
+	CString getRightFilepath() const;
+	DIFFITEM() : code(0) { }
 };
 
 // Interface for reporting current file, as diff traverses file tree
@@ -66,10 +100,14 @@ public:
 	void SetRegExp(LPCTSTR pszExp);
 
 	// add & remove differences
-	void AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszRightDir, long ltime, long rtime, BYTE code);
+	void AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir, LPCTSTR pszLeftDir, LPCTSTR pszRightDir
+		, long lmtime, long rmtime, long lctime, long rctime
+		, __int64 lsize, __int64 rsize, BYTE code);
 	void AddDiff(DIFFITEM di);
 	void RemoveDiff(POSITION diffpos);
 	void RemoveAll();
+	void UpdateFieldsNeededForNewItems(DIFFITEM & di, DiffFileInfo & dfi);
+	void UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi);
 
 	// to iterate over all differences on list
 	POSITION GetFirstDiffPosition();
@@ -81,8 +119,8 @@ public:
 
 	// change an existing difference
 	void UpdateStatusCode(POSITION diffpos, BYTE status);
-
-	void UpdateTimes(POSITION diffpos, long leftTime, long rightTime);
+	void UpdateInfoFromDisk(DIFFITEM & di);
+	void UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi);
 
 	BOOL m_bRecurse;
 	CString m_strLeft;

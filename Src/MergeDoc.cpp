@@ -1315,11 +1315,8 @@ void CMergeDoc::OnFileSave()
 		// If DirDoc contains diffs
 		if (m_pDirDoc->m_pCtxt)
 		{
-			m_pDirDoc->UpdateItemTimes(m_strLeftFile,
-				m_strRightFile);
-			if (m_nDiffs == 0)
-				m_pDirDoc->UpdateItemStatus(m_strLeftFile,
-					m_strRightFile, FILE_SAME);
+			bool unified = (m_nDiffs==0); // true if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile, unified);
 		}
 	}
 }
@@ -1533,10 +1530,8 @@ BOOL CMergeDoc::SaveHelper()
 		// If DirDoc contains diffs
 		if (m_pDirDoc->m_pCtxt)
 		{
-			m_pDirDoc->UpdateItemTimes(m_strLeftFile, m_strRightFile);
-			if (m_nDiffs == 0)
-				m_pDirDoc->UpdateItemStatus(m_strLeftFile,
-					m_strRightFile, FILE_SAME);
+			bool unified = (m_nDiffs==0); // true if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile, unified);
 		}
 	}
 	return result;

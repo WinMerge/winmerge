@@ -18,13 +18,21 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// DiffContext.cpp: implementation of the CDiffContext class.
-//
+/**
+ *  @file DiffContext.cpp
+ *
+ *  @brief Implementation of CDiffContext
+ */ 
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
 #include "merge.h"
+#include "version.h"
 #include "DiffContext.h"
+#include "paths.h"
+#include "coretools.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -78,18 +86,40 @@ CDiffContext::~CDiffContext()
 	if (pNamesRight != NULL)
 		free(pNamesRight);
 }
-	
 
-void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszRightDir, 
-						   long ltime, long rtime, BYTE code)
+/**
+ * @brief Fetch & return the fixed file version as a dotted string
+ */
+static CString GetFixedFileVersion(const CString & path)
+{
+	CVersionInfo ver(path);
+	return ver.GetFixedFileVersion();
+}
+
+/**
+ * @brief Add new diffitem to CDiffContext array
+ */
+void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR szSubdir
+	, LPCTSTR pszLeftDir, LPCTSTR pszRightDir
+	, long lmtime, long rmtime
+	, long lctime, long rctime
+	, __int64 lsize, __int64 rsize
+	, BYTE code
+	)
 {
 	DIFFITEM di;
 	di.sfilename = pszFilename;
-	di.slpath = pszLeftDir;
-	di.srpath = pszRightDir;
-	di.ltime = ltime;
-	di.rtime = rtime;
+	di.left.spath = pszLeftDir;
+	di.right.spath = pszRightDir;
+	di.left.mtime = lmtime;
+	di.right.mtime = rmtime;
+	di.left.ctime = lctime;
+	di.right.ctime = rctime;
 	di.code = code;
+	di.left.size = lsize;
+	di.right.size = rsize;
+	UpdateFieldsNeededForNewItems(di, di.left);
+	UpdateFieldsNeededForNewItems(di, di.right);
 	AddDiff(di);
 }
 
@@ -160,11 +190,87 @@ void CDiffContext::UpdateStatusCode(POSITION diffpos, BYTE status)
 	di.code = status;
 }
 
-void CDiffContext::UpdateTimes(POSITION diffpos, long leftTime, long rightTime)
+/**
+ * @brief Load all fields not provided in initial AddDiff call
+ */
+void CDiffContext::UpdateFieldsNeededForNewItems(DIFFITEM & di, DiffFileInfo & dfi)
 {
-	DIFFITEM & di = m_pList->GetAt(diffpos);
-	if (leftTime)
-		di.ltime = leftTime;
-	if (rightTime)
-		di.rtime = rightTime;
+	// attributes weren't passed, which means reading the file status
+	// so we may as well do them all
+	UpdateInfoFromDiskHalf(di, dfi);
 }
+
+/**
+ * @brief Update information from disk
+ */
+void CDiffContext::UpdateInfoFromDisk(DIFFITEM & di)
+{
+	UpdateInfoFromDiskHalf(di, di.left);
+	UpdateInfoFromDiskHalf(di, di.right);
+}
+
+/**
+ * @brief Convert a FILETIME to a long (standard time)
+ */
+static long FileTimeToLong(FILETIME & ft)
+{
+	return CTime(ft).GetTime();
+}
+
+/**
+ * @brief Update information from disk (for one side)
+ */
+void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
+{
+	UpdateVersion(di, dfi);
+
+	CString filepath = paths_ConcatPath(dfi.spath, di.sfilename);
+
+	// CFileFind doesn't expose the attributes
+	// CFileStatus doesn't expose 64 bit size
+
+	WIN32_FIND_DATA wfd;
+	HANDLE h = FindFirstFile(filepath, &wfd);
+	if (h != INVALID_HANDLE_VALUE)
+	{
+		dfi.mtime = FileTimeToLong(wfd.ftLastWriteTime);
+		dfi.flags.reset();
+		if (wfd.dwFileAttributes & FILE_ATTRIBUTE_READONLY)
+			dfi.flags.flags += FileFlags::RO;
+		dfi.size = (wfd.nFileSizeHigh << 32) + wfd.nFileSizeLow;
+		FindClose(h);
+	}
+	else
+	{
+		dfi.mtime = 0;
+		dfi.size = 0;
+		dfi.flags.reset();
+	}
+}
+
+/**
+ * @brief Load file versions from disk
+ */
+void CDiffContext::UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi)
+{
+	// Would be better to not check any text files
+	// but binary files are flagged as FILE_SAME not FILE_BINSAME 
+	// when this is called (Perry 2003-08-21)
+	// and we also didn't flag binary for uniques
+	if (1)
+	{
+		CString filepath = paths_ConcatPath(dfi.spath, di.sfilename);
+		dfi.version = GetFixedFileVersion(filepath);
+	}
+}
+
+CString DIFFITEM::getLeftFilepath() const
+{
+	return paths_ConcatPath(left.spath, sfilename);
+}
+
+CString DIFFITEM::getRightFilepath() const
+{
+	return paths_ConcatPath(right.spath, sfilename);
+}
+

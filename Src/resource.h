@@ -24,6 +24,7 @@
 #define IDD_PROPPAGE_REGISTRY           113
 #define IDD_EDITOR_HEADERBAR            114
 #define IDR_POPUP_EDITOR_HEADERBAR      115
+#define IDD_DIRCOLS                     117
 #define IDS_VERSION_FMT                 130
 #define IDS_ALLFILES                    131
 #define IDS_CONFIRM_ALL_LEFT            132
@@ -55,9 +56,9 @@
 #define IDS_SAVEVSS_FMT                 157
 #define IDS_VSSERROR                    158
 #define IDS_NOPROJECT                   159
-#define IDS_FILENAME_HEADER             160
-#define IDS_DIR_HEADER                  161
-#define IDS_RESULT_HEADER               162
+#define IDS_COLHDR_FILENAME             160
+#define IDS_COLHDR_DIR                  161
+#define IDS_COLHDR_RESULT               162
 #define IDS_FILE_COMPARISON_TITLE       163
 #define IDS_DIFF_NUMBER_STATUS_FMT      164
 #define IDS_NO_DIFF_SEL                 165
@@ -67,9 +68,9 @@
 #define IDS_VSS_CMD                     168
 #define IDS_VSS_RUN_ERROR               169
 #define IDS_DIFF_OPEN_NO_SET_PROPS      170
-#define IDS_LTIME_HEADER                171
-#define IDS_RTIME_HEADER                172
-#define IDS_EXTENSION_HEADER            173
+#define IDS_COLHDR_LTIMEM               171
+#define IDS_COLHDR_RTIMEM               172
+#define IDS_COLHDR_EXTENSION            173
 #define IDS_CONFIRM_DELETE_ITEMS        174
 #define IDS_DEL_LEFT_FMT                175
 #define IDS_DEL_RIGHT_FMT               176
@@ -82,6 +83,7 @@
 #define IDS_DEL_BOTH_FMT                181
 #define IDS_COPY_TO_RIGHT               182
 #define IDS_COPY_TO_RIGHT_MAIN          183
+#define IDS_COLHDR_LSIZE                183
 #define IDS_DELETE_DIR_FAILED           184
 #define IDS_COPY_FILE_FAILED            185
 #define IDS_COPY_DIR_FAILED             186
@@ -100,6 +102,17 @@
 #define IDS_STATUS_COPYALL2L            199
 #define IDS_STATUS_COPYALL2R            200
 #define IDS_PROGRAMFILES                201
+#define IDS_COLHDR_RSIZE                202
+#define IDS_COLHDR_LTIMEC               203
+#define IDS_COLHDR_RTIMEC               204
+#define IDS_COLHDR_NEWER                205
+#define IDS_COLHDR_LVERSION             206
+#define IDS_COLHDR_RVERSION             207
+#define IDS_LEFTONLY                    208
+#define IDS_RIGHTONLY                   209
+#define IDS_COLHDR_RESULT_ABBR          210
+#define IDS_COLHDR_LATTRIBUTES          211
+#define IDS_COLHDR_RATTRIBUTES          212
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
@@ -167,6 +180,14 @@
 #define IDC_WINMERGE_PATH_SAVE          1047
 #define IDC_STATIC_TITLE_LEFT           1048
 #define IDC_STATIC_TITLE_RIGHT          1049
+#define IDC_GROUP_SHOW                  1053
+#define IDC_LIST_SHOW                   1054
+#define IDC_UP                          1055
+#define IDC_DOWN                        1056
+#define IDC_GROUP_HIDE                  1057
+#define IDC_LIST_HIDE                   1058
+#define IDC_ADD                         1059
+#define IDC_REMOVE                      1060
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO            8503
@@ -366,16 +387,17 @@
 #define ID_EDIT_FIND_PREVIOUS           32820
 #define ID_SHOWLINEDIFF                 32821
 #define ID_EDITOR_COPY_PATH             32822
+#define ID_EDIT_COLUMNS                 32822
 #define ID_EDITOR_COPY_FILENAME         32823
 
 // Next default values for new objects
-//
+// 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        116
-#define _APS_NEXT_COMMAND_VALUE         32822
-#define _APS_NEXT_CONTROL_VALUE         1050
+#define _APS_NEXT_RESOURCE_VALUE        118
+#define _APS_NEXT_COMMAND_VALUE         32823
+#define _APS_NEXT_CONTROL_VALUE         1061
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

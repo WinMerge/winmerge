@@ -1,7 +1,9 @@
-/*******************************************************************************
-FILE: version.cpp
+/**
+ *  @file version.cpp
+ *
+ *  @brief Implementation of CVersionInfo class
+ */ 
 
-*******************************************************************************/
 
 #include "stdafx.h"
 #include "version.h"
@@ -119,8 +121,20 @@ CString CVersionInfo::GetFixedProductVersion()
 {
 	if (!m_bQueryDone)
 		GetVersionInfo();
+	if (!m_dwVerInfoSize)
+		return _T("");
 	return MakeVersionString(m_FixedFileInfo.dwProductVersionMS
 		, m_FixedFileInfo.dwProductVersionLS);
+}
+
+CString CVersionInfo::GetFixedFileVersion()
+{
+	if (!m_bQueryDone)
+		GetVersionInfo();
+	if (!m_dwVerInfoSize)
+		return _T("");
+	return MakeVersionString(m_FixedFileInfo.dwFileVersionMS
+		, m_FixedFileInfo.dwFileVersionLS);
 }
 
 CString CVersionInfo::GetComments()
@@ -132,7 +146,6 @@ CString CVersionInfo::GetComments()
 
 void CVersionInfo::GetVersionInfo()
 {
-	DWORD   dwVerInfoSize;		// Size of version information block
 	DWORD   dwVerHnd=0;			// An 'ignored' parameter, always '0'
 	TCHAR szFileName[MAX_PATH];
 
@@ -142,12 +155,12 @@ void CVersionInfo::GetVersionInfo()
 	else
 		_tcscpy(szFileName, m_strFileName);
 	
-	dwVerInfoSize = GetFileVersionInfoSize(szFileName, &dwVerHnd);
-	if (dwVerInfoSize) {
+	m_dwVerInfoSize = GetFileVersionInfoSize(szFileName, &dwVerHnd);
+	if (m_dwVerInfoSize) {
 		HANDLE  hMem;
-		hMem = GlobalAlloc(GMEM_MOVEABLE, dwVerInfoSize);
+		hMem = GlobalAlloc(GMEM_MOVEABLE, m_dwVerInfoSize);
 		m_lpstrVffInfo  = (LPTSTR)GlobalLock(hMem);
-		if (GetFileVersionInfo(szFileName, dwVerHnd, dwVerInfoSize, m_lpstrVffInfo))
+		if (GetFileVersionInfo(szFileName, dwVerHnd, m_dwVerInfoSize, m_lpstrVffInfo))
 		{
 			GetFixedVersionInfo();
 			if (m_strLanguage.IsEmpty()

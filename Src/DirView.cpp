@@ -18,8 +18,12 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// DirView.cpp : implementation file
-//
+/** 
+ * @file  DirView.cpp
+ *
+ * @brief Main implementation file for CDirView
+ */
+// RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
@@ -48,6 +52,9 @@ IMPLEMENT_DYNCREATE(CDirView, CListViewEx)
 
 CDirView::CDirView()
 : m_numcols(-1)
+, m_dispcols(-1)
+, m_bSortAscending(true)
+, m_pHeaderPopup(NULL)
 {
 	m_pList = NULL;
 }
@@ -102,6 +109,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_REFRESH, OnUpdateRefresh)
 	ON_WM_TIMER()
 	ON_WM_MOUSEMOVE()
+	ON_COMMAND(ID_EDIT_COLUMNS, OnEditColumns)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -113,8 +121,8 @@ END_MESSAGE_MAP()
 
 void CDirView::OnDraw(CDC* /*pDC*/)
 {
-	CDocument* pDoc = GetDocument();
-	// TODO: add draw code here
+	// This is a CListView, so it is wrapped around a Windows common control
+	// which does the drawing
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -162,9 +170,6 @@ void CDirView::OnInitialUpdate()
 	if (HWND hWnd = ListView_GetHeader(m_pList->m_hWnd))
 		m_ctlSortHeader.SubclassWindow(hWnd);
 
-	LoadColumnOrders();
-	AddColumns();
-
 	CBitmap bm;
 	VERIFY (m_imageList.Create (16, 16, ILC_MASK, 0, 1));
 	VERIFY (bm.LoadBitmap (IDB_LFILE));
@@ -196,8 +201,9 @@ void CDirView::OnInitialUpdate()
 	bm.Detach();
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
 
-	UpdateColumnNames();
-	SetColumnWidths();
+	LoadColumnOrders();
+
+	ReloadColumns();
 
 	//m_ctlSortHeader.SetSortImage(m_sortColumn, m_bSortAscending);
 
@@ -218,50 +224,134 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CListViewEx::OnLButtonDblClk(nFlags, point);
 }
 
+/**
+ * @brief Load or reload the columns (headers) of the list view
+ */
+void CDirView::ReloadColumns()
+{
+	LoadColumnHeaderItems();
+ToDoDeleteThisValidateColumnOrdering();
 
+ToDoDeleteThisValidateColumnOrdering();
+	UpdateColumnNames();
+ToDoDeleteThisValidateColumnOrdering();
+	SetColumnWidths();
+ToDoDeleteThisValidateColumnOrdering();
+}
+
+/**
+ * @brief User right-clicked somewhere in this view
+ */
 void CDirView::OnContextMenu(CWnd*, CPoint point)
 {
 
-	// CG: This block was added by the Pop-up Menu component
+	if (!GetListCtrl().GetItemCount())
+		return;
+	int i=0;
+	if (point.x == -1 && point.y == -1)
 	{
-		if (point.x == -1 && point.y == -1){
-			//keystroke invocation
-			CRect rect;
-			GetClientRect(rect);
-			ClientToScreen(rect);
+		//keystroke invocation
+		CRect rect;
+		GetClientRect(rect);
+		ClientToScreen(rect);
 
-			point = rect.TopLeft();
-			point.Offset(5, 5);
+		point = rect.TopLeft();
+		point.Offset(5, 5);
+	} else {
+		// Check if user right-clicked on header
+		// convert screen coordinates to client coordinates of listview
+		CPoint insidePt = point;
+		GetListCtrl().ScreenToClient(&insidePt);
+		// TODO: correct for hscroll ?
+		// Ask header control if click was on one of its header items
+		HDHITTESTINFO hhti;
+		memset(&hhti, 0, sizeof(hhti));
+		hhti.pt = insidePt;
+		int col = GetListCtrl().GetHeaderCtrl()->SendMessage(HDM_HITTEST, 0, (LPARAM)&hhti);
+		if (col >= 0)
+		{
+			// Presumably hhti.flags & HHT_ONHEADER is true
+			HeaderContextMenu(point, ColPhysToLog(col));
+			return;
 		}
-
-		CMenu menu;
-		VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
-
-		CMenu* pPopup = menu.GetSubMenu(0);
-		ASSERT(pPopup != NULL);
-
-		// set the menu items with the proper directory names
-		CString sl, sr;
-		GetSelectedDirNames(sl, sr);
-
-		// find non-child ancestor to use as menu parent
-		CWnd* pWndPopupOwner = this;
-		while (pWndPopupOwner->GetStyle() & WS_CHILD)
-			pWndPopupOwner = pWndPopupOwner->GetParent();
-
-		// TODO: It would be more efficient to set
-		// all the popup items now with one traverse over selected items
-		// instead of using updates, in which we make a traverse for every item
-		// Perry, 2002-12-04
-		// 
-
-
-		// invoke context menu
-		// this will invoke all the OnUpdate methods to enable/disable the individual items
-		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
-			pWndPopupOwner);
+		// bail out if point is not in any row
+		LVHITTESTINFO lhti;
+		memset(&lhti, 0, sizeof(lhti));
+		insidePt = point;
+		ScreenToClient(&insidePt);
+		lhti.pt = insidePt;
+		i = GetListCtrl().HitTest(insidePt);
+		TRACE("i=%d\n", i);
+		if (i<0)
+			return;
 	}
+
+	ListContextMenu(point, i);
 }
+
+/**
+ * @brief Return nearest ancestor which is not a child window
+ */
+static CWnd * GetNonChildAncestor(CWnd * w)
+{
+	CWnd* parent = w;
+	while (parent->GetStyle() & WS_CHILD)
+		parent = parent->GetParent();
+	return parent;
+}
+
+/**
+ * @brief User right-clicked in listview rows
+ */
+void CDirView::ListContextMenu(CPoint point, int /*i*/)
+{
+	CMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
+
+	// 1st submenu of IDR_POPUP_DIRVIEW is for header popup
+	CMenu* pPopup = menu.GetSubMenu(0);
+	ASSERT(pPopup != NULL);
+
+	// set the menu items with the proper directory names
+	CString sl, sr;
+	GetSelectedDirNames(sl, sr);
+
+	// find non-child ancestor to use as menu parent
+	CWnd * pWndPopupOwner = GetNonChildAncestor(this);
+
+	// TODO: It would be more efficient to set
+	// all the popup items now with one traverse over selected items
+	// instead of using updates, in which we make a traverse for every item
+	// Perry, 2002-12-04
+
+	// invoke context menu
+	// this will invoke all the OnUpdate methods to enable/disable the individual items
+	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
+		pWndPopupOwner);
+}
+
+/**
+ * @brief User right-clicked on specified logical column
+ */
+void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
+{
+ToDoDeleteThisValidateColumnOrdering();
+	CMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
+
+	// 2nd submenu of IDR_POPUP_DIRVIEW is for header popup
+	CMenu* pPopup = menu.GetSubMenu(1);
+	ASSERT(pPopup != NULL);
+
+	// find non-child ancestor to use as menu parent
+	CWnd * pWndPopupOwner = GetNonChildAncestor(this);
+
+	// invoke context menu
+	// this will invoke all the OnUpdate methods to enable/disable the individual items
+	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
+		pWndPopupOwner);
+	
+}	
 
 // Make a string out of a number
 // TODO: Ought to introduce commas every three digits, except this is locale-specific
@@ -283,13 +373,17 @@ void CDirView::ModifyPopup(CMenu * pPopup, int nStringResource, int nMenuId, LPC
 }
 
 
-// User chose (main menu) Copy from right to left
-void CDirView::OnDirCopyFileToLeft() 
+/**
+ * @brief User chose (main menu) Copy from right to left
+ */
+void CDirView::OnDirCopyFileToLeft()
 {
 	DoCopyFileToLeft();
 }
-// User chose (main menu) Copy from left to right
-void CDirView::OnDirCopyFileToRight() 
+/**
+ * @brief User chose (main menu) Copy from left to right
+ */
+void CDirView::OnDirCopyFileToRight()
 {
 	DoCopyFileToRight();
 }
@@ -368,69 +462,12 @@ void CDirView::DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI, eMenuType menuType)
 	}
 }
 
-/// Assign column name, using string resource & current column ordering
-void CDirView::NameColumn(int id, int subitem)
-{
-	CString s;
-	VERIFY(s.LoadString(id));
-	LV_COLUMN lvc;
-	lvc.mask = LVCF_TEXT;
-	lvc.pszText = (LPTSTR)((LPCTSTR)s);
-	m_pList->SetColumn(m_colorder[subitem], &lvc);
-}
-
-/// Load column names from string table
-void CDirView::UpdateColumnNames()
-{
-	NameColumn(IDS_FILENAME_HEADER, DV_NAME);
-	NameColumn(IDS_EXTENSION_HEADER, DV_EXT);
-	NameColumn(IDS_DIR_HEADER, DV_PATH);
-	NameColumn(IDS_RESULT_HEADER, DV_STATUS);
-	NameColumn(IDS_LTIME_HEADER, DV_LTIME);
-	NameColumn(IDS_RTIME_HEADER, DV_RTIME);
-}
-
-/// Update any language-dependent data
+/**
+ * @brief Update any language-dependent data
+ */
 void CDirView::UpdateResources()
 {
 	UpdateColumnNames();
-}
-
-/// Compare two specified rows during a sort operation (windows callback)
-int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort)
-{
-	// initialize structures to obtain required information
-	CDirView* pView = reinterpret_cast<CDirView*>(lParamSort);
-	POSITION diffposl = pView->GetItemKeyFromData(lParam1);
-	POSITION diffposr = pView->GetItemKeyFromData(lParam2);
-	DIFFITEM lDi = pView->GetDiffContext()->GetDiffAt(diffposl);
-	DIFFITEM rDi = pView->GetDiffContext()->GetDiffAt(diffposr);
-
-	// compare 'left' and 'right' parameters as appropriate
-	int retVal = 0;		// initialize for default case
-	switch (pView->m_sortColumn)
-	{
-	case DV_NAME: // File name.
-		retVal = lDi.sfilename.CompareNoCase(rDi.sfilename);
-		break;
-	case DV_PATH: // File Path.
-		retVal =  lDi.slpath.CompareNoCase(rDi.slpath);
-		break;
-	case DV_STATUS: // Diff Status.
-		retVal = rDi.code-lDi.code;
-		break;
-	case DV_LTIME: // Time of left item
-		retVal = rDi.ltime-lDi.ltime;
-		break;
-	case DV_RTIME: // Time of right item
-		retVal = rDi.rtime-lDi.rtime;
-		break;
-	case DV_EXT: // File extension.
-		retVal = lDi.sext.CompareNoCase(rDi.sext);
-		break;
-	}
-	// return compare result, considering sort direction
-	return (pView->m_bSortAscending)?retVal:-retVal;
 }
 
 void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
@@ -445,15 +482,8 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 	else
 	{
 		m_sortColumn = sortcol;
-		// date columns get default descending sort.
-		if(m_sortColumn==DV_LTIME || m_sortColumn==DV_RTIME)
-		{
-			m_bSortAscending = false;
-		}
-		else
-		{
-			m_bSortAscending = true;
-		}
+		// most columns start off ascending, but not dates
+		m_bSortAscending = IsDefaultSortAscending(m_sortColumn);
 	}
 	m_ctlSortHeader.SetSortImage(m_sortColumn, m_bSortAscending);
 
@@ -467,6 +497,7 @@ void CDirView::OnDestroy()
 {
 	DeleteAllDisplayItems();
 
+	ValidateColumnOrdering();
 	SaveColumnOrders();
 	SaveColumnWidths();
 
@@ -1116,27 +1147,6 @@ void CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	if (mf->m_bScrollToFirst)
 		OnFirstdiff();
 }
-// Add new item to list view
-int CDirView::AddNewItem(int i)
-{
-	LV_ITEM lvItem;
-	memset(&lvItem, 0, sizeof(lvItem));
-	lvItem.iItem = i;
-	return GetListCtrl().InsertItem(&lvItem);
-  
-}
-
-// Set a subitem on an existing item
-void CDirView::SetSubitem(int item, int subitem, LPCTSTR sz)
-{
-	LV_ITEM lvItem;
-	memset(&lvItem, 0, sizeof(lvItem));
-	lvItem.mask = LVIF_TEXT;
-	lvItem.iItem = item;
-	lvItem.iSubItem = m_colorder[subitem];
-	lvItem.pszText = const_cast<LPTSTR>(sz);
-	GetListCtrl().SetItem(&lvItem);
-}
 
 BOOL CDirView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult) 
 {
@@ -1149,7 +1159,9 @@ BOOL CDirView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 	return CListViewEx::OnNotify(wParam, lParam, pResult);
 }
 
-/// User is starting to drag a column header
+/**
+ * @brief User is starting to drag a column header
+ */
 BOOL CDirView::OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult)
 {
 	// save column widths before user reorders them
@@ -1158,7 +1170,9 @@ BOOL CDirView::OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult)
 	return TRUE;
 }
 
-/// User just finished dragging a column header
+/**
+ * @brief User just finished dragging a column header
+ */
 BOOL CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
 {
 	int src = hdr->iItem;
@@ -1167,23 +1181,14 @@ BOOL CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
 	*pResult = !allowDrop;
 	if (allowDrop && src!=dest)
 	{
-		// actually moved column
-		m_colorder[m_invcolorder[src]] = dest;
-		// shift all other affected columns
-		int dir = src > dest ? +1 : -1;
-		for (int i=dest; i!=src; i += dir)
-		{
-			m_colorder[m_invcolorder[i]] = i+dir;
-		}
-		// fix inverse mapping
-		for (i=0; i<m_numcols; ++i)
-			m_invcolorder[m_colorder[i]] = i;
-		PostMessage(WM_TIMER, COLUMN_REORDER);
+		MoveColumn(src, dest);
 	}
 	return TRUE;
 }
 
-/// Remove any windows reordering of columns
+/**
+ * @brief Remove any windows reordering of columns
+ */
 void CDirView::FixReordering()
 {
 	LVCOLUMN lvcol;
@@ -1196,118 +1201,69 @@ void CDirView::FixReordering()
 	}
 }
 
-/// Add columns to display, loading width & order from registry
-void CDirView::AddColumns()
+/** @brief Add columns to display, loading width & order from registry. */
+void CDirView::LoadColumnHeaderItems()
 {
-	for (int i=0; i<m_numcols; ++i)
+	bool dummyflag = false;
+
+	CHeaderCtrl * h = m_pList->GetHeaderCtrl();
+	if (h->GetItemCount())
 	{
-		int ix = m_invcolorder[i];
-		CString sOrderKey;
-		sOrderKey.Format(_T("WDirHdrOrder%d"), ix);
-		int ord = theApp.GetProfileInt(_T("DirView"), sOrderKey, ix);
-		LVCOLUMN lvcol;
-		memset(&lvcol, 0, sizeof(lvcol));
-		lvcol.mask = LVCF_FMT+LVCF_TEXT+LVCF_SUBITEM;
-		lvcol.fmt = LVCFMT_LEFT;
-		lvcol.pszText = _T("text"); // UpdateColumnNames fixes this
-		lvcol.iSubItem = ix;
-		m_pList->InsertColumn(i, &lvcol);
+		dummyflag = true;
+		while (m_pList->GetHeaderCtrl()->GetItemCount()>1)
+			m_pList->DeleteColumn(1);
 	}
+
+	for (int i=0; i<m_dispcols; ++i)
+	{
+		LVCOLUMN lvc;
+		memset(&lvc, 0, sizeof(lvc));
+		lvc.mask = LVCF_FMT+LVCF_SUBITEM+LVCF_TEXT;
+		lvc.fmt = LVCFMT_LEFT;
+		lvc.pszText = _T("text");
+		lvc.iSubItem = i;
+		m_pList->InsertColumn(i, &lvc);
+	}
+	if (dummyflag)
+		m_pList->DeleteColumn(1);
+
 }
 
 /// Update all column widths (from registry to screen)
 // Necessary when user reorders columns
 void CDirView::SetColumnWidths()
 {
-	LVCOLUMN lvcol;
-	memset(&lvcol, 0, sizeof(lvcol));
-	lvcol.mask = LVCF_WIDTH;
-	CString sWidthKey;
-	int cols = GetListCtrl().GetHeaderCtrl()->GetItemCount();
-	int i;
-
-	for (i=0; i<cols; ++i)
-	{
-		sWidthKey.Format(_T("WDirHdr%d"), i);
-		int w = max(10, theApp.GetProfileInt(_T("DirView"), sWidthKey, 150));
-		GetListCtrl().SetColumnWidth(m_colorder[i], w);
-	}
-
-}
-
-/// store current column widths into registry
-void CDirView::SaveColumnWidths()
-{
-	int cols = GetListCtrl().GetHeaderCtrl()->GetItemCount();
-	for (int i=0; i < cols; i++)
-	{
-		CString s;
-		s.Format(_T("WDirHdr%d"), m_invcolorder[i]);
-		int w = GetListCtrl().GetColumnWidth(i);
-		theApp.WriteProfileInt(_T("DirView"), s, w);
-	}
-}
-
-/// store current column orders into registry
-void CDirView::SaveColumnOrders()
-{
-	ASSERT(m_colorder.GetSize() == m_numcols);
-	ASSERT(m_invcolorder.GetSize() == m_numcols);
-	int cols = GetListCtrl().GetHeaderCtrl()->GetItemCount();
-	for (int i=0; i < cols; i++)
-	{
-		CString key;
-		key.Format(_T("WDirHdrOrder%d"), i);
-		int ord = m_colorder[i];
-		theApp.WriteProfileInt(_T("DirView"), key, ord);
-	}
-}
-
-/// load column orders from registry
-void CDirView::LoadColumnOrders()
-{
-	ASSERT(m_numcols == -1);
-	m_numcols = 6;
-	m_colorder.SetSize(m_numcols);
-	m_invcolorder.SetSize(m_numcols);
 	for (int i=0; i<m_numcols; ++i)
 	{
-		m_colorder[i] = -1;
-		m_invcolorder[i] = -1;
+		int phy = ColLogToPhys(i);
+		if (phy >= 0)
+		{
+			CString sWidthKey = GetColRegValueNameBase(i) + _T("_Width");
+			int w = max(10, theApp.GetProfileInt(_T("DirView"), sWidthKey, 150));
+			GetListCtrl().SetColumnWidth(m_colorder[i], w);
+		}
 	}
+}
 
-	for (i=0; i<6; ++i)
+/** @brief store current column widths into registry */
+void CDirView::SaveColumnWidths()
+{
+	for (int i=0; i < m_numcols; i++)
 	{
-		CString key;
-		key.Format(_T("WDirHdrOrder%d"), i);
-		int ord = theApp.GetProfileInt(_T("DirView"), key, i);
-		m_colorder[i] = ord;
-		m_invcolorder[ord] = i;
-	}
-	// validate just loaded data
-	BOOL valid=TRUE;
-	for (i=0; i<m_numcols; ++i)
-	{
-		if (!(m_colorder[i]>=0 && m_colorder[i]<m_numcols))
+		int phy = ColLogToPhys(i);
+		if (phy >= 0)
 		{
-			valid=FALSE;
-			break;
-		}
-		if (!(m_invcolorder[i]>=0 && m_invcolorder[i]<m_numcols))
-		{
-			valid=FALSE;
-			break;
+			CString sWidthKey = GetColRegValueNameBase(i) + _T("_Width");
+			int w = GetListCtrl().GetColumnWidth(phy);
+			theApp.WriteProfileInt(_T("DirView"), sWidthKey, w);
 		}
 	}
-	if (!valid)
-	{
-		// reset to identity
-		for (int i=0; i<m_numcols; ++i)
-		{
-			m_colorder[i] = i;
-			m_invcolorder[i] = i;
-		}
-	}
+}
+
+/** @brief Fire off a resort of the data, to take place when things stabilize. */
+void CDirView::InitiateSort()
+{
+	PostMessage(WM_TIMER, COLUMN_REORDER);
 }
 
 void CDirView::OnTimer(UINT nIDEvent) 
@@ -1382,13 +1338,13 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 		{
 			// Set text color based on timestamps
 			// Do not color unique items
-			if (ditem.ltime == 0 || ditem.rtime == 0)
+			if (ditem.left.mtime == 0 || ditem.right.mtime == 0)
 				lplvcd->clrText = GetSysColor(COLOR_WINDOWTEXT);
 			else
 			{
-				if (ditem.ltime < ditem.rtime)
+				if (ditem.left.mtime < ditem.right.mtime)
 					lplvcd->clrText = RGB(53, 164, 34);
-				else if (ditem.ltime > ditem.rtime)
+				else if (ditem.left.mtime > ditem.right.mtime)
 					lplvcd->clrText = RGB(234, 21, 64);
 				else
 					// Make sure we use default color for ident. items

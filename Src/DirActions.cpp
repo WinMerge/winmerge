@@ -2,7 +2,14 @@
 //    see Merge.cpp for license (GPLv2+) statement 
 //
 /////////////////////////////////////////////////////////////////////////////
-// DirActions.cpp : implementation file
+/**
+ *  @file DirActions.cpp
+ *
+ *  @brief Implementation of methods of CDirView that copy/move/delete files
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 // It would be nice to make this independent of the UI (CDirView)
 // but it needs access to the list of selected items.
 // One idea would be to provide an iterator over them.
@@ -552,8 +559,8 @@ void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) co
 	const CDiffContext * ctxt = GetDiffContext();
 	const DIFFITEM & di = ctxt->GetDiffAt(diffpos);
 
-	strLeft = paths_ConcatPath(di.slpath, di.sfilename);
-	strRight = paths_ConcatPath(di.srpath, di.sfilename);
+	strLeft = di.getLeftFilepath();
+	strRight = di.getRightFilepath();
 }
 
 // Open selected file on specified side

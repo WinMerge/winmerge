@@ -18,8 +18,12 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// MainFrm.cpp : implementation of the CMainFrame class
-//
+/** 
+ * @file  MainFrm.cpp
+ *
+ * @brief Implementation of the CMainFrame class
+ */
+// RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
@@ -1238,7 +1242,7 @@ void CMainFrame::UpdateCurrentFileStatus(CDirDoc * pDirDoc, UINT nStatus, int id
 	// update DIFFITEM code
 	pDirDoc->m_pCtxt->UpdateStatusCode(diffpos, (BYTE)nStatus);
 	// update DIFFITEM time, and also tell views
-	pDirDoc->UpdateItemStatus(idx);
+	pDirDoc->ReloadItemStatus(idx);
 	//m_pDirDoc->Redisplay();
 }
 

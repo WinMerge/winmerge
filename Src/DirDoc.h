@@ -17,14 +17,20 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  DirDoc.h
+ *
+ * @brief Declaration file for CDirDoc
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #if !defined(AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_)
 #define AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_
-
-#if _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
-// DirDoc.h : header file
-//
+
+
 #include "Merge.h"		// DirDocFilter theApp
 #include "DirView.h"
 #include "DiffContext.h"
@@ -66,13 +72,12 @@ public:
 
 // Implementation
 public:
-	BOOL UpdateItemTimes(LPCTSTR pathLeft, LPCTSTR pathRight);
-	BOOL UpdateItemStatus( LPCTSTR pathLeft, LPCTSTR pathRight, UINT status );
+	void UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unified);
+	POSITION FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight);
 	void SetDiffContext(CDiffContext *pCtxt);
 	void UpdateResources();
 	void InitStatusStrings();
-	void UpdateItemStatus(UINT nIdx);
-	void SetItemStatus(UINT nIdx, LPCTSTR szStatus, int image, const time_t * ltime, const time_t * rtime);
+	void ReloadItemStatus(UINT nIdx);
 	void Redisplay();
 	void Rescan();
 	CDiffContext *m_pCtxt;
@@ -88,7 +93,7 @@ public:
 #endif
 
 protected:
-	void UpdateItemStatus(UINT nIdx, DIFFITEM di);
+	void UpdateScreenItemStatus(UINT nIdx, DIFFITEM di);
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirDoc)

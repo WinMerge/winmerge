@@ -17,7 +17,13 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
+/**
+ *  @file DirView.h
+ *
+ *  @brief Declaration of class CDirView
+ */ 
 //
+// RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #if !defined(AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_)
@@ -26,15 +32,17 @@
 #if _MSC_VER >= 1000
 #pragma once
 #endif // _MSC_VER >= 1000
-// DirView.h : header file
-//
 
+// TODO delete
+/*
 #define DV_NAME     0
 #define DV_PATH     1
 #define DV_STATUS   2
 #define DV_LTIME    3
 #define DV_RTIME    4
 #define DV_EXT      5
+*/
+
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirView view
@@ -52,6 +60,7 @@ typedef enum { eMain, eContext } eMenuType;
 class CDirDoc;
 class CDirFrame;
 
+/** View displaying results of a diff, one row per file */
 class CDirView : public CListViewEx
 {
 protected:
@@ -70,18 +79,15 @@ private:
 public:
 	CDirFrame * GetParentFrame();
 
-	static int CALLBACK CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
+
 	void UpdateResources();
-	void UpdateColumnNames();
-	void AddColumns();
+	void LoadColumnHeaderItems();
 	POSITION GetItemKey(int idx) const;
 	void SetItemKey(int idx, POSITION diffpos);
 	int GetItemIndex(DWORD key);
 	// for populating list
 	void DeleteAllDisplayItems();
 	void SetColumnWidths();
-	int AddNewItem(int i);
-	void SetSubitem(int item, int subitem, LPCTSTR sz);
 
 	UINT GetSelectedCount() const;
 	int GetFirstSelectedInd();
@@ -136,6 +142,31 @@ private:
 	void PerformAndRemoveTopAction(ActionList & actions);
 // End DirActions.cpp
 
+// Implementation in DirViewCols.cpp
+public:
+	void UpdateColumnNames();
+	static int CALLBACK CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
+	int AddDiffItem(int index, const DIFFITEM & di, LPCTSTR szPath, POSITION curdiffpos);
+	void UpdateDiffItemStatus(UINT nIdx, const DIFFITEM & di);
+	void ToDoDeleteThisValidateColumnOrdering() { ValidateColumnOrdering(); }
+private:
+	void InitiateSort();
+	void NameColumn(int id, int subitem);
+	int AddNewItem(int i);
+	void SetSubitem(int item, int phy, LPCTSTR sz);
+	bool IsDefaultSortAscending(int col) const;
+	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
+	int ColLogToPhys(int i) const { return m_colorder[i]; } /**< -1 if not displayed */
+	CString GetColDisplayName(int col) const;
+	int GetColLogCount() const;
+	void LoadColumnOrders();
+	void ValidateColumnOrdering();
+	void ClearColumnOrders();
+	void ResetColumnOrdering();
+	void MoveColumn(int psrc, int pdest);
+	CString GetColRegValueNameBase(int col) const;
+	int GetColDefaultOrder(int col) const;
+// End DirViewCols.cpp
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -161,15 +192,17 @@ protected:
 
 // Implementation data
 protected:
-	CSortHeaderCtrl		m_ctlSortHeader;
+	CSortHeaderCtrl m_ctlSortHeader;
 	CImageList m_imageList;
-	bool m_bSortAscending;	// is currently sorted ascending.
-	int m_sortColumn;		// index to column which is sorted
+	bool m_bSortAscending;  /** < current column sort is ascending ? */
+	int m_sortColumn;  /**< index of column currently used for sorting */
 	CListCtrl * m_pList;
 	int m_numcols;
-	CArray<int, int> m_colorder;
-	CArray<int, int> m_invcolorder;
+	int m_dispcols;
+	CArray<int, int> m_colorder; /**< colorder[logical#]=physical# */
+	CArray<int, int> m_invcolorder; /**< invcolorder[physical]=logical# */
 	CPoint m_ptLastMousePos;
+	CMenu * m_pHeaderPopup;
 	
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);
@@ -216,6 +249,7 @@ protected:
 	afx_msg void OnUpdateRefresh(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnEditColumns();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
@@ -242,9 +276,10 @@ private:
 	void MoveSelection(int currentInd, int i, int selCount);
 	void SaveColumnWidths();
 	void SaveColumnOrders();
-	void LoadColumnOrders();
-	void NameColumn(int id, int subitem);
 	void FixReordering();
+	void HeaderContextMenu(CPoint point, int i);
+	void ListContextMenu(CPoint point, int i);
+	void ReloadColumns();
 };
 
 

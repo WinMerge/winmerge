@@ -6,6 +6,13 @@
   WinMerge\Merge.rc
   Correction#1 værktøylinje(n)->verktøylinje(n)
   Languages\Norwegian: MergeNorwegian.rc
+ PATCH: [ 781529 ] Make column info array, and add new columns
+  common: version.cpp version.h
+  WinMerge: DiffContext.cpp DiffContext.h DirActions.cpp DirDoc.cpp DirDoc.h
+   DirScan.cpp DirView.cpp DirView.h MainFrm.cpp Merge.dsp Merge.rc
+   MergeDoc.cpp resource.h
+  WinMerge new files: DirColsDlg.cpp DirColsDlg.h DirViewColHandler.cpp
+   DirViewColItems.cpp DirViewColItems.h
 
 2003-08-22 Kimmo
  PATCH: [ 787495 ] Create diffutils class (CDiffWrapper)
