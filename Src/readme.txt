@@ -1,3 +1,7 @@
+2003-04-14 Kimmo
+ PATCH: [ 720613 ] CDirView leaks imagelist
+  WinMerge: DirView.cpp
+
 2003-04-14 Perry
  PATCH: [ 716475 ] Reduce edtlib.h coupling
  WinMerge: MergeEditView.h StdAfx.h editlib/ccrystaleditview.inl

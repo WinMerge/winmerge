@@ -49,6 +49,7 @@ CDirView::CDirView()
 
 CDirView::~CDirView()
 {
+	 m_imageList.DeleteImageList();
 }
 
 
