@@ -5,6 +5,8 @@
    cfindtextdlg.cpp editcmd.h editres.rc
   Removed: editlib/resource.h
   Updated other languages
+ PATCH: [ 733926 ] Fix find dialog text selection
+  editlib: ccrystaltextview.cpp
 
 2003-05-06 Kimmo
  PATCH: [ 732775 ] Add support for MAC files

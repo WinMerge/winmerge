@@ -4293,7 +4293,8 @@ OnEditFind ()
         {
           LPCTSTR pszChars = GetLineChars (ptSelStart.y);
           int nChars = ptSelEnd.x - ptSelStart.x;
-          _tcsncpy (dlg.m_sText.GetBuffer (nChars + 1), pszChars + ptSelStart.x, nChars + 1);
+          dlg.m_sText.Empty();
+          _tcsncpy (dlg.m_sText.GetBuffer (nChars), pszChars + ptSelStart.x, nChars);
           dlg.m_sText.ReleaseBuffer ();
         }
     }
