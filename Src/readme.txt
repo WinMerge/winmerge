@@ -1,6 +1,8 @@
 2003-10-23 Kimmo
  BUG: [ 815147 ] Scrollwheel scrolls too far at end of file
   editlib: ccrystaltextview.cpp
+ BUG: [ 826834 ] Text selection startpoint not updated when navigating diffs
+  WinMerge: MergeEditView.cpp
 
 2003-10-23 Laoran
  PATCH: [ 827615 ] Speed up display of large differences - attachment

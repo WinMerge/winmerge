@@ -1154,6 +1154,7 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 				ScrollToLine(line);
 			}
 			SetCursorPos(ptStart);
+			SetAnchor(ptStart);
 		}
 
 		if (bSelectText)
