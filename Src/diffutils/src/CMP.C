@@ -499,24 +499,28 @@ printc (width, c)
 {
   register FILE *fs = stdout;
 
-  if (c >= 128)
+  /* Handle non-printable chars */
+  if (! isprint (c))
     {
-      putc ('M', fs);
-      putc ('-', fs);
-      c -= 128;
-      width -= 2;
-    }
-  if (c < 32)
-    {
-      putc ('^', fs);
-      c += 64;
-      --width;
-    }
-  else if (c == 127)
-    {
-      putc ('^', fs);
-      c = '?';
-      --width;
+    if (c >= 128)
+      {
+        putc ('M', fs);
+        putc ('-', fs);
+        c -= 128;
+        width -= 2;
+      }
+    if (c < 32)
+      {
+        putc ('^', fs);
+        c += 64;
+        --width;
+      }
+    else if (c == 127)
+      {
+        putc ('^', fs);
+        c = '?';
+        --width;
+      }
     }
 
   putc (c, fs);

@@ -1,3 +1,7 @@
+2003-09-10 Kimmo
+ PATCH: [ 802762 ] Optimise printc() in diffutils
+  WinMerge: cmp.c
+
 2003-09-09 Laoran
  FIX ASSERT in GetAllViews during a merge session
   WinMerge: MainFrm.cpp MainFrm.h
