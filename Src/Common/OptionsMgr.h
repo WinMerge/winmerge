@@ -82,6 +82,19 @@ public:
 	int GetDefault(CString name, DWORD & value) const;
 	int GetDefault(CString name, bool & value) const;
 
+	virtual int InitOption(CString name,
+		varprop::VariantValue defaultValue) = 0;
+	virtual int InitOption(CString name, LPCTSTR defaultValue) = 0;
+	virtual int InitOption(CString name, int defaultValue) = 0;
+	virtual int InitOption(CString name, bool defaultValue) = 0;
+
+
+	virtual int SaveOption(CString name) = 0;
+	virtual int SaveOption(CString name, varprop::VariantValue value) = 0;
+	virtual int SaveOption(CString name, CString value) = 0;
+	virtual int SaveOption(CString name, int value) = 0;
+	virtual int SaveOption(CString name, bool value) = 0;
+
 private:
 	CMap<CString, LPCTSTR, COption, COption&> m_optionsMap;
 };
@@ -92,17 +105,19 @@ private:
 class CRegOptions : public COptionsMgr
 {
 public:
-	int InitOption(CString name, varprop::VariantValue defaultValue);
-	int InitOption(CString name, LPCTSTR defaultValue);
-	int InitOption(CString name, int defaultValue);
-	int InitOption(CString name, bool defaultValue);
-	int SaveOption(CString name);
-	int SaveOption(CString name, varprop::VariantValue value);
-	int SaveOption(CString name, CString value);
-	int SaveOption(CString name, int value);
-	int SaveOption(CString name, bool value);
 	int LoadOption(CString name);
 	int SetRegRootKey(CString path);
+
+	virtual int InitOption(CString name, varprop::VariantValue defaultValue);
+	virtual int InitOption(CString name, LPCTSTR defaultValue);
+	virtual int InitOption(CString name, int defaultValue);
+	virtual int InitOption(CString name, bool defaultValue);
+
+	virtual int SaveOption(CString name);
+	virtual int SaveOption(CString name, varprop::VariantValue value);
+	virtual int SaveOption(CString name, CString value);
+	virtual int SaveOption(CString name, int value);
+	virtual int SaveOption(CString name, bool value);
 
 protected:
 	void SplitName(CString strName, CString &strPath, CString &strValue);
