@@ -209,9 +209,12 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	if (!CheckExecutable(strWinMergePath))
 		return S_FALSE;
 
-	// Format command line, use recursive '/r' switch always
-	CString strCommandLine = strWinMergePath + " /r \"" +
-		m_strPaths[0] + "\" \"" + m_strPaths[1] + "\"";
+	// Format command line
+	CString strCommandLine = strWinMergePath + _T(" \"") +
+		m_strPaths[0] + _T("\"");
+	
+	if (!m_strPaths[1].IsEmpty())
+		strCommandLine += _T(" \"") + m_strPaths[1] + _T("\"");
 	
 	BOOL retVal = FALSE;
 	STARTUPINFO stInfo = {0};
@@ -227,7 +230,7 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 			&stInfo, &processInfo);
 
 		if (retVal)
-		return S_OK;
+			return S_OK;
 		else
 			return S_FALSE;
 		break;

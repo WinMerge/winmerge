@@ -19,8 +19,8 @@
 
 #include <shlobj.h>
 #include <comdef.h>
-#include <atlconv.h>  // for ATL string conversion macros
-#include "resource.h"       // main symbols
+#include <atlconv.h>	// for ATL string conversion macros
+#include "resource.h"   // main symbols
 
 /** 
  * @brief Class for handling shell extension tasks
@@ -48,9 +48,9 @@ END_COM_MAP()
 
 // IWinMergeShell
 protected:
-    CString m_strPaths[2];
-	HBITMAP m_hMergeBmp;
-	UINT	m_nSelectedItems;
+    CString m_strPaths[2]; /**< Paths for selected items */
+	HBITMAP m_hMergeBmp; /**< Icon */
+	UINT	m_nSelectedItems; /**< Amount of selected items */
 
 	BOOL GetWinMergeDir(CString &strDir);
 	BOOL CheckExecutable(CString path);

@@ -2,6 +2,8 @@
  PATCH: [ 911114 ] DiffOptions to new system
   Src: ConfigLog.cpp ConfigLog.h DiffWrapper.cpp DiffWrapper.h DirDoc.cpp
    DirDoc.h MainFrm.cpp MainFrm.h MergeDoc.cpp MergeDoc.h OptionsDef.h
+ PATCH: [ 906872 ] Change ShellExtension to open directories non-recursive
+  ShellExtension: ShellExtension.rc WinMergeShell.cpp WinMergeShell.h
 
 2004-03-06 WinMerge experimental release 2.1.5.13 (cvs)
 
