@@ -50,6 +50,8 @@ enum
 	DirCol_Binary,
 	DirCol_Lattr,
 	DirCol_Rattr,
+	DirCol_NDiffs,
+	DirCol_NSDiffs,
 };
 
 /**

@@ -6,6 +6,8 @@
  PATCH: [ 940089 ] Add Binary column and shorten short result
   Src: DirViewColHandler.cpp DirViewColItems.cpp Merge.rc resource.h
   Languages: *.rc resource.h
+ PATCH: [ 940036 ] Add missing dirview column table indexes
+  Src DirViewColHandler.cpp
 
 2004-04-22 Kimmo
  PATCH: [ 936682 ] Highlight syntax in unrecognized side
