@@ -175,7 +175,7 @@ END
 
 IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
-    POPUP "_POPUP_"
+    POPUP "_ITEM_POPUP_"
     BEGIN
         MENUITEM "Kopier fil til venstre",      ID_DIR_COPY_FILE_TO_LEFT
         MENUITEM "Kopier fil til højre",        ID_DIR_COPY_FILE_TO_RIGHT
@@ -187,6 +187,10 @@ BEGIN
         MENUITEM "Åben venstre med...",         ID_DIR_OPEN_LEFT_WITH
         MENUITEM "Åben højre",                  ID_DIR_OPEN_RIGHT
         MENUITEM "Åben højre med...",           ID_DIR_OPEN_RIGHT_WITH
+    END
+    POPUP "_HDR_POPUP_"
+    BEGIN
+        MENUITEM "Edit columns",                ID_EDIT_COLUMNS
     END
 END
 
@@ -521,6 +525,25 @@ BEGIN
     EDITTEXT        IDC_STATIC_TITLE_RIGHT,163,2,160,12,ES_AUTOHSCROLL | 
                     ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT 
                     WS_TABSTOP,WS_EX_STATICEDGE
+END
+
+IDD_DIRCOLS DIALOG DISCARDABLE  0, 0, 273, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Display Columns"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,141,129,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,81,129,50,14
+    GROUPBOX        "Show columns",IDC_GROUP_SHOW,7,17,124,100
+    LISTBOX         IDC_LIST_SHOW,42,31,83,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Up",IDC_UP,13,43,23,13
+    PUSHBUTTON      "&Down",IDC_DOWN,13,67,23,13
+    GROUPBOX        "Hide columns",IDC_GROUP_HIDE,181,17,85,103
+    LISTBOX         IDC_LIST_HIDE,192,31,66,79,LBS_NOINTEGRALHEIGHT | 
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "<==",IDC_ADD,141,41,29,11
+    PUSHBUTTON      "==>",IDC_REMOVE,141,76,29,11
 END
 
 
@@ -954,9 +977,9 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_FILENAME_HEADER     "Filnavn"
-    IDS_DIR_HEADER          "Mappe"
-    IDS_RESULT_HEADER       "Resultat af sammenligning"
+    IDS_COLHDR_FILENAME     "Filnavn"
+    IDS_COLHDR_DIR          "Mappe"
+    IDS_COLHDR_RESULT       "Resultat af sammenligning"
     IDS_FILE_COMPARISON_TITLE "Filsammenligning"
     IDS_DIFF_NUMBER_STATUS_FMT "Forskel %1 af %2"
     IDS_NO_DIFF_SEL_FMT     "%1 forskelle fundet"
@@ -966,9 +989,9 @@ BEGIN
     IDS_VSS_RUN_ERROR       "Fejl under udførelse af versionsstyringssystem kommando."
     IDS_DIFF_OPEN_NO_SET_PROPS
                             "Der er lavet ændringer i nogle indstillinger, der kan have indflydelse på allerede åbne vinduer. Nogle af disse indstillinger virker muligvis ikke før vinduerne er genåbnet."
-    IDS_LTIME_HEADER        "Venstre dato"
-    IDS_RTIME_HEADER        "Højre dato"
-    IDS_EXTENSION_HEADER    "Extension"
+    IDS_COLHDR_LTIMEM       "Venstre dato"
+    IDS_COLHDR_RTIMEM       "Højre dato"
+    IDS_COLHDR_EXTENSION    "Extension"
     IDS_CONFIRM_DELETE_ITEMS
                             "Er du sikker på du vil slette %1 af %2 valgte element(er)?"
     IDS_DEL_LEFT_FMT        "Slet venstre side %1 af %2 valgte element(er)"
@@ -983,6 +1006,7 @@ BEGIN
     IDS_COPY_TO_LEFT        "Kopier til venstre side %1 af %2 valgte element(er)"
     IDS_DEL_BOTH_FMT        "Slet begge sider %1 af %2 valgte element(er)"
     IDS_COPY_TO_RIGHT       "Kopier til højre side %1 af %2 valgte element(er)"
+    IDS_COLHDR_LSIZE        "Left Size"
     IDS_DELETE_DIR_FAILED   "Slet mappen %1 fejlede: %s"
     IDS_COPY_FILE_FAILED    "Kopiering af filen %1 fejlede: %2"
     IDS_COPY_DIR_FAILED     "Kopiering af mappen %1 fejlede: %2"
@@ -1013,6 +1037,12 @@ BEGIN
     IDS_STATUS_COPYALL2L    "Kopierer alt til venstre"
     IDS_STATUS_COPYALL2R    "Kopierer alt til højre"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+    IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_LTIMEC       "Left Creation Time"
+    IDS_COLHDR_RTIMEC       "Right Creation Time"
+    IDS_COLHDR_NEWER        "Newer File"
+    IDS_COLHDR_LVERSION     "Left File Version"
+    IDS_COLHDR_RVERSION     "Right File Version"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1027,6 +1057,17 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LEFTONLY            "Left Only"
+    IDS_RIGHTONLY           "Right Only"
+    IDS_COLHDR_RESULT_ABBR  "Short Result"
+    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
+    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_FILE_SKIPPED        "File skipped"
+    IDS_DIR_SKIPPED         "Directory skipped"
 END
 
 #endif    // Danish resources
