@@ -34,6 +34,10 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/// Flags for enabling and mode of extension
+#define CONTEXT_F_ENABLED 0x01
+#define CONTEXT_F_ADVANCED 0x02
+
 // registry dir to WinMerge
 static LPCTSTR f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
 
@@ -51,6 +55,7 @@ CPropRegistry::CPropRegistry()
 	//{{AFX_DATA_INIT(CPropRegistry)
 	m_bContextAdded = FALSE;
 	m_bUseRecycleBin = TRUE;
+	m_bContextAdvanced = FALSE;
 	//}}AFX_DATA_INIT
 }
 
@@ -61,6 +66,7 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_EXPLORER_CONTEXT, m_bContextAdded);
 	DDX_Text(pDX, IDC_EXT_EDITOR_PATH, m_strEditorPath);
 	DDX_Check(pDX, IDC_USE_RECYCLE_BIN, m_bUseRecycleBin);
+	DDX_Check(pDX, IDC_EXPLORER_ADVANCED, m_bContextAdvanced);
 	//}}AFX_DATA_MAP
 }
 
@@ -68,6 +74,7 @@ BEGIN_MESSAGE_MAP(CPropRegistry, CDialog)
 	//{{AFX_MSG_MAP(CPropRegistry)
 	ON_BN_CLICKED(IDC_EXPLORER_CONTEXT, OnAddToExplorer)
 	ON_BN_CLICKED(IDC_EXT_EDITOR_BROWSE, OnBrowseEditor)
+	ON_BN_CLICKED(IDC_EXPLORER_ADVANCED, OnAdvancedContext)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -95,26 +102,34 @@ void CPropRegistry::GetContextRegValues()
 	// This will be bit mask, although now there is only one bit defined
 	DWORD dwContextEnabled = reg.ReadDword(f_RegValueEnabled, 0);
 
-	if (dwContextEnabled & 0x1)
+	if (dwContextEnabled & CONTEXT_F_ENABLED)
 		m_bContextAdded = TRUE;
+
+	if (dwContextEnabled & CONTEXT_F_ADVANCED)
+		m_bContextAdvanced = TRUE;
 }
 
 /// Set registry values for ShellExtension
 void CPropRegistry::OnAddToExplorer()
 {
+	AdvancedContextMenuCheck();
 	UpdateData();
 
 	CRegKeyEx reg;
 	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
 		return;
 
-	// This will be bit mask, although now there is only one bit defined
 	DWORD dwContextEnabled = reg.ReadDword(f_RegValueEnabled, 0);
-
 	if (m_bContextAdded)
-		dwContextEnabled |= 0x01;
+		dwContextEnabled |= CONTEXT_F_ENABLED;
 	else
-		dwContextEnabled &= ~0x01;
+		dwContextEnabled &= ~CONTEXT_F_ENABLED;
+
+	if (m_bContextAdvanced)
+		dwContextEnabled |= CONTEXT_F_ADVANCED;
+	else
+		dwContextEnabled &= ~CONTEXT_F_ADVANCED;
+
 
 	reg.WriteDword(f_RegValueEnabled, dwContextEnabled);
 }
@@ -147,4 +162,36 @@ void CPropRegistry::OnBrowseEditor()
 	 	m_strEditorPath = pdlg.GetPathName();
 
 	UpdateData(FALSE);
+}
+
+/// Enable/Disable "Advanced menu" checkbox.
+void CPropRegistry::AdvancedContextMenuCheck()
+{
+	if (IsDlgButtonChecked(IDC_EXPLORER_CONTEXT))
+		GetDlgItem(IDC_EXPLORER_ADVANCED)->EnableWindow(TRUE);
+	else
+	{
+		GetDlgItem(IDC_EXPLORER_ADVANCED)->EnableWindow(FALSE);
+		CheckDlgButton(IDC_EXPLORER_ADVANCED, FALSE);
+		m_bContextAdvanced = FALSE;
+	}
+}
+
+// Enable/disable "Advanced menu" in shell extension context menu
+void CPropRegistry::OnAdvancedContext()
+{
+	UpdateData();
+
+	CRegKeyEx reg;
+	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
+		return;
+
+	DWORD dwContextEnabled = reg.ReadDword(f_RegValueEnabled, 0);
+	if (m_bContextAdvanced)
+		dwContextEnabled |= CONTEXT_F_ADVANCED;
+	else
+		dwContextEnabled &= ~CONTEXT_F_ADVANCED;
+
+
+	reg.WriteDword(f_RegValueEnabled, dwContextEnabled);
 }

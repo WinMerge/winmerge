@@ -630,9 +630,11 @@ BEGIN
     CONTROL         "Lägg till i Utforskarens popup-meny",
                     IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,17,167,10
-    LTEXT           "Extern Editor:",IDC_STATIC,7,33,167,8
-    EDITTEXT        IDC_EXT_EDITOR_PATH,7,43,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Bläddra...",IDC_EXT_EDITOR_BROWSE,179,43,50,14
+    CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
+    LTEXT           "Extern Editor:",IDC_STATIC,7,44,167,8
+    EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Bläddra...",IDC_EXT_EDITOR_BROWSE,179,54,50,14
 END
 
 IDD_GENERATE_PATCH DIALOGEX 0, 0, 340, 180

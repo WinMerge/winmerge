@@ -2,6 +2,9 @@
  PATCH: [ 961810 ] Store path for ShellExtension
   ShellExtension: resource.h ShellExtension.cpp ShellExtension.rc
    WinMergeShell.cpp WinMergeShell.h
+ PATCH: [ 961780 ] ShellExtension advanced menu - UI
+  Src: Merge.rc PropRegistry.cpp PropRegistry.h resource.h
+  Src/Languages: *.rc resource.h
 
 2004-05-29 Perry
  Updated WinMerge Localized.iss from seier (manifest & plugins.txt changes)

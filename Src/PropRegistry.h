@@ -40,6 +40,7 @@ public:
 	CPropRegistry();   // standard constructor
 	void GetContextRegValues();
 	void SaveMergePath();
+	void AdvancedContextMenuCheck();
 
 // Dialog Data
 	//{{AFX_DATA(CPropRegistry)
@@ -47,6 +48,7 @@ public:
 	BOOL m_bContextAdded;
 	CString	m_strEditorPath;
 	BOOL	m_bUseRecycleBin;
+	BOOL	m_bContextAdvanced;
 	//}}AFX_DATA
 
 	// Overrides
@@ -63,6 +65,7 @@ protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnAddToExplorer();
 	afx_msg void OnBrowseEditor();
+	afx_msg void OnAdvancedContext();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

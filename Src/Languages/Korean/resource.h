@@ -121,6 +121,7 @@
 #define IDC_SEL_DIFFERENCE_DELETED_COLOR 1042
 #define IDC_SEL_DIFFERENCE_TEXT_COLOR   1043
 #define IDC_EXPLORER_CONTEXT            1044
+#define IDC_EXPLORER_ADVANCED           1045
 #define IDC_GROUP_SHOW                  1053
 #define IDC_LIST_SHOW                   1054
 #define IDC_UP                          1055
@@ -698,7 +699,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        162
 #define _APS_NEXT_COMMAND_VALUE         33088
-#define _APS_NEXT_CONTROL_VALUE         1138
+#define _APS_NEXT_CONTROL_VALUE         1146
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif
