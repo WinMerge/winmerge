@@ -243,6 +243,7 @@ protected :
     BOOL IsSelection ();
     BOOL IsInsideSelection (const CPoint & ptTextPos);
     void GetSelection (CPoint & ptStart, CPoint & ptEnd);
+    void GetFullySelectedLines(int & firstLine, int & lastLine);
     virtual void SetSelection (const CPoint & ptStart, const CPoint & ptEnd);
 
     int m_nTopLine, m_nOffsetChar;

@@ -566,6 +566,23 @@ GetSelection (CPoint & ptStart, CPoint & ptEnd)
   ptEnd = m_ptDrawSelEnd;
 }
 
+void CCrystalTextView::
+GetFullySelectedLines(int & firstLine, int & lastLine)
+{
+  CPoint ptStart;
+  CPoint ptEnd;
+  GetSelection(ptStart, ptEnd);
+
+  if (ptStart.x == 0)
+    firstLine = ptStart.y;
+	else
+    firstLine = ptStart.y + 1;
+  if (ptEnd.x == GetLineLength(ptEnd.y))
+    lastLine = ptEnd.y;
+  else
+    lastLine = ptEnd.y-1;
+}
+
 CCrystalTextBuffer *CCrystalTextView::
 LocateTextBuffer ()
 {

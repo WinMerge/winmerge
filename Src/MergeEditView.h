@@ -121,6 +121,7 @@ public:
 	virtual CCrystalTextBuffer *LocateTextBuffer ();
 	void ResetMod();
 	void AddMod();
+	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff);
 	CString GetSelectedText();
 	CString GetLineText(int idx);
 	void DoScroll(UINT code, UINT pos, BOOL bDoScroll);
@@ -212,6 +213,10 @@ protected:
 	afx_msg void OnUpdateL2RNext(CCmdUI* pCmdUI);
 	afx_msg void OnR2LNext();
 	afx_msg void OnUpdateR2LNext(CCmdUI* pCmdUI);
+	afx_msg void OnMultipleLeft();
+	afx_msg void OnUpdateMultipleLeft(CCmdUI* pCmdUI);
+	afx_msg void OnMultipleRight();
+	afx_msg void OnUpdateMultipleRight(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -1,3 +1,8 @@
+2003-10-13 Laoran
+ PATCH: [ 821821 ] Merge multiple diffs 
+  WinMerge: Merge.rc MergeDoc.cpp MergeDoc.h MergeEditView.cpp MergeEditView.h resource.h
+  editlib: ccrystaltextview.cpp ccrystaltextview.h
+
 2003-10-13 Kimmo
  PATCH: [ 797502 ] Bugfix and new options for SourceSafe
   WinMerge: DirActions.cpp MainFrm.h MainFrm.cpp Merge.rc resource.h

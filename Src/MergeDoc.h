@@ -197,6 +197,7 @@ public:
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	BOOL Undo();
 	void CopyAllList(bool bSrcLeft);
+	void CopyMultipleList(bool bSrcLeft, int firstDiff, int lastDiff);
 	void ListCopy(bool bSrcLeft);
 	BOOL TrySaveAs(CString strPath, BOOL &bSaveSuccess, BOOL bLeft);
 	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);

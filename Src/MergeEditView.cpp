@@ -126,6 +126,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_L2RNEXT, OnUpdateL2RNext)
 	ON_COMMAND(ID_R2LNEXT, OnR2LNext)
 	ON_UPDATE_COMMAND_UI(ID_R2LNEXT, OnUpdateR2LNext)
+	ON_COMMAND(ID_MULTIPLE_LEFT, OnMultipleLeft)
+	ON_UPDATE_COMMAND_UI(ID_MULTIPLE_LEFT, OnUpdateMultipleLeft)
+	ON_COMMAND(ID_MULTIPLE_RIGHT, OnMultipleRight)
+	ON_UPDATE_COMMAND_UI(ID_MULTIPLE_RIGHT, OnUpdateMultipleRight)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -208,6 +212,42 @@ CString CMergeEditView::GetSelectedText()
 	GetSelection(ptStart, ptEnd);
 	GetText(ptStart, ptEnd, strText);
 	return strText;
+}
+
+void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
+{
+	firstDiff = 0;
+	lastDiff = -1;
+
+	CMergeDoc *pd = GetDocument();
+	if (pd->m_nDiffs == 0)
+		return;
+
+	int firstLine, lastLine;
+	GetFullySelectedLines(firstLine, lastLine);
+	if (lastLine < firstLine)
+		return;
+
+	for (UINT i = 0; i < pd->m_nDiffs; i++)
+	{
+		if ((int)pd->m_diffs[i].dbegin0 >= firstLine)
+		{
+			firstDiff = i;
+			break;
+		}
+	}
+	if (i == pd->m_nDiffs)
+		return;
+
+	lastDiff = pd->m_nDiffs - 1;
+	for (i = firstDiff; i < pd->m_nDiffs; i++)
+	{
+		if ((int)pd->m_diffs[i].dend0 > lastLine)
+		{
+				lastDiff = i-1;
+				break;
+		}
+	}
 }
 
 void CMergeEditView::AddMod()
@@ -905,6 +945,88 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 		pCmdUI->Enable(GetDocument()->m_nDiffs!=0);
 	else
 		pCmdUI->Enable(FALSE);
+}
+
+void CMergeEditView::OnMultipleLeft() 
+{
+	if (m_bIsLeft)
+	{
+		// We need the right selection, go to right view 
+		GetDocument()->GetRightView()->OnMultipleLeft();
+		return;
+	}
+
+	// Check that left side is not readonly
+	if (IsReadOnly(TRUE))
+		return;
+
+	int firstDiff, lastDiff;
+	GetFullySelectedDiffs(firstDiff, lastDiff);
+	if (lastDiff < firstDiff)
+		return;
+
+	GetDocument()->CopyMultipleList(false, firstDiff, lastDiff);
+}
+
+void CMergeEditView::OnUpdateMultipleLeft(CCmdUI* pCmdUI) 
+{
+	if (m_bIsLeft)
+	{
+		// We need the right selection, go to right view 
+		GetDocument()->GetRightView()->OnUpdateMultipleLeft(pCmdUI);
+		return;
+	}
+
+	// Check that left side is not readonly
+	if (IsReadOnly(TRUE))
+		pCmdUI->Enable(FALSE);
+	else
+	{
+		int firstDiff, lastDiff;
+		GetFullySelectedDiffs(firstDiff, lastDiff);
+		pCmdUI->Enable(lastDiff >= firstDiff);
+	}
+}
+
+void CMergeEditView::OnMultipleRight() 
+{
+	if (!m_bIsLeft)
+	{
+		// We need the left selection, go to left view 
+		GetDocument()->GetLeftView()->OnMultipleRight();
+		return;
+	}
+
+	// Check that right side is not readonly
+	if (IsReadOnly(FALSE))
+		return;
+
+	int firstDiff, lastDiff;
+	GetFullySelectedDiffs(firstDiff, lastDiff);
+	if (lastDiff < firstDiff)
+		return;
+
+	GetDocument()->CopyMultipleList(true, firstDiff, lastDiff);
+}
+
+void CMergeEditView::OnUpdateMultipleRight(CCmdUI* pCmdUI) 
+{
+	if (!m_bIsLeft)
+	{
+		// We need the left selection, go to left view 
+		GetDocument()->GetLeftView()->OnUpdateMultipleRight(pCmdUI);
+		return;
+	}
+
+		// Check that right side is not readonly
+	if (IsReadOnly(FALSE))
+		pCmdUI->Enable(FALSE);
+	else
+	{
+		int firstDiff, lastDiff;
+		GetFullySelectedDiffs(firstDiff, lastDiff);
+		pCmdUI->Enable(lastDiff >= firstDiff);
+	}
 }
 
 void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)

@@ -178,6 +178,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copy &All to Right",          ID_ALL_RIGHT
         MENUITEM "Cop&y All to Left",           ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "Copy Diffs in Left Selection to Right", ID_MULTIPLE_RIGHT
+        MENUITEM "Copy Diffs in Right Selection to Left", ID_MULTIPLE_LEFT
     END
     POPUP "&Tools"
     BEGIN
@@ -1379,6 +1382,12 @@ BEGIN
     IDS_UZBEK_LATIN         "Uzbek (Latin)"
     IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
     IDS_VIETNAMESE          "Vietnamese"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
+    ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
 END
 
 #endif    // English (U.S.) resources

@@ -501,13 +501,24 @@ private:
 /// Copy all diffs from one side to the other (as specified by caller)
 void CMergeDoc::CopyAllList(bool bSrcLeft)
 {
-	RescanSuppress suppressRescan(*this);
+	CopyMultipleList(bSrcLeft, 0, m_nDiffs-1);
+}
+
+/// Copy some diffs from one side to the other (as specified by caller)
+void CMergeDoc::CopyMultipleList(bool bSrcLeft, int firstDiff, int lastDiff)
+{
+	lastDiff = min(m_nDiffs-1, lastDiff);
+	firstDiff = max(0, firstDiff);
+	if (firstDiff > lastDiff)
+		return;
 	
+	RescanSuppress suppressRescan(*this);
+
 	// Note we don't care about m_nDiffs count to become zero,
 	// because we don't rescan() so it does not change
 
 	// copy from bottom up is more efficient
-	for(int i = m_nDiffs-1; i>=0; --i)
+	for(int i = lastDiff; i>=firstDiff; --i)
 	{
 		SetCurrentDiff(i);
 		ListCopy(bSrcLeft);
