@@ -159,7 +159,7 @@ BEGIN
     BEGIN
         MENUITEM "Show &Identical Files",       ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "Show &Different Files",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Show Le&ft Unique Files",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show L&eft Unique Files",     ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "Show Ri&ght Unique Files",    ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
@@ -172,7 +172,7 @@ BEGIN
         MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
-        MENUITEM "Location &Pane",              ID_VIEW_LOCATION_BAR
+        MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
         MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "&Language...",                ID_VIEW_LANGUAGE
@@ -1511,9 +1511,9 @@ BEGIN
     ID_DIR_ZIP_RIGHT        "Add items from right side to archive"
     ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
-    ID_DIR_MOVE_LEFT_TO_BROWSE 
+    ID_DIR_MOVE_LEFT_TO_BROWSE
                             "Move selected file on left to custom directory"
-    ID_DIR_MOVE_RIGHT_TO_BROWSE 
+    ID_DIR_MOVE_RIGHT_TO_BROWSE
                             "Move selected file on right to custom directory"
 END
 

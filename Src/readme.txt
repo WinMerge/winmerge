@@ -1,3 +1,7 @@
+2004-08-10 Kimmo
+ BUG: [ 1006164 ] accelerator conflict
+  Src: Merge.rc
+
 2004-08-04 Kimmo
  PATCH: [ 1001981 ] Italian translation updated
   Submitted by Andrea Decorte
