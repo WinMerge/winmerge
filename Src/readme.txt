@@ -1,4 +1,8 @@
-2003-06-06 Kimmov
+2003-06-07 Kimmo
+ PATCH: [ 750302 ] Allow *.flt filter files
+  WinMerge: Merge.cpp
+
+2003-06-06 Kimmo
  Updated filter file from patch [ 742041 ] Improvements to file/directory filters
   Filters: Merge_VC_loose.flt
  BUG: [ 749007 ] "Highlighting" is misspelled as "Hilighting"
