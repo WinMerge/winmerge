@@ -3107,6 +3107,15 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
  */
 void CMergeDoc::UpdateResources()
 {
+	CString str;
+
+	VERIFY(str.LoadString(IDS_EMPTY_LEFT_FILE));
+	m_strLeftDesc = str;
+	VERIFY(str.LoadString(IDS_EMPTY_RIGHT_FILE));
+	m_strRightDesc = str;
+	UpdateHeaderPath(TRUE);
+	UpdateHeaderPath(FALSE);
+
 	GetParentFrame()->UpdateResources();
 	GetLeftView()->UpdateResources();
 	GetRightView()->UpdateResources();
