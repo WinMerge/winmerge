@@ -3550,14 +3550,18 @@ EnsureVisible (CPoint pt)
   int nActualPos = CalculateActualOffset (pt.y, pt.x);
   int nNewOffset = m_nOffsetChar;
   const int nScreenChars = GetScreenChars ();
-  if (nActualPos > nNewOffset + nScreenChars)
+  
+  // Keep 5 chars visible right to cursor
+  if (nActualPos > nNewOffset + nScreenChars - 5)
     {
       // Add 10 chars width space after line
       nNewOffset = nActualPos - nScreenChars + 10;
     }
-  if (nActualPos < nNewOffset)
+  // Keep 5 chars visible left to cursor
+  if (nActualPos < nNewOffset + 5)
     {
-      nNewOffset = nActualPos;
+      // Jump by 10 char steps, so user sees previous letters too
+      nNewOffset = nActualPos - 10;
     }
 
   // Horiz scroll limit to longest line + one screenwidth

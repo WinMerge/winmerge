@@ -3,6 +3,8 @@
   Src: MergeDoc.cpp
  PATCH: [ 1106330 ] Change position in locationpane with single mouseclick
   Src: LocationView.cpp LocationView.h
+ PATCH: [ 1106383 ] Show few chars of 'context' when horizontal scrolling lines
+  Src/editlib: ccrystaltextview.cpp
 
 2005-01-20 Kimmo
  PATCH: [ 1105640 ] Properly update locationpane visible area indicator
