@@ -1,3 +1,7 @@
+2004-09-01 Kimmo
+ PATCH: [ 1019759 ] Allow D&D projectfile to main window
+  Src: MainFrm.cpp
+
 2004-08-31 Kimmo
  PATCH: [ 1019108 ] Warn if file changed on disk between rescans
   Src: Merge.rc MergeDoc.cpp MergeDoc.h resource.h

@@ -74,6 +74,7 @@
 #include "unicoder.h"
 #include "VSSHelper.h"
 #include "codepage.h"
+#include "ProjectFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -2209,6 +2210,22 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 
 	gLog.Write(LOGLEVEL::LNOTICE, _T("D&D open: Left: %s\n\tRight: %s."),
 		files[0], files[1]);
+
+	// Load project file
+	CString sExt;
+	SplitFilename(files[0], NULL, NULL, &sExt);
+	if (sExt == PROJECTFILE_EXT)
+	{
+		CStringArray filesArray;
+		BOOL bRecursive = FALSE;
+		filesArray.Add(files[0]);
+		filesArray.Add(files[1]);
+		if (theApp.LoadProjectFile(filesArray, bRecursive))
+		{
+			DoFileOpen(filesArray[0], filesArray[1], FFILEOPEN_NONE, FFILEOPEN_NONE, bRecursive);
+			return;
+		}
+	}
 
 	DoFileOpen(files[0], files[1], FFILEOPEN_NONE, FFILEOPEN_NONE, ctrlKey);
 }
