@@ -1,4 +1,4 @@
-; *** Inno Setup versione 4.1.8+ lingua Italiana ***
+; *** Inno Setup versione 4.2.2+ lingua Italiana ***
 ;
 ; To download user-contributed translations of this file, go to:
 ;   http://www.jrsoftware.org/is3rdparty.php
@@ -8,8 +8,8 @@
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 ;
-; $jrsoftware: issrc/Files/Default.isl,v 1.53 2004/02/25 01:55:24 jr Exp $
-; Italian.isl revisione 16 - 2004/02/26
+; $jrsoftware: issrc/Files/Default.isl,v 1.58 2004/04/07 20:17:13 jr Exp $
+; Italian.isl revisione 18 - 2004/04/28
 ;
 ; Tradotto da ale5000 - ale5000@tiscali.it - http://digilander.libero.it/kazaaita/
 ; Segnalatemi via e-mail eventuali errori o suggerimenti
@@ -17,6 +17,7 @@
 [LangOptions]
 LanguageName=Italiano
 LanguageID=$0410
+LanguageCodePage=0
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.
 ;DialogFontName=
@@ -78,10 +79,10 @@ ButtonNext=&Avanti >
 ButtonInstall=&Installa
 ButtonOK=OK
 ButtonCancel=Annulla
-ButtonYes=&Si
-ButtonYesToAll=Si a &Tutto
+ButtonYes=&Sì
+ButtonYesToAll=Sì a &tutto
 ButtonNo=&No
-ButtonNoToAll=N&o a Tutto
+ButtonNoToAll=N&o a tutto
 ButtonFinish=&Fine
 ButtonBrowse=&Sfoglia...
 ButtonWizardBrowse=S&foglia...
@@ -113,7 +114,7 @@ IncorrectPassword=La password inserita non è corretta, riprovare.
 WizardLicense=Contratto di Licenza
 LicenseLabel=Leggere con attenzione le informazioni che seguono prima di procedere.
 LicenseLabel3=Leggere il seguente contratto di licenza. È necessario accettare tutti i termini di questo accordo per procedere con l'installazione.
-LicenseAccepted=&Accetto i termini del contratto di licenza 
+LicenseAccepted=&Accetto i termini del contratto di licenza
 LicenseNotAccepted=&Non accetto i termini del contratto di licenza
 
 ; *** "Information" wizard pages
@@ -125,11 +126,11 @@ InfoAfterLabel=Leggere le importanti informazioni che seguono prima di procedere
 InfoAfterClickLabel=Quando sei pronto per proseguire, premi Avanti.
 
 ; *** "User Information" wizard page
-WizardUserInfo=Informazioni Utente
+WizardUserInfo=Informazioni utente
 UserInfoDesc=Inserire le seguenti informazioni.
 UserInfoName=&Nome:
 UserInfoOrg=&Società:
-UserInfoSerial=&Numero di Serie:
+UserInfoSerial=&Numero di serie:
 UserInfoNameRequired=E' necessario inserire un nome.
 
 ; *** "Select Destination Location" wizard page
@@ -175,7 +176,7 @@ WizardSelectProgramGroup=Selezione della cartella nel Menu Avvio/Start
 SelectStartMenuFolderDesc=Dove vuoi che l'installazione inserisca i collegamenti al programma?
 SelectStartMenuFolderLabel3=Saranno creati i collegamenti al programma nella seguente cartella del Menu Avvio/Start.
 SelectStartMenuFolderBrowseLabel=Per continuare, premere Avanti. Per selezionare un'altra cartella, premere Sfoglia.
-NoIconsCheck=&Non creare nessuna Icona
+NoIconsCheck=&Non creare nessuna icona
 MustEnterGroupName=Devi inserire il nome della cartella.
 GroupNameTooLong=Il nome della cartella o il percorso sono troppo lunghi.
 InvalidGroupName=Il nome della cartella non è valido.
@@ -306,65 +307,66 @@ StatusUninstalling=Disinstallazione in corso di %1...
 
 [CustomMessages]
 ;Inno Setup Built-in Custom Messages
-NameAndVersion=%1 version %2
-AdditionalIcons=Additional icons:
-CreateDesktopIcon=Create a &desktop icon
-CreateQuickLaunchIcon=Create a &Quick Launch icon
-ProgramOnTheWeb=%1 on the Web
-UninstallProgram=Uninstall %1
-LaunchProgram=Launch %1
-AssocFileExtension=&Associate %1 with the %2 file extension
-AssocingFileExtension=Associating %1 with the %2 file extension...
+NameAndVersion=%1 versione %2
+AdditionalIcons=Icone aggiuntive:
+CreateDesktopIcon=Crea un'icona sul &desktop
+CreateQuickLaunchIcon=Crea un'icona nella barra &Avvio veloce
+ProgramOnTheWeb=%1 sul Web
+UninstallProgram=Disinstalla %1
+LaunchProgram=Lancia %1
+AssocFileExtension=&Associa %1 con l'estensione %2
+AssocingFileExtension=Associazione di %1 con l'estensione %2 in corso...
 
 ;Things we can also localize
 CompanyName=Thingamahoochie Software
 
+;Translated by Andrea Decorte <klenje@adriacom.it>
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=Installazione tipica
+FullInstallation=Installazione completa
+CompactInstallation=Installazione compatta
+CustomInstallation=Installazione personalizzata
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-ApplicationRuntimes=Application Runtimes
-UsersGuide=User's Guide
-Filters=Filters
-Plugins=Plugins (See Plugins.txt)
+AppCoreFiles=File base di WinMerge
+ApplicationRuntimes=Runtime dell'applicazione
+UsersGuide=Guida per l'utente
+Filters=Filtri
+Plugins=Plugin (Vedi file Plugins.txt)
 
 ;Localization Components
-Languages=Languages
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FrenchLanguage=French menus and dialogs
-GermanLanguage=German menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseLanguage=Portuguese (Brazillian) menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
+Languages=Lingue
+BulgarianLanguage=Menu e finestre di dialogo in bulgaro
+CatalanLanguage=Menu e finestre di dialogo in catalano
+ChineseSimplifiedLanguage=Menu e finestre di dialogo in cinese (semplificato)
+ChineseTraditionalLanguage=Menu e finestre di dialogo in cinese (tradizionale)
+CzechLanguage=Menu e finestre di dialogo in ceco
+DanishLanguage=Menu e finestre di dialogoin danese
+DutchLanguage=Menu e finestre di dialogo in olandese
+FrenchLanguage=Menu e finestre di dialogo in francese
+GermanLanguage=Menu e finestre di dialogo in tedesco
+ItalianLanguage=Menu e finestre di dialogo in italiano
+JapaneseLanguage=Menu e finestre di dialogo in giapponese
+KoreanLanguage=Menu e finestre di dialogo in coreano
+NorwegianLanguage=Menu e finestre di dialogo in norvegese
+PolishLanguage=Menu e finestre di dialogo in polacco
+PortugueseLanguage=Menu e finestre di dialogo in portoghese (brasiliano)
+RussianLanguage=Menu e finestre di dialogo in russo
+SlovakLanguage=Menu e finestre di dialogo in slovacco
+SpanishLanguage=Menu e finestre di dialogo in spagnolo
+SwedishLanguage=Menu e finestre di dialogo in svedese
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateDelphi4=Borland® Delphi &4 Binary File Support
-UpdatingCommonControls=Updating the System's Common Controls
+ExplorerContextMenu=&Attiva integrazione con menu contestuale di Explorer
+IntegrateTortoiseCVS=Integrazione con &TortoiseCVS
+IntegrateDelphi4=Supporto per i file binari di Borland® Delphi &4
+UpdatingCommonControls=Aggiornamento dei controlli comuni del sistema in corso...
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-UpdatingCommonControls=Updating the System's Common Controls
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
+ReadMe=Leggimi
+UsersGuide=Guida per l'utente
+UpdatingCommonControls=Aggiornamento dei controlli comuni del sistema in corso...
+ViewStartMenuFolder=&Visualizza cartella del menu Start di WinMerge
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=L'installer ha rilevato che il tuo menu Start è stato spostato da "%s" a "%s". Desideri eliminare la precedente cartella del menu Start?

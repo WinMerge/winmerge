@@ -1,3 +1,7 @@
+2004-07-31 Perry
+ PATCH: [ 989288 ] Inno Setup Localization: Italian
+  InnoSetup\Languages: Italian.isl
+
 2004-07-31 Kimmo
  PATCH: [ 1000714 ] Don't create difflist or patch file for binary files
   Src: DiffWrapper.cpp
