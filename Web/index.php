@@ -25,7 +25,8 @@
 </ul>
 
 <h2>Screenshot</h2>
-<img src="2.2/images/filecomp1.gif" alt="Screenshot of WinMerge">
+<p><img src="2.2/images/file-compare.gif" alt="Screenshot of WinMerge"></p>
+<p>See the <a href="2.2/screenshots.php">screenshots page</a> for more screenshots.</p>
 
 <h2>WinMerge 2.2 - latest stable version</h2>
 <p><a href="2.2/index.php">WinMerge 2.2</a> is the latest stable version, and it is recommended for most users.</p>
