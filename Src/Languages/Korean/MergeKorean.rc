@@ -38,21 +38,23 @@ IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU
+IDR_POPUP_MERGEVIEW MENU 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "살행 취소(&U)",               ID_EDIT_UNDO
+        MENUITEM "다시 실행",                   ID_EDIT_REDO
+        MENUITEM SEPARATOR
         MENUITEM "반대 편으로 복사",            ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "반대 편으로부터 복사",        ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "반대편으로 다른 부분 모두 복사...",
-                                                ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-        MENUITEM "반대편으로부터 다른 부분 모두 복사...",
-                                                ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+        MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "실행 취소",                   ID_UNDO
+        MENUITEM "잘라내기",                    ID_EDIT_CUT
+        MENUITEM "복사(&C)",                    ID_EDIT_COPY
+        MENUITEM "붙여넣기(&P)",                ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "바뀐 상태 저장...",           ID_POPUP_SAVE
+        MENUITEM "&Goto...",                     ID_EDIT_WMGOTO
     END
 END
 

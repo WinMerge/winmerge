@@ -75,19 +75,23 @@ IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU DISCARDABLE
+IDR_POPUP_MERGEVIEW MENU 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "復原(&U)",                    ID_EDIT_UNDO
+        MENUITEM "重做(&R)",                    ID_EDIT_REDO
+        MENUITEM SEPARATOR
         MENUITEM "複製到另一邊",                ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "從另一邊複製",                ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "複製所有不同到另一邊...",     ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-        MENUITEM "從另一邊複製所有不同...",     ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+        MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "復原",                        ID_UNDO
+        MENUITEM "剪下(&U)",                    ID_EDIT_CUT
+        MENUITEM "複製(&C)",                    ID_EDIT_COPY
+        MENUITEM "貼上(&P)",                    ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "儲存更改...",                 ID_POPUP_SAVE
+        MENUITEM "&Goto...",                     ID_EDIT_WMGOTO
     END
 END
 

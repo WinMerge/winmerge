@@ -8,7 +8,7 @@
 #define IDC_UNDO                        6
 #define IDSAVEAS                        7
 #define IDD_ABOUTBOX                    100
-#define IDR_POPUP_DIFFVIEW              101
+#define IDR_POPUP_MERGEVIEW             101
 #define IDR_POPUP_DIRVIEW               102
 #define IDD_PROP_VSS                    103
 #define IDR_MAINFRAME                   104

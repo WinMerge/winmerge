@@ -75,21 +75,23 @@ IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU DISCARDABLE
+IDR_POPUP_MERGEVIEW MENU 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "&Deshacer",                   ID_EDIT_UNDO
+        MENUITEM "&Redo",                        ID_EDIT_REDO
+        MENUITEM SEPARATOR
         MENUITEM "Copy to other side",          ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "Copy from other side",        ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "Copy all diffs to other side...",
-                                                ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-        MENUITEM "Copy all diffs from other side...",
-                                                ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+        MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Undo",                        ID_UNDO
+        MENUITEM "Cor&tar",                     ID_EDIT_CUT
+        MENUITEM "Copi&ar",                     ID_EDIT_COPY
+        MENUITEM "Pe&gar",                      ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Save Changes...",             ID_POPUP_SAVE
+        MENUITEM "&Goto...",                     ID_EDIT_WMGOTO
     END
 END
 

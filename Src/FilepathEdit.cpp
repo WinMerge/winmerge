@@ -23,6 +23,7 @@
 
 #include "stdafx.h"
 #include "Merge.h"
+#include "BCMenu.h"
 
 #include "FilepathEdit.h"
 
@@ -273,10 +274,10 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 			point.Offset(5, 5);
 		}
 
-		CMenu menu;
+		BCMenu menu;
 		VERIFY(menu.LoadMenu(IDR_POPUP_EDITOR_HEADERBAR));
 
-		CMenu* pPopup = menu.GetSubMenu(0);
+		BCMenu* pPopup = (BCMenu *) menu.GetSubMenu(0);
 		ASSERT(pPopup != NULL);
 
 		if (wholeText.Right(1) == '\\')
@@ -286,7 +287,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		// invoke context menu
 		// we don't want to use the main application handlers, so we use flags TPM_NONOTIFY | TPM_RETURNCMD
 		// and handle the command after TrackPopupMenu
-		int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY  | TPM_RETURNCMD, point.x, point.y, this);
+		int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY  | TPM_RETURNCMD, point.x, point.y, AfxGetMainWnd());
 		if (command != ID_EDITOR_COPY_FILENAME && command != ID_EDITOR_COPY_PATH)
 			return;
 

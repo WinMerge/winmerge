@@ -75,21 +75,23 @@ IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU DISCARDABLE
+IDR_POPUP_MERGEVIEW MENU 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "&Отмена",                     ID_EDIT_UNDO
+        MENUITEM "В&ернуть",                    ID_EDIT_REDO
+        MENUITEM SEPARATOR
         MENUITEM "Скопировать на другую сторону", ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "Скопировать с другой стороны", ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "Скопировать все отличия на другую сторону...",
-                                                ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-        MENUITEM "Скопировать все отличия с другой стороны...",
-                                                ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+        MENUITEM "Подсветить отличия в линии",  ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Отменить",                    ID_UNDO
+        MENUITEM "Вы&резать",                   ID_EDIT_CUT
+        MENUITEM "&Копировать",                 ID_EDIT_COPY
+        MENUITEM "&Вставить",                   ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Сохранить изменения...",      ID_POPUP_SAVE
+        MENUITEM "Перейти к строке...",         ID_EDIT_WMGOTO
     END
 END
 

@@ -75,21 +75,23 @@ IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU DISCARDABLE
+IDR_POPUP_MERGEVIEW MENU 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "&Sp‰ù",                       ID_EDIT_UNDO
+        MENUITEM "&Znova",                      ID_EDIT_REDO
+        MENUITEM SEPARATOR
         MENUITEM "KopÌrovaù na druh˙ stranu",   ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "KopÌrovaù z druhej strany",   ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "KopÌrovaù vöetky rozdiely na druh˙ stranu...",
-                                                ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-        MENUITEM "KopÌrovaù vöetky rozdiely z druhej strany...",
-                                                ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+        MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Sp‰ù",                        ID_UNDO
+        MENUITEM "V&ystrihn˙ù",                 ID_EDIT_CUT
+        MENUITEM "&KopÌrovaù",                  ID_EDIT_COPY
+        MENUITEM "V&loûiù",                     ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Uloûiù zmeny...",             ID_POPUP_SAVE
+        MENUITEM "&Goto...",                     ID_EDIT_WMGOTO
     END
 END
 

@@ -75,20 +75,23 @@ IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU DISCARDABLE
+IDR_POPUP_MERGEVIEW MENU 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "&Annulla",                    ID_EDIT_UNDO
+        MENUITEM "&Redo",                        ID_EDIT_REDO
+        MENUITEM SEPARATOR
         MENUITEM "Copia dall'altro lato",       ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "Copia l'altro lato",          ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "Copia tutto dall'altro lato...",
-                                                ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-        MENUITEM "Copia tutto l'altro lato...", ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+        MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Annulla",                     ID_UNDO
+        MENUITEM "&Taglia",                     ID_EDIT_CUT
+        MENUITEM "C&opia",                      ID_EDIT_COPY
+        MENUITEM "I&ncolla",                    ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Salva modifiche...",          ID_POPUP_SAVE
+        MENUITEM "&Goto...",                     ID_EDIT_WMGOTO
     END
 END
 

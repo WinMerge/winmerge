@@ -75,21 +75,23 @@ IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU DISCARDABLE
+IDR_POPUP_MERGEVIEW MENU 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "&Rückgängig",                 ID_EDIT_UNDO
+        MENUITEM "&Wiederherstellen",           ID_EDIT_REDO
+        MENUITEM SEPARATOR
         MENUITEM "Zur anderen Seite kopieren",  ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "Von der anderen Seite kopieren", ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "Alle Unterschiede zur anderen Seite kopieren...",
-                                                ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-        MENUITEM "Alle Unterschiede von der anderen Seite kopieren...",
-                                                ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+        MENUITEM "Zeilenunterschied &hervorheben", ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Rückgängig",                  ID_UNDO
+        MENUITEM "Auss&chneiden",               ID_EDIT_CUT
+        MENUITEM "&Kopieren",                   ID_EDIT_COPY
+        MENUITEM "E&infügen",                   ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Änderungen speichern...",     ID_POPUP_SAVE
+        MENUITEM "&Gehe nach...",               ID_EDIT_WMGOTO
     END
 END
 

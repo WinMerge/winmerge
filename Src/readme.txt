@@ -1,3 +1,8 @@
+2004-03-31 Kimmo
+ PATCH: [ 924521 ] Add context menu for file compare
+  Src: DirView.cpp FilePathEdit.cpp Merge.rc MergeEditView.cpp resource.h
+  Languages: resource.h *.rc
+
 2004-03-30 seier
   Fixed Swedish Language had a description of Spanish in the installer.  
   Fixed Swedish was installing along with Spanish rather than the Swedish component description in the installer.  

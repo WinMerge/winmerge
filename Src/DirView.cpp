@@ -42,6 +42,7 @@
 #include "paths.h"	// paths_GetParentPath()
 #include "7zCommon.h"
 #include "OptionsDef.h"
+#include "BCMenu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -394,12 +395,12 @@ static CWnd * GetNonChildAncestor(CWnd * w)
 /**
  * @brief Format context menu string and disable item if it cannot be applied.
  */
-static void NTAPI FormatContextMenu(CMenu *pPopup, UINT uIDItem, int n1, int n2 = 0, int n3 = 0)
+static void NTAPI FormatContextMenu(BCMenu *pPopup, UINT uIDItem, int n1, int n2 = 0, int n3 = 0)
 {
 	CString s1, s2;
-	pPopup->GetMenuString(uIDItem, s1, MF_BYCOMMAND);
-	s2.FormatMessage(s1, NumToStr(n1), NumToStr(n2), NumToStr(n3));
-	pPopup->ModifyMenu(uIDItem, MF_BYCOMMAND, uIDItem, s2);
+	pPopup->GetMenuText(uIDItem, s1, MF_BYCOMMAND);
+	s2.FormatMessage((LPTSTR)(LPCTSTR)s1, NumToStr(n1), NumToStr(n2), NumToStr(n3));
+	pPopup->SetMenuText(uIDItem, s2, MF_BYCOMMAND);
 	if (n1 == 0)
 	{
 		pPopup->EnableMenuItem(uIDItem, MF_GRAYED);
@@ -411,11 +412,15 @@ static void NTAPI FormatContextMenu(CMenu *pPopup, UINT uIDItem, int n1, int n2 
  */
 void CDirView::ListContextMenu(CPoint point, int /*i*/)
 {
-	CMenu menu;
+	// Make sure window is active
+	GetParentFrame()->ActivateFrame();
+
+	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
+	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
 
 	// 1st submenu of IDR_POPUP_DIRVIEW is for item popup
-	CMenu* pPopup = menu.GetSubMenu(0);
+	BCMenu *pPopup = (BCMenu*) menu.GetSubMenu(0);
 	ASSERT(pPopup != NULL);
 
 	// set the menu items with the proper directory names
@@ -487,7 +492,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	// invoke context menu
 	// this will invoke all the OnUpdate methods to enable/disable the individual items
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
-		pFrame);
+		AfxGetMainWnd());
 	pFrame->m_bAutoMenuEnable = TRUE;
 }
 
@@ -497,20 +502,18 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 {
 	ToDoDeleteThisValidateColumnOrdering();
-	CMenu menu;
+	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
+	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
 
 	// 2nd submenu of IDR_POPUP_DIRVIEW is for header popup
-	CMenu* pPopup = menu.GetSubMenu(1);
+	BCMenu* pPopup = (BCMenu *)menu.GetSubMenu(1);
 	ASSERT(pPopup != NULL);
 
-	// find non-child ancestor to use as menu parent
-	CFrameWnd *pFrame = GetTopLevelFrame();
-	ASSERT(pFrame != NULL);
 	// invoke context menu
 	// this will invoke all the OnUpdate methods to enable/disable the individual items
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
-		pFrame);
+		AfxGetMainWnd());
 }	
 
 /// Make a string out of a number

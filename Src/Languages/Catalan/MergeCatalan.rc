@@ -75,21 +75,23 @@ IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU DISCARDABLE
+IDR_POPUP_MERGEVIEW MENU 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "&Desfés",                      ID_EDIT_UNDO
+        MENUITEM "Re&fés",                       ID_EDIT_REDO
+        MENUITEM SEPARATOR
         MENUITEM "Copia &a l'altra banda",      ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "Copia &de l'altra banda",     ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "Copia &totes les diferències a l'altra banda...",
-                                                ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-        MENUITEM "Copia t&otes les diferències de l'altra banda...",
-                                                ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+        MENUITEM "R&essalta les diferències de línia", ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "&Desfés",                     ID_UNDO
+        MENUITEM "&Retalla",                     ID_EDIT_CUT
+        MENUITEM "C&opia",                       ID_EDIT_COPY
+        MENUITEM "Engan&xa",                     ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "De&sa els canvis...",         ID_POPUP_SAVE
+        MENUITEM "&Goto...",                     ID_EDIT_WMGOTO
     END
 END
 

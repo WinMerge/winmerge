@@ -75,23 +75,23 @@ IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU 
+IDR_POPUP_MERGEVIEW MENU 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "&Предишно",                     ID_EDIT_UNDO
+        MENUITEM "Въ&рни",                        ID_EDIT_REDO
+        MENUITEM SEPARATOR
         MENUITEM "Копирай на другата страна",          ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "Копирай от другата страна",        ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "Копирай всички различия на другата страна...", 
-                                                ID_POPUP_COPYALLDIFFSTOOTHERSIDE
-
-        MENUITEM "Копирай всички различия от другата страна...",
-                                                ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
-
+        MENUITEM "По&дчертай разликите",         ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Предишно",                        ID_UNDO
+        MENUITEM "Ре&жа",                        ID_EDIT_CUT
+        MENUITEM "К&опирам",                     ID_EDIT_COPY
+        MENUITEM "По&сатвям",                    ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Запази промените...",             ID_POPUP_SAVE
+        MENUITEM "От&иди на...",                 ID_EDIT_WMGOTO
     END
 END
 

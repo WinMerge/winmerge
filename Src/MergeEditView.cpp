@@ -1582,8 +1582,16 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
  */
 void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
-	// text is CHAR if compiled without UNICODE, WCHAR with UNICODE
-	CString text = GetSelectedText();
+	// Create the menu and populate it with the available functions
+	BCMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_MERGEVIEW));
+	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
+
+	// Make sure window is active
+	GetParentFrame()->ActivateFrame();
+
+	BCMenu *pSub = (BCMenu *)menu.GetSubMenu(0);
+	ASSERT(pSub != NULL);
 
 	// Context menu opened using keyboard has no coordinates
 	if (point.x == -1 && point.y == -1)
@@ -1595,6 +1603,9 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 		point = rect.TopLeft();
 		point.Offset(5, 5);
 	}
+
+	pSub->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+		point.x, point.y, AfxGetMainWnd());
 
 }
 
