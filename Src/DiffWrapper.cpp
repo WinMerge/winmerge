@@ -51,9 +51,8 @@ CDiffWrapper::CDiffWrapper()
 	m_settings.outputStyle = OUTPUT_NORMAL;
     m_settings.context = -1;
     
-	// What is this?
+	// character that ends a line.  Currently this is always `\n'
 	line_end_char = '\n';
-	//ignore_blank_lines_flag = 1;
 }
 
 /**
@@ -101,6 +100,26 @@ void CDiffWrapper::SetOptions(DIFFOPTIONS *options)
 {
 	ASSERT(options);
 	InternalSetOptions(options);
+}
+
+/**
+ * @brief Get options used for patch creation
+ */
+void CDiffWrapper::GetPatchOptions(PATCHOPTIONS *options)
+{
+	ASSERT(options);
+	options->context = m_settings.context;
+	options->outputStyle = m_settings.outputStyle;
+}
+
+/**
+ * @brief Set options used for patch creation
+ */
+void CDiffWrapper::SetPatchOptions(PATCHOPTIONS *options)
+{
+	ASSERT(options);
+	m_settings.context = options->context;
+	m_settings.outputStyle = options->outputStyle;
 }
 
 /**

@@ -514,8 +514,20 @@ void
 output_1_line (text, limit, flag_format, line_flag)
      char const HUGE *text, HUGE *limit, *flag_format, *line_flag;
 {
+  char * pos = NULL;
   if (!tab_expand_flag)
-    fwrite (text, sizeof (char), limit - text, outfile);
+    {
+      pos = (char *) text;
+      while (pos < limit)
+        {
+          // fputc() converts '\n' to "\r\n" so skip '\r'
+          if (*pos == '\r' && *(pos+1) == '\n')
+            ;
+          else
+            fputc(*pos, outfile);
+          pos++;
+        }
+    }
   else
     {
       register FILE *out = outfile;

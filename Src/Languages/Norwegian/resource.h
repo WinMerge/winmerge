@@ -26,6 +26,7 @@
 #define IDD_PROPPAGE_REGISTRY           113
 #define IDD_EDITOR_HEADERBAR            114
 #define IDR_POPUP_EDITOR_HEADERBAR      115
+#define IDD_GENERATE_PATCH              116
 #define IDD_DIRCOLS                     117
 #define IDS_VERSION_FMT                 130
 #define IDS_ALLFILES                    131
@@ -133,6 +134,15 @@
 #define IDS_PRIVATEBUILD_FMT            225
 #define IDB_FOLDERSKIP                  226
 #define IDB_FILESKIP                    227
+#define IDS_FILEWRITE_ERROR             228
+#define IDS_DIFF_SUCCEEDED              229
+#define IDS_DIFF_ITEM1NOTFOUND          230
+#define IDS_DIFF_ITEM2NOTFOUND          231
+#define IDS_DIFF_FILEOVERWRITE          232
+#define IDS_DIFF_SELECTEDFILES          233
+#define IDS_DIFF_NORMAL                 234
+#define IDS_DIFF_CONTEXT                235
+#define IDS_DIFF_UNIFIED                236
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -199,6 +209,20 @@
 #define IDC_EDIT_FILE_FILTER            1061
 #define IDC_PRIVATEBUILD                1062
 #define IDC_MIXED_EOL                   1063
+#define IDC_DIFF_FILE1                  1064
+#define IDC_DIFF_FILE2                  1065
+#define IDC_DIFF_FILERESULT             1066
+#define IDC_DIFF_STYLE                  1067
+#define IDC_DIFF_CONTEXT                1068
+#define IDC_DIFF_CASESENSITIVE          1069
+#define IDC_DIFF_WHITESPACE_IGNOREBLANKS 1070
+#define IDC_DIFF_WHITESPACE_COMPARE     1071
+#define IDC_DIFF_WHITESPACE_IGNORE      1072
+#define IDC_DIFF_WHITESPACE_IGNOREALL   1073
+#define IDC_DIFF_BROWSE_FILE1           1074
+#define IDC_DIFF_BROWSE_FILE2           1075
+#define IDC_DIFF_BROWSE_RESULT          1076
+#define IDC_DIFF_APPENDFILE             1077
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -416,6 +440,7 @@
 #define ID_EOL_TO_UNIX                  32837
 #define ID_EOL_TO_MAC                   32838
 #define ID_OPTIONS_SHOWSKIPPED          32839
+#define ID_TOOLS_GENERATEPATCH          32840
 
 // Next default values for new objects
 // 
@@ -424,7 +449,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        118
 #define _APS_NEXT_COMMAND_VALUE         32840
-#define _APS_NEXT_CONTROL_VALUE         1064
+#define _APS_NEXT_CONTROL_VALUE         1078
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

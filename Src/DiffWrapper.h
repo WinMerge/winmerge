@@ -52,6 +52,31 @@ enum
 };
 
 /**
+ * @brief Patch styles
+ *
+ * Diffutils can output patch in these formats.
+ */
+enum
+{
+	/* Default output style.  */
+	DIFF_OUTPUT_NORMAL,
+	/* Output the differences with lines of context before and after (-c).  */
+	DIFF_OUTPUT_CONTEXT,
+	/* Output the differences in a unified context diff format (-u). */
+	DIFF_OUTPUT_UNIFIED,
+	/* Output the differences as commands suitable for `ed' (-e).  */
+	DIFF_OUTPUT_ED,
+	/* Output the diff as a forward ed script (-f).  */
+	DIFF_OUTPUT_FORWARD_ED,
+	/* Like -f, but output a count of changed lines in each "command" (-n). */
+	DIFF_OUTPUT_RCS,
+	/* Output merged #ifdef'd file (-D).  */
+	DIFF_OUTPUT_IFDEF,
+	/* Output sdiff style (-y).  */
+	DIFF_OUTPUT_SDIFF
+};
+
+/**
  * @brief One difference defined by linenumbers.
  *
  * This struct defines one set of different lines "diff".
@@ -87,6 +112,15 @@ typedef struct tagDIFFOPTIONS
 	BOOL bIgnoreBlankLines;
 	BOOL bEolSensitive;
 } DIFFOPTIONS;
+
+/**
+ * @brief Additional options for creating patch files
+ */
+typedef struct tagPATCHOPTIONS
+{
+	enum output_style outputStyle;
+	int context;
+} PATCHOPTIONS;
 
 /**
  * @brief Diffutils returns this statusdata about files compared
@@ -131,6 +165,8 @@ public:
 	void SetDiffList(CArray<DIFFRANGE,DIFFRANGE> *diffs);
 	void GetOptions(DIFFOPTIONS *options);
 	void SetOptions(DIFFOPTIONS *options);
+	void GetPatchOptions(PATCHOPTIONS *options);
+	void SetPatchOptions(PATCHOPTIONS *options);
 	BOOL GetUseDiffList() const;
 	BOOL SetUseDiffList(BOOL bUseDiffList);
 	BOOL GetAppendFiles() const;

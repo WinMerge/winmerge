@@ -163,6 +163,10 @@ BEGIN
         MENUITEM "全部复制到右边(&A)",          ID_ALL_RIGHT
         MENUITEM "全部复制到左边(&E)",          ID_ALL_LEFT
     END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+    END
     POPUP "窗口(&W)"
     BEGIN
         MENUITEM "关闭",                        ID_FILE_CLOSE
@@ -513,6 +517,44 @@ BEGIN
     EDITTEXT        IDC_WINMERGE_PATH,7,19,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "&Browse...",IDC_WINMERGE_PATH_BROWSE,180,19,50,14
     PUSHBUTTON      "&Save path",IDC_WINMERGE_PATH_SAVE,7,36,50,14
+END
+
+IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 259, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Patch Generator"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_DIFF_FILE1,33,7,162,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_DIFF_BROWSE_FILE1,202,7,50,14
+    EDITTEXT        IDC_DIFF_FILE2,33,24,162,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_DIFF_BROWSE_FILE2,202,24,50,14
+    EDITTEXT        IDC_DIFF_FILERESULT,33,45,162,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_DIFF_BROWSE_RESULT,202,45,50,14
+    CONTROL         "Append to existing file",IDC_DIFF_APPENDFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,34,61,85,10
+    COMBOBOX        IDC_DIFF_STYLE,44,85,48,68,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_DIFF_CONTEXT,44,101,48,65,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Case sensitive",IDC_DIFF_CASESENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,125,61,10
+    CONTROL         "Compare",IDC_DIFF_WHITESPACE_COMPARE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,115,85,44,10
+    CONTROL         "Ignore changes",IDC_DIFF_WHITESPACE_IGNORE,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,115,97,65,10
+    CONTROL         "Ignore all",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,115,109,45,10
+    CONTROL         "Ignore blank lines",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,115,122,71,10
+    DEFPUSHBUTTON   "OK",IDOK,148,141,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,202,141,50,14
+    LTEXT           "File1:",IDC_STATIC,7,10,18,8
+    LTEXT           "File2:",IDC_STATIC,7,27,18,8
+    LTEXT           "Result:",IDC_STATIC,7,48,23,8
+    LTEXT           "Style:",IDC_STATIC,13,88,18,8
+    LTEXT           "Context:",IDC_STATIC,13,102,27,8
+    GROUPBOX        "Whitespaces",IDC_STATIC,107,74,88,62
+    GROUPBOX        "Format",IDC_STATIC,7,74,94,46
 END
 
 IDD_EDITOR_HEADERBAR DIALOGEX 0, 0, 373, 12
@@ -979,7 +1021,20 @@ BEGIN
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_STATUSBAR_READONLY  "RO"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+    IDS_FILEWRITE_ERROR     "Could not write to file %1."
+    IDS_DIFF_SUCCEEDED      "Patch file succesfully written."
+    IDS_DIFF_ITEM1NOTFOUND  "1. item is not found or is directory!"
+    IDS_DIFF_ITEM2NOTFOUND  "2. item is not found or is directory!"
+    IDS_DIFF_FILEOVERWRITE  "Result file exits. Overwrite?"
+    IDS_DIFF_SELECTEDFILES  "[%1 files selected]"
+    IDS_DIFF_NORMAL         "Normal"
+    IDS_DIFF_CONTEXT        "Context"
+    IDS_DIFF_UNIFIED        "Unified"
 END
 
 // IDS_NUM_REPLACED SYNCHRO

@@ -722,6 +722,14 @@ SOURCE=.\OutputDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PatchDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\PatchTool.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\paths.cpp
 # End Source File
 # Begin Source File
@@ -1159,6 +1167,14 @@ SOURCE=.\OpenDlg.h
 # Begin Source File
 
 SOURCE=.\OutputDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PatchDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PatchTool.h
 # End Source File
 # Begin Source File
 

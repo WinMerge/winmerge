@@ -55,7 +55,7 @@
 #include "multimon.h"
 #include "paths.h"
 #include "WaitStatusCursor.h"
-
+#include "PatchTool.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -102,6 +102,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_CLOSE()
 	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
+	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
 	ON_WM_DROPFILES()
 	ON_MESSAGE(MSG_STAT_UPDATE, OnUpdateStatusMessage)
 	//}}AFX_MSG_MAP
@@ -352,7 +353,6 @@ void CMainFrame::OnOptionsShowIdentical()
 /**
  * @brief Show/Hide left-only files/directories
  */
-
 void CMainFrame::OnOptionsShowUniqueLeft() 
 {
 	m_bShowUniqueLeft = !m_bShowUniqueLeft;
@@ -1658,6 +1658,14 @@ CString CMainFrame::SetStatus(LPCTSTR status)
 	return old;
 }
 
+/**
+ * @brief Generate patch from files selected
+ */
+void CMainFrame::OnToolsGeneratePatch()
+{
+	CPatchTool patcher;
+	patcher.CreatePatch();
+}
 
 /////////////////////////////////////////////////////////////////////////////
 //
