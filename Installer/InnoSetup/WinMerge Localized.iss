@@ -1162,7 +1162,7 @@ Var
     strGroup: String;
 Begin
     strGroup := ExpandConstant('{group}');
-    StringChange(strGroup, ExpandConstant('{commonstartmenu}\Programs\'), '');
+    StringChange(strGroup, ExpandConstant('{commonprograms}\'), '');
     Result := strGroup
 End;
 
@@ -1186,7 +1186,7 @@ Begin
     strNew := ExpandConstant('{group}');
 
     {removes the start menu portion of the path from the group path making it match the format of strOld}
-    StringChange(strNew, ExpandConstant('{commonstartmenu}\Programs\'), '')
+    StringChange(strNew, ExpandConstant('{commonprograms}\'), '')
 
     {if the user does have a previous start menu location then..}
     If strOld <> '' THen
@@ -1201,7 +1201,7 @@ Begin
 		            {If they'd like to delete the previous start menu group then...}
 					If Msgbox(strMessage, mbConfirmation, mb_YesNo) = mrYes Then
 						Begin
-						    strOld := ExpandConstant('{commonstartmenu}\Programs\') + strOld;
+						    strOld := ExpandConstant('{commonprograms}\') + strOld;
 
                             {Removes each of the start menu icons to make the folder empty}
                             strShortcut := strOld + '\' + ExpandConstant('{cm:ReadMe}') + '.lnk';

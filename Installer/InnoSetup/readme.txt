@@ -1,3 +1,8 @@
+2004-10-16 Kimmo
+ BUG: [ 1030727 ] Installer always ask to delete previous start menu
+  Fix from Takashi Sawanaka (Merged final fix from 2.2 branch)
+  InnoSetup: WinMerge Localized.iss
+
 2004-10-15 Kimmo
  PATCH: [ 1046583 ] Improved 48x48 icon
   Submitted by Tim Gerundt
