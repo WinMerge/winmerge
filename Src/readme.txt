@@ -1,3 +1,7 @@
+2005-03-18 Perry
+ PATCH: [ 1155977 ] Log scriptlet plugin errors
+  Src: Plugins.cpp
+
 2005-03-16 Kimmo
  PATCH: [ 1161709 ] Virtual InitOption() and SaveOption() for COptionsMgr
   Src/Common: OptionsMgr.h

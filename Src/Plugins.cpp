@@ -318,16 +318,55 @@ BOOL PluginInfo::TestAgainstRegList(LPCTSTR szTest)
 }
 
 /**
+ * @brief Log technical explanation, in English, of script error
+ */
+static void
+ScriptletError(const CString & scriptletFilepath, LPCWSTR transformationEvent, LPCTSTR szError)
+{
+	CString msg = (CString)_T("Plugin scriptlet error <")
+		+ scriptletFilepath
+		+ _T("> [")
+		+ transformationEvent
+		+ _T("] ")
+		+ szError;
+    LogErrorString(msg);
+}
+
+/**
+ * @brief Tiny structure that remembers current scriptlet & event info for calling Log
+ */
+struct ScriptInfo
+{
+	ScriptInfo(const CString & scriptletFilepath, LPCWSTR transformationEvent)
+		: m_scriptletFilepath(scriptletFilepath)
+		, m_transformationEvent(transformationEvent)
+	{
+	}
+	void Log(LPCTSTR szError)
+	{
+		ScriptletError(m_scriptletFilepath, m_transformationEvent, szError);
+	}
+	const CString & m_scriptletFilepath;
+	LPCWSTR m_transformationEvent;
+};
+
+/**
  * @brief Try to load a plugin
  *
- * @return 1 if plugin handles this event, 0 if not, -1 if any error
+ * @return 1 if plugin handles this event, 0 if not, negatives for errors
  */
 static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LPCWSTR transformationEvent)
 {
+	// set up object in case we need to log info
+	ScriptInfo scinfo(scriptletFilepath, transformationEvent);
+
 	// Search for the class "WinMergeScript"
 	LPDISPATCH lpDispatch = CreateDispatchBySource(scriptletFilepath, L"WinMergeScript");
 	if (lpDispatch == 0)
-		return -1; // error
+	{
+		scinfo.Log(_T("WinMergeScript entry point not found"));
+		return -10; // error
+	}
 
 	// Ensure that interface is released if any bad exit or exception
 	COleDispatchDriver drv(lpDispatch);
@@ -338,12 +377,14 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 	VariantInit(&ret);
 	if (!SearchScriptForDefinedProperties(lpDispatch, L"PluginEvent"))
 	{
-		return -1; // error
+		scinfo.Log(_T("PluginEvent method missing"));
+		return -20; // error
 	}
 	HRESULT h = ::invokeW(lpDispatch, &ret, L"PluginEvent", opGet[0], NULL);
 	if (FAILED(h) || ret.vt != VT_BSTR)
 	{
-		return -1; // error
+		scinfo.Log(	_T("Error accessing PluginEvent method"));
+		return -30; // error
 	}
 	if (wcscmp(ret.bstrVal, transformationEvent) != 0)
 	{
@@ -380,7 +421,8 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 	if (bFound == FALSE)
 	{
 		// error (Plugin doesn't support the method as it claimed)
-		return -1; 
+		scinfo.Log(_T("Plugin doesn't support the method as it claimed"));
+		return -40; 
 	}
 
 	// plugins EDITOR_SCRIPT : functions names are free
@@ -390,7 +432,7 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 		plugin.nFreeFunctions = CountMethodsInScript(lpDispatch);
 		if (plugin.nFreeFunctions == 0)
 			// error (Plugin doesn't offer any method, what is this ?)
-			return -1;
+			return -50;
 	}
 
 
@@ -401,7 +443,8 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 		h = ::invokeW(lpDispatch, &ret, L"PluginDescription", opGet[0], NULL);
 		if (FAILED(h) || ret.vt != VT_BSTR)
 		{
-			return -1; // error (Plugin had PluginDescription property, but error getting its value)
+			scinfo.Log(_T("Plugin had PluginDescription property, but error getting its value"));
+			return -60; // error (Plugin had PluginDescription property, but error getting its value)
 		}
 		plugin.description = ret.bstrVal;
 	}
@@ -419,7 +462,8 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 		h = ::invokeW(lpDispatch, &ret, L"PluginFileFilters", opGet[0], NULL);
 		if (FAILED(h) || ret.vt != VT_BSTR)
 		{
-			return -1; // error (Plugin had PluginFileFilters property, but error getting its value)
+			scinfo.Log(_T("Plugin had PluginFileFilters property, but error getting its value"));
+			return -70; // error (Plugin had PluginFileFilters property, but error getting its value)
 		}
 		plugin.filtersText= ret.bstrVal;
 		hasPluginFileFilters = true;
@@ -437,7 +481,8 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 		h = ::invokeW(lpDispatch, &ret, L"PluginIsAutomatic", opGet[0], NULL);
 		if (FAILED(h) || ret.vt != VT_BOOL)
 		{
-			return -1; // error (Plugin had PluginIsAutomatic property, but error getting its value)
+			scinfo.Log(_T("Plugin had PluginIsAutomatic property, but error getting its value"));
+			return -80; // error (Plugin had PluginIsAutomatic property, but error getting its value)
 		}
 		plugin.bAutomatic = ret.boolVal;
 	}
@@ -445,8 +490,9 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 	{
 		if (hasPluginFileFilters)
 		{
+			scinfo.Log(_T("Plugin had PluginFileFilters property, but lacked PluginIsAutomatic property"));
 			// PluginIsAutomatic property is mandatory for Plugins with PluginFileFilters property
-			return -1;
+			return -90;
 		}
 		// default to FALSE when Plugin doesn't have property
 		plugin.bAutomatic = FALSE;
@@ -479,7 +525,7 @@ static void ReportPluginLoadFailure(const CString & scriptletFilepath, LPCWSTR t
 /**
  * @brief Guard call to LoadPlugin with Windows SEH to trap GPFs
  *
- * @return same as LoadPlugin (1=has event, 0=doesn't have event, -1=error)
+ * @return same as LoadPlugin (1=has event, 0=doesn't have event, errors are negative)
  */
 static int LoadPluginWrapper(PluginInfo & plugin, const CString & scriptletFilepath, LPCWSTR transformationEvent)
 {
@@ -607,12 +653,13 @@ static PluginArray * GetAvailableScripts( LPCWSTR transformationEvent, BOOL getS
 			// Plugin has this event
 			pPlugins->Add(plugin);
 		}
-		else if (rtn == -1)
+		else if (rtn < 0)
 		{
 			// Plugin is bad
 			badScriptlets.AddTail(scriptletFilepath);
 		}
 	}
+
 	// Remove any bad plugins from the cache
 	// This might be a good time to see if the user wants to abort or continue
 	while (!badScriptlets.IsEmpty())
