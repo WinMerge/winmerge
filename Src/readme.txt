@@ -1,3 +1,7 @@
+2004-06-21 Laoran
+ PATCH: [ 975187 ] getDefaultCodepage, use UI language only when UI not english
+  Src/common: unicoder.cpp
+
 2004-06-20 Kimmo
  PATCH: [ 972500 ] Italian translation updated
   Submitted by Andrea Decorte

@@ -422,17 +422,34 @@ byteToUnicode (unsigned char ch, UINT codepage)
 int
 getDefaultCodepage()
 {
-	// default codepage is CP_THREAD_ACP if available, else CP_ACP
-	static bool vercheck=false;
-	static int defcodepage = CP_ACP;
-	if (!vercheck)
+	static LCID latestLangId = 0;
+	static int defcodepage;
+
+	// GetThreadLocale is linked to the UI language
+	LCID wLangId = GetThreadLocale();
+	if (wLangId != latestLangId)
 	{
-		if (!f_osvi_fetched) fetch_verinfo();
-		// Need 2000 or better for CP_THREAD_ACP
-		if (f_osvi.dwMajorVersion>=5)
-			defcodepage = CP_THREAD_ACP;
-		vercheck = true;
+		latestLangId = wLangId;
+
+		// recompute defcodepage when the language UI changes
+
+		// default value when GetLocaleInfo fails
+		defcodepage = GetACP();
+
+		// default value is the codepage from the user locale
+		TCHAR buff[32];
+		if (GetLocaleInfo(GetUserDefaultLCID(), LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff)/sizeof(buff[0])))
+			defcodepage = _ttol(buff);
+
+		// if user UI is defined (different from default english),
+		// default codepage is the one from the UI
+		BOOL bLanguageUIisSet = ((PRIMARYLANGID(wLangId)!= LANG_ENGLISH) ||
+														 (SUBLANGID(wLangId) != SUBLANG_ENGLISH_US));
+		if (bLanguageUIisSet)
+			if (GetLocaleInfo(wLangId, LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff)/sizeof(buff[0])))
+				defcodepage = _ttol(buff);
 	}
+
 	return defcodepage;
 }
 
