@@ -47,17 +47,16 @@ void DiffFileInfo::Update(CString sFilePath)
 	if (h != INVALID_HANDLE_VALUE)
 	{
 		mtime64 = FileTimeToInt64(wfd.ftLastWriteTime);
-		flags.reset();
-		if (wfd.dwFileAttributes & FILE_ATTRIBUTE_READONLY)
-			flags.flags += FileFlags::RO;
-		//No size for directory (remains as -1)
-		if ((wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
+		flags.attributes = wfd.dwFileAttributes;
+
+		// No size for directory (remains as -1)
+		if ((flags.attributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
 			size = (wfd.nFileSizeHigh << 32) + wfd.nFileSizeLow;
 		FindClose(h);
 	}
 	else
 	{
-		size = 0;
+		size = -1;
 		flags.reset();
 	}
 	mtime = mtime64;

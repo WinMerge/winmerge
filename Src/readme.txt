@@ -1,3 +1,7 @@
+2004-06-23 Kimmo
+ PATCH: [ 977587 ] Fix fileattrib handling and show all attribs in dir compare
+  Src: DiffFileInfo.cpp DiffFileInfo.h DirScan.cpp DirView.cpp
+
 2004-06-22 Kimmo
  PATCH: [ 977475 ] Log DeleteFile() failure in FileTransform.cpp
   Src: FileTransform.cpp

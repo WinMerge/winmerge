@@ -25,28 +25,51 @@
 #ifndef _DIFF_FILE_INFO_H_INCLUDED
 #define _DIFF_FILE_INFO_H_INCLUDED
 
+/**
+ * @brief Class for fileflags and coding info.
+ */
 struct FileFlags
 {
-	int flags;
-	FileFlags() : flags(0) { }
-	void reset() { flags &= 0xFFFFFFFE; }
+	DWORD coding; /**< Coding info for item */
+	DWORD attributes; /**< Fileattributes for item */
+	FileFlags() : coding(0), attributes(0) { }
+	void reset() { attributes = 0; } /// Reset fileattributes
+	
+	/// Convert flags and coding to string for UI.
 	CString toString() const
 		{
 			CString sflags;
-			if (flags & RO)
+			if (attributes & FILE_ATTRIBUTE_READONLY)
 				sflags += _T("R");
-			if ((flags & coding) == UTF_8)
+			if (attributes & FILE_ATTRIBUTE_HIDDEN)
+				sflags += _T("H");
+			if (attributes & FILE_ATTRIBUTE_SYSTEM)
+				sflags += _T("S");
+			if (attributes & FILE_ATTRIBUTE_ARCHIVE)
+				sflags += _T("A");
+
+			if ((coding & coding_mask) == UTF_8)
 				sflags += _T("8");
-			if ((flags & coding) == UCS_2BE)
+			if ((coding & coding_mask) == UCS_2BE)
 				sflags += _T("B");
-			if ((flags & coding) == UCS_2LE)
+			if ((coding & coding_mask) == UCS_2LE)
 				sflags += _T("L");
-			if ((flags & coding) == UCS_4)
+			if ((coding & coding_mask) == UCS_4)
 				sflags += _T("4");
 			return sflags;
 		}
 
-	enum { RO=1, coding=0x7000, UTF_8=0x1000, UCS_4=0x2000, UCS_2BE=0x3000, UCS_2LE=0x4000 };
+	/**
+	* @brief Encodings supported.
+	*/
+	enum
+	{ 
+		UTF_8 = 0x1000,
+		UCS_4 = 0x2000,
+		UCS_2BE = 0x3000,
+		UCS_2LE = 0x4000,
+		coding_mask = 0x7000,
+	};
 };
 
 /**

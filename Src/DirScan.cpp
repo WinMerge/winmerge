@@ -386,7 +386,7 @@ static void StoreDiffResult(const CString & sDir, const fentry * lent, const fen
 		di.left.mtime = lent->mtime;
 		di.left.ctime = lent->ctime;
 		di.left.size = lent->size;
-		di.left.flags.flags = lent->attrs;
+		di.left.flags.attributes = lent->attrs;
 	}
 	else
 	{
@@ -401,7 +401,7 @@ static void StoreDiffResult(const CString & sDir, const fentry * lent, const fen
 		di.right.mtime = rent->mtime;
 		di.right.ctime = rent->ctime;
 		di.right.size = rent->size;
-		di.right.flags.flags = rent->attrs;
+		di.right.flags.attributes = rent->attrs;
 	}
 	else
 	{
