@@ -37,7 +37,7 @@
 ;     menu location was so that we can remove it if the user chooses to install to a different location.
 ; #  Determine whether NT 3.51 with a 3.0 or higher version of IE can run our application I don't want the system requirements
 ;     in \Docs\Read Me.RTF to be inaccurate.
-; #
+; #  Make sure Tortoise CVS also supports WinMerge as the merge application in addition to the differencing one.
 ; #  Create two info pages during installation one for our Contributors and a second one for our Read Me file.
 ;     If this isn't possible then we'll need to use ISPP and somehow programatically combine the two RTF files prior to compilation.
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
