@@ -87,9 +87,16 @@ static int cmpfloat(double v1, double v2)
 		return -1;
 	return 0;
 }
+
 /**
- * @{ Functions to display each type of column info
+ * @name Functions to display each type of column info.
  */
+/* @{ */
+static CString ColFileNameGet(const void *p) //sfilename
+{
+	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
+	return di.sfilename;
+}
 static CString ColNameGet(const void *p) //sfilename
 {
 	const CString &r = *static_cast<const CString*>(p);
@@ -252,13 +259,26 @@ static CString ColEncodingGet(const void *p)
 	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
 	return EncodingString(r.unicoding, r.codepage);
 }
-/**
- * @}
- */
+/* @} */
 
 /**
- * @{ Functions to sort each type of column info
+ * @name Functions to sort each type of column info.
  */
+/* @{ */ 
+static int ColFileNameSort(const void *p, const void *q)
+{
+	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
+	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
+
+	if (ldi.isDirectory() && rdi.isDirectory())
+		return ldi.sfilename.CompareNoCase(rdi.sfilename);
+	else if (ldi.isDirectory() && !rdi.isDirectory())
+		return -1;
+	else if (!ldi.isDirectory() && rdi.isDirectory())
+		return 1;
+	else return ldi.sfilename.CompareNoCase(rdi.sfilename);
+}
+
 static int ColNameSort(const void *p, const void *q)
 {
 	const CString &r = *static_cast<const CString*>(p);
@@ -309,9 +329,7 @@ static int ColEncodingSort(const void *p, const void *q)
 	n = cmp64(r.codepage, s.codepage);
 	return n;
 }
-/**
- * @}
- */
+/* @} */
 
 /**
  * @brief All existing columns
@@ -323,7 +341,7 @@ static int ColEncodingSort(const void *p, const void *q)
  */
 DirColInfo g_cols[] =
 {
-	{ _T("Name"), IDS_COLHDR_FILENAME, -1, &ColNameGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, sfilename), 0, true },
+	{ _T("Name"), IDS_COLHDR_FILENAME, -1, &ColFileNameGet, &ColFileNameSort, 0, 0, true },
 	{ _T("Path"), IDS_COLHDR_DIR, -1, &ColPathGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, sSubdir), 1, true },
 	{ _T("Status"), IDS_COLHDR_RESULT, -1, &ColStatusGet, &ColStatusSort, 0, 2, true},
 	{ _T("Lmtime"), IDS_COLHDR_LTIMEM, -1, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, left.mtime), 3, false },

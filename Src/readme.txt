@@ -5,6 +5,9 @@
   Fix submitted by hberni
   Merge7z: Merge7z.h
   Src: DirActions.cpp
+ PATCH: [ 911442 ] Sort folders first when sorting by name
+  Also fixing grouping doxygen comments for functions
+  Src: DirViewColItems.cpp
 
 2004-03-11 WinMerge experimental release 2.1.5.14 (installer test)
 
