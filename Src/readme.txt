@@ -4,6 +4,9 @@
  BUG: [ 1058947 ] Filter files sensitive to spaces
   Add new file filter for ADAMulti (from jpizzi)
   Filters new file: ADAMulti.flt
+ PATCH: [ 1053282 ] Korean translation
+  Submitted by Sukjoon, Hwang
+  Src/Languages/Korean: MergeKorean.rc
 
 2004-11-02 Kimmo
  PATCH: [ 1058293 ] The finished german language file
