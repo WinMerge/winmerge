@@ -1,3 +1,5 @@
+2004-01-11 WinMerge experimental release 2.1.5.5 (cvs)
+
 2004-01-11 Perry
  PATCH: [ 860054 ] Reimplement SaveToFile using stream output
   common: multiformatText.cpp unicoder.cpp unicoder.h UniFile.cpp UniFile.h
