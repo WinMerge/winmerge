@@ -1,6 +1,8 @@
 2005-02-20 Tim
  PATCH: [ 1144726 ] Web: Updated Developer instructions
   Web\developer: needed.php
+ RFE: [ 1144136 ] Web: Add 2.3 for translations status table
+  Web\developer\l10n: status.php status.xml
 
 2005-02-18 Tim
  RFE: [ 1064389 ] Web: Switch easier between versions
