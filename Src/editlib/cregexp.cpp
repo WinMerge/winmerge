@@ -283,7 +283,7 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
                 break;
             case _T('W'):
                 for (xx = 0; xx <= 255; xx++) {
-                    if (!isalnum(xx)) {
+                    if (!_istalnum(xx)) {
                         c++;
                         SETOP(set, xx);
                     }

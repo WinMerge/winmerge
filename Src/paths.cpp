@@ -248,7 +248,7 @@ TCHAR paths_GetCurrentDriveUpper()
 	TCHAR curdir[_MAX_PATH];
 	if (!GetCurrentDirectory(sizeof(curdir)/sizeof(curdir[0]), curdir))
 		return 'C';
-	if (__isascii(curdir[0]) && _istlower(curdir[0]))
+	if (_istascii(curdir[0]) && _istlower(curdir[0]))
 		curdir[0] = _totupper(curdir[0]);
 	return curdir[0];
 }

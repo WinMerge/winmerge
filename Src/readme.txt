@@ -1,3 +1,8 @@
+2003-11-05 Kimmo
+ BUG: [ 829435 ] Fix character classification routines for UNICODE
+  WinMerge: paths.cpp stdafx.cpp
+  editlib: cregexp.cpp
+
 2003-11-05 Laoran
  change directory name 'Plugins' to 'MergePlugins' (see BUG [ 832090 ])
   WinMerge: Plugins.cpp

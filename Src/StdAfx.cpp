@@ -35,19 +35,19 @@ int
 xisspecial (int c)
 {
   return normch(c) > (unsigned) _T ('\x7f') || c == _T ('_');
-//  return _tcschr (_T ("ìšèøıáíéóúùïò¾àåœäëöüÌŠÈØİÁÍÉ´OÚÙÏÒ¼ÀÅŒÄËÖÜ§"), c) != NULL;
+//  return _tcschr (_T ("ì?èø?ıáíéóúùïò¾àå?äëöüÌ?ÈØ?İÁÍÉ´OÚÙÏÒ¼ÀÅ?ÄËÖÜ§"), c) != NULL;
 }
 
 int
 xisalpha (int c)
 {
-  return isalpha (normch(c)) || xisspecial (normch(c));
+  return _istalpha (normch(c)) || xisspecial (normch(c));
 }
 
 int
 xisalnum (int c)
 {
-  return isalnum (normch(c)) || xisspecial (normch(c));
+  return _istalnum (normch(c)) || xisspecial (normch(c));
 }
 
 CString LoadResString(int id)
