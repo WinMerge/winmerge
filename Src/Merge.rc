@@ -85,6 +85,7 @@ BEGIN
         MENUITEM "Copy all diffs to other side...", 
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
         MENUITEM "Copy all diffs from other side...", 
+                                                ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
         MENUITEM SEPARATOR
         MENUITEM "Undo",                        ID_UNDO
         MENUITEM SEPARATOR

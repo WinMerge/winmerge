@@ -1,3 +1,7 @@
+2003-12-22 Perry
+ Put ID_POPUP_COPYALLDIFFSFROMOTHERSIDE back into rc file so it parses
+  Winmerge: Merge.rc
+
 2003-12-22 Laoran
  BUG: [ 860043 ] binary file detection broken
   WinMerge: DiffWrapper.cpp DirScan.cpp
