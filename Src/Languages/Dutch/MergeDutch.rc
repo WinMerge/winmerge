@@ -27,18 +27,18 @@ LANGUAGE LANG_DUTCH, SUBLANG_DUTCH
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE
+1 TEXTINCLUDE DISCARDABLE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE
+2 TEXTINCLUDE DISCARDABLE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE
+3 TEXTINCLUDE DISCARDABLE 
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
@@ -73,17 +73,17 @@ IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU DISCARDABLE
+IDR_POPUP_DIFFVIEW MENU DISCARDABLE 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
         MENUITEM "Kopieer naar andere kant",    ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "Kopieer van andere kant",     ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "Kopieer alle verschillen naar de andere kant",
+        MENUITEM "Kopieer alle verschillen naar de andere kant", 
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
 
-        MENUITEM "Kopieer alle verschillen van de andere kant",
+        MENUITEM "Kopieer alle verschillen van de andere kant", 
                                                 ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
 
         MENUITEM SEPARATOR
@@ -93,7 +93,7 @@ BEGIN
     END
 END
 
-IDR_MAINFRAME MENU PRELOAD DISCARDABLE
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
 BEGIN
     POPUP "&Bestand"
     BEGIN
@@ -132,7 +132,8 @@ BEGIN
         MENUITEM "Toon &Identieke bestanden",   ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "Toon &Niet gelijke bestanden", ID_OPTIONS_SHOWDIFFERENT
         MENUITEM "Toon &Unieke Bestanden (links)", ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Toon &Unieke Bestanden (rechts)", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Toon &Unieke Bestanden (rechts)", 
+                                                ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Verberg *.&BAK Bestanden",    ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
@@ -163,7 +164,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_DIRVIEW MENU DISCARDABLE
+IDR_POPUP_DIRVIEW MENU DISCARDABLE 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -186,7 +187,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
 BEGIN
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
@@ -231,33 +232,34 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,159,7,32,14,WS_GROUP
     LTEXT           "Version 1.0",IDC_VERSION,64,28,127,8,SS_NOPREFIX
     LTEXT           "All rights reserved.",IDC_STATIC,7,60,170,8
-    LTEXT           "Bezoek deWinMerge HomePage!",IDC_WWW,7,76,184,8
+    LTEXT           "Bezoek deWinMerge HomePage!",IDC_WWW,7,98,184,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,72,184,1
     LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
     LTEXT           "Syntax Highlighting Edit View by Andrei Stcherbatchenko ",
-                    IDC_STATIC,7,71,209,8
-    LTEXT           "Various Syntaxes by Ferdinand Prantl",IDC_STATIC,7,81,
+                    IDC_STATIC,7,75,209,8
+    LTEXT           "Various Syntaxes by Ferdinand Prantl",IDC_STATIC,7,87,
                     209,8
 END
 
-IDD_OPEN DIALOGEX  0, 0, 352, 98
+IDD_OPEN DIALOGEX 0, 0, 352, 98
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Selecteer bestanden of mappen"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     LTEXT           "&Links:",IDC_STATIC,33,24,20,8
-    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
+    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "&Zoeken",IDC_LEFT_BUTTON,241,22,38,12
     LTEXT           "&Rechts:",IDC_STATIC,27,40,26,8
-    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
     PUSHBUTTON      "Zoe&ken",IDC_RIGHT_BUTTON,241,38,38,12
     LTEXT           "E&xtenties:",IDC_STATIC,21,56,32,8
-    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN |
+    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Re&cursief",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "Re&cursief",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,35,77,48,10
     DEFPUSHBUTTON   "OK",IDOK,295,11,50,14
     PUSHBUTTON      "Annuleren",IDCANCEL,295,28,50,14
@@ -276,7 +278,7 @@ BEGIN
     PUSHBUTTON      "Annuleren",IDCANCEL,173,121,50,14
     PUSHBUTTON      "Opslaan als",IDSAVEAS,103,121,50,14
     LTEXT           "Project:",IDC_STATIC,9,61,25,8
-    COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN |
+    COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "User:",IDC_STATIC,13,80,18,8
     EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
@@ -284,11 +286,24 @@ BEGIN
     EDITTEXT        IDC_PASSWORD,162,78,70,14,ES_PASSWORD | ES_AUTOHSCROLL
 END
 
+IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Versioning System"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Settings",IDC_STATIC,7,7,245,54
+    LTEXT           "&Path to cleartool.exe:",IDC_VSS_L1,16,42,68,8
+    EDITTEXT        IDC_PATH_EDIT,85,40,116,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Browse...",IDC_BROWSE_BUTTON,206,40,42,12
+    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "&Versioning System",IDC_STATIC,16,22,60,10
+END
 
-IDD_PROPPAGE_LARGE DIALOG DISCARDABLE  0, 0, 235, 156
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Algemeen"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Instellingen",IDC_STATIC,7,7,221,94
     CONTROL         "&Reservekopie orginele bestand",IDC_BACKUP_CHECK,"Button",
@@ -330,9 +345,133 @@ FONT 8, "MS Sans Serif"
 BEGIN
     PUSHBUTTON      "OK",IDOK,154,16,52,14
     PUSHBUTTON      "Annuleren",IDCANCEL,154,33,52,14
-    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
-                    WS_TABSTOP
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
     LTEXT           "Beschikbare talen",IDC_STATIC,7,7,58,8
+END
+
+IDD_EDIT_FIND DIALOG FIXED IMPURE  30, 73, 236, 68
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Find"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    COMBOBOX        IDC_EDIT_FINDTEXT,41,6,135,138,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
+    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,40,64,12
+    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,54,77,12
+    CONTROL         "&Up",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,111,36,25,12
+    CONTROL         "&Down",IDC_EDIT_DIRECTION_DOWN,"Button",
+                    BS_AUTORADIOBUTTON,111,48,35,12
+    DEFPUSHBUTTON   "&Find Next",IDOK,182,5,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,182,23,50,14
+    LTEXT           "Fi&nd what:",IDC_STATIC,4,8,36,8
+    GROUPBOX        "Direction",IDC_STATIC,107,26,68,38,WS_GROUP
+END
+
+IDD_EDIT_REPLACE DIALOG FIXED IMPURE  36, 44, 230, 89
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Replace"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
+    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,60,59,12
+    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,74,77,12
+    CONTROL         "&Selection",IDC_EDIT_SCOPE_SELECTION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,102,57,59,10
+    CONTROL         "Wh&ole file",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
+                    BS_AUTORADIOBUTTON,102,70,58,10
+    DEFPUSHBUTTON   "&Find Next",IDC_EDIT_SKIP,174,4,50,14,WS_GROUP
+    PUSHBUTTON      "&Replace",IDC_EDIT_REPLACE,174,21,50,14
+    PUSHBUTTON      "Replace &All",IDC_EDIT_REPLACE_ALL,174,38,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,174,55,50,14
+    LTEXT           "Fi&nd what:",IDC_STATIC,4,9,48,8
+    LTEXT           "Re&place with:",IDC_STATIC,4,26,48,8
+    GROUPBOX        "Replace in",IDC_STATIC,97,46,71,39,WS_GROUP
+END
+
+IDD_CLEARCASE DIALOG DISCARDABLE  0, 0, 279, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Rational Clearcase"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "CheckOut",IDOK,35,90,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,194,90,50,14
+    PUSHBUTTON      "Save As...",IDSAVEAS,114,90,50,14
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Comments",IDC_STATIC,18,7,34,10
+END
+
+IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Hilighting"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Hilight syntax",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,57,10
+END
+
+IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Filter"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Ignore lines matching the follow patterns",
+                    IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    7,221,15
+    LTEXT           "Regular Expressions (one per line):",IDC_STATIC,7,28,
+                    221,8
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+    LTEXT           "File filter:",IDC_STATIC,7,128,60,10
+    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Colors"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Difference:",IDC_STATIC,15,18,36,8
+    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,15,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    LTEXT           "Selected Difference:",IDC_STATIC,14,36,66,8
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,33,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+END
+
+IDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,106,136,50,14
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | 
+                    WS_VSCROLL
+END
+
+IDD_PROPPAGE_REGISTRY DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Registry"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "Associated with directories",IDC_ASSOC_DIRECTORY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,221,15
 END
 
 
@@ -388,14 +527,14 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE
+GUIDELINES DESIGNINFO DISCARDABLE 
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 191
+        RIGHTMARGIN, 216
         TOPMARGIN, 7
-        BOTTOMMARGIN, 83
+        BOTTOMMARGIN, 115
     END
 
     IDD_OPEN, DIALOG
@@ -406,31 +545,61 @@ BEGIN
         BOTTOMMARGIN, 91
     END
 
-    IDD_EDITFILE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 520
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 344
-    END
-
     IDD_VSS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 251
         TOPMARGIN, 7
-        BOTTOMMARGIN, 97
+        BOTTOMMARGIN, 141
     END
 
     IDD_PROP_VSS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 252
+        VERTGUIDE, 85
         TOPMARGIN, 7
         BOTTOMMARGIN, 150
     END
 
     IDD_PROPPAGE_LARGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        VERTGUIDE, 125
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_CLEARCASE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 272
+        VERTGUIDE, 18
+        VERTGUIDE, 35
+        VERTGUIDE, 244
+        VERTGUIDE, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 104
+    END
+
+    IDD_PROPSYNTAX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_PROPPAGE_FILTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_PROPPAGE_COLORS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 228
@@ -491,6 +660,26 @@ IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
+// Dialog Info
+//
+
+IDD_PROP_VSS DLGINIT
+BEGIN
+    IDC_VER_SYS, 0x403, 5, 0
+0x6f4e, 0x656e, "\000" 
+    IDC_VER_SYS, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
+0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029, 
+    IDC_VER_SYS, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
+0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029, 
+    IDC_VER_SYS, 0x403, 19, 0
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
+"\000" 
+    0
+END
+
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Cursor
@@ -503,14 +692,20 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE PRELOAD DISCARDABLE
+STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
     IDS_VERSION_FMT         "Versie %1 - Nederlandse"
     IDS_ALLFILES            "Alle bestanden (*.*)|*.*||"
     IDS_CONFIRM_ALL_LEFT    "Weet u zeker dat u alle verschillen naar het linker bestand wil kopiëren?"
     IDS_CONFIRM_ALL_RIGHT   "Weet u zeker dat u alle verschillen naar het rechter bestand wil kopiëren?"
+    IDS_ERRORS_TITLE        "%1 Error(s)"
     IDS_CONFIRM_COPY2DIR    "Weet u zeker dat u het geselecteerde bestand  wil kopiëren naar %1?"
     IDS_FONT_CHANGE         "De geselecteerde wijziging van font wordt niet verwerkt in de openstaande vensters."
     IDS_DIRECTORY_WINDOW_TITLE "Resultaten vergelijking mappen"
@@ -522,13 +717,13 @@ BEGIN
     IDS_CANT_COMPARE_FILES  "Kan bestanden niet vergelijken"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE
+STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Gereed"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -538,7 +733,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_FILE_NEW             "Creëer een nieuw document \nNieuw"
     ID_FILE_OPEN            "Open een bestaand document.\nOpenen"
@@ -551,13 +746,13 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Afdrukvoorbeeld.\nAfdruk voorbeeld"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_APP_ABOUT            "Toon programma informatie, versie nummer en copyrights.\nInfo"
     ID_APP_EXIT             "Applicatie afsluiten, vraagt naar opslaan documenten\nAfsluiten"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_FILE_MRU_FILE1       "Open dit document"
     ID_FILE_MRU_FILE2       "Open dit document"
@@ -577,13 +772,13 @@ BEGIN
     ID_FILE_MRU_FILE16      "Open dit document"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_NEXT_PANE            "Ga naar het volgende venster deel.\nVolgende deel"
     ID_PREV_PANE            "Ga naar het vorige venster deel.\nVorige deel"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_WINDOW_NEW           "Open een nieuw venster voor het actieve document.\nNieuw venster."
     ID_WINDOW_ARRANGE       "Pictogrammen schikken aan onderzijde venster.\nPictogrammen schikken"
@@ -593,7 +788,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Splits het actieve venster.\nSplitsen"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_EDIT_CLEAR           "Verwijder de selectie.\nWissen"
     ID_EDIT_CLEAR_ALL       "Verwijder alles\nAlles wissen"
@@ -608,13 +803,13 @@ BEGIN
     ID_EDIT_REDO            "Doe ongedaan gemaakte actie opnieuw.\nOpnieuw"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "Toon of verberg de toolbar\nWerkbalk"
     ID_VIEW_STATUS_BAR      "Toon of verberg de status bar\nStatus Balk"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     AFX_IDS_SCSIZE          "Verander de maat van het venster"
     AFX_IDS_SCMOVE          "Verander de plaats van het venster"
@@ -625,36 +820,35 @@ BEGIN
     AFX_IDS_SCCLOSE         "Sluit het actieve venster, vraag naar opslaan van documenten."
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     AFX_IDS_SCRESTORE       "Venster terug naar vorige formaat"
     AFX_IDS_SCTASKLIST      "Lijst actieve taken"
     AFX_IDS_MDICHILD        "Activeer dit venster"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Sluit afdrukvoorbeeld.\nAfsluiten voorbeeld"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     ID_L2R                  "Kopieer de geselcteerde tekst naar het rechter bestand.\nKopieer naar rechts (Pijl rechts)"
     ID_R2L                  "Kopieer de geselcteerde tekst naar het linker bestand.\nKopieer naar links (Pijl links)"
     ID_OPTIONS_SHOWIDENTICAL "Toon bestanden die identiek zijn"
     ID_OPTIONS_SHOWDIFFERENT "Toon bestanden die verschillen"
-    ID_OPTIONS_SHOWUNIQUE   "Toon bestanden die alleen in een map voorkomen"
     ID_PREVDIFF             "Terug naan het vorige verschil \nVorige verschil (Shift+Tab)"
     ID_NEXTDIFF             "Verder naar het volgende verschil \nVolgende verschil (Tab)"
-    ID_OPTIONS_BACKUPORIGINALFILE
+    ID_OPTIONS_BACKUPORIGINALFILE 
                             "Kopie van het origineel maken als *.bak. \nBackup"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
                             "Automatisch naar het eerste verschil \nEerste verschil"
-    ID_OPTIONS_IGNOREWHITESPACE
+    ID_OPTIONS_IGNOREWHITESPACE 
                             "Witruimte negeren tijdens vergelijken bestanden."
     ID_HIDE_BACKUP_FILES    "Bestanden met de extentie .BAK verbergen"
     ID_HELP_GNULICENSE      "Toon de GNU public license"
@@ -664,27 +858,42 @@ BEGIN
     ID_ALL_RIGHT            "Kopieer alle verschillen naar het rechter bestand. \nKopieer alles naar rechts"
     ID_VIEW_SELECTFONT      "Selecteer het font voor de verschil vensters\nSelecteer verschil font"
     ID_VIEW_USEDEFAULTFONT  "Terug naar gebruik standaard systeemfont voor verschil vensters \nStandaard font"
-    ID_DIR_COPY_FILE_TO_LEFT
+    ID_DIR_COPY_FILE_TO_LEFT 
                             "Kopieer geselecteerde bestand naar aangegeven map"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT
+    ID_DIR_COPY_FILE_TO_RIGHT 
                             "Kopieer geselecteerde bestand naar aangegeven map"
     ID_VIEW_LANGUAGE        "Selecteer de gewenste taal. \nTaal"
     ID_HELP_CONTENTS        "Toon de Winmerge gebruikershandleiding\nHelp"
+    ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff (Alt+Home)"
+    ID_CURDIFF              "Scroll to the current difference\nCurrent Diff (Alt+Enter)"
+    ID_LASTDIFF             "Scroll to the last difference\nLast Diff (Alt+End)"
+    ID_DIFFNUM              "placeholder"
+    ID_DIR_DEL_LEFT         "Delete selected item on left"
+    ID_DIR_DEL_RIGHT        "Delete selected item on right"
+    ID_DIFFSTATUS           "placeholder for status count"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays files that exist in only on left side"
+    ID_OPTIONS_SHOWUNIQUERIGHT 
+                            "Displays files that exist in only on right side"
+    ID_DIR_DEL_BOTH         "Delete selected item(s) on both sides"
+    ID_DIR_OPEN_LEFT        "Open left file"
+    ID_DIR_OPEN_LEFT_WITH   "Open left file with ..."
+    ID_DIR_OPEN_RIGHT       "Open right file"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_SAVE_AS_TITLE       "Opslaan als"
-    IDS_SELECT_FILES_OR_FOLDERS
+    IDS_SELECT_FILES_OR_FOLDERS 
                             "Uw keuze moet of beiden bestanden of beide mappen zijn"
-    IDS_BACKUP_FAILED_PROMPT
+    IDS_BACKUP_FAILED_PROMPT 
                             "Kan geen veiligheidskopie maken van originele bestand. \nToch doorgaan?"
     IDS_OPTIONS_TITLE       "Eigenschappen"
     IDS_OPEN_TITLE          "Open"
+    IDS_CONFIRM_DELETE_FILE "Delete file %1?"
     IDS_EDIT_WINDOW_TITLE_FMT "Bewerken %1"
     IDS_FILESSAME           "De geselecteerde bestanden zijn identiek"
     IDS_FILEUNIQUE          "Het geselecteerde bestand bestaat slechts in een map en kon daarom niet vergeleken woren"
@@ -697,19 +906,78 @@ BEGIN
     IDS_NOPROJECT           "U moet een SourceSafe project path specificeren voordat u verder kunt  (bv:  $/MyProject)"
 END
 
-
-STRINGTABLE DISCARDABLE
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_FILENAME_HEADER     "Bestandsnaam"
     IDS_DIR_HEADER          "Map"
     IDS_RESULT_HEADER       "Vergelijkings resultaat"
     IDS_FILE_COMPARISON_TITLE "Restultaten bestandsvergelijking"
+    IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
+    IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
+    IDS_FILEISDIR           "Directory files cannot be visually compared."
+    IDS_CC_CMD              "&Path to cleartool.exe :"
+    IDS_VSS_CMD             "&Path to SS.EXE :"
+    IDS_VSS_RUN_ERROR       "Error executing versioning system command."
+    IDS_DIFF_OPEN_NO_SET_PROPS 
+                            "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
+    IDS_LTIME_HEADER        "Left Date"
+    IDS_RTIME_HEADER        "Right Date"
+    IDS_EXTENSION_HEADER    "Extension"
+    IDS_CONFIRM_DELETE_ITEMS 
+                            "Are you sure you want to delete %1 of %2 selected item(s) ?"
+    IDS_DEL_LEFT_FMT        "Delete left side %1 of %2 selected item(s)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DEL_RIGHT_FMT       "Delete right side %1 of %2 selected item(s)"
+    IDS_DELETE_FILE_FAILED  "Delete file %1 failed: %2"
+    IDS_CONFIRM_DELETE_DIR  "Delete directory %1?"
+    IDS_REMOVE_DIR_FAILED   "Remove directory failed: %1"
+    IDS_COPY_TO_LEFT        "Copy to left side %1 of %2 selected item(s)"
+    IDS_DEL_BOTH_FMT        "Delete both sides %1 of %2 selected item(s)"
+    IDS_COPY_TO_RIGHT       "Copy to right side %1 of %2 selected item(s)"
+    IDS_DELETE_DIR_FAILED   "Delete directory %1 failed: %s"
+    IDS_COPY_FILE_FAILED    "Copying file %1 failed: %2"
+    IDS_COPY_DIR_FAILED     "Copying directory %1 failed: %2"
+    IDS_ERROR_FILE_WRITEABLE "Error checking destination writeability"
+    IDS_ERROR_BACKUP        "Error backing up file"
+    IDS_CONFIRM_COPY_SINGLE "Are you sure you want to copy %1 to %2?"
+    IDS_CONFIRM_DELETE_SINGLE "Are you sure you want to delete %1?"
+    IDS_BIN_FILES_SAME      "Binary files are identical"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
+    ID_OPTIONS_SHOWBINARIES "Displays binary files"
+    ID_VIEW_WHITESPACE      "Shows whitespace characters"
+    ID_REFRESH              "Refresh display\nRefresh (F5)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FILESAVE_FAILED     "Saving %1 failed. Would you like to save the file under a different name?"
+    IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
+    IDS_ERROR_INCOMPARABLE  "Select two existing directories or files to compare"
+    IDS_STATUS_RESCANNING   "Scanning files..."
+    IDS_STATUS_OPENING_SELECTION "Opening selection"
+    IDS_STATUS_COPYL2R      "Copying Left to Right"
+    IDS_STATUS_COPYR2L      "Copying Right to Left"
+    IDS_STATUS_COPYALL2L    "Copying All to Left"
+    IDS_STATUS_COPYALL2R    "Copying All to Right"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
     IDS_NUM_REPLACED        "Replaced %1 string(s)."
     IDS_EDIT_TEXT_NOT_FOUND "Cannot find string""%s"""
 END
 
 #endif    // Dutch (Netherlands) resources
 /////////////////////////////////////////////////////////////////////////////
+
+
 
 #ifndef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -720,9 +988,9 @@ END
 #define _AFX_NO_TRACKER_RESOURCES
 #define _AFX_NO_PROPERTY_RESOURCES
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
-LANGUAGE LANG_DUTCH, SUBLANG_DUTCH
+LANGUAGE 9, 1
 #pragma code_page(1252)
 #endif
 #include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources

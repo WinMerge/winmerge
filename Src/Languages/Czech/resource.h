@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Developer Studio generated include file.
-// Used by Merge.rc
+// Used by MergeCzech.rc
 //
 #define IDC_CUT                         3
 #define IDC_COPY                        4

@@ -125,6 +125,8 @@ BEGIN
         MENUITEM "Erse&tzen...\tCtrl+H",        ID_EDIT_REPLACE
         MENUITEM SEPARATOR
         MENUITEM "&Einstellungen",              ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "Aktualisieren\tF5",           ID_REFRESH
     END
     POPUP "&Ansicht"
     BEGIN
@@ -147,8 +149,6 @@ BEGIN
         MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
-        MENUITEM SEPARATOR
-        MENUITEM "Aktualisieren\tF5",           ID_REFRESH
     END
     POPUP "&Fenster"
     BEGIN
@@ -251,11 +251,13 @@ FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "&Links:",IDC_STATIC,40,24,20,8
     COMBOBOX        IDC_LEFT_COMBO,63,22,182,94,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
     PUSHBUTTON      "&Suchen...",IDC_LEFT_BUTTON,248,22,38,12
     LTEXT           "&Rechts:",IDC_STATIC,34,40,26,8
     COMBOBOX        IDC_RIGHT_COMBO,63,38,182,95,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
     PUSHBUTTON      "S&uchen...",IDC_RIGHT_BUTTON,248,38,38,12
     LTEXT           "&Erweiterungen:",IDC_STATIC,12,56,48,8
     COMBOBOX        IDC_EXT_COMBO,63,54,151,95,CBS_DROPDOWN |
@@ -293,12 +295,12 @@ CAPTION "Versionskontrolle"
 FONT 8, "MS Sans Serif"
 BEGIN
     GROUPBOX        "Einstellungen",IDC_STATIC,7,10,229,80
-    LTEXT           "&Versionskontrollsystem",IDC_STATIC,16,24,176,10
-    COMBOBOX        IDC_VER_SYS,16,35,176,41,CBS_DROPDOWNLIST | WS_VSCROLL |
-                    WS_TABSTOP
     LTEXT           "&Pfad zu cleartool.exe:",IDC_VSS_L1,16,55,176,8
     EDITTEXT        IDC_PATH_EDIT,16,65,176,12,ES_AUTOHSCROLL
     PUSHBUTTON      "&Suchen...",IDC_BROWSE_BUTTON,194,65,38,12
+    COMBOBOX        IDC_VER_SYS,16,35,176,41,CBS_DROPDOWNLIST | WS_VSCROLL |
+                    WS_TABSTOP
+    LTEXT           "&Versionskontrollsystem",IDC_STATIC,16,24,176,10
 END
 
 IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 260, 156
@@ -433,8 +435,11 @@ BEGIN
                     7,221,15
     LTEXT           "Reguläre Ausdrücke (einer pro Zeile):",IDC_STATIC,7,28,
                     221,8
-    EDITTEXT        IDC_EDITPATTERN,8,40,221,96,ES_MULTILINE |
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | 
                     ES_AUTOHSCROLL | ES_WANTRETURN
+    LTEXT           "File filter:",IDC_STATIC,7,128,60,10
+    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
 END
 
 IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
@@ -442,6 +447,7 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Farben"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
+    LTEXT           "selektierter Unterschied",IDC_STATIC,40,20,184,8
     CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,16,10,16,8,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -449,7 +455,6 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,16,20,16,8,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    LTEXT           "selektierter Unterschied",IDC_STATIC,40,20,184,8
 END
 
 IDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
@@ -564,6 +569,7 @@ BEGIN
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 228
+        VERTGUIDE, 125
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
     END
@@ -838,7 +844,6 @@ BEGIN
                             "Dateien anzeigen die exakt gleich sind.\nIdentische Dateien"
     ID_OPTIONS_SHOWDIFFERENT
                             "Dateien anzeigen die Unterschiede haben.\nUnterschiedliche Dateien anzeigen"
-    ID_OPTIONS_SHOWUNIQUE   "Zeigt Dateien an, die nur in einem Verzeichnis vorkommen.\nDateien die nur in einem Verzeichnis vorkommen"
     ID_PREVDIFF             "Bewegt die Anzeige zum vorigen Unterschied.\nVorheriger Unterschied"
     ID_NEXTDIFF             "Bewegt die Anzeige zum nächsten Unterschied.\nNächster Unterschied"
     ID_OPTIONS_BACKUPORIGINALFILE
@@ -871,10 +876,18 @@ BEGIN
     ID_FIRSTDIFF            "Bewegt die Anzeige zum ersten Unterschied.\nErster Unterschied"
     ID_CURDIFF              "Bewegt die Anzeige zum aktuellen Unterschied.\nAktueller Unterschied"
     ID_LASTDIFF             "Bewegt die Anzeige zum letzten Unterschied.\nLetzter Unterschied"
+    ID_DIFFNUM              "placeholder"
+    ID_DIR_DEL_LEFT         "Delete selected item on left"
+    ID_DIR_DEL_RIGHT        "Delete selected item on right"
+    ID_DIFFSTATUS           "placeholder for status count"
     ID_OPTIONS_SHOWUNIQUELEFT
                             "Zeigt eindeutige Dateien auf der linken Seite an.\nEindeutige Dateien links anzeigen"
     ID_OPTIONS_SHOWUNIQUERIGHT
                             "Zeigt eindeutige Dateien auf der rechten Seite an.\nEindeutige Dateien rechts anzeigen"
+    ID_DIR_DEL_BOTH         "Delete selected item(s) on both sides"
+    ID_DIR_OPEN_LEFT        "Open left file"
+    ID_DIR_OPEN_LEFT_WITH   "Open left file with ..."
+    ID_DIR_OPEN_RIGHT       "Open right file"
 END
 
 STRINGTABLE DISCARDABLE
@@ -886,6 +899,7 @@ BEGIN
                             "Es konnte keine Sicherheitskopie der Originaldatei erzeugt werden.\nWollen Sie trotzdem fortfahren?"
     IDS_OPTIONS_TITLE       "Eigenschaften"
     IDS_OPEN_TITLE          "Öffnen"
+    IDS_CONFIRM_DELETE_FILE "Delete file %1?"
     IDS_EDIT_WINDOW_TITLE_FMT "%1 Bearbeiten"
     IDS_FILESSAME           "Die ausgewählten Dateien sind identisch."
     IDS_FILEUNIQUE          "\nDie ausgewählte Datei ist nicht in beiden Verzeichnissen vorhanden und konnte deshalb nicht verglichen werden."
