@@ -104,7 +104,8 @@ private:
 	struct ActionList
 	{
 		// types used in the ActionList
-		typedef enum { ACT_COPY=1, ACT_DEL_LEFT, ACT_DEL_RIGHT, ACT_DEL_BOTH } ACT_TYPE;
+		typedef enum { ACT_COPY = 1, ACT_DEL_LEFT, ACT_DEL_RIGHT, ACT_DEL_BOTH,
+			ACT_MOVE_LEFT, ACT_MOVE_RIGHT } ACT_TYPE;
 		struct action { CString src; CString dest; BOOL dirflag; int idx; int code;}; /**< One file action */
 		typedef CList<int, int> DeletedItemList; // indices into display list control
 		// Data members of the ActionList
@@ -144,6 +145,8 @@ private:
 	void DoDelBoth();
 	void DoCopyLeftTo();
 	void DoCopyRightTo();
+	void DoMoveLeftTo();
+	void DoMoveRightTo();
 	void DoOpen(SIDE_TYPE stype);
 	void DoOpenWith(SIDE_TYPE stype);
 	void DoOpenWithEditor(SIDE_TYPE stype);
@@ -296,6 +299,10 @@ protected:
 	afx_msg void OnUpdatePluginPredifferMode(CCmdUI* pCmdUI);
 	afx_msg void OnCopyPathnames();
 	afx_msg void OnCopyFilenames();
+	afx_msg void OnCtxtDirMoveLeftTo();
+	afx_msg void OnUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);
+	afx_msg void OnCtxtDirMoveRightTo();
+	afx_msg void OnUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
@@ -318,6 +325,8 @@ private:
 	void DoUpdateOpenRightWith(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirCopyLeftTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI);
+	void DoUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);
+	void DoUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI);
 	POSITION GetItemKeyFromData(DWORD dw) const;
 	const DIFFITEM &GetDiffItem(int sel);
 	int GetSingleSelectedItem() const;

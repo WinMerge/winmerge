@@ -250,6 +250,11 @@ BEGIN
             MENUITEM "&Дясно към ляво",              ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "Д&ясно към...",                ID_DIR_COPY_RIGHT_TO_BROWSE
         END
+        POPUP "&Move"
+        BEGIN
+            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+        END
         POPUP "&Изтрии"
         BEGIN
             MENUITEM "&От ляво",                       ID_DIR_DEL_LEFT
@@ -376,7 +381,7 @@ END
 IDD_ABOUTBOX DIALOGEX 0, 0, 223, 134
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "За WinMerge"
-FONT 8, "MS Sans Serif", 0, 0, 0x1
+FONT 8, "MS Shell Dlg"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
@@ -580,7 +585,7 @@ END
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Linefilters"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "Игнорирай линиите съдържащи следното",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
@@ -1370,6 +1375,7 @@ BEGIN
     IDS_STATUS_COPYALL2R    "Копира всичко в дясно"
     IDS_STATUS_COPYFILES    "Copying files..."
     IDS_STATUS_DELETEFILES  "Deleting files..."
+    IDS_STATUS_MOVEFILES    "Moving files..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1466,6 +1472,10 @@ BEGIN
     IDS_DEL_RIGHT_FMT2      "Десен (%1 от %2)"
     IDS_DEL_BOTH_FMT2       "двете (%1 от %2)"
     IDS_SELECT_DESTFOLDER   "Избери на директория"
+    IDS_MOVE_LEFT_TO        "Left to... (%1)"
+    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
+    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
+    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1502,6 +1512,10 @@ BEGIN
     ID_DIR_ZIP_RIGHT        "Add items from right side to archive"
     ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
+    ID_DIR_MOVE_LEFT_TO_BROWSE 
+                            "Move selected file on left to custom directory"
+    ID_DIR_MOVE_RIGHT_TO_BROWSE 
+                            "Move selected file on right to custom directory"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT

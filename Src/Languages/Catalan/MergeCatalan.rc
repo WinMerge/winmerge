@@ -250,6 +250,11 @@ BEGIN
             MENUITEM "De &dreta a esquerra",    ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "De d&reta a...",            ID_DIR_COPY_RIGHT_TO_BROWSE
         END
+        POPUP "&Move"
+        BEGIN
+            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+        END
         POPUP "&Suprimeix"
         BEGIN
             MENUITEM "De l'&esquerra",              ID_DIR_DEL_LEFT
@@ -1386,6 +1391,7 @@ BEGIN
     IDS_STATUS_COPYALL2R    "S'està copiant tot a la dreta"
     IDS_STATUS_COPYFILES    "S'estan copiant els fitxers..."
     IDS_STATUS_DELETEFILES  "S'estan suprimint els fitxers..."
+    IDS_STATUS_MOVEFILES    "Moving files..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1482,6 +1488,10 @@ BEGIN
     IDS_DEL_RIGHT_FMT2      "Dreta (%1 de %2)"
     IDS_DEL_BOTH_FMT2       "Ambdós (%1 de %2)"
     IDS_SELECT_DESTFOLDER   "Selecciona la carpeta de destinació"
+    IDS_MOVE_LEFT_TO        "Left to... (%1)"
+    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
+    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
+    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1518,6 +1528,10 @@ BEGIN
     ID_DIR_ZIP_RIGHT        "Afegeix els elements del costat dret a l'arxiu"
     ID_DIR_ZIP_BOTH         "Afegeix els elements d'ambdós costats a l'arxiu"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Afegeix els elements diferents a l'arxiu (d'ambdós costats)"
+    ID_DIR_MOVE_LEFT_TO_BROWSE 
+                            "Move selected file on left to custom directory"
+    ID_DIR_MOVE_RIGHT_TO_BROWSE 
+                            "Move selected file on right to custom directory"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT

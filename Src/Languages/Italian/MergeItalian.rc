@@ -250,7 +250,12 @@ BEGIN
             MENUITEM "Da &Destra a Sinistra",   ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "Destra &in...",           ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "&Elimina"
+        POPUP "&Move"
+        BEGIN
+            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+        END
+         POPUP "&Elimina"
         BEGIN
             MENUITEM "&Sinistra",               ID_DIR_DEL_LEFT
             MENUITEM "&Destra",                 ID_DIR_DEL_RIGHT
@@ -907,7 +912,7 @@ BEGIN
     CONTROL         "Riscansiona &automaticamente",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Conserva caratteri di fine linea originali",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "Tabulazioni",IDC_STATIC,7,54,221,33,WS_GROUP
     LTEXT           "&Dim. tabul.:",IDC_STATIC,15,68,92,8
     EDITTEXT        IDC_TAB_EDIT,47,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
@@ -1482,6 +1487,7 @@ BEGIN
     IDS_STATUS_COPYALL2R    "Copiatura completa a destra"
     IDS_STATUS_COPYFILES    "Copiatura dei file..."
     IDS_STATUS_DELETEFILES  "Eliminazione dei file..."
+    IDS_STATUS_MOVEFILES    "Moving files..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1578,6 +1584,10 @@ BEGIN
     IDS_DEL_RIGHT_FMT2      "Destra (%1 su %2)"
     IDS_DEL_BOTH_FMT2       "Entrambi (%1 su %2)"
     IDS_SELECT_DESTFOLDER   "Seleziona cartella di destinazione"
+    IDS_MOVE_LEFT_TO        "Left to... (%1)"
+    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
+    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
+    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1614,6 +1624,10 @@ BEGIN
     ID_DIR_ZIP_RIGHT        "Aggiunge elementi del lato destro a un archivio"
     ID_DIR_ZIP_BOTH         "Aggiunge elementi di entrambi i lati a un archivio"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Aggiunge gli elementi diversi a un archivio (entrambi i lati)"
+    ID_DIR_MOVE_LEFT_TO_BROWSE 
+                            "Move selected file on left to custom directory"
+    ID_DIR_MOVE_RIGHT_TO_BROWSE 
+                            "Move selected file on right to custom directory"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT

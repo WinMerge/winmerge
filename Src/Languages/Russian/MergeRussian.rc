@@ -251,13 +251,14 @@ BEGIN
         POPUP "Копировать"
         BEGIN
             MENUITEM "Слева направо",               ID_DIR_COPY_LEFT_TO_RIGHT
-
             MENUITEM "Слева на ...",                ID_DIR_COPY_LEFT_TO_BROWSE
-
             MENUITEM "Справа налево",               ID_DIR_COPY_RIGHT_TO_LEFT
-
             MENUITEM "Справа на ...",               ID_DIR_COPY_RIGHT_TO_BROWSE
-
+        END
+        POPUP "&Move"
+        BEGIN
+            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
         POPUP "Удалить"
         BEGIN
@@ -270,14 +271,12 @@ BEGIN
         BEGIN
             MENUITEM "Зарегистрированым приложением", ID_DIR_OPEN_LEFT
             MENUITEM "Внешним редактором",          ID_DIR_OPEN_LEFT_WITHEDITOR
-
             MENUITEM "С помощью...",                ID_DIR_OPEN_LEFT_WITH
         END
         POPUP "Открыть правый файл"
         BEGIN
             MENUITEM "Зарегистрированым приложением", ID_DIR_OPEN_RIGHT
             MENUITEM "Внешним редактором",          ID_DIR_OPEN_RIGHT_WITHEDITOR
-
             MENUITEM "С помощью...",                ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
@@ -1386,6 +1385,7 @@ BEGIN
     IDS_STATUS_COPYALL2R    "Копирование всех файлов направо"
     IDS_STATUS_COPYFILES    "Copying files..."
     IDS_STATUS_DELETEFILES  "Deleting files..."
+    IDS_STATUS_MOVEFILES    "Moving files..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1482,6 +1482,10 @@ BEGIN
     IDS_DEL_RIGHT_FMT2      "Справа (%1 из %2)"
     IDS_DEL_BOTH_FMT2       "Вместе (%1 из %2)"
     IDS_SELECT_DESTFOLDER   "Выберите папку назначения"
+    IDS_MOVE_LEFT_TO        "Left to... (%1)"
+    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
+    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
+    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1518,6 +1522,10 @@ BEGIN
     ID_DIR_ZIP_RIGHT        "Add items from right side to archive"
     ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
+    ID_DIR_MOVE_LEFT_TO_BROWSE 
+                            "Move selected file on left to custom directory"
+    ID_DIR_MOVE_RIGHT_TO_BROWSE 
+                            "Move selected file on right to custom directory"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT

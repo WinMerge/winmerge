@@ -159,6 +159,10 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnUpdatePluginPredifferMode)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES, OnCopyPathnames)
 	ON_COMMAND(ID_DIR_COPY_FILENAMES, OnCopyFilenames)
+	ON_COMMAND(ID_DIR_MOVE_LEFT_TO_BROWSE, OnCtxtDirMoveLeftTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_LEFT_TO_BROWSE, OnUpdateCtxtDirMoveLeftTo)
+	ON_COMMAND(ID_DIR_MOVE_RIGHT_TO_BROWSE, OnCtxtDirMoveRightTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_RIGHT_TO_BROWSE, OnUpdateCtxtDirMoveRightTo)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -1012,6 +1016,54 @@ void CDirView::DoUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI)
 		AfxFormatString1(s, IDS_COPY_RIGHT_TO, NumToStr(total));
 	else
 		AfxFormatString2(s, IDS_COPY_RIGHT_TO2, NumToStr(count), NumToStr(total));
+	pCmdUI->SetText(s);
+}
+
+/**
+ * @brief Enable/disable "Move | Left to..." and update item text
+ */
+void CDirView::DoUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI) 
+{
+	int sel=-1;
+	int count=0, total=0;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (di.diffcode != 0 && IsItemCopyableToOnLeft(di) && IsItemDeletableOnLeft(di))
+			++count;
+		++total;
+	}
+	pCmdUI->Enable(count>0);
+
+	CString s;
+	if (count == total)
+		AfxFormatString1(s, IDS_MOVE_LEFT_TO, NumToStr(total));
+	else
+		AfxFormatString2(s, IDS_MOVE_LEFT_TO2, NumToStr(count), NumToStr(total));
+	pCmdUI->SetText(s);
+}
+
+/**
+ * @brief Enable/disable "Move | Right to..." and update item text
+ */
+void CDirView::DoUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI) 
+{
+	int sel=-1;
+	int count=0, total=0;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (di.diffcode != 0 && IsItemCopyableToOnRight(di) && IsItemDeletableOnRight(di))
+			++count;
+		++total;
+	}
+	pCmdUI->Enable(count>0);
+
+	CString s;
+	if (count == total)
+		AfxFormatString1(s, IDS_MOVE_RIGHT_TO, NumToStr(total));
+	else
+		AfxFormatString2(s, IDS_MOVE_RIGHT_TO2, NumToStr(count), NumToStr(total));
 	pCmdUI->SetText(s);
 }
 
@@ -2248,4 +2300,32 @@ void CDirView::OnCopyFilenames()
 		}
 	}
 	PutToClipboard(strPaths, mf->GetSafeHwnd());
+}
+
+/// User chose (context menu) Move left to...
+void CDirView::OnCtxtDirMoveLeftTo() 
+{
+	DoMoveLeftTo();
+}
+
+/// User chose (context menu) Move right to...
+void CDirView::OnCtxtDirMoveRightTo() 
+{
+	DoMoveRightTo();
+}
+
+/**
+ * @brief Update "Move | Right to..." item
+ */
+void CDirView::OnUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI) 
+{
+	DoUpdateCtxtDirMoveRightTo(pCmdUI);
+}
+
+/**
+ * @brief Update "Move | Left to..." item
+ */
+void CDirView::OnUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI) 
+{
+	DoUpdateCtxtDirMoveLeftTo(pCmdUI);
 }

@@ -303,7 +303,7 @@
 #define IDS_STATUS_COPYALL2R            16821
 #define IDS_STATUS_COPYFILES            16822
 #define IDS_STATUS_DELETEFILES          16823
-
+#define IDS_STATUS_MOVEFILES            16824
 #define IDS_LINE_STATUS_INFO_EOL        16832
 #define IDS_EMPTY_LINE_STATUS_INFO      16833
 #define IDS_LINE_STATUS_INFO            16834
@@ -370,6 +370,10 @@
 #define IDS_DEL_RIGHT_FMT2              17619
 #define IDS_DEL_BOTH_FMT2               17620
 #define IDS_SELECT_DESTFOLDER           17621
+#define IDS_MOVE_LEFT_TO                17622
+#define IDS_MOVE_RIGHT_TO               17623
+#define IDS_MOVE_LEFT_TO2               17624
+#define IDS_MOVE_RIGHT_TO2              17625
 
 #define IDS_CONFIRM_ALL_LEFT            17632
 #define IDS_CONFIRM_ALL_RIGHT           17633
@@ -708,6 +712,8 @@
 #define ID_DIR_ZIP_RIGHT                32977
 #define ID_DIR_ZIP_BOTH                 32978
 #define ID_DIR_ZIP_BOTH_DIFFS_ONLY      32979
+#define ID_DIR_MOVE_LEFT_TO_BROWSE      32980
+#define ID_DIR_MOVE_RIGHT_TO_BROWSE     32981
 
 #define ID_SCRIPT_FIRST                 32992
 #define ID_SCRIPT_LAST                  33039

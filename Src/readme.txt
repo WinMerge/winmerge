@@ -15,6 +15,10 @@
   Replace-dialog
   Src: Merge.rc
   Src/Languages: *.rc
+ PATCH: [ 990901 ] Add Move to DirView Context menu commands.
+  Submitted by Vladimir Lukianov
+  Src: DirActions.cpp DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
 
 2004-07-15 Kimmo
  PATCH: [ 991181 ] Disable 'Goto Line' outside reduced locationpane bars

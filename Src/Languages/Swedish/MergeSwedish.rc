@@ -249,6 +249,11 @@ BEGIN
             MENUITEM "&Höger till vänster",              ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "H&öger till...",                ID_DIR_COPY_RIGHT_TO_BROWSE
         END
+        POPUP "&Move"
+        BEGIN
+            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+        END
         POPUP "&Ta bort"
         BEGIN
             MENUITEM "&Vänster",                       ID_DIR_DEL_LEFT
@@ -1482,6 +1487,7 @@ BEGIN
     IDS_STATUS_COPYALL2R    "Kopiera allt till höger"
     IDS_STATUS_COPYFILES    "Kopierar filer..."
     IDS_STATUS_DELETEFILES  "Tar bort filer..."
+    IDS_STATUS_MOVEFILES    "Moving files..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1578,6 +1584,10 @@ BEGIN
     IDS_DEL_RIGHT_FMT2      "Höger (%1 av %2)"
     IDS_DEL_BOTH_FMT2       "Båda (%1 av %2)"
     IDS_SELECT_DESTFOLDER   "Välj destinationskatalog"
+    IDS_MOVE_LEFT_TO        "Left to... (%1)"
+    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
+    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
+    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1614,6 +1624,10 @@ BEGIN
     ID_DIR_ZIP_RIGHT        "Lägg till saker från höger sida till arkivet"
     ID_DIR_ZIP_BOTH         "Lägg till saker från båda sidor till arkivet"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Lägg till olika saker till arkivet (båda sidor)"
+    ID_DIR_MOVE_LEFT_TO_BROWSE 
+                            "Move selected file on left to custom directory"
+    ID_DIR_MOVE_RIGHT_TO_BROWSE 
+                            "Move selected file on right to custom directory"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT

@@ -325,6 +325,112 @@ void CDirView::DoCopyRightTo()
 	bSuccess = fileOp.Go( &bAPICalled, &nAPIReturn, &bAborted );
 }
 
+/**
+ * @brief Move selected left-side files to user-specified directory
+ *
+ * When moving files from recursive compare file subdirectory is also
+ * read so directory structure is preserved.
+ * @note CShellFileOp takes care of much of error handling
+ */
+void CDirView::DoMoveLeftTo()
+{
+	CString destPath;
+	CString startPath;
+	CString msg;
+
+	VERIFY(msg.LoadString(IDS_SELECT_DESTFOLDER));
+	if (!SelectFolder(destPath, startPath, msg))
+		return;
+
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_MOVEFILES));
+
+	ActionList actionList(ActionList::ACT_MOVE_LEFT);
+
+	int sel = -1;
+	CString slFile, srFile;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+
+		if (di.diffcode != 0 && IsItemCopyableToOnLeft(di) && IsItemDeletableOnLeft(di))
+		{
+			ActionList::action act;
+			CString sFullDest(destPath);
+			sFullDest += _T("\\");
+			if (GetDocument()->GetRecursive())
+			{
+				if (!di.sSubdir.IsEmpty())
+					sFullDest += di.sSubdir + _T("\\");
+			}
+			sFullDest += di.sfilename;
+			act.dest = sFullDest;
+
+			GetItemFileNames(sel, slFile, srFile);
+			act.src = slFile;
+			act.dirflag = di.isDirectory();
+			act.idx = sel;
+			act.code = di.diffcode;
+			actionList.actions.AddTail(act);
+			++actionList.selcount;
+		}
+	}
+	// Now we prompt, and execute actions
+	ConfirmAndPerformActions(actionList);
+}
+
+/**
+ * @brief Move selected right-side files to user-specified directory
+ *
+ * When moving files from recursive compare file subdirectory is also
+ * read so directory structure is preserved.
+ * @note CShellFileOp takes care of much of error handling
+ */
+void CDirView::DoMoveRightTo()
+{
+	CString destPath;
+	CString startPath;
+	CString msg;
+
+	VERIFY(msg.LoadString(IDS_SELECT_DESTFOLDER));
+	if (!SelectFolder(destPath, startPath, msg))
+		return;
+
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_MOVEFILES));
+
+	ActionList actionList(ActionList::ACT_MOVE_RIGHT);
+
+	int sel = -1;
+	CString slFile, srFile;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+
+		if (di.diffcode != 0 && IsItemCopyableToOnRight(di) && IsItemDeletableOnRight(di))
+		{
+			ActionList::action act;
+			CString sFullDest(destPath);
+			sFullDest += _T("\\");
+			if (GetDocument()->GetRecursive())
+			{
+				if (!di.sSubdir.IsEmpty())
+					sFullDest += di.sSubdir + _T("\\");
+			}
+			sFullDest += di.sfilename;
+			act.dest = sFullDest;
+
+			GetItemFileNames(sel, slFile, srFile);
+			act.src = srFile;
+			act.dirflag = di.isDirectory();
+			act.idx = sel;
+			act.code = di.diffcode;
+			actionList.actions.AddTail(act);
+			++actionList.selcount;
+		}
+	}
+	// Now we prompt, and execute actions
+	ConfirmAndPerformActions(actionList);
+}
+
 // Confirm with user, then perform the action list
 void CDirView::ConfirmAndPerformActions(ActionList & actionList)
 {
@@ -367,6 +473,9 @@ BOOL CDirView::ConfirmActionList(const ActionList & actionList)
 	case ActionList::ACT_DEL_LEFT:
 	case ActionList::ACT_DEL_RIGHT:
 	case ActionList::ACT_DEL_BOTH:
+	// Moving does not need confirmation, CShellFileOp takes care of it
+	case ActionList::ACT_MOVE_LEFT:
+	case ActionList::ACT_MOVE_RIGHT:
 		break;
 
 	// Invalid operation
@@ -412,6 +521,12 @@ void CDirView::PerformActionList(ActionList & actionList)
 	case ActionList::ACT_DEL_BOTH:
 		operation = FO_DELETE;
 		break;
+	case ActionList::ACT_MOVE_LEFT:
+		operation = FO_MOVE;
+		break;
+	case ActionList::ACT_MOVE_RIGHT:
+		operation = FO_MOVE;
+		break;
 	default:
 		LogErrorString(_T("Unknown fileoperation in CDirView::PerformActionList()"));
 		_RPTF0(_CRT_ERROR, "Unknown fileoperation in CDirView::PerformActionList()");
@@ -421,6 +536,7 @@ void CDirView::PerformActionList(ActionList & actionList)
 	// Check option and enable putting deleted items to Recycle Bin
 	if (mf->m_options.GetInt(OPT_USE_RECYCLE_BIN) == TRUE)
 		operFlags |= FOF_ALLOWUNDO;
+
 	fileOp.SetOperationFlags(operation, this, operFlags);
 	
 	// Add files/directories
@@ -467,6 +583,12 @@ void CDirView::PerformActionList(ActionList & actionList)
 					fileOp.AddSourceFile(act.src);
 					fileOp.AddDestFile(act.dest);
 					gLog.Write(_T("Copy file(s) from: %s\n\tto: %s"), act.src, act.dest);
+					break;
+				case ActionList::ACT_MOVE_LEFT:
+				case ActionList::ACT_MOVE_RIGHT:
+					fileOp.AddSourceFile(act.src);
+					fileOp.AddDestFile(act.dest);
+					gLog.Write(_T("Move file(s) from: %s\n\tto: %s"), act.src, act.dest);
 					break;
 				case ActionList::ACT_DEL_LEFT:
 					fileOp.AddSourceFile(act.src);
@@ -562,6 +684,37 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 			else
 				pDoc->SetDiffCompare(DIFFCODE::SAME, act.idx);
 			pDoc->ReloadItemStatus(act.idx);
+		}
+		else if (actionList.atype == ActionList::ACT_MOVE_LEFT ||
+			actionList.atype == ActionList::ACT_MOVE_RIGHT)
+		{
+			// Move files and folders
+			// If unique item is moved, don't bother updating statuses,
+			// just remove from list
+			CDirDoc *pDoc = GetDocument();
+			if (actionList.atype == ActionList::ACT_MOVE_LEFT)
+			{
+				if (di.isSideLeft())
+					actionList.deletedItems.AddTail(act.idx);
+				else
+				{
+					pDoc->SetDiffSide(DIFFCODE::RIGHT, act.idx);
+					pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
+					pDoc->ReloadItemStatus(act.idx);
+				}
+			}
+
+			if (actionList.atype == ActionList::ACT_MOVE_RIGHT)
+			{
+				if (di.isSideRight())
+					actionList.deletedItems.AddTail(act.idx);
+				else
+				{
+					pDoc->SetDiffSide(DIFFCODE::LEFT, act.idx);
+					pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
+					pDoc->ReloadItemStatus(act.idx);
+				}
+			}
 		}
 		else
 		{

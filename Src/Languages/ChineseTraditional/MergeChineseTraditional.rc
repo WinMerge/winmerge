@@ -250,6 +250,11 @@ BEGIN
             MENUITEM "&Right to Left",              ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "R&ight to...",                ID_DIR_COPY_RIGHT_TO_BROWSE
         END
+        POPUP "&Move"
+        BEGIN
+            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+        END
         POPUP "&Delete"
         BEGIN
             MENUITEM "&Left",                       ID_DIR_DEL_LEFT
@@ -1470,6 +1475,7 @@ BEGIN
     IDS_STATUS_COPYALL2R    "正在全部複製到右邊"
     IDS_STATUS_COPYFILES    "Copying files..."
     IDS_STATUS_DELETEFILES  "Deleting files..."
+    IDS_STATUS_MOVEFILES    "Moving files..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1566,6 +1572,10 @@ BEGIN
     IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
     IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
     IDS_SELECT_DESTFOLDER   "Select destination folder"
+    IDS_MOVE_LEFT_TO        "Left to... (%1)"
+    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
+    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
+    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1602,6 +1612,10 @@ BEGIN
     ID_DIR_ZIP_RIGHT        "Add items from right side to archive"
     ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
+    ID_DIR_MOVE_LEFT_TO_BROWSE 
+                            "Move selected file on left to custom directory"
+    ID_DIR_MOVE_RIGHT_TO_BROWSE 
+                            "Move selected file on right to custom directory"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
