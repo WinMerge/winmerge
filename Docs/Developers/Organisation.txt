@@ -7,7 +7,6 @@ WinMerge/
    - Developers/
      - WinMerge files (Web format)/
    - Users/
-     - Guide
      - Manual
  - Filters
  - InnoSetup
@@ -39,8 +38,8 @@ WinMerge/Docs/
 
 WinMerge/Docs/Developers/
  - Documentation mostly for developer interest.
- - readme-developers.htm should be read all working with source code,
-   it contains a lot of usefull information about practices of
+ - readme-developers.htm should be read by all working with source code,
+   it contains a lot of useful information about practices of
    WinMerge developers.
 
 WinMerge/Docs/Developers/WinMerge files (Web format)/
@@ -49,17 +48,16 @@ WinMerge/Docs/Developers/WinMerge files (Web format)/
 WinMerge/Docs/Users/
  - Documentation files mostly for users interests
 
-WinMerge/Docs/Users/Guide/
- - 2.0.x user guide. Not updated anymore.
-
 WinMerge/Docs/Users/Manual/
  - New 2.2.x userguide. Using Docbook/XML.
+ - readme.txt is changelog file
 
 WinMerge/Filters/
  - File filters are here
 
 WinMerge/InnoSetup/
  - Installer
+ - readme.txt is changelog file
 
 WinMerge/InnoSetup/Art
  - Graphics files installer needs
@@ -96,6 +94,7 @@ WinMerge/ShellExtension/
 
 WinMerge/Src/
  - WinMerge executable sources.
+ - readme.txt is changelog file
 
 WinMerge/Src/Common
  - Some common components shared by tools etc.
@@ -114,3 +113,4 @@ WinMerge/Src/res
 
 WinMerge/Web/
  - Homepages.
+ - readme.txt is changelog file

@@ -1,3 +1,8 @@
+2004-10-24 Kimmo
+ PATCH: [ 1048288 ] Fixes to Organization.txt
+  Submitted by Perry
+  Docs/Developers/Organisation.txt
+
 2004-10-24 Perry
  BUG: [ 1048439 ] UNICODE build calling IsDBCSLeadByte (shouldn't)
   Src: stringdiffs.cpp
