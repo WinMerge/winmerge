@@ -1,3 +1,8 @@
+2004-05-26 Perry
+ Added a few more native or ASCII language names (Albanian, Arabic, Armenian
+  Belarusian, Croatian, Estonian, Farsi, Georgian, Greek, Urdu)
+  Src/Common: LanguageSelect.cpp
+
 2004-05-27 Kimmo
  PATCH: [ 960265 ] Don't show size for folder or non-existing file
   Src: DiffFileInfo.cpp DiffFileInfo.h DirScan.cpp DirViewColItems.cpp
