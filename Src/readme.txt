@@ -3,6 +3,8 @@
   WinMerge: MergeDoc.h MergeDoc.cpp
  BUG: [ 823099 ] RO status not fully implemented when lossy conversions
   WinMerge: ChildFrm.cpp
+ Removed unneeded unlocalisable string from SelectFile() ("Directory selection")
+  WinMerge: Merge.cpp
 
 2003-10-14 Laoran
  PATCH: [ 819123 ] Half-wait cursor during rescan (new try)

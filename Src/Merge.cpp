@@ -128,7 +128,7 @@ BOOL CMergeApp::InitInstance()
 	{
 		// get current setting
 		int tmpFlag = _CrtSetDbgFlag( _CRTDBG_REPORT_FLAG );
-		// Keep freed memory blocks in the heap’s linked list and mark them as freed
+		// Keep freed memory blocks in the heap's linked list and mark them as freed
 		tmpFlag |= _CRTDBG_DELAY_FREE_MEM_DF;
 		// Call _CrtCheckMemory at every allocation and deallocation request.
 		tmpFlag |= _CRTDBG_CHECK_ALWAYS_DF;
@@ -423,12 +423,15 @@ BOOL CAboutDlg::OnInitDialog()
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp commands
 
+/** 
+ * @brief Helper function for selecting dir/file
+ */
 BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/, 
 			 LPCTSTR title /*= _T("Open")*/, 
 			 UINT filterid /*=0*/,
 			 BOOL is_open /*=TRUE*/) 
 {
-	CString sfile = _T("Directory Selection");
+	CString sfile;
 
 	// check if specified path is a file
 	if (root_path!=NULL)
