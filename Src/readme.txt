@@ -1,3 +1,7 @@
+2004-10-04 Perry
+ PATCH: [ 1039300 ] Factor listviewex code so it can be used with a CListCtrlEx.
+  Src/Common: listvwex.cpp listvwex.h
+
 2004-10-03 Perry
  PATCH:[ 1037449 ] Fix char width computation for displayable whitespace
   Src/editlib: ccrystaltextview.cpp ccrystaltextview.h

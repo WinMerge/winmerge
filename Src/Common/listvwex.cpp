@@ -40,71 +40,80 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CListViewEx construction/destruction
 
-CListViewEx::CListViewEx()
-{
-	m_bFullRowSel=FALSE;
-	m_bClientWidthSel=TRUE;
-
-	m_cxClient=0;
-	m_cxStateImageOffset=0;
-
-	m_clrText=::GetSysColor(COLOR_WINDOWTEXT);
-	m_clrTextBk=::GetSysColor(COLOR_WINDOW);
-	m_clrBkgnd=::GetSysColor(COLOR_WINDOW);
-	m_nTabFlag = DT_EXPANDTABS;
-}
-
-CListViewEx::~CListViewEx()
-{
-}
-
 BOOL CListViewEx::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// default is report view and full row selection
 	cs.style&=~LVS_TYPEMASK;
 	cs.style|=LVS_REPORT | LVS_OWNERDRAWFIXED;
-	m_bFullRowSel=TRUE;
 
 	return(CListView::PreCreateWindow(cs));
 }
 
-BOOL CListViewEx::SetFullRowSel(BOOL bFullRowSel)
+/////////////////////////////////////////////////////////////////////////////
+// CListCtrlEx
+
+IMPLEMENT_DYNCREATE(CListCtrlEx, CListCtrl)
+
+BEGIN_MESSAGE_MAP(CListCtrlEx, CListCtrl)
+	//{{AFX_MSG_MAP(CListCtrlEx)
+	ON_WM_SIZE()
+	ON_WM_PAINT()
+	ON_WM_SETFOCUS()
+	ON_WM_KILLFOCUS()
+	//}}AFX_MSG_MAP
+	ON_MESSAGE(LVM_SETIMAGELIST, OnSetImageList)
+	ON_MESSAGE(LVM_SETTEXTCOLOR, OnSetTextColor)
+	ON_MESSAGE(LVM_SETTEXTBKCOLOR, OnSetTextBkColor)
+	ON_MESSAGE(LVM_SETBKCOLOR, OnSetBkColor)
+END_MESSAGE_MAP()
+
+/////////////////////////////////////////////////////////////////////////////
+// CListCtrlEx construction/destruction
+
+CListCtrlEx::CListCtrlEx()
+#pragma warning(disable:4355) // 'this' : used in base member initializer list
+: m_listex(*this)
+#pragma warning(default:4355) // 'this' : used in base member initializer list
 {
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// CListEx
+
+BOOL CListEx::SetFullRowSel(BOOL bFullRowSel)
+{
+	CListCtrl& ListCtrl=GetListCtrl();
+
 	// no painting during change
-	LockWindowUpdate();
+	ListCtrl.LockWindowUpdate();
 
 	m_bFullRowSel=bFullRowSel;
 
 	BOOL bRet;
 
 	if(m_bFullRowSel)
-		bRet=ModifyStyle(0L,LVS_OWNERDRAWFIXED);
+		bRet=ListCtrl.ModifyStyle(0L,LVS_OWNERDRAWFIXED);
 	else
-		bRet=ModifyStyle(LVS_OWNERDRAWFIXED,0L);
+		bRet=ListCtrl.ModifyStyle(LVS_OWNERDRAWFIXED,0L);
 
 	// repaint window if we are not changing view type
-	if(bRet && (GetStyle() & LVS_TYPEMASK)==LVS_REPORT)
-		Invalidate();
+	if(bRet && (ListCtrl.GetStyle() & LVS_TYPEMASK)==LVS_REPORT)
+		ListCtrl.Invalidate();
 
 	// repaint changes
-	UnlockWindowUpdate();
+	ListCtrl.UnlockWindowUpdate();
 
 	return(bRet);
 }
 
-BOOL CListViewEx::GetFullRowSel()
-{
-	return(m_bFullRowSel);
-}
-
 /////////////////////////////////////////////////////////////////////////////
-// CListViewEx drawing
+// CListEx drawing
 
 // offsets for first and other columns
 #define OFFSET_FIRST	2
 #define OFFSET_OTHER	6
 
-void CListViewEx::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
+void CListEx::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
 	CListCtrl& ListCtrl=GetListCtrl();
 	CDC* pDC=CDC::FromHandle(lpDrawItemStruct->hDC);
@@ -112,7 +121,7 @@ void CListViewEx::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	UINT uiFlags=ILD_TRANSPARENT;
 	CImageList* pImageList;
 	int nItem=lpDrawItemStruct->itemID;
-	BOOL bFocus=(GetFocus()==this);
+	BOOL bFocus=(ListCtrl.GetFocus()==&ListCtrl);
 	COLORREF clrTextSave, clrBkSave;
 	COLORREF clrImage=m_clrBkgnd;
 	static _TCHAR szBuff[MAX_PATH];
@@ -129,7 +138,7 @@ void CListViewEx::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	lvi.stateMask=0xFFFF;		// get all state flags
 	ListCtrl.GetItem(&lvi);
 
-	BOOL bSelected=(bFocus || (GetStyle() & LVS_SHOWSELALWAYS)) && lvi.state & LVIS_SELECTED;
+	BOOL bSelected=(bFocus || (ListCtrl.GetStyle() & LVS_SHOWSELALWAYS)) && lvi.state & LVIS_SELECTED;
 	bSelected=bSelected || (lvi.state & LVIS_DROPHILITED);
 
 // set colors if item is selected
@@ -256,7 +265,7 @@ void CListViewEx::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	pDC->SetBkColor(clrBkSave);
 }
 
-LPCTSTR CListViewEx::MakeShortString(CDC* pDC, LPCTSTR lpszLong, int nColumnLen, int nOffset)
+LPCTSTR CListEx::MakeShortString(CDC* pDC, LPCTSTR lpszLong, int nColumnLen, int nOffset)
 {
 	static const _TCHAR szThreeDots[]=_T("...");
 
@@ -291,7 +300,7 @@ LPCTSTR CListViewEx::MakeShortString(CDC* pDC, LPCTSTR lpszLong, int nColumnLen,
 	return(szShort);
 }
 
-void CListViewEx::RepaintSelectedItems()
+void CListEx::RepaintSelectedItems()
 {
 	CListCtrl& ListCtrl=GetListCtrl();
 	CRect rcItem, rcLabel;
@@ -306,12 +315,12 @@ void CListViewEx::RepaintSelectedItems()
 		ListCtrl.GetItemRect(nItem,rcLabel,LVIR_LABEL);
 		rcItem.left=rcLabel.left;
 
-		InvalidateRect(rcItem,FALSE);
+		ListCtrl.InvalidateRect(rcItem,FALSE);
 	}
 
 // if selected items should not be preserved, invalidate them
 
-	if(!(GetStyle() & LVS_SHOWSELALWAYS))
+	if(!(ListCtrl.GetStyle() & LVS_SHOWSELALWAYS))
 	{
 		for(nItem=ListCtrl.GetNextItem(-1,LVNI_SELECTED);
 			nItem!=-1; nItem=ListCtrl.GetNextItem(nItem,LVNI_SELECTED))
@@ -320,24 +329,22 @@ void CListViewEx::RepaintSelectedItems()
 			ListCtrl.GetItemRect(nItem,rcLabel,LVIR_LABEL);
 			rcItem.left=rcLabel.left;
 
-			InvalidateRect(rcItem,FALSE);
+			ListCtrl.InvalidateRect(rcItem,FALSE);
 		}
 	}
 
 // update changes 
 
-	UpdateWindow();
+	ListCtrl.UpdateWindow();
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// CListViewEx diagnostics
+// CListEx diagnostics
 
 #ifdef _DEBUG
 
-void CListViewEx::Dump(CDumpContext& dc) const
+void CListEx::Dump(CDumpContext& dc) const
 {
-	CListView::Dump(dc);
-
 	dc << "m_bFullRowSel = " << (UINT)m_bFullRowSel;
 	dc << "\n";
 	dc << "m_cxStateImageOffset = " << m_cxStateImageOffset;
@@ -349,8 +356,28 @@ void CListViewEx::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CListViewEx message handlers
 
-LRESULT CListViewEx::OnSetImageList(WPARAM wParam, LPARAM lParam)
+// Class to allow public calls to CWnd::Default
+class WndAccess : public CWnd
 {
+protected:
+	LRESULT CallWndDefault() { return CWnd::Default(); }
+public:
+	static LRESULT CallDefault(CWnd * pwnd)
+	{
+		WndAccess * pw = (WndAccess *)pwnd;
+		return pw->CallWndDefault();
+	}
+};
+
+LRESULT CListEx::Default()
+{
+	CListCtrl& ListCtrl=GetListCtrl();
+	return WndAccess::CallDefault(&ListCtrl);
+}
+
+LRESULT CListEx::OnSetImageList(WPARAM wParam, LPARAM lParam)
+{
+	CListCtrl& ListCtrl=GetListCtrl();
 	if((int)wParam==LVSIL_STATE)
 	{
 		int cx, cy;
@@ -364,35 +391,36 @@ LRESULT CListViewEx::OnSetImageList(WPARAM wParam, LPARAM lParam)
 	return(Default());
 }
 
-LRESULT CListViewEx::OnSetTextColor(WPARAM /*wParam*/, LPARAM lParam)
+LRESULT CListEx::OnSetTextColor(WPARAM /*wParam*/, LPARAM lParam)
 {
+	CListCtrl& ListCtrl=GetListCtrl();
 	m_clrText=(COLORREF)lParam;
 	return(Default());
 }
 
-LRESULT CListViewEx::OnSetTextBkColor(WPARAM /*wParam*/, LPARAM lParam)
+LRESULT CListEx::OnSetTextBkColor(WPARAM /*wParam*/, LPARAM lParam)
 {
 	m_clrTextBk=(COLORREF)lParam;
 	return(Default());
 }
 
-LRESULT CListViewEx::OnSetBkColor(WPARAM /*wParam*/, LPARAM lParam)
+LRESULT CListEx::OnSetBkColor(WPARAM /*wParam*/, LPARAM lParam)
 {
 	m_clrBkgnd=(COLORREF)lParam;
 	return(Default());
 }
 
-void CListViewEx::OnSize(UINT nType, int cx, int cy) 
+void CListEx::OnSize(UINT nType, int cx, int cy) 
 {
 	m_cxClient=cx;
-	CListView::OnSize(nType, cx, cy);
 }
 
-void CListViewEx::OnPaint() 
+void CListEx::OnPaint() 
 {
+	CListCtrl& ListCtrl=GetListCtrl();
 	// in full row select mode, we need to extend the clipping region
 	// so we can paint a selection all the way to the right
-	if(m_bClientWidthSel && (GetStyle() & LVS_TYPEMASK)==LVS_REPORT && GetFullRowSel())
+	if(m_bClientWidthSel && (ListCtrl.GetStyle() & LVS_TYPEMASK)==LVS_REPORT && GetFullRowSel())
 	{
 		CRect rcAllLabels;
 		GetListCtrl().GetItemRect(0,rcAllLabels,LVIR_BOUNDS);
@@ -401,7 +429,7 @@ void CListViewEx::OnPaint()
 		{
 			// need to call BeginPaint (in CPaintDC c-tor)
 			// to get correct clipping rect
-			CPaintDC dc(this);
+			CPaintDC dc(&ListCtrl);
 
 			CRect rcClip;
 			dc.GetClipBox(rcClip);
@@ -409,42 +437,40 @@ void CListViewEx::OnPaint()
 			rcClip.left=min(rcAllLabels.right-1,rcClip.left);
 			rcClip.right=m_cxClient;
 
-			InvalidateRect(rcClip,FALSE);
+			ListCtrl.InvalidateRect(rcClip,FALSE);
 			// EndPaint will be called in CPaintDC d-tor
 		}
 	}
-
-	CListView::OnPaint();
 }
 
-void CListViewEx::OnSetFocus(CWnd* pOldWnd) 
+void CListEx::OnSetFocus(CWnd* pOldWnd) 
 {
-	CListView::OnSetFocus(pOldWnd);
+	CListCtrl& ListCtrl=GetListCtrl();
 
 	// check if we are getting focus from label edit box
-	if(pOldWnd!=NULL && pOldWnd->GetParent()==this)
+	if(pOldWnd!=NULL && pOldWnd->GetParent()==&ListCtrl)
 		return;
 
 	// repaint items that should change appearance
-	if(m_bFullRowSel && (GetStyle() & LVS_TYPEMASK)==LVS_REPORT)
+	if(m_bFullRowSel && (ListCtrl.GetStyle() & LVS_TYPEMASK)==LVS_REPORT)
 		RepaintSelectedItems();
 }
 
-void CListViewEx::OnKillFocus(CWnd* pNewWnd) 
+void CListEx::OnKillFocus(CWnd* pNewWnd) 
 {
-	CListView::OnKillFocus(pNewWnd);
+	CListCtrl& ListCtrl=GetListCtrl();
 
 	// check if we are losing focus to label edit box
-	if(pNewWnd!=NULL && pNewWnd->GetParent()==this)
+	if(pNewWnd!=NULL && pNewWnd->GetParent()==&ListCtrl)
 		return;
 
 	// repaint items that should change appearance
-	if(m_bFullRowSel && (GetStyle() & LVS_TYPEMASK)==LVS_REPORT)
+	if(m_bFullRowSel && (ListCtrl.GetStyle() & LVS_TYPEMASK)==LVS_REPORT)
 		RepaintSelectedItems();
 }
 
 
-void CListViewEx::AddItem(int nItem,int nSubItem,LPCTSTR strItem)
+void CListEx::AddItem(int nItem,int nSubItem,LPCTSTR strItem)
 {
   LV_ITEM lvItem;
   lvItem.mask = LVIF_TEXT;
@@ -461,7 +487,7 @@ void CListViewEx::AddItem(int nItem,int nSubItem,LPCTSTR strItem)
 }
 
 
-void CListViewEx::SetImage(int nItem, UINT nImage)
+void CListEx::SetImage(int nItem, UINT nImage)
 {
 	LV_ITEM lvItem;
 	lvItem.mask = LVIF_IMAGE;
@@ -472,7 +498,7 @@ void CListViewEx::SetImage(int nItem, UINT nImage)
 	GetListCtrl().SetItem(&lvItem);
 }
 
-void CListViewEx::ClearSelection()
+void CListEx::ClearSelection()
 {
 	CListCtrl& ctl = GetListCtrl();
 	int sel = -1;
@@ -483,7 +509,7 @@ void CListViewEx::ClearSelection()
 	}
 }
 
-void CListViewEx::SelectItems(int nFirst, int nLast, BOOL bSelected /*=TRUE*/)
+void CListEx::SelectItems(int nFirst, int nLast, BOOL bSelected /*=TRUE*/)
 {
 	CListCtrl& ctl = GetListCtrl();
 	int first = min(nFirst, nLast);
@@ -494,10 +520,28 @@ void CListViewEx::SelectItems(int nFirst, int nLast, BOOL bSelected /*=TRUE*/)
 		ctl.SetItemState(i, state, LVIS_SELECTED);
 }
 
-int CListViewEx::InsertColumn(int nCol, DWORD idstrColumnHeading, int nFormat /*= LVCFMT_LEFT*/, int nWidth /*= -1*/, int nSubItem /*= -1*/)
+int CListEx::InsertColumn(int nCol, DWORD idstrColumnHeading, int nFormat /*= LVCFMT_LEFT*/, int nWidth /*= -1*/, int nSubItem /*= -1*/)
 {
 	CString s;
 	CListCtrl& ctl = GetListCtrl();
 	s.LoadString(idstrColumnHeading);
 	return ctl.InsertColumn(nCol, s, nFormat, nWidth, nSubItem);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+// CListEx construction/destruction
+CListEx::CListEx(CListCtrl & listctrl)
+: m_listctrl(listctrl)
+{
+	m_bFullRowSel=TRUE;
+	m_bClientWidthSel=TRUE;
+
+	m_cxClient=0;
+	m_cxStateImageOffset=0;
+
+	m_clrText=::GetSysColor(COLOR_WINDOWTEXT);
+	m_clrTextBk=::GetSysColor(COLOR_WINDOW);
+	m_clrBkgnd=::GetSysColor(COLOR_WINDOW);
+	m_nTabFlag = DT_EXPANDTABS;
+}
+
