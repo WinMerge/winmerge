@@ -9,6 +9,8 @@
  NB: This broke two things in MainFrm--search for TODO: 2003-03-29
  BUGFIX: [ 711975 ] CMainFrame::GetAllViews crashes
  WinMerge: MainFrm.cpp
+ BUGFIX: [ 711983 ] ClearMergeDoc causing ASSERT
+ WinMerge: DirDoc.cpp MergeDoc.cpp
 
 2003-03-25 Perry
  PATCH: [ 709575 ] Fix sanity check in CChildFrame::UpdateHeaderSizes()

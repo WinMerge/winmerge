@@ -86,7 +86,8 @@ CMergeDoc::~CMergeDoc()
 		pitem = (CUndoItem*)m_undoList.RemoveHead();
 		delete pitem;
 	}
-	m_pDirDoc->ClearMergeDoc(this);
+	if (m_pDirDoc)
+		m_pDirDoc->ClearMergeDoc(this);
 }
 
 
@@ -1508,15 +1509,8 @@ void CMergeDoc::SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight)
 // coupling between dirdoc & mergedoc
 void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
 {
-	ASSERT(pDirDoc && !m_pDirDoc);
+	ASSERT(!pDirDoc || !m_pDirDoc);
 	m_pDirDoc = pDirDoc;
-
-
-
-
-
-
-
 }
 
 CChildFrame * CMergeDoc::GetParentFrame() 

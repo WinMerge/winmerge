@@ -62,6 +62,8 @@ CDirDoc::~CDirDoc()
 {
 	if (m_pCtxt != NULL)
 		delete m_pCtxt;
+	if (m_pMergeDoc)
+		m_pMergeDoc->SetDirDoc(0);
 }
 
 BOOL CDirDoc::OnNewDocument()
