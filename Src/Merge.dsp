@@ -113,7 +113,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib shlwapi.lib imm32.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\dev\sf\wm\cvsver\WinMerge\Build\MergeRelease\WinMerge.exe
+TargetPath=\dev\sf\wm\patches_or_bugs\perry\fix_whitespace\applied\Build\MergeRelease\WinMerge.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -147,7 +147,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib shlwapi.lib imm32.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease\WinMergeU.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\dev\sf\wm\cvsver\WinMerge\Build\MergeUnicodeRelease\WinMergeU.exe
+TargetPath=\dev\sf\wm\patches_or_bugs\perry\fix_whitespace\applied\Build\MergeUnicodeRelease\WinMergeU.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -736,6 +736,10 @@ SOURCE=.\Common\version.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ViewableWhitespace.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\VSSHelper.cpp
 # End Source File
 # Begin Source File
@@ -1134,6 +1138,10 @@ SOURCE=.\Common\varprop.h
 # Begin Source File
 
 SOURCE=.\Common\version.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ViewableWhitespace.h
 # End Source File
 # Begin Source File
 
@@ -1960,10 +1968,10 @@ SOURCE=.\stampver.inf
 # End Source File
 # End Target
 # End Project
-# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
-# 	1:19:IDR_POPUP_ABOUT_DLG:104
-# End Section
 # Section Merge : {6F747475-446E-6C62-436C-6B0000003100}
 # 	1:10:IDB_SPLASH:103
 # 	2:21:SplashScreenInsertKey:4.0
+# End Section
+# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
+# 	1:19:IDR_POPUP_ABOUT_DLG:104
 # End Section

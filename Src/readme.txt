@@ -1,3 +1,8 @@
+2004-09-29 Perry
+ PATCH: [ 1034810 ] fix whitespace for other encodings
+  Src: Merge.dsp ViewableWhitespace.cpp ViewableWhitespace.h
+  Src/editlib: ccrystaltextview.cpp
+
 2004-09-29 Kimmo
  PATCH: [ 1036134 ] Show error about invalid linefilter regexps
   Src: MainFrm.cpp MainFrm.h Merge.rc resource.h

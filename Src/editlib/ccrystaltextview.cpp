@@ -92,7 +92,7 @@
 #include "filesup.h"
 #include "registry.h"
 #include "gotodlg.h"
-#include "Merge.h"
+#include "ViewableWhitespace.h"
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
 // Using C locale gets us direct mapping to Unicode codepoints
@@ -109,15 +109,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
-// These maybe should be converted with some winapi function to make sure
-// they are printable and not garbage on different fonts...
-// (These are for Latin1)
-#define TAB_CHARACTER               _T('\xBB') // U+BB: RIGHT POINTING DOUBLE ANGLE QUOTATION MARK
-#define SPACE_CHARACTER             _T('\xB7') // U+B7: MIDDLE DOT
-#define CR_CHARACTER                _T('\xA7') // U+A7: SECTION SIGN
-#define LF_CHARACTER                _T('\xB6') // U+B6: PILCROW SIGN
-#define ANY_EOL_CHARACTER           _T('\xA4') // U+A4: ?
 
 #define DEFAULT_PRINT_MARGIN        1000    //  10 millimeters
 
@@ -813,9 +804,20 @@ ScrollToLine (int nNewTopLine, BOOL bNoSmoothScroll /*= FALSE*/ , BOOL bTrackScr
   *///END SW
 }
 
+/** Append szadd to string str, and advance position curpos */
+static void AppendStringAdv(CString & str, int & curpos, LPCTSTR szadd)
+{
+  str += szadd;
+  curpos += _tcslen(szadd);
+}
+
 void CCrystalTextView::
 ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
 {
+  // Request whitespace characters for codepage ACP
+  // because that is the codepage used by ExtTextOut
+  const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP());
+
   if (nCount <= 0)
     {
       line = _T("");
@@ -844,7 +846,10 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
         nTabCount++;
     }
 
-  LPTSTR pszBuf = line.GetBuffer(nLength + nTabCount * (nTabSize - 1) + 1);
+  line = _T("");
+  // Preallocate line buffer, to avoid reallocations as we add characters
+  line.GetBuffer(nLength + nTabCount * (nTabSize - 1) + 1); // at least this many characters
+  line.ReleaseBuffer(0);
   int nCurPos = 0;
 
   if (nTabCount > 0 || m_bViewTabs || m_bViewEols)
@@ -856,40 +861,41 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
               int nSpaces = nTabSize - (nActualOffset + nCurPos) % nTabSize;
               if (m_bViewTabs)
                 {
-                  pszBuf[nCurPos++] = TAB_CHARACTER;
+                  AppendStringAdv(line, nCurPos, lpspc->c_tab);
                   nSpaces--;
                 }
               while (nSpaces > 0)
                 {
-                  pszBuf[nCurPos++] = _T(' ');
+                  line += _T(' ');
+                  nCurPos++;
                   nSpaces--;
                 }
             }
           else  if (pszChars[i] == ' ' && m_bViewTabs)
-            pszBuf[nCurPos++] = SPACE_CHARACTER;
+            AppendStringAdv(line, nCurPos, lpspc->c_space);
           else if (pszChars[i] == '\r' || pszChars[i] == '\n')
             {
               if (pszChars[i] == '\r' && m_bViewEols && m_bDistinguishEols)
-                pszBuf[nCurPos++] = CR_CHARACTER;
+                AppendStringAdv(line, nCurPos, lpspc->c_cr);
               else if (pszChars[i] == '\n' && m_bViewEols && m_bDistinguishEols)
-                pszBuf[nCurPos++] = LF_CHARACTER;
+                AppendStringAdv(line, nCurPos, lpspc->c_lf);
               else if (m_bViewEols)
-            {
-                  pszBuf[nCurPos++] = ANY_EOL_CHARACTER;
+                {
+                  AppendStringAdv(line, nCurPos, lpspc->c_eol);
                   // hide the second sign
                   i = nLength-1;
                 }
             }
-              else
-            pszBuf[nCurPos++] = pszChars[i];
+           else
+            line += pszChars[i];
+            nCurPos++;
         }
     }
   else
     {
-      CopyMemory(pszBuf, pszChars, sizeof(TCHAR) * nLength);
+      line += pszChars;
       nCurPos = nLength;
     }
-  line.ReleaseBuffer(nCurPos);
 }
 
 /**
