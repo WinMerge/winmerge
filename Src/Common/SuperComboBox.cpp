@@ -356,7 +356,7 @@ CString CSuperComboBox::ExpandShortcut(CString &inFile)
             // Make sure it's ANSI
             WORD wsz[MAX_PATH];
 #ifdef _UNICODE
-	     wcsncpy(wsz, lpsz, sizeof(wsz));
+	     wcsncpy(wsz, lpsz, sizeof(wsz)/sizeof(WCHAR));
 #else
             ::MultiByteToWideChar(CP_ACP, 0, lpsz, -1, wsz, MAX_PATH);
 #endif

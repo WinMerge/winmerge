@@ -3,6 +3,8 @@
   WinMerge: Diff.cpp
 
 2003-10-24 Laoran
+ BUG: [ 829453 ] dropping file in a SuperComboBox, Unicode build
+  common: SuperComboBox.cpp
  Fix unifile code to initialize txtstats.nlosses (see comments in BUG [ 828924 ])
   common: UniFile.h
 
