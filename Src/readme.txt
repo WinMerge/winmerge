@@ -1,3 +1,9 @@
+2004-07-14 Kimmo
+ PATCH: [ 988494 ] Catalan translation update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc 
+  Src/Languages/Catalan/res: splash1.bmp
+
 2004-07-08 Kimmo
  PATCH: [ 987122 ] Horizontal scroll for dirview columns dialog listboxes
   Src: DirColsDlg.cpp DirColsDlg.h Merge.dsp Merge.rc

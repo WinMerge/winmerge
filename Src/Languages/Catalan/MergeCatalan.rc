@@ -99,7 +99,7 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "&Fitxer"
     BEGIN
-        MENUITEM "Nou\tCtrl+N",                 ID_FILE_NEW
+        MENUITEM "&Nou\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Obre...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "&Desa\tCtrl+S",               ID_FILE_SAVE
@@ -137,7 +137,7 @@ BEGIN
         MENUITEM "C&opia\tCtrl+C",              ID_EDIT_COPY
         MENUITEM "Engan&xa\tCtrl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "&Selecciona-ho tot\tCtrl+A",  ID_EDIT_SELECT_ALL
+        MENUITEM "Selecciona-ho &tot\tCtrl+A",  ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "R&essalta les diferències de línia\tF4", ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
@@ -172,37 +172,37 @@ BEGIN
         MENUITEM "Barra d'ei&nes",              ID_VIEW_TOOLBAR
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
         MENUITEM "Subfinest&ra de diferències", ID_VIEW_DETAIL_BAR
-        MENUITEM "Subfinestra d'ubicació",      ID_VIEW_LOCATION_BAR
-        MENUITEM "Subfinestra d'estat de comparació", ID_VIEW_DIR_STATEPANE
+        MENUITEM "Subfinestra d'&ubicació",      ID_VIEW_LOCATION_BAR
+        MENUITEM "Subfinestra d'estat de &comparació", ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
     END
     POPUP "Co&mbinació"
     BEGIN
-        MENUITEM "&Propera diferència\tAlt+Down", ID_NEXTDIFF
-        MENUITEM "Diferència a&nterior\tAlt+Up", ID_PREVDIFF
+        MENUITEM "&Propera diferència\tAlt+Avall", ID_NEXTDIFF
+        MENUITEM "Diferència a&nterior\tAlt+Amunt", ID_PREVDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Pri&mera diferència\tAlt+Home", ID_FIRSTDIFF
-        MENUITEM "Diferència &actual\tAlt+Enter", ID_CURDIFF
-        MENUITEM "Da&rrera diferència\tAlt+End", ID_LASTDIFF
+        MENUITEM "Pri&mera diferència\tAlt+Inici", ID_FIRSTDIFF
+        MENUITEM "Diferència &actual\tAlt+Retorn", ID_CURDIFF
+        MENUITEM "Da&rrera diferència\tAlt+Fi", ID_LASTDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Copia a la &dreta\tAlt+Right", ID_L2R
-        MENUITEM "Copia a l'&esquerra\tAlt+Left", ID_R2L
+        MENUITEM "Copia a la &dreta\tAlt+Dreta", ID_L2R
+        MENUITEM "Copia a l'&esquerra\tAlt+Esquerra", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Copia a la dreta i avança\tAlt+Ctrl+Right", ID_L2RNEXT
-        MENUITEM "Copia a l'esquerra i avança\tAlt+Ctrl+Left", ID_R2LNEXT
+        MENUITEM "Copia a la dreta i a&vança\tAlt+Ctrl+Dreta", ID_L2RNEXT
+        MENUITEM "Copia a l'esquerra i avan&ça\tAlt+Ctrl+Esquerra", ID_R2LNEXT
         MENUITEM SEPARATOR
-        MENUITEM "Copia-ho tot a la dreta",     ID_ALL_RIGHT
-        MENUITEM "Copia-ho tot a l'esquerra",   ID_ALL_LEFT
+        MENUITEM "Copia-ho &tot a la dreta",     ID_ALL_RIGHT
+        MENUITEM "Copia-ho t&ot a l'esquerra",   ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "Copia les diferències de la selecció esquerra a la dreta", ID_MULTIPLE_RIGHT
-        MENUITEM "Copia les diferències de la selecció dreta a l'esquerra", ID_MULTIPLE_LEFT
+        MENUITEM "Copia les diferències de la &selecció esquerra a la dreta", ID_MULTIPLE_RIGHT
+        MENUITEM "Copia les diferències de la se&lecció dreta a l'esquerra", ID_MULTIPLE_LEFT
     END
     POPUP "&Eines"
     BEGIN
         MENUITEM "&Personalitza les columnes...", ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
-        MENUITEM "&Genera un fitxer de diferències...", ID_TOOLS_GENERATEPATCH
+        MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
     END
     POPUP "&Connectors"
     BEGIN
@@ -211,7 +211,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Edita amb el desempaquetador",          ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "&Prediferenciador"
+        POPUP "&Prediferenciació"
         BEGIN
             MENUITEM SEPARATOR
         END
@@ -314,7 +314,7 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "G&oto Diff"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "Vé&s a la diferència"                   ID_LOCBAR_GOTODIFF
         MENUITEM "&Vés a...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "Blocs &no moguts ",            ID_DISPLAY_MOVED_NONE
@@ -386,7 +386,7 @@ BEGIN
     LTEXT           "(Muntatge Privat)",IDC_PRIVATEBUILD,63,33,153,8
     LTEXT           "Tots els drets reservats.",IDC_STATIC,7,60,170,8
     LTEXT           "Visiteu la plana web de WinMerge!",IDC_WWW,7,119,209,8
-    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,113,209,1
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
     LTEXT           "Els col·laboradors són llistats a",IDC_STATIC,7,81,208,8
     LTEXT           "Contributors.txt",IDC_STATIC,7,91,153,8
@@ -481,14 +481,14 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "&Tanca subfinestra d'estat de comparació automàticament",IDC_CMPPANE_AUTOCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
-    CONTROL         "Tanca les finestres amb ESC",IDC_ESC_CLOSES_WINDOW,"Button",
+    CONTROL         "T&anca les finestres amb ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
-    CONTROL         "Verifica els trajectes automàticament al diàleg d'Obrir",
+    CONTROL         "&Verifica els trajectes automàticament al diàleg d'Obrir",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,229,10
-    CONTROL         "Use codepage info (html,rc) for Load/Save - need to restart session",
+    CONTROL         "Empra la informació de &pàgina de codis (html, rc) en Obrir/Desar - cal reiniciar la sessió",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,67,240,10
+                    WS_TABSTOP,7,67,290,10
     PUSHBUTTON      "Reinicialitza",IDC_RESET_ALL_MESSAGE_BOXES,218,87,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Premeu el botó per a reinicialitzar tots els quadres de missatges",IDC_STATIC,7,
@@ -550,11 +550,11 @@ BEGIN
                     BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,5,58,94,16
     CONTROL         "&Expressió regular",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,74,77,12
-    CONTROL         "Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,5,88,84,12
+    CONTROL         "No facis la &volta al final del fitxer",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,88,168,12
     CONTROL         "&Selecció",IDC_EDIT_SCOPE_SELECTION,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,107,57,58,10
-    CONTROL         "Fitxer sencer",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
+    CONTROL         "&Fitxer sencer",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
                     BS_AUTORADIOBUTTON,107,70,58,10
     DEFPUSHBUTTON   "&Següent",IDC_EDIT_SKIP,174,4,63,14,WS_GROUP
     PUSHBUTTON      "S&ubstitueix-ho",IDC_EDIT_REPLACE,174,21,63,14
@@ -632,7 +632,7 @@ BEGIN
     CONTROL         "Dif",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Moved:",IDC_STATIC,7,89,90,8
+    RTEXT           "Text mogut:",IDC_STATIC,7,89,90,8
     CONTROL         "Dif",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -642,7 +642,7 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Moved:",IDC_STATIC,7,109,90,8
+    RTEXT           "Text mogut seleccionat:",IDC_STATIC,7,109,90,8
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -665,7 +665,7 @@ END
 
 IDD_PROPPAGE_REGISTRY DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "System"
+CAPTION "Sistema"
 FONT 8, "MS Shell Dlg"
 BEGIN
     CONTROL         "&Desa els fitxers suprimits a la Paperera de reciclatge",IDC_USE_RECYCLE_BIN,
@@ -682,7 +682,7 @@ END
 IDD_GENERATE_PATCH DIALOGEX 0, 0, 340, 180
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Generador de fitxer de diferències"
+CAPTION "Generador de pedaços"
 FONT 8, "MS Shell Dlg"
 BEGIN
     LTEXT           "Fitxer &1:",IDC_STATIC,7,10,36,8
@@ -869,7 +869,7 @@ END
 
 IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "Compara"
+CAPTION "Comparació"
 FONT 8, "MS Shell Dlg"
 BEGIN
     GROUPBOX        "Espais en blanc",IDC_STATIC,7,7,221,50
@@ -904,16 +904,16 @@ BEGIN
     CONTROL         "Aplica al costat &no reconegut",
                     IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,18,18,204,10
-    CONTROL         "&Re-explora automàticament",IDC_AUTOMRESCAN_CHECK,"Button",
+    CONTROL         "Re-explora &automàticament",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
-    CONTROL         "Permet la &barreja de tipus de salt de línia",IDC_MIXED_EOL,"Button",
+    CONTROL         "&Preserva els caracters de salt de línia originals",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "Tabulacions",IDC_STATIC,7,54,285,30,WS_GROUP
     LTEXT           "&Tamany de les tabulacions:",IDC_STATIC,15,68,30,8
     EDITTEXT        IDC_TAB_EDIT,47,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
-    CONTROL         "I&nsereix tabulacions",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,79,63,85,10
+    CONTROL         "&Insereix tabulacions",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,77,63,85,10
     CONTROL         "In&sereix espais",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,77,72,59,10
 END
@@ -961,12 +961,12 @@ BEGIN
         BEGIN
             VALUE "Comments", "Traducció al català per Jordi Vilar\0"
             VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "Applicació WinMerge\0"
+            VALUE "FileDescription", "Recursos en català del WinMerge\0"
             VALUE "FileVersion", "000.000.000.000\0"
-            VALUE "InternalName", "WinMerge\0"
+            VALUE "InternalName", "MergeCatalan\0"
             VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "WinMerge.EXE\0"
+            VALUE "OriginalFilename", "MergeCatalan.lang\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", "000.000.000.000\0"
@@ -976,12 +976,12 @@ BEGIN
         BEGIN
             VALUE "Comments", "Catalan translation by Jordi Vilar\0"
             VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "WinMerge Application\0"
+            VALUE "FileDescription", "WinMerge Catalan resources\0"
             VALUE "FileVersion", "000.000.000.000\0"
-            VALUE "InternalName", "WinMerge\0"
+            VALUE "InternalName", "MergeCatalan\0"
             VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "WinMerge.EXE\0"
+            VALUE "OriginalFilename", "MergeCatalan.lang\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", "000.000.000.000\0"
@@ -1168,7 +1168,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_NEXT_PANE            "Canvia a la següent subfinestra\nSunfinestra següent"
+    ID_NEXT_PANE            "Canvia a la següent subfinestra\nSubfinestra següent"
     ID_PREV_PANE            "Canvia de nou a la subfinestra anterior\nSubfinestra prèvia"
 END
 
@@ -1193,8 +1193,8 @@ BEGIN
     ID_EDIT_REPEAT          "Repeteix la darrera acció\nRepeteix"
     ID_EDIT_REPLACE         "Substitueix un text específic per un altre de diferent\nSubstitueix"
     ID_EDIT_SELECT_ALL      "Selecciona el document sencer\nSelecciona-ho tot"
-    ID_EDIT_UNDO            "Desfà la darrera acció\nDesfés"
-    ID_EDIT_REDO            "Refà la darrera acció desfeta\nRefés"
+    ID_EDIT_UNDO            "Desfà la darrera acció\nDesfés (Ctrl+Z)"
+    ID_EDIT_REDO            "Refà la darrera acció desfeta\nRefés (Ctrl+Y)"
 END
 
 STRINGTABLE
@@ -1237,14 +1237,14 @@ END
 // OPTIONS NAME TO PRESERVE/UNIFY EOL
 STRINGTABLE
 BEGIN
-    IDC_MIXED_EOL           "Permet la &barreja de tipus de salt de línia"
+    IDC_MIXED_EOL           "Preserva els caracters de salt de línia originals"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
 STRINGTABLE
 BEGIN
     IDC_COMPARISON_STOP     "Atura"
-    IDC_COMPARISON_CLOSE    "Prem qualsevol tecla"
+    IDC_COMPARISON_CLOSE    "Premeu qualsevol tecla"
 END
 
 // EDITOR : FILENAME BAR
@@ -1254,7 +1254,7 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "Clica amb el botó dret al camí a copiar"
 END
 
-// IDS_MESSAGEBOX_OK SYNCHRO
+// "DO NOT SHOW AGAIN" MESSAGEBOXES
 STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "&D'acord"
@@ -1367,9 +1367,9 @@ END
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
 STRINGTABLE
 BEGIN
-    IDS_LINE_STATUS_INFO_EOL "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "Lín: %s  Col: %d/%d  Cars: %d/%d  Salt: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Línia: %s"
-    IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
+    IDS_LINE_STATUS_INFO    "Lín: %s  Col: %d/%d  Cars: %d/%d"
     IDS_MERGEMODE_MERGING   "Combina"
     IDS_DIFF_NUMBER_STATUS_FMT "Diferència %1 de %2"
     IDS_NO_DIFF_SEL_FMT     "S'han trobat %1 diferènces"
@@ -1393,11 +1393,11 @@ END
 STRINGTABLE
 BEGIN
     IDS_ERROR_FILE_NOT_FOUND "El fitxer no s'ha trobat: %1"
-    IDS_ERROR_FILE_NOT_UNPACKED "El fitxer not s'ha desempaquetat: %1"
+    IDS_ERROR_FILE_NOT_UNPACKED "El fitxer no s'ha desempaquetat: %1"
     IDS_BINFILES_IDENTICAL   "%1\n%2\n\nsón fitxers binaris idèntics."
     IDS_BINFILES_DIFFERENT   "%1\n%2\n\nsón fitxers binaris diferents."
     IDS_OTHER_IS_BINARY      "%1\n\nés un fitxer binari. No es poden comparar fitxers de text i binaris."
-    IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
+    IDS_ERROR_FILEOPEN       "No es pot obrir el fitxer\n%1\n\n%2"
 END
 
 // SAVING FILE
@@ -1424,8 +1424,8 @@ BEGIN
     IDS_VSSERROR            "El sistema de control de versions ha retornat un error en extreure el fitxer. No es pot continuar..."
     IDS_VSS_RUN_ERROR       "S'ha produït un error en executar una ordre del sistema de control de versions."
     IDS_VSSFOLDER_AND_FILE_NOMATCH "La carpeta de treball del VSS i la ubicació del fitxer actual no concorden. Voleu continuar?"
-    IDS_VSS_NODATABASES     "No VSS database(s) found!"
-    IDS_VSS_ERRORFROM       "Error from VSS:"
+    IDS_VSS_NODATABASES     "No s'han trobat cap base de dades de VSS!"
+    IDS_VSS_ERRORFROM       "Error de VSS:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
@@ -1596,10 +1596,10 @@ BEGIN
     IDS_FILEBINARY          "Els fitxers binaris no es poden comparar visualment."
     IDS_TEMP_FILEERROR      "No s'han pogut obrir els fitxers temporals. Comproveu els ajustos de camí temporal."
     IDS_FILEISDIR           "Els fitxers de directori no es poden comparar visualment."
-    IDS_SUGGEST_IGNOREEOL   "Els fitxers tenen salts de línia de diferent mena.\nAmb les opcions actuals, totes les línies diferiran.\nVoleu ignorar les diferències d'aquesta mena en aquests fitxers?\n\nUsuari avançat: Si els salts de línia no estan unificades als vostres fitxers,\n alternativament podeu especificar la opció '%1'."
+    IDS_SUGGEST_IGNOREEOL   "Els fitxers tenen salts de línia de diferent mena.\nAmb les opcions actuals, les línies diferiran.\nVoleu que s'ignorin en aquests fitxers?\n\nUsuari avançat: Si els salts de línia no estan unificats als fitxers,\naltrament podeu especificar la opció '%1'."
     IDS_SUGGEST_PRESERVEEOL "Els salts de línia són de diferent mena (DOS/UNIX/MAC) al fitxer '%1'.\nAmb les opcions actual, s'unificaran al tipus principal.\nVoleu canviar les opcions i preservar les diferents menes de salt de línia?"
     IDS_PREDIFFER_ERROR     "Hi ha hagut un error prediferenciant el fitxer '%1' amb el connector '%2'. No es tornarà a aplicar la prediferenciació."
-    IDS_SUGGEST_IGNORECODEPAGE "Left and right files don't have the same codepage. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWe suggest to forget the codepage information. Do you agree ?"
+    IDS_SUGGEST_IGNORECODEPAGE "Els fitxers de l'esquerra i de la dreta no tenen la mateixa pàgina de codis.\nEn mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\nVoleu ignorar la informació de pàgina de codis?"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -1626,21 +1626,21 @@ END
 // CREATE PATCH
 STRINGTABLE
 BEGIN
-    IDS_DIFF_SUCCEEDED      "El fitxer de diferències s'ha generat amb èxit."
+    IDS_DIFF_SUCCEEDED      "El pedaç s'ha generat amb èxit."
     IDS_DIFF_ITEM1NOTFOUND  "1. no s'ha trobat l'element o aquest és un directori!"
     IDS_DIFF_ITEM2NOTFOUND  "2. no s'ha trobat l'element o aquest és un directori!"
-    IDS_DIFF_FILEOVERWRITE  "The patch file already exists. Do you want to overwrite it?"
+    IDS_DIFF_FILEOVERWRITE  "El fitxer de pedaç ja existeix. El voleu sobreescriure?"
     IDS_DIFF_SELECTEDFILES  "[%1 fitxers seleccionats]"
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Context"
     IDS_DIFF_UNIFIED        "Unificat"
     IDS_FILEWRITE_ERROR     "No s'ha pogut escriure al fitxer  %1."
-    IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
+    IDS_PATH_NOT_ABSOLUTE   "%1\n no és pas un camí absolut!"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_DIR_RESULTS_EMPTIED "Current directory comparison results will be cleared."
+    IDS_DIR_RESULTS_EMPTIED "S'esborraran els resulats de la comparació de directori actuals."
 END
 
 // LANGAGE NAMES #1
@@ -1677,7 +1677,7 @@ BEGIN
     IDS_BULGARIAN           "Búlgar"
     IDS_CATALAN             "Català"
     IDS_CHINESE_TRADITIONAL "Xinès (Tradicional)"
-    IDS_CHINESE_SIMPLIFIED  "Xinès simplificat"
+    IDS_CHINESE_SIMPLIFIED  "Xinès (Simplificat)"
     IDS_CHINESE_HONGKONG    "Xinès (Hong Kong)"
     IDS_CHINESE_SINGAPORE   "Xinès (Singapur)"
 END
@@ -1696,7 +1696,7 @@ BEGIN
     IDS_ENGLISH_AUS         "Anglès (Austràlia)"
     IDS_ENGLISH_CAN         "Anglès (Canadà)"
     IDS_ENGLISH_NZ          "Anglès (Nova Zelanda)"
-    IDS_ENGLISH_EIRE        "Anglès (Irish)"
+    IDS_ENGLISH_EIRE        "Anglès (Irlandès)"
     IDS_ENGLISH_SOUTH_AFRICA "Anglès (Sud-Àfrica)"
     IDS_ENGLISH_JAMAICA     "Anglès (Jamaica)"
     IDS_ENGLISH_CARIBBEAN   "Anglès (Carib)"
@@ -1757,7 +1757,7 @@ BEGIN
     IDS_NORWEGIAN_NYNORSK   "Noruec (Nynorsk)"
     IDS_POLISH              "Polonès"
     IDS_PORTUGUESE          "Portugès"
-    IDS_PORTUGUESE_BRAZILIAN "Portugès (Brazil)"
+    IDS_PORTUGUESE_BRAZILIAN "Portugès (Brasil)"
     IDS_ROMANIAN            "Romanès"
     IDS_RUSSIAN             "Rus"
     IDS_SANSKRIT            "Sànscrit"
@@ -1824,8 +1824,8 @@ BEGIN
     ID_FILE_SAVE_RIGHT      "Desa el fitxer de la dreta"
     ID_FILE_SAVEAS_LEFT     "Desa i anomena el fitxer de l'esquerra..."
     ID_FILE_SAVEAS_RIGHT    "Desa i anomena el fitxer de la dreta..."
-    ID_FILE_LEFT_READONLY   "Canvia l'estat de només de lectura per a l'esquerra"
-    ID_FILE_RIGHT_READONLY  "Canvia l'estat de només de lectura per a la dreta"
+    ID_FILE_LEFT_READONLY   "Canvia l'estat de només de lectura per al fitxer de l'esquerra"
+    ID_FILE_RIGHT_READONLY  "Canvia l'estat de només de lectura per al fitxer de la dreta"
     ID_EOL_TO_DOS           "Converteix el salt de línia al mode del DOS"
     ID_EOL_TO_UNIX          "Converteix el salt de línia al mode del UNIX"
     ID_EOL_TO_MAC           "Converteix el salt de línia al mode del MAC"
@@ -1836,7 +1836,7 @@ END
 STRINGTABLE
 BEGIN
     ID_SHOWLINEDIFF         "Ressalta les diferències a la línia actual\nDiferències a la Línia Actual (F4)"
-    ID_EDIT_WMGOTO          "Va fins a la línia o la diferència\nVés a (Ctrl+G)"
+    ID_EDIT_WMGOTO          "Va fins a una línia o una diferència\nVés a (Ctrl+G)"
     ID_OPTIONS              "Especifica opcions del programa\nOpcions"
     ID_REFRESH              "Actualitza la visualització\nActualitza (F5)"
 END
@@ -1844,9 +1844,9 @@ END
 // VIEW MENU (FILE TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Visualitza fitxers que singuin exactament idèntics"
-    ID_OPTIONS_SHOWDIFFERENT "Visualitza fitxers que tinguin diferències"
-    ID_OPTIONS_SHOWUNIQUELEFT "Visualualitza els fitxers existents únicament a l'esquerra"
+    ID_OPTIONS_SHOWIDENTICAL "Visualitza els fitxers que singuin exactament idèntics"
+    ID_OPTIONS_SHOWDIFFERENT "Visualitza els fitxers que tinguin diferències"
+    ID_OPTIONS_SHOWUNIQUELEFT "Visualitza els fitxers existents únicament a l'esquerra"
     ID_OPTIONS_SHOWUNIQUERIGHT "Visualitza els fitxers existents únicament a la dreta"
     ID_OPTIONS_SHOWBINARIES "Visualitza els fitxers binaris"
     ID_OPTIONS_SHOWSKIPPED  "Visualitza els fitxers omesos"
@@ -1858,24 +1858,24 @@ BEGIN
     ID_VIEW_SELECTFONT      "Selecciona el tipus de lletra per a les visualitzacions de diferències\nSelecciona tipus de lletra per a diferències"
     ID_VIEW_USEDEFAULTFONT  "Recupera el tipus de lletra del sistema per a la visualització de diferències\nTipus de lletra del sistema"
     ID_VIEW_WHITESPACE      "Mostra els caràcters d'espais"
-    ID_VIEW_DETAIL_BAR      "Intercanvia la subfinestra de diferències"
-    ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
+    ID_VIEW_DETAIL_BAR      "Mostra la subfinestra de diferències"
+    ID_VIEW_LOCATION_BAR    "Mostra la subfinestra d'ubicació amb una image general dels fitxers"
     ID_VIEW_DIR_STATEPANE   "Mostra la subfinestra d'estat de comparació de directori"
-    ID_VIEW_LANGUAGE        "Selecciona l'idioma de l'interfície d'usuari\nIdioma"
+    ID_VIEW_LANGUAGE        "Selecciona l'idioma de la interfície d'usuari\nIdioma"
 END
 
 // MERGE MENU
 STRINGTABLE
 BEGIN
-    ID_PREVDIFF             "Desplaça fins a la diferència anterior\nDiferència anterior (Alt Amunt)"
-    ID_NEXTDIFF             "Desplaça fins a la següent diferència\nPropera diferència (Alt Avall)"
-    ID_FIRSTDIFF            "Desplaça a la primera diferència\nPrimera diferència (Alt+Inici)"
-    ID_CURDIFF              "Desplaça a la diferència actual\nDiferència actual (Alt+Retorn)"
-    ID_LASTDIFF             "Desplaça a la darrera diferència\nDarrera diferència (Alt+Fi)"
-    ID_L2R                  "Copia el text seleccionat al fitxer de la dreta\nCopia al fitxer de la dreta (Alt Dreta)"
-    ID_R2L                  "Copia el text seleccionat al fitxer de l'esquerra\nCopia al fitxer de l'esquerra (Alt Esquerra)"
-    ID_L2RNEXT              "Copia la diferència a la dreta i avança a al següent\nCopia a la dreta i avança (Ctrl Alt Right)"
-    ID_R2LNEXT              "Copia la diferència a l'esquerra i avança a la següent\nCopia a l'esquerra i avança (Ctrl Alt Left)"
+    ID_PREVDIFF             "Es desplaça fins a la diferència anterior\nDiferència anterior (Alt+Amunt)"
+    ID_NEXTDIFF             "Es desplaça fins a la següent diferència\nPropera diferència (Alt+Avall)"
+    ID_FIRSTDIFF            "Es desplaça fins a la primera diferència\nPrimera diferència (Alt+Inici)"
+    ID_CURDIFF              "Es desplaça fins a la diferència actual\nDiferència actual (Alt+Retorn)"
+    ID_LASTDIFF             "Es desplaça fins a la darrera diferència\nDarrera diferència (Alt+Fi)"
+    ID_L2R                  "Copia el text seleccionat al fitxer de la dreta\nCopia al fitxer de la dreta (Alt+Dreta)"
+    ID_R2L                  "Copia el text seleccionat al fitxer de l'esquerra\nCopia al fitxer de l'esquerra (Alt+Esquerra)"
+    ID_L2RNEXT              "Copia la diferència a la dreta i avança a al següent\nCopia a la dreta i avança (Ctrl+Alt+Dreta)"
+    ID_R2LNEXT              "Copia la diferència a l'esquerra i avança a la següent\nCopia a l'esquerra i avança (Ctrl+Alt+Esquerra)"
     ID_ALL_RIGHT            "Copia totes les diferènces al fitxer de la dreta\nTot a la dreta"
     ID_ALL_LEFT             "Copia totes les diferènces al fitxer de l'esquerra\nTot a l'esquerra"
     ID_MULTIPLE_RIGHT       "Copia les diferències del text seleccionat a la subfinestra esquerra al fitxer de la dreta"
@@ -1886,7 +1886,7 @@ END
 STRINGTABLE
 BEGIN
     ID_TOOLS_CUSTOMIZECOLUMNS "Tria i reordena les columnes de comparació de directori"
-    ID_TOOLS_GENERATEPATCH  "Genera un fitxer de diferències"
+    ID_TOOLS_GENERATEPATCH  "Genera un fitxer de pedaços"
     ID_TOOLS_FILTERS        "Tria i modifica els filtres"
 END
 
@@ -1935,9 +1935,9 @@ BEGIN
     ID_DISPLAY_MOVED_NONE   "No mostra els blocs moguts"
     ID_DISPLAY_MOVED_ALL    "Mostra tots els blocs moguts"
     ID_DISPLAY_MOVED_FOLLOW_DIFF "Mostra només els blocs moguts des de la diferència actual"
-    ID_LOCBAR_GOTODIFF      "Go to diff under cursor"
-    ID_LOCBAR_GOTODIFF_FMT  "G&oto Diff %1 of %2"
-    ID_LOCBAR_GOTOLINE_FMT  "G&oto Line %1"
+    ID_LOCBAR_GOTODIFF      "Va fins la diferència sota el cursor"
+    ID_LOCBAR_GOTODIFF_FMT  "Va fins la diferència %1 de %2"
+    ID_LOCBAR_GOTOLINE_FMT  "Va fins la línia %1"
 END
 
 // END STRINGS SYNCHRO
