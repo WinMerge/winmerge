@@ -1743,13 +1743,26 @@ void CMergeEditView::OnUpdateChangePane(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Show "Go To" dialog and scroll views to line or diff
+ * @brief Show "Go To" dialog and scroll views to line or diff.
+ *
+ * Before dialog is opened, current line and file is determined
+ * and selected.
+ * @note Conversions needed between apparent and real lines
  */
 void CMergeEditView::OnWMGoto()
 {
 	CWMGotoDlg dlg;
+	CMergeDoc *pDoc = GetDocument();
+	CPoint pos = GetCursorPos();
+	int nRealLine = 0;
 
-	// Set active file selected in dialog
+	if (m_bIsLeft)
+		nRealLine = pDoc->m_ltBuf.ComputeRealLine(pos.y);
+	else
+		nRealLine = pDoc->m_rtBuf.ComputeRealLine(pos.y);
+
+	// Set active file and current line selected in dialog
+	dlg.m_strParam.Format(_T("%d"), nRealLine + 1);
 	dlg.m_nFile = m_bIsLeft ? 0 : 1;
 	dlg.m_nGotoWhat = 0;
 

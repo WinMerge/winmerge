@@ -4,6 +4,9 @@
    DirDoc.h MainFrm.cpp MainFrm.h MergeDoc.cpp MergeDoc.h OptionsDef.h
  PATCH: [ 906872 ] Change ShellExtension to open directories non-recursive
   ShellExtension: ShellExtension.rc WinMergeShell.cpp WinMergeShell.h
+ RFE: [ 874366 ] Add goto line-number
+  Improvement: Show file's current line in Goto-dialog as selected
+  Src: MergeEditView.cpp
 
 2004-03-06 WinMerge experimental release 2.1.5.13 (cvs)
 
