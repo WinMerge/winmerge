@@ -352,11 +352,19 @@ BOOL CLocationView::GotoLocation(CPoint point)
 		return FALSE;
 
 	m_view0->GotoLine(line, TRUE, bar == BAR_LEFT);
+	if (bar == BAR_LEFT)
+		m_view0->SetFocus();
+	else
+		m_view1->SetFocus();
+
 	return TRUE;
 }
 
 void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point) 
 {
+	// Make sure window is active
+	GetParentFrame()->ActivateFrame();
+
 	if (point.x == -1 && point.y == -1)
 	{
 		//keystroke invocation
@@ -424,6 +432,10 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	{
 	case ID_LOCBAR_GOTODIFF:
 		m_view0->GotoLine(nLine, TRUE, bar == BAR_LEFT);
+		if (bar == BAR_LEFT)
+			m_view0->SetFocus();
+		else
+			m_view1->SetFocus();
 		break;
 	case ID_EDIT_WMGOTO:
 		m_view0->WMGoto();
@@ -445,9 +457,9 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 
 /** 
  * @brief Calculates real line in file from given YCoord in bar.
- * @param nYcoord [in] ycoord in pane
- * @param rc [in] size of locationpane
- * @param bar [in] bar/file
+ * @param [in] nYCoord ycoord in pane
+ * @param [in] rc size of locationpane
+ * @param [in] bar bar/file
  * @return 0-based index of real line in file [0...lines-1]
  */
 int CLocationView::GetLineFromYPos(int nYCoord, CRect rc, int bar)

@@ -1,3 +1,7 @@
+2004-09-20 Kimmo
+ PATCH: [ 1030752 ] Set focus to file view when goto line in location pane
+  Src: LocationView.cpp
+
 2004-09-19 Kimmo
  PATCH: [ 1030490 ] Updated Swedish Translation
   Submitted by Hans Eriksson
