@@ -171,6 +171,7 @@ protected:
 	CString m_strTempLeftFile;
 	//{{AFX_MSG(CMergeDoc)
 	afx_msg void OnFileSave();
+	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -62,6 +62,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CDirFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

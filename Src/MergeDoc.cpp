@@ -50,6 +50,7 @@ IMPLEMENT_DYNCREATE(CMergeDoc, CDocument)
 BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	//{{AFX_MSG_MAP(CMergeDoc)
 	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
+	ON_UPDATE_COMMAND_UI(ID_DIFFNUM, OnUpdateStatusNum)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -79,7 +80,6 @@ CMergeDoc::~CMergeDoc()
 	}
 	mf->m_pMergeDoc = NULL;
   CleanupTempFiles();
-  mf->SetDiffStatus(-1,-1); // clear diff status
 }
 
 
@@ -578,7 +578,6 @@ void CMergeDoc::ListCopy(CMergeEditView * pSrcList, CMergeEditView * pDestList)
 				}
 			}
 
-			pSrcList->UpdateStatusMessage();
 			pSrcList->Invalidate();
 			pDestList->Invalidate();
 
@@ -998,8 +997,6 @@ void CMergeDoc::FlushAndRescan()
 	mf->m_pRight->PopCursor();
 	if (pFocus!=NULL)
 		pFocus->SetFocus();
-
-	mf->m_pLeft->UpdateStatusMessage();
 }
 
 void CMergeDoc::OnFileSave() 
@@ -1015,4 +1012,23 @@ void CMergeDoc::OnFileSave()
 		if (DoSave(m_strRightFile, mf->m_pRight, FALSE))
 			mf->m_pRight->ResetMod();
 	}
+}
+
+void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
+{
+	CString sIdx,sCnt,s;
+	if (GetCurrentDiff() < 0 &&  m_nDiffs <= 0)
+		s = _T("");
+	else if (GetCurrentDiff() < 0)
+	{
+		sCnt.Format(_T("%ld"), m_nDiffs);
+		AfxFormatString1(s, IDS_NO_DIFF_SEL_FMT, sCnt); 
+	}
+	else
+	{
+		sIdx.Format(_T("%ld"), GetCurrentDiff()+1);
+		sCnt.Format(_T("%ld"), m_nDiffs);
+		AfxFormatString2(s, IDS_DIFF_NUMBER_STATUS_FMT, sIdx, sCnt); 
+	}
+	pCmdUI->SetText(s);
 }

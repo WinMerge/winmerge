@@ -62,7 +62,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_WM_LBUTTONUP()
 	ON_WM_KEYUP()
 	ON_WM_CHAR()
-	ON_WM_SETFOCUS()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -526,7 +525,6 @@ void CMergeEditView::SelectDiff(int nDiff, BOOL bScroll /*=TRUE*/, BOOL bSelectT
 		}
 
 	}
-	UpdateStatusMessage();
 }
 
 void CMergeEditView::OnAllLeft() 
@@ -774,15 +772,6 @@ void CMergeEditView::SelectNone()
 	UpdateCaret();
 }
 
-void CMergeEditView::UpdateStatusMessage()
-{
-	CMergeDoc *pd = GetDocument();
-	if (pd != NULL)
-		mf->SetDiffStatus(pd->GetCurrentDiff(), pd->m_nDiffs);
-	else
-		mf->SetDiffStatus(-1,-1);
-}
-
 BOOL CMergeEditView::IsLineInCurrentDiff(int nLine)
 {
 	CMergeDoc *pd = GetDocument();
@@ -819,7 +808,6 @@ void CMergeEditView::OnLButtonUp(UINT nFlags, CPoint point)
 		pd->SetCurrentDiff(-1);
 		mf->m_pLeft->Invalidate();
 		mf->m_pRight->Invalidate();
-		UpdateStatusMessage();
 	}
 }
 
@@ -908,11 +896,4 @@ void CMergeEditView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 	}
 	else
 		m_pTextBuffer->SetModified(mod);
-}
-
-void CMergeEditView::OnSetFocus(CWnd* pOldWnd) 
-{
-	CCrystalEditViewEx::OnSetFocus(pOldWnd);
-	
-	UpdateStatusMessage();
 }

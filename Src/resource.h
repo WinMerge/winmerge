@@ -239,6 +239,7 @@
 #define ID_FIRSTDIFF                    32803
 #define ID_CURDIFF                      32804
 #define ID_LASTDIFF                     32805
+#define ID_DIFFNUM                      32806
 
 // Next default values for new objects
 // 

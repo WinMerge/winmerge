@@ -35,7 +35,6 @@ public:
 public:
 	void UpdateLineLengths();
 	BOOL IsLineInCurrentDiff(int nLine);
-	void UpdateStatusMessage();
 	void SelectNone();
 	void SelectDiff(int nDiff, BOOL bScroll =TRUE, BOOL bSelectText =TRUE);
     virtual CCrystalTextBuffer *LocateTextBuffer ();
@@ -105,7 +104,6 @@ protected:
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-	afx_msg void OnSetFocus(CWnd* pOldWnd);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -258,7 +258,6 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 				pf->SetHeaderText(1, szRight);
 			}
 
-			mf->m_pLeft->UpdateStatusMessage();
 		}
 		else
 		{
@@ -888,21 +887,4 @@ void CMainFrame::OnClose()
 	CMDIFrameWnd::OnClose();
 }
 
-void CMainFrame::SetDiffStatus(int nDiff, int nDiffCnt)
-{
-	CString sIdx,sCnt,s;
-	if (nDiff < 0 &&  nDiffCnt <= 0)
-		s = _T("");
-	else if (nDiff < 0)
-	{
-		sCnt.Format(_T("%ld"), nDiffCnt);
-		AfxFormatString1(s, IDS_NO_DIFF_SEL_FMT, sCnt); 
-	}
-	else
-	{
-		sIdx.Format(_T("%ld"), nDiff+1);
-		sCnt.Format(_T("%ld"), nDiffCnt);
-		AfxFormatString2(s, IDS_DIFF_NUMBER_STATUS_FMT, sIdx, sCnt); 
-	}
-	m_wndStatusBar.SetPaneText(ID_DIFFNUM, s);
-}
+

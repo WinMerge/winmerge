@@ -90,7 +90,6 @@ protected:
 	afx_msg void OnDirCopyFileToRight();
 	afx_msg void OnUpdateDirCopyFileToRight(CCmdUI* pCmdUI);
 	afx_msg void OnDestroy();
-	afx_msg void OnSetFocus(CWnd* pOldWnd);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -53,6 +53,7 @@ CDirFrame::~CDirFrame()
 BEGIN_MESSAGE_MAP(CDirFrame, CMDIChildWnd)
 	//{{AFX_MSG_MAP(CDirFrame)
 	ON_WM_CREATE()
+	ON_UPDATE_COMMAND_UI(ID_DIFFNUM, OnUpdateStatusNum)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -100,4 +101,9 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 		m_wndStatusBar.SetPaneText(1, _T("")); // clear the diff status
 	
 	CMDIChildWnd::ActivateFrame(nCmdShow);
+}
+
+void CDirFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetText("");
 }

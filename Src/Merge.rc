@@ -716,6 +716,7 @@ BEGIN
     ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff"
     ID_CURDIFF              "Scroll to the current difference\nCurrent Diff"
     ID_LASTDIFF             "Scroll to the last difference\nLast Diff"
+    ID_DIFFNUM              "placeholder"
 END
 
 STRINGTABLE DISCARDABLE 

@@ -61,7 +61,6 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_DIR_COPY_FILE_TO_RIGHT, OnDirCopyFileToRight)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILE_TO_RIGHT, OnUpdateDirCopyFileToRight)
 	ON_WM_DESTROY()
-	ON_WM_SETFOCUS()
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 END_MESSAGE_MAP()
@@ -523,10 +522,4 @@ void CDirView::OnDestroy()
 	
 }
 
-void CDirView::OnSetFocus(CWnd* pOldWnd) 
-{
-	CListViewEx::OnSetFocus(pOldWnd);
-	
-	mf->SetDiffStatus(-1,-1);
-	
-}
+

@@ -184,10 +184,6 @@ void CChildFrame::ActivateFrame(int nCmdShow)
     }
 	CMDIChildWnd::ActivateFrame(nCmdShow);
 	UpdateHeaderSizes();
-	if (mf->m_pLeft!=NULL)
-	{
-		mf->m_pLeft->UpdateStatusMessage();
-	}
 }
 
 BOOL CChildFrame::DestroyWindow() 
