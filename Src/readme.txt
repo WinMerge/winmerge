@@ -1,7 +1,11 @@
+2003-06-23 Perry
+ PATCH: [ 759533 ] Fix InternalInsertText & InternalDeleteText
+  editlib: ccrystaltextbuffer.cpp
+
 2003-06-23 Kimmo
 PATCH: [ 759344 ] Add Copy, Cut & Paste to Edit menu
  WinMerge: Merge.rc
- Updated other languages too - translations from Perry anc Christian
+ Updated other languages too - translations from Perry and Christian
 
 2003-06-22 Perry
  PATCH: [ 758870 ] Return filesize+1 rather than 0 for new lines at end

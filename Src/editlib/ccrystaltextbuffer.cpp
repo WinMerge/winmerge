@@ -957,19 +957,23 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, 
   context.m_ptEnd.x = nEndChar;
   if (nStartLine == nEndLine)
     {
+      // delete part of one line
       SLineInfo & li = m_aLines[nStartLine];
-      if (nEndChar < li.FullLength())
+      if (nEndChar < li.Length() || li.m_nEolChars)
         {
+          // preserve characters after deleted range by shifting up
           memcpy (li.m_pcLine + nStartChar, li.m_pcLine + nEndChar,
                   sizeof (TCHAR) * (li.FullLength() - nEndChar));
         }
       li.m_nLength -= (nEndChar - nStartChar);
+      li.m_pcLine[li.FullLength()] = '\0';
 
       if (pSource!=NULL)
         UpdateViews (pSource, &context, UPDATE_SINGLELINE | UPDATE_HORZRANGE, nStartLine);
     }
   else
     {
+      // delete multiple lines
       int nRestCount = m_aLines[nEndLine].FullLength() - nEndChar;
       LPTSTR pszRestChars = NULL;
       if (nRestCount > 0)
@@ -1078,6 +1082,8 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
           nTextPos++;
         }
 
+      // The first line of the new text is appended to the start line
+      // All succeeding lines are inserted
       if (nCurrentLine == nLine)
         {
           AppendLine (nLine, pszText, nTextPos);
@@ -1090,32 +1096,30 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
           bNewLines = TRUE;
         }
 
+
       if (pszText[nTextPos] == 0)
         {
-          nEndLine = nCurrentLine;
-          nEndChar = GetFullLineLength(nCurrentLine);
+          if (haseol)
+            {
+              nEndLine = nCurrentLine+1;
+              nEndChar = 0;
+            }
+          else
+            {
+              nEndLine = nCurrentLine;
+              nEndChar = GetLineLength(nEndLine);
+            }
 	   if (!sTail.IsEmpty())
             {
               if (haseol)
-                InsertLine(sTail, -1, nEndLine+1);
+                InsertLine(sTail, -1, nEndLine);
               else
                 AppendLine (nCurrentLine, sTail, nRestCount);
             }
           break;
         }
 
-      nCurrentLine++;
-
-#if 0
-      // DELETME I think (Perry, 2003-06-21)
-      // Handle all three different EOL-styles!
-      if (iseol(pszText[nTextPos]))
-        {
-          if (isdoseol(&pszText[nTextPos]))
-            nTextPos++;
-          nTextPos++;
-        }
-#endif
+      ++nCurrentLine;
       pszText += nTextPos;
     }
 
