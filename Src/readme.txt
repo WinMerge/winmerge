@@ -1,3 +1,7 @@
+2003-07-16 Laoran
+ PATCH: [ 771503 ] correct UpdateView context in internalInsertText
+  editlib: ccrystaltextbuffer.cpp
+
 2003-07-16 Kimmo
  PATCH: [ 768740 ] Additional color options
   Submitted by Gilbert Wellisch

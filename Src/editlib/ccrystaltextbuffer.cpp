@@ -1116,6 +1116,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
     }
 
 
+  int nInsertedLines = 0;
   int nCurrentLine = nLine;
   BOOL bNewLines = FALSE;
   int nTextPos;
@@ -1149,6 +1150,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
       else
         {
           InsertLine (pszText, nTextPos, nCurrentLine);
+          nInsertedLines ++;
           bNewLines = TRUE;
         }
 
@@ -1167,10 +1169,13 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
               nEndLine = nCurrentLine;
               nEndChar = GetLineLength(nEndLine);
             }
-     if (!sTail.IsEmpty())
+          if (!sTail.IsEmpty())
             {
               if (haseol)
+              {
                 InsertLine(sTail, -1, nEndLine);
+                nInsertedLines ++;
+              }
               else
                 AppendLine (nCurrentLine, sTail, nRestCount);
             }
@@ -1180,6 +1185,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
                  // which is an illegal cursor position
                  // so manufacture a new trailing ghost line
        InsertLine(_T(""));
+              nInsertedLines ++;
             }
           break;
         }
@@ -1188,8 +1194,20 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
       pszText += nTextPos;
     }
 
-  context.m_ptEnd.x = nEndChar;
-  context.m_ptEnd.y = nEndLine;
+  // if we insert in a ghost line, with a pszText which is EOL finished,
+  // we create just (nEndLine-nLine-1) lines and not (nEndLine-nLine) lines
+  // the cursor, because of EOL terminated pszText, falls one line below,
+  // but the real text limit is (nEndLine-1, GetFullLineLength(nEndLine-1))
+  if (nEndLine - nLine != nInsertedLines)
+    {
+      context.m_ptEnd.y = nEndLine-1;
+      context.m_ptEnd.x = GetFullLineLength(nEndLine-1);
+    }
+  else
+    {
+      context.m_ptEnd.x = nEndChar;
+      context.m_ptEnd.y = nEndLine;
+    }
 
   if (nLine != nEndLine)
   {
@@ -1198,18 +1216,19 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
   }
 
   if (pSource!=NULL)
-  {
-    if (bNewLines)
-    UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nLine);
-    else
-    UpdateViews (pSource, &context, UPDATE_SINGLELINE | UPDATE_HORZRANGE, nLine);
-  }
+    {
+      if (bNewLines)
+        UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nLine);
+      else
+        UpdateViews (pSource, &context, UPDATE_SINGLELINE | UPDATE_HORZRANGE, nLine);
+    }
 
   if (!m_bModified)
     SetModified (TRUE);
   //BEGIN SW
   // remember current cursor position as last editing position
-  m_ptLastChange = context.m_ptEnd;
+  m_ptLastChange.x = nEndChar;
+  m_ptLastChange.y = nEndLine;
   //END SW
   return TRUE;
 }
