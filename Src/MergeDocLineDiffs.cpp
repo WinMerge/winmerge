@@ -72,8 +72,7 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView)
 
 	if (rc1.top == -1 && rc2.top == -1)
 	{
-		// TODO: Need to i18n these strings
-		MessageBox(0, _T("No difference"), _T("Line difference"), MB_OK);
+		AfxMessageBox(IDS_LINEDIFF_NODIFF, IDS_LINEDIFF_NODIFF_CAPTION, MB_OK);
 		return;
 	}
 
@@ -92,8 +91,7 @@ void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView)
 
 	if (rc1.top == -1 && rc2.top == -1)
 	{
-		// TODO: Need to i18n these strings
-		MessageBox(0, _T("No difference"), _T("Line difference"), MB_OK);
+		AfxMessageBox(IDS_LINEDIFF_NODIFF, IDS_LINEDIFF_NODIFF_CAPTION, MB_OK);
 		return;
 	}
 

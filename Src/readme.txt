@@ -1,3 +1,8 @@
+2003-12-10 Kimmo
+ PATCH: [ 857003 ] Move linediff messagebox text into resource
+  WinMerge: Merge.rc MergeDocLineDiffs.cpp resource.h
+  Languages: *.rc resource.h
+
 2003-12-09 Laoran
  BUG: [ 842812 ] Some extension filtering happening by default (fix for *.*)
   WinMerge: DirDoc.cpp 
