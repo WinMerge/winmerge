@@ -5,6 +5,8 @@
   WinMerge: DiffWrapper.h DiffWrapper.cpp
  Change default diff colors to more eye friendly ones (not so bright ones)
   WinMerge: Merge.cpp
+ Tweak more yellow diff color
+  WinMerge: Merge.cpp
 
 2003-09-06 Perry
  PATCH: [ 795082 ] Display Private Build version in about box

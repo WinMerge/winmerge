@@ -74,7 +74,7 @@ static void AddEnglishResourceHook();
 CMergeApp::CMergeApp()
 : m_bHiliteSyntax(TRUE)
 , m_bDisableSplash(FALSE)
-, m_clrDiff(RGB(255,238,93))
+, m_clrDiff(RGB(239,203,5))
 , m_clrSelDiff(RGB(239,119,116))
 , m_clrDiffDeleted(RGB(192, 192, 192))
 , m_clrSelDiffDeleted(RGB(240, 192, 192))
