@@ -1,6 +1,8 @@
 2004-09-30 Kimmo
  PATCH: [ 1037256 ] Docs: Explain Copy Path/Filenames
   Manual: Compare_dirs.xml
+ PATCH: [ 1037329 ] Docs: OpenDocs reference to quickstart should be a link
+  Manual: Open_paths.xml
 
 2004-09-29 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations

@@ -3,7 +3,7 @@
   <para>WinMerge allows selecting/opening paths in several ways. Using Open-dialog is just one of them.</para>
   <sect2>
     <title>Open-dialog</title>
-    <para>Basic use of Open-dialog is described in "Quick start". Here are some more detailed information and tips to use Open-dialog more efficiently.</para>
+    <para>Basic use of Open-dialog is described in <link linkend="QuickStart">Quick start</link>. Here are some more detailed information and tips to use Open-dialog more efficiently.</para>
     <para>Environment variables can be used as (part of) paths. Environment variable is expanded when it's name is put between two %:s. For example %WORKDIR%\</para>
     <sect3>
       <title>Environment variables</title>
