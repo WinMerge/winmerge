@@ -1264,9 +1264,9 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "S'ha substituït %1 cadena(s)."
     IDS_EDIT_TEXT_NOT_FOUND "No s'ha trobat la cadena ""%s"""
-    IDS_LINE_STATUS_INFO_EOL "Línia: %s Caràcters: %d EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "Línia: %s Column: %d Caràcters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Línia: %s"
-    IDS_LINE_STATUS_INFO    "Línia: %s Caràcters: %d"
+    IDS_LINE_STATUS_INFO    "Línia: Column: %d %s Caràcters: %d"
     IDS_VSSFOLDER_AND_FILE_NOMATCH 
                             "La carpeta de treball del VSS i la ubicació del fitxer actual no concorden. Voleu continuar?"
 END

@@ -2,7 +2,9 @@
  Added Catalan translation (pre-plugin version)
   Languages: BuildAll.bat Catalan/*
  Update Catalan.rc for plugins (without stringtable rearrangement)
-  Languages: Catalan/MergeCatalan.rc resource.h 
+  Languages: Catalan/MergeCatalan.rc resource.h
+ {Catalan} PATCH: [ 819188 ] Show column number in statusbar
+  Languages: Catalan/MergeCatalan.rc
 
 2003-10-18 Laoran
  Add a backslash in front of relative path used to test for filter (as in 2.0)
