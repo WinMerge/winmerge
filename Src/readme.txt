@@ -3,6 +3,9 @@
   WinMerge: DirDoc.cpp DirDoc.h
  BUG: [ 829306 ] Fix unifile code to append last line
   WinMerge: MergeDoc.cpp
+ Handle lib & includes for MakeResDll (& rearrange globals). 
+ Bump version from 1.0.1.0 to 1.0.2.0.
+  MakeResDll: MakeResDll.cpp MakeResDll.rc readme.txt
 
 2003-10-23 Kimmo
  BUG: [ 815147 ] Scrollwheel scrolls too far at end of file

@@ -7,16 +7,9 @@ It searches the registry to find, in order of preference,
 Visual Studio .NET 2003, Visual Studio .NET, Visual Studio 6,
 and Visual Studio 5.
 
-This does not set the include and library paths correctly,
-so before invoking this one must have these paths set.
-If these were not set at installation time (it is an option),
-these may typically be set by invoking a batch file such as:
-
- C:\Program Files\Microsoft Visual Studio .NET\Common7\Tools\vsvars32.bat
-
-or
-
- C:\Program Files\Microsoft Visual Studio\VC98\Bin\vcvars32.bat
+It takes include and library paths for Visual Studio 6 or 5,
+but it doesn't pick them up for Visual Studio .NET versions
+(if you want to help fix this, please feel free!)
 
 
 If multiple versions are present, and you wish to override the

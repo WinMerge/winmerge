@@ -15,17 +15,24 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // The one and only application object
 
+struct VcPaths
+{
+	CString sRCExe;
+	CString sLinkExe;
+	CString sVcBaseFolder;
+	CString sIncludes;
+	CString sLibs;
+	bool needsInfo() const { return sRCExe.IsEmpty() || sLinkExe.IsEmpty() || sIncludes.IsEmpty() || sLibs.IsEmpty(); }
+	void Clear() { sRCExe = _T(""); sLinkExe = _T(""); sVcBaseFolder = _T(""); sIncludes = _T(""); sLibs = _T(""); }
+};
+
+static VcPaths gVcPaths;
+
 CWinApp theApp;
-CString gsRCExe;
-CString gsLinkExe;
 CString gsLang;
-CString gsIncludes;
-CString gsLibs;
 CString gsVcBin;
-CString gsSharedBin;
 CString gsRCScript;
 CString gsOutPath;
-CString gsVcBaseFolder;
 BOOL gbPause=FALSE;
 BOOL gbBatch=FALSE;
 BOOL gbSilent=FALSE;
@@ -108,10 +115,10 @@ void FixPath()
 		_tprintf(_T("Initial path: %s\r\n"), strPath);
 
 	strPath = _T("PATH=") + strPath;
-	SplitFilename(gsRCExe, &spath, NULL, NULL);
+	SplitFilename(gVcPaths.sRCExe, &spath, NULL, NULL);
 	strPath += _T(";");
 	strPath += spath;
-	SplitFilename(gsLinkExe, &spath, NULL, NULL);
+	SplitFilename(gVcPaths.sLinkExe, &spath, NULL, NULL);
 	strPath += _T(";");
 	strPath += spath;
 	strPath += _T(";");
@@ -132,7 +139,7 @@ BOOL ProcessArgs(int argc, TCHAR* argv[])
 		{
 			i++;
 			if (i < argc-1)
-				gsRCExe = argv[i];
+				gVcPaths.sRCExe = argv[i];
 			else
 				return FALSE;
 		}
@@ -164,7 +171,7 @@ BOOL ProcessArgs(int argc, TCHAR* argv[])
 		{
 			i++;
 			if (i < argc-1)
-				gsLinkExe = argv[i];
+				gVcPaths.sLinkExe = argv[i];
 			else
 				return FALSE;
 		}
@@ -183,7 +190,7 @@ BOOL ProcessArgs(int argc, TCHAR* argv[])
 			i++;
 			if (i < argc-1)
 			{
-				gsIncludes = argv[i];
+				gVcPaths.sIncludes = argv[i];
 			}
 			else
 				return FALSE;
@@ -206,15 +213,15 @@ BOOL ProcessArgs(int argc, TCHAR* argv[])
 			i++;
 			if (i < argc-1)
 			{
-				gsLibs = _T("");
+				gVcPaths.sLibs = _T("");
 				TCHAR temp[2048], *p;
 				_tcscpy(temp, argv[i]);
 				p = _tcstok(temp, ";\r\n\t");
 				while (p != NULL)
 				{
-					gsLibs += _T("/libpath:\"");
-					gsLibs += p;
-					gsLibs += _T("\" ");
+					gVcPaths.sLibs += _T("/libpath:\"");
+					gVcPaths.sLibs += p;
+					gVcPaths.sLibs += _T("\" ");
 					p = _tcstok(NULL, ";\r\n\t");
 				}
 
@@ -270,13 +277,13 @@ BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, C
 		gsLang,
 		strOutFolder,
 		strStem,
-		gsIncludes,
+		gVcPaths.sIncludes,
 		pszRCPath);
 	if (gbVerbose)
-		_tprintf(_T("%s  %s\r\n\r\n"), gsRCExe, strRCArgs);
+		_tprintf(_T("%s  %s\r\n\r\n"), gVcPaths.sRCExe, strRCArgs);
 
 	Status(IDS_BUILD_RC);
-	HANDLE hRC = RunIt(gsRCExe, strRCArgs, TRUE, FALSE);
+	HANDLE hRC = RunIt(gVcPaths.sRCExe, strRCArgs, TRUE, FALSE);
 	if (hRC)
 	{
 		DWORD dwReturn;
@@ -293,7 +300,7 @@ BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, C
 	else
 		Status(_T("Error creating process\r\n"));
 	
-	_tcscpy(temp, gsLibs);
+	_tcscpy(temp, gVcPaths.sLibs);
 	p = _tcstok(temp, ";\r\n\t");
 	while (p != NULL)
 	{
@@ -315,10 +322,10 @@ BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, C
 					   strOutFolder,
 					   strStem);						
 	if (gbVerbose)
-		_tprintf(_T("%s  %s\r\n\r\n"), gsLinkExe, strLinkArgs);
+		_tprintf(_T("%s  %s\r\n\r\n"), gVcPaths.sLinkExe, strLinkArgs);
 
 	Status(IDS_LINK);
-	hLink = RunIt(gsLinkExe, strLinkArgs, TRUE, FALSE);
+	hLink = RunIt(gVcPaths.sLinkExe, strLinkArgs, TRUE, FALSE);
 	if (hLink)
 	{
 		DWORD dwReturn;
@@ -354,16 +361,16 @@ BOOL CheckCompiler()
 	// look for the compiler
 	CFileStatus status;
 	
-	if (!CFile::GetStatus(gsRCExe, status))
+	if (!CFile::GetStatus(gVcPaths.sRCExe, status))
 	{
-		Status(IDS_BAD_RC_PATH_FMT, gsRCExe);
+		Status(IDS_BAD_RC_PATH_FMT, gVcPaths.sRCExe);
 		Usage();
 		return FALSE;
 	}
 
-	if (!CFile::GetStatus(gsLinkExe, status))
+	if (!CFile::GetStatus(gVcPaths.sLinkExe, status))
 	{
-		Status(IDS_BAD_LINK_PATH_FMT, gsLinkExe);
+		Status(IDS_BAD_LINK_PATH_FMT, gVcPaths.sLinkExe);
 		Usage();
 		return FALSE;
 	}
@@ -403,93 +410,118 @@ void Status(UINT idstrText, LPCTSTR szText1 /*= NULL*/, LPCTSTR szText2 /*= NULL
 void InitModulePaths()
 {
 	// Initialize module variables
-	gsRCExe = _T("");
-	gsLinkExe = _T("");
-	gsVcBaseFolder = _T("");
-	gsIncludes = _T("");
-	gsLibs = _T("");
+	gVcPaths.Clear();
 
 	// All our work is looking for entries in the registry
 	CRegKeyEx reg;
 
-	// Strategy is that we keep looking until gsVcBaseFolder has a value
+	// Strategy is that we keep looking as long as we need anything (in gVcPaths)
 
 	// Check for user-configured overrides
 	LPCTSTR settings = _T("Software\\Thingamahoochie\\MakeResDll\\Settings");
 	if (reg.OpenNoCreateWithAccess(HKEY_CURRENT_USER, settings, KEY_QUERY_VALUE) == ERROR_SUCCESS)
 	{
-		gsVcBaseFolder = reg.ReadString(_T("VcBaseFolder"), _T(""));
-		gsRCExe = reg.ReadString(_T("RCExe"), _T(""));
-		gsLinkExe = reg.ReadString(_T("LinkExe"), _T(""));
+		gVcPaths.sVcBaseFolder = reg.ReadString(_T("VcBaseFolder"), _T(""));
+		if (gVcPaths.sRCExe.IsEmpty())
+			gVcPaths.sRCExe = reg.ReadString(_T("RCExe"), _T(""));
+		if (gVcPaths.sLinkExe.IsEmpty())
+			gVcPaths.sLinkExe = reg.ReadString(_T("LinkExe"), _T(""));
 		reg.Close();
 	}
 
 	// check for VisualStudio .NET and .NET 2003
 	LPCTSTR dirs71 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1\\Setup\\VC");
 	LPCTSTR dirs7 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.0\\Setup\\VC");
-	if (gsVcBaseFolder.IsEmpty()
+	if (gVcPaths.needsInfo()
 		&&(reg.OpenNoCreateWithAccess(HKEY_LOCAL_MACHINE, dirs71, KEY_QUERY_VALUE) == ERROR_SUCCESS
 		|| reg.OpenNoCreateWithAccess(HKEY_LOCAL_MACHINE, dirs7, KEY_QUERY_VALUE) == ERROR_SUCCESS))
 	{
-		gsVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
+		gVcPaths.sVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
 		reg.Close();
-		if (!gsVcBaseFolder.IsEmpty())
+		if (!gVcPaths.sVcBaseFolder.IsEmpty())
 		{
-			if (gsRCExe.IsEmpty())
-				gsRCExe.Format(_T("%s\\bin\\rc.exe"), gsVcBaseFolder);
-			if (gsLinkExe.IsEmpty())
-				gsLinkExe.Format(_T("%s\\bin\\link.exe"), gsVcBaseFolder);
+			// Found MSVC .NET (2003), so grab resource compiler & linker
+			if (gVcPaths.sRCExe.IsEmpty())
+				gVcPaths.sRCExe.Format(_T("%s\\bin\\rc.exe"), gVcPaths.sVcBaseFolder);
+			if (gVcPaths.sLinkExe.IsEmpty())
+				gVcPaths.sLinkExe.Format(_T("%s\\bin\\link.exe"), gVcPaths.sVcBaseFolder);
+
+			// Should fetch includes & libs ?
+			// I can't find them in HKCU
+			// I only found these:
+			// HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\7.0\VC\VC_OBJECTS_PLATFORM_INFO\Win32\Directories
 		}
 	}
 
 	// check for devstudio 6
 	LPCTSTR dirs6 = _T("Software\\Microsoft\\DevStudio\\6.0\\Directories");
-	if (gsVcBaseFolder.IsEmpty()
+	if (gVcPaths.needsInfo()
 		&& reg.OpenNoCreateWithAccess(HKEY_CURRENT_USER, dirs6, KEY_QUERY_VALUE) == ERROR_SUCCESS)
 	{
-		gsVcBaseFolder = reg.ReadString(_T("Install Dirs"), _T(""));
+		gVcPaths.sVcBaseFolder = reg.ReadString(_T("Install Dirs"), _T(""));
 		reg.Close();
-		if (!gsVcBaseFolder.IsEmpty())
+		if (!gVcPaths.sVcBaseFolder.IsEmpty())
 		{
-			if (gsRCExe.IsEmpty())
-				gsRCExe.Format(_T("%s\\rc.exe"), gsVcBaseFolder);
+			// Found MSVC6, so grab resource compiler & linker
+			if (gVcPaths.sRCExe.IsEmpty())
+				gVcPaths.sRCExe.Format(_T("%s\\rc.exe"), gVcPaths.sVcBaseFolder);
 
 			CString spath, spath2, spath3, sname;
-			SplitFilename(gsVcBaseFolder, &spath, &sname, NULL);
+			SplitFilename(gVcPaths.sVcBaseFolder, &spath, &sname, NULL);
 			SplitFilename(spath, &spath2, &sname, NULL);
 			SplitFilename(spath2, &spath3, &sname, NULL);
-			gsVcBaseFolder = spath3;
-			if (gsLinkExe.IsEmpty())
-				gsLinkExe.Format(_T("%s\\vc98\\bin\\link.exe"), spath3);
+			gVcPaths.sVcBaseFolder = spath3;
+			if (gVcPaths.sLinkExe.IsEmpty())
+				gVcPaths.sLinkExe.Format(_T("%s\\vc98\\bin\\link.exe"), spath3);
+
+			// Now also grab includes & libs
+			LPCTSTR bd = _T("Software\\Microsoft\\DevStudio\\6.0\\Build System\\Components\\Platforms\\Win32 (x86)\\Directories");
+			if (reg.OpenNoCreateWithAccess(HKEY_CURRENT_USER, bd, KEY_QUERY_VALUE) == ERROR_SUCCESS)
+			{
+				if (gVcPaths.sIncludes.IsEmpty())
+					gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
+				if (gVcPaths.sLibs.IsEmpty())
+					gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
+				reg.Close();
+			}
+
 		}
 	}
 
 	// check for devstudio 5
 	LPCTSTR dirs5 = _T("Software\\Microsoft\\DevStudio\\5.0\\Directories");
-	if (gsVcBaseFolder.IsEmpty()
+	if (gVcPaths.needsInfo()
 		&& reg.OpenNoCreateWithAccess(HKEY_CURRENT_USER, dirs5, KEY_QUERY_VALUE) == ERROR_SUCCESS)
 	{
-		gsVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
+		gVcPaths.sVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
 		reg.Close();
-		if (!gsVcBaseFolder.IsEmpty())
+		if (!gVcPaths.sVcBaseFolder.IsEmpty())
 		{
-			if (gsRCExe.IsEmpty())
-				gsRCExe.Format(_T("%s\\SharedIDE\\bin\\rc.exe"), gsVcBaseFolder);
-			if (gsLinkExe.IsEmpty())
-				gsLinkExe.Format(_T("%s\\vc\\bin\\link.exe"), gsVcBaseFolder);
+			// Found MSVC5, so grab resource compiler & linker
+			if (gVcPaths.sRCExe.IsEmpty())
+				gVcPaths.sRCExe.Format(_T("%s\\SharedIDE\\bin\\rc.exe"), gVcPaths.sVcBaseFolder);
+			if (gVcPaths.sLinkExe.IsEmpty())
+				gVcPaths.sLinkExe.Format(_T("%s\\vc\\bin\\link.exe"), gVcPaths.sVcBaseFolder);
+
+			// Now also grab includes & libs
+			LPCTSTR bd = _T("Software\\Microsoft\\DevStudio\\5.0\\Build System\\Components\\Platforms\\Win32 (x86)\\Directories");
+			if (reg.OpenNoCreateWithAccess(HKEY_CURRENT_USER, bd, KEY_QUERY_VALUE) == ERROR_SUCCESS)
+			{
+				if (gVcPaths.sIncludes.IsEmpty())
+					gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
+				if (gVcPaths.sLibs.IsEmpty())
+					gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
+				reg.Close();
+			}
+
 		}
 	}
 
 
-	LPCTSTR moredirs5 = _T("Software\\Microsoft\\DevStudio\\5.0\\Build System\\Components\\Platforms\\Win32 (x86)\\Directories");
-	if (reg.OpenNoCreateWithAccess(HKEY_CURRENT_USER, moredirs5, KEY_QUERY_VALUE) == ERROR_SUCCESS)
-	{
-		gsIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
-		gsLibs = reg.ReadString(_T("Library Dirs"), _T(""));
-		reg.Close();
-	}
 
 	_tprintf(_T("Build paths:\r\n"));
-	_tprintf(_T("	%s\r\n"), gsRCExe);
-	_tprintf(_T("	%s\r\n"), gsLinkExe);
+	_tprintf(_T("	%s\r\n"), gVcPaths.sRCExe);
+	_tprintf(_T("	%s\r\n"), gVcPaths.sLinkExe);
+	_tprintf(_T("  inc: %s\r\n"), gVcPaths.sIncludes);
+	_tprintf(_T("  lib: %s\r\n"), gVcPaths.sLibs);
 }
