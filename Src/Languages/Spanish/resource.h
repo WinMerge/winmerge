@@ -223,6 +223,8 @@
 #define IDC_DIFF_BROWSE_FILE2           1075
 #define IDC_DIFF_BROWSE_RESULT          1076
 #define IDC_DIFF_APPENDFILE             1077
+#define IDC_TRIVIAL_DIFF_COLOR          1078
+#define IDC_TRIVIAL_DIFF_DELETED_COLOR  1079
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -456,7 +458,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        118
 #define _APS_NEXT_COMMAND_VALUE         32848
-#define _APS_NEXT_CONTROL_VALUE         1078
+#define _APS_NEXT_CONTROL_VALUE         1080
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

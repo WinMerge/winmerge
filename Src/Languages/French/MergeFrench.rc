@@ -509,7 +509,7 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Couleurs"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    LTEXT           "Différence:",IDC_STATIC,43,29,36,8
+    LTEXT           "Différence:",IDC_STATIC,50,29,36,8
     CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,98,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -517,8 +517,8 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,98,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    LTEXT           "Background",IDC_STATIC,86,15,40,8
-    LTEXT           "Deleted",IDC_STATIC,137,15,26,8
+    LTEXT           "Fond",IDC_STATIC,97,15,18,8
+    LTEXT           "Ligne absente",IDC_STATIC,126,15,47,8
     CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -531,7 +531,14 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    LTEXT           "Text",IDC_STATIC,184,15,15,8
+    LTEXT           "Texte",IDC_STATIC,184,15,19,8
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    LTEXT           "Différence ignorée:",IDC_STATIC,24,69,62,8
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,141,69,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
 END
 
 ENDIDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
