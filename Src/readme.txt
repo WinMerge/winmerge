@@ -5,6 +5,9 @@
   Disable "Save as..." button since its not used
   Src: Merge.rc
   Src/Languages: *.rc
+ RFE [ 950290 ] Use MS Shell Dlg font in dialogs
+  Convert Chinese and Korean translations too
+  Src/Languages: MergeChineseSimplified.rc MergeChineseTraditional.rc MergeKorean.rc
 
 2004-05-25 Perry
  PATCH: [ 950243 ] 2 minor updates to developers docs
