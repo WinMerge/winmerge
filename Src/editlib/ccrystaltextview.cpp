@@ -2793,7 +2793,7 @@ OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
       break;
     case SB_THUMBPOSITION:
     case SB_THUMBTRACK:
-      nNewOffset = si.nTrackPos;
+      nNewOffset = nPos;
       break;
     default:
       return;
