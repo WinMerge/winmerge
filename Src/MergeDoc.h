@@ -30,7 +30,7 @@
 
 #include "afxtempl.h"
 #include "CCrystalTextBuffer.h"
-#include <stack>
+#include <vector>
 
 #define OP_NONE			0
 #define OP_LEFTONLY		1
@@ -69,6 +69,7 @@ private :
         CMergeDoc * m_pOwnerDoc;
 		BOOL m_bIsLeft;
 public :
+	      bool lastUndoGroup();
 	      void DeleteLine(int nLine);
 	      void ReplaceLine(int nLine, const CString& strText);
 		BOOL SaveToFile (LPCTSTR pszFileName, 
@@ -151,7 +152,8 @@ public:
 
 // Implementation
 public:
-	std::stack<CMergeEditView*> undoTgt;
+	std::vector<CMergeEditView*> undoTgt;
+	std::vector<CMergeEditView*>::iterator curUndo;
 	void FlushAndRescan();
 	BOOL TempFilesExist();
 	void CleanupTempFiles();

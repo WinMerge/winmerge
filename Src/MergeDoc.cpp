@@ -67,6 +67,7 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	m_nCurDiff=-1;
 	m_strTempLeftFile=_T("");
 	m_strTempRightFile=_T("");
+	curUndo = undoTgt.begin();
 }
 #pragma warning(default:4355)
 
@@ -1055,4 +1056,9 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 		AfxFormatString2(s, IDS_DIFF_NUMBER_STATUS_FMT, sIdx, sCnt); 
 	}
 	pCmdUI->SetText(s);
+}
+
+bool CMergeDoc::CDiffTextBuffer::lastUndoGroup()
+{
+	return m_aUndoBuf[m_aUndoBuf.GetSize()-1].m_dwFlags & UNDO_BEGINGROUP;
 }

@@ -60,6 +60,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_R2L, OnR2l)
 	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateR2l)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
+	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -564,11 +566,11 @@ void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
 void CMergeEditView::OnEditUndo() 
 {
 	CMergeDoc* pDoc = GetDocument();
-	CMergeEditView *tgt = pDoc->undoTgt.top();
+	CMergeEditView *tgt = *(pDoc->curUndo-1);
 	if(tgt==this)
 	{
 		CCrystalEditViewEx::OnEditUndo();
-		pDoc->undoTgt.pop();
+		--pDoc->curUndo;
 		pDoc->FlushAndRescan();
 	}
 	else
@@ -580,7 +582,8 @@ void CMergeEditView::OnEditUndo()
 
 void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI) 
 {
-	pCmdUI->Enable(GetDocument()->undoTgt.empty()==false);
+	CMergeDoc* pDoc = GetDocument();
+	pCmdUI->Enable(pDoc->curUndo!=pDoc->undoTgt.begin());
 }
 
 void CMergeEditView::OnFirstdiff() 
@@ -810,6 +813,16 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 {
+	CMergeDoc* pDoc = GetDocument();
+
+	// simple hook for multiplex undo operations
+	if(dynamic_cast<CMergeDoc::CDiffTextBuffer*>(m_pTextBuffer)->lastUndoGroup())
+	{
+		pDoc->undoTgt.erase(pDoc->curUndo, pDoc->undoTgt.end());
+		pDoc->undoTgt.push_back(this);
+		pDoc->curUndo = pDoc->undoTgt.end();
+	}
+	
 	// perform original function
 	CCrystalEditViewEx::OnEditOperation(nAction, pszText);
 
@@ -821,7 +834,28 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 	m_pTextBuffer->SetLineFlag(ptCursorPos.y, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
 
 	// keep document up to date
-	GetDocument()->FlushAndRescan();
-	GetDocument()->undoTgt.push(this);
+	pDoc->FlushAndRescan();
 }
 
+
+void CMergeEditView::OnEditRedo() 
+{
+	CMergeDoc* pDoc = GetDocument();
+	CMergeEditView *tgt = *(pDoc->curUndo);
+	if(tgt==this)
+	{
+		CCrystalEditViewEx::OnEditRedo();
+		++pDoc->curUndo;
+		pDoc->FlushAndRescan();
+	}
+	else
+	{
+		tgt->SendMessage(WM_COMMAND, ID_EDIT_REDO);
+	}
+}
+
+void CMergeEditView::OnUpdateEditRedo(CCmdUI* pCmdUI) 
+{
+	CMergeDoc* pDoc = GetDocument();
+	pCmdUI->Enable(pDoc->curUndo!=pDoc->undoTgt.end());
+}
