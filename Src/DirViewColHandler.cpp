@@ -47,6 +47,7 @@ enum
 	DirCol_Lversion,
 	DirCol_Rversion,
 	DirCol_StatusAbbr,
+	DirCol_Binary,
 	DirCol_Lattr,
 	DirCol_Rattr,
 };

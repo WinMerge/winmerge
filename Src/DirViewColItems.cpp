@@ -244,22 +244,25 @@ static CString ColStatusAbbrGet(const CDiffContext *, const void *p)
 	}
 	else if (di.isResultSame())
 	{
-		if (di.isBin())
-			id = IDS_BIN_FILES_SAME;
-		else
-			id = IDS_IDENTICAL;
+		id = IDS_IDENTICAL;
 	}
 	else // diff
 	{
-		if (di.isBin())
-			id = IDS_BIN_FILES_DIFF;
-		else
-			id = IDS_FILES_ARE_DIFFERENT;
+		id = IDS_DIFFERENT;
 	}
 
 	CString s;
 	VERIFY(s.LoadString(id));
 	return s;
+}
+static CString ColBinGet(const CDiffContext *, const void *p)
+{
+	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
+
+	if (di.isBin())
+		return _T("*");
+	else
+		return _T("");
 }
 static CString ColAttrGet(const CDiffContext *, const void *p)
 {
@@ -333,6 +336,15 @@ static int ColNewerSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
 	return ColNewerGet(pCtxt, p).Compare(ColNewerGet(pCtxt, q));
 }
+static int ColBinSort(const CDiffContext *, const void *p, const void *q)
+{
+	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
+	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
+	int i = ldi.isBin();
+	int j = rdi.isBin();
+
+	return i - j;
+}
 static int ColAttrSort(const CDiffContext *, const void *p, const void *q)
 {
 	const FileFlags &r = *static_cast<const FileFlags *>(p);
@@ -374,6 +386,7 @@ DirColInfo g_cols[] =
 	{ _T("Lversion"), IDS_COLHDR_LVERSION, -1, &ColNameGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, left.version), -1, true },
 	{ _T("Rversion"), IDS_COLHDR_RVERSION, -1, &ColNameGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, right.version), -1, true },
 	{ _T("StatusAbbr"), IDS_COLHDR_RESULT_ABBR, -1, &ColStatusAbbrGet, &ColStatusSort, 0, -1, true },
+	{ _T("Binary"), IDS_COLHDR_BINARY, -1, &ColBinGet, &ColBinSort, 0, -1, true },
 	{ _T("Lattr"), IDS_COLHDR_LATTRIBUTES, -1, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, left.flags), -1, true },
 	{ _T("Rattr"), IDS_COLHDR_RATTRIBUTES, -1, &ColAttrGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, right.flags), -1, true },
 	{ _T("Lencoding"), IDS_COLHDR_LENCODING, -1, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, left), -1, true },

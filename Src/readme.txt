@@ -3,6 +3,9 @@
   Src: DirViewColHandler.cpp
  Remove deprecated keywords from RC file I added in when applying #936682.
   Src: Merge.rc
+ PATCH: [ 940089 ] Add Binary column and shorten short result
+  Src: DirViewColHandler.cpp DirViewColItems.cpp Merge.rc resource.h
+  Languages: *.rc resource.h
 
 2004-04-22 Kimmo
  PATCH: [ 936682 ] Highlight syntax in unrecognized side
