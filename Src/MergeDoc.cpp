@@ -2460,6 +2460,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 			mf->m_strLeftDesc.Empty();
 		}
 
+		m_leftSaveFileInfo.Update(sLeftFile);
 		// Load left side file
 		nLeftSuccess = LoadFile(sLeftFile, TRUE, bROLeft, cpleft);
 	}
@@ -2485,6 +2486,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 			mf->m_strRightDesc.Empty();
 		}
 
+		m_rightSaveFileInfo.Update(sRightFile);
 		if (nLeftSuccess == FRESULT_OK)
 			nRightSuccess = LoadFile(sRightFile, FALSE, bRORight, cpright);
 	}

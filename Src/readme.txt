@@ -1,6 +1,8 @@
 2004-03-05 Kimmo
  PATCH: [ 909980 ] Fix buffer types and descriptions
   Src: MergeDoc.cpp MergeDoc.h
+ Two unrelated lines got removed by checkin of #909980
+  Src: MergeDoc.cpp
 
 2004-03-04 Kimmo
  Fix invalid return in paths_IsPathAbsolute()
