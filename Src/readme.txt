@@ -1,4 +1,6 @@
 2003-10-25 Laoran
+ fix for context menu when the selection is empty
+  WinMerge: MergeEditView.cpp
  fix in PopCursors for ptLastChange
   WinMerge: GhostTextView.cpp
  BUG: [ 830076 ] Context menu plugins change ghost lines to real lines
