@@ -141,6 +141,7 @@ CMainFrame::CMainFrame()
 	m_nTabType = theApp.GetProfileInt(_T("Settings"), _T("TabType"), 0);
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
+	m_bReuseDirDoc = TRUE;
 	// TODO: read preference for logging
 
 	if (m_strVssPath.IsEmpty())
@@ -266,17 +267,6 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 void CMainFrame::OnFileOpen() 
 {
-/* TODO: 2003-03-29 Perry
- Commenting this out b/c I don't know how to
- make it work with [ 689884 ] Revise doc/view code (allow multiple docs)
-
-  	if (m_pMergeDoc)
-	{
-		// Save files and update dirview status if needed
-		if (!m_pMergeDoc->SaveHelper())
-			return;
-	}
-*/
 	DoFileOpen();
 }
 
@@ -863,6 +853,16 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	CString strExt;
 	CFileStatus status;
 
+	BOOL docNull;
+	CDirDoc * pDirDoc = GetDirDocToShow(&docNull);
+
+	if (!docNull)
+	{
+		// If reusing an existing doc, give it a chance to save its data
+		// and close any merge views, and clear its window
+		if (!pDirDoc->ReusingDirDoc())
+			return FALSE;
+	}
 
 	// pop up dialog unless arguments exist (and are compatible)
 	PATH_EXISTENCE pathsType = GetPairComparability(pszLeft, pszRight);
@@ -926,8 +926,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	if (pathsType == IS_EXISTING_DIR)
 	{
 		recursive = bRecurse;
-		BOOL docNull;
-		CDirDoc * pDirDoc = GetDirDocToShow(&docNull);
 
 		if (pDirDoc)
 		{
@@ -945,8 +943,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	else
 	{
 		recursive = FALSE;
-		BOOL docNull;
-		CDirDoc * pDirDoc = GetDirDocToShow(&docNull);
 		ShowMergeDoc(pDirDoc, strLeft, strRight);
 	}
 	return TRUE;
@@ -1486,21 +1482,6 @@ void CMainFrame::GetAllMergeDocs(MergeDocList * pMergeDocs)
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // get list of DirDocs (documents underlying a scan)
 void CMainFrame::GetAllDirDocs(DirDocList * pDirDocs)
 {
@@ -1557,40 +1538,27 @@ void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, DirViewList * pDirV
 	}
 }
 
-// get pointer to a merge doc for displaying a difference
-// policy of whether to reuse docs is implemented here
+// Obtain a merge doc to display a difference in files
 CMergeDoc * CMainFrame::GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
 {
-	// policy -- only one merge doc for each dir doc
-	CMergeDoc * pMergeDoc = pDirDoc->GetMergeDoc();
-	if (pMergeDoc)
-	{
-		pMergeDoc->GetLeftView()->SendMessage(WM_COMMAND, ID_FILE_SAVE);
-		*pNew = FALSE;
-	}
-	else
-	{
-		pMergeDoc = (CMergeDoc*)theApp.m_pDiffTemplate->OpenDocumentFile(NULL);
-		pDirDoc->SetMergeDoc(pMergeDoc);
-		pMergeDoc->SetDirDoc(pDirDoc);
-		*pNew = TRUE;
-	}
+	CMergeDoc * pMergeDoc = pDirDoc->GetMergeDocForDiff(pNew);
 	return pMergeDoc;
 }
 
 // get pointer to a dir doc for displaying a scan
-// policy of whether to reuse docs is implemented here
 CDirDoc * CMainFrame::GetDirDocToShow(BOOL * pNew)
 {
-	// policy -- we only have one open scan
-	CDirDoc * pDirDoc = NULL;
-	POSITION pos = theApp.m_pDirTemplate->GetFirstDocPosition();
-	if (pos)
+	CDirDoc * pDirDoc = 0;
+	if (m_bReuseDirDoc)
 	{
-		pDirDoc = static_cast<CDirDoc *>(theApp.m_pDirTemplate->GetNextDoc(pos));
-		*pNew = FALSE;
+		POSITION pos = theApp.m_pDirTemplate->GetFirstDocPosition();
+		if (pos)
+		{
+			pDirDoc = static_cast<CDirDoc *>(theApp.m_pDirTemplate->GetNextDoc(pos));
+			*pNew = FALSE;
+		}
 	}
-	else
+	if (!pDirDoc)
 	{
 		pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->OpenDocumentFile(NULL);
 		*pNew = TRUE;
@@ -1651,16 +1619,6 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 			files[i] = expandedFile;
 	}
 
-/* TODO: 2003-03-29 Perry
- Commenting this out b/c I don't know how to
- make it work with [ 689884 ] Revise doc/view code (allow multiple docs)
-	if (m_pMergeDoc != NULL)
-	{
-		// Save files and update dirview status if needed
-		if (!m_pMergeDoc->SaveHelper())
-			return;
-	}
-*/
 	
 	// If Ctrl pressed, do recursive compare
 	BOOL ctrlKey = ::GetAsyncKeyState(VK_CONTROL);

@@ -152,6 +152,9 @@ public:
 	
 	void SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight);
 	void SetDirDoc(CDirDoc * pDirDoc);
+	void DirDocClosing(CDirDoc * pDirDoc);
+	BOOL CloseNow();
+
 	CMergeEditView * GetLeftView() { return m_pLeftView; }
 	CMergeEditView * GetRightView() { return m_pRightView; }
 	CChildFrame * GetParentFrame();

@@ -26,6 +26,7 @@
 // DirFrame.h : header file
 //
 
+
 /////////////////////////////////////////////////////////////////////////////
 // CDirFrame frame
 
@@ -42,6 +43,7 @@ public:
 public:
 	void SetStatus(LPCTSTR szStatus);
 	CStatusBar  m_wndStatusBar;
+	void SetClosableCallback(bool (*canclose)(void *), void * param);
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -63,8 +65,14 @@ protected:
 	//{{AFX_MSG(CDirFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
+	afx_msg void OnClose();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+private:
+	bool (*m_picanclose)(void *);
+	void * m_param;
+
 };
 
 /////////////////////////////////////////////////////////////////////////////

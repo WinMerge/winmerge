@@ -42,6 +42,8 @@ static UINT indicators[] =
 IMPLEMENT_DYNCREATE(CDirFrame, CMDIChildWnd)
 
 CDirFrame::CDirFrame()
+: m_picanclose(0)
+, m_param(0)
 {
 }
 
@@ -54,6 +56,7 @@ BEGIN_MESSAGE_MAP(CDirFrame, CMDIChildWnd)
 	//{{AFX_MSG_MAP(CDirFrame)
 	ON_WM_CREATE()
 	ON_UPDATE_COMMAND_UI(ID_DIFFNUM, OnUpdateStatusNum)
+	ON_WM_CLOSE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -106,4 +109,23 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 void CDirFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetText("");
+}
+
+// Store callback which we check to see if we're allowed to close
+// This keeps us decoupled from the doc
+void CDirFrame::SetClosableCallback(bool (*canclose)(void *), void * param)
+{
+	m_picanclose = canclose;
+	m_param = param; 
+}
+
+void CDirFrame::OnClose() 
+{
+	if (m_picanclose && !(*m_picanclose)(m_param))
+	{
+		ShowWindow(SW_MINIMIZE);
+		return;
+	}
+	
+	CMDIChildWnd::OnClose();
 }

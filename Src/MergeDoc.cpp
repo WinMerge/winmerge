@@ -87,9 +87,11 @@ CMergeDoc::~CMergeDoc()
 		delete pitem;
 	}
 	if (m_pDirDoc)
-		m_pDirDoc->ClearMergeDoc(this);
+	{
+		m_pDirDoc->MergeDocClosing(this);
+		m_pDirDoc = 0;
+	}
 }
-
 
 void CMergeDoc::DeleteContents ()
 {
@@ -1506,14 +1508,32 @@ void CMergeDoc::SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight)
 	m_pRightView = pRight;
 }
 
-// coupling between dirdoc & mergedoc
+// DirDoc gives us its identity just after it creates us
 void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
 {
-	ASSERT(!pDirDoc || !m_pDirDoc);
+	ASSERT(pDirDoc && !m_pDirDoc);
 	m_pDirDoc = pDirDoc;
 }
 
 CChildFrame * CMergeDoc::GetParentFrame() 
 {
 	return dynamic_cast<CChildFrame *>(m_pLeftView->GetParentFrame()); 
+}
+
+// DirDoc is closing
+void CMergeDoc::DirDocClosing(CDirDoc * pDirDoc)
+{
+	ASSERT(m_pDirDoc == pDirDoc);
+	m_pDirDoc = 0;
+	// TODO (Perry 2003-03-30): perhaps merge doc should close now ?
+}
+
+// DirDoc commanding us to close
+BOOL CMergeDoc::CloseNow()
+{
+	if (!SaveHelper())
+		return FALSE;
+
+	GetParentFrame()->CloseNow();
+	return TRUE;
 }

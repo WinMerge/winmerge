@@ -1066,3 +1066,10 @@ void CDirView::OnUpdateSave(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(FALSE);
 }
+
+CDirFrame * CDirView::GetParentFrame()
+{
+	// can't verify cast without introducing more coupling
+	// (CDirView doesn't include DirFrame.h)
+	return (CDirFrame *)CListViewEx::GetParentFrame();
+}

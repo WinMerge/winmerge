@@ -61,6 +61,7 @@ public:
 	LOGFONT m_lfDiff;
 	BOOL m_bFontSpecified;
 	BOOL m_bEolSensitive;
+	BOOL m_bReuseDirDoc; // policy to reuse existing dir doc
 
 // Operations
 public:

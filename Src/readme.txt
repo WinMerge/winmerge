@@ -1,3 +1,8 @@
+2003-03-30 Perry
+ PATCH: [ 712417 ] Fix save of open doc before next merge
+ WinMerge: ChildFrm.cpp ChildFrm.h DirDoc.cpp DirDoc.h DirFrame.cpp DirFrame.h
+  DirView.cpp DirView.h MainFrm.cpp MainFrm.h MergeDoc.cpp MergeDoc.h
+
 2003-03-29 Perry
  PATCH: [ 710347 ] Fix crash of winmerge c:\ d:\
  WinMerge: DiffContext.h DirDoc.cpp MainFrm.cpp Merge.cpp OpenDlg.cpp OpenDlg.h paths.cpp paths.h

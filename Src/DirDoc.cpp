@@ -55,15 +55,32 @@ CDirDoc::CDirDoc()
 {
 	m_pDirView = NULL;
 	m_pCtxt=NULL;
-	m_pMergeDoc = NULL;
+	m_bReuseMergeDocs = TRUE;
 }
 
 CDirDoc::~CDirDoc()
 {
 	if (m_pCtxt != NULL)
 		delete m_pCtxt;
-	if (m_pMergeDoc)
-		m_pMergeDoc->SetDirDoc(0);
+	// Inform all of our merge docs that we're closing
+	for (POSITION pos = m_MergeDocs.GetHeadPosition(); pos; )
+	{
+		CMergeDoc * pMergeDoc = m_MergeDocs.GetNext(pos);
+		pMergeDoc->DirDocClosing(this);
+	}
+}
+
+// callback we give our frame
+// which allows us to control whether or not it closes
+static bool DocClosableCallback(void * param)
+{
+	CDirDoc * pDoc = reinterpret_cast<CDirDoc *>(param);
+	return pDoc->CanFrameClose();
+}
+
+bool CDirDoc::CanFrameClose()
+{
+	return !!m_MergeDocs.IsEmpty();
 }
 
 BOOL CDirDoc::OnNewDocument()
@@ -74,6 +91,9 @@ BOOL CDirDoc::OnNewDocument()
 	CString s;
 	VERIFY(s.LoadString(IDS_DIRECTORY_WINDOW_TITLE));
 	SetTitle(s);
+
+	void * param = reinterpret_cast<void *>(this);
+	GetMainView()->GetParentFrame()->SetClosableCallback(&DocClosableCallback, param);
 
 	return TRUE;
 }
@@ -530,18 +550,20 @@ void CDirDoc::SetDirView(CDirView * newView)
 	ASSERT(temp == m_pDirView); // verify that our stashed pointer is the same as MFC's
 }
 
-// coupling between dirdoc & mergedoc
-void CDirDoc::SetMergeDoc(CMergeDoc * pMergeDoc)
+// a new merge doc has been opened
+void CDirDoc::AddMergeDoc(CMergeDoc * pMergeDoc)
 {
-	ASSERT(pMergeDoc && !m_pMergeDoc);
-	m_pMergeDoc = pMergeDoc;
+	ASSERT(pMergeDoc);
+	m_MergeDocs.AddTail(pMergeDoc);
 }
 
-// coupling between dirdoc & mergedoc
-void CDirDoc::ClearMergeDoc(CMergeDoc * pMergeDoc)
+// merge doc informs us it is closing
+void CDirDoc::MergeDocClosing(CMergeDoc * pMergeDoc)
 {
-	ASSERT(m_pMergeDoc == pMergeDoc);
-	m_pMergeDoc = NULL;
+	ASSERT(pMergeDoc);
+	POSITION pos = m_MergeDocs.Find(pMergeDoc);
+	ASSERT(pos);
+	m_MergeDocs.RemoveAt(pos);
 }
 
 BOOL CDirDoc::UpdateItemTimes(LPCTSTR pathLeft, LPCTSTR pathRight)
@@ -598,3 +620,47 @@ BOOL CDirDoc::UpdateItemTimes(LPCTSTR pathLeft, LPCTSTR pathRight)
 	}
 	return found;
 }
+
+// Prepare for reuse
+// Close all our merge docs (which gives them chance to save)
+// This may fail if user cancels a Save dialog
+// in which case this aborts and returns FALSE
+BOOL CDirDoc::ReusingDirDoc()
+{
+	// clear diff display
+	ASSERT(m_pDirView);
+	m_pDirView->DeleteAllDisplayItems();
+
+	// Inform all of our merge docs that we're closing
+	for (POSITION pos = m_MergeDocs.GetHeadPosition(); pos; )
+	{
+		CMergeDoc * pMergeDoc = m_MergeDocs.GetNext(pos);
+		if (!pMergeDoc->CloseNow())
+			return FALSE;
+	}
+
+	return TRUE;
+}
+
+// Obtain a merge doc to display a difference in files
+// pNew is set to TRUE if a new doc is created, and FALSE if an existing one reused
+CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
+{
+	CMergeDoc * pMergeDoc = 0;
+	// policy -- use an existing merge doc if available
+	if (m_bReuseMergeDocs && !m_MergeDocs.IsEmpty())
+	{
+		*pNew = FALSE;
+		pMergeDoc = m_MergeDocs.GetHead();
+	}
+	else
+	{
+		// Create a new merge doc
+		pMergeDoc = (CMergeDoc*)theApp.m_pDiffTemplate->OpenDocumentFile(NULL);
+		AddMergeDoc(pMergeDoc);
+		pMergeDoc->SetDirDoc(this);
+		*pNew = TRUE;
+	}
+	return pMergeDoc;
+}
+

@@ -47,6 +47,7 @@ class CDiffContext;
 typedef enum { eMain, eContext } eMenuType;
 
 class CDirDoc;
+class CDirFrame;
 
 class CDirView : public CListViewEx
 {
@@ -63,6 +64,8 @@ private:
 
 // Operations
 public:
+	CDirFrame * GetParentFrame();
+
 	static int CALLBACK CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
 	void UpdateResources();
 	POSITION GetItemKey(int idx);

@@ -269,3 +269,10 @@ void CChildFrame::SetHeaderText(int nPane, const CString &text)
 {
 	m_wndStatusBar.SetPaneText(nPane, text);
 }
+
+// document commanding us to close
+void CChildFrame::CloseNow()
+{
+	MDIActivate();
+	MDIDestroy();
+}

@@ -27,7 +27,9 @@
 //
 #include "DirView.h"
 #include "DiffContext.h"
+
 class CMergeDoc;
+typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocPtrList;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc document
@@ -43,7 +45,9 @@ public:
 // Operations
 public:
 	CDirView * GetMainView();
-	CMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
+	CMergeDoc * GetMergeDocForDiff(BOOL * pNew);
+	BOOL ReusingDirDoc();
+	bool CanFrameClose();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -68,8 +72,8 @@ public:
 	CDiffContext *m_pCtxt;
 	virtual ~CDirDoc();
 	void SetDirView( CDirView *newView ); // TODO Perry
-	void SetMergeDoc(CMergeDoc * pMergeDoc);
-	void ClearMergeDoc(CMergeDoc * pMergeDoc);
+	void AddMergeDoc(CMergeDoc * pMergeDoc);
+	void MergeDocClosing(CMergeDoc * pMergeDoc);
 
 #ifdef _DEBUG
 	virtual void AssertValid() const;
@@ -88,7 +92,8 @@ protected:
 	// Implementation data
 private:
 	CDirView *m_pDirView;
-	CMergeDoc *m_pMergeDoc;
+	MergeDocPtrList m_MergeDocs;
+	BOOL m_bReuseMergeDocs; // policy to reuse existing merge docs
 
 };
 
