@@ -40,6 +40,7 @@
 #include "logfile.h"
 #include "paths.h"
 #include "WaitStatusCursor.h"
+#include "7zCommon.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -79,6 +80,8 @@ CDirDoc::~CDirDoc()
 	
 	delete m_pFilterGlobal;
 	delete m_pFilterUI;
+	// Delete all temporary folders belonging to this document
+	CTempPath(this);
 }
 
 // callback we give our frame

@@ -39,6 +39,7 @@
 #include "FileTransform.h"
 #include "SelectUnpackerDlg.h"
 #include "paths.h"	// paths_GetParentPath()
+#include "7zCommon.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -132,6 +133,10 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
 	ON_COMMAND(ID_TOOLS_CUSTOMIZECOLUMNS, OnCustomizeColumns)
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
+	ON_COMMAND(ID_DIR_ZIP_LEFT, OnCtxtDirZipLeft)
+	ON_COMMAND(ID_DIR_ZIP_RIGHT, OnCtxtDirZipRight)
+	ON_COMMAND(ID_DIR_ZIP_BOTH, OnCtxtDirZipBoth)
+	ON_COMMAND(ID_DIR_ZIP_BOTH_DIFFS_ONLY, OnCtxtDirZipBothDiffsOnly)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -370,6 +375,21 @@ static CWnd * GetNonChildAncestor(CWnd * w)
 }
 
 /**
+ * @brief Format context menu string and disable item if it cannot be applied.
+ */
+static void NTAPI FormatContextMenu(CMenu *pPopup, UINT uIDItem, int n1, int n2 = 0, int n3 = 0)
+{
+	CString s1, s2;
+	pPopup->GetMenuString(uIDItem, s1, MF_BYCOMMAND);
+	s2.FormatMessage(s1, NumToStr(n1), NumToStr(n2), NumToStr(n3));
+	pPopup->ModifyMenu(uIDItem, MF_BYCOMMAND, uIDItem, s2);
+	if (n1 == 0)
+	{
+		pPopup->EnableMenuItem(uIDItem, MF_GRAYED);
+	}
+}
+
+/**
  * @brief User right-clicked in listview rows
  */
 void CDirView::ListContextMenu(CPoint point, int /*i*/)
@@ -385,18 +405,73 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	CString sl, sr;
 	GetSelectedDirNames(sl, sr);
 
-	// find non-child ancestor to use as menu parent
-	CWnd * pWndPopupOwner = GetNonChildAncestor(this);
-
 	// TODO: It would be more efficient to set
 	// all the popup items now with one traverse over selected items
 	// instead of using updates, in which we make a traverse for every item
 	// Perry, 2002-12-04
 
+	//2003/12/17 Jochen:
+	//-	Archive related menu items follow the above suggestion.
+	//-	For disabling to work properly, the tracking frame's m_bAutoMenuEnable
+	//	member has to temporarily be turned off.
+	int nTotal = 0;
+	int nCopyableToLeft = 0;
+	int nCopyableToRight = 0;
+	int nDeletableOnLeft = 0;
+	int nDeletableOnRight = 0;
+	int nDeletableOnBoth = 0;
+	int nOpenableOnLeft = 0;
+	int nOpenableOnRight = 0;
+	int nOpenableOnLeftWith = 0;
+	int nOpenableOnRightWith = 0;
+	int nDiffItems = 0;
+	int nDiffFiles = 0;
+	int i = -1;
+	while ((i = m_pList->GetNextItem(i, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(i);
+		if (IsItemCopyableToLeft(di))
+			++nCopyableToLeft;
+		if (IsItemCopyableToRight(di))
+			++nCopyableToRight;
+		if (IsItemDeletableOnLeft(di))
+			++nDeletableOnLeft;
+		if (IsItemDeletableOnRight(di))
+			++nDeletableOnRight;
+		if (IsItemDeletableOnBoth(di))
+			++nDeletableOnBoth;
+		if (IsItemOpenableOnLeft(di))
+			++nOpenableOnLeft;
+		if (IsItemOpenableOnRight(di))
+			++nOpenableOnRight;
+		if (IsItemOpenableOnLeftWith(di))
+			++nOpenableOnLeftWith;
+		if (IsItemOpenableOnRightWith(di))
+			++nOpenableOnRightWith;
+		if (IsItemNavigableDiff(di))
+		{
+			++nDiffItems;
+			if (IsItemOpenableOnLeftWith(di))
+				++nDiffFiles;
+			if (IsItemOpenableOnRightWith(di))
+				++nDiffFiles;
+		}
+		++nTotal;
+	}
+
+	FormatContextMenu(pPopup, ID_DIR_ZIP_LEFT, nOpenableOnLeftWith, nTotal);
+	FormatContextMenu(pPopup, ID_DIR_ZIP_RIGHT, nOpenableOnRightWith, nTotal);
+	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH, nOpenableOnLeftWith + nOpenableOnRightWith, nTotal);
+	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH_DIFFS_ONLY, nDiffFiles, nDiffItems, nTotal);
+
+	CFrameWnd *pFrame = GetTopLevelFrame();
+	ASSERT(pFrame != NULL);
+	pFrame->m_bAutoMenuEnable = FALSE;
 	// invoke context menu
 	// this will invoke all the OnUpdate methods to enable/disable the individual items
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
-		pWndPopupOwner);
+		pFrame);
+	pFrame->m_bAutoMenuEnable = TRUE;
 }
 
 /**
@@ -413,13 +488,12 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 	ASSERT(pPopup != NULL);
 
 	// find non-child ancestor to use as menu parent
-	CWnd * pWndPopupOwner = GetNonChildAncestor(this);
-
+	CFrameWnd *pFrame = GetTopLevelFrame();
+	ASSERT(pFrame != NULL);
 	// invoke context menu
 	// this will invoke all the OnUpdate methods to enable/disable the individual items
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
-		pWndPopupOwner);
-	
+		pFrame);
 }	
 
 /// Make a string out of a number
@@ -1838,4 +1912,57 @@ void CDirView::AddParentFolderItem()
 	lvItem.iSubItem = 0;
 	lvItem.pszText = const_cast<LPTSTR>(_T(".."));
 	GetListCtrl().SetItem(&lvItem);
+}
+
+/**
+ * @brief Zip selected files from left side.
+ */
+void CDirView::OnCtxtDirZipLeft() 
+{
+	DirItemEnumerator
+	(
+		this, LVNI_SELECTED
+	|	DirItemEnumerator::Left
+	).CompressArchive();
+}
+
+/**
+ * @brief Zip selected files from right side.
+ */
+void CDirView::OnCtxtDirZipRight() 
+{
+	DirItemEnumerator
+	(
+		this, LVNI_SELECTED
+	|	DirItemEnumerator::Right
+	).CompressArchive();
+}
+
+/**
+ * @brief Zip selected files from both sides, using original/altered format.
+ */
+void CDirView::OnCtxtDirZipBoth() 
+{
+	DirItemEnumerator
+	(
+		this, LVNI_SELECTED
+	|	DirItemEnumerator::Original
+	|	DirItemEnumerator::Altered
+	|	DirItemEnumerator::BalanceFolders
+	).CompressArchive();
+}
+
+/**
+ * @brief Zip selected diffs from both sides, using original/altered format.
+ */
+void CDirView::OnCtxtDirZipBothDiffsOnly() 
+{
+	DirItemEnumerator
+	(
+		this, LVNI_SELECTED
+	|	DirItemEnumerator::Original
+	|	DirItemEnumerator::Altered
+	|	DirItemEnumerator::BalanceFolders
+	|	DirItemEnumerator::DiffsOnly
+	).CompressArchive();
 }

@@ -235,6 +235,10 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\7zCommon.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\diffutils\src\ANALYZE.C
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -748,10 +752,6 @@ SOURCE=.\GhostTextView.cpp
 
 SOURCE=.\diffutils\GnuVersion.c
 # SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=.\WMGotoDlg.cpp
 # End Source File
 # Begin Source File
 
@@ -1428,10 +1428,18 @@ SOURCE=.\VssPrompt.cpp
 
 SOURCE=.\WaitStatusCursor.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\WMGotoDlg.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=.\7zCommon.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\BCMenu.h
@@ -1575,10 +1583,6 @@ SOURCE=.\GhostTextBuffer.h
 # Begin Source File
 
 SOURCE=.\GhostTextView.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\WMGotoDlg.h
 # End Source File
 # Begin Source File
 
@@ -1771,6 +1775,10 @@ SOURCE=.\VssPrompt.h
 # Begin Source File
 
 SOURCE=.\WaitStatusCursor.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\WMGotoDlg.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"
@@ -2139,10 +2147,10 @@ SOURCE=.\stampver.inf
 # End Source File
 # End Target
 # End Project
+# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
+# 	1:19:IDR_POPUP_ABOUT_DLG:104
+# End Section
 # Section Merge : {6F747475-446E-6C62-436C-6B0000003100}
 # 	1:10:IDB_SPLASH:103
 # 	2:21:SplashScreenInsertKey:4.0
-# End Section
-# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
-# 	1:19:IDR_POPUP_ABOUT_DLG:104
 # End Section

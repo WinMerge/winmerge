@@ -1,3 +1,8 @@
+2004-01-19 Jochen
+ Finish Merge7z integration
+  src: Merge.rc resource.h DirView.cpp DirView.h DirDoc.cpp MainFrm.cpp Merge.dsp
+  Merge7z: Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp
+
 2004-01-19 Perry
  PATCH: [ 880046 ] Save every line including last one in SaveToFile
   src: MergeDoc.cpp

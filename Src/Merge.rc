@@ -249,6 +249,19 @@ BEGIN
             MENUITEM "with external editor",        ID_DIR_OPEN_RIGHT_WITHEDITOR
             MENUITEM "with...",                     ID_DIR_OPEN_RIGHT_WITH
         END
+        MENUITEM SEPARATOR
+        POPUP "Zip"
+        BEGIN
+            MENUITEM "Zip left side %1 file(s) from %2 selected item(s)", 
+                                                    ID_DIR_ZIP_LEFT
+            MENUITEM "Zip right side %1 file(s) from %2 selected item(s)", 
+                                                    ID_DIR_ZIP_RIGHT
+            MENUITEM "Zip both sides %1 file(s) from %2 selected item(s)", 
+                                                    ID_DIR_ZIP_BOTH
+            MENUITEM "Zip both sides diffs only %1 file(s) from %2 of %3 selected item(s)", 
+                                                    ID_DIR_ZIP_BOTH_DIFFS_ONLY
+
+        END
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1149,6 +1162,7 @@ BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
+    IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
 END
 
 STRINGTABLE PRELOAD DISCARDABLE

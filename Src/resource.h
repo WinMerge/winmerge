@@ -16,6 +16,7 @@
 #define IDD_OPEN                        106
 #define IDS_WINMERGE_THIS_DIRECTORY     106
 #define IDD_EDITFILE                    107
+#define IDS_UNKNOWN_ARCHIVE_FORMAT      107
 #define IDD_VSS                         108
 #define IDD_PROPPAGE_LARGE              109
 #define IDD_CLEARCASE                   110
@@ -529,6 +530,10 @@
 #define ID_DIR_COPY_RIGHT_TO_BROWSE     32857
 #define ID_WINDOW_CHANGE_PANE           32858
 #define ID_EDIT_WMGOTO                  32859
+#define ID_DIR_ZIP_LEFT                 32860
+#define ID_DIR_ZIP_RIGHT                32861
+#define ID_DIR_ZIP_BOTH                 32862
+#define ID_DIR_ZIP_BOTH_DIFFS_ONLY      32863
 
 // Next default values for new objects
 //
@@ -536,7 +541,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        121
-#define _APS_NEXT_COMMAND_VALUE         32860
+#define _APS_NEXT_COMMAND_VALUE         32864
 #define _APS_NEXT_CONTROL_VALUE         1108
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

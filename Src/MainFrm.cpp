@@ -61,6 +61,8 @@
 #include "SelectUnpackerDlg.h"
 #include "files.h"
 #include "ConfigLog.h"
+#include "7zCommon.h"
+#include <shlwapi.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -192,6 +194,8 @@ CMainFrame::~CMainFrame()
 {
 	// destroy the reg expression list
 	FreeRegExpList();
+	// Delete all temporary folders belonging to this process
+	CTempPath(0);
 }
 
 // This is a bridge to implement IStatusDisplay for WaitStatusCursor
@@ -1157,6 +1161,76 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  m_bScrollToFirst);
 	}
 
+	// Handle archives using 7-zip
+	if (Merge7z::Format *piHandler = Merge7z->GuessFormat(strLeft))
+	{
+		pathsType = IS_EXISTING_DIR;
+		if (strRight == strLeft)
+		{
+			strRight.Empty();
+		}
+		CTempPath path = pDirDoc;
+		do
+		{
+			if FAILED(piHandler->DeCompressArchive(m_hWnd, strLeft, path))
+				break;
+			if (strLeft.Find(path) == 0)
+			{
+				DeleteFile(strLeft);
+			}
+			strLeft.Delete(0, strLeft.ReverseFind('\\'));
+			int dot = strLeft.ReverseFind('.');
+			if (piHandler != &Merge7z->TarHandler && StrChr(_T("Tt"), strLeft[dot + 1]))
+			{
+				strLeft.GetBufferSetLength(dot + 2);
+				strLeft += _T("ar");
+			}
+			else
+			{
+				strLeft.GetBufferSetLength(dot);
+			}
+			strLeft.Insert(0, path);
+		} while (piHandler = Merge7z->GuessFormat(strLeft));
+		strLeft = path;
+		if (Merge7z::Format *piHandler = Merge7z->GuessFormat(strRight))
+		{
+			path.MakeSibling(_T(".1"));
+			do
+			{
+				if FAILED(piHandler->DeCompressArchive(m_hWnd, strRight, path))
+					break;;
+				if (strRight.Find(path) == 0)
+				{
+					DeleteFile(strRight);
+				}
+				strRight.Delete(0, strRight.ReverseFind('\\'));
+				int dot = strRight.ReverseFind('.');
+				if (piHandler != &Merge7z->TarHandler && StrChr(_T("Tt"), strRight[dot + 1]))
+				{
+					strRight.GetBufferSetLength(dot + 2);
+					strRight += _T("ar");
+				}
+				else
+				{
+					strRight.GetBufferSetLength(dot);
+				}
+				strRight.Insert(0, path);
+			} while (piHandler = Merge7z->GuessFormat(strRight));
+			strRight = path;
+		}
+		else if (strRight.IsEmpty())
+		{
+			// assume Perry style patch
+			strRight = path;
+			strLeft += _T("\\ORIGINAL");
+			strRight += _T("\\ALTERED");
+			if (!PathFileExists(strLeft) || !PathFileExists(strRight))
+			{
+				// not a Perry style patch: diff with itself...
+				strLeft = strRight = path;
+			}
+		}
+	}
 	// open the diff
 	if (pathsType == IS_EXISTING_DIR)
 	{
@@ -2171,6 +2245,14 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 
 	// If Ctrl pressed, do recursive compare
 	BOOL ctrlKey = ::GetAsyncKeyState(VK_CONTROL);
+
+	// If user has <Shift> pressed with one file selected,
+	// assume it is an archive and set filenames to same
+	if (::GetAsyncKeyState(VK_SHIFT) < 0 && fileCount == 1)
+	{
+		files[1] = files[0];
+	}
+
 	DoFileOpen(files[0], files[1], FFILEOPEN_NONE, FFILEOPEN_NONE, ctrlKey);
 }
 

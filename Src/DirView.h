@@ -276,6 +276,11 @@ protected:
 	afx_msg void OnCtxtOpenWithUnpacker();
 	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnEditCopy();
+	afx_msg void OnCtxtDirZipLeft();
+	afx_msg void OnCtxtDirZipRight();
+	afx_msg void OnCtxtDirZipBoth();
+	afx_msg void OnCtxtDirZipBothDiffsOnly();
+	afx_msg void OnUpdateCtxtDir(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
