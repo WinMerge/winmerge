@@ -3,6 +3,9 @@
   Src/editlib: editreg.h
  PATCH: [ 1006870 ] Don't add '\' to filenames for regexp filtering
   Src: FileFilterHelper.cpp
+ Backout PATCH: [ 999738 ] Gray out moved block menuitems when moved blocks disabled
+  Those menuitems didn't work like I expected
+  Src: LocationView.cpp
 
 2004-08-10 Kimmo
  BUG: [ 1006164 ] accelerator conflict
