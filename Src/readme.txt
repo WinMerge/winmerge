@@ -3,6 +3,8 @@
 2005-03-15 Kimmo
  Add include I missed from fix to bug #1154153
   Src: MainFrm.cpp
+ Remove version numbers accidentally applied earlier
+  Src: Merge.rc
 
 2005-03-14 Kimmo
  BUG: [ 1154153 ] Poor font choice for default font
