@@ -2,6 +2,7 @@
  PATCH: [ 803904 ] Create patches
   WinMerge: DiffWrapper.h DiffWrapper.cpp MainFrm.h MainFrm.cpp Merge.dsp
    Merge.rc resource.h util.cpp
+  WinMerge new files: PatchDlg.h PatchDlg.cpp PatchTool.h PatchTool.cpp
   Languages: *.rc resource.h
 
 2003-09-17 WinMerge experimental release 2.1.1.6 (Preprocessing patch)
