@@ -411,12 +411,13 @@ void CDirView::PerformActionList(ActionList & actionList)
 					break;
 				}
 			}
-			catch (CMemoryException ex)
+			catch (CMemoryException *ex)
 			{
 				bSucceed = FALSE;
 				LogErrorString(_T("CDirView::PerformActionList(): ")
 					_T("Adding files to buffer failed!"));
-				ex.ReportError();
+				ex->ReportError();
+				ex->Delete();
 			}
 		}
 	} 
