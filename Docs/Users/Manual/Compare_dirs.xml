@@ -205,7 +205,7 @@
       <para>In file operation menu, there are one or two numbers shown, depending on files/folders selected. If there is one number shown, for example "<guimenuitem>Copy/Left to... (5)</guimenuitem>" that means there is 5 items selected, and all items can be copied. But if there is two numbers shown, for example "<guimenuitem>Copy/Left to... (3 of 5)</guimenuitem>", that means there are 5 items selected but only 3 items can be copied.</para>
       <para>Most common operation is copying files from side to side. File can be copied from side to side using <guimenu>Merge</guimenu>-menu items, toolbar buttons and context menu. If multiple files are selected, or file to overwrite is read-only, confirmation dialog is shown.</para>
       <para>Sometimes it is useful to copy certain files and/or directories to another directory instead of another compared directory. This can be done selecting "<guimenuitem>Copy/Left to...</guimenuitem>" or "<guimenuitem>Copy/Right to...</guimenuitem>" items.</para>
-      <para>Another file/directory operation is deleting. Items in another or both sides can be deleted. There is "<guilabel>Put deleted files into recycle bin</guilabel>" option in system options. Its higly recommended to keep that option enabled so deletion can be undone if accidents happen. Note however recycle bin does not help if its disabled from Windows settings.</para>
+      <para>Another file/directory operation is deleting. Items in another or both sides can be deleted. There is "<guilabel>Send deleted files into Recycle Bin</guilabel>" option in system options. Its higly recommended to keep that option enabled so deletion can be undone if accidents happen. Note however recycle bin does not help if its disabled from Windows settings.</para>
       <para>Moving is just shortcut for copy + delete.</para>
       <warning>
         <para>File/directory deletion cannot be undone if recycle bin is not used!</para>
@@ -234,6 +234,18 @@
       </note>
       <para>After selecting archive item dialog pops up asking filename and archive type from user.</para>
     </sect3>
+  </sect2>
+  <sect2>
+    <title>Copying path- or filenames</title>
+    <para>In context menu there are items for copyging selected items' paths or filenames to clipboard. This feature makes it easy so get list of changed files, for changelogs etc.</para>
+    <itemizedlist>
+      <listitem>
+        <para><guimenuitem>Copy Pathnames</guimenuitem> has three subchoices like other file handling functions. It copies full pathnames of selected items to clipboard, one per line.</para>
+      </listitem>
+      <listitem>
+        <para><guimenuitem>Copy Filenames</guimenuitem> copies only filenames without paths.</para>
+      </listitem>
+    </itemizedlist>
   </sect2>
   <sect2>
     <title>Customising directory compare</title>

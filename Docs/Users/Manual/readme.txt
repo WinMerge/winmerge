@@ -1,3 +1,7 @@
+2004-09-30 Kimmo
+ PATCH: [ 1037256 ] Docs: Explain Copy Path/Filenames
+  Manual: Compare_dirs.xml
+
 2004-09-29 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations
   Submitted by Tim Gerundt
