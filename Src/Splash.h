@@ -17,11 +17,17 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
+/**
+ * @file  Splash.h
+ *
+ * @brief Declaration file for CSplashWnd
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #ifndef _SPLASH_SCRN_
 #define _SPLASH_SCRN_
-
-// Splash.h : header file
-//
 
 /////////////////////////////////////////////////////////////////////////////
 //   Splash Screen class

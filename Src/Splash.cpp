@@ -18,8 +18,14 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// Splash.cpp : implementation file
-//
+/** 
+ * @file Splash.cpp
+ *
+ * @brief Implementation of splashscreen class
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"  // e. g. stdafx.h
 #include "resource.h"  // e.g. resource.h
@@ -38,10 +44,17 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 BOOL CSplashWnd::c_bShowSplashWnd;
 CSplashWnd* CSplashWnd::c_pSplashWnd;
+
+/** 
+ * @brief Default constructor.
+ */
 CSplashWnd::CSplashWnd()
 {
 }
 
+/** 
+ * @brief Default destructor.
+ */
 CSplashWnd::~CSplashWnd()
 {
 	// Clear the static window pointer.
@@ -57,11 +70,17 @@ BEGIN_MESSAGE_MAP(CSplashWnd, CWnd)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
+/** 
+ * @brief Enables/disables splashscreen.
+ */
 void CSplashWnd::EnableSplashScreen(BOOL bEnable /*= TRUE*/)
 {
 	c_bShowSplashWnd = bEnable;
 }
 
+/** 
+ * @brief Shows splashscreen.
+ */
 void CSplashWnd::ShowSplashScreen(CWnd* pParentWnd /*= NULL*/)
 {
 	if (!c_bShowSplashWnd || c_pSplashWnd != NULL)
@@ -75,6 +94,9 @@ void CSplashWnd::ShowSplashScreen(CWnd* pParentWnd /*= NULL*/)
 		c_pSplashWnd->UpdateWindow();
 }
 
+/** 
+ * @brief Hide splashscreen after user presses any key.
+ */
 BOOL CSplashWnd::PreTranslateAppMessage(MSG* pMsg)
 {
 	if (c_pSplashWnd == NULL)
@@ -97,6 +119,9 @@ BOOL CSplashWnd::PreTranslateAppMessage(MSG* pMsg)
 	return FALSE;	// message not handled
 }
 
+/** 
+ * @brief Loads splashscreen bitmap
+ */
 BOOL CSplashWnd::Create(CWnd* pParentWnd /*= NULL*/)
 {
 	if (!m_bitmap.LoadBitmap(IDB_SPLASH))
@@ -110,19 +135,26 @@ BOOL CSplashWnd::Create(CWnd* pParentWnd /*= NULL*/)
 		NULL, WS_POPUP | WS_VISIBLE, 0, 0, bm.bmWidth, bm.bmHeight, pParentWnd->GetSafeHwnd(), NULL);
 }
 
+/** 
+ * @brief Destroy the window, and update the mainframe.
+ */
 void CSplashWnd::HideSplashScreen()
 {
-	// Destroy the window, and update the mainframe.
 	DestroyWindow();
 	AfxGetMainWnd()->UpdateWindow();
 }
 
+/** 
+ * @brief Free the C++ class.
+ */
 void CSplashWnd::PostNcDestroy()
 {
-	// Free the C++ class.
 	delete this;
 }
 
+/** 
+ * @brief Center splash screen and start timer for closing.
+ */
 int CSplashWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
@@ -137,6 +169,9 @@ int CSplashWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
+/** 
+ * @brief Add version text to bitmap.
+ */
 void CSplashWnd::OnPaint()
 {
 	CPaintDC dc(this);
@@ -157,18 +192,25 @@ void CSplashWnd::OnPaint()
 	CString s;
 	CFont ft,*oldfont=NULL;
 
-	if (ft.CreatePointFont( 100, _T("Arial"), &dc ))
+	int fontHeight = -MulDiv(10, dc.GetDeviceCaps(LOGPIXELSY), 72);
+	BOOL fontSuccess = ft.CreateFont(fontHeight, 0, 0, 0, FW_BOLD, FALSE, FALSE,
+		0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
+	if (fontSuccess)
 		oldfont = dc.SelectObject(&ft);
 
 	CString sVersion = version.GetFixedProductVersion();
 	AfxFormatString1(s, IDS_VERSION_FMT, sVersion);
 	dc.SetBkMode(TRANSPARENT);
-	dc.TextOut(90, 110, s);
+	dc.TextOut(69, 131, s);
 	if (oldfont != NULL)
 		dc.SelectObject(oldfont);
 
 }
 
+/** 
+ * @brief Hide splashscreen after specified time.
+ */
 void CSplashWnd::OnTimer(UINT /*nIDEvent*/)
 {
 	// Destroy the splash screen window.

@@ -1,3 +1,9 @@
+2004-03-21 Kimmo
+ PATCH: [ 918545 ] New Splash Screen
+  Submitted and graphics by Dean Grimm
+  Src: Splash.cpp Splash.h
+  Src/res: splash1.bmp
+
 2004-03-19 Christian
  PATCH: [ 919134 ] Paths fixed in installer
   InnoSetup: WinMerge.iss
