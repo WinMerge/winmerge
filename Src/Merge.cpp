@@ -737,6 +737,7 @@ void CAboutDlg::OnBnClickedOpenContributors()
 	CString defPath = GetModulePath();
 	// Don't add quotation marks yet, CFile doesn't like them
 	CString docPath = defPath + _T("\\Docs\\Contributors.rtf");
+	HINSTANCE ret = 0;
 	
 	CFileStatus status;
 	if (CFile::GetStatus(docPath, status))
@@ -745,7 +746,20 @@ void CAboutDlg::OnBnClickedOpenContributors()
 		// includes spaces
 		docPath.Insert(0, _T("\""));
 		docPath.Insert(docPath.GetLength(), _T("\""));
-		ShellExecute(m_hWnd, NULL, _T("wordpad"), docPath, defPath, SW_SHOWNORMAL);
+		ret = ShellExecute(m_hWnd, NULL, _T("wordpad"), docPath, defPath, SW_SHOWNORMAL);
+
+		// values < 32 are errors (ref to MSDN)
+		if ((int)ret < 32)
+		{
+			// Try to open with ssociated application (.rtf)
+			ret = ShellExecute(m_hWnd, _T("open"), docPath, NULL, NULL, SW_SHOWNORMAL);
+			if ((int)ret < 32)
+			{
+				CString msg;
+				AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, _T("WordPad.exe"));
+				AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
+			}
+		}
 	}
 	else
 	{

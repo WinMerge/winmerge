@@ -5,6 +5,9 @@
   Src/res new files: change_pane.bmp go_to.bmp language.bmp replace.bmp select_font.bmp
   Languages: *.rc resource.h
   Languages/res new files: change_pane.bmp go_to.bmp language.bmp replace.bmp select_font.bmp
+ PATCH: [ 915790 ] Open Contributors.rtf from About dialog
+  Handle errors if wordpad or associated app couldn't be run.
+  Src: Merge.cpp
 
 2004-03-16 Seier
   Installer [Patch 917142]:
