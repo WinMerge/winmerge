@@ -458,9 +458,9 @@ BOOL CChildFrame::DestroyWindow()
 }
 
 /**
- * @Save coordinates of the frame, splitters, and bars
+ * @brief Save coordinates of the frame, splitters, and bars
  *
- * @Note Do not save the maximized/restored state here. We are interested
+ * @note Do not save the maximized/restored state here. We are interested
  * in the state of the active frame, and maybe this frame is not active
  */
 void CChildFrame::SavePosition()
@@ -576,6 +576,7 @@ void CChildFrame::OnTimer(UINT nIDEvent)
 /// Document commanding us to close
 void CChildFrame::CloseNow()
 {
+	SavePosition(); // Save settings before closing!
 	MDIActivate();
 	MDIDestroy();
 }
