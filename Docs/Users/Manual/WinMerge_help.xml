@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="file://localhost/C:/Program%20Files/Morphon/XML-Editor%203.1.4/Examples/docbook/docbook.css" type="text/css"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-<!ENTITY Plugins SYSTEM "Plugins.xml">
+<!ENTITY QuickStart SYSTEM "Quick_start.xml">
+<!ENTITY TextEncoding SYSTEM "Text_encoding.xml">
+<!ENTITY CommandLine SYSTEM "Command_line.xml">
 <!ENTITY FAQ SYSTEM "Faq.xml">
-<!ENTITY VersionControl SYSTEM "Version_control.xml">
+<!ENTITY Install SYSTEM "Install.xml">
+<!ENTITY CompareDirs SYSTEM "Compare_dirs.xml">
+<!ENTITY Plugins SYSTEM "Plugins.xml">
 <!ENTITY IntroductDiffing SYSTEM "Intro_diffs.xml">
 <!ENTITY Configuration SYSTEM "Configuration.xml">
 <!ENTITY OpenPaths SYSTEM "Open_paths.xml">
-<!ENTITY CompareDirs SYSTEM "Compare_dirs.xml">
-<!ENTITY QuickStart SYSTEM "Quick_start.xml">
-<!ENTITY Introduction SYSTEM "Introduction.xml">
-<!ENTITY Locales SYSTEM "Locales.xml">
-<!ENTITY WhatsNew21 SYSTEM "Whatsnew_2_1.xml">
-<!ENTITY CommandLine SYSTEM "Command_line.xml">
-<!ENTITY ShortCuts SYSTEM "Shortcut_keys.xml">
-<!ENTITY Filters SYSTEM "Filters.xml">
 <!ENTITY CompareFiles SYSTEM "Compare_files.xml">
-<!ENTITY Install SYSTEM "Install.xml">
+<!ENTITY Locales SYSTEM "Locales.xml">
 <!ENTITY AboutDoc SYSTEM "About_doc.xml">
+<!ENTITY ShortCuts SYSTEM "Shortcut_keys.xml">
+<!ENTITY WhatsNew21 SYSTEM "Whatsnew_2_1.xml">
+<!ENTITY Introduction SYSTEM "Introduction.xml">
+<!ENTITY VersionControl SYSTEM "Version_control.xml">
+<!ENTITY Filters SYSTEM "Filters.xml">
 ]>
 <article id="index">
   <articleinfo>
@@ -63,6 +64,7 @@
   &CompareDirs;
   &CompareFiles;
   &Configuration;
+  &TextEncoding;
   &Locales;
   &Plugins;
   &Filters;

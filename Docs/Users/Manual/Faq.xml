@@ -25,7 +25,12 @@
           <para>That splash screen is annoying, how do I turn it off?</para>
         </question>
         <answer>
-          <para>From menu, select <menuchoice><guimenu>Edit</guimenu><guimenuitem>Options...</guimenuitem><guimenuitem>General</guimenuitem><guimenuitem>Disable Splash Screen</guimenuitem></menuchoice></para>
+          <para>From menu, select <menuchoice>
+              <guimenu>Edit</guimenu>
+              <guimenuitem>Options...</guimenuitem>
+              <guimenuitem>General</guimenuitem>
+              <guimenuitem>Disable Splash Screen</guimenuitem>
+            </menuchoice></para>
         </answer>
       </qandaentry>
       <qandaentry>
@@ -99,7 +104,10 @@
           <para>Some characters are cut in half?</para>
         </question>
         <answer>
-          <para>Try selecting a different font from menu <menuchoice><guimenu>View</guimenu><guimenuitem>Select Font...</guimenuitem></menuchoice></para>
+          <para>Try selecting a different font from menu <menuchoice>
+              <guimenu>View</guimenu>
+              <guimenuitem>Select Font...</guimenuitem>
+            </menuchoice></para>
         </answer>
       </qandaentry>
       <qandaentry>
@@ -185,6 +193,35 @@
         </question>
         <answer>
           <para>Unfortunately WinMerge can only use 7-zip.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </sect2>
+  <sect2>
+    <title>Text encoding (codepages)</title>
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>How do I tell if my file is coded in the local windows codepage?</para>
+        </question>
+        <answer>
+          <para>Open the file with Windows notepad (eg, 
+          <menuchoice><guimenu>Start</guimenu><guimenu>(All) Programs</guimenu><guimenu>Accessories</guimenu><guimenuitem>Notepad</guimenuitem></menuchoice>.
+          Choose <menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></menuchoice>, and in the Save As dialog which appears, look at the dropdown list at the very bottom, labelled "Encoding".</para>
+          <itemizedlist>
+            <listitem>
+              <para>If it says "ANSI", the file is (apparently) in the local windows codepage. If the file is entirely in English and normal punctuation, then the file is also in ASCII.</para>
+            </listitem>
+            <listitem>
+              <para>If it says "Unicode", the file is (probably) in the default Windows Unicode encoding "UCS-2LE".</para>
+            </listitem>
+            <listitem>
+              <para>If it says "UTF-8", the file is in the cross-platform Unicode encoding "UTF-8".</para>
+            </listitem>
+            <listitem>
+              <para>If it says "Unicode big endian", the file is in a different Unicode encoding not much used or supported under Windows, probably "UCS-2BE".</para>
+            </listitem>
+          </itemizedlist>
         </answer>
       </qandaentry>
     </qandaset>

@@ -123,7 +123,8 @@
           <para>Left- and right arrow keys merge difference to left side or right side.</para>
         </listitem>
       </itemizedlist>
-      <para>So Alt-key is not needed which makes these basic actions faster and easier to use.</para>
+      <para>So Alt-key is not needed which makes these basic actions faster and easier to use. Note that Shift+Arrow, Alt+Arrow and Ctrl+Alt+Arrow keys work in merge mode like in normal mode.</para>
+      <para>When merge mode is enabled "Merge" text is shown in statusbar. </para>
     </sect3>
   </sect2>
   <sect2>
@@ -172,5 +173,9 @@
         </imageobject>
       </inlinemediaobject></para>
     <para>All these items work like selected from main menu.</para>
+  </sect2>
+  <sect2>
+    <title>Fonts</title>
+    <para>Font used by editor can be changed from <menuchoice><guimenu>View</guimenu><guimenuitem>Select Font...</guimenuitem></menuchoice>. Due to limitations in the editor, only fixed width fonts are supported in WinMerge.</para>
   </sect2>
 </sect1>
