@@ -13,7 +13,7 @@ PREDIFFING		preprocess the text before diffing,
 			         you may not add/delete/move lines
 			Called before comparing files 
 			Either comparing files in directory : the original file is preprocessed
-			Or compare files being merged       : th23:24 29/10/2003e modified text is preprocessed
+			Or compare files being merged       : the modified text is preprocessed
 
 CONTEXT_MENU		For WinMerge editor, apply a function to the selection or at the cursor point
 			Right-click in the editor to access a list of functions
