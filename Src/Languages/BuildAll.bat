@@ -12,6 +12,7 @@ Call BuildDll Korean
 Call BuildDll Norwegian
 Call BuildDll Slovak
 Call BuildDll Spanish
+Call BuildDll Swedish
 
 Echo "Press ctrl-z <enter>"
 COPY CON TEMP$$$$.$$$ > nul
