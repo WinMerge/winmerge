@@ -2,5 +2,5 @@
   <title>About this document</title>
   <para>This is manual for WinMerge 2.2. Please read this document carefully.</para>
   <para>This manual is important reading for old and new users of WinMerge 2.2. There are lot of new features and improvements to old features in 2.2. Reading this quide ensures user knows abilities and limitations of WinMerge.</para>
-  <para>FAQ chapter contains answers to many common questions asked from developers. Please check first if your question is answered there before submitting questions to SourceForge.Net.</para>
+  <para>The <link linkend="Faq">FAQ chapter</link> contains answers to many common questions asked from developers. Please check first if your question is answered there before submitting questions to <ulink url="http://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>.</para>
 </sect1>

@@ -2,22 +2,22 @@
   <title>What's new in 2.2</title>
   <sect2>
     <title>Unicode support</title>
-    <para>WinMerge 2.2 is distributed with ANSI executable (WinMerge.exe) for Windows 95/98/ME and Unicode executable (WinMergeU.exe) for Windows NT /200/XP. Unicode executable supports UCS-2 and UTF-8 files and filenames.</para>
+    <para>WinMerge 2.2 is distributed with ANSI executable (<filename>WinMerge.exe</filename>) for Windows 95/98/ME and Unicode executable (<filename>WinMergeU.exe</filename>) for Windows NT /200/XP. Unicode executable supports UCS-2 and UTF-8 files and filenames.</para>
     <note>
       <para>It is unfortunate that two executable files are needed. But there is no currently way to get only one executable working. MS Unicode layer does not help WinMerge since WinMerge needs to be comparing files in different codepages.</para>
     </note>
   </sect2>
   <sect2>
     <title>Archive support</title>
-    <para>WinMerge 2.2 can open and save several archivetypes. Archive support requires installing 7-zip. Refer to Read Me.rtf file for info about compatible 7-zip version. 7-zip can be downloaded from <ulink url="http://www.7-zip.org/">http://www.7-zip.org/</ulink></para>
+    <para>WinMerge 2.2 can open and save several archivetypes. Archive support requires installing 7-zip. Refer to <filename>Read Me.rtf</filename> file for info about compatible 7-zip version. 7-zip can be downloaded from <ulink url="http://www.7-zip.org/">7-zip.org</ulink>.</para>
   </sect2>
   <sect2>
     <title>Shell integration</title>
-    <para>WinMerge 2.2 can be integrated into Windows Shell. Shell integration adds "Winmerge" menuitem to Windows Explorer's context menu for easy and fast comparing files and directories.</para>
+    <para>WinMerge 2.2 can be integrated into Windows Shell. Shell integration adds "<guisubmenu>Winmerge</guisubmenu>" menuitem to Windows Explorer's context menu for easy and fast comparing files and directories.</para>
   </sect2>
   <sect2>
     <title>Selecting filter from commandline</title>
-    <para>New -f commandline switch allows selecting used filter or mask for files.</para>
+    <para>New <option>-f</option> commandline switch allows selecting used filter or mask for files.</para>
   </sect2>
   <sect2>
     <title>Project files</title>
@@ -25,7 +25,7 @@
   </sect2>
   <sect2>
     <title>Generating patches</title>
-    <para>GNU/diffutils compatible patch files can be created from two files. Several formats and compare options are supported.</para>
+    <para><ulink url="http://www.gnu.org/software/diffutils/diffutils.html">GNU/diffutils</ulink> compatible patch files can be created from two files. Several formats and compare options are supported.</para>
   </sect2>
   <sect2>
     <title>Plugins</title>
@@ -39,13 +39,13 @@
         <para>More columns added (e.g. file sizes and attributes), shown columns can be selected and reordered.</para>
       </listitem>
       <listitem>
-        <para>Filtered items have now own category (Skipped) and icons. Filtered items can be set to hidden/visible from View-menu.</para>
+        <para>Filtered items have now own category (<guilabel>Skipped</guilabel>) and icons. Filtered items can be set to hidden/visible from <guimenu>View</guimenu>-menu.</para>
       </listitem>
       <listitem>
-        <para>Floating statusbar during compare process, compare can be stopped and files/dirs compared so far are shown</para>
+        <para>Floating statusbar during compare process, compare can be stopped and files/dirs compared so far are shown.</para>
       </listitem>
       <listitem>
-        <para>Newer file/directory is indicated with asterisk (*) in date field</para>
+        <para>Newer file/directory is indicated with asterisk (<guilabel>*</guilabel>) in date field.</para>
       </listitem>
       <listitem>
         <para>One or both directories can be set read-only, preventing accidental overwriting.</para>
@@ -60,28 +60,28 @@
     <para>Many new features and improvements:</para>
     <itemizedlist>
       <listitem>
-        <para>Rewritten undo/redo code</para>
+        <para>Rewritten undo/redo code.</para>
       </listitem>
       <listitem>
-        <para>Fixed "Ignore blank lines" feature</para>
+        <para>Fixed "<guilabel>Ignore blank lines</guilabel>" feature.</para>
       </listitem>
       <listitem>
-        <para>Enchanged EOL handling (files can contain different EOL styles in one file)</para>
+        <para>Enchanged EOL handling (files can contain different EOL styles in one file).</para>
       </listitem>
       <listitem>
-        <para>Linenumber, current column and char, line length and char count shown in statusbar</para>
+        <para>Linenumber, current column and char, line length and char count shown in statusbar.</para>
       </listitem>
       <listitem>
-        <para>One ot both files can be set read-only to prevent accidental edits</para>
+        <para>One ot both files can be set read-only to prevent accidental edits.</para>
       </listitem>
       <listitem>
-        <para>Copy difference to left/right and advance to next makes merging faster</para>
+        <para>Copy difference to left/right and advance to next makes merging faster.</para>
       </listitem>
       <listitem>
-        <para>Diff pane to show current difference in two vertical panes</para>
+        <para>Diff pane to show current difference in two vertical panes.</para>
       </listitem>
       <listitem>
-        <para>Highlight word differences in lines</para>
+        <para>Highlight word differences in lines.</para>
       </listitem>
       <listitem>
         <para>Merge-mode (or 1.7 mode) to navigate and merge differences easier and faster.</para>

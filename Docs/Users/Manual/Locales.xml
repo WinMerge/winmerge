@@ -4,7 +4,7 @@
   <note>
     <para>The language DLLs allow to using a different interface language than English, but does not change other locale issues (such as how large numbers are broken up, or how words are alphabetized).</para>
   </note>
-  <para>At the time of this writing, language DLLs are available from <ulink url="http://www.winmerge.org">http://www.winmerge.org</ulink> for the following languages:</para>
+  <para>At the time of this writing, language DLLs are available from <ulink url="http://www.winmerge.org/">WinMerge.org</ulink> for the following languages:</para>
   <itemizedlist>
     <listitem>
       <para>Portuguese (Brazilian)</para>
@@ -61,25 +61,25 @@
       <para>Swedish</para>
     </listitem>
   </itemizedlist>
-  <para>If you would like to add your language to the list, look at the <ulink url="http://winmerge.sourceforge.net/developer/l10n/index.php">on-line documentation</ulink> for the details on how to do it.</para>
+  <para>If you would like to add your language to the list, look at the <ulink url="http://www.winmerge.org/developer/l10n/index.php">on-line documentation</ulink> for the details on how to do it.</para>
   <sect2>
     <title>Configuration</title>
     <para>In order to change the current UI language, you must do the following:</para>
     <orderedlist>
       <listitem>
-        <para>Download the desired language DLL from the <ulink url="http://sourceforge.net/project/showfiles.php?group_id=13216">WinMerge download site</ulink> .</para>
+        <para>Download the desired language DLL from the <ulink url="http://sourceforge.net/project/showfiles.php?group_id=13216">WinMerge download site</ulink>.</para>
       </listitem>
       <listitem>
-        <para>Unzip the downloaded file into the same directory where WinMerge.exe is located. Note that the language DLL has a .lang extension.</para>
+        <para>Unzip the downloaded file into the same directory where <filename>WinMerge.exe</filename> is located. Note that the language DLL has a <filename class="extension">.lang</filename> extension.</para>
       </listitem>
       <listitem>
         <para>Run WinMerge</para>
       </listitem>
       <listitem>
-        <para>Select Language from the View menu</para>
+        <para>Select <guisubmenu>Language</guisubmenu> from the <guimenu>View</guimenu> menu</para>
       </listitem>
       <listitem>
-        <para>Select your language and click OK</para>
+        <para>Select your language and click <guibutton>OK</guibutton></para>
       </listitem>
     </orderedlist>
     <para>Note that the WinMerge UI instantly updates to the selected language.</para>

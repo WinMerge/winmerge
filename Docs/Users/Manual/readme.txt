@@ -6,6 +6,9 @@
   Manual: Manual-html.dsl
  Forgot to add Text_encoding.xml in patch #1034776
   Manual new file: Text_encoding.xml
+ PATCH: [ 1034558 ] Docs: More meta-informations
+  Submitted by Tim Gerundt
+  Manual: About_Doc.xml Install.xml Locales.xml Quick_start.xml Whatsnew_2_1.xml
 
 2004-09-26 Kimmo
  BUG: [ 1034759 ] 2.2 docs: Need a space in Versioncontrol
