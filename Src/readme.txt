@@ -2,6 +2,8 @@
  PATCH: [ 791487 ] Norwegian (bokmål) translation
   Corrections#2 Avbrytt->Avbryt and #3 Opdater->Oppdater
   Languages\Norwegian: MergeNorwegian.rc
+  Correction#0 Bokmal->Bokmål
+  WinMerge\Merge.rc
 
 2003-08-22 Kimmo
  PATCH: [ 787495 ] Create diffutils class (CDiffWrapper)

@@ -1065,7 +1065,7 @@ BEGIN
     IDS_MALAY_MALAYSIA      "Malay (Malaysian)"
     IDS_MALAY_BRUNEI_DARUSSALAM "Malay (Brunei Darussalam)"
     IDS_MANIPURI            "Manipuri"
-    IDS_NORWEGIAN_BOKMAL    "Norsk (Bokmal)"
+    IDS_NORWEGIAN_BOKMAL    "Norsk (Bokmål)"
     IDS_NORWEGIAN_NYNORSK   "Norsk (Nynorsk)"
     IDS_POLISH              "Polski"
     IDS_PORTUGUESE          "Portugese"
