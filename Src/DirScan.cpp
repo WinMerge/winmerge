@@ -2,7 +2,7 @@
  *  @file DirScan.cpp
  *
  *  @brief Implementation of DirScan (q.v.) and helper functions
- */ 
+ */
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
@@ -44,7 +44,7 @@ static void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * fi
 void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * files, bool casesensitive);
 static void Sort(fentryArray * dirs, bool casesensitive);;
 static int collstr(const CString & s1, const CString & s2, bool casesensitive);
-static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry *rent, 
+static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry *rent,
 			    int code, CDiffContext * pCtxt, int ndiffs=-1, int ntrivialdiffs=-1);
 static int prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2, int * ndiffs, int * ntrivialdiffs);
 
@@ -133,12 +133,20 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			}
 			else
 			{
-				// If non-recursive compare, add folders appearing both sides
 				if (!depth)
+				{
+					// Non-recursive compare
+					// We are only interested about list of subdirectories to show - user can open them
+					// TODO: scan one level deeper to see if directories are identical/different
 					StoreDiffResult(subdir, &leftDirs[i], &rightDirs[j], DIFFCODE::DIR, pCtxt);
-
-				if (DirScan(newsub, pCtxt, casesensitive, depth-1, piAbortable) == -1)
-					return -1;
+				}
+				else
+				{
+					// Recursive compare
+					// Scan recursively all subdirectories too, we are not adding folders
+					if (DirScan(newsub, pCtxt, casesensitive, depth-1, piAbortable) == -1)
+						return -1;
+				}
 			}
 			++i;
 			++j;
@@ -299,7 +307,7 @@ prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2, int
 	bool diff=false, bin=false;
 
 	// For user chosen plugins, define bAutomaticUnpacker as false and use the chosen infoHandler
-	// but how can we receive the infoHandler ? DirScan actually only 
+	// but how can we receive the infoHandler ? DirScan actually only
 	// returns info, but can not use file dependent information.
 
 	// Transformation happens here
@@ -340,7 +348,7 @@ prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2, int
 
 	// Actually compare the files
 	// just_compare_files is a fairly thin front-end to diffutils
-	compareok = just_compare_files(filepathTransformed1, filepathTransformed2, 
+	compareok = just_compare_files(filepathTransformed1, filepathTransformed2,
 		0, &diff, &bin, ndiffs, ntrivialdiffs);
 
 exitPrepAndCompare:
@@ -458,7 +466,7 @@ static int collstr(const CString & s1, const CString & s2, bool casesensitive)
 /**
  * @brief Send one file or directory result back through the diff context
  */
-static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry * rent, 
+static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry * rent,
 			    int code, CDiffContext * pCtxt, int ndiffs, int ntrivialdiffs)
 {
 	CString name, leftdir, rightdir;
