@@ -1,0 +1,17 @@
+editor addin		
+Add two functions to the context menu : MakeUpper and MakeLower.
+Use : Select a piece of text, right-click and select one function.
+
+insert datetime
+Add two functions to the context menu : InsertDate and InsertTime.
+Use : Put the cursor where you want the date/time to be inserted, right-click 
+and select one function.
+
+RCLocalizationHelper
+Preprocessing plugin for files .rc.
+Use this plugin to compare two files localized in different languages.
+It hides most differences concerning the localization (strings with localized
+text, layout of controls in dialog). Missing strings/controls/menus
+are displayed as differences.
+TODO : localized strings tiled on two lines are displayed as different even
+if present in both files. Should be displayed as ignored.

@@ -1,0 +1,36 @@
+<scriptlet>
+
+<implements type="Automation" id="dispatcher">
+	<property name="PluginEvent">
+	          <get/>
+        </property>
+	<property name="PluginDescription">
+	          <get/>
+        </property>
+      	<method name="InsertDate"/>
+	<method name="InsertTime"/>
+</implements>
+
+<script language="VBS">
+Option Explicit
+
+Function get_PluginEvent()
+         get_PluginEvent = "CONTEXT_MENU"
+End Function
+
+Function get_PluginDescription()
+         get_PluginDescription = "Basic text functions for the context menu"
+End Function
+
+
+' transformation functions
+Function InsertDate(Text)
+	InsertDate = Text + FormatDateTime(Date, 1)
+End Function
+
+Function InsertTime(Text)
+	InsertTime = Text + FormatDateTime(Time, 4)
+End Function
+
+</script>
+</scriptlet>
