@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Option</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<h2>WinMerge Options system</h2>
+
+<p>WinMerge stores options into registry:</p>
+<pre>HKCU/Software/Thingamahoochie/WinMerge</pre>
+
+<h3>Accessing options</h3>
+<p>Two ways to read and save options:</p>
+<ol>
+  <li>
+    Direct access with WinAPI (<code>GetProfileInt()</code>, <code>GetProfileString</code>,
+    <code>WriteProfileInt()</code> &amp; <code>WriteProfileString()</code>).
+  </li>
+  <li>Using <code>COptionsMgr</code> class (recommended)</li>
+</ol>
+
+<h3>Direct access with WinAPI</h3>
+<p>This is handy for settings needed in few events or cases (star, exit).</p>
+
+<h3>COptionsMgr</h3>
+<p>Using <code>COptionsMgr</code> is recommended for all new options. Also all options
+visible in Options-dialog must use <code>COptionsMgr</code>. Currently there is one
+<code>COptionsMgr</code> (or actually <code>CRegOptions</code>) instance in <code>CMainFrame</code>.
+But that can change in future.</p>
+
+<p>Using <code>COptionsMgr</code> is pretty simple and straightforward:</p>
+<ul>
+  <li>All options are accessed by constant names, listed in <code>OptionsDef.h</code>.</li>
+  <li>
+    Options are initialised in <code>CMainFrame::CMainFrame()</code>. When initialised,
+    type is determined and default value given. If option with that name
+    does not yet exist, new one is created.
+  </li>
+  <li>Option value is read using <code>COptionsMgr::GetBool()</code>, <code>GetInt()</code> or <code>GetString()</code>.</li>
+  <li>Option value is stored using <code>COptionsMgr::SaveOption()</code>. Note that value is saved to registry immediately.</li>
+  <li>Option value can be reset to default value using <code>COptionsMgr::GetDefault()</code></li>
+</ul>
+
+<h3>Adding a new option</h3>
+<ol>
+  <li>
+    Add option name and registry path into <code>OptionsDef.h</code>. Please try to keep
+    options organised in registry, although all existing options aren't.
+    And use meaningful names for options.
+  </li>
+  <li>
+    Add option initialiser to <code>CMainFrame::CMainFrame()</code>, with sensible
+    default value. Remember default value is what most users see when first
+    time using WinMerge or new feature using it. So it really must be good
+    for normal use.
+  </li>
+  <li>Use <code>GetX()</code> functions to read values and <code>SaveOption()</code> to store values.</li>
+</ol>
+
+<h3>Caching</h3>
+<p>There are some very frequently used option values, like color values for
+editor syntax highlight. Reading and writing these kind of values through
+<code>COptionsMgr</code> every time would be pretty inefficient. So we only read them
+to local variables when needed and store when they are changed.</p>
+
+<h3>Options dialog</h3>
+<p>OptionsDialog (<code>CPreferencesDlg</code>) receives pointer to <code>COptionsMgr</code> when
+initialised for access to options.</p>
+
+<p><code>CPreferencesDlg::ReadOptions()</code> is place to read option values and update
+values to UI. <code>CPreferencesDlg::SaveOptions()</code> is place to save option values
+to <code>COptionsMgr</code> when dialog is closed with OK.</p>
+
+<p>If options page (dialog consists of several sub-pages) has 'Defaults' button
+it needs pointer to <code>COptionsMgr</code>. Usually its easiest to give it in
+constructor. Then page can call <code>COptionsMgr::GetDefault()</code> for options it
+wants to reset to defaults when button is selected.</p>
+</body>
+</html>

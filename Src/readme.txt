@@ -1,3 +1,7 @@
+2005-03-23 Kimmo
+ PATCH: [ 1168733 ] Doc for options
+  Docs/Developers new file: Options.html
+
 2005-03-21 Kimmo
  BUG: [ 1162037 ] Missing localization (German)
   Translation update from Tim Gerundt
