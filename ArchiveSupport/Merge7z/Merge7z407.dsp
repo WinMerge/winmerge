@@ -497,14 +497,6 @@ SOURCE=..\..\..\7z407\7zip\Common\FilePathAutoRename.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z407\Windows\System.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\..\7z407\Windows\System.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\..\7z407\Common\Vector.cpp
 # End Source File
 # Begin Source File
