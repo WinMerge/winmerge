@@ -1,3 +1,5 @@
+2003-09-07 WinMerge experimental release 2.1.1.3 (cvs)
+
 2003-09-07 Kimmo
  PATCH: [ 800420 ] Fix recursive compare and cleanup recursive usage
   WinMerge: DiffThread.h DiffThread.cpp DirDoc.h DirDoc.cpp MainFrm.cpp
@@ -23,6 +25,8 @@
 2003-09-06 Perry
  PATCH: [ 800175 ] skip custom draw if comctl32.dll < 4.71
   WinMerge: DirView.cpp
+
+2003-09-07 WinMerge experimental release 2.1.1.2 (cvs)
 
 2003-09-02 Laoran
  PATCH: [ 797957 ] correct line number for last real line (in statusbar)
