@@ -1,3 +1,7 @@
+2004-07-03 Kimmo
+ PATCH: [ 984520 ] Don't add '...' items as fileaction targets
+  Src: DirActions.cpp
+
 2004-07-02 Kimmo
  PATCH: [ 982960 ] Rescan when saving to update dir compare status
   Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirDoc.h MergeDoc.cpp

@@ -84,7 +84,7 @@ void CDirView::DoCopyRightToLeft()
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemCopyableToLeft(di))
+		if (di.diffcode != 0 && IsItemCopyableToLeft(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
 			ActionList::action act;
@@ -113,7 +113,7 @@ void CDirView::DoCopyLeftToRight()
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemCopyableToRight(di))
+		if (di.diffcode != 0 && IsItemCopyableToRight(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
 			ActionList::action act;
@@ -143,7 +143,7 @@ void CDirView::DoDelLeft()
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemDeletableOnLeft(di))
+		if (di.diffcode != 0 && IsItemDeletableOnLeft(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
 			ActionList::action act;
@@ -172,7 +172,7 @@ void CDirView::DoDelRight()
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
 
-		if (IsItemDeletableOnRight(di))
+		if (di.diffcode != 0 && IsItemDeletableOnRight(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
 			ActionList::action act;
@@ -201,7 +201,7 @@ void CDirView::DoDelBoth()
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
 
-		if (IsItemDeletableOnBoth(di))
+		if (di.diffcode != 0 && IsItemDeletableOnBoth(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
 			ActionList::action act;
@@ -249,7 +249,7 @@ void CDirView::DoCopyLeftTo()
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
 
-		if (IsItemCopyableToOnLeft(di))
+		if (di.diffcode != 0 && IsItemCopyableToOnLeft(di))
 		{
 			if (GetDocument()->GetRecursive())
 			{
@@ -302,7 +302,7 @@ void CDirView::DoCopyRightTo()
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
 
-		if (IsItemCopyableToOnRight(di))
+		if (di.diffcode != 0 && IsItemCopyableToOnRight(di))
 		{
 			if (GetDocument()->GetRecursive())
 			{
