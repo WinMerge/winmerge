@@ -96,6 +96,10 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT_WITH, OnUpdateCtxtDirOpenRightWith)
 	ON_COMMAND(ID_POPUP_OPEN_WITH_UNPACKER, OnCtxtOpenWithUnpacker)
 	ON_UPDATE_COMMAND_UI(ID_POPUP_OPEN_WITH_UNPACKER, OnUpdateCtxtOpenWithUnpacker)
+	ON_COMMAND(ID_DIR_OPEN_RIGHT_WITHEDITOR, OnCtxtDirOpenRightWithEditor)
+	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT_WITHEDITOR, OnUpdateCtxtDirOpenRightWithEditor)
+	ON_COMMAND(ID_DIR_OPEN_LEFT_WITHEDITOR, OnCtxtDirOpenLeftWithEditor)
+	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_LEFT_WITHEDITOR, OnUpdateCtxtDirOpenLeftWithEditor)
 	ON_WM_DESTROY()
 	ON_WM_CHAR()
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
@@ -790,6 +794,29 @@ void CDirView::OnCtxtDirOpenRightWith()
 {
 	DoOpenWith(SIDE_RIGHT);
 }
+
+/// User chose (context menu) open right with editor
+void CDirView::OnCtxtDirOpenRightWithEditor()
+{
+	DoOpenWithEditor(SIDE_RIGHT);
+}
+
+void CDirView::OnUpdateCtxtDirOpenRightWithEditor(CCmdUI* pCmdUI)
+{
+	DoUpdateOpenRightWith(pCmdUI);
+}
+
+/// User chose (context menu) open left with editor
+void CDirView::OnCtxtDirOpenLeftWithEditor()
+{
+	DoOpenWithEditor(SIDE_LEFT);
+}
+
+void CDirView::OnUpdateCtxtDirOpenLeftWithEditor(CCmdUI* pCmdUI)
+{
+	DoUpdateOpenLeftWith(pCmdUI);
+}
+
 // return selected item index, or -1 if none or multiple
 int CDirView::GetSingleSelectedItem() const
 {

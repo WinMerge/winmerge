@@ -383,7 +383,7 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 	}
 }
 
-// Get directories of first selected item
+/// Get directories of first selected item
 BOOL CDirView::GetSelectedDirNames(CString& strLeft, CString& strRight) const
 {
 	BOOL bResult = GetSelectedFileNames(strLeft, strRight);
@@ -396,7 +396,7 @@ BOOL CDirView::GetSelectedDirNames(CString& strLeft, CString& strRight) const
 	return bResult;
 }
 
-// is it possible to copy item to left ?
+/// is it possible to copy item to left ?
 BOOL CDirView::IsItemCopyableToLeft(const DIFFITEM & di)
 {
 	// don't let them mess with error items
@@ -411,7 +411,7 @@ BOOL CDirView::IsItemCopyableToLeft(const DIFFITEM & di)
 	// everything else can be copied to left
 	return TRUE;
 }
-// is it possible to copy item to right ?
+/// is it possible to copy item to right ?
 BOOL CDirView::IsItemCopyableToRight(const DIFFITEM & di)
 {
 	// don't let them mess with error items
@@ -426,7 +426,7 @@ BOOL CDirView::IsItemCopyableToRight(const DIFFITEM & di)
 	// everything else can be copied to right
 	return TRUE;
 }
-// is it possible to delete left item ?
+/// is it possible to delete left item ?
 BOOL CDirView::IsItemDeletableOnLeft(const DIFFITEM & di)
 {
 	// don't let them mess with error items
@@ -436,7 +436,7 @@ BOOL CDirView::IsItemDeletableOnLeft(const DIFFITEM & di)
 	// everything else can be deleted on left
 	return TRUE;
 }
-// is it possible to delete right item ?
+/// is it possible to delete right item ?
 BOOL CDirView::IsItemDeletableOnRight(const DIFFITEM & di)
 {
 	// don't let them mess with error items
@@ -447,7 +447,7 @@ BOOL CDirView::IsItemDeletableOnRight(const DIFFITEM & di)
 	// everything else can be deleted on right
 	return TRUE;
 }
-// is it possible to delete both items ?
+/// is it possible to delete both items ?
 BOOL CDirView::IsItemDeletableOnBoth(const DIFFITEM & di)
 {
 	// don't let them mess with error items
@@ -459,7 +459,7 @@ BOOL CDirView::IsItemDeletableOnBoth(const DIFFITEM & di)
 	return TRUE;
 }
 
-// is it possible to open left item ?
+/// is it possible to open left item ?
 BOOL CDirView::IsItemOpenableOnLeft(const DIFFITEM & di)
 {
 	// impossible if only on right
@@ -468,7 +468,7 @@ BOOL CDirView::IsItemOpenableOnLeft(const DIFFITEM & di)
 	// everything else can be opened on right
 	return TRUE;
 }
-// is it possible to open right item ?
+/// is it possible to open right item ?
 BOOL CDirView::IsItemOpenableOnRight(const DIFFITEM & di)
 {
 	// impossible if only on left
@@ -477,18 +477,18 @@ BOOL CDirView::IsItemOpenableOnRight(const DIFFITEM & di)
 	// everything else can be opened on left
 	return TRUE;
 }
-// is it possible to open left ... item ?
+/// is it possible to open left ... item ?
 BOOL CDirView::IsItemOpenableOnLeftWith(const DIFFITEM & di)
 {
 	return (!di.isDirectory() && IsItemOpenableOnLeft(di));
 }
-// is it possible to open with ... right item ?
+/// is it possible to open with ... right item ?
 BOOL CDirView::IsItemOpenableOnRightWith(const DIFFITEM & di)
 {
 	return (!di.isDirectory() && IsItemOpenableOnRight(di));
 }
 
-// get the file names on both sides for first selected item
+/// get the file names on both sides for first selected item
 BOOL CDirView::GetSelectedFileNames(CString& strLeft, CString& strRight) const
 {
 	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
@@ -497,7 +497,7 @@ BOOL CDirView::GetSelectedFileNames(CString& strLeft, CString& strRight) const
 	GetItemFileNames(sel, strLeft, strRight);
 	return TRUE;
 }
-// get file name on specified side for first selected item
+/// get file name on specified side for first selected item
 CString CDirView::GetSelectedFileName(SIDE_TYPE stype) const
 {
 	CString left, right;
@@ -505,7 +505,7 @@ CString CDirView::GetSelectedFileName(SIDE_TYPE stype) const
 	return stype==SIDE_LEFT ? left : right;
 }
 
-// get the file names on both sides for specified item
+/// get the file names on both sides for specified item
 void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) const
 {
 	const CDirDoc *pd = GetDocument();
@@ -520,7 +520,7 @@ void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) co
 	strRight = paths_ConcatPath(ctxt->m_strRight, relpath);
 }
 
-// Open selected file on specified side
+/// Open selected file on specified side
 void CDirView::DoOpen(SIDE_TYPE stype)
 {
 	int sel = GetSingleSelectedItem();
@@ -533,7 +533,7 @@ void CDirView::DoOpen(SIDE_TYPE stype)
 	
 }
 
-// Open with dialog for file on selected side
+/// Open with dialog for file on selected side
 void CDirView::DoOpenWith(SIDE_TYPE stype)
 {
 	int sel = GetSingleSelectedItem();
@@ -545,4 +545,55 @@ void CDirView::DoOpenWith(SIDE_TYPE stype)
 	sysdir.ReleaseBuffer();
 	CString arg = (CString)_T("shell32.dll,OpenAs_RunDLL ") + file;
 	ShellExecute(::GetDesktopWindow(), 0, _T("RUNDLL32.EXE"), arg, sysdir, SW_SHOWNORMAL);
+}
+
+/// Open selected file  on specified side to external editor
+void CDirView::DoOpenWithEditor(SIDE_TYPE stype)
+{
+	int sel = GetSingleSelectedItem();
+	if (sel == -1) return;
+	CString file = GetSelectedFileName(stype);
+	if (file.IsEmpty()) return;
+
+	CString ext;
+	SplitFilename(mf->m_sExtEditorPath, NULL, NULL, &ext);
+	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
+	{
+		// Check if file exists
+		CFileStatus status;
+		if (CFile::GetStatus(mf->m_sExtEditorPath, status))
+		{
+			// Format command line
+			CString strCommandLine = _T("\"") + mf->m_sExtEditorPath + _T("\" \"") +
+				file + _T("\"");
+
+			BOOL retVal = FALSE;
+			STARTUPINFO stInfo = {0};
+			stInfo.cb = sizeof(STARTUPINFO);
+			PROCESS_INFORMATION processInfo;
+
+			retVal = CreateProcess(NULL, (LPTSTR)(LPCTSTR) strCommandLine,
+				NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
+				&stInfo, &processInfo);
+
+			if (!retVal)
+			{
+				CString msg;
+				AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, mf->m_sExtEditorPath);
+				AfxMessageBox(msg, MB_ICONSTOP);
+			}
+		}
+		else
+		{
+			CString msg;
+			AfxFormatString1(msg, IDS_ERROR_FILE_NOT_FOUND, mf->m_sExtEditorPath);
+			AfxMessageBox(msg, MB_ICONSTOP);
+		}
+	}
+	else
+	{
+		CString msg;
+		AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, mf->m_sExtEditorPath);
+		AfxMessageBox(msg, MB_ICONSTOP);
+	}
 }

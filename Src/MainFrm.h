@@ -135,6 +135,7 @@ public:
 	BOOL m_bScrollToFirst;
 	UINT m_nTabType;
 	BOOL m_bViewWhitespace;
+	CString m_sExtEditorPath;
 	CString m_strLeftDesc;
 	CString m_strRightDesc;
 	BOOL m_CheckOutMulti;

@@ -240,12 +240,15 @@
 #define IDC_UNPACKER_DESCRIPTION        1088
 #define IDC_UNPACKER_EDIT               1089
 #define IDC_SELECT_UNPACKER             1090
+#define IDC_EXT_EDITOR_BROWSE           1091
+#define IDC_EXT_EDITOR_PATH             1092
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
 #define IDS_EMPTY_LINE_STATUS_INFO      8504
 #define IDS_LINE_STATUS_INFO            8505
 #define IDS_VSSFOLDER_AND_FILE_NOMATCH  8506
+#define IDS_CANNOT_EXECUTE_FILE         8507
 #define IDD_EDIT_FIND                   8601
 #define IDD_EDIT_REPLACE                8602
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -471,6 +474,8 @@
 #define ID_POPUP_OPEN_WITH_UNPACKER     32850
 #define ID_UNPACK_MANUAL                32851
 #define ID_UNPACK_AUTO                  32852
+#define ID_DIR_OPEN_LEFT_WITHEDITOR     32853
+#define ID_DIR_OPEN_RIGHT_WITHEDITOR    32854
 
 // Next default values for new objects
 // 
@@ -478,8 +483,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        120
-#define _APS_NEXT_COMMAND_VALUE         32853
-#define _APS_NEXT_CONTROL_VALUE         1091
+#define _APS_NEXT_COMMAND_VALUE         32855
+#define _APS_NEXT_CONTROL_VALUE         1093
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

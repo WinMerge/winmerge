@@ -161,6 +161,7 @@ CMainFrame::CMainFrame()
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
 	m_bAllowMixedEol = theApp.GetProfileInt(_T("Settings"), _T("AllowMixedEOL"), NULL);
 	theApp.SetFileFilterPath(theApp.GetProfileString(_T("Settings"), _T("FileFilterPath"), _T("")));
+	m_sExtEditorPath = theApp.GetProfileString(_T("Settings"), _T("ExternalEditor"), _T("notepad.exe"));
 	m_bReuseDirDoc = TRUE;
 	// TODO: read preference for logging
 
@@ -944,6 +945,7 @@ void CMainFrame::OnOptions()
 	syn.m_bHiliteSyntax = theApp.m_bHiliteSyntax;
 	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
 	filter.m_sPattern = m_sPattern;
+	regpage.m_strEditorPath = m_sExtEditorPath;
 	
 	if (sht.DoModal()==IDOK)
 	{
@@ -966,6 +968,8 @@ void CMainFrame::OnOptions()
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
 		m_sPattern = filter.m_sPattern;
 		theApp.SetFileFilterPath(filter.m_sFileFilterPath);
+
+		m_sExtEditorPath = regpage.m_strEditorPath;
 
 		theApp.SetDiffColor(colors.m_clrDiff);
 		theApp.SetSelDiffColor(colors.m_clrSelDiff);
@@ -991,6 +995,7 @@ void CMainFrame::OnOptions()
 
 		theApp.m_bHiliteSyntax = syn.m_bHiliteSyntax;
 		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), theApp.m_bHiliteSyntax);
+		theApp.WriteProfileString(_T("Settings"), _T("ExternalEditor"), m_sExtEditorPath);
 
 		// use CDiffwrapper static functions to exchange the options with registry
 		CDiffWrapper::WriteDiffOptions(&diffOptions);

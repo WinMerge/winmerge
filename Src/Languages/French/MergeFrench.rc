@@ -225,10 +225,18 @@ BEGIN
         MENUITEM "Supprimer à droite",          ID_DIR_DEL_RIGHT
         MENUITEM "Supprimer des deux côtés",    ID_DIR_DEL_BOTH
         MENUITEM SEPARATOR
-        MENUITEM "Ouvrir depuis la gauche",     ID_DIR_OPEN_LEFT
-        MENUITEM "Ouvrir depuis la gauche avec...", ID_DIR_OPEN_LEFT_WITH
-        MENUITEM "Ouvrir depuis la droite",     ID_DIR_OPEN_RIGHT
-        MENUITEM "Ouvrir depuis la droite avec...", ID_DIR_OPEN_RIGHT_WITH
+        POPUP "Open left"
+        BEGIN
+            MENUITEM "with registered application", ID_DIR_OPEN_LEFT
+            MENUITEM "with external editor",        ID_DIR_OPEN_LEFT_WITHEDITOR
+            MENUITEM "with...",                     ID_DIR_OPEN_LEFT_WITH
+        END
+        POPUP "Open right"
+        BEGIN
+            MENUITEM "with registered application", ID_DIR_OPEN_RIGHT
+            MENUITEM "with external editor",        ID_DIR_OPEN_RIGHT_WITHEDITOR
+            MENUITEM "with...",                     ID_DIR_OPEN_RIGHT_WITH
+        END
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -582,6 +590,9 @@ BEGIN
     EDITTEXT        IDC_WINMERGE_PATH,7,34,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "&Parcourir...",IDC_WINMERGE_PATH_BROWSE,180,34,50,14
     PUSHBUTTON      "&Enregistrer le chemin",IDC_WINMERGE_PATH_SAVE,8,51,80,14
+    LTEXT           "External editor:",IDC_STATIC,8,58,48,8
+    EDITTEXT        IDC_EXT_EDITOR_PATH,7,68,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_EXT_EDITOR_BROWSE,179,68,50,14
 END
 
 IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 259, 162
@@ -1192,6 +1203,7 @@ BEGIN
     IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
     IDS_VSSFOLDER_AND_FILE_NOMATCH
                             "The VSS Working Folder and the location of the current file do not match. Continue?"
+    IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"                      
 END
 
 STRINGTABLE DISCARDABLE

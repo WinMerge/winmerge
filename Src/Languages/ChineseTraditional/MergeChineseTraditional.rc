@@ -219,10 +219,18 @@ BEGIN
         MENUITEM "刪除右邊",                    ID_DIR_DEL_RIGHT
         MENUITEM "刪除兩者",                    ID_DIR_DEL_BOTH
         MENUITEM SEPARATOR
-        MENUITEM "開啟左邊",                    ID_DIR_OPEN_LEFT
-        MENUITEM "開啟左邊以...",               ID_DIR_OPEN_LEFT_WITH
-        MENUITEM "開啟右邊",                    ID_DIR_OPEN_RIGHT
-        MENUITEM "開啟右邊以...",               ID_DIR_OPEN_RIGHT_WITH
+        POPUP "Open left"
+        BEGIN
+            MENUITEM "with registered application", ID_DIR_OPEN_LEFT
+            MENUITEM "with external editor",        ID_DIR_OPEN_LEFT_WITHEDITOR
+            MENUITEM "with...",                     ID_DIR_OPEN_LEFT_WITH
+        END
+        POPUP "Open right"
+        BEGIN
+            MENUITEM "with registered application", ID_DIR_OPEN_RIGHT
+            MENUITEM "with external editor",        ID_DIR_OPEN_RIGHT_WITHEDITOR
+            MENUITEM "with...",                     ID_DIR_OPEN_RIGHT_WITH
+        END
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -562,6 +570,9 @@ BEGIN
     EDITTEXT        IDC_WINMERGE_PATH,7,19,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "&Browse...",IDC_WINMERGE_PATH_BROWSE,180,19,50,14
     PUSHBUTTON      "&Save path",IDC_WINMERGE_PATH_SAVE,7,36,50,14
+    LTEXT           "External editor:",IDC_STATIC,8,58,48,8
+    EDITTEXT        IDC_EXT_EDITOR_PATH,7,68,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_EXT_EDITOR_BROWSE,179,68,50,14
 END
 
 IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 259, 162
@@ -1165,6 +1176,7 @@ BEGIN
     IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
     IDS_VSSFOLDER_AND_FILE_NOMATCH 
                             "The VSS Working Folder and the location of the current file do not match. Continue?"
+    IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"                      
 END
 
 STRINGTABLE DISCARDABLE

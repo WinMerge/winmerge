@@ -1,5 +1,25 @@
-// PropRegistry.cpp : implementation file
+/////////////////////////////////////////////////////////////////////////////
+//    License (GPLv2+):
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or (at
+//    your option) any later version.
+//    
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
 //
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  PropRegistry.cpp
+ *
+ * @brief CPropRegistry implementation file
+ */
+// RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
@@ -43,6 +63,7 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(CPropRegistry)
 	DDX_Check(pDX, IDC_EXPLORER_CONTEXT, m_bContextAdded);
 	DDX_Text(pDX, IDC_WINMERGE_PATH, m_strPath);
+	DDX_Text(pDX, IDC_EXT_EDITOR_PATH, m_strEditorPath);
 	//}}AFX_DATA_MAP
 }
 
@@ -51,6 +72,7 @@ BEGIN_MESSAGE_MAP(CPropRegistry, CDialog)
 	ON_BN_CLICKED(IDC_EXPLORER_CONTEXT, OnAddToExplorer)
 	ON_BN_CLICKED(IDC_WINMERGE_PATH_SAVE, OnSavePath)
 	ON_BN_CLICKED(IDC_WINMERGE_PATH_BROWSE, OnBrowsePath)
+	ON_BN_CLICKED(IDC_EXT_EDITOR_BROWSE, OnBrowseEditor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -175,6 +197,23 @@ void CPropRegistry::OnBrowsePath()
 
 	if (pdlg.DoModal() == IDOK)
 	 	m_strPath = pdlg.GetPathName(); 
+
+	UpdateData(FALSE);
+}
+
+/// Open file browse dialog to locate editor
+void CPropRegistry::OnBrowseEditor()
+{
+	CString s;           
+	VERIFY(s.LoadString(IDS_PROGRAMFILES));
+	DWORD flags = OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+	CFileDialog pdlg(TRUE, NULL, _T(""), flags, s);
+	CString title;
+	VERIFY(title.LoadString(IDS_OPEN_TITLE));
+	pdlg.m_ofn.lpstrTitle = (LPCTSTR)title;
+
+	if (pdlg.DoModal() == IDOK)
+	 	m_strEditorPath = pdlg.GetPathName(); 
 
 	UpdateData(FALSE);
 }

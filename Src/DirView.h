@@ -140,6 +140,7 @@ private:
 	void DoDelBoth();
 	void DoOpen(SIDE_TYPE stype);
 	void DoOpenWith(SIDE_TYPE stype);
+	void DoOpenWithEditor(SIDE_TYPE stype);
 	void ConfirmAndPerformActions(ActionList & actions);
 	BOOL ConfirmActionList(const ActionList & actions);
 	void PerformActionList(ActionList & actions);
@@ -237,6 +238,10 @@ protected:
 	afx_msg void OnUpdateCtxtDirOpenRight(CCmdUI* pCmdUI);
 	afx_msg void OnCtxtDirOpenRightWith();
 	afx_msg void OnUpdateCtxtDirOpenRightWith(CCmdUI* pCmdUI);
+	afx_msg void OnCtxtDirOpenRightWithEditor();
+	afx_msg void OnUpdateCtxtDirOpenRightWithEditor(CCmdUI* pCmdUI);
+	afx_msg void OnCtxtDirOpenLeftWithEditor();
+	afx_msg void OnUpdateCtxtDirOpenLeftWithEditor(CCmdUI* pCmdUI);
 	afx_msg void OnDestroy();
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnFirstdiff();

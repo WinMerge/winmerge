@@ -3,6 +3,10 @@
   WinMerge: MergeEditView.cpp
  Fix Patch Generate dialog's comboboxes to really change files
   WinMerge: PatchDlg.h PatchDlg.cpp
+ PATCH: [ 809320 ] Open files with external editor
+  WinMerge: DirActions.cpp DirView.h DirView.cpp MainFrm.h MainFrm.cpp
+   Merge.rc PropRegistry.h PropRegistry.cpp resource.h
+  Languages: *.rc resource.h
 
 2003-10-20 Laoran
  'Comparison Summary' not updated after saving (lost in plugin patch)
