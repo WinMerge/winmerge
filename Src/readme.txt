@@ -1,5 +1,6 @@
 2003-02-07
  Added 24 missing languages
+ Fixed duplicated strings in Italian rc.
 
 2003-02-05  Perry
  Updated Brazilian, Italian, Spanish resources to sync with English/main resources.
