@@ -364,6 +364,8 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 
 	// Read diff-status
 	m_diffWrapper.GetDiffStatus(&status);
+	if (bBinary) // believe caller if we were told these are binaries
+		status.bBinaries = TRUE;
 	m_nDiffs = m_diffs.GetSize();
 
 	// If comparing whitespaces and

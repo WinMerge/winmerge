@@ -4,6 +4,8 @@
   Src/editlib: crystaltextview.cpp cs2cs.cpp
  PATCH: [ 962460 ] Add codepage & locale info to config log
   Src: ConfigLog.cpp
+ PATCH: [ 962538 ] In Rescan, set status to binary if caller said so
+  Src: MergeDoc.cpp
 
 2004-05-30 Kimmo
  PATCH: [ 963019 ] keyboard shortcuts in replace dialog
