@@ -13,6 +13,14 @@
     <para>WinMerge 2.2 can be integrated into Windows Shell. Shell integration adds "Winmerge" menuitem to Windows Explorer's context menu for easy and fast comparing files and directories.</para>
   </sect2>
   <sect2>
+    <title>Selecting filter from commandline</title>
+    <para>New -f commandline switch allows selecting used filter.</para>
+  </sect2>
+  <sect2>
+    <title>Project files</title>
+    <para>WinMerge can read paths to open from project files. Project files are simple XML files storing one or two paths, possibly filter and subfolder iclusion too.</para>
+  </sect2>
+  <sect2>
     <title>Generating patches</title>
     <para>GNU/diffutils compatible patch files can be created from two files. Several formats and compare options are supported.</para>
   </sect2>
@@ -25,10 +33,10 @@
     <para>Many new features and improvements:</para>
     <itemizedlist>
       <listitem>
-        <para>More columns added (e.g. file attributes), shown columns can be selected and reordered.</para>
+        <para>More columns added (e.g. file sizes and attributes), shown columns can be selected and reordered.</para>
       </listitem>
       <listitem>
-        <para>Filtered items have now own category and icons. Filtered items can be set to hidden/visible from View-menu.</para>
+        <para>Filtered items have now own category (Skipped) and icons. Filtered items can be set to hidden/visible from View-menu.</para>
       </listitem>
       <listitem>
         <para>Floating statusbar during compare process, compare can be stopped and files/dirs compared so far are shown</para>
@@ -52,13 +60,13 @@
         <para>Fixed "Ignore blank lines" feature</para>
       </listitem>
       <listitem>
-        <para>Enchanged EOL handling (if feature enabled, documents can contain several EOL styles)</para>
+        <para>Enchanged EOL handling (Documents can contain different EOL styles)</para>
       </listitem>
       <listitem>
-        <para>Linenumber, column and line length shown in statusbar</para>
+        <para>Linenumber, current column and char, line length and char count shown in statusbar</para>
       </listitem>
       <listitem>
-        <para>One ot both files can be set read-only to prevent accidentally changing file</para>
+        <para>One ot both files can be set read-only to prevent accidentally changes</para>
       </listitem>
       <listitem>
         <para>Copy difference to left/right and advance to next makes merging faster</para>
@@ -67,7 +75,7 @@
         <para>Diff pane to show current difference in two vertical panes</para>
       </listitem>
       <listitem>
-        <para>Feature to highlight difference in lines</para>
+        <para>Highlight word differences in lines</para>
       </listitem>
       <listitem>
         <para>Merge-mode (or 1.7 mode) to navigate and merge differences easier and faster.</para>
@@ -76,10 +84,10 @@
         <para>Goto -dialog for moving fast to certain line or difference.</para>
       </listitem>
       <listitem>
-        <para>Location pane showing overall picture from files and allowing moving to difference by double-clicking.</para>
+        <para>Location pane showing overall picture from files and allowing moving to location by double-clicking.</para>
       </listitem>
       <listitem>
-        <para>Moved lines detection. Moved lines can be shown with different color in file area and location pane. Location pane can also show lines connecting moved lines.</para>
+        <para>Moved lines detection. Moved lines can be shown with different color in file area and location pane.</para>
       </listitem>
     </itemizedlist>
   </sect2>

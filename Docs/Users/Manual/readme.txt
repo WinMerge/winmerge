@@ -3,6 +3,8 @@
   Manual: Command_line.xml
  PATCH: [ 1006136 ] Clarify meaning of $ in filter and no partial/multiline
   Manual: Filters.xml
+ PATCH: [ 1006141 ] Update whatsnew for features added
+  Manual: Whatsnew_2_1.xml
 
 2004-07-07 Kimmo
  PATCH: [ 985272 ] Use 'manual' instead of 'guide'
