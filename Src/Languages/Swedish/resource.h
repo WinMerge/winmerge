@@ -531,6 +531,10 @@
 #define IDS_REGEXP_PREMATURE_END        18494
 #define IDS_REGEXP_TOO_BIG              18495
 #define IDS_REGEXP_UNMATCHED_RPAREN     18496
+#define IDS_VCS_NONE                    18497
+#define IDS_VCS_VSS4                    18498
+#define IDS_VCS_VSS5                    18499
+#define IDS_VCS_CLEARCASE               18500
 
 
 

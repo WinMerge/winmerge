@@ -1269,27 +1269,6 @@ IDB_EDIT_SELECTALL      BITMAP                  "res\\select_all.bmp"
 IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
 IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 
-/////////////////////////////////////////////////////////////////////////////
-//
-// Dialog Info
-//
-
-IDD_PROP_VSS DLGINIT
-BEGIN
-    IDC_VER_SYS, 0x403, 6, 0
-0x6e49, 0x6567, 0x006e,
-    IDC_VER_SYS, 0x403, 35, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
-0x6d28, 0x6e69, 0x7264, 0x2065, 0x6e65, 0x2064, 0x2e35, 0x2930, "\000"
-    IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
-0x3528, 0x302e, 0x6f20, 0x2067, 0x7473, 0x72f8, 0x6572, 0x0029,
-    IDC_VER_SYS, 0x403, 19, 0
-0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573,
-"\000"
-    0
-END
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1629,6 +1608,15 @@ BEGIN
     IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS arbetskalogen och läget på den aktuella filen matchar inte. Vill du fortsätta ändå?"
     IDS_VSS_NODATABASES     "Ingen VSS databas hittad!"
     IDS_VSS_ERRORFROM       "Fel från VSS:"
+END
+
+// VSS system
+STRINGTABLE
+BEGIN
+    IDS_VCS_NONE            "None"
+    IDS_VCS_VSS4            "Visual SourceSafe (less than 5.0)"
+    IDS_VCS_VSS5            "Visual SourceSafe (5.0 and above)"
+    IDS_VCS_CLEARCASE       "Rational ClearCase"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

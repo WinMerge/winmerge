@@ -57,6 +57,7 @@ void CPropVss::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BROWSE_BUTTON, m_ctlBrowse);
 	DDX_Text(pDX, IDC_PATH_EDIT, m_strPath);
 	DDX_CBIndex(pDX, IDC_VER_SYS, m_nVerSys);
+	DDX_Control(pDX, IDC_VER_SYS, m_ctlVerSys);
 	//}}AFX_DATA_MAP
 }
 
@@ -84,6 +85,8 @@ BOOL CPropVss::OnInitDialog()
 {
 	CPropertyPage::OnInitDialog();
 
+	LoadVssOptionStrings();
+
 	UpdateData(FALSE);
 	OnSelendokVerSys();
 
@@ -98,4 +101,23 @@ void CPropVss::OnSelendokVerSys()
 	m_ctlPath.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
 	m_ctlVssL1.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
 	m_ctlBrowse.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
+}
+
+/**
+ * Load strings for supported source code control
+ */
+void CPropVss::LoadVssOptionStrings()
+{
+	/*
+	Must be in order to agree with enum in MainFrm.h
+	VCS_NONE = 0,
+	VCS_VSS4,
+	VCS_VSS5,
+	VCS_CLEARCASE,
+	*/
+
+	m_ctlVerSys.AddString(LoadResString(IDS_VCS_NONE));
+	m_ctlVerSys.AddString(LoadResString(IDS_VCS_VSS4));
+	m_ctlVerSys.AddString(LoadResString(IDS_VCS_VSS5));
+	m_ctlVerSys.AddString(LoadResString(IDS_VCS_CLEARCASE));
 }

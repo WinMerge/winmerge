@@ -31,15 +31,18 @@ public:
 	CButton	m_ctlBrowse;
 	CString	m_strPath;
 	int		m_nVerSys;
+	CComboBox  m_ctlVerSys;
 	//}}AFX_DATA
 
 
+protected:
 // Overrides
 	// ClassWizard generate virtual function overrides
 	//{{AFX_VIRTUAL(CPropVss)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
+	void LoadVssOptionStrings();
 
 // Implementation
 protected:

@@ -1143,27 +1143,6 @@ IDB_EDIT_SELECTALL      BITMAP                  "res\\select_all.bmp"
 IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
 IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 
-/////////////////////////////////////////////////////////////////////////////
-//
-// Dialog Info
-//
-
-IDD_PROP_VSS DLGINIT
-BEGIN
-    1018, 0x403, 5, 0
-0x6f4e, 0x656e, "\000"
-    1018, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
-0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029,
-    1018, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
-0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029,
-    1018, 0x403, 19, 0
-0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573,
-"\000"
-    0
-END
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1503,6 +1482,15 @@ BEGIN
     IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
     IDS_VSS_NODATABASES     "No VSS database(s) found!"
     IDS_VSS_ERRORFROM       "Error from VSS:"
+END
+
+// VSS system
+STRINGTABLE
+BEGIN
+    IDS_VCS_NONE            "None"
+    IDS_VCS_VSS4            "Visual SourceSafe (less than 5.0)"
+    IDS_VCS_VSS5            "Visual SourceSafe (5.0 and above)"
+    IDS_VCS_CLEARCASE       "Rational ClearCase"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

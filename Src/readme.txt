@@ -1,3 +1,8 @@
+2005-02-23 Perry
+ PATCH: [ 1145016 ] i18n the version control strings
+  Src: Merge.rc PropVss.cpp PropVss.h resource.h
+  Languages: resource.h Merge*.rc
+
 2005-02-23 WinMerge experimental release 2.3.1.4 (cvs)
 
 2005-02-23 Kimmo
