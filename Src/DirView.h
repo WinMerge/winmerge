@@ -323,6 +323,7 @@ private:
 	void HeaderContextMenu(CPoint point, int i);
 	void ListContextMenu(CPoint point, int i);
 	void ReloadColumns();
+	void ResetColumnWidths();
 };
 
 
