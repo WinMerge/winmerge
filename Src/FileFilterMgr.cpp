@@ -59,7 +59,7 @@ FileFilterMgr::~FileFilterMgr()
 // Load 
 void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
 {
-	DeleteAllFilters();
+	// DeleteAllFilters();
 	CFileFind finder;
 	BOOL bWorking = finder.FindFile(szPattern);
 	int extlen = szExt ? _tcslen(szExt) : 0;

@@ -18,8 +18,14 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// Merge.cpp : Defines the class behaviors for the application.
-//
+/** 
+ * @file  Merge.cpp
+ *
+ * @brief Defines the class behaviors for the application.
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -250,7 +256,7 @@ BOOL CMergeApp::InitInstance()
 	return TRUE;
 }
 
-// Process commandline arguments
+/// Process commandline arguments
 void CMergeApp::ParseArgs(CStringArray & files, UINT & nFiles, BOOL & recurse, DWORD & dwLeftFlags, DWORD & dwRightFlags)
 {
 	for (int i = 1; i < __argc; i++)
@@ -269,7 +275,7 @@ void CMergeApp::ParseArgs(CStringArray & files, UINT & nFiles, BOOL & recurse, D
 			if (!_tcsicmp(pszParam, _T("e")))
 				m_bEscCloses = TRUE;
 
-			// -ur to not add left path to MEU
+			// -ul to not add left path to MRU
 			if (!_tcsicmp(pszParam, _T("ul")))
 				dwLeftFlags |= FFILEOPEN_NOMRU;
 
@@ -655,8 +661,10 @@ int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
 	return CWinApp::DoMessageBox(lpszPrompt, nType, nIDPrompt);
 }
 
-// Set flag so that application will broadcast notification at next
-// idle time (via WM_TIMER id=IDLE_TIMER)
+/** 
+ * @brief Set flag so that application will broadcast notification at next
+ * idle time (via WM_TIMER id=IDLE_TIMER)
+ */
 void CMergeApp::SetNeedIdleTimer()
 {
 	m_bNeedIdleTimer = TRUE; 
@@ -676,7 +684,7 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 	return FALSE;
 }
 
-// Load any known file filters
+/** @brief Load any known file filters */
 void CMergeApp::InitializeFileFilters()
 {
 	if (!m_fileFilterMgr)
@@ -684,9 +692,17 @@ void CMergeApp::InitializeFileFilters()
 
 	CString sPattern = GetModulePath() + _T("\\Filters\\*.flt");
 	m_fileFilterMgr->LoadFromDirectory(sPattern, _T(".flt"));
+
+	// Get Application data path in user profile directory
+	if (GetAppDataPath(sPattern))
+	{
+		// Load filters from subdir
+		sPattern += _T("\\WinMerge\\Filters\\*.flt");
+		m_fileFilterMgr->LoadFromDirectory(sPattern, _T(".flt"));
+	}
 }
 
-// fill list with names of known filters
+/** @brief fill list with names of known filters */
 void CMergeApp::GetFileFilterNameList(CStringList & filefilters, CString & selected) const
 {
 	if (!m_fileFilterMgr) return;
@@ -697,7 +713,7 @@ void CMergeApp::GetFileFilterNameList(CStringList & filefilters, CString & selec
 	selected = m_sFileFilterName;
 }
 
-// Store current filter (if filter manager validates the name)
+/** @brief Store current filter (if filter manager validates the name) */
 void CMergeApp::SetFileFilterName(LPCTSTR szFileFilterName)
 {
 	m_sFileFilterName = _T("<None>");
