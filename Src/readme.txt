@@ -1,3 +1,7 @@
+2003-10-28 Kimmo
+ PATCH: [ 830553 ] Finetune scroll to diff
+  WinMerge: MergeEditView.h MergeEditView.cpp
+
 2003-10-27 Laoran
  BUG: [ 830917 ] Rescan effects when validate changes in options
   WinMerge: MainFrm.cpp

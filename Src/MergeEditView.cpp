@@ -643,7 +643,7 @@ void CMergeEditView::OnFirstdiff()
 	if (pd->m_nDiffs > 0)
 	{
 		// scroll to the first line of the first diff, with some context thrown in
-		int line = pd->m_diffs[0].dbegin0-CONTEXT_LINES;
+		int line = pd->m_diffs[0].dbegin0 - CONTEXT_LINES_ABOVE;
 		if (line < 0)
 			line = 0;
 		ScrollToLine(line);
@@ -1137,14 +1137,14 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 
 		if (bScroll)
 		{
-			// If diff first line outside current view OR
-			// if diff last line outside current view OR
+			// If diff first line outside current view - context OR
+			// if diff last line outside current view - context OR
 			// if diff is bigger than screen
-			if ((ptStart.y < m_nTopLine) ||
-				(ptEnd.y >= m_nTopLine + GetScreenLines()) ||
+			if ((ptStart.y < m_nTopLine + CONTEXT_LINES_ABOVE) ||
+				(ptEnd.y >= m_nTopLine + GetScreenLines() - CONTEXT_LINES_BELOW) ||
 				(ptEnd.y - ptStart.y) >= GetScreenLines())
 			{
-				int line = ptStart.y - CONTEXT_LINES;
+				int line = ptStart.y - CONTEXT_LINES_ABOVE;
 				if (line < 0)
 					line = 0;
 				ScrollToLine(line);

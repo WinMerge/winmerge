@@ -36,7 +36,12 @@
 /** 
  * @brief Non-diff lines shown above diff when scrolling to it
  */
-static const UINT CONTEXT_LINES   = 5;
+const UINT CONTEXT_LINES_ABOVE = 5;
+
+/** 
+ * @brief Non-diff lines shown below diff when scrolling to it
+ */
+const UINT CONTEXT_LINES_BELOW = 3;
 
 
 #define FLAG_RESCAN_WAITS_FOR_IDLE   1
