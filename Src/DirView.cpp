@@ -108,6 +108,8 @@ void CDirView::OnInitialUpdate()
 	m_pList->InsertColumn(DV_NAME, _T("Filename"), LVCFMT_LEFT, 150);
 	m_pList->InsertColumn(DV_PATH, _T("Directory"), LVCFMT_LEFT, 200);
 	m_pList->InsertColumn(DV_STATUS, _T("Comparison result"), LVCFMT_LEFT, 250);
+	m_pList->InsertColumn(DV_LTIME, _T("Left Time"), LVCFMT_LEFT, 150);
+	m_pList->InsertColumn(DV_RTIME, _T("Right Time"), LVCFMT_LEFT, 150);
 
 	CBitmap bm;
 	VERIFY (m_imageList.Create (16, 16, ILC_MASK, 0, 1));
@@ -403,6 +405,12 @@ void CDirView::UpdateResources()
 	VERIFY(s.LoadString(IDS_RESULT_HEADER));
 	lvc.pszText = (LPTSTR)((LPCTSTR)s);
 	m_pList->SetColumn(DV_STATUS, &lvc);
+	VERIFY(s.LoadString(IDS_LTIME_HEADER));
+	lvc.pszText = (LPTSTR)((LPCTSTR)s);
+	m_pList->SetColumn(DV_LTIME, &lvc);
+	VERIFY(s.LoadString(IDS_RTIME_HEADER));
+	lvc.pszText = (LPTSTR)((LPCTSTR)s);
+	m_pList->SetColumn(DV_RTIME, &lvc);
 }
 
 BOOL CDirView::GetSelectedDirNames(CString& strLeft, CString& strRight)
@@ -440,6 +448,12 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 		break;
 	case DV_STATUS: // Diff Status.
 		retVal = rDi.code-lDi.code;
+		break;
+	case DV_LTIME: // Diff Status.
+		retVal = rDi.ltime-lDi.ltime;
+		break;
+	case DV_RTIME: // Diff Status.
+		retVal = lDi.rtime-rDi.rtime;
 		break;
 	}
 	// return compare result, considering sort direction

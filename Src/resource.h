@@ -63,6 +63,8 @@
 #define IDS_VSS_CMD                     168
 #define IDS_VSS_RUN_ERROR               169
 #define IDS_DIFF_OPEN_NO_SET_PROPS      170
+#define IDS_LTIME_HEADER                171
+#define IDS_RTIME_HEADER                172
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215

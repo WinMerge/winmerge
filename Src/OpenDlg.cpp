@@ -67,7 +67,7 @@ void COpenDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_CBStringExact(pDX, IDC_LEFT_COMBO, m_strLeft);
 	DDX_CBStringExact(pDX, IDC_RIGHT_COMBO, m_strRight);
 	DDX_Check(pDX, IDC_RECURS_CHECK, m_bRecurse);
-	DDX_CBString(pDX, IDC_EXT_COMBO, m_strExt);
+	DDX_CBStringExact(pDX, IDC_EXT_COMBO, m_strExt);
 	//}}AFX_DATA_MAP
 }
 

@@ -20,6 +20,7 @@ struct dirdata
 typedef struct tagDIFFITEM {
 	TCHAR filename[_MAX_FNAME+_MAX_EXT];
 	TCHAR lpath[MAX_PATH], rpath[MAX_PATH];
+	long ltime, rtime;
 	BYTE code;
 }DIFFITEM;
 
@@ -36,7 +37,7 @@ class CDiffContext
 {
 public:
 	void SetRegExp(LPCTSTR pszExp);
-	void AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszRightDir, BYTE code);
+	void AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszRightDir, long ltime, long rtime, BYTE code);
 	CDiffContext(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL);
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src);
 	virtual ~CDiffContext();

@@ -29,6 +29,8 @@
 #define DV_NAME   0
 #define DV_PATH   1
 #define DV_STATUS 2
+#define DV_LTIME 3
+#define DV_RTIME 4
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirView view

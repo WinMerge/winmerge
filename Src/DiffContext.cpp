@@ -68,12 +68,15 @@ CDiffContext::~CDiffContext()
 }
 	
 
-void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszRightDir, BYTE code)
+void CDiffContext::AddDiff(LPCTSTR pszFilename, LPCTSTR pszLeftDir, LPCTSTR pszRightDir, 
+						   long ltime, long rtime, BYTE code)
 {
 	DIFFITEM di;
 	strcpy(di.filename,pszFilename);
 	strcpy(di.lpath, pszLeftDir);
 	strcpy(di.rpath, pszRightDir);
+	di.ltime = ltime;
+	di.rtime = rtime;
 	di.code = code;
 	m_pList->AddTail(di);
 }

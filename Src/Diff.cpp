@@ -297,7 +297,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 			  code = FILE_RUNIQUE;
 		  name = name1;
 	  }
-	  pCtx->AddDiff(name, dir0, dir1, code);
+	  pCtx->AddDiff(name, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, code);
       if (gWriteLog) gLog.Write(_T("\tUnique\r\n"));
 	  if (free0)
 		  free (free0);
@@ -337,7 +337,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
       /* If either file should exist but does not, return 2.  */
 
       val = 2;
-      pCtx->AddDiff(name0, dir0, dir1, FILE_ERROR);
+      pCtx->AddDiff(name0, dir0, dir1, 0, 0, FILE_ERROR);
     }
 #if defined(__MSDOS__) || defined(__NT__) || defined(WIN32)
   else if (same_files = 0) /* yes, only ONE equal sign intended! hmo11apr93 */
@@ -354,7 +354,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	 We know they are identical without actually reading them.  */
 
       val = 0;
-      pCtx->AddDiff(name0, dir0, dir0, FILE_SAME);
+      pCtx->AddDiff(name0, dir0, dir0, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_SAME);
     }
 #endif /*__MSDOS__||__NT__*/
   else if (inf[0].dir_p & inf[1].dir_p)
@@ -419,7 +419,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 
 	  /* This is a difference.  */
 	  val = 1;
-	  pCtx->AddDiff(name0, dir0, dir1, FILE_DIFF);
+	  pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_DIFF);
 	}
     }
   else if ((no_details_flag & ~ignore_some_changes)
@@ -429,7 +429,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
     {
       message ("Files %s and %s differ\n", inf[0].name, inf[1].name);
       val = 1;
-      pCtx->AddDiff(name0, dir0, dir1, FILE_DIFF);
+      pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_DIFF);
     }
   else
     {
@@ -485,19 +485,19 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 
 		if(val==2)
 	    {
-			pCtx->AddDiff(name0, dir0, dir1, FILE_ERROR);
+			pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_ERROR);
 			if (gWriteLog) gLog.Write(_T("\t%s.\r\n"), val==2? "error":"different");
 	    }
 		else if (diff_flag)
 	    {
 			val = 1;
-			pCtx->AddDiff(name0, dir0, dir1, FILE_BINDIFF);
+			pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_BINDIFF);
 				if (gWriteLog) gLog.Write(_T("\tbinary.\r\n"));
 	    }
 	    else 
 	    {
 			val = 0;
-			//pCtx->AddDiff(name0, dir0, dir1, FILE_SAME);
+			//pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_SAME);
 			//	if (gWriteLog) gLog.Write(_T("\tidentical.\r\n"));
 	    }
 	}
@@ -531,7 +531,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	    }
 	    if (val==2 || val == 1)
 	    {
-		pCtx->AddDiff(name0, dir0, dir1, (BYTE)(val==2? FILE_ERROR:FILE_DIFF));
+		pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, (BYTE)(val==2? FILE_ERROR:FILE_DIFF));
 		if (gWriteLog) gLog.Write(_T("\t%s.\r\n"), val==2? "error":"different");
 	    }
 	}
@@ -545,7 +545,7 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
       if (print_file_same_flag)
 	message ("Files %s and %s are identical\n",
 		 inf[0].name, inf[1].name);
-      pCtx->AddDiff(name0, dir0, dir1, FILE_SAME);
+      pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_SAME);
       if (gWriteLog) gLog.Write(_T("\tidentical.\r\n"));
    }
   else
