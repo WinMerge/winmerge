@@ -811,42 +811,31 @@ static void AppendStringAdv(CString & str, int & curpos, LPCTSTR szadd)
   curpos += _tcslen(szadd);
 }
 
-void CCrystalTextView::
-ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
+int CCrystalTextView::
+ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nActualOffset)
 {
+  line.Empty();
   // Request whitespace characters for codepage ACP
   // because that is the codepage used by ExtTextOut
   const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP());
 
   if (nCount <= 0)
     {
-      line = _T("");
-      return;
+      return 0;
     }
 
   const int nTabSize = GetTabSize ();
-
-  // Calculate offset from begin of line
-  int nActualOffset = 0;
-  for (int i = 0; i < nOffset; i++)
-    {
-      if (pszChars[i] == _T ('\t'))
-        nActualOffset += (nTabSize - nActualOffset % nTabSize);
-      else
-        nActualOffset += GetCharWidthFromChar(pszChars[i]) / GetCharWidth();
-    }
 
   pszChars += nOffset;
   int nLength = nCount;
 
   int nTabCount = 0;
-  for (i = 0; i < nLength; i++)
+  for (int i = 0; i < nLength; i++)
     {
       if (pszChars[i] == _T('\t'))
         nTabCount++;
     }
 
-  line = _T("");
   // Preallocate line buffer, to avoid reallocations as we add characters
   line.GetBuffer(nLength + nTabCount * (nTabSize - 1) + 1); // at least this many characters
   line.ReleaseBuffer(0);
@@ -901,6 +890,7 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
         nCurPos += GetCharWidthFromChar(pszChars[i]) / GetCharWidth();
       }
     }
+  return nCurPos;
 }
 
 /**
@@ -956,13 +946,13 @@ int CCrystalTextView::GetCharWidthFromDisplayableChar(const ViewableWhitespaceCh
  */
 void CCrystalTextView::
 DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
-                    LPCTSTR pszChars, int nOffset, int nCount)
+                    int nColorIndex, COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset)
 {
   ASSERT (nCount >= 0);
   if (nCount > 0)
     {
       CString line;
-      ExpandChars (pszChars, nOffset, nCount, line);
+      nActualOffset += ExpandChars (pszChars, nOffset, nCount, line, nActualOffset);
       const int lineLen = line.GetLength();
       const int nCharWidth = GetCharWidth();
       int nSumWidth = 0;
@@ -1027,25 +1017,31 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               // same with some fonts and text is drawn only partially
               // if this table is not used.
               int* pnWidths = new int[nCount];
-              ASSERT(pnWidths);
-              
-              if (pnWidths)
+              for (  ; i < nCount + ibegin ; i++)
                 {
-                  for (  ; i < nCount + ibegin ; i++)
-                    {
-                      pnWidths[i-ibegin] = GetCharWidthFromChar(line[i]);
-                      nSumWidth += pnWidths[i-ibegin];
-                    }
+                  pnWidths[i-ibegin] = GetCharWidthFromChar(line[i]);
+                  nSumWidth += pnWidths[i-ibegin];
+                }
 
-                  // we are sure to have less than 4095 characters because all the chars are visible            
+              if (ptOrigin.x + nSumWidth > rcClip.left)
+                {
+                   if (crText == CLR_NONE)
+                     pdc->SetTextColor(GetColor(nColorIndex));
+                   else
+                     pdc->SetTextColor(crText);
+                   pdc->SetBkColor(crBkgnd);
+
+                   pdc->SelectObject(GetFont(GetItalic(nColorIndex),
+                       GetBold(nColorIndex)));
+                  // we are sure to have less than 4095 characters because all the chars are visible
                   VERIFY(pdc->ExtTextOut(ptOrigin.x, ptOrigin.y, ETO_CLIPPED,
                       &rcClip, LPCTSTR(line) + ibegin, nCount, pnWidths));
-            
-                  delete [] pnWidths;
-                
-                  // Update the final position after the visible characters	              
-                  ptOrigin.x += nSumWidth;
                 }
+
+              delete [] pnWidths;
+
+              // Update the final position after the visible characters	              
+              ptOrigin.x += nSumWidth;
 
             }
 
@@ -1059,7 +1055,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
 
 void CCrystalTextView::
 DrawLineHelper (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip, int nColorIndex,
-                LPCTSTR pszChars, int nOffset, int nCount, CPoint ptTextPos)
+                COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos)
 {
   if (nCount > 0)
     {
@@ -1098,24 +1094,23 @@ DrawLineHelper (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip, int nColorIn
           //  Draw part of the text before selection
           if (nSelBegin > 0)
             {
-              DrawLineHelperImpl (pdc, ptOrigin, rcClip, pszChars, nOffset, nSelBegin);
+              DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex, crText, crBkgnd, pszChars, nOffset, nSelBegin, nActualOffset);
             }
           if (nSelBegin < nSelEnd)
             {
-              COLORREF crOldBk = pdc->SetBkColor (GetColor (COLORINDEX_SELBKGND));
-              COLORREF crOldText = pdc->SetTextColor (GetColor (COLORINDEX_SELTEXT));
-              DrawLineHelperImpl (pdc, ptOrigin, rcClip, pszChars, nOffset + nSelBegin, nSelEnd - nSelBegin);
-              pdc->SetBkColor (crOldBk);
-              pdc->SetTextColor (crOldText);
+              DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex,
+                  GetColor (COLORINDEX_SELTEXT),
+                  GetColor (COLORINDEX_SELBKGND),
+                  pszChars, nOffset + nSelBegin, nSelEnd - nSelBegin, nActualOffset);
             }
           if (nSelEnd < nCount)
             {
-              DrawLineHelperImpl (pdc, ptOrigin, rcClip, pszChars, nOffset + nSelEnd, nCount - nSelEnd);
+              DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex, crText, crBkgnd, pszChars, nOffset + nSelEnd, nCount - nSelEnd, nActualOffset);
             }
         }
       else
         {
-          DrawLineHelperImpl (pdc, ptOrigin, rcClip, pszChars, nOffset, nCount);
+          DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex, crText, crBkgnd, pszChars, nOffset, nCount, nActualOffset);
         }
     }
 }
@@ -1256,7 +1251,7 @@ void CCrystalTextView::InvalidateLineCache( int nLineIndex1, int nLineIndex2 /*=
 void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &rcClip,
          TEXTBLOCK *pBuf, int nBlocks, int &nActualItem, 
          COLORREF crText, COLORREF crBkgnd, BOOL bDrawWhitespace,
-         LPCTSTR pszChars, int nOffset, int nCount, CPoint ptTextPos )
+         LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos )
 {
   CPoint	originalOrigin = ptOrigin;
   CRect		frect = rcClip;
@@ -1267,12 +1262,6 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
   frect.bottom = frect.top + nLineHeight;
 
   ASSERT( nActualItem < nBlocks );
-
-  if (crText == CLR_NONE)
-    pdc->SetTextColor(GetColor(pBuf[nActualItem].m_nColorIndex));
-  pdc->SelectObject(
-    GetFont(GetItalic(pBuf[nActualItem].m_nColorIndex), 
-    GetBold(pBuf[nActualItem].m_nColorIndex)));
 
   if( nBlocks > 0 && nActualItem < nBlocks - 1 && 
     pBuf[nActualItem + 1].m_nCharPos >= nOffset && 
@@ -1291,40 +1280,32 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
         pBuf[I + 1].m_nCharPos <= nOffset + nCount; I ++)
         {
           ASSERT(pBuf[I].m_nCharPos >= 0 && pBuf[I].m_nCharPos <= nLineLength);
-          if (crText == CLR_NONE)
-            pdc->SetTextColor(GetColor(pBuf[I].m_nColorIndex));
-
-          // GetFont() returns font in internal font table
-          pdc->SelectObject(GetFont(GetItalic(pBuf[I].m_nColorIndex),
-            GetBold(pBuf[I].m_nColorIndex)));
 
           int nOffsetToUse = (nOffset > pBuf[I].m_nCharPos) ?
              nOffset : pBuf[I].m_nCharPos;
-          DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[I].m_nColorIndex, pszChars,
+          DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[I].m_nColorIndex, crText, crBkgnd, pszChars,
               (nOffset > pBuf[I].m_nCharPos)? nOffset : pBuf[I].m_nCharPos, 
               pBuf[I + 1].m_nCharPos - nOffsetToUse,
-              CPoint( nOffsetToUse, ptTextPos.y ));
+              nActualOffset, CPoint( nOffsetToUse, ptTextPos.y ));
+          if (ptOrigin.x > rcClip.right)
+            break;
         }
 
       nActualItem = I;
 
       ASSERT(pBuf[nActualItem].m_nCharPos >= 0 &&
         pBuf[nActualItem].m_nCharPos <= nLineLength);
-      if (crText == CLR_NONE)
-        pdc->SetTextColor(GetColor(pBuf[nActualItem].m_nColorIndex));
 
-      pdc->SelectObject(GetFont(GetItalic(pBuf[nActualItem].m_nColorIndex),
-                GetBold(pBuf[nActualItem].m_nColorIndex)));
       DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex,
-              pszChars, pBuf[nActualItem].m_nCharPos,
+              crText, crBkgnd, pszChars, pBuf[nActualItem].m_nCharPos,
               nOffset + nCount - pBuf[nActualItem].m_nCharPos,
-              CPoint(pBuf[nActualItem].m_nCharPos, ptTextPos.y));
+              nActualOffset, CPoint(pBuf[nActualItem].m_nCharPos, ptTextPos.y));
     }
   else
     {
       DrawLineHelper(
               pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex, 
-              pszChars, nOffset, nCount, ptTextPos);
+              crText, crBkgnd, pszChars, nOffset, nCount, nActualOffset, ptTextPos);
     }
 
   // Draw space on the right of the text
@@ -1388,6 +1369,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
     { // Display EOL (end of line) characters too
       nLength = GetFullLineLength(nLineIndex);
     }
+
   //  Parse the line
   DWORD dwCookie = GetParseCookie (nLineIndex - 1);
   TEXTBLOCK *pBuf = new TEXTBLOCK[(nLength+1) * 3]; // be aware of nLength == 0
@@ -1403,7 +1385,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 
   //BEGIN SW
   int nActualItem = 0;
-
+  int nActualOffset = 0;
   // Wrap the line
   IntArray anBreaks(nLength);
   int	nBreaks = 0;
@@ -1461,7 +1443,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
         pdc, origin, rc,
         pBuf, nBlocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
-        pszChars, 0, anBreaks[0], CPoint( 0, nLineIndex ) );
+        pszChars, 0, anBreaks[0], nActualOffset, CPoint( 0, nLineIndex ) );
 
       // draw from first break to last break
       for( int i = 0; i < nBreaks - 1; i++ )
@@ -1472,7 +1454,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
             pBuf, nBlocks, nActualItem,
             crText, crBkgnd, bDrawWhitespace,
             pszChars, anBreaks[i], anBreaks[i + 1] - anBreaks[i],
-            CPoint( anBreaks[i], nLineIndex ) );
+            nActualOffset, CPoint( anBreaks[i], nLineIndex ) );
         }
 
       // draw from last break till end of line
@@ -1481,14 +1463,14 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
         pBuf, nBlocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
         pszChars, anBreaks[i], nLength - anBreaks[i],
-        CPoint( anBreaks[i], nLineIndex ) );
+        nActualOffset, CPoint( anBreaks[i], nLineIndex ) );
     }
   else
       DrawScreenLine(
         pdc, origin, rc,
         pBuf, nBlocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
-        pszChars, 0, nLength, CPoint(0, nLineIndex));
+        pszChars, 0, nLength, nActualOffset, CPoint(0, nLineIndex));
 
   //	Draw whitespaces to the left of the text
   //BEGIN SW
@@ -2320,7 +2302,7 @@ PrintLineHeight (CDC * pdc, int nLine)
 
   CString line;
   LPCTSTR pszChars = GetLineChars (nLine);
-  ExpandChars (pszChars, 0, nLength, line);
+  ExpandChars (pszChars, 0, nLength, line, 0);
   CRect rcPrintArea = m_rcPrintArea;
   pdc->DrawText (line, &rcPrintArea, DT_LEFT | DT_NOPREFIX | DT_TOP | DT_WORDBREAK | DT_CALCRECT);
   return rcPrintArea.Height ();
@@ -2519,7 +2501,7 @@ OnPrint (CDC * pdc, CPrintInfo * pInfo)
       rcPrintRect.top = y;
       LPCTSTR pszChars = GetLineChars (nLine);
       CString line;
-      ExpandChars (pszChars, 0, nLineLength, line);
+      ExpandChars (pszChars, 0, nLineLength, line, 0);
       y += pdc->DrawText (line, &rcPrintRect, DT_LEFT | DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
     }
 }

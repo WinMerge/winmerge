@@ -162,12 +162,12 @@ protected:
     void PrepareSelBounds ();
 
     //  Helper functions
-    void ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line);
+    int ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nActualOffset);
 
     int ApproxActualOffset (int nLineIndex, int nOffset);
     void AdjustTextPoint (CPoint & point);
     void DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
-                             LPCTSTR pszChars, int nOffset, int nCount);
+                             int nColorIndex, COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset);
     BOOL IsInsideSelBlock (CPoint ptTextPos);
 
     BOOL m_bBookmarkExist;        // More bookmarks
@@ -432,7 +432,7 @@ protected:
     virtual BOOL GetBold (int nColorIndex);
 
     void DrawLineHelper (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip, int nColorIndex,
-                         LPCTSTR pszChars, int nOffset, int nCount, CPoint ptTextPos);
+                         COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos);
     virtual void DrawSingleLine (CDC * pdc, const CRect & rect, int nLineIndex);
     virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex);
 
@@ -535,7 +535,7 @@ protected:
 		TEXTBLOCK *pBuf, int nBlocks, int &nActualItem,
 		COLORREF crText, COLORREF crBkgnd, BOOL bDrawWhitespace,
 		LPCTSTR pszChars,
-		int nOffset, int nCount, CPoint ptTextPos );
+		int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos );
 	//END SW
 
 

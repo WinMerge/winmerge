@@ -1,3 +1,7 @@
+2004-11-09 Jochen
+ PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+
 2004-11-09 Perry
  PATCH: [ 1050329 ] readme-developers-InnoSetup.html
   Docs/Developers: readme-developers-InnoSetup.html
