@@ -56,11 +56,20 @@
 ; #  We need to determine if our application can cooperate with WinCVS and if so how
 ; #  We need to unregister the ShellExtension Dll if the user doesn't want it, during installation
 ; #  When Explorer.exe is restarted we should record what windows were present before hand and restore them afterwards.
-; #  Automatically integrate with Syn Text Editor if the user has it installed
+; #  Use Syn Text Editor as our external editor if the user has it installed
+; #  Use Aedix as our external editor if the user has it installed
+; #  WinMerge requires an SHWLAPI.dll (which is IE 5 or better right?)
+; #  RCLLocalizationHelper.dll and UnpackDFM.dll both require ADVAPI32.dll, we'll have to bundle IE or at least display a warning :).
+; #  Add the Windows Scripting Host if the user chooses the plugins (*.SCT)
+; #  Add Delphi 4 Detection for UnpackDFM.dll, making it both selected and visible
+; #  Make the Integrate with TortoiseCVS grey rather than invisible if the user doesn't have it installed
+; #  Make RCLLocalizationHelper.dll a non-default separate option from the rest of the plugins
+; #  Figure out advapi.dll and shlwapi.dll dependencies
 ; #  Only display TortoiseCVS option if the user has it installed
 
 #define AppVersion GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe"), 1, 5)
+
 
 [Setup]
 AppName=WinMerge
@@ -107,14 +116,15 @@ SetupIconFile=..\src\res\Merge.ico
 ;Please note while Compression=lzma/ultra and InternalCompressLevel=Ultra are better than max
 ;they also require 320 MB RAM for compression, if you're system has more than than in RAM then by all
 ;means set it to ultra before compilation
-Compression=none
-InternalCompressLevel=fast
-SolidCompression=false
+Compression=LZMA/Ultra
+InternalCompressLevel=Ultra
+SolidCompression=True
 
 ;Causes the installer to force the date of compilation on all the files in the installation destination folder.  This is a wonderful diagnostic for the
 ;installer itself. It also provides end-users assurance that the files contained in the application were updated properly.
 TouchDate=current
 TouchTime=current
+
 
 [Messages]
 FinishedLabel=Setup has finished installing [Name] on your computer.
@@ -123,7 +133,7 @@ SetupAppTitle=Setup - WinMerge {#AppVersion}
 
 [Tasks]
 Name: ShellExtension; Description: &Enable Explorer context menu integration; GroupDescription: Optional Features:
-Name: TortoiseCVS; Description: Integrate with &TortoiseCVS; GroupDescription: Optional Features:
+Name: TortoiseCVS; Description: Integrate with &TortoiseCVS; GroupDescription: Optional Features:; Check: TortoiseCVSInstalled
 Name: desktopicon; Description: Create a &Desktop Icon; GroupDescription: Additional Icons:; Flags: unchecked
 Name: quicklaunchicon; Description: Create a &Quick Launch Icon; GroupDescription: Additional Icons:
 Name: CustomFolderIcon; Description: "Use a &Custom Icon for ""{app}"""; GroupDescription: Additional Icons:
@@ -153,7 +163,7 @@ Name: Brazilian_Language; Description: Portuguese (Brazilian) menus and dialogs;
 Name: Russian_Language; Description: Russian menus and dialogs; Flags: disablenouninstallwarning
 Name: Slovak_Language; Description: Slovak menus and dialogs; Flags: disablenouninstallwarning
 Name: Spanish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning
-Name: Swedish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning
+Name: Swedish_Language; Description: Swedish menus and dialogs; Flags: disablenouninstallwarning
 
 [InstallDelete]
 ;Experimental Versions 2.1.5.10 - WinMerge.2.1.5.13 shipped with the default behavior of creating a folder by the same name
@@ -305,11 +315,16 @@ Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall touch; 
 Source: Installer Helper.exe; DestDir: {app}; Flags: touch
 
 ; begin VC system files
+Source: Runtimes\Atla.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 4, 0
+Source: Runtimes\Atlu.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 0, 4
 Source: Runtimes\mfc42.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile
 Source: Runtimes\mfc42u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 0, 4
 Source: Runtimes\msvcrt.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile
 Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile
 ; end VC system files
+
+;Installs PSAPI.dll on Windows NT 4.0 only!
+Source: Runtimes\PSAPi.dll; DestDir: {sys}; Flags: restartreplace sharedfile; MinVersion: 0, 4; OnlyBelowVersion: 0, 4;
 
 Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; Flags: regserver touch; BeforeInstall: ShellExtension(/I); Tasks: ShellExtension
 Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; BeforeInstall: ShellExtension(/U); Flags: touch; Check: TaskDisabled(ShellExtension)
@@ -342,7 +357,7 @@ Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Flags: touch; Com
 Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}; Flags: touch; Components: Russian_Language
 Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Flags: touch; Components: Slovak_Language
 Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Flags: touch; Components: Spanish_Language
-Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Flags: touch; Components: Spanish_Language
+Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Flags: touch; Components: Swedish_Language
 
 
 Source: ..\Docs\Users\Guide\*.*; DestDir: {app}\Docs\User's Guide\; Flags: sortfilesbyextension touch; Components: docs;
@@ -456,11 +471,13 @@ Type: files; Name: {app}\WinMerge.url
 Type: files; Name: {app}\Desktop.ini; Tasks: CustomFolderIcon
 Type: dirifempty; Name: {app}
 
+
 [UninstallRun]
 ;Restarts and deletes the shellextension file so we don't have to restart
 Filename: {app}\Installer Helper.exe; Parameters: /U; StatusMsg: Removing ShellExtension.dll
 
 Filename: {sys}\Attrib.exe; Parameters: """{app}"" -S"; Flags: runhidden; Tasks: CustomFolderIcon
+
 
 [Code]
 Var
@@ -927,19 +944,81 @@ var
     intReturn_Code: integer;
     strShellExt_Path: string;
 Begin
-    {Debug}
-    msgbox('ShellExtension(' + strCommand + ')', mbInformation, mb_OK)
+
+    If FileExists(ExpandConstant('{sys}\Atl.dll')) = True Then
+        Begin
     
-    strShellExt_Path := ExpandConstant('{app}\ShellExtension.dll');
+            {Debug}
+            msgbox('ShellExtension(' + strCommand + ')', mbInformation, mb_OK)
     
-    If FileExists(strShellExt_Path) = True Then
-        UnRegisterServer(strShellExt_Path, True);
+            strShellExt_Path := ExpandConstant('{app}\ShellExtension.dll');
     
-    If strCommand = '/I' Then
-        InstExec(ExpandConstant('{app}\Installer Helper.exe'), '/I', '', True, False, 0, intReturn_Code)
-    Else
-        InstExec(ExpandConstant('{app}\Installer Helper.exe'), '/U', '', True, False, 0, intReturn_Code)
+
+    
+            If FileExists(strShellExt_Path) = True Then
+                UnRegisterServer(strShellExt_Path, True);
+    
+            If strCommand = '/I' Then
+                InstExec(ExpandConstant('{app}\Installer Helper.exe'), '/I', '', True, False, 0, intReturn_Code)
+            Else
+                InstExec(ExpandConstant('{app}\Installer Helper.exe'), '/U', '', True, False, 0, intReturn_Code);
+       end
+    else
+        msgbox('Atl.dll doesn''t yet exist on the clients desktop and therefore the system must be restarted anyhow so we''ll skip launching Installer Helper.exe', mbINformation, mb_OK);
 end;
+
+
+Function TortoiseCVSInstalled(): boolean;
+Begin
+    Result := RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\TortoiseCVS\CustomIcons');
+End;
+
+Function OldGroup(): string;
+Begin
+    {Stores where in \All Users\Programs\ our start menu used to be located}
+     RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\WinMerge_is1', 'Inno Setup: Icon Group', Result)
+
+     {If the there actually was a previous start menu location then...}
+     If Result <> '' Then
+        {Sets the resulting path equal to the location of the \All Users\Programs\
+        and specifically where WinMerge was as a subdirectory of that location}
+        Result := ExpandConstant('{commonprograms}')  + '\' + Result;
+End;
+
+Procedure DeletePreviousStartMenu();
+Var
+        strOld: string;
+        strNew: string;
+Begin
+    strOld := UpperCase(OldGroup());
+    strNew := UpperCase(ExpandConstant('{group}'));
+
+    If strOld = strNew Then
+        {Debug}
+        msgbox('The old and new start menu intall locations haven''t changed: ' + strOld + '.', mbInformation, mb_OK)
+    else
+        Begin
+            If strOld = '' Then
+                {Debug}
+                msgbox('There is no previous known start menu for WinMerge.', mbInformation, mb_OK)
+            Else
+                Begin
+                    {Debug}
+                    msgbox('The old and new start menu locations are different' + #13 + #13 + '[strOld]=' + strOld + #13 + '[strNew]=' + strNew, mbInformation, mb_OK)
+                    RemoveDir(strOld)
+                end;
+        end;
+End;
+
+Procedure CurPageChanged(CurPage: integer);
+Begin
+    If CurPage = wpInstalling Then
+        DeletePreviousStartMenu;
+End;
+
+
+
+
 
 [_ISTool]
 OutputExeFilename=D:\Programming\Visual C++\WinMerge\WinMerge\InnoSetup\Output\WinMerge 2.1.5.15.exe
