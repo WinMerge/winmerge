@@ -297,7 +297,9 @@ protected:
 	afx_msg void OnUpdateSelectAll(CCmdUI* pCmdUI);
 	afx_msg void OnPluginPredifferMode(UINT nID);
 	afx_msg void OnUpdatePluginPredifferMode(CCmdUI* pCmdUI);
-	afx_msg void OnCopyPathnames();
+	afx_msg void OnCopyLeftPathnames();
+	afx_msg void OnCopyRightPathnames();
+	afx_msg void OnCopyBothPathnames();
 	afx_msg void OnCopyFilenames();
 	afx_msg void OnCtxtDirMoveLeftTo();
 	afx_msg void OnUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);

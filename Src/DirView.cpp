@@ -157,7 +157,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_SELECT_ALL, OnUpdateSelectAll)
 	ON_COMMAND_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnPluginPredifferMode)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnUpdatePluginPredifferMode)
-	ON_COMMAND(ID_DIR_COPY_PATHNAMES, OnCopyPathnames)
+	ON_COMMAND(ID_DIR_COPY_PATHNAMES_LEFT, OnCopyLeftPathnames)
+	ON_COMMAND(ID_DIR_COPY_PATHNAMES_RIGHT, OnCopyRightPathnames)
+	ON_COMMAND(ID_DIR_COPY_PATHNAMES_BOTH, OnCopyBothPathnames)
 	ON_COMMAND(ID_DIR_COPY_FILENAMES, OnCopyFilenames)
 	ON_COMMAND(ID_DIR_MOVE_LEFT_TO_BROWSE, OnCtxtDirMoveLeftTo)
 	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_LEFT_TO_BROWSE, OnUpdateCtxtDirMoveLeftTo)
@@ -481,12 +483,12 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	int nDeletableOnBoth = 0;
 	int nOpenableOnLeft = 0;
 	int nOpenableOnRight = 0;
+	int nOpenableOnBoth = 0;
 	int nOpenableOnLeftWith = 0;
 	int nOpenableOnRightWith = 0;
 	int nDiffItems = 0;
 	int nPredifferYes = 0;
 	int nPredifferNo = 0;
-	int nBothZipItems = 0;
 	int i = -1;
 	while ((i = m_pList->GetNextItem(i, LVNI_SELECTED)) != -1)
 	{
@@ -518,7 +520,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		if (IsItemNavigableDiff(di))
 			++nDiffItems;
 		if (IsItemOpenableOnLeft(di) || IsItemOpenableOnRight(di))
-			++nBothZipItems;
+			++nOpenableOnBoth;
 		++nTotal;
 
 		// note the prediffer flag for 'files present on both sides and not skipped'
@@ -537,9 +539,13 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		}
 	}
 
+	FormatContextMenu(pPopup, ID_DIR_COPY_PATHNAMES_LEFT, nOpenableOnLeft, nTotal);
+	FormatContextMenu(pPopup, ID_DIR_COPY_PATHNAMES_RIGHT, nOpenableOnRight, nTotal);
+	FormatContextMenu(pPopup, ID_DIR_COPY_PATHNAMES_BOTH, nOpenableOnBoth, nTotal);
+
 	FormatContextMenu(pPopup, ID_DIR_ZIP_LEFT, nOpenableOnLeft, nTotal);
 	FormatContextMenu(pPopup, ID_DIR_ZIP_RIGHT, nOpenableOnRight, nTotal);
-	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH, nBothZipItems, nTotal);
+	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH, nOpenableOnBoth, nTotal);
 	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH_DIFFS_ONLY, nDiffItems, nTotal);
 
 	CheckContextMenu(pPopup, ID_PREDIFF_AUTO, (nPredifferYes > 0));
@@ -2297,9 +2303,57 @@ void CDirView::RefreshOptions()
 }
 
 /**
- * @brief Copy selected item paths (containing filenames) to clipboard.
+ * @brief Copy selected item left side paths (containing filenames) to clipboard.
  */
-void CDirView::OnCopyPathnames()
+void CDirView::OnCopyLeftPathnames()
+{
+	CDiffContext *pCtx = GetDiffContext();
+	CString strPaths;
+	int sel = -1;
+
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (!di.isSideRight())
+		{
+			strPaths += di. getLeftFilepath(pCtx);
+			strPaths += _T("\\");
+			if (!di.isDirectory())
+				strPaths += di.sfilename;
+			strPaths += _T("\n");
+		}
+	}
+	PutToClipboard(strPaths, mf->GetSafeHwnd());
+}
+
+/**
+ * @brief Copy selected item right side paths (containing filenames) to clipboard.
+ */
+void CDirView::OnCopyRightPathnames()
+{
+	CDiffContext *pCtx = GetDiffContext();
+	CString strPaths;
+	int sel = -1;
+
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (!di.isSideLeft())
+		{
+			strPaths += di. getRightFilepath(pCtx);
+			strPaths += _T("\\");
+			if (!di.isDirectory())
+				strPaths += di.sfilename;
+			strPaths += _T("\n");
+		}
+	}
+	PutToClipboard(strPaths, mf->GetSafeHwnd());
+}
+
+/**
+ * @brief Copy selected item both side paths (containing filenames) to clipboard.
+ */
+void CDirView::OnCopyBothPathnames()
 {
 	CDiffContext *pCtx = GetDiffContext();
 	CString strPaths;

@@ -275,7 +275,12 @@ BEGIN
             MENUITEM "&med...",                    ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "Kop&iera Sökvägar",               ID_DIR_COPY_PATHNAMES
+        POPUP "Kop&iera Sökvägar"
+        BEGIN
+            MENUITEM "&Vänster (%1 of %2)",         ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "&Höger (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "&Båda (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+        END
         MENUITEM "Kopiera &Filnamn",                ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Zip"
@@ -1661,8 +1666,10 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Öppna den högra filen med en extern editor"
     ID_DIR_OPEN_RIGHT_WITH  "Öppna den högra filen med ..."
     IDS_CANNOT_EXECUTE_FILE "Kan inte starta %1"
-    ID_DIR_COPY_PATHNAMES   "Kopiera sökvägar till klippbordet"
     ID_DIR_COPY_FILENAMES   "Kopiera filnamn till klippbordet"
+    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
 END
 
 // DIRECTORY DIFFING : 7ZIP

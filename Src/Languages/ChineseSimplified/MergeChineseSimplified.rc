@@ -275,7 +275,12 @@ BEGIN
             MENUITEM "&with...",                    ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "Cop&y Pathnames",                 ID_DIR_COPY_PATHNAMES
+        POPUP "Cop&y Pathnames"
+        BEGIN
+            MENUITEM "&Left (%1 of %2)",            ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "&Right (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "&Both (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+        END
         MENUITEM "Copy &Filenames",                 ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Zip"
@@ -1535,8 +1540,10 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
     ID_DIR_OPEN_RIGHT_WITH  "打开右边文件以..."
     IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"
-    ID_DIR_COPY_PATHNAMES   "Copy pathnames to clipboard"
     ID_DIR_COPY_FILENAMES   "Copy filenames to clipboard"
+    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
 END
 
 // DIRECTORY DIFFING : 7ZIP

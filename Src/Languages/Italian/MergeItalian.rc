@@ -276,7 +276,12 @@ BEGIN
             MENUITEM "&con...",                    ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "Cop&ia percorsi",             ID_DIR_COPY_PATHNAMES
+        POPUP "Cop&ia percorsi"
+        BEGIN
+            MENUITEM "&Sinistra (%1 of %2)",        ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "&Destra (%1 of %2)",          ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "&Entrambi (%1 of %2)",        ID_DIR_COPY_PATHNAMES_BOTH
+        END
         MENUITEM "Copia nomi dei &file",        ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Zippa"
@@ -1663,8 +1668,10 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Apre il file di destra con l'editor esterno"
     ID_DIR_OPEN_RIGHT_WITH  "Apre file di destra con..."
     IDS_CANNOT_EXECUTE_FILE "Impossibile eseguire %1"
-    ID_DIR_COPY_PATHNAMES   "Copia i percorsi negli appunti"
     ID_DIR_COPY_FILENAMES   "Copia i nomi dei file negli appunti"
+    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
 END
 
 // DIRECTORY DIFFING : 7ZIP

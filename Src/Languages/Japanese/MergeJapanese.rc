@@ -277,7 +277,12 @@ BEGIN
             MENUITEM "プログラムの選択(&W)...",     ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "パス名をコピー(&Y)",              ID_DIR_COPY_PATHNAMES
+        POPUP "パス名をコピー(&Y)"
+        BEGIN
+            MENUITEM "&Left (%1 of %2)",            ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "&Right (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "&Both (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+        END
         MENUITEM "ファイル名をコピー(&F)",          ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "圧縮(&Z)"
@@ -1552,8 +1557,10 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "外部エディタで右のファイルを開きます"
     ID_DIR_OPEN_RIGHT_WITH  "右のファイルを選択したアプリケーションで開きます..."
     IDS_CANNOT_EXECUTE_FILE "%1を実行できません"
-    ID_DIR_COPY_PATHNAMES   "クリップボードにパス名をコピー"
     ID_DIR_COPY_FILENAMES   "クリップボードにファイル名をコピー"
+    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
 END
 
 // DIRECTORY DIFFING : 7ZIP

@@ -283,7 +283,12 @@ BEGIN
             MENUITEM "&Mit...",                     ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "Kopiere &Pfade",                  ID_DIR_COPY_PATHNAMES
+        POPUP "Kopiere &Pfade"
+        BEGIN
+            MENUITEM "&Left (%1 of %2)",            ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "&Right (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "&Both (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+        END
         MENUITEM "Kopiere &Dateinamen",             ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Zip"
@@ -1668,8 +1673,10 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Öffnet die rechte Datei im externen Editor."
     ID_DIR_OPEN_RIGHT_WITH  "Öffne rechte Datei mit..."
     IDS_CANNOT_EXECUTE_FILE "%1 konnte nicht ausgeführt werden."
-    ID_DIR_COPY_PATHNAMES   "Kopiere Pfade in die Zwischenablage"
     ID_DIR_COPY_FILENAMES   "Kopiere Dateinamen in die Zwischenablage"
+    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
 END
 
 // DIRECTORY DIFFING : 7ZIP

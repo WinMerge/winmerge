@@ -1,3 +1,8 @@
+2004-09-14 Kimmo
+ PATCH: [ 1027118 ] Separate items for Copy Path in dircompare context menu
+  Src: DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2004-09-13 Kimmo
  PATCH: [ 1026894 ] More space for translations in Goto-dialog
   Src: Merge.rc

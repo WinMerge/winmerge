@@ -276,7 +276,12 @@ BEGIN
             MENUITEM "&amb...",                     ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "C&opia els camins",               ID_DIR_COPY_PATHNAMES
+        POPUP "C&opia els camins"
+        BEGIN
+            MENUITEM "L'&esquerra (%1 de %2)",      ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "La &dreta (%1 de %2)",        ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "&Ambdós costats (%1 de %2)",  ID_DIR_COPY_PATHNAMES_BOTH
+        END
         MENUITEM "Co&pia els noms",                 ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Co&mprimeix"
@@ -1565,8 +1570,10 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Obre el fitxer de la dreta a un editor extern"
     ID_DIR_OPEN_RIGHT_WITH  "Obre el fitxer de la dreta amb..."
     IDS_CANNOT_EXECUTE_FILE "No es pot executar el %1"
-    ID_DIR_COPY_PATHNAMES   "Copia els camins dels fitxers al Porta-retalls"
     ID_DIR_COPY_FILENAMES   "Copia els nomes dels fitxers al Porta-retalls"
+    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
 END
 
 // DIRECTORY DIFFING : 7ZIP
