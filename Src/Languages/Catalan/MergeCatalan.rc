@@ -941,7 +941,7 @@ END
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Save modified files?"
+CAPTION "Voleu desar els fitxers modificats?"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     GROUPBOX        "Fitxer del costat esquerre",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
@@ -963,13 +963,13 @@ BEGIN
 END
 
 IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Pàgina de codis"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Detecta la informació de pàgina de codis per a fitxers:\n.html i .rc\nCal reiniciar la sessió",
-                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | 
+                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX |
                     BS_MULTILINE | WS_TABSTOP,13,74,220,22
     CONTROL         "Pàgina de codis del sistema",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
@@ -1545,9 +1545,9 @@ BEGIN
     ID_DIR_ZIP_RIGHT        "Afegeix els elements del costat dret a l'arxiu"
     ID_DIR_ZIP_BOTH         "Afegeix els elements d'ambdós costats a l'arxiu"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Afegeix els elements diferents a l'arxiu (d'ambdós costats)"
-    ID_DIR_MOVE_LEFT_TO_BROWSE 
+    ID_DIR_MOVE_LEFT_TO_BROWSE
                             "Mou els fitxers seleccionats de l'esquerra al directori especificat"
-    ID_DIR_MOVE_RIGHT_TO_BROWSE 
+    ID_DIR_MOVE_RIGHT_TO_BROWSE
                             "Mou els fitxers seleccionats de la dreta al directori especificat"
 END
 
