@@ -930,7 +930,7 @@ int CCrystalTextView::GetCharWidthFromString(LPCTSTR lpsz)
     n += GetCharWidthUnicodeChar(*p);
   return n;
 #else
-  return strlen(lpsz);
+  return strlen(lpsz) * GetCharWidth();
 #endif
 }
 

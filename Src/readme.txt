@@ -1,3 +1,7 @@
+2004-10-19 Perry
+ PATCH: [ 1049688 ] Fix caret handling of displayable whitespace
+ Src/editlib: ccrystaltextview.cpp
+
 2004-10-18 Kimmo
  PATCH: [ 1048838 ] German translation updated for RC
   Submitted by Tim Gerundt
@@ -7,7 +11,7 @@
  PATCH: [ 1048412 ] Log font info in configuration
   Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp
  PATCH: [ 1036683 ] unicoder.cpp always use GetACP codepage
-  Src\Common: unicoder.cpp
+  Src/Common: unicoder.cpp
 
 2004-10-17 Perry
  PATCH: [ 1048405 ] Delete old, commented out line in ConfigLog.cpp
