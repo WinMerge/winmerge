@@ -9,6 +9,8 @@
   Languages: *.rc resource.h
 
 2003-10-20 Laoran
+ Changing unidiff.cpp for DiffThread.cpp as doxygen example
+  WinMerge: readme-developers.html 
  'Comparison Summary' not updated after saving (lost in plugin patch)
   WinMerge: MergeDoc.cpp
  Format for (eol type) must set the asterisk (sign for modified file)
