@@ -3,6 +3,9 @@
   WinMerge: MergeEditView.cpp
  PATCH: [ 762533 ] Stdafx.h has dublicated and unneeded includes
    WinMerge: StdAfx.h
+ PATCH: [ 762271 ] Alter ListCopy to copy eol chars
+   WinMerge: MergeDoc.cpp MergeDoc.h
+   editlib: ccrystaltextbuffer.h ccrystaltextbuffer.cpp
 
 2003-06-29 Kimmo
  PATCH: [ 762749 ] Forced rescan after options changed

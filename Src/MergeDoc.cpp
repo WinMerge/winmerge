@@ -710,8 +710,9 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 			sbuf.SetLineFlag(i, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
 			dbuf.SetLineFlag(i, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
 			// text exists on left side, so just replace
-			sbuf.GetLine(i, strLine);
-			dbuf.ReplaceLine(i, strLine);
+			strLine = _T("");
+			sbuf.GetFullLine(i, strLine);
+			dbuf.ReplaceFullLine(i, strLine);
 			dbuf.FlushUndoGroup(curView);
 			dbuf.BeginUndoGroup(TRUE);
 		}
@@ -1284,10 +1285,35 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	return bSuccess;
 }
 
+// Replace text of line (no change to eol)
 void CMergeDoc::CDiffTextBuffer::ReplaceLine(int nLine, const CString &strText)
 {
 	if (GetLineLength(nLine)>0)
 		DeleteText(NULL, nLine, 0, nLine, GetLineLength(nLine));
+	int endl,endc;
+	InsertText(NULL, nLine, 0, strText, endl,endc);
+}
+// return pointer to the eol chars of this string, or pointer to empty string if none
+LPCTSTR getEol(const CString &str)
+{
+	if (str.GetLength()>1 && str[str.GetLength()-2]=='\r' && str[str.GetLength()-1]=='\n')
+		return (LPCTSTR)str + str.GetLength()-2;
+	if (str.GetLength()>0 && (str[str.GetLength()-1]=='\r' || str[str.GetLength()-1]=='\n'))
+		return (LPCTSTR)str + str.GetLength()-1;
+	return _T("");
+}
+
+// Replace line (removing any eol, and only including one if in strText)
+void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(int nLine, const CString &strText)
+{
+	if (GetLineEol(nLine) == getEol(strText))
+	{
+		// (optimization) eols are the same, so just replace text inside line
+		ReplaceLine(nLine, strText);
+		return;
+	}
+	if (GetFullLineLength(nLine))
+		DeleteText(NULL, nLine, 0, nLine+1, 0); 
 	int endl,endc;
 	InsertText(NULL, nLine, 0, strText, endl,endc);
 }

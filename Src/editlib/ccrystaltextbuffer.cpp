@@ -674,6 +674,7 @@ GetLineCount ()
   return m_aLines.GetSize ();
 }
 
+// number of characters in line (excluding any trailing eol characters)
 int CCrystalTextBuffer::
 GetLineLength (int nLine)
 {
@@ -683,6 +684,7 @@ GetLineLength (int nLine)
   return m_aLines[nLine].m_nLength;
 }
 
+// number of characters in line (including any trailing eol characters)
 int CCrystalTextBuffer::
 GetFullLineLength (int nLine)
 {
@@ -690,6 +692,17 @@ GetFullLineLength (int nLine)
   //  You must call InitNew() or LoadFromFile() first!
 
   return m_aLines[nLine].m_nLength + m_aLines[nLine].m_nEolChars;
+}
+
+// get pointer to any trailing eol characters (pointer to empty string if none)
+LPCTSTR CCrystalTextBuffer::
+GetLineEol (int nLine)
+{
+  ASSERT (m_bInit);             //  Text buffer not yet initialized.
+  if (m_aLines[nLine].m_nEolChars)
+    return &m_aLines[nLine].m_pcLine[m_aLines[nLine].Length()];
+  else
+    return _T("");
 }
 
 LPTSTR CCrystalTextBuffer::
@@ -1433,13 +1446,17 @@ BOOL CCrystalTextBuffer::
 InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
             int &nEndLine, int &nEndChar, int nAction, BOOL bUpdate /*=TRUE*/)
 {
-  // Are we inserting into a ghost line not at the end of the file, without EOL ?
-  if (nLine < GetLineCount() && !GetFullLineLength(nLine) && !HasEol(pszText))
+  // Are we inserting into a ghost line without EOL ?
+  if (!GetFullLineLength(nLine) && !HasEol(pszText))
     {
-      // terminate line with default EOL
-      CString str = pszText;
-      str += GetDefaultEol();
-      return InsertText(pSource, nLine, nPos, str, nEndLine, nEndChar, nAction, bUpdate);
+      // Is there any text after this line ?
+      if (m_RealityBlocks.GetSize() && m_RealityBlocks[m_RealityBlocks.GetUpperBound()].nStartApparent > nLine)
+        {
+          // terminate line with default EOL
+          CString str = pszText;
+          str += GetDefaultEol();
+          return InsertText(pSource, nLine, nPos, str, nEndLine, nEndChar, nAction, bUpdate);
+        }
     }
 
   int nRealStart = ComputeRealLine(nLine);

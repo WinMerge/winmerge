@@ -84,8 +84,10 @@ private :
 		int DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength);
 		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
 public :
-	      bool curUndoGroup();
-	      void ReplaceLine(int nLine, const CString& strText);
+		bool curUndoGroup();
+		void ReplaceLine(int nLine, const CString& strText);
+		void ReplaceFullLine(int nLine, const CString& strText);
+
 		UINT GetTextWithoutEmptys(int nStartLine, int nStartChar, int nEndLine, int nEndChar, 
 				CString &text, BOOL bLeft, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
 		BOOL LoadFromFile(LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
@@ -93,11 +95,12 @@ public :
 				int nCrlfStyle = CRLF_STYLE_AUTOMATIC, 
 											 BOOL bClearModifiedFlag = TRUE );
 
-        CDiffTextBuffer (CMergeDoc * pDoc, BOOL bLeft)
-        {
-          m_pOwnerDoc = pDoc;
-		  m_bIsLeft=bLeft;
-        }
+		CDiffTextBuffer (CMergeDoc * pDoc, BOOL bLeft)
+		{
+			m_pOwnerDoc = pDoc;
+			m_bIsLeft=bLeft;
+		}
+		// If line has text (excluding eol), set strLine to text (excluding eol)
 		BOOL GetLine( int nLineIndex, CString &strLine ) 
 		{ 
 			int nLineLength = CCrystalTextBuffer::GetLineLength 
@@ -116,12 +119,20 @@ public :
 			} 
 			return TRUE; 
 		} 
+		// if line has any text (including eol), set strLine to text (including eol)
+		BOOL GetFullLine(int nLineIndex, CString &strLine)
+		{
+			if (!GetFullLineLength(nLineIndex))
+				return FALSE;
+			strLine = GetLineChars(nLineIndex);
+			return TRUE;
+		}
 
-        virtual void SetModified (BOOL bModified = TRUE)
-        {
-          CCrystalTextBuffer::SetModified (bModified);
-          m_pOwnerDoc->SetModifiedFlag (bModified);
-        }
+		virtual void SetModified (BOOL bModified = TRUE)
+		{
+			CCrystalTextBuffer::SetModified (bModified);
+			m_pOwnerDoc->SetModifiedFlag (bModified);
+		}
 		void InsertLine (LPCTSTR pszLine, int nLength = -1, int nPosition = -1)
 		{
 			CCrystalTextBuffer::InsertLine(pszLine, nLength, nPosition);

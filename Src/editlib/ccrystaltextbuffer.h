@@ -300,6 +300,7 @@ public :
     int GetLineCount ();
     int GetLineLength (int nLine);
     int GetFullLineLength (int nLine); // including EOLs
+    LPCTSTR GetLineEol (int nLine);
     LPTSTR GetLineChars (int nLine);
     DWORD GetLineFlags (int nLine);
     int GetLineWithFlag (DWORD dwFlag);
