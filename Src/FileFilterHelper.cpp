@@ -251,6 +251,7 @@ CString FileFilterHelper::ParseExtensions(CString extensions)
 			bFilterAdded = TRUE;
 			strPattern += _T(".*\\.");
 			strPattern += token.Mid(2);
+			strPattern += _T("$");
 		}
 		else
 			bFilterAdded = FALSE;
