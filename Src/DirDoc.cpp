@@ -473,6 +473,11 @@ void CDirDoc::MergeDocClosing(CMergeDoc * pMergeDoc)
 	POSITION pos = m_MergeDocs.Find(pMergeDoc);
 	ASSERT(pos);
 	m_MergeDocs.RemoveAt(pos);
+
+	// If dir compare is empty (no compare results) when we close
+	// file compare close also dir compare
+	if (m_pCtxt == NULL)
+		AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 }
 
 /**

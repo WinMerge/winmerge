@@ -1,3 +1,7 @@
+2004-08-27 Kimmo
+ PATCH: [ 1017294 ] When closing file compare close also empty directory compare
+  Src: DirDoc.cpp
+
 2004-08-26 Kimmo
  BUG: [ 1016056 ] Panes don't remember settings when new file is opened
   Src: ChildFrm.cpp
