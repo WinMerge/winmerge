@@ -2,7 +2,7 @@
  *  @file   unicoder.cpp
  *  @author Perry Rapp, Creator, 2003-2004
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-10-16 (Perry Rapp)
+ *  @date   Edited:  2004-10-31 (Perry Rapp)
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
@@ -308,7 +308,6 @@ int to_utf8_advance(UINT u, unsigned char * &lpd)
  */
 CString maketchar(UINT unich, bool & lossy)
 {
-	static bool vercheck=false;
 	static UINT codepage = CP_ACP;
 	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
 
@@ -378,7 +377,6 @@ CString maketchar(UINT unich, bool & lossy, UINT codepage)
 UINT
 byteToUnicode (unsigned char ch)
 {
-	static bool vercheck=false;
 	static UINT codepage = CP_ACP;
 	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
 

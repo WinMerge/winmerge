@@ -1,3 +1,7 @@
+2004-10-31 Perry
+ PATCH: [ 1036683 ] unicoder.cpp always use GetACP codepage (remove dead variable)
+  Src/Common: unicoder.cpp
+
 2004-10-30 Perry
  PATCH: [ 1055624 ] The finished hungarian language file
   (translation credit in versioninfo)
