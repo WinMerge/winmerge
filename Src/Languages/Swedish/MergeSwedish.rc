@@ -314,7 +314,7 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "G&oto Diff"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "G&å till skillnad"                   ID_LOCBAR_GOTODIFF
         MENUITEM "&Gå till...",                 ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Inga Flyttade Block",            ID_DISPLAY_MOVED_NONE
@@ -486,10 +486,10 @@ BEGIN
     CONTROL         "Verifiera Automatiskt sökvägar i Öppna-dialogen",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,143,10
-    CONTROL         "Use codepage info (html,rc) for Load/Save - need to restart session",
+    CONTROL         "Använd codepage info (html,rc) för att Öppna/Spara - behöver återstarta sessionen",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,67,240,10
-    PUSHBUTTON      "Återställ",IDC_RESET_ALL_MESSAGE_BOXES,167,87,49,13,NOT
+    PUSHBUTTON      "Återstarta",IDC_RESET_ALL_MESSAGE_BOXES,167,87,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Tryck på knappen för att återställa alla meddelanderutor",IDC_STATIC,7,
                     89,157,8
@@ -631,7 +631,7 @@ BEGIN
     CONTROL         "Dif",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Moved:",IDC_STATIC,7,89,90,8
+    RTEXT           "Flyttad:",IDC_STATIC,7,89,90,8
     CONTROL         "Dif",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -641,7 +641,7 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Moved:",IDC_STATIC,7,109,90,8
+    RTEXT           "Markerad flyttad:",IDC_STATIC,7,109,90,8
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -1464,9 +1464,9 @@ END
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
 STRINGTABLE
 BEGIN
-    IDS_LINE_STATUS_INFO_EOL "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "Rad: %s  Kolumn: %d/%d  Tecken: %d/%d  Radslut: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Rad: %s"
-    IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
+    IDS_LINE_STATUS_INFO    "Rad: %s  Kolumn: %d/%d  Tecken: %d/%d"
     IDS_MERGEMODE_MERGING   "Merge mode"
     IDS_DIFF_NUMBER_STATUS_FMT "Skillnad %1 av %2"
     IDS_NO_DIFF_SEL_FMT     "%1 skillnader funna"
@@ -1494,7 +1494,7 @@ BEGIN
     IDS_BINFILES_IDENTICAL   "%1\n%2\n\när identiska binära filer."
     IDS_BINFILES_DIFFERENT   "%1\n%2\n\när olika binära filer."
     IDS_OTHER_IS_BINARY      "%1\n\när en binär fil. Kan inte jämföra binära och textfiler."
-    IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
+    IDS_ERROR_FILEOPEN       "Kan inte öppna fil\n%1\n\n%2"
 END
 
 // SAVING FILE
@@ -1517,12 +1517,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_NOPROJECT           "Du måste ange sökvägen till ett SourceSafe-projekt för att fortsätta (t.ex.:  $/MittProjekt)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSS_CHECKOUT_STATUS "Checkout filer från VSS..."
     IDS_VSSERROR            "Versionshanteringssystemet returnerade ett fel under försöket att checka ut filen. Det går inte att fortsätta..."
     IDS_VSS_RUN_ERROR       "Fel vid utförande av kommando för versionshanteringssystem."
     IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS arbetskalogen och läget på den aktuella filen matchar inte. Vill du fortsätta ändå?"
-    IDS_VSS_NODATABASES     "No VSS database(s) found!"
-    IDS_VSS_ERRORFROM       "Error from VSS:"
+    IDS_VSS_NODATABASES     "Ingen VSS databas hittad!"
+    IDS_VSS_ERRORFROM       "Fel från VSS:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
@@ -1696,7 +1696,7 @@ BEGIN
     IDS_SUGGEST_IGNOREEOL   "Filerna har olika EOL typer.\nMed de aktuella inställningarna , kommer alla rader att vara olika.\nVill du ignorera EOL skillnader för dessa filer ?\n\nAvancerad användare : om EOL inte är lika i dina filer,\n kan du hellre ställa in inställningen '%1'."
     IDS_SUGGEST_PRESERVEEOL "EOL är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika EOL ?"
     IDS_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
-    IDS_SUGGEST_IGNORECODEPAGE "Left and right files don't have the same codepage. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWe suggest to forget the codepage information. Do you agree ?"
+    IDS_SUGGEST_IGNORECODEPAGE "Vänster och höger fil har inte samma codepage. \nAtt visa varje fil i dess egen codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer codepage informationen. Önskar du detta ?"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -1927,34 +1927,34 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEDIFF         "Markera skillnader på aktuell rad\nSkillnader på Aktuell Rad (F4)"
-    ID_EDIT_WMGOTO          "Gå till rad eller skillnad\nGå till (Ctrl+G)"
-    ID_OPTIONS              "Ändra programinställningar\nEgenskaper"
-    ID_REFRESH              "Uppdatera innehållet\nUppdatera (F5)"
+    ID_SHOWLINEDIFF         "Markerar skillnader på aktuell rad\nSkillnader på Aktuell Rad (F4)"
+    ID_EDIT_WMGOTO          "Går till rad eller skillnad\nGå till (Ctrl+G)"
+    ID_OPTIONS              "Ändrar programinställningar\nEgenskaper"
+    ID_REFRESH              "Uppdaterar innehållet\nUppdatera (F5)"
 END
 
 // VIEW MENU (FILE TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Visa filer som är identiska"
-    ID_OPTIONS_SHOWDIFFERENT "Visa filer som har skillnader"
+    ID_OPTIONS_SHOWIDENTICAL "Visar filer som är identiska"
+    ID_OPTIONS_SHOWDIFFERENT "Visar filer som har skillnader"
     ID_OPTIONS_SHOWUNIQUELEFT "Visar filer som bara finns på vänster sida"
     ID_OPTIONS_SHOWUNIQUERIGHT "Visar filer som bara finns på höger sida"
-    ID_OPTIONS_SHOWBINARIES "Visa binära filer"
-    ID_OPTIONS_SHOWSKIPPED  "Visa överhoppade filer"
+    ID_OPTIONS_SHOWBINARIES "Visar binära filer"
+    ID_OPTIONS_SHOWSKIPPED  "Visar överhoppade filer"
     ID_HIDE_BACKUP_FILES    "Gömmer filer med filtyp BAK"
 END
 
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Välj teckensnitt för fönstren\nVälj teckensnitt"
-    ID_VIEW_USEDEFAULTFONT  "Välj standardteckensnitt för fönstren\nVälj standardteckensnitt"
-    ID_VIEW_WHITESPACE      "Visa ett tecken för mellanslag"
-    ID_VIEW_DETAIL_BAR      "Visa eller göm skillnadsfältet\nVäxla skillnadsfältet"
+    ID_VIEW_SELECTFONT      "Väljer teckensnitt för fönstren\nVälj teckensnitt"
+    ID_VIEW_USEDEFAULTFONT  "Väljer standardteckensnitt för fönstren\nVälj standardteckensnitt"
+    ID_VIEW_WHITESPACE      "Visar ett tecken för mellanslag"
+    ID_VIEW_DETAIL_BAR      "Visar eller gömmer skillnadsfältet\nVäxla skillnadsfältet"
     ID_VIEW_LOCATION_BAR    "Skillnadsbilden visar en övergripande bild av filerna"
-    ID_VIEW_DIR_STATEPANE   "Visa jämför katalogs statuspanel"
-    ID_VIEW_LANGUAGE        "Välj språk för användargränssnittet\nSpråk"
+    ID_VIEW_DIR_STATEPANE   "Visar jämför katalogs Statuspanel"
+    ID_VIEW_LANGUAGE        "Väljer språk för användargränssnittet\nSpråk"
 END
 
 // MERGE MENU
@@ -1971,8 +1971,8 @@ BEGIN
     ID_R2LNEXT              "Kopierar skillnad till vänster och går fram till nästa\nKopiera vänster och gå framåt (Ctrl Alt Left)"
     ID_ALL_RIGHT            "Kopierar alla skillnader till den högra filen\nKopiera allt till höger"
     ID_ALL_LEFT             "Kopierar alla skillnader till den vänstra filen\nKopiera allt till vänster"
-    ID_MULTIPLE_RIGHT       "Kopiera skillnader från den valda texten i den vänstra filen till den högra filen"
-    ID_MULTIPLE_LEFT        "Kopiera skillnader från den valda texten i den högra filen till den vänstra filen"
+    ID_MULTIPLE_RIGHT       "Kopierar skillnader från den valda texten i den vänstra filen till den högra filen"
+    ID_MULTIPLE_LEFT        "Kopierar skillnader från den valda texten i den högra filen till den vänstra filen"
 END
 
 // TOOLS MENU
@@ -2004,9 +2004,9 @@ END
 // HELP MENU
 STRINGTABLE
 BEGIN
-    ID_HELP_CONTENTS        "Visa hjälpen för WinMerge\nHjälp"
-    ID_HELP_GETCONFIG       "Spara aktuell WinMerge versionsinfo och konfiguration till en textfil"
-    ID_HELP_GNULICENSE      "Visa GNU General Public License"
+    ID_HELP_CONTENTS        "Visar hjälpen för WinMerge\nHjälp"
+    ID_HELP_GETCONFIG       "Sparar aktuell WinMerge Versionsinfo och Konfiguration till en textfil"
+    ID_HELP_GNULICENSE      "Visar GNU General Public License"
     IDS_PRIVATEBUILD_FMT    "Privat Build: %1"
 END
 
@@ -2028,9 +2028,9 @@ BEGIN
     ID_DISPLAY_MOVED_NONE   "Visa inte flyttade block"
     ID_DISPLAY_MOVED_ALL    "Visa alla flyttade block"
     ID_DISPLAY_MOVED_FOLLOW_DIFF "Visa flyttade block bara från aktuell skillnad"
-    ID_LOCBAR_GOTODIFF      "Go to diff under cursor"
-    ID_LOCBAR_GOTODIFF_FMT  "G&oto Diff %1 of %2"
-    ID_LOCBAR_GOTOLINE_FMT  "G&oto Line %1"
+    ID_LOCBAR_GOTODIFF      "Gå till skillnad under cursor"
+    ID_LOCBAR_GOTODIFF_FMT  "G&å till skillnad %1 av %2"
+    ID_LOCBAR_GOTOLINE_FMT  "G&å till rad %1"
 END
 
 // END STRINGS SYNCHRO

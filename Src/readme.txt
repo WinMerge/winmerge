@@ -1,3 +1,8 @@
+2004-06-28 Laoran
+ PATCH: [ 981290 ] Updated Swedish MergeSwedish.rc file
+ Submitted by Hans Eriksson 
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2004-06-28 Kimmo
  PATCH: [ 980851 ] Don't save VSS password
   Src: MainFrm.cpp
