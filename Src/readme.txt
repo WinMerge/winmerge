@@ -1,3 +1,7 @@
+2003-11-11 Laoran
+ PATCH: [ 839970 ] Moving from LoadFromFile to OpenDocs all view functions
+  WinMerge: MergeDoc.cpp
+
 2003-11-11 Kimmo
  PATCH: [ 838545 ] Fix osversion stuff in ConfigLog.cpp
   Submitted by Perry

@@ -1235,16 +1235,11 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 		m_nUndoBufSize = 1024; // crystaltextbuffer.cpp - UNDO_BUF_SIZE;
 		m_nSyncPosition = m_nUndoPosition = 0;
 		ASSERT(m_aUndoBuf.GetSize() == 0);
+		m_ptLastChange.x = m_ptLastChange.y = -1;
 		
 		FinishLoading();
 		// flags don't need initialization because 0 is the default value
 
-		// This is needed: Syntax hilighting does not work when
-		// automatically scroll to first diff is enabled
-		RetypeViews(pszFileName);
-
-		UpdateViews(NULL, NULL, UPDATE_RESET);
-		m_ptLastChange.x = m_ptLastChange.y = -1;
 		nRetVal = FRESULT_OK;
 
 		// stash original encoding away
@@ -2468,20 +2463,15 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	if (nRescanResult == RESCAN_OK ||
 		nRescanResult == RESCAN_IDENTICAL)
 	{
+		// prepare the four views
 		CMergeEditView * pLeft = GetLeftView();
 		CMergeEditView * pRight = GetRightView();
 		CMergeDiffDetailView * pLeftDetail = GetLeftDetailView();
 		CMergeDiffDetailView * pRightDetail = GetRightDetailView();
 		
-		// scroll to first diff
-		if(mf->m_bScrollToFirst && m_diffs.GetSize() != 0)
-			pLeft->SelectDiff(0, TRUE, FALSE);
-
-		// Enable/disable automatic rescan (rescanning after edit)
-		pLeft->EnableRescan(mf->m_bAutomaticRescan);
-		pRight->EnableRescan(mf->m_bAutomaticRescan);
-
 		// set the document types
+		// Warning : it is the first thing to do (must be done before UpdateView,
+		// or any function that calls UpdateView, like SelectDiff)
 		CString sext;
 		SplitFilename(sLeftFile, 0, 0, &sext);
 		pLeft->SetTextType(sext);
@@ -2489,6 +2479,14 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		SplitFilename(sRightFile, 0, 0, &sext);
 		pRight->SetTextType(sext);
 		pRightDetail->SetTextType(sext);
+
+		// scroll to first diff
+		if(mf->m_bScrollToFirst && m_diffs.GetSize() != 0)
+			pLeft->SelectDiff(0, TRUE, FALSE);
+
+		// Enable/disable automatic rescan (rescanning after edit)
+		pLeft->EnableRescan(mf->m_bAutomaticRescan);
+		pRight->EnableRescan(mf->m_bAutomaticRescan);
 
 		// SetTextType will revert to language dependent defaults for tab
 		pLeft->SetTabSize(mf->m_nTabSize);
