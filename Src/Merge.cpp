@@ -355,7 +355,12 @@ BOOL CMergeApp::PreTranslateMessage(MSG* pMsg)
 			return FALSE;
 		}
 		else
+		{
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+			// Clear pointers that is now invalid 
+			((CMainFrame*)m_pMainWnd)->m_pLeft = NULL;
+			((CMainFrame*)m_pMainWnd)->m_pRight = NULL;
+		}
 	}
 
 	// CG: The following lines were added by the Splash Screen component.

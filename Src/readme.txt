@@ -1,3 +1,7 @@
+2003-03-11 Christian
+ PATCH: [ 700872 ] Esc to close crashes WinMerge
+  WinMerge: Merge.cpp
+
 2003-03-09 Kimmo
  PATCH: [ 699839 ] Add same binaries to dir compare status
   WinMerge: MainFrm.h MainFrm.cpp
