@@ -61,10 +61,11 @@ CDiffContext * CDiffThread::SetContext(CDiffContext * pCtx)
 /**
  * @brief Start directory compare thread
  */
-UINT CDiffThread::CompareDirectories(CString dir1, CString dir2)
+UINT CDiffThread::CompareDirectories(CString dir1, CString dir2, BOOL bRecursive)
 {
 	diffParam.path1 = dir1;
 	diffParam.path2 = dir2;
+	diffParam.bRecursive = bRecursive;
 	diffParam.context = m_pDiffContext;
 	diffParam.msgUIUpdate = m_msgUpdateUI;
 	diffParam.hWindow = m_hWnd;
@@ -101,6 +102,7 @@ UINT CDiffThread::GetThreadState()
 
 /**
  * @brief Directory compare thread function
+ *
  * Calls diffutils's compare_files() and after compare is ready
  * sends message to UI so UI can update itself.
  */
@@ -111,7 +113,7 @@ UINT DiffThread(LPVOID lpParam)
 	UINT msgID = myStruct->msgUIUpdate;
 
 	bool casesensitive = false;
-	int depth = -1;
+	int depth = myStruct->bRecursive ? -1 : 0;
 	CString subdir; // blank to start at roots specified in diff context
 	DirScan(subdir, myStruct->context, casesensitive, depth);
 	

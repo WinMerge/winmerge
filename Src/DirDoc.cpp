@@ -41,8 +41,6 @@
 #include "paths.h"
 #include "WaitStatusCursor.h"
 
-extern int recursive;
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -62,6 +60,7 @@ CDirDoc::CDirDoc()
 	m_pCtxt=NULL;
 	m_bReuseMergeDocs = TRUE;
 	m_pFilter = NULL;
+	m_bRecursive = FALSE;
 }
 
 CDirDoc::~CDirDoc()
@@ -241,7 +240,7 @@ void CDirDoc::Rescan()
 	m_diffThread.SetHwnd(m_pDirView->GetSafeHwnd());
 	m_diffThread.SetMessageIDs(MSG_UI_UPDATE, MSG_STAT_UPDATE);
 	m_diffThread.CompareDirectories(m_pCtxt->m_strNormalizedLeft,
-		m_pCtxt->m_strNormalizedRight);
+			m_pCtxt->m_strNormalizedRight, m_bRecursive);
 
 	gLog.Write(_T("Directory scan complete\r\n"));
 
@@ -630,4 +629,12 @@ BOOL CDirDoc::GetReadOnly(BOOL bLeft) const
 		return m_bROLeft;
 	else
 		return m_bRORight;
+}
+
+/**
+ * @brief Enable/disable recursive directory compare
+ */
+void CDirDoc::SetRecursive(BOOL bRecursive)
+{
+	m_bRecursive = bRecursive;
 }

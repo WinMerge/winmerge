@@ -1,3 +1,7 @@
+2003-09-07 Kimmo
+ PATCH: [ 800420 ] Fix recursive compare and cleanup recursive usage
+  WinMerge: DiffThread.h DiffThread.cpp DirDoc.h DirDoc.cpp MainFrm.cpp
+
 2003-09-06 Perry
  PATCH: [ 795082 ] Display Private Build version in about box
  WinMerge: Merge.cpp Merge.rc resource.h

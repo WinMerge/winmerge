@@ -79,6 +79,7 @@ public:
 
 // Implementation
 public:
+	void SetRecursive(BOOL bRecursive);
 	BOOL GetReadOnly(BOOL bLeft) const;
 	void SetReadOnly(BOOL bLeft, BOOL bReadOnly);
 	void ReadSettings();
@@ -122,6 +123,7 @@ private:
 	BOOL m_bReuseMergeDocs; // policy to reuse existing merge docs
 	BOOL m_bROLeft;
 	BOOL m_bRORight;
+	BOOL m_bRecursive;
 };
 
 /// callback for file/directory filtering during diff

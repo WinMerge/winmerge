@@ -63,7 +63,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-extern int recursive;
 CMainFrame *mf = NULL;
 CLogFile gLog(_T("WinMerge.log"), NULL, TRUE);
 
@@ -932,8 +931,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	// open the diff
 	if (pathsType == IS_EXISTING_DIR)
 	{
-		recursive = bRecurse;
-
 		if (pDirDoc)
 		{
 			CDiffContext *pCtxt = new CDiffContext(strLeft, strRight);
@@ -941,6 +938,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			{
 				pDirDoc->SetReadOnly(TRUE, FALSE);
 				pDirDoc->SetReadOnly(FALSE, FALSE);
+				pDirDoc->SetRecursive(bRecurse);
 				pDirDoc->SetDiffContext(pCtxt);
 				pCtxt->SetRegExp(strExt);
 				pDirDoc->Rescan();
@@ -954,7 +952,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	}
 	else
 	{
-		recursive = FALSE;
 		ShowMergeDoc(pDirDoc, strLeft, strRight);
 	}
 	return TRUE;

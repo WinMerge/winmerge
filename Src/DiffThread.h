@@ -49,6 +49,7 @@ struct DiffFuncStruct
 	UINT msgStatusUpdate;
 	HWND hWindow;
 	UINT nThreadState;
+	BOOL bRecursive;
 };
 
 /**
@@ -61,7 +62,7 @@ public:
 	CDiffThread();
 	~CDiffThread();
 	CDiffContext * SetContext(CDiffContext * pCtx);
-	UINT CompareDirectories(CString dir1, CString dir2);
+	UINT CompareDirectories(CString dir1, CString dir2,	BOOL bRecursive);
 	void SetHwnd(HWND hWnd);
 	void SetMessageIDs(UINT updateMsg, UINT statusMsg);
 	UINT GetThreadState();
