@@ -437,6 +437,8 @@ ToDoDeleteThisValidateColumnOrdering();
 
 	if (dlg.m_bReset)
 		ResetColumnWidths();
+	else
+		SaveColumnWidths(); // save current widths to registry
 
 	// Reset our data to reflect the new data from the dialog
 	const CDirColsDlg::ColumnArray & cols = dlg.GetColumns();

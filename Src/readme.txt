@@ -1,3 +1,8 @@
+2004-04-26 Kimmo
+ BUG: [ 940709 ] Dircompare column widths saved only when WinMerge closed
+  Fix from Perry
+  Src: DirViewColHandler.cpp
+
 2004-04-26 Perry
  PATCH: [ 941986 ] Remove blank lines in popup dirview menu in Merge.rc
   Src: Merge.rc
