@@ -2,6 +2,8 @@
  PATCH: [ 1013715 ] Catalan translation update
   Submitted by Jordi Vilar
   Src/Languages/Catalan: MergeCatalan.rc
+ Check path length in VSS integration
+  Src: VSSHelper.cpp
 
 2004-08-20 Kimmo
  PATCH: [ 1012291 ] Open Find-dialog for F3 if no previous find

@@ -34,6 +34,9 @@ CString VSSHelper::GetProjectBase()
 
 void VSSHelper::SetProjectBase(CString strPath)
 {
+	if (strPath.GetLength() < 2)
+		return;
+
 	m_strVssProjectBase = strPath;
 	m_strVssProjectBase.Replace('/', '\\');
 
