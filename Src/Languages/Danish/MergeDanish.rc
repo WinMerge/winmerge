@@ -1,0 +1,912 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Danish resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DAN)
+#ifdef _WIN32
+LANGUAGE LANG_DANISH, SUBLANG_DEFAULT
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DAN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_DANISH, SUBLANG_DEFAULT\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Merge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Merge.ico"
+IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_POPUP_DIFFVIEW MENU DISCARDABLE 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Kopier til den anden side",   ID_POPUP_COPYTOOTHERSIDE
+        MENUITEM "Kopier fra den anden side",   ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM SEPARATOR
+        MENUITEM "Kopier alle forskelle til den anden side...", 
+                                                ID_POPUP_COPYALLDIFFSTOOTHERSIDE
+
+        MENUITEM "Kopier alle forskelle fra den anden side...", 
+                                                ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
+
+        MENUITEM SEPARATOR
+        MENUITEM "Fortryd",                     ID_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Gem ændringer...",            ID_POPUP_SAVE
+    END
+END
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&Filer"
+    BEGIN
+        MENUITEM "&Åben...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Gem\tCtrl+S",                ID_FILE_SAVE
+        MENUITEM SEPARATOR
+        MENUITEM "&Luk\tEsc",                   ID_APP_EXIT
+    END
+    POPUP "&Rediger"
+    BEGIN
+        MENUITEM "&Fortryd\tCtrl+Z",            ID_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "&Næste forskel\tAlt+Ned",     ID_NEXTDIFF
+        MENUITEM "F&orrige forskel\tAlt+Op",    ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "F&ørste forskel\tAlt+Home",   ID_FIRSTDIFF
+        MENUITEM "&Aktuelle forskel\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Sidste forskel\tAlt+End",    ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Kopier til &højre\tAlt+Højre", ID_L2R
+        MENUITEM "Kopier til &venstre\tAlt+Venstre", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Kopier alt &til højre",       ID_ALL_RIGHT
+        MENUITEM "Kopier alt til ve&nstre",     ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "&Egenskaber...",              ID_PROPERTIES
+    END
+    POPUP "&Vis"
+    BEGIN
+        MENUITEM "Vis &identiske filer",        ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Vis &forskellige filer",      ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Vis &venstre unikke filer",   ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Vis &højre unikke filer",     ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Vis &binære filer",           ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Gem *.&BAK filer",            ID_HIDE_BACKUP_FILES
+        MENUITEM SEPARATOR
+        MENUITEM "Vælg &skrifttype...",         ID_VIEW_SELECTFONT
+        MENUITEM "Brug standard s&krifttype",   ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Vis mellemrum",              ID_VIEW_WHITESPACE
+        MENUITEM SEPARATOR
+        MENUITEM "&Værktøjslinje",              ID_VIEW_TOOLBAR
+        MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "S&prog...",                   ID_VIEW_LANGUAGE
+    END
+    POPUP "&Vindue"
+    BEGIN
+        MENUITEM "Luk",                         ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Horisontale vinduer",        ID_WINDOW_TILE_HORZ
+        MENUITEM "&Vertikale vinduer",          ID_WINDOW_TILE_VERT
+        MENUITEM "&Kaskade",                    ID_WINDOW_CASCADE
+    END
+    POPUP "&Hjælp"
+    BEGIN
+        MENUITEM "&Indhold...",                 ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "GNU General Public License...", ID_HELP_GNULICENSE
+        MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_DIRVIEW MENU DISCARDABLE 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Kopier fil til venstre",      ID_DIR_COPY_FILE_TO_LEFT
+        MENUITEM "Kopier fil til højre",        ID_DIR_COPY_FILE_TO_RIGHT
+        MENUITEM "Slet venstre fil",            ID_DIR_DEL_LEFT
+        MENUITEM "Slet højre fil",              ID_DIR_DEL_RIGHT
+        MENUITEM "Slet begge filer",            ID_DIR_DEL_BOTH
+        MENUITEM SEPARATOR
+        MENUITEM "Åben venstre",                ID_DIR_OPEN_LEFT
+        MENUITEM "Åben venstre med...",         ID_DIR_OPEN_LEFT_WITH
+        MENUITEM "Åben højre",                  ID_DIR_OPEN_RIGHT
+        MENUITEM "Åben højre med...",           ID_DIR_OPEN_RIGHT_WITH
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_ESCAPE,      ID_APP_EXIT,            VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_LEFT,        ID_R2L,                 VIRTKEY, ALT, NOINVERT
+    VK_RETURN,      ID_CURDIFF,             VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
+    VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 122
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Om WinMerge"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
+    LTEXT           "Version 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
+    LTEXT           "Alle rettigheder forbeholdes",IDC_STATIC,7,60,170,8
+    LTEXT           "Besøg WinMerge hjemmesiden!",IDC_WWW,7,107,209,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
+    LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
+    LTEXT           "Syntax Highlighting Edit View by Andrei Stcherbatchenko ",
+                    IDC_STATIC,7,71,209,8
+    LTEXT           "Various Syntaxes by Ferdinand Prantl",IDC_STATIC,7,81,
+                    209,8
+END
+
+IDD_OPEN DIALOGEX 0, 0, 352, 98
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Vælg filer eller mapper..."
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "&Venstre:",IDC_STATIC,25,25,27,8
+    COMBOBOX        IDC_LEFT_COMBO,56,22,176,94,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
+    PUSHBUTTON      "&Gennemse...",IDC_LEFT_BUTTON,235,22,44,12
+    LTEXT           "&Højre:",IDC_STATIC,33,40,20,8
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,175,95,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
+    PUSHBUTTON      "G&ennemse...",IDC_RIGHT_BUTTON,235,38,44,12
+    LTEXT           "E&xtensions:",IDC_STATIC,16,56,37,8
+    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Re&kursivt",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,35,77,46,10
+    DEFPUSHBUTTON   "OK",IDOK,295,11,50,14
+    PUSHBUTTON      "Afbryd",IDCANCEL,295,28,50,14
+    GROUPBOX        "Filer eller mapper der skal sammenlignes",IDC_STATIC,7,
+                    7,279,84
+END
+
+IDD_VSS DIALOG DISCARDABLE  0, 0, 258, 149
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Visual SourceSafe"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "",IDC_STATIC,7,7,244,47,SS_SUNKEN
+    LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
+    DEFPUSHBUTTON   "Check Out",IDOK,33,121,50,14
+    PUSHBUTTON      "Afbryd",IDCANCEL,173,121,50,14
+    PUSHBUTTON      "Gem som...",IDSAVEAS,103,121,50,14
+    LTEXT           "Projekt:",IDC_STATIC,9,61,25,8
+    COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Bruger:",IDC_STATIC,7,82,24,8
+    EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_STATIC,127,79,34,8
+    EDITTEXT        IDC_PASSWORD,162,78,70,14,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+IDD_PROP_VSS DIALOG DISCARDABLE  0, 0, 259, 157
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Versionsstyringssystem"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Indstillinger",IDC_STATIC,7,7,245,54
+    LTEXT           "&Sti til cleartool.exe:",IDC_VSS_L1,13,41,60,8
+    EDITTEXT        IDC_PATH_EDIT,88,40,112,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Gennemse...",IDC_BROWSE_BUTTON,202,40,46,12
+    COMBOBOX        IDC_VER_SYS,88,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "&Versionsstyringssystem",IDC_STATIC,13,22,75,10
+END
+
+IDD_PROPPAGE_LARGE DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Generelt"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Indstillinger",IDC_STATIC,7,7,221,92
+    CONTROL         "&Backup originale filer",IDC_BACKUP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,21,81,10
+    CONTROL         "Automatisk &scroll til første forskel",IDC_SCROLL_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,34,117,10
+    CONTROL         "Ignorer blan&ke linjer",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,45,77,10
+    CONTROL         "Ignorer store/små &bogstaver",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,105,10
+    CONTROL         "&Fjern Splash Screen",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,81,79,10
+    CONTROL         "Sammenlign &mellemrum",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,121,46,89,10
+    CONTROL         "Ignorer mellemrumsæ&ndringer",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,121,57,108,10
+    CONTROL         "Ignorer &alle mellemrum",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,121,68,85,10
+    GROUPBOX        "Tabulator",IDC_STATIC,7,105,221,30,WS_GROUP
+    LTEXT           "&Tabulator størrelse:",IDC_STATIC,15,119,61,8
+    EDITTEXT        IDC_TAB_EDIT,81,116,27,12,ES_AUTOHSCROLL
+    CONTROL         "Sensitive for &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,68,71,10
+    CONTROL         "Indsæt tabulatorer",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,128,112,73,10
+    CONTROL         "Indsæt mellemrum",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,128,122,73,10
+END
+
+IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Sprog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,154,16,52,14
+    PUSHBUTTON      "Afbryd",IDCANCEL,154,33,52,14
+    LISTBOX         30001,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Tilgængelige sprog:",IDC_STATIC,7,7,63,8
+END
+
+IDD_CLEARCASE DIALOG DISCARDABLE  0, 0, 279, 111
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Rational Clearcase"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "CheckOut",IDOK,35,90,50,14
+    PUSHBUTTON      "Afbryd",IDCANCEL,194,90,50,14
+    PUSHBUTTON      "Gem som...",IDSAVEAS,114,90,50,14
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Kommentarer",IDC_STATIC,18,7,47,10
+END
+
+IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Fremhæv"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Fremhæv syntaksen",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,80,10
+END
+
+IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Filter"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Ignorer linjer der følger det følgende mønster",
+                    IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    7,221,15
+    LTEXT           "Regulære udtryk (et pr linje):",IDC_STATIC,7,28,221,8
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,96,ES_MULTILINE | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+END
+
+IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Farver"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Forskelle:",IDC_STATIC,15,18,31,8
+    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,15,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    LTEXT           "Valgte forskelle:",IDC_STATIC,14,36,51,8
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,33,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+END
+
+IDD_OUTPUT DIALOG DISCARDABLE  0, 0, 278, 157
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,106,136,50,14
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | 
+                    WS_VSCROLL
+END
+
+IDD_PROPPAGE_REGISTRY DIALOG DISCARDABLE  0, 0, 235, 156
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Registreringer"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Associeret med mapper",IDC_ASSOC_DIRECTORY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,221,15
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "Translated by Christian List\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "WinMerge Application\0"
+            VALUE "FileVersion", "999.999.999.999\0"
+            VALUE "InternalName", "WinMerge\0"
+            VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "WinMerge.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "WinMerge\0"
+            VALUE "ProductVersion", "999.999.999.999\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x406, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 216
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 115
+    END
+
+    IDD_OPEN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 345
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 91
+    END
+
+    IDD_VSS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 141
+    END
+
+    IDD_PROP_VSS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        VERTGUIDE, 88
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 150
+    END
+
+    IDD_PROPPAGE_LARGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        VERTGUIDE, 128
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_CLEARCASE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 272
+        VERTGUIDE, 18
+        VERTGUIDE, 35
+        VERTGUIDE, 244
+        VERTGUIDE, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 104
+    END
+
+    IDD_PROPSYNTAX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_PROPPAGE_FILTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+
+    IDD_PROPPAGE_COLORS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_UNDO
+    BUTTON      ID_EDIT_REDO
+    SEPARATOR
+    BUTTON      ID_NEXTDIFF
+    BUTTON      ID_PREVDIFF
+    BUTTON      ID_LASTDIFF
+    BUTTON      ID_CURDIFF
+    BUTTON      ID_FIRSTDIFF
+    SEPARATOR
+    BUTTON      ID_L2R
+    BUTTON      ID_R2L
+    SEPARATOR
+    BUTTON      ID_PROPERTIES
+    SEPARATOR
+    BUTTON      ID_ALL_RIGHT
+    BUTTON      ID_ALL_LEFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDB_SPLASH              BITMAP  DISCARDABLE     "res\\splash1.bmp"
+IDB_LFOLDER             BITMAP  DISCARDABLE     "res\\folder1.bmp"
+IDB_EQUAL               BITMAP  DISCARDABLE     "res\\equal.bmp"
+IDB_NOTEQUAL            BITMAP  DISCARDABLE     "res\\notequal.bmp"
+IDB_RFOLDER             BITMAP  DISCARDABLE     "res\\rfolder.bmp"
+IDB_UNKNOWN             BITMAP  DISCARDABLE     "res\\unknown.bmp"
+IDB_BINARYSAME          BITMAP  DISCARDABLE     "res\\binary.bmp"
+IDB_LFILE               BITMAP  DISCARDABLE     "res\\lfile.bmp"
+IDB_RFILE               BITMAP  DISCARDABLE     "res\\rfile.bmp"
+IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_PROP_VSS DLGINIT
+BEGIN
+    IDC_VER_SYS, 0x403, 6, 0
+0x6e49, 0x6567, 0x006e, 
+    IDC_VER_SYS, 0x403, 35, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
+0x6d28, 0x6e69, 0x7264, 0x2065, 0x6e65, 0x2064, 0x2e35, 0x2930, "\000" 
+    IDC_VER_SYS, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
+0x3528, 0x302e, 0x6f20, 0x2067, 0x7473, 0x72f8, 0x6572, 0x0029, 
+    IDC_VER_SYS, 0x403, 19, 0
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
+"\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge denne folder"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDS_VERSION_FMT         "Version %1"
+    IDS_ALLFILES            "Alle filer (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "Er du sikker på du vil kopiere alle forskelle til den venstre fil?"
+    IDS_CONFIRM_ALL_RIGHT   "Er du sikker på du vil kopiere alle forskelle til den højre fil?"
+    IDS_ERRORS_TITLE        "%1 fejl"
+    IDS_CONFIRM_COPY2DIR    "Er du sikker på du vil kopiere %1 af %2 valgte?"
+    IDS_FONT_CHANGE         "Den valgte ændring af skrifttype vil ikke kunne ses i allerede åbne vinduer."
+    IDS_DIRECTORY_WINDOW_TITLE "Resultat af sammenligning af mapper"
+    IDS_DIRECTORY_WINDOW_STATUS_FMT "Resultater for %1 og %2"
+    IDS_FILES_ARE_DIFFERENT "Filer er forskellige"
+    IDS_BIN_FILES_DIFF      "Binære filer er forskellige"
+    IDS_ONLY_IN_FMT         "Kun i %1"
+    IDS_IDENTICAL           "Identiske"
+    IDS_CANT_COMPARE_FILES  "Kan ikke sammenligne filer"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "WinMerge"
+    AFX_IDS_IDLEMESSAGE     "Klar"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Lav et nyt dokument\nNy"
+    ID_FILE_OPEN            "Åben et eksisterende dokument\nÅben (Ctrl+O)"
+    ID_FILE_CLOSE           "Luk det aktive dokument\nLuk"
+    ID_FILE_SAVE            "Gem det aktive dokument\nGem (Ctrl+S)"
+    ID_FILE_SAVE_AS         "Gem det aktive dokument med et nyt navn\nGem som"
+    ID_FILE_PAGE_SETUP      "Ændrer på printerens indstillinger\nSideopsætning"
+    ID_FILE_PRINT_SETUP     "Ændrer printer og printerens indstillinger\nPrinter setup"
+    ID_FILE_PRINT           "Print det aktive dokument\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Vis de fulde sider\nPrinter preview"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Vis program information, versionsnummer og ophavsret\nOm"
+    ID_APP_EXIT             "Afslut programmet; spørger om man vil gemme dokumenter\nAfslut"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Åben dette dokument"
+    ID_FILE_MRU_FILE2       "Åben dette dokument"
+    ID_FILE_MRU_FILE3       "Åben dette dokument"
+    ID_FILE_MRU_FILE4       "Åben dette dokument"
+    ID_FILE_MRU_FILE5       "Åben dette dokument"
+    ID_FILE_MRU_FILE6       "Åben dette dokument"
+    ID_FILE_MRU_FILE7       "Åben dette dokument"
+    ID_FILE_MRU_FILE8       "Åben dette dokument"
+    ID_FILE_MRU_FILE9       "Åben dette dokument"
+    ID_FILE_MRU_FILE10      "Åben dette dokument"
+    ID_FILE_MRU_FILE11      "Åben dette dokument"
+    ID_FILE_MRU_FILE12      "Åben dette dokument"
+    ID_FILE_MRU_FILE13      "Åben dette dokument"
+    ID_FILE_MRU_FILE14      "Åben dette dokument"
+    ID_FILE_MRU_FILE15      "Åben dette dokument"
+    ID_FILE_MRU_FILE16      "Åben dette dokument"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Skift til det næste vindue\nNæste vindue"
+    ID_PREV_PANE            "Skift til det tidligere vindue\nTidligere vindue"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_NEW           "Åben et nyt vindue til det aktive dokument\nNyt vindue"
+    ID_WINDOW_ARRANGE       "Arranger iconerne i bunden af vinduet\nArranger iconer"
+    ID_WINDOW_CASCADE       "Arranger vinduerne så de overlapper\nKaskade vinduer"
+    ID_WINDOW_TILE_HORZ     "Arranger vinduerne som ikke-overlappende brikker\nBrikker vinduer"
+    ID_WINDOW_TILE_VERT     "Arranger vinduerne som ikke-overlappende brikker\nBrikker vinduer"
+    ID_WINDOW_SPLIT         "Del det aktive vindue\nDel"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Slet det valgte\nSlet"
+    ID_EDIT_CLEAR_ALL       "Slet alt\nSlet alt"
+    ID_EDIT_COPY            "Kopier det valgte og sæt det i udklipsholderen\nKopier"
+    ID_EDIT_CUT             "Klip det valgte ud og sæt det i udklipsholderen\nKlip"
+    ID_EDIT_FIND            "Find den angivne tekst\nFind"
+    ID_EDIT_PASTE           "Indsæt udklipsholderens indhold\nIndsæt"
+    ID_EDIT_REPEAT          "Gentag den sidste handling\nGentag"
+    ID_EDIT_REPLACE         "Erstat den angivne tekst med en anden tekst\nErstat"
+    ID_EDIT_SELECT_ALL      "Vælg hele dokumentet\nVælg alt"
+    ID_EDIT_UNDO            "Fortryd den sidste handling\nFortryd"
+    ID_EDIT_REDO            "Gendan den tidligere fortrudte handling\nGendan fortrudt"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Vis eller gem værktøjslinjen\nVis værktøjslinjen"
+    ID_VIEW_STATUS_BAR      "Vis eller gem statuslinjen\nVis statuslinjen"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Ændre vinduesstørrelse"
+    AFX_IDS_SCMOVE          "Ændre vinduesposition"
+    AFX_IDS_SCMINIMIZE      "Minimer vindue til en icon"
+    AFX_IDS_SCMAXIMIZE      "Maximer vindue til fuld størrelse"
+    AFX_IDS_SCNEXTWINDOW    "Skift til det næste dokument vindue"
+    AFX_IDS_SCPREVWINDOW    "Skift til det tidligere dokument vindue"
+    AFX_IDS_SCCLOSE         "Luk det aktive vindue og spørg efter om dokumenter skal gemmes"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Gendan vindue i normal størrelse"
+    AFX_IDS_SCTASKLIST      "Liste med aktive vinduer"
+    AFX_IDS_MDICHILD        "Aktiver dette vindue"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Luk print preview\nAfbryd preview"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_L2R                  "Kopier den valgte tekst til den højre fil\nKopier højre (Alt Højre)"
+    ID_R2L                  "Kopier den valgte tekst til den venstre fil\nKopier venstre (Alt Venstre)"
+    ID_OPTIONS_SHOWIDENTICAL "Viser filer der er helt ens"
+    ID_OPTIONS_SHOWDIFFERENT "Viser filer der har forskelle"
+    ID_PREVDIFF             "Scroll til den forrige forskel\nForrige forskel (Alt Op)"
+    ID_NEXTDIFF             "Scroll til den næste forskel\nNæste forskel (Alt Ned)"
+    ID_OPTIONS_BACKUPORIGINALFILE 
+                            "Gem en kopi af originalen som *.bak\nBackup"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
+                            "Scroll automatisk til den første forskel\nScroll første"
+    ID_OPTIONS_IGNOREWHITESPACE 
+                            "Ignorerer mellemrum under sammenligning af filer"
+    ID_HIDE_BACKUP_FILES    "Gemmer filer med extension BAK"
+    ID_HELP_GNULICENSE      "Vis GNU general public license"
+    ID_USEVSS               "Forsøger at checke skrivebeskyttede filer ud fra SourceSafe"
+    ID_PROPERTIES           "Sæt program indstillinger\nIndstillinger"
+    ID_ALL_LEFT             "Kopier alle forskelle til den venstre fil\nAlt til venstre"
+    ID_ALL_RIGHT            "Kopier alle forskelle til den højre fil\nAlt til højre"
+    ID_VIEW_SELECTFONT      "Vælg skrifttype til vinduerne\nVælg skrifttype"
+    ID_VIEW_USEDEFAULTFONT  "Brug standard skrifttype til vinduerne\nStandard skrifttype"
+    ID_DIR_COPY_FILE_TO_LEFT "Kopier den valgte fil til den angivne mappe"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_COPY_FILE_TO_RIGHT "Kopier den valgte fil til den angivne mappe"
+    ID_VIEW_LANGUAGE        "Vælg sprog til brugerinterfacet\nSprog"
+    ID_HELP_CONTENTS        "Vis hjælpen til WinMerge\nHjælp"
+    ID_FIRSTDIFF            "Scroll til den første forskel\nFørste forskel (Alt+Home)"
+    ID_CURDIFF              "Scroll til den aktuelle forskel\nAktuelle forskel (Alt+Enter)"
+    ID_LASTDIFF             "Scroll til den sidste forskel\nSidste forskel (Alt+End)"
+    ID_DIFFNUM              "pladsholder"
+    ID_DIR_DEL_LEFT         "Slet valgte elementer til venstre"
+    ID_DIR_DEL_RIGHT        "Slet valgte elementer til højre"
+    ID_DIFFSTATUS           "pladsholder til status tæller"
+    ID_OPTIONS_SHOWUNIQUELEFT "Viser filer der kun eksistere på venstre side"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Viser filer der kun eksistere på højre side"
+    ID_DIR_DEL_BOTH         "Slet de valgte element(er) på begge sider"
+    ID_DIR_OPEN_LEFT        "Åben venstre fil"
+    ID_DIR_OPEN_LEFT_WITH   "Åben venstre fil med ..."
+    ID_DIR_OPEN_RIGHT       "Åben højre fil"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SAVE_AS_TITLE       "Gem som"
+    IDS_SELECT_FILES_OR_FOLDERS 
+                            "Du skal vælge enten udelukkende filer, eller udelukkende foldere."
+    IDS_BACKUP_FAILED_PROMPT 
+                            "Kan ikke lave backup af den originale fil.\nVil du fortsætte alligevel?"
+    IDS_PROPERTIES_TITLE    "Egenskaber"
+    IDS_OPEN_TITLE          "Åben"
+    IDS_CONFIRM_DELETE_FILE "Slet fil %1?"
+    IDS_EDIT_WINDOW_TITLE_FMT "Rediger %1"
+    IDS_FILESSAME           "De valgte filer er identiske."
+    IDS_FILEUNIQUE          "Den valgte fil eksistere ikke i begge mapper og kan derfor ikke sammenlignes"
+    IDS_FILEERROR           "Der skete en fejl under sammenligning af filerne."
+    IDS_SAVEREADONLY_FMT    "%1 er markeret som skrivebeskyttet. Vil du gemme filen under et andet navn?"
+    IDS_SAVE_FMT            "Gem ændringer til %1?"
+    IDS_FILEBINARY          "Binære filer kan ikke sammenlignes visuelt."
+    IDS_SAVEVSS_FMT         "%1 er markeret som skrivebeskyttet. Vil du checke filen ud fra et versionsstyringssystem, eller gemme den under et andet navn?"
+    IDS_VSSERROR            "Versionsstyringssystemet returnerede en fejl under forsøget på at checke filen ud. Kan ikke fortsætte..."
+    IDS_NOPROJECT           "Du skal angive en SourceSafe projekt sti for at fortsætte (ie:  $/MitProjekt)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FILENAME_HEADER     "Filnavn"
+    IDS_DIR_HEADER          "Mappe"
+    IDS_RESULT_HEADER       "Resultat af sammenligning"
+    IDS_FILE_COMPARISON_TITLE "Filsammenligning"
+    IDS_DIFF_NUMBER_STATUS_FMT "Forskel %1 af %2"
+    IDS_NO_DIFF_SEL_FMT     "%1 forskelle fundet"
+    IDS_FILEISDIR           "Mapper kan ikke sammenlignes visuelt."
+    IDS_CC_CMD              "&Sti til cleartool.exe :"
+    IDS_VSS_CMD             "&Sti til SS.EXE :"
+    IDS_VSS_RUN_ERROR       "Fejl under udførelse af versionsstyringssystem kommando."
+    IDS_DIFF_OPEN_NO_SET_PROPS 
+                            "Der er lavet ændringer i nogle indstillinger, der kan have indflydelse på allerede åbne vinduer. Nogle af disse indstillinger virker muligvis ikke før vinduerne er genåbnet."
+    IDS_LTIME_HEADER        "Venstre dato"
+    IDS_RTIME_HEADER        "Højre dato"
+    IDS_EXTENSION_HEADER    "Extension"
+    IDS_CONFIRM_DELETE_ITEMS 
+                            "Er du sikker på du vil slette %1 af %2 valgte element(er)?"
+    IDS_DEL_LEFT_FMT        "Slet venstre side %1 af %2 valgte element(er)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DEL_RIGHT_FMT       "Slet højre side %1 af %2 valgte element(er)"
+    IDS_DELETE_FILE_FAILED  "Slet fil %1 fejlede: %2"
+    IDS_CONFIRM_DELETE_DIR  "Slet mappen %1?"
+    IDS_REMOVE_DIR_FAILED   "Slet mappe fejlede: %1"
+    IDS_COPY_TO_LEFT        "Kopier til venstre side %1 af %2 valgte element(er)"
+    IDS_DEL_BOTH_FMT        "Slet begge sider %1 af %2 valgte element(er)"
+    IDS_COPY_TO_RIGHT       "Kopier til højre side %1 af %2 valgte element(er)"
+    IDS_DELETE_DIR_FAILED   "Slet mappen %1 fejlede: %s"
+    IDS_COPY_FILE_FAILED    "Kopiering af filen %1 fejlede: %2"
+    IDS_COPY_DIR_FAILED     "Kopiering af mappen %1 fejlede: %2"
+    IDS_ERROR_FILE_WRITEABLE "Check skrivebeskyttelsen på destinationen"
+    IDS_ERROR_BACKUP        "Fejl under backup af filen"
+    IDS_CONFIRM_COPY_SINGLE "Er du sikker på du vil kopiere %1 til %2?"
+    IDS_CONFIRM_DELETE_SINGLE "Er du sikker på du vil slette %1?"
+    IDS_BIN_FILES_SAME      "Binære filer er identiske"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "Åben højre fil med ..."
+    ID_OPTIONS_SHOWBINARIES "Viser binære filer"
+    ID_VIEW_WHITESPACE      "Viser et tegn for mellemrum"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_FILESAVE_FAILED     "Gem %1 fejlede. Vil du gemme filen under et andet navn?"
+END
+
+#endif    // Danish resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DAN)
+#ifdef _WIN32
+LANGUAGE LANG_DANISH, SUBLANG_DEFAULT
+#pragma code_page(1252)
+#endif
+#include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
