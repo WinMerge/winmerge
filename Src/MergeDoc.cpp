@@ -1705,7 +1705,7 @@ void CMergeDoc::PrimeTextBuffers()
 				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
 				{
 					DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;
-					m_rtBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
+					m_rtBuf.SetLineFlag(i, dflag, TRUE, FALSE, FALSE);
 				}
 
 				// insert blanks if needed
