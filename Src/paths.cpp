@@ -300,3 +300,34 @@ CString ExpandShortcut(CString &inFile)
 	// if this fails, outFile == ""
     return outFile;
 }
+
+// Append subpath to path
+// Skip empty arguments
+// Ensure exactly one backslash between them in result
+CString paths_ConcatPath(const CString & path, const CString & subpath)
+{
+	if (path.IsEmpty()) return subpath;
+	if (subpath.IsEmpty()) return path;
+	if (EndsWithSlash(path))
+	{
+		if (IsSlash(subpath[0]))
+		{
+			return path + subpath.Mid(1);
+		}
+		else
+		{
+			return path + subpath;
+		}
+	}
+	else
+	{
+		if (IsSlash(subpath[0]))
+		{
+			return path + subpath;
+		}
+		else
+		{
+			return path + _T("\\") + subpath;
+		}
+	}
+}

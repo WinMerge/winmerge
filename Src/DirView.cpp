@@ -502,8 +502,8 @@ void CDirView::OpenSelection()
 		case FILE_DIFF:
 			{
 				CString left, right;
-				if (GetSelectedFileNames(left, right))
-					mf->ShowMergeDoc(GetDocument(), left, right);
+				GetItemFileNames(sel, left, right);
+				mf->ShowMergeDoc(GetDocument(), left, right);
 			}
 			break;
 		case FILE_SAME:

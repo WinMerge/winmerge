@@ -15,6 +15,7 @@
 #include "MainFrm.h"
 #include "coretools.h"
 #include "OutputDlg.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -518,16 +519,15 @@ void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) co
 	CString name, pathex;
 	name = m_pList->GetItemText(sel, DV_NAME);
 	pathex = m_pList->GetItemText(sel, DV_PATH);
+	strLeft = pd->m_pCtxt->m_strLeft;
+	strRight = pd->m_pCtxt->m_strRight;
 	if (pathex.Left(2) == _T(".\\") || pathex.Left(2) == _T("./"))
 	{
-		strLeft.Format(_T("%s\\%s\\%s"), pd->m_pCtxt->m_strLeft, pathex.Right(pathex.GetLength()-2), name);
-		strRight.Format(_T("%s\\%s\\%s"), pd->m_pCtxt->m_strRight, pathex.Right(pathex.GetLength()-2), name);
+		strLeft = paths_ConcatPath(strLeft, pathex.Right(pathex.GetLength()-2));
+		strRight = paths_ConcatPath(strRight, pathex.Right(pathex.GetLength()-2));
 	}
-	else
-	{
-		strLeft.Format(_T("%s\\%s"), pd->m_pCtxt->m_strLeft, name);
-		strRight.Format(_T("%s\\%s"), pd->m_pCtxt->m_strRight, name);
-	}
+	strLeft = paths_ConcatPath(strLeft, name);
+	strRight = paths_ConcatPath(strRight, name);
 }
 
 // Open selected file on specified side

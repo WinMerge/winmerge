@@ -11,5 +11,6 @@ CString paths_GetCurrentDirectory();
 TCHAR paths_GetCurrentDriveUpper();
 PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight);
 CString ExpandShortcut(CString &inFile);
+CString paths_ConcatPath(const CString & path, const CString & subpath);
 
 #endif // paths_h_included

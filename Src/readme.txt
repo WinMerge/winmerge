@@ -1,3 +1,7 @@
+2003-03-31 Perry
+ PATCH: [ 712429 ] Fix UpdateItemStatus bug 712093
+ WinMerge: DirActions.cpp DirView.cpp paths.cpp paths.h
+
 2003-03-30 Perry
  PATCH: [ 712417 ] Fix save of open doc before next merge
  WinMerge: ChildFrm.cpp ChildFrm.h DirDoc.cpp DirDoc.h DirFrame.cpp DirFrame.h
