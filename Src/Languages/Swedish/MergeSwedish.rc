@@ -487,10 +487,10 @@ BEGIN
     CONTROL         "&Stäng jämför Statuspanel automatiskt",IDC_CMPPANE_AUTOCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "St&äng fönster med ESC",IDC_ESC_CLOSES_WINDOW,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,90,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
     CONTROL         "Verifiera sökvägar i Öppna-dialogen",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,57,143,10
+                    WS_TABSTOP,7,57,206,10
     PUSHBUTTON      "Återstarta",IDC_RESET_ALL_MESSAGE_BOXES,167,77,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Tryck på knappen för att återställa alla meddelanderutor",IDC_STATIC,7,

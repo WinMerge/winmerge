@@ -493,7 +493,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,208,10
     CONTROL         "開くダイアログで自動的にパスを検査する",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,57,143,10
+                    WS_TABSTOP,7,57,206,10
     PUSHBUTTON      "リセット",IDC_RESET_ALL_MESSAGE_BOXES,167,77,49,13,NOT
                     WS_TABSTOP
     LTEXT           "すべてのメッセージボックスをリセットするには、\nリセットボタンを押してください。",IDC_STATIC,7,

@@ -492,7 +492,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
     CONTROL         "Verifica automaticamente i percorsi nella finestra Apri",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,57,189,10
+                    WS_TABSTOP,7,57,206,10
    PUSHBUTTON      "Ripristina",IDC_RESET_ALL_MESSAGE_BOXES,204,77,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Premi pulsante per ripristinare tutti i messaggi di avviso",IDC_STATIC,7,
