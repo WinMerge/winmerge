@@ -89,6 +89,7 @@ Other Contributors (code, ideas, testing..):
 * Andre Arpin
 * Steve Beaudoin
 * Hern Chen
+* Jim Fougeron
 * Marvin Gouw
 * Vladimir Lukianov
 * Harry Mckame
