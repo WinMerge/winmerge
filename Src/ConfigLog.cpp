@@ -292,7 +292,6 @@ BOOL CConfigLog::WriteLogFile(CString &sError)
 	WriteLocaleSettings(file, GetThreadLocale(), _T("Locale (Thread)"));
 	WriteLocaleSettings(file, LOCALE_USER_DEFAULT, _T("Locale (User)"));
 	WriteLocaleSettings(file, LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));
-//	file.WriteString(Fmt(_T(" unicoder codepage: %d\n"), getDefaultCodepage()));
 
 // Codepage settings
 	file.WriteString(_T("Detect codepage automatically for RC and HTML files: "));
