@@ -1,3 +1,8 @@
+2004-01-19 Kimmo
+ PATCH: 876875 Go To -Dialog
+  Fix crash in GotoDlg. This was in latest patch, but I merged part of older patch :(
+  MergeEditView.h MergeEditView.cpp
+
 2004-01-19 Perry
  PATCH: [ 878625 ] Simplify and unify file operations calling diff_2_files.
   src: Diff.cpp DiffWrapper.cpp DiffWrapper.h

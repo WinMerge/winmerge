@@ -220,8 +220,8 @@ protected:
 	afx_msg void OnUpdateMultipleRight(CCmdUI* pCmdUI);
 	afx_msg void OnChangePane();
 	afx_msg void OnUpdateChangePane(CCmdUI* pCmdUI);
-	afx_msg void OnGoto();
-	afx_msg void OnUpdateGoto(CCmdUI* pCmdUI);
+	afx_msg void OnWMGoto();
+	afx_msg void OnUpdateWMGoto(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
