@@ -1,3 +1,7 @@
+2004-10-19 Kimmo
+ PATCH: [ 1049511 ] Docs: Add FAQ item about rescan delaying
+  Manual: Faq.xml
+
 2004-10-18 Kimmo
  PATCH: [ 1043825 ] revised wording for merge mode manual
   Submitted by Perry

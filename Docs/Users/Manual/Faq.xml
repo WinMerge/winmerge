@@ -136,6 +136,14 @@
           <para>Unfortunately WinMerge 2.0 and 2.2 supports only non-proportional fonts.</para>
         </answer>
       </qandaentry>
+      <qandaentry>
+        <question>
+          <para>What means delaying of (automatic) rescan? Why it is needed?</para>
+        </question>
+        <answer>
+          <para>When Automatic Rescanning is enabled WinMerge delays rescanning while user edits files. So there is no rescanning happening when user types text but shortly after user has finished typing. Without this delaying WinMerge would do rescan after every typed letter and editing files would become slow. This delaying especially improves editing of bigger files which can take several seconds to rescan.</para>
+        </answer>
+      </qandaentry>
     </qandaset>
   </sect2>
   <sect2>
@@ -206,8 +214,16 @@
         </question>
         <answer>
           <para>Open the file with Windows notepad (eg, 
-          <menuchoice><guimenu>Start</guimenu><guimenu>(All) Programs</guimenu><guimenu>Accessories</guimenu><guimenuitem>Notepad</guimenuitem></menuchoice>.
-          Choose <menuchoice><guimenu>File</guimenu><guimenuitem>Save As</guimenuitem></menuchoice>, and in the Save As dialog which appears, look at the dropdown list at the very bottom, labelled "Encoding".</para>
+          <menuchoice>
+              <guimenu>Start</guimenu>
+              <guimenu>(All) Programs</guimenu>
+              <guimenu>Accessories</guimenu>
+              <guimenuitem>Notepad</guimenuitem>
+            </menuchoice>.
+          Choose <menuchoice>
+              <guimenu>File</guimenu>
+              <guimenuitem>Save As</guimenuitem>
+            </menuchoice>, and in the Save As dialog which appears, look at the dropdown list at the very bottom, labelled "Encoding".</para>
           <itemizedlist>
             <listitem>
               <para>If it says "ANSI", the file is (apparently) in the local windows codepage. If the file is entirely in English and normal punctuation, then the file is also in ASCII.</para>
