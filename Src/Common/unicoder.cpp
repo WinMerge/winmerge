@@ -127,12 +127,11 @@ UINT
 Utf8len_of_string(const CString & text)
 {
 	UINT len=0;
-	for (int i=0; i<text.GetLength(); ) // no loop increment here
+	for (int i=0; i<text.GetLength(); ++i)
 	{
 		int chlen = Utf8len_fromCodepoint(text[i]);
 		if (chlen < 1) chlen = 1;
 		len += chlen;
-		i += chlen;
 	}
 	return len;
 }
