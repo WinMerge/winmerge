@@ -116,10 +116,10 @@ BOOL FileTransform_Packing(CString & filepath, PackingInfo handler)
 }
 
 // known handler
-BOOL FileTransform_Unpacking(CString & filepath, PackingInfo handler, int * handlerSubcode)
+BOOL FileTransform_Unpacking(CString & filepath, const PackingInfo * handler, int * handlerSubcode)
 {
 	// no handler : return true
-	if (handler.pluginName.IsEmpty())
+	if (handler->pluginName.IsEmpty())
 		return TRUE;
 
 	storageForPlugins bufferData;
@@ -131,11 +131,11 @@ BOOL FileTransform_Unpacking(CString & filepath, PackingInfo handler, int * hand
 	// control value
 	BOOL bHandled = FALSE;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName);
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->pluginName);
 	if (plugin == NULL)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName);
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->pluginName);
 	LPDISPATCH piScript = plugin->lpDispatch;
-	if (handler.bWithFile)
+	if (handler->bWithFile)
 	{
 		// use a temporary dest name
 		bHandled = InvokeUnpackFile(bufferData.GetDataFileAnsi(),

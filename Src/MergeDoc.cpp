@@ -1211,7 +1211,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 	}
 	else
 	{
-		if (!FileTransform_Unpacking(sFileName, *infoUnpacker, &unpackerSubcode))
+		if (!FileTransform_Unpacking(sFileName, infoUnpacker, &unpackerSubcode))
 			return FRESULT_ERROR_UNPACK;
 	}
 	// we use the same unpacker for both files, so it must be defined after first file

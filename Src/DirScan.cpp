@@ -46,11 +46,7 @@ static void Sort(fentryArray * dirs, bool casesensitive);;
 static int collstr(const CString & s1, const CString & s2, bool casesensitive);
 static void StoreDiffResult(const CString & sDir, const fentry * lent, const fentry *rent, 
 			    int code, CDiffContext * pCtxt, int ndiffs=-1, int ntrivialdiffs=-1);
-static int prepAndCompareTwoFiles(const fentry & lent, const fentry & rent, const CString & sLeftDir, 
-				  const CString & sRightDir, int * ndiffs, int * ntrivialdiffs);
-
-/// Custom function comparing only by date
-static bool just_compare_files_by_date(LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin, int * ndiffs, int * ntrivialdiffs);
+static int prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2, int * ndiffs, int * ntrivialdiffs);
 
 /** @brief cmpmth is a typedef for a pointer to a method */
 typedef int (CString::*cmpmth)(LPCTSTR sz) const;
@@ -201,10 +197,34 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			}
 			else
 			{
+				CString leftname = leftFiles[i].name;
+				CString rightname = rightFiles[j].name;
+
+				gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s")
+					, leftname, rightname, sLeftDir, sRightDir);
+
+				// Files to compare
+				CString filepath1 = paths_ConcatPath(sLeftDir, leftname);
+				CString filepath2 = paths_ConcatPath(sRightDir, rightname);
+
+
+				int code = 0;
 				int ndiffs=0, ntrivialdiffs=0;
-				int code = prepAndCompareTwoFiles(leftFiles[i], rightFiles[j], 
-					sLeftDir, sRightDir, &ndiffs, &ntrivialdiffs);
-				
+				if (mf->m_nCompMethod == 1)
+				{
+					// Compare only by modified date
+					// TODO: Set ndiffs & ntrivialdiffs to -1 & handle in display
+					if (leftFiles[i].mtime != rightFiles[j].mtime)
+						code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::DIFF;
+					else
+						code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
+				}
+				else
+				{
+					// Really compare
+					code = prepAndCompareTwoFiles(filepath1, filepath2, &ndiffs, &ntrivialdiffs);
+				}
+
 				// report result back to caller
 				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt, ndiffs, ntrivialdiffs);
 			}
@@ -218,31 +238,65 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 }
 
 /**
+ * @brief Invoke appropriate plugins for unpacking and prediffing
+ * return false if anything fails
+ * caller has to DeleteFile filepathTransformed, if it differs from filepath
+ */
+static bool UnpackAndTransform(const CString & filepath, CString & filepathTransformed,
+	const CString & filteredFilenames, PackingInfo * infoUnpacker, PackingInfo * infoPrediffer, bool toUtf8)
+{
+	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
+
+	// first step : unpack (plugins)
+	if (infoUnpacker->bToBeScanned)
+	{
+		if (!FileTransform_Unpacking(filepathTransformed, filteredFilenames, infoUnpacker, &infoUnpacker->subcode))
+			return false;
+	}
+	else
+	{
+		if (!FileTransform_Unpacking(filepathTransformed, infoUnpacker, &infoUnpacker->subcode))
+			return false;
+	}
+
+	if (toUtf8)
+	{
+		// second step : normalize Unicode to OLECHAR (most of time, do nothing) (OLECHAR = UCS-2LE in Windows)
+		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
+		if (!FileTransform_NormalizeUnicode(filepathTransformed, bMayOverwrite))
+			return false;
+	}
+
+	// Note: filepathTransformed may be in UCS-2 (if toUtf8), or it may be raw encoding (if !Utf8)
+	// prediff plugins must handle both
+
+	// third step : prediff (plugins)
+	bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
+	if (!FileTransform_Prediffing(filepathTransformed, filteredFilenames, infoPrediffer, bMayOverwrite))
+		return false;
+
+	if (toUtf8)
+	{
+		// fourth step : prepare for diffing
+		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
+		if (!FileTransform_UCS2ToUTF8(filepathTransformed, bMayOverwrite))
+			return false;
+	}
+
+	return true;
+}
+
+/**
  * @brief Prepare files (run plugins) & compare them, and return diffcode
  */
 static int
-prepAndCompareTwoFiles(const fentry & lent, const fentry & rent,
-	const CString & sLeftDir, const CString & sRightDir,
-	int * ndiffs, int * ntrivialdiffs
-
-	)
+prepAndCompareTwoFiles(const CString & filepath1, const CString & filepath2, int * ndiffs, int * ntrivialdiffs)
 {
-	// If options are binary equivalent, we could check for filesize
-	// difference here, and bail out if files are clearly different
-	// But, then we don't know if file is ascii or binary, and this
-	// affects behavior (also, we don't have an icon for unknown type)
-
-	// Similarly if user desired to make some comparison shortcut
-	// based on file date, it could be done here, with the same caveat
-	// as above
-
-	gLog.Write(LOGLEVEL::LCOMPAREDATA, _T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s")
-		, lent.name, rent.name, sLeftDir, sRightDir);
-	CString filepath1 = paths_ConcatPath(sLeftDir, lent.name);
-	CString filepath2 = paths_ConcatPath(sRightDir, rent.name);
-
 	// compareok equals true as long as everything is fine
 	BOOL compareok = TRUE;
+
+	// these hold results of comparison, for constructing return code
+	bool diff=false, bin=false;
 
 	// For user chosen plugins, define bAutomaticUnpacker as false and use the chosen infoHandler
 	// but how can we receive the infoHandler ? DirScan actually only 
@@ -254,65 +308,42 @@ prepAndCompareTwoFiles(const fentry & lent, const fentry & rent,
 	// Use temporary plugins info
 	PackingInfo infoUnpacker(m_bUnpackerMode);
 	PackingInfo infoPrediffer(m_bPredifferMode);
-	// plugin may alter filepaths to temp copies
+
+	// plugin may alter filepaths to temp copies (which we delete before returning in all cases)
 	CString filepathTransformed1 = filepath1;
 	CString filepathTransformed2 = filepath2;
 
-	// first step : unpack (plugins)
-	if (infoUnpacker.bToBeScanned)
-		compareok = FileTransform_Unpacking(filepathTransformed1, filteredFilenames, &infoUnpacker, &infoUnpacker.subcode);
-	else
-		compareok = FileTransform_Unpacking(filepathTransformed1, infoUnpacker, &infoUnpacker.subcode);
-	// second step : normalize Unicode to OLECHAR (most of time, do nothing) (OLECHAR = UCS-2LE in Windows)
-	BOOL bMayOverwrite1 = (filepathTransformed1 != filepath1);
-	if (compareok)
-		compareok = FileTransform_NormalizeUnicode(filepathTransformed1, bMayOverwrite1);
-	// third step : prediff (plugins)
-	bMayOverwrite1 = (filepathTransformed1 != filepath1);
-	if (compareok)
-		compareok = FileTransform_Prediffing(filepathTransformed1, filteredFilenames, &infoPrediffer, bMayOverwrite1);
-	// fourth step : prepare for diffing
-	bMayOverwrite1 = (filepathTransformed1 != filepath1);
-	if (compareok)
-		compareok = FileTransform_UCS2ToUTF8(filepathTransformed1, bMayOverwrite1);
+	// TODO: 2004-02-03
+	// Call DiffContext::GuessEncoding to get encodings of both files
+	// and skip the UTF-8 part of file transformations if
+	// - encodings are the same and not unicode
+	// or
+	// - encodings are the same and are UTF-8
+	bool toUtf8 = true; // We will adjust this after we call GuessEncoding & get encoding info
+
+	// Invoke unpacking & prediff'ing plugins
+	if (!UnpackAndTransform(filepath1, filepathTransformed1, filteredFilenames, &infoUnpacker, &infoPrediffer, toUtf8))
+		goto exitPrepAndCompare;
 
 	// we use the same plugins for both files, so they must be defined before second file
 	ASSERT(infoUnpacker.bToBeScanned == FALSE);
 	ASSERT(infoPrediffer.bToBeScanned == FALSE);
 
-	// first step : unpack (plugins)
-	if (compareok)
-		compareok = FileTransform_Unpacking(filepathTransformed2, infoUnpacker, &infoUnpacker.subcode);
-	// second step : normalize Unicode to OLECHAR (most of time, do nothing)
-	BOOL bMayOverwrite2 = (filepathTransformed2 != filepath2);
-	if (compareok)
-		compareok = FileTransform_NormalizeUnicode(filepathTransformed2, bMayOverwrite2);
-	// third step : prediff (plugins)
-	bMayOverwrite2 = (filepathTransformed2 != filepath2);
-	if (compareok)
-		compareok = FileTransform_Prediffing(filepathTransformed2, infoPrediffer, bMayOverwrite2);
-	// fourth step : prepare for diffing
-	bMayOverwrite1 = (filepathTransformed2 != filepath2);
-	if (compareok)
-		compareok = FileTransform_UCS2ToUTF8(filepathTransformed2, bMayOverwrite2);
+	// Invoke unpacking & prediff'ing plugins
+	if (!UnpackAndTransform(filepath2, filepathTransformed2, filteredFilenames, &infoUnpacker, &infoPrediffer, toUtf8))
+		goto exitPrepAndCompare;
+
+	// If options are binary equivalent, we could check for filesize
+	// difference here, and bail out if files are clearly different
+	// But, then we don't know if file is ascii or binary, and this
+	// affects behavior (also, we don't have an icon for unknown type)
 
 	// Actually compare the files
 	// just_compare_files is a fairly thin front-end to diffutils
-	bool diff=false, bin=false;
-	if (compareok)
-	{
-	    if (mf->m_nCompMethod == 0)
-		{
-			compareok = just_compare_files(filepathTransformed1, 
-				filepathTransformed2, 0, &diff, &bin, ndiffs, ntrivialdiffs);
-		}
-		else if (mf->m_nCompMethod == 1)
-		{
-			compareok = just_compare_files_by_date(filepathTransformed1, 
-				filepathTransformed2, 0, &diff, &bin, ndiffs, ntrivialdiffs);
-		}
-	}
+	compareok = just_compare_files(filepathTransformed1, filepathTransformed2, 
+		0, &diff, &bin, ndiffs, ntrivialdiffs);
 
+exitPrepAndCompare:
 	// delete the temp files after comparison
 	if (filepathTransformed1 != filepath1)
 		::DeleteFile(filepathTransformed1);
@@ -463,81 +494,3 @@ static void StoreDiffResult(const CString & sDir, const fentry * lent, const fen
 		, lmtime, rmtime, lctime, rctime, lsize, rsize, code, lattrs, rattrs
 		, ndiffs, ntrivialdiffs);
 }
-
-/**
- * @brief Compare file timestamps
- */
-bool just_compare_files_by_date(LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin, int * ndiffs, int * ntrivialdiffs)
-{
-    bool bCompareOK = true;
-    *diff = false;
-    *bin = false;
-    *ndiffs = 0;
-    *ntrivialdiffs = 0;
-
-    FILETIME ftCreate1, ftAccess1, ftWrite1, ftLocal1;
-    FILETIME ftCreate2, ftAccess2, ftWrite2, ftLocal2;
-    SYSTEMTIME stCreate1;
-    SYSTEMTIME stCreate2;
-
-    HANDLE hFile1 = CreateFile(filepath1,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,0,NULL);
-    if (hFile1 == INVALID_HANDLE_VALUE)
-    {
-        return false;
-    }
-
-    HANDLE hFile2 = CreateFile(filepath2,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,0,NULL);
-    if (hFile2 == INVALID_HANDLE_VALUE)
-    {
-        return false;
-    }
-
-    // Retrieve the file times for the file.
-    if (!GetFileTime(hFile1, &ftCreate1, &ftAccess1, &ftWrite1))
-    {
-        return false;
-    }
-
-    // Convert the last-write time to local time.
-    if (!FileTimeToLocalFileTime(&ftWrite1, &ftLocal1))
-    {
-        return false;
-    }
-
-    // Retrieve the file times for the file.
-    if (!GetFileTime(hFile2, &ftCreate2, &ftAccess2, &ftWrite2))
-    {
-        return false;
-    }
-
-    // Convert the last-write time to local time.
-    if (!FileTimeToLocalFileTime(&ftWrite2, &ftLocal2))
-    {
-        return false;
-    }
-
-    // Convert the local file time from UTC to system time.
-    FileTimeToSystemTime(&ftLocal1, &stCreate1);
-    FileTimeToSystemTime(&ftLocal2, &stCreate2);
-
-    if (memcmp(&stCreate1,&stCreate2,sizeof(SYSTEMTIME)) != 0)
-    {
-        *diff = true;
-    }
-    /*if (stCreate1.wYear != stCreate2.wYear ||
-        stCreate1.wMonth != stCreate2.wMonth ||
-        stCreate1.wDay != stCreate2.wDay ||
-        stCreate1.wHour != stCreate2.wHour ||
-        stCreate1.wMinute != stCreate2.wMinute ||
-        stCreate1.wSecond != stCreate2.wSecond ||
-        stCreate1.wMilliseconds != stCreate2.wMilliseconds)
-    {
-        *diff = true;
-    }*/
-
-    CloseHandle(hFile1);
-    CloseHandle(hFile2);
-
-    return bCompareOK;
-}
-

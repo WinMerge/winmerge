@@ -140,7 +140,7 @@ BOOL FileTransform_Unpacking(CString & filepath, CString filteredText, PackingIn
  *
  * @param filepath : [in, out] Most plugins change this filename
  */
-BOOL FileTransform_Unpacking(CString & filepath, PackingInfo handler, int * handlerSubcode);
+BOOL FileTransform_Unpacking(CString & filepath, const PackingInfo * handler, int * handlerSubcode);
 /**
  * @brief Prepare one file for saving, known handler
  *
