@@ -477,6 +477,7 @@ CCrystalTextView::CCrystalTextView ()
   ASSERT( m_pstrIncrementalSearchStringOld );
   //END SW
   m_ParseCookies = new CArray<DWORD, DWORD>;
+  m_pnActualLineLength = new CArray<int, int>;
   ResetView ();
   SetTextType (SRC_PLAIN);
   m_bSingle = false; // needed to be set in descendat classes
@@ -493,11 +494,6 @@ CCrystalTextView::~CCrystalTextView ()
     {
       free (m_pszLastFindWhat);
       m_pszLastFindWhat=NULL;
-    }
-  if (m_pnActualLineLength != NULL)
-    {
-      delete[] m_pnActualLineLength;
-      m_pnActualLineLength = NULL;
     }
   if (m_rxnode)
     {
@@ -529,6 +525,9 @@ CCrystalTextView::~CCrystalTextView ()
   ASSERT(m_ParseCookies);
   delete m_ParseCookies;
   m_ParseCookies = NULL;
+  ASSERT(m_pnActualLineLength);
+  delete m_pnActualLineLength;
+  m_pnActualLineLength = NULL;
 }
 
 BOOL CCrystalTextView::
@@ -578,18 +577,16 @@ GetLineActualLength (int nLineIndex)
   const int nLineCount = GetLineCount ();
   ASSERT (nLineCount > 0);
   ASSERT (nLineIndex >= 0 && nLineIndex < nLineCount);
-  if (m_pnActualLineLength == NULL)
+  if (!m_pnActualLineLength->GetSize())
     {
-      m_pnActualLineLength = new int[nLineCount];
-      ASSERT( m_pnActualLineLength );
-      if (!m_pnActualLineLength)
-        return 0;		// TODO: what to do if alloc fails...???
-      memset (m_pnActualLineLength, 0xff, sizeof (int) * nLineCount);
-      m_nActualLengthArraySize = nLineCount;
+      m_pnActualLineLength->SetSize(nLineCount);
+      // must be initialized to invalid code -1
+      for (int i=0; i<nLineCount; ++i)
+        m_pnActualLineLength->SetAt(i, - 1);
     }
 
-  if (m_pnActualLineLength[nLineIndex] >= 0)
-    return m_pnActualLineLength[nLineIndex];
+  if (m_pnActualLineLength->GetAt(nLineIndex) != - 1)
+    return m_pnActualLineLength->GetAt(nLineIndex);
 
   //  Actual line length is not determined yet, let's calculate a little
   int nActualLength = 0;
@@ -622,7 +619,7 @@ GetLineActualLength (int nLineIndex)
       delete[] pszChars;
     }
 
-  m_pnActualLineLength[nLineIndex] = nActualLength;
+  m_pnActualLineLength->SetAt(nLineIndex, nActualLength);
   return nActualLength;
 }
 
@@ -1567,11 +1564,10 @@ OnDraw (CDC * pdc)
 
   // if the private arrays (m_ParseCookies and m_pnActualLineLength) 
   // are defined, check they are in phase with the text buffer
-  // as the access to these arrays is not protected (simple arrays not CArray) 
   if (m_ParseCookies->GetSize())
     ASSERT(m_ParseCookies->GetSize() == nLineCount);
-  if (m_pnActualLineLength != NULL)
-    ASSERT(m_nActualLengthArraySize == nLineCount);
+  if (m_pnActualLineLength->GetSize())
+    ASSERT(m_pnActualLineLength->GetSize() == nLineCount);
 
   CDC cacheDC;
   VERIFY (cacheDC.CreateCompatibleDC (pdc));
@@ -1673,12 +1669,7 @@ ResetView ()
         }
     }
   m_ParseCookies->RemoveAll();
-  if (m_pnActualLineLength != NULL)
-    {
-      delete[] m_pnActualLineLength;
-      m_pnActualLineLength = NULL;
-    }
-  m_nActualLengthArraySize = 0;
+  m_pnActualLineLength->RemoveAll();
   m_ptCursorPos.x = 0;
   m_ptCursorPos.y = 0;
   m_ptSelStart = m_ptSelEnd = m_ptCursorPos;
@@ -1770,12 +1761,7 @@ SetTabSize (int nTabSize)
     {
       m_pTextBuffer->SetTabSize( nTabSize );
 
-      if (m_pnActualLineLength != NULL)
-        {
-          delete[] m_pnActualLineLength;
-          m_pnActualLineLength = NULL;
-        }
-      m_nActualLengthArraySize = 0;
+      m_pnActualLineLength->RemoveAll();
       m_nMaxLineLength = -1;
       RecalcHorzScrollBar ();
       Invalidate ();
@@ -3456,10 +3442,11 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
             m_ParseCookies->SetAt(i, -1);
         }
       //  This line'th actual length must be recalculated
-      if (m_pnActualLineLength != NULL)
+      if (m_pnActualLineLength->GetSize())
         {
-          ASSERT (m_nActualLengthArraySize == nLineCount);
-          m_pnActualLineLength[nLineIndex] = -1;
+          ASSERT (m_pnActualLineLength->GetSize() == nLineCount);
+          // must be initialized to invalid code -1
+          m_pnActualLineLength->SetAt(nLineIndex, - 1);
       //BEGIN SW
       InvalidateLineCache( nLineIndex, nLineIndex );
       //END SW
@@ -3471,8 +3458,8 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
     {
       if (nLineIndex == -1)
         nLineIndex = 0;         //  Refresh all text
-      //  All text below this line should be reparsed
 
+      //  All text below this line should be reparsed
       if (m_ParseCookies->GetSize())
         {
           if (m_ParseCookies->GetSize() != nLineCount)
@@ -3488,19 +3475,19 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
         }
 
       //  Recalculate actual length for all lines below this
-      if (m_pnActualLineLength != NULL)
+      if (m_pnActualLineLength->GetSize())
         {
-          if (m_nActualLengthArraySize != nLineCount)
+          if (m_pnActualLineLength->GetSize() != nLineCount)
             {
               //  Reallocate actual length array
-              int *pnNewArray = new int[nLineCount];
-              if (nLineIndex > 0)
-                memcpy (pnNewArray, m_pnActualLineLength, sizeof (int) * nLineIndex);
-              delete[] m_pnActualLineLength;
-              m_nActualLengthArraySize = nLineCount;
-              m_pnActualLineLength = pnNewArray;
+              int oldsize = m_pnActualLineLength->GetSize(); 
+              m_pnActualLineLength->SetSize(nLineCount);
+              // must be initialized to invalid code -1
+              for (int i=oldsize; i<m_pnActualLineLength->GetSize(); ++i)
+                m_pnActualLineLength->SetAt(i, -1);
             }
-          memset (m_pnActualLineLength + nLineIndex, 0xff, sizeof (DWORD) * (m_nActualLengthArraySize - nLineIndex));
+          for (int i=nLineIndex; i<m_pnActualLineLength->GetSize(); ++i)
+            m_pnActualLineLength->SetAt(i, -1);
         }
     //BEGIN SW
     InvalidateLineCache( nLineIndex, -1 );

@@ -1,4 +1,8 @@
 2003-07-31 Laoran
+ PATCH: [ 780508 ] Convert Line Length array to CArray
+  WinMerge: ccrystaltextview.cpp ccrystaltextview.h 
+
+2003-07-31 Laoran
  PATCH: [ 780067 ] SUndoRecord::SetText must free previous text
   WinMerge: ccrystaltextbuffer.cpp ccrystaltextbuffer.h 
 

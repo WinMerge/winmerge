@@ -121,22 +121,28 @@ private :
 
     //  Parsing stuff
 
-    //  This array must be initialized to (DWORD) - 1, code for invalid values (not yet computed).
-    //  We prefer to limit the recomputing delay to the moment when we need to read
-    //  a parseCookie value for drawing.
-    //  GetParseCookie must always be used to read the m_ParseCookies value of a line.
-    //  If the actual value is invalid code, GetParseCookie computes the value, 
-    //  stores it in m_ParseCookies, and returns the new valid value.
-    //  When we edit the text, the parse cookies value may change for the modified line
-    //  and all the lines below (As m_ParseCookies[line i] depends on m_ParseCookies[line (i-1)])
-    //  It would be a loss of time to recompute all these values after each action.
-    //  So we just set all these values to invalid code (DWORD) - 1.
+    /**  
+    This array must be initialized to (DWORD) - 1, code for invalid values (not yet computed).
+    We prefer to limit the recomputing delay to the moment when we need to read
+    a parseCookie value for drawing.
+    GetParseCookie must always be used to read the m_ParseCookies value of a line.
+    If the actual value is invalid code, GetParseCookie computes the value, 
+    stores it in m_ParseCookies, and returns the new valid value.
+    When we edit the text, the parse cookies value may change for the modified line
+    and all the lines below (As m_ParseCookies[line i] depends on m_ParseCookies[line (i-1)])
+    It would be a loss of time to recompute all these values after each action.
+    So we just set all these values to invalid code (DWORD) - 1.
+    */
     CArray<DWORD, DWORD> *m_ParseCookies;
     DWORD GetParseCookie (int nLineIndex);
 
-    //  Pre-calculated line lengths (in characters)
-    int m_nActualLengthArraySize;
-    int *m_pnActualLineLength;
+    /**
+    Pre-calculated line lengths (in characters)
+    This array works as the parse cookie Array
+    and must be initialized to - 1, code for invalid values (not yet computed).
+    for the same reason.
+    */
+    CArray<int, int> *m_pnActualLineLength;
 
     BOOL m_bPreparingToDrag;
     BOOL m_bDraggingText;
