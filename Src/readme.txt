@@ -1,3 +1,7 @@
+2003-02-15 Kimmo
+  [ 686699 ] Check & return file saving success
+  Merge.rc MergeDoc.h Mergedoc.cpp resource.h
+
 2003-02-14 Kimmo
  [ 685491 ] Saving fixes: SaveToFile() rewrite part
   + Missing NULL check for mf->m_pDirDoc in CMergeDoc

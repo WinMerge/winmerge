@@ -88,6 +88,7 @@
 #define IDS_CONFIRM_COPY_SINGLE         189
 #define IDS_CONFIRM_DELETE_SINGLE       190
 #define IDS_BIN_FILES_SAME              191
+#define IDS_FILESAVE_FAILED             192
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215

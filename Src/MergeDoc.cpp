@@ -668,12 +668,41 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 //	pDestList->AddMod();
 }
 
+// Return false when saving fails, so we can ask again
+// bSaveSuccess is TRUE if saving succeeded
+BOOL CMergeDoc::TrySaveAs(CString strPath, BOOL &bSaveSuccess)
+{
+	BOOL result = TRUE;
+	CString s;
+	CString title;
 
+	bSaveSuccess = FALSE;
+	AfxFormatString1(s, IDS_FILESAVE_FAILED, strPath);
+	switch(AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION))
+	{
+	case IDYES:
+		VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
+		if (SelectFile(s, strPath, title, NULL, FALSE))
+		{
+			strPath = s;
+			bSaveSuccess = m_ltBuf.SaveToFile(strPath);
+			if (!bSaveSuccess)
+				result = FALSE;
+		}
+		break;
+	case IDNO:
+		break;
+	}
+	return result;
+}
 
-BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL bLeft)
+// Return value tells if caller can continue (no errors)
+// bSaveSuccess is TRUE if file saving succeeded
+BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 {
 	CString strSavePath(szPath);
 
+	bSaveSuccess = FALSE;
 	if (!mf->m_strSaveAsPath.IsEmpty())
 	{
 		CFileStatus status;
@@ -704,6 +733,7 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL bLeft)
 		result = m_ltBuf.SaveToFile(strSavePath);
 		if(result)
 		{
+			bSaveSuccess = TRUE;
 			m_strLeftFile = strSavePath;
 			CChildFrame *parent = dynamic_cast<CChildFrame*>(dynamic_cast<CMDIFrameWnd*>(AfxGetMainWnd())->MDIGetActive());
 			if(parent)
@@ -711,18 +741,31 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL bLeft)
 				parent->SetHeaderText(0, m_strLeftFile);
 			}
 		}
+		else
+		{
+			// Saving failed, user may save to another location if wants to
+			while (!result)
+				result = TrySaveAs(strSavePath, bSaveSuccess);
+		}
 	}
 	else
 	{
 		result = m_rtBuf.SaveToFile(strSavePath);
 		if(result)
 		{
+			bSaveSuccess = TRUE;
 			m_strRightFile = strSavePath;
 			CChildFrame *parent = dynamic_cast<CChildFrame*>(dynamic_cast<CMDIFrameWnd*>(AfxGetMainWnd())->MDIGetActive());
 			if(parent)
 			{
 				parent->SetHeaderText(1, m_strRightFile);
 			}
+		}
+		else
+		{
+			// Saving failed, user may save to another location if wants to
+			while (!result)
+				result = TrySaveAs(strSavePath, bSaveSuccess);
 		}
 	}
 	return result;
@@ -1095,32 +1138,36 @@ void CMergeDoc::FlushAndRescan()
 
 void CMergeDoc::OnFileSave() 
 {
-	int lSave = 1;
-	int rSave = 1;
+	BOOL bLSaveSuccess = FALSE;
+	BOOL bRSaveSuccess = FALSE;
+	BOOL bLModified = FALSE;
+	BOOL bRModified = FALSE;
 
 	if (m_ltBuf.IsModified())
 	{
-		lSave = DoSave(m_strLeftFile, TRUE);
+		bLModified = TRUE;
+		DoSave(m_strLeftFile, bLSaveSuccess, TRUE );
 	}
 
 	if (m_rtBuf.IsModified())
 	{
-		rSave = DoSave(m_strRightFile, FALSE);
+		bRModified = TRUE;
+		DoSave(m_strRightFile, bRSaveSuccess, FALSE);
 	}
 
-	// IF saving did not fail and files became identical,
+	// If file were modified and saving succeeded,
 	// update status on dir view
-	if (lSave && rSave)
+	if ((bLModified && bLSaveSuccess) || 
+		(bRModified && bRSaveSuccess))
 	{
-		if (m_nDiffs == 0)
+		if (m_nDiffs == 0 && mf->m_pDirDoc)
 		{
-			if (mf->m_pDirDoc)
 				mf->m_pDirDoc->UpdateItemStatus(m_strLeftFile,
 					m_strRightFile, FILE_SAME);
 		}
 	}
-
 }
+
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
 	CString sIdx,sCnt,s;
@@ -1284,14 +1331,19 @@ BOOL CMergeDoc::SaveHelper()
 {
 	BOOL result = TRUE;
 	CString s;
+	BOOL bLSaveSuccess = FALSE;
+	BOOL bRSaveSuccess = FALSE;
+	BOOL bLModified = FALSE;
+	BOOL bRModified = FALSE;
 
 	AfxFormatString1(s, IDS_SAVE_FMT, m_strLeftFile); 
 	if (m_ltBuf.IsModified())
 	{
+		bLModified = TRUE;
 		switch(AfxMessageBox(s, MB_YESNOCANCEL|MB_ICONQUESTION))
 		{
 		case IDYES:
-			if (!DoSave(m_strLeftFile, TRUE))
+			if (!DoSave(m_strLeftFile, bLSaveSuccess, TRUE))
 				result=FALSE;
 			break;
 		case IDNO:
@@ -1305,10 +1357,11 @@ BOOL CMergeDoc::SaveHelper()
 	AfxFormatString1(s, IDS_SAVE_FMT, m_strRightFile); 
 	if (m_rtBuf.IsModified())
 	{
+		bRModified = TRUE;
 		switch(AfxMessageBox(s, MB_YESNOCANCEL|MB_ICONQUESTION))
 		{
 		case IDYES:
-			if (!DoSave(m_strRightFile, FALSE))
+			if (!DoSave(m_strRightFile, bRSaveSuccess, FALSE))
 				result=FALSE;
 			break;
 		case IDNO:
@@ -1319,13 +1372,16 @@ BOOL CMergeDoc::SaveHelper()
 		}
 	}
 
-	// If files became identical, update status on
-	// dir view
-	if (result && m_nDiffs == 0)
+	// If file were modified and saving was successfull,
+	// update status on dir view
+	if ((bLModified && bLSaveSuccess) ||
+		 (bRModified && bRSaveSuccess))
 	{
-		if (mf->m_pDirDoc)
+		if (m_nDiffs == 0 && mf->m_pDirDoc)
+		{
 			mf->m_pDirDoc->UpdateItemStatus(m_strLeftFile,
 				m_strRightFile, FILE_SAME);
+		}
 	}
 	return result;
 }
