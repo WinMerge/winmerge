@@ -8,6 +8,8 @@
   InnoSetup: WinMerge Localized.iss
  BUG: [ 1046518 ] Installer doesn't install WinMerge.exe for NT4/W2K/XP
   InnoSetup: WinMerge Localized.iss
+ PATCH: [ 1046537 ] Install new manual with 2.2
+  InnoSetup: WinMerge Localized.iss
 
 2004-10-15 Kimmo
  PATCH: [ 1046583 ] Improved 48x48 icon

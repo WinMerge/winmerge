@@ -409,7 +409,7 @@ Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type:
 ;This removes the desktop icon in case the user chooses not to install it after previously having it installed
 Name: {userdesktop}\WinMerge.lnk; Type: files; Check: TaskDisabled('DesktopIcon')
 
-Name: {app}\Docs; Type: filesandordirs; Check: ComponentDisabled('Docs')
+Name: {app}\Docs; Type: filesandordirs
 
 Name: {app}\MergePlugins\editor addin.sct; Type: Files; Check: ComponentDisabled('Plugins')
 Name: {app}\MergePlugins\insert datetime.sct; Type: Files; Check: ComponentDisabled('Plugins')
@@ -492,17 +492,14 @@ Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: Langu
 Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
 
-Source: ..\Docs\Users\Guide\*.htm*; DestDir: {app}\Docs\User's Guide\; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: docs
-Source: ..\Docs\Users\Guide\*.css; DestDir: {app}\Docs\User's Guide\; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: docs
-Source: ..\Docs\Users\Guide\Art\*.ico; DestDir: {app}\Docs\User's Guide\Art; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: docs
-Source: ..\Docs\Users\Guide\Art\*.gif; DestDir: {app}\Docs\User's Guide\Art; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: docs
-Source: ..\Docs\Users\Guide\Art\*.png; DestDir: {app}\Docs\User's Guide\Art; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: docs
 Source: ..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 
 ;Documentation
 Source: ..\Docs\Users\Read Me.rtf; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 
 Source: ..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+
+Source: ..\Build\MergeRelease\Manual\*; DestDir: {app}\Docs\Manual\; Flags: overwritereadonly recursesubdirs uninsremovereadonly sortfilesbyextension; Components: docs
 
 ;Plugins
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
@@ -520,7 +517,7 @@ Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; 
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\Read Me.rtf; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\Plugins.txt; Filename: {app}\Docs\Plugins.txt; Check: InstallPluginsText
-Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\User's Guide\Index.html; IconFileName: {app}\Docs\User's Guide\Art\User's Guide.ico; Components: docs
+Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\Manual\index.html; Components: docs
 Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
 
 ;Desktop Icon
