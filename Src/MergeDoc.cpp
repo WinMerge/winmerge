@@ -1764,6 +1764,7 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView)
 		return;
 	pView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
 	pView->SetCursorPos(rectDiff.TopLeft());
+	pView->EnsureVisible(rectDiff.TopLeft());
 }
 void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView)
 {
@@ -1773,6 +1774,7 @@ void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView)
 		return;
 	pView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
 	pView->SetCursorPos(rectDiff.TopLeft());
+	pView->EnsureVisible(rectDiff.TopLeft());
 }
 
 // Returns a rectangle of the difference in the current line 
