@@ -1,3 +1,8 @@
+2004-01-27 Kimmo
+ PATCH: [ 884301 ] Modified Visual Basic syntax highlighting
+  Submitted by Tim Gerundt
+  src/editlib: basic.cpp
+
 2004-01-26 Christian
  PATCH: [ 883303 ] Upgrade WinMerge Home Page
   Web: index.php winmerge.css WinMergePAD.xml images/redswirl.gif

@@ -26,14 +26,6 @@ static char THIS_FILE[] = __FILE__;
 //  C++ keywords (MSVC5.0 + POET5.0)
 static LPTSTR s_apszBasicKeywordList[] =
   {
-    _T ("If"),
-    _T ("Function"),
-    _T ("Else"),
-    _T ("End"),
-    _T ("For"),
-    _T ("Next"),
-    _T ("While"),
-    _T ("Wend"),
     _T ("SMDoMenu"),
     _T ("GetAttrType"),
     _T ("GetAttrName"),
@@ -53,12 +45,20 @@ static LPTSTR s_apszBasicKeywordList[] =
     _T ("SetAttrValEnumInt"),
     _T ("CreateVerifyItem"),
     _T ("VerifyCardinalities"),
+    _T ("Alias"),
     _T ("As"),
     _T ("Abs"),
+    _T ("And"),
+    _T ("Any"),
     _T ("AppActivate"),
     _T ("Asc"),
     _T ("Atn"),
     _T ("Beep"),
+    _T ("Begin"),
+    _T ("Boolean"),
+    _T ("ByRef"),
+    _T ("ByVal"),
+    _T ("Byte"),
     _T ("Call"),
     _T ("CDbl"),
     _T ("ChDir"),
@@ -86,11 +86,14 @@ static LPTSTR s_apszBasicKeywordList[] =
     _T ("Do"),
     _T ("Double"),
     _T ("Loop"),
+    _T ("Each"),
     _T ("End"),
+    _T ("Enum"),
     _T ("EOF"),
     _T ("Erase"),
     _T ("Exit"),
     _T ("Exp"),
+    _T ("False"),
     _T ("FileCopy"),
     _T ("FileLen"),
     _T ("Fix"),
@@ -100,6 +103,7 @@ static LPTSTR s_apszBasicKeywordList[] =
     _T ("Next"),
     _T ("Format"),
     _T ("Function"),
+    _T ("Get"),
     _T ("GetObject"),
     _T ("Global"),
     _T ("GoSub"),
@@ -110,10 +114,14 @@ static LPTSTR s_apszBasicKeywordList[] =
     _T ("If"),
     _T ("Then"),
     _T ("Else"),
+    _T ("ElseIf"),
+    _T ("In"),
     _T ("Input"),
     _T ("InputBox"),
     _T ("InStr"),
     _T ("Int"),
+    _T ("Integer"),
+    _T ("Is"),
     _T ("IsDate"),
     _T ("IsEmpty"),
     _T ("IsNull"),
@@ -126,6 +134,7 @@ static LPTSTR s_apszBasicKeywordList[] =
     _T ("Left$"),
     _T ("Len"),
     _T ("Let"),
+    _T ("Lib"),
     _T ("Line"),
     _T ("Input#"),
     _T ("Log"),
@@ -136,23 +145,32 @@ static LPTSTR s_apszBasicKeywordList[] =
     _T ("Month"),
     _T ("MsgBox"),
     _T ("Name"),
+    _T ("New"),
     _T ("Now"),
+    _T ("Not"),
+    _T ("Nothing"),
     _T ("Oct"),
     _T ("On"),
+    _T ("Or"),
     _T ("Error"),
     _T ("Open"),
     _T ("Option"),
+    _T ("Optional"),
     _T ("Base"),
     _T ("Print"),
-    _T ("Print"),
+    _T ("Public"),
+    _T ("Private"),
+    _T ("Property"),
     _T ("Rem"),
+    _T ("Resume"),
     _T ("Right"),
     _T ("RmDir"),
     _T ("Rnd"),
     _T ("Second"),
     _T ("Seek"),
     _T ("Seek"),
-    _T ("Select Case"),
+    _T ("Select"),
+    _T ("Case"),
     _T ("SendKeys"),
     _T ("Set"),
     _T ("Shell"),
@@ -176,9 +194,11 @@ static LPTSTR s_apszBasicKeywordList[] =
     _T ("LTrim"),
     _T ("RTrim"),
     _T ("Type"),
+    _T ("True"),
     _T ("UBound"),
     _T ("UCase"),
     _T ("Val"),
+    _T ("Variant"),
     _T ("VarType"),
     _T ("While"),
     _T ("Wend"),
@@ -271,11 +291,16 @@ ParseLineBasic (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualIt
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
             }
-          else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING))
+          else if (dwCookie & (COOKIE_STRING))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_STRING);
             }
-          else
+          //Use COOKIE_CHAR for comments, because Visual Basic use ' for comments.
+          else if (dwCookie & (COOKIE_CHAR))
+            {
+              DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
+            }
+            else
             {
               if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha (pszChars[nPos - 1]) && !xisalpha (pszChars[nPos + 1])))
                 {
@@ -442,3 +467,4 @@ out:
     dwCookie &= COOKIE_EXT_COMMENT;
   return dwCookie;
 }
+
