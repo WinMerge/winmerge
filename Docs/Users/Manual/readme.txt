@@ -1,3 +1,7 @@
+2005-01-24 Kimmo
+ Update version to 1.1.0 (for 2.3.x docs), add Perry to contributors
+  Manual: WinMerge_help.xml
+
 2005-01-22 Kimmo
  PATCH: [ 1107027 ] Docs: Explain inclusive/exclusive file filters
   Manual: Filters.xml
