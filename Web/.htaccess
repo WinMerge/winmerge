@@ -10,3 +10,7 @@ Redirect permanent /WinMerge17/docs http://winmerge.org/1.7/docs
 Redirect permanent /docs http://winmerge.org/1.7/docs
 Redirect permanent /WinMergeChanges.html http://winmerge.org/2.0/changes.php
 Redirect permanent /docs20 http://winmerge.org/2.0/docs
+Redirect permanent /images/screenshot.png http://winmerge.org/2.0/images/screenshot.png
+Redirect permanent /images/winmerge.gif http://winmerge.org/2.0/images/icon.gif
+Redirect permanent /images/winmerge22.gif http://winmerge.org/2.2/images/icon.gif
+Redirect permanent /2.2/images/filecomp1.gif http://winmerge.org/2.2/images/screenshot.gif

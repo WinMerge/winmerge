@@ -99,16 +99,16 @@
       $temp .= "    <td width=\"*\" valign=\"top\" id=\"content\">\n";
       switch ($this->_version) {
         case WINMERGE_1_7: //if WinMerge 1.7 ...
-          $temp .= "<h1><img src=\"/images/winmerge.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 1.7</h1>\n";
+          $temp .= "<h1><img src=\"/1.7/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 1.7</h1>\n";
           break;
         case WINMERGE_2_0: //if WinMerge 2.0 ...
-          $temp .= "<h1><img src=\"/images/winmerge.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 2.0</h1>\n";
+          $temp .= "<h1><img src=\"/2.0/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 2.0</h1>\n";
           break;
         case WINMERGE_2_2: //if WinMerge 2.2 ...
-          $temp .= "<h1><img src=\"/images/winmerge22.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 2.2</h1>\n";
+          $temp .= "<h1><img src=\"/2.2/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 2.2</h1>\n";
           break;
         case WINMERGE_DEV: //if NONE Version ...
-          $temp .= "<h1><img src=\"/images/winmerge22.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge</h1>\n";
+          $temp .= "<h1><img src=\"/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge</h1>\n";
           break;
       }
       print($temp);

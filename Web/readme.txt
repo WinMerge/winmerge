@@ -1,3 +1,12 @@
+2004-12-11 Tim
+ PATCH: [ 1081625 ] Web: Move screenshots and icons
+  Web: .htaccess page.inc WinMergePAD.xml
+  Web\1.7\images: icon.gif
+  Web\2.0\images: icon.gif
+  Web\2.2: index.php
+  Web\2.2\images: icon.gif screenshot.gif removed filecomp1.gif
+  Web\images: icon.gif removed screenshot.png winmerge.gif winmerge22.gif
+
 2004-12-05 Tim
  PATCH: [ 1078989 ] Add 'Powered by' images to webserver
   Web: page.inc

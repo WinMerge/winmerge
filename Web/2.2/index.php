@@ -25,7 +25,7 @@
 </ul>
 
 <h2>Screenshot</h2>
-<p><img src="images/file-compare.gif" alt="Screenshot of WinMerge"></p>
+<p><img src="images/screenshot.gif" alt="Screenshot of WinMerge"></p>
 <p>See the <a href="screenshots.php">screenshots page</a> for more screenshots.</p>
 
 <h2>Installation</h2>
