@@ -1,3 +1,10 @@
+2004-04-29 Kimmo
+ PATCH: [ 943149 ] Contributors fix
+  Src: Merge.cpp Merge.rc
+  Languages: *.rc
+  Docs/Users/Contributors.txt
+  Removed: Docs/Users/Contributors.rtf
+
 2004-04-28 Kimmo
  PATCH: [ 937947 ] Open-dialog improvements (no codepage controls)
   Src: Merge.rc OpenDlg.cpp OpenDlg.h resource.h

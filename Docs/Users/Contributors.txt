@@ -1,6 +1,108 @@
-Please leave "Contributors.rtf" in RTF format this is necessary for compatiblity with our Inno Setup installer.  "Contributors.rtf" is used by the installer on the "information" page during installation.  Please do not add tables or bullets to this file, neither seem to display correctly inside of Inno Setup which has its own bug-ridden engine for displaying RTF files.  Also please leave the font choice, sizes, and color schemes as they are, or ask me for permission to do otherwise providing your reasoning.  
 
-Thanks,
-Seier Blackburn
-MyPurchases@Yahoo.com 
-(All e-mail should contain WinMerge in the title)
+People who have contributed to WinMerge
+---------------------------------------
+
+Original developer, project admin:
+* Dean Grimm
+
+Project lead:
+* Christian List
+
+Other developers:
+* Laurent Ganier
+* Dennis Limm
+* Chris Mumford
+* Perry Rapp
+* Jochen Tucht
+* Kimmo Varis
+
+
+Localization:
+* Bulgarian:	
+  Sld
+
+* Catalan:	
+  Jordi Vilar
+
+* Simplified Chinese:
+  Liaobin
+
+* Traditional Chinese:
+  Koko
+
+* Czech:
+  Jiri Tax
+
+* Danish:
+  Christian List
+
+* Dutch:
+  Ronald Schaap
+
+* French:	
+  Gil Andre 
+  Laurent Ganier
+    
+* German:	
+  Tim Gerundt
+  Winfried Peter
+  Joerg Schneider   
+    
+* Italian:	
+  Michele Merega
+             
+* Korean:
+  Sukjoon
+           
+* Norwegian:	
+  Hans Fredrik Nordhaug
+            
+* Polish:	
+  Pawe Wawrzyszko
+
+* Portuguese (Brazilian):	
+  Wender Firmino
+
+* Russian:	
+  Dmitriy S. Aleshkowskiy
+              
+* Slovak:	
+  Majvan
+             
+* Spanish:	
+  Dean Grimm
+             
+* Swedish:	
+  Göran Håkansson
+  Hans Eriksson
+
+
+Other Contributors:  
+* Christian "Seier" Blackburn (Installer)
+* Gilbert Wellisch
+* Harry Mckame
+* Hern Chen
+* Marvin Gouw
+* Michael Richter
+* Steve Beaudoin
+* Tim Gerundt
+* Tim Musschoot
+* Vikrant
+* Vincent Osele
+
+
+WinMerge includes code from:
+* Paul DiLascia (CStaticLink) 
+* Michael Dunn (CShellFileOp)
+* Michael P. Mehl (CMessageBoxDialog)
+* Cristi Posea (CSizingControlBar)
+* Ferdinand Prantl (CrystalEditor syntax rules)
+* Henry Spencer (CRegExp)
+* Andrei Stcherbatchenko (CrystalEditor)
+
+
+*** NOTE ***
+If your name is missing please send email us to:
+winmerge-support@lists.sourceforge.net
+
+Thanks!

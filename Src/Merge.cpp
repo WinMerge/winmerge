@@ -752,7 +752,7 @@ void CAboutDlg::OnBnClickedOpenContributors()
 {
 	CString defPath = GetModulePath();
 	// Don't add quotation marks yet, CFile doesn't like them
-	CString docPath = defPath + _T("\\Docs\\Contributors.rtf");
+	CString docPath = defPath + _T("\\contributors.txt");
 	HINSTANCE ret = 0;
 	
 	CFileStatus status;
@@ -762,7 +762,7 @@ void CAboutDlg::OnBnClickedOpenContributors()
 		// includes spaces
 		docPath.Insert(0, _T("\""));
 		docPath.Insert(docPath.GetLength(), _T("\""));
-		ret = ShellExecute(m_hWnd, NULL, _T("wordpad"), docPath, defPath, SW_SHOWNORMAL);
+		ret = ShellExecute(m_hWnd, NULL, _T("notepad"), docPath, defPath, SW_SHOWNORMAL);
 
 		// values < 32 are errors (ref to MSDN)
 		if ((int)ret < 32)
@@ -772,7 +772,7 @@ void CAboutDlg::OnBnClickedOpenContributors()
 			if ((int)ret < 32)
 			{
 				CString msg;
-				AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, _T("WordPad.exe"));
+				AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, _T("Notepad.exe"));
 				AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
 			}
 		}

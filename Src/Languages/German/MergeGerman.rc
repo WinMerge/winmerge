@@ -379,8 +379,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,113,209,1
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
     LTEXT           "Contributors are listed in",IDC_STATIC,7,81,208,8
-    LTEXT           "Docs/Contributors.rtf",IDC_STATIC,7,91,153,8
-    PUSHBUTTON      "Öffnen...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
+    LTEXT           "Contributors.txt",IDC_STATIC,7,91,153,8
+    PUSHBUTTON      "Show...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
 END
 
 IDD_OPEN DIALOGEX 0, 0, 368, 126
