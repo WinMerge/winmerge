@@ -1,20 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
-//    License (GPLv2+):
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful, but
-//    WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//    General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-/////////////////////////////////////////////////////////////////////////////
-/** 
+/**
  * @file  coretools.h
  *
  * @brief Declaration file for Coretools.cpp
@@ -85,7 +69,7 @@ void selection_sort(T *ary, UINT cnt)
 			if (ary[j] < ary[smallest])
 				smallest = j;
 		}
-		
+
 		t = ary[smallest];
 		ary[smallest] = ary[i];
 		ary[i] = t;
@@ -103,15 +87,15 @@ int linear_search(T *array, T target, int max)
   return NONE_FOUND;
 }
 
-BOOL GetFileTimes(LPCTSTR szFilename, 
-				  LPSYSTEMTIME pMod, 
-				  LPSYSTEMTIME pCreate =NULL, 
+BOOL GetFileTimes(LPCTSTR szFilename,
+				  LPSYSTEMTIME pMod,
+				  LPSYSTEMTIME pCreate =NULL,
 				  LPSYSTEMTIME pAccess =NULL);
 long GetFileModTime(LPCTSTR szPath);
 DWORD GetFileSizeEx(LPCTSTR szFilename);
 CString GetCDPath();
 BOOL HaveAdminAccess();
-BOOL DoModalProcess(CWnd *pWndParent, LPCTSTR szExeFile, 
+BOOL DoModalProcess(CWnd *pWndParent, LPCTSTR szExeFile,
 					LPCTSTR szCmdLine, LPCTSTR szWindowCaption);
 
 DWORD FPRINTF(HANDLE hf, LPCTSTR fmt, ... );

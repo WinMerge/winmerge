@@ -3,6 +3,8 @@
   Src: Merge.cpp
  PATCH: [ 1002280 ] Don't show dircompare statepane if no dircompare results
   Src: DirView.cpp
+ Remove GPL licence from coretools.cpp/h - that code is mostly freeware, not GPL
+  Src/Common: coretools.cpp coretools.h
 
 2004-08-02 Kimmo
  PATCH: [ 1001111 ] Warn if user selected binary files for patch creating

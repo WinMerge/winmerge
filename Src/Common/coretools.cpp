@@ -1,20 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
-//    License (GPLv2+):
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or (at
-//    your option) any later version.
-//    
-//    This program is distributed in the hope that it will be useful, but
-//    WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program; if not, write to the Free Software
-//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-/////////////////////////////////////////////////////////////////////////////
-/** 
+/**
  * @file  coretools.cpp
  *
  * @brief Common routines
@@ -40,15 +24,15 @@
 #endif /* countof */
 
 
-BOOL GetFileTimes(LPCTSTR szFilename, 
-				  LPSYSTEMTIME pMod, 
-				  LPSYSTEMTIME pCreate /*=NULL*/, 
+BOOL GetFileTimes(LPCTSTR szFilename,
+				  LPSYSTEMTIME pMod,
+				  LPSYSTEMTIME pCreate /*=NULL*/,
 				  LPSYSTEMTIME pAccess /*=NULL*/)
 {
 	WIN32_FIND_DATA ffi;
 	ASSERT(szFilename != NULL);
 	ASSERT(pMod != NULL);
-	
+
 	HANDLE hff = FindFirstFile(szFilename, &ffi);
 	if (hff != INVALID_HANDLE_VALUE)
 	{
@@ -86,7 +70,7 @@ DWORD GetFileSizeEx(LPCTSTR szFilename)
 {
 	WIN32_FIND_DATA ffi;
 	ASSERT(szFilename != NULL);
-	
+
 	HANDLE hff = FindFirstFile(szFilename, &ffi);
 	if (hff != INVALID_HANDLE_VALUE)
 	{
@@ -109,7 +93,7 @@ int tcssubptr(LPCTSTR start, LPCTSTR end)
 	return cnt;
 }
 
-BOOL DoModalProcess(CWnd *pWndParent, LPCTSTR szExeFile, 
+BOOL DoModalProcess(CWnd *pWndParent, LPCTSTR szExeFile,
 					LPCTSTR szCmdLine, LPCTSTR szWindowCaption)
 {
 	BOOL result = FALSE;
@@ -119,14 +103,14 @@ BOOL DoModalProcess(CWnd *pWndParent, LPCTSTR szExeFile,
 		CString spath;
 		SplitFilename(temp, &spath, 0, 0);
 		CString stemp = spath + '\\' + szExeFile;
-		if ((int)ShellExecute(pWndParent->GetSafeHwnd(), _T("open"), stemp, 
+		if ((int)ShellExecute(pWndParent->GetSafeHwnd(), _T("open"), stemp,
 						 szCmdLine, spath, SW_SHOWNORMAL) > 32)
 		{
 			result=TRUE;
 			if (szWindowCaption != NULL)
 			{
 				pWndParent->EnableWindow(FALSE);
-				
+
 				CTime start = CTime::GetCurrentTime();
 				CTimeSpan span;
 				BOOL found=FALSE;
@@ -193,16 +177,16 @@ CString GetCDPath()
 /*
  Commented out - can't use this file by just including
  coretools.h because of gethostaname() & gethostbyname().
- 
-BOOL GetIP(LPTSTR straddr) 
+
+BOOL GetIP(LPTSTR straddr)
 {
 	char     szHostname[100];
 	HOSTENT *pHent;
-	SOCKADDR_IN sinRemote;         
-	
+	SOCKADDR_IN sinRemote;
+
 	gethostname( szHostname, sizeof( szHostname ));
 	pHent = gethostbyname( szHostname );
-	
+
 	if (pHent != NULL)
 	{
 		sinRemote.sin_addr.s_addr = *(u_long *)pHent->h_addr;
@@ -213,7 +197,7 @@ BOOL GetIP(LPTSTR straddr)
 			sinRemote.sin_addr.S_un.S_un_b.s_b4);
 		return TRUE;
 	}
-	
+
 	*straddr=_T('\0');
 	return FALSE;
 }
@@ -243,19 +227,19 @@ DWORD FPUTS(LPCTSTR s, HANDLE hf)
 
 HANDLE FOPEN(LPCTSTR path, DWORD mode /*= GENERIC_READ*/, DWORD access /*= OPEN_EXISTING*/)
 {
-	HANDLE hf = CreateFile(path,	
-					mode, 	
-					0,	
-					NULL,	
-					access,	
+	HANDLE hf = CreateFile(path,
+					mode,
+					0,
+					NULL,
+					access,
 					FILE_ATTRIBUTE_NORMAL,
 					NULL);
 	if (hf == INVALID_HANDLE_VALUE) // give it another shot
-		return CreateFile(path,	
-					mode, 	
-					0,	
-					NULL,	
-					access,	
+		return CreateFile(path,
+					mode,
+					0,
+					NULL,
+					access,
 					FILE_ATTRIBUTE_NORMAL,
 					NULL);
 	return hf;
@@ -295,10 +279,10 @@ CString ConvertPath2PS(LPCTSTR szPath)
 }
 
 
-BOOL 
+BOOL
 FileExtMatches(LPCTSTR filename, LPCTSTR ext)
 {
-  LPCTSTR p; 
+  LPCTSTR p;
 
   /* if ext is empty, it is considered a no-match */
   if (*ext == _T('\0'))
@@ -321,7 +305,7 @@ void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pE
 	LPCTSTR pszChar = pathLeft + _tcslen(pathLeft);
 	LPCTSTR pend=pszChar, extptr=0;
 	bool ext=false;
-	while (pathLeft < --pszChar) 
+	while (pathLeft < --pszChar)
 	{
 		if (*pszChar == '.')
 		{
@@ -345,7 +329,7 @@ void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pE
 		{
 			// Ok, found last slash, so we collect any info desired
 			// and we're done
-	
+
 			if (pPath)
 			{
 				// Grab directory (omit trailing slash)
@@ -398,7 +382,7 @@ void TestSplitFilename()
 	{
 		LPCTSTR dir = tests[i];
 		CString path, name, ext;
-		SplitFilename(dir, &path, &name, &ext); 
+		SplitFilename(dir, &path, &name, &ext);
 		LPCTSTR szpath = tests[i+1] ? tests[i+1] : _T("");
 		LPCTSTR szname = tests[i+2] ? tests[i+2] : _T("");
 		LPCTSTR szext = tests[i+3] ? tests[i+3] : _T("");
@@ -422,8 +406,8 @@ AddExtension(LPTSTR name, LPCTSTR ext)
 		_tcscat(name,ext);
 	}
 }
-   
-  
+
+
 BOOL
 GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s)
 {
@@ -431,14 +415,14 @@ GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s)
 	  bytesPerSector,
 	  numberOfFreeClusters,
 	  totalNumberOfClusters, total;
-  
-  if (!GetDiskFreeSpace(drivespec, 
+
+  if (!GetDiskFreeSpace(drivespec,
 						&sectorsPerCluster,
 						&bytesPerSector,
 						&numberOfFreeClusters,
 						&totalNumberOfClusters))
     return FALSE;
-  
+
   total = numberOfFreeClusters*bytesPerSector*sectorsPerCluster;
   if (mode==BYTES)
     _stprintf(s, _T("%lu bytes available"), total);
@@ -449,7 +433,7 @@ GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s)
   return TRUE;
 }
 
-int 
+int
 fcmp(float a,float b)
 /* return -1 if a<b, 0 if a=b, or 1 if a>b */
 {
@@ -460,12 +444,12 @@ fcmp(float a,float b)
 
   if (la < lb)
     return -1;
-  
+
   return (la > lb);
 }
 
 
-void 
+void
 aswap(LPTSTR a,LPTSTR b)
 {
  TCHAR t[200];
@@ -493,7 +477,7 @@ BOOL FindAnyFile(LPTSTR filespec, LPTSTR name)
 }
 
 
-long 
+long
 SwapEndian(long val)
 {
 #ifndef _WINDOWS
@@ -502,7 +486,7 @@ SwapEndian(long val)
   t |= ((val >> 8) & 0x0000FF00);
   t |= ((val << 8) & 0x00FF0000);
   t |= ((val << 24) & 0xFF000000);
-  return (long)t; 
+  return (long)t;
 #else
   return val;
 #endif
@@ -510,7 +494,7 @@ SwapEndian(long val)
 
 
 
-short int 
+short int
 SwapEndian(short int val)
 {
 #ifndef _WINDOWS
@@ -527,7 +511,7 @@ SwapEndian(short int val)
 BOOL MkDirEx(LPCTSTR filename)
 {
 	TCHAR tempPath[_MAX_PATH] = {0};
-	LPTSTR p; 
+	LPTSTR p;
 
 	_tcscpy(tempPath, filename);
 	if (*_tcsinc(filename)==_T(':'))
@@ -547,7 +531,7 @@ BOOL MkDirEx(LPCTSTR filename)
 					TRACE(_T("Failed to create folder %s (%ld)\n"),tempPath, GetLastError());
 				_tccpy(p, _T("\\"));
 			}
-			
+
 		}
 
 		if (!CreateDirectory(filename, NULL)
@@ -584,7 +568,7 @@ BOOL HaveAdminAccess()
 	// make sure this is NT first
 	OSVERSIONINFO ver;
 	ver.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-	
+
 	// if this fails, we want to default to being enabled
 	if (!(GetVersionEx(&ver) && ver.dwPlatformId==VER_PLATFORM_WIN32_NT))
 	{
@@ -593,34 +577,34 @@ BOOL HaveAdminAccess()
 
 	// now check with the security manager
 	HANDLE hHandleToken;
-	
+
 	if(!::OpenProcessToken(::GetCurrentProcess(), TOKEN_READ, &hHandleToken))
 		return(FALSE);
-	
+
 	UCHAR TokenInformation[1024];
 	DWORD dwTokenInformationSize;
-	
-	BOOL bSuccess = ::GetTokenInformation(hHandleToken, TokenGroups, 
+
+	BOOL bSuccess = ::GetTokenInformation(hHandleToken, TokenGroups,
 		TokenInformation, sizeof(TokenInformation), &dwTokenInformationSize);
-	
+
 	::CloseHandle(hHandleToken);
-	
+
 	if(!bSuccess)
 		return FALSE;
-	
+
 	SID_IDENTIFIER_AUTHORITY siaNtAuthority = SECURITY_NT_AUTHORITY;
 	PSID psidAdministrators;
-	
-	if(!::AllocateAndInitializeSid(&siaNtAuthority, 2, 
-		SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0, 0, 0, 0, 0, 0, 
+
+	if(!::AllocateAndInitializeSid(&siaNtAuthority, 2,
+		SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0, 0, 0, 0, 0, 0,
 		&psidAdministrators))
 		return FALSE;
-	
+
 	// assume that we don't find the admin SID.
 	bSuccess = FALSE;
-	
+
 	PTOKEN_GROUPS ptgGroups = (PTOKEN_GROUPS)TokenInformation;
-	
+
 	for(UINT x=0; x < ptgGroups->GroupCount; x++)
 	{
 		if(::EqualSid(psidAdministrators, ptgGroups->Groups[x].Sid))
@@ -629,9 +613,9 @@ BOOL HaveAdminAccess()
 			break;
 		}
 	}
-	
+
 	::FreeSid(psidAdministrators);
-	
+
 	return bSuccess;
 }
 
@@ -647,7 +631,7 @@ CString LegalizeFileName(LPCTSTR szFileName)
 	{
 		*p = _T('_');
 	}
-	
+
 	return CString(tempname);
 }
 
@@ -662,7 +646,7 @@ void DDX_Float( CDataExchange* pDX, int nIDC, float& value )
 		static TCHAR thous[4]=_T("");
 		static TCHAR negsign[4]=_T("");
 		static int negstyle=1;
-		
+
 		if (*dec == _T('\0'))
 		{
 			LCID lcid = GetThreadLocale();
@@ -672,14 +656,14 @@ void DDX_Float( CDataExchange* pDX, int nIDC, float& value )
 			GetLocaleInfo(lcid, LOCALE_STHOUSAND, thous, 4);
 			GetLocaleInfo(lcid, LOCALE_SNEGATIVESIGN, negsign, 4);
 		}
-		
+
 		value = 0.f;
-		
+
 		// are we negative?
 		TCHAR *p,text[80];
 		pEdit->GetWindowText(text, 80);
 		BOOL bIsNeg = (_tcschr(text, negsign[0])!=NULL);
-		
+
 		// separate at the decimal point
 		TCHAR istr[80]=_T("");
 		TCHAR fstr[80]=_T("");
@@ -691,7 +675,7 @@ void DDX_Float( CDataExchange* pDX, int nIDC, float& value )
 			if (p != NULL)
 				_tcscpy(fstr, p);
 		}
-		
+
 		// get the int part
 		if (*istr != _T('\0'))
 		{
@@ -706,7 +690,7 @@ void DDX_Float( CDataExchange* pDX, int nIDC, float& value )
 			}
 			value = (float)_ttoi(strResult);
 		}
-		
+
 		// get the fract part
 		if (*fstr != _T('\0'))
 		{
@@ -720,7 +704,7 @@ void DDX_Float( CDataExchange* pDX, int nIDC, float& value )
 					pDX->Fail();
 			}
 		}
-		
+
 		// convert to neg
 		if (bIsNeg)
 			value *= -1.f;
@@ -746,7 +730,7 @@ void DDX_Double( CDataExchange* pDX, int nIDC, double& value )
 		static TCHAR thous[4]=_T("");
 		static TCHAR negsign[4]=_T("");
 		static int negstyle=1;
-		
+
 		if (*dec == _T('\0'))
 		{
 			LCID lcid = GetThreadLocale();
@@ -756,14 +740,14 @@ void DDX_Double( CDataExchange* pDX, int nIDC, double& value )
 			GetLocaleInfo(lcid, LOCALE_STHOUSAND, thous, 4);
 			GetLocaleInfo(lcid, LOCALE_SNEGATIVESIGN, negsign, 4);
 		}
-		
+
 		value = 0.f;
-		
+
 		// are we negative?
 		TCHAR *p,text[80];
 		pEdit->GetWindowText(text, 80);
 		BOOL bIsNeg = (_tcschr(text, negsign[0])!=NULL);
-		
+
 		// separate at the decimal point
 		TCHAR istr[80]=_T("");
 		TCHAR fstr[80]=_T("");
@@ -775,7 +759,7 @@ void DDX_Double( CDataExchange* pDX, int nIDC, double& value )
 			if (p != NULL)
 				_tcscpy(fstr, p);
 		}
-		
+
 		// get the int part
 		if (*istr != _T('\0'))
 		{
@@ -790,7 +774,7 @@ void DDX_Double( CDataExchange* pDX, int nIDC, double& value )
 			}
 			value = /*(float)*/_ttoi(strResult);
 		}
-		
+
 		// get the fract part
 		if (*fstr != _T('\0'))
 		{
@@ -804,7 +788,7 @@ void DDX_Double( CDataExchange* pDX, int nIDC, double& value )
 					pDX->Fail();
 			}
 		}
-		
+
 		// convert to neg
 		if (bIsNeg)
 			value *= -1.f;
@@ -853,13 +837,13 @@ CString GetLocalizedNumberString(double dVal, int nPlaces /*=-1*/, BOOL bSeparat
 		negstyle = _ttoi(buf);
 	}
 
-	TCHAR szFract[80]; 
+	TCHAR szFract[80];
 	if (1)
 	{
 		// split into integer & fraction
-		char tszInt[80],tszFract[80]; 
+		char tszInt[80],tszFract[80];
 		int places = (nPlaces==-1? nDecimals : nPlaces);
-		int  decimal, sign;   
+		int  decimal, sign;
 		char *buffer;
 
 		buffer = _fcvt( dVal+1e-10, places, &decimal, &sign );
@@ -889,7 +873,7 @@ CString GetLocalizedNumberString(double dVal, int nPlaces /*=-1*/, BOOL bSeparat
 		else if (negstyle==2)
 			strResult = _T("- ");
 	}
-	
+
 	// format integer part
 	if (intpart >= 1)
 	{
@@ -945,7 +929,7 @@ CString GetLocalizedNumberString(double dVal, int nPlaces /*=-1*/, BOOL bSeparat
 		// add the decimal separator
 		strResult += dec;
 		strResult += szFract;
-		
+
 		// get rid of trailing zeros
 		if (!bTrailZeros)
 		{
@@ -953,7 +937,7 @@ CString GetLocalizedNumberString(double dVal, int nPlaces /*=-1*/, BOOL bSeparat
 			p = _tcsdec(start, start + _tcslen(start));
 			if (p != NULL)
 			{
-				for (; p > start && *p==_T('0'); 
+				for (; p > start && *p==_T('0');
 				p = _tcsdec(start, p));
 				if (p != NULL)
 				{
@@ -987,19 +971,19 @@ HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized /*= TRUE*/, BOOL
     STARTUPINFO si;
 	PROCESS_INFORMATION procInfo;
 
-    si.cb = sizeof(STARTUPINFO); 
-    si.lpReserved=NULL; 
-    si.lpDesktop = _T(""); 
-    si.lpTitle = NULL; 
-    si.dwFlags = STARTF_USESHOWWINDOW; 
-    si.wShowWindow = (WORD)(bMinimized? SW_MINIMIZE : SW_NORMAL); 
-    si.cbReserved2 = 0; 
-    si.lpReserved2 = NULL; 
+    si.cb = sizeof(STARTUPINFO);
+    si.lpReserved=NULL;
+    si.lpDesktop = _T("");
+    si.lpTitle = NULL;
+    si.dwFlags = STARTF_USESHOWWINDOW;
+    si.wShowWindow = (WORD)(bMinimized? SW_MINIMIZE : SW_NORMAL);
+    si.cbReserved2 = 0;
+    si.lpReserved2 = NULL;
 
 	TCHAR args[4096];
 	_stprintf(args,_T("\"%s\" %s"), szExeFile, szArgs);
     if (CreateProcess(szExeFile, args, NULL, NULL,
-		FALSE, NORMAL_PRIORITY_CLASS|(bNewConsole? CREATE_NEW_CONSOLE:0), 
+		FALSE, NORMAL_PRIORITY_CLASS|(bNewConsole? CREATE_NEW_CONSOLE:0),
                          NULL, _T(".\\"), &si, &procInfo))
 	{
 		CloseHandle(procInfo.hThread);
@@ -1022,7 +1006,7 @@ BOOL HasExited(HANDLE hProcess, DWORD *pCode)
 }
 
 
-BOOL IsLocalPath(LPCTSTR path) 
+BOOL IsLocalPath(LPCTSTR path)
 {
 
   _TCHAR finalpath[_MAX_PATH] = {0};
@@ -1034,7 +1018,7 @@ BOOL IsLocalPath(LPCTSTR path)
   BOOL bLocal=FALSE;
 
   _TCHAR* pLoc;
-  
+
   CString szInfo;
 
 
@@ -1057,7 +1041,7 @@ BOOL IsLocalPath(LPCTSTR path)
       _tcscpy(uncname, temppath);
       _tcscat(finalpath, uncname);
     }
-    
+
   }
   else //standard path
   {
@@ -1066,7 +1050,7 @@ BOOL IsLocalPath(LPCTSTR path)
     {
       *pLoc = _T('\0');
     }
-    _tcscpy(finalpath, temppath);    
+    _tcscpy(finalpath, temppath);
   }
 
 
@@ -1091,10 +1075,10 @@ BOOL IsLocalPath(LPCTSTR path)
     //test the standard path
     UINT uType;
     uType = GetDriveType(finalpath);
-    
+
     switch(uType)
     {
-    case DRIVE_UNKNOWN: 
+    case DRIVE_UNKNOWN:
       //szInfo = _T("The drive type cannot be determined.");
       break;
     case DRIVE_NO_ROOT_DIR:
@@ -1104,7 +1088,7 @@ BOOL IsLocalPath(LPCTSTR path)
       //szInfo = _T("The disk can be removed from the drive.");
       bLocal=TRUE;
       break;
-    case DRIVE_FIXED: 
+    case DRIVE_FIXED:
       //szInfo = _T("The disk cannot be removed from the drive.");
       bLocal=TRUE;
       break;
@@ -1121,9 +1105,9 @@ BOOL IsLocalPath(LPCTSTR path)
       break;
     //default:
       //szInfo = _T("GetDriveType returned an unknown type");
-      
+
     }
-  }  
+  }
 
   return bLocal;
 }
@@ -1145,7 +1129,7 @@ CString GetPathOnly(LPCTSTR fullpath)
 	return spath;
 }
 
-/** 
+/**
  * @brief Returns Application Data path in user profile directory
  * if one exists
  */
@@ -1153,25 +1137,7 @@ BOOL GetAppDataPath(CString &sAppDataPath)
 {
 	TCHAR path[_MAX_PATH] = {0};
 	if (GetEnvironmentVariable(_T("APPDATA"), path, _MAX_PATH))
-	{	
-		sAppDataPath = path;
-		return TRUE;
-	}
-	else
 	{
-		sAppDataPath = _T("");
-		return FALSE;
-	}
-}
-
-/** 
- * @brief Returns User Profile path (if available in environment)
- */
-BOOL GetUserProfilePath(CString &sAppDataPath)
-{
-	TCHAR path[_MAX_PATH] = {0};
-	if (GetEnvironmentVariable(_T("USERPROFILE"), path, countof(path)))
-	{	
 		sAppDataPath = path;
 		return TRUE;
 	}
@@ -1183,7 +1149,25 @@ BOOL GetUserProfilePath(CString &sAppDataPath)
 }
 
 /**
- * @brief Copies string to clipboard. 
+ * @brief Returns User Profile path (if available in environment)
+ */
+BOOL GetUserProfilePath(CString &sAppDataPath)
+{
+	TCHAR path[_MAX_PATH] = {0};
+	if (GetEnvironmentVariable(_T("USERPROFILE"), path, countof(path)))
+	{
+		sAppDataPath = path;
+		return TRUE;
+	}
+	else
+	{
+		sAppDataPath = _T("");
+		return FALSE;
+	}
+}
+
+/**
+ * @brief Copies string to clipboard.
  */
 BOOL PutToClipboard(LPCTSTR pszText, HWND currentWindowHandle)
 {
@@ -1287,7 +1271,7 @@ void GetDecoratedCmdLine(CString sCmdLine, CString &sDecoratedCmdLine,
 		{
 			prevPos = pos;
 			pos = sCmdLine.Find(_T(" "), prevPos + 1);
-			
+
 			if (pos > -1)
 			{
 				if (sCmdLine[pos + 1] == '/' || sCmdLine[pos + 1] == '-')
