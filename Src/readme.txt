@@ -3,6 +3,8 @@
   Src/Common: unicoder.cpp unicoder.h
  Localized language names into Russian
   Src/Languages: MergeRussian.rc
+ Localized language names into Bulgarian
+  Src/Languages: MergeBulgarian.rc
 
 2004-05-25 Kimmo
  PATCH: [ 959627 ] Fix crash when opening context menu for '..' item in dirview
