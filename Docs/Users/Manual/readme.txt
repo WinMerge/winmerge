@@ -1,3 +1,8 @@
+2004-10-18 Kimmo
+ PATCH: [ 1043825 ] revised wording for merge mode manual
+  Submitted by Perry
+  Manual: Compare_files.xml
+
 2004-10-09 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations
   Submitted by Tim Gerundt

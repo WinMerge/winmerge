@@ -114,7 +114,7 @@
     </sect3>
     <sect3>
       <title>Merge mode</title>
-      <para>Merge mode can be enabled from <guimenu>File</guimenu>-menu. It makes WinMerge like 1.7.1 for difference merging and navigating:</para>
+      <para>Merge mode can be enabled from the <guimenu>File</guimenu>-menu. It restores the WinMerge 1.7.1 single keys for difference merging and navigating:</para>
       <itemizedlist>
         <listitem>
           <para><keycap>Up-</keycap> and <keycap>Down arrow</keycap> keys select previous and next difference</para>
@@ -123,7 +123,7 @@
           <para><keycap>Left-</keycap> and <keycap>Right arrow</keycap> keys merge difference to left side or right side.</para>
         </listitem>
       </itemizedlist>
-      <para>So <keycap>Alt</keycap>-key is not needed which makes these basic actions faster and easier to use. Note that <keycombo><keycap>Shift</keycap><keycap>Arrow</keycap></keycombo>, <keycombo><keycap>Alt</keycap><keycap>Arrow</keycap></keycombo> and <keycombo><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>Arrow</keycap></keycombo> keys work in merge mode like in normal mode.</para>
+      <para>Unlike the normal mode, in this schema the <keycap>Alt</keycap>-key is not needed for these basic operations (which makes them quicker and more convenient). Note that <keycombo><keycap>Shift</keycap><keycap>Arrow</keycap></keycombo>, <keycombo><keycap>Alt</keycap><keycap>Arrow</keycap></keycombo> and <keycombo><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>Arrow</keycap></keycombo> keys work in merge mode like in normal mode.</para>
       <para>When merge mode is enabled <guilabel>Merge</guilabel> text is shown in statusbar. </para>
     </sect3>
   </sect2>
