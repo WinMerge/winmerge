@@ -1,3 +1,7 @@
+2004-06-14 Kimmo
+ PATCH: [ 972188 ] Add More Pascal comments styles to syntax highlight
+  Src/editlib: pascal.cpp
+
 2004-06-14 Laoran
  PATCH: [ 972290 ] In LoadFromFile, free the handle before deleting temp files
   Src: MergeDoc.cpp

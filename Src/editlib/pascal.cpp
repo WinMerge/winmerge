@@ -227,7 +227,19 @@ out:
               dwCookie &= ~COOKIE_EXT_COMMENT;
               bRedefineBlock = TRUE;
             }
+          if (pszChars[I] == '}')
+            {
+              dwCookie &= ~COOKIE_EXT_COMMENT;
+              bRedefineBlock = TRUE;
+            }
           continue;
+        }
+
+      if (I > 0 && pszChars[I] == '/' && pszChars[I - 1] == '/')
+        {
+          DEFINE_BLOCK (I - 1, COLORINDEX_COMMENT);
+          dwCookie |= COOKIE_COMMENT;
+          break;
         }
 
       //  Normal text
@@ -250,6 +262,13 @@ out:
       if (I > 0 && pszChars[I] == '*' && pszChars[I - 1] == '(')
         {
           DEFINE_BLOCK (I - 1, COLORINDEX_COMMENT);
+          dwCookie |= COOKIE_EXT_COMMENT;
+          continue;
+        }
+
+      if (pszChars[I] == '{')
+        {
+          DEFINE_BLOCK (I, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
           continue;
         }
