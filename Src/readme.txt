@@ -1,6 +1,8 @@
 2004-04-18 Perry
  BUG: [ 937435 ] cvs doesn't compile -- typo in CMergeDoc::ShowRescanError(
   Src: MergeDoc.cpp
+ PATCH: [ 937441 ] CMergeEditView:Avoid calling SelectDiff when no current diff
+   Src: MergeEditView.cpp
 
 2004-04-18 Kimmo
  PATCH: [ 934738 ] CopyLeftTo/CopyRightTo Including Common Subdirectories

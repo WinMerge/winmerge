@@ -766,7 +766,8 @@ void CMergeEditView::OnNextdiff()
 				break;
 			}
 		}
-		SelectDiff(curDiff, TRUE, FALSE);
+		if (curDiff >= 0)
+			SelectDiff(curDiff, TRUE, FALSE);
 	}
 }
 
@@ -821,7 +822,8 @@ void CMergeEditView::OnPrevdiff()
 				break;
 			}
 		}
-		SelectDiff(curDiff, TRUE, FALSE);
+		if (curDiff >= 0)
+			SelectDiff(curDiff, TRUE, FALSE);
 	}
 }
 
