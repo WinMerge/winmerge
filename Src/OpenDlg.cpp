@@ -499,43 +499,38 @@ void COpenDlg::OnSelectFilter()
 CString COpenDlg::ParseExtensions(CString extensions)
 {
 	CString strParsed;
-	static const TCHAR pszSeps[] = _T("; |%^&,\\/<>:\"'`?\t\r\n");
-
-	TCHAR ext[2048];
-	// no need to trim before tokenizing
-	_tcscpy(ext, extensions);
-	LPTSTR p, pbreak;
 	CString strPattern;
+	BOOL bFilterAdded = FALSE;
+	static const TCHAR pszSeps[] = _T(" ;|,:");
 
-	p = _tcstok(ext, pszSeps);
-	while (p != NULL)
+	extensions += _T(";"); // Add one separator char to end
+	int pos = extensions.FindOneOf(pszSeps);
+	
+	while (pos >= 0)
 	{
-		strPattern += EMPTY_EXTENSION;
-		while ((pbreak = _tcspbrk(p,  EMPTY_EXTENSION)) != NULL)
+		CString token = extensions.Left(pos); // Get first extension
+		extensions.Delete(0, pos + 1); // Remove extension + separator
+		
+		// Only "*.something" allowed, other ignored
+		if (token.GetLength() > 2 && token[0] == '*' && token[1] == '.')
 		{
-			TCHAR c = *pbreak;
-			*pbreak = 0;
-			strPattern += p;
-
-			if (c == _T('*'))
-				// replace all * with .*
-				strPattern += EMPTY_EXTENSION;
-			if (c == _T('.'))
-				// replace all . with \\.
-				strPattern += _T("\\.");
-			p = pbreak + 1;
+			bFilterAdded = TRUE;
+			strPattern += _T(".*\\.");
+			strPattern += token.Mid(2);
 		}
-		strPattern += p;
+		else
+			bFilterAdded = FALSE;
 
-		p = _tcstok(NULL, pszSeps);
-		if (p != NULL)
-			strPattern += _T('|');
+		pos = extensions.FindOneOf(pszSeps); 
+		if (bFilterAdded && pos >= 0)
+			strPattern += _T("|");
 	}
 
 	if (strPattern.IsEmpty())
 		strParsed = EMPTY_EXTENSION;
 	else
 	{
+		// Add 'or' for lowercase and uppercase match
 		strParsed = _T("^(");
 		strPattern.MakeLower();
 		strParsed += strPattern + _T("|");

@@ -1,3 +1,7 @@
+2004-06-04 Kimmo
+ PATCH: [ 965950 ] Simplify and fix Open-dialog extension parser
+  Src: OpenDlg.cpp
+
 2004-06-03 Laoran
  BUG: [ 964242 ] WinMerge getting slower loading and showing files
   Src/Common: unicoder.cpp
