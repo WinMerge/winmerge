@@ -90,6 +90,7 @@ protected:
 	void SetUnpackerStatus(UINT msgID);
 	void CenterToMainFrame();
 	BOOL LoadProjectFile(CString path);
+	void TrimPaths();
 
 	// Generated message map functions
 	//{{AFX_MSG(COpenDlg)

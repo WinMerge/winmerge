@@ -174,6 +174,7 @@ void COpenDlg::OnOK()
 	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
 
 	UpdateData(TRUE);
+	TrimPaths();
 
 	m_pathsType = GetPairComparability(m_strLeft, m_strRight);
 
@@ -308,6 +309,7 @@ void COpenDlg::UpdateButtonStates()
 
 	UpdateData(TRUE); // load member variables from screen
 	KillTimer(IDT_CHECKFILES);
+	TrimPaths();
 	
 	// Enable buttons as appropriate
 	PATH_EXISTENCE pathsType = GetPairComparability(m_strLeft, m_strRight);
@@ -544,4 +546,16 @@ BOOL COpenDlg::LoadProjectFile(CString path)
 		}
 	}
 	return TRUE;
+}
+
+/** 
+ * @brief Removes whitespaces from left and right paths
+ * @note Assumes UpdateData(TRUE) is called before this function.
+ */
+void COpenDlg::TrimPaths()
+{
+	m_strLeft.TrimLeft();
+	m_strLeft.TrimRight();
+	m_strRight.TrimLeft();
+	m_strRight.TrimRight();
 }

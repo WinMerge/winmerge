@@ -6,6 +6,8 @@
   Src: Merge.rc MergeDoc.cpp MergeDoc.h
   Src/Common: UniFile.cpp
   Src/Languages: *.rc
+ PATCH: [ 1015393 ] Strip whitespaces from paths in Open-dialog
+  Src: OpenDlg.cpp OpenDlg.h
 
 2004-08-23 Kimmo
  PATCH: [ 1013715 ] Catalan translation update
