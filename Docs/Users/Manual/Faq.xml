@@ -65,6 +65,14 @@
           <para>Which kind of CVS integration WinMerge should have? Adding CVS client features to WinMerge is questionable since there are many good CVS clients already. Conflict file resolution is feature we are planning to add in future releases.</para>
         </answer>
       </qandaentry>
+      <qandaentry>
+        <question>
+          <para>What is MRU (list)? What it means?</para>
+        </question>
+        <answer>
+          <para>MRU is the abbreviation for "Most Recently Used", and means the history lists in Open-dialog thats containing 20 last used files/paths per side.</para>
+        </answer>
+      </qandaentry>
     </qandaset>
   </sect2>
   <sect2>

@@ -1,3 +1,8 @@
+2004-11-02 Kimmo
+ PATCH: [ 1059075 ] Docs: What means MRU?
+  Submitted by Tim Gerundt
+  Manual: Faq.xml
+
 2004-10-28 Kimmo
  Remove unused Open_dlg1.jpg (noticed by Tim Gerundt)
  Docs/User/Manual/screenshots: Open_dlg1.jpg
