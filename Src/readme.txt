@@ -1,4 +1,8 @@
 2003-09-27 Laoran
+ BUG [ 814214 ] ASSERT failure with diff at eof
+  WinMerge: files.cpp
+
+2003-09-27 Laoran
  delete NDEBUG from ReleaseMinsize preprocessor definitions
   WinMerge: Merge.dsp
 

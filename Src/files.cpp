@@ -284,12 +284,12 @@ int files_loadLines(MAPPEDFILEDATA *fileData, ParsedTextFile * parsedTextFile)
 	}
 	else
 	{
-		if (newline.sline.GetLength())
-		{
-			newline.end = dwBytesRead;
-			newline.eoltype = textline::EOL_NONE;
-			parsedTextFile->lines.Add(newline);
-		}
+		// we always have a line after the last EOL
+		// if the file has some text after its last EOL, it goes into this line
+		newline.end = dwBytesRead;
+		newline.eoltype = textline::EOL_NONE;
+		parsedTextFile->lines.Add(newline);
+
 		return FRESULT_OK;
 	}
 }
