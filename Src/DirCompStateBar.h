@@ -27,11 +27,10 @@ class CDirCompStateBar : public CDialogBar
 public:
 	CDirCompStateBar(CWnd* pParent = NULL);   // standard constructor
 	BOOL Create(CWnd* pParentWnd);
-	void ClearStat();
 	void AddElement(UINT diffcode);
 	BOOL GetDefaultRect( LPRECT lpRect ) const;
 	void UpdateText(CStatic * ctrl, int num) const;
-	void FirstUpdate();
+	void Reset();
 
 // Dialog Data
 	//{{AFX_DATA(CDirCompStateBar)
@@ -76,6 +75,7 @@ public:
 // Implementation
 protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	void ClearStat();
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirCompStateBar)
@@ -84,9 +84,6 @@ protected:
 	afx_msg void OnWindowPosChanging( WINDOWPOS* lpwndpos );
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-private:
-	BOOL m_bFirstUpdate; /**< Is first update (all to zeros) done? */
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -45,7 +45,6 @@ void CDirCompStateBar::ClearStat()
 CDirCompStateBar::CDirCompStateBar(CWnd* pParent /*=NULL*/)
 {
 	ClearStat();
-	m_bFirstUpdate = FALSE;
 
 	VERIFY(strAbort.LoadString(IDC_COMPARISON_STOP));
 	VERIFY(strClose.LoadString(IDC_COMPARISON_CLOSE));
@@ -181,9 +180,6 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 {
 	DIFFITEM di;
 	
-	if (!m_bFirstUpdate)
-		FirstUpdate();
-
 	di.diffcode = diffcode;
 	if (di.isSideLeft())
 	{
@@ -320,11 +316,11 @@ void CDirCompStateBar::UpdateText(CStatic * ctrl, int num) const
 }
 
 /**
- * @brief Updates all controls in statebar
+ * @brief Resets itemcounts
  */
-void CDirCompStateBar::FirstUpdate()
+void CDirCompStateBar::Reset()
 {
-	m_bFirstUpdate = TRUE;
+	ClearStat();
 	UpdateData(FALSE);
 }
 

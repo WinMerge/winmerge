@@ -233,7 +233,7 @@ void CDirFrame::OnSize(UINT nType, int cx, int cy)
 /// clear counters used to track diff progress
 void CDirFrame::clearStatus()
 {
-	m_wndCompStateBar.ClearStat();
+	m_wndCompStateBar.Reset();
 }
 
 /// diff completed another file
@@ -375,4 +375,5 @@ void CDirFrame::ShowControlBar( CControlBar* pBar, BOOL bShow, BOOL bDelay )
 		}
 	}
 }
+
 

@@ -1,3 +1,7 @@
+2004-02-08 Kimmo
+ PATCH: [ 892509 ] Reset dircompare statuspane before new compare
+  Src: DirCompStateBar.cpp DirCompStateBar.h DirFrame.cpp
+
 2004-02-07 Laoran
  BUG: [ 892158 ] Empty lines added to end of file
   Src: MergeDoc.cpp
