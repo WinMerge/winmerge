@@ -1,6 +1,8 @@
 2005-02-26 Jochen
  PATCH: [ 1152256 ] UniFile may fail to read last line
   Src/Common: UniFile.cpp
+ Attempt to fix bug [1152375] 'Help -> Archive Support disabled' broken
+  Src: 7zCommon.cpp
 
 2005-02-26 Perry
  PATCH: [ 1151949 ] Fix CDirDoc::FindItemFromPaths for root

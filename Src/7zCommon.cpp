@@ -306,7 +306,7 @@ BOOL CALLBACK C7ZipMismatchException::DlgProc(HWND hWnd, UINT uMsg, WPARAM wPara
  */
 int C7ZipMismatchException::ReportError(UINT nType, UINT nMessageID)
 {
-	int response = -1;
+	short response = -1;
 	m_bShowAllways = nMessageID;
 	if (!m_bShowAllways)
 	{
