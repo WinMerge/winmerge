@@ -51,9 +51,6 @@ type_codes source_codes[] =
   {_T ("CORK"), _T ("\xc1\x83\x84\xc9\x85\xcd\x8c\xd3\x90\x92\x94\xda\x97\xdd\x9a\x89\x8f\x88\xd4\xd6\xdc\xc4\xe1\xa3\xa4\xe9\xa5\xed\xac\xf3\xb0\xb2\xb4\xfa\xb7\xfd\xba\xa9\xaf\xa8\xf4\xf6\xfc\xe4\x73\x53\x26\x5c\x22\x3c\x3e\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\xd8\x20\xf8")}
 };
 
-bool alphabet_only;
-int chars_count;
-
 void
 str_fill (LPTSTR s, TCHAR ch, long count)
 {
@@ -165,7 +162,7 @@ TCHAR iconvert_char (TCHAR ch, int source_coding, int destination_coding, bool a
     if (destination_coding < 0)
       return ch;
   
-    chars_count = alphabet_only ? chars_alphabet_count : chars_all_count;
+    int chars_count = alphabet_only ? chars_alphabet_count : chars_all_count;
     source_chars = source_codes[source_coding].codes;
     destination_chars = destination_codes[destination_coding].codes;
     i = chars_count;
@@ -195,7 +192,7 @@ iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabe
     if (destination_coding < 0)
       return -2;
   
-    chars_count = alphabet_only ? chars_alphabet_count : chars_all_count;
+    int chars_count = alphabet_only ? chars_alphabet_count : chars_all_count;
     source_chars = source_codes[source_coding].codes;
     destination_chars = destination_codes[destination_coding].codes;
     for (;;)
