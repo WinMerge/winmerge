@@ -1,3 +1,7 @@
+2003-09-01 Kimmo
+ Improve 256-color icon
+  WinMerge/res: Merge.ico
+
 2003-08-31 Laoran
  correction for the patch [797741] in CMergeDoc::CDiffTextBuffer::LoadFromFile
   WinMerge: MergeDoc.cpp
