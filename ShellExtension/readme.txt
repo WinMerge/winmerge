@@ -1,3 +1,7 @@
+2004-01-21 Kimmo
+ Fix also compile of "Win32 Release MinDependency" target
+  ShellExtension: ShellExtension.dsp
+
 2004-01-15 Kimmo
  Make ShellExtension compile after CVS reorg
   ShellExtension: ShellExtension.dsp stdafx.h stdafx.cpp
