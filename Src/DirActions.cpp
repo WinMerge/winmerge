@@ -336,7 +336,6 @@ void CDirView::PerformActionList(ActionList & actionList)
 	CShellFileOp fileOp;
 	CString destPath;
 	CString startPath;
-	CString strErr;
 	UINT operation = 0;
 
 	// Set mainframe variable (VSS):
@@ -368,41 +367,61 @@ void CDirView::PerformActionList(ActionList & actionList)
 	// Check option and enable putting deleted items to Recycle Bin
 	if (mf->m_options.GetInt(OPT_USE_RECYCLE_BIN) == TRUE)
 		operFlags |= FOF_ALLOWUNDO;
-
 	fileOp.SetOperationFlags(operation, this, operFlags);
 	
 	// Add files/directories
+	BOOL bSucceed = TRUE;
 	POSITION pos = actionList.actions.GetHeadPosition();
-	while (pos != NULL)
+	while (bSucceed && pos != NULL)
 	{
 		const action act = actionList.actions.GetNext(pos);
-		switch (actionList.atype)
+
+		// If copying files, try to sync files to VCS too
+		if (actionList.atype == ACT_COPY && !act.dirflag)
 		{
-		case ACT_COPY:
-			fileOp.AddSourceFile(act.src);
-			fileOp.AddDestFile(act.dest);
-			if (!act.dirflag)
+			CString strErr;
+			bSucceed = mf->SyncFilesToVCS(act.src, act.dest, &strErr);
+			if (!bSucceed)
+				AfxMessageBox(strErr, MB_OK | MB_ICONERROR);
+		}
+
+		if (bSucceed) // No error from VCS sync (propably just not called)
+		{
+			try
 			{
-				mf->SyncFilesToVCS(act.src, act.dest, &strErr);
+				switch (actionList.atype)
+				{
+				case ACT_COPY:
+					fileOp.AddSourceFile(act.src);
+					fileOp.AddDestFile(act.dest);
+					gLog.Write(_T("Copy file(s) from: %s\n\tto: %s"), act.src, act.dest);
+					break;
+				case ACT_DEL_LEFT:
+					fileOp.AddSourceFile(act.src);
+					gLog.Write(_T("Delete file(s) from LEFT: %s"), act.src);
+					break;
+				case ACT_DEL_RIGHT:
+					fileOp.AddSourceFile(act.src);
+					gLog.Write(_T("Delete file(s) from RIGHT: %s"), act.src);
+					break;
+				case ACT_DEL_BOTH:
+					fileOp.AddSourceFile(act.src);
+					fileOp.AddDestFile(act.dest);
+					gLog.Write(_T("Delete BOTH file(s) from: %s\n\tto: %s"), act.src, act.dest);
+					break;
+				}
 			}
-			gLog.Write(_T("Copy file(s) from: %s\n\tto: %s"), act.src, act.dest);
-			break;
-		case ACT_DEL_LEFT:
-			fileOp.AddSourceFile(act.src);
-			gLog.Write(_T("Delete file(s) from LEFT: %s"), act.src);
-			break;
-		case ACT_DEL_RIGHT:
-			fileOp.AddSourceFile(act.src);
-			gLog.Write(_T("Delete file(s) from RIGHT: %s"), act.src);
-			break;
-		case ACT_DEL_BOTH:
-			fileOp.AddSourceFile(act.src);
-			fileOp.AddDestFile(act.dest);
-			gLog.Write(_T("Delete BOTH file(s) from: %s\n\tto: %s"), act.src, act.dest);
-			break;
+			catch (CMemoryException ex)
+			{
+				bSucceed = FALSE;
+				LogErrorString(_T("CDirView::PerformActionList(): ")
+					_T("Adding files to buffer failed!"));
+				ex.ReportError();
+			}
 		}
 	} 
 
+	// Now process files/directories that got added to list
 	BOOL bOpStarted = FALSE;
 	int apiRetVal = 0;
 	BOOL bUserCancelled = FALSE; 
@@ -418,8 +437,8 @@ void CDirView::PerformActionList(ActionList & actionList)
 	else if (!bOpStarted)
 	{
 		// Invalid parameters - is this programmer error only?
-		LogErrorString(_T("Invalid usage of CShellFileOp in "
-			"CDirView::PerformActionList()"));
+		LogErrorString(_T("Invalid usage of CShellFileOp in ")
+			_T("CDirView::PerformActionList()"));
 		_RPTF0(_CRT_ERROR, "Invalid usage of CShellFileOp in "
 			"CDirView::PerformActionList()");
 	}

@@ -1,3 +1,7 @@
+2004-0228 Kimmo
+ PATCH: [ 906120 ] Improve error handling for dircompare fileoperations
+  Src: DirActions.cpp
+
 2004-02-27 Kimmo
  PATCH: [ 905115 ] Put deleted files to Recycle Bin
   Also added option to disable it in "System" options
