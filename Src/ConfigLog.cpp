@@ -27,6 +27,7 @@
 #include "dllver.h"
 #include "DiffWrapper.h"
 #include "ConfigLog.h"
+#include "winnt_supp.h"
 
 /** 
  * @brief Return logfile name and path
@@ -216,13 +217,126 @@ BOOL CConfigLog::WriteLogFile()
 	return TRUE;
 }
 
+/** @brief osvi.wProductType that works with MSVC6 headers */
+static BYTE GetProductTypeFromOsvc(const OSVERSIONINFOEX & osvi)
+{
+	// wServicePackMinor (2 bytes)
+	// wSuiteMask (2 bytes)
+	// wProductType (1 byte)
+	const BYTE * ptr = reinterpret_cast<const BYTE *>(&osvi.wServicePackMinor);
+	return ptr[4];
+}
+
+/** @brief osvi.wSuiteMask that works with MSVC6 headers */
+static WORD GetSuiteMaskFromOsvc(const OSVERSIONINFOEX & osvi)
+{
+	// wServicePackMinor (2 bytes)
+	// wSuiteMask (2 bytes)
+	const WORD * ptr = reinterpret_cast<const WORD *>(&osvi.wServicePackMinor);
+	return ptr[1];
+}
+
+/** 
+ * @brief Extract any helpful product details from version info
+ */
+static CString GetProductFromOsvi(const OSVERSIONINFOEX & osvi)
+{
+	CString sProduct;
+	BYTE productType = GetProductTypeFromOsvc(osvi);
+	WORD suiteMask = GetSuiteMaskFromOsvc(osvi);
+
+	// Test for the workstation type.
+	if ( productType == VER_NT_WORKSTATION )
+	{
+		if( osvi.dwMajorVersion == 4 )
+			sProduct += _T( "Workstation 4.0 ");
+		else if( suiteMask & VER_SUITE_PERSONAL )
+			sProduct += _T( "Home Edition " );
+		else
+			sProduct += _T( "Professional " );
+	}
+
+	// Test for the server type.
+	else if ( productType == VER_NT_SERVER )
+	{
+		if( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2 )
+		{
+			if( suiteMask & VER_SUITE_DATACENTER )
+				sProduct += _T( "Datacenter Edition " );
+			else if( suiteMask & VER_SUITE_ENTERPRISE )
+				sProduct += _T( "Enterprise Edition " );
+			else if ( suiteMask == VER_SUITE_BLADE )
+				sProduct += _T( "Web Edition " );
+			else
+				sProduct += _T( "Standard Edition " );
+		}
+
+		else if( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 0 )
+		{
+			if( suiteMask & VER_SUITE_DATACENTER )
+				sProduct += _T( "Datacenter Server " );
+			else if( suiteMask & VER_SUITE_ENTERPRISE )
+				sProduct += _T( "Advanced Server " );
+			else
+				sProduct += _T( "Server " );
+		}
+
+		else  // Windows NT 4.0
+		{
+			if( suiteMask & VER_SUITE_ENTERPRISE )
+				sProduct += _T("Server 4.0, Enterprise Edition " );
+			else
+				sProduct += _T( "Server 4.0 " );
+		}
+	}
+	return sProduct;
+}
+
+#define REGBUFSIZE 1024
+/** 
+ * @brief Extract any helpful product details from registry (for WinNT)
+ */
+static CString GetNtProductFromRegistry(const OSVERSIONINFOEX & osvi)
+{
+	CString sProduct;
+
+	HKEY hKey;
+	TCHAR szProductType[REGBUFSIZE];
+	DWORD dwBufLen=sizeof(szProductType)/sizeof(szProductType[0]);
+	LONG lRet;
+
+	lRet = RegOpenKeyEx( HKEY_LOCAL_MACHINE,
+		_T("SYSTEM\\CurrentControlSet\\Control\\ProductOptions"),
+		0, KEY_QUERY_VALUE, &hKey );
+	if( lRet != ERROR_SUCCESS )
+		return _T("");
+
+	lRet = RegQueryValueEx( hKey, _T("ProductType"), NULL, NULL,
+		(LPBYTE) szProductType, &dwBufLen);
+	RegCloseKey( hKey );
+
+	if( (lRet != ERROR_SUCCESS) || (dwBufLen > REGBUFSIZE) )
+		return _T("");
+
+	if ( _tcsicmp( _T("WINNT"), szProductType) == 0 )
+		sProduct = _T( "Workstation " );
+	if ( _tcsicmp( _T("LANMANNT"), szProductType) == 0 )
+		sProduct = _T( "Server " );
+	if ( _tcsicmp( _T("SERVERNT"), szProductType) == 0 )
+		sProduct = _T( "Advanced Server " );
+
+	CString ver;
+	ver.Format( _T("%d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion );
+	sProduct += ver;
+	return sProduct;
+}
+
 /** 
  * @brief Parse Windows version data to string
  */
 CString CConfigLog::GetWindowsVer()
 {
 	OSVERSIONINFOEX osvi;
-	BOOL bOsVersionInfoEx;
 	CString sVersion;
 
 	// Try calling GetVersionEx using the OSVERSIONINFOEX structure.
@@ -231,7 +345,7 @@ CString CConfigLog::GetWindowsVer()
 	ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
 	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
 
-	if( !(bOsVersionInfoEx = GetVersionEx ((OSVERSIONINFO *) &osvi)) )
+	if( !GetVersionEx ((OSVERSIONINFO *) &osvi) )
 	{
 		osvi.dwOSVersionInfoSize = sizeof (OSVERSIONINFO);
 		if (! GetVersionEx ( (OSVERSIONINFO *) &osvi) )
@@ -258,89 +372,20 @@ CString CConfigLog::GetWindowsVer()
 			sVersion.Format(_T("[? WindowsNT %d.%d] "), 
 				osvi.dwMajorVersion, osvi.dwMinorVersion);
 
-#if 0
-		// Test for specific product on Windows NT 4.0 SP6 and later.
-		if ( bOsVersionInfoEx )
+		if (osvi.dwOSVersionInfoSize == sizeof(OSVERSIONINFOEX))
 		{
-			// Test for the workstation type.
-			if ( osvi.wProductType == VER_NT_WORKSTATION )
-			{
-				if( osvi.dwMajorVersion == 4 )
-					sVersion += _T( "Workstation 4.0 ");
-				else if( osvi.wSuiteMask & VER_SUITE_PERSONAL )
-					sVersion += _T( "Home Edition " );
-				else
-					sVersion += T( "Professional " );
-			}
-
-			// Test for the server type.
-			else if ( osvi.wProductType == VER_NT_SERVER )
-			{
-				if( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2 )
-				{
-					if( osvi.wSuiteMask & VER_SUITE_DATACENTER )
-						sVersion += _T( "Datacenter Edition " );
-					else if( osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
-						sVersion += _T( "Enterprise Edition " );
-					else if ( osvi.wSuiteMask == VER_SUITE_BLADE )
-						sVersion += _T( "Web Edition " );
-					else
-						sVersion += _T( "Standard Edition " );
-				}
-
-				else if( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 0 )
-				{
-					if( osvi.wSuiteMask & VER_SUITE_DATACENTER )
-						sVersion += _T( "Datacenter Server " );
-					else if( osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
-						sVersion += _T( "Advanced Server " );
-					else
-						sVersion += _T( "Server " );
-				}
-
-				else  // Windows NT 4.0
-				{
-					if( osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
-						sVersion += _T("Server 4.0, Enterprise Edition " );
-					else
-						sVersion += _T( "Server 4.0 " );
-				}
-			}
+			// Test for specific product on Windows NT 4.0 SP6 and later.
+			CString sProduct = GetProductFromOsvi(osvi);
+			sVersion += sProduct;
 		}
-		else  // Test for specific product on Windows NT 4.0 SP5 and earlier
+		else
 		{
-			HKEY hKey;
-			TCHAR szProductType[BUFSIZE];
-			DWORD dwBufLen=BUFSIZE;
-			LONG lRet;
-
-			lRet = RegOpenKeyEx( HKEY_LOCAL_MACHINE,
-				_T"SYSTEM\\CurrentControlSet\\Control\\ProductOptions"),
-				0, KEY_QUERY_VALUE, &hKey );
-			if( lRet != ERROR_SUCCESS )
-				return FALSE;
-
-			lRet = RegQueryValueEx( hKey, _T("ProductType"), NULL, NULL,
-				(LPBYTE) szProductType, &dwBufLen);
-			if( (lRet != ERROR_SUCCESS) || (dwBufLen > BUFSIZE) )
-				return FALSE;
-
-			RegCloseKey( hKey );
-
-			if ( _tcsicmp( _T("WINNT"), szProductType) == 0 )
-				sVersion += _T( "Workstation " );
-			if ( _tcsicmp( _T("LANMANNT"), szProductType) == 0 )
-				sVersion += _T( "Server " );
-			if ( _tcsicmp( _T("SERVERNT"), szProductType) == 0 )
-				sVersion += _T( "Advanced Server " );
-
-			CString ver;
-			ver.Format( _T("%d.%d "), osvi.dwMajorVersion, osvi.dwMinorVersion );
-			sVersion += ver;
+			// Test for specific product on Windows NT 4.0 SP5 and earlier
+			CString sProduct = GetNtProductFromRegistry(osvi);
+			sVersion += sProduct;
 		}
-#endif
+
 		// Display service pack (if any) and build number.
-
 		if( osvi.dwMajorVersion == 4 &&
 			_tcsicmp( osvi.szCSDVersion, _T("Service Pack 6") ) == 0 )
 		{
@@ -372,8 +417,6 @@ CString CConfigLog::GetWindowsVer()
 				osvi.dwBuildNumber & 0xFFFF);
 			sVersion += ver;
 		}
-
-
 		break;
 
 	// Test for the Windows 95 product family.
@@ -403,7 +446,6 @@ CString CConfigLog::GetWindowsVer()
 		break;
 
 	case VER_PLATFORM_WIN32s:
-
 		sVersion = _T("Microsoft Win32s\n");
 		break;
 

@@ -1,3 +1,9 @@
+2003-11-11 Kimmo
+ PATCH: [ 838545 ] Fix osversion stuff in ConfigLog.cpp
+  Submitted by Perry
+  WinMerge: ConfigLog.cpp
+  WinMerge new file: winnt_supp.h
+
 2003-11-11 Laoran
  fix for syntax highlight in left pane view
   WinMerge: MergeDoc.cpp
