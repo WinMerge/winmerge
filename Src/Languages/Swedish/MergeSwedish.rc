@@ -323,7 +323,7 @@ BEGIN
                     IDC_STATIC,7,101,209,8
 END
 
-IDD_OPEN DIALOGEX 0, 0, 352, 98
+IDD_OPEN DIALOGEX 0, 0, 356, 115
 STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Välj filer eller mappar..."
 FONT 8, "MS Sans Serif", 0, 0, 0x1
@@ -349,8 +349,8 @@ BEGIN
     PUSHBUTTON      "Select...",IDC_SELECT_UNPACKER,241,86,38,12
     DEFPUSHBUTTON   "OK",IDOK,295,11,50,14
     PUSHBUTTON      "Avbryt",IDCANCEL,295,28,50,14
-    GROUPBOX        "Filer eller mappar som skall jämföras",IDC_STATIC,7,7,
-                    279,84
+    GROUPBOX        "Filer eller mappar som skall jämföras",IDC_FILES_DIRS_GROUP,7,7,
+                    279,101
 END
 
 IDD_VSS DIALOG DISCARDABLE  0, 0, 258, 149
@@ -803,9 +803,9 @@ BEGIN
     IDD_OPEN, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 345
+        RIGHTMARGIN, 349
         TOPMARGIN, 7
-        BOTTOMMARGIN, 91
+        BOTTOMMARGIN, 108
     END
 
     IDD_VSS, DIALOG
