@@ -89,12 +89,12 @@
 #define IDS_CONFIRM_DELETE_SINGLE       190
 #define IDS_BIN_FILES_SAME              191
 #define IDS_FILESAVE_FAILED             192
+#define IDS_ERROR_FILE_NOT_FOUND        193
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
 #define IDB_UNKNOWN                     216
 #define IDB_BINARYSAME                  217
-
 #define IDB_LFILE                       218
 #define IDB_RFILE                       219
 #define IDB_SPLASH                      220
@@ -102,7 +102,6 @@
 #define IDB_OLDSPLASH                   222
 #define IDB_LFOLDER                     223
 #define IDB_BINARYDIFF                  224
-
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

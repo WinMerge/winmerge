@@ -405,6 +405,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,221,15
 END
 
+
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -624,6 +625,7 @@ STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
 END
 
 STRINGTABLE PRELOAD DISCARDABLE 
@@ -865,14 +867,14 @@ BEGIN
     IDS_CHINESE_SIMPLIFIED  "Chinese (Simple)"
     IDS_CHINESE_HONGKONG    "Chinese (Hong Kong)"
     IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
-    IDS_CHINESE_MACAU       "Chinese (Macau SAR)"
-    IDS_CROATIAN            "Croatian"
-    IDS_CZECH               "Cesko"
-    IDS_DANISH              "Dansk"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
+    IDS_CHINESE_MACAU       "Chinese (Macau SAR)"
+    IDS_CROATIAN            "Croatian"
+    IDS_CZECH               "Cesko"
+    IDS_DANISH              "Dansk"
     IDS_DUTCH               "Nederlandse"
     IDS_DUTCH_BELGIAN       "Nederlandse (Belgium)"
     IDS_ENGLISH_US          "English (US)"
@@ -885,6 +887,10 @@ BEGIN
     IDS_ENGLISH_JAMAICA     "English (Jamaican)"
     IDS_ENGLISH_CARIBBEAN   "English (Caribbean)"
     IDS_ENGLISH_BELIZE      "English (Belize)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
     IDS_ENGLISH_TRINIDAD    "English (Trinidad)"
     IDS_ENGLISH_ZIMBABWE    "English (Zimbabwe)"
     IDS_ENGLISH_PHILIPPINES "English (Philippines)"
@@ -892,10 +898,6 @@ BEGIN
     IDS_FAEROESE            "Faeroese"
     IDS_FARSI               "Farsi"
     IDS_FINNISH             "Suomi"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
     IDS_FRENCH              "Francais"
     IDS_FRENCH_BELGIAN      "Francais (Belgique)"
     IDS_FRENCH_CANADIAN     "Francais (Canada)"
@@ -905,6 +907,10 @@ BEGIN
     IDS_GEORGIAN            "Georgian"
     IDS_GERMAN              "Deutsch (Deutschland)"
     IDS_GERMAN_SWISS        "Deutsch (Schweiz)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
     IDS_GERMAN_AUSTRIAN     "Deutsch (Österreich)"
     IDS_GERMAN_LUXEMBOURG   "Deutsch (Luxemburg)"
     IDS_GERMAN_LIECHTENSTEIN "Deutsch (Liechtenstein)"
@@ -915,16 +921,16 @@ BEGIN
     IDS_ICELANDIC           "Icelandic"
     IDS_INDONESIAN          "Indonesian"
     IDS_ITALIAN             "Italiano"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
     IDS_ITALIAN_SWISS       "Italiano (Svizzera)"
     IDS_JAPANESE            "Japanese"
     IDS_KASHMIRI            "Kashmiri (India)"
     IDS_KAZAK               "Kazakh"
     IDS_KOREAN              "Korean"
     IDS_KOREAN_JOHAB        "Korean (Johab)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
     IDS_LATVIAN             "Latvian"
     IDS_LITHUANIAN          "Lithuanian"
     IDS_MALAY_MALAYSIA      "Malay (Malaysian)"
@@ -941,11 +947,11 @@ BEGIN
     IDS_SERBIAN_LATIN       "Serbian (Latin)"
     IDS_SERBIAN_CYRILLIC    "Serbian (Cyrillic)"
     IDS_SINDHI              "Sindhi"
-    IDS_SLOVAK              "Slovak"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
+    IDS_SLOVAK              "Slovak"
     IDS_SLOVENIAN           "Slovensko"
     IDS_SPANISH             "Español"
     IDS_SPANISH_MEXICAN     "Español (Mexicano)"
@@ -961,11 +967,11 @@ BEGIN
     IDS_SPANISH_ECUADOR     "Español (Ecuador)"
     IDS_SPANISH_CHILE       "Español (Chile)"
     IDS_SPANISH_URUGUAY     "Español (Uruguay)"
-    IDS_SPANISH_PARAGUAY    "Español (Paraguay)"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
+    IDS_SPANISH_PARAGUAY    "Español (Paraguay)"
     IDS_SPANISH_BOLIVIA     "Español (Bolivia)"
     IDS_SPANISH_EL_SALVADOR "Español (El Salvador)"
     IDS_SPANISH_HONDURAS    "Español (Hondureño)"
@@ -981,6 +987,10 @@ BEGIN
     IDS_UKRANIAN            "Ukranian"
     IDS_URDU_PAKISTAN       "Urdu (Pakistan)"
     IDS_URDU_INDIA          "Urdu (India)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
     IDS_UZBEK_LATIN         "Uzbek (Latin)"
     IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
     IDS_VIETNAMESE          "Vietnamese"
@@ -1024,20 +1034,20 @@ BEGIN
     IDS_ERROR_BACKUP        "Error backing up file"
     IDS_CONFIRM_COPY_SINGLE "Are you sure you want to copy %1 to %2?"
     IDS_CONFIRM_DELETE_SINGLE "Are you sure you want to delete %1?"
+    IDS_BIN_FILES_SAME      "Binary files are identical"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
-    IDS_BIN_FILES_SAME      "Binary files are identical"
     ID_OPTIONS_SHOWBINARIES "Displays binary files"
-	ID_VIEW_WHITESPACE      "Shows whitespace characters"
+    ID_VIEW_WHITESPACE      "Shows whitespace characters"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
     IDS_FILESAVE_FAILED     "Saving %1 failed. Would you like to save the file under a different name?"
+    IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
 END
 
 #endif    // English (U.S.) resources

@@ -272,8 +272,23 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 		m_pMergeDoc->m_rtBuf.FreeAll();
 		m_pMergeDoc->m_ltBuf.SetEolSensitivity(m_bEolSensitive);
 		m_pMergeDoc->m_rtBuf.SetEolSensitivity(m_bEolSensitive);
-		m_pMergeDoc->m_ltBuf.LoadFromFile(szLeft);
-		m_pMergeDoc->m_rtBuf.LoadFromFile(szRight);
+		CString sError;
+		if (!m_pMergeDoc->m_ltBuf.LoadFromFile(szLeft))
+		{
+			m_pMergeDoc->m_ltBuf.InitNew();
+			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szLeft);
+		}
+		if (!m_pMergeDoc->m_rtBuf.LoadFromFile(szRight))
+		{
+			m_pMergeDoc->m_rtBuf.InitNew();
+			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, szRight);
+		}
+		if (!sError.IsEmpty())
+		{
+			AfxMessageBox(sError, MB_ICONSTOP);
+			// TODO -- should we close the doc ? How ?
+			return;
+		}
 		
 		if (m_pMergeDoc->Rescan())
 		{

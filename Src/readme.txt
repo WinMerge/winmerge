@@ -1,3 +1,8 @@
+2003-02-20 Perry
+ [ 689876 ] Patch to fix bug # 689869 (ASSERT on Rescan)
+  WinMerge:
+   MainFrm.cpp & new resource IDS_ERROR_FILE_NOT_FOUND
+
 2003-02-18 Christian
   Removed annoying SourceSafe path from Merge.dsp
 
