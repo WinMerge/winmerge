@@ -289,17 +289,21 @@ EXTERN_C
 EXTERN_C HRESULT CALLBACK DllGetVersion(DLLVERSIONINFO *pdvi)
 {
 	// Compute dwBuild from revision.txt
-	static const DWORD dwBuild = sizeof""
-#	define MAJOR_REVISION(N) "*"
-#	include "revision.txt"
-#	undef MAJOR_REVISION
-	;
+	static const DWORD dwBuild =
+	(
+		sizeof""
+#		define VERSION(MAJOR,MINOR)
+#		include "revision.txt"
+#		undef VERSION
+	);
 	// Compute dwVersion from revision.txt
-	static const DWORD dwVersion = sizeof""
-#	define MAJOR_REVISION(N) * 0 + (1UL << 16) + sizeof""
-#	include "revision.txt"
-#	undef MAJOR_REVISION
-	- 1;
+	static const DWORD dwVersion =
+	(
+		0*sizeof""
+#		define VERSION(MAJOR,MINOR) , MAKELONG(MINOR,MAJOR) + 0*sizeof""
+#		include "revision.txt"
+#		undef VERSION
+	);
 	static const DLLVERSIONINFO dvi =
 	{
 		sizeof dvi,
