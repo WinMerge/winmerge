@@ -802,8 +802,8 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 			bSaveErrorCode = m_ltBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
 		else
 		{
-			BOOL bSaveAsSuccess;
-			result = TrySaveAs(strSavePath, bSaveAsSuccess, TRUE, &infoTempUnpacker);
+			int bLastErrorCode = SAVE_DONE;
+			result = TrySaveAs(strSavePath, bLastErrorCode, TRUE, &infoTempUnpacker);
 		}
 			
 		if(bSaveErrorCode == SAVE_DONE || result)
@@ -827,8 +827,8 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 			bSaveErrorCode = m_rtBuf.SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
 		else
 		{
-			BOOL bSaveAsSuccess;
-			result = TrySaveAs(strSavePath, bSaveAsSuccess, FALSE, &infoTempUnpacker);
+			int bLastErrorCode = SAVE_DONE;
+			result = TrySaveAs(strSavePath, bLastErrorCode, FALSE, &infoTempUnpacker);
 		}
 
 		if(bSaveErrorCode == SAVE_DONE || result)

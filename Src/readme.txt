@@ -1,3 +1,7 @@
+2004-01-09 Kimmo
+ Fix parameter type, CMergeDoc::TrySaveAs() second param is int.
+  WinMerge: CMergeDoc.cpp
+
 2004-01-08 Perry
  PATCH: [ 872727 ] Fix function comment on lwdisp.c: ReportError
   common: lwdisp.c
