@@ -1,10 +1,9 @@
-2004-01-14 Kimmo
- PATCH: [ 1101919 ] Russian Readme.rtf
-  Submitted by Dmitriy S. Aleshkowskiy
-  Docs/Users/Languages: Read Me-Russian.rtf
-  InnoSetup: WinMerge Localized.iss
+2005-01-18 Kimmo
+ PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
+  View scrolling optimisation from Takashi Sawanaka
+  Src/editlib: ccrystaltextview.cpp
 
-2004-01-13 Kimmo
+2005-01-13 Kimmo
  PATCH: [ 1001341 ] Update edit view status bar on language change
   Submitted by Perry
   Src: ChildFrm.cpp ChildFrm.h DirDoc.cpp DirFrame.cpp DirView.cpp

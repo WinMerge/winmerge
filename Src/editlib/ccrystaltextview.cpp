@@ -733,7 +733,6 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
         }
       int nDummy;
       GetLineBySubLine( m_nTopSubLine, m_nTopLine, nDummy );
-      InvalidateRect( NULL );	// repaint whole window
     }
 }
 
