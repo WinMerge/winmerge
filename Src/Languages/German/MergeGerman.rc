@@ -517,7 +517,7 @@ BEGIN
     PUSHBUTTON      "Abbrechen",IDCANCEL,154,33,52,14
     LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT |
                     WS_VSCROLL | WS_TABSTOP | LBS_SORT
-    LTEXT           "Verfügbare Sprachen:",IDC_STATIC,7,7,70,8
+    LTEXT           "Verfügbare Sprachen:",IDC_STATIC,7,7,140,8
 END
 
 IDD_EDIT_FIND DIALOGEX 30, 73, 283, 66

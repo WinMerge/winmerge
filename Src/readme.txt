@@ -1,3 +1,8 @@
+2004-09-21 Kimmo
+ Widen space for text in language change dialog
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2004-09-20 Kimmo
  PATCH: [ 1030752 ] Set focus to file view when goto line in location pane
   Src: LocationView.cpp
