@@ -14,12 +14,28 @@
 ;
 ; Diese Übersetzung hält sich an die neue deutsche Rechtschreibung.
 ;
+;
+; Note: When translating this text, do not add periods (.) to the end of
+; messages that didn't have them already, because on those messages Inno
+; Setup adds the periods automatically (appending a period would result in
+; two periods being displayed).
+;
 ; $jrsoftware: issrc/Files/Languages/German.isl,v 1.8 2004/04/07 20:19:51 jr Exp $
 
 [LangOptions]
 LanguageName=Deutsch
 LanguageID=$0407
 LanguageCodePage=1252
+; If the language you are translating to requires special font faces or
+; sizes, uncomment any of the following entries and change them accordingly.
+;DialogFontName=
+;DialogFontSize=8
+;WelcomeFontName=Verdana
+;WelcomeFontSize=12
+;TitleFontName=Arial
+;TitleFontSize=29
+;CopyrightFontName=Arial
+;CopyrightFontSize=8
 
 [Messages]
 
@@ -149,6 +165,7 @@ WizardSelectComponents=Komponenten auswählen
 SelectComponentsDesc=Welche Komponenten sollen installiert werden?
 SelectComponentsLabel2=Wählen Sie die Komponenten aus, die Sie installieren möchten. Klicken Sie auf "Weiter", wenn sie bereit sind fortzufahren.
 FullInstallation=Vollständige Installation
+; if possible don't translate 'Compact' as 'Minimal' (I mean 'Minimal' in your language)
 CompactInstallation=Kompakte Installation
 CustomInstallation=Benutzerdefinierte Installation
 NoUninstallWarningTitle=Komponenten vorhanden
@@ -206,7 +223,9 @@ FinishedRestartMessage=Um die Installation von [name] abzuschließen, muss das Se
 ShowReadmeCheck=Ja, ich möchte die LIESMICH-Datei sehen
 YesRadio=&Ja, Computer jetzt neu starten
 NoRadio=&Nein, ich werde den Computer später neu starten
+; used for example as 'MyProg.exe starten'
 RunEntryExec=%1 starten
+; used for example as 'Readme.txt anzeigen'
 RunEntryShellExec=%1 anzeigen
 
 ; *** "Setup Needs the Next Disk" stuff
@@ -291,6 +310,9 @@ SharedFileLocationLabel=Ordner:
 WizardUninstalling=Entfernen (Status)
 StatusUninstalling=Entferne %1 ...
 
+; The custom messages below aren't used by Setup itself, but if you make
+; use of them in your scripts, you'll want to translate them.
+
 [CustomMessages]
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 Version %2
@@ -307,51 +329,51 @@ AssocingFileExtension=%1 wird mit der %2-Dateierweiterung registriert...
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=Typische Installation
+FullInstallation=Vollständige Installation
+CompactInstallation=Kompakte Installation
+CustomInstallation=Benutzerdefinierte Installation
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-ApplicationRuntimes=Application Runtimes
-UsersGuide=User's Guide
-Filters=Filters
-Plugins=Plugins (See Plugins.txt)
+AppCoreFiles=WinMerge Hauptdateien
+ApplicationRuntimes=Laufzeitbibliotheken
+UsersGuide=Benutzerhandbuch
+Filters=Filter
+Plugins=Plugins (Siehe Plugins.txt)
 
 ;Localization Components
-Languages=Languages
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FrenchLanguage=French menus and dialogs
-GermanLanguage=German menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseLanguage=Portuguese (Brazillian) menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
+Languages=Sprachen
+BulgarianLanguage=Bulgarische Menüs und Dialoge
+CatalanLanguage=Katalanische Menüs und Dialoge
+ChineseSimplifiedLanguage=Chinesische (Simplified) Menüs und Dialoge
+ChineseTraditionalLanguage=Chinesische (Traditional) Menüs und Dialoge
+CzechLanguage=Tschechische Menüs und Dialoge
+DanishLanguage=Dänische Menüs und Dialoge
+DutchLanguage=Holländische Menüs und Dialoge
+FrenchLanguage=Französische Menüs und Dialoge
+GermanLanguage=Deutsche Menüs und Dialoge
+ItalianLanguage=Italienische Menüs und Dialoge
+JapaneseLanguage=Japanische Menüs und Dialoge
+KoreanLanguage=Koreanische Menüs und Dialoge
+NorwegianLanguage=Norwegische Menüs und Dialoge
+PolishLanguage=Polnische Menüs und Dialoge
+PortugueseLanguage=Portugiesische (brasilianische) Menüs und Dialoge
+RussianLanguage=Russische Menüs und Dialoge
+SlovakLanguage=Slowakische Menüs und Dialoge
+SpanishLanguage=Spanische Menüs und Dialoge
+SwedishLanguage=Schwedische Menüs und Dialoge
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateDelphi4=Borland® Delphi &4 Binary File Support
-UpdatingCommonControls=Updating the System's Common Controls
+ExplorerContextMenu=&Explorer Kontextmenü-Integration aktivieren
+IntegrateTortoiseCVS=Integrieren in &TortoiseCVS
+IntegrateDelphi4=Borland® Delphi &4 Binärdatei-Unterstützung
+UpdatingCommonControls=Aktualisieren der System-Komponenten
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-UpdatingCommonControls=Updating the System's Common Controls
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
+ReadMe=LIESMICH-Datei
+UsersGuide=Benutzerhandbuch
+UpdatingCommonControls=Aktualisieren der System-Komponenten
+ViewStartMenuFolder=&Anzeigen des Startmenü-Ordners
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=Das Setup hat entdeckt, dass Sie den Startmenü-Ordner von "%s" in "%s" geändert haben. Möchten Sie den vorherigen Startmenü-Ordner löschen?
