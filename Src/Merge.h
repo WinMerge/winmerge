@@ -56,8 +56,6 @@ enum { IDLE_TIMER = 9754 };
 class CMergeApp : public CWinApp
 {
 public:
-	BOOL m_bHiliteSyntax;
-	BOOL m_bDisableSplash;
 	BOOL m_bNeedIdleTimer;
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pDirTemplate;

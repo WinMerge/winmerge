@@ -334,7 +334,7 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 	else
 	{
 		// Line not inside diff,
-		if (!theApp.m_bHiliteSyntax)
+		if (!mf->m_options.GetInt(OPT_SYNTAX_HIGHLIGHT))
 		{
 			// If no syntax hilighting, get windows default colors
 			crBkgnd = GetSysColor (COLOR_WINDOW);

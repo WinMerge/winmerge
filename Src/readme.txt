@@ -1,3 +1,8 @@
+2004-03-09 Kimmo
+ PATCH: [ 912297 ] Splashscreen and syntax highlight options
+  Src: MainFrm.cpp Merge.cpp Merge.h MergeDiffDetailView.cpp
+   MergeEditView.cpp OptionsDef.h
+
 2004-03-08 Kimmo
  PATCH: [ 911350 ] Restore default compare options
   Src: MainFrm.cpp Merge.rc PropCompare.cpp PropCompare.h resource.h

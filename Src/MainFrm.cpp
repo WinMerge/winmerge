@@ -170,6 +170,8 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_SHOW_SKIPPED, TRUE);
 	m_options.InitOption(OPT_HIDE_BACKUP, TRUE);
 
+	m_options.InitOption(OPT_SYNTAX_HIGHLIGHT, TRUE);
+	m_options.InitOption(OPT_DISABLE_SPLASH, FALSE);
 	m_options.InitOption(OPT_CREATE_BACKUPS, TRUE);
 	m_options.InitOption(OPT_VIEW_WHITESPACE, FALSE);
 	m_options.InitOption(OPT_SCROLL_TO_FIRST, FALSE);
@@ -996,7 +998,7 @@ void CMainFrame::OnOptions()
 	vss.m_strPath = m_strVssPath;
 	gen.m_bBackup = m_options.GetInt(OPT_CREATE_BACKUPS);
 	gen.m_bScroll = m_options.GetInt(OPT_SCROLL_TO_FIRST);
-	gen.m_bDisableSplash = theApp.m_bDisableSplash;
+	gen.m_bDisableSplash = m_options.GetInt(OPT_DISABLE_SPLASH);;
 	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
 	filter.m_sPattern = m_sPattern;
 	regpage.m_strEditorPath = m_options.GetString(OPT_EXT_EDITOR_CMD);
@@ -1010,7 +1012,7 @@ void CMainFrame::OnOptions()
 	editor.m_nTabSize = m_options.GetInt(OPT_TAB_SIZE);
 	editor.m_nTabType = m_options.GetInt(OPT_TAB_TYPE);
 	editor.m_bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
-	editor.m_bHiliteSyntax = theApp.m_bHiliteSyntax;
+	editor.m_bHiliteSyntax = m_options.GetInt(OPT_SYNTAX_HIGHLIGHT);
 	editor.m_bAllowMixedEol = m_options.GetInt(OPT_ALLOW_MIXED_EOL);
 	
 	if (sht.DoModal()==IDOK)
@@ -1021,7 +1023,7 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CREATE_BACKUPS, gen.m_bBackup);
 		m_options.SaveOption(OPT_SCROLL_TO_FIRST, gen.m_bScroll);
 
-		theApp.m_bDisableSplash = gen.m_bDisableSplash;
+		m_options.SaveOption(OPT_DISABLE_SPLASH, gen.m_bDisableSplash);
 		m_options.SaveOption(OPT_USE_RECYCLE_BIN, regpage.m_bUseRecycleBin);
 		regpage.SaveMergePath();
 		sExtEditor = regpage.m_strEditorPath;
@@ -1043,7 +1045,7 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_TAB_TYPE, editor.m_nTabType);
 		m_options.SaveOption(OPT_AUTOMATIC_RESCAN, editor.m_bAutomaticRescan);
 		m_options.SaveOption(OPT_ALLOW_MIXED_EOL, editor.m_bAllowMixedEol);
-		theApp.m_bHiliteSyntax = editor.m_bHiliteSyntax;
+		m_options.SaveOption(OPT_SYNTAX_HIGHLIGHT, editor.m_bHiliteSyntax);
 
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
 		m_sPattern = filter.m_sPattern;
@@ -1054,8 +1056,6 @@ void CMainFrame::OnOptions()
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
 		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
 		theApp.WriteProfileString(_T("Settings"), _T("FileFilterPath"), filter.m_sFileFilterPath);
-		theApp.WriteProfileInt(_T("Settings"), _T("DisableSplash"), theApp.m_bDisableSplash);
-		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), theApp.m_bHiliteSyntax);
 
 		m_options.SaveOption(OPT_CLR_DIFF, colors.m_clrDiff);
 		m_options.SaveOption(OPT_CLR_SELECTED_DIFF, colors.m_clrSelDiff);

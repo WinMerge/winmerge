@@ -80,10 +80,8 @@ static void AddEnglishResourceHook();
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp construction
 
-CMergeApp::CMergeApp()
-: m_bHiliteSyntax(TRUE)
-, m_bDisableSplash(FALSE)
-, m_bNeedIdleTimer(FALSE)
+CMergeApp::CMergeApp() :
+  m_bNeedIdleTimer(FALSE)
 , m_pDiffTemplate(0)
 , m_pDirTemplate(0)
 , m_lang(IDR_MAINFRAME, IDR_MAINFRAME)
@@ -142,12 +140,13 @@ BOOL CMergeApp::InitInstance()
 	SetRegistryKey(_T("Thingamahoochie"));
 
 	LoadStdProfileSettings(0);  // Load standard INI file options (including MRU)
+	BOOL bDisableSplash	= GetProfileInt(_T("Settings"), _T("DisableSplash"), FALSE);
 
 	// CG: The following block was added by the Splash Screen component.
 	{
 		CCommandLineInfo cmdInfo;
 		ParseCommandLine(cmdInfo);
-		CSplashWnd::EnableSplashScreen(m_bDisableSplash==FALSE && cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew);
+		CSplashWnd::EnableSplashScreen(bDisableSplash==FALSE && cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew);
 	}
 
 	// Initialize i18n (multiple language) support

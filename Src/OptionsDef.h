@@ -18,6 +18,8 @@ const TCHAR OPT_SHOW_BINARIES[] = _T("Settings/ShowBinaries");
 const TCHAR OPT_SHOW_SKIPPED[] = _T("Settings/ShowSkipped");
 const TCHAR OPT_HIDE_BACKUP[] = _T("Settings/HideBak");
 
+const TCHAR OPT_SYNTAX_HIGHLIGHT[] = _T("Settings/HiliteSyntax");
+const TCHAR OPT_DISABLE_SPLASH[] = _T("Settings/DisableSplash");
 const TCHAR OPT_CREATE_BACKUPS[] = _T("Settings/BackupFile");
 const TCHAR OPT_VIEW_WHITESPACE[] =  _T("Settings/ViewWhitespace");
 const TCHAR OPT_SCROLL_TO_FIRST[] =  _T("Settings/ScrollToFirst");
