@@ -1,3 +1,7 @@
+2003-11-08 Laoran
+ BUG: [ 838248 ] possible typo in plugin code (cosmetic)
+  WinMerge: Plugins.cpp
+
 2003-11-07 Perry
  PATCH: [ 836931 ] Move QueryRegMachine into RegKey
   common: RegKey.cpp RegKey.h

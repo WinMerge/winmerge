@@ -682,10 +682,9 @@ BOOL InvokePrediffingSimpleW(BSTR & bstrBuf, UINT & nBufSize, int & nChanged, LP
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"DiffingPreprocessW", opFxn[3], 
                             vpboolChanged, vpiSize, vpbstrBuf);
 
-	if (! FAILED(h) && vboolHandled.boolVal)
+	if (! FAILED(h) && vboolHandled.boolVal && changed)
 	{
-		if (changed)	
-			nChanged ++;
+		nChanged ++;
 	}
 
 	return 	(! FAILED(h) && vboolHandled.boolVal);
@@ -725,10 +724,9 @@ BOOL InvokePrediffingSimpleA(SAFEARRAY* & arrayBuf, UINT & nBufSize, int & nChan
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"DiffingPreprocessA", opFxn[3], 
                             vpboolChanged, vpiSize, vparrayBuf);
 
-	if (! FAILED(h) && vboolHandled.boolVal)
+	if (! FAILED(h) && vboolHandled.boolVal && changed)
 	{
-		if (changed)	
-			nChanged ++;
+		nChanged ++;
 	}
 
 	return 	(! FAILED(h) && vboolHandled.boolVal);
@@ -795,7 +793,7 @@ BOOL InvokeUnpackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPA
 
 		SafeArrayUnaccessData(fileArray);
 
-			nChanged ++;
+		nChanged ++;
 	}
 
 	// free the BYREF BSTR/ BYREF ARRAY variants
@@ -865,7 +863,7 @@ BOOL InvokePackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPATC
 
 		SafeArrayUnaccessData(fileArray);
 
-			nChanged ++;
+		nChanged ++;
 	}
 
 	// free the BYREF BSTR / BYREF ARRAY 
@@ -908,10 +906,9 @@ BOOL InvokeUnpackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDI
 	// Error if the plugin destroyed the original data, and could not build new data
 	ASSERT(vboolHandled.boolVal || changed == 0);
 
-	if (! FAILED(h) && vboolHandled.boolVal)
+	if (! FAILED(h) && vboolHandled.boolVal && changed)
 	{
-		if (changed)
-			nChanged ++;
+		nChanged ++;
 	}
 
 	return 	(! FAILED(h) && vboolHandled.boolVal);
@@ -949,10 +946,9 @@ BOOL InvokePackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISP
 	// Error if the plugin destroyed the original data, and could not build new 
 	ASSERT(vboolHandled.boolVal || changed == 0);
 
-	if (! FAILED(h) && vboolHandled.boolVal)
+	if (! FAILED(h) && vboolHandled.boolVal && changed)
 	{
-		if (changed)
-			nChanged ++;
+		nChanged ++;
 	}
 
 	return 	(! FAILED(h) && vboolHandled.boolVal);
