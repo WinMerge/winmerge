@@ -393,6 +393,10 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueNa
 Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName}
 Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: DiffAsUnicode; ValueData: $00000001
 
+;If WinMerge.exe is installed then we'll automatically configure WinMerge as the merging application
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Merge Application; ValueData: {app}\{code:ExeName}
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: MergeAsUnicode; ValueData: $00000001
+
 
 [Run]
 ;Installs the Microsoft Common Controls Update
