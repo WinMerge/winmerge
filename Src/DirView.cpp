@@ -177,6 +177,7 @@ void CDirView::OnInitialUpdate()
 	if (HWND hWnd = ListView_GetHeader(m_pList->m_hWnd))
 		m_ctlSortHeader.SubclassWindow(hWnd);
 
+	// Load the bitmaps used for the list view (to reflect diff status)
 	CBitmap bm;
 	VERIFY (m_imageList.Create (16, 16, ILC_MASK, 0, 1));
 	VERIFY (bm.LoadBitmap (IDB_LFILE));
@@ -208,16 +209,22 @@ void CDirView::OnInitialUpdate()
 	bm.Detach();
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
 
+	// Restore column orders as they had them last time they ran
 	LoadColumnOrders();
 
+	// Display column headers (in appropriate order)
 	ReloadColumns();
 
-	//m_ctlSortHeader.SetSortImage(m_sortColumn, m_bSortAscending);
-
-	// Allow user to rearrange columns via drag&drop of headers
+	// Show selection across entire row.
+	// Also allow user to rearrange columns via drag&drop of headers
 	// if they have a new enough common controls
-	// Also enable infotips & full row selection
-	m_pList->SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP | LVS_EX_INFOTIP);
+	DWORD newstyle = LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP;
+	// Also enable infotips if they have new enough version for our
+	// custom draw code
+	// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
+	if (GetDllVersion(_T("comctl32.dll")) >= PACKVERSION(4,71))
+		newstyle |= LVS_EX_INFOTIP;
+	m_pList->SetExtendedStyle(newstyle);
 
 	// Disable CListViewEx's full row selection which only causes problems
 	// (tooltips and custom draw do not work!)
@@ -1341,7 +1348,13 @@ void CDirView::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
 	LVHITTESTINFO lvhti = {0};
 	NMLVGETINFOTIP * pInfoTip = reinterpret_cast<NMLVGETINFOTIP*>(pNMHDR);
 	ASSERT(pInfoTip);
-	
+
+	if (GetDllVersion(_T("comctl32.dll")) < PACKVERSION(4,71))
+	{
+		// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
+		return;
+	}
+
 	// Get subitem under mouse cursor
 	lvhti.pt = m_ptLastMousePos;
 	m_pList->SubItemHitTest(&lvhti);
@@ -1371,6 +1384,13 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	LPNMLVCUSTOMDRAW lplvcd = (LPNMLVCUSTOMDRAW)pNMHDR;
 	DIFFITEM ditem;
+
+	if (GetDllVersion(_T("comctl32.dll")) < PACKVERSION(4,71))
+	{
+		// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
+		*pResult = CDRF_DODEFAULT;
+		return;
+	}
 
 	switch (lplvcd->nmcd.dwDrawStage)
 	{

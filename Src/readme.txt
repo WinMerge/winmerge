@@ -1,9 +1,13 @@
+2003-09-06 Perry
+ PATCH: [ 800175 ] skip custom draw if comctl32.dll < 4.71
+  WinMerge: DirView.cpp
+
 2003-09-02 Laoran
- [ 797957 ] correct line number for last real line (in statusbar)
+ PATCH: [ 797957 ] correct line number for last real line (in statusbar)
   WinMerge: MergeEditView.cpp
 
 2003-09-01 Laoran
- [ 798272 ] save settings for the dockable diff bar
+ PATCH: [ 798272 ] save settings for the dockable diff bar
   WinMerge: ChildFrm.cpp ChildFrm.h MainFrm.cpp
 
 2003-09-01 Kimmo
