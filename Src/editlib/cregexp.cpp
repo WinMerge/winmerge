@@ -24,6 +24,18 @@
 
 //#define DEBUG
 
+#ifdef _UNICODE
+#define mytcsnextc(p) (*p)
+#else
+__inline unsigned int mytcsnextc(LPCSTR p) {
+	int ch = 0;
+	if (_ismbblead((unsigned char)*p))
+		ch = ((unsigned char)*p++<<8);
+	ch += (unsigned char)*p;
+	return ch;
+}
+#endif
+
 static int RegCount = 0;
 
 #ifdef DEBUG
@@ -40,20 +52,33 @@ static  RxNode *NewNode(int aWhat) {
     return N;
 }
 
-static RxNode *NewChar(TCHAR Ch) {
+static RxNode *NewChar(unsigned int Ch) {
     RxNode *A = NewNode(RE_CHAR);
 
     if (A) {
-        A->fChar = (LPTSTR) malloc(1);
+#ifdef _UNICODE
+        A->fChar = (LPTSTR) malloc(2);
         A->fLen = 1;
         A->fChar[0] = Ch;
+#else
+        if (Ch > 0xff) {
+            A->fChar = (LPTSTR) malloc(2);
+            A->fLen = 2;
+            A->fChar[0] = (unsigned char)(Ch >> 8);
+            A->fChar[1] = (unsigned char)(Ch & 0xff);
+        } else {
+            A->fChar = (LPTSTR) malloc(1);
+            A->fLen = 1;
+            A->fChar[0] = (unsigned char)Ch;
+        }
+#endif
     }
     return A;
 }
 
 static RxNode *NewEscape(LPCTSTR *const Regexp) {
-    TCHAR Ch = **Regexp;
-    ++*Regexp;
+    unsigned int Ch = mytcsnextc(*Regexp);
+    *Regexp = _tcsinc(*Regexp);
     switch (Ch) {
       case 0: return 0;
       case _T('a'): Ch = _T('\a'); break;
@@ -132,7 +157,7 @@ static RxNode *NewEscape(LPCTSTR *const Regexp) {
 }
 
 
-#define NNN 32        // 8 * 32 = 256 (match set)
+#define NNN 8192        // 8 * 8192 = 65536 (match set)
 
 #ifdef _UNICODE
 #define SETOP(set,n) \
@@ -142,7 +167,7 @@ static RxNode *NewEscape(LPCTSTR *const Regexp) {
 #else // _UNICODE
 #define SETOP(set,n) \
     do { \
-      set[(unsigned char)(n) >> 3] |= (unsigned char)(1 << ((unsigned char)(n) & 7)); \
+      set[(unsigned int)(n) >> 3] |= (unsigned char)(1 << ((unsigned char)(n) & 7)); \
     } while (0)
 #endif // _UNICODE
 
@@ -158,7 +183,7 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
 #ifdef _UNICODE
     TCHAR Ch, C1 = 0, C2 = 0;
 #else // _UNICODE
-    unsigned char Ch, C1 = 0, C2 = 0;
+    unsigned int Ch, C1 = 0, C2 = 0;
 #endif // _UNICODE
     int doset = 0;
 
@@ -171,7 +196,9 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
     c = 0;
 
     while (**Regexp) {
-        switch (Ch = *((*Regexp)++)) {
+        Ch = mytcsnextc(*Regexp);
+        *Regexp = _tcsinc(*Regexp);
+        switch (Ch) {
           case _T(']'):
             if (doset == 1) return 0;
             {
@@ -183,7 +210,9 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
                 return N;
             }
           case _T('\\'):
-            switch (Ch = *((*Regexp)++)) {
+            Ch = mytcsnextc(*Regexp);
+            *Regexp = _tcsinc(*Regexp);
+            switch (Ch) {
               case 0: return 0;
               case _T('a'): Ch = _T('\a'); break;
               case _T('b'): Ch = _T('\b'); break;
@@ -552,8 +581,8 @@ static RxNode *RxComp(LPCTSTR *Regexp) {
         case _T('>'): CHECK(AddNode(&F, &N, NewNode(RE_ATEOW)));     break;
         default:
             --*Regexp;
-            CHECK(AddNode(&F, &N, NewChar(**Regexp)));
-            ++*Regexp;
+            CHECK(AddNode(&F, &N, NewChar(mytcsnextc(*Regexp))));
+            *Regexp = _tcsinc(*Regexp);
             break;
         }
     }
@@ -628,47 +657,47 @@ int RxMatch(RxNode *rx) {
             break;
         case RE_ANY:
             if (rex == eop) return 0;
-            rex++;
+            rex = _tcsinc(rex);
             break;
         case RE_WSPACE:
             if (rex == eop) return 0;
             if (*rex != _T(' ') && *rex != _T('\n') && *rex != _T('\r') && *rex != _T('\t')) return 0;
-            rex++;
+            rex = _tcsinc(rex);
             break;
         case RE_NWSPACE:
             if (rex == eop) return 0;
             if (*rex == _T(' ') || *rex == _T('\n') || *rex == _T('\r') || *rex == _T('\t')) return 0;
-            rex++;
+            rex = _tcsinc(rex);
             break;
         case RE_WORD:
             if (rex == eop) return 0;
             if (!_istalnum(*rex)) return 0;
-            rex++;
+            rex = _tcsinc(rex);
             break;
         case RE_NWORD:
             if (rex == eop) return 0;
             if (_istalnum(*rex)) return 0;
-            rex++;
+            rex = _tcsinc(rex);
             break;
         case RE_DIGIT:
             if (rex == eop) return 0;
             if (!_istdigit(*rex)) return 0;
-            rex++;
+            rex = _tcsinc(rex);
             break;
         case RE_NDIGIT:
             if (rex == eop) return 0;
             if (_istdigit(*rex)) return 0;
-            rex++;
+            rex = _tcsinc(rex);
             break;
         case RE_UPPER:
             if (rex == eop) return 0;
             if (!_istupper(*rex)) return 0;
-            rex++;
+            rex = _tcsinc(rex);
             break;
         case RE_LOWER:
             if (rex == eop) return 0;
             if (!_istlower(*rex)) return 0;
-            rex++;
+            rex = _tcsinc(rex);
             break;
         case RE_ATBOW:
             if (rex >= eop) return 0;
@@ -688,8 +717,8 @@ int RxMatch(RxNode *rx) {
                 if (*n->fChar != *rex) return 0;
                 if (memcmp(rex, n->fChar, n->fLen) != 0) return 0;
             } else {
-                for (int i = 0; i < n->fLen; i++)
-                    if (_totupper(rex[i]) != _totupper(n->fChar[i]))
+                for (int i = 0; i < n->fLen; i+= _tcsinc(&rex[i]) - &rex[i])
+                    if (_totupper(mytcsnextc(&rex[i])) != _totupper(mytcsnextc(&n->fChar[i])))
                         return 0;
             }
             rex += n->fLen;
@@ -699,18 +728,24 @@ int RxMatch(RxNode *rx) {
 #ifdef _UNICODE
             if ((n->fChar[(TCHAR)(*rex) >> 3] & (1 << ((TCHAR)(*rex) & 7))) == 0) return 0;
 #else // _UNICODE
-            if ((n->fChar[(unsigned char)(*rex) >> 3] & (1 << ((unsigned char)(*rex) & 7))) == 0) return 0;
+            {
+            unsigned int ch = mytcsnextc(rex);
+            if ((n->fChar[ch >> 3] & (1 << ((unsigned char)(ch) & 7))) == 0) return 0;
+            }
 #endif // _UNICODE
-            rex++;
+            rex = _tcsinc(rex);
             break;
         case RE_NOTINSET:
             if (rex == eop) return 0;
 #ifdef _UNICODE
             if (n->fChar[(TCHAR)(*rex) >> 3] & (1 << ((TCHAR)(*rex) & 7))) return 0;
 #else // _UNICODE
-            if (n->fChar[(unsigned char)(*rex) >> 3] & (1 << ((unsigned char)(*rex) & 7))) return 0;
+            {
+            unsigned int ch = mytcsnextc(rex);
+            if (n->fChar[ch >> 3] & (1 << ((unsigned char)(ch) & 7))) return 0;
+            }
 #endif // _UNICODE
-            rex++;
+            rex = _tcsinc(rex);
             break;
         case RE_JUMP:
             n = n->fPtr;
@@ -824,24 +859,25 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Mat
         if (flags & RX_CASE) {
             while (1) {
                 while (Start < eop && *Start != Ch)
-                    Start++;
+                    Start = _tcsinc(Start);
                 if (Start == eop)
                     break;
                 if (RxTry(Regexp, Start))
                     return 1;
-                if (++Start == eop)
+                if ((Start = _tcsinc(Start)) == eop)
                     break;
             }
         } else {
             Ch = (TCHAR)_totupper(Ch);
             while (1) {
-                while (Start < eop && (TCHAR) _totupper(*Start) != Ch)
-                    Start++;
+                while (Start < eop && (TCHAR) _totupper(*Start) != Ch) {
+                    Start = _tcsinc(Start);
+                }
                 if (Start == eop)
                     break;
                 if (RxTry(Regexp, Start))
                     return 1;
-                if (++Start == eop)
+                if ((Start = _tcsinc(Start)) == eop)
                     break;
             }
         }
@@ -849,7 +885,7 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, int Len, LPCTSTR Start, RxMatchRes *Mat
     default:         // (slow)
         do {
             if (RxTry(Regexp, Start)) return 1;
-        } while (Start++ < eop);
+        } while ((Start = _tcsinc(Start)) < eop);
         break;
     }
     return 0;

@@ -660,13 +660,14 @@ ParseLineBatch (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualIt
   BOOL bDecIndex = FALSE;
   BOOL bOneWord = TRUE;
   int nIdentBegin = -1;
-  for (int I = 0;; I++)
+  int nPrevI = -1;
+  for (int I = 0;; nPrevI = I, I = ::CharNext(pszChars+I) - pszChars)
     {
       if (bRedefineBlock)
         {
           int nPos = I;
           if (bDecIndex)
-            nPos--;
+            nPos = nPrevI;
           if (dwCookie & (COOKIE_COMMENT | COOKIE_EXT_COMMENT))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
@@ -713,7 +714,7 @@ out:
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[I - 1] != '\\' || I >= 2 && (pszChars[I - 1] != '\\' || pszChars[I - 1] == '\\' && pszChars[I - 2] == '\\')))
+          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || pszChars[nPrevI] == '\\' && *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = TRUE;
@@ -724,7 +725,7 @@ out:
       //  Char constant '..'
       if (dwCookie & COOKIE_CHAR)
         {
-          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[I - 1] != '\\' || I >= 2 && (pszChars[I - 1] != '\\' || pszChars[I - 1] == '\\' && pszChars[I - 2] == '\\')))
+          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || pszChars[nPrevI] == '\\' && *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_CHAR;
               bRedefineBlock = TRUE;
@@ -742,7 +743,7 @@ out:
       if (pszChars[I] == '\'')
         {
           // if (I + 1 < nLength && pszChars[I + 1] == '\'' || I + 2 < nLength && pszChars[I + 1] != '\\' && pszChars[I + 2] == '\'' || I + 3 < nLength && pszChars[I + 1] == '\\' && pszChars[I + 3] == '\'')
-          if (!I || !xisalnum (pszChars[I - 1]))
+          if (!I || !xisalnum (pszChars[nPrevI]))
             {
               DEFINE_BLOCK (I, COLORINDEX_STRING);
               dwCookie |= COOKIE_CHAR;
@@ -766,7 +767,7 @@ out:
             }
           if (dwCookie & COOKIE_EXT_COMMENT)
               continue;
-          if (nLength >= I + 3 && !_tcsnicmp (pszChars + I, _T ("REM"), 3) && (_istspace (pszChars[I + 3]) || nLength == I + 3))
+          if (nLength >= I + 3 && !_tcsnicmp (pszChars + I, _T ("REM"), 3) && (xisspace (pszChars[I + 3]) || nLength == I + 3))
             {
               DEFINE_BLOCK (I, COLORINDEX_COMMENT);
               dwCookie |= COOKIE_COMMENT;
@@ -775,7 +776,7 @@ out:
 
           if (pszChars[I] == ':')
             {
-              if (nLength > I + 2 && !(xisalnum (pszChars[I+1]) || isspace (pszChars[I+1])))
+              if (nLength > I + 2 && !(xisalnum (pszChars[I+1]) || xisspace (pszChars[I+1])))
                 {
                   DEFINE_BLOCK (I, COLORINDEX_COMMENT);
                   dwCookie |= COOKIE_COMMENT;
@@ -785,7 +786,7 @@ out:
               dwCookie |= COOKIE_PREPROCESSOR;
               continue;
             }
-          if (!_istspace (pszChars[I]))
+          if (!xisspace (pszChars[I]))
             bFirstChar = FALSE;
         }
 

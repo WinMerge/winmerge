@@ -5,6 +5,12 @@
   Add 0,0,0x1 to any FONT line lacking it, for all DIALOGEX dialogs
   Src: Merge.rc
   Languages: Merge*.rc
+ PATCH: [ 968285 ] DBCS fixes from Sawanaka
+  (continuing editlib portions)
+  Src/editlib: batch.cpp crystaleditview.cpp crystaltextview2.cpp cplusplus.cpp
+   cregexp.cpp csharp.cpp dcl.cpp filesup.cpp fortran.cpp html.cpp js.cpp
+   java.cpp list.cpp pascal.cpp perl.cpp php.cpp python.cpp rexx.cpp rsrc.cpp
+   sgml.cpp sh.cpp siod.cpp sql.cpp tcl.cpp tex.cpp xml.cpp
 
 2005-03-05 Perry
  Rename CDirFrame::SetFilter to CDirFrame::SetFilterStatusDisplay for easier greps.

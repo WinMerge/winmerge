@@ -937,14 +937,14 @@ ParseLineTex (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItem
   BOOL bRedefineBlock = TRUE;
   BOOL bDecIndex = FALSE;
   int nIdentBegin = -1;
-
-  for (int I = 0;; I++)
+  int nPrevI = -1;
+  for (int I = 0;; nPrevI = I, I = ::CharNext(pszChars+I) - pszChars)
     {
       if (bRedefineBlock)
         {
           int nPos = I;
           if (bDecIndex)
-            nPos--;
+            nPos = nPrevI;
           if (dwCookie & (COOKIE_COMMENT | COOKIE_EXT_COMMENT))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
@@ -985,7 +985,7 @@ out:
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[I - 1] != '\\' || I >= 2 && (pszChars[I - 1] != '\\' || pszChars[I - 1] == '\\' && pszChars[I - 2] == '\\')))
+          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || pszChars[nPrevI] == '\\' && *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = TRUE;
@@ -996,7 +996,7 @@ out:
       //  Char constant '..'
       if (dwCookie & COOKIE_CHAR)
         {
-          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[I - 1] != '\\' || I >= 2 && (pszChars[I - 1] != '\\' || pszChars[I - 1] == '\\' && pszChars[I - 2] == '\\')))
+          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || pszChars[nPrevI] == '\\' && *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_CHAR;
               bRedefineBlock = TRUE;
@@ -1021,7 +1021,7 @@ out:
       if (pszChars[I] == '\'')
         {
           // if (I + 1 < nLength && pszChars[I + 1] == '\'' || I + 2 < nLength && pszChars[I + 1] != '\\' && pszChars[I + 2] == '\'' || I + 3 < nLength && pszChars[I + 1] == '\\' && pszChars[I + 3] == '\'')
-          if (!I || !xisalnum (pszChars[I - 1]))
+          if (!I || !xisalnum (pszChars[nPrevI]))
             {
               DEFINE_BLOCK (I, COLORINDEX_STRING);
               dwCookie |= COOKIE_CHAR;
@@ -1031,7 +1031,7 @@ out:
 
       if (bFirstChar)
         {
-          if (!_istspace (pszChars[I]))
+          if (!xisspace (pszChars[I]))
             bFirstChar = FALSE;
         }
 
@@ -1068,7 +1068,7 @@ out:
                     {
                       for (int j = I; j >= 0; j--)
                         {
-                          if (!_istspace (pszChars[j]))
+                          if (!xisspace (pszChars[j]))
                             {
                               if (pszChars[j] == '$')
                                 {
@@ -1112,7 +1112,7 @@ out:
             {
               for (int j = I; j >= 0; j--)
                 {
-                  if (!_istspace (pszChars[j]))
+                  if (!xisspace (pszChars[j]))
                     {
                       if (pszChars[j] == '$')
                         {

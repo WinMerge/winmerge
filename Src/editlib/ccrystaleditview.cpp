@@ -607,7 +607,8 @@ OnEditDeleteBack ()
   else                          // If Caret Not At SOL
 
     {
-      ptCursorPos.x--;          // Decrement Position
+      if (ptCursorPos.x > 1 && m_pTextBuffer->IsMBSTrail (ptCursorPos.y, ptCursorPos.x-1)) ptCursorPos.x--; /* MULTIBYTES */
+          ptCursorPos.x--;          // Decrement Position
 
       //yuyunyi
       if (ptCursorPos.x > 0 && m_pTextBuffer->IsMBSTrail (ptCursorPos.y, ptCursorPos.x))
@@ -1601,7 +1602,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y - 1);
           LPCTSTR pszLineChars = m_pTextBuffer->GetLineChars (ptCursorPos.y - 1);
           int nPos = 0;
-          while (nPos < nLength && _istspace (pszLineChars[nPos]))
+          while (nPos < nLength && xisspace (pszLineChars[nPos]))
             nPos++;
 
           if (nPos > 0)
@@ -1735,7 +1736,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
           LPCTSTR pszLineChars = m_pTextBuffer->GetLineChars (ptCursorPos.y );
           int nPos = 0;
-          while (nPos < nLength && _istspace (pszLineChars[nPos]))
+          while (nPos < nLength && xisspace (pszLineChars[nPos]))
             nPos++;
           if (nPos == nLength - 1)
             {
@@ -1780,7 +1781,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
           LPCTSTR pszLineChars = m_pTextBuffer->GetLineChars (ptCursorPos.y );
           int nPos = 0;
-          while (nPos < nLength && _istspace (pszLineChars[nPos]))
+          while (nPos < nLength && xisspace (pszLineChars[nPos]))
             nPos++;
           if (ptCursorPos.y > 0 && nPos && nPos == nLength - 1)
             {
@@ -2236,7 +2237,7 @@ OnEditCapitalize ()
       bool bCapitalize = true;
       while (*pszText)
         {
-          if (_istspace (*pszText))
+          if (xisspace (*pszText))
             bCapitalize = true;
           else if (_istalpha (*pszText))
             if (bCapitalize)
@@ -2301,7 +2302,7 @@ OnEditSentence ()
       bool bCapitalize = true;
       while (*pszText)
         {
-          if (!_istspace (*pszText))
+          if (!xisspace (*pszText))
             if (*pszText == _T ('.'))
               {
                 if (pszText[1] && !_istdigit (pszText[1]))

@@ -45,7 +45,11 @@ GetExtPosition (LPCTSTR pszString)
   do
     if ((test = sString.GetAt (--posit)) == _T ('.'))
       return posit;
+#ifdef _UNICODE
   while (posit && test != _T ('\\') && test != _T (':'));
+#else
+  while (posit && (test != _T ('\\') || _ismbstrail((unsigned char *)pszString, (unsigned char *)pszString + posit)) && test != _T (':'));
+#endif
   return len;
 }
 
@@ -86,7 +90,11 @@ GetNamePosition (LPCTSTR pszString)
   int posit = sString.GetLength ();
   TCHAR test;
   do
+#ifdef _UNICODE
     if ((test = sString.GetAt (--posit)) == _T ('\\') || test == _T (':'))
+#else
+    if (((test = sString.GetAt (--posit)) == _T ('\\') && !_ismbstrail((unsigned char *)pszString, (unsigned char *)pszString + posit)) || test == _T (':'))
+#endif
       return posit + 1;
   while (posit);
   return posit;
@@ -103,7 +111,11 @@ GetPath (const CString & sString, BOOL bClose /*= FALSE*/ )
 
   TCHAR test = sString.GetAt (posit - 1);
 
+#ifdef _UNICODE
   if (test == _T (':') || test == _T ('\\') && (posit == 1 || posit != 1 && sString.GetAt (posit - 2) == _T (':')))
+#else
+  if (test == _T (':') || (test == _T ('\\') && !_ismbstrail((unsigned char *)(LPCTSTR)sString, (unsigned char *)(LPCTSTR)sString + posit)) && (posit == 1 || posit != 1 && sString.GetAt (posit - 2) == _T (':')))
+#endif
     return sString.Left (posit);
   return sString.Left (bClose ? posit : test == _T (':') ? posit : posit - 1);
 }

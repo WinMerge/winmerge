@@ -150,22 +150,24 @@ MoveWordLeft (BOOL bSelect)
 
   LPCTSTR pszChars = GetLineChars (m_ptCursorPos.y);
   int nPos = m_ptCursorPos.x;
-  while (nPos > 0 && _istspace (pszChars[nPos - 1]))
-    nPos--;
+  int nPrevPos;
+  while (nPos > 0 && xisspace (pszChars[nPrevPos = ::CharPrev(pszChars, pszChars + nPos) - pszChars]))
+    nPos = nPrevPos;
 
   if (nPos > 0)
     {
-      nPos--;
+      int nPrevPos = ::CharPrev(pszChars, pszChars + nPos) - pszChars;
+      nPos = nPrevPos;
       if (xisalnum (pszChars[nPos]))
         {
-          while (nPos > 0 && xisalnum (pszChars[nPos - 1]))
-            nPos--;
+          while (nPos > 0 && (xisalnum (pszChars[nPrevPos = ::CharPrev(pszChars, pszChars + nPos) - pszChars])))
+            nPos = nPrevPos;
         }
       else
         {
-          while (nPos > 0 && !xisalnum (pszChars[nPos - 1])
-                && !_istspace (pszChars[nPos - 1]))
-            nPos--;
+          while (nPos > 0 && !xisalnum (pszChars[nPrevPos = ::CharPrev(pszChars, pszChars + nPos) - pszChars])
+                && !xisspace (pszChars[nPrevPos]))
+            nPos = nPrevPos;
         }
     }
 
@@ -208,17 +210,17 @@ MoveWordRight (BOOL bSelect)
   if (xisalnum (pszChars[nPos]))
     {
       while (nPos < nLength && xisalnum (pszChars[nPos]))
-        nPos++;
+        nPos = ::CharNext(pszChars + nPos) - pszChars;
     }
   else
     {
       while (nPos < nLength && !xisalnum (pszChars[nPos])
-            && !_istspace (pszChars[nPos]))
-        nPos++;
+            && !xisspace (pszChars[nPos]))
+        nPos = ::CharNext(pszChars + nPos) - pszChars;
     }
 
-  while (nPos < nLength && _istspace (pszChars[nPos]))
-    nPos++;
+  while (nPos < nLength && xisspace (pszChars[nPos]))
+    nPos = ::CharNext(pszChars + nPos) - pszChars;
 
   m_ptCursorPos.x = nPos;
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
@@ -314,7 +316,7 @@ MoveHome (BOOL bSelect)
 	/*ORIGINAL
 	int nHomePos = 0;
 	*///END SW
-  while (nHomePos < nLength && _istspace (pszChars[nHomePos]))
+  while (nHomePos < nLength && xisspace (pszChars[nHomePos]))
     nHomePos++;
   if (nHomePos == nLength || m_ptCursorPos.x == nHomePos)
 		//BEGIN SW
@@ -532,7 +534,7 @@ WordToRight (CPoint pt)
     {
       if (!xisalnum (pszChars[pt.x]))
         break;
-      pt.x++;
+      pt.x += ::CharNext (&pszChars[pt.x]) - &pszChars[pt.x];
     }
   ASSERT_VALIDTEXTPOS (pt);
   return pt;
@@ -543,11 +545,13 @@ WordToLeft (CPoint pt)
 {
   ASSERT_VALIDTEXTPOS (pt);
   LPCTSTR pszChars = GetLineChars (pt.y);
+  int nPrevX = pt.x;
   while (pt.x > 0)
     {
-      if (!xisalnum (pszChars[pt.x - 1]))
+      nPrevX -= &pszChars[pt.x] - ::CharPrev (pszChars, &pszChars[pt.x]);
+      if (!xisalnum (pszChars[nPrevX]))
         break;
-      pt.x--;
+      pt.x = nPrevX;
     }
   ASSERT_VALIDTEXTPOS (pt);
   return pt;

@@ -16,6 +16,7 @@
 
 #include "stdafx.h"
 #include "ccrystaltextview.h"
+#include "ccrystaltextbuffer.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -245,13 +246,14 @@ ParseLineRsrc (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualIte
   BOOL bWasCommentStart = FALSE;
   BOOL bDecIndex = FALSE;
   int nIdentBegin = -1;
-  for (int I = 0;; I++)
+  int nPrevI = -1;
+  for (int I = 0;; nPrevI = I, I = CharNext(pszChars+I) - pszChars)
     {
       if (bRedefineBlock)
         {
           int nPos = I;
           if (bDecIndex)
-            nPos--;
+            nPos = nPrevI;
           if (dwCookie & (COOKIE_COMMENT | COOKIE_EXT_COMMENT))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
@@ -266,7 +268,7 @@ ParseLineRsrc (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualIte
             }
           else
             {
-              if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha (pszChars[nPos - 1]) && !xisalpha (pszChars[nPos + 1])))
+              if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha (*::CharPrev(pszChars, pszChars + nPos)) && !xisalpha (*::CharNext(pszChars + nPos))))
                 {
                   DEFINE_BLOCK (nPos, COLORINDEX_NORMALTEXT);
                 }
@@ -296,7 +298,7 @@ out:
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[I - 1] != '\\' || I >= 2 && (pszChars[I - 1] != '\\' || pszChars[I - 1] == '\\' && pszChars[I - 2] == '\\')))
+          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || pszChars[nPrevI] == '\\' && *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = TRUE;
@@ -307,7 +309,7 @@ out:
       //  Char constant '..'
       if (dwCookie & COOKIE_CHAR)
         {
-          if (pszChars[I] == '\'' && (I == 0 || pszChars[I - 1] != '\\'))
+          if (pszChars[I] == '\'' && (I == 0 || pszChars[nPrevI] != '\\'))
             {
               dwCookie &= ~COOKIE_CHAR;
               bRedefineBlock = TRUE;
@@ -318,8 +320,8 @@ out:
       //  Extended comment /*....*/
       if (dwCookie & COOKIE_EXT_COMMENT)
         {
-          // if (I > 0 && pszChars[I] == '/' && pszChars[I - 1] == '*')
-          if ((I > 1 && pszChars[I] == '/' && pszChars[I - 1] == '*' /*&& pszChars[I - 2] != '/'*/ && !bWasCommentStart) || (I == 1 && pszChars[I] == '/' && pszChars[I - 1] == '*'))
+          // if (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '*')
+          if ((I > 1 && pszChars[I] == '/' && pszChars[nPrevI] == '*' /*&& *::CharPrev(pszChars, pszChars + nPrevI) != '/'*/ && !bWasCommentStart) || (I == 1 && pszChars[I] == '/' && pszChars[nPrevI] == '*'))
             {
               dwCookie &= ~COOKIE_EXT_COMMENT;
               bRedefineBlock = TRUE;
@@ -328,9 +330,9 @@ out:
           continue;
         }
 
-      if (I > 0 && pszChars[I] == '/' && pszChars[I - 1] == '/')
+      if (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '/')
         {
-          DEFINE_BLOCK (I - 1, COLORINDEX_COMMENT);
+          DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_COMMENT;
           break;
         }
@@ -338,9 +340,9 @@ out:
       //  Preprocessor directive #....
       if (dwCookie & COOKIE_PREPROCESSOR)
         {
-          if (I > 0 && pszChars[I] == '*' && pszChars[I - 1] == '/')
+          if (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/')
             {
-              DEFINE_BLOCK (I - 1, COLORINDEX_COMMENT);
+              DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
               dwCookie |= COOKIE_EXT_COMMENT;
             }
           continue;
@@ -356,16 +358,16 @@ out:
       if (pszChars[I] == '\'')
         {
           // if (I + 1 < nLength && pszChars[I + 1] == '\'' || I + 2 < nLength && pszChars[I + 1] != '\\' && pszChars[I + 2] == '\'' || I + 3 < nLength && pszChars[I + 1] == '\\' && pszChars[I + 3] == '\'')
-          if (!I || !xisalnum (pszChars[I - 1]))
+          if (!I || !xisalnum (pszChars[nPrevI]))
             {
               DEFINE_BLOCK (I, COLORINDEX_STRING);
               dwCookie |= COOKIE_CHAR;
               continue;
             }
         }
-      if (I > 0 && pszChars[I] == '*' && pszChars[I - 1] == '/')
+      if (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/')
         {
-          DEFINE_BLOCK (I - 1, COLORINDEX_COMMENT);
+          DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
           bWasCommentStart = TRUE;
           continue;
@@ -381,7 +383,7 @@ out:
               dwCookie |= COOKIE_PREPROCESSOR;
               continue;
             }
-          if (!_istspace (pszChars[I]))
+          if (!xisspace (pszChars[I]))
             bFirstChar = FALSE;
         }
 
@@ -389,7 +391,7 @@ out:
         continue;               //  We don't need to extract keywords,
       //  for faster parsing skip the rest of loop
 
-      if (xisalnum (pszChars[I]) || pszChars[I] == '.' && I > 0 && (!xisalpha (pszChars[I - 1]) && !xisalpha (pszChars[I + 1])))
+      if (xisalnum (pszChars[I]) || pszChars[I] == '.' && I > 0 && (!xisalpha (pszChars[nPrevI]) && !xisalpha (pszChars[I + 1])))
         {
           if (nIdentBegin == -1)
             nIdentBegin = I;
@@ -416,7 +418,7 @@ out:
 
                   for (int j = I; j < nLength; j++)
                     {
-                      if (!_istspace (pszChars[j]))
+                      if (!xisspace (pszChars[j]))
                         {
                           if (pszChars[j] == '(')
                             {
@@ -457,7 +459,7 @@ out:
 
           for (int j = I; j < nLength; j++)
             {
-              if (!_istspace (pszChars[j]))
+              if (!xisspace (pszChars[j]))
                 {
                   if (pszChars[j] == '(')
                     {
@@ -473,7 +475,7 @@ out:
         }
     }
 
-  if (pszChars[nLength - 1] != '\\')
+  if (pszChars[nLength - 1] != '\\' || m_pTextBuffer->IsMBSTrail(nLineIndex, nLength - 1))
     dwCookie &= COOKIE_EXT_COMMENT;
   return dwCookie;
 }
