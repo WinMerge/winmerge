@@ -209,7 +209,6 @@ public:
 	//{{AFX_DATA(CAboutDlg)
 	enum { IDD = IDD_ABOUTBOX };
 	CStaticLink	m_ctlCompany;
-	CStatic	m_ctlEmail;
 	CStaticLink	m_ctlWWW;
 	CString	m_strVersion;
 	//}}AFX_DATA
@@ -240,7 +239,6 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CAboutDlg)
 	DDX_Control(pDX, IDC_COMPANY, m_ctlCompany);
-	DDX_Control(pDX, IDC_EMAIL, m_ctlEmail);
 	DDX_Control(pDX, IDC_WWW, m_ctlWWW);
 	DDX_Text(pDX, IDC_VERSION, m_strVersion);
 	//}}AFX_DATA_MAP
