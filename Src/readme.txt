@@ -14,6 +14,9 @@
  PATCH: [ 1103530 ] Include codepages in "force unification" question
   Placeholder in Japanese text.
   Languages/Japanese: MergeJapanese.rc
+ PATCH: [ 1039228 ] add codepage info strings
+  Src: codepage.cpp codepage.h Merge.rc resource.h
+  Src/Languages: Merge*.rc, resource.h
 
 2005-01-22 Perry
  PATCH: [ 1107484 ] Fix broken version columns

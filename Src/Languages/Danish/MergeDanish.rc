@@ -1932,6 +1932,105 @@ BEGIN
     IDS_VIETNAMESE          "Vietnamesisk"
 END
 
+// CODEPAGE GEOGRAPHIC GROUPS
+STRINGTABLE
+BEGIN
+	IDS_CPG_WESTERN_EUROPEAN        "Western European"
+	IDS_CPG_EASTERN_EUROPEAN        "Eastern European"
+	IDS_CPG_EAST_ASIAN              "East Asian"
+	IDS_CPG_SOUTH_ASIAN             "SE & SW Asian"
+	IDS_CPG_MIDDLE_EASTERN          "Middle Eastern"
+	IDS_CPG_NA                      "Not applicable"
+END
+
+// CODEPAGE PLATFORM GROUPS
+STRINGTABLE
+BEGIN
+	IDS_CPP_WINDOWS                 "MS-Windows"
+	IDS_CPP_DOS                     "MS-DOS"
+	IDS_CPP_MACINTOSH               "Macintosh"
+	IDS_CPP_IBM                     "IBM"
+	IDS_CPP_NA                      "Not applicable"
+END
+
+// CODEPAGES #1 (IBM)
+STRINGTABLE
+BEGIN
+	IDS_CP_EBCDIC                   "EBCDIC"
+	IDS_CP_IBM_EBCDIC_CYRILLIC      "IBM EBCDIC Cyrillic"
+END
+
+// CODEPAGES #1 (DOS)
+STRINGTABLE
+BEGIN
+	IDS_CP_DOS_US                   "MS-DOS Latin US"
+	IDS_CP_DOS_ARABIC               "MS-DOS Arabic"
+	IDS_CP_DOS_GREEK                "MS-DOS Greek"
+	IDS_CP_DOS_BALTIC               "MS-DOS Baltic Rim"
+	IDS_CP_DOS_LATIN1               "MS-DOS Latin 1"
+	IDS_CP_DOS_GREEK1               "MS-DOS Greek 1"
+	IDS_CP_DOS_LATIN2               "MS-DOS Latin 2"
+	IDS_CP_DOS_CYRILLIC             "MS-DOS Cyrillic"
+	IDS_CP_DOS_TURKISH              "MS-DOS Turkish"
+	IDS_CP_DOS_PORTUGUESE           "MS-DOS Portuguese"
+END
+
+// CODEPAGES #2 (more DOS)
+STRINGTABLE
+BEGIN
+	IDS_CP_DOS_ICELANDIC            "MS-DOS Icelandic"
+	IDS_CP_DOS_HEBREW               "MS-DOS Hebrew"
+	IDS_CP_DOS_FRENCH_CANADA        "MS-DOS French Canada"
+	IDS_CP_DOS_NORDIC               "MS-DOS Nordic"
+	IDS_CP_DOS_CYRILLIC_CIS1        "MS-DOS Cyrillic CIS 1"
+	IDS_CP_DOS_GREEK2               "MS-DOS Greek 2"
+END
+
+// CODEPAGES #3 (Windows)
+STRINGTABLE
+BEGIN
+	IDS_CP_WINDOWS_THAI             "Windows Thai"
+	IDS_CP_WINDOWS_JAPANESE         "Windows Japanese"
+	IDS_CP_WINDOWS_CHINESE_SIMP     "Windows Simplified Chinese"
+	IDS_CP_WINDOWS_KOREAN           "Windows Korean"
+	IDS_CP_WINDOWS_CHINESE_TRAD     "Windows Traditional Chinese"
+	IDS_CP_WINDOWS_LATIN2           "Windows Latin 2"
+	IDS_CP_WINDOWS_CYRILLIC         "Windows Cyrillic (Slavic)"
+	IDS_CP_WINDOWS_LATIN1           "Windows Latin 1"
+	IDS_CP_WINDOWS_GREEK            "Windows Greek"
+	IDS_CP_WINDOWS_TURKISH          "Windows Latin 5 (Turkish)"
+	IDS_CP_WINDOWS_HEBREW           "Windows Hebrew"
+	IDS_CP_WINDOWS_ARABIC           "Windows Arabic"
+	IDS_CP_WINDOWS_BALTIC           "Windows Baltic Rim"
+	IDS_CP_WINDOWS_VIETNAM          "Windows Vietnamese"
+END
+
+// CODEPAGES #4 (Macintosh)
+STRINGTABLE
+BEGIN
+	IDS_CP_MACINTOSH_ROMAN          "Macintosh Roman"
+	IDS_CP_MACINTOSH_GREEK          "Macintosh Greek"
+	IDS_CP_MACINTOSH_CYRILLIC       "Macintosh Cyrillic"
+	IDS_CP_MACINTOSH_CENTRAL_EUROPE "Macintosh "
+	IDS_CP_MACINTOSH_ICELANDIC      "Macintosh Central Europe"
+	IDS_CP_MACINTOSH_TURKISH        "Macintosh Turkish"
+END
+
+// CODEPAGES #5 (Extra (alias) information)
+STRINGTABLE
+BEGIN
+	IDS_CP_WINDOWS_JAPANESE_EXTRA   ""
+	IDS_CP_WINDOWS_CHINESE_SIMP_EXTRA ""
+	IDS_CP_WINDOWS_KOREAN_EXTRA     ""
+	IDS_CP_WINDOWS_LATIN2_EXTRA     "Approximates ISO-8859-2"
+	IDS_CP_WINDOWS_CHINESE_TRAD_EXTRA ""
+	IDS_CP_WINDOWS_CYRILLIC_EXTRA   ""
+	IDS_CP_WINDOWS_LATIN1_EXTRA     "Approximates ISO-8859-1"
+	IDS_CP_WINDOWS_GREEK_EXTRA      "Approximates ISO-8859-7"
+	IDS_CP_WINDOWS_TURKISH_EXTRA    "Approximates ISO-8859-9"
+	IDS_CP_WINDOWS_HEBREW_EXTRA     "Approximates ISO-8859-8"
+END
+
 // MENU STRINGS
 // FILE MENU
 STRINGTABLE
