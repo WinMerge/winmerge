@@ -231,7 +231,8 @@ CMainFrame::CMainFrame()
 	m_nVerSys = theApp.GetProfileInt(_T("Settings"), _T("VersionSystem"), 0);
 	m_strVssProjectBase = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
 	m_strVssUser = theApp.GetProfileString(_T("Settings"), _T("VssUser"), _T(""));
-	m_strVssPassword = theApp.GetProfileString(_T("Settings"), _T("VssPassword"), _T(""));
+//	m_strVssPassword = theApp.GetProfileString(_T("Settings"), _T("VssPassword"), _T(""));
+	theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), _T(""));
 	m_strVssPath = theApp.GetProfileString(_T("Settings"), _T("VssPath"), _T(""));
 	m_strVssDatabase = theApp.GetProfileString(_T("Settings"), _T("VssDatabase"),_T(""));
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
@@ -1054,7 +1055,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			theApp.WriteProfileString(_T("Settings"), _T("VssDatabase"), m_strVssDatabase);
 			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_strVssProjectBase);
 			theApp.WriteProfileString(_T("Settings"), _T("VssUser"), m_strVssUser);
-			theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword);
+//			theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword);
 
 			IVSSDatabase vssdb;
 			IVSSItems vssis;

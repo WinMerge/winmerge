@@ -1,3 +1,7 @@
+2004-06-28 Kimmo
+ PATCH: [ 980851 ] Don't save VSS password
+  Src: MainFrm.cpp
+
 2004-06-23 WinMerge experimental release 2.1.7.8 (cvs)
 
 2004-06-23 Kimmo
