@@ -1179,7 +1179,7 @@ PutToClipboard (LPCTSTR pszText)
   if (OpenClipboard ())
     {
       EmptyClipboard ();
-      HGLOBAL hData = GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, _tcslen (pszText) + 1);
+      HGLOBAL hData = GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, (_tcslen(pszText)+1) * sizeof(TCHAR));
       if (hData != NULL)
         {
           LPTSTR pszData = (LPTSTR)::GlobalLock (hData);

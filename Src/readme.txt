@@ -1,6 +1,8 @@
 2003-09-26 Perry
  PATCH: [ 812820 ] Fix regexp for Unicode
   common: RegExp.cpp RegExp.h
+ PATCH: [ 812851 ] Another Unicode fix for PutToClipboard
+  WinMerge/editlib/ccrystaltextview2.cpp
 
 2003-09-26 Laoran
  PATCH: [ 811371 ] Replace lines when pasting text to ghost lines
