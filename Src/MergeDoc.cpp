@@ -384,6 +384,14 @@ BOOL CMergeDoc::Undo()
 					m_diffs[pitem->diffidx].blank0 = pitem->blank;
 				else
 					m_diffs[pitem->diffidx].blank1 = pitem->blank;
+				
+				// scroll to the diff
+				int line = max(0, m_diffs[pitem->diffidx].dbegin0-CONTEXT_LINES);
+				mf->m_pLeft->ScrollToLine(line);
+				mf->m_pRight->ScrollToLine(line);
+				
+				// select the diff
+				mf->m_pLeft->SelectDiff(pitem->diffidx);
 			}
 			else
 			{
@@ -392,6 +400,7 @@ BOOL CMergeDoc::Undo()
 
 			pitem->m_pList->SubMod();
 			delete pitem;
+
 
 			return TRUE;
 		}
