@@ -18,6 +18,7 @@
 #define IDD_EDITFILE                    107
 #define IDS_UNKNOWN_ARCHIVE_FORMAT      107
 #define IDD_VSS                         108
+#define IDS_ELAPSED_TIME                108
 #define IDD_PROPPAGE_LARGE              109
 #define IDD_CLEARCASE                   110
 #define IDD_PROPPAGE_FILTER             111

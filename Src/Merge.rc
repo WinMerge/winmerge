@@ -1189,6 +1189,7 @@ BEGIN
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
     IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
+    IDS_ELAPSED_TIME        "Elapsed time: %ld ms"
 END
 
 STRINGTABLE PRELOAD DISCARDABLE
@@ -1668,10 +1669,4 @@ LANGUAGE 9, 1
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-
-
-
-
-
-
 
