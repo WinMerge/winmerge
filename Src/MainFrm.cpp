@@ -1204,7 +1204,7 @@ void CMainFrame::OnClose()
 	if ((m_pLeft && m_pLeft->IsModified())
 		|| (m_pRight && m_pRight->IsModified()))
 	{
-		if ( (m_pLeft->IsModified()||m_pLeft->IsModified()) && !m_pMergeDoc->SaveHelper())
+		if (!m_pMergeDoc->SaveHelper())
 				return;
 	}
 	
