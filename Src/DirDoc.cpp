@@ -662,7 +662,12 @@ BOOL DirDocFilterGlobal::includeDir(LPCTSTR szDirName)
 	// regexp has some problem in Unicode ? 2003-09-14
 	return TRUE;
 #endif
-	return theApp.includeDir(szDirName);
+	// preprend a backslash if there is none
+	CString strDirName;
+	if (strDirName != _T('\\'))
+		strDirName = _T('\\');
+	strDirName += szDirName;
+	return theApp.includeDir(strDirName);
 }
 BOOL DirDocFilterGlobal::includeFile(LPCTSTR szFileName) 
 { 
@@ -671,7 +676,12 @@ BOOL DirDocFilterGlobal::includeFile(LPCTSTR szFileName)
 	// regexp has some problem in Unicode ? 2003-09-14
 	return TRUE;
 #endif
-	return theApp.includeFile(szFileName);
+	// preprend a backslash if there is none
+	CString strFileName;
+	if (strFileName != _T('\\'))
+		strFileName = _T('\\');
+	strFileName += szFileName;
+	return theApp.includeFile(strFileName);
 }
 
 DirDocFilterByExtension::DirDocFilterByExtension(LPCTSTR strRegExp)
@@ -691,7 +701,12 @@ BOOL DirDocFilterByExtension::includeFile(LPCTSTR szFileName)
 	// regexp has some problem in Unicode ? 2003-09-14
 	return TRUE;
 #endif
-	return (! m_rgx.RegFind(szFileName));
+	// preprend a backslash if there is none
+	CString strFileName;
+	if (strFileName != _T('\\'))
+		strFileName = _T('\\');
+	strFileName += szFileName;
+	return (! m_rgx.RegFind(strFileName));
 }
 
 /**

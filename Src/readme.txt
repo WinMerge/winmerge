@@ -1,4 +1,7 @@
 2003-10-21 Laoran
+ Add a backslash in front of relative path used to test for filter (as in 2.0)
+ Undo the previous change (it disturbed the display) and make a new one
+  WinMerge: DirScan.cpp DirDoc.cpp
  PATCH: [ 826048 ] headerbar improvements
   WinMerge: ChildFrm.cpp ChildFrm.h DirDoc.cpp DirDoc.h DirFrame.cpp DirFrame.h EditorFilepathBar.cpp
    EditorFilepathBar.h FilepathEdit.cpp FilepathEdit.h MergeDoc.cpp MergeDoc.h MergeEditView.cpp

@@ -55,14 +55,13 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 {
 	CString sLeftDir = pCtxt->m_strNormalizedLeft;
 	CString sRightDir = pCtxt->m_strNormalizedRight;
-	CString subprefix = _T("\\");
+	CString subprefix;
 	if (!subdir.IsEmpty())
 	{
 		sLeftDir += _T("\\") + subdir;
 		sRightDir += _T("\\") + subdir;
-		subprefix += subdir + _T("\\");
+		subprefix = subdir + _T("\\");
 	}
-
 	cmpmth mthptr = (casesensitive ? &CString::Collate : &CString::CollateNoCase);
 	fentryArray leftDirs, leftFiles, rightDirs, rightFiles;
 	LoadAndSortFiles(sLeftDir, &leftDirs, &leftFiles, casesensitive);
