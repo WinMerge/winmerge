@@ -212,7 +212,7 @@ public:
 	virtual ~CListCtrlEx() { }
 #ifdef _DEBUG
 	virtual void Dump(CDumpContext& dc) const
-		{ CListCtrlEx::Dump(dc); m_listex.Dump(dc); }
+		{ CListCtrl::Dump(dc); m_listex.Dump(dc); }
 #endif
 
 protected:

@@ -9,7 +9,9 @@
   Src: DiffWrapper.cpp
  Cosmetic: Add more explanation to function header of 
   FileFilterHelper::LoadFileFilterDirPattern.
- Src: FileFilterHelper.cpp
+  Src: FileFilterHelper.cpp
+ BUG: [ 1152911 ] CListCtrlEx::Dump is an infinite loop.
+  Src/Common: listvwex.h
 
 2005-02-26 Jochen
  PATCH: [ 1152256 ] UniFile may fail to read last line
