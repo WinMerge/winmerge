@@ -1,4 +1,9 @@
 2003-07-12 Laoran
+ PATCH: [ 765399 ] Careful view initialization in PrimeListWithFile
+  WinMerge: MergeDoc.cpp MergeEditView.cpp 
+  editlib: ccrystaltextview.cpp
+
+2003-07-12 Laoran
  PATCH: [ 769122 ] Keep top screen line within the shorter panel
   WinMerge: MergeEditView.cpp 
 

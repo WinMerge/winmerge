@@ -1565,6 +1565,14 @@ OnDraw (CDC * pdc)
   const int nLineHeight = GetLineHeight ();
   PrepareSelBounds ();
 
+  // if the private arrays (m_pdwParseCookies and m_pnActualLineLength) 
+  // are defined, check they are in phase wih the text buffer
+  // as the access to these arrays is not protected (simple arrays not CArray) 
+  if (m_pdwParseCookies != NULL)
+    ASSERT(m_nParseArraySize == nLineCount);
+  if (m_pnActualLineLength != NULL)
+    ASSERT(m_nActualLengthArraySize == nLineCount);
+
   CDC cacheDC;
   VERIFY (cacheDC.CreateCompatibleDC (pdc));
   if (m_pCacheBitmap == NULL)

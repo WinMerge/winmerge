@@ -425,13 +425,8 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 
 				// display the files
 				PrimeTextBuffers();
-
-				int nResumeTopLine = m_pLeftView->GetScrollPos(SB_VERT)+1;
-
 				m_pLeftView->PrimeListWithFile();
 				m_pRightView->PrimeListWithFile();
-
-				m_pLeftView->GoToLine(nResumeTopLine, FALSE);
 
 				// PrimeListWithFile will call resetview which resets tabs
 //				mf->m_pLeft->SetTabSize(mf->m_nTabSize);
