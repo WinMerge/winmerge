@@ -481,8 +481,8 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	int nOpenableOnRightWith = 0;
 	int nDiffItems = 0;
 	int nDiffFiles = 0;
-	int nPredifferAuto = 0;
-	int nPredifferManual = 0;
+	int nPredifferYes = 0;
+	int nPredifferNo = 0;
 	int i = -1;
 	while ((i = m_pList->GetNextItem(i, LVNI_SELECTED)) != -1)
 	{
@@ -526,10 +526,10 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
 			GetDocument()->FetchPluginInfos(filteredFilenames, &unpacker, &prediffer);
-			if (prediffer->bToBeScanned == 1)
-				nPredifferAuto ++;
+			if (prediffer->bToBeScanned == 1 || prediffer->pluginName.IsEmpty() == FALSE)
+				nPredifferYes ++;
 			else
-				nPredifferManual ++;
+				nPredifferNo ++;
 		}
 	}
 
@@ -538,8 +538,8 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH, nOpenableOnLeftWith + nOpenableOnRightWith, nTotal);
 	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH_DIFFS_ONLY, nDiffFiles, nDiffItems, nTotal);
 
-	CheckContextMenu(pPopup, ID_PREDIFF_AUTO, (nPredifferAuto > 0));
-	CheckContextMenu(pPopup, ID_PREDIFF_MANUAL, (nPredifferManual > 0));
+	CheckContextMenu(pPopup, ID_PREDIFF_AUTO, (nPredifferYes > 0));
+	CheckContextMenu(pPopup, ID_PREDIFF_MANUAL, (nPredifferNo > 0));
 
 	CFrameWnd *pFrame = GetTopLevelFrame();
 	ASSERT(pFrame != NULL);

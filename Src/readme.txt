@@ -1,4 +1,6 @@
 2004-06-29 Laoran
+ BUG: [ 981796 ] Dir compare : rescan clears "auto-prediffer"
+  Src: DirView.cpp
  PATCH: [ 981529 ] remove hide .BAK from menu
   Filters: Merge_GnuC_loose.flt Merge_VB_loose.flt Merge_VC_loose.flt
   Src: MainFrm.cpp MainFrm.h Merge.rc resource.h
