@@ -418,8 +418,15 @@ void CMergeDiffDetailView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BO
 int CMergeDiffDetailView::GetDiffLineLength ()
 {
 	int nMaxLineLength = 0;
-	const int nLineCount = GetLineCount ();
-	for (int I = lineBegin; I <= lineEnd; I++)
+
+	// we can not use GetLineActualLength below nLineCount
+	// diff info (and lineBegin/lineEnd) are updated only during Rescan
+	// they may get invalid just after we delete some text
+	int validLineEnd = lineEnd;
+	if (lineEnd >= GetLineCount())
+		validLineEnd = GetLineCount() - 1;
+
+	for (int I = lineBegin; I <= validLineEnd; I++)
 	{
 		int nActualLength = GetLineActualLength (I);
 		if (nMaxLineLength < nActualLength)
