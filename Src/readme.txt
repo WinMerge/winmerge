@@ -6,6 +6,9 @@
 2005-03-13 Kimmo
  PATCH: [ 1161671 ] Convert couple of VCS options to COptionsMgr
   Src: MainFrm.cpp MainFrm.h OptionsDef.h
+ BUG: [ 1160919 ] Bad layout in the OpenDialog
+  Fix submitted by Tim
+  Languages/German: MergeGerman.rc
 
 2005-03-11 Kimmo
  PATCH: [ 1160923 ] Remove CMainFrame::m_nCompMethod (ugly hack)
