@@ -1549,7 +1549,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Chyba pri zisùovanÌ moûnosti z·pisu"
     IDS_ERROR_BACKUP        "Chyba pri z·lohovanÌ s˙boru"
     IDS_BACKUP_FAILED_PROMPT "Nemoûno z·lohovaù pÙvodny s˙bor.\nPokraËovaù?"
-    IDS_FILESAVE_FAILED     "Z·pis %1 ne˙speön˝. Chceö uloûiù s˙bor pod in˝m menom?"
+    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"

@@ -142,8 +142,9 @@ public :
 		int LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker,
 			CString filteredFilenames, BOOL & readOnly, int nCrlfStyle,
 			int codepage, CString &sError);
-		int SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, PackingInfo * infoUnpacker = NULL,
-			int nCrlfStyle = CRLF_STYLE_AUTOMATIC, BOOL bClearModifiedFlag = TRUE );
+		int SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, CString & sError,
+			PackingInfo * infoUnpacker = NULL, int nCrlfStyle = CRLF_STYLE_AUTOMATIC,
+			BOOL bClearModifiedFlag = TRUE );
 		int getUnicoding() const { return m_unicoding; }
 		void setUnicoding(int value) { m_unicoding = value; }
 		int getCodepage() const { return m_codepage; }
@@ -209,7 +210,8 @@ public:
 	void CopyAllList(bool bSrcLeft);
 	void CopyMultipleList(bool bSrcLeft, int firstDiff, int lastDiff);
 	void ListCopy(bool bSrcLeft);
-	BOOL TrySaveAs(CString &strPath, int &nLastErrorCode, BOOL bLeft, PackingInfo * pInfoTempUnpacker);
+	BOOL TrySaveAs(CString &strPath, int &nLastErrorCode, CString & sError,
+		BOOL bLeft, PackingInfo * pInfoTempUnpacker);
 	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
 	BOOL DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
 	int LineToDiff(UINT nLine);

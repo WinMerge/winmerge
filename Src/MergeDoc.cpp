@@ -271,7 +271,7 @@ void CMergeDoc::Serialize(CArchive& ar)
  * original file is Unicode (UCS2-LE, UCS2-BE, UTF-8) :
  *   buffer  -> save as UCS2-LE -> Unicode plugins -> convert to UTF-8 -> diffutils
  * (the plugins are optional, not the conversion)
- * @bug SaveToFile() error handling?!
+ * @todo Show SaveToFile() errors?
  */
 static void SaveBuffForDiff(CMergeDoc::CDiffTextBuffer & buf, const CString & filepath)
 {
@@ -291,13 +291,10 @@ static void SaveBuffForDiff(CMergeDoc::CDiffTextBuffer & buf, const CString & fi
 	PackingInfo * tempPacker = NULL;
 
 	// write buffer out to temporary file
-	BOOL bTempFile = TRUE;
-	BOOL bClearModifiedFlag = FALSE;
-	int retVal = buf.SaveToFile(filepath, bTempFile, tempPacker,
-		CRLF_STYLE_AUTOMATIC, bClearModifiedFlag);
-	if (retVal != SAVE_DONE)
-		LogErrorString(_T("SaveToFile() failed in SaveBuffForDiff()"));
-	
+	CString sError;
+	int retVal = buf.SaveToFile(filepath, TRUE, sError, tempPacker,
+		CRLF_STYLE_AUTOMATIC, FALSE);
+
 	// restore memory of encoding of original file
 	buf.setUnicoding(orig_unicoding);
 	buf.setCodepage(orig_codepage);
@@ -761,20 +758,21 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
  * Also, if file is unnamed file (e.g. scratchpad) then it must be saved
  * using this function.
  * @param [in, out] strPath 
- * [in] : Initial path shown to user
- * [out] : Path to new filename if saving succeeds
+ * - [in] : Initial path shown to user
+ * - [out] : Path to new filename if saving succeeds
  * @param [in, out] nSaveResult 
- * [in] : Statuscode telling why we ended up here. Maybe the result of
+ * - [in] : Statuscode telling why we ended up here. Maybe the result of
  * previous save.
- * [out] : Statuscode of this saving try
+ * - [out] : Statuscode of this saving try
+ * @param [in, out] sError Error string from lower level saving code
  * @return FALSE as long as the user is not satisfied. Calling function
  * should not continue until TRUE is returned.
  * @sa CMergeDoc::DoSave()
  * @sa CMergeDoc::DoSaveAs()
  * @sa CMergeDoc::CDiffTextBuffer::SaveToFile()
  */
-BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, BOOL bLeft,
-	PackingInfo * pInfoTempUnpacker)
+BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
+	BOOL bLeft, PackingInfo * pInfoTempUnpacker)
 {
 	CString s;
 	CString strSavePath; // New path for next saving try
@@ -795,13 +793,13 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, BOOL bLeft,
 	}
 	else
 	{
-		AfxFormatString1(s, IDS_FILESAVE_FAILED, strPath);
+		AfxFormatString2(s, IDS_FILESAVE_FAILED, strPath, sError);
 	}
 
 	// SAVE_NO_FILENAME is temporarily used for scratchpad.
 	// So don't ask about saving in that case.
 	if (nSaveResult != SAVE_NO_FILENAME)
-		answer = AfxMessageBox(s, MB_YESNO | MB_ICONQUESTION);
+		answer = AfxMessageBox(s, MB_YESNO | MB_ICONWARNING);
 
 	switch (answer)
 	{
@@ -811,7 +809,7 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, BOOL bLeft,
 		{
 			CDiffTextBuffer *pBuffer = bLeft ? &m_ltBuf : &m_rtBuf;
 			strSavePath = s;
-			nSaveResult = pBuffer->SaveToFile(strSavePath, FALSE,
+			nSaveResult = pBuffer->SaveToFile(strSavePath, FALSE, sError,
 				pInfoTempUnpacker);
 
 			if (nSaveResult == SAVE_DONE)
@@ -873,6 +871,7 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 {
 	DiffFileInfo fileInfo;
 	CString strSavePath(szPath);
+	CString sError;
 	BOOL bFileChanged = FALSE;
 	BOOL bApplyToAll = FALSE;	
 	int nRetVal = -1;
@@ -943,13 +942,13 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 
 	if (nSaveErrorCode == SAVE_DONE)
 		// We have a filename, just try to save
-		nSaveErrorCode = pBuffer->SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
+		nSaveErrorCode = pBuffer->SaveToFile(strSavePath, FALSE, sError, &infoTempUnpacker);
 
 	if (nSaveErrorCode != SAVE_DONE)
 	{
 		// Saving failed, user may save to another location if wants to
 		do
-			result = TrySaveAs(strSavePath, nSaveErrorCode, bLeft, &infoTempUnpacker);
+			result = TrySaveAs(strSavePath, nSaveErrorCode, sError, bLeft, &infoTempUnpacker);
 		while (!result);
 	}
 
@@ -993,6 +992,7 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 BOOL CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 {
 	CString strSavePath(szPath);
+	CString sError;
 
 	// use a temp packer
 	// first copy the m_pInfoUnpacker
@@ -1013,7 +1013,7 @@ BOOL CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 
 	// Loop until user succeeds saving or cancels
 	do
-		result = TrySaveAs(strSavePath, nSaveErrorCode, bLeft, &infoTempUnpacker);
+		result = TrySaveAs(strSavePath, nSaveErrorCode, sError, bLeft, &infoTempUnpacker);
 	while (!result);
 
 	// Saving succeeded with given/selected filename
@@ -1328,12 +1328,11 @@ GetLineByteTimeReport(UINT lines, UINT bytes, const COleDateTime & start)
  * @param [in] nCrlfStyle EOL style used
  * @param [in] codepage Codepage used
  * @param [out] sError Error message returned
- * @return FRESULT_OK when loading succeed or:
- * - FRESULT_BINARY : file is binary file
- * - FRESULT_ERROR : loading failed, sError contains error message
- * - FRESULT_ERROR_UNPACK : plugin failed to unpack
+ * @return FRESULT_OK when loading succeed or (list in files.h):
  * - FRESULT_OK_IMPURE : load OK, but the EOL are of different types
- * or an error code (list in files.h)
+ * - FRESULT_ERROR_UNPACK : plugin failed to unpack
+ * - FRESULT_ERROR : loading failed, sError contains error message
+ * - FRESULT_BINARY : file is binary file
  * @note If this method fails, it calls InitNew so the CDiffTextBuffer is in a valid state
  */
 int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
@@ -1437,7 +1436,6 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			{
 				arraysize *= 2;
 				m_aLines.SetSize(arraysize);
-				
 			}
 
 			line += eol;
@@ -1540,16 +1538,16 @@ LoadFromFileExit:
  * @return SAVE_DONE or an error code (list in MergeDoc.h)
  */
 int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
-		BOOL bTempFile, PackingInfo * infoUnpacker /*= NULL*/, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ ,
+		BOOL bTempFile, CString & sError, PackingInfo * infoUnpacker /*= NULL*/,
+		int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
 		BOOL bClearModifiedFlag /*= TRUE*/ )
 {
-	if (!pszFileName)
-		return SAVE_FAILED;	// No filename, cannot save...
-
 	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
 		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
 	ASSERT (m_bInit);
 
+	if (!pszFileName || _tcslen(pszFileName) == 0)
+		return SAVE_FAILED;	// No filename, cannot save...
 
 	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC &&
 		!mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
@@ -1582,7 +1580,23 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	}
 
 	if (!bOpenSuccess)
+	{	
+		UniFile::UniError uniErr = file.GetLastUniError();
+		if (uniErr.hasError())
+		{
+			if (uniErr.apiname.IsEmpty())
+				sError = uniErr.desc;
+			else
+				sError = GetSysError(uniErr.syserrnum);
+			if (bTempFile)
+				LogErrorString(Fmt(_T("Opening file %s failed: %s"),
+					pszFileName, sError));
+			else
+				LogErrorString(Fmt(_T("Opening file %s failed: %s"),
+					sIntermediateFilename, sError));
+		}
 		return SAVE_FAILED;
+	}
 
 	file.WriteBom();
 
@@ -1672,6 +1686,12 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 				m_nSyncPosition = m_nUndoPosition;
 			}
 			bSaveSuccess = TRUE;
+		}
+		else
+		{
+			sError = GetSysError(GetLastError());
+			LogErrorString(Fmt(_T("CopyFile(%s, %s) failed: %s"),
+				sIntermediateFilename, pszFileName, sError));
 		}
 	}
 	else

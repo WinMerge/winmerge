@@ -2,7 +2,7 @@
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-08-18 (Kimmo Varis)
+ *  @date   Edited:  2004-08-24 (Kimmo Varis)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -588,7 +588,6 @@ UniStdioFile::~UniStdioFile()
 
 void UniStdioFile::Close()
 {
-	m_lastError.ClearError();
 	if (IsOpen())
 	{
 		fclose(m_fp);
@@ -601,7 +600,6 @@ void UniStdioFile::Close()
 	// preserve m_filename
 	m_data = 0;
 	m_lineno = -1;
-	m_lastError.ClearError();
 	m_readbom = false;
 	// preserve m_unicoding
 	// preserve m_charsize

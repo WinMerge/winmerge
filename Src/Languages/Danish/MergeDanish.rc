@@ -1547,7 +1547,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Check skrivebeskyttelsen på destinationen"
     IDS_ERROR_BACKUP        "Fejl under backup af filen"
     IDS_BACKUP_FAILED_PROMPT "Kan ikke lave backup af den originale fil.\nVil du fortsætte alligevel?"
-    IDS_FILESAVE_FAILED     "Gem %1 fejlede. Vil du gemme filen under et andet navn?"
+    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"

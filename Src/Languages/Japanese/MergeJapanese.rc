@@ -1439,7 +1439,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "ファイル書き込み可チェックエラー"
     IDS_ERROR_BACKUP        "ファイルバックアップエラー"
     IDS_BACKUP_FAILED_PROMPT "元ファイルをバックアップできません。\n無視して続けますか?"
-    IDS_FILESAVE_FAILED     "%1の保存に失敗しました。このファイルを別名で保存しますか?"
+    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
     IDS_FILEPACK_FAILED_LEFT "プラグイン '%2' は、修正内容を左側のファイル '%1' に書き戻すことができません。\n\n元ファイルは変更されません。\n\n展開されたものを別ファイルに保存しますか?"
     IDS_FILEPACK_FAILED_RIGHT "プラグイン '%2' は、修正内容を右側のファイル '%1' に書き戻すことができません。\n\n元ファイルは変更されません。\n\n展開されたものを別ファイルに保存しますか?"
     IDS_FILECHANGED_ONDISK  "%1\nこのファイルは WinMerge 以外のアプリケーションで修正されています。修正されたファイルに上書きしますか?"

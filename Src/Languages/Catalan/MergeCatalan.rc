@@ -1452,7 +1452,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Hi ha hagut un error comprovant l'escrivibilitat de la destinació"
     IDS_ERROR_BACKUP        "Hi ha hagut un error en crear una còpia de seguretat del fitxer"
     IDS_BACKUP_FAILED_PROMPT "No es pot desar una còpia de seguretat del fitxer original.\nVoleu continuar en qualsevol cas?"
-    IDS_FILESAVE_FAILED     "Ha fallat el desat de %1. Voleu desar-lo amb un nom diferent?"
+    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
     IDS_FILEPACK_FAILED_LEFT "El Plugin '%2' no pot tornar a empaquetar els vostres canvis al fitxer de l'esquerra altre cop cap a '%1'.\n\nEl fitxer original no serà canviat.\n\nVoleu desar la versió desempaquetada a un altre fitxer?"
     IDS_FILEPACK_FAILED_RIGHT "El Plugin '%2' no pot tornar a empaquetar els vostres canvis al fitxer de la dreta altre cop cap a '%1'.\n\nEl fitxer original no serà canviat.\n\nVoleu desar la versió desempaquetada a un altre fitxer?"
     IDS_FILECHANGED_ONDISK  "Alguna altra aplicació ha actualitzat el fitxer\n%1\ndes de que el WinMerge el va carregar.\n\nVoleu sobreescriure el fitxer?"

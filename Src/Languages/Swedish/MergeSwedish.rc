@@ -1548,7 +1548,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Kontrollera skrivbarhet på destinationen!"
     IDS_ERROR_BACKUP        "Fel under backup av filen"
     IDS_BACKUP_FAILED_PROMPT "Kan inte ta backup på originalfilen.\nVill du fortsätta i alla fall?"
-    IDS_FILESAVE_FAILED     "Ett fel inträffade när %1 skulle sparas. Vill du spara filen med ett annat namn?"
+    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' kan inte packa dina förändringar av den vänstra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kan inte packa dina förändringar av den högra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"

@@ -2,6 +2,10 @@
  PATCH: [ 1008755 ] avoid flickering when diff view opens
   Don't update desktop icon (from Takashi Sawanaka)
   Src: ChildFrm.cpp
+ PATCH: [ 1015330 ] Better file saving error message
+  Src: Merge.rc MergeDoc.cpp MergeDoc.h
+  Src/Common: UniFile.cpp
+  Src/Languages: *.rc
 
 2004-08-23 Kimmo
  PATCH: [ 1013715 ] Catalan translation update

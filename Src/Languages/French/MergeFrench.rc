@@ -1549,7 +1549,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Erreur en vérifiant les droits en écriture de la destination"
     IDS_ERROR_BACKUP        "Erreur de création du backup"
     IDS_BACKUP_FAILED_PROMPT "Impossible de sauvegarder le fichier original.\nContinuer quand même ?"
-    IDS_FILESAVE_FAILED     "Erreur d'enregistrement de %1. Voulez-vous l'enregistrer sous un nouveau nom ?"
+    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
     IDS_FILEPACK_FAILED_LEFT "Le plugin '%2' ne peut pas empaqueter le fichier modifié (à gauche) en '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous sauver la version non empaquetée sous un autre nom ?"
     IDS_FILEPACK_FAILED_RIGHT "Le plugin '%2' ne peut pas empaqueter le fichier modifié (à droite) en '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous sauver la version non empaquetée sous un autre nom ?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
