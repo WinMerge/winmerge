@@ -95,8 +95,8 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid);
 
 // invoke helpers
 STDAPI invokeV(LPDISPATCH, VARIANT *, DISPID, LPCCH, VARIANT *);
-STDAPIV invokeA(LPDISPATCH, VARIANT *, DISPID, LPCCH, ...);
-STDAPIV invokeW(LPDISPATCH, VARIANT *, BSTR, LPCCH, ...);
+STDAPIV invokeA(LPDISPATCH, VARIANT *, DISPID, LPCCH, VARIANT *);
+STDAPIV invokeW(LPDISPATCH, VARIANT *, BSTR, LPCCH, VARIANT *);
 
 // macros for use with invoke*()
 #define opFxn &((PCH)(DISPATCH_METHOD<<8))

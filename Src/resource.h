@@ -2,8 +2,6 @@
 // Microsoft Developer Studio generated include file.
 // Used by Merge.rc
 //
-// $Id$
-
 #define IDC_CUT                         3
 #define IDC_COPY                        4
 #define IDC_PASTE                       5
@@ -148,6 +146,8 @@
 #define IDS_FILEPACK_FAILED_LEFT        237
 #define IDS_FILEPACK_FAILED_RIGHT       238
 #define IDS_QUICKHELP                   239
+#define IDS_PLUGIN_FAILED               240
+#define IDS_ERROR_FILE_NOT_UNPACKED     241
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

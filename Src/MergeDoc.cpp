@@ -1109,16 +1109,15 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 
 	// Unpacking the file here, save the result in a temporary file
 	CString sFileName = pszFileNameInit;
-	//int attrs=0;		// don't care about it, it is for DirScan
 	if (infoUnpacker->bToBeScanned)
 	{
 		if (!FileTransform_Unpacking(sFileName, sToFindUnpacker, infoUnpacker, &unpackerSubcode))
-			return FRESULT_ERROR;
+			return FRESULT_ERROR_UNPACK;
 	}
 	else
 	{
 		if (!FileTransform_Unpacking(sFileName, *infoUnpacker, &unpackerSubcode))
-			return FRESULT_ERROR;
+			return FRESULT_ERROR_UNPACK;
 	}
 	// we use the same unpacker for both files, so it must be defined after first file
 	ASSERT(infoUnpacker->bToBeScanned == FALSE);
@@ -2348,6 +2347,8 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 	{
 		if (retVal == FRESULT_ERROR)
 			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, sFileName);
+		else if (retVal == FRESULT_ERROR_UNPACK)
+			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_UNPACKED, sFileName);
 		else if (retVal == FRESULT_BINARY)
 		{
 			sError.LoadString(IDS_FILEBINARY);

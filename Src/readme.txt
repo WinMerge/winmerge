@@ -1,4 +1,7 @@
 2003-11-03 Laoran
+ PATCH: [ 834122 ] Add Error Handling around calls to plug-ins
+  WinMerge: Merge.rc MergeDoc.cpp Plugins.cpp Plugins.h files.h resource.h
+  common: lwdisp.c lwdisp.h
  PATCH: [ 833188 ] clever and explicit error report in TypeLib
   common: lwdisp.c
 

@@ -290,12 +290,11 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 	return sc;
 }
 
-HRESULT invokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...)
+HRESULT invokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 {
-	return invokeV(pi, ret, id, op, (VARIANT*)(&op+1));
+	return invokeV(pi, ret, id, op, argv);
 }
-
-HRESULT invokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, ...)
+HRESULT invokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, VARIANT *argv)
 {
 	DISPID id = DISPID_UNKNOWN;
 	BSTR name = (BSTR)((UINT_PTR)silent & ~1);
@@ -311,7 +310,7 @@ HRESULT invokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, ...)
 			pi = 0;
 		}
 	}
-	return invokeV(pi, ret, id, op, (VARIANT*)(&op+1));
+	return invokeV(pi, ret, id, op, argv);
 }
 
 STDAPI ValidateArgs(VARIANT *argv, UINT argc, LPCCH pvt)

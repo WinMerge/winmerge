@@ -33,6 +33,7 @@
 #include "coretools.h"
 #include "RegExp.h"
 #include "FileFilterMgr.h"
+#include "resource.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -527,6 +528,22 @@ PluginInfo * CScriptsOfThread::GetPluginByName(LPCWSTR transformationEvent, LPCT
 	return NULL;
 }
 
+PluginInfo *  CScriptsOfThread::GetPluginInfo(LPDISPATCH piScript)
+{
+	int i, j;
+	for (i = 0 ; i < nTransformationEvents ; i ++) 
+	{
+		if (m_aPluginsByEvent[i] == NULL)
+			continue;
+		PluginArray * pArray = m_aPluginsByEvent[i];
+		for (j = 0 ; j < pArray->GetSize() ; j++)
+			if ((*pArray)[j].lpDispatch == piScript)
+				return & (*pArray)[j];
+	}
+
+	return NULL;
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // reallocation, take care of flag bWriteable
@@ -566,6 +583,56 @@ static void reallocBuffer(LPWSTR & pszBuf, UINT & nOldSize, UINT nSize, BOOL bWr
 
 
 ////////////////////////////////////////////////////////////////////////////////
+// wrap invokes with error handling
+// (C++ error handling can handle both SEH and C++ errors)
+// (SEH can handle only SEH or C++(int) errors)
+
+static void ShowPluginErrorMessage(LPDISPATCH piScript)
+{
+	PluginInfo * pInfo = CScriptsOfThread::GetScriptsOfThreads()->GetPluginInfo(piScript);
+	CString s;
+	ASSERT(pInfo != NULL);
+	if (pInfo != NULL)
+		AfxFormatString1(s, IDS_PLUGIN_FAILED, pInfo->name);
+	else
+		AfxFormatString1(s, IDS_PLUGIN_FAILED, _T(""));
+	AfxMessageBox(s, MB_ICONSTOP);
+}
+
+static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...)
+{
+	HRESULT h;
+	
+	try {
+		h = invokeA(pi, ret, id, op, (VARIANT*)(&op+1));
+	}
+	catch(...) 
+	{
+		ShowPluginErrorMessage(pi);
+		// set h to FAILED
+		h = -1;
+	}
+
+	return h;
+}
+static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, BSTR silent, LPCCH op, ...)
+{
+	HRESULT h;
+	
+	try {
+		h = invokeW(pi, ret, silent, op, (VARIANT*)(&op+1));
+	}
+	catch(...) 
+	{
+		ShowPluginErrorMessage(pi);
+		// set h to FAILED
+		h = -1;
+	}
+
+	return h;
+}
+
+////////////////////////////////////////////////////////////////////////////////
 // invoke for plugins
 
 
@@ -595,8 +662,8 @@ BOOL InvokePrediffingSimpleW(BSTR & bstrBuf, UINT & nBufSize, int & nChanged, LP
 	// it must free the old buffer with SysFreeString
 	// VB does it automatically
 	// VARIANT_BOOL DiffingPreprocessW(BSTR * buffer, UINT * nSize, VARIANT_BOOL * bChanged)
-	HRESULT h = ::invokeW(piScript,	&vboolHandled, L"DiffingPreprocessW", opFxn[3], 
-												vpboolChanged, vpiSize, vpbstrBuf);
+	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"DiffingPreprocessW", opFxn[3], 
+                            vpboolChanged, vpiSize, vpbstrBuf);
 
 	if (! FAILED(h) && vboolHandled.boolVal)
 	{
@@ -638,8 +705,8 @@ BOOL InvokePrediffingSimpleA(SAFEARRAY* & arrayBuf, UINT & nBufSize, int & nChan
 	// it must free the old buffer with SysFreeString
 	// VB does it automatically
 	// VARIANT_BOOL DiffingPreprocessA(BSTR * buffer, UINT * nSize, VARIANT_BOOL * bChanged)
-	HRESULT h = ::invokeW(piScript,	&vboolHandled, L"DiffingPreprocessA", opFxn[3], 
-												vpboolChanged, vpiSize, vparrayBuf);
+	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"DiffingPreprocessA", opFxn[3], 
+                            vpboolChanged, vpiSize, vparrayBuf);
 
 	if (! FAILED(h) && vboolHandled.boolVal)
 	{
@@ -694,8 +761,8 @@ BOOL InvokeUnpackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPA
 
 	// invoke method by name, reverse order for arguments
 	// VARIANT_BOOL UnpackBufferA(SAFEARRAY * array, UINT * nSize, VARIANT_BOOL * bChanged, UINT * subcode)
-	HRESULT h = ::invokeW(piScript,	&vboolHandled, L"UnpackBufferA", opFxn[4], 
-												viSubcode, vpboolChanged, vpiSize, vparrayBuf);
+	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"UnpackBufferA", opFxn[4], 
+                            viSubcode, vpboolChanged, vpiSize, vparrayBuf);
 	// Error if the plugin destroyed the original data, and could not build new data
 	ASSERT(vboolHandled.boolVal || changed == 0);
 
@@ -711,7 +778,7 @@ BOOL InvokeUnpackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPA
 
 		SafeArrayUnaccessData(fileArray);
 
-		nChanged ++;
+			nChanged ++;
 	}
 
 	// free the BYREF BSTR/ BYREF ARRAY variants
@@ -764,8 +831,8 @@ BOOL InvokePackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPATC
 
 	// invoke method by name, reverse order for arguments
 	// VARIANT_BOOL PackBufferA(SAFEARRAY * array, UINT * nSize, VARIANT_BOOL * bChanged, UINT subcode)
-	HRESULT h = ::invokeW(piScript,	&vboolHandled, L"PackBufferA", opFxn[4], 
-												viSubcode, vpboolChanged, vpiSize, vparrayBuf);
+	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"PackBufferA", opFxn[4], 
+                            viSubcode, vpboolChanged, vpiSize, vparrayBuf);
 	// Error if the plugin destroyed the original data, and could not build new data
 	ASSERT(vboolHandled.boolVal || changed == 0);
 
@@ -781,7 +848,7 @@ BOOL InvokePackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPATC
 
 		SafeArrayUnaccessData(fileArray);
 
-		nChanged ++;
+			nChanged ++;
 	}
 
 	// free the BYREF BSTR / BYREF ARRAY 
@@ -819,8 +886,8 @@ BOOL InvokeUnpackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDI
 
 	// invoke method by name, reverse order for arguments
 	// VARIANT_BOOL UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL * bChanged, INT * bSubcode)
-	HRESULT h = ::invokeW(piScript,	&vboolHandled, L"UnpackFile", opFxn[4], 
-												vpiSubcode, vpboolChanged, vbstrDst, vbstrSrc);
+	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"UnpackFile", opFxn[4], 
+                            vpiSubcode, vpboolChanged, vbstrDst, vbstrSrc);
 	// Error if the plugin destroyed the original data, and could not build new data
 	ASSERT(vboolHandled.boolVal || changed == 0);
 
@@ -860,8 +927,8 @@ BOOL InvokePackFile(LPCTSTR fileSource, LPCTSTR fileDest, int & nChanged, LPDISP
 
 	// invoke method by name, reverse order for arguments
 	// VARIANT_BOOL PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL * bChanged, INT bSubcode)
-	HRESULT h = ::invokeW(piScript,	&vboolHandled, L"PackFile", opFxn[4], 
-												viSubcode, vpboolChanged, vbstrDst, vbstrSrc);
+	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"PackFile", opFxn[4], 
+                            viSubcode, vpboolChanged, vbstrDst, vbstrSrc);
 	// Error if the plugin destroyed the original data, and could not build new 
 	ASSERT(vboolHandled.boolVal || changed == 0);
 
@@ -890,7 +957,7 @@ BOOL InvokeTransformText(CString & text, int & changed, LPDISPATCH piScript, int
 
 	// invoke method by ordinal
 	// BSTR customFunction(BSTR text)
-	HRESULT h = ::invokeA(piScript, &vTransformed, fncId, opFxn[1], pvPszBuf);
+	HRESULT h = ::safeInvokeA(piScript, &vTransformed, fncId, opFxn[1], pvPszBuf);
 
 	if (! FAILED(h))
 	{
@@ -906,6 +973,3 @@ BOOL InvokeTransformText(CString & text, int & changed, LPDISPATCH piScript, int
 
 	return (! FAILED(h));
 }
-
-
-

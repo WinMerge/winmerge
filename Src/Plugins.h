@@ -82,6 +82,7 @@ public:
 
 	PluginArray * GetAvailableScripts(LPCWSTR transformationEvent);
 	PluginInfo * GetPluginByName(LPCWSTR transformationEvent, LPCTSTR name);
+	PluginInfo * GetPluginInfo(LPDISPATCH piScript);
 
 	/// Get the modes (Unicode/Ansi) supported by all plugins
 	BOOL GetUnicodeModeOfScripts(LPCWSTR transformationEvent);

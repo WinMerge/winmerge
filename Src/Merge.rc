@@ -1457,6 +1457,12 @@ BEGIN
     ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
 END
 
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PLUGIN_FAILED       "An error occurred in plugin '%1'. The current operation is aborted."
+    IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
+END
+
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 
