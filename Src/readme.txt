@@ -1,3 +1,8 @@
+2004-03-18 Perry
+ BUG: [ 919160 ] Cannot execute notepad.exe
+  Fix OpenFileToExternalEditor to prepend space before quoted filename.
+   Src/MainFrm.cpp
+
 2004-03-17 Seier
   -Modified  \ShellExtension\Register.bat to also UnRegister via a /U (case-insensitive) parameter.  
     I also added an UnRegister.bat which does nothing more than call Register.bat with the /u switch.  

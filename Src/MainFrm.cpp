@@ -2383,7 +2383,7 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 
 	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
 	{
-		sCmd += _T("\"") + file + _T("\"");
+		sCmd += _T(" \"") + file + _T("\"");
 
 		BOOL retVal = FALSE;
 		STARTUPINFO stInfo = {0};
@@ -2396,6 +2396,7 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 
 		if (!retVal)
 		{
+			// Error invoking external editor
 			CString msg;
 			AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, sExtEditor);
 			AfxMessageBox(msg, MB_ICONSTOP);
@@ -2403,6 +2404,8 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 	}
 	else
 	{
+		// Don't know how to invoke external editor (it doesn't end with
+		// an obvious executable extension)
 		CString msg;
 		AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, sExtEditor);
 		AfxMessageBox(msg, MB_ICONSTOP);
