@@ -3,6 +3,14 @@
   Src: MergeDoc.cpp
  PATCH: [ 927929 ] Reload language menus after resources hooked
   Src: Merge.cpp
+ PATCH: [ 941623 ] Propose moving IDC_COMPARISON_STOP to block with ...CLOSE
+  Src:
+   Merge.rc
+  Languages: MergeBrazilian.rc MergeBulgarian.rc MergeCatalan.rc
+   MergeChineseSimplified.rc MergeChineseTraditional.rc MergeCzech.rc
+   MergeDanish.rc MergeDutch.rc MergeFrench.rc MergeGerman.rc MergeItalian.rc
+   MergeKorean.rc MergeNorwegian.rc MergePolish.rc MergeRussian.rc
+   MergeSlovak.rc MergeSpanish.rc MergeSwedish.rc
 
 2004-04-30 Christian
  PATCH: [ 941982 ] Fix VS6 compilation

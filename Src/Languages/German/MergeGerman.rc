@@ -1227,12 +1227,14 @@ BEGIN
     ID_EDIT_REDO            "Wiederholt die vorher rückgängig gemachte Aktion.\nWiederherstellen (Strg+Y)"
 END
 
+// ID_VIEW_TOOLBAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "Blendet die Symbolleiste ein oder aus.\nSymbolleiste ein-/ausschalten"
     ID_VIEW_STATUS_BAR      "Blendet die Statusleiste ein oder aus.\nStatusleiste ein-/ausschalten"
 END
 
+// AFX_IDS_SCSIZE SYNCHRO
 STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "Ändert die Fenstergröße."
@@ -1265,6 +1267,7 @@ BEGIN
     IDS_ELAPSED_TIME        "Ausführungszeit: %ld ms"
 END
 
+// IDS_VERSION_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_VERSION_FMT         "Version %1 - Deutsch"
@@ -1329,6 +1332,7 @@ BEGIN
     IDS_DEL_LEFT_FMT        "Links (%1)"
 END
 
+// IDS_DEL_RIGHT_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_DEL_RIGHT_FMT       "Rechts (%1)"
@@ -1370,6 +1374,7 @@ BEGIN
     IDS_COLHDR_RVERSION     "Rechte Dateiversion"
 END
 
+// IDS_LEFTONLY SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_LEFTONLY            "Nur Links"
@@ -1387,12 +1392,11 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDC_COMPARISON_STOP     "Stop"
-    IDC_COMPARISON_CLOSE    "Press any key"
     IDS_COLHDR_NDIFFS       "#differences"
     IDS_COLHDR_NSDIFFS      "#sig. differences"
 END
 
+// IDS_PRIVATEBUILD_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
@@ -1469,6 +1473,13 @@ BEGIN
     IDC_MIXED_EOL           "Mischen der Zeilenumbruch-Formate erlauben"
 END
 
+// IDC_COMPARISON_STOP SYNCHRO
+STRINGTABLE 
+BEGIN
+    IDC_COMPARISON_STOP     "Stop"
+    IDC_COMPARISON_CLOSE    "Press any key"
+END
+
 STRINGTABLE 
 BEGIN
     IDS_NUM_REPLACED        "%1 Vorkommen ersetzt."
@@ -1481,6 +1492,7 @@ BEGIN
     IDS_CANNOT_EXECUTE_FILE "%1 konnte nicht ausgeführt werden."
 END
 
+// IDS_MESSAGEBOX_OK SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
@@ -1505,6 +1517,7 @@ BEGIN
     IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
 END
 
+// ID_L2R SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_L2R                  "Kopiert den ausgewählten Text in die rechte Datei.\nNach rechts kopieren (Alt+Rechts)"
@@ -1537,6 +1550,7 @@ BEGIN
                             "Kopiert die ausgewählte Datei ins angegebene Verzeichnis."
 END
 
+// ID_DIR_COPY_LEFT_TO_RIGHT SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT

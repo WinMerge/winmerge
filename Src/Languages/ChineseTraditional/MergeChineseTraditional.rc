@@ -1365,9 +1365,13 @@ BEGIN
     IDS_STATUSBAR_READONLY  "RO"
     IDS_COLHDR_LENCODING    "Left Encoding"
     IDS_COLHDR_RENCODING    "Right Encoding"
+    IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
+END
+
+STRINGTABLE 
+BEGIN
     IDS_COLHDR_NDIFFS       "#differences"
     IDS_COLHDR_NSDIFFS      "#sig. differences"
-    IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
 // IDS_PRIVATEBUILD_FMT SYNCHRO
@@ -1447,6 +1451,7 @@ BEGIN
     IDC_MIXED_EOL           "Preserve original EOL chars"
 END
 
+// IDC_COMPARISON_STOP SYNCHRO
 STRINGTABLE  
 BEGIN
     IDC_COMPARISON_STOP     "Stop"

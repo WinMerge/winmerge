@@ -1289,8 +1289,6 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDC_COMPARISON_STOP     "Стоп"
-    IDC_COMPARISON_CLOSE    "Нажмите любую клавишу"
     IDS_COLHDR_NDIFFS       "#differences"
     IDS_COLHDR_NSDIFFS      "#sig. отличий"
 END
@@ -1372,6 +1370,13 @@ BEGIN
     IDC_MIXED_EOL           "Сохранять оригинальные символы EOL"
 END
 
+// IDC_COMPARISON_STOP SYNCHRO
+STRINGTABLE 
+BEGIN
+    IDC_COMPARISON_STOP     "Стоп"
+    IDC_COMPARISON_CLOSE    "Нажмите любую клавишу"
+END
+
 STRINGTABLE 
 BEGIN
     IDS_NUM_REPLACED        "Заменено %1 строк."
@@ -1409,6 +1414,7 @@ BEGIN
     IDS_MESSAGEBOX_DONT_ASK_AGAIN "Не задавать &больше этот вопрос"
 END
 
+// ID_L2R SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_L2R                  "Скопировать выбранный текст в файл справа\nCopy Right (Alt Right)"

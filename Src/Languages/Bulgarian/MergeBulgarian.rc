@@ -1283,8 +1283,6 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDC_COMPARISON_STOP     "Спиране"
-    IDC_COMPARISON_CLOSE    "Натисни клавиш"
     IDS_COLHDR_NDIFFS       "#differences"
     IDS_COLHDR_NSDIFFS      "#sig. differences"
 END
@@ -1364,6 +1362,13 @@ END
 STRINGTABLE 
 BEGIN
     IDC_MIXED_EOL           "Preserve original EOL chars"
+END
+
+// IDC_COMPARISON_STOP SYNCHRO
+STRINGTABLE 
+BEGIN
+    IDC_COMPARISON_STOP     "Спиране"
+    IDC_COMPARISON_CLOSE    "Натисни клавиш"
 END
 
 STRINGTABLE 
