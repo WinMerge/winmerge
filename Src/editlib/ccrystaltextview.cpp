@@ -1257,11 +1257,8 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   int nLength = GetLineLength (nLineIndex);
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   if (m_bViewEols)
-    { // Display EOL (end of line) characters
-      if (pszChars[nLength]=='\r' && pszChars[nLength+1]=='\n')
-        nLength += 2;
-      else if (pszChars[nLength]=='\r' || pszChars[nLength]=='\n')
-        nLength += 1;
+    { // Display EOL (end of line) characters too
+      nLength = GetFullLineLength(nLineIndex);
     }
   //  Parse the line
   DWORD dwCookie = GetParseCookie (nLineIndex - 1);
@@ -2463,6 +2460,14 @@ GetLineLength (int nLineIndex) const
   if (m_pTextBuffer == NULL)
     return 0;
   return m_pTextBuffer->GetLineLength (nLineIndex);
+}
+
+int CCrystalTextView::
+GetFullLineLength (int nLineIndex) const
+{
+  if (m_pTextBuffer == NULL)
+    return 0;
+  return m_pTextBuffer->GetFullLineLength (nLineIndex);
 }
 
 LPCTSTR CCrystalTextView::

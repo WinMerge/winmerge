@@ -1,4 +1,6 @@
 2003-09-27 Laoran
+ BUG In DrawSingleLine, Draw EOL only if there is an EOL in the line
+  WinMerge: ccrystaltextview.cpp ccrystaltextview.h
  BUG [ 814214 ] ASSERT failure with diff at eof
   WinMerge: files.cpp
 

@@ -403,6 +403,7 @@ protected :
 
 public:
     virtual int GetLineLength (int nLineIndex) const;
+    virtual int GetFullLineLength (int nLineIndex) const;
     virtual int GetLineActualLength (int nLineIndex);
     virtual LPCTSTR GetLineChars (int nLineIndex) const;
 protected:
