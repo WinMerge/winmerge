@@ -801,6 +801,9 @@ BEGIN
     BUTTON      ID_L2R
     BUTTON      ID_R2L
     SEPARATOR
+    BUTTON      ID_L2RNEXT
+    BUTTON      ID_R2LNEXT
+    SEPARATOR
     BUTTON      ID_OPTIONS
     SEPARATOR
     BUTTON      ID_ALL_RIGHT
@@ -1173,6 +1176,8 @@ BEGIN
     ID_FILE_SAVE_RIGHT      "Save the right file"
     ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
     ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
+    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
+    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1206,9 +1211,9 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "Substituindo %1 texto(s)."
     IDS_EDIT_TEXT_NOT_FOUND "Não foi possível localizar""%s"""
-    IDS_LINE_STATUS_INFO_EOL "Line: %s Characters: %d EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "Line: %s Column: %d Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
-    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d"
+    IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
 END
 
 STRINGTABLE DISCARDABLE 

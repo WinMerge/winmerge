@@ -1,3 +1,8 @@
+2003-10-08 Kimmo
+ PATCH: [ 819188 ] Show column number in statusbar
+  WinMerge: ChildFrm.h ChildFrm.cpp Merge.rc MergeEditStatus.h MergeEditView.cpp
+  Languages: *.rc
+
 2003-10-07 Perry
  PATCH: [ 817502 ] Fix "ignore blank lines"
   WinMerge: analyze.c Diff.cpp DIFF.H DiffWrapper.cpp DiffWrapper.h

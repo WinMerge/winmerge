@@ -1222,7 +1222,8 @@ OnUpdateCaret()
 {
 	if (m_piMergeEditStatus && IsTextBufferInitialized())
 	{
-		int nScreenLine = GetCursorPos().y;
+		CPoint cursorPos = GetCursorPos();
+		int nScreenLine = cursorPos.y;
 		int nRealLine = ComputeRealLine(nScreenLine);
 		CString sLine;
 		int chars;
@@ -1245,7 +1246,7 @@ OnUpdateCaret()
 			else
 				sEol = _T("hidden");
 		}
-		m_piMergeEditStatus->SetLineInfo(sLine, chars, sEol);
+		m_piMergeEditStatus->SetLineInfo(sLine, cursorPos.x + 1, chars, sEol);
 	}
 }
 

@@ -1178,9 +1178,9 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "已取代 %1 個字串。"
     IDS_EDIT_TEXT_NOT_FOUND "無法尋找字串「%s」"
-    IDS_LINE_STATUS_INFO_EOL "Line: %s Characters: %d EOL: %s"
+    IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
-    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d"
+    IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
 END
 
 STRINGTABLE DISCARDABLE 

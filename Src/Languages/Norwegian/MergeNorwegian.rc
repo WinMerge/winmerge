@@ -1203,9 +1203,9 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "Erstattet %1 streng(er)."
     IDS_EDIT_TEXT_NOT_FOUND "Kan ikke finne strengen ""%s"""
-    IDS_LINE_STATUS_INFO_EOL "Line: %s Characters: %d EOL: %s"
+    IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
-    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d"
+    IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
 END
 
 STRINGTABLE DISCARDABLE 
