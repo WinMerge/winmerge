@@ -1,3 +1,8 @@
+2004-08-17 Kimmo
+ PATCH: [ 1010387 ] Updated MergeSwedish.rc file
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2004-08-16 Kimmo
  BUG: [ 1002035 ] Crash with locked files (WM v2.1.7.10)
   Src: MainFrm.cpp

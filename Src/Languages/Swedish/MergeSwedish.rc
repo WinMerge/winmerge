@@ -116,7 +116,7 @@ BEGIN
         MENUITEM "V&änster fil skrivskyddad",   ID_FILE_LEFT_READONLY
         MENUITEM "Hö&ger fil skrivskyddad",     ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "Format för"
+        POPUP "Radslut (DOS,UNIX,MAC)"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
@@ -249,10 +249,10 @@ BEGIN
             MENUITEM "&Höger till vänster",              ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "H&öger till...",                ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "&Move"
+        POPUP "&Flytta"
         BEGIN
-            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
-            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+            MENUITEM "&Vänster till...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "&Höger till...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
         POPUP "&Ta bort"
         BEGIN
@@ -400,7 +400,7 @@ END
 IDD_OPEN DIALOGEX 0, 0, 364, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU |
     WS_THICKFRAME
-CAPTION "Välj filer eller mappar..."
+CAPTION "Välj filer eller kataloger..."
 FONT 8, "MS Shell Dlg"
 BEGIN
     RTEXT           "&Vänster:",IDC_STATIC,13,24,40,8
@@ -426,7 +426,7 @@ BEGIN
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "OK",IDOK,306,11,50,14
     PUSHBUTTON      "Avbryt",IDCANCEL,306,28,50,14
-    GROUPBOX        "Filer eller mappar som skall jämföras",IDC_FILES_DIRS_GROUP,7,7,
+    GROUPBOX        "Filer eller kataloger som skall jämföras",IDC_FILES_DIRS_GROUP,7,7,
                     292,111
 END
 
@@ -943,25 +943,25 @@ END
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Save modified files?"
+CAPTION "Spara ändrade filer?"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    GROUPBOX        "Left side file",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
+    GROUPBOX        "Vänster fil",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
     EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "&Save changes",IDC_SAVECLOSING_SAVELEFT,"Button",
+    CONTROL         "&Spara ändringar",IDC_SAVECLOSING_SAVELEFT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
-    CONTROL         "&Discard changes",IDC_SAVECLOSING_DISCARDLEFT,"Button",
+    CONTROL         "&Ignorera ändringar",IDC_SAVECLOSING_DISCARDLEFT,"Button",
                     BS_AUTORADIOBUTTON,16,46,230,10
-    GROUPBOX        "Right side file",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
+    GROUPBOX        "Höger fil",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
     EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "S&ave changes",IDC_SAVECLOSING_SAVERIGHT,"Button",
+    CONTROL         "S&para ändringar",IDC_SAVECLOSING_SAVERIGHT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
-    CONTROL         "Dis&card changes",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
+    CONTROL         "Ign&orera ändringar",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
     DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,205,133,50,14
+    PUSHBUTTON      "Avbryt",IDCANCEL,205,133,50,14
 END
 
 #ifndef _MAC
@@ -1267,7 +1267,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_APP_ABOUT            "Visar programinformation, versionsnummer och upphovsrätt\nOm"
+    ID_APP_ABOUT            "Visar Programinformation, Versionsnummer och Upphovsrätt\nOm"
     ID_APP_EXIT             "Avslutar WinMerge och frågar om du vill spara dokument\nAvsluta"
 END
 
@@ -1309,10 +1309,10 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_EDIT_CLEAR           "Tar bort det utvalda\nTa bort"
+    ID_EDIT_CLEAR           "Tar bort den markerade texten\nTa bort"
     ID_EDIT_CLEAR_ALL       "Tar bort allt\nTa bort allt"
-    ID_EDIT_COPY            "Kopierar det utvalda och lägger det i klippbordet\nKopiera"
-    ID_EDIT_CUT             "Klipper ut det utvalda och lägger det i klippbordet\nKlipp ut"
+    ID_EDIT_COPY            "Kopierar den markerade texten och lägger det i klippbordet\nKopiera"
+    ID_EDIT_CUT             "Klipper ut den markerade texten och lägger det i klippbordet\nKlipp ut"
     ID_EDIT_FIND            "Söker den angivna texten\nSök"
     ID_EDIT_PASTE           "Klistrar in innehållet i klippbordet\nKlistra in"
     ID_EDIT_REPEAT          "Upprepar den senaste åtgärden\nUpprepa"
@@ -1409,13 +1409,13 @@ END
 // WINMERGE INFORMATION
 STRINGTABLE
 BEGIN
-    IDS_WINMERGE_THIS_DIRECTORY "Jämför filerna i den här mappen med WinMerge"
+    IDS_WINMERGE_THIS_DIRECTORY "Jämför filerna i den här katalogen med WinMerge"
     IDS_VERSION_FMT         "Version %1"
-    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
+    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\ndär:
       /? eller -? visar denna hjälp
       /r eller -r får WinMerge att jämföra kataloger rekursivt
       /e eller -e låter WinMerge stängas med en enkel esc tryckning
-      /f or -f sets filemask or filtername for compare
+      /f eller -f anger filmask eller filternamn för jämförelse
       /ul eller -ul får WinMerge att inte lägga till vänster sökväg till de senast använda filerna
       /ur eller -ur får WinMerge att inte lägga till höger sökväg till de senast använda filerna
       /ub eller -ub får WinMerge att inte lägga till båda sökvägarna till de senast använda filerna
@@ -1471,7 +1471,7 @@ END
 // WINDOWS TITLES
 STRINGTABLE
 BEGIN
-    IDS_DIRECTORY_WINDOW_TITLE "Resultat för jämförda mappar"
+    IDS_DIRECTORY_WINDOW_TITLE "Resultat för jämförda kataloger"
     IDS_FILE_COMPARISON_TITLE "Filjämförelse"
     IDS_EMPTY_LEFT_FILE     "Namnlös vänster"
     IDS_EMPTY_RIGHT_FILE    "Namnlös höger"
@@ -1488,7 +1488,7 @@ BEGIN
     IDS_STATUS_COPYALL2R    "Kopiera allt till höger"
     IDS_STATUS_COPYFILES    "Kopierar filer..."
     IDS_STATUS_DELETEFILES  "Tar bort filer..."
-    IDS_STATUS_MOVEFILES    "Moving files..."
+    IDS_STATUS_MOVEFILES    "Flyttar filer..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1506,7 +1506,7 @@ END
 // OPEN DIALOG
 STRINGTABLE
 BEGIN
-    IDS_ERROR_INCOMPARABLE  "Välj två existerande mappar eller filer att jämföra"
+    IDS_ERROR_INCOMPARABLE  "Välj två existerande kataloger eller filer att jämföra"
     IDS_DIRSEL_TAG          "Val av katalog"
     IDS_OPEN_FILESDIRS      "Välj två kataloger eller två filer att jämföra."
     IDS_OPEN_LEFTINVALID    "Vänster sökväg är felaktig!"
@@ -1558,10 +1558,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "Kopiera den valda filen till den angivna mappen"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Kopiera vald fil till den angivna mappen"
-    ID_DIR_COPY_RIGHT_TO_LEFT "Kopiera den valda filen till den angivna mappen"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Kopiera vald fil till den angivna mappen"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Kopiera den valda filen till den angivna katalogen"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Kopiera vald fil till den angivna katalogen"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Kopiera den valda filen till den angivna katalogen"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Kopiera vald fil till den angivna katalogen"
     ID_DIR_DEL_LEFT         "Ta bort valda objekt på vänster sida"
     ID_DIR_DEL_RIGHT        "Ta bort valda objekt på höger sida"
     ID_DIR_DEL_BOTH         "Ta bort valda objekt på båda sidor"
@@ -1585,10 +1585,10 @@ BEGIN
     IDS_DEL_RIGHT_FMT2      "Höger (%1 av %2)"
     IDS_DEL_BOTH_FMT2       "Båda (%1 av %2)"
     IDS_SELECT_DESTFOLDER   "Välj destinationskatalog"
-    IDS_MOVE_LEFT_TO        "Left to... (%1)"
-    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
-    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
-    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
+    IDS_MOVE_LEFT_TO        "Vänster till... (%1)"
+    IDS_MOVE_RIGHT_TO       "Höger till... (%1)"
+    IDS_MOVE_LEFT_TO2       "Vänster till... (%1 of %2)"
+    IDS_MOVE_RIGHT_TO2      "Höger till... (%1 of %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1599,7 +1599,7 @@ BEGIN
     IDS_CONFIRM_COPY_SINGLE "Är du säker på att du vill kopiera %1 till %2?"
     IDS_CONFIRM_COPY2DIR    "Är du säker på att du vill kopiera %1 av %2 valda objekt?"
     IDS_CONFIRM_DELETE_ITEMS "Är du säker på att du vill ta bort %1 av %2 valda objekt?"
-    IDS_CONFIRM_DELETE_DIR  "Ta bort mappen %1?"
+    IDS_CONFIRM_DELETE_DIR  "Ta bort katalogen %1?"
     IDS_CONFIRM_DELETE_SINGLE "Är du säker på du att vill ta bort %1?"
 END
 
@@ -1626,9 +1626,9 @@ BEGIN
     ID_DIR_ZIP_BOTH         "Lägg till saker från båda sidor till arkivet"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Lägg till olika saker till arkivet (båda sidor)"
     ID_DIR_MOVE_LEFT_TO_BROWSE 
-                            "Move selected file on left to custom directory"
+                            "Flytta vald fil till vänster till anpassad katalog"
     ID_DIR_MOVE_RIGHT_TO_BROWSE 
-                            "Move selected file on right to custom directory"
+                            "Flytta vald fil till höger till anpassad katalog"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
@@ -1673,7 +1673,7 @@ STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "Kan inte jämföra filerna"
     IDS_FILE_SKIPPED        "Hoppat över filen"
-    IDS_DIR_SKIPPED         "Hoppat över mappen"
+    IDS_DIR_SKIPPED         "Hoppat över katalogen"
     IDS_ONLY_IN_FMT         "Bara i %1"
     IDS_BIN_FILES_SAME      "De binära filerna är identiska"
     IDS_IDENTICAL           "Identiska"
@@ -1726,7 +1726,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "Samma fil är öppnad i vänster och höger panel."
     IDS_FILESSAME           "De valda filerna är identiska."
-    IDS_FILEUNIQUE          "Den valda filen finns inte i båda mapparna och kan därför inte jämföras"
+    IDS_FILEUNIQUE          "Den valda filen finns inte i båda katalogerna och kan därför inte jämföras"
     IDS_FILEERROR           "Ett fel inträffade under jämförelsen av filerna."
     IDS_FILEBINARY          "Binära filer kan inte jämföras visuellt."
     IDS_TEMP_FILEERROR      "Temporära filer kunde inte skapas. Kontrollera inställningarna för dina temporära sökvägar."
@@ -1762,8 +1762,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIFF_SUCCEEDED      "Patchfilen sparad."
-    IDS_DIFF_ITEM1NOTFOUND  "Det gick inte att hitta första filen, eller så är det en mapp!"
-    IDS_DIFF_ITEM2NOTFOUND  "Det gick inte att hitta andra filen, eller så är det en mapp!"
+    IDS_DIFF_ITEM1NOTFOUND  "Det gick inte att hitta första filen, eller så är det en katalog!"
+    IDS_DIFF_ITEM2NOTFOUND  "Det gick inte att hitta andra filen, eller så är det en katalog!"
     IDS_DIFF_FILEOVERWRITE  "Patchfilen finns redan. Vill du skriva över den?"
     IDS_DIFF_SELECTEDFILES  "[%1 fil(er) valda]"
     IDS_DIFF_NORMAL         "Normal"
@@ -1771,13 +1771,13 @@ BEGIN
     IDS_DIFF_UNIFIED        "Förenad (Unified)"
     IDS_FILEWRITE_ERROR     "Kunde inte spara filen: %1."
     IDS_PATH_NOT_ABSOLUTE   "%1\n är inte en absolut sökväg!"
-    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
-    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
+    IDS_CANNOT_CREATE_BINARYPATCH "Kan inte skapa en patchfil från binära filer."
+    IDS_CANNOT_CREATE_DIRPATCH "Kan inte skapa en patchfil från kataloger."
 END
 
 STRINGTABLE
 BEGIN
-    IDS_DIR_RESULTS_EMPTIED "Current directory comparison results will be cleared."
+    IDS_DIR_RESULTS_EMPTIED "Aktuella katalogjämförelseresultat kommer att tas bort."
 END
 
 // LANGAGE NAMES #1
@@ -1961,11 +1961,11 @@ BEGIN
     ID_FILE_SAVE_RIGHT      "Sparar den högra filen"
     ID_FILE_SAVEAS_LEFT     "Sparar den vänstra filen som..."
     ID_FILE_SAVEAS_RIGHT    "Sparar den högra filen som..."
-    ID_FILE_LEFT_READONLY   "Ändrar skrivskydd på vänster fil/mapp"
-    ID_FILE_RIGHT_READONLY  "Ändrar skrivskydd på höger fil/mapp"
-    ID_EOL_TO_DOS           "Konverterar EOL till DOS-format"
-    ID_EOL_TO_UNIX          "Konverterar EOL till UNIX-format"
-    ID_EOL_TO_MAC           "Konverterar EOL till MAC-format"
+    ID_FILE_LEFT_READONLY   "Ändrar skrivskydd på vänster fil/katalog"
+    ID_FILE_RIGHT_READONLY  "Ändrar skrivskydd på höger fil/katalog"
+    ID_EOL_TO_DOS           "Konverterar radslut till DOS-format"
+    ID_EOL_TO_UNIX          "Konverterar radslut till UNIX-format"
+    ID_EOL_TO_MAC           "Konverterar radslut till MAC-format"
     ID_FILE_MERGINGMODE     "Växlar mellan Editera mode och Merge mode"
 END
 
