@@ -1,3 +1,7 @@
+2003-07-29 Perry
+ Some fixes to MergeChineseTraditional.rc from Koko
+  Languages\ChineseTraditional\MergeChineseTraditional.rc
+
 2003-07-28 Perry
  PATCH: [ 778234 ] Fix DirScan ASSERT when run out of right list
   WinMerge: DirScan.cpp
