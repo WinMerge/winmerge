@@ -112,12 +112,16 @@ DirExistsWarning=No
 ;This requires IS Pack 4.18(full install).
 AppVersion={#AppVersion}
 
+;Tells the installer to only display a select language dialog if the an exact match wasn't found
+ShowLanguageDialog=Auto
+
 DefaultDirName={pf}\WinMerge
 DefaultGroupName=WinMerge
 DisableStartupPrompt=yes
 AllowNoIcons=yes
 InfoBeforeFile=..\src\COPYING
 InfoAfterFile=..\Docs\Users\Read Me.rtf
+
 OutputBaseFilename=WinMerge-{#AppVersion}-Setup
 
 ;This must be admin to install C++ Runtimes
