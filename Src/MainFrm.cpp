@@ -201,7 +201,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 	m_wndStatusBar.SetPaneInfo(1, ID_DIFFNUM, 0, 150); 
-	m_wndStatusBar.SetPaneInfo(2, ID_DIFFSTATUS, 0, 200); 
+	m_wndStatusBar.SetPaneInfo(2, ID_DIFFSTATUS, 0, 250); 
 
 	// TODO: Remove this if you don't want tool tips or a resizeable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
@@ -783,7 +783,7 @@ private:
 // clear counters used to track diff progress
 void CMainFrame::clearStatus()
 {
-	m_nStatusFileSame = m_nStatusFileDiff = m_nStatusFileBinDiff = m_nStatusFileError
+	m_nStatusFileSame = m_nStatusFileBinSame = m_nStatusFileDiff = m_nStatusFileBinDiff = m_nStatusFileError
 		 = m_nStatusLeftFileOnly = m_nStatusLeftDirOnly = m_nStatusRightFileOnly = m_nStatusRightDirOnly
 		 = 0;
 }
@@ -795,6 +795,9 @@ void CMainFrame::rptStatus(BYTE code)
 	{
 	case FILE_SAME:
 		++m_nStatusFileSame;
+		break;
+	case FILE_BINSAME:
+		++m_nStatusFileBinSame;
 		break;
 	case FILE_DIFF:
 		++m_nStatusFileDiff;
@@ -820,8 +823,8 @@ void CMainFrame::rptStatus(BYTE code)
 	}
 	CString s;
 	// TODO: Load the format string from resource
-	s.Format(_T("s:%d d:%d bd:%d lf:%d ld:%d rf:%d rd:%d e:%d")
-		, m_nStatusFileSame, m_nStatusFileDiff, m_nStatusFileBinDiff
+	s.Format(_T("s:%d bs:%d d:%d bd:%d lf:%d ld:%d rf:%d rd:%d e:%d")
+		, m_nStatusFileSame, m_nStatusFileBinSame, m_nStatusFileDiff, m_nStatusFileBinDiff
 		, m_nStatusLeftFileOnly, m_nStatusLeftDirOnly, m_nStatusRightFileOnly, m_nStatusRightDirOnly
 		, m_nStatusFileError);
 	m_wndStatusBar.SetPaneText(2, s);

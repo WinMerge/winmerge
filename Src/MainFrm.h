@@ -111,6 +111,7 @@ public:
 // Implementation data
 protected:
 	int m_nStatusFileSame;
+	int m_nStatusFileBinSame;
 	int m_nStatusFileDiff;
 	int m_nStatusFileBinDiff;
 	int m_nStatusFileError;
