@@ -6,7 +6,7 @@ AppName=WinMerge
 AppVerName=WinMerge 2.0
 AppPublisher=Thingamahoochie Software
 AppPublisherURL=http://winmerge.sourceforge.net/
-AppVersion=2.0.0.0
+AppVersion=2.1.0.0
 AppSupportURL=http://winmerge.sourceforge.net/
 AppUpdatesURL=http://winmerge.sourceforge.net/
 DefaultDirName={pf}\WinMerge
@@ -30,24 +30,34 @@ Name: "quicklaunchicon"; Description: "Create a &Quick Launch icon"; GroupDescri
 Name: "main"; Description: "WinMerge main files"; Types: full compact custom; Flags: fixed
 Name: "docs"; Description: "User's guide"; Types: full
 Name: "filters"; Description: "Filter files"; Types: full
+Name: "brazilian"; Description: "Portuguese (Brazilian) menus and dialogs"; Types: full
+Name: "chinesesimplifiedlanguage"; Description: "Chinese (simplified) menus and dialogs"; Types: full
+Name: "chinesetraditionallanguage"; Description: "Chinese (traditional) menus and dialogs"; Types: full
 Name: "czechlanguage"; Description: "Czech menus and dialogs"; Types: full
 Name: "danishlanguage"; Description: "Danish menus and dialogs"; Types: full
 Name: "dutchlanguage"; Description: "Dutch menus and dialogs"; Types: full
 Name: "frenchlanguage"; Description: "French menus and dialogs"; Types: full
 Name: "germanlanguage"; Description: "German menus and dialogs"; Types: full
 Name: "italianlanguage"; Description: "Italian menus and dialogs"; Types: full
+Name: "koreanlanguage"; Description: "Korean menus and dialogs"; Types: full
+Name: "slovaklanguage"; Description: "Slovak menus and dialogs"; Types: full
 Name: "spanishlanguage"; Description: "Spanish menus and dialogs"; Types: full
 
 [Files]
 Source: "..\Build\MergeRelease\WinMerge.exe"; DestDir: "{app}"; Flags: ignoreversion; Components: main
 Source: "..\Docs\*.*"; DestDir: "{app}\Docs"; Flags: ignoreversion; Components: docs
 Source: "..\Filters\*.*"; DestDir: "{app}\Filters"; Flags: ignoreversion; Components: filters
+Source: "..\Languages\DLL\MergeBrazilian.lang"; DestDir: "{app}"; Flags: ignoreversion; Components: brazilian
+Source: "..\Languages\DLL\MergeChineseSimplified.lang"; DestDir: "{app}"; Flags: ignoreversion; Components: chinesesimplifiedlanguage
+Source: "..\Languages\DLL\MergeChineseTraditional.lang"; DestDir: "{app}"; Flags: ignoreversion; Components: chinesetraditionallanguage
 Source: "..\Languages\DLL\MergeCzech.lang"; DestDir: "{app}"; Flags: ignoreversion; Components: czechlanguage
 Source: "..\Languages\DLL\MergeDanish.lang"; DestDir: "{app}"; Flags: ignoreversion; Components: danishlanguage
 Source: "..\Languages\DLL\MergeDutch.lang"; DestDir: "{app}"; Flags: ignoreversion; Components: dutchlanguage
 Source: "..\Languages\DLL\MergeFrench.lang"; DestDir: "{app}"; Flags: ignoreversion; Components: frenchlanguage
 Source: "..\Languages\DLL\MergeGerman.lang"; DestDir: "{app}"; Flags: ignoreversion; Components: germanlanguage
 Source: "..\Languages\DLL\MergeItalian.lang"; DestDir: "{app}"; Flags: ignoreversion; Components: italianlanguage
+Source: "..\Languages\DLL\MergeKorean.lang"; DestDir: "{app}"; Flags: ignoreversion; Components: koreanlanguage
+Source: "..\Languages\DLL\MergeSlovak.lang"; DestDir: "{app}"; Flags: ignoreversion; Components: slovaklanguage
 Source: "..\Languages\DLL\MergeSpanish.lang"; DestDir: "{app}"; Flags: ignoreversion; Components: spanishlanguage
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
@@ -94,6 +104,10 @@ Filename: "{app}\WinMerge.exe"; Description: "Launch WinMerge"; Flags: nowait po
 [InstallDelete]
 ; Diff.txt is a file left over from previous versions of WinMerge (before version 2.0), we just delete it to be nice.
 Type: files; Name: "{app}\Diff.txt"
+
+; A few users might have some intermediate Chinese translations on their machines (from version 2.0.0.2), we just delete those to be nice.
+Type: files; Name: "{app}\MergeChineseSimplifiedGB2312.lang"
+Type: files; Name: "{app}\MergeChineseTraditionalBIG5.lang"
 
 [UninstallDelete]
 Type: files; Name: "{app}\WinMerge.url"

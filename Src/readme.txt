@@ -3,6 +3,8 @@
   Languages: BuilAll.bat and resurrected directory Brazilian
  PATCH: [ 782820 ] Updated Traditional Chinese for 2.0
   Languages\ChineseTraditional: MergeChineseTraditional.rc
+ PATCH: [ 782824 ] Add languages to installer
+  InnoSetup: WinMerge.iss Info.txt
 
 2003-08-12 Kimmo
  PATCH: [ 785288 ] Overwrite Read-Only file
