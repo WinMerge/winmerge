@@ -1,3 +1,7 @@
+2003-04-03 Kimmo
+ BUG: [ 714570 ] Sensitive to EOL -setting not saved
+  WinMerge: MainFrm.cpp
+
 2003-04-02 Kimmo
  PATCH: [ 713322 ] Save whole buffer not line by line
   WinMerge: MergeDoc.cpp

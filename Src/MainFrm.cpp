@@ -737,6 +737,7 @@ void CMainFrame::OnProperties()
 		theApp.WriteProfileString(_T("Settings"), _T("VssPath"), m_strVssPath);
 		theApp.WriteProfileInt(_T("Settings"), _T("TabSize"), m_nTabSize);
 		theApp.WriteProfileInt(_T("Settings"), _T("TabType"), m_nTabType);
+		theApp.WriteProfileInt(_T("Settings"), _T("EolSensitive"), m_bEolSensitive);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreBlankLines"), m_bIgnoreBlankLines);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreCase"), m_bIgnoreCase);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
