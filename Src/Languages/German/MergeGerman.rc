@@ -99,21 +99,21 @@ BEGIN
     BEGIN
         MENUITEM "Ö&ffnen...\tStrg+O",          ID_FILE_OPEN
         MENUITEM "&Speichern\tStrg+S",          ID_FILE_SAVE
-        POPUP "Save &Left"
+        POPUP "&Links speichern"
         BEGIN
-            MENUITEM "&Save",                       ID_FILE_SAVE_LEFT
-            MENUITEM "Save &As...",                 ID_FILE_SAVEAS_LEFT
+            MENUITEM "&Speichern",                  ID_FILE_SAVE_LEFT
+            MENUITEM "Speichern &unter...",         ID_FILE_SAVEAS_LEFT
         END
-        POPUP "Save &Right"
+        POPUP "&Rechts speichern"
         BEGIN
-            MENUITEM "&Save",                       ID_FILE_SAVE_RIGHT
-            MENUITEM "Save &As...",                 ID_FILE_SAVEAS_RIGHT
+            MENUITEM "&Speichern",                  ID_FILE_SAVE_RIGHT
+            MENUITEM "Speichern &unter...",         ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "L&eft read-only",              ID_FILE_LEFT_READONLY
-        MENUITEM "R&ight read-only",             ID_FILE_RIGHT_READONLY
+        MENUITEM "L&inks schreibgeschützt",      ID_FILE_LEFT_READONLY
+        MENUITEM "R&echts schreibgeschützt",     ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "Format for"
+        POPUP "Format für"
         BEGIN
             MENUITEM "DOS (CRLF)",                  ID_EOL_TO_DOS
             MENUITEM "UNIX (LF)",                   ID_EOL_TO_UNIX
@@ -150,7 +150,8 @@ BEGIN
         MENUITEM "Zeige eindeutige Dateien &rechts",
                                                 ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Zeige Binär&dateien",         ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Zeige übersprun&gene Dateien",
+                                                ID_OPTIONS_SHOWSKIPPED
         MENUITEM "*.&BAK-Dateien verstecken",   ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Schrift &auswählen...",       ID_VIEW_SELECTFONT
@@ -187,8 +188,8 @@ BEGIN
     END
     POPUP "&Tools"
     BEGIN
-        MENUITEM "&Customize columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
-        MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "&Spalten anpassen...",        ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Patch generieren...",        ID_TOOLS_GENERATEPATCH
     END
     POPUP "&Fenster"
     BEGIN
@@ -231,7 +232,7 @@ BEGIN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
-        MENUITEM "Edit columns",                ID_EDIT_COLUMNS
+        MENUITEM "Bearbeite Spalten",           ID_EDIT_COLUMNS
     END
 END
 
@@ -239,8 +240,8 @@ IDR_POPUP_EDITOR_HEADERBAR MENU DISCARDABLE
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Copy full Path",              ID_EDITOR_COPY_PATH
-        MENUITEM "Copy Filename",               ID_EDITOR_COPY_FILENAME
+        MENUITEM "Kopiere vollständigen Pfad",  ID_EDITOR_COPY_PATH
+        MENUITEM "Kopiere Dateiname",           ID_EDITOR_COPY_FILENAME
     END
 END
 
@@ -349,17 +350,17 @@ FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    DEFPUSHBUTTON   "Check Out",IDOK,53,132,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,193,132,50,14
-    PUSHBUTTON      "Save As...",IDSAVEAS,123,132,50,14
-    LTEXT           "Project:",IDC_STATIC,9,81,25,8
+    DEFPUSHBUTTON   "Auschecken",IDOK,53,132,50,14
+    PUSHBUTTON      "Abbrechen",IDCANCEL,193,132,50,14
+    PUSHBUTTON      "Speichern unter...",IDSAVEAS,123,132,50,14
+    LTEXT           "Projekt:",IDC_STATIC,9,81,25,8
     COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "User:",IDC_STATIC,10,99,18,8
+    LTEXT           "Nutzer:",IDC_STATIC,10,99,18,8
     EDITTEXT        IDC_USER,48,96,58,14,ES_AUTOHSCROLL
-    LTEXT           "Password:",IDC_STATIC,127,99,34,8
+    LTEXT           "Passwort:",IDC_STATIC,127,99,34,8
     EDITTEXT        IDC_PASSWORD,162,97,70,14,ES_PASSWORD | ES_AUTOHSCROLL
-    LTEXT           "Database:",IDC_STATIC,9,64,33,13
+    LTEXT           "Datenbank:",IDC_STATIC,9,64,33,13
     COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
@@ -518,7 +519,7 @@ BEGIN
                     221,8
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
-    LTEXT           "File filter:",IDC_STATIC,7,128,60,10
+    LTEXT           "Datei-Filter:",IDC_STATIC,7,128,60,10
     COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Edit",IDC_EDIT_FILE_FILTER,194,126,34,13,WS_DISABLED
@@ -1108,10 +1109,10 @@ BEGIN
     ID_OPTIONS_SHOWUNIQUERIGHT
                             "Zeigt eindeutige Dateien auf der rechten Seite an.\nEindeutige Dateien rechts anzeigen"
     ID_DIR_DEL_BOTH         "Delete selected item(s) on both sides"
-    ID_DIR_OPEN_LEFT        "Open left file"
-    ID_DIR_OPEN_LEFT_WITH   "Open left file with ..."
-    ID_DIR_OPEN_RIGHT       "Open right file"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
+    ID_DIR_OPEN_LEFT        "Öffne linke Datei"
+    ID_DIR_OPEN_LEFT_WITH   "Öffne linke Datei mit..."
+    ID_DIR_OPEN_RIGHT       "Öffne rechte Datei"
+    ID_OPTIONS_SHOWSKIPPED  "Zeigt übersprungene Dateien an."
     ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
     ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
     ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
@@ -1127,7 +1128,7 @@ BEGIN
                             "Es konnte keine Sicherheitskopie der Originaldatei erzeugt werden.\nWollen Sie trotzdem fortfahren?"
     IDS_OPTIONS_TITLE       "Eigenschaften"
     IDS_OPEN_TITLE          "Öffnen"
-    IDS_CONFIRM_DELETE_FILE "Delete file %1?"
+    IDS_CONFIRM_DELETE_FILE "Lösche Datei %1?"
     IDS_EDIT_WINDOW_TITLE_FMT "%1 Bearbeiten"
     IDS_FILESSAME           "Die ausgewählten Dateien sind identisch."
     IDS_FILEUNIQUE          "\nDie ausgewählte Datei ist nicht in beiden Verzeichnissen vorhanden und konnte deshalb nicht verglichen werden."
@@ -1172,7 +1173,7 @@ BEGIN
     IDS_COPY_TO_LEFT        "%1 von %2 selektierten Dateien nach links kopieren"
     IDS_DEL_BOTH_FMT        "%1 von %2 selektierten Dateien auf beiden Seiten löschen"
     IDS_COPY_TO_RIGHT       "%1 von %2 selektierten Dateien nach rechts kopieren"
-    IDS_COLHDR_LSIZE        "Left Size"
+    IDS_COLHDR_LSIZE        "Linke Größe"
     IDS_DELETE_DIR_FAILED   "Fehler beim Löschen von Verzeichnis %1: %s"
     IDS_COPY_FILE_FAILED    "Fehler beim Kopieren von %1: %2"
     IDS_COPY_DIR_FAILED     "Fehler beim Kopieren von Verzeichnis %1: %2"
@@ -1191,8 +1192,8 @@ BEGIN
     ID_VIEW_WHITESPACE      "Zeigt Leerzeichen An"
     ID_REFRESH              "Aktualisiert die Anzeige\nAktualisieren (F5)"
     ID_SHOWLINEDIFF         "Highlight difference in current line"
-    ID_EDITOR_COPY_PATH     "Copy full Path"
-    ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_EDITOR_COPY_PATH     "Kopiere vollständigen Pfad"
+    ID_EDITOR_COPY_FILENAME "Kopiere Dateiname"
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
     ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
     ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
@@ -1217,21 +1218,21 @@ BEGIN
     IDS_STATUS_COPYR2L      "Kopiere rechts nach links"
     IDS_STATUS_COPYALL2L    "Kopiere alles nach links"
     IDS_STATUS_COPYALL2R    "Kopiere alles nach rechts"
-    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
-    IDS_COLHDR_RSIZE        "Right Size"
+    IDS_PROGRAMFILES        "Programme|*.exe;*.bat;*.cmd|Alle Dateien (*.*)|*.*||"
+    IDS_COLHDR_RSIZE        "Rechte Größe"
     IDS_COLHDR_LTIMEC       "Left Creation Time"
     IDS_COLHDR_RTIMEC       "Right Creation Time"
-    IDS_COLHDR_NEWER        "Newer File"
-    IDS_COLHDR_LVERSION     "Left File Version"
-    IDS_COLHDR_RVERSION     "Right File Version"
+    IDS_COLHDR_NEWER        "Neuere Datei"
+    IDS_COLHDR_LVERSION     "Linke Datei Version"
+    IDS_COLHDR_RVERSION     "Rechte Datei Version"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_FILE_SAVE_LEFT       "Save the left file"
-    ID_FILE_SAVE_RIGHT      "Save the right file"
-    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
-    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
+    ID_FILE_SAVE_LEFT       "Speichert die linke Datei."
+    ID_FILE_SAVE_RIGHT      "Speichert die rechte Datei."
+    ID_FILE_SAVEAS_LEFT     "Speichert die linke Datei unter..."
+    ID_FILE_SAVEAS_RIGHT    "Speichert die rechte Datei unter..."
     ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
     ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
 END
@@ -1243,8 +1244,8 @@ BEGIN
     IDS_COLHDR_RESULT_ABBR  "Short Result"
     IDS_COLHDR_LATTRIBUTES  "Left Attributes"
     IDS_COLHDR_RATTRIBUTES  "Right Attributes"
-    IDS_FILE_SKIPPED        "File skipped"
-    IDS_DIR_SKIPPED         "Directory skipped"
+    IDS_FILE_SKIPPED        "Datei übersprungen"
+    IDS_DIR_SKIPPED         "Verzeichnis übersprungen"
     IDS_STATUSBAR_READONLY  "RO"
     IDS_FILEPACK_FAILED_LEFT 
                             "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
@@ -1271,9 +1272,9 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "%1 Vorkommen ersetzt."
     IDS_EDIT_TEXT_NOT_FOUND "Kann ""%s"" nicht finden"
-    IDS_LINE_STATUS_INFO_EOL "Line: %s Column: %d Characters: %d EOL: %s"
-    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
-    IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
+    IDS_LINE_STATUS_INFO_EOL "Zeile: %s Spalte: %d Zeichen: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Zeile: %s"
+    IDS_LINE_STATUS_INFO    "Zeile: %s Spalte: %d Zeichen: %d"
     IDS_VSSFOLDER_AND_FILE_NOMATCH 
                             "The VSS Working Folder and the location of the current file do not match. Continue?"
 END

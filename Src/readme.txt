@@ -1,5 +1,7 @@
 2003-10-17 Christian
  New readme-developers.html added
+ PATCH: [ 825035 ] Updated German translation
+  Languages: MergeGerman.rc
 
 2003-10-17 WinMerge experimental release 2.1.3.1 (cvs)
 
