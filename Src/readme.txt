@@ -1,3 +1,8 @@
+2005-03-29 Kimmo
+ PATCH: [ 1171805 ] Update italian translation
+  Submitted by Andrea Decorte
+  InnoSetup/Languages: Italian.isl
+
 2005-03-29 Jochen
  BUG: [ 1172080 ] Unable to translate IDD_MERGE7ZMISMATCH string
   Src: Merge.rc

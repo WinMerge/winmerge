@@ -213,7 +213,7 @@ ClickFinish=Premere Fine per uscire dall'installazione.
 FinishedRestartLabel=Per completare l'installazione di [name], è necessario riavviare il computer. Vuoi riavviare ora?
 FinishedRestartMessage=Per completare l'installazione di [name], è necessario riavviare il computer.%n%nVuoi riavviare ora?
 ShowReadmeCheck=Sì, desidero visualizzare il file LEGGIMI ora
-YesRadio=&Si, riavvia il computer adesso
+YesRadio=&Sì, riavvia il computer adesso
 NoRadio=&No, riavvio il computer più tardi
 ; used for example as 'Run MyProg.exe'
 RunEntryExec=Lancia %1
@@ -273,7 +273,7 @@ ErrorCopying=Si è verificato un errore durante la copia di un file:
 ErrorReplacingExistingFile=Si è verificato un errore durante la sovrascrittura del file esistente:
 ErrorRestartReplace=Errore durante fase di riavvio-sostituzione:
 ErrorRenamingTemp=Si è verificato un errore durante il tentativo di rinominare un file nella cartella di destinazione:
-ErrorRegisterServer=Impossibile registrare la DLL/OCX: %1
+ErrorRegisterServer=Impossibile registrare DLL/OCX: %1
 ErrorRegisterServerMissingExport=DllRegisterServer esportazione mancante
 ErrorRegisterTypeLib=Impossibile registrare il tipo di libreria: %1
 
@@ -345,7 +345,7 @@ DanishLanguage=Menu e finestre di dialogo in danese
 DutchLanguage=Menu e finestre di dialogo in olandese
 FrenchLanguage=Menu e finestre di dialogo in francese
 GermanLanguage=Menu e finestre di dialogo in tedesco
-HungarianLanguage=Hungarian menus and dialogs
+HungarianLanguage=Menu e finestre di dialogo in ungherese
 ItalianLanguage=Menu e finestre di dialogo in italiano
 JapaneseLanguage=Menu e finestre di dialogo in giapponese
 KoreanLanguage=Menu e finestre di dialogo in coreano
