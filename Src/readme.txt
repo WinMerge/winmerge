@@ -3,6 +3,8 @@
   Src: MainFrm.cpp
  PATCH: [ 986785 ] Improve location pane with short files
   Src: LocationView.cpp LocationView.h
+ PATCH: [ 986873 ] Allow recursive compares for archive files
+  Src: OpenDlg.cpp
 
 2004-07-07 Kimmo
  PATCH: [ 983265 ] Italian translation updated for latest experimental version

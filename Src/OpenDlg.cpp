@@ -292,7 +292,6 @@ BOOL COpenDlg::OnInitDialog()
 	if (!mf->m_options.GetInt(OPT_VERIFY_OPEN_PATHS))
 	{
 		m_ctlOk.EnableWindow(TRUE);
-		m_ctlRecurse.EnableWindow(TRUE); 
 		m_ctlUnpacker.EnableWindow(TRUE);
 		m_ctlSelectUnpacker.EnableWindow(TRUE);
 	}
@@ -323,7 +322,6 @@ void COpenDlg::UpdateButtonStates()
 	if (mf->m_options.GetInt(OPT_VERIFY_OPEN_PATHS))
 	{
 		m_ctlOk.EnableWindow(pathsType != DOES_NOT_EXIST);
-		m_ctlRecurse.EnableWindow(pathsType == IS_EXISTING_DIR); 
 		m_ctlUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
 		m_ctlSelectUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
 	}
