@@ -35,6 +35,7 @@
 #include "version.h"
 #include "statlink.h"
 #include "logfile.h"
+#include "coretools.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -280,7 +281,8 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 			 UINT filter /*=0*/,
 			 BOOL is_open /*=TRUE*/) 
 {
-	CString s;           
+	CString s;        
+	TCHAR buf[MAX_PATH*2] = _T("Directory Selection");;
                    
 	if (filter != 0)
 		VERIFY(s.LoadString(filter)); 
@@ -291,7 +293,19 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 	dlg.m_ofn.lpstrTitle = (LPCTSTR)title;
 	dlg.m_ofn.lpstrInitialDir = (LPTSTR)root_path;
 
-	TCHAR buf[MAX_PATH*2] = _T("Directory Selection");
+	// check if specified path is a file
+	if (root_path!=NULL)
+	{
+		CFileStatus status;
+		if (CFile::GetStatus(root_path,status)
+			&& (status.m_attribute!=CFile::Attribute::directory))
+		{
+			split_filename(root_path, NULL, buf, NULL);
+		}
+	}
+
+
+	
 	dlg.m_ofn.lpstrFile = buf;
 	dlg.m_ofn.nMaxFile = MAX_PATH*2;
 	if (dlg.DoModal()==IDOK)

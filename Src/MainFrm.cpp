@@ -330,7 +330,7 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 					VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
 					AfxFormatString1(s, IDS_SAVEREADONLY_FMT, strSavePath);
 					if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION) == IDYES
-						&& SelectFile(s, NULL, title, NULL, FALSE))
+						&& SelectFile(s, strSavePath, title, NULL, FALSE))
 					{
 						strSavePath = s;
 						needCheck=TRUE;
@@ -379,7 +379,7 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 					case IDSAVEAS:
 						CString title;
 						VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
-						if (SelectFile(s, NULL, title, NULL, FALSE))
+						if (SelectFile(s, strSavePath, title, NULL, FALSE))
 						{
 							strSavePath = s;
 							needCheck=TRUE;
