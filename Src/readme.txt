@@ -1,3 +1,8 @@
+2005-02-27 Perry
+ BUG: [ 1152913 ] LocationView type bugs?
+  (Fixed 17 type conversion warnings in MSVC.NET 2003, mostly by explicit casts)
+  Src: LocationView.cpp
+
 2005-02-26 Jochen
  PATCH: [ 1152256 ] UniFile may fail to read last line
   Src/Common: UniFile.cpp

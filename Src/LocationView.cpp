@@ -136,7 +136,7 @@ void CLocationView::OnDraw(CDC* pDC)
 	m_nRightBarRight = m_nRightBarLeft + w;
 	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
-	double nLineInPix = hTotal / nbLines;
+	double LineInPix = hTotal / nbLines;
 	COLORREF cr0 = CLR_NONE; // Left side color
 	COLORREF cr1 = CLR_NONE; // Right side color
 	COLORREF crt = CLR_NONE; // Text color
@@ -145,9 +145,9 @@ void CLocationView::OnDraw(CDC* pDC)
 	int nend0 = -1;
 
 	m_pixInLines = nbLines / hTotal;
-	if (nLineInPix > MAX_LINEPIX)
+	if (LineInPix > MAX_LINEPIX)
 	{
-		nLineInPix = MAX_LINEPIX;
+		LineInPix = MAX_LINEPIX;
 		m_pixInLines = 1 / MAX_LINEPIX;
 	}
 
@@ -169,8 +169,8 @@ void CLocationView::OnDraw(CDC* pDC)
 		nstart0++;
 
 		// here nstart0 = first line of block
-		const double nBeginY = nstart0 * nLineInPix + Y_OFFSET;
-		const double nEndY = (blockHeight + nstart0) * nLineInPix + Y_OFFSET;
+		int nBeginY = (int) (nstart0 * LineInPix + Y_OFFSET);
+		int nEndY = (int) ((blockHeight + nstart0) * LineInPix + Y_OFFSET);
 
 		// Draw left side block
 		m_view0->GetLineColors(nstart0, cr0, crt, bwh);
@@ -211,10 +211,10 @@ void CLocationView::OnDraw(CDC* pDC)
 			if (apparent1 != -1)
 			{
 				// Draw connector between moved blocks
-				const double nBeginY0 = apparent0 * nLineInPix + Y_OFFSET;
-				const double nEndY0 = (blockHeight + apparent0) * nLineInPix + Y_OFFSET;
-				const double nBeginY1 = apparent1 * nLineInPix + Y_OFFSET;
-				const double nEndY1 = (blockHeight + apparent1) * nLineInPix + Y_OFFSET;
+				int nBeginY0 = (int) (apparent0 * LineInPix + Y_OFFSET);
+				int nEndY0 = (int) ((blockHeight + apparent0) * LineInPix + Y_OFFSET);
+				int nBeginY1 = (int) (apparent1 * LineInPix + Y_OFFSET);
+				int nEndY1 = (int) ((blockHeight + apparent1) * LineInPix + Y_OFFSET);
 			
 				CRect r0bis(m_nLeftBarLeft, nBeginY0, m_nLeftBarRight, nEndY0);
 				CRect r1bis(m_nRightBarLeft, nBeginY1, m_nRightBarRight, nEndY1);
@@ -233,10 +233,10 @@ void CLocationView::OnDraw(CDC* pDC)
 			if (apparent0 != -1)
 			{
 				// Draw connector between moved blocks
-				const double nBeginY0 = apparent0 * nLineInPix + Y_OFFSET;
-				const double nEndY0 = (blockHeight + apparent0) * nLineInPix + Y_OFFSET;
-				const double nBeginY1 = apparent1 * nLineInPix + Y_OFFSET;
-				const double nEndY1 = (blockHeight + apparent1) * nLineInPix + Y_OFFSET;
+				int nBeginY0 = (int) (apparent0 * LineInPix + Y_OFFSET);
+				int nEndY0 = (int) ((blockHeight + apparent0) * LineInPix + Y_OFFSET);
+				int nBeginY1 = (int) (apparent1 * LineInPix + Y_OFFSET);
+				int nEndY1 = (int) ((blockHeight + apparent1) * LineInPix + Y_OFFSET);
 			
 				CRect r0bis(m_nLeftBarLeft, nBeginY0, m_nLeftBarRight, nEndY0);
 				CRect r1bis(m_nRightBarLeft, nBeginY1, m_nRightBarRight, nEndY1);
@@ -481,7 +481,7 @@ int CLocationView::GetLineFromYPos(int nYCoord, CRect rc, int bar)
 {
 	CMergeDoc* pDoc = GetDocument();
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
-	int line = m_pixInLines * (nYCoord - Y_OFFSET);
+	int line = (int) (m_pixInLines * (nYCoord - Y_OFFSET));
 	int nRealLine = -1;
 
 	line--; // Convert linenumber to lineindex
@@ -514,7 +514,8 @@ int CLocationView::IsInsideBar(CRect rc, POINT pt)
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
 	// We need '1 / m_pixInLines' to get line in pixels and
 	// that multiplied by linecount gives us bottom coord for bars.
-	const int barBottom = min(nbLines / m_pixInLines + Y_OFFSET, rc.Height() - Y_OFFSET);
+	double xbarBottom = min(nbLines / m_pixInLines + Y_OFFSET, rc.Height() - Y_OFFSET);
+	int barBottom = (int)xbarBottom;
 
 	if ((pt.y > Y_OFFSET) && (pt.y <= barBottom))
 	{
@@ -551,13 +552,13 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 	GetClientRect(rc);
 	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
-	double nLineInPix = hTotal / nbLines;
-	if (nLineInPix > MAX_LINEPIX)
-		nLineInPix = MAX_LINEPIX;
+	double LineInPix = hTotal / nbLines;
+	if (LineInPix > MAX_LINEPIX)
+		LineInPix = MAX_LINEPIX;
 
-	int nTopCoord = Y_OFFSET + ((double)nTopLine * nLineInPix);
+	int nTopCoord = (int) (Y_OFFSET + ((double)nTopLine * LineInPix));
 	int nLeftCoord = 2;
-	int nBottomCoord = Y_OFFSET + ((double)(nTopLine + nScreenLines) * nLineInPix);
+	int nBottomCoord = (int) (Y_OFFSET + ((double)(nTopLine + nScreenLines) * LineInPix));
 	int nRightCoord = rc.Width() - 2;
 	
 	// Visible area was not changed
@@ -579,7 +580,8 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 		ReleaseDC(pClientDC);
 	}
 
-	const int barBottom = min(nbLines / m_pixInLines + Y_OFFSET, rc.Height() - Y_OFFSET);	
+	double xbarBottom = min(nbLines / m_pixInLines + Y_OFFSET, rc.Height() - Y_OFFSET);
+	int barBottom = (int)xbarBottom;
 	// Make sure bottom coord is in bar range
 	nBottomCoord = min(nBottomCoord, barBottom);
 
