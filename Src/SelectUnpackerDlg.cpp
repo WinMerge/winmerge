@@ -247,15 +247,19 @@ void CSelectUnpackerDlg::OnSelchangeUnpackerName()
 	}
 	else
 	{
+		// initialize with the default unpacker
+		m_pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(0));
 		PluginInfo * pPlugin;
 		m_cboUnpackerName.GetWindowText(m_strPluginName);
 		for (int j = 0 ; j < m_UnpackerPlugins.GetSize() ; j++)
 		{
 			pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(j));
 			if (m_strPluginName == pPlugin->name)
+			{
+				m_pPlugin = pPlugin;
 				break;
+			}
 		}
-		m_pPlugin = pPlugin;
 	}
 
 	m_strPluginName = m_pPlugin->name;

@@ -9,6 +9,9 @@
  BUG: [ 909779 ] Uninitialised variable in CGhostTextBuffer::DeleteText()
   Fix submitted by Laoran
   Src: GhostTextBuffer.cpp
+ BUG: [ 909796 ] Uninitialised variable on OnSelchangeUnpackerName()
+  Fix submitted by Laoran
+  Src: SelectUnpackerDlg.cpp
 
 2004-03-07 Kimmo
  PATCH: [ 911114 ] DiffOptions to new system
