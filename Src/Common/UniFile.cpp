@@ -271,9 +271,9 @@ bool UniMemFile::DoOpen(LPCTSTR filename, DWORD dwOpenAccess, DWORD dwOpenShareM
 	DWORD sizehi = (DWORD)(m_filesize >> 32);
 	DWORD sizelo = (DWORD)(m_filesize & 0xFFFFFFFF);
 
-	if (sizehi)
+	if (sizehi || sizelo > 0x7FFFFFFF)
 	{
-		LastErrorCustom(_T("UniMemFile cannot handle files over 4 gigabytes"));
+		LastErrorCustom(_T("UniMemFile cannot handle files over 2 gigabytes"));
 		return false;
 	}
 

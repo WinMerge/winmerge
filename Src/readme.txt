@@ -5,6 +5,8 @@
  BUG [ 1144425 ] German: Options/codepage dlg needs adjust
   (Fix by Tim Gerundt)
   Languages: MergeGerman.rc
+ PATCH: [ 925085 ] Propose failing files 2gigs+ in size
+  Src/Common: UniFile.cpp
 
 2005-02-27 Kimmo
  BUG: [ 1153017 ] FileFilterHelper::SetFilter ASSERTS on empty string
