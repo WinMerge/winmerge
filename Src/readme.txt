@@ -1,3 +1,5 @@
+2004-04-20 WinMerge experimental release 2.1.7.0 (cvs)
+
 2004-04-20 Laoran
  Syntax correction for Unicode
   Src: DirView.cpp
