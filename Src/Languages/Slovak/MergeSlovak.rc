@@ -691,6 +691,54 @@ BEGIN
                     ES_READONLY
 END
 
+IDD_DIRCOMPSTATE DIALOGEX 0, 0, 382, 41
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         223,IDC_STATIC,"Static",SS_BITMAP,7,7,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         213,IDC_STATIC,"Static",SS_BITMAP,62,7,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         214,IDC_STATIC,"Static",SS_BITMAP,62,22,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         215,IDC_STATIC,"Static",SS_BITMAP,7,23,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         216,IDC_STATIC,"Static",SS_BITMAP,268,7,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         217,IDC_STATIC,"Static",SS_BITMAP,112,7,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         218,IDC_STATIC,"Static",SS_BITMAP,163,7,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         219,IDC_STATIC,"Static",SS_BITMAP,164,22,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         224,IDC_STATIC,"Static",SS_BITMAP,112,22,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         226,IDC_STATIC,"Static",SS_BITMAP,213,7,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         227,IDC_STATIC,"Static",SS_BITMAP,214,23,12,11,
+                    WS_EX_STATICEDGE
+    RTEXT           "",IDC_COUNT_LFOLDER,24,9,19,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_RFOLDER,24,25,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_EQUAL,77,10,19,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_NOTEQUAL,78,25,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_BINARYSAME,128,9,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_BINARYDIFF,127,25,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_LFILE,180,10,19,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_RFILE,180,25,19,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_FOLDERSKIP,230,10,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_FILESKIP,230,24,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    RTEXT           "",IDC_COUNT_UNKNOWN,284,10,19,8,SS_REALSIZEIMAGE | 
+                    0x2000
+    PUSHBUTTON      "Stop",IDC_COMPARISON_STOP,317,14,60,14
+END
+
+
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1196,7 +1244,12 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
-// IDS_NUM_REPLACED SYNCHRO
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_COMPARISON_STOP     "Stop"
+    IDC_COMPARISON_CLOSE    "Press any key"
+END
+
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "Nahraden˝ch %1 reùazcov (strings)."
@@ -1294,6 +1347,12 @@ BEGIN
     ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
     ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
     ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PLUGIN_FAILED       "An error occurred in plugin '%1'. The current operation is aborted."
+    IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
 END
 
 // END STRINGS SYNCHRO

@@ -1,4 +1,5 @@
 copy ..\WinMerge\resource.h Brazilian
+copy ..\WinMerge\resource.h Catalan
 copy ..\WinMerge\resource.h ChineseSimplified
 copy ..\WinMerge\resource.h ChineseTraditional
 copy ..\WinMerge\resource.h Czech

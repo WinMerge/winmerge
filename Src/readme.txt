@@ -3,6 +3,7 @@
   WinMerge: DiffContext.cpp DiffContext.h DiffThread.cpp DirDoc.cpp DirFrame.cpp DirFrame.h
    MainFrm.cpp MainFrm.h Merge.dsp Merge.rc resource.h
   WinMerge(addition): DirCompStateBar.cpp DirCompStateBar.h
+  Languages : *.rc and resource.h
  
 2003-11-04 Laoran
  adapt plugins filters to the syntax of regular expressions

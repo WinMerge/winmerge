@@ -30,6 +30,7 @@
 #define IDD_DIRCOLS                     117
 #define ID_FILE_VSSDATABASE             118
 #define IDD_SELECTUNPACKER              119
+#define IDD_DIRCOMPSTATE                120
 #define IDS_VERSION_FMT                 130
 #define IDS_ALLFILES                    131
 #define IDS_CONFIRM_ALL_LEFT            132
@@ -247,6 +248,19 @@
 #define IDC_EXT_EDITOR_PATH             1092
 #define IDC_DIFF_SWAPFILES              1093
 #define IDC_DIFF_OPENTOEDITOR           1094
+#define IDC_COUNT_LFOLDER               1095
+#define IDC_COUNT_RFOLDER               1096
+#define IDC_COUNT_FILESKIP              1097
+#define IDC_COUNT_FOLDERSKIP            1098
+#define IDC_COUNT_UNKNOWN               1099
+#define IDC_COUNT_EQUAL                 1100
+#define IDC_COUNT_NOTEQUAL              1101
+#define IDC_COUNT_BINARYSAME            1102
+#define IDC_COUNT_BINARYDIFF            1103
+#define IDC_COUNT_LFILE                 1104
+#define IDC_COUNT_RFILE                 1105
+#define IDC_COMPARISON_STOP             1106
+#define IDC_COMPARISON_CLOSE            1107
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -488,9 +502,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        120
+#define _APS_NEXT_RESOURCE_VALUE        121
 #define _APS_NEXT_COMMAND_VALUE         32856
-#define _APS_NEXT_CONTROL_VALUE         1095
+#define _APS_NEXT_CONTROL_VALUE         1108
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif
