@@ -1,3 +1,8 @@
+2005-02-18 Kimmo
+ PATCH: [ 1124475 ] Update of the swedish translation
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2005-02-17 Kimmo
  PATCH: [ 1124380 ] Use _tstati64() in UniLocalFile::DoGetFileStatus()
   Common: UniFile.cpp UniFile.h

@@ -81,8 +81,8 @@ BEGIN
         MENUITEM "Kopiera till &höger",         ID_L2R
         MENUITEM "Kopiera till &vänster",       ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
-        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
+        MENUITEM "&Markera ordskillnad på rad", ID_SHOWLINEWORDDIFF
+        MENUITEM "M&arkera teckenskillnad på rad", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Ångra",                      ID_EDIT_UNDO
         MENUITEM "&Gör om",                     ID_EDIT_REDO
@@ -101,7 +101,7 @@ BEGIN
     BEGIN
         MENUITEM "&Ny\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Öppna...\tCtrl+O",           ID_FILE_OPEN
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Öppna Projekt...\tCtrl+J",   ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Spara\tCtrl+S",              ID_FILE_SAVE
         POPUP "Spara &Vänster fil"
@@ -140,8 +140,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Välj &allt\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
+        MENUITEM "&Markera ordskillnad på rad\tF4", ID_SHOWLINEWORDDIFF
+        MENUITEM "&Markera teckenskillnad på rad\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "S&ök...\tCtrl+F",             ID_EDIT_FIND
         MENUITEM "&Ersätt...\tCtrl+H",          ID_EDIT_REPLACE
@@ -151,9 +151,9 @@ BEGIN
             MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
-        POPUP "Advanced"
+        POPUP "Avancerad"
         BEGIN
-            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
+            MENUITEM "&Kopiera med radnummer\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
         MENUITEM "&Gå till...\tCtrl+G",           ID_EDIT_WMGOTO
@@ -269,7 +269,7 @@ BEGIN
             MENUITEM "&Höger",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Båda",                       ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "&Dölj filer",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Öppna vänster"
         BEGIN
@@ -443,7 +443,7 @@ BEGIN
     PUSHBUTTON      "Avbryt",IDCANCEL,306,28,50,14
     GROUPBOX        "Filer eller kataloger som skall jämföras",IDC_FILES_DIRS_GROUP,7,7,
                     292,111
-    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
+    PUSHBUTTON      "Spara Projekt",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -949,9 +949,9 @@ BEGIN
     CONTROL         "Lista1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,188,114,50,14
-    PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "Nytt...",IDC_FILTERFILE_NEWBTN,188,114,50,14
+    PUSHBUTTON      "Editera...",IDC_FILTERFILE_EDITBTN,244,114,50,14
+    PUSHBUTTON      "Ta bort...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -1330,7 +1330,7 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Ändrar skrivare och skrivarens inställningar\nSkrivarinställningar"
     ID_FILE_PRINT           "Skriver ut det aktiva dokumentet\nSkriv ut"
     ID_FILE_PRINT_PREVIEW   "Visar helsida\nFörhandsgranska"
-    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+  ID_FILE_OPENPROJECT       "Öppna Projektfil\nProjektfil(Ctrl+J)"
 END
 
 STRINGTABLE
@@ -1510,7 +1510,7 @@ BEGIN
     IDS_OPEN_TITLE          "Öppna"
     IDS_PROGRAMFILES        "Programfiler|*.exe;*.bat;*.cmd|Alla Filer (*.*)|*.*||"
     IDS_ALLFILES            "Alla filer (*.*)|*.*||"
-    IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+    IDS_PROJECTFILES        "WinMerge Projektfiler (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
 END
 
@@ -1528,9 +1528,9 @@ BEGIN
     IDS_FILTERFILE_PATHTITLE "Sökväg"
     IDS_FILTER_TITLE        "Filter"
     IDS_FILTER_PREFIX       "[F] "
-    IDS_FILTERFILE_DESCTITLE "Description"
-    IDS_FILEFILTER_SAVENEW  "Select filename for new filter"
-    IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
+    IDS_FILTERFILE_DESCTITLE "Beskrivning"
+    IDS_FILEFILTER_SAVENEW  "Välj filnamn för nytt filter"
+    IDS_FILEFILTER_FILEMASK "Filfilter (*.flt)|*.flt|Alla Filer (*.*)|*.*||"
 END
 
 // VERSION CONTROL OPTIONS
@@ -1641,7 +1641,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "Ta bort valda objekt på vänster sida"
     ID_DIR_DEL_RIGHT        "Ta bort valda objekt på höger sida"
     ID_DIR_DEL_BOTH         "Ta bort valda objekt på båda sidor"
-    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
+    ID_DIR_HIDE_FILENAMES   "Dölj valda objekt (realtidsfilter)"
     IDS_COPY_TO_LEFT        "Höger till vänster (%1)"
     IDS_COPY_TO_RIGHT       "Vänster till höger (%1)"
     IDS_COPY_TO_LEFT2       "Höger till vänster (%1 av %2)"
@@ -2066,12 +2066,12 @@ END
 // CODEPAGE GEOGRAPHIC GROUPS
 STRINGTABLE
 BEGIN
-	IDS_CPG_WESTERN_EUROPEAN        "Western European"
-	IDS_CPG_EASTERN_EUROPEAN        "Eastern European"
-	IDS_CPG_EAST_ASIAN              "East Asian"
-	IDS_CPG_SOUTH_ASIAN             "SE & SW Asian"
-	IDS_CPG_MIDDLE_EASTERN          "Middle Eastern"
-	IDS_CPG_NA                      "Not applicable"
+	IDS_CPG_WESTERN_EUROPEAN        "Västeuropeisk"
+	IDS_CPG_EASTERN_EUROPEAN        "Östeuropeisk"
+	IDS_CPG_EAST_ASIAN              "Östasisk"
+	IDS_CPG_SOUTH_ASIAN             "Sydöst- och sydväst- asisk"
+	IDS_CPG_MIDDLE_EASTERN          "Mellanöstersk"
+	IDS_CPG_NA                      "Inte tillämplig"
 END
 
 // CODEPAGE PLATFORM GROUPS
@@ -2181,12 +2181,12 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
-    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
+    ID_SHOWLINEWORDDIFF     "Markerar ordskillnad på aktuell rad\nOrdskillnad på aktuell rad (F4)"
+    ID_SHOWLINECHARDIFF     "Markerar teckenskillnad på aktuell rad\nTeckenskillnad på aktuell rad (Shift+F4)"
     ID_EDIT_WMGOTO          "Går till rad eller skillnad\nGå till (Ctrl+G)"
     ID_OPTIONS              "Ändrar programinställningar\nEgenskaper"
     ID_REFRESH              "Uppdaterar innehållet\nUppdatera (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to cliboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "Kopierar valda rader till klippboken och adderar radnummer till radernas start"
 END
 
 // VIEW MENU (FILE TYPE)
