@@ -81,7 +81,7 @@ DisableStartupPrompt=yes
 AllowNoIcons=yes
 LicenseFile=..\src\COPYING
 InfoBeforeFile=..\Docs\Users\Read Me.rtf
-OutputBaseFilename=WinMerge {#AppVersion}
+OutputBaseFilename=WinMerge-{#AppVersion}-Setup
 
 ;This must be admin to install C++ Runtimes
 PrivilegesRequired=admin
@@ -109,6 +109,7 @@ SetupIconFile=..\src\res\Merge.ico
 Compression=lzma/ultra
 InternalCompressLevel=ultra
 SolidCompression=true
+
 
 [Messages]
 FinishedLabel=Setup has finished installing [Name] on your computer.
