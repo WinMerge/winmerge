@@ -238,10 +238,7 @@ public:
 	int LineToDiff(UINT nLine);
 	BOOL LineInDiff(UINT nLine, UINT nDiff);
 	void SetDiffViewMode(BOOL bEnable);
-	void Showlinediff(CMergeEditView * pView);
-	void Showlinediff(CMergeDiffDetailView * pView);
-	RECT Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther, int line);
-	
+
 	void SetUnpacker(PackingInfo * infoUnpacker);
 	void SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight);
 	void SetMergeDetailViews(CMergeDiffDetailView * pLeft, CMergeDiffDetailView * pRight);
@@ -265,6 +262,14 @@ public:
 	virtual BOOL SaveModified();
 	virtual void DeleteContents ();
 	//}}AFX_VIRTUAL
+
+// Implementation in MergeDocLineDiffs.cpp
+public:
+	void Showlinediff(CMergeEditView * pView);
+	void Showlinediff(CMergeDiffDetailView * pView);
+private:
+	void Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther, int line, CRect * rc1, CRect * rc2);
+// End MergeDocLineDiffs.cpp
 
 // Implementation
 public:

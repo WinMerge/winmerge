@@ -1,6 +1,10 @@
 2003-11-24 Perry
  PATCH: [ 847134 ] More commenting for DirScan (doxygenize function comments)
   WinMerge: DirScan.cpp DirScan.h
+ [ 846405 ] Highlight individual word diffs in line
+  (Enhance F4 to compute individual differences, and toggle through them in a cycle)
+  WinMerge: Merge.dsp MergeDoc.cpp MergeDoc.h MergeDocLineDiffs.cpp
+   stringdiffs.cpp stringdiffs.h stringdiffsi.h
 
 2003-11-24 Laoran
  BUG: [ 848461 ] Toggle 'show different files' is broken (thanks to Kimmo)
