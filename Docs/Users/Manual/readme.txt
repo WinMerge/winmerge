@@ -1,3 +1,8 @@
+2004-09-29 Kimmo
+ PATCH: [ 1034558 ] Docs: More meta-informations
+  Submitted by Tim Gerundt
+  Manual: Compare_dirs.xml 
+
 2004-09-28 Kimmo
  PATCH: [ 1034730 ] Font suggestions for manual
   Submitted by Perry
