@@ -18,7 +18,7 @@ struct dirdata
 };
 
 typedef struct tagDIFFITEM {
-	TCHAR filename[_MAX_FNAME+_MAX_EXT];
+	TCHAR filename[_MAX_FNAME];
 	TCHAR extension[_MAX_EXT];
 	TCHAR lpath[MAX_PATH], rpath[MAX_PATH];
 	long ltime, rtime;
