@@ -1054,7 +1054,7 @@ BEGIN
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "D'acord",IDOK,236,226,50,14,WS_GROUP
     CONTROL         "Baixada del connector",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
-                    236,160,62,10
+                    218,160,80,10
     LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
