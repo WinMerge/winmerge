@@ -159,19 +159,25 @@ CMergeDoc* CMergeEditView::GetDocument() // non-debug version is inline
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView message handlers
-CCrystalTextBuffer *CMergeEditView::LocateTextBuffer ()
+
+/**
+ * @brief Return text buffer for file in view
+ */
+CCrystalTextBuffer *CMergeEditView::LocateTextBuffer()
 {
 	if (m_bIsLeft)
 		return &GetDocument()->m_ltBuf;
 	return &GetDocument()->m_rtBuf;
 }
 
+/**
+ * @brief Scroll to line
+ * @todo Unused function?
+ */
 void CMergeEditView::DoScroll(UINT code, UINT pos, BOOL bDoScroll)
 {
 	TRACE(_T("Scroll %s: pos=%d\n"), m_bIsLeft? _T("left"):_T("right"), pos);
-	if (bDoScroll
-		&& (code == SB_THUMBPOSITION
-			|| code == SB_THUMBTRACK))
+	if (bDoScroll && (code == SB_THUMBPOSITION || code == SB_THUMBTRACK))
 	{
 		ScrollToLine(pos);
 	}
@@ -213,6 +219,13 @@ CString CMergeEditView::GetSelectedText()
 	return strText;
 }
 
+/**
+ * @brief Get diffs inside selection.
+ * @param [out] firstDiff First diff inside selection
+ * @param [out] lastDiff Last diff inside selection
+ * @todo This shouldn't be called when there is no diffs, so replace
+ * first 'if' with ASSERT()?
+ */
 void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 {
 	firstDiff = 0;
@@ -427,11 +440,25 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHo
 }
 
 /**
- * @brief Select diff by number
+ * @brief Selects diff by number and syncs other file
+ * @param [in] nDiff Diff to select, must be >= 0
+ * @param [in] bScroll Scroll diff to view
+ * @param [in] bSelectText Select diff text
+ * @sa CMergeEditView::ShowDiff()
+ * @sa CMergeDoc::SetCurrentDiff()
+ * @todo Parameter bSelectText is never used?
  */
 void CMergeEditView::SelectDiff(int nDiff, BOOL bScroll /*=TRUE*/, BOOL bSelectText /*=TRUE*/)
 {
 	CMergeDoc *pd = GetDocument();
+
+	// Check that nDiff is valid
+	if (nDiff < 0)
+		_RPTF1( _CRT_ERROR, _T("Diffnumber negative (%d)"), nDiff);
+	if (nDiff >= (int)pd->m_nDiffs)
+		_RPTF2( _CRT_ERROR, _T("Selected diff > diffcount (%d >= %d)"),
+			nDiff, (int)pd->m_nDiffs);
+	
 	SelectNone();
 	pd->SetCurrentDiff(nDiff);
 	ShowDiff(bScroll, bSelectText);
@@ -443,27 +470,34 @@ void CMergeEditView::SelectDiff(int nDiff, BOOL bScroll /*=TRUE*/, BOOL bSelectT
 }
 
 /**
- * @brief Go to active diff
+ * @brief Called when user selects "Current Difference".
+ * Goes to active diff. If no active diff, selects diff under cursor
+ * @sa CMergeEditView::SelectDiff()
+ * @sa CMergeDoc::GetCurrentDiff()
+ * @sa CMergeDoc::LineToDiff()
  */
 void CMergeEditView::OnCurdiff()
 {
 	CMergeDoc *pd = GetDocument();
-	if (pd->m_nDiffs > 0)
+
+	// If no diffs, nothing to select (m_nDiffs is unsigned!)
+	if (pd->m_nDiffs == 0)
+		return;
+
+	// GetCurrentDiff() returns -1 if no diff selected
+	int nDiff = pd->GetCurrentDiff();
+	if (nDiff != -1)
 	{
-		// get the diff location
-		int nDiff = pd->GetCurrentDiff();
+		// Scroll to the first line of the currently selected diff
+		SelectDiff(nDiff, TRUE, FALSE);
+	}
+	else
+	{
+		// If cursor is inside diff, select that diff
+		CPoint pos = GetCursorPos();
+		nDiff = pd->LineToDiff(pos.y);
 		if (nDiff != -1)
-		{
-			// scroll to the first line of the first diff, with some context thrown in
 			SelectDiff(nDiff, TRUE, FALSE);
-		}
-		else
-		{
-			CPoint pos = GetCursorPos();
-			nDiff = pd->LineToDiff(pos.y);
-			if (nDiff != -1)
-				SelectDiff(nDiff, TRUE, FALSE);
-		}
 	}
 }
 
@@ -638,22 +672,15 @@ void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 
 /**
  * @brief Go to first diff
+ *
+ * Called when user selects "First Difference"
+ * @sa CMergeEditView::SelectDiff()
  */
 void CMergeEditView::OnFirstdiff()
 {
 	CMergeDoc *pd = GetDocument();
 	if (pd->m_nDiffs > 0)
-	{
-		// scroll to the first line of the first diff, with some context thrown in
-		int line = pd->m_diffs[0].dbegin0 - CONTEXT_LINES_ABOVE;
-		if (line < 0)
-			line = 0;
-		ScrollToLine(line);
-		UpdateSiblingScrollPos(FALSE);
-
-		// select the diff
 		SelectDiff(0, TRUE, FALSE);
-	}
 }
 
 /**
@@ -734,9 +761,12 @@ void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Go to previous diff
- * @note If no diff selected, previous diff above cursor
- * is selected. 
+ * @brief Goes to previous diff and selects it.
+ *
+ * Called when user selects "Previous Difference".
+ * @note If no diff is selected, previous diff above cursor
+ * is selected.
+ * @sa CMergeEditView::SelectDiff()
  */
 void CMergeEditView::OnPrevdiff()
 {
@@ -745,7 +775,7 @@ void CMergeEditView::OnPrevdiff()
 	if (cnt <= 0)
 		return;
 
-	// Returns -1 if no diff selected
+	// GetCurrentDiff() returns -1 if no diff selected
 	int curDiff = pd->GetCurrentDiff();
 
 	if (curDiff != -1)
@@ -755,7 +785,7 @@ void CMergeEditView::OnPrevdiff()
 			SelectDiff(curDiff, TRUE, FALSE);
 		else
 			// We're on a diff, so select the previous one
-		SelectDiff(curDiff - 1, TRUE, FALSE);
+			SelectDiff(curDiff - 1, TRUE, FALSE);
 	}
 	else
 	{
@@ -796,18 +826,31 @@ void CMergeEditView::SelectNone()
 
 /**
  * @brief Check if line is inside currently selected diff
+ * @sa CMergeDoc::GetCurrentDiff()
+ * @sa CMergeDoc::LineInDiff()
  */
 BOOL CMergeEditView::IsLineInCurrentDiff(int nLine)
 {
+	// Check validity of nLine
+#ifdef _DEBUG
+	if (nLine < 0)
+		_RPTF1( _CRT_ERROR, _T("Linenumber is negative (%d)!"), nLine);
+	int nLineCount = LocateTextBuffer()->GetLineCount();
+	if (nLine >= nLineCount)
+		_RPTF2( _CRT_ERROR, _T("Linenumber > linecount (%d>%d)!"), nLine, nLineCount);
+#endif
+
 	CMergeDoc *pd = GetDocument();
-	int cur = pd->GetCurrentDiff();
-	if (cur==-1)
+	int curDiff = pd->GetCurrentDiff();
+	if (curDiff == -1)
 		return FALSE;
-	return (nLine >= (int)pd->m_diffs[cur].dbegin0 && nLine <= (int)pd->m_diffs[cur].dend0);
+	return pd->LineInDiff(nLine, curDiff);
 }
 
 /**
  * @brief Called when mouse left-button double-clicked
+ * 
+ * Double-clicking mouse inside diff selects that diff
  */
 void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
@@ -815,12 +858,8 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CPoint pos = GetCursorPos();
 
 	int diff = pd->LineToDiff(pos.y);
-	if (diff!=-1)
-	{
+	if (diff != -1)
 		SelectDiff(diff, FALSE, FALSE);
-//		mf->m_pLeft->Invalidate();
-//		mf->m_pRight->Invalidate();
-	}
 
 	CCrystalEditViewEx::OnLButtonDblClk(nFlags, point);
 }
@@ -842,9 +881,12 @@ void CMergeEditView::OnLButtonUp(UINT nFlags, CPoint point)
 	}
 }
 
+/**
+ * @brief Finds longest line (needed for scrolling etc).
+ * @sa CCrystalTextView::GetMaxLineLength()
+ */
 void CMergeEditView::UpdateLineLengths()
 {
-	//m_nMaxLineLength=-1;
 	GetMaxLineLength();
 }
 
@@ -947,6 +989,9 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
+/**
+ * @brief Copy diffs inside selection from right to left
+ */
 void CMergeEditView::OnMultipleLeft() 
 {
 	if (m_bIsLeft)
@@ -968,6 +1013,9 @@ void CMergeEditView::OnMultipleLeft()
 	GetDocument()->CopyMultipleList(false, firstDiff, lastDiff);
 }
 
+/**
+ * @brief Update "Copy diffs in right selection to left" item
+ */
 void CMergeEditView::OnUpdateMultipleLeft(CCmdUI* pCmdUI) 
 {
 	if (m_bIsLeft)
@@ -988,6 +1036,9 @@ void CMergeEditView::OnUpdateMultipleLeft(CCmdUI* pCmdUI)
 	}
 }
 
+/**
+ * @brief Copy diffs inside selection from left to right
+ */
 void CMergeEditView::OnMultipleRight() 
 {
 	if (!m_bIsLeft)
@@ -1009,6 +1060,9 @@ void CMergeEditView::OnMultipleRight()
 	GetDocument()->CopyMultipleList(true, firstDiff, lastDiff);
 }
 
+/**
+ * @brief Update "Copy diffs in left selection to right" item
+ */
 void CMergeEditView::OnUpdateMultipleRight(CCmdUI* pCmdUI) 
 {
 	if (!m_bIsLeft)
@@ -1029,6 +1083,13 @@ void CMergeEditView::OnUpdateMultipleRight(CCmdUI* pCmdUI)
 	}
 }
 
+/**
+ * @brief This function is called before other edit events.
+ * @param [in] nAction Edit operation to do
+ * @param [in] pszText Text to insert, delete etc
+ * @sa CCrystalEditView::OnEditOperation()
+ * @todo More edit-events for rescan delaying?
+ */
 void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 {
 	if (IsReadOnly(m_bIsLeft))
@@ -1126,12 +1187,25 @@ void CMergeEditView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 	CCrystalEditViewEx::OnUpdate(pSender, lHint, pHint);
 }
 
+/**
+ * @brief Scrolls to current diff and/or selects diff text
+ * @param [in] bScroll If TRUE scroll diff to view
+ * @param [in] bSelectText If TRUE select diff text
+ * @note If bScroll and bSelectText are FALSE, this does nothing!
+ * @todo This shouldn't be called when no diff is selected, so
+ * somebody could try to ASSERT(nDiff > -1)...
+ */
 void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 {
 	CMergeDoc *pd = GetDocument();
 	CMergeEditView *pCurrentView = NULL;
 	CMergeEditView *pOtherView = NULL;
 	int nDiff = pd->GetCurrentDiff();
+
+	// Try to trap some errors
+	if (nDiff >= (int)pd->m_nDiffs)
+		_RPTF2(_CRT_ERROR, _T("Selected diff > diffcount (%d > %d)!"),
+			nDiff, pd->m_nDiffs);
 
 	if (m_bIsLeft)
 	{
@@ -1149,6 +1223,7 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 		CPoint ptStart, ptEnd;
 		ptStart.x = 0;
 		ptStart.y = pd->m_diffs[nDiff].dbegin0;
+		ptEnd.y = 0;
 		ptEnd.y = pd->m_diffs[nDiff].dend0;
 
 		if (bScroll)
@@ -1540,7 +1615,7 @@ void CMergeEditView::OnUpdateStatusRightEOL(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnConvertEolTo(UINT nID ) 
 {
-	int nStyle;
+	int nStyle = CRLF_STYLE_AUTOMATIC;;
 	switch (nID)
 	{
 		case ID_EOL_TO_DOS:
@@ -1551,6 +1626,10 @@ void CMergeEditView::OnConvertEolTo(UINT nID )
 			break;
 		case ID_EOL_TO_MAC:
 			nStyle = CRLF_STYLE_MAC;
+			break;
+		default:
+			// Catch errors
+			_RPTF0(_CRT_ERROR, _T("Unhandled EOL type conversion!"));
 			break;
 	}
 	m_pTextBuffer->SetCRLFMode(nStyle);
@@ -1570,7 +1649,7 @@ void CMergeEditView::OnConvertEolTo(UINT nID )
  */
 void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI) 
 {
-	int nStyle;
+	int nStyle = CRLF_STYLE_AUTOMATIC;
 	switch (pCmdUI->m_nID)
 	{
 		case ID_EOL_TO_DOS:
@@ -1581,6 +1660,10 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 			break;
 		case ID_EOL_TO_MAC:
 			nStyle = CRLF_STYLE_MAC;
+			break;
+		default:
+			// Catch errors
+			_RPTF0(_CRT_ERROR, "Missing menuitem handler for EOL convert menu!");
 			break;
 	}
 

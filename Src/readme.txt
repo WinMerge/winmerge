@@ -1,3 +1,7 @@
+2004-01-15 Kimmo
+ PATCH: [ 873940 ] Diff navigation code cleanups
+  src: MergeEditView.cpp
+
 2004-01-15 Perry
  Remove rcs/cvs ID line from unicoder.* (because I share these elsewhere)
   src/WinMerge/Common: unicoder.cpp unicoder.h
