@@ -2,6 +2,11 @@
  PATCH: [ 1176040 ] French translation 2.3 branch
   Submitted by Jean-F Jolin
   Src/Languages/French: MergeFrench.rc
+ PATCH: [ 1176574 ] catalan translation update (setup)
+  Submitted by Jordi Vilar
+  InnoSetup: WinMerge Localized.iss
+  InnoSetup/Languages: Catalan.isl
+  Docs/Users/Languages: Read Me-Catalan.rtf
 
 2005-04-03 Kimmo
  PATCH: [ 1175319 ] Dutch translation update
