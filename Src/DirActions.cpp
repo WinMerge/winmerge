@@ -559,8 +559,9 @@ void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) co
 	const CDiffContext * ctxt = GetDiffContext();
 	const DIFFITEM & di = ctxt->GetDiffAt(diffpos);
 
-	strLeft = di.getLeftFilepath();
-	strRight = di.getRightFilepath();
+	CString relpath = paths_ConcatPath(di.sSubdir, di.sfilename);
+	strLeft = paths_ConcatPath(ctxt->m_strLeft, relpath);
+	strRight = paths_ConcatPath(ctxt->m_strRight, relpath);
 }
 
 // Open selected file on specified side

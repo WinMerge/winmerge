@@ -19,6 +19,8 @@
   WinMerge: DirViewColItems.cpp
  Bugfix: FILE_SKIP & DIR_SKIP are being labelled as errors
   WinMerge: DirViewColItems.cpp Merge.rc resource.h
+ Bugfix: Fix CDirView::GetItemFileNames to get path properly (as before 2003-08-07).
+  WinMerge: DirActions.cpp
 
 2003-08-22 Kimmo
  PATCH: [ 787495 ] Create diffutils class (CDiffWrapper)
