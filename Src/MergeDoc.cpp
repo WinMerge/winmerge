@@ -1209,7 +1209,8 @@ void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int
 		// (optimization) eols are the same, so just replace text inside line
 		// we must clean strText from its eol...
 		CString strTextWithoutEol = strText;
-		strTextWithoutEol.Delete(strTextWithoutEol.GetLength() - _tcslen(getEol(strTextWithoutEol)), 2);
+		int newLength = strTextWithoutEol.GetLength()- _tcslen(getEol(strTextWithoutEol));
+		strTextWithoutEol.ReleaseBuffer(newLength);
 		ReplaceLine(pSource, nLine, strTextWithoutEol, nAction);
 		return;
 	}

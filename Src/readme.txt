@@ -1,3 +1,7 @@
+2003-09-16 Laoran
+ BUG: [ 807402 ] ListCopy problem for Unix Files
+  WinMerge: MergeDoc.cpp
+
 2003-09-16 Kimmo
  PATCH: [ 781013 ] 256 Color icon
   Applying to languages
