@@ -1,3 +1,8 @@
+2004-10-09 Kimmo
+ PATCH: [ 1034558 ] Docs: More meta-informations
+  Submitted by Tim Gerundt
+  Manual: Compare_files.xml Configuration.xml
+
 2004-10-04 Kimmo
  PATCH: [ 1039653 ] Rewrite beginning of CompareDirs.xml
   Submitted by Perry
