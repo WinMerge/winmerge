@@ -1,3 +1,9 @@
+2003-11-13 Laoran
+ PATCH: [ 838354 ] Revisit Speedup Speed up display of large differences
+ submitted by Hern Chen (hern_chen)
+  WinMerge: GhostTextBuffer.cpp MergeDoc.cpp
+  editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h
+
 2003-11-11 Laoran
  avoid double message "no line difference"
   WinMerge: MergeDoc.cpp

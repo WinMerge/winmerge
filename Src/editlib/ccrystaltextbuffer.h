@@ -242,6 +242,8 @@ public :
     //  Helper methods
     void InsertLine (LPCTSTR pszLine, int nLength = -1, int nPosition = -1, int nCount = 1);
     void AppendLine (int nLineIndex, LPCTSTR pszChars, int nLength = -1);
+    void MoveLine(int line1, int line2, int newline1);
+    void SetEmptyLine(int nPosition, int nCount = 1);
 
     //  Implementation
     BOOL InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar);

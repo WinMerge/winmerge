@@ -1818,145 +1818,211 @@ bool CMergeDoc::CDiffTextBuffer::curUndoGroup()
 	return (m_aUndoBuf.GetSize()!=0 && m_aUndoBuf[0].m_dwFlags&UNDO_BEGINGROUP);
 }
 
+
+/**
+ * @brief Build the diff array and prepare buffers accordingly (insert ghost lines, set WinMerge flags)
+ *
+ * @note Buffers may have different length after PrimeTextBuffers. Indeed, no
+ * synchronization is needed after the last line. So no ghost line will be created
+ * to face an ignored difference in the last line (typically : 'ignore blank lines' 
+ * + empty last line on one side).
+ * If you fell that different length buffers are really strange, CHANGE FIRST
+ * the last diff to take into account the empty last line.
+ */
 void CMergeDoc::PrimeTextBuffers()
 {
-	UINT LeftExtras=0;   // extra lines added to view
-	UINT RightExtras=0;   // extra lines added to view
-
-	// walk the diff stack and flag the line codes
 	SetCurrentDiff(-1);
 	m_nTrivialDiffs = 0;
-	for (UINT nDiff=0; nDiff < m_nDiffs; ++nDiff)
+	int nDiff;
+
+	// walk the diff list and calculate numbers of extra lines to add
+	UINT LeftExtras=0;   // extra lines added to left view
+	UINT RightExtras=0;   // extra lines added to right view
+	for (nDiff = 0; nDiff < m_nDiffs; ++ nDiff)
 	{
 		DIFFRANGE &curDiff = m_diffs[nDiff];
 
-		// handle left-only for the left view
+		// this guarantees that all the diffs are synchronized
+		ASSERT(curDiff.begin0+LeftExtras == curDiff.begin1+RightExtras);
+		int nline0 = curDiff.end0-curDiff.begin0+1;
+		int nline1 = curDiff.end1-curDiff.begin1+1;
+		int nextra = nline0-nline1;
+
+		if (nextra > 0)
+			RightExtras += nextra;
+		else
+			LeftExtras -= nextra;
+	}
+
+	// resize m_aLines once for each view
+	UINT lcount0 = m_ltBuf.GetLineCount();
+	UINT lcount1 = m_rtBuf.GetLineCount();
+	UINT lcount0new = lcount0 + LeftExtras;
+	UINT lcount1new = lcount1 + RightExtras;
+// this ASSERT may be false because of empty last line (see function's note)
+//	ASSERT(lcount0new == lcount1new);
+	m_ltBuf.m_aLines.SetSize(lcount0new);
+	m_rtBuf.m_aLines.SetSize(lcount1new);
+
+	// walk the diff list backward, move existing lines to proper place,
+	// add ghost lines, and set flags
+	for (nDiff = m_nDiffs - 1; nDiff >= 0; nDiff --)
+	{
+		DIFFRANGE &curDiff = m_diffs[nDiff];
+
+		// move matched lines after curDiff
+		int nline0 = lcount0 - curDiff.end0 - 1;
+		int nline1 = lcount1 - curDiff.end1 - 1;
+		// Matched lines should really match...
+		// But matched lines after last diff may differ because of empty last line (see function's note)
+		if (nDiff < m_nDiffs - 1)
+			ASSERT(nline0 == nline1);
+		m_ltBuf.MoveLine(curDiff.end0+1, lcount0-1, lcount0new-nline0);
+		m_rtBuf.MoveLine(curDiff.end1+1, lcount1-1, lcount1new-nline1);
+		lcount0new -= nline0;
+		lcount1new -= nline1;
+		lcount0 -= nline0;
+		lcount1 -= nline1;
+
+		// move unmatched lines and add ghost lines
+		nline0 = curDiff.end0 - curDiff.begin0 + 1;
+		nline1 = curDiff.end1 - curDiff.begin1 + 1;
+		int nextra = nline0-nline1;
+		int nextraAbs = (nextra >= 0) ? nextra : -nextra;
+
+		if (nextra > 0) 
+		{
+			// more lines on the left
+			m_ltBuf.MoveLine(curDiff.begin0, curDiff.end0, lcount0new-nline0);
+			m_rtBuf.MoveLine(curDiff.begin1, curDiff.end1, lcount1new-nline0);
+			m_rtBuf.SetEmptyLine(lcount1new - nextraAbs, nextraAbs);
+			for (int i = 1; i <= nextraAbs; i++)
+				m_rtBuf.SetLineFlag(lcount1new-i, LF_GHOST, TRUE, FALSE, FALSE);
+			lcount0new -= nline0;
+			lcount1new -= nline0;
+		}
+		else if (nextra < 0) 
+		{
+			// more lines on the right
+			m_ltBuf.MoveLine(curDiff.begin0, curDiff.end0, lcount0new-nline1);
+			m_rtBuf.MoveLine(curDiff.begin1, curDiff.end1, lcount1new-nline1);
+			m_ltBuf.SetEmptyLine(lcount0new - nextraAbs, nextraAbs);
+			for (int i = 1; i <= nextraAbs; i++)
+				m_ltBuf.SetLineFlag(lcount0new-i, LF_GHOST, TRUE, FALSE, FALSE);
+			lcount0new -= nline1;
+			lcount1new -= nline1;
+		}
+		else 
+		{
+			// same number of lines
+			m_ltBuf.MoveLine(curDiff.begin0, curDiff.end0, lcount0new-nline0);
+			m_rtBuf.MoveLine(curDiff.begin1, curDiff.end1, lcount1new-nline1);
+			lcount0new -= nline0;
+			lcount1new -= nline1;
+		}
+		lcount0 -= nline0;
+		lcount1 -= nline1;
+
+		// set dbegin, dend, blank, and line flags
+		curDiff.dbegin0 = lcount0new;
+		curDiff.dbegin1 = lcount1new;
+
 		switch (curDiff.op)
 		{
 		case OP_LEFTONLY:
-			// left side
+			// set curdiff
 			{
-				// just flag the lines
-				curDiff.dbegin0 = curDiff.begin0+LeftExtras;
-				curDiff.dend0 = curDiff.end0+LeftExtras;
+				// left side
+				curDiff.dend0 = lcount0new+nline0-1;
 				curDiff.blank0 = -1;
-				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
-				{
-					m_ltBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
-				}
-			}
-			// right side
-			{
-
-				// need to insert blanks to compensate for diff on other side
-				curDiff.dbegin1 = curDiff.begin1+RightExtras;
-				curDiff.dend1 = curDiff.dbegin1+(curDiff.end0-curDiff.begin0);
+				// right side
+				curDiff.dend1 = lcount1new+nline0-1;
 				curDiff.blank1 = curDiff.dbegin1;
-				int nCount = curDiff.dend1-curDiff.dbegin1+1;
-				m_rtBuf.InsertLine(NULL, 0, curDiff.dbegin1, nCount);
-				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
-				{
-					m_rtBuf.SetLineFlag(i, LF_GHOST, TRUE, FALSE, FALSE);
-					++RightExtras;
-				}
+			}
+			// flag lines
+			{
+				for (UINT i = curDiff.dbegin0 ; i <= curDiff.dend0; i++)
+					m_ltBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
+				// blanks are already inserted (and flagged) to compensate for diff on other side
 			}
 			break;
 		case OP_RIGHTONLY:
-			// right side
+			// set curdiff
 			{
-				// just flag the lines
-				curDiff.dbegin1 = curDiff.begin1+RightExtras;
-				curDiff.dend1 = curDiff.end1+RightExtras;
-				curDiff.blank1 = -1;
-				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
-				{
-					m_rtBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
-				}
-			}
-			// left side
-			{
-				// need to insert blanks to compensate for diff on other side
-				curDiff.dbegin0 = curDiff.begin0+LeftExtras;
-				curDiff.dend0 = curDiff.dbegin0+(curDiff.end1-curDiff.begin1);
+				// left side
+				curDiff.dend0 = lcount0new+nline1-1;
 				curDiff.blank0 = curDiff.dbegin0;
-				int nCount = curDiff.dend0-curDiff.dbegin0+1;
-				m_ltBuf.InsertLine(NULL, 0, curDiff.dbegin0, nCount);
-				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
-				{
-					m_ltBuf.SetLineFlag(i, LF_GHOST, TRUE, FALSE, FALSE);
-					++LeftExtras;
-				}
+				// right side
+				curDiff.dend1 = lcount1new+nline1-1;
+				curDiff.blank1 = -1;
+			}
+			// flag lines
+			{
+				for (UINT i = curDiff.dbegin1 ; i <= curDiff.dend1 ; i++)
+					m_rtBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
+				// blanks are already inserted (and flagged) to compensate for diff on other side
 			}
 			break;
 		case OP_TRIVIAL:
 			++m_nTrivialDiffs;
 			// fall through and handle as diff
 		case OP_DIFF:
-			// left side
+			// set curdiff
 			{
-				// just flag the lines
-				curDiff.dbegin0 = curDiff.begin0+LeftExtras;
-				curDiff.dend0 = curDiff.end0+LeftExtras;
-				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
+				int nline = max(nline0, nline1);
+				// left side
+				curDiff.dend0 = lcount0new+nline-1;
+				curDiff.blank0 = -1;
+				// right side
+				curDiff.dend1 = lcount1new+nline-1;
+				curDiff.blank1 = -1;
+				if (nline0 > nline1)
+					// more lines on left, ghost lines on right side
+					curDiff.blank1 = curDiff.dend1+1 - nextraAbs;
+				else if (nline0 < nline1)
+					// more lines on right, ghost lines on left side
+					curDiff.blank0 = curDiff.dend0+1 - nextraAbs;
+			}
+			// flag lines
+			{
+				// left side
+				for (UINT i = curDiff.dbegin0; i <= curDiff.dend0 ; i++)
 				{
-					DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;
-					// set, don't remove previous line, don't update
-					m_ltBuf.SetLineFlag(i, dflag, TRUE, FALSE, FALSE);
-				}
-
-				// insert blanks if needed
-				int blanks = (curDiff.end1-curDiff.begin1)-(curDiff.end0-curDiff.begin0);
-				if (blanks>0)
-				{
-					curDiff.blank0 = curDiff.dend0+1;
-					curDiff.blank1 = -1;
-					m_ltBuf.InsertLine(NULL, 0, curDiff.blank0, blanks);
-					for (int b=0; b < blanks; b++)
+					if (curDiff.blank0 == -1 || i < curDiff.blank0)
 					{
-						int idx = curDiff.blank0+b;
+						// set diff or trivial flag
+						DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;
+						m_ltBuf.SetLineFlag(i, dflag, TRUE, FALSE, FALSE);
+					}
+					else
+					{
+						// ghost lines are already inserted (and flagged)
 						// ghost lines opposite to trivial lines are ghost and trivial
-						m_ltBuf.SetLineFlag(idx, LF_GHOST, TRUE, FALSE, FALSE);
 						if (curDiff.op == OP_TRIVIAL)
-							m_ltBuf.SetLineFlag(idx, LF_TRIVIAL, TRUE, FALSE, FALSE);
-						curDiff.dend0++;
-						LeftExtras++;
+							m_ltBuf.SetLineFlag(i, LF_TRIVIAL, TRUE, FALSE, FALSE);
 					}
 				}
-			}
-			// right side
-			{
-				// just flag the lines
-				curDiff.dbegin1 = curDiff.begin1+RightExtras;
-				curDiff.dend1 = curDiff.end1+RightExtras;
-				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
+				// right side
+				for (i = curDiff.dbegin1; i <= curDiff.dend1 ; i++)
 				{
-					DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;
-					// set, don't remove previous line, don't update
-					m_rtBuf.SetLineFlag(i, dflag, TRUE, FALSE, FALSE);
-				}
-
-				// insert blanks if needed
-				int blanks = (curDiff.end0-curDiff.begin0)-(curDiff.end1-curDiff.begin1);
-				if (blanks>0)
-				{
-					curDiff.blank1 = curDiff.dend1+1;
-					curDiff.blank0 = -1;
-					m_rtBuf.InsertLine(NULL, 0, curDiff.blank1, blanks);
-					for (int b=0; b < blanks; b++)
+					if (curDiff.blank1 == -1 || i < curDiff.blank1)
 					{
-						int idx = curDiff.blank1+b;
+						// set diff or trivial flag
+						DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;
+						m_rtBuf.SetLineFlag(i, dflag, TRUE, FALSE, FALSE);
+					}
+					else
+					{
+						// ghost lines are already inserted (and flagged)
 						// ghost lines opposite to trivial lines are ghost and trivial
-						m_rtBuf.SetLineFlag(idx, LF_GHOST, TRUE, FALSE, FALSE);
 						if (curDiff.op == OP_TRIVIAL)
-							m_rtBuf.SetLineFlag(idx, LF_TRIVIAL, TRUE, FALSE, FALSE);
-						curDiff.dend1++;
-						++RightExtras;
+							m_rtBuf.SetLineFlag(i, LF_TRIVIAL, TRUE, FALSE, FALSE);
 					}
 				}
 			}
 			break;
-		}
-	}
+		}           // switch (curDiff.op)
+	}             // for (nDiff = m_nDiffs; nDiff-- > 0; )
 
 	if (m_nTrivialDiffs)
 	{

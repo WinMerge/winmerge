@@ -811,22 +811,21 @@ InsertGhostLine (CCrystalTextView * pSource, int nLine)
 void CGhostTextBuffer::
 RemoveAllGhostLines()
 {
-	int nCount = 0;
-	for(int ct=GetLineCount()-1; ct>=0; --ct) 
-	{
+	int nlines = GetLineCount();
+	int newnl = 0;
+	int ct;
+	// Free the buffer of ghost lines
+	for(ct=0; ct < nlines; ct++)
 		if (GetLineFlags(ct) & LF_GHOST)
-		{
-			nCount++;
-		}
-		else if (nCount) 
-		{
-			DeleteLine(ct+1, nCount);
-			nCount = 0;
-		}
-	}
+			delete[] m_aLines[ct].m_pcLine;
+	// Compact non-ghost lines
+	// (we copy the buffer address, so the buffer don't move and we don't free it)
+	for(ct=0; ct < nlines; ct++)
+		if ((GetLineFlags(ct) & LF_GHOST) == 0)
+			m_aLines[newnl++] = m_aLines[ct];
 
-	if (nCount)
-		DeleteLine(0, nCount);
+	// Discard unused entries in one shot
+	m_aLines.SetSize(newnl);
 
 	RecomputeRealityMapping();
 }

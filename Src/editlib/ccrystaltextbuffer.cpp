@@ -318,6 +318,35 @@ AppendLine (int nLineIndex, LPCTSTR pszChars, int nLength /*= -1*/ )
   ASSERT (li.m_nLength + li.m_nEolChars <= li.m_nMax);
 }
 
+void CCrystalTextBuffer::MoveLine(int line1, int line2, int newline1)
+{
+	int ldiff = newline1 - line1;
+	if (ldiff > 0) {
+		for (int l = line2; l >= line1; l--)
+			m_aLines[l+ldiff] = m_aLines[l];
+	}
+	else if (ldiff < 0) {
+		for (int l = line1; l <= line2; l++)
+			m_aLines[l+ldiff] = m_aLines[l];
+	}
+}
+
+void CCrystalTextBuffer::SetEmptyLine (int nPosition, int nCount /*= 1*/ )
+{
+	if (nCount > 0) {
+		SLineInfo li;
+		li.m_nLength = 0;
+		li.m_nEolChars = 0;
+		li.m_nMax = ALIGN_BUF_SIZE (li.m_nLength + 1);
+		for (int ic = 0; ic < nCount; ic++) 
+		{
+			m_aLines[nPosition+ic] = li;
+			m_aLines[nPosition+ic].m_pcLine = new TCHAR[li.m_nMax];
+			m_aLines[nPosition+ic].m_pcLine[0] = _T('\0');
+		}
+	}
+}
+
 void CCrystalTextBuffer::
 FreeAll ()
 {
