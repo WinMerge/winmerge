@@ -7,6 +7,8 @@
   Src/Languages: MergeSlovak.rc
  BUG: [ 955553 ] Russian rc file broken
   Src/Languages: MergeRussian.rc
+ BUG: [ 955557 ] Chinese traditional rc file broken (cvs)
+  Src/Languages: MergeChineseTraditional.rc
   
 2004-05-17 Kimmo
  PATCH: [ 955411 ] Remove non-functional firstdiff selection
