@@ -189,20 +189,20 @@ BEGIN
         MENUITEM "&Customize columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
     END
-    POPUP "Fe&nêtres"
-    BEGIN
-        MENUITEM "Fermer",                      ID_FILE_CLOSE
-        MENUITEM SEPARATOR
-        MENUITEM "Mosaïque &horizontale",       ID_WINDOW_TILE_HORZ
-        MENUITEM "Mosaïque &verticale",         ID_WINDOW_TILE_VERT
-        MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
-    END
     POPUP "&Plugins"
     BEGIN
         MENUITEM "Unpacking manuel",            ID_UNPACK_MANUAL
         MENUITEM "Unpacking automatique",         ID_UNPACK_AUTO
         MENUITEM SEPARATOR
         MENUITEM "Editer avec unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
+    END
+    POPUP "Fe&nêtre"
+    BEGIN
+        MENUITEM "Fermer",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Mosaïque &horizontale",       ID_WINDOW_TILE_HORZ
+        MENUITEM "Mosaïque &verticale",         ID_WINDOW_TILE_VERT
+        MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
     END
     POPUP "&Aide"
     BEGIN

@@ -189,6 +189,13 @@ BEGIN
         MENUITEM "&Customize columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
     END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
+        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
+    END
     POPUP "&Vindue"
     BEGIN
         MENUITEM "Luk",                         ID_FILE_CLOSE
@@ -196,13 +203,6 @@ BEGIN
         MENUITEM "&Horisontale vinduer",        ID_WINDOW_TILE_HORZ
         MENUITEM "&Vertikale vinduer",          ID_WINDOW_TILE_VERT
         MENUITEM "&Kaskade",                    ID_WINDOW_CASCADE
-    END
-    POPUP "&Plugins"
-    BEGIN
-        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
-        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
-        MENUITEM SEPARATOR
-        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
     END
     POPUP "&Hjælp"
     BEGIN

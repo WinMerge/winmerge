@@ -191,6 +191,13 @@ BEGIN
         MENUITEM "&Spalten anpassen...",        ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Patch generieren...",        ID_TOOLS_GENERATEPATCH
     END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
+        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
+    END
     POPUP "&Fenster"
     BEGIN
         MENUITEM "Schlieﬂen",                   ID_FILE_CLOSE
@@ -198,13 +205,6 @@ BEGIN
         MENUITEM "&Horizontal anordnen",        ID_WINDOW_TILE_HORZ
         MENUITEM "&Vertikal anordnen",          ID_WINDOW_TILE_VERT
         MENUITEM "‹ber&lappend",                ID_WINDOW_CASCADE
-    END
-    POPUP "&Plugins"
-    BEGIN
-        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
-        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
-        MENUITEM SEPARATOR
-        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
     END
     POPUP "&?"
     BEGIN

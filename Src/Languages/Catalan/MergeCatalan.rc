@@ -187,6 +187,13 @@ BEGIN
         MENUITEM "&Personalitza les columnes...", ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Genera un fitxer de diferències...", ID_TOOLS_GENERATEPATCH
     END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
+        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
+    END
     POPUP "Fi&nestra"
     BEGIN
         MENUITEM "&Tanca",                      ID_FILE_CLOSE
@@ -194,13 +201,6 @@ BEGIN
         MENUITEM "Finestres en mosaic &horitzontal", ID_WINDOW_TILE_HORZ
         MENUITEM "Finestres en mosaic &vertical", ID_WINDOW_TILE_VERT
         MENUITEM "Finestres en &cascada",       ID_WINDOW_CASCADE
-    END
-    POPUP "&Plugins"
-    BEGIN
-        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
-        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
-        MENUITEM SEPARATOR
-        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
     END
     POPUP "&Ajuda"
     BEGIN
