@@ -397,18 +397,18 @@ public :
     // which WinMerge uses for left-only or right-only lines.
 public:
     int ApparentLastRealLine() const;
-    int ComputeRealLine(int nApparentLine);
-    int ComputeApparentLine(int nRealLine);
+    int ComputeRealLine(int nApparentLine) const;
+    int ComputeApparentLine(int nRealLine) const;
     // richer position information   yApparent = apparent(yReal) - yGhost
-    int ComputeRealLineAndGhostAdjustment(int nApparentLine, int& decToReal);
-    int ComputeApparentLine(int nRealLine, int decToReal);
+    int ComputeRealLineAndGhostAdjustment(int nApparentLine, int& decToReal) const;
+    int ComputeApparentLine(int nRealLine, int decToReal) const;
 
 
     void RecomputeRealityMapping();
     
 protected :
     void RecomputeEOL(CCrystalTextView * pSource, int nStartLine, int nEndLine);
-    void checkFlagsFromReality(BOOL bFlag);
+    void checkFlagsFromReality(BOOL bFlag) const;
 
 
     // Generated message map functions

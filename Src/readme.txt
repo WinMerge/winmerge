@@ -1,5 +1,7 @@
 2003-07-21 Perry
  Added ChineseTraditional, ChineseSimplified, Korean, translations.
+ PATCH: [ 775000 ] Improve const correctness in crystaltextbuffer
+ editlib: crystaltextbuffer.cpp crystaltextbuffer.h
 
 2003-07-18 Perry
  PATCH: [ 767147 ] Don't clear existing dirdoc until user saves

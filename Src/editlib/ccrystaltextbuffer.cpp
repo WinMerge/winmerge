@@ -2068,7 +2068,7 @@ int CCrystalTextBuffer::ApparentLastRealLine() const
 {
   int bmax = m_RealityBlocks.GetUpperBound();
   if (bmax<0) return -1;
-  RealityBlock & block = m_RealityBlocks[bmax];
+  const RealityBlock & block = m_RealityBlocks[bmax];
   return block.nStartApparent + block.nCount - 1;
 }
 
@@ -2079,7 +2079,7 @@ int CCrystalTextBuffer::ApparentLastRealLine() const
 // if nApparentLine is greater than the last valid apparent line, ASSERT
 // ie, lines 0->0, 1->2, 2->4,
 // for argument of 3, return 2
-int CCrystalTextBuffer::ComputeRealLine(int nApparentLine) 
+int CCrystalTextBuffer::ComputeRealLine(int nApparentLine) const
 {
   int bmax = m_RealityBlocks.GetUpperBound();
   // first get the degenerate cases out of the way
@@ -2091,7 +2091,7 @@ int CCrystalTextBuffer::ComputeRealLine(int nApparentLine)
   ASSERT(nApparentLine < GetLineCount());
 
   // after last block ?
-  RealityBlock & maxblock = m_RealityBlocks[bmax];
+  const RealityBlock & maxblock = m_RealityBlocks[bmax];
   if (nApparentLine >= maxblock.nStartApparent + maxblock.nCount)
     return maxblock.nStartReal + maxblock.nCount;
 
@@ -2101,7 +2101,7 @@ int CCrystalTextBuffer::ComputeRealLine(int nApparentLine)
   while (blo<=bhi)
     {
       i = (blo+bhi)/2;
-      RealityBlock & block = m_RealityBlocks[i];
+      const RealityBlock & block = m_RealityBlocks[i];
       if (nApparentLine < block.nStartApparent)
         bhi = i-1;
       else if (nApparentLine >= block.nStartApparent + block.nCount)
@@ -2115,7 +2115,7 @@ int CCrystalTextBuffer::ComputeRealLine(int nApparentLine)
 
 // return apparent line for this underlying real line
 // if real line is out of bounds, return last valid apparent line + 1
-int CCrystalTextBuffer::ComputeApparentLine(int nRealLine)
+int CCrystalTextBuffer::ComputeApparentLine(int nRealLine) const
 {
   int bmax = m_RealityBlocks.GetUpperBound();
   // first get the degenerate cases out of the way
@@ -2123,7 +2123,7 @@ int CCrystalTextBuffer::ComputeApparentLine(int nRealLine)
   if (bmax<0)
     return 0;
   // after last block ?
-  RealityBlock & maxblock = m_RealityBlocks[bmax];
+  const RealityBlock & maxblock = m_RealityBlocks[bmax];
   if (nRealLine >= maxblock.nStartReal + maxblock.nCount)
     return GetLineCount();
 
@@ -2133,7 +2133,7 @@ int CCrystalTextBuffer::ComputeApparentLine(int nRealLine)
   while (blo<=bhi)
     {
       i = (blo+bhi)/2;
-      RealityBlock & block = m_RealityBlocks[i];
+      const RealityBlock & block = m_RealityBlocks[i];
       if (nRealLine < block.nStartReal)
         bhi = i-1;
       else if (nRealLine >= block.nStartReal + block.nCount)
@@ -2152,7 +2152,7 @@ int CCrystalTextBuffer::ComputeApparentLine(int nRealLine)
 // if nApparentLine is greater than the last valid apparent line, ASSERT
 // ie, lines 0->0, 1->2, 2->4,
 // for argument of 3, return 2, and decToReal = 1
-int CCrystalTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine, int& decToReal)
+int CCrystalTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine, int& decToReal) const
 {
   int bmax = m_RealityBlocks.GetUpperBound();
   // first get the degenerate cases out of the way
@@ -2167,7 +2167,7 @@ int CCrystalTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine, int
   ASSERT(nApparentLine < GetLineCount());
 
   // after last block ?
-  RealityBlock & maxblock = m_RealityBlocks[bmax];
+  const RealityBlock & maxblock = m_RealityBlocks[bmax];
   if (nApparentLine >= maxblock.nStartApparent + maxblock.nCount)
   {
     decToReal = GetLineCount() - nApparentLine;
@@ -2180,7 +2180,7 @@ int CCrystalTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine, int
   while (blo<=bhi)
     {
       i = (blo+bhi)/2;
-      RealityBlock & block = m_RealityBlocks[i];
+      const RealityBlock & block = m_RealityBlocks[i];
       if (nApparentLine < block.nStartApparent)
         bhi = i-1;
       else if (nApparentLine >= block.nStartApparent + block.nCount)
@@ -2200,7 +2200,7 @@ int CCrystalTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine, int
 // returns nApparent = apparent(nReal) - decToReal
 // if the previous real line has apparent number   apparent(nReal) - dec, with dec < decToReal,
 //   return apparent(nReal) - dec + 1
-int CCrystalTextBuffer::ComputeApparentLine(int nRealLine, int decToReal)
+int CCrystalTextBuffer::ComputeApparentLine(int nRealLine, int decToReal) const
 {
   int blo, bhi;
   int nPreviousBlock;
@@ -2211,7 +2211,7 @@ int CCrystalTextBuffer::ComputeApparentLine(int nRealLine, int decToReal)
   if (bmax<0)
     return 0;
   // after last block ?
-  RealityBlock & maxblock = m_RealityBlocks[bmax];
+  const RealityBlock & maxblock = m_RealityBlocks[bmax];
   if (nRealLine >= maxblock.nStartReal + maxblock.nCount)
   {
     nPreviousBlock = bmax;
@@ -2226,7 +2226,7 @@ int CCrystalTextBuffer::ComputeApparentLine(int nRealLine, int decToReal)
   while (blo<=bhi)
     {
       i = (blo+bhi)/2;
-      RealityBlock & block = m_RealityBlocks[i];
+      const RealityBlock & block = m_RealityBlocks[i];
       if (nRealLine < block.nStartReal)
         bhi = i-1;
       else if (nRealLine >= block.nStartReal + block.nCount)
@@ -2252,7 +2252,7 @@ limitWithPreviousBlock:
     lastApparentInPreviousBlock = -1;
   else
   {
-    RealityBlock & previousBlock = m_RealityBlocks[nPreviousBlock];
+    const RealityBlock & previousBlock = m_RealityBlocks[nPreviousBlock];
     lastApparentInPreviousBlock = previousBlock.nStartApparent + previousBlock.nCount - 1;
   }
 
@@ -2373,13 +2373,14 @@ void  CCrystalTextBuffer::RecomputeEOL(CCrystalTextView * pSource, int nStartLin
 
 // Check all lines, and ASSERT if reality blocks differ from flags
 // This means that this only has effect in DEBUG build
-void CCrystalTextBuffer::checkFlagsFromReality(BOOL bFlag) {
+void CCrystalTextBuffer::checkFlagsFromReality(BOOL bFlag) const
+{
   int bmax = m_RealityBlocks.GetUpperBound();
   int b;
   int i = 0;
   for (b = 0 ; b <= bmax ; b ++)
     {
-      RealityBlock & block = m_RealityBlocks[b];
+      const RealityBlock & block = m_RealityBlocks[b];
       for ( ; i < block.nStartApparent ; i++)
         ASSERT ((GetLineFlags(i) & LF_GHOST) != 0);
       for ( ; i < block.nStartApparent+block.nCount ; i++)
