@@ -189,6 +189,11 @@
 #define IDB_WINDOW_HORIZONTAL           271
 #define IDB_WINDOW_VERTICAL             272
 #define IDB_WINDOW_CLOSE                273
+#define IDB_WINDOW_CHANGEPANE           274
+#define IDB_EDIT_GOTO                   275
+#define IDB_EDIT_REPLACE                276
+#define IDB_VIEW_LANGUAGE               277
+#define IDB_VIEW_SELECTFONT             278
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

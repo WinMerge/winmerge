@@ -1005,6 +1005,11 @@ IDB_WINDOW_CASCADE      BITMAP                  "res\\cascade.bmp"
 IDB_WINDOW_HORIZONTAL   BITMAP                  "res\\horizontally.bmp"
 IDB_WINDOW_VERTICAL     BITMAP                  "res\\vertically.bmp"
 IDB_WINDOW_CLOSE        BITMAP                  "res\\close.bmp"
+IDB_WINDOW_CHANGEPANE   BITMAP                  "res\\change_pane.bmp"
+IDB_EDIT_GOTO           BITMAP                  "res\\go_to.bmp"
+IDB_EDIT_REPLACE        BITMAP                  "res\\replace.bmp"
+IDB_VIEW_LANGUAGE       BITMAP                  "res\\language.bmp"
+IDB_VIEW_SELECTFONT     BITMAP                  "res\\select_font.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -1027,6 +1027,11 @@ IDB_WINDOW_CASCADE      BITMAP  DISCARDABLE     "res\\cascade.bmp"
 IDB_WINDOW_HORIZONTAL   BITMAP  DISCARDABLE     "res\\horizontally.bmp"
 IDB_WINDOW_VERTICAL     BITMAP  DISCARDABLE     "res\\vertically.bmp"
 IDB_WINDOW_CLOSE        BITMAP  DISCARDABLE     "res\\close.bmp"
+IDB_WINDOW_CHANGEPANE   BITMAP  DISCARDABLE     "res\\change_pane.bmp"
+IDB_EDIT_GOTO           BITMAP  DISCARDABLE     "res\\go_to.bmp"
+IDB_EDIT_REPLACE        BITMAP  DISCARDABLE     "res\\replace.bmp"
+IDB_VIEW_LANGUAGE       BITMAP  DISCARDABLE     "res\\language.bmp"
+IDB_VIEW_SELECTFONT     BITMAP  DISCARDABLE     "res\\select_font.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

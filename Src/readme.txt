@@ -1,3 +1,11 @@
+2004-03-17 Kimmo
+ PATCH: [ 913743 ] Icons for menuitems (RFE 873697)
+  More nice icons from Tim Gerundt (Edit/Goto, Edit/Replace, View/Language, View/Font, Window/Change Pane)
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/res new files: change_pane.bmp go_to.bmp language.bmp replace.bmp select_font.bmp
+  Languages: *.rc resource.h
+  Languages/res new files: change_pane.bmp go_to.bmp language.bmp replace.bmp select_font.bmp
+
 2004-03-16 Seier
   Installer [Patch 917142]:
     -Now detects whether or not the user requires an updated ComCtl32.dll and if needed updates it.  

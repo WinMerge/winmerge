@@ -346,6 +346,11 @@ HMENU CMainFrame::NewDefaultMenu()
 	m_default.ModifyODMenu(NULL, ID_WINDOW_TILE_HORZ, IDB_WINDOW_HORIZONTAL);
 	m_default.ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WINDOW_VERTICAL);
 	m_default.ModifyODMenu(NULL, ID_FILE_CLOSE, IDB_WINDOW_CLOSE);
+	m_default.ModifyODMenu(NULL, ID_WINDOW_CHANGE_PANE, IDB_WINDOW_CHANGEPANE);
+	m_default.ModifyODMenu(NULL, ID_EDIT_WMGOTO, IDB_EDIT_GOTO);
+	m_default.ModifyODMenu(NULL, ID_EDIT_REPLACE, IDB_EDIT_REPLACE);
+	m_default.ModifyODMenu(NULL, ID_VIEW_LANGUAGE, IDB_VIEW_LANGUAGE);
+	m_default.ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
 
 	m_default.LoadToolbar(IDR_MAINFRAME);
 	return(m_default.Detach());
