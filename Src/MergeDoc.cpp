@@ -2056,9 +2056,9 @@ static int firstdiff(BOOL case_sensitive, int whitespace, const CString & str1, 
 		{
 			// we don't care at all about whitespace
 			// skip all whitespace on both sides
-			while (i1<str1.GetLength() && isspace(str1[i1]))
+			while (i1<str1.GetLength() && _istspace(str1[i1]))
 				++i1;
-			while (i2<str2.GetLength() && isspace(str2[i2]))
+			while (i2<str2.GetLength() && _istspace(str2[i2]))
 				++i2;
 			if (i1==str1.GetLength())
 				return (i2==str2.GetLength()) ? -1 : i1;
@@ -2072,16 +2072,16 @@ static int firstdiff(BOOL case_sensitive, int whitespace, const CString & str1, 
 				return -1;
 			if (i2==str2.GetLength())
 				return i1;
-			if (isspace(str1[i1]))
+			if (_istspace(str1[i1]))
 			{
-				if (!isspace(str2[i2]))
+				if (!_istspace(str2[i2]))
 					return i1;
 				// skip whitespace run on both sides
-				while (i1<str1.GetLength() && isspace(str1[i1]))
+				while (i1<str1.GetLength() && _istspace(str1[i1]))
 					++i1;
 				if (i1==str1.GetLength())
 					return -1;
-				while (i2<str2.GetLength() && isspace(str2[i2]))
+				while (i2<str2.GetLength() && _istspace(str2[i2]))
 					++i2;
 				if (i2==str2.GetLength())
 					return i1;
@@ -2116,9 +2116,9 @@ static int lastdiff(BOOL case_sensitive, int whitespace, const CString & str1, c
 		{
 			// we don't care at all about whitespace
 			// skip all whitespace on boths ides
-			while (i1>=0 && isspace(str1[i1]))
+			while (i1>=0 && _istspace(str1[i1]))
 				--i1;
-			while (i2>=0 && isspace(str2[i2]))
+			while (i2>=0 && _istspace(str2[i2]))
 				--i2;
 			if (i1<0)
 				return (i2<0) ? -1 : 0;
@@ -2132,16 +2132,16 @@ static int lastdiff(BOOL case_sensitive, int whitespace, const CString & str1, c
 				return -1;
 			if (i2<0)
 				return i1;
-			if (isspace(str1[i1]))
+			if (_istspace(str1[i1]))
 			{
-				if (!isspace(str2[i2]))
+				if (!_istspace(str2[i2]))
 					return i1;
 				// skip whitespace run on both sides
-				while (i1>=0 && isspace(str1[i1]))
+				while (i1>=0 && _istspace(str1[i1]))
 					--i1;
 				if (i1<0)
 					return -1;
-				while (i2>=0 && isspace(str2[i2]))
+				while (i2>=0 && _istspace(str2[i2]))
 					--i2;
 				if (i2<0)
 					return i1;

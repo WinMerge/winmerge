@@ -1586,7 +1586,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y - 1);
           LPCTSTR pszLineChars = m_pTextBuffer->GetLineChars (ptCursorPos.y - 1);
           int nPos = 0;
-          while (nPos < nLength && isspace (pszLineChars[nPos]))
+          while (nPos < nLength && _istspace (pszLineChars[nPos]))
             nPos++;
 
           if (nPos > 0)
@@ -1720,7 +1720,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
           LPCTSTR pszLineChars = m_pTextBuffer->GetLineChars (ptCursorPos.y );
           int nPos = 0;
-          while (nPos < nLength && isspace (pszLineChars[nPos]))
+          while (nPos < nLength && _istspace (pszLineChars[nPos]))
             nPos++;
           if (nPos == nLength - 1)
             {
@@ -1765,7 +1765,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
           LPCTSTR pszLineChars = m_pTextBuffer->GetLineChars (ptCursorPos.y );
           int nPos = 0;
-          while (nPos < nLength && isspace (pszLineChars[nPos]))
+          while (nPos < nLength && _istspace (pszLineChars[nPos]))
             nPos++;
           if (ptCursorPos.y > 0 && nPos && nPos == nLength - 1)
             {

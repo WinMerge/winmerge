@@ -1,7 +1,7 @@
 2003-10-23 Perry
- BUG: [ 828619 ] Prevent closing dir doc whilst scanning
+ PATCH: [ 828619 ] Prevent closing dir doc whilst scanning
   WinMerge: DirDoc.cpp DirDoc.h
- BUG: [ 829306 ] Fix unifile code to append last line
+ PATCH: [ 829306 ] Fix unifile code to append last line
   WinMerge: MergeDoc.cpp
  Handle lib & includes for MakeResDll (& rearrange globals). 
  Bump version from 1.0.1.0 to 1.0.2.0.
@@ -9,6 +9,13 @@
  Handle lib & includes for .NET and .NET 2003 in MakeResDll.
  Fix location of RegKey.h in MakeResDll.
   MakeResDll: MakeResDll.cpp MakeResDll.dsp readme.txt
+ BUG: [ 827996 ] isspace uses (-> _istspace)
+  WinMerge: MergeDoc.cpp
+  WinMerge\editlib:
+   asp.cpp basic.cpp batch.cpp ccrystaleditview.cpp ccrystaltextview2.cpp
+   cplusplus.cpp dcl.cpp fortran.cpp html.cpp is.cpp java.cpp lisp.cpp
+   pascal.cpp perl.cpp php.cpp python.cpp rexx.cpp rsrc.cpp sgml.cpp
+   sh.cpp siod.cpp sql.cpp tcl.cpp tex.cpp
 
 2003-10-23 Kimmo
  BUG: [ 815147 ] Scrollwheel scrolls too far at end of file

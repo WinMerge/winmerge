@@ -379,14 +379,14 @@ out:
               dwCookie |= COOKIE_PREPROCESSOR;
               continue;
             }
-          if (nLength >= I + 3 && !_tcsnicmp (pszChars + I, _T ("REM"), 3) && (isspace (pszChars[I + 3]) || nLength == I + 3))
+          if (nLength >= I + 3 && !_tcsnicmp (pszChars + I, _T ("REM"), 3) && (_istspace (pszChars[I + 3]) || nLength == I + 3))
             {
               DEFINE_BLOCK (I, COLORINDEX_COMMENT);
               dwCookie |= COOKIE_COMMENT;
               break;
             }
 
-          if (!isspace (pszChars[I]))
+          if (!_istspace (pszChars[I]))
             bFirstChar = FALSE;
         }
 

@@ -150,7 +150,7 @@ MoveWordLeft (BOOL bSelect)
 
   LPCTSTR pszChars = GetLineChars (m_ptCursorPos.y);
   int nPos = m_ptCursorPos.x;
-  while (nPos > 0 && isspace (pszChars[nPos - 1]))
+  while (nPos > 0 && _istspace (pszChars[nPos - 1]))
     nPos--;
 
   if (nPos > 0)
@@ -164,7 +164,7 @@ MoveWordLeft (BOOL bSelect)
       else
         {
           while (nPos > 0 && !xisalnum (pszChars[nPos - 1])
-                && !isspace (pszChars[nPos - 1]))
+                && !_istspace (pszChars[nPos - 1]))
             nPos--;
         }
     }
@@ -213,11 +213,11 @@ MoveWordRight (BOOL bSelect)
   else
     {
       while (nPos < nLength && !xisalnum (pszChars[nPos])
-            && !isspace (pszChars[nPos]))
+            && !_istspace (pszChars[nPos]))
         nPos++;
     }
 
-  while (nPos < nLength && isspace (pszChars[nPos]))
+  while (nPos < nLength && _istspace (pszChars[nPos]))
     nPos++;
 
   m_ptCursorPos.x = nPos;
@@ -314,7 +314,7 @@ MoveHome (BOOL bSelect)
 	/*ORIGINAL
 	int nHomePos = 0;
 	*///END SW
-  while (nHomePos < nLength && isspace (pszChars[nHomePos]))
+  while (nHomePos < nLength && _istspace (pszChars[nHomePos]))
     nHomePos++;
   if (nHomePos == nLength || m_ptCursorPos.x == nHomePos)
 		//BEGIN SW

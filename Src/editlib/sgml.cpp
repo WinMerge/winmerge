@@ -405,7 +405,7 @@ out:
 
       if (bFirstChar)
         {
-          if (!isspace (pszChars[I]))
+          if (!_istspace (pszChars[I]))
             bFirstChar = FALSE;
         }
 

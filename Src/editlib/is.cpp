@@ -635,7 +635,7 @@ out:
               dwCookie |= COOKIE_PREPROCESSOR;
               continue;
             }
-          if (!isspace (pszChars[I]))
+          if (!_istspace (pszChars[I]))
             bFirstChar = FALSE;
         }
 
@@ -674,7 +674,7 @@ out:
 
                   for (int j = I; j < nLength; j++)
                     {
-                      if (!isspace (pszChars[j]))
+                      if (!_istspace (pszChars[j]))
                         {
                           if (pszChars[j] == '(')
                             {
@@ -719,7 +719,7 @@ out:
 
           for (int j = I; j < nLength; j++)
             {
-              if (!isspace (pszChars[j]))
+              if (!_istspace (pszChars[j]))
                 {
                   if (pszChars[j] == '(')
                     {
