@@ -1,3 +1,7 @@
+2003-10-20 Laoran
+ BUG: [ 826233 ] plugins or unicode bug
+  WinMerge: UnicodeUtf8.cpp
+
 2003-10-19 Perry
  Add writeup for MakePatchDirs to readme-developers info. Add section on 
   minor patches and bugfixes. Also make minor grammar fixes. Also update 
