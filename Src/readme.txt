@@ -1,3 +1,7 @@
+2004-03-22 Seier
+  I added /InnoSetup/desktop.ini file to be used as a template for making C:\Program Files\WinMerge, or wherever that might be, have a customized (WinMerge) folder icon. 
+    InnoSetup: desktop.ini
+
 2004-03-22 Kimmo
  PATCH: [ 920530 ] Remember Patch-dialog settings
   Src: Merge.rc PatchDlg.cpp PatchDlg.h resource.h
@@ -13,19 +17,22 @@
   Languages: *.rc
 
 2004-03-21 Seier
-  Patch: [ 919134 ] I added the \InnoSetup\Runtimes\OleAut32.dll necessary for others to compile the WinMerge.iss script.  Sorry about that.  
+  Patch: [ 919134 ] I added the OleAut32.dll necessary for others to compile the WinMerge.iss script.  Sorry about that.
+    InnoSetup: /Runtimes/OleAut32.dll  
 
 2004-03-22 Laoran
  PATCH: [ 909672 ] Undo makes marker messy
   Src: MergeEditView.cpp
   Src/editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h
 
-2004-03-21 Seier
-  -The Installer now also installs WinMerge as the merging application in addition being the differencing application.  
+2004-03-21 Seier 
   -I compressed Splash1.bmp using RLE (Run Length Encoding [Lossless compression]) and named it as Splash2.bmp.  I only modified the English version.  Please
-   test it out and send me an e-mail if it works and I'll create the RLE versions of all the other images.  PS: the file size went from 163 --> 111KB.  
+    test it out and send me an e-mail if it works and I'll create the RLE versions of all the other images.  PS: the file size went from 163 --> 111KB.  
+    Src: /res/Splash2.bmp
+  -The Installer now also installs WinMerge as the merging application in addition being the differencing application. 
   -Installer updated to use \ShellExtension\ShellExtension.dll as the new location for that file 
   -Installer will now remove the ComCtlupd.exe at the end of the installation.  
+    InnoSetup: WinMerge.iss
 
 2004-03-21 Kimmo
  PATCH: [ 918545 ] New Splash Screen
