@@ -1,3 +1,7 @@
+2003-06-24 Perry
+ PATCH: [ 759778 ] Minor cleanup of crystaltextbuffer.cpp
+  editlib: ccrystaltextbuffer.cpp
+
 2003-06-23 Perry
  PATCH: [ 759533 ] Fix InternalInsertText & InternalDeleteText
   editlib: ccrystaltextbuffer.cpp

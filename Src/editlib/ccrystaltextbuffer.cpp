@@ -367,6 +367,10 @@ void CCrystalTextBuffer::SetReadOnly (BOOL bReadOnly /*= TRUE*/ )
   m_bReadOnly = bReadOnly;
 }
 
+
+// WinMerge has own routine for loading
+#if 0
+
 static LPCTSTR crlfs[] =
   {
     _T ("\x0d\x0a"), //  DOS/Windows style
@@ -374,8 +378,6 @@ static LPCTSTR crlfs[] =
     _T ("\x0a")      //  Macintosh style
   };
 
-// WinMerge has own routine for loading
-#if 0
 BOOL CCrystalTextBuffer::
 LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 {
@@ -660,7 +662,7 @@ GetCRLFMode ()
 void CCrystalTextBuffer::
 SetCRLFMode (int nCRLFMode)
 {
-  if (nCRLFMode==CRLF_STYLE_DOS)
+  if (nCRLFMode==CRLF_STYLE_AUTOMATIC)
     nCRLFMode = CRLF_STYLE_DOS;
   m_nCRLFMode = nCRLFMode;
 
