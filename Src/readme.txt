@@ -1,5 +1,6 @@
 2003-02-08  Perry
  DirDoc.*: Changed from strftime to COleDateTime::Format (respects user prefs).
+ First half of [ 679692 ] Update after editing (with code combination).
  
 2003-02-07
  Added 24 missing languages

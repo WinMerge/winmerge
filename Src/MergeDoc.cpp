@@ -198,6 +198,20 @@ void CMergeDoc::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc commands
 
+// remove lines with flags==deleteflags, and clear all others
+static PrepareBufferForRescan(CMergeDoc::CDiffTextBuffer * buf, DWORD deleteflags)
+{
+	for(int ct=buf->GetLineCount()-1; ct>=0; --ct)
+	{
+		if (buf->GetLineFlags(ct) & deleteflags)
+		{
+			buf->DeleteLine(ct);
+		}
+		else
+			buf->SetLineFlag(ct, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
+	}
+}
+
 BOOL CMergeDoc::Rescan()
 {
 	// store modified status
@@ -205,21 +219,8 @@ BOOL CMergeDoc::Rescan()
 	BOOL rtMod = m_rtBuf.IsModified();
 
 	// remove blank lines and clear winmerge flags
-	int ct;
-	for(ct=m_ltBuf.GetLineCount()-1; ct>=0; --ct)
-	{
-		if(m_ltBuf.GetLineFlags(ct) & LF_RIGHT_ONLY)
-		{
-			m_ltBuf.DeleteLine(ct);
-		}
-	}
-	for(ct=m_rtBuf.GetLineCount()-1; ct>=0; --ct)
-	{
-		if(m_rtBuf.GetLineFlags(ct) & LF_LEFT_ONLY)
-		{
-			m_rtBuf.DeleteLine(ct);
-		}
-	}
+	PrepareBufferForRescan(&m_ltBuf, LF_RIGHT_ONLY);
+	PrepareBufferForRescan(&m_rtBuf, LF_LEFT_ONLY);
 
 	// restore modified status
 	m_ltBuf.SetModified(ltMod);
