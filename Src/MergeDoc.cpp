@@ -233,10 +233,13 @@ static void RemoveEmptyLinesExceptLast(CMergeDoc::CDiffTextBuffer * buf)
 }
 
 // Save files under edit to temp files & compare again, to update diffs on screen
-BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
+int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 {
 	if (!bForced)
-		if (!m_bEnableRescan) return TRUE; // What return value ?
+	{
+		if (!m_bEnableRescan)
+			return RESCAN_SUPPRESSED;
+	}
 
 	m_bNeedIdleRescan = FALSE;
 	m_LastRescan = COleDateTime::GetCurrentTime();
@@ -272,7 +275,7 @@ BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	bool same_files=FALSE;
 	struct change *e, *p;
 	struct change *script=NULL;
-	BOOL bResult=FALSE;
+	int nResult = RESCAN_OK;
 
 	m_diffs.RemoveAll();
 	m_nDiffs=0;
@@ -447,25 +450,19 @@ BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 					mf->m_pRight->m_pList->SetItemData(rcnt, 1);
 					rcnt++;
 				}*/
-				bResult=TRUE;
+				nResult = RESCAN_OK;
 			}
 			else if (diff_flag)
 			{
-				CString s;
-				VERIFY(s.LoadString(IDS_BIN_FILES_DIFF));
-				AfxMessageBox(s, MB_ICONINFORMATION);
+				nResult = RESCAN_BINARIES;
 			}
 			else if (failed)
 			{
-				CString s;
-				VERIFY(s.LoadString(IDS_FILEERROR));
-				AfxMessageBox(s, MB_ICONSTOP);
+				nResult = RESCAN_FILE_ERR;
 			}
 			else
 			{
-				CString s;
-				VERIFY(s.LoadString(IDS_FILESSAME));
-				AfxMessageBox(s, MB_ICONINFORMATION);
+				nResult = RESCAN_IDENTICAL;
 			}
 		}
 	}
@@ -475,8 +472,7 @@ BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	if (free1)
 		free (free1);
 
-
-	return bResult;
+	return nResult;
 }
 
 void CMergeDoc::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op)
@@ -515,6 +511,28 @@ void CMergeDoc::FixLastDiffRange(BOOL left)
 		dr.end1++;
 
 	m_diffs.SetAt(count - 1, dr); 
+}
+
+void CMergeDoc::ShowRescanError(int nRescanResult)
+{
+	CString s;
+	switch (nRescanResult)
+	{
+	case RESCAN_IDENTICAL:
+		VERIFY(s.LoadString(IDS_FILESSAME));
+		AfxMessageBox(s, MB_ICONINFORMATION);
+		break;
+
+	case RESCAN_BINARIES:
+		VERIFY(s.LoadString(IDS_BIN_FILES_DIFF));
+		AfxMessageBox(s, MB_ICONINFORMATION);
+		break;
+			
+	case RESCAN_FILE_ERR:
+		VERIFY(s.LoadString(IDS_FILEERROR));
+		AfxMessageBox(s, MB_ICONSTOP);
+		break;
+	}
 }
 
 void CMergeDoc::AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList)
@@ -1359,17 +1377,26 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 	CMDIChildWnd* diffWnd = dynamic_cast<CMDIChildWnd*>(mainWnd->MDIGetActive());
 	CCrystalEditView* curView = dynamic_cast<CCrystalEditView*>(diffWnd->GetActiveView());
 
+	int nRescanResult = RESCAN_OK;
 	if(curView)
 	{
 		curView->PushCursor();
-		Rescan(bForced);
+		nRescanResult = Rescan(bForced);
 		UpdateAllViews(NULL);
 		curView->PopCursor();
+		// Show possible error after updating screen
+		if (nRescanResult != RESCAN_OK &&
+				nRescanResult != RESCAN_SUPPRESSED)
+			ShowRescanError(nRescanResult);
 	}
 	else
 	{
-		Rescan(bForced);
+		nRescanResult = Rescan(bForced);
 		UpdateAllViews(NULL);
+		// Show possible error after updating screen
+		if (nRescanResult != RESCAN_OK &&
+				nRescanResult != RESCAN_SUPPRESSED)
+			ShowRescanError(nRescanResult);
 	}
 }
 

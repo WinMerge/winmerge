@@ -44,6 +44,15 @@ typedef struct tagDIFFRANGE {
 	BYTE op;
 }DIFFRANGE;
 
+enum
+{
+	RESCAN_OK = 0,
+	RESCAN_SUPPRESSED,
+	RESCAN_IDENTICAL,
+	RESCAN_BINARIES,
+	RESCAN_FILE_ERR
+};
+
 class CMergeEditView;
 
 class CUndoItem
@@ -142,9 +151,10 @@ public:
 
 	void SetNeedRescan();
 	void RescanIfNeeded();
-	BOOL Rescan(BOOL bForced = FALSE);
+	int Rescan(BOOL bForced = FALSE);
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
 	void FixLastDiffRange(BOOL left);
+	void ShowRescanError(int nRescanResult);
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	BOOL Undo();
 	void ListCopy(bool bSrcLeft);

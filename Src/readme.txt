@@ -1,3 +1,7 @@
+2003-06-25 Kimmo
+ PATCH: [ 759755 ] Better rescan error reporting
+  WinMerge: MainFrm.cpp MergeDoc.h MergeDoc.cpp
+
 2003-06-24 Perry
  PATCH: [ 759778 ] Minor cleanup of crystaltextbuffer.cpp
   editlib: ccrystaltextbuffer.cpp

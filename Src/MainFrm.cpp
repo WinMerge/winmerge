@@ -299,6 +299,7 @@ void CMainFrame::OnFileOpen()
 void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight)
 {
 	BOOL docNull;
+	int nRescanResult = RESCAN_OK;
 	CMergeDoc * pMergeDoc = GetMergeDocToShow(pDirDoc, &docNull);
 
 	if (!pMergeDoc) return; // when does this happen ?
@@ -331,7 +332,8 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 		return;
 	}
 	
-	if (pMergeDoc->Rescan())
+	nRescanResult = pMergeDoc->Rescan();
+	if (nRescanResult == RESCAN_OK)
 	{
 		if (docNull)
 		{
@@ -394,12 +396,11 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	else
 	{
 		// CMergeDoc::Rescan fails if files are identical, or 
-		// does not exist on both sides (both of these cases put
-		// up message boxes inside of CMergeDoc::Rescan)
-		// or the really arcane case that the temp files couldn't 
-		// be created, which is too obscure to bother reporting
-		// if you can't write to your temp directory, doing nothing
-		// is graceful enough for that).
+		// does not exist on both sides or the really arcane case
+		// that the temp files couldn't be created, which is too
+		// obscure to bother reporting if you can't write to your
+		// temp directory, doing nothing is graceful enough for that).
+		pMergeDoc->ShowRescanError(nRescanResult);
 		pMergeDoc->GetParentFrame()->DestroyWindow();
 	}
 }
@@ -706,7 +707,6 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 
 void CMainFrame::OnOptions() 
 {
-
 	CStringList filefilters;
 	CString selectedFilter;
 	theApp.GetFileFilterNameList(filefilters, selectedFilter);
@@ -821,7 +821,10 @@ void CMainFrame::OnOptions()
 
 			if (pMergeDoc->SaveHelper())
 			{
-				pMergeDoc->Rescan();
+				int nRescanResult = RESCAN_OK;
+				nRescanResult = pMergeDoc->Rescan();
+				if (nRescanResult != RESCAN_OK)
+					pMergeDoc->ShowRescanError(nRescanResult);
 			}
 			// mods have been made, so just warn
 			else
