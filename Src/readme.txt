@@ -1,3 +1,8 @@
+2004-07-19 Perry
+ BUG: [ 993402 ] Need review of native language names
+  Removed asterisks from Nederlands & Svenska (thanks to A. Decorte).
+   Src/Common: LanguageSelect.cpp
+   
 2004-07-18 Perry
  BUG: [ 969933 ] 'discriminated' language names
   Capitalized native language names to make consistent in language selection box
