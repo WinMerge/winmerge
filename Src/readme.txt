@@ -1,3 +1,7 @@
+2003-04-06 Perry
+ PATCH: [ 716088 ] Fix bin same/diff bug in Diff.cpp & analyze.c
+  WinMerge: analyze.c Diff.cpp
+
 2003-04-04 Christian
  PATCH: [ 711843 ] Allow backspace at beginning of line
   WinMerge: MainFrm.cpp

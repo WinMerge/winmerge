@@ -834,7 +834,7 @@ briefly_report (changes, filevec)
 
 //  Report the differences of two files.  DEPTH is the current directory
 // depth. 
-struct change * diff_2_files (struct file_data filevec[], int depth, int * pbBinaryFilesDiffer)
+struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_status)
 {
 	int diags;
 	int i;
@@ -909,8 +909,8 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * pbBin
 		
 		briefly_report (changes, filevec);
 
-		if (pbBinaryFilesDiffer != NULL)
-			*pbBinaryFilesDiffer = (changes != 0);
+		if (bin_status != NULL)
+			*bin_status = (changes != 0 ? -1 : 1);
 	}
 	else
 	{

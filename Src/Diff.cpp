@@ -450,109 +450,67 @@ compare_files (LPCTSTR dir0, LPCTSTR name0,
 	    perror_with_name (inf[1].name);
 	    failed = 1;
 	}
-	
-	bool bBinary = ((inf[0].desc>0 && FileIsBinary(inf[0].desc))
-		|| (inf[1].desc>0 && FileIsBinary(inf[1].desc)));
-	if (bBinary)
-	{
-		struct change *p,*e,*script=NULL;
-		int diff_flag=0;
-	    
-	    script = diff_2_files (inf, depth, &diff_flag);
 
+	if (!same_files && inf[0].desc>0 && inf[1].desc>0)
+	{
+		/* Actually compare files */
+		struct change *script=NULL;
+		int bin_status=0; /* 1 = bin+same, -1 = bin+different */
+		script = diff_2_files (inf, depth, &bin_status);
 		if (script != NULL)
 		{
+			struct change *p,*e;
 			for (e = script; e; e = p)
 			{
-			p = e->link;
-			free (e);
+				p = e->link;
+				free (e);
 			}
+			val = 1; /* different */
 		}
 		cleanup_file_buffers(inf);
-		// close open file handles
-	    if (inf[0].desc >= 0 && close (inf[0].desc) != 0)
-	    {
+
+		// close open file handles & record error if problem closing
+		if (inf[0].desc >= 0 && close (inf[0].desc) != 0)
+		{
 			perror_with_name (inf[0].name);
 			val = 2;
-	    }
-	    if (inf[1].desc >= 0 && inf[0].desc != inf[1].desc
-		&& close (inf[1].desc) != 0)
-	    {
+		}
+		if (inf[1].desc >= 0 && inf[0].desc != inf[1].desc && close (inf[1].desc) != 0)
+		{
 			perror_with_name (inf[1].name);
 			val = 2;
-	    }
+		}
 
-		if(val==2)
-	    {
+		if (val==2)
+		{
 			pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_ERROR);
 			gLog.Write(_T("\t%s.\r\n"), val==2? "error":"different");
-	    }
-		else if (diff_flag)
-	    {
-			val = 1;
-			pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_BINDIFF);
-			gLog.Write(_T("\tdiffenent binary.\r\n"));
-	    }
-	    else 
-	    {
-			// To not add as same file
-			// This should be done more cleanly in future
-			val = 1;
-			pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_BINSAME);
-			gLog.Write(_T("\tsame binary.\r\n"));
-	    }
-	}
-	else
-	{
-	    /* Compare the files, if no error was found.  */
-	    struct change *e, *p;
-	    struct change *script=NULL;
-	    
-	    script = diff_2_files (inf, depth, NULL);
-	    val = script? 1 : 0;
-	    /* Close the file descriptors.  */
-	    // cleanup the script
-	    for (e = script; e; e = p)
-	    {
-		p = e->link;
-		free (e);
-	    }
-		cleanup_file_buffers(inf);
-	    
-	    if (inf[0].desc >= 0 && close (inf[0].desc) != 0)
-	    {
-		perror_with_name (inf[0].name);
-		val = 2;
-	    }
-	    if (inf[1].desc >= 0 && inf[0].desc != inf[1].desc
-		&& close (inf[1].desc) != 0)
-	    {
-		perror_with_name (inf[1].name);
-		val = 2;
-	    }
-	    if (val==2 || val == 1)
-	    {
-		pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, (BYTE)(val==2? FILE_ERROR:FILE_DIFF));
-		gLog.Write(_T("\t%s.\r\n"), val==2? "error":"different");
-	    }
+		}
+		else if (bin_status)
+		{
+			if (bin_status == 1)
+			{
+				pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_BINSAME);
+				gLog.Write(_T("\tsame binary.\r\n"));
+			}
+			else
+			{
+				pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_BINDIFF);
+				gLog.Write(_T("\tdifferent binary.\r\n"));
+			}
+		}
+		else if (val==1)
+		{
+			pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_DIFF);
+			gLog.Write(_T("\tdifferent.\r\n"));
+		}
+		else if (val==0)
+		{
+			pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_SAME);
+			gLog.Write(_T("\tidentical.\r\n"));
+		}
 	}
     }
-
-  /* Now the comparison has been done, if no error prevented it,
-     and VAL is the value this function will return.  */
-
-  if (val == 0 && !inf[0].dir_p)
-    {
-      if (print_file_same_flag)
-	message ("Files %s and %s are identical\n",
-		 inf[0].name, inf[1].name);
-      pCtx->AddDiff(name0, dir0, dir1, inf[0].stat.st_mtime, inf[1].stat.st_mtime, FILE_SAME);
-      gLog.Write(_T("\tidentical.\r\n"));
-   }
-  else
-  {
-    fflush (stdout);
-  }
 
   if (free0)
     free (free0);
