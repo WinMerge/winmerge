@@ -1,5 +1,10 @@
-// PropEditor.cpp : implementation file
-//
+/** 
+ * @file  PropEditor.cpp
+ *
+ * @brief Implementation of CPropEditor propertysheet
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "merge.h"
@@ -26,6 +31,7 @@ CPropEditor::CPropEditor() : CPropertyPage(CPropEditor::IDD)
 	m_nTabSize = 0;
 	m_bAutomaticRescan = FALSE;
 	m_bAllowMixedEol = FALSE;
+	m_bApplySyntax = FALSE;
 	//}}AFX_DATA_INIT
 }
 
@@ -39,6 +45,7 @@ void CPropEditor::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
 	DDX_Check(pDX, IDC_AUTOMRESCAN_CHECK, m_bAutomaticRescan);
 	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
+	DDX_Check(pDX, IDC_UNREC_APPLYSYNTAX, m_bApplySyntax);
 	DDV_MinMaxInt(pDX, m_nTabSize, 1, MAX_TABSIZE);
 	//}}AFX_DATA_MAP
 }
@@ -46,12 +53,16 @@ void CPropEditor::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CPropEditor, CDialog)
 	//{{AFX_MSG_MAP(CPropEditor)
+	ON_BN_CLICKED(IDC_HILITE_CHECK, OnSyntaxHighlight)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropEditor message handlers
 
+/** 
+ * @brief Called before propertysheet is drawn.
+ */
 BOOL CPropEditor::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
@@ -67,3 +78,21 @@ BOOL CPropEditor::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
+/** 
+ * @brief Enable/Disable "Apply to other side" checkbox.
+ *
+ * "Apply to other side" checkbox is enabled only when syntax
+ * highlight is enabled.
+ */
+void CPropEditor::OnSyntaxHighlight()
+{
+	if (IsDlgButtonChecked(IDC_HILITE_CHECK))
+		GetDlgItem(IDC_UNREC_APPLYSYNTAX)->EnableWindow(TRUE);
+	else
+	{
+		GetDlgItem(IDC_UNREC_APPLYSYNTAX)->EnableWindow(FALSE);
+		CheckDlgButton(IDC_UNREC_APPLYSYNTAX, FALSE);
+		m_bApplySyntax = FALSE;
+	}
+
+}

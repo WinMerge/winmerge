@@ -841,18 +841,21 @@ FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "Framhäv syntaxen",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "Apply to &unrecognized side",
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,18,18,204,10
     CONTROL         "Automatisk &uppdatering",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "Tillåt blandade EOL-typer",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
-    GROUPBOX        "Tabulator",IDC_STATIC,7,44,245,33,WS_GROUP
-    LTEXT           "&Tabulatorsteg:",IDC_STATIC,15,58,50,8
-    EDITTEXT        IDC_TAB_EDIT,81,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
+    GROUPBOX        "Tabulator",IDC_STATIC,7,54,245,33,WS_GROUP
+    LTEXT           "&Tabulatorsteg:",IDC_STATIC,15,68,50,8
+    EDITTEXT        IDC_TAB_EDIT,81,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Infoga tabulatorer",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,138,53,71,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,138,63,71,10
     CONTROL         "Infoga mellanslag",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,138,62,71,10
+                    BS_AUTORADIOBUTTON,138,72,71,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95

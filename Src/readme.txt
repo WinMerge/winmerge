@@ -1,3 +1,9 @@
+2004-04-22 Kimmo
+ PATCH: [ 936682 ] Highlight syntax in unrecognized side
+  Src: MainFrm.cpp Merge.rc MergeDoc.cpp OptionsDef.h PropEditor.cpp
+   PropEditor.h resource.h
+  Languages: *.rc resource.h
+
 2004-04-21 Kimmo
  PATCH: [ 938609 ] Merge mode (simplified)
   Src: MainFrm.cpp Merge.rc MergeDoc.cpp MergeDoc.h MergeEdiView.cpp

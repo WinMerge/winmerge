@@ -850,18 +850,21 @@ FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "&Syntax-Hervorhebung",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "Apply to &unrecognized side",
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,18,18,204,10
     CONTROL         "&Automatisches Aktualisieren",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Mischen der Zeilenumbruch-Formate erlauben",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
-    GROUPBOX        "Tabulatoren",IDC_STATIC,7,44,245,33,WS_GROUP
-    LTEXT           "&Tabulator-Größe:",IDC_STATIC,15,58,54,8
-    EDITTEXT        IDC_TAB_EDIT,72,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
+    GROUPBOX        "Tabulatoren",IDC_STATIC,7,54,245,33,WS_GROUP
+    LTEXT           "&Tabulator-Größe:",IDC_STATIC,15,68,54,8
+    EDITTEXT        IDC_TAB_EDIT,72,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Tabulatoren &einfügen",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,99,53,145,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,99,63,145,10
     CONTROL         "&Leerzeichen einfügen",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,99,62,149,10
+                    BS_AUTORADIOBUTTON,99,72,149,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -1632,10 +1635,3 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-
-
-
-
-
-
-

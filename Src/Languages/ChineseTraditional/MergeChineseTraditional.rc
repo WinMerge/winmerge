@@ -832,18 +832,21 @@ FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "新細明體",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "Apply to &unrecognized side",
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,18,18,204,10
     CONTROL         "自動重新掃描(&R)",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
-    GROUPBOX        "跳格",IDC_STATIC,7,44,221,33,WS_GROUP
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
+    GROUPBOX        "跳格",IDC_STATIC,7,54,221,33,WS_GROUP
     LTEXT           "跳格大小(&T):",IDC_STATIC,10,58,35,8
-    EDITTEXT        IDC_TAB_EDIT,47,56,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+    EDITTEXT        IDC_TAB_EDIT,47,66,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "插入跳格字元(&T)",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,79,53,76,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,79,63,76,10
     CONTROL         "插入空白(&N)",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,79,62,76,10
+                    BS_AUTORADIOBUTTON,79,72,76,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95

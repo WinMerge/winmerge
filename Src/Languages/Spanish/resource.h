@@ -334,6 +334,7 @@
 #define IDC_RESET_ALL_MESSAGE_BOXES     1124
 #define IDC_COUNT_FOLDER                1125
 #define IDC_COLDLG_DEFAULTS             1126
+#define IDC_UNREC_APPLYSYNTAX           1127
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -616,7 +617,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        126
 #define _APS_NEXT_COMMAND_VALUE         32879
-#define _APS_NEXT_CONTROL_VALUE         1127
+#define _APS_NEXT_CONTROL_VALUE         1128
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

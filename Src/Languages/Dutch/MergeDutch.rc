@@ -844,18 +844,21 @@ FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "&Highlight syntax",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "Apply to &unrecognized side",
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,18,18,204,10
     CONTROL         "&Automatic rescan",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
-    GROUPBOX        "Tabs",IDC_STATIC,7,44,221,33,WS_GROUP
-    LTEXT           "&Tab maat:",IDC_STATIC,15,58,30,8
-    EDITTEXT        IDC_TAB_EDIT,47,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
+    GROUPBOX        "Tabs",IDC_STATIC,7,54,221,33,WS_GROUP
+    LTEXT           "&Tab maat:",IDC_STATIC,15,68,30,8
+    EDITTEXT        IDC_TAB_EDIT,47,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "&Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,77,53,51,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,77,63,51,10
     CONTROL         "Insert &Spaces",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,77,62,59,10
+                    BS_AUTORADIOBUTTON,77,72,59,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -1623,10 +1626,3 @@ LANGUAGE 9, 1
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-
-
-
-
-
-
-

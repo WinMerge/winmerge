@@ -840,18 +840,21 @@ FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "&Fremhæv syntaksen",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "Apply to &unrecognized side",
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,18,18,204,10
     CONTROL         "Automatisk &opdatering",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
-    GROUPBOX        "Tabulator",IDC_STATIC,7,44,221,33,WS_GROUP
-    LTEXT           "&Tabulator størrelse:",IDC_STATIC,15,58,61,8
-    EDITTEXT        IDC_TAB_EDIT,81,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
+    GROUPBOX        "Tabulator",IDC_STATIC,7,54,221,33,WS_GROUP
+    LTEXT           "&Tabulator størrelse:",IDC_STATIC,15,68,61,8
+    EDITTEXT        IDC_TAB_EDIT,81,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Indsæt tabulatorer",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,128,53,73,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,128,63,73,10
     CONTROL         "Indsæt mellemrum",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,128,62,73,10
+                    BS_AUTORADIOBUTTON,128,72,73,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95

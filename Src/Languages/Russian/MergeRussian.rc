@@ -858,18 +858,21 @@ FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     CONTROL         "Подсвечивать синтаксис",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "Apply to &unrecognized side",
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,18,18,204,10
     CONTROL         "Авто&пересканирование",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "Оригинальные символы EOL",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
-    GROUPBOX        "Отступы",IDC_STATIC,7,44,276,33,WS_GROUP
-    LTEXT           "Размер &отступа:",IDC_STATIC,15,58,30,8
-    EDITTEXT        IDC_TAB_EDIT,47,95,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
+    GROUPBOX        "Отступы",IDC_STATIC,7,54,276,33,WS_GROUP
+    LTEXT           "Размер &отступа:",IDC_STATIC,15,68,30,8
+    EDITTEXT        IDC_TAB_EDIT,47,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "&Табуляции",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,102,53,51,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,102,63,51,10
     CONTROL         "&Пробелы",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,102,62,59,10
+                    BS_AUTORADIOBUTTON,102,72,59,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95

@@ -192,6 +192,7 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_USE_RECYCLE_BIN, TRUE);
 	m_options.InitOption(OPT_AUTOCLOSE_CMPPANE, FALSE);
 	m_options.InitOption(OPT_MERGE_MODE, FALSE);
+	m_options.InitOption(OPT_UNREC_APPLYSYNTAX, FALSE);
 
 	m_options.InitOption(OPT_CMP_IGNORE_WHITESPACE, 0);
 	m_options.InitOption(OPT_CMP_IGNORE_BLANKLINES, FALSE);
@@ -1155,7 +1156,8 @@ void CMainFrame::OnOptions()
 	editor.m_bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
 	editor.m_bHiliteSyntax = m_options.GetInt(OPT_SYNTAX_HIGHLIGHT);
 	editor.m_bAllowMixedEol = m_options.GetInt(OPT_ALLOW_MIXED_EOL);
-	
+	editor.m_bApplySyntax = m_options.GetInt(OPT_UNREC_APPLYSYNTAX);
+
 	if (sht.DoModal()==IDOK)
 	{
 		m_nVerSys = vss.m_nVerSys;
@@ -1188,6 +1190,7 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_AUTOMATIC_RESCAN, editor.m_bAutomaticRescan);
 		m_options.SaveOption(OPT_ALLOW_MIXED_EOL, editor.m_bAllowMixedEol);
 		m_options.SaveOption(OPT_SYNTAX_HIGHLIGHT, editor.m_bHiliteSyntax);
+		m_options.SaveOption(OPT_UNREC_APPLYSYNTAX, editor.m_bApplySyntax);
 
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
 		m_sPattern = filter.m_sPattern;

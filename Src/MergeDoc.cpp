@@ -2716,13 +2716,34 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		// set the document types
 		// Warning : it is the first thing to do (must be done before UpdateView,
 		// or any function that calls UpdateView, like SelectDiff)
-		CString sext;
-		SplitFilename(sLeftFile, 0, 0, &sext);
-		pLeft->SetTextType(sext);
-		pLeftDetail->SetTextType(sext);
-		SplitFilename(sRightFile, 0, 0, &sext);
-		pRight->SetTextType(sext);
-		pRightDetail->SetTextType(sext);
+		// Note: If option enabled, and another side type is not recognized,
+		// we use recognized type for unrecognized side too.
+		CString sextL, sextR;
+		SplitFilename(sLeftFile, 0, 0, &sextL);
+		BOOL bLeftTyped = pLeft->SetTextType(sextL);
+		pLeftDetail->SetTextType(sextL);
+		SplitFilename(sRightFile, 0, 0, &sextR);
+		BOOL bRightTyped = pRight->SetTextType(sextR);
+		pRightDetail->SetTextType(sextR);
+
+		if (bLeftTyped != bRightTyped &&
+			mf->m_options.GetInt(OPT_UNREC_APPLYSYNTAX))
+		{
+			CCrystalTextView::TextDefinition *enuType;
+
+			if (bLeftTyped)
+			{
+				enuType = pLeft->GetTextType(sextL);
+				pRight->SetTextType(enuType);
+				pRightDetail->SetTextType(enuType);
+			}
+			else
+			{
+				enuType = pRight->GetTextType(sextR);
+				pLeft->SetTextType(enuType);
+				pLeftDetail->SetTextType(enuType);
+			}
+		}
 
 		// scroll to first diff
 		if (mf->m_options.GetInt(OPT_SCROLL_TO_FIRST) &&

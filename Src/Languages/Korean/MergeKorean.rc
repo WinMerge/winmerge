@@ -805,18 +805,21 @@ FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "±∏πÆ «œ¿Ã∂Û¿Ã∆Æ",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "Apply to &unrecognized side",
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,18,18,204,10
     CONTROL         "¿⁄µø ∏ÆΩ∫ƒµ(&R)",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
-    GROUPBOX        "≈«(Tabs)",IDC_STATIC,7,44,221,33,WS_GROUP
-    LTEXT           "≈«ªÁ¿Ã¡Ó(&T):",IDC_STATIC,15,58,36,8
-    EDITTEXT        IDC_TAB_EDIT,53,56,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
+    GROUPBOX        "≈«(Tabs)",IDC_STATIC,7,54,221,33,WS_GROUP
+    LTEXT           "≈«ªÁ¿Ã¡Ó(&T):",IDC_STATIC,15,68,36,8
+    EDITTEXT        IDC_TAB_EDIT,53,66,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "≈«(tab) ª¿‘(&T)",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,85,53,59,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,85,63,59,10
     CONTROL         "∞¯πÈ(space) ª¿‘(&N)",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,85,62,82,10
+                    BS_AUTORADIOBUTTON,85,72,82,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -1795,11 +1798,3 @@ LANGUAGE 9, 1
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-
-
-
-
-
-
-
-

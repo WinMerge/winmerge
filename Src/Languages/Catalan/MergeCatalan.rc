@@ -842,18 +842,21 @@ FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "&Ressalta la sintaxi",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "Apply to &unrecognized side",
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,18,18,204,10
     CONTROL         "&Re-explora automàticament",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "Permet la &barreja de tipus de marques de final de línia",
-                    IDC_MIXED_EOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
-    GROUPBOX        "Tabulacions",IDC_STATIC,7,44,285,30,WS_GROUP
-    LTEXT           "&Tamany de les tabulacions:",IDC_STATIC,15,58,30,8
-    EDITTEXT        IDC_TAB_EDIT,47,95,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    IDC_MIXED_EOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
+    GROUPBOX        "Tabulacions",IDC_STATIC,7,54,285,30,WS_GROUP
+    LTEXT           "&Tamany de les tabulacions:",IDC_STATIC,15,68,30,8
+    EDITTEXT        IDC_TAB_EDIT,47,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "I&nsereix tabulacions",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,79,53,85,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,79,63,85,10
     CONTROL         "In&sereix espais",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,77,62,59,10
+                    BS_AUTORADIOBUTTON,77,72,59,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
