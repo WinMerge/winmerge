@@ -1,3 +1,7 @@
+2004-06-07 Laoran
+ PATCH: [ 963124 ] better name for variable for Undo/deleteText
+  Src: GhostTextBuffer.cpp GhostTextBuffer.h
+
 2004-06-07 Perry
  Updated Catalan translation from Jordi Vilar
   Src/Languages: Catalan/MergeCatalan.rc

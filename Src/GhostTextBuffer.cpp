@@ -357,9 +357,9 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 
 			// the number of real lines must be the same before the action and after undo
 			int nNumberDeletedRealLines = ur.m_ptEndPos.y - ur.m_ptStartPos.y;
-			if (nNumberDeletedRealLines == ur.m_nRealLinesChanged)
+			if (nNumberDeletedRealLines == ur.m_nRealLinesCreated)
 				;
-			else if (nNumberDeletedRealLines == ur.m_nRealLinesChanged-1)
+			else if (nNumberDeletedRealLines == ur.m_nRealLinesCreated-1)
 				// we inserted in a ghost line (which then became real), we must send it back to its world
 				SetLineFlag(apparent_ptStartPos.y, LF_GHOST, TRUE, FALSE, FALSE);
 			else
@@ -394,12 +394,12 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 			if (bDiscrepancyInInsertedLines == 0)
 				OnNotifyLineHasBeenEdited(i);
 
-			// the number of real lines must be the same before the action and after undo
+			// We know the number of real lines in the deleted block (including partial lines for extremities)
 			// there may be more lines (difficult to explain) then they must be ghost
-			for (i = apparent_ptStartPos.y ; i < apparent_ptStartPos.y+ur.m_nRealLinesChanged ; i++)
-				SetLineFlag (apparent_ptStartPos.y, LF_GHOST, FALSE, FALSE, FALSE);
+			for (i = apparent_ptStartPos.y ; i < apparent_ptStartPos.y + ur.m_nRealLinesInDeletedBlock ; i++)
+				SetLineFlag (i, LF_GHOST, FALSE, FALSE, FALSE);
 			for (   ; i <= nEndLine ; i++)
-				SetLineFlag (apparent_ptStartPos.y, LF_GHOST, TRUE, FALSE, FALSE);
+				SetLineFlag (i, LF_GHOST, TRUE, FALSE, FALSE);
 
 			// it is not easy to know when Recompute so we do it always
 			RecomputeRealityMapping();
@@ -607,7 +607,10 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 	ur.m_ptEndPos = ptEndPos;
 	ur.m_ptStartPos.y = ComputeRealLineAndGhostAdjustment( ptStartPos.y, ur.m_ptStartPos_nGhost);
 	ur.m_ptEndPos.y = ComputeRealLineAndGhostAdjustment( ptEndPos.y, ur.m_ptEndPos_nGhost);
-	ur.m_nRealLinesChanged = nRealLinesChanged;
+	if (bInsert)
+		ur.m_nRealLinesCreated = nRealLinesChanged;
+	else
+		ur.m_nRealLinesInDeletedBlock = nRealLinesChanged;
 	ur.SetText (pszText);
 
 	m_aUndoBuf.Add (ur);
@@ -742,10 +745,10 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 	// flags are going to be deleted so we store them now
 	int bLastLineGhost = ((GetLineFlags(nEndLine) & LF_GHOST) != 0);
 	int bFirstLineGhost = ((GetLineFlags(nStartLine) & LF_GHOST) != 0);
-	// compute the number of real lines deleted (for undo)
-	int nRealLinesDeleted = ComputeRealLine(nEndLine) - ComputeRealLine(nStartLine);
+	// count the number of real lines in the deleted block (for first/last line, include partial real lines)
+	int nRealLinesInDeletedBlock = ComputeRealLine(nEndLine) - ComputeRealLine(nStartLine);
 	if (!bLastLineGhost)
-		nRealLinesDeleted ++;
+		nRealLinesInDeletedBlock ++;
 
 	CString sTextToDelete;
 	GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
@@ -785,7 +788,7 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 	ASSERT (  m_nUndoPosition > 0);
 	m_nUndoPosition --;
 	AddUndoRecord (FALSE, CPoint (nStartChar, nStartLine), CPoint (0, -1),
-                 sTextToDelete, nRealLinesDeleted, nAction);
+                 sTextToDelete, nRealLinesInDeletedBlock, nAction);
 
 	if (bGroupFlag)
 		FlushUndoGroup (pSource);

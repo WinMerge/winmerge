@@ -104,8 +104,12 @@ protected :
 		CPoint m_redo_ptStartPos, m_redo_ptEndPos;  // Block of text participating
 		int    m_redo_ptStartPos_nGhost, m_redo_ptEndPos_nGhost;
 
-		int m_nRealLinesChanged;  //  Help to set real/ghost lines 
-		int m_nAction;            //  For information only: action type
+		int m_nRealLinesCreated;         //  number of lines created during insertion 
+		                                 //  (= total of real lines after - total before)
+		int m_nRealLinesInDeletedBlock;  //  number of real lines in the deleted block 
+		                                 // (<> total of real lines after - total before  
+		                                 //  as first/end line may be just truncated, not removed)
+		int m_nAction;                   //  For information only: action type
 
 private :
 		// TCHAR   *m_pcText;
@@ -147,7 +151,8 @@ public :
 			m_redo_ptStartPos_nGhost = src.m_redo_ptStartPos_nGhost;
 			m_redo_ptEndPos = src.m_redo_ptEndPos;
 			m_redo_ptEndPos_nGhost = src.m_redo_ptEndPos_nGhost;
-			m_nRealLinesChanged = src.m_nRealLinesChanged;
+			m_nRealLinesCreated = src.m_nRealLinesCreated;
+			m_nRealLinesInDeletedBlock = src.m_nRealLinesInDeletedBlock;
 			SetText(src.GetText());
 			return *this;
 		}
