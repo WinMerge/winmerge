@@ -34,7 +34,7 @@ class COpenDlg : public CDialog
 {
 // Construction
 public:
-	CString m_strParsedExt;
+
 	void UpdateButtonStates();
 	COpenDlg(CWnd* pParent = NULL);   // standard constructor
 	BOOL SelectFile(CString& path, LPCTSTR pszFolder);
@@ -53,6 +53,10 @@ public:
 	CString	m_strExt;
 	//}}AFX_DATA
 
+// other public data
+	CString m_strParsedExt;
+	int m_pathsType; // enum from PATH_EXISTENCE in paths.h
+
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -64,8 +68,6 @@ public:
 // Implementation
 protected:
 	void RemoveTrailingSlash(CString& s);
-	BOOL IsFileOk(const CString& strFile, BOOL *pbDir = NULL) const;
-	BOOL AreComparable(BOOL * pbDirs) const;
 
 	// Generated message map functions
 	//{{AFX_MSG(COpenDlg)

@@ -55,6 +55,7 @@ COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
 	//}}AFX_DATA_INIT
 	
 	m_strParsedExt = _T(".*");
+	m_pathsType = DOES_NOT_EXIST;
 }
 
 
@@ -146,14 +147,15 @@ void COpenDlg::OnOK()
 {
 	UpdateData(TRUE);
 
-	BOOL bDirs;
-	if (!AreComparable(&bDirs)) {
+	m_pathsType = GetPairComparability(m_strLeft, m_strRight);
+
+	if (m_pathsType == DOES_NOT_EXIST) {
 		AfxMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
 		return;
 	}
 
-	paths_normalize(m_strRight);
-	paths_normalize(m_strLeft);
+	m_strRight = paths_GetLongPath(m_strRight, DIRSLASH);
+	m_strLeft = paths_GetLongPath(m_strLeft, DIRSLASH);
 
 	UpdateData(FALSE);
 	KillTimer(IDT_CHECKFILES);
@@ -214,33 +216,15 @@ BOOL COpenDlg::OnInitDialog()
 	return TRUE;  
 }
 
-// Return TRUE only if items are valid to compare
-BOOL COpenDlg::AreComparable(BOOL * pbDirs) const
-{
-	// To be comparable, both must exist and be the same type
-	// Using logical operators here for shortcircuit
-	// (don't look for right if left doesn't exist)
-	BOOL bLIsDir, bRIsDir;
-	BOOL bComparable =
-		IsFileOk(m_strLeft, &bLIsDir)  // left exists
-		&& IsFileOk(m_strRight, &bRIsDir) // and right exists
-		&& (bLIsDir == bRIsDir); // and same type (file or directory)
-	if (bComparable)
-		*pbDirs = bLIsDir;
-	return bComparable;
-}
-
 void COpenDlg::UpdateButtonStates()
 {
 	UpdateData(TRUE); // load member variables from screen
 	KillTimer(IDT_CHECKFILES);
 	
-	// Only enable OK button if items are comparable
-	BOOL bDirs;
-	BOOL bEnableOK = AreComparable(&bDirs);
-
-	m_ctlOk.EnableWindow(bEnableOK);
-	m_ctlRecurse.EnableWindow(bEnableOK && bDirs); 
+	// Enable buttons as appropriate
+	PATH_EXISTENCE pathsType = GetPairComparability(m_strLeft, m_strRight);
+	m_ctlOk.EnableWindow(pathsType != DOES_NOT_EXIST);
+	m_ctlRecurse.EnableWindow(pathsType == IS_EXISTING_DIR); 
 }
 
 BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder) 
@@ -289,21 +273,6 @@ void COpenDlg::OnSelchangeRightCombo()
 		UpdateData(TRUE);
 	}
 	UpdateButtonStates();
-}
-
-BOOL COpenDlg::IsFileOk(const CString & strFile, BOOL *pbDir /*= NULL*/) const
-{
-	switch(paths_DoesPathExist(strFile))
-	{
-	case IS_EXISTING_FILE:
-		if (pbDir) *pbDir = FALSE;
-		return TRUE;
-	case IS_EXISTING_DIR:
-		if (pbDir) *pbDir = TRUE;
-		return TRUE;
-	default:
-		return FALSE;
-	}
 }
 
 void COpenDlg::RemoveTrailingSlash(CString & s)

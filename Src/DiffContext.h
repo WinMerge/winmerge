@@ -76,6 +76,8 @@ public:
 	BOOL m_bRecurse;
 	CString m_strLeft;
 	CString m_strRight;
+	CString m_strNormalizedLeft;
+	CString m_strNormalizedRight;
 	CRegExp m_rgx;
 	CString m_strRegExp;
 	IDiffStatus * m_piStatus;

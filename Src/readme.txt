@@ -1,3 +1,7 @@
+2003-03-29 Perry
+ PATCH: [ 710347 ] Fix crash of winmerge c:\ d:\
+ WinMerge: DiffContext.h DirDoc.cpp MainFrm.cpp Merge.cpp OpenDlg.cpp OpenDlg.h paths.cpp paths.h
+
 2003-03-25 Perry
  PATCH: [ 709575 ] Fix sanity check in CChildFrame::UpdateHeaderSizes()
  WinMerge: ChildFrm.cpp

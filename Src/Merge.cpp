@@ -211,7 +211,7 @@ BOOL CMergeApp::InitInstance()
 		else
 		{
 			CString sParam = pszParam;
-			CString sFile = paths_GetLongPath(sParam);
+			CString sFile = paths_GetLongPath(sParam, DIRSLASH);
 			files.SetAtGrow(nFiles, sFile);
 			nFiles++;
 		}

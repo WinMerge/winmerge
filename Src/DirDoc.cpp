@@ -31,6 +31,7 @@
 #include "MainFrm.h"
 #include "coretools.h"
 #include "logfile.h"
+#include "paths.h"
 
 extern int recursive;
 
@@ -188,8 +189,15 @@ void CDirDoc::Rescan()
 			m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
 	m_pCtxt->RemoveAll();
 
-	compare_files (0, (char const *)(LPCTSTR)m_pCtxt->m_strLeft,
-			       0, (char const *)(LPCTSTR)m_pCtxt->m_strRight, m_pCtxt, 0);
+	// fix up for diff code (remove trailing slashes etc)
+	m_pCtxt->m_strNormalizedLeft = m_pCtxt->m_strLeft;
+	m_pCtxt->m_strNormalizedRight = m_pCtxt->m_strRight;
+	paths_normalize(m_pCtxt->m_strNormalizedLeft);
+	paths_normalize(m_pCtxt->m_strNormalizedRight);
+
+	compare_files (0, (char const *)(LPCTSTR)m_pCtxt->m_strNormalizedLeft,
+			       0, (char const *)(LPCTSTR)m_pCtxt->m_strNormalizedRight,
+				   m_pCtxt, 0);
 
 	gLog.Write(_T("Directory scan complete\r\n"));
 
@@ -272,8 +280,8 @@ void CDirDoc::Redisplay()
 
 	CString s,s2;
 	UINT cnt=0;
-	int llen = m_pCtxt->m_strLeft.GetLength();
-	int rlen = m_pCtxt->m_strRight.GetLength();
+	int llen = m_pCtxt->m_strNormalizedLeft.GetLength();
+	int rlen = m_pCtxt->m_strNormalizedRight.GetLength();
 
 	m_pView->DeleteAllDisplayItems();
 

@@ -22,7 +22,7 @@ PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath)
 	if (sPath.GetLength()==1 && IsSlash(sPath[0]))
 	{
 		// Prefix current drive to "\"
-		sPath.SetAt(0, paths_GetCurrentDrive());
+		sPath.SetAt(0, paths_GetCurrentDriveUpper());
 		sPath += _T(":\\");
 	}
 
@@ -88,7 +88,7 @@ void paths_normalize(CString & sPath)
 	if (sPath == _T("\\"))
 	{
 		// Prefix current drive to "\"
-		sPath.SetAt(0, paths_GetCurrentDrive());
+		sPath.SetAt(0, paths_GetCurrentDriveUpper());
 		sPath += _T(":\\");
 		return;
 	}
@@ -111,12 +111,12 @@ void paths_normalize(CString & sPath)
 
 }
 
-// get long name
-CString paths_GetLongPath(const CString & sPath)
+// get long name (optionally terminate directories with slash)
+CString paths_GetLongPath(const CString & sPath, DIRSLASH_TYPE dst)
 {
 	int len = sPath.GetLength();
 	// ensure it is not a root drive or a UNC path
-	if (len < 3) return sPath;
+	if (len < 2) return sPath;
 	if (sPath[0]=='\\' && sPath[1]=='\\') return sPath;
 
 	// Now get a working buffer and walk down each directory
@@ -128,20 +128,42 @@ CString paths_GetLongPath(const CString & sPath)
 	if (sBuffer[0] == '\\')
 	{
 		// root directory, prepend current drive
-		sTemp += paths_GetCurrentDrive();
+		sTemp += paths_GetCurrentDriveUpper();
 		sBuffer = sTemp + ':' + sBuffer;
 	}
 	else if (sBuffer[1] == ':')
 	{
-		// looks like a fully qualified path
+		if (!_istalpha(sBuffer[0]))
+			return sPath; // not a valid drive, give up
+		if (len == 2 || sBuffer[2] != '\\')
+		{
+			// relative path
+			TCHAR chdrv = sBuffer[0];
+			if (islower(chdrv)) chdrv = toupper(chdrv);
+			if (chdrv == paths_GetCurrentDriveUpper())
+			{
+				// relative on current drive, so prepend current directory
+				CString sTemp = paths_GetCurrentDirectory() + _T("\\") + sBuffer.Mid(2);
+				sBuffer = sTemp;
+			}
+			else
+			{
+				// relative on other drive; don't know how to find current dir
+				// so treat it as absolute
+				CString sTemp = sBuffer.Left(2) + _T("\\") + sBuffer.Mid(2);
+				sBuffer = sTemp;
+			}
+		}
+		else
+		{
+			// looks like a fully qualified path
+		}
 	}
 	else
 	{
 		// treat as relative
-		TCHAR curdir[_MAX_PATH];
-		if (!GetCurrentDirectory(sizeof(curdir)/sizeof(curdir[0]), curdir))
-			return sPath;
-		sBuffer = (CString)curdir + '\\' + sBuffer;
+		CString curdir = paths_GetCurrentDirectory();
+		sBuffer = curdir + '\\' + sBuffer;
 	}
 	LPTSTR ptr = sBuffer.GetBuffer(0), end;
 	// skip over root slash
@@ -172,23 +194,55 @@ CString paths_GetLongPath(const CString & sPath)
 		HANDLE h = FindFirstFile(sTemp, &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 		{
-			sLong += '\\' + ptr;
+			sLong += '\\';
+			if (ptr)
+				sLong += ptr;
 			return sLong;
 		}
 		if (!sLong.IsEmpty())
 			sLong += '\\';
 		sLong += ffd.cFileName;
+		if (dst == DIRSLASH && !ptr 
+			&& (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+		{
+			sLong += '\\';
+		}
 		FindClose(h);
 	}
 	return sLong;
 }
 
-TCHAR paths_GetCurrentDrive()
+CString paths_GetCurrentDirectory()
+{
+		TCHAR curdir[_MAX_PATH] = _T("");
+		GetCurrentDirectory(sizeof(curdir)/sizeof(curdir[0]), curdir);
+		return curdir;
+}
+
+TCHAR paths_GetCurrentDriveUpper()
 {
 	TCHAR curdir[_MAX_PATH];
 	if (!GetCurrentDirectory(sizeof(curdir)/sizeof(curdir[0]), curdir))
 		return 'C';
+	if (__isascii(curdir[0]) && islower(curdir[0]))
+		curdir[0] = _toupper(curdir[0]);
 	return curdir[0];
+}
+
+// return IS_EXISTING_DIR if both are directories & exist
+// return IS_EXISTING_FILE if both are files & exist
+// return DOES_NOT_EXIST in all other cases
+PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight)
+{
+	// fail if not both specified
+	if (!pszLeft || !pszLeft[0] || !pszRight || !pszRight[0])
+		return DOES_NOT_EXIST;
+	PATH_EXISTENCE p1 = paths_DoesPathExist(pszLeft);
+	// short circuit testing right if left doesn't exist
+	if (p1 == DOES_NOT_EXIST) return DOES_NOT_EXIST;
+	PATH_EXISTENCE p2 = paths_DoesPathExist(pszRight);
+	if (p1 != p2) return DOES_NOT_EXIST;
+	return p1;
 }
 
 //////////////////////////////////////////////////////////////////

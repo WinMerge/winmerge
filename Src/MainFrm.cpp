@@ -831,6 +831,7 @@ void CMainFrame::rptStatus(BYTE code)
 	m_wndStatusBar.SetPaneText(2, s);
 }
 
+
 BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/, BOOL bRecurse /*= FALSE*/)
 {
 	CString strLeft(pszLeft);
@@ -838,10 +839,10 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	CString strExt;
 	CFileStatus status;
 
-	// if files weren't specified, popup dialog
-	if ((pszLeft == NULL || !CFile::GetStatus(pszLeft, status))
-		|| (pszRight == NULL || !CFile::GetStatus(pszRight, status)))
-		
+
+	// pop up dialog unless arguments exist (and are compatible)
+	PATH_EXISTENCE pathsType = GetPairComparability(pszLeft, pszRight);
+	if (pathsType == DOES_NOT_EXIST)
 	{
 		COpenDlg dlg;
 		dlg.m_strLeft = strLeft;
@@ -854,31 +855,13 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		strRight = dlg.m_strRight;
 		bRecurse = dlg.m_bRecurse;
 		strExt = dlg.m_strParsedExt;
+		pathsType = static_cast<PATH_EXISTENCE>(dlg.m_pathsType);
 	}
 	else
 	{
 		//save the MRU left and right files.
 		addToMru(pszLeft, _T("Files\\Left"));
 		addToMru(pszRight, _T("Files\\Right"));
-	}
-
-	// check to make sure they are same type
-	CString sname;
-	BOOL bLeftIsDir = GetFileAttributes(strLeft)&FILE_ATTRIBUTE_DIRECTORY;
-	BOOL bRightIsDir = GetFileAttributes(strRight)&FILE_ATTRIBUTE_DIRECTORY;
-	if (bLeftIsDir && !bRightIsDir)
-	{
-		SplitFilename(strRight, 0, &sname, 0);
-		strLeft += _T("\\");
-		strLeft += sname;
-		bLeftIsDir = FALSE;
-	}
-	else if (!bLeftIsDir && bRightIsDir)
-	{
-		SplitFilename(strLeft, 0, &sname, 0);
-		strRight += _T("\\");
-		strRight += sname;
-		bRightIsDir = FALSE;
 	}
 
 	if (1)
@@ -916,7 +899,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	}
 
 	// open the diff
-	if (bLeftIsDir)
+	if (pathsType == IS_EXISTING_DIR)
 	{
 		recursive = bRecurse;
 		if (m_pDirDoc == NULL)
