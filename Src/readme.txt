@@ -1,3 +1,8 @@
+2003-11-09 Laoran
+ fixing text alignment in dialogs (right aligned on screen->RTEXT, centered->CTEXT)
+  WinMerge: Merge.rc
+  Languages : *.rc
+
 2003-11-09 Kimmo
  PATCH: [ 835198 ] Command line path arguments handling
   Submitted by Hern Chen
