@@ -1,3 +1,8 @@
+2005-01-06 Tim
+ PATCH: [ 1096755 ] Web: Use XML file for developers list
+  Web: page.inc
+  Web\developer: developers.xml index.php
+
 2004-12-31 Tim
  PATCH: [ 1092760 ] Web: Status of translations with colors
   Web\css: all.css print.css

@@ -334,6 +334,32 @@
     }
     
     /**
+     * sort a multi-dimensional array
+     *
+     * @link http://www.php.net/manual/en/function.usort.php
+     */
+    function multisortArray() {
+      $arguments = func_get_args();
+      $array = $arguments[0];
+      $code = '';
+      for ($c = 1; $c < count($arguments); $c += 2) {
+        if (in_array($arguments[$c + 1], array(SORT_ASC, SORT_DESC))) {
+          $code .= 'if ($a["'.$arguments[$c].'"] != $b["'.$arguments[$c].'"]) {';
+          if ($arguments[$c + 1] == SORT_ASC) {
+            $code .= 'return ($a["'.$arguments[$c].'"] < $b["'.$arguments[$c].'"] ? -1 : 1); }';
+          }
+          else {
+            $code .= 'return ($a["'.$arguments[$c].'"] < $b["'.$arguments[$c].'"] ? 1 : -1); }';
+          }
+        }
+      }
+      $code .= 'return 0;';
+      $compare = create_function('$a,$b', $code);
+      usort($array, $compare);
+      return $array;
+    }
+    
+    /**
      * convert a changelog file into html code
      */
     function convertChanges2Html($filename) {

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!--
+  Role:
+    1 = Project Manager
+    2 = Developer
+    3 = Packager
+    4 = Web Designer
+-->
+<developers>
+  <developer>
+    <name>Christian List</name>
+    <username>christianlist</username>
+    <role>1</role>
+    <email>list1974 at hotmail dot com</email>
+  </developer>
+  <developer>
+    <name>Chris Mumford</name>
+    <username>cmumford</username>
+    <role>2</role>
+    <email>cmumford at users.sourceforge.net</email>
+  </developer>
+  <developer>
+    <name>Dennis Lim</name>
+    <username>dlkj</username>
+    <role>2</role>
+    <email>dlkj at users.sourceforge.net</email>
+  </developer>
+  <developer>
+    <name>Tim Gerundt</name>
+    <username>gerundt</username>
+    <role>4</role>
+    <email>tim at gerundt dot de</email>
+  </developer>
+  <developer>
+    <name>Dean Grimm</name>
+    <username>grimmdp</username>
+    <role>1</role>
+    <email>grimmdp at yahoo dot com</email>
+  </developer>
+  <developer>
+    <name>Jochen Tucht</name>
+    <username>jtuc</username>
+    <role>2</role>
+    <email>jtuc at users.sourceforge.net</email>
+  </developer>
+  <developer>
+    <name>Kimmo Varis</name>
+    <username>kimmov</username>
+    <role>2</role>
+    <email>kimmov at users.sourceforge.net</email>
+  </developer>
+  <developer>
+    <name>Laurent Ganier</name>
+    <username>laoran</username>
+    <role>2</role>
+    <email>ccganier at club-internet dot fr</email>
+  </developer>
+  <developer>
+    <name>Perry Rapp</name>
+    <username>puddle</username>
+    <role>2</role>
+    <email>puddle at users.sourceforge.net</email>
+  </developer>
+  <developer>
+    <name>Christian Blackburn</name>
+    <username>seier</username>
+    <role>3</role>
+    <email>seier at users.sourceforge.net</email>
+  </developer>
+</developers>
