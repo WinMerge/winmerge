@@ -149,6 +149,8 @@ void COpenDlg::OnOK()
 	if (m_strRight.Right(1)==_T(':'))
 		m_strRight += _T("\\");
 	UpdateData(FALSE);
+	m_ctlLeft.SetWindowText(m_strLeft);
+	m_ctlRight.SetWindowText(m_strRight);
 
 	// parse the extensions
 	// replace all *. with .*\\.
@@ -170,7 +172,9 @@ void COpenDlg::OnOK()
 	{
 		while (p != NULL)
 		{
-			strPattern += p;		
+			strPattern += _tcslwr(p);
+			strPattern += _T('|');	
+			strPattern += _tcsupr(p);	
 			p = _tcstok(NULL, pszSeps);
 			if (p != NULL)
 				strPattern += _T('|');
