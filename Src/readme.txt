@@ -1,6 +1,8 @@
 2004-08-11 Kimmo
  PATCH: [ 1006475 ] Don't save editor settings to different key in registry
   Src/editlib: editreg.h
+ PATCH: [ 1006870 ] Don't add '\' to filenames for regexp filtering
+  Src: FileFilterHelper.cpp
 
 2004-08-10 Kimmo
  BUG: [ 1006164 ] accelerator conflict

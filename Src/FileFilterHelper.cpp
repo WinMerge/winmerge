@@ -160,16 +160,7 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 	{
 		if (!m_fileFilterMgr || !m_currentFilter)
 			return TRUE;
-
-		// preprend a backslash if there is none
-		CString strFileName = szFileName;
-		if (strFileName[0] != _T('\\'))
-			strFileName = _T('\\') + strFileName;
-		// append a point if there is no extension
-		if (strFileName.Find(_T('.')) == -1)
-			strFileName = strFileName + _T('.');
-
-		return m_fileFilterMgr->TestFileNameAgainstFilter(m_currentFilter, strFileName);
+		return m_fileFilterMgr->TestFileNameAgainstFilter(m_currentFilter, szFileName);
 	}
 }
 
