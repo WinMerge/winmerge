@@ -133,12 +133,14 @@ BEGIN
         MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
         MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "F&ind...\tCtrl+F",            ID_EDIT_FIND
         MENUITEM "Repla&ce...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        MENUITEM "Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM "&Go To...\tCtrl+G",            ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Options...",                 ID_OPTIONS
         MENUITEM SEPARATOR
@@ -1652,5 +1654,6 @@ LANGUAGE 9, 1
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 

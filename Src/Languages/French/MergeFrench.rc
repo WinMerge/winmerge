@@ -133,12 +133,14 @@ BEGIN
         MENUITEM "Co&pier\tCtrl+C",           ID_EDIT_COPY
         MENUITEM "C&oller\tCtrl+V",           ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
         MENUITEM "Premier mot différent de la ligne\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Trouver...\tCtrl+F",         ID_EDIT_FIND
         MENUITEM "Rempla&cer...\tCtrl+H",       ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        MENUITEM "Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM "&Go To...\tCtrl+G",            ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Options",                    ID_OPTIONS
         MENUITEM SEPARATOR
@@ -1495,5 +1497,6 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 

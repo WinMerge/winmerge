@@ -135,12 +135,14 @@ BEGIN
         MENUITEM "&Kopírovat\tCtrl+C",          ID_EDIT_COPY
         MENUITEM "V&ložit\tCtrl+V",             ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "F&ind...\tCtrl+F",            ID_EDIT_FIND
         MENUITEM "Repla&ce...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        MENUITEM "Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM "&Go To...\tCtrl+G",            ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Vlastnosti",                 ID_OPTIONS
         MENUITEM SEPARATOR
@@ -1491,4 +1493,5 @@ LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 

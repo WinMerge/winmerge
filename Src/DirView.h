@@ -276,6 +276,8 @@ protected:
 	afx_msg void OnCtxtDirZipBoth();
 	afx_msg void OnCtxtDirZipBothDiffsOnly();
 	afx_msg void OnUpdateCtxtDir(CCmdUI* pCmdUI);
+	afx_msg void OnSelectAll();
+	afx_msg void OnUpdateSelectAll(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
@@ -326,3 +328,4 @@ CString NumToStr(int n);
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_)
+

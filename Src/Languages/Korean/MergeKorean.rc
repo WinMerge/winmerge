@@ -96,12 +96,14 @@ BEGIN
         MENUITEM "복사(&C)\tCtrl+C",            ID_EDIT_COPY
         MENUITEM "붙여넣기(&P)\tCtrl+V",        ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "찾기(&I)...\tCtrl+F",         ID_EDIT_FIND
         MENUITEM "바꾸기(&C)...\tCtrl+H",       ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        MENUITEM "Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM "&Go To...\tCtrl+G",            ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "옵션(&O)...",                 ID_OPTIONS
         MENUITEM SEPARATOR
@@ -1672,5 +1674,6 @@ LANGUAGE 9, 1
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 

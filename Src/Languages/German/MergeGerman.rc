@@ -133,13 +133,15 @@ BEGIN
         MENUITEM "&Kopieren\tStrg+C",           ID_EDIT_COPY
         MENUITEM "E&infügen\tStrg+V",           ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
         MENUITEM "Zeilenunterschied hervorheben\tF4",
                                                 ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Suchen...\tStrg+F",          ID_EDIT_FIND
         MENUITEM "Erse&tzen...\tStrg+H",        ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        MENUITEM "Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM "&Go To...\tCtrl+G",            ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Einstellungen...",           ID_OPTIONS
         MENUITEM SEPARATOR
@@ -1507,5 +1509,6 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 

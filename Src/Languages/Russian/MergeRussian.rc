@@ -133,12 +133,14 @@ BEGIN
         MENUITEM "&Копировать\tCtrl+C",               ID_EDIT_COPY
         MENUITEM "&Вставить\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
         MENUITEM "Подсветить различия в линии\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Найти...\tCtrl+F",            ID_EDIT_FIND
         MENUITEM "&Заменить...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        MENUITEM "Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM "&Go To...\tCtrl+G",            ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Настройки...",                 ID_OPTIONS
         MENUITEM SEPARATOR
@@ -1486,5 +1488,6 @@ LANGUAGE LANG_RUSSIAN, SUBLANG_DUTCH
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 

@@ -1,6 +1,9 @@
 2004-01-23 Kimmo
  PATCH: [ 881602 ] Don't allow canceling saving when its pointless
   src: MainFrm.cpp MergeDiffDetailView.cpp MergeDoc.cpp MergeDoc.h MergeEditView.cpp
+ PATCH: [ 880769 ] Select all in Dir compare
+  src: DirView.h DirView.cpp Merge.rc
+  Languages: *.rc
 
 2004-01-23 Perry
  PATCH: [ 880006 ] Code cleanup--old commented out lines in DirView.h

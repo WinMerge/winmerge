@@ -137,6 +137,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_DIR_ZIP_RIGHT, OnCtxtDirZipRight)
 	ON_COMMAND(ID_DIR_ZIP_BOTH, OnCtxtDirZipBoth)
 	ON_COMMAND(ID_DIR_ZIP_BOTH_DIFFS_ONLY, OnCtxtDirZipBothDiffsOnly)
+	ON_COMMAND(ID_EDIT_SELECT_ALL, OnSelectAll)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_SELECT_ALL, OnUpdateSelectAll)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -1965,4 +1967,32 @@ void CDirView::OnCtxtDirZipBothDiffsOnly()
 	|	DirItemEnumerator::BalanceFolders
 	|	DirItemEnumerator::DiffsOnly
 	).CompressArchive();
+}
+
+
+/**
+ * @brief Select all visible items in dir compare
+ */
+void CDirView::OnSelectAll()
+{
+	int selCount = m_pList->GetItemCount();
+
+	for (int i = 0; i < selCount; i++)
+	{
+		// Don't select special items (POSITION -1)
+		POSITION diffpos = GetItemKey(i);
+		if (diffpos != (POSITION) -1)
+			m_pList->SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
+	}
+}
+
+/**
+ * @brief Update "Select All" item
+ */
+void CDirView::OnUpdateSelectAll(CCmdUI* pCmdUI)
+{
+	if (m_pList->GetItemCount() > 0)
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
 }

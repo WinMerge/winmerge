@@ -133,12 +133,14 @@ BEGIN
         MENUITEM "Ko&pier\tCtrl+C",             ID_EDIT_COPY
         MENUITEM "&Indsæt\tCtrl+V",             ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "Sø&g...\tCtrl+F",             ID_EDIT_FIND
         MENUITEM "&Erstat...\tCtrl+H",          ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        MENUITEM "Go To...\tCtrl+G",            ID_EDIT_WMGOTO
+        MENUITEM "&Go To...\tCtrl+G",            ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Egenskaber...",              ID_OPTIONS
         MENUITEM SEPARATOR
@@ -1489,6 +1491,7 @@ LANGUAGE LANG_DANISH, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 
 
