@@ -15,9 +15,8 @@
 #include "DirDoc.h"
 #include "MainFrm.h"
 #include "resource.h"
-//#include "coretools.h"
-//#include "dllver.h"
 #include "DirViewColItems.h"
+#include "locality.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -125,13 +124,13 @@ static CString ColLsizeGet(const DIFFITEM & di)
 {
 	CString s;
 	s.Format(_T("%I64d"), di.left.size);
-	return s;
+	return locality::GetLocaleStr(s);
 }
 static CString ColRsizeGet(const DIFFITEM & di)
 {
 	CString s;
 	s.Format(_T("%I64d"), di.right.size);
-	return s;
+	return locality::GetLocaleStr(s);
 }
 static CString ColNewerGet(const DIFFITEM & di)
 {

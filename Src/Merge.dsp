@@ -380,6 +380,10 @@ SOURCE=..\common\listvwex.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\locality.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=..\common\LogFile.cpp
 # End Source File
 # Begin Source File
@@ -761,6 +765,10 @@ SOURCE=..\common\LanguageSelect.h
 # Begin Source File
 
 SOURCE=..\common\listvwex.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\locality.h
 # End Source File
 # Begin Source File
 

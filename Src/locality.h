@@ -1,0 +1,19 @@
+/** 
+ * @file  locality.h
+ *
+ * @brief Declaration of helper functions involving locale
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
+#ifndef locality_h_included
+#define locality_h_included
+
+namespace locality {
+
+CString NumToLocaleStr(UINT n);
+CString GetLocaleStr(const CString & str);
+
+};
+
+#endif // locality_h_included

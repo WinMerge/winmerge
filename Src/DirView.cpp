@@ -35,6 +35,7 @@
 #include "coretools.h"
 #include "WaitStatusCursor.h"
 #include "dllver.h"
+#include "locality.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -358,8 +359,7 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 // How to do this with locale sensitivity ?
 CString NumToStr(int n)
 {
-	CString s;
-	s.Format(_T("%d"), n);
+	CString s = locality::NumToLocaleStr(n);
 	return s;
 }
 

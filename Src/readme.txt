@@ -1,3 +1,8 @@
+2003-08-29 Perry
+ PATCH: [ 779818 ] Fix number display to be locale & user-pref aware
+  (extended to handle larger numbers than 32 bit, for size)
+ WinMerge: DirView.cpp DirViewColItems.cpp locality.cpp locality.h Merge.dsp
+
 2003-08-29 Kimmo
  PATCH: [ 796756 ] Diff API
   WinMerge: DiffWrapper.h DiffWrapper.cpp DirDoc.h DirDoc.cpp DirView.cpp
