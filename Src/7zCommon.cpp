@@ -62,6 +62,7 @@ DATE:		BY:					DESCRIPTION:
 // $Id$
 
 #include "stdafx.h"
+#include "Merge.h"		// DirDocFilter theApp
 #include "resource.h"
 #include "DirDoc.h"
 #include "MainFrm.h"

@@ -31,7 +31,6 @@
 #pragma once
 
 
-#include "Merge.h"		// DirDocFilter theApp
 #include "DirView.h"
 #include "DiffContext.h"
 #include "diffThread.h"

@@ -3,6 +3,8 @@
   Src/Languages: Japanese/MergeJapanese.rc etc
  Update "18 languages" to "19 languages"
   Docs\Developers: readme-developers.html
+ PATCH: [ 964661 ] Remove unneeded include from DirDoc.h
+  Src: 7Common.cpp DirDoc.h
 
 2004-06-01 Kimmo
  BUG: [ 963820 ] Cutting off trailing chars in opendlg
