@@ -1,3 +1,7 @@
+2003-09-23 Kimmo
+ Don't show [0 files selected] in Patch Generate -dialog
+  WinMerge: PatchDlg.cpp
+
 2003-09-23 Perry
  PATCH: [ 810998 ] Unicode fix for ghosttextbuffer
   WinMerge: GhostTextBuffer.cpp

@@ -169,7 +169,7 @@ BOOL CPatchDlg::OnInitDialog()
 		if (m_file2.IsEmpty())
 			m_file2 = files.rfile;
 	}
-	else	// Multiple files added, show number of files
+	else if (count > 1)	// Multiple files added, show number of files
 	{
 		CString msg;
 		CString num;
