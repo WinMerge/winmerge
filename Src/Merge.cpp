@@ -76,6 +76,10 @@ CMergeApp::CMergeApp()
 , m_bDisableSplash(FALSE)
 , m_clrDiff(RGB(255,255,92))
 , m_clrSelDiff(RGB(255,0,92))
+, m_clrDiffDeleted(RGB(192, 192, 192))
+, m_clrSelDiffDeleted(RGB(240, 192, 192))
+, m_clrDiffText(RGB(0,0,0))
+, m_clrSelDiffText(RGB(0,0,0))
 , m_bNeedIdleTimer(FALSE)
 , m_pDiffTemplate(0)
 , m_pDirTemplate(0)
@@ -142,11 +146,15 @@ BOOL CMergeApp::InitInstance()
 
 	LoadStdProfileSettings(0);  // Load standard INI file options (including MRU)
 
-	m_bDisableSplash = GetProfileInt(_T("Settings"), _T("DisableSplash"), FALSE);
-	m_bHiliteSyntax = GetProfileInt(_T("Settings"), _T("HiliteSyntax"), TRUE)!=0;
+	m_bDisableSplash 	= GetProfileInt(_T("Settings"), _T("DisableSplash"), FALSE);
+	m_bHiliteSyntax 	= GetProfileInt(_T("Settings"), _T("HiliteSyntax"), TRUE)!=0;
 
-	m_clrDiff    = GetProfileInt(_T("Settings"), _T("DifferenceColor"), m_clrDiff);
-	m_clrSelDiff = GetProfileInt(_T("Settings"), _T("SelectedDifferenceColor"), m_clrSelDiff);
+	m_clrDiff			= GetProfileInt(_T("Settings"), _T("DifferenceColor"), m_clrDiff);
+	m_clrSelDiff 		= GetProfileInt(_T("Settings"), _T("SelectedDifferenceColor"), m_clrSelDiff);
+	m_clrDiffDeleted	= GetProfileInt(_T("Settings"), _T("DifferenceDeletedColor"), m_clrDiffDeleted);
+	m_clrSelDiffDeleted	= GetProfileInt(_T("Settings"), _T("SelectedDifferenceDeletedColor"), m_clrSelDiffDeleted);
+	m_clrDiffText		= GetProfileInt(_T("Settings"), _T("DifferenceTextColor"), m_clrDiffText);
+	m_clrSelDiffText	= GetProfileInt(_T("Settings"), _T("SelectedDifferenceTextColor"), m_clrSelDiffText);
 
 	// CG: The following block was added by the Splash Screen component.
 	{
@@ -588,22 +596,14 @@ void SillyTestCrap()
 #endif
 
 
-void CMergeApp::SetDiffColor(COLORREF clrValue)
-{
-	m_clrDiff = clrValue;
-}
-
-
-void CMergeApp::SetSelDiffColor(COLORREF clrValue)
-{
-	m_clrSelDiff = clrValue;
-}
-
-
 int CMergeApp::ExitInstance() 
 {
 	WriteProfileInt(_T("Settings"), _T("DifferenceColor"), m_clrDiff);
 	WriteProfileInt(_T("Settings"), _T("SelectedDifferenceColor"), m_clrSelDiff);
+	WriteProfileInt(_T("Settings"), _T("DifferenceDeletedColor"), m_clrDiffDeleted);
+	WriteProfileInt(_T("Settings"), _T("SelectedDifferenceDeletedColor"), m_clrSelDiffDeleted);
+	WriteProfileInt(_T("Settings"), _T("DifferenceTextColor"), m_clrDiffText);
+	WriteProfileInt(_T("Settings"), _T("SelectedDifferenceTextColor"), m_clrSelDiffText);
 	
 	delete m_fileFilterMgr;
 

@@ -1,3 +1,10 @@
+2003-07-16 Kimmo
+ PATCH: [ 768740 ] Additional color options
+  Submitted by Gilbert Wellisch
+  WinMerge: MainFrm.cpp Merge.cpp Merge.h Merge.rc MergeEditView.cpp
+   PropColors.cpp PropColors.h resource.h
+  Updated other languages
+
 2003-07-15 Laoran
  PATCH: [ 771625 ] regression for patch [765399]
   WinMerge: MergeEditView.cpp 

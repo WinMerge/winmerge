@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Developer Studio generated include file.
-// Used by MergeSlovak.rc
+// Used by Merge.rc
 //
 #define IDC_CUT                         3
 #define IDC_COPY                        4
@@ -155,8 +155,14 @@
 #define IDC_LANGUAGE_LIST               1037
 #define IDC_AUTOMRESCAN_CHECK           1038
 #define IDC_FILE_FILTER                 1039
+#define IDC_DIFFERENCE_TEXT_COLOR       1040
+#define IDC_DIFFERENCE_DELETED_COLOR    1041
+#define IDC_SEL_DIFFERENCE_DELETED_COLOR 1042
+#define IDC_SEL_DIFFERENCE_TEXT_COLOR   1043
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
+#define IDS_LINE_STATUS_INFO            8503
+#define IDS_EMPTY_LINE_STATUS_INFO      8504
 #define IDD_EDIT_FIND                   8601
 #define IDD_EDIT_REPLACE                8602
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -358,7 +364,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        114
 #define _APS_NEXT_COMMAND_VALUE         32820
-#define _APS_NEXT_CONTROL_VALUE         1040
+#define _APS_NEXT_CONTROL_VALUE         1044
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

@@ -182,25 +182,30 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 	// Line inside diff
 	if (dwLineFlags & LF_WINMERGE_FLAGS)
 	{
-		// Black text inside diffs
-		crText = RGB(0, 0, 0);
+		crText = theApp.GetDiffTextColor();
 		bDrawWhitespace = TRUE;
 		BOOL lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);
 
 		if (dwLineFlags & LF_DIFF)
 		{
 			if (lineInCurrentDiff)
+			{
 				crBkgnd = theApp.GetSelDiffColor();
+				crText = theApp.GetSelDiffTextColor();
+			}
 			else
+			{
 				crBkgnd = theApp.GetDiffColor();
+				crText = theApp.GetDiffTextColor();
+			}
 			return;
 		}
 		else if (dwLineFlags & LF_GHOST)
 		{
 			if (lineInCurrentDiff)
-				crBkgnd = theApp.GetSelDiffColor();
+				crBkgnd = theApp.GetSelDiffDeletedColor();
 			else
-				crBkgnd = RGB(192, 192, 192);
+				crBkgnd = theApp.GetDiffDeletedColor();
 			return;
 		}
 
@@ -210,8 +215,8 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 		// If no syntax hilighting
 		if (!theApp.m_bHiliteSyntax)
 		{
-			crBkgnd = RGB(255, 255, 255);
-			crText = RGB(0, 0, 0);
+			crBkgnd = GetSysColor (COLOR_WINDOW);
+			crText = GetSysColor (COLOR_WINDOWTEXT);
 			bDrawWhitespace = FALSE;
 		}
 		else
