@@ -2,6 +2,8 @@
  PATCH: [ 868584 ] Move DIRSEL_TAG to string resource
   WinMerge: Merge.rc OpenDlg.cpp resource.h
   Languages: *.rc resource.h
+ Adding missing line in patch [ 868584 ] and fixing one tab
+  WinMerge: OpenDlg.cpp
 
 2003-12-28 Perry
  PATCH: [ 863738 ] Various Updates in German Translation

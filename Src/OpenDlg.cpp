@@ -108,7 +108,7 @@ void COpenDlg::OnLeftButton()
 	CFileStatus status;
 	UpdateData(TRUE); 
 
-    VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
+	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
 	if (CFile::GetStatus(m_strLeft, status)
 		&& (status.m_attribute & CFile::Attribute::directory))
 			sfolder = m_strLeft;
@@ -136,6 +136,7 @@ void COpenDlg::OnRightButton()
 	CFileStatus status;
 	UpdateData(TRUE);
 
+	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
 	if (CFile::GetStatus(m_strRight, status)
 		&& (status.m_attribute & CFile::Attribute::directory))
 			sfolder = m_strRight;
