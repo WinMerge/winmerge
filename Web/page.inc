@@ -142,6 +142,7 @@
           $temp .= "  <li><a href=\"/2.0/docs/index.html\">WinMerge User's Guide</a></li>\n";
           break;
         case WINMERGE_2_2: //if WinMerge 2.2 ...
+          $temp .= "  <li><a href=\"/2.2/screenshots.php\">Screenshots</a></li>\n";
           $temp .= "  <li><a href=\"/2.2/manual/index.html\">WinMerge Manual</a></li>\n";
           break;
       }

@@ -1,3 +1,9 @@
+2004-11-25 Tim
+ PATCH: [ 1072859 ] Web: Screenshots for 2.2
+  Web: page.inc
+  Web\2.2: index.php screenshots.php
+  Web\2.2\images: dir-compare.gif dir-compare-status.gif file-compare.gif line-diff.gif open-dialog.gif
+
 2004-11-20 Tim
  PATCH: [ 1070058 ] Web: Add border to pre
   Web\css: all.css print.css

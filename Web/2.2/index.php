@@ -25,7 +25,8 @@
 </ul>
 
 <h2>Screenshot</h2>
-<img src="images/filecomp1.gif" alt="Screenshot of WinMerge">
+<p><img src="images/file-compare.gif" alt="Screenshot of WinMerge"></p>
+<p>See the <a href="screenshots.php">screenshots page</a> for more screenshots.</p>
 
 <h2>Installation</h2>
 <p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.0-Setup.exe">installer</a> and double-click it.</p>
