@@ -1,3 +1,7 @@
+2004-06-15 Kimmo
+ PATCH: [ 972861 ] Userdocs: typo in WinMerge_help.xml
+  Manual: WinMerge_help.xml
+
 2004-06-03 Kimmo
  PATCH: [ 965144 ] Userdocs: Filters
   Manual: Filters.xml
