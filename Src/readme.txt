@@ -1,3 +1,7 @@
+2003-06-29 Perry
+ PATCH: [ 758912 ] Combine duplicated code in CMergeEditView::OnEditCopy
+  WinMerge: MergeEditView.cpp
+
 2003-06-29 Kimmo
  PATCH: [ 762749 ] Forced rescan after options changed
   WinMerge: MainFrm.cpp

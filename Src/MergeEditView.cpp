@@ -363,12 +363,12 @@ void CMergeEditView::OnEditCopy()
 		return;
 
 	CString text;
-	if (m_bIsLeft)
-		pDoc->m_ltBuf.GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
-			ptSelEnd.y, ptSelEnd.x, text, m_bIsLeft);
-	else
-		pDoc->m_rtBuf.GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
-			ptSelEnd.y, ptSelEnd.x, text, m_bIsLeft);
+
+	CMergeDoc::CDiffTextBuffer * buffer
+		= m_bIsLeft ? &pDoc->m_ltBuf : &pDoc->m_rtBuf;
+
+	buffer->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
+		ptSelEnd.y, ptSelEnd.x, text, m_bIsLeft); 
 
 	PutToClipboard(text);
 }
