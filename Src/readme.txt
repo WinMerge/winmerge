@@ -1,3 +1,9 @@
+2004-02-23 Kimmo
+ PATCH: [ 902738 ] Two errors in resource (Whitespaces and Hilight)
+  Also RFE [ 837773 ] fix all about boxes
+  Src: Merge.rc
+  Languages: *.rc
+
 2004-02-21 Kimmo
  PATCH: [ 896153 ] OptionsManager
   Src/Common: new files OptionsMgr.cpp OptionsMgr.h

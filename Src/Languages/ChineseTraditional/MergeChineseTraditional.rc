@@ -326,7 +326,7 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 122
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 134
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "關於 WinMerge"
 FONT 9, "新細明體"
@@ -343,6 +343,10 @@ BEGIN
     LTEXT           "語法強調編輯檢視編寫由 Andrei Stcherbatchenko ",-1,7,71,
                     209,8
     LTEXT           "不同的語法編寫由 Ferdinand Prantl",IDC_STATIC,7,81,209,8
+    LTEXT           "Other major contributors include:",IDC_STATIC,7,91,209,
+                    8
+    LTEXT           "Christian List, Perry Rapp, Kimmo Varis, Laurent Ganier",
+                    IDC_STATIC,7,101,209,8
 END
 
 IDD_OPEN DIALOGEX 0, 0, 369, 115

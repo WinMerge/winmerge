@@ -784,7 +784,7 @@ STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
+    GROUPBOX        "Whitespace",IDC_STATIC,7,7,221,50
     CONTROL         "Учитывать &невидимые",IDC_WHITESPACE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,19,98,10
     CONTROL         "Игнорировать измененные невидимые",IDC_WHITE_CHANGE,

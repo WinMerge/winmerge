@@ -328,7 +328,7 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 122
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 223, 134
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "A propos de WinMerge"
 FONT 8, "MS Sans Serif"
@@ -347,6 +347,10 @@ BEGIN
                     IDC_STATIC,7,71,209,8
     LTEXT           "Various Syntaxes by Ferdinand Prantl",IDC_STATIC,7,81,
                     209,8
+    LTEXT           "Other major contributors include:",IDC_STATIC,7,91,209,
+                    8
+    LTEXT           "Christian List, Perry Rapp, Kimmo Varis, Laurent Ganier",
+                    IDC_STATIC,7,101,209,8
 END
 
 IDD_OPEN DIALOGEX 0, 0, 356, 115
@@ -774,7 +778,7 @@ STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
+    GROUPBOX        "Whitespace",IDC_STATIC,7,7,221,50
     CONTROL         "Compare les &espaces",IDC_WHITESPACE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,19,83,10
     CONTROL         "Ignore les espaces consécutifs",IDC_WHITE_CHANGE,"Button",

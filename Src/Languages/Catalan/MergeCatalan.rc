@@ -777,7 +777,7 @@ STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
+    GROUPBOX        "Whitespace",IDC_STATIC,7,7,221,50
     CONTROL         "Compara els &espais",IDC_WHITESPACE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,19,82,10
     CONTROL         "Ignora els &canvis en els espais",IDC_WHITE_CHANGE,

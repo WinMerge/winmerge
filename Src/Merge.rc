@@ -777,7 +777,7 @@ STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,221,50
+    GROUPBOX        "Whitespace",IDC_STATIC,7,7,221,50
     CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,14,19,44,10
     CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",
@@ -800,7 +800,7 @@ STYLE WS_CHILD | WS_CAPTION
 CAPTION "Editor"
 FONT 8, "MS Sans Serif"
 BEGIN
-    CONTROL         "&Hilight syntax",IDC_HILITE_CHECK,"Button",
+    CONTROL         "&Highlight syntax",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
     CONTROL         "&Automatic rescan",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
