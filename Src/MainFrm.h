@@ -137,8 +137,8 @@ public:
 	UINT m_nTabType; /**< 0-editor inserts tabs, 1-editor inserts spaces */
 	BOOL m_bViewWhitespace; /**< Is whitespace view enabled */
 	CString m_sExtEditorPath; /**< Path to external editor */
-	CString m_strLeftDesc;
-	CString m_strRightDesc;
+	CString m_strLeftDesc; /**< Left side description text proxy */
+	CString m_strRightDesc; /**< Right side description text proxy */
 	BOOL m_CheckOutMulti;
 	BOOL m_bVCProjSync;
 

@@ -298,6 +298,8 @@ protected:
 	PackingInfo * m_pInfoUnpacker;
 	/// String of concatenated filenames as text to apply plugins filter to
 	CString m_strBothFilenames;
+	CString m_strLeftDesc; /**< Left side description text */
+	CString m_strRightDesc; /**< Right side description text */
 
 // friend access
 	friend class RescanSuppress;

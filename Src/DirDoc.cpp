@@ -750,16 +750,16 @@ void CDirDoc::UpdateHeaderPath(BOOL bLeft)
 
 	if (bLeft)
 	{
-		if (!mf->m_strLeftDesc.IsEmpty())
-			sText = mf->m_strLeftDesc;
+		if (!m_strLeftDesc.IsEmpty())
+			sText = m_strLeftDesc;
 		else
 			sText = m_pCtxt->m_strLeft;
 		nPane = 0;
 	}
 	else
 	{
-		if (!mf->m_strRightDesc.IsEmpty())
-			sText = mf->m_strRightDesc;
+		if (!m_strRightDesc.IsEmpty())
+			sText = m_strRightDesc;
 		else
 			sText = m_pCtxt->m_strRight;
 		nPane = 1;
@@ -799,4 +799,13 @@ bool CDirDoc::IsCurrentScanAbortable() const
 {
 	return (m_diffThread.GetThreadState() == THREAD_COMPARING 
 		&& !m_diffThread.IsAborting());
+}
+
+/**
+ * @brief Set directory description texts shown in headerbar
+ */
+void CDirDoc::SetDescriptions(CString strLeftDesc, CString strRightDesc)
+{
+	m_strLeftDesc = strLeftDesc;
+	m_strRightDesc = strRightDesc;
 }

@@ -107,6 +107,7 @@ public:
 	void UpdateHeaderPath(BOOL bLeft);
 	void AbortCurrentScan();
 	bool IsCurrentScanAbortable() const;
+	void SetDescriptions(CString strLeftDesc, CString strRightDesc);
 
 #ifdef _DEBUG
 	virtual void AssertValid() const;
@@ -129,10 +130,12 @@ private:
 	CDirView *m_pDirView;
 	MergeDocPtrList m_MergeDocs;
 	BOOL m_bReuseMergeDocs; // policy to reuse existing merge docs
-	BOOL m_bROLeft;
-	BOOL m_bRORight;
-	BOOL m_bRecursive;
+	BOOL m_bROLeft; /**< Is left side read-only */
+	BOOL m_bRORight; /**< Is right side read-only */
+	BOOL m_bRecursive; /**< Is current compare recursive? */
 	CustomStatusCursor * m_statusCursor;
+	CString m_strLeftDesc; /**< Left side desription text */
+	CString m_strRightDesc; /**< Left side desription text */
 };
 
 /**

@@ -717,9 +717,9 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &bLastErrorCode, BOOL bLeft, Pac
 				if (strPath.IsEmpty())
 				{
 					if (bLeft)
-						mf->m_strLeftDesc.Empty();
+						m_strLeftDesc.Empty();
 					else
-						mf->m_strRightDesc.Empty();
+						m_strRightDesc.Empty();
 				}
 					
 				strPath = strSavePath;
@@ -2147,7 +2147,7 @@ BOOL CMergeDoc::SaveHelper()
 		if (!m_strRightFile.IsEmpty())
 			AfxFormatString1(s, IDS_SAVE_FMT, m_strRightFile);
 		else
-			AfxFormatString1(s, IDS_SAVE_FMT, mf->m_strRightDesc);
+			AfxFormatString1(s, IDS_SAVE_FMT, m_strRightDesc);
 
 		bRModified = TRUE;
 		switch(AfxMessageBox(s, MB_YESNOCANCEL|MB_ICONQUESTION))
@@ -2531,22 +2531,17 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 }
 
 /**
-* @brief Loads files and does initial rescan
-*
-* @param sLeftFile File to open to left side
-* @param sRightFile File to open to right side
-* @param bROLeft Is left file read-only
-* @param bRORight Is right file read-only
-* @param cpleft Is left file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
-* @param cpright Is right file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
-*
-* @return Tells if files were loaded and scanned succesfully
-*
-* @note Options are still read from CMainFrame, this will change
-*
-* @sa CMainFrame::ShowMergeDoc()
-*
-*/
+ * @brief Loads files and does initial rescan
+ * @param sLeftFile File to open to left side
+ * @param sRightFile File to open to right side
+ * @param bROLeft Is left file read-only
+ * @param bRORight Is right file read-only
+ * @param cpleft Is left file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
+ * @param cpright Is right file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
+ * @return Tells if files were loaded and scanned succesfully
+ * @todo Options are still read from CMainFrame, this will change
+ * @sa CMainFrame::ShowMergeDoc()
+ */
 BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright)
 {
@@ -2688,6 +2683,12 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		pLeft->SetDisableBSAtSOL(FALSE);
 		pRight->SetDisableBSAtSOL(FALSE);
 		
+		// Get description texts from MainFrm proxys and clear proxys
+		m_strLeftDesc = mf->m_strLeftDesc;
+		mf->m_strLeftDesc.Empty();
+		m_strRightDesc = mf->m_strRightDesc;
+		mf->m_strRightDesc.Empty();
+
 		// set the frame window header
 		UpdateHeaderPath(TRUE);
 		UpdateHeaderPath(FALSE);
@@ -2744,8 +2745,8 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 
 	if (bLeft)
 	{
-		if (!mf->m_strLeftDesc.IsEmpty())
-			sText = mf->m_strLeftDesc;
+		if (!m_strLeftDesc.IsEmpty())
+			sText = m_strLeftDesc;
 		else
 			sText = m_strLeftFile;
 		bChanges = m_ltBuf.IsModified();
@@ -2753,8 +2754,8 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 	}
 	else
 	{
-		if (!mf->m_strRightDesc.IsEmpty())
-			sText = mf->m_strRightDesc;
+		if (!m_strRightDesc.IsEmpty())
+			sText = m_strRightDesc;
 		else
 			sText = m_strRightFile;
 		bChanges = m_rtBuf.IsModified();

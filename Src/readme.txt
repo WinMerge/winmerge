@@ -12,6 +12,9 @@
  PATCH: [ 847137 ] Report from dir compare results
   Missed one diff from DirView.cpp
   WinMerge: DirView.cpp
+ PATCH: [ 847697 ] Move desc texts into doc classes
+  Fixes bug [ 847635 ] filenames after scratchpad
+  WinMerge: DirDoc.h DirDoc.cpp MainFrm.h MainFrm.cpp  MergeDoc.h MergeDoc.cpp
 
 2003-11-23 Perry
  Fix Exceptions.h for Unicode build

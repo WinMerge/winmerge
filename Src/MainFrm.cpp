@@ -583,17 +583,11 @@ BOOL CMainFrame::GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset)
 
 /**
 * @brief Check if file is read-only and save to version control if one is used.
-*
-*
 * @param strSavePath Path where to save including filename
-*
 * @return Tells if caller can continue (no errors happened)
-*
 * @note If user selects "Cancel" FALSE is returned and caller must assume file
 * is not saved.
-*
 * @sa SaveToVersionControl()
-*
 */
 BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 {
@@ -1192,6 +1186,10 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				pDirDoc->SetRecursive(bRecurse);
 				pCtxt->SetRegExp(strExt);
 				pDirDoc->SetDiffContext(pCtxt);
+				pDirDoc->SetDescriptions(m_strLeftDesc, m_strRightDesc);
+				m_strLeftDesc.Empty();
+				m_strRightDesc.Empty();
+
 				pDirDoc->Rescan();
 				if (m_bScrollToFirst)
 				{
