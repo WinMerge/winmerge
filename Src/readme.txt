@@ -3,6 +3,8 @@
   Src: Merge.cpp Merge.h
  FIX wrong checkin comments and wrong patch number and description
   in previous checkin.
+ PATCH: [ 906934 ] Fix filenames in patch-files
+  Src: DiffWrapper.cpp
 
 2004-02-28 WinMerge experimental release 2.1.5.12 (cvs)
 

@@ -734,7 +734,9 @@ bool DiffFileData::DoOpenFiles()
 	{
 		// Fill in 8-bit versions of names for diffutils (WinMerge doesn't use these)
 		USES_CONVERSION;
-		m_inf[i].name = T2CA(m_sFilepath[i]);
+		m_inf[i].name = strdup(T2CA(m_sFilepath[i]));
+		if (m_inf[i].name == NULL)
+			return false;
 
 		// Open up file descriptors
 		// Always use O_BINARY mode, to avoid terminating file read on ctrl-Z (DOS EOF)
@@ -768,6 +770,9 @@ void DiffFileData::Reset()
 	// open file handles might be leftover from a failure in DiffFileData::OpenFiles
 	for (int i=0; i<2; ++i)
 	{
+		free((void *)m_inf[i].name);
+		m_inf[i].name = NULL;
+
 		if (m_inf[i].desc > 0)
 		{
 			close(m_inf[i].desc);
