@@ -1,0 +1,29 @@
+## This is a directory/file filter for WinMerge
+## This filter suppresses various binaries found in ADAMulti source trees
+name: ADAMulti
+
+## This is an inclusive (loose) filter
+## (it lets through everything not specified)
+def: include
+
+## Filters for filenames begin with f:
+## Filters for directories begin with d:
+## (Inline comments begin with " ##" and extend to the end of the line)
+
+f: \.o$     ## Object file
+f: \.lib$
+f: \.obj$   ## Object file
+f: \.inf$   ## Generated file
+f: \.map$   ## Map file
+f: \.lst$   ## list file
+f: \.ti$    ## generated file
+f: \.dbo$   ## Object file
+f: \.dla$   ## Object file
+f: \.dnm$   ## Node map file?
+f: \.bin$   ## Code file
+f: \.a$     ## library file
+f: \.s$
+
+d: \\cvs$   ## cvs repository files
+d: \\obj$   ## object file directory
+d: \\objs$  ## object file directory

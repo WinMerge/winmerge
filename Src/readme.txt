@@ -1,6 +1,9 @@
 2004-11-03 Kimmo
  PATCH: [ 1058992 ] More flexible whitespaces for file filter files
   Src: FileFilterMgr.cpp
+ BUG: [ 1058947 ] Filter files sensitive to spaces
+  Add new file filter for ADAMulti (from jpizzi)
+  Filters new file: ADAMulti.flt
 
 2004-11-02 Kimmo
  PATCH: [ 1058293 ] The finished german language file
