@@ -4,6 +4,8 @@
   Languages: German/MergeGerman.rc
  PATCH: [ 860472 ] Fix SuperComboBox to handle its own OLE requirements
   common: SuperComboBox.cpp SuperComboBox.h
+ New Russian translation by Dmitriy Aleshkowskiy
+  Languages\Russian\*
 
 2003-12-22 Perry
  Put ID_POPUP_COPYALLDIFFSFROMOTHERSIDE back into rc file so it parses
