@@ -125,13 +125,10 @@ void CMergeEditView::UpdateResources()
 
 BOOL CMergeEditView::PrimeListWithFile()
 {
-	int nResumeTopLine = GetScrollPos(SB_VERT)+1;
-
 	SetWordWrapping(FALSE);
 	ResetView();
 	RecalcVertScrollBar();
 	SetTabSize(mf->m_nTabSize);
-	GoToLine(nResumeTopLine, FALSE);
 
 	return TRUE;
 }

@@ -1,4 +1,8 @@
 2003-07-05 Laoran
+ PATCH: [ 765399 ] resize m_pdwParseCookies before GoToLine
+  WinMerge: MergeDoc.cpp  MergeEditView.cpp
+
+2003-07-05 Laoran
  PATCH: [ 765926 ] Merge empty last line to the last diffrange (change)
   WinMerge: MergeDoc.cpp
 
