@@ -1,3 +1,7 @@
+2004-09-14 Kimmo
+ Add Lee Jae-Hong as Korean translator
+  Web\developer\l10n: status.xml
+
 2004-07-28 Kimmo
  PATCH: [ 986413 ] Update Italian translation status
   Web/developer/l10n: status.xml
