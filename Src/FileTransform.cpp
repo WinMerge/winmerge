@@ -471,13 +471,24 @@ BOOL FileTransform_UCS2ToUTF8(CString & filepath, BOOL bMayOverwrite)
 	{
 		// we do not overwrite so we delete the old file
 		if (bMayOverwrite)
-			::DeleteFile(filepath);
+		{
+			if (!::DeleteFile(filepath))
+			{
+				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+					filepath, GetSysError(GetLastError())));
+			}
+		}
 		// and change the filepath if everything works
 		filepath = tempFilepath;
 	}
 	else
-		::DeleteFile(tempFilepath);
-
+	{
+		if (!::DeleteFile(tempFilepath))
+		{
+			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
+				tempFilepath, GetSysError(GetLastError())));
+		}
+	}
 
 	return TRUE;
 }
