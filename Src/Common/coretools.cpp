@@ -376,71 +376,92 @@ FileExtMatches(LPCTSTR filename, LPCTSTR ext)
   return FALSE;
 }
 
-// raw TCHAR array version -- use the SplitFilename wrapper below
-void
-split_filename(LPCTSTR s, LPTSTR path, LPTSTR name, LPTSTR ext)
+// Parse pathLeft, extract out up to three items
+//   - directory (pPath), with no trailing slash (but including trailing colon)
+//   - filename (pFile), including extension
+//   - extension (pExt), with no leading dot
+void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pExt)
 {
-	// homebrew version of splitpath, no length limits
-	TCHAR *p;
-	if ((p=_tcsrchr(s,_T('\\'))) != NULL)
+	const TCHAR* pszChar = pathLeft + strlen(pathLeft);
+	bool ext=false;
+	while (pathLeft < --pszChar) 
 	{
-		if (path != NULL)
+		if (*pszChar == '.')
 		{
-			_tcsncpy(path, s, tcssubptr(s, p));
-			path[p-s]=NULL;
+			if (!ext && pExt)
+			{
+				(*pExt) = pszChar + 1;
+				ext = true; // extension is only after last period
+			}
 		}
-		if (name != NULL) 
+		else if (*pszChar == '/' || *pszChar == '\\' || *pszChar == ':')
 		{
-			_tcscpy(name,_tcsinc(p));
-		}
-	}
-	else
-	{
-		if (path != NULL)
-			*path = _T('\0');
-		if (name != NULL)
-			_tcscpy(name,s);
-	}       
+			// Ok, found last slash, so we collect any info desired
+			// and we're done
 	
-	if (ext != NULL)
-	{
-		if ((p=_tcsrchr(s,_T('.'))) != NULL)
-		{          
-			_tcscpy(ext,_tcsinc(p));
-			if (name!=NULL) 
-				_tccpy(_tcsninc(name, _tcslen(name)-_tcslen(ext)-1), _T("\0"));
-		}                   
-		else
-			ext[0] = NULL; 
-	}
-}  
+			if (pPath)
+			{
+				// Grab directory (omit trailing slash)
+				int len = pszChar - pathLeft;
+				if (*pszChar == ':') ++len; // Keep trailing colon ( eg, C:filename.txt)
+				TCHAR* pszDir = pPath->GetBufferSetLength(len);
+				strncpy(pszDir, pathLeft, len);
+				pszDir[len] = '\0'; // strncpy doesn't always zero-terminate
+				pPath->ReleaseBuffer();
+			}
 
-// CString version of split_filename
-void
-SplitFilename(LPCTSTR s, CString * path, CString * name, CString * ext)
-{
-	if (!s || !s[0])
-	{
-		if (path) *path = _T("");
-		if (name) *name = _T("");
-		if (ext) *ext = _T("");
-		return;
-	}
-	// Traditional paths are limited to MAX_PATH, _MAX_DIR, _MAX_FNAME, _MAX_EXT,
-	// but long paths beginning with \\?\ may be up to MAX_PATH in each component
-	// and split_filename doesn't check for any length limits
+			if (pFile)
+			{
+				// Grab file
+				(*pFile) = pszChar + 1;
+			}
 
-	int slen = _tcslen(s);
-	int ndir = slen, nname = slen, next = slen;
-	split_filename(s
-		, path ? path->GetBuffer(ndir) : 0
-		, name ? name->GetBuffer(nname) : 0
-		, ext ? ext->GetBuffer(next) : 0
-		);
-	if (path) path->ReleaseBuffer();
-	if (name) name->ReleaseBuffer();
-	if (ext) ext->ReleaseBuffer();
+			return;
+		}
+	}
+
+	// Never found a delimiter
+	if (pFile)
+	{
+		(*pFile) = pathLeft;
+	}
 }
+
+// Test code for SplitFilename above
+void TestSplitFilename()
+{
+	LPCTSTR tests[] = {
+		_T("\\\\hi\\"), _T("\\\\hi"), 0, 0
+		, _T("\\\\hi\\a.a"), _T("\\\\hi"), _T("a.a"), _T("a")
+		, _T("a.hi"), 0, _T("a.hi"), _T("hi")
+		, _T("a.b.hi"), 0, _T("a.b.hi"), _T("hi")
+		, _T("c:"), _T("c:"), 0, 0
+		, _T("c:\\"), _T("c:"), 0, 0
+		, _T("c:\\d:"), _T("c:\\d:"), 0, 0
+	};
+	for (int i=0; i<sizeof(tests)/sizeof(tests[0]); i += 4)
+	{
+		LPCTSTR dir = tests[i];
+		CString path, name, ext;
+		SplitFilename(dir, &path, &name, &ext); 
+		LPCTSTR szpath = tests[i+1] ? tests[i+1] : _T("");
+		LPCTSTR szname = tests[i+2] ? tests[i+2] : _T("");
+		LPCTSTR szext = tests[i+3] ? tests[i+3] : _T("");
+		ASSERT(path == szpath);
+		ASSERT(name == szname);
+		ASSERT(ext == szext);
+
+	}
+/*
+	SplitFilename("c:", &path, &name, &ext);
+		SplitFilename("c:\\", &path, &name, &ext);
+		SplitFilename("c:\\", 0, &name, &ext);
+		SplitFilename("c:\\file", &path, &name, &ext);
+		SplitFilename("c:\\file", &path, &name, &ext);
+*/
+}
+
+
 void
 AddExtension(LPTSTR name, LPCTSTR ext)
 {

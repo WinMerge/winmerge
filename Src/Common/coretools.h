@@ -99,6 +99,7 @@ BOOL GetIP(LPTSTR straddr);
 void replace_char(LPTSTR s, int target, int repl);
 BOOL FileExtMatches(LPCTSTR filename, LPCTSTR ext);
 void SplitFilename(LPCTSTR s, CString * path, CString * name, CString * ext);
+void TestSplitFilename();
 void AddExtension(LPTSTR name, LPCTSTR ext);
 BOOL is_all_whitespace(LPCTSTR s);
 BOOL GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s);

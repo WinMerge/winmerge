@@ -1,5 +1,7 @@
 2003-02-09  Perry
  [ 683120 ] splitfilename changed to CStrings
+ Move new SplitFilename from Chris Mumford into coretools, remove old
+ versions, add test chassis, and fix some minor cases.
 
 2003-02-08  Perry
  DirDoc.*: Changed from strftime to COleDateTime::Format (respects user prefs).

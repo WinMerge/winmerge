@@ -422,40 +422,6 @@ CString GetPathOnly( const CString& sString )
 }
 
 
-//
-// extension does not have '.'
-//
-void SplitFilename( LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pExt )
-{
-	const TCHAR* pszChar = pathLeft + strlen(pathLeft);
-
-	while ( pathLeft < --pszChar ) {
-		if ( *pszChar == '.' && pExt != NULL && pExt->GetLength() == 0 ) {
-			
-			*pExt = pszChar + 1;
-		}
-		else if ( *pszChar == '/' || *pszChar == '\\' ) {
-			
-			// Set the directory
-			if ( pPath != NULL ) {
-				char* pszDir = pPath->GetBufferSetLength( pszChar - pathLeft );
-				strncpy( pszDir, pathLeft, pszChar - pathLeft );
-				pszDir[pszChar - pathLeft] = '\0';
-				pPath->ReleaseBuffer();
-			}
-
-			// Set the file
-			if ( pFile != NULL ) {
-				*pFile = pszChar + 1;
-			}
-
-			return;
-		}
-	}
-
-	// Never found a delimiter
-}
-
 
 
 BOOL CDirDoc::UpdateItemStatus(LPCTSTR pathLeft, LPCTSTR pathRight,
