@@ -1561,6 +1561,7 @@ BEGIN
     ID_FILE_RIGHT_READONLY  "Ändert den rechten Schreibschutz-Status."
 END
 
+// ID_EOL_TO_DOS SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_EOL_TO_DOS           "Konvertiert Zeilenumbrüche ins DOS Format."

@@ -1049,6 +1049,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// ID_FILE_NEW SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_FILE_NEW             "Съждай нов документ\nНов документ (Ctrl+N)"
@@ -1062,6 +1063,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Представи страницата\nPrint Preview"
 END
 
+// ID_APP_ABOUT SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_APP_ABOUT            "Представя информация за програмата, версията и авторското право\nЗа"
@@ -1088,6 +1090,7 @@ BEGIN
     ID_FILE_MRU_FILE16      "Отваряне на този документ"
 END
 
+// ID_NEXT_PANE SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
@@ -1104,6 +1107,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Разделя текущия прозорец\nРазделя"
 END
 
+// ID_EDIT_CLEAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_EDIT_CLEAR           "Изтрива избраното\nИзтрива"
@@ -1119,12 +1123,14 @@ BEGIN
     ID_EDIT_REDO            "Върни последното действие\nВърни (Ctrl+Р)"
 END
 
+// ID_VIEW_TOOLBAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "Показвай или скривай инструментите\nПоказване на инструментите"
     ID_VIEW_STATUS_BAR      "Показвай или скривай статуса\nСтатус"
 END
 
+// AFX_IDS_SCSIZE SYNCHRO
 STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "Промени големината на прозореца"
@@ -1157,6 +1163,7 @@ BEGIN
     IDS_ELAPSED_TIME        "Оставащо време: %ld ms"
 END
 
+// IDS_VERSION_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_VERSION_FMT         "Версия %1"
@@ -1175,6 +1182,7 @@ BEGIN
     IDS_CANT_COMPARE_FILES  "Не може да сравни файловете"
 END
 
+// IDS_SAVE_AS_TITLE SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_SAVE_AS_TITLE       "Съхрани като"
@@ -1197,6 +1205,7 @@ BEGIN
     IDS_NOPROJECT           "Вие трябва да изберете SourceSafe проект за да продължите (ie:  $/MyProject)"
 END
 
+// IDS_COLHDR_FILENAME SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_COLHDR_FILENAME     "Име"
@@ -1219,6 +1228,7 @@ BEGIN
     IDS_DEL_LEFT_FMT        "Ляво (%1)"
 END
 
+// IDS_DEL_RIGHT_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_DEL_RIGHT_FMT       "Дясно (%1)"
@@ -1259,6 +1269,7 @@ BEGIN
     IDS_COLHDR_RVERSION     "Версия на десния файл"
 END
 
+// IDS_LEFTONLY SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_LEFTONLY            "Само левият"
@@ -1282,6 +1293,7 @@ BEGIN
     IDS_COLHDR_NSDIFFS      "#sig. differences"
 END
 
+// IDS_PRIVATEBUILD_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
@@ -1360,6 +1372,7 @@ BEGIN
     IDS_CANNOT_EXECUTE_FILE "Неможе да стартира %1"
 END
 
+// IDS_MESSAGEBOX_OK SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
@@ -1384,7 +1397,8 @@ BEGIN
     IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
 END
 
-STRINGTABLE DISCARDABLE
+// ID_L2R SYNCHRO
+STRINGTABLE 
 BEGIN
     ID_L2R                  "Копиране на избрания текст в десния файл\nКопиране в дясно (Alt+Right)"
     ID_R2L                  "Копиране на избрания текст в левия файл\nКопиране в ляво (Alt+Left)"
@@ -1412,6 +1426,7 @@ BEGIN
     ID_DIR_COPY_RIGHT_TO_LEFT "Копиране на файловете към избраната директория"
 END
 
+// ID_DIR_COPY_LEFT_TO_RIGHT SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT "Копиране на файловете към избраната директория"
@@ -1447,6 +1462,7 @@ BEGIN
     ID_FILE_RIGHT_READONLY  "Сменяне на десния файл/директория read-only статуса"
 END
 
+// ID_EOL_TO_DOS SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_EOL_TO_DOS           "Convert EOL to DOS mode"
@@ -1475,7 +1491,7 @@ BEGIN
     ID_EDIT_WMGOTO          "Отиди на графа или разлика\nОтиди на (Ctrl+G)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_NO_EDIT_SCRIPTS      "< Empty >"
     ID_RELOAD_PLUGINS       "&Unload all plugins and reload them (for developpers)"
@@ -1492,6 +1508,7 @@ BEGIN
     ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
 END
 
+// END STRINGS SYNCHRO
 #endif    // Bulgarian resources
 /////////////////////////////////////////////////////////////////////////////
 

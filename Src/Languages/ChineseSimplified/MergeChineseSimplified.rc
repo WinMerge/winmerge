@@ -1004,13 +1004,13 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "就绪"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -1021,7 +1021,7 @@ BEGIN
 END
 
 // ID_FILE_NEW SYNCHRO
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
     ID_FILE_OPEN            "打开一个现存文件\n打开 (Ctrl+O)"
@@ -1035,13 +1035,13 @@ BEGIN
 END
 
 // ID_APP_ABOUT SYNCHRO
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     ID_APP_ABOUT            "显示程序信息，版本号码和版权\n关于"
     ID_APP_EXIT             "离开应用程序；提示要保存文件\n退出"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     ID_FILE_MRU_FIRST       "打开这个文件"
     ID_FILE_MRU_FILE2       "打开这个文件"
@@ -1062,13 +1062,13 @@ BEGIN
 END
 
 // ID_NEXT_PANE SYNCHRO
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     ID_NEXT_PANE            "切换到下一个窗口\n下一窗口"
     ID_PREV_PANE            "切换回上一个窗口\n上一窗口"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     ID_WINDOW_NEW           "为作用中文件打开另一个窗口\n新窗口"
     ID_WINDOW_ARRANGE       "排列图标在窗口的底部\n排列图标"
@@ -1079,7 +1079,7 @@ BEGIN
 END
 
 // ID_EDIT_CLEAR SYNCHRO
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     ID_EDIT_CLEAR           "清除选择的范围\n删除"
     ID_EDIT_CLEAR_ALL       "全部删除\n全部删除"
@@ -1094,13 +1094,15 @@ BEGIN
     ID_EDIT_REDO            "重复之前未完成的动作\n重复"
 END
 
-STRINGTABLE FIXED IMPURE
+// ID_VIEW_TOOLBAR SYNCHRO
+STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n切换工具栏"
     ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n切换状态栏"
 END
 
-STRINGTABLE FIXED IMPURE
+// AFX_IDS_SCSIZE SYNCHRO
+STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "更改窗口大小"
     AFX_IDS_SCMOVE          "更改窗口位置"
@@ -1111,19 +1113,19 @@ BEGIN
     AFX_IDS_SCCLOSE         "关闭作用中窗口并提示到保存这文件"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     AFX_IDS_SCRESTORE       "将窗口还原成标准的大小"
     AFX_IDS_SCTASKLIST      "启用工作清单"
     AFX_IDS_MDICHILD        "启用这个窗口"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "关闭预览打印模式\n取消预览"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
@@ -1132,7 +1134,8 @@ BEGIN
     IDS_ELAPSED_TIME        "Elapsed time: %ld ms"
 END
 
-STRINGTABLE FIXED IMPURE
+// IDS_VERSION_FMT SYNCHRO
+STRINGTABLE 
 BEGIN
     IDS_VERSION_FMT         "版本 %1"
     IDS_ALLFILES            "所有文件 (*.*)|*.*||"
@@ -1151,7 +1154,7 @@ BEGIN
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     IDS_SAVE_AS_TITLE       "另存为"
     IDS_SELECT_FILES_OR_FOLDERS "您的选择必须是两者都是文件或两者都是文件夹"
@@ -1172,7 +1175,7 @@ BEGIN
 END
 
 // IDS_COLHDR_FILENAME SYNCHRO
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     IDS_COLHDR_FILENAME     "文件名称"
     IDS_COLHDR_DIR          "文件夹"
@@ -1192,7 +1195,8 @@ BEGIN
     IDS_DEL_LEFT_FMT        "Left (%1)"
 END
 
-STRINGTABLE FIXED IMPURE
+// IDS_DEL_RIGHT_FMT SYNCHRO
+STRINGTABLE 
 BEGIN
     IDS_DEL_RIGHT_FMT       "Right (%1)"
     IDS_DELETE_FAILED       "删除文件 %1 失败： %2"
@@ -1212,7 +1216,7 @@ BEGIN
     IDS_BIN_FILES_SAME      "二进制文件完全相同"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     IDS_FILESAVE_FAILED     "保存 %1 失败。您要以一个不同的称保存文件吗？"
     IDS_ERROR_FILE_NOT_FOUND "文件找不到: %1"
@@ -1232,7 +1236,8 @@ BEGIN
     IDS_COLHDR_RVERSION     "Right File Version"
 END
 
-STRINGTABLE DISCARDABLE
+// IDS_LEFTONLY SYNCHRO
+STRINGTABLE 
 BEGIN
     IDS_LEFTONLY            "Left Only"
     IDS_RIGHTONLY           "Right Only"
@@ -1249,7 +1254,8 @@ BEGIN
     IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
-STRINGTABLE DISCARDABLE
+// IDS_PRIVATEBUILD_FMT SYNCHRO
+STRINGTABLE 
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
     IDS_FILEWRITE_ERROR     "Could not write to file %1."
@@ -1287,7 +1293,7 @@ BEGIN
     IDS_DIRSEL_TAG          "Directory Selection"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_COPY_LEFT_TO        "Left to... (%1)"
     IDS_COPY_LEFT_TO2       "Left to... (%1 of %2)"
@@ -1304,24 +1310,24 @@ BEGIN
     IDS_DIFFERENT           "Different"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDC_MIXED_EOL           "Preserve original EOL chars"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE  
 BEGIN
     IDC_COMPARISON_STOP     "Stop"
     IDC_COMPARISON_CLOSE    "Press any key"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_NUM_REPLACED        "已替换 %1 个字符串。"
     IDS_EDIT_TEXT_NOT_FOUND "无法寻找字符串「%s」"
@@ -1333,6 +1339,7 @@ BEGIN
     IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"
 END
 
+// IDS_MESSAGEBOX_OK SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
@@ -1357,7 +1364,8 @@ BEGIN
     IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
 END
 
-STRINGTABLE FIXED IMPURE
+// ID_L2R SYNCHRO
+STRINGTABLE 
 BEGIN
     ID_L2R                  "复制选择的文字到右边文件\n复制右边 (Alt + Right)"
     ID_R2L                  "复制选择的文字到左边文件\n复制左边 (Alt + Left)"
@@ -1368,7 +1376,7 @@ BEGIN
     ID_OPTIONS_BACKUPORIGINALFILE "保存的这原始的一个副本为 *.bak\n备份"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE "自动地卷动到这第一个不同\n卷动到第一个"
     ID_OPTIONS_IGNOREWHITESPACE "比对文件时不管空白和制表符"
@@ -1383,7 +1391,7 @@ BEGIN
     ID_DIR_COPY_RIGHT_TO_LEFT "复制选择的文件到已命名的文件夹"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT "复制选择的文件到已命名的文件夹"
     ID_VIEW_LANGUAGE        "选择目前用户接口语言\n语言"
@@ -1403,7 +1411,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "打开右边文件"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "打开右边文件以..."
     ID_OPTIONS_SHOWBINARIES "显示二进制文件"
@@ -1417,7 +1425,8 @@ BEGIN
     ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
-STRINGTABLE FIXED IMPURE
+// ID_EOL_TO_DOS SYNCHRO
+STRINGTABLE 
 BEGIN
     ID_EOL_TO_DOS           "Convert EOL to DOS mode"
     ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
@@ -1432,7 +1441,7 @@ BEGIN
     ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and Advance (Ctrl+Alt+Right)"
 END
 
-STRINGTABLE FIXED IMPURE
+STRINGTABLE 
 BEGIN
     ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
     ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
@@ -1445,7 +1454,7 @@ BEGIN
     ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_NO_EDIT_SCRIPTS      "< Empty >"
     ID_RELOAD_PLUGINS       "&Unload all plugins and reload them (for developpers)"

@@ -1037,6 +1037,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// ID_FILE_NEW SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
@@ -1050,6 +1051,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
 END
 
+// ID_APP_ABOUT SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
@@ -1076,6 +1078,7 @@ BEGIN
     ID_FILE_MRU_FILE16      "Open this document"
 END
 
+// ID_NEXT_PANE SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
@@ -1092,6 +1095,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
 END
 
+// ID_EDIT_CLEAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_EDIT_CLEAR           "Erase the selection\nErase"
@@ -1107,12 +1111,14 @@ BEGIN
     ID_EDIT_REDO            "Redo the previously undone action\nRedo (Ctrl+Y)"
 END
 
+// ID_VIEW_TOOLBAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
     ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
 END
 
+// AFX_IDS_SCSIZE SYNCHRO
 STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "Change the window size"
@@ -1145,6 +1151,7 @@ BEGIN
     IDS_ELAPSED_TIME        "Elapsed time: %ld ms"
 END
 
+// IDS_VERSION_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_VERSION_FMT         "Version %1"
@@ -1163,6 +1170,7 @@ BEGIN
     IDS_CANT_COMPARE_FILES  "Unable to compare files"
 END
 
+// IDS_SAVE_AS_TITLE SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_SAVE_AS_TITLE       "Save As"
@@ -1185,6 +1193,7 @@ BEGIN
     IDS_NOPROJECT           "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
 END
 
+// IDS_COLHDR_FILENAME SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_COLHDR_FILENAME     "Filename"
@@ -1207,6 +1216,7 @@ BEGIN
     IDS_DEL_LEFT_FMT        "Left (%1)"
 END
 
+// IDS_DEL_RIGHT_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_DEL_RIGHT_FMT       "Right (%1)"
@@ -1247,6 +1257,7 @@ BEGIN
     IDS_COLHDR_RVERSION     "Right File Version"
 END
 
+// IDS_LEFTONLY SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_LEFTONLY            "Left Only"
@@ -1270,6 +1281,7 @@ BEGIN
     IDS_COLHDR_NSDIFFS      "#sig. differences"
 END
 
+// IDS_PRIVATEBUILD_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
@@ -1348,6 +1360,7 @@ BEGIN
     IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"
 END
 
+// IDS_MESSAGEBOX_OK SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
@@ -1536,6 +1549,7 @@ BEGIN
     IDS_VIETNAMESE          "Vietnamese"
 END
 
+// ID_L2R SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_L2R                  "Copy the selected text to the right file\nCopy Right (Alt+Right)"
@@ -1564,6 +1578,7 @@ BEGIN
     ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected file to named directory"
 END
 
+// ID_DIR_COPY_LEFT_TO_RIGHT SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected file to named directory"
@@ -1599,6 +1614,7 @@ BEGIN
     ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
+// ID_EOL_TO_DOS SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_EOL_TO_DOS           "Convert EOL to DOS mode"
@@ -1644,6 +1660,7 @@ BEGIN
     ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
 END
 
+// END STRINGS SYNCHRO
 #endif    // English (U.S.) resources
 /////////////////////////////////////////////////////////////////////////////
 

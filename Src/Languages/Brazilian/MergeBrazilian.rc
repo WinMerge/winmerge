@@ -1225,12 +1225,14 @@ BEGIN
     ID_EDIT_REDO            "Refaz a última ação desfeita\nRefaz"
 END
 
+// ID_VIEW_TOOLBAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "Exibe ou esconde a barra de ferramentas\nChavea Barra de Ferramentas"
     ID_VIEW_STATUS_BAR      "Exibe ou esconde a barra de status\nChavea Barra de Status"
 END
 
+// AFX_IDS_SCSIZE SYNCHRO
 STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "Altera o tamanho da janela"
@@ -1263,6 +1265,7 @@ BEGIN
     IDS_ELAPSED_TIME        "Elapsed time: %ld ms"
 END
 
+// IDS_VERSION_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_VERSION_FMT         "Versão"
@@ -1303,6 +1306,7 @@ BEGIN
     IDS_NOPROJECT           "Você precisa especificar o caminho de um projeto do SourceSafe para continuar (ex:  $/MyProject)"
 END
 
+// IDS_COLHDR_FILENAME SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_COLHDR_FILENAME     "Nome de Arquivo"
@@ -1325,6 +1329,7 @@ BEGIN
     IDS_DEL_LEFT_FMT        "Left (%1)"
 END
 
+// IDS_DEL_RIGHT_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_DEL_RIGHT_FMT       "Right (%1)"
@@ -1365,6 +1370,7 @@ BEGIN
     IDS_COLHDR_RVERSION     "Right File Version"
 END
 
+// IDS_LEFTONLY SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_LEFTONLY            "Left Only"
@@ -1388,6 +1394,7 @@ BEGIN
     IDS_COLHDR_NSDIFFS      "#sig. differences"
 END
 
+// IDS_PRIVATEBUILD_FMT SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
@@ -1466,6 +1473,7 @@ BEGIN
     IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"
 END
 
+// IDS_MESSAGEBOX_OK SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
@@ -1490,6 +1498,7 @@ BEGIN
     IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
 END
 
+// ID_L2R SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_L2R                  "Copia o texto selecionado para o arquivo da direita\nCopiar à Direita (Right Arrow)"
@@ -1520,6 +1529,7 @@ BEGIN
                             "Copiar os arquivos selecionados para o diretório especificado"
 END
 
+// ID_DIR_COPY_LEFT_TO_RIGHT SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT

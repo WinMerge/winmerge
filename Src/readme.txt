@@ -2,6 +2,12 @@
  PATCH: [ 941014 ] Various Updates in German Translation (Tim Gerundt)
   (Except I didn't remove the synchro comments)
   Languages: MergeGerman.rc
+ Added synchro comments to Merge.rc. Synchronized various languages to English.
+  Src: Merge.rc
+  Languages: MergeBrazilian.rc MergeBulgarian.rc MergeCatalan.rc 
+   MergeChineseSimplified.rc MergeChineseTraditional.rc
+   MergeCzech.rc MergeDanish.rc MergeFrench.rc MergeGerman.rc
+   MergeSpanish.rc
 
 2004-04-23 Kimmo
  PATCH: [ 940713 ] Fix for resetting dirview columns
