@@ -1,6 +1,8 @@
 2004-06-15 Kimmo
  PATCH: [ 972575 ] Goto real line from location pane
   Src: LocationView.cpp LocationView.h
+ Add instructions for generating HTML documentation using SF.net shell server
+  Docs/Developers: readme-developers.html
 
 2004-06-14 Kimmo
  PATCH: [ 972188 ] Add More Pascal comments styles to syntax highlight

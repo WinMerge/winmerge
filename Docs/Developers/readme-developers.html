@@ -454,6 +454,18 @@ DocBook guide</a><br>
 <a href="http://www.codeproject.com/winhelp/docbook_howto.asp">Creating HTML
 help from DocBook</a>
 
+<p>
+Generating HTML documentation
+<br>
+<code>Manual-html.dsl</code> file is a stylesheet file that defines rules for
+generating HTML. It forces index creation, adding navigation links, CSS stylesheet
+etc. File contains comments for settings so they are not repeated here.
+<p>
+To generate HTML documentation in SF.net shell, copy all XML files, stylesheet
+file and subdirectories to shell server. Then in directory which contains XML
+files, type:<br>
+<b><code>docbook2html -d Manual-html.dsl WinMerge_help.xml</code></b>
+
 <a name="Logging"></a>
 <h3>Logging</h3>
 Logs are good tool for tracing errors. But logs must be first written. Its always
