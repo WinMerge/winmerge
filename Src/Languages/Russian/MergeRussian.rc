@@ -433,7 +433,7 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Основные"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Настройки",IDC_STATIC,7,7,276,72
+    GROUPBOX        "Настройки",IDC_STATIC,7,7,276,51
     CONTROL         "&Делать резервную копию оригинала",IDC_BACKUP_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,19,140,10
     CONTROL         "Автоматически &установить на первое отличие",
@@ -441,18 +441,6 @@ BEGIN
                     17,30,180,10
     CONTROL         "Отключить &заставку",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,41,95,10
-    CONTROL         "Авто&пересканирование",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,95,10
-    CONTROL         "Оригинальные символы EOL",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,120,10
-    GROUPBOX        "Отступы",IDC_STATIC,7,83,276,30,WS_GROUP
-    LTEXT           "Размер &отступа:",IDC_STATIC,15,97,30,8
-    EDITTEXT        IDC_TAB_EDIT,49,95,36,12,ES_AUTOHSCROLL | ES_NUMBER,
-                    WS_EX_RIGHT
-    CONTROL         "&Табуляции",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,102,91,51,10
-    CONTROL         "&Пробелы",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,102,100,59,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -532,15 +520,6 @@ BEGIN
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Комментарии",IDC_STATIC,18,7,56,10
-END
-
-IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Подсветка"
-FONT 8, "MS Sans Serif"
-BEGIN
-    CONTROL         "Подсвечивать синтаксис",IDC_HILITE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,11,11,106,10
 END
 
 IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
@@ -822,6 +801,28 @@ BEGIN
     COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
+
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 290, 156
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Editor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Подсвечивать синтаксис",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "Авто&пересканирование",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+    CONTROL         "Оригинальные символы EOL",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
+    GROUPBOX        "Отступы",IDC_STATIC,7,44,276,33,WS_GROUP
+    LTEXT           "Размер &отступа:",IDC_STATIC,15,58,30,8
+    EDITTEXT        IDC_TAB_EDIT,47,95,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
+    CONTROL         "&Табуляции",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,102,53,51,10
+    CONTROL         "&Пробелы",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,102,62,59,10
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1508,6 +1509,7 @@ LANGUAGE LANG_RUSSIAN, SUBLANG_DUTCH
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 
 

@@ -417,24 +417,13 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "一般"
 FONT 9, "新細明體"
 BEGIN
-    GROUPBOX        "設定",IDC_STATIC,7,7,221,72
+    GROUPBOX        "設定",IDC_STATIC,7,7,221,51
     CONTROL         "備份原始的檔案(&B)",IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,19,83,10
     CONTROL         "自動地捲動到第一個不同(&S)",IDC_SCROLL_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,30,129,10
     CONTROL         "停用引人注目的螢幕(&D)",IDC_DISABLE_SPLASH,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,41,100,10
-    CONTROL         "自動重新掃描(&R)",IDC_AUTOMRESCAN_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,17,52,75,10
-    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,103,10
-    GROUPBOX        "跳格",IDC_STATIC,7,83,221,30,WS_GROUP
-    LTEXT           "跳格大小(&T):",IDC_STATIC,10,97,35,8
-    EDITTEXT        IDC_TAB_EDIT,47,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
-    CONTROL         "插入跳格字元(&T)",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON |
-                    WS_GROUP,79,91,76,10
-    CONTROL         "插入空白(&N)",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,79,100,
-                    59,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -512,15 +501,6 @@ BEGIN
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "註解",IDC_STATIC,18,7,34,10
-END
-
-IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "強調"
-FONT 9, "新細明體"
-BEGIN
-    CONTROL         "強調語法",IDC_HILITE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                    7,57,10
 END
 
 IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
@@ -797,6 +777,28 @@ BEGIN
     COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
+
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Editor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "新細明體",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "自動重新掃描(&R)",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+    CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
+    GROUPBOX        "跳格",IDC_STATIC,7,44,221,33,WS_GROUP
+    LTEXT           "跳格大小(&T):",IDC_STATIC,10,58,35,8
+    EDITTEXT        IDC_TAB_EDIT,47,56,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
+    CONTROL         "插入跳格字元(&T)",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,79,53,76,10
+    CONTROL         "插入空白(&N)",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,79,62,76,10
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1481,6 +1483,7 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 
 

@@ -25,11 +25,7 @@ public:
 	enum { IDD = IDD_PROPPAGE_LARGE };
 	BOOL	m_bBackup;
 	BOOL	m_bScroll;
-	UINT	m_nTabSize;
 	BOOL	m_bDisableSplash;
-	int		m_nTabType;
-	BOOL	m_bAutomaticRescan; 
-	BOOL	m_bAllowMixedEol;
 	//}}AFX_DATA
 
 

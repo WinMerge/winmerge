@@ -424,7 +424,7 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Général"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Paramètres :",IDC_STATIC,7,7,233,72
+    GROUPBOX        "Paramètres :",IDC_STATIC,7,7,233,51
     CONTROL         "Crée un &backup des fichiers originaux",
                     IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     17,19,145,10
@@ -433,18 +433,6 @@ BEGIN
                     17,30,183,10
     CONTROL         "&Sans Splash Screen",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,41,80,10
-    CONTROL         "&Actualiser automatiquement",IDC_AUTOMRESCAN_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,52,103,10
-    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,103,10
-    GROUPBOX        "Tabulations :",IDC_STATIC,7,83,233,30
-    LTEXT           "&Taille des tabulations :",IDC_STATIC,15,97,71,8
-    EDITTEXT        IDC_TAB_EDIT,90,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
-                    WS_EX_RIGHT
-    CONTROL         "Insère des &Tabs",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,120,91,67,10
-    CONTROL         "I&nsère des Espaces",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,120,100,78,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -523,15 +511,6 @@ BEGIN
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Commentaires",IDC_STATIC,18,7,56,10
-END
-
-IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Syntaxe"
-FONT 8, "MS Sans Serif"
-BEGIN
-    CONTROL         "Surligne la syntaxe",IDC_HILITE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,75,10
 END
 
 IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
@@ -812,6 +791,28 @@ BEGIN
     COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
+
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Editor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "&Surligne la syntaxe",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "&Actualiser automatiquement",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+    CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
+    GROUPBOX        "Tabulations",IDC_STATIC,7,44,233,33,WS_GROUP
+    LTEXT           "&Taille des tabulations:",IDC_STATIC,15,58,71,8
+    EDITTEXT        IDC_TAB_EDIT,90,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
+    CONTROL         "Insère des &Tabs",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,120,53,67,10
+    CONTROL         "I&nsère des Espaces",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,120,62,67,10
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1509,6 +1510,7 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 
 

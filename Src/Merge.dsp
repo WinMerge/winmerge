@@ -1070,6 +1070,10 @@ SOURCE=.\PropCompare.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropEditor.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropFilter.cpp
 # End Source File
 # Begin Source File
@@ -1105,10 +1109,6 @@ SOURCE=.\PropGeneral.cpp
 # Begin Source File
 
 SOURCE=.\PropRegistry.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\PropSyntax.cpp
 # End Source File
 # Begin Source File
 
@@ -1678,6 +1678,10 @@ SOURCE=.\PropCompare.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropEditor.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropFilter.h
 # End Source File
 # Begin Source File
@@ -1687,10 +1691,6 @@ SOURCE=.\PropGeneral.h
 # Begin Source File
 
 SOURCE=.\PropRegistry.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\PropSyntax.h
 # End Source File
 # Begin Source File
 
@@ -2170,4 +2170,5 @@ SOURCE=.\stampver.inf
 # 	1:10:IDB_SPLASH:103
 # 	2:21:SplashScreenInsertKey:4.0
 # End Section
+
 

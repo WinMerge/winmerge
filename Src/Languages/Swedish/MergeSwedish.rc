@@ -426,7 +426,7 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Generellt"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Inställningar",IDC_STATIC,7,7,245,72
+    GROUPBOX        "Inställningar",IDC_STATIC,7,7,245,51
     CONTROL         "&Gör backup på originalfiler",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,19,98,10
     CONTROL         "Rulla automati&skt till första skillnaden",
@@ -434,18 +434,6 @@ BEGIN
                     17,30,131,10
     CONTROL         "&Visa inte Splash Screen",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,41,91,10
-    CONTROL         "Automatisk &uppdatering",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,96,10
-    CONTROL         "Tillåt blandade EOL-typer",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,95,10
-    GROUPBOX        "Tabulator",IDC_STATIC,7,83,245,30,WS_GROUP
-    LTEXT           "&Tabulatorsteg:",IDC_STATIC,15,97,46,8
-    EDITTEXT        IDC_TAB_EDIT,81,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
-                    WS_EX_RIGHT
-    CONTROL         "Infoga tabulatorer",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,138,91,71,10
-    CONTROL         "Infoga mellanslag",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,138,100,71,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 162
@@ -524,15 +512,6 @@ BEGIN
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Kommentarer",IDC_STATIC,18,7,47,10
-END
-
-IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Framhäv"
-FONT 8, "MS Sans Serif"
-BEGIN
-    CONTROL         "Framhäv syntaxen",IDC_HILITE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,73,10
 END
 
 IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
@@ -814,6 +793,28 @@ BEGIN
     COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
+
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 259, 156
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Editor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Framhäv syntaxen",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "Automatisk &uppdatering",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+    CONTROL         "Tillåt blandade EOL-typer",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
+    GROUPBOX        "Tabulator",IDC_STATIC,7,44,245,33,WS_GROUP
+    LTEXT           "&Tabulatorsteg:",IDC_STATIC,15,97,30,8
+    EDITTEXT        IDC_TAB_EDIT,81,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
+    CONTROL         "Infoga tabulatorer",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,138,53,71,10
+    CONTROL         "Infoga mellanslag",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,138,62,71,10
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1502,6 +1503,7 @@ LANGUAGE LANG_SWEDISH, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 
 

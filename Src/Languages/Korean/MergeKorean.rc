@@ -390,25 +390,13 @@ STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "일반"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "설정",IDC_STATIC,7,7,221,72
+    GROUPBOX        "설정",IDC_STATIC,7,7,221,51
     CONTROL         "원본 파일 백업(&B)",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,19,75,10
     CONTROL         "처음 다른 부분으로 자동 스코롤(&S)",IDC_SCROLL_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,129,10
     CONTROL         "스플래쉬 화면 사용 안함(&D)",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,41,98,10
-    CONTROL         "자동 리스캔(&R)",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,71,10
-    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,103,10
-    GROUPBOX        "탭(Tabs)",IDC_STATIC,7,83,221,33,WS_GROUP
-    LTEXT           "탭사이즈(&T):",IDC_STATIC,15,97,36,8
-    EDITTEXT        IDC_TAB_EDIT,53,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
-                    WS_EX_RIGHT
-    CONTROL         "탭(tab) 삽입(&T)",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,85,91,59,10
-    CONTROL         "공백(space) 삽입(&N)",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,85,100,82,10
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
@@ -489,15 +477,6 @@ BEGIN
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "코멘트",IDC_STATIC,18,7,34,10
-END
-
-IDD_PROPSYNTAX DIALOGEX 0, 0, 235, 156
-STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "하이라이트 기능"
-FONT 8, "MS Sans Serif", 0, 0, 0x0
-BEGIN
-    CONTROL         "구문 하이라이트",IDC_HILITE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,65,10
 END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
@@ -755,7 +734,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,132,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 190, 111
+IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 236, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Sans Serif"
@@ -777,6 +756,28 @@ BEGIN
     COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
+
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Editor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "구문 하이라이트",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "자동 리스캔(&R)",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+    CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
+    GROUPBOX        "탭(Tabs)",IDC_STATIC,7,44,221,33,WS_GROUP
+    LTEXT           "탭사이즈(&T):",IDC_STATIC,15,58,36,8
+    EDITTEXT        IDC_TAB_EDIT,53,56,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
+    CONTROL         "탭(tab) 삽입(&T)",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,85,53,59,10
+    CONTROL         "공백(space) 삽입(&N)",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,85,62,82,10
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1686,6 +1687,7 @@ LANGUAGE 9, 1
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 
 

@@ -1,3 +1,10 @@
+2004-02-04 Kimmo
+ PATCH: [ 888662 ] Add Editor options page
+  Src: MainFrm.cpp Merge.dsp Merge.rc PropGeneral.cpp PropGeneral.h resource.g
+  Src new files: PropEditor.cpp PropEditor.h
+  Src removed files: PropSyntax.cpp PropSyntax.h
+  Lanuages: *.rc resource.h
+
 2004-02-04 Laoran
  Correcting the path for the original resource.h
   Languages: UpdateAll_resource_h.bat

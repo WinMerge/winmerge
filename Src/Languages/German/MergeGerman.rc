@@ -433,7 +433,7 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Allgemein"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Einstellungen",IDC_STATIC,7,7,245,72
+    GROUPBOX        "Einstellungen",IDC_STATIC,7,7,245,51
     CONTROL         "&Sicherheitskopie der Originaldatei",IDC_BACKUP_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,19,121,10
     CONTROL         "Anzeige automatisch auf den ersten Unterschied &positionieren",
@@ -441,18 +441,6 @@ BEGIN
                     17,30,210,10
     CONTROL         "Startbildschirm &deaktivieren",IDC_DISABLE_SPLASH,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,41,100,10
-    CONTROL         "Automatisches A&ktualisieren",IDC_AUTOMRESCAN_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,52,100,10
-    CONTROL         "Mischen der Zeilenumbruch-Formate erlauben",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,160,10
-    GROUPBOX        "Tabulatoren",IDC_STATIC,7,83,245,35,WS_GROUP
-    LTEXT           "&Tabulator-Größe:",IDC_STATIC,15,97,54,8
-    EDITTEXT        IDC_TAB_EDIT,72,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
-                    WS_EX_RIGHT
-    CONTROL         "Tabs einfügen",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,99,91,145,10
-    CONTROL         "Leerzeichen einfügen",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,99,100,149,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -531,15 +519,6 @@ BEGIN
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Kommentar",IDC_STATIC,18,7,242,10
-END
-
-IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 245, 156
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Syntax-Hervorhebung"
-FONT 8, "MS Sans Serif"
-BEGIN
-    CONTROL         "Syntax-Hervorhebung aktivieren",IDC_HILITE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,225,10
 END
 
 IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 245, 156
@@ -821,6 +800,28 @@ BEGIN
     COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
+
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Editor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "&Syntax-Hervorhebung",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "Mischen der Zeilenumbruch-Formate erlauben",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+    CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
+    GROUPBOX        "Tabulatoren",IDC_STATIC,7,44,245,33,WS_GROUP
+    LTEXT           "&Tabulator-Größe:",IDC_STATIC,15,58,54,8
+    EDITTEXT        IDC_TAB_EDIT,72,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
+    CONTROL         "Tabs einfügen",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,99,53,145,10
+    CONTROL         "Leerzeichen einfügen",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,99,62,149,10
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1521,6 +1522,7 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 
 

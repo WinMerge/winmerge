@@ -50,9 +50,9 @@
 #include "PropColors.h"
 #include "PropRegistry.h"
 #include "PropCompare.h"
+#include "PropEditor.h"
 #include "RegKey.h"
 #include "logfile.h"
-#include "PropSyntax.h"
 #include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
 #include "multimon.h"
 #include "paths.h"
@@ -938,15 +938,16 @@ void CMainFrame::OnOptions()
 	CPropertySheet sht(IDS_OPTIONS_TITLE);
 	CPropVss vss;
 	CPropGeneral gen;
-	CPropSyntax syn;
 	CPropFilter filter(&fileFilters, selectedFilter);
 	CPropColors colors(theApp.GetDiffColor(), theApp.GetSelDiffColor(), theApp.GetDiffDeletedColor(), theApp.GetSelDiffDeletedColor(), 
 	                   theApp.GetDiffTextColor(), theApp.GetSelDiffTextColor(), theApp.GetTrivialColor(), theApp.GetTrivialDeletedColor());
 	CPropRegistry regpage;
     CPropCompare compage;
+	CPropEditor editor;
+   
 	sht.AddPage(&gen);
-    sht.AddPage(&compage);
-	sht.AddPage(&syn);
+	sht.AddPage(&compage);
+	sht.AddPage(&editor);
 	sht.AddPage(&filter);
 	sht.AddPage(&vss);
 	sht.AddPage(&colors);
@@ -954,16 +955,9 @@ void CMainFrame::OnOptions()
 	
 	vss.m_nVerSys = m_nVerSys;
 	vss.m_strPath = m_strVssPath;
-
-	gen.m_bAllowMixedEol = m_bAllowMixedEol;
 	gen.m_bBackup = m_bBackup;
 	gen.m_bScroll = m_bScrollToFirst;
-	gen.m_nTabSize = m_nTabSize;
-	gen.m_nTabType = m_nTabType;
 	gen.m_bDisableSplash = theApp.m_bDisableSplash;
-	gen.m_bAutomaticRescan = m_bAutomaticRescan;
-
-	syn.m_bHiliteSyntax = theApp.m_bHiliteSyntax;
 	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
 	filter.m_sPattern = m_sPattern;
 	regpage.m_strEditorPath = m_sExtEditorPath;
@@ -973,6 +967,11 @@ void CMainFrame::OnOptions()
 	compage.m_bIgnoreCase = diffOptions.bIgnoreCase;
 	compage.m_bIgnoreBlankLines = diffOptions.bIgnoreBlankLines;
 	compage.m_bEolSensitive = diffOptions.bEolSensitive;
+	editor.m_nTabSize = m_nTabSize;
+	editor.m_nTabType = m_nTabType;
+	editor.m_bAutomaticRescan = m_bAutomaticRescan;
+	editor.m_bHiliteSyntax = theApp.m_bHiliteSyntax;
+	editor.m_bAllowMixedEol = m_bAllowMixedEol;
 	
 	if (sht.DoModal()==IDOK)
 	{
@@ -981,18 +980,20 @@ void CMainFrame::OnOptions()
 		
 		m_bBackup = gen.m_bBackup;
 		m_bScrollToFirst = gen.m_bScroll;
-		m_nTabSize = gen.m_nTabSize;
-		m_nTabType = gen.m_nTabType;
 		theApp.m_bDisableSplash = gen.m_bDisableSplash;
-		m_bAutomaticRescan = gen.m_bAutomaticRescan;
 
 		diffOptions.nIgnoreWhitespace = compage.m_nIgnoreWhite;
 		diffOptions.bIgnoreBlankLines = compage.m_bIgnoreBlankLines;
 		diffOptions.bEolSensitive = compage.m_bEolSensitive;
 		diffOptions.bIgnoreCase = compage.m_bIgnoreCase;
-
         m_nCompMethod = compage.m_compareMethod;
-		
+
+		m_nTabSize = editor.m_nTabSize;
+		m_nTabType = editor.m_nTabType;
+		m_bAutomaticRescan = editor.m_bAutomaticRescan;
+		m_bAllowMixedEol = editor.m_bAllowMixedEol;
+		theApp.m_bHiliteSyntax = editor.m_bHiliteSyntax;
+
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
 		m_sPattern = filter.m_sPattern;
 		theApp.SetFileFilterPath(filter.m_sFileFilterPath);
@@ -1026,7 +1027,6 @@ void CMainFrame::OnOptions()
 		theApp.WriteProfileInt(_T("Settings"), _T("DisableSplash"), theApp.m_bDisableSplash);
         theApp.WriteProfileInt(_T("Settings"), _T("CompMethod"), m_nCompMethod);
 
-		theApp.m_bHiliteSyntax = syn.m_bHiliteSyntax;
 		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), theApp.m_bHiliteSyntax);
 		theApp.WriteProfileString(_T("Settings"), _T("ExternalEditor"), m_sExtEditorPath);
 
@@ -1036,7 +1036,7 @@ void CMainFrame::OnOptions()
 		RebuildRegExpList();
 
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
-		SetEOLMixed(gen.m_bAllowMixedEol);
+		SetEOLMixed(editor.m_bAllowMixedEol);
 
 		// make an attempt at rescanning any open diff sessions
 		MergeDocList docs;

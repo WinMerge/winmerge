@@ -421,32 +421,20 @@ BEGIN
     LTEXT           "Sistema de &Versões:",IDC_STATIC,13,22,86,10
 END
 
-IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 264, 157
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 264, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Geral"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Ajustes",IDC_STATIC,7,7,250,72
+    GROUPBOX        "Ajustes",IDC_STATIC,7,7,250,51
     CONTROL         "&Guardar cópia de segurança do arquivo original",
                     IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    17,19,173,10
+                    17,19,206,10
     CONTROL         "Posicionar a&utomaticamente na primeira diferença",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    17,30,172,10
+                    17,30,206,10
     CONTROL         "&Desabilitar Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,97,10
-    CONTROL         "&Atualização automática",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,89,10
-    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,103,10
-    GROUPBOX        "Tabulação",IDC_STATIC,7,105,83,30,WS_GROUP
-    LTEXT           "Tama&nho da tabulação:",IDC_STATIC,15,97,76,8
-    EDITTEXT        IDC_TAB_EDIT,93,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
-                    WS_EX_RIGHT
-    CONTROL         "Inserir &Tabulações",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,128,91,74,10
-    CONTROL         "Inse&rt Espaços",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,128,100,63,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,206,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -527,15 +515,6 @@ BEGIN
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Comentários",IDC_STATIC,18,7,34,10
-END
-
-IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Destacar"
-FONT 8, "MS Sans Serif"
-BEGIN
-    CONTROL         "Destacar sintaxe",IDC_HILITE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,69,10
 END
 
 IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
@@ -817,6 +796,28 @@ BEGIN
     COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
+
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Editor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Destacar sintaxe",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "&Atualização automática",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
+    GROUPBOX        "Tabulação",IDC_STATIC,7,44,221,33,WS_GROUP
+    LTEXT           "Tama&nho da tabulação:",IDC_STATIC,15,58,76,8
+    EDITTEXT        IDC_TAB_EDIT,93,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
+    CONTROL         "&Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,128,53,74,10
+    CONTROL         "Insert &Spaces",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,128,62,74,10
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1514,6 +1515,7 @@ LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 
 

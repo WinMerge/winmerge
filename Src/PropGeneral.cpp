@@ -41,11 +41,7 @@ CPropGeneral::CPropGeneral() : CPropertyPage(CPropGeneral::IDD)
 	//{{AFX_DATA_INIT(CPropGeneral)
 	m_bBackup = FALSE;
 	m_bScroll = FALSE;
-	m_nTabSize = 0;
 	m_bDisableSplash = FALSE;
-	m_nTabType = 0;
-	m_bAutomaticRescan = FALSE;
-	m_bAllowMixedEol = FALSE;
 	//}}AFX_DATA_INIT
 }
 
@@ -67,12 +63,7 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(CPropGeneral)
 	DDX_Check(pDX, IDC_BACKUP_CHECK, m_bBackup);
 	DDX_Check(pDX, IDC_SCROLL_CHECK, m_bScroll);
-	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
-	DDV_MinMaxInt( pDX, m_nTabSize, 0, 64 );
 	DDX_Check(pDX, IDC_DISABLE_SPLASH, m_bDisableSplash);
-	DDX_Radio(pDX, IDC_PROP_INSERT_TABS, m_nTabType);
-	DDX_Check(pDX, IDC_AUTOMRESCAN_CHECK, m_bAutomaticRescan);
-	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
 	//}}AFX_DATA_MAP
 }
 
@@ -84,5 +75,4 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropGeneral message handlers
-
 

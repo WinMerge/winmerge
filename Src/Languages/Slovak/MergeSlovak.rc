@@ -424,25 +424,13 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "HlavnÈ nastavenia"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Nastavenie",IDC_STATIC,7,7,233,72
+    GROUPBOX        "Nastavenie",IDC_STATIC,7,7,233,51
     CONTROL         "&Z·lohovaù origin·lne s˙bory",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,19,202,10
     CONTROL         "Automatick˝ &skok na prv˝ rozdiel",IDC_SCROLL_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,129,10
     CONTROL         "&Nezobrazuj sp˙öùacÌ banner",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,41,105,10
-    CONTROL         "AutomatickÈ p&reskenovanie",IDC_AUTOMRESCAN_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,52,101,10
-    CONTROL         "Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,103,10
-    GROUPBOX        "Tabul·tory",IDC_STATIC,7,83,233,30,WS_GROUP
-    LTEXT           "&Nastavenie tabul·torov:",IDC_STATIC,15,97,76,8
-    EDITTEXT        IDC_TAB_EDIT,95,95,22,12,ES_AUTOHSCROLL | ES_NUMBER,
-                    WS_EX_RIGHT
-    CONTROL         "Vkladaù tabul·tory",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,120,91,73,10
-    CONTROL         "Vkladaù medzery",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,120,100,69,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -521,15 +509,6 @@ BEGIN
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Comments",IDC_STATIC,18,7,34,10
-END
-
-IDD_PROPSYNTAX DIALOG DISCARDABLE  0, 0, 235, 156
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Hilighting"
-FONT 8, "MS Sans Serif"
-BEGIN
-    CONTROL         "Hilighting syntaxe",IDC_HILITE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,71,10
 END
 
 IDD_PROPPAGE_FILTER DIALOG DISCARDABLE  0, 0, 235, 156
@@ -811,6 +790,28 @@ BEGIN
     COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
 END
+
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 247, 156
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Editor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Hilighting syntaxe",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "AutomatickÈ p&reskenovanie",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,18,215,10
+    CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,29,233,10
+    GROUPBOX        "Tabul·tory",IDC_STATIC,7,44,221,33,WS_GROUP
+    LTEXT           "&Nastavenie tabul·torov:",IDC_STATIC,15,58,76,8
+    EDITTEXT        IDC_TAB_EDIT,95,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
+    CONTROL         "Vkladaù tabul·tory",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,120,53,73,10
+    CONTROL         "Vkladaù medzery",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,120,62,69,10
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1505,6 +1506,7 @@ LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+
 
 
 

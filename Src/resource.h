@@ -32,6 +32,7 @@
 #define IDD_DIRCOMPSTATE                120
 #define IDD_WMGOTO                      121
 #define IDD_PROPPAGE_COMPARE            122
+#define IDD_PROPPAGE_EDITOR             123
 #define IDS_VERSION_FMT                 130
 #define IDS_ALLFILES                    131
 #define IDS_CONFIRM_ALL_LEFT            132
@@ -320,7 +321,6 @@
 #define IDC_EDIT_SCOPE_DONT_WRAP        8615
 #define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
-#define IDD_PROPSYNTAX                  30001
 #define IDD_PROPPAGE_COLORS             30002
 #define IDS_AFRIKAANS                   30003
 #define IDS_ALBANIAN                    30004
@@ -546,10 +546,11 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        121
+#define _APS_NEXT_RESOURCE_VALUE        124
 #define _APS_NEXT_COMMAND_VALUE         32864
-#define _APS_NEXT_CONTROL_VALUE         1115
+#define _APS_NEXT_CONTROL_VALUE         1117
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif
+
 
