@@ -1,3 +1,7 @@
+2003-10-09 Laoran
+ [ 819219 ] Show only simple EOL char when no mixing EOL modes allowed
+  WinMerge: MainFrm.cpp MainFrm.h MergeDoc.cpp ccrystaltextview.cpp ccrystaltextview.h
+
 2003-10-09 Perry
  Fix duplicate copy of IDS_LINE_STATUS_INFO (to IDS_LINE_STATUS_INFO_EOL) in most
   language files. Fix missing id ID_POPUP_COPYFROMOTHERSIDE in German file

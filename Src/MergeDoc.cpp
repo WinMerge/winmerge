@@ -2243,15 +2243,15 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		pRight->SetTabSize(mf->m_nTabSize);
 		pLeft->SetViewTabs(mf->m_bViewWhitespace);
 		pRight->SetViewTabs(mf->m_bViewWhitespace);
-		pLeft->SetViewEols(mf->m_bViewWhitespace);
-		pRight->SetViewEols(mf->m_bViewWhitespace);
+		pLeft->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
+		pRight->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
 
 		pLeftDetail->SetTabSize(mf->m_nTabSize);
 		pRightDetail->SetTabSize(mf->m_nTabSize);
 		pLeftDetail->SetViewTabs(mf->m_bViewWhitespace);
 		pRightDetail->SetViewTabs(mf->m_bViewWhitespace);
-		pLeftDetail->SetViewEols(mf->m_bViewWhitespace);
-		pRightDetail->SetViewEols(mf->m_bViewWhitespace);
+		pLeftDetail->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
+		pRightDetail->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
 
 		// Enable Backspace at beginning of line
 		pLeft->SetDisableBSAtSOL(FALSE);

@@ -792,6 +792,9 @@ void CMainFrame::OnOptions()
 
 		RebuildRegExpList();
 
+		// Update ViewWhitespace as it depends on m_bAllowMixedEol
+		mf->ApplyViewWhitespace();
+
 		// make an attempt at rescanning any open diff sessions
 		MergeDocList docs;
 		GetAllMergeDocs(&docs);
@@ -1511,11 +1514,11 @@ void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
 	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
 }
 
-void CMainFrame::OnViewWhitespace() 
+/**
+ * @brief Apply tabs and eols settings to all merge documents
+ */
+void CMainFrame::ApplyViewWhitespace() 
 {
-	m_bViewWhitespace = !m_bViewWhitespace;
-	theApp.WriteProfileInt(_T("Settings"), _T("ViewWhitespace"), m_bViewWhitespace);
-
 	MergeDocList mergedocs;
 	GetAllMergeDocs(&mergedocs);
 	while (!mergedocs.IsEmpty())
@@ -1528,24 +1531,32 @@ void CMainFrame::OnViewWhitespace()
 		if (pLeft)
 		{
 			pLeft->SetViewTabs(mf->m_bViewWhitespace);
-			pLeft->SetViewEols(mf->m_bViewWhitespace);
+			pLeft->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
 		}
 		if (pRight)
 		{
 			pRight->SetViewTabs(mf->m_bViewWhitespace);
-			pRight->SetViewEols(mf->m_bViewWhitespace);
+			pRight->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
 		}
 		if (pLeftDetail)
 		{
 			pLeftDetail->SetViewTabs(mf->m_bViewWhitespace);
-			pLeftDetail->SetViewEols(mf->m_bViewWhitespace);
+			pLeftDetail->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
 		}
 		if (pRightDetail)
 		{
 			pRightDetail->SetViewTabs(mf->m_bViewWhitespace);
-			pRightDetail->SetViewEols(mf->m_bViewWhitespace);
+			pRightDetail->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
 		}
 	}
+}
+
+void CMainFrame::OnViewWhitespace() 
+{
+	m_bViewWhitespace = !m_bViewWhitespace;
+	theApp.WriteProfileInt(_T("Settings"), _T("ViewWhitespace"), m_bViewWhitespace);
+
+	ApplyViewWhitespace();
 }
 
 /// Enables View/View Whitespace menuitem when merge view is active

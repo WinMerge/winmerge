@@ -101,6 +101,7 @@ public:
 	BOOL CheckSavePath(CString& strSavePath);
 	BOOL SaveToVersionControl(CString& strSavePath);
 	CString SetStatus(LPCTSTR status);
+	void ApplyViewWhitespace();
 
 // Overrides
 	// ClassWizard generated virtual function overrides

@@ -111,6 +111,7 @@ static char THIS_FILE[] = __FILE__;
 #define SPACE_CHARACTER             _T('\xB7') // U+B7: MIDDLE DOT
 #define CR_CHARACTER                _T('\xA7') // U+A7: SECTION SIGN
 #define LF_CHARACTER                _T('\xB6') // U+B6: PILCROW SIGN
+#define ANY_EOL_CHARACTER           _T('\xA4') // U+A4: ?
 
 #define DEFAULT_PRINT_MARGIN        1000    //  10 millimeters
 
@@ -808,7 +809,7 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
   LPTSTR pszBuf = line.GetBuffer(nLength + nTabCount * (nTabSize - 1) + 1);
   int nCurPos = 0;
 
-  if (nTabCount > 0 || m_bViewTabs)
+  if (nTabCount > 0 || m_bViewTabs || m_bViewEols)
     {
       for (i = 0; i < nLength; i++)
         {
@@ -826,19 +827,23 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
                   nSpaces--;
                 }
             }
-          else
+          else  if (pszChars[i] == ' ' && m_bViewTabs)
+            pszBuf[nCurPos++] = SPACE_CHARACTER;
+          else if (pszChars[i] == '\r' || pszChars[i] == '\n')
             {
-              if (pszChars[i] == ' ' && m_bViewTabs)
-                pszBuf[nCurPos] = SPACE_CHARACTER;
-              else if (pszChars[i] == '\r' && m_bViewEols)
-                pszBuf[nCurPos] = CR_CHARACTER;
-              else if (pszChars[i] == '\n' && m_bViewEols)
-                pszBuf[nCurPos] = LF_CHARACTER;
-              else
-                pszBuf[nCurPos] = pszChars[i];
-
-              nCurPos++;
+              if (pszChars[i] == '\r' && m_bViewEols && m_bDistinguishEols)
+                pszBuf[nCurPos++] = CR_CHARACTER;
+              else if (pszChars[i] == '\n' && m_bViewEols && m_bDistinguishEols)
+                pszBuf[nCurPos++] = LF_CHARACTER;
+              else if (m_bViewEols)
+            {
+                  pszBuf[nCurPos++] = ANY_EOL_CHARACTER;
+                  // hide the second sign
+                  i = nLength-1;
+                }
             }
+              else
+            pszBuf[nCurPos++] = pszChars[i];
         }
     }
   else
@@ -4552,11 +4557,12 @@ SetViewTabs (BOOL bViewTabs)
 }
 
 void CCrystalTextView::
-SetViewEols (BOOL bViewEols)
+SetViewEols (BOOL bViewEols, BOOL bDistinguishEols)
 {
-  if (bViewEols != m_bViewEols)
+  if (bViewEols != m_bViewEols || bDistinguishEols != m_bDistinguishEols)
     {
       m_bViewEols = bViewEols;
+      m_bDistinguishEols = bDistinguishEols;
       if (::IsWindow (m_hWnd))
         Invalidate ();
     }
