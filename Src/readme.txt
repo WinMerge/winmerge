@@ -1,3 +1,8 @@
+2004-07-23 Perry
+ PATCH: [ 988505 ] updated email address for catalan translator
+  Update email address for Jordi Vilar (Catalan translator)
+   Web\developer\l10n: status.xml
+
 2004-07-23 WinMerge experimental release 2.7.1.10 (cvs)
 
 2004-07-19 Perry
