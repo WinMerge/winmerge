@@ -571,7 +571,7 @@ BOOL FileTransform_PreprocessA(CString & filepath, CString filteredText, int bMa
 				continue;
 			if (plugin.TestAgainstRegList(filteredText) == FALSE)
 				continue;
-			bSuccess = InvokePreprocessSimpleA(arrayBuffer, nArraySize, nChanged, plugin.lpDispatch);
+			bSuccess = InvokePrediffingSimpleA(arrayBuffer, nArraySize, nChanged, plugin.lpDispatch);
 		}
 	}
 
@@ -649,7 +649,7 @@ BOOL FileTransform_PreprocessW(CString & filepath, CString filteredText, int bMa
 				continue;
 			if (plugin.TestAgainstRegList(filteredText) == FALSE)
 				continue;
-			bSuccess = InvokePreprocessSimpleW(bstrBuffer, nWideBufSize, nChanged, plugin.lpDispatch);
+			bSuccess = InvokePrediffingSimpleW(bstrBuffer, nWideBufSize, nChanged, plugin.lpDispatch);
 		}
 	}
 

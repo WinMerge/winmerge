@@ -569,7 +569,7 @@ static void reallocBuffer(LPWSTR & pszBuf, UINT & nOldSize, UINT nSize, BOOL bWr
 // invoke for plugins
 
 
-BOOL InvokePreprocessSimpleW(BSTR & bstrBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript)
+BOOL InvokePrediffingSimpleW(BSTR & bstrBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript)
 {
 	// prepare the arguments
 	// argument text buffer by reference
@@ -612,7 +612,7 @@ BOOL InvokePreprocessSimpleW(BSTR & bstrBuf, UINT & nBufSize, int & nChanged, LP
 
 
 
-BOOL InvokePreprocessSimpleA(SAFEARRAY* & arrayBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript)
+BOOL InvokePrediffingSimpleA(SAFEARRAY* & arrayBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript)
 {
 	// prepare the arguments
 	// argument text buffer by reference
@@ -699,7 +699,7 @@ BOOL InvokeUnpackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPA
 	// Error if the plugin destroyed the original data, and could not build new data
 	ASSERT(vboolHandled.boolVal || changed == 0);
 
-	if (! FAILED(h) && vboolHandled.boolVal)
+	if (! FAILED(h) && vboolHandled.boolVal && changed)
 	{
 		// copy the unpacked data
 		char *rgelems; 
@@ -711,8 +711,7 @@ BOOL InvokeUnpackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPA
 
 		SafeArrayUnaccessData(fileArray);
 
-		if (changed)	
-			nChanged ++;
+		nChanged ++;
 	}
 
 	// free the BYREF BSTR/ BYREF ARRAY variants
@@ -770,7 +769,7 @@ BOOL InvokePackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPATC
 	// Error if the plugin destroyed the original data, and could not build new data
 	ASSERT(vboolHandled.boolVal || changed == 0);
 
-	if (! FAILED(h)	&& vboolHandled.boolVal)
+	if (! FAILED(h)	&& vboolHandled.boolVal && changed)
 	{
 		// copy the packed data
 		char *rgelems; 
@@ -782,8 +781,7 @@ BOOL InvokePackBuffer(char *& pszBuf, UINT & nBufSize, int & nChanged, LPDISPATC
 
 		SafeArrayUnaccessData(fileArray);
 
-		if (changed)	
-			nChanged ++;
+		nChanged ++;
 	}
 
 	// free the BYREF BSTR / BYREF ARRAY 

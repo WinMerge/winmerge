@@ -1,3 +1,7 @@
+2003-10-31 Laoran
+ fix Plugins PACK_UNPACK when nothing changes (+ update functions name)
+  WinMerge: FileTransform.cpp Plugins.cpp Plugins.h
+
 2003-10-30 Laoran
  BUG: [ 830911 ] trailing whitespaces not ignored
   WinMerge: UTIL.C

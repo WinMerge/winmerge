@@ -128,13 +128,13 @@ BOOL SearchScriptForFunctionName(LPDISPATCH piDispatch, WCHAR * functionName);
  *
  * @param arrayBuf Overwrite/realloc this buffer
  */
-BOOL InvokePreprocessSimpleA(SAFEARRAY* & arrayBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript);
+BOOL InvokePrediffingSimpleA(SAFEARRAY* & arrayBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript);
 /**
  * @brief Call the plugin "DiffingPreprocessW" method, events PREDIFFING
  *
  * @param bstrBuf Overwrite/realloc this buffer
  */
-BOOL InvokePreprocessSimpleW(BSTR & bstrBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript);
+BOOL InvokePrediffingSimpleW(BSTR & bstrBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript);
 
 /** 
  * @brief Call custom plugin functions : text transformation
