@@ -86,26 +86,41 @@
       $temp .= "  <meta http-equiv=\"content-type\" content=\"text/html; charset=" . $this->_charset . "\">\n";
       $temp .= "  <meta name=\"description\" content=\"" . $this->_description . "\">\n";
       $temp .= "  <meta name=\"keywords\" content=\"" . $this->_keywords . "\">\n";
-      $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/all.css\">\n";
+      $temp .= "  <style type=\"text/css\" media=\"screen\">@import \"/css/all.css\";</style>\n";
       $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/css/print.css\">\n";
       $temp .= "  <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n";
       $temp .= "</head>\n\n";
       $temp .= "<body>\n";
       $temp .= "<div id=\"head\">\n";
-      switch ($this->_version) {
-        case WINMERGE_1_7: //if WinMerge 1.7 ...
-          $temp .= "<h1><img src=\"/1.7/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 1.7</h1>\n";
-          break;
-        case WINMERGE_2_0: //if WinMerge 2.0 ...
-          $temp .= "<h1><img src=\"/2.0/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 2.0</h1>\n";
-          break;
-        case WINMERGE_2_2: //if WinMerge 2.2 ...
-          $temp .= "<h1><img src=\"/2.2/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge 2.2</h1>\n";
-          break;
-        case WINMERGE_DEV: //if NONE Version ...
-          $temp .= "<h1><img src=\"/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge</h1>\n";
-          break;
+      $temp .= "<h1><img src=\"/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\"> WinMerge</h1>\n";
+      $temp .= "</div>\n";
+      $temp .= "<div id=\"tabs\">\n";
+      $temp .= "<ul>\n";
+      if ($this->_version == WINMERGE_2_2) { //if WinMerge 2.2 ...
+        $temp .= "  <li class=\"selected\"><a href=\"/2.2/index.php\">2.2</a></li>\n";
       }
+      else { //if WinMerge 2.2 ...
+        $temp .= "  <li><a href=\"/2.2/index.php\">2.2</a></li>\n";
+      }
+      if ($this->_version == WINMERGE_2_0) { //if WinMerge 2.0 ...
+        $temp .= "  <li class=\"selected\"><a href=\"/2.0/index.php\">2.0</a></li>\n";
+      }
+      else { //if NOT WinMerge 2.0 ...
+        $temp .= "  <li><a href=\"/2.0/index.php\">2.0</a></li>\n";
+      }
+      if ($this->_version == WINMERGE_1_7) { //if WinMerge 1.7 ...
+        $temp .= "  <li class=\"selected\"><a href=\"/1.7/index.php\">1.7</a></li>\n";
+      }
+      else { //if NOT WinMerge 1.7 ...
+        $temp .= "  <li><a href=\"/1.7/index.php\">1.7</a></li>\n";
+      }
+      if ($this->_version == WINMERGE_DEV) { //if "Developers" ...
+        $temp .= "  <li class=\"selected\"><a href=\"/developer/index.php\">Developers</a></li>\n";
+      }
+      else { //if NOT "Developers" ...
+        $temp .= "  <li><a href=\"/developer/index.php\">Developers</a></li>\n";
+      }
+      $temp .= "</ul>\n";
       $temp .= "</div>\n";
       $temp .= "<div id=\"nav\">\n";
       $temp .= $this->getMenu();

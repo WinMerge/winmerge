@@ -10,12 +10,38 @@ body {
 	margin: 0;
 	padding: 5px;
 	background: #FFCC00;
-	border: 1px solid #FF9933;
 }
 
 #head h1 {
 	margin: 0;
 	padding: 0;
+}
+
+#tabs {
+	margin: 0 0 5px 0;
+	padding: 5px 5px 4px 5px;
+	background: #FFCC00;
+	border-bottom: 1px solid black;
+}
+
+#tabs ul {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#tabs ul li {
+	display: inline;
+	list-style: none;
+	margin: 0;
+	padding: 2px 10px 5px 10px;
+	background: #FFFFCC;
+	border: 1px solid black;
+}
+
+#tabs ul li.selected {
+	background: white;
+	border-bottom: 1px solid white;
 }
 
 #nav {

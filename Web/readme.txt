@@ -1,3 +1,8 @@
+2005-02-18 Tim
+ PATCH: [ 1064389 ] Web: Switch easier between versions
+  Web: page.inc
+  Web\css: all.css print.css
+
 2005-02-08 Tim
  PATCH: [ 1116828 ] Web: New layout for header (h1)
   Web: page.inc

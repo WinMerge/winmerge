@@ -18,6 +18,10 @@ body {
 	padding: 0;
 }
 
+#tabs {
+	display: none;
+}
+
 #nav {
 	display: none;
 }
