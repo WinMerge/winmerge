@@ -1,3 +1,7 @@
+2004-05-12 Kimmo
+ PATCH: [ 948448 ] Remove WinMerge.exe path from system options
+  Src: Merge.rc PropRegistry.cpp PropRegistry.h resource.h
+
 2004-05-11 Laoran
  PATCH: [ 948528 ] Build BCMenu after select language
   Src: MainFrm.cpp MainFrm.h Merge.cpp

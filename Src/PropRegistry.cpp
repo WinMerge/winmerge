@@ -59,7 +59,6 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CPropRegistry)
 	DDX_Check(pDX, IDC_EXPLORER_CONTEXT, m_bContextAdded);
-	DDX_Text(pDX, IDC_WINMERGE_PATH, m_strPath);
 	DDX_Text(pDX, IDC_EXT_EDITOR_PATH, m_strEditorPath);
 	DDX_Check(pDX, IDC_USE_RECYCLE_BIN, m_bUseRecycleBin);
 	//}}AFX_DATA_MAP
@@ -68,7 +67,6 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CPropRegistry, CDialog)
 	//{{AFX_MSG_MAP(CPropRegistry)
 	ON_BN_CLICKED(IDC_EXPLORER_CONTEXT, OnAddToExplorer)
-	ON_BN_CLICKED(IDC_WINMERGE_PATH_BROWSE, OnBrowsePath)
 	ON_BN_CLICKED(IDC_EXT_EDITOR_BROWSE, OnBrowseEditor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -99,8 +97,6 @@ void CPropRegistry::GetContextRegValues()
 
 	if (dwContextEnabled & 0x1)
 		m_bContextAdded = TRUE;
-
-	m_strPath = reg.ReadString(f_RegValuePath, _T(""));
 }
 
 /// Set registry values for ShellExtension
@@ -126,31 +122,14 @@ void CPropRegistry::OnAddToExplorer()
 /// Saves given path to registry for ShellExtension
 void CPropRegistry::SaveMergePath()
 {
+	TCHAR temp[MAX_PATH] = {0};
+	GetModuleFileName(AfxGetInstanceHandle(), temp, MAX_PATH);
+
 	CRegKeyEx reg;
 	if (reg.Open(HKEY_CURRENT_USER, f_RegDir) != ERROR_SUCCESS)
 		return;
 
-	m_strPath.TrimLeft();
-	m_strPath.TrimRight();
-	reg.WriteString(f_RegValuePath, m_strPath);
-}
-
-/// Open file browse dialog to locate WinMerge.exe or bat file
-void CPropRegistry::OnBrowsePath()
-{
-	CString s;
-
-	VERIFY(s.LoadString(IDS_PROGRAMFILES));
-	DWORD flags = OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
-	CFileDialog pdlg(TRUE, NULL, _T(""), flags, s);
-	CString title;
-	VERIFY(title.LoadString(IDS_OPEN_TITLE));
-	pdlg.m_ofn.lpstrTitle = (LPCTSTR)title;
-
-	if (pdlg.DoModal() == IDOK)
-	 	m_strPath = pdlg.GetPathName();
-
-	UpdateData(FALSE);
+	reg.WriteString(f_RegValuePath, temp);
 }
 
 /// Open file browse dialog to locate editor

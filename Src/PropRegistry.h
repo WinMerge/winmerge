@@ -45,7 +45,6 @@ public:
 	//{{AFX_DATA(CPropRegistry)
 	enum { IDD = IDD_PROPPAGE_REGISTRY };
 	BOOL m_bContextAdded;
-	CString m_strPath;
 	CString	m_strEditorPath;
 	BOOL	m_bUseRecycleBin;
 	//}}AFX_DATA
@@ -63,7 +62,6 @@ protected:
 	//{{AFX_MSG(CPropRegistry)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnAddToExplorer();
-	afx_msg void OnBrowsePath();
 	afx_msg void OnBrowseEditor();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
