@@ -1312,8 +1312,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	int cpleft= -1; // to be initialized/guessed in ShowMergeDoc
 	int cpright= -1; // to be initialized/guessed in ShowMergeDoc
 
-	BOOL bRORight = dwLeftFlags & FFILEOPEN_READONLY;
-	BOOL bROLeft = dwRightFlags & FFILEOPEN_READONLY;
+	BOOL bROLeft = dwLeftFlags & FFILEOPEN_READONLY;
+	BOOL bRORight = dwRightFlags & FFILEOPEN_READONLY;
 	BOOL docNull;
 	CDirDoc * pDirDoc = GetDirDocToShow(&docNull);
 

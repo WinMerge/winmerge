@@ -2,6 +2,9 @@
  PATCH: [ 1038091 ] Various Updates in German Translation
   Submitted by Tim Gerundt
   Src/Languages/German: MergeGerman.rc
+ PATCH: [ 1038361 ] Left/Right read-only cmdline arguments wrong way around
+  Submitted by markanthony
+  Src: MainFrm.cpp
 
 2004-09-30 2.2RC (2.1.8.0) released
 
