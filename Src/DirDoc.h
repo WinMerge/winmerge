@@ -95,7 +95,7 @@ public:
 	void SetDiffCompare(UINT diffcode, int idx);
 	void UpdateResources();
 	void InitStatusStrings();
-	void ReloadItemStatus(UINT nIdx);
+	void ReloadItemStatus(UINT nIdx, BOOL bLeft, BOOL bRight);
 	void Redisplay();
 	void Rescan();
 	CDiffContext *m_pCtxt;

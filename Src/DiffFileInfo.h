@@ -93,6 +93,7 @@ struct DiffFileInfo
 	// but, I ran into trouble with, I think, the DIFFITEM copy constructor
 	
 	void Update(CString sFilePath);
+	void Clear();
 };
 
 #endif // _DIFF_FILE_INFO_H_INCLUDED

@@ -35,6 +35,7 @@ static __int64 FileTimeToInt64(FILETIME & ft)
 
 /**
  * @brief Update fileinfo from given file
+ * @param [in] sFilePath Full path to file/directory to update
  */
 void DiffFileInfo::Update(CString sFilePath)
 {
@@ -44,6 +45,9 @@ void DiffFileInfo::Update(CString sFilePath)
 	WIN32_FIND_DATA wfd;
 	HANDLE h = FindFirstFile(sFilePath, &wfd);
 	__int64 mtime64 = 0;
+	size = -1;
+	flags.reset();
+	mtime = 0;
 	if (h != INVALID_HANDLE_VALUE)
 	{
 		mtime64 = FileTimeToInt64(wfd.ftLastWriteTime);
@@ -54,10 +58,19 @@ void DiffFileInfo::Update(CString sFilePath)
 			size = (wfd.nFileSizeHigh << 32) + wfd.nFileSizeLow;
 		FindClose(h);
 	}
-	else
-	{
-		size = -1;
-		flags.reset();
-	}
 	mtime = mtime64;
+}
+
+/**
+ * @brief Clears FileInfo data.
+ */
+void DiffFileInfo::Clear()
+{
+	ctime = 0;
+	mtime = 0;
+	size = -1;
+	version.Empty();
+	flags.reset();
+	codepage = 0;
+	unicoding = 0;
 }

@@ -133,9 +133,8 @@ public:
 	// change an existing difference
 	void SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask);
 	void SetDiffCounts(POSITION diffpos, UINT diffs, UINT ignored);
-	void UpdateInfoFromDisk(DIFFITEM & di);
 	void UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi);
-	void UpdateStatusFromDisk(POSITION diffpos);
+	void UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRight);
 
 	// retrieve or manufacture plugin info for specified file comparison
 	void FetchPluginInfos(const CString& filteredFilenames, PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);

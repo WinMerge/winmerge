@@ -203,20 +203,26 @@ void CDiffContext::SetDiffCounts(POSITION diffpos, UINT diffs, UINT ignored)
 }
 
 /**
- * @brief Update the diffitem passed from disk
- */
-void CDiffContext::UpdateInfoFromDisk(DIFFITEM & di)
-{
-	UpdateInfoFromDiskHalf(di, di.left);
-	UpdateInfoFromDiskHalf(di, di.right);
-}
-
-/**
  * @brief Update info in list (specified by position) from disk
+ * @param [in] diffpos Difference to update
+ * @param [in] bLeft Update left-side item
+ * @param [in] bRight Update right-side item
  */
-void CDiffContext::UpdateStatusFromDisk(POSITION diffpos)
+void CDiffContext::UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRight)
 {
-	UpdateInfoFromDisk(m_pList->GetAt(diffpos));
+	DIFFITEM &di = m_pList->GetAt(diffpos);
+	if (bLeft)
+	{
+		di.left.Clear();
+		if (!di.isSideRight())
+			UpdateInfoFromDiskHalf(di, di.left);
+	}
+	if (bRight)
+	{
+		di.right.Clear();
+		if (!di.isSideLeft())
+			UpdateInfoFromDiskHalf(di, di.right);
+	}
 }
 
 /**

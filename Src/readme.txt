@@ -3,6 +3,9 @@
   Src/editlib: xml.cpp
  BUG: [ 1063100 ] Files with a space not handled (Clearcase integration)
   Src: MainFrm.cpp
+ PATCH: [ 1059785 ] Simplify dir compare item update after copy etc
+  Src: DiffContext.cpp DiffContext.h DiffFileInfo.cpp DiffFileInfo.h
+   DirActions.cpp DirDoc.cpp DirDoc.h
 
 2004-11-09 Jochen
  PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)

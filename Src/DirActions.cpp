@@ -685,7 +685,7 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 				pDoc->SetDiffCompare(DIFFCODE::SAME, act.idx);
 
 			pDoc->SetDiffCounts(0, 0, act.idx);
-			pDoc->ReloadItemStatus(act.idx);
+			pDoc->ReloadItemStatus(act.idx, TRUE, TRUE);
 		}
 		else if (actionList.atype == ActionList::ACT_MOVE_LEFT ||
 			actionList.atype == ActionList::ACT_MOVE_RIGHT)
@@ -702,7 +702,7 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 				{
 					pDoc->SetDiffSide(DIFFCODE::RIGHT, act.idx);
 					pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
-					pDoc->ReloadItemStatus(act.idx);
+					pDoc->ReloadItemStatus(act.idx, TRUE, FALSE);
 				}
 			}
 
@@ -714,7 +714,7 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 				{
 					pDoc->SetDiffSide(DIFFCODE::LEFT, act.idx);
 					pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
-					pDoc->ReloadItemStatus(act.idx);
+					pDoc->ReloadItemStatus(act.idx, FALSE, TRUE);
 				}
 			}
 		}
@@ -734,7 +734,7 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 				{
 					pDoc->SetDiffSide(DIFFCODE::RIGHT, act.idx);
 					pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
-					pDoc->ReloadItemStatus(act.idx);
+					pDoc->ReloadItemStatus(act.idx, TRUE, FALSE);
 				}
 			}
 			
@@ -748,7 +748,7 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 				{
 					pDoc->SetDiffSide(DIFFCODE::LEFT, act.idx);
 					pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
-					pDoc->ReloadItemStatus(act.idx);
+					pDoc->ReloadItemStatus(act.idx, FALSE, TRUE);
 				}
 			}
 

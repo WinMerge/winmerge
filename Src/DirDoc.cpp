@@ -343,12 +343,13 @@ CDirView * CDirDoc::GetMainView()
  * @brief Update in-memory diffitem status from disk and update view
  * @param nIdx Index of item in UI list
  */
-void CDirDoc::ReloadItemStatus(UINT nIdx)
+void CDirDoc::ReloadItemStatus(UINT nIdx, BOOL bLeft, BOOL bRight)
 {
 	// Get position of item in DiffContext
 	POSITION diffpos = m_pDirView->GetItemKey(nIdx);
 
-	m_pCtxt->UpdateStatusFromDisk(diffpos); // in case just copied (into existence) or modified
+	// in case just copied (into existence) or modified
+	m_pCtxt->UpdateStatusFromDisk(diffpos, bLeft, bRight);
 
 	// Update view
 	DIFFITEM & updated = m_pCtxt->GetDiffAt(diffpos);
@@ -562,12 +563,12 @@ void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight,
 	// Figure out new status code
 	UINT diffcode = (bIdentical ? DIFFCODE::SAME : DIFFCODE::DIFF);
 
-	// Update both view and diff context memory
+	// Update both views and diff context memory
 	SetDiffCompare(diffcode, ind);
 
 	if (nDiffs != -1 && nTrivialDiffs != -1)
 		SetDiffCounts(nDiffs, nTrivialDiffs, ind);
-	ReloadItemStatus(ind);
+	ReloadItemStatus(ind, TRUE, TRUE);
 }
 
 /**
