@@ -2,6 +2,9 @@
  BUG: [ 1064942 ] Copyright notice????
   Bumped copyright year to continue through 2005
    Src: Merge.rc
+ BUG: [ 859995 ] convertToBuffer assumes ISO-8895-1 codepage
+  Add comment about flawed code in actual code
+   Src/Common: unicoder.cpp
 
 2004-12-17 Kimmo
  PATCH: [ 1086601 ] Dircompare statepane miscounting skipped items

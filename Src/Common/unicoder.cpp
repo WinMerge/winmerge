@@ -501,6 +501,9 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET unicoding, int code
 #else
 	// ANSI build, TCHAR=char
 
+	// NB: Following conversions are wrong, because they assume source encoding is ISO-8859-1
+	// (which is identical to Unicode codepoints) -- so they will fail for any codepages
+	// outside of cp-1252 (and for non-standard entries in cp-1252) !!
 	if (unicoding == UCS2LE)
 	{
 		for (int i=0; i<src.GetLength(); ++i)
