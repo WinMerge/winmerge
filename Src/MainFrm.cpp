@@ -1161,76 +1161,88 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  m_bScrollToFirst);
 	}
 
-	// Handle archives using 7-zip
-	if (Merge7z::Format *piHandler = Merge7z->GuessFormat(strLeft))
+	try
 	{
-		pathsType = IS_EXISTING_DIR;
-		if (strRight == strLeft)
+		// Handle archives using 7-zip
+		if (Merge7z::Format *piHandler = Merge7z->GuessFormat(strLeft))
 		{
-			strRight.Empty();
-		}
-		CTempPath path = pDirDoc;
-		do
-		{
-			if FAILED(piHandler->DeCompressArchive(m_hWnd, strLeft, path))
-				break;
-			if (strLeft.Find(path) == 0)
+			pathsType = IS_EXISTING_DIR;
+			if (strRight == strLeft)
 			{
-				DeleteFile(strLeft);
+				strRight.Empty();
 			}
-			strLeft.Delete(0, strLeft.ReverseFind('\\'));
-			int dot = strLeft.ReverseFind('.');
-			if (piHandler != &Merge7z->TarHandler && StrChr(_T("Tt"), strLeft[dot + 1]))
-			{
-				strLeft.GetBufferSetLength(dot + 2);
-				strLeft += _T("ar");
-			}
-			else
-			{
-				strLeft.GetBufferSetLength(dot);
-			}
-			strLeft.Insert(0, path);
-		} while (piHandler = Merge7z->GuessFormat(strLeft));
-		strLeft = path;
-		if (Merge7z::Format *piHandler = Merge7z->GuessFormat(strRight))
-		{
-			path.MakeSibling(_T(".1"));
+			CTempPath path = pDirDoc;
 			do
 			{
-				if FAILED(piHandler->DeCompressArchive(m_hWnd, strRight, path))
-					break;;
-				if (strRight.Find(path) == 0)
+				if FAILED(piHandler->DeCompressArchive(m_hWnd, strLeft, path))
+					break;
+				if (strLeft.Find(path) == 0)
 				{
-					DeleteFile(strRight);
+					DeleteFile(strLeft);
 				}
-				strRight.Delete(0, strRight.ReverseFind('\\'));
-				int dot = strRight.ReverseFind('.');
-				if (piHandler != &Merge7z->TarHandler && StrChr(_T("Tt"), strRight[dot + 1]))
+				strLeft.Delete(0, strLeft.ReverseFind('\\'));
+				int dot = strLeft.ReverseFind('.');
+				if (piHandler != &Merge7z->TarHandler && StrChr(_T("Tt"), strLeft[dot + 1]))
 				{
-					strRight.GetBufferSetLength(dot + 2);
-					strRight += _T("ar");
+					strLeft.GetBufferSetLength(dot + 2);
+					strLeft += _T("ar");
 				}
 				else
 				{
-					strRight.GetBufferSetLength(dot);
+					strLeft.GetBufferSetLength(dot);
 				}
-				strRight.Insert(0, path);
-			} while (piHandler = Merge7z->GuessFormat(strRight));
-			strRight = path;
-		}
-		else if (strRight.IsEmpty())
-		{
-			// assume Perry style patch
-			strRight = path;
-			strLeft += _T("\\ORIGINAL");
-			strRight += _T("\\ALTERED");
-			if (!PathFileExists(strLeft) || !PathFileExists(strRight))
+				strLeft.Insert(0, path);
+			} while (piHandler = Merge7z->GuessFormat(strLeft));
+			strLeft = path;
+			if (Merge7z::Format *piHandler = Merge7z->GuessFormat(strRight))
 			{
-				// not a Perry style patch: diff with itself...
-				strLeft = strRight = path;
+				path.MakeSibling(_T(".1"));
+				do
+				{
+					if FAILED(piHandler->DeCompressArchive(m_hWnd, strRight, path))
+						break;;
+					if (strRight.Find(path) == 0)
+					{
+						DeleteFile(strRight);
+					}
+					strRight.Delete(0, strRight.ReverseFind('\\'));
+					int dot = strRight.ReverseFind('.');
+					if (piHandler != &Merge7z->TarHandler && StrChr(_T("Tt"), strRight[dot + 1]))
+					{
+						strRight.GetBufferSetLength(dot + 2);
+						strRight += _T("ar");
+					}
+					else
+					{
+						strRight.GetBufferSetLength(dot);
+					}
+					strRight.Insert(0, path);
+				} while (piHandler = Merge7z->GuessFormat(strRight));
+				strRight = path;
+			}
+			else if (strRight.IsEmpty())
+			{
+				// assume Perry style patch
+				strRight = path;
+				strLeft += _T("\\ORIGINAL");
+				strRight += _T("\\ALTERED");
+				if (!PathFileExists(strLeft) || !PathFileExists(strRight))
+				{
+					// not a Perry style patch: diff with itself...
+					strLeft = strRight = path;
+				}
 			}
 		}
 	}
+	catch (CSilentException *)
+	{
+	}
+	catch (CException *e)
+	{
+		e->ReportError(MB_ICONSTOP);
+		e->Delete();
+	}
+
 	// open the diff
 	if (pathsType == IS_EXISTING_DIR)
 	{

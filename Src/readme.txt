@@ -1,3 +1,7 @@
+2004-01-20 Jochen
+ Fix bug 880320
+  src: Merge7zCommon.cpp Merge7zCommon.h MainFrm.cpp
+  
 2004-01-19 Jochen
  Finish Merge7z integration
   src: Merge.rc resource.h DirView.cpp DirView.h DirDoc.cpp MainFrm.cpp Merge.dsp

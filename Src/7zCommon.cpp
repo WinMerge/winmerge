@@ -51,6 +51,7 @@ DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
 2003/12/16	Jochen Tucht		Properly generate .tar.gz and .tar.bz2
 2003/12/16	Jochen Tucht		Obtain long path to temporary folder
+2004/01/20	Jochen Tucht		Complain only once if Merge7z*.dll is missing
 
 */
 
@@ -233,6 +234,16 @@ interface Merge7z *Merge7z::Proxy::operator->()
 			if (DWORD ver = VersionOf7zLocal())
 				if (DllProxyHelper(Merge7z, UINT HIWORD(ver), UINT LOWORD(ver)))
 					break;
+			static CSilentException *pSilentException = NULL;
+			if (pSilentException)
+			{
+				// This is a subsequent call: Fail silenty.
+				throw pSilentException;
+			}
+			// Create a CSilentException to be thrown on subsequent calls.
+			// Leave an intentional memory leak so the leak dump will
+			// reveal where the error occured.
+			pSilentException = new CSilentException;
 			ComplainNotFound("Merge7z*.dll");
 		}
 		((interface Merge7z *)Merge7z[1])->Initialize(flags);

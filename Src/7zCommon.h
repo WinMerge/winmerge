@@ -2,6 +2,14 @@
 
 extern Merge7z::Proxy Merge7z;
 
+class CSilentException : public CSimpleException
+{
+public:
+	CSilentException():CSimpleException(FALSE)
+	{
+	}
+};
+
 class CTempPath
 {
 protected:
