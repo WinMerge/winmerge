@@ -2,6 +2,8 @@
  PATCH: [ 949428 ] Show VSS dialogs only once
   Src: DirActions.cpp MainFrm.cpp MainFrm.h Merge.rc resource.h
   Languages: *.rc resource.h
+ BUG: [ 947121 ] ShellExtension does not compile with Visual Studio 2003
+  ShellExtension: ShellExtension.dsp
 
 2004-05-07 Laoran
  PATCH: [ 948366 ] clear moved blocks before Rescan
