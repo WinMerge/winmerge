@@ -120,23 +120,24 @@ BEGIN
             MENUITEM "MAC (CR)",                    ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Beenden",                    ID_APP_EXIT
+        MENUITEM "&Beenden\tEsc",               ID_APP_EXIT
     END
     POPUP "&Bearbeiten"
     BEGIN
         MENUITEM "&Rückgängig\tStrg+Z",         ID_EDIT_UNDO
         MENUITEM "&Wiederherstellen\tStrg+Y",   ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "Auss&chneiden\tCtrl+X",       ID_EDIT_CUT
-        MENUITEM "&Kopieren\tCtrl+C",           ID_EDIT_COPY
-        MENUITEM "E&infügen\tCtrl+V",           ID_EDIT_PASTE
+        MENUITEM "Auss&chneiden\tStrg+X",       ID_EDIT_CUT
+        MENUITEM "&Kopieren\tStrg+C",           ID_EDIT_COPY
+        MENUITEM "E&infügen\tStrg+V",           ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
+        MENUITEM "Zeilenunterschied hervorheben\tF4",
+                                                ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "&Suchen...\tCtrl+F",          ID_EDIT_FIND
-        MENUITEM "Erse&tzen...\tCtrl+H",        ID_EDIT_REPLACE
+        MENUITEM "&Suchen...\tStrg+F",          ID_EDIT_FIND
+        MENUITEM "Erse&tzen...\tStrg+H",        ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        MENUITEM "&Einstellungen",              ID_OPTIONS
+        MENUITEM "&Einstellungen...",           ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "Aktualisieren\tF5",           ID_REFRESH
     END
@@ -145,12 +146,12 @@ BEGIN
         MENUITEM "&Identische Dateien anzeigen", ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "&Unterschiedliche Dateien anzeigen",
                                                 ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Zeige eindeutige Dateien &links",
+        MENUITEM "Eindeutige Dateien &links anzeigen",
                                                 ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Zeige eindeutige Dateien &rechts",
+        MENUITEM "Eindeutige Dateien &rechts anzeigen",
                                                 ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Zeige Binär&dateien",         ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Zeige übersprun&gene Dateien",
+        MENUITEM "Binär&dateien anzeigen",      ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Übersprun&gene Dateien anzeigen",
                                                 ID_OPTIONS_SHOWSKIPPED
         MENUITEM "*.&BAK-Dateien verstecken",   ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
@@ -167,15 +168,15 @@ BEGIN
     END
     POPUP "&Merge"
     BEGIN
-        MENUITEM "&Nächster Unterschied\tAlt+Down", ID_NEXTDIFF
-        MENUITEM "&Voriger Unterschied\tAlt+Up", ID_PREVDIFF
+        MENUITEM "&Nächster Unterschied\tAlt+Hoch", ID_NEXTDIFF
+        MENUITEM "&Voriger Unterschied\tAlt+Runter", ID_PREVDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Erster &Unterschied\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "Erster &Unterschied\tAlt+Pos1", ID_FIRSTDIFF
         MENUITEM "&Aktueller Unterschied\tAlt+Enter", ID_CURDIFF
-        MENUITEM "&Letzter Unterschied\tAlt+End", ID_LASTDIFF
+        MENUITEM "&Letzter Unterschied\tAlt+Ende", ID_LASTDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Nach rechts kopieren\tPfeil rechts", ID_L2R
-        MENUITEM "Nach links kopieren\tPfeil links", ID_R2L
+        MENUITEM "Nach rechts kopieren\tAlt+Rechts", ID_L2R
+        MENUITEM "Nach links kopieren\tAlt+Links", ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "Copy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
         MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
@@ -193,17 +194,17 @@ BEGIN
     END
     POPUP "&Plugins"
     BEGIN
-        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
-        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
+        MENUITEM "Manuell entpacken",           ID_UNPACK_MANUAL
+        MENUITEM "Automatisch entpacken",       ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "Mit Entpacker bearbeiten",    ID_POPUP_OPEN_WITH_UNPACKER
     END
     POPUP "&Fenster"
     BEGIN
         MENUITEM "Schließen",                   ID_FILE_CLOSE
         MENUITEM SEPARATOR
-        MENUITEM "&Horizontal anordnen",        ID_WINDOW_TILE_HORZ
-        MENUITEM "&Vertikal anordnen",          ID_WINDOW_TILE_VERT
+        MENUITEM "&Untereinander",              ID_WINDOW_TILE_HORZ
+        MENUITEM "&Nebeneinander",              ID_WINDOW_TILE_VERT
         MENUITEM "Über&lappend",                ID_WINDOW_CASCADE
     END
     POPUP "&?"
@@ -225,17 +226,17 @@ BEGIN
         MENUITEM "Lösche rechts",               ID_DIR_DEL_RIGHT
         MENUITEM "Lösche beide",                ID_DIR_DEL_BOTH
         MENUITEM SEPARATOR
-        POPUP "Open left"
+        POPUP "Öffne links"
         BEGIN
-            MENUITEM "with registered application", ID_DIR_OPEN_LEFT
-            MENUITEM "with external editor",        ID_DIR_OPEN_LEFT_WITHEDITOR
-            MENUITEM "with...",                     ID_DIR_OPEN_LEFT_WITH
+            MENUITEM "Mit registrierter Anwendung", ID_DIR_OPEN_LEFT
+            MENUITEM "Mit externem Editor",         ID_DIR_OPEN_LEFT_WITHEDITOR
+            MENUITEM "Mit...",                      ID_DIR_OPEN_LEFT_WITH
         END
-        POPUP "Open right"
+        POPUP "Öffne rechts"
         BEGIN
-            MENUITEM "with registered application", ID_DIR_OPEN_RIGHT
-            MENUITEM "with external editor",        ID_DIR_OPEN_RIGHT_WITHEDITOR
-            MENUITEM "with...",                     ID_DIR_OPEN_RIGHT_WITH
+            MENUITEM "Mit registrierter Anwendung", ID_DIR_OPEN_RIGHT
+            MENUITEM "Mit externem Editor",         ID_DIR_OPEN_RIGHT_WITHEDITOR
+            MENUITEM "Mit...",                      ID_DIR_OPEN_RIGHT_WITH
         END
     END
     POPUP "_HDR_POPUP_"
@@ -306,9 +307,9 @@ CAPTION "Info über WinMerge"
 FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
-    LTEXT           "WinMerge",IDC_STATIC,63,13,85,8,SS_NOPREFIX
+    LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
     DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
-    LTEXT           "Version 1.0",IDC_VERSION,64,23,88,8,SS_NOPREFIX
+    LTEXT           "Version 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
     LTEXT           "Alle Rechte vorbehalten.",IDC_STATIC,7,60,170,8
     LTEXT           "Besuchen Sie die WinMerge HomePage!",IDC_WWW,7,107,209,
@@ -341,10 +342,10 @@ BEGIN
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Unter&verzeichnisse durchsuchen",IDC_RECURS_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,63,72,119,10
-    LTEXT           "&Unpacker:",IDC_STATIC,19,88,34,8
+    LTEXT           "&Entpacker:",IDC_STATIC,19,88,34,8
     EDITTEXT        IDC_UNPACKER_EDIT,63,86,182,12,ES_AUTOHSCROLL |
                     ES_READONLY
-    PUSHBUTTON      "Select...",IDC_SELECT_UNPACKER,248,86,38,12
+    PUSHBUTTON      "Auswählen...",IDC_SELECT_UNPACKER,248,86,38,12
     DEFPUSHBUTTON   "OK",IDOK,302,11,50,14
     PUSHBUTTON      "Abbrechen",IDCANCEL,302,28,50,14
     GROUPBOX        "Zu vergleichende Dateien oder Verzeichnisse",IDC_FILES_DIRS_GROUP,
@@ -354,7 +355,7 @@ END
 IDD_VSS DIALOGEX 0, 0, 257, 159
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Visual SourceSafe"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
@@ -410,8 +411,8 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,63,100,10
     CONTROL         "Automatisches A&ktualisieren",IDC_AUTOMRESCAN_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,74,100,10
-    CONTROL         "Allow mixing EOL types",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,89,10
+    CONTROL         "Mischen der Zeilenumbruch-Formate erlauben",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,160,10
     CONTROL         "Leerzeichen &vergleichen",IDC_WHITESPACE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,138,41,102,10
     CONTROL         "Z&eilenende erkennen",IDC_EOL_SENSITIVE,"Button",
@@ -447,7 +448,7 @@ STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Suchen"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    COMBOBOX        IDC_EDIT_FINDTEXT,41,6,135,138,CBS_DROPDOWN | WS_VSCROLL |
+    COMBOBOX        IDC_EDIT_FINDTEXT,51,6,145,138,CBS_DROPDOWN | WS_VSCROLL |
                     WS_TABSTOP
     CONTROL         "&nur ganze Wörter",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
@@ -461,7 +462,7 @@ BEGIN
                     BS_AUTORADIOBUTTON,128,48,57,12
     DEFPUSHBUTTON   "&Weitersuchen",IDOK,203,5,50,14,WS_GROUP
     PUSHBUTTON      "Abbrechen",IDCANCEL,203,23,50,14
-    LTEXT           "Was s&uchen:",IDC_STATIC,4,8,36,8
+    LTEXT           "S&uchen nach:",IDC_STATIC,4,8,46,8
     GROUPBOX        "Richtung",IDC_STATIC,124,26,68,38,WS_GROUP
 END
 
@@ -470,9 +471,9 @@ STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Ersetzen"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN | CBS_SORT |
+    COMBOBOX        IDC_EDIT_FINDTEXT,57,7,121,30,CBS_DROPDOWN | CBS_SORT |
                     WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN |
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,57,24,121,30,CBS_DROPDOWN |
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&nur ganze Wörter",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
@@ -488,8 +489,8 @@ BEGIN
     PUSHBUTTON      "E&rsetzen",IDC_EDIT_REPLACE,207,21,50,14
     PUSHBUTTON      "A&lle ersetzen",IDC_EDIT_REPLACE_ALL,207,38,50,14
     PUSHBUTTON      "Abbrechen",IDCANCEL,207,55,50,14
-    LTEXT           "S&uchen nach:",IDC_STATIC,4,9,48,8
-    LTEXT           "Erse&tzen durch:",IDC_STATIC,4,26,48,8
+    LTEXT           "S&uchen nach:",IDC_STATIC,4,9,53,8
+    LTEXT           "Erse&tzen durch:",IDC_STATIC,4,26,53,8
     GROUPBOX        "Ersetze in",IDC_STATIC,125,46,71,39,WS_GROUP
 END
 
@@ -528,9 +529,9 @@ BEGIN
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
     LTEXT           "Datei-Filter:",IDC_STATIC,7,128,60,10
-    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_FILE_FILTER,73,126,117,63,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Edit",IDC_EDIT_FILE_FILTER,194,126,34,13,WS_DISABLED
+    PUSHBUTTON      "Bearbeiten",IDC_EDIT_FILE_FILTER,194,126,40,13,WS_DISABLED
 END
 
 IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
@@ -538,16 +539,16 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Farben"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    LTEXT           "selektierter Unterschied",IDC_STATIC,13,29,184,8
+    LTEXT           "Unterschied:",IDC_STATIC,13,29,184,8
     CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,98,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    LTEXT           "Unterschied",IDC_STATIC,13,49,184,8
+    LTEXT           "Selektierter Unterschied:",IDC_STATIC,13,49,184,8
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,98,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    LTEXT           "Background",IDC_STATIC,86,15,40,8
-    LTEXT           "Deleted",IDC_STATIC,137,15,26,8
+    LTEXT           "Hintergrund",IDC_STATIC,86,15,40,8
+    LTEXT           "Gelöscht",IDC_STATIC,135,15,30,8
     CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,141,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -564,7 +565,7 @@ BEGIN
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    LTEXT           "Ignored Difference:",IDC_STATIC,13,69,62,8
+    LTEXT           "Ignorierter Unterschied:",IDC_STATIC,13,69,80,8
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,141,69,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
@@ -582,17 +583,17 @@ END
 
 IDD_PROPPAGE_REGISTRY DIALOGEX 0, 0, 235, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Registry"
+CAPTION "Registrierung"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Add to explorer context menu",IDC_EXPLORER_CONTEXT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,108,10
+    CONTROL         "Zum Explorer-Kontextmenü &hinzufügen",IDC_EXPLORER_CONTEXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,145,10
     EDITTEXT        IDC_WINMERGE_PATH,7,19,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "&Browse...",IDC_WINMERGE_PATH_BROWSE,180,19,50,14
-    PUSHBUTTON      "&Save path",IDC_WINMERGE_PATH_SAVE,7,36,50,14
-    LTEXT           "External editor:",IDC_STATIC,8,58,48,8
+    PUSHBUTTON      "&Suchen...",IDC_WINMERGE_PATH_BROWSE,180,19,50,14
+    PUSHBUTTON      "&Pfad speichern",IDC_WINMERGE_PATH_SAVE,7,36,60,14
+    LTEXT           "Externer Editor:",IDC_STATIC,8,58,48,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,68,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_EXT_EDITOR_BROWSE,179,68,50,14
+    PUSHBUTTON      "Suchen...",IDC_EXT_EDITOR_BROWSE,179,68,50,14
 END
 
 IDD_GENERATE_PATCH DIALOG DISCARDABLE  0, 0, 259, 170
@@ -938,7 +939,7 @@ END
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_INDICATOR_EXT        "ER"
-    ID_INDICATOR_CAPS       "UF"
+    ID_INDICATOR_CAPS       "FEST"
     ID_INDICATOR_NUM        "NUM"
     ID_INDICATOR_SCRL       "RF"
     ID_INDICATOR_OVR        "ÜB"
@@ -1153,20 +1154,20 @@ BEGIN
     IDS_STATUS_COPYALL2R    "Kopiere alles nach rechts"
     IDS_PROGRAMFILES        "Programme|*.exe;*.bat;*.cmd|Alle Dateien (*.*)|*.*||"
     IDS_COLHDR_RSIZE        "Rechte Größe"
-    IDS_COLHDR_LTIMEC       "Left Creation Time"
-    IDS_COLHDR_RTIMEC       "Right Creation Time"
+    IDS_COLHDR_LTIMEC       "Linkes Erstellungsdatum"
+    IDS_COLHDR_RTIMEC       "Rechtes Erstellungsdatum"
     IDS_COLHDR_NEWER        "Neuere Datei"
-    IDS_COLHDR_LVERSION     "Linke Datei Version"
-    IDS_COLHDR_RVERSION     "Rechte Datei Version"
+    IDS_COLHDR_LVERSION     "Linke Dateiversion"
+    IDS_COLHDR_RVERSION     "Rechte Dateiversion"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_LEFTONLY            "Left Only"
-    IDS_RIGHTONLY           "Right Only"
+    IDS_LEFTONLY            "Nur Links"
+    IDS_RIGHTONLY           "Nur Rechts"
     IDS_COLHDR_RESULT_ABBR  "Short Result"
-    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
-    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_COLHDR_LATTRIBUTES  "Linke Attribute"
+    IDS_COLHDR_RATTRIBUTES  "Rechte Attribute"
     IDS_FILE_SKIPPED        "Datei übersprungen"
     IDS_DIR_SKIPPED         "Verzeichnis übersprungen"
     IDS_STATUSBAR_READONLY  "RO"
@@ -1271,7 +1272,7 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "Zeigt Binärdateien an"
     ID_VIEW_WHITESPACE      "Zeigt Leerzeichen An"
     ID_REFRESH              "Aktualisiert die Anzeige\nAktualisieren (F5)"
-    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_SHOWLINEDIFF         "Hebt den Unterschied in der aktuellen Zeile hervor."
     ID_EDITOR_COPY_PATH     "Kopiere vollständigen Pfad"
     ID_EDITOR_COPY_FILENAME "Kopiere Dateiname"
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
@@ -1281,9 +1282,9 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
-    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
-    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+    ID_EOL_TO_DOS           "Konvertiert Zeilenumbrüche ins DOS Format."
+    ID_EOL_TO_UNIX          "Konvertiert Zeilenumbrüche ins UNIX Format."
+    ID_EOL_TO_MAC           "Konvertiert Zeilenumbrüche ins MAC Format."
     ID_OPTIONS_SHOWSKIPPED  "Zeigt übersprungene Dateien an."
     ID_FILE_SAVE_LEFT       "Speichert die linke Datei."
     ID_FILE_SAVE_RIGHT      "Speichert die rechte Datei."

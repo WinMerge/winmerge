@@ -1,3 +1,8 @@
+2003-10-26 Laoran
+ PATCH: [ 829895 ] Fixed German translation
+ Submitted by Tim Gerundt
+  Languages: MergeGerman.rc
+
 2003-10-26 Kimmo
  PATCH: [ 829570 ] Open patches after creation
   WinMerge: DirActions.cpp MainFrm.h MainFrm.cpp Merge.rc PatchDlg.c
@@ -43,7 +48,6 @@
  PATCH: [ 828283 ] Open Read-only files as such
   WinMerge: DirView.cpp files.h files.cpp MainFrm.cpp
 
->>>>>>> 1.509
 2003-10-24 Perry
  BUG: [ 829437 ] Can't compare two files with unicode filenames
   WinMerge: Diff.cpp
