@@ -1,0 +1,379 @@
+Planning for WinMerge 2.1 (to be 2.2 stable)
+********************************************
+Author: Kimmo Varis (kimmov@users.sourceforge.net)
+Last update: 2004-02-28
+$Id$
+
+This document shortly describes our plans and goals for
+WinMerge 2.2. List of features requested and planned is
+in end of this document. Discussion about this plan and
+anything related to WinMerge and WinMerge development
+happens in SourceForge Developers-forum:
+http://sourceforge.net/forum/forum.php?forum_id=41639
+
+2.1 so far
+==========
+- Lots of new features
+  * Unicode support
+  * Shell integration
+  * Plugins
+  * Patch generating
+  * UI and usability improvements (new icons most visible ones)
+  * Resizable open-dialog
+  * Lots of improvements to file compare
+    - rewritten undo (I personally haven't seen it fail for a long
+      time)
+    - ignore blank lines fixed
+    - line- & column -numbers, line length in statusbar
+    - diff pane (lots of users like this!)
+    - excellent EOL handling, with simple mode for normal users
+    - hilighting differences in lines inside diff
+    - merging current diff and moving to next makes merging
+      remarkably faster (excellent idea contributed as RFE)
+  * Lots of improvements to directory compare
+    - skipped files have own category in dir compare
+    - dir compare has customisable fields
+    - threading backend work done
+    - Statusbar
+    - Stopping long compare
+
+  
+2.1.2.0
+-------
+- Unexpected amount of downloads > 5000 - no beta before got so much
+- Already contains many new features users like
+- Bugs in 2.1.2.0 caused lot of interest in experimentals before
+  2.1.4.0?
+- Still most of bug reports are from active developers
+- Lots of RFEs, some very good ideas
+
+2.1.4.0
+-------
+- Took long time, but worth it
+- Unicode support & plugins
+- One visible bug (RC-plugin run automatically) 
+- Usability improvements
+- Most bugs in 2.1.2.0 fixed
+- Seems to be stable, so branched to make another release to 
+  fix some problems for users wanting to use 2.1 seriously
+- Good version for "preview" of 2.2
+  
+2.1.4.0 branch
+--------------
+- Bugfixes
+  * Fix for RC file problem merged 2003-12-11
+- Maybe some new features, if no risk for new bugs
+- 1 or more safer betas from this branch
+- NOT mentioned as new stable, its development still!
+
+
+2.1 Development
+===============
+
+Timetable for 2.2 release
+-------------------------
+- We don't want to freeze and publish exact date for final release
+- But we want to freeze date for first 2.2RC
+- We must publish 2.2 translation freeze
+- Translation freeze ~couple of months before final release,
+  ~ one month before first 2.2RC
+** 2.2RC in end of May 2004
+** 2.2 translation freeze end of April 2004
+** "Soft" feature freeze end of April 2004
+- One or two RC releases expected, hopefully one is enough
+- We can have shorter feature freeze than for 2.0 because current
+  codebase is a lot better debugged and documented, no risk for
+  critical last-minute bugs like in 2.0
+- Feature freeze is not absolute, some smaller features can be added,
+  but there must not be changes to translations!
+- Timetable is reasonably tight. But 2.1 is already in shape we could
+  start feature freeze. There are some very interesting features
+  in development, we want those for 2.2.
+- If some feature misses 2.2 train, we propably could do 2.4 (or
+  whatever) a lot faster than 2.2. So we won't try to push new
+  features for 2.1 in hurry. Also, current stability of 2.1 must not
+  be threatened!
+
+
+Adding new features to 2.1
+--------------------------
+- Adding feature needs approval from person responsible about planning
+- Features should have review from other developer
+- If developer in question knows code well, there is no need for review
+  E.g. developer who added unicode support does not need reviews for
+  unicode enchangements.
+- UI changes need more consideration than others, preferably review
+  from developer familiar with UI design.
+- Every feature needs one responsible developer. Responsible developer
+  must be reacting to possible regressions and bugs after applying
+  patch
+- Contributed patch always needs one responsible developer driving
+  patch into CVS.
+  
+
+Bug fixes for 2.1
+-----------------
+- Simple bug fixes or fixes to code developer in question knows well
+  (local, affecting one function or couple of) can be
+  applied without submitting to SourceForge.
+- If developer cannot quarantee fix is right, it must be submitted
+  to SourceForge
+- More complex fixes or fixes affecting internal interfaces or UI
+  must always be submitted to SourceForge
+
+Translations
+------------
+- We'll announce translation freeze for translators and in development
+  forums and lists.
+- That will be signal for translators to start updating to 2.2
+- We'll need one beta release for translators to get sources and
+  test their translations
+- That beta is not yet RC!
+
+User Documentation
+==================
+- Kimmo wants to do from scratch, using parts of existing documentation
+- Help welcome
+- First draft available
+- DocBook/XML - needed utilities are freely available
+- Easy to convert to several formats, including HTML & PDF
+- What about translations? Currently we have only English
+  documentation, are translators interested in translating
+  documentation?
+- Provide HTML and PDF within install package?
+
+
+Features requested and considered for 2.2
+=========================================
+If you want to implement any of these items, please add note to
+mentioned RFE item. If there is no item already, create one.
+We try to keep this list up-to-date too for tracking status.
+SourceForge Developers -forum is place for discussion about
+these items. SourceForge RFE list:
+http://sourceforge.net/tracker/?group_id=13216&atid=363216
+SourceForge Developers-forum:
+http://sourceforge.net/forum/forum.php?forum_id=41639
+
+1) Multi-doc enabled directory and file compares
+   - Important usability improvement
+   - Needs (9) to be done first
+   - Mostly UI work?
+   - Nobody working with this at the moment
+   - Not must for 2.2, but if time allows this is nice to have
+
+2) Archive file support
+   - This is killer feature!
+   - Jochen is doing great work with this
+   - We want this for 2.2, other developers ready to help Jochen
+   - Jochen submitted patch 2003-12-11
+   - Merge7z project applied to CVS 2004-01-07
+     integration completed 2004-01-19
+   *** DONE ***
+   
+3) Directory compare reports
+   - RFE #669461 Save directory compare report
+   - First take with Ctrl-C copying view contents done
+   - Responsive contributor working with this
+   - Patch ready soon?
+
+4) On-demand-rescan for directory compare
+   - Requires mostly some reorg in dir compare code
+   - Allows many other usability improvements
+   - Also some long-standing bugs can be fixed after this
+   - Nobody working with this at the moment,
+     Kimmo at least interested, but cannot say if time permits
+   - Needed for 2.2
+
+5) wxWindows port
+   - RFE #851438 wxWindows port
+   - Hard to say anything about work amount
+   - Cross-platform WinMerge would be great boost for users
+   - More developer interest too
+   - Nobody working with this at the moment
+   - Needs dedicated people to take care of all issues around this,
+     not just porting code, but keeping builds working etc.
+   - Not for 2.2
+
+6) Project files
+   - RFE #785415 Project Files
+   - Would be important usability improvement for many users
+   - Requires (9) to be done first
+   - Not big code changes, mostly setting and filename
+     saving and loading from project file
+   - Nobody working with this at the moment
+   - Preferred for 2.2, no big risks
+
+7) Show only different lines
+   - RFE #709415 Display only different lines
+   - The most requested feature lately
+   - Requires mostly editor code changes - not clear we want to
+     do those (because of 13)
+   - Not very important, usability improvement not clear
+   - Nobody working with this at the moment
+   - Not for 2.2
+
+8) Code-page support
+   - RFE #837530 select codepage for file
+   - For compare/merge program, this is one of real issues left
+   - Some backend code already applied to CVS, status not known
+   - UI implementation needs some planning (where we want to show
+     current code-page, where it should be changed?)
+   - Perry has done backend code, interested in UI part too?
+   - Needed for 2.2 to say WinMerge is now full-scale solution for
+     file compare/merge
+   - Note: listing available codepages is a problem; Perry thinking
+     about optionally using iconv
+
+9) Options (UI) rewrite
+   - UI for usability, backend for needed features
+   - 2 directions: Options-server-class or dividing settings for
+     different classes
+   - Options-server class for other features
+   - Done by Kimmo
+   - Needed for 2.2 (other features need this)
+   *** DONE ***
+
+10) (S)FTP support
+   - RFE #809010 FTP and SFTP support
+   - UI and backend code changes needed unknown
+   - Contributor working with this?
+   - Status unknown
+   - For 2.2 if backend changes are not risky
+
+11) 3-way merge
+   - RFE #839815 Diff3, one output
+   - Lot of changes to UI code - most of current code assumes
+     we have two files: left and right
+   - Requires (12)
+   - What about directory compare?
+   - Nobody working with this at the moment
+   - Not for 2.2. Too risky. A lot of code assumes 2 files.
+
+12) Diffutils upgrade
+   - No UI changes
+   - CVS reorg makes easier
+   - Nobody working with this at the moment
+   - Kimmo wants to do at least some work with this,
+     Perry offered to help
+   - Not for 2.2. Too risky merging.
+
+13) Editor component update/change
+   - Some discussions, but we don't know even if we want to upgrade
+     to TextCenter or change to totally different component
+   - Upgrading to TextcCenter brings more features, and some fixes to
+     editor code.
+   - But we lose many improvements and fixes done ourselves!
+   - Nobody working with this at the moment
+   - Not for 2.2. Too risky.
+   
+14) .cvsignore based filtering
+   - RFE #787447 .cvsignore-based file filter
+   - Interesting idea! Surely useful for CVS users
+   - UI changes are one option?
+   - Backend changes? Perry submitted idea for this to RFE #787447.
+   - Nobody working with this at the moment. Laoran interested
+   - Considered for 2.2 if somebody wants to implement this
+ 
+15) Graphically resolve CVS conflicts
+   - RFE #436548 Allow WinMerge to merged CVS conflicts.
+   - Useful for CVS users, not many programs do this, so would be
+     good help for many users.
+   - UI changes not clear? Adding "Open conflict file" to menu?
+   - Backend changes? Some code suggested in RFE from TortoiseCVS?
+   - Nobody working with this at the moment
+   - Considered for 2.2 if somebody wants to implement this
+
+16) Browse folders in non-recursive directory compare
+   - RFE #469884 Browse folders in non-recursive directory compare
+   - Usability improvement!
+   - Done by Kimmo
+   - For 2.2
+   - How does this work with archive patch? - Works nice :)
+   - Patch applied to CVS 2004-01-07
+   *** DONE ***
+
+17) Filter UI
+   - RFE #531863 Better filter selection UI
+   - Filters need to have decent UI for users to start using them
+     efficiently
+   - Mostly UI work
+   - Kimmo already done some work for this, Laoran interested too
+   - For 2.2
+   
+18) Apply patches
+   - RFE #695741 Generate and apply patches
+   - Common development task, nice combination with patch creating
+   - Work needed not clear, some UI changes, lot of work anyhow
+   - Needs integrating GNU/patch to WinMerge
+   - Nobody working with this at the moment
+   - Kimmo interested in doing this, propably no time though
+   - Not for 2.2
+
+19) Copy Folder in dir compare
+   - RFE #764481 Copy Folder
+   - Only important functionality missing for file/dir management
+   - Usability!
+   - Done by Kimmo
+   - Easy with CShellFileOp wrapper class
+   - For 2.2
+   - Patch applied 2004-02-26
+   *** DONE ***
+
+20) Do not show again for messageboxes
+   - RFE #809131 Add "Do not show again" option for messageboxes
+   - Usability!
+   - Mostly UI changes, new page for options to reset dialogs
+   - Nobody working with this at the moment, Laoran wants to
+   - For 2.2
+
+21) One-key diff navigation and merge
+   - RFE #837803 Make Alt key optional
+   - Usability!
+   - Kimmo submitted patch (#892023 Alternative (no alt-key) merge mode)
+     2004-02-06. Not sure if thats right way to go.
+   - Considered for 2.2 if somebody wants to implement this
+
+22) Dir compare statusbar to auto-hide
+   - RFE #838982 Skip "Press any key" every time I compare
+   - Usability
+   - Needs (23)?
+   - UI change, add checkbox "Hide automatically"?
+   - Nobody working with this at the moment
+   - Considered for 2.2 if somebody wants to implement this
+
+23) Dir compare statusbar to be shown from menu
+   - Currently no way to show after closed
+   - Statusbar is good "quickview" for status, how many different files
+     etc.
+   - Must be "live" i.e. if files are merged, contents updated
+   - UI and some backend work (updating filecounts)
+   - Nobody working with this at the moment
+   - Considered for 2.2 if somebody wants to implement this
+
+24) Number of diffs in directory compare
+   - RFE #848792 Display number of differences in directory view
+   - Nice-to-have, not essential functionality
+   - Needs some UI and backend work
+   - For 2.2
+   - PATCH: [ 878631 ] Add generic named properties to DiffContext
+   - Perry applied patch 2004-01-21
+   *** DONE ***
+
+25) Put deleted files to Recycle Bin
+   - RFE #871937 Optionally put deleted files to Recyle Bin
+   - Protects user files, many are expecting this, because
+     Windows by default puts deleted files to Recycle bin
+   - Done by Kimmo
+   - For 2.2
+   - Patch applied 2004-02-27
+   *** DONE ***
+
+26) Allow user to restore default options
+   - RFE #872959 Reset for directory compare column settings
+   - User may got lost after trying different settings, so easy
+     "backup" is needed.
+   - At least for dirview (column) settings and compare settings (color too?)
+   - Compare options must default to strict set so that no differences
+     are ignored
+   - Nobody working with this at the moment
+   - For 2.2
