@@ -1,3 +1,7 @@
+2003-10-30 Kimmo
+ Remove SillyTestCrap() from Merge.cpp
+  WinMerge: Merge.cpp
+
 2003-10-29 Laoran
  change events PHYSICAL_PREPROCESS and SYNTAX_PREPROCESS to PREDIFFING
   WinMerge: FileTransform.cpp FileTransform.h Plugins.cpp Plugins.h

@@ -73,10 +73,6 @@ BEGIN_MESSAGE_MAP(CMergeApp, CWinApp)
 	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
 END_MESSAGE_MAP()
 
-#ifdef _DEBUG
-void SillyTestCrap();
-#endif
-
 extern CLogFile gLog;
 
 static void AddEnglishResourceHook();
@@ -115,14 +111,8 @@ CMergeApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp initialization
 
-
-
 BOOL CMergeApp::InitInstance()
 {
-#ifdef _DEBUG
-	SillyTestCrap();
-#endif
-
 	// Runtime switch so programmer may set this in interactive debugger
 	int dbgmem = 0;
 	if (dbgmem)
@@ -349,6 +339,9 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 /////////////////////////////////////////////////////////////////////////////
 // CAboutDlg dialog used for App About
 
+/** 
+ * @brief About-dialog class
+ */
 class CAboutDlg : public CDialog
 {
 public:
@@ -506,158 +499,6 @@ void CMergeApp::OnViewLanguage()
 		mf->UpdateResources();
 	}
 }
-
-
-#ifdef _DEBUG
-#define __STDC__ 1
-#include "RegExp.h"
-#include "direct.h"
-
-typedef BOOL (*RecursiveFindCallback)(WIN32_FIND_DATA &fd, LPCTSTR pszPath, LPVOID pUserData);
-TCHAR recurse_dir_regex[_MAX_PATH] = {0};
-
-BOOL MyRecursiveFindCallback(WIN32_FIND_DATA &fd, LPCTSTR pszPath, LPVOID pUserData)
-{
-	TRACE(_T("%s\\%s\n"), pszPath, fd.cFileName);
-	return TRUE;
-}
-
-BOOL recursive_find_regex(CRegExp& regex, 
-						  RecursiveFindCallback pCallback,
-						  LPVOID pUserData)
-{
-	WIN32_FIND_DATA fd;
-	HANDLE hff;
-	TCHAR *p;
-	
-	// open the directory for reading
-	if ((hff = FindFirstFile(_T("*.*"), &fd)) != INVALID_HANDLE_VALUE)
-	{
-		do {
-
-			// if the current entry is a directory, recurse into it
-			if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-			{
-				if (_tcscmp(fd.cFileName,_T("."))
-					&& _tcscmp(fd.cFileName,_T("..")))
-				{
-					if (_tchdir(fd.cFileName)==0)
-					{ 
-						_tcscat(recurse_dir_regex,_T("\\"));
-						_tcscat(recurse_dir_regex,fd.cFileName);
-
-						if (regex.RegFind(fd.cFileName) != -1)
-							if (!pCallback(fd, recurse_dir_regex, pUserData))
-								return FALSE;
-
-						if (!recursive_find_regex(regex, pCallback, pUserData))
-							return FALSE;
-
-						_tchdir(_T(".."));
-						if ((p=_tcsrchr(recurse_dir_regex,_T('\\')))!=NULL)
-							*p=_T('\0');
-					}
-					//else
-					//	add_err(recurse_dir_regex, fd.cFileName, _T("Couldn't read folder"));
-					
-				}
-			}
-			// entry is a file, delete it
-			else
-			{
-				if (regex.RegFind(fd.cFileName) != -1)
-					if (!pCallback(fd, recurse_dir_regex, pUserData))
-						return FALSE;
-			}
-		} while (FindNextFile(hff,&fd));
-		FindClose(hff);
-	}
-	else
-	{
-		//add_err(recurse_dir, _T(""), _T("No permission to open folder"));
-		return FALSE;
-	}
-	return TRUE;
-}
-
-
-BOOL RecursiveFindRegex(LPCTSTR szRegex, 
-						LPCTSTR szStartPath, 
-						RecursiveFindCallback pCallback,
-						LPVOID pUserData)
-{
-	CRegExp regex;
-	regex.RegComp( szRegex );
-
-	// change the current drive if drive mapped
-	if(szStartPath[1]==_T(':'))
-	{
-		CString s(szStartPath[0]);
-		s.MakeUpper();
-		int drive = s[0]-_T('A')+1;
-		if( _chdrive(drive) != 0)
-			return FALSE;
-	}	
-	
-
-	// change to the folder we want to delete
-	CString s(szStartPath);
-	if (s.Right(1) == ":")
-		s += '\\';
-	if (_tchdir(s)!=0)
-		return FALSE;
-	
-	_tcscpy(recurse_dir_regex, szStartPath);
-	return recursive_find_regex(regex, pCallback, pUserData);
-}
-
-
-void SillyTestCrap()
-{
-	TCHAR teststring[][_MAX_PATH] = {
-		_T("test.cpp"),
-			_T("test.c"),
-			_T("test.h"),
-			_T("test.x"),
-			_T("test.cpp2"),
-			_T(".cpp"),
-			_T("cpp"),
-			_T("acpp"),
-			_T("")
-	};
-	TCHAR ext[] = _T("*.cpp;*.h;*.c");
-	LPTSTR p;
-	CString strPattern(_T(".*\\.("));
-
-	// parse the extensions
-	p = _tcstok(ext, _T(";,|*. \n\r\n"));
-	if (p == NULL)
-		return;
-
-	while (p != NULL)
-	{
-		strPattern += p;		
-		p = _tcstok(NULL, _T(";,|*. \n\r\n"));
-		if (p != NULL)
-			strPattern += _T('|');
-	}
-	strPattern += _T(")$");
-
-	RecursiveFindRegex(strPattern, _T("f:\\programs\\merge"), MyRecursiveFindCallback, (LPVOID)AfxGetApp());
-
-	/*CRegExp r;
-	r.RegComp( strPattern );
-	for (UINT i=0; *teststring[i] != NULL; i++)
-	{
-		if (r.RegFind((LPTSTR)teststring[i]) != -1)
-			TRACE("%s: Match\n", teststring[i]);
-		else
-			TRACE("%s: No match\n", teststring[i]);
-	}*/
-
-}
-#endif
-
 
 int CMergeApp::ExitInstance() 
 {
