@@ -1,3 +1,7 @@
+2004-11-02 Kimmo
+ PATCH: [ 1057716 ] Web: Add Hungarian to translations-table
+  Web/Developer/l10n: status.xml
+
 2004-10-19 Christian
  PATCH: [ 1049555 ] Various updates to the index.php's
   Submitted by Tim Gerundt

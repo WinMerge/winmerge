@@ -170,6 +170,19 @@
     </versions>
   </language>
   <language>
+    <name>Hungarian</name>
+    <status>1</status>
+    <authors>
+      <author>
+        <name>Márton Balázs</name>
+        <email>documan at users.sourceforge dot net</email>
+      </author>
+    </authors>
+    <versions>
+      <version>2.2</version>
+    </versions>
+  </language>
+  <language>
     <name>Italian</name>
     <status>1</status>
     <authors>
