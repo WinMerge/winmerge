@@ -66,6 +66,9 @@
 ; #  Make RCLLocalizationHelper.dll a non-default separate option from the rest of the plugins
 ; #  Figure out advapi.dll and shlwapi.dll dependencies
 ; #  Only display TortoiseCVS option if the user has it installed
+; #  Seier will need to apply this {#AppVersion} directive to all localizations:
+;        English.SetupAppTitle=Setup - WinMerge {#AppVersion}
+; #  We need to ask those that have the RCLLocalization.dll in their plugins folder if they actually want it, their answer will need to be stored in the registry
 
 #define AppVersion GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe")
 #define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe"), 1, 5)
@@ -91,7 +94,7 @@ DisableStartupPrompt=yes
 AllowNoIcons=yes
 LicenseFile=..\src\COPYING
 InfoBeforeFile=..\Docs\Users\Read Me.rtf
-OutputBaseFilename=WinMerge {#AppVersion}
+OutputBaseFilename=WinMerge-{#AppVersion}-Setup
 
 ;This must be admin to install C++ Runtimes
 PrivilegesRequired=admin
@@ -120,23 +123,51 @@ Compression=LZMA/Ultra
 InternalCompressLevel=Ultra
 SolidCompression=True
 
-;Causes the installer to force the date of compilation on all the files in the installation destination folder.  This is a wonderful diagnostic for the
-;installer itself. It also provides end-users assurance that the files contained in the application were updated properly.
-TouchDate=current
-TouchTime=current
-
-
 [Messages]
-FinishedLabel=Setup has finished installing [Name] on your computer.
-SetupAppTitle=Setup - WinMerge {#AppVersion}
+English.FinishedLabel=Setup has finished installing [Name] on your computer.
+English.SetupAppTitle=Setup - WinMerge {#AppVersion}
+
+Dutch.BeveledLabel=Nederlands
+German.BeveledLabel=Deutsch
+;Spanish.BeveledLabel=Español
+French.BeveledLabel=Français
+Italian.BeveledLabel=Italiano
+Norwegian.BeveledLabel=Norsk
+
+
+[Languages]
+;Inno Setup's Native Language
+Name: English; MessagesFile: compiler:Default.isl
+
+;Localizations:
+Name: Bulgarian; MessagesFile: compiler:Languages\Bulgarian-4.1.8.isl
+;Name: Catalan; MessagesFile: "compiler:Languages\Catalan-4-4.1.4.isl"
+Name: Chinese_Simplified; MessagesFile: compiler:Languages\ChineseSimp-5-4.1.8.isl
+Name: Chinese_Traditional; MessagesFile: compiler:Languages\ChineseTrad-3-4.1.8.isl
+Name: Czech; MessagesFile: compiler:Languages\Czech-5-4.1.8.isl
+Name: Danish; MessagesFile: compiler:Languages\Danish-4-4.1.8.isl
+Name: Dutch; MessagesFile: compiler:Languages\Dutch.isl
+Name: French; MessagesFile: compiler:Languages\French-15-4.1.8.isl
+Name: German; MessagesFile: compiler:Languages\German.isl
+Name: Italian; MessagesFile: compiler:Languages\Italian-14-4.1.8.isl
+Name: Korean; MessagesFile: compiler:Languages\Korean-5-4.1.8.isl
+Name: Norwegian; MessagesFile: compiler:Languages\Norwegian-4.1.8.isl
+Name: Polish; MessagesFile: compiler:Languages\Polish-1-4.1.8.isl
+;Name: Portuguese; MessagesFile: "compiler:Languages\BrazilianPortuguese-7-4.1.4.isl"
+;Name: Russian; MessagesFile: "compiler:Languages\Russian-19-4.1.4.isl"
+;Name: Slovak; MessagesFile: "compiler:Languages\Slovak-4-4.0.5.isl"
+;Name: Spanish; MessagesFile: "compiler:Languages\SpanishStd-1-4.1.4.isl"
+Name: Swedish; MessagesFile: compiler:Languages\Swedish-8-4.1.8.isl
 
 
 [Tasks]
 Name: ShellExtension; Description: &Enable Explorer context menu integration; GroupDescription: Optional Features:
 Name: TortoiseCVS; Description: Integrate with &TortoiseCVS; GroupDescription: Optional Features:; Check: TortoiseCVSInstalled
+Name: Delphi4Viewer; Description: Delphi &4 Viewer (Binary --> Plain Text); GroupDescription: Optional Features:; Flags: unchecked
 Name: desktopicon; Description: Create a &Desktop Icon; GroupDescription: Additional Icons:; Flags: unchecked
 Name: quicklaunchicon; Description: Create a &Quick Launch Icon; GroupDescription: Additional Icons:
-Name: CustomFolderIcon; Description: "Use a &Custom Icon for ""{app}"""; GroupDescription: Additional Icons:
+Name: CustomFolderIcon; Description: "&Customize the folder Icon for ""{app}"""; GroupDescription: Additional Icons:
+
 
 
 [Components]
@@ -148,22 +179,10 @@ Name: Plugins; Description: Plug-Ins (enhance core behavior); Types: full
 ;Non-English Languages are no longer a default part of a normal installation.  If a user selected a language as part of their last installation
 ;that language will be selected automatically during subsequent installs.
 Name: Catalan_Language; Description: Catalan menus and dialogs; Flags: disablenouninstallwarning
-Name: ChineseSimplified_Language; Description: Chinese (Simplified) menus and dialogs; Flags: disablenouninstallwarning
-Name: ChineseTraditional_Language; Description: Chinese (Traditional) menus and dialogs; Flags: disablenouninstallwarning
-Name: Czeck_Language; Description: Czech menus and dialogs; Flags: disablenouninstallwarning
-Name: Danish_Language; Description: Danish menus and dialogs; Flags: disablenouninstallwarning
-Name: Dutch_Language; Description: Dutch menus and dialogs; Flags: disablenouninstallwarning
-Name: French_Language; Description: French menus and dialogs; Flags: disablenouninstallwarning
-Name: German_Language; Description: German menus and dialogs; Flags: disablenouninstallwarning
-Name: Italian_Language; Description: Italian menus and dialogs; Flags: disablenouninstallwarning
-Name: Korean_Language; Description: Korean menus and dialogs; Flags: disablenouninstallwarning
-Name: Norwegian_Language; Description: Norwegian menus and dialogs; Flags: disablenouninstallwarning
-Name: Polish_Language; Description: Polish menus and dialogs; Flags: disablenouninstallwarning
-Name: Brazilian_Language; Description: Portuguese (Brazilian) menus and dialogs; Flags: disablenouninstallwarning
+Name: Portuguese_Language; Description: Portuguese (Brazilian) menus and dialogs; Flags: disablenouninstallwarning
 Name: Russian_Language; Description: Russian menus and dialogs; Flags: disablenouninstallwarning
 Name: Slovak_Language; Description: Slovak menus and dialogs; Flags: disablenouninstallwarning
 Name: Spanish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning
-Name: Swedish_Language; Description: Swedish menus and dialogs; Flags: disablenouninstallwarning
 
 [InstallDelete]
 ;Experimental Versions 2.1.5.10 - WinMerge.2.1.5.13 shipped with the default behavior of creating a folder by the same name
@@ -265,6 +284,15 @@ Name: {app}\MergeSpanish.lang; Type: files
 Name: {app}\MergeRussian.lang; Type: files
 Name: {app}\MergeSwedish.lang; Type: files
 
+Name: {app}\MergePlugins\list.txt; Type: files
+
+Name: {app}\Installer Helper.exe; Type: files
+
+
+
+
+
+
 
 
 Name: {app}\Read Me.rtf; Type: files
@@ -303,16 +331,16 @@ Name: {app}; Flags: uninsalwaysuninstall
 
 [Files]
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
-Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 0, 4; Components: main
+Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Components: main
 
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running Win9X platform system
-Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 4, 0; Components: main
+Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Components: main
 
 ;Installs the ComCtl32.dll update on any system where its DLLs are more recent
-Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall touch; Check: InstallComCtlUpdate
+Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall; Check: InstallComCtlUpdate
 
 ;Adds Seier's Explorer Restart and Shell Extension Deletion Utility
-Source: Installer Helper.exe; DestDir: {app}; Flags: touch
+Source: Setup Helper.exe; DestDir: {app} 
 
 ; begin VC system files
 Source: Runtimes\Atla.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 4, 0
@@ -324,55 +352,54 @@ Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveru
 ; end VC system files
 
 ;Installs PSAPI.dll on Windows NT 4.0 only!
-Source: Runtimes\PSAPi.dll; DestDir: {sys}; Flags: restartreplace sharedfile; MinVersion: 0, 4; OnlyBelowVersion: 0, 4;
+Source: Runtimes\PSAPi.dll; DestDir: {sys}; Flags: restartreplace sharedfile; MinVersion: 0, 4; OnlyBelowVersion: 0, 4
 
-Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; Flags: regserver touch; BeforeInstall: ShellExtension(/I); Tasks: ShellExtension
-Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; BeforeInstall: ShellExtension(/U); Flags: touch; Check: TaskDisabled(ShellExtension)
+Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; Flags: regserver; BeforeInstall: ShellExtension(/I); Tasks: ShellExtension
+Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; BeforeInstall: ShellExtension(/U); Check: TaskDisabled(ShellExtension)
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 0, 4; Check: Install7ZipDll(313)
-Source: ..\Build\MergeUnicodeRelease\Merge7z312U.dll; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 0, 4; Check: Install7ZipDll(312)
-Source: ..\Build\MergeUnicodeRelease\Merge7z311U.dll; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 0, 4; Check: Install7ZipDll(311)
+Source: ..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(313)
+Source: ..\Build\MergeUnicodeRelease\Merge7z312U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(312)
+Source: ..\Build\MergeUnicodeRelease\Merge7z311U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(311)
 
-Source: ..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 4, 0; Check: Install7ZipDll(313)
-Source: ..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 4, 0; Check: Install7ZipDll(312)
-Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: ignoreversion touch; MinVersion: 4, 0; Check: Install7ZipDll(311)
+Source: ..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(313)
+Source: ..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(312)
+Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(311)
 
-Source: ..\Plugins\dlls\RCLocalizationHelper.dll; DestDir: {app}\MergePlugins; Flags: touch; Components: Plugins
-Source: ..\Plugins\dlls\UnpackDFM.dll; DestDir: {app}\MergePlugins; Flags: touch; Components: Plugins
+Source: ..\Plugins\dlls\UnpackDFM.dll; DestDir: {app}\MergePlugins; Tasks: Delphi4Viewer
 
-Source: ..\Src\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Flags: touch; Components: Brazilian_Language
-Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Flags: touch; Components: Catalan_Language
-Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Flags: touch; Components: ChineseSimplified_Language
-Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Flags: touch; Components: ChineseTraditional_Language
-Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}; Flags: touch; Components: Czeck_Language
-Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Flags: touch; Components: Danish_Language
-Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Flags: touch; Components: Dutch_Language
-Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Flags: touch; Components: French_Language
-Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Flags: touch; Components: German_Language
-Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Flags: touch; Components: Italian_Language
-Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Flags: touch; Components: Korean_Language
-Source: ..\Src\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Flags: touch; Components: Norwegian_Language
-Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Flags: touch; Components: Polish_Language
-Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}; Flags: touch; Components: Russian_Language
-Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Flags: touch; Components: Slovak_Language
-Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Flags: touch; Components: Spanish_Language
-Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Flags: touch; Components: Swedish_Language
+Source: ..\Src\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: Portuguese_Language
+Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Components: Catalan_Language
+Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Languages: Chinese_Simplified
+Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Languages: Chinese_Traditional
+Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}; Languages: Czech
+Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Languages: Danish
+Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Languages: Dutch
+Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Languages: French
+Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Languages: German
+Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Languages: Italian
+Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Languages: Korean
+Source: ..\Src\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Languages: Norwegian
+Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Languages: Polish
+Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}; Components: Russian_Language
+Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: Slovak_Language
+Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Spanish_Language
+Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Languages: Swedish
 
 
-Source: ..\Docs\Users\Guide\*.*; DestDir: {app}\Docs\User's Guide\; Flags: sortfilesbyextension touch; Components: docs;
-Source: ..\Docs\Users\Guide\Art\*.*; DestDir: {app}\Docs\User's Guide\Art; Flags: sortfilesbyextension touch; Components: docs;
-Source: ..\Filters\*.*; DestDir: {app}\Filters; Flags: sortfilesbyextension touch; Components: filters;
+Source: ..\Docs\Users\Guide\*.*; DestDir: {app}\Docs\User's Guide\; Flags: sortfilesbyextension; Components: docs
+Source: ..\Docs\Users\Guide\Art\*.*; DestDir: {app}\Docs\User's Guide\Art; Flags: sortfilesbyextension; Components: docs
+Source: ..\Filters\*.*; DestDir: {app}\Filters; Flags: sortfilesbyextension; Components: filters
 
 ;Documentation
-Source: ..\Docs\Users\Read Me.rtf; DestDir: {app}\Docs; Flags: touch; Components: main
+Source: ..\Docs\Users\Read Me.rtf; DestDir: {app}\Docs; Components: main
 
-Source: ..\Docs\Users\Contributors.rtf; DestDir: {app}\Docs; Flags: touch; Components: main
+Source: ..\Docs\Users\Contributors.rtf; DestDir: {app}\Docs; Components: main
 
 ;Please note I removed CompareTimeStamp since neither old nor new versions of these files contain version info
-Source: ..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags: touch; Components: Plugins
-Source: ..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: touch; Components: Plugins
-Source: ..\Plugins\dlls\list.txt; DestDir: {app}\MergePlugins; Flags: touch; Components: Plugins
+Source: ..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Components: Plugins
+Source: ..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Components: Plugins
+Source: ..\Plugins\dlls\list.txt; DestDir: {app}\Docs; DestName: Plugins.txt; Components: Plugins
 
 
 [INI]
@@ -474,7 +501,7 @@ Type: dirifempty; Name: {app}
 
 [UninstallRun]
 ;Restarts and deletes the shellextension file so we don't have to restart
-Filename: {app}\Installer Helper.exe; Parameters: /U; StatusMsg: Removing ShellExtension.dll
+Filename: {app}\Setup Helper.exe; Parameters: /U; StatusMsg: Removing ShellExtension.dll
 
 Filename: {sys}\Attrib.exe; Parameters: """{app}"" -S"; Flags: runhidden; Tasks: CustomFolderIcon
 
@@ -929,13 +956,13 @@ Begin
                 Result := False
             end;
     End;
-        
+
     {Debug}
     If Result = True then
         Msgbox('TaskDisabled(' + strTask + ')=True', mbInformation, mb_OK)
     else
         Msgbox('TaskDisabled(' + strTask + ')=False', mbInformation, mb_OK);
-    
+
 
 End;
 
@@ -947,24 +974,25 @@ Begin
 
     If FileExists(ExpandConstant('{sys}\Atl.dll')) = True Then
         Begin
-    
+
             {Debug}
             msgbox('ShellExtension(' + strCommand + ')', mbInformation, mb_OK)
-    
-            strShellExt_Path := ExpandConstant('{app}\ShellExtension.dll');
-    
 
-    
+            strShellExt_Path := ExpandConstant('{app}\ShellExtension.dll');
+
+
+
             If FileExists(strShellExt_Path) = True Then
                 UnRegisterServer(strShellExt_Path, True);
-    
+
             If strCommand = '/I' Then
-                InstExec(ExpandConstant('{app}\Installer Helper.exe'), '/I', '', True, False, 0, intReturn_Code)
+                InstExec(ExpandConstant('{app}\Setup Helper.exe'), '/I', '', True, False, 0, intReturn_Code)
             Else
-                InstExec(ExpandConstant('{app}\Installer Helper.exe'), '/U', '', True, False, 0, intReturn_Code);
+                InstExec(ExpandConstant('{app}\Setup Helper.exe'), '/U', '', True, False, 0, intReturn_Code);
+            BringToFrontandRestore
        end
     else
-        msgbox('Atl.dll doesn''t yet exist on the clients desktop and therefore the system must be restarted anyhow so we''ll skip launching Installer Helper.exe', mbINformation, mb_OK);
+        msgbox('Atl.dll doesn''t yet exist on the clients desktop and therefore the system must be restarted anyhow so we''ll skip launching Setup Helper.exe', mbINformation, mb_OK);
 end;
 
 
@@ -1020,5 +1048,12 @@ End;
 
 
 
-[_ISTool]
-OutputExeFilename=D:\Programming\Visual C++\WinMerge\WinMerge\InnoSetup\Output\WinMerge 2.1.5.15.exe
+// Function generated by ISTool.
+function NextButtonClick(CurPage: Integer): Boolean;
+begin
+    Result := True;
+	{Result := istool_download(CurPage);}
+end;
+
+;[_ISToolDownload]
+;Name: 7-Zip; Description: Compression Tool; GroupDescription: Viewers; Flags: checkedonce; MessagesFile: compiler:Default.isl; Source: http://prdownloads.sourceforge.net/sevenzip/7z313.exe?use_mirror=aleron; DestDir: {tmp}; DestName: 7-Zip Install.exe; Components: Plugins
