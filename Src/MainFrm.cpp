@@ -87,7 +87,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
 	ON_UPDATE_COMMAND_UI(ID_HIDE_BACKUP_FILES, OnUpdateHideBackupFiles)
 	ON_COMMAND(ID_HELP_GNULICENSE, OnHelpGnulicense)
-	ON_COMMAND(ID_PROPERTIES, OnProperties)
+	ON_COMMAND(ID_OPTIONS, OnOptions)
 	ON_COMMAND(ID_HIDE_BACKUP_FILES, OnHideBackupFiles)
 	ON_COMMAND(ID_VIEW_SELECTFONT, OnViewSelectfont)
 	ON_COMMAND(ID_VIEW_USEDEFAULTFONT, OnViewUsedefaultfont)
@@ -698,9 +698,9 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 	return TRUE;
 }
 
-void CMainFrame::OnProperties() 
+void CMainFrame::OnOptions() 
 {
-	CPropertySheet sht(IDS_PROPERTIES_TITLE);
+	CPropertySheet sht(IDS_OPTIONS_TITLE);
 	CPropVss vss;
 	CPropGeneral gen;
 	CPropSyntax syn;

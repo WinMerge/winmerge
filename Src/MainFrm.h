@@ -160,7 +160,7 @@ protected:
 	afx_msg void OnFileOpen();
 	afx_msg void OnUpdateHideBackupFiles(CCmdUI* pCmdUI);
 	afx_msg void OnHelpGnulicense();
-	afx_msg void OnProperties();
+	afx_msg void OnOptions();
 	afx_msg void OnHideBackupFiles();
 	afx_msg void OnViewSelectfont();
 	afx_msg void OnViewUsedefaultfont();

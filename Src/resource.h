@@ -39,7 +39,7 @@
 #define IDS_SAVE_AS_TITLE               144
 #define IDS_SELECT_FILES_OR_FOLDERS     145
 #define IDS_BACKUP_FAILED_PROMPT        146
-#define IDS_PROPERTIES_TITLE            147
+#define IDS_OPTIONS_TITLE               147
 #define IDS_OPEN_TITLE                  148
 #define IDS_CONFIRM_DELETE              149
 #define IDS_CONFIRM_DELETE_FILE         149
@@ -303,7 +303,7 @@
 #define ID_HIDE_BACKUP_FILES            32789
 #define ID_HELP_GNULICENSE              32790
 #define ID_USEVSS                       32791
-#define ID_PROPERTIES                   32792
+#define ID_OPTIONS                      32792
 #define ID_ALL_LEFT                     32793
 #define ID_ALL_RIGHT                    32794
 #define ID_VIEW_SELECTFONT              32795

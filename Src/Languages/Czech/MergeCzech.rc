@@ -27,18 +27,18 @@ LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE DISCARDABLE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE DISCARDABLE
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE DISCARDABLE
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
@@ -73,17 +73,17 @@ IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_DIFFVIEW MENU DISCARDABLE 
+IDR_POPUP_DIFFVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_POPUP_"
     BEGIN
         MENUITEM "Kopírovat na druhou stranu",  ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "Kopírovat z druhé strany",    ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "Kopírovat všechny rozdíly na druhou stranu...", 
+        MENUITEM "Kopírovat všechny rozdíly na druhou stranu...",
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
 
-        MENUITEM "Kopírovat všechny rozdíly z druhé strany...", 
+        MENUITEM "Kopírovat všechny rozdíly z druhé strany...",
                                                 ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
 
         MENUITEM SEPARATOR
@@ -94,7 +94,7 @@ BEGIN
     END
 END
 
-IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE
 BEGIN
     POPUP "&Soubor"
     BEGIN
@@ -121,9 +121,9 @@ BEGIN
         MENUITEM "Kopírovat vše vpravo",        ID_ALL_RIGHT
         MENUITEM "Kopírovat vše vlevo",         ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "&Vlastnosti",                 ID_PROPERTIES
+        MENUITEM "&Vlastnosti",                 ID_OPTIONS
         MENUITEM SEPARATOR
-        MENUITEM "Refresh\tF5",                 ID_REFRESH
+        MENUITEM "Refre&sh\tF5",                 ID_REFRESH
     END
     POPUP "&Pohled"
     BEGIN
@@ -161,7 +161,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_DIRVIEW MENU DISCARDABLE 
+IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -184,7 +184,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE
 BEGIN
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
@@ -241,17 +241,17 @@ CAPTION "Výbìr souborù a adresáøù..."
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     LTEXT           "&Levý:",IDC_STATIC,16,24,37,8
-    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN | 
+    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "&Procházet...",IDC_LEFT_BUTTON,241,22,59,12
     LTEXT           "P&ravý:",IDC_STATIC,16,40,37,8
-    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | 
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "Pr&ocházet...",IDC_RIGHT_BUTTON,241,38,59,12
     LTEXT           "Pø&ípony:",IDC_STATIC,16,56,37,8
-    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN | 
+    COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "V&noøené adresáøe",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,35,77,190,10
@@ -272,7 +272,7 @@ BEGIN
     PUSHBUTTON      "Storno",IDCANCEL,173,121,50,14
     PUSHBUTTON      "Uložit jako...",IDSAVEAS,103,121,50,14
     LTEXT           "Projekt:",IDC_STATIC,9,61,25,8
-    COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN | 
+    COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "User:",IDC_STATIC,13,80,18,8
     EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
@@ -321,7 +321,7 @@ FONT 8, "MS Sans Serif"
 BEGIN
     PUSHBUTTON      "OK",IDOK,154,16,52,14
     PUSHBUTTON      "Storno",IDCANCEL,154,33,52,14
-    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "Dostupné jazyky:",IDC_STATIC,7,7,66,8
 END
@@ -379,7 +379,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO DISCARDABLE
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
@@ -447,7 +447,7 @@ BEGIN
     BUTTON      ID_L2R
     BUTTON      ID_R2L
     SEPARATOR
-    BUTTON      ID_PROPERTIES
+    BUTTON      ID_OPTIONS
     SEPARATOR
     BUTTON      ID_ALL_RIGHT
     BUTTON      ID_ALL_LEFT
@@ -483,7 +483,7 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
@@ -502,13 +502,13 @@ BEGIN
     IDS_CANT_COMPARE_FILES  "Nelze porovnat soubory"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Pøipraven"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -518,7 +518,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_NEW             "Vytvoøit nový dokument\nNew"
     ID_FILE_OPEN            "Otevøít existující dokument\nOpen"
@@ -531,13 +531,13 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Náhled\nPrint Preview"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_APP_ABOUT            "Zobrazit informace o programu, èíslo verze a copyright\nAbout"
     ID_APP_EXIT             "Ukonèit program dotazem na uložení souborù\nExit"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Otevøít dokument"
     ID_FILE_MRU_FILE2       "Otevøít dokument"
@@ -557,13 +557,13 @@ BEGIN
     ID_FILE_MRU_FILE16      "Otevøít dokument"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_NEXT_PANE            "Pøepnout na další okno\nNext Pane"
     ID_PREV_PANE            "Pøepnout na pøedchozí okno\nPrevious Pane"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_WINDOW_NEW           "Otevøít další okno s aktuálním dokumentem\nNew Window"
     ID_WINDOW_ARRANGE       "Uspoøádat ikony na spodním okraji okna\nArrange Icons"
@@ -573,7 +573,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Rozdìlit aktivní okno\nSplit"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_EDIT_CLEAR           "Vymazat výbìr\nErase"
     ID_EDIT_CLEAR_ALL       "Vše smazat\nErase All"
@@ -588,13 +588,13 @@ BEGIN
     ID_EDIT_REDO            "Provést poslední odvolanou akci\nRedo"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Zobrazit nebo skrýt panel nástrojù\nToggle ToolBar"
     ID_VIEW_STATUS_BAR      "Zobrazit nebo skrýt stavový øádek\nToggle StatusBar"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCSIZE          "Zmìnit velikost okna"
     AFX_IDS_SCMOVE          "Zmìnit pozici okna"
@@ -605,19 +605,19 @@ BEGIN
     AFX_IDS_SCCLOSE         "Zavøít aktivní okno s možností uložení dokumentù"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCRESTORE       "Obnovit okna"
     AFX_IDS_SCTASKLIST      "Aktivovat seznam úloh"
     AFX_IDS_MDICHILD        "Aktivovat toto okno"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Zavøít tiskový náhled\nCancel Preview"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_L2R                  "Zkopírovat vybraný text do souboru vpravo\nCopy Right (Right Arrow)"
     ID_R2L                  "Zkopírovat vybraný text do souboru vlevo\nCopy Left (Left Arrow)"
@@ -629,15 +629,15 @@ BEGIN
     ID_OPTIONS_BACKUPORIGINALFILE "Uložit záložní kopii souboru\nBackup"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
                             "Automaticky pøejde na první rozdíl\nScroll First"
     ID_OPTIONS_IGNOREWHITESPACE "Pøi porovnání nebere v úvahu prázdné místo"
     ID_HIDE_BACKUP_FILES    "Skrýt soubory s pøíponou BAK"
     ID_HELP_GNULICENSE      "Zobrazit GNU licenci"
     ID_USEVSS               "Attempts to checkout read-only files from sourcesafe"
-    ID_PROPERTIES           "Nastavit možnosti programu\nProperties"
+    ID_OPTIONS              "Nastavit možnosti programu\nProperties"
     ID_ALL_LEFT             "Zkopírovat všechny rozdíly do souboru vlevo\nAll Left"
     ID_ALL_RIGHT            "Zkopírovat všechny rozdíly do souboru vpravo\nAll Right"
     ID_VIEW_SELECTFONT      "Nastavení písma pro zobrazení porovnávaných dokumentù\nSelect Diff Font"
@@ -645,20 +645,20 @@ BEGIN
     ID_DIR_COPY_FILE_TO_LEFT "Kopírovat vybrané soubory do jiného adresáøe"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_DIR_COPY_FILE_TO_RIGHT "Kopírovat vybrané soubory do jiného adresáøe"
     ID_VIEW_LANGUAGE        "Zvolit jazyk pro uživatelské rozhraní\nLanguage"
     ID_HELP_CONTENTS        "Zobrazit nápovìdu pro program WinMerge\nHelp"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Uložit jako"
-    IDS_SELECT_FILES_OR_FOLDERS 
+    IDS_SELECT_FILES_OR_FOLDERS
                             "Musíte zvolit buï jenom soubory nebo jenom adresáøe."
     IDS_BACKUP_FAILED_PROMPT "Nelze zálohovat pùvodní soubor.\nPokraèovat?"
-    IDS_PROPERTIES_TITLE    "Vlastnosti"
+    IDS_OPTIONS_TITLE       "Vlastnosti"
     IDS_OPEN_TITLE          "Otevøít"
     IDS_EDIT_WINDOW_TITLE_FMT "Upravit %1"
     IDS_FILESSAME           "Vybrané soubory jsou shodné."
@@ -672,7 +672,7 @@ BEGIN
     IDS_NOPROJECT           "Musíte nastavit cestu k projektu SourceSafe (napø.: $/MùjProjekt)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_FILENAME_HEADER     "Jméno souboru"
     IDS_DIR_HEADER          "Adresáø"
@@ -680,7 +680,7 @@ BEGIN
     IDS_FILE_COMPARISON_TITLE "Porovnání souborù"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_AFRIKAANS           "Afrikaans"
     IDS_ALBANIAN            "Albanian"
@@ -697,7 +697,7 @@ BEGIN
     IDS_ARABIC_JORDAN       "Arabic (Jordan)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_ARABIC_LEBANON      "Arabic (Lebanon)"
     IDS_ARABIC_KUWAIT       "Arabic (Kuwait)"
@@ -721,7 +721,7 @@ BEGIN
     IDS_DANISH              "Dansk"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_DUTCH               "Nederlandse"
     IDS_DUTCH_BELGIAN       "Nederlandse (Belgium)"
@@ -744,7 +744,7 @@ BEGIN
     IDS_FINNISH             "Suomi"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_FRENCH              "Francais"
     IDS_FRENCH_BELGIAN      "Francais (Belgique)"
@@ -767,7 +767,7 @@ BEGIN
     IDS_ITALIAN             "Italiano"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_ITALIAN_SWISS       "Italiano (Svizzera)"
     IDS_JAPANESE            "Japanese"
@@ -794,7 +794,7 @@ BEGIN
     IDS_SLOVAK              "Slovak"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SLOVENIAN           "Slovensko"
     IDS_SPANISH             "Español"
@@ -814,7 +814,7 @@ BEGIN
     IDS_SPANISH_PARAGUAY    "Español (Paraguay)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SPANISH_BOLIVIA     "Español (Bolivia)"
     IDS_SPANISH_EL_SALVADOR "Español (El Salvador)"
