@@ -1,3 +1,8 @@
+2003-06-27 Kimmo
+PATCH: [ 761951 ] Fix scrolling corruption
+ Submitted by Jochen
+ editlib: ccrystaltextview.cpp
+
 2003-06-27 Laoran
  PATCH: [ 760745 ] Fix empty search field detection and better history in FindDlg and EditReplaceDlg
   editlib : ccrystaleditview.cpp ccrystaltextview.cpp ceditreplacedlg.cpp ceditreplacedlg.h

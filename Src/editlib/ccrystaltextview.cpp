@@ -873,6 +873,11 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
              rcBounds.right = rcBounds.left + GetCharWidth() * nCount;
              pdc->ExtTextOut(rcBounds.left, rcBounds.top, ETO_OPAQUE, &rcBounds, NULL, 0, NULL);
            */
+          
+          // Table of charwidths as CCrystalEditor thinks they are
+          // Seems that CrystalEditor's and ExtTextOut()'s charwidths aren't
+          // same with some fonts and text is drawn only partially
+          // if this table is not used.
           int* pnWidths = new int[nCount];
           ASSERT(pnWidths);
 
@@ -887,7 +892,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
           if (nCount > 8192)
             {
               CPoint ptDraw = ptOrigin;
-              LPCTSTR szText = line.GetBuffer(nCount + 1);
+              LPCTSTR szText = line;
               DWORD dwDrawnChars = 0;
               DWORD dwCharsToDraw = 0;
 
@@ -905,7 +910,6 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                   dwDrawnChars += dwCharsToDraw;
                   ptDraw.x += nCharWidth * dwCharsToDraw;
         }
-              line.ReleaseBuffer(nCount);
             }
           else
             {
@@ -1126,10 +1130,9 @@ void CCrystalTextView::InvalidateLineCache( int nLineIndex1, int nLineIndex2 /*=
 
 
 void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &rcClip,
-																			TEXTBLOCK *pBuf, int nBlocks, int &nActualItem, 
-																			COLORREF crText, COLORREF crBkgnd, BOOL bDrawWhitespace,
-																			LPCTSTR pszChars, 
-																			int nOffset, int nCount, CPoint ptTextPos )
+         TEXTBLOCK *pBuf, int nBlocks, int &nActualItem, 
+         COLORREF crText, COLORREF crBkgnd, BOOL bDrawWhitespace,
+         LPCTSTR pszChars, int nOffset, int nCount, CPoint ptTextPos )
 {
 	CPoint	originalOrigin = ptOrigin;
 	CRect		frect = rcClip;
@@ -1201,23 +1204,27 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
 	}
 
 	// Draw space on the right of the text
-	if (ptOrigin.x > frect.left)
-		frect.left = ptOrigin.x;
-	if (frect.right > frect.left)
+
+	frect.left = ptOrigin.x;
+
+	if ((m_bFocused || m_bShowInactiveSelection) 
+		&& IsInsideSelBlock(CPoint(nLineLength, ptTextPos.y)) 
+		&& (nOffset + nCount) == nLineLength )
 	{
-		if ((m_bFocused || m_bShowInactiveSelection) 
-			&& IsInsideSelBlock(CPoint(nLineLength, ptTextPos.y)) 
-			&& (nOffset + nCount) == nLineLength )
+		if (frect.left >= rcClip.left)
 		{
 			const int nCharWidth = GetCharWidth();
 			pdc->FillSolidRect(frect.left, frect.top, nCharWidth, frect.Height(),
-												GetColor(COLORINDEX_SELBKGND));
+					GetColor(COLORINDEX_SELBKGND));
 			frect.left += nCharWidth;
 		}
-		if (frect.right > frect.left)
-			pdc->FillSolidRect(frect, bDrawWhitespace ?
-				crBkgnd : GetColor(COLORINDEX_WHITESPACE));
 	}
+	if (frect.left < rcClip.left)
+		frect.left = rcClip.left;
+
+	if (frect.right > frect.left)
+		pdc->FillSolidRect(frect, bDrawWhitespace ?
+			crBkgnd : GetColor(COLORINDEX_WHITESPACE));
 
 	// set origin to beginning of next screen line
 	ptOrigin.x = originalOrigin.x;
@@ -1252,23 +1259,11 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
     crBkgnd = GetColor (COLORINDEX_BKGND);
 
   int nLength = GetLineLength (nLineIndex);
-  if (nLength == 0)
-    {
-      //  Draw the empty line
-      CRect rect = rc;
-      if ((m_bFocused || m_bShowInactiveSelection) && IsInsideSelBlock (CPoint (0, nLineIndex)))
-        {
-          pdc->FillSolidRect (rect.left, rect.top, nCharWidth, rect.Height (), GetColor (COLORINDEX_SELBKGND));
-          rect.left += nCharWidth;
-        }
-      pdc->FillSolidRect (rect, bDrawWhitespace ? crBkgnd : GetColor (COLORINDEX_WHITESPACE));
-      return;
-    }
 
   //  Parse the line
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   DWORD dwCookie = GetParseCookie (nLineIndex - 1);
-  TEXTBLOCK *pBuf = new TEXTBLOCK[nLength * 3];
+  TEXTBLOCK *pBuf = new TEXTBLOCK[nLength * 3 + 1]; // be aware of nLength == 0
   int nBlocks = 0;
 	//BEGIN SW
 	// insert at least one textblock of normal color at the beginning
@@ -1560,12 +1555,7 @@ OnDraw (CDC * pdc)
   if (m_pCacheBitmap == NULL)
     {
       m_pCacheBitmap = new CBitmap;
-		//BEGIN SW
-		VERIFY(m_pCacheBitmap->CreateCompatibleBitmap(pdc, rcClient.Width(), rcClient.Height()));
-		/*ORIGINAL
-		VERIFY(m_pCacheBitmap->CreateCompatibleBitmap(pdc, rcClient.Width(), nLineHeight));
-		*/
-		//END SW
+      VERIFY(m_pCacheBitmap->CreateCompatibleBitmap(pdc, rcClient.Width(), nLineHeight));
     }
   CBitmap *pOldBitmap = cacheDC.SelectObject (m_pCacheBitmap);
 
