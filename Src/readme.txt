@@ -1,3 +1,5 @@
+2004-03-24 WinMerge experimental release 2.1.5.16 (cvs)
+
 2004-03-24 Kimmo
  BUG: [ 922716 ] "delete both" broken
   Src: DirActions.cpp
