@@ -1,3 +1,6 @@
+2003-02-05  Perry
+ Updated Brazilian resources to sync with English/main resources.
+
 2003-01-28
  [ 424579 ] Escape to exit
 
