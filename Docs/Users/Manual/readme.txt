@@ -1,3 +1,7 @@
+2005-01-16 Kimmo
+ PATCH: [ 1103148 ] Docs: Mention need for rescan after changing linefilters
+  Manual: Filters.xml
+
 2005-01-15 Kimmo
  PATCH: [ 1102485 ] suggestions for Line Filters page of manual
   Submitted by Perry

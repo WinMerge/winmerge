@@ -1,130 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <sect1 id="Filters">
   <title>Filters</title>
-  <para>There are two kinds of filters in WinMerge: file filters for filtering files and directories in directory compare and line filters for ignoring lines from files before comparing.</para>
+
+  <para>There are two kinds of filters in WinMerge: file filters for filtering
+  files and directories in directory compare and line filters for ignoring
+  lines from files before comparing.</para>
+
   <sect2>
     <title>Regular expressions</title>
-    <para>Filters are based on regular expressions (regexps). Each line filter or file filter rule is regexp which is matched against file/directory name or line.</para>
-    <para>Regexps can be very complex to read. Luckily most file filtering needs are for file extensions. Filters installed with WinMerge show how to filter file extensions.</para>
+
+    <para>Filters are based on regular expressions (regexps). Each line filter
+    or file filter rule is regexp which is matched against file/directory name
+    or line.</para>
+
+    <para>Regexps can be very complex to read. Luckily most file filtering
+    needs are for file extensions. Filters installed with WinMerge show how to
+    filter file extensions.</para>
+
     <sect3>
       <title>Help with regexps</title>
+
       <para>There are many guides and help sites in Web:</para>
+
       <variablelist>
         <varlistentry>
           <term>Good site devoted for regexps:</term>
+
           <listitem>
-            <para><ulink url="http://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink></para>
+            <para><ulink
+            url="http://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink></para>
           </listitem>
         </varlistentry>
+
         <varlistentry>
           <term>Good HOWTO document for regexps:</term>
+
           <listitem>
-            <para><ulink url="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</ulink></para>
+            <para><ulink
+            url="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</ulink></para>
           </listitem>
         </varlistentry>
+
         <varlistentry>
           <term>Tutorial:</term>
+
           <listitem>
-            <para><ulink url="http://www.zvon.org/other/PerlTutorial/Output/index.html">http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink></para>
+            <para><ulink
+            url="http://www.zvon.org/other/PerlTutorial/Output/index.html">http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink></para>
           </listitem>
         </varlistentry>
+
         <varlistentry>
           <term>PDF quick reference:</term>
+
           <listitem>
-            <para><ulink url="http://gmckinney.info/resources/regex.pdf">http://gmckinney.info/resources/regex.pdf</ulink></para>
+            <para><ulink
+            url="http://gmckinney.info/resources/regex.pdf">http://gmckinney.info/resources/regex.pdf</ulink></para>
           </listitem>
         </varlistentry>
       </variablelist>
     </sect3>
   </sect2>
+
   <sect2>
     <title>File filters</title>
-    <para>File filter is set of rules saved to one file. Every file and directory is tested against all there rules before comparing. Depending if filter is exclusive of inclusive file or directory matching is excluded from or included to compare.</para>
+
+    <para>File filter is set of rules saved to one file. Every file and
+    directory is tested against all there rules before comparing. Depending if
+    filter is exclusive of inclusive file or directory matching is excluded
+    from or included to compare.</para>
+
     <tip>
-      <para>Ignored items have "<guilabel>Skipped</guilabel>" status in directory compare. User can select them to visible or hidden from <guimenu>View</guimenu> menu. Usually its wise to keep skipped items hidden.</para>
+      <para>Ignored items have "<guilabel>Skipped</guilabel>" status in
+      directory compare. User can select them to visible or hidden from
+      <guimenu>View</guimenu> menu. Usually its wise to keep skipped items
+      hidden.</para>
     </tip>
-    <para>WinMerge's filtering system allows only one filter set to be active at a time. Active filter set can be selected from Open-dialog or from menu: <menuchoice>
+
+    <para>WinMerge's filtering system allows only one filter set to be active
+    at a time. Active filter set can be selected from Open-dialog or from
+    menu: <menuchoice>
         <guimenu>Tools</guimenu>
+
         <guimenuitem>Filters</guimenuitem>
-      </menuchoice>. Also empty filter can be selected when no directories or files are ignored.</para>
+      </menuchoice>. Also empty filter can be selected when no directories or
+    files are ignored.</para>
+
     <sect3>
       <title>Filter files</title>
-      <para>Filter files are normal ASCII files, with <filename class="extension">.flt</filename> extension. Filter files must be placed to either: </para>
+
+      <para>Filter files are normal ASCII files, with <filename
+      class="extension">.flt</filename> extension. Filter files must be placed
+      to either:</para>
+
       <itemizedlist>
         <listitem>
-          <para>"<filename class="directory">Filters</filename>" subdirectory in WinMerge program directory. This is recommended place.</para>
+          <para>"<filename class="directory">Filters</filename>" subdirectory
+          in WinMerge program directory. This is recommended place.</para>
         </listitem>
+
         <listitem>
-          <para>"<filename class="directory">Winmerge/Filters</filename>" subdirectory in user profile. This can be used for user personal filter when there are many users. Or if backupping from profile directory is wanted etc.</para>
+          <para>"<filename class="directory">Winmerge/Filters</filename>"
+          subdirectory in user profile. This can be used for user personal
+          filter when there are many users. Or if backupping from profile
+          directory is wanted etc.</para>
         </listitem>
       </itemizedlist>
-      <para>Filter files supplied with WinMerge contain comments about naming and setting filter to exclusive/inclusive.</para>
-      <para>Exclusive filter includes items matching given rules to compare. All items not matching are marked as skipped. That includes subdirectory names too: a filter must contain rule to include wanted subdirectories. Usually its wise to use this rule to include all subdirectories: </para>
+
+      <para>Filter files supplied with WinMerge contain comments about naming
+      and setting filter to exclusive/inclusive.</para>
+
+      <para>Exclusive filter includes items matching given rules to compare.
+      All items not matching are marked as skipped. That includes subdirectory
+      names too: a filter must contain rule to include wanted subdirectories.
+      Usually its wise to use this rule to include all subdirectories:</para>
+
       <screen>d: \\*$ ## Subdirectories</screen>
-      <para>There can be one filter rule in one line. And rule cannot be split to several lines. Common format for one filter line is like this:</para>
+
+      <para>There can be one filter rule in one line. And rule cannot be split
+      to several lines. Common format for one filter line is like this:</para>
+
       <screen>f: \.ext$ ## Match files *.ext</screen>
+
       <para>or</para>
+
       <screen>d: \\directory$ ## Match given directory name</screen>
-      <para>Rule begins with "<constant>f:</constant>" if it matches for filenames and "<constant>d:</constant>" if it matches for directory names. Filenames are given to filter as is, there are no special characters added. But for directory names there must be "<constant>\\</constant>" in begin of directory name. This is done clearly to separate directory names and filenames. "<constant>##</constant>" is a comment separator, all characters in line after that are ignored by WinMerge.</para>
+
+      <para>Rule begins with "<constant>f:</constant>" if it matches for
+      filenames and "<constant>d:</constant>" if it matches for directory
+      names. Filenames are given to filter as is, there are no special
+      characters added. But for directory names there must be
+      "<constant>\\</constant>" in begin of directory name. This is done
+      clearly to separate directory names and filenames.
+      "<constant>##</constant>" is a comment separator, all characters in line
+      after that are ignored by WinMerge.</para>
+
+      <para><note>
+          <para>File filters rules are case-insensitive. Rule
+          <constant>.\bat$</constant> matches to
+          <filename>winmerge.bat</filename> and
+          <filename>compare.BAT</filename>.</para>
+        </note></para>
+
       <para>So simple filters can be for example:</para>
+
       <example>
         <title>Simple filefilter rules</title>
+
         <screen>f: \.cpp$ ## Match *.cpp files
 f: \.h$ ## Match *.h files
 f: ^My ## Match My*.* files
 f: Dlg\. ## Match *Dlg.* files
 d: \\test$ ## Match 'test' directories</screen>
       </example>
-      <para>Line begin or -end marker (<constant>"^"</constant> or <constant>"$"</constant>) is usually required filter to work correctly. Dot in filename must be "escaped" with <constant>"\"</constant> so <constant>"\."</constant> means dot in filename.</para>
+
+      <para>Line begin or -end marker (<constant>"^"</constant> or
+      <constant>"$"</constant>) is usually required filter to work correctly.
+      Dot in filename must be "escaped" with <constant>"\"</constant> so
+      <constant>"\."</constant> means dot in filename.</para>
+
       <note>
-        <para>Don't forget "<constant>$</constant>" at end. It marks end of directory- or filename and without it rule may not work like expected. While "<literal>\.c$</literal>" matches with only filenames having extension <filename class="extension">.c</filename> "<literal>\.c</literal>" matches all extensions beginning with "<literal>c</literal>" (<filename class="extension">.cpp</filename>, <filename class="extension">.com</filename>, etc).</para>
+        <para>Don't forget "<constant>$</constant>" at end. It marks end of
+        directory- or filename and without it rule may not work like expected.
+        While "<literal>\.c$</literal>" matches with only filenames having
+        extension <filename class="extension">.c</filename>
+        "<literal>\.c</literal>" matches all extensions beginning with
+        "<literal>c</literal>" (<filename class="extension">.cpp</filename>,
+        <filename class="extension">.com</filename>, etc).</para>
       </note>
-      <para>Rules can be a lot more complex than those two: this rule matches to CVS generated "<literal>.#filename.ext.version</literal>" files:</para>
+
+      <para>Since file filter rules are regular expressions more complex rules
+      are also possible. Following few rules show some possibilities for more
+      complex rules:</para>
+
       <example>
         <title>More complex file filter rules</title>
+
         <screen format="linespecific">f: ^\.#.*$ ## .#filename.version files
 f: Dlg\.c(pp)?$ ## *Dlg.c &amp; *Dlg.cpp files
 f: ^I.*\.h$ ## I*.h files
 f: Srv[1-9]\.def$ ## *Srv1.def - *Srv9.def files
 f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
       </example>
-      <para>WinMerge ignores most whitespace characters in lines. However comment must always start with whitespace character (space or tabulator) and comment-marker (<constant>##</constant>). <constant>##</constant> can be used as part of rule if there is no whitespace character before it.</para>
+
+      <para>WinMerge ignores most whitespace characters in rules definition
+      lines. However comment must always start with one or more whitespace
+      character (space or tabulator) and comment-marker
+      (<constant>##</constant>). <constant>##</constant> can be used as part
+      of rule if there is no whitespace character before it.</para>
     </sect3>
   </sect2>
+
   <sect2>
     <title>Line filters</title>
-    <para>Line filters can be used to ignore single lines from compared files. Line filters are handy when user doesn't want to compare comments or certain generated code. For example version control system (time)stamps.</para>
+
+    <para>Line filters can be used to ignore single lines from compared files.
+    Line filters are handy when user doesn't want to compare comments or
+    certain generated code. For example version control system
+    (time)stamps.</para>
+
     <important>
-      <para>Line filter rule ignores single line it matches. It is not possible to ignore partial lines or several lines with file filter rule.</para>
+      <para>Line filter rule ignores single line it matches. It is not
+      possible to ignore partial lines or several lines with file filter
+      rule.</para>
     </important>
-    <para>In file compare ignored lines are shown with own colors to differentiate them from other differences. User can see these differences but cannot select or merge them.</para>
-    <para>Line filter rules are regular expressions like file filter rules. Since filter matches if any part of line matches it is usually recommended to add begin (<constant>"^"</constant>) or end (<constant>"$"</constant>) marker to rule. Or both markers if exact line is wanted to filtered.</para>
+
+    <para>In file compare ignored lines are shown with own colors to
+    differentiate them from other differences. User can see these differences
+    but cannot select or merge them.</para>
+
+    <para>Line filter rules are regular expressions like file filter rules.
+    Since filter matches if any part of line matches it is usually recommended
+    to add begin (<constant>"^"</constant>) or end (<constant>"$"</constant>)
+    marker to rule. Or both markers if exact line is wanted to
+    filtered.</para>
+
     <para>Rules can be added and edited in Filters-dialog (Menu: <menuchoice>
         <guimenu>Tools</guimenu>
+
         <guimenuitem>Filters</guimenuitem>
-      </menuchoice>). In editbox, give one rule per line.</para>
+      </menuchoice>). In editbox, give one rule per line. Compare results are
+    not updated automatically after changing line filter rules. User can
+    update compare results by selecting <menuchoice>
+        <guimenu>Edit</guimenu>
+
+        <guimenuitem>Refresh</guimenuitem>
+      </menuchoice> or <keycap>F5</keycap>.</para>
+
     <example>
       <title>Some example line filters</title>
+
       <screen format="linespecific">^MYTAG$</screen>
-      <para> - Filters out lines being exactly <constant>"MYTAG"</constant></para>
+
+      <para>- Filters out lines being exactly
+      <constant>"MYTAG"</constant></para>
+
       <screen format="linespecific">^::</screen>
-      <para>- Filters out lines beginning with <constant>"::"</constant></para>
+
+      <para>- Filters out lines beginning with
+      <constant>"::"</constant></para>
+
       <screen format="linespecific">^/\**.\*/$</screen>
-      <para>- Filters out lines beginning with <constant>"/*"</constant> and ending with <constant>"*/"</constant></para>
+
+      <para>- Filters out lines beginning with <constant>"/*"</constant> and
+      ending with <constant>"*/"</constant></para>
+
       <screen format="linespecific">^[1-5]00</screen>
-      <para>- Filters out lines beginning with numbers 100, 200, 300, 400 &amp; 500</para>
+
+      <para>- Filters out lines beginning with numbers 100, 200, 300, 400
+      &amp; 500</para>
     </example>
+
     <example>
       <title>Line filter rule matching CVS "Id:" -lines:</title>
+
       <para>Id-lines are like this:</para>
+
       <screen>// $Id$</screen>
+
       <para>And they can be filtered with rule:</para>
+
       <screen>^// \WId: .*\$</screen>
     </example>
+
     <example>
       <title>Filter out line number comments in po files:</title>
+
       <para>po line number comments are like this:</para>
+
       <screen>#: src/filename.c:766</screen>
+
       <para>And they can be filtered out with rule:</para>
+
       <screen>^#</screen>
     </example>
   </sect2>
