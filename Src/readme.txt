@@ -1,3 +1,10 @@
+2003-10-03 Perry
+ PATCH: [ 813794 ] Fix "ignore blank lines"
+  WinMerge: analyze.c ColorButton.h Diff.cpp DIFF.H DiffWrapper.cpp 
+   DiffWrapper.h MainFrm.cpp Merge.cpp Merge.h MergeDiffDetailView.cpp
+   MergeDoc.cpp MergeEditView.cpp MergeEditView.h PropColors.cpp
+   PropColors.h
+
 2003-10-02 Kimmo
  PATCH: [ 815138 ] Commandline filedescriptors
   Usage: -dl "description" for left and -dr "description" for right

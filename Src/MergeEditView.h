@@ -55,10 +55,11 @@ GetLineColors reads it to choose the line color.
 enum MERGE_LINEFLAGS
 {
 	LF_DIFF = 0x00200000L,
+	LF_TRIVIAL = 0x00800000L,
 };
 
 // WINMERGE_FLAGS is MERGE_LINEFLAGS | GHOST_LINEFLAGS
-#define LF_WINMERGE_FLAGS    0x00600000
+#define LF_WINMERGE_FLAGS    0x00E00000
 
 
 /////////////////////////////////////////////////////////////////////////////

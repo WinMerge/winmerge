@@ -176,14 +176,13 @@ void CMergeDiffDetailView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 	// Lines with only the LF_DIFF flag are not colored with Winmerge colors
 	if (dwLineFlags & (LF_WINMERGE_FLAGS & ~LF_DIFF))
 	{
-		crText = theApp.GetDiffTextColor();
+		theApp.SerializeDiffTextColor(crText, false);
 		bDrawWhitespace = TRUE;
 
 		if (dwLineFlags & LF_GHOST)
 		{
-			crBkgnd = theApp.GetDiffDeletedColor();
+			theApp.SerializeDiffDeletedColor(crBkgnd, false);
 		}
-
 	}
 	else
 	{

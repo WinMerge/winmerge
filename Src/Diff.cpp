@@ -109,10 +109,11 @@ just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff
 		struct change *p,*e;
 		for (e = script; e; e = p)
 		{
+			if (!e->trivial) 
+				*diff = true;
 			p = e->link;
 			free (e);
 		}
-		*diff = true;
 	}
 
 	// diff_2_files set bin_flag to -1 if different binary
