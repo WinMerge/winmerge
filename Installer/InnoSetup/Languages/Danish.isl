@@ -325,7 +325,7 @@ CompactInstallation=Compact Installation
 CustomInstallation=Custom Installation
 
 ;Components
-AppCoreFile=%1 Core Files
+AppCoreFiles=WinMerge Core Files
 ApplicationRuntimes=Application Runtimes
 UsersGuide=User's Guide
 Filters=Filters
@@ -334,7 +334,7 @@ Plugins=Plugins (enhance core behavior)
 ;Localization Components
 BulgarianLanguage=Bulgarian menus and dialogs
 CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese(Simplified) menus and dialogs
+ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
 ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
 CzechLanguage=Czech menus and dialogs
 DanishLanguage=Danish menus and dialogs
@@ -361,4 +361,4 @@ UpdatingCommonControls=Updating the System's Common Controls
 ReadMe=Read Me
 UsersGuide=User's Guide
 UpdatingCommonControls=Updating the System's Common Controls
-ViewStartMenuFolder=&View the %1 Start Menu Folder
+ViewStartMenuFolder=&View the WinMerge Start Menu Folder
