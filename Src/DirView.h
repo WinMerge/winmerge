@@ -250,6 +250,12 @@ protected:
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnEditColumns();
+	afx_msg void OnLeftReadOnly();
+	afx_msg void OnUpdateLeftReadOnly(CCmdUI* pCmdUI);
+	afx_msg void OnRightReadOnly();
+	afx_msg void OnUpdateRightReadOnly(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateStatusLeftRO(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateStatusRightRO(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);

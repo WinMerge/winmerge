@@ -102,6 +102,9 @@ BEGIN
         MENUITEM "&Abrir...\tCtrl+O",           ID_FILE_OPEN
         MENUITEM "Sal&var\tCtrl+S",             ID_FILE_SAVE
         MENUITEM SEPARATOR
+        MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
+        MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
         MENUITEM "&Sair",                       ID_APP_EXIT
     END
     POPUP "&Editar"
@@ -1041,6 +1044,8 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "Exibir arquivos binários"
     ID_VIEW_WHITESPACE      "Exibir caracteres de espaço em branco"
     ID_REFRESH              "Atualizar tela\nAtualizar (F5)"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -1054,6 +1059,7 @@ BEGIN
     IDS_STATUS_COPYR2L      "Copiando da direita para esquerda"
     IDS_STATUS_COPYALL2L    "Copiando tudo para esquerda"
     IDS_STATUS_COPYALL2R    "Copiando tudo para direita"
+    IDS_STATUSBAR_READONLY  "RO"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_COLHDR_RSIZE        "Right Size"
     IDS_COLHDR_LTIMEC       "Left Creation Time"

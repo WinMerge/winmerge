@@ -1,6 +1,11 @@
 2003-08-31 Kimmo
  PATCH: [ 797741 ] Faster file loading
   WinMerge: files.h files.cpp MergeDoc.h MergeDoc.cpp
+ PATCH: [ 784302 ] Implement Read-only for files and dirs
+  UI changes
+  WinMerge: ChildFrm.cpp DirFrame.cpp DirView.h DirView.cpp Merge.rc
+   MergeEditView.h MergeEditView.cpp Resource.h
+  Languages: resource.h *.rc
 
 2003-08-30 Kimmo
  PATCH: [ 797797 ] OnOptions must exchange diffOptions with the registry

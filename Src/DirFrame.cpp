@@ -18,8 +18,14 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// DirFrame.cpp : implementation file
-//
+/** 
+ * @file  DirFrame.cpp
+ *
+ * @brief Implementation file for CDirFrame
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -31,10 +37,20 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/**
+ * @brief Bottom statusbar panels and indicators
+ */
 static UINT indicators[] =
 {
 	ID_SEPARATOR,           // status line indicator
+	ID_SEPARATOR,
+	ID_SEPARATOR,
 };
+
+/**
+ * @brief RO status panel width
+ */
+static UINT RO_PANEL_WIDTH = 40;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirFrame
@@ -90,6 +106,12 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}	
 	
+	CString sText;
+	VERIFY(sText.LoadString(IDS_STATUSBAR_READONLY));
+	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_LEFTDIR_RO, 0, RO_PANEL_WIDTH);
+	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_RIGHTDIR_RO, 0, RO_PANEL_WIDTH);
+	m_wndStatusBar.SetPaneText(1, sText, TRUE); 
+	m_wndStatusBar.SetPaneText(2, sText, TRUE);
 	return 0;
 }
 

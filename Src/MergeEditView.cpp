@@ -41,7 +41,9 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-// Timer ID and timeout for delayed rescan
+/**
+ * @brief Timer ID and timeout for delayed rescan
+ */
 const UINT IDT_RESCAN = 2;
 const UINT RESCAN_TIMEOUT = 1000;
 
@@ -102,6 +104,13 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
 	ON_COMMAND(ID_SHOWLINEDIFF, OnShowlinediff)
 	ON_UPDATE_COMMAND_UI(ID_SHOWLINEDIFF, OnUpdateShowlinediff)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
+	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
+	ON_UPDATE_COMMAND_UI(ID_FILE_LEFT_READONLY, OnUpdateLeftReadOnly)
+	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
+	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTFILE_RO, OnUpdateStatusLeftRO)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTFILE_RO, OnUpdateStatusRightRO)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -203,6 +212,9 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 	CCrystalEditViewEx::OnActivateView(bActivate, pActivateView, pDeactiveView);
 }
 
+/**
+ * @brief Determine text and backgdound color for line
+ */
 void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, BOOL & bDrawWhitespace)
 {
@@ -256,6 +268,9 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 	}
 }
 
+/**
+ * @brief Sync other pane position
+ */
 void CMergeEditView::UpdateSiblingScrollPos (BOOL bHorz)
 {
 	CSplitterWnd *pSplitterWnd = GetParentSplitter (this, FALSE);
@@ -337,6 +352,9 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHo
 	}
 }
 
+/**
+ * @brief Select diff by number
+ */
 void CMergeEditView::SelectDiff(int nDiff, BOOL bScroll /*=TRUE*/, BOOL bSelectText /*=TRUE*/)
 {
 	CMergeDoc *pd = GetDocument();
@@ -503,8 +521,13 @@ void CMergeEditView::OnEditUndo()
 
 void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 {
-	CMergeDoc* pDoc = GetDocument();
-	pCmdUI->Enable(pDoc->curUndo!=pDoc->undoTgt.begin());
+	if (!IsReadOnly(m_bIsLeft))
+	{
+		CMergeDoc* pDoc = GetDocument();
+		pCmdUI->Enable(pDoc->curUndo!=pDoc->undoTgt.begin());
+	}
+	else
+		pCmdUI->Enable(FALSE);
 }
 
 void CMergeEditView::OnFirstdiff()
@@ -672,6 +695,7 @@ void CMergeEditView::UpdateLineLengths()
 
 void CMergeEditView::OnL2r()
 {
+	// Check that right side is not readonly
 	if (IsReadOnly(FALSE))
 		return;
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
@@ -680,6 +704,7 @@ void CMergeEditView::OnL2r()
 
 void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 {
+	// Check that right side is not readonly
 	if (!IsReadOnly(FALSE))
 		pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
 	else
@@ -688,6 +713,7 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnR2l()
 {
+	// Check that left side is not readonly
 	if (IsReadOnly(TRUE))
 		return;
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
@@ -696,6 +722,7 @@ void CMergeEditView::OnR2l()
 
 void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 {
+	// Check that left side is not readonly
 	if (!IsReadOnly(TRUE))
 		pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
 	else
@@ -704,6 +731,7 @@ void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnAllLeft()
 {
+	// Check that left side is not readonly
 	if (IsReadOnly(TRUE))
 		return;
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYALL2L));
@@ -713,6 +741,7 @@ void CMergeEditView::OnAllLeft()
 
 void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 {
+	// Check that left side is not readonly
 	if (!IsReadOnly(TRUE))
 		pCmdUI->Enable(GetDocument()->m_nDiffs!=0);
 	else
@@ -721,6 +750,7 @@ void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnAllRight()
 {
+	// Check that right side is not readonly
 	if (IsReadOnly(FALSE))
 		return;
 
@@ -731,6 +761,7 @@ void CMergeEditView::OnAllRight()
 
 void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 {
+	// Check that right side is not readonly
 	if (!IsReadOnly(FALSE))
 		pCmdUI->Enable(GetDocument()->m_nDiffs!=0);
 	else
@@ -802,8 +833,13 @@ void CMergeEditView::OnEditRedo()
 
 void CMergeEditView::OnUpdateEditRedo(CCmdUI* pCmdUI)
 {
-	CMergeDoc* pDoc = GetDocument();
-	pCmdUI->Enable(pDoc->curUndo!=pDoc->undoTgt.end());
+	if (!IsReadOnly(m_bIsLeft))
+	{
+		CMergeDoc* pDoc = GetDocument();
+		pCmdUI->Enable(pDoc->curUndo!=pDoc->undoTgt.end());
+	}
+	else
+		pCmdUI->Enable(FALSE);
 }
 
 void CMergeEditView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
@@ -936,6 +972,36 @@ void CMergeEditView::OnUpdateFileSave(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
+void CMergeEditView::OnLeftReadOnly()
+{
+	CMergeDoc *pd = GetDocument();
+	BOOL bReadOnly = pd->m_ltBuf.GetReadOnly();
+	pd->m_ltBuf.SetReadOnly(!bReadOnly);
+}
+
+void CMergeEditView::OnUpdateLeftReadOnly(CCmdUI* pCmdUI)
+{
+	CMergeDoc *pd = GetDocument();
+	BOOL bReadOnly = pd->m_ltBuf.GetReadOnly();
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck(bReadOnly);
+}
+
+void CMergeEditView::OnRightReadOnly()
+{
+	CMergeDoc *pd = GetDocument();
+	BOOL bReadOnly = pd->m_rtBuf.GetReadOnly();
+	pd->m_rtBuf.SetReadOnly(!bReadOnly);
+}
+
+void CMergeEditView::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
+{
+	CMergeDoc *pd = GetDocument();
+	BOOL bReadOnly = pd->m_rtBuf.GetReadOnly();
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck(bReadOnly);
+}
+
 // Store our interface we use to display status line info
 void CMergeEditView::SetStatusInterface(IMergeEditStatus * piMergeEditStatus)
 {
@@ -987,3 +1053,39 @@ void CMergeEditView::OnUpdateShowlinediff(CCmdUI* pCmdUI)
 	BOOL enable = GetLineFlags(line) & LF_DIFF;
 	pCmdUI->Enable(enable);
 }
+
+/**
+ * @brief Enable/disable Replace-menuitem
+ */
+void CMergeEditView::OnUpdateEditReplace(CCmdUI* pCmdUI)
+{
+	CMergeDoc *pd = GetDocument();
+	BOOL bReadOnly = FALSE;
+	if (m_bIsLeft)
+		bReadOnly = pd->m_ltBuf.GetReadOnly();
+	else
+		bReadOnly = pd->m_rtBuf.GetReadOnly();
+
+	pCmdUI->Enable(!bReadOnly);
+}
+
+/**
+ * @brief Update left readonly statusbaritem
+ */
+void CMergeEditView::OnUpdateStatusLeftRO(CCmdUI* pCmdUI)
+{
+	BOOL bROLeft = GetDocument()->m_ltBuf.GetReadOnly();
+	pCmdUI->Enable(bROLeft);
+}
+
+/**
+ * @brief Update right readonly statusbaritem
+ */
+void CMergeEditView::OnUpdateStatusRightRO(CCmdUI* pCmdUI)
+{
+	BOOL bRORight = GetDocument()->m_rtBuf.GetReadOnly();
+	pCmdUI->Enable(bRORight);
+}
+
+
+

@@ -18,8 +18,14 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// ChildFrm.cpp : implementation of the CChildFrame class
-//
+/** 
+ * @file  ChildFrm.cpp
+ *
+ * @brief Implementation file for CChildFrame
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -35,6 +41,11 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+/**
+ * @brief RO status panel width
+ */
+static UINT RO_PANEL_WIDTH = 40;
 
 /////////////////////////////////////////////////////////////////////////////
 // CChildFrame
@@ -52,10 +63,15 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
+/**
+ * @brief Bottom statusbar panels and indicators
+ */
 static UINT indicatorsBottom[] =
 {
 	ID_SEPARATOR,
-	ID_SEPARATOR
+	ID_SEPARATOR,
+	ID_SEPARATOR,
+	ID_SEPARATOR,
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +80,7 @@ static UINT indicatorsBottom[] =
 CChildFrame::CChildFrame()
 #pragma warning(disable:4355) // 'this' : used in base member initializer list
 : m_leftStatus(this, 0)
-, m_rightStatus(this, 1)
+, m_rightStatus(this, 2)
 #pragma warning(default:4355)
 {
 	m_bActivated = FALSE;
@@ -79,7 +95,6 @@ CChildFrame::~CChildFrame()
 BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
-
 	//lpcs->style |= WS_MAXIMIZE;
 	// create a splitter with 1 row, 2 columns
 	if (!m_wndSplitter.CreateStatic(this, 1, 2, WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL) )
@@ -253,9 +268,12 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}	
 
-	m_wndStatusBar.SetPaneStyle(0, SBPS_NORMAL);
-	m_wndStatusBar.SetPaneStyle(1, SBPS_NORMAL);
-
+	// Set text to read-only info panes
+	// Text is hidden if file is writable
+	CString sText;
+	VERIFY(sText.LoadString(IDS_STATUSBAR_READONLY));
+	m_wndStatusBar.SetPaneText(1, sText, TRUE); 
+	m_wndStatusBar.SetPaneText(3, sText, TRUE);
 
 	SetTimer(0, 250, NULL); // used to update the title headers
 	return 0;
@@ -348,18 +366,28 @@ void CChildFrame::UpdateHeaderSizes()
 		if (w<1) w=1; // Perry 2003-01-22 (I don't know why this happens)
 		if (w1<1) w1=1; // Perry 2003-01-22 (I don't know why this happens)
 
-		// for bottom status bar
-		m_wndStatusBar.SetPaneInfo(0, ID_SEPARATOR, SBPS_NORMAL, w-1);
-		m_wndStatusBar.SetPaneInfo(1, ID_SEPARATOR, SBPS_STRETCH, 0);
-
 		// prepare file path bar to look as a status bar
 		if (m_wndFilePathBar.LookLikeThisWnd(&m_wndStatusBar) == TRUE)
 			RecalcLayout();
 
 		// resize controls in header dialog bar
 		m_wndFilePathBar.Resize(w, w1);
-	}
 
+		// Set bottom statusbar panel widths
+		// Kimmo - I don't know why 4 seems to be right for me
+		int borderWidth = 4; // GetSystemMetrics(SM_CXEDGE);
+		int pane1Width = w - RO_PANEL_WIDTH - borderWidth;
+		if (pane1Width < borderWidth)
+			pane1Width = borderWidth;
+		int pane2Width = w1 - RO_PANEL_WIDTH - borderWidth;
+		if (pane2Width < borderWidth)
+			pane2Width = borderWidth;
+
+		m_wndStatusBar.SetPaneInfo(0, ID_STATUS_LEFTFILE_INFO, SBPS_NORMAL, pane1Width);
+		m_wndStatusBar.SetPaneInfo(1, ID_STATUS_LEFTFILE_RO, SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+		m_wndStatusBar.SetPaneInfo(2, ID_STATUS_RIGHTFILE_INFO, SBPS_STRETCH, pane2Width);
+		m_wndStatusBar.SetPaneInfo(3, ID_STATUS_RIGHTFILE_RO, SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+	}
 }
 
 BOOL CChildFrame::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult) 

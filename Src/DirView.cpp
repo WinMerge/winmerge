@@ -111,6 +111,12 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_WM_TIMER()
 	ON_WM_MOUSEMOVE()
 	ON_COMMAND(ID_EDIT_COLUMNS, OnEditColumns)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTDIR_RO, OnUpdateStatusRightRO)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTDIR_RO, OnUpdateStatusLeftRO)
+	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
+	ON_UPDATE_COMMAND_UI(ID_FILE_LEFT_READONLY, OnUpdateLeftReadOnly)
+	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
+	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -1409,4 +1415,60 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 	default:
 		*pResult = CDRF_DODEFAULT;
 	}
+}
+
+/**
+ * @brief Change left-side readonly-status
+ */
+void CDirView::OnLeftReadOnly()
+{
+	BOOL bReadOnly = GetDocument()->GetReadOnly(TRUE);
+	GetDocument()->SetReadOnly(TRUE, !bReadOnly);
+}
+
+/**
+ * @brief Update left-readonly menu item
+ */
+void CDirView::OnUpdateLeftReadOnly(CCmdUI* pCmdUI)
+{
+	BOOL bReadOnly = GetDocument()->GetReadOnly(TRUE);
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck(bReadOnly);
+}
+
+/**
+ * @brief Change right-side readonly-status
+ */
+void CDirView::OnRightReadOnly()
+{
+	BOOL bReadOnly = GetDocument()->GetReadOnly(FALSE);
+	GetDocument()->SetReadOnly(FALSE, !bReadOnly);
+}
+
+/**
+ * @brief Update right-side readonly menuitem
+ */
+void CDirView::OnUpdateRightReadOnly(CCmdUI* pCmdUI)
+{
+	BOOL bReadOnly = GetDocument()->GetReadOnly(FALSE);
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck(bReadOnly);
+}
+
+/**
+ * @brief Update left-side readonly statusbar item
+ */
+void CDirView::OnUpdateStatusLeftRO(CCmdUI* pCmdUI)
+{
+	BOOL bROLeft = GetDocument()->GetReadOnly(TRUE);
+	pCmdUI->Enable(bROLeft);
+}
+
+/**
+ * @brief Update right-side readonly statusbar item
+ */
+void CDirView::OnUpdateStatusRightRO(CCmdUI* pCmdUI)
+{
+	BOOL bRORight = GetDocument()->GetReadOnly(FALSE);
+	pCmdUI->Enable(bRORight);
 }

@@ -65,6 +65,9 @@ BEGIN
         MENUITEM "열기(&O)...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM "저장(&S)\tCtrl+S",            ID_FILE_SAVE
         MENUITEM SEPARATOR
+        MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
+        MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
         MENUITEM "끝내기(&X)\tEsc",             ID_APP_EXIT
     END
     POPUP "편집(&E)"
@@ -1158,6 +1161,8 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "바이너리 파일을 봅니다."
     ID_VIEW_WHITESPACE      "공백문자(whitespace character)를 봅니다."
     ID_REFRESH              "새로 고침\n새로 고침 (F5)"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
 STRINGTABLE
@@ -1171,6 +1176,7 @@ BEGIN
     IDS_STATUS_COPYR2L      "오른쪽에서 왼쪽으로 복사중"
     IDS_STATUS_COPYALL2L    "왼쪽으로 모두 복사중"
     IDS_STATUS_COPYALL2R    "오른쪽으로 모두 복사중"
+    IDS_STATUSBAR_READONLY  "RO"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_COLHDR_RSIZE        "Right Size"
     IDS_COLHDR_LTIMEC       "Left Creation Time"

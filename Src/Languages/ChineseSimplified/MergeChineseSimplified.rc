@@ -97,6 +97,9 @@ BEGIN
         MENUITEM "打开(&O)...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM "保存(&S)\tCtrl+S",            ID_FILE_SAVE
         MENUITEM SEPARATOR
+        MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
+        MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
         MENUITEM "退出(&X)\tEsc",               ID_APP_EXIT
     END
     POPUP "编辑(&E)"
@@ -924,6 +927,8 @@ BEGIN
     ID_SHOWLINEDIFF         "Highlight difference in current line"
     ID_EDITOR_COPY_PATH     "Copy full Path"
     ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
 STRINGTABLE FIXED IMPURE
@@ -937,6 +942,7 @@ BEGIN
     IDS_STATUS_COPYR2L      "正在复制右边到左边"
     IDS_STATUS_COPYALL2L    "正在全部复制到左边"
     IDS_STATUS_COPYALL2R    "正在全部复制到右边"
+    IDS_STATUSBAR_READONLY  "RO"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_COLHDR_RSIZE        "Right Size"
     IDS_COLHDR_LTIMEC       "Left Creation Time"

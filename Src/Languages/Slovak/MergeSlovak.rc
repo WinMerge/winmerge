@@ -102,6 +102,10 @@ BEGIN
         MENUITEM "&Otvoriù...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM "&Uloûiù\tCtrl+S",             ID_FILE_SAVE
         MENUITEM SEPARATOR
+        MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
+        MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM SEPARATOR
         MENUITEM "&Koniec",                     ID_APP_EXIT
     END
     POPUP "⁄pr&avy"
@@ -1028,6 +1032,8 @@ BEGIN
     ID_SHOWLINEDIFF         "Highlight difference in current line"
     ID_EDITOR_COPY_PATH     "Copy full Path"
     ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1041,6 +1047,7 @@ BEGIN
     IDS_STATUS_COPYR2L      "KopÌrujem prav˝ do æavÈho"
     IDS_STATUS_COPYALL2L    "KopÌrujem vöetko do æavÈho"
     IDS_STATUS_COPYALL2R    "KopÌrujem vöetko do pravÈho"
+    IDS_STATUSBAR_READONLY  "RO"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_COLHDR_RSIZE        "Right Size"
     IDS_COLHDR_LTIMEC       "Left Creation Time"

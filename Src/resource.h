@@ -2,6 +2,8 @@
 // Microsoft Developer Studio generated include file.
 // Used by Merge.rc
 //
+// $Id$
+
 #define IDC_CUT                         3
 #define IDC_COPY                        4
 #define IDC_PASTE                       5
@@ -118,6 +120,7 @@
 #define IDB_NOTEQUAL                    214
 #define IDS_DIR_SKIPPED                 214
 #define IDB_RFOLDER                     215
+#define IDS_STATUSBAR_READONLY          215
 #define IDB_UNKNOWN                     216
 #define IDB_BINARYSAME                  217
 #define IDB_LFILE                       218
@@ -389,9 +392,17 @@
 #define ID_EDIT_FIND_PREVIOUS           32820
 #define ID_SHOWLINEDIFF                 32821
 #define ID_EDITOR_COPY_PATH             32822
-#define ID_EDIT_COLUMNS                 32822
-#define ID_EDITOR_COPY_FILENAME         32823
-#define ID_VIEW_DETAIL_BAR              32824
+#define ID_EDIT_COLUMNS                 32823
+#define ID_EDITOR_COPY_FILENAME         32824
+#define ID_VIEW_DETAIL_BAR              32825
+#define ID_FILE_LEFT_READONLY           32826
+#define ID_FILE_RIGHT_READONLY          32827
+#define ID_STATUS_RIGHTDIR_RO           32828
+#define ID_STATUS_LEFTDIR_RO            32829
+#define ID_STATUS_RIGHTFILE_RO          32830
+#define ID_STATUS_LEFTFILE_RO           32831
+#define ID_STATUS_RIGHTFILE_INFO        32832
+#define ID_STATUS_LEFTFILE_INFO         32833
 
 // Next default values for new objects
 // 
@@ -399,7 +410,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        118
-#define _APS_NEXT_COMMAND_VALUE         32825
+#define _APS_NEXT_COMMAND_VALUE         32834
 #define _APS_NEXT_CONTROL_VALUE         1061
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

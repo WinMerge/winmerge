@@ -102,6 +102,9 @@ BEGIN
         MENUITEM "&Openen...\tCtrl+O",          ID_FILE_OPEN
         MENUITEM "Op&slaan\tCtrl+S",            ID_FILE_SAVE
         MENUITEM SEPARATOR
+        MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
+        MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
         MENUITEM "&Afsluiten",                  ID_APP_EXIT
     END
     POPUP "Be&werken"
@@ -1033,6 +1036,8 @@ BEGIN
     ID_SHOWLINEDIFF         "Highlight difference in current line"
     ID_EDITOR_COPY_PATH     "Copy full Path"
     ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1046,6 +1051,7 @@ BEGIN
     IDS_STATUS_COPYR2L      "Copying Right to Left"
     IDS_STATUS_COPYALL2L    "Copying All to Left"
     IDS_STATUS_COPYALL2R    "Copying All to Right"
+    IDS_STATUSBAR_READONLY  "RO"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_COLHDR_RSIZE        "Right Size"
     IDS_COLHDR_LTIMEC       "Left Creation Time"

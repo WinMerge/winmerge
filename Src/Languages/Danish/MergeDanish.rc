@@ -102,6 +102,9 @@ BEGIN
         MENUITEM "&Åben...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "&Gem\tCtrl+S",                ID_FILE_SAVE
         MENUITEM SEPARATOR
+        MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
+        MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
         MENUITEM "&Luk\tEsc",                   ID_APP_EXIT
     END
     POPUP "&Rediger"
@@ -1023,6 +1026,8 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "Viser binære filer"
     ID_VIEW_WHITESPACE      "Viser et tegn for mellemrum"
     ID_REFRESH              "Opdater display\nOpdater (F5)"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1036,6 +1041,7 @@ BEGIN
     IDS_STATUS_COPYR2L      "Kopierer højre til venstre"
     IDS_STATUS_COPYALL2L    "Kopierer alt til venstre"
     IDS_STATUS_COPYALL2R    "Kopierer alt til højre"
+    IDS_STATUSBAR_READONLY  "RO"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_COLHDR_RSIZE        "Right Size"
     IDS_COLHDR_LTIMEC       "Left Creation Time"
