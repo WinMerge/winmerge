@@ -1586,7 +1586,10 @@ int CMainFrame::SyncFileToVCS(LPCTSTR pszSrc, LPCTSTR pszDest,
  * @brief Select font for Merge/Dir view
  * 
  * Shows font selection dialog to user, sets current font and saves
- * selected font properties to registry.
+ * selected font properties to registry. Selects fon type to active
+ * view (Merge/Dir compare). If there is no open views, then font
+ * is selected for Merge view (for example user may want to change to
+ * unicode font before comparing files).
  */
 void CMainFrame::OnViewSelectfont() 
 {
@@ -1664,14 +1667,11 @@ void CMainFrame::OnViewSelectfont()
 }
 
 /**
- * @brief Enable 'Select font' if view is active
+ * @brief Enable 'Select font'.
  */
 void CMainFrame::OnUpdateViewSelectfont(CCmdUI* pCmdUI) 
 {
-	CFrameWnd * pFrame = GetActiveFrame();
-	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
-	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
-	pCmdUI->Enable(bMergeFrame || bDirFrame);
+	pCmdUI->Enable(TRUE);
 }
 
 /**
@@ -1758,6 +1758,9 @@ void CMainFrame::GetFontProperties()
 
 /**
  * @brief Use default font for active view type
+ *
+ * Disable user-selected font for active view type (Merge/Dir compare).
+ * If there is no open views, then Merge view font is changed.
  */
 void CMainFrame::OnViewUsedefaultfont() 
 {
@@ -1773,17 +1776,11 @@ void CMainFrame::OnViewUsedefaultfont()
 }
 
 /**
- * @brief Enable 'Use Default font' if view is open and has user font selected
+ * @brief Enable 'Use Default font'.
  */
 void CMainFrame::OnUpdateViewUsedefaultfont(CCmdUI* pCmdUI) 
 {
-	CFrameWnd * pFrame = GetActiveFrame();
-	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
-	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
-	bool bEnableMerge = m_options.GetBool(OPT_FONT_FILECMP_USECUSTOM);
-	bool bEnableDir = m_options.GetBool(OPT_FONT_DIRCMP_USECUSTOM);
-	pCmdUI->Enable((bEnableMerge && bMergeFrame) || 
-		(bEnableDir && bDirFrame));
+	pCmdUI->Enable(TRUE);
 }
 
 /**

@@ -1,3 +1,8 @@
+2005-03-04 Kimmo
+ PATCH: [ 1155319 ] Select font for dir compare view
+  We must allow selecting file compare font even if no open views
+  Src: Mainfrm.cpp
+
 2005-03-04 Perry
  PATCH: [ 1156253 ] Fix filter helper handling of new filters
  BUG: [ 1153018 ] Create new filter, now cannot find it
