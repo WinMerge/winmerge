@@ -26,8 +26,8 @@ public:
 // Implementation types
 private:
 	struct word {
-		int start;
-		int end;
+		int start; // index of first character of word in original string
+		int end;   // index of last character of word in original string
 		int hash;
 		word(int s=0, int e=0, int h=0) : start(s), end(e), hash(h) { }
 		int length() const { return end+1-start; }

@@ -1,3 +1,8 @@
+2003-11-25 Perry
+ PATCH: [ 849138 ] Fix stringdiffs for diff in first word
+  (Code was trying to access word#-1 when diff hit in first word)
+  WinMerge: stringdiffs.cpp stringdiffs.h
+
 2003-11-25 Kimmo
  Missed one diff in PATCH: [ 847697 ] Move desc texts into doc classes
  WinMerge: MergeDoc.cpp

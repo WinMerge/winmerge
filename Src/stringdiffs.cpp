@@ -135,9 +135,9 @@ startdiff:
 
 		// Add a diff from start to before sync
 		int s1 = m_words1[bw1].start;
-		int e1 = m_words1[w1-1].end;
+		int e1 = w1 ? m_words1[w1-1].end : 0;
 		int s2 = m_words2[bw2].start;
-		int e2 = m_words2[w2-1].end;
+		int e2 = w2 ? m_words2[w2-1].end : 0;
 		if (m_whitespace == 0)
 		{
 			// Compare all whitespace
@@ -283,8 +283,8 @@ inword:
 		if (begin<i)
 		{
 			// just finished a word
-			// e is last nonspace character
-			int e = (i<str.GetLength() ? i-1 : i);
+			// e is first non-word character (space or at end)
+			int e = i-1;
 			word wd(begin, e, hash(str, begin, e));
 			words->Add(wd);
 		}
