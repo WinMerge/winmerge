@@ -1,3 +1,7 @@
+2003-07-04 Kimmo
+ PATCH: [ 765463 ] Simplify temp path handling a little
+  WinMerge: MergeDoc.h MergeDoc.cpp
+
 2003-07-03 Kimmo
  PATCH: [ 764571 ] Ask about saving when closing with esc
   WinMerge: MainFrm.cpp MergeDoc.cpp MergeEditView.cpp

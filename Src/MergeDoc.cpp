@@ -1100,6 +1100,11 @@ void CMergeDoc::CDiffTextBuffer::ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dw
 	InsertLine(lpLineBegin, dwLineLen);
 }
 
+void CMergeDoc::CDiffTextBuffer::SetTempPath(CString path)
+{
+	m_strTempPath = path;
+}
+
 BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/)
 {
@@ -1224,30 +1229,10 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	UINT nBufSize = GetTextWithoutEmptys(0, 0, nLineCount - 1,
 		nLastLength, text, m_bIsLeft, nCrlfStyle);
 	
-	if (pszFileName)
-	{
-		// Temp files are in temp dir...
-		if (bTempFile)
-		{
-			_tsplitpath(pszFileName, drive, dir, NULL, NULL);
-			_tcscpy(szTempFileDir, drive);
-			_tcscat(szTempFileDir, dir);
-		}
-		else
-		{
-			if (!GetTempPath(_MAX_PATH, szTempFileDir))
-			{
-				// No temp dir, ugh! use document's dir then
-				_tsplitpath(pszFileName, drive, dir, NULL, NULL);
-				_tcscpy(szTempFileDir, drive);
-				_tcscat(szTempFileDir, dir);
-			}
-		}
-	}
-	else
+	if (!pszFileName)
 		return FALSE;	// No filename, cannot save...
 
-	if (!::GetTempFileName(szTempFileDir, _T("MRG"), 0, szTempFileName))
+	if (!::GetTempFileName(m_strTempPath, _T("MRG"), 0, szTempFileName))
 		return FALSE;  //Nothing to do if even tempfile name fails
 
 	// Init filedata struct and open file as memory mapped 
@@ -1332,6 +1317,11 @@ BOOL CMergeDoc::InitTempFiles(const CString& srcPathL, const CString& strPathR)
 	{
 		return FALSE;
 	}
+
+	// Set temp paths for buffers
+	m_ltBuf.SetTempPath(strTempPath);
+	m_rtBuf.SetTempPath(strTempPath);
+
 	if (m_strTempLeftFile.IsEmpty())
 	{
 		TCHAR name[MAX_PATH];

@@ -80,10 +80,12 @@ private :
         CMergeDoc * m_pOwnerDoc;
 		BOOL m_bIsLeft;
 		BOOL FlagIsSet(UINT line, DWORD flag);
+		CString m_strTempPath;
 
 		int DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength);
 		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
 public :
+		void SetTempPath(CString path);
 		bool curUndoGroup();
 		void ReplaceLine(int nLine, const CString& strText);
 		void ReplaceFullLine(int nLine, const CString& strText);
