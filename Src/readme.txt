@@ -1,3 +1,7 @@
+2004-03-23 Perry
+ Add simple comments in action list code
+ Src: DirActions.cpp
+
 2004-03-23 Kimmo
  PATCH: [ 921440 ] UI option for detecting moved blocks
   Src: DirDoc.cpp MainFrm.cpp Merge.rc MergeDoc.cpp OptionsDef.h

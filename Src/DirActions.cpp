@@ -74,6 +74,7 @@ static BOOL ConfirmSingleDelete(LPCTSTR filepath)
 // Prompt & copy item from right to left, if legal
 void CDirView::DoCopyRightToLeft()
 {
+	// First we build a list of desired actions
 	ActionList actionList(ACT_COPY);
 	int sel=-1;
 	CString slFile, srFile;
@@ -94,11 +95,13 @@ void CDirView::DoCopyRightToLeft()
 		++actionList.selcount;
 	}
 
+	// Now we prompt, and execute actions
 	ConfirmAndPerformActions(actionList);
 }
 // Prompt & copy item from left to right, if legal
 void CDirView::DoCopyLeftToRight()
 {
+	// First we build a list of desired actions
 	ActionList actionList(ACT_COPY);
 	int sel=-1;
 	CString slFile, srFile;
@@ -119,12 +122,14 @@ void CDirView::DoCopyLeftToRight()
 		++actionList.selcount;
 	}
 
+	// Now we prompt, and execute actions
 	ConfirmAndPerformActions(actionList);
 }
 
 // Prompt & delete left, if legal
 void CDirView::DoDelLeft()
 {
+	// First we build a list of desired actions
 	ActionList actionList(ACT_DEL_LEFT);
 	int sel=-1;
 	CString slFile, srFile;
@@ -144,11 +149,13 @@ void CDirView::DoDelLeft()
 		++actionList.selcount;
 	}
 
+	// Now we prompt, and execute actions
 	ConfirmAndPerformActions(actionList);
 }
 // Prompt & delete right, if legal
 void CDirView::DoDelRight()
 {
+	// First we build a list of desired actions
 	ActionList actionList(ACT_DEL_RIGHT);
 	int sel=-1;
 	CString slFile, srFile;
@@ -169,11 +176,13 @@ void CDirView::DoDelRight()
 		++actionList.selcount;
 	}
 
+	// Now we prompt, and execute actions
 	ConfirmAndPerformActions(actionList);
 }
 // Prompt & delete both, if legal
 void CDirView::DoDelBoth()
 {
+	// First we build a list of desired actions
 	ActionList actionList(ACT_DEL_BOTH);
 	int sel=-1;
 	CString slFile, srFile;
@@ -195,6 +204,7 @@ void CDirView::DoDelBoth()
 		++actionList.selcount;
 	}
 
+	// Now we prompt, and execute actions
 	ConfirmAndPerformActions(actionList);
 }
 
