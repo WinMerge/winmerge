@@ -1,3 +1,7 @@
+2005-03-03 Perry
+ Fix typo ("for" => "four")
+  Manual: Text_encoding.xml
+
 2005-03-01 Kimmo
  PATCH: [ 1153905 ] Doc: Update installation help for Merge7zInstaller
   Manual: Install.xml

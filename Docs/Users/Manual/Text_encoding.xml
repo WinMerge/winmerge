@@ -28,7 +28,7 @@
   </sect2>
   <sect2>
     <title>Explanation</title>
-    <para>Characters (such as "a" or "1" or "&amp;") are represented by computers as numbers, and there is more than one way to do this. A text encoding method is a way to encode the characters into the numbers (bytes) of which a file is comprised. There are for main text encoding families:</para>
+    <para>Characters (such as "a" or "1" or "&amp;") are represented by computers as numbers, and there is more than one way to do this. A text encoding method is a way to encode the characters into the numbers (bytes) of which a file is comprised. There are four main text encoding families:</para>
     <itemizedlist>
       <listitem>
         <para>ASCII</para>
