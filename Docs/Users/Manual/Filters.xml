@@ -72,7 +72,7 @@ f: ^I.*\.h$ ## I*.h files</screen>
       <para>Id-lines are like this:</para>
       <screen>// $Id$</screen>
       <para>And they can be filtered with rule:</para>
-      <screen>\$Id$</screen>
+      <screen>^// \WId: .*\$</screen>
     </example>
   </sect2>
 </sect1>

@@ -1,3 +1,7 @@
+2004-08-13 Kimmo
+ CVS keyword-completed my filtering rule too! (patch #1006910)
+  Manual: Filters.xml
+
 2004-08-11 Kimmo
  PATCH: [ 1006757 ] Docs: Dircompare content and screenshots to current CVS
   Manual: Compare_dirs.xml
