@@ -10,11 +10,15 @@
   </sect2>
   <sect2>
     <title>Shell integration</title>
+    <para>Choose 'Enable Explorer context menu integration' from installer's additional features to install shell integration.</para>
     <para>If install program is not used, shell integration dll (ShellExtension.dll) must be registered separately. This is done by running register.bat from WinMerge directory.</para>
+    <para>Updating shell integreation outside installer requires first uninstalling current version. Uninstalling can be done by running uninstall.bat from WinMerge directory. After that computer should be restarted so Windows completes uninstallation. Then new version can be installed like described above.</para>
   </sect2>
   <sect2>
     <title>7-Zip and archive support</title>
-    <para>To enable archive file support in WinMerge 7-Zip is required. WinMerge installer does not install 7-Zip. 7-Zip installer can be downloaded from <ulink url="http://www.7-zip.org/">http://www.7-Zip.org/ </ulink></para>
-    <para>WinMerge detects existence and version of 7-zip in system, there is no need to any configuration. But WinMerge supports only certain versions of 7-Zip. Please check version requirement from Read Me.rft -file in WinMerge directory.</para>
+    <para>Archive file support in WinMerge requires 7-Zip. WinMerge installer does not install 7-Zip. 7-Zip installer can be downloaded from <ulink url="http://www.7-zip.org/">http://www.7-Zip.org/</ulink></para>
+    <para>WinMerge automatically detects installed 7-zip in system, there is no need to any configuration. But WinMerge supports only certain versions of 7-Zip. Please check 7-zip version compatibility from Read Me.rft -file. </para>
+    <para>7-zip integration needs compatible Merge7z*.dll in WinMerge program directory. * comes from 7-zip version installed. For example 7-zip version 3.13 needs Merge7z313.dll. And if WinMergeU.exe (unicode version) is used, then 'U' is also added to filename: Merge7z313U.dll. Merge7z*.dll files for compatible 7-zip versions are installed by WinMerge installer. If needed dll file is for some reason missing it can be copied to WinMerge directory, for example from zip-archive downloadable in WinMerge download page.</para>
+    <para>If Merge7z*.dll file is missing, WinMerge informs user with message showing filename of needed file and recommended version of 7-zip. This message can also be opened from Help-menu item 'Archive Support Disabled'.</para>
   </sect2>
 </sect1>
