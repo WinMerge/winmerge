@@ -64,6 +64,8 @@ void SillyTestCrap();
 
 extern CLogFile gLog;
 
+static void AddEnglishResourceHook();
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp construction
 
@@ -134,6 +136,8 @@ BOOL CMergeApp::InitInstance()
 
 	m_lang.SetLogFile(&gLog);
 	m_lang.InitializeLanguage();
+
+	AddEnglishResourceHook();
 
 	m_pDiffTemplate = new CMultiDocTemplate(
 		IDR_MERGETYPE,
@@ -525,3 +529,33 @@ int CMergeApp::ExitInstance()
 	
 	return CWinApp::ExitInstance();
 }
+
+
+static void AddEnglishResourceHook()
+{
+	// After calling AfxSetResourceHandle to point to a language
+	// resource DLL, then the application is no longer on the
+	// resource lookup (defined by AfxFindResourceHandle).
+	
+	// Add a dummy extension DLL record whose resource handle
+	// points to the application resources, just to provide
+	// fallback to English for any resources missing from 
+	// the language resource DLL.
+	
+	// (Why didn't Microsoft think of this? Bruno Haible who
+	// made gettext certainly thought of this.)
+
+	// NB: This does not fix the problem that if a control is
+	// missing from a dialog (because it was added only to the
+	// English version, for example) then the DDX_ function is
+	// going to fail. I see no easy way to intercept all DDX
+	// functions except by macro overriding the call--Perry, 2002-12-07.
+
+	static AFX_EXTENSION_MODULE FakeEnglishDLL = { NULL, NULL };
+	memset(&FakeEnglishDLL, 0, sizeof(FakeEnglishDLL));
+	FakeEnglishDLL.hModule = AfxGetApp()->m_hInstance;
+	FakeEnglishDLL.hResource = FakeEnglishDLL.hModule;
+	FakeEnglishDLL.bInitialized = TRUE;
+	new CDynLinkLibrary(FakeEnglishDLL); // hook into MFC extension DLL chain
+}
+
