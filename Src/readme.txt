@@ -5,6 +5,8 @@
  PATCH: [ 983410 ] Warn that New clears dircompare results
   Src: MainFrm.cpp Merge.rc resource.h
   Src/Languages: *.rc resource.h
+ PATCH: [ 983721 ] Remove 'don't show again' checkbox from saving messages
+  Src: MergeDoc.cpp
 
 2004-07-01 Kimmo
  PATCH: [ 982683 ] Clear results only after user chooses new files or folders

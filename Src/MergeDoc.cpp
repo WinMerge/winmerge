@@ -2365,7 +2365,7 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 			AfxFormatString1(s, IDS_SAVE_FMT, m_strLeftDesc);
 	
 		bLModified = TRUE;
-		switch (AfxMessageBox(s, nDialogType | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, IDS_SAVE_FMT))
+		switch (AfxMessageBox(s, nDialogType | MB_ICONQUESTION))
 		{
 		case IDYES:
 			if (!DoSave(m_strLeftFile, bLSaveSuccess, TRUE))
@@ -2387,7 +2387,7 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 			AfxFormatString1(s, IDS_SAVE_FMT, m_strRightDesc);
 
 		bRModified = TRUE;
-		switch (AfxMessageBox(s, nDialogType | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, IDS_SAVE_FMT))
+		switch (AfxMessageBox(s, nDialogType | MB_ICONQUESTION))
 		{
 		case IDYES:
 			if (!DoSave(m_strRightFile, bRSaveSuccess, FALSE))
