@@ -5,6 +5,8 @@
   Src/Languages: *.rc resource.h
   Filters: ADAMulti.flt Merge_GnuC_loose.flt Merge_VB_loose.flt Merge_VC_loose.flt
    XML_html.flt
+ PATCH: [ 1094467 ] Update contributors: Tim is now developer
+  Docs/Users: Contributors.txt
 
 2005-01-03 Kimmo
  PATCH: [ 1094474 ] Visible area indicator for location pane

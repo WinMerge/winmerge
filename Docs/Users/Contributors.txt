@@ -10,6 +10,7 @@ Project lead:
 
 Other developers:
 * Laurent Ganier
+* Tim Gerundt
 * Dennis Limm
 * Chris Mumford
 * Perry Rapp
@@ -85,19 +86,19 @@ Localization:
 
 
 Other Contributors (code, ideas, testing..):
-* Gilbert Wellisch
-* Harry Mckame
+* Andre Arpin
+* Steve Beaudoin
 * Hern Chen
 * Marvin Gouw
-* Michael Richter
-* Philippe Verdy
-* Steve Beaudoin
-* Tim Gerundt
-* Tim Musschoot
-* Takashi Sawanaka
-* Vikrant
-* Vincent Osele
 * Vladimir Lukianov
+* Harry Mckame
+* Tim Musschoot
+* Vincent Osele
+* Michael Richter
+* Takashi Sawanaka
+* Philippe Verdy
+* Vikrant
+* Gilbert Wellisch
 
 
 WinMerge includes code from:
