@@ -544,7 +544,6 @@ void CPatchDlg::LoadSettings()
  */
 void CPatchDlg::SaveSettings()
 {
-	int patchStyle = m_outputStyle;
 	theApp.WriteProfileInt(_T("PatchCreator"), _T("PatchStyle"), m_outputStyle);
 	theApp.WriteProfileInt(_T("PatchCreator"), _T("ContextLines"), m_contextLines);
 	theApp.WriteProfileInt(_T("PatchCreator"), _T("CaseSensitive"), m_caseSensitive);

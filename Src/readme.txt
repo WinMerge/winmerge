@@ -1,6 +1,8 @@
 2004-06-22 Kimmo
  PATCH: [ 977475 ] Log DeleteFile() failure in FileTransform.cpp
   Src: FileTransform.cpp
+ PATCH: [ 977479 ] Delete non-functional line in CPatchDlg::SaveSettings()
+  Src: PatchDlg.cpp
 
 2004-06-21 Kimmo
  BUG: [ 974662 ] Inconsistent menutexts for dircompare column dialog
