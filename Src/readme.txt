@@ -1,3 +1,7 @@
+2003-11-13 Kimmo
+ PATCH: [ 838084 ] Add * to newer file's date field in dir compare
+  WinMerge: DirView.cpp DirViewColHandler.cpp
+
 2003-11-13 Laoran
  PATCH: [ 838354 ] Revisit Speedup Speed up display of large differences
  submitted by Hern Chen (hern_chen)

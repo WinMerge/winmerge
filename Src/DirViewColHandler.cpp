@@ -28,7 +28,28 @@ static char THIS_FILE[] = __FILE__;
 
 /////////////////////////////////////////////////////////////////////////////
 
-
+/**
+ * @brief Column indexes to dir column table
+ */
+enum
+{
+	DirCol_Name = 0,
+	DirCol_Path,
+	DirCol_Status,
+	DirCol_LmTime,
+	DirCol_RmTime,
+	DirCol_LcTime,
+	DirCol_RcTime,
+	DirCol_Ext,
+	DirCol_Lsize,
+	DirCol_Rsize,
+	DirCol_Newer,
+	DirCol_Lversion,
+	DirCol_Rversion,
+	DirCol_StatusAbbr,
+	DirCol_Lattr,
+	DirCol_Rattr,
+};
 
 /**
  * @brief Get text for specified column (forwards to specific column handler)
@@ -119,7 +140,7 @@ void CDirView::SetSubitem(int item, int phy, LPCTSTR sz)
 }
 
 
-// Add a new diff item to dir view
+/// Add a new diff item to dir view
 int CDirView::AddDiffItem(int index, const DIFFITEM & di, LPCTSTR szPath, POSITION curdiffpos)
 {
 	int i = AddNewItem(index);
@@ -129,14 +150,36 @@ int CDirView::AddDiffItem(int index, const DIFFITEM & di, LPCTSTR szPath, POSITI
 }
 
 
-// Update listview display of details for specified row
+/// Update listview display of details for specified row
 void CDirView::UpdateDiffItemStatus(UINT nIdx, const DIFFITEM & di)
 {
+	BOOL bLeftNewer = FALSE;
+	BOOL bRightNewer = FALSE;
+
+	// Determine if other side is newer
+	if (di.left.mtime > 0 && di.right.mtime > 0)
+	{
+		if (di.left.mtime > di.right.mtime)
+			bLeftNewer = TRUE;
+		else if (di.left.mtime < di.right.mtime)
+			bRightNewer = TRUE;
+	}
+
 	for (int i=0; i<g_ncols; ++i)
 	{
 		int phy = ColLogToPhys(i);
 		if (phy>=0)
-			SetSubitem(nIdx, phy, ColGet(i, di));
+		{
+			CString s = ColGet(i, di);
+			
+			// Add '*' to newer time field
+			if (i == DirCol_LmTime && bLeftNewer) // Left modification time
+				s.Insert(0, _T("* "));
+			else if (i == DirCol_RmTime && bRightNewer) // Right modification time
+				s.Insert(0, _T("* "));
+
+			SetSubitem(nIdx, phy, s);
+		}
 	}
 	SetImage(nIdx, GetColImage(di));
 }

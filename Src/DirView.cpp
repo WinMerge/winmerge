@@ -1471,39 +1471,8 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 
 	case CDDS_ITEMPREPAINT: //Before an item is drawn
 		// Add code here to customise whole line and return:
-		// *pResult = CDRF_NEWFONT;			// If no subitems customised
-		*pResult = CDRF_NOTIFYSUBITEMDRAW;	// To customise subitems
-		break;
-
-	case CDDS_SUBITEM | CDDS_ITEMPREPAINT: //Before a subitem is drawn
-  		ditem = GetDiffItem(lplvcd->nmcd.dwItemSpec);
-		
-		// Set text color for filename colum
-		if (m_colorder[0] == lplvcd->iSubItem)
-		{
-			// Set text color based on timestamps
-			// Do not color unique items
-			if (ditem.left.mtime == 0 || ditem.right.mtime == 0)
-				lplvcd->clrText = GetSysColor(COLOR_WINDOWTEXT);
-			// Do not color skipped items
-			else if (ditem.isResultSkipped())
-				lplvcd->clrText = GetSysColor(COLOR_WINDOWTEXT);
-			else
-			{
-				if (ditem.left.mtime < ditem.right.mtime)
-					lplvcd->clrText = RGB(53, 164, 34);
-				else if (ditem.left.mtime > ditem.right.mtime)
-					lplvcd->clrText = RGB(234, 21, 64);
-				else
-					// Make sure we use default color for ident. items
-					lplvcd->clrText = GetSysColor(COLOR_WINDOWTEXT);
-			}
-		}
-		// Set text color for other colums
-		else
-			lplvcd->clrText = GetSysColor(COLOR_WINDOWTEXT);
-
-		*pResult = CDRF_NEWFONT;
+		*pResult = CDRF_NEWFONT;			// If no subitems customised
+		//*pResult = CDRF_NOTIFYSUBITEMDRAW;	// To customise subitems
 		break;
 
 	default:
