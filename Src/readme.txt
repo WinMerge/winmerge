@@ -1,3 +1,7 @@
+2003-04-07 Kimmo
+ PATCH: [ 716308 ] Disable italic text
+  editlib: ccrystaltextview.cpp
+
 2003-04-06 Kimmo
  PATCH: [ 715457 ] LoadFromFile() rewrote
   WinMerge: MergeDoc.h MergeDoc.cpp

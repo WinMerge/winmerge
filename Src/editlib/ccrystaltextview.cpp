@@ -2443,8 +2443,12 @@ GetScreenLines ()
 BOOL CCrystalTextView::
 GetItalic (int nColorIndex)
 {
-  return nColorIndex == COLORINDEX_COMMENT;
-  //  return FALSE;
+  // WINMERGE - since italic text has problems,
+  // lets disable it. E.g. "_" chars disappear and last
+  // char may be cropped.
+  return FALSE;
+  
+  // return nColorIndex == COLORINDEX_COMMENT;
 }
 
 BOOL CCrystalTextView::
