@@ -1,3 +1,10 @@
+2005-02-10 Kimmo
+ PATCH: [ 1116778 ] Project Handling patch
+  Submitted by Schlundus
+  Src: MainFrm.cpp MainFrm.h Merge.rc OpenDlg.cpp OpenDlg.h ProjectFile.cpp ProjectFile.h resource.h
+  Languages: *.rc resource.h
+  Docs/Users: Contributors.txt
+
 2005-02-07 Kimmo
  PATCH: [ 1117375 ] Rememer status/toolbar visible status
   Src: MainFrm.cpp MainFrm.h OptionsDef.h

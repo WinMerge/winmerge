@@ -102,6 +102,7 @@ BEGIN
     BEGIN
         MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
         MENUITEM "開啟(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "儲存(&S)\tCtrl+S",            ID_FILE_SAVE
         POPUP "Save &Left"
@@ -352,6 +353,7 @@ BEGIN
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "J",            ID_FILE_OPENPROJECT,    VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
@@ -1313,6 +1315,7 @@ BEGIN
     ID_FILE_PRINT_SETUP     "變更印表機和列印選項\n列印設定"
     ID_FILE_PRINT           "列印作用中文件\n列印"
     ID_FILE_PRINT_PREVIEW   "顯示整頁\n預覽列印"
+    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
 END
 
 STRINGTABLE
@@ -1492,6 +1495,8 @@ BEGIN
     IDS_OPEN_TITLE          "開啟"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_ALLFILES            "所有檔案 (*.*)|*.*||"
+    IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+    IDS_PROJECTFILES_EXT    "WinMerge"
 END
 
 // COMPARE OPTIONS

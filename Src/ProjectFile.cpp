@@ -83,10 +83,51 @@ BOOL ProjectFile::Read(LPCTSTR path, CString *sError)
 
 /** 
  * @brief Save data from member variables to path-file.
+ * @note paths are converted to ASCII
  */
-BOOL ProjectFile::Save(LPCTSTR path)
+BOOL ProjectFile::Save(LPCTSTR path, CString *sError)
 {
-	UINT flags = CFile::modeCreate | CFile::modeNoTruncate | CFile::modeWrite;
+	UINT flags = CFile::modeCreate | CFile::modeWrite;
+	CFile file;
+	CFileException e;
+
+	if (!file.Open(path, flags,&e))
+	{
+		TCHAR szError[1024];
+		e.GetErrorMessage(szError, 1024);
+		*sError = szError;
+		
+		return FALSE;
+	}
+
+	TCHAR buf2[4096] = {0};
+	
+	_tcscpy(buf2,_T("<?xml version=\"1.0\"?>\n<project>\n\t<paths>\n\t\t"));
+	
+	_tcscat(buf2,_T("<left>"));
+	_tcscat(buf2,GetLeft());
+	_tcscat(buf2,_T("</left>\n\t\t"));
+	_tcscat(buf2,_T("<right>"));
+	_tcscat(buf2,GetRight());
+	_tcscat(buf2,_T("</right>\n\t\t"));
+	_tcscat(buf2,_T("<filter>"));
+	_tcscat(buf2,GetFilter());
+	_tcscat(buf2,_T("</filter>\n\t\t"));
+	_tcscat(buf2,_T("<subfolders>"));
+	_tcscat(buf2,GetSubfolders() ? _T("1") : _T("0"));
+	_tcscat(buf2,_T("</subfolders>\n"));
+	
+	_tcscat(buf2,_T("\t</paths>\n</project>"));
+
+	// convert the string from unicode to ascii, because Read is expecting ascii
+	char buf[4096] = {0};
+	
+	USES_CONVERSION;
+	strncpy(buf, T2A(buf2), 4096);
+
+
+	file.Write(buf,strlen(buf));
+	file.Close();
 
 	return TRUE;
 }
@@ -132,11 +173,33 @@ CString ProjectFile::GetLeft() const
 }
 
 /** 
+ * @brief Set left path, returns old left path.
+ */
+CString ProjectFile::SetLeft(const CString& sLeft)
+{
+	CString sLeftOld = GetLeft();
+	m_leftFile = sLeft;
+
+	return sLeftOld;
+}
+
+/** 
  * @brief Returns right path.
  */
 CString ProjectFile::GetRight() const
 {
 	return m_rightFile;
+}
+
+/** 
+ * @brief Set right path, returns old right path.
+ */
+CString ProjectFile::SetRight(const CString& sRight)
+{
+	CString sRightOld = GetRight();
+	m_rightFile = sRight;
+
+	return sRightOld;
 }
 
 /** 
@@ -148,11 +211,33 @@ CString ProjectFile::GetFilter() const
 }
 
 /** 
+ * @brief Set filter, returns old filter.
+ */
+CString ProjectFile::SetFilter(const CString& sFilter)
+{
+	CString sFilterOld = GetFilter();
+	m_filter = sFilter;
+
+	return sFilterOld;
+}
+
+/** 
  * @brief Returns subfolder included -setting.
  */
 int ProjectFile::GetSubfolders() const
 {
 	return m_subfolders;
+}
+
+/** 
+ * @brief set subfolder, returns old subfolder value.
+ */
+int ProjectFile::SetSubfolders(const int iSubfolder)
+{
+	int iSubfoldersOld = GetSubfolders(); 
+	m_subfolders = iSubfolder ? 1 : 0;
+
+	return iSubfoldersOld;
 }
 
 /** 

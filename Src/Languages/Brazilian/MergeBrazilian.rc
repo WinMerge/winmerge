@@ -102,6 +102,7 @@ BEGIN
     BEGIN
         MENUITEM "New\tCtrl+N",                 ID_FILE_NEW
         MENUITEM "&Abrir...\tCtrl+O",           ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Sal&var\tCtrl+S",             ID_FILE_SAVE
         POPUP "Save &Left"
@@ -351,6 +352,7 @@ BEGIN
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "J",            ID_FILE_OPENPROJECT,    VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
@@ -441,6 +443,7 @@ BEGIN
     PUSHBUTTON      "Cancelar",IDCANCEL,306,28,50,14
     GROUPBOX        "Arquivos ou Diretórios a Comparar",IDC_FILES_DIRS_GROUP,7,7,292,
                     111
+    PUSHBUTTON   "Save project",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -1329,6 +1332,7 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Alterar a impressora e as configurações de impressão\nConfigurar impressora"
     ID_FILE_PRINT           "Imprimir o documento ativo\nImprimir"
     ID_FILE_PRINT_PREVIEW   "Visualizar impressão\nVisualizar Impressão"
+    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
 END
 
 STRINGTABLE
@@ -1508,6 +1512,8 @@ BEGIN
     IDS_OPEN_TITLE          "Abrir"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_ALLFILES            "Todos Arquivos (*.*)|*.*||"
+    IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+    IDS_PROJECTFILES_EXT    "WinMerge"
 END
 
 // COMPARE OPTIONS

@@ -225,6 +225,7 @@ protected:
 	afx_msg void OnUpdateHelpMerge7zmismatch(CCmdUI* pCmdUI);
 	afx_msg void OnViewStatusBar();
 	afx_msg void OnViewToolbar();
+	afx_msg void OnFileOpenproject();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

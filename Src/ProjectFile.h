@@ -26,14 +26,16 @@
 const TCHAR PROJECTFILE_EXT[] = _T("WinMerge");
 
 /**
- * @brief Class for reading paths from project file.
+ * @brief Class for handling project files.
+ *
+ * @todo open/save unicode paths - use UTF-8 for xml?
  */
 class ProjectFile
 {
 public:
 	ProjectFile();
 	BOOL Read(LPCTSTR path, CString *sError);
-	BOOL Save(LPCTSTR path);
+	BOOL Save(LPCTSTR path, CString *sError);
 	
 	BOOL HasLeft() const;
 	BOOL HasRight() const;
@@ -44,6 +46,11 @@ public:
 	CString GetRight() const;
 	CString GetFilter() const;
 	int GetSubfolders() const;
+
+	CString SetLeft(const CString& sLeft);
+	CString SetRight(const CString& sRight);
+	CString SetFilter(const CString& sFilter);
+	int SetSubfolders(const int iSubfolder);
 
 	void GetPaths(CString & sLeft, CString & sRight, BOOL & bSubFolders) const;
 

@@ -230,6 +230,7 @@
 #define IDC_CP_UI                       1148
 #define IDC_CP_CUSTOM                   1149
 #define IDC_CUSTOM_CP_NUMBER            1150
+#define IDC_SAVEPROJECT                 1151
 
 
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -281,6 +282,8 @@
 #define IDS_OPEN_TITLE                  16416
 #define IDS_PROGRAMFILES                16417
 #define IDS_ALLFILES                    16418
+#define IDS_PROJECTFILES                16419
+#define IDS_PROJECTFILES_EXT            16420
 
 #define IDS_COMPMETHOD_CONTENTS         16432
 #define IDS_COMPMETHOD_MODDATE          16433
@@ -831,6 +834,7 @@
 #define ID_LOCBAR_GOTODIFF_FMT          33092
 #define ID_LOCBAR_GOTOLINE_FMT          33093
 #define ID_HELP_MERGE7ZMISMATCH         33094
+#define ID_FILE_OPENPROJECT             33095
 
 // Next default values for new objects
 // 
@@ -838,7 +842,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        224
-#define _APS_NEXT_COMMAND_VALUE         33095
+#define _APS_NEXT_COMMAND_VALUE         33096
 #define _APS_NEXT_CONTROL_VALUE         1151
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

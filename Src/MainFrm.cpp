@@ -134,6 +134,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_HELP_MERGE7ZMISMATCH, OnUpdateHelpMerge7zmismatch)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
 	ON_COMMAND(ID_VIEW_TOOLBAR, OnViewToolbar)
+	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenproject)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2673,4 +2674,40 @@ void CMainFrame::OnViewToolbar()
 	m_options.SaveOption(OPT_SHOW_TOOLBAR, bShow);
 
 	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, bShow, 0);
+}
+
+/**
+ * @brief Open project-file.
+ */
+void CMainFrame::OnFileOpenproject()
+{
+	// show a fileopen dialog with the WinMerge extension
+	CString strFileFilter;
+	strFileFilter.LoadString(IDS_PROJECTFILES);
+	CString strFileExt;
+	strFileExt.LoadString(IDS_PROJECTFILES_EXT);
+	CFileDialog dlg(true,strFileExt,0,0,strFileFilter);
+
+	if (dlg.DoModal() != IDOK)
+		return;
+	
+	CStringArray files;
+	files.Add(dlg.GetPathName());
+	files.Add("");
+	
+	BOOL bRecursive = true;
+	//load the project file
+	if (theApp.LoadProjectFile(files,bRecursive))
+	{
+		//if the project file is read begin to compare
+		DWORD dwLeftFlags = FFILEOPEN_NONE;
+		DWORD dwRightFlags = FFILEOPEN_NONE;
+		//check if the paths are empty
+		if (!files[0].IsEmpty())
+			dwLeftFlags |= FFILEOPEN_PROJECT;
+		if (!files[1].IsEmpty())
+			dwRightFlags |= FFILEOPEN_PROJECT;
+		m_strSaveAsPath = _T("");
+		DoFileOpen(files[0], files[1], dwLeftFlags, dwRightFlags, bRecursive);
+	}
 }

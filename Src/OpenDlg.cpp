@@ -86,6 +86,7 @@ BEGIN_MESSAGE_MAP(COpenDlg, CDialog)
 	//{{AFX_MSG_MAP(COpenDlg)
 	ON_BN_CLICKED(IDC_LEFT_BUTTON, OnLeftButton)
 	ON_BN_CLICKED(IDC_RIGHT_BUTTON, OnRightButton)
+	ON_BN_CLICKED(IDC_SAVEPROJECT, OnSaveProjectButton)
 	ON_CBN_SELCHANGE(IDC_LEFT_COMBO, OnSelchangeLeftCombo)
 	ON_CBN_SELCHANGE(IDC_RIGHT_COMBO, OnSelchangeRightCombo)
 	ON_CBN_EDITCHANGE(IDC_LEFT_COMBO, OnEditEvent)
@@ -242,6 +243,7 @@ BOOL COpenDlg::OnInitDialog()
 	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_LEFT_BUTTON, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_RIGHT_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_SAVEPROJECT, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
 	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
@@ -558,4 +560,73 @@ void COpenDlg::TrimPaths()
 	m_strLeft.TrimRight();
 	m_strRight.TrimLeft();
 	m_strRight.TrimRight();
+}
+
+/** 
+ * @brief Allows user to save current paths and filter as projectfile.
+ */
+void COpenDlg::OnSaveProjectButton()
+{
+	//load filter prefix
+	CString filterPrefix;
+	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
+
+	UpdateData(TRUE);
+	
+
+	// get long name (optionally terminate directories with slash)
+	CString strRight = paths_GetLongPath(m_strRight, DIRSLASH);
+	CString strLeft = paths_GetLongPath(m_strLeft, DIRSLASH);
+	CString strExt = m_strExt;
+
+	//trim them
+	strExt.TrimLeft();
+	strExt.TrimRight();
+	strRight.TrimLeft();
+	strRight.TrimRight();
+	strLeft.TrimLeft();
+	strLeft.TrimRight();
+	
+	//check if both paths exists
+	if (GetPairComparability(strLeft, strRight) == DOES_NOT_EXIST)
+	{
+		AfxMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
+		return;
+	}
+
+	CString strFileFilter;
+	strFileFilter.LoadString(IDS_PROJECTFILES);
+	CString strFileExt;
+	strFileExt.LoadString(IDS_PROJECTFILES_EXT);
+	// show a fileopen dialog with the WinMerge extension
+	CFileDialog dlg(false,strFileExt,0,0,strFileFilter);
+	if (dlg.DoModal() != IDOK)
+		return;
+	//get the chosen filename
+	CString strProjectFileName = dlg.GetPathName();
+
+	// If prefix found from start..
+	if (strExt.Find(filterPrefix, 0) == 0)
+	{
+		// Remove prefix + space
+		strExt.Delete(0, filterPrefix.GetLength());
+	}
+	
+	ProjectFile pfile;	
+
+	//set the member of the project file
+	pfile.SetLeft(strLeft);
+	pfile.SetFilter(strExt);
+	pfile.SetRight(strRight);
+	pfile.SetSubfolders(m_bRecurse);
+
+	CString err;
+	//save the project
+	pfile.Save(strProjectFileName,&err);
+	if (!err.IsEmpty())
+	{
+		CString msg;
+		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, strProjectFileName, err);
+		AfxMessageBox(msg, MB_ICONSTOP);
+	}
 }

@@ -102,6 +102,7 @@ BEGIN
     BEGIN
         MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Otvoriù...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Uloûiù\tCtrl+S",             ID_FILE_SAVE
         POPUP "Save &Left"
@@ -352,6 +353,7 @@ BEGIN
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "J",            ID_FILE_OPENPROJECT,    VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
@@ -443,6 +445,7 @@ BEGIN
     PUSHBUTTON      "Storno",IDCANCEL,307,28,50,14
     GROUPBOX        "S˙bory alebo adres·re pre porovnanie",IDC_FILES_DIRS_GROUP,7,7,
                     293,111
+    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -1326,6 +1329,7 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Zmeniù tlaËiareÚ a parametre tlaËe\nNastavenie tlaËiarne"
     ID_FILE_PRINT           "VytlaËiù aktÌvny dokument\nTlaË"
     ID_FILE_PRINT_PREVIEW   "N·hæad\nPrehæad pred tlaËou"
+    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
 END
 
 STRINGTABLE
@@ -1505,6 +1509,8 @@ BEGIN
     IDS_OPEN_TITLE          "Otvoriù"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_ALLFILES            "Vöetky s˙bory (*.*)|*.*||"
+    IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+    IDS_PROJECTFILES_EXT    "WinMerge"
 END
 
 // COMPARE OPTIONS

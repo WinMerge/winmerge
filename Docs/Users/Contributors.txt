@@ -97,6 +97,7 @@ Other Contributors (code, ideas, testing..):
 * Vincent Osele
 * Michael Richter
 * Takashi Sawanaka
+* Schlundus
 * Philippe Verdy
 * Vikrant
 * Gilbert Wellisch

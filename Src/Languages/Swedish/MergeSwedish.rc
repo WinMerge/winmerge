@@ -101,6 +101,7 @@ BEGIN
     BEGIN
         MENUITEM "&Ny\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Öppna...\tCtrl+O",           ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Spara\tCtrl+S",              ID_FILE_SAVE
         POPUP "Spara &Vänster fil"
@@ -351,6 +352,7 @@ BEGIN
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "J",            ID_FILE_OPENPROJECT,    VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
@@ -441,6 +443,7 @@ BEGIN
     PUSHBUTTON      "Avbryt",IDCANCEL,306,28,50,14
     GROUPBOX        "Filer eller kataloger som skall jämföras",IDC_FILES_DIRS_GROUP,7,7,
                     292,111
+    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -1325,6 +1328,7 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Ändrar skrivare och skrivarens inställningar\nSkrivarinställningar"
     ID_FILE_PRINT           "Skriver ut det aktiva dokumentet\nSkriv ut"
     ID_FILE_PRINT_PREVIEW   "Visar helsida\nFörhandsgranska"
+    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
 END
 
 STRINGTABLE
@@ -1504,6 +1508,8 @@ BEGIN
     IDS_OPEN_TITLE          "Öppna"
     IDS_PROGRAMFILES        "Programfiler|*.exe;*.bat;*.cmd|Alla Filer (*.*)|*.*||"
     IDS_ALLFILES            "Alla filer (*.*)|*.*||"
+    IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+    IDS_PROJECTFILES_EXT    "WinMerge"
 END
 
 // COMPARE OPTIONS
