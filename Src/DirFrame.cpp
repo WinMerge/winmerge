@@ -101,8 +101,9 @@ void CDirFrame::SetStatus(LPCTSTR szStatus)
 
 void CDirFrame::ActivateFrame(int nCmdShow) 
 {
-	if (m_wndStatusBar.IsWindowVisible())
-		m_wndStatusBar.SetPaneText(1, _T("")); // clear the diff status
+// Diffstatus is not in this frame
+//	if (m_wndStatusBar.IsWindowVisible())
+//		m_wndStatusBar.SetPaneText(1, _T("")); // clear the diff status
 	
 	CMDIChildWnd::ActivateFrame(nCmdShow);
 }
