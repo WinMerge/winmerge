@@ -833,7 +833,7 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
       if (pszChars[i] == _T ('\t'))
         nActualOffset += (nTabSize - nActualOffset % nTabSize);
       else
-        nActualOffset++;
+        nActualOffset += GetCharWidthFromChar(pszChars[i]) / GetCharWidth();
     }
 
   pszChars += nOffset;
@@ -889,15 +889,17 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
           else
             {
               line += pszChars[i];
-              nCurPos++;
+              nCurPos += GetCharWidthFromChar(pszChars[i]) / GetCharWidth();
             }
         }
     }
   else
     {
       for (int i=0; i<nLength; ++i)
+      {
         line += pszChars[i];
-      nCurPos = nLength;
+        nCurPos += GetCharWidthFromChar(pszChars[i]) / GetCharWidth();
+      }
     }
 }
 

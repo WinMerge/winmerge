@@ -1,3 +1,7 @@
+2004-10-11 Perry
+ PATCH: [ 1040016 ] patch for BUG[1039615] caret splitting wide characters
+  Src/editlib: ccrystaltextview.cpp
+
 2004-10-09 Kimmo
  BUG: [ 1035227 ] Selected font change won't be applied... when not needed
   Src: MainFrm.cpp
