@@ -1,3 +1,5 @@
+2003-09-13 WinMerge experimental release 2.1.1.4 (cvs)
+
 2003-09-13 Laoran
  effects of patch [ 797821 ]
   WinMerge: Merge.rc resource.h 
