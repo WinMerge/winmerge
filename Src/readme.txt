@@ -1,3 +1,7 @@
+2003-07-28 Perry
+ PATCH: [ 778234 ] Fix DirScan ASSERT when run out of right list
+  WinMerge: DirScan.cpp
+
 2003-07-27 Kimmo
  PATCH: [ 778144 ] Use CopyFile instead of DeleteFile() and MoveFile()
   WinMerge: MainFrm.cpp

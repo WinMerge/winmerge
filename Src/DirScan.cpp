@@ -36,7 +36,10 @@ static void FilterAdd(const CString & sDir, const fentry * lent, const fentry *r
 typedef int (CString::*cmpmth)(LPCTSTR sz) const;
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object).*(ptrToMember))
 
-
+// Compare two directories & output all results found via calls to to FilterAdd
+// base directories to compare are in the CDiffContext
+// and this call is responsible for diff'ing just the subdir specified
+// (ie, if subdir is empty, this is the base call)
 int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, int depth)
 {
 	CString sLeftDir = pCtxt->m_strNormalizedLeft;
@@ -53,21 +56,27 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 	LoadAndSortFiles(sLeftDir, &leftDirs, &leftFiles, casesensitive);
 	LoadAndSortFiles(sRightDir, &rightDirs, &rightFiles, casesensitive);
 
+	// Handle directories
+	// i points to current directory in left list (leftDirs)
+	// j points to current directory in right list (rightDirs)
 	int i=0, j=0;
 	while (1)
 	{
+		// In debug mode, send current status to debug window
 		if (i<leftDirs.GetSize())
 			TRACE(_T("Candidate left: leftDirs[i]=%s\n"), leftDirs[i]);
 		if (j<rightDirs.GetSize())
 			TRACE(_T("Candidate right: rightDirs[j]=%s\n"), rightDirs[j]);
-		while (i<leftDirs.GetSize() && (j==rightDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)<0))
+		if (i<leftDirs.GetSize() && (j==rightDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)<0))
 		{
+			// Advance left pointer over left-only entry, and then retest with new pointers
 			FilterAdd(subdir, &leftDirs[i], 0, FILE_LDIRUNIQUE, pCtxt);
 			++i;
 			continue;
 		}
-		while (j<rightDirs.GetSize() && (i==leftDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)>0))
+		if (j<rightDirs.GetSize() && (i==leftDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)>0))
 		{
+			// Advance right pointer over right-only entry, and then retest with new pointers
 			FilterAdd(subdir, 0, &rightDirs[j], FILE_RDIRUNIQUE, pCtxt);
 			++j;
 			continue;
@@ -90,21 +99,27 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 		}
 		break;
 	}
+	// Handle files
+	// i points to current file in left list (leftFiles)
+	// j points to current file in right list (rightFiles)
 	i=0, j=0;
 	while (1)
 	{
+		// In debug mode, send current status to debug window
 		if (i<leftFiles.GetSize())
 			TRACE(_T("Candidate left: leftFiles[i]=%s\n"), leftFiles[i]);
 		if (j<rightFiles.GetSize())
 			TRACE(_T("Candidate right: rightFiles[j]=%s\n"), rightFiles[j]);
 		if (i<leftFiles.GetSize() && (j==rightFiles.GetSize() || collstr(leftFiles[i].name, rightFiles[j].name, casesensitive)<0))
 		{
+			// Advance left pointer over left-only entry, and then retest with new pointers
 			FilterAdd(subdir, &leftFiles[i], 0, FILE_LUNIQUE, pCtxt);
 			++i;
 			continue;
 		}
 		if (j<rightFiles.GetSize() && (i==leftFiles.GetSize() || collstr(leftFiles[i].name, rightFiles[j].name, casesensitive)>0))
 		{
+			// Advance right pointer over right-only entry, and then retest with new pointers
 			FilterAdd(subdir, 0, &rightFiles[j], FILE_RUNIQUE, pCtxt);
 			++j;
 			continue;
@@ -158,6 +173,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive, in
 	return 1;
 }
 
+// In debug mode, dump contents of array to debug window
 static void TraceArray(const fentryArray * arr)
 {
 	return;
@@ -244,7 +260,6 @@ static int collstr(const CString & s1, const CString & s2, bool casesensitive)
 // Add a result
 static void FilterAdd(const CString & sDir, const fentry * lent, const fentry * rent, int code, CDiffContext * pCtxt)
 {
-//	TRACE(_T("subdir=%s, name=%s, code=%d\n"), (LPCTSTR)sDir, (LPCTSTR)ent.name, code);
 	CString name, leftdir, rightdir;
 	long rtime=0, ltime=0;
 	_int64 lsize=0, rsize=0;
