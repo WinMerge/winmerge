@@ -132,6 +132,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
 	ON_COMMAND(ID_HELP_MERGE7ZMISMATCH, OnHelpMerge7zmismatch)
 	ON_UPDATE_COMMAND_UI(ID_HELP_MERGE7ZMISMATCH, OnUpdateHelpMerge7zmismatch)
+	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
+	ON_COMMAND(ID_VIEW_TOOLBAR, OnViewToolbar)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -174,6 +176,9 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_SHOW_IDENTICAL, true);
 	m_options.InitOption(OPT_SHOW_BINARIES, true);
 	m_options.InitOption(OPT_SHOW_SKIPPED, true);
+
+	m_options.InitOption(OPT_SHOW_TOOLBAR, true);
+	m_options.InitOption(OPT_SHOW_STATUSBAR, true);
 
 	m_options.InitOption(OPT_SYNTAX_HIGHLIGHT, true);
 	m_options.InitOption(OPT_DISABLE_SPLASH, false);
@@ -343,6 +348,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_MERGINGMODE, 0, 100); 
 	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_DIFFNUM, 0, 150); 
+	if (m_options.GetBool(OPT_SHOW_STATUSBAR) == false)
+		CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, false, 0);
 
 	// TODO: Remove this if you don't want tool tips or a resizeable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
@@ -353,6 +360,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
+	if (m_options.GetBool(OPT_SHOW_TOOLBAR) == false)
+		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, false, 0);
 
 	// CG: The following line was added by the Splash Screen component.
 	CSplashWnd::ShowSplashScreen(this);
@@ -2642,4 +2651,26 @@ void CMainFrame::OnUpdateHelpMerge7zmismatch(CCmdUI* pCmdUI)
 	{
 		pCmdUI->m_pMenu->RemoveMenu(ID_HELP_MERGE7ZMISMATCH, MF_BYCOMMAND);
 	}
+}
+
+/**
+ * @brief Show/hide statusbar.
+ */
+void CMainFrame::OnViewStatusBar()
+{
+	bool bShow = !m_options.GetBool(OPT_SHOW_STATUSBAR);
+	m_options.SaveOption(OPT_SHOW_STATUSBAR, bShow);
+
+	CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, bShow, 0);
+}
+
+/**
+ * @brief Show/hide toolbar.
+ */
+void CMainFrame::OnViewToolbar()
+{
+	bool bShow = !m_options.GetBool(OPT_SHOW_TOOLBAR);
+	m_options.SaveOption(OPT_SHOW_TOOLBAR, bShow);
+
+	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, bShow, 0);
 }

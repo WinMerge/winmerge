@@ -1,3 +1,7 @@
+2005-02-07 Kimmo
+ PATCH: [ 1117375 ] Rememer status/toolbar visible status
+  Src: MainFrm.cpp MainFrm.h OptionsDef.h
+
 2005-01-22 Jochen
  PATCH: [ 1107467 ] Detect 7-Zip version from 7zip_pad.xml (2)
   Src: 7zCommon.cpp 7zCommon.h ConfigLog.cpp Merge.dsp Merge.rc paths.cpp paths.h 
