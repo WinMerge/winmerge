@@ -35,7 +35,6 @@ int xisspecial (int c);
 int xisalpha (int c);
 int xisalnum (int c);
 
-#include "edtlib.h"
 
 
 

@@ -18,6 +18,9 @@ static LPCTSTR crlfs[] =
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView view
+#ifndef __EDTLIB_H
+#include "edtlib.h"
+#endif
 
 class CMergeEditView : public CCrystalEditViewEx
 {

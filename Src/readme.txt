@@ -1,3 +1,7 @@
+2003-04-14 Perry
+ PATCH: [ 716475 ] Reduce edtlib.h coupling
+ WinMerge: MergeEditView.h StdAfx.h editlib/ccrystaleditview.inl
+
 2003-04-13 Kimmo
  PATCH: [ 719872 ] Use memory-mapped files when loading files
   WinMerge: files.h files.cpp Merge.dsp MergeDoc.h MergeDoc.cpp
