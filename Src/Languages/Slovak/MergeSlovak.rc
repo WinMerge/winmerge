@@ -105,6 +105,13 @@ BEGIN
         MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
         MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
+        POPUP "Format for "
+        BEGIN
+            MENUITEM "DOS (CRLF)",                  ID_EOL_TO_DOS
+            MENUITEM "UNIX (LF)",                   ID_EOL_TO_UNIX
+            MENUITEM "MAC (CR)",                    ID_EOL_TO_MAC
+        END
+        MENUITEM SEPARATOR
         MENUITEM "&Koniec",                     ID_APP_EXIT
     END
     POPUP "⁄pr&avy"
@@ -141,6 +148,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Panel n·strojov",            ID_VIEW_TOOLBAR
         MENUITEM "&Stavov˝ riadok",             ID_VIEW_STATUS_BAR
+        MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
     END
@@ -205,6 +213,7 @@ BEGIN
         MENUITEM "Copy Filename",               ID_EDITOR_COPY_FILENAME
     END
 END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -330,12 +339,12 @@ BEGIN
     LTEXT           "SystÈm &verziÌ:",IDC_STATIC,16,22,60,10
 END
 
-IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 156
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 247, 156
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "HlavnÈ nastavenia"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Nastavenie",IDC_STATIC,7,7,221,94
+    GROUPBOX        "Nastavenie",IDC_STATIC,7,7,233,94
     CONTROL         "&Z·lohovaù origin·lne s˙bory",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,19,202,10
     CONTROL         "Automatick˝ &skok na prv˝ rozdiel",IDC_SCROLL_CHECK,
@@ -344,19 +353,21 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,41,108,10
     CONTROL         "Ignorovaù m&alÈ/VEºK…",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,52,108,10
-    CONTROL         "Citliv˝ na &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,60,10
     CONTROL         "&Nezobrazuj sp˙öùacÌ banner",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,105,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,105,10
     CONTROL         "AutomatickÈ p&reskenovanie",IDC_AUTOMRESCAN_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,85,101,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,74,101,10
+    CONTROL         "Allow mixing EOL types",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,89,10
     CONTROL         "Porovn·vaù &pr·zdne miesto",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,125,40,103,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,137,30,103,10
+    CONTROL         "Citliv˝ na &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,149,50,60,10
     CONTROL         "Ignoruj &zmeny v pr·zdnom mieste",IDC_WHITE_CHANGE,
-                    "Button",BS_AUTORADIOBUTTON,125,60,96,10
+                    "Button",BS_AUTORADIOBUTTON,137,60,96,10
     CONTROL         "Ignoruj &celÈ pr·zdne miesto",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,125,80,100,10
-    GROUPBOX        "Tabul·tory",IDC_STATIC,7,105,221,30,WS_GROUP
+                    BS_AUTORADIOBUTTON,137,80,100,10
+    GROUPBOX        "Tabul·tory",IDC_STATIC,7,105,233,30,WS_GROUP
     LTEXT           "&Nastavenie tabul·torov:",IDC_STATIC,15,119,76,8
     EDITTEXT        IDC_TAB_EDIT,95,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
@@ -364,8 +375,8 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,120,113,73,10
     CONTROL         "Vkladaù medzery",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,120,122,69,10
-    LTEXT           "(whitespace)",IDC_STATIC,135,50,90,10
-    LTEXT           "mieste (whitespace)",IDC_STATIC,135,70,85,10
+    LTEXT           "(whitespace)",IDC_STATIC,147,40,90,10
+    LTEXT           "mieste (whitespace)",IDC_STATIC,147,70,85,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -466,7 +477,7 @@ BEGIN
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
     LTEXT           "S˙bor pre filter:",IDC_STATIC,7,128,60,10
-    COMBOBOX        IDC_FILE_FILTER,73,126,117,63,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Edit",IDC_EDIT_FILE_FILTER,194,126,34,13,WS_DISABLED
 END
@@ -562,8 +573,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,1
- PRODUCTVERSION 1,0,0,1
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -581,14 +592,14 @@ BEGIN
             VALUE "Comments", "Translated by majvan\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "Slovak for WinMerge Application \0"
-            VALUE "FileVersion", "999.999.999.999\0"
+            VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "MergeSlovak\0"
             VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "MergeSlovak.rc\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "WinMerge\0"
-            VALUE "ProductVersion", "999.999.999.999\0"
+            VALUE "ProductVersion", "000.000.000.000\0"
             VALUE "SpecialBuild", "\0"
         END
     END
@@ -645,7 +656,7 @@ BEGIN
     IDD_PROPPAGE_LARGE, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 228
+        RIGHTMARGIN, 240
         VERTGUIDE, 125
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
@@ -685,6 +696,22 @@ BEGIN
         RIGHTMARGIN, 228
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
+    END
+
+    IDD_EDITOR_HEADERBAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 366
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 4
+    END
+
+    IDD_DIRCOLS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 266
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 155
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -813,6 +840,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// ID_FILE_NEW SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_NEW             "Vytvoriù nov˝ dokument\nNov˝ dokument"
@@ -826,6 +854,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "N·hæad\nPrehæad pred tlaËou"
 END
 
+// ID_APP_ABOUT SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_APP_ABOUT            "Zobraziù inform·cie o programe\nO programe"
@@ -852,6 +881,7 @@ BEGIN
     ID_FILE_MRU_FILE16      "Otvoriù dokument"
 END
 
+// ID_NEXT_PANE SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_NEXT_PANE            "Peepn˙ù na Ôalöie okno\nœalöie okno"
@@ -868,6 +898,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Rozdeliù aktÌvne okno\nRozdeliù"
 END
 
+// ID_EDIT_CLEAR SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_EDIT_CLEAR           "Vymazaù v˝ber\nZmazaù"
@@ -962,6 +993,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "Otvor prav˝ s˙bor"
 END
 
+// IDS_SAVE_AS_TITLE SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Uloûiù jako"
@@ -982,6 +1014,7 @@ BEGIN
     IDS_NOPROJECT           "MusÌte nastaviù cestu k projektu SourceSafe (napr.: $/MojProjekt)"
 END
 
+// IDS_COLHDR_FILENAME SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Meno s˙boru"
@@ -1033,8 +1066,17 @@ BEGIN
     ID_SHOWLINEDIFF         "Highlight difference in current line"
     ID_EDITOR_COPY_PATH     "Copy full Path"
     ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
     ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
     ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
+END
+
+// ID_EOL_TO_DOS SYNCHRO
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1048,7 +1090,6 @@ BEGIN
     IDS_STATUS_COPYR2L      "KopÌrujem prav˝ do æavÈho"
     IDS_STATUS_COPYALL2L    "KopÌrujem vöetko do æavÈho"
     IDS_STATUS_COPYALL2R    "KopÌrujem vöetko do pravÈho"
-    IDS_STATUSBAR_READONLY  "RO"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_COLHDR_RSIZE        "Right Size"
     IDS_COLHDR_LTIMEC       "Left Creation Time"
@@ -1056,20 +1097,6 @@ BEGIN
     IDS_COLHDR_NEWER        "Newer File"
     IDS_COLHDR_LVERSION     "Left File Version"
     IDS_COLHDR_RVERSION     "Right File Version"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    IDS_NUM_REPLACED        "Nahraden˝ch %1 reùazcov (strings)."
-    IDS_EDIT_TEXT_NOT_FOUND "NemÙûem n·jsù reùazec ""%s"""
-    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d EOL: %s"
-    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
-    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -1081,8 +1108,28 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "Right Attributes"
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
+    IDS_STATUSBAR_READONLY  "RO"
+    IDS_PRIVATEBUILD_FMT    "Private Build: %1"
 END
 
+// IDS_NUM_REPLACED SYNCHRO
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_NUM_REPLACED        "Nahraden˝ch %1 reùazcov (strings)."
+    IDS_EDIT_TEXT_NOT_FOUND "NemÙûem n·jsù reùazec ""%s"""
+    IDS_LINE_STATUS_INFO_EOL "Line: %s Characters: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
+    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+// LANGUAGES SYNCHRO
+// END STRINGS SYNCHRO
 #endif    // Slovak resources
 /////////////////////////////////////////////////////////////////////////////
 

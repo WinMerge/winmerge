@@ -122,7 +122,6 @@
 #define IDB_RFOLDER                     215
 #define IDS_STATUSBAR_READONLY          215
 #define IDB_UNKNOWN                     216
-#define IDS_PRIVATEBUILD_FMT            216
 #define IDB_BINARYSAME                  217
 #define IDB_LFILE                       218
 #define IDB_RFILE                       219
@@ -131,6 +130,7 @@
 #define IDB_OLDSPLASH                   222
 #define IDB_LFOLDER                     223
 #define IDB_BINARYDIFF                  224
+#define IDS_PRIVATEBUILD_FMT            225
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -196,10 +196,12 @@
 #define IDC_REMOVE                      1060
 #define IDC_EDIT_FILE_FILTER            1061
 #define IDC_PRIVATEBUILD                1062
+#define IDC_MIXED_EOL                   1063
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
-#define IDS_LINE_STATUS_INFO            8503
+#define IDS_LINE_STATUS_INFO_EOL        8503
 #define IDS_EMPTY_LINE_STATUS_INFO      8504
+#define IDS_LINE_STATUS_INFO            8505
 #define IDD_EDIT_FIND                   8601
 #define IDD_EDIT_REPLACE                8602
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -406,6 +408,11 @@
 #define ID_STATUS_LEFTFILE_RO           32831
 #define ID_STATUS_RIGHTFILE_INFO        32832
 #define ID_STATUS_LEFTFILE_INFO         32833
+#define ID_STATUS_RIGHTFILE_EOL         32834
+#define ID_STATUS_LEFTFILE_EOL          32835
+#define ID_EOL_TO_DOS                   32836
+#define ID_EOL_TO_UNIX                  32837
+#define ID_EOL_TO_MAC                   32838
 
 // Next default values for new objects
 // 
@@ -413,8 +420,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        118
-#define _APS_NEXT_COMMAND_VALUE         32834
-#define _APS_NEXT_CONTROL_VALUE         1063
+#define _APS_NEXT_COMMAND_VALUE         32839
+#define _APS_NEXT_CONTROL_VALUE         1064
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

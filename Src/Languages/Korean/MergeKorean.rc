@@ -68,6 +68,13 @@ BEGIN
         MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
         MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
+        POPUP "Format for "
+        BEGIN
+            MENUITEM "DOS (CRLF)",                  ID_EOL_TO_DOS
+            MENUITEM "UNIX (LF)",                   ID_EOL_TO_UNIX
+            MENUITEM "MAC (CR)",                    ID_EOL_TO_MAC
+        END
+        MENUITEM SEPARATOR
         MENUITEM "끝내기(&X)\tEsc",             ID_APP_EXIT
     END
     POPUP "편집(&E)"
@@ -106,6 +113,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "툴바(&T)",                    ID_VIEW_TOOLBAR
         MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
+        MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM SEPARATOR
         MENUITEM "언어(&L)...",                 ID_VIEW_LANGUAGE
     END
@@ -173,6 +181,7 @@ BEGIN
     END
 END
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Accelerator
@@ -225,7 +234,7 @@ BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
     DEFPUSHBUTTON   "확인",IDOK,184,7,32,14,WS_GROUP
-    LTEXT           "버전 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
+    LTEXT           "버전 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,84,8
     LTEXT           "All rights reserved.",IDC_STATIC,7,60,170,8
     LTEXT           "WinMerge 홈페이지 방문!",IDC_WWW,7,107,209,8
@@ -312,18 +321,20 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,41,81,10
     CONTROL         "대/소문자 무시(&C)",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,52,85,10
-    CONTROL         "EOL(End of Line)에 민감(&E)",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,110,10
     CONTROL         "스플래쉬 화면 사용 안함(&D)",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,98,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,98,10
     CONTROL         "자동 리스캔(&R)",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,71,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,71,10
+    CONTROL         "Allow mixing EOL types",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,89,10
     CONTROL         "공백 비교(&W)",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,144,45,82,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,130,45,82,10
+    CONTROL         "EOL(End of Line)에 민감(&E)",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,140,56,110,10
     CONTROL         "바뀐 공백 무시(&H)",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,144,56,69,10
+                    BS_AUTORADIOBUTTON,130,67,69,10
     CONTROL         "모든 공백 무시(&A)",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,144,67,83,10
+                    BS_AUTORADIOBUTTON,130,78,83,10
     GROUPBOX        "탭(Tabs)",IDC_STATIC,7,105,221,33,WS_GROUP
     LTEXT           "탭사이즈(&T):",IDC_STATIC,15,119,36,8
     EDITTEXT        IDC_TAB_EDIT,53,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
@@ -432,7 +443,7 @@ BEGIN
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
     LTEXT           "파일 필터 :",IDC_STATIC,7,128,60,10
-    COMBOBOX        IDC_FILE_FILTER,73,126,117,63,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Edit",IDC_EDIT_FILE_FILTER,194,126,34,13,WS_DISABLED
 END
@@ -521,14 +532,15 @@ BEGIN
 END
 
 
+#ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,9,1,4
- PRODUCTVERSION 1,9,1,4
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x9L
@@ -546,14 +558,15 @@ BEGIN
             VALUE "Comments", "Translated by Sukjoon\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "WinMerge Application\0"
-            VALUE "FileVersion", "999.999.999.999\0"
+            VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
             VALUE "LegalCopyright", "ⓒ 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "WinMerge\0"
-            VALUE "ProductVersion", "999.999.999.999"
+            VALUE "ProductVersion", "000.000.000.000\0"
+            VALUE "SpecialBuild", "\0"
         END
     END
     BLOCK "VarFileInfo"
@@ -561,6 +574,8 @@ BEGIN
         VALUE "Translation", 0x412, 949
     END
 END
+
+#endif    // !_MAC
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -607,16 +622,10 @@ BEGIN
     IDD_PROPPAGE_LARGE, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 228
+        RIGHTMARGIN, 252
         VERTGUIDE, 144
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
-    END
-
-    IDD_EDIT_REPLACE, DIALOG
-    BEGIN
-        RIGHTMARGIN, 230
-        BOTTOMMARGIN, 89
     END
 
     IDD_CLEARCASE, DIALOG
@@ -653,6 +662,22 @@ BEGIN
         RIGHTMARGIN, 228
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
+    END
+
+    IDD_EDITOR_HEADERBAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 366
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 4
+    END
+
+    IDD_DIRCOLS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 266
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 155
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -781,6 +806,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// ID_FILE_NEW SYNCHRO
 STRINGTABLE
 BEGIN
     ID_FILE_NEW             "새 문서를 만듭니다.\n새문서"
@@ -794,6 +820,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "미리 보기\n미리 보기"
 END
 
+// ID_APP_ABOUT SYNCHRO
 STRINGTABLE
 BEGIN
     ID_APP_ABOUT            "프로그램 정보, 버전, 카피라이트를 봅니다.\n정보"
@@ -820,6 +847,7 @@ BEGIN
     ID_FILE_MRU_FILE16      "선택한 문서 열기"
 END
 
+// ID_NEXT_PANE SYNCHRO
 STRINGTABLE
 BEGIN
     ID_NEXT_PANE            "다음 창(pane)으로 이동합니다.\n다음 창(pane)"
@@ -836,6 +864,7 @@ BEGIN
     ID_WINDOW_SPLIT         "현재 창을 분할합니다.\n분할"
 END
 
+// ID_EDIT_CLEAR SYNCHRO
 STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "선택 영역을 삭제합니다.\n삭제"
@@ -930,6 +959,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "오른쪽 파일을 엽니다."
 END
 
+// IDS_SAVE_AS_TITLE SYNCHRO
 STRINGTABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "다른 이름으로 저장"
@@ -952,7 +982,121 @@ BEGIN
     IDS_NOPROJECT           "계속하시려면 소스세이프 프로젝트 경로를 설정하셔야합니다 (예:  $/MyProject)"
 END
 
+// IDS_COLHDR_FILENAME SYNCHRO
 STRINGTABLE
+BEGIN
+    IDS_COLHDR_FILENAME     "파일 이름"
+    IDS_COLHDR_DIR          "디렉토리"
+    IDS_COLHDR_RESULT       "비교 결과"
+    IDS_FILE_COMPARISON_TITLE "파일 비교"
+    IDS_DIFF_NUMBER_STATUS_FMT "다른 파일(%1 중 %2)"
+    IDS_NO_DIFF_SEL_FMT     "다른 부분 %1개 발견"
+    IDS_FILEISDIR           "디렉토리 파일은 비교할 수 없습니다."
+    IDS_CC_CMD              "cleartool.exe 경로(&P):"
+    IDS_VSS_CMD             "SS.EXE 경로(&P):"
+    IDS_VSS_RUN_ERROR       "버전관리시스템 명령 실행 실패."
+    IDS_DIFF_OPEN_NO_SET_PROPS
+                            "수정되었습니다.  어떤 설정은 파일비교를 다시할 때까지 적용되지 않을 수 있습니다."
+    IDS_COLHDR_LTIMEM       "왼쪽 날짜"
+    IDS_COLHDR_RTIMEM       "오른쪽 날짜"
+    IDS_COLHDR_EXTENSION    "확장자"
+    IDS_CONFIRM_DELETE_ITEMS "정말 삭제하시겠습니까(%1 중 %2) ?"
+    IDS_DEL_LEFT_FMT        "선택 파일 중 왼쪽 파일만 삭제(%1 중 %2)"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_DEL_RIGHT_FMT       "선택 파일 중 오른쪽 파일만 삭제(%1 중 %2)"
+    IDS_DELETE_FILE_FAILED  "%1 파일 삭제 실패: %2"
+    IDS_CONFIRM_DELETE_DIR  "%1 디렉토리를 삭제하시겠습니까?"
+    IDS_REMOVE_DIR_FAILED   "디렉토리 삭제 실패: %1"
+    IDS_COPY_TO_LEFT        "오른쪽에만 존재하는 파일 왼쪽으로 복사(%1 중 %2)"
+    IDS_DEL_BOTH_FMT        "선택된 파일 양쪽 모두 삭제(%1 중 %2)"
+    IDS_COPY_TO_RIGHT       "왼쪽에만 존재하는 파일 오른쪽으로 복사(%1 중 %2)"
+    IDS_COLHDR_LSIZE        "Left Size"
+    IDS_DELETE_DIR_FAILED   "%1 디렉토리 삭제를 실패: %s"
+    IDS_COPY_FILE_FAILED    "%1 파일 복사를 실패: %2"
+    IDS_COPY_DIR_FAILED     "%1 디렉토리 복사를 실패: %2"
+    IDS_ERROR_FILE_WRITEABLE "복사 가능 체크 실패"
+    IDS_ERROR_BACKUP        "파일 백업을 실패하였습니다"
+    IDS_CONFIRM_COPY_SINGLE "%1을 %2로 복사하시겠습니까?"
+    IDS_CONFIRM_DELETE_SINGLE "정말 삭제하시겠습니까 %1?"
+    IDS_BIN_FILES_SAME      "동일한 파일(바이너리 파일)"
+END
+
+STRINGTABLE
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "오른쪽 파일을 연결 프로그램을 선택해서 엽니다. ..."
+    ID_OPTIONS_SHOWBINARIES "바이너리 파일을 봅니다."
+    ID_VIEW_WHITESPACE      "공백문자(whitespace character)를 봅니다."
+    ID_REFRESH              "새로 고침\n새로 고침 (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_EDITOR_COPY_PATH     "Copy full Path"
+    ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
+END
+
+// ID_EOL_TO_DOS SYNCHRO
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FILESAVE_FAILED     "파일 저장 실패 : %1 . 다른 이름으로 저장하시겠습니까?"
+    IDS_ERROR_FILE_NOT_FOUND "해당하는 파일이 없습니다 : %1"
+    IDS_ERROR_INCOMPARABLE  "비교할 두 파일 또는 디렉토리를 선택하세요."
+    IDS_STATUS_RESCANNING   "파일을 다시 스캔중입니다..."
+    IDS_STATUS_OPENING_SELECTION "선택 파일 여는중"
+    IDS_STATUS_COPYL2R      "왼쪽에서 오른쪽으로 복사중"
+    IDS_STATUS_COPYR2L      "오른쪽에서 왼쪽으로 복사중"
+    IDS_STATUS_COPYALL2L    "왼쪽으로 모두 복사중"
+    IDS_STATUS_COPYALL2R    "오른쪽으로 모두 복사중"
+    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+    IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_LTIMEC       "Left Creation Time"
+    IDS_COLHDR_RTIMEC       "Right Creation Time"
+    IDS_COLHDR_NEWER        "Newer File"
+    IDS_COLHDR_LVERSION     "Left File Version"
+    IDS_COLHDR_RVERSION     "Right File Version"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LEFTONLY            "Left Only"
+    IDS_RIGHTONLY           "Right Only"
+    IDS_COLHDR_RESULT_ABBR  "Short Result"
+    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
+    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_FILE_SKIPPED        "File skipped"
+    IDS_DIR_SKIPPED         "Directory skipped"
+    IDS_STATUSBAR_READONLY  "RO"
+    IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+END
+
+// IDS_NUM_REPLACED SYNCHRO
+STRINGTABLE
+BEGIN
+    IDS_NUM_REPLACED        "모두 %1 개를 바꾸었습니다."
+    IDS_EDIT_TEXT_NOT_FOUND "해당하는 문자열을 찾을 수 없습니다 : ""%s"""
+    IDS_LINE_STATUS_INFO_EOL "Line: %s Characters: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
+    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+// LANGUAGES SYNCHRO
+STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_AFRIKAANS           "Afrikaans"
     IDS_ALBANIAN            "Albanian"
@@ -1115,104 +1259,7 @@ BEGIN
     IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
     IDS_VIETNAMESE          "Vietnamese"
 END
-
-STRINGTABLE
-BEGIN
-    IDS_COLHDR_FILENAME     "파일 이름"
-    IDS_COLHDR_DIR          "디렉토리"
-    IDS_COLHDR_RESULT       "비교 결과"
-    IDS_FILE_COMPARISON_TITLE "파일 비교"
-    IDS_DIFF_NUMBER_STATUS_FMT "다른 파일(%1 중 %2)"
-    IDS_NO_DIFF_SEL_FMT     "다른 부분 %1개 발견"
-    IDS_FILEISDIR           "디렉토리 파일은 비교할 수 없습니다."
-    IDS_CC_CMD              "cleartool.exe 경로(&P):"
-    IDS_VSS_CMD             "SS.EXE 경로(&P):"
-    IDS_VSS_RUN_ERROR       "버전관리시스템 명령 실행 실패."
-    IDS_DIFF_OPEN_NO_SET_PROPS
-                            "수정되었습니다.  어떤 설정은 파일비교를 다시할 때까지 적용되지 않을 수 있습니다."
-    IDS_COLHDR_LTIMEM       "왼쪽 날짜"
-    IDS_COLHDR_RTIMEM       "오른쪽 날짜"
-    IDS_COLHDR_EXTENSION    "확장자"
-    IDS_CONFIRM_DELETE_ITEMS "정말 삭제하시겠습니까(%1 중 %2) ?"
-    IDS_DEL_LEFT_FMT        "선택 파일 중 왼쪽 파일만 삭제(%1 중 %2)"
-END
-
-STRINGTABLE
-BEGIN
-    IDS_DEL_RIGHT_FMT       "선택 파일 중 오른쪽 파일만 삭제(%1 중 %2)"
-    IDS_DELETE_FILE_FAILED  "%1 파일 삭제 실패: %2"
-    IDS_CONFIRM_DELETE_DIR  "%1 디렉토리를 삭제하시겠습니까?"
-    IDS_REMOVE_DIR_FAILED   "디렉토리 삭제 실패: %1"
-    IDS_COPY_TO_LEFT        "오른쪽에만 존재하는 파일 왼쪽으로 복사(%1 중 %2)"
-    IDS_DEL_BOTH_FMT        "선택된 파일 양쪽 모두 삭제(%1 중 %2)"
-    IDS_COPY_TO_RIGHT       "왼쪽에만 존재하는 파일 오른쪽으로 복사(%1 중 %2)"
-    IDS_COLHDR_LSIZE        "Left Size"
-    IDS_DELETE_DIR_FAILED   "%1 디렉토리 삭제를 실패: %s"
-    IDS_COPY_FILE_FAILED    "%1 파일 복사를 실패: %2"
-    IDS_COPY_DIR_FAILED     "%1 디렉토리 복사를 실패: %2"
-    IDS_ERROR_FILE_WRITEABLE "복사 가능 체크 실패"
-    IDS_ERROR_BACKUP        "파일 백업을 실패하였습니다"
-    IDS_CONFIRM_COPY_SINGLE "%1을 %2로 복사하시겠습니까?"
-    IDS_CONFIRM_DELETE_SINGLE "정말 삭제하시겠습니까 %1?"
-    IDS_BIN_FILES_SAME      "동일한 파일(바이너리 파일)"
-END
-
-STRINGTABLE
-BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "오른쪽 파일을 연결 프로그램을 선택해서 엽니다. ..."
-    ID_OPTIONS_SHOWBINARIES "바이너리 파일을 봅니다."
-    ID_VIEW_WHITESPACE      "공백문자(whitespace character)를 봅니다."
-    ID_REFRESH              "새로 고침\n새로 고침 (F5)"
-    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
-    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
-END
-
-STRINGTABLE
-BEGIN
-    IDS_FILESAVE_FAILED     "파일 저장 실패 : %1 . 다른 이름으로 저장하시겠습니까?"
-    IDS_ERROR_FILE_NOT_FOUND "해당하는 파일이 없습니다 : %1"
-    IDS_ERROR_INCOMPARABLE  "비교할 두 파일 또는 디렉토리를 선택하세요."
-    IDS_STATUS_RESCANNING   "파일을 다시 스캔중입니다..."
-    IDS_STATUS_OPENING_SELECTION "선택 파일 여는중"
-    IDS_STATUS_COPYL2R      "왼쪽에서 오른쪽으로 복사중"
-    IDS_STATUS_COPYR2L      "오른쪽에서 왼쪽으로 복사중"
-    IDS_STATUS_COPYALL2L    "왼쪽으로 모두 복사중"
-    IDS_STATUS_COPYALL2R    "오른쪽으로 모두 복사중"
-    IDS_STATUSBAR_READONLY  "RO"
-    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
-    IDS_COLHDR_RSIZE        "Right Size"
-    IDS_COLHDR_LTIMEC       "Left Creation Time"
-    IDS_COLHDR_RTIMEC       "Right Creation Time"
-    IDS_COLHDR_NEWER        "Newer File"
-    IDS_COLHDR_LVERSION     "Left File Version"
-    IDS_COLHDR_RVERSION     "Right File Version"
-END
-
-STRINGTABLE
-BEGIN
-    IDS_NUM_REPLACED        "모두 %1 개를 바꾸었습니다."
-    IDS_EDIT_TEXT_NOT_FOUND "해당하는 문자열을 찾을 수 없습니다 : ""%s"""
-    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d EOL: %s"
-    IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
-    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_LEFTONLY            "Left Only"
-    IDS_RIGHTONLY           "Right Only"
-    IDS_COLHDR_RESULT_ABBR  "Short Result"
-    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
-    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
-    IDS_FILE_SKIPPED        "File skipped"
-    IDS_DIR_SKIPPED         "Directory skipped"
-END
-
+// END STRINGS SYNCHRO
 #endif    // 한국어 resources
 /////////////////////////////////////////////////////////////////////////////
 

@@ -101,6 +101,13 @@ BEGIN
         MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
         MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
+        POPUP "Format for "
+        BEGIN
+            MENUITEM "DOS (CRLF)",                  ID_EOL_TO_DOS
+            MENUITEM "UNIX (LF)",                   ID_EOL_TO_UNIX
+            MENUITEM "MAC (CR)",                    ID_EOL_TO_MAC
+        END
+        MENUITEM SEPARATOR
         MENUITEM "結束(&X)\tEsc",               ID_APP_EXIT
     END
     POPUP "編輯(&E)"
@@ -137,6 +144,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "工具列(&T)",                  ID_VIEW_TOOLBAR
         MENUITEM "狀態列(&S)",                  ID_VIEW_STATUS_BAR
+        MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM SEPARATOR
         MENUITEM "語言(&L)...",                 ID_VIEW_LANGUAGE
     END
@@ -252,10 +260,10 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "關於 WinMerge"
 FONT 9, "新細明體"
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
     DEFPUSHBUTTON   "確定",IDOK,184,7,32,14,WS_GROUP
-    LTEXT           "版本 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
+    LTEXT           "版本 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,84,8
     LTEXT           "保留所有權利。",IDC_STATIC,7,60,170,8
     LTEXT           "拜訪 WinMerge 首頁！",IDC_WWW,7,107,209,8
@@ -332,22 +340,24 @@ BEGIN
                     WS_TABSTOP,17,19,83,10
     CONTROL         "自動地捲動到第一個不同(&S)",IDC_SCROLL_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,30,129,10
-    CONTROL         "忽略空白列(&K)",IDC_VERSION,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "忽略空白列(&K)",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,41,71,10
-    CONTROL         "忽略大小寫(&C)",IDC_WWW,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "忽略大小寫(&C)",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,52,69,10
-    CONTROL         "敏感對列結束(&E)",IDC_USER,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,17,63,74,10
     CONTROL         "停用引人注目的螢幕(&D)",IDC_DISABLE_SPLASH,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,17,74,100,10
+                    WS_TABSTOP,17,63,100,10
     CONTROL         "自動重新掃描(&R)",IDC_AUTOMRESCAN_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,17,85,75,10
+                    WS_TABSTOP,17,74,75,10
+    CONTROL         "Allow mixing EOL types",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,89,10
     CONTROL         "比對空白和跳格(&W)",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,125,45,87,10
+    CONTROL         "敏感對列結束(&E)",IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,137,56,74,10
     CONTROL         "忽略空白和跳格更改(&H)",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,125,56,99,10
-    CONTROL         "忽略所有空白和跳格(&A)",IDC_ALL_WHITE,"Button",
                     BS_AUTORADIOBUTTON,125,67,99,10
+    CONTROL         "忽略所有空白和跳格(&A)",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,125,78,99,10
     GROUPBOX        "跳格",-1,7,105,221,30,WS_GROUP
     LTEXT           "跳格大小(&T):",IDC_STATIC,10,119,35,8
     EDITTEXT        IDC_TAB_EDIT,47,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
@@ -451,8 +461,8 @@ BEGIN
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | ES_AUTOHSCROLL |
                     ES_WANTRETURN
     LTEXT           "檔案濾鏡:",IDC_STATIC,7,128,60,10
-    COMBOBOX        IDC_FILE_FILTER,73,126,117,63,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST | WS_VSCROLL |
+                    WS_TABSTOP
     PUSHBUTTON      "Edit",IDC_EDIT_FILE_FILTER,194,126,34,13,WS_DISABLED
 END
 
@@ -544,8 +554,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,1
- PRODUCTVERSION 1,0,0,1
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -562,12 +572,13 @@ BEGIN
         BEGIN
             VALUE "Comments", "翻譯由 koko\0"
             VALUE "FileDescription", "WinMerge Application\0"
-            VALUE "FileVersion", "999.999.999.999\0"
+            VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
             VALUE "LegalCopyright", "c 1996-2003 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "ProductName", "WinMerge\0"
-            VALUE "ProductVersion", "999.999.999.999\0"
+            VALUE "ProductVersion", "000.000.000.000\0"
+
         END
     END
     BLOCK "VarFileInfo"
@@ -663,6 +674,22 @@ BEGIN
         RIGHTMARGIN, 228
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
+    END
+
+    IDD_EDITOR_HEADERBAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 366
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 4
+    END
+
+    IDD_DIRCOLS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 266
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 155
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -791,6 +818,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// ID_FILE_NEW SYNCHRO
 STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
     ID_FILE_NEW             "建立一個新文件\n新增"
@@ -801,10 +829,10 @@ BEGIN
     ID_FILE_PAGE_SETUP      "變更列印選項\n版面設定"
     ID_FILE_PRINT_SETUP     "變更印表機和列印選項\n列印設定"
     ID_FILE_PRINT           "列印作用中文件\n列印"
-    ID_FILE_PRINT_DIRECT    " "
     ID_FILE_PRINT_PREVIEW   "顯示整頁\n預覽列印"
 END
 
+// ID_APP_ABOUT SYNCHRO
 STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
     ID_APP_ABOUT            "顯示程式資訊，版本號碼和版權\n關於"
@@ -831,6 +859,7 @@ BEGIN
     ID_FILE_MRU_FILE16      "開啟這個文件"
 END
 
+// ID_NEXT_PANE SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_NEXT_PANE            "切換到下一個視窗\n下一視窗"
@@ -847,6 +876,7 @@ BEGIN
     ID_WINDOW_SPLIT         "分割目前視窗\n分割"
 END
 
+// ID_EDIT_CLEAR SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_EDIT_CLEAR           "清除選取的範圍\n刪除"
@@ -855,8 +885,6 @@ BEGIN
     ID_EDIT_CUT             "剪下選取並放置它到剪貼簿\n剪下"
     ID_EDIT_FIND            "尋找指定文字\n尋找"
     ID_EDIT_PASTE           "插入剪貼簿內容\n貼上"
-    ID_EDIT_PASTE_LINK      " "
-    ID_EDIT_PASTE_SPECIAL   " "
     ID_EDIT_REPEAT          "重複上次的動作\n重複"
     ID_EDIT_REPLACE         "以不同的文字取代特定的文字\n取代"
     ID_EDIT_SELECT_ALL      "選取整份文件\n全選"
@@ -897,14 +925,9 @@ STRINGTABLE DISCARDABLE
 BEGIN
     ID_L2R                  "複製選取的文字到右邊檔案\n複製右邊 (Alt + Right)"
     ID_R2L                  "複製選取的文字到左邊檔案\n複製左邊 (Alt + Left)"
-    ID_UNDO                 " "
     ID_OPTIONS_SHOWIDENTICAL "顯示完全相同的檔案"
     ID_OPTIONS_SHOWDIFFERENT "顯示有不同的檔案"
-    ID_OPTIONS_SHOWUNIQUE   " "
-    ID_POPUP_COPYTOOTHERSIDE " "
-    ID_POPUP_COPYFROMOTHERSIDE " "
     ID_PREVDIFF             "捲動到上一個不同\n上一個不同 (Alt + Up)"
-    ID_POPUP_SAVE           " "
     ID_NEXTDIFF             "捲動到下一個不同\n下一個不同 (Alt + Down)"
     ID_OPTIONS_BACKUPORIGINALFILE "儲存的這原始的一個副本為 *.bak\n備份"
 END
@@ -912,7 +935,6 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE "自動地捲動到這第一個不同\n捲動到第一個"
-    ID_POPUP_EDITFILE       " "
     ID_OPTIONS_IGNOREWHITESPACE "比對檔案時不管空白和跳格"
     ID_HIDE_BACKUP_FILES    "隱藏副檔名為 BAK 的檔案"
     ID_HELP_GNULICENSE      "顯示 GNU 公共授權"
@@ -922,8 +944,6 @@ BEGIN
     ID_ALL_RIGHT            "複製所有不同到右邊檔案\n所有到右邊"
     ID_VIEW_SELECTFONT      "選取不同檢視的字型\n選取不同檢視字型"
     ID_VIEW_USEDEFAULTFONT  "使用預設的系統字型於不同檢視\n預設字型"
-    ID_POPUP_COPYALLDIFFSTOOTHERSIDE " "
-    ID_POPUP_COPYALLDIFFSFROMOTHERSIDE " "
     ID_DIR_COPY_FILE_TO_LEFT "複製選取的檔案到已命名的資料夾"
 END
 
@@ -947,6 +967,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "開啟右邊檔案"
 END
 
+// IDS_SAVE_AS_TITLE SYNCHRO
 STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
     IDS_SAVE_AS_TITLE       "另存新檔"
@@ -967,16 +988,7 @@ BEGIN
     IDS_NOPROJECT           "你必須指定一個 SourceSafe 專案路徑以便繼續 (例如：  $/MyProject)"
 END
 
-STRINGTABLE FIXED IMPURE
-BEGIN
-    IDS_NORWEGIAN_BOKMAL    "Norsk (Bokmal)"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_SPANISH_MODERN      "Espanol (Moderno)"
-END
-
+// IDS_COLHDR_FILENAME SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_COLHDR_FILENAME     "檔案名稱"
@@ -1006,6 +1018,7 @@ BEGIN
     IDS_COPY_TO_LEFT        "複製到左邊 %1 在 %2 選取的項目"
     IDS_COPY_TO_LEFT_MAIN   "刪除兩邊 %1 在 %2 選取的項目"
     IDS_COPY_TO_RIGHT       "複製到右邊 %1 在 %2 選取的項目"
+    IDS_COLHDR_LSIZE        "Left Size"
     IDS_DELETE_DIR_FAILED   "刪除資料夾 %1 失敗： %s"
     IDS_COPY_FILE_FAILED    "正在複製檔案 %1 失敗： %2"
     IDS_COPY_DIR_FAILED     "正在複製資料夾 %1 失敗： %2"
@@ -1025,8 +1038,17 @@ BEGIN
     ID_SHOWLINEDIFF         "Highlight difference in current line"
     ID_EDITOR_COPY_PATH     "Copy full Path"
     ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
     ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
     ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
+END
+
+// ID_EOL_TO_DOS SYNCHRO
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -1040,7 +1062,6 @@ BEGIN
     IDS_STATUS_COPYR2L      "正在複製右邊到左邊"
     IDS_STATUS_COPYALL2L    "正在全部複製到左邊"
     IDS_STATUS_COPYALL2R    "正在全部複製到右邊"
-    IDS_STATUSBAR_READONLY  "RO"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_COLHDR_RSIZE        "Right Size"
     IDS_COLHDR_LTIMEC       "Left Creation Time"
@@ -1052,10 +1073,25 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
+    IDS_LEFTONLY            "Left Only"
+    IDS_RIGHTONLY           "Right Only"
+    IDS_COLHDR_RESULT_ABBR  "Short Result"
+    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
+    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_FILE_SKIPPED        "File skipped"
+    IDS_DIR_SKIPPED         "Directory skipped"
+    IDS_STATUSBAR_READONLY  "RO"
+    IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+END
+
+// IDS_NUM_REPLACED SYNCHRO
+STRINGTABLE DISCARDABLE 
+BEGIN
     IDS_NUM_REPLACED        "已取代 %1 個字串。"
     IDS_EDIT_TEXT_NOT_FOUND "無法尋找字串「%s」"
-    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "Line: %s Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
+    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -1064,45 +1100,21 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
-STRINGTABLE DISCARDABLE 
+// LANGUAGES SYNCHRO
+STRINGTABLE FIXED IMPURE
 BEGIN
-    IDS_LEFTONLY            "Left Only"
-    IDS_RIGHTONLY           "Right Only"
-    IDS_COLHDR_RESULT_ABBR  "Short Result"
-    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
-    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
-    IDS_FILE_SKIPPED        "File skipped"
-    IDS_DIR_SKIPPED         "Directory skipped"
+    IDS_NORWEGIAN_BOKMAL    "Norsk (Bokmal)"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    AFX_IDS_HELPMODEMESSAGE " "
-    AFX_IDS_APP_TITLE_EMBEDDING " "
-    AFX_IDS_COMPANY_NAME    " "
-    AFX_IDS_OBJ_TITLE_INPLACE " "
-
+    IDS_SPANISH_MODERN      "Espanol (Moderno)"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_FILE_UPDATE          " "
-    ID_FILE_SAVE_COPY_AS    " "
-    ID_FILE_SEND_MAIL       " "
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_HELP_INDEX           " "
-    ID_HELP_FINDER          " "
-    ID_HELP_USING           " "
-    ID_CONTEXT_HELP         " "
-    ID_HELP                 " "
-    ID_DEFAULT_HELP         " "
-END
-
+// END STRINGS SYNCHRO
 #endif    // Chinese (Traditional) resources
 /////////////////////////////////////////////////////////////////////////////
+
 
 
 #ifndef APSTUDIO_INVOKED
@@ -1125,6 +1137,4 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-
-
 

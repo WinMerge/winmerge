@@ -105,6 +105,13 @@ BEGIN
         MENUITEM "Left read-only",              ID_FILE_LEFT_READONLY
         MENUITEM "Right read-only",             ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
+        POPUP "Format for ..."
+        BEGIN
+            MENUITEM "DOS (CRLF)",                  ID_EOL_TO_DOS
+            MENUITEM "UNIX (LF)",                   ID_EOL_TO_UNIX
+            MENUITEM "MAC (CR)",                    ID_EOL_TO_MAC
+        END
+        MENUITEM SEPARATOR
         MENUITEM "&Sair",                       ID_APP_EXIT
     END
     POPUP "&Editar"
@@ -141,6 +148,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Barra de &Ferramentas",       ID_VIEW_TOOLBAR
         MENUITEM "Barra de &Status",            ID_VIEW_STATUS_BAR
+        MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Idioma...",                  ID_VIEW_LANGUAGE
     END
@@ -256,10 +264,10 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Sobre o WinMerge"
 FONT 8, "MS Sans Serif"
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
     DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
-    LTEXT           "Versão 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
+    LTEXT           "Versão 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,84,8
     LTEXT           "Todos os direitos reservados.",IDC_STATIC,7,60,170,8
     LTEXT           "Visite o site do WinMerge!",IDC_WWW,7,119,209,8
@@ -349,19 +357,21 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,41,93,10
     CONTROL         "Ignorar &maísculas/minúsculas",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,52,108,10
-    CONTROL         "Sensível ao &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,70,10
     CONTROL         "&Desabilitar Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,97,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,97,10
     CONTROL         "&Atualização automática",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,89,10
+    CONTROL         "Allow mixing EOL types",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,85,89,10
     CONTROL         "Comparar e&spaços em branco",IDC_WHITESPACE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,135,41,110,10
+    CONTROL         "Sensível ao &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,147,52,70,10
     CONTROL         "&Ignorar moficações nos espaços em branco",
                     IDC_WHITE_CHANGE,"Button",BS_AUTORADIOBUTTON | 
-                    BS_MULTILINE,135,52,115,19
+                    BS_MULTILINE,135,63,115,19
     CONTROL         "Ignora t&odos espaços em branco",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,135,71,119,10
+                    BS_AUTORADIOBUTTON,135,82,119,10
     GROUPBOX        "Tabulação",IDC_STATIC,7,105,250,30,WS_GROUP
     LTEXT           "Tama&nho da tabulação:",IDC_STATIC,15,119,76,8
     EDITTEXT        IDC_TAB_EDIT,93,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
@@ -471,7 +481,7 @@ BEGIN
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | 
                     ES_AUTOHSCROLL | ES_WANTRETURN
     LTEXT           "Arquivo de Filtro:",IDC_STATIC,7,128,60,10
-    COMBOBOX        IDC_FILE_FILTER,73,126,117,63,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Edit",IDC_EDIT_FILE_FILTER,194,126,34,13,WS_DISABLED
 END
@@ -567,13 +577,13 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,1
- PRODUCTVERSION 1,0,0,1
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
- FILEFLAGS 0x1L
+ FILEFLAGS 0x9L
 #else
- FILEFLAGS 0x0L
+ FILEFLAGS 0x8L
 #endif
  FILEOS 0x4L
  FILETYPE 0x1L
@@ -690,6 +700,14 @@ BEGIN
         RIGHTMARGIN, 228
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
+    END
+
+    IDD_EDITOR_HEADERBAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 366
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 4
     END
 
     IDD_DIRCOLS, DIALOG
@@ -826,6 +844,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// ID_FILE_NEW SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_FILE_NEW             "Criar um novo documento\nNovo"
@@ -839,6 +858,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Visualizar impressão\nVisualizar Impressão"
 END
 
+// ID_APP_ABOUT SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_APP_ABOUT            "Exibe informações do programa, número da Versão e Copyright\nSobre"
@@ -865,6 +885,7 @@ BEGIN
     ID_FILE_MRU_FILE16      "Abrir este documento"
 END
 
+// ID_NEXT_PANE SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_NEXT_PANE            "Ativa o próximo painel\nPróximo Painel"
@@ -881,6 +902,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Divide a janela ativa em painéis\nDivide"
 END
 
+// ID_EDIT_CLEAR SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_EDIT_CLEAR           "Apaga o texto selecionado\nApaga"
@@ -978,6 +1000,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "Abrir arquivo a direita"
 END
 
+// IDS_SAVE_AS_TITLE SYNCHRO
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_SAVE_AS_TITLE       "Salvar Como"
@@ -1030,6 +1053,7 @@ BEGIN
     IDS_COPY_TO_LEFT        "Copiar a esquerda %1 de %2 objeto(s) selecionado(s)"
     IDS_DEL_BOTH_FMT        "Excluir de ambos os lados %1 de %2 objeto(s) selecionado(s)"
     IDS_COPY_TO_RIGHT       "Copiar a direita %1 de %2 objeto(s) selecionado(s)"
+    IDS_COLHDR_LSIZE        "Left Size"
     IDS_DELETE_DIR_FAILED   "A exclusão do diretório %1 falhou: %s"
     IDS_COPY_FILE_FAILED    "A copia do arquivo %1 falhou: %2"
     IDS_COPY_DIR_FAILED     "A cópia do diretório %1 falhou: %2"
@@ -1046,8 +1070,20 @@ BEGIN
     ID_OPTIONS_SHOWBINARIES "Exibir arquivos binários"
     ID_VIEW_WHITESPACE      "Exibir caracteres de espaço em branco"
     ID_REFRESH              "Atualizar tela\nAtualizar (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_EDITOR_COPY_PATH     "Copy full Path"
+    ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
     ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
     ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
+END
+
+// ID_EOL_TO_DOS SYNCHRO
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -1061,7 +1097,6 @@ BEGIN
     IDS_STATUS_COPYR2L      "Copiando da direita para esquerda"
     IDS_STATUS_COPYALL2L    "Copiando tudo para esquerda"
     IDS_STATUS_COPYALL2R    "Copiando tudo para direita"
-    IDS_STATUSBAR_READONLY  "RO"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_COLHDR_RSIZE        "Right Size"
     IDS_COLHDR_LTIMEC       "Left Creation Time"
@@ -1073,10 +1108,25 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
+    IDS_LEFTONLY            "Left Only"
+    IDS_RIGHTONLY           "Right Only"
+    IDS_COLHDR_RESULT_ABBR  "Short Result"
+    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
+    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
+    IDS_FILE_SKIPPED        "File skipped"
+    IDS_DIR_SKIPPED         "Directory skipped"
+    IDS_STATUSBAR_READONLY  "RO"
+    IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+END
+
+// IDS_NUM_REPLACED SYNCHRO
+STRINGTABLE DISCARDABLE 
+BEGIN
     IDS_NUM_REPLACED        "Substituindo %1 texto(s)."
     IDS_EDIT_TEXT_NOT_FOUND "Não foi possível localizar""%s"""
-    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "Line: %s Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
+    IDS_LINE_STATUS_INFO    "Line: %s Characters: %d"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -1085,17 +1135,8 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_LEFTONLY            "Left Only"
-    IDS_RIGHTONLY           "Right Only"
-    IDS_COLHDR_RESULT_ABBR  "Short Result"
-    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
-    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
-    IDS_FILE_SKIPPED        "File skipped"
-    IDS_DIR_SKIPPED         "Directory skipped"
-END
-
+// LANGUAGES SYNCHRO
+// END STRINGS SYNCHRO
 #endif    // Portuguese (Brazil) resources
 /////////////////////////////////////////////////////////////////////////////
 
