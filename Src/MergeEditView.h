@@ -45,7 +45,6 @@ public:
 	CString GetSelectedText();
 	CString GetLineText(int idx);
 	void DoScroll(UINT code, UINT pos, BOOL bDoScroll);
-	BOOL SaveHelper();
 	CMergeDoc* GetDocument();
 	void UpdateResources();
 	BOOL IsModified() { return (LocateTextBuffer()->IsModified()); }

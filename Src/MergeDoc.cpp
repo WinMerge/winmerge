@@ -238,9 +238,9 @@ BOOL CMergeDoc::Rescan()
 	struct change *e, *p;
 	struct change *script=NULL;
 	BOOL bResult=FALSE;
-	int nResumeTopLine=0;
+//	int nResumeTopLine=0;
 
-	BeginWaitCursor();
+	CWaitCursor wait;
 
 	// get the desired files to temp locations so we can edit them dynamically
 	if (!TempFilesExist())
@@ -253,7 +253,7 @@ BOOL CMergeDoc::Rescan()
 	else
 	{
 		// find the top line to scroll back to
-		nResumeTopLine = mf->m_pLeft->GetScrollPos(SB_VERT)+1;
+//		nResumeTopLine = mf->m_pLeft->GetScrollPos(SB_VERT)+1;
 	}
 
 	m_diffs.RemoveAll();
@@ -382,12 +382,12 @@ BOOL CMergeDoc::Rescan()
 				mf->m_pRight->PrimeListWithFile();
 
 				// PrimeListWithFile will call resetview which resets tabs
-				mf->m_pLeft->SetTabSize(mf->m_nTabSize);
-				mf->m_pRight->SetTabSize(mf->m_nTabSize);
+//				mf->m_pLeft->SetTabSize(mf->m_nTabSize);
+//				mf->m_pRight->SetTabSize(mf->m_nTabSize);
 
-				int lcnt = mf->m_pLeft->GetLineCount();
-				int rcnt = mf->m_pRight->GetLineCount();
-				/*TODO: if (lcnt < rcnt)
+				/*TODO: int lcnt = m_ltBuf.GetLineCount();
+				int rcnt = m_rtBuf.GetLineCount();
+				if (lcnt < rcnt)
 				{
 					m_diffs[m_nDiffs-1].dbegin0 = lcnt;
 					m_diffs[m_nDiffs-1].dend0 = rcnt;
@@ -434,13 +434,11 @@ BOOL CMergeDoc::Rescan()
 	if (free1)
 		free (free1);
 
-	EndWaitCursor();
-
-	if (nResumeTopLine>0)
-	{
-		mf->m_pLeft->GoToLine(nResumeTopLine, FALSE);
-		mf->m_pRight->GoToLine(nResumeTopLine, FALSE);
-	}
+//	if (nResumeTopLine>0)
+//	{
+//		mf->m_pLeft->GoToLine(nResumeTopLine, FALSE);
+//		mf->m_pRight->GoToLine(nResumeTopLine, FALSE);
+//	}
 	return bResult;
 }
 
@@ -629,7 +627,7 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 
 
 
-BOOL CMergeDoc::DoSave(LPCTSTR szPath, CMergeEditView * /*pList*/, BOOL bLeft)
+BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL bLeft)
 {
 	CString strSavePath(szPath);
 
@@ -785,9 +783,8 @@ UINT CMergeDoc::CountPrevBlanks(UINT nCurLine, BOOL bLeft)
 
 BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/) 
 {
-	if (mf->m_pLeft)
-		if (!mf->m_pLeft->SaveHelper())
-			return FALSE;
+	if (!SaveHelper())
+		return FALSE;
 	
 	mf->m_pLeft = mf->m_pRight = NULL;
 	return TRUE;
@@ -935,11 +932,11 @@ void CMergeDoc::CDiffTextBuffer::ReplaceLine(int nLine, const CString &strText)
 	InsertText(NULL, nLine, 0, strText, endl,endc);
 }
 
-void CMergeDoc::CDiffTextBuffer::DeleteLine(int nLine)
-{
-	if (GetLineLength(nLine)>0)
-		DeleteText(m_bIsLeft? mf->m_pLeft:mf->m_pRight, nLine, 0, nLine, GetLineLength(nLine));
-}
+//DEL void CMergeDoc::CDiffTextBuffer::DeleteLine(int nLine)
+//DEL {
+//DEL 	if (GetLineLength(nLine)>0)
+//DEL 		DeleteText(m_bIsLeft? mf->m_pLeft:mf->m_pRight, nLine, 0, nLine, GetLineLength(nLine));
+//DEL }
 
 BOOL CMergeDoc::InitTempFiles(const CString& srcPathL, const CString& strPathR)
 {
@@ -1042,16 +1039,14 @@ void CMergeDoc::FlushAndRescan()
 
 void CMergeDoc::OnFileSave() 
 {
-	if (mf->m_pLeft && mf->m_pLeft->IsModified())
+	if (m_ltBuf.IsModified())
 	{
-		if (DoSave(m_strLeftFile, mf->m_pLeft, TRUE))
-			mf->m_pLeft->ResetMod();
+		DoSave(m_strLeftFile, TRUE);
 	}
 
-	if (mf->m_pRight && mf->m_pRight->IsModified())
+	if (m_rtBuf.IsModified())
 	{
-		if (DoSave(m_strRightFile, mf->m_pRight, FALSE))
-			mf->m_pRight->ResetMod();
+		DoSave(m_strRightFile, FALSE);
 	}
 }
 
@@ -1213,3 +1208,45 @@ void CMergeDoc::PrimeTextBuffers()
 	m_rtBuf.SetReadOnly(FALSE);
 
 }
+
+BOOL CMergeDoc::SaveHelper()
+{
+	BOOL result = TRUE;
+	CString s;
+
+	AfxFormatString1(s, IDS_SAVE_FMT, m_strLeftFile); 
+	if (m_ltBuf.IsModified())
+	{
+		switch(AfxMessageBox(s, MB_YESNOCANCEL|MB_ICONQUESTION))
+		{
+		case IDYES:
+			if (!DoSave(m_strLeftFile, TRUE))
+				result=FALSE;
+			break;
+		case IDNO:
+			break;
+		default:  // IDCANCEL
+			result=FALSE;
+			break;
+		}
+	}
+
+	AfxFormatString1(s, IDS_SAVE_FMT, m_strRightFile); 
+	if (m_rtBuf.IsModified())
+	{
+		switch(AfxMessageBox(s, MB_YESNOCANCEL|MB_ICONQUESTION))
+		{
+		case IDYES:
+			if (!DoSave(m_strRightFile, FALSE))
+				result=FALSE;
+			break;
+		case IDNO:
+			break;
+		default:  // IDCANCEL
+			result=FALSE;
+			break;
+		}
+	}
+	return result;
+}
+

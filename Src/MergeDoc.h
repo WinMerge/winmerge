@@ -28,9 +28,9 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
-#include "afxtempl.h"
 #include "CCrystalTextBuffer.h"
 #include <vector>
+#include "afxtempl.h"
 
 #define OP_NONE			0
 #define OP_LEFTONLY		1
@@ -70,7 +70,6 @@ private :
 		BOOL m_bIsLeft;
 public :
 	      bool curUndoGroup();
-	      void DeleteLine(int nLine);
 	      void ReplaceLine(int nLine, const CString& strText);
 		BOOL SaveToFile (LPCTSTR pszFileName, 
 											 int nCrlfStyle = CRLF_STYLE_AUTOMATIC , 
@@ -134,7 +133,7 @@ public:
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	BOOL Undo();
 	void ListCopy(bool bSrcLeft);
-	BOOL DoSave(LPCTSTR szPath, CMergeEditView * pList, BOOL bLeft);
+	BOOL DoSave(LPCTSTR szPath, BOOL bLeft);
 	//CString ExpandTabs(LPCTSTR szText);
 	//CString Tabify(LPCTSTR szText);
 	int LineToDiff(UINT nLine);
@@ -152,6 +151,7 @@ public:
 
 // Implementation
 public:
+	BOOL SaveHelper();
 	std::vector<CMergeEditView*> undoTgt;
 	std::vector<CMergeEditView*>::iterator curUndo;
 	void FlushAndRescan();

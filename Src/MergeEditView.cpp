@@ -108,56 +108,6 @@ void CMergeEditView::DoScroll(UINT code, UINT pos, BOOL bDoScroll)
 	CCrystalEditViewEx::OnVScroll(code, pos, NULL);
 }
 
-
-
-BOOL CMergeEditView::SaveHelper()
-{
-	BOOL result = TRUE;
-	CMergeDoc *pd = GetDocument();
-	CString s;
-
-	AfxFormatString1(s, IDS_SAVE_FMT, pd->m_strLeftFile); 
-	if (mf->m_pLeft
-		&& mf->m_pLeft->IsModified())
-	{
-		switch(AfxMessageBox(s, MB_YESNOCANCEL|MB_ICONQUESTION))
-		{
-		case IDYES:
-			if (pd->DoSave(pd->m_strLeftFile, mf->m_pLeft, TRUE))
-				mf->m_pLeft->ResetMod();
-			else
-				result=FALSE;
-			break;
-		case IDNO:
-			break;
-		default:  // IDCANCEL
-			result=FALSE;
-			break;
-		}
-	}
-
-	AfxFormatString1(s, IDS_SAVE_FMT, pd->m_strRightFile); 
-	if (mf->m_pRight
-		&& mf->m_pRight->IsModified())
-	{
-		switch(AfxMessageBox(s, MB_YESNOCANCEL|MB_ICONQUESTION))
-		{
-		case IDYES:
-			if (pd->DoSave(pd->m_strRightFile, mf->m_pRight, FALSE))
-				mf->m_pRight->ResetMod();
-			else
-				result=FALSE;
-			break;
-		case IDNO:
-			break;
-		default:  // IDCANCEL
-			result=FALSE;
-			break;
-		}
-	}
-	return result;
-}
-
 void CMergeEditView::UpdateResources()
 {
 
@@ -165,10 +115,13 @@ void CMergeEditView::UpdateResources()
 
 BOOL CMergeEditView::PrimeListWithFile()
 {
+	int nResumeTopLine = GetScrollPos(SB_VERT)+1;
 
 	SetWordWrapping(FALSE);
 	ResetView();
 	RecalcVertScrollBar();
+	SetTabSize(mf->m_nTabSize);
+	GoToLine(nResumeTopLine, FALSE);
 
 	return TRUE;
 }
@@ -430,8 +383,8 @@ void CMergeEditView::OnFirstdiff()
 	{
 		// scroll to the first line of the first diff, with some context thrown in
 		int line = max(0, pd->m_diffs[0].dbegin0-CONTEXT_LINES);
-		mf->m_pLeft->ScrollToLine(line);
-		mf->m_pRight->ScrollToLine(line);
+		ScrollToLine(line);
+		UpdateSiblingScrollPos(FALSE);
 
 		// select the diff
 		SelectDiff(0, TRUE, FALSE);
@@ -467,8 +420,8 @@ void CMergeEditView::OnNextdiff()
 	if (curDiff+1 >= (int)pd->m_nDiffs)
 	{
 		// we're on the last diff already, so remove the selection
-		mf->m_pLeft->SelectNone();
-		mf->m_pRight->SelectNone();
+//		mf->m_pLeft->SelectNone();
+//		mf->m_pRight->SelectNone();
 	}
 	else if (curDiff!=-1)
 	{
@@ -512,8 +465,8 @@ void CMergeEditView::OnPrevdiff()
 	if (curDiff==0)
 	{
 		// we're on the first diff already, so remove the selection
-		mf->m_pLeft->SelectNone();
-		mf->m_pRight->SelectNone();
+//		mf->m_pLeft->SelectNone();
+//		mf->m_pRight->SelectNone();
 	}
 	else if (curDiff!=-1)
 	{
@@ -569,8 +522,8 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	if (diff!=-1)
 	{
 		SelectDiff(diff, FALSE, FALSE);
-		mf->m_pLeft->Invalidate();
-		mf->m_pRight->Invalidate();
+//		mf->m_pLeft->Invalidate();
+//		mf->m_pRight->Invalidate();
 	}
 	
 	CCrystalEditViewEx::OnLButtonDblClk(nFlags, point);
@@ -585,8 +538,8 @@ void CMergeEditView::OnLButtonUp(UINT nFlags, CPoint point)
 	if (!IsLineInCurrentDiff(pos.y))
 	{
 		pd->SetCurrentDiff(-1);
-		mf->m_pLeft->Invalidate();
-		mf->m_pRight->Invalidate();
+		Invalidate();
+		pd->UpdateAllViews(this);
 	}
 }
 
