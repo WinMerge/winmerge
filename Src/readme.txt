@@ -1,3 +1,7 @@
+2003-08-20 Perry
+ Added Norwegian to batch build file
+  Languages: BuildAll.bat
+
 2003-08-20 Christian
  PATCH: [ 791487 ] Norwegian (bokmål) translation
   Languages: Norwegian added
