@@ -2,6 +2,8 @@
  PATCH: [ 932086 ] Syntax highlighting of HTML not complete (Bug 930930)
   Submitted by Tim Gerundt
   Src/editlib: ccrystaltextview.cpp html.cpp php.cpp
+ Fix typo causing wrong icon for error items in dir compare
+  Src: DirView.cpp
 
 2004-04-07 Laoran
  BUG: [ 930995 ] Cursor help text ... ; part two : inversion in menu

@@ -285,7 +285,7 @@ void CDirView::OnInitialUpdate()
 #define DIFFIMG_SKIP        9
 #define DIFFIMG_DIRSKIP    10
 #define DIFFIMG_DIR        11
-#define DIFFIMG_ERROR      11
+#define DIFFIMG_ERROR      12
 
 /**
  * @brief Return image index appropriate for this row
