@@ -1009,11 +1009,16 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		}
 		// Handle case where file ended with line without EOL
 		if (lpChar > lpLineBegin)
-			// no ghost line, because that would append an EOL to the last line
+			// just read the last real line, it has not EOL so it is really the last real
 			ReadLineFromBuffer(lpLineBegin, nLineNum, lpChar - lpLineBegin);
 		else
-			// Last line had EOL, so append succeeding ghost line
+		{
+			// Last line had EOL, so append succeeding real line
+			// ReadLineFromBuffer doesn't work with an empty line, 
+			// so delete last line (it is invalid, it has no buffer) and insert an empty one
+			DeleteLine(nLineNum);
 			InsertLine(_T(""), 0);
+		}
 		ASSERT(m_aLines.GetSize() > 0);   //  At least one empty line must present
 		
 		m_bInit = TRUE;

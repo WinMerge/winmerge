@@ -1,3 +1,7 @@
+2003-08-31 Laoran
+ correction for the patch [797741] in CMergeDoc::CDiffTextBuffer::LoadFromFile
+  WinMerge: MergeDoc.cpp
+
 2003-08-31 Kimmo
  PATCH: [ 797741 ] Faster file loading
   WinMerge: files.h files.cpp MergeDoc.h MergeDoc.cpp
