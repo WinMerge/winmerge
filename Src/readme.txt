@@ -1,3 +1,7 @@
+2004-05-15 Kimmo
+ Fix build error, VC6 doesn't like CList::GetSize()
+  Src: DirActions.cpp
+
 2004-05-14 Kimmo
  PATCH: [ 952825 ] Cleanup VSS dialog layout
   Src: Merge.rc

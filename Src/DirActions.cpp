@@ -425,7 +425,7 @@ void CDirView::PerformActionList(ActionList & actionList)
 	
 	// Add files/directories
 	BOOL bSucceed = TRUE;
-	const BOOL bMultiFile = (actionList.actions.GetSize() > 1);
+	const BOOL bMultiFile = (actionList.actions.GetCount() > 1);
 	BOOL bApplyToAll = FALSE;
 	POSITION pos = actionList.actions.GetHeadPosition();
 	POSITION curPos = pos;
