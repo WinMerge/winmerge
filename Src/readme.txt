@@ -1,3 +1,5 @@
+2005-03-08 WinMerge experimental release 2.3.1.6 (cvs)
+
 2005-03-08 Kimmo
  PATCH: [ 1158456 ] Fix setting font for headerbar editcontrols
   Src: EditorFilepathBar.cpp EditorFilepathBar.h
