@@ -3,6 +3,8 @@
   Src: Plugins.cpp
  PATCH: [ 1162571 ] Simplify SplitFilename
   Src/Common: coretools.cpp
+ Cosmetic (new comments)
+  Src/Common: LanguageSelect.cpp
 
 2005-03-16 Kimmo
  PATCH: [ 1161709 ] Virtual InitOption() and SaveOption() for COptionsMgr

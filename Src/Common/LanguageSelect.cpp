@@ -726,6 +726,10 @@ CLanguageSelect::InitializeLanguage()
 	}
 	else
 	{
+		// User has not specified a language
+		// so look in thread locale, user locale, and then system locale for
+		// a language that WinMerge supports
+
 		WORD Lang1 = GetLangFromLocale(GetThreadLocale());
 		if (Lang1 != (WORD)-1)
 		{
