@@ -2551,5 +2551,9 @@ void CMainFrame::OnFileNew()
 	VERIFY(m_strLeftDesc.LoadString(IDS_EMPTY_LEFT_FILE));
 	VERIFY(m_strRightDesc.LoadString(IDS_EMPTY_RIGHT_FILE));
 	ShowMergeDoc(pDirDoc, _T(""), _T(""), FALSE, FALSE, 0, 0);
+	
+	// Empty descriptors now that docs are open
+	m_strLeftDesc.Empty();
+	m_strRightDesc.Empty();
 }
 
