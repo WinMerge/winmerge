@@ -1,3 +1,5 @@
+2003-10-20 WinMerge experimental release 2.1.3.3 (patch demo)
+
 2003-10-20 Laoran
  BUG: [ 826233 ] plugins or unicode bug
   WinMerge: UnicodeUtf8.cpp
