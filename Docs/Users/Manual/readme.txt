@@ -1,3 +1,7 @@
+2004-11-11 Tim
+ PATCH: [ 1060973 ] Indent for manual output
+  Manual: Manual.xsl
+
 2004-11-09 Kimmo
  PATCH: [ 1062598 ] Docs: More examples for filters
   Manual: Filters.xml
