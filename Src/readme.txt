@@ -1,6 +1,8 @@
 2004-01-06 Perry
  PATCH: [ 869575 ] UniMemFile needs to init charsize to 1
   common: UniFile.cpp
+ PATCH: [ 869518 ] Fix IO.C to count non-UNIX prefix lines correctly
+  WinMerge: IO.C
 
 2004-01-04 Kimmo
  BUG: [ 869289 ] Typo in XML_html.flt excludes gif files

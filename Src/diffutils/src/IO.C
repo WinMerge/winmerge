@@ -636,8 +636,14 @@ find_identical_ends (filevec)
 	    linbuf0 = (char const HUGE **) xrealloc ((void *)linbuf0, (alloc_lines0 *= 2)
 							 * sizeof(*linbuf0));
 	  linbuf0[l] = p0;
-	  while (*p0++ != '\n')
-	    ;
+	  /* Perry/WinMerge (2004-01-05) altered original diffutils loop "while (*p0++ != '\n') ;" for other EOLs */
+	  while (1)
+	    {
+	      char ch = *p0++;
+	      /* stop at any eol, \n or \r or \r\n */
+	      if (ch == '\n') break;
+	      if (ch == '\r' && (p0==end0 || *p0!='\n')) break;
+	    }
 	}
     }
   buffered_prefix = prefix_count && context < lines ? context : lines;
