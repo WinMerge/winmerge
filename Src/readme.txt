@@ -2,6 +2,7 @@
  Languages:
   Dutch/MergeDutch.rc
  Some updates to align Dutch rc towards English rc.
+ [ 685637 ] CMainFrame::SyncFiles GPF bug
 
 2003-02-12  Christian
  [ 630286 ] WinMerge crashes/fails in WinCVS

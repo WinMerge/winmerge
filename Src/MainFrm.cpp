@@ -1018,7 +1018,9 @@ BOOL CMainFrame::SyncFiles(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError)
 {
 	if (!DoSyncFiles(pszSrc, pszDest, psError))
 	{
-		AfxFormatString2(*psError, IDS_COPY_FILE_FAILED, *psError, pszSrc);
+		CString msg;
+		AfxFormatString2(msg, IDS_COPY_FILE_FAILED, *psError, pszSrc);
+		*psError = msg;
 		return FALSE;
 	}
 	return TRUE;
