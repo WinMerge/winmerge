@@ -1,6 +1,8 @@
 2004-05-01 Perry
  PATCH: [ 941979 ] Add cast to suppress VS.NET 2002 warning
   Src: MergeDoc.cpp
+ PATCH: [ 927929 ] Reload language menus after resources hooked
+  Src: Merge.cpp
 
 2004-04-30 Christian
  PATCH: [ 941982 ] Fix VS6 compilation

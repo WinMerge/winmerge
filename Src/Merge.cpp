@@ -333,6 +333,10 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 			files[1] = files[1] + fname + fext;
 		}
 	}
+
+
+	// Reload menus in case a satellite language dll was loaded above
+	m_lang.ReloadMenu();
 }
 
 /////////////////////////////////////////////////////////////////////////////
