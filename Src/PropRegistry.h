@@ -25,15 +25,12 @@
 #ifndef PropRegistry_h_included
 #define PropRegistry_h_included
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropRegistry dialog
 
 /**
- * @brief CPropRegistry dialog
+ * @brief Property page for registry options; used in options property sheet
  */
 class CPropRegistry : public CPropertyPage
 {

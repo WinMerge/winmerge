@@ -1,11 +1,9 @@
+// CCPrompt.h : header file
+//
+
 #if !defined(AFX_CCPROMPT_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_)
 #define AFX_CCPROMPT_H__7ED564F2_CCB8_11D4_92BB_00B0D0221937__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// CCPrompt.h : header file
-//
 
 /////////////////////////////////////////////////////////////////////////////
 // CCCPrompt dialog

@@ -1,11 +1,9 @@
+// PropFilter.h : header file
+//
+
 #if !defined(AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_)
 #define AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// PropFilter.h : header file
-//
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropFilter dialog

@@ -1,11 +1,9 @@
+// OutputDlg.h : header file
+//
+
 #if !defined(AFX_OUTPUTDLG_H__7F99AF10_24E5_49AF_8D97_9A86A80BAD48__INCLUDED_)
 #define AFX_OUTPUTDLG_H__7F99AF10_24E5_49AF_8D97_9A86A80BAD48__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// OutputDlg.h : header file
-//
 
 /////////////////////////////////////////////////////////////////////////////
 // COutputDlg dialog

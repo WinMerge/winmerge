@@ -3,6 +3,11 @@
   src: DirView.h
  Cleanup stdafx.h; comment includes & declarations, remove unneeded include of afxsock.h
   src: StdAfx.cpp StdAfx.h
+ PATCH: [ 802113 ] strip out spurious tests: _MSC_VER >= 1000 { part #2/2 }
+  src: CCPrompt.h ColorButton.h DiffViewBar.h DirCompStateBar.h MergeEditView.h
+   OutputDlg.h PatchDlg.h PropColors.h PropCompare.h PropFilter.h PropRegistry.h
+   PropSyntax.h SelectUnpackerDlg.h WMGotoDlg.h
+  src/Common: SplitterWndEx.h
 
 2004-01-23 Kimmo
  PATCH: [ 848159 ] RFE 826652 : Compare by modified date
@@ -56,7 +61,7 @@
   src: ChildFrm.cpp ChildFrm.h DirDoc.cpp DirDoc.h DirFrame.cpp DirFrame.h
    DirView.cpp DirView.h MainFrm.cpp MainFrm.h MergeDiffDetailView.cpp 
    MergeDiffDetailView.h MergeEditView.cpp MergeEditView.h
- PATCH: [ 802113 ] strip out spurious tests: _MSC_VER >= 1000
+ PATCH: [ 802113 ] strip out spurious tests: _MSC_VER >= 1000 { part#1/2 }
   src: ChildFrm.h DirFrame.h DirView.h EditFile.h FilepathEdit.h
    GhostTextBuffer.h GhostTextView.h MainFrm.h Merge.h MergeDoc.h
    PropGeneral.h PropVss.h StdAfx.h VssPrompt.h

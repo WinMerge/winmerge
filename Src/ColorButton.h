@@ -1,11 +1,9 @@
+// ColorButton.h : header file
+//
+
 #if !defined(AFX_COLORBUTTON_H__75623C05_2D2D_4FBE_B819_661F49DEAE94__INCLUDED_)
 #define AFX_COLORBUTTON_H__75623C05_2D2D_4FBE_B819_661F49DEAE94__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// ColorButton.h : header file
-//
 
 /////////////////////////////////////////////////////////////////////////////
 // CColorButton window

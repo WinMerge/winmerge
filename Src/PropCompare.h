@@ -1,11 +1,9 @@
+// PropCompare.h : header file
+//
+
 #ifndef _PROPPAGE_COMPARE_H_
 #define _PROPPAGE_COMPARE_H_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// PropCompare.h : header file
-//
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropCompare dialog

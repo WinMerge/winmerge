@@ -1,11 +1,9 @@
+// PropColors.h : header file
+//
+
 #if !defined(AFX_PROPCOLORS_H__9C0A0F92_CDD6_40FE_BEFC_101B1E22FFDD__INCLUDED_)
 #define AFX_PROPCOLORS_H__9C0A0F92_CDD6_40FE_BEFC_101B1E22FFDD__INCLUDED_
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-// PropColors.h : header file
-//
 
 #include "ColorButton.h"
 
@@ -14,6 +12,7 @@ const int CustomColorsAmount = 16;
 /////////////////////////////////////////////////////////////////////////////
 // CPropColors dialog
 
+/** @brief Property page for colors options; used in options property sheet */
 class CPropColors : public CPropertyPage
 {
 // Construction
