@@ -1,3 +1,7 @@
+2003-09-23 Perry
+ PATCH: [ 810998 ] Unicode fix for ghosttextbuffer
+  WinMerge: GhostTextBuffer.cpp
+
 2003-09-22 Kimmo
  PATCH: [ 809902 ] Show if file is changed
   WinMerge: MergeDoc.h MergeDoc.cpp MergeEditView.cpp

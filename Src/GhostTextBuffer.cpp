@@ -148,7 +148,7 @@ UINT CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 			// copy the EOL of the requested type
 			if (i!=ApparentLastRealLine())
 			{
-				CopyMemory(pszBuf, sEol, sEol.GetLength());
+				CopyMemory(pszBuf, sEol, sEol.GetLength() * sizeof(TCHAR));
 				pszBuf += sEol.GetLength();
 			}
 		}
