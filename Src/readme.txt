@@ -1,6 +1,9 @@
 2005-01-23 Perry
  PATCH: [ 1107516 ] Suggest code simplification for DiffFileInfo ctr
   Src: DiffFileInfo.h
+ PATCH: [ 1103530 ] Include codepages in "force unification" question
+  Src: MainFrm.cpp Merge.rc
+  Languages: *.rc
 
 2005-01-22 Perry
  PATCH: [ 1107484 ] Fix broken version columns

@@ -1800,7 +1800,7 @@ BEGIN
     IDS_SUGGEST_IGNOREEOL   "I file hanno un diverso tipo di EOL.\nCon le opzioni correnti, tutte le linee saranno diverse.\nDesideri ignorare le differenze di EOL per questi file ?\n\nUtenti avanzati : se le EOL non sono unificate nei tuoi file,\npuoi piuttosto impostare l'opzione '%1'."
     IDS_SUGGEST_PRESERVEEOL "Gli EOL sono di tipi diversi (DOS/UNIX/MAC) nel file '%1'.\nCon le opzioni correnti, essi verranno unificati nel tipo principale.\nDesideri cambiare le opzioni e conservare gli EOL diversi ?"
     IDS_PREDIFFER_ERROR      "C'è stato un errore nel prediffing del file '%1' con il plugin '%2'. Il prediffing non verrà più applicato."
-    IDS_SUGGEST_IGNORECODEPAGE "Il file sinistro e destro non hanno lo stesso codice di pagina.\nLa visualizzazione di ciascun file con il proprio codice di pagina fornirà una migliore visualizzazione ma l'unione/copia sarà pericolosa.\nNoi suggeriamo di lasciare da parte le informazioni sul codice di pagina. Sei d'accordo ?"
+    IDS_SUGGEST_IGNORECODEPAGE "Il file sinistro (cp%d) e destro (cp%d) non hanno lo stesso codice di pagina.\nLa visualizzazione di ciascun file con il proprio codice di pagina fornirà una migliore visualizzazione ma l'unione/copia sarà pericolosa.\nNoi suggeriamo di lasciare da parte le informazioni sul codice di pagina. Sei d'accordo ?"
 END
 
 // EDITOR : SHOW LINE DIFF

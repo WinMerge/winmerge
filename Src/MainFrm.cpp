@@ -573,10 +573,12 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 
 	if (cpleft != cpright)
 	{
+		CString msg;
+		msg.Format(IDS_SUGGEST_IGNORECODEPAGE, cpleft, cpright);
+		int msgflags = MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN;
 		// Two files with different codepages
 		// Warn and propose to use the default codepage for both
-		int userChoice = AfxMessageBox(IDS_SUGGEST_IGNORECODEPAGE, 
-		                               MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN);
+		int userChoice = AfxMessageBox(msg, msgflags);
 		if (userChoice == IDYES)
 			cpleft = cpright = getDefaultCodepage();
 	}

@@ -1804,7 +1804,7 @@ BEGIN
     IDS_SUGGEST_IGNOREEOL   "Die Dateien haben ein unterschiedliches Zeilenumbruch-Format.\nMit den aktuellen Einstellungen werden alle Zeilen unterschiedlich sein.\nMöchten Sie die Zeilenumbruch-Unterschiede für diese Dateien ignorieren?\n\nFür fortgeschrittene Anwender: Wenn die Zeilenumbrüche in Ihren Dateien nicht einheitlich sind,\n können Sie eher die Option '%1' einstellen."
     IDS_SUGGEST_PRESERVEEOL "Die Zeilenumbrüche in der Datei '%1' sind von unterschiedlichen Formaten (DOS/UNIX/MAC).\nMit den aktuellen Einstellungen werden sie zum Hauptformat vereinheitlicht.\nMöchten Sie die Einstellungen ändern und das Mischen der Zeilenumbruch-Formate erlauben?"
     IDS_PREDIFFER_ERROR      "Ein Fehler trat beim Prediffing der Datei '%1' mit dem Plugin '%2' auf. Das Prediffing wird daher nicht mehr angewendet."
-    IDS_SUGGEST_IGNORECODEPAGE "Die linke und rechte Datei haben nicht den gleichen Zeichensatz.\nDas Anzeigen jeder Datei im eigenen Zeichensatz erlaubt eine bessere Darstellung, aber das Mischen/Kopieren ist gefährlich.\nMöchten Sie für Beide den Standard-Zeichensatz erzwingen (empfohlen)?"
+    IDS_SUGGEST_IGNORECODEPAGE "Die linke (cp%d) und rechte (cp%d) Datei haben nicht den gleichen Zeichensatz.\nDas Anzeigen jeder Datei im eigenen Zeichensatz erlaubt eine bessere Darstellung, aber das Mischen/Kopieren ist gefährlich.\nMöchten Sie für Beide den Standard-Zeichensatz erzwingen (empfohlen)?"
 END
 
 // EDITOR : SHOW LINE DIFF

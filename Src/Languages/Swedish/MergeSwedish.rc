@@ -1798,7 +1798,7 @@ BEGIN
     IDS_SUGGEST_IGNOREEOL   "Filerna har olika radslutstyper.\nMed de aktuella inställningarna , kommer alla rader att vara olika.\nVill du ignorera radslutsskillnader för dessa filer ?\n\nAvancerad användare : om radslut inte är lika i dina filer,\n kan du hellre ställa in inställningen '%1'."
     IDS_SUGGEST_PRESERVEEOL "Radsluten är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika radsluten ?"
     IDS_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
-    IDS_SUGGEST_IGNORECODEPAGE "Vänster och höger fil har inte samma codepage. \nAtt visa varje fil i dess egen codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer codepage informationen. Önskar du detta ?"
+    IDS_SUGGEST_IGNORECODEPAGE "Vänster (cp%d) och höger (cp%d) fil har inte samma codepage. \nAtt visa varje fil i dess egen codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer codepage informationen. Önskar du detta ?"
 END
 
 // EDITOR : SHOW LINE DIFF
