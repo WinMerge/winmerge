@@ -509,6 +509,7 @@
 #define ID_HELP_GETCONFIG               32855
 #define ID_DIR_COPY_LEFT_TO_BROWSE      32856
 #define ID_DIR_COPY_RIGHT_TO_BROWSE     32857
+#define ID_WINDOW_CHANGE_PANE           32858
 
 // Next default values for new objects
 // 
@@ -516,7 +517,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        121
-#define _APS_NEXT_COMMAND_VALUE         32858
+#define _APS_NEXT_COMMAND_VALUE         32859
 #define _APS_NEXT_CONTROL_VALUE         1108
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

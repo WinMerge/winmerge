@@ -222,6 +222,8 @@ protected:
 	afx_msg void OnUpdateMultipleLeft(CCmdUI* pCmdUI);
 	afx_msg void OnMultipleRight();
 	afx_msg void OnUpdateMultipleRight(CCmdUI* pCmdUI);
+	afx_msg void OnChangePane();
+	afx_msg void OnUpdateChangePane(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

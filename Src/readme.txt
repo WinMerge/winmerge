@@ -1,3 +1,8 @@
+2003-12-18 Kimmo
+ PATCH: [ 860988 ] Change File from menu (Adds Window/Change Pane)
+  WinMerge: Merge.rc MergeEditView.h MergeEditView.cpp resource.h
+  Languages: *.rc resource.h
+
 2003-12-18 Laoran
  adapt plugins syntax check, consequence of patch #853147 
   WinMerge: Plugins.cpp

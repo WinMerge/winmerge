@@ -131,6 +131,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_MULTIPLE_LEFT, OnUpdateMultipleLeft)
 	ON_COMMAND(ID_MULTIPLE_RIGHT, OnMultipleRight)
 	ON_UPDATE_COMMAND_UI(ID_MULTIPLE_RIGHT, OnUpdateMultipleRight)
+	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_CHANGE_PANE, OnUpdateChangePane)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1610,4 +1612,21 @@ void CMergeEditView::OnUpdateR2LNext(CCmdUI* pCmdUI)
 		pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
 	else
 		pCmdUI->Enable(FALSE);
+}
+
+/**
+ * @brief Change active pane in MergeView
+ */
+void CMergeEditView::OnChangePane()
+{
+	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, FALSE);
+	pSplitterWnd->ActivateNext();
+}
+
+/**
+ * @brief Enable "Change Pane" menuitem when mergeview is active
+ */
+void CMergeEditView::OnUpdateChangePane(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
 }

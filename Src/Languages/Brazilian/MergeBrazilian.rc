@@ -200,6 +200,8 @@ BEGIN
     BEGIN
         MENUITEM "Fechar",                      ID_FILE_CLOSE
         MENUITEM SEPARATOR
+        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
         MENUITEM "Dividir &Horizontalmente",    ID_WINDOW_TILE_HORZ
         MENUITEM "Dividir &Verticalmente",      ID_WINDOW_TILE_VERT
         MENUITEM "Em &Cascata",                 ID_WINDOW_CASCADE
@@ -1387,6 +1389,9 @@ BEGIN
     ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
     ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
     ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+    ID_DIR_OPEN_LEFT_WITHEDITOR "Open the left file to external editor"
+    ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
+    ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
 END
 
 STRINGTABLE DISCARDABLE

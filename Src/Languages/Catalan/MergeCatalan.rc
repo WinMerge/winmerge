@@ -200,6 +200,8 @@ BEGIN
     BEGIN
         MENUITEM "&Tanca",                      ID_FILE_CLOSE
         MENUITEM SEPARATOR
+        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
         MENUITEM "Finestres en mosaic &horitzontal", ID_WINDOW_TILE_HORZ
         MENUITEM "Finestres en mosaic &vertical", ID_WINDOW_TILE_VERT
         MENUITEM "Finestres en &cascada",       ID_WINDOW_CASCADE
@@ -1567,6 +1569,9 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
     IDS_EMPTY_LEFT_FILE     "Untitled left"
     IDS_EMPTY_RIGHT_FILE	"Untitled right"
+    ID_DIR_OPEN_LEFT_WITHEDITOR "Open the left file to external editor"
+    ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
+    ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
 END
 
 #endif    // Catalan resources
