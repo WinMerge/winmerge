@@ -680,11 +680,6 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 
 	// augment with additional operations
 
-	// clear left only or right only flags
-	// editing in 'blank' areas should be considered
-	CPoint ptCursorPos = GetCursorPos ();
-	m_pTextBuffer->SetLineFlag(ptCursorPos.y, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
-
 	// If automatic rescan enabled, rescan after edit events
 	if (m_bAutomaticRescan)
 	{

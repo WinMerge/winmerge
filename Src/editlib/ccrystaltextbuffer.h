@@ -259,7 +259,7 @@ public :
 
     //  Implementation
     BOOL InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar);
-    BOOL InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int * pRealStart=0, int * pRealEnd=0);
+    BOOL InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos);
     BOOL InternalInsertGhostLine (CCrystalTextView * pSource, int nLine);
     CString StripTail (int i, int bytes);
 
@@ -379,11 +379,17 @@ public :
     // This is needed to handle ghost lines (ones with no text or EOL chars)
     // which WinMerge uses for left-only or right-only lines.
 public:
-    int ComputeRealLine(int nApparentLine) const;
-    int ComputeApparentLine(int nRealLine) const;
-    int LastRealLine() const;
-protected :
+    int ApparentLastRealLine() const;
+    int ComputeRealLine(int nApparentLine);
+    int ComputeApparentLine(int nRealLine);
+
+
     void RecomputeRealityMapping();
+    
+protected :
+    void RecomputeEOL(CCrystalTextView * pSource, int nStartLine, int nEndLine);
+    void checkFlagsFromReality(BOOL bFlag);
+
 
     // Generated message map functions
     //{{AFX_MSG(CCrystalTextBuffer)

@@ -219,17 +219,15 @@ void CMergeDoc::Dump(CDumpContext& dc) const
 // remove all ghost lines (except last one in file)
 // (2003-06-21, Perry: I don't understand why this is necessary, but if this isn't
 //  done, more and more gray lines appear in the file)
-static void RemoveEmptyLinesExceptLast(CMergeDoc::CDiffTextBuffer * buf)
+static void RemoveEmptyLines(CMergeDoc::CDiffTextBuffer * buf)
 {
 	for(int ct=buf->GetLineCount()-1; ct>=0; --ct)
-	{
-		if (ct < buf->GetLineCount()-1 && !buf->GetFullLineLength(ct))
-		{
+		if (buf->GetLineFlags(ct) & LF_GHOST)
 			buf->DeleteLine(ct);
-		}
 		else
 			buf->SetLineFlag(ct, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
-	}
+
+	buf->RecomputeRealityMapping();
 }
 
 // Save files under edit to temp files & compare again, to update diffs on screen
@@ -249,8 +247,8 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	BOOL rtMod = m_rtBuf.IsModified();
 
 	// remove blank lines and clear winmerge flags
-	RemoveEmptyLinesExceptLast(&m_ltBuf);
-	RemoveEmptyLinesExceptLast(&m_rtBuf);
+	RemoveEmptyLines(&m_ltBuf);
+	RemoveEmptyLines(&m_rtBuf);
 
 	// restore modified status
 	m_ltBuf.SetModified(ltMod);
@@ -742,9 +740,6 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 		// copy the selected text over
 		for (int i=cd_dbegin; i <= limit; i++)
 		{
-			// clear the line flags
-			sbuf.SetLineFlag(i, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
-			dbuf.SetLineFlag(i, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
 			// text exists on left side, so just replace
 			strLine = _T("");
 			sbuf.GetFullLine(i, strLine);
@@ -1168,7 +1163,6 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		else
 			// Last line had EOL, so append succeeding ghost line
 			InsertLine(_T(""), 0);
-		FinishLoading();
 		ASSERT(m_aLines.GetSize() > 0);   //  At least one empty line must present
 		
 		m_bInit = TRUE;
@@ -1178,6 +1172,9 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		m_nSyncPosition = m_nUndoPosition = 0;
 		ASSERT(m_aUndoBuf.GetSize() == 0);
 		
+		FinishLoading();
+		// flags don't need initialization because 0 is the default value
+
 		// This is needed: Syntax hilighting does not work when
 		// automatically scroll to first diff is enabled
 		RetypeViews(pszFileName);

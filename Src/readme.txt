@@ -1,3 +1,8 @@
+2003-07-17 Laoran
+ PATCH: [ 767878 ] Better handling of ghost flag and EOL
+  WinMerge: MergeDoc.cpp MergeEditView.cpp
+  editlib: ccrystaleditview.cpp ccrystaltextbuffer.cpp ccrystaltextbuffer.h
+
 2003-07-17 Kimmo
  PATCH: [ 772228 ] Quick bin check for 2.0
   WinMerge: files.h files.cpp MainFrm.cpp MergeDoc.cpp

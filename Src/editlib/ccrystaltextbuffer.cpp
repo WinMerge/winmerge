@@ -860,10 +860,13 @@ UINT CCrystalTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
           LPCTSTR szLine = m_aLines[i].m_pcLine + soffset;
           CopyMemory(pszBuf, szLine, chars * sizeof(TCHAR));
           pszBuf += chars;
-		    	if (i!=GetLineCount()-1 && GetLineLength(i)==GetFullLineLength(i))
+          if (i!=ApparentLastRealLine() && GetLineLength(i)==GetFullLineLength(i)
+            && i < nEndLine)
             {
               // Oops, real line lacks EOL
               // (If this happens, editor probably has bug)
+              // We don't check it on nEndLine
+              ASSERT(0);
               CString sEol = GetStringEol (nCrlfStyle);
               CopyMemory(pszBuf, sEol, sEol.GetLength());
               pszBuf += sEol.GetLength();
@@ -989,8 +992,10 @@ UpdateViews (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwUpda
     }
 }
 
+
+// InternalDeleteText uses only apparent line numbers
 BOOL CCrystalTextBuffer::
-InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, int nEndLine, int nEndChar, int * pRealStart, int * pRealEnd)
+InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, int nEndLine, int nEndChar)
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -1002,11 +1007,6 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, 
   ASSERT (nStartLine < nEndLine || nStartLine == nEndLine && nStartChar < nEndChar);
   if (m_bReadOnly)
     return FALSE;
-
-  int nRealStart = ComputeRealLine(nStartLine);
-  if (pRealStart) *pRealStart = nRealStart;
-  int nRealEnd = ComputeRealLine(nEndLine);
-  if (pRealEnd) *pRealEnd = nRealEnd;
 
   CDeleteContext context;
   context.m_ptStart.y = nStartLine;
@@ -1047,6 +1047,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, 
 
       //  nEndLine is no more valid
       m_aLines[nStartLine].m_nLength = nStartChar;
+      m_aLines[nStartLine].m_pcLine[nStartChar] = 0;
       m_aLines[nStartLine].m_nEolChars = 0;
       if (nRestCount > 0)
         {
@@ -1064,11 +1065,10 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, 
   m_ptLastChange = context.m_ptStart;
   //END SW
 
-  if (nRealStart != nRealEnd)
-  {
-    // TODO: Be smarter, and don't recompute if it is easy to see what changed
-    RecomputeRealityMapping();
-  }
+  // clear flags for edited lines LF_WINMERGE_FLAGS  except LF_GHOST
+  int i;
+  i = nStartLine;
+  SetLineFlag(i, LF_WINMERGE_FLAGS & ~LF_GHOST, FALSE, FALSE, FALSE);
 
   return TRUE;
 }
@@ -1131,6 +1131,7 @@ InternalInsertGhostLine (CCrystalTextView * pSource, int nLine)
 
 
 
+// InternalInsertText uses only apparent line numbers
 BOOL CCrystalTextBuffer::
 InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar)
 {
@@ -1248,11 +1249,6 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
       context.m_ptEnd.y = nEndLine;
     }
 
-  if (nLine != nEndLine)
-  {
-    // TODO: Be smarter, and don't recompute if it is easy to see what changed
-    RecomputeRealityMapping();
-  }
 
   if (pSource!=NULL)
     {
@@ -1269,6 +1265,14 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
   m_ptLastChange.x = nEndChar;
   m_ptLastChange.y = nEndLine;
   //END SW
+
+  // clear flags for edited lines LF_WINMERGE_FLAGS  except LF_GHOST
+  int i;
+  for (i = nLine ; i < nEndLine ; i++)
+    SetLineFlag(i, LF_WINMERGE_FLAGS & ~LF_GHOST, FALSE, FALSE, FALSE);
+  if (nEndChar > 0 || !sTail.IsEmpty())
+    SetLineFlag(i, LF_WINMERGE_FLAGS & ~LF_GHOST, FALSE, FALSE, FALSE);
+
   return TRUE;
 }
 
@@ -1561,6 +1565,85 @@ LPCTSTR CCrystalTextBuffer::GetDefaultEol() const
 }
 
 BOOL CCrystalTextBuffer::
+InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
+            int &nEndLine, int &nEndChar, int nAction, BOOL bUpdate /*=TRUE*/)
+{
+  if (!InternalInsertText (bUpdate? pSource:NULL, nLine, nPos, pszText, nEndLine, nEndChar))
+    return FALSE;
+
+  // set WinMerge flags  
+  int bFirstLineGhost = ((GetLineFlags(nLine) & LF_GHOST) != 0);
+  int i;
+  for (i = nLine ; i < nEndLine ; i++)
+    SetLineFlag (i, LF_GHOST, FALSE, FALSE, FALSE);
+  // the current line after insertion may become real or not
+  if (bFirstLineGhost == 0 || nEndChar > 0)
+    SetLineFlag (i, LF_GHOST, FALSE, FALSE, FALSE);
+
+
+  // now we can recompute
+  if ((nEndLine > nLine) || bFirstLineGhost)
+    {
+      // TODO: Be smarter, and don't recompute if it is easy to see what changed
+      RecomputeRealityMapping();
+    }
+
+  RecomputeEOL (bUpdate? pSource:NULL, nLine, nEndLine);
+
+
+  BOOL bGroupFlag = FALSE;
+  if (!m_bUndoGroup)
+    {
+      BeginUndoGroup ();
+      bGroupFlag = TRUE;
+    }
+  AddUndoRecord (TRUE, CPoint (nPos, nLine), CPoint (nEndChar, nEndLine), pszText, nAction);
+  if (bGroupFlag)
+    FlushUndoGroup (pSource);
+  return TRUE;
+}
+
+BOOL CCrystalTextBuffer::
+DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
+            int nEndLine, int nEndChar, int nAction, BOOL bUpdate /*=TRUE*/)
+{
+  CString sTextToDelete;
+  GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
+
+  // flags are going to be deleted so we store them now
+  int bLastLineGhost = ((GetLineFlags(nEndLine) & LF_GHOST) != 0);
+  int bFirstLineGhost = ((GetLineFlags(nStartLine) & LF_GHOST) != 0);
+
+  if (!InternalDeleteText (bUpdate? pSource:NULL, nStartLine, nStartChar, nEndLine, nEndChar))
+    return FALSE;
+
+  // the first line is still real if it was before
+  if (bFirstLineGhost == 0 || bLastLineGhost == 0)
+    SetLineFlag(nStartLine, LF_GHOST, FALSE, FALSE, FALSE);
+
+  // now we can recompute
+  if (nStartLine != nEndLine)
+    {
+      // TODO: Be smarter, and don't recompute if it is easy to see what changed
+      RecomputeRealityMapping();
+    }
+
+  RecomputeEOL (bUpdate? pSource:NULL, nStartLine, nStartLine);
+
+
+  BOOL bGroupFlag = FALSE;
+  if (!m_bUndoGroup)
+    {
+      BeginUndoGroup ();
+      bGroupFlag = TRUE;
+    }
+  AddUndoRecord (FALSE, CPoint (nStartChar, nStartLine), CPoint (nEndChar, nEndLine), sTextToDelete, nAction);
+  if (bGroupFlag)
+    FlushUndoGroup (pSource);
+  return TRUE;
+}
+
+BOOL CCrystalTextBuffer::
 InsertGhostLine (CCrystalTextView * pSource, int nLine)
 {
   if (!InternalInsertGhostLine (pSource, nLine))
@@ -1575,63 +1658,6 @@ InsertGhostLine (CCrystalTextView * pSource, int nLine)
 
   // never AddUndoRecord as Rescan clears the ghost lines
   
-  return TRUE;
-}
-
-BOOL CCrystalTextBuffer::
-InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
-            int &nEndLine, int &nEndChar, int nAction, BOOL bUpdate /*=TRUE*/)
-{
-  // Are we inserting into a ghost line without EOL ?
-  if (!GetFullLineLength(nLine) && !HasEol(pszText))
-    {
-      // Is there any text after this line ?
-      if (m_RealityBlocks.GetSize() && m_RealityBlocks[m_RealityBlocks.GetUpperBound()].nStartApparent > nLine)
-        {
-          // terminate line with default EOL
-          CString str = pszText;
-          str += GetDefaultEol();
-          return InsertText(pSource, nLine, nPos, str, nEndLine, nEndChar, nAction, bUpdate);
-        }
-    }
-
-  int nRealStart = ComputeRealLine(nLine);
-  if (!InternalInsertText (bUpdate? pSource:NULL, nLine, nPos, pszText, nEndLine, nEndChar))
-    return FALSE;
-  int nRealEnd = ComputeRealLine(nEndLine);
-
-  BOOL bGroupFlag = FALSE;
-  if (!m_bUndoGroup)
-    {
-      BeginUndoGroup ();
-      bGroupFlag = TRUE;
-    }
-  AddUndoRecord (TRUE, CPoint (nPos, nRealStart), CPoint (nEndChar, nRealEnd), pszText, nAction);
-  if (bGroupFlag)
-    FlushUndoGroup (pSource);
-  return TRUE;
-}
-
-BOOL CCrystalTextBuffer::
-DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
-            int nEndLine, int nEndChar, int nAction, BOOL bUpdate /*=TRUE*/)
-{
-  CString sTextToDelete;
-  GetText (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
-
-  int nRealStart=0, nRealEnd=0;
-  if (!InternalDeleteText (bUpdate? pSource:NULL, nStartLine, nStartChar, nEndLine, nEndChar, &nRealStart, &nRealEnd))
-    return FALSE;
-
-  BOOL bGroupFlag = FALSE;
-  if (!m_bUndoGroup)
-    {
-      BeginUndoGroup ();
-      bGroupFlag = TRUE;
-    }
-  AddUndoRecord (FALSE, CPoint (nStartChar, nRealStart), CPoint (nEndChar, nRealEnd), sTextToDelete, nAction);
-  if (bGroupFlag)
-    FlushUndoGroup (pSource);
   return TRUE;
 }
 
@@ -1862,27 +1888,34 @@ void CCrystalTextBuffer::SetTabSize(int nTabSize)
   m_nTabSize = nTabSize;
 }
 
-// Return highest valid real (file) line
+// Return apparent line of highest real (file) line
 // Returns -1 if no lines
-int CCrystalTextBuffer::LastRealLine() const
+int CCrystalTextBuffer::ApparentLastRealLine() const
 {
   int bmax = m_RealityBlocks.GetUpperBound();
   if (bmax<0) return -1;
   RealityBlock & block = m_RealityBlocks[bmax];
-  return block.nStartReal + block.nCount;
+  return block.nStartApparent + block.nCount - 1;
 }
 
+
+
 // return underlying real line
-// for ghost lines, return next higher real line
+// for ghost lines, return NEXT HIGHER real line (for trailing ghost line, return last real line + 1)
+// if nApparentLine is greater than the last valid apparent line, ASSERT
 // ie, lines 0->0, 1->2, 2->4,
 // for argument of 3, return 2
-int CCrystalTextBuffer::ComputeRealLine(int nApparentLine) const
+int CCrystalTextBuffer::ComputeRealLine(int nApparentLine) 
 {
   int bmax = m_RealityBlocks.GetUpperBound();
   // first get the degenerate cases out of the way
   // empty file ?
   if (bmax<0)
     return 0;
+
+  // after last apparent line ?
+  ASSERT(nApparentLine < GetLineCount());
+
   // after last block ?
   RealityBlock & maxblock = m_RealityBlocks[bmax];
   if (nApparentLine >= maxblock.nStartApparent + maxblock.nCount)
@@ -1906,9 +1939,10 @@ int CCrystalTextBuffer::ComputeRealLine(int nApparentLine) const
   return m_RealityBlocks[blo].nStartReal;
 }
 
+
 // return apparent line for this underlying real line
-// if real line is out of bounds, returns -1
-int CCrystalTextBuffer::ComputeApparentLine(int nRealLine) const
+// if real line is out of bounds, return last valid apparent line + 1
+int CCrystalTextBuffer::ComputeApparentLine(int nRealLine)
 {
   int bmax = m_RealityBlocks.GetUpperBound();
   // first get the degenerate cases out of the way
@@ -1916,10 +1950,9 @@ int CCrystalTextBuffer::ComputeApparentLine(int nRealLine) const
   if (bmax<0)
     return 0;
   // after last block ?
-  // (This can happen with the endline of a paste undo record)
   RealityBlock & maxblock = m_RealityBlocks[bmax];
   if (nRealLine >= maxblock.nStartReal + maxblock.nCount)
-    return nRealLine - maxblock.nStartReal + maxblock.nStartApparent;
+    return GetLineCount();
 
   // binary search to find correct (or nearest block)
   int blo=0, bhi=bmax;
@@ -1939,6 +1972,7 @@ int CCrystalTextBuffer::ComputeApparentLine(int nRealLine) const
   ASSERT(0);
   return -1;
 }
+
 
 // Do what we need to do just after we've been reloaded
 void CCrystalTextBuffer::FinishLoading()
@@ -1961,7 +1995,7 @@ void CCrystalTextBuffer::RecomputeRealityMapping()
 passingGhosts:
   if (i==GetLineCount())
     return;
-  if (!GetFullLineLength(i))
+  if (GetLineFlags(i) & LF_GHOST)
     {
       ++i;
       goto passingGhosts;
@@ -1975,7 +2009,7 @@ passingGhosts:
 
   // state 2, i-1 is real line
 inReality:
-  if (i==GetLineCount() || !GetFullLineLength(i))
+  if (i==GetLineCount() || (GetLineFlags(i) & LF_GHOST))
     {
       // i-1 is the last line of a reality block
       ASSERT(reality >= 0);
@@ -1991,4 +2025,84 @@ inReality:
   ++reality;
   ++i;
   goto inReality;
+
+
 }
+
+
+
+
+
+
+
+
+
+// we recompute EOL from the real line before nStartLine to nEndLine
+void  CCrystalTextBuffer::RecomputeEOL(CCrystalTextView * pSource, int nStartLine, int nEndLine)
+{
+  if (ApparentLastRealLine() <= nEndLine)
+    {
+      // EOL may have to change on the real line before nStartLine
+      int nRealBeforeStart;
+      for (nRealBeforeStart = nStartLine-1 ; nRealBeforeStart >= 0 ; nRealBeforeStart--)
+        if ((GetLineFlags(nRealBeforeStart) & LF_GHOST) == 0)
+          break;
+      if (nRealBeforeStart >= 0)
+        nStartLine = nRealBeforeStart;
+    }
+  int bLastRealLine = (ApparentLastRealLine() <= nEndLine);
+  int i;
+  for (i = nEndLine ; i >= nStartLine ; i --)
+    if ((GetLineFlags(i) & LF_GHOST) == 0)
+      {
+        if (bLastRealLine)
+          {
+            bLastRealLine = 0;
+            if (m_aLines[i].m_nEolChars != 0) 
+              {
+                m_aLines[i].m_pcLine[m_aLines[i].m_nLength] = '\0';
+                m_aLines[i].m_nEolChars = 0;
+                if (pSource!=NULL)
+                  UpdateViews (pSource, NULL, UPDATE_HORZRANGE | UPDATE_SINGLELINE, i);
+              }
+}
+        else
+          if (m_aLines[i].m_nEolChars == 0) 
+            {
+              AppendLine (i, GetDefaultEol(), _tcslen(GetDefaultEol()));
+              if (pSource!=NULL)
+                UpdateViews (pSource, NULL, UPDATE_HORZRANGE | UPDATE_SINGLELINE, i);
+            }
+      }
+    else 
+      {
+        if (m_aLines[i].m_nEolChars != 0) 
+          {
+            m_aLines[i].m_pcLine[m_aLines[i].m_nLength] = '\0';
+            m_aLines[i].m_nEolChars = 0;
+            if (pSource!=NULL)
+              UpdateViews (pSource, NULL, UPDATE_HORZRANGE | UPDATE_SINGLELINE, i);
+          }
+      }
+}
+
+
+
+void CCrystalTextBuffer::checkFlagsFromReality(BOOL bFlag) {
+  int bmax = m_RealityBlocks.GetUpperBound();
+  int b;
+  int i = 0;
+  for (b = 0 ; b <= bmax ; b ++)
+    {
+      RealityBlock & block = m_RealityBlocks[b];
+      for ( ; i < block.nStartApparent ; i++)
+        ASSERT ((GetLineFlags(i) & LF_GHOST) != 0);
+      for ( ; i < block.nStartApparent+block.nCount ; i++)
+        ASSERT ((GetLineFlags(i) & LF_GHOST) == 0);
+    }
+ 
+  for ( ; i < GetLineCount() ; i++)
+      ASSERT ((GetLineFlags(i) & LF_GHOST) != 0);
+}
+
+

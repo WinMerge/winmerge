@@ -327,20 +327,13 @@ Paste ()
           SetCursorPos (ptCursorPos);
           EnsureVisible (ptCursorPos);*/
 
-		  // WINMERGE: clear the winmerge flags so the file saves correctly
-		  for (int i=ptSelStart.y; i <= ptSelEnd.y; i++)
-			 m_pTextBuffer->SetLineFlag(i, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
-    
           // [JRT]:
           m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_PASTE);
         }
       else
-	  {
-        ptCursorPos = GetCursorPos ();
-		  
-		// WINMERGE: clear the winmerge flags so the file saves correctly
-		m_pTextBuffer->SetLineFlag(ptCursorPos.y, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
-	  }
+        {
+          ptCursorPos = GetCursorPos ();
+        }
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       
       int x, y;
