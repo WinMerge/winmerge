@@ -1,6 +1,9 @@
 2004-04-24 Kimmo
  BUG: [ 939245 ] Location Bar don't show diff in first line
   Src: LocationView.cpp
+ PATCH: [ 938822 ] Enable merge items in file compare context menu
+  Src: Merge.rc
+  Languages: *.rc
 
 2004-04-24 Perry
  PATCH: [ 941014 ] Various Updates in German Translation (Tim Gerundt)

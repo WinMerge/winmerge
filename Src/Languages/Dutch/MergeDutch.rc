@@ -79,13 +79,13 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Ongedaan maken",             ID_EDIT_UNDO
-        MENUITEM "&Redo",                        ID_EDIT_REDO
-        MENUITEM SEPARATOR
-        MENUITEM "Kopieer naar andere kant",    ID_POPUP_COPYTOOTHERSIDE
-        MENUITEM "Kopieer van andere kant",     ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM "Kopieer naar &Rechts",         ID_L2R
+        MENUITEM "Kopieer naar &Links",          ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Ongedaan maken",              ID_EDIT_UNDO
+        MENUITEM "&Redo",                        ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "&Knippen",                    ID_EDIT_CUT
         MENUITEM "Ko&piëeren",                  ID_EDIT_COPY

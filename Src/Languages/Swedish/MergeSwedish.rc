@@ -78,13 +78,13 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Ångra",                      ID_EDIT_UNDO
-        MENUITEM "&Gör om",                     ID_EDIT_REDO
-        MENUITEM SEPARATOR
-        MENUITEM "Kopiera till den andra sidan", ID_POPUP_COPYTOOTHERSIDE
-        MENUITEM "Kopiera från den andra sidan", ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM "Kopiera till &höger",         ID_L2R
+        MENUITEM "Kopiera till &vänster",       ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "Markera radskillnader",       ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Ångra",                      ID_EDIT_UNDO
+        MENUITEM "&Gör om",                     ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "&Klipp ut",                   ID_EDIT_CUT
         MENUITEM "K&opiera",                    ID_EDIT_COPY

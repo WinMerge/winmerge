@@ -79,13 +79,13 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Zpet",                        ID_EDIT_UNDO
-        MENUITEM "&Redo",                        ID_EDIT_REDO
-        MENUITEM SEPARATOR
-        MENUITEM "Kopírovat na druhou stranu",  ID_POPUP_COPYTOOTHERSIDE
-        MENUITEM "Kopírovat z druhé strany",    ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM "Kopírovat vp&ravo",           ID_L2R
+        MENUITEM "Kopírovat vl&evo",            ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Zpet",                        ID_EDIT_UNDO
+        MENUITEM "&Redo",                        ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "V&yoíznout",                  ID_EDIT_CUT
         MENUITEM "&Kopírovat",                  ID_EDIT_COPY

@@ -42,13 +42,13 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "살행 취소(&U)",               ID_EDIT_UNDO
-        MENUITEM "다시 실행",                   ID_EDIT_REDO
-        MENUITEM SEPARATOR
-        MENUITEM "반대 편으로 복사",            ID_POPUP_COPYTOOTHERSIDE
-        MENUITEM "반대 편으로부터 복사",        ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM "오른쪽으로 복사(&G)",         ID_L2R
+        MENUITEM "왼쪽으로 복사(&L)",           ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "살행 취소(&U)",               ID_EDIT_UNDO
+        MENUITEM "다시 실행",                   ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "잘라내기",                    ID_EDIT_CUT
         MENUITEM "복사(&C)",                    ID_EDIT_COPY

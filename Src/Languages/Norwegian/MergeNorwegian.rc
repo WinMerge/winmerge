@@ -79,13 +79,13 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Angre",                      ID_EDIT_UNDO
-        MENUITEM "&Gjenopprett",                ID_EDIT_REDO
-        MENUITEM SEPARATOR
-        MENUITEM "Kopier til den andre siden",  ID_POPUP_COPYTOOTHERSIDE
-        MENUITEM "Kopier fra den andre siden",  ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM "Kopier til &høyre",           ID_L2R
+        MENUITEM "Kopier til &venstre",         ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Angre",                      ID_EDIT_UNDO
+        MENUITEM "&Gjenopprett",                ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "&Klipp ut",                   ID_EDIT_CUT
         MENUITEM "Ko&pier",                     ID_EDIT_COPY

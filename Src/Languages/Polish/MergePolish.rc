@@ -79,13 +79,13 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Cofnij",                      ID_EDIT_UNDO
-        MENUITEM "&Powtórz",                     ID_EDIT_REDO
-        MENUITEM SEPARATOR
-        MENUITEM "Kopiuj na druga strone",    ID_POPUP_COPYTOOTHERSIDE
-        MENUITEM "Kopiuj z drugiej strony",  ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM "Kopiuj na prawa",              ID_L2R
+        MENUITEM "Kopiuj na lewa",               ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Cofnij",                      ID_EDIT_UNDO
+        MENUITEM "&Powtórz",                     ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "&Wytnij",                      ID_EDIT_CUT
         MENUITEM "&Kopiuj",                      ID_EDIT_COPY

@@ -79,13 +79,13 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Sp‰ù",                       ID_EDIT_UNDO
-        MENUITEM "&Znova",                      ID_EDIT_REDO
-        MENUITEM SEPARATOR
-        MENUITEM "KopÌrovaù na druh˙ stranu",   ID_POPUP_COPYTOOTHERSIDE
-        MENUITEM "KopÌrovaù z druhej strany",   ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM "KopÌrovaù vpravo",            ID_L2R
+        MENUITEM "KopÌrovaù væavo",             ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Sp‰ù",                       ID_EDIT_UNDO
+        MENUITEM "&Znova",                      ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "V&ystrihn˙ù",                 ID_EDIT_CUT
         MENUITEM "&KopÌrovaù",                  ID_EDIT_COPY

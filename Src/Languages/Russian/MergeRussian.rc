@@ -79,13 +79,13 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Отмена",                     ID_EDIT_UNDO
-        MENUITEM "В&ернуть",                    ID_EDIT_REDO
-        MENUITEM SEPARATOR
-        MENUITEM "Скопировать на другую сторону", ID_POPUP_COPYTOOTHERSIDE
-        MENUITEM "Скопировать с другой стороны", ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM "Скопировать на &правую панель", ID_L2R
+        MENUITEM "Скопировать на &левую панель", ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "Подсветить отличия в линии",  ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Отмена",                     ID_EDIT_UNDO
+        MENUITEM "В&ернуть",                    ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "Вы&резать",                   ID_EDIT_CUT
         MENUITEM "&Копировать",                 ID_EDIT_COPY

@@ -79,13 +79,13 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
+        MENUITEM "複製到右邊(&R)",              ID_L2R
+        MENUITEM "複製到左邊(&L)",              ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "&Highlight Line Diff",        ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
         MENUITEM "復原(&U)",                    ID_EDIT_UNDO
         MENUITEM "重做(&R)",                    ID_EDIT_REDO
-        MENUITEM SEPARATOR
-        MENUITEM "複製到另一邊",                ID_POPUP_COPYTOOTHERSIDE
-        MENUITEM "從另一邊複製",                ID_POPUP_COPYFROMOTHERSIDE
-        MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Diff",         ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "剪下(&U)",                    ID_EDIT_CUT
         MENUITEM "複製(&C)",                    ID_EDIT_COPY

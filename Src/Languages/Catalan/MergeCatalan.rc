@@ -79,13 +79,13 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Desfés",                      ID_EDIT_UNDO
-        MENUITEM "Re&fés",                       ID_EDIT_REDO
-        MENUITEM SEPARATOR
-        MENUITEM "Copia &a l'altra banda",      ID_POPUP_COPYTOOTHERSIDE
-        MENUITEM "Copia &de l'altra banda",     ID_POPUP_COPYFROMOTHERSIDE
+        MENUITEM "Copia a la &dreta",            ID_L2R
+        MENUITEM "Copia a l'&esquerra",          ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "R&essalta les diferències de línia", ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Desfés",                      ID_EDIT_UNDO
+        MENUITEM "Re&fés",                       ID_EDIT_REDO
         MENUITEM SEPARATOR
         MENUITEM "&Retalla",                     ID_EDIT_CUT
         MENUITEM "C&opia",                       ID_EDIT_COPY
