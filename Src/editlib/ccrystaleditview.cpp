@@ -123,7 +123,7 @@ CCrystalEditView::CCrystalEditView ()
   m_bMergeUndo = false;
 }
 
-CCrystalEditView:: ~ CCrystalEditView ()
+CCrystalEditView:: ~CCrystalEditView ()
 {
   delete m_mapExpand;
 }

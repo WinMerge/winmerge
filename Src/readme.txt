@@ -7,6 +7,8 @@
   WinMerge: files.cpp
 
 2003-10-10 Laoran
+ cosmetical change because I want to use BeSweet with source (delete one space !)
+  editlib: ccrystaleditview.cpp
  PATCH: [ 818198 ] Colors for "ignore blank lines"
   Languages: *.rc (except not Brazilian or ChineseSimplified)
 
