@@ -1,6 +1,8 @@
 2004-06-02 Perry
  PATCH: [ 964678 ] New MergeJapanese.rc file
   Src/Languages: Japanese/MergeJapanese.rc etc
+ Update "18 languages" to "19 languages"
+  Docs\Developers: readme-developers.html
 
 2004-06-01 Kimmo
  BUG: [ 963820 ] Cutting off trailing chars in opendlg

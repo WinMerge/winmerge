@@ -276,7 +276,7 @@ We are using <a href="http://www.jrsoftware.org/isinfo.php">InnoSetup</a> to mak
 <li>ShellExtension.dll and register.bat to register it</li>
 <li>All filters from the filters/ directory</li>
 <li>All plugins from the plugins/dlls/ directory. Create a MergePlugins/ directory and copy the plugins to it</li>
-<li>All *.lang files (currently we have 18 languages, counting both Chinese versions)</li>
+<li>All *.lang files (currently we have 19 languages, counting both Chinese versions)</li>
 </ul>
 
 Please remember to put the version number into both executables. You may use
@@ -364,9 +364,9 @@ you may localize the layout. Avoid to localize the alignment flag, rather change
 
 Issues :
 <ul><li>
-It is long to update 18 languages for just one patch. But reducing the frequency of such updates is maybe not a progress : 5 small updates are long but easy, 1 big update is quick and more complex.
+It is long to update 19 languages for just one patch. But reducing the frequency of such updates is maybe not a progress : 5 small updates are long but easy, 1 big update is quick and more complex.
 </li><li>
-merging of layout : translator may change layout, then when developers insert new controls, moved and new controls may overlap. Visual check of 18 dialogs is definitively too long for a single patch update.
+merging of layout : translator may change layout, then when developers insert new controls, moved and new controls may overlap. Visual check of 19 dialogs is definitively too long for a single patch update.
 </li><li>
 delays in localization : translators generally need some weeks to translate, so their version is already outdated when the localization is complete, and merging with CVS must be done again
 </li></ul>
