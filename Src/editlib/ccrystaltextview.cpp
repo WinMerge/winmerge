@@ -572,7 +572,7 @@ GetLineActualLength (int nLineIndex)
       m_pnActualLineLength = new int[nLineCount];
       ASSERT( m_pnActualLineLength );
       if (!m_pnActualLineLength)
-        return 0;		/ TODO: what to do if alloc fails...???
+        return 0;		// TODO: what to do if alloc fails...???
       memset (m_pnActualLineLength, 0xff, sizeof (int) * nLineCount);
       m_nActualLengthArraySize = nLineCount;
     }
