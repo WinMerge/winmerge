@@ -157,7 +157,7 @@ BEGIN
     POPUP "&Visa"
     BEGIN
         MENUITEM "Visa &identiska filer",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Visar filer som har s&killnader", ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Visa filer som har s&killnader", ID_OPTIONS_SHOWDIFFERENT
         MENUITEM "Visa unika filer till &vänster", ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "Visa unika filer till &höger", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Visa &binära filer",          ID_OPTIONS_SHOWBINARIES
@@ -270,8 +270,8 @@ BEGIN
             MENUITEM "&med...",                    ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        MENUITEM "Cop&y Pathnames"                  ID_DIR_COPY_PATHNAMES
-        MENUITEM "Copy &Filenames"                  ID_DIR_COPY_FILENAMES
+        MENUITEM "Kop&iera Sökvägar"                  ID_DIR_COPY_PATHNAMES
+        MENUITEM "Kopiera &Filnamn"                  ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
@@ -303,7 +303,7 @@ END
 
 IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
-    POPUP "Prediffer Settings"
+    POPUP "Prediffer Inställningar"
     BEGIN
         MENUITEM "&Ingen prediffer",               ID_PREDIFF_MANUAL
         MENUITEM "Automatisk prediffer",              ID_PREDIFF_AUTO
@@ -314,9 +314,9 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
-        MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
-        MENUITEM "Moved Block for &Current Diff", ID_DISPLAY_MOVED_FOLLOW_DIFF
+        MENUITEM "&Inga Flyttade Block",            ID_DISPLAY_MOVED_NONE
+        MENUITEM "&Alla Flyttade Block",           ID_DISPLAY_MOVED_ALL
+        MENUITEM "Flyttat Block för &Aktuell Skillnad", ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
 END
 
@@ -409,7 +409,7 @@ BEGIN
     RTEXT           "&Filter:",IDC_STATIC,13,56,40,8
     COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Select...",IDC_SELECT_FILTER,242,54,50,12
+    PUSHBUTTON      "Välj...",IDC_SELECT_FILTER,242,54,50,12
     RTEXT           "&Uppackare:",IDC_STATIC,13,72,40,8
     EDITTEXT        IDC_UNPACKER_EDIT,56,70,181,12,ES_AUTOHSCROLL |
                     ES_READONLY
@@ -478,9 +478,9 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "&Stäng jämför Statuspanel automatiskt",IDC_CMPPANE_AUTOCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
-    CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",
+    CONTROL         "St&äng fönster med ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,90,10
-    CONTROL         "Automatically verify paths in Open-dialog",
+    CONTROL         "Verifiera Automatiskt sökvägar i Öppna-dialogen",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,57,143,10
     PUSHBUTTON      "Återställ",IDC_RESET_ALL_MESSAGE_BOXES,167,77,49,13,NOT
@@ -643,7 +643,7 @@ BEGIN
     CONTROL         "Lägg till i Utforskarens popup-meny",
                     IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,17,167,10
-    CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",
+    CONTROL         "A&nvänd avancerad meny",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
     LTEXT           "Extern Editor:",IDC_STATIC,7,44,167,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
@@ -1236,32 +1236,32 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_NEXT_PANE            "Växla till nästa fönster\nNästa fönster"
-    ID_PREV_PANE            "Växla till förra fönstret\nFörra fönstret"
+    ID_NEXT_PANE            "Växlar till nästa fönster\nNästa fönster"
+    ID_PREV_PANE            "Växlar till förra fönstret\nFörra fönstret"
 END
 
 STRINGTABLE
 BEGIN
-    ID_WINDOW_NEW           "Öppna ett nytt fönster med det aktiva dokumentet\nNytt fönster"
-    ID_WINDOW_ARRANGE       "Arrangera ikonerna i nederkant av fönstret\nArrangera ikoner"
-    ID_WINDOW_CASCADE       "Arrangera fönstren så att de överlappar varandra\nÖverlappande fönster"
-    ID_WINDOW_TILE_HORZ     "Ordna fönstren icke-överlappande horisontellt\nOrdna horisontellt"
-    ID_WINDOW_TILE_VERT     "Ordna fönstren icke-överlappande vertikalt\nOrdna vertikalt"
-    ID_WINDOW_SPLIT         "Dela det aktiva fönstret\nDela"
+    ID_WINDOW_NEW           "Öppnar ett nytt fönster med det aktiva dokumentet\nNytt fönster"
+    ID_WINDOW_ARRANGE       "Arrangerar ikonerna i nederkant av fönstret\nArrangera ikoner"
+    ID_WINDOW_CASCADE       "Arrangerar fönstren så att de överlappar varandra\nÖverlappande fönster"
+    ID_WINDOW_TILE_HORZ     "Ordnar fönstren icke-överlappande horisontellt\nOrdna horisontellt"
+    ID_WINDOW_TILE_VERT     "Ordnar fönstren icke-överlappande vertikalt\nOrdna vertikalt"
+    ID_WINDOW_SPLIT         "Delar det aktiva fönstret\nDela"
 END
 
 STRINGTABLE
 BEGIN
-    ID_EDIT_CLEAR           "Ta bort det utvalda\nTa bort"
-    ID_EDIT_CLEAR_ALL       "Ta bort allt\nTa bort allt"
-    ID_EDIT_COPY            "Kopiera det utvalda och lägg det i urklippet\nKopiera"
-    ID_EDIT_CUT             "Klipp ut det utvalda och lägg det i urklippet\nKlipp ut"
-    ID_EDIT_FIND            "Sök den angivna texten\nSök"
-    ID_EDIT_PASTE           "Klistra in innehållet i urklippet\nKlistra in"
-    ID_EDIT_REPEAT          "Upprepa den senaste åtgärden\nUpprepa"
-    ID_EDIT_REPLACE         "Ersätt den markerade texten med annan text\nErsätt"
-    ID_EDIT_SELECT_ALL      "Välj hela dokumentet\nVälj allt"
-    ID_EDIT_UNDO            "Ångra den senaste åtgärden\nÅngra"
+    ID_EDIT_CLEAR           "Tar bort det utvalda\nTa bort"
+    ID_EDIT_CLEAR_ALL       "Tar bort allt\nTa bort allt"
+    ID_EDIT_COPY            "Kopierar det utvalda och lägger det i klippbordet\nKopiera"
+    ID_EDIT_CUT             "Klipper ut det utvalda och lägger det i klippbordet\nKlipp ut"
+    ID_EDIT_FIND            "Söker den angivna texten\nSök"
+    ID_EDIT_PASTE           "Klistrar in innehållet i klippbordet\nKlistra in"
+    ID_EDIT_REPEAT          "Upprepar den senaste åtgärden\nUpprepa"
+    ID_EDIT_REPLACE         "Ersätter den markerade texten med annan text\nErsätt"
+    ID_EDIT_SELECT_ALL      "Väljer hela dokumentet\nVälj allt"
+    ID_EDIT_UNDO            "Ångrar den senaste åtgärden\nÅngra"
     ID_EDIT_REDO            "Gör om den tidigare ångrade åtgärden\nGör om"
 END
 
@@ -1428,8 +1428,8 @@ BEGIN
     IDS_STATUS_COPYR2L      "Kopiera höger till vänster"
     IDS_STATUS_COPYALL2L    "Kopiera allt till vänster"
     IDS_STATUS_COPYALL2R    "Kopiera allt till höger"
-    IDS_STATUS_COPYFILES    "Copying files..."
-    IDS_STATUS_DELETEFILES  "Deleting files..."
+    IDS_STATUS_COPYFILES    "Kopierar filer..."
+    IDS_STATUS_DELETEFILES  "Tar bort filer..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1462,9 +1462,9 @@ STRINGTABLE
 BEGIN
     IDS_ERROR_FILE_NOT_FOUND "Kan inte hitta: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "Filen är inte uppackad: %1"
-    IDS_BINFILES_IDENTICAL   "%1\n%2\n\nare identical binary files."
-    IDS_BINFILES_DIFFERENT   "%1\n%2\n\nare different binary files."
-    IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
+    IDS_BINFILES_IDENTICAL   "%1\n%2\n\när identiska binära filer."
+    IDS_BINFILES_DIFFERENT   "%1\n%2\n\när olika binära filer."
+    IDS_OTHER_IS_BINARY      "%1\n\när en binär fil. Kan inte jämföra binära och textfiler."
 END
 
 // SAVING FILE (+ VERSION CONTROL)
@@ -1485,16 +1485,16 @@ BEGIN
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' kan inte packa dina förändringar av den vänstra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kan inte packa dina förändringar av den högra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
-    IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
+    IDS_SAVEREADONLY_MULTI  "%1\när markerad bara läsbar. Vill du ändå ändra i den?"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT "Kopiera den valda filen till den angivna mappen"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected file to custom directory"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Kopiera vald fil till den angivna mappen"
     ID_DIR_COPY_RIGHT_TO_LEFT "Kopiera den valda filen till den angivna mappen"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected file to custom directory"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Kopiera vald fil till den angivna mappen"
     ID_DIR_DEL_LEFT         "Ta bort valda objekt på vänster sida"
     ID_DIR_DEL_RIGHT        "Ta bort valda objekt på höger sida"
     ID_DIR_DEL_BOTH         "Ta bort valda objekt på båda sidor"
@@ -1542,18 +1542,18 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Öppna den högra filen med en extern editor"
     ID_DIR_OPEN_RIGHT_WITH  "Öppna den högra filen med ..."
     IDS_CANNOT_EXECUTE_FILE "Kan inte starta %1"
-    ID_DIR_COPY_PATHNAMES   "Copy pathnames to clipboard"
-    ID_DIR_COPY_FILENAMES   "Copy filenames to clipboard"
+    ID_DIR_COPY_PATHNAMES   "Kopiera sökvägar till klippbordet"
+    ID_DIR_COPY_FILENAMES   "Kopiera filnamn till klippbordet"
 END
 
 // DIRECTORY DIFFING : 7ZIP
 STRINGTABLE
 BEGIN
     IDS_UNKNOWN_ARCHIVE_FORMAT "Okänt arkivformat"
-    ID_DIR_ZIP_LEFT         "Add items from left side to archive"
-    ID_DIR_ZIP_RIGHT        "Add items from right side to archive"
-    ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
-    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
+    ID_DIR_ZIP_LEFT         "Lägg till saker från vänster sida till arkivet"
+    ID_DIR_ZIP_RIGHT        "Lägg till saker från höger sida till arkivet"
+    ID_DIR_ZIP_BOTH         "Lägg till saker från båda sidor till arkivet"
+    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Lägg till olika saker till arkivet (båda sidor)"
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
@@ -1618,32 +1618,32 @@ END
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_FILENAME    "Filename or directory name."
-    IDS_COLDESC_DIR         "Subdirectory name when subdirectories are included."
-    IDS_COLDESC_RESULT      "Comparison result, long form."
-    IDS_COLDESC_LTIMEM      "Left side modification date."
-    IDS_COLDESC_RTIMEM      "Right side modification date."
-    IDS_COLDESC_EXTENSION   "File's extension."
-    IDS_COLDESC_LSIZE       "Left file size in bytes."
-    IDS_COLDESC_RSIZE       "Right file size in bytes."
-    IDS_COLDESC_LTIMEC      "Left side creation time."
-    IDS_COLDESC_RTIMEC      "Right side creation time."
-    IDS_COLDESC_NEWER       "Tells which side has newer modification date."
-    IDS_COLDESC_LVERSION    "Left side file version, only for some filetypes."
-    IDS_COLDESC_RVERSION    "Right side file version, only for some filetypes."
-    IDS_COLDESC_RESULT_ABBR "Short comparison result."
-    IDS_COLDESC_LATTRIBUTES "Left side attributes."
-    IDS_COLDESC_RATTRIBUTES "Right side attributes."
+    IDS_COLDESC_FILENAME    "Filnamn eller katalognamn."
+    IDS_COLDESC_DIR         "Underkatalognamn när underkataloger inkluderas."
+    IDS_COLDESC_RESULT      "Jämförelseresultat, lång version."
+    IDS_COLDESC_LTIMEM      "Vänster sidas ändringsdatum."
+    IDS_COLDESC_RTIMEM      "Höger sidas ändringsdatum."
+    IDS_COLDESC_EXTENSION   "Filsuffix."
+    IDS_COLDESC_LSIZE       "Vänster fils storlek i bytes."
+    IDS_COLDESC_RSIZE       "Höger fils storlek i bytes."
+    IDS_COLDESC_LTIMEC      "Vänster sidas skapelsetid."
+    IDS_COLDESC_RTIMEC      "Höger sidas skapelsetid."
+    IDS_COLDESC_NEWER       "Visar vilken sida som har ett nyare ändringsdatum."
+    IDS_COLDESC_LVERSION    "Vänster sidas filversion, bara för några filtyper."
+    IDS_COLDESC_RVERSION    "Höger sidas filversion, bara för några filtyper."
+    IDS_COLDESC_RESULT_ABBR "Kortfattat jämförelseresultat."
+    IDS_COLDESC_LATTRIBUTES "Vänster sidas attribut."
+    IDS_COLDESC_RATTRIBUTES "Höger sidas attribut."
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_LENCODING   "Left side encoding."
-    IDS_COLDESC_RENCODING   "Right side encoding."
-    IDS_COLDESC_NDIFFS      "Number of total differences."
-    IDS_COLDESC_NSDIFFS     "Number of differences not counting ignored ones."
-    IDS_COLDESC_BINARY      "Shows asterisk (*) if file is binary."
+    IDS_COLDESC_LENCODING   "Vänster sidas kodning."
+    IDS_COLDESC_RENCODING   "Höger sidas kodning."
+    IDS_COLDESC_NDIFFS      "Totalt antal skillnader."
+    IDS_COLDESC_NSDIFFS     "Antal skillnader bortsett från ignorerade skillnader."
+    IDS_COLDESC_BINARY      "Visar stjärna (*) om filen är binär."
 END
 
 // FILE COMPARISON RESULT : MESSAGES
@@ -1874,16 +1874,16 @@ END
 // FILE MENU
 STRINGTABLE
 BEGIN
-    ID_FILE_SAVE_LEFT       "Spara den vänstra filen"
-    ID_FILE_SAVE_RIGHT      "Spara den högra filen"
-    ID_FILE_SAVEAS_LEFT     "Spara den vänstra filen som..."
-    ID_FILE_SAVEAS_RIGHT    "Spara den högra filen som..."
-    ID_FILE_LEFT_READONLY   "Ändra skrivskydd på vänster fil/mapp"
-    ID_FILE_RIGHT_READONLY  "Ändra skrivskydd på höger fil/mapp"
-    ID_EOL_TO_DOS           "Konvertera EOL till DOS-format"
-    ID_EOL_TO_UNIX          "Konvertera EOL till UNIX-format"
-    ID_EOL_TO_MAC           "Konvertera EOL till MAC-format"
-    ID_FILE_MERGINGMODE     "Växla mellan Editera mode och Merge mode"
+    ID_FILE_SAVE_LEFT       "Sparar den vänstra filen"
+    ID_FILE_SAVE_RIGHT      "Sparar den högra filen"
+    ID_FILE_SAVEAS_LEFT     "Sparar den vänstra filen som..."
+    ID_FILE_SAVEAS_RIGHT    "Sparar den högra filen som..."
+    ID_FILE_LEFT_READONLY   "Ändrar skrivskydd på vänster fil/mapp"
+    ID_FILE_RIGHT_READONLY  "Ändrar skrivskydd på höger fil/mapp"
+    ID_EOL_TO_DOS           "Konverterar EOL till DOS-format"
+    ID_EOL_TO_UNIX          "Konverterar EOL till UNIX-format"
+    ID_EOL_TO_MAC           "Konverterar EOL till MAC-format"
+    ID_FILE_MERGINGMODE     "Växlar mellan Editera mode och Merge mode"
 END
 
 // EDIT MENU
@@ -1915,24 +1915,24 @@ BEGIN
     ID_VIEW_WHITESPACE      "Visa ett tecken för mellanslag"
     ID_VIEW_DETAIL_BAR      "Visa eller göm skillnadsfältet\nVäxla skillnadsfältet"
     ID_VIEW_LOCATION_BAR    "Skillnadsbilden visar en övergripande bild av filerna"
-    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
+    ID_VIEW_DIR_STATEPANE   "Visa jämför katalogs statuspanel"
     ID_VIEW_LANGUAGE        "Välj språk för användargränssnittet\nSpråk"
 END
 
 // MERGE MENU
 STRINGTABLE
 BEGIN
-    ID_PREVDIFF             "Gå till föregående skillnad\nFöregående skillnad (Alt Upp)"
-    ID_NEXTDIFF             "Gå till nästa skillnad\nNästa skillnad (Alt Ner)"
-    ID_FIRSTDIFF            "Gå till första skillnaden\nFörsta skillnad (Alt+Home)"
-    ID_CURDIFF              "Gå till aktuell skillnad\nAktuell skillnad (Alt+Enter)"
-    ID_LASTDIFF             "Gå till sista skillnaden\nSista skillnad (Alt+End)"
-    ID_L2R                  "Kopiera den valda texten till den högra filen\nKopiera höger (Alt Höger)"
-    ID_R2L                  "Kopiera den valda texten till den vänstra filen\nKopiera vänster (Alt Vänster)"
-    ID_L2RNEXT              "Kopiera skillnad till höger och gå fram till nästa\nKopiera höger och gå framåt (Ctrl Alt Right)"
-    ID_R2LNEXT              "Kopiera skillnad till vänster och gå fram till nästa\nKopiera vänster och gå framåt (Ctrl Alt Left)"
-    ID_ALL_RIGHT            "Kopiera alla skillnader till den högra filen\nKopiera allt till höger"
-    ID_ALL_LEFT             "Kopiera alla skillnader till den vänstra filen\nKopiera allt till vänster"
+    ID_PREVDIFF             "Går till föregående skillnad\nFöregående skillnad (Alt Upp)"
+    ID_NEXTDIFF             "Går till nästa skillnad\nNästa skillnad (Alt Ner)"
+    ID_FIRSTDIFF            "Går till första skillnaden\nFörsta skillnad (Alt+Home)"
+    ID_CURDIFF              "Går till aktuell skillnad\nAktuell skillnad (Alt+Enter)"
+    ID_LASTDIFF             "Går till sista skillnaden\nSista skillnad (Alt+End)"
+    ID_L2R                  "Kopierar den valda texten till den högra filen\nKopiera höger (Alt Höger)"
+    ID_R2L                  "Kopierar den valda texten till den vänstra filen\nKopiera vänster (Alt Vänster)"
+    ID_L2RNEXT              "Kopierar skillnad till höger och går fram till nästa\nKopiera höger och gå framåt (Ctrl Alt Right)"
+    ID_R2LNEXT              "Kopierar skillnad till vänster och går fram till nästa\nKopiera vänster och gå framåt (Ctrl Alt Left)"
+    ID_ALL_RIGHT            "Kopierar alla skillnader till den högra filen\nKopiera allt till höger"
+    ID_ALL_LEFT             "Kopierar alla skillnader till den vänstra filen\nKopiera allt till vänster"
     ID_MULTIPLE_RIGHT       "Kopiera skillnader från den valda texten i den vänstra filen till den högra filen"
     ID_MULTIPLE_LEFT        "Kopiera skillnader från den valda texten i den högra filen till den vänstra filen"
 END
@@ -1940,9 +1940,9 @@ END
 // TOOLS MENU
 STRINGTABLE
 BEGIN
-    ID_TOOLS_CUSTOMIZECOLUMNS "Anpassa vilka kolumner som visas"
-    ID_TOOLS_GENERATEPATCH  "Skapa patchfil"
-    ID_TOOLS_FILTERS        "Välj och ändra filter"
+    ID_TOOLS_CUSTOMIZECOLUMNS "Anpassar vilka kolumner som visas"
+    ID_TOOLS_GENERATEPATCH  "Skapar en patchfil"
+    ID_TOOLS_FILTERS        "Väljer och ändrar filter"
 END
 
 // PLUGINS MENU
@@ -1967,7 +1967,7 @@ END
 STRINGTABLE
 BEGIN
     ID_HELP_CONTENTS        "Visa hjälpen för WinMerge\nHjälp"
-    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
+    ID_HELP_GETCONFIG       "Spara aktuell WinMerge versionsinfo och konfiguration till en textfil"
     ID_HELP_GNULICENSE      "Visa GNU General Public License"
     IDS_PRIVATEBUILD_FMT    "Privat Build: %1"
 END
@@ -1987,9 +1987,9 @@ END
 // LOCATIONBAR CONTEXT MENU
 STRINGTABLE 
 BEGIN
-    ID_DISPLAY_MOVED_NONE   "Do not display moved blocks"
-    ID_DISPLAY_MOVED_ALL    "Display all moved blacks"
-    ID_DISPLAY_MOVED_FOLLOW_DIFF "Display moved blocks only from current diff"
+    ID_DISPLAY_MOVED_NONE   "Visa inte flyttade block"
+    ID_DISPLAY_MOVED_ALL    "Visa alla flyttade block"
+    ID_DISPLAY_MOVED_FOLLOW_DIFF "Visa flyttade block bara från aktuell skillnad"
 END
 
 // END STRINGS SYNCHRO

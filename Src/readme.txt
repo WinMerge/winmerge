@@ -1,3 +1,7 @@
+2004-06-06 Laoran
+ update for MergeSwedish.rc ; contribution from Hans Ericson
+  Language/Swedish: MergeSwedish.rc
+
 2004-06-04 WinMerge experimental release 2.1.7.6 (cvs)
 
 2004-06-04 Kimmo
