@@ -31,6 +31,7 @@
 #define DV_STATUS 2
 #define DV_LTIME 3
 #define DV_RTIME 4
+#define DV_EXT		5
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirView view

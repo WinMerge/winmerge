@@ -134,6 +134,11 @@ void CDirView::OnInitialUpdate()
 	w = max(10, theApp.GetProfileInt(sSect, sKey, 150));
 	m_pList->InsertColumn(DV_RTIME, _T("Right Time"), LVCFMT_LEFT, w);
 
+    // BSP - Create a column for the extension values
+	sKey.Format(sFmt, DV_EXT);
+	w = max(10, theApp.GetProfileInt(sSect, sKey, 150));
+	m_pList->InsertColumn(DV_EXT, _T("Extension"), LVCFMT_LEFT, w);
+
 	CBitmap bm;
 	VERIFY (m_imageList.Create (16, 16, ILC_MASK, 0, 1));
 	VERIFY (bm.LoadBitmap (IDB_LFILE));
@@ -454,6 +459,9 @@ void CDirView::UpdateResources()
 	VERIFY(s.LoadString(IDS_FILENAME_HEADER));
 	lvc.pszText = (LPTSTR)((LPCTSTR)s);
 	m_pList->SetColumn(DV_NAME, &lvc);
+	VERIFY(s.LoadString(IDS_EXTENSION_HEADER));
+	lvc.pszText = (LPTSTR)((LPCTSTR)s);
+	m_pList->SetColumn(DV_EXT, &lvc);
 	VERIFY(s.LoadString(IDS_DIR_HEADER));
 	lvc.pszText = (LPTSTR)((LPCTSTR)s);
 	m_pList->SetColumn(DV_PATH, &lvc);
@@ -509,6 +517,9 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 		break;
 	case DV_RTIME: // Diff Status.
 		retVal = lDi.rtime-rDi.rtime;
+		break;
+	case DV_EXT: // File extension.                    // BSP - Provide a comparison by file extension
+		retVal = _tcscmp(lDi.extension, rDi.extension);
 		break;
 	}
 	// return compare result, considering sort direction
