@@ -86,15 +86,15 @@
     </listitem>
   </itemizedlist>
 
-  <para><note>
-      <para>The translations cover interface content, including menus,
+  <note>
+    <para>The translations cover interface content, including menus,
       dialogs, tooltips, and messages -- essentially the translation of
       of all strings displayed. However, they do not provide areas
       outside of string translation; they do not handle how numbers 
       are divided, or how words are alphabetized. (These issues should
       be addressed in the conventional Windows manner, which is
       via the Regional settings in the Control Panel.)
-    </note></para>
+  </para></note>
 
   <sect2>
     <title>Selecting language</title>

@@ -1,3 +1,7 @@
+2005-02-22 Kimmo
+ Fix markup and typo
+ Manual: Locales.xml
+
 2005-02-22 Perry
  Minor grammar proofing
  Manual: Whatsnew_2_1.xml
