@@ -123,6 +123,21 @@ public:
 	void RemoveAll();
 	void UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi) const;
 
+	//@{
+	/**
+	 * @name Path accessor functions.
+	 *
+	 * These functions return left/right path associated to DiffContext.
+	 * There is no setter fuctions and path can be set only via constructor.
+	 * Normalized paths are preferred to use - short paths are expanded
+	 * and trailing slashes removed (except from root path).
+	 */
+	const CString & GetLeftPath() const { return m_strLeft; }
+	const CString & GetRightPath() const { return m_strRight; }
+	const CString & GetNormalizedLeft() const { return m_strNormalizedLeft; }
+	const CString & GetNormalizedRight() const { return m_strNormalizedRight; }
+	//@}
+
 	// to iterate over all differences on list
 	POSITION GetFirstDiffPosition();
 	DIFFITEM GetNextDiffPosition(POSITION & diffpos);
@@ -141,10 +156,6 @@ public:
 	void FetchPluginInfos(const CString& filteredFilenames, PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
 
 	BOOL m_bRecurse;
-	CString m_strLeft;
-	CString m_strRight;
-	CString m_strNormalizedLeft;
-	CString m_strNormalizedRight;
 	IDiffFilter * m_piFilterGlobal;
 	IPluginInfos * m_piPluginInfos;
 	UINT m_msgUpdateStatus;
@@ -157,6 +168,11 @@ public:
 
 private:
 	CList<DIFFITEM,DIFFITEM> m_dirlist, *m_pList; // master list of differences
+
+	CString m_strLeft;
+	CString m_strRight;
+	CString m_strNormalizedLeft;
+	CString m_strNormalizedRight;
 };
 
 #endif // !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)

@@ -69,8 +69,8 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 {
 	//int (WINAPI *collstr)(LPCTSTR, LPCTSTR) = casesensitive ? lstrcmp : lstrcmpi;
 	static const TCHAR backslash[] = _T("\\");
-	CString sLeftDir = pCtxt->m_strNormalizedLeft;
-	CString sRightDir = pCtxt->m_strNormalizedRight;
+	CString sLeftDir = pCtxt->GetNormalizedLeft();
+	CString sRightDir = pCtxt->GetNormalizedRight();
 	CString subprefix;
 	if (!subdir.IsEmpty())
 	{

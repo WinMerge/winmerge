@@ -181,19 +181,14 @@ void CDirDoc::Rescan()
 	m_statusCursor = new CustomStatusCursor(0, IDC_APPSTARTING, LoadResString(IDS_STATUS_RESCANNING));
 
 	gLog.Write(LOGLEVEL::LNOTICE, _T("Starting directory scan:\n\tLeft: %s\n\tRight: %s\n"),
-			m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
+			m_pCtxt->GetLeftPath(), m_pCtxt->GetRightPath());
 	pf->clearStatus();
 	pf->ShowProcessingBar(TRUE);
 	m_pCtxt->RemoveAll();
 
-	// fix up for diff code (remove trailing slashes etc)
-	m_pCtxt->m_strNormalizedLeft = m_pCtxt->m_strLeft;
-	m_pCtxt->m_strNormalizedRight = m_pCtxt->m_strRight;
 	m_pCtxt->m_hDirFrame = pf->GetSafeHwnd();
 	m_pCtxt->m_msgUpdateStatus = MSG_STAT_UPDATE;
 	m_pCtxt->m_bGuessEncoding = mf->m_options.GetBool(OPT_CP_DETECT);
-	paths_normalize(m_pCtxt->m_strNormalizedLeft);
-	paths_normalize(m_pCtxt->m_strNormalizedRight);
 	UpdateHeaderPath(TRUE);
 	UpdateHeaderPath(FALSE);
 	// draw the headers as active ones
@@ -215,8 +210,8 @@ void CDirDoc::Rescan()
 	m_diffThread.SetContext(m_pCtxt);
 	m_diffThread.SetHwnd(m_pDirView->GetSafeHwnd());
 	m_diffThread.SetMessageIDs(MSG_UI_UPDATE, MSG_STAT_UPDATE);
-	m_diffThread.CompareDirectories(m_pCtxt->m_strNormalizedLeft,
-			m_pCtxt->m_strNormalizedRight, m_bRecursive);
+	m_diffThread.CompareDirectories(m_pCtxt->GetNormalizedLeft(),
+			m_pCtxt->GetNormalizedRight(), m_bRecursive);
 }
 
 /**
@@ -297,8 +292,8 @@ void CDirDoc::Redisplay()
 
 	CString s,s2;
 	UINT cnt=0;
-	int llen = m_pCtxt->m_strNormalizedLeft.GetLength();
-	int rlen = m_pCtxt->m_strNormalizedRight.GetLength();
+	int llen = m_pCtxt->GetNormalizedLeft().GetLength();
+	int rlen = m_pCtxt->GetNormalizedRight().GetLength();
 
 	m_pDirView->DeleteAllDisplayItems();
 
@@ -712,7 +707,7 @@ void CDirDoc::UpdateHeaderPath(BOOL bLeft)
 		if (!m_strLeftDesc.IsEmpty())
 			sText = m_strLeftDesc;
 		else
-			sText = m_pCtxt->m_strLeft;
+			sText = m_pCtxt->GetLeftPath();
 		nPane = 0;
 	}
 	else
@@ -720,7 +715,7 @@ void CDirDoc::UpdateHeaderPath(BOOL bLeft)
 		if (!m_strRightDesc.IsEmpty())
 			sText = m_strRightDesc;
 		else
-			sText = m_pCtxt->m_strRight;
+			sText = m_pCtxt->GetRightPath();
 		nPane = 1;
 	}
 
@@ -809,8 +804,8 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 
 	if (lpszTitle)
 		CDocument::SetTitle(lpszTitle);
-	else if (!m_pCtxt || m_pCtxt->m_strLeft.IsEmpty() ||
-		m_pCtxt->m_strRight.IsEmpty())
+	else if (!m_pCtxt || m_pCtxt->GetLeftPath().IsEmpty() ||
+		m_pCtxt->GetRightPath().IsEmpty())
 	{
 		CString title;
 		VERIFY(title.LoadString(IDS_DIRECTORY_WINDOW_TITLE));
@@ -834,24 +829,24 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 			m_pDirView->GetClientRect(&rcClient);
 			const DWORD width = rcClient.right / 3;
 
-			sLeftFile = m_pCtxt->m_strLeft;
+			sLeftFile = m_pCtxt->GetLeftPath();
 			pszLeftFile = sLeftFile.GetBuffer(MAX_PATH);
 
 			if (PathCompactPath(lDC.GetSafeHdc(), pszLeftFile, width))
 				strTitle = pszLeftFile;
 			else
-				strTitle = m_pCtxt->m_strLeft;
+				strTitle = m_pCtxt->GetLeftPath();
 
 			sLeftFile.ReleaseBuffer();
 			strTitle += strSeparator;
 
-			sRightFile = m_pCtxt->m_strRight;
+			sRightFile = m_pCtxt->GetRightPath();
 			pszRightFile = sRightFile.GetBuffer(MAX_PATH);
 
 			if (PathCompactPath(lDC.GetSafeHdc(), pszRightFile, width))
 				strTitle += pszRightFile;
 			else
-				strTitle += m_pCtxt->m_strRight;
+				strTitle += m_pCtxt->GetRightPath();
 			sRightFile.ReleaseBuffer();
 
 			CDocument::SetTitle(strTitle);

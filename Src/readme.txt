@@ -2,6 +2,8 @@
  PATCH: [ 1155319 ] Select font for dir compare view
   Src: DirView.cpp DirView.h MainFrm.cpp MainFrm.h Merge.rc OptionsDef.h
   Languages: *.rc
+ PATCH: [ 1154667 ] Make CDiffContext paths private members
+  Src: DiffContext.cpp DiffContext.h DirActions.cpp DirDoc.cpp DirScan.cpp DirView.cpp
 
 2005-03-02 Perry
  PATCH: [ 1154259 ] Non blurred 'error.bmp'

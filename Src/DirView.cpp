@@ -805,8 +805,8 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
  */
 void CDirView::OpenParentDirectory()
 {
-	CString left = GetDocument()->m_pCtxt->m_strNormalizedLeft;
-	CString right = GetDocument()->m_pCtxt->m_strNormalizedRight;
+	const CString & left = GetDocument()->m_pCtxt->GetNormalizedLeft();
+	const CString & right = GetDocument()->m_pCtxt->GetNormalizedRight();
 	CString leftParent = paths_GetParentPath(left);
 	CString rightParent = paths_GetParentPath(right);
 
@@ -1972,7 +1972,7 @@ void CDirView::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI)
  */
 void CDirView::OnEditCopy() 
 {
-	PutToClipboard(GenerateReport(), this->m_hWnd);
+	PutToClipboard(GenerateReport(), GetSafeHwnd());
 }
 
 /**
@@ -1992,7 +1992,10 @@ CString CDirView::GenerateReport()
 	
 	// Report:Title
 	if (GetDiffContext() != NULL)
-		AfxFormatString2(report, IDS_DIRECTORY_REPORT_TITLE, GetDiffContext()->m_strLeft, GetDiffContext()->m_strRight);
+	{
+		AfxFormatString2(report, IDS_DIRECTORY_REPORT_TITLE,
+			GetDiffContext()->GetLeftPath(), GetDiffContext()->GetRightPath());
+	}
 	report += _T("\r\n"); // Use DOS-EOL style for reports
 
 	// Report:Header
@@ -2075,8 +2078,8 @@ int CDirView::AddSpecialItems()
 {
 	CDirDoc *pDoc = GetDocument();
 	int retVal = 0;
-	CString leftPath = pDoc->m_pCtxt->m_strNormalizedLeft;
-	CString rightPath = pDoc->m_pCtxt->m_strNormalizedRight;
+	const CString & leftPath = pDoc->m_pCtxt->GetNormalizedLeft();
+	const CString & rightPath = pDoc->m_pCtxt->GetNormalizedRight();
 	CString leftParent = paths_GetParentPath(leftPath);
 	CString rightParent = paths_GetParentPath(rightPath);
 

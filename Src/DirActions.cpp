@@ -927,9 +927,11 @@ void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) co
 	{
 		const CDiffContext * ctxt = GetDiffContext();
 		const DIFFITEM & di = ctxt->GetDiffAt(diffpos);
-		CString relpath = paths_ConcatPath(di.sSubdir, di.sfilename);
-		strLeft = paths_ConcatPath(ctxt->m_strLeft, relpath);
-		strRight = paths_ConcatPath(ctxt->m_strRight, relpath);
+		const CString relpath = paths_ConcatPath(di.sSubdir, di.sfilename);
+		const CString & leftpath = ctxt->GetLeftPath();
+		const CString & rightpath = ctxt->GetRightPath();
+		strLeft = paths_ConcatPath(leftpath, relpath);
+		strRight = paths_ConcatPath(rightpath, relpath);
 	}
 }
 

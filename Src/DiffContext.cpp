@@ -48,6 +48,12 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
+/**
+ * @brief Construct CDiffContext.
+ *
+ * @param [in] pszLeft Initial left-side path.
+ * @param [in] pszRight Initial right-side path.
+ */
 CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/)
 {
 	m_bRecurse=FALSE;
@@ -61,8 +67,20 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 	m_piPluginInfos = 0;
 	m_msgUpdateStatus = 0;
 	m_hDirFrame = NULL;
+
+	m_strNormalizedLeft = pszLeft;
+	paths_normalize(m_strNormalizedLeft);
+	m_strNormalizedRight = pszRight;
+	paths_normalize(m_strNormalizedRight);
 }
 
+/**
+ * @brief Construct copy of existing CDiffContext.
+ *
+ * @param [in] pszLeft Initial left-side path.
+ * @param [in] pszRight Initial right-side path.
+ * @param [in] src Existing CDiffContext whose data is copied.
+ */
 CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 {
 	// This is used somehow in recursive comparisons
@@ -81,6 +99,11 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 
 	pNamesLeft = NULL;
 	pNamesRight = NULL;
+
+	m_strNormalizedLeft = pszLeft;
+	paths_normalize(m_strNormalizedLeft);
+	m_strNormalizedRight = pszRight;
+	paths_normalize(m_strNormalizedRight);
 }
 
 CDiffContext::~CDiffContext()
@@ -100,7 +123,6 @@ static CString GetFixedFileVersion(const CString & path)
 	CVersionInfo ver(path);
 	return ver.GetFixedFileVersion();
 }
-
 
 /**
  * @brief Add new diffitem to CDiffContext array
@@ -295,7 +317,7 @@ CString DIFFITEM::getLeftFilepath(const CDiffContext *pCtxt) const
 	CString sPath;
 	if (!isSideRight())
 	{
-		sPath = pCtxt->m_strNormalizedLeft;
+		sPath = pCtxt->GetNormalizedLeft();
 		if (sSubdir.GetLength())
 		{
             sPath = paths_ConcatPath(sPath, sSubdir);
@@ -310,7 +332,7 @@ CString DIFFITEM::getRightFilepath(const CDiffContext *pCtxt) const
 	CString sPath;
 	if (!isSideLeft())
 	{
-		sPath = pCtxt->m_strNormalizedRight;
+		sPath = pCtxt->GetNormalizedRight();
 		if (sSubdir.GetLength())
 		{
             sPath = paths_ConcatPath(sPath, sSubdir);
