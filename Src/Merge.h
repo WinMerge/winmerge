@@ -58,36 +58,12 @@ class CMergeApp : public CWinApp
 public:
 	BOOL m_bHiliteSyntax;
 	BOOL m_bDisableSplash;
-	COLORREF	m_clrDiff;				// The difference color
-	COLORREF	m_clrSelDiff;			// The selected difference color
-	COLORREF	m_clrDiffDeleted;		// The difference deleted color
-	COLORREF	m_clrSelDiffDeleted;	// The selected difference deleted color
-	COLORREF	m_clrDiffText;			// The difference text color
-	COLORREF	m_clrSelDiffText;		// The selected difference text color
-	COLORREF	m_clrTrivial;        // The ignored lines color
-	COLORREF	m_clrTrivialDeleted; // The ignored and deleted lines color
 	BOOL m_bNeedIdleTimer;
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
 	CLanguageSelect m_lang;
 
 	CMergeApp();
-	COLORREF GetDiffColor() const { return m_clrDiff; }
-	COLORREF GetSelDiffColor() const { return m_clrSelDiff; }
-	COLORREF GetDiffDeletedColor() const { return m_clrDiffDeleted; }
-	COLORREF GetSelDiffDeletedColor() const { return m_clrSelDiffDeleted; }
-	COLORREF GetDiffTextColor() const { return m_clrDiffText; }
-	COLORREF GetSelDiffTextColor() const { return m_clrSelDiffText; }
-	COLORREF GetTrivialColor() const { return m_clrTrivial; }
-	COLORREF GetTrivialDeletedColor() const { return m_clrTrivialDeleted; }
-	void SetDiffColor(COLORREF clrValue) { m_clrDiff = clrValue; }
-	void SetSelDiffColor(COLORREF clrValue) { m_clrSelDiff = clrValue; }
-	void SetDiffDeletedColor(COLORREF clrValue) { m_clrDiffDeleted = clrValue; }
-	void SetSelDiffDeletedColor(COLORREF clrValue) { m_clrSelDiffDeleted = clrValue; }
-	void SetDiffTextColor(COLORREF clrValue) { m_clrDiffText = clrValue; }
-	void SetSelDiffTextColor(COLORREF clrValue) { m_clrSelDiffText = clrValue; }
-	void SetTrivialColor(COLORREF clrValue) { m_clrTrivial = clrValue; }
-	void SetTrivialDeletedColor(COLORREF clrValue) { m_clrTrivialDeleted = clrValue; }
 	void SetNeedIdleTimer();
 	CString GetFileFilterPath() const { return m_sFileFilterPath; }
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);

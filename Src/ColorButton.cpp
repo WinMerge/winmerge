@@ -1,5 +1,11 @@
-// ColorButton.cpp : implementation file
-//
+/** 
+ * @file  ColorButton.cpp
+ *
+ * @brief Implementation file for CColorButton
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "merge.h"
@@ -11,13 +17,24 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// CColorButton
+/** 
+ * @brief Default constructor setting color to black.
+ */
+CColorButton::CColorButton()
+{
+	m_clrFill = RGB(0, 0, 0);
+}
 
+/** 
+ * @brief Constructor setting initial color
+ */
 CColorButton::CColorButton( COLORREF clrFill ) : m_clrFill(clrFill)
 {
 }
 
+/** 
+ * @brief Destructor
+ */
 CColorButton::~CColorButton()
 {
 }
@@ -31,6 +48,9 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CColorButton message handlers
 
+/** 
+ * @brief Draws color button
+ */
 void CColorButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct) 
 {
 	CBrush	brush;
@@ -45,11 +65,16 @@ void CColorButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 #endif
 }
 
-
-void CColorButton::SetColor( COLORREF clrFill )
+/** 
+ * @brief Sets color
+ * @param [in] crlFill New color
+ * @param [in] bInvalidate If TRUE button is invalidated (causing redraw)
+ */
+void CColorButton::SetColor(COLORREF clrFill, BOOL bInvalidate /* = TRUE*/)
 {
 	m_clrFill = clrFill;
-	Invalidate();
+	if (bInvalidate)
+		Invalidate();
 }
 
 

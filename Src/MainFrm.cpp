@@ -182,6 +182,21 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_EXT_EDITOR_CMD, _T(""));
 	m_options.InitOption(OPT_USE_RECYCLE_BIN, TRUE);
 
+	m_options.InitOption(OPT_CLR_DIFF, RGB(239,203,5));
+	m_options.InitOption(OPT_CLR_SELECTED_DIFF, RGB(239,119,116));
+	m_options.InitOption(OPT_CLR_DIFF_DELETED, RGB(192, 192, 192));
+	m_options.InitOption(OPT_CLR_SELECTED_DIFF_DELETED, RGB(240, 192, 192));
+	m_options.InitOption(OPT_CLR_DIFF_TEXT, RGB(0,0,0));
+	m_options.InitOption(OPT_CLR_SELECTED_DIFF_TEXT, RGB(0,0,0));
+	m_options.InitOption(OPT_CLR_TRIVIAL_DIFF, RGB(251,242,191));
+	m_options.InitOption(OPT_CLR_TRIVIAL_DIFF_DELETED, RGB(233,233,233));
+
+	// Overwrite WinMerge 2.0 default colors with new colors
+	if (m_options.GetInt(OPT_CLR_DIFF) == RGB(255,255,92))
+		m_options.SaveOption(OPT_CLR_DIFF, RGB(239,203,5));
+	if (m_options.GetInt(OPT_CLR_SELECTED_DIFF) == RGB(255,0,92))
+		m_options.SaveOption(OPT_CLR_SELECTED_DIFF, RGB(239,119,116));
+
 	m_bShowErrors = TRUE;
 	m_nVerSys = theApp.GetProfileInt(_T("Settings"), _T("VersionSystem"), 0);
 	m_strVssProjectBase = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
@@ -960,8 +975,7 @@ void CMainFrame::OnOptions()
 	CPropVss vss;
 	CPropGeneral gen;
 	CPropFilter filter(&fileFilters, selectedFilter);
-	CPropColors colors(theApp.GetDiffColor(), theApp.GetSelDiffColor(), theApp.GetDiffDeletedColor(), theApp.GetSelDiffDeletedColor(), 
-	                   theApp.GetDiffTextColor(), theApp.GetSelDiffTextColor(), theApp.GetTrivialColor(), theApp.GetTrivialDeletedColor());
+	CPropColors colors(&m_options);
 	CPropRegistry regpage;
     CPropCompare compage;
 	CPropEditor editor;
@@ -1029,15 +1043,6 @@ void CMainFrame::OnOptions()
 		m_sPattern = filter.m_sPattern;
 		theApp.SetFileFilterPath(filter.m_sFileFilterPath);
 
-		theApp.SetDiffColor(colors.m_clrDiff);
-		theApp.SetSelDiffColor(colors.m_clrSelDiff);
-		theApp.SetDiffDeletedColor(colors.m_clrDiffDeleted);
-		theApp.SetSelDiffDeletedColor(colors.m_clrSelDiffDeleted);
-		theApp.SetDiffTextColor(colors.m_clrDiffText);
-		theApp.SetSelDiffTextColor(colors.m_clrSelDiffText);
-		theApp.SetTrivialColor(colors.m_clrTrivial);
-		theApp.SetTrivialDeletedColor(colors.m_clrTrivialDeleted);
-
 		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
 		theApp.WriteProfileString(_T("Settings"), _T("VssPath"), m_strVssPath);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
@@ -1048,6 +1053,15 @@ void CMainFrame::OnOptions()
 
 		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), theApp.m_bHiliteSyntax);
 
+		m_options.SaveOption(OPT_CLR_DIFF, colors.m_clrDiff);
+		m_options.SaveOption(OPT_CLR_SELECTED_DIFF, colors.m_clrSelDiff);
+		m_options.SaveOption(OPT_CLR_DIFF_DELETED, colors.m_clrDiffDeleted);
+		m_options.SaveOption(OPT_CLR_SELECTED_DIFF_DELETED, colors.m_clrSelDiffDeleted);
+		m_options.SaveOption(OPT_CLR_DIFF_TEXT, colors.m_clrDiffText);
+		m_options.SaveOption(OPT_CLR_SELECTED_DIFF_TEXT, colors.m_clrSelDiffText);
+		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF, colors.m_clrTrivial);
+		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, colors.m_clrTrivialDeleted);
+		
 		// use CDiffwrapper static functions to exchange the options with registry
 		CDiffWrapper::WriteDiffOptions(&diffOptions);
 

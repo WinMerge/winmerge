@@ -1,11 +1,19 @@
-// PropColors.h : header file
-//
+/** 
+ * @file  PropColors.h
+ *
+ * @brief Declaration file for CPropColors propertyheet
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #if !defined(AFX_PROPCOLORS_H__9C0A0F92_CDD6_40FE_BEFC_101B1E22FFDD__INCLUDED_)
 #define AFX_PROPCOLORS_H__9C0A0F92_CDD6_40FE_BEFC_101B1E22FFDD__INCLUDED_
 
 
 #include "ColorButton.h"
+
+class COptionsMgr;
 
 const int CustomColorsAmount = 16;
 
@@ -18,8 +26,7 @@ class CPropColors : public CPropertyPage
 // Construction
 public:
 
-	CPropColors(COLORREF clrDiff, COLORREF clrSelDiff, COLORREF clrDiffDeleted, COLORREF clrSelDiffDeleted, COLORREF clrDiffText, COLORREF clrSelDiffText, COLORREF clrTrivial, COLORREF clrTrivialDeleted);   // standard constructor
-
+	CPropColors(COptionsMgr *optionsMgr);
 // Dialog Data
 	//{{AFX_DATA(CPropColors)
 	enum { IDD = IDD_PROPPAGE_COLORS };

@@ -29,4 +29,22 @@ const TCHAR OPT_TAB_TYPE[] = _T("Settings/TabType");
 const TCHAR OPT_EXT_EDITOR_CMD[] = _T("Settings/ExternalEditor");
 const TCHAR OPT_USE_RECYCLE_BIN[] = _T("Settings/UseRecycleBin");
 
+// Color options
+// The difference color
+const TCHAR OPT_CLR_DIFF[] = _T("Settings/DifferenceColor");
+// The selected difference color
+const TCHAR OPT_CLR_SELECTED_DIFF[] = _T("Settings/SelectedDifferenceColor");
+// The difference deleted color
+const TCHAR OPT_CLR_DIFF_DELETED[] = _T("Settings/DifferenceDeletedColor");
+// The selected difference deleted color
+const TCHAR OPT_CLR_SELECTED_DIFF_DELETED[] = _T("Settings/SelectedDifferenceDeletedColor");
+// The difference text color
+const TCHAR OPT_CLR_DIFF_TEXT[] = _T("Settings/DifferenceTextColor");
+// The selected difference text color
+const TCHAR OPT_CLR_SELECTED_DIFF_TEXT[] = _T("Settings/SelectedDifferenceTextColor");
+// The ignored lines color
+const TCHAR OPT_CLR_TRIVIAL_DIFF[] = _T("Settings/TrivialDifferenceColor");
+// The ignored and deleted lines color
+const TCHAR OPT_CLR_TRIVIAL_DIFF_DELETED[] = _T("Settings/TrivialDifferenceDeletedColor");
+
 #endif // _OPTIONS_DEF_H_

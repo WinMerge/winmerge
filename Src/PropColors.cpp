@@ -1,9 +1,16 @@
-// PropColors.cpp : implementation file
-//
+/** 
+ * @file  PropColors.cpp
+ *
+ * @brief Implementation of CPropColors propertysheet
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "merge.h"
 #include "PropColors.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -16,19 +23,29 @@ static const TCHAR Section[] = _T("Custom Colors");
 /////////////////////////////////////////////////////////////////////////////
 // CPropColors dialog
 
-
-CPropColors::CPropColors( COLORREF clrDiff, COLORREF clrSelDiff, COLORREF clrDiffDeleted, COLORREF clrSelDiffDeleted, COLORREF clrDiffText, COLORREF clrSelDiffText, COLORREF clrTrivial, COLORREF clrTrivialDeleted)
-	: CPropertyPage(CPropColors::IDD),
-		m_clrDiff(clrDiff), m_clrSelDiff(clrSelDiff), m_clrDiffDeleted(clrDiffDeleted), m_clrSelDiffDeleted(clrSelDiffDeleted), 
-		m_clrDiffText(clrDiffText), m_clrSelDiffText(clrSelDiffText), m_clrTrivial(clrTrivial), m_clrTrivialDeleted(clrTrivialDeleted),
-		m_cDiff(clrDiff), m_cSelDiff(clrSelDiff), m_cDiffDeleted(clrDiffDeleted), m_cSelDiffDeleted(clrSelDiffDeleted), 
-		m_cDiffText(clrDiffText), m_cSelDiffText(clrSelDiffText), m_cTrivial(clrTrivial), m_cTrivialDeleted(clrTrivialDeleted)
+CPropColors::CPropColors(COptionsMgr *optionsMgr) : CPropertyPage(CPropColors::IDD)
 {
 	//{{AFX_DATA_INIT(CPropColors)
-		// NOTE: the ClassWizard will add member initialization here
+	m_clrDiff = optionsMgr->GetInt(OPT_CLR_DIFF);
+	m_clrSelDiff = optionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
+	m_clrDiffDeleted = optionsMgr->GetInt(OPT_CLR_DIFF_DELETED);
+	m_clrSelDiffDeleted = optionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
+	m_clrDiffText = optionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
+	m_clrSelDiffText = optionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
+	m_clrTrivial = optionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF);
+	m_clrTrivialDeleted = optionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
+
+	// Set colors for buttons, do NOT invalidate
+	m_cDiff.SetColor(m_clrDiff, FALSE);
+	m_cSelDiff.SetColor(m_clrSelDiff, FALSE);
+	m_cDiffDeleted.SetColor(m_clrDiffDeleted, FALSE);
+	m_cSelDiffDeleted.SetColor(m_clrSelDiffDeleted, FALSE);
+	m_cDiffText.SetColor(m_clrDiffText, FALSE);
+	m_cSelDiffText.SetColor(m_clrSelDiffText, FALSE);
+	m_cTrivial.SetColor(m_clrTrivial, FALSE);
+	m_cTrivialDeleted.SetColor(m_clrTrivialDeleted, FALSE);
 	//}}AFX_DATA_INIT
 }
-
 
 void CPropColors::DoDataExchange(CDataExchange* pDX)
 {
@@ -59,9 +76,9 @@ BEGIN_MESSAGE_MAP(CPropColors, CDialog)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-/////////////////////////////////////////////////////////////////////////////
-// CPropColors message handlers
-
+/** 
+ * @brief User wants to change difference color
+ */
 void CPropColors::OnDifferenceColor() 
 {
 	CColorDialog dialog(m_clrDiff);
@@ -76,6 +93,9 @@ void CPropColors::OnDifferenceColor()
 	SaveCustomColors();
 }
 
+/** 
+ * @brief User wants to change selected difference color
+ */
 void CPropColors::OnSelDifferenceColor() 
 {
 	CColorDialog dialog(m_clrSelDiff);
@@ -90,6 +110,9 @@ void CPropColors::OnSelDifferenceColor()
 	SaveCustomColors();
 }
 
+/** 
+ * @brief User wants to change deleted difference color
+ */
 void CPropColors::OnDifferenceDeletedColor() 
 {
 	CColorDialog dialog(m_clrDiffDeleted);
@@ -104,6 +127,9 @@ void CPropColors::OnDifferenceDeletedColor()
 	SaveCustomColors();
 }
 
+/** 
+ * @brief User wants to change selected & deleted difference color
+ */
 void CPropColors::OnSelDifferenceDeletedColor() 
 {
 	CColorDialog dialog(m_clrSelDiffDeleted);
@@ -118,6 +144,9 @@ void CPropColors::OnSelDifferenceDeletedColor()
 	SaveCustomColors();
 }
 
+/** 
+ * @brief User wants to change difference text color
+ */
 void CPropColors::OnDifferenceTextColor() 
 {
 	CColorDialog dialog(m_clrDiffText);
@@ -132,6 +161,9 @@ void CPropColors::OnDifferenceTextColor()
 	SaveCustomColors();
 }
 
+/** 
+ * @brief User wants to change selected difference text color
+ */
 void CPropColors::OnSelDifferenceTextColor() 
 {
 	CColorDialog dialog(m_clrSelDiffText);
@@ -146,6 +178,9 @@ void CPropColors::OnSelDifferenceTextColor()
 	SaveCustomColors();
 }
 
+/** 
+ * @brief User wants to change trivial difference color
+ */
 void CPropColors::OnTrivialDiffColor() 
 {
 	CColorDialog dialog(m_clrTrivial);
@@ -160,6 +195,9 @@ void CPropColors::OnTrivialDiffColor()
 	SaveCustomColors();	
 }
 
+/** 
+ * @brief User wants to change deleted trivial difference color
+ */
 void CPropColors::OnTrivialDiffDeletedColor() 
 {
 	CColorDialog dialog(m_clrTrivialDeleted);
@@ -174,6 +212,9 @@ void CPropColors::OnTrivialDiffDeletedColor()
 	SaveCustomColors();
 }
 
+/** 
+ * @brief Loads color selection dialog's custom colors from registry
+ */
 void CPropColors::LoadCustomColors()
 {
 	for (int i = 0; i < CustomColorsAmount; i++)
@@ -185,6 +226,9 @@ void CPropColors::LoadCustomColors()
 	}
 }
 
+/** 
+ * @brief Saves color selection dialog's custom colors to registry
+ */
 void CPropColors::SaveCustomColors()
 {
 	for (int i = 0; i < CustomColorsAmount; i++)

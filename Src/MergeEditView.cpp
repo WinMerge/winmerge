@@ -281,6 +281,9 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 
 /**
  * @brief Determine text and background color for line
+ * @param [in] nLineIndex Index of line in view (NOT line in file)
+ * @param [out] crBkgnd Backround color for line
+ * @param [out] crText Text color for line
  */
 void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, BOOL & bDrawWhitespace)
@@ -290,7 +293,7 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 	// Line inside diff
 	if (dwLineFlags & LF_WINMERGE_FLAGS)
 	{
-		crText = theApp.GetDiffTextColor();
+		crText = mf->m_options.GetInt(OPT_CLR_DIFF_TEXT);
 		bDrawWhitespace = TRUE;
 		BOOL lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);
 
@@ -298,13 +301,13 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 		{
 			if (lineInCurrentDiff)
 			{
-				crBkgnd = theApp.GetSelDiffColor();
-				crText = theApp.GetSelDiffTextColor();
+				crBkgnd = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF);
+				crText = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
 			}
 			else
 			{
-				crBkgnd = theApp.GetDiffColor();
-				crText = theApp.GetDiffTextColor();
+				crBkgnd = mf->m_options.GetInt(OPT_CLR_DIFF);
+				crText = mf->m_options.GetInt(OPT_CLR_DIFF_TEXT);
 			}
 			return;
 		}
@@ -313,17 +316,17 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 			// trivial diff can not be selected
 			if (dwLineFlags & LF_GHOST)
 				// ghost lines in trivial diff has their own color
-				crBkgnd = theApp.GetTrivialDeletedColor();
+				crBkgnd = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
 			else
-				crBkgnd = theApp.GetTrivialColor();
+				crBkgnd = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF);
 			return;
 		}
 		else if (dwLineFlags & LF_GHOST)
 		{
 			if (lineInCurrentDiff)
-				crBkgnd = theApp.GetSelDiffDeletedColor();
+				crBkgnd = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
 			else
-				crBkgnd = theApp.GetDiffDeletedColor();
+				crBkgnd = mf->m_options.GetInt(OPT_CLR_DIFF_DELETED);
 			return;
 		}
 

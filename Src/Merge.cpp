@@ -83,14 +83,6 @@ static void AddEnglishResourceHook();
 CMergeApp::CMergeApp()
 : m_bHiliteSyntax(TRUE)
 , m_bDisableSplash(FALSE)
-, m_clrDiff(RGB(239,203,5))
-, m_clrSelDiff(RGB(239,119,116))
-, m_clrDiffDeleted(RGB(192, 192, 192))
-, m_clrSelDiffDeleted(RGB(240, 192, 192))
-, m_clrDiffText(RGB(0,0,0))
-, m_clrSelDiffText(RGB(0,0,0))
-, m_clrTrivial(RGB(251,242,191))
-, m_clrTrivialDeleted(RGB(233,233,233))
 , m_bNeedIdleTimer(FALSE)
 , m_pDiffTemplate(0)
 , m_pDirTemplate(0)
@@ -150,24 +142,6 @@ BOOL CMergeApp::InitInstance()
 	SetRegistryKey(_T("Thingamahoochie"));
 
 	LoadStdProfileSettings(0);  // Load standard INI file options (including MRU)
-
-	m_bDisableSplash 	= GetProfileInt(_T("Settings"), _T("DisableSplash"), FALSE);
-	m_bHiliteSyntax 	= GetProfileInt(_T("Settings"), _T("HiliteSyntax"), TRUE)!=0;
-
-	m_clrDiff			= GetProfileInt(_T("Settings"), _T("DifferenceColor"), m_clrDiff);
-	m_clrSelDiff 		= GetProfileInt(_T("Settings"), _T("SelectedDifferenceColor"), m_clrSelDiff);
-	m_clrDiffDeleted	= GetProfileInt(_T("Settings"), _T("DifferenceDeletedColor"), m_clrDiffDeleted);
-	m_clrSelDiffDeleted	= GetProfileInt(_T("Settings"), _T("SelectedDifferenceDeletedColor"), m_clrSelDiffDeleted);
-	m_clrDiffText		= GetProfileInt(_T("Settings"), _T("DifferenceTextColor"), m_clrDiffText);
-	m_clrSelDiffText	= GetProfileInt(_T("Settings"), _T("SelectedDifferenceTextColor"), m_clrSelDiffText);
-	m_clrTrivial        = GetProfileInt(_T("Settings"), _T("TrivialDifferenceColor"), m_clrTrivial);
-	m_clrTrivialDeleted = GetProfileInt(_T("Settings"), _T("TrivialDifferenceDeletedColor"), m_clrTrivialDeleted);
-
-	// Update old default colors to new colors 
-	if (m_clrDiff == RGB(255,255,92))
-		m_clrDiff = RGB(239,203,5);
-	if (m_clrSelDiff == RGB(255,0,92))
-		m_clrSelDiff = RGB(239,119,116);
 
 	// CG: The following block was added by the Splash Screen component.
 	{
@@ -572,19 +546,8 @@ void CMergeApp::OnViewLanguage()
 
 int CMergeApp::ExitInstance() 
 {
-	WriteProfileInt(_T("Settings"), _T("DifferenceColor"), m_clrDiff);
-	WriteProfileInt(_T("Settings"), _T("SelectedDifferenceColor"), m_clrSelDiff);
-	WriteProfileInt(_T("Settings"), _T("DifferenceDeletedColor"), m_clrDiffDeleted);
-	WriteProfileInt(_T("Settings"), _T("SelectedDifferenceDeletedColor"), m_clrSelDiffDeleted);
-	WriteProfileInt(_T("Settings"), _T("DifferenceTextColor"), m_clrDiffText);
-	WriteProfileInt(_T("Settings"), _T("SelectedDifferenceTextColor"), m_clrSelDiffText);
-	WriteProfileInt(_T("Settings"), _T("TrivialDifferenceColor"), m_clrTrivial);
-	WriteProfileInt(_T("Settings"), _T("TrivialDifferenceDeletedColor"), m_clrTrivialDeleted);
-	
 	delete m_fileFilterMgr;
-
 	delete m_mainThreadScripts;
-
 	return CWinApp::ExitInstance();
 }
 

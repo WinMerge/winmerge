@@ -2,6 +2,10 @@
  PATCH: [ 907087 ] Allow commandline switches for external editor
   Common: coretools.cpp coretools.h
   Src: MainFrm.cpp
+ PATCH: [ 907641 ] Convert color options to new system
+  Src: ColorButton.cpp ColorButton.h MainFrm.cpp Merge.cpp Merge.h
+   MergeDiffDetailView.cpp MergeEditView.cpp OptionsDef.h
+   PropColors.cpp PropColors.h
 
 2004-03-01 Kimmo
  PATCH: [ 906180 ] Use SHBrowseForFolder() to select folder
