@@ -1,0 +1,2079 @@
+//Microsoft Developer Studio generated resource script.
+//
+// $Id$
+
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HUN)
+#ifdef _WIN32
+LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HUN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT\r\n"
+    "#pragma code_page(1250)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Merge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\Merge.ico"
+IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_POPUP_MERGEVIEW MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Átmásol &Jobbra",              ID_L2R
+        MENUITEM "Átmásol &Balra",               ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "A sor &eltérésének kiemelése",        ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Visszavonás",                       ID_EDIT_UNDO
+        MENUITEM "Még&is",                       ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "&Kivágás",                        ID_EDIT_CUT
+        MENUITEM "&Másolás",                       ID_EDIT_COPY
+        MENUITEM "&Beillesztés",                      ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "&Ugrás...",                    ID_EDIT_WMGOTO
+    END
+END
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&Fájl"
+    BEGIN
+        MENUITEM "&Új\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "M&egnyitás...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "&Mentés\tCtrl+S",               ID_FILE_SAVE
+        POPUP "&Bal oldal mentése"
+        BEGIN
+            MENUITEM "&Mentés",                       ID_FILE_SAVE_LEFT
+            MENUITEM "Menté&s más néven...",                 ID_FILE_SAVEAS_LEFT
+        END
+        POPUP "&Jobb oldal mentése"
+        BEGIN
+            MENUITEM "&Mentés",                       ID_FILE_SAVE_RIGHT
+            MENUITEM "Menté&s más néven...",                 ID_FILE_SAVEAS_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Bal oldal csak &olvasható",             ID_FILE_LEFT_READONLY
+        MENUITEM "Jobb oldal csak o&lvasható",            ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        POPUP "&Formázás"
+        BEGIN
+            MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
+            MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
+            MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Olvasztási mód\tF9",              ID_FILE_MERGINGMODE
+        MENUITEM SEPARATOR
+        MENUITEM "&Kilépés",                       ID_APP_EXIT
+    END
+    POPUP "S&zerkesztés"
+    BEGIN
+        MENUITEM "&Visszavonás\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM "Még&is\tCtrl+Y",               ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "&Kivágás\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Másolás\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Beillesztés\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "M&indent kijelöl\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "A sor &eltérésének kiemelése\tF4",    ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Keresé&s...\tCtrl+F",            ID_EDIT_FIND
+        MENUITEM "&Csere...\tCtrl+H",         ID_EDIT_REPLACE
+        MENUITEM SEPARATOR
+        POPUP "&Szkriptek"
+        BEGIN
+            MENUITEM "< Üres >",               ID_NO_EDIT_SCRIPTS
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Ugrás...\tCtrl+G",           ID_EDIT_WMGOTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Beállítások...",                 ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "&Frissítés\tF5",                ID_REFRESH
+    END
+    POPUP "&Nézet"
+    BEGIN
+        MENUITEM "&Egyezõ fájlok mutatása",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "E&ltérõ fájlok mutatása",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Csak &Bal oldalon meglévõ fájlok mutatása",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Csak &Jobb oldalon meglévõ fájlok mutatása",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "&Bináris fájlok mutatása",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "&Kihagyott fájlok mutatása",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM SEPARATOR
+        MENUITEM "Betûtípus...",             ID_VIEW_SELECTFONT
+        MENUITEM "Alapértelmezett betûtípus használata",           ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Szóközök mutatása",            ID_VIEW_WHITESPACE
+        MENUITEM SEPARATOR
+        MENUITEM "&Eszköztár",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Álapotsor",                 ID_VIEW_STATUS_BAR
+        MENUITEM "Eltérés &panel",                  ID_VIEW_DETAIL_BAR
+        MENUITEM "&Pozíció panel",              ID_VIEW_LOCATION_BAR
+        MENUITEM "&Összehasonlító állapotpanel",          ID_VIEW_DIR_STATEPANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Nyelv...",                ID_VIEW_LANGUAGE
+    END
+    POPUP "&Olvasztás"
+    BEGIN
+        MENUITEM "&Következõ eltérés\tAlt+Down",  ID_NEXTDIFF
+        MENUITEM "&Elõzõ eltérés\tAlt+Up", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "E&lsõ eltérés\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Aktuális eltérés\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Utolsó eltérés\tAlt+End",   ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Másolás &Jobbra\tAlt+Right",   ID_L2R
+        MENUITEM "Másolás &Balra\tAlt+Left",     ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Másolás J&obbra és ugrás tovább\tAlt+Ctrl+Right", ID_L2RNEXT
+        MENUITEM "Másolás B&alra és ugrás tovább\tAlt+Ctrl+Left", ID_R2LNEXT
+        MENUITEM SEPARATOR
+        MENUITEM "M&inden Jobbra másolása",          ID_ALL_RIGHT
+        MENUITEM "Mi&nden Balra másolása",           ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "A kijelölt rész eltéréseinek Jobbra másolása", ID_MULTIPLE_RIGHT
+        MENUITEM "A kijelölt rész eltéréseinek Balra másolása", ID_MULTIPLE_LEFT
+    END
+    POPUP "&Eszközök"
+    BEGIN
+        MENUITEM "&Oszlopok testreszabása...",       ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Szûrõk...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Patch generálása...",          ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Bõvítmények"
+    BEGIN
+        MENUITEM "&Kézi kicsomagolás",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatikus kicsomagolás",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Szerkesztés a Kicsomagolóval",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Elõvizsgáló"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Bõvítmények betöltése",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Ablak"
+    BEGIN
+        MENUITEM "&Bezárás",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Panel váltása\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "Elrendezés &vízszintesen",          ID_WINDOW_TILE_HORZ
+        MENUITEM "Elrendezés &függõlegesen",            ID_WINDOW_TILE_VERT
+        MENUITEM "&Felosztás",                    ID_WINDOW_CASCADE
+    END
+    POPUP "&Súgó"
+    BEGIN
+        MENUITEM "&Tartalomjegyzék...\tF1",            ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "&Konfiguráció...",           ID_HELP_GETCONFIG
+        MENUITEM "Ar&chívum támogatás tiltva...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
+        MENUITEM "&A Winmerge névjegye...",          ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_DIRVIEW MENU
+BEGIN
+    POPUP "_ITEM_POPUP_"
+    BEGIN
+        POPUP "&Másolás"
+        BEGIN
+            MENUITEM "&Balról Jobbra",              ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "B&alról...",                 ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "&Jobbról Balra",              ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "J&obbról...",                ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "&Áthelyezés"
+        BEGIN
+            MENUITEM "&Balról...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "&Jobbról...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+        END
+        POPUP "&Törlés"
+        BEGIN
+            MENUITEM "&Bal oldal",                       ID_DIR_DEL_LEFT
+            MENUITEM "&Jobb oldal",                      ID_DIR_DEL_RIGHT
+            MENUITEM "&Mindkettõ",                       ID_DIR_DEL_BOTH
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Bal oldal megnyitása"
+        BEGIN
+            MENUITEM "&Társított programmal", ID_DIR_OPEN_LEFT
+            MENUITEM "&Belsõ szerkesztõvel",       ID_DIR_OPEN_LEFT_WITHEDITOR
+            MENUITEM "&Egyéb programmal...",                    ID_DIR_OPEN_LEFT_WITH
+        END
+        POPUP "&Jobb oldal megnyitása"
+        BEGIN
+            MENUITEM "&Társított programmal", ID_DIR_OPEN_RIGHT
+            MENUITEM "&Belsõ szerkesztõvel",       ID_DIR_OPEN_RIGHT_WITHEDITOR
+            MENUITEM "&Egyéb programmal...",                    ID_DIR_OPEN_RIGHT_WITH
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Útvonalak másolása"
+        BEGIN
+            MENUITEM "&Bal oldal (%1 ennyibõl: %2)",            ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "&Jobb oldal (%1 ennyibõl: %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "&Mindkét oldal (%1 ennyibõl: %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+        END
+        MENUITEM "&Fájlnevek másolása",                 ID_DIR_COPY_FILENAMES
+        MENUITEM SEPARATOR
+        POPUP "&Zip"
+        BEGIN
+            MENUITEM "&Bal oldal... (%1 ennyibõl: %2)",         ID_DIR_ZIP_LEFT
+            MENUITEM "&Jobb oldal... (%1 ennyibõl: %2)",        ID_DIR_ZIP_RIGHT
+            MENUITEM "&Mindkét oldal... (%1 ennyibõl: %2)",         ID_DIR_ZIP_BOTH
+            MENUITEM "&Eltérések... (%1 ennyibõl: %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
+        END
+    END
+    POPUP "_HDR_POPUP_"
+    BEGIN
+        MENUITEM "&Oszlopok beállítása...",       ID_TOOLS_CUSTOMIZECOLUMNS
+    END
+END
+
+IDR_POPUP_EDITOR_HEADERBAR MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Teljes útvonal másolása",             ID_EDITOR_COPY_PATH
+        MENUITEM "&Fájlnév másolása",              ID_EDITOR_COPY_FILENAME
+    END
+END
+
+IDR_POPUP_PLUGINS_SETTINGS MENU
+BEGIN
+    POPUP "Elõvizsgáló Beállítások"
+    BEGIN
+        MENUITEM "&Nincs elõvizsgálat",               ID_PREDIFF_MANUAL
+        MENUITEM "Automatikus elõvizsgálat",              ID_PREDIFF_AUTO
+    END
+END
+
+IDR_POPUP_LOCATIONBAR MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Ugrás &eltérésre"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "&Ugrás...",                    ID_EDIT_WMGOTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Nem mozgatott blokkok",            ID_DISPLAY_MOVED_NONE
+        MENUITEM "&Minden mozgatott blokk",           ID_DISPLAY_MOVED_ALL
+        MENUITEM "A &jelenlegi Eltérés mozgatott blokkja", ID_DISPLAY_MOVED_FOLLOW_DIFF
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_REDO,           VIRTKEY, SHIFT, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F8,          ID_NEXTDIFF,            VIRTKEY, NOINVERT
+    VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
+    VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
+    VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
+    VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_F9,          ID_FILE_MERGINGMODE,    VIRTKEY, NOINVERT
+    VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_LEFT,        ID_R2L,                 VIRTKEY, ALT, NOINVERT
+    VK_LEFT,        ID_R2LNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
+    VK_RETURN,      ID_CURDIFF,             VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
+    VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 223, 134
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "A WinMerge névjegye"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "Rendben",IDOK,184,7,32,14,WS_GROUP
+    LTEXT           "Verziószám: 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
+    LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
+    LTEXT           "Minden jog fenntartva.",IDC_STATIC,7,60,170,8
+    LTEXT           "Látogasd meg a WinMerge honlapját!",IDC_WWW,7,119,209,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,113,209,1
+    LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
+    LTEXT           "A fejlesztõk a következõ fájlban vannak felsorolva",IDC_STATIC,7,81,208,8
+    LTEXT           "Contributors.txt",IDC_STATIC,7,91,153,8
+    PUSHBUTTON      "Megtekintés...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
+END
+
+IDD_OPEN DIALOGEX 0, 0, 364, 126
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU |
+    WS_THICKFRAME
+CAPTION "Válaszd ki a fájlokat vagy könyvtárakat..."
+FONT 8, "MS Shell Dlg"
+BEGIN
+    RTEXT           "&Bal:",IDC_STATIC,13,24,40,8
+    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
+    PUSHBUTTON      "&Tallózás...",IDC_LEFT_BUTTON,242,22,50,12
+    RTEXT           "&Jobb:",IDC_STATIC,13,40,40,8
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
+    PUSHBUTTON      "T&allózás...",IDC_RIGHT_BUTTON,242,38,50,12
+    RTEXT           "&Szûrõ:",IDC_STATIC,13,56,40,8
+    COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Kiválasztás...",IDC_SELECT_FILTER,242,54,50,12
+    RTEXT           "&Kicsomagoló:",IDC_STATIC,13,72,40,8
+    EDITTEXT        IDC_UNPACKER_EDIT,56,70,181,12,ES_AUTOHSCROLL |
+                    ES_READONLY
+    PUSHBUTTON      "&Kiválasztás...",IDC_SELECT_UNPACKER,242,70,50,12
+    CONTROL         "&Alkönyvtárakkal együtt",IDC_RECURS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,56,86,181,10
+    LTEXT           "Állapot:",IDC_OPEN_STATUS,15,102,182,8
+    DEFPUSHBUTTON   "Rendben",IDOK,306,11,50,14
+    PUSHBUTTON      "Mégsem",IDCANCEL,306,28,50,14
+    GROUPBOX        "Összehasonlítandó fájlok vagy könyvtárak",IDC_FILES_DIRS_GROUP,7,
+                    7,292,111
+END
+
+IDD_VSS DIALOGEX 0, 0, 257, 166
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Visual SourceSafe"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
+    LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
+    LTEXT           "Adatbázis:",IDC_STATIC,7,64,36,8
+    COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Projekt:",IDC_STATIC,7,81,36,8
+    COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Felhasználó:",IDC_STATIC,7,99,36,8
+    EDITTEXT        IDC_USER,48,96,70,14,ES_AUTOHSCROLL
+    RTEXT           "Jelszó:",IDC_STATIC,122,99,55,8
+    EDITTEXT        IDC_PASSWORD,180,96,70,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "Link a cél VSS projekthez",IDC_VCPROJ_SYNC,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
+    CONTROL         "Alkalmazás minden elemen",IDC_MULTI_CHECKOUT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
+    DEFPUSHBUTTON   "Ellenõriz",IDOK,91,145,50,14
+    PUSHBUTTON      "Mentés másként...",IDC_SAVE_AS,145,145,50,14
+    PUSHBUTTON      "Mégsem",IDCANCEL,200,145,50,14
+END
+
+IDD_PROP_VSS DIALOGEX 0, 0, 235, 157
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Verzió Rendszer"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "&Verzió Rendszer:",IDC_STATIC,7,7,221,10
+    COMBOBOX        IDC_VER_SYS,7,18,166,98,CBS_DROPDOWNLIST | WS_VSCROLL |
+                    WS_TABSTOP
+    LTEXT           "A &cleartool.exe elérési útvonala:",IDC_VSS_L1,7,37,221,10
+    EDITTEXT        IDC_PATH_EDIT,7,48,166,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Tallózás...",IDC_BROWSE_BUTTON,178,48,50,14
+END
+
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 156
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Általános"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "&Biztonsági másolat az eredeti fájlról",IDC_BACKUP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
+    CONTROL         "Automatikus &ugrás az elsõ eltérésre",
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    17,206,10
+    CONTROL         "&Splash Screen letiltása",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
+    CONTROL         "Az összehasonlító állapotablak automatikus &bezárása",
+                    IDC_CMPPANE_AUTOCLOSE,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,7,37,206,10
+    CONTROL         "Ablakok bezárása az &ESC billentyûvel",IDC_ESC_CLOSES_WINDOW,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
+    CONTROL         "Automatikus útvonalellenõrzés a &Megnyitás ablakban",
+                    IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,7,57,206,10
+    PUSHBUTTON      "Visszaállít",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
+                    WS_TABSTOP
+    LTEXT           "A WinMerge lehetõvé teszi néhány általánosságban látható üzenet elrejtését. Nyomd meg a gombot az üzenetek újbóli megjelenítéséhez.",
+                    IDC_STATIC,7,79,168,31
+END
+
+IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Nyelv"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Rendben",IDOK,154,16,52,14
+    PUSHBUTTON      "Mégsem",IDCANCEL,154,33,52,14
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT |
+                    WS_VSCROLL | WS_TABSTOP | LBS_SORT
+    LTEXT           "Választható nyelvek:",IDC_STATIC,7,7,140,8
+END
+
+IDD_EDIT_FIND DIALOGEX 30, 73, 283, 66
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Keresés"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "&Keresendõ szöveg:",IDC_STATIC,7,9,50,8
+    COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Csak &teljes szavak mutatása",IDC_EDIT_WHOLE_WORD,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,10
+    CONTROL         "Kis-nagybetû &érzékenység",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
+    CONTROL         "&Reguláris kifejezések",IDC_EDIT_REGEXP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
+    GROUPBOX        "Irány",IDC_STATIC,148,23,70,36,WS_GROUP
+    CONTROL         "&Fel",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,154,34,57,10
+    CONTROL         "&Le",IDC_EDIT_DIRECTION_DOWN,"Button",
+                    BS_AUTORADIOBUTTON,154,44,57,10
+    DEFPUSHBUTTON   "Következõ kere&sése",IDOK,226,7,50,14,WS_GROUP
+    PUSHBUTTON      "Mégsem",IDCANCEL,226,24,50,14
+END
+
+IDD_EDIT_REPLACE DIALOGEX 36, 44, 304, 90
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Csere"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "&Keresendõ szöveg:",IDC_STATIC,7,9,65,8
+    COMBOBOX        IDC_EDIT_FINDTEXT,75,7,165,66,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Cs&ere erre:",IDC_STATIC,7,24,65,8
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,75,22,165,66,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Csak &teljes szavak mutatása",IDC_EDIT_WHOLE_WORD,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
+    CONTROL         "Kis-nagybetû &érzékenység",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
+    CONTROL         "&Reguláris kifejezések",IDC_EDIT_REGEXP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
+    CONTROL         "&Álljon meg a fájl végénél",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
+    GROUPBOX        "A csere tartománya",IDC_STATIC,149,40,90,36,WS_GROUP
+    CONTROL         "&Kijelölés",IDC_EDIT_SCOPE_SELECTION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
+    CONTROL         "Teljes &fájl",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
+                    BS_AUTORADIOBUTTON,154,61,80,10
+    DEFPUSHBUTTON   "&Következõ kere&sése",IDC_EDIT_SKIP,247,7,50,14,WS_GROUP
+    PUSHBUTTON      "&Csere",IDC_EDIT_REPLACE,247,24,50,14
+    PUSHBUTTON      "Az &összes cseréje",IDC_EDIT_REPLACE_ALL,247,41,50,14
+    PUSHBUTTON      "Mégsem",IDCANCEL,247,58,50,14
+END
+
+IDD_CLEARCASE DIALOGEX 0, 0, 279, 111
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Rational Clearcase"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "Ellenõriz",IDOK,35,90,50,14
+    PUSHBUTTON      "Mégsem",IDCANCEL,194,90,50,14
+    PUSHBUTTON      "Mentés másként...",IDC_SAVE_AS,114,90,50,14,NOT WS_VISIBLE
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
+                    ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "Megjegyzések",IDC_STATIC,18,7,34,10
+END
+
+IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Sorszûrõk"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Azon sorok kihagyása, melyek tartalmazzák a következõ mintát",
+                    IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    7,221,15
+    LTEXT           "Reguláris kifejezések (soronként egy):",IDC_STATIC,7,28,
+                    221,8
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+END
+
+IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Színek"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    RTEXT           "Eltérés:",IDC_STATIC,7,29,90,8
+    CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,113,29,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    RTEXT           "Kijelölt Eltérés:",IDC_STATIC,7,49,90,8
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,113,49,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    CTEXT           "Háttér",IDC_STATIC,96,15,50,8
+    CTEXT           "Törölt",IDC_STATIC,145,15,38,8
+    CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,156,29,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_DELETED_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,156,49,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_DIFFERENCE_TEXT_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,199,29,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_DIFFERENCE_TEXT_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,199,49,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    CTEXT           "Szöveg",IDC_STATIC,193,15,29,8
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,113,69,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    RTEXT           "Kihagyott Eltérés:",IDC_STATIC,7,69,90,8
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,156,69,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_TEXT_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,199,69,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    RTEXT           "Áthelyezett:",IDC_STATIC,7,89,90,8
+    CONTROL         "Dif",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_MOVEDBLOCK_TEXT_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,199,89,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    RTEXT           "Kijelölt áthelyezett:",IDC_STATIC,7,109,90,8
+    CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Alapértékek",IDC_COLORDEFAULTS_BTN,166,130,50,14
+END
+
+IDD_OUTPUT DIALOGEX 0, 0, 278, 157
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Kérdés"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "Rendben",IDOK,106,136,50,14
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY |
+                    WS_VSCROLL
+END
+
+IDD_PROPPAGE_REGISTRY DIALOGEX 0, 0, 235, 156
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Rendszer"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "A törölt fájlok a &Lomtárba kerüljenek",IDC_USE_RECYCLE_BIN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
+    CONTROL         "&Hozzáadás az Intézõ kontext-menüjéhez",IDC_EXPLORER_CONTEXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
+    CONTROL         "&Bõvített menü engedélyezése",IDC_EXPLORER_ADVANCED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
+    LTEXT           "&Belsõ szerkesztõ:",IDC_STATIC,7,44,222,8
+    EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Tallózás...",IDC_EXT_EDITOR_BROWSE,179,54,50,14
+END
+
+IDD_GENERATE_PATCH DIALOGEX 0, 0, 340, 180
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Patch Generátor"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Fájl&1:",IDC_STATIC,7,10,36,8
+    COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Tallózás...",IDC_DIFF_BROWSE_FILE1,283,7,50,14
+    LTEXT           "Fájl&2:",IDC_STATIC,7,27,36,8
+    COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "T&allózás...",IDC_DIFF_BROWSE_FILE2,283,24,50,14
+    PUSHBUTTON      "&Megfordítás",IDC_DIFF_SWAPFILES,283,41,50,14
+    CONTROL         "&Hozzáfûzés a létezõ fájlhoz",IDC_DIFF_APPENDFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
+    LTEXT           "&Eredmény:",IDC_STATIC,7,66,37,8
+    COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Ta&llózás...",IDC_DIFF_BROWSE_RESULT,283,63,50,14
+    GROUPBOX        "&Formátum",IDC_STATIC,7,81,142,46
+    LTEXT           "St&ílus:",IDC_STATIC,13,95,46,8
+    COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL |
+                    WS_TABSTOP
+    LTEXT           "&Környezet:",IDC_STATIC,13,109,46,8
+    COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWNLIST |
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "&Szóközök",IDC_STATIC,155,81,123,46
+    CONTROL         "&Összehasonlít",IDC_DIFF_WHITESPACE_COMPARE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,162,92,110,10
+    CONTROL         "&Változások kihagyása",IDC_DIFF_WHITESPACE_IGNORE,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
+    CONTROL         "Minden kihagyása",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
+    CONTROL         "Üres sorok kihagyása",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,142,10
+    CONTROL         "&Kis-nagybetû érzékenység",IDC_DIFF_CASESENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
+    CONTROL         "&Parancssor mellékelése",IDC_DIFF_INCLCMDLINE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
+    CONTROL         "Megnyitás a &Belsõ Szerkesztõvel",IDC_DIFF_OPENTOEDITOR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,155,145,170,10
+    PUSHBUTTON      "Alapértékek",IDC_DIFF_DEFAULTS,7,159,50,14
+    DEFPUSHBUTTON   "Rendben",IDOK,230,159,50,14
+    PUSHBUTTON      "Mégsem",IDCANCEL,283,159,50,14
+END
+
+IDD_EDITOR_HEADERBAR DIALOGEX 0, 0, 373, 12
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_STATIC_TITLE_LEFT,0,2,160,12,ES_AUTOHSCROLL |
+                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT
+                    WS_TABSTOP,WS_EX_STATICEDGE
+    EDITTEXT        IDC_STATIC_TITLE_RIGHT,163,2,160,12,ES_AUTOHSCROLL |
+                    ES_OEMCONVERT | ES_READONLY | NOT WS_BORDER | NOT
+                    WS_TABSTOP,WS_EX_STATICEDGE
+END
+
+IDD_DIRCOLS DIALOGEX 0, 0, 283, 170
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Oszlopok mutatása"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Oszlopok mutatása",IDC_GROUP_SHOW,7,7,129,109
+    LISTBOX         IDC_LIST_SHOW,48,19,80,90,LBS_NOINTEGRALHEIGHT |
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Fel",IDC_UP,14,45,27,14
+    PUSHBUTTON      "&Le",IDC_DOWN,14,63,27,14
+    GROUPBOX        "Oszlopok rejtése",IDC_GROUP_HIDE,180,7,96,109
+    LISTBOX         IDC_LIST_HIDE,188,19,80,90,LBS_NOINTEGRALHEIGHT |
+                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "<==",IDC_ADD,143,45,29,14
+    PUSHBUTTON      "==>",IDC_REMOVE,143,63,29,14
+    EDITTEXT        IDC_COLDLG_DESC,7,122,269,22,ES_MULTILINE | ES_READONLY
+    PUSHBUTTON      "Alapértékek",IDC_COLDLG_DEFAULTS,7,149,50,14
+    DEFPUSHBUTTON   "Rendben",IDOK,172,149,50,14
+    PUSHBUTTON      "Mégsem",IDCANCEL,226,149,50,14
+END
+
+IDD_SELECTUNPACKER DIALOGEX 0, 0, 293, 126
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Kicsomagoló kiválasztása"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "Rendben",IDOK,87,99,50,14
+    PUSHBUTTON      "Mégsem",IDCANCEL,156,99,50,14
+    LTEXT           "Fájl kicsomagoló:",IDC_STATIC,7,18,50,10
+    COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST |
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Minden kicsomagoló mutatása kiterjesztéstõl függetlenül",
+                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX |
+                    BS_LEFTTEXT | WS_TABSTOP,7,74,202,13
+    LTEXT           "Kiterjesztések listája:",IDC_STATIC,7,36,49,10
+    LTEXT           "Leírás:",IDC_STATIC,7,52,47,10
+    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,176,12,
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL |
+                    ES_READONLY
+END
+
+IDD_DIRCOMPSTATE DIALOGEX 0, 0, 415, 45
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "",IDC_STATIC,3,4,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,3,24,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,56,4,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,56,24,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,109,4,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,109,24,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,162,4,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,162,24,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,215,4,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,215,24,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,268,4,51,17,SS_SUNKEN | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC,268,24,51,17,SS_SUNKEN | NOT WS_GROUP
+    CONTROL         IDB_FOLDER,IDC_STATIC,"Static",SS_BITMAP,7,8,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         IDB_ERROR,IDC_STATIC,"Static",SS_BITMAP,7,27,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         IDB_LFOLDER,IDC_STATIC,"Static",SS_BITMAP,60,8,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         IDB_RFOLDER,IDC_STATIC,"Static",SS_BITMAP,60,27,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         IDB_EQUAL,IDC_STATIC,"Static",SS_BITMAP,113,8,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         IDB_NOTEQUAL,IDC_STATIC,"Static",SS_BITMAP,113,27,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         IDB_BINARYSAME,IDC_STATIC,"Static",SS_BITMAP,165,8,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         IDB_BINARYDIFF,IDC_STATIC,"Static",SS_BITMAP,165,27,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         IDB_LFILE,IDC_STATIC,"Static",SS_BITMAP,218,8,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         IDB_RFILE,IDC_STATIC,"Static",SS_BITMAP,218,27,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         IDB_FOLDERSKIP,IDC_STATIC,"Static",SS_BITMAP,271,8,12,11,
+                    WS_EX_STATICEDGE
+    CONTROL         IDB_FILESKIP,IDC_STATIC,"Static",SS_BITMAP,271,27,12,11,
+                    WS_EX_STATICEDGE
+    RTEXT           "",IDC_COUNT_FOLDER,24,10,26,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_ERROR,24,29,26,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_LFOLDER,76,10,26,8,SS_REALSIZEIMAGE |
+                    0x2000
+    RTEXT           "",IDC_COUNT_RFOLDER,76,29,26,8,SS_REALSIZEIMAGE |
+                    0x2000
+    RTEXT           "",IDC_COUNT_EQUAL,129,10,26,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_NOTEQUAL,129,29,26,8,SS_REALSIZEIMAGE |
+                    0x2000
+    RTEXT           "",IDC_COUNT_BINARYSAME,182,10,26,8,SS_REALSIZEIMAGE |
+                    0x2000
+    RTEXT           "",IDC_COUNT_BINARYDIFF,182,29,26,8,SS_REALSIZEIMAGE |
+                    0x2000
+    RTEXT           "",IDC_COUNT_LFILE,235,10,26,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_RFILE,235,29,26,8,SS_REALSIZEIMAGE | 0x2000
+    RTEXT           "",IDC_COUNT_FOLDERSKIP,288,10,26,8,SS_REALSIZEIMAGE |
+                    0x2000
+    RTEXT           "",IDC_COUNT_FILESKIP,288,29,26,8,SS_REALSIZEIMAGE |
+                    0x2000
+    DEFPUSHBUTTON   "Megállítás",IDC_COMPARISON_STOP,327,17,83,14
+END
+
+IDD_WMGOTO DIALOGEX 0, 0, 210, 70
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Ugrás"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "U&grás:",IDC_STATIC,7,9,36,8
+    EDITTEXT        IDC_WMGOTO_PARAM,45,7,102,14,ES_AUTOHSCROLL | ES_NUMBER
+    GROUPBOX        "Fájl",IDC_STATIC,7,27,57,35
+    CONTROL         "&Bal oldal",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,13,38,48,10
+    CONTROL         "&Jobb oldal",IDC_WMGOTO_FILERIGHT,"Button",
+                    BS_AUTORADIOBUTTON,13,48,47,10
+    GROUPBOX        "Mire ugorjon:",IDC_STATIC,69,27,78,35
+    CONTROL         "&Sorra",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,76,38,68,10
+    CONTROL         "&Eltérésre",IDC_WMGOTO_TODIFF,"Button",
+                    BS_AUTORADIOBUTTON,76,48,68,10
+    DEFPUSHBUTTON   "&Ugrás",IDOK,153,7,50,14
+    PUSHBUTTON      "Mégsem",IDCANCEL,153,24,50,14
+END
+
+IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 235, 156
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "Összehasonlítás"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Szóközök",IDC_STATIC,7,7,221,50
+    CONTROL         "&Összehasonlítás",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,14,19,206,10
+    CONTROL         "&Változtatások kihagyása",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,14,30,206,10
+    CONTROL         "&Minden kihagyása",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
+                    14,41,206,10
+    CONTROL         "&Üres sorok kihagyása",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
+    CONTROL         "&Kis-nagybetû különbségek kihagyása",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
+    CONTROL         "Sortörési eltérések kihagyása (DOS/UNIX/MAC)",
+                    IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    7,80,221,10
+    CONTROL         "Mozgatott &blokk észlelés bekapcsolása",IDC_MOVED_BLOCKS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
+    LTEXT           "&Fájl összehasonlítási módszer:",IDC_STATIC,7,105,70,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,103,84,52,CBS_DROPDOWNLIST |
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Alapértékek",IDC_COMPARE_DEFAULTS,7,121,50,14
+END
+
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "Szerkesztõ"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "&Szintaxis kiemelés",IDC_HILITE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
+    CONTROL         "&Alkalmazás a nem felismert oldalon is",
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,18,18,204,10
+    CONTROL         "&Automatikus újraolvasás",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
+    CONTROL         "&Eredeti újsor-karakterek megõrzése",IDC_MIXED_EOL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
+    GROUPBOX        "Tabulátorok",IDC_STATIC,7,54,221,33,WS_GROUP
+    LTEXT           "Tab. &mérete:",IDC_STATIC,15,68,42,8
+    EDITTEXT        IDC_TAB_EDIT,60,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
+    CONTROL         "&Tabulátorok használata",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,85,63,137,10
+    CONTROL         "&Szóközök használata",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,85,72,137,10
+END
+
+IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+END
+
+IDD_FILEFILTERS DIALOGEX 0, 0, 356, 135
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "FájlSzûrõk"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Lista1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
+                    WS_BORDER | WS_TABSTOP,7,7,342,100
+    PUSHBUTTON      "Szerkesztés...",IDC_FILTERFILE_EDITBTN,299,114,50,14
+END
+
+IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Módosított fájlok mentése?"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Bal oldali fájl",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
+    EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL |
+                    ES_READONLY
+    CONTROL         "&Változtatások mentése",IDC_SAVECLOSING_SAVELEFT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
+    CONTROL         "Változtatások &elvetése",IDC_SAVECLOSING_DISCARDLEFT,"Button",
+                    BS_AUTORADIOBUTTON,16,46,230,10
+    GROUPBOX        "Jobb oldali fájl",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
+    EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL |
+                    ES_READONLY
+    CONTROL         "V&áltoztatások mentése",IDC_SAVECLOSING_SAVERIGHT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
+    CONTROL         "Változtatások e&lvetése",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
+                    BS_AUTORADIOBUTTON,16,109,230,10
+    DEFPUSHBUTTON   "Rendben",IDOK,149,133,50,14
+    PUSHBUTTON      "Mégsem",IDCANCEL,205,133,50,14
+END
+
+IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Kódlap"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "A következõ fájlok kódlap felismerése: .html, .rc \nújraindítást igényel",
+                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
+                    BS_MULTILINE | WS_TABSTOP,13,74,210,29
+    CONTROL         "Rendszer kódlap",IDC_CP_SYSTEM,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
+    CONTROL         "A Winmerge felhasználói felületéhez igazodva",IDC_CP_UI,"Button",
+                    BS_AUTORADIOBUTTON,13,33,210,10
+    CONTROL         "Egyedi kódlap:",IDC_CP_CUSTOM,"Button",
+                    BS_AUTORADIOBUTTON,13,46,77,10
+    EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
+    GROUPBOX        "Alapértelmezett kódlap ANSI fájloknál",IDC_STATIC,7,7,221,58
+END
+
+IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 276, 186
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "WinMerge"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Az Archívum támogatás nem engedélyezett. Amennyiben szeretnéd engedélyezni, elõször telepítened kell a 7-Zip programot, ami integrálható a WinMerge programmal, majd szerezd be a következõ bõvítményt (Merge7z*.dll) és helyezd el a WInMerge könyvtárában.",
+                    IDC_STATIC,2,2,272,32
+    LTEXT           "A WinMerge a 7-Zip 3.11 vagy annál újabb verzióit tudja integrálni, feltéve, hogy a megfeleõ bõvítmény is rendelkezésre áll. Kérlek, használd az alább látható verziót, amíg újabb bõvítmény nem lesz elérhetõ.",
+                    IDC_STATIC,2,34,272,32
+    LTEXT           "A 7-Zip javasolt verziója:",IDC_STATIC,2,70,131,8
+    EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
+                    WS_BORDER | WS_GROUP | NOT WS_TABSTOP
+    LTEXT           "Szükséges interfész bõvítmény:",IDC_STATIC,2,82,86,8
+    EDITTEXT        102,214,82,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
+                    WS_BORDER | WS_GROUP | NOT WS_TABSTOP
+    LTEXT           "A jelenleg telepített 7-Zip verziója:",
+                    IDC_STATIC,2,98,208,8
+    EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
+                    WS_BORDER | WS_GROUP | NOT WS_TABSTOP
+    LTEXT           "A WinMerge könyvtárában talált helyi 7-Zip összetevõk verziója:",
+                    IDC_STATIC,2,110,208,8
+    EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
+                    WS_BORDER | WS_GROUP | NOT WS_TABSTOP
+    LTEXT           "A WinMerge könyvtárában talált interfész bõvítmények:",
+                    IDC_STATIC,2,130,168,28
+    LISTBOX         105,174,130,100,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_GROUP
+    CONTROL         "&Ne jelenjen meg többet ez a figyelmeztetés.\n(Késõbb a Súgó menübõl újra engedélyezheted.)",
+                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
+                    WS_TABSTOP,2,164,202,20
+    DEFPUSHBUTTON   "Rendben",IDOK,208,170,50,14,WS_GROUP
+END
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x9L
+#else
+ FILEFLAGS 0x8L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040E04e2"
+        BEGIN
+            VALUE "FileDescription", "WinMerge Application\0"
+            VALUE "FileVersion", "000.000.000.000\0"
+            VALUE "InternalName", "WinMerge\0"
+            VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "OriginalFilename", "WinMerge.EXE\0"
+            VALUE "PrivateBuild", ""
+            VALUE "ProductName", "WinMerge\0"
+            VALUE "ProductVersion", "000.000.000.000\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x040E, 1250
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_UNDO
+    BUTTON      ID_EDIT_REDO
+    SEPARATOR
+    BUTTON      ID_SHOWLINEDIFF
+    SEPARATOR
+    BUTTON      ID_NEXTDIFF
+    BUTTON      ID_PREVDIFF
+    SEPARATOR
+    BUTTON      ID_FIRSTDIFF
+    BUTTON      ID_CURDIFF
+    BUTTON      ID_LASTDIFF
+    SEPARATOR
+    BUTTON      ID_L2R
+    BUTTON      ID_R2L
+    SEPARATOR
+    BUTTON      ID_L2RNEXT
+    BUTTON      ID_R2LNEXT
+    SEPARATOR
+    BUTTON      ID_OPTIONS
+    SEPARATOR
+    BUTTON      ID_ALL_RIGHT
+    BUTTON      ID_ALL_LEFT
+    SEPARATOR
+    BUTTON      ID_REFRESH
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+IDB_SPLASH              BITMAP                  "res\\splash1.bmp"
+IDB_LFOLDER             BITMAP                  "res\\lfolder.bmp"
+IDB_EQUAL               BITMAP                  "res\\equal.bmp"
+IDB_NOTEQUAL            BITMAP                  "res\\notequal.bmp"
+IDB_RFOLDER             BITMAP                  "res\\rfolder.bmp"
+IDB_UNKNOWN             BITMAP                  "res\\unknown.bmp"
+IDB_BINARYSAME          BITMAP                  "res\\binary.bmp"
+IDB_LFILE               BITMAP                  "res\\lfile.bmp"
+IDB_RFILE               BITMAP                  "res\\rfile.bmp"
+IDB_BINARYDIFF          BITMAP                  "res\\binarydiff.bmp"
+IDB_FOLDERSKIP          BITMAP                  "res\\folderskip.bmp"
+IDB_FILESKIP            BITMAP                  "res\\fileskip.bmp"
+IDB_FOLDER              BITMAP                  "res\\folder.bmp"
+IDB_EDIT_COPY           BITMAP                  "res\\copy.bmp"
+IDB_EDIT_CUT            BITMAP                  "res\\cut.bmp"
+IDB_EDIT_PASTE          BITMAP                  "res\\paste.bmp"
+IDB_EDIT_SEARCH         BITMAP                  "res\\search.bmp"
+IDB_WINDOW_CASCADE      BITMAP                  "res\\cascade.bmp"
+IDB_WINDOW_HORIZONTAL   BITMAP                  "res\\horizontally.bmp"
+IDB_WINDOW_VERTICAL     BITMAP                  "res\\vertically.bmp"
+IDB_WINDOW_CLOSE        BITMAP                  "res\\close.bmp"
+IDB_WINDOW_CHANGEPANE   BITMAP                  "res\\change_pane.bmp"
+IDB_EDIT_GOTO           BITMAP                  "res\\go_to.bmp"
+IDB_EDIT_REPLACE        BITMAP                  "res\\replace.bmp"
+IDB_VIEW_LANGUAGE       BITMAP                  "res\\language.bmp"
+IDB_VIEW_SELECTFONT     BITMAP                  "res\\select_font.bmp"
+IDB_FILE_EXIT           BITMAP                  "res\\exit.bmp"
+IDB_HELP_CONTENTS       BITMAP                  "res\\help_contents.bmp"
+IDB_ERROR               BITMAP                  "res\\error.bmp"
+IDB_FOLDERUP            BITMAP                  "res\\folderup.bmp"
+IDB_FOLDERUP_DISABLE    BITMAP                  "res\\folderup_disable.bmp"
+IDB_EDIT_SELECTALL      BITMAP                  "res\\select_all.bmp"
+IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
+IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_PROP_VSS DLGINIT
+BEGIN
+    IDC_VER_SYS, 0x403, 5, 0
+0x6f4e, 0x656e, "\000"
+    IDC_VER_SYS, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029,
+    IDC_VER_SYS, 0x403, 34, 0
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029,
+    IDC_VER_SYS, 0x403, 19, 0
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573,
+"\000"
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "WinMerge"
+    AFX_IDS_IDLEMESSAGE     "Kész"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "Új dokumentumok létrehozása\nÚj dokumentum (Ctrl+N)"
+    ID_FILE_OPEN            "Létezõ dokumentum megnyitása\nMegnyitás (Ctrl+O)"
+    ID_FILE_CLOSE           "Az aktív dokumentum bezárása\nBezárás"
+    ID_FILE_SAVE            "Az aktív dokumentum mentése\nMentés (Ctrl+S)"
+    ID_FILE_SAVE_AS         "Az aktív dokumntum mentése új néven\nMentés mésként"
+    ID_FILE_PAGE_SETUP      "A nyomtatási beállítások megváltoztatása\nOldalbeállítás"
+    ID_FILE_PRINT_SETUP     "A nyomtató és a nyomtatási opciók megváltoztatása\nNyomtatóbeállítás"
+    ID_FILE_PRINT           "Az aktív dokumentum nyomtatása\nNyomtatás"
+    ID_FILE_PRINT_PREVIEW   "Az oldalak megjelenítése\nNyomtatási elõnézet"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "A programmal kapcsolatos információk megjelenítése\nNévjegy"
+    ID_APP_EXIT             "A program bezárása; a nem mentett fájlok elmentésének lehetõségével\nKilépés"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE2       "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE3       "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE4       "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE5       "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE6       "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE7       "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE8       "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE9       "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE10      "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE11      "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE12      "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE13      "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE14      "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE15      "A dokumentum megnyitása"
+    ID_FILE_MRU_FILE16      "A dokumentum megnyitása"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "Váltás a következõ ablak paneljára\nKövetkezõ panel"
+    ID_PREV_PANE            "Váltás az elõzõ ablak paneljára\nElõzõ panel"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_NEW           "Új ablak nyitása az aktív dokumentumhoz\nÚj ablak"
+    ID_WINDOW_ARRANGE       "Ikonok elrendezése az ablak alján\nIkonok elrendezése"
+    ID_WINDOW_CASCADE       "Az Ablakok egymásra helyezése\nAblakok egymásra elhelyezése"
+    ID_WINDOW_TILE_HORZ     "Az ablakok felosztása egymást nem fedõ módon\nAblakok felosztása"
+    ID_WINDOW_TILE_VERT     "Az ablakok felosztása egymást nem fedõ módon\nAblakok felosztása"
+    ID_WINDOW_SPLIT         "Az aktív ablak felbontása panelekre\nFelbontás"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "A kijelölés törlése\nTörlés"
+    ID_EDIT_CLEAR_ALL       "Töröl mindent\nMindent töröl"
+    ID_EDIT_COPY            "A kijelölés másolása a vágólapra\nMásolás"
+    ID_EDIT_CUT             "A kijelölés kivágása a vágólapra\nKivágás"
+    ID_EDIT_FIND            "A megadott szöveg keresése\nKeresés"
+    ID_EDIT_PASTE           "A vágólap tartalmának beillesztése\nBeillesztés"
+    ID_EDIT_REPEAT          "Az utolsó mûvelet megismétlése\nIsmét"
+    ID_EDIT_REPLACE         "A megadott szöveg cseréje a kívánt új szöveggel\nCsere"
+    ID_EDIT_SELECT_ALL      "A teljes dokumentum kijelölése\nKijelöl mindent"
+    ID_EDIT_UNDO            "Az utolsó mûvelet visszavonása\nVisszavonás (Ctrl+Z)"
+    ID_EDIT_REDO            "Az utoljára visszavont mûvelet megismétlése\nMégis (Ctrl+Y)"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_TOOLBAR         "Megmutatja vagy elrejti az Eszköztárat\nEszköztár"
+    ID_VIEW_STATUS_BAR      "Megmutatja vagy elrejti az Állapotsort\nÁllapotsor"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "Az ablak méretének változtatása"
+    AFX_IDS_SCMOVE          "Az ablak pozíciójának változtatása"
+    AFX_IDS_SCMINIMIZE      "Az ablak ikonállapotra kicsinyítése"
+    AFX_IDS_SCMAXIMIZE      "Az ablak teljes méretûvé tétele"
+    AFX_IDS_SCNEXTWINDOW    "Váltás a következõ dokumentum ablakára"
+    AFX_IDS_SCPREVWINDOW    "Váltás az elõzõ dokumentum ablakára"
+    AFX_IDS_SCCLOSE         "Az aktív ablak bezárása a változtatások mentésének lehetõségével"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Az ablak vissazállítása az eredeti méretére"
+    AFX_IDS_SCTASKLIST      "A Feladat Lista aktiválása"
+    AFX_IDS_MDICHILD        "Ennek az ablaknak az aktiválása"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "A Nyomtatási elõnézet bezárása\nNyomtatási elõnézet bezárása"
+END
+
+// WINMERGE INFORMATION
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Dokumentum\nWinMerge Dokumentum"
+END
+
+// CUSTOM CONTROLS
+// OPTIONS NAME TO PRESERVE/UNIFY EOL
+STRINGTABLE
+BEGIN
+    IDC_MIXED_EOL           "Az eredeti újsor-karakterek megõrzése"
+END
+
+// DIRECTORY DIFFING : SUMMARY BAR
+STRINGTABLE
+BEGIN
+    IDC_COMPARISON_STOP     "Leállítás"
+    IDC_COMPARISON_CLOSE    "Nyomj meg egy billentyût"
+END
+
+// EDITOR : FILENAME BAR
+STRINGTABLE
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Kattints a jobb egérgombbal az útvonalra annak másolásához"
+    IDC_STATIC_TITLE_RIGHT  "Kattints a jobb egérgombbal az útvonalra annak másolásához"
+END
+
+// "DO NOT SHOW AGAIN" MESSAGEBOXES
+STRINGTABLE
+BEGIN
+    IDS_MESSAGEBOX_OK       "&Rendben"
+    IDS_MESSAGEBOX_CANCEL   "&Mégsem"
+    IDS_MESSAGEBOX_ABORT    "&Leállít"
+    IDS_MESSAGEBOX_RETRY    "&Ismét"
+    IDS_MESSAGEBOX_IGNORE   "&Kihagy"
+    IDS_MESSAGEBOX_IGNOREALL "Kihagy M&indent"
+    IDS_MESSAGEBOX_YES      "&Igen"
+END
+
+// "DO NOT SHOW AGAIN" MESSAGEBOXES (2)
+STRINGTABLE
+BEGIN
+    IDS_MESSAGEBOX_YES_TO_ALL "Igen &mindenre"
+    IDS_MESSAGEBOX_NO       "&Nem"
+    IDS_MESSAGEBOX_NO_TO_ALL "Nem m&indenre"
+    IDS_MESSAGEBOX_CONTINUE "&Folytatás"
+    IDS_MESSAGEBOX_SKIP     "&Kihagy"
+    IDS_MESSAGEBOX_SKIPALL  "Kihagy &mindent"
+    IDS_MESSAGEBOX_HELP     "&Súgó"
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "&Ne jelenjen meg többet ez az üzenet."
+    IDS_MESSAGEBOX_DONT_ASK_AGAIN "&Ne jelenjen meg többet ez a kérdés."
+END
+
+// WINMERGE CUSTOM STRINGS
+// WINMERGE INFORMATION
+STRINGTABLE
+BEGIN
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge ebben a könyvtárban"
+    IDS_VERSION_FMT         "Verzió %1"
+    IDS_QUICKHELP           "Szintaxis : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
+      /? or -? displays this help
+      /r or -r tells winmerge to compare directories recursively
+      /e or -e allows WinMerge to be closed with a single esc keypress
+      /f or -f sets filemask or filtername for compare
+      /ul or -ul tells winmerge to not add left path to MRU
+      /ur or -ur tells winmerge to not add right path to MRU
+      /ub or -ub tells winmerge to not add both paths to MRU
+      /wl or -wl initially opens left side as read-only
+      /wr or -wr initially opens right side as read-only
+      /dl or -dl adds a description for left side shown instead of directory/filename
+      /dr or -dr adds a description for right side shown instead of directory/filename
+      leftpath is the directory or filename to open on the left side
+      rightpath is the directory or filename to open on the right side
+      outputpath is an optional output directory where you want merged files to be saved"
+END
+
+// VARIOUS OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_OPTIONS_TITLE       "Opciók"
+    IDS_MESSAGE_BOX_ARE_RESET "Minden üzenet ezentúl újra megjelenik."
+    IDS_DIFF_OPEN_NO_SET_PROPS "A megnyitott összehasonlítási folyamat alatt változtatások történtek. Egyes változtatások akkor lépnek életbe, amikor az éppen folyamatban lévõ összehasonlítás befejezõdik."
+    IDS_FONT_CHANGE         "A beállított új betûtípus nem lesz érvényes minden egyes ablak felirataira."
+END
+
+// BROWSE FILE
+STRINGTABLE
+BEGIN
+    IDS_OPEN_TITLE          "Megnyitás"
+    IDS_PROGRAMFILES        "Programok|*.exe;*.bat;*.cmd|Minden fájl (*.*)|*.*||"
+    IDS_ALLFILES            "Minden fájl (*.*)|*.*||"
+END
+
+// COMPARE OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_COMPMETHOD_CONTENTS "Tartalom"
+    IDS_COMPMETHOD_MODDATE  "Módosítási dátum"
+END
+
+// FILTER OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_FILTERFILE_NAMETITLE "Név"
+    IDS_FILTERFILE_PATHTITLE "Hely"
+    IDS_FILTER_TITLE        "Szûrõk"
+    IDS_FILTER_PREFIX       "[F] "
+END
+
+// VERSION CONTROL OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_CC_CMD              "A &cleartool.exe elérési útja:"
+    IDS_VSS_CMD             "Az &SS.EXE elérési útvonala:"
+END
+
+// WINDOWS TITLES
+STRINGTABLE
+BEGIN
+    IDS_DIRECTORY_WINDOW_TITLE "Könyvtár összehasonlítási eredmények"
+    IDS_FILE_COMPARISON_TITLE "Fájl összehasonlítás"
+    IDS_EMPTY_LEFT_FILE     "Névtelen bal oldal"
+    IDS_EMPTY_RIGHT_FILE    "Névtelen jobb oldal"
+END
+
+// STATUS BAR : CURRENT OPERATION STATUS
+STRINGTABLE
+BEGIN
+    IDS_STATUS_RESCANNING   "Fájlok vizsgálata..."
+    IDS_STATUS_OPENING_SELECTION "Kijelölés megnyitása"
+    IDS_STATUS_COPYL2R      "Másolás balról jobbra"
+    IDS_STATUS_COPYR2L      "Másolás balról jobbra"
+    IDS_STATUS_COPYALL2L    "Másolás mindent balra"
+    IDS_STATUS_COPYALL2R    "Másolás mindent jobbra"
+    IDS_STATUS_COPYFILES    "Fájlok másolása..."
+    IDS_STATUS_DELETEFILES  "Fájlok törlése..."
+    IDS_STATUS_MOVEFILES    "Fájlok áthelyezése..."
+END
+
+// STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
+STRINGTABLE
+BEGIN
+    IDS_LINE_STATUS_INFO_EOL "Sor: %s  Oszlop: %d/%d  Kar: %d/%d  Újsor: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Sor: %s"
+    IDS_LINE_STATUS_INFO    "Sor: %s  Oszlop: %d/%d  Kar: %d/%d"
+    IDS_MERGEMODE_MERGING   "Merge"
+    IDS_DIFF_NUMBER_STATUS_FMT "Ennyi különség: %1 ennyibõl: %2"
+    IDS_NO_DIFF_SEL_FMT     "%1 különbséget találtam"
+    IDS_1_DIFF_FOUND        "1 különbséget találtam"
+    IDS_STATUSBAR_READONLY  "RO"
+END
+
+// OPEN DIALOG
+STRINGTABLE
+BEGIN
+    IDS_ERROR_INCOMPARABLE  "Válassz ki két összehasonlítandó fájlt vagy könyvtárat"
+    IDS_DIRSEL_TAG          "Könytár kiválasztás"
+    IDS_OPEN_FILESDIRS      "Válassz ki két összehasonlítandó fájlt vagy könyvtárat."
+    IDS_OPEN_LEFTINVALID    "A bal oldali elérési út érvénytelen!"
+    IDS_OPEN_RIGHTINVALID   "A jobb oldali elérési út érvénytelen!"
+    IDS_OPEN_BOTHINVALID    "Mindkét elérési út érvénytelen!"
+    IDS_OPEN_UNPACKERDISABLED "Válassz ki két fájlt a kicsomagoló kijelöléshez."
+    IDS_OPEN_MISMATCH       "Nem lehet fájlt könyvtárral összehasonlítani!"
+END
+
+// LOADING FILE
+STRINGTABLE
+BEGIN
+    IDS_ERROR_FILE_NOT_FOUND "Ez a fájl nem található: %1"
+    IDS_ERROR_FILE_NOT_UNPACKED "A fájl nincs kicsomagolva: %1"
+    IDS_BINFILES_IDENTICAL   "%1\n%2\n\nez két egyezõ bináris fájl."
+    IDS_BINFILES_DIFFERENT   "%1\n%2\n\nez két különbözõ bináris fájl."
+    IDS_OTHER_IS_BINARY      "%1\n\nbináris fájl. Nem lehet bináris fájlokat szöveges fájlokkal összehasonlítani."
+    IDS_ERROR_FILEOPEN       "Nem lehet megnyitni a következõ fájlt:\n%1\n\n%2"
+END
+
+// SAVING FILE
+STRINGTABLE
+BEGIN
+    IDS_SAVE_AS_TITLE       "Mentés másként"
+    IDS_SAVE_FMT            "Mentsem a változtatásokat %1 néven?"
+    IDS_SAVEREADONLY_FMT    "Ez a fájl: %1 csak olvasható. Szeretnéd ezt megváltoztatni? (Kattints a Nem gombra a fájl új néven való mentéséhez.)"
+    IDS_ERROR_FILE_WRITEABLE "Hiba a cél írhatóságának ellenõrzésekor"
+    IDS_ERROR_BACKUP        "Hiba a fájl biztonsági másolatának készítésekor"
+    IDS_BACKUP_FAILED_PROMPT "Nem lehetett menteni a biztonsági másolatot.\nSzeretnéd ennek ellenére folytatni?"
+    IDS_FILESAVE_FAILED     "A fájl mentése sikertelen volt.\n%1\n%2\nSzeretnéd a fájlt más néven menteni?"
+    IDS_FILEPACK_FAILED_LEFT "Ez a bõvítmény '%2' nem tudja visszacsomagolni a bal oldalon megváltoztatott '%1' fájlt.\n\nAz eredeti fájl nem lett megváltoztatva.\n\nSzeretnéd menteni a kicsomagolt változatot egy másik fájlba?"
+    IDS_FILEPACK_FAILED_RIGHT "Ez a bõvítmény '%2' nem tudja visszacsomagolni a jobb oldalon megváltoztatott '%1' fájlt.\n\nAz eredeti fájl nem lett megváltoztatva.\n\nSzeretnéd menteni a kicsomagolt változatot egy másik fájlba?"
+    IDS_FILECHANGED_ONDISK  "Egy másik alkalmazás megváltoztatta a(z)\n%1\nfájlt, mióta a WinMerge betöltötte.\n\nFelülírjuk a megváltoztatott fájlt?"
+    IDS_SAVEREADONLY_MULTI  "%1\ncsak olvasható. Szeretnéd ezt megváltoztatni?"
+    IDS_FILECHANGED_RESCAN  "Egy másik alkalmazás megváltoztatta a(z)\n%1\nfájlt, mióta a WinMerge utoljára olvasta.\n\nHa szeretnéd frissíteni a fájl tartalmát, zárd be a jelenlegi munkát és nyisd meg a fájlokat újra."
+    IDS_SAVE_LEFT_AS        "Bal oldali fájl mentése más néven"
+    IDS_SAVE_RIGHT_AS       "Jobb oldali fájl mentése más néven"
+END
+
+// VSS
+STRINGTABLE
+BEGIN
+    IDS_NOPROJECT           "Meg kell adnod a SourceSafe projekt elérési útvonalát a folytatáshoz (pl.:  $/MyProject)"
+    IDS_VSS_CHECKOUT_STATUS "Fájlok ellenõrzése VSS-bõl..."
+    IDS_VSSERROR            "A Verzió Rendszer hibát adott vissza a fájl ellenõrzése közben. Nem lehet folytatni..."
+    IDS_VSS_RUN_ERROR       "Hiba a Verzió Rendszer futtatása közben."
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "A VSS Munka Könyvtár és a jelenlegi fájl útvonala nem egyezik. Folytassuk?"
+    IDS_VSS_NODATABASES     "Nem található VSS adatbázis!"
+    IDS_VSS_ERRORFROM       "Hiba a VSS-bõl:"
+END
+
+// DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
+STRINGTABLE
+BEGIN
+    ID_DIR_COPY_LEFT_TO_RIGHT "Kijelölt fájl másolása a megnevezett könyvtárba"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Kijelölt fájl másolása tetszõleges könyvtárba"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Kijelölt fájl másolása a megnevezett könyvtárba"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Kijelölt fájl másolása tetszõleges könyvtárba"
+    ID_DIR_DEL_LEFT         "Kijelölt bal oldali elem törlése"
+    ID_DIR_DEL_RIGHT        "Kijelölt jobb oldali elem törlése"
+    ID_DIR_DEL_BOTH         "Kijelölt elem(ek) törlése mindkét oldalon"
+    IDS_COPY_TO_LEFT        "Jobbról balra (%1)"
+    IDS_COPY_TO_RIGHT       "Balról jobbra (%1)"
+    IDS_COPY_TO_LEFT2       "Jobbról balra (%1 of %2)"
+    IDS_COPY_TO_RIGHT2      "Balról jobbra (%1 of %2)"
+    IDS_COPY_LEFT_TO        "Balról... (%1)"
+    IDS_COPY_RIGHT_TO       "Jobbról... (%1)"
+    IDS_COPY_LEFT_TO2       "Balról... (%1 of %2)"
+    IDS_COPY_RIGHT_TO2      "Jobbról... (%1 of %2)"
+    IDS_DEL_LEFT_FMT        "Bal (%1)"
+END
+
+// DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
+STRINGTABLE
+BEGIN
+    IDS_DEL_RIGHT_FMT       "Jobb (%1)"
+    IDS_DEL_BOTH_FMT        "Mindkettõ (%1)"
+    IDS_DEL_LEFT_FMT2       "Bal (%1 ennyibõl: %2)"
+    IDS_DEL_RIGHT_FMT2      "Jobb (%1 ennyibõl: %2)"
+    IDS_DEL_BOTH_FMT2       "Mindkettõ (%1 ennyibõl: %2)"
+    IDS_SELECT_DESTFOLDER   "Válassz célkönyvtárat"
+    IDS_MOVE_LEFT_TO        "Balról... (%1)"
+    IDS_MOVE_RIGHT_TO       "Jobbról... (%1)"
+    IDS_MOVE_LEFT_TO2       "Balról... (%1 of %2)"
+    IDS_MOVE_RIGHT_TO2      "Jobbról... (%1 of %2)"
+END
+
+// DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
+STRINGTABLE
+BEGIN
+    IDS_CONFIRM_ALL_LEFT    "Biztos vagy benne, hogy minden eltérést bal fájlba szeretnél másolni?"
+    IDS_CONFIRM_ALL_RIGHT   "Biztos vagy benne, hogy minden eltérést a jobb fájlba szeretnél másolni?"
+    IDS_CONFIRM_COPY_SINGLE "Biztosan szeretnéd ezt tenni: \n\n%1\n másolása ide:\n%2 ?"
+    IDS_CONFIRM_COPY2DIR    "Biztosan szeretnél %1/%2 elemet átmásolni?"
+    IDS_CONFIRM_DELETE_ITEMS "Biztosan szeretnél %1/%2 elemet törölni?"
+    IDS_CONFIRM_DELETE_DIR  "Töröljük a könyvtárat:\n\n%1 ?"
+    IDS_CONFIRM_DELETE_SINGLE "Biztosan szeretnéd ezt törölni:\n\n%1 ?"
+END
+
+// DIRECTORY DIFFING : OPEN FILE
+STRINGTABLE
+BEGIN
+    ID_DIR_OPEN_LEFT        "Bal oldali fájl megnyitása"
+    ID_DIR_OPEN_LEFT_WITHEDITOR "Bal oldali fájl megnyitása a belsõ szerkesztõvel"
+    ID_DIR_OPEN_LEFT_WITH   "Bal oldali fájl megnyitása a(z) ..."
+    ID_DIR_OPEN_RIGHT       "Jobb oldali fájl megnyitása"
+    ID_DIR_OPEN_RIGHT_WITHEDITOR "Jobb oldali fájl megnyitása a belsõ szerkesztõvel"
+    ID_DIR_OPEN_RIGHT_WITH  "Jobb oldali fájl megnyitása a(z) ..."
+    IDS_CANNOT_EXECUTE_FILE "Nem indítható: %1"
+    ID_DIR_COPY_FILENAMES   "Fájlnevek másolása a vágólapra"
+    ID_DIR_COPY_PATHNAMES_LEFT "Bal oldali fájlok útvonalainak másolása a vágólapra"
+    ID_DIR_COPY_PATHNAMES_RIGHT "Jobb oldali fájlok útvonalainak másolása a vágólapra"
+    ID_DIR_COPY_PATHNAMES_BOTH "Mindkét oldali fájlok útvonalainak másolása a vágólapra"
+END
+
+// DIRECTORY DIFFING : 7ZIP
+STRINGTABLE
+BEGIN
+    IDS_UNKNOWN_ARCHIVE_FORMAT "Ismeretlen archívum formátum"
+    ID_DIR_ZIP_LEFT         "Bal oldali fájlok hozzáadása az archívumhoz"
+    ID_DIR_ZIP_RIGHT        "Jobb oldali fájlok hozzáadása az archívumhoz"
+    ID_DIR_ZIP_BOTH         "Mindkét oldali fájlok hozzáadása az archívumhoz"
+    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Különbözõ elemek hozzáadása az archívumhoz (mindkét oldalról)"
+    ID_DIR_MOVE_LEFT_TO_BROWSE
+                            "A kijelölt bal oldali fájlok áthelyezése tetszõleges könyvtárba"
+    ID_DIR_MOVE_RIGHT_TO_BROWSE
+                            "A kijelölt jobb oldali fájlok áthelyezése tetszõleges könyvtárba"
+END
+
+// DIRECTORY DIFFING : GENERATE REPORT
+STRINGTABLE
+BEGIN
+    IDS_DIRECTORY_REPORT_TITLE "%1 összehasonlítása ezzel: %2"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES
+STRINGTABLE
+BEGIN
+    IDS_COLHDR_FILENAME     "Fájlnév"
+    IDS_COLHDR_DIR          "Könyvtár"
+    IDS_COLHDR_RESULT       "Összehasonlítási eredmények"
+    IDS_COLHDR_LTIMEM       "Bal oldali dátum"
+    IDS_COLHDR_RTIMEM       "Jobb oldali dátum"
+    IDS_COLHDR_EXTENSION    "Kiterjesztés"
+    IDS_COLHDR_LSIZE        "Bal oldali méret"
+    IDS_COLHDR_RSIZE        "Jobb oldali méret"
+    IDS_COLHDR_LTIMEC       "Bal oldali létrehozási idõ"
+    IDS_COLHDR_RTIMEC       "Jobb oldali létrehozási idõ"
+    IDS_COLHDR_NEWER        "Újabb fájl"
+    IDS_COLHDR_LVERSION     "Bal oldali fájl verzió"
+    IDS_COLHDR_RVERSION     "Jobb oldali fájl verzió"
+    IDS_COLHDR_RESULT_ABBR  "Rövid eredmények"
+    IDS_COLHDR_LATTRIBUTES  "Bal oldali attribútumok"
+    IDS_COLHDR_RATTRIBUTES  "Jobb oldali attribútumok"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES (2)
+STRINGTABLE
+BEGIN
+    IDS_COLHDR_LENCODING    "Bal oldali kódolás"
+    IDS_COLHDR_RENCODING    "Jobb oldali kódolás"
+    IDS_COLHDR_NDIFFS       "#eltérések"
+    IDS_COLHDR_NSDIFFS      "#jel. eltérések"
+    IDS_COLHDR_BINARY       "Bináris"
+END
+
+// DIRECTORY DIFFING : FILE COMPARISON RESULT, FULL & SHORTENED FORMS
+STRINGTABLE
+BEGIN
+    IDS_CANT_COMPARE_FILES  "Nem lehett összehasonlítani a fájlokat"
+    IDS_FILE_SKIPPED        "A fájl kihagyva"
+    IDS_DIR_SKIPPED         "A könyvtár kihagyva"
+    IDS_ONLY_IN_FMT         "Csak itt: %1"
+    IDS_BIN_FILES_SAME      "A bináris fájlok megegyezõek"
+    IDS_IDENTICAL           "Egyezõ"
+    IDS_BIN_FILES_DIFF      "A bináris fájlok különbözõek"
+    IDS_FILES_ARE_DIFFERENT "A fájlok különbözõek"
+    IDS_LEFTONLY            "Csak bal oldal"
+    IDS_RIGHTONLY           "Csak jobb olda"
+    IDS_DIFFERENT           "Különbözõ"
+END
+
+// DIRECTORY DIFFING : SUMMARY BAR
+STRINGTABLE
+BEGIN
+    IDS_ELAPSED_TIME        "Eltelt idõ: %ld ms"
+    IDS_STATUS_SELITEM1     "1 elem kiválasztva"
+    IDS_STATUS_SELITEMS     "%1 elem kiválasztva"
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+STRINGTABLE
+BEGIN
+    IDS_COLDESC_FILENAME    "fájlnév vagy könyvtárnév."
+    IDS_COLDESC_DIR         "Alkönyvtár neve ha az alkönyvtárak is ki vannak választva."
+    IDS_COLDESC_RESULT      "Összehasonlítási eredmény bõvebb formában."
+    IDS_COLDESC_LTIMEM      "Bal oldali módosítási dátum."
+    IDS_COLDESC_RTIMEM      "Jobb oldali módosítási dátum."
+    IDS_COLDESC_EXTENSION   "Fájlok kiterjesztése."
+    IDS_COLDESC_LSIZE       "Bal oldali fájl mérete bájtokban."
+    IDS_COLDESC_RSIZE       "Jobb oldali fájl mérete bájtokban."
+    IDS_COLDESC_LTIMEC      "Bal oldal létrehozási ideje."
+    IDS_COLDESC_RTIMEC      "Jobb oldal létrehozási ideje."
+    IDS_COLDESC_NEWER       "Megmutatja, melyik oldalnak újabb a létrehozási dátuma."
+    IDS_COLDESC_LVERSION    "Bal oldali fájl verziója, csak bizonyos fájloknál."
+    IDS_COLDESC_RVERSION    "Jobb oldali fájl verziója, csak bizonyos fájloknál."
+    IDS_COLDESC_RESULT_ABBR "Rövid összehasonlítási eredmények."
+    IDS_COLDESC_LATTRIBUTES "Bal oldali attribútumok."
+    IDS_COLDESC_RATTRIBUTES "Jobb oldali attribútumok."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
+STRINGTABLE
+BEGIN
+    IDS_COLDESC_LENCODING   "Bal oldali kódolás."
+    IDS_COLDESC_RENCODING   "Jobb oldali kódolás."
+    IDS_COLDESC_NDIFFS      "Összes eltérés száma."
+    IDS_COLDESC_NSDIFFS     "Eltérések száma a kihagyott elemeket nem számolva."
+    IDS_COLDESC_BINARY      "(*) látható, ha a fájl bináris."
+END
+
+// FILE COMPARISON RESULT : MESSAGES
+STRINGTABLE
+BEGIN
+    IDS_FILE_TO_ITSELF      "Ugyanaz a fájl van megnyitva mindkét panelen."
+    IDS_FILESSAME           "A kijelölt fájlok ugyanazok."
+    IDS_FILEUNIQUE          "A kijelölt fájl nem található meg mindkét könyvtárban, ezért nem lehet összehasonlítani."
+    IDS_FILEERROR           "Hiba történt a fájlok összehasonlításakor."
+    IDS_FILEBINARY          "Bináris fájlok nem hasonlíthatóak össze vizuálisan."
+    IDS_TEMP_FILEERROR      "Nem lehetett létrehozni az ideiglenes fájlokat. Ellenõrizd az ideiglenes könyvtár beállításait."
+    IDS_FILEISDIR           "Könyvtárak nem hasonlíthatóak össze vizuálisan."
+    IDS_SUGGEST_IGNOREEOL   "A fájloknak különbözõ újsor-karakter formátumuk van.\nA jelenlegi beállításokkal minden egyes sor eltérõ lesz.\nSzeretnéd figyelmen kívül hagyni az újsor-karakter eltéréseket?\n\nTapasztaltabbaknak: amennyiben nem egyezõek az újsor-karakterek a fájlokban,\nérdemes a '%1' opciót beállítani."
+    IDS_SUGGEST_PRESERVEEOL "Az újsor-karakterek különbözõ formátumúak (DOS/UNIX/MAC) ebben a fájlban: '%1'.\n A jelenlegi beállításokkal a leginkább jellemzõ lesz az alapértelmezett.\n Szeretnéd, ha mégis figyelembe venné az eltérõ újsor-karaktereket?"
+    IDS_PREDIFFER_ERROR      "Hiba történt ennek a fájlnak az elõvizsgálata közben: '%1' ebben a bõvítményben: '%2'. Az elõvizsgálat ezután nem fog mûködni."
+    IDS_SUGGEST_IGNORECODEPAGE "A bal és jobb oldali fájlok nem ugyanazt a kódolást használják. \nA különbözõ kódlapokkal történõ kijelzés könnyebben áttekinthetõ de az olvasztás/törlés kockázatos lehet.\nSzeretnéd mindkét fájlt az alapértelmezett kódlappal megjeleníteni (javasolt)?"
+END
+
+// EDITOR : SHOW LINE DIFF
+STRINGTABLE
+BEGIN
+    IDS_LINEDIFF_NODIFF     "Nincs eltérés"
+    IDS_LINEDIFF_NODIFF_CAPTION "Sor eltérés"
+END
+
+// EDITOR : SEARCH/REPLACE DIALOGS
+STRINGTABLE
+BEGIN
+    IDS_NUM_REPLACED        "Cserélve lett %1 sztring."
+    IDS_EDIT_TEXT_NOT_FOUND "Nem található ez: ""%s"""
+END
+
+// EDITOR : FILENAME BAR POPUP
+STRINGTABLE
+BEGIN
+    ID_EDITOR_COPY_PATH     "Teljes elérési út másolása"
+    ID_EDITOR_COPY_FILENAME "Fájlnév másolása"
+END
+
+// CREATE PATCH
+STRINGTABLE
+BEGIN
+    IDS_DIFF_SUCCEEDED      "A Patch fájl sikeresen elkészült."
+    IDS_DIFF_ITEM1NOTFOUND  "Az 1. elem nem található vagy az egy könyvtár!"
+    IDS_DIFF_ITEM2NOTFOUND  "A 2. elem nem található vagy az egy könyvtár!"
+    IDS_DIFF_FILEOVERWRITE  "A patch fájl már létezik. Szeretnéd felülírni azt?"
+    IDS_DIFF_SELECTEDFILES  "[%1 kijelölt fájl]"
+    IDS_DIFF_NORMAL         "Normál"
+    IDS_DIFF_CONTEXT        "Környezeti"
+    IDS_DIFF_UNIFIED        "Egységesített"
+    IDS_FILEWRITE_ERROR     "Nem lehetett ebbe a fájlba írni: %1."
+    IDS_PATH_NOT_ABSOLUTE   "%1\n - ez egy nem abszolút elérési út!"
+    IDS_CANNOT_CREATE_BINARYPATCH "Nem lehet patch fájlt létrehozni bináris fájlokból."
+    IDS_CANNOT_CREATE_DIRPATCH "Nem lehet patch fájlt létrehozni könyvtárakból."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_DIR_RESULTS_EMPTIED "A jelenlegi könyvtár összehasonlítási eredmények törlõdnek."
+    IDS_NO_ZIP_SUPPORT      "Az Archívum támogatás nem engedélyezett.\n
+                            Az ehhez szükséges összetevõk (7-zip és/vagy Merge7z*.dll) nem találhatóak.
+                            Olvasd el a kézikönyv arcívum támogatásról szóló részét."
+END
+
+// Regular expression errors
+STRINGTABLE
+BEGIN
+    IDS_REGEXP_ERROR        "Reguláris kifejezés hiba"
+    IDS_REGEXP_NOMATCH      "Nincs találat"
+    IDS_REGEXP_INVALID      "Érvénytelen reguláris kifejezés"
+    IDS_REGEXP_COLL_CHAR    "Érvénytelen egyeztetõ karakter"
+    IDS_REGEXP_CHAR_CLASS   "Érvénytelen karakter osztály név"
+    IDS_REGEXP_TRAILING_BS  "Felesleges backslash karakter"
+    IDS_REGEXP_INVALID_BACKREF "Érvénytelen visszautalás"
+    IDS_REGEXP_UNMATCHED_BRACK "Lezáratlan [ vagy [^"
+    IDS_REGEXP_UNMATCHED_PAREN "Lezáratlan ( vagy \\("
+    IDS_REGEXP_UNMATCHED_BRACE "Lezáratlan \\{"
+    IDS_REGEXP_INVALID_BRACE "Érvénytelen tartalmú \\{\\}"
+    IDS_REGEXP_RANGE_END    "Érvénytelen tartomány"
+    IDS_REGEXP_OUTOFMEM     "Nincs elég memória"
+    IDS_REGEXP_INVALID_PREV_EXP "Érvénytelen megelõzõ reguláris kifejezés"
+    IDS_REGEXP_PREMATURE_END "Korán lezárt reguláris kifejezés"
+    IDS_REGEXP_TOO_BIG      "Túl nagy reguláris kifejezés"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_REGEXP_UNMATCHED_RPAREN "Lezáratlan ) vagy \\)"
+END
+
+// LANGAGE NAMES #1
+STRINGTABLE
+BEGIN
+    IDS_AFRIKAANS           "Afrikaans"
+    IDS_ALBANIAN            "Albán"
+    IDS_ARABIC_SAUDI        "Arab (Saudi Arabian)"
+    IDS_ARABIC_IRAQ         "Arab (Iraq)"
+    IDS_ARABIC_EGYPT        "Arab (Egyptian)"
+    IDS_ARABIC_LIBYA        "Arab (Libyan)"
+    IDS_ARABIC_ALGERIA      "Arab (Algerian)"
+    IDS_ARABIC_MOROCCO      "Arab (Moroccan)"
+    IDS_ARABIC_TUNISIA      "Arab (Tunisian)"
+    IDS_ARABIC_OMAN         "Arab (Oman)"
+    IDS_ARABIC_YEMEN        "Arab (Yemen)"
+    IDS_ARABIC_SYRIA        "Arab (Syrian)"
+    IDS_ARABIC_JORDAN       "Arab (Jordan)"
+END
+
+// LANGAGE NAMES #2
+STRINGTABLE
+BEGIN
+    IDS_ARABIC_LEBANON      "Arab (Lebanon)"
+    IDS_ARABIC_KUWAIT       "Arab (Kuwait)"
+    IDS_ARABIC_UAE          "Arab (UAE)"
+    IDS_ARABIC_BAHRAIN      "Arab (Bahrain)"
+    IDS_ARABIC_QATAR        "Arab (Qatar)"
+    IDS_ARMENIAN            "Örmény"
+    IDS_AZERI_LATIN         "Azeri (Latin)"
+    IDS_AZERI_CYRILLIC      "Azeri (Cyrillic)"
+    IDS_BASQUE              "Baszk"
+    IDS_BELARUSIAN          "Belorusz"
+    IDS_BULGARIAN           "Bulgár"
+    IDS_CATALAN             "Katalán"
+    IDS_CHINESE_TRADITIONAL "Kínai (hagyományos)"
+    IDS_CHINESE_SIMPLIFIED  "Kínai (egyszerûsített)"
+    IDS_CHINESE_HONGKONG    "Kínai (Hong Kong)"
+    IDS_CHINESE_SINGAPORE   "Kínai (Singapore)"
+END
+
+// LANGAGE NAMES #3
+STRINGTABLE
+BEGIN
+    IDS_CHINESE_MACAU       "Kínai (Macau SAR)"
+    IDS_CROATIAN            "Horvát"
+    IDS_CZECH               "Cseh"
+    IDS_DANISH              "Dán"
+    IDS_DUTCH               "Holland"
+    IDS_DUTCH_BELGIAN       "Holland (Belgium)"
+    IDS_ENGLISH_US          "Angol (US)"
+    IDS_ENGLISH_UK          "Angol (UK)"
+    IDS_ENGLISH_AUS         "Angol (Australian)"
+    IDS_ENGLISH_CAN         "Angol (Canadian)"
+    IDS_ENGLISH_NZ          "Angol (New Zealand)"
+    IDS_ENGLISH_EIRE        "Angol (Irish)"
+    IDS_ENGLISH_SOUTH_AFRICA "Angol (So. African)"
+    IDS_ENGLISH_JAMAICA     "Angol (Jamaican)"
+    IDS_ENGLISH_CARIBBEAN   "Angol (Caribbean)"
+    IDS_ENGLISH_BELIZE      "Angol (Belize)"
+END
+
+// LANGAGE NAMES #4
+STRINGTABLE
+BEGIN
+    IDS_ENGLISH_TRINIDAD    "Angol (Trinidad)"
+    IDS_ENGLISH_ZIMBABWE    "Angol (Zimbabwe)"
+    IDS_ENGLISH_PHILIPPINES "Angol (Philippines)"
+    IDS_ESTONIAN            "Eesti"
+    IDS_FAEROESE            "Faeroese"
+    IDS_FARSI               "Farsi"
+    IDS_FINNISH             "Suomi"
+    IDS_FRENCH              "Francia"
+    IDS_FRENCH_BELGIAN      "Francia (Belgique)"
+    IDS_FRENCH_CANADIAN     "Francia (Canada)"
+    IDS_FRENCH_SWISS        "Francia (Switzerland)"
+    IDS_FRENCH_LUXEMBOURG   "Francia (Luxembourg)"
+    IDS_FRENCH_MONACO       "Francia (Monaco)"
+    IDS_GEORGIAN            "Georgian"
+    IDS_GERMAN              "Német (Germany)"
+    IDS_GERMAN_SWISS        "Német (Switzerland)"
+END
+
+// LANGAGE NAMES #5
+STRINGTABLE
+BEGIN
+    IDS_GERMAN_AUSTRIAN     "Német (Austria)"
+    IDS_GERMAN_LUXEMBOURG   "Német (Luxembourg)"
+    IDS_GERMAN_LIECHTENSTEIN "Német (Liechtenstein)"
+    IDS_GREEK               "Görög"
+    IDS_HEBREW              "Héber"
+    IDS_HINDI               "Hindi"
+    IDS_HUNGARIAN           "Magyar"
+    IDS_ICELANDIC           "Izlandi"
+    IDS_INDONESIAN          "Indonéz"
+    IDS_ITALIAN             "Olasz"
+    IDS_ITALIAN_SWISS       "Olasz (Swiss)"
+    IDS_JAPANESE            "Japán"
+    IDS_KASHMIRI            "Kashmír (India)"
+    IDS_KAZAK               "Kazakh"
+    IDS_KOREAN              "Koreai"
+    IDS_KOREAN_JOHAB        "Koreai (Johab)"
+END
+
+// LANGAGE NAMES #6
+STRINGTABLE
+BEGIN
+    IDS_LATVIAN             "Latvian"
+    IDS_LITHUANIAN          "Litván"
+    IDS_MALAY_MALAYSIA      "Maláj (Malaysian)"
+    IDS_MALAY_BRUNEI_DARUSSALAM "Maláj (Brunei Darussalam)"
+    IDS_MANIPURI            "Manipuri"
+    IDS_NORWEGIAN_BOKMAL    "Norvég (Bokmal)"
+    IDS_NORWEGIAN_NYNORSK   "Norvég (Nynorsk)"
+    IDS_POLISH              "Lengyel"
+    IDS_PORTUGUESE          "Portugál"
+    IDS_PORTUGUESE_BRAZILIAN "Portugál (Brazil)"
+    IDS_ROMANIAN            "Román"
+    IDS_RUSSIAN             "Orosz"
+    IDS_SANSKRIT            "Sanszkrit"
+    IDS_SERBIAN_LATIN       "Szerb (Latin)"
+    IDS_SERBIAN_CYRILLIC    "Szerb (Cyrillic)"
+    IDS_SINDHI              "Sindhi"
+END
+
+// LANGAGE NAMES #7
+STRINGTABLE
+BEGIN
+    IDS_SLOVAK              "Szlovák"
+    IDS_SLOVENIAN           "Szlovén"
+    IDS_SPANISH             "Spanyol"
+    IDS_SPANISH_MEXICAN     "Spanyol (Mexican)"
+    IDS_SPANISH_MODERN      "Spanyol (Modern)"
+    IDS_SPANISH_GUATEMALA   "Spanyol (Guatemala)"
+    IDS_SPANISH_COSTA_RICA  "Spanyol (Costa Rica)"
+    IDS_SPANISH_PANAMA      "Spanyol (Panama)"
+    IDS_SPANISH_DOMINICAN   "Spanyol (Dominican)"
+    IDS_SPANISH_VENEZUELA   "Spanyol (Venezuela)"
+    IDS_SPANISH_COLOMBIA    "Spanyol (Colombia)"
+    IDS_SPANISH_PERU        "Spanyol (Peru)"
+    IDS_SPANISH_ARGENTINA   "Spanyol (Argentina)"
+    IDS_SPANISH_ECUADOR     "Spanyol (Ecuador)"
+    IDS_SPANISH_CHILE       "Spanyol (Chile)"
+    IDS_SPANISH_URUGUAY     "Spanyol (Uruguay)"
+END
+
+// LANGAGE NAMES #8
+STRINGTABLE
+BEGIN
+    IDS_SPANISH_PARAGUAY    "Spanyol (Paraguay)"
+    IDS_SPANISH_BOLIVIA     "Spanyol (Bolivia)"
+    IDS_SPANISH_EL_SALVADOR "Spanyol (El Salvador)"
+    IDS_SPANISH_HONDURAS    "Spanyol (Honduras)"
+    IDS_SPANISH_NICARAGUA   "Spanyol (Nicaragua)"
+    IDS_SPANISH_PUERTO_RICO "Spanyol (Puerto Rico)"
+    IDS_SWAHILI             "Swahili (Kenya)"
+    IDS_SWEDISH             "Svéd"
+    IDS_SWEDISH_FINLAND     "Svéd (Finland)"
+    IDS_TAMIL               "Tamil"
+    IDS_TATAR               "Tatár (Tatarstan)"
+    IDS_THAI                "Thai"
+    IDS_TURKISH             "Török"
+    IDS_UKRANIAN            "Ukrán"
+    IDS_URDU_PAKISTAN       "Urdu (Pakistan)"
+    IDS_URDU_INDIA          "Urdu (India)"
+END
+
+// LANGAGE NAMES #9
+STRINGTABLE
+BEGIN
+    IDS_UZBEK_LATIN         "Üzbég (Latin)"
+    IDS_UZBEK_CYRILLIC      "Üzbég (Cyrillic)"
+    IDS_VIETNAMESE          "Vietnámi"
+END
+
+// MENU STRINGS
+// FILE MENU
+STRINGTABLE
+BEGIN
+    ID_FILE_SAVE_LEFT       "Bal oldali fájl mentése"
+    ID_FILE_SAVE_RIGHT      "Jobb oldali fájl mentése"
+    ID_FILE_SAVEAS_LEFT     "Bal oldali fájl mentése mint ..."
+    ID_FILE_SAVEAS_RIGHT    "Jobb oldali fájl mentése mint ..."
+    ID_FILE_LEFT_READONLY   "Bal oldali fájl/könyvtár csak olvasható állapotának változtatása"
+    ID_FILE_RIGHT_READONLY  "Jobb oldali fájl/könyvtár csak olvasható állapotának változtatása"
+    ID_EOL_TO_DOS           "Újsor-karakterek kovertálása: DOS mode"
+    ID_EOL_TO_UNIX          "Újsor-karakterek kovertálása: UNIX mode"
+    ID_EOL_TO_MAC           "Újsor-karakterek kovertálása: MAC mode"
+    ID_FILE_MERGINGMODE     "Váltás olvasztó és szerkesztõ mód között"
+END
+
+// EDIT MENU
+STRINGTABLE
+BEGIN
+    ID_SHOWLINEDIFF         "Az aktuális sor eltérésének kiemelése\nEltérés az aktuális sorban (F4)"
+    ID_EDIT_WMGOTO          "Ugrás sorra vagy eltérésre\nUgrás (Ctrl+G)"
+    ID_OPTIONS              "A program beállítása\nBeállítások"
+    ID_REFRESH              "Kijezõ frissítése\nFrissítés (F5)"
+END
+
+// VIEW MENU (FILE TYPE)
+STRINGTABLE
+BEGIN
+    ID_OPTIONS_SHOWIDENTICAL "Megegyezõ fájlok kijelzése"
+    ID_OPTIONS_SHOWDIFFERENT "Különbségeket tartalmazó fájlok kijelzése"
+    ID_OPTIONS_SHOWUNIQUELEFT "Csak a bal oldalon meglévõ fájlok kijelzése"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Csak a bal oldalon meglévõ fájlok kijelzése"
+    ID_OPTIONS_SHOWBINARIES "Bináris fájlok kijelzése"
+    ID_OPTIONS_SHOWSKIPPED  "Kihagyott fájlok kijelzése"
+END
+
+// VIEW MENU
+STRINGTABLE
+BEGIN
+    ID_VIEW_SELECTFONT      "Válaszd ki az eltéréseknél használt betûtípust\nEltérési mód betûtípus"
+    ID_VIEW_USEDEFAULTFONT  "Visszatérés az rendszer által használt betûtípus használatához\nAlapértelmezett Betûtípus"
+    ID_VIEW_WHITESPACE      "Szóköz karakterek mutatása"
+    ID_VIEW_DETAIL_BAR      "Eltérés panel mutatása/rejtése"
+    ID_VIEW_LOCATION_BAR    "A Pozíció panel vizuális képet ad az összehasonlított fájlokról"
+    ID_VIEW_DIR_STATEPANE   "Könyvtár összehasonlítási állapot panel mutatása"
+    ID_VIEW_LANGUAGE        "Add meg a használni kívánt nyelvet\nNyelv"
+END
+
+// MERGE MENU
+STRINGTABLE
+BEGIN
+    ID_PREVDIFF             "Görgetés az elõzõ eltéréshez\nElõzõ Eltérés (Alt+Up)"
+    ID_NEXTDIFF             "Görgetés a következõ eltéréshez\nKövetk Eltérés (Alt+Down)"
+    ID_FIRSTDIFF            "Görgetés az elsõ eltéréshez\nElsõ Eltérés (Alt+Home)"
+    ID_CURDIFF              "Görgetés az aktuális eléréshez\nAktuális Eltérés (Alt+Enter)"
+    ID_LASTDIFF             "Görgetés az utolsó eltéréshez\nUtolsó Eltérés (Alt+End)"
+    ID_L2R                  "A kijelölt szöveg másolása a jobb oldali fájlba\nMásolás jobbra (Alt+Right)"
+    ID_R2L                  "A kijelölt szöveg másolása a bal oldali fájlba\nMásolás balra (Alt+Left)"
+    ID_L2RNEXT              "Az eltérés másolása jobbra és ugrás tovább\nMásolás jobbra és Ugrás (Ctrl+Alt+Right)"
+    ID_R2LNEXT              "Az eltérés másolása balra és ugrás tovább\nMásolás balra és Ugrás (Ctrl+Alt+Left)"
+    ID_ALL_RIGHT            "Az összes eltérés másolása jobbra\nMind jobbra"
+    ID_ALL_LEFT             "Az összes eltérés másolása jobbra\nMind balra"
+    ID_MULTIPLE_RIGHT       "A kijelölt szöveg eltéréseinek másolása a bal oldali panelbõl a jobb oldali fájlba"
+    ID_MULTIPLE_LEFT        "A kijelölt szöveg eltéréseinek másolása a jobb oldali panelbõl a bal oldali fájlba"
+END
+
+// TOOLS MENU
+STRINGTABLE
+BEGIN
+    ID_TOOLS_CUSTOMIZECOLUMNS "Könyvtár összehasonlítási oszlopok kijelölése és újrarendezése"
+    ID_TOOLS_GENERATEPATCH  "Patch-file generálása"
+    ID_TOOLS_FILTERS        "Szûrõk kijelölése és módosítása"
+END
+
+// PLUGINS MENU
+STRINGTABLE
+BEGIN
+    ID_UNPACK_MANUAL        "A felhasználó adja meg a kicsomagolót (nincs kicsomagolás könyvtárak összehasonlításakor)"
+    ID_UNPACK_AUTO          "A választott kicsomagoló lesz használva mindkét fájlnál (az egyik fájlnak csak a kiterjesztése lényeges)"
+    ID_POPUP_OPEN_WITH_UNPACKER "Válassz kicsomagolót a fájl szerkesztéséhez"
+    ID_NO_PREDIFFER         "Nincs elõvizsgálat (normális)"
+    ID_SUGGESTED_PLUGINS    "Javasolt bõvítmények"
+    ID_NOT_SUGGESTED_PLUGINS "Egyéb bõvítmények"
+    ID_RELOAD_PLUGINS       "Az összes bõvítmény betöltése újra (fejlesztõknek)"
+END
+
+// WINDOW MENU
+STRINGTABLE
+BEGIN
+    ID_WINDOW_CHANGE_PANE   "Következõ látható fájl aktiválása\nKövetkezõ fájl aktiválása"
+END
+
+// HELP MENU
+STRINGTABLE
+BEGIN
+    ID_HELP_CONTENTS        "A WinMerge Felhasználói Kézikönyv megjelenítése\nSúgó"
+    ID_HELP_GETCONFIG       "A jelenlegi WinMerge verziószámának és egyéb adatainak fájlba mentése"
+    ID_HELP_GNULICENSE      "A GNU public license megjelenítése"
+    IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+END
+
+// PLUGINS DIALOGS AND DYNAMIC MENUS
+STRINGTABLE
+BEGIN
+    ID_TITLE_PLUGINS_SETTINGS "Bõvítmény beállítások"
+    ID_PREDIFF_MANUAL       "Nincs elõvizsgálat"
+    ID_PREDIFF_AUTO         "Elõvizsgálat ha lehetséges"
+    ID_NO_EDIT_SCRIPTS      "< Üres >"
+    ID_NO_SCT_SCRIPTS       "A WSH nem található - Az .sct szkriptek le lesznek tiltva"
+    IDS_USERCHOICE_NONE     "<Nincs>"
+    IDS_USERCHOICE_AUTOMATIC "<Automatikus>"
+END
+
+// LOCATIONBAR CONTEXT MENU
+STRINGTABLE
+BEGIN
+    ID_DISPLAY_MOVED_NONE   "Ne mutassa a mozgatott blokkokat"
+    ID_DISPLAY_MOVED_ALL    "Mutasson minden mozgatott blokkot"
+    ID_DISPLAY_MOVED_FOLLOW_DIFF "Mutassa a kijelölt blokkokat a jelenlegi eltéréstõl kezdve"
+    ID_LOCBAR_GOTODIFF      "Ugrás a kurzor alatt eltérésre"
+    ID_LOCBAR_GOTODIFF_FMT  "&Ugrás a(z) %1. számú eltérésre ennyibõl: %2"
+    ID_LOCBAR_GOTOLINE_FMT  "&Ugrás a(z) %1. sorra"
+END
+
+// END STRINGS SYNCHRO
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HUN)
+#ifdef _WIN32
+LANGUAGE LANG_HUNGARIAN, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif
+#include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
