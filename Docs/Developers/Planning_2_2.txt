@@ -59,13 +59,12 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
   fix some problems for users wanting to use 2.1 seriously
 - Good version for "preview" of 2.2
   
-2.1.4.0 branch
---------------
-- Bugfixes
-  * Fix for RC file problem merged 2003-12-11
-- Maybe some new features, if no risk for new bugs
-- 1 or more safer betas from this branch
-- NOT mentioned as new stable, its development still!
+2.1.6.0
+-------
+- Lot of new features
+- Usability improved from 2.1.4
+- Mostly UI work left to do
+- No bad bugs reported yet (in 3 weeks)
 
 
 2.1 Development
@@ -174,8 +173,8 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
 3) Directory compare reports
    - RFE #669461 Save directory compare report
    - First take with Ctrl-C copying view contents done
-   - Contributor working with this - no response for a while?
-   - Status?
+   - Contributor working (?) with this
+   - Seems however won't happen for 2.2
 
 4) On-demand-rescan for directory compare
    - Requires mostly some reorg in dir compare code
@@ -183,8 +182,7 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
    - Also some long-standing bugs can be fixed after this
    - Nobody working with this at the moment,
      Kimmo at least interested, but cannot say if time permits
-   - Needed for 2.2 (Might get dropped if no time or changes required
-     are risky)
+   - Time is short for 2.2 inclusion! This is risky!
 
 5) wxWindows port
    - RFE #851438 wxWindows port
@@ -204,7 +202,7 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
      saving and loading from project file
    - Nobody working with this at the moment
    - UI?
-   - Preferred for 2.2, no big risks
+   - Time is short for 2.2 inclusion!
 
 7) Show only different lines
    - RFE #709415 Display only different lines
@@ -241,7 +239,7 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
    - UI and backend code changes needed unknown
    - Contributor working with this?
    - Status unknown
-   - For 2.2 if backend changes are not risky
+   - Time is short for 2.2 inclusion!
 
 11) 3-way merge
    - RFE #839815 Diff3, one output
@@ -334,7 +332,8 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
    - Usability!
    - Kimmo submitted patch (#892023 Alternative (no alt-key) merge mode).
      That patch has several problems, needs rethinking. Help welcome!
-   - Considered for 2.2 if somebody wants to implement this
+   - Kimmo's simpler patch #938609 applied 2004-04-21
+   *** DONE ***
 
 22) Dir compare statusbar to auto-hide
    - RFE #838982 Skip "Press any key" every time I compare
@@ -385,4 +384,5 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
      are ignored
    - Kimmo submitted and applied patches for compare options and
      color options
+   - Directory columns widths need to be still reset
    - For 2.2
