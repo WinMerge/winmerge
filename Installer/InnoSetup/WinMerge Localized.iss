@@ -21,6 +21,7 @@
 ; #  Create instructions and a sample language file using the Inno Setup Translator Tool (http://www2.arnes.si/~sopjsimo/translator.html)
 ; #  Seier will need to apply this {#AppVersion} directive to all localizations:
 ;        English.SetupAppTitle=Setup - WinMerge {#AppVersion}
+; #  Get Read Me.rtf translated into 18 other languages
 ;
 ; Bugs & Other Priority Items:
 ; #  Get All Inno Setup .ISLs localized
@@ -215,7 +216,7 @@ Name: Swedish_Language; Description: Swedish menus and dialogs; Flags: disableno
 
 ;If the user selected a particular language at startup then...
 Name: Bulgarian_Language; Description: Bulgarian menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Bulgarian
-Name: Catalan_Language; Description: Chinese (Standard) menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Catalan
+Name: Catalan_Language; Description: Catalan menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Catalan
 Name: Chinese_Standard_Language; Description: Chinese (Standard) menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Chinese_Standard
 Name: Chinese_Traditional_Language; Description: Chinese (Traditional) menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Chinese_Traditional
 Name: Czech_Language; Description: Czech menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Czech
@@ -228,6 +229,7 @@ Name: Korean_Language; Description: Korean menus and dialogs; Flags: disablenoun
 Name: Norwegian_Language; Description: Norwegian menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Norwegian
 Name: Polish_Language; Description: Polish menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Polish
 Name: Russian_Language; Description: Russian menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Russian
+Name: Slovak_Language; Description: Slovak menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Slovak
 Name: Spanish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Spanish
 Name: Swedish_Language; Description: Swedish menus and dialogs; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Swedish
 
@@ -553,33 +555,23 @@ Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: MergeAsUn
 ;Whatever the user chooses at the [Select Setup Language] dialog should also determine what language WinMerge will start up in
 ;(unless the user already has a startup language specified)
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000402; Flags: deletevalue; Languages: Bulgarian
-
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000403; Flags: deletevalue; Languages: Catalan
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000804; Flags: deletevalue; Languages: Chinese_Standard
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000404; Flags: deletevalue; Languages: Chinese_Traditional
-
-
-
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000405; Flags: deletevalue; Languages: Czech
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000406; Flags: deletevalue; Languages: Danish
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000413; Flags: deletevalue; Languages: Dutch
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000409; Flags: deletevalue; Languages: English
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000040c; Flags: deletevalue; Languages: French
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000407; Flags: deletevalue; Languages: German
-
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000410; Flags: deletevalue; Languages: Italian
-
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000412; Flags: deletevalue; Languages: Korean
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000414; Flags: deletevalue; Languages: Norwegian
-
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000415; Flags: deletevalue; Languages: Polish
-
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000419; Flags: deletevalue; Languages: Russian
-
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000041b; Flags: deletevalue; Languages: Slovak
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000c0a; Flags: deletevalue; Languages: Spanish
-
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000041D; Flags: deletevalue; Languages: Swedish
-
-
 
 
 [Run]
