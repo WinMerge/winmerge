@@ -315,7 +315,7 @@ line_cmp (s1, len1, s2, len2)
   /* Not exactly identical, but perhaps they match anyway
      when case or white space is ignored.  */
 
-  if (ignore_case_flag | ignore_space_change_flag | ignore_all_space_flag)
+  if (ignore_case_flag | ignore_space_change_flag | ignore_all_space_flag | ignore_eol_diff)
     {
       t1 = (unsigned char const *) s1;
       t2 = (unsigned char const *) s2;
@@ -333,17 +333,39 @@ line_cmp (s1, len1, s2, len2)
 	  if (ignore_all_space_flag)
 	    {
 	      /* For -w, just skip past any white space.  */
-	      while (isspace (c1) && c1 != end_char) c1 = *t1++;
-	      while (isspace (c2) && c2 != end_char) c2 = *t2++;
+	      while (isspace (c1) && c1 != '\n' && c1 != '\r') 
+		{
+		  if (t1-s1<(int)len1)
+		    {
+		      c1 = *t1++;
+		    }
+		  else
+		    {
+		      c1 = 0;
+		      break;
+		    }
+		}
+	      while (isspace (c2) && c2 != '\n' && c2 != '\r') 
+		{
+		  if (t2-s2<(int)len2)
+		    {
+		      c2 = *t2++;
+		    }
+		  else
+		    {
+		      c2 = 0;
+		      break;
+		    }
+		}
 	    }
 	  else if (ignore_space_change_flag)
 	    {
 	      /* For -b, advance past any sequence of white space in line 1
 		 and consider it just one Space, or nothing at all
 		 if it is at the end of the line.  */
-	      if (isspace (c1))
+	      if (isspace (c1) && c1 != '\r' && c1 != '\n')
 		{
-		  while (c1 != end_char)
+		  while (t1-s1<(int)len1)
 		    {
 		      c1 = *t1++;
 		      if (! isspace (c1))
@@ -353,12 +375,14 @@ line_cmp (s1, len1, s2, len2)
 			  break;
 			}
 		    }
+		  if (t1-s1==(int)len1)
+		    c1 = 0;
 		}
 
 	      /* Likewise for line 2.  */
-	      if (isspace (c2))
+	      if (isspace (c2) && c2 != '\r' && c2 != '\n')
 		{
-		  while (c2 != end_char)
+		  while (t2-s2<(int)len2)
 		    {
 		      c2 = *t2++;
 		      if (! isspace (c2))
@@ -368,29 +392,34 @@ line_cmp (s1, len1, s2, len2)
 			  break;
 			}
 		    }
+		  if (t2-s2==(int)len2)
+		    c2 = 0;
 		}
 
 	      if (c1 != c2)
 		{
+		  /* backtracking necessary when matching "cat and" against "cat  and"
+		     because the spaces got matched with equality, so not "a" and " "
+		     are mismatches */
+
 		  /* If we went too far when doing the simple test
 		     for equality, go back to the first non-white-space
 		     character in both sides and try again.  */
-		  if (c2 == ' ' && c1 != '\n'
+		  if (c2 == ' ' && c1 && c1 != '\n' && c1 != '\r'
 		      && (unsigned char const *) s1 + 1 < t1
 		      && isspace(t1[-2]))
 		    {
 		      --t1;
 		      continue;
 		    }
-		  if (c1 == ' ' && c2 != '\n'
+		  if (c1 == ' ' && c2 && c2 != '\n' && c2 != '\r'
 		      && (unsigned char const *) s2 + 1 < t2
 		      && isspace(t2[-2]))
 		    {
 		      --t2;
 		      continue;
+		    }
 		}
-		  }
-
 	    }
 
 	  /* Upcase all letters if -i is specified.  */
@@ -407,8 +436,14 @@ line_cmp (s1, len1, s2, len2)
 	    break;
 	  }
 
-	  if (c1 == end_char)
+	  /* If we got here, c1 == c2 */
+
+	  if (!c1)
 	    return 0;
+	  if (t1-s1>=(int)len1)
+	    return ((t2-s2>=(int)len2) ? 0 : 1);
+	  if (t2-s2>=(int)len2)
+	      return 1;
 	}
     }
 
@@ -500,7 +535,7 @@ print_1_line (line_flag, line)
 
   output_1_line (text, limit, flag_format, line_flag);
 
-  if ((!line_flag || line_flag[0]) && limit[-1] != '\n'
+  if ((!line_flag || line_flag[0]) && limit[-1] != '\n' && limit[-1] != '\r'
       && line_end_char == '\n')
     fprintf (out, "\n\\ No newline at end of file\n");
 }

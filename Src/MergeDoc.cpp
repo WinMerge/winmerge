@@ -1266,28 +1266,6 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 
 	// Data to save is now in CString text
 
-	// HACK for MAC files support.  Temp files for diff must be in unix format
-	// this is dirty but should be replaced soon with preprocessing
-	// and preprocessing should be inserted here
-	if (bTempFile)
-	{ 
-		if (nCrlfStyle == CRLF_STYLE_MAC || nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-		{
-			// in place replace
-			LPTSTR pbuffer = text.GetBuffer(0);
-			TCHAR tchEolMac = * GetStringEol(CRLF_STYLE_MAC);
-			TCHAR tchEolUnix = * GetStringEol(CRLF_STYLE_UNIX);
-			UINT i;
-			for (i = 0 ; i < nchars ; i++)
-			{
-				if (pbuffer[i] == tchEolMac)
-					if (i+1 < nchars && pbuffer[i+1] != tchEolUnix)
-						pbuffer[i] = tchEolUnix;
-			}
-			text.ReleaseBuffer(-1);
-		}
-	}
-	
 	if (!pszFileName)
 		return SAVE_FAILED;	// No filename, cannot save...
 

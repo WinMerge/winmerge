@@ -212,10 +212,9 @@ slurp (current)
 #endif /*!__MSDOS__*/
     }
 }
-
+
 /* Split the file into lines, simultaneously computing the equivalence class for
    each line. */
-
 static void
 find_and_hash_each_line (current)
      struct file_data *current;
@@ -242,75 +241,91 @@ find_and_hash_each_line (current)
       ? bufend : (char const HUGE *) 0;
   int varies = length_varies;
 
+  /* prepare_text_end put a zero word at the end of the buffer, 
+  so we're not in danger of overrunning the end of the file */
+
   while ((char const HUGE *) p < suffix_begin)
     {
       char const HUGE *ip = (char const HUGE *) p;
 
-      /* Compute the equivalence class for this line.  */
+      /* Compute the equivalence class (hash) for this line.  */
 
       h = 0;
 
+
+      /*
+	 loops advance pointer to eol (end of line)
+	 respecting UNIX (\r), MS-DOS/Windows (\r\n), and MAC (\r) eols
+	 Normally eol characters are hashed
+	 If ignore_eol_diff option is set, eol characters are not hashed
+	 and the eol characters are removed from line as well, in code
+	 further down (after hashing_done label)
+      */
+
       /* Hash this line until we find a newline. */
-      /* Perry 2002-11-26 added EOL insensitivity */
       if (ignore_case_flag)
 	{
 	  if (ignore_all_space_flag)
-	    while ((c = *p++) != '\n')
+	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
 	      {
+		if (ignore_eol_diff && (c=='\r' || c=='\n'))
+		  continue;
 		if (! isspace (c))
 		  h = HASH (h, isupper (c) ? tolower (c) : c);
 	      }
 	  else if (ignore_space_change_flag)
-	    while ((c = *p++) != '\n')
+	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
 	      {
-		if (ignore_eol_diff && c=='\r' && *p=='\n')
+		if (ignore_eol_diff && (c=='\r' || c=='\n'))
 		  continue;
 		if (isspace (c))
 		  {
 		    while (isspace (c = *p++))
-		      if (c == '\n')
+		      if (c == '\n' || (c == '\r' && *p != '\n'))
 			goto hashing_done;
 		    h = HASH (h, ' ');
 		  }
-		/* C is now the first non-space.  */
+		/* c is now the first non-space.  */
 		h = HASH (h, isupper (c) ? tolower (c) : c);
 	      }
 	  else
-	    while ((c = *p++) != '\n')
+	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
 	      {
-	      if (ignore_eol_diff && c=='\r' && *p=='\n')
-		continue;
-	      h = HASH (h, isupper (c) ? tolower (c) : c);
+		if (ignore_eol_diff && (c=='\r' || c=='\n'))
+		  continue;
+		h = HASH (h, isupper (c) ? tolower (c) : c);
 	      }
 	}
       else
 	{
 	  if (ignore_all_space_flag)
-	    while ((c = *p++) != '\n')
+	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
 	      {
+		if (ignore_eol_diff && (c=='\r' || c=='\n'))
+		  continue;
 		if (! isspace (c))
 		  h = HASH (h, c);
 	      }
 	  else if (ignore_space_change_flag)
-	    while ((c = *p++) != '\n')
+	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
 	      {
-		if (ignore_eol_diff && c=='\r' && *p=='\n')
+		if (ignore_eol_diff && (c=='\r' || c=='\n'))
 		  continue;
 		if (isspace (c))
 		  {
 		    while (isspace (c = *p++))
-		      if (c == '\n')
+		      if (c == '\n' || (c == '\r' && *p != '\n'))
 			goto hashing_done;
 		    h = HASH (h, ' ');
 		  }
-		/* C is now the first non-space.  */
+		/* c is now the first non-space.  */
 		h = HASH (h, c);
 	      }
 	  else
-	    while ((c = *p++) != '\n')
+	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
 	      {
-	      if (ignore_eol_diff && c=='\r' && *p=='\n')
-		continue;
+		if (ignore_eol_diff && (c=='\r' || c=='\n'))
+		  continue;
 	      h = HASH (h, c);
 	      }
 	}
@@ -318,10 +333,19 @@ find_and_hash_each_line (current)
 
       bucket = &buckets[h % nbuckets];
       length = (char const HUGE *) p - ip - ((char const HUGE *) p == incomplete_tail);
-      if (ignore_eol_diff && length>1 && p[-2]=='\r' && p[-1]=='\n')
+      if (ignore_eol_diff)
 	{
-	  ((char HUGE *)p)[-2] = '\n';
-	  --length;
+	  /* Remove all eols characters and adjust line length */
+	  if (length>1 && p[-2]=='\r' && p[-1]=='\n')
+	  {
+	    ((char HUGE *)p)[-2] = 0;
+	    length -= 2;
+	  }
+	  else if (p[-1] == '\n' || p[-1] == '\r')
+	  {
+	    ((char HUGE *)p)[-1] = 0;
+	    --length;
+	  }
 	}
       for (i = *bucket;  ;  i = eqs[i].next)
 	if (!i)
