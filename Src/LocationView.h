@@ -34,6 +34,7 @@ protected:
 	// Return end of block (diff/non-diff)
 	BOOL GetNextRect(int &nLineIndex);
 	void DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border = FALSE);
+	BOOL GotoLocation(CPoint point);
 
 private:
 	CMergeEditView* m_view0;
@@ -42,6 +43,7 @@ private:
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CLocationView)
+	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

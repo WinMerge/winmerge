@@ -34,6 +34,7 @@ CLocationView::CLocationView()
 
 BEGIN_MESSAGE_MAP(CLocationView, CView)
 	//{{AFX_MSG_MAP(CLocationView)
+	ON_WM_LBUTTONDBLCLK()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -214,4 +215,38 @@ void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border)
 			pDC->SelectObject(oldBrush);
 		}
 	}
+}
+
+/// User left double-clicked mouse
+void CLocationView::OnLButtonDblClk(UINT nFlags, CPoint point) 
+{
+	if (!GotoLocation(point))
+		CView::OnLButtonDblClk(nFlags, point);
+}
+
+/// Move both views to point given (if in one of the file columns, else return FALSE)
+BOOL CLocationView::GotoLocation(CPoint point)
+{
+	CRect rc;
+	GetClientRect(rc);
+
+	if (m_view0 == NULL || m_view1 == NULL)
+		return FALSE;
+
+	const int w = rc.Width() / 4;
+	const int x = (rc.Width() - 2 * w) / 3;
+
+	bool leftside = (point.x >= x && point.x < x+w);
+	bool rightside = (point.x >= 2 * x + w && point.x < 2 * x + 2 * w);
+	if (!leftside && !rightside)
+		return FALSE;
+
+	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
+
+	int line = point.y * nbLines / rc.Height();
+
+	m_view0->GoToLine(line, false);
+	m_view1->GoToLine(line, false);
+
+	return TRUE;
 }

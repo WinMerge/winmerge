@@ -1,6 +1,8 @@
 2004-05-29 Perry
  Updated WinMerge Localized.iss from seier (manifest & plugins.txt changes)
   InnoSetup: WinMerge Localized.iss
+ PATCH: [ 945759 ] Move to location when double-click location view
+  Src/Common: LocationView.cpp LocationView.h
 
 2004-05-29 WinMerge experimental release 2.1.7.5 (cvs)
 
