@@ -1,3 +1,7 @@
+2004-05-10 Laoran
+ Fix typos in swedish installation file ; contribution from Hans Ericson
+  InnoSetup/Languages/Swedish.isl
+
 2004-05-07 Laoran
  Fix typos in swedish installation file
   InnoSetup/Languages/Swedish.isl

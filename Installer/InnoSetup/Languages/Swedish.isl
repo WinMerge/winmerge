@@ -1,11 +1,10 @@
-[LangOptions]
-
 ; *** Inno Setup version 4.2.1+ Swedish messages ***
 ;
 ; Translated by stefan@bodingh.se
 ; -------+---------+---------+---------+---------+---------+---------+---------
 ; Translators notes (for Swedes only :)
 ;
+; Rev 040510: för WinMerge av hans.ericson@bredband.net
 ; Rev 040128: 4.1.2 av stefan@bodingh.se
 ; Rev 030501: 4.0.0 av stefan@bodingh.se
 ; Rev 020903: 3.0.3 av soren.edzen@frontec.se
@@ -15,8 +14,17 @@
 ; Rev 000428: 1.3x
 ; Rev 991028: Smärre ändringar.
 ; Rev 990927: Nytt
+;
+; Note: When translating this text, do not add periods (.) to the end of
+; messages that didn't have them already, because on those messages Inno
+; Setup adds the periods automatically (appending a period would result in
+; two periods being displayed).
+;
+
+[LangOptions]
 LanguageName=Svenska
 LanguageID=$041D
+
 [Messages]
 
 ; *** Application titles
@@ -55,7 +63,7 @@ ErrorTooManyFilesInDir=Kunde inte skapa en fil i mappen "%1" därför att den inne
 
 ; *** Setup common messages
 ExitSetupTitle=Avsluta installationen
-ExitSetupMessage=Installationen är inte färdig. Om du slutar nu, kommer programmet inte att installeras.%n%nDu kan köra installationsprogrammet  vid ett senare tillfälle för att avsluta installationen.%n%nVill du avbryta installationen?
+ExitSetupMessage=Installationen är inte färdig. Om du slutar nu, kommer programmet inte att installeras.%n%nDu kan köra installationsprogrammet vid ett senare tillfälle för att avsluta installationen.%n%nVill du avbryta installationen?
 AboutSetupMenuItem=&Om installationsprogrammet...
 AboutSetupTitle=Om installationsprogrammet
 AboutSetupMessage=%1 version %2%n%3%n%n%1 hemsida:%n%4
@@ -187,7 +195,7 @@ ReadyMemoTasks=Extra uppgifter:
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Förbereder installationen
 PreparingDesc=Installationsprogrammet förbereder installationen av [name] på din dator.
-PreviousInstallNotCompleted=Installationen/avinstallationen av ett tidigare program har inte slutförts. Du måste starta om datorn för att avsluta den  installationen.%n%nEfter att ha startat om datorn kör du installationsprogrammet igen för att slutföra installationen av [name].
+PreviousInstallNotCompleted=Installationen/avinstallationen av ett tidigare program har inte slutförts. Du måste starta om datorn för att avsluta den installationen.%n%nEfter att ha startat om datorn kör du installationsprogrammet igen för att slutföra installationen av [name].
 CannotContinue=Installationsprogrammet kan inte fortsätta. Klicka på Avbryt för att avsluta.
 
 ; *** "Installing" wizard page
@@ -262,7 +270,7 @@ ErrorCreatingTemp=Ett fel uppstod vid ett försök att skapa installationsmappen:
 ErrorReadingSource=Ett fel uppstod vid ett försök att läsa källfilen:
 ErrorCopying=Ett fel uppstod vid kopiering av filen:
 ErrorReplacingExistingFile=Ett fel uppstod vid ett försök att ersätta den befintliga filen:
-ErrorRestartReplace=RestartReplace misslyckades:
+ErrorRestartReplace=ÅterstartaErsätt misslyckades:
 ErrorRenamingTemp=Ett fel uppstod vid ett försök att byta namn på en fil i installationsmappen:
 ErrorRegisterServer=Kunde inte registrera DLL/OCX: %1
 ErrorRegisterServerMissingExport=DllRegisterServer export kunde inte hittas
@@ -283,7 +291,7 @@ UninstallStatusLabel=Var god och vänta medan %1 tas bort från din dator.
 UninstalledAll=%1 är nu borttaget från din dator.
 UninstalledMost=Avinstallationen av %1 är nu klar.%n%nEn del filer/mappar gick ej att ta bort. Dessa kan tas bort manuellt.
 UninstalledAndNeedsRestart=För att slutföra avinstallationen av %1 måste datorn startas om.%n%nVill du starta om nu?
-UninstallDataCorrupted=Filen "%1" är felaktig. Kan inte avinstallara
+UninstallDataCorrupted=Filen "%1" är felaktig. Kan inte avinstallera
 
 ; *** Uninstallation phase messages
 ConfirmDeleteSharedFileTitle=Ta bort delad fil?
@@ -306,17 +314,17 @@ AssocingFileExtension=Associerar %1 med %2 filnamnstillägg...
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typical Installation
+TypicalInstallation=Typisk Installation
 FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+CompactInstallation=Kompakt Installation
+CustomInstallation=Anpassad Installation
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-ApplicationRuntimes=Application Runtimes
-UsersGuide=User's Guide
-Filters=Filters
-Plugins=Plugins (See Plugins.txt)
+AppCoreFiles=WinMerge Kärnfiler
+ApplicationRuntimes=Applikationsexekuterbara filer
+UsersGuide=Användarguide
+Filters=Filter
+Plugins=Plugins (Se Plugins.txt)
 
 ;Localization Components
 Languages=Languages
@@ -341,15 +349,15 @@ SwedishLanguage=Swedish menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Möjliggör integration med Explorers menyer
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateDelphi4=Stöd Borland 4 Binära filer
-UpdatingCommonControls=Updating the System's Common Controls
+IntegrateTortoiseCVS=Integrera med &TortoiseCVS
+IntegrateDelphi4=Stöd Borland Delphi4 Binära filer
+UpdatingCommonControls=Updatera Systemets Vanliga Kontroller
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-UpdatingCommonControls=Updating the System's Common Controls
+ReadMe=Läs Mig
+UsersGuide=Användarguide
+UpdatingCommonControls=Updatera Systemets Vanliga Kontroller
 ViewStartMenuFolder=Visa Winmerges startkatalog
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=Installationsprogrammet har upptäckt att du har ändrat sökvägen till din startmeny från "%s" till "%s". Vill du ta bort den tidigare startmenymappen?
