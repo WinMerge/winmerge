@@ -5,6 +5,8 @@
   WinMerge new file: winnt_supp.h
 
 2003-11-11 Laoran
+ PATCH: [ 839243 ] F4 should hilight diff in both files
+  WinMerge: MergeDoc.cpp MergeDoc.h
  fix for syntax highlight in left pane view
   WinMerge: MergeDoc.cpp
  update global options dialog : 'Allow mixing EOL' -> 'preserve original EOL chars'

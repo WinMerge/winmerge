@@ -2264,40 +2264,55 @@ static int lastdiff(BOOL case_sensitive, int whitespace, const CString & str1, c
 }
 
 /**
- * @brief Highlight difference in current line
+ * @brief Highlight difference in current line (left & right panes)
  */
 void CMergeDoc::Showlinediff(CMergeEditView * pView)
 {
-	CMergeEditView * pOther = (pView == m_pLeftView ? m_pRightView : m_pLeftView);
-	CRect rectDiff = Computelinediff(pView, pOther);
-	if (rectDiff.top == -1)
-		return;
-	pView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
-	pView->SetCursorPos(rectDiff.TopLeft());
-	pView->EnsureVisible(rectDiff.TopLeft());
+	CRect rectDiff;
+	rectDiff = Computelinediff(m_pLeftView, m_pRightView, pView->GetCursorPos().y);
+	if (rectDiff.top != -1)
+	{
+		m_pLeftView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
+		m_pLeftView->SetCursorPos(rectDiff.TopLeft());
+		m_pLeftView->EnsureVisible(rectDiff.TopLeft());
+	}
+	rectDiff = Computelinediff(m_pRightView, m_pLeftView, pView->GetCursorPos().y);
+	if (rectDiff.top != -1)
+	{
+		m_pRightView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
+		m_pRightView->SetCursorPos(rectDiff.TopLeft());
+		m_pRightView->EnsureVisible(rectDiff.TopLeft());
+	}
 }
 
 /**
- * @brief Highlight difference in diff pane's current line
+ * @brief Highlight difference in diff bar's current line (top & bottom panes)
  */
 void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView)
 {
-	CMergeDiffDetailView * pOther = (pView == m_pLeftDetailView ? m_pRightDetailView : m_pLeftDetailView);
-	CRect rectDiff = Computelinediff(pView, pOther);
-	if (rectDiff.top == -1)
-		return;
-	pView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
-	pView->SetCursorPos(rectDiff.TopLeft());
-	pView->EnsureVisible(rectDiff.TopLeft());
+	CRect rectDiff;
+	rectDiff = Computelinediff(m_pLeftDetailView, m_pRightDetailView, pView->GetCursorPos().y);
+	if (rectDiff.top != -1)
+	{
+		m_pLeftDetailView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
+		m_pLeftDetailView->SetCursorPos(rectDiff.TopLeft());
+		m_pLeftDetailView->EnsureVisible(rectDiff.TopLeft());
+	}
+	rectDiff = Computelinediff(m_pRightDetailView, m_pLeftDetailView, pView->GetCursorPos().y);
+	if (rectDiff.top != -1)
+	{
+		m_pRightDetailView->SelectArea(rectDiff.TopLeft(), rectDiff.BottomRight());
+		m_pRightDetailView->SetCursorPos(rectDiff.TopLeft());
+		m_pRightDetailView->EnsureVisible(rectDiff.TopLeft());
+	}
 }
 
 // Returns a rectangle of the difference in the current line 
-RECT CMergeDoc::Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther)
+RECT CMergeDoc::Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther, int line)
 {
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 
-	int line = pView->GetCursorPos().y;
 	int width = pView->GetLineLength(line);
 
 	CString str1 = pView->GetLineChars(line);
@@ -2442,7 +2457,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	m_pRightView->AttachToBuffer();
 	m_pLeftDetailView->AttachToBuffer();
 	m_pRightDetailView->AttachToBuffer();
-
+		
 	// Set read-only statuses
 	m_ltBuf.SetReadOnly(bROLeft);
 	m_rtBuf.SetReadOnly(bRORight);

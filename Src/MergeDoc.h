@@ -221,7 +221,7 @@ public:
 	void SetDiffViewMode(BOOL bEnable);
 	void Showlinediff(CMergeEditView * pView);
 	void Showlinediff(CMergeDiffDetailView * pView);
-	RECT Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther);
+	RECT Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther, int line);
 	
 	void SetUnpacker(PackingInfo * infoUnpacker);
 	void SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight);
