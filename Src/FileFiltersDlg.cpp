@@ -27,12 +27,16 @@
 #include "FileFiltersDlg.h"
 #include "coretools.h"
 #include "dllver.h"
+#include "FileFilterMgr.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+static const TCHAR FILE_FILTER_TEMPLATE[] = _T("FileFilter.tmpl");
 
 /////////////////////////////////////////////////////////////////////////////
 // CFiltersDlg dialog
@@ -60,6 +64,8 @@ BEGIN_MESSAGE_MAP(FileFiltersDlg, CDialog)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
 	ON_WM_MOUSEMOVE()
+	ON_BN_CLICKED(IDC_FILTERFILE_NEWBTN, OnBnClickedFilterfileNewbutton)
+	ON_BN_CLICKED(IDC_FILTERFILE_DELETEBTN, OnBnClickedFilterfileDelete)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_FILTERFILE_LIST, OnLvnItemchangedFilterfileList)
 	ON_NOTIFY(LVN_GETINFOTIP, IDC_FILTERFILE_LIST, OnInfoTip)
@@ -193,7 +199,15 @@ void FileFiltersDlg::OnOK()
 
 /**
  * @brief Open selected filter for editing.
- * @note This function waits until editing is finished.
+ *
+ * This opens selected file filter file for user to edit. Other WinMerge UI is
+ * not (anymore) blocked during editing. We let user continue working with
+ * WinMerge while editing filter(s). Before opening this dialog and before
+ * doing directory compare we re-load changed filter files from disk. So we
+ * always compare with latest saved filters.
+ * @sa CMainFrame::OnToolsFilters()
+ * @sa CDirDoc::Rescan()
+ * @sa FileFilterHelper::ReloadUpdatedFilters()
  */
 void FileFiltersDlg::OnFiltersEditbtn()
 {
@@ -238,13 +252,20 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 	{
 		CString txtNone;
 		CButton *btn = (CButton *) GetDlgItem(IDC_FILTERFILE_EDITBTN);
+		CButton *btnDel = (CButton *) GetDlgItem(IDC_FILTERFILE_DELETEBTN);
 		VERIFY(txtNone.LoadString(IDS_USERCHOICE_NONE));
 		CString txt = m_listFilters.GetItemText(pNMLV->iItem, 0);
 
 		if (txt.CompareNoCase(txtNone) == 0)
+		{
 			btn->EnableWindow(FALSE);
+			btnDel->EnableWindow(FALSE);
+		}
 		else
+		{
 			btn->EnableWindow(TRUE);
+			btnDel->EnableWindow(TRUE);
+		}
 	}
 	*pResult = 0;
 }
@@ -283,4 +304,157 @@ void FileFiltersDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
 	m_ptLastMousePos = point;
 	CDialog::OnMouseMove(nFlags, point);
+}
+
+/// Reload selected filter from disk (in case its been modified etc)
+void FileFiltersDlg::OnBnClickedReload()
+{
+	FileFilterMgr *pMgr = NULL;
+	FileFilter *pFilter = NULL;
+	CString path;
+	int sel =- 1;
+
+	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
+
+	// Can't edit first "None"
+	if (sel > 0)
+	{
+		m_listFilters.GetItemText(sel, 2, path.GetBuffer(MAX_PATH),	MAX_PATH);
+		path.ReleaseBuffer();
+
+		pMgr = theApp.m_globalFileFilter.GetManager();
+		pFilter = pMgr->GetFilterByPath(path);
+
+		if (pFilter)
+		{
+			pMgr->ReloadFilterFromDisk(pFilter);
+		}
+	}
+}
+
+/**
+ * @brief Called when user presses "New..." button.
+ *
+ * Asks filename for new filter from user (using standard
+ * file picker dialog) and copies template file to that
+ * name. Opens new filterfile for editing.
+ * @todo (At least) Warn if user puts filter to outside
+ * filter directories?
+ */
+void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
+{
+	CString title;
+	CString path;
+	CString s;
+	CString tmplPath;
+	TCHAR dir[_MAX_DIR] = {0};
+	TCHAR drive[_MAX_DRIVE] = {0};
+
+	VERIFY(title.LoadString(IDS_FILEFILTER_SAVENEW));
+	path = theApp.m_globalFileFilter.GetFileFilterPath();
+
+	// Drop filename and extension
+	_tsplitpath(path, drive, dir, NULL, NULL);
+	if (_tcslen(drive) > 0 )
+	{
+		path = drive;
+		path += dir;
+	}
+	else
+	{
+		path = dir;
+	}
+	
+	tmplPath = path + FILE_FILTER_TEMPLATE;
+	
+	if (SelectFile(s, path, title, IDS_FILEFILTER_FILEMASK, FALSE))
+	{
+		// Fix file extension
+		TCHAR file[_MAX_FNAME] = {0};
+		TCHAR ext[_MAX_EXT] = {0};
+		_tsplitpath(s, drive, dir, file, ext);
+		if (_tcslen(ext) == 0)
+		{
+			s += FileFilterExt;
+		}
+		else if (_tcsicmp(ext, FileFilterExt) != 0)
+		{
+			s = drive;
+			s += dir;
+			s += file;
+			s += FileFilterExt;
+		}
+
+		CopyFile(tmplPath, s, TRUE);
+		theApp.m_globalFileFilter.EditFileFilter(s);
+		FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
+		pMgr->AddFilter(s);
+
+		// Remove all from filterslist and re-add so we can update UI
+		CString selected;
+		m_Filters->RemoveAll();
+		theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
+
+		UpdateFiltersList();
+	}
+}
+
+/**
+ * @brief Delete selected filter.
+ * @todo Error message for failed file delete?
+ */
+void FileFiltersDlg::OnBnClickedFilterfileDelete()
+{
+	CString path;
+	int sel =- 1;
+
+	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
+
+	// Can't edit first "None"
+	if (sel > 0)
+	{
+		m_listFilters.GetItemText(sel, 2, path.GetBuffer(MAX_PATH),	MAX_PATH);
+		path.ReleaseBuffer();
+
+		CString sConfirm;
+		AfxFormatString1(sConfirm, IDS_CONFIRM_DELETE_SINGLE, path);
+		int res = AfxMessageBox(sConfirm, MB_ICONQUESTION | MB_YESNO);
+		if (res == IDYES)
+		{
+			if (DeleteFile(path))
+			{
+				FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
+				pMgr->RemoveFilter(path);
+				
+				// Remove all from filterslist and re-add so we can update UI
+				CString selected;
+				m_Filters->RemoveAll();
+				theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
+
+				UpdateFiltersList();
+			}
+		}
+	}
+}
+
+/**
+ * @brief Update filters to list.
+ */
+void FileFiltersDlg::UpdateFiltersList()
+{
+	int count = m_Filters->GetSize();
+	int listItems = m_listFilters.GetItemCount();
+
+	m_listFilters.DeleteAllItems();
+
+	CString title;
+	VERIFY(title.LoadString(IDS_USERCHOICE_NONE));
+	m_listFilters.InsertItem(1, title);
+	m_listFilters.SetItemText(0, 1, title);
+	m_listFilters.SetItemText(0, 2, title);
+
+	for (int i = 0; i < count; i++)
+	{
+		AddToGrid(i);
+	}
 }

@@ -32,11 +32,11 @@
 #endif
 
 #include "FileTransform.h"
+#include "FileFilterMgr.h"
 #include "Plugins.h"
 #include "lwdisp.h"
 #include "coretools.h"
 #include "RegExp.h"
-#include "FileFilterMgr.h"
 #include "resource.h"
 #include "Exceptions.h"
 #include "RegKey.h"
@@ -261,12 +261,9 @@ static void GetScriptletsAt(LPCTSTR szSearchPath, LPCTSTR extension, CStringArra
 	}
 }
 
-
-
-
 void PluginInfo::LoadFilterString()
 {
-	filters = new RegList;
+	filters = new FileFilterList;
 
 	CString sLine = filtersText;
 	CString sPiece;
@@ -282,8 +279,13 @@ void PluginInfo::LoadFilterString()
 		sPiece.MakeUpper();
 
 		CRegExp * regexp = new CRegExp;
+		FileFilterElement element;
+		
 		if (regexp->RegComp(sPiece))
-			filters->AddTail(regexp);
+		{
+			element.pRegExp = regexp;
+			filters->AddTail(element);
+		}
 		else
 			delete regexp;
 	};
@@ -628,7 +630,7 @@ static void FreeAllScripts(PluginArray *& pArray)
 	{
 		pArray->GetAt(i).lpDispatch->Release();
 		if (pArray->GetAt(i).filters)
-			DeleteRegList(*(pArray->GetAt(i).filters));
+			EmptyFilterList(*(pArray->GetAt(i).filters));
 		delete pArray->GetAt(i).filters;
 	}
 

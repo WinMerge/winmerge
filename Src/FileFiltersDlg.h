@@ -44,6 +44,7 @@ public:
 	CString GetSelected();
 	void SetSelected(CString selected);
 	void InitList();
+	void UpdateFiltersList();
 
 	CString m_sFileFilterPath;
 
@@ -75,6 +76,9 @@ protected:
 	afx_msg void OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnBnClickedReload();
+	afx_msg void OnBnClickedFilterfileNewbutton();
+	afx_msg void OnBnClickedFilterfileDelete();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

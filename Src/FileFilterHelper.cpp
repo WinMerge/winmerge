@@ -27,6 +27,7 @@
 #include "FileFilterMgr.h"
 #include "FileFilterHelper.h"
 #include "RegExp.h"
+#include "Coretools.h"
 
 FileFilterHelper::FileFilterHelper()
 {
@@ -82,7 +83,7 @@ void FileFilterHelper::GetFileFilters(FILEFILTER_INFOLIST * filters, CString & s
 }
 
 /** @brief Return name of filter in given file */
-CString FileFilterHelper::GetFileFilterName(CString filterPath)
+CString FileFilterHelper::GetFileFilterName(CString filterPath) const
 {
 	FILEFILTER_INFOLIST filters;
 	CString selected;
@@ -101,7 +102,7 @@ CString FileFilterHelper::GetFileFilterName(CString filterPath)
 }
 
 /** @brief Return path to filter with given name */
-CString FileFilterHelper::GetFileFilterPath(CString filterName)
+CString FileFilterHelper::GetFileFilterPath(CString filterName) const
 {
 	FILEFILTER_INFOLIST filters;
 	CString selected;
@@ -195,17 +196,11 @@ BOOL FileFilterHelper::includeDir(LPCTSTR szDirName)
  * @brief Open filter file to editor (notepad) for modifying.
  *
  * @param [in] szFileFilterterPath Path of filter file to edit.
+ * @todo Use external editor defined in options?
  */
 void FileFilterHelper::EditFileFilter(LPCTSTR szFileFilterPath)
 {
-	FileFilter * filter = m_fileFilterMgr->GetFilterByPath(szFileFilterPath);
-	if (!filter)
-	{
-		ASSERT(0);
-		return;
-	}
-
-	CString cmdLine = (CString)_T("notepad ") + m_fileFilterMgr->GetFullpath(filter);
+	CString cmdLine = (CString)_T("notepad ") + szFileFilterPath;
 	STARTUPINFO stInfo = {0};
 	PROCESS_INFORMATION prInfo;
 	BOOL processSuccess = FALSE;
@@ -214,13 +209,15 @@ void FileFilterHelper::EditFileFilter(LPCTSTR szFileFilterPath)
 		NULL, FALSE, 0, NULL, NULL, &stInfo, &prInfo);
 }
 
-/** @brief Load in all filter patterns in a directory (unless already in map) */
+/**
+ * @brief Load in all filter patterns in a directory (unless already in map)
+ */
 void FileFilterHelper::LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int, int> & patternsLoaded, const CString & sPattern)
 {
 	int n=0;
 	if (!patternsLoaded.Lookup(sPattern, n))
 	{
-		m_fileFilterMgr->LoadFromDirectory(sPattern, _T(".flt"));
+		m_fileFilterMgr->LoadFromDirectory(sPattern, FileFilterExt);
 	}
 	patternsLoaded[sPattern] = ++n;
 }
@@ -353,5 +350,38 @@ void FileFilterHelper::ReloadUpdatedFilters()
 			if (path == selected)
 				SetFileFilterPath(path);
 		}
+	}
+}
+
+/**
+ * @brief Load any known file filters
+ * @todo Preserve filter selection? How?
+ */
+void FileFilterHelper::LoadAllFileFilters()
+{
+	// Load filters from all possible subdirectories
+	CMap<CString, LPCTSTR, int, int> patternsLoaded;
+
+	// First delete existing filters
+	m_fileFilterMgr->DeleteAllFilters();
+
+	// Application directory
+	CString sPattern = GetModulePath() + _T("\\Filters\\*.flt");
+	LoadFileFilterDirPattern(patternsLoaded, sPattern);
+
+	// Application data path in user profile directory
+	if (GetAppDataPath(sPattern))
+	{
+		sPattern += _T("\\WinMerge\\Filters\\*.flt");
+		LoadFileFilterDirPattern(patternsLoaded, sPattern);
+	}
+	// User profile local & roaming settings
+	CString sProfile;
+	if (GetUserProfilePath(sProfile))
+	{
+		sPattern = sProfile + _T("\\Local Settings\\Application Data\\WinMerge\\Filters\\*.flt");
+		LoadFileFilterDirPattern(patternsLoaded, sPattern);
+		sPattern = sProfile + _T("\\Application Data\\WinMerge\\Filters\\*.flt");
+		LoadFileFilterDirPattern(patternsLoaded, sPattern);
 	}
 }

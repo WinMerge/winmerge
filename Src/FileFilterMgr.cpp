@@ -25,12 +25,18 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-void DeleteRegList(RegList & reglist)
+/**
+ * @brief Deletes items from filter list.
+ *
+ * @param [in] filterList List to empty.
+ */
+void EmptyFilterList(FileFilterList & filterList)
 {
-	while (!reglist.IsEmpty())
+	while (!filterList.IsEmpty())
 	{
-		CRegExp * regexp = reglist.RemoveHead();
-		delete regexp;
+		FileFilterElement &elem = filterList.GetHead();
+		delete elem.pRegExp;
+		filterList.RemoveHead();
 	}
 }
 
@@ -39,28 +45,56 @@ void DeleteRegList(RegList & reglist)
  *
  * For example, this might be a GNU C filter, excluding *.o files and CVS
  * directories. That is to say, a filter is a set of file masks and
- * directory masks
+ * directory masks. Usually FileFilter contains rules from one filter
+ * definition file. So it can be thought as filter file contents.
+ * @sa FileFilterList
  */
 struct FileFilter
 {
-	bool default_include;
-	CString name;
-	CString description;
-	CString fullpath;
-	RegList filefilters; 
-	RegList dirfilters; 
+	bool default_include;	/**< If true, filter rules are inclusive by default */
+	CString name;			/**< Filter name (shown in UI) */
+	CString description;	/**< Filter description text */
+	CString fullpath;		/**< Full path to filter file */
+	FileFilterList filefilters; /**< List of rules for files */
+	FileFilterList dirfilters;  /**< List of rules for directories */
 	FileFilter() : default_include(true) { }
 	~FileFilter();
 };
+
 FileFilter::~FileFilter()
 {
-	DeleteRegList(filefilters);
-	DeleteRegList(dirfilters);
+	EmptyFilterList(filefilters);
+	EmptyFilterList(dirfilters);
 }
 
 FileFilterMgr::~FileFilterMgr()
 {
 	DeleteAllFilters();
+}
+
+/**
+ * @brief Loads filterfile and adds filters.
+ *
+ * @param [in] szFilterFile
+ * @bug Silently fails loading
+ */
+void FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
+{
+	TCHAR dir[_MAX_DRIVE] = {0};
+	TCHAR path[_MAX_PATH] = {0};
+	TCHAR filename[_MAX_PATH] = {0};
+	TCHAR ext[_MAX_EXT] = {0};
+
+	_tsplitpath(szFilterFile, dir, path, filename, ext);
+
+	CString filterPath = dir;
+	filterPath += path;
+	CString filterFile = filename;
+	filterFile += ext;
+
+	FileFilter * pFilter = LoadFilterFile(szFilterFile, filterFile);
+	if (pFilter)
+		m_filters.Add(pFilter);
 }
 
 /**
@@ -71,7 +105,6 @@ FileFilterMgr::~FileFilterMgr()
  */
 void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
 {
-	// DeleteAllFilters();
 	CFileFind finder;
 	BOOL bWorking = finder.FindFile(szPattern);
 	int extlen = szExt ? _tcslen(szExt) : 0;
@@ -95,6 +128,26 @@ void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
 }
 
 /**
+ * @brief Removes filter from filterlist.
+ *
+ * @param [in] szFilterFile Filename of filter to remove.
+ */
+void FileFilterMgr::RemoveFilter(LPCTSTR szFilterFile)
+{
+	const int items = m_filters.GetSize();
+
+	for (int i = 0; i < items; i++)
+	{
+		FileFilter * pFilter = m_filters.GetAt(i);
+		if (pFilter->fullpath.CompareNoCase(szFilterFile) == 0)
+		{
+			m_filters.RemoveAt(i);
+			delete pFilter;
+		}
+	}
+}
+
+/**
  * @brief Removes all filters from current list.
  */
 void FileFilterMgr::DeleteAllFilters()
@@ -110,10 +163,10 @@ void FileFilterMgr::DeleteAllFilters()
 /**
  * @brief Add a single pattern (if nonempty & valid) to a pattern list.
  *
- * @param [in] RegList List where pattern is added.
+ * @param [in] filterList List where pattern is added.
  * @param [in] str Temporary variable (ie, it may be altered)
  */
-static void AddFilterPattern(RegList & reglist, CString & str)
+static void AddFilterPattern(FileFilterList & filterList, CString & str)
 {
 	LPCTSTR commentLeader = _T("##"); // Starts comment
 	str.MakeUpper();
@@ -136,17 +189,26 @@ static void AddFilterPattern(RegList & reglist, CString & str)
 		return;
 
 	CRegExp * regexp = new CRegExp;
-	if (regexp->RegComp(str))
-		reglist.AddTail(regexp);
-	else
-		delete regexp;
+	if (regexp)
+	{
+		if (regexp->RegComp(str))
+		{
+			FileFilterElement elem;
+			elem.pRegExp = regexp;
+		
+			filterList.AddTail(elem);
+		}
+		else
+			delete regexp;
+	}
 }
 
 /**
  * @brief Parse a filter file, and add it to array if valid.
  *
- * @param [in] szFilePath Path (w/o filename) to file to load.
+ * @param [in] szFilePath Path (w/ filename) to file to load.
  * @param [in] szFilename Name of file to load.
+ * @todo Remove redundancy from parameters (both having filename)
  */
 FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilename)
 {
@@ -215,7 +277,7 @@ FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
 {
 	for (int i=0; i<m_filters.GetSize(); ++i)
 	{
-		if (m_filters[i]->fullpath == szFilterPath)
+		if (m_filters[i]->fullpath.CompareNoCase(szFilterPath) == 0)
 			return m_filters[i];
 	}
 	return 0;
@@ -224,17 +286,19 @@ FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
 /**
  * @brief Test given string against given regexp list.
  *
- * @param [in] reglist List of regexps to test against.
+ * @param [in] filterList List of regexps to test against.
  * @param [in] szTest String to test against regexps.
  * @return TRUE if string passes
+ * @note Matching stops when first match is found.
  */
-BOOL TestAgainstRegList(const RegList & reglist, LPCTSTR szTest)
+BOOL TestAgainstRegList(const FileFilterList & filterList, LPCTSTR szTest)
 {
 	CString str = szTest;
 	str.MakeUpper();
-	for (POSITION pos = reglist.GetHeadPosition(); pos; )
+	for (POSITION pos = filterList.GetHeadPosition(); pos; )
 	{
-		CRegExp * regexp = reglist.GetNext(pos);
+		const FileFilterElement & elem = filterList.GetNext(pos);
+		CRegExp * regexp = elem.pRegExp;
 		if (regexp->RegFind(str) != -1)
 			return TRUE;
 	}
@@ -252,9 +316,11 @@ BOOL TestAgainstRegList(const RegList & reglist, LPCTSTR szTest)
  * @param [in] szFileName Filename to test
  * @return TRUE if file passes the filter
  */
-BOOL FileFilterMgr::TestFileNameAgainstFilter(FileFilter * pFilter, LPCTSTR szFileName)
+BOOL FileFilterMgr::TestFileNameAgainstFilter(const FileFilter * pFilter,
+	LPCTSTR szFileName) const
 {
-	if (!pFilter) return TRUE;
+	if (!pFilter)
+		return TRUE;
 	if (TestAgainstRegList(pFilter->filefilters, szFileName))
 		return !pFilter->default_include;
 	return pFilter->default_include;
@@ -271,9 +337,11 @@ BOOL FileFilterMgr::TestFileNameAgainstFilter(FileFilter * pFilter, LPCTSTR szFi
  * @param [in] szDirName Directory name to test
  * @return TRUE if directory name passes the filter
  */
-BOOL FileFilterMgr::TestDirNameAgainstFilter(FileFilter * pFilter, LPCTSTR szDirName)
+BOOL FileFilterMgr::TestDirNameAgainstFilter(const FileFilter * pFilter,
+	LPCTSTR szDirName) const
 {
-	if (!pFilter) return TRUE;
+	if (!pFilter)
+		return TRUE;
 	if (TestAgainstRegList(pFilter->dirfilters, szDirName))
 		return !pFilter->default_include;
 	return pFilter->default_include;

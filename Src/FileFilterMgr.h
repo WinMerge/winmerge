@@ -26,6 +26,30 @@
 #include <afxtempl.h>
 #endif
 
+class CRegExp;
+struct FileFilterElement;
+/**
+ * @brief List of file filtering rules.
+ * @sa FileFilterElement
+ * @sa FileFilter
+ */
+typedef CList<FileFilterElement, FileFilterElement&> FileFilterList;
+
+/**
+ * @brief FileFilter rule.
+ *
+ * Contains one filtering element definition (rule). In addition to
+ * regular expression there is boolean value for defining if rule
+ * is inclusive or exclusive. File filters have global inclusive/exclusive
+ * selection but this per-rule setting overwrites it.
+ */
+struct FileFilterElement
+{
+	CRegExp *pRegExp;			/**< Pointer to regexp */
+	CString sRule;				/**< Uncompiled rule text */
+	FileFilterElement() : pRegExp(NULL) { };
+};
+
 struct FileFilter;
 
 /**
@@ -48,6 +72,8 @@ public:
 	void ReloadFilterFromDisk(LPCTSTR szFullPath);
 	// Load a filter from a string
 	void LoadFilterString(LPCTSTR szFilterString);
+	void AddFilter(LPCTSTR szFilterFile);
+	void RemoveFilter(LPCTSTR szFilterFile);
 
 	// access to array of filters
 	int GetFilterCount() const { return m_filters.GetSize(); }
@@ -58,20 +84,20 @@ public:
 	CString GetFullpath(FileFilter * pfilter) const;
 
 	// methods to actually use filter
-	BOOL TestFileNameAgainstFilter(FileFilter * pFilter, LPCTSTR szFileName);
-	BOOL TestDirNameAgainstFilter(FileFilter * pFilter, LPCTSTR szDirName);
+	BOOL TestFileNameAgainstFilter(const FileFilter * pFilter, LPCTSTR szFileName) const;
+	BOOL TestDirNameAgainstFilter(const FileFilter * pFilter, LPCTSTR szDirName) const;
 
+	void DeleteAllFilters();
 
 // Implementation methods
 protected:
 	// Clear the list of known filters
-	void DeleteAllFilters();
 	// Load a filter from a file (if syntax is valid)
 	FileFilter * LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilename);
 
 // Implementation data
 private:
-	CTypedPtrArray<CPtrArray, FileFilter *> m_filters;
+	CTypedPtrArray<CPtrArray, FileFilter *> m_filters; /*< List of filters loaded */
 };
 
 
@@ -79,10 +105,8 @@ private:
 // so I'm using pointers to avoid its copy constructor
 // Perry, 2003-05-18
 
-class CRegExp;
-typedef CTypedPtrList<CPtrList, CRegExp*>RegList;
-BOOL TestAgainstRegList(const RegList & reglist, LPCTSTR szTest);
-void DeleteRegList(RegList & reglist);
+BOOL TestAgainstRegList(const FileFilterList & filterList, LPCTSTR szTest);
+void EmptyFilterList(FileFilterList & filterList);
 
 
 #endif // FileFilter_h_included

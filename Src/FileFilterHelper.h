@@ -33,7 +33,17 @@ struct FileFilter;
 #endif
 
 /**
- * @brief Structure containing user-visible information about filter.
+ * @brief File extension of file filter files.
+ */
+const TCHAR FileFilterExt[] = _T(".flt");
+
+/**
+ * @brief Helper structure for UI and management of filters.
+ *
+ * This structure is mostly used as UI aid and to manage filters from UI.
+ * fileinfo contains time of filter file's last modification time. By
+ * comparing fileinfo to filter file in disk we can determine if file
+ * is changed since we last time loaded it.
  */
 struct FileFilterInfo
 {
@@ -55,6 +65,15 @@ public:
 
 /**
  * @brief Helper class for using filefilters.
+ *
+ * This class is mainly for handling two ways to filter files in WinMerge:
+ * - File masks: *.ext lists (*.cpp *.h etc)
+ * - File filters: regular expression rules in separate files
+ *
+ * There can be only one filter or file mask active at a time. This class
+ * keeps track of selected filtering method and provides simple functions for
+ * clients for querying if file is included to compare. Clients don't need
+ * to care about compare methods etc details.
  */
 class FileFilterHelper : public IDiffFilter
 {
@@ -65,13 +84,16 @@ public:
 	void SetManager(FileFilterMgr * pFilterManager);
 	CString GetFileFilterPath() const { return m_sFileFilterPath; }
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);
-	void EditFileFilter(LPCTSTR szFileFilterName);
+	void EditFileFilter(LPCTSTR szFileFilterPath);
 	void GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const;
-	CString GetFileFilterName(CString filterPath);
-	CString GetFileFilterPath(CString filterName);
-	void ReloadUpdatedFilters();
+	CString GetFileFilterName(CString filterPath) const;
+	CString GetFileFilterPath(CString filterName) const;
 
-	void LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int, int> & patternsLoaded, const CString & sPattern);
+	void ReloadUpdatedFilters();
+	void LoadAllFileFilters();
+
+	void LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int,
+		int> & patternsLoaded, const CString & sPattern);
 
 	void UseMask(BOOL bUseMask);
 	void SetMask(LPCTSTR strMask);
@@ -87,14 +109,13 @@ protected:
 	CString ParseExtensions(CString extensions);
 
 private:
-	FileFilter * m_currentFilter;
-	FileFilterMgr * m_fileFilterMgr;
-	CString m_sFileFilterPath;
-	CString m_sMask;
-	BOOL m_bUseMask;
+	FileFilter * m_currentFilter;     /*< Currently selected filefilter */
+	FileFilterMgr * m_fileFilterMgr;  /*< Associated FileFilterMgr */
+	CString m_sFileFilterPath;        /*< Path to current filter */
+	CString m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
+	BOOL m_bUseMask;   /*< If TRUE file mask is used, filter otherwise */
 
-	CRegExp m_rgx;
-
+	CRegExp m_rgx;     /*< Compiled file mask regular expression */
 };
 
 #endif // _FILEFILTERHELPER_H_

@@ -673,29 +673,7 @@ void CMergeApp::InitializeFileFilters()
 		m_fileFilterMgr = new FileFilterMgr;
 
 	m_globalFileFilter.SetManager(m_fileFilterMgr);
-
-	// Load filters from all possible subdirectories
-	CMap<CString, LPCTSTR, int, int> patternsLoaded;
-
-	// Application directory
-	CString sPattern = GetModulePath() + _T("\\Filters\\*.flt");
-	m_globalFileFilter.LoadFileFilterDirPattern(patternsLoaded, sPattern);
-
-	// Application data path in user profile directory
-	if (GetAppDataPath(sPattern))
-	{
-		sPattern += _T("\\WinMerge\\Filters\\*.flt");
-		m_globalFileFilter.LoadFileFilterDirPattern(patternsLoaded, sPattern);
-	}
-	// User profile local & roaming settings
-	CString sProfile;
-	if (GetUserProfilePath(sProfile))
-	{
-		sPattern = sProfile + _T("\\Local Settings\\Application Data\\WinMerge\\Filters\\*.flt");
-		m_globalFileFilter.LoadFileFilterDirPattern(patternsLoaded, sPattern);
-		sPattern = sProfile + _T("\\Application Data\\WinMerge\\Filters\\*.flt");
-		m_globalFileFilter.LoadFileFilterDirPattern(patternsLoaded, sPattern);
-	}
+	m_globalFileFilter.LoadAllFileFilters();
 }
 
 /** @brief Open help from mainframe when user presses F1*/

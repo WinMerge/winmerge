@@ -1,6 +1,12 @@
+2005-02-13 Kimmo
+ PATCH: [ 1118261 ] Allow creating and deleting filefilters from UI
+  Src: FileFilterHelper.cpp FileFilterHelper.h FileFilterMgr.cpp FileFilterMgr.cpp
+   FileFiltersDlg.cpp FileFiltersDlg.h Merge.cpp Merge.rc Plugins.cpp Plugins.h resource.h
+  Filters new file: FileFilter.tmpl
+
 2005-02-10 Kimmo
  PATCH: [ 1116778 ] Project Handling patch
-  Submitted by Schlundus
+  Submitted by Andreas Morsing
   Src: MainFrm.cpp MainFrm.h Merge.rc OpenDlg.cpp OpenDlg.h ProjectFile.cpp ProjectFile.h resource.h
   Languages: *.rc resource.h
   Docs/Users: Contributors.txt

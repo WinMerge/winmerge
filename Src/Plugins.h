@@ -29,8 +29,14 @@
 #ifndef __PLUGINS_H__
 #define __PLUGINS_H__
 
-extern enum TRANSFORMATION_CATEGORY;
+#ifndef _FileFilterMgr_included_
+#define _FileFilterMgr_included_
+#include "FileFilterMgr.h"
+#endif
 
+class CRegExp;
+
+extern enum TRANSFORMATION_CATEGORY;
 
 const int NMAXTHREADS = 10;
 
@@ -39,11 +45,6 @@ const int NMAXTHREADS = 10;
  */
 #define SCRIPT_A		1
 #define SCRIPT_W		2
-
-
-
-class CRegExp;
-typedef CTypedPtrList<CPtrList, CRegExp*>RegList;
 
 /** 
  * @brief Information structure for a plugin
@@ -72,7 +73,7 @@ public:
 	CString     description;
 	BOOL        bUnicodeMode;
 	BOOL        bAutomatic;
-	RegList*    filters;
+	FileFilterList  *filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         nFreeFunctions;
 };
