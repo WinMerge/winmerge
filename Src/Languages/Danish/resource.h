@@ -10,6 +10,7 @@
 #define IDR_POPUP_PLUGINS_SETTINGS      103
 #define IDR_POPUP_MERGEVIEW             104
 #define IDR_POPUP_DIRVIEW               105
+#define IDR_POPUP_LOCATIONBAR           106
 
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
@@ -692,18 +693,19 @@
 #define ID_PREDIFFERS_FIRST             33040
 #define ID_PREDIFFERS_LAST              33087
 
-
-
+#define ID_DISPLAY_MOVED_NONE           33088
+#define ID_DISPLAY_MOVED_ALL            33089
+#define ID_DISPLAY_MOVED_FOLLOW_DIFF    33090
 
 
 
 // Next default values for new objects
-//
+// 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        162
-#define _APS_NEXT_COMMAND_VALUE         33088
+#define _APS_NEXT_RESOURCE_VALUE        163
+#define _APS_NEXT_COMMAND_VALUE         33091
 #define _APS_NEXT_CONTROL_VALUE         1146
 #define _APS_NEXT_SYMED_VALUE           106
 #endif

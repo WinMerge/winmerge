@@ -311,6 +311,16 @@ BEGIN
     END
 END
 
+IDR_POPUP_LOCATIONBAR MENU 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
+        MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
+        MENUITEM "Moved Block for &Current Diff", ID_DISPLAY_MOVED_FOLLOW_DIFF
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1972,6 +1982,14 @@ BEGIN
     ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
     IDS_USERCHOICE_NONE     "<None>"
     IDS_USERCHOICE_AUTOMATIC "<Automatic>"
+END
+
+// LOCATIONBAR CONTEXT MENU
+STRINGTABLE 
+BEGIN
+    ID_DISPLAY_MOVED_NONE   "Do not display moved blocks"
+    ID_DISPLAY_MOVED_ALL    "Display all moved blacks"
+    ID_DISPLAY_MOVED_FOLLOW_DIFF "Display moved blocks only from current diff"
 END
 
 // END STRINGS SYNCHRO

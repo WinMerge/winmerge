@@ -172,6 +172,7 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_DISABLE_SPLASH, FALSE);
 	m_options.InitOption(OPT_CREATE_BACKUPS, TRUE);
 	m_options.InitOption(OPT_VIEW_WHITESPACE, FALSE);
+	m_options.InitOption(OPT_CONNECT_MOVED_BLOCKS, FALSE);
 	m_options.InitOption(OPT_SCROLL_TO_FIRST, FALSE);
 	m_options.InitOption(OPT_VERIFY_OPEN_PATHS, TRUE);
 

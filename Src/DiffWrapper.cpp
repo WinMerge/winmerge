@@ -766,6 +766,30 @@ void CDiffWrapper::ClearMovedLists()
 	m_moved1.RemoveAll(); 
 }
 
+/**
+ * @brief Get left->right info for a moved line (real line number)
+ */
+int CDiffWrapper::RightLineInMovedBlock(int leftLine)
+{
+	int rightLine;
+	if (m_moved0.Lookup(leftLine, rightLine))
+		return rightLine;
+	else
+		return -1;
+}
+
+/**
+ * @brief Get right->left info for a moved line (real line number)
+ */
+int CDiffWrapper::LeftLineInMovedBlock(int rightLine)
+{
+	int leftLine;
+	if (m_moved1.Lookup(rightLine, leftLine))
+		return leftLine;
+	else
+		return -1;
+}
+
 /** @brief Allow caller to specify codepage to assume for all unknown files */
 void // static
 DiffFileData::SetDefaultCodepage(int defcp)

@@ -4,6 +4,10 @@
   Src/Common: CoreTools.cpp
 
 2004-06-01 Laoran
+ PATCH: [ 948368 ] display moved blocks in location bar
+  Src: DiffWrapper.cpp DiffWrapper.h LocationView.cpp LocationView.h MainFrm.cpp
+   Merge.rc MergeDoc.cpp MergeDoc.h OptionsDef.h resource.h
+  Src/Languages: *.rc resource.h
  PATCH: [ 960455 ] Clip text in DrawLineHelperImpl
   Src/editlib: crystaltextview.cpp
 

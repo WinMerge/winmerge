@@ -9,6 +9,18 @@
 #ifndef __LOCATIONVIEW_H__
 #define __LOCATIONVIEW_H__
 
+
+/**
+ * @brief Status for display moved block
+ */
+enum
+{
+	DISPLAY_MOVED_NONE = 0,
+	DISPLAY_MOVED_ALL,
+	DISPLAY_MOVED_FOLLOW_DIFF,
+};
+
+
 /** 
  * @brief Class showing map of files.
  */
@@ -17,6 +29,7 @@ class CLocationView : public CView
 public:
 	CLocationView();
 	DECLARE_DYNCREATE(CLocationView)
+	void SetConnectMovedBlocks(int displayMovedBlocks);
 
 protected:
 
@@ -39,11 +52,13 @@ protected:
 private:
 	CMergeEditView* m_view0;
 	CMergeEditView* m_view1;
+	int m_displayMovedBlocks;
 
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(CLocationView)
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

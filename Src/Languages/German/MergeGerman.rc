@@ -318,6 +318,16 @@ BEGIN
     END
 END
 
+IDR_POPUP_LOCATIONBAR MENU 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
+        MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
+        MENUITEM "Moved Block for &Current Diff", ID_DISPLAY_MOVED_FOLLOW_DIFF
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -534,8 +544,8 @@ FONT 8, "MS Shell Dlg"
 BEGIN
     LTEXT           "S&uchen nach:",IDC_STATIC,4,9,53,8
     COMBOBOX        IDC_EDIT_FINDTEXT,57,7,121,30,CBS_DROPDOWN |
-    LTEXT           "Erse&tzen durch:",IDC_STATIC,4,26,53,8
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Erse&tzen durch:",IDC_STATIC,4,26,53,8
     COMBOBOX        IDC_EDIT_REPLACE_WITH,57,24,121,30,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Nur ganze Wörter",IDC_EDIT_WHOLE_WORD,"Button",
@@ -817,7 +827,7 @@ BEGIN
 END
 
 IDD_WMGOTO DIALOG  0, 0, 189, 70
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Gehe nach"
 FONT 8, "MS Shell Dlg"
@@ -1978,6 +1988,14 @@ BEGIN
     ID_NO_SCT_SCRIPTS       "WSH nicht gefunden - .sct Skripte deaktiviert."
     IDS_USERCHOICE_NONE     "<Keine>"
     IDS_USERCHOICE_AUTOMATIC "<Automatisch>"
+END
+
+// LOCATIONBAR CONTEXT MENU
+STRINGTABLE 
+BEGIN
+    ID_DISPLAY_MOVED_NONE   "Do not display moved blocks"
+    ID_DISPLAY_MOVED_ALL    "Display all moved blacks"
+    ID_DISPLAY_MOVED_FOLLOW_DIFF "Display moved blocks only from current diff"
 END
 
 // END STRINGS SYNCHRO

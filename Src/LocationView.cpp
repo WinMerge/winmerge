@@ -10,9 +10,12 @@
 
 #include "stdafx.h"
 #include "merge.h"
+#include "MainFrm.h"
 #include "MergeEditView.h"
 #include "LocationView.h"
 #include "MergeDoc.h"
+#include "BCMenu.h"
+#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -30,14 +33,25 @@ CLocationView::CLocationView()
 	: m_view0(0)
 	, m_view1(0)
 {
+	SetConnectMovedBlocks(mf->m_options.GetInt(OPT_CONNECT_MOVED_BLOCKS));
 }
 
 BEGIN_MESSAGE_MAP(CLocationView, CView)
 	//{{AFX_MSG_MAP(CLocationView)
 	ON_WM_LBUTTONDBLCLK()
+	ON_WM_CONTEXTMENU()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
+
+void CLocationView::SetConnectMovedBlocks(int displayMovedBlocks) 
+{
+	if (m_displayMovedBlocks == displayMovedBlocks)
+		return;
+
+	mf->m_options.SaveOption(OPT_CONNECT_MOVED_BLOCKS, displayMovedBlocks);
+	m_displayMovedBlocks = displayMovedBlocks;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CLocationView diagnostics
@@ -83,6 +97,7 @@ void CLocationView::OnDraw(CDC* pDC)
 	if (m_view0 == NULL || m_view1 == NULL)
 		return;
 
+	CMergeDoc *pDoc = GetDocument();
 	const int w = rc.Width() / 4;
 	const int x = (rc.Width() - 2 * w) / 3;
 	const int x2 = 2 * x + w;
@@ -99,13 +114,18 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	while (true)
 	{
+		// here nstart0 = last line before block
 		BOOL ok0 = GetNextRect(nend0);
 		if (!ok0)
 			break;
 
-		const double nBeginY = (nstart0 + 1) * hTotal / nbLines + yOffset;
-		const double nEndY = (nend0 + 1) * hTotal / nbLines + yOffset;
+		// here nend0 = last line of block
+		int blockHeight = nend0 - nstart0;
 		nstart0++;
+
+		// here nstart0 = first line of block
+		const double nBeginY = (nstart0) * hTotal / nbLines + yOffset;
+		const double nEndY = (blockHeight + nstart0) * hTotal / nbLines + yOffset;
 
 		// Draw left side block
 		m_view0->GetLineColors(nstart0, cr0, crt, bwh);
@@ -116,17 +136,76 @@ void CLocationView::OnDraw(CDC* pDC)
 		m_view1->GetLineColors(nstart0, cr1, crt, bwh);
 		CRect r1(x2, nBeginY, w2, nEndY);
 		DrawRect(pDC, r1, cr1, ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0));
+
+		// Test if we draw a connector
+		BOOL bDisplayConnectorFromLeft = FALSE;
+		BOOL bDisplayConnectorFromRight = FALSE;
+
+		switch (m_displayMovedBlocks)
+		{
+		case DISPLAY_MOVED_FOLLOW_DIFF:
+			// display moved block only for current diff
+			if (! ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0))
+				break;
+			// two sides may be linked to a block somewhere else
+			bDisplayConnectorFromLeft = TRUE;
+			bDisplayConnectorFromRight = TRUE;
+			break;
+		case DISPLAY_MOVED_ALL:
+			// we display all moved blocks, so once direction is enough
+			bDisplayConnectorFromLeft = TRUE;
+			break;
+		default:
+			break;
+		}
+
+		if (bDisplayConnectorFromLeft)
+		{
+			int apparent0 = nstart0;
+			int apparent1 = pDoc->RightLineInMovedBlock(apparent0);
+			if (apparent1 != -1)
+			{
+				// Draw connector between moved blocks
+				const double nBeginY0 = (apparent0) * hTotal / nbLines + yOffset;
+				const double nEndY0 = (blockHeight + apparent0) * hTotal / nbLines + yOffset;
+				const double nBeginY1 = (apparent1) * hTotal / nbLines + yOffset;
+				const double nEndY1 = (blockHeight + apparent1) * hTotal / nbLines + yOffset;
+			
+				CRect r0bis(x, nBeginY0, x + w, nEndY0);
+				CRect r1bis(x2, nBeginY1, w2, nEndY1);
+
+				CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
+				pDC->MoveTo(r0bis.right, r0bis.CenterPoint().y);
+				pDC->LineTo(r1bis.left, r1bis.CenterPoint().y);
+				pDC->SelectObject(oldObj);
+			}
+		}
+
+		if (bDisplayConnectorFromRight)
+		{
+			int apparent1 = nstart0;
+			int apparent0 = pDoc->LeftLineInMovedBlock(apparent1);
+			if (apparent0 != -1)
+			{
+				// Draw connector between moved blocks
+				const double nBeginY0 = (apparent0) * hTotal / nbLines + yOffset;
+				const double nEndY0 = (blockHeight + apparent0) * hTotal / nbLines + yOffset;
+				const double nBeginY1 = (apparent1) * hTotal / nbLines + yOffset;
+				const double nEndY1 = (blockHeight + apparent1) * hTotal / nbLines + yOffset;
+			
+				CRect r0bis(x, nBeginY0, x + w, nEndY0);
+				CRect r1bis(x2, nBeginY1, w2, nEndY1);
+
+				CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
+				pDC->MoveTo(r0bis.right, r0bis.CenterPoint().y);
+				pDC->LineTo(r1bis.left, r1bis.CenterPoint().y);
+				pDC->SelectObject(oldObj);
+			}
+		}
+
 		nstart0 = nend0;
 
-		// Connected line
-		if (ok0 && (cr0 == CLR_NONE) && (cr1 == CLR_NONE))
-		{
-			CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
-			pDC->MoveTo(r0.right, r0.CenterPoint().y);
-			pDC->LineTo(r1.left, r1.CenterPoint().y);
-			pDC->SelectObject(oldObj);
-		}
-	}
+	} // blocks loop 
 }
 
 /** 
@@ -249,4 +328,58 @@ BOOL CLocationView::GotoLocation(CPoint point)
 	m_view1->GoToLine(line, false);
 
 	return TRUE;
+}
+
+void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point) 
+{
+	if (point.x == -1 && point.y == -1){
+		//keystroke invocation
+		CRect rect;
+		GetClientRect(rect);
+		ClientToScreen(rect);
+
+		point = rect.TopLeft();
+		point.Offset(5, 5);
+	}
+
+	BCMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_LOCATIONBAR));
+
+	BCMenu* pPopup = (BCMenu *) menu.GetSubMenu(0);
+	ASSERT(pPopup != NULL);
+
+	switch (m_displayMovedBlocks)
+	{
+	case DISPLAY_MOVED_NONE:
+		pPopup->CheckMenuItem(ID_DISPLAY_MOVED_NONE, MF_CHECKED);
+		break;
+	case DISPLAY_MOVED_ALL:
+		pPopup->CheckMenuItem(ID_DISPLAY_MOVED_ALL, MF_CHECKED);
+		break;
+	case DISPLAY_MOVED_FOLLOW_DIFF:
+		pPopup->CheckMenuItem(ID_DISPLAY_MOVED_FOLLOW_DIFF, MF_CHECKED);
+		break;
+	}
+
+	// invoke context menu
+	// we don't want to use the main application handlers, so we use flags TPM_NONOTIFY | TPM_RETURNCMD
+	// and handle the command after TrackPopupMenu
+	int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY  | TPM_RETURNCMD, point.x, point.y, AfxGetMainWnd());
+
+	CMergeDoc* pDoc = GetDocument();
+	switch (command)
+	{
+	case ID_DISPLAY_MOVED_NONE:
+		SetConnectMovedBlocks(DISPLAY_MOVED_NONE);
+		pDoc->SetDetectMovedBlocks(FALSE);
+		break;
+	case ID_DISPLAY_MOVED_ALL:
+		SetConnectMovedBlocks(DISPLAY_MOVED_ALL);
+		pDoc->SetDetectMovedBlocks(TRUE);
+		break;
+	case ID_DISPLAY_MOVED_FOLLOW_DIFF:
+		SetConnectMovedBlocks(DISPLAY_MOVED_FOLLOW_DIFF);
+		pDoc->SetDetectMovedBlocks(TRUE);
+		break;
+	}
 }

@@ -189,6 +189,7 @@ public:
 	BOOL GetUseDiffList() const;
 	BOOL SetUseDiffList(BOOL bUseDiffList);
 	void SetDetectMovedBlocks(BOOL bDetectMovedBlocks) { m_bDetectMovedBlocks = bDetectMovedBlocks; }
+	BOOL GetDetectMovedBlocks() { return m_bDetectMovedBlocks; }
 	BOOL GetAppendFiles() const;
 	BOOL SetAppendFiles(BOOL bAppendFiles);
 	BOOL GetCreatePatchFile() const;
@@ -201,6 +202,8 @@ public:
 	void EndDirectoryDiff();
 	const CMap<int, int, int, int> * GetMoved0() { return &m_moved0; }
 	const CMap<int, int, int, int> * GetMoved1() { return &m_moved1; }
+	int RightLineInMovedBlock(int leftLine);
+	int LeftLineInMovedBlock(int rightLine);
 	void ClearMovedLists();
 
 protected:

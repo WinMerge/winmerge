@@ -1170,6 +1170,38 @@ int CMergeDoc::LineToDiff(UINT nLine)
 	return -1;
 }
 
+/**
+ * @brief Get left->right info for a moved line (apparent line number)
+ */
+int CMergeDoc::RightLineInMovedBlock(int apparentLeftLine)
+{
+	if (!(m_ltBuf.GetLineFlags(apparentLeftLine) & LF_MOVED))
+		return -1;
+
+	int realLeftLine = m_ltBuf.ComputeRealLine(apparentLeftLine);
+	int realRightLine = m_diffWrapper.RightLineInMovedBlock(realLeftLine);
+	if (realRightLine != -1)
+		return m_rtBuf.ComputeApparentLine(realRightLine);
+	else
+		return -1;
+}
+
+/**
+ * @brief Get right->left info for a moved line (apparent line number)
+ */
+int CMergeDoc::LeftLineInMovedBlock(int apparentRightLine)
+{
+	if (!(m_rtBuf.GetLineFlags(apparentRightLine) & LF_MOVED))
+		return -1;
+
+	int realRightLine = m_rtBuf.ComputeRealLine(apparentRightLine);
+	int realLeftLine = m_diffWrapper.LeftLineInMovedBlock(realRightLine);
+	if (realLeftLine != -1)
+		return m_ltBuf.ComputeApparentLine(realLeftLine);
+	else
+		return -1;
+}
+
 void CMergeDoc::SetDiffViewMode(BOOL bEnable)
 {
 	if (bEnable)
@@ -3080,4 +3112,17 @@ void CMergeDoc::SetMergingMode(BOOL bMergingMode)
 {
 	m_bMergingMode = bMergingMode;
 	mf->m_options.SaveOption(OPT_MERGE_MODE, m_bMergingMode);
+}
+
+/**
+ * @brief Set detect/not detect Moved Blocks
+ */
+void CMergeDoc::SetDetectMovedBlocks(BOOL bDetectMovedBlocks)
+{
+	if (bDetectMovedBlocks == m_diffWrapper.GetDetectMovedBlocks())
+		return;
+
+	mf->m_options.SaveOption(OPT_CMP_MOVED_BLOCKS, bDetectMovedBlocks);
+	m_diffWrapper.SetDetectMovedBlocks(bDetectMovedBlocks);
+	FlushAndRescan();
 }

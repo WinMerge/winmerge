@@ -229,6 +229,8 @@ public:
 	//CString Tabify(LPCTSTR szText);
 	int LineToDiff(UINT nLine);
 	BOOL LineInDiff(UINT nLine, UINT nDiff);
+	int RightLineInMovedBlock(int leftLine);
+	int LeftLineInMovedBlock(int rightLine);
 	void SetDiffViewMode(BOOL bEnable);
 
 	void SetUnpacker(PackingInfo * infoUnpacker);
@@ -283,6 +285,7 @@ public:
 	virtual void OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName);
 	BOOL GetMergingMode() const;
 	void SetMergingMode(BOOL bMergingMode);
+	void SetDetectMovedBlocks(BOOL bDetectMovedBlocks);
 	BOOL GetNextDiff(int nLine, int &nDiff);
 	BOOL GetDiff(int nDiff, DIFFRANGE &di) const;
 
