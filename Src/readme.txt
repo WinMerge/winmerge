@@ -2,6 +2,9 @@
  PATCH: [ 1001111 ] Warn if user selected binary files for patch creating
   Src: MainFrm.cpp Merge.rc PatchTool.cpp resource.h
   Src/Languages: *.rc resource.h
+ PATCH: [ 999804 ] Fix setting recursive for Open-dialog
+  New patch fixing bug #1001301 recursive not getting remembered
+  Src: MainFrm.cpp MainFrm.h Merge.cpp
 
 2004-08-01 Perry
  PATCH: [ 967405 ] Add Japanese satellite dll to MakePatchDirs

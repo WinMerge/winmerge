@@ -225,18 +225,23 @@ BOOL CMergeApp::InitInstance()
 
 	if (nFiles>2)
 	{
+		dwLeftFlags |= FFILEOPEN_CMDLINE;
+		dwRightFlags |= FFILEOPEN_CMDLINE;
 		pMainFrame->m_strSaveAsPath = files[2];
 		pMainFrame->DoFileOpen(files[0], files[1],
 			dwLeftFlags, dwRightFlags, recurse);
 	}
 	else if (nFiles>1)
 	{
+		dwLeftFlags |= FFILEOPEN_CMDLINE;
+		dwRightFlags |= FFILEOPEN_CMDLINE;
 		pMainFrame->m_strSaveAsPath = _T("");
 		pMainFrame->DoFileOpen(files[0], files[1],
 			dwLeftFlags, dwRightFlags, recurse);
 	}
 	else if (nFiles>0)
 	{
+		dwLeftFlags |= FFILEOPEN_CMDLINE;
 		pMainFrame->m_strSaveAsPath = _T("");
 		pMainFrame->DoFileOpen(files[0], _T(""),
 			dwLeftFlags, dwRightFlags, recurse);

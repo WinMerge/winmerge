@@ -40,8 +40,9 @@
 enum
 {
 	FFILEOPEN_NONE		= 0x0000,
-	FFILEOPEN_NOMRU		= 0x0001,
-	FFILEOPEN_READONLY	= 0x0002,
+	FFILEOPEN_NOMRU		= 0x0001, /**< Do not add this path to MRU list */
+	FFILEOPEN_READONLY	= 0x0002, /**< Open this path as read-only */
+	FFILEOPEN_CMDLINE	= 0x0010, /**< Path is read from commandline */
 };
 
 class CDiffView;
