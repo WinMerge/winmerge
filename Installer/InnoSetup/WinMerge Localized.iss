@@ -190,7 +190,7 @@ Name: main; Description: WinMerge Core Files; Types: full custom typical compact
 Name: Runtimes; Description: Application Runtimes; Types: full custom typical compact; Flags: fixed
 
 Name: docs; Description: User's Guide; Flags: disablenouninstallwarning; Types: full typical
-Name: filters; Description: Syntax Highlighters; Flags: disablenouninstallwarning; Types: full typical compact
+Name: filters; Description: Filters; Flags: disablenouninstallwarning; Types: full typical compact
 Name: Plugins; Description: Plug-Ins (enhance core behavior); Flags: disablenouninstallwarning; Types: full typical compact
 
 ;Language components, please note that whatever language you chose to install in will be installed in addition to any of the language components you've
