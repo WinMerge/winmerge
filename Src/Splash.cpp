@@ -160,7 +160,8 @@ void CSplashWnd::OnPaint()
 	if (ft.CreatePointFont( 100, _T("Arial"), &dc ))
 		oldfont = dc.SelectObject(&ft);
 
-	AfxFormatString1(s, IDS_VERSION_FMT, version.GetProductVersion());
+	CString sVersion = version.GetFixedProductVersion();
+	AfxFormatString1(s, IDS_VERSION_FMT, sVersion);
 	dc.SetBkMode(TRANSPARENT);
 	dc.TextOut(90, 110, s);
 	if (oldfont != NULL)

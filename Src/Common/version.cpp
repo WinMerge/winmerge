@@ -42,6 +42,7 @@ void CVersionInfo::Init()
 	m_strSpecialBuild = _T("");
 	m_strPrivateBuild = _T("");
 	m_bQueryDone=FALSE;
+	memset(&m_FixedFileInfo, 0, sizeof(m_FixedFileInfo));
 }
 
 CString CVersionInfo::GetFileVersion()
@@ -107,6 +108,21 @@ CString CVersionInfo::GetProductVersion()
 	return m_strProductVersion;
 }
 
+static CString MakeVersionString(DWORD hi, DWORD lo)
+{
+	CString sver;
+	sver.Format(_T("%d.%d.%d.%d"), HIWORD(hi), LOWORD(hi), HIWORD(lo), LOWORD(lo));
+	return sver;
+}
+
+CString CVersionInfo::GetFixedProductVersion()
+{
+	if (!m_bQueryDone)
+		GetVersionInfo();
+	return MakeVersionString(m_FixedFileInfo.dwProductVersionMS
+		, m_FixedFileInfo.dwProductVersionLS);
+}
+
 CString CVersionInfo::GetComments()
 {
 	if (!m_bQueryDone)
@@ -133,6 +149,7 @@ void CVersionInfo::GetVersionInfo()
 		m_lpstrVffInfo  = (LPTSTR)GlobalLock(hMem);
 		if (GetFileVersionInfo(szFileName, dwVerHnd, dwVerInfoSize, m_lpstrVffInfo))
 		{
+			GetFixedVersionInfo();
 			if (m_strLanguage.IsEmpty()
 				|| m_strCodepage.IsEmpty())
 			{
@@ -188,6 +205,14 @@ void CVersionInfo::QueryValue(LPCTSTR szId, CString& s)
 		s = _T("");
 }
 
+void CVersionInfo::GetFixedVersionInfo()
+{
+	VS_FIXEDFILEINFO * pffi;
+	UINT len = sizeof(*pffi);
+	BOOL bRetCode = VerQueryValue(
+		(LPVOID)m_lpstrVffInfo, _T("\\"), (LPVOID *)&pffi, &len);
+	memcpy(&m_FixedFileInfo, pffi, sizeof(m_FixedFileInfo));
+}
 
 
 /*******************************************************************************

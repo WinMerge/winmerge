@@ -8,6 +8,9 @@ FILE: version.h
 class CVersionInfo
 {
 	LPTSTR   m_lpstrVffInfo;
+	BOOL m_bQueryDone;
+	VS_FIXEDFILEINFO m_FixedFileInfo;
+
 	CString m_strFileName;
 	CString m_strLanguage;
 	CString m_strCodepage;
@@ -23,7 +26,6 @@ class CVersionInfo
 	CString m_strSpecialBuild;
 	CString m_strPrivateBuild;
 	void Init();
-	BOOL m_bQueryDone;
 
 public:
 	CVersionInfo(LPCTSTR szFileToVersion = NULL, 
@@ -40,8 +42,10 @@ public:
 	CString GetComments();
 	CString GetSpecialBuild();
 	CString GetPrivateBuild();
+	CString GetFixedProductVersion();
 protected:
 	void GetVersionInfo();
+	void GetFixedVersionInfo();
 	void QueryValue(LPCTSTR szId, CString& s);
 };
 

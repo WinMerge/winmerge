@@ -1,6 +1,9 @@
 2003-03-25 Perry
  PATCH: [ 709575 ] Fix sanity check in CChildFrame::UpdateHeaderSizes()
  WinMerge: ChildFrm.cpp
+ PATCH: [ 708542 ] Make splash & about show language-independent version
+ common: version.cpp version.h
+ WinMerge: Merge.cpp Splash.cpp
 
 2003-03-25 Christian
  Replace COPYING with corrected version from http://www.gnu.org/licenses/gpl.txt

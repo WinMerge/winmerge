@@ -300,7 +300,8 @@ BOOL CAboutDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 	
 	CVersionInfo version;
-	AfxFormatString1(m_strVersion, IDS_VERSION_FMT, version.GetProductVersion());
+	CString sVersion = version.GetFixedProductVersion();
+	AfxFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion);
 
 	m_ctlCompany.SetWindowText(version.GetLegalCopyright());
 	m_ctlWWW.m_link = _T("http://winmerge.sourceforge.net");
