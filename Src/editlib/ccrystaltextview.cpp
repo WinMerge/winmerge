@@ -564,12 +564,15 @@ LocateTextBuffer ()
 int CCrystalTextView::
 GetLineActualLength (int nLineIndex)
 {
-  int nLineCount = GetLineCount ();
+  const int nLineCount = GetLineCount ();
   ASSERT (nLineCount > 0);
   ASSERT (nLineIndex >= 0 && nLineIndex < nLineCount);
   if (m_pnActualLineLength == NULL)
     {
       m_pnActualLineLength = new int[nLineCount];
+      ASSERT( m_pnActualLineLength );
+      if (!m_pnActualLineLength)
+        return 0;		/ TODO: what to do if alloc fails...???
       memset (m_pnActualLineLength, 0xff, sizeof (int) * nLineCount);
       m_nActualLengthArraySize = nLineCount;
     }
@@ -583,25 +586,29 @@ GetLineActualLength (int nLineIndex)
   if (nLength > 0)
     {
       LPCTSTR pszLine = GetLineChars (nLineIndex);
-      LPTSTR pszChars = (LPTSTR) _alloca (sizeof (TCHAR) * (nLength + 1));
+      LPTSTR pszChars = new TCHAR[nLength + 1];
+      ASSERT( pszChars );
+      if (!pszChars)
+        return 0;		// TODO: what to do if alloc fails...???
       memcpy (pszChars, pszLine, sizeof (TCHAR) * nLength);
       pszChars[nLength] = 0;
       LPTSTR pszCurrent = pszChars;
 
-      int nTabSize = GetTabSize ();
-      for (;;)
+      const int nTabSize = GetTabSize ();
+      int ind = 0;
+      nLength--;
+
+      while (ind < nLength)
         {
-          LPTSTR psz = _tcschr (pszCurrent, _T('\t'));
-          if (psz == NULL)
-            {
-              nActualLength += (pszChars + nLength - pszCurrent);
-              break;
+           if (pszCurrent[ind] == _T('\t'))
+          nActualLength += (nTabSize - nActualLength % nTabSize);
+           else
+             nActualLength++;
+
+           ind++;
             }
 
-          nActualLength += (psz - pszCurrent);
-          nActualLength += (nTabSize - nActualLength % nTabSize);
-          pszCurrent = psz + 1;
-        }
+      delete[] pszChars;
     }
 
   m_pnActualLineLength[nLineIndex] = nActualLength;
@@ -762,40 +769,32 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
 {
   if (nCount <= 0)
     {
-      line = _T ("");
+      line = _T("");
       return;
     }
 
-  int nTabSize = GetTabSize ();
-
-  int nActualOffset = 0;
-  for (int I = 0; I < nOffset; I++)
-    {
-      if (pszChars[I] == _T ('\t'))
-        nActualOffset += (nTabSize - nActualOffset % nTabSize);
-      else
-        nActualOffset++;
-    }
+  int nTabSize = GetTabSize();
 
   pszChars += nOffset;
   int nLength = nCount;
 
   int nTabCount = 0;
-  for (I = 0; I < nLength; I++)
+  for (int i = 0; i < nLength; i++)
     {
-      if (pszChars[I] == _T ('\t'))
+      if (pszChars[i] == _T('\t'))
         nTabCount++;
     }
 
-  LPTSTR pszBuf = line.GetBuffer (nLength + nTabCount * (nTabSize - 1) + 1);
+  LPTSTR pszBuf = line.GetBuffer(nLength + nTabCount * (nTabSize - 1) + 1);
   int nCurPos = 0;
+
   if (nTabCount > 0 || m_bViewTabs)
     {
-      for (I = 0; I < nLength; I++)
+      for (i = 0; i < nLength; i++)
         {
-          if (pszChars[I] == _T ('\t'))
+          if (pszChars[i] == _T('\t'))
             {
-              int nSpaces = nTabSize - (nActualOffset + nCurPos) % nTabSize;
+              int nSpaces = nTabSize - nCurPos % nTabSize;
               if (m_bViewTabs)
                 {
                   pszBuf[nCurPos++] = TAB_CHARACTER;
@@ -803,27 +802,29 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
                 }
               while (nSpaces > 0)
                 {
-                  pszBuf[nCurPos++] = _T (' ');
+                  pszBuf[nCurPos++] = _T(' ');
                   nSpaces--;
                 }
             }
           else
             {
-              if (pszChars[I] == _T (' ') && m_bViewTabs)
+              if (pszChars[i] == _T(' ') && m_bViewTabs)
                 pszBuf[nCurPos] = SPACE_CHARACTER;
               else
-                pszBuf[nCurPos] = pszChars[I];
+                pszBuf[nCurPos] = pszChars[i];
+
               nCurPos++;
             }
         }
     }
   else
     {
-      memcpy (pszBuf, pszChars, sizeof (TCHAR) * nLength);
+      CopyMemory(pszBuf, pszChars, sizeof(TCHAR) * nLength);
       nCurPos = nLength;
     }
+
   pszBuf[nCurPos] = 0;
-  line.ReleaseBuffer ();
+  line.ReleaseBuffer();
 }
 
 void CCrystalTextView::
@@ -1072,10 +1073,11 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
 {
 	CPoint	originalOrigin = ptOrigin;
 	CRect		frect = rcClip;
-	int			nLength = GetLineLength( ptTextPos.y );
+	const int nLineLength = GetLineLength( ptTextPos.y );
+	const int nLineHeight = GetLineHeight();
 
 	frect.top = ptOrigin.y;
-	frect.bottom = frect.top + GetLineHeight();
+	frect.bottom = frect.top + nLineHeight;
 
 	ASSERT( nActualItem < nBlocks );
 
@@ -1089,7 +1091,8 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
 		pBuf[nActualItem + 1].m_nCharPos >= nOffset && 
 		pBuf[nActualItem + 1].m_nCharPos <= nOffset + nCount )
 	{
-		ASSERT(pBuf[nActualItem].m_nCharPos >= 0 && pBuf[nActualItem].m_nCharPos <= nLength);
+		ASSERT(pBuf[nActualItem].m_nCharPos >= 0 &&
+			 pBuf[nActualItem].m_nCharPos <= nLineLength);
 
 		/*
 		pdc->SelectObject(GetFont(GetItalic(COLORINDEX_NORMALTEXT), GetBold(COLORINDEX_NORMALTEXT)));
@@ -1097,15 +1100,19 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
 			pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex, pszChars, 
 			nOffset, pBuf[nActualItem].m_nCharPos, ptTextPos);
 		*/
-		for (int I = nActualItem; I < nBlocks - 1 && pBuf[I + 1].m_nCharPos <= nOffset + nCount; I ++)
+		for (int I = nActualItem; I < nBlocks - 1 &&
+			pBuf[I + 1].m_nCharPos <= nOffset + nCount; I ++)
 		{
-			ASSERT(pBuf[I].m_nCharPos >= 0 && pBuf[I].m_nCharPos <= nLength);
+			ASSERT(pBuf[I].m_nCharPos >= 0 && pBuf[I].m_nCharPos <= nLineLength);
 			if (crText == CLR_NONE)
 				pdc->SetTextColor(GetColor(pBuf[I].m_nColorIndex));
 
-			pdc->SelectObject(GetFont(GetItalic(pBuf[I].m_nColorIndex), GetBold(pBuf[I].m_nColorIndex)));
+			// GetFont() returns font in internal font table
+			pdc->SelectObject(GetFont(GetItalic(pBuf[I].m_nColorIndex),
+				GetBold(pBuf[I].m_nColorIndex)));
 
-			int nOffsetToUse = (nOffset > pBuf[I].m_nCharPos)? nOffset : pBuf[I].m_nCharPos;
+			int nOffsetToUse = (nOffset > pBuf[I].m_nCharPos) ?
+				 nOffset : pBuf[I].m_nCharPos;
 			DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[I].m_nColorIndex, pszChars,
 					(nOffset > pBuf[I].m_nCharPos)? nOffset : pBuf[I].m_nCharPos, 
 					pBuf[I + 1].m_nCharPos - nOffsetToUse,
@@ -1114,14 +1121,16 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
 
 		nActualItem = I;
 
-		ASSERT(pBuf[nActualItem].m_nCharPos >= 0 && pBuf[nActualItem].m_nCharPos <= nLength);
+		ASSERT(pBuf[nActualItem].m_nCharPos >= 0 &&
+			pBuf[nActualItem].m_nCharPos <= nLineLength);
 		if (crText == CLR_NONE)
 			pdc->SetTextColor(GetColor(pBuf[nActualItem].m_nColorIndex));
 
 		pdc->SelectObject(GetFont(GetItalic(pBuf[nActualItem].m_nColorIndex),
 							GetBold(pBuf[nActualItem].m_nColorIndex)));
-		DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex, pszChars,
-							pBuf[nActualItem].m_nCharPos, nOffset + nCount - pBuf[nActualItem].m_nCharPos,
+		DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex,
+						pszChars, pBuf[nActualItem].m_nCharPos,
+						nOffset + nCount - pBuf[nActualItem].m_nCharPos,
 							CPoint(pBuf[nActualItem].m_nCharPos, ptTextPos.y));
 	}
 	else
@@ -1137,26 +1146,29 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
 	if (frect.right > frect.left)
 	{
 		if ((m_bFocused || m_bShowInactiveSelection) 
-			&& IsInsideSelBlock(CPoint(GetLineLength( ptTextPos.y ), ptTextPos.y)) 
-			&& (nOffset + nCount) == GetLineLength( ptTextPos.y ) )
+			&& IsInsideSelBlock(CPoint(nLineLength, ptTextPos.y)) 
+			&& (nOffset + nCount) == nLineLength )
 		{
-			pdc->FillSolidRect(frect.left, frect.top, GetCharWidth(), frect.Height(),
+			const int nCharWidth = GetCharWidth();
+			pdc->FillSolidRect(frect.left, frect.top, nCharWidth, frect.Height(),
 												GetColor(COLORINDEX_SELBKGND));
-			frect.left += GetCharWidth();
+			frect.left += nCharWidth;
 		}
 		if (frect.right > frect.left)
-			pdc->FillSolidRect(frect, bDrawWhitespace ? crBkgnd : GetColor(COLORINDEX_WHITESPACE));
+			pdc->FillSolidRect(frect, bDrawWhitespace ?
+				crBkgnd : GetColor(COLORINDEX_WHITESPACE));
 	}
 
 	// set origin to beginning of next screen line
 	ptOrigin.x = originalOrigin.x;
-	ptOrigin.y+= GetLineHeight();
+	ptOrigin.y+= nLineHeight;
 }
 //END SW
 
 void CCrystalTextView::
 DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 {
+  const int nCharWidth = GetCharWidth();
   ASSERT (nLineIndex >= -1 && nLineIndex < GetLineCount ());
 
   if (nLineIndex == -1)
@@ -1180,8 +1192,8 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
       CRect rect = rc;
       if ((m_bFocused || m_bShowInactiveSelection) && IsInsideSelBlock (CPoint (0, nLineIndex)))
         {
-          pdc->FillSolidRect (rect.left, rect.top, GetCharWidth (), rect.Height (), GetColor (COLORINDEX_SELBKGND));
-          rect.left += GetCharWidth ();
+          pdc->FillSolidRect (rect.left, rect.top, nCharWidth, rect.Height (), GetColor (COLORINDEX_SELBKGND));
+          rect.left += nCharWidth;
         }
       pdc->FillSolidRect (rect, bDrawWhitespace ? crBkgnd : GetColor (COLORINDEX_WHITESPACE));
       return;
@@ -1212,7 +1224,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 	//END SW
 
   //  Draw the line text
-  CPoint origin (rc.left - m_nOffsetChar * GetCharWidth (), rc.top);
+  CPoint origin (rc.left - m_nOffsetChar * nCharWidth, rc.top);
   pdc->SetBkColor (crBkgnd);
   if (crText != CLR_NONE)
     pdc->SetTextColor (crText);
@@ -1474,8 +1486,8 @@ OnDraw (CDC * pdc)
   CRect rcClient;
   GetClientRect (rcClient);
 
-  int nLineCount = GetLineCount ();
-  int nLineHeight = GetLineHeight ();
+  const int nLineCount = GetLineCount ();
+  const int nLineHeight = GetLineHeight ();
   PrepareSelBounds ();
 
   CDC cacheDC;
@@ -1507,7 +1519,7 @@ OnDraw (CDC * pdc)
 	}
 
 	int		nBreaks;
-	int		nMaxLineChars = GetScreenChars();
+	const int nMaxLineChars = GetScreenChars();
 	//END SW
 
   int nCurrentLine = m_nTopLine;
@@ -1797,8 +1809,8 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
 int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoint )
 {
 	// calculate char pos out of point
-	int			nLength = GetLineLength( nLineIndex );
-	int			nScreenChars = GetScreenChars();
+	const int nLength = GetLineLength( nLineIndex );
+	const int nScreenChars = GetScreenChars();
 	LPCTSTR	szLine = GetLineChars( nLineIndex );
 
 	// wrap line
@@ -1811,7 +1823,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
 	int nXPos = 0;
 	int nYPos = 0;
 	int	nCurPos = 0;
-	int nTabSize = GetTabSize();
+	const int nTabSize = GetTabSize();
 
 	for( int nIndex = 0; nIndex < nLength; nIndex++ )
 	{
@@ -1823,8 +1835,9 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
 
 		if (szLine[nIndex] == _T('\t'))
 		{
-			nXPos+= (nTabSize - nCurPos % nTabSize);
-			nCurPos+= (nTabSize - nCurPos % nTabSize);
+			const int nOffset = nTabSize - nCurPos % nTabSize;
+			nXPos += nOffset;
+			nCurPos += nOffset;
 		}
 		else
 		{
@@ -1859,7 +1872,7 @@ void CCrystalTextView::SubLineCursorPosToTextPos( const CPoint &subLineCurPos, C
 
 int CCrystalTextView::SubLineEndToCharPos( int nLineIndex, int nSubLineOffset )
 {
-	int		nLength = GetLineLength( nLineIndex );
+	const int nLength = GetLineLength( nLineIndex );
 
 	// if word wrapping is disabled, the end is equal to the length of the line -1
 	if( !m_bWordWrap /*|| nLength <= GetScreenChars()*/ )
@@ -1927,7 +1940,7 @@ GetMaxLineLength ()
   if (m_nMaxLineLength == -1)
     {
       m_nMaxLineLength = 0;
-      int nLineCount = GetLineCount ();
+      const int nLineCount = GetLineCount ();
       for (int I = 0; I < nLineCount; I++)
         {
           int nActualLength = GetLineActualLength (I);
@@ -2311,12 +2324,14 @@ GetLineCount ()
 //BEGIN SW
 int CCrystalTextView::GetSubLineCount()
 {
-	// if we do not wrap words, number of sub lines is equal to number of lines
+	const int nLineCount = GetLineCount();
+
+	// if we do not wrap words, number of sub lines is
+	// equal to number of lines
 	if( !m_bWordWrap )
-		return GetLineCount();
+		return nLineCount;
 
 	// calculate number of sub lines
-	int	nLineCount = GetLineCount();
 	int nSubLineCount = 0;
 
 	for( int i = 0; i < nLineCount; i++ )
@@ -2333,9 +2348,10 @@ int CCrystalTextView::GetSubLineIndex( int nLineIndex )
 
 	// calculate subline index of the line
 	int	nSubLineCount = 0;
+	int nLineCount = GetLineCount();
 
-	if( nLineIndex >= GetLineCount() )
-		nLineIndex = GetLineCount() - 1;
+	if( nLineIndex >= nLineCount )
+		nLineIndex = nLineCount - 1;
 
 	for( int i = 0; i < nLineIndex; i++ )
 		nSubLineCount+= GetSubLines( i );
@@ -2356,18 +2372,20 @@ void CCrystalTextView::GetLineBySubLine( int nSubLineIndex, int &nLine, int &nSu
 
 	// compute result
 	int	nSubLineCount = 0;
-	int	nLineCount = GetLineCount();
+	int nLastSubLines = 0;
+	const int nLineCount = GetLineCount();
 
 	for( int i = 0; i < nLineCount; i++ )
 	{
-		nSubLineCount+= GetSubLines( i );
+		nLastSubLines = GetSubLines( i );
+		nSubLineCount += nLastSubLines;
 		if( !(nSubLineCount <= nSubLineIndex) )
 			break;
 	}
 
 	ASSERT( i < nLineCount );
 	nLine = i;
-	nSubLine = nSubLineIndex - (nSubLineCount - GetSubLines( i ));
+	nSubLine = nSubLineIndex - (nSubLineCount - nLastSubLines);
 }
 //END SW
 
@@ -2875,8 +2893,8 @@ CPoint CCrystalTextView::
 ClientToText (const CPoint & point)
 {
 	//BEGIN SW
-	int nSubLineCount = GetSubLineCount();
-	int nLineCount = GetLineCount();
+	const int nSubLineCount = GetSubLineCount();
+	const int nLineCount = GetLineCount();
 
 	CPoint pt;
 	pt.y = m_nTopSubLine + point.y / GetLineHeight();
@@ -2915,7 +2933,7 @@ ClientToText (const CPoint & point)
 		nPos = 0;
 
 	int nIndex = 0, nCurPos = 0, n = 0, i = 0;
-	int nTabSize = GetTabSize();
+	const int nTabSize = GetTabSize();
 
 	/*
 	if( m_bWordWrap )
@@ -2932,8 +2950,9 @@ ClientToText (const CPoint & point)
 
 		if (pszLine[nIndex] == _T('\t'))
 		{
-			n+= (nTabSize - nCurPos % nTabSize);
-			nCurPos += (nTabSize - nCurPos % nTabSize);
+			const int nOffset = nTabSize - nCurPos % nTabSize;
+			n += nOffset;
+			nCurPos += nOffset;
 		}
 		else
 		{
@@ -3083,6 +3102,7 @@ void CCrystalTextView::
 InvalidateLines (int nLine1, int nLine2, BOOL bInvalidateMargin /*= FALSE*/ )
 {
   bInvalidateMargin = TRUE;
+  const int nLineHeight = GetLineHeight();
   if (nLine2 == -1)
     {
       CRect rcInvalid;
@@ -3090,7 +3110,7 @@ InvalidateLines (int nLine1, int nLine2, BOOL bInvalidateMargin /*= FALSE*/ )
       if (!bInvalidateMargin)
         rcInvalid.left += GetMarginWidth ();
 		//BEGIN SW
-		rcInvalid.top = (GetSubLineIndex( nLine1 ) - m_nTopSubLine) * GetLineHeight();
+		rcInvalid.top = (GetSubLineIndex( nLine1 ) - m_nTopSubLine) * nLineHeight;
 		/*ORIGINAL
 		rcInvalid.top = (nLine1 - m_nTopLine) * GetLineHeight();
 		*/
@@ -3110,8 +3130,8 @@ InvalidateLines (int nLine1, int nLine2, BOOL bInvalidateMargin /*= FALSE*/ )
       if (!bInvalidateMargin)
         rcInvalid.left += GetMarginWidth ();
 		//BEGIN SW
-		rcInvalid.top = (GetSubLineIndex( nLine1 ) - m_nTopSubLine) * GetLineHeight();
-		rcInvalid.bottom = (GetSubLineIndex( nLine2 ) - m_nTopSubLine + GetSubLines( nLine2 )) * GetLineHeight();
+		rcInvalid.top = (GetSubLineIndex( nLine1 ) - m_nTopSubLine) * nLineHeight;
+		rcInvalid.bottom = (GetSubLineIndex( nLine2 ) - m_nTopSubLine + GetSubLines( nLine2 )) * nLineHeight;
 		/*ORIGINAL
 		rcInvalid.top = (nLine1 - m_nTopLine) * GetLineHeight();
 		rcInvalid.bottom = (nLine2 - m_nTopLine + 1) * GetLineHeight();
@@ -3173,11 +3193,11 @@ ParseLine (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
 int CCrystalTextView::
 CalculateActualOffset (int nLineIndex, int nCharIndex)
 {
-  int nLength = GetLineLength (nLineIndex);
+  const int nLength = GetLineLength (nLineIndex);
   ASSERT (nCharIndex >= 0 && nCharIndex <= nLength);
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   int nOffset = 0;
-  int nTabSize = GetTabSize ();
+  const int nTabSize = GetTabSize ();
 	//BEGIN SW
 	int			*anBreaks = new int[nLength];
 	int			nBreaks = 0;
@@ -3303,17 +3323,19 @@ EnsureVisible (CPoint pt)
 	//END SW
   int nActualPos = CalculateActualOffset (pt.y, pt.x);
   int nNewOffset = m_nOffsetChar;
-  if (nActualPos > nNewOffset + GetScreenChars ())
+  const int nScreenChars = GetScreenChars ();
+  if (nActualPos > nNewOffset + nScreenChars)
     {
-      nNewOffset = nActualPos - GetScreenChars ();
+      nNewOffset = nActualPos - nScreenChars;
     }
   if (nActualPos < nNewOffset)
     {
       nNewOffset = nActualPos;
     }
 
-  if (nNewOffset >= GetMaxLineLength ())
-    nNewOffset = GetMaxLineLength () - 1;
+  const int nMaxLineLen = GetMaxLineLength ();
+  if (nNewOffset >= nMaxLineLen)
+    nNewOffset = nMaxLineLen - 1;
   if (nNewOffset < 0)
     nNewOffset = 0;
 
@@ -3424,7 +3446,7 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
               int *pnNewArray = new int[nLineCount];
               if (nLineIndex > 0)
                 memcpy (pnNewArray, m_pnActualLineLength, sizeof (int) * nLineIndex);
-              delete m_pnActualLineLength;
+              delete[] m_pnActualLineLength;
               m_nActualLengthArraySize = nLineCount;
               m_pnActualLineLength = pnNewArray;
             }

@@ -1,3 +1,7 @@
+2003-04-09 Kimmo
+ PATCH: [ 717688 ] CrystalEditor optimisations and memleaks
+  editlib: ccrystaltextview.cpp
+
 2003-04-08 Kimmo
  PATCH: [ 716744 ] Fix CrystalEditor memory leaks
   editlib: ccrystaltextbuffer.cpp ccrystaltextview.cpp
