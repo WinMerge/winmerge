@@ -972,8 +972,8 @@ CAPTION "Codice di pagina"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Rileva le informazione sul codice di pagina per i file .html, .rc \nnecessario riavvio della sessione",
-                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | 
-                    BS_MULTILINE | WS_TABSTOP,13,74,210,19
+                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
+                    BS_MULTILINE | WS_TABSTOP,13,74,210,29
     CONTROL         "Codice di pagina del sistema",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
     CONTROL         "In accordo con l'interfaccia di WinMerge",IDC_CP_UI,"Button",

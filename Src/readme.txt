@@ -3,6 +3,10 @@
   Fix all languages
   Src: Merge.rc
   Src/Languages: *.rc
+ BUG: [ 1029637 ] (Italian) Options/Codepage detect codepage label cut-off
+  Fix all languages
+  Src: Merge.rc
+  Src/Languages: *.rc
 
 2004-09-21 Kimmo
  Widen space for text in language change dialog

@@ -970,8 +970,8 @@ CAPTION "Pàgina de codis"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Detecta la informació de pàgina de codis per a fitxers:\n.html i .rc\nCal reiniciar la sessió",
-                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX |
-                    BS_MULTILINE | WS_TABSTOP,13,74,220,22
+                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
+                    BS_MULTILINE | WS_TABSTOP,13,74,220,29
     CONTROL         "Pàgina de codis del sistema",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
     CONTROL         "En funció de l'idioma de l'interfície d'usuari del WinMerge",IDC_CP_UI,"Button",

@@ -931,8 +931,8 @@ CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Detect codepage info for these files : .html, .rc \nneed to restart session",
-                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | 
-                    BS_MULTILINE | WS_TABSTOP,13,74,210,19
+                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
+                    BS_MULTILINE | WS_TABSTOP,13,74,210,29
     CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
     CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",
