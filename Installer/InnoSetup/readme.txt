@@ -1,3 +1,7 @@
+2004-11-28 Kimmo
+ BUG: [ 1067900 ] German language support
+  InnoSetup: WinMerge Localized.iss
+
 2004-11-19 Kimmo
  PATCH: [ 1069262 ] Update of Norwegian.isl
   Submitted by Hans Fr. Nordhaug

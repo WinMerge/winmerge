@@ -197,64 +197,64 @@ Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Type
 ;selected.  This is to make it easier for users that have a working localization of Inno Setup.
 Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
 Name: Languages\Bulgarian; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Bulgarian)
-Name: Languages\Bulgarian; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Bulgarian
+Name: Languages\Bulgarian; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Bulgarian
 
 Name: Languages\Catalan; Description: {cm:CatalanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Catalan)
-Name: Languages\Catalan; Description: {cm:CatalanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Catalan
+Name: Languages\Catalan; Description: {cm:CatalanLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Catalan
 
 Name: Languages\Chinese_Simplified; Description: {cm:ChineseSimplifiedLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Chinese_Simplified)
-Name: Languages\Chinese_Simplified; Description: {cm:ChineseSimplifiedLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Chinese_Simplified
+Name: Languages\Chinese_Simplified; Description: {cm:ChineseSimplifiedLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Chinese_Simplified
 
 Name: Languages\Chinese_Traditional; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Chinese_Traditional)
-Name: Languages\Chinese_Traditional; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Chinese_Traditional
+Name: Languages\Chinese_Traditional; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Chinese_Traditional
 
 Name: Languages\Czech; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Czech)
-Name: Languages\Czech; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Czech
+Name: Languages\Czech; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Czech
 
 Name: Languages\Danish; Description: {cm:DanishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Danish)
-Name: Languages\Danish; Description: {cm:DanishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Danish
+Name: Languages\Danish; Description: {cm:DanishLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Danish
 
 Name: Languages\Dutch; Description: {cm:DutchLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Dutch)
-Name: Languages\Dutch; Description: {cm:DutchLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Dutch
+Name: Languages\Dutch; Description: {cm:DutchLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Dutch
 
 Name: Languages\French; Description: {cm:FrenchLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(French)
-Name: Languages\French; Description: {cm:FrenchLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: French
+Name: Languages\French; Description: {cm:FrenchLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: French
 
 Name: Languages\German; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(German)
-Name: Languages\German; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: German
+Name: Languages\German; Description: {cm:GermanLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: German
 
 Name: Languages\Hungarian; Description: {cm:HungarianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Hungarian)
-Name: Languages\Hungarian; Description: {cm:HungarianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Hungarian
+Name: Languages\Hungarian; Description: {cm:HungarianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Hungarian
 
 Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Italian)
-Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Italian
+Name: Languages\Italian; Description: {cm:ItalianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Italian
 
 Name: Languages\Japanese; Description: {cm:JapaneseLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Japanese)
-Name: Languages\Japanese; Description: {cm:JapaneseLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Japanese
+Name: Languages\Japanese; Description: {cm:JapaneseLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Japanese
 
 Name: Languages\Korean; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Korean)
-Name: Languages\Korean; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Korean
+Name: Languages\Korean; Description: {cm:KoreanLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Korean
 
 Name: Languages\Norwegian; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Norwegian)
-Name: Languages\Norwegian; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Norwegian
+Name: Languages\Norwegian; Description: {cm:NorwegianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Norwegian
 
 Name: Languages\Polish; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Polish)
-Name: Languages\Polish; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Polish
+Name: Languages\Polish; Description: {cm:PolishLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Polish
 
 Name: Languages\Portuguese; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Portuguese)
-Name: Languages\Portuguese; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Portuguese
+Name: Languages\Portuguese; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Portuguese
 
 Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Russian)
-Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Russian
+Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Russian
 
 Name: Languages\Slovak; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Slovak)
-Name: Languages\Slovak; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Slovak
+Name: Languages\Slovak; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Slovak
 
 Name: Languages\Spanish; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Spanish)
-Name: Languages\Spanish; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Spanish
+Name: Languages\Spanish; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Spanish
 
 Name: Languages\Swedish; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Swedish)
-Name: Languages\Swedish; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning fixed; Types: full typical compact; Languages: Swedish
+Name: Languages\Swedish; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Swedish
 
 [Tasks]
 Name: ShellExtension; Description: {cm:ExplorerContextMenu}; GroupDescription: Optional Features:
