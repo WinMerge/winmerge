@@ -103,8 +103,11 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+
+// These maybe should be converted with some winapi function to make sure
+// they are printable and not garbage on different fonts...
 #define TAB_CHARACTER               _T('\xBB')
-#define SPACE_CHARACTER             _T('\x95')
+#define SPACE_CHARACTER             _T('\xB7')	// _T('\x95')
 #define DEFAULT_PRINT_MARGIN        1000    //  10 millimeters
 
 const UINT	MAX_TAB_LEN	= 64; 
@@ -1606,7 +1609,6 @@ ResetView ()
   m_bBookmarkExist = FALSE;     // More bookmarks
 
   m_bMultipleSearch = FALSE;    // More search
-  m_bViewTabs = FALSE;
 
 }
 

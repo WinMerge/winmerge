@@ -1,3 +1,7 @@
+2003-02-18 Kimmo
+  [ 687039 ] View whitespaces on editor
+  MainFrm.h MainFrm.cpp Merge.rc resource.h ccrystaltextview.cpp
+
 2003-02-15 Kimmo
   [ 686699 ] Check & return file saving success
   Merge.rc MergeDoc.h Mergedoc.cpp resource.h

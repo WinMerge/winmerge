@@ -106,6 +106,7 @@ public:
 	CMergeDoc *m_pMergeDoc;
 	CDirDoc *m_pDirDoc;
 	UINT m_nTabType;
+	BOOL m_bViewWhitespace;
 
 // Implementation data
 protected:
@@ -154,6 +155,9 @@ protected:
 	afx_msg void OnHelpContents();
 	afx_msg void OnUpdateHelpContents(CCmdUI* pCmdUI);
 	afx_msg void OnClose();
+	afx_msg void OnViewWhitespace();
+	afx_msg void OnUpdateViewWhitespace(CCmdUI* pCmdUI);
+
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

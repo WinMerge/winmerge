@@ -128,11 +128,13 @@ BEGIN
         MENUITEM "Show &Different Files",       ID_OPTIONS_SHOWDIFFERENT
         MENUITEM "Show Le&ft Unique Files",     ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "Show Ri&ght Unique Files",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Show &Binary Files",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Hide *.&BAK Files",           ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
         MENUITEM "Use Default F&ont",           ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&View Whitespace",            ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
         MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
@@ -1029,6 +1031,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
     IDS_BIN_FILES_SAME      "Binary files are identical"
     ID_OPTIONS_SHOWBINARIES "Displays binary files"
+	ID_VIEW_WHITESPACE      "Shows whitespace characters"
 END
 
 STRINGTABLE DISCARDABLE 

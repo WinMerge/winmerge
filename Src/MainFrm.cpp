@@ -90,6 +90,9 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_CONTENTS, OnHelpContents)
 	ON_UPDATE_COMMAND_UI(ID_HELP_CONTENTS, OnUpdateHelpContents)
 	ON_WM_CLOSE()
+	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
+
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -124,6 +127,7 @@ CMainFrame::CMainFrame()
 	m_bShowIdent = theApp.GetProfileInt(_T("Settings"), _T("ShowIdentical"), TRUE)!=0;
 	m_bShowBinaries = theApp.GetProfileInt(_T("Settings"), _T("ShowBinaries"), TRUE)!=0;
 	m_bBackup = theApp.GetProfileInt(_T("Settings"), _T("BackupFile"), TRUE)!=0;
+	m_bViewWhitespace = theApp.GetProfileInt(_T("Settings"), _T("ViewWhitespace"), FALSE)!=0;
 	m_bScrollToFirst = theApp.GetProfileInt(_T("Settings"), _T("ScrollToFirst"), FALSE)!=0;
 	m_nIgnoreWhitespace = theApp.GetProfileInt(_T("Settings"), _T("IgnoreSpace"), 1);
 	m_bHideBak = theApp.GetProfileInt(_T("Settings"), _T("HideBak"), TRUE)!=0;
@@ -298,6 +302,8 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 			// SetTextType will revert to language dependent defaults for tab
 			m_pLeft->SetTabSize(mf->m_nTabSize);
 			m_pRight->SetTabSize(mf->m_nTabSize);
+			m_pLeft->SetViewTabs(mf->m_bViewWhitespace);
+			m_pRight->SetViewTabs(mf->m_bViewWhitespace);
 			
 			// set the frame window header
 			CChildFrame *pf = static_cast<CChildFrame *>(m_pMergeDoc->m_pView->GetParentFrame());
@@ -1334,6 +1340,24 @@ void CMainFrame::addToMru(LPCSTR szItem, LPCSTR szRegSubKey, UINT nMaxItems)
 	// update count
 	AfxGetApp()->WriteProfileInt(szRegSubKey, "Count", cnt);
 }
+
+void CMainFrame::OnViewWhitespace() 
+{
+	m_bViewWhitespace = !m_bViewWhitespace;
+	theApp.WriteProfileInt(_T("Settings"), _T("ViewWhitespace"), m_bViewWhitespace);
+
+	if (m_pLeft)
+		m_pLeft->SetViewTabs(mf->m_bViewWhitespace);
+
+	if (m_pRight)
+		m_pRight->SetViewTabs(mf->m_bViewWhitespace);
+}
+
+void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_bViewWhitespace);
+}
+
 
 void CMainFrame::ConvertPathToSlashes(LPTSTR path)
 {
