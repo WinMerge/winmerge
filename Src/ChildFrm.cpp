@@ -185,7 +185,9 @@ void CChildFrame::SavePosition()
 
 void CChildFrame::OnClose() 
 {
-	SavePosition();	
+	// clean up pointers.
+	mf->m_pLeft = mf->m_pRight = NULL;
+	SavePosition();
 	CMDIChildWnd::OnClose();
 }
 
@@ -195,12 +197,9 @@ void CChildFrame::OnSize(UINT nType, int cx, int cy)
 	
 	CRect rc;
 	GetClientRect(&rc);
-#ifndef _DEBUG
-	if(IsWindow(m_wndSplitter)
-			&& m_wndSplitter.GetPane(0,0)!=NULL) 
-		{
-			m_wndSplitter.SetColumnInfo(0, rc.Width()/2, 10);
-			m_wndSplitter.RecalcLayout();
-		}
-#endif		
+	if(IsWindowVisible())
+	{
+		m_wndSplitter.SetColumnInfo(0, rc.Width()/2, 10);
+		m_wndSplitter.RecalcLayout();
+	}
 }
