@@ -1,3 +1,7 @@
+2004-04-23 Kimmo
+ PATCH: [ 940713 ] Fix for resetting dirview columns
+  Src: DirViewColHandler.cpp
+
 2004-04-22 Kimmo
  PATCH: [ 936682 ] Highlight syntax in unrecognized side
   Src: MainFrm.cpp Merge.rc MergeDoc.cpp OptionsDef.h PropEditor.cpp

@@ -423,11 +423,10 @@ ToDoDeleteThisValidateColumnOrdering();
 	}
 
 	// Add default order of columns for resetting to defaults
-	for (l = 0; l < GetColLogCount(); ++l)
+	for (l = 0; l < m_numcols; ++l)
 	{
 		int phy = GetColDefaultOrder(l);
-		int log = ColPhysToLog(col);
-		dlg.AddDefColumn(GetColDisplayName(l), log, phy);
+		dlg.AddDefColumn(GetColDisplayName(l), l, phy);
 	}
 
 	if (dlg.DoModal() != IDOK)
