@@ -1,7 +1,12 @@
+2003-06-28 Perry
+ PATCH: [ 758930 ] Display EOL chars with View Whitespace
+  WinMerge: MainFrm.cpp
+  editlib: ccrystaltextview.h ccrystaltextview.cpp
+
 2003-06-27 Kimmo
-PATCH: [ 761951 ] Fix scrolling corruption
- Submitted by Jochen
- editlib: ccrystaltextview.cpp
+ PATCH: [ 761951 ] Fix scrolling corruption
+  Submitted by Jochen
+  editlib: ccrystaltextview.cpp
 
 2003-06-27 Laoran
  PATCH: [ 760745 ] Fix empty search field detection and better history in FindDlg and EditReplaceDlg
@@ -41,9 +46,9 @@ PATCH: [ 761951 ] Fix scrolling corruption
   editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h ccrystaleditview.cpp
 
 2003-06-23 Kimmo
-PATCH: [ 759344 ] Add Copy, Cut & Paste to Edit menu
- WinMerge: Merge.rc
- Updated other languages too - translations from Perry and Christian
+ PATCH: [ 759344 ] Add Copy, Cut & Paste to Edit menu
+  WinMerge: Merge.rc
+  Updated other languages too - translations from Perry and Christian
 
 2003-06-22 Perry
  PATCH: [ 758870 ] Return filesize+1 rather than 0 for new lines at end

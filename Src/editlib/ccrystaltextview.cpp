@@ -106,8 +106,12 @@ static char THIS_FILE[] = __FILE__;
 
 // These maybe should be converted with some winapi function to make sure
 // they are printable and not garbage on different fonts...
-#define TAB_CHARACTER               _T('\xBB')
-#define SPACE_CHARACTER             _T('\xB7')	// _T('\x95')
+// (These are for Latin1)
+#define TAB_CHARACTER               _T('\xBB') // U+BB: RIGHT POINTING DOUBLE ANGLE QUOTATION MARK
+#define SPACE_CHARACTER             _T('\xB7') // U+B7: MIDDLE DOT
+#define CR_CHARACTER                _T('\xA7') // U+A7: SECTION SIGN
+#define LF_CHARACTER                _T('\xB6') // U+B6: PILCROW SIGN
+
 #define DEFAULT_PRINT_MARGIN        1000    //  10 millimeters
 
 const UINT	MAX_TAB_LEN	= 64; 
@@ -827,8 +831,12 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
             }
           else
             {
-              if (pszChars[i] == _T(' ') && m_bViewTabs)
+              if (pszChars[i] == ' ' && m_bViewTabs)
                 pszBuf[nCurPos] = SPACE_CHARACTER;
+              else if (pszChars[i] == '\r' && m_bViewEols)
+                pszBuf[nCurPos] = CR_CHARACTER;
+              else if (pszChars[i] == '\n' && m_bViewEols)
+                pszBuf[nCurPos] = LF_CHARACTER;
               else
                 pszBuf[nCurPos] = pszChars[i];
 
@@ -1259,11 +1267,17 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
     crBkgnd = GetColor (COLORINDEX_BKGND);
 
   int nLength = GetLineLength (nLineIndex);
-
-  //  Parse the line
   LPCTSTR pszChars = GetLineChars (nLineIndex);
+  if (m_bViewEols)
+  { // Display EOL (end of line) characters
+      if (pszChars[nLength]=='\r' && pszChars[nLength+1]=='\n')
+        nLength += 2;
+      else if (pszChars[nLength]=='\r' || pszChars[nLength]=='\n')
+        nLength += 1;
+  }
+  //  Parse the line
   DWORD dwCookie = GetParseCookie (nLineIndex - 1);
-  TEXTBLOCK *pBuf = new TEXTBLOCK[nLength * 3 + 1]; // be aware of nLength == 0
+  TEXTBLOCK *pBuf = new TEXTBLOCK[(nLength+1) * 3]; // be aware of nLength == 0
   int nBlocks = 0;
 	//BEGIN SW
 	// insert at least one textblock of normal color at the beginning
@@ -4549,6 +4563,17 @@ SetViewTabs (BOOL bViewTabs)
   if (bViewTabs != m_bViewTabs)
     {
       m_bViewTabs = bViewTabs;
+      if (::IsWindow (m_hWnd))
+        Invalidate ();
+    }
+}
+
+void CCrystalTextView::
+SetViewEols (BOOL bViewEols)
+{
+  if (bViewEols != m_bViewEols)
+    {
+      m_bViewEols = bViewEols;
       if (::IsWindow (m_hWnd))
         Invalidate ();
     }

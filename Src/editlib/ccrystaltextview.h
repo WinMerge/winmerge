@@ -92,6 +92,7 @@ private :
 
     //  Text attributes
     BOOL m_bViewTabs;
+    BOOL m_bViewEols;
     BOOL m_bSelMargin;
     DWORD m_dwFlags;
 
@@ -588,6 +589,7 @@ public :
     void SetCRLFMode (int nCRLFMode);
     BOOL GetViewTabs ();
     void SetViewTabs (BOOL bViewTabs);
+    void SetViewEols (BOOL bViewEols);
     int GetTabSize ();
     void SetTabSize (int nTabSize);
     BOOL GetSelectionMargin ();

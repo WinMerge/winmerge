@@ -368,6 +368,8 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 		pRight->SetTabSize(mf->m_nTabSize);
 		pLeft->SetViewTabs(mf->m_bViewWhitespace);
 		pRight->SetViewTabs(mf->m_bViewWhitespace);
+		pLeft->SetViewEols(mf->m_bViewWhitespace);
+		pRight->SetViewEols(mf->m_bViewWhitespace);
 
 		// Enable Backspace at beginning of line 
 		pLeft->SetDisableBSAtSOL( FALSE ); 
@@ -1489,9 +1491,15 @@ void CMainFrame::OnViewWhitespace()
 		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
 		CMergeEditView * pRight = pMergeDoc->GetRightView();
 		if (pLeft)
+		{
 			pLeft->SetViewTabs(mf->m_bViewWhitespace);
+			pLeft->SetViewEols(mf->m_bViewWhitespace);
+		}
 		if (pRight)
+		{
 			pRight->SetViewTabs(mf->m_bViewWhitespace);
+			pRight->SetViewEols(mf->m_bViewWhitespace);
+		}
 	}
 }
 
