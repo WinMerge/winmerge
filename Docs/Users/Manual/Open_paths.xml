@@ -6,18 +6,18 @@
     <para>Basic use of Open-dialog is described in <link linkend="QuickStart">Quick start</link>. Here is some more detailed information and tips about how to use Open-dialog more efficiently.</para>
     <sect3>
       <title>Environment variables</title>
-      <para>Environment variables can be used as (part of) paths. Environment variable is expanded when it's name is put between two <constant>%</constant>:s.</para>
+      <para>Environment variables can be used as (part of) paths. An environment variable is expanded when its name is put between two <constant>%</constant>:s.</para>
       <example>
         <title>Using environment variables</title>
-        <para>If environment variable named <envar>WORKDIR</envar> contains path <filename class="directory">c:\workfiles</filename> then <envar>%WORKDIR%\project1</envar> is expanded to path <filename class="directory">c:\workfiles\project1</filename> .</para>
+        <para>If an environment variable named <envar>WORKDIR</envar> contains the path <filename class="directory">c:\workfiles</filename> then <envar>%WORKDIR%\project1</envar> is expanded to path <filename class="directory">c:\workfiles\project1</filename> .</para>
       </example>
     </sect3>
     <sect3>
       <title>Opening archive files</title>
-      <para>If <ulink url="http://www.7-zip.org/">7-Zip</ulink> is installed to system WinMerge can open archive files. Opening two archive files is done like other files: select two archive files to Open-dialog's fields. If WinMerge recognizes archive format it opens contents of archive files to directory compare.</para>
-      <para><link linkend="CompareDirs">Directory compare</link> chapter describes how to add files to archive files from directory compare. And how files are put into subfolders <filename class="directory">Original/</filename> and <filename class="directory">Altered/</filename>. If archive file contains these two subfolders it must be opened by selecting same filename to both sides in Open-dialog or commandline. Then WinMerge compares these two subfolders.</para>
+      <para>If <ulink url="http://www.7-zip.org/">7-Zip</ulink> is installed on the system, then WinMerge can open archive files. Opening two archive files is done like other files: select two archive files to Open-dialog's fields. If WinMerge recognizes the archive format, it opens the contents of the archive files to directory compare.</para>
+      <para><link linkend="CompareDirs">Directory compare</link> chapter describes how to add files to archive files from directory compare, and how files are put into subfolders <filename class="directory">Original/</filename> and <filename class="directory">Altered/</filename>. If archive file contains these two subfolders it must be opened by selecting same filename to both sides in Open-dialog or commandline. Then WinMerge compares these two subfolders.</para>
       <tip>
-        <para>When dragging archive file to WinMerge window press <keycap>Shift</keycap> when dropping file and WinMerge automatically copies same filename to both sides and opens archive file.</para>
+        <para>When dragging an archive file to WinMerge window, press <keycap>Shift</keycap> when dropping the file and WinMerge will automatically copy the same filename to both sides and open the archive file.</para>
       </tip>
     </sect3>
     <sect3>

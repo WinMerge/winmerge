@@ -1,4 +1,8 @@
 2005-02-22 Perry
+ Minor grammar proofing
+ Manual: Open_paths.xml
+
+2005-02-22 Perry
  Proofing (grammatical fixes)
  Manual: Locales.xml
 
