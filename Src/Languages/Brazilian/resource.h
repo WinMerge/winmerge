@@ -318,6 +318,7 @@
 #define IDC_COMPARE_DEFAULTS            1119
 #define IDC_CMPPANE_AUTOCLOSE           1120
 #define IDC_OPEN_CONTRIBUTORS           1121
+#define IDC_DIFF_DEFAULTS               1122
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO_EOL        8503
@@ -570,7 +571,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        124
 #define _APS_NEXT_COMMAND_VALUE         32865
-#define _APS_NEXT_CONTROL_VALUE         1122
+#define _APS_NEXT_CONTROL_VALUE         1123
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

@@ -86,6 +86,7 @@ BEGIN_MESSAGE_MAP(CPatchDlg, CDialog)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_FILE1, OnDiffBrowseFile1)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_FILE2, OnDiffBrowseFile2)
 	ON_BN_CLICKED(IDC_DIFF_BROWSE_RESULT, OnDiffBrowseResult)
+	ON_BN_CLICKED(IDC_DIFF_DEFAULTS, OnDefaultSettings)
 	ON_CBN_SELCHANGE(IDC_DIFF_FILE1, OnSelchangeFile1Combo)
 	ON_CBN_SELCHANGE(IDC_DIFF_FILE2, OnSelchangeFile2Combo)
 	ON_CBN_SELCHANGE(IDC_DIFF_FILERESULT, OnSelchangeResultCombo)
@@ -174,6 +175,8 @@ void CPatchDlg::OnOK()
 		else
 			m_contextLines = 0;
 
+		SaveSettings();
+
 		// Save combobox history
 		m_ctlFile1.SaveState(_T("Files\\DiffFile1"));
 		m_ctlFile2.SaveState(_T("Files\\DiffFile2"));
@@ -194,7 +197,7 @@ BOOL CPatchDlg::OnInitDialog()
 	m_ctlFile1.LoadState(_T("Files\\DiffFile1"));
 	m_ctlFile2.LoadState(_T("Files\\DiffFile2"));
 	m_ctlResult.LoadState(_T("Files\\DiffFileResult"));
-	
+
 	int count = m_fileList.GetCount();
 
 	// If one file added, show filenames on dialog
@@ -237,8 +240,7 @@ BOOL CPatchDlg::OnInitDialog()
 	m_comboContext.AddString(_T("7"));
 	m_comboContext.AddString(_T("11"));
 	
-	m_contextLines = 0;
-	m_comboContext.SetCurSel(0);
+	LoadSettings();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -479,4 +481,115 @@ void CPatchDlg::SetItemAt(POSITION pos, PATCHFILES pf)
 void CPatchDlg::ClearItems()
 {
 	m_fileList.RemoveAll();
+}
+
+/** 
+ * @brief Loads patch dialog settings from registry
+ */
+void CPatchDlg::LoadSettings()
+{
+	int patchStyle = theApp.GetProfileInt(_T("PatchCreator"), _T("PatchStyle"), 0);
+	if (patchStyle < DIFF_OUTPUT_NORMAL || patchStyle > DIFF_OUTPUT_UNIFIED)
+		patchStyle = DIFF_OUTPUT_NORMAL;
+	m_outputStyle = (enum output_style) patchStyle;
+	
+	m_contextLines = theApp.GetProfileInt(_T("PatchCreator"), _T("ContextLines"), 0);
+	if (m_contextLines < 0 || m_contextLines > 50)
+		m_contextLines = 0;
+
+	m_caseSensitive = theApp.GetProfileInt(_T("PatchCreator"), _T("CaseSensitive"), TRUE);
+	m_ignoreBlanks = theApp.GetProfileInt(_T("PatchCreator"), _T("IgnoreBlankLines"), FALSE);
+	
+	m_whitespaceCompare = theApp.GetProfileInt(_T("PatchCreator"), _T("Whitespace"), WHITESPACE_COMPARE_ALL);
+	if (m_whitespaceCompare < WHITESPACE_COMPARE_ALL ||
+		m_whitespaceCompare > WHITESPACE_IGNORE_ALL)
+	{
+		m_whitespaceCompare = WHITESPACE_COMPARE_ALL;
+	}
+	
+	m_openToEditor = theApp.GetProfileInt(_T("PatchCreator"), _T("OpenToEditor"), FALSE);
+	m_includeCmdLine = theApp.GetProfileInt(_T("PatchCreator"), _T("IncludeCmdLine"), FALSE);
+
+	UpdateData(FALSE);
+
+	CString str;
+	switch (m_outputStyle)
+	{
+	case DIFF_OUTPUT_NORMAL:
+		VERIFY(str.LoadString(IDS_DIFF_NORMAL));
+		m_comboStyle.SelectString(-1, str);
+		break;
+	case DIFF_OUTPUT_CONTEXT:
+		VERIFY(str.LoadString(IDS_DIFF_CONTEXT));
+		m_comboStyle.SelectString(-1, str);
+		break;
+	case DIFF_OUTPUT_UNIFIED:
+		VERIFY(str.LoadString(IDS_DIFF_UNIFIED));
+		m_comboStyle.SelectString(-1, str);
+		break;
+	}
+
+	str.Format(_T("%d"), m_contextLines);
+	m_comboContext.SelectString(-1, str);
+
+	if (m_outputStyle == OUTPUT_CONTEXT || m_outputStyle == OUTPUT_UNIFIED)
+		m_comboContext.EnableWindow(TRUE);
+	else
+		m_comboContext.EnableWindow(FALSE);
+}
+
+/** 
+ * @brief Saves patch dialog settings to registry
+ */
+void CPatchDlg::SaveSettings()
+{
+	int patchStyle = m_outputStyle;
+	theApp.WriteProfileInt(_T("PatchCreator"), _T("PatchStyle"), m_outputStyle);
+	theApp.WriteProfileInt(_T("PatchCreator"), _T("ContextLines"), m_contextLines);
+	theApp.WriteProfileInt(_T("PatchCreator"), _T("CaseSensitive"), m_caseSensitive);
+	theApp.WriteProfileInt(_T("PatchCreator"), _T("IgnoreBlankLines"), m_ignoreBlanks);
+	theApp.WriteProfileInt(_T("PatchCreator"), _T("Whitespace"), m_whitespaceCompare);
+	theApp.WriteProfileInt(_T("PatchCreator"), _T("OpenToEditor"), m_openToEditor);
+	theApp.WriteProfileInt(_T("PatchCreator"), _T("IncludeCmdLine"), m_includeCmdLine);
+}
+
+/** 
+ * @brief Resets patch dialog settings to defaults
+ */
+void CPatchDlg::OnDefaultSettings()
+{
+	m_outputStyle = (enum output_style) DIFF_OUTPUT_NORMAL;
+	m_contextLines = 0;
+	m_caseSensitive = TRUE;
+	m_ignoreBlanks = FALSE;
+	m_whitespaceCompare = WHITESPACE_COMPARE_ALL;
+	m_openToEditor = FALSE;
+	m_includeCmdLine = FALSE;
+
+	UpdateData(FALSE);
+
+	CString str;
+	switch (m_outputStyle)
+	{
+	case DIFF_OUTPUT_NORMAL:
+		VERIFY(str.LoadString(IDS_DIFF_NORMAL));
+		m_comboStyle.SelectString(-1, str);
+		break;
+	case DIFF_OUTPUT_CONTEXT:
+		VERIFY(str.LoadString(IDS_DIFF_CONTEXT));
+		m_comboStyle.SelectString(-1, str);
+		break;
+	case DIFF_OUTPUT_UNIFIED:
+		VERIFY(str.LoadString(IDS_DIFF_UNIFIED));
+		m_comboStyle.SelectString(-1, str);
+		break;
+	}
+
+	str.Format(_T("%d"), m_contextLines);
+	m_comboContext.SelectString(-1, str);
+
+	if (m_outputStyle == OUTPUT_CONTEXT || m_outputStyle == OUTPUT_UNIFIED)
+		m_comboContext.EnableWindow(TRUE);
+	else
+		m_comboContext.EnableWindow(FALSE);
 }

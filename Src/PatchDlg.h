@@ -35,14 +35,16 @@
 /** 
  * @brief Filepair to create patch
  */
-typedef struct tagPATCHFILES
+struct PATCHFILES
 {
 	CString lfile;
 	CString rfile;
 	time_t ltime, rtime;
-} PATCHFILES;
+};
 
-
+/** 
+ * @brief Dialog class for Generate Patch -dialog
+ */
 class CPatchDlg : public CDialog
 {
 // Construction
@@ -92,6 +94,8 @@ protected:
 	CList<PATCHFILES, PATCHFILES> m_fileList;
 	
 	void ChangeFile(CString sFile, BOOL bLeft);
+	void LoadSettings();
+	void SaveSettings();
 
 	// Generated message map functions
 	//{{AFX_MSG(CPatchDlg)
@@ -105,6 +109,7 @@ protected:
 	afx_msg void OnSelchangeResultCombo();
 	afx_msg void OnSelchangeDiffStyle();
 	afx_msg void OnDiffSwapFiles();
+	afx_msg void OnDefaultSettings();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
