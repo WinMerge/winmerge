@@ -4688,13 +4688,13 @@ OnMouseWheel (UINT nFlags, short zDelta, CPoint pt)
 
   // -> HE
 // int nPageLines = GetScreenLines();
-  int nSubLineCount = GetSubLineCount();
+  //int nSubLineCount = GetSubLineCount();
 
   int nNewTopSubLine= m_nTopSubLine - zDelta / 40;
 
   if (nNewTopSubLine < 0)
     nNewTopSubLine = 0;
-  if (nNewTopSubLine > (si.nMax - si.nPage + 1))
+  if (nNewTopSubLine > (si.nMax - (signed int)si.nPage + 1))
     nNewTopSubLine = si.nMax - si.nPage + 1;
 
   ScrollToSubLine(nNewTopSubLine, TRUE);

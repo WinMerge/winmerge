@@ -203,13 +203,11 @@ void CMergeDiffDetailView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 	}
 }
 
-
-
 void CMergeDiffDetailView::OnDisplayDiff(int nDiff /*=0*/)
 {
 	int newlineBegin, newlineEnd;
 	CMergeDoc *pd = GetDocument();
-	if (nDiff < 0 || nDiff >= pd->m_nDiffs)
+	if (nDiff < 0 || nDiff >= (signed int)pd->m_nDiffs)
 	{
 		newlineBegin = 0;
 		newlineEnd = -1;

@@ -696,7 +696,7 @@ void CMergeEditView::OnNextdiff()
 	int curDiff = pd->GetCurrentDiff();
 	if (curDiff != -1)
 	{
-		if (curDiff == pd->m_nDiffs - 1)
+		if (curDiff == (signed int)pd->m_nDiffs - 1)
 			// We're on a last diff, so select that
 			SelectDiff(curDiff, TRUE, FALSE);
 		else

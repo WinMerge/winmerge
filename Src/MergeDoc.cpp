@@ -538,7 +538,7 @@ void CMergeDoc::CopyAllList(bool bSrcLeft)
 /// Copy some diffs from one side to the other (as specified by caller)
 void CMergeDoc::CopyMultipleList(bool bSrcLeft, int firstDiff, int lastDiff)
 {
-	lastDiff = min(m_nDiffs-1, lastDiff);
+	lastDiff = min((signed int)m_nDiffs - 1, lastDiff);
 	firstDiff = max(0, firstDiff);
 	if (firstDiff > lastDiff)
 		return;
