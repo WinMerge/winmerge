@@ -1,3 +1,7 @@
+2004-01-31 Perry
+ BUG: [ 887957 ] Some builds of ShellExtension need include dir fixed
+  ShellExtension: ShellExtension.dsp
+
 2004-01-30 WinMerge experimental release 2.1.5.8 (cvs)
 
 2004-01-30 Kimmo
