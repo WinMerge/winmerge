@@ -1,3 +1,8 @@
+2004-06-10 Kimmo
+ BUG: [ 969922 ] inconsistent 'options' dialog behavior
+  Remove 'Apply' button from options-dialog
+  Src: MainFrm.cpp
+
 2004-06-10 Laoran
  PATCH: [ 968887 ] UI for codepage detection
   Src: DiffContext.cpp DiffContext.h DiffWrapper.cpp DiffWrapper.h DirDoc.cpp

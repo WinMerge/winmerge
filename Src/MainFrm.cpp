@@ -1193,6 +1193,7 @@ void CMainFrame::OnOptions()
 	CPropRegistry regpage;
     CPropCompare compage(&m_options);
 	CPropEditor editor;
+	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
    
 	sht.AddPage(&gen);
 	sht.AddPage(&compage);
