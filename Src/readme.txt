@@ -1,6 +1,9 @@
 2004-09-20 Kimmo
  PATCH: [ 1030752 ] Set focus to file view when goto line in location pane
   Src: LocationView.cpp
+ BUG: [ 1026833 ] WinMergeU.exe build to dir MergeUnicodeReleaseMinsize
+  Build WinMergeU.exe to Build\MergeUnicodeRelease\
+  Src: Merge.dsp
 
 2004-09-19 Kimmo
  PATCH: [ 1030490 ] Updated Swedish Translation
