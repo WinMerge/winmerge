@@ -1,8 +1,4 @@
 /////////////////////////////////////////////////////////////////////////////
-// WinMergeShell.cpp : implementation file
-// see WinMergeShell.h for description
-//
-/////////////////////////////////////////////////////////////////////////////
 //    License (GPLv2+):
 //    This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 //    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
@@ -16,13 +12,20 @@
 //   defines if context menu is shown (extension enabled)
 //  HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Executable
 //   contains path to program to run (can be batch file too)
-//
+/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  WinMergeShell.cpp
+ *
+ * @brief Implementation of the ShellExtension class
+ */
+// RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
 #include "ShellExtension.h"
 #include "WinMergeShell.h"
 #include "RegKey.h"
+#include "coretools.h"
 
 // Registry path to WinMerge 
 static LPCTSTR f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
@@ -202,22 +205,31 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	if (!GetWinMergeDir(strWinMergePath))
 		return S_FALSE;
 
+	// Check that file we are trying to execute exists and is executable
+	if (!CheckExecutable(strWinMergePath))
+		return S_FALSE;
+
 	// Format command line, use recursive '/r' switch always
 	CString strCommandLine = strWinMergePath + " /r \"" +
 		m_strPaths[0] + "\" \"" + m_strPaths[1] + "\"";
 	
-	STARTUPINFO stInfo = { sizeof(stInfo) };
-	PROCESS_INFORMATION processInfo;
+	BOOL retVal = FALSE;
+	STARTUPINFO stInfo = {0};
+	stInfo.cb = sizeof(STARTUPINFO);
+	PROCESS_INFORMATION processInfo = {0};
 	
 	// Get the command index - the only valid one is 0.
 	switch (LOWORD(pCmdInfo->lpVerb))
 	{
 	case 0:
-		CreateProcess(NULL, (LPSTR)(LPCTSTR) strCommandLine,
+		retVal = CreateProcess(NULL, (LPTSTR)(LPCTSTR) strCommandLine,
 			NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
 			&stInfo, &processInfo);
 
+		if (retVal)
 		return S_OK;
+		else
+			return S_FALSE;
 		break;
 
 	default:
@@ -240,4 +252,22 @@ BOOL CWinMergeShell::GetWinMergeDir(CString &strDir)
 		return FALSE;
 
 	return TRUE;
+}
+
+/// Checks if given file exists and is executable
+BOOL CWinMergeShell::CheckExecutable(CString path)
+{
+	CString ext;
+	SplitFilename(path, NULL, NULL, &ext);
+
+	// Check extension
+	ext.MakeLower();
+	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
+	{
+		// Check if file exists
+		CFileStatus status;
+		if (CFile::GetStatus(path, status))
+			return TRUE;
+	}
+	return FALSE;
 }

@@ -1,3 +1,7 @@
+2003-11-03 Kimmo
+ PATCH: [ 834526 ] Check that file exist before executing in ShellExtension
+  ShellExtension: ShellExtension.dsp WinMergeShell.h WinMergeShell.cpp
+
 2003-11-02 Kimmo
  BUG: (part of) [ 829435 ] Fix character classification routines for UNICODE
   WinMerge: MainFrm.cpp MergeDoc.cpp Paths.h Paths.cpp

@@ -1,7 +1,4 @@
 /////////////////////////////////////////////////////////////////////////////
-// WinMergeShell.h : declaration file
-//
-/////////////////////////////////////////////////////////////////////////////
 //    License (GPLv2+):
 //    This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 //    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
@@ -9,7 +6,12 @@
 /////////////////////////////////////////////////////////////////////////////
 // Look at http://www.codeproject.com/shell/ for excellent guide
 // to Windows Shell programming by Michael Dunn.
-// 
+/** 
+ * @file  WinMergeShell.h
+ *
+ * @brief Declaration file for ShellExtension class
+ */
+// RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #ifndef __WINMERGESHELL_H_
@@ -20,8 +22,9 @@
 #include <atlconv.h>  // for ATL string conversion macros
 #include "resource.h"       // main symbols
 
-/////////////////////////////////////////////////////////////////////////////
-// CWinMergeShell
+/** 
+ * @brief Class for handling shell extension tasks
+ */
 class ATL_NO_VTABLE CWinMergeShell : 
 	public CComObjectRootEx<CComSingleThreadModel>,
 	public CComCoClass<CWinMergeShell, &CLSID_WinMergeShell>,
@@ -50,6 +53,7 @@ protected:
 	UINT	m_nSelectedItems;
 
 	BOOL GetWinMergeDir(CString &strDir);
+	BOOL CheckExecutable(CString path);
 
 public:
     // IShellExtInit
