@@ -3306,6 +3306,12 @@ EnsureVisible (CPoint pt)
 	if( nNewTopSubLine >= nSubLineCount )
 		nNewTopSubLine = nSubLineCount - 1;
 	
+	// WINMERGE: This line fixes (cursor) slowdown after merges!
+	// I don't know exactly why, but propably we are setting
+	// m_nTopLine to zero in ResetView() and are not setting to
+	// valid value again.  Maybe this is a good place to set it?
+	m_nTopLine = nNewTopSubLine;
+
 	if( nNewTopSubLine != m_nTopSubLine )
 	{
 		ScrollToSubLine( nNewTopSubLine );

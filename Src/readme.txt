@@ -1,3 +1,7 @@
+2003-06-12 Kimmo
+ PATCH: [ 753284 ] Fix cursor slowdown after rescan
+  editlib: ccrystaltextview.cpp
+
 2003-06-08 Kimmo
  PATCH: [ 750160 ] Char width fix
    editlib: ccrystaltextview.cpp
