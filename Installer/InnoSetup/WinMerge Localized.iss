@@ -380,7 +380,7 @@ Source: Runtimes\msvcrt.dll; DestDir: {sys}; Flags: restartreplace uninsneveruni
 Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; Components: Runtimes
 ; end VC system files
 
-Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder
+Source: ..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
 Source: ..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Check: Install7ZipDll(313)

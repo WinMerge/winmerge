@@ -1,6 +1,8 @@
 2004-10-28 Kimmo
  PATCH: [ 1055590 ] Installer: read manual files from /Build/Manual
   InnoSetup: WinMerge Localized.iss
+ PATCH: [ 1055596 ] Installer: Read ShellExtension.dll from /Build/MergeRelease
+  InnoSetup: WinMerge Localized.iss
 
 2004-10-28 Kimmo
  BUG: [ 1053431 ] typo in Bulgarian LanguageName
