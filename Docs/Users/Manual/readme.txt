@@ -1,6 +1,8 @@
 2004-06-15 Kimmo
  PATCH: [ 972861 ] Userdocs: typo in WinMerge_help.xml
   Manual: WinMerge_help.xml
+ PATCH: [ 973299 ] Userdocs: add dssl stylesheet
+  Manual new file: Manual-html.dsl
 
 2004-06-03 Kimmo
  PATCH: [ 965144 ] Userdocs: Filters
