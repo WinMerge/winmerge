@@ -1,3 +1,8 @@
+2003-10-30 Laoran
+ PATCH: [ 830132 ] open empty file
+  common: UniFile.cpp
+  WinMerge: MergeDoc.cpp files.cpp
+
 2003-10-30 Kimmo
  Remove SillyTestCrap() from Merge.cpp
   WinMerge: Merge.cpp

@@ -78,6 +78,10 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 		
 	if (bSuccess)
 	{
+		if (fileData->dwSize == 0 && dwFileSizeHigh == 0)
+			// Empty file (but should be accepted anyway)
+			return bSuccess;
+
 		fileData->hMapping = CreateFileMapping(fileData->hFile,
 				NULL, dwProtectFlag, 0, fileData->dwSize, NULL);
 		if (!fileData->hMapping)

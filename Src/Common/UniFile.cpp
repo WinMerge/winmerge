@@ -160,6 +160,13 @@ bool UniMemFile::DoOpen(DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenC
 		return false;
 	}
 
+	if (sizelo == 0)
+	{
+		// Empty file (but should be accepted anyway)
+		m_lineno = 0;
+		return true;
+	}
+
 	LPSECURITY_ATTRIBUTES lpAttributes = NULL; // default security
 	LPCTSTR lpName = NULL; // nameless mapping
 	m_hMapping = CreateFileMapping(m_handle, lpAttributes, dwMappingProtect, sizehi, sizelo, lpName);

@@ -1160,6 +1160,9 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 		int arraysize = 500;
 		m_aLines.SetSize(arraysize);
 		
+		// preveol must be initialized for empty files
+		preveol = "\n";
+		
 		do {
 			done = !pufile->ReadString(line, eol);
 
@@ -1220,7 +1223,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 		SetCRLFMode(nCrlfStyle);
 		
 		//  At least one empty line must present
-		// (memory mapping doesn't work for zero-length files)
+		// (view does not work for empty buffers)
 		ASSERT(m_aLines.GetSize() > 0);
 		
 		m_bInit = TRUE;
@@ -1303,7 +1306,8 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	CString text;			
 	int nLastLength = GetFullLineLength(nLineCount-1);
 		
-	GetTextWithoutEmptys(0, 0, nLineCount - 1, nLastLength, text, nCrlfStyle);
+	if (nLineCount > 1 || nLastLength > 0)
+		GetTextWithoutEmptys(0, 0, nLineCount - 1, nLastLength, text, nCrlfStyle);
 	UINT nchars = text.GetLength();
 
 	UINT nbytes = -1;
