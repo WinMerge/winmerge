@@ -91,7 +91,7 @@ STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION |
     WS_SYSMENU | WS_THICKFRAME
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "MakePatchDirs"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     PUSHBUTTON      "...",IDC_DIR_BROWSE,242,23,26,14
     DEFPUSHBUTTON   "Go",IDOK,203,62,50,14
@@ -113,8 +113,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,2,1,0
- PRODUCTVERSION 1,2,1,0
+ FILEVERSION 1,2,2,0
+ PRODUCTVERSION 1,2,2,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -132,14 +132,14 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "Perry Rapp\0"
             VALUE "FileDescription", "MakePatchDirs MFC Application\0"
-            VALUE "FileVersion", "1, 2, 1, 0\0"
+            VALUE "FileVersion", "1, 2, 2, 0\0"
             VALUE "InternalName", "MakePatchDirs\0"
             VALUE "LegalCopyright", "Copyright (C) 2003\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "MakePatchDirs.EXE\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "MakePatchDirs Application\0"
-            VALUE "ProductVersion", "1, 2, 1, 0\0"
+            VALUE "ProductVersion", "1, 2, 2, 0\0"
             VALUE "SpecialBuild", "\0"
         END
     END

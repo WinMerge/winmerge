@@ -1,8 +1,8 @@
 /** 
  * @file  MakePatchDirsDlg.cpp
  *
- * @date  Edited:  2004-01-18 (Perry)
  * @date  Created: 2003 (Perry)
+ * @date  Edited:  2004-06-08 (Perry)
  * @brief Code for CMakePatchDirsDlg (main dialog) & CAboutDlg classes
  */
 // RCS ID line follows -- this is updated by CVS
@@ -232,6 +232,7 @@ bool PatchDlgFilter::handle(bool dir, const CString & subdir, const CString & fi
 			|| ext.CompareNoCase(_T("opt"))==0
 			|| ext.CompareNoCase(_T("aps"))==0
 			|| ext.CompareNoCase(_T("plg"))==0
+			|| ext.CompareNoCase(_T("clw"))==0
 			)
 		{
 			return false;

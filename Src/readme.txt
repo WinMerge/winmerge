@@ -1,3 +1,8 @@
+2004-06-08 Perry
+ [ 967406 ] Add .clw to filtered out files in MakePatchDirs
+ Filter out also clw files in MSVC filter. Bump version to 1.2.2.0.
+  MakePatchDirs: MakePatchDirs.rc MakePatchDirsDlg.cpp
+
 2004-06-07 Kimmo
  BUG: [ 967899 ] Ignore carriage return differences logic backwards
   Src: MainFrm.cpp
