@@ -161,7 +161,6 @@ WizardSelectProgramGroup=Trieu la carpeta del Menú Inici
 SelectStartMenuFolderDesc=On cal situar els enllaços del programa?
 SelectStartMenuFolderLabel3=Setup will create the program's shortcuts in the following Start Menu folder.
 SelectStartMenuFolderBrowseLabel=To continue, click Next. If you would like to select a different folder, click Browse.
-SelectDirLabel3=Setup will install [name] into the following folder.
 SelectDirBrowseLabel=To continue, click Next. If you would like to select a different folder, click Browse.
 NoIconsCheck=&No crear cap icona
 MustEnterGroupName=Cal que hi entreu un nom de carpeta.
