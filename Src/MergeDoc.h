@@ -69,7 +69,7 @@ private :
         CMergeDoc * m_pOwnerDoc;
 		BOOL m_bIsLeft;
 public :
-	      bool lastUndoGroup();
+	      bool curUndoGroup();
 	      void DeleteLine(int nLine);
 	      void ReplaceLine(int nLine, const CString& strText);
 		BOOL SaveToFile (LPCTSTR pszFileName, 

@@ -816,7 +816,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 	CMergeDoc* pDoc = GetDocument();
 
 	// simple hook for multiplex undo operations
-	if(dynamic_cast<CMergeDoc::CDiffTextBuffer*>(m_pTextBuffer)->lastUndoGroup())
+	if(dynamic_cast<CMergeDoc::CDiffTextBuffer*>(m_pTextBuffer)->curUndoGroup())
 	{
 		pDoc->undoTgt.erase(pDoc->curUndo, pDoc->undoTgt.end());
 		pDoc->undoTgt.push_back(this);

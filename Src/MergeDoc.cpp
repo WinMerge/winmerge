@@ -553,14 +553,20 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 		int deleted_lines=0;
 		int limit = cd_dend;
 
+		POSITION pos = GetFirstViewPosition();
+		CCrystalTextView* curView = dynamic_cast<CCrystalTextView*>(GetNextView(pos));
+
+		dbuf.BeginUndoGroup();
 		if (cd_blank>=0)
 		{
 			// text was missing, so delete rest of lines on both sides
-			sbuf.DeleteText(NULL, cd_blank, 0, cd_dend+1, 0, CE_ACTION_UNKNOWN, FALSE);
+			// delete only on destination side since rescan will clear the other side
 			dbuf.DeleteText(NULL, cd_blank, 0, cd_dend+1, 0, CE_ACTION_UNKNOWN, FALSE);
 			deleted_lines=cd_dend-cd_blank+1;
 
 			limit=cd_blank-1;
+			dbuf.FlushUndoGroup(curView);
+			dbuf.BeginUndoGroup(TRUE);
 		}
 
 		CString strLine;
@@ -574,6 +580,8 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 			// text exists on left side, so just replace
 			sbuf.GetLine(i, strLine);
 			dbuf.ReplaceLine(i, strLine);
+			dbuf.FlushUndoGroup(curView);
+			dbuf.BeginUndoGroup(TRUE);
 		}
 
 		//mf->m_pRight->ReplaceSelection(strText, 0);
@@ -913,10 +921,9 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 
 void CMergeDoc::CDiffTextBuffer::ReplaceLine(int nLine, const CString &strText)
 {
-  DeleteLine(nLine);
-
-  int endl,endc;
-  InternalInsertText(NULL, nLine, 0, strText, endl,endc);
+	DeleteText(NULL, nLine, 0, nLine, GetLineLength(nLine));
+	int endl,endc;
+	InsertText(NULL, nLine, 0, strText, endl,endc);
 }
 
 void CMergeDoc::CDiffTextBuffer::DeleteLine(int nLine)
@@ -1058,7 +1065,7 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	pCmdUI->SetText(s);
 }
 
-bool CMergeDoc::CDiffTextBuffer::lastUndoGroup()
+bool CMergeDoc::CDiffTextBuffer::curUndoGroup()
 {
-	return m_aUndoBuf[m_aUndoBuf.GetSize()-1].m_dwFlags & UNDO_BEGINGROUP;
+	return m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP;
 }
