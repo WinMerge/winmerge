@@ -8,6 +8,7 @@ Call BuildDll Danish
 Call BuildDll Dutch
 Call BuildDll French
 Call BuildDll German
+Call BuildDll Hungarian
 Call BuildDll Italian
 Call BuildDll Japanese
 Call BuildDll Korean
