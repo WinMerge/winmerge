@@ -910,38 +910,13 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE PRELOAD DISCARDABLE 
-BEGIN
-    IDR_MAINFRAME           "WinMerge"
-    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge denne folder"
-END
-
-STRINGTABLE PRELOAD DISCARDABLE 
-BEGIN
-    IDS_VERSION_FMT         "Version %1"
-    IDS_ALLFILES            "Alle filer (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "Er du sikker på du vil kopiere alle forskjeller til den venstre filen?"
-    IDS_CONFIRM_ALL_RIGHT   "Er du sikker på du vil kopiere alle forskjeller til den høyre filen?"
-    IDS_ERRORS_TITLE        "%1 feil"
-    IDS_CONFIRM_COPY2DIR    "Er du sikker på du vil kopiere %1 av %2 valgte?"
-    IDS_FONT_CHANGE         "Den valgte endring av skrifttype vil ikke kunne ses i allerede åpne vinduer."
-    IDS_DIRECTORY_WINDOW_TITLE "Resultat av sammenligning av mapper"
-    IDS_DIRECTORY_WINDOW_STATUS_FMT "Resultater for %1 og %2"
-    IDS_FILES_ARE_DIFFERENT "Filer er forskjellige"
-    IDS_BIN_FILES_DIFF      "Binære filer er forskjellige"
-    IDS_ONLY_IN_FMT         "Kun i %1"
-    IDS_IDENTICAL           "Identiske"
-    IDS_CANT_COMPARE_FILES  "Kan ikke sammenligne filer"
-END
-
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Klar"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -952,7 +927,7 @@ BEGIN
 END
 
 // ID_FILE_NEW SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_NEW             "Lag et nytt dokument\nNy"
     ID_FILE_OPEN            "Åpne et eksisterende dokumentet\nÅpne (Ctrl+O)"
@@ -966,13 +941,13 @@ BEGIN
 END
 
 // ID_APP_ABOUT SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_APP_ABOUT            "Vis programinformasjon, versjonsnummer og opphavsrett\nOm"
     ID_APP_EXIT             "Avslutt programmet; spør om man vil lagre dokumenter\nAvslutt"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Åpne dette dokumentet"
     ID_FILE_MRU_FILE2       "Åpne dette dokumentet"
@@ -993,13 +968,13 @@ BEGIN
 END
 
 // ID_NEXT_PANE SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_NEXT_PANE            "Skift til det neste vinduet\nNeste vindu"
     ID_PREV_PANE            "Skift til det forrige vinduet\nForrige vindu"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_WINDOW_NEW           "Åpne et nytt vindu til det aktive dokumentet\nNytt vindu"
     ID_WINDOW_ARRANGE       "Arranger ikonene i bunnen av vinduet\nArranger ikoner"
@@ -1010,7 +985,7 @@ BEGIN
 END
 
 // ID_EDIT_CLEAR SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_EDIT_CLEAR           "Slett det valgte\nSlett"
     ID_EDIT_CLEAR_ALL       "Slett alt\nSlett alt"
@@ -1025,13 +1000,13 @@ BEGIN
     ID_EDIT_REDO            "Gjenopprett den forrige handlingen\nGjenopprett"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Vis eller skjul verktøylinjen\nVis verktøylinjen"
     ID_VIEW_STATUS_BAR      "Vis eller skjul statuslinjen\nVis statuslinjen"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCSIZE          "Endre vindusstørrelse"
     AFX_IDS_SCMOVE          "Endre vindusposisjon"
@@ -1042,73 +1017,45 @@ BEGIN
     AFX_IDS_SCCLOSE         "Lukk det aktive vinduet og spør om dokumenter skal lagres"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCRESTORE       "Gjenopprett vinduet til normal størrelse"
     AFX_IDS_SCTASKLIST      "Liste med aktive vinduer"
     AFX_IDS_MDICHILD        "Aktiver dette vinduet"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Lukk utskriftsforhåndsvisning\nAvbryt forhåndsvisning"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_L2R                  "Kopier den valgte teksten til den høyre filen\nKopier høyre (Alt Høyre)"
-    ID_R2L                  "Kopier den valgte teksten til den venstre filen\nKopier venstre (Alt Venstre)"
-    ID_OPTIONS_SHOWIDENTICAL "Viser filer som er helt like"
-    ID_OPTIONS_SHOWDIFFERENT "Viser filer som har forskjeller"
-    ID_PREVDIFF             "Scroll til den forrige forskjellen\nForrige forskjell (Alt Opp)"
-    ID_NEXTDIFF             "Scroll til den neste forskjellen\nNeste forskjell (Alt Ned)"
-    ID_OPTIONS_BACKUPORIGINALFILE 
-                            "Lagre en kopi av originalen som *.bak\nBackup"
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge denne folder"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
-                            "Scroll automatisk til den første forskjellen\nScroll første"
-    ID_OPTIONS_IGNOREWHITESPACE 
-                            "Ignorerer mellomrom under sammenligning av filer"
-    ID_HIDE_BACKUP_FILES    "Skjul filer med extension BAK"
-    ID_HELP_GNULICENSE      "Vis GNU general public license"
-    ID_USEVSS               "Forsøker å sjekke skrivebeskyttede filer ut fra SourceSafe"
-    ID_OPTIONS              "Sett programinnstillinger\nInnstillinger"
-    ID_ALL_LEFT             "Kopier alle forskjeller til den venstre filen\nAlt til venstre"
-    ID_ALL_RIGHT            "Kopier alle forskjeller til den høyre filen\nAlt til høyre"
-    ID_VIEW_SELECTFONT      "Velg skrifttype til vinduene\nVelg skrifttype"
-    ID_VIEW_USEDEFAULTFONT  "Bruk standard skrifttype for vinduene\nStandard skrifttype"
-    ID_DIR_COPY_FILE_TO_LEFT "Kopier den valgte filen til den angitte mappen"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT "Kopier den valgte filen til den angitte mappen"
-    ID_VIEW_LANGUAGE        "Velg språk til brukergrensesnittet\nSpråk"
-    ID_HELP_CONTENTS        "Vis hjelpen for WinMerge\nHjelp"
-    ID_FIRSTDIFF            "Scroll til den første forskjellen\nFørste forskjell (Alt+Home)"
-    ID_CURDIFF              "Scroll til den aktuelle forskjellen\nAktuelle forskjell (Alt+Enter)"
-    ID_LASTDIFF             "Scroll til den siste forskjellen\nSiste forskjell (Alt+End)"
-    ID_DIFFNUM              "plassholder"
-    ID_DIR_DEL_LEFT         "Slett valgte elementer til venstre"
-    ID_DIR_DEL_RIGHT        "Slett valgte elementer til høyre"
-    ID_DIFFSTATUS           "plassholder for statusteller"
-    ID_OPTIONS_SHOWUNIQUELEFT "Viser filer som kun eksisterer på venstre side"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Viser filer som kun eksisterer på høyre side"
-    ID_DIR_DEL_BOTH         "Slett de valgte element(er) på begge sider"
-    ID_DIR_OPEN_LEFT        "Åpne venstre fil"
-    ID_DIR_OPEN_LEFT_WITH   "Åpne venstre fil med ..."
-    ID_DIR_OPEN_RIGHT       "Åpne høyre fil"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
-    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
-    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+    IDS_VERSION_FMT         "Version %1"
+    IDS_ALLFILES            "Alle filer (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "Er du sikker på du vil kopiere alle forskjeller til den venstre filen?"
+    IDS_CONFIRM_ALL_RIGHT   "Er du sikker på du vil kopiere alle forskjeller til den høyre filen?"
+    IDS_ERRORS_TITLE        "%1 feil"
+    IDS_CONFIRM_COPY2DIR    "Er du sikker på du vil kopiere %1 av %2 valgte?"
+    IDS_FONT_CHANGE         "Den valgte endring av skrifttype vil ikke kunne ses i allerede åpne vinduer."
+    IDS_DIRECTORY_WINDOW_TITLE "Resultat av sammenligning av mapper"
+    IDS_DIRECTORY_WINDOW_STATUS_FMT "Resultater for %1 og %2"
+    IDS_FILES_ARE_DIFFERENT "Filer er forskjellige"
+    IDS_BIN_FILES_DIFF      "Binære filer er forskjellige"
+    IDS_ONLY_IN_FMT         "Kun i %1"
+    IDS_IDENTICAL           "Identiske"
+    IDS_CANT_COMPARE_FILES  "Kan ikke sammenligne filer"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Lagre som"
     IDS_SELECT_FILES_OR_FOLDERS 
@@ -1131,7 +1078,7 @@ BEGIN
 END
 
 // IDS_COLHDR_FILENAME SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Filnavn"
     IDS_COLHDR_DIR          "Mappe"
@@ -1148,12 +1095,12 @@ BEGIN
     IDS_COLHDR_LTIMEM       "Venstre dato"
     IDS_COLHDR_RTIMEM       "Høyre dato"
     IDS_COLHDR_EXTENSION    "Extension"
-    IDS_CONFIRM_DELETE_ITEMS 
+    IDS_CONFIRM_DELETE_ITEMS
                             "Er du sikker på at du vil slette %1 av %2 valgte element(er)?"
     IDS_DEL_LEFT_FMT        "Slett venstre side %1 av %2 valgte element(er)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_DEL_RIGHT_FMT       "Slett høyre side %1 av %2 valgte element(er)"
     IDS_DELETE_FILE_FAILED  "Slett fil %1 feilet: %2"
@@ -1173,29 +1120,7 @@ BEGIN
     IDS_BIN_FILES_SAME      "Binære filer er identiske"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "Åpne høyre fil med ..."
-    ID_OPTIONS_SHOWBINARIES "Viser binære filer"
-    ID_VIEW_WHITESPACE      "Viser et tegn for mellomrom"
-    ID_REFRESH              "Oppdater visning\nOppdater (F5)"
-    ID_SHOWLINEDIFF         "Highlight difference in current line"
-    ID_EDITOR_COPY_PATH     "Copy full Path"
-    ID_EDITOR_COPY_FILENAME "Copy Filename"
-    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
-    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
-    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
-END
-
-// ID_EOL_TO_DOS SYNCHRO
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
-    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
-    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
-END
-
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_FILESAVE_FAILED     "Lagring av %1 feilet. Vil du lagre filen under et annet navn?"
     IDS_ERROR_FILE_NOT_FOUND "Fil ikke funnet: %1"
@@ -1215,16 +1140,6 @@ BEGIN
     IDS_COLHDR_RVERSION     "Right File Version"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_FILE_SAVE_LEFT       "Save the left file"
-    ID_FILE_SAVE_RIGHT      "Save the right file"
-    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
-    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
-    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
-    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
-END
-
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_LEFTONLY            "Left Only"
@@ -1235,13 +1150,9 @@ BEGIN
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_STATUSBAR_READONLY  "RO"
-    IDS_FILEPACK_FAILED_LEFT 
-                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-    IDS_FILEPACK_FAILED_RIGHT 
-                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
     IDS_FILEWRITE_ERROR     "Could not write to file %1."
@@ -1253,10 +1164,20 @@ BEGIN
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Context"
     IDS_DIFF_UNIFIED        "Unified"
+    IDS_FILEPACK_FAILED_LEFT
+                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_RIGHT
+                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
 // IDS_NUM_REPLACED SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "Erstattet %1 streng(er)."
     IDS_EDIT_TEXT_NOT_FOUND "Kan ikke finne strengen ""%s"""
@@ -1267,13 +1188,92 @@ BEGIN
                             "The VSS Working Folder and the location of the current file do not match. Continue?"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
-    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
-    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+    ID_L2R                  "Kopier den valgte teksten til den høyre filen\nKopier høyre (Alt Høyre)"
+    ID_R2L                  "Kopier den valgte teksten til den venstre filen\nKopier venstre (Alt Venstre)"
+    ID_OPTIONS_SHOWIDENTICAL "Viser filer som er helt like"
+    ID_OPTIONS_SHOWDIFFERENT "Viser filer som har forskjeller"
+    ID_PREVDIFF             "Scroll til den forrige forskjellen\nForrige forskjell (Alt Opp)"
+    ID_NEXTDIFF             "Scroll til den neste forskjellen\nNeste forskjell (Alt Ned)"
+    ID_OPTIONS_BACKUPORIGINALFILE 
+                            "Lagre en kopi av originalen som *.bak\nBackup"
 END
 
-// LANGUAGES SYNCHRO
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
+                            "Scroll automatisk til den første forskjellen\nScroll første"
+    ID_OPTIONS_IGNOREWHITESPACE 
+                            "Ignorerer mellomrom under sammenligning av filer"
+    ID_HIDE_BACKUP_FILES    "Skjul filer med extension BAK"
+    ID_HELP_GNULICENSE      "Vis GNU general public license"
+    ID_USEVSS               "Forsøker å sjekke skrivebeskyttede filer ut fra SourceSafe"
+    ID_OPTIONS              "Sett programinnstillinger\nInnstillinger"
+    ID_ALL_LEFT             "Kopier alle forskjeller til den venstre filen\nAlt til venstre"
+    ID_ALL_RIGHT            "Kopier alle forskjeller til den høyre filen\nAlt til høyre"
+    ID_VIEW_SELECTFONT      "Velg skrifttype til vinduene\nVelg skrifttype"
+    ID_VIEW_USEDEFAULTFONT  "Bruk standard skrifttype for vinduene\nStandard skrifttype"
+    ID_DIR_COPY_FILE_TO_LEFT "Kopier den valgte filen til den angitte mappen"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_DIR_COPY_FILE_TO_RIGHT "Kopier den valgte filen til den angitte mappen"
+    ID_VIEW_LANGUAGE        "Velg språk til brukergrensesnittet\nSpråk"
+    ID_HELP_CONTENTS        "Vis hjelpen for WinMerge\nHjelp"
+    ID_FIRSTDIFF            "Scroll til den første forskjellen\nFørste forskjell (Alt+Home)"
+    ID_CURDIFF              "Scroll til den aktuelle forskjellen\nAktuelle forskjell (Alt+Enter)"
+    ID_LASTDIFF             "Scroll til den siste forskjellen\nSiste forskjell (Alt+End)"
+    ID_DIFFNUM              "plassholder"
+    ID_DIR_DEL_LEFT         "Slett valgte elementer til venstre"
+    ID_DIR_DEL_RIGHT        "Slett valgte elementer til høyre"
+    ID_DIFFSTATUS           "plassholder for statusteller"
+    ID_OPTIONS_SHOWUNIQUELEFT "Viser filer som kun eksisterer på venstre side"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Viser filer som kun eksisterer på høyre side"
+    ID_DIR_DEL_BOTH         "Slett de valgte element(er) på begge sider"
+    ID_DIR_OPEN_LEFT        "Åpne venstre fil"
+    ID_DIR_OPEN_LEFT_WITH   "Åpne venstre fil med ..."
+    ID_DIR_OPEN_RIGHT       "Åpne høyre fil"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "Åpne høyre fil med ..."
+    ID_OPTIONS_SHOWBINARIES "Viser binære filer"
+    ID_VIEW_WHITESPACE      "Viser et tegn for mellomrom"
+    ID_REFRESH              "Oppdater visning\nOppdater (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_EDITOR_COPY_PATH     "Copy full Path"
+    ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
+    ID_FILE_SAVE_LEFT       "Save the left file"
+    ID_FILE_SAVE_RIGHT      "Save the right file"
+    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
+    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
+    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
+    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
+    ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
+    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
+    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
+    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+END
+
 // END STRINGS SYNCHRO
 #endif    // Norwegian (Bokmal) resources
 /////////////////////////////////////////////////////////////////////////////

@@ -880,38 +880,13 @@ IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE
-BEGIN
-    IDR_MAINFRAME           "WinMerge"
-    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
-END
-
-STRINGTABLE
-BEGIN
-    IDS_VERSION_FMT         "버전 %1"
-    IDS_ALLFILES            "모든 파일 (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "정말 모든 다른 부분을 왼쪽 파일로 복사하시겠습니까?"
-    IDS_CONFIRM_ALL_RIGHT   "정말 모든 다른 부분을 오른쪽 파일로 복사하시겠습니까?"
-    IDS_ERRORS_TITLE        "%1 에러"
-    IDS_CONFIRM_COPY2DIR    "선택한 파일을 정말 복사하시겠습니까(%1 중 %2)"
-    IDS_FONT_CHANGE         "바꾸신 폰트는 현재 비교창에는 적용되지 않습니다."
-    IDS_DIRECTORY_WINDOW_TITLE "디렉토리 비교 결과"
-    IDS_DIRECTORY_WINDOW_STATUS_FMT "비교 결과 %1 와 %2"
-    IDS_FILES_ARE_DIFFERENT "동일하지 않은 파일"
-    IDS_BIN_FILES_DIFF      "동일하지 않은 파일(바이너리 파일)"
-    IDS_ONLY_IN_FMT         "한쪽만 존재(%1)"
-    IDS_IDENTICAL           "동일한 파일"
-    IDS_CANT_COMPARE_FILES  "파일을 비교할 수 없습니다"
-END
-
-STRINGTABLE
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "준비"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -922,7 +897,7 @@ BEGIN
 END
 
 // ID_FILE_NEW SYNCHRO
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_NEW             "새 문서를 만듭니다.\n새문서"
     ID_FILE_OPEN            "기존에 만들어진 문서를 엽니다.\n열기 (Ctrl+O)"
@@ -936,13 +911,13 @@ BEGIN
 END
 
 // ID_APP_ABOUT SYNCHRO
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_APP_ABOUT            "프로그램 정보, 버전, 카피라이트를 봅니다.\n정보"
     ID_APP_EXIT             "프로그램을 종료합니다.\n종료"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_FILE_MRU_FILE1       "선택한 문서 열기"
     ID_FILE_MRU_FILE2       "선택한 문서 열기"
@@ -963,13 +938,13 @@ BEGIN
 END
 
 // ID_NEXT_PANE SYNCHRO
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_NEXT_PANE            "다음 창(pane)으로 이동합니다.\n다음 창(pane)"
     ID_PREV_PANE            "이전 창(pane)으로 이동합니다.\n이전 창(pane)"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_WINDOW_NEW           "새 창으로 문서를 엽니다.\n새 창으로"
     ID_WINDOW_ARRANGE       "윈도우 아래에 아이콘을 배열합니다.\n아이콘 배열"
@@ -980,7 +955,7 @@ BEGIN
 END
 
 // ID_EDIT_CLEAR SYNCHRO
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_EDIT_CLEAR           "선택 영역을 삭제합니다.\n삭제"
     ID_EDIT_CLEAR_ALL       "모두 삭제합니다.\n모두 삭제"
@@ -995,13 +970,13 @@ BEGIN
     ID_EDIT_REDO            "다시 실행합니다.\n다시 실행"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     ID_VIEW_TOOLBAR         "툴바를 보거나 숨깁니다.\n툴바 보기"
     ID_VIEW_STATUS_BAR      "상태 표시줄을 보거나 숨깁니다.\n상태표시줄 보기"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCSIZE          "창의 크기를 조정합니다."
     AFX_IDS_SCMOVE          "창의 위치를 이동합니다."
@@ -1012,74 +987,45 @@ BEGIN
     AFX_IDS_SCCLOSE         "현재창을 닫습니다."
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCRESTORE       "창을 이전 크기로 되돌립니다."
     AFX_IDS_SCTASKLIST      "Task List를 활성화합니다."
     AFX_IDS_MDICHILD        "이 창을 활성화합니다."
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "미리보기를 종료합니다.\n미리보기 종료"
 END
 
-STRINGTABLE
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_L2R                  "선택 영역을 오른쪽으로 복사합니다.\n오른쪽으로 복사 (Alt Right)"
-    ID_R2L                  "선택 영역을 왼쪽으로 복사합니다.\n왼쪽으로 복사 (Alt Left)"
-    ID_OPTIONS_SHOWIDENTICAL "내용이 동일한 파일들을 봅니다."
-    ID_OPTIONS_SHOWDIFFERENT "내용이 동일하지 않은 파일들을 봅니다."
-    ID_PREVDIFF             "이전 다른 부분으로 이동합니다.\n이전 다른 부분 (Alt Up)"
-    ID_NEXTDIFF             "다음 다른 부분으로 이동합니다.\n다음 다른 부분 (Alt Down)"
-    ID_OPTIONS_BACKUPORIGINALFILE "원본 파일을 백업합니다.\n백업"
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
 END
 
-STRINGTABLE
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
-                            "첫번째 다른 부분으로 자동 이동합니다.\n첫번째 다른부분으로 이동"
-    ID_OPTIONS_IGNOREWHITESPACE
-                            "파일을 비교할 때 공백문자(whitespace)를 무시합니다."
-    ID_HIDE_BACKUP_FILES    "BAK 확장자를 가지는 파일을 숨깁니다."
-    ID_HELP_GNULICENSE      "GNU public license 봅니다."
-    ID_USEVSS               "Sourcesafe 에서 파일들을 체크아웃합니다."
-    ID_OPTIONS              "옵션을 설정합니다.\n옵션"
-    ID_ALL_LEFT             "모든 다른 부분을 왼쪽 파일로 복사합니다.\n모두 왼쪽으로"
-    ID_ALL_RIGHT            "모든 다른 부분을 오른쪽 파일로 복사합니다.\n모두 오른쪽으로"
-    ID_VIEW_SELECTFONT      "파일 비교시에 볼 폰트를 선택합니다.\n폰트 선택"
-    ID_VIEW_USEDEFAULTFONT  "기본 폰트로 설정을 되돌립니다.\n기본 폰트"
-    ID_DIR_COPY_FILE_TO_LEFT
-                            "선택하신 파일중 오른쪽에만 존재하는 파일을 왼쪽으로 복사합니다."
-END
-
-STRINGTABLE
-BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT
-                            "선택하신 파일중 왼쪽에만 존재하는 파일을 오른쪽으로 복사합니다."
-    ID_VIEW_LANGUAGE        "언어를 선택합니다.\n언어"
-    ID_HELP_CONTENTS        "WinMerge 유저 가이드를 봅니다.\n도움말"
-    ID_FIRSTDIFF            "처음 다른 부분으로 이동합니다.\n처음 다른 부분 (Alt+Home)"
-    ID_CURDIFF              "현재 다른 부분으로 이동합니다.\n현재 다른 부분 (Alt+Enter)"
-    ID_LASTDIFF             "마지막 다른 부분으로 이동합니다.\n마지막 다른 부분 (Alt+End)"
-    ID_DIFFNUM              "위치보유자(placeholder)"
-    ID_DIR_DEL_LEFT         "선택하신 파일 중 왼쪽 파일만 삭제합니다."
-    ID_DIR_DEL_RIGHT        "선택하신 파일 중 오른쪽 파일만 삭제합니다."
-    ID_DIFFSTATUS           "위치보유자(placeholder)"
-    ID_OPTIONS_SHOWUNIQUELEFT "왼쪽에만 존재하는 파일을 봅니다."
-    ID_OPTIONS_SHOWUNIQUERIGHT "오른쪽에만 존재하는 파일을 봅니다."
-    ID_DIR_DEL_BOTH         "선택하신 파일을 양쪽 모두에서 삭제합니다."
-    ID_DIR_OPEN_LEFT        "왼쪽 파일을 엽니다."
-    ID_DIR_OPEN_LEFT_WITH   "왼쪽 파일을 연결 프로그램을 선택해서 엽니다. ..."
-    ID_DIR_OPEN_RIGHT       "오른쪽 파일을 엽니다."
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
-    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
-    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+    IDS_VERSION_FMT         "버전 %1"
+    IDS_ALLFILES            "모든 파일 (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "정말 모든 다른 부분을 왼쪽 파일로 복사하시겠습니까?"
+    IDS_CONFIRM_ALL_RIGHT   "정말 모든 다른 부분을 오른쪽 파일로 복사하시겠습니까?"
+    IDS_ERRORS_TITLE        "%1 에러"
+    IDS_CONFIRM_COPY2DIR    "선택한 파일을 정말 복사하시겠습니까(%1 중 %2)"
+    IDS_FONT_CHANGE         "바꾸신 폰트는 현재 비교창에는 적용되지 않습니다."
+    IDS_DIRECTORY_WINDOW_TITLE "디렉토리 비교 결과"
+    IDS_DIRECTORY_WINDOW_STATUS_FMT "비교 결과 %1 와 %2"
+    IDS_FILES_ARE_DIFFERENT "동일하지 않은 파일"
+    IDS_BIN_FILES_DIFF      "동일하지 않은 파일(바이너리 파일)"
+    IDS_ONLY_IN_FMT         "한쪽만 존재(%1)"
+    IDS_IDENTICAL           "동일한 파일"
+    IDS_CANT_COMPARE_FILES  "파일을 비교할 수 없습니다"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "다른 이름으로 저장"
     IDS_SELECT_FILES_OR_FOLDERS
@@ -1102,7 +1048,7 @@ BEGIN
 END
 
 // IDS_COLHDR_FILENAME SYNCHRO
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_COLHDR_FILENAME     "파일 이름"
     IDS_COLHDR_DIR          "디렉토리"
@@ -1123,7 +1069,7 @@ BEGIN
     IDS_DEL_LEFT_FMT        "선택 파일 중 왼쪽 파일만 삭제(%1 중 %2)"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_DEL_RIGHT_FMT       "선택 파일 중 오른쪽 파일만 삭제(%1 중 %2)"
     IDS_DELETE_FILE_FAILED  "%1 파일 삭제 실패: %2"
@@ -1143,29 +1089,8 @@ BEGIN
     IDS_BIN_FILES_SAME      "동일한 파일(바이너리 파일)"
 END
 
-STRINGTABLE
-BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "오른쪽 파일을 연결 프로그램을 선택해서 엽니다. ..."
-    ID_OPTIONS_SHOWBINARIES "바이너리 파일을 봅니다."
-    ID_VIEW_WHITESPACE      "공백문자(whitespace character)를 봅니다."
-    ID_REFRESH              "새로 고침\n새로 고침 (F5)"
-    ID_SHOWLINEDIFF         "Highlight difference in current line"
-    ID_EDITOR_COPY_PATH     "Copy full Path"
-    ID_EDITOR_COPY_FILENAME "Copy Filename"
-    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
-    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
-    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
-END
-
 // ID_EOL_TO_DOS SYNCHRO
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
-    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
-    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
-END
-
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_FILESAVE_FAILED     "파일 저장 실패 : %1 . 다른 이름으로 저장하시겠습니까?"
     IDS_ERROR_FILE_NOT_FOUND "해당하는 파일이 없습니다 : %1"
@@ -1185,16 +1110,6 @@ BEGIN
     IDS_COLHDR_RVERSION     "Right File Version"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_FILE_SAVE_LEFT       "Save the left file"
-    ID_FILE_SAVE_RIGHT      "Save the right file"
-    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
-    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
-    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
-    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
-END
-
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_LEFTONLY            "Left Only"
@@ -1205,10 +1120,6 @@ BEGIN
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_STATUSBAR_READONLY  "RO"
-    IDS_FILEPACK_FAILED_LEFT 
-                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-    IDS_FILEPACK_FAILED_RIGHT 
-                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1223,28 +1134,32 @@ BEGIN
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Context"
     IDS_DIFF_UNIFIED        "Unified"
+    IDS_FILEPACK_FAILED_LEFT
+                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_RIGHT
+                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
 // IDS_NUM_REPLACED SYNCHRO
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "모두 %1 개를 바꾸었습니다."
     IDS_EDIT_TEXT_NOT_FOUND "해당하는 문자열을 찾을 수 없습니다 : ""%s"""
     IDS_LINE_STATUS_INFO_EOL "Line: %s Column: %d Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
-    IDS_VSSFOLDER_AND_FILE_NOMATCH 
+    IDS_VSSFOLDER_AND_FILE_NOMATCH
                             "The VSS Working Folder and the location of the current file do not match. Continue?"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
-    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
-END
-
 // LANGUAGES SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_AFRIKAANS           "Afrikaans"
     IDS_ALBANIAN            "Albanian"
@@ -1261,7 +1176,7 @@ BEGIN
     IDS_ARABIC_JORDAN       "Arabic (Jordan)"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_ARABIC_LEBANON      "Arabic (Lebanon)"
     IDS_ARABIC_KUWAIT       "Arabic (Kuwait)"
@@ -1281,7 +1196,7 @@ BEGIN
     IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_CHINESE_MACAU       "Chinese (Macau SAR)"
     IDS_CROATIAN            "Croatian"
@@ -1301,7 +1216,7 @@ BEGIN
     IDS_ENGLISH_BELIZE      "English (Belize)"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_ENGLISH_TRINIDAD    "English (Trinidad)"
     IDS_ENGLISH_ZIMBABWE    "English (Zimbabwe)"
@@ -1321,7 +1236,7 @@ BEGIN
     IDS_GERMAN_SWISS        "Deutsch (Schweiz)"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_GERMAN_AUSTRIAN     "Deutsch (?terreich)"
     IDS_GERMAN_LUXEMBOURG   "Deutsch (Luxemburg)"
@@ -1341,7 +1256,7 @@ BEGIN
     IDS_KOREAN_JOHAB        "Korean (Johab)"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_LATVIAN             "Latvian"
     IDS_LITHUANIAN          "Lithuanian"
@@ -1361,7 +1276,7 @@ BEGIN
     IDS_SINDHI              "Sindhi"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SLOVAK              "Slovak"
     IDS_SLOVENIAN           "Slovensko"
@@ -1381,7 +1296,7 @@ BEGIN
     IDS_SPANISH_URUGUAY     "Espa?l (Uruguay)"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SPANISH_PARAGUAY    "Espa?l (Paraguay)"
     IDS_SPANISH_BOLIVIA     "Espa?l (Bolivia)"
@@ -1401,12 +1316,100 @@ BEGIN
     IDS_URDU_INDIA          "Urdu (India)"
 END
 
-STRINGTABLE
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_UZBEK_LATIN         "Uzbek (Latin)"
     IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
     IDS_VIETNAMESE          "Vietnamese"
 END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_L2R                  "선택 영역을 오른쪽으로 복사합니다.\n오른쪽으로 복사 (Alt Right)"
+    ID_R2L                  "선택 영역을 왼쪽으로 복사합니다.\n왼쪽으로 복사 (Alt Left)"
+    ID_OPTIONS_SHOWIDENTICAL "내용이 동일한 파일들을 봅니다."
+    ID_OPTIONS_SHOWDIFFERENT "내용이 동일하지 않은 파일들을 봅니다."
+    ID_PREVDIFF             "이전 다른 부분으로 이동합니다.\n이전 다른 부분 (Alt Up)"
+    ID_NEXTDIFF             "다음 다른 부분으로 이동합니다.\n다음 다른 부분 (Alt Down)"
+    ID_OPTIONS_BACKUPORIGINALFILE "원본 파일을 백업합니다.\n백업"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
+                            "첫번째 다른 부분으로 자동 이동합니다.\n첫번째 다른부분으로 이동"
+    ID_OPTIONS_IGNOREWHITESPACE
+                            "파일을 비교할 때 공백문자(whitespace)를 무시합니다."
+    ID_HIDE_BACKUP_FILES    "BAK 확장자를 가지는 파일을 숨깁니다."
+    ID_HELP_GNULICENSE      "GNU public license 봅니다."
+    ID_USEVSS               "Sourcesafe 에서 파일들을 체크아웃합니다."
+    ID_OPTIONS              "옵션을 설정합니다.\n옵션"
+    ID_ALL_LEFT             "모든 다른 부분을 왼쪽 파일로 복사합니다.\n모두 왼쪽으로"
+    ID_ALL_RIGHT            "모든 다른 부분을 오른쪽 파일로 복사합니다.\n모두 오른쪽으로"
+    ID_VIEW_SELECTFONT      "파일 비교시에 볼 폰트를 선택합니다.\n폰트 선택"
+    ID_VIEW_USEDEFAULTFONT  "기본 폰트로 설정을 되돌립니다.\n기본 폰트"
+    ID_DIR_COPY_FILE_TO_LEFT
+                            "선택하신 파일중 오른쪽에만 존재하는 파일을 왼쪽으로 복사합니다."
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_DIR_COPY_FILE_TO_RIGHT
+                            "선택하신 파일중 왼쪽에만 존재하는 파일을 오른쪽으로 복사합니다."
+    ID_VIEW_LANGUAGE        "언어를 선택합니다.\n언어"
+    ID_HELP_CONTENTS        "WinMerge 유저 가이드를 봅니다.\n도움말"
+    ID_FIRSTDIFF            "처음 다른 부분으로 이동합니다.\n처음 다른 부분 (Alt+Home)"
+    ID_CURDIFF              "현재 다른 부분으로 이동합니다.\n현재 다른 부분 (Alt+Enter)"
+    ID_LASTDIFF             "마지막 다른 부분으로 이동합니다.\n마지막 다른 부분 (Alt+End)"
+    ID_DIFFNUM              "위치보유자(placeholder)"
+    ID_DIR_DEL_LEFT         "선택하신 파일 중 왼쪽 파일만 삭제합니다."
+    ID_DIR_DEL_RIGHT        "선택하신 파일 중 오른쪽 파일만 삭제합니다."
+    ID_DIFFSTATUS           "위치보유자(placeholder)"
+    ID_OPTIONS_SHOWUNIQUELEFT "왼쪽에만 존재하는 파일을 봅니다."
+    ID_OPTIONS_SHOWUNIQUERIGHT "오른쪽에만 존재하는 파일을 봅니다."
+    ID_DIR_DEL_BOTH         "선택하신 파일을 양쪽 모두에서 삭제합니다."
+    ID_DIR_OPEN_LEFT        "왼쪽 파일을 엽니다."
+    ID_DIR_OPEN_LEFT_WITH   "왼쪽 파일을 연결 프로그램을 선택해서 엽니다. ..."
+    ID_DIR_OPEN_RIGHT       "오른쪽 파일을 엽니다."
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "오른쪽 파일을 연결 프로그램을 선택해서 엽니다. ..."
+    ID_OPTIONS_SHOWBINARIES "바이너리 파일을 봅니다."
+    ID_VIEW_WHITESPACE      "공백문자(whitespace character)를 봅니다."
+    ID_REFRESH              "새로 고침\n새로 고침 (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_EDITOR_COPY_PATH     "Copy full Path"
+    ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
+    ID_FILE_SAVE_LEFT       "Save the left file"
+    ID_FILE_SAVE_RIGHT      "Save the right file"
+    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
+    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
+    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
+    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
+    ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
+    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
+    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
+    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+END
+
 // END STRINGS SYNCHRO
 #endif    // 한국어 resources
 /////////////////////////////////////////////////////////////////////////////

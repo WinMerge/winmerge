@@ -1,4 +1,7 @@
 2003-10-19 Laoran
+ Rearranging strings in .rc (all languages) by growing identifier values
+  Languages : *.rc
+  WinMerge: Merge.rc
  Rearranging strings in English .rc
   WinMerge: Merge.rc
 

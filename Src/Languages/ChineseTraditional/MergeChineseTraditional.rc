@@ -893,32 +893,7 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE PRELOAD DISCARDABLE 
-BEGIN
-    IDR_MAINFRAME           "WinMerge"
-    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
-    IDD_OPEN                "WinMerge 這個資料夾"
-END
-
-STRINGTABLE PRELOAD DISCARDABLE 
-BEGIN
-    IDS_VERSION_FMT         "版本 %1"
-    IDS_ALLFILES            "所有檔案 (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "你確定要複製所有不同到左邊檔案嗎？"
-    IDS_CONFIRM_ALL_RIGHT   "你確定要複製所有不同到右邊檔案嗎？"
-    IDS_ERRORS_TITLE        "%1 錯誤"
-    IDS_CONFIRM_COPY2DIR    "你確定要複製 %1 在 %2 選取的項目"
-    IDS_FONT_CHANGE         "選取的字型變更不會套用到任何目前顯現不同的視窗。"
-    IDS_DIRECTORY_WINDOW_TITLE "資料夾比對結果"
-    IDS_DIRECTORY_WINDOW_STATUS_FMT "結果為 %1 和 %2"
-    IDS_FILES_ARE_DIFFERENT "檔案不同"
-    IDS_BIN_FILES_DIFF      "二進制檔案不同"
-    IDS_ONLY_IN_FMT         "只在 %1"
-    IDS_IDENTICAL           "完全相同"
-    IDS_CANT_COMPARE_FILES  "無法比對檔案"
-END
-
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "就緒"
@@ -1037,54 +1012,29 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "關閉預覽列印模式\n取消預覽"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_L2R                  "複製選取的文字到右邊檔案\n複製右邊 (Alt + Right)"
-    ID_R2L                  "複製選取的文字到左邊檔案\n複製左邊 (Alt + Left)"
-    ID_OPTIONS_SHOWIDENTICAL "顯示完全相同的檔案"
-    ID_OPTIONS_SHOWDIFFERENT "顯示有不同的檔案"
-    ID_PREVDIFF             "捲動到上一個不同\n上一個不同 (Alt + Up)"
-    ID_NEXTDIFF             "捲動到下一個不同\n下一個不同 (Alt + Down)"
-    ID_OPTIONS_BACKUPORIGINALFILE "儲存的這原始的一個副本為 *.bak\n備份"
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDD_OPEN                "WinMerge 這個資料夾"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE "自動地捲動到這第一個不同\n捲動到第一個"
-    ID_OPTIONS_IGNOREWHITESPACE "比對檔案時不管空白和跳格"
-    ID_HIDE_BACKUP_FILES    "隱藏副檔名為 BAK 的檔案"
-    ID_HELP_GNULICENSE      "顯示 GNU 公共授權"
-    ID_USEVSS               "嘗試從 sourcesafe 勘試唯讀檔案"
-    ID_OPTIONS              "設定程式選項\n選項"
-    ID_ALL_LEFT             "複製所有不同到左邊檔案\n所有到左邊"
-    ID_ALL_RIGHT            "複製所有不同到右邊檔案\n所有到右邊"
-    ID_VIEW_SELECTFONT      "選取不同檢視的字型\n選取不同檢視字型"
-    ID_VIEW_USEDEFAULTFONT  "使用預設的系統字型於不同檢視\n預設字型"
-    ID_DIR_COPY_FILE_TO_LEFT "複製選取的檔案到已命名的資料夾"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT "複製選取的檔案到已命名的資料夾"
-    ID_VIEW_LANGUAGE        "選取目前用戶介面語言\n語言"
-    ID_HELP_CONTENTS        "顯示 WinMerge 用戶指引\n說明"
-    ID_FIRSTDIFF            "捲動到第一個不同\n第一個不同 (Alt+Home)"
-    ID_CURDIFF              "捲動到目前不同\n目前不同 (Alt+Enter)"
-    ID_LASTDIFF             "捲動到上次的不同\n上次的不同 (Alt+End)"
-    ID_DIFFNUM              "預留位置"
-    ID_DIR_DEL_LEFT         "刪除在左邊的選取項目"
-    ID_DIR_DEL_RIGHT        "刪除在右邊的選取項目"
-    ID_DIFFSTATUS           "預留位置為狀態計數"
-    ID_OPTIONS_SHOWUNIQUELEFT "顯示只存在於左邊的檔案"
-    ID_OPTIONS_SHOWUNIQUERIGHT "顯示只存在於右邊的檔案"
-    ID_DIR_DEL_BOTH         "刪除兩邊的選取項目"
-    ID_DIR_OPEN_LEFT        "開啟左邊檔案"
-    ID_DIR_OPEN_LEFT_WITH   "開啟左邊檔案以 ..."
-    ID_DIR_OPEN_RIGHT       "開啟右邊檔案"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
-    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
-    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+    IDS_VERSION_FMT         "版本 %1"
+    IDS_ALLFILES            "所有檔案 (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "你確定要複製所有不同到左邊檔案嗎？"
+    IDS_CONFIRM_ALL_RIGHT   "你確定要複製所有不同到右邊檔案嗎？"
+    IDS_ERRORS_TITLE        "%1 錯誤"
+    IDS_CONFIRM_COPY2DIR    "你確定要複製 %1 在 %2 選取的項目"
+    IDS_FONT_CHANGE         "選取的字型變更不會套用到任何目前顯現不同的視窗。"
+    IDS_DIRECTORY_WINDOW_TITLE "資料夾比對結果"
+    IDS_DIRECTORY_WINDOW_STATUS_FMT "結果為 %1 和 %2"
+    IDS_FILES_ARE_DIFFERENT "檔案不同"
+    IDS_BIN_FILES_DIFF      "二進制檔案不同"
+    IDS_ONLY_IN_FMT         "只在 %1"
+    IDS_IDENTICAL           "完全相同"
+    IDS_CANT_COMPARE_FILES  "無法比對檔案"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO
@@ -1149,29 +1099,7 @@ BEGIN
     IDS_BIN_FILES_SAME      "二進制檔案完全相同"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "開啟右邊檔案以..."
-    ID_OPTIONS_SHOWBINARIES "顯示二進制檔案"
-    ID_VIEW_WHITESPACE      "顯示空白和跳格字元"
-    ID_REFRESH              "更新顯示\n更新 (F5)"
-    ID_SHOWLINEDIFF         "Highlight difference in current line"
-    ID_EDITOR_COPY_PATH     "Copy full Path"
-    ID_EDITOR_COPY_FILENAME "Copy Filename"
-    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
-    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
-    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
-END
-
-// ID_EOL_TO_DOS SYNCHRO
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
-    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
-    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
-END
-
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_FILESAVE_FAILED     "儲存 %1 失敗。你要以一個不同的名稱儲存檔案嗎？"
     IDS_ERROR_FILE_NOT_FOUND "檔案找不到: %1"
@@ -1193,16 +1121,6 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_FILE_SAVE_LEFT       "Save the left file"
-    ID_FILE_SAVE_RIGHT      "Save the right file"
-    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
-    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
-    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
-    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
     IDS_LEFTONLY            "Left Only"
     IDS_RIGHTONLY           "Right Only"
     IDS_COLHDR_RESULT_ABBR  "Short Result"
@@ -1211,10 +1129,6 @@ BEGIN
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_STATUSBAR_READONLY  "RO"
-    IDS_FILEPACK_FAILED_LEFT 
-                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-    IDS_FILEPACK_FAILED_RIGHT 
-                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1229,6 +1143,16 @@ BEGIN
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Context"
     IDS_DIFF_UNIFIED        "Unified"
+    IDS_FILEPACK_FAILED_LEFT
+                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_RIGHT
+                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
 // IDS_NUM_REPLACED SYNCHRO
@@ -1243,21 +1167,87 @@ BEGIN
                             "The VSS Working Folder and the location of the current file do not match. Continue?"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
-    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
-    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+    ID_L2R                  "複製選取的文字到右邊檔案\n複製右邊 (Alt + Right)"
+    ID_R2L                  "複製選取的文字到左邊檔案\n複製左邊 (Alt + Left)"
+    ID_OPTIONS_SHOWIDENTICAL "顯示完全相同的檔案"
+    ID_OPTIONS_SHOWDIFFERENT "顯示有不同的檔案"
+    ID_PREVDIFF             "捲動到上一個不同\n上一個不同 (Alt + Up)"
+    ID_NEXTDIFF             "捲動到下一個不同\n下一個不同 (Alt + Down)"
+    ID_OPTIONS_BACKUPORIGINALFILE "儲存的這原始的一個副本為 *.bak\n備份"
 END
 
-// LANGUAGES SYNCHRO
-STRINGTABLE FIXED IMPURE
+STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_NORWEGIAN_BOKMAL    "Norsk (Bokmal)"
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE "自動地捲動到這第一個不同\n捲動到第一個"
+    ID_OPTIONS_IGNOREWHITESPACE "比對檔案時不管空白和跳格"
+    ID_HIDE_BACKUP_FILES    "隱藏副檔名為 BAK 的檔案"
+    ID_HELP_GNULICENSE      "顯示 GNU 公共授權"
+    ID_USEVSS               "嘗試從 sourcesafe 勘試唯讀檔案"
+    ID_OPTIONS              "設定程式選項\n選項"
+    ID_ALL_LEFT             "複製所有不同到左邊檔案\n所有到左邊"
+    ID_ALL_RIGHT            "複製所有不同到右邊檔案\n所有到右邊"
+    ID_VIEW_SELECTFONT      "選取不同檢視的字型\n選取不同檢視字型"
+    ID_VIEW_USEDEFAULTFONT  "使用預設的系統字型於不同檢視\n預設字型"
+    ID_DIR_COPY_FILE_TO_LEFT "複製選取的檔案到已命名的資料夾"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_SPANISH_MODERN      "Espanol (Moderno)"
+    ID_DIR_COPY_FILE_TO_RIGHT "複製選取的檔案到已命名的資料夾"
+    ID_VIEW_LANGUAGE        "選取目前用戶介面語言\n語言"
+    ID_HELP_CONTENTS        "顯示 WinMerge 用戶指引\n說明"
+    ID_FIRSTDIFF            "捲動到第一個不同\n第一個不同 (Alt+Home)"
+    ID_CURDIFF              "捲動到目前不同\n目前不同 (Alt+Enter)"
+    ID_LASTDIFF             "捲動到上次的不同\n上次的不同 (Alt+End)"
+    ID_DIFFNUM              "預留位置"
+    ID_DIR_DEL_LEFT         "刪除在左邊的選取項目"
+    ID_DIR_DEL_RIGHT        "刪除在右邊的選取項目"
+    ID_DIFFSTATUS           "預留位置為狀態計數"
+    ID_OPTIONS_SHOWUNIQUELEFT "顯示只存在於左邊的檔案"
+    ID_OPTIONS_SHOWUNIQUERIGHT "顯示只存在於右邊的檔案"
+    ID_DIR_DEL_BOTH         "刪除兩邊的選取項目"
+    ID_DIR_OPEN_LEFT        "開啟左邊檔案"
+    ID_DIR_OPEN_LEFT_WITH   "開啟左邊檔案以 ..."
+    ID_DIR_OPEN_RIGHT       "開啟右邊檔案"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "開啟右邊檔案以..."
+    ID_OPTIONS_SHOWBINARIES "顯示二進制檔案"
+    ID_VIEW_WHITESPACE      "顯示空白和跳格字元"
+    ID_REFRESH              "更新顯示\n更新 (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_EDITOR_COPY_PATH     "Copy full Path"
+    ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
+    ID_FILE_SAVE_LEFT       "Save the left file"
+    ID_FILE_SAVE_RIGHT      "Save the right file"
+    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
+    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
+    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
+    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
+    ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
+    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
+    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
+    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
 END
 
 // END STRINGS SYNCHRO

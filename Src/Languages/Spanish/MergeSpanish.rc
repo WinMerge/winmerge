@@ -914,31 +914,6 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 
 STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    IDR_MAINFRAME           "WinMerge"
-    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
-END
-
-STRINGTABLE PRELOAD DISCARDABLE
-BEGIN
-    IDS_VERSION_FMT         "Versión %1 - Español"
-    IDS_ALLFILES            "Todos los archivos (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "Seguramente quiere copiar todas las diferencias al lado izquierda?"
-    IDS_CONFIRM_ALL_RIGHT   "Seguramente quiere copiar todas las diferencias al lado derecha?"
-    IDS_ERRORS_TITLE        "%1 Error(s)"
-    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy %1 of %2 selected item(s)"
-    IDS_FONT_CHANGE         "El fuente que usted marcaba no sea visible en las ventanas que existen ahorrita."
-    IDS_DIRECTORY_WINDOW_TITLE "Resultado de la Comparación del Directorio"
-    IDS_DIRECTORY_WINDOW_STATUS_FMT "Comparación de %1 and %2"
-    IDS_FILES_ARE_DIFFERENT "Archivos son diferentes"
-    IDS_BIN_FILES_DIFF      "Archivos binarios son diferentes"
-    IDS_ONLY_IN_FMT         "Solamente en %1"
-    IDS_IDENTICAL           "Iguales"
-    IDS_CANT_COMPARE_FILES  "No se puede comparar los archivos"
-END
-
-STRINGTABLE PRELOAD DISCARDABLE
-BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Listo"
 END
@@ -1056,59 +1031,29 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_L2R                  "Copiar el texto marcado al lado derecho\nCopiar Derecha (Flecha Derecha)"
-    ID_R2L                  "Copiar el texto marcado al lado izquierdo\nCopiar Izquierda (Flecha Izquierda)"
-    ID_OPTIONS_SHOWIDENTICAL "Muestra archivos que son iquales"
-    ID_OPTIONS_SHOWDIFFERENT "Muestra archivos que son distintos"
-    ID_PREVDIFF             "Mueve a la diferencia previa\nPrevio Diff (Alt Up)"
-    ID_NEXTDIFF             "Mueve a la diferencia proxima\nProxima Diff (Alt Down)"
-    ID_OPTIONS_BACKUPORIGINALFILE
-                            "Hacer una copia de seguridad (*.bak)\nBackup"
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
-                            "Mueve automaticamente a la primera diferencia\nScroll First"
-    ID_OPTIONS_IGNOREWHITESPACE "Ignorar los espacios en los comparaciones"
-    ID_HIDE_BACKUP_FILES    "Esconde archivos de seguridad"
-    ID_HELP_GNULICENSE      "Muestra a la GNU Licensia Publica"
-    ID_USEVSS               "Trata de sacar un archivo de SourceSafe"
-    ID_OPTIONS              "Especificar propiedades de la aplicación\nPropiedades"
-    ID_ALL_LEFT             "Copiar todas las diferencias al archivo izquierdo\nTodas Izquierdas"
-    ID_ALL_RIGHT            "Copiar todas las diferencias al archivo derecho\nTodas Derechas"
-    ID_VIEW_SELECTFONT      "Selecione el fuente\nSelect Diff Font"
-    ID_VIEW_USEDEFAULTFONT  "Use el fuente del sistema\nDefault Font"
-    ID_DIR_COPY_FILE_TO_LEFT
-                            "Copiar el archivo marcado al directorio especificado"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT
-                            "Copiar el archivo marcado al directorio especificado"
-    ID_VIEW_LANGUAGE        "Especifice a la idioma\nIdioma"
-    ID_HELP_CONTENTS        "Enseña a la ventana de ayuda\nContenido"
-    ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff (Alt+Home)"
-    ID_CURDIFF              "Scroll to the current difference\nCurrent Diff (Alt+Enter)"
-    ID_LASTDIFF             "Scroll to the last difference\nLast Diff (Alt+End)"
-    ID_DIFFNUM              "placeholder"
-    ID_DIR_DEL_LEFT         "Delete selected item on left"
-    ID_DIR_DEL_RIGHT        "Delete selected item on right"
-    ID_DIFFSTATUS           "placeholder for status count"
-    ID_OPTIONS_SHOWUNIQUELEFT "Displays files that exist in only on left side"
-    ID_OPTIONS_SHOWUNIQUERIGHT
-                            "Displays files that exist in only on right side"
-    ID_DIR_DEL_BOTH         "Delete selected item(s) on both sides"
-    ID_DIR_OPEN_LEFT        "Open left file"
-    ID_DIR_OPEN_LEFT_WITH   "Open left file with ..."
-    ID_DIR_OPEN_RIGHT       "Open right file"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
-    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
-    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+    IDS_VERSION_FMT         "Versión %1 - Español"
+    IDS_ALLFILES            "Todos los archivos (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "Seguramente quiere copiar todas las diferencias al lado izquierda?"
+    IDS_CONFIRM_ALL_RIGHT   "Seguramente quiere copiar todas las diferencias al lado derecha?"
+    IDS_ERRORS_TITLE        "%1 Error(s)"
+    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy %1 of %2 selected item(s)"
+    IDS_FONT_CHANGE         "El fuente que usted marcaba no sea visible en las ventanas que existen ahorrita."
+    IDS_DIRECTORY_WINDOW_TITLE "Resultado de la Comparación del Directorio"
+    IDS_DIRECTORY_WINDOW_STATUS_FMT "Comparación de %1 and %2"
+    IDS_FILES_ARE_DIFFERENT "Archivos son diferentes"
+    IDS_BIN_FILES_DIFF      "Archivos binarios son diferentes"
+    IDS_ONLY_IN_FMT         "Solamente en %1"
+    IDS_IDENTICAL           "Iguales"
+    IDS_CANT_COMPARE_FILES  "No se puede comparar los archivos"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO
@@ -1179,28 +1124,6 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
-    ID_OPTIONS_SHOWBINARIES "Displays binary files"
-    ID_VIEW_WHITESPACE      "Shows whitespace characters"
-    ID_REFRESH              "Refresh display\nRefresh (F5)"
-    ID_SHOWLINEDIFF         "Highlight difference in current line"
-    ID_EDITOR_COPY_PATH     "Copy full Path"
-    ID_EDITOR_COPY_FILENAME "Copy Filename"
-    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
-    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
-    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
-END
-
-// ID_EOL_TO_DOS SYNCHRO
-STRINGTABLE DISCARDABLE
-BEGIN
-    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
-    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
-    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
     IDS_FILESAVE_FAILED     "Saving %1 failed. Would you like to save the file under a different name?"
     IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
     IDS_ERROR_INCOMPARABLE  "Select two existing directories or files to compare"
@@ -1219,16 +1142,6 @@ BEGIN
     IDS_COLHDR_RVERSION     "Right File Version"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_FILE_SAVE_LEFT       "Save the left file"
-    ID_FILE_SAVE_RIGHT      "Save the right file"
-    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
-    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
-    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
-    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
-END
-
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_LEFTONLY            "Left Only"
@@ -1239,10 +1152,6 @@ BEGIN
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_STATUSBAR_READONLY  "RO"
-    IDS_FILEPACK_FAILED_LEFT 
-                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-    IDS_FILEPACK_FAILED_RIGHT 
-                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1257,10 +1166,20 @@ BEGIN
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Context"
     IDS_DIFF_UNIFIED        "Unified"
+    IDS_FILEPACK_FAILED_LEFT
+                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_RIGHT
+                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
 // IDS_NUM_REPLACED SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "Replaced %1 string(s)."
     IDS_EDIT_TEXT_NOT_FOUND "Cannot find string""%s"""
@@ -1273,11 +1192,92 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
-    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+    ID_L2R                  "Copiar el texto marcado al lado derecho\nCopiar Derecha (Flecha Derecha)"
+    ID_R2L                  "Copiar el texto marcado al lado izquierdo\nCopiar Izquierda (Flecha Izquierda)"
+    ID_OPTIONS_SHOWIDENTICAL "Muestra archivos que son iquales"
+    ID_OPTIONS_SHOWDIFFERENT "Muestra archivos que son distintos"
+    ID_PREVDIFF             "Mueve a la diferencia previa\nPrevio Diff (Alt Up)"
+    ID_NEXTDIFF             "Mueve a la diferencia proxima\nProxima Diff (Alt Down)"
+    ID_OPTIONS_BACKUPORIGINALFILE
+                            "Hacer una copia de seguridad (*.bak)\nBackup"
 END
 
-// LANGUAGES SYNCHRO
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
+                            "Mueve automaticamente a la primera diferencia\nScroll First"
+    ID_OPTIONS_IGNOREWHITESPACE "Ignorar los espacios en los comparaciones"
+    ID_HIDE_BACKUP_FILES    "Esconde archivos de seguridad"
+    ID_HELP_GNULICENSE      "Muestra a la GNU Licensia Publica"
+    ID_USEVSS               "Trata de sacar un archivo de SourceSafe"
+    ID_OPTIONS              "Especificar propiedades de la aplicación\nPropiedades"
+    ID_ALL_LEFT             "Copiar todas las diferencias al archivo izquierdo\nTodas Izquierdas"
+    ID_ALL_RIGHT            "Copiar todas las diferencias al archivo derecho\nTodas Derechas"
+    ID_VIEW_SELECTFONT      "Selecione el fuente\nSelect Diff Font"
+    ID_VIEW_USEDEFAULTFONT  "Use el fuente del sistema\nDefault Font"
+    ID_DIR_COPY_FILE_TO_LEFT
+                            "Copiar el archivo marcado al directorio especificado"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_DIR_COPY_FILE_TO_RIGHT
+                            "Copiar el archivo marcado al directorio especificado"
+    ID_VIEW_LANGUAGE        "Especifice a la idioma\nIdioma"
+    ID_HELP_CONTENTS        "Enseña a la ventana de ayuda\nContenido"
+    ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff (Alt+Home)"
+    ID_CURDIFF              "Scroll to the current difference\nCurrent Diff (Alt+Enter)"
+    ID_LASTDIFF             "Scroll to the last difference\nLast Diff (Alt+End)"
+    ID_DIFFNUM              "placeholder"
+    ID_DIR_DEL_LEFT         "Delete selected item on left"
+    ID_DIR_DEL_RIGHT        "Delete selected item on right"
+    ID_DIFFSTATUS           "placeholder for status count"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays files that exist in only on left side"
+    ID_OPTIONS_SHOWUNIQUERIGHT
+                            "Displays files that exist in only on right side"
+    ID_DIR_DEL_BOTH         "Delete selected item(s) on both sides"
+    ID_DIR_OPEN_LEFT        "Open left file"
+    ID_DIR_OPEN_LEFT_WITH   "Open left file with ..."
+    ID_DIR_OPEN_RIGHT       "Open right file"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
+    ID_OPTIONS_SHOWBINARIES "Displays binary files"
+    ID_VIEW_WHITESPACE      "Shows whitespace characters"
+    ID_REFRESH              "Refresh display\nRefresh (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_EDITOR_COPY_PATH     "Copy full Path"
+    ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
+    ID_FILE_SAVE_LEFT       "Save the left file"
+    ID_FILE_SAVE_RIGHT      "Save the right file"
+    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
+    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
+    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
+    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
+    ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
+    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
+    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
+    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+END
+
 // END STRINGS SYNCHRO
 #endif    // Spanish (Modern) resources
 /////////////////////////////////////////////////////////////////////////////

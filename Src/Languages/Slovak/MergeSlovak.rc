@@ -916,31 +916,6 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 
 STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    IDR_MAINFRAME           "WinMerge"
-    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
-END
-
-STRINGTABLE PRELOAD DISCARDABLE
-BEGIN
-    IDS_VERSION_FMT         "Verzia %1 - Slovenskı preklad"
-    IDS_ALLFILES            "V?etky súbory (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "Naozaj chcete skopírova v?etky rozdiely do súboru v¾avo?"
-    IDS_CONFIRM_ALL_RIGHT   "Naozaj chcete skopírova v?etky rozdiely do súboru vpravo?"
-    IDS_ERRORS_TITLE        "%1 chıb"
-    IDS_CONFIRM_COPY2DIR    "Naozaj chcete kopírova vybranı súbor do %1?"
-    IDS_FONT_CHANGE         "Zvolená zmena písma sa neprejaví v práve zobrazenıch paneloch."
-    IDS_DIRECTORY_WINDOW_TITLE "Vısledok porovnania adresárov"
-    IDS_DIRECTORY_WINDOW_STATUS_FMT "Vısledky pre %1 a %2"
-    IDS_FILES_ARE_DIFFERENT "Súbory sú rozdielne"
-    IDS_BIN_FILES_DIFF      "Binárne súbory sú rozdielne"
-    IDS_ONLY_IN_FMT         "Iba v %1"
-    IDS_IDENTICAL           "Identické"
-    IDS_CANT_COMPARE_FILES  "Nemo?no porovna súbory"
-END
-
-STRINGTABLE PRELOAD DISCARDABLE
-BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Pripravenı"
 END
@@ -1058,58 +1033,29 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Zatvori náh¾ad tlaèe\nZru? náh¾ad"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_L2R                  "Zkopírova vybranı text do súboru vpravo\nKopíruj vpravo (->)"
-    ID_R2L                  "Skopírova vybranı text do súboru v¾avo\nKopíruj v¾avo (<-)"
-    ID_OPTIONS_SHOWIDENTICAL "Zobrazi zhodné súbory"
-    ID_OPTIONS_SHOWDIFFERENT "Zobrazi rozdielne súbory"
-    ID_OPTIONS_SHOWUNIQUE   "Zobrazi súbory existújce iba v jednom adresári"
-    ID_PREVDIFF             "Skoèi na predchádzajúci rozdiel\nPrev Diff (Shift+Tab)"
-    ID_NEXTDIFF             "Skoèi na ïal?í rozdiel\nNext Diff (Tab)"
-    ID_OPTIONS_BACKUPORIGINALFILE "Ulo?i zálo?nú kópiu súboru\nBackup"
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
-                            "Automaticky prejde na prvı rozdiel\nScroll First"
-    ID_OPTIONS_IGNOREWHITESPACE "Pri porovnaní neberie do úvahy prázdne místo"
-    ID_HIDE_BACKUP_FILES    "Skry súbory s príponou BAK"
-    ID_HELP_GNULICENSE      "Zobrazi GNU licenciu"
-    ID_USEVSS               "Skú?a skontrolova read-only súbory zo sourcesafe"
-    ID_OPTIONS              "Nastavi mo?nosti programu\nMo?nosti"
-    ID_ALL_LEFT             "Skopírova v?etky rozdiely do súboru v¾avo\nV?etko v¾avo"
-    ID_ALL_RIGHT            "Skopírova v?etky rozdiely do súboru vpravo\nV?etko vpravo"
-    ID_VIEW_SELECTFONT      "Nastavenie písma pre zobrazenie porovnávanıch dokumentov\nNastav font pre rozdiely"
-    ID_VIEW_USEDEFAULTFONT  "Pou?i systémové písmo pre zobrazenie porovnávanıch dokumentov\nNastav font pre normálny text"
-    ID_DIR_COPY_FILE_TO_LEFT "Kopírova vybrané súbory do iného adresára"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT "Kopírova vybrané súbory do iného adresára"
-    ID_VIEW_LANGUAGE        "Zvoli jazyk u?ivate¾ského rozhrania\nJazyk"
-    ID_HELP_CONTENTS        "Zobrazi help pre program WinMerge\nPomoc"
-    ID_FIRSTDIFF            "Presunú na prvı rozdiel\nFirst Diff (Alt+Home)"
-    ID_CURDIFF              "Presunú na aktuálny rozdiel\nCurrent Diff (Alt+Enter)"
-    ID_LASTDIFF             "Presunú na poslednı rozdiel\nLast Diff (Alt+End)"
-    ID_DIFFNUM              "placeholder"
-    ID_DIR_DEL_LEFT         "Zma? vybrané polo?ky v¾avo"
-    ID_DIR_DEL_RIGHT        "Zma? vybrané polo?ky vpravo"
-    ID_DIFFSTATUS           "placeholder for status count"
-    ID_OPTIONS_SHOWUNIQUELEFT
-                            "Zobraz súbory, ktoré existujú iba na ¾avej strane"
-    ID_OPTIONS_SHOWUNIQUERIGHT
-                            "Zobraz súbory, ktoré existujú iba na pravej strane"
-    ID_DIR_DEL_BOTH         "Zma? vybrané polo?ky na oboch stranách"
-    ID_DIR_OPEN_LEFT        "Otvor ¾avı súbor"
-    ID_DIR_OPEN_LEFT_WITH   "Otovr ¾avı súbor s..."
-    ID_DIR_OPEN_RIGHT       "Otvor pravı súbor"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
-    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
-    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+    IDS_VERSION_FMT         "Verzia %1 - Slovenskı preklad"
+    IDS_ALLFILES            "V?etky súbory (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "Naozaj chcete skopírova v?etky rozdiely do súboru v¾avo?"
+    IDS_CONFIRM_ALL_RIGHT   "Naozaj chcete skopírova v?etky rozdiely do súboru vpravo?"
+    IDS_ERRORS_TITLE        "%1 chıb"
+    IDS_CONFIRM_COPY2DIR    "Naozaj chcete kopírova vybranı súbor do %1?"
+    IDS_FONT_CHANGE         "Zvolená zmena písma sa neprejaví v práve zobrazenıch paneloch."
+    IDS_DIRECTORY_WINDOW_TITLE "Vısledok porovnania adresárov"
+    IDS_DIRECTORY_WINDOW_STATUS_FMT "Vısledky pre %1 a %2"
+    IDS_FILES_ARE_DIFFERENT "Súbory sú rozdielne"
+    IDS_BIN_FILES_DIFF      "Binárne súbory sú rozdielne"
+    IDS_ONLY_IN_FMT         "Iba v %1"
+    IDS_IDENTICAL           "Identické"
+    IDS_CANT_COMPARE_FILES  "Nemo?no porovna súbory"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO
@@ -1176,28 +1122,7 @@ BEGIN
     IDS_BIN_FILES_SAME      "Binárne súbory sú identické"
 END
 
-STRINGTABLE DISCARDABLE
-BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "Otvor pravı súbor s..."
-    ID_OPTIONS_SHOWBINARIES "Zobrazuje binárne súbory"
-    ID_VIEW_WHITESPACE      "Zobrazuje prázdne znaky"
-    ID_REFRESH              "Refresh display\nRefresh (F5)"
-    ID_SHOWLINEDIFF         "Highlight difference in current line"
-    ID_EDITOR_COPY_PATH     "Copy full Path"
-    ID_EDITOR_COPY_FILENAME "Copy Filename"
-    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
-    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
-    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
-END
-
 // ID_EOL_TO_DOS SYNCHRO
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
-    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
-    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
-END
-
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_FILESAVE_FAILED     "Zápis %1 neúspe?nı. Chce? ulo?i súbor pod inım menom?"
@@ -1218,16 +1143,6 @@ BEGIN
     IDS_COLHDR_RVERSION     "Right File Version"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_FILE_SAVE_LEFT       "Save the left file"
-    ID_FILE_SAVE_RIGHT      "Save the right file"
-    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
-    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
-    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
-    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
-END
-
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_LEFTONLY            "Left Only"
@@ -1238,10 +1153,6 @@ BEGIN
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_STATUSBAR_READONLY  "RO"
-    IDS_FILEPACK_FAILED_LEFT 
-                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-    IDS_FILEPACK_FAILED_RIGHT 
-                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1256,6 +1167,16 @@ BEGIN
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Context"
     IDS_DIFF_UNIFIED        "Unified"
+    IDS_FILEPACK_FAILED_LEFT
+                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_RIGHT
+                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
 // IDS_NUM_REPLACED SYNCHRO
@@ -1272,11 +1193,91 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
-    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+    ID_L2R                  "Zkopírova vybranı text do súboru vpravo\nKopíruj vpravo (->)"
+    ID_R2L                  "Skopírova vybranı text do súboru v¾avo\nKopíruj v¾avo (<-)"
+    ID_OPTIONS_SHOWIDENTICAL "Zobrazi zhodné súbory"
+    ID_OPTIONS_SHOWDIFFERENT "Zobrazi rozdielne súbory"
+    ID_OPTIONS_SHOWUNIQUE   "Zobrazi súbory existújce iba v jednom adresári"
+    ID_PREVDIFF             "Skoèi na predchádzajúci rozdiel\nPrev Diff (Shift+Tab)"
+    ID_NEXTDIFF             "Skoèi na ïal?í rozdiel\nNext Diff (Tab)"
+    ID_OPTIONS_BACKUPORIGINALFILE "Ulo?i zálo?nú kópiu súboru\nBackup"
 END
 
-// LANGUAGES SYNCHRO
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
+                            "Automaticky prejde na prvı rozdiel\nScroll First"
+    ID_OPTIONS_IGNOREWHITESPACE "Pri porovnaní neberie do úvahy prázdne místo"
+    ID_HIDE_BACKUP_FILES    "Skry súbory s príponou BAK"
+    ID_HELP_GNULICENSE      "Zobrazi GNU licenciu"
+    ID_USEVSS               "Skú?a skontrolova read-only súbory zo sourcesafe"
+    ID_OPTIONS              "Nastavi mo?nosti programu\nMo?nosti"
+    ID_ALL_LEFT             "Skopírova v?etky rozdiely do súboru v¾avo\nV?etko v¾avo"
+    ID_ALL_RIGHT            "Skopírova v?etky rozdiely do súboru vpravo\nV?etko vpravo"
+    ID_VIEW_SELECTFONT      "Nastavenie písma pre zobrazenie porovnávanıch dokumentov\nNastav font pre rozdiely"
+    ID_VIEW_USEDEFAULTFONT  "Pou?i systémové písmo pre zobrazenie porovnávanıch dokumentov\nNastav font pre normálny text"
+    ID_DIR_COPY_FILE_TO_LEFT "Kopírova vybrané súbory do iného adresára"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_DIR_COPY_FILE_TO_RIGHT "Kopírova vybrané súbory do iného adresára"
+    ID_VIEW_LANGUAGE        "Zvoli jazyk u?ivate¾ského rozhrania\nJazyk"
+    ID_HELP_CONTENTS        "Zobrazi help pre program WinMerge\nPomoc"
+    ID_FIRSTDIFF            "Presunú na prvı rozdiel\nFirst Diff (Alt+Home)"
+    ID_CURDIFF              "Presunú na aktuálny rozdiel\nCurrent Diff (Alt+Enter)"
+    ID_LASTDIFF             "Presunú na poslednı rozdiel\nLast Diff (Alt+End)"
+    ID_DIFFNUM              "placeholder"
+    ID_DIR_DEL_LEFT         "Zma? vybrané polo?ky v¾avo"
+    ID_DIR_DEL_RIGHT        "Zma? vybrané polo?ky vpravo"
+    ID_DIFFSTATUS           "placeholder for status count"
+    ID_OPTIONS_SHOWUNIQUELEFT
+                            "Zobraz súbory, ktoré existujú iba na ¾avej strane"
+    ID_OPTIONS_SHOWUNIQUERIGHT
+                            "Zobraz súbory, ktoré existujú iba na pravej strane"
+    ID_DIR_DEL_BOTH         "Zma? vybrané polo?ky na oboch stranách"
+    ID_DIR_OPEN_LEFT        "Otvor ¾avı súbor"
+    ID_DIR_OPEN_LEFT_WITH   "Otovr ¾avı súbor s..."
+    ID_DIR_OPEN_RIGHT       "Otvor pravı súbor"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "Otvor pravı súbor s..."
+    ID_OPTIONS_SHOWBINARIES "Zobrazuje binárne súbory"
+    ID_VIEW_WHITESPACE      "Zobrazuje prázdne znaky"
+    ID_REFRESH              "Refresh display\nRefresh (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_EDITOR_COPY_PATH     "Copy full Path"
+    ID_EDITOR_COPY_FILENAME "Copy Filename"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
+    ID_FILE_SAVE_LEFT       "Save the left file"
+    ID_FILE_SAVE_RIGHT      "Save the right file"
+    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
+    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
+    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
+    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
+    ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
+    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
+    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
+    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+END
+
 // END STRINGS SYNCHRO
 #endif    // Slovak resources
 /////////////////////////////////////////////////////////////////////////////

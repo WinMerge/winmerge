@@ -917,31 +917,6 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 
 STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    IDR_MAINFRAME           "WinMerge"
-    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nDocument WinMerge"
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge ce répertoire"
-END
-
-STRINGTABLE PRELOAD DISCARDABLE
-BEGIN
-    IDS_VERSION_FMT         "Version %1 - Francais"
-    IDS_ALLFILES            "Tous les fichiers (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "Voulez-vous vraiment copier toutes les différences vers le fichier gauche ?"
-    IDS_CONFIRM_ALL_RIGHT   "Voulez-vous vraiment copier toutes les différences vers le fichier droit ?"
-    IDS_ERRORS_TITLE        "%1 Erreur(s)"
-    IDS_CONFIRM_COPY2DIR    "Voulez-vous vraiment copier %1 éléments sélectionnés parmi %2 ?"
-    IDS_FONT_CHANGE         "Le changement de police ne sera pas appliqué aux fenêtres actuellement affichées à l'écran."
-    IDS_DIRECTORY_WINDOW_TITLE "Résultats de la comparaison des répertoires"
-    IDS_DIRECTORY_WINDOW_STATUS_FMT "Résultats pour %1 et %2"
-    IDS_FILES_ARE_DIFFERENT "Les fichiers sont différents"
-    IDS_BIN_FILES_DIFF      "Les fichiers binaires sont différents"
-    IDS_ONLY_IN_FMT         "Uniquement dans %1"
-    IDS_IDENTICAL           "Identiques"
-    IDS_CANT_COMPARE_FILES  "Impossible de comparer les fichiers"
-END
-
-STRINGTABLE PRELOAD DISCARDABLE
-BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Prêt"
 END
@@ -1059,60 +1034,29 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Ferme le mode d'aperçu avant impression\nFermer l'aperçu"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_L2R                  "Copier le texte sélectionné vers le fichier de droite\nCopier à Droite (Alt Right)"
-    ID_R2L                  "Copier le texte sélectionné vers le fichier de gauche\nCopier à Gauche (Alt Left)"
-    ID_OPTIONS_SHOWIDENTICAL "Afficher les fichiers identiques"
-    ID_OPTIONS_SHOWDIFFERENT "Afficher les fichiers différents"
-    ID_PREVDIFF             "Défiler jusqu'à la différence précédente\nDiff Précédente (Alt Up)"
-    ID_NEXTDIFF             "Défiler jusqu'à la différence suivante\nDiff Suivante (Alt Down)"
-    ID_OPTIONS_BACKUPORIGINALFILE
-                            "Sauver une copie de l'original avec extension .BAK\nCréer une Sauvegarde"
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nDocument WinMerge"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge ce répertoire"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
-                            "Défiler automatiquement jusqu'à la première différence\nPremière différence"
-    ID_OPTIONS_IGNOREWHITESPACE "Ignorer les espaces lors de la comparaison"
-    ID_HIDE_BACKUP_FILES    "Cacher les fichiers avec l'extension .BAK"
-    ID_HELP_GNULICENSE      "Afficher la licence GNU"
-    ID_USEVSS               "Essayer d'extraire les fichiers en lecture seule de SourceSafe"
-    ID_OPTIONS              "Modifier les options du programme\nOptions"
-    ID_ALL_LEFT             "Copier toutes les différences vers le fichier de gauche\nCopier Tout à Gauche"
-    ID_ALL_RIGHT            "Copier toutes les différences vers le fichier de droite\nCopier Tout à Droite"
-    ID_VIEW_SELECTFONT      "Sélectionner la police utilisée pour l'affichage des différences\nSélection de la Police Diff"
-    ID_VIEW_USEDEFAULTFONT  "Revenir à la police par défaut pour l'affichage des différences\nPolice par Défaut"
-    ID_DIR_COPY_FILE_TO_LEFT
-                            "Copier le fichier sélectionné vers le répertoire indiqué"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT
-                            "Copier le fichier sélectionné vers le répertoire indiqué"
-    ID_VIEW_LANGUAGE        "Sélectionner la langue de l'interface\nLangue"
-    ID_HELP_CONTENTS        "Affiche le guide de l'utilisateur de WinMerge\nAide"
-    ID_FIRSTDIFF            "Défiler jusqu'à la première différence\nPremière Diff (Alt+Home)"
-    ID_CURDIFF              "Défiler jusqu'à la différence courante\nDiff Courante (Alt+Enter)"
-    ID_LASTDIFF             "Défiler jusqu'à la dernière différence\nDernière Diff (Alt+End)"
-    ID_DIFFNUM              "placeholder"
-    ID_DIR_DEL_LEFT         "Supprimer l'élément sélectionné à gauche"
-    ID_DIR_DEL_RIGHT        "Supprimer l'élément sélectionné à droite"
-    ID_DIFFSTATUS           "placeholder for status count"
-    ID_OPTIONS_SHOWUNIQUELEFT
-                            "Afficher les fichiers qui n'existent que dans le panneau gauche"
-    ID_OPTIONS_SHOWUNIQUERIGHT
-                            "Afficher les fichiers qui n'existent que dans le panneau droit"
-    ID_DIR_DEL_BOTH         "Supprimer l'élément sélectionné de chaque côté"
-    ID_DIR_OPEN_LEFT        "Ouvrir le fichier de gauche"
-    ID_DIR_OPEN_LEFT_WITH   "Ouvrir le fichier de gauche avec ..."
-    ID_DIR_OPEN_RIGHT       "Ouvrir le fichier de droite"
-    ID_OPTIONS_SHOWSKIPPED  "Afficher les fichiers omis"
-    ID_POPUP_OPEN_WITH_UNPACKER "Choisir un unpacker pour éditer ce fichier"
-    ID_UNPACK_MANUAL        "L'utilisateur choisit l'unpacker (et pas d'action pour la comparaison de répertoires)"
-    ID_UNPACK_AUTO          "Détermination automatique de l'unpacker (grâce à l'extension d'au moins un des deux fichiers)"
+    IDS_VERSION_FMT         "Version %1 - Francais"
+    IDS_ALLFILES            "Tous les fichiers (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "Voulez-vous vraiment copier toutes les différences vers le fichier gauche ?"
+    IDS_CONFIRM_ALL_RIGHT   "Voulez-vous vraiment copier toutes les différences vers le fichier droit ?"
+    IDS_ERRORS_TITLE        "%1 Erreur(s)"
+    IDS_CONFIRM_COPY2DIR    "Voulez-vous vraiment copier %1 éléments sélectionnés parmi %2 ?"
+    IDS_FONT_CHANGE         "Le changement de police ne sera pas appliqué aux fenêtres actuellement affichées à l'écran."
+    IDS_DIRECTORY_WINDOW_TITLE "Résultats de la comparaison des répertoires"
+    IDS_DIRECTORY_WINDOW_STATUS_FMT "Résultats pour %1 et %2"
+    IDS_FILES_ARE_DIFFERENT "Les fichiers sont différents"
+    IDS_BIN_FILES_DIFF      "Les fichiers binaires sont différents"
+    IDS_ONLY_IN_FMT         "Uniquement dans %1"
+    IDS_IDENTICAL           "Identiques"
+    IDS_CANT_COMPARE_FILES  "Impossible de comparer les fichiers"
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO
@@ -1184,28 +1128,6 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "Ouvrir le fichier de droite avec ..."
-    ID_OPTIONS_SHOWBINARIES "Afficher les fichiers binaires"
-    ID_VIEW_WHITESPACE      "Afficher les espaces"
-    ID_REFRESH              "Actualiser l'affichage\nActualiser (F5)"
-    ID_SHOWLINEDIFF         "Highlight difference in current line"
-    ID_EDITOR_COPY_PATH     "Copier le chemin complet"
-    ID_EDITOR_COPY_FILENAME "Copier le nom du fichier"
-    ID_VIEW_DETAIL_BAR      "Montrer/cacher le détail de la différence courante"
-    ID_FILE_LEFT_READONLY   "Changer permission d'écriture fichier/rép. de droite"
-    ID_FILE_RIGHT_READONLY  "Changer permission d'écriture fichier/rép. de gauche"
-END
-
-// ID_EOL_TO_DOS SYNCHRO
-STRINGTABLE DISCARDABLE
-BEGIN
-    ID_EOL_TO_DOS           "Convertir EOL en mode DOS"
-    ID_EOL_TO_UNIX          "Convertir EOL en mode UNIX"
-    ID_EOL_TO_MAC           "Convertir EOL en mode MAC"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
     IDS_FILESAVE_FAILED     "Erreur d'enregistrement de %1. Voulez-vous l'enregistrer sous un nouveau nom ?"
     IDS_ERROR_FILE_NOT_FOUND "Fichier %1 non trouvé"
     IDS_ERROR_INCOMPARABLE  "Comparez deux fichiers ou deux répertoires !"
@@ -1224,16 +1146,6 @@ BEGIN
     IDS_COLHDR_RVERSION     "Right File Version"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_FILE_SAVE_LEFT       "Save the left file"
-    ID_FILE_SAVE_RIGHT      "Save the right file"
-    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
-    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
-    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
-    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
-END
-
 STRINGTABLE DISCARDABLE
 BEGIN
     IDS_LEFTONLY            "Juste A Gauche"
@@ -1244,10 +1156,6 @@ BEGIN
     IDS_FILE_SKIPPED        "Fichier ignoré"
     IDS_DIR_SKIPPED         "Répertoire ignoré"
     IDS_STATUSBAR_READONLY  "RO"
-    IDS_FILEPACK_FAILED_LEFT 
-                            "Le plugin '%2' ne peut pas empaqueter le fichier modifié (à gauche) en '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous sauver la version non empaquetée sous un autre nom ?"
-    IDS_FILEPACK_FAILED_RIGHT 
-                            "Le plugin '%2' ne peut pas empaqueter le fichier modifié (à droite) en '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous sauver la version non empaquetée sous un autre nom ?"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1262,27 +1170,119 @@ BEGIN
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Context"
     IDS_DIFF_UNIFIED        "Unified"
+    IDS_FILEPACK_FAILED_LEFT
+                            "Le plugin '%2' ne peut pas empaqueter le fichier modifié (à gauche) en '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous sauver la version non empaquetée sous un autre nom ?"
+    IDS_FILEPACK_FAILED_RIGHT
+                            "Le plugin '%2' ne peut pas empaqueter le fichier modifié (à droite) en '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous sauver la version non empaquetée sous un autre nom ?"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Click droit pour copier le chemin"
+    IDC_STATIC_TITLE_RIGHT  "Click droit pour copier le chemin"
 END
 
 // IDS_NUM_REPLACED SYNCHRO
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "%1 remplacements effectués."
     IDS_EDIT_TEXT_NOT_FOUND "texte non trouvé ""%s"""
     IDS_LINE_STATUS_INFO_EOL "Line: %s Column: %d Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
-    IDS_VSSFOLDER_AND_FILE_NOMATCH 
+    IDS_VSSFOLDER_AND_FILE_NOMATCH
                             "The VSS Working Folder and the location of the current file do not match. Continue?"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
-    IDC_STATIC_TITLE_LEFT   "Click droit pour copier le chemin"
-    IDC_STATIC_TITLE_RIGHT  "Click droit pour copier le chemin"
+    ID_L2R                  "Copier le texte sélectionné vers le fichier de droite\nCopier à Droite (Alt Right)"
+    ID_R2L                  "Copier le texte sélectionné vers le fichier de gauche\nCopier à Gauche (Alt Left)"
+    ID_OPTIONS_SHOWIDENTICAL "Afficher les fichiers identiques"
+    ID_OPTIONS_SHOWDIFFERENT "Afficher les fichiers différents"
+    ID_PREVDIFF             "Défiler jusqu'à la différence précédente\nDiff Précédente (Alt Up)"
+    ID_NEXTDIFF             "Défiler jusqu'à la différence suivante\nDiff Suivante (Alt Down)"
+    ID_OPTIONS_BACKUPORIGINALFILE
+                            "Sauver une copie de l'original avec extension .BAK\nCréer une Sauvegarde"
 END
 
-// LANGUAGES SYNCHRO
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
+                            "Défiler automatiquement jusqu'à la première différence\nPremière différence"
+    ID_OPTIONS_IGNOREWHITESPACE "Ignorer les espaces lors de la comparaison"
+    ID_HIDE_BACKUP_FILES    "Cacher les fichiers avec l'extension .BAK"
+    ID_HELP_GNULICENSE      "Afficher la licence GNU"
+    ID_USEVSS               "Essayer d'extraire les fichiers en lecture seule de SourceSafe"
+    ID_OPTIONS              "Modifier les options du programme\nOptions"
+    ID_ALL_LEFT             "Copier toutes les différences vers le fichier de gauche\nCopier Tout à Gauche"
+    ID_ALL_RIGHT            "Copier toutes les différences vers le fichier de droite\nCopier Tout à Droite"
+    ID_VIEW_SELECTFONT      "Sélectionner la police utilisée pour l'affichage des différences\nSélection de la Police Diff"
+    ID_VIEW_USEDEFAULTFONT  "Revenir à la police par défaut pour l'affichage des différences\nPolice par Défaut"
+    ID_DIR_COPY_FILE_TO_LEFT
+                            "Copier le fichier sélectionné vers le répertoire indiqué"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_DIR_COPY_FILE_TO_RIGHT
+                            "Copier le fichier sélectionné vers le répertoire indiqué"
+    ID_VIEW_LANGUAGE        "Sélectionner la langue de l'interface\nLangue"
+    ID_HELP_CONTENTS        "Affiche le guide de l'utilisateur de WinMerge\nAide"
+    ID_FIRSTDIFF            "Défiler jusqu'à la première différence\nPremière Diff (Alt+Home)"
+    ID_CURDIFF              "Défiler jusqu'à la différence courante\nDiff Courante (Alt+Enter)"
+    ID_LASTDIFF             "Défiler jusqu'à la dernière différence\nDernière Diff (Alt+End)"
+    ID_DIFFNUM              "placeholder"
+    ID_DIR_DEL_LEFT         "Supprimer l'élément sélectionné à gauche"
+    ID_DIR_DEL_RIGHT        "Supprimer l'élément sélectionné à droite"
+    ID_DIFFSTATUS           "placeholder for status count"
+    ID_OPTIONS_SHOWUNIQUELEFT
+                            "Afficher les fichiers qui n'existent que dans le panneau gauche"
+    ID_OPTIONS_SHOWUNIQUERIGHT
+                            "Afficher les fichiers qui n'existent que dans le panneau droit"
+    ID_DIR_DEL_BOTH         "Supprimer l'élément sélectionné de chaque côté"
+    ID_DIR_OPEN_LEFT        "Ouvrir le fichier de gauche"
+    ID_DIR_OPEN_LEFT_WITH   "Ouvrir le fichier de gauche avec ..."
+    ID_DIR_OPEN_RIGHT       "Ouvrir le fichier de droite"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "Ouvrir le fichier de droite avec ..."
+    ID_OPTIONS_SHOWBINARIES "Afficher les fichiers binaires"
+    ID_VIEW_WHITESPACE      "Afficher les espaces"
+    ID_REFRESH              "Actualiser l'affichage\nActualiser (F5)"
+    ID_SHOWLINEDIFF         "Highlight difference in current line"
+    ID_EDITOR_COPY_PATH     "Copier le chemin complet"
+    ID_EDITOR_COPY_FILENAME "Copier le nom du fichier"
+    ID_VIEW_DETAIL_BAR      "Montrer/cacher le détail de la différence courante"
+    ID_FILE_LEFT_READONLY   "Changer permission d'écriture fichier/rép. de droite"
+    ID_FILE_RIGHT_READONLY  "Changer permission d'écriture fichier/rép. de gauche"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_EOL_TO_DOS           "Convertir EOL en mode DOS"
+    ID_EOL_TO_UNIX          "Convertir EOL en mode UNIX"
+    ID_EOL_TO_MAC           "Convertir EOL en mode MAC"
+    ID_OPTIONS_SHOWSKIPPED  "Afficher les fichiers omis"
+    ID_FILE_SAVE_LEFT       "Save the left file"
+    ID_FILE_SAVE_RIGHT      "Save the right file"
+    ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
+    ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
+    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and advance (Ctrl Alt Left)"
+    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and advance (Ctrl Alt Right)"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_MULTIPLE_RIGHT       "Copier différences du texte sélectionné à gauche vers la droite"
+    ID_MULTIPLE_LEFT        "Copier différences du texte sélectionné à droite vers la gauche"
+    ID_POPUP_OPEN_WITH_UNPACKER "Choisir un unpacker pour éditer ce fichier"
+    ID_UNPACK_MANUAL        "L'utilisateur choisit l'unpacker (et pas d'action pour la comparaison de répertoires)"
+    ID_UNPACK_AUTO          "Détermination automatique de l'unpacker (grâce à l'extension d'au moins un des deux fichiers)"
+END
+
 // END STRINGS SYNCHRO
 #endif    // French (France) resources
 /////////////////////////////////////////////////////////////////////////////

@@ -926,32 +926,7 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE PRELOAD DISCARDABLE 
-BEGIN
-    IDR_MAINFRAME           "WinMerge"
-    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nDocument WinMerge"
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge aquest directori"
-END
-
-STRINGTABLE PRELOAD DISCARDABLE 
-BEGIN
-    IDS_VERSION_FMT         "Versió %1 - Català"
-    IDS_ALLFILES            "Tots els fitxers (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "Esteu segur que voleu copiar totes les diferències al fitxer de l'esquerra?"
-    IDS_CONFIRM_ALL_RIGHT   "Esteu segur que voleu copiar totes les diferències al fitxer de la dreta?"
-    IDS_ERRORS_TITLE        "%1 Error(s)"
-    IDS_CONFIRM_COPY2DIR    "Esteu segur que voleu copiar %1 de %2 element(s) seleccionat(s)?"
-    IDS_FONT_CHANGE         "El canvi triat de tipus de lletra no serà aplicat a totes les finestres de diferències visibles actualment."
-    IDS_DIRECTORY_WINDOW_TITLE "Resultats de la comparació dels directoris"
-    IDS_DIRECTORY_WINDOW_STATUS_FMT "Resultats per a %1 i %2"
-    IDS_FILES_ARE_DIFFERENT "Els fitxers són diferents"
-    IDS_BIN_FILES_DIFF      "Els fitxers binaris són diferents"
-    IDS_ONLY_IN_FMT         "Només a %1"
-    IDS_IDENTICAL           "Idèntics"
-    IDS_CANT_COMPARE_FILES  "No es pot comparar els fitxers"
-END
-
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Preparat"
@@ -1043,7 +1018,7 @@ BEGIN
     ID_VIEW_STATUS_BAR      "Mostra o amaga la barra d'estat\nBarra d'estat"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     AFX_IDS_SCSIZE          "Canvia la mida de la finestra"
     AFX_IDS_SCMOVE          "Canvia la posició de la finestra"
@@ -1066,87 +1041,32 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Tanca el mode de visualització prèvia\nTanca"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_L2R                  "Copia el text seleccionat al fitxer de la dreta\nCopia al fitxer de la dreta (Alt Dreta)"
-    ID_R2L                  "Copia el text seleccionat al fitxer de l'esquerra\nCopia al fitxer de l'esquerra (Alt Esquerra)"
-    ID_OPTIONS_SHOWIDENTICAL "Visualitza fitxers que singuin exactament idèntics"
-    ID_OPTIONS_SHOWDIFFERENT "Visualitza fitxers que tinguin diferències"
-    ID_PREVDIFF             "Desplaça fins a la diferència anterior\nDiferència anterior (Alt Amunt)"
-    ID_NEXTDIFF             "Desplaça fins a la següent diferència\nPropera diferència (Alt Avall)"
-    ID_OPTIONS_BACKUPORIGINALFILE 
-                            "Desa una còpia de l'original com a *.bak\nCòpia de seguretat"
+    IDR_MAINFRAME           "WinMerge"
+    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nDocument WinMerge"
+    IDS_WINMERGE_THIS_DIRECTORY "WinMerge aquest directori"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE PRELOAD DISCARDABLE 
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
-                            "Desplaça automàticament a la primera diferència\nDesplaça a la primera"
-    ID_OPTIONS_IGNOREWHITESPACE "Ignora els espais en comparar fitxers"
-    ID_HIDE_BACKUP_FILES    "Amaga fitxers amb extensió bak"
-    ID_HELP_GNULICENSE      "Mostra la Llicència Pública General de GNU"
-    ID_USEVSS               "Intenta extreure fitxers només de lectura del SourceSafe"
-    ID_OPTIONS              "Especifica opcions del programa\nOpcions"
-    ID_ALL_LEFT             "Copia totes les diferènces al fitxer de l'esquerra\nTot a l'esquerra"
-    ID_ALL_RIGHT            "Copia totes les diferènces al fitxer de la dreta\nTot a la dreta"
-    ID_VIEW_SELECTFONT      "Selecciona el tipus de lletra per a les visualitzacions de diferències\nSelecciona tipus de lletra per a diferències"
-    ID_VIEW_USEDEFAULTFONT  "Recupera el tipus de lletra del sistema per a la visualització de diferències\nTipus de lletra del sistema"
-    ID_DIR_COPY_FILE_TO_LEFT "Copia el fitxer seleccionat al directori indicat"
+    IDS_VERSION_FMT         "Versió %1 - Català"
+    IDS_ALLFILES            "Tots els fitxers (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "Esteu segur que voleu copiar totes les diferències al fitxer de l'esquerra?"
+    IDS_CONFIRM_ALL_RIGHT   "Esteu segur que voleu copiar totes les diferències al fitxer de la dreta?"
+    IDS_ERRORS_TITLE        "%1 Error(s)"
+    IDS_CONFIRM_COPY2DIR    "Esteu segur que voleu copiar %1 de %2 element(s) seleccionat(s)?"
+    IDS_FONT_CHANGE         "El canvi triat de tipus de lletra no serà aplicat a totes les finestres de diferències visibles actualment."
+    IDS_DIRECTORY_WINDOW_TITLE "Resultats de la comparació dels directoris"
+    IDS_DIRECTORY_WINDOW_STATUS_FMT "Resultats per a %1 i %2"
+    IDS_FILES_ARE_DIFFERENT "Els fitxers són diferents"
+    IDS_BIN_FILES_DIFF      "Els fitxers binaris són diferents"
+    IDS_ONLY_IN_FMT         "Només a %1"
+    IDS_IDENTICAL           "Idèntics"
+    IDS_CANT_COMPARE_FILES  "No es pot comparar els fitxers"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT "Copia el fitxer seleccionat al directori indicat"
-    ID_VIEW_LANGUAGE        "Selecciona l'idioma de l'interfície d'usuari\nIdioma"
-    ID_HELP_CONTENTS        "Visualitza la Guia de l'Usuari del WinMerge\nAjuda"
-    ID_FIRSTDIFF            "Desplaça a la primera diferència\nPrimera diferència (Alt+Inici)"
-    ID_CURDIFF              "Desplaça a la diferència actual\nDiferència actual (Alt+Retorn)"
-    ID_LASTDIFF             "Desplaça a la darrera diferència\nDarrera diferència (Alt+Fi)"
-    ID_DIFFNUM              "lloc"
-    ID_DIR_DEL_LEFT         "Suprimeix els elements seleccionats a l'esquerra"
-    ID_DIR_DEL_RIGHT        "Suprimeix els elements seleccionats a la dreta"
-    ID_DIFFSTATUS           "Lloc per al compte d'estat"
-    ID_OPTIONS_SHOWUNIQUELEFT "Visualualitza els fitxers existents únicament a l'esquerra"
-    ID_OPTIONS_SHOWUNIQUERIGHT 
-                            "Visualitza els fitxers existents únicament a la dreta"
-    ID_DIR_DEL_BOTH         "Suprimeix els element(s) seleccionat(s) a ambdues bandes"
-    ID_DIR_OPEN_LEFT        "Obre el fitxer de l'esquerra"
-    ID_DIR_OPEN_LEFT_WITH   "Obre el fitxer de l'esquerra amb..."
-    ID_DIR_OPEN_RIGHT       "Obre el fitxer de la dreta"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "Obre el fitxer de la dreta amb..."
-    ID_OPTIONS_SHOWBINARIES "Visualitza els fitxers binaris"
-    ID_VIEW_WHITESPACE      "Mostra els caràcters d'espais"
-    ID_REFRESH              "Actualitza la visualització\nActualitza (F5)"
-    ID_SHOWLINEDIFF         "Ressalta les diferències a la línia actual"
-    ID_EDITOR_COPY_PATH     "Copia el camí sencer al fitxer"
-    ID_EDITOR_COPY_FILENAME "Copia el nom del fixer"
-    ID_VIEW_DETAIL_BAR      "Intercanvia la subfinestra de diferències"
-    ID_FILE_LEFT_READONLY   "Canvia l'estat de només de lectura per a l'esquerra"
-    ID_FILE_RIGHT_READONLY  "Canvia l'estat de només de lectura per a la dreta"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    ID_EOL_TO_DOS           "Converteix la marca de final de línia al mode del DOS"
-    ID_EOL_TO_UNIX          "Converteix la marca de final de línia al mode del UNIX"
-    ID_EOL_TO_MAC           "Converteix la marca de final de línia al mode del MAC"
-    ID_OPTIONS_SHOWSKIPPED  "Visualitza els fitxers omesos"
-    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
-    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
-    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
-    ID_FILE_SAVE_LEFT       "Desa el fitxer de l'esquerra"
-    ID_FILE_SAVE_RIGHT      "Desa el fitxer de la dreta"
-    ID_FILE_SAVEAS_LEFT     "Desa i anomena el fitxer de l'esquerra..."
-    ID_FILE_SAVEAS_RIGHT    "Desa i anomena el fitxer de la dreta..."
-    ID_R2LNEXT              "Copia la diferència a l'esquerra i avança a la següent\nCopia a l'esquerra i avança (Ctrl Alt Left)"
-    ID_L2RNEXT              "Copia la diferència a la dreta i avança a al següent\nCopia a la dreta i avança (Ctrl Alt Right)"
-END
-
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_SAVE_AS_TITLE       "Anomena i desa"
     IDS_SELECT_FILES_OR_FOLDERS 
@@ -1240,13 +1160,9 @@ BEGIN
     IDS_FILE_SKIPPED        "Fitxer omès"
     IDS_DIR_SKIPPED         "Directori omès"
     IDS_STATUSBAR_READONLY  "RO"
-    IDS_FILEPACK_FAILED_LEFT 
-                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-    IDS_FILEPACK_FAILED_RIGHT 
-                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Muntatge privat: %1"
     IDS_FILEWRITE_ERROR     "No s'ha pogut escriure al fitxer  %1."
@@ -1258,9 +1174,19 @@ BEGIN
     IDS_DIFF_NORMAL         "Normal"
     IDS_DIFF_CONTEXT        "Context"
     IDS_DIFF_UNIFIED        "Unificat"
+    IDS_FILEPACK_FAILED_LEFT 
+                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_RIGHT 
+                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 END
 
 STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Clica amb el botó principal al camí a copiar"
+    IDC_STATIC_TITLE_RIGHT  "Clica amb el botó principal al camí a copiar"
+END
+
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_NUM_REPLACED        "S'ha substituït %1 cadena(s)."
     IDS_EDIT_TEXT_NOT_FOUND "No s'ha trobat la cadena ""%s"""
@@ -1271,13 +1197,8 @@ BEGIN
                             "La carpeta de treball del VSS i la ubicació del fitxer actual no concorden. Voleu continuar?"
 END
 
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDC_STATIC_TITLE_LEFT   "Clica amb el botó principal al camí a copiar"
-    IDC_STATIC_TITLE_RIGHT  "Clica amb el botó principal al camí a copiar"
-END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE DISCARDABLE
 BEGIN
     IDS_AFRIKAANS           "Afrikaans"
     IDS_ALBANIAN            "Albanian"
@@ -1443,8 +1364,88 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
+    ID_L2R                  "Copia el text seleccionat al fitxer de la dreta\nCopia al fitxer de la dreta (Alt Dreta)"
+    ID_R2L                  "Copia el text seleccionat al fitxer de l'esquerra\nCopia al fitxer de l'esquerra (Alt Esquerra)"
+    ID_OPTIONS_SHOWIDENTICAL "Visualitza fitxers que singuin exactament idèntics"
+    ID_OPTIONS_SHOWDIFFERENT "Visualitza fitxers que tinguin diferències"
+    ID_PREVDIFF             "Desplaça fins a la diferència anterior\nDiferència anterior (Alt Amunt)"
+    ID_NEXTDIFF             "Desplaça fins a la següent diferència\nPropera diferència (Alt Avall)"
+    ID_OPTIONS_BACKUPORIGINALFILE 
+                            "Desa una còpia de l'original com a *.bak\nCòpia de seguretat"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
+                            "Desplaça automàticament a la primera diferència\nDesplaça a la primera"
+    ID_OPTIONS_IGNOREWHITESPACE "Ignora els espais en comparar fitxers"
+    ID_HIDE_BACKUP_FILES    "Amaga fitxers amb extensió bak"
+    ID_HELP_GNULICENSE      "Mostra la Llicència Pública General de GNU"
+    ID_USEVSS               "Intenta extreure fitxers només de lectura del SourceSafe"
+    ID_OPTIONS              "Especifica opcions del programa\nOpcions"
+    ID_ALL_LEFT             "Copia totes les diferènces al fitxer de l'esquerra\nTot a l'esquerra"
+    ID_ALL_RIGHT            "Copia totes les diferènces al fitxer de la dreta\nTot a la dreta"
+    ID_VIEW_SELECTFONT      "Selecciona el tipus de lletra per a les visualitzacions de diferències\nSelecciona tipus de lletra per a diferències"
+    ID_VIEW_USEDEFAULTFONT  "Recupera el tipus de lletra del sistema per a la visualització de diferències\nTipus de lletra del sistema"
+    ID_DIR_COPY_FILE_TO_LEFT "Copia el fitxer seleccionat al directori indicat"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_COPY_FILE_TO_RIGHT "Copia el fitxer seleccionat al directori indicat"
+    ID_VIEW_LANGUAGE        "Selecciona l'idioma de l'interfície d'usuari\nIdioma"
+    ID_HELP_CONTENTS        "Visualitza la Guia de l'Usuari del WinMerge\nAjuda"
+    ID_FIRSTDIFF            "Desplaça a la primera diferència\nPrimera diferència (Alt+Inici)"
+    ID_CURDIFF              "Desplaça a la diferència actual\nDiferència actual (Alt+Retorn)"
+    ID_LASTDIFF             "Desplaça a la darrera diferència\nDarrera diferència (Alt+Fi)"
+    ID_DIFFNUM              "lloc"
+    ID_DIR_DEL_LEFT         "Suprimeix els elements seleccionats a l'esquerra"
+    ID_DIR_DEL_RIGHT        "Suprimeix els elements seleccionats a la dreta"
+    ID_DIFFSTATUS           "Lloc per al compte d'estat"
+    ID_OPTIONS_SHOWUNIQUELEFT "Visualualitza els fitxers existents únicament a l'esquerra"
+    ID_OPTIONS_SHOWUNIQUERIGHT 
+                            "Visualitza els fitxers existents únicament a la dreta"
+    ID_DIR_DEL_BOTH         "Suprimeix els element(s) seleccionat(s) a ambdues bandes"
+    ID_DIR_OPEN_LEFT        "Obre el fitxer de l'esquerra"
+    ID_DIR_OPEN_LEFT_WITH   "Obre el fitxer de l'esquerra amb..."
+    ID_DIR_OPEN_RIGHT       "Obre el fitxer de la dreta"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_DIR_OPEN_RIGHT_WITH  "Obre el fitxer de la dreta amb..."
+    ID_OPTIONS_SHOWBINARIES "Visualitza els fitxers binaris"
+    ID_VIEW_WHITESPACE      "Mostra els caràcters d'espais"
+    ID_REFRESH              "Actualitza la visualització\nActualitza (F5)"
+    ID_SHOWLINEDIFF         "Ressalta les diferències a la línia actual"
+    ID_EDITOR_COPY_PATH     "Copia el camí sencer al fitxer"
+    ID_EDITOR_COPY_FILENAME "Copia el nom del fixer"
+    ID_VIEW_DETAIL_BAR      "Intercanvia la subfinestra de diferències"
+    ID_FILE_LEFT_READONLY   "Canvia l'estat de només de lectura per a l'esquerra"
+    ID_FILE_RIGHT_READONLY  "Canvia l'estat de només de lectura per a la dreta"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    ID_EOL_TO_DOS           "Converteix la marca de final de línia al mode del DOS"
+    ID_EOL_TO_UNIX          "Converteix la marca de final de línia al mode del UNIX"
+    ID_EOL_TO_MAC           "Converteix la marca de final de línia al mode del MAC"
+    ID_OPTIONS_SHOWSKIPPED  "Visualitza els fitxers omesos"
+    ID_FILE_SAVE_LEFT       "Desa el fitxer de l'esquerra"
+    ID_FILE_SAVE_RIGHT      "Desa el fitxer de la dreta"
+    ID_FILE_SAVEAS_LEFT     "Desa i anomena el fitxer de l'esquerra..."
+    ID_FILE_SAVEAS_RIGHT    "Desa i anomena el fitxer de la dreta..."
+    ID_R2LNEXT              "Copia la diferència a l'esquerra i avança a la següent\nCopia a l'esquerra i avança (Ctrl Alt Left)"
+    ID_L2RNEXT              "Copia la diferència a la dreta i avança a al següent\nCopia a la dreta i avança (Ctrl Alt Right)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
     ID_MULTIPLE_RIGHT       "Copia les diferències del text seleccionat a la subfinestra esquerra al fitxer de la dreta"
     ID_MULTIPLE_LEFT        "Copia les diferències del text seleccionat a la subfinestra dreta al fitxer de l'esquerra"
+    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
+    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
+    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
 END
 
 #endif    // Catalan resources
