@@ -1,3 +1,7 @@
+2003-08-12 Christian
+ PATCH: [ 786618 ] Brazilian Portuguese translation
+  Languages: BuilAll.bat and resurrected directory Brazilian
+
 2003-08-12 Kimmo
  PATCH: [ 785288 ] Overwrite Read-Only file
   WinMerge: MainFrm.h MainFrm.cpp Merge.rc MergeDoc.cpp

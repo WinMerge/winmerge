@@ -1,3 +1,4 @@
+Call BuildDll Brazilian
 Call BuildDll ChineseSimplified
 Call BuildDll ChineseTraditional
 Call BuildDll Czech
