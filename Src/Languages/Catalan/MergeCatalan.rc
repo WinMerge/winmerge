@@ -233,7 +233,7 @@ BEGIN
         MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "Suport d'&arxivament desabilitat...",ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Llicència Pública General de &GNU...", ID_HELP_GNULICENSE
         MENUITEM "&Quant al WinMerge...",       ID_APP_ABOUT
@@ -260,7 +260,7 @@ BEGIN
         BEGIN
             MENUITEM "De l'&esquerra",              ID_DIR_DEL_LEFT
             MENUITEM "De la &dreta",                ID_DIR_DEL_RIGHT
-            MENUITEM "D'&ambdós",                   ID_DIR_DEL_BOTH
+            MENUITEM "D'&ambdós costats",           ID_DIR_DEL_BOTH
         END
         MENUITEM SEPARATOR
         POPUP "Obre l'&esquerra"
@@ -279,12 +279,12 @@ BEGIN
         MENUITEM "C&opia els camins",               ID_DIR_COPY_PATHNAMES
         MENUITEM "Co&pia els noms",                 ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
-        POPUP "Co&mpressió"
+        POPUP "Co&mprimeix"
         BEGIN
-            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
-            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
-            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
-            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "L'&esquerra... (%1 de %2)",   ID_DIR_ZIP_LEFT
+            MENUITEM "La &dreta... (%1 de %2)",     ID_DIR_ZIP_RIGHT
+            MENUITEM "&Ambdós costats... (%1 de %2)", ID_DIR_ZIP_BOTH
+            MENUITEM "Di&ferències... (%1 de %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
     END
     POPUP "_HDR_POPUP_"
@@ -490,7 +490,7 @@ BEGIN
     PUSHBUTTON      "Reinicialitza",IDC_RESET_ALL_MESSAGE_BOXES,218,77,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Premeu el botó per a reinicialitzar tots els quadres de missatges",IDC_STATIC,7,
-                    79,215,8
+                    79,210,8
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
@@ -545,7 +545,7 @@ BEGIN
     CONTROL         "N&omés paraules senceres",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
     CONTROL         "&Distingeix entre majúscules i minúscules",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,54,140,14
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,54,140,10
     CONTROL         "&Expressió regular",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
     CONTROL         "No facis la &volta al final del fitxer",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
@@ -983,32 +983,32 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "WinMerge"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "Archive support is disabled. In order to enable archive support, please install a version of 7-Zip that WinMerge can interface, and place a copy of the appropriate interface plugin (Merge7z*.dll) in your WinMerge directory.",
+    LTEXT           "El suport d'arxivament està desabilitat. Per tal d'habilitar-lo instal·leu una versió del 7-Zip amb la que el WinMerge es pugui enllaçar, i poseu una còpia del connector d'enllaç apropiat (Merge7z*.dll) al directori del WinMerge.",
                     IDC_STATIC,2,2,272,32
-    LTEXT           "WinMerge can interface 7-Zip 3.11 and above, provided the appropriate interface plugin is available. Please use the version of 7-Zip recommended below until interface plugins for later versions become available.",
+    LTEXT           "El WinMerge pot enllaçar-se al 7-Zip 3.11 i superior, si el connector d'enllaç apropiat està disponible. Useu la versió del 7-Zip recomenada a continuació fins que hi hagi connectors d'enllaç disponibles per a versions posteriors.",
                     IDC_STATIC,2,34,272,32
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,70,131,8
+    LTEXT           "Versió recomenada del 7-Zip:",IDC_STATIC,2,70,131,8
     EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugin required:",IDC_STATIC,2,82,86,8
+    LTEXT           "Connector d'enllaç requerit:",IDC_STATIC,2,82,86,8
     EDITTEXT        102,214,82,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of 7-Zip currently installed on your computer:",
+    LTEXT           "Versió del 7-Zip instal·lada actualment al vostre ordinador:",
                     IDC_STATIC,2,98,208,8
     EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of local 7-Zip components found in WinMerge directory:",
+    LTEXT           "Versió dels components del 7-Zip locals trobats al directori del WinMerge:",
                     IDC_STATIC,2,110,208,8
     EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugins found in WinMerge directory:",
+    LTEXT           "Connectors d'enllaç trobats al directori del WinMerge:",
                     IDC_STATIC,2,130,168,28
     LISTBOX         105,174,130,100,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
                     WS_VSCROLL | WS_GROUP
-    CONTROL         "Don't display this &message again.\n(You can allways recall this message from help menu.)",
+    CONTROL         "&No tornis a mostrar aquest missatge.\n(Sempre podeu recuperar aquest missatge des de l'ajuda)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_TABSTOP,2,164,202,20
-    DEFPUSHBUTTON   "OK",IDOK,208,170,50,14,WS_GROUP
+    DEFPUSHBUTTON   "D'acord",IDOK,208,170,50,14,WS_GROUP
 END
 
 #ifndef _MAC
@@ -1450,7 +1450,7 @@ BEGIN
     IDS_MERGEMODE_MERGING   "Combina"
     IDS_DIFF_NUMBER_STATUS_FMT "Diferència %1 de %2"
     IDS_NO_DIFF_SEL_FMT     "S'han trobat %1 diferènces"
-    IDS_1_DIFF_FOUND        "1 Difference Found"
+    IDS_1_DIFF_FOUND        "S'ha trobat una diferència"
     IDS_STATUSBAR_READONLY  "RO"
 END
 
@@ -1484,15 +1484,15 @@ BEGIN
     IDS_SAVE_AS_TITLE       "Anomena i desa"
     IDS_SAVE_FMT            "Voleu desar els canvis a %1?"
     IDS_SAVEREADONLY_FMT    "El fitxer %1 està marcat com a només de lectua. Voldríeu substituir el fitxer només de lectura? (No es tracta de desar amb un nom nou.)"
-    IDS_ERROR_FILE_WRITEABLE "Hi ha hagut un error comprovant l'escrivibilitat de la destinació"
+    IDS_ERROR_FILE_WRITEABLE "Hi ha hagut un error en comprovar l'escrivibilitat de la destinació"
     IDS_ERROR_BACKUP        "Hi ha hagut un error en crear una còpia de seguretat del fitxer"
     IDS_BACKUP_FAILED_PROMPT "No es pot desar una còpia de seguretat del fitxer original.\nVoleu continuar en qualsevol cas?"
-    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
+    IDS_FILESAVE_FAILED     "Hi ha hagut un error en desar el fitxer.\n%1\n%2\nVoleu desar-lo amb un nom diferent?"
     IDS_FILEPACK_FAILED_LEFT "El Plugin '%2' no pot tornar a empaquetar els vostres canvis al fitxer de l'esquerra altre cop cap a '%1'.\n\nEl fitxer original no serà canviat.\n\nVoleu desar la versió desempaquetada a un altre fitxer?"
     IDS_FILEPACK_FAILED_RIGHT "El Plugin '%2' no pot tornar a empaquetar els vostres canvis al fitxer de la dreta altre cop cap a '%1'.\n\nEl fitxer original no serà canviat.\n\nVoleu desar la versió desempaquetada a un altre fitxer?"
     IDS_FILECHANGED_ONDISK  "Alguna altra aplicació ha actualitzat el fitxer\n%1\ndes de que el WinMerge el va carregar.\n\nVoleu sobreescriure el fitxer?"
     IDS_SAVEREADONLY_MULTI  "%1\nestà marcat com a només de lectura. Voleu substituir l'element només de lectura?"
-    IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nIf you want to refresh files close current file compare and load files again."
+    IDS_FILECHANGED_RESCAN  "Una altra aplicació ha modificat el fitxer\n%1\ndes que el WinMerge l'analitzà per darrer cop.\n\nSi voleu refrescar els fitxers, tanqueu la comparació de fitxers actual i carregueu-los de bell nou."
 END
 
 // VSS
@@ -1732,9 +1732,9 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIR_RESULTS_EMPTIED "S'esborraran els resulats de la comparació de directori actuals."
-    IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\n
-                            All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.
-                            See manual for more info about archive support and how to enable it."
+    IDS_NO_ZIP_SUPPORT      "El suport d'arxivament no està habilitat.\n
+                            Els components necessaris (7-zip i/o Merge7z*.dll) per al suport d'arxivament no s'han pogut trobar.
+                            Vegeu el manual per a més informació quan al suport per a arxivament i com habilitar-lo."
 END
 
 // LANGAGE NAMES #1

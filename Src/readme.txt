@@ -2,6 +2,9 @@
  PATCH: [ 1026894 ] More space for translations in Goto-dialog
   Src: Merge.rc
   Src/Languages: *.rc
+ PATCH: [ 1027086 ] Catalan translation Update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
 
 2004-09-12 Kimmo
  Fix Italian lang file build error and remove unneeded \n
