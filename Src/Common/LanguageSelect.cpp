@@ -564,7 +564,7 @@ void CLanguageSelect::OnDblclkLanguageList()
 	OnOK();
 }
 
-BOOL CLanguageSelect::OnInitDialog() 
+BOOL CLanguageSelect::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	
@@ -599,8 +599,8 @@ BOOL CLanguageSelect::OnInitDialog()
 		}
 	}
 	
-	ASSERT(iSel != -1);
-	m_ctlLangList.SetCurSel(iSel);
+	if (iSel >= 0) // true unless last selected language is no longer available
+		m_ctlLangList.SetCurSel(iSel);
 	
 	
 	return TRUE;  

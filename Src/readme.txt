@@ -1,3 +1,7 @@
+2004-04-04 Perry
+ PATCH: [ 928976 ] Handle when selected language not in list
+  Src/Common: LanguageSelect.cpp
+
 2004-04-04 Kimmo
  PATCH: [ 914513 ] Move message ids to stdafx.h
   DirDoc.h StdAfx.h
