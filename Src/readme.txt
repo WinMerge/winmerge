@@ -1,3 +1,7 @@
+2003-10-04 Laoran
+ Undo last changes related to PATCH: [ 813794 ] Fix "ignore blank lines"
+ Back as of 2003-10-02 23:59
+
 2003-10-04 Perry
  Restore trivial colors originally included in PATCH: [ 813794 ] Fix "ignore blank lines"
   WinMerge: MainFrm.cpp Merge.h MergeEditView.cpp PropColors.h

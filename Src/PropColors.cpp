@@ -17,8 +17,10 @@ static const TCHAR Section[] = _T("Custom Colors");
 // CPropColors dialog
 
 
-CPropColors::CPropColors()
-: CPropertyPage(CPropColors::IDD)
+CPropColors::CPropColors( COLORREF clrDiff, COLORREF clrSelDiff, COLORREF clrDiffDeleted, COLORREF clrSelDiffDeleted, COLORREF clrDiffText, COLORREF clrSelDiffText)
+	: CPropertyPage(CPropColors::IDD),
+		m_clrDiff(clrDiff), m_clrSelDiff(clrSelDiff), m_clrDiffDeleted(clrDiffDeleted), m_clrSelDiffDeleted(clrSelDiffDeleted), m_clrDiffText(clrDiffText), m_clrSelDiffText(clrSelDiffText),
+		m_cDiff(clrDiff), m_cSelDiff(clrSelDiff), m_cDiffDeleted(clrDiffDeleted), m_cSelDiffDeleted(clrSelDiffDeleted), m_cDiffText(clrDiffText), m_cSelDiffText(clrSelDiffText)
 {
 	//{{AFX_DATA_INIT(CPropColors)
 		// NOTE: the ClassWizard will add member initialization here
@@ -160,19 +162,4 @@ void CPropColors::SaveCustomColors()
 		else 
 			::AfxGetApp()->WriteProfileInt(Section, sEntry, m_cCustColors[i]);
 	}
-}
-
-BOOL CPropColors::OnInitDialog() 
-{
-	CDialog::OnInitDialog();
-	
-	m_cDiff.SetColor(m_clrDiff);
-	m_cSelDiff.SetColor(m_clrSelDiff);
-	m_cDiffDeleted.SetColor(m_clrDiffDeleted);
-	m_cSelDiffDeleted.SetColor(m_clrSelDiffDeleted);
-	m_cDiffText.SetColor(m_clrDiffText);
-	m_cSelDiffText.SetColor(m_clrSelDiffText);
-
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
 }

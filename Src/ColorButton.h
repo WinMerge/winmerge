@@ -16,7 +16,7 @@ class CColorButton : public CButton
 
 // Construction
 public:
-	CColorButton( COLORREF clrFill = 0 );
+	CColorButton( COLORREF clrFill );
 
 // Attributes
 public:

@@ -61,29 +61,30 @@ class CMergeApp : public CWinApp
 public:
 	BOOL m_bHiliteSyntax;
 	BOOL m_bDisableSplash;
-	COLORREF	m_clrDiff;                      // The difference color
-	COLORREF	m_clrSelDiff;                   // The selected difference color
-	COLORREF	m_clrDiffDeleted;               // The difference deleted color
-	COLORREF	m_clrSelDiffDeleted;            // The selected difference deleted color
-	COLORREF	m_clrDiffText;                  // The difference text color
-	COLORREF	m_clrSelDiffText;               // The selected difference text color
-	COLORREF	m_clrDiffTrivial;               // The difference deleted color
-	COLORREF	m_clrSelDiffTrivial;            // The selected difference deleted color
+	COLORREF	m_clrDiff;				// The difference color
+	COLORREF	m_clrSelDiff;			// The selected difference color
+	COLORREF	m_clrDiffDeleted;		// The difference deleted color
+	COLORREF	m_clrSelDiffDeleted;	// The selected difference deleted color
+	COLORREF	m_clrDiffText;			// The difference text color
+	COLORREF	m_clrSelDiffText;		// The selected difference text color
 	BOOL m_bNeedIdleTimer;
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
 	CLanguageSelect m_lang;
 
 	CMergeApp();
-	void SerializeColor(COLORREF & clrval, COLORREF & myclr, bool saving) { if (saving) myclr=clrval; else clrval=myclr; }
-	void SerializeDiffColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrDiff, saving); }
-	void SerializeSelDiffColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrSelDiff, saving); }
-	void SerializeDiffDeletedColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrDiffDeleted, saving); }
-	void SerializeSelDiffDeletedColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrSelDiffDeleted, saving); }
-	void SerializeDiffTextColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrDiffText, saving); }
-	void SerializeSelDiffTextColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrSelDiffText, saving); }
-	void SerializeDiffTrivialColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrDiffTrivial, saving); }
-	void SerializeSelDiffTrivialColor(COLORREF &clrValue, bool saving) { SerializeColor(clrValue, m_clrSelDiffTrivial, saving); }
+	COLORREF GetDiffColor() const { return m_clrDiff; }
+	COLORREF GetSelDiffColor() const { return m_clrSelDiff; }
+	COLORREF GetDiffDeletedColor() const { return m_clrDiffDeleted; }
+	COLORREF GetSelDiffDeletedColor() const { return m_clrSelDiffDeleted; }
+	COLORREF GetDiffTextColor() const { return m_clrDiffText; }
+	COLORREF GetSelDiffTextColor() const { return m_clrSelDiffText; }
+	void SetDiffColor(COLORREF clrValue) { m_clrDiff = clrValue; }
+	void SetSelDiffColor(COLORREF clrValue) { m_clrSelDiff = clrValue; }
+	void SetDiffDeletedColor(COLORREF clrValue) { m_clrDiffDeleted = clrValue; }
+	void SetSelDiffDeletedColor(COLORREF clrValue) { m_clrSelDiffDeleted = clrValue; }
+	void SetDiffTextColor(COLORREF clrValue) { m_clrDiffText = clrValue; }
+	void SetSelDiffTextColor(COLORREF clrValue) { m_clrSelDiffText = clrValue; }
 	void SetNeedIdleTimer();
 	CString GetFileFilterPath() const { return m_sFileFilterPath; }
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);

@@ -696,21 +696,6 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 	return TRUE;
 }
 
-/**
- * @brief save colors from property page to app (or vice-versa)
- */
-void SerializeColorsWithPropPage(CPropColors & colors, bool saving)
-{
-	theApp.SerializeDiffColor(colors.m_clrDiff, saving);
-	theApp.SerializeSelDiffColor(colors.m_clrSelDiff, saving);
-	theApp.SerializeDiffDeletedColor(colors.m_clrDiffDeleted, saving);
-	theApp.SerializeSelDiffDeletedColor(colors.m_clrSelDiffDeleted, saving);
-	theApp.SerializeDiffTextColor(colors.m_clrDiffText, saving);
-	theApp.SerializeSelDiffTextColor(colors.m_clrSelDiffText, saving);
-	theApp.SerializeDiffTrivialColor(colors.m_clrDiffTrivial, saving);
-	theApp.SerializeSelDiffTrivialColor(colors.m_clrSelDiffTrivial, saving);
-}
-
 void CMainFrame::OnOptions() 
 {
 	DIFFOPTIONS diffOptions = {0};
@@ -726,8 +711,7 @@ void CMainFrame::OnOptions()
 	CPropGeneral gen;
 	CPropSyntax syn;
 	CPropFilter filter(&fileFilters, selectedFilter);
-	CPropColors colors;
-	SerializeColorsWithPropPage(colors, false);
+	CPropColors colors(theApp.GetDiffColor(), theApp.GetSelDiffColor(), theApp.GetDiffDeletedColor(), theApp.GetSelDiffDeletedColor(), theApp.GetDiffTextColor(), theApp.GetSelDiffTextColor());
 	CPropRegistry regpage;
 	sht.AddPage(&gen);
 	sht.AddPage(&syn);
@@ -777,7 +761,12 @@ void CMainFrame::OnOptions()
 		m_sPattern = filter.m_sPattern;
 		theApp.SetFileFilterPath(filter.m_sFileFilterPath);
 
-		SerializeColorsWithPropPage(colors, true);
+		theApp.SetDiffColor(colors.m_clrDiff);
+		theApp.SetSelDiffColor(colors.m_clrSelDiff);
+		theApp.SetDiffDeletedColor(colors.m_clrDiffDeleted);
+		theApp.SetSelDiffDeletedColor(colors.m_clrSelDiffDeleted);
+		theApp.SetDiffTextColor(colors.m_clrDiffText);
+		theApp.SetSelDiffTextColor(colors.m_clrSelDiffText);
 
 		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
 		theApp.WriteProfileInt(_T("Settings"), _T("ScrollToFirst"), m_bScrollToFirst);

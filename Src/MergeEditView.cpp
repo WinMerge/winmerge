@@ -240,7 +240,7 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 	// Line inside diff
 	if (dwLineFlags & LF_WINMERGE_FLAGS)
 	{
-		theApp.SerializeDiffTextColor(crText, false);
+		crText = theApp.GetDiffTextColor();
 		bDrawWhitespace = TRUE;
 		BOOL lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);
 
@@ -248,32 +248,25 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 		{
 			if (lineInCurrentDiff)
 			{
-				theApp.SerializeSelDiffColor(crBkgnd, false);
-				theApp.SerializeSelDiffTextColor(crText, false);
+				crBkgnd = theApp.GetSelDiffColor();
+				crText = theApp.GetSelDiffTextColor();
 			}
 			else
 			{
-				theApp.SerializeDiffColor(crBkgnd, false);
-				theApp.SerializeDiffTextColor(crText, false);
+				crBkgnd = theApp.GetDiffColor();
+				crText = theApp.GetDiffTextColor();
 			}
 			return;
 		}
 		else if (dwLineFlags & LF_GHOST)
 		{
 			if (lineInCurrentDiff)
-				theApp.SerializeSelDiffDeletedColor(crBkgnd, false);
+				crBkgnd = theApp.GetSelDiffDeletedColor();
 			else
-				theApp.SerializeDiffDeletedColor(crBkgnd, false);
+				crBkgnd = theApp.GetDiffDeletedColor();
 			return;
 		}
-		else if (dwLineFlags & LF_TRIVIAL)
-		{
-			if (lineInCurrentDiff)
-				theApp.SerializeSelDiffTrivialColor(crBkgnd, false);
-			else
-				theApp.SerializeDiffTrivialColor(crBkgnd, false);
-			return;
-		}
+
 	}
 	else
 	{

@@ -335,16 +335,14 @@ BOOL CDiffWrapper::RunFileDiff()
 					{					
 						/* Determine range of line numbers involved in each file.  */
 						analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
-						if (deletes || inserts || thisob->trivial)
+						if (!(!deletes && !inserts))
 						{
 							if (deletes && inserts)
 								op = OP_DIFF;
 							else if (deletes)
 								op = OP_LEFTONLY;
-							else if (inserts)
-								op = OP_RIGHTONLY;
 							else
-								op = OP_TRIVIAL;
+								op = OP_RIGHTONLY;
 							
 							/* Print the lines that the first file has.  */
 							translate_range (&inf[0], first0, last0, &trans_a0, &trans_b0);

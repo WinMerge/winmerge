@@ -206,13 +206,12 @@ EXTERN char *	program;
 
 struct change
 {
-  struct change *link;          /* Previous or next edit command  */
-  int inserted;                 /* # lines of file 1 changed here.  */
-  int deleted;                  /* # lines of file 0 changed here.  */
-  int line0;                    /* Line number of 1st deleted line.  */
-  int line1;                    /* Line number of 1st inserted line.  */
-  char ignore;                  /* Flag used in context.c */
-  char trivial;                 /* Flag if change is trivial (ignored blanks or filtered regexps) */
+  struct change *link;		/* Previous or next edit command  */
+  int inserted;			/* # lines of file 1 changed here.  */
+  int deleted;			/* # lines of file 0 changed here.  */
+  int line0;			/* Line number of 1st deleted line.  */
+  int line1;			/* Line number of 1st inserted line.  */
+  char ignore;			/* Flag used in context.c */
 };
 
 /* Structures that describe the input files.  */

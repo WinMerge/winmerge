@@ -838,6 +838,7 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 {
 	int diags;
 	int i;
+	struct change *e, *p;
 	struct change *script=NULL;
 	int changes;
 	
@@ -1006,8 +1007,7 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 		}
 		else
 			changes = (script != 0);
-
-              if (script) script->trivial = 0;
+		
 		if (no_details_flag)
 			briefly_report (changes, filevec);
 		else
@@ -1015,12 +1015,22 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 			if (changes==0 && ignore_blank_lines_flag)
 			{
 				// determined that there were no changes after considering flags
-                            if (script) script->trivial = 1;
+				for (e = script; e; e = p)
+				{
+					p = e->link;
+					free (e);
+				}
+				script=NULL;
 			}
 			else if (changes == 0 && ignore_regexp_list )
 			{
 				// determined that there were no changes after considering flags
-                            if (script) script->trivial = 1;
+				for (e = script; e; e = p)
+				{
+					p = e->link;
+					free (e);
+				}
+				script=NULL;
 			}
 			else if (changes || ! no_diff_means_no_output)
 			{

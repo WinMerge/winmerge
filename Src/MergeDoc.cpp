@@ -329,7 +329,7 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	// If comparing whitespaces and
 	// other file has EOL before EOF and other not...
 	if (status.bLeftMissingNL != status.bRightMissingNL &&
-		!diffOptions.nIgnoreWhitespace && !diffOptions.bIgnoreBlankLines)
+		!diffOptions.nIgnoreWhitespace)
 	{
 		// ..lasf DIFFRANGE of file which has EOL must be
 		// fixed to contain last line too
@@ -1669,7 +1669,6 @@ void CMergeDoc::PrimeTextBuffers()
 			}
 			break;
 		case OP_DIFF:
-		case OP_TRIVIAL:
 			// left side
 			{
 				// just flag the lines
@@ -1677,8 +1676,7 @@ void CMergeDoc::PrimeTextBuffers()
 				curDiff.dend0 = curDiff.end0+LeftExtras;
 				for (UINT i=curDiff.dbegin0; i <= curDiff.dend0; i++)
 				{
-					DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;
-					m_ltBuf.SetLineFlag(i, dflag, TRUE, FALSE, FALSE);
+					m_ltBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
 				}
 
 				// insert blanks if needed
@@ -1704,8 +1702,7 @@ void CMergeDoc::PrimeTextBuffers()
 				curDiff.dend1 = curDiff.end1+RightExtras;
 				for (UINT i=curDiff.dbegin1; i <= curDiff.dend1; i++)
 				{
-					DWORD dflag = (curDiff.op == OP_DIFF) ? LF_DIFF : LF_TRIVIAL;
-					m_rtBuf.SetLineFlag(i, dflag, TRUE, FALSE, FALSE);
+					m_rtBuf.SetLineFlag(i, LF_DIFF, TRUE, FALSE, FALSE);
 				}
 
 				// insert blanks if needed
