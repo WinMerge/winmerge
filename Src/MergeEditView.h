@@ -110,6 +110,7 @@ protected:
 	afx_msg void OnEditRedo();
 	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT nIDEvent);
+	afx_msg void OnRefresh();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

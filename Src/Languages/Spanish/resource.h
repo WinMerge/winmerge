@@ -90,6 +90,7 @@
 #define IDS_BIN_FILES_SAME              191
 #define IDS_FILESAVE_FAILED             192
 #define IDS_ERROR_FILE_NOT_FOUND        193
+#define IDS_ERROR_INCOMPARABLE          194
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215
@@ -323,6 +324,7 @@
 #define ID_DIR_OPEN_RIGHT_WITH          32816
 #define ID_OPTIONS_SHOWBINARIES         32817
 #define ID_VIEW_WHITESPACE              32818
+#define ID_REFRESH                      32819
 
 // Next default values for new objects
 // 
@@ -330,7 +332,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        114
-#define _APS_NEXT_COMMAND_VALUE         32819
+#define _APS_NEXT_COMMAND_VALUE         32820
 #define _APS_NEXT_CONTROL_VALUE         1038
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

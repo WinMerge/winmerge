@@ -1,3 +1,8 @@
+2003-04-15 Perry
+ PATCH: [ 722083 ] refresh button (menu item, accelerator)
+  WinMerge: DirView.cpp DirView.h Merge.rc MergeEditView.cpp MergeEditView.h resource.h res/Toolbar.bmp
+ Also updated resource files (resource.h, *.rc, Toolbar.bmp) to all languages
+
 2003-04-14 Kimmo
  PATCH: [ 720613 ] CDirView leaks imagelist
   WinMerge: DirView.cpp

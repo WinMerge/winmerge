@@ -92,6 +92,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_CURDIFF, OnCurdiff)
 	ON_UPDATE_COMMAND_UI(ID_CURDIFF, OnUpdateCurdiff)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateSave)
+	ON_COMMAND(ID_REFRESH, OnRefresh)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 END_MESSAGE_MAP()
@@ -1073,4 +1074,9 @@ CDirFrame * CDirView::GetParentFrame()
 	// can't verify cast without introducing more coupling
 	// (CDirView doesn't include DirFrame.h)
 	return (CDirFrame *)CListViewEx::GetParentFrame();
+}
+
+void CDirView::OnRefresh()
+{
+	GetDocument()->Rescan();
 }

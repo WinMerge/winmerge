@@ -122,6 +122,8 @@ BEGIN
         MENUITEM "Alles nach links kopieren",   ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "&Eigenschaften",              ID_PROPERTIES
+        MENUITEM SEPARATOR
+        MENUITEM "Refresh\tF5",                 ID_REFRESH
     END
     POPUP "&Ansicht"
     BEGIN
@@ -195,6 +197,7 @@ BEGIN
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
     VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
@@ -447,6 +450,8 @@ BEGIN
     SEPARATOR
     BUTTON      ID_ALL_RIGHT
     BUTTON      ID_ALL_LEFT
+    SEPARATOR
+    BUTTON      ID_REFRESH
 END
 
 

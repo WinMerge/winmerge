@@ -110,6 +110,10 @@ BEGIN
         MENUITEM "Différence &suivante\tTab",   ID_NEXTDIFF
         MENUITEM "Différence &précédente\tShift+Tab", ID_PREVDIFF
         MENUITEM SEPARATOR
+        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
+        MENUITEM "Last &Difference\tAlt+End",   ID_LASTDIFF
+        MENUITEM SEPARATOR
         MENUITEM "Copier vers la &droite\tFlèche droite", ID_L2R
         MENUITEM "Copier vers la &gauche\tFlèche gauche", ID_R2L
         MENUITEM SEPARATOR
@@ -117,6 +121,8 @@ BEGIN
         MENUITEM "Tout copier vers la gauche",  ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "Pr&opriétés",                 ID_PROPERTIES
+        MENUITEM SEPARATOR
+        MENUITEM "Refresh\tF5",                 ID_REFRESH
     END
     POPUP "&Affichage"
     BEGIN
@@ -181,6 +187,7 @@ BEGIN
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
     VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
@@ -423,6 +430,8 @@ BEGIN
     SEPARATOR
     BUTTON      ID_ALL_RIGHT
     BUTTON      ID_ALL_LEFT
+    SEPARATOR
+    BUTTON      ID_REFRESH
 END
 
 

@@ -67,6 +67,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 	ON_WM_TIMER()
+	ON_COMMAND(ID_REFRESH, OnRefresh)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -778,3 +779,7 @@ void CMergeEditView::OnTimer(UINT nIDEvent)
 	CWnd::OnTimer(nIDEvent);
 }
 
+void CMergeEditView::OnRefresh()
+{
+	GetDocument()->FlushAndRescan();
+}

@@ -121,6 +121,8 @@ BEGIN
         MENUITEM "Copy All to L&eft",           ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "Pr&operties...",              ID_PROPERTIES
+        MENUITEM SEPARATOR
+        MENUITEM "Refresh\tF5",                 ID_REFRESH
     END
     POPUP "&View"
     BEGIN
@@ -193,6 +195,7 @@ BEGIN
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
     VK_HOME,        ID_FIRSTDIFF,           VIRTKEY, ALT, NOINVERT
@@ -566,6 +569,8 @@ BEGIN
     SEPARATOR
     BUTTON      ID_ALL_RIGHT
     BUTTON      ID_ALL_LEFT
+    SEPARATOR
+    BUTTON      ID_REFRESH
 END
 
 
@@ -1048,6 +1053,7 @@ BEGIN
     IDS_FILESAVE_FAILED     "Saving %1 failed. Would you like to save the file under a different name?"
     IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
     IDS_ERROR_INCOMPARABLE  "Select two existing directories or files to compare"
+    ID_REFRESH              "Refresh display\nRefresh (F5)"
 END
 
 #endif    // English (U.S.) resources
