@@ -123,7 +123,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Vlastnosti",                 ID_OPTIONS
         MENUITEM SEPARATOR
-        MENUITEM "Refre&sh\tF5",                 ID_REFRESH
+        MENUITEM "Refre&sh\tF5",                ID_REFRESH
     END
     POPUP "&Pohled"
     BEGIN
@@ -285,33 +285,36 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Obecné"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Nastavení",IDC_STATIC,7,7,242,92
+    GROUPBOX        "Nastavení",IDC_STATIC,7,7,221,94
     CONTROL         "&Zálohovat originální soubory",IDC_BACKUP_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,21,202,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,19,202,10
     CONTROL         "Automatický &skok na první rozdíl",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    17,33,129,10
+                    17,30,129,10
     CONTROL         "Ignorovat prázdné øád&ky",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,45,71,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,71,10
     CONTROL         "Ignorovat m&alá/VELKÁ",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,53,10
-    CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,81,87,10
-    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,128,45,82,10
-    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,128,57,100,10
-    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,128,69,83,10
-    GROUPBOX        "Tabelátory",IDC_STATIC,7,105,221,30,WS_GROUP
-    LTEXT           "&Nastavení tabulátorù:",IDC_STATIC,15,119,30,8
-    EDITTEXT        IDC_TAB_EDIT,47,117,27,12,ES_AUTOHSCROLL
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,53,10
     CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,68,69,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,69,10
+    CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,87,10
+    CONTROL         "Automatic &rescan",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,71,10
+    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,125,45,82,10
+    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,125,56,96,10
+    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,125,67,83,10
+    GROUPBOX        "Tabelátory",IDC_STATIC,7,105,221,30,WS_GROUP
+    LTEXT           "&Nastavení tabulátorù:",IDC_STATIC,15,119,80,8
+    EDITTEXT        IDC_TAB_EDIT,90,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
     CONTROL         "Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,99,112,51,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,120,113,51,10
     CONTROL         "Insert Spaces",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,99,123,59,10
+                    BS_AUTORADIOBUTTON,120,122,59,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -637,7 +640,7 @@ BEGIN
     ID_HIDE_BACKUP_FILES    "Skrýt soubory s pøíponou BAK"
     ID_HELP_GNULICENSE      "Zobrazit GNU licenci"
     ID_USEVSS               "Attempts to checkout read-only files from sourcesafe"
-    ID_OPTIONS              "Nastavit možnosti programu\nProperties"
+    ID_OPTIONS              "Nastavit možnosti programu\nOptions"
     ID_ALL_LEFT             "Zkopírovat všechny rozdíly do souboru vlevo\nAll Left"
     ID_ALL_RIGHT            "Zkopírovat všechny rozdíly do souboru vpravo\nAll Right"
     ID_VIEW_SELECTFONT      "Nastavení písma pro zobrazení porovnávaných dokumentù\nSelect Diff Font"

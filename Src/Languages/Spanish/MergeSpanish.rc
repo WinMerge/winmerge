@@ -122,7 +122,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Pr&opiedades...",              ID_OPTIONS
         MENUITEM SEPARATOR
-        MENUITEM "Refre&scar\tF5",                ID_REFRESH
+        MENUITEM "Refre&scar\tF5",               ID_REFRESH
     END
     POPUP "&Vista"
     BEGIN
@@ -296,33 +296,36 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "General"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Opciones",IDC_STATIC,7,7,242,92
+    GROUPBOX        "Opciones",IDC_STATIC,7,7,221,94
     CONTROL         "&Guardar el archivo original",IDC_BACKUP_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,21,98,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,19,98,10
     CONTROL         "Moverse automaticamente a la primera diferencia",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    17,33,165,10
+                    17,30,175,10
     CONTROL         "Ignorar diferencias de lineas vacias",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,45,127,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,160,10
     CONTROL         "Ignorar diferencias de mayúsculas/minúsculas",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,103,10
-    CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,81,87,10
-    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,128,45,82,10
-    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,128,57,100,10
-    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,128,69,83,10
-    GROUPBOX        "Tabs",IDC_STATIC,7,105,221,30,WS_GROUP
-    LTEXT           "&Magnitud de Tab:",IDC_STATIC,15,119,108,8
-    EDITTEXT        IDC_TAB_EDIT,47,117,27,12,ES_AUTOHSCROLL
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,160,10
     CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,68,69,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,69,10
+    CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,87,10
+    CONTROL         "Automatic &rescan",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,71,10
+    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,128,65,82,10
+    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,128,76,96,10
+    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,128,87,83,10
+    GROUPBOX        "Tabs",IDC_STATIC,7,105,221,30,WS_GROUP
+    LTEXT           "&Magnitud de Tab:",IDC_STATIC,15,119,60,8
+    EDITTEXT        IDC_TAB_EDIT,75,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
     CONTROL         "Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,99,112,51,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,105,113,51,10
     CONTROL         "Insert Spaces",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,99,123,59,10
+                    BS_AUTORADIOBUTTON,105,122,59,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111

@@ -122,7 +122,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Egenskaber...",              ID_OPTIONS
         MENUITEM SEPARATOR
-        MENUITEM "Refre&sh\tF5",                 ID_REFRESH
+        MENUITEM "Refre&sh\tF5",                ID_REFRESH
     END
     POPUP "&Vis"
     BEGIN
@@ -297,30 +297,33 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Generelt"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Indstillinger",IDC_STATIC,7,7,221,92
+    GROUPBOX        "Indstillinger",IDC_STATIC,7,7,221,94
     CONTROL         "&Backup originale filer",IDC_BACKUP_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,21,81,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,19,81,10
     CONTROL         "Automatisk &scroll til første forskel",IDC_SCROLL_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,34,117,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,117,10
     CONTROL         "Ignorer blan&ke linjer",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,45,77,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,77,10
     CONTROL         "Ignorer store/små &bogstaver",IDC_IGNCASE_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,105,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,52,105,10
+    CONTROL         "Sensitive for &EOL",IDC_EOL_SENSITIVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,71,10
     CONTROL         "&Fjern Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,81,79,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,79,10
+    CONTROL         "Automatic &rescan",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,71,10
     CONTROL         "Sammenlign &mellemrum",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,121,46,89,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,121,45,89,10
     CONTROL         "Ignorer mellemrumsæ&ndringer",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,121,57,108,10
+                    BS_AUTORADIOBUTTON,121,56,108,10
     CONTROL         "Ignorer &alle mellemrum",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,121,68,85,10
+                    BS_AUTORADIOBUTTON,121,67,85,10
     GROUPBOX        "Tabulator",IDC_STATIC,7,105,221,30,WS_GROUP
     LTEXT           "&Tabulator størrelse:",IDC_STATIC,15,119,61,8
-    EDITTEXT        IDC_TAB_EDIT,81,116,27,12,ES_AUTOHSCROLL
-    CONTROL         "Sensitive for &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,68,71,10
+    EDITTEXT        IDC_TAB_EDIT,81,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
     CONTROL         "Indsæt tabulatorer",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,128,112,73,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,128,113,73,10
     CONTROL         "Indsæt mellemrum",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,128,122,73,10
 END

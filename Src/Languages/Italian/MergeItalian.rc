@@ -121,7 +121,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Opzioni",                    ID_OPTIONS
         MENUITEM SEPARATOR
-        MENUITEM "Refre&sh\tF5",                 ID_REFRESH
+        MENUITEM "Refre&sh\tF5",                ID_REFRESH
     END
     POPUP "&Visualizza"
     BEGIN
@@ -296,34 +296,37 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Generale"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Impostazioni",IDC_STATIC,7,7,221,78
+    GROUPBOX        "Impostazioni",IDC_STATIC,7,7,221,94
     CONTROL         "&Esegui il backup del file originale",IDC_BACKUP_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,21,118,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,19,118,10
     CONTROL         "&Visualizza automaticamente la prima differenza",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    17,33,161,10
+                    17,30,161,10
     CONTROL         "I&gnora le linee vuote",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,57,80,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,80,10
     CONTROL         "Ig&nora le differenze fra maiuscole e minuscole",
                     IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    17,69,159,10
-    CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,81,87,10
-    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,128,45,82,10
-    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
-                    BS_AUTORADIOBUTTON,128,57,100,10
-    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,128,69,83,10
-    GROUPBOX        "Tabulazioni",IDC_STATIC,7,92,221,30
-    LTEXT           "&Dimensione delle tabulazioni:",IDC_STATIC,15,106,92,8
-    EDITTEXT        IDC_TAB_EDIT,110,105,27,12,ES_AUTOHSCROLL
+                    17,52,159,10
     CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,68,69,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,63,69,10
+    CONTROL         "&Disable Splash Screen",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,74,87,10
+    CONTROL         "Automatic &rescan",IDC_AUTOMRESCAN_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,85,71,10
+    CONTROL         "Compare &whitespace",IDC_WHITESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,128,65,82,10
+    CONTROL         "Ignore whitespace c&hange",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON,128,76,100,10
+    CONTROL         "Ignore &all whitespace",IDC_ALL_WHITE,"Button",
+                    BS_AUTORADIOBUTTON,128,87,83,10
+    GROUPBOX        "Tabulazioni",IDC_STATIC,7,105,221,30
+    LTEXT           "&Dimensione delle tabulazioni:",IDC_STATIC,15,119,92,8
+    EDITTEXT        IDC_TAB_EDIT,110,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    WS_EX_RIGHT
     CONTROL         "Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,99,112,51,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,140,113,51,10
     CONTROL         "Insert Spaces",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,99,123,59,10
+                    BS_AUTORADIOBUTTON,140,122,59,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111

@@ -31,6 +31,7 @@ public:
 	BOOL	m_bDisableSplash;
 	int		m_nIgnoreWhite;
 	int		m_nTabType;
+	BOOL	m_bAutomaticRescan; 
 	//}}AFX_DATA
 
 

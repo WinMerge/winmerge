@@ -67,6 +67,7 @@ public:
 	BOOL m_bFontSpecified;
 	BOOL m_bEolSensitive;
 	BOOL m_bReuseDirDoc; // policy to reuse existing dir doc
+	BOOL m_bAutomaticRescan;
 
 // Operations
 public:

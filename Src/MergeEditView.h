@@ -34,8 +34,13 @@ public:
 	BOOL m_bIsLeft;
 	LONG m_nModifications;
 
+protected:
+	// Controls if rescan is done after edit events
+	BOOL m_bAutomaticRescan;
+
 // Operations
 public:
+	BOOL EnableRescan(BOOL bEnable);
 	void ShowDiff(BOOL bScroll, BOOL bSelectText);
 	virtual void OnEditOperation(int nAction, LPCTSTR pszText);
 	void UpdateLineLengths();

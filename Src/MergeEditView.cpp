@@ -25,9 +25,10 @@ IMPLEMENT_DYNCREATE(CMergeEditView, CCrystalEditViewEx)
 
 CMergeEditView::CMergeEditView()
 {
-	m_bIsLeft=FALSE;
-	m_nModifications=0;
-  SetParser (&m_xParser);
+	m_bIsLeft = FALSE;
+	m_nModifications = 0;
+	SetParser(&m_xParser);
+  	m_bAutomaticRescan = FALSE;
 }
 
 CMergeEditView::~CMergeEditView()
@@ -679,17 +680,21 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 	CPoint ptCursorPos = GetCursorPos ();
 	m_pTextBuffer->SetLineFlag(ptCursorPos.y, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
 
-	// keep document up to date
-	// (Re)start timer to rescan only when user edits text
-	// If timer starting fails, rescan immediately
-	if (nAction == CE_ACTION_TYPING ||
-		nAction == CE_ACTION_BACKSPACE)
+	// If automatic rescan enabled, rescan after edit events
+	if (m_bAutomaticRescan)
 	{
-		if (!SetTimer(IDT_RESCAN, RESCAN_TIMEOUT, NULL))
+		// keep document up to date
+		// (Re)start timer to rescan only when user edits text
+		// If timer starting fails, rescan immediately
+		if (nAction == CE_ACTION_TYPING ||
+			nAction == CE_ACTION_BACKSPACE)
+		{
+			if (!SetTimer(IDT_RESCAN, RESCAN_TIMEOUT, NULL))
+				pDoc->FlushAndRescan();
+		}
+		else
 			pDoc->FlushAndRescan();
 	}
-	else
-		pDoc->FlushAndRescan();
 }
 
 void CMergeEditView::OnEditRedo()
@@ -783,4 +788,11 @@ void CMergeEditView::OnRefresh()
 	CMergeDoc *pd = GetDocument();
 	ASSERT(pd);
 	pd->FlushAndRescan(TRUE);
+}
+
+BOOL CMergeEditView::EnableRescan(BOOL bEnable)
+{
+	BOOL bOldValue = m_bAutomaticRescan;
+	m_bAutomaticRescan = bEnable;
+	return bOldValue;
 }

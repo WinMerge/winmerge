@@ -121,6 +121,7 @@ CMainFrame::CMainFrame()
 	m_strSaveAsPath = _T("");
 	m_bFirstTime = TRUE;
 
+	m_bAutomaticRescan = theApp.GetProfileInt(_T("Settings"), _T("AutomaticRescan"), TRUE)!=0;
 	m_bIgnoreBlankLines = theApp.GetProfileInt(_T("Settings"), _T("IgnoreBlankLines"), FALSE)!=0;
 	m_bEolSensitive = theApp.GetProfileInt(_T("Settings"), _T("EolSensitive"), FALSE)!=0;
 	m_bIgnoreCase = theApp.GetProfileInt(_T("Settings"), _T("IgnoreCase"), FALSE)!=0;
@@ -308,8 +309,6 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	pMergeDoc->m_ltBuf.SetEolSensitivity(m_bEolSensitive);
 	pMergeDoc->m_rtBuf.SetEolSensitivity(m_bEolSensitive);
 
-	
-
 	CString sError;
 	if (!pMergeDoc->m_ltBuf.LoadFromFile(szLeft))
 	{
@@ -347,6 +346,10 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 			pLeft->SelectDiff(0, TRUE, FALSE);
 		}
 
+		// Enable/disable automatic rescan (rescanning after edit)
+		pLeft->EnableRescan(m_bAutomaticRescan);
+		pRight->EnableRescan(m_bAutomaticRescan);
+
 		// set the document types
 		CString sname, sext;
 		SplitFilename(szLeft, 0, &sname, &sext);
@@ -354,7 +357,6 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 		SplitFilename(szRight, 0, &sname, &sext);
 		pRight->SetTextType(sext);
 
-			
 		// SetTextType will revert to language dependent defaults for tab
 		pLeft->SetTabSize(mf->m_nTabSize);
 		pRight->SetTabSize(mf->m_nTabSize);
@@ -726,6 +728,7 @@ void CMainFrame::OnOptions()
 	gen.m_nTabSize = m_nTabSize;
 	gen.m_nTabType = m_nTabType;
 	gen.m_bDisableSplash = theApp.m_bDisableSplash;
+	gen.m_bAutomaticRescan = m_bAutomaticRescan;
 
 	syn.m_bHiliteSyntax = theApp.m_bHiliteSyntax;
 	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
@@ -741,6 +744,7 @@ void CMainFrame::OnOptions()
 		m_nTabSize = gen.m_nTabSize;
 		m_nTabType = gen.m_nTabType;
 		theApp.m_bDisableSplash = gen.m_bDisableSplash;
+		m_bAutomaticRescan = gen.m_bAutomaticRescan;
 
 		m_nIgnoreWhitespace = gen.m_nIgnoreWhite;
 		ignore_all_space_flag = (m_nIgnoreWhitespace==2);
@@ -766,6 +770,7 @@ void CMainFrame::OnOptions()
 		theApp.WriteProfileInt(_T("Settings"), _T("TabSize"), m_nTabSize);
 		theApp.WriteProfileInt(_T("Settings"), _T("TabType"), m_nTabType);
 		theApp.WriteProfileInt(_T("Settings"), _T("EolSensitive"), m_bEolSensitive);
+		theApp.WriteProfileInt(_T("Settings"), _T("AutomaticRescan"), m_bAutomaticRescan);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreBlankLines"), m_bIgnoreBlankLines);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreCase"), m_bIgnoreCase);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
@@ -786,6 +791,10 @@ void CMainFrame::OnOptions()
 			CMergeDoc * pMergeDoc = docs.RemoveHead();
 			CMergeEditView * pLeft = pMergeDoc->GetLeftView();
 			CMergeEditView * pRight = pMergeDoc->GetRightView();
+
+			// Enable/disable automatic rescan (rescan after editing)
+			pLeft->EnableRescan(m_bAutomaticRescan);
+			pRight->EnableRescan(m_bAutomaticRescan);
 
 			// Set tab type (tabs/spaces)
 			if (m_nTabType == 0)

@@ -1,3 +1,9 @@
+2003-04-29 Kimmo
+ PATCH: [ 728542 ] Automatic rescan enable/disable
+  WinMerge: MainFrm.h MainFrm.cpp Merge.rc MergeEditView.h MergeEditView.cpp
+   PropGeneral.h PropGeneral.cpp resource.h
+   Updated other languages too
+
 2003-04-28 Kimmo
  PATCH: [ 726330 ] Saving before refresh - backout saving - see bug [ 723412 ]
   WinMerge: MergeDoc.cpp MergeEditView.cpp
