@@ -1,3 +1,7 @@
+2004-09-27 Kimmo
+ Add links to DocBook DSSL customisation
+  Docs/Developers: readme-developers.html
+
 2004-09-27 Perry
  PATCH: [ 968285 ] DBCS fixes from Sawanaka
   The crystaltextview.cpp portion of patch, with a new method (GetCharWidthFromChar) to reduce ifdefs.
