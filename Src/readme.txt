@@ -1,4 +1,6 @@
 2003-09-19 Laoran
+ PATCH: [ 809253 ] New release minsize mode
+  WinMerge: Merge.dsp
  Modifications in patch-dialog to compile in Unicode
   WinMerge: PatchDlg.cpp 
 
