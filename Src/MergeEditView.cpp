@@ -254,7 +254,8 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 	lastDiff = -1;
 
 	CMergeDoc *pd = GetDocument();
-	if (pd->m_nDiffs == 0)
+	const int nDiffs = pd->m_diffList.GetSize();
+	if (nDiffs == 0)
 		return;
 
 	int firstLine, lastLine;
@@ -262,21 +263,25 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 	if (lastLine < firstLine)
 		return;
 
-	for (UINT i = 0; i < pd->m_nDiffs; i++)
+	for (UINT i = 0; i < nDiffs; i++)
 	{
-		if ((int)pd->m_diffs[i].dbegin0 >= firstLine)
+		DIFFRANGE curDiff = {0};
+		VERIFY(pd->m_diffList.GetDiff(i, curDiff));
+		if ((int)curDiff.dbegin0 >= firstLine)
 		{
 			firstDiff = i;
 			break;
 		}
 	}
-	if (i == pd->m_nDiffs)
+	if (i == nDiffs)
 		return;
 
-	lastDiff = pd->m_nDiffs - 1;
-	for (i = firstDiff; i < pd->m_nDiffs; i++)
+	lastDiff = nDiffs - 1;
+	for (i = firstDiff; i < nDiffs; i++)
 	{
-		if ((int)pd->m_diffs[i].dend0 > lastLine)
+		DIFFRANGE curDiff = {0};
+		VERIFY(pd->m_diffList.GetDiff(i, curDiff));
+		if ((int)curDiff.dend0 > lastLine)
 		{
 				lastDiff = i-1;
 				break;
@@ -503,9 +508,9 @@ void CMergeEditView::SelectDiff(int nDiff, BOOL bScroll /*=TRUE*/, BOOL bSelectT
 	// Check that nDiff is valid
 	if (nDiff < 0)
 		_RPTF1(_CRT_ERROR, "Diffnumber negative (%d)", nDiff);
-	if (nDiff >= (int)pd->m_nDiffs)
+	if (nDiff >= pd->m_diffList.GetSize())
 		_RPTF2(_CRT_ERROR, "Selected diff > diffcount (%d >= %d)",
-			nDiff, (int)pd->m_nDiffs);
+			nDiff, pd->m_diffList.GetSize());
 
 	SelectNone();
 	pd->SetCurrentDiff(nDiff);
@@ -528,8 +533,8 @@ void CMergeEditView::OnCurdiff()
 {
 	CMergeDoc *pd = GetDocument();
 
-	// If no diffs, nothing to select (m_nDiffs is unsigned!)
-	if (pd->m_nDiffs == 0)
+	// If no diffs, nothing to select
+	if (pd->m_diffList.GetSize() == 0)
 		return;
 
 	// GetCurrentDiff() returns -1 if no diff selected
@@ -543,7 +548,7 @@ void CMergeEditView::OnCurdiff()
 	{
 		// If cursor is inside diff, select that diff
 		CPoint pos = GetCursorPos();
-		nDiff = pd->LineToDiff(pos.y);
+		nDiff = pd->m_diffList.LineToDiff(pos.y);
 		if (nDiff != -1)
 			SelectDiff(nDiff, TRUE, FALSE);
 	}
@@ -559,7 +564,7 @@ void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 	int nCurrentDiff = pd->GetCurrentDiff();
 	if (nCurrentDiff == -1)
 	{
-		if (pd->LineToDiff(pos.y) == -1)
+		if (pd->m_diffList.LineToDiff(pos.y) == -1)
 			pCmdUI->Enable(FALSE);
 		else
 			pCmdUI->Enable(TRUE);
@@ -733,7 +738,7 @@ void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 void CMergeEditView::OnFirstdiff()
 {
 	CMergeDoc *pd = GetDocument();
-	if (pd->m_nDiffs > 0)
+	if (pd->m_diffList.GetSize() > 0)
 		SelectDiff(0, TRUE, FALSE);
 }
 
@@ -751,8 +756,8 @@ void CMergeEditView::OnUpdateFirstdiff(CCmdUI* pCmdUI)
 void CMergeEditView::OnLastdiff()
 {
 	CMergeDoc *pd = GetDocument();
-	if (pd->m_nDiffs>0)
-		SelectDiff(pd->m_nDiffs-1, TRUE, FALSE);
+	if (pd->m_diffList.GetSize() > 0)
+		SelectDiff(pd->m_diffList.GetSize() - 1, TRUE, FALSE);
 }
 
 /**
@@ -779,7 +784,7 @@ void CMergeEditView::OnNextdiff()
 	int curDiff = pd->GetCurrentDiff();
 	if (curDiff != -1)
 	{
-		if (curDiff == (signed int)pd->m_nDiffs - 1)
+		if (curDiff == pd->m_diffList.GetSize() - 1)
 			// We're on a last diff, so select that
 			SelectDiff(curDiff, TRUE, FALSE);
 		else
@@ -792,14 +797,7 @@ void CMergeEditView::OnNextdiff()
 		int line = GetCursorPos().y;
 		if (!IsValidTextPosY(CPoint(0, line)))
 			line = m_nTopLine;
-		for (UINT i = 0; i < pd->m_nDiffs; i++)
-		{
-			if ((int)pd->m_diffs[i].dbegin0 >= line)
-			{
-				curDiff = i;
-				break;
-			}
-		}
+		curDiff = pd->m_diffList.NextDiffFromLine(line);
 		if (curDiff >= 0)
 			SelectDiff(curDiff, TRUE, FALSE);
 	}
@@ -811,8 +809,15 @@ void CMergeEditView::OnNextdiff()
 void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-	CPoint pos = GetCursorPos();
-	pCmdUI->Enable(pd->m_nDiffs>0 && pos.y < (long)pd->m_diffs[pd->m_nDiffs-1].dbegin0);
+	if (pd->m_diffList.GetSize() == 0)
+		pCmdUI->Enable(FALSE);
+	else
+	{
+		CPoint pos = GetCursorPos();
+		DIFFRANGE diff;
+		pd->m_diffList.GetDiff(pd->m_diffList.GetSize() - 1, diff);
+		pCmdUI->Enable(pos.y < (long)diff.dbegin0);
+	}
 }
 
 /**
@@ -848,14 +853,7 @@ void CMergeEditView::OnPrevdiff()
 		int line = GetCursorPos().y;
 		if (!IsValidTextPosY(CPoint(0, line)))
 			line = m_nTopLine;
-		for (int i = pd->m_nDiffs - 1; i >= 0 ; i--)
-		{
-			if ((int)pd->m_diffs[i].dend0 <= line)
-			{
-				curDiff = i;
-				break;
-			}
-		}
+		curDiff = pd->m_diffList.PrevDiffFromLine(line);
 		if (curDiff >= 0)
 			SelectDiff(curDiff, TRUE, FALSE);
 	}
@@ -867,8 +865,15 @@ void CMergeEditView::OnPrevdiff()
 void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-	CPoint pos = GetCursorPos();
-	pCmdUI->Enable(pd->m_nDiffs>0 && pos.y > (long)pd->m_diffs[0].dend0);
+	if (pd->m_diffList.GetSize() == 0)
+		pCmdUI->Enable(FALSE);
+	else
+	{
+		CPoint pos = GetCursorPos();
+		DIFFRANGE diff;
+		pd->m_diffList.GetDiff(0, diff);
+		pCmdUI->Enable(pos.y > (long)diff.dend0);
+	}
 }
 
 /**
@@ -882,6 +887,7 @@ void CMergeEditView::SelectNone()
 
 /**
  * @brief Check if line is inside currently selected diff
+ * @param [in] nLine 0-based linenumber in view
  * @sa CMergeDoc::GetCurrentDiff()
  * @sa CMergeDoc::LineInDiff()
  */
@@ -900,7 +906,7 @@ BOOL CMergeEditView::IsLineInCurrentDiff(int nLine)
 	int curDiff = pd->GetCurrentDiff();
 	if (curDiff == -1)
 		return FALSE;
-	return pd->LineInDiff(nLine, curDiff);
+	return pd->m_diffList.LineInDiff(nLine, curDiff);
 }
 
 /**
@@ -913,7 +919,7 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CMergeDoc *pd = GetDocument();
 	CPoint pos = GetCursorPos();
 
-	int diff = pd->LineToDiff(pos.y);
+	int diff = pd->m_diffList.LineToDiff(pos.y);
 	if (diff != -1)
 		SelectDiff(diff, FALSE, FALSE);
 
@@ -1022,7 +1028,7 @@ void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 {
 	// Check that left side is not readonly
 	if (!IsReadOnly(TRUE))
-		pCmdUI->Enable(GetDocument()->m_nDiffs!=0);
+		pCmdUI->Enable(GetDocument()->m_diffList.GetSize() != 0);
 	else
 		pCmdUI->Enable(FALSE);
 }
@@ -1048,7 +1054,7 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 {
 	// Check that right side is not readonly
 	if (!IsReadOnly(FALSE))
-		pCmdUI->Enable(GetDocument()->m_nDiffs!=0);
+		pCmdUI->Enable(GetDocument()->m_diffList.GetSize() != 0);
 	else
 		pCmdUI->Enable(FALSE);
 }
@@ -1265,12 +1271,12 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 	CMergeDoc *pd = GetDocument();
 	CMergeEditView *pCurrentView = NULL;
 	CMergeEditView *pOtherView = NULL;
-	int nDiff = pd->GetCurrentDiff();
+	const int nDiff = pd->GetCurrentDiff();
 
 	// Try to trap some errors
-	if (nDiff >= (int)pd->m_nDiffs)
+	if (nDiff >= pd->m_diffList.GetSize())
 		_RPTF2(_CRT_ERROR, "Selected diff > diffcount (%d > %d)!",
-			nDiff, pd->m_nDiffs);
+			nDiff, pd->m_diffList.GetSize());
 
 	if (m_bIsLeft)
 	{
@@ -1283,13 +1289,16 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 		pOtherView = pd->GetLeftView();
 	}
 
-	if (nDiff >= 0 && nDiff < (int)pd->m_nDiffs)
+	if (nDiff >= 0 && nDiff < pd->m_diffList.GetSize())
 	{
 		CPoint ptStart, ptEnd;
+		DIFFRANGE curDiff = {0};
+		pd->m_diffList.GetDiff(nDiff, curDiff);
+
 		ptStart.x = 0;
-		ptStart.y = pd->m_diffs[nDiff].dbegin0;
+		ptStart.y = curDiff.dbegin0;
 		ptEnd.x = 0;
-		ptEnd.y = pd->m_diffs[nDiff].dend0;
+		ptEnd.y = curDiff.dend0;
 
 		if (bScroll)
 		{
@@ -2056,8 +2065,8 @@ void CMergeEditView::OnWMGoto()
 			int diff = _ttoi(dlg.m_strParam) - 1;
 			if (diff < 0)
 				diff = 0;
-			if (diff >= pDoc->m_nDiffs)
-				diff = pDoc->m_nDiffs;
+			if (diff >= pDoc->m_diffList.GetSize())
+				diff = pDoc->m_diffList.GetSize();
 
 			pCurrentView->SelectDiff(diff, TRUE, FALSE);
 		}

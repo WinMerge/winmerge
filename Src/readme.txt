@@ -1,3 +1,8 @@
+2004-10-25 Kimmo
+ PATCH: [ 1003457 ] Move difflist to new class DiffList
+  Src: DiffWrapper.cpp DiffWrapper.h LocationView.h Merge.dsp
+   MergeDiffDetailView.cpp MergeDoc.cpp MergeDoc.h MergeEditView.cpp 
+
 2004-10-24 WinMerge experimental release 2.1.7.16 (cvs) (Perry)
 
 2004-10-24 Perry

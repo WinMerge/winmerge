@@ -207,16 +207,19 @@ void CMergeDiffDetailView::OnDisplayDiff(int nDiff /*=0*/)
 {
 	int newlineBegin, newlineEnd;
 	CMergeDoc *pd = GetDocument();
-	if (nDiff < 0 || nDiff >= (signed int)pd->m_nDiffs)
+	if (nDiff < 0 || nDiff >= pd->m_diffList.GetSize())
 	{
 		newlineBegin = 0;
 		newlineEnd = -1;
 	}
 	else
 	{
-		newlineBegin = pd->m_diffs[nDiff].dbegin0;
+		DIFFRANGE curDiff = {0};
+		VERIFY(pd->m_diffList.GetDiff(nDiff, curDiff));
+
+		newlineBegin = curDiff.dbegin0;
 		ASSERT (newlineBegin >= 0);
-		newlineEnd = pd->m_diffs[nDiff].dend0;
+		newlineEnd = curDiff.dend0;
 	}
 
 	if (newlineBegin == lineBegin && newlineEnd == lineEnd)

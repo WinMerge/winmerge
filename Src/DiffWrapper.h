@@ -29,6 +29,8 @@
 
 class CDiffContext;
 class PrediffingInfo;
+struct DIFFRANGE;
+class DiffList;
 struct DiffFileData;
 
 /**
@@ -38,19 +40,6 @@ enum
 {
 	CMP_CONTENT = 0, /**< Normal by content compare */
 	CMP_DATE, /**< Compare by modified date */
-};
-
-/**
- * @brief Operations in diffranges.
- * DIFFRANGE structs op-member can have these values
- */
-enum
-{
-	OP_NONE = 0,
-	OP_LEFTONLY,
-	OP_DIFF,
-	OP_RIGHTONLY,
-	OP_TRIVIAL
 };
 
 /**
@@ -88,32 +77,6 @@ enum
 	DIFF_OUTPUT_IFDEF,
 	/* Output sdiff style (-y).  */
 	DIFF_OUTPUT_SDIFF
-};
-
-/**
- * @brief One difference defined by linenumbers.
- *
- * This struct defines one set of different lines "diff".
- * @p begin0, @p end0, @p begin1 & @p end1 are linenumbers
- * in original files. Other struct members point to linenumbers
- * calculated by WinMerge after adding empty lines to make diffs
- * be in line in screen.
- *
- * @note @p blank0 & @p blank1 are -1 if there are no blank lines
- */
-struct DIFFRANGE
-{
-	UINT begin0;	/**< First diff line in original file1 */
-	UINT end0;		/**< Last diff line in original file1 */
-	UINT begin1;	/**< First diff line in original file2 */
-	UINT end1;		/**< Last diff line in original file2 */
-	UINT dbegin0;	/**< Synchronised (ghost lines added) first diff line in file1 */
-	UINT dend0;		/**< Synchronised (ghost lines added) last diff line in file1 */
-	UINT dbegin1;	/**< Synchronised (ghost lines added) first diff line in file2 */
-	UINT dend1;		/**< Synchronised (ghost lines added) last diff line in file2 */
-	int blank0;		/**< Number of blank lines in file1 */
-	int blank1;		/**< Number of blank lines in file2 */
-	BYTE op;		/**< Operation done with this diff */
 };
 
 /**
@@ -179,7 +142,7 @@ public:
 	~CDiffWrapper();
 	void SetCompareFiles(CString file1, CString file2);
 	void SetPatchFile(CString file);
-	void SetDiffList(CArray<DIFFRANGE,DIFFRANGE> *diffs);
+	void SetDiffList(DiffList *diffList);
 	void GetOptions(DIFFOPTIONS *options);
 	void SetOptions(DIFFOPTIONS *options);
 	void SetTextForAutomaticPrediff(CString text);
@@ -233,7 +196,7 @@ private:
 	BOOL m_bAddCmdLine;
 	BOOL m_bAppendFiles;
 	int m_nDiffs;
-	CArray<DIFFRANGE,DIFFRANGE> *m_diffs;
+	DiffList *m_pDiffList;
 	CMap<int, int, int, int> m_moved0;
 	CMap<int, int, int, int> m_moved1;
 };

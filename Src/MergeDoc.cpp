@@ -52,7 +52,7 @@
 #include "OptionsDef.h"
 #include "DiffFileInfo.h"
 #include "SaveClosingDlg.h"
-
+#include "DiffList.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -101,8 +101,6 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 {
 	DIFFOPTIONS options = {0};
 
-	m_diffs.SetSize(64);
-	m_nDiffs=0;
 	m_nCurDiff=-1;
 	m_strTempLeftFile;
 	m_strTempRightFile;
@@ -355,13 +353,12 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 
 	// Set up DiffWrapper
 	m_diffWrapper.SetCompareFiles(m_strTempLeftFile, m_strTempRightFile);
-	m_diffWrapper.SetDiffList(&m_diffs);
+	m_diffWrapper.SetDiffList(&m_diffList);
 	m_diffWrapper.SetUseDiffList(TRUE);		// Add diffs to list
 	m_diffWrapper.GetOptions(&diffOptions);
 	
 	// Clear diff list
-	m_diffs.RemoveAll();
-	m_nDiffs = 0;
+	m_diffList.Clear();
 	m_nCurDiff = -1;
 	// Clear moved lines lists
 	m_diffWrapper.ClearMovedLists();
@@ -373,7 +370,6 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	m_diffWrapper.GetDiffStatus(&status);
 	if (bBinary) // believe caller if we were told these are binaries
 		status.bBinaries = TRUE;
-	m_nDiffs = m_diffs.GetSize();
 
 	// If comparing whitespaces and
 	// other file has EOL before EOF and other not...
@@ -425,7 +421,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		// (m_nDiffs) and trivial diffs (m_nTrivialDiffs)
 
 		// Identical files are also updated
-		if (m_nDiffs == 0)
+		if (m_diffList.GetSize() == 0)
 			bIdentical = TRUE;
 
 		// just apply some options to the views
@@ -635,13 +631,13 @@ private:
 /// Copy all diffs from one side to the other (as specified by caller)
 void CMergeDoc::CopyAllList(bool bSrcLeft)
 {
-	CopyMultipleList(bSrcLeft, 0, m_nDiffs-1);
+	CopyMultipleList(bSrcLeft, 0, m_diffList.GetSize() - 1);
 }
 
 /// Copy some diffs from one side to the other (as specified by caller)
 void CMergeDoc::CopyMultipleList(bool bSrcLeft, int firstDiff, int lastDiff)
 {
-	lastDiff = min((signed int)m_nDiffs - 1, lastDiff);
+	lastDiff = min(m_diffList.GetSize() - 1, lastDiff);
 	firstDiff = max(0, firstDiff);
 	if (firstDiff > lastDiff)
 		return;
@@ -673,7 +669,8 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 	int curDiff = GetCurrentDiff();
 	if (curDiff!=-1)
 	{
-		DIFFRANGE &cd = m_diffs[curDiff];
+		DIFFRANGE cd = {0};
+		m_diffList.GetDiff(curDiff, cd);
 		CDiffTextBuffer& sbuf = bSrcLeft? m_ltBuf:m_rtBuf;
 		CDiffTextBuffer& dbuf = bSrcLeft? m_rtBuf:m_ltBuf;
 		BOOL bSrcWasMod = sbuf.IsModified();
@@ -1068,36 +1065,6 @@ BOOL CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 }
 
 /**
- * @brief Checks if line is inside given diff
- * @param nline Linenumber to text buffer (not "real" number)
- * @param ndiff Index to diff table
- */
-BOOL CMergeDoc::LineInDiff(UINT nLine, UINT nDiff)
-{
-	ASSERT(nDiff <= m_nDiffs);
-	if (nLine >= m_diffs[nDiff].dbegin0 &&
-			nLine <= m_diffs[nDiff].dend0)
-		return TRUE;
-	else
-		return FALSE;
-}
-
-/**
- * @brief Checks if given line is inside diff and
- * @param nLine [in] Linenumber, 0-based.
- * @return Index to diff table, -1 if line no inside any diff.
- */
-int CMergeDoc::LineToDiff(UINT nLine)
-{
-	for (UINT i = 0; i < m_nDiffs; i++)
-	{
-		if (LineInDiff(nLine, i))
-			return i;
-	}
-	return -1;
-}
-
-/**
  * @brief Get left->right info for a moved line (apparent line number)
  */
 int CMergeDoc::RightLineInMovedBlock(int apparentLeftLine)
@@ -1164,7 +1131,7 @@ BOOL CMergeDoc::SaveModified()
 
 void CMergeDoc::SetCurrentDiff(int nDiff)
 {
-	if (nDiff >= 0 && nDiff < (int)m_nDiffs)
+	if (nDiff >= 0 && nDiff < m_diffList.GetSize())
 		m_nCurDiff = nDiff;
 	else
 		m_nCurDiff = -1;
@@ -1976,9 +1943,9 @@ void CMergeDoc::OnFileSave()
 			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
 				FlushAndRescan(FALSE);
 
-			BOOL bIdentical = (m_nDiffs == 0); // True if status should be set to identical
+			BOOL bIdentical = (m_diffList.GetSize() == 0); // True if status should be set to identical
 			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile,
-				m_nDiffs, m_nTrivialDiffs, bIdentical);
+				m_diffList.GetSize(), m_nTrivialDiffs, bIdentical);
 		}
 	}
 }
@@ -2007,9 +1974,9 @@ void CMergeDoc::OnFileSaveLeft()
 			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
 				FlushAndRescan(FALSE);
 
-			BOOL bIdentical = (m_nDiffs == 0); // True if status should be set to identical
+			BOOL bIdentical = (m_diffList.GetSize() == 0); // True if status should be set to identical
 			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile,
-				m_nDiffs, m_nTrivialDiffs, bIdentical);
+				m_diffList.GetSize(), m_nTrivialDiffs, bIdentical);
 		}
 	}
 }
@@ -2038,9 +2005,9 @@ void CMergeDoc::OnFileSaveRight()
 			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
 				FlushAndRescan(FALSE);
 
-			BOOL bIdentical = (m_nDiffs == 0); // True if status should be set to identical
+			BOOL bIdentical = (m_diffList.GetSize() == 0); // True if status should be set to identical
 			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile,
-				m_nDiffs, m_nTrivialDiffs, bIdentical);
+				m_diffList.GetSize(), m_nTrivialDiffs, bIdentical);
 		}
 	}
 }
@@ -2069,20 +2036,21 @@ void CMergeDoc::OnFileSaveAsRight()
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
 	CString sIdx,sCnt,s;
+	const int nDiffs = m_diffList.GetSize();
 	
 	// Files are identical - show text "Identical"
-	if (m_nDiffs <= 0)
+	if (nDiffs <= 0)
 		VERIFY(s.LoadString(IDS_IDENTICAL));
 	
 	// There are differences, but no selected diff
 	// - show amount of diffs
 	else if (GetCurrentDiff() < 0)
 	{
-		if (m_nDiffs == 1)
+		if (nDiffs == 1)
 			VERIFY(s.LoadString(IDS_1_DIFF_FOUND));
 		else
 		{
-			sCnt.Format(_T("%ld"), m_nDiffs);
+			sCnt.Format(_T("%ld"), nDiffs);
 			AfxFormatString1(s, IDS_NO_DIFF_SEL_FMT, sCnt);
 		}
 	}
@@ -2092,7 +2060,7 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	else
 	{
 		sIdx.Format(_T("%ld"), GetCurrentDiff()+1);
-		sCnt.Format(_T("%ld"), m_nDiffs);
+		sCnt.Format(_T("%ld"), nDiffs);
 		AfxFormatString2(s, IDS_DIFF_NUMBER_STATUS_FMT, sIdx, sCnt); 
 	}
 	pCmdUI->SetText(s);
@@ -2119,13 +2087,15 @@ void CMergeDoc::PrimeTextBuffers()
 	SetCurrentDiff(-1);
 	m_nTrivialDiffs = 0;
 	int nDiff;
+	int nDiffCount = m_diffList.GetSize();
 
 	// walk the diff list and calculate numbers of extra lines to add
 	UINT LeftExtras=0;   // extra lines added to left view
 	UINT RightExtras=0;   // extra lines added to right view
-	for (nDiff = 0; nDiff < m_nDiffs; ++ nDiff)
+	for (nDiff = 0; nDiff < nDiffCount; ++ nDiff)
 	{
-		DIFFRANGE &curDiff = m_diffs[nDiff];
+		DIFFRANGE curDiff = {0};
+		VERIFY(m_diffList.GetDiff(nDiff, curDiff));
 
 		// this guarantees that all the diffs are synchronized
 		ASSERT(curDiff.begin0+LeftExtras == curDiff.begin1+RightExtras);
@@ -2151,16 +2121,17 @@ void CMergeDoc::PrimeTextBuffers()
 
 	// walk the diff list backward, move existing lines to proper place,
 	// add ghost lines, and set flags
-	for (nDiff = m_nDiffs - 1; nDiff >= 0; nDiff --)
+	for (nDiff = nDiffCount - 1; nDiff >= 0; nDiff --)
 	{
-		DIFFRANGE &curDiff = m_diffs[nDiff];
+		DIFFRANGE curDiff = {0};
+		VERIFY(m_diffList.GetDiff(nDiff, curDiff));
 
 		// move matched lines after curDiff
 		int nline0 = lcount0 - curDiff.end0 - 1;
 		int nline1 = lcount1 - curDiff.end1 - 1;
 		// Matched lines should really match...
 		// But matched lines after last diff may differ because of empty last line (see function's note)
-		if (nDiff < m_nDiffs - 1)
+		if (nDiff < nDiffCount - 1)
 			ASSERT(nline0 == nline1);
 		m_ltBuf.MoveLine(curDiff.end0+1, lcount0-1, lcount0new-nline0);
 		m_rtBuf.MoveLine(curDiff.end1+1, lcount1-1, lcount1new-nline1);
@@ -2307,7 +2278,8 @@ void CMergeDoc::PrimeTextBuffers()
 			}
 			break;
 		}           // switch (curDiff.op)
-	}             // for (nDiff = m_nDiffs; nDiff-- > 0; )
+		VERIFY(m_diffList.SetDiff(nDiff, curDiff));
+	}             // for (nDiff = nDiffCount; nDiff-- > 0; )
 
 	if (m_nTrivialDiffs)
 	{
@@ -2315,25 +2287,28 @@ void CMergeDoc::PrimeTextBuffers()
 		//
 		// #1) Copy nontrivial diffs into new array
 		CArray<DIFFRANGE,DIFFRANGE> newdiffs;
-		newdiffs.SetSize(m_diffs.GetSize()-m_nTrivialDiffs);
+		newdiffs.SetSize(nDiffCount - m_nTrivialDiffs);
 		UINT i,j;
-		for (i=0,j=0; j < m_nDiffs; ++j)
+		for (i=0,j=0; j < nDiffCount; ++j)
 		{
-			// j is index into m_diffs
+			// j is index into difflist
 			// i is index into newdiffs
 			// i grows more slowly than j, as i skips trivials
-			if (m_diffs[j].op != OP_TRIVIAL)
+
+			DIFFRANGE curDiff = {0};
+			VERIFY(m_diffList.GetDiff(j, curDiff));
+			if (curDiff.op != OP_TRIVIAL)
 			{
-				newdiffs[i] = m_diffs[j];
+				newdiffs[i] = curDiff;
 				++i;
 			}
 		}
 		// #2) Now copy from new array back into master array
-		m_nDiffs = newdiffs.GetSize();
-		m_diffs.SetSize(m_nDiffs);
-		for (i=0; i < m_nDiffs; ++i)
+		m_diffList.SetSize(newdiffs.GetSize());
+		nDiffCount = m_diffList.GetSize();
+		for (i=0; i < nDiffCount; ++i)
 		{
-			m_diffs[i] = newdiffs[i];
+			VERIFY(m_diffList.SetDiff(i, newdiffs[i]));
 		}
 	}
 
@@ -2448,9 +2423,9 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
 				FlushAndRescan(FALSE);
 
-			BOOL bIdentical = (m_nDiffs == 0); // True if status should be set to identical
+			BOOL bIdentical = (m_diffList.GetSize() == 0); // True if status should be set to identical
 			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile,
-				m_nDiffs, m_nTrivialDiffs, bIdentical);
+				m_diffList.GetSize(), m_nTrivialDiffs, bIdentical);
 		}
 	}
 	return result;
@@ -2794,7 +2769,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 
 		// scroll to first diff
 		if (mf->m_options.GetInt(OPT_SCROLL_TO_FIRST) &&
-			m_diffs.GetSize() != 0)
+			m_diffList.GetSize() != 0)
 		{
 			pLeft->SelectDiff(0, TRUE, FALSE);
 		}
@@ -2992,55 +2967,6 @@ void CMergeDoc::UpdateHeaderActivity(BOOL bLeft, BOOL bActivate)
 	ASSERT(pf);
 	int nPane = (bLeft) ? 0 : 1;
 	pf->GetHeaderInterface()->SetActive(nPane, bActivate);
-}
-
-/**
- * @brief Return next diff from given line.
- * @param nLine [in] First line searched.
- * @param nDiff [out] Index of diff found.
- * @return TRUE if line is inside diff, FALSE otherwise.
- */
-BOOL CMergeDoc::GetNextDiff(int nLine, int &nDiff)
-{
-	BOOL bInDiff = TRUE;
-	int numDiff = LineToDiff(nLine);
-
-	// Line not inside diff
-	if (numDiff == -1)
-	{
-		bInDiff = FALSE;
-		for (UINT i = 0; i < m_nDiffs; i++)
-		{
-			if ((int)m_diffs[i].dbegin0 >= nLine)
-			{
-				numDiff = i;
-				break;
-			}
-		}
-	}
-	nDiff = numDiff;
-	return bInDiff;
-}
-
-/**
- * @brief Returns copy of DIFFITEM from diff-list.
- * @param nDiff [in] Index of DIFFITEM to return.
- * @param di [out] DIFFITEM returned (empty if error)
- * @return TRUE if DIFFITEM found from given index.
- */
-BOOL CMergeDoc::GetDiff(int nDiff, DIFFRANGE &di) const
-{
-	DIFFRANGE diff = {0};
-	if (nDiff >= 0 && nDiff < m_nDiffs)
-	{
-		di = m_diffs[nDiff];
-		return TRUE;
-	}
-	else
-	{
-		di = diff;
-		return FALSE;
-	}
 }
 
 /**

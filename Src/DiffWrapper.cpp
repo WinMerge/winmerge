@@ -28,6 +28,7 @@
 #include "coretools.h"
 #include "common/unicoder.h"
 #include "diffcontext.h"
+#include "DiffList.h"
 #include "diffwrapper.h"
 #include "diff.h"
 #include "FileTransform.h"
@@ -54,11 +55,12 @@ CDiffWrapper::CDiffWrapper()
 	m_bAppendFiles = FALSE;
 	m_nDiffs = 0;
 	m_infoPrediffer = NULL;
+	m_pDiffList = NULL;
 
 	m_settings.heuristic = 1;
 	m_settings.outputStyle = OUTPUT_NORMAL;
 	m_settings.context = -1;
-    
+
 	// character that ends a line.  Currently this is always `\n'
 	line_end_char = '\n';
 }
@@ -92,10 +94,10 @@ void CDiffWrapper::SetPatchFile(CString file)
 /**
  * @brief Sets pointer to external diff-list filled when analysing files
  */
-void CDiffWrapper::SetDiffList(CArray<DIFFRANGE,DIFFRANGE> *diffs)
+void CDiffWrapper::SetDiffList(DiffList *diffList)
 {
-	ASSERT(diffs);
-	m_diffs = diffs;
+	ASSERT(diffList);
+	m_pDiffList = diffList;
 }
 
 /**
@@ -210,7 +212,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	SwapToInternalSettings();
 
 	if (m_bUseDiffList)
-		m_nDiffs = m_diffs->GetSize();
+		m_nDiffs = m_pDiffList->GetSize();
 
 	// perform rescan
 	CString sdir0, sdir1, sname0, sname1, sext0, sext1;
@@ -596,7 +598,7 @@ void CDiffWrapper::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, 
 		dr.end1 = end1;
 		dr.op = op;
 		dr.blank0 = dr.blank1 = -1;
-		m_diffs->SetAtGrow(m_nDiffs, dr);
+		m_pDiffList->AddDiff(dr);
 		m_nDiffs++;
 	}
 	CATCH_ALL(e)
@@ -614,10 +616,10 @@ void CDiffWrapper::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, 
 void CDiffWrapper::FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left)
 {
 	DIFFRANGE dr = {0};
-	int count = m_diffs->GetSize();
+	const int count = m_pDiffList->GetSize();
 	if (count > 0)
 	{
-		dr = m_diffs->GetAt(count - 1);
+		m_pDiffList->GetDiff(count - 1, dr);
 
 		if (left)
 		{
@@ -631,8 +633,7 @@ void CDiffWrapper::FixLastDiffRange(int leftBufferLines, int rightBufferLines, B
 				dr.op = OP_DIFF;
 			dr.end1++;
 		}
-
-		m_diffs->SetAt(count - 1, dr); 
+		m_pDiffList->SetDiff(count - 1, dr);
 	}
 	else 
 	{

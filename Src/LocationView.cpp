@@ -261,7 +261,7 @@ BOOL CLocationView::GetNextRect(int &nLineIndex)
 	if (nLineIndex >= nbLines)
 		return FALSE;
 
-	bInDiff = pDoc->GetNextDiff(nLineIndex, nextDiff);
+	bInDiff = pDoc->m_diffList.GetNextDiff(nLineIndex, nextDiff);
 	
 	// No diffs left, return last line of file.
 	if (nextDiff == -1)
@@ -271,7 +271,7 @@ BOOL CLocationView::GetNextRect(int &nLineIndex)
 	}
 
 	DIFFRANGE di = {0};
-	if (!pDoc->GetDiff(nextDiff, di))
+	if (!pDoc->m_diffList.GetDiff(nextDiff, di))
 		return FALSE;
 
 	// Line not in diff. Return last non-diff line.

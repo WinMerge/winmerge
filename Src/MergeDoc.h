@@ -31,6 +31,7 @@
 #include "GhostTextBuffer.h"
 #include <vector>
 #include "DiffWrapper.h"
+#include "DiffList.h"
 
 #ifndef _DIFF_FILE_INFO_H_INCLUDED
 #include "DiffFileInfo.h"
@@ -190,8 +191,7 @@ public:
 	DiffFileInfo m_rightSaveFileInfo;
 	DiffFileInfo m_leftRescanFileInfo;
 	DiffFileInfo m_rightRescanFileInfo;
-	CArray<DIFFRANGE,DIFFRANGE> m_diffs;
-	UINT m_nDiffs; /**< Amount of diffs */
+	DiffList m_diffList;
 	UINT m_nTrivialDiffs; /**< Amount of trivial (ignored) diffs */
 	CString m_strLeftFile, m_strRightFile;
 	/// String of concatenated filenames as text to apply plugins filter to
@@ -216,8 +216,6 @@ public:
 		BOOL bLeft, PackingInfo * pInfoTempUnpacker);
 	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
 	BOOL DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
-	int LineToDiff(UINT nLine);
-	BOOL LineInDiff(UINT nLine, UINT nDiff);
 	int RightLineInMovedBlock(int leftLine);
 	int LeftLineInMovedBlock(int rightLine);
 	void SetDiffViewMode(BOOL bEnable);
@@ -276,8 +274,6 @@ public:
 	BOOL GetMergingMode() const;
 	void SetMergingMode(BOOL bMergingMode);
 	void SetDetectMovedBlocks(BOOL bDetectMovedBlocks);
-	BOOL GetNextDiff(int nLine, int &nDiff);
-	BOOL GetDiff(int nDiff, DIFFRANGE &di) const;
 
 // Implementation data
 protected:
