@@ -192,6 +192,7 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_CMP_IGNORE_CASE, FALSE);
 	m_options.InitOption(OPT_CMP_EOL_SENSITIVE, TRUE);
 	m_options.InitOption(OPT_CMP_METHOD, CMP_CONTENT);
+	m_options.InitOption(OPT_CMP_MOVED_BLOCKS, FALSE);
 
 	m_nCompMethod = m_options.GetInt(OPT_CMP_METHOD);
 
@@ -1086,6 +1087,7 @@ void CMainFrame::OnOptions()
 	compage.m_bIgnoreBlankLines = m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
 	compage.m_bIgnoreCase = m_options.GetInt(OPT_CMP_IGNORE_CASE);
 	compage.m_bEolSensitive = m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
+	compage.m_bMovedBlocks = m_options.GetInt(OPT_CMP_MOVED_BLOCKS);
 	editor.m_nTabSize = m_options.GetInt(OPT_TAB_SIZE);
 	editor.m_nTabType = m_options.GetInt(OPT_TAB_TYPE);
 	editor.m_bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
@@ -1115,6 +1117,7 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CMP_EOL_SENSITIVE, compage.m_bEolSensitive);
 		m_options.SaveOption(OPT_CMP_IGNORE_CASE, compage.m_bIgnoreCase);
         m_options.SaveOption(OPT_CMP_METHOD, compage.m_compareMethod);
+		m_options.SaveOption(OPT_CMP_MOVED_BLOCKS, compage.m_bMovedBlocks);
 		
 		m_nCompMethod = compage.m_compareMethod;
 

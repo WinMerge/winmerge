@@ -1,3 +1,9 @@
+2004-03-23 Kimmo
+ PATCH: [ 921440 ] UI option for detecting moved blocks
+  Src: DirDoc.cpp MainFrm.cpp Merge.rc MergeDoc.cpp OptionsDef.h
+   PropCompare.cpp PropCompare.h resource.h
+  Languages: *.rc resource.h
+
 2004-03-22 Seier
   I added /InnoSetup/desktop.ini file to be used as a template for making C:\Program Files\WinMerge, or wherever that might be, have a customized (WinMerge) folder icon. 
     InnoSetup: desktop.ini

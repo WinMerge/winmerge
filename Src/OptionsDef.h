@@ -57,5 +57,6 @@ const TCHAR OPT_CMP_IGNORE_BLANKLINES[] = _T("Settings/IgnoreBlankLines");
 const TCHAR OPT_CMP_IGNORE_CASE[] = _T("Settings/IgnoreCase");
 const TCHAR OPT_CMP_EOL_SENSITIVE[] = _T("Settings/EolSensitive");
 const TCHAR OPT_CMP_METHOD[] = _T("Settings/CompMethod");
+const TCHAR OPT_CMP_MOVED_BLOCKS[] = _T("Settings/MovedBlocks");
 
 #endif // _OPTIONS_DEF_H_

@@ -117,6 +117,7 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	m_nLeftBufferType = BUFFER_NORMAL;
 	m_nRightBufferType = BUFFER_NORMAL;
 
+	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetInt(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	options.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
 	options.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);
@@ -329,7 +330,6 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	m_diffWrapper.SetTextForAutomaticUnpack(m_strBothFilenames);
 	m_diffWrapper.SetDiffList(&m_diffs);
 	m_diffWrapper.SetUseDiffList(TRUE);		// Add diffs to list
-	m_diffWrapper.SetDetectMovedBlocks(TRUE); // want the moved blocks detection algorithm
 	m_diffWrapper.GetOptions(&diffOptions);
 	
 	// Clear diff list
@@ -1781,6 +1781,13 @@ BOOL CMergeDoc::TempFilesExist()
 		&& CFile::GetStatus(m_strTempRightFile, s2));
 }
 
+/**
+ * @brief Take care of rescanning document.
+ * 
+ * Update view and restore cursor and scroll position after
+ * rescanning document.
+ * @param bForced If TRUE rescan cannot be suppressed
+ */
 void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 {
 	// Ignore suppressing when forced rescan
@@ -2733,6 +2740,7 @@ void CMergeDoc::RefreshOptions()
 {
 	DIFFOPTIONS options = {0};
 	
+	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetInt(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	options.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
 	options.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);

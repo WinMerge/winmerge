@@ -45,6 +45,7 @@ public:
 	BOOL	m_bIgnoreCase;
 	BOOL	m_bIgnoreBlankLines;
 	int		m_nIgnoreWhite;
+	BOOL	m_bMovedBlocks;
 	//}}AFX_DATA
 
 

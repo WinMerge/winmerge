@@ -32,6 +32,7 @@ CPropCompare::CPropCompare(COptionsMgr *optionsMgr) : CPropertyPage(CPropCompare
 	m_bIgnoreBlankLines = FALSE;
 	m_bEolSensitive = FALSE;
 	m_nIgnoreWhite = -1;
+	m_bMovedBlocks = FALSE;
 	//}}AFX_DATA_INIT
 
 	m_pOptionsMgr = optionsMgr;
@@ -46,6 +47,7 @@ void CPropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_IGNBLANKS_CHECK, m_bIgnoreBlankLines);
 	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bEolSensitive);
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
+	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
 	//}}AFX_DATA_MAP
 }
 
@@ -60,7 +62,7 @@ END_MESSAGE_MAP()
 // CPropCompare message handlers
 
 /** 
- * @brief Called before propertysheet is drawn
+ * @brief Called before propertysheet is drawn.
  */
 BOOL CPropCompare::OnInitDialog() 
 {
@@ -88,12 +90,14 @@ void CPropCompare::OnDefaults()
 	m_pOptionsMgr->Reset(OPT_CMP_IGNORE_CASE);
 	m_pOptionsMgr->Reset(OPT_CMP_EOL_SENSITIVE);
 	m_pOptionsMgr->Reset(OPT_CMP_METHOD);
+	m_pOptionsMgr->Reset(OPT_CMP_MOVED_BLOCKS);
 
 	m_compareMethod = m_pOptionsMgr->GetInt(OPT_CMP_METHOD);
 	m_nIgnoreWhite = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	m_bEolSensitive = m_pOptionsMgr->GetInt(OPT_CMP_EOL_SENSITIVE);
 	m_bIgnoreBlankLines = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_BLANKLINES);
 	m_bIgnoreCase = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_CASE);
+	m_bMovedBlocks = m_pOptionsMgr->GetInt(OPT_CMP_MOVED_BLOCKS);
 
 	UpdateData(FALSE);
 }

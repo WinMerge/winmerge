@@ -781,28 +781,30 @@ BEGIN
     PUSHBUTTON      "Abbruch",IDCANCEL,132,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOG DISCARDABLE  0, 0, 236, 156
+IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 235, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Vergleichen"
 FONT 8, "MS Sans Serif"
 BEGIN
     GROUPBOX        "Leerzeichen",IDC_STATIC,7,7,221,50
     CONTROL         "&Vergleichen",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,14,19,102,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,19,206,10
     CONTROL         "Änderung &ignorieren",IDC_WHITE_CHANGE,
-                    "Button",BS_AUTORADIOBUTTON,14,30,114,10
+                    "Button",BS_AUTORADIOBUTTON,14,30,206,10
     CONTROL         "&Alle ignorieren",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,14,41,106,10
+                    BS_AUTORADIOBUTTON,14,41,206,10
     CONTROL         "Leer&zeilen ignorieren",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,81,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
     CONTROL         "&Groß-/Kleinschreibung ignorieren",IDC_IGNCASE_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,71,119,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
     CONTROL         "Z&eilenende erkennen",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,82,86,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,80,221,10
+    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
     LTEXT           "Vergleichsmethode:",IDC_STATIC,7,97,70,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,95,84,52,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,103,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,7,112,50,14
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,7,121,50,14
 END
 
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
