@@ -290,7 +290,7 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "General"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Settings",IDC_STATIC,7,7,221,92
+    GROUPBOX        "Settings",IDC_STATIC,7,7,242,92
     CONTROL         "&Backup original file",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,21,75,10
     CONTROL         "Automatically &scroll to first difference",
@@ -310,9 +310,13 @@ BEGIN
                     BS_AUTORADIOBUTTON,128,69,83,10
     GROUPBOX        "Tabs",IDC_STATIC,7,105,221,30,WS_GROUP
     LTEXT           "&Tab size:",IDC_STATIC,15,119,30,8
-    EDITTEXT        IDC_TAB_EDIT,47,118,27,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TAB_EDIT,47,117,27,12,ES_AUTOHSCROLL
     CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,68,69,10
+    CONTROL         "Insert Tabs",IDC_PROP_INSERT_TABS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,99,112,51,10
+    CONTROL         "Insert Spaces",IDC_PROP_INSERT_SPACES,"Button",
+                    BS_AUTORADIOBUTTON,99,123,59,10
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -387,6 +391,7 @@ BEGIN
     EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | 
                     WS_VSCROLL
 END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -606,6 +611,10 @@ STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
     IDS_VERSION_FMT         "Version %1"
     IDS_ALLFILES            "All Files (*.*)|*.*||"
     IDS_CONFIRM_ALL_LEFT    "Are you sure you want to copy all differences to the left file?"

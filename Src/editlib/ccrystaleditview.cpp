@@ -83,6 +83,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+static const unsigned int MAX_TAB_LEN = 64;  // Same as in CrystalViewText.cpp
+
 #define DRAG_BORDER_X       5
 #define DRAG_BORDER_Y       5
 
@@ -116,7 +118,6 @@ IMPLEMENT_DYNCREATE (CCrystalEditView, CCrystalTextView)
 CCrystalEditView::CCrystalEditView ()
 {
   AFX_ZERO_INIT_OBJECT (CCrystalTextView);
-  m_bInsertTabs = TRUE;
   m_bAutoIndent = TRUE;
   m_mapExpand = new CMap<CString, LPCTSTR, CString, LPCTSTR> (10);
   m_bMergeUndo = false;
@@ -131,7 +132,6 @@ bool CCrystalEditView::
 DoSetTextType (TextDefinition *def)
 {
   m_CurSourceDef = def;
-  SetInsertTabs ((def->flags & SRCOPT_INSERTTABS) != FALSE);
   SetAutoIndent ((def->flags & SRCOPT_AUTOINDENT) != FALSE);
   SetDisableBSAtSOL ((def->flags & SRCOPT_BSATBOL) == FALSE);
   m_mapExpand->RemoveAll ();
@@ -649,19 +649,25 @@ OnEditTab ()
   if (IsSelection ())
     {
       GetSelection (ptSelStart, ptSelEnd);
-      bTabify = ptSelStart.y != ptSelEnd.y;
-    }
+		
+		// If we have more than one line selected, tabify sel lines
+		if ( ptSelStart.y != ptSelEnd.y )
+		{
+			bTabify = TRUE;
+		}
+	}
 
   CPoint ptCursorPos = GetCursorPos ();
   ASSERT_VALIDTEXTPOS (ptCursorPos);
 
-  static TCHAR pszText[32];
-  if (m_bInsertTabs)
+  TCHAR pszText[MAX_TAB_LEN + 1] = {0};
+  // If inserting tabs, then initialize the text to a tab.
+  if (m_pTextBuffer->GetInsertTabs())
     {
-      *pszText = _T ('\t');
+      pszText[0] = _T ( '\t' );
       pszText[1] = _T ('\0');
     }
-  else
+  else //...otherwise, built whitespace depending on the location and tab stops
     {
       int nTabSize = GetTabSize ();
       int nChars = nTabSize - ptCursorPos.x % nTabSize;
@@ -669,6 +675,7 @@ OnEditTab ()
       pszText[nChars] = _T ('\0');
     }
 
+  // Indent selected lines (multiple lines selected)
   if (bTabify)
     {
       m_pTextBuffer->BeginUndoGroup ();
@@ -688,7 +695,7 @@ OnEditTab ()
               ptSelEnd.y++;
             }
         }
-      else
+      else  //...otherwise, do not indent the empty line.
         nEndLine--;
       SetSelection (ptSelStart, ptSelEnd);
       SetCursorPos (ptSelEnd);
@@ -709,6 +716,7 @@ OnEditTab ()
       return;
     }
 
+  // Overwrite mode, replace next char with tab/spaces
   if (m_bOvrMode)
     {
       CPoint ptCursorPos = GetCursorPos ();
@@ -716,10 +724,13 @@ OnEditTab ()
 
       int nLineLength = GetLineLength (ptCursorPos.y);
       LPCTSTR pszLineChars = GetLineChars (ptCursorPos.y);
+		
+      // Not end of line
       if (ptCursorPos.x < nLineLength)
         {
           int nTabSize = GetTabSize ();
-          int nChars = nTabSize - CalculateActualOffset (ptCursorPos.y, ptCursorPos.x) % nTabSize;
+          int nChars = nTabSize - CalculateActualOffset(
+              ptCursorPos.y, ptCursorPos.x ) % nTabSize;
           ASSERT (nChars > 0 && nChars <= nTabSize);
 
           while (nChars > 0)
@@ -747,6 +758,9 @@ OnEditTab ()
 
   m_pTextBuffer->BeginUndoGroup ();
 
+  int x, y;	// For cursor position
+
+  // Text selected, no overwrite mode, replace sel with tab
   if (IsSelection ())
     {
       CPoint ptSelStart, ptSelEnd;
@@ -759,10 +773,13 @@ OnEditTab ()
 
       // [JRT]:
       m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_TYPING);
+      m_pTextBuffer->InsertText( this, ptSelStart.y, ptSelStart.x, pszText, y, x, CE_ACTION_TYPING );
     }
-
-  int x, y;
-  m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszText, y, x, CE_ACTION_TYPING);  //  [JRT]
+  // No selection, add tab
+  else
+    {
+      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszText, y, x, CE_ACTION_TYPING);  //  [JRT]
+    }
 
   ptCursorPos.x = x;
   ptCursorPos.y = y;
@@ -1331,7 +1348,8 @@ ReplaceSelection (LPCTSTR pszNewText, DWORD dwFlags)
     ptCursorPos = GetCursorPos ();
   ASSERT_VALIDTEXTPOS (ptCursorPos);
 
-  int x, y;
+  int x = 0;
+  int y = 0;
   if (dwFlags & FIND_REGEXP)
     {
       LPTSTR lpszNewStr;
@@ -1564,7 +1582,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
               TCHAR *pszInsertStr;
               if ((GetFlags () & (SRCOPT_BRACEGNU|SRCOPT_BRACEANSI)) && isopenbrace (pszLineChars[nLength - 1]))
                 {
-                  if (m_bInsertTabs)
+                  if (m_pTextBuffer->GetInsertTabs())
                     {
                       pszInsertStr = (TCHAR *) _alloca (sizeof (TCHAR) * (nPos + 2));
                       _tcsncpy (pszInsertStr, pszLineChars, nPos);
@@ -1606,7 +1624,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
               TCHAR *pszInsertStr;
               if ((GetFlags () & (SRCOPT_BRACEGNU|SRCOPT_BRACEANSI)) && isopenbrace (pszLineChars[nLength - 1]))
                 {
-                  if (m_bInsertTabs)
+                  if (m_pTextBuffer->GetInsertTabs())
                     {
                       pszInsertStr = (TCHAR *) _alloca (sizeof (TCHAR) * 2);
                       pszInsertStr[nPos++] = _T ('\t');
@@ -1673,7 +1691,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
           if (nPos == nLength - 1)
             {
               TCHAR *pszInsertStr;
-              if (m_bInsertTabs)
+              if (m_pTextBuffer->GetInsertTabs())
                 {
                   pszInsertStr = (TCHAR *) _alloca (sizeof (TCHAR) * 2);
                   *pszInsertStr = _T ('\t');
@@ -1959,7 +1977,7 @@ OnEditAutoExpand ()
                       case _T ('t'):
                         {
                           static TCHAR szText[32];
-                          if (m_bInsertTabs)
+                          if (m_pTextBuffer->GetInsertTabs())
                             {
                               *szText = _T ('\t');
                               szText[1] = _T ('\0');

@@ -47,6 +47,7 @@ CPropGeneral::CPropGeneral() : CPropertyPage(CPropGeneral::IDD)
 	m_bEolSensitive = FALSE;
 	m_bDisableSplash = FALSE;
 	m_nIgnoreWhite = -1;
+	m_nTabType = 0;
 	//}}AFX_DATA_INIT
 }
 
@@ -66,6 +67,8 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bEolSensitive);
 	DDX_Check(pDX, IDC_DISABLE_SPLASH, m_bDisableSplash);
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
+	DDX_Radio(pDX, IDC_PROP_INSERT_TABS, m_nTabType);
+	DDV_MinMaxInt( pDX, m_nTabSize, 0, 64 );
 	//}}AFX_DATA_MAP
 }
 

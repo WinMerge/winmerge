@@ -103,6 +103,8 @@ public:
 	CMergeEditView *m_pLeft, *m_pRight;
 	CMergeDoc *m_pMergeDoc;
 	CDirDoc *m_pDirDoc;
+	UINT m_nTabType;
+
 // Implementation data
 protected:
 	int m_nStatusFileSame;

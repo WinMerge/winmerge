@@ -180,6 +180,8 @@ CCrystalTextBuffer::CCrystalTextBuffer ()
   m_bModified = FALSE;
   m_bCreateBackupFile = FALSE;
   m_nUndoPosition = 0;
+  m_bInsertTabs = TRUE;
+  m_nTabSize = 4;
 	//BEGIN SW
 	m_ptLastChange.x = m_ptLastChange.y = -1;
 	//END SW
@@ -297,6 +299,8 @@ InitNew (int nCrlfStyle /*= CRLF_STYLE_DOS*/ )
   m_bReadOnly = FALSE;
   m_nCRLFMode = nCrlfStyle;
   m_bModified = FALSE;
+  m_bInsertTabs	= TRUE;
+  m_nTabSize = 4;
   m_nSyncPosition = m_nUndoPosition = 0;
   m_bUndoGroup = m_bUndoBeginGroup = FALSE;
   m_nUndoBufSize = UNDO_BUF_SIZE;
@@ -1504,4 +1508,16 @@ void CCrystalTextBuffer::DeleteLine(int line)
 {
 	delete[] m_aLines[line].m_pcLine;
 	m_aLines.RemoveAt(line);
+}
+
+int CCrystalTextBuffer::GetTabSize()
+{
+    ASSERT( m_nTabSize >= 0 && m_nTabSize <= 64 );
+    return m_nTabSize;
+}
+
+void CCrystalTextBuffer::SetTabSize(int nTabSize)
+{
+    ASSERT( nTabSize >= 0 && nTabSize <= 64 );
+    m_nTabSize = nTabSize;
 }

@@ -35,4 +35,14 @@ const
   return m_bModified;
 }
 
+inline BOOL CCrystalTextBuffer::GetInsertTabs() const          //UPDATE-BEGIN
+{
+    return m_bInsertTabs;
+}
+
+inline void CCrystalTextBuffer::SetInsertTabs(BOOL bInsertTabs)
+{
+    m_bInsertTabs = bInsertTabs;
+}
+
 #endif

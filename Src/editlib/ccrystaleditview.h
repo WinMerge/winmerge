@@ -72,7 +72,6 @@ private :
     BOOL m_bSelectionPushed;
     CPoint m_ptSavedSelStart, m_ptSavedSelEnd;
     BOOL m_bAutoIndent;
-    BOOL m_bInsertTabs;
 
     //  [JRT]
     BOOL m_bDisableBSAtSOL;       // Disable BS At Start Of Line
@@ -81,6 +80,10 @@ private :
 public :
     virtual void ResetView ();
 protected :
+
+
+
+
     CEditDropTargetImpl * m_pDropTarget;
     virtual DROPEFFECT GetDropEffect ();
     virtual void OnDropSource (DROPEFFECT de);

@@ -91,7 +91,6 @@ private :
     void CalcLineCharDim ();
 
     //  Text attributes
-    int m_nTabSize;
     BOOL m_bViewTabs;
     BOOL m_bSelMargin;
     DWORD m_dwFlags;
@@ -156,6 +155,7 @@ public :
 protected :
     CPoint WordToRight (CPoint pt);
     CPoint WordToLeft (CPoint pt);
+    BOOL           m_bOverrideCaret;
 
     bool m_bSingle;
     CImageList * m_pIcons;

@@ -61,12 +61,12 @@ inline void CCrystalEditView::SetAutoIndent (BOOL bAutoIndent)
 inline BOOL CCrystalEditView::GetInsertTabs ()
 const
 {
-  return m_bInsertTabs;
+  return m_pTextBuffer->GetInsertTabs();
 }
 
 inline void CCrystalEditView::SetInsertTabs (BOOL bInsertTabs)
 {
-  m_bInsertTabs = bInsertTabs;
+  m_pTextBuffer->SetInsertTabs(bInsertTabs);
 }
 
 #endif

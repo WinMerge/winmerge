@@ -107,6 +107,7 @@ static char THIS_FILE[] = __FILE__;
 #define SPACE_CHARACTER             _T('\x95')
 #define DEFAULT_PRINT_MARGIN        1000    //  10 millimeters
 
+const UINT	MAX_TAB_LEN	= 64; 
 #define SMOOTH_SCROLL_FACTOR        6
 
 #pragma warning ( disable : 4100 )
@@ -484,7 +485,7 @@ CCrystalTextView::~CCrystalTextView ()
 	}
 	if (m_pnActualLineLength != NULL)
 	{
-		delete m_pnActualLineLength;
+		delete[] m_pnActualLineLength;
 		m_pnActualLineLength = NULL;
 	}
 	if (m_rxnode)
@@ -1212,7 +1213,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   pdc->SetBkColor (crBkgnd);
   if (crText != CLR_NONE)
     pdc->SetTextColor (crText);
-	BOOL bColorSet = FALSE;
+// BOOL bColorSet = FALSE;
 
 	//BEGIN SW
 	/*ORIGINAL
@@ -1557,7 +1558,6 @@ ResetView ()
   m_nOffsetChar = 0;
   m_nLineHeight = -1;
   m_nCharWidth = -1;
-  m_nTabSize = 4;
   m_nMaxLineLength = -1;
   m_nScreenLines = -1;
   m_nScreenChars = -1;
@@ -1606,6 +1606,7 @@ ResetView ()
   m_bBookmarkExist = FALSE;     // More bookmarks
 
   m_bMultipleSearch = FALSE;    // More search
+  m_bViewTabs = FALSE;
 
 }
 
@@ -1616,7 +1617,11 @@ UpdateCaret ()
   if (m_bFocused && !m_bCursorHidden &&
         CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x) >= m_nOffsetChar)
     {
-      CreateSolidCaret (2, GetLineHeight ());
+      if (m_bOverrideCaret)  //UPDATE
+        CreateSolidCaret(GetCharWidth(), GetLineHeight());
+      else
+        CreateSolidCaret (2, GetLineHeight ());
+      
       SetCaretPos (TextToClient (m_ptCursorPos));
       ShowCaret ();
     }
@@ -1648,20 +1653,27 @@ SetCRLFMode (int nCRLFMode)
 int CCrystalTextView::
 GetTabSize ()
 {
-  ASSERT (m_nTabSize >= 0 && m_nTabSize <= 64);
-  return m_nTabSize;
+  if (m_pTextBuffer == NULL)
+    return 4;
+
+  return m_pTextBuffer->GetTabSize();
+
 }
 
 void CCrystalTextView::
 SetTabSize (int nTabSize)
 {
   ASSERT (nTabSize >= 0 && nTabSize <= 64);
-  if (m_nTabSize != nTabSize)
+  if (m_pTextBuffer == NULL)
+    return;
+
+  if (m_pTextBuffer->GetTabSize() != nTabSize)
     {
-      m_nTabSize = nTabSize;
+      m_pTextBuffer->SetTabSize( nTabSize );
+
       if (m_pnActualLineLength != NULL)
         {
-          delete m_pnActualLineLength;
+          delete[] m_pnActualLineLength;
           m_pnActualLineLength = NULL;
         }
       m_nActualLengthArraySize = 0;
@@ -2480,6 +2492,7 @@ OnDestroy ()
 BOOL CCrystalTextView::
 OnEraseBkgnd (CDC * pdc)
 {
+  UNREFERENCED_PARAMETER(pdc);
   return TRUE;
 }
 
@@ -4558,7 +4571,7 @@ BOOL CCrystalTextView::
 OnMouseWheel (UINT nFlags, short zDelta, CPoint pt)
 {
 	// -> HE
-	int nPageLines = GetScreenLines();
+// int nPageLines = GetScreenLines();
 	int nSubLineCount = GetSubLineCount();
 
 	int nNewTopSubLine= m_nTopSubLine - zDelta / 40;
@@ -4616,7 +4629,7 @@ OnMatchBrace ()
   CPoint ptCursorPos = GetCursorPos ();
   int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
   LPCTSTR pszText = m_pTextBuffer->GetLineChars (ptCursorPos.y), pszEnd = pszText + ptCursorPos.x;
-  bool bAfter;
+  bool bAfter = false;
   int nType = 0;
   if (ptCursorPos.x < nLength)
     {

@@ -121,6 +121,8 @@ protected :
 	BOOL m_EolSensitive;
     BOOL m_bCreateBackupFile;
     int m_nUndoBufSize;
+    BOOL m_bInsertTabs;
+    int  m_nTabSize;
     int FindLineWithFlag (DWORD dwFlag);
 
 protected :
@@ -305,6 +307,14 @@ public :
     //  Notify all connected views about changes in text
     void UpdateViews (CCrystalTextView * pSource, CUpdateContext * pContext,
                       DWORD dwUpdateFlags, int nLineIndex = -1);
+
+    // Tabs/space inserting
+	BOOL GetInsertTabs() const;
+    void SetInsertTabs(BOOL bInsertTabs);
+
+   	// Tabbing
+    int  GetTabSize();
+    void SetTabSize(int nTabSize);
 
     // More bookmarks
     int FindNextBookmarkLine (int nCurrentLine = 0);

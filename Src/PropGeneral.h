@@ -30,6 +30,7 @@ public:
 	BOOL    m_bEolSensitive;
 	BOOL	m_bDisableSplash;
 	int		m_nIgnoreWhite;
+	int		m_nTabType;
 	//}}AFX_DATA
 
 

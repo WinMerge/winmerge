@@ -1,3 +1,6 @@
+2003-01-27
+ [ 668654 ] Tabtype selection feature
+
 2003-01-21
  [ 671037 ] Changes for MSVC.NET
  [ 671810 ] Tempfiles to temp dir

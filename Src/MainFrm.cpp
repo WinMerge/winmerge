@@ -130,6 +130,7 @@ CMainFrame::CMainFrame()
 	m_strVssPassword = theApp.GetProfileString(_T("Settings"), _T("VssPassword"), _T(""));
 	m_strVssPath = theApp.GetProfileString(_T("Settings"), _T("VssPath"), _T(""));
 	m_nTabSize = theApp.GetProfileInt(_T("Settings"), _T("TabSize"), 4);
+	m_nTabType = theApp.GetProfileInt(_T("Settings"), _T("TabType"), 0);
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
 
@@ -208,15 +209,12 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
-
 HMENU CMainFrame::NewDefaultMenu()
 {
 	m_default.LoadMenu(IDR_MAINFRAME);
 	m_default.LoadToolbar(IDR_MAINFRAME);
 	return(m_default.Detach());
 }
-
-
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
@@ -249,7 +247,6 @@ void CMainFrame::OnFileOpen()
 {
 	DoFileOpen();
 }
-
 
 void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 {
@@ -305,6 +302,17 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 				pf->SetHeaderText(1, szRight);
 			}
 
+			// Set tab type (tabs/spaces)
+			if ( m_nTabType == 0 )
+			{
+				m_pLeft->SetInsertTabs( TRUE );
+				m_pRight->SetInsertTabs( TRUE );
+			}
+			else
+			{
+				m_pLeft->SetInsertTabs( FALSE );
+				m_pRight->SetInsertTabs( FALSE );
+			}
 		}
 		else
 		{
@@ -314,8 +322,6 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 		}
 	}
 }
-
-
 
 void CMainFrame::OnOptionsShowDifferent() 
 {
@@ -369,8 +375,6 @@ void CMainFrame::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_bShowUniqueRight);
 }
 
-
-
 void CMainFrame::OnHideBackupFiles() 
 {
 	m_bHideBak = ! m_bHideBak;
@@ -397,10 +401,6 @@ void CMainFrame::OnHelpGnulicense()
 	else
 		ShellExecute(NULL, _T("open"), _T("http://www.gnu.org/copyleft/gpl.html"), NULL, NULL, SW_SHOWNORMAL);
 }
-
-
-
-
 
 BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 {
@@ -492,11 +492,9 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 						theApp.WriteProfileString(_T("Settings"), _T("VssUser"), m_strVssUser);
 						theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword);
 
-
 						IVSSDatabase	vssdb;
 						IVSSItems		m_vssis;
 						IVSSItem		m_vssi;
-
 
                         COleException *eOleException = new COleException;
 							
@@ -537,7 +535,6 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 
                         // BSP - Finally! Check out the file!
 						m_vssi.Checkout("", strSavePath, 0);
-
 					}
 				}
 				break;
@@ -628,6 +625,7 @@ void CMainFrame::OnProperties()
 	gen.m_bEolSensitive = m_bEolSensitive;
 	gen.m_bScroll = m_bScrollToFirst;
 	gen.m_nTabSize = m_nTabSize;
+	gen.m_nTabType = m_nTabType;
 	gen.m_bDisableSplash = theApp.m_bDisableSplash;
 
 	syn.m_bHiliteSyntax = theApp.m_bHiliteSyntax;
@@ -642,6 +640,7 @@ void CMainFrame::OnProperties()
 		m_bBackup = gen.m_bBackup;
 		m_bScrollToFirst = gen.m_bScroll;
 		m_nTabSize = gen.m_nTabSize;
+		m_nTabType = gen.m_nTabType;
 		theApp.m_bDisableSplash = gen.m_bDisableSplash;
 
 		m_nIgnoreWhitespace = gen.m_nIgnoreWhite;
@@ -666,6 +665,7 @@ void CMainFrame::OnProperties()
 		theApp.WriteProfileInt(_T("Settings"), _T("BackupFile"), m_bBackup);
 		theApp.WriteProfileString(_T("Settings"), _T("VssPath"), m_strVssPath);
 		theApp.WriteProfileInt(_T("Settings"), _T("TabSize"), m_nTabSize);
+		theApp.WriteProfileInt(_T("Settings"), _T("TabType"), m_nTabType);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreBlankLines"), m_bIgnoreBlankLines);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreCase"), m_bIgnoreCase);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
@@ -680,9 +680,21 @@ void CMainFrame::OnProperties()
 		// make an attempt at rescanning any open diff sessions
 		if (m_pLeft != NULL && m_pRight != NULL)
 		{
+			// Set tab type (tabs/spaces)
+			if (m_nTabType == 0)
+			{
+				m_pLeft->SetInsertTabs(TRUE);
+				m_pRight->SetInsertTabs(TRUE);
+			}
+			else
+			{
+				m_pLeft->SetInsertTabs(FALSE);
+				m_pRight->SetInsertTabs(FALSE);
+			}
+
 			if (m_pMergeDoc->SaveHelper())
 			{
-				m_pLeft->GetDocument()->Rescan();
+				m_pMergeDoc->Rescan();
 			}
 			// mods have been made, so just warn
 			else
@@ -748,7 +760,6 @@ void CMainFrame::rptStatus(BYTE code)
 		, m_nStatusLeftFileOnly, m_nStatusLeftDirOnly, m_nStatusRightFileOnly, m_nStatusRightDirOnly
 		, m_nStatusFileError);
 	m_wndStatusBar.SetPaneText(2, s);
-
 }
 
 BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/, BOOL bRecurse /*= FALSE*/)
@@ -781,7 +792,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		addToMru(pszLeft, _T("Files\\Left"));
 		addToMru(pszRight, _T("Files\\Right"));
 	}
-
 
 	// check to make sure they are same type
 	TCHAR name[MAX_PATH];
@@ -1130,7 +1140,6 @@ void CMainFrame::UpdateResources()
 		m_pRight->UpdateResources();
 }
 
-
 void CMainFrame::OnHelpContents() 
 {
 	TCHAR path[MAX_PATH], temp[MAX_PATH];
@@ -1213,7 +1222,6 @@ void CMainFrame::OnClose()
 	CMDIFrameWnd::OnClose();
 }
 
-
 void CMainFrame::FreeRegExpList()
 {
 	struct regexp_list *r;
@@ -1228,9 +1236,7 @@ void CMainFrame::FreeRegExpList()
 		free(ignore_regexp_list);
 		ignore_regexp_list = r;
 	}
-
 }
-
 
 void CMainFrame::RebuildRegExpList()
 {
@@ -1260,7 +1266,6 @@ void CMainFrame::RebuildRegExpList()
 	{
 		ignore_some_changes = 1;
 	}
-
 }
 
 // Add the compiled form of regexp pattern to reglist

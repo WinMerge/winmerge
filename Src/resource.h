@@ -139,6 +139,8 @@
 #define IDC_DIFFERENCE_COLOR            1031
 #define IDC_SEL_DIFFERENCE_COLOR        1032
 #define IDC_EDIT1                       1033
+#define IDC_PROP_INSERT_TABS            1034
+#define IDC_PROP_INSERT_SPACES          1035
 #define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
 #define IDD_PROPSYNTAX                  30001
@@ -298,7 +300,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        113
 #define _APS_NEXT_COMMAND_VALUE         32817
-#define _APS_NEXT_CONTROL_VALUE         1034
+#define _APS_NEXT_CONTROL_VALUE         1036
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif
