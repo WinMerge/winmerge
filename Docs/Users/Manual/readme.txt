@@ -3,6 +3,8 @@
   Manual: Filters.xml
  PATCH: [ 1103159 ] Docs: Steps to enable Visual SourceSafe integration
   Manual: Version_control.xml
+ PATCH: [ 1103170 ] Docs: Add FAQ items about patch files
+  Manual: Faq.xml
 
 2005-01-15 Kimmo
  PATCH: [ 1102485 ] suggestions for Line Filters page of manual
