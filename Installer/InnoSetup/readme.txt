@@ -1,3 +1,8 @@
+2004-10-04 Kimmo
+ PATCH: [ 1039849 ] Swedish translation for installer
+  Submitted by Hans Eriksson
+  InnoSetup/Languages: Swedish.isl
+
 2004-10-03 Kimmo
  PATCH: [ 1039541 ] Italian translation for the installer updated
   Submitted by Andrea Decorte

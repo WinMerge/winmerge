@@ -54,8 +54,8 @@ WinVersionTooLowError=Detta program kräver %1, version %2 eller senare.
 WinVersionTooHighError=Programmet kan inte installeras på %1 version %2 eller senare.
 AdminPrivilegesRequired=Du måste vara inloggad som administratör när du installerar detta program.
 PowerUserPrivilegesRequired=Du måste vara inloggad som administratör eller medlem av gruppen Privilegierade användare (Power Users) när du installerar  detta program.
-SetupAppRunningError=Installationsprogrammet har upptäckt att %1 är igång.%n%nAvsluta det angivna programmet nu. Klicka sedan på OK för att gå vidare, eller på Avbryt för avslut.
-UninstallAppRunningError=Avinstalleraren har upptäckt att %1 körs för tillfället.%n%nStäng all öppna instanser av det nu, klicka sedan på OK för att gå vidare, eller  Avbryt för att avsluta.
+SetupAppRunningError=Installationsprogrammet har upptäckt att %1 är igång.%n%nAvsluta det angivna programmet nu. Klicka sedan på OK för att gå vidare, eller på Avbryt för att avsluta.
+UninstallAppRunningError=Avinstalleraren har upptäckt att %1 körs för tillfället.%n%nStäng all öppna instanser av det nu, Klicka sedan på OK för att gå vidare, eller på Avbryt för att avsluta.
 
 ; *** Misc. errors
 ErrorCreatingDir=Kunde inte skapa mappen "%1"
@@ -63,7 +63,7 @@ ErrorTooManyFilesInDir=Kunde inte skapa en fil i mappen "%1" därför att den inne
 
 ; *** Setup common messages
 ExitSetupTitle=Avsluta installationen
-ExitSetupMessage=Installationen är inte färdig. Om du slutar nu, kommer programmet inte att installeras.%n%nDu kan köra installationsprogrammet vid ett senare tillfälle för att avsluta installationen.%n%nVill du avbryta installationen?
+ExitSetupMessage=Installationen är inte färdig. Om du avslutar nu, kommer programmet inte att installeras.%n%nDu kan köra installationsprogrammet vid ett senare tillfälle för att avsluta installationen.%n%nVill du avbryta installationen?
 AboutSetupMenuItem=&Om installationsprogrammet...
 AboutSetupTitle=Om installationsprogrammet
 AboutSetupMessage=%1 version %2%n%3%n%n%1 hemsida:%n%4
@@ -151,14 +151,14 @@ DirDoesntExist=Mappen:%n%n%1%n%nfinns inte. Vill du skapa den?
 ; *** "Select Components" wizard page
 WizardSelectComponents=Välj komponenter
 SelectComponentsDesc=Vilka komponenter skall installeras?
-SelectComponentsLabel2=Välj de komponenter som du vill ska installeras; avmarkera de komponenter som du inte vill ha. Klicka på Nästa när du är klar att  fortsätta.
+SelectComponentsLabel2=Välj de komponenter som du vill ska installeras; avmarkera de komponenter som du inte vill ha. Klicka sedan på Nästa när du är klar att fortsätta.
 FullInstallation=Fullständig installation
 
 ; if possible don't translate 'Compact' as 'Minimal' (I mean 'Minimal' in your language)
 CompactInstallation=Kompakt installation
 CustomInstallation=Anpassad installation
 NoUninstallWarningTitle=Komponenter finns
-NoUninstallWarning=Installationsprogrammet har upptäckt att följande komponenter redan finns installerade på din dator:%n%n%1%n%nAtt  avmarkera dessa komponenter kommer inte att avinstallera dom.%n%nVill du fortsätta i alla fall?
+NoUninstallWarning=Installationsprogrammet har upptäckt att följande komponenter redan finns installerade på din dator:%n%n%1%n%nAtt  avmarkera dessa komponenter kommer inte att avinstallera dom.%n%nVill du fortsätta ändå?
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
 ComponentsDiskSpaceMBLabel=Aktuella val kräver minst [mb] MB diskutrymme.
@@ -183,7 +183,7 @@ NoProgramGroupCheck2=&Skapa ingen Startmeny-mapp
 ; *** "Ready to Install" wizard page
 WizardReady=Redo att installera
 ReadyLabel1=Installationsprogrammet är nu redo att installera [name] på din dator.
-ReadyLabel2a=Tryck på Installera om du vill fortsätta, eller gå Tillbaka om du vill se över eller ändra på något.
+ReadyLabel2a=Tryck på Installera om du vill fortsätta, eller på gå Tillbaka om du vill granska eller ändra på något.
 ReadyLabel2b=Välj Installera för att påbörja installationen.
 ReadyMemoUserInfo=Användarinformation:
 ReadyMemoDir=Installationsplats:
@@ -258,7 +258,7 @@ ErrorIniEntry=Kan inte skriva nytt INI-värde i filen "%1".
 
 ; *** File copying errors
 FileAbortRetryIgnore=Välj Försök igen eller Ignorera för hoppa över denna fil (ej rekommenderat), eller Avbryt installationen.
-FileAbortRetryIgnore2=Välj Försök igen eller Ignorera och fortsätt i alla fall (ej rekommenderat), eller Avbryt installationen.
+FileAbortRetryIgnore2=Välj Försök igen eller Ignorera och fortsätt ändå (ej rekommenderat), eller Avbryt installationen.
 SourceIsCorrupted=Källfilen är felaktig
 SourceDoesntExist=Källfilen "%1" finns inte
 ExistingFileReadOnly=Den nuvarande filen är skrivskyddad.%n%nVälj Försök igen för att ta bort skrivskyddet, Ignorera för att hoppa över denna fil, eller Avbryt installationen.
@@ -328,26 +328,26 @@ Filters=Filter
 Plugins=Plugins (Se Plugins.txt)
 
 ;Localization Components
-Languages=Languages
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FrenchLanguage=French menus and dialogs
-GermanLanguage=German menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseLanguage=Portuguese (Brazillian) menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
+Languages=Språk
+BulgarianLanguage=Bulgariska menyer och dialoger
+CatalanLanguage=Katalanska menyer och dialoger
+ChineseSimplifiedLanguage=Kinesiska (Förenklad) menyer och dialoger
+ChineseTraditionalLanguage=Kinesiska (Traditionell) menyer och dialoger
+CzechLanguage=Tjeckiska menyer och dialoger
+DanishLanguage=Danska menyer och dialoger
+DutchLanguage=Nederländska menyer och dialoger
+FrenchLanguage=Franska menyer och dialoger
+GermanLanguage=Tyska menyer och dialoger
+ItalianLanguage=Italienska menyer och dialoger
+JapaneseLanguage=Japanska menyer och dialoger
+KoreanLanguage=Koreanska menyer och dialoger
+NorwegianLanguage=Norska menyer och dialoger
+PolishLanguage=Polska menyer och dialoger
+PortugueseLanguage=Portugisiska (Brasiliansk) menyer och dialoger
+RussianLanguage=Ryska menyer och dialoger
+SlovakLanguage=Slovakiska menyer och dialoger
+SpanishLanguage=Spanska menyer och dialoger
+SwedishLanguage=Svenska menyer och dialoger
 
 ;Tasks
 ExplorerContextMenu=&Möjliggör integration med Explorers menyer
