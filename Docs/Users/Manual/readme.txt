@@ -1,6 +1,8 @@
 2004-08-10 Kimmo
  PATCH: [ 1006131 ] Add -f commandline switch to docs
   Manual: Command_line.xml
+ PATCH: [ 1006136 ] Clarify meaning of $ in filter and no partial/multiline
+  Manual: Filters.xml
 
 2004-07-07 Kimmo
  PATCH: [ 985272 ] Use 'manual' instead of 'guide'

@@ -10,8 +10,7 @@
     <para>WinMerge's filtering system allows only one filter set to be active at a time. Active filter set can be selected from Open-dialog or from menu: Tools --&gt; Filters. Also empty filter can be selected when no directories or files are ignored.</para>
     <sect3>
       <title>Filter files</title>
-      <para>Filter files are normal ASCII files, with .flt extension. Filter files must be placed to either:
-</para>
+      <para>Filter files are normal ASCII files, with .flt extension. Filter files must be placed to either: </para>
       <itemizedlist>
         <listitem>
           <para>'Filters' subdirectory in WinMerge program directory. This is recommended place.</para>
@@ -25,7 +24,7 @@
       <screen>f: \.ext$ ## Match files *.ext
 d: \\directory$ ## Match given directoryname</screen>
       <warning>
-        <para>'$' at end is very important! Without it rule doensn't work like expected.</para>
+        <para>'$' at end is important! It marks end of filename and without it rule doesn't work like expected.</para>
       </warning>
       <para>Rules can be a lot more complex than those two: this rule matches to CVS generated ".#filename.ext.version" files:</para>
       <example>
@@ -38,7 +37,7 @@ d: \\directory$ ## Match given directoryname</screen>
     <title>Line filters</title>
     <para>Line filters can be used to ignore single lines from compared files. Line filters are handy when user doesn't want to compare comments or certain generated code. For example version control system (time)stamps.</para>
     <important>
-      <para>Line filter rule ignores single line it matches. It is not possible to ignore several lines with one filter rule.</para>
+      <para>Line filter rule ignores single line it matches. It is not possible to ignore partial lines or several lines with file filter rule.</para>
     </important>
     <para>In file compare ignored lines are shown with own colors to differentiate them from other differences. User can see these differences but cannot select or merge them.</para>
     <para>Line filter rules are regular expressions like file filter rules. Rules can be added and edited in Filters-dialog (Menu: Tools --&gt; Filters). In editbox, give one rule per line.</para>
