@@ -274,14 +274,6 @@ Type: files; Name: {app}\MergeChineseTraditionalBIG5.lang
 Name: {app}\WinMerge.exe; Type: files; MinVersion: 4, 0
 Name: {app}\WinMergeU.exe; Type: files; MinVersion: 0, 4
 
-;Per the following document:
-;http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dv_vstechart/html/vbtchUsingWindowsXPVisualStylesWithControlsOnWindowsForms.asp
-; the only way to use a manifest file is to have the Comctl32.dll v6.0 or higher and the only way to get it is to have
-;an operating system that ships with this file.  Microsoft does not allow the distribution of the updated ComCtl32.dll.  So either users have Windows XP
-;or higher and would need the WinMergeU.manifest or they don't need any .manifest at all.
-;Since this manifest file is absolutely pointless it should be deleted 100% of the time.
-Name: {app}\WinMerge.exe.manifest; Type: files
-
 ;The other manifest file is legitimate, but is only valid on windows XP or higher, so if the operating system isn't at least windows XP the
 ;Manifest file is indeed removed.
 Name: {app}\WinMergeU.exe.manifest; Type: files; OnlyBelowVersion: 0, 5.01
@@ -367,6 +359,7 @@ Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder
 
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
 Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe.manifest; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 5.01; Components: Core
+Source: ..\Build\MergeUnicodeRelease\WinMerge.exe.manifest; DestDir: {app}; Flags: promptifolder; Components: Core; MinVersion: 0,5.01
 
 ;Installs the ComCtl32.dll update on any system where its DLLs are more recent
 Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall; Check: InstallComCtlUpdate
