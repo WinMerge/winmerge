@@ -67,6 +67,8 @@ public:
 	COLORREF	m_clrSelDiffDeleted;	// The selected difference deleted color
 	COLORREF	m_clrDiffText;			// The difference text color
 	COLORREF	m_clrSelDiffText;		// The selected difference text color
+	COLORREF	m_clrTrivial;        // The ignored lines color
+	COLORREF	m_clrTrivialDeleted; // The ignored and deleted lines color
 	BOOL m_bNeedIdleTimer;
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
@@ -79,12 +81,16 @@ public:
 	COLORREF GetSelDiffDeletedColor() const { return m_clrSelDiffDeleted; }
 	COLORREF GetDiffTextColor() const { return m_clrDiffText; }
 	COLORREF GetSelDiffTextColor() const { return m_clrSelDiffText; }
+	COLORREF GetTrivialColor() const { return m_clrTrivial; }
+	COLORREF GetTrivialDeletedColor() const { return m_clrTrivialDeleted; }
 	void SetDiffColor(COLORREF clrValue) { m_clrDiff = clrValue; }
 	void SetSelDiffColor(COLORREF clrValue) { m_clrSelDiff = clrValue; }
 	void SetDiffDeletedColor(COLORREF clrValue) { m_clrDiffDeleted = clrValue; }
 	void SetSelDiffDeletedColor(COLORREF clrValue) { m_clrSelDiffDeleted = clrValue; }
 	void SetDiffTextColor(COLORREF clrValue) { m_clrDiffText = clrValue; }
 	void SetSelDiffTextColor(COLORREF clrValue) { m_clrSelDiffText = clrValue; }
+	void SetTrivialColor(COLORREF clrValue) { m_clrTrivial = clrValue; }
+	void SetTrivialDeletedColor(COLORREF clrValue) { m_clrTrivialDeleted = clrValue; }
 	void SetNeedIdleTimer();
 	CString GetFileFilterPath() const { return m_sFileFilterPath; }
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);

@@ -1,3 +1,8 @@
+2003-10-08 Laoran
+ PATCH: [ 818198 ] Colors for "ignore blank lines"
+  WinMerge: MainFrm.cpp Merge.cpp Merge.h Merge.rc MergeDoc.cpp MergeEditView.cpp PropColors.cpp 
+   PropColors.h resource.h
+
 2003-10-08 Kimmo
  PATCH: [ 819188 ] Show column number in statusbar
   WinMerge: ChildFrm.h ChildFrm.cpp Merge.rc MergeEditStatus.h MergeEditView.cpp

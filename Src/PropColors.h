@@ -19,11 +19,13 @@ class CPropColors : public CPropertyPage
 // Construction
 public:
 
-	CPropColors(COLORREF clrDiff, COLORREF clrSelDiff, COLORREF clrDiffDeleted, COLORREF clrSelDiffDeleted, COLORREF clrDiffText, COLORREF clrSelDiffText);   // standard constructor
+	CPropColors(COLORREF clrDiff, COLORREF clrSelDiff, COLORREF clrDiffDeleted, COLORREF clrSelDiffDeleted, COLORREF clrDiffText, COLORREF clrSelDiffText, COLORREF clrTrivial, COLORREF clrTrivialDeleted);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CPropColors)
 	enum { IDD = IDD_PROPPAGE_COLORS };
+	CColorButton	m_cTrivialDeleted;
+	CColorButton	m_cTrivial;
 	CColorButton	m_cSelDiffText;
 	CColorButton	m_cDiffText;
 	CColorButton	m_cSelDiffDeleted;
@@ -39,6 +41,8 @@ public:
 	COLORREF	m_clrSelDiffDeleted;
 	COLORREF	m_clrDiffText;
 	COLORREF	m_clrSelDiffText;
+	COLORREF	m_clrTrivial;
+	COLORREF	m_clrTrivialDeleted;
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
@@ -63,6 +67,8 @@ protected:
 	afx_msg void OnSelDifferenceColor();
 	afx_msg void OnDifferenceTextColor();
 	afx_msg void OnSelDifferenceTextColor();
+	afx_msg void OnTrivialDiffColor();
+	afx_msg void OnTrivialDiffDeletedColor();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

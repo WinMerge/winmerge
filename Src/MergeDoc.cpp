@@ -1707,7 +1707,10 @@ void CMergeDoc::PrimeTextBuffers()
 					{
 						int idx = curDiff.blank0+b;
 						m_ltBuf.InsertLine(NULL, 0, idx);
+						// ghost lines opposite to trivial lines are ghost and trivial
 						m_ltBuf.SetLineFlag(idx, LF_GHOST, TRUE, FALSE, FALSE);
+						if (curDiff.op == OP_TRIVIAL)
+							m_ltBuf.SetLineFlag(idx, LF_TRIVIAL, TRUE, FALSE, FALSE);
 						curDiff.dend0++;
 						LeftExtras++;
 					}
@@ -1735,7 +1738,10 @@ void CMergeDoc::PrimeTextBuffers()
 					{
 						int idx = curDiff.blank1+b;
 						m_rtBuf.InsertLine(NULL, 0, idx);
+						// ghost lines opposite to trivial lines are ghost and trivial
 						m_rtBuf.SetLineFlag(idx, LF_GHOST, TRUE, FALSE, FALSE);
+						if (curDiff.op == OP_TRIVIAL)
+							m_rtBuf.SetLineFlag(idx, LF_TRIVIAL, TRUE, FALSE, FALSE);
 						curDiff.dend1++;
 						++RightExtras;
 					}

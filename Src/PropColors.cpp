@@ -17,10 +17,12 @@ static const TCHAR Section[] = _T("Custom Colors");
 // CPropColors dialog
 
 
-CPropColors::CPropColors( COLORREF clrDiff, COLORREF clrSelDiff, COLORREF clrDiffDeleted, COLORREF clrSelDiffDeleted, COLORREF clrDiffText, COLORREF clrSelDiffText)
+CPropColors::CPropColors( COLORREF clrDiff, COLORREF clrSelDiff, COLORREF clrDiffDeleted, COLORREF clrSelDiffDeleted, COLORREF clrDiffText, COLORREF clrSelDiffText, COLORREF clrTrivial, COLORREF clrTrivialDeleted)
 	: CPropertyPage(CPropColors::IDD),
-		m_clrDiff(clrDiff), m_clrSelDiff(clrSelDiff), m_clrDiffDeleted(clrDiffDeleted), m_clrSelDiffDeleted(clrSelDiffDeleted), m_clrDiffText(clrDiffText), m_clrSelDiffText(clrSelDiffText),
-		m_cDiff(clrDiff), m_cSelDiff(clrSelDiff), m_cDiffDeleted(clrDiffDeleted), m_cSelDiffDeleted(clrSelDiffDeleted), m_cDiffText(clrDiffText), m_cSelDiffText(clrSelDiffText)
+		m_clrDiff(clrDiff), m_clrSelDiff(clrSelDiff), m_clrDiffDeleted(clrDiffDeleted), m_clrSelDiffDeleted(clrSelDiffDeleted), 
+		m_clrDiffText(clrDiffText), m_clrSelDiffText(clrSelDiffText), m_clrTrivial(clrTrivial), m_clrTrivialDeleted(clrTrivialDeleted),
+		m_cDiff(clrDiff), m_cSelDiff(clrSelDiff), m_cDiffDeleted(clrDiffDeleted), m_cSelDiffDeleted(clrSelDiffDeleted), 
+		m_cDiffText(clrDiffText), m_cSelDiffText(clrSelDiffText), m_cTrivial(clrTrivial), m_cTrivialDeleted(clrTrivialDeleted)
 {
 	//{{AFX_DATA_INIT(CPropColors)
 		// NOTE: the ClassWizard will add member initialization here
@@ -32,6 +34,8 @@ void CPropColors::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CPropColors)
+	DDX_Control(pDX, IDC_TRIVIAL_DIFF_DELETED_COLOR, m_cTrivialDeleted);
+	DDX_Control(pDX, IDC_TRIVIAL_DIFF_COLOR, m_cTrivial);
 	DDX_Control(pDX, IDC_SEL_DIFFERENCE_TEXT_COLOR, m_cSelDiffText);
 	DDX_Control(pDX, IDC_DIFFERENCE_TEXT_COLOR, m_cDiffText);
 	DDX_Control(pDX, IDC_SEL_DIFFERENCE_DELETED_COLOR, m_cSelDiffDeleted);
@@ -50,6 +54,8 @@ BEGIN_MESSAGE_MAP(CPropColors, CDialog)
 	ON_BN_CLICKED(IDC_SEL_DIFFERENCE_COLOR, OnSelDifferenceColor)
 	ON_BN_CLICKED(IDC_DIFFERENCE_TEXT_COLOR, OnDifferenceTextColor)
 	ON_BN_CLICKED(IDC_SEL_DIFFERENCE_TEXT_COLOR, OnSelDifferenceTextColor)
+	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_COLOR, OnTrivialDiffColor)
+	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_DELETED_COLOR, OnTrivialDiffDeletedColor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -136,6 +142,34 @@ void CPropColors::OnSelDifferenceTextColor()
 	{
 		m_clrSelDiffText = dialog.GetColor();
 		m_cSelDiffText.SetColor(m_clrSelDiffText);
+	}
+	SaveCustomColors();
+}
+
+void CPropColors::OnTrivialDiffColor() 
+{
+	CColorDialog dialog(m_clrTrivial);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrTrivial = dialog.GetColor();
+		m_cTrivial.SetColor(m_clrTrivial);
+	}
+	SaveCustomColors();	
+}
+
+void CPropColors::OnTrivialDiffDeletedColor() 
+{
+	CColorDialog dialog(m_clrTrivialDeleted);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrTrivialDeleted = dialog.GetColor();
+		m_cTrivialDeleted.SetColor(m_clrTrivialDeleted);
 	}
 	SaveCustomColors();
 }

@@ -92,6 +92,8 @@ CMergeApp::CMergeApp()
 , m_clrSelDiffDeleted(RGB(240, 192, 192))
 , m_clrDiffText(RGB(0,0,0))
 , m_clrSelDiffText(RGB(0,0,0))
+, m_clrTrivial(RGB(251,242,191))
+, m_clrTrivialDeleted(RGB(233,233,233))
 , m_bNeedIdleTimer(FALSE)
 , m_pDiffTemplate(0)
 , m_pDirTemplate(0)
@@ -167,6 +169,8 @@ BOOL CMergeApp::InitInstance()
 	m_clrSelDiffDeleted	= GetProfileInt(_T("Settings"), _T("SelectedDifferenceDeletedColor"), m_clrSelDiffDeleted);
 	m_clrDiffText		= GetProfileInt(_T("Settings"), _T("DifferenceTextColor"), m_clrDiffText);
 	m_clrSelDiffText	= GetProfileInt(_T("Settings"), _T("SelectedDifferenceTextColor"), m_clrSelDiffText);
+	m_clrTrivial        = GetProfileInt(_T("Settings"), _T("TrivialDifferenceColor"), m_clrTrivial);
+	m_clrTrivialDeleted = GetProfileInt(_T("Settings"), _T("TrivialDifferenceDeletedColor"), m_clrTrivialDeleted);
 
 	// CG: The following block was added by the Splash Screen component.
 	{
@@ -649,6 +653,8 @@ int CMergeApp::ExitInstance()
 	WriteProfileInt(_T("Settings"), _T("SelectedDifferenceDeletedColor"), m_clrSelDiffDeleted);
 	WriteProfileInt(_T("Settings"), _T("DifferenceTextColor"), m_clrDiffText);
 	WriteProfileInt(_T("Settings"), _T("SelectedDifferenceTextColor"), m_clrSelDiffText);
+	WriteProfileInt(_T("Settings"), _T("TrivialDifferenceColor"), m_clrTrivial);
+	WriteProfileInt(_T("Settings"), _T("TrivialDifferenceDeletedColor"), m_clrTrivialDeleted);
 	
 	delete m_fileFilterMgr;
 

@@ -711,7 +711,8 @@ void CMainFrame::OnOptions()
 	CPropGeneral gen;
 	CPropSyntax syn;
 	CPropFilter filter(&fileFilters, selectedFilter);
-	CPropColors colors(theApp.GetDiffColor(), theApp.GetSelDiffColor(), theApp.GetDiffDeletedColor(), theApp.GetSelDiffDeletedColor(), theApp.GetDiffTextColor(), theApp.GetSelDiffTextColor());
+	CPropColors colors(theApp.GetDiffColor(), theApp.GetSelDiffColor(), theApp.GetDiffDeletedColor(), theApp.GetSelDiffDeletedColor(), 
+	                   theApp.GetDiffTextColor(), theApp.GetSelDiffTextColor(), theApp.GetTrivialColor(), theApp.GetTrivialDeletedColor());
 	CPropRegistry regpage;
 	sht.AddPage(&gen);
 	sht.AddPage(&syn);
@@ -767,6 +768,8 @@ void CMainFrame::OnOptions()
 		theApp.SetSelDiffDeletedColor(colors.m_clrSelDiffDeleted);
 		theApp.SetDiffTextColor(colors.m_clrDiffText);
 		theApp.SetSelDiffTextColor(colors.m_clrSelDiffText);
+		theApp.SetTrivialColor(colors.m_clrTrivial);
+		theApp.SetTrivialDeletedColor(colors.m_clrTrivialDeleted);
 
 		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
 		theApp.WriteProfileInt(_T("Settings"), _T("ScrollToFirst"), m_bScrollToFirst);
