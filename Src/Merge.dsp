@@ -113,7 +113,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib shlwapi.lib imm32.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\dev\sf\wm\patches_or_bugs\perry\fix_whitespace\applied\Build\MergeRelease\WinMerge.exe
+TargetPath=\WinMerge\WinMerge_CVS\WinMerge\Build\MergeRelease\WinMerge.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -147,7 +147,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib shlwapi.lib imm32.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease\WinMergeU.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\dev\sf\wm\patches_or_bugs\perry\fix_whitespace\applied\Build\MergeUnicodeRelease\WinMergeU.exe
+TargetPath=\WinMerge\WinMerge_CVS\WinMerge\Build\MergeUnicodeRelease\WinMergeU.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool

@@ -137,7 +137,7 @@ BEGIN
         MENUITEM "C&opia\tCtrl+C",              ID_EDIT_COPY
         MENUITEM "I&ncolla\tCtrl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Selezion&a tutto\tCtrl+A",    ID_EDIT_SELECT_ALL
+        MENUITEM "Se&leziona tutto\tCtrl+A",    ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Evidenzia differenze nella linea\tF4",    ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
@@ -165,7 +165,7 @@ BEGIN
         MENUITEM "Mostra i &file saltati",      ID_OPTIONS_SHOWSKIPPED
         MENUITEM SEPARATOR
         MENUITEM "&Carattere...",               ID_VIEW_SELECTFONT
-        MENUITEM "&Usa carattere predefinito",  ID_VIEW_USEDEFAULTFONT
+        MENUITEM "&Utilizza carattere predefinito",  ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "&Visualizza spazi bianchi",            ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
@@ -490,7 +490,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "C&hiudi finestra con ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
-    CONTROL         "Verifica automaticamente i percorsi nella finestra Apri",
+    CONTROL         "Verifica &automaticamente i percorsi nella finestra Apri",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,206,10
    PUSHBUTTON      "Ripristina",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
@@ -646,7 +646,7 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Spostata (Selezionata):",IDC_STATIC,7,109,90,8
+    RTEXT           "Spostata (selezionata):",IDC_STATIC,7,109,90,8
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -990,9 +990,9 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "WinMerge"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "Il supporto per gli archivi è inattivo. Per attivarlo, installa per favore una versione di 7-Zip con cui WinMerge possa interfacciarsi e copia il plugin appropriato (Merge7z*.dll) nella tua cartella di WinMerge.",
+    LTEXT           "Il supporto per gli archivi è inattivo. Per attivarlo, installa per favore una versione di 7-Zip con la quale WinMerge possa interfacciarsi e copia il plugin adeguato (Merge7z*.dll) nella tua cartella di WinMerge.",
                     IDC_STATIC,2,2,272,32
-    LTEXT           "WinMerge può interfacciarsi con 7-Zip 3.11 e superiore, a patto che il plugin appropriato sia disponibile. Utilizza la versione di 7-Zip raccomandata qui sotto fino alla disponibilità di plugin per versioni successive.",
+    LTEXT           "WinMerge può interfacciarsi con 7-Zip 3.11 o superiore, a patto che il plugin adeguato sia disponibile. Utilizza la versione di 7-Zip raccomandata qui sotto fino alla disponibilità di plugin per versioni successive.",
                     IDC_STATIC,2,34,272,32
     LTEXT           "Versione raccomandata di 7-Zip:",IDC_STATIC,2,70,131,8
     EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
@@ -1004,7 +1004,7 @@ BEGIN
                     IDC_STATIC,2,98,208,8
     EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Versione componenti 7-Zip locale trovati nella cartella di WinMerge:",
+    LTEXT           "Vers. componenti 7-Zip locale nella cartella di WinMerge:",
                     IDC_STATIC,2,110,208,8
     EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
@@ -1307,7 +1307,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_FILE_NEW             "Crea documenti vuoti\nNuovi documenti (Ctrl+N)"
+    ID_FILE_NEW             "Crea due nuovi documenti vuoti\nNuovi documenti (Ctrl+N)"
     ID_FILE_OPEN            "Apre un documento esistente\nApri"
     ID_FILE_CLOSE           "Chiude il documento attivo\nChiudi"
     ID_FILE_SAVE            "Salva il documento attivo\nSalva"
@@ -1487,7 +1487,7 @@ BEGIN
     IDS_OPTIONS_TITLE       "Opzioni"
     IDS_MESSAGE_BOX_ARE_RESET "Tutti i messaggi di avviso vengono ora visualizzati nuovamente."
     IDS_DIFF_OPEN_NO_SET_PROPS "Sono state effettuate modifiche ai file dell'attuale sessione di confronto. Alcune impostazioni potrebbero non venire applicate fino al riavvio del confronto corrente tra file."
-    IDS_FONT_CHANGE         "Il carattere selezionato non sarà utilizzato per le finestre di visualizzazione delle differenze attualmente attive."
+    IDS_FONT_CHANGE         "Il carattere selezionato non sarà utilizzato nelle finestre di visualizzazione delle differenze attualmente attive."
 END
 
 // BROWSE FILE
@@ -1563,8 +1563,8 @@ BEGIN
     IDS_ERROR_INCOMPARABLE  "Seleziona due cartelle o file esistenti da confrontare"
     IDS_DIRSEL_TAG          "Selezione cartella"
     IDS_OPEN_FILESDIRS      "Seleziona due cartelle o due file da confrontare."
-    IDS_OPEN_LEFTINVALID    "Il percorso sinistro non è valido!"
-    IDS_OPEN_RIGHTINVALID   "Il percorso destro non è valido!"
+    IDS_OPEN_LEFTINVALID    "Il percorso di sinistra non è valido!"
+    IDS_OPEN_RIGHTINVALID   "Il percorso di destra non è valido!"
     IDS_OPEN_BOTHINVALID    "Entrambi i percorsi non sono validi!"
     IDS_OPEN_UNPACKERDISABLED "Seleziona due file per attivare la selezione dello scompattatore."
     IDS_OPEN_MISMATCH       "Impossibile confrontare file e cartelle!"
@@ -1912,7 +1912,7 @@ END
 // LANGAGE NAMES #3
 STRINGTABLE
 BEGIN
-    IDS_CHINESE_MACAU       "Cinese (Macau SAR)"
+    IDS_CHINESE_MACAU       "Cinese (Macao SAR)"
     IDS_CROATIAN            "Croato"
     IDS_CZECH               "Ceco"
     IDS_DANISH              "Danese"
@@ -2027,7 +2027,7 @@ BEGIN
     IDS_SWEDISH             "Svedese"
     IDS_SWEDISH_FINLAND     "Svedese (Finlandia)"
     IDS_TAMIL               "Tamil"
-    IDS_TATAR               "Tataro (Tatarstan)"
+    IDS_TATAR               "Tartaro (Tatarstan)"
     IDS_THAI                "Thai"
     IDS_TURKISH             "Turco"
     IDS_UKRANIAN            "Ucraino"
@@ -2053,9 +2053,9 @@ BEGIN
     ID_FILE_SAVEAS_RIGHT    "Salva il file di destra con nome..."
     ID_FILE_LEFT_READONLY   "Cambia lo stato di Sola lettura del file/cartella di sinistra"
     ID_FILE_RIGHT_READONLY  "Cambia lo stato di Sola lettura del file/cartella di destra"
-    ID_EOL_TO_DOS           "Converti EOL alla modalità DOS"
-    ID_EOL_TO_UNIX          "Converti EOL alla modalità UNIX"
-    ID_EOL_TO_MAC           "Converti EOL alla modalità MAC"
+    ID_EOL_TO_DOS           "Converti gli EOL (End of line) in formato DOS"
+    ID_EOL_TO_UNIX          "Converti gli EOL (End of line) in formato UNIX"
+    ID_EOL_TO_MAC           "Converti gli EOL (End of line) in formato MAC"
     ID_FILE_MERGINGMODE     "Passa dalla modalità di editing a quella di 'Unione', in cui l'integrazione delle differenze è più rapida"
 END
 
@@ -2083,7 +2083,7 @@ END
 STRINGTABLE
 BEGIN
     ID_VIEW_SELECTFONT      "Seleziona il carattere per la finestra di visualizzazione delle differenze\nSeleziona carattere"
-    ID_VIEW_USEDEFAULTFONT  "Usa il carattere predefinito per la finestra di visualizzazione delle differenze\nCarattere predefinito"
+    ID_VIEW_USEDEFAULTFONT  "Utilizza il carattere predefinito per la finestra di visualizzazione delle differenze\nCarattere predefinito"
     ID_VIEW_WHITESPACE      "Mostra gli spazi bianchi"
     ID_VIEW_DETAIL_BAR      "Mostra il pannello delle differenze"
     ID_VIEW_LOCATION_BAR    "Il pannello della locazione mostra un'immagine complessiva dei file"
