@@ -1,4 +1,8 @@
 2005-02-22 Perry
+ Proofing (grammatical fixes)
+ Manual: Locales.xml
+
+2005-02-22 Perry
  Rewrite translation coverage paragram
  Manual: Locales.xml
 
