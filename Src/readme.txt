@@ -1,3 +1,5 @@
+2004-10-15 WinMerge experimental release 2.1.7.15 (cvs) (Perry)
+
 2004-10-14 Kimmo
  PATCH: [ 942447 ] CVS organisation doc
   Docs/Developers new file: Organisation.txt
