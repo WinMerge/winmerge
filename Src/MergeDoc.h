@@ -86,8 +86,8 @@ private :
 public :
 		void SetTempPath(CString path);
 		bool curUndoGroup();
-		void ReplaceLine(int nLine, const CString& strText);
-		void ReplaceFullLine(int nLine, const CString& strText);
+		void ReplaceLine(CCrystalTextView * pSource, int nLine, const CString& strText);
+		void ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString& strText);
 
 		BOOL LoadFromFile(LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
 		BOOL SaveToFile (LPCTSTR pszFileName, BOOL bTempFile,

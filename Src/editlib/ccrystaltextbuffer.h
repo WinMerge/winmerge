@@ -260,6 +260,7 @@ public :
     //  Implementation
     BOOL InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar);
     BOOL InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int * pRealStart=0, int * pRealEnd=0);
+    BOOL InternalInsertGhostLine (CCrystalTextView * pSource, int nLine);
     CString StripTail (int i, int bytes);
 
     //  [JRT] Support For Descriptions On Undo/Redo Actions
@@ -318,6 +319,7 @@ public :
     void SetEolSensitivity(BOOL EolSensitive) { m_EolSensitive = EolSensitive; }
 
     //  Text modification functions
+    BOOL InsertGhostLine (CCrystalTextView * pSource, int nLine);
     BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE);
     BOOL DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE);
     void FinishLoading();

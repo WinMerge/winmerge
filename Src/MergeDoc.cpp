@@ -679,42 +679,31 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 		int deleted_lines=0;
 		int limit = cd_dend;
 
-		POSITION pos = GetFirstViewPosition();
-		CCrystalTextView* curView = dynamic_cast<CCrystalTextView*>(GetNextView(pos));
+		// curView is the view which is changed, so the opposite of the source view
+		CCrystalTextView* curView;
+		/*POSITION pos = GetFirstViewPosition();
+		curView = dynamic_cast<CCrystalTextView*>(GetNextView(pos));
 		if(bSrcLeft)
 		{
 			curView = dynamic_cast<CCrystalTextView*>(GetNextView(pos));
-		}
+		}*/
+		if(bSrcLeft)
+			curView = m_pRightView;
+		else
+			curView = m_pLeftView;
 
 		dbuf.BeginUndoGroup();
 		if (cd_blank>=0)
 		{
 			// text was missing, so delete rest of lines on both sides
 			// delete only on destination side since rescan will clear the other side
-			CMergeEditView *active = static_cast<CMergeEditView*>(
-									 static_cast<CMDIFrameWnd*>(AfxGetMainWnd())
-									 ->MDIGetActive()->GetActiveView());
-			CPoint pt = active->GetCursorPos();
 			if(cd_blank==0)
 			{
-				if(pt.y>=cd_blank && pt.y<=cd_dend)
-				{
-					pt.y = cd_blank;
-					active->SetCursorPos(pt);
-				}
-				dbuf.DeleteText(NULL, cd_blank, 0, cd_dend+1, 0, CE_ACTION_DELETE, FALSE);
+				dbuf.DeleteText(curView, cd_blank, 0, cd_dend+1, 0, CE_ACTION_DELETE);
 			}
 			else
 			{
-				if(pt.y>=cd_blank && pt.y<=cd_dend)
-				{
-					pt.y = cd_blank-1;
-					// If removing first line, set X to 0
-					// Calculating line length is unneccessary work
-					pt.x = 0;
-					active->SetCursorPos(pt);
-				}
-				dbuf.DeleteText(NULL, cd_blank-1, dbuf.GetLineLength(cd_blank-1), cd_dend, dbuf.GetLineLength(cd_dend), CE_ACTION_DELETE, FALSE);
+				dbuf.DeleteText(curView, cd_blank-1, dbuf.GetLineLength(cd_blank-1), cd_dend, dbuf.GetLineLength(cd_dend), CE_ACTION_DELETE);
 			}
 			deleted_lines=cd_dend-cd_blank+1;
 
@@ -734,11 +723,11 @@ void CMergeDoc::ListCopy(bool bSrcLeft)
 			// text exists on left side, so just replace
 			strLine = _T("");
 			sbuf.GetFullLine(i, strLine);
-			dbuf.ReplaceFullLine(i, strLine);
+			dbuf.ReplaceFullLine(curView, i, strLine);
 			dbuf.FlushUndoGroup(curView);
 			dbuf.BeginUndoGroup(TRUE);
 		}
-		dbuf.FlushUndoGroup(NULL);
+		dbuf.FlushUndoGroup(curView);
 
 
 		//mf->m_pRight->ReplaceSelection(strText, 0);
@@ -1251,12 +1240,12 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 }
 
 // Replace text of line (no change to eol)
-void CMergeDoc::CDiffTextBuffer::ReplaceLine(int nLine, const CString &strText)
+void CMergeDoc::CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLine, const CString &strText)
 {
 	if (GetLineLength(nLine)>0)
-		DeleteText(NULL, nLine, 0, nLine, GetLineLength(nLine));
+		DeleteText(pSource, nLine, 0, nLine, GetLineLength(nLine));
 	int endl,endc;
-	InsertText(NULL, nLine, 0, strText, endl,endc);
+	InsertText(pSource, nLine, 0, strText, endl,endc);
 }
 // return pointer to the eol chars of this string, or pointer to empty string if none
 LPCTSTR getEol(const CString &str)
@@ -1269,18 +1258,26 @@ LPCTSTR getEol(const CString &str)
 }
 
 // Replace line (removing any eol, and only including one if in strText)
-void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(int nLine, const CString &strText)
+void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString &strText)
 {
-	if (GetLineEol(nLine) == getEol(strText))
+	if (_tcscmp(GetLineEol(nLine), getEol(strText)) == 0)
 	{
 		// (optimization) eols are the same, so just replace text inside line
-		ReplaceLine(nLine, strText);
+		// we must clean strText from its eol...
+		CString strTextWithoutEol = strText;
+		strTextWithoutEol.Delete(strTextWithoutEol.GetLength() - _tcslen(getEol(strTextWithoutEol)), 2);
+		ReplaceLine(pSource, nLine, strTextWithoutEol);
 		return;
 	}
+
+	// we may need a last line to delete 
+	if (nLine+1 == GetLineCount())
+		InsertGhostLine (pSource, GetLineCount());
+
 	if (GetFullLineLength(nLine))
-		DeleteText(NULL, nLine, 0, nLine+1, 0); 
+		DeleteText(pSource, nLine, 0, nLine+1, 0); 
 	int endl,endc;
-	InsertText(NULL, nLine, 0, strText, endl,endc);
+	InsertText(pSource, nLine, 0, strText, endl,endc);
 }
 
 BOOL CMergeDoc::InitTempFiles(const CString& srcPathL, const CString& strPathR)

@@ -1092,6 +1092,45 @@ StripTail (int i, int bytes)
   return str;
 }
 
+
+// InternalInsertGhostLine uses only apparent line numbers
+BOOL CCrystalTextBuffer::
+InternalInsertGhostLine (CCrystalTextView * pSource, int nLine)
+{
+  ASSERT (m_bInit);             //  Text buffer not yet initialized.
+  //  You must call InitNew() or LoadFromFile() first!
+
+  ASSERT (nLine >= 0 && nLine <= m_aLines.GetSize ());
+  if (m_bReadOnly)
+    return FALSE;
+
+  CInsertContext context;
+  context.m_ptStart.x = 0;
+  context.m_ptStart.y = nLine;
+
+  InsertLine (_T(""), 0, nLine);
+
+  context.m_ptEnd.x = 0;
+  context.m_ptEnd.y = nLine+1;
+
+  if (pSource!=NULL)
+    UpdateViews (pSource, &context, UPDATE_HORZRANGE | UPDATE_VERTRANGE, nLine);
+
+  if (!m_bModified)
+    SetModified (TRUE);
+  //BEGIN SW
+  // remember current cursor position as last editing position
+  m_ptLastChange = context.m_ptEnd;
+  //END SW
+
+  // clear flags for edited lines LF_WINMERGE_FLAGS  except LF_GHOST
+  SetLineFlag(nLine, LF_WINMERGE_FLAGS & ~LF_GHOST, FALSE, FALSE, FALSE);
+
+  return TRUE;
+}
+
+
+
 BOOL CCrystalTextBuffer::
 InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar)
 {
@@ -1519,6 +1558,24 @@ LPCTSTR CCrystalTextBuffer::GetDefaultEol() const
   case CRLF_STYLE_MAC: return _T("\r");
   default: return _T("\r\n");
   }
+}
+
+BOOL CCrystalTextBuffer::
+InsertGhostLine (CCrystalTextView * pSource, int nLine)
+{
+  if (!InternalInsertGhostLine (pSource, nLine))
+    return FALSE;
+
+  // set WinMerge flags  
+  SetLineFlag (nLine, LF_GHOST, TRUE, FALSE, FALSE);
+
+  RecomputeRealityMapping();
+
+  // don't need to recompute EOL as real lines are unchanged
+
+  // never AddUndoRecord as Rescan clears the ghost lines
+  
+  return TRUE;
 }
 
 BOOL CCrystalTextBuffer::

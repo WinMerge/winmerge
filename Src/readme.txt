@@ -1,4 +1,9 @@
 2003-07-16 Laoran
+ PATCH: [ 771525 ] Updating cursor in ListCopy
+  WinMerge: MergeDoc.cpp MergeDoc.h
+  editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h
+
+2003-07-16 Laoran
  PATCH: [ 771503 ] correct UpdateView context in internalInsertText
   editlib: ccrystaltextbuffer.cpp
 
