@@ -12,4 +12,7 @@ class CRegOptions;
 void updateDefaultCodepage(CRegOptions * options);
 int getDefaultCodepage();
 
+bool isCodepageInstalled(int codepage);
+bool isCodepageSupported(int codepage);
+
 #endif //__CODEPAGE_H__

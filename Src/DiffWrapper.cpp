@@ -32,6 +32,7 @@
 #include "diff.h"
 #include "FileTransform.h"
 #include "LogFile.h"
+#include "codepage.h"
 #include <shlwapi.h>
 
 extern int recursive;
@@ -904,9 +905,8 @@ void DiffFileData::Reset()
  *
  * To be removed when plugin event added for this
  */
-static int demoGuessEncoding_rc(const char **data, int count)
+static bool demoGuessEncoding_rc(const char **data, int count, int * cp)
 {
-	int cp = 0;
 	if (count > 30)
 		count = 30;
 	while (count--)
@@ -915,11 +915,11 @@ static int demoGuessEncoding_rc(const char **data, int count)
 		static const char prefix[] = "#pragma code_page(";
 		if (StrIsIntlEqualA(FALSE, line, prefix, sizeof prefix - 1))
 		{
-			cp = StrToIntA(line + sizeof prefix - 1);
-			break;
+			*cp = StrToIntA(line + sizeof prefix - 1);
+			return true;
 		}
 	}
-	return cp;
+	return false;
 }
 
 /**
@@ -927,9 +927,8 @@ static int demoGuessEncoding_rc(const char **data, int count)
  *
  * To be removed when plugin event added for this
  */
-static int demoGuessEncoding_html(const char **data, int count)
+static bool demoGuessEncoding_html(const char **data, int count, int * cp)
 {
-	int cp = 0;
 	if (count > 30)
 		count = 30;
 	while (count--)
@@ -939,11 +938,19 @@ static int demoGuessEncoding_html(const char **data, int count)
 		if (StrIsIntlEqualA(FALSE, line, prefix, sizeof prefix - 1))
 		{
 			// TODO: Map ISO-8859-1 pages to codenumbers (is this possible ?)
-			cp = StrToIntA(line + sizeof prefix - 1);
-			break;
+			*cp = StrToIntA(line + sizeof prefix - 1);
+			return true;
 		}
 	}
-	return cp;
+	return false;
+}
+
+/**
+ * @brief Is specified codepage number valid on this system?
+ */
+static bool isValidCodepage(int cp)
+{
+	return isCodepageSupported(cp);
 }
 
 /**
@@ -956,11 +963,15 @@ void DiffFileData::Filepath::GuessEncoding(const char **data, int count)
 		LPCTSTR ext = PathFindExtension(*this);
 		if (lstrcmpi(ext, _T(".rc")) ==  0)
 		{
-			codepage = demoGuessEncoding_rc(data, count);
+			int cp=0;
+			if (demoGuessEncoding_rc(data, count, &cp) && isValidCodepage(cp))
+				codepage = cp;
 		}
 		else if (lstrcmpi(ext, _T(".htm")) == 0 || lstrcmpi(ext, _T(".html")) == 0)
 		{
-			codepage = demoGuessEncoding_html(data, count);
+			int cp=0;
+			if (demoGuessEncoding_html(data, count, &cp) && isValidCodepage(cp))
+				codepage = cp;
 		}
 	}
 }

@@ -1,6 +1,8 @@
 2004-09-30 Perry
  Fix bracketing mistake in PATCH: [ 1034810 ]
   Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1034754 ] Fix demoGuessEncoding's default
+  Src: codepage.cpp codepage.h DiffWrapper.cpp
 
 2004-09-29 Perry
  PATCH: [ 1034810 ] fix whitespace for other encodings
