@@ -1,3 +1,10 @@
+2004-04-16 Kimmo
+ RFE: [ 934446 ] Syntax highlighting for XML files
+  Submitted by Tim Gerundt
+  Src: Merge.dsp
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+  Src/editlib new file: xml.cpp
+
 2004-04-14 Kimmo
  BUG: [ 926578 ] Division by zero exception
   Fix tabsize limits in options dialog

@@ -612,6 +612,7 @@ public :
     DWORD ParseLineSql (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
     DWORD ParseLineTcl (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
     DWORD ParseLineTex (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
+    DWORD ParseLineXml (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
 
     // Attributes
 public :
@@ -682,7 +683,8 @@ public :
       SRC_SIOD,
       SRC_SQL,
       SRC_TCL,
-      SRC_TEX
+      SRC_TEX,
+      SRC_XML
     }
     TextType;
 

@@ -2186,6 +2186,10 @@ SOURCE=.\editlib\tex.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\editlib\xml.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\editlib\wispelld.h
 # End Source File
 # End Group
