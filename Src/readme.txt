@@ -1,3 +1,5 @@
+2004-01-20 WinMerge experimental release 2.1.5.7 (cvs)
+
 2004-01-20 Jochen
  Fix bug 880320
   New class CSilentException to be thrown on subsequent failures in proxy linking to merge7z*.dll.
