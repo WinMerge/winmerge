@@ -899,7 +899,7 @@ END
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
 CAPTION "Editor"
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Uthev syntaksen",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
@@ -910,14 +910,14 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
-    GROUPBOX        "Tabulator",IDC_STATIC,7,54,251,33,WS_GROUP
+    GROUPBOX        "Tabulator",IDC_STATIC,7,54,221,33,WS_GROUP
     LTEXT           "&Tabulatorstørrelse:",IDC_STATIC,15,68,61,8
     EDITTEXT        IDC_TAB_EDIT,81,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Sett inn tabulatorer",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,128,63,73,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,110,63,110,10
     CONTROL         "Sett inn mellomrom",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,128,72,73,10
+                    BS_AUTORADIOBUTTON,110,72,110,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95

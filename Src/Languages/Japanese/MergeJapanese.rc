@@ -902,7 +902,7 @@ END
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
 CAPTION "エディタ"
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "シンタックスハイライト(&H)",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
@@ -914,13 +914,13 @@ BEGIN
     CONTROL         "元のEOL文字を保存する(&P)",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "タブ",IDC_STATIC,7,54,221,33,WS_GROUP
-    LTEXT           "タブ幅(&T):",IDC_STATIC,15,68,30,8
-    EDITTEXT        IDC_TAB_EDIT,47,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+    LTEXT           "タブ幅(&T):",IDC_STATIC,15,68,42,8
+    EDITTEXT        IDC_TAB_EDIT,60,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "タブを挿入(&I)",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,77,63,51,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,85,63,137,10
     CONTROL         "スペースを挿入(&S)",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,77,72,59,10
+                    BS_AUTORADIOBUTTON,85,72,137,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95

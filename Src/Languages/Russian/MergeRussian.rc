@@ -907,10 +907,10 @@ BEGIN
     PUSHBUTTON      "По умолчанию",IDC_COMPARE_DEFAULTS,7,121,61,14
 END
 
-IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 290, 156
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
 CAPTION "Редактор"
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Подсвечивать синтаксис",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
@@ -921,14 +921,14 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "Оригинальные символы EOL",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
-    GROUPBOX        "Отступы",IDC_STATIC,7,54,276,33,WS_GROUP
-    LTEXT           "Размер &отступа:",IDC_STATIC,15,68,30,8
-    EDITTEXT        IDC_TAB_EDIT,47,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+    GROUPBOX        "Отступы",IDC_STATIC,7,54,221,33,WS_GROUP
+    LTEXT           "Размер &отступа:",IDC_STATIC,15,68,50,8
+    EDITTEXT        IDC_TAB_EDIT,70,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "&Табуляции",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,102,63,51,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,95,63,127,10
     CONTROL         "&Пробелы",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,102,72,59,10
+                    BS_AUTORADIOBUTTON,95,72,127,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95

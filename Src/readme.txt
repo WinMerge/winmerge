@@ -1,3 +1,9 @@
+2004-09-22 Kimmo
+ BUG: [ 1029646 ] (Norwegian) Options/Editor text chopped off
+  Fix all languages
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2004-09-21 Kimmo
  Widen space for text in language change dialog
   Src: Merge.rc

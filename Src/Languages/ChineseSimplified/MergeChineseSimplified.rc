@@ -889,7 +889,7 @@ END
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
 CAPTION "Editor"
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "强调语法",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
@@ -901,13 +901,13 @@ BEGIN
     CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "制表符",IDC_STATIC,7,54,221,33,WS_GROUP
-    LTEXT           "制表符大小(&T):",IDC_STATIC,10,68,35,8
-    EDITTEXT        IDC_TAB_EDIT,47,66,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+    LTEXT           "制表符大小(&T):",IDC_STATIC,10,68,42,8
+    EDITTEXT        IDC_TAB_EDIT,60,66,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "插入制表符(&T)",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,79,63,76,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,85,63,137,10
     CONTROL         "插入空白(&N)",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,79,72,59,10
+                    BS_AUTORADIOBUTTON,85,72,137,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95

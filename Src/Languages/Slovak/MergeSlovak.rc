@@ -900,7 +900,7 @@ END
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
 CAPTION "Editor"
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Hilighting syntaxe",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
@@ -910,7 +910,7 @@ BEGIN
     CONTROL         "Automatické p&reskenovanie",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,233,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "Tabulátory",IDC_STATIC,7,54,221,33,WS_GROUP
     LTEXT           "&Nastavenie tabulátorov:",IDC_STATIC,15,68,76,8
     EDITTEXT        IDC_TAB_EDIT,95,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
