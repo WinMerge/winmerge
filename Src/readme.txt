@@ -1,3 +1,7 @@
+2004-05-23 Perry
+ Localized language names into Portuguese
+  Src/Languages: MergeBrazilian.rc
+
 2004-05-22 Kimmo
  PATCH: [ 958122 ] Add C# syntax highlight
   Src: Merge.dsp
