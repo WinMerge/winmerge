@@ -358,6 +358,7 @@ protected :
     // which WinMerge uses for left-only or right-only lines.
     int ComputeRealLine(int nApparentLine) const;
     int ComputeApparentLine(int nRealLine) const;
+    int LastRealLine() const;
     int FindRealityBlocknoFromApparent(int nApparentLine) const;
     int FindRealityBlocknoFromReal(int nRealLine) const;
     void RecomputeRealityMapping();

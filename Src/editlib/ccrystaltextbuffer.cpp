@@ -1730,6 +1730,16 @@ int CCrystalTextBuffer::FindRealityBlocknoFromReal(int nRealLine) const
 	return -1;
 }
 
+// Return highest valid real (file) line
+// Returns -1 if no lines
+int CCrystalTextBuffer::LastRealLine() const
+{
+	int bmax = m_RealityBlocks.GetUpperBound();
+	if (bmax<0) return -1;
+	RealityBlock & block = m_RealityBlocks[bmax];
+	return block.nStartReal + block.nCount;
+}
+
 // return underlying real line
 // for ghost lines, return next higher real line
 // ie, lines 0->0, 1->2, 2->4,
@@ -1737,7 +1747,7 @@ int CCrystalTextBuffer::FindRealityBlocknoFromReal(int nRealLine) const
 int CCrystalTextBuffer::ComputeRealLine(int nApparentLine) const
 {
 	int blockno = FindRealityBlocknoFromApparent(nApparentLine);
-	if (blockno == -1) return 0;
+	if (blockno == -1) return LastRealLine()+1;
 	RealityBlock & block = m_RealityBlocks[blockno];
 	return (nApparentLine - block.nStartApparent) + block.nStartReal;
 }
@@ -1747,7 +1757,7 @@ int CCrystalTextBuffer::ComputeRealLine(int nApparentLine) const
 int CCrystalTextBuffer::ComputeApparentLine(int nRealLine) const
 {
 	int blockno = FindRealityBlocknoFromReal(nRealLine);
-	if (blockno == -1) return 0;
+	if (blockno == -1) return -1;
 	RealityBlock & block = m_RealityBlocks[blockno];
 	return (nRealLine - block.nStartReal) + block.nStartApparent;
 }
