@@ -1,3 +1,8 @@
+2004-04-19 Kimmo
+ PATCH [ 937535 ] Updated syntax highlighting for resources files (*.rc)
+  Submitted by Tim Gerundt
+  Src/editlib: rsrc.cpp
+
 2004-04-18 Perry
  BUG: [ 937435 ] cvs doesn't compile -- typo in CMergeDoc::ShowRescanError(
   Src: MergeDoc.cpp
