@@ -1,19 +1,20 @@
 There are actually 4 API, and 3 different uses. 
 Each API is designed by its event name : FILE_PACK_UNPACK, BUFFER_PACK_UNPACK, PREDIFFING, CONTEXT_MENU.
 
-FILE_PACK_UNPACK	Handle a given file type, 
-			for example, unzip a file before loading
-			Called when load (open) the file, and when saving
-			The unpacker plugin is memorized, and its packing function is used when saving.
-			One integer value may be passed from the unpacker to the packer (subcode).
+FILE_PACK_UNPACK	Handle a given file type, as we would for a zipped file
+			Merging session : unpack the file to load it in display buffer, and repack it when the user 
+			 saves a modified file. File is unpacked in the display buffer, so is it when diffing too.
+			Directory comparison : WinMerge takes care to unpack files (see mode below).
+			The unpacker plugin is memorized, and its packing function is used when saving. One integer 
+			 value may be passed from the unpacker to the packer (subcode).
 BUFFER_PACK_UNPACK	As FILE_PACK_UNPACK, but different interface
 
-PREDIFFING		preprocess the text before diffing, 
-			As now : you may delete one column, change one variable name 
-			         you may not add/delete/move lines
-			Called before comparing files 
-			Either comparing files in directory : the original file is preprocessed
-			Or compare files being merged       : the modified text is preprocessed
+PREDIFFING		Preprocess one file before diffing
+			Merging session : the preprocessing occurs on a copy of the display buffer. 
+			 So it does not modify the file being merged.
+			Directory comparison : WinMerge takes care to preprocess files.
+			As now : you may delete one column, change the names of variables... 
+			         you may not add/delete/move lines.
 
 CONTEXT_MENU		For WinMerge editor, apply a function to the selection or at the cursor point
 			Right-click in the editor to access a list of functions
