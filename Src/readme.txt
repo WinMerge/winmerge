@@ -1,3 +1,7 @@
+2003-02-26 Christian
+ [ 70970 ] Translate Merge.rc into danish
+    BuildAll.bat and added directory Languages/Danish
+
 2003-02-26 Kimmo
  [ 692922 ] Don't try to compare file & directory
   WinMerge:
