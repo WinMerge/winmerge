@@ -1,3 +1,8 @@
+2004-10-18 Kimmo
+ PATCH: [ 1048838 ] German translation updated for RC
+  Submitted by Tim Gerundt
+  Src/Languages/German: MergeGerman.rc
+
 2004-10-18 Perry
  PATCH: [ 1048412 ] Log font info in configuration
   Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp

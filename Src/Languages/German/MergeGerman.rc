@@ -176,9 +176,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Symbolleiste",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
-        MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
-        MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
-        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
+        MENUITEM "U&nterschiedsleiste",         ID_VIEW_DETAIL_BAR
+        MENUITEM "P&ositionsleiste",            ID_VIEW_LOCATION_BAR
+        MENUITEM "V&ergleichszustand",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
     END
@@ -242,7 +242,7 @@ BEGIN
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "&Archiv-Unterstützung deaktiviert...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
-        MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
+        MENUITEM "&GNU Public Lizenz...",       ID_HELP_GNULICENSE
         MENUITEM "Ü&ber WinMerge...",           ID_APP_ABOUT
     END
 END
@@ -316,10 +316,10 @@ END
 
 IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
-    POPUP "Prediffer Settings"
+    POPUP "&Prediffer Einstellungen"
     BEGIN
-        MENUITEM "&No prediffer",               ID_PREDIFF_MANUAL
-        MENUITEM "Auto prediffer",              ID_PREDIFF_AUTO
+        MENUITEM "&Kein Prediffer",             ID_PREDIFF_MANUAL
+        MENUITEM "&Auto Prediffer",             ID_PREDIFF_AUTO
     END
 END
 
@@ -459,7 +459,7 @@ BEGIN
     EDITTEXT        IDC_USER,48,96,70,14,ES_AUTOHSCROLL
     RTEXT           "Passwort:",IDC_STATIC,122,99,55,8
     EDITTEXT        IDC_PASSWORD,180,96,70,14,ES_PASSWORD | ES_AUTOHSCROLL
-    CONTROL         "Link to Destination VSS project",IDC_VCPROJ_SYNC,"Button",
+    CONTROL         "Verbindung zum Ziel-VSS-Projekt",IDC_VCPROJ_SYNC,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
     CONTROL         "Auf alle Objekte anwenden",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
@@ -493,7 +493,7 @@ BEGIN
                     17,210,10
     CONTROL         "Startbildschirm &deaktivieren",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
-    CONTROL         "&Close compare Statepane automatically",
+    CONTROL         "&Vergleichszustand automatisch schliessen",
                     IDC_CMPPANE_AUTOCLOSE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,37,206,10
     CONTROL         "Fenster mit &ESC schliessen",IDC_ESC_CLOSES_WINDOW,"Button",
@@ -503,7 +503,7 @@ BEGIN
                     WS_TABSTOP,7,57,206,10
     PUSHBUTTON      "Zurücksetzen",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press button to make all messageboxes visible again.",
+    LTEXT           "WinMerge erlaubt das Verstecken von einigen häufigen Meldungen. Das Drücken der Schaltfläche macht alle Meldungen wieder sichtbar.",
                     IDC_STATIC,7,79,168,31
 END
 
@@ -511,7 +511,7 @@ IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Sprache"
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     PUSHBUTTON      "OK",IDOK,154,16,52,14
     PUSHBUTTON      "Abbrechen",IDCANCEL,154,33,52,14
@@ -1427,7 +1427,7 @@ END
 STRINGTABLE
 BEGIN
     IDC_COMPARISON_STOP     "Stop"
-    IDC_COMPARISON_CLOSE    "Press any key"
+    IDC_COMPARISON_CLOSE    "Beliebige Taste"
 END
 
 // EDITOR : FILENAME BAR
@@ -1595,12 +1595,12 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Fehler beim Prüfen des Zielverzeichnisses auf Schreibschutz"
     IDS_ERROR_BACKUP        "Fehler beim Erstellen einer Sicherheitskopie"
     IDS_BACKUP_FAILED_PROMPT "Es konnte keine Sicherheitskopie der Originaldatei erzeugt werden.\nWollen Sie trotzdem fortfahren?"
-    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
-    IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-    IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-    IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
-    IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
-    IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nIf you want to refresh files close current file compare and load files again."
+    IDS_FILESAVE_FAILED     "Speichern der Datei fehlgeschlagen.\n%1\n%2\nMöchten Sie die Datei unter einem anderem Namen speichern?"
+    IDS_FILEPACK_FAILED_LEFT "Plugin '%2' kann Ihre Änderungen der linken Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die ungepackte Version in einer anderen Datei speichern?"
+    IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kann Ihre Änderungen der rechten Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die ungepackte Version in einer anderen Datei speichern?"
+    IDS_FILECHANGED_ONDISK  "Eine andere Anwendung hat die Datei\n%1\naktualisiert, seit WinMerge sie geladen hat.\n\nGeänderte Datei überschreiben?"
+    IDS_SAVEREADONLY_MULTI  "%1\nist als schreibgeschützt markiert. Möchten Sie das schreibgeschützte Objekt überschreiben?"
+    IDS_FILECHANGED_RESCAN  "Eine andere Anwendung hat die Datei\n%1\naktualisiert, seit WinMerge sie das letzte mal gescannt hat.\n\nWenn Sie die Dateien aktualisieren wollen, müssen Sie den aktuellen Datei-Vergleich schliessen und neu aufrufen."
     IDS_SAVE_LEFT_AS        "Speichere linke Datei unter"
     IDS_SAVE_RIGHT_AS       "Speichere rechte Datei unter"
 END
@@ -1612,7 +1612,7 @@ BEGIN
     IDS_VSS_CHECKOUT_STATUS "Dateien auschecken vom VSS..."
     IDS_VSSERROR            "SourceSafe hat beim Versuch die Datei auszuchecken einen Fehler gemeldet. Der Vorgang kann nicht fortgesetzt werden..."
     IDS_VSS_RUN_ERROR       "Fehler beim Versionieren."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "Der VSS-Arbeitsordner und die Position der aktuellen Datei stimmen nicht überein. Fortsetzen?"
     IDS_VSS_NODATABASES     "Keine VSS Datenbank(en) gefunden!"
     IDS_VSS_ERRORFROM       "Fehler vom VSS:"
 END
@@ -1795,12 +1795,12 @@ BEGIN
     IDS_FILEUNIQUE          "Die ausgewählte Datei ist nicht in beiden Verzeichnissen vorhanden und konnte deshalb nicht verglichen werden."
     IDS_FILEERROR           "Beim Vergleichen der Dateien ist ein Fehler aufgetreten."
     IDS_FILEBINARY          "Binärdateien können nicht visuell verglichen werden."
-    IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
+    IDS_TEMP_FILEERROR      "Temporäre Dateien konnten nicht erzeugt werden. Überprüfen Sie Ihre Einstellungen für temporäre Dateien."
     IDS_FILEISDIR           "Verzeichnisse können nicht visuell verglichen werden."
-    IDS_SUGGEST_IGNOREEOL   "The files have a different EOL type.\nWith the current options, all lines will differ.\nDo you want to ignore EOL differences for these files ?\n\nAdvanced user : if the EOL are not unified in your files,\n you may rather set the option '%1'."
-    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-    IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-    IDS_SUGGEST_IGNORECODEPAGE "Left and right files don't have the same codepage. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to force both into the default codepage (recommended)?"
+    IDS_SUGGEST_IGNOREEOL   "Die Dateien haben ein unterschiedliches Zeilenumbruch-Format.\nMit den aktuellen Einstellungen werden alle Zeilen unterschiedlich sein.\nMöchten Sie die Zeilenumbruch-Unterschiede für diese Dateien ignorieren?\n\nFür fortgeschrittene Anwender: Wenn die Zeilenumbrüche in Ihren Dateien nicht einheitlich sind,\n können Sie eher die Option '%1' einstellen."
+    IDS_SUGGEST_PRESERVEEOL "Die Zeilenumbrüche in der Datei '%1' sind von unterschiedlichen Formaten (DOS/UNIX/MAC).\nMit den aktuellen Einstellungen werden sie zum Hauptformat vereinheitlicht.\nMöchten Sie die Einstellungen ändern und das Mischen der Zeilenumbruch-Formate erlauben?"
+    IDS_PREDIFFER_ERROR      "Ein Fehler trat beim Prediffing der Datei '%1' mit dem Plugin '%2' auf. Das Prediffing wird daher nicht mehr angewendet."
+    IDS_SUGGEST_IGNORECODEPAGE "Die linke und rechte Datei haben nicht den gleichen Zeichensatz.\nDas Anzeigen jeder Datei im eigenen Zeichensatz erlaubt eine bessere Darstellung, aber das Mischen/Kopieren ist gefährlich.\nMöchten Sie für Beide den Standard-Zeichensatz erzwingen (empfohlen)?"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -1843,7 +1843,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_DIR_RESULTS_EMPTIED "Current directory comparison results will be cleared."
+    IDS_DIR_RESULTS_EMPTIED "Die aktuellen Resultate des Verzeichnis-Vergleichs werden gelöscht."
     IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\n
                             All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.
                             See manual for more info about archive support and how to enable it."
@@ -1852,33 +1852,33 @@ END
 // Regular expression errors
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_ERROR        "Regular expression error"
-    IDS_REGEXP_NOMATCH      "No match"
-    IDS_REGEXP_INVALID      "Invalid regular expression"
-    IDS_REGEXP_COLL_CHAR    "Invalid collation character"
-    IDS_REGEXP_CHAR_CLASS   "Invalid character class name"
-    IDS_REGEXP_TRAILING_BS  "Trailing backslash"
-    IDS_REGEXP_INVALID_BACKREF "Invalid back reference"
-    IDS_REGEXP_UNMATCHED_BRACK "Unmatched [ or [^"
-    IDS_REGEXP_UNMATCHED_PAREN "Unmatched ( or \\("
-    IDS_REGEXP_UNMATCHED_BRACE "Unmatched \\{"
-    IDS_REGEXP_INVALID_BRACE "Invalid content of \\{\\}"
-    IDS_REGEXP_RANGE_END    "Invalid range end"
-    IDS_REGEXP_OUTOFMEM     "Out of memory"
-    IDS_REGEXP_INVALID_PREV_EXP "Invalid preceding regular expression"
-    IDS_REGEXP_PREMATURE_END "Premature end of regular expression"
-    IDS_REGEXP_TOO_BIG      "Regular expression too big"
+    IDS_REGEXP_ERROR        "Regulärer Ausdruck Fehler"
+    IDS_REGEXP_NOMATCH      "Keine Übereinstimmung"
+    IDS_REGEXP_INVALID      "Ungültiger regulärer Ausdruck"
+    IDS_REGEXP_COLL_CHAR    "Ungültiges Vergleichszeichen"
+    IDS_REGEXP_CHAR_CLASS   "Ungültiger Zeichenklasse-Name"
+    IDS_REGEXP_TRAILING_BS  "Nachfolgender Backslash"
+    IDS_REGEXP_INVALID_BACKREF "Ungültiger Rückbezug"
+    IDS_REGEXP_UNMATCHED_BRACK "Unpassende [ oder [^"
+    IDS_REGEXP_UNMATCHED_PAREN "Unpassende ( oder \\("
+    IDS_REGEXP_UNMATCHED_BRACE "Unpassende \\{"
+    IDS_REGEXP_INVALID_BRACE "Ungültiger Inhalt von \\{\\}"
+    IDS_REGEXP_RANGE_END    "Ungültiges Bereichsende"
+    IDS_REGEXP_OUTOFMEM     "Platz im Hauptspeicher reicht nicht aus"
+    IDS_REGEXP_INVALID_PREV_EXP "Ungültiger vorhergehender regulärer Ausdruck"
+    IDS_REGEXP_PREMATURE_END "Vorzeitiges Ende des regulären Ausdruckes"
+    IDS_REGEXP_TOO_BIG      "Regulärer Ausdruck zu groß"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_UNMATCHED_RPAREN "Unmatched ) or \\)"
+    IDS_REGEXP_UNMATCHED_RPAREN "Unpassende ) oder \\)"
 END
 
 // LANGAGE NAMES #1
 STRINGTABLE
 BEGIN
-    IDS_AFRIKAANS           "Afrikaans"
+    IDS_AFRIKAANS           "Afrikanisch"
     IDS_ALBANIAN            "Albanisch"
     IDS_ARABIC_SAUDI        "Arabisch (Saudi-Arabien)"
     IDS_ARABIC_IRAQ         "Arabisch (Irak)"
@@ -1904,14 +1904,14 @@ BEGIN
     IDS_ARMENIAN            "Armenisch"
     IDS_AZERI_LATIN         "Azeri (Latin)"
     IDS_AZERI_CYRILLIC      "Azeri (Cyrillic)"
-    IDS_BASQUE              "Basque"
+    IDS_BASQUE              "Baskenland"
     IDS_BELARUSIAN          "Belarusian"
     IDS_BULGARIAN           "Bulgarisch"
     IDS_CATALAN             "Katalanisch"
     IDS_CHINESE_TRADITIONAL "Chinesisch (Traditional)"
     IDS_CHINESE_SIMPLIFIED  "Chinesisch (Simplified)"
     IDS_CHINESE_HONGKONG    "Chinesisch (Hong Kong)"
-    IDS_CHINESE_SINGAPORE   "Chinesisch (Singapore)"
+    IDS_CHINESE_SINGAPORE   "Chinesisch (Singapur)"
 END
 
 // LANGAGE NAMES #3
@@ -1925,13 +1925,13 @@ BEGIN
     IDS_DUTCH_BELGIAN       "Niederländisch (Belgien)"
     IDS_ENGLISH_US          "Englisch (US)"
     IDS_ENGLISH_UK          "Englisch (UK)"
-    IDS_ENGLISH_AUS         "Englisch (Australian)"
-    IDS_ENGLISH_CAN         "Englisch (Canadian)"
-    IDS_ENGLISH_NZ          "Englisch (New Zealand)"
-    IDS_ENGLISH_EIRE        "Englisch (Irish)"
-    IDS_ENGLISH_SOUTH_AFRICA "Englisch (So. African)"
-    IDS_ENGLISH_JAMAICA     "Englisch (Jamaican)"
-    IDS_ENGLISH_CARIBBEAN   "Englisch (Caribbean)"
+    IDS_ENGLISH_AUS         "Englisch (Australien)"
+    IDS_ENGLISH_CAN         "Englisch (Kanada)"
+    IDS_ENGLISH_NZ          "Englisch (Neuseeland)"
+    IDS_ENGLISH_EIRE        "Englisch (Irland)"
+    IDS_ENGLISH_SOUTH_AFRICA "Englisch (Südafrika)"
+    IDS_ENGLISH_JAMAICA     "Englisch (Jamaika)"
+    IDS_ENGLISH_CARIBBEAN   "Englisch (Karibik)"
     IDS_ENGLISH_BELIZE      "Englisch (Belize)"
 END
 
@@ -1939,15 +1939,15 @@ END
 STRINGTABLE
 BEGIN
     IDS_ENGLISH_TRINIDAD    "Englisch (Trinidad)"
-    IDS_ENGLISH_ZIMBABWE    "Englisch (Zimbabwe)"
-    IDS_ENGLISH_PHILIPPINES "Englisch (Philippines)"
+    IDS_ENGLISH_ZIMBABWE    "Englisch (Simbabwe)"
+    IDS_ENGLISH_PHILIPPINES "Englisch (Philippinen)"
     IDS_ESTONIAN            "Estnisch"
     IDS_FAEROESE            "Färöisch"
     IDS_FARSI               "Farsi"
     IDS_FINNISH             "Finnisch"
     IDS_FRENCH              "Französisch"
-    IDS_FRENCH_BELGIAN      "Französisch (Belgique)"
-    IDS_FRENCH_CANADIAN     "Französisch (Canada)"
+    IDS_FRENCH_BELGIAN      "Französisch (Belgien)"
+    IDS_FRENCH_CANADIAN     "Französisch (Kanada)"
     IDS_FRENCH_SWISS        "Französisch (Schweiz)"
     IDS_FRENCH_LUXEMBOURG   "Französisch (Luxemburg)"
     IDS_FRENCH_MONACO       "Französisch (Monaco)"
@@ -1982,8 +1982,8 @@ STRINGTABLE
 BEGIN
     IDS_LATVIAN             "Lettisch"
     IDS_LITHUANIAN          "Litauisch"
-    IDS_MALAY_MALAYSIA      "Malay (Malaysian)"
-    IDS_MALAY_BRUNEI_DARUSSALAM "Malay (Brunei Darussalam)"
+    IDS_MALAY_MALAYSIA      "Malaiisch (Malaysia)"
+    IDS_MALAY_BRUNEI_DARUSSALAM "Malaiisch (Brunei Darussalam)"
     IDS_MANIPURI            "Manipuri"
     IDS_NORWEGIAN_BOKMAL    "Norwegisch (Bokmal)"
     IDS_NORWEGIAN_NYNORSK   "Norwegisch (Nynorsk)"
@@ -1993,8 +1993,8 @@ BEGIN
     IDS_ROMANIAN            "Rumänisch"
     IDS_RUSSIAN             "Russisch"
     IDS_SANSKRIT            "Sanskrit"
-    IDS_SERBIAN_LATIN       "Serbian (Latin)"
-    IDS_SERBIAN_CYRILLIC    "Serbian (Cyrillic)"
+    IDS_SERBIAN_LATIN       "Serbisch (Lateinisch)"
+    IDS_SERBIAN_CYRILLIC    "Serbisch (Kyrillisch)"
     IDS_SINDHI              "Sindhi"
 END
 
@@ -2028,7 +2028,7 @@ BEGIN
     IDS_SPANISH_HONDURAS    "Spanisch (Honduras)"
     IDS_SPANISH_NICARAGUA   "Spanisch (Nicaragua)"
     IDS_SPANISH_PUERTO_RICO "Spanisch (Puerto Rico)"
-    IDS_SWAHILI             "Swahili (Kenya)"
+    IDS_SWAHILI             "Swahili (Kenia)"
     IDS_SWEDISH             "Schwedisch"
     IDS_SWEDISH_FINLAND     "Schwedisch (Finnland)"
     IDS_TAMIL               "Tamil"
@@ -2043,8 +2043,8 @@ END
 // LANGAGE NAMES #9
 STRINGTABLE
 BEGIN
-    IDS_UZBEK_LATIN         "Uzbek (Latin)"
-    IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
+    IDS_UZBEK_LATIN         "Usbekisch (Lateinisch)"
+    IDS_UZBEK_CYRILLIC      "Usbekisch (Kyrillisch)"
     IDS_VIETNAMESE          "Vietnamesisch"
 END
 
@@ -2090,9 +2090,9 @@ BEGIN
     ID_VIEW_SELECTFONT      "Wählt die Schrift für die Differenz-Anzeigen."
     ID_VIEW_USEDEFAULTFONT  "Stellt die Schrift für die Differenz-Anzeigen zurück auf die Standard-Systemschrift."
     ID_VIEW_WHITESPACE      "Zeigt Leerzeichen an."
-    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
-    ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
-    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
+    ID_VIEW_DETAIL_BAR      "Blendet die Unterschiedsleiste ein oder aus."
+    ID_VIEW_LOCATION_BAR    "Die Positionsleiste zeigt gesamte Abbildungen von den Dateien."
+    ID_VIEW_DIR_STATEPANE   "Blendet den Vergleichszustand ein oder aus."
     ID_VIEW_LANGUAGE        "Wählt die Sprache der Benutzeroberfläche.\nSprache"
 END
 
@@ -2128,7 +2128,7 @@ BEGIN
     ID_UNPACK_MANUAL        "Der Benutzer wählt den Entpacker (kein Entpacken beim Verzeichnis-Vergleich)."
     ID_UNPACK_AUTO          "Der passende Entpacker wird auf beide Dateien angewendet (nur eine Datei benötigt die Erweiterung)."
     ID_POPUP_OPEN_WITH_UNPACKER "Auswählen eines Entpackers zum Bearbeiten dieser Datei."
-    ID_NO_PREDIFFER         "No prediffer (normal)"
+    ID_NO_PREDIFFER         "Kein Prediffer (Normal)"
     ID_SUGGESTED_PLUGINS    "Vorgeschlagene Plugins"
     ID_NOT_SUGGESTED_PLUGINS "Andere Plugins"
     ID_RELOAD_PLUGINS       "Entlädt alle Plugins und lädt sie neu (für Entwickler)."
@@ -2153,8 +2153,8 @@ END
 STRINGTABLE
 BEGIN
     ID_TITLE_PLUGINS_SETTINGS "Plugin Einstellungen"
-    ID_PREDIFF_MANUAL       "No prediffer"
-    ID_PREDIFF_AUTO         "Prediff if possible"
+    ID_PREDIFF_MANUAL       "Kein Prediffer."
+    ID_PREDIFF_AUTO         "Prediff ist möglich."
     ID_NO_EDIT_SCRIPTS      "< Leer >"
     ID_NO_SCT_SCRIPTS       "WSH nicht gefunden - .sct Skripte deaktiviert."
     IDS_USERCHOICE_NONE     "<Keine>"
