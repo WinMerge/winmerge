@@ -399,17 +399,24 @@ void Status(UINT idstrText, LPCTSTR szText1 /*= NULL*/, LPCTSTR szText2 /*= NULL
 }
 
 
+// Find locations of RC compiler and linker
 void InitModulePaths()
 {
-	// read RC compiler locations
-	CRegKeyEx reg;
+	// Initialize module variables
 	gsRCExe = _T("");
 	gsLinkExe = _T("");
 	gsVcBaseFolder = _T("");
 	gsIncludes = _T("");
 	gsLibs = _T("");
+
+	// All our work is looking for entries in the registry
+	CRegKeyEx reg;
+
+	// Strategy is that we keep looking until gsVcBaseFolder has a value
+
+	// Check for user-configured overrides
 	LPCTSTR settings = _T("Software\\Thingamahoochie\\MakeResDll\\Settings");
-	if (reg.Open(HKEY_CURRENT_USER, settings) == ERROR_SUCCESS)
+	if (reg.OpenNoCreateWithAccess(HKEY_CURRENT_USER, settings, KEY_QUERY_VALUE) == ERROR_SUCCESS)
 	{
 		gsVcBaseFolder = reg.ReadString(_T("VcBaseFolder"), _T(""));
 		gsRCExe = reg.ReadString(_T("RCExe"), _T(""));
@@ -438,7 +445,7 @@ void InitModulePaths()
 	// check for devstudio 6
 	LPCTSTR dirs6 = _T("Software\\Microsoft\\DevStudio\\6.0\\Directories");
 	if (gsVcBaseFolder.IsEmpty()
-		&& reg.Open(HKEY_CURRENT_USER, dirs6) == ERROR_SUCCESS)
+		&& reg.OpenNoCreateWithAccess(HKEY_CURRENT_USER, dirs6, KEY_QUERY_VALUE) == ERROR_SUCCESS)
 	{
 		gsVcBaseFolder = reg.ReadString(_T("Install Dirs"), _T(""));
 		reg.Close();
@@ -460,7 +467,7 @@ void InitModulePaths()
 	// check for devstudio 5
 	LPCTSTR dirs5 = _T("Software\\Microsoft\\DevStudio\\5.0\\Directories");
 	if (gsVcBaseFolder.IsEmpty()
-		&& reg.Open(HKEY_CURRENT_USER, dirs5) == ERROR_SUCCESS)
+		&& reg.OpenNoCreateWithAccess(HKEY_CURRENT_USER, dirs5, KEY_QUERY_VALUE) == ERROR_SUCCESS)
 	{
 		gsVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
 		reg.Close();
@@ -475,7 +482,7 @@ void InitModulePaths()
 
 
 	LPCTSTR moredirs5 = _T("Software\\Microsoft\\DevStudio\\5.0\\Build System\\Components\\Platforms\\Win32 (x86)\\Directories");
-	if (reg.Open(HKEY_CURRENT_USER, moredirs5) == ERROR_SUCCESS)
+	if (reg.OpenNoCreateWithAccess(HKEY_CURRENT_USER, moredirs5, KEY_QUERY_VALUE) == ERROR_SUCCESS)
 	{
 		gsIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
 		gsLibs = reg.ReadString(_T("Library Dirs"), _T(""));

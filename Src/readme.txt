@@ -9,6 +9,8 @@
   MakeResDll: MakeResDll.cpp MakeResDll.rc
  Add readme.txt to MakeResDll.
   MakeResDll: MakeResDll.dsp readme.txt
+ Fix MakeResDll to not create keys not found.
+  MakeResDll: MakeResDll.cpp
 
 2003-10-22 WinMerge experimental release 2.1.3.4 (cvs)
 
