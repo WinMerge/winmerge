@@ -272,7 +272,7 @@ BEGIN
     LTEXT           "WinMerge",IDC_STATIC,63,13,85,8,SS_NOPREFIX
     DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
     LTEXT           "Version 1.0",IDC_VERSION,64,23,88,8,SS_NOPREFIX
-    LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,84,8
+    LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
     LTEXT           "Alle Rechte vorbehalten.",IDC_STATIC,7,60,170,8
     LTEXT           "Besuchen Sie die WinMerge HomePage!",IDC_WWW,7,107,209,
                     8
