@@ -2196,8 +2196,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Velg skrifttype til vinduene\nVelg skrifttype"
-    ID_VIEW_USEDEFAULTFONT  "Bruk standard skrifttype for vinduene\nStandard skrifttype"
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "Viser et tegn for mellomrom"
     ID_VIEW_DETAIL_BAR      "Veksle forskjellsvindu"
     ID_VIEW_LOCATION_BAR    "Plasseringsvindu viser oversiktbilde av filene"

@@ -113,6 +113,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_GNULICENSE, OnHelpGnulicense)
 	ON_COMMAND(ID_OPTIONS, OnOptions)
 	ON_COMMAND(ID_VIEW_SELECTFONT, OnViewSelectfont)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SELECTFONT, OnUpdateViewSelectfont)
 	ON_COMMAND(ID_VIEW_USEDEFAULTFONT, OnViewUsedefaultfont)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_USEDEFAULTFONT, OnUpdateViewUsedefaultfont)
 	ON_COMMAND(ID_HELP_CONTENTS, OnHelpContents)
@@ -243,6 +244,7 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_CP_DETECT, false);
 
 	m_options.InitOption(OPT_FONT_FILECMP_USECUSTOM, false);
+	m_options.InitOption(OPT_FONT_DIRCMP_USECUSTOM, false);
 
 	updateDefaultCodepage(&m_options);
 
@@ -1581,43 +1583,74 @@ int CMainFrame::SyncFileToVCS(LPCTSTR pszSrc, LPCTSTR pszDest,
 }
 
 /**
- * @brief Select font for Merge view
+ * @brief Select font for Merge/Dir view
  * 
  * Shows font selection dialog to user, sets current font and saves
  * selected font properties to registry.
  */
 void CMainFrame::OnViewSelectfont() 
 {
+	const TCHAR fileFontPath[] = _T("Font");
+	const TCHAR dirFontPath[] = _T("FontDirCompare");
+	CString sFontPath = fileFontPath; // Default to change file compare font
+
+	CFrameWnd * pFrame = GetActiveFrame();
+	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
+	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
+
+	if (bDirFrame)
+		sFontPath = dirFontPath;
+
 	CHOOSEFONT cf;
-	memset(&cf, 0, sizeof(CHOOSEFONT));
+	LOGFONT *lf = NULL;
+	ZeroMemory(&cf, sizeof(CHOOSEFONT));
 	cf.lStructSize = sizeof(CHOOSEFONT);
-	cf.Flags = CF_INITTOLOGFONTSTRUCT|CF_FORCEFONTEXIST|CF_SCREENFONTS|CF_FIXEDPITCHONLY;
+	cf.Flags = CF_INITTOLOGFONTSTRUCT|CF_FORCEFONTEXIST|CF_SCREENFONTS;
+	if (!bDirFrame)
+		cf.Flags |= CF_FIXEDPITCHONLY; // Only fixed-width fonts for merge view
+
 	// CF_FIXEDPITCHONLY = 0x00004000L
 	// in case you are a developer and want to disable it to test with, eg, a Chinese capable font
-	cf.lpLogFont = &m_lfDiff;
+	if (bDirFrame)
+		lf = &m_lfDir;
+	else
+		lf = &m_lfDiff;
+
+	cf.lpLogFont = lf;
+
 	if (ChooseFont(&cf))
 	{
-		m_options.SaveOption(OPT_FONT_FILECMP_USECUSTOM, true);
-		theApp.WriteProfileInt(_T("Font"), _T("Height"), m_lfDiff.lfHeight);
-		theApp.WriteProfileInt(_T("Font"), _T("Width"), m_lfDiff.lfWidth);
-		theApp.WriteProfileInt(_T("Font"), _T("Escapement"), m_lfDiff.lfEscapement);
-		theApp.WriteProfileInt(_T("Font"), _T("Orientation"), m_lfDiff.lfOrientation);
-		theApp.WriteProfileInt(_T("Font"), _T("Weight"), m_lfDiff.lfWeight);
-		theApp.WriteProfileInt(_T("Font"), _T("Italic"), m_lfDiff.lfItalic);
-		theApp.WriteProfileInt(_T("Font"), _T("Underline"), m_lfDiff.lfUnderline);
-		theApp.WriteProfileInt(_T("Font"), _T("StrikeOut"), m_lfDiff.lfStrikeOut);
-		theApp.WriteProfileInt(_T("Font"), _T("CharSet"), m_lfDiff.lfCharSet);
-		theApp.WriteProfileInt(_T("Font"), _T("OutPrecision"), m_lfDiff.lfOutPrecision);
-		theApp.WriteProfileInt(_T("Font"), _T("ClipPrecision"), m_lfDiff.lfClipPrecision);
-		theApp.WriteProfileInt(_T("Font"), _T("Quality"), m_lfDiff.lfQuality);
-		theApp.WriteProfileInt(_T("Font"), _T("PitchAndFamily"), m_lfDiff.lfPitchAndFamily);
-		theApp.WriteProfileString(_T("Font"), _T("FaceName"), m_lfDiff.lfFaceName);
+		if (bDirFrame)
+			m_options.SaveOption(OPT_FONT_DIRCMP_USECUSTOM, true);
+		else
+			m_options.SaveOption(OPT_FONT_FILECMP_USECUSTOM, true);
 
+		theApp.WriteProfileInt(sFontPath, _T("Height"), lf->lfHeight);
+		theApp.WriteProfileInt(sFontPath, _T("Width"), lf->lfWidth);
+		theApp.WriteProfileInt(sFontPath, _T("Escapement"), lf->lfEscapement);
+		theApp.WriteProfileInt(sFontPath, _T("Orientation"), lf->lfOrientation);
+		theApp.WriteProfileInt(sFontPath, _T("Weight"), lf->lfWeight);
+		theApp.WriteProfileInt(sFontPath, _T("Italic"), lf->lfItalic);
+		theApp.WriteProfileInt(sFontPath, _T("Underline"), lf->lfUnderline);
+		theApp.WriteProfileInt(sFontPath, _T("StrikeOut"), lf->lfStrikeOut);
+		theApp.WriteProfileInt(sFontPath, _T("CharSet"), lf->lfCharSet);
+		theApp.WriteProfileInt(sFontPath, _T("OutPrecision"), lf->lfOutPrecision);
+		theApp.WriteProfileInt(sFontPath, _T("ClipPrecision"), lf->lfClipPrecision);
+		theApp.WriteProfileInt(sFontPath, _T("Quality"), lf->lfQuality);
+		theApp.WriteProfileInt(sFontPath, _T("PitchAndFamily"), lf->lfPitchAndFamily);
+		theApp.WriteProfileString(sFontPath, _T("FaceName"), lf->lfFaceName);
+
+		DirViewList dirViews;
 		MergeEditViewList editViews;
-		GetAllViews(&editViews, NULL, NULL);
+		GetAllViews(&editViews, NULL, &dirViews);
 
-		if (editViews.GetCount() > 0)
+		if (editViews.GetCount() > 0 || dirViews.GetCount() > 0)
 			AfxMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FONT_CHANGE);
+
+		if (bDirFrame)
+			m_lfDir = *lf;
+		else
+			m_lfDiff = *lf;
 
 		// TODO: Update document fonts
 		/*
@@ -1631,15 +1664,27 @@ void CMainFrame::OnViewSelectfont()
 }
 
 /**
+ * @brief Enable 'Select font' if view is active
+ */
+void CMainFrame::OnUpdateViewSelectfont(CCmdUI* pCmdUI) 
+{
+	CFrameWnd * pFrame = GetActiveFrame();
+	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
+	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
+	pCmdUI->Enable(bMergeFrame || bDirFrame);
+}
+
+/**
  * @brief Selects font for Merge view.
  *
  * Cheks if default font or user-selected font should be used in
- * Merge view and sets correct font properties. Loads user-selected
+ * Merge or dir -view and sets correct font properties. Loads user-selected
  * font properties from registry if needed.
  */
 void CMainFrame::GetFontProperties()
 {
 	LOGFONT lfDefault;
+	ZeroMemory(&lfDefault, sizeof(LOGFONT));
 
 	// Use "Terminal" font instead of "Courier" as default font when
 	// system locale font charset is not ANSI_CHARSET
@@ -1662,39 +1707,83 @@ void CMainFrame::GetFontProperties()
 		_tcscpy(lfDefault.lfFaceName, _T("Courier"));
 	}
 
-	bool bUseCustom = m_options.GetBool(OPT_FONT_FILECMP_USECUSTOM);
+	LOGFONT lfnew;
+	ZeroMemory(&lfnew, sizeof(LOGFONT));
 
-	if (bUseCustom)
+	// Get MergeView font
+	if (m_options.GetBool(OPT_FONT_FILECMP_USECUSTOM))
 	{
-		m_lfDiff.lfHeight = theApp.GetProfileInt(_T("Font"), _T("Height"), lfDefault.lfHeight);
-		m_lfDiff.lfWidth = theApp.GetProfileInt(_T("Font"), _T("Width"), lfDefault.lfWidth);
-		m_lfDiff.lfEscapement = theApp.GetProfileInt(_T("Font"), _T("Escapement"), lfDefault.lfEscapement);
-		m_lfDiff.lfOrientation = theApp.GetProfileInt(_T("Font"), _T("Orientation"), lfDefault.lfOrientation);
-		m_lfDiff.lfWeight = theApp.GetProfileInt(_T("Font"), _T("Weight"), lfDefault.lfWeight);
-		m_lfDiff.lfItalic = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Italic"), lfDefault.lfItalic);
-		m_lfDiff.lfUnderline = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Underline"), lfDefault.lfUnderline);
-		m_lfDiff.lfStrikeOut = (BYTE)theApp.GetProfileInt(_T("Font"), _T("StrikeOut"), lfDefault.lfStrikeOut);
-		m_lfDiff.lfCharSet = (BYTE)theApp.GetProfileInt(_T("Font"), _T("CharSet"), lfDefault.lfCharSet);
-		m_lfDiff.lfOutPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("OutPrecision"), lfDefault.lfOutPrecision);
-		m_lfDiff.lfClipPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("ClipPrecision"), lfDefault.lfClipPrecision);
-		m_lfDiff.lfQuality = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Quality"), lfDefault.lfQuality);
-		m_lfDiff.lfPitchAndFamily = (BYTE)theApp.GetProfileInt(_T("Font"), _T("PitchAndFamily"), lfDefault.lfPitchAndFamily);
-		_tcscpy(m_lfDiff.lfFaceName, theApp.GetProfileString(_T("Font"), _T("FaceName"), lfDefault.lfFaceName));
+		lfnew.lfHeight = theApp.GetProfileInt(_T("Font"), _T("Height"), lfDefault.lfHeight);
+		lfnew.lfWidth = theApp.GetProfileInt(_T("Font"), _T("Width"), lfDefault.lfWidth);
+		lfnew.lfEscapement = theApp.GetProfileInt(_T("Font"), _T("Escapement"), lfDefault.lfEscapement);
+		lfnew.lfOrientation = theApp.GetProfileInt(_T("Font"), _T("Orientation"), lfDefault.lfOrientation);
+		lfnew.lfWeight = theApp.GetProfileInt(_T("Font"), _T("Weight"), lfDefault.lfWeight);
+		lfnew.lfItalic = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Italic"), lfDefault.lfItalic);
+		lfnew.lfUnderline = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Underline"), lfDefault.lfUnderline);
+		lfnew.lfStrikeOut = (BYTE)theApp.GetProfileInt(_T("Font"), _T("StrikeOut"), lfDefault.lfStrikeOut);
+		lfnew.lfCharSet = (BYTE)theApp.GetProfileInt(_T("Font"), _T("CharSet"), lfDefault.lfCharSet);
+		lfnew.lfOutPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("OutPrecision"), lfDefault.lfOutPrecision);
+		lfnew.lfClipPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("ClipPrecision"), lfDefault.lfClipPrecision);
+		lfnew.lfQuality = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Quality"), lfDefault.lfQuality);
+		lfnew.lfPitchAndFamily = (BYTE)theApp.GetProfileInt(_T("Font"), _T("PitchAndFamily"), lfDefault.lfPitchAndFamily);
+		_tcscpy(lfnew.lfFaceName, theApp.GetProfileString(_T("Font"), _T("FaceName"), lfDefault.lfFaceName));
+		m_lfDiff = lfnew;
 	}
 	else
 		m_lfDiff = lfDefault;
+
+	// Get DirView font
+	ZeroMemory(&lfnew, sizeof(LOGFONT));
+	if (m_options.GetBool(OPT_FONT_DIRCMP_USECUSTOM))
+	{
+		lfnew.lfHeight = theApp.GetProfileInt(_T("FontDirCompare"), _T("Height"), lfDefault.lfHeight);
+		lfnew.lfWidth = theApp.GetProfileInt(_T("FontDirCompare"), _T("Width"), lfDefault.lfWidth);
+		lfnew.lfEscapement = theApp.GetProfileInt(_T("FontDirCompare"), _T("Escapement"), lfDefault.lfEscapement);
+		lfnew.lfOrientation = theApp.GetProfileInt(_T("FontDirCompare"), _T("Orientation"), lfDefault.lfOrientation);
+		lfnew.lfWeight = theApp.GetProfileInt(_T("FontDirCompare"), _T("Weight"), lfDefault.lfWeight);
+		lfnew.lfItalic = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("Italic"), lfDefault.lfItalic);
+		lfnew.lfUnderline = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("Underline"), lfDefault.lfUnderline);
+		lfnew.lfStrikeOut = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("StrikeOut"), lfDefault.lfStrikeOut);
+		lfnew.lfCharSet = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("CharSet"), lfDefault.lfCharSet);
+		lfnew.lfOutPrecision = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("OutPrecision"), lfDefault.lfOutPrecision);
+		lfnew.lfClipPrecision = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("ClipPrecision"), lfDefault.lfClipPrecision);
+		lfnew.lfQuality = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("Quality"), lfDefault.lfQuality);
+		lfnew.lfPitchAndFamily = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("PitchAndFamily"), lfDefault.lfPitchAndFamily);
+		_tcscpy(lfnew.lfFaceName, theApp.GetProfileString(_T("FontDirCompare"), _T("FaceName"), lfDefault.lfFaceName));
+		m_lfDir = lfnew;
+	}
+	else
+		m_lfDir = lfDefault;
 }
 
+/**
+ * @brief Use default font for active view type
+ */
 void CMainFrame::OnViewUsedefaultfont() 
 {
-	m_options.SaveOption(OPT_FONT_FILECMP_USECUSTOM, false);
+	CFrameWnd * pFrame = GetActiveFrame();
+	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
+
+	if (bDirFrame)
+		m_options.SaveOption(OPT_FONT_DIRCMP_USECUSTOM, false);
+	else
+		m_options.SaveOption(OPT_FONT_FILECMP_USECUSTOM, false);
+
 	GetFontProperties();
 }
 
+/**
+ * @brief Enable 'Use Default font' if view is open and has user font selected
+ */
 void CMainFrame::OnUpdateViewUsedefaultfont(CCmdUI* pCmdUI) 
 {
-	bool bEnable = m_options.GetBool(OPT_FONT_FILECMP_USECUSTOM);
-	pCmdUI->Enable(bEnable);
+	CFrameWnd * pFrame = GetActiveFrame();
+	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
+	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
+	bool bEnableMerge = m_options.GetBool(OPT_FONT_FILECMP_USECUSTOM);
+	bool bEnableDir = m_options.GetBool(OPT_FONT_DIRCMP_USECUSTOM);
+	pCmdUI->Enable((bEnableMerge && bMergeFrame) || 
+		(bEnableDir && bDirFrame));
 }
 
 /**

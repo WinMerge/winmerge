@@ -2081,8 +2081,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "파일 비교시에 볼 폰트를 선택합니다.\n폰트 선택"
-    ID_VIEW_USEDEFAULTFONT  "기본 폰트로 설정을 되돌립니다.\n기본 폰트"
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "공백문자를 표시합니다."
     ID_VIEW_DETAIL_BAR      "선택 비교창을 보거나 숨깁니다."
     ID_VIEW_LOCATION_BAR    "위치 표시창은 전체 비교 상황을 이미지로 보여줍니다."

@@ -221,6 +221,7 @@ protected:
 	CPoint m_ptLastMousePos;
 	CMenu * m_pHeaderPopup;
 	BOOL m_bEscCloses; /**< Cached value for option for ESC closing window */
+	CFont *m_pFont; /**< User-selected font */
 	
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);

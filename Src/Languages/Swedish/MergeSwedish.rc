@@ -2196,8 +2196,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Väljer teckensnitt för fönstren\nVälj teckensnitt"
-    ID_VIEW_USEDEFAULTFONT  "Väljer standardteckensnitt för fönstren\nVälj standardteckensnitt"
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "Visar ett tecken för mellanslag"
     ID_VIEW_DETAIL_BAR      "Visar eller gömmer skillnadsfältet\nVäxla skillnadsfältet"
     ID_VIEW_LOCATION_BAR    "Skillnadsbilden visar en övergripande bild av filerna"

@@ -2197,8 +2197,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Selecione el fuente\nSelect Diff Font"
-    ID_VIEW_USEDEFAULTFONT  "Use el fuente del sistema\nDefault Font"
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "Shows whitespace characters"
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
     ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"

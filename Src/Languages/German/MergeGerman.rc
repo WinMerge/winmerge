@@ -2202,8 +2202,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Wählt die Schrift für die Differenz-Anzeigen."
-    ID_VIEW_USEDEFAULTFONT  "Stellt die Schrift für die Differenz-Anzeigen zurück auf die Standard-Systemschrift."
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "Zeigt Leerzeichen an."
     ID_VIEW_DETAIL_BAR      "Blendet die Unterschiedsleiste ein oder aus."
     ID_VIEW_LOCATION_BAR    "Die Positionsleiste zeigt gesamte Abbildungen von den Dateien."

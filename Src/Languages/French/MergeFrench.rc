@@ -2085,8 +2085,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Sélectionner la police utilisée pour l'affichage des différences\nSélection de la Police Diff"
-    ID_VIEW_USEDEFAULTFONT  "Revenir à la police par défaut pour l'affichage des différences\nPolice par Défaut"
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "Afficher les espaces"
     ID_VIEW_DETAIL_BAR      "Montrer/cacher le détail de la différence courante"
     ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"

@@ -2083,8 +2083,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Válaszd ki az eltéréseknél használt betûtípust\nEltérési mód betûtípus"
-    ID_VIEW_USEDEFAULTFONT  "Visszatérés az rendszer által használt betûtípus használatához\nAlapértelmezett Betûtípus"
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "Szóköz karakterek mutatása"
     ID_VIEW_DETAIL_BAR      "Eltérés panel mutatása/rejtése"
     ID_VIEW_LOCATION_BAR    "A Pozíció panel vizuális képet ad az összehasonlított fájlokról"

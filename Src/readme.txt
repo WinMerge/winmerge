@@ -1,3 +1,8 @@
+2005-03-03 Kimmo
+ PATCH: [ 1155319 ] Select font for dir compare view
+  Src: DirView.cpp DirView.h MainFrm.cpp MainFrm.h Merge.rc OptionsDef.h
+  Languages: *.rc
+
 2005-03-02 Perry
  PATCH: [ 1154259 ] Non blurred 'error.bmp'
   New clearer error bitmap from Tim Gerundt

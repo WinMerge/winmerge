@@ -74,6 +74,7 @@ CDirView::CDirView()
 , m_dispcols(-1)
 , m_bSortAscending(true)
 , m_pHeaderPopup(NULL)
+, m_pFont(NULL)
 {
 	m_pList = NULL;
 	m_bEscCloses = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
@@ -82,8 +83,8 @@ CDirView::CDirView()
 CDirView::~CDirView()
 {
 	m_imageList.DeleteImageList();
+	delete m_pFont;
 }
-
 
 BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_WM_CONTEXTMENU()
@@ -213,6 +214,20 @@ void CDirView::OnInitialUpdate()
 	m_sortColumn = -1;	// start up in no sorted order.
 	m_pList = &GetListCtrl();
 	GetDocument()->SetDirView(this);
+
+	// Load user-selected font
+	CMainFrame *pMf = dynamic_cast<CMainFrame*>(AfxGetMainWnd());
+	if (pMf->m_options.GetBool(OPT_FONT_DIRCMP_USECUSTOM))
+	{
+		if (m_pFont == NULL)
+			m_pFont = new CFont;
+		
+		if (m_pFont != NULL)
+		{
+			m_pFont->CreateFontIndirect(&pMf->m_lfDir);
+				SetFont(m_pFont, TRUE);
+		}
+	}
 
 	// Replace standard header with sort header
 	if (HWND hWnd = ListView_GetHeader(m_pList->m_hWnd))

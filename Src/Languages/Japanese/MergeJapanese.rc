@@ -2087,8 +2087,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Diffビューのフォントを選択します\nDiffフォントの選択"
-    ID_VIEW_USEDEFAULTFONT  "Diffビューのフォントをデフォルトフォントに戻します\nデフォルトフォント"
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "空白文字を表示します"
     ID_VIEW_DETAIL_BAR      "Diffペインの表示/非表示を切り替えます"
     ID_VIEW_LOCATION_BAR    "ロケーションペインはファイルの内容全体をピクチャとして表示します"

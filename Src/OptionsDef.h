@@ -98,5 +98,6 @@ const TCHAR OPT_FILEFILTER_CURRENT[] = _T("Settings/FileFilterCurrent");
 
 // Fonts
 const TCHAR OPT_FONT_FILECMP_USECUSTOM[] = _T("Font/Specified");
+const TCHAR OPT_FONT_DIRCMP_USECUSTOM[] = _T("FontDirCompare/Specified");
 
 #endif // _OPTIONS_DEF_H_

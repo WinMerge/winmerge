@@ -2198,8 +2198,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Seleziona il carattere per la finestra di visualizzazione delle differenze\nSeleziona carattere"
-    ID_VIEW_USEDEFAULTFONT  "Utilizza il carattere predefinito per la finestra di visualizzazione delle differenze\nCarattere predefinito"
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "Mostra gli spazi bianchi"
     ID_VIEW_DETAIL_BAR      "Mostra il pannello delle differenze"
     ID_VIEW_LOCATION_BAR    "Il pannello della locazione mostra un'immagine complessiva dei file"

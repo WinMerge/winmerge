@@ -2100,8 +2100,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Selecciona el tipus de lletra per a les visualitzacions de diferències\nSelecciona tipus de lletra per a diferències"
-    ID_VIEW_USEDEFAULTFONT  "Recupera el tipus de lletra del sistema per a la visualització de diferències\nTipus de lletra del sistema"
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "Mostra els caràcters d'espais"
     ID_VIEW_DETAIL_BAR      "Mostra la subfinestra de diferències"
     ID_VIEW_LOCATION_BAR    "Mostra la subfinestra d'ubicació amb una image general dels fitxers"

@@ -2183,8 +2183,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "選取不同檢視的字型\n選取不同檢視字型"
-    ID_VIEW_USEDEFAULTFONT  "使用預設的系統字型於不同檢視\n預設字型"
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "顯示空白和跳格字元"
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
     ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"

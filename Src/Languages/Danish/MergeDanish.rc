@@ -2082,8 +2082,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Vælg skrifttype til vinduerne\nVælg skrifttype"
-    ID_VIEW_USEDEFAULTFONT  "Brug standard skrifttype til vinduerne\nStandard skrifttype"
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "Viser et tegn for mellemrum"
     ID_VIEW_DETAIL_BAR      "Vis eller gem horisontalt panel"
     ID_VIEW_LOCATION_BAR    "Vis eller gem vertikalt panel"

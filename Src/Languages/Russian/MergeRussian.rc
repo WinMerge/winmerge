@@ -2094,8 +2094,8 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Выбрать шрифт для отображения отличий\nSelect Diff Font"
-    ID_VIEW_USEDEFAULTFONT  "Использовать системный шрифт по умолчанию для отображения отличий \nDefault Font"
+    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
+    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
     ID_VIEW_WHITESPACE      "Показывать невидимые знаки разметки"
     ID_VIEW_DETAIL_BAR      "Переключить панель отличий"
     ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
