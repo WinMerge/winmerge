@@ -4,6 +4,8 @@
  PATCH: [ 734787 ] Disable ESC closing window
   NOTE: This is to fix BUG [ 734554 ] ESC closes dialog + document
   WinMerge: Merge.cpp
+ BUG: [ 711961 ] shift-tab in editor moved block then deselects
+  WinMerge: MergeEditView.cpp
 
 2003-05-07 Kimmo
  PATCH: [ 733383 ] Enable Find- and Replace- dialogs
