@@ -19,3 +19,9 @@ VERSION(2,1)
 //Merge7z may now follow a WinMerge-like versioning policy, or just use same
 //version numbers as WinMerge, yet provide a build number simply reflecting
 //the number of changes recorded in this revision.txt.
+
+VERSION(2,2)
+
+"*"//2005/01/15 Jochen Tucht	New interface Merge7z::Format::Inspector
+//								New interface Merge7z::Format::Updater
+//								New method Merge7z::LoadLang() to set UI language

@@ -1,15 +1,5 @@
-/* File:	Merge7zCommon.cpp
- * Author:	Jochen Tucht 2003/12/09
- *			Copyright (C) Jochen Tucht
- *
- * Purpose:	Provide a handy C++ interface to access 7Zip services
- *
- * Remarks:	This file contains the presumably version-independent parts of
- *			Merge7z code. Version specific code resides in Merge7zXXX.cpp.
- *
- *	*** SECURITY ALERT ***
- *	Be aware of 2. a) of the GNU General Public License. Please log your changes
- *	at the end of this comment.
+/* Merge7zCommon.cpp: Provide a handy C++ interface to access 7Zip services
+ * Copyright (c) 2003 Jochen Tucht
  *
  * License:	This program is free software; you can redistribute it and/or modify
  *			it under the terms of the GNU General Public License as published by
@@ -25,16 +15,25 @@
  *			along with this program; if not, write to the Free Software
  *			Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
+ * Remarks:	This file contains the presumably version-independent parts of
+ *			Merge7z code. Version specific code resides in Merge7zXXX.cpp.
+
+Please mind 2. a) of the GNU General Public License, and log your changes below.
 
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
+2003/12/09	Jochen Tucht		Created
 2003/12/16	Jochen Tucht		GuessFormat() now checks for directory
 2004/03/18	Jochen Tucht		Experimental DllGetVersion() based on rcsid.
 2004/10/10	Jochen Tucht		DllGetVersion() based on new REVISION.TXT
+2005/01/15	Jochen Tucht		Changed as explained in revision.txt
 */
 
 #include "stdafx.h"
 #include "Merge7zCommon.h"
+#include "7zip/FileManager/LangUtils.h"
+
+#include "7zip/UI/Common/EnumDirItems.cpp" // defines static void EnumerateDirectory()
 
 HINSTANCE g_hInstance;
 DWORD g_dwFlags;
@@ -123,6 +122,215 @@ IOutArchive *Format7zDLL::Interface::GetOutArchive()
 }
 
 /**
+ * @brief Extraction method accessible from outside
+ */
+HRESULT Format7zDLL::Interface::DeCompressArchive(HWND hwndParent, LPCTSTR path, LPCTSTR folder)
+{
+	Merge7z::Format::Inspector *inspector = Open(hwndParent, path);
+	HRESULT result = inspector->Extract(hwndParent, folder);
+	inspector->Free();
+	return result;
+}
+
+/**
+ * @brief Open archive for inspection.
+ */
+Merge7z::Format::Inspector *Format7zDLL::Interface::Open(HWND hwndParent, LPCTSTR path)
+{
+	Inspector *inspector = new Inspector(this, hwndParent, path);
+	try
+	{
+		inspector->Init();
+	}
+	catch (Complain *complain)
+	{
+		complain->Alert(hwndParent);
+		inspector->Free();
+		inspector = 0;
+	}
+	return inspector;
+}
+
+/**
+ * @brief Prepare inspection interface for iteration.
+ */
+UINT32 Format7zDLL::Interface::Inspector::Open()
+{
+	UINT32 numItems = 0;
+	archive->GetNumberOfItems(&numItems);
+	return numItems;
+}
+
+/**
+ * @brief free inspection interface.
+ */
+void Format7zDLL::Interface::Inspector::Free()
+{
+	Release(archive);
+	Release(static_cast<IInStream *>(file));
+	Release(callback);
+	delete this;
+}
+
+HRESULT Format7zDLL::Interface::Inspector::GetProperty(UINT32 index, PROPID propID, PROPVARIANT *value, VARTYPE vt)
+{
+	VariantInit((VARIANT *)value);
+	HRESULT result = archive->GetProperty(index, propID, value);
+	if (SUCCEEDED(result) && value->vt != vt)
+	{
+		VariantClear((VARIANT *)value);
+		result = DISP_E_TYPEMISMATCH;
+	}
+	return result;
+}
+
+BSTR Format7zDLL::Interface::Inspector::GetPath(UINT32 index)
+{
+	PROPVARIANT value;
+	return SUCCEEDED(GetProperty(index, kpidPath, &value, VT_BSTR)) ? value.bstrVal : 0;
+}
+
+BSTR Format7zDLL::Interface::Inspector::GetName(UINT32 index)
+{
+	PROPVARIANT value;
+	return SUCCEEDED(GetProperty(index, kpidName, &value, VT_BSTR)) ? value.bstrVal : 0;
+}
+
+BSTR Format7zDLL::Interface::Inspector::GetExtension(UINT32 index)
+{
+	PROPVARIANT value;
+	return SUCCEEDED(GetProperty(index, kpidExtension, &value, VT_BSTR)) ? value.bstrVal : 0;
+}
+
+VARIANT_BOOL Format7zDLL::Interface::Inspector::IsFolder(UINT32 index)
+{
+	PROPVARIANT value;
+	return SUCCEEDED(GetProperty(index, kpidIsFolder, &value, VT_BOOL)) ? value.boolVal : 0;
+}
+
+FILETIME Format7zDLL::Interface::Inspector::LastWriteTime(UINT32 index)
+{
+	static const FILETIME invalid = { 0, 0 };
+	PROPVARIANT value;
+	return SUCCEEDED(GetProperty(index, kpidLastWriteTime, &value, VT_FILETIME)) ? value.filetime : invalid;
+}
+
+/**
+ * @brief Open archive for update.
+ */
+Merge7z::Format::Updater *Format7zDLL::Interface::Update(HWND hwndParent, LPCTSTR path)
+{
+	Updater *updater = new Updater(this, hwndParent, path);
+	try
+	{
+		updater->Init();
+	}
+	catch (Complain *complain)
+	{
+		complain->Alert(hwndParent);
+		updater->Free();
+		updater = 0;
+	}
+	return updater;
+}
+
+/**
+ * @brief Add item to updater
+ */
+UINT32 Format7zDLL::Interface::Updater::Add(Merge7z::DirItemEnumerator::Item &etorItem)
+{
+	// fill in the default values from the enumerator
+	CDirItem item;
+	if (etorItem.Mask.Item & etorItem.Mask.Name)
+		item.Name = GetUnicodeString(etorItem.Name);
+	if (etorItem.Mask.Item & etorItem.Mask.FullPath)
+		item.FullPath = GetUnicodeString(etorItem.FullPath);
+	if (etorItem.Mask.Item & etorItem.Mask.Attributes)
+		item.Attributes = etorItem.Attributes;
+	if (etorItem.Mask.Item & etorItem.Mask.Size)
+		item.Size = etorItem.Size;
+	if (etorItem.Mask.Item & etorItem.Mask.CreationTime)
+		item.CreationTime = etorItem.CreationTime;
+	if (etorItem.Mask.Item & etorItem.Mask.LastAccessTime)
+		item.LastAccessTime = etorItem.LastAccessTime;
+	if (etorItem.Mask.Item & etorItem.Mask.LastWriteTime)
+		item.LastWriteTime = etorItem.LastWriteTime;
+	if (etorItem.Mask.Item && (etorItem.Mask.Item & (etorItem.Mask.NeedFindFile|etorItem.Mask.CheckIfPresent)) != etorItem.Mask.NeedFindFile)
+	{
+		// Check the info from the disk
+		NFile::NFind::CFileInfoW fileInfo;
+		if (NFile::NFind::FindFile(item.FullPath, fileInfo))
+		{
+			if (!(etorItem.Mask.Item & etorItem.Mask.Name))
+				item.Name = fileInfo.Name;
+			if (!(etorItem.Mask.Item & etorItem.Mask.Attributes))
+				item.Attributes = fileInfo.Attributes;
+			if (!(etorItem.Mask.Item & etorItem.Mask.Size))
+				item.Size = fileInfo.Size;
+			if (!(etorItem.Mask.Item & etorItem.Mask.CreationTime))
+				item.CreationTime = fileInfo.CreationTime;
+			if (!(etorItem.Mask.Item & etorItem.Mask.LastAccessTime))
+				item.LastAccessTime = fileInfo.LastAccessTime;
+			if (!(etorItem.Mask.Item & etorItem.Mask.LastWriteTime))
+				item.LastWriteTime = fileInfo.LastWriteTime;
+		}
+		else
+		{
+			// file not valid, forget it
+			etorItem.Mask.Item = 0;
+		}
+	}
+	if (etorItem.Mask.Item)
+	{
+		// No check from disk, simply use info from enumerators (risky)
+		// Why risky? This is not at all obvious.
+		dirItems.Add(item);
+		// Recurse into directories (call a function of 7zip)
+		if ((etorItem.Mask.Item & etorItem.Mask.Recurse) && (item.Attributes & FILE_ATTRIBUTE_DIRECTORY))
+		{
+			EnumerateDirectory(UString(), item.FullPath + L'\\',
+					item.Name + L'\\', dirItems);
+		}
+	}
+	return etorItem.Mask.Item;
+}
+
+/**
+ * @brief free updater interface.
+ */
+void Format7zDLL::Interface::Updater::Free()
+{
+	Release(outArchive);
+	Release(static_cast<IOutStream *>(file));
+	delete this;
+}
+
+/**
+ * @brief Compression method accessible from outside
+ *
+ * @note See CAgent::DoOperation (in 7zip source) for model
+ */
+HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, Merge7z::DirItemEnumerator *etor)
+{
+	Merge7z::Format::Updater *updater = Update(hwndParent, path);
+	UINT count = etor->Open();
+	while (count--)
+	{
+		Merge7z::DirItemEnumerator::Item etorItem;
+		etorItem.Mask.Item = 0;
+		Merge7z::Envelope *envelope = etor->Enum(etorItem);
+		updater->Add(etorItem);
+		if (envelope)
+		{
+			envelope->Free();
+		}
+	}
+	HRESULT result = updater->Commit(hwndParent);
+	updater->Free();
+	return result;
+}
+
+/**
  * @brief Initialize the library.
  */
 int Merge7z::Initialize(DWORD dwFlags)
@@ -139,7 +347,7 @@ int Merge7z::Initialize(DWORD dwFlags)
 		DWORD size = sizeof g_cPath7z;
 		SHGetValueA(HKEY_LOCAL_MACHINE, "Software\\7-Zip", "Path", &type, g_cPath7z, &size);
 	}
-	PathAppendA(g_cPath7z, "Formats");
+	PathAddBackslashA(g_cPath7z);
 	return 0;
 }
 
@@ -148,7 +356,7 @@ int Merge7z::Initialize(DWORD dwFlags)
 				= { l, w1, w2, { b1, b2,  b3,  b4,  b5,  b6,  b7,  b8 } }; \
 		Format7zDLL::Proxy PROXY_##name = \
 		{ \
-			"%1\\" dll, \
+			"%1Formats\\" dll, \
 			"CreateObject", \
 			(HMODULE)0, \
 			&CLSID_##name \
@@ -161,7 +369,7 @@ DEFINE_GUID(CLSID_CFormat7z,
 
 Format7zDLL::Proxy PROXY_CFormat7z =
 {
-	"%1\\7Z.DLL",
+	"%1Formats\\7Z.DLL",
 	"CreateObject",
 	(HMODULE)0,
 	&CLSID_CFormat7z
@@ -279,6 +487,43 @@ Merge7z::Format *Merge7z::GuessFormat(LPCTSTR path)
 }
 
 /**
+ * @brief Load language file for 7-Zip UIs.
+ */
+
+static CSysString g_LangPath;
+
+LPCTSTR Merge7z::LoadLang(LPCTSTR langFile)
+{
+	g_LangPath = GetSystemString(g_cPath7z);
+	g_LangPath += TEXT("Lang\\");
+	g_LangPath += langFile;
+	int slash = g_LangPath.ReverseFind('\\');
+	int minus = g_LangPath.ReverseFind('-');
+	int dot = g_LangPath.ReverseFind('.');
+	if (dot <= slash)
+	{
+		dot = g_LangPath.Length();
+		g_LangPath += TEXT(".txt");
+	}
+	if (minus > slash && !PathFileExists(g_LangPath))
+	{
+		g_LangPath.Delete(minus, dot - minus);
+	}
+	ReloadLang();
+	return g_LangPath;
+}
+
+/**
+ * @brief Override ReadRegLang to return path set by Merge7z::LoadLang().
+ * This is global 7-Zip function otherwise defined in RegistryUtils.cpp.
+ * Exclude RegistryUtils.cpp from build to avoid link-time collision.
+ */
+void ReadRegLang(CSysString &langFile)
+{
+	langFile = g_LangPath;
+}
+
+/**
  * @brief Export instance of Merge7z interface.
  */
 EXTERN_C
@@ -312,3 +557,4 @@ EXTERN_C HRESULT CALLBACK DllGetVersion(DLLVERSIONINFO *pdvi)
 	CopyMemory(pdvi, &dvi, pdvi->cbSize < dvi.cbSize ? pdvi->cbSize : dvi.cbSize);
 	return S_OK;
 }
+

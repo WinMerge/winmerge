@@ -1,17 +1,5 @@
-/* File:	Merge7z409.cpp
- * Author:	Jochen Tucht 2003/10/17
- *			Copyright (C) Jochen Tucht
- *
- * Purpose:	Provide a handy C++ interface to access 7Zip services
- *
- * Remarks:	Derived from Merge7z311.cpp. Adapted to 7z409b sources. May or may
- *			not compile/run with earlier or later versions. See Merge7z409.dsp
- *			for dependencies. Some less version-dependent parts of code reside
- *			in Merge7zCommon.cpp.
- *
- *	*** SECURITY ALERT ***
- *	Be aware of 2. a) of the GNU General Public License. Please log your changes
- *	at the end of this comment.
+/* Merge7z409.cpp: Provide a handy C++ interface to access 7Zip services
+ * Copyright (c) 2003 Jochen Tucht
  *
  * License:	This program is free software; you can redistribute it and/or modify
  *			it under the terms of the GNU General Public License as published by
@@ -27,14 +15,22 @@
  *			along with this program; if not, write to the Free Software
  *			Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
+ * Remarks:	Derived from Merge7z311.cpp. Adapted to 7z409b sources. May or may
+ *			not compile/run with earlier or later versions. See Merge7z409.dsp
+ *			for dependencies. Some less version-dependent parts of code reside
+ *			in Merge7zCommon.cpp.
+
+Please mind 2. a) of the GNU General Public License, and log your changes below.
 
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
+2003/10/17	Jochen Tucht		Created
 2004/03/15	Jochen Tucht		Fix Visual Studio 2003 build issue
 2004/08/19	Laurent Ganier		Compression of folders
 								Through EnumerateDirectory (from code of 7zip)
 2004/10/17	Jochen Tucht		Leave decision whether to recurse into folders
 								to enumerator (Mask.Recurse)
+2005/01/15	Jochen Tucht		Changed as explained in revision.txt
 */
 
 #include "stdafx.h"
@@ -46,7 +42,6 @@ DATE:		BY:					DESCRIPTION:
 
 #include "7zip/FileManager/OpenCallback.h"
 #include "7zip/FileManager/ExtractCallback.h"
-#include "7zip/UI/Common/EnumDirItems.h"
 
 #include "7zip/UI/Common/ArchiveExtractCallback.h"
 #include "7zip/UI/GUI/UpdateCallbackGUI.h"
@@ -60,7 +55,7 @@ protected:
 	DWORD Process()
 	{
 		ExtractCallbackSpec->ProgressDialog.WaitCreating();
-		result = Archive->Extract(0, -1, false, ArchiveExtractCallback);
+		result = Archive->Extract(indices, numItems, false, ArchiveExtractCallback);
 		ExtractCallbackSpec->ProgressDialog.MyClose();
 		return 0;
 	}
@@ -71,6 +66,8 @@ protected:
 	CExtractCallbackImp *ExtractCallbackSpec;
 	IInArchive *Archive;
 	IArchiveExtractCallback *ArchiveExtractCallback;
+	const UINT32 *indices;
+	UINT32 numItems;
 public:
 	HRESULT result;
 
@@ -79,11 +76,15 @@ public:
 		CExtractCallbackImp *ExtractCallbackSpec,
 		IInArchive *Archive,
 		IArchiveExtractCallback *ArchiveExtractCallback,
-		const CSysString &title
+		const CSysString &title,
+		const UINT32 *indices = 0,
+		UINT32 numItems = -1
 	):
 		ExtractCallbackSpec(ExtractCallbackSpec),
 		Archive(Archive),
-		ArchiveExtractCallback(ArchiveExtractCallback)
+		ArchiveExtractCallback(ArchiveExtractCallback),
+		indices(indices),
+		numItems(numItems)
 	{
 		result = E_FAIL;
 		if COMPLAIN(!Create(Process, this))
@@ -95,43 +96,50 @@ public:
 };
 
 /**
- * @brief Extraction method accessible from outside
+ * @brief Initialize Inspector
  */
-HRESULT Format7zDLL::Interface::DeCompressArchive(HWND hwndParent, LPCTSTR path, LPCTSTR folder)
+Format7zDLL::Interface::Inspector::Inspector(Format7zDLL::Interface *format, HWND hwndParent, LPCTSTR path)
+: archive(0), file(0), callback(0), path(path)
 {
-	IInArchive *archive = 0;
-	CInFileStream *file = 0;
-	COpenArchiveCallback *callback = 0;
+	COpenArchiveCallback *callbackImpl = new COpenArchiveCallback;
+	(archive = format->GetInArchive()) -> AddRef();
+	(file = new CInFileStream) -> AddRef();
+	(callback = callbackImpl) -> AddRef();
+	callbackImpl->PasswordIsDefined = false;
+	callbackImpl->ParentWindow = hwndParent;
+}
+
+/**
+ * @brief Initialize Inspector
+ */
+void Format7zDLL::Interface::Inspector::Init()
+{
+	/*CMyComBSTR password;
+	callback->CryptoGetTextPassword(&password);*/
+	if COMPLAIN(!file->Open(path))
+	{
+		ComplainCantOpen(path);
+	}
+	if COMPLAIN(archive->Open(file, 0, callback) != S_OK)
+	{
+		ComplainCantOpen(path);
+	}
+	if COMPLAIN(!NFile::NFind::FindFile(path, fileInfo))
+	{
+		ComplainCantOpen(path);
+	}
+}
+
+/**
+ * @brief Extract set of items specified by index
+ */
+HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR folder, const UINT32 *indices, UINT32 numItems)
+{
 	CArchiveExtractCallback *extractCallbackSpec = 0;
 	CExtractCallbackImp *extractCallbackSpec2 = 0;
 	HRESULT result = 0;
 	try
 	{
-		//	Ref counts are not always accurate with 7-Zip.
-		//	An extra AddRef() ensures that interfaces remain valid until they
-		//	are explicitly released at the end of this function.
-		(archive = GetInArchive()) -> AddRef();
-		(file = new CInFileStream) -> AddRef();
-		(callback = new COpenArchiveCallback) -> AddRef();
-		callback->PasswordIsDefined = false;
-		callback->ParentWindow = hwndParent;
-		/*CMyComBSTR password;
-		callback->CryptoGetTextPassword(&password);*/
-		if COMPLAIN(!file->Open(path))
-		{
-			ComplainCantOpen(path);
-		}
-		if COMPLAIN(archive->Open(file, 0, callback) != S_OK)
-		{
-			ComplainCantOpen(path);
-		}
-
-		NFile::NFind::CFileInfo fileInfo;
-		if COMPLAIN(!NFile::NFind::FindFile(path, fileInfo))
-		{
-			ComplainCantOpen(path);
-		}
-
 		if (*folder)
 		{
 			if COMPLAIN(!NFile::NDirectory::CreateComplexDirectory(folder))
@@ -139,7 +147,6 @@ HRESULT Format7zDLL::Interface::DeCompressArchive(HWND hwndParent, LPCTSTR path,
 				Complain(_T("Can not create output directory"));
 			}
 		}
-
 		//	if path is whatever.tar.bz2, default to whatever.tar:
 		UString ustrDefaultName = GetUnicodeString(path);
 		int dot = ustrDefaultName.ReverseFind('.');
@@ -191,7 +198,9 @@ HRESULT Format7zDLL::Interface::DeCompressArchive(HWND hwndParent, LPCTSTR path,
 			extractCallbackSpec2,
 			archive,
 			extractCallbackSpec,
-			PathFindFileName(path)
+			PathFindFileName(path),
+			indices,
+			numItems
 		).result;
 
 		if COMPLAIN(extractCallbackSpec->_numErrors)
@@ -203,13 +212,8 @@ HRESULT Format7zDLL::Interface::DeCompressArchive(HWND hwndParent, LPCTSTR path,
 	{
 		result = complain->Alert(hwndParent);
 	}
-	//	Always release interfaces in this order, or else all hell will break
-	//	loose!
 	Release(static_cast<IArchiveExtractCallback*>(extractCallbackSpec));
-	Release(archive);
 	Release(static_cast<IFolderArchiveExtractCallback*>(extractCallbackSpec2));
-	Release(static_cast<IInStream*>(file));
-	Release(static_cast<IArchiveOpenCallback*>(callback));
 	return result;
 }
 
@@ -261,44 +265,32 @@ public:
 	}
 };
 
+/**
+ * @brief Construct Updater
+ */
+Format7zDLL::Interface::Updater::Updater(Format7zDLL::Interface *format, HWND hwndParent, LPCTSTR path)
+: outArchive(0), file(0), path(path)
+{
+	(outArchive = format->GetOutArchive()) -> AddRef();
+	(file = new COutFileStream) -> AddRef();
+}
 
 /**
- * @brief Fill in dirItems with the files from a folder and its subfolders
- *
- * @note Duplication from 7zip source (EnumDirItems.cpp), because the function is static
+ * @brief Initialize Updater
  */
-using namespace NFile;
-using namespace NName;
-static void EnumerateDirectory(
-	const UString &baseFolderPrefix,
-	const UString &directory, 
-	const UString &prefix,
-	CObjectVector<CDirItem> &dirItems)
+void Format7zDLL::Interface::Updater::Init()
 {
-	NFind::CEnumeratorW enumerator(baseFolderPrefix + directory + wchar_t(kAnyStringWildcard));
-	NFind::CFileInfoW fileInfo;
-	while (enumerator.Next(fileInfo))
+	if COMPLAIN(!file->Create(path, true))
 	{
-		AddDirFileInfo(prefix, directory + fileInfo.Name, fileInfo, dirItems);
-		if (fileInfo.IsDirectory())
-		{
-			EnumerateDirectory(baseFolderPrefix, directory + fileInfo.Name + wchar_t(kDirDelimiter),
-				prefix + fileInfo.Name + wchar_t(kDirDelimiter), dirItems);
-		}
+		ComplainCantOpen(path);
 	}
 }
 
 /**
- * @brief Compression method accessible from outside
- *
- * @note See CAgent::DoOperation (in 7zip source) for model
+ * @brief Commit update
  */
-HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, Merge7z::DirItemEnumerator *etor)
+HRESULT Format7zDLL::Interface::Updater::Commit(HWND hwndParent)
 {
-	UINT codePage = AreFileApisANSI() ? CP_ACP : CP_OEMCP;
-	IOutArchive *outArchive = 0;
-	COutFileStream *file = 0;
-	COpenArchiveCallback *callback = 0;
 	CArchiveUpdateCallback *updateCallbackSpec = 0;
 	CUpdateCallbackGUI *updateCallbackGUI = 0;
 	HRESULT result = 0;
@@ -307,93 +299,10 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 		//	Ref counts are not always accurate with 7-Zip.
 		//	An extra AddRef() ensures that interfaces remain valid until they
 		//	are explicitly released at the end of this function.
-		(outArchive = GetOutArchive()) -> AddRef();
-		(file = new COutFileStream) -> AddRef();
-		(callback = new COpenArchiveCallback) -> AddRef();
-		callback->PasswordIsDefined = false;
-		callback->ParentWindow = hwndParent;
-		/*CMyComBSTR password;
-		callback->CryptoGetTextPassword(&password);*/
-		if COMPLAIN(!file->Create(path, true))
-		{
-			ComplainCantOpen(path);
-		}
 		(updateCallbackSpec = new CArchiveUpdateCallback) -> AddRef();
 		(updateCallbackGUI = new CUpdateCallbackGUI);// -> AddRef();
 
-		// First fill the items to compress
-		CObjectVector<CDirItem> dirItems;
-		UINT count = etor->Open();
-		while (count--)
-		{
-			Merge7z::DirItemEnumerator::Item etorItem;
-			etorItem.Mask.Item = 0;
-			Merge7z::Envelope *envelope = etor->Enum(etorItem);
-
-			// fill in the default values from the enumerator
-			CDirItem item;
-			if (etorItem.Mask.Item & etorItem.Mask.Name)
-				item.Name = GetUnicodeString(etorItem.Name);
-			if (etorItem.Mask.Item & etorItem.Mask.FullPath)
-				item.FullPath = GetUnicodeString(etorItem.FullPath);
-			if (etorItem.Mask.Item & etorItem.Mask.Attributes)
-				item.Attributes = etorItem.Attributes;
-			if (etorItem.Mask.Item & etorItem.Mask.Size)
-				item.Size = etorItem.Size;
-			if (etorItem.Mask.Item & etorItem.Mask.CreationTime)
-				item.CreationTime = etorItem.CreationTime;
-			if (etorItem.Mask.Item & etorItem.Mask.LastAccessTime)
-				item.LastAccessTime = etorItem.LastAccessTime;
-			if (etorItem.Mask.Item & etorItem.Mask.LastWriteTime)
-				item.LastWriteTime = etorItem.LastWriteTime;
-			if (envelope)
-			{
-				envelope->Free();
-			}
-
-			if (etorItem.Mask.Item && (etorItem.Mask.Item & (etorItem.Mask.NeedFindFile|etorItem.Mask.CheckIfPresent)) != etorItem.Mask.NeedFindFile)
-			{
-				// Check the info from the disk
-				NFile::NFind::CFileInfoW fileInfo;
-				if (NFile::NFind::FindFile(item.FullPath, fileInfo))
-				{
-					if (!(etorItem.Mask.Item & etorItem.Mask.Name))
-						item.Name = fileInfo.Name;
-					if (!(etorItem.Mask.Item & etorItem.Mask.Attributes))
-						item.Attributes = fileInfo.Attributes;
-					if (!(etorItem.Mask.Item & etorItem.Mask.Size))
-						item.Size = fileInfo.Size;
-					if (!(etorItem.Mask.Item & etorItem.Mask.CreationTime))
-						item.CreationTime = fileInfo.CreationTime;
-					if (!(etorItem.Mask.Item & etorItem.Mask.LastAccessTime))
-						item.LastAccessTime = fileInfo.LastAccessTime;
-					if (!(etorItem.Mask.Item & etorItem.Mask.LastWriteTime))
-						item.LastWriteTime = fileInfo.LastWriteTime;
-				}
-				else
-				{
-					// file not valid, forget it
-					if COMPLAIN(!(etorItem.Mask.Item & etorItem.Mask.CheckIfPresent))
-					{
-						ComplainCantOpen(GetSystemString(item.FullPath));
-					}
-					etorItem.Mask.Item = 0;
-				}
-			}
-			if (etorItem.Mask.Item)
-			{
-				// No check from disk, simply use info from enumerators (risky)
-				// Why risky? This is not at all obvious.
-				dirItems.Add(item);
-				// Recurse into directories (call a function of 7zip)
-				if ((etorItem.Mask.Item & etorItem.Mask.Recurse) && (item.Attributes & FILE_ATTRIBUTE_DIRECTORY))
-				{
-					EnumerateDirectory(UString(), item.FullPath + L'\\', 
-							item.Name + L'\\', dirItems);
-				}
-			}
-		}
-
+		// No items in dest archive. We always recreate the dest archive
 		// Build the operationChain. One element per item
 		CObjectVector<CUpdatePair2> operationChain;
 		CUpdatePair2 pair2;
@@ -410,8 +319,16 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 			operationChain.Add(pair2);
 		}
 
-		// No items in dest archive. We always recreate the dest archive
-		CObjectVector<CArchiveItem> archiveItems;
+		/* The following code may or may not help implement update on existing
+		/* archives, which is currently not supported.
+		UINT32 fileTimeType;
+		outArchive->GetFileTimeType(&fileTimeType);
+
+		CObjectVector<CUpdatePair> updatePairs;
+		GetUpdatePairInfoList(dirItems, archiveItems, NFileTimeType::EEnum(fileTimeType), updatePairs); // must be done only once!!!
+  
+		CObjectVector<CUpdatePair2> operationChain;
+		UpdateProduce(dirItems, archiveItems, updatePairs, NUpdateArchive::kAddActionSet, operationChain);*/
 
 		// Now compress...
 		updateCallbackSpec->DirItems = &dirItems;
@@ -442,9 +359,6 @@ HRESULT Format7zDLL::Interface::CompressArchive(HWND hwndParent, LPCTSTR path, M
 	//	Always release interfaces in this order, or else all hell will break
 	//	loose!
 	Release(static_cast<IArchiveUpdateCallback*>(updateCallbackSpec));
-	Release(outArchive);
 	delete updateCallbackGUI;
-	Release(static_cast<IOutStream*>(file));
-	Release(static_cast<IArchiveOpenCallback*>(callback));
 	return result;
 }
