@@ -146,7 +146,6 @@ public:
 	CPtrList m_undoList;
 	CArray<DIFFRANGE,DIFFRANGE> m_diffs;
 	UINT m_nDiffs;
-	int m_nCurDiff;
 	CString m_strLeftFile, m_strRightFile;
 
 	void SetNeedRescan();
@@ -163,6 +162,7 @@ public:
 	//CString ExpandTabs(LPCTSTR szText);
 	//CString Tabify(LPCTSTR szText);
 	int LineToDiff(UINT nLine);
+	BOOL LineInDiff(UINT nLine, UINT nDiff);
 	void SetDiffViewMode(BOOL bEnable);
 	
 	void SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight);
@@ -206,6 +206,7 @@ public:
 
 // Implementation data
 protected:
+	int m_nCurDiff;		// 0-based index, -1 if no diff selected
 	CString m_strTempRightFile;
 	CString m_strTempLeftFile;
 	CMergeEditView * m_pLeftView;

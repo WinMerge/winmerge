@@ -913,16 +913,25 @@ CString CMergeDoc::Tabify(LPCTSTR szText)
 	return strResult;
 }*/
 
+// Checks if line is inside diff
+BOOL CMergeDoc::LineInDiff(UINT nLine, UINT nDiff)
+{
+	ASSERT(nDiff >= 0 && nDiff <= m_nDiffs);
+	if (nLine >= m_diffs[nDiff].dbegin0 &&
+			nLine <= m_diffs[nDiff].dend0)
+		return TRUE;
+	else
+		return FALSE;
+}
+
+// Returns order num of diff for given line
 int CMergeDoc::LineToDiff(UINT nLine)
 {
-	for (UINT i=0; i < m_nDiffs; i++)
-	{
-		if (nLine >= m_diffs[i].dbegin0
-			&& nLine <= m_diffs[i].dend0)
+	for (UINT i = 0; i < m_nDiffs; i++)
 		{
+		if (LineInDiff(nLine, i))
 			return i;
 		}
-	}
 	return -1;
 }
 

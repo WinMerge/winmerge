@@ -326,13 +326,30 @@ void CMergeEditView::OnCurdiff()
 			// scroll to the first line of the first diff, with some context thrown in
 			SelectDiff(nDiff, TRUE, FALSE);
 		}
+		else
+		{
+			CPoint pos = GetCursorPos();
+			nDiff = pd->LineToDiff(pos.y);
+			if (nDiff != -1)
+				SelectDiff(nDiff, TRUE, FALSE);
+		}
 	}
 }
 
 void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-	pCmdUI->Enable(pd!=NULL && pd->GetCurrentDiff()!=-1);
+	CPoint pos = GetCursorPos();
+	int nCurrentDiff = pd->GetCurrentDiff();
+	if (nCurrentDiff == -1)
+	{
+		if (pd->LineToDiff(pos.y) == -1)
+			pCmdUI->Enable(FALSE);
+		else
+			pCmdUI->Enable(TRUE);
+	}
+	else
+		pCmdUI->Enable(TRUE);
 }
 
 void CMergeEditView::OnEditCopy()
@@ -736,9 +753,8 @@ void CMergeEditView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 {
 	CMergeDoc *pd = GetDocument();
-	int nDiff = pd->m_nCurDiff;
-	if (nDiff >= 0
-		&& nDiff < (int)pd->m_nDiffs)
+	int nDiff = pd->GetCurrentDiff();
+	if (nDiff >= 0 && nDiff < (int)pd->m_nDiffs)
 	{
 		CPoint ptStart, ptEnd;
 		ptStart.x = 0;
@@ -746,9 +762,9 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 
 		if (bScroll)
 		{
-			int line = ptStart.y-CONTEXT_LINES;
-			if (line<0)
-				line=0;
+			int line = ptStart.y - CONTEXT_LINES;
+			if (line < 0)
+				line = 0;
 			ScrollToLine(line);
 			SetCursorPos(ptStart);
 		}
@@ -758,13 +774,10 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 			ptEnd.y = pd->m_diffs[nDiff].dend0;
 			ptEnd.x = GetLineLength(ptEnd.y);
 			SetSelection(ptStart, ptEnd);
-
 			UpdateCaret();
 		}
 		else
-		{
 			Invalidate();
-		}
 	}
 }
 
