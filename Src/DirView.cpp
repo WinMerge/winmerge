@@ -437,13 +437,14 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	// set sort parameters and handle ascending/descending
 	NM_LISTVIEW* pNMListView = (NM_LISTVIEW*) pNMHDR;
-	if(pNMListView->iSubItem==m_sortColumn)
+	int sortcol = m_invcolorder[pNMListView->iSubItem];
+	if (sortcol==m_sortColumn)
 	{
 		m_bSortAscending = !m_bSortAscending;
 	}
 	else
 	{
-		m_sortColumn = pNMListView->iSubItem;
+		m_sortColumn = sortcol;
 		// date columns get default descending sort.
 		if(m_sortColumn==DV_LTIME || m_sortColumn==DV_RTIME)
 		{
