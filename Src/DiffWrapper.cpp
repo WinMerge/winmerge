@@ -203,6 +203,7 @@ BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
  */
 BOOL CDiffWrapper::RunFileDiff()
 {
+	BOOL bRet = TRUE;
 	USES_CONVERSION;
 	CString strFile1Temp = m_sFile1;
 	CString strFile2Temp = m_sFile2;
@@ -268,9 +269,7 @@ BOOL CDiffWrapper::RunFileDiff()
 
 	/* Compare the files, if no error was found.  */
 	int bin_flag = 0;
-
-	// Diff files. depth is zero because we are not comparing dirs
-	script = diff_2_files (inf, 0, &bin_flag, m_bDetectMovedBlocks);
+	bRet = Diff2Files(&script, &diffdata, &bin_flag);
 
 	// We don't anymore create diff-files for every rescan.
 	// User can create patch-file whenever one wants to.
@@ -479,7 +478,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	}
 
 	SwapToGlobalSettings();
-	return TRUE;
+	return bRet;
 }
 
 /**
@@ -992,9 +991,12 @@ int DiffFileData::just_compare_files(int depth)
 	int bin_flag = 0;
 
 	// Do the actual comparison (generating a change script)
-	BOOL bDetectMovedBlocks = FALSE;
-	struct change *script = diff_2_files (m_inf, depth, &bin_flag, bDetectMovedBlocks);
-
+	struct change *script = NULL;
+	BOOL success = Diff2Files(&script, depth, &bin_flag, FALSE);
+	if (!success)
+	{
+		return DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
+	}
 	int code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
 
 	// Free change script (which we don't want)
@@ -1570,8 +1572,11 @@ DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const CString & filep
 
 	code = just_compare_files(0);
 
-	GuessEncoding(0, pCtxt);
-	GuessEncoding(1, pCtxt);
+	if ((code & DIFFCODE::CMPERR) == 0)
+	{
+		GuessEncoding(0, pCtxt);
+		GuessEncoding(1, pCtxt);
+	}
 
 exitPrepAndCompare:
 	Reset();
@@ -1585,5 +1590,38 @@ exitPrepAndCompare:
 	if (filepathUnpacked2 != filepath2)
 		VERIFY(::DeleteFile(filepathUnpacked2) || gLog::DeleteFileFailed(filepathUnpacked2));
 	return code;
+}
+
+BOOL CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
+	int * bin_status)
+{
+	BOOL bRet = TRUE;
+	__try
+	{
+		// Diff files. depth is zero because we are not comparing dirs
+		*diffs = diff_2_files (diffData->m_inf, 0, bin_status, m_bDetectMovedBlocks);
+	}
+	__except (EXCEPTION_EXECUTE_HANDLER)
+	{
+		*diffs = NULL;
+		bRet = FALSE;
+	}
+	return bRet;
+}
+
+BOOL DiffFileData::Diff2Files(struct change ** diffs, int depth,
+	int * bin_status, BOOL bMovedBlocks)
+{
+	BOOL bRet = TRUE;
+	__try
+	{
+		*diffs = diff_2_files (m_inf, depth, bin_status, bMovedBlocks);
+	}
+	__except (EXCEPTION_EXECUTE_HANDLER)
+	{
+		*diffs = NULL;
+		bRet = FALSE;
+	}
+	return bRet;
 }
 

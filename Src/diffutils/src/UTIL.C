@@ -17,6 +17,7 @@ You should have received a copy of the GNU General Public License
 along with GNU DIFF; see the file COPYING.  If not, write to
 the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
+#include <windows.h>
 #include "diff.h"
 
 // reduce some noise produced with the MSVC compiler
@@ -70,7 +71,8 @@ pfatal_with_name (text)
   fprintf (stderr, "%s: ", program);
   errno = e;
   perror (text);
-  exit (2);
+  //exit (2);
+  RaiseException(STATUS_ACCESS_VIOLATION, 0, NULL, NULL);
 }
 
 /* Print an error message from the format-string FORMAT
@@ -93,7 +95,8 @@ fatal (m)
 {
   print_message_queue ();
   error ("%s", m, 0);
-  exit (2);
+  //exit (2);
+  RaiseException(STATUS_ACCESS_VIOLATION, 0, NULL, NULL);
 }
 
 /* Like printf, except if -l in effect then save the message and print later.

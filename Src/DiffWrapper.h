@@ -29,6 +29,7 @@
 
 class CDiffContext;
 class PrediffingInfo;
+struct DiffFileData;
 
 /**
  * @brief Different compare methods
@@ -212,6 +213,8 @@ protected:
 	void SwapToInternalSettings();
 	void SwapToGlobalSettings();
 	CString FormatSwitchString();
+	BOOL Diff2Files(struct change ** diffs, DiffFileData *diffData,
+		int * bin_status);
 
 private:
 	DIFFSETTINGS m_settings;
@@ -260,6 +263,8 @@ struct DiffFileData
 	int just_compare_files(int depth);
 	void GuessEncoding(int side, CDiffContext * pCtxt);
 	int prepAndCompareTwoFiles(CDiffContext * pCtxt, const CString & filepath1, const CString & filepath2);
+	BOOL Diff2Files(struct change ** diffs, int depth,
+		int * bin_status, BOOL bMovedBlocks);
 
 	file_data * m_inf;
 	bool m_used; // whether m_inf has real data
