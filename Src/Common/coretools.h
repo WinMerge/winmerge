@@ -98,7 +98,7 @@ void GetLocalDrives(LPTSTR letters);
 BOOL GetIP(LPTSTR straddr);
 void replace_char(LPTSTR s, int target, int repl);
 BOOL FileExtMatches(LPCTSTR filename, LPCTSTR ext);
-void split_filename(LPCTSTR s, LPTSTR path, LPTSTR name, LPTSTR ext);
+void SplitFilename(LPCTSTR s, CString * path, CString * name, CString * ext);
 void AddExtension(LPTSTR name, LPCTSTR ext);
 BOOL is_all_whitespace(LPCTSTR s);
 BOOL GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s);
@@ -113,6 +113,7 @@ long SwapEndian(long val);
 short int SwapEndian(short int val);
 BOOL MkDirEx(LPCTSTR filename);
 CString GetModulePath(HMODULE hModule = NULL);
+CString GetPathOnly(LPCTSTR fullpath);
 float RoundMeasure(float measure, float units);
 
 CString LegalizeFileName(LPCTSTR szFileName);

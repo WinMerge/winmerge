@@ -68,10 +68,10 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 			return 1;
 		}
 
-		TCHAR path[MAX_PATH], name[MAX_PATH], ext[MAX_PATH];
-		split_filename(gsRCScript, path, name, ext);
+		CString spath, sname, sext;
+		SplitFilename(gsRCScript, &spath, &sname, &sext);
 		if (gsOutPath.IsEmpty())
-			gsOutPath = path;
+			gsOutPath = spath;
 
 		Status(IDS_CHECK_COMPILER_FMT);
 		if (!CheckCompiler())
@@ -81,7 +81,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 		FixPath();
 
 		CString s, strOutFile;
-		if (BuildDll(gsRCScript, gsOutPath, name, strOutFile)
+		if (BuildDll(gsRCScript, gsOutPath, sname, strOutFile)
 			&& !gbSilent)
 		{
 			AfxFormatString1(s, IDS_SUCCESS_FMT, strOutFile);

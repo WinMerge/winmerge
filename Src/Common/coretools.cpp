@@ -180,13 +180,14 @@ BOOL DoModalProcess(CWnd *pWndParent, LPCTSTR szExeFile,
 					LPCTSTR szCmdLine, LPCTSTR szWindowCaption)
 {
 	BOOL result = FALSE;
-	TCHAR temp[MAX_PATH],path[MAX_PATH];
+	TCHAR temp[MAX_PATH] = {0};
 	if (GetModuleFileName(NULL, temp, MAX_PATH))
 	{
-		split_filename(temp,path,NULL,NULL);
-		_stprintf(temp,_T("%s\\%s"),path, szExeFile);
-		if ((int)ShellExecute(pWndParent->GetSafeHwnd(), _T("open"), temp, 
-						 szCmdLine, path, SW_SHOWNORMAL) > 32)
+		CString spath;
+		SplitFilename(temp, &spath, 0, 0);
+		CString stemp = spath + '\\' + szExeFile;
+		if ((int)ShellExecute(pWndParent->GetSafeHwnd(), _T("open"), stemp, 
+						 szCmdLine, spath, SW_SHOWNORMAL) > 32)
 		{
 			result=TRUE;
 			if (szWindowCaption != NULL)
@@ -375,10 +376,11 @@ FileExtMatches(LPCTSTR filename, LPCTSTR ext)
   return FALSE;
 }
 
-
+// raw TCHAR array version -- use the SplitFilename wrapper below
 void
 split_filename(LPCTSTR s, LPTSTR path, LPTSTR name, LPTSTR ext)
 {
+	// homebrew version of splitpath, no length limits
 	TCHAR *p;
 	if ((p=_tcsrchr(s,_T('\\'))) != NULL)
 	{
@@ -413,7 +415,32 @@ split_filename(LPCTSTR s, LPTSTR path, LPTSTR name, LPTSTR ext)
 	}
 }  
 
+// CString version of split_filename
+void
+SplitFilename(LPCTSTR s, CString * path, CString * name, CString * ext)
+{
+	if (!s || !s[0])
+	{
+		if (path) *path = _T("");
+		if (name) *name = _T("");
+		if (ext) *ext = _T("");
+		return;
+	}
+	// Traditional paths are limited to MAX_PATH, _MAX_DIR, _MAX_FNAME, _MAX_EXT,
+	// but long paths beginning with \\?\ may be up to MAX_PATH in each component
+	// and split_filename doesn't check for any length limits
 
+	int slen = _tcslen(s);
+	int ndir = slen, nname = slen, next = slen;
+	split_filename(s
+		, path ? path->GetBuffer(ndir) : 0
+		, name ? name->GetBuffer(nname) : 0
+		, ext ? ext->GetBuffer(next) : 0
+		);
+	if (path) path->ReleaseBuffer();
+	if (name) name->ReleaseBuffer();
+	if (ext) ext->ReleaseBuffer();
+}
 void
 AddExtension(LPTSTR name, LPCTSTR ext)
 {
@@ -1214,15 +1241,22 @@ BOOL IsLocalPath(LPCTSTR path)
   return bLocal;
 }
 
+// return module's path component (without filename)
 CString GetModulePath(HMODULE hModule /* = NULL*/)
 {
-	TCHAR path[MAX_PATH] = {0};
-	TCHAR  temp[MAX_PATH] = {0};
-	GetModuleFileName(hModule, temp, _MAX_PATH); 
-	split_filename(temp, path, NULL, NULL);
-	return path;
+	TCHAR temp[MAX_PATH] = {0};
+	GetModuleFileName(hModule, temp, MAX_PATH);
+	return GetPathOnly(temp);
 }
 
+// return path component (without filename)
+CString GetPathOnly(LPCTSTR fullpath)
+{
+	if (!fullpath || !fullpath[0]) return _T("");
+	CString spath;
+	SplitFilename(fullpath, &spath, 0, 0);
+	return spath;
+}
 
 
 /*******************************************************************************
