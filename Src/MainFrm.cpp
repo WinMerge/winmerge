@@ -1352,6 +1352,13 @@ void CMainFrame::OnClose()
 		{
 			if (!pMergeDoc->SaveHelper())
 					return;
+			else
+			{
+				// Set modified status to false so that we are not asking
+				// about saving again. 
+				pMergeDoc->m_ltBuf.SetModified(FALSE);
+				pMergeDoc->m_rtBuf.SetModified(FALSE);
+			}
 		}
 	}
 

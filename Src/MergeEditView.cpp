@@ -824,8 +824,19 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE)) 
 	{
-		AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
-		return FALSE;
+		// Ask about saving unsaved document
+		CMergeDoc *pd = GetDocument();
+		if (pd->SaveHelper())
+		{
+			// Set modified status to false so that we are not asking
+			// about saving again
+			pd->m_ltBuf.SetModified(FALSE);
+			pd->m_rtBuf.SetModified(FALSE);
+			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+			return FALSE;
+		}
+		else
+			return TRUE;
 	}
 	return CCrystalEditViewEx::PreTranslateMessage(pMsg);
 }

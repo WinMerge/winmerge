@@ -975,10 +975,16 @@ UINT CMergeDoc::CountPrevBlanks(UINT nCurLine, BOOL bLeft)
 
 BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/) 
 {
-	if (!SaveHelper())
+	if (SaveHelper())
+	{
+		// Set modified status to false so that we are not asking
+		// about saving again in OnCloseDocument()
+		m_ltBuf.SetModified(FALSE);
+		m_rtBuf.SetModified(FALSE);
+		return TRUE;
+	}
+	else
 		return FALSE;
-	
-	return TRUE;
 }
 
 // If WinMerge is closed, CMainFrame::OnClose already takes
