@@ -2,6 +2,9 @@
  PATCH: [ 776046 ] Fixes for <Highlight Line Diff> menu item
   WinMerge: Merge.rc MergeEditView.cpp
   Languages: All Merge*.rc files and resource.h files
+ PATCH: [ 771666 ] Fix for English descriptions of Chinese
+  common: LanguageSelect.rc
+  WinMerge: Merge.rc
 
 2003-07-21 Perry
  Added ChineseTraditional, ChineseSimplified, Korean, translations.
