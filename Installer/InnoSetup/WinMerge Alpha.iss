@@ -48,6 +48,7 @@
 ; #  Set the order of icons within the start menu (we'll have to use a registry hack since Inno Setup doesn't yet have this level of granularity).
 ; #  Create a switch for the installer to unzip all of the included binaries as if it were a zip file.
 ; #  Perry wanted a Select All button to appear on the components page.  Let's just ask Jordan Russell or Martijn Laan if they'll do it :).
+; #  Provide the option to or not to assign the Ctrl+Alt+M accelerator to WinMerge.
 
 
 
