@@ -5,6 +5,9 @@
   Backout last changes to lang files (see bug item for details)
    Src/Languages: MergeBulgarian.rc MergeChineseSimplified.rc
     MergeChineseTraditional.rc MergeKorean.rc MergeRussian.rc
+ PATCH: [ 953056 ] Rename 'Sensitive to EOL' option
+  Src: Merge.rc
+  Src/Languages: *.rc
 
 2004-05-13 Perry
  PATCH: [ 950530 ] Remove unneeded cast in DirView.cpp

@@ -821,8 +821,9 @@ BEGIN
     CONTROL         "Ig&nora differenze maiusc./minusc.",
                     IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,70,221,10
-    CONTROL         "Sensitive to &EOL",IDC_EOL_SENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,80,221,10
+    CONTROL         "Igno&re carriage return differences (DOS/UNIX/MAC)",
+                    IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    7,80,221,10
     CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
     LTEXT           "&File Compare method:",IDC_STATIC,7,105,70,9
