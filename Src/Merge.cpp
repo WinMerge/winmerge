@@ -309,6 +309,7 @@ public:
 	CStatic	m_ctlCompany;
 	CStaticLink	m_ctlWWW;
 	CString	m_strVersion;
+	CString m_strPrivateBuild;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
@@ -329,6 +330,7 @@ CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
 {
 	//{{AFX_DATA_INIT(CAboutDlg)
 	m_strVersion = _T("");
+	m_strPrivateBuild = _T("");
 	//}}AFX_DATA_INIT
 }
 
@@ -339,6 +341,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMPANY, m_ctlCompany);
 	DDX_Control(pDX, IDC_WWW, m_ctlWWW);
 	DDX_Text(pDX, IDC_VERSION, m_strVersion);
+	DDX_Text(pDX, IDC_PRIVATEBUILD, m_strPrivateBuild);
 	//}}AFX_DATA_MAP
 }
 
@@ -361,6 +364,12 @@ BOOL CAboutDlg::OnInitDialog()
 	CVersionInfo version;
 	CString sVersion = version.GetFixedProductVersion();
 	AfxFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion);
+
+	CString sPrivateBuild = version.GetPrivateBuild();
+	if (!sPrivateBuild.IsEmpty())
+	{
+		AfxFormatString1(m_strPrivateBuild, IDS_PRIVATEBUILD_FMT, sPrivateBuild);
+	}
 
 	m_ctlCompany.SetWindowText(version.GetLegalCopyright());
 	m_ctlWWW.m_link = _T("http://winmerge.sourceforge.net");

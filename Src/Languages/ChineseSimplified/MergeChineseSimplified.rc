@@ -251,11 +251,12 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "关于 WinMerge"
 FONT 9, "宋体"
 BEGIN
-    ICON            IDR_MAINFRAME,-1,24,14,21,20
-    LTEXT           "WinMerge",-1,63,13,63,8,SS_NOPREFIX
-    DEFPUSHBUTTON   "确定",1,184,7,32,14,WS_GROUP
-    LTEXT           "版本 1.0",IDC_VERSION,64,23,84,8,SS_NOPREFIX
-    LTEXT           "保留所有权利。",-1,7,60,170,8
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "确定",IDOK,184,7,32,14,WS_GROUP
+    LTEXT           "版本 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
+    LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,84,8
+    LTEXT           "保留所有权利。",IDC_STATIC,7,60,170,8
     LTEXT           "拜访 WinMerge 首页！",IDC_WWW,7,107,209,8
     CONTROL         "",-1,"Static",SS_ETCHEDHORZ,7,103,209,1
     LTEXT           "版权(c) 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8

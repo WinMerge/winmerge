@@ -2,8 +2,6 @@
 // Microsoft Developer Studio generated include file.
 // Used by Merge.rc
 //
-// $Id$
-
 #define IDC_CUT                         3
 #define IDC_COPY                        4
 #define IDC_PASTE                       5
@@ -122,6 +120,7 @@
 #define IDB_RFOLDER                     215
 #define IDS_STATUSBAR_READONLY          215
 #define IDB_UNKNOWN                     216
+#define IDS_PRIVATEBUILD_FMT            216
 #define IDB_BINARYSAME                  217
 #define IDB_LFILE                       218
 #define IDB_RFILE                       219
@@ -194,6 +193,7 @@
 #define IDC_ADD                         1059
 #define IDC_REMOVE                      1060
 #define IDC_EDIT_FILE_FILTER            1061
+#define IDC_PRIVATEBUILD                1062
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO            8503
@@ -412,7 +412,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        118
 #define _APS_NEXT_COMMAND_VALUE         32834
-#define _APS_NEXT_CONTROL_VALUE         1062
+#define _APS_NEXT_CONTROL_VALUE         1063
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

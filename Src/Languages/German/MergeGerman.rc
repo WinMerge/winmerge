@@ -261,9 +261,10 @@ CAPTION "Info über WinMerge"
 FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
-    LTEXT           "WinMerge",IDC_STATIC,63,13,85,8,SS_NOPREFIX
+    LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
     DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
-    LTEXT           "Version 1.0",IDC_VERSION,64,23,88,8,SS_NOPREFIX
+    LTEXT           "Version 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
+    LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,84,8
     LTEXT           "Alle Rechte vorbehalten.",IDC_STATIC,7,60,170,8
     LTEXT           "Besuchen Sie die WinMerge HomePage!",IDC_WWW,7,107,209,
                     8

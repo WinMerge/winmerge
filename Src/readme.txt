@@ -1,3 +1,8 @@
+2003-09-06 Perry
+ PATCH: [ 795082 ] Display Private Build version in about box
+ WinMerge: Merge.cpp Merge.rc resource.h
+ Languages: resource.h *.rc
+
 2003-09-06 Kimmo
  PATCH: [ 793900 ] Editable file filters
  Submitted by Perry
