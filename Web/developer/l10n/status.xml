@@ -152,10 +152,11 @@
       <author>
         <name>Tim Gerundt</name>
         <email>tim at gerundt dot de</email>
-        <comment>2.2 &amp; 2.1</comment>
+        <comment>2.3, 2.2 &amp; 2.1</comment>
       </author>
     </authors>
     <versions>
+      <version>2.3</version>
       <version>2.2</version>
       <version>2.1</version>
       <version>2.0</version>
@@ -206,6 +207,8 @@
       </author>
     </authors>
     <versions>
+      <version>2.3</version>
+      <version>2.2</version>
       <version>2.1</version>
     </versions>
   </language>
@@ -283,14 +286,22 @@
   </language>
   <language>
     <name>Spanish</name>
-    <status>3</status>
+    <status>1</status>
     <authors>
       <author>
         <name>Dean Grimm</name>
         <email>grimmdp at yahoo dot com</email>
+        <comment>1.7</comment>
+      </author>
+      <author>
+        <name>Jesús M. Delgado 'MacK'</name>
+        <email>mack_ at users.sourceforge.net</email>
+        <comment>2.3 &amp; 2.2</comment>
       </author>
     </authors>
     <versions>
+      <version>2.3</version>
+      <version>2.2</version>
       <version>1.7</version>
     </versions>
   </language>

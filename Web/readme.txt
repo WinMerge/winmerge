@@ -1,3 +1,7 @@
+2005-03-23 Tim
+ RFE: [ 1169348 ] Update for translation statuses
+  Web\developer\l10n: status.xml
+
 2005-03-13 Tim
  PATCH: [ 1160257 ] Web: Various navigation updates
   Web: index.php links.php page.inc WinMergePAD.xml
