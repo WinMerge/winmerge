@@ -1,3 +1,5 @@
+2004-01-11 WinMerge experimental release 2.1.5.4 (cvs)
+
 2004-01-11 Perry
  Update Merge7z project files to build to ../Build directories
  in same fashion as WinMerge project
