@@ -1,6 +1,10 @@
 <sect1 id="CompareFiles">
   <title>Comparing files</title>
-  <para>File compare window is basically two files opened to editor into two horizontal panes. Editing files is the big difference between 1.7.1 and newer versions. Editing allows user to make changes to files other than just merging differences. Its easy to make little changes when merging. WinMerge is not and can't be as good in editing than most other editor programs are. So WinMerge makes it easy to open selected files from directory compare.</para>
+  <para>File compare window is basically two files opened to editor into two horizontal panes. Editing files is the big difference between 1.7.1 and newer versions. </para>
+  <para>Editing allows user to make changes to files other than just merging differences. Its easy to make little changes when merging. WinMerge is not and can't be as good in editing than many specialized editor programs are. So WinMerge makes it easy to open selected files from directory compare to user-defined editor.</para>
+  <tip>
+    <para>If automatic rescanning is not enabled manual refresh is recommended after editing.</para>
+  </tip>
   <mediaobject>
     <imageobject>
       <imagedata fileref="screenshots/filecomp1.gif" format="GIF"/>
@@ -29,7 +33,7 @@
     <para>Difference navigation commands are in "Merge" menu:</para>
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/merge_menu.jpg" format="JPG"/>
+          <imagedata fileref="screenshots/Merge_menu.jpg" format="JPG"/>
         </imageobject>
       </inlinemediaobject></para>
     <sect3>
@@ -47,13 +51,23 @@
     <sect3>
       <title>Navigating differences</title>
       <para>Merge-menu has items for navigating to next/previous and first/last difference. Navigation is always done based on current cursor location. So Next difference -command selects next difference from cursor, not from current selected difference.</para>
+      <note>
+        <para>When difference is selected with navigation commands cursor is moved to begin of first line of difference. In both files.</para>
+      </note>
     </sect3>
     <sect3>
       <title>Current difference -command</title>
       <para>This command has two important functions:<simplelist type="vert">
           <member>If there is no difference selected and cursor is inside difference, it selects this difference. This is very handy way to select difference from keyboard.</member>
-          <member>If there is selected difference, it scrolls to selected difference. This is handy if user has scrolled selected difference out of screen.</member>
+          <member>If there is selected difference, it scrolls to selected difference. This is handy if user has scrolled selected difference out of screen. So user can scroll file(s) to see other contents and quickly return to selected difference.</member>
         </simplelist></para>
+    </sect3>
+    <sect3>
+      <title>Go To line or difference</title>
+      <para>Using "Go To" from Edit-menu user can jump to certain line or difference. Go To -dialog prefills current line and side to Go To -dialog.</para>
+      <tip>
+        <para>Go To line number is useful if there is need to merge same change to several target files from one original file. Rather than using Find or difference navigation it is faster to jump to first line of difference.</para>
+      </tip>
     </sect3>
   </sect2>
   <sect2>
@@ -70,13 +84,18 @@
   </sect2>
   <sect2>
     <title>Refreshing</title>
-    <para>Refreshing updates differences after changes are made to files. Its important to do refresh before merging changes between files.<note>
-        <para>Refresh does not reload file. That means, if another programs has updated files etc, those changes are not seen. Refresh updates differences according changes user has done.</para>
-      </note></para>
+    <para>Refreshing updates differences after changes are made to files. Its important to do refresh before merging changes between files.</para>
+    <note>
+      <para>Refresh does not reload file. That means, if another programs has updated files etc, those changes are not seen. Refresh updates differences according changes user has done.</para>
+    </note>
+  </sect2>
+  <sect2>
+    <title>View whitespaces</title>
+    <para>When enabled from "View" menu "View Whitespace" feature shows all whitespace characters (spaces, tabulators, line ends). This is very useful for example when there are spaces in other file and tabulators in other. Also, if 'Preserve original EOL chars' is enabled, WinMerge shows type of EOL (DOS/UNIX/MAC).</para>
   </sect2>
   <sect2>
     <title>Editing files</title>
-    <para>Normal editing features work in WinMerge editor. User can type and delete text, select text, copy, cut and paste text etc.</para>
+    <para>Normal editing features work in WinMerge editor. User can type and delete text, select text, copy, cut and paste text etc. There is some customisation because there can be removed lines in files (lines existing only in other side). Anyway these customisations are not usually visible to users otherwise that lines can sometimes 'jump' when WinMerge has to relocate matching/non-matching files.</para>
   </sect2>
   <sect2>
     <title>File headerbar</title>

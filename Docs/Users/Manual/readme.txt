@@ -3,6 +3,8 @@
   Manual: Faq.xml
  PATCH: [ 974198 ] Userdocs: Installing and 7-zip
   Manual: Install.xml
+ PATCH: [ 974267 ] Userdocs: Fix broken image link in file compare section
+  Manual: Compare_files.xml
 
 2004-06-16 Kimmo
  PATCH: [ 973527 ] Userdocs: About doc and introduction
