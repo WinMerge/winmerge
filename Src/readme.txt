@@ -6,6 +6,8 @@
  PATCH: [ 1047670 ] Catalan translation update
   Submitted by Jordi Vilar
   Src/Languages/Catalan: MergeCatalan.rc
+ BUG: [ 1047812 ] number of differences not recalculated (merging whole files)
+  Src: DirActions.cpp
 
 2004-10-15 WinMerge experimental release 2.1.7.15 (cvs) (Perry)
 
