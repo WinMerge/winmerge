@@ -2,6 +2,8 @@
  PATCH: [ 860072 ] Allow singlethreaded diffs
   Add unused code to trigger diffs in main thread (for developer to trigger via breakpoint).
   WinMerge: DiffThread.cpp
+ unpatch: Reverse (back out) patch [ 860072 ] Allow singlethreaded diffs
+  WinMerge: DiffThread.cpp
 
 2003-12-15 Kimmo
  PATCH: [ 858283 ] Add isResultDiff() to DiffItem
