@@ -2,6 +2,9 @@
  PATCH: [ 1025052 ] Italian translation updated for latest experimental version
   Submitted by Andrea Decorte
   Src/Languages/Italian: MergeItalian.rc
+ PATCH: [ 1023074 ] Fix and cleanup version control options dialog
+  Src: Merge.rc
+  Src/Languages: *.rc
 
 2004-09-08 Kimmo
  PATCH: [ 1023917 ] Don't close dirview when mergedocs closed by reusing code
