@@ -327,7 +327,7 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
    - Usability!
    - Mostly UI changes, new page for options to reset dialogs
    - Nobody working with this at the moment, Laoran wants to
-   - For 2.2
+   *** DONE ***
 
 21) One-key diff navigation and merge
    - RFE #837803 Make Alt key optional
