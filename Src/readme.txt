@@ -1,3 +1,7 @@
+2004-03-03 Perry
+ fix BUG: [ 902430 ] copy&paste comment bug
+  Src: DirView.cpp
+
 2004-03-03 Kimmo
  PATCH: [ 908606 ] Restore default colors
   Add "Defaults" button to Color options page

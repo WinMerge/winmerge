@@ -400,7 +400,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	CMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 
-	// 1st submenu of IDR_POPUP_DIRVIEW is for header popup
+	// 1st submenu of IDR_POPUP_DIRVIEW is for item popup
 	CMenu* pPopup = menu.GetSubMenu(0);
 	ASSERT(pPopup != NULL);
 
