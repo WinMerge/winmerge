@@ -1,4 +1,5 @@
 2003-02-12  Christian
+ [ 630286 ] WinMerge crashes/fails in WinCVS
  [ 683752 ] Add option to be listed on Directory context menu
 
 2003-02-11  Perry
