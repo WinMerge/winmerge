@@ -1006,7 +1006,7 @@ UINT CMergeDoc::CDiffTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStart
 			LPCTSTR szLine = m_aLines[i].m_pcLine + soffset;
 			CopyMemory(pszBuf, szLine, chars * sizeof(TCHAR));
 			pszBuf += chars;
-			if (i!=GetLineCount() && GetLineLength(i)==GetFullLineLength(i))
+			if (i!=GetLineCount()-1 && GetLineLength(i)==GetFullLineLength(i))
 			{
 				// Oops, line lacks EOL
 				// (If this happens, editor probably has bug)
@@ -1130,9 +1130,11 @@ BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		}
 		// Handle case where file ended with line without EOL
 		if (lpChar > lpLineBegin)
+			// no ghost line, because that would append an EOL to the last line
 			ReadLineFromBuffer(lpLineBegin, lpChar - lpLineBegin);
-		// Insert ghost line at end (for appending)
-		InsertLine(_T(""), 0);
+		else
+			// Last line had EOL, so append succeeding ghost line
+			InsertLine(_T(""), 0);
 		FinishLoading();
 		ASSERT(m_aLines.GetSize() > 0);   //  At least one empty line must present
 		

@@ -1,6 +1,8 @@
 2003-06-24 Perry
  PATCH: [ 759778 ] Minor cleanup of crystaltextbuffer.cpp
   editlib: ccrystaltextbuffer.cpp
+ PATCH: [ 760077 ] Omit final ghostline if last line unterminated
+  WinMerge: MergeDoc.cpp
 
 2003-06-23 Perry
  PATCH: [ 759533 ] Fix InternalInsertText & InternalDeleteText
