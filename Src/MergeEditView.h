@@ -49,6 +49,10 @@ struct COLORSETTINGS
 	COLORREF	clrSelMoved;		/**< Selected moved block color */
 	COLORREF	clrSelMovedDeleted;	/**< Selected moved block deleted color */
 	COLORREF	clrSelMovedText;	/**< Selected moved block text color */
+	COLORREF	clrWordDiff;		/**< Word difference color */
+	COLORREF	clrWordDiffText;	/**< Word difference text color */
+	COLORREF	clrSelWordDiff;		/**< Selected word difference color */
+	COLORREF	clrSelWordDiffText;	/**< Selected word difference text color */
 };
 
 /** 
@@ -135,6 +139,7 @@ private:
 	BOOL fTimerWaitingForIdle;
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 	BOOL m_bSyntaxHighlight; /**< Cached setting for syntax highlight */
+	BOOL m_bWordDiffHighlight; /**< Cached setting for word diff highlight */
 	BOOL m_bCloseWithEsc; /**< Cached setting for closing windows with ESC */
 
 	/// active prediffer ID : helper to check the radio button
@@ -165,6 +170,8 @@ public:
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
 	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 	virtual void UpdateSiblingScrollPos (BOOL bHorz);
+	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf);
+	virtual COLORREF GetColor(int nColorIndex);
 	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
 			COLORREF & crText, BOOL & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
@@ -273,6 +280,8 @@ protected:
 	afx_msg void OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar);
 	afx_msg void OnEditCopyLineNumbers();
 	afx_msg void OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI);
+	afx_msg void OnViewLineDiffs();
+	afx_msg void OnUpdateViewLineDiffs(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

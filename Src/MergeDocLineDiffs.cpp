@@ -304,3 +304,49 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	}
 }
 
+void CMergeDoc::GetWordDiffArray(int nLineIndex, wdiffarray *pworddiffs)
+{
+	if (nLineIndex >= m_pLeftView->GetLineCount()) return;
+	if (nLineIndex >= m_pRightView->GetLineCount()) return;
+
+	DIFFOPTIONS diffOptions = {0};
+	m_diffWrapper.GetOptions(&diffOptions);
+
+	CString str1 = m_pLeftView->GetLineChars(nLineIndex);
+	CString str2 = m_pRightView->GetLineChars(nLineIndex);
+
+	if (!diffOptions.bEolSensitive)
+	{
+		/* Commented out code because GetLineActualLength is buggy
+		// Chop of eol (end of line) characters
+		int len1 = pView1->GetLineActualLength(line);
+		str1 = str1.Left(len1);
+		int len2 = pView2->GetLineActualLength(line);
+		str2 = str2.Left(len2);
+		*/
+		int i = str1.GetLength()-1;
+		while (i>=0 && (str1[i]=='\r' || str1[i]=='\n'))
+			--i;
+		if (i+1 < str1.GetLength())
+			str1 = str1.Left(i+1);
+		i = str2.GetLength()-1;
+		while (i>=0 && (str2[i]=='\r' || str2[i]=='\n'))
+			--i;
+		if (i+1 < str2.GetLength())
+			str2 = str2.Left(i+1);
+	}
+
+	// We truncate diffs to remain inside line (ie, to not flag eol characters)
+	int width1 = m_pLeftView->GetLineLength(nLineIndex);
+	int width2 = m_pRightView->GetLineLength(nLineIndex);
+
+	// Options that affect comparison
+	bool casitive = !diffOptions.bIgnoreCase;
+	int xwhite = diffOptions.nIgnoreWhitespace;
+
+	// Make the call to stringdiffs, which does all the hard & tedious computations
+	stringdiffs_Get(str1, str2, casitive, xwhite, pworddiffs);
+
+	return;
+}
+

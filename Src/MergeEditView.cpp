@@ -70,6 +70,7 @@ CMergeEditView::CMergeEditView()
 	m_bCloseWithEsc = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
 
 	m_bSyntaxHighlight = mf->m_options.GetBool(OPT_SYNTAX_HIGHLIGHT);
+	m_bWordDiffHighlight = mf->m_options.GetBool(OPT_WORDDIFF_HIGHLIGHT);
 	m_cachedColors.clrDiff = mf->m_options.GetInt(OPT_CLR_DIFF);
 	m_cachedColors.clrSelDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF);
 	m_cachedColors.clrDiffDeleted = mf->m_options.GetInt(OPT_CLR_DIFF_DELETED);
@@ -85,6 +86,10 @@ CMergeEditView::CMergeEditView()
 	m_cachedColors.clrSelMoved = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
 	m_cachedColors.clrSelMovedDeleted = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
 	m_cachedColors.clrSelMovedText = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
+	m_cachedColors.clrWordDiff = mf->m_options.GetInt(OPT_CLR_WORDDIFF);
+	m_cachedColors.clrSelWordDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_WORDDIFF);
+	m_cachedColors.clrWordDiffText = mf->m_options.GetInt(OPT_CLR_WORDDIFF_TEXT);
+	m_cachedColors.clrSelWordDiffText = mf->m_options.GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
 }
 
 CMergeEditView::~CMergeEditView()
@@ -170,6 +175,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_WM_VSCROLL ()
 	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
+	ON_COMMAND(ID_VIEW_LINEDIFFS, OnViewLineDiffs)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewLineDiffs)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -320,6 +327,72 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 	CMergeDoc* pDoc = GetDocument();
 	pDoc->UpdateHeaderActivity(m_bIsLeft, bActivate);
 	mf->UpdatePrediffersMenu();
+}
+
+int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
+{
+	DWORD dwLineFlags = GetLineFlags(nLineIndex);
+	if ((dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
+		return 0;
+
+	if (!m_bWordDiffHighlight)
+		return 0;
+
+	int nLineLength = GetLineLength(nLineIndex);
+	wdiffarray worddiffs;
+	GetDocument()->GetWordDiffArray(nLineIndex, &worddiffs);
+	if (worddiffs.GetSize() == 0 || (worddiffs[0].end[0] == -1 && worddiffs[0].end[1] + 1 == nLineLength) || (worddiffs[0].end[1] == -1 && worddiffs[0].end[0] + 1 == nLineLength))
+		return 0;
+
+	BOOL lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);
+	int nWordDiffs = worddiffs.GetSize();
+
+	pBuf[0].m_nCharPos = 0;
+	pBuf[0].m_nColorIndex = COLORINDEX_NONE;
+	pBuf[0].m_nBgColorIndex = COLORINDEX_NONE;
+	for (int i = 0; i < nWordDiffs; i++)
+	{
+		if (m_bIsLeft)
+		{
+			pBuf[1 + i * 2].m_nCharPos = worddiffs[i].start[0];
+			pBuf[2 + i * 2].m_nCharPos = worddiffs[i].end[0] + 1;
+		}
+		else
+		{
+			pBuf[1 + i * 2].m_nCharPos = worddiffs[i].start[1];
+			pBuf[2 + i * 2].m_nCharPos = worddiffs[i].end[1] + 1;
+		}
+		if (lineInCurrentDiff)
+		{
+			pBuf[1 + i * 2].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
+			pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND1 | COLORINDEX_APPLYFORCE;
+		}
+		else
+		{
+			pBuf[1 + i * 2].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT2 | COLORINDEX_APPLYFORCE;
+			pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND2 | COLORINDEX_APPLYFORCE;
+		}
+		pBuf[2 + i * 2].m_nColorIndex = COLORINDEX_NONE;
+		pBuf[2 + i * 2].m_nBgColorIndex = COLORINDEX_NONE;
+	}
+	return nWordDiffs * 2 + 1;
+}
+
+COLORREF CMergeEditView::GetColor(int nColorIndex)
+{
+	switch (nColorIndex & ~COLORINDEX_APPLYFORCE)
+	{
+	case COLORINDEX_HIGHLIGHTBKGND1:
+		return m_cachedColors.clrSelWordDiff;
+	case COLORINDEX_HIGHLIGHTTEXT1:
+		return m_cachedColors.clrSelWordDiffText;
+	case COLORINDEX_HIGHLIGHTBKGND2:
+		return m_cachedColors.clrWordDiff;
+	case COLORINDEX_HIGHLIGHTTEXT2:
+		return m_cachedColors.clrWordDiffText;
+	default:
+		return CCrystalTextView::GetColor(nColorIndex);
+	}
 }
 
 /**
@@ -2115,6 +2188,7 @@ void CMergeEditView::RefreshOptions()
 	m_bCloseWithEsc = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
 
 	m_bSyntaxHighlight = mf->m_options.GetBool(OPT_SYNTAX_HIGHLIGHT);
+	m_bWordDiffHighlight = mf->m_options.GetBool(OPT_WORDDIFF_HIGHLIGHT);
 	m_cachedColors.clrDiff = mf->m_options.GetInt(OPT_CLR_DIFF);
 	m_cachedColors.clrSelDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF);
 	m_cachedColors.clrDiffDeleted = mf->m_options.GetInt(OPT_CLR_DIFF_DELETED);
@@ -2130,6 +2204,10 @@ void CMergeEditView::RefreshOptions()
 	m_cachedColors.clrSelMoved = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
 	m_cachedColors.clrSelMovedDeleted = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
 	m_cachedColors.clrSelMovedText = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
+	m_cachedColors.clrWordDiff = mf->m_options.GetInt(OPT_CLR_WORDDIFF);
+	m_cachedColors.clrSelWordDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_WORDDIFF);
+	m_cachedColors.clrWordDiffText = mf->m_options.GetInt(OPT_CLR_WORDDIFF_TEXT);
+	m_cachedColors.clrSelWordDiffText = mf->m_options.GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
 }
 
 /**
@@ -2452,4 +2530,23 @@ void CMergeEditView::RepaintLocationPane()
 {
 	if (m_pLocationView)
 		m_pLocationView->Invalidate();
+}
+
+/**
+ * @brief Enables/disables linediff (different color for diffs)
+ */
+void CMergeEditView::OnViewLineDiffs()
+{
+	mf->m_options.SaveOption(OPT_WORDDIFF_HIGHLIGHT, !m_bWordDiffHighlight);
+
+	// Call CMergeDoc RefreshOptions() to refresh *both* views
+	CMergeDoc *pDoc = GetDocument();
+	pDoc->RefreshOptions();
+	pDoc->FlushAndRescan(TRUE);
+}
+
+void CMergeEditView::OnUpdateViewLineDiffs(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck(m_bWordDiffHighlight);
 }

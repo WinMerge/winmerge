@@ -176,6 +176,7 @@ BEGIN
         MENUITEM "Использовать шрифт по &умолчанию", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "Показы&вать невидимые",       ID_VIEW_WHITESPACE
+        MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
         MENUITEM "Па&нель инструментов",        ID_VIEW_TOOLBAR
         MENUITEM "&Строка состояния",           ID_VIEW_STATUS_BAR
@@ -616,7 +617,7 @@ BEGIN
                     ES_AUTOHSCROLL | ES_WANTRETURN
 END
 
-IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 156
+IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 196
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Цвета"
 FONT 8, "MS Shell Dlg"
@@ -674,7 +675,21 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    PUSHBUTTON      "По умолчанию",IDC_COLORDEFAULTS_BTN,166,130,54,14
+    RTEXT           "Word Difference:",IDC_STATIC,7,129,90,8
+    CONTROL         "Dif",IDC_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,113,129,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_WORDDIFFERENCE_TEXT_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,199,129,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    RTEXT           "Selected Word Diff:",IDC_STATIC,7,149,90,8
+    CONTROL         "Dif",IDC_SEL_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,113,149,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Dif",IDC_SEL_WORDDIFFERENCE_TEXT_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,199,149,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
+    PUSHBUTTON      "По умолчанию",IDC_COLORDEFAULTS_BTN,166,170,54,14
 END
 
 IDD_OUTPUT DIALOGEX 0, 0, 278, 157
@@ -2101,6 +2116,7 @@ BEGIN
     ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
     ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
     ID_VIEW_LANGUAGE        "Выбор языка пользователя\nLanguage"
+    ID_VIEW_LINEDIFFS       "Shows differences inside lines with different color\nShow Line Diff"
 END
 
 // MERGE MENU

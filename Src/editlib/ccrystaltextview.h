@@ -167,7 +167,7 @@ protected:
     int ApproxActualOffset (int nLineIndex, int nOffset);
     void AdjustTextPoint (CPoint & point);
     void DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
-                             int nColorIndex, COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset);
+                             int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset);
     BOOL IsInsideSelBlock (CPoint ptTextPos);
 
     BOOL m_bBookmarkExist;        // More bookmarks
@@ -431,7 +431,7 @@ protected:
     virtual BOOL GetItalic (int nColorIndex);
     virtual BOOL GetBold (int nColorIndex);
 
-    void DrawLineHelper (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip, int nColorIndex,
+    void DrawLineHelper (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex,
                          COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos);
     virtual void DrawSingleLine (CDC * pdc, const CRect & rect, int nLineIndex);
     virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex);
@@ -524,6 +524,7 @@ protected:
       {
         int m_nCharPos;
         int m_nColorIndex;
+		int m_nBgColorIndex;
       };
 
     virtual HINSTANCE GetResourceHandle ();
@@ -538,6 +539,8 @@ protected:
 		int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos );
 	//END SW
 
+	int MergeTextBlocks(TEXTBLOCK *pBuf1, int nBlocks1, TEXTBLOCK *pBuf2, int nBlocks2, TEXTBLOCK *&pBufMerged);
+	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf);
 
 	//BEGIN SW
 	// helpers for incremental search
@@ -740,6 +743,7 @@ public :
 
     enum
     {
+      COLORINDEX_NONE,
       //  Base colors
       COLORINDEX_WHITESPACE,
       COLORINDEX_BKGND,
@@ -763,7 +767,14 @@ public :
       COLORINDEX_EXECUTIONBKGND,
       COLORINDEX_EXECUTIONTEXT,
       COLORINDEX_BREAKPOINTBKGND,
-      COLORINDEX_BREAKPOINTTEXT
+      COLORINDEX_BREAKPOINTTEXT,
+      //
+      COLORINDEX_HIGHLIGHTBKGND1,
+      COLORINDEX_HIGHLIGHTTEXT1,
+      COLORINDEX_HIGHLIGHTBKGND2,
+      COLORINDEX_HIGHLIGHTTEXT2,
+      //
+      COLORINDEX_APPLYFORCE = 0x80000000
       //  ...
       //  Expandable: custom elements are allowed.
     };

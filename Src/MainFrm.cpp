@@ -182,6 +182,7 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_SHOW_STATUSBAR, true);
 
 	m_options.InitOption(OPT_SYNTAX_HIGHLIGHT, true);
+	m_options.InitOption(OPT_WORDDIFF_HIGHLIGHT, true);
 	m_options.InitOption(OPT_DISABLE_SPLASH, false);
 	m_options.InitOption(OPT_CREATE_BACKUPS, true);
 	m_options.InitOption(OPT_VIEW_WHITESPACE, false);
@@ -226,6 +227,10 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK, (int)RGB(248,112,78));
 	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, (int)RGB(252, 181, 163));
 	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)RGB(0,0,0));
+	m_options.InitOption(OPT_CLR_WORDDIFF, (int)RGB(255,255,0));
+	m_options.InitOption(OPT_CLR_SELECTED_WORDDIFF, (int)RGB(255,160,160));
+	m_options.InitOption(OPT_CLR_WORDDIFF_TEXT, (int)RGB(0,0,0));
+	m_options.InitOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, (int)RGB(0,0,0));
 
 	m_options.InitOption(OPT_PROJECTS_PATH,_T(""));
 
@@ -1251,6 +1256,10 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK, (int)colors.m_clrSelMoved);
 		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, (int)colors.m_clrSelMovedDeleted);
 		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)colors.m_clrSelMovedText);
+		m_options.SaveOption(OPT_CLR_WORDDIFF, (int)colors.m_clrWordDiff);
+		m_options.SaveOption(OPT_CLR_SELECTED_WORDDIFF, (int)colors.m_clrSelWordDiff);
+		m_options.SaveOption(OPT_CLR_WORDDIFF_TEXT, (int)colors.m_clrWordDiffText);
+		m_options.SaveOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, (int)colors.m_clrSelWordDiffText);
 		m_options.SaveOption(OPT_CP_DEFAULT_MODE, (int)codepage.m_nCodepageSystem);
 		m_options.SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)codepage.m_nCustomCodepageValue);
 		m_options.SaveOption(OPT_CP_DETECT, codepage.m_bDetectCodepage == TRUE);

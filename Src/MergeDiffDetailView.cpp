@@ -163,6 +163,65 @@ void CMergeDiffDetailView::OnInitialUpdate()
 	displayLength = NROWS_INIT;
 }
 
+int CMergeDiffDetailView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
+{
+	if (nLineIndex < lineBegin || nLineIndex > lineEnd)
+		return 0;
+
+	DWORD dwLineFlags = GetLineFlags(nLineIndex);
+	if ((dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
+		return 0;
+
+	if (!mf->m_options.GetBool(OPT_WORDDIFF_HIGHLIGHT))
+		return 0;
+
+	int nLineLength = GetLineLength(nLineIndex);
+	wdiffarray worddiffs;
+	GetDocument()->GetWordDiffArray(nLineIndex, &worddiffs);
+	if (worddiffs.GetSize() == 0 || (worddiffs[0].end[0] == -1 && worddiffs[0].end[1] + 1 == nLineLength) || (worddiffs[0].end[1] == -1 && worddiffs[0].end[0] + 1 == nLineLength))
+		return 0;
+
+	int nWordDiffs = worddiffs.GetSize();
+
+	pBuf[0].m_nCharPos = 0;
+	pBuf[0].m_nColorIndex = COLORINDEX_NONE;
+	pBuf[0].m_nBgColorIndex = COLORINDEX_NONE;
+	for (int i = 0; i < nWordDiffs; i++)
+	{
+		if (m_bIsLeft)
+		{
+			pBuf[1 + i * 2].m_nCharPos = worddiffs[i].start[0];
+			pBuf[2 + i * 2].m_nCharPos = worddiffs[i].end[0] + 1;
+		}
+		else
+		{
+			pBuf[1 + i * 2].m_nCharPos = worddiffs[i].start[1];
+			pBuf[2 + i * 2].m_nCharPos = worddiffs[i].end[1] + 1;
+		}
+		pBuf[1 + i * 2].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
+		pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND1 | COLORINDEX_APPLYFORCE;
+		pBuf[2 + i * 2].m_nColorIndex = COLORINDEX_NONE;
+		pBuf[2 + i * 2].m_nBgColorIndex = COLORINDEX_NONE;
+	}
+	return nWordDiffs * 2 + 1;
+}
+
+COLORREF CMergeDiffDetailView::GetColor(int nColorIndex)
+{
+	switch (nColorIndex & ~COLORINDEX_APPLYFORCE)
+	{
+	case COLORINDEX_HIGHLIGHTBKGND1:
+		return mf->m_options.GetInt(OPT_CLR_SELECTED_WORDDIFF);
+	case COLORINDEX_HIGHLIGHTTEXT1:
+		return mf->m_options.GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
+	case COLORINDEX_HIGHLIGHTBKGND2:
+		return mf->m_options.GetInt(OPT_CLR_WORDDIFF);
+	case COLORINDEX_HIGHLIGHTTEXT2:
+		return mf->m_options.GetInt(OPT_CLR_WORDDIFF_TEXT);
+	default:
+		return CCrystalTextView::GetColor(nColorIndex);
+	}
+}
 
 /// virtual, avoid coloring the whole diff with diff color 
 void CMergeDiffDetailView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,

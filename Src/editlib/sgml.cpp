@@ -262,6 +262,7 @@ if (pBuf != NULL)\
     if (nActualItems == 0 || pBuf[nActualItems - 1].m_nCharPos <= (pos)){\
         pBuf[nActualItems].m_nCharPos = (pos);\
         pBuf[nActualItems].m_nColorIndex = (colorindex);\
+        pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;\
         nActualItems ++;}\
   }
 

@@ -6,6 +6,16 @@
   Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirView.h DirViewColHandler.cpp
  PATCH: [ 1156188 ] Updated readme-innosetup
   Docs/Developers: readme-developers-InnoSetup.html
+ PATCH: [ 1147039 ] experimental patch for colored word diff
+  Submitted by Takashi Sawanaka
+  Src: MainFrm.cpp Merge.rc MergeDiffDetailView.cpp MergeDiffDetailView.h MergeDoc.h
+   MergeDocLineDiffs.cpp MergeEditView.cpp MergeEditView.h OptionsDef.h
+   PropColors.cpp PropColors.h resource.h
+  Src/editlib: asp.cpp basic.cpp batch.cpp ccrystaltextview.cpp ccrystaltextview.h
+   cplusplus.cpp csharp.cpp dcl.cpp fortran.cpp html.cpp ini.cpp is.cpp java.cpp
+   lisp.cpp pascal.cpp perl.cpp php.cpp python.cpp rexx.cpp rsrc.cpp sgml.cpp sh.cpp
+   siod.cpp sql.cpp tcl.cpp tex.cpp xml.cpp
+  Src/Languages: *.rc resource.h
 
 2005-03-04 Perry
  PATCH: [ 1156253 ] Fix filter helper handling of new filters

@@ -945,7 +945,7 @@ int CCrystalTextView::GetCharWidthFromDisplayableChar(const ViewableWhitespaceCh
  */
 void CCrystalTextView::
 DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
-                    int nColorIndex, COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset)
+                    int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset)
 {
   ASSERT (nCount >= 0);
   if (nCount > 0)
@@ -1024,11 +1024,14 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
 
               if (ptOrigin.x + nSumWidth > rcClip.left)
                 {
-                   if (crText == CLR_NONE)
+                   if (crText == CLR_NONE || nColorIndex & COLORINDEX_APPLYFORCE)
                      pdc->SetTextColor(GetColor(nColorIndex));
                    else
                      pdc->SetTextColor(crText);
-                   pdc->SetBkColor(crBkgnd);
+                   if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
+                     pdc->SetBkColor(GetColor(nBgColorIndex));
+                   else
+                     pdc->SetBkColor(crBkgnd);
 
                    pdc->SelectObject(GetFont(GetItalic(nColorIndex),
                        GetBold(nColorIndex)));
@@ -1053,7 +1056,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
 }
 
 void CCrystalTextView::
-DrawLineHelper (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip, int nColorIndex,
+DrawLineHelper (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex, 
                 COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos)
 {
   if (nCount > 0)
@@ -1093,23 +1096,24 @@ DrawLineHelper (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip, int nColorIn
           //  Draw part of the text before selection
           if (nSelBegin > 0)
             {
-              DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex, crText, crBkgnd, pszChars, nOffset, nSelBegin, nActualOffset);
+              DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex, nBgColorIndex, crText, crBkgnd, pszChars, nOffset, nSelBegin, nActualOffset);
             }
           if (nSelBegin < nSelEnd)
             {
-              DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex,
+              DrawLineHelperImpl (pdc, ptOrigin, rcClip,
+                  nColorIndex & ~COLORINDEX_APPLYFORCE, nBgColorIndex & ~COLORINDEX_APPLYFORCE, 
                   GetColor (COLORINDEX_SELTEXT),
                   GetColor (COLORINDEX_SELBKGND),
                   pszChars, nOffset + nSelBegin, nSelEnd - nSelBegin, nActualOffset);
             }
           if (nSelEnd < nCount)
             {
-              DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex, crText, crBkgnd, pszChars, nOffset + nSelEnd, nCount - nSelEnd, nActualOffset);
+              DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex, nBgColorIndex, crText, crBkgnd, pszChars, nOffset + nSelEnd, nCount - nSelEnd, nActualOffset);
             }
         }
       else
         {
-          DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex, crText, crBkgnd, pszChars, nOffset, nCount, nActualOffset);
+          DrawLineHelperImpl (pdc, ptOrigin, rcClip, nColorIndex, nBgColorIndex, crText, crBkgnd, pszChars, nOffset, nCount, nActualOffset);
         }
     }
 }
@@ -1176,6 +1180,12 @@ GetParseCookie (int nLineIndex)
     }
 
   return m_ParseCookies->GetAt(nLineIndex);
+}
+
+int CCrystalTextView::
+GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
+{
+  return 0;
 }
 
 //BEGIN SW
@@ -1282,7 +1292,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
 
           int nOffsetToUse = (nOffset > pBuf[I].m_nCharPos) ?
              nOffset : pBuf[I].m_nCharPos;
-          DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[I].m_nColorIndex, crText, crBkgnd, pszChars,
+          DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[I].m_nColorIndex, pBuf[I].m_nBgColorIndex, crText, crBkgnd, pszChars,
               (nOffset > pBuf[I].m_nCharPos)? nOffset : pBuf[I].m_nCharPos, 
               pBuf[I + 1].m_nCharPos - nOffsetToUse,
               nActualOffset, CPoint( nOffsetToUse, ptTextPos.y ));
@@ -1295,7 +1305,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
       ASSERT(pBuf[nActualItem].m_nCharPos >= 0 &&
         pBuf[nActualItem].m_nCharPos <= nLineLength);
 
-      DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex,
+      DrawLineHelper(pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex, pBuf[nActualItem].m_nBgColorIndex,
               crText, crBkgnd, pszChars, pBuf[nActualItem].m_nCharPos,
               nOffset + nCount - pBuf[nActualItem].m_nCharPos,
               nActualOffset, CPoint(pBuf[nActualItem].m_nCharPos, ptTextPos.y));
@@ -1303,7 +1313,7 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
   else
     {
       DrawLineHelper(
-              pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex, 
+              pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex, pBuf[nActualItem].m_nBgColorIndex,
               crText, crBkgnd, pszChars, nOffset, nCount, nActualOffset, ptTextPos);
     }
 
@@ -1342,6 +1352,63 @@ public:
   explicit IntArray(int len) { SetSize(len); }
 };
 
+int CCrystalTextView::
+MergeTextBlocks (TEXTBLOCK *pBuf1, int nBlocks1, TEXTBLOCK *pBuf2, int nBlocks2, TEXTBLOCK *&pMergedBuf)
+{
+  int i, j, k;
+
+  pMergedBuf = new TEXTBLOCK[nBlocks1 + nBlocks2];
+
+  for (i = 0, j = 0, k = 0; ; k++)
+  {
+    if (i >= nBlocks1 && j >= nBlocks2)
+    {
+      break;
+    }
+    else if ((i < nBlocks1 && j < nBlocks2) && (pBuf1[i].m_nCharPos == pBuf2[j].m_nCharPos))
+    {
+      pMergedBuf[k].m_nCharPos = pBuf2[j].m_nCharPos;
+      if (pBuf2[j].m_nColorIndex == COLORINDEX_NONE)
+        pMergedBuf[k].m_nColorIndex = pBuf1[i].m_nColorIndex;
+      else
+        pMergedBuf[k].m_nColorIndex = pBuf2[j].m_nColorIndex;
+      if (pBuf2[j].m_nBgColorIndex == COLORINDEX_NONE)
+        pMergedBuf[k].m_nBgColorIndex = pBuf1[i].m_nBgColorIndex;
+      else
+        pMergedBuf[k].m_nBgColorIndex = pBuf2[j].m_nBgColorIndex;
+      i++;
+      j++;
+    }
+    else if (j >= nBlocks2 || (i < nBlocks1 && pBuf1[i].m_nCharPos < pBuf2[j].m_nCharPos))
+    {
+      pMergedBuf[k].m_nCharPos = pBuf1[i].m_nCharPos;
+      if (nBlocks2 == 0 || pBuf2[j - 1].m_nColorIndex == COLORINDEX_NONE)
+        pMergedBuf[k].m_nColorIndex = pBuf1[i].m_nColorIndex;
+      else
+        pMergedBuf[k].m_nColorIndex = pBuf2[j - 1].m_nColorIndex;
+      if (nBlocks2 == 0 || pBuf2[j - 1].m_nBgColorIndex == COLORINDEX_NONE)
+        pMergedBuf[k].m_nBgColorIndex = pBuf1[i].m_nBgColorIndex;
+      else
+        pMergedBuf[k].m_nBgColorIndex = pBuf2[j - 1].m_nBgColorIndex;
+      i++;
+    }
+    else if (i >= nBlocks1 || (j < nBlocks2 && pBuf1[i].m_nCharPos > pBuf2[j].m_nCharPos))
+    {
+      pMergedBuf[k].m_nCharPos = pBuf2[j].m_nCharPos;
+      if (i > 0 && pBuf2[j].m_nColorIndex == COLORINDEX_NONE)
+        pMergedBuf[k].m_nColorIndex = pBuf1[i - 1].m_nColorIndex;
+      else
+        pMergedBuf[k].m_nColorIndex = pBuf2[j].m_nColorIndex;
+      if (i > 0 && pBuf2[j].m_nBgColorIndex == COLORINDEX_NONE)
+        pMergedBuf[k].m_nBgColorIndex = pBuf1[i - 1].m_nBgColorIndex;
+      else
+        pMergedBuf[k].m_nBgColorIndex = pBuf2[j].m_nBgColorIndex;
+      j++;
+    }
+  }
+  return k;
+}
+
 void CCrystalTextView::
 DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 {
@@ -1359,8 +1426,6 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   BOOL bDrawWhitespace = FALSE;
   COLORREF crBkgnd, crText;
   GetLineColors (nLineIndex, crBkgnd, crText, bDrawWhitespace);
-  if (crBkgnd == CLR_NONE)
-    crBkgnd = GetColor (COLORINDEX_BKGND);
 
   int nLength = GetLineLength (nLineIndex);
   LPCTSTR pszChars = GetLineChars (nLineIndex);
@@ -1377,10 +1442,25 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   // insert at least one textblock of normal color at the beginning
   pBuf[0].m_nCharPos = 0;
   pBuf[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
+  pBuf[0].m_nBgColorIndex = COLORINDEX_BKGND;
   nBlocks++;
   //END SW
   m_ParseCookies->SetAt(nLineIndex, ParseLine (dwCookie, nLineIndex, pBuf, nBlocks));
   ASSERT (m_ParseCookies->GetAt(nLineIndex) != - 1);
+
+////////
+  TEXTBLOCK *pAddedBuf = new TEXTBLOCK[(nLength+1) * 3];
+  int nAddedBlocks = GetAdditionalTextBlocks(nLineIndex, pAddedBuf);
+
+  TEXTBLOCK *pMergedBuf;
+  int nMergedBlocks = MergeTextBlocks(pBuf, nBlocks, pAddedBuf, nAddedBlocks, pMergedBuf);
+
+  delete[] pBuf;
+  delete[] pAddedBuf;
+
+  pBuf = pMergedBuf;
+  nBlocks = nMergedBlocks;
+///////
 
   //BEGIN SW
   int nActualItem = 0;
@@ -1394,7 +1474,8 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 
   //  Draw the line text
   CPoint origin (rc.left - m_nOffsetChar * nCharWidth, rc.top);
-  pdc->SetBkColor (crBkgnd);
+  if (crBkgnd != CLR_NONE)
+    pdc->SetBkColor (crBkgnd);
   if (crText != CLR_NONE)
     pdc->SetTextColor (crText);
 // BOOL bColorSet = FALSE;
@@ -1497,7 +1578,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 COLORREF CCrystalTextView::
 GetColor (int nColorIndex)
 {
-  switch (nColorIndex)
+  switch (nColorIndex & ~COLORINDEX_APPLYFORCE)
     {
     case COLORINDEX_WHITESPACE :
     case COLORINDEX_BKGND:
@@ -1531,6 +1612,14 @@ GetColor (int nColorIndex)
       return RGB (0, 0, 0);
     case COLORINDEX_SELTEXT:
       return RGB (255, 255, 255);
+    case COLORINDEX_HIGHLIGHTBKGND1:
+      return RGB (255, 160, 160);
+    case COLORINDEX_HIGHLIGHTTEXT1:
+      return RGB (0, 0, 0);
+    case COLORINDEX_HIGHLIGHTBKGND2:
+      return RGB (255, 255, 0);
+    case COLORINDEX_HIGHLIGHTTEXT2:
+      return RGB (0, 0, 0);
     }
   //  return RGB(255, 0, 0);
   return RGB (128, 0, 0);

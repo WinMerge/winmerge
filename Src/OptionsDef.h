@@ -23,6 +23,7 @@ const TCHAR OPT_SHOW_TOOLBAR[] = _T("Settings/ShowToolbar");
 const TCHAR OPT_SHOW_STATUSBAR[] = _T("Settings/ShowStatusbar");
 
 const TCHAR OPT_SYNTAX_HIGHLIGHT[] = _T("Settings/HiliteSyntax");
+const TCHAR OPT_WORDDIFF_HIGHLIGHT[] = _T("Settings/HiliteWordDiff");
 const TCHAR OPT_DISABLE_SPLASH[] = _T("Settings/DisableSplash");
 const TCHAR OPT_CREATE_BACKUPS[] = _T("Settings/BackupFile");
 const TCHAR OPT_VIEW_WHITESPACE[] =  _T("Settings/ViewWhitespace");
@@ -80,6 +81,14 @@ const TCHAR OPT_CLR_SELECTED_MOVEDBLOCK[] = _T("Settings/SelectedMovedBlockColor
 const TCHAR OPT_CLR_SELECTED_MOVEDBLOCK_DELETED[] = _T("Settings/SelectedMovedBlockDeletedColor");
 // The selected moved block text color
 const TCHAR OPT_CLR_SELECTED_MOVEDBLOCK_TEXT[] = _T("Settings/SelectedMovedBlockTextColor");
+// The word difference color
+const TCHAR OPT_CLR_WORDDIFF[] = _T("Settings/WordDifferenceColor");
+// The selected word difference color
+const TCHAR OPT_CLR_SELECTED_WORDDIFF[] = _T("Settings/SelectedWordDifferenceColor");
+// The word difference text color
+const TCHAR OPT_CLR_WORDDIFF_TEXT[] = _T("Settings/WordDifferenceTextColor");
+// The selected word difference text color
+const TCHAR OPT_CLR_SELECTED_WORDDIFF_TEXT[] = _T("Settings/SelectedWordDifferenceTextColor");
 
 // Compare options
 const TCHAR OPT_CMP_IGNORE_WHITESPACE[] = _T("Settings/IgnoreSpace");

@@ -41,6 +41,10 @@ CPropColors::CPropColors(COptionsMgr *optionsMgr) : CPropertyPage(CPropColors::I
 	m_clrSelMoved = optionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
 	m_clrSelMovedDeleted = optionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
 	m_clrSelMovedText = optionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
+	m_clrWordDiff = optionsMgr->GetInt(OPT_CLR_WORDDIFF);
+	m_clrSelWordDiff = optionsMgr->GetInt(OPT_CLR_SELECTED_WORDDIFF);
+	m_clrWordDiffText = optionsMgr->GetInt(OPT_CLR_WORDDIFF_TEXT);
+	m_clrSelWordDiffText = optionsMgr->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
 
 	// Set colors for buttons, do NOT invalidate
 	m_cDiff.SetColor(m_clrDiff, FALSE);
@@ -58,6 +62,10 @@ CPropColors::CPropColors(COptionsMgr *optionsMgr) : CPropertyPage(CPropColors::I
 	m_cSelMoved.SetColor(m_clrSelMoved, FALSE);
 	m_cSelMovedDeleted.SetColor(m_clrSelMovedDeleted, FALSE);
 	m_cSelMovedText.SetColor(m_clrSelMovedText, FALSE);
+	m_cWordDiff.SetColor(m_clrWordDiff, FALSE);
+	m_cSelWordDiff.SetColor(m_clrSelWordDiff, FALSE);
+	m_cWordDiffText.SetColor(m_clrWordDiffText, FALSE);
+	m_cSelWordDiffText.SetColor(m_clrSelWordDiffText, FALSE);
 
 	m_pOptionsMgr = optionsMgr;
 	//}}AFX_DATA_INIT
@@ -82,6 +90,10 @@ void CPropColors::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_SEL_MOVEDBLOCK_COLOR, m_cSelMoved);
 	DDX_Control(pDX, IDC_SEL_MOVEDBLOCK_DELETED_COLOR, m_cSelMovedDeleted);
 	DDX_Control(pDX, IDC_SEL_MOVEDBLOCK_TEXT_COLOR, m_cSelMovedText);
+	DDX_Control(pDX, IDC_SEL_WORDDIFFERENCE_TEXT_COLOR, m_cSelWordDiffText);
+	DDX_Control(pDX, IDC_WORDDIFFERENCE_TEXT_COLOR, m_cWordDiffText);
+	DDX_Control(pDX, IDC_SEL_WORDDIFFERENCE_COLOR, m_cSelWordDiff);
+	DDX_Control(pDX, IDC_WORDDIFFERENCE_COLOR, m_cWordDiff);
 	//}}AFX_DATA_MAP
 }
 
@@ -104,6 +116,10 @@ BEGIN_MESSAGE_MAP(CPropColors, CDialog)
 	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_COLOR, OnSelMovedColor)
 	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_DELETED_COLOR, OnSelMovedDeletedColor)
 	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_TEXT_COLOR, OnSelMovedTextColor)
+	ON_BN_CLICKED(IDC_WORDDIFFERENCE_COLOR, OnWordDifferenceColor)
+	ON_BN_CLICKED(IDC_SEL_WORDDIFFERENCE_COLOR, OnSelWordDifferenceColor)
+	ON_BN_CLICKED(IDC_WORDDIFFERENCE_TEXT_COLOR, OnWordDifferenceTextColor)
+	ON_BN_CLICKED(IDC_SEL_WORDDIFFERENCE_TEXT_COLOR, OnSelWordDifferenceTextColor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -342,6 +358,74 @@ void CPropColors::OnSelMovedTextColor()
 }
 
 /** 
+ * @brief User wants to change word difference color
+ */
+void CPropColors::OnWordDifferenceColor() 
+{
+	CColorDialog dialog(m_clrWordDiff);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrWordDiff = dialog.GetColor();
+		m_cWordDiff.SetColor(m_clrWordDiff);
+	}
+	SaveCustomColors();
+}
+
+/** 
+ * @brief User wants to change selected word difference color
+ */
+void CPropColors::OnSelWordDifferenceColor() 
+{
+	CColorDialog dialog(m_clrSelWordDiff);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrSelWordDiff = dialog.GetColor();
+		m_cSelWordDiff.SetColor(m_clrSelWordDiff);
+	}
+	SaveCustomColors();
+}
+
+/** 
+ * @brief User wants to change word difference text color
+ */
+void CPropColors::OnWordDifferenceTextColor() 
+{
+	CColorDialog dialog(m_clrWordDiffText);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrWordDiffText = dialog.GetColor();
+		m_cWordDiffText.SetColor(m_clrWordDiffText);
+	}
+	SaveCustomColors();
+}
+
+/** 
+ * @brief User wants to change selected word difference text color
+ */
+void CPropColors::OnSelWordDifferenceTextColor() 
+{
+	CColorDialog dialog(m_clrSelWordDiffText);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		m_clrSelWordDiffText = dialog.GetColor();
+		m_cSelWordDiffText.SetColor(m_clrSelWordDiffText);
+	}
+	SaveCustomColors();
+}
+
+/** 
  * @brief Resets colors to defaults
  */
 void CPropColors::OnDefaults()
@@ -361,6 +445,10 @@ void CPropColors::OnDefaults()
 	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_MOVEDBLOCK, m_clrSelMoved);
 	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, m_clrSelMovedDeleted);
 	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, m_clrSelMovedText);
+	m_pOptionsMgr->GetDefault(OPT_CLR_WORDDIFF, m_clrWordDiff);
+	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_WORDDIFF, m_clrSelWordDiff);
+	m_pOptionsMgr->GetDefault(OPT_CLR_WORDDIFF_TEXT, m_clrWordDiffText);
+	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_WORDDIFF_TEXT, m_clrSelWordDiffText);
 
 	m_cDiff.SetColor(m_clrDiff);
 	m_cSelDiff.SetColor(m_clrSelDiff);
@@ -377,6 +465,10 @@ void CPropColors::OnDefaults()
 	m_cSelMoved.SetColor(m_clrSelMoved);
 	m_cSelMovedDeleted.SetColor(m_clrSelMovedDeleted);
 	m_cSelMovedText.SetColor(m_clrSelMovedText);
+	m_cWordDiff.SetColor(m_clrWordDiff);
+	m_cSelWordDiff.SetColor(m_clrSelWordDiff);
+	m_cWordDiffText.SetColor(m_clrWordDiffText);
+	m_cSelWordDiffText.SetColor(m_clrSelWordDiffText);
 }
 
 /** 

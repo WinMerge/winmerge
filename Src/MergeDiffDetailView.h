@@ -107,6 +107,8 @@ protected:
 // Implementation
 protected:
 	virtual ~CMergeDiffDetailView();
+	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf);
+	virtual COLORREF GetColor(int nColorIndex);
 	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
                               COLORREF & crText, BOOL & bDrawWhitespace);
 	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz);

@@ -32,6 +32,7 @@
 #include <vector>
 #include "DiffWrapper.h"
 #include "DiffList.h"
+#include "stringdiffs.h"
 
 #ifndef _DIFF_FILE_INFO_H_INCLUDED
 #include "DiffFileInfo.h"
@@ -254,6 +255,7 @@ public:
 	typedef enum { BYTEDIFF, WORDDIFF } DIFFLEVEL;
 	void Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl);
 	void Showlinediff(CMergeDiffDetailView * pView, DIFFLEVEL difflvl);
+	void GetWordDiffArray(int nLineIndex, wdiffarray *pworddiffs);
 private:
 	void Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther, int line, CRect * rc1, CRect * rc2, DIFFLEVEL difflvl);
 // End MergeDocLineDiffs.cpp

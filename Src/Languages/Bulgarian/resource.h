@@ -233,6 +233,10 @@
 #define IDC_SAVEPROJECT                 1151
 #define IDC_FILTERFILE_NEWBTN           1152
 #define IDC_FILTERFILE_DELETEBTN        1153
+#define IDC_WORDDIFFERENCE_COLOR        1154
+#define IDC_SEL_WORDDIFFERENCE_COLOR    1155
+#define IDC_WORDDIFFERENCE_TEXT_COLOR   1156
+#define IDC_SEL_WORDDIFFERENCE_TEXT_COLOR 1157
 
 
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -769,6 +773,7 @@
 #define ID_VIEW_LOCATION_BAR            32820
 #define ID_VIEW_DIR_STATEPANE           32821
 #define ID_VIEW_LANGUAGE                32822
+#define ID_VIEW_LINEDIFFS               32823
 
 #define ID_PREVDIFF                     32832
 #define ID_NEXTDIFF                     32833
