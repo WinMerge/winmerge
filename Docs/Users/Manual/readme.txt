@@ -1,3 +1,7 @@
+2005-03-01 Kimmo
+ PATCH: [ 1153905 ] Doc: Update installation help for Merge7zInstaller
+  Manual: Install.xml
+
 2005-02-23 Kimmo
  PATCH: [ 1145560 ] Docs: Add link to updated developer-pages
   Manual: Introduction.xml
