@@ -1322,6 +1322,10 @@ SOURCE=.\UnicodeUtf8.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\common\UniFile.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\UTIL.C
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -1703,6 +1707,10 @@ SOURCE=..\common\unicoder.h
 # Begin Source File
 
 SOURCE=.\UnicodeUtf8.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\common\UniFile.h
 # End Source File
 # Begin Source File
 

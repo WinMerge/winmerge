@@ -1,11 +1,18 @@
 /**
- *  @file unicoder.cpp
+ *  @file   unicoder.cpp
+ *  @author Perry Rapp, Creator, 2003
+ *  @date   Created: 2003-10
+ *  @date   Edited:  2003-10-21 (Perry)
  *
- *  @brief Implementation of utility unicode conversion routines
- *
- */ 
-// RCS ID line follows -- this is updated by CVS
-// $Id$
+ *  @brief  Implementation of utility unicode conversion routines
+ */
+
+/* The MIT License
+Copyright (c) 2003 Perry Rapp
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
 
 #include "StdAfx.h"
 #include "unicoder.h"
@@ -479,7 +486,7 @@ convertToBuffer(const CString & src, LPVOID dest, UNICODESET codeset)
  * @brief Extract character from pointer, handling UCS-2 codesets (doesn't handle UTF-8)
  */
 UINT
-get_unicode_char(unsigned char * ptr, UNICODESET codeset)
+get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codepage)
 {
 	UINT ch;
 	switch (codeset)
@@ -491,9 +498,85 @@ get_unicode_char(unsigned char * ptr, UNICODESET codeset)
 		ch = (ptr[0] << 8) + ptr[1];
 		break;
 	default:
-		ch = byteToUnicode(*ptr);
+		ch = (codepage ? byteToUnicode(*ptr, codepage) : byteToUnicode(*ptr));
 	}
 	return ch;
+}
+
+/**
+ * @brief Convert series of bytes (8-bit chars) to TCHARs, using specified codepage
+ *
+ * TODO: This doesn't inform the caller whether translation was lossy
+ *  In fact, this doesn't even know. Probably going to have to make
+ *  two passes, the first with MB_ERR_INVALID_CHARS. Ugh. :(
+ */
+CString maketstring(unsigned char * lpd, UINT len, int codepage)
+{
+	static bool vercheck=false;
+	static int defcodepage = CP_ACP;
+	if (!vercheck)
+	{
+		if (!f_osvi_fetched) fetch_verinfo();
+		// Need 2000 or better for CP_THREAD_ACP
+		if (f_osvi.dwMajorVersion>=5)
+			defcodepage = CP_THREAD_ACP;
+		vercheck = true;
+	}
+	if (!len) return _T("");
+	if (!codepage)
+		codepage = defcodepage;
+
+	if (codepage == defcodepage)
+	{
+		// trivial case, they want the bytes in the file interpreted in our current codepage
+#ifndef UNICODE
+		return lpd;
+#else
+		CString s;
+		for (UINT i=0; i<len; ++i)
+			s += (wchar_t)(*lpd++);
+		return s;
+#endif
+	}
+
+	// Convert input to Unicode, using specified codepage
+	DWORD flags = 0;
+	int wlen = len*2+6;
+	wchar_t * wbuff = new wchar_t[wlen];
+	int n = MultiByteToWideChar(codepage, flags, (LPCSTR)lpd, len, wbuff, wlen-1);
+	if (!n)
+	{
+		delete [] wbuff;
+		return _T("?");
+	}
+	wbuff[n] = 0; // zero-terminate string
+
+#ifdef UNICODE
+	// wchar_t is TCHAR, so we're done
+	CString str = wbuff;
+	delete [] wbuff;
+	return str;
+#else
+	// Now convert to TCHAR (which means defcodepage)
+	flags = WC_NO_BEST_FIT_CHARS; // TODO: Think about this
+	CString str;
+	wlen = n;
+	int clen = wlen * 2 + 6;
+	LPSTR cbuff = str.GetBuffer(clen);
+	BOOL defaulted=FALSE;
+	n = WideCharToMultiByte(defcodepage, flags, wbuff, n, cbuff, clen-1, NULL, &defaulted);
+	if (n)
+	{
+		cbuff[n] = 0; // zero-terminate string
+		str.ReleaseBuffer();
+	}
+	else
+	{
+		str = _T("?");
+	}
+	delete [] wbuff;
+	return str;
+#endif
 }
 
 } // namespace ucr

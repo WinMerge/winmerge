@@ -1,3 +1,8 @@
+2003-10-23 Perry
+ PATCH: [ 826250 ] New UniMemFile class for memory-mapping
+  WinMerge: Merge.dsp MergeDoc.cpp
+  common: unicoder.cpp unicoder.h UniFile.cpp UniFile.h
+
 2003-10-22 Perry
  Fix compile for MakeResDll
   common: coretools.cpp

@@ -47,6 +47,7 @@
 #include "WaitStatusCursor.h"
 #include "FileTransform.h"
 #include "unicoder.h"
+#include "UniFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1040,11 +1041,11 @@ void CMergeDoc::CDiffTextBuffer::SetTempPath(CString path)
 /**
  * @brief Examine statistics in textFileStats and return a crystaltextbuffer enum value for line style
  */
-int GetTextFileStyle(const ParsedTextFile & parsedTextFile)
+int GetTextFileStyle(const UniMemFile::txtstats & stats)
 {
-	if (parsedTextFile.crlfs >= parsedTextFile.lfs)
+	if (stats.ncrlfs >= stats.nlfs)
 	{
-		if (parsedTextFile.crlfs >= parsedTextFile.crs)
+		if (stats.ncrlfs >= stats.ncrs)
 		{
 			return CRLF_STYLE_DOS;
 		}
@@ -1055,7 +1056,7 @@ int GetTextFileStyle(const ParsedTextFile & parsedTextFile)
 	}
 	else
 	{
-		if (parsedTextFile.lfs >= parsedTextFile.crs)
+		if (stats.nlfs >= stats.ncrs)
 		{
 			return CRLF_STYLE_UNIX;
 		}
@@ -1091,7 +1092,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 //	We call FreeAll just before reading m_aLines
 //	ASSERT(!m_bInit);
 //	ASSERT(m_aLines.GetSize() == 0);
-	MAPPEDFILEDATA fileData = {0};
+
 	CString sExt;
 	BOOL bSuccess = FALSE;
 	int nRetVal = FRESULT_OK;
@@ -1103,54 +1104,44 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
 	
-	// Init filedata struct and open file as memory mapped 
-	_tcsncpy(fileData.fileName, pszFileName, countof(fileData.fileName));
-	fileData.bWritable = FALSE;
-	fileData.dwOpenFlags = OPEN_EXISTING;
-	bSuccess = files_openFileMapped(&fileData);
+	UniMemFile ufile(pszFileName);
+	UniFile * pufile = &ufile;
 
-	// Inefficiency here
-	// We load up the line array in files_loadLines
-	// only to recopy them all into m_aLines
-	// This wouldn't be bad if it were a CString copy (as CStrings are reference counted)
-	// but I think that AppendLine leads to a new allocation
-	// so we are copying the whole file into textFileStats line buffers
-	// and then recopying it into crystal line buffers
-	// so... perhaps this could be improved.
+	// Now we only use the UniFile interface
+	// which is something we could implement for HTTP and/or FTP files
 
-	ParsedTextFile parsedTextFile;
-	if (bSuccess)
-		nRetVal = files_loadLines(&fileData, &parsedTextFile);
-	else
-		nRetVal = FRESULT_ERROR;
-	
-	if (nRetVal == FRESULT_OK)
+	if (pufile->OpenReadOnly())
 	{
-		// FreeAll() is needed before loading (this is complicated)
-		FreeAll();
-
-		m_aLines.SetSize(parsedTextFile.lines.GetSize(), 4096);
-		
-		DWORD dwBytesRead = 0;
-		TCHAR *lpChar = (TCHAR *)fileData.pMapBase;
-		TCHAR *lpLineBegin = lpChar;
-		int eolChars = 0;
+		pufile->ReadBom();
 		UINT lineno = 0;
-		for ( ; lineno < parsedTextFile.lines.GetSize(); ++lineno)
+		CString line, eol;
+
+		// Manually grow line array exponentially
+		int arraysize = 500;
+		m_aLines.SetSize(arraysize);
+		
+		while (pufile->ReadString(line, eol))
 		{
-			textline & lp = parsedTextFile.lines.GetAt(lineno);
+			// Manually grow line array exponentially
+			if (lineno == arraysize)
+			{
+				arraysize *= 2;
+				m_aLines.SetSize(arraysize);
+				
+			}
 
-			// Skipping iconvert call here
-			// because I don't know if it even works
-			// Perry 2003-09-15
-
-			AppendLine(lineno, lp.sline, lp.sline.GetLength());
+			line += eol;
+			AppendLine(lineno, line, line.GetLength());
+			++lineno;
 		}
+		// fix array size (due to our manual exponential growth
+		m_aLines.SetSize(lineno);
+	
 		
 		//Try to determine current CRLF mode (most frequent)
 		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
 		{
-			nCrlfStyle = GetTextFileStyle(parsedTextFile);
+			nCrlfStyle = GetTextFileStyle(pufile->GetTxtStats());
 		}
 		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
 		SetCRLFMode(nCrlfStyle);
@@ -1178,7 +1169,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 		nRetVal = FRESULT_OK;
 
 		// stash original encoding away
-		switch (parsedTextFile.codeset)
+		switch (pufile->GetUnicoding())
 		{
 		case ucr::UCS2LE:
 			m_nSourceEncoding = -20;
@@ -1190,11 +1181,10 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 			m_nSourceEncoding = -22;
 			break;
 		}
-		if (parsedTextFile.lossy)
+		if (pufile->GetTxtStats().nlosses)
 			readOnly = TRUE;
 	}
 	
-	files_closeFileMapped(&fileData, 0xFFFFFFFF, FALSE);
 
 	// delete the file that unpacking may have created
 	if (_tcscmp(pszFileNameInit, pszFileName) != 0)
