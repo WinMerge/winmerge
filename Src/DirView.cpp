@@ -43,6 +43,7 @@
 #include "7zCommon.h"
 #include "OptionsDef.h"
 #include "BCMenu.h"
+#include "WindowStyle.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -289,16 +290,20 @@ void CDirView::OnInitialUpdate()
 	// Display column headers (in appropriate order)
 	ReloadColumns();
 
+	// Show selection all the time, so user can see current item even when
+	// focus is elsewhere (ie, on file edit window)
+	WindowStyle_Add(m_pList, LVS_SHOWSELALWAYS);
+
 	// Show selection across entire row.
 	// Also allow user to rearrange columns via drag&drop of headers
 	// if they have a new enough common controls
-	DWORD newstyle = LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP;
+	DWORD exstyle = LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP;
 	// Also enable infotips if they have new enough version for our
 	// custom draw code
 	// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
 	if (GetDllVersion(_T("comctl32.dll")) >= PACKVERSION(4,71))
-		newstyle |= LVS_EX_INFOTIP;
-	m_pList->SetExtendedStyle(newstyle);
+		exstyle |= LVS_EX_INFOTIP;
+	m_pList->SetExtendedStyle(exstyle);
 
 	// Disable CListViewEx's full row selection which only causes problems
 	// (tooltips and custom draw do not work!)

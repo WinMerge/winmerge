@@ -11,6 +11,10 @@
    cregexp.cpp csharp.cpp dcl.cpp filesup.cpp fortran.cpp html.cpp js.cpp
    java.cpp list.cpp pascal.cpp perl.cpp php.cpp python.cpp rexx.cpp rsrc.cpp
    sgml.cpp sh.cpp siod.cpp sql.cpp tcl.cpp tex.cpp xml.cpp
+ PATCH: [ 1157859 ] Add LVS_SHOWSELALWAYS style to dirview
+  Src: DirView.cpp
+  Common new files: WindowStyle.cpp WindowStyle.h
+
 
 2005-03-05 Perry
  Rename CDirFrame::SetFilter to CDirFrame::SetFilterStatusDisplay for easier greps.
