@@ -270,7 +270,6 @@ public:
 	BOOL InitTempFiles(const CString& strPathL, const CString& strPathR);
 	void SetCurrentDiff(int nDiff);
 	int GetCurrentDiff() { return m_nCurDiff; }
-	UINT CountPrevBlanks(UINT nCurLine, BOOL bLeft);
 	virtual ~CMergeDoc();
 	virtual void OnFileEvent (WPARAM wEvent, LPCTSTR pszPathName);
 	BOOL GetMergingMode() const;

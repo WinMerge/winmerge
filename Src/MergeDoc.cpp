@@ -1139,33 +1139,6 @@ void CMergeDoc::SetDiffViewMode(BOOL bEnable)
 	}
 }
 
-
-UINT CMergeDoc::CountPrevBlanks(UINT nCurLine, BOOL bLeft)
-{
-	UINT nBlanks=0;
-	int blk,end;
-	for (int i=0; i < (int)m_nDiffs; i++)
-	{
-		if (bLeft)
-		{
-			blk = m_diffs[i].blank0;
-			end = m_diffs[i].dend0;
-		}
-		else
-		{
-			blk = m_diffs[i].blank1;
-			end = m_diffs[i].dend0;
-		}
-		if (blk >= (int)nCurLine)
-		{
-			break;
-		}
-		else if (blk >= 0)
-			nBlanks += end - blk + 1;
-	}
-	return nBlanks;
-}
-
 BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/) 
 {
 	// Allow user to cancel closing

@@ -7,6 +7,8 @@
  PATCH: [ 1039495 ] Trap diffutils errors with SEH
   Src: DiffWrapper.cpp DiffWrapper.h
   Src/diffutils/src: UTIL.C
+ PATCH: [ 1003107 ] Remove unused CMergeDoc::CountPrevBlanks()
+  Src: MergeDoc.cpp MergeDoc.h
 
 2004-10-04 Perry
  PATCH: [ 1039300 ] Factor listviewex code so it can be used with a CListCtrlEx.
