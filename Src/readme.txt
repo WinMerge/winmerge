@@ -1,3 +1,14 @@
+2003-01-20
+ [ 671034 ] operator precedence bug in SplitterWndEx.cpp
+
+2003-01-15
+ [ 650384 ] Fix for false equals for binary files
+ [ 651689 ] Add OpenLeft, OpenLeftWith, ... context
+ [ 650293 ] Implement context menus with multiselect
+
+2003-01-14
+ [ 665993 ] Little optimisation
+
 2002-11-26  Perry
  Implemented recursive directory delete
  Fix bug in EOL handling in crystaltextbuffer, and add optional EOL sensitivity.
