@@ -1128,7 +1128,7 @@ END
 // Cursor
 //
 
-IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
+IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
