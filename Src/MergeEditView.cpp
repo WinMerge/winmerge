@@ -27,6 +27,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <shlwapi.h>
 #include "merge.h"
 #include "MergeEditView.h"
 #include "MergeDiffDetailView.h"
@@ -34,6 +35,7 @@
 #include "MainFrm.h"
 #include "WaitStatusCursor.h"
 #include "MergeEditStatus.h"
+#include "lwdisp.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -104,6 +106,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE, OnUpdateFileSave)
 	ON_COMMAND(ID_SHOWLINEDIFF, OnShowlinediff)
 	ON_UPDATE_COMMAND_UI(ID_SHOWLINEDIFF, OnUpdateShowlinediff)
+	ON_WM_CONTEXTMENU()
 	ON_UPDATE_COMMAND_UI(ID_EDIT_REPLACE, OnUpdateEditReplace)
 	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
 	ON_UPDATE_COMMAND_UI(ID_FILE_LEFT_READONLY, OnUpdateLeftReadOnly)
@@ -1132,4 +1135,108 @@ void CMergeEditView::OnUpdateStatusRightRO(CCmdUI* pCmdUI)
 }
 
 
+static UINT NTAPI PopulateMenu(HMENU hMenu, UINT uID, LPDISPATCH piDispatch)
+{
+	if (piDispatch)
+	{
+		ITypeInfo *piTypeInfo;
+		if SUCCEEDED(piDispatch->GetTypeInfo(0, 0, &piTypeInfo))
+		{
+			TYPEATTR *pTypeAttr;
+			if SUCCEEDED(piTypeInfo->GetTypeAttr(&pTypeAttr))
+			{
+				UINT iMaxFunc = pTypeAttr->cFuncs - 1;
+				for (UINT iFunc = 0 ; iFunc <= iMaxFunc ; ++iFunc)
+				{
+					UINT iFuncDesc = iMaxFunc - iFunc;
+					FUNCDESC *pFuncDesc;
+					if SUCCEEDED(piTypeInfo->GetFuncDesc(iFuncDesc, &pFuncDesc))
+					{
+						// exclude properties
+						// exclude IDispatch inherited methods
+						if (pFuncDesc->invkind & INVOKE_FUNC && !(pFuncDesc->wFuncFlags & 1))
+						{
+							BSTR bstrName;
+							UINT cNames;
+							if SUCCEEDED(piTypeInfo->GetNames(pFuncDesc->memid,
+								&bstrName, 1, &cNames))
+							{
+								PCH pchName = B2A(bstrName);
+								AppendMenu(hMenu, MF_STRING, uID++, pchName);
+								SysFreeString(bstrName);
+							}
+						}
+						piTypeInfo->ReleaseFuncDesc(pFuncDesc);
+					}
+				}
+				piTypeInfo->ReleaseTypeAttr(pTypeAttr);
+			}
+			piTypeInfo->Release();
+		}
+	}
+	return uID;
+}
 
+/*
+ * @brief Offer a context menu build with scriptlet functions
+ *
+ * @note The scriptlet file is "contextmenu.sct" in WinMerge directory.
+ * The path is always ANSI even if UNICODE is defined.
+ */
+void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point) 
+{
+	static LPDISPATCH piScript = 0;
+
+	if (piScript == 0)
+	{
+		char path[MAX_PATH];
+		::GetModuleFileNameA(0, path, sizeof path);
+		::PathRemoveFileSpecA(path);
+		::PathAppendA(path, "contextmenu.sct");
+		piScript = ::CreateDispatchBySource(path, "Scriptlet");
+	}
+
+	if (piScript == 0)
+		return;
+
+	HMENU hMenu = ::CreatePopupMenu();
+	::PopulateMenu(hMenu, 101, piScript);
+	::AppendMenu(hMenu, MF_SEPARATOR, -1, 0);
+	::AppendMenu(hMenu, MF_STRING, 100, "Unload script");
+
+	if (short response = ::TrackPopupMenu(hMenu, TPM_RETURNCMD, point.x, point.y, 0, m_hWnd, 0))
+	{
+		if (response == 100)
+		{
+			if (piScript)
+			{
+				piScript->Release();
+				piScript = 0;
+			}
+		}
+		else
+		{
+			// text is CHAR if compiled without UNICODE, WCHAR with UNICODE
+			CString text = GetSelectedText();
+
+			// variable to receive the method's return value:
+			// derived from VARIANT, so it is always WCHAR
+			LWRet ret;
+			// as GetMenuStringW() does not work with Win9x,
+			// first GetMenuStringA(), then MultiByteToWideChar():
+			CHAR cName[260];
+			::GetMenuStringA(hMenu, response, cName, DIMOF(cName), MF_BYCOMMAND);
+			WCHAR wcName[260];
+			::MultiByteToWideChar(CP_ACP, 0, cName, -1, wcName, DIMOF(wcName));
+			// invoke method by name:
+			::invokeW(piScript, &ret, wcName, opFxn[1], LWArgT(text));
+			// when UNICODE is not defined, 
+			// V_BSTR performs the conversion BSTR (wide char pointer) to lpchar
+			text = V_BSTR(&ret);
+
+			// now replace the text
+			ReplaceSelection(text, 0);
+		}
+	}
+	::DestroyMenu(hMenu);
+}

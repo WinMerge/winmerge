@@ -85,7 +85,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeDebug/WinMerge.exe" /pdbtype:sept
+# ADD LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeDebug/WinMerge.exe" /pdbtype:sept
 
 !ENDIF 
 
@@ -279,6 +279,19 @@ SOURCE=.\DirViewColItems.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\common\dllproxy.c
+
+!IF  "$(CFG)" == "Merge - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
 SOURCE=.\dllver.cpp
 # End Source File
 # Begin Source File
@@ -389,6 +402,19 @@ SOURCE=.\locality.cpp
 # Begin Source File
 
 SOURCE=..\common\LogFile.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\common\lwdisp.c
+
+!IF  "$(CFG)" == "Merge - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /YX /Yc /Yu
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -744,6 +770,10 @@ SOURCE=.\DirViewColItems.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\common\dllproxy.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\dllver.h
 # End Source File
 # Begin Source File
@@ -793,6 +823,10 @@ SOURCE=.\locality.h
 # Begin Source File
 
 SOURCE=..\common\LogFile.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\common\lwdisp.h
 # End Source File
 # Begin Source File
 

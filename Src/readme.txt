@@ -1,4 +1,7 @@
 2003-09-08 Laoran
+ PATCH: [ 799633 ] context menu with scriptlet, from Jochen Tucht
+  WinMerge: Merge.dsp MergeEditView.cpp MergeEditView.h
+  common new files: dllproxy.c dllproxy.h lwdisp.c lwdisp.h
  PATCH: [ 802373 ] undo/redo/onEditOperation when RO (2.1)
   WinMerge: MergeEditView.cpp
  PATCH: [ 802359 ] display in diff pane when no diff (2.1)

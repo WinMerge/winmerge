@@ -193,6 +193,7 @@ protected:
 	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
 	afx_msg void OnShowlinediff();
 	afx_msg void OnUpdateShowlinediff(CCmdUI* pCmdUI);
+	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnUpdateEditReplace(CCmdUI* pCmdUI);
 	afx_msg void OnLeftReadOnly();
 	afx_msg void OnUpdateLeftReadOnly(CCmdUI* pCmdUI);
