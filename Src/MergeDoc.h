@@ -72,6 +72,10 @@ private :
 		BOOL m_bIsLeft;
 		BOOL FlagIsSet(UINT line, DWORD flag);
 
+		BOOL SafeReadFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength);
+		int DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength);
+		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
+		int ReadEOL(TCHAR *lpLineEnd, DWORD bytesLeft, int nCrlfStyle);
 	    BOOL SafeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength);
 		BOOL SafeReplaceFile(LPCTSTR pszReplaced, LPCTSTR pszReplacement);
 public :
@@ -79,6 +83,7 @@ public :
 	      void ReplaceLine(int nLine, const CString& strText);
 		UINT GetTextWithoutEmptys(int nStartLine, int nStartChar, int nEndLine, int nEndChar, 
 				CString &text, BOOL bLeft, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
+		BOOL LoadFromFile(LPCTSTR pszFileName, int nCrlfStyle = CRLF_STYLE_AUTOMATIC);
 		BOOL SaveToFile (LPCTSTR pszFileName, 
 											 int nCrlfStyle = CRLF_STYLE_AUTOMATIC , 
 											 BOOL bClearModifiedFlag = TRUE );

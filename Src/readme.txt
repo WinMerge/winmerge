@@ -1,3 +1,7 @@
+2003-04-06 Kimmo
+ PATCH: [ 715457 ] LoadFromFile() rewrote
+  WinMerge: MergeDoc.h MergeDoc.cpp
+
 2003-04-06 Perry
  PATCH: [ 716088 ] Fix bin same/diff bug in Diff.cpp & analyze.c
   WinMerge: analyze.c Diff.cpp

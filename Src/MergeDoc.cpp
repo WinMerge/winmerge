@@ -1083,6 +1083,206 @@ UINT CMergeDoc::CDiffTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStart
 	return nBufSize;
 }
 
+BOOL CMergeDoc::CDiffTextBuffer::SafeReadFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength)
+{
+	DWORD dwReadBytes = 0;
+	if (::ReadFile(hFile, lpBuf, dwLength, &dwReadBytes, NULL))
+	{
+		if (dwLength == dwReadBytes)
+			return TRUE;
+	}
+	return FALSE;
+}
+
+// Try to determine current CRLF mode based on first line
+int CMergeDoc::CDiffTextBuffer::DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength)
+{
+	WORD wLoopSize = 0xffff;
+	int nCrlfStyle = CRLF_STYLE_DOS;	// Default
+	TCHAR * lpBuffer = (TCHAR *)lpBuf;
+
+	if (dwLength < 0xffff)
+		wLoopSize = dwLength;
+
+	// Find first linebreak
+	for (DWORD i = 0; i < wLoopSize; i++, lpBuffer++)
+	{
+		if ((*lpBuffer == _T('\r')) || (*lpBuffer == _T('\n')))
+			break;
+	}
+
+	// By default (or in the case of empty file) use DOS style
+	if (i < wLoopSize)
+	{
+		//  Otherwise, analyse the first occurance of line-feed character
+		if (*lpBuffer == _T('\n'))
+			nCrlfStyle = CRLF_STYLE_UNIX;
+		else
+		{
+			// Found '\r', CRLF is DOS ('\r\n') or MAC ('\r')
+			if (i < wLoopSize - 1 && *(lpBuffer+1) == _T('\n'))
+				nCrlfStyle = CRLF_STYLE_DOS;
+			else
+				nCrlfStyle = CRLF_STYLE_MAC;
+		}
+	}
+	return nCrlfStyle;
+}
+
+// Reads one line from filebuffer and inserts to textbuffer
+void CMergeDoc::CDiffTextBuffer::ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen /* =0 */)
+{
+	if (m_nSourceEncoding >= 0)
+		iconvert (lpLineBegin, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
+	InsertLine(lpLineBegin, dwLineLen);
+}
+
+// Reads different EOL formats and returns length of EOL
+// This function is safe: it first checks that there are unread bytes,
+// so that we do not read past EOF
+int CMergeDoc::CDiffTextBuffer::ReadEOL(TCHAR *lpLineEnd, DWORD bytesLeft, int nCrlfStyle)
+{
+	int eolBytes = 0;
+	
+	// EOL sensitive - ignore '\r' if '\r\n'
+	if (mf->m_bEolSensitive)
+	{
+		// If >1 bytes left, there can be '\n' too
+		if (*lpLineEnd == '\r' && bytesLeft > 1)
+		{
+			if (*(lpLineEnd+1) == '\n')
+			{
+				// '\r\n'
+				*(lpLineEnd+1) = '\0';
+				eolBytes = 2;
+			}
+			else
+			{
+				*(lpLineEnd) = '\0';
+				eolBytes = 1;
+			}
+		}
+		else
+		{
+			*(lpLineEnd) = '\0';
+			eolBytes = 1;
+		}
+	}
+	else
+	{
+		if (bytesLeft > 1)
+		{
+			if ( (*lpLineEnd == '\r') && *(lpLineEnd+1) == '\n')
+				eolBytes = 2;
+			else
+				eolBytes = 1;
+		}
+		else
+			eolBytes = 1;
+
+		*(lpLineEnd) = '\0';
+	}
+	return eolBytes;
+}
+
+BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
+		int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/)
+{
+	ASSERT(!m_bInit);
+	ASSERT(m_aLines.GetSize() == 0);
+	HANDLE hFile = NULL;
+	BOOL bSuccess = TRUE;
+	LPTSTR pcBuf = NULL;
+	DWORD dwFileSize = 0;
+	CString sExt;
+
+	SplitFilename(pszFileName, NULL, NULL, &sExt);
+	CCrystalTextView::TextDefinition *def = 
+			CCrystalTextView::GetTextType((LPCTSTR)sExt);
+	if (def && def->encoding != -1)
+		m_nSourceEncoding = def->encoding;
+	
+	hFile =::CreateFile(pszFileName, GENERIC_READ,
+		FILE_SHARE_READ, NULL, OPEN_EXISTING,
+		FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL);
+
+	if (hFile != INVALID_HANDLE_VALUE)
+	{
+		dwFileSize = GetFileSize(hFile, NULL);
+		if ( dwFileSize != INVALID_FILE_SIZE )
+			pcBuf = new TCHAR[dwFileSize + 1];
+	}
+
+	// pcBuf is != NULL only if file was opened, size read and
+	// buffer allocated succesfully
+	if (pcBuf)
+	{
+		ZeroMemory( pcBuf, sizeof(TCHAR) * (dwFileSize + 1));
+		if (SafeReadFile(hFile, pcBuf, dwFileSize))
+		{
+			//Try to determine current CRLF mode based on first line
+			if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+				nCrlfStyle = DetermineCRLFStyle(pcBuf, dwFileSize);
+		}
+		else
+			bSuccess = FALSE;
+	}
+
+	if (bSuccess)
+	{
+		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
+		SetCRLFMode(nCrlfStyle);
+		
+		m_aLines.SetSize(0, 4096);
+		
+		DWORD dwBytesRead = 0;
+		TCHAR *lpChar = (TCHAR *) pcBuf;
+		TCHAR *lpLineBegin = lpChar;
+		int eolChars = 0;
+		while (dwBytesRead < dwFileSize)
+		{
+			TCHAR c = *lpChar;
+			
+			// EOL found
+			if (c == '\n' || c == '\r')
+			{
+				eolChars = ReadEOL(lpChar, dwFileSize - dwBytesRead,
+					nCrlfStyle);
+				ReadLineFromBuffer(lpLineBegin, lpChar - lpLineBegin);
+					
+				lpChar += eolChars;
+				dwBytesRead += eolChars;	// Skip EOL chars
+				lpLineBegin = lpChar;
+			}
+			else
+			{
+				lpChar++;
+				dwBytesRead++;
+			}
+		}
+		ReadLineFromBuffer(lpLineBegin, lpChar - lpLineBegin);
+		ASSERT(m_aLines.GetSize() > 0);   //  At least one empty line must present
+		
+		m_bInit = TRUE;
+		m_bModified = FALSE;
+		m_bUndoGroup = m_bUndoBeginGroup = FALSE;
+		m_nUndoBufSize = 1024; // crystaltextbuffer.cpp - UNDO_BUF_SIZE;
+		m_nSyncPosition = m_nUndoPosition = 0;
+		ASSERT(m_aUndoBuf.GetSize() == 0);
+		bSuccess = TRUE;
+		
+		UpdateViews(NULL, NULL, UPDATE_RESET);
+		m_ptLastChange.x = m_ptLastChange.y = -1;
+	}
+	
+	if (pcBuf != NULL)
+		delete[] pcBuf;
+
+	if (hFile != NULL && hFile != INVALID_HANDLE_VALUE)
+		::CloseHandle(hFile);
+	return bSuccess;
+}
+
 BOOL CMergeDoc::CDiffTextBuffer::SafeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength)
 {
 	DWORD dwWrittenBytes = 0;
