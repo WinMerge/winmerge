@@ -1374,8 +1374,8 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 
 		if (m_unicoding != ucr::NONE)
 		{
-			ucr::writeBom(fileData.pMapBase, (ucr::UNICODESET)m_unicoding);
-			ucr::convertToBuffer(text, fileData.pMapBase, (ucr::UNICODESET)m_unicoding, m_codepage);
+			int bom_bytes = ucr::writeBom(fileData.pMapBase, (ucr::UNICODESET)m_unicoding);
+			ucr::convertToBuffer(text, (char*)fileData.pMapBase+bom_bytes, (ucr::UNICODESET)m_unicoding, m_codepage);
 		}
 		else 
 		{

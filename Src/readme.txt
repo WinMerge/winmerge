@@ -1,3 +1,7 @@
+2003-11-19 Laoran
+ BUG: [ 845012 ] SaveToFile does not write BOM
+  WinMerge: MergeDoc.cpp
+
 2003-11-18 WinMerge beta 2.1.4.0 released
 
 2003-11-18 Laoran
