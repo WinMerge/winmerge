@@ -1,6 +1,8 @@
 2004-09-26 Kimmo
  PATCH: [ 1034981 ] Web: Add Japanese to translation status table
   Web\developer\l10n: status.xml
+ PATCH: [ 1034986 ] Web: Catalan and Italian translations actively maintained
+  Web\developer\l10n: status.xml
 
 2004-09-14 Kimmo
  Add Lee Jae-Hong as Korean translator
