@@ -683,6 +683,8 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 				pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.idx);
 			else
 				pDoc->SetDiffCompare(DIFFCODE::SAME, act.idx);
+
+			pDoc->SetDiffCounts(0, 0, act.idx);
 			pDoc->ReloadItemStatus(act.idx);
 		}
 		else if (actionList.atype == ActionList::ACT_MOVE_LEFT ||
