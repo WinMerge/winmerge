@@ -868,6 +868,18 @@ int CMainFrame::HandleReadonlySave(CString& strSavePath, BOOL bMultiFile,
 	
 	if (bFileExists && bFileRO)
 	{
+		// Version control system used?
+		// Checkout file from VCS and modify, don't ask about overwriting
+		// RO files etc.
+		if (m_nVerSys > 0)
+		{
+			BOOL bRetVal = SaveToVersionControl(strSavePath);
+			if (bRetVal)
+				return IDYES;
+			else
+				return IDCANCEL;
+		}
+		
 		// Don't ask again if its already asked
 		if (bApplyToAll)
 			userChoice = IDYES;

@@ -6,6 +6,8 @@
  BUG: [ 936525 ] RO not removed in refresh
   Don't set files/dirs with RO fileflag RO in UI - this was bad idea!
   Src: DirView.cpp MainFrm.cpp
+ BUG: [ 978062 ] VSS support broken
+  Src: MainFrm.cpp
 
 2004-06-22 Kimmo
  PATCH: [ 977475 ] Log DeleteFile() failure in FileTransform.cpp
