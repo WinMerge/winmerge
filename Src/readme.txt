@@ -1,5 +1,10 @@
-2003-07-31 Kimmo
+2003-08-04 Kimmo
+ PATCH: [ 780359 ] Open identical files
+  WinMerge: DirView.cpp MainFrm.cpp
+
+2003-07-31 Laoran
  PATCH: [ 780827 ] Tooltips for DirView
+  Submitted by Kimmo
   WinMerge: DirView.cpp DirView.h
 
 2003-07-31 Laoran

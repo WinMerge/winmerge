@@ -370,7 +370,10 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	}
 	
 	nRescanResult = pMergeDoc->Rescan();
-	if (nRescanResult == RESCAN_OK)
+
+	// Open different and identical files
+	if (nRescanResult == RESCAN_OK ||
+		nRescanResult == RESCAN_IDENTICAL)
 	{
 		if (docNull)
 		{
@@ -420,6 +423,10 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 		BOOL bInsertTabs = (m_nTabType == 0);
 		pLeft->SetInsertTabs(bInsertTabs);
 		pRight->SetInsertTabs(bInsertTabs);
+
+		// Inform user that files are identical
+		if (nRescanResult == RESCAN_IDENTICAL)
+			pMergeDoc->ShowRescanError(nRescanResult);
 	}
 	else
 	{

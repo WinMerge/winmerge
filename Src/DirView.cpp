@@ -487,16 +487,13 @@ void CDirView::OpenSelection()
 		DIFFITEM di = GetDiffContext()->GetDiffAt(diffpos);
 		switch(di.code)
 		{
+		// Open identical and different files
 		case FILE_DIFF:
+		case FILE_SAME:
 			{
 				CString left, right;
 				GetItemFileNames(sel, left, right);
 				mf->ShowMergeDoc(GetDocument(), left, right);
-			}
-			break;
-		case FILE_SAME:
-			{
-				AfxMessageBox(IDS_FILESSAME, MB_ICONINFORMATION);
 			}
 			break;
 		case FILE_LDIRUNIQUE:
@@ -524,7 +521,6 @@ void CDirView::OpenSelection()
 			break;
 		}
 	}
-
 }
 
 // User chose (context menu) delete left
