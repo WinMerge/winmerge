@@ -32,13 +32,18 @@ class VSSHelper
 {
 public:
 	CString GetProjectBase();
-	void SetProjectBase(CString strPath);
+	BOOL SetProjectBase(CString strPath);
 
 	BOOL ReLinkVCProj(CString strSavePath,CString * psError);
+	void GetFullVSSPath(CString strSavePath, BOOL & bVCProj);
 
 protected:
-	BOOL GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset);
-	void GetFullVSSPath(CString strSavePath, BOOL & bVCProj);
+	BOOL GetWordFromFile(HANDLE pfile, TCHAR * buffer, DWORD dwBufferSize, TCHAR * charset = NULL);
+	int GetWordFromBuffer(TCHAR * inBuffer, DWORD dwInBufferSize,
+		TCHAR * outBuffer, DWORD dwOutBufferSize, TCHAR * charset = NULL);
+	BOOL GetVCProjName(HANDLE hFile, HANDLE tFile);
+	BOOL GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf);
+	BOOL GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf);
 
 private:
 	CString m_strVssProjectBase;

@@ -14,6 +14,8 @@
   Docs/Users: Contributors.txt
  PATCH: [ 1176600 ] Drag location pane indicator with mouse
   Src: LocationView.cpp LocationView.h
+ PATCH: [ 1168568 ] Cleanup some VSSHelper code
+  Src: VSSHelper.cpp VSSHelper.h
 
 2005-04-03 Kimmo
  PATCH: [ 1175319 ] Dutch translation update

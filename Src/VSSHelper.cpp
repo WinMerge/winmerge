@@ -32,10 +32,10 @@ CString VSSHelper::GetProjectBase()
 	return m_strVssProjectBase;
 }
 
-void VSSHelper::SetProjectBase(CString strPath)
+BOOL VSSHelper::SetProjectBase(CString strPath)
 {
 	if (strPath.GetLength() < 2)
-		return;
+		return FALSE;
 
 	m_strVssProjectBase = strPath;
 	m_strVssProjectBase.Replace('/', '\\');
@@ -46,14 +46,14 @@ void VSSHelper::SetProjectBase(CString strPath)
 	
 	if (m_strVssProjectBase[m_strVssProjectBase.GetLength() - 1] == '\\')
 		m_strVssProjectBase.Delete(m_strVssProjectBase.GetLength() - 1, 1);
+	return TRUE;
 }
 
 BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 {
 	const UINT nBufferSize = 1024;
-	static TCHAR buffer[nBufferSize];
-	static TCHAR buffer1[nBufferSize];
-	static TCHAR buffer2[nBufferSize];
+	TCHAR buffer[nBufferSize] = {0};
+	TCHAR buffer1[nBufferSize] = {0};
 	TCHAR tempPath[MAX_PATH] = {0};
 	TCHAR tempFile[MAX_PATH] = {0};
 	CString spath;
@@ -124,29 +124,18 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 
 		static TCHAR charset[] = _T(" \t\n\r=");
 		DWORD numwritten = 0;
+		BOOL succeed = TRUE;
 	
-		ZeroMemory(&buffer2, nBufferSize * sizeof(TCHAR));
-		while (GetWordFile(hfile, buffer, charset))
+		while (succeed && GetWordFromFile(hfile, buffer, nBufferSize, charset))
 		{
-			WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
+			if (!WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL))
+				succeed = FALSE;
 			if (bVCPROJ)
 			{
-				if (!_tcscmp(buffer, _T("SccProjectName")))
+				if (_tcscmp(buffer, _T("SccProjectName")) == 0)
 				{
-					//nab the equals sign
-					GetWordFile(hfile, buffer, _T("="));
-					WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
-					CString stemp = _T("\"&quot;") + m_strVssProjectFull + 
-						_T("&quot;");
-					WriteFile(tfile, stemp, stemp.GetLength(),
-						&numwritten, NULL);
-					GetWordFile(hfile, buffer, _T(",\n"));//for junking
-					GetWordFile(hfile, buffer, _T(",\n"));//get the next delimiter
-					if (!_tcscmp(buffer, _T("\n")))
-					{
-						WriteFile(tfile, _T("\""), 1, &numwritten, NULL);						
-					}
-					WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
+					if (!GetVCProjName(hfile, tfile))
+						succeed = FALSE;
 				}
 			}
 			else
@@ -154,75 +143,37 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 				//find sccprojectname inside this string
 				if (_tcsstr(buffer, _T("SccProjectUniqueName")) == buffer)
 				{
-					//nab until next no space, and no =
-					GetWordFile(hfile, buffer, _T(" ="));
-					WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
-					//nab word
-					GetWordFile(hfile, buffer, _T("\\\n."));
-					while (!_tcsstr(buffer, _T(".")))
-					{						
-						if (buffer[0] != '\\')
-						{
-							_stprintf(buffer1, _T("%s/%s"), buffer2, buffer);//put append word to file
-							_tcscpy(buffer2,buffer1);
-						}
-						WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
-						GetWordFile(hfile, buffer, _T("\\\n."));
-					}
-					WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
+					if (!GetSLNProjUniqueName(hfile, tfile, buffer))
+						succeed = FALSE;
 				}
 				else if (_tcsstr(buffer, _T("SccProjectName")) == buffer)
 				{
-					
-					//buffer2 appends
-					CString capp;
-					if (buffer2[0] != '\\' && !_tcsstr(buffer2, _T(".")))
-					{
-						//write out \\u0020s for every space in buffer2
-						ZeroMemory(&buffer1, nBufferSize * sizeof(TCHAR));
-						ZeroMemory(&buffer, nBufferSize * sizeof(TCHAR));
-						for (TCHAR * pc = buffer2; *pc; pc++)
-						{
-							if (*pc == ' ')//insert \\u0020
-							{
-								_stprintf(buffer, _T("%s\\u0020"), buffer1);
-								_tcscpy(buffer1, buffer);
-							}
-							else
-							{
-								int slb2 = _tcslen(buffer1);
-								buffer1[slb2] = *pc;
-								buffer1[slb2+1] = '\0';
-							}
-						}
-						_tcslwr(buffer1);
-						capp = buffer1;
-						
-						//nab until the no space, and no =
-						GetWordFile(hfile, buffer, _T(" ="));
-						WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
-						CString stemp =  _T("\\u0022") + m_strVssProjectFull + capp + _T("\\u0022");
-						WriteFile(tfile, stemp, stemp.GetLength(),
-							&numwritten, NULL);
-						
-						//nab until the first backslash
-						GetWordFile(hfile, buffer, _T(","));
-						ZeroMemory(&buffer2, nBufferSize * sizeof(TCHAR));						
-					}
+					if (!GetSLNProjName(hfile, tfile, buffer))
+						succeed = FALSE;
 				}
 			}
 		}
 		CloseHandle(hfile);
 		CloseHandle(tfile);
-		if (!CopyFile(tempFile, strSavePath, FALSE))
+
+		if (succeed)
 		{
-			*psError = GetSysError(GetLastError());
-			DeleteFile(tempFile);
-			return FALSE;
+			if (!CopyFile(tempFile, strSavePath, FALSE))
+			{
+				*psError = GetSysError(GetLastError());
+				DeleteFile(tempFile);
+				return FALSE;
+			}
+			else
+				DeleteFile(tempFile);
 		}
 		else
 		{
-			DeleteFile(tempFile);
+			CString msg;
+			AfxFormatString2(msg, IDS_ERROR_FILEOPEN,
+					strSavePath, GetSysError(GetLastError()));
+			*psError = msg;
+			return FALSE;
 		}
 	}
 	return TRUE;
@@ -278,109 +229,221 @@ void VSSHelper::GetFullVSSPath(CString strSavePath, BOOL & bVCProj)
  * @brief Reads words from a file deliminated by charset
  *
  * Reads words from a file deliminated by charset with one slight twist.
- * If the next char in the file to be read is one of the characters inside the delimiter,
- * then the word returned will be a word consisting only of delimiters.
- * 
- * @note pfile is not incremented past the word returned
+ * If the next char in the file to be read is one of the characters inside
+ * the delimiter, then the word returned will be a word consisting only
+ * of delimiters.
+ * @param [in] pfile Opened handle to file
+ * @param [in] buffer pointer to buffer read data is put
+ * @param [in] dwBufferSize size of buffer
+ * @param [in] charset pointer to string containing delimiter chars
  */
-BOOL VSSHelper::GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset)
+BOOL VSSHelper::GetWordFromFile(HANDLE pfile, TCHAR * buffer,
+		DWORD dwBufferSize, TCHAR * charset)
 {
-	TCHAR cbuffer[1024];
+	TCHAR buf[1024] = {0};
+	const DWORD bytesToRead = sizeof(buf);
+	DWORD bytesRead = 0;
+
+	if (ReadFile(pfile, (LPVOID)buf, bytesToRead, &bytesRead, NULL))
+	{
+		int charsRead = GetWordFromBuffer(buf, bytesRead, buffer,
+			dwBufferSize, charset);
+		if (charsRead > 0)
+			SetFilePointer(pfile, -1, NULL, FILE_CURRENT);
+	}
+	else
+		return FALSE;
+
+	return TRUE;
+}
+
+int VSSHelper::GetWordFromBuffer(TCHAR *inBuffer, DWORD dwInBufferSize,
+		TCHAR * outBuffer, DWORD dwOutBufferSize, TCHAR * charset)
+{
 	TCHAR ctemp = '\0';
-	TCHAR * pcharset;
-	int buffercount = 0;
+	TCHAR * pcharset = NULL;
+	UINT buffercount = 0;
 	DWORD numread = sizeof(ctemp);
 	BOOL delimword = FALSE;
-	BOOL FirstRead = FALSE;
+	BOOL firstRead = FALSE; // First char read ?
 	BOOL delimMatch = FALSE;
 
-	ASSERT(pfile != NULL && pfile != INVALID_HANDLE_VALUE);
-	ZeroMemory(&cbuffer, sizeof(cbuffer));
-	
-	while (numread == sizeof(ctemp) && buffercount < sizeof(cbuffer))
-	{
-		if (ReadFile(pfile, (LPVOID)&ctemp, sizeof(ctemp), &numread, NULL) == TRUE)
-		{
-			//first read:
-			if (!FirstRead && charset)
-			{
-				for (pcharset = charset; *pcharset; pcharset++)
-				{
-					if (ctemp == *pcharset)
-						break;
-				}
-				if (*pcharset != NULL)//means that cbuffer[0] is a delimiter character
-					delimword = TRUE;
-				FirstRead = TRUE;
-			}
+	ASSERT(inBuffer != NULL && outBuffer != NULL);
 
-			if (numread == sizeof(ctemp))
+	while (buffercount < dwInBufferSize && buffercount < dwOutBufferSize)
+	{
+		ctemp = *inBuffer;
+		if (!firstRead && charset)
+		{
+			for (pcharset = charset; *pcharset; pcharset++)
 			{
-				if (!charset)
+				if (ctemp == *pcharset)
+					break;
+			}
+			if (*pcharset != NULL) // Means that cbuffer[0] is a delimiter character
+				delimword = TRUE;
+			firstRead = TRUE;
+		}
+
+		if (!charset)
+		{
+			if (ctemp != ' ' && ctemp != '\n' && ctemp != '\t' && ctemp != '\r')
+			{
+				*outBuffer = ctemp;
+				buffercount++;
+			}
+			else
+				break;
+		}
+		else if (delimword == FALSE)
+		{
+			for (pcharset = charset; *pcharset; pcharset++)
+			{
+				//if next char is equal to a delimiter or we want delimwords stop the adding
+				if (ctemp == *pcharset)
+					break;
+			}
+			if (*pcharset == NULL)
+			{
+				*outBuffer = ctemp;
+				buffercount++;
+			}
+			else
+				break;
+		}
+		else if (delimword == TRUE)
+		{
+			delimMatch = FALSE;
+			for (pcharset = charset; *pcharset; pcharset++)
+			{						
+				//if next char is equal to a delimiter or we want delimwords stop the adding
+				if (ctemp == *pcharset)
 				{
-					if (ctemp != ' ' && ctemp != '\n' && ctemp != '\t' && ctemp != '\r')
-					{
-						cbuffer[buffercount] = ctemp;
-						buffercount++;
-					}
-					else
-					{
-						SetFilePointer(pfile,-1,NULL,FILE_CURRENT);
-						break;
-					}
-				}
-				else if (delimword == FALSE)
-				{
-					for (pcharset = charset;*pcharset;pcharset++)
-					{						
-						//if next char is equal to a delimiter or we want delimwords stop the adding
-						if (ctemp == *pcharset)
-						{
-							SetFilePointer(pfile,-1,NULL,FILE_CURRENT);
-							break;
-						}
-					}
-					if (*pcharset == NULL)
-					{
-						cbuffer[buffercount] = ctemp;
-						buffercount++;
-					}
-					else
-						break;
-				}
-				else if (delimword == TRUE)
-				{
-					delimMatch = FALSE;
-					for (pcharset = charset;*pcharset;pcharset++)
-					{						
-						//if next char is equal to a delimiter or we want delimwords stop the adding
-						if (ctemp == *pcharset)
-						{
-							delimMatch = TRUE;
-							break;
-						}
-					}
-					if (delimMatch == TRUE)
-					{
-						cbuffer[buffercount] = ctemp;
-						buffercount++;
-					}
-					else
-					{
-						SetFilePointer(pfile,-1,NULL,FILE_CURRENT);
-						break;
-					}
+					delimMatch = TRUE;
+					break;
 				}
 			}
+			if (delimMatch == TRUE)
+			{
+				*outBuffer = ctemp;
+				buffercount++;
+			}
+			else
+				break;
 		}
-		else
-		{
-			DWORD err = GetLastError();
-			return FALSE;
-		}
+	
+		inBuffer += sizeof(TCHAR);
 	}
-	_tcscpy(buffer, cbuffer);
-	if (buffercount >= sizeof(cbuffer) || numread == 0)
+	if (buffercount >= dwOutBufferSize || numread == 0)
+		return 0;
+	return buffercount;
+}
+
+BOOL VSSHelper::GetVCProjName(HANDLE hFile, HANDLE tFile)
+{
+	TCHAR buffer[1024] = {0};
+	DWORD dwNumWritten = 0;
+	
+	ASSERT(hFile != NULL && hFile != INVALID_HANDLE_VALUE &&
+		tFile != NULL && tFile != INVALID_HANDLE_VALUE);
+
+	//nab the equals sign
+	if (!GetWordFromFile(hFile, buffer, countof(buffer), _T("=")))
 		return FALSE;
+	if (!WriteFile(tFile, buffer, _tcslen(buffer),
+			&dwNumWritten, NULL))
+		return FALSE;
+
+	CString stemp = _T("\"&quot;") + m_strVssProjectFull + 
+		_T("&quot;");
+	if (!WriteFile(tFile, stemp, stemp.GetLength(),
+			&dwNumWritten, NULL))
+		return FALSE;
+
+	if (!GetWordFromFile(hFile, buffer, countof(buffer), _T(",\n"))) //for junking
+		return FALSE;
+	if (!GetWordFromFile(hFile, buffer, countof(buffer), _T(",\n"))) //get the next delimiter
+		return FALSE;
+
+	if (!_tcscmp(buffer, _T("\n")))
+	{
+		if (!WriteFile(tFile, _T("\""), 1, &dwNumWritten, NULL))
+			return FALSE;
+	}
+	if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
+		return FALSE;
+
+	return TRUE;
+}
+
+BOOL VSSHelper::GetSLNProjUniqueName(HANDLE hFile, HANDLE tFile, TCHAR * buf)
+{
+	TCHAR buffer[1024] = {0};
+	DWORD dwNumWritten = 0;
+
+	ASSERT(hFile != NULL && hFile != INVALID_HANDLE_VALUE &&
+		tFile != NULL && tFile != INVALID_HANDLE_VALUE);
+	ASSERT(buf != NULL);
+
+	//nab until next no space, and no =
+	if (!GetWordFromFile(hFile, buffer, countof(buffer), _T(" =")))
+		return FALSE;
+	if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
+		return FALSE;
+	//nab word
+	if (!GetWordFromFile(hFile, buffer, countof(buffer), _T("\\\n.")))
+		return FALSE;
+	while (!_tcsstr(buffer, _T(".")))
+	{						
+		if (buffer[0] != '\\')
+			_tcsncat(buf, buffer, _tcslen(buffer));
+
+		if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
+			return FALSE;
+		if (!GetWordFromFile(hFile, buffer, countof(buffer), _T("\\\n.")))
+			return FALSE;
+	}
+	if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
+		return FALSE;
+
+	return TRUE;
+}
+
+BOOL VSSHelper::GetSLNProjName(HANDLE hFile, HANDLE tFile, TCHAR * buf)
+{
+	TCHAR buffer[1024] = {0};
+	DWORD dwNumWritten = 0;
+
+	ASSERT(hFile != NULL && hFile != INVALID_HANDLE_VALUE &&
+		tFile != NULL && tFile != INVALID_HANDLE_VALUE);
+	ASSERT(buf != NULL);
+	
+	CString capp;
+	if (*buf != '\\' && !_tcsstr(buf, _T(".")))
+	{
+		//write out \\u0020s for every space in buffer2
+		for (TCHAR * pc = buf; *pc; pc++)
+		{
+			if (*pc == ' ') //insert \\u0020
+				capp += _T("\\u0020");
+			else
+				capp += *pc;
+		}
+		capp.MakeLower();
+
+		//nab until the no space, and no =
+		if (!GetWordFromFile(hFile, buffer, countof(buffer), _T(" =")))
+			return FALSE;
+		if (!WriteFile(tFile, buffer, _tcslen(buffer), &dwNumWritten, NULL))
+			return FALSE;
+		CString stemp = _T("\\u0022") + m_strVssProjectFull + capp + _T("\\u0022");
+		if (!WriteFile(tFile, stemp, stemp.GetLength(),
+				&dwNumWritten, NULL))
+			return FALSE;
+		
+		//nab until the first backslash
+		if (!GetWordFromFile(hFile, buffer, countof(buffer), _T(",")))
+			return FALSE;
+	}
 	return TRUE;
 }
