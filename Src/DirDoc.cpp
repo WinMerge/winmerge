@@ -709,6 +709,9 @@ BOOL DirDocFilterGlobal::includeFile(LPCTSTR szFileName)
 	CString strFileName = szFileName;
 	if (strFileName[0] != _T('\\'))
 		strFileName = _T('\\') + strFileName;
+	// append a point if there is no extension
+	if (strFileName.Find(_T('.')) == -1)
+		strFileName = strFileName + _T('.');
 	return theApp.includeFile(strFileName);
 }
 
@@ -734,6 +737,9 @@ BOOL DirDocFilterByExtension::includeFile(LPCTSTR szFileName)
 	CString strFileName = szFileName;
 	if (strFileName[0] != _T('\\'))
 		strFileName = _T('\\') + strFileName;
+	// append a point if there is no extension
+	if (strFileName.Find(_T('.')) == -1)
+		strFileName = strFileName + _T('.');
 	return (! m_rgx.RegFind(strFileName));
 }
 

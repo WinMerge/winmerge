@@ -1,4 +1,6 @@
 2003-12-09 Laoran
+ BUG: [ 842812 ] Some extension filtering happening by default (fix for *.*)
+  WinMerge: DirDoc.cpp 
  Don't preprend a backslash to filename if there is already one (test for filter)
   WinMerge: DirDoc.cpp
 
