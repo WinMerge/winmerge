@@ -1,3 +1,7 @@
+2004-01-09 Perry
+ PATCH: [ 872762 ] Stricter error handling for Plugins
+  WinMerge: Plugins.cpp
+
 2004-01-09 Kimmo
  Fix parameter type, CMergeDoc::TrySaveAs() second param is int.
   WinMerge: CMergeDoc.cpp

@@ -27,6 +27,10 @@
 // $Id$
 
 #include "StdAfx.h"
+#ifndef __AFXMT_H__
+#include <afxmt.h>
+#endif
+
 #include "FileTransform.h"
 #include "Plugins.h"
 #include "lwdisp.h"
@@ -41,6 +45,10 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+static CStringArray theScriptletList;
+static bool scriptletsLoaded=false;
+static CSemaphore scriptletsSem;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -242,27 +250,34 @@ BOOL PluginInfo::TestAgainstRegList(LPCTSTR szTest)
 /**
  * @brief Try to load a plugin
  *
- * @return true if plugin seems valid
+ * @return 1 if plugin handles this event, 0 if not, -1 if any error
  */
-static bool LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LPCWSTR transformationEvent)
+static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LPCWSTR transformationEvent)
 {
 	// Search for the class "WinMergeScript"
 	LPDISPATCH lpDispatch = CreateDispatchBySource(scriptletFilepath, L"WinMergeScript");
 	if (lpDispatch == 0)
-		return false;
+		return -1; // error
+
+	// Ensure that interface is released if any bad exit or exception
+	COleDispatchDriver drv(lpDispatch);
 
 	// Is this plugin for this transformationEvent ?
-	HRESULT h;
 	VARIANT ret;
-	// invoke method get PluginEvent
+	// invoke mandatory method get PluginEvent
 	VariantInit(&ret);
-	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginEvent"))
-		h = ::invokeW(lpDispatch, &ret, L"PluginEvent", opGet[0], NULL);
-	if (FAILED(h) || ret.vt != VT_BSTR || (wcscmp(ret.bstrVal, transformationEvent) != 0))
+	if (!SearchScriptForDefinedProperties(lpDispatch, L"PluginEvent"))
 	{
-		lpDispatch->Release();
-		return false;
-
+		return -1; // error
+	}
+	HRESULT h = ::invokeW(lpDispatch, &ret, L"PluginEvent", opGet[0], NULL);
+	if (FAILED(h) || ret.vt != VT_BSTR)
+	{
+		return -1; // error
+	}
+	if (wcscmp(ret.bstrVal, transformationEvent) != 0)
+	{
+		return 0; // doesn't handle this event
 	}
 	VariantClear(&ret);
 
@@ -293,39 +308,66 @@ static bool LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, L
 	}
 	if (bFound == FALSE)
 	{
-		lpDispatch->Release();
-		return false;
+		return -1; // error (Plugin doesn't support the method as it claimed)
 	}
 
 
-	// get PluginDescription
+	// get optional property PluginDescription
 	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginDescription"))
+	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginDescription"))
+	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginDescription", opGet[0], NULL);
-	if (!FAILED(h) && ret.vt == VT_BSTR)
+		if (FAILED(h) || ret.vt != VT_BSTR)
+		{
+			return -1; // error (Plugin had PluginDescription property, but error getting its value)
+		}
 		plugin.description = ret.bstrVal;
+	}
 	else
+	{
 		// no description, use filename
 		plugin.description = scriptletFilepath.Mid(scriptletFilepath.ReverseFind('\\') + 1);
-	VariantClear(&ret);
-
-	// get PluginIsAutomatic
-	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginIsAutomatic"))
-		h = ::invokeW(lpDispatch, &ret, L"PluginIsAutomatic", opGet[0], NULL);
-	if (!FAILED(h) && ret.vt == VT_BOOL)
-		plugin.bAutomatic = ret.boolVal;
-	else
-		plugin.bAutomatic = FALSE;
+	}
 	VariantClear(&ret);
 
 	// get PluginFileFilters
+	bool hasPluginFileFilters = false;
 	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginFileFilters"))
+	{
 		h = ::invokeW(lpDispatch, &ret, L"PluginFileFilters", opGet[0], NULL);
-	if (!FAILED(h) && ret.vt == VT_BSTR)
+		if (FAILED(h) || ret.vt != VT_BSTR)
+		{
+			return -1; // error (Plugin had PluginFileFilters property, but error getting its value)
+		}
 		plugin.filtersText= ret.bstrVal;
+		hasPluginFileFilters = true;
+	}
 	else
 	{
 		plugin.bAutomatic = FALSE;
 		plugin.filtersText = ".";
+	}
+	VariantClear(&ret);
+
+	// get optional property PluginIsAutomatic
+	if (SearchScriptForDefinedProperties(lpDispatch, L"PluginIsAutomatic"))
+	{
+		h = ::invokeW(lpDispatch, &ret, L"PluginIsAutomatic", opGet[0], NULL);
+		if (FAILED(h) || ret.vt != VT_BOOL)
+		{
+			return -1; // error (Plugin had PluginIsAutomatic property, but error getting its value)
+		}
+		plugin.bAutomatic = ret.boolVal;
+	}
+	else
+	{
+		if (hasPluginFileFilters)
+		{
+			// PluginIsAutomatic property is mandatory for Plugins with PluginFileFilters property
+			return -1;
+		}
+		// default to FALSE when Plugin doesn't have property
+		plugin.bAutomatic = FALSE;
 	}
 	VariantClear(&ret);
 
@@ -336,8 +378,11 @@ static bool LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, L
 
 	plugin.bUnicodeMode = bUnicodeMode;
 
+	// Clear the autorelease holder
+	drv.m_lpDispatch = NULL;
+
 	plugin.lpDispatch = lpDispatch;
-	return true;
+	return 1;
 }
 
 static void ReportPluginLoadFailure(const CString & scriptletFilepath, LPCWSTR transformationEvent)
@@ -352,9 +397,9 @@ static void ReportPluginLoadFailure(const CString & scriptletFilepath, LPCWSTR t
 /**
  * @brief Guard call to LoadPlugin with Windows SEH to trap GPFs
  *
- * @return true/false result from LoadPlugin
+ * @return same as LoadPlugin (1=has event, 0=doesn't have event, -1=error)
  */
-static bool LoadPluginWrapper(PluginInfo & plugin, const CString & scriptletFilepath, LPCWSTR transformationEvent)
+static int LoadPluginWrapper(PluginInfo & plugin, const CString & scriptletFilepath, LPCWSTR transformationEvent)
 {
 	__try {
 		return LoadPlugin(plugin, scriptletFilepath, transformationEvent);
@@ -364,6 +409,41 @@ static bool LoadPluginWrapper(PluginInfo & plugin, const CString & scriptletFile
 	return false;
 }
 
+/**
+ * @brief Return list of all candidate plugins in module path
+ *
+ * Computes list only the first time, and caches it.
+ */
+static CStringArray & LoadTheScriptletList()
+{
+	if (!scriptletsLoaded)
+	{
+		CSingleLock lock(&scriptletsSem);
+		CString path = GetModulePath() + _T("\\MergePlugins\\");
+
+		GetScriptletsAt(path, _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
+		GetScriptletsAt(path, _T(".ocx"), theScriptletList );		// VB COM object
+		GetScriptletsAt(path, _T(".dll"), theScriptletList );		// VC++ COM object
+		scriptletsLoaded = true;
+	}
+	return theScriptletList;
+}
+
+/**
+ * @brief Remove a candidate plugin from the cache
+ */
+static void RemoveScriptletCandidate(const CString &scriptletFilepath)
+{
+	for (int i=0; i<theScriptletList.GetSize(); ++i)
+	{
+		if (scriptletFilepath == theScriptletList[i])
+		{
+			theScriptletList.RemoveAt(i);
+			return;
+		}
+	}
+}
+
 /** 
  * @brief Get available scriptlets for an event
  *
@@ -371,26 +451,35 @@ static bool LoadPluginWrapper(PluginInfo & plugin, const CString & scriptletFile
  */
 static PluginArray * GetAvailableScripts( LPCWSTR transformationEvent, BOOL getScriptletsToo ) 
 {
-	CString path = GetModulePath() + _T("\\MergePlugins\\");
-
-	CStringArray scriptlets;
-	GetScriptletsAt(path, _T(".sct"), scriptlets );		// VBS/JVS scriptlet
-	GetScriptletsAt(path, _T(".ocx"), scriptlets );		// VB COM object
-	GetScriptletsAt(path, _T(".dll"), scriptlets );		// VC++ COM object
+	CStringArray & scriptlets = LoadTheScriptletList();
 
 	PluginArray * pPlugins = new PluginArray;
 
 	int i;
+	CStringList badScriptlets;
 	for (i = 0 ; i < scriptlets.GetSize() ; i++)
 	{
 		// Note all the info about the plugin
 		PluginInfo plugin;
 
 		CString scriptletFilepath = scriptlets.GetAt(i);
-		if (LoadPluginWrapper(plugin, scriptletFilepath, transformationEvent))
+		int rtn = LoadPluginWrapper(plugin, scriptletFilepath, transformationEvent);
+		if (rtn == 1)
 		{
+			// Plugin has this event
 			pPlugins->Add(plugin);
 		}
+		else if (rtn == -1)
+		{
+			// Plugin is bad
+			badScriptlets.AddTail(scriptletFilepath);
+		}
+	}
+	// Remove any bad plugins from the cache
+	// This might be a good time to see if the user wants to abort or continue
+	while (!badScriptlets.IsEmpty())
+	{
+		RemoveScriptletCandidate(badScriptlets.RemoveHead());
 	}
 
 	return pPlugins;
