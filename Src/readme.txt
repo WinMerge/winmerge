@@ -1,3 +1,28 @@
+2004-03-16 Seier
+  Installer [Patch 917142]:
+    -Now detects whether or not the user requires an updated ComCtl32.dll and if needed updates it.  
+    -Corrupt Shell Extension folder association removed from the registry (no more errors in Windows Explorer)
+    -Explorer "WinMerge" context menu support added
+    -The View Start Menu folder option at the end of the install no longer appears if the user chose not to create a start menu group
+    -Portugese is now listed amongst the other selectable languages in alpahbetic order
+    -Catalan, Norwegian, Polish, Russian, and Swedish translations have been added to the installer for a total of 17 languages! Way to go 
+      Translators!  Eventually we'll all just get lazy and speak Mergish :).  
+
+    -WinMerge's "User's Guide" and "Read Me" files installed and added to the user's start menu
+      Program Files\Docs\ created containing:
+        * Read Me.rtf
+        * Contributors.rtf
+        * \User's Guide\	
+
+    -The Read Me.rtf was divided into two files: Read Me.rtf and Contributors.rtf 
+      (since this information is non-technical ands considerable bloat to the main Read Me file)
+
+    -Obsolete registry settings LeftMax and DirViewMax are now deleted rather than reset 
+      (note: all registry deletions in Inno Setup must have Type set to "None")  
+
+    -Whether or not TortoiseCVS is installed support for it is added to the registry.  That way if a user ever installs it our application with start working       with it automatically :) (don't worry this only causes two possibly unecessary registry values and one key to be created)
+	
+    -Since all three of the core WinMerge application files WinMerge*.exe, Merge7z*.dll, and ShellExtension.dll all use Ole Automation, I've included the 	      necessary runtime: OleAut32.dll (VS6 Service Pack 5)
 2004-03-16 Kimmo
  RFE [ 917196 ] Directory Comparison Results baloon annoyance
   Don't show infotip for filename when whole filename is already shown
