@@ -1,3 +1,7 @@
+2005-01-23 Perry
+ PATCH: [ 1107516 ] Suggest code simplification for DiffFileInfo ctr
+  Src: DiffFileInfo.h
+
 2005-01-22 Perry
  PATCH: [ 1107484 ] Fix broken version columns
   Src: DiffContext.cpp DiffContext.h DiffFileInfo.cpp DiffFileInfo.h 

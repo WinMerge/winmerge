@@ -87,7 +87,7 @@ struct DiffFileInfo
 	FileFlags flags; /**< file attributes */
 	int codepage; /**< 8bit codepage, if applicable, 0 is unknown or N/A */
 	int unicoding; /**< Unicode encoding (ucr::CODESET) */
-	DiffFileInfo() : ctime(0), mtime(0), size(-1), bVersionChecked(false), codepage(0), unicoding(0) { }
+	DiffFileInfo() { Clear(); }
 
 	CString getEncodingString() const;
 	// We could stash a pointer here to the parent DIFFITEM
