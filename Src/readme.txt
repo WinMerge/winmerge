@@ -1,10 +1,14 @@
+2004-03-26 Perry
+ Src/Languages: Bulgarian/MergeBulgarian.rc
+  Many cosmetic changes to make MergeBulgarian.rc match Merge.rc (mostly dropping obsolete keywords).
+
 2004-03-26 Laoran
  [ 847155 ] Utf8len_of_string is wrong for 8-bit
   Src/Common: unicoder.cpp unicoder.h
 
 2004-03-26 Perry
  Docs/Users: Contributors.rtf
- Add Bulgarian credit to contributors.rtf. Move Portuguese to alphabetically Portuguese.
+  Add Bulgarian credit to contributors.rtf. Move Portuguese to alphabetically Portuguese.
 
 2004-03-26 seier
   Fixed Swedish Language had a description of Spanish in the installer.  
