@@ -54,11 +54,11 @@
     </authorgroup>
   </articleinfo>
   &AboutDoc;
+  &QuickStart;
   &Introduction;
   &WhatsNew21;
   &Install;
   &IntroductDiffing;
-  &QuickStart;
   &OpenPaths;
   &CompareDirs;
   &CompareFiles;

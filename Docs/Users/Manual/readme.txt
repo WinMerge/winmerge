@@ -7,6 +7,8 @@
   Manual: Configuration.xml
  PATCH: [ 1034717 ] Docs: Add missing languages to Locales section list
   Manual: Locales.xml
+ PATCH: [ 1034722 ] Docs: Move Quick start to second in toc
+  Manual: WinMerge_help.xml
 
 2004-09-25 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations
