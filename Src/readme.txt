@@ -1,3 +1,7 @@
+2004-10-03 Kimmo
+ PATCH: [ 1039096 ] Save ignore EOL option when changed during file loading
+  Src: MergeDoc.cpp
+
 2004-10-02 Kimmo
  PATCH: [ 1039001 ] Swedish translation update
   Submitted by Hans Eriksson

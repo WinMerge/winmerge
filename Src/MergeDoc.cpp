@@ -2757,6 +2757,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		{
 			diffOptions.bEolSensitive = FALSE;
 			m_diffWrapper.SetOptions(&diffOptions);
+			mf->m_options.SaveOption(OPT_CMP_EOL_SENSITIVE, FALSE);
 		}
 	}
 
