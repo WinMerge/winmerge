@@ -8,7 +8,7 @@
 -->
 <l10n>
   <language>
-    <name>Brazilian Portuguese</name>
+    <name>Portugese (Brazilian)</name>
     <status>4</status>
     <authors>
       <author>
@@ -49,7 +49,7 @@
     </versions>
   </language>
   <language>
-    <name>Simplified Chinese</name>
+    <name>Chinese (Simplified)</name>
     <status>4</status>
     <authors>
       <author>
@@ -62,7 +62,7 @@
     </versions>
   </language>
   <language>
-    <name>Traditional Chinese</name>
+    <name>Chinese (Traditional)</name>
     <status>4</status>
     <authors>
       <author>

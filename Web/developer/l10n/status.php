@@ -36,6 +36,7 @@ releases.</p>
   print("    <th class=\"center\" colspan=\"4\">Versions</th>\n");
   print("  </tr>\n");
   $languages = $status['L10N'][0]['LANGUAGE'];
+  $languages = $page->multisortArray($languages, 'NAME', SORT_ASC);
   for ($i = 0; $i < count($languages); $i++) { //For all languages...
     $language = $languages[$i];
     $language_name = $language['NAME'][0]['VALUE'];

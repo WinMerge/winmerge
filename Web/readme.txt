@@ -2,6 +2,8 @@
  PATCH: [ 1096755 ] Web: Use XML file for developers list
   Web: page.inc
   Web\developer: developers.xml index.php
+ PATCH: [ 1096783 ] Web: Sort status list
+  Web\developer\l10n: status.php status.xml
 
 2004-12-31 Tim
  PATCH: [ 1092760 ] Web: Status of translations with colors
