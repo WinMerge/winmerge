@@ -80,6 +80,8 @@ public:
 	BOOL CheckSavePath(CString& strSavePath);
 	CString m_strVssPath;
 	CString m_strVssProject;
+	CString m_strVssUser;      // BSP - Visual Source Safe User ID
+	CString m_strVssPassword;      // BSP - Visual Source Safe Password
 	int m_nVerSys;
 	BOOL m_bHideBak;
 	int m_nIgnoreWhitespace;

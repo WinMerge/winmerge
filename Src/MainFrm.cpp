@@ -45,6 +45,7 @@
 #include "RegKey.h"
 #include "logfile.h"
 #include "PropSyntax.h"
+#include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -119,6 +120,8 @@ CMainFrame::CMainFrame()
 	m_bHideBak = theApp.GetProfileInt(_T("Settings"), _T("HideBak"), TRUE)!=0;
 	m_nVerSys = theApp.GetProfileInt(_T("Settings"), _T("VersionSystem"), 0);
 	m_strVssProject = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
+	m_strVssUser = theApp.GetProfileString(_T("Settings"), _T("VssUser"), _T(""));
+	m_strVssPassword = theApp.GetProfileString(_T("Settings"), _T("VssPassword"), _T(""));
 	m_strVssPath = theApp.GetProfileString(_T("Settings"), _T("VssPath"), _T(""));
 	m_nTabSize = theApp.GetProfileInt(_T("Settings"), _T("TabSize"), 4);
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
@@ -235,7 +238,7 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 	BOOL docNull = (m_pMergeDoc == NULL);
 	if (docNull)
 		m_pMergeDoc = (CMergeDoc*)theApp.m_pDiffTemplate->OpenDocumentFile(NULL);
-	else if (mf->m_pLeft)
+	else if (m_pLeft)
 		m_pLeft->SendMessage(WM_COMMAND, ID_FILE_SAVE);
 
 	if (m_pMergeDoc != NULL)
@@ -287,7 +290,7 @@ void CMainFrame::ShowMergeDoc(LPCTSTR szLeft, LPCTSTR szRight)
 		{
 			m_pMergeDoc->m_pView->GetParentFrame()->DestroyWindow();
 			m_pMergeDoc=NULL;
-			mf->m_pLeft = mf->m_pRight = NULL;
+			m_pLeft = m_pRight = NULL;
 		}
 	}
 }
@@ -399,6 +402,8 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 					CVssPrompt dlg;
 						dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
 					dlg.m_strProject = m_strVssProject;
+					dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
+					dlg.m_strPassword = m_strVssPassword;
 						userChoice = dlg.DoModal();
 						// process versioning system specific action
 						if(userChoice==IDOK)
@@ -434,7 +439,77 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 						}
 					}
 					break;
-				case 2:	// ClearCase
+				case 2: // CVisual SourceSafe 5.0+ (COM)
+							{
+					// prompt for user choice
+					CVssPrompt dlg;
+					dlg.m_strMessage.FormatMessage(IDS_SAVE_FMT, strSavePath);
+					dlg.m_strProject = m_strVssProject;
+					dlg.m_strUser = m_strVssUser;          // BSP - Add VSS user name to dialog box
+					dlg.m_strPassword = m_strVssPassword;
+					userChoice = dlg.DoModal();
+					// process versioning system specific action
+					if(userChoice==IDOK)
+					{
+						CWaitCursor wait;
+						m_strVssProject = dlg.m_strProject;
+						m_strVssUser = dlg.m_strUser;
+						m_strVssPassword = dlg.m_strPassword;
+
+						theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_strVssProject);
+						theApp.WriteProfileString(_T("Settings"), _T("VssUser"), m_strVssUser);
+						theApp.WriteProfileString(_T("Settings"), _T("VssPassword"), m_strVssPassword);
+
+
+						IVSSDatabase	vssdb;
+						IVSSItems		m_vssis;
+						IVSSItem		m_vssi;
+
+
+                        COleException *eOleException = new COleException;
+							
+						// BSP - Create the COM interface pointer to VSS
+						if (FAILED(vssdb.CreateDispatch("SourceSafe", eOleException)))
+						{
+							throw eOleException;	// catch block deletes.
+						}
+						else
+						{
+							eOleException->Delete();
+						}
+
+                        // BSP - Open the specific VSS data file  using info from VSS dialog box
+						vssdb.Open(m_strVssPath, m_strVssUser, m_strVssPassword);
+						
+						TCHAR path[MAX_PATH],name[MAX_PATH];
+						split_filename(strSavePath,path,name,NULL);
+
+                        // BSP - Combine the project entered on the dialog box with the file name...
+						CString strItem = m_strVssProject+"/"+name; 
+
+                        //  BSP - ...to get the specific source safe item to be checked out
+						m_vssi = vssdb.GetVSSItem( strItem, 0 );
+
+                        // BSP - Get the working directory where VSS will put the file...
+						CString strLocalSpec = m_vssi.GetLocalSpec();
+
+                        // BSP - ...and compare it to the directory WinMerge is using.
+						if (strLocalSpec.CompareNoCase(strSavePath))
+						{
+						   // BSP - if the directories are different, let the user confirm the CheckOut
+							int iRes = AfxMessageBox("The VSS Working Folder and the location of the current file do not match.  Continue?", MB_YESNO);
+
+							if (iRes != IDYES)
+								return FALSE;   // BSP - if not Yes, bail.
+						}
+
+                        // BSP - Finally! Check out the file!
+						m_vssi.Checkout("", strSavePath, 0);
+
+					}
+				}
+				break;
+				case 3:	// ClearCase
 					{
 						// prompt for user choice
 						CCCPrompt dlg;
@@ -565,7 +640,7 @@ void CMainFrame::OnProperties()
 		// make an attempt at rescanning any open diff sessions
 		if (m_pLeft != NULL && m_pRight != NULL)
 		{
-			if (m_pLeft->SaveHelper())
+			if (m_pMergeDoc->SaveHelper())
 			{
 				m_pLeft->GetDocument()->Rescan();
 			}
@@ -873,6 +948,7 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 	m_bFirstTime = FALSE;
 
 	WINDOWPLACEMENT wp;
+	wp.length = sizeof(WINDOWPLACEMENT);
 	GetWindowPlacement(&wp);
 	wp.rcNormalPosition.left=theApp.GetProfileInt(_T("Settings"), _T("MainLeft"),0);
 	wp.rcNormalPosition.top=theApp.GetProfileInt(_T("Settings"), _T("MainTop"),0);
@@ -905,14 +981,13 @@ void CMainFrame::OnClose()
 	if ((m_pLeft && m_pLeft->IsModified())
 		|| (m_pRight && m_pRight->IsModified()))
 	{
-		if (m_pLeft->IsModified() && !m_pLeft->SaveHelper())
-				return;
-		if (m_pRight->IsModified() && !m_pRight->SaveHelper())
+		if ( (m_pLeft->IsModified()||m_pLeft->IsModified()) && !m_pMergeDoc->SaveHelper())
 				return;
 	}
 	
 
 	WINDOWPLACEMENT wp;
+	wp.length = sizeof(WINDOWPLACEMENT);
 	GetWindowPlacement(&wp);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainLeft"),wp.rcNormalPosition.left);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainTop"),wp.rcNormalPosition.top);
