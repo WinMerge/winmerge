@@ -1,17 +1,146 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<!-- saved from url=(0052)http://winmerge.sourceforge.net/WinMergeChanges.html -->
-<HTML><HEAD><TITLE>WinMerge Change History</TITLE>
-<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
-<META content="Dean Grimm" name=Author>
-<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<HTML>
+<HEAD>
+ <TITLE>WinMerge Change History</TITLE>
+ <META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+ <META name="Author" content="Dean Grimm">
+ <META name="GENERATOR" content="MSHTML 6.00.2600.0">
+</HEAD>
 <BODY>
-<TABLE width=650 border=0>
-  <TBODY>
-  <TR>
-    <TD vAlign=top>
-      <H1>WinMerge Change History</H1>
-      <HR align=left width=640>
+<H1>WinMerge Change History</H1>
+<HR>
 <pre>
+2003-12-10 WinMerge 2.0.2.0 released
+
+2003-12-10 Christian
+ PATCH: [ 857645 ] Getting ready for the last 2.0 release
+  Languages: BuildAll.bat
+  InnoSetup: WinMerge.iss
+  MakeResDll: StdAfx.h
+
+2003-12-04 Laoran
+ BUG: [ 836868 ] Search and replace field size limited (apply to languages)
+  Languages : *.rc
+
+2003-12-02 Kimmo
+ PATCH: [ 852062 ] XML/HTML file filter
+  Filters: new file XML_html.flt
+
+2003-12-01 Laoran
+ BUG: [ 842812] Some extension filtering happening by default
+  WinMerge: OpenDlg.cpp
+ BUG: [ 836384 ] File extension wildcards does not work.
+  WinMerge: OpenDlg.cpp
+
+2003-11-30 Perry
+ PATCH: [ 811039 ] Identify filters by path to solve problems with reused names
+  common: coretools.cpp coretools.h
+  WinMerge: FileFilterMgr.cpp FileFilterMgr.h MainFrm.cpp Merge.cpp Merge.h
+   PropFilter.cpp PropFilter.h
+ PATCH: [ 835198 ] Command line path arguments handling
+  WinMerge: Merge.cpp paths.cpp
+
+2003-11-30 Kimmo
+ PATCH: [ 824987 ] Change binary-file detection (look only for zeros)
+  Fixes bug that some non-binary files were detected as binaries.
+  WinMerge: files.cpp
+ PATCH: [ 804493 ] Read filter files from users profile directory
+  common: coretools.h coretools.cpp
+  WinMerge: FilterMgr.cpp Merge.cpp
+ BUG: [ 813557 ] Selection not visible after find
+  editlib: cfindtextdlg.cpp
+ BUG: [ 815147 ] Scrollwheel scrolls too far at end of file
+  editlib: ccrystaltextview.cpp
+ BUG: [ 826834 ] Text selection startpoint not updated when navigating diffs
+  WinMerge: MergeEditView.cpp
+
+2003-11-07 Laoran
+ BUG: [ 836868 ] Search and replace field size limited
+  WinMerge : Merge.rc
+
+2003-11-04 Laoran
+ Update LCID for swedish resource
+  Languages\Swedish: MergeSwedish.rc
+
+2003-11-03 Laoran
+ PATCH: [ 833959 ] Swedish translation 2.0
+ Submitted by Göran Håkansson
+  Languages: BuildAll.bat
+  Languages\Swedish: MergeSwedish.rc resource.h
+  Languages\Swedish\res : all files
+
+2003-10-26 Laoran
+ PATCH: [ 829895 ] Fixed German translation
+ Submitted by Tim Gerundt
+  Languages: MergeGerman.rc
+
+2003-10-25 Laoran
+ BUG: [ 819793 ] Assert when saving after a Dirdoc session
+  WinMerge: DirDoc.cpp
+
+2003-10-24 Laoran
+ BUG: [ 828166 ] visual indication for active file (2.0)
+  WinMerge: ChildFrm.cpp ChildFrm.h MergeDoc.cpp MergeDoc.h MergeEditView.cpp
+
+2003-10-19 Perry
+ Added Catalan translation
+  Languages: BuildAll.bat Catalan/*
+
+2003-10-07 Kimmo
+ BUG: [ 792074 ] Directory mnemonics . and .. are not honored properly
+  Fix submitted by Perry
+  WinMerge: paths.cpp
+
+2003-09-19 Laoran
+ PATCH: [ 809182 ] Fix for undoRecord for 2.0
+  WinMerge: MergeDoc.cpp MergeDoc.h MergeEditView.cpp
+  editlib: ccrystaltextbuffer.h
+
+2003-09-13 Laoran
+ BUG: [ 763874 ] uncheck "sensitive to EOL" when ignoring whitespaces
+  WinMerge: PropGeneral.cpp
+ PATCH: [ 794345 ] second part for OnEditUndo/OnEditRedo/AddUndoRecord
+  WinMerge: MergeEditView.cpp
+  editlib: ccrystaleditview.cpp ccrystaleditview.h ccrystaltextbuffer.cpp
+ PATCH: [ 799701 ] rescan only once for drag_drop (2.0)
+  WinMerge: MergeDoc.cpp MergeDoc.h MergeEditView.cpp MergeEditView.h
+  editlib: ccrystaleditview.cpp ccrystaleditview.h ccrystaltextview.h
+
+2003-09-13 WinMerge experimental release 2.0.1.0 (cvs of 2.0 src)
+
+2003-09-13 Perry
+ PATCH: [ 802120 ] Fix for VC.NET
+  WinMerge: DiffContext.cpp DiffContext.h DirDoc.cpp DirDoc.h MergeDoc.cpp
+
+2003-09-12 Kimmo
+ PATCH: [ 802132 ] Resort dir columns after redisplay
+  Submitted by Perry, fixes bug Diretory compare not remembering sort
+   column after refresh.
+  WinMerge: DirDoc.cpp DirView.h DirView.cpp
+ PATCH: [ 794345 ] make visible the changed text when undo/redo
+  WinMerge: MergeEditView.cpp
+
+2003-09-10 Kimmo
+ PATCH: [ 802096 ] Fix diff navigation when first/last diff selected
+  WinMerge: MergeEditView.cpp
+
+2003-08-23 Perry
+ PATCH: [ 791487 ] Norwegian (bokmål) translation
+  Corrections#2 Avbrytt->Avbryt and #3 Opdater->Oppdater
+  Languages\Norwegian: MergeNorwegian.rc
+  Correction#0 Bokmal->Bokmål
+  WinMerge\Merge.rc
+  Correction#1 værktøylinje(n)->verktøylinje(n)
+  Languages\Norwegian: MergeNorwegian.rc
+
+2003-08-20 Christian
+ PATCH: [ 791487 ] Norwegian (bokmål) translation
+  Languages: Norwegian added
+
+2003-08-12 Christian
+ PATCH: [ 786618 ] Brazilian Portuguese translation
+  Languages: BuilAll.bat and resurrected directory Brazilian
+
 2003-08-04 WinMerge 2.0.0.3 released
 
 2003-08-04 Christian
@@ -37,7 +166,7 @@
   common: SuperComboBox.cpp
  PATCH: [ 778403 ] Fix accel keys in lang files
   editlib: editres.rc
-  Languages: ChineseSimplified & ChineseTraditional
+  Languages: ChineseSimplified &amp; ChineseTraditional
 
 2003-07-25 Laoran
  [ 776114 ] french keyboard shortcut
@@ -146,7 +275,7 @@
  PATCH: [ 754001 ] 2.0 doc link points to 1.7 docs
   Submitted by Christian
   WinMerge: MainFrm.cpp
- PATCH: [ 760441 ] Fix recursive d&d compare
+ PATCH: [ 760441 ] Fix recursive d&amp;d compare
   WinMerge: MainFrm.cpp
  PATCH: [ 759755 ] Better rescan error reporting
   WinMerge: MainFrm.cpp MergeDoc.h MergeDoc.cpp
@@ -277,7 +406,7 @@
 2003-05-19 WinMerge beta 1.9.2.2 released
 
 2003-05-18 Perry
- PATCH: [ 739529 ] project file & directory filters
+ PATCH: [ 739529 ] project file &amp; directory filters
   WinMerge: Diff.cpp DiffContext.cpp DiffContext.h FileFilterMgr.cpp 
     FileFilterMgr.h MainFrm.cpp MainFrm.h Merge.cpp Merge.dsp Merge.h
 	Merge.rc PropFilter.cpp PropFilter.h resource.h
@@ -434,7 +563,7 @@
   WinMerge: MergeDoc.h MergeDoc.cpp
 
 2003-04-06 Perry
- PATCH: [ 716088 ] Fix bin same/diff bug in Diff.cpp & analyze.c
+ PATCH: [ 716088 ] Fix bin same/diff bug in Diff.cpp &amp; analyze.c
   WinMerge: analyze.c Diff.cpp
 
 2003-04-04 Christian
@@ -483,7 +612,7 @@
 2003-03-25 Perry
  PATCH: [ 709575 ] Fix sanity check in CChildFrame::UpdateHeaderSizes()
  WinMerge: ChildFrm.cpp
- PATCH: [ 708542 ] Make splash & about show language-independent version
+ PATCH: [ 708542 ] Make splash &amp; about show language-independent version
  common: version.cpp version.h
  WinMerge: Merge.cpp Splash.cpp
 
@@ -528,7 +657,7 @@
 2003-03-09 Kimmo
  PATCH: [ 699839 ] Add same binaries to dir compare status
   WinMerge: MainFrm.h MainFrm.cpp
- PATCH: [ 699893 ] Add drag&drop of files/paths to main window
+ PATCH: [ 699893 ] Add drag&amp;drop of files/paths to main window
   Note: Press down Ctrl when dropping dirs for recursive compare
   WinMerge: MainFrm.h MainFrm.cpp Merge.cpp paths.h paths.cpp
 
@@ -555,7 +684,7 @@
 
 2003-03-05 Perry
  Added new subdir Languages/Danish/res
-  PATCH: [ 695857 ] Fix directory handling, & UNC paths, & shortnames
+  PATCH: [ 695857 ] Fix directory handling, &amp; UNC paths, &amp; shortnames
  Fix Danish language files: Update resource.h and update language dialogbox to use IDC_LANGUAGE_LIST.
 
 2003-03-04
@@ -589,10 +718,10 @@
     BuildAll.bat and added directory Languages/Danish
 
 2003-02-26 Kimmo
- [ 692922 ] Don't try to compare file & directory
+ [ 692922 ] Don't try to compare file &amp; directory
   WinMerge:
    OpenDlg.cpp
- [ 686699 ] Check & return file saving success
+ [ 686699 ] Check &amp; return file saving success
   Fix2: Do not return save success of "Save As"
   WinMerge:
    MergeDoc.cpp
@@ -601,32 +730,32 @@
  [ 687574 ] Navigate in directory view (fix bug in patch)
   WinMerge:
    DirView.cpp
- [ 686699 ] Check & return file saving success - fix
+ [ 686699 ] Check &amp; return file saving success - fix
   WinMerge:  
    MergeDoc.h Mergedoc.cpp
 
 2003-02-22 Perry
  [ 650356 ] suggest commenting out several functions
  [ 684416 ] is_all_whitespace is bad
-  Removed bad unused functions in common/coretools.cpp (& .h)
+  Removed bad unused functions in common/coretools.cpp (&amp; .h)
   (Did not remove all unused functions, only ones with bugs)
 
 2003-02-21 Perry
  Sync'ed all language resources to English version.
  [ 684300 ] Stringified Diffitems
-   + combined & modularized code in DirDoc.cpp
+   + combined &amp; modularized code in DirDoc.cpp
   WinMerge:
    DiffContext.cpp DiffContext.h DirDoc.cpp DirView.cpp DirView.h
 
 2003-02-20 Perry
  [ 689876 ] Patch to fix bug # 689869 (ASSERT on Rescan)
   WinMerge:
-   MainFrm.cpp & new resource IDS_ERROR_FILE_NOT_FOUND
+   MainFrm.cpp &amp; new resource IDS_ERROR_FILE_NOT_FOUND
  [ 687574 ] Navigate in directory view
   WinMerge:
    DirView.cpp DirView.h
  [ 690176 ] Cmdline param for ESC closing
-   (and updated all obsolete French & German accelerators as well)
+   (and updated all obsolete French &amp; German accelerators as well)
   WinMerge:
    Merge.cpp Merge.h Merge.rc
   Languages:
@@ -651,7 +780,7 @@
    ccrystaltextview.cpp
 
 2003-02-15 Kimmo
-  [ 686699 ] Check & return file saving success
+  [ 686699 ] Check &amp; return file saving success
   Merge.rc MergeDoc.h Mergedoc.cpp resource.h
 
 2003-02-14 Kimmo
@@ -681,7 +810,7 @@
  [ 683752 ] Add option to be listed on Directory context menu
 
 2003-02-11  Perry
- Fixing recent SplitFilename & directory concat problems.
+ Fixing recent SplitFilename &amp; directory concat problems.
  [ 683924 ] Same binaries for directory compare.
 
 2003-02-10  Perry
@@ -865,7 +994,6 @@
         <LI>Added -r command line option for recursion 
         <LI>Fixed problem with loading debug libraries 
         <LI>Added version display on splash screen </LI></UL>
-      <HR>
-
-      <P><!--#geoguide--></P></TD></TR></TBODY></TABLE>
-<P><BR>&nbsp; </P></BODY></HTML>
+<HR>
+</BODY>
+</HTML>

@@ -1,3 +1,5 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+       "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
@@ -11,7 +13,7 @@
 
 <table border="0" cellpadding="4">
   <tr>
-    <td width="200" valign="top" bgcolor="#c0c0c0" bordercolor="#000000">
+    <td width="200" valign="top" bgcolor="#c0c0c0">
       <p align="center"><b><i><FONT face=Arial>WinMerge on</FONT> </i></b><br><a href="http://sourceforge.net/projects/winmerge"><FONT 
       face=Arial><IMG src="http://sourceforge.net/sflogo.php?group_id=13216" border="0" alt="SourceForge Logo"></FONT></a></p>
       <p align="center"><b><FONT 
@@ -63,8 +65,7 @@
       <a href="http://prdownloads.sourceforge.net/winmerge/MergeSwedish20.zip"><FONT face=Arial>Swedish DLL</FONT></a><br>
       </font></p>
       <p align="left"><FONT face=Arial></FONT>&nbsp;</p></td>
-    <td width=*><h1><IMG height=32 src="images/winmerge.gif" width =32
-    align=textTop  nosave> WinMerge</h1>
+    <td><h1><IMG src="images/winmerge.gif" alt="icon" width="32" height="32" align="top"> WinMerge</h1>
     <p>An Open Source visual text file differencing and merging tool for Win32 platforms. It is highly useful for determing what has changed between project versions, and then merging changes between versions. </p>
     <h2>Features</h2>
     <ul>
@@ -75,8 +76,8 @@
       <li>Merge differences 
       <li>Directory recursion 
       <li>Integrated editor (with multi-level undo/redo)
-      <li>Find & Replace
-      <li>Drag & Drop support
+      <li>Find &amp; Replace
+      <li>Drag &amp; Drop support
       <li>Option for integration with Windows Explorer
       <li>Rudimentary Visual SourceSafe and Rational ClearCase integration 
       <li>Handles DOS, UNIX and MAC text file formats
@@ -84,7 +85,7 @@
       <li>HTML-based <A href="docs20/index.html">User's Guide</a></li>
     </ul>
 
-<IMG src="images/screenshot.png">
+<IMG src="images/screenshot.png" alt="screenshot">
 
 <h2>WinMerge 2.0.2 - latest stable version</h2>
 <p>WinMerge 2.0.2 is the latest stable version, and it is recommended for most users</p>
@@ -93,7 +94,7 @@
 <h2>WinMerge 2.1 - current development version</h2>
 <p>WinMerge 2.1 is the development version, and is only recommended for users that can tolerate possibly losing their files once in a while, because we do not guarantee it to be stable.</p>
 <p>On the other hand, this version has the latest and greatest features in WinMerge.</P>
-<p><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&release_id=199032">Download WinMerge 2.1</a></p>
+<p><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;release_id=199032">Download WinMerge 2.1</a></p>
 
 <h2>WinMerge 1.7 - older stable version</h2>
 <p><a href="WinMerge17/index.html">WinMerge 1.7</a> is an older and simpler version, from before the integrated editor was introduced.</p>
@@ -114,7 +115,7 @@
       subscription to the <a href="http://lists.sourceforge.net/lists/listinfo/winmerge-support">WinMerge-support mailing list</a>.
       In addition, SourceForge has bug tracking capabilities, so please report any
     bugs <a href="http://sourceforge.net/bugs/?group_id=13216">here</a>.&nbsp; Wish list items on the 
-    <a href="http://sourceforge.net/tracker/?group_id=13216&atid=363216">RFE list</a> will also be considered, but we make
+    <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">RFE list</a> will also be considered, but we make
     absolutely no promises.&nbsp; </p>
     <p>Here is the current <A href="WinMergeChanges.html">change history</a>. </p>
 
@@ -149,12 +150,12 @@ To change languages, all you have to do is unzip the DLL in the same directory a
       <p>One of the reasons WinMerge is on SourceForge is so other
       developers can get involved.&nbsp; If you have some free time, are
       proficient with DeveloperStudio 6 and MFC, and would like to contribute,
-      then <a href="http://sourceforge.net/tracker/?group_id=13216&atid=113216">check
+      then <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">check
       out the list of items to be done</a>.&nbsp; If you see something in there that you think
       you can handle, <a href="mailto:winmerge-support@lists.sourceforge.net">let us know</a> and we'll assign the item to you.&nbsp; Then
       grab a copy of the WinMerge source from <a href="http://sourceforge.net/cvs/?group_id=13216">anonymous
       CVS</a> or you can download a <a href="http://sourceforge.net/project/showfiles.php?group_id=13216">zipped version</a> of the source,
-	write your code, and then upload the changed code <a href="http://sourceforge.net/tracker/?group_id=13216&atid=313216">as a patch</a>. 
+	write your code, and then upload the changed code <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">as a patch</a>. 
 	Then we will merge them back into the main codebase. </p>
       <p>If you do decide to join in, please follow these simple guidelines,
       which will ultimately make all our lives easier: </p>
