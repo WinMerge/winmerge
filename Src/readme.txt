@@ -1,7 +1,3 @@
-2003-10-30 Kimmo
- Compare filename extensions as lowercase (before calling external editor)
-  WinMerge: MainFrm.cpp
-
 2003-10-30 Laoran
  BUG: [ 830911 ] trailing whitespaces not ignored
   WinMerge: UTIL.C
@@ -12,6 +8,10 @@
 2003-10-30 Kimmo
  Remove SillyTestCrap() from Merge.cpp
   WinMerge: Merge.cpp
+ Compare filename extensions as lowercase (before calling external editor)
+  WinMerge: MainFrm.cpp
+ Comment out GetIP() to fix compiling by including coretools.h
+  common: coretools.h coretools.cpp
 
 2003-10-29 Laoran
  change events PHYSICAL_PREPROCESS and SYNTAX_PREPROCESS to PREDIFFING

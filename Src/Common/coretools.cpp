@@ -189,7 +189,10 @@ CString GetCDPath()
 }
 
 
-
+/*
+ Commented out - can't use this file by just including
+ coretools.h because of gethostaname() & gethostbyname().
+ 
 BOOL GetIP(LPTSTR straddr) 
 {
 	char     szHostname[100];
@@ -213,7 +216,7 @@ BOOL GetIP(LPTSTR straddr)
 	*straddr=_T('\0');
 	return FALSE;
 }
-
+*/
 
 DWORD FPRINTF(HANDLE hf, LPCTSTR fmt, ... )
 {

@@ -119,7 +119,7 @@ DWORD FPUTS(LPCTSTR s, HANDLE hf);
 HANDLE FOPEN(LPCTSTR path, DWORD mode = GENERIC_READ, DWORD access = OPEN_EXISTING);
 CString ConvertPath2PS(LPCSTR szPath);
 void GetLocalDrives(LPTSTR letters);
-BOOL GetIP(LPTSTR straddr);
+//BOOL GetIP(LPTSTR straddr);
 void replace_char(LPTSTR s, int target, int repl);
 BOOL FileExtMatches(LPCTSTR filename, LPCTSTR ext);
 void SplitFilename(LPCTSTR s, CString * path, CString * name, CString * ext);
