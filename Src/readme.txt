@@ -3,6 +3,10 @@
   Src: Merge.dsp
   Src/editlib: crystaltextview.cpp crystaltextview.h
   Src/editlib new file: csharp.cpp
+ RFE: [ 950290 ] Use MS Shell Dlg font in dialogs
+  Src: Merge.rc
+  Src/Languages: *.rc, except MergeChineseSimplified.rc
+   Merge ChineseTraditional.rc, MergeKorean.rc
 
 2004-05-22 Perry
  Localized language names into French
