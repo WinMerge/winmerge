@@ -37,6 +37,7 @@
 #define IDD_EDIT_REPLACE                221
 #define IDD_PROPPAGE_COLORS             222
 #define IDD_PROPPAGE_CODEPAGE           223
+#define IDD_PREFERENCES                 224
 
 #define IDB_ERROR                       300
 #define IDB_EQUAL                       301
@@ -237,6 +238,9 @@
 #define IDC_SEL_WORDDIFFERENCE_COLOR    1155
 #define IDC_WORDDIFFERENCE_TEXT_COLOR   1156
 #define IDC_SEL_WORDDIFFERENCE_TEXT_COLOR 1157
+#define IDC_TREEOPT_PAGES               1158
+#define IDC_TREEOPT_HOSTFRAME           1159
+#define IDC_TREEOPT_HELP                1160
 
 
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -275,6 +279,13 @@
 #define IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN 9015
 #define IDS_MESSAGEBOX_DONT_ASK_AGAIN   9016
 
+#define IDS_OPTIONSPG_GENERAL           9041
+#define IDS_OPTIONSPG_COMPARE           9042
+#define IDS_OPTIONSPG_EDITOR            9043
+#define IDS_OPTIONSPG_COLORS            9044
+#define IDS_OPTIONSPG_SYSTEM            9045
+#define IDS_OPTIONSPG_VERSIONCONTROL    9046
+#define IDS_OPTIONSPG_CODEPAGE          9047
 
 
 #define IDS_VERSION_FMT                 16385

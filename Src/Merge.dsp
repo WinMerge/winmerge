@@ -577,6 +577,10 @@ SOURCE=.\Plugins.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\PreferencesDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\ProjectFile.cpp
 # End Source File
 # Begin Source File
@@ -594,6 +598,10 @@ SOURCE=.\PropCompare.cpp
 # Begin Source File
 
 SOURCE=.\PropEditor.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\PropertyPageHost.cpp
 # End Source File
 # Begin Source File
 
@@ -796,6 +804,10 @@ SOURCE=.\VssPrompt.cpp
 # Begin Source File
 
 SOURCE=.\WaitStatusCursor.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\WinClasses.cpp
 # End Source File
 # Begin Source File
 
@@ -1083,6 +1095,10 @@ SOURCE=.\Plugins.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\PreferencesDlg.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\ProjectFile.h
 # End Source File
 # Begin Source File
@@ -1100,6 +1116,10 @@ SOURCE=.\PropCompare.h
 # Begin Source File
 
 SOURCE=.\PropEditor.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\PropertyPageHost.h
 # End Source File
 # Begin Source File
 
@@ -1220,6 +1240,14 @@ SOURCE=.\VssPrompt.h
 # Begin Source File
 
 SOURCE=.\WaitStatusCursor.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\wclassdefines.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\WinClasses.h
 # End Source File
 # Begin Source File
 

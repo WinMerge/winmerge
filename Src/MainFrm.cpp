@@ -76,6 +76,7 @@
 #include "VSSHelper.h"
 #include "codepage.h"
 #include "ProjectFile.h"
+#include "PreferencesDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1163,114 +1164,15 @@ void CMainFrame::SetEOLMixed(BOOL bAllow)
  */
 void CMainFrame::OnOptions() 
 {
-	CString sExtEditor;
-	CPropertySheet sht(IDS_OPTIONS_TITLE);
-	CPropVss vss;
-	CPropGeneral gen;
-	CPropColors colors(&m_options);
-	CPropRegistry regpage;
-    CPropCompare compage(&m_options);
-	CPropEditor editor;
-	CPropCodepage codepage;
+	CPreferencesDlg dlg(&m_options);
+	dlg.SetDefaultEditor(GetDefaultEditor());
+	int rv = dlg.DoModal();
 
-	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
-   
-	sht.AddPage(&gen);
-	sht.AddPage(&compage);
-	sht.AddPage(&editor);
-	sht.AddPage(&vss);
-	sht.AddPage(&colors);
-	sht.AddPage(&regpage);
-	sht.AddPage(&codepage);
-	
-	vss.m_nVerSys = m_options.GetInt(OPT_VCS_SYSTEM);
-	vss.m_strPath = m_options.GetString(OPT_VSS_PATH);
-	gen.m_bBackup = m_options.GetBool(OPT_CREATE_BACKUPS);
-	gen.m_bScroll = m_options.GetBool(OPT_SCROLL_TO_FIRST);
-	gen.m_bDisableSplash = m_options.GetBool(OPT_DISABLE_SPLASH);
-	gen.m_bAutoCloseCmpPane = m_options.GetBool(OPT_AUTOCLOSE_CMPPANE);
-	gen.m_bVerifyPaths = m_options.GetBool(OPT_VERIFY_OPEN_PATHS);
-	gen.m_bCloseWindowWithEsc = m_options.GetBool(OPT_CLOSE_WITH_ESC);
-	regpage.m_strEditorPath = m_options.GetString(OPT_EXT_EDITOR_CMD);
-	regpage.GetContextRegValues();
-	regpage.m_bUseRecycleBin = m_options.GetBool(OPT_USE_RECYCLE_BIN);
-	compage.m_compareMethod = m_options.GetInt(OPT_CMP_METHOD);
-	compage.m_nIgnoreWhite = m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	compage.m_bIgnoreBlankLines = m_options.GetBool(OPT_CMP_IGNORE_BLANKLINES);
-	compage.m_bIgnoreCase = m_options.GetBool(OPT_CMP_IGNORE_CASE);
-	compage.m_bEolSensitive = m_options.GetBool(OPT_CMP_EOL_SENSITIVE) ? false : true; // Reverse
-	compage.m_bMovedBlocks = m_options.GetBool(OPT_CMP_MOVED_BLOCKS);
-	editor.m_nTabSize = m_options.GetInt(OPT_TAB_SIZE);
-	editor.m_nTabType = m_options.GetInt(OPT_TAB_TYPE);
-	editor.m_bAutomaticRescan = m_options.GetBool(OPT_AUTOMATIC_RESCAN);
-	editor.m_bHiliteSyntax = m_options.GetBool(OPT_SYNTAX_HIGHLIGHT);
-	editor.m_bAllowMixedEol = m_options.GetBool(OPT_ALLOW_MIXED_EOL);
-	editor.m_bApplySyntax = m_options.GetBool(OPT_UNREC_APPLYSYNTAX);
-	codepage.m_nCodepageSystem = m_options.GetInt(OPT_CP_DEFAULT_MODE);
-	codepage.m_nCustomCodepageValue = m_options.GetInt(OPT_CP_DEFAULT_CUSTOM);
-	codepage.m_bDetectCodepage = m_options.GetBool(OPT_CP_DETECT);
-
-	if (sht.DoModal()==IDOK)
+	if (rv == IDOK)
 	{
-		m_options.SaveOption(OPT_CREATE_BACKUPS, gen.m_bBackup == TRUE);
-		m_options.SaveOption(OPT_SCROLL_TO_FIRST, gen.m_bScroll == TRUE);
-		m_options.SaveOption(OPT_DISABLE_SPLASH, gen.m_bDisableSplash == TRUE);
-		m_options.SaveOption(OPT_AUTOCLOSE_CMPPANE, gen.m_bAutoCloseCmpPane == TRUE);
-		m_options.SaveOption(OPT_VERIFY_OPEN_PATHS, gen.m_bVerifyPaths == TRUE);
-		m_options.SaveOption(OPT_CLOSE_WITH_ESC, gen.m_bCloseWindowWithEsc == TRUE);
-		m_options.SaveOption(OPT_USE_RECYCLE_BIN, regpage.m_bUseRecycleBin == TRUE);
-
-		regpage.SaveMergePath();
-		sExtEditor = regpage.m_strEditorPath;
-		sExtEditor.TrimLeft();
-		sExtEditor.TrimRight();
-		if (sExtEditor.IsEmpty())
-			sExtEditor = GetDefaultEditor();
-		m_options.SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
-
-		m_options.SaveOption(OPT_CMP_IGNORE_WHITESPACE, compage.m_nIgnoreWhite);
-		m_options.SaveOption(OPT_CMP_IGNORE_BLANKLINES, compage.m_bIgnoreBlankLines == TRUE);
-		m_options.SaveOption(OPT_CMP_EOL_SENSITIVE, compage.m_bEolSensitive == FALSE); // Reverse
-		m_options.SaveOption(OPT_CMP_IGNORE_CASE, compage.m_bIgnoreCase == TRUE);
-		m_options.SaveOption(OPT_CMP_METHOD, compage.m_compareMethod);
-		m_options.SaveOption(OPT_CMP_MOVED_BLOCKS, compage.m_bMovedBlocks == TRUE);
-
-		m_options.SaveOption(OPT_TAB_SIZE, (int)editor.m_nTabSize);
-		m_options.SaveOption(OPT_TAB_TYPE, (int)editor.m_nTabType);
-		m_options.SaveOption(OPT_AUTOMATIC_RESCAN, editor.m_bAutomaticRescan == TRUE);
-		m_options.SaveOption(OPT_ALLOW_MIXED_EOL, editor.m_bAllowMixedEol == TRUE);
-		m_options.SaveOption(OPT_SYNTAX_HIGHLIGHT, editor.m_bHiliteSyntax == TRUE);
-		m_options.SaveOption(OPT_UNREC_APPLYSYNTAX, editor.m_bApplySyntax == TRUE);
-
-		m_options.SaveOption(OPT_VCS_SYSTEM, vss.m_nVerSys);
-		m_options.SaveOption(OPT_VSS_PATH, vss.m_strPath);
-
-		m_options.SaveOption(OPT_CLR_DIFF, (int)colors.m_clrDiff);
-		m_options.SaveOption(OPT_CLR_SELECTED_DIFF, (int)colors.m_clrSelDiff);
-		m_options.SaveOption(OPT_CLR_DIFF_DELETED, (int)colors.m_clrDiffDeleted);
-		m_options.SaveOption(OPT_CLR_SELECTED_DIFF_DELETED, (int)colors.m_clrSelDiffDeleted);
-		m_options.SaveOption(OPT_CLR_DIFF_TEXT, (int)colors.m_clrDiffText);
-		m_options.SaveOption(OPT_CLR_SELECTED_DIFF_TEXT, (int)colors.m_clrSelDiffText);
-		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF, (int)colors.m_clrTrivial);
-		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, (int)colors.m_clrTrivialDeleted);
-		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF_TEXT, (int)colors.m_clrTrivialText);
-		m_options.SaveOption(OPT_CLR_MOVEDBLOCK, (int)colors.m_clrMoved);
-		m_options.SaveOption(OPT_CLR_MOVEDBLOCK_DELETED, (int)colors.m_clrMovedDeleted);
-		m_options.SaveOption(OPT_CLR_MOVEDBLOCK_TEXT, (int)colors.m_clrMovedText);
-		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK, (int)colors.m_clrSelMoved);
-		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, (int)colors.m_clrSelMovedDeleted);
-		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)colors.m_clrSelMovedText);
-		m_options.SaveOption(OPT_CLR_WORDDIFF, (int)colors.m_clrWordDiff);
-		m_options.SaveOption(OPT_CLR_SELECTED_WORDDIFF, (int)colors.m_clrSelWordDiff);
-		m_options.SaveOption(OPT_CLR_WORDDIFF_TEXT, (int)colors.m_clrWordDiffText);
-		m_options.SaveOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, (int)colors.m_clrSelWordDiffText);
-		m_options.SaveOption(OPT_CP_DEFAULT_MODE, (int)codepage.m_nCodepageSystem);
-		m_options.SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)codepage.m_nCustomCodepageValue);
-		m_options.SaveOption(OPT_CP_DETECT, codepage.m_bDetectCodepage == TRUE);
-
 		updateDefaultCodepage(&m_options);
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
-		SetEOLMixed(editor.m_bAllowMixedEol);
+		SetEOLMixed(m_options.GetBool(OPT_ALLOW_MIXED_EOL));
 
 		// make an attempt at rescanning any open diff sessions
 		MergeDocList docs;

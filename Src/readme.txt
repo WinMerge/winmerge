@@ -2,6 +2,11 @@
  BUG: [ 1162037 ] Missing localization (German)
   Translation update from Tim Gerundt
   Src/Languages/German/MergeGerman.rc
+ PATCH: [ 1162644 ] Tree-style options-dialog
+  Src: MainFrm.cpp Merge.dsp Merge.rc resource.h
+  Src/Common new files PreferencesDlg.cpp PreferencesDlg.h PropertyPageHost.cpp
+   PropertyPageHost.h wclassdefines.h WinClasses.cpp WinClasses.h
+  Src/Languages: Merge*.rc resource.h
 
 2005-03-20 Kimmo
  PATCH: [ 1165515 ] Improve drawing location pane moved block lines
