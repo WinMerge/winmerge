@@ -1,3 +1,8 @@
+2004-06-03 Kimmo
+ PATCH: [ 963814 ] Cosmetic: fix call in OpenDlg to LoadPosition
+  Submitted by Perry
+  Src: OpenDlg.cpp
+
 2004-06-02 Perry
  PATCH: [ 964665 ] And another unneeded include in DirDoc.h
   Src: DirDoc.h

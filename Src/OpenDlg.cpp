@@ -247,7 +247,7 @@ BOOL COpenDlg::OnInitDialog()
 	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
 	m_constraint.DisallowHeightGrowth();
 	m_constraint.SubclassWnd(); // install subclassing
-	m_constraint.LoadPosition(_T("OpenDlg"), true); // persist size & location via registry
+	m_constraint.LoadPosition(_T("OpenDlg"), false); // persist size via registry
 
 	CenterToMainFrame();
 
