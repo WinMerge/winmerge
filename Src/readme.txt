@@ -1,4 +1,4 @@
-2004-05-13 Kimmo
+2004-05-14 Kimmo
  Backout last change to Merge.rc - restore version 1.187
   Src: Merge.rc
  BUG: [ 953232 ] Some lang-files broken
@@ -8,6 +8,8 @@
  PATCH: [ 953056 ] Rename 'Sensitive to EOL' option
   Src: Merge.rc
   Src/Languages: *.rc
+ PATCH: [ 953515 ] Improve LocationPane drawing code
+  Src: LocationView.cpp
 
 2004-05-13 Perry
  PATCH: [ 950530 ] Remove unneeded cast in DirView.cpp

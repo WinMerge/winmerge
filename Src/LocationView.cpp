@@ -67,7 +67,8 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
  *
  * Draws maps of differences in files. Difference list is walked and
  * every difference is drawn with same colors than in editview.
- *
+ * @note We MUST use doubles when calculating coords to avoid rounding
+ * to integers. Rounding causes miscalculation of coords.
  * @todo Use of GetNextRect() is inefficient, it reads diffs sometimes
  * twice when it first asks next diff when line is not in any diff. And
  * then reads same diff again when in diff.
@@ -83,6 +84,10 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	const int w = rc.Width() / 4;
 	const int x = (rc.Width() - 2 * w) / 3;
+	const int x2 = 2 * x + w;
+	const int w2 = 2 * x + 2 * w;
+	const double yOffset = 5; // Few pixels of empty space around bars
+	const double hTotal = rc.Height() - (2 * yOffset); // Height of draw area
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
 	COLORREF cr0 = CLR_NONE; // Left side color
 	COLORREF cr1 = CLR_NONE; // Right side color
@@ -90,25 +95,25 @@ void CLocationView::OnDraw(CDC* pDC)
 	BOOL bwh = FALSE;
 	int nstart0 = -1;
 	int nend0 = -1;
-	
+
 	while (true)
 	{
 		BOOL ok0 = GetNextRect(nend0);
 		if (!ok0)
 			break;
 
+		const double nBeginY = (nstart0 + 1) * hTotal / nbLines + yOffset;
+		const double nEndY = (nend0 + 1) * hTotal / nbLines + yOffset;
 		nstart0++;
 
 		// Draw left side block
 		m_view0->GetLineColors(nstart0, cr0, crt, bwh);
-		CRect r0(x, (nstart0 - 1) * rc.Height() / nbLines,
-				x + w, nend0 * rc.Height() / nbLines);
+		CRect r0(x, nBeginY, x + w, nEndY);
 		DrawRect(pDC, r0, cr0, ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0));
 		
 		// Draw right side block
 		m_view1->GetLineColors(nstart0, cr1, crt, bwh);
-		CRect r1(2 * x + w, (nstart0 - 1) * rc.Height() / nbLines,
-				2 * x + 2 * w, nend0 * rc.Height() / nbLines);
+		CRect r1(x2, nBeginY, w2, nEndY);
 		DrawRect(pDC, r1, cr1, ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0));
 		nstart0 = nend0;
 
