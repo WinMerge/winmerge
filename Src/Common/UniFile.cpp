@@ -378,7 +378,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 		}
 		return TRUE;
 	}
-#endif
+#else
 	if (m_unicoding == ucr::NONE && EqualCodepages(m_codepage, getDefaultCodepage()))
 	{
 		// If there aren't any bytes left in the file, return FALSE to indicate EOF
@@ -421,6 +421,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 		}
 		return TRUE;
 	}
+#endif
 
 	if (m_current - m_base + (m_charsize-1) >= m_filesize)
 		return FALSE;
@@ -444,9 +445,19 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 		if (!eof)
 		{
 			eol += (TCHAR)*eolptr;
-			if (*eolptr == '\r' && (eolptr - m_base + (m_charsize-1) < m_filesize) && eolptr[1] == '\n')
-				eol += '\n';
 			++m_lineno;
+			if (*eolptr == '\r')
+			{
+				if (eolptr - m_base + (m_charsize-1) < m_filesize && eolptr[1] == '\n')
+				{
+					eol += '\n';
+					++m_txtstats.ncrlfs;
+				}
+				else
+					++m_txtstats.ncrs;
+			}
+			else
+				++m_txtstats.nlfs;
 		}
 		m_current = eolptr + eol.GetLength();
 		// TODO: What do we do if save was lossy ?
