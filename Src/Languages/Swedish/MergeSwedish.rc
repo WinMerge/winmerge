@@ -1359,7 +1359,6 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_PLUGIN_FAILED       "An error occurred in plugin '%1'. The current operation is aborted."
     IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
     IDS_USERCHOICE_NONE     "<None>"
     IDS_USERCHOICE_AUTOMATIC "<Automatic>"

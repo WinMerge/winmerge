@@ -1002,8 +1002,7 @@ END
 // ID_FILE_NEW SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_FILE_NEW             "Create empty documents\nNew Documents(Ctrl-N)"
-    ID_FILE_NEW             "Vytvoriù nov˝ dokument\nNov˝ dokument"
+    ID_FILE_NEW             "Vytvoriù nov˝ dokument\nNov˝ dokument(Ctrl-N)"
     ID_FILE_OPEN            "Otvoriù existuj˙ci dokument\nOtvor"
     ID_FILE_CLOSE           "Zatvoriù aktÌvny dokument\nZatvor"
     ID_FILE_SAVE            "Uloûiù aktÌvny dokument\nUloû"
@@ -1362,7 +1361,6 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_PLUGIN_FAILED       "An error occurred in plugin '%1'. The current operation is aborted."
     IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
     IDS_USERCHOICE_NONE     "<None>"
     IDS_USERCHOICE_AUTOMATIC "<Automatic>"

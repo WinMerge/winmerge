@@ -1539,7 +1539,6 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_PLUGIN_FAILED       "S'ha produït un error al plugin '%1' i l'operació actual s'avortarà."
     IDS_ERROR_FILE_NOT_UNPACKED "El fitxer not s'ha desempaquetat: %1"
     IDS_USERCHOICE_NONE     "<None>"
     IDS_USERCHOICE_AUTOMATIC "<Automatic>"
