@@ -1,6 +1,8 @@
 2004-05-22 Perry
  Localized language names into French
   Src/Languages: MergeFrench.rc
+ Updates to Spanish localized language names
+  Src/Languages: MergeSpanish.rc
 
 2004-05-21 Perry
  Fix PATCH [ 957740] - declare CMergeDoc::CompareBinaries
