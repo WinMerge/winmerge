@@ -3,8 +3,6 @@
  First half of [ 679692 ] Update after editing (with code combination).
  [ 682505 ] API changes for CLog, CDirView and CDirDoc
  2nd half of [ 679692 ] Update after editing
-
-
  
 2003-02-07
  Added 24 missing languages
