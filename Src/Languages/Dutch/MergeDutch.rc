@@ -1015,38 +1015,48 @@ BEGIN
     GROUPBOX        "Default codepage for ANSI files",IDC_STATIC,7,7,221,58
 END
 
-IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 276, 186
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
-    WS_SYSMENU
-CAPTION "WinMerge"
+IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245
+STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_NOPARENTNOTIFY
+CAPTION "WinMerge - Archive support disabled"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Archive support is disabled. In order to enable archive support, please install a version of 7-Zip that WinMerge can interface, and place a copy of the appropriate interface plugin (Merge7z*.dll) in your WinMerge directory.",
-                    IDC_STATIC,2,2,272,32
-    LTEXT           "WinMerge can interface 7-Zip 3.11 and above, provided the appropriate interface plugin is available. Please use the version of 7-Zip recommended below until interface plugins for later versions become available.",
-                    IDC_STATIC,2,34,272,32
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,70,131,8
-    EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
-                    WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugin required:",IDC_STATIC,2,82,86,8
-    EDITTEXT        102,214,82,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
-                    WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of 7-Zip currently installed on your computer:",
-                    IDC_STATIC,2,98,208,8
-    EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
-                    WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of local 7-Zip components found in WinMerge directory:",
-                    IDC_STATIC,2,110,208,8
-    EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
-                    WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugins found in WinMerge directory:",
-                    IDC_STATIC,2,130,168,28
-    LISTBOX         105,174,130,100,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
-                    WS_VSCROLL | WS_GROUP
-    CONTROL         "Don't display this &message again.\n(You can allways recall this message from help menu.)",
-                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
-                    WS_TABSTOP,2,164,202,20
-    DEFPUSHBUTTON   "OK",IDOK,208,170,50,14,WS_GROUP
+    LTEXT           "Unable to detect 7-Zip version (not installed?)",107,2,2,296,20
+    CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,26,296,1
+    LTEXT           "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\nessential components to be copied to the program directory for standalone operation.\nThere must also be an appropriate interface plugin (Merge7z*.dll) on the path.",
+                    IDC_STATIC,2,30,296,28
+    LTEXT           "Please use the version of 7-Zip recommended below until interface plugins for later\nversions become available.",
+                    IDC_STATIC,2,58,296,18
+    CTEXT           "Version",IDC_STATIC,146,78,56,20,SS_CENTERIMAGE |
+                    SS_SUNKEN
+    CTEXT           "Plugin required\n(dllbuild %04u)",102,204,78,94,20,
+                    SS_SUNKEN
+    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,100,142,10,
+                    SS_CENTERIMAGE
+    CTEXT           "0.00",110,146,100,20,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "present",109,168,100,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "Merge7z000U.dll",111,204,100,58,10,SS_CENTERIMAGE | 
+                    SS_SUNKEN
+    CTEXT           "present",112,264,100,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "7-Zip software installed on your computer:",IDC_STATIC,
+                    2,112,142,10,SS_CENTERIMAGE
+    CTEXT           "none",120,146,112,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",121,204,112,58,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "missing",122,264,112,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "7-Zip components for standalone operation:",IDC_STATIC,
+                    2,124,142,10,SS_CENTERIMAGE
+    CTEXT           "none",130,146,124,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "",131,204,124,58,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "outdated",132,264,124,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Plugins on path:",9001,2,140,100,8
+    CONTROL         "Don't display this &message again.\n(You can always recall this message from help menu.)",
+                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
+                    WS_TABSTOP,2,225,218,18
+    DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
+    CONTROL         "Plugin Download",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
+                    236,140,62,10
+    LISTBOX         105,2,150,296,72,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
+                    WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
 
 #ifndef _MAC
