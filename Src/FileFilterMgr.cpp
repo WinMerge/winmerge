@@ -145,7 +145,7 @@ static void AddFilterPattern(RegList & reglist, CString & str)
 FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilename)
 {
 	CStdioFile file;
-	if (!file.Open(szFilepath, CFile::modeRead))
+	if (!file.Open(szFilepath, CFile::modeRead | CFile::shareDenyNone))
 		return NULL;
 	FileFilter *pfilter = new FileFilter;
 	pfilter->fullpath = szFilepath;

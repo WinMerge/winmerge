@@ -1,3 +1,8 @@
+2005-01-08 Kimmo
+ PATCH: [ 1098340 ] crash rarely when starting many winmerge continuously
+  Anonymous submission
+  Src: FileFilterMgr.cpp
+
 2005-01-06 Kimmo
  PATCH: [ 1096609 ] Show tooltips for filefilter dialog list
   Src: FileFiltersDlg.cpp FileFiltersDlg.h
