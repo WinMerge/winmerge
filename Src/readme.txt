@@ -1,6 +1,8 @@
 2003-03-25 Kimmo
  PATCH: [ 708893 ] Don't ask to save file compare
   WinMerge: MergeDoc.h MergeDoc.cpp
+ PATCH: [ 703069 ] Fix undo crash
+  editlib: crystaltextbuffer.cpp
 
 2003-03-23 Perry
  PATCH: [ 706006 ] Suppress Rescan during Merge

@@ -1123,12 +1123,16 @@ Undo (CPoint & ptCursorPos)
 {
   ASSERT (CanUndo ());
   ASSERT ((m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
+  BOOL found = TRUE;
+  int tmpPos = m_nUndoPosition;
+
   for (;;)
     {
-      m_nUndoPosition--;
-      const SUndoRecord & ur = m_aUndoBuf[m_nUndoPosition];
+      tmpPos--;;
+      const SUndoRecord & ur = m_aUndoBuf[tmpPos];
       if (ur.m_dwFlags & UNDO_INSERT)
         {
+#if 0 //original code
 #ifdef _ADVANCED_BUGCHECK
           //  Try to ensure that we undoing correctly...
           //  Just compare the text as it was before Undo operation
@@ -1136,8 +1140,28 @@ Undo (CPoint & ptCursorPos)
           GetText (ur.m_ptStartPos.y, ur.m_ptStartPos.x, ur.m_ptEndPos.y, ur.m_ptEndPos.x, text);
           ASSERT (lstrcmp (text, ur.GetText ()) == 0);
 #endif
-          VERIFY (InternalDeleteText (NULL, ur.m_ptStartPos.y, ur.m_ptStartPos.x, ur.m_ptEndPos.y, ur.m_ptEndPos.x));
-          ptCursorPos = ur.m_ptStartPos;
+#endif // original code
+
+          // WINMERGE -- Check that text in undo buffer matches text in
+          // file buffer.  If not, then rescan() has moved lines and undo
+          // is skipped.
+          CString text;
+          if ((ur.m_ptStartPos.y < m_aLines.GetSize ()) &&
+              (ur.m_ptStartPos.x <= m_aLines[ur.m_ptStartPos.y].m_nLength) &&
+              (ur.m_ptEndPos.y < m_aLines.GetSize ()) &&
+              (ur.m_ptEndPos.x <= m_aLines[ur.m_ptEndPos.y].m_nLength))
+            {
+              GetText (ur.m_ptStartPos.y, ur.m_ptStartPos.x, ur.m_ptEndPos.y, ur.m_ptEndPos.x, text);
+              if (_tcscmp(text, ur.GetText()) == 0)
+                {
+                   VERIFY (InternalDeleteText (NULL, ur.m_ptStartPos.y, ur.m_ptStartPos.x, ur.m_ptEndPos.y, ur.m_ptEndPos.x));
+                      ptCursorPos = ur.m_ptStartPos;
+                }
+              else
+                   found = FALSE;
+            }
+          else
+              found = FALSE;
         }
       else
         {
@@ -1152,11 +1176,13 @@ Undo (CPoint & ptCursorPos)
       if (ur.m_dwFlags & UNDO_BEGINGROUP)
         break;
     }
-  if (m_bModified && m_nSyncPosition == m_nUndoPosition)
+  if (m_bModified && m_nSyncPosition == tmpPos)
     SetModified (FALSE);
-  if (!m_bModified && m_nSyncPosition != m_nUndoPosition)
+  if (!m_bModified && m_nSyncPosition != tmpPos)
     SetModified (TRUE);
-  return TRUE;
+  if (found)
+    m_nUndoPosition = tmpPos;
+  return found;
 }
 
 BOOL CCrystalTextBuffer::
