@@ -39,6 +39,23 @@
 class CCrystalEditView;
 
 /////////////////////////////////////////////////////////////////////////////
+
+#ifndef STRUCT_LAST_SEARCH_INFO
+#define STRUCT_LAST_SEARCH_INFO
+
+// this structure is also defined in the file CFindTextDlg.h
+struct LastSearchInfos
+  {
+    int m_nDirection;
+    BOOL m_bMatchCase;
+    CString m_sText;
+    BOOL m_bWholeWord;
+    BOOL m_bRegExp;
+  };
+
+#endif // STRUCT_LAST_SEARCH_INFO
+
+/////////////////////////////////////////////////////////////////////////////
 // CEditReplaceDlg dialog
 
 class EDITPADC_CLASS CEditReplaceDlg : public CDialog
@@ -49,18 +66,24 @@ private :
     CPoint m_ptFoundAt;
     BOOL DoHighlightText ( BOOL bNotifyIfNotFound );
     BOOL DoReplaceText (LPCTSTR pszNewText, DWORD dwSearchFlags);
+    void UpdateControls();
 
     // Construction
 public :
     CEditReplaceDlg (CCrystalEditView * pBuddy);
+    void SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp);
+    void UseLastSearch ();
+    LastSearchInfos * GetLastSearchInfos (); 
+
 
     BOOL m_bEnableScopeSelection;
     CPoint m_ptCurrentPos;
     CPoint m_ptBlockBegin, m_ptBlockEnd;
+    LastSearchInfos lastSearch;
 
     // Dialog Data
     //{{AFX_DATA(CEditReplaceDlg)
-	enum { IDD = IDD_EDIT_REPLACE };
+  enum { IDD = IDD_EDIT_REPLACE };
     CMemComboBox m_ctlFindText;
     CMemComboBox m_ctlReplText;
     CButton m_ctlWholeWord;
@@ -72,24 +95,25 @@ public :
     int m_nScope;
     //}}AFX_DATA
 
-
     // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(CEditReplaceDlg)
-	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	protected:
+  public:
+  virtual BOOL PreTranslateMessage(MSG* pMsg);
+  protected:
     virtual void DoDataExchange (CDataExchange * pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  //}}AFX_VIRTUAL
 
     // Implementation
 protected :
 
     void UpdateRegExp ();
+    void UpdateLastSearch ();
 
     // Generated message map functions
     //{{AFX_MSG(CEditReplaceDlg)
     afx_msg void OnChangeEditText ();
+    afx_msg void OnChangeSelected ();
     virtual void OnCancel ();
     virtual BOOL OnInitDialog ();
     afx_msg void OnEditReplace ();

@@ -1,4 +1,4 @@
- ////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 //  File:       cfindtextdlg.h
 //  Version:    1.0.0.0
 //  Created:    29-Dec-1998
@@ -36,23 +36,46 @@
 
 class CCrystalTextView;
 
+
+/////////////////////////////////////////////////////////////////////////////
+
+#ifndef STRUCT_LAST_SEARCH_INFO
+#define STRUCT_LAST_SEARCH_INFO
+
+// this structure is also defined in the file CEditReplaceDlg.h
+struct LastSearchInfos
+  {
+    int m_nDirection;
+    BOOL m_bMatchCase;
+    CString m_sText;
+    BOOL m_bWholeWord;
+    BOOL m_bRegExp;
+  };
+
+#endif // STRUCT_LAST_SEARCH_INFO
+
 /////////////////////////////////////////////////////////////////////////////
 // CFindTextDlg dialog
 
 class EDITPADC_CLASS CFindTextDlg : public CDialog
   {
 private :
-	  void UpdateControls();
+    void UpdateControls();
     CCrystalTextView * m_pBuddy;
 
     // Construction
 public :
     CFindTextDlg (CCrystalTextView * pBuddy);
+    void SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp, int nDirection);
+    void UseLastSearch ();
+    LastSearchInfos * GetLastSearchInfos (); 
 
     CPoint m_ptCurrentPos;
+    LastSearchInfos lastSearch;
+
     // Dialog Data
     //{{AFX_DATA(CFindTextDlg)
-	enum { IDD = IDD_EDIT_FIND };
+  enum { IDD = IDD_EDIT_FIND };
     CMemComboBox m_ctlFindText;
     CButton m_ctlWholeWord;
     int m_nDirection;
@@ -73,11 +96,14 @@ protected :
 protected :
 
     void UpdateRegExp ();
+    void UpdateLastSearch ();
+
 
     // Generated message map functions
     //{{AFX_MSG(CFindTextDlg)
     virtual void OnOK ();
     afx_msg void OnChangeEditText ();
+    afx_msg void OnChangeSelected ();
     virtual BOOL OnInitDialog ();
     virtual void OnCancel ();
     afx_msg void OnRegExp ();

@@ -4261,27 +4261,30 @@ OnEditFind ()
   ASSERT (pApp != NULL);
 
   CFindTextDlg dlg (this);
+  LastSearchInfos * lastSearch = dlg.GetLastSearchInfos();
+
   if (m_bLastSearch)
     {
       //  Get the latest search parameters
-      dlg.m_bMatchCase = (m_dwLastSearchFlags & FIND_MATCH_CASE) != 0;
-      dlg.m_bWholeWord = (m_dwLastSearchFlags & FIND_WHOLE_WORD) != 0;
-      dlg.m_bRegExp = (m_dwLastSearchFlags & FIND_REGEXP) != 0;
-      dlg.m_nDirection = (m_dwLastSearchFlags & FIND_DIRECTION_UP) != 0 ? 0 : 1;
+      lastSearch->m_bMatchCase = (m_dwLastSearchFlags & FIND_MATCH_CASE) != 0;
+      lastSearch->m_bWholeWord = (m_dwLastSearchFlags & FIND_WHOLE_WORD) != 0;
+      lastSearch->m_bRegExp = (m_dwLastSearchFlags & FIND_REGEXP) != 0;
+      lastSearch->m_nDirection = (m_dwLastSearchFlags & FIND_DIRECTION_UP) != 0 ? 0 : 1;
       if (m_pszLastFindWhat != NULL)
-        dlg.m_sText = m_pszLastFindWhat;
+        lastSearch->m_sText = m_pszLastFindWhat;
     }
   else
     {
       DWORD dwFlags;
       if (!RegLoadNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("FindFlags"), &dwFlags))
         dwFlags = 0;
-      dlg.m_bMatchCase = (dwFlags & FIND_MATCH_CASE) != 0;
-      dlg.m_bWholeWord = (dwFlags & FIND_WHOLE_WORD) != 0;
-      dlg.m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
-      dlg.m_nDirection = (dwFlags & FIND_DIRECTION_UP) == 0;
-      // dlg.m_sText = pApp->GetProfileString (REG_FIND_SUBKEY, REG_FIND_WHAT, _T (""));
+      lastSearch->m_bMatchCase = (dwFlags & FIND_MATCH_CASE) != 0;
+      lastSearch->m_bWholeWord = (dwFlags & FIND_WHOLE_WORD) != 0;
+      lastSearch->m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
+      lastSearch->m_nDirection = (dwFlags & FIND_DIRECTION_UP) == 0;
+      // lastSearch->m_sText = pApp->GetProfileString (REG_FIND_SUBKEY, REG_FIND_WHAT, _T (""));
     }
+  dlg.UseLastSearch ();
 
   //  Take the current selection, if any
   if (IsSelection ())
@@ -4292,7 +4295,7 @@ OnEditFind ()
         {
           LPCTSTR pszChars = GetLineChars (ptSelStart.y);
           int nChars = ptSelEnd.x - ptSelStart.x;
-		  _tcsncpy (dlg.m_sText.GetBuffer (nChars + 1), pszChars + ptSelStart.x, nChars);
+		      _tcsncpy (dlg.m_sText.GetBuffer (nChars + 1), pszChars + ptSelStart.x, nChars);
           dlg.m_sText.ReleaseBuffer (nChars);
         }
     }
@@ -4310,24 +4313,27 @@ OnEditFind ()
   dlg.DoModal ();
   // m_bShowInactiveSelection = FALSE; // FP: removed because I like it
 
+  // actually this value doesn't change during doModal, but it may in the future
+  lastSearch = dlg.GetLastSearchInfos();
+
   //  Save search parameters for 'F3' command
   m_bLastSearch = TRUE;
   if (m_pszLastFindWhat != NULL)
     free (m_pszLastFindWhat);
-  m_pszLastFindWhat = _tcsdup (dlg.m_sText);
+  m_pszLastFindWhat = _tcsdup (lastSearch->m_sText);
   m_dwLastSearchFlags = 0;
-  if (dlg.m_bMatchCase)
+  if (lastSearch->m_bMatchCase)
     m_dwLastSearchFlags |= FIND_MATCH_CASE;
-  if (dlg.m_bWholeWord)
+  if (lastSearch->m_bWholeWord)
     m_dwLastSearchFlags |= FIND_WHOLE_WORD;
-  if (dlg.m_bRegExp)
+  if (lastSearch->m_bRegExp)
     m_dwLastSearchFlags |= FIND_REGEXP;
-  if (dlg.m_nDirection == 0)
+  if (lastSearch->m_nDirection == 0)
     m_dwLastSearchFlags |= FIND_DIRECTION_UP;
 
   //  Save search parameters to registry
   VERIFY (RegSaveNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("FindFlags"), m_dwLastSearchFlags));
-  // pApp->WriteProfileString (REG_FIND_SUBKEY, REG_FIND_WHAT, dlg.m_sText);
+  // pApp->WriteProfileString (REG_FIND_SUBKEY, REG_FIND_WHAT, lastSearch->m_sText);
 }
 
 void CCrystalTextView::

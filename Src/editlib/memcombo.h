@@ -62,9 +62,7 @@ public :
     // Generated message map functions
 public :
     //{{AFX_MSG(CMemComboBox)
-    afx_msg void OnKillFocus (CWnd * pNewWnd);
     afx_msg void OnSetfocus ();
-    afx_msg void OnDestroy ();
     //}}AFX_MSG
 
     DECLARE_MESSAGE_MAP ()

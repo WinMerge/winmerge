@@ -1243,27 +1243,30 @@ OnEditReplace ()
   ASSERT (pApp != NULL);
 
   CEditReplaceDlg dlg (this);
+  LastSearchInfos * lastSearch = dlg.GetLastSearchInfos();
 
   if (m_bLastReplace)
     {
       //  Get the latest Replace parameters
-      dlg.m_bMatchCase = (m_dwLastReplaceFlags & FIND_MATCH_CASE) != 0;
-      dlg.m_bWholeWord = (m_dwLastReplaceFlags & FIND_WHOLE_WORD) != 0;
-      dlg.m_bRegExp = (m_dwLastReplaceFlags & FIND_REGEXP) != 0;
+      lastSearch->m_bMatchCase = (m_dwLastReplaceFlags & FIND_MATCH_CASE) != 0;
+      lastSearch->m_bWholeWord = (m_dwLastReplaceFlags & FIND_WHOLE_WORD) != 0;
+      lastSearch->m_bRegExp = (m_dwLastReplaceFlags & FIND_REGEXP) != 0;
       if (m_pszLastFindWhat != NULL)
-        dlg.m_sText = m_pszLastFindWhat;
+        lastSearch->m_sText = m_pszLastFindWhat;
     }
   else
     {
       DWORD dwFlags;
       if (!RegLoadNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("ReplaceFlags"), &dwFlags))
         dwFlags = 0;
-      dlg.m_bMatchCase = (dwFlags & FIND_MATCH_CASE) != 0;
-      dlg.m_bWholeWord = (dwFlags & FIND_WHOLE_WORD) != 0;
-      dlg.m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
-      // dlg.m_sText = pApp->GetProfileString (REG_REPLACE_SUBKEY, REG_FIND_WHAT, _T (""));
-      // dlg.m_sNewText = pApp->GetProfileString (REG_REPLACE_SUBKEY, REG_REPLACE_WITH, _T (""));
+      lastSearch->m_bMatchCase = (dwFlags & FIND_MATCH_CASE) != 0;
+      lastSearch->m_bWholeWord = (dwFlags & FIND_WHOLE_WORD) != 0;
+      lastSearch->m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
+      // lastSearch->m_sText = pApp->GetProfileString (REG_REPLACE_SUBKEY, REG_FIND_WHAT, _T (""));
+      // lastSearch->m_sNewText = pApp->GetProfileString (REG_REPLACE_SUBKEY, REG_REPLACE_WITH, _T (""));
     }
+  dlg.UseLastSearch ();
+
 
   if (IsSelection ())
     {
@@ -1294,17 +1297,20 @@ OnEditReplace ()
   dlg.DoModal ();
   // m_bShowInactiveSelection = FALSE; // FP: removed because I like it
 
+  // actually this value doesn't change during doModal, but it may in the future
+  lastSearch = dlg.GetLastSearchInfos();
+
   //  Save Replace parameters for 'F3' command
   m_bLastReplace = TRUE;
   if (m_pszLastFindWhat != NULL)
     free (m_pszLastFindWhat);
-  m_pszLastFindWhat = _tcsdup (dlg.m_sText);
+  m_pszLastFindWhat = _tcsdup (lastSearch->m_sText);
   m_dwLastReplaceFlags = 0;
-  if (dlg.m_bMatchCase)
+  if (lastSearch->m_bMatchCase)
     m_dwLastReplaceFlags |= FIND_MATCH_CASE;
-  if (dlg.m_bWholeWord)
+  if (lastSearch->m_bWholeWord)
     m_dwLastReplaceFlags |= FIND_WHOLE_WORD;
-  if (dlg.m_bRegExp)
+  if (lastSearch->m_bRegExp)
     m_dwLastReplaceFlags |= FIND_REGEXP;
 
   //  Restore selection
@@ -1316,8 +1322,8 @@ OnEditReplace ()
 
   //  Save search parameters to registry
   VERIFY (RegSaveNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("ReplaceFlags"), m_dwLastReplaceFlags));
-  // pApp->WriteProfileString (REG_REPLACE_SUBKEY, REG_FIND_WHAT, dlg.m_sText);
-  // pApp->WriteProfileString (REG_REPLACE_SUBKEY, REG_REPLACE_WITH, dlg.m_sNewText);
+  // pApp->WriteProfileString (REG_REPLACE_SUBKEY, REG_FIND_WHAT, lastSearch->m_sText);
+  // pApp->WriteProfileString (REG_REPLACE_SUBKEY, REG_REPLACE_WITH, lastSearch->m_sNewText);
 }
 
 BOOL CCrystalEditView::

@@ -89,7 +89,7 @@ DoDataExchange (CDataExchange * pDX)
 BEGIN_MESSAGE_MAP (CEditReplaceDlg, CDialog)
 //{{AFX_MSG_MAP(CEditReplaceDlg)
 ON_CBN_EDITCHANGE (IDC_EDIT_FINDTEXT, OnChangeEditText)
-ON_CBN_SELCHANGE (IDC_EDIT_FINDTEXT, OnChangeEditText)
+ON_CBN_SELCHANGE (IDC_EDIT_FINDTEXT, OnChangeSelected)
 ON_BN_CLICKED (IDC_EDIT_REPLACE, OnEditReplace)
 ON_BN_CLICKED (IDC_EDIT_REPLACE_ALL, OnEditReplaceAll)
 ON_BN_CLICKED (IDC_EDIT_SKIP, OnEditSkip)
@@ -112,7 +112,7 @@ BOOL CEditReplaceDlg::PreTranslateMessage(MSG* pMsg)
         }
       return TRUE;
     }
-	return CDialog::PreTranslateMessage(pMsg);
+  return CDialog::PreTranslateMessage(pMsg);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -121,7 +121,17 @@ BOOL CEditReplaceDlg::PreTranslateMessage(MSG* pMsg)
 void CEditReplaceDlg::OnChangeEditText ()
 {
   UpdateData();
-  GetDlgItem (IDC_EDIT_SKIP)->EnableWindow (!m_sText.IsEmpty ());
+  UpdateControls();
+}
+void CEditReplaceDlg::OnChangeSelected ()
+{
+  int sel = m_ctlFindText.GetCurSel();
+  if (sel != CB_ERR)
+  {
+    m_ctlFindText.GetLBText(sel, m_sText);
+    m_ctlFindText.SetWindowText(m_sText);
+  }
+  UpdateControls();
 }
 
 void CEditReplaceDlg::
@@ -142,13 +152,20 @@ OnInitDialog ()
   UpdateData (FALSE);
   m_ctlFindText.m_sGroup = _T ("FindText");
   m_ctlFindText.OnSetfocus ();
-  GetDlgItem (IDC_EDIT_SKIP)->EnableWindow (!m_sText.IsEmpty ());
+
+  UpdateControls();
   GetDlgItem (IDC_EDIT_SCOPE_SELECTION)->EnableWindow (m_bEnableScopeSelection);
   m_bFound = FALSE;
-  UpdateRegExp ();
 
   return TRUE;
 }
+
+LastSearchInfos * CEditReplaceDlg::
+GetLastSearchInfos() 
+{
+  return &lastSearch;
+}
+
 
 BOOL CEditReplaceDlg::
 DoHighlightText ( BOOL bNotifyIfNotFound )
@@ -177,12 +194,12 @@ DoHighlightText ( BOOL bNotifyIfNotFound )
 
   if (!bFound)
     {
-	  if ( bNotifyIfNotFound ) 
-		{
-		  CString prompt;
-		  prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, m_sText);
-		  AfxMessageBox (prompt);
-		}
+    if ( bNotifyIfNotFound ) 
+    {
+      CString prompt;
+      prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, m_sText);
+      AfxMessageBox (prompt);
+    }
       m_ptCurrentPos = m_nScope == 0 ? m_ptBlockBegin : CPoint (0, 0);
       return FALSE;
     }
@@ -228,6 +245,10 @@ OnEditSkip ()
 {
   if (!UpdateData ())
     return;
+  
+  m_ctlFindText.FillCurrent();
+  UpdateLastSearch ();
+
   CButton *pSkip = (CButton*) GetDlgItem (IDC_EDIT_SKIP);
   CButton *pRepl = (CButton*) GetDlgItem (IDC_EDIT_REPLACE);
 
@@ -283,6 +304,9 @@ OnEditReplace ()
 {
   if (!UpdateData ())
     return;
+
+  m_ctlFindText.FillCurrent();
+  UpdateLastSearch ();
 
   if (!m_bFound)
     {
@@ -354,6 +378,9 @@ OnEditReplaceAll ()
   if (!UpdateData ())
     return;
 
+  m_ctlFindText.FillCurrent();
+  UpdateLastSearch ();
+
   int nNumReplaced = 0;
   CWaitCursor waitCursor;
 
@@ -373,7 +400,7 @@ OnEditReplaceAll ()
         dwSearchFlags |= FIND_WHOLE_WORD;
       if (m_bRegExp)
         dwSearchFlags |= FIND_REGEXP;
-		
+    
       //  We have highlighted text
       VERIFY (m_pBuddy->ReplaceSelection (m_sNewText, dwSearchFlags));
 
@@ -407,7 +434,7 @@ OnEditReplaceAll ()
           m_ptFoundAt.x += m_pBuddy->m_nLastReplaceLen;
           m_ptFoundAt = m_pBuddy->GetCursorPos ();
         }
-	  nNumReplaced++;
+    nNumReplaced++;
 
       m_bFound = DoHighlightText ( FALSE );
     }
@@ -428,3 +455,43 @@ OnRegExp ()
   UpdateRegExp ();
   UpdateData (FALSE);
 }
+
+void CEditReplaceDlg::
+UpdateControls()
+{
+  GetDlgItem(IDC_EDIT_SKIP)->EnableWindow( !m_sText.IsEmpty() );
+  GetDlgItem(IDC_EDIT_REPLACE)->EnableWindow( !m_sText.IsEmpty() );
+  GetDlgItem(IDC_EDIT_REPLACE_ALL)->EnableWindow( !m_sText.IsEmpty() );
+  
+  UpdateRegExp();
+}
+
+
+//
+// Last search functions
+//
+void CEditReplaceDlg::
+SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp)
+{
+  lastSearch.m_bMatchCase = bMatchCase;
+  lastSearch.m_bWholeWord = bWholeWord;
+  lastSearch.m_bRegExp = bRegExp;
+  lastSearch.m_sText = sText;
+}
+
+
+void CEditReplaceDlg::
+UpdateLastSearch ()
+{
+  SetLastSearch (m_sText, m_bMatchCase, m_bWholeWord, m_bRegExp);
+}
+
+void CEditReplaceDlg::
+UseLastSearch () 
+{
+  m_bMatchCase = lastSearch.m_bMatchCase;
+  m_bWholeWord = lastSearch.m_bWholeWord;
+  m_bRegExp = lastSearch.m_bRegExp;
+  m_sText = lastSearch.m_sText;
+}
+

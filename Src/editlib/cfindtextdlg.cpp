@@ -83,7 +83,7 @@ UpdateRegExp ()
 BEGIN_MESSAGE_MAP (CFindTextDlg, CDialog)
 //{{AFX_MSG_MAP(CFindTextDlg)
 ON_CBN_EDITCHANGE (IDC_EDIT_FINDTEXT, OnChangeEditText)
-ON_CBN_SELCHANGE (IDC_EDIT_FINDTEXT, OnChangeEditText)
+ON_CBN_SELCHANGE (IDC_EDIT_FINDTEXT, OnChangeSelected)
 ON_BN_CLICKED (IDC_EDIT_REGEXP, OnRegExp)
 //}}AFX_MSG_MAP
 END_MESSAGE_MAP ()
@@ -95,6 +95,9 @@ void CFindTextDlg::OnOK ()
 {
   if (UpdateData ())
     {
+      m_ctlFindText.FillCurrent();
+      UpdateLastSearch ();
+
       ASSERT (m_pBuddy != NULL);
       DWORD dwSearchFlags = 0;
       if (m_bMatchCase)
@@ -125,10 +128,24 @@ void CFindTextDlg::OnOK ()
 void CFindTextDlg::
 OnChangeEditText ()
 {
-	TRACE0( "Changed find text\n" );
-	UpdateData();
-	UpdateControls();
+  TRACE0( "Changed find text\n" );
+  UpdateData();
+  UpdateControls();
 }
+
+void CFindTextDlg::
+OnChangeSelected ()
+{
+  TRACE0( "Changed find selection\n" );
+  int sel = m_ctlFindText.GetCurSel();
+  if (sel != CB_ERR)
+  {
+    m_ctlFindText.GetLBText(sel, m_sText);
+    m_ctlFindText.SetWindowText(m_sText);
+  }
+  UpdateControls();
+}
+
 
 BOOL CFindTextDlg::
 OnInitDialog ()
@@ -142,6 +159,12 @@ OnInitDialog ()
   UpdateControls();
 
   return TRUE;
+}
+
+LastSearchInfos * CFindTextDlg::
+GetLastSearchInfos() 
+{
+  return &lastSearch;
 }
 
 void CFindTextDlg::
@@ -166,7 +189,38 @@ OnRegExp ()
 void CFindTextDlg::
 UpdateControls()
 {
-	GetDlgItem(IDOK)->EnableWindow( !m_sText.IsEmpty() );
-	
-	UpdateRegExp();
+  GetDlgItem(IDOK)->EnableWindow( !m_sText.IsEmpty() );
+  
+  UpdateRegExp();
 }
+
+//
+// Last search functions
+//
+void CFindTextDlg::
+SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp, int nDirection)
+{
+  lastSearch.m_bMatchCase = bMatchCase;
+  lastSearch.m_bWholeWord = bWholeWord;
+  lastSearch.m_bRegExp = bRegExp;
+  lastSearch.m_nDirection = nDirection;
+  lastSearch.m_sText = sText;
+}
+
+
+void CFindTextDlg::
+UpdateLastSearch ()
+{
+  SetLastSearch (m_sText, m_bMatchCase, m_bWholeWord, m_bRegExp, m_nDirection);
+}
+
+void CFindTextDlg::
+UseLastSearch () 
+{
+  m_bMatchCase = lastSearch.m_bMatchCase;
+  m_bWholeWord = lastSearch.m_bWholeWord;
+  m_bRegExp = lastSearch.m_bRegExp;
+  m_nDirection = lastSearch.m_nDirection;
+  m_sText = lastSearch.m_sText;
+}
+

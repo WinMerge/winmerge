@@ -41,9 +41,7 @@ static char THIS_FILE[] = __FILE__;
 
 BEGIN_MESSAGE_MAP (CMemComboBox, CComboBox)
 //{{AFX_MSG_MAP(CMemComboBox)
-ON_WM_KILLFOCUS ()
 ON_CONTROL_REFLECT (CBN_SETFOCUS, OnSetfocus)
-ON_WM_DESTROY ()
 //}}AFX_MSG_MAP
 END_MESSAGE_MAP ()
 
@@ -54,88 +52,88 @@ CMap < CString, LPCTSTR, CString, LPCTSTR > CMemComboBox::groups;
 
 void SetComboBoxHeight(CComboBox &Control)
 {
-	int			nHeight = Control.GetCount(), nMax = ::GetSystemMetrics(SM_CYSCREEN) - 48;
-	CRect		rc;
+  int      nHeight = Control.GetCount(), nMax = ::GetSystemMetrics(SM_CYSCREEN) - 48;
+  CRect    rc;
 
-	Control.GetClientRect(rc);
-	Control.ClientToScreen(rc);
-	nHeight = rc.Height() * nHeight + 16;
-	if(rc.top + nHeight > nMax)
-		nHeight = nMax - rc.top;
-	Control.SetWindowPos(NULL, 0, 0, rc.Width(), nHeight, SWP_NOMOVE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
+  Control.GetClientRect(rc);
+  Control.ClientToScreen(rc);
+  nHeight = rc.Height() * nHeight + 16;
+  if(rc.top + nHeight > nMax)
+    nHeight = nMax - rc.top;
+  Control.SetWindowPos(NULL, 0, 0, rc.Width(), nHeight, SWP_NOMOVE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
 }
 
 void SetComboBoxWidth(CComboBox &Control, LPCTSTR lpszText = NULL)
 {
-	int					cnt = Control.GetCount();
+  int          cnt = Control.GetCount();
 
-	if(!cnt)
-		return;
-	CClientDC			dc(&Control);
-	NONCLIENTMETRICS	info;
-	CFont				oFont, *oldFont;
-	int					width = 0, nMax = ::GetSystemMetrics(SM_CXSCREEN) - 48;
-	CRect				rc;
-	CSize				size;
+  if(!cnt)
+    return;
+  CClientDC      dc(&Control);
+  NONCLIENTMETRICS  info;
+  CFont        oFont, *oldFont;
+  int          width = 0, nMax = ::GetSystemMetrics(SM_CXSCREEN) - 48;
+  CRect        rc;
+  CSize        size;
 
-	memset(&info.lfMenuFont, 0, sizeof(LOGFONT));
-	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(info), &info, 0);
-	info.lfMenuFont.lfHeight = -MulDiv(9, dc.GetDeviceCaps(LOGPIXELSY), 72);
-	info.lfMenuFont.lfWidth = 0;
-	info.lfMenuFont.lfWeight = FW_THIN;
-	info.lfMenuFont.lfItalic = FALSE;
-	info.lfMenuFont.lfUnderline = FALSE;
-	info.lfMenuFont.lfCharSet = DEFAULT_CHARSET;
-	info.lfMenuFont.lfOutPrecision = OUT_DEFAULT_PRECIS;
-	info.lfMenuFont.lfClipPrecision = CLIP_DEFAULT_PRECIS;
-	info.lfMenuFont.lfQuality = DEFAULT_QUALITY;
-	info.lfMenuFont.lfPitchAndFamily = FF_SWISS;
-	_tcscpy(info.lfMenuFont.lfFaceName, _T("MS Sans Serif"));
-	oFont.CreateFontIndirect(&info.lfMenuFont);
-	oldFont = dc.SelectObject(&oFont);
-	if(lpszText && *lpszText) {
-		size = dc.GetTextExtent(lpszText);
-		width = size.cx;
-	} else {
-		CString				item;
+  memset(&info.lfMenuFont, 0, sizeof(LOGFONT));
+  SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(info), &info, 0);
+  info.lfMenuFont.lfHeight = -MulDiv(9, dc.GetDeviceCaps(LOGPIXELSY), 72);
+  info.lfMenuFont.lfWidth = 0;
+  info.lfMenuFont.lfWeight = FW_THIN;
+  info.lfMenuFont.lfItalic = FALSE;
+  info.lfMenuFont.lfUnderline = FALSE;
+  info.lfMenuFont.lfCharSet = DEFAULT_CHARSET;
+  info.lfMenuFont.lfOutPrecision = OUT_DEFAULT_PRECIS;
+  info.lfMenuFont.lfClipPrecision = CLIP_DEFAULT_PRECIS;
+  info.lfMenuFont.lfQuality = DEFAULT_QUALITY;
+  info.lfMenuFont.lfPitchAndFamily = FF_SWISS;
+  _tcscpy(info.lfMenuFont.lfFaceName, _T("MS Sans Serif"));
+  oFont.CreateFontIndirect(&info.lfMenuFont);
+  oldFont = dc.SelectObject(&oFont);
+  if(lpszText && *lpszText) {
+    size = dc.GetTextExtent(lpszText);
+    width = size.cx;
+  } else {
+    CString        item;
 
-		for(int i = 0; i < cnt; i++) {
-			Control.GetLBText(i, item);
-			size = dc.GetTextExtent(item);
-			if(size.cx > width)
-				width = size.cx;
-		}
-	}
-	Control.GetClientRect(rc);
-	Control.ClientToScreen(rc);
-	if(rc.left + width > nMax)
-		width = nMax - rc.left;
-	Control.SetDroppedWidth(width);
-	dc.SelectObject(oldFont);
+    for(int i = 0; i < cnt; i++) {
+      Control.GetLBText(i, item);
+      size = dc.GetTextExtent(item);
+      if(size.cx > width)
+        width = size.cx;
+    }
+  }
+  Control.GetClientRect(rc);
+  Control.ClientToScreen(rc);
+  if(rc.left + width > nMax)
+    width = nMax - rc.left;
+  Control.SetDroppedWidth(width);
+  dc.SelectObject(oldFont);
 }
 
 /*void FillComboBox(CComboBox &Control, const CList<CString, LPCTSTR> &Items, LPCTSTR lpszItem, BOOL bMustContains)
 {
-	POSITION	pos = Items.GetHeadPosition();
-	CString		item, maxitem;
-	int			maxlen = 0, len;
+  POSITION  pos = Items.GetHeadPosition();
+  CString    item, maxitem;
+  int      maxlen = 0, len;
 
-	Control.ResetContent();
-	while(pos) {
-		item = Items.GetNext(pos);
-		len = item.GetLength();
-		if(maxlen < len) {
-			maxlen = len;
-			maxitem = item;
-		}
-		Control.AddString(item);
-	}
-	if(Items.Find(lpszItem))
-		Control.SelectString(-1, lpszItem);
-	else if(!bMustContains)
-		Control.SetWindowText(lpszItem);
-	SetComboBoxHeight(Control);
-	SetComboBoxWidth(Control, maxitem);
+  Control.ResetContent();
+  while(pos) {
+    item = Items.GetNext(pos);
+    len = item.GetLength();
+    if(maxlen < len) {
+      maxlen = len;
+      maxitem = item;
+    }
+    Control.AddString(item);
+  }
+  if(Items.Find(lpszItem))
+    Control.SelectString(-1, lpszItem);
+  else if(!bMustContains)
+    Control.SetWindowText(lpszItem);
+  SetComboBoxHeight(Control);
+  SetComboBoxWidth(Control, maxitem);
 }*/
 
 /*int ListToString (CString &sResult, CList<CString, LPCTSTR> listSource)
@@ -197,7 +195,7 @@ Fill (LPCTSTR text)
             }
           groups.SetAt (m_sGroup, items);
         }
-    }
+    } 
 }
 
 void CMemComboBox::
@@ -238,39 +236,27 @@ SaveSettings ()
 }
 
 void CMemComboBox::
-OnKillFocus (CWnd * /*pNewWnd*/)
-{
-  FillCurrent ();
-}
-
-void CMemComboBox::
 OnSetfocus ()
 {
   if (m_bFirstFocus && !m_sGroup.IsEmpty ())
+  {
+    m_bFirstFocus = FALSE;
+    // create the dropdown list
+    CString items;
+    if (groups.Lookup (m_sGroup, items))
     {
-      m_bFirstFocus = FALSE;
-      CString items, strText;
-      GetWindowText (strText);
-      if (groups.Lookup (m_sGroup, items))
-        {
-          int p;
-          while ((p = items.Find (_T ('\n'))) != -1)
-            {
-              AddString (items.Left (p));
-              items = items.Mid (p + 1);
-            }
-          SetComboBoxHeight (*this);
-          SetComboBoxWidth (*this);
-          SetCurSel (0);
-          if (!strText.IsEmpty ())
-            SetWindowText (strText);
-        }
+      int p;
+      while ((p = items.Find (_T ('\n'))) != -1)
+      {
+        AddString (items.Left (p));
+        items = items.Mid (p + 1);
+      }
+      SetComboBoxHeight (*this);
+      SetComboBoxWidth (*this);
     }
+    // we don't modify the windowText value as it may be initialized 
+    // before the dialog is shown
+  }
 }
 
-void CMemComboBox::
-OnDestroy ()
-{
-  FillCurrent ();
-  CComboBox::OnDestroy ();
-}
+
