@@ -8,7 +8,19 @@
 : Windows before it works.
 :
 : ShellExtension.dll can be unregistered with command:
-: regsvr32 -u ShellExtension.dll
+: "Register.bat /U"
 
-echo Registering ShellExtension.dll...
-regsvr32 ShellExtension.dll
+IF "%1" == "/u" Goto Uninstall
+IF "%1" == "/U" Goto Uninstall
+
+Echo Registering ShellExtension.dll...
+RegSvr32 ShellExtension.dll
+
+Goto End
+
+:Uninstall
+Echo UnRegistering ShellExtension.dll...
+RegSvr32 /u ShellExtension.dll
+
+:End
+CLS

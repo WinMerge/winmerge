@@ -1,3 +1,8 @@
+2004-03-17 Seier
+  Modified  \ShellExtension\Register.bat to also UnRegister via a /U (case-insensitive) parameter.  
+  I also added an UnRegister.bat which does nothing more than call Register.bat with the /u switch.  
+
+
 2004-03-17 Kimmo
  PATCH: [ 913743 ] Icons for menuitems (RFE 873697)
   More nice icons from Tim Gerundt (Edit/Goto, Edit/Replace, View/Language, View/Font, Window/Change Pane)
@@ -34,6 +39,7 @@
     -Whether or not TortoiseCVS is installed support for it is added to the registry.  That way if a user ever installs it our application with start working       with it automatically :) (don't worry this only causes two possibly unecessary registry values and one key to be created)
 	
     -Since all three of the core WinMerge application files WinMerge*.exe, Merge7z*.dll, and ShellExtension.dll all use Ole Automation, I've included the 	      necessary runtime: OleAut32.dll (VS6 Service Pack 5)
+
 2004-03-16 Kimmo
  RFE [ 917196 ] Directory Comparison Results baloon annoyance
   Don't show infotip for filename when whole filename is already shown
