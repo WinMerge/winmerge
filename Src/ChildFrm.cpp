@@ -64,6 +64,19 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 END_MESSAGE_MAP()
 
 /**
+ * @brief Statusbar pane indexes
+ */
+enum
+{
+	PANE_LEFT_INFO = 0,
+	PANE_LEFT_RO,
+	PANE_LEFT_EOL,
+	PANE_RIGHT_INFO,
+	PANE_RIGHT_RO,
+	PANE_RIGHT_EOL,
+};
+
+/**
  * @brief Bottom statusbar panels and indicators
  */
 static UINT indicatorsBottom[] =
@@ -81,12 +94,12 @@ static UINT indicatorsBottom[] =
 
 CChildFrame::CChildFrame()
 #pragma warning(disable:4355) // 'this' : used in base member initializer list
-: m_leftStatus(this, 0)
-, m_rightStatus(this, 3)
+: m_leftStatus(this, PANE_LEFT_INFO)
+, m_rightStatus(this, PANE_RIGHT_INFO)
 #pragma warning(default:4355)
 {
 	m_bActivated = FALSE;
-	m_nLastSplitPos=0;
+	m_nLastSplitPos = 0;
 }
 
 CChildFrame::~CChildFrame()
@@ -274,8 +287,8 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// Text is hidden if file is writable
 	CString sText;
 	VERIFY(sText.LoadString(IDS_STATUSBAR_READONLY));
-	m_wndStatusBar.SetPaneText(1, sText, TRUE); 
-	m_wndStatusBar.SetPaneText(3, sText, TRUE);
+	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText, TRUE); 
+	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText, TRUE);
 
 	SetTimer(0, 250, NULL); // used to update the title headers
 	return 0;
@@ -387,8 +400,6 @@ void CChildFrame::UpdateDiffDockbarHeight(int DiffPanelHeight)
 	m_wndDetailBar.UpdateBarHeight(DiffPanelHeight);
 }
 
-
-
 /// update splitting position for panels 1/2 and headerbar and statusbar 
 void CChildFrame::UpdateHeaderSizes()
 {
@@ -418,12 +429,18 @@ void CChildFrame::UpdateHeaderSizes()
 		if (pane2Width < borderWidth)
 			pane2Width = borderWidth;
 
-		m_wndStatusBar.SetPaneInfo(0, ID_STATUS_LEFTFILE_INFO,  SBPS_NORMAL, pane1Width);
-		m_wndStatusBar.SetPaneInfo(1, ID_STATUS_LEFTFILE_RO,    SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
-		m_wndStatusBar.SetPaneInfo(2, ID_STATUS_LEFTFILE_EOL,   SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
-		m_wndStatusBar.SetPaneInfo(3, ID_STATUS_RIGHTFILE_INFO, SBPS_STRETCH, pane2Width);
-		m_wndStatusBar.SetPaneInfo(4, ID_STATUS_RIGHTFILE_RO,   SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
-		m_wndStatusBar.SetPaneInfo(5, ID_STATUS_RIGHTFILE_EOL,  SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+		m_wndStatusBar.SetPaneInfo(PANE_LEFT_INFO, ID_STATUS_LEFTFILE_INFO,
+			SBPS_NORMAL, pane1Width);
+		m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTFILE_RO,
+			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+		m_wndStatusBar.SetPaneInfo(PANE_LEFT_EOL, ID_STATUS_LEFTFILE_EOL,
+			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_INFO, ID_STATUS_RIGHTFILE_INFO,
+			SBPS_STRETCH, pane2Width);
+		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_RO, ID_STATUS_RIGHTFILE_RO,
+			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_EOL, ID_STATUS_RIGHTFILE_EOL,
+			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
 	}
 }
 
@@ -454,14 +471,14 @@ void CChildFrame::SetHeaderText(int nPane, const CString &text)
 	m_wndFilePathBar.SetFilePath(nPane, text);
 }
 
-// document commanding us to close
+/// Document commanding us to close
 void CChildFrame::CloseNow()
 {
 	MDIActivate();
 	MDIDestroy();
 }
 
-// Bridge class which implements the interface from crystal editor to frame status line display
+/// Bridge class which implements the interface from crystal editor to frame status line display
 CChildFrame::MergeStatus::MergeStatus(CChildFrame * pFrame, int base)
 : m_pFrame(pFrame)
 , m_base(base)
@@ -472,7 +489,7 @@ CChildFrame::MergeStatus::MergeStatus(CChildFrame * pFrame, int base)
 {
 }
 
-// Send status line info (about one side of merge view) to screen
+/// Send status line info (about one side of merge view) to screen
 void CChildFrame::MergeStatus::Update()
 {
 	if (IsWindow(m_pFrame->m_wndStatusBar.m_hWnd))
@@ -497,7 +514,7 @@ void CChildFrame::MergeStatus::Update()
 	}
 }
 
-// Visible representation of eol
+/// Visible representation of eol
 static CString EolString(const CString & sEol)
 {
 	if (sEol == _T("hidden")) return _T("");
@@ -508,7 +525,7 @@ static CString EolString(const CString & sEol)
 	return _T("?");
 }
 
-// Receive status line info from crystal window and display
+/// Receive status line info from crystal window and display
 void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
 		int nChars, LPCTSTR szEol)
 {

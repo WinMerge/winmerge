@@ -1,6 +1,8 @@
 2003-10-15 Kimmo
  PATCH: [ 823382 ] Save As should update filename
   WinMerge: MergeDoc.h MergeDoc.cpp
+ BUG: [ 823099 ] RO status not fully implemented when lossy conversions
+  WinMerge: ChildFrm.cpp
 
 2003-10-14 Laoran
  PATCH: [ 819123 ] Half-wait cursor during rescan (new try)
@@ -17,6 +19,7 @@
 
 2003-10-13 Kimmo
  PATCH: [ 797502 ] Bugfix and new options for SourceSafe
+  Submitted by Marvin Gouw
   WinMerge: DirActions.cpp MainFrm.h MainFrm.cpp Merge.rc resource.h
    VssPrompt.h VssPrompt.cpp
   Languages: resource.h *.rc
