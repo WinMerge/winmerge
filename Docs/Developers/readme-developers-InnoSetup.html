@@ -1,63 +1,105 @@
-To create the WinMerge setup program, install InnoSetup and the QuickStart pack, and then copy or move the files to be distributed into the following layout:
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Building WinMerge Installer</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+
+<h2>Building WinMerge Installer</h2>
+
+<h3>Needed programs:</h3>
+<ul>
+  <li><a href="http://www.jrsoftware.org/">Inno Setup</a> version 4.2.7
+    (5.x version may work too, but we haven't used it yet)
+  </li><li>
+   <a href="http://www.istool.org/">ISTool</a> <b>recommended</b>
+    - great help managing Inno Setup installer scripts
+  </li>
+</ul>
+
+There is download package called "QuickStart Pack" available in Inno Setup
+downloads. It contains all needed components in one installer.
+
+<h3>Checklist:</h3>
+<ul>
+  <li>
+    Installer reads version number from <code>WinMerge.exe</code>. So make
+    sure you have version resource correctly set.
+  </li><li>
+    Installer checks that files listed are present. But some files are
+    included as directory (like <code>/Manual</code>) or as filemask (like
+    <code>*.flt</code>) so take extra care to make sure all needed files
+    are present in locations shown below.
+  </li>
+</ul>
+
+<h3>Directory structure and files needed:</h3>
+
+These files are produced by compiling WinMerge, documentation etc, but
+that's not subject of this document, refer to readme-developers.html.
+<p>
+Copy or move the files into the following layout:
 
 <ul>
  <li>
-  Build/
+  <code>Build/</code>
   <ul>
    <li>
-    MergeRelease/
+    <code>MergeRelease/</code>
     <ul>
      <li>
-      Manual/
+      <code>Manual/</code>
       <ul>
        <li>
-        (Copy the entire manual directory to here)
+        <i>Copy the entire manual directory to here</i>
        </li>
       </ul>
      </li><li>
-      Merge7z*.dll
-      </li><li>
-      WinMerge.exe
+      <code>ShellExtension.dll</code>
+     </li><li>
+      <code>WinMerge.exe</code>
      </li>
     </ul>
    </li><li>
-    MergeUnicodeRelease/
+    <code>MergeUnicodeRelease/</code>
     <ul>
      <li>
-      Merge7z*U.dll
+      <code>WinMergeU.exe</code>
      </li><li>
-      WinMergeU.exe
-     </li><li>
-      WinMergeU.exe.Manifest
+      <code>WinMergeU.exe.Manifest</code>
      </li>
     </ul>
    </li>
   </ul>
  </li><li>
-  InnoSetup/
+  <code>Filters/</code>
   <ul>
    <li>
-    (Copy the entire InnoSetup source directory to here)
+    <code>FileFilter.tmpl</code>
+   </li><li>
+    <code>*.flt</code>
    </li>
   </ul>
  </li><li>
-  ShellExtension/
+  <code>InnoSetup/</code>
   <ul>
    <li>
-    ShellExtension.dll
+    <i>Copy the entire InnoSetup source directory to here</i>
    </li>
   </ul>
  </li><li>
-  Src/
+  <code>Src/</code>
    <ul>
     <li>
-     Languages/
+     <code>Languages/</code>
      <ul>
       <li>
-       DLL/
+       <code>DLL/</code>
        <ul>
         <li>
-         *.lang
+         <code>*.lang</code>
         </li>
        </ul>
       </li>
@@ -67,3 +109,32 @@ To create the WinMerge setup program, install InnoSetup and the QuickStart pack,
  </li>
 </ul>
 
+<h3>Running Inno Setup to create installer</h3>
+
+<code>WinMerge Localized.iss</code> (in <code>InnoSetup</code> folder)
+is script used to create WinMerge installer,.
+
+Rest of this section assumes ISTool is used. If not, then refer to
+InnoSetup manual for creating installer from script.
+
+<ol>
+  <li>
+    Start ISTool and load <code>WinMerge Localized.iss</code>
+  </li><li>
+    Select <code>Project/Verify Files..</code> from ISTool menu to verify
+    all needed files are present and in correct directories. Copy missing
+    files to correct directories before continuing.
+  </li><li>
+    Select <code>Project/Compile Setup</code> from ISTool menu to create
+    installer. This takes a while...
+  </li>
+</ol>
+
+If compile succeeds you have <code>WinMerge-version-Setup.exe</code> in
+directory <code>InnoSetup/Output</code>.
+<p>
+
+<b>Test installer!</b>
+
+</body>
+</html>

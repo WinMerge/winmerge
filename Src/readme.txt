@@ -4,6 +4,8 @@
   Src: Mainfrm.cpp
  PATCH: [ 1155436 ] Remove non-const GetDiffAt() from CDiffContext
   Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirView.h DirViewColHandler.cpp
+ PATCH: [ 1156188 ] Updated readme-innosetup
+  Docs/Developers: readme-developers-InnoSetup.html
 
 2005-03-04 Perry
  PATCH: [ 1156253 ] Fix filter helper handling of new filters
