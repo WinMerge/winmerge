@@ -1,3 +1,5 @@
+2003-11-14 WinMerge experimental release 2.1.3.9 (cvs)
+
 2003-11-14 Laoran 
  PATCH: [ 840296 ] Informative messageboxes when loading files
   WinMerge: files.h MainFrm.cpp MainFrm.h Merge.rc MergeDoc.cpp resource.h
