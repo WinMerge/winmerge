@@ -257,6 +257,11 @@ BOOL COpenDlg::OnInitDialog()
 	m_ctlRight.LoadState(_T("Files\\Right"));
 	m_ctlExt.LoadState(_T("Files\\Ext"));
 	UpdateData(m_strLeft.IsEmpty() && m_strRight.IsEmpty());
+	
+	// Select last used extension always, above line does not update
+	// it when one or both paths already set. That is case when opening
+	// one path from ShellExtension or drag&dropping one path
+	m_ctlExt.SetCurSel(0);
 	UpdateButtonStates();
 
 	m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0)==1;
