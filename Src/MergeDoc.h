@@ -160,51 +160,15 @@ public :
 		int getCodepage() const { return m_codepage; }
 		void setCodepage(int value) { m_codepage = value; }
 
-		CDiffTextBuffer (CMergeDoc * pDoc, BOOL bLeft)
-		{
-			m_pOwnerDoc = pDoc;
-			m_bIsLeft=bLeft;
-			unpackerSubcode = 0;
-			m_unicoding = 0;
-			m_codepage = 0;
-		}
-		// If line has text (excluding eol), set strLine to text (excluding eol)
-		BOOL GetLine( int nLineIndex, CString &strLine ) 
-		{ 
-			int nLineLength = CCrystalTextBuffer::GetLineLength 
-				( nLineIndex ); 
-			
-			if( nLineLength < 0 ) 
-				return FALSE; 
-			else if( nLineLength == 0 ) 
-				strLine.Empty(); 
-			else 
-			{ 
-				_tcsncpy ( strLine.GetBuffer( nLineLength + 1 ), 
-					CCrystalTextBuffer::GetLineChars( nLineIndex ), 
-					nLineLength ); 
-				strLine.ReleaseBuffer( nLineLength ); 
-			} 
-			return TRUE; 
-		} 
-		// if line has any text (including eol), set strLine to text (including eol)
-		BOOL GetFullLine(int nLineIndex, CString &strLine)
-		{
-			if (!GetFullLineLength(nLineIndex))
-				return FALSE;
-			strLine = GetLineChars(nLineIndex);
-			return TRUE;
-		}
+		CDiffTextBuffer(CMergeDoc * pDoc, BOOL bLeft);
 
-		virtual void SetModified (BOOL bModified = TRUE)
-		{
-			CCrystalTextBuffer::SetModified (bModified);
-			m_pOwnerDoc->SetModifiedFlag (bModified);
-		}
-		void InsertLine (LPCTSTR pszLine, int nLength = -1, int nPosition = -1, int nCount = 1)
-		{
-			CCrystalTextBuffer::InsertLine(pszLine, nLength, nPosition, nCount);
-		}
+		// If line has text (excluding eol), set strLine to text (excluding eol)
+		BOOL GetLine(int nLineIndex, CString &strLine);
+
+		// if line has any text (including eol), set strLine to text (including eol)
+		BOOL GetFullLine(int nLineIndex, CString &strLine);
+
+		virtual void SetModified (BOOL bModified = TRUE);
 
 		void prepareForRescan();
 

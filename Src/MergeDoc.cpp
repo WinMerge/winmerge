@@ -426,6 +426,47 @@ void CMergeDoc::ShowRescanError(int nRescanResult)
 	}
 }
 
+CMergeDoc::CDiffTextBuffer::CDiffTextBuffer(CMergeDoc * pDoc, BOOL bLeft)
+{
+	m_pOwnerDoc = pDoc;
+	m_bIsLeft=bLeft;
+	unpackerSubcode = 0;
+	m_unicoding = 0;
+	m_codepage = 0;
+}
+
+BOOL CMergeDoc::CDiffTextBuffer::GetLine(int nLineIndex, CString &strLine)
+{ 
+	int nLineLength = CCrystalTextBuffer::GetLineLength 
+		( nLineIndex ); 
+	
+	if( nLineLength < 0 ) 
+		return FALSE; 
+	else if( nLineLength == 0 ) 
+		strLine.Empty(); 
+	else 
+	{ 
+		_tcsncpy ( strLine.GetBuffer( nLineLength + 1 ), 
+			CCrystalTextBuffer::GetLineChars( nLineIndex ), 
+			nLineLength ); 
+		strLine.ReleaseBuffer( nLineLength ); 
+	} 
+	return TRUE; 
+}
+
+void CMergeDoc::CDiffTextBuffer::SetModified(BOOL bModified /*= TRUE*/)
+{
+	CCrystalTextBuffer::SetModified (bModified);
+	m_pOwnerDoc->SetModifiedFlag (bModified);
+}
+
+BOOL CMergeDoc::CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine)
+{
+	if (!GetFullLineLength(nLineIndex))
+		return FALSE;
+	strLine = GetLineChars(nLineIndex);
+	return TRUE;
+}
 
 //<jtuc 2003-06-28>
 void CMergeDoc::CDiffTextBuffer::AddUndoRecord(BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int nLinesToValidate, int nActionType /*= CE_ACTION_UNKNOWN*/)

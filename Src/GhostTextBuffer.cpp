@@ -77,7 +77,7 @@ InternalInsertGhostLine (CCrystalTextView * pSource, int nLine)
 	context.m_ptStart.x = 0;
 	context.m_ptStart.y = nLine;
 
-	InsertLine (_T(""), 0, nLine);
+	CCrystalTextBuffer::InsertLine (_T(""), 0, nLine);
 
 	context.m_ptEnd.x = 0;
 	context.m_ptEnd.y = nLine+1;
