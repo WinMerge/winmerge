@@ -4,7 +4,7 @@
 
 # TARGTYPE "Win32 (x86) Application" 0x0101
 
-CFG=Merge - Win32 Bound Check
+CFG=Merge - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
@@ -13,13 +13,12 @@ CFG=Merge - Win32 Bound Check
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "Merge.mak" CFG="Merge - Win32 Bound Check"
+!MESSAGE NMAKE /f "Merge.mak" CFG="Merge - Win32 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
 !MESSAGE "Merge - Win32 Release" (based on "Win32 (x86) Application")
 !MESSAGE "Merge - Win32 Debug" (based on "Win32 (x86) Application")
-!MESSAGE "Merge - Win32 Bound Check" (based on "Win32 (x86) Application")
 !MESSAGE 
 
 # Begin Project
@@ -88,40 +87,12 @@ LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeDebug/WinMerge.exe" /pdbtype:sept
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# PROP BASE Use_MFC 6
-# PROP BASE Use_Debug_Libraries 1
-# PROP BASE Output_Dir "Merge___"
-# PROP BASE Intermediate_Dir "Merge___"
-# PROP BASE Ignore_Export_Lib 0
-# PROP BASE Target_Dir ""
-# PROP Use_MFC 6
-# PROP Use_Debug_Libraries 1
-# PROP Output_Dir "..\Build\MergeBC"
-# PROP Intermediate_Dir "..\Build\MergeBC"
-# PROP Ignore_Export_Lib 0
-# PROP Target_Dir ""
-# ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /I "ms" /I "." /I "..\releases\current\common" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W3 /GR /GX /ZI /Od /I "." /I "..\common" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS=AFX_EXT_CLASS /Yu"stdafx.h" /FD /c
-# ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o /win32 "NUL"
-# ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o /win32 "NUL"
-# ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
-BSC32=bscmake.exe
-# ADD BASE BSC32 /nologo
-# ADD BSC32 /nologo
-LINK32=link.exe
-# ADD BASE LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /out:"Debug/WinMerge.exe" /pdbtype:sept
-# ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeBC/WinMerge.exe" /pdbtype:sept
-
 !ENDIF 
 
 # Begin Target
 
 # Name "Merge - Win32 Release"
 # Name "Merge - Win32 Debug"
-# Name "Merge - Win32 Bound Check"
 # Begin Group "Source Files"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
@@ -136,11 +107,6 @@ SOURCE=.\ANALYZE.C
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -160,8 +126,6 @@ SOURCE=.\ChildFrm.cpp
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -176,11 +140,6 @@ SOURCE=.\CMPBUF.C
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -199,11 +158,6 @@ SOURCE=.\CONTEXT.C
 
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
 !ENDIF 
 
 # End Source File
@@ -220,8 +174,6 @@ SOURCE=.\Diff.cpp
 # ADD CPP /O2
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -244,8 +196,6 @@ SOURCE=.\DirDoc.cpp
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -262,11 +212,6 @@ SOURCE=.\DIRENT.C
 
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
 !ENDIF 
 
 # End Source File
@@ -280,8 +225,6 @@ SOURCE=.\DirFrame.cpp
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -294,8 +237,6 @@ SOURCE=.\DirView.cpp
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -313,11 +254,6 @@ SOURCE=.\ED.C
 
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
 !ENDIF 
 
 # End Source File
@@ -330,8 +266,6 @@ SOURCE=.\EditFile.cpp
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -347,11 +281,6 @@ SOURCE=.\FNMATCH.C
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -375,11 +304,6 @@ SOURCE=.\IFDEF.C
 
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
 !ENDIF 
 
 # End Source File
@@ -394,11 +318,6 @@ SOURCE=.\IO.C
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -426,8 +345,6 @@ SOURCE=.\MainFrm.cpp
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -440,8 +357,6 @@ SOURCE=.\Merge.cpp
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -459,8 +374,6 @@ SOURCE=.\MergeDoc.cpp
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -482,11 +395,6 @@ SOURCE=.\NORMAL.C
 
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
 !ENDIF 
 
 # End Source File
@@ -499,8 +407,6 @@ SOURCE=.\OpenDlg.cpp
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -519,8 +425,6 @@ SOURCE=.\PropGeneral.cpp
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -538,8 +442,6 @@ SOURCE=.\PropVss.cpp
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -554,11 +456,6 @@ SOURCE=.\REGEX.C
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
-# SUBTRACT CPP /YX /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
 # SUBTRACT CPP /YX /Yc /Yu
 
 !ENDIF 
@@ -585,11 +482,6 @@ SOURCE=.\SIDE.C
 
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
 !ENDIF 
 
 # End Source File
@@ -606,8 +498,6 @@ SOURCE=.\Splash.cpp
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -631,11 +521,6 @@ SOURCE=.\StdAfx.cpp
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
-# ADD CPP /Yc"stdafx.h"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# ADD BASE CPP /Yc"stdafx.h"
 # ADD CPP /Yc"stdafx.h"
 
 !ENDIF 
@@ -666,11 +551,6 @@ SOURCE=.\UTIL.C
 
 # SUBTRACT CPP /YX /Yc /Yu
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-# SUBTRACT BASE CPP /YX /Yc /Yu
-# SUBTRACT CPP /YX /Yc /Yu
-
 !ENDIF 
 
 # End Source File
@@ -687,8 +567,6 @@ SOURCE=.\VssPrompt.cpp
 # SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -951,8 +829,6 @@ SOURCE=.\editlib\asp.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -965,8 +841,6 @@ SOURCE=.\editlib\basic.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -981,8 +855,6 @@ SOURCE=.\editlib\batch.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -995,8 +867,6 @@ SOURCE=.\editlib\ccrystaleditview.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1011,8 +881,6 @@ SOURCE=.\editlib\ccrystaleditview.h
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1025,8 +893,6 @@ SOURCE=.\editlib\ccrystaleditview.inl
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1041,8 +907,6 @@ SOURCE=.\editlib\ccrystaltextbuffer.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1055,8 +919,6 @@ SOURCE=.\editlib\ccrystaltextbuffer.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1071,8 +933,6 @@ SOURCE=.\editlib\ccrystaltextbuffer.inl
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1085,8 +945,6 @@ SOURCE=.\editlib\ccrystaltextview.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1101,8 +959,6 @@ SOURCE=.\editlib\ccrystaltextview.h
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1115,8 +971,6 @@ SOURCE=.\editlib\ccrystaltextview.inl
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1131,8 +985,6 @@ SOURCE=.\editlib\ccrystaltextview2.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1145,8 +997,6 @@ SOURCE=.\editlib\ceditreplacedlg.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1161,8 +1011,6 @@ SOURCE=.\editlib\ceditreplacedlg.h
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1175,8 +1023,6 @@ SOURCE=.\editlib\cfindtextdlg.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1191,8 +1037,6 @@ SOURCE=.\editlib\cfindtextdlg.h
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1205,8 +1049,6 @@ SOURCE=.\editlib\chcondlg.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1221,8 +1063,6 @@ SOURCE=.\editlib\chcondlg.h
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1235,8 +1075,6 @@ SOURCE=.\editlib\cplusplus.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1259,8 +1097,6 @@ SOURCE=.\editlib\crystaleditviewex.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1273,8 +1109,6 @@ SOURCE=.\editlib\crystaleditviewex.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1289,8 +1123,6 @@ SOURCE=.\editlib\crystalparser.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1303,8 +1135,6 @@ SOURCE=.\editlib\crystalparser.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1319,8 +1149,6 @@ SOURCE=.\editlib\crystaltextblock.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1333,8 +1161,6 @@ SOURCE=.\editlib\crystaltextblock.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1349,8 +1175,6 @@ SOURCE=.\editlib\cs2cs.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1363,8 +1187,6 @@ SOURCE=.\editlib\cs2cs.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1379,8 +1201,6 @@ SOURCE=.\editlib\dcl.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1393,8 +1213,6 @@ SOURCE=.\editlib\editcmd.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1409,8 +1227,6 @@ SOURCE=.\editlib\editreg.h
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1423,8 +1239,6 @@ SOURCE=.\editlib\edtlib.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1439,8 +1253,6 @@ SOURCE=.\editlib\filesup.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1453,8 +1265,6 @@ SOURCE=.\editlib\filesup.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1469,8 +1279,6 @@ SOURCE=.\editlib\filesup.inl
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1483,8 +1291,6 @@ SOURCE=.\editlib\fortran.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1499,8 +1305,6 @@ SOURCE=.\editlib\fpattern.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1513,8 +1317,6 @@ SOURCE=.\editlib\fpattern.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1529,8 +1331,6 @@ SOURCE=.\editlib\gotodlg.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1543,8 +1343,6 @@ SOURCE=.\editlib\gotodlg.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1559,8 +1357,6 @@ SOURCE=.\editlib\html.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1573,8 +1369,6 @@ SOURCE=.\editlib\is.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1589,8 +1383,6 @@ SOURCE=.\editlib\java.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1603,8 +1395,6 @@ SOURCE=.\editlib\lisp.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1619,8 +1409,6 @@ SOURCE=.\editlib\memcombo.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1633,8 +1421,6 @@ SOURCE=.\editlib\memcombo.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1649,8 +1435,6 @@ SOURCE=.\editlib\memcombo.inl
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1663,8 +1447,6 @@ SOURCE=.\editlib\pascal.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1679,8 +1461,6 @@ SOURCE=.\editlib\perl.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1693,8 +1473,6 @@ SOURCE=.\editlib\php.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1709,8 +1487,6 @@ SOURCE=.\editlib\python.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1723,8 +1499,6 @@ SOURCE=.\editlib\registry.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1739,8 +1513,6 @@ SOURCE=.\editlib\registry.h
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1754,8 +1526,6 @@ SOURCE=.\editlib\resource.h
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1768,8 +1538,6 @@ SOURCE=.\editlib\rexx.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1788,8 +1556,6 @@ SOURCE=.\editlib\sgml.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1802,8 +1568,6 @@ SOURCE=.\editlib\sh.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1818,8 +1582,6 @@ SOURCE=.\editlib\siod.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1832,8 +1594,6 @@ SOURCE=.\editlib\sql.cpp
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1848,8 +1608,6 @@ SOURCE=.\editlib\statbar.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1862,8 +1620,6 @@ SOURCE=.\editlib\statbar.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1878,8 +1634,6 @@ SOURCE=.\editlib\tcl.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1893,8 +1647,6 @@ SOURCE=.\editlib\tex.cpp
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
 
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
 !ENDIF 
 
 # End Source File
@@ -1907,8 +1659,6 @@ SOURCE=.\editlib\wispelld.h
 !ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
 
 # PROP Intermediate_Dir "..\Build\MergeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
 !ENDIF 
 
@@ -1924,10 +1674,10 @@ SOURCE=.\stampver.inf
 # End Source File
 # End Target
 # End Project
-# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
-# 	1:19:IDR_POPUP_ABOUT_DLG:104
-# End Section
 # Section Merge : {6F747475-446E-6C62-436C-6B0000003100}
 # 	1:10:IDB_SPLASH:103
 # 	2:21:SplashScreenInsertKey:4.0
+# End Section
+# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
+# 	1:19:IDR_POPUP_ABOUT_DLG:104
 # End Section
