@@ -151,28 +151,6 @@ int files_readEOL(TCHAR *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive)
 	return eolBytes;
 }
 
-
-// Replace file with another file
-// Note order of parameters!
-// pszReplaced - this is the file to delete
-// pszReplacement - this file will be renamed to pszReplaced
-BOOL files_safeReplaceFile(LPCTSTR pszReplaced,	LPCTSTR pszReplacement)
-{
-	BOOL bSuccess = FALSE;
-	if (pszReplaced && pszReplacement)
-	{
-		// Delete the file we are replacing
-		// This fails if file does not exist, that's ok
-		::DeleteFile(pszReplaced);
-
-		// Rename remaining file to removed file
-		// This (renaming file) should not fail,
-		if (::MoveFile(pszReplacement, pszReplaced))
-			bSuccess = TRUE;
-	}
-	return bSuccess;
-}
-
 BOOL files_safeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength)
 {
 	DWORD dwWrittenBytes = 0;

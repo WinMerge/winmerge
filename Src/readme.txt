@@ -1,3 +1,7 @@
+2003-05-28 Kimmo
+ PATCH: [ 744872 ] Use CopyFile()
+  WinMerge: files.h files.cpp MergeDoc.cpp
+
 2003-05-26 Kimmo
  PATCH: [ 743284 ] String fixes
   WinMerge: DirDoc.cpp DirView.cpp MainFrm.cpp MergeDoc.h paths.cpp

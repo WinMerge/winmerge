@@ -15,7 +15,6 @@ struct MAPPEDFILEDATA
 BOOL files_openFileMapped(MAPPEDFILEDATA *fileData);
 BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush);
 int files_readEOL(TCHAR *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive);
-BOOL files_safeReplaceFile(LPCTSTR pszReplaced,	LPCTSTR pszReplacement);
 BOOL files_safeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength);
 BOOL files_safeReadFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength);
 

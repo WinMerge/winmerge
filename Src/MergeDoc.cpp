@@ -1283,8 +1283,9 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			files_closeFileMapped(&fileData, nBufSize, TRUE);
 		
 		// Write tempfile over original file
-		if (files_safeReplaceFile(pszFileName, szTempFileName))
+		if (::CopyFile(szTempFileName, pszFileName, FALSE))
 		{
+			::DeleteFile(szTempFileName);
 			if (bClearModifiedFlag)
 			{
 				SetModified(FALSE);
