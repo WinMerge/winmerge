@@ -1,3 +1,7 @@
+2004-08-13 Kimmo
+ BUG: [ 1007320 ] VB Syntax highlighting: Wrong masking from "
+  Src/editlib: basic.cpp
+
 2004-08-12 Kimmo
  PATCH: [ 1007212 ] Make extension matching in Open-dialog case insensitive
   Src: FileFilterHelper.cpp
