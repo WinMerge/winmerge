@@ -1,3 +1,5 @@
+2004-07-23 WinMerge experimental release 2.7.1.10 (cvs)
+
 2004-07-19 Perry
  BUG: [ 993402 ] Need review of native language names
   Removed asterisks from Nederlands & Svenska (thanks to A. Decorte).
