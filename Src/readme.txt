@@ -10,6 +10,8 @@
   WinMerge: DirDoc.cpp
  bugfix: Add new files that were part of patch#724309
   WinMerge: WaitStatusCursor.cpp WaitStatusCursor.h
+ PATCH: [ 724493 ] WaitStatusCursor for MergeDoc rescans
+  WinMerge: MergeDoc.cpp
 
 2003-04-19 Perry
  [ 724280 ] Could use wait cursors at OpenSelection calls

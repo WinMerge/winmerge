@@ -1387,6 +1387,8 @@ void CMergeDoc::FlushAndRescan()
 {
 	if (!m_bEnableRescan) return;
 
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
+
 	CMDIFrameWnd* mainWnd = dynamic_cast<CMDIFrameWnd*>(AfxGetMainWnd());
 	CMDIChildWnd* diffWnd = dynamic_cast<CMDIChildWnd*>(mainWnd->MDIGetActive());
 	CCrystalEditView* curView = dynamic_cast<CCrystalEditView*>(diffWnd->GetActiveView());
