@@ -290,7 +290,7 @@
 #define IDS_FILTERFILE_PATHTITLE        16449
 #define IDS_FILTER_TITLE                16450
 #define IDS_FILTER_PREFIX               16451
-
+#define IDS_FILTERFILE_DESCTITLE        16452
 #define IDS_CC_CMD                      16464
 #define IDS_VSS_CMD                     16465
 
@@ -669,7 +669,8 @@
 #define ID_EOL_TO_MAC                   32776
 #define ID_FILE_MERGINGMODE             32777
 
-#define ID_SHOWLINEDIFF                 32784
+#define ID_SHOWLINEWORDDIFF             32783
+#define ID_SHOWLINECHARDIFF             32784
 #define ID_EDIT_WMGOTO                  32785
 #define ID_OPTIONS                      32786
 #define ID_REFRESH                      32787

@@ -27,13 +27,19 @@ void DeleteRegList(RegList & reglist)
 		delete regexp;
 	}
 }
-// One actual filter
-// For example, this might be a GNU C filter, excluding *.o files and CVS directories
-// That is to say, a filter is a set of file masks and directory masks
+
+/**
+ * @brief One actual filter.
+ *
+ * For example, this might be a GNU C filter, excluding *.o files and CVS
+ * directories. That is to say, a filter is a set of file masks and
+ * directory masks
+ */
 struct FileFilter
 {
 	bool default_include;
 	CString name;
+	CString description;
 	CString fullpath;
 	RegList filefilters; 
 	RegList dirfilters; 
@@ -51,7 +57,12 @@ FileFilterMgr::~FileFilterMgr()
 	DeleteAllFilters();
 }
 
-// Load 
+/**
+ * @brief Load filter file from disk.
+ *
+ * @param [in] szPattern Pattern from where to load filters, for example "\\Filters\\*.flt"
+ * @param [in] szExt File-extension of filter files
+ */
 void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
 {
 	// DeleteAllFilters();
@@ -77,6 +88,9 @@ void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
 	}
 }
 
+/**
+ * @brief Removes all filters from current list.
+ */
 void FileFilterMgr::DeleteAllFilters()
 {
 	for (int i=0; i<m_filters.GetSize(); ++i)
@@ -87,8 +101,12 @@ void FileFilterMgr::DeleteAllFilters()
 	m_filters.RemoveAll();
 }
 
-// Add a single pattern (if nonempty & valid) to a pattern list
-// str is a temporary variable (ie, it may be altered)
+/**
+ * @brief Add a single pattern (if nonempty & valid) to a pattern list.
+ *
+ * @param [in] RegList List where pattern is added.
+ * @param [in] str Temporary variable (ie, it may be altered)
+ */
 static void AddFilterPattern(RegList & reglist, CString & str)
 {
 	LPCTSTR commentLeader = _T("##"); // Starts comment
@@ -118,7 +136,12 @@ static void AddFilterPattern(RegList & reglist, CString & str)
 		delete regexp;
 }
 
-// Parse a filter file, and add it to array if valid
+/**
+ * @brief Parse a filter file, and add it to array if valid.
+ *
+ * @param [in] szFilePath Path (w/o filename) to file to load.
+ * @param [in] szFilename Name of file to load.
+ */
 FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilename)
 {
 	CStdioFile file;
@@ -140,6 +163,14 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilenam
 			str.TrimLeft();
 			if (!str.IsEmpty())
 				pfilter->name = str;
+		}
+		else if (0 == _tcsncmp(sLine, _T("desc:"), 5))
+		{
+			// specifies display name
+			CString str = sLine.Mid(5);
+			str.TrimLeft();
+			if (!str.IsEmpty())
+				pfilter->description = str;
 		}
 		else if (0 == _tcsncmp(sLine, _T("def:"), 4))
 		{
@@ -167,8 +198,13 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilenam
 	return pfilter;
 }
 
-// Give client back a pointer to the actual filter
-// We just do a linear search, because this is seldom called
+/**
+ * @brief Give client back a pointer to the actual filter.
+ *
+ * @param [in] szFilterPath Full path to filterfile.
+ * @return Pointer to found filefilter or NULL;
+ * @note We just do a linear search, because this is seldom called
+ */
 FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
 {
 	for (int i=0; i<m_filters.GetSize(); ++i)
@@ -179,7 +215,13 @@ FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
 	return 0;
 }
 
-// return TRUE if string passes
+/**
+ * @brief Test given string against given regexp list.
+ *
+ * @param [in] reglist List of regexps to test against.
+ * @param [in] szTest String to test against regexps.
+ * @return TRUE if string passes
+ */
 BOOL TestAgainstRegList(const RegList & reglist, LPCTSTR szTest)
 {
 	CString str = szTest;
@@ -193,7 +235,13 @@ BOOL TestAgainstRegList(const RegList & reglist, LPCTSTR szTest)
 	return FALSE;
 }
 
-// return TRUE if file passes the filter
+/**
+ * @brief Test given filename against filefilter.
+ *
+ * @param [in] pFilter Pointer to filefilter
+ * @param [in] szFileName Filename to test
+ * @return TRUE if file passes the filter
+ */
 BOOL FileFilterMgr::TestFileNameAgainstFilter(FileFilter * pFilter, LPCTSTR szFileName)
 {
 	if (!pFilter) return TRUE;
@@ -202,7 +250,13 @@ BOOL FileFilterMgr::TestFileNameAgainstFilter(FileFilter * pFilter, LPCTSTR szFi
 	return pFilter->default_include;
 }
 
-// return TRUE if directory passes the filter
+/**
+ * @brief Test given directory name against filefilter.
+ *
+ * @param [in] pFilter Pointer to filefilter
+ * @param [in] szDirName Directory name to test
+ * @return TRUE if directory name passes the filter
+ */
 BOOL FileFilterMgr::TestDirNameAgainstFilter(FileFilter * pFilter, LPCTSTR szDirName)
 {
 	if (!pFilter) return TRUE;
@@ -211,22 +265,57 @@ BOOL FileFilterMgr::TestDirNameAgainstFilter(FileFilter * pFilter, LPCTSTR szDir
 	return pFilter->default_include;
 }
 
+/**
+ * @brief Return name of filter.
+ *
+ * @param [in] i Index of filter.
+ * @return Name of filter in given index.
+ */
 CString FileFilterMgr::GetFilterName(int i) const
 {
 	return m_filters[i]->name; 
 }
 
+/**
+ * @brief Return description of filter.
+ *
+ * @param [in] i Index of filter.
+ * @return Description of filter in given index.
+ */
+CString FileFilterMgr::GetFilterDesc(int i) const
+{
+	return m_filters[i]->description; 
+}
+
+/**
+ * @brief Return full path to filter.
+ *
+ * @param [in] i Index of filter.
+ * @return Full path of filter in given index.
+ */
 CString FileFilterMgr::GetFilterPath(int i) const
 {
 	return m_filters[i]->fullpath;
 }
 
+/**
+ * @brief Return full path to filter.
+ *
+ * @param [in] pFilter Pointer to filter.
+ * @return Full path of filter.
+ */
 CString FileFilterMgr::GetFullpath(FileFilter * pfilter) const
 {
 	return pfilter->fullpath;
 }
 
-// Reload filter from disk (by creating a new one to substitute for old one)
+/**
+ * @brief Reload filter from disk
+ *
+ * Reloads filter from disk. This is done by creating a new one
+ * to substitute for old one.
+ * @param [in] pFilter Pointer to filter to reload.
+ */
 void FileFilterMgr::ReloadFilterFromDisk(FileFilter * pfilter)
 {
 	FileFilter * newfilter = LoadFilterFile(pfilter->fullpath, pfilter->name);

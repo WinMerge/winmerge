@@ -1,3 +1,11 @@
+2005-01-05 Kimmo
+ PATCH: [ 1094534 ] Add description field for file filters
+  Src: FileFilterHelper.cpp FileFilterHelper.h FileFilterMgr.cpp FileFilterMgr.h
+   FileFiltersDlg.cpp FileFiltersDlg.h MainFrm.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+  Filters: ADAMulti.flt Merge_GnuC_loose.flt Merge_VB_loose.flt Merge_VC_loose.flt
+   XML_html.flt
+
 2005-01-03 Kimmo
  PATCH: [ 1094474 ] Visible area indicator for location pane
   Src: LocationView.cpp LocationView.h MergeEditView.h

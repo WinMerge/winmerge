@@ -62,7 +62,7 @@ void FileFilterHelper::SetFileFilterPath(LPCTSTR szFileFilterPath)
 }
 
 /** @brief fill list with names of known filters */
-void FileFilterHelper::GetFileFilters(StringPairArray * filters, CString & selected) const
+void FileFilterHelper::GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const
 {
 	if (m_fileFilterMgr)
 	{
@@ -70,10 +70,11 @@ void FileFilterHelper::GetFileFilters(StringPairArray * filters, CString & selec
 		filters->SetSize(count);
 		for (int i=0; i<count; ++i)
 		{
-			StringPair pair;
-			pair.first = m_fileFilterMgr->GetFilterPath(i);
-			pair.second = m_fileFilterMgr->GetFilterName(i);
-			filters->SetAt(i, pair);
+			FileFilterInfo filter;
+			filter.fullpath = m_fileFilterMgr->GetFilterPath(i);
+			filter.name = m_fileFilterMgr->GetFilterName(i);
+			filter.description = m_fileFilterMgr->GetFilterDesc(i);
+			filters->SetAt(i, filter);
 		}
 	}
 	selected = m_sFileFilterPath;
@@ -82,16 +83,16 @@ void FileFilterHelper::GetFileFilters(StringPairArray * filters, CString & selec
 /** @brief Return name of filter in given file */
 CString FileFilterHelper::GetFileFilterName(CString filterPath)
 {
-	StringPairArray filters;
+	FILEFILTER_INFOLIST filters;
 	CString selected;
 	CString name;
 
 	GetFileFilters(&filters, selected);
 	for (int i = 0; i < filters.GetSize(); i++)
 	{
-		if (filters.GetAt(i).first == filterPath)
+		if (filters.GetAt(i).fullpath == filterPath)
 		{
-			name = filters.GetAt(i).second;
+			name = filters.GetAt(i).name;
 			break;
 		}
 	}
@@ -101,16 +102,16 @@ CString FileFilterHelper::GetFileFilterName(CString filterPath)
 /** @brief Return path to filter with given name */
 CString FileFilterHelper::GetFileFilterPath(CString filterName)
 {
-	StringPairArray filters;
+	FILEFILTER_INFOLIST filters;
 	CString selected;
 	CString path;
 
 	GetFileFilters(&filters, selected);
 	for (int i = 0; i < filters.GetSize(); i++)
 	{
-		if (filters.GetAt(i).second == filterName)
+		if (filters.GetAt(i).name == filterName)
 		{
-			path = filters.GetAt(i).first;
+			path = filters.GetAt(i).fullpath;
 			break;
 		}
 	}

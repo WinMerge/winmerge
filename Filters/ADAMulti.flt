@@ -1,6 +1,7 @@
 ## This is a directory/file filter for WinMerge
 ## This filter suppresses various binaries found in ADAMulti source trees
 name: ADAMulti
+desc: Suppresses various binaries found in ADAMulti source trees
 
 ## This is an inclusive (loose) filter
 ## (it lets through everything not specified)

@@ -69,7 +69,7 @@ END_MESSAGE_MAP()
  * @brief Set array of filters.
  * @note Call this before actually showing the dialog.
  */
-void FileFiltersDlg::SetFilterArray(StringPairArray * fileFilters)
+void FileFiltersDlg::SetFilterArray(FILEFILTER_INFOLIST * fileFilters)
 {
 	m_Filters = fileFilters;
 }
@@ -102,12 +102,15 @@ void FileFiltersDlg::InitList()
 
 	VERIFY(title.LoadString(IDS_FILTERFILE_NAMETITLE));
 	m_listFilters.InsertColumn(0, title,LVCFMT_LEFT, 150);
+	VERIFY(title.LoadString(IDS_FILTERFILE_DESCTITLE));
+	m_listFilters.InsertColumn(1, title, LVCFMT_LEFT, 350);
 	VERIFY(title.LoadString(IDS_FILTERFILE_PATHTITLE));
-	m_listFilters.InsertColumn(1, title,LVCFMT_LEFT, 350);
+	m_listFilters.InsertColumn(2, title,LVCFMT_LEFT, 350);
 
 	VERIFY(title.LoadString(IDS_USERCHOICE_NONE));
 	m_listFilters.InsertItem(1, title);
 	m_listFilters.SetItemText(0, 1, title);
+	m_listFilters.SetItemText(0, 2, title);
 
 	int count = m_Filters->GetSize();
 
@@ -137,7 +140,7 @@ BOOL FileFiltersDlg::OnInitDialog()
 	int count = m_listFilters.GetItemCount();
 	for (int i = 0; i < count; i++)
 	{
-		m_listFilters.GetItemText(i, 1, desc.GetBuffer(MAX_PATH), MAX_PATH);
+		m_listFilters.GetItemText(i, 2, desc.GetBuffer(MAX_PATH), MAX_PATH);
 		desc.ReleaseBuffer();
 		if (desc.CompareNoCase(m_sFileFilterPath) == 0)
 		{
@@ -156,9 +159,11 @@ BOOL FileFiltersDlg::OnInitDialog()
 void FileFiltersDlg::AddToGrid(int filterIndex)
 {
 	m_listFilters.InsertItem(filterIndex + 1,
-		m_Filters->GetAt(filterIndex).second);
+		m_Filters->GetAt(filterIndex).name);
 	m_listFilters.SetItemText(filterIndex + 1, 1,
-		m_Filters->GetAt(filterIndex).first);
+		m_Filters->GetAt(filterIndex).description);
+	m_listFilters.SetItemText(filterIndex + 1, 2,
+		m_Filters->GetAt(filterIndex).fullpath);
 }
 
 /**
@@ -170,7 +175,7 @@ void FileFiltersDlg::OnOK()
 	int sel =- 1;
 
 	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
-	m_listFilters.GetItemText(sel, 1, path.GetBuffer(MAX_PATH),	MAX_PATH);
+	m_listFilters.GetItemText(sel, 2, path.GetBuffer(MAX_PATH),	MAX_PATH);
 	path.ReleaseBuffer();
 	m_sFileFilterPath = path;
 
@@ -191,7 +196,7 @@ void FileFiltersDlg::OnFiltersEditbtn()
 	// Can't edit first "None"
 	if (sel > 0)
 	{
-		m_listFilters.GetItemText(sel, 1, path.GetBuffer(MAX_PATH),
+		m_listFilters.GetItemText(sel, 2, path.GetBuffer(MAX_PATH),
 			MAX_PATH);
 		path.ReleaseBuffer();
 

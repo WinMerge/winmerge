@@ -32,11 +32,17 @@ struct FileFilter;
 #include "RegExp.h"
 #endif
 
-#ifndef StringPair_declared
-#define StringPair_declared
-struct StringPair { CString first; CString second; };
-class StringPairArray : public CArray<StringPair, StringPair> { }; // need class so can forward declare
-#endif
+/**
+ * @brief Structure containing user-visible information about filter.
+ */
+struct FileFilterInfo
+{
+	CString name; 			/**< Name of filter */
+	CString description; 	/**< Description of filter (shown in UI) */
+	CString fullpath;		/**< Full path to filter file */
+};
+
+typedef CArray<FileFilterInfo, FileFilterInfo> FILEFILTER_INFOLIST;
 
 /// Interface for testing files & directories for exclusion, as diff traverses file tree
 class IDiffFilter
@@ -59,7 +65,7 @@ public:
 	CString GetFileFilterPath() const { return m_sFileFilterPath; }
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);
 	void EditFileFilter(LPCTSTR szFileFilterName);
-	void GetFileFilters(StringPairArray * filters, CString & selected) const;
+	void GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const;
 	CString GetFileFilterName(CString filterPath);
 	CString GetFileFilterPath(CString filterName);
 

@@ -2492,7 +2492,7 @@ void CMainFrame::OnToolsFilters()
 	CPropertySheet sht(IDS_FILTER_TITLE);
 	CPropFilter filter;
 	FileFiltersDlg fileFiltersDlg;
-	StringPairArray fileFilters;
+	FILEFILTER_INFOLIST fileFilters;
 	CString selectedFilter;
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&filter);

@@ -21,6 +21,13 @@
 
 struct FileFilter;
 
+/**
+ * @brief File filter manager for handling filefilters.
+ *
+ * The FileFilterMgr loads a collection of named file filters from disk,
+ * and provides lookup access by name, or array access by index, to these
+ * named filters. It also provides test functions for actually using the filters.
+ */
 class FileFilterMgr
 {
 private:
@@ -38,6 +45,7 @@ public:
 	int GetFilterCount() const { return m_filters.GetSize(); }
 	CString GetFilterName(int i) const;
 	CString GetFilterPath(int i) const;
+	CString GetFilterDesc(int i) const;
 	FileFilter * GetFilterByPath(LPCTSTR szFilterName);
 	CString GetFullpath(FileFilter * pfilter) const;
 

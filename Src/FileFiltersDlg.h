@@ -40,7 +40,7 @@ class FileFiltersDlg : public CPropertyPage
 // Construction
 public:
 	FileFiltersDlg();   // standard constructor
-	void SetFilterArray(StringPairArray * fileFilters);
+	void SetFilterArray(FILEFILTER_INFOLIST * fileFilters);
 	CString GetSelected();
 	void SetSelected(CString selected);
 	void InitList();
@@ -63,7 +63,7 @@ public:
 
 // Implementation
 protected:
-	StringPairArray * m_Filters;
+	FILEFILTER_INFOLIST * m_Filters;
 
 	void AddToGrid(int filterIndex);
 	// Generated message map functions

@@ -290,7 +290,7 @@
 #define IDS_FILTERFILE_PATHTITLE        16449
 #define IDS_FILTER_TITLE                16450
 #define IDS_FILTER_PREFIX               16451
-
+#define IDS_FILTERFILE_DESCTITLE        16452
 #define IDS_CC_CMD                      16464
 #define IDS_VSS_CMD                     16465
 
