@@ -1,3 +1,7 @@
+2004-06-29 Kimmo
+ PATCH: [ 981468 ] Properly handle different commentstyles for Pascal
+  Src/editlib/pascal.cpp
+
 2004-06-28 Laoran
  PATCH: [ 981290 ] Updated Swedish MergeSwedish.rc file
  Submitted by Hans Eriksson 

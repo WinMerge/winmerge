@@ -139,13 +139,14 @@ if (pBuf != NULL)\
 #define COOKIE_EXT_COMMENT      0x0004
 #define COOKIE_STRING           0x0008
 #define COOKIE_CHAR             0x0010
+#define COOKIE_EXT_COMMENT2     0x0020
 
 DWORD CCrystalTextView::
 ParseLinePascal (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
 {
   int nLength = GetLineLength (nLineIndex);
   if (nLength <= 1)
-    return dwCookie & COOKIE_EXT_COMMENT;
+    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2);
 
   LPCTSTR pszChars = GetLineChars (nLineIndex);
   BOOL bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
@@ -159,7 +160,7 @@ ParseLinePascal (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualI
           int nPos = I;
           if (bDecIndex)
             nPos--;
-          if (dwCookie & (COOKIE_COMMENT | COOKIE_EXT_COMMENT))
+          if (dwCookie & (COOKIE_COMMENT | COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
             }
@@ -227,9 +228,15 @@ out:
               dwCookie &= ~COOKIE_EXT_COMMENT;
               bRedefineBlock = TRUE;
             }
+          continue;
+        }
+
+      //  Extended comment {....}
+      if (dwCookie & COOKIE_EXT_COMMENT2)
+        {
           if (pszChars[I] == '}')
             {
-              dwCookie &= ~COOKIE_EXT_COMMENT;
+              dwCookie &= ~COOKIE_EXT_COMMENT2;
               bRedefineBlock = TRUE;
             }
           continue;
@@ -269,7 +276,7 @@ out:
       if (pszChars[I] == '{')
         {
           DEFINE_BLOCK (I, COLORINDEX_COMMENT);
-          dwCookie |= COOKIE_EXT_COMMENT;
+          dwCookie |= COOKIE_EXT_COMMENT2;
           continue;
         }
 
@@ -360,6 +367,6 @@ out:
     }
 
   if (pszChars[nLength - 1] != '\\')
-    dwCookie &= COOKIE_EXT_COMMENT;
+    dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2);
   return dwCookie;
 }
