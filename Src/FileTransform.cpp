@@ -51,8 +51,7 @@ BOOL bUnpackerMode = UNPACK_AUTO;
 extern LPCWSTR TransformationCategories[] = 
 {
 	L"NO_TRANSFORMATION",
-	L"PHYSICAL_PREPROCESS",
-	L"SYNTAX_PREPROCESS",
+	L"PREDIFFING",
 	L"CONTEXT_MENU",
 	L"BUFFER_PACK_UNPACK",
 	L"FILE_PACK_UNPACK",
@@ -547,47 +546,27 @@ BOOL FileTransform_PreprocessA(CString & filepath, CString filteredText, int bMa
 
 
 	// Get the scriptlet files
-	PluginArray * piPhysicalScriptArray = 
-		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(L"PHYSICAL_PREPROCESS");
-	PluginArray * piSyntaxScriptArray = 
-		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(L"SYNTAX_PREPROCESS");
+	PluginArray * piScriptArray = 
+		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(L"PREDIFFING");
 
 	int nChanged = 0;
 
 	// MAIN TRANSFORMATION LOOP : each step is one transformation
 	// abort at the first error
 	int step;
-	for (step = 0     ; bSuccess && step < 400 ; step ++)
+	for (step = 0     ; bSuccess && step < 200 ; step ++)
 	{
-		if (step < 100)	// physical transformations 
+		if (step < 100)	// physical internal transformations 
 		{
 		}
-		else if (step >= 100 && step < 200)	// user physical transformations (plugins)
+		else if (step >= 100 && step < 200)	// physical external transformations (plugins)
 		{
-			if (step % 100 == piPhysicalScriptArray->GetSize())
+			if (step % 100 == piScriptArray->GetSize())
 			{
 				step = 199;
 				continue;
 			}
-			PluginInfo & plugin = piPhysicalScriptArray->ElementAt(step % 100);
-			if (plugin.bAutomatic == FALSE)
-				continue;
-			if (plugin.TestAgainstRegList(filteredText) == FALSE)
-				continue;
-			bSuccess = InvokePreprocessSimpleA(arrayBuffer, nArraySize, nChanged, plugin.lpDispatch);
-		}
-		else if (step >= 200 && step < 300)	// syntax transformations 
-		{
-			// for example, replace a variable name
-		}
-		else if (step >= 300 && step < 400)	// user syntax transformations (scriptlets)
-		{
-			if (step % 100 == piSyntaxScriptArray->GetSize())
-			{
-				step = 399;
-				continue;
-			}
-			PluginInfo & plugin = piSyntaxScriptArray->ElementAt(step % 100);
+			PluginInfo & plugin = piScriptArray->ElementAt(step % 100);
 			if (plugin.bAutomatic == FALSE)
 				continue;
 			if (plugin.TestAgainstRegList(filteredText) == FALSE)
@@ -644,10 +623,8 @@ BOOL FileTransform_PreprocessW(CString & filepath, CString filteredText, int bMa
 	files_closeFileMapped(&fileData, 0xFFFFFFFF, FALSE);
 
 	// Get the scriptlet files
-	PluginArray * piPhysicalScriptArray = 
-		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(L"PHYSICAL_PREPROCESS");
-	PluginArray * piSyntaxScriptArray = 
-		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(L"SYNTAX_PREPROCESS");
+	PluginArray * piScriptArray = 
+		CScriptsOfThread::GetScriptsOfThreads()->GetAvailableScripts(L"PREDIFFING");
 
 
 	int nChanged = 0;
@@ -655,37 +632,19 @@ BOOL FileTransform_PreprocessW(CString & filepath, CString filteredText, int bMa
 	// MAIN TRANSFORMATION LOOP : each step is one transformation
 	// abort at the first error
 	int step;
-	for (step = 0     ; bSuccess && step < 400 ; step ++)
+	for (step = 0     ; bSuccess && step < 200 ; step ++)
 	{
-		if (step < 100)	// physical transformations 
+		if (step < 100)	// physical internal transformations 
 		{
 		}
-		else if (step >= 100 && step < 200)	// user physical transformations (plugins)
+		else if (step >= 100 && step < 200)	// physical external transformations (plugins)
 		{
-			if (step % 100 == piPhysicalScriptArray->GetSize())
+			if (step % 100 == piScriptArray->GetSize())
 			{
 				step = 199;
 				continue;
 			}
-			PluginInfo & plugin = piPhysicalScriptArray->ElementAt(step % 100);
-			if (plugin.bAutomatic == FALSE)
-				continue;
-			if (plugin.TestAgainstRegList(filteredText) == FALSE)
-				continue;
-			bSuccess = InvokePreprocessSimpleW(bstrBuffer, nWideBufSize, nChanged, plugin.lpDispatch);
-		}
-		else if (step >= 200 && step < 300)	// syntax transformations 
-		{
-			// for example, replace a variable name
-		}
-		else if (step >= 300 && step < 400)	// user syntax transformations (scriptlets)
-		{
-			if (step % 100 == piSyntaxScriptArray->GetSize())
-			{
-				step = 399;
-				continue;
-			}
-			PluginInfo & plugin = piSyntaxScriptArray->ElementAt(step % 100);
+			PluginInfo & plugin = piScriptArray->ElementAt(step % 100);
 			if (plugin.bAutomatic == FALSE)
 				continue;
 			if (plugin.TestAgainstRegList(filteredText) == FALSE)
@@ -734,8 +693,7 @@ BOOL FileTransform_Preprocess(CString & filepath, CString filteredText, int bMay
 	// ANSI file : do needed plugins support mode A (not Unicode) ?
 	// For automatic mode : test plugins which handle the file extension
 	BOOL bMode;
-	bMode = CScriptsOfThread::GetScriptsOfThreads()->GetUnicodeModeOfScripts(L"PHYSICAL_PREPROCESS", filteredText);
-	bMode &= CScriptsOfThread::GetScriptsOfThreads()->GetUnicodeModeOfScripts(L"SYNTAX_PREPROCESS", filteredText);
+	bMode = CScriptsOfThread::GetScriptsOfThreads()->GetUnicodeModeOfScripts(L"PREDIFFING", filteredText);
 	// Yes, call function mode A (quicker, avoid conversions)
 	if (bMode & SCRIPT_A)
 		return FileTransform_PreprocessA(filepath, filteredText, bMayOverwrite);

@@ -264,14 +264,7 @@ static PluginArray * GetAvailableScripts( LPCWSTR transformationEvent, BOOL getS
 		// set the mode for the events which uses it
 		BOOL bUnicodeMode = SCRIPT_A | SCRIPT_W;
 		BOOL bFound = TRUE;
-		if (wcscmp(transformationEvent, L"PHYSICAL_PREPROCESS") == 0)
-		{
-			// W is mandatory
-			bFound &= SearchScriptForMethodName(lpDispatch, L"DiffingPreprocessW");
-			if (!SearchScriptForMethodName(lpDispatch, L"DiffingPreprocessA"))
-				bUnicodeMode &= ~SCRIPT_A;
-		}
-		else if (wcscmp(transformationEvent, L"SYNTAX_PREPROCESS") == 0)
+		if (wcscmp(transformationEvent, L"PREDIFFING") == 0)
 		{
 			// W is mandatory
 			bFound &= SearchScriptForMethodName(lpDispatch, L"DiffingPreprocessW");

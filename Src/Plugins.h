@@ -124,13 +124,13 @@ BOOL SearchScriptForFunctionName(LPDISPATCH piDispatch, WCHAR * functionName);
 // Wrappers to call plugins methods
 
 /**
- * @brief Call the plugin "DiffingPreprocessA" method, events PHYSICAL_PREPROCESS, SYNTAX_PREPROCESS
+ * @brief Call the plugin "DiffingPreprocessA" method, events PREDIFFING
  *
  * @param arrayBuf Overwrite/realloc this buffer
  */
 BOOL InvokePreprocessSimpleA(SAFEARRAY* & arrayBuf, UINT & nBufSize, int & nChanged, LPDISPATCH piScript);
 /**
- * @brief Call the plugin "DiffingPreprocessW" method, events PHYSICAL_PREPROCESS, SYNTAX_PREPROCESS
+ * @brief Call the plugin "DiffingPreprocessW" method, events PREDIFFING
  *
  * @param bstrBuf Overwrite/realloc this buffer
  */

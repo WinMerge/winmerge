@@ -1,3 +1,7 @@
+2003-10-29 Laoran
+ change events PHYSICAL_PREPROCESS and SYNTAX_PREPROCESS to PREDIFFING
+  WinMerge: FileTransform.cpp FileTransform.h Plugins.cpp Plugins.h
+
 2003-10-28 Kimmo
  PATCH: [ 830553 ] Finetune scroll to diff
   WinMerge: MergeEditView.h MergeEditView.cpp

@@ -163,7 +163,7 @@ BOOL FileTransform_NormalizeUnicode(CString & filepath, CString filteredText, in
  *
  * @return Tells if we can go on with diffutils
  *
- * @note Event PHYSICAL_PREPROCESS, SYNTAX_PREPROCESS
+ * @note Event PREDIFFING
  * Optimization try : call the A or W plugin method according to the status of the file
  * Unicode file                            -> call W (mandatory), fast
  * ANSI file and A plugins available       -> call A, fast
