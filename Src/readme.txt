@@ -1,3 +1,8 @@
+2004-07-18 Perry
+ BUG: [ 969933 ] 'discriminated' language names
+  Capitalized native language names to make consistent in language selection box
+   Src/Common: LanguageSelect.cpp
+
 2004-07-17 Kimmo
  PATCH: [ 992218 ] Add -f commandline switch for filemask
   Usage: WinMerge -f "*.ext1 *.ext2" (like in Open-dialog)
