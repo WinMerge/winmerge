@@ -1,3 +1,7 @@
+2004-01-08 Perry
+ PATCH: [ 872727 ] Fix function comment on lwdisp.c: ReportError
+  common: lwdisp.c
+
 2004-01-08 Kimmo
  Updated Russian translation from Dmitriy Aleshkowskiy
   Languages/Russian: MergeRussian.rc

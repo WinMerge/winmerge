@@ -35,6 +35,7 @@ DATE:		BY:					DESCRIPTION:
 2003/11/06	NOBODY@ALL			incredible number of changes for unknown reasons
 2003/11/18	Laoran				CreateDispatchBySource : avoid crash if loading dll fails
 2003/11/18	Laoran				CreateDispatchBySource, cosmetic : move dll load&object creation after the CLSID search (= less indentations)
+2004/01/08      Perry                           Updated function comment preceding ReportError 
 */
 // RCS ID line follows -- this is updated by CVS
 // $Id$
@@ -55,12 +56,17 @@ struct _RPC_ASYNC_STATE;	// avoid MSC warning C4115
 #include "dllproxy.h"
 
 /**
- * @brief try to turn HRESULT into a readable error message.
- *
- * @param uType : if 0, return the message, else display MessageBox of given uType
- *
- * @note if uType == 0, caller must LocalFree() the message.
- */
+* @brief Display or return error message string (from
+number)
+*
+* @param style: if 0, return sysalloc'd string, else
+msgbox
+*
+* Calls FormatMessage to get description of system string.
+* If not found, makes a string containing raw number.
+* If msgbox (style!=0), then function returns 0.
+* If not msgbox (style==0), caller must LocalFree string.
+*/
 static LPTSTR NTAPI ReportError(HRESULT sc, UINT style)
 {
 	LPTCH pc = 0;
