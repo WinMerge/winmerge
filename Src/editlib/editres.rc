@@ -1,0 +1,159 @@
+
+#include "editcmd.h"
+#include "afxres.h"
+
+IDD_EDIT_FIND DIALOG FIXED IMPURE  30, 73, 236, 62
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Find"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Fi&nd what:",IDC_STATIC,4,8,42,8
+    EDITTEXT        IDC_EDIT_TEXT,47,7,128,12,ES_AUTOHSCROLL | WS_GROUP
+    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
+    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,42,64,12
+    GROUPBOX        "Direction",IDC_STATIC,107,26,68,28,WS_GROUP
+    CONTROL         "&Up",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,111,38,25,12
+    CONTROL         "&Down",IDC_EDIT_DIRECTION_DOWN,"Button",
+                    BS_AUTORADIOBUTTON,138,38,35,12
+    DEFPUSHBUTTON   "&Find Next",IDOK,182,5,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,182,23,50,14
+END
+
+IDD_EDIT_REPLACE DIALOG FIXED IMPURE  36, 44, 230, 88
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Replace"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Fi&nd what:",IDC_STATIC,4,9,48,8
+    EDITTEXT        IDC_EDIT_TEXT,54,7,114,12,ES_AUTOHSCROLL | WS_GROUP
+    LTEXT           "Re&place with:",IDC_STATIC,4,26,48,8
+    EDITTEXT        IDC_EDIT_REPLACE_WITH,54,24,114,12,ES_AUTOHSCROLL | 
+                    WS_GROUP
+    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,46,91,12
+    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,62,59,12
+    GROUPBOX        "Replace in",IDC_STATIC,97,43,71,37,WS_GROUP
+    CONTROL         "&Selection",IDC_EDIT_SCOPE_SELECTION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,102,54,59,10
+    CONTROL         "Wh&ole file",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
+                    BS_AUTORADIOBUTTON,102,66,58,10
+    DEFPUSHBUTTON   "&Find Next",IDC_EDIT_SKIP,174,4,50,14,WS_GROUP
+    PUSHBUTTON      "&Replace",IDC_EDIT_REPLACE,174,21,50,14
+    PUSHBUTTON      "Replace &All",IDC_EDIT_REPLACE_ALL,174,38,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,174,55,50,14
+END
+
+//IDR_MARGIN_ICONS        BITMAP  DISCARDABLE     "mg_icons.bmp"
+
+//IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "mg_cur.cur"
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+	IDS_EDIT_TEXT_NOT_FOUND				"Cannot find string""%s"""
+	IDS_MENU_UNDO_FORMAT				"&Undo %s\tCtrl+Z"
+	IDS_MENU_REDO_FORMAT				"&Redo %s\tCtrl+Y"
+	IDS_MENU_UNDO_DEFAULT				"&Undo\tCtrl+Z"
+	IDS_MENU_REDO_DEFAULT				"&Redo\tCtrl+Z"
+	IDS_EDITOP_UNKNOWN					"Unknown"
+	IDS_EDITOP_PASTE					"Paste"
+	IDS_EDITOP_DELSELECTION				"Delete Selection"
+	IDS_EDITOP_CUT						"Cut"
+	IDS_EDITOP_DELETE					"Delete"
+	IDS_EDITOP_TYPING					"Typing"
+	IDS_EDITOP_BACKSPACE				"Backspace"
+	IDS_EDITOP_INDENT					"Indent"
+	IDS_EDITOP_DRAGDROP					"Drag And Drop"
+	IDS_EDITOP_REPLACE					"Replace"
+	IDS_EDITOP_AUTOINDENT				"Auto Indent"
+END
+
+IDR_DEFAULT_ACCEL ACCELERATORS DISCARDABLE 
+BEGIN
+    "0",            ID_EDIT_GO_BOOKMARK0,   VIRTKEY, ALT, NOINVERT
+    "0",            ID_EDIT_TOGGLE_BOOKMARK0, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "1",            ID_EDIT_GO_BOOKMARK1,   VIRTKEY, ALT, NOINVERT
+    "1",            ID_EDIT_TOGGLE_BOOKMARK1, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "2",            ID_EDIT_GO_BOOKMARK2,   VIRTKEY, ALT, NOINVERT
+    "2",            ID_EDIT_TOGGLE_BOOKMARK2, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "3",            ID_EDIT_GO_BOOKMARK3,   VIRTKEY, ALT, NOINVERT
+    "3",            ID_EDIT_TOGGLE_BOOKMARK3, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "4",            ID_EDIT_GO_BOOKMARK4,   VIRTKEY, ALT, NOINVERT
+    "4",            ID_EDIT_TOGGLE_BOOKMARK4, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "5",            ID_EDIT_GO_BOOKMARK5,   VIRTKEY, ALT, NOINVERT
+    "5",            ID_EDIT_TOGGLE_BOOKMARK5, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "6",            ID_EDIT_GO_BOOKMARK6,   VIRTKEY, ALT, NOINVERT
+    "6",            ID_EDIT_TOGGLE_BOOKMARK6, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "7",            ID_EDIT_GO_BOOKMARK7,   VIRTKEY, ALT, NOINVERT
+    "7",            ID_EDIT_TOGGLE_BOOKMARK7, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "8",            ID_EDIT_GO_BOOKMARK8,   VIRTKEY, ALT, NOINVERT
+    "8",            ID_EDIT_TOGGLE_BOOKMARK8, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "9",            ID_EDIT_GO_BOOKMARK9,   VIRTKEY, ALT, NOINVERT
+    "9",            ID_EDIT_TOGGLE_BOOKMARK9, VIRTKEY, CONTROL, 
+                                                    NOINVERT
+    "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_DELETE_BACK,    VIRTKEY, NOINVERT
+    VK_BACK,        ID_EDIT_DELETE_WORD_BACK, VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_DELETE,         VIRTKEY, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_DOWN,        ID_EDIT_LINE_DOWN,      VIRTKEY, NOINVERT
+    VK_DOWN,        ID_EDIT_SCROLL_DOWN,    VIRTKEY, CONTROL, NOINVERT
+    VK_DOWN,        ID_EDIT_EXT_LINE_DOWN,  VIRTKEY, SHIFT, NOINVERT
+    VK_END,         ID_EDIT_LINE_END,       VIRTKEY, NOINVERT
+    VK_END,         ID_EDIT_TEXT_END,       VIRTKEY, CONTROL, NOINVERT
+    VK_END,         ID_EDIT_EXT_LINE_END,   VIRTKEY, SHIFT, NOINVERT
+    VK_END,         ID_EDIT_EXT_TEXT_END,   VIRTKEY, SHIFT, CONTROL, NOINVERT
+    VK_F2,          ID_EDIT_CLEAR_ALL_BOOKMARKS, VIRTKEY, SHIFT, CONTROL, NOINVERT
+    VK_F2,          ID_EDIT_TOGGLE_BOOKMARK, VIRTKEY, CONTROL, NOINVERT
+    VK_F2,          ID_EDIT_GOTO_NEXT_BOOKMARK, VIRTKEY, NOINVERT
+    VK_F2,          ID_EDIT_GOTO_PREV_BOOKMARK, VIRTKEY, SHIFT, NOINVERT
+    VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
+    VK_F3,          ID_EDIT_FIND_PREVIOUS,  VIRTKEY, SHIFT, NOINVERT
+    VK_HOME,        ID_EDIT_HOME,           VIRTKEY, NOINVERT
+    VK_HOME,        ID_EDIT_TEXT_BEGIN,     VIRTKEY, CONTROL, NOINVERT
+    VK_HOME,        ID_EDIT_EXT_HOME,       VIRTKEY, SHIFT, NOINVERT
+    VK_HOME,        ID_EDIT_EXT_TEXT_BEGIN, VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    VK_INSERT,      ID_EDIT_SWITCH_OVRMODE, VIRTKEY, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_LEFT,        ID_EDIT_CHAR_LEFT,      VIRTKEY, NOINVERT
+    VK_LEFT,        ID_EDIT_WORD_LEFT,      VIRTKEY, CONTROL, NOINVERT
+    VK_LEFT,        ID_EDIT_EXT_CHAR_LEFT,  VIRTKEY, SHIFT, NOINVERT
+    VK_LEFT,        ID_EDIT_EXT_WORD_LEFT,  VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    VK_NEXT,        ID_EDIT_PAGE_DOWN,      VIRTKEY, NOINVERT
+    VK_NEXT,        ID_EDIT_EXT_PAGE_DOWN,  VIRTKEY, SHIFT, NOINVERT
+    VK_PRIOR,       ID_EDIT_PAGE_UP,        VIRTKEY, NOINVERT
+    VK_PRIOR,       ID_EDIT_EXT_PAGE_UP,    VIRTKEY, SHIFT, NOINVERT
+    VK_RIGHT,       ID_EDIT_CHAR_RIGHT,     VIRTKEY, NOINVERT
+    VK_RIGHT,       ID_EDIT_WORD_RIGHT,     VIRTKEY, CONTROL, NOINVERT
+    VK_RIGHT,       ID_EDIT_EXT_CHAR_RIGHT, VIRTKEY, SHIFT, NOINVERT
+    VK_RIGHT,       ID_EDIT_EXT_WORD_RIGHT, VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    VK_TAB,         ID_EDIT_TAB,            VIRTKEY, NOINVERT
+    VK_TAB,         ID_EDIT_UNTAB,          VIRTKEY, SHIFT, NOINVERT
+    VK_UP,          ID_EDIT_LINE_UP,        VIRTKEY, NOINVERT
+    VK_UP,          ID_EDIT_SCROLL_UP,      VIRTKEY, CONTROL, NOINVERT
+    VK_UP,          ID_EDIT_EXT_LINE_UP,    VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END

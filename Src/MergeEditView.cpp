@@ -52,7 +52,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_PREVDIFF, OnUpdatePrevdiff)
 	ON_WM_LBUTTONDBLCLK()
 	ON_WM_LBUTTONUP()
-	ON_WM_KEYUP()
 	ON_WM_CHAR()
 	ON_COMMAND(ID_ALL_LEFT, OnAllLeft)
 	ON_UPDATE_COMMAND_UI(ID_ALL_LEFT, OnUpdateAllLeft)
@@ -752,65 +751,6 @@ void CMergeEditView::UpdateLineLengths()
 {
 	//m_nMaxLineLength=-1;
 	GetMaxLineLength();
-}
-
-void CMergeEditView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
-{
-	
-	if (nChar == VK_RIGHT)
-	{
-		GetDocument()->ListCopy(true);
-	}
-	else if (nChar == VK_LEFT)
-	{
-		GetDocument()->ListCopy(false);
-	}
-	else if (nChar == VK_NEXT)
-	{
-		SCROLLINFO sif;
-		GetScrollInfo(SB_VERT, &sif);
-		ScrollToLine(max(0, min(sif.nMax, m_nTopLine+(int)sif.nPage-1)));
-		UpdateSiblingScrollPos(FALSE);
-	}
-	else if (nChar == VK_PRIOR)
-	{
-		SCROLLINFO sif;
-		GetScrollInfo(SB_VERT, &sif);
-		ScrollToLine(max(0, min(sif.nMax, m_nTopLine-(int)sif.nPage+1)));
-		UpdateSiblingScrollPos(FALSE);
-	}
-	else if (nChar == VK_DELETE)
-	{
-		CCrystalEditViewEx::OnEditDelete();
-		GetDocument()->FlushAndRescan();
-	}
-	else if (nChar == VK_BACK)
-	{
-		CCrystalEditViewEx::OnEditDeleteBack();
-		GetDocument()->FlushAndRescan();
-	}
-	/*else if (nChar == VK_HOME)
-	{
-		mf->m_pLeft->ScrollToLine(0);
-		mf->m_pRight->ScrollToLine(0);
-		SelectDiff(-1);
-	}
-	else if (nChar == VK_END)
-	{
-		mf->m_pLeft->ScrollToLine(m_nLines-1);
-		mf->m_pRight->ScrollToLine(m_nLines-1);
-		SelectDiff(-1);
-	}
-	else if (nChar == VK_PRIOR)
-	{
-		int cnt = m_pList->GetCountPerPage();
-		int top = m_pList->GetTopIndex();
-		mf->m_pLeft->ScrollToLine(max(0, top-cnt+1));
-		mf->m_pRight->ScrollToLine(max(0, top-cnt+1));
-		SelectDiff(-1);
-	}*/
-	else 
-		CCrystalEditViewEx::OnKeyUp(nChar, nRepCnt, nFlags);
 }
 
 void CMergeEditView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 

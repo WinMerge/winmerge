@@ -3472,13 +3472,12 @@ OnCreate (LPCREATESTRUCT lpCreateStruct)
   if (CView::OnCreate (lpCreateStruct) == -1)
     return -1;
 
-  /*TODO
   ASSERT (m_hAccel == NULL);
              // vvv GetResourceHandle () ???
   HINSTANCE hInst = AfxFindResourceHandle (MAKEINTRESOURCE(IDR_DEFAULT_ACCEL), RT_ACCELERATOR);
   ASSERT (hInst);
   m_hAccel =::LoadAccelerators (hInst, MAKEINTRESOURCE (IDR_DEFAULT_ACCEL));
-  ASSERT (m_hAccel != NULL);*/
+  ASSERT (m_hAccel != NULL);
   return 0;
 }
 
