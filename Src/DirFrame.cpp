@@ -92,6 +92,9 @@ void CDirFrame::Dump(CDumpContext& dc) const
 
 #endif //_DEBUG
 
+/**
+ * @brief Create statusbar
+ */
 int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
 	if (CMDIChildWnd::OnCreate(lpCreateStruct) == -1)
@@ -115,18 +118,22 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
+/**
+ * @brief Set statusbar text
+ */
 void CDirFrame::SetStatus(LPCTSTR szStatus)
 {
 	m_wndStatusBar.SetPaneText(0, szStatus);
 }
 
-
+/**
+ * @brief Restore maximized state of directory compare window
+ */
 void CDirFrame::ActivateFrame(int nCmdShow) 
 {
-// Diffstatus is not in this frame
-//	if (m_wndStatusBar.IsWindowVisible())
-//		m_wndStatusBar.SetPaneText(1, _T("")); // clear the diff status
-	
+	if (theApp.GetProfileInt(_T("Settings"), _T("DirViewMax"), FALSE))
+		nCmdShow = SW_MAXIMIZE;
+
 	CMDIChildWnd::ActivateFrame(nCmdShow);
 }
 
@@ -135,8 +142,10 @@ void CDirFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	pCmdUI->SetText(_T(""));
 }
 
-// Store callback which we check to see if we're allowed to close
-// This keeps us decoupled from the doc
+/**
+ * @brief Store callback which we check to see if we're allowed to close
+ * This keeps us decoupled from the doc
+ */
 void CDirFrame::SetClosableCallback(bool (*canclose)(void *), void * param)
 {
 	m_picanclose = canclose;
@@ -152,4 +161,17 @@ void CDirFrame::OnClose()
 	}
 	
 	CMDIChildWnd::OnClose();
+}
+
+/**
+ * @brief Save maximized state before destroying window
+ */
+BOOL CDirFrame::DestroyWindow() 
+{
+	WINDOWPLACEMENT wp;
+	wp.length = sizeof(WINDOWPLACEMENT);
+	GetWindowPlacement(&wp);
+	theApp.WriteProfileInt(_T("Settings"), _T("DirViewMax"), (wp.showCmd == SW_MAXIMIZE));
+	
+	return CMDIChildWnd::DestroyWindow();
 }

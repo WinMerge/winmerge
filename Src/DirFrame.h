@@ -17,19 +17,28 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  DirFrame.h
+ *
+ * @brief Declaration file for CDirFrame
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #if !defined(AFX_DIRFRAME_H__95565903_35C4_11D1_BAA7_00A024706EDC__INCLUDED_)
 #define AFX_DIRFRAME_H__95565903_35C4_11D1_BAA7_00A024706EDC__INCLUDED_
 
 #if _MSC_VER >= 1000
 #pragma once
 #endif // _MSC_VER >= 1000
-// DirFrame.h : header file
-//
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirFrame frame
 
+/**
+ * @brief Frame window for Directory Compare window
+ */
 class CDirFrame : public CMDIChildWnd
 {
 	DECLARE_DYNCREATE(CDirFrame)
@@ -50,6 +59,7 @@ public:
 	//{{AFX_VIRTUAL(CDirFrame)
 	public:
 	virtual void ActivateFrame(int nCmdShow = -1);
+	virtual BOOL DestroyWindow();
 	//}}AFX_VIRTUAL
 
 // Implementation

@@ -1,3 +1,7 @@
+2003-09-20 Kimmo
+ Make directory compare Window to remember maximized state
+  WinMerge: DirFrame.h DirFrame.cpp
+
 2003-09-20 Laoran
  Actualizing the GnuC filter *.o -> \.o
   filter: Merge_GnuC_loose.flt
