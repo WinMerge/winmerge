@@ -1,3 +1,7 @@
+2004-05-24 Perry
+ PATCH: [ 958973 ] CDiffTextBuffer::LoadFromFile wrong return
+  Src: MergeDoc.cpp
+
 2004-05-24 Kimmo
  PATCH: [ 959111 ] Optionally don't disable Open-dialog OK-button
   Src: MainFrm.cpp Merge.rc OpenDlg.cpp OptionsDef.h PropGeneral.cpp

@@ -1393,6 +1393,8 @@ GetLineByteTimeReport(UINT lines, UINT bytes, const COleDateTime & start)
  *
  * @return FRESULT_OK or FRESULT_OK_IMPURE (load OK, but the EOL are of different types)
  * or an error code (list in files.h)
+ *
+ * If this method fails, it calls InitNew so the CDiffTextBuffer is in a valid state
  */
 int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInfo * infoUnpacker, CString sToFindUnpacker, BOOL & readOnly,
 		int nCrlfStyle, int codepage)
@@ -1405,12 +1407,18 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 	if (infoUnpacker->bToBeScanned)
 	{
 		if (!FileTransform_Unpacking(sFileName, sToFindUnpacker, infoUnpacker, &unpackerSubcode))
+		{
+			InitNew(); // leave crystal editor in valid, empty state
 			return FRESULT_ERROR_UNPACK;
+		}
 	}
 	else
 	{
 		if (!FileTransform_Unpacking(sFileName, infoUnpacker, &unpackerSubcode))
+		{
+			InitNew(); // leave crystal editor in valid, empty state
 			return FRESULT_ERROR_UNPACK;
+		}
 	}
 	// we use the same unpacker for both files, so it must be defined after first file
 	ASSERT(infoUnpacker->bToBeScanned == FALSE);
@@ -1433,7 +1441,13 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 	// Now we only use the UniFile interface
 	// which is something we could implement for HTTP and/or FTP files
 
-	if (pufile->OpenReadOnly(pszFileName))
+	if (!pufile->OpenReadOnly(pszFileName))
+	{
+		nRetVal = FRESULT_ERROR;
+		InitNew(); // leave crystal editor in valid, empty state
+		goto LoadFromFileExit;
+	}
+	else
 	{
 		// Recognize Unicode files with BOM (byte order mark)
 		// or else, use the codepage we were given to interpret the 8-bit characters
@@ -1460,6 +1474,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 			if (pufile->GetTxtStats().nzeros)
 			{
 				nRetVal = FRESULT_BINARY;
+				InitNew(); // leave crystal editor in valid, empty state
 				goto LoadFromFileExit;
 			}
 
@@ -2565,6 +2580,9 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 
 	int nCrlfStyle = CRLF_STYLE_AUTOMATIC;
 	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker, m_strBothFilenames, readOnly, nCrlfStyle, codepage);
+
+	// if CMergeDoc::CDiffTextBuffer::LoadFromFile failed,
+	// it left the pBuf in a valid (but empty) state via a call to InitNew
 
 	if (retVal == FRESULT_OK_IMPURE)
 	{
