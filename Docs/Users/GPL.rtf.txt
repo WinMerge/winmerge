@@ -1,0 +1,10 @@
+Why are we using an RTF file vs.  Src\Copying?  
+	The text file is poorly formatted, ugly, and doesn't look as cool in the installer.  
+
+Where did I get the text?
+http://www.gnu.org/licenses/gpl.html
+
+How did I change it?
+I removed all target hyperlinks(hyperlinks that scroll to different points in the same document).  Therefore their removal doesn't void the legal or literal functionality of the license.  I also lowered the font sizes to 12/10 and Arial for readability.  This font selection was also to match the sizes used in Read Me.rtf also used in the installer.  Once I had made these changes to the HTML content I copied and pasted it from MS Word to Wordpad knowing that wordpad would use less markup (19KB vs. 31KB).    
+
+-Seier Blackburn
