@@ -47,11 +47,8 @@ enum LINEFLAGS
   LF_BREAKPOINT = 0x00020000L,
   LF_COMPILATION_ERROR = 0x00040000L,
   LF_BOOKMARKS = 0x00080000L,
-  LF_INVALID_BREAKPOINT = 0x00100000L,
-  LF_DIFF = 0x00200000L,
-  LF_GHOST = 0x00400000L,
+  LF_INVALID_BREAKPOINT = 0x00100000L
 };
-#define LF_WINMERGE_FLAGS    0x00600000
 
 #define LF_BOOKMARK(id)     (LF_BOOKMARK_FIRST << id)
 
@@ -146,8 +143,6 @@ protected :
     enum
     {
       UNDO_INSERT = 0x0001,
-      UNDO_VALID_FIRST = 0x0010,
-      UNDO_VALID_LAST  = 0x0020,
       UNDO_BEGINGROUP = 0x0100
     };
 
@@ -156,22 +151,7 @@ protected :
       {
         DWORD m_dwFlags;
         
-        // Undo records store file line numbers, not screen line numbers
-        // File line numbers do not count ghost lines
-        // (ghost lines are lines with no text and no EOL chars, which are
-        //  used by WinMerge as left-only or right-only placeholders)
-        // All the stored line number needed are real !
-
         CPoint m_ptStartPos, m_ptEndPos;  //  Block of text participating
-        int m_ptStartPos_nGhost, m_ptEndPos_nGhost;
-
-        // Redo records store file line numbers, not screen line numbers
-        // they store the file number of the previous real line
-        // and (apparentLine - ComputeApparentLine(previousRealLine))
-
-        CPoint m_redo_ptStartPos, m_redo_ptEndPos;  //  Block of text participating
-        int    m_redo_ptStartPos_nGhost, m_redo_ptEndPos_nGhost;
-
         int m_nAction;            //  For information only: action type
 
 private :
@@ -187,9 +167,7 @@ private :
         union
           {
             TCHAR *m_pszText;     //  For cases when we have > 1 character strings
-
             TCHAR m_szText[2];    //  For single-character strings
-
           };
 
 public :
@@ -206,14 +184,8 @@ public :
         {
           m_dwFlags = src.m_dwFlags;
           m_ptStartPos = src.m_ptStartPos;
-          m_ptStartPos_nGhost = src.m_ptStartPos_nGhost;
           m_ptEndPos = src.m_ptEndPos;
-          m_ptEndPos_nGhost = src.m_ptEndPos_nGhost;
           m_nAction = src.m_nAction;
-          m_redo_ptStartPos = src.m_redo_ptStartPos;
-          m_redo_ptStartPos_nGhost = src.m_redo_ptStartPos_nGhost;
-          m_redo_ptEndPos = src.m_redo_ptEndPos;
-          m_redo_ptEndPos_nGhost = src.m_redo_ptEndPos_nGhost;
           SetText(src.GetText());
           return *this;
         }
@@ -252,10 +224,6 @@ public :
 
     //  Lines of text
     CArray < SLineInfo, SLineInfo & >m_aLines;
-    // A RealityBlock is a block of lines with no ghost lines
-    struct RealityBlock { int nStartReal; int nStartApparent; int nCount; };
-    // The array of reality blocks is kept in order
-    CArray < RealityBlock, RealityBlock& > m_RealityBlocks;
 
     //  Undo
     CArray < SUndoRecord, SUndoRecord & >m_aUndoBuf;
@@ -278,12 +246,11 @@ public :
     //  Implementation
     BOOL InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar);
     BOOL InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos);
-    BOOL InternalInsertGhostLine (CCrystalTextView * pSource, int nLine);
     CString StripTail (int i, int bytes);
 
     //  [JRT] Support For Descriptions On Undo/Redo Actions
     virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-                                LPCTSTR pszText, int flags, int nActionType = CE_ACTION_UNKNOWN);
+                                LPCTSTR pszText, int nActionType = CE_ACTION_UNKNOWN);
 
     //  Overridable: provide action description
     virtual BOOL GetActionDescription (int nAction, CString & desc);
@@ -324,7 +291,7 @@ public :
     int GetLineWithFlag (DWORD dwFlag);
     void SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet, BOOL bRemoveFromPreviousLine = TRUE, BOOL bUpdate=TRUE);
     void GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & text, LPCTSTR pszCRLF = NULL);
-    UINT GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, int nCrlfStyle =CRLF_STYLE_AUTOMATIC );
+    virtual UINT GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, int nCrlfStyle =CRLF_STYLE_AUTOMATIC );
 
     //  Attributes
     int GetCRLFMode ();
@@ -337,20 +304,18 @@ public :
     void SetEolSensitivity(BOOL EolSensitive) { m_EolSensitive = EolSensitive; }
 
     //  Text modification functions
-    BOOL InsertGhostLine (CCrystalTextView * pSource, int nLine);
-    BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE, BOOL bHistory =TRUE);
-    BOOL DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE, BOOL bHistory =TRUE);
-    void FinishLoading();
+    virtual BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE, BOOL bHistory =TRUE);
+    virtual BOOL DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bUpdate =TRUE, BOOL bHistory =TRUE);
 
     //  Undo/Redo
     BOOL CanUndo ();
     BOOL CanRedo ();
-    BOOL Undo (CCrystalTextView * pSource, CPoint & ptCursorPos);
-    BOOL Redo (CCrystalTextView * pSource, CPoint & ptCursorPos);
+    virtual BOOL Undo (CCrystalTextView * pSource, CPoint & ptCursorPos);
+    virtual BOOL Redo (CCrystalTextView * pSource, CPoint & ptCursorPos);
 
     //  Undo grouping
-    void BeginUndoGroup (BOOL bMergeWithPrevious = FALSE);
-    void FlushUndoGroup (CCrystalTextView * pSource);
+    virtual void BeginUndoGroup (BOOL bMergeWithPrevious = FALSE);
+    virtual void FlushUndoGroup (CCrystalTextView * pSource);
 
     //BEGIN SW
     /**
@@ -390,26 +355,6 @@ public :
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(CCrystalTextBuffer)
     //}}AFX_VIRTUAL
-
-    // Implementation
-    // Code for mapping between file line numbers (real line numbers)
-    // and screen line numbers (apparent line numbers)
-    // This is needed to handle ghost lines (ones with no text or EOL chars)
-    // which WinMerge uses for left-only or right-only lines.
-public:
-    int ApparentLastRealLine() const;
-    int ComputeRealLine(int nApparentLine) const;
-    int ComputeApparentLine(int nRealLine) const;
-    // richer position information   yApparent = apparent(yReal) - yGhost
-    int ComputeRealLineAndGhostAdjustment(int nApparentLine, int& decToReal) const;
-    int ComputeApparentLine(int nRealLine, int decToReal) const;
-
-
-    void RecomputeRealityMapping();
-    
-protected :
-    void RecomputeEOL(CCrystalTextView * pSource, int nStartLine, int nEndLine);
-    void checkFlagsFromReality(BOOL bFlag) const;
 
 
     // Generated message map functions

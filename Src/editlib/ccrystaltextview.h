@@ -150,8 +150,8 @@ private :
     UINT m_nDragSelTimer;
 
     CPoint m_ptDrawSelStart, m_ptDrawSelEnd;
+protected:
     CPoint m_ptCursorPos, m_ptCursorLast;
-    int    m_ptCursorLast_nGhost;
     CPoint m_ptSelStart, m_ptSelEnd;
     void PrepareSelBounds ();
 
@@ -172,8 +172,6 @@ public :
     virtual void OnUpdateCaret ();
     BOOL IsTextBufferInitialized () const;
     CString GetTextBufferEol (int nLine) const;
-    int ComputeRealLine (int nApparentLine) const;
-    int ComputeApparentLine (int nRealLine) const;
 
 protected :
     CPoint WordToRight (CPoint pt);
@@ -750,8 +748,8 @@ public :
 
     // Operations
 public :
-    void AttachToBuffer (CCrystalTextBuffer * pBuf = NULL);
-    void DetachFromBuffer ();
+    virtual void AttachToBuffer (CCrystalTextBuffer * pBuf = NULL);
+    virtual void DetachFromBuffer ();
 
     //  Buffer-view interaction, multiple views
     virtual CCrystalTextBuffer *LocateTextBuffer ();
@@ -762,8 +760,6 @@ public :
     void SetCursorPos (const CPoint & ptCursorPos);
     void ShowCursor ();
     void HideCursor ();
-    void PopCursor ();
-    void PushCursor ();
 
     //  Operations
     void EnsureVisible (CPoint pt);

@@ -311,6 +311,14 @@ SOURCE=.\FNMATCH.C
 # End Source File
 # Begin Source File
 
+SOURCE=.\GhostTextBuffer.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\GhostTextView.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\GnuVersion.c
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
@@ -713,6 +721,14 @@ SOURCE=.\files.h
 # Begin Source File
 
 SOURCE=.\FNMATCH.H
+# End Source File
+# Begin Source File
+
+SOURCE=.\GhostTextBuffer.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\GhostTextView.h
 # End Source File
 # Begin Source File
 

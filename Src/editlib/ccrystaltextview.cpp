@@ -1014,16 +1014,6 @@ GetLineColors (int nLineIndex, COLORREF & crBkgnd,
       crBkgnd = RGB (128, 128, 0);
       return;
     }
-  if (dwLineFlags & LF_DIFF)
-    {
-      crBkgnd = RGB(255,255,92);
-      return;
-    }
-  if (dwLineFlags & LF_GHOST)
-    {
-      crBkgnd = RGB(192,192,192);
-      return;
-    }
   crBkgnd = CLR_NONE;
   crText = CLR_NONE;
   bDrawWhitespace = FALSE;
@@ -3780,29 +3770,6 @@ HideCursor ()
   UpdateCaret ();
 }
 
-void CCrystalTextView::
-PopCursor ()
-{
-  CPoint ptCursorLast = m_ptCursorLast;
-  ptCursorLast.y = m_pTextBuffer->ComputeApparentLine(m_ptCursorLast.y, m_ptCursorLast_nGhost);
-  if (ptCursorLast.y >= GetLineCount())
-  {
-    ptCursorLast.y = GetLineCount()-1;
-    ptCursorLast.x = GetLineLength(ptCursorLast.y);
-  }
-  ASSERT_VALIDTEXTPOS (ptCursorLast);
-  SetCursorPos (ptCursorLast);
-  SetSelection (ptCursorLast, ptCursorLast);
-  SetAnchor (ptCursorLast);
-}
-
-void CCrystalTextView::
-PushCursor ()
-{
-  m_ptCursorLast.x = m_ptCursorPos.x;
-  m_ptCursorLast.y = m_pTextBuffer->ComputeRealLineAndGhostAdjustment(m_ptCursorPos.y, m_ptCursorLast_nGhost);
-}
-
 DROPEFFECT CCrystalTextView::
 GetDropEffect ()
 {
@@ -5313,14 +5280,5 @@ CString CCrystalTextView::GetTextBufferEol(int nLine) const
   return m_pTextBuffer->GetLineEol(nLine); 
 }
 
-int CCrystalTextView::ComputeRealLine (int nApparentLine) const
-{
-  return m_pTextBuffer->ComputeRealLine(nApparentLine);
-}
-
-int CCrystalTextView::ComputeApparentLine (int nRealLine) const
-{
-  return m_pTextBuffer->ComputeApparentLine(nRealLine);
-}
 ////////////////////////////////////////////////////////////////////////////
 #pragma warning ( default : 4100 )

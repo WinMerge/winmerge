@@ -215,15 +215,16 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 	}
 	else
 	{
-		// If no syntax hilighting
+		// Line not inside diff, 
 		if (!theApp.m_bHiliteSyntax)
 		{
+			// If no syntax hilighting, get windows default colors
 			crBkgnd = GetSysColor (COLOR_WINDOW);
 			crText = GetSysColor (COLOR_WINDOWTEXT);
 			bDrawWhitespace = FALSE;
 		}
 		else
-			// Line not inside diff, get colors from CrystalEditor
+			// Syntax highlighting, get colors from CrystalEditor
 			CCrystalEditViewEx::GetLineColors(nLineIndex, crBkgnd,
 				crText, bDrawWhitespace);
 	}

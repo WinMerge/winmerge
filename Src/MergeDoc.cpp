@@ -217,19 +217,6 @@ void CMergeDoc::Dump(CDumpContext& dc) const
 // CMergeDoc commands
 
 
-// remove all ghost lines (except last one in file)
-// (2003-06-21, Perry: I don't understand why this is necessary, but if this isn't
-//  done, more and more gray lines appear in the file)
-static void RemoveEmptyLines(CMergeDoc::CDiffTextBuffer * buf)
-{
-	for(int ct=buf->GetLineCount()-1; ct>=0; --ct)
-		if (buf->GetLineFlags(ct) & LF_GHOST)
-			buf->DeleteLine(ct);
-		else
-			buf->SetLineFlag(ct, LF_WINMERGE_FLAGS, FALSE, FALSE, FALSE);
-
-	buf->RecomputeRealityMapping();
-}
 
 // Save files under edit to temp files & compare again, to update diffs on screen
 int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
@@ -247,8 +234,8 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	BOOL rtMod = m_rtBuf.IsModified();
 
 	// remove blank lines and clear winmerge flags
-	RemoveEmptyLines(&m_ltBuf);
-	RemoveEmptyLines(&m_rtBuf);
+	m_ltBuf.prepareForRescan();
+	m_rtBuf.prepareForRescan();
 
 	// restore modified status
 	m_ltBuf.SetModified(ltMod);
@@ -566,7 +553,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult)
 //<jtuc 2003-06-28>
 void CMergeDoc::CDiffTextBuffer::AddUndoRecord(BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int flags, int nActionType /*= CE_ACTION_UNKNOWN*/)
 {
-	CCrystalTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText, flags, nActionType);
+	CGhostTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText, flags, nActionType);
 	if (m_aUndoBuf[m_nUndoPosition - 1].m_dwFlags & UNDO_BEGINGROUP)
 	{
 		m_pOwnerDoc->undoTgt.erase(m_pOwnerDoc->curUndo, m_pOwnerDoc->undoTgt.end());
@@ -1054,6 +1041,29 @@ BOOL CMergeDoc::CDiffTextBuffer::FlagIsSet(UINT line, DWORD flag)
 {
 	return ((m_aLines[line].m_dwFlags & flag) == flag);
 }
+
+
+/**
+Remove blank lines and clear winmerge flags
+(2003-06-21, Perry: I don't understand why this is necessary, but if this isn't 
+done, more and more gray lines appear in the file)
+(2003-07-31, Laoran I don't understand either why it is necessary, but it works
+fine, so let's go on with it)
+*/
+void CMergeDoc::CDiffTextBuffer::prepareForRescan()
+{
+	RemoveAllGhostLines();
+	for(int ct=GetLineCount()-1; ct>=0; --ct)
+		SetLineFlag(ct, LF_DIFF, FALSE, FALSE, FALSE);
+}
+
+
+void CMergeDoc::CDiffTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
+{
+	SetLineFlag(nLine, LF_DIFF, FALSE, FALSE, FALSE);
+	CGhostTextBuffer::OnNotifyLineHasBeenEdited(nLine);
+}
+
 
 
 // Try to determine current CRLF mode based on first line

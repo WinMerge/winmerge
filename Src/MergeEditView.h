@@ -14,15 +14,47 @@
 
 
 /////////////////////////////////////////////////////////////////////////////
+
+/** 
+We use the current ccrystalEditor flags 
+
+This flag must be cleared and set in MergeEditView.cpp 
+and MergeDoc.cpp (Rescan) only.
+
+GetLineColors reads it to choose the line color.
+*/
+enum MERGE_LINEFLAGS
+{
+	LF_DIFF = 0x00200000L,
+};
+
+// WINMERGE_FLAGS is MERGE_LINEFLAGS | GHOST_LINEFLAGS
+#define LF_WINMERGE_FLAGS    0x00600000
+
+
+/////////////////////////////////////////////////////////////////////////////
 // CMergeEditView view
 #ifndef __EDTLIB_H
 #include "edtlib.h"
 #endif
+#include "GhostTextView.h"
 
 class IMergeEditStatus;
 
+/**
+This class is the base class for WinMerge editor panels.
+It hooks the painting of ghost lines (GetLineColors), the shared
+scrollbar (OnUpdateSibling...).
+It offers the UI interface commands to work with diffs 
 
-class CMergeEditView : public CCrystalEditViewEx
+If we keep GetLineColors here, we should clear DIFF flag here
+and not in CGhostTextBuffer (when insertText/deleteText). 
+Small problem... This class doesn't derives from CGhostTextBuffer... 
+We could define a new class which derives from CGhostTextBuffer to clear the DIFF flag.
+and calls a virtual function for additionnal things to do on the flag.
+Maybe in the future...
+*/
+class CMergeEditView : public CGhostTextView
 {
 protected:
 	CMergeEditView();           // protected constructor used by dynamic creation
@@ -55,7 +87,7 @@ public:
 	BOOL IsLineInCurrentDiff(int nLine);
 	void SelectNone();
 	void SelectDiff(int nDiff, BOOL bScroll =TRUE, BOOL bSelectText =TRUE);
-    virtual CCrystalTextBuffer *LocateTextBuffer ();
+	virtual CCrystalTextBuffer *LocateTextBuffer ();
 	void ResetMod();
 	void AddMod();
 	CString GetSelectedText();

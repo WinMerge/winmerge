@@ -28,7 +28,7 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
-#include "CCrystalTextBuffer.h"
+#include "GhostTextBuffer.h"
 #include <vector>
 #include "afxtempl.h"
 
@@ -76,7 +76,7 @@ class CMergeDoc : public CDocument
 {
 // Attributes
 public:
-class CDiffTextBuffer : public CCrystalTextBuffer
+class CDiffTextBuffer : public CGhostTextBuffer
 	{
 		friend class CMergeDoc;
 private :
@@ -142,6 +142,16 @@ public :
 		{
 			CCrystalTextBuffer::InsertLine(pszLine, nLength, nPosition);
 		}
+
+		void prepareForRescan();
+
+		/** 
+		After editing a line, we don't know if there is a diff or not.
+		So we clear the LF_DIFF flag (and it is more easy to read during edition).
+		Rescan will set the proper color
+		*/
+		virtual void OnNotifyLineHasBeenEdited(int nLine);
+
 
 	} friend;
 
