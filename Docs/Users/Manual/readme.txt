@@ -1,3 +1,7 @@
+2004-07-07 Kimmo
+ PATCH: [ 985272 ] Use 'manual' instead of 'guide'
+  Manual: About_Doc.xml Faq.xml Plugins.xml WinMerge_help.xml
+
 2004-06-21 Laoran
  PATCH: [ 975819 ] Userdocs : faq : lossy conversions
   Manual: Faq.xml

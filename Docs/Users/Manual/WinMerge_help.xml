@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="file://localhost/C:/Program%20Files/Morphon/XML-Editor%203.1.4/Examples/docbook/docbook.css" type="text/css"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
 <!ENTITY Plugins SYSTEM "Plugins.xml">
 <!ENTITY FAQ SYSTEM "Faq.xml">
@@ -12,13 +13,13 @@
 <!ENTITY WhatsNew21 SYSTEM "Whatsnew_2_1.xml">
 <!ENTITY CommandLine SYSTEM "Command_line.xml">
 <!ENTITY ShortCuts SYSTEM "Shortcut_keys.xml">
-<!ENTITY Install SYSTEM "Install.xml">
-<!ENTITY CompareFiles SYSTEM "Compare_files.xml">
 <!ENTITY Filters SYSTEM "Filters.xml">
+<!ENTITY CompareFiles SYSTEM "Compare_files.xml">
+<!ENTITY Install SYSTEM "Install.xml">
 ]>
 <article id="index">
   <articleinfo>
-    <title>WinMerge 2.2 user guide</title>
+    <title>WinMerge 2.2 Manual</title>
   </articleinfo>
   &About_doc;
   &Introduction;

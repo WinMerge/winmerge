@@ -1,7 +1,6 @@
 <sect1 id="AboutDoc">
   <title>About this document</title>
-  <para>This is user guide for WinMerge 2.2. Please read this document carefully.</para>
-  <para>This guide is important reading for old and new users of WinMerge 2.2. There are lot of new features and improvements to old features in 2.2. Reading this quide ensures user knows abilities and limitations of WinMerge.</para>
+  <para>This is manual for WinMerge 2.2. Please read this document carefully.</para>
+  <para>This manual is important reading for old and new users of WinMerge 2.2. There are lot of new features and improvements to old features in 2.2. Reading this quide ensures user knows abilities and limitations of WinMerge.</para>
   <para>FAQ chapter contains answers to many common questions asked from developers. Please check first if your question is answered there before submitting questions to SourceForge.Net.</para>
-  <para>Problem solving tells what to do when WinMerge does not work like expected. Please read this before submitting bugs to SourceForge.Net.</para>
 </sect1>
