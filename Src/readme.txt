@@ -2,6 +2,9 @@
  PATCH: [ 1107508 ] Add dirview statusbar panel showing current filter name
   Src: DirDoc.cpp DirFrame.cpp DirFrame.h resource.h
   Languages: resource.h
+ Update MASM filter file
+  Submitted by Matt Bossard (to forum)
+  Filters file: MASM.flt
 
 2005-01-23 Perry
  PATCH: [ 1107516 ] Suggest code simplification for DiffFileInfo ctr
