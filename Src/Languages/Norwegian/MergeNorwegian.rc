@@ -508,7 +508,7 @@ BEGIN
     CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,29,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    LTEXT           "Valgte forskjeller:",IDC_STATIC,14,49,51,8
+    LTEXT           "Valgte forskjeller:",IDC_STATIC,14,49,58,8
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,49,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE

@@ -1,3 +1,8 @@
+2003-10-10 Perry
+ PATCH: [ 791487 ] Norwegian (bokmål) translation
+ (Enlarge label in color dialog to avoid clipping text.)
+  Languages: MergeNorwegian.rc
+
 2003-10-10 Laoran
  PATCH: [ 818198 ] Colors for "ignore blank lines"
   Languages: *.rc (except not Brazilian or ChineseSimplified)
@@ -7,7 +12,7 @@
   WinMerge: files.cpp
 
 2003-10-09 Laoran
- [ 819219 ] Show only simple EOL char when no mixing EOL modes allowed
+ PATCH: [ 819219 ] Show only simple EOL char when no mixing EOL modes allowed
   WinMerge: MainFrm.cpp MainFrm.h MergeDoc.cpp ccrystaltextview.cpp ccrystaltextview.h
 
 2003-10-09 Perry
