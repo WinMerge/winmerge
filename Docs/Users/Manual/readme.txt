@@ -3,6 +3,8 @@
   Manual: Compare_dirs.xml
   Manual/screenshots: dircomp1.gif Dircomp_status1.gif Dircomp_status2.gif
   Manual/screenhots new files: error.gif folderup.gif folderup_disable.gif
+ PATCH: [ 1006910 ] Docs: More filter examples and explanations, fix examples
+  Manual: Filters.xml
 
 2004-08-10 Kimmo
  PATCH: [ 1006131 ] Add -f commandline switch to docs

@@ -2,8 +2,23 @@
   <title>Filters</title>
   <para>There are two kinds of filters in WinMerge: file filters for filtering files and directories in directory compare and line filters for ignoring lines from files before comparing.</para>
   <sect2>
+    <title>Regular expressions</title>
+    <para>Filters are based on regular expressions (regexps). Each line filter or file filter rule is regexp which is matched against file/directory name or line.</para>
+    <para>Regexps can be very complex to read. Luckily most file filtering needs are for file extensions so looking at example filters installed with WinMerge should help to modify file filters for most needs.</para>
+    <sect3>
+      <title>Help with regexps</title>
+      <para>There are many guides and help sites in Web:</para>
+      <simplelist type="vert">
+        <member><ulink url="http://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink> Good site devoted for regexps</member>
+        <member><ulink url="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</ulink> Good HOWTO document for regexps</member>
+        <member><ulink url="http://www.zvon.org/other/PerlTutorial/Output/index.html">http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink> Tutorial</member>
+        <member><ulink url="http://gmckinney.info/resources/regex.pdf">http://gmckinney.info/resources/regex.pdf</ulink> PDF quick reference</member>
+      </simplelist>
+    </sect3>
+  </sect2>
+  <sect2>
     <title>File filters</title>
-    <para>File filter is set of regular expression (regexp) rules saved to one file. Every file and directory is tested against all there rules before comparing. Depending if filter is exclusive of inclusive file or directory matching is excluded from or included to compare.</para>
+    <para>File filter is set of rules saved to one file. Every file and directory is tested against all there rules before comparing. Depending if filter is exclusive of inclusive file or directory matching is excluded from or included to compare.</para>
     <tip>
       <para>Ignored items have 'Skipped' status in directory compare. User can select them to visible or hidden from 'View' menu. Usually its wise to keep skipped items hidden.</para>
     </tip>
@@ -16,20 +31,31 @@
           <para>'Filters' subdirectory in WinMerge program directory. This is recommended place.</para>
         </listitem>
         <listitem>
-          <para>'Winmerge/Filters' subdirectory in user profile. This can be used for user personal filter when there are many users. Or if backupping from profile directoruy easier etc.</para>
+          <para>'Winmerge/Filters' subdirectory in user profile. This can be used for user personal filter when there are many users. Or if backupping from profile directory is wanted etc.</para>
         </listitem>
       </itemizedlist>
       <para>Filter files supplied with WinMerge contain comments about naming and setting filter to exclusive/inclusive.</para>
       <para>Common format for one filter line is like this:</para>
       <screen>f: \.ext$ ## Match files *.ext
-d: \\directory$ ## Match given directoryname</screen>
-      <warning>
-        <para>'$' at end is important! It marks end of filename and without it rule doesn't work like expected.</para>
-      </warning>
+or
+d: \\directory$ ## Match given directory name</screen>
+      <para>Rule begins with 'f:' if it matches for filenames and 'd:' if it matches for directory names. Filenames are given to filter as is, there are no special characters added. But for directory names WinMerge adds '\' to begin of directory name. This is done clearly to separate directory names and filenames. '##' is a comment separator, all chars in rule after that are ignored by WinMerge.</para>
+      <para>So simple filters can be for example:</para>
+      <example>
+        <title>Simple filefilter rules</title>
+        <screen>f: \.cpp$ ## Match *.cpp files
+f: \.h$ ## Match *.h files
+d: \\test$ ## Match 'test' directories</screen>
+      </example>
+      <note>
+        <para>Don't forget '$' at end. It marks end of directory- or filename and without it rule may not work like expected. While '\.c$' matches with only filenames having extension .c '\.c' matches all extensions beginning with 'c' (.cpp, .com etc).</para>
+      </note>
       <para>Rules can be a lot more complex than those two: this rule matches to CVS generated ".#filename.ext.version" files:</para>
       <example>
-        <title>More complex file filter rule</title>
-        <screen format="linespecific">f: \.#.*$ ## .#filename.version files</screen>
+        <title>More complex file filter rules</title>
+        <screen format="linespecific">f: ^\.#.*$ ## .#filename.version files
+f: Dlg\.c(pp)?$ ## *Dlg.c &amp; *Dlg.cpp files
+f: ^I.*\.h$ ## I*.h files</screen>
       </example>
     </sect3>
   </sect2>
@@ -43,6 +69,9 @@ d: \\directory$ ## Match given directoryname</screen>
     <para>Line filter rules are regular expressions like file filter rules. Rules can be added and edited in Filters-dialog (Menu: Tools --&gt; Filters). In editbox, give one rule per line.</para>
     <example>
       <title>Line filter rule matching CVS "Id:" -lines:</title>
+      <para>Id-lines are like this:</para>
+      <screen>// $Id$</screen>
+      <para>And they can be filtered with rule:</para>
       <screen>\$Id$</screen>
     </example>
   </sect2>
