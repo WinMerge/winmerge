@@ -1,3 +1,7 @@
+2004-05-07 Laoran
+ PATCH: [ 948366 ] clear moved blocks before Rescan
+  Src: DiffWrapper.cpp DiffWrapper.h MergeDoc.cpp
+
 2004-05-06 Kimmo
  PATCH: [ 948634 ] Commandline switch to open left/right side as readonly
   Src: Merge.cpp Merge.rc

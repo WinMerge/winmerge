@@ -350,6 +350,8 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	m_diffs.RemoveAll();
 	m_nDiffs = 0;
 	m_nCurDiff = -1;
+	// Clear moved lines lists
+	m_diffWrapper.ClearMovedLists();
 
 	// Run diff
 	diffSuccess = m_diffWrapper.RunFileDiff();
@@ -1227,6 +1229,7 @@ void CMergeDoc::CDiffTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
 {
 	SetLineFlag(nLine, LF_DIFF, FALSE, FALSE, FALSE);
 	SetLineFlag(nLine, LF_TRIVIAL, FALSE, FALSE, FALSE);
+	SetLineFlag(nLine, LF_MOVED, FALSE, FALSE, FALSE);
 	CGhostTextBuffer::OnNotifyLineHasBeenEdited(nLine);
 }
 

@@ -747,6 +747,15 @@ void CDiffWrapper::EndDirectoryDiff()
 	SwapToGlobalSettings();
 }
 
+/**
+ * @brief clear the lists (left & right) of moved blocks before RunFileDiff
+ */
+void CDiffWrapper::ClearMovedLists() 
+{ 
+	m_moved0.RemoveAll(); 
+	m_moved1.RemoveAll(); 
+}
+
 /** @brief Simple initialization of DiffFileData */
 DiffFileData::DiffFileData()
 {
@@ -1322,6 +1331,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 
 }
 
+	
 /*
 read_files
  creates and destroys the hash table of lines (equivs & buckets)

@@ -200,6 +200,7 @@ public:
 	void EndDirectoryDiff();
 	const CMap<int, int, int, int> * GetMoved0() { return &m_moved0; }
 	const CMap<int, int, int, int> * GetMoved1() { return &m_moved1; }
+	void ClearMovedLists();
 
 protected:
 	void InternalGetOptions(DIFFOPTIONS *options);
