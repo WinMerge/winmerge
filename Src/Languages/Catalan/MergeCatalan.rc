@@ -195,6 +195,13 @@ BEGIN
         MENUITEM "Finestres en mosaic &vertical", ID_WINDOW_TILE_VERT
         MENUITEM "Finestres en &cascada",       ID_WINDOW_CASCADE
     END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "Manual Unpacking",            ID_UNPACK_MANUAL
+        MENUITEM "Automatic Unpacking",         ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "Edit with unpacker",          ID_POPUP_OPEN_WITH_UNPACKER
+    END
     POPUP "&Ajuda"
     BEGIN
         MENUITEM "&Temes de l'ajuda...",        ID_HELP_CONTENTS
@@ -320,11 +327,15 @@ BEGIN
     COMBOBOX        IDC_EXT_COMBO,56,54,151,95,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Re&cursiu",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,56,77,48,10
+                    WS_TABSTOP,56,72,48,10
+    LTEXT           "&Unpacker:",IDC_STATIC,19,88,34,8
+    EDITTEXT        IDC_UNPACKER_EDIT,56,86,182,12,ES_AUTOHSCROLL |
+                    ES_READONLY
+    PUSHBUTTON      "Select...",IDC_SELECT_UNPACKER,241,86,38,12
     DEFPUSHBUTTON   "D'acord",IDOK,295,11,50,14
     PUSHBUTTON      "Anul·la",IDCANCEL,295,28,50,14
     GROUPBOX        "Fitxers o directoris a comparar",IDC_FILES_DIRS_GROUP,7,
-                    7,279,83
+                    7,279,101
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 159
@@ -641,6 +652,26 @@ BEGIN
     PUSHBUTTON      ">>",IDC_REMOVE,141,66,29,11
 END
 
+IDD_SELECTUNPACKER DIALOG DISCARDABLE  0, 0, 293, 126
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Unpacker"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,87,99,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,156,99,50,14
+    LTEXT           "File unpacker:",IDC_STATIC,7,18,50,10
+    COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Display all unpackers, don't check the extension",
+                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,7,74,202,13
+    LTEXT           "Extensions list:",IDC_STATIC,7,36,49,10
+    LTEXT           "Description:",IDC_STATIC,7,52,47,10
+    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,176,12,
+                    ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -722,9 +753,9 @@ BEGIN
     IDD_OPEN, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 345
+        RIGHTMARGIN, 349
         TOPMARGIN, 7
-        BOTTOMMARGIN, 90
+        BOTTOMMARGIN, 108
     END
 
     IDD_VSS, DIALOG
@@ -1104,6 +1135,9 @@ BEGIN
     ID_EOL_TO_UNIX          "Converteix la marca de final de línia al mode del UNIX"
     ID_EOL_TO_MAC           "Converteix la marca de final de línia al mode del MAC"
     ID_OPTIONS_SHOWSKIPPED  "Visualitza els fitxers omesos"
+    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
+    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
+    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
     ID_FILE_SAVE_LEFT       "Desa el fitxer de l'esquerra"
     ID_FILE_SAVE_RIGHT      "Desa el fitxer de la dreta"
     ID_FILE_SAVEAS_LEFT     "Desa i anomena el fitxer de l'esquerra..."
@@ -1206,6 +1240,10 @@ BEGIN
     IDS_FILE_SKIPPED        "Fitxer omès"
     IDS_DIR_SKIPPED         "Directori omès"
     IDS_STATUSBAR_READONLY  "RO"
+    IDS_FILEPACK_FAILED_LEFT 
+                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_RIGHT 
+                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
 END
 
 STRINGTABLE DISCARDABLE 

@@ -1,6 +1,8 @@
 2003-10-19 Perry
  Added Catalan translation (pre-plugin version)
   Languages: BuildAll.bat Catalan/*
+ Update Catalan.rc for plugins (without stringtable rearrangement)
+  Languages: Catalan/MergeCatalan.rc resource.h 
 
 2003-10-18 Laoran
  Add a backslash in front of relative path used to test for filter (as in 2.0)
