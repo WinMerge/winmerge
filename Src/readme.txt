@@ -1,4 +1,6 @@
 2003-10-23 Laoran
+ BUG: [ 828802 ] plugins interface problem
+  WinMerge: Plugins.cpp
  recovering Czech and Slovak custom characters (they were changed to '?')
   Languages: Czech.rc Slovak.rc
 

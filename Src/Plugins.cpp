@@ -625,7 +625,7 @@ BOOL InvokePreprocessSimpleA(SAFEARRAY* & arrayBuf, UINT & nBufSize, int & nChan
 	// argument text buffer by reference
 	VARIANT vparrayBuf;
 	vparrayBuf.vt = VT_BYREF | VT_ARRAY | VT_UI1;
-	vparrayBuf.parray = arrayBuf;
+	vparrayBuf.pparray = &arrayBuf;
 	// argument buffer size by reference
 	VARIANT vpiSize;
 	vpiSize.vt = VT_BYREF | VT_I4;
