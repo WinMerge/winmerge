@@ -14,29 +14,23 @@ static char THIS_FILE[] = __FILE__;
 
 //	To use this in an app, you'll need to :
 //
-//	1) #include <afxole.h> in stdafx.h
-//	
-//	2) in your CWinApp-derived class *::InitInstance, you'll need to call
-//		::CoInitialize(NULL);
+//	1) Place a normal edit control on your dialog. 
+//	2) Check the "Accept Files" property.
 //
-//	3) in your CWinApp-derived class *::ExitInstance, you'll need to call
-//	::CoUninitialize();
-//
-//	4) Place a normal edit control on your dialog. 
-//	5) Check the "Accept Files" property.
-//
-//	6) In your dialog class, declare a member variable of type CDropEdit
+//	3) In your dialog class, declare a member variable of type CDropEdit
 //	(be sure to #include "CDropEdit.h")
 //		ex. CDropEdit m_dropEdit;
 //
-//	7) In your dialog's OnInitDialog, call
+//	4) In your dialog's OnInitDialog, call
 //		m_dropEdit.SubclassDlgItem(IDC_YOUR_EDIT_ID, this);
 //
-//	8) if you want the edit control to handle directories, call
+//	5) if you want the edit control to handle directories, call
 //		m_dropEdit.SetUseDir(TRUE);
 //
-//	9) if you want the edit control to handle files, call
+//	6) if you want the edit control to handle files, call
 //		m_dropEdit.SetUseDir(FALSE);
+//
+//      7) In the dialog resource template, any groupboxes must be after any comboboxes which accept files
 //
 //	that's it!
 //
@@ -64,12 +58,26 @@ CSuperComboBox::CSuperComboBox(BOOL bAdd /*= TRUE*/, UINT idstrAddText /*= 0*/)
 	}
 	else
 		m_strAutoAdd = _T("");
+
+	// Initialize OLE libraries if not yet initialized
+	m_bMustUninitOLE = FALSE;
+	_AFX_THREAD_STATE* pState = AfxGetThreadState();
+	if (!pState->m_bNeedTerm)
+	{
+		SCODE sc = ::OleInitialize(NULL);
+		if (FAILED(sc))
+			AfxMessageBox(_T("OLE initialization failed. Make sure that the OLE libraries are the correct version"));
+		else
+			m_bMustUninitOLE = TRUE;
+	}
 }
 
 CSuperComboBox::~CSuperComboBox()
 {
+	// Uninitialize OLE support
+	if (m_bMustUninitOLE)
+		::OleUninitialize();
 }
-
 
 BEGIN_MESSAGE_MAP(CSuperComboBox, CComboBox)
 	//{{AFX_MSG_MAP(CSuperComboBox)

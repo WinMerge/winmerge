@@ -16,6 +16,7 @@ class CSuperComboBox : public CComboBox
 // Construction
 public:
 	CSuperComboBox(BOOL bAdd = TRUE, UINT idstrAddText = 0);
+	virtual ~CSuperComboBox();
 
 // Attributes
 protected:
@@ -43,7 +44,6 @@ public:
 	void SetAutoAdd(BOOL bAdd = TRUE, UINT idstrAddText = 0);
 	void SaveState(LPCTSTR szRegSubKey, UINT nMaxItems = 20);
 	void LoadState(LPCTSTR szRegSubKey, UINT nMaxItems = 20);
-	virtual ~CSuperComboBox();
 
 	// Generated message map functions
 protected:
@@ -51,6 +51,7 @@ protected:
 	CString ExpandShortcut(CString &inFile);
 	virtual BOOL OnAddTemplate();
 	CString m_strAutoAdd;
+	BOOL m_bMustUninitOLE;
 	//{{AFX_MSG(CSuperComboBox)
 	afx_msg BOOL OnEditchange();
 	afx_msg BOOL OnSelchange();
