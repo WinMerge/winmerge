@@ -1636,7 +1636,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 	// Get the number of pathnames that have been dropped
 	UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
 	CString files[2];
-	int fileCount = 0;
+	UINT fileCount = 0;
 
 	// get all file names. but we'll only need the first one.
 	for (WORD x = 0 ; x < wNumFilesDropped; x++)
@@ -1645,10 +1645,12 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 		UINT wPathnameSize = DragQueryFile(dropInfo, x, NULL, 0);
 
 		// Allocate memory to contain full pathname & zero byte
-		LPTSTR npszFile = (TCHAR *) LocalAlloc(LPTR, wPathnameSize += 1);
+		wPathnameSize += 1;
+		LPTSTR npszFile = (TCHAR *) new TCHAR[wPathnameSize];
 
 		// If not enough memory, skip this one
-		if (npszFile == NULL) continue;
+		if (npszFile == NULL)
+			continue;
 
 		// Copy the pathname into the buffer
 		DragQueryFile(dropInfo, x, npszFile, wPathnameSize);
@@ -1658,26 +1660,24 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 			files[x] = npszFile;
 			fileCount++;
 		}
-		// clean up
-		LocalFree(npszFile);
+		delete[] npszFile;
 	}
 
 	// Free the memory block containing the dropped-file information
 	DragFinish(dropInfo);
 
-	for (int i = 0; i < fileCount; i++)
+	for (UINT i = 0; i < fileCount; i++)
 	{
 		// if this was a shortcut, we need to expand it to the target path
 		CString expandedFile = ExpandShortcut(files[i]);
 
 		// if that worked, we should have a real file name
-		if (expandedFile != _T("")) 
+		if (!expandedFile.IsEmpty()) 
 			files[i] = expandedFile;
 	}
 
-	
 	// If Ctrl pressed, do recursive compare
 	BOOL ctrlKey = ::GetAsyncKeyState(VK_CONTROL);
-	DoFileOpen(files[0], files[1], ctrlKey);
+	DoFileOpen(files[0], files[1], FFILEOPEN_NONE, FFILEOPEN_NONE, ctrlKey);
 }
 

@@ -1,6 +1,8 @@
 2003-06-25 Kimmo
  PATCH: [ 759755 ] Better rescan error reporting
   WinMerge: MainFrm.cpp MergeDoc.h MergeDoc.cpp
+ PATCH: [ 760441 ] Fix recursive d&d compare
+  WinMerge: MainFrm.cpp
 
 2003-06-24 Perry
  PATCH: [ 759778 ] Minor cleanup of crystaltextbuffer.cpp
