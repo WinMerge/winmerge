@@ -5,6 +5,8 @@
   Src: DirView.cpp
  Remove GPL licence from coretools.cpp/h - that code is mostly freeware, not GPL
   Src/Common: coretools.cpp coretools.h
+ PATCH: [ 1001974 ] Allow ESC to stop dir compare
+  Src: DirCompStateBar.cpp
 
 2004-08-02 Kimmo
  PATCH: [ 1001111 ] Warn if user selected binary files for patch creating

@@ -296,13 +296,23 @@ void CDirCompStateBar::UpdateElements()
  */
 BOOL CDirCompStateBar::PreTranslateMessage(MSG* pMsg)
 {
-	// When the scan is finished, any key will hide the bar
-	CFrameWnd * pFrameWnd = static_cast<CFrameWnd*> (GetOwner());
-	CDirDoc * pDirDoc = dynamic_cast<CDirDoc*>(pFrameWnd->GetActiveDocument());
-	if (pMsg->message == WM_KEYDOWN && !pDirDoc->IsCurrentScanAbortable())
-	{
-		OnStop();
-		return TRUE;
+	if (pMsg->message == WM_KEYDOWN)
+	{		
+		// Allow ESC to stop compare
+		if (pMsg->wParam == VK_ESCAPE)
+		{
+			OnStop();
+			return TRUE;
+		}
+
+		// When the scan is finished, any key will hide the bar
+		CFrameWnd * pFrameWnd = static_cast<CFrameWnd*> (GetOwner());
+		CDirDoc * pDirDoc = dynamic_cast<CDirDoc*>(pFrameWnd->GetActiveDocument());
+		if (!pDirDoc->IsCurrentScanAbortable())
+		{
+			OnStop();
+			return TRUE;
+		}
 	}
 	
 	return CDialogBar::PreTranslateMessage(pMsg);
