@@ -310,8 +310,8 @@ Source: ..\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Spanish_
 Source: ..\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
 
 
-Source: ..\Docs\Users\UsersGuide\*.*; DestDir: {app}\Docs\User's Guide\; Components: docs; Flags: ignoreversion sortfilesbyextension
-Source: ..\Docs\Users\UsersGuide\Art\*.*; DestDir: {app}\Docs\User's Guide\Art; Components: docs; Flags: ignoreversion sortfilesbyextension
+Source: ..\Docs\Users\Guide\*.*; DestDir: {app}\Docs\User's Guide\; Components: docs; Flags: ignoreversion sortfilesbyextension
+Source: ..\Docs\Users\Guide\Art\*.*; DestDir: {app}\Docs\User's Guide\Art; Components: docs; Flags: ignoreversion sortfilesbyextension
 Source: ..\Filters\*.*; DestDir: {app}\Filters; Components: filters; Flags: ignoreversion sortfilesbyextension
 
 ;Documentation
