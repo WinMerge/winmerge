@@ -53,7 +53,7 @@ struct MAPPEDFILEDATA
 
 BOOL files_openFileMapped(MAPPEDFILEDATA *fileData);
 BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush);
-int files_readEOL(TCHAR *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive);
-int files_binCheck(MAPPEDFILEDATA *fileData);
+int files_readEOL(TBYTE *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive);
+int files_analyzeFile(MAPPEDFILEDATA *fileData, DWORD * dwLineCount);
 
 #endif // _FILES_H

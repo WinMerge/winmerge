@@ -922,11 +922,11 @@ int CMergeDoc::CDiffTextBuffer::DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength)
 }
 
 /// Reads one line from filebuffer and inserts to textbuffer
-void CMergeDoc::CDiffTextBuffer::ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen /* =0 */)
+void CMergeDoc::CDiffTextBuffer::ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineNum, DWORD dwLineLen /* =0 */)
 {
 	if (m_nSourceEncoding >= 0)
 		iconvert (lpLineBegin, m_nSourceEncoding, 1, m_nSourceEncoding == 15);
-	InsertLine(lpLineBegin, dwLineLen);
+	AppendLine(dwLineNum, lpLineBegin, dwLineLen);
 }
 
 /// Sets path for temporary files
@@ -944,7 +944,8 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 	MAPPEDFILEDATA fileData = {0};
 	CString sExt;
 	BOOL bSuccess = FALSE;
-	BOOL nRetVal = FRESULT_OK;
+	int nRetVal = FRESULT_OK;
+	DWORD dwLines = 0;
 
 	// Set encoding based on extension, if we know one
 	SplitFilename(pszFileName, NULL, NULL, &sExt);
@@ -960,7 +961,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 	bSuccess = files_openFileMapped(&fileData);
 
 	if (bSuccess)
-		nRetVal = files_binCheck(&fileData);
+		nRetVal = files_analyzeFile(&fileData, &dwLines);
 	else
 		nRetVal = FRESULT_ERROR;
 	
@@ -973,12 +974,13 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
 		SetCRLFMode(nCrlfStyle);
 		
-		m_aLines.SetSize(0, 4096);
+		m_aLines.SetSize(dwLines, 4096);
 		
 		DWORD dwBytesRead = 0;
 		TCHAR *lpChar = (TCHAR *)fileData.pMapBase;
 		TCHAR *lpLineBegin = lpChar;
 		int eolChars = 0;
+		DWORD nLineNum = 0;
 		while (dwBytesRead < fileData.dwSize)
 		{
 			TCHAR c = *lpChar;
@@ -996,7 +998,8 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 					dwBytesRead++;
 
 					// This is an EOL
-					ReadLineFromBuffer(lpLineBegin, lpChar - lpLineBegin);
+					ReadLineFromBuffer(lpLineBegin, nLineNum, lpChar - lpLineBegin);
+					nLineNum++;
 					lpLineBegin = lpChar;
 					continue;
 				}
@@ -1007,7 +1010,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		// Handle case where file ended with line without EOL
 		if (lpChar > lpLineBegin)
 			// no ghost line, because that would append an EOL to the last line
-			ReadLineFromBuffer(lpLineBegin, lpChar - lpLineBegin);
+			ReadLineFromBuffer(lpLineBegin, nLineNum, lpChar - lpLineBegin);
 		else
 			// Last line had EOL, so append succeeding ghost line
 			InsertLine(_T(""), 0);

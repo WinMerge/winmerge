@@ -1,7 +1,11 @@
+2003-08-31 Kimmo
+ PATCH: [ 797741 ] Faster file loading
+  WinMerge: files.h files.cpp MergeDoc.h MergeDoc.cpp
+
 2003-08-30 Kimmo
  PATCH: [ 797797 ] OnOptions must exchange diffOptions with the registry
   Submitted by Laoran.
-   WinMerge: MainFrm.cpp
+  WinMerge: MainFrm.cpp
 
 2003-08-30 Laoran
  PATCH: [ 784109 ] layout with two new horizontal panels

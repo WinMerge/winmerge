@@ -94,7 +94,7 @@ private :
 		CString m_strTempPath;
 
 		int DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength);
-		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
+		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineNum, DWORD dwLineLen = 0);
 public :
 		void SetTempPath(CString path);
 		virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,

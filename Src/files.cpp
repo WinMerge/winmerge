@@ -151,7 +151,7 @@ BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush)
  * @note This function is safe: it first checks that there are unread bytes,
  * @note so that we do not read past EOF
  */
-int files_readEOL(TCHAR *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive)
+int files_readEOL(TBYTE *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive)
 {
 	int eolBytes = 0;
 	
@@ -197,16 +197,18 @@ int files_readEOL(TCHAR *lpLineEnd, DWORD bytesLeft, BOOL bEOLSensitive)
 }
 
 /**
- * @brief Checks memory-mapped file for a binary data
+ * @brief Checks Checks memory-mapped for binary data and counts lines
+ * in textfile.
  * @note This does not work for UNICODE files
- * @note as WinMerge is not compiled UNICODE enabled
+ * as WinMerge is not compiled UNICODE enabled
  */
-int files_binCheck(MAPPEDFILEDATA *fileData)
+int files_analyzeFile(MAPPEDFILEDATA *fileData, DWORD * dwLineCount)
 {
 	// Use unsigned type for binary compare
 	TBYTE *lpByte = (TBYTE *)fileData->pMapBase;
 	BOOL bBinary = FALSE;
 	DWORD dwBytesRead = 0;
+	*dwLineCount = 1;
 	
 	while ((dwBytesRead < fileData->dwSize - 1) && (bBinary == FALSE))
 	{
@@ -214,9 +216,21 @@ int files_binCheck(MAPPEDFILEDATA *fileData)
 		if (*lpByte < 0x09)
 		{
 			bBinary = TRUE;
+			lpByte++;
+			dwBytesRead++;
 		}
-		lpByte++;
-		dwBytesRead++;
+		else if (*lpByte == '\r' || *lpByte == '\n')
+		{
+			const int nEolBytes = files_readEOL(lpByte, fileData->dwSize - dwBytesRead, TRUE);
+			lpByte += nEolBytes;
+			dwBytesRead += nEolBytes;	// Skip EOL chars
+			(*dwLineCount)++;
+		}
+		else
+		{
+			lpByte++;
+			dwBytesRead++;
+		}
 	}
 
 	if (bBinary)
