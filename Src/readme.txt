@@ -1,3 +1,8 @@
+2004-06-20 Kimmo
+ PATCH: [ 972500 ] Italian translation updated
+  Submitted by Andrea Decorte
+  Src/Languages/Italian: MergeItalian.rc
+
 2004-06-19 Kimmo
  PATCH: [ 975432 ] Add codepage detection option to configlog
   Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp
