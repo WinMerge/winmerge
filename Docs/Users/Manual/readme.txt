@@ -1,8 +1,11 @@
 2004-08-14 Kimmo
-PATCH: [ 1008785 ] Docs: File compare update
- Manual: Compare_files.xml
- Manual/screenshots: File_headerbar1.jpg filecomp1.gif linediff.gif Merge_menu.jpg
- Manual/screenshots new files: filecomp_context1.gif filecomp_statusbar1.gif
+ PATCH: [ 1008785 ] Docs: File compare update
+  Manual: Compare_files.xml
+  Manual/screenshots: File_headerbar1.jpg filecomp1.gif linediff.gif Merge_menu.jpg
+  Manual/screenshots new files: filecomp_context1.gif filecomp_statusbar1.gif
+ PATCH: [ 1008984 ] Docs: Better description of difference and screenshot
+  Manual: Intro_diffs.xml
+  Manual/screenshots new file: example1.gif
 
 2004-08-13 Kimmo
  CVS keyword-completed my filtering rule too! (patch #1006910)
