@@ -16,6 +16,8 @@
   Src/Common: LanguageSelect.cpp
  BUG: [ 876539 ] Wrong textinclude language def in ChineseTraditional
   Src/Languages: ChineseTraditional.rc
+ Translate language names into Dutch (follow-up to PATCH#942021)
+  Src/Languages: MergeDutch.rc
 
 2004-05-12 Kimmo
  PATCH: [ 948448 ] Remove WinMerge.exe path from system options
