@@ -1,6 +1,9 @@
 2005-02-28 Kimmo
  PATCH: [ 1153091 ] Fix selecting default font from View menu
   Src: MainFrm.cpp MainFrm.h OptionsDef.h
+ PATCH: [ 1144545 ] Project Handling Patch3 (remember last valid project path)
+  Submitted by Andreas Morsing
+  Src: MainFrm.cpp OpenDlg.cpp OptionsDef.h
 
 2005-02-28 Perry
  BUG: [ 1039158 ] Confusing EOL differences messagebox

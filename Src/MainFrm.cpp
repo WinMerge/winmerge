@@ -226,6 +226,8 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, (int)RGB(252, 181, 163));
 	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)RGB(0,0,0));
 
+	m_options.InitOption(OPT_PROJECTS_PATH,_T(""));
+
 	// Overwrite WinMerge 2.0 default colors with new colors
 	if (m_options.GetInt(OPT_CLR_DIFF) == RGB(255,255,92))
 		m_options.SaveOption(OPT_CLR_DIFF, (int)RGB(239,203,5));
@@ -2710,12 +2712,24 @@ void CMainFrame::OnFileOpenproject()
 	CString strFileExt;
 	strFileExt.LoadString(IDS_PROJECTFILES_EXT);
 	CFileDialog dlg(true,strFileExt,0,0,strFileFilter);
+	
+	// get the default projects path
+	CString strProjectPath = m_options.GetString(OPT_PROJECTS_PATH);
+	// set the initial directory to the projects path if present
+	if (!strProjectPath.IsEmpty())
+		dlg.m_ofn.lpstrInitialDir = strProjectPath;
 
 	if (dlg.DoModal() != IDOK)
 		return;
 	
+	// get the path part from the filename
+	CString strFileName = dlg.GetPathName();
+	strProjectPath = paths_GetParentPath(strFileName);
+	// store this as the new project path
+	m_options.SaveOption(OPT_PROJECTS_PATH,strProjectPath);
+
 	CStringArray files;
-	files.Add(dlg.GetPathName());
+	files.Add(strFileName);
 	files.Add("");
 	
 	BOOL bRecursive = true;

@@ -600,10 +600,25 @@ void COpenDlg::OnSaveProjectButton()
 	strFileExt.LoadString(IDS_PROJECTFILES_EXT);
 	// show a fileopen dialog with the WinMerge extension
 	CFileDialog dlg(false,strFileExt,0,0,strFileFilter);
+	
+	// get the default projects path
+	CMainFrame* pFrame = (CMainFrame*) theApp.m_pMainWnd;
+	CString strProjectPath = pFrame->m_options.GetString(OPT_PROJECTS_PATH);
+	// set the initial directory to the projects path if present
+	if (!strProjectPath.IsEmpty())
+		dlg.m_ofn.lpstrInitialDir = strProjectPath;
+
 	if (dlg.DoModal() != IDOK)
 		return;
+
+	// get the path part from the filename
+	CString strFileName = dlg.GetPathName();
+	strProjectPath = paths_GetParentPath(strFileName);
+	// store this as the new project path
+	pFrame->m_options.SaveOption(OPT_PROJECTS_PATH,strProjectPath);
+
 	//get the chosen filename
-	CString strProjectFileName = dlg.GetPathName();
+	CString strProjectFileName = strFileName;
 
 	// If prefix found from start..
 	if (strExt.Find(filterPrefix, 0) == 0)
