@@ -2,6 +2,9 @@
  PATCH: [ 1010387 ] Updated MergeSwedish.rc file
   Submitted by Hans Eriksson
   Src/Languages/Swedish: MergeSwedish.rc
+ PATCH: [ 975840 ] Cleanup VCS/VSS code part 2
+  Src: MainFrm.cpp MainFrm.h Merge.dsp 
+  Src new files: VSSHelper.cpp VSSHelper.h
 
 2004-08-16 Kimmo
  BUG: [ 1002035 ] Crash with locked files (WM v2.1.7.10)

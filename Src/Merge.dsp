@@ -1114,6 +1114,10 @@ SOURCE=.\Common\version.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\VSSHelper.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\VssPrompt.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Debug"
@@ -1528,6 +1532,10 @@ SOURCE=.\Common\varprop.h
 # Begin Source File
 
 SOURCE=.\Common\version.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\VSSHelper.h
 # End Source File
 # Begin Source File
 

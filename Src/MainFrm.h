@@ -31,6 +31,7 @@
 
 #include "bcmenu.h"
 #include "OptionsMgr.h"
+#include "VSSHelper.h"
 
 #define BACKUP_FILE_EXT   _T(".bak")
 
@@ -44,6 +45,17 @@ enum
 	FFILEOPEN_READONLY	= 0x0002, /**< Open this path as read-only */
 	FFILEOPEN_CMDLINE	= 0x0010, /**< Path is read from commandline */
 	FFILEOPEN_PROJECT	= 0x0020, /**< Path is read from project-file */
+};
+
+/**
+ * @brief Supported versioncontrol systems.
+ */
+enum
+{
+	VCS_NONE = 0,
+	VCS_VSS4,
+	VCS_VSS5,
+	VCS_CLEARCASE,
 };
 
 class CDiffView;
@@ -104,7 +116,6 @@ public:
 	CString GetDefaultEditor();
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
-	void GetFullVSSPath(CString strSavePath, BOOL & bVCProj);
 	void ShowVSSError(CException *e, CString strItem);
 	void ShowHelp();
 
@@ -128,6 +139,7 @@ public:
 	BOOL m_bFirstTime; /**< If first time frame activated, get  pos from reg */
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
+	VSSHelper m_vssHelper;
 
 	/**
 	 * @name Version Control System (VCS) integration.
@@ -135,11 +147,9 @@ public:
 	/*@{*/ 
 	int m_nVerSys; /**< Selected version control system */
 	CString m_strVssPath;
-	CString m_strVssProjectBase;
 	CString m_strVssUser; /**< Visual Source Safe User ID */
 	CString m_strVssPassword; /**< Visual Source Safe Password */
 	CString m_strVssDatabase;
-	CString m_strVssProjectFull;
 	BOOL m_CheckOutMulti; /**< Suppresses VSS int. code asking checkout for every file */
 	BOOL m_bVCProjSync; /**< VC project opened from VSS sync? */
 	BOOL m_bVssSuppressPathCheck; /**< Suppresses VSS int code asking about different path */
@@ -230,8 +240,6 @@ private:
 	void RedisplayAllDirDocs();
 	CMergeDoc * GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew);
 	CDirDoc * GetDirDocToShow(BOOL * pNew);
-	BOOL GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset = NULL);
-	BOOL ReLinkVCProj(CString strSavePath,CString * psError);
 };
 
 extern CMainFrame *mf;
