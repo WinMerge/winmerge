@@ -23,6 +23,9 @@
 // $Id$
 
 #include "stdafx.h"
+#ifndef UNICODE
+#include <mbctype.h>
+#endif
 #include "version.h"
 #include "dllver.h"
 #include "DiffWrapper.h"
@@ -30,6 +33,7 @@
 #include "winnt_supp.h"
 #include "Plugins.h"
 #include "paths.h"
+#include "unicoder.h"
 
 /** 
  * @brief Return logfile name and path
@@ -59,6 +63,31 @@ void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile &
 	}
 }
 
+/**
+ * @brief CString wrapper around API call GetLocaleInfo
+ */
+static CString GetLocaleString(LCID locid, LCTYPE lctype)
+{
+	TCHAR buffer[512];
+	if (!GetLocaleInfo(locid, lctype, buffer, sizeof(buffer)/sizeof(buffer[0])))
+		buffer[0] = 0;
+	return buffer;
+}
+
+/**
+ * @brief Write out various possibly relevant windows locale information
+ */
+static void WriteLocaleSettings(CStdioFile & file, LCID locid, LPCTSTR title)
+{
+	file.WriteString(Fmt(_T(" %s:\n"), title));
+	file.WriteString(Fmt(_T("  Def ANSI codepage: %s\n"), GetLocaleString(locid, LOCALE_IDEFAULTANSICODEPAGE)));
+	file.WriteString(Fmt(_T("  Def OEM codepage: %s\n"), GetLocaleString(locid, LOCALE_IDEFAULTCODEPAGE)));
+	file.WriteString(Fmt(_T("  Country: %s\n"), GetLocaleString(locid, LOCALE_SENGCOUNTRY)));
+	file.WriteString(Fmt(_T("  Language: %s\n"), GetLocaleString(locid, LOCALE_SENGLANGUAGE)));
+	file.WriteString(Fmt(_T("  Language code: %s\n"), GetLocaleString(locid, LOCALE_ILANGUAGE)));
+	file.WriteString(Fmt(_T("  ISO Language code: %s\n"), GetLocaleString(locid, LOCALE_SISO639LANGNAME)));
+}
+
 /** 
  * @brief Write logfile
  */
@@ -86,6 +115,7 @@ BOOL CConfigLog::WriteLogFile()
 	if (!file.Open(m_sFileName, CFile::modeCreate | CFile::modeWrite))
 		return FALSE;
 
+// Begin log
 	file.WriteString(_T("WinMerge configuration log\n"));
 	file.WriteString(_T("--------------------------\n"));
 	file.WriteString(_T("Saved to: "));
@@ -93,6 +123,7 @@ BOOL CConfigLog::WriteLogFile()
 	file.WriteString(_T("\n* Please add this information (or attach this file)\n"));
 	file.WriteString(_T("* when reporting bugs.\n"));
 
+// Platform stuff
 	file.WriteString(_T("\n\nVersion information:\n"));
 	file.WriteString(_T(" WinMerge.exe: "));
 	file.WriteString(version.GetFixedProductVersion());
@@ -125,6 +156,7 @@ BOOL CConfigLog::WriteLogFile()
 		file.WriteString(text);
 	}
 
+// WinMerge settings
 	file.WriteString(_T("\nWinMerge configuration:\n"));
 	file.WriteString(_T(" Compare settings:\n"));
 	file.WriteString(_T("  Ignore blank lines: "));
@@ -236,6 +268,19 @@ BOOL CConfigLog::WriteLogFile()
 	else
 		file.WriteString(_T("No\n"));
 
+// System settings
+	file.WriteString(_T("\nSystem settings:\n"));
+	file.WriteString(_T(" codepage settings:\n"));
+	file.WriteString(Fmt(_T("  ANSI codepage: %d\n"), GetACP()));
+	file.WriteString(Fmt(_T("  OEM codepage: %d\n"), GetOEMCP()));
+#ifndef UNICODE
+	file.WriteString(Fmt(_T("  multibyte codepage: %d\n"), _getmbcp()));
+#endif
+	WriteLocaleSettings(file, LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));
+	WriteLocaleSettings(file, LOCALE_USER_DEFAULT, _T("Locale (User)"));
+	file.WriteString(Fmt(_T(" unicoder codepage: %d\n"), ucr::getDefaultCodepage()));
+
+// Plugins
 	file.WriteString(_T("\nPlugins: "));
 	file.WriteString(_T("\n Unpackers: "));
 	WritePluginsInLogFile(L"FILE_PACK_UNPACK", file);
