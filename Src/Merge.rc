@@ -1048,7 +1048,7 @@ BEGIN
     CTEXT           "",131,204,124,54,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "outdated",132,260,124,38,10,SS_CENTERIMAGE | SS_SUNKEN
     LTEXT           "Plugins on path:",9001,2,140,100,8
-    CONTROL         "Don't display this &message again.\n(You can allways recall this message from help menu.)",
+    CONTROL         "Don't display this &message again.\n(You can always recall this message from help menu.)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
