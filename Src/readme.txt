@@ -1,3 +1,8 @@
+2003-02-14 Kimmo
+ [ 685491 ] Saving fixes: SaveToFile() rewrite part
+  + Missing NULL check for mf->m_pDirDoc in CMergeDoc
+  MergeDoc.h MergeDoc.cpp
+
 2003-02-13  Perry
  [ 685816 ] Recommend deleting unlocalized translations
  [ 684290 ] improved bin test:

@@ -68,6 +68,8 @@ friend class CMergeDoc;
 private :
         CMergeDoc * m_pOwnerDoc;
 		BOOL m_bIsLeft;
+	    BOOL SafeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength);
+		BOOL SafeReplaceFile(LPCTSTR pszReplaced, LPCTSTR pszReplacement);
 public :
 	      bool curUndoGroup();
 	      void ReplaceLine(int nLine, const CString& strText);

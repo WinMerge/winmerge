@@ -841,130 +841,140 @@ void CMergeDoc::SetCurrentDiff(int nDiff)
 		m_nCurDiff = -1;
 }
 
+BOOL CMergeDoc::CDiffTextBuffer::SafeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength)
+{
+	DWORD dwWrittenBytes = 0;
+	if (WriteFile(hFile, lpBuf, dwLength, &dwWrittenBytes, NULL))
+	{
+		if (dwLength == dwWrittenBytes)
+			return TRUE;
+	}
+	return FALSE;
+}
+
+// Replace file with another file
+// Note order of parameters!
+// pszReplaced - this is the file to delete
+// pszReplacement - this file will be renamed to pszReplaced
+BOOL CMergeDoc::CDiffTextBuffer::SafeReplaceFile(LPCTSTR pszReplaced,
+		LPCTSTR pszReplacement)
+{
+	BOOL bSuccess = FALSE;
+	if (pszReplaced && pszReplacement)
+	{
+		// Delete the file we are replacing
+		// This fails if file does not exist, that's ok
+		::DeleteFile(pszReplaced);
+
+		// Rename remaining file to removed file
+		// This (renaming file) should not fail,
+		if (::MoveFile(pszReplacement, pszReplaced))
+			bSuccess = TRUE;
+	}
+	return bSuccess;
+}
+
 #define FLAGSET(f)   ((m_aLines[nLine].m_dwFlags&(f))==(f))
 
-BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName, 
-											 int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ , 
+BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
+											 int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ ,
 											 BOOL bClearModifiedFlag /*= TRUE*/ )
 {
-  ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
-          nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
-  ASSERT (m_bInit);
-  HANDLE hTempFile = INVALID_HANDLE_VALUE;
-  HANDLE hSearch = INVALID_HANDLE_VALUE;
-  TCHAR szTempFileDir[_MAX_PATH + 1];
-  TCHAR szTempFileName[_MAX_PATH + 1];
-  TCHAR szBackupFileName[_MAX_PATH + 1];
-  BOOL bSuccess = FALSE;
-  __try
-  {
-    TCHAR drive[_MAX_PATH], dir[_MAX_PATH], name[_MAX_PATH], ext[_MAX_PATH];
-#ifdef _UNICODE
-    _wsplitpath (pszFileName, drive, dir, name, ext);
-#else
-    _splitpath (pszFileName, drive, dir, name, ext);
-#endif
-    _tcscpy (szTempFileDir, drive);
-    _tcscat (szTempFileDir, dir);
-    _tcscpy (szBackupFileName, pszFileName);
-    _tcscat (szBackupFileName, _T (".bak"));
+	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
+		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
+	ASSERT (m_bInit);
+	HANDLE hTempFile = INVALID_HANDLE_VALUE;
+	TCHAR szTempFileDir[_MAX_PATH] = {0};
+	TCHAR szTempFileName[_MAX_PATH] = {0} ;
+	BOOL bSuccess = FALSE;
+	TCHAR drive[_MAX_PATH] = {0};
+	TCHAR dir[_MAX_PATH] = {0};
+	BOOL bWriteFail = FALSE;
 
-    if (::GetTempFileName (szTempFileDir, _T ("MRG"), 0, szTempFileName) == 0)
-      __leave;
+	if (pszFileName)
+	{
+		_tsplitpath(pszFileName, drive, dir, NULL, NULL);
+		_tcscpy (szTempFileDir, drive);
+		_tcscat (szTempFileDir, dir);
+	}
+	else
+		return FALSE;
 
-      hTempFile =::CreateFile (szTempFileName, GENERIC_WRITE, 0, NULL,
-                               CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-      if (hTempFile == INVALID_HANDLE_VALUE)
-        __leave;
+	if (::GetTempFileName (szTempFileDir, _T ("MRG"), 0, szTempFileName) == 0)
+		return FALSE;  //Nothing to do if even tempfile name fails
 
-        if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-          nCrlfStyle = m_nCRLFMode;
+	hTempFile =::CreateFile (szTempFileName, GENERIC_WRITE, 0, NULL,
+			CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	if (hTempFile != INVALID_HANDLE_VALUE)
+	{
+		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
+			nCrlfStyle = m_nCRLFMode;
 
-          ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
-          LPCTSTR pszCRLF = crlfs[nCrlfStyle];
-          int nCRLFLength = _tcslen (pszCRLF);
+		ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
+		LPCTSTR pszCRLF = crlfs[nCrlfStyle];
+		int nCRLFLength = _tcslen (pszCRLF);
 
-          int nLineCount = m_aLines.GetSize ();
-          for (int nLine = 0; nLine < nLineCount; nLine++)
-            {
-			  // skip blank diff lines
-			  if ((!m_bIsLeft && FLAGSET(LF_LEFT_ONLY))
-				  || (m_bIsLeft && FLAGSET(LF_RIGHT_ONLY)))
+		int nLineCount = m_aLines.GetSize ();
+		for (int nLine = 0; nLine < nLineCount; nLine++)
+		{
+			// skip blank diff lines
+			if ((!m_bIsLeft && FLAGSET(LF_LEFT_ONLY)) ||
+				(m_bIsLeft && FLAGSET(LF_RIGHT_ONLY)))
 				continue;
 
-              int nLength = m_aLines[nLine].m_nLength;
-              DWORD dwWrittenBytes;
-              if (nLength > 0)
-                {
-                  LPCTSTR pszLine = m_aLines[nLine].m_pcLine;
-                  if (m_nSourceEncoding >= 0)
-                    {
-                      LPTSTR pszBuf;
-                      iconvert_new (m_aLines[nLine].m_pcLine, &pszBuf, 1, m_nSourceEncoding, m_nSourceEncoding == 15);
-                      if (!::WriteFile (hTempFile, pszBuf, nLength, &dwWrittenBytes, NULL))
-                        {
-                          free (pszBuf);
-                          __leave;
-                        }
-                      free (pszBuf);
-                    }
-                  else
-                    if (!::WriteFile (hTempFile, pszLine, nLength, &dwWrittenBytes, NULL))
-                      __leave;
-                  if (nLength != (int) dwWrittenBytes)
-                    __leave;
-                }
-              if (nLine < nLineCount - 1)     //  Last line must not end with CRLF
+			int nLength = m_aLines[nLine].m_nLength;
+			if (nLength > 0)
+			{
+				LPCTSTR pszLine = m_aLines[nLine].m_pcLine;
+				if (m_nSourceEncoding >= 0)
+				{
+					LPTSTR pszBuf;
+					iconvert_new(pszLine, &pszBuf, 1, m_nSourceEncoding,
+						m_nSourceEncoding == 15);
+					if (!SafeWriteFile(hTempFile, pszBuf, nLength))
+					{
+						free (pszBuf);
+						bWriteFail = TRUE;
+						break;
+					}
+					free (pszBuf);
+				}
+				else
+					if (!SafeWriteFile(hTempFile, (void*)pszLine, nLength))
+					{
+						bWriteFail = TRUE;
+						break;
+					}
+			}
 
-                {
-                  if (!::WriteFile (hTempFile, pszCRLF, nCRLFLength, &dwWrittenBytes, NULL))
-                    __leave;
-                  if (nCRLFLength != (int) dwWrittenBytes)
-                    __leave;
-                }
-            }
-    ::CloseHandle (hTempFile);
-    hTempFile = INVALID_HANDLE_VALUE;
+			if (nLine < nLineCount - 1)		//  Last line must not end with CRLF
+			{
+				if (!SafeWriteFile(hTempFile, (void*)pszCRLF, nCRLFLength))
+				{
+					bWriteFail = TRUE;
+					break;
+				}
+			}
+		}
 
-    if (m_bCreateBackupFile)
-      {
-        WIN32_FIND_DATA wfd;
-        hSearch =::FindFirstFile (pszFileName, &wfd);
-        if (hSearch != INVALID_HANDLE_VALUE)
-          {
-            //  File exist - create backup file
-            ::DeleteFile (szBackupFileName);
-            if (!::MoveFile (pszFileName, szBackupFileName))
-              __leave;
-            ::FindClose (hSearch);
-            hSearch = INVALID_HANDLE_VALUE;
-          }
-      }
-    else
-      {
-        ::DeleteFile (pszFileName);
-      }
+		::CloseHandle (hTempFile);
+		hTempFile = INVALID_HANDLE_VALUE;
 
-    //  Move temporary file to target name
-    if (!::MoveFile (szTempFileName, pszFileName))
-      __leave;
-
-      if (bClearModifiedFlag)
-        {
-          SetModified (FALSE);
-          m_nSyncPosition = m_nUndoPosition;
-        }
-    bSuccess = TRUE;
-  }
-  __finally
-  {
-    if (hSearch != INVALID_HANDLE_VALUE)
-      ::FindClose (hSearch);
-      if (hTempFile != INVALID_HANDLE_VALUE)
-        ::CloseHandle (hTempFile);
-        ::DeleteFile (szTempFileName);
-      }
-      return bSuccess;
+		if ( bWriteFail == FALSE )
+		{
+			// Write tempfile over original file
+			if (SafeReplaceFile(pszFileName, szTempFileName))
+			{
+				if (bClearModifiedFlag)
+				{
+					SetModified (FALSE);
+					m_nSyncPosition = m_nUndoPosition;
+				}
+				bSuccess = TRUE;
+			}
+		}
+	}
+	return bSuccess;
 }
 
 void CMergeDoc::CDiffTextBuffer::ReplaceLine(int nLine, const CString &strText)
@@ -1104,7 +1114,8 @@ void CMergeDoc::OnFileSave()
 	{
 		if (m_nDiffs == 0)
 		{
-			mf->m_pDirDoc->UpdateItemStatus(m_strLeftFile,
+			if (mf->m_pDirDoc)
+				mf->m_pDirDoc->UpdateItemStatus(m_strLeftFile,
 					m_strRightFile, FILE_SAME);
 		}
 	}
