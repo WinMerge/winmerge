@@ -37,6 +37,12 @@
 #include <shlwapi.h>
 #include "ByteComparator.h"
 
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif
+
 extern int recursive;
 extern CLogFile gLog;
 static int f_defcp = 0; // default codepage
