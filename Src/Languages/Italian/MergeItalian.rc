@@ -233,7 +233,7 @@ BEGIN
         MENUITEM "&Contenuti...\tF1",           ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfigurazione...",           ID_HELP_GETCONFIG
-        MENUITEM "Supporto per gli a&rchivi disattivo...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "Supporto per gli a&rchivi inattivo...",ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Licenza pubblica GNU...",     ID_HELP_GNULICENSE
         MENUITEM "Infor&mazioni su WinMerge...", ID_APP_ABOUT
@@ -278,9 +278,9 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Cop&ia percorsi"
         BEGIN
-            MENUITEM "&Sinistra (%1 of %2)",        ID_DIR_COPY_PATHNAMES_LEFT
-            MENUITEM "&Destra (%1 of %2)",          ID_DIR_COPY_PATHNAMES_RIGHT
-            MENUITEM "&Entrambi (%1 of %2)",        ID_DIR_COPY_PATHNAMES_BOTH
+            MENUITEM "&Sinistra (%1 su %2)",        ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "&Destra (%1 su %2)",          ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "&Entrambi (%1 su %2)",        ID_DIR_COPY_PATHNAMES_BOTH
         END
         MENUITEM "Copia nomi dei &file",        ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
@@ -466,7 +466,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Sistema per il versioning"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Sistema &versioning",IDC_STATIC,7,7,221,10
+    LTEXT           "Sistema per il &versioning",IDC_STATIC,7,7,221,10
     COMBOBOX        IDC_VER_SYS,7,18,166,98,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "&Percorso di SS.EXE:",IDC_VSS_L1,7,37,221,10
@@ -479,14 +479,14 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Generale"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    CONTROL         "&Esegui il backup del file originale",IDC_BACKUP_CHECK,
+    CONTROL         "Salva copia di bac&kup del file originale",IDC_BACKUP_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,118,10
     CONTROL         "&Visualizza automaticamente la prima differenza",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,17,211,10
-    CONTROL         "&Disattiva schermata iniziale",IDC_DISABLE_SPLASH,"Button",
+    CONTROL         "&Disattiva la schermata iniziale",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
-    CONTROL         "&Chiudi automaticamente pannello confronto rapido cartelle",IDC_CMPPANE_AUTOCLOSE,
+    CONTROL         "&Chiudi automaticamente il pannello di confronto rapido cartelle",IDC_CMPPANE_AUTOCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "C&hiudi finestra con ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
@@ -495,7 +495,7 @@ BEGIN
                     WS_TABSTOP,7,57,206,10
    PUSHBUTTON      "Ripristina",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press button to make all messageboxes visible again.",
+    LTEXT           "WinMerge ti permette di nascondere alcuni messaggi comuni. Premi il pulsante per rendere visibili nuovamente tutti i messaggi.",
                     IDC_STATIC,7,79,168,31
 END
 
@@ -550,11 +550,11 @@ BEGIN
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Solo &parole intere",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
-    CONTROL         "&Maiusc./Minusc.",IDC_EDIT_MATCH_CASE,"Button",
+    CONTROL         "&Maiuscolo/Minuscolo",IDC_EDIT_MATCH_CASE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
     CONTROL         "&Espressione regolare",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
-    CONTROL         "&Fermati alla fine file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+    CONTROL         "&Fermati alla fine del file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
     GROUPBOX        "Sostituisci in",IDC_STATIC,149,40,90,36,WS_GROUP
     CONTROL         "Sele&zione",IDC_EDIT_SCOPE_SELECTION,"Button",
@@ -990,7 +990,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "WinMerge"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "Il supporto per gli archivi è disattivo. Per attivarlo, installa per favore una versione di 7-Zip con cui WinMerge possa interfacciarsi e copia il plugin appropriato (Merge7z*.dll) nella tua cartella di WinMerge.",
+    LTEXT           "Il supporto per gli archivi è inattivo. Per attivarlo, installa per favore una versione di 7-Zip con cui WinMerge possa interfacciarsi e copia il plugin appropriato (Merge7z*.dll) nella tua cartella di WinMerge.",
                     IDC_STATIC,2,2,272,32
     LTEXT           "WinMerge può interfacciarsi con 7-Zip 3.11 e superiore, a patto che il plugin appropriato sia disponibile. Utilizza la versione di 7-Zip raccomandata qui sotto fino alla disponibilità di plugin per versioni successive.",
                     IDC_STATIC,2,34,272,32
@@ -1041,7 +1041,7 @@ BEGIN
     BEGIN
         BLOCK "041004b0"
         BEGIN
-            VALUE "Comments", "Translated originally by Michele Merega, continued by Andrea Decorte(Klenje)\0"
+            VALUE "Comments", "Translated originally by Michele Merega, continued by Andrea Decorte(aka Klenje)\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "Applicazione di WinMerge\0"
             VALUE "FileVersion", "000.000.000.000\0"
@@ -1485,8 +1485,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_OPTIONS_TITLE       "Opzioni"
-    IDS_MESSAGE_BOX_ARE_RESET "Tutti i messaggi di avviso sono ora visualizzati nuovamente."
-    IDS_DIFF_OPEN_NO_SET_PROPS "Sono state effettuate modifiche ai file dell'attuale sessione di confronto.  Alcune impostazioni potrebbero non venire applicate fino al riavvio del confronto di file corrente."
+    IDS_MESSAGE_BOX_ARE_RESET "Tutti i messaggi di avviso vengono ora visualizzati nuovamente."
+    IDS_DIFF_OPEN_NO_SET_PROPS "Sono state effettuate modifiche ai file dell'attuale sessione di confronto. Alcune impostazioni potrebbero non venire applicate fino al riavvio del confronto corrente tra file."
     IDS_FONT_CHANGE         "Il carattere selezionato non sarà utilizzato per le finestre di visualizzazione delle differenze attualmente attive."
 END
 
@@ -1517,7 +1517,7 @@ END
 // VERSION CONTROL OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_CC_CMD              "&Perc. cleartool.exe:"
+    IDS_CC_CMD              "&Percorso di cleartool.exe:"
     IDS_VSS_CMD             "&Percorso di SS.EXE :"
 END
 
@@ -1553,7 +1553,7 @@ BEGIN
     IDS_MERGEMODE_MERGING   "Unione"
     IDS_DIFF_NUMBER_STATUS_FMT "Differenza %1 su %2"
     IDS_NO_DIFF_SEL_FMT     "%1 differenze trovate"
-    IDS_1_DIFF_FOUND        "1 Difference Found"
+    IDS_1_DIFF_FOUND        "1 differenza trovata"
     IDS_STATUSBAR_READONLY  "SL"
 END
 
@@ -1588,16 +1588,16 @@ BEGIN
     IDS_SAVE_FMT            "Vuoi salvare le modifiche in %1?"
     IDS_SAVEREADONLY_FMT    "%1 è marcato come di sola lettura. Desideri non tenere conto di questa impostazione ? (No per salvare con un nuovo nome.)"
     IDS_ERROR_FILE_WRITEABLE "Errore nel controllo sui permessi di scrittura della destinazione"
-    IDS_ERROR_BACKUP        "Errore durante il backup del file"
-    IDS_BACKUP_FAILED_PROMPT "Impossibile eseguire il backup del file originale.\nVuoi continuare ugualmente?"
+    IDS_ERROR_BACKUP        "Errore durante il salvataggio di una copia di backup del file"
+    IDS_BACKUP_FAILED_PROMPT "Impossibile creare una copia di backup del file originale.\nVuoi continuare ugualmente?"
     IDS_FILESAVE_FAILED     "Salvataggio del file fallito.\n%1\n%2\nDesideri salvare il file con un nome diverso?"
     IDS_FILEPACK_FAILED_LEFT "Il plugin '%2' non può ricompattare nuovamente le tue modifiche al file di sinistra in '%1'.\n\nIl file originale non verrà cambiato.\n\nDesideri salvare la versione non compattata in un altro file?"
     IDS_FILEPACK_FAILED_RIGHT "Il plugin '%2' non può ricompattare nuovamente le tue modifiche al file di destra in '%1'.\n\nIl file originale non verrà cambiato.\n\nDesideri salvare la versione non compattata in un altro file?"
     IDS_FILECHANGED_ONDISK  "Un'altra applicazione ha aggiornato il file\n%1\nda quando WinMerge lo ha caricato.\n\nSovrascrivere il file modificato?"
     IDS_SAVEREADONLY_MULTI  "%1\nè marcato come di sola lettura. Desideri non tenere conto della voce di Sola lettura?"
     IDS_FILECHANGED_RESCAN  "Un'altra applicazione ha aggiornato il file\n%1\nda quando WinMerge lo ha scansionato.\n\nSe vuoi aggiornare i file chiudi l'attuale sessione di confronto e ricarica i file."
-    IDS_SAVE_LEFT_AS        "Save Left File As"
-    IDS_SAVE_RIGHT_AS       "Save Right File As"
+    IDS_SAVE_LEFT_AS        "Salva il file di sinistra con nome"
+    IDS_SAVE_RIGHT_AS       "Salva il file di destra con nome"
 END
 
 // VSS
@@ -1668,12 +1668,12 @@ BEGIN
     ID_DIR_OPEN_LEFT_WITH   "Apre il file di sinistra con..."
     ID_DIR_OPEN_RIGHT       "Apre il file di destra"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Apre il file di destra con l'editor esterno"
-    ID_DIR_OPEN_RIGHT_WITH  "Apre file di destra con..."
+    ID_DIR_OPEN_RIGHT_WITH  "Apre il file di destra con..."
     IDS_CANNOT_EXECUTE_FILE "Impossibile eseguire %1"
     ID_DIR_COPY_FILENAMES   "Copia i nomi dei file negli appunti"
-    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_LEFT "Copia i percorsi del lato sinistro negli appunti"
+    ID_DIR_COPY_PATHNAMES_RIGHT "Copia i percorsi del lato destro negli appunti"
+    ID_DIR_COPY_PATHNAMES_BOTH "Copia i percorsi di entrambi i lati negli appunti"
 END
 
 // DIRECTORY DIFFING : 7ZIP
@@ -1793,7 +1793,7 @@ BEGIN
     IDS_TEMP_FILEERROR      "Impossibile creare file temporanei. Controlla le impostazioni del percorso per i file temporanei."
     IDS_FILEISDIR           "I file di cartelle non possono essere confrontate visivamente."
     IDS_SUGGEST_IGNOREEOL   "I file hanno un diverso tipo di EOL.\nCon le opzioni correnti, tutte le linee saranno diverse.\nDesideri ignorare le differenze di EOL per questi file ?\n\nUtenti avanzati : se le EOL non sono unificate nei tuoi file,\npuoi piuttosto impostare l'opzione '%1'."
-    IDS_SUGGEST_PRESERVEEOL "Gli EOL sono di tipi diversi (DOS/UNIX/MAC) nel file '%1'.\nCon le opzioni correnti, essi verranno unificati nel tipo principale.\nDesideri cambiare le opzioni e conservare glie EOL diversi ?"
+    IDS_SUGGEST_PRESERVEEOL "Gli EOL sono di tipi diversi (DOS/UNIX/MAC) nel file '%1'.\nCon le opzioni correnti, essi verranno unificati nel tipo principale.\nDesideri cambiare le opzioni e conservare gli EOL diversi ?"
     IDS_PREDIFFER_ERROR      "C'è stato un errore nel prediffing del file '%1' con il plugin '%2'. Il prediffing non verrà più applicato."
     IDS_SUGGEST_IGNORECODEPAGE "Il file sinistro e destro non hanno lo stesso codice di pagina.\nLa visualizzazione di ciascun file con il proprio codice di pagina fornirà una migliore visualizzazione ma l'unione/copia sarà pericolosa.\nNoi suggeriamo di lasciare da parte le informazioni sul codice di pagina. Sei d'accordo ?"
 END
@@ -1847,27 +1847,27 @@ END
 // Regular expression errors
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_ERROR        "Regular expression error"
-    IDS_REGEXP_NOMATCH      "No match"
-    IDS_REGEXP_INVALID      "Invalid regular expression"
-    IDS_REGEXP_COLL_CHAR    "Invalid collation character"
-    IDS_REGEXP_CHAR_CLASS   "Invalid character class name"
-    IDS_REGEXP_TRAILING_BS  "Trailing backslash"
-    IDS_REGEXP_INVALID_BACKREF "Invalid back reference"
-    IDS_REGEXP_UNMATCHED_BRACK "Unmatched [ or [^"
-    IDS_REGEXP_UNMATCHED_PAREN "Unmatched ( or \\("
-    IDS_REGEXP_UNMATCHED_BRACE "Unmatched \\{"
-    IDS_REGEXP_INVALID_BRACE "Invalid content of \\{\\}"
-    IDS_REGEXP_RANGE_END    "Invalid range end"
+    IDS_REGEXP_ERROR        "Errore nell'espressione regolare"
+    IDS_REGEXP_NOMATCH      "Nessuna corrispondenza"
+    IDS_REGEXP_INVALID      "Espressione regolare non valida"
+    IDS_REGEXP_COLL_CHAR    "Carattere di collazione non valido"
+    IDS_REGEXP_CHAR_CLASS   "Carattere del nome della classe non valido"
+    IDS_REGEXP_TRAILING_BS  "Backslash che seguono"
+    IDS_REGEXP_INVALID_BACKREF "Referenza inversa non valida"
+    IDS_REGEXP_UNMATCHED_BRACK "Parentesi [ o [^ isolata"
+    IDS_REGEXP_UNMATCHED_PAREN "Parentesi ( o \\( isolata"
+    IDS_REGEXP_UNMATCHED_BRACE "Parentesi \\{ isolata"
+    IDS_REGEXP_INVALID_BRACE "Contenuto di \\{\\} non valido"
+    IDS_REGEXP_RANGE_END    "Conclusione del range non valida"
     IDS_REGEXP_OUTOFMEM     "Out of memory"
-    IDS_REGEXP_INVALID_PREV_EXP "Invalid preceding regular expression"
-    IDS_REGEXP_PREMATURE_END "Premature end of regular expression"
-    IDS_REGEXP_TOO_BIG      "Regular expression too big"
+    IDS_REGEXP_INVALID_PREV_EXP "Espressione regolare precedente non valida"
+    IDS_REGEXP_PREMATURE_END "Conclusione prematura dell'espressione regolare"
+    IDS_REGEXP_TOO_BIG      "Espressione regolare troppo grande"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_UNMATCHED_RPAREN "Unmatched ) or \\)"
+    IDS_REGEXP_UNMATCHED_RPAREN "Parentesi ) o \\) isolata"
 END
 
 // LANGAGE NAMES #1
@@ -1967,7 +1967,7 @@ BEGIN
     IDS_ITALIAN_SWISS       "Italiano (Svizzera)"
     IDS_JAPANESE            "Giapponese"
     IDS_KASHMIRI            "Kashmiri (India)"
-    IDS_KAZAK               "Kazako"
+    IDS_KAZAK               "Kazaco"
     IDS_KOREAN              "Coreano"
     IDS_KOREAN_JOHAB        "Coreano (Johab)"
 END
@@ -2056,7 +2056,7 @@ BEGIN
     ID_EOL_TO_DOS           "Converti EOL alla modalità DOS"
     ID_EOL_TO_UNIX          "Converti EOL alla modalità UNIX"
     ID_EOL_TO_MAC           "Converti EOL alla modalità MAC"
-    ID_FILE_MERGINGMODE     "Passa alla modalità di editing a quella di 'unione', in cui l'integrazione delle differenze è più rapida"
+    ID_FILE_MERGINGMODE     "Passa dalla modalità di editing a quella di 'Unione', in cui l'integrazione delle differenze è più rapida"
 END
 
 // EDIT MENU
@@ -2151,7 +2151,7 @@ BEGIN
     ID_PREDIFF_MANUAL       "No prediffer"
     ID_PREDIFF_AUTO         "Prediff se possibile"
     ID_NO_EDIT_SCRIPTS      "< Vuoto >"
-    ID_NO_SCT_SCRIPTS       "WSH non trovato - .sct script disattivati"
+    ID_NO_SCT_SCRIPTS       "WSH non trovato - script .sct disattivati"
     IDS_USERCHOICE_NONE     "<Nessuno>"
     IDS_USERCHOICE_AUTOMATIC "<Automatico>"
 END

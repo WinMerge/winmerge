@@ -3,6 +3,9 @@
   Src: MergeDoc.cpp
  PATCH: [ 1039372 ] Save mixed EOL option when changed during file loading
   Src: MergeDoc.cpp
+ PATCH: [ 1039552 ] Italian translation updated for RC
+  Submitted by Andrea Decorte
+  Src/Languages/Italian: MergeItalian.rc
 
 2004-10-02 Kimmo
  PATCH: [ 1039001 ] Swedish translation update
