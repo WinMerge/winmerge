@@ -1,4 +1,8 @@
 2004-04-17 Laoran
+ PATCH: [ 929001 ] Delete commented out "diff_dirs2"
+  Src: DirDoc.cpp
+
+2004-04-17 Laoran
  BUG: [ 936824 ] Prediffer not initialized when generate patch
   Src: PatchTool.cpp
 

@@ -165,69 +165,6 @@ void CDirDoc::Serialize(CArchive& ar)
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc commands
 
-/*int
-diff_dirs2 (filevec, handle_file, depth)
-     struct file_data const filevec[];
-     int (*handle_file) PARAMS((char const *, char const *, char const *, char const *, int));
-     int depth;
-{
-  struct dirdata dirdata[2];
-  int val = 0;
-  int i;
-
-  // Get sorted contents of both dirs.
-  for (i = 0; i < 2; i++)
-    if (dir_sort (&filevec[i], &dirdata[i]) != 0)
-      {
-	perror_with_name (filevec[i].name);
-	val = 2;
-      }
-
-  if (val == 0)
-    {
-      char const * const *names0 = dirdata[0].names;
-      char const * const *names1 = dirdata[1].names;
-      char const *name0 = filevec[0].name;
-      char const *name1 = filevec[1].name;
-
-      // If `-S name' was given, and this is the topmost level of comparison,
-	 //ignore all file names less than the specified starting name.
-
-      if (dir_start_file && depth == 0)
-	{
-	  while (*names0 && stricmp (*names0, dir_start_file) < 0)
-	    names0++;
-	  while (*names1 && stricmp (*names1, dir_start_file) < 0)
-	    names1++;
-	}
-
-      // Loop while files remain in one or both dirs.
-      while (*names0 || *names1)
-	{
-	  // Compare next name in dir 0 with next name in dir 1.
-	     At the end of a dir,
-	     pretend the "next name" in that dir is very large.
-	  int nameorder = (!*names0 ? 1 : !*names1 ? -1
-			   : stricmp (*names0, *names1));
-	  int v1 = (*handle_file) (name0, 0 < nameorder ? 0 : *names0++,
-				   name1, nameorder < 0 ? 0 : *names1++,
-				   depth + 1);
-	  if (v1 > val)
-	    val = v1;
-	}
-    }
-
-  for (i = 0; i < 2; i++)
-    {
-      if (dirdata[i].names)
-	free (dirdata[i].names);
-      if (dirdata[i].data)
-	free (dirdata[i].data);
-    }
-
-  return val;
-}*/
-
 /**
  * @brief Perform directory comparison again from scratch
  */
@@ -281,11 +218,6 @@ void CDirDoc::Rescan()
 	m_diffThread.SetMessageIDs(MSG_UI_UPDATE, MSG_STAT_UPDATE);
 	m_diffThread.CompareDirectories(m_pCtxt->m_strNormalizedLeft,
 			m_pCtxt->m_strNormalizedRight, m_bRecursive);
-
-	// the directories are now displayed in the headerbar
-	// CString s;
-	// AfxFormatString2(s, IDS_DIRECTORY_WINDOW_STATUS_FMT, m_pCtxt->m_strLeft, m_pCtxt->m_strRight);
-	// ((CDirFrame*)(m_pDirView->GetParent()))->SetStatus(s);
 }
 
 /**
