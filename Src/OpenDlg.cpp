@@ -80,8 +80,7 @@ BEGIN_MESSAGE_MAP(COpenDlg, CDialog)
 	ON_CBN_SELENDCANCEL(IDC_LEFT_COMBO, UpdateButtonStates)
 	ON_CBN_EDITCHANGE(IDC_RIGHT_COMBO, UpdateButtonStates)
 	ON_CBN_SELENDCANCEL(IDC_RIGHT_COMBO, UpdateButtonStates)
-	ON_CBN_KILLFOCUS(IDC_LEFT_COMBO, OnKillfocusLeftCombo)
-	ON_CBN_KILLFOCUS(IDC_RIGHT_COMBO, OnKillfocusRightCombo)
+
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -141,6 +140,8 @@ void COpenDlg::OnRightButton()
 void COpenDlg::OnOK() 
 {
 	UpdateData(TRUE);
+	RemoveTrailingSlash(m_strLeft);
+	RemoveTrailingSlash(m_strRight);
 
 	if (m_strLeft.Right(1)==_T(':'))
 		m_strLeft += _T("\\");
@@ -272,23 +273,6 @@ void COpenDlg::OnSelchangeRightCombo()
 		m_ctlRight.SetWindowText(m_strRight);
 		UpdateData(TRUE);
 	}
-	UpdateButtonStates();
-}
-
-void COpenDlg::OnKillfocusLeftCombo() 
-{
-	UpdateData(TRUE);
-	// remove trailing slashes
-	RemoveTrailingSlash(m_strLeft);
-	m_ctlLeft.SetWindowText(m_strLeft);
-	UpdateButtonStates();
-}
-
-void COpenDlg::OnKillfocusRightCombo() 
-{
-	UpdateData(TRUE);
-	RemoveTrailingSlash(m_strRight);
-	m_ctlRight.SetWindowText(m_strRight);
 	UpdateButtonStates();
 }
 

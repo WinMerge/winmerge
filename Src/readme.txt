@@ -1,3 +1,7 @@
+2003-02-28 Kimmo
+ BUG: [ 693932 ] Trailing \ on path crashes WinMerge
+  WinMerge: OpenDlg.h OpenDlg.cpp
+
 2003-02-27 Kimmo
  BUG: [ 693820 ] Typed path failed to compare
   WinMerge: OpenDlg.cpp

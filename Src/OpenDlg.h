@@ -74,8 +74,6 @@ protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSelchangeLeftCombo();
 	afx_msg void OnSelchangeRightCombo();
-	afx_msg void OnKillfocusLeftCombo();
-	afx_msg void OnKillfocusRightCombo();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
