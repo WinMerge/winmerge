@@ -167,7 +167,7 @@ TCHAR *CRegExp::reg(int paren, int *flagp)
 		}
 		parno = regnpar;
 		regnpar++;
-		ret = regnode(OPEN+parno);
+		ret = regnode((TCHAR)(OPEN+parno));
 	}
 
 	// Pick up the branches, linking them together. 
@@ -191,7 +191,7 @@ TCHAR *CRegExp::reg(int paren, int *flagp)
 	}
 
 	// Make a closing node, and hook it on the end. 
-	ender = regnode((paren) ? CLOSE+parno : END);
+	ender = regnode((TCHAR)((paren) ? CLOSE+parno : END));
 	regtail(ret, ender);
 
 	// Hook the tails of the branches to the closing node. 
@@ -370,12 +370,12 @@ TCHAR *CRegExp::regatom(int *flagp)
 		} else
 			ret = regnode(ANYOF);
 		if ((c = *regparse) == _T(']') || c == _T('-')) {
-			regc(c);
+			regc((TCHAR)c);
 			regparse++;
 		}
 		while ((c = *regparse++) != _T('\0') && c != _T(']')) {
 			if (c != _T('-'))
-				regc(c);
+				regc((TCHAR)c);
 			else if ((c = *regparse) == _T(']') || c == _T('\0'))
 				regc(_T('-'));
 			else 
@@ -388,7 +388,7 @@ TCHAR *CRegExp::regatom(int *flagp)
 					return NULL;
 				}
 				for (range++; range <= rangeend; range++)
-					regc(range);
+					regc((TCHAR)range);
 				regparse++;
 			}
 		}
