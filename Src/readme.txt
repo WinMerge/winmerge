@@ -1,3 +1,7 @@
+2004-11-14 Kimmo
+ PATCH: [ 1065462 ] Show all skipped items when selected so
+  Src: DirDoc.cpp
+
 2004-11-12 Kimmo
  PATCH: [ 1057062 ] Separate Skipped flags from compare result flags
   Src: DiffContext.h DirCompStateBar.cpp DirDoc.cpp DirScan.cpp

@@ -223,13 +223,21 @@ void CDirDoc::Rescan()
  */
 LPCTSTR CDirDoc::GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di, int llen, int rlen)
 {
+	if (di.isResultFiltered())
+	{
+		// Treat SKIPPED as a 'super'-flag. If item is skipped and user
+		// wants to see skipped items show item regardless of other flags
+		if (mf->m_options.GetBool(OPT_SHOW_SKIPPED))
+			goto ShowItem;
+		else
+			return 0;
+	}
+
 	// Subfolders in non-recursive compare can only be skipped or unique
 	if (!m_bRecursive && di.isDirectory())
 	{
 		// result filters
 		if (di.isResultError() && !mf->m_bShowErrors)
-			return 0;
-		if (di.isResultFiltered() && !mf->m_options.GetBool(OPT_SHOW_SKIPPED))
 			return 0;
 
 		// left/right filters
@@ -249,8 +257,6 @@ LPCTSTR CDirDoc::GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di,
 			return 0;
 		if (di.isResultError() && !mf->m_bShowErrors)
 			return 0;
-		if (di.isResultFiltered() && !mf->m_options.GetBool(OPT_SHOW_SKIPPED))
-			return 0;
 		if (di.isResultDiff() && !mf->m_options.GetBool(OPT_SHOW_DIFFERENT))
 			return 0;
 
@@ -261,6 +267,7 @@ LPCTSTR CDirDoc::GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di,
 			return 0;
 	}
 
+ShowItem:
 	LPCTSTR p = NULL;
 	if (di.isSideRight())
 		p = _tcsninc(di.getRightFilepath(pCtxt), rlen);
