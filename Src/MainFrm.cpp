@@ -69,6 +69,7 @@
 #include "FileFiltersDlg.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
+#include "UniFile.h"
 #include "unicoder.h"
 
 #ifdef _DEBUG
@@ -519,9 +520,14 @@ void CMainFrame::OnFileOpen()
 	DoFileOpen();
 }
 
-/// Creates new MergeDoc instance and shows documents
+/**
+ * @brief Creates new MergeDoc instance and shows documents
+ *
+ * @param cpleft, cpright : left and right codepages
+ * = -1 when the file must be parsed
+ */
 void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight,
-	BOOL bROLeft, BOOL bRORight,  int cpleft, int cpright,
+	BOOL bROLeft, BOOL bRORight,  int cpleft /*=-1*/, int cpright /*=-1*/,
 	PackingInfo * infoUnpacker /*= NULL*/)
 {
 	BOOL docNull;
@@ -537,6 +543,20 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	// (through menu : "Plugins"->"Open with unpacker")
 	pMergeDoc->SetUnpacker(infoUnpacker);
 
+	// detect codepage
+	BOOL bGuessEncoding = mf->m_options.GetInt(OPT_DETECT_CODEPAGE);
+	if (cpleft == -1)
+	{
+		CString filepath = szLeft;
+		int unicoding;
+		GuessCodepageEncoding(filepath, &unicoding, &cpleft, bGuessEncoding);
+	}
+	if (cpright == -1)
+	{
+		CString filepath = szRight;
+		int unicoding;
+		GuessCodepageEncoding(filepath, &unicoding, &cpright, bGuessEncoding);
+	}
 
 	if (cpleft != cpright)
 	{

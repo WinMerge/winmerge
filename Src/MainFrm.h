@@ -91,7 +91,7 @@ public:
 		CString *psError);
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
 		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE);
-	void ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft, BOOL bRORight, int cpleft, int cpright, PackingInfo * infoUnpacker = NULL);
+	void ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft, BOOL bRORight, int cpleft =-1, int cpright =-1, PackingInfo * infoUnpacker = NULL);
 	void UpdateResources();
 	BOOL CreateBackup(LPCTSTR pszPath);
 	int HandleReadonlySave(CString& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);

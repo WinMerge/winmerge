@@ -44,12 +44,6 @@ static char THIS_FILE[]=__FILE__;
 #endif
 
 
-static void GuessCodepageEncoding(const CString & filepath, int * unicoding, int * codepage, 
-                                  BOOL bGuessEncoding);
-static bool demoGuessEncoding_html(UniFile * pufile, int * encoding, int * codepage);
-static bool demoGuessEncoding_rc(UniFile * pufile, int * encoding, int * codepage);
-
-
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -235,98 +229,6 @@ void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
 	CString filepath = paths_ConcatPath(spath, di.sfilename);
 	dfi.Update(filepath);
 	GuessCodepageEncoding(filepath, &dfi.unicoding, &dfi.codepage, m_bGuessEncoding);
-}
-
-/**
- * @brief Try to deduce encoding for this file
- */
-static void
-GuessCodepageEncoding(const CString & filepath, int * unicoding, int * codepage,
-                      BOOL bGuessEncoding)
-{
-	UniMemFile ufile;
-	UniFile * pufile = &ufile;
-
-	if (!pufile->OpenReadOnly(filepath))
-		return;
-	bool hasbom = pufile->ReadBom();
-	*unicoding = pufile->GetUnicoding();
-	*codepage = pufile->GetCodepage();
-	if (!hasbom && bGuessEncoding)
-	{
-		// TODO: 
-		// remove these when plugin event implemented for this
-		if (!filepath.Right(4).CompareNoCase(_T(".htm"))
-			|| !filepath.Right(5).CompareNoCase(_T(".html")))
-		{
-			demoGuessEncoding_html(pufile, unicoding, codepage);
-		}
-		if (!filepath.Right(3).CompareNoCase(_T(".rc")))
-		{
-			demoGuessEncoding_rc(pufile, unicoding, codepage);
-		}
-	}
-}
-
-/**
- * @brief Parser for HTML files to find encoding information
- *
- * To be removed when plugin event added for this
- */
-static bool
-demoGuessEncoding_html(UniFile * pufile, int * encoding, int * codepage)
-{
-	CString line, eol;
-	while (1)
-	{
-		if (pufile->GetLineNumber() > 30)
-			break;
-		if (!pufile->ReadString(line, eol))
-			break;
-		static CString metapref = _T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=");
-		if (line.Left(metapref.GetLength()).CompareNoCase(metapref))
-			continue;
-
-		CString cpstring = line.Mid(metapref.GetLength());
-		int closequote = cpstring.Find('"');
-		if (closequote == -1)
-			break;
-		cpstring = cpstring.Left(closequote);
-		int cp=0;
-		// TODO: Map ISO-8859-1 pages to codenumbers (is this possible ?)
-		if (1 == _stscanf(cpstring, _T("%d"), &cp))
-		{
-			*codepage = cp;
-			return true;
-		}
-	}
-	return false;
-}
-
-/**
- * @brief Parser for rc files to find encoding information
- *
- * To be removed when plugin event added for this
- */
-static bool
-demoGuessEncoding_rc(UniFile * pufile, int * encoding, int * codepage)
-{
-	CString line, eol;
-	while (1)
-	{
-		if (pufile->GetLineNumber() > 30)
-			break;
-		if (!pufile->ReadString(line, eol))
-			break;
-		int cp=0;
-		if (1 == _stscanf(line, _T("#pragma code_page(%d)"), &cp)
-			&& cp>0)
-		{
-			*codepage = cp;
-			return true;
-		}
-	}
-	return false;
 }
 
 /**

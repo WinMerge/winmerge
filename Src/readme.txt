@@ -1,4 +1,7 @@
 2004-06-19 Laoran
+ PATCH: [ 974714 ] detect codepage when open documents directly
+  Src: DiffContext.cpp MainFrm.cpp MainFrm.h
+  Src/Common: UniFile.cpp UniFile.h
  PATCH: [ 975213 ] warn when codepages differ
   Src: MainFrm.cpp Merge.rc resource.h
   Src/Languages: *.rc resource.h
