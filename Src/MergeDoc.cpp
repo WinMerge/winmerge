@@ -352,10 +352,6 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 		nResult = RESCAN_BINARIES;
 	else
 	{
-		// Identical files are also updated
-		if (m_nDiffs == 0)
-			nResult = RESCAN_IDENTICAL;
-
 		// Now update views and buffers for ghost lines
 
 		// Prevent displaying views during this update 
@@ -376,6 +372,13 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 		// this operation does not change the modified flag
 		PrimeTextBuffers();
 		
+		// After PrimeTextBuffers() we know amount of real diffs
+		// (m_nDiffs) and trivial diffs (m_nTrivialDiffs)
+
+		// Identical files are also updated
+		if (m_nDiffs == 0)
+			nResult = RESCAN_IDENTICAL;
+
 		// just apply some options to the views
 		m_pLeftView->PrimeListWithFile();
 		m_pRightView->PrimeListWithFile();
@@ -1817,7 +1820,7 @@ void CMergeDoc::PrimeTextBuffers()
 
 	// walk the diff stack and flag the line codes
 	SetCurrentDiff(-1);
-	UINT nTrivials = 0;
+	m_nTrivialDiffs = 0;
 	for (UINT nDiff=0; nDiff < m_nDiffs; ++nDiff)
 	{
 		DIFFRANGE &curDiff = m_diffs[nDiff];
@@ -1881,7 +1884,7 @@ void CMergeDoc::PrimeTextBuffers()
 			}
 			break;
 		case OP_TRIVIAL:
-			++nTrivials;
+			++m_nTrivialDiffs;
 			// fall through and handle as diff
 		case OP_DIFF:
 			// left side
@@ -1950,13 +1953,13 @@ void CMergeDoc::PrimeTextBuffers()
 		}
 	}
 
-	if (nTrivials)
+	if (m_nTrivialDiffs)
 	{
 		// The following code deletes all trivial changes
 		//
 		// #1) Copy nontrivial diffs into new array
 		CArray<DIFFRANGE,DIFFRANGE> newdiffs;
-		newdiffs.SetSize(m_diffs.GetSize()-nTrivials);
+		newdiffs.SetSize(m_diffs.GetSize()-m_nTrivialDiffs);
 		UINT i,j;
 		for (i=0,j=0; j < m_nDiffs; ++j)
 		{
@@ -1976,6 +1979,9 @@ void CMergeDoc::PrimeTextBuffers()
 		{
 			m_diffs[i] = newdiffs[i];
 		}
+		
+		// Update normal diffs count
+		m_nDiffs -= m_nTrivialDiffs;
 	}
 
 	m_ltBuf.FinishLoading();

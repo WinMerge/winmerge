@@ -195,6 +195,7 @@ public:
 	CPtrList m_undoList;
 	CArray<DIFFRANGE,DIFFRANGE> m_diffs;
 	UINT m_nDiffs;
+	UINT m_nTrivialDiffs;
 	CString m_strLeftFile, m_strRightFile;
 
 	void UpdateHeaderPath(BOOL bLeft);

@@ -1,6 +1,8 @@
 2003-11-06 Kimmo
  BUG: [ 836781 ] File not found: notepad.exe
   WinMerge: MainFrm.cpp
+ PATCH: [ 836714 ] Separate counts of normal and trivial diffs
+  WinMerge: MergeDoc.h MergeDoc.cpp
 
 2003-11-06 Laoran
  BUG: [ 836868 ] Search and replace field size limited
