@@ -1,3 +1,7 @@
+2004-01-19 Perry
+ PATCH: [ 878625 ] Simplify and unify file operations calling diff_2_files.
+  src: Diff.cpp DiffWrapper.cpp DiffWrapper.h
+
 2004-01-18 Kimmo
  PATCH: 876875 Go To -Dialog
   src new files: WMGotoDlg.h WMGotoDlg.cpp

@@ -31,6 +31,8 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 #include "getopt.h"
 #include "fnmatch.h"
 #include "io.h"
+#include "diffwrapper.h"
+
 
 // reduce some noise produced with the MSVC compiler
 #if defined (_AFXDLL)
@@ -64,37 +66,13 @@ int recursive;
 bool
 just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff, bool * bin)
 {
-	struct file_data inf[2];
 
-	ZeroMemory(&inf[0], sizeof(inf[0]));
-	ZeroMemory(&inf[1], sizeof(inf[1]));
+	DiffFileData diffdata(filepath1, filepath2);
 
-	// TODO: This is going to break on filepaths not representable in the
-	// current 8 bit codeset
-	USES_CONVERSION;
-	inf[0].name = T2CA(filepath1);
-	inf[1].name = T2CA(filepath2);
-
-
-	inf[0].desc = _topen(filepath1, O_RDONLY|O_BINARY, 0);
-	if (inf[0].desc < 0)
-	{
+	if (!diffdata.OpenFiles())
 		return false;
-	}
-	inf[1].desc = _topen(filepath2, O_RDONLY|O_BINARY, 0);
-	if (inf[1].desc < 0)
-	{
-		close(inf[0].desc);
-		return false;
-	}
 
-	for (int i=0; i<2; ++i)
-	{
-		if (fstat(inf[i].desc, &inf[i].stat) != 0)
-		{
-			return false;
-		}
-	}
+	file_data * inf = diffdata.m_inf;
 
 	int bin_flag=0;
 
@@ -102,6 +80,9 @@ just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff
 	bool failed = false;
 	struct change *script = diff_2_files (inf, depth, &bin_flag);
 
+	// Done with diffutils filedata
+	diffdata.Close();
+	
 	*diff = false;
 
 	// Free change script (which we don't want)
@@ -122,19 +103,6 @@ just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth, bool * diff
 	*bin = (bin_flag != 0);
 	if (bin_flag < 0)
 		*diff = true;
-
-	// Tell diff code to cleanup
-	cleanup_file_buffers(inf);
-
-	// close open file handles
-	if (close(inf[0].desc) != 0)
-	{
-		failed = true;
-	}
-	if (close(inf[1].desc) != 0)
-	{
-		failed = true;
-	}
 
 	return !failed;
 }

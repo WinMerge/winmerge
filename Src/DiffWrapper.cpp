@@ -186,7 +186,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	// perform rescan
 	char *free0 = NULL,*free1 = NULL;
 	CString sdir0, sdir1, sname0, sname1, sext0, sext1;
-	int val,failed=0;
+	int failed=0;
 	bool same_files = FALSE;
 	struct change *e, *p;
 	struct change *script = NULL;
@@ -199,238 +199,182 @@ BOOL CDiffWrapper::RunFileDiff()
 	FileTransform_Prediffing(m_sFile2, infoPrediffer, TRUE);
 	FileTransform_UCS2ToUTF8(m_sFile2, TRUE);
 
-	SplitFilename(m_sFile1, &sdir0, &sname0, NULL);
-	SplitFilename(m_sFile2, &sdir1, &sname1, NULL);
-	struct file_data inf[2] = {0};
-	ZeroMemory(&inf[0], sizeof(inf[0]));
-	ZeroMemory(&inf[1], sizeof(inf[1]));
 
-	/* Both exist and neither is a directory.  */
-	int o_binary = always_text_flag ? 0:O_BINARY;
+	DiffFileData diffdata(m_sFile1, m_sFile2);
 
-	/* Open the files and record their descriptors.  */
-	if (sdir0.IsEmpty())
-		inf[0].name = T2CA(sname0);
-	else
-		inf[0].name = free0 = dir_file_pathname (T2CA(sdir0), T2CA(sname0));
-	inf[0].desc = -2;
-	if (sdir1.IsEmpty())
-		inf[1].name = T2CA(sname1);
-	else
-		inf[1].name = free1 = dir_file_pathname (T2CA(sdir1), T2CA(sname1));
-	inf[1].desc = -2;
-	if (inf[0].desc == -2)
+	// This opens & fstats both files (if it succeeds)
+	if (!diffdata.OpenFiles())
 	{
-		if ((inf[0].desc = open (inf[0].name, O_RDONLY|o_binary, 0)) < 0)
-		{
-			perror_with_name (inf[0].name);
-			failed = 1;
-		}
-		if (inf[1].desc == -2)
-		{
-			if (same_files)
-				inf[1].desc = inf[0].desc;
-			else if ((inf[1].desc = open (inf[1].name, O_RDONLY|o_binary, 0)) < 0)
-			{
-				perror_with_name (inf[1].name);
-				failed = 1;
-			}
+		return FALSE;
+	}
 
-			for (int i = 0; i < 2; ++i)
-			{
-				if (stat(inf[i].name, &inf[i].stat) != 0)
-					return false;
-			}
-			
-			/* Compare the files, if no error was found.  */
-			int diff_flag = 0;
 
-			// Diff files. depth is zero because we are not comparind dirs
-			script = diff_2_files (inf, 0, &diff_flag);
+	file_data * inf = diffdata.m_inf;
 
-			// We don't anymore create diff-files for every rescan.
-			// User can create patch-file whenever one wants to.
-			// We don't need to waste time. But lets keep this as
-			// debugging aid. Sometimes it is very useful to see
-			// what differences diff-engine sees!
+	/* Compare the files, if no error was found.  */
+	int diff_flag = 0;
+
+	// Diff files. depth is zero because we are not comparing dirs
+	script = diff_2_files (inf, 0, &diff_flag);
+
+	// We don't anymore create diff-files for every rescan.
+	// User can create patch-file whenever one wants to.
+	// We don't need to waste time. But lets keep this as
+	// debugging aid. Sometimes it is very useful to see
+	// what differences diff-engine sees!
 #ifdef _DEBUG
-			// throw the diff into a temp file
-			TCHAR lpBuffer[MAX_PATH] = {0};       // path buffer
-			GetTempPath(MAX_PATH,lpBuffer);		// get path to Temp folder
-			CString path = CString(lpBuffer) + _T("Diff.txt");
+	// throw the diff into a temp file
+	TCHAR lpBuffer[MAX_PATH] = {0};       // path buffer
+	GetTempPath(MAX_PATH,lpBuffer);		// get path to Temp folder
+	CString path = CString(lpBuffer) + _T("Diff.txt");
 
-			outfile = _tfopen(path, _T("w+"));
-			if (outfile != NULL)
-			{
-				print_normal_script(script);
-				fclose(outfile);
-				outfile = NULL;
-			}
+	outfile = _tfopen(path, _T("w+"));
+	if (outfile != NULL)
+	{
+		print_normal_script(script);
+		fclose(outfile);
+		outfile = NULL;
+	}
 #endif
-			// Create patch file
-			if (m_bCreatePatchFile)
-			{
-				outfile = NULL;
-				if (!m_sPatchFile.IsEmpty())
-				{
-					if (m_bAppendFiles)
-						outfile = _tfopen(m_sPatchFile, _T("a+"));
-					else
-						outfile = _tfopen(m_sPatchFile, _T("w+"));
-				}
-
-				if (outfile != NULL)
-				{
-					// Print "command line"
-					if (m_bAddCmdLine)
-					{
-						CString switches = FormatSwitchString();
-						fprintf(outfile, "diff%s %s %s\n", 
-							T2CA(switches), inf[0].name , inf[1].name);
-					}
-
-					// Output patchfile
-					switch (output_style)
-					{
-					case OUTPUT_CONTEXT:
-						print_context_header(inf, 0);
-						print_context_script(script, 0);
-						break;
-						
-					case OUTPUT_UNIFIED:
-						print_context_header(inf, 1);
-						print_context_script(script, 1);
-						break;
-						
-					case OUTPUT_ED:
-						print_ed_script(script);
-						break;
-						
-					case OUTPUT_FORWARD_ED:
-						pr_forward_ed_script(script);
-						break;
-						
-					case OUTPUT_RCS:
-						print_rcs_script(script);
-						break;
-						
-					case OUTPUT_NORMAL:
-						print_normal_script(script);
-						break;
-						
-					case OUTPUT_IFDEF:
-						print_ifdef_script(script);
-						break;
-						
-					case OUTPUT_SDIFF:
-						print_sdiff_script(script);
-					}
-					
-					fclose(outfile);
-					outfile = NULL;
-				}
-				else
-					m_status.bPatchFileFailed = TRUE;
-			}
-			
-			// Go through diffs adding them to WinMerge's diff list
-			// This is done on every WinMerge's doc rescan!
-			if (m_bUseDiffList)
-			{
-				struct change *next = script;
-				int trans_a0, trans_b0, trans_a1, trans_b1;
-				int first0, last0, first1, last1, deletes, inserts, op;
-				struct change *thisob, *end;
-				
-				while (next)
-				{
-					/* Find a set of changes that belong together.  */
-					thisob = next;
-					end = find_change(next);
-					
-					/* Disconnect them from the rest of the changes,
-					making them a hunk, and remember the rest for next iteration.  */
-					next = end->link;
-					end->link = 0;
-#ifdef DEBUG
-					debug_script(thisob);
-#endif
-
-					/* Print thisob hunk.  */
-					//(*printfun) (thisob);
-					{					
-						/* Determine range of line numbers involved in each file.  */
-						analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
-						if (deletes || inserts || thisob->trivial)
-						{
-							if (deletes && inserts)
-								op = OP_DIFF;
-							else if (deletes)
-								op = OP_LEFTONLY;
-							else if (inserts)
-								op = OP_RIGHTONLY;
-							else
-								op = OP_TRIVIAL;
-							
-							/* Print the lines that the first file has.  */
-							translate_range (&inf[0], first0, last0, &trans_a0, &trans_b0);
-							translate_range (&inf[1], first1, last1, &trans_a1, &trans_b1);
-							AddDiffRange(trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (BYTE)op);
-							TRACE(_T("left=%d,%d   right=%d,%d   op=%d\n"),
-								trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
-						}
-					}
-					
-					/* Reconnect the script so it will all be freed properly.  */
-					end->link = next;
-				}
-			}			
-
-			// cleanup the script
-			for (e = script; e; e = p)
-			{
-				p = e->link;
-				free (e);
-			}
-
-			cleanup_file_buffers(inf);
-			
-			/* Close the file descriptors.  */
-			if (inf[0].desc >= 0 && close (inf[0].desc) != 0)
-			{
-				perror_with_name (inf[0].name);
-				val = 2;
-			}
-			if (inf[1].desc >= 0 && inf[0].desc != inf[1].desc
-				&& close (inf[1].desc) != 0)
-			{
-				perror_with_name (inf[1].name);
-				val = 2;
-			}
-
-			m_status.bBinaries = diff_flag > 0;
-			m_status.bLeftMissingNL = inf[0].missing_newline;
-			m_status.bRightMissingNL = inf[1].missing_newline;
+	// Create patch file
+	if (m_bCreatePatchFile)
+	{
+		outfile = NULL;
+		if (!m_sPatchFile.IsEmpty())
+		{
+			if (m_bAppendFiles)
+				outfile = _tfopen(m_sPatchFile, _T("a+"));
+			else
+				outfile = _tfopen(m_sPatchFile, _T("w+"));
 		}
+
+		if (outfile != NULL)
+		{
+			// Print "command line"
+			if (m_bAddCmdLine)
+			{
+				CString switches = FormatSwitchString();
+				_ftprintf(outfile, _T("diff%s %s %s\n"),
+					switches, m_sFile1, m_sFile2);
+			}
+
+			// Output patchfile
+			switch (output_style)
+			{
+			case OUTPUT_CONTEXT:
+				print_context_header(inf, 0);
+				print_context_script(script, 0);
+				break;
+				
+			case OUTPUT_UNIFIED:
+				print_context_header(inf, 1);
+				print_context_script(script, 1);
+				break;
+				
+			case OUTPUT_ED:
+				print_ed_script(script);
+				break;
+				
+			case OUTPUT_FORWARD_ED:
+				pr_forward_ed_script(script);
+				break;
+				
+			case OUTPUT_RCS:
+				print_rcs_script(script);
+				break;
+				
+			case OUTPUT_NORMAL:
+				print_normal_script(script);
+				break;
+				
+			case OUTPUT_IFDEF:
+				print_ifdef_script(script);
+				break;
+				
+			case OUTPUT_SDIFF:
+				print_sdiff_script(script);
+			}
+			
+			fclose(outfile);
+			outfile = NULL;
+		}
+		else
+			m_status.bPatchFileFailed = TRUE;
 	}
 	
-	if (free0)
-		free (free0);
-	if (free1)
-		free (free1);
+	// Go through diffs adding them to WinMerge's diff list
+	// This is done on every WinMerge's doc rescan!
+	if (m_bUseDiffList)
+	{
+		struct change *next = script;
+		int trans_a0, trans_b0, trans_a1, trans_b1;
+		int first0, last0, first1, last1, deletes, inserts, op;
+		struct change *thisob, *end;
+		
+		while (next)
+		{
+			/* Find a set of changes that belong together.  */
+			thisob = next;
+			end = find_change(next);
+			
+			/* Disconnect them from the rest of the changes,
+			making them a hunk, and remember the rest for next iteration.  */
+			next = end->link;
+			end->link = 0;
+#ifdef DEBUG
+			debug_script(thisob);
+#endif
+
+			/* Print thisob hunk.  */
+			//(*printfun) (thisob);
+			{					
+				/* Determine range of line numbers involved in each file.  */
+				analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
+				if (deletes || inserts || thisob->trivial)
+				{
+					if (deletes && inserts)
+						op = OP_DIFF;
+					else if (deletes)
+						op = OP_LEFTONLY;
+					else if (inserts)
+						op = OP_RIGHTONLY;
+					else
+						op = OP_TRIVIAL;
+					
+					/* Print the lines that the first file has.  */
+					translate_range (&inf[0], first0, last0, &trans_a0, &trans_b0);
+					translate_range (&inf[1], first1, last1, &trans_a1, &trans_b1);
+					AddDiffRange(trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (BYTE)op);
+					TRACE(_T("left=%d,%d   right=%d,%d   op=%d\n"),
+						trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+				}
+			}
+			
+			/* Reconnect the script so it will all be freed properly.  */
+			end->link = next;
+		}
+	}			
+
+	// cleanup the script
+	for (e = script; e; e = p)
+	{
+		p = e->link;
+		free (e);
+	}
+
+
+	// Done with diffutils filedata
+	diffdata.Close();
+
+
+	m_status.bBinaries = diff_flag > 0;
+	m_status.bLeftMissingNL = inf[0].missing_newline;
+	m_status.bRightMissingNL = inf[1].missing_newline;
+	
 
 	SwapToGlobalSettings();
 
-	bRetStatus = !failed;
-	if (failed)
-	{
-		// Do not return error status when binary file is found, as we
-		// return binary status in status struct
-		if (m_status.bBinaries)
-			bRetStatus = TRUE;
-	}
-
-	return bRetStatus;
+	return TRUE;
 }
 
 /**
@@ -728,4 +672,85 @@ void CDiffWrapper::WriteDiffOptions(DIFFOPTIONS *options)
 	::AfxGetApp()->WriteProfileInt(_T("Settings"), _T("EolSensitive"), options->bEolSensitive);
 	::AfxGetApp()->WriteProfileInt(_T("Settings"), _T("IgnoreBlankLines"), options->bIgnoreBlankLines);
 	::AfxGetApp()->WriteProfileInt(_T("Settings"), _T("IgnoreCase"), options->bIgnoreCase);
+}
+
+/** @brief Simple initialization of DiffFileData */
+DiffFileData::DiffFileData(LPCTSTR szFilepath1, LPCTSTR szFilepath2)
+{
+	m_inf = new file_data[2];
+	for (int i=0; i<2; ++i)
+		memset(&m_inf[i], 0, sizeof(m_inf[i]));
+	m_used = false;
+	m_sFilepath[0] = szFilepath1;
+	m_sFilepath[1] = szFilepath2;
+	Reset();
+}
+
+/** @brief deallocate member data */
+DiffFileData::~DiffFileData()
+{
+	Reset();
+	delete m_inf;
+	m_inf = 0;
+}
+
+/** @brief Open file descriptors in the inf structure (return false if failure) */
+bool DiffFileData::OpenFiles()
+{
+	bool b = DoOpenFiles();
+	if (!b)
+		Reset();
+	return b;
+}
+
+/** @brief Open file descriptors in the inf structure (return false if failure) */
+bool DiffFileData::DoOpenFiles()
+{
+	Reset();
+
+	for (int i=0; i<2; ++i)
+	{
+		// Fill in 8-bit versions of names for diffutils (WinMerge doesn't use these)
+		USES_CONVERSION;
+		m_inf[i].name = T2CA(m_sFilepath[i]);
+
+		// Open up file descriptors
+		// Always use O_BINARY mode, to avoid terminating file read on ctrl-Z (DOS EOF)
+		// Also, WinMerge-modified diffutils handles all three major eol styles
+		m_inf[i].desc = _topen(m_sFilepath[i], O_RDONLY|O_BINARY, 0);
+		if (m_inf[i].desc < 0)
+			return false;
+
+		// Get file stats (diffutils uses these)
+		if (fstat(m_inf[i].desc, &m_inf[i].stat) != 0)
+		{
+			return false;
+		}
+	}
+
+	m_used = true;
+	return true;
+}
+
+/** @brief Clear inf structure to pristine */
+void DiffFileData::Reset()
+{
+	ASSERT(m_inf);
+	// If diffutils put data in, have it cleanup
+	if (m_used)
+	{
+		cleanup_file_buffers(m_inf);
+		m_used = false;
+	}
+	// clean up any open file handles, and zero stuff out
+	// open file handles might be leftover from a failure in DiffFileData::OpenFiles
+	for (int i=0; i<2; ++i)
+	{
+		if (m_inf[i].desc > 0)
+		{
+			close(m_inf[i].desc);
+		}
+		m_inf[i].desc = 0;
+		memset(&m_inf[i], 0, sizeof(m_inf[i]));
+	}
 }

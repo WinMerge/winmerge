@@ -208,4 +208,26 @@ private:
 	CArray<DIFFRANGE,DIFFRANGE> *m_diffs;
 };
 
+struct file_data; // forward declaration needed by DiffFileData
+
+/**
+ * @brief C++ container for the structure (file_data) used by diffutils' diff_2_files(...)
+ */
+struct DiffFileData
+{
+	DiffFileData(LPCTSTR szFilepath1, LPCTSTR szFilepath2);
+	~DiffFileData();
+
+	bool OpenFiles();
+	void Reset();
+	void Close() { Reset(); }
+
+	file_data * m_inf;
+	bool m_used; // whether m_inf has real data
+	CString m_sFilepath[2];
+
+private:
+	bool DoOpenFiles();
+};
+
 #endif // _DIFFWRAPPER_H
