@@ -1,4 +1,4 @@
-2004-05-30 Perry
+2004-05-31 Perry
  PATCH: [ 963092 ] Cannot compile LanguageSelect.cpp using MSVC Japanese Ver.
   Src/Common: LanguageSelect.cpp
   Src/editlib: crystaltextview.cpp cs2cs.cpp
@@ -6,6 +6,8 @@
   Src: ConfigLog.cpp
  PATCH: [ 962538 ] In Rescan, set status to binary if caller said so
   Src: MergeDoc.cpp
+ PATCH: [ 963438 ] Fix selection of language in dialog
+  Src/Common: LanguageSelect.cpp
 
 2004-05-30 Kimmo
  PATCH: [ 963019 ] keyboard shortcuts in replace dialog

@@ -591,9 +591,7 @@ BOOL CLanguageSelect::OnInitDialog()
 		m_DllFileNameAry.Add("");	   // Dll Name - none
 	}
 		
-	int iSel = -1;
-	// Fill the ComboBox
-	//
+// Fill the ComboBox
 	CString Language;
 	for ( int i = 0; i < m_wLangIds.GetSize(); i++)
 	{
@@ -602,15 +600,17 @@ BOOL CLanguageSelect::OnInitDialog()
 		{
 			int idx = m_ctlLangList.AddString(Language);
 			m_ctlLangList.SetItemData(idx, i);
-			
-			if ( m_wCurLanguage == m_wLangIds[i])
-				iSel = idx;
 		}
 	}
-	
-	if (iSel >= 0) // true unless last selected language is no longer available
-		m_ctlLangList.SetCurSel(iSel);
-	
+// Select the current language (if found)
+	for (i=0; i<m_ctlLangList.GetCount(); ++i)
+	{
+		if (m_wCurLanguage == m_wLangIds[m_ctlLangList.GetItemData(i)])
+		{
+			m_ctlLangList.SetCurSel(i);
+			break;
+		}
+	}
 	
 	return TRUE;  
 }
