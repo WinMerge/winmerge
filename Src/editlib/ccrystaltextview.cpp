@@ -1648,6 +1648,7 @@ ResetView ()
 {
   // m_bWordWrap = FALSE;
   m_nTopLine = 0;
+  m_nTopSubLine = 0;
   m_nOffsetChar = 0;
   m_nLineHeight = -1;
   m_nCharWidth = -1;

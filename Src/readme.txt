@@ -1,4 +1,8 @@
 2003-07-17 Laoran
+ PATCH : [ 772908 ] ResetView must reset m_nTopSubLine
+  editlib: ccrystaltextview.cpp
+
+2003-07-17 Laoran
  PATCH : [ 769535 ] Preserve cursor during Rescan
   WinMerge: MergeDoc.cpp 
   editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h ccrystaltextview.cpp ccrystaltextview.h
