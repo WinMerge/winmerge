@@ -208,8 +208,8 @@
 ;; Indent lines in a 'Screen'?
 ;; This is a string of characters used to indent every line of
 ;; a screen. 
-(define %indent-screen-lines%
-  "    ")
+;; (define %indent-screen-lines%
+;;  "    ")
 
 ;; This puts figure titles below the figure.
 (define ($object-titles-after$)
