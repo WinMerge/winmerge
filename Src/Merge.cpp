@@ -187,7 +187,11 @@ BOOL CMergeApp::InitInstance()
 	// Enable drag&drop files
 	pMainFrame->ModifyStyleEx(NULL, WS_EX_ACCEPTFILES);
 
-	pMainFrame->m_hMenuDefault=pMainFrame->NewDefaultMenu();
+	// Init menus -- hMenuDefault is for MainFrame, other
+	// two are for dirdoc and mergedoc (commented out for now)
+	// m_pDiffTemplate->m_hMenuShared = pMainFrame->NewMenu();
+	// m_pDirTemplate->m_hMenuShared = pMainFrame->NewMenu();
+	pMainFrame->m_hMenuDefault = pMainFrame->NewDefaultMenu();
 
 	// This simulates a window being opened if you don't have
 	// a default window displayed at startup

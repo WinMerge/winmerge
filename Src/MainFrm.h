@@ -79,13 +79,15 @@ public:
 
 // Operations
 public:
+	// HMENU NewMenu(); // Uncomment to enable document menus
+	HMENU NewDefaultMenu();
+
 	BOOL DeleteFileOrError(LPCTSTR szFile);
 	BOOL SyncFilesToVCS(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psError);
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
 		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE);
 	void ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft, BOOL bRORight, int cpleft, int cpright, PackingInfo * infoUnpacker = NULL);
 	void UpdateResources();
-	HMENU NewDefaultMenu();
 	BOOL CreateBackup(LPCTSTR pszPath);
 	BOOL CheckSavePath(CString& strSavePath);
 	BOOL SaveToVersionControl(CString& strSavePath);
@@ -151,11 +153,15 @@ protected:  // control bar embedded members
 	CStatusBar  m_wndStatusBar;
 	CToolBar    m_wndToolBar;
 	BCMenu		m_default;
+	// BCMenu		m_menu; // Uncomment to enable document menus
 
 // Generated message map functions
 protected:
 	void GetFontProperties();
 	//{{AFX_MSG(CMainFrame)
+	afx_msg void OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpMeasureItemStruct);
+	afx_msg LRESULT OnMenuChar(UINT nChar, UINT nFlags, CMenu* pMenu) ;
+	afx_msg void OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu);
 	afx_msg void OnOptionsShowDifferent();
 	afx_msg void OnOptionsShowIdentical();
 	afx_msg void OnOptionsShowUniqueLeft();
@@ -169,7 +175,6 @@ protected:
 	afx_msg void OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI);
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg LRESULT OnMenuChar(UINT nChar, UINT nFlags, CMenu* pMenu) ;
 	afx_msg void OnFileOpen();
 	afx_msg void OnUpdateHideBackupFiles(CCmdUI* pCmdUI);
 	afx_msg void OnHelpGnulicense();

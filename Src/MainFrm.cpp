@@ -85,6 +85,9 @@ IMPLEMENT_DYNAMIC(CMainFrame, CMDIFrameWnd)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	//{{AFX_MSG_MAP(CMainFrame)
+	ON_WM_MENUCHAR()
+	ON_WM_MEASUREITEM()
+	ON_WM_INITMENUPOPUP()
 	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENT, OnOptionsShowDifferent)
 	ON_COMMAND(ID_OPTIONS_SHOWIDENTICAL, OnOptionsShowIdentical)
 	ON_COMMAND(ID_OPTIONS_SHOWUNIQUELEFT, OnOptionsShowUniqueLeft)
@@ -98,7 +101,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWBINARIES, OnUpdateOptionsShowBinaries)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWSKIPPED, OnUpdateOptionsShowSkipped)
 	ON_WM_CREATE()
-	ON_WM_MENUCHAR()
 	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
 	ON_UPDATE_COMMAND_UI(ID_HIDE_BACKUP_FILES, OnUpdateHideBackupFiles)
 	ON_COMMAND(ID_HELP_GNULICENSE, OnHelpGnulicense)
@@ -318,6 +320,19 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
+/* Uncomment to enable document menus
+HMENU CMainFrame::NewMenu()
+{
+	m_menu.LoadMenu(IDR_MAINFRAME);
+	m_menu.ModifyMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WIN_VERTICAL);
+	m_menu.LoadToolbar(IDR_MAINFRAME);
+	return(m_menu.Detach());
+}
+*/
+
+/**
+ * @brief Create new default (CMainFrame) menu
+ */
 HMENU CMainFrame::NewDefaultMenu()
 {
 	m_default.LoadMenu(IDR_MAINFRAME);
@@ -325,7 +340,37 @@ HMENU CMainFrame::NewDefaultMenu()
 	return(m_default.Detach());
 }
 
-//This handler ensures that keyboard shortcuts work
+/**
+ * @brief This handler ensures that the popup menu items are drawn correctly.
+ */
+void CMainFrame::OnMeasureItem(int nIDCtl,
+	LPMEASUREITEMSTRUCT lpMeasureItemStruct)
+{
+	BOOL setflag = FALSE;
+	if (lpMeasureItemStruct->CtlType == ODT_MENU)
+	{
+		if (IsMenu((HMENU)lpMeasureItemStruct->itemID))
+		{
+			CMenu* cmenu =
+				CMenu::FromHandle((HMENU)lpMeasureItemStruct->itemID);
+
+			//if (m_menu.IsMenu(cmenu) || m_default.IsMenu(cmenu))
+			if (m_default.IsMenu(cmenu))
+			{
+				//m_menu.MeasureItem(lpMeasureItemStruct);
+				m_default.MeasureItem(lpMeasureItemStruct);
+				setflag = TRUE;
+			}
+		}
+	}
+
+	if (!setflag)
+		CMDIFrameWnd::OnMeasureItem(nIDCtl, lpMeasureItemStruct);
+}
+
+/**
+ * @brief This handler ensures that keyboard shortcuts work.
+ */
 LRESULT CMainFrame::OnMenuChar(UINT nChar, UINT nFlags, 
 	CMenu* pMenu) 
 {
@@ -335,6 +380,20 @@ LRESULT CMainFrame::OnMenuChar(UINT nChar, UINT nFlags,
 	else
 		lresult=CMDIFrameWnd::OnMenuChar(nChar, nFlags, pMenu);
 	return(lresult);
+}
+
+/**
+ * @brief This handler updates the menus from time to time.
+ */
+void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu) 
+{
+	CMDIFrameWnd::OnInitMenuPopup(pPopupMenu, nIndex, bSysMenu);
+	
+	if (!bSysMenu)
+	{
+		if (BCMenu::IsMenu(pPopupMenu))
+			BCMenu::UpdateMenu(pPopupMenu);
+	}
 }
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
