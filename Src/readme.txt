@@ -58,6 +58,8 @@
  Fix bug in UniFile::WriteString counting of written bytes.
   Src/Common/UniFile.cpp
 
+2004-01-16 WinMerge experimental release 2.1.5.6 (cvs)
+
 2004-01-15 Kimmo
  PATCH: [ 873940 ] Diff navigation code cleanups
   src: MergeEditView.cpp
