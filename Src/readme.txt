@@ -2,6 +2,12 @@
  [ 685816 ] Recommend deleting unlocalized translations
  [ 684290 ] improved bin test:
   Diff.cpp readme.txt
+ [ 686090 ] Show/hide binary files
+ WinMerge:
+  DirDoc.cpp MainFrm.cpp MainFrm.h Merge.rc readme.txt
+  resource.h
+ Languages:
+  Spanish/MergeSpanish.rc Spanish/resource.h
 
 2003-02-12  Perry
  Languages:

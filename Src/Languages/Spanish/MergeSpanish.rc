@@ -995,6 +995,8 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
+    IDS_BIN_FILES_SAME      "Binary files are identical"
+    ID_OPTIONS_SHOWBINARIES "Displays binary files"
 END
 
 #endif    // English (U.S.) resources

@@ -72,10 +72,12 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_OPTIONS_SHOWIDENTICAL, OnOptionsShowIdentical)
 	ON_COMMAND(ID_OPTIONS_SHOWUNIQUELEFT, OnOptionsShowUniqueLeft)
 	ON_COMMAND(ID_OPTIONS_SHOWUNIQUERIGHT, OnOptionsShowUniqueRight)
+	ON_COMMAND(ID_OPTIONS_SHOWBINARIES, OnOptionsShowBinaries)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWDIFFERENT, OnUpdateOptionsShowdifferent)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWIDENTICAL, OnUpdateOptionsShowidentical)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUELEFT, OnUpdateOptionsShowuniqueleft)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWUNIQUERIGHT, OnUpdateOptionsShowuniqueright)
+	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWBINARIES, OnUpdateOptionsShowBinaries)
 	ON_WM_CREATE()
 	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
 	ON_UPDATE_COMMAND_UI(ID_HIDE_BACKUP_FILES, OnUpdateHideBackupFiles)
@@ -120,6 +122,7 @@ CMainFrame::CMainFrame()
 	m_bShowUniqueRight = theApp.GetProfileInt(_T("Settings"), _T("ShowUniqueRight"), TRUE)!=0;
 	m_bShowDiff = theApp.GetProfileInt(_T("Settings"), _T("ShowDifferent"), TRUE)!=0;
 	m_bShowIdent = theApp.GetProfileInt(_T("Settings"), _T("ShowIdentical"), TRUE)!=0;
+	m_bShowBinaries = theApp.GetProfileInt(_T("Settings"), _T("ShowBinaries"), TRUE)!=0;
 	m_bBackup = theApp.GetProfileInt(_T("Settings"), _T("BackupFile"), TRUE)!=0;
 	m_bScrollToFirst = theApp.GetProfileInt(_T("Settings"), _T("ScrollToFirst"), FALSE)!=0;
 	m_nIgnoreWhitespace = theApp.GetProfileInt(_T("Settings"), _T("IgnoreSpace"), 1);
@@ -357,6 +360,14 @@ void CMainFrame::OnOptionsShowUniqueRight()
 		m_pDirDoc->Redisplay();
 }
 
+void CMainFrame::OnOptionsShowBinaries()
+{
+	m_bShowBinaries = !m_bShowBinaries;
+	theApp.WriteProfileInt(_T("Settings"), _T("ShowBinaries"), m_bShowBinaries);
+	if (m_pDirDoc != NULL)
+		m_pDirDoc->Redisplay();
+}
+
 void CMainFrame::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_bShowDiff);
@@ -375,6 +386,11 @@ void CMainFrame::OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI)
 void CMainFrame::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_bShowUniqueRight);
+}
+
+void CMainFrame::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(m_bShowBinaries);
 }
 
 void CMainFrame::OnHideBackupFiles() 

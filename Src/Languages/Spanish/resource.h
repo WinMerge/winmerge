@@ -10,19 +10,19 @@
 #define IDD_ABOUTBOX                    100
 #define IDR_POPUP_DIFFVIEW              101
 #define IDR_POPUP_DIRVIEW               102
-
 #define IDD_PROP_VSS                    103
 #define IDR_MAINFRAME                   104
 #define IDR_MERGETYPE                   105
 #define IDD_OPEN                        106
+#define IDS_WINMERGE_THIS_DIRECTORY     106
 #define IDD_EDITFILE                    107
 #define IDD_VSS                         108
 #define IDD_PROPPAGE_LARGE              109
 #define IDD_CLEARCASE                   110
 #define IDD_PROPPAGE_FILTER             111
 #define IDD_OUTPUT                      112
+#define IDD_PROPPAGE_REGISTRY           113
 #define IDS_VERSION_FMT                 130
-
 #define IDS_ALLFILES                    131
 #define IDS_CONFIRM_ALL_LEFT            132
 #define IDS_CONFIRM_ALL_RIGHT           133
@@ -144,6 +144,7 @@
 #define IDC_EDIT1                       1033
 #define IDC_PROP_INSERT_TABS            1034
 #define IDC_PROP_INSERT_SPACES          1035
+#define IDC_ASSOC_DIRECTORY             1036
 #define IDR_MARGIN_CURSOR               22900
 #define IDD_LANGUAGE_SELECT             30000
 #define IDD_PROPSYNTAX                  30001
@@ -319,15 +320,16 @@
 #define ID_DIR_OPEN_LEFT_WITH           32814
 #define ID_DIR_OPEN_RIGHT               32815
 #define ID_DIR_OPEN_RIGHT_WITH          32816
+#define ID_OPTIONS_SHOWBINARIES         32817
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        225
-#define _APS_NEXT_COMMAND_VALUE         32817
-#define _APS_NEXT_CONTROL_VALUE         1036
+#define _APS_NEXT_RESOURCE_VALUE        114
+#define _APS_NEXT_COMMAND_VALUE         32818
+#define _APS_NEXT_CONTROL_VALUE         1037
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

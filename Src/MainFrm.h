@@ -50,6 +50,7 @@ public:
 	BOOL m_bShowUniqueRight;
 	BOOL m_bShowDiff;
 	BOOL m_bShowIdent;
+	BOOL m_bShowBinaries;
 	BOOL m_bBackup;
 	LOGFONT m_lfDiff;
 	BOOL m_bFontSpecified;
@@ -135,10 +136,12 @@ protected:
 	afx_msg void OnOptionsShowIdentical();
 	afx_msg void OnOptionsShowUniqueLeft();
 	afx_msg void OnOptionsShowUniqueRight();
+	afx_msg void OnOptionsShowBinaries();
 	afx_msg void OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowidentical(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI);
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnFileOpen();
 	afx_msg void OnUpdateHideBackupFiles(CCmdUI* pCmdUI);

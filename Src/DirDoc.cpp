@@ -233,8 +233,14 @@ void CDirDoc::Redisplay()
 			}
 			break;
 		case FILE_BINSAME:
+			if (mf->m_bShowIdent && mf->m_bShowBinaries
+				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
+			{
+				p = _tcsninc(di.lpath, llen);
+			}
+			break;
 		case FILE_BINDIFF:
-			if (mf->m_bShowDiff
+			if (mf->m_bShowDiff && mf->m_bShowBinaries
 				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
 			{
 				p = _tcsninc(di.lpath, llen);
