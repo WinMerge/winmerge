@@ -2,7 +2,8 @@
  PATCH: [ 831384 ] dir comparison : state bar & stop button
   WinMerge: DiffContext.cpp DiffContext.h DiffThread.cpp DirDoc.cpp DirFrame.cpp DirFrame.h
    MainFrm.cpp MainFrm.h Merge.dsp Merge.rc resource.h
-
+  WinMerge(addition): DirCompStateBar.cpp DirCompStateBar.h
+ 
 2003-11-04 Laoran
  adapt plugins filters to the syntax of regular expressions
   Plugins\dlls: RCLocalizationHelper.dll
