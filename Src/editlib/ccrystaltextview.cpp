@@ -5082,7 +5082,7 @@ void CCrystalTextView::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
 	if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )
 		return;
 
-	// exit incremental search, wenn Escape is pressed
+	// exit incremental search, when Escape is pressed
 	if( nChar == VK_ESCAPE )
 	{
 		// if not end incremental search

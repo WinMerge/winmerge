@@ -2,6 +2,8 @@
  PATCH: [ 758930 ] Display EOL chars with View Whitespace
   WinMerge: MainFrm.cpp
   editlib: ccrystaltextview.h ccrystaltextview.cpp
+ PATCH: [ 762268 ] Fix typo in comment (wenn -> when)
+  editlib: ccrystaltextview.cpp
 
 2003-06-27 Kimmo
  PATCH: [ 761951 ] Fix scrolling corruption
