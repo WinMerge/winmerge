@@ -11,7 +11,7 @@
 ;
 
 [LangOptions]
-LanguageName=Slovak
+LanguageName=Slovenèina
 LanguageID=$041B
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.
@@ -81,8 +81,8 @@ ButtonNo=&Nie
 ButtonNoToAll=Nie pr&e Všetky
 ButtonFinish=&Dokonèi
 ButtonBrowse=&Nalistova...
-ButtonWizardBrowse=B&rowse...
-ButtonNewFolder=&Make New Folder
+ButtonWizardBrowse=&Prechádza..
+ButtonNewFolder=&Vytvoti novú zloku
 
 ; *** "Select Language" dialog messages
 SelectLanguageTitle=Vıber jazyka inštalácie
@@ -91,9 +91,9 @@ SelectLanguageLabel=Vıber sprievodného jazyka poèas inštalácie:
 ; *** Common wizard text
 ClickNext="Pokraèuj" pre pokraèovanie, "Storno" ukonèí inštaláciu.
 BeveledLabel=
-BrowseDialogTitle=Browse For Folder
-BrowseDialogLabel=Select a folder in the list below, then click OK.
-NewFolderName=New Folder
+BrowseDialogTitle=Vyh¾ada zloku	
+BrowseDialogLabel=Z nišie uvedeného zoznamu vyberte zloku a klepnite na OK.	
+NewFolderName=Nová zloka
 
 ; *** "Welcome" wizard page
 WelcomeLabel1=Vitajte v inštalaènom programe aplikácie "[name]".
@@ -132,16 +132,16 @@ UserInfoNameRequired=Musíte zada meno uívate¾a.
 ; *** "Select Destination Directory" wizard page
 WizardSelectDir=Zvo¾te cie¾ovı adresár
 SelectDirDesc=Kde má by aplikácia "[name]" nainštalovaná?
-SelectDirLabel3=Setup will install [name] into the following folder.
-SelectDirBrowseLabel=To continue, click Next. If you would like to select a different folder, click Browse.
+SelectDirLabel3=[name] bude nainštalovanı do následujúcej zloky.
+SelectDirBrowseLabel=Klepnite na Ïalší pre pokraèovanie. Pokia¾ chcete zvoli inú zloku, klepnite na Prechádza.
 DiskSpaceMBLabel=Aplikácia vyaduje najmenej [mb] MB miesta na disku.
 ToUNCPathname=Nie je moné inštalova do cesty UNC. Pokia¾ sa pokúšate inštalova do siete, musíte si najkôr namapova sieovı disk.
 InvalidPath=Musíte zada celú cestu aj s písmenom disku, napríklad:%nC:\APP
 InvalidDrive=Vybranı disk neexistuje. Prosím, vyberte inı.
 DiskSpaceWarningTitle=Na disku nie je dostatok miesta.
 DiskSpaceWarning=Inštalácia vyaduje najmenej %1 KB vo¾ného miesta, ale na vybranom disku je dostupné len %2 KB.%n%nChcete napriek tomu pokraèova?
-DirNameTooLong=The folder name or path is too long.
-InvalidDirName=The folder name is not valid.
+DirNameTooLong=Názov zloky alebo jej cesta je príliš dlhá.
+InvalidDirName=Toto nie je platnı názov zloky.
 BadDirName32=Názov adresára nemôe obsahova iaden z nasledujícich znakov:%n%n%1
 DirExistsTitle=Adresár u existuje
 DirExists=Adresár menom:%n%n%1%n%nu existuje. Chcete napriek tomu inštalova do tohoto adresára?
@@ -170,12 +170,13 @@ SelectTasksLabel2=Zvo¾te, ktoré prídavné úlohy sa majú uskutoèni pri inštalácii
 ; *** "Select Start Menu Folder" wizard page
 WizardSelectProgramGroup=Zvo¾te si programovú skupinu
 SelectStartMenuFolderDesc=Kde má inštalátor umiestni ú skupinu?
-SelectStartMenuFolderLabel3=Setup will create the program's shortcuts in the following Start Menu folder.
-SelectStartMenuFolderBrowseLabel=To continue, click Next. If you would like to select a different folder, click Browse.
+SelectStartMenuFolderLabel3=Zástupci aplikácie budú vytvorené v následujúcej zloke ponuky Štart.
+SelectStartMenuFolderBrowseLabel=Klepnite na Ïalší pre pokraèovanie. Pokia¾ chcete zvoli inú zloku, klepnite na Prechádza.
+
 NoIconsCheck=&Nevytvára iadne ikony
 MustEnterGroupName=Musíte zada názov programovej skupiny.
-GroupNameTooLong=The folder name or path is too long.
-InvalidGroupName=The folder name is not valid.
+GroupNameTooLong=Názov zloky alebo jej cesta je príliš dlhá.
+InvalidGroupName=Toto nie je platnı názov zloky.
 BadGroupName=Názov skupiny nemôe obsahova iaden z nasledujúcich znakov:%n%n%1
 NoProgramGroupCheck2=N&evytvára programovovú skupinu
 
@@ -279,7 +280,7 @@ ErrorRestartingComputer=Inštalátor nemohol reštartova poèítaè. Prosím, reštartu
 
 ; *** Uninstaller messages
 UninstallNotFound=Súbor "%1" neexistuje. Nemôem ho odinštalova.
-UninstallOpenError=File "%1" could not be opened. Cannot uninstall
+UninstallOpenError=Súbor "%1" sa nedá otvori. Produkt sa nedá odinštalova.
 UninstallUnsupportedVer=Táto verzia odinštalátora nevie rozpozna odinštalaènı log súbor "%1". Nemôem odinštalova.
 UninstallUnknownEntry=Neznámy vstup (%1) odinštalaèného log súboru - je neoèíslovanı alebo chybnı.
 ConfirmUninstall=Ste si istı, e chcete odstráni aplikáciu "%1" vrátane všetkıch nainštalovanıch súèastí?
