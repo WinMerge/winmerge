@@ -129,7 +129,7 @@ static CString ColStatusGet(const CDiffContext *pCtxt, const void *p)
 	{
 		VERIFY(s.LoadString(IDS_CANT_COMPARE_FILES));
 	}
-	else if (di.isResultSkipped())
+	else if (di.isResultFiltered())
 	{
 		if (di.isDirectory())
 			VERIFY(s.LoadString(IDS_DIR_SKIPPED));
@@ -227,7 +227,7 @@ static CString ColStatusAbbrGet(const CDiffContext *, const void *p)
 	{
 		id = IDS_CANT_COMPARE_FILES;
 	}
-	else if (di.isResultSkipped())
+	else if (di.isResultFiltered())
 	{
 		if (di.isDirectory())
 			id = IDS_DIR_SKIPPED;

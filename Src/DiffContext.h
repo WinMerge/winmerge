@@ -36,7 +36,8 @@ struct DIFFCODE
 		TEXTFLAG=0x3, TEXT=0x1, BIN=0x2,
 		DIRFLAG=0x30, FILE=0x10, DIR=0x20,
 		SIDEFLAG=0x300, LEFT=0x100, RIGHT=0x200, BOTH=0x300,
-		COMPAREFLAGS=0x7000, SAME=0x1000, DIFF=0x2000, SKIPPED=0x3000, CMPERR=0x4000, NOCMP=0x0000
+		COMPAREFLAGS=0x7000, NOCMP=0x0000, SAME=0x1000, DIFF=0x2000, CMPERR=0x4000,
+		FILTERFLAGS=0x30000, INCLUDED=0x10000, SKIPPED=0x20000,
 	};
 
 	int diffcode;
@@ -50,9 +51,9 @@ struct DIFFCODE
 	// result filters
 	bool isResultError() const { return ((diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::CMPERR); }
 	bool isResultSame() const { return ((diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME); }
-	bool isResultDiff() const { return (!isResultSame() && !isResultSkipped() && !isResultError() &&
+	bool isResultDiff() const { return (!isResultSame() && !isResultFiltered() && !isResultError() &&
 			!isSideLeft() && !isSideRight()); }
-	bool isResultSkipped() const { return ((diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SKIPPED); }
+	bool isResultFiltered() const { return ((diffcode & DIFFCODE::FILTERFLAGS) == DIFFCODE::SKIPPED); }
 	// type
 	bool isBin() const { return ((diffcode & DIFFCODE::TEXTFLAG) == DIFFCODE::BIN); }
 };

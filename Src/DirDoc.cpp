@@ -213,16 +213,6 @@ void CDirDoc::Rescan()
 }
 
 /**
- * @brief Determines if item is backup item and needed to be hidden
- * @return true if item is a backup
- */
-static bool IsItemHiddenBackup(const DIFFITEM & di)
-{
-	return mf->m_options.GetInt(OPT_HIDE_BACKUP) &&
-		FileExtMatches(di.sfilename,BACKUP_FILE_EXT);
-}
-
-/**
  * @brief Determines if user wants to see this item
  * @param [in] pCtxt CDiffContext containing filedata
  * @param [in] di Item tested
@@ -239,7 +229,7 @@ LPCTSTR CDirDoc::GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di,
 		// result filters
 		if (di.isResultError() && !mf->m_bShowErrors)
 			return 0;
-		if (di.isResultSkipped() && !mf->m_options.GetBool(OPT_SHOW_SKIPPED))
+		if (di.isResultFiltered() && !mf->m_options.GetBool(OPT_SHOW_SKIPPED))
 			return 0;
 
 		// left/right filters
@@ -259,7 +249,7 @@ LPCTSTR CDirDoc::GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di,
 			return 0;
 		if (di.isResultError() && !mf->m_bShowErrors)
 			return 0;
-		if (di.isResultSkipped() && !mf->m_options.GetBool(OPT_SHOW_SKIPPED))
+		if (di.isResultFiltered() && !mf->m_options.GetBool(OPT_SHOW_SKIPPED))
 			return 0;
 		if (di.isResultDiff() && !mf->m_options.GetBool(OPT_SHOW_DIFFERENT))
 			return 0;

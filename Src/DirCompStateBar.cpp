@@ -209,7 +209,7 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 			SetDlgItemInt(IDC_COUNT_RFILE, m_nRFile);
 		}
 	}
-	else if (di.isResultSkipped())
+	else if (di.isResultFiltered())
 	{
 		// skipped
 		if (di.isDirectory())

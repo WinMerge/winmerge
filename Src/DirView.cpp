@@ -312,7 +312,7 @@ int CDirView::GetColImage(const DIFFITEM & di) const
 {
 	// Must return an image index into image list created above in OnInitDialog
 	if (di.isResultError()) return DIFFIMG_ERROR;
-	if (di.isResultSkipped())
+	if (di.isResultFiltered())
 		return (di.isDirectory() ? DIFFIMG_DIRSKIP : DIFFIMG_SKIP);
 	if (di.isSideLeft())
 		return (di.isDirectory() ? DIFFIMG_LDIRUNIQUE : DIFFIMG_LUNIQUE);
@@ -523,7 +523,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		++nTotal;
 
 		// note the prediffer flag for 'files present on both sides and not skipped'
-		if (!di.isDirectory() && !di.isBin() && !di.isSideLeft() && !di.isSideRight() && !di.isResultSkipped())
+		if (!di.isDirectory() && !di.isBin() && !di.isSideLeft() && !di.isSideRight() && !di.isResultFiltered())
 		{
 			CString leftPath = di.getLeftFilepath(GetDiffContext()) + _T("\\") + di.sfilename;
 			CString rightPath = di.getRightFilepath(GetDiffContext()) + _T("\\") + di.sfilename;
@@ -1563,7 +1563,7 @@ bool CDirView::IsItemNavigableDiff(const DIFFITEM & di) const
 	// Not a valid diffitem, one of special items (e.g "..")
 	if (di.diffcode == 0)
 		return false;
-	if (di.isResultSkipped() || di.isResultError())
+	if (di.isResultFiltered() || di.isResultError())
 		return false;
 	// Skip identical directories
 	if (di.isDirectory() && !di.isSideLeft() && !di.isSideRight())

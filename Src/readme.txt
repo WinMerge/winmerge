@@ -1,3 +1,8 @@
+2004-11-12 Kimmo
+ PATCH: [ 1057062 ] Separate Skipped flags from compare result flags
+  Src: DiffContext.h DirCompStateBar.cpp DirDoc.cpp DirScan.cpp
+   DirView.cpp DirViewColItems.cpp
+
 2004-11-11 Kimmo
  PATCH: [ 1063342 ] Fix problem in XML syntax highlight and backslash
   Src/editlib: xml.cpp
