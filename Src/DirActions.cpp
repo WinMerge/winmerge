@@ -75,7 +75,7 @@ static BOOL ConfirmSingleDelete(LPCTSTR filepath)
 void CDirView::DoCopyRightToLeft()
 {
 	// First we build a list of desired actions
-	ActionList actionList(ACT_COPY);
+	ActionList actionList(ActionList::ACT_COPY);
 	int sel=-1;
 	CString slFile, srFile;
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
@@ -84,7 +84,7 @@ void CDirView::DoCopyRightToLeft()
 		if (IsItemCopyableToLeft(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
-			action act;
+			ActionList::action act;
 			act.src = srFile;
 			act.dest = slFile;
 			act.idx = sel;
@@ -102,7 +102,7 @@ void CDirView::DoCopyRightToLeft()
 void CDirView::DoCopyLeftToRight()
 {
 	// First we build a list of desired actions
-	ActionList actionList(ACT_COPY);
+	ActionList actionList(ActionList::ACT_COPY);
 	int sel=-1;
 	CString slFile, srFile;
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
@@ -111,7 +111,7 @@ void CDirView::DoCopyLeftToRight()
 		if (IsItemCopyableToRight(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
-			action act;
+			ActionList::action act;
 			act.src = slFile;
 			act.dest = srFile;
 			act.dirflag = di.isDirectory();
@@ -130,7 +130,7 @@ void CDirView::DoCopyLeftToRight()
 void CDirView::DoDelLeft()
 {
 	// First we build a list of desired actions
-	ActionList actionList(ACT_DEL_LEFT);
+	ActionList actionList(ActionList::ACT_DEL_LEFT);
 	int sel=-1;
 	CString slFile, srFile;
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
@@ -139,7 +139,7 @@ void CDirView::DoDelLeft()
 		if (IsItemDeletableOnLeft(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
-			action act;
+			ActionList::action act;
 			act.src = slFile;
 			act.dirflag = di.isDirectory();
 			act.idx = sel;
@@ -156,7 +156,7 @@ void CDirView::DoDelLeft()
 void CDirView::DoDelRight()
 {
 	// First we build a list of desired actions
-	ActionList actionList(ACT_DEL_RIGHT);
+	ActionList actionList(ActionList::ACT_DEL_RIGHT);
 	int sel=-1;
 	CString slFile, srFile;
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
@@ -166,7 +166,7 @@ void CDirView::DoDelRight()
 		if (IsItemDeletableOnRight(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
-			action act;
+			ActionList::action act;
 			act.src = srFile;
 			act.dirflag = di.isDirectory();
 			act.idx = sel;
@@ -183,7 +183,7 @@ void CDirView::DoDelRight()
 void CDirView::DoDelBoth()
 {
 	// First we build a list of desired actions
-	ActionList actionList(ACT_DEL_BOTH);
+	ActionList actionList(ActionList::ACT_DEL_BOTH);
 	int sel=-1;
 	CString slFile, srFile;
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
@@ -193,7 +193,7 @@ void CDirView::DoDelBoth()
 		if (IsItemDeletableOnBoth(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
-			action act;
+			ActionList::action act;
 			act.src = srFile;
 			act.dest = slFile;
 			act.dirflag = di.isDirectory();
@@ -308,10 +308,10 @@ BOOL CDirView::ConfirmActionList(const ActionList & actionList)
 	// and we can give the user exact details easily for it
 	switch(actionList.atype)
 	{
-	case ACT_COPY:
+	case ActionList::ACT_COPY:
 		if (actionList.GetCount()==1)
 		{
-			const action & act = actionList.actions.GetHead();
+			const ActionList::action & act = actionList.actions.GetHead();
 			if (!ConfirmSingleCopy(act.src, act.dest))
 				return FALSE;
 		}
@@ -323,9 +323,9 @@ BOOL CDirView::ConfirmActionList(const ActionList & actionList)
 		break;
 		
 	// Deleting does not need confirmation, CShellFileOp takes care of it
-	case ACT_DEL_LEFT:
-	case ACT_DEL_RIGHT:
-	case ACT_DEL_BOTH:
+	case ActionList::ACT_DEL_LEFT:
+	case ActionList::ACT_DEL_RIGHT:
+	case ActionList::ACT_DEL_BOTH:
 		break;
 
 	// Invalid operation
@@ -354,16 +354,16 @@ void CDirView::PerformActionList(ActionList & actionList)
 	
 	switch (actionList.atype)
 	{
-	case ACT_COPY:
+	case ActionList::ACT_COPY:
 		operation = FO_COPY;
 		break;
-	case ACT_DEL_LEFT:
+	case ActionList::ACT_DEL_LEFT:
 		operation = FO_DELETE;
 		break;
-	case ACT_DEL_RIGHT:
+	case ActionList::ACT_DEL_RIGHT:
 		operation = FO_DELETE;
 		break;
-	case ACT_DEL_BOTH:
+	case ActionList::ACT_DEL_BOTH:
 		operation = FO_DELETE;
 		break;
 	default:
@@ -384,10 +384,10 @@ void CDirView::PerformActionList(ActionList & actionList)
 	POSITION pos = actionList.actions.GetHeadPosition();
 	while (bSucceed && pos != NULL)
 	{
-		const action act = actionList.actions.GetNext(pos);
+		const ActionList::action act = actionList.actions.GetNext(pos);
 
 		// If copying files, try to sync files to VCS too
-		if (actionList.atype == ACT_COPY && !act.dirflag)
+		if (actionList.atype == ActionList::ACT_COPY && !act.dirflag)
 		{
 			CString strErr;
 			bSucceed = mf->SyncFilesToVCS(act.src, act.dest, &strErr);
@@ -401,20 +401,20 @@ void CDirView::PerformActionList(ActionList & actionList)
 			{
 				switch (actionList.atype)
 				{
-				case ACT_COPY:
+				case ActionList::ACT_COPY:
 					fileOp.AddSourceFile(act.src);
 					fileOp.AddDestFile(act.dest);
 					gLog.Write(_T("Copy file(s) from: %s\n\tto: %s"), act.src, act.dest);
 					break;
-				case ACT_DEL_LEFT:
+				case ActionList::ACT_DEL_LEFT:
 					fileOp.AddSourceFile(act.src);
 					gLog.Write(_T("Delete file(s) from LEFT: %s"), act.src);
 					break;
-				case ACT_DEL_RIGHT:
+				case ActionList::ACT_DEL_RIGHT:
 					fileOp.AddSourceFile(act.src);
 					gLog.Write(_T("Delete file(s) from RIGHT: %s"), act.src);
 					break;
-				case ACT_DEL_BOTH:
+				case ActionList::ACT_DEL_BOTH:
 					fileOp.AddSourceFile(act.src);
 					fileOp.AddSourceFile(act.dest);
 					gLog.Write(_T("Delete BOTH file(s) from: %s\n\tto: %s"), act.src, act.dest);
@@ -475,11 +475,11 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 {
 	while (actionList.GetCount()>0)
 	{
-		action act = actionList.actions.RemoveHead();
+		ActionList::action act = actionList.actions.RemoveHead();
 		POSITION diffpos = GetItemKey(act.idx);
 		const DIFFITEM & di = GetDiffContext()->GetDiffAt(diffpos);
 
-		if (actionList.atype == ACT_COPY)
+		if (actionList.atype == ActionList::ACT_COPY)
 		{
 			// Copy files and folders
 			CDirDoc *pDoc = GetDocument();
@@ -498,7 +498,7 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 			// If both items or unique item is deleted, don't bother updating
 			// statuses, just remove from list
 			CDirDoc *pDoc = GetDocument();
-			if (actionList.atype == ACT_DEL_LEFT)
+			if (actionList.atype == ActionList::ACT_DEL_LEFT)
 			{
 				if (di.isSideLeft())
 				{
@@ -512,7 +512,7 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 				}
 			}
 			
-			if (actionList.atype == ACT_DEL_RIGHT)
+			if (actionList.atype == ActionList::ACT_DEL_RIGHT)
 			{
 				if (di.isSideRight())
 				{
@@ -526,7 +526,7 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 				}
 			}
 
-			if (actionList.atype == ACT_DEL_BOTH)
+			if (actionList.atype == ActionList::ACT_DEL_BOTH)
 			{
 				actionList.deletedItems.AddTail(act.idx);
 			}

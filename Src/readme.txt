@@ -1,3 +1,8 @@
+2004-04-03 Perry
+ Move enum ACT_TYPE, struct action, and typedef DeletedItemList inside of 
+  struct ActionList, of which they are part. Add header comment for ActionList.
+ Src: DirActions.cpp DirView.h
+
 2004-04-03 Laoran
  PATCH: [ 923044 ] Partial compare large files
   Plugins: list of sources.txt

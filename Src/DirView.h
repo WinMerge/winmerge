@@ -92,11 +92,18 @@ public:
 
 // Implementation types
 private:
-	typedef enum { ACT_COPY=1, ACT_DEL_LEFT, ACT_DEL_RIGHT, ACT_DEL_BOTH } ACT_TYPE;
-	struct action { CString src; CString dest; BOOL dirflag; int idx; int code;};
-	typedef CList<int, int> DeletedItemList; // indices into display list control
+	/** 
+	 * @brief An ActionList is a multifile copy or delete operation
+	 * When the user selects one or many files in the dirview, and then
+	 * invokes, eg, right-click Copy Left, an ActionList is built
+	 **/
 	struct ActionList
 	{
+		// types used in the ActionList
+		typedef enum { ACT_COPY=1, ACT_DEL_LEFT, ACT_DEL_RIGHT, ACT_DEL_BOTH } ACT_TYPE;
+		struct action { CString src; CString dest; BOOL dirflag; int idx; int code;}; /**< One file action */
+		typedef CList<int, int> DeletedItemList; // indices into display list control
+		// Data members of the ActionList
 		int selcount; // #items in full selection (not all may be affected)
 		ACT_TYPE atype;
 		CList<action, action&> actions;
