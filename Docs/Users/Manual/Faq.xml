@@ -38,18 +38,26 @@
       </qandaentry>
       <qandaentry>
         <question>
-          <para>Does WinMerge support merging three files? Sometimes called 3-way merge, where one file is ancestor. This would be useful for version control!</para>
+          <para>Does WinMerge support merging three files? Sometimes it is called 3-way merge, where one file is ancestor. This would be useful for version control!</para>
         </question>
         <answer>
-          <para>Unfortunately not. We acknowledge it would be good feature but we don't have plans currently to implement it. It is hard UI and usability problem. Quality of existing 3-way merging tools varies a lot and we don't want to implement it if we are not sure we can do it with quality. This can be somewhat work-arounded using two WinMerge instances.</para>
+          <para>Unfortunately not. We acknowledge it would be good feature but have no plans to implement it in near future. This can be somewhat work-arounded using two WinMerge instances.</para>
         </answer>
       </qandaentry>
       <qandaentry>
         <question>
-          <para>Do you have plans to support other OSes than Windows?</para>
+          <para>Do you have any plans to support other operating systems than Windows?</para>
         </question>
         <answer>
-          <para>Not currently. If somebody wants to work with cross-platform support (using wxWidgets for example) we are interested in helping of course.</para>
+          <para>Not currently. If somebody wants to help/work with cross-platform support (using wxWidgets for example) we are interested of course.</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>There is no CVS integration?!</para>
+        </question>
+        <answer>
+          <para>Which kind of CVS integration WinMerge should have? Adding CVS client features to WinMerge is questionable since there are many good CVS clients already. Conflict file resolution is feature we are planning to add in future releases.</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -62,7 +70,7 @@
           <para>WinMerge says "Binary files are different", but I am not comparing binary files?</para>
         </question>
         <answer>
-          <para>If you are using WinMerge.exe (not WinMergeU.exe), then your files may be Unicode files. WinMerge.exe cannot handle Unicode files. Please try comparing files with WinMergeU.exe if you have Windows NT4, Windows 2000 or newer.</para>
+          <para>If you are using WinMerge.exe (not WinMergeU.exe), then your files may be Unicode files. WinMerge.exe cannot handle Unicode files. Please try comparing files with WinMergeU.exe if you have Windows NT4, Windows 2000 or newer Windows version.</para>
         </answer>
       </qandaentry>
       <qandaentry>
@@ -99,7 +107,7 @@
           <para>I would like to see the line numbers?</para>
         </question>
         <answer>
-          <para>WinMerge shows current line in editor statusbar. WinMerge cannot show in-editor linenumbers. That is anyhow one feature we might consider for future releases.</para>
+          <para>WinMerge shows current line in editor statusbar. WinMerge cannot show in-editor linenumbers. That is one feature we might consider for future releases.</para>
         </answer>
       </qandaentry>
       <qandaentry>
@@ -117,7 +125,7 @@
           <para>I cannot select proportional fonts for editor?</para>
         </question>
         <answer>
-          <para>Unfortunately WinMerge 2.0 or 2.2 supports only non-proportional fonts.</para>
+          <para>Unfortunately WinMerge 2.0 and 2.2 supports only non-proportional fonts.</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -165,18 +173,20 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>What means messagebox "Merge7z*.dll was not found."?</para>
-        </question>
-        <answer>
-          <para>WinMerge uses Merge7z*.dll files for archive support using 7-zip. There must be matching version of Merge7z*.dll to 7-zip version installed. For example if 7-zip version 3.11 is installed, there must be Merge7z311.dll present. WinMerge is installed with several versions of that DLL. If there is no such DLL, please check if WinMerge project pages at SourceForge.net have updated DLL or install package available.</para>
-        </answer>
-      </qandaentry>
-      <qandaentry>
-        <question>
           <para>How can I open 'Perry-style' patch files WinMerge developers use when submitting pathes?</para>
         </question>
         <answer>
           <para>'Perry-style' patches are zip-files containing original and changed files in different directories. WinMerge has internal support (surprise?) for handling these files. Just select zip file in guestion to left side and right side and WinMerge opens zip files contents to directory compare comparing original and altered files.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>I do not want to install 7-zip. Can arhive support use other archive tools (like WinZip or WinRar)?</para>
+        </question>
+        <answer>
+          <para>Unfortunately WinMerge can only use 7-zip.</para>
         </answer>
       </qandaentry>
     </qandaset>

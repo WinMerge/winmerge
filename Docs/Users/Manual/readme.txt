@@ -1,3 +1,7 @@
+2004-09-14 Kimmo
+ PATCH: [ 1027592 ] Docs: Update FAQ
+  Manual: Faq.xml
+
 2004-09-03 Kimmo
  PATCH: [ 1021456 ] Docs: Updates to installation part
   Manual: Install.xml
