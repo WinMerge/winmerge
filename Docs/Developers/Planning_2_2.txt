@@ -18,7 +18,7 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
   * Shell integration
   * Plugins
   * Patch generating
-  * UI and usability improvements (new icons most visible ones)
+  * Lots of UI and usability improvements (new icons most visible ones)
   * Resizable open-dialog
   * Lots of improvements to file compare
     - rewritten undo (I personally haven't seen it fail for a long
@@ -36,6 +36,7 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
     - threading backend work done
     - Statusbar
     - Stopping long compare
+    - Folder browsing in non-recursive compare
 
   
 2.1.2.0
@@ -173,8 +174,8 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
 3) Directory compare reports
    - RFE #669461 Save directory compare report
    - First take with Ctrl-C copying view contents done
-   - Responsive contributor working with this
-   - Patch ready soon?
+   - Contributor working with this - no response for a while?
+   - Status?
 
 4) On-demand-rescan for directory compare
    - Requires mostly some reorg in dir compare code
@@ -182,7 +183,8 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
    - Also some long-standing bugs can be fixed after this
    - Nobody working with this at the moment,
      Kimmo at least interested, but cannot say if time permits
-   - Needed for 2.2
+   - Needed for 2.2 (Might get dropped if no time or changes required
+     are risky)
 
 5) wxWindows port
    - RFE #851438 wxWindows port
@@ -197,10 +199,11 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
 6) Project files
    - RFE #785415 Project Files
    - Would be important usability improvement for many users
-   - Requires (9) to be done first
+   - Requires (9) to be done first (which is done now)
    - Not big code changes, mostly setting and filename
      saving and loading from project file
    - Nobody working with this at the moment
+   - UI?
    - Preferred for 2.2, no big risks
 
 7) Show only different lines
@@ -329,8 +332,8 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
 21) One-key diff navigation and merge
    - RFE #837803 Make Alt key optional
    - Usability!
-   - Kimmo submitted patch (#892023 Alternative (no alt-key) merge mode)
-     2004-02-06. Not sure if thats right way to go.
+   - Kimmo submitted patch (#892023 Alternative (no alt-key) merge mode).
+     That patch has several problems, needs rethinking. Help welcome!
    - Considered for 2.2 if somebody wants to implement this
 
 22) Dir compare statusbar to auto-hide
@@ -338,8 +341,10 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
    - Usability
    - Needs (23)?
    - UI change, add checkbox "Hide automatically"?
-   - Nobody working with this at the moment
-   - Considered for 2.2 if somebody wants to implement this
+   - Kimmo submitted patch (#913073 Option to automatically close
+     compare pane).
+   - Patch applied 2004-03-10
+   *** DONE ***
 
 23) Dir compare statusbar to be shown from menu
    - Currently no way to show after closed
@@ -347,7 +352,10 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
      etc.
    - Must be "live" i.e. if files are merged, contents updated
    - UI and some backend work (updating filecounts)
-   - Nobody working with this at the moment
+   - Kimmo submitted patch (#913073 Option to automatically close
+     compare pane) for opening pane from menu
+   - Patch applied 2004-03-10
+   - Live update NOT done
    - Considered for 2.2 if somebody wants to implement this
 
 24) Number of diffs in directory compare
@@ -375,5 +383,6 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
    - At least for dirview (column) settings and compare settings (color too?)
    - Compare options must default to strict set so that no differences
      are ignored
-   - Nobody working with this at the moment
+   - Kimmo submitted and applied patches for compare options and
+     color options
    - For 2.2
