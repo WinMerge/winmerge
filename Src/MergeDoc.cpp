@@ -2126,7 +2126,7 @@ BOOL CMergeDoc::SaveHelper()
 		if (!m_strLeftFile.IsEmpty())
 			AfxFormatString1(s, IDS_SAVE_FMT, m_strLeftFile);
 		else
-			AfxFormatString1(s, IDS_SAVE_FMT, mf->m_strLeftDesc);
+			AfxFormatString1(s, IDS_SAVE_FMT, m_strLeftDesc);
 	
 		bLModified = TRUE;
 		switch(AfxMessageBox(s, MB_YESNOCANCEL|MB_ICONQUESTION))

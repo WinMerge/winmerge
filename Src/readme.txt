@@ -1,3 +1,7 @@
+2003-11-25 Kimmo
+ Missed one diff in PATCH: [ 847697 ] Move desc texts into doc classes
+ WinMerge: MergeDoc.cpp
+
 2003-11-25 WinMerge experimental release 2.1.5.0 (cvs)
 
 2003-11-24 Perry
