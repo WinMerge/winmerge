@@ -1,3 +1,7 @@
+2004-05-24 Perry
+ Fix compilation (trailing comma in CCrystalTextView::m_SourceDefs)
+  Src/editlib: ccrystaltextview.cpp
+
 2004-05-24 Kimmo
  PATCH: [ 958938 ] Better way to close WinMerge with ESC (-e switch)
   Src: MainFrm.cpp MainFrm.h Merge.cpp Merge.h

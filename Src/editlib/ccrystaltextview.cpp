@@ -266,7 +266,7 @@ CCrystalTextView::TextDefinition CCrystalTextView::m_SourceDefs[] =
     CCrystalTextView::SRC_SIOD, _T ("SIOD"), _T ("scm"), CCrystalTextView::ParseLineSiod, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, 2, _T (";|"), _T ("|;"), _T (";"), (DWORD)-1,
     CCrystalTextView::SRC_SQL, _T ("SQL"), _T ("sql"), CCrystalTextView::ParseLineSql, SRCOPT_AUTOINDENT, 4, _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
     CCrystalTextView::SRC_TCL, _T ("TCL"), _T ("tcl"), CCrystalTextView::ParseLineTcl, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU|SRCOPT_EOLNUNIX, 2, _T (""), _T (""), _T ("#"), (DWORD)-1,
-    CCrystalTextView::SRC_TEX, _T ("TEX"), _T ("tex,sty,clo,ltx,fd,dtx"), CCrystalTextView::ParseLineTex, SRCOPT_AUTOINDENT, 4, _T (""), _T (""), _T ("%"), (DWORD)-1
+    CCrystalTextView::SRC_TEX, _T ("TEX"), _T ("tex,sty,clo,ltx,fd,dtx"), CCrystalTextView::ParseLineTex, SRCOPT_AUTOINDENT, 4, _T (""), _T (""), _T ("%"), (DWORD)-1,
     CCrystalTextView::SRC_XML, _T ("XML"), _T ("xml"), CCrystalTextView::ParseLineXml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, 2, _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1
   };
 
