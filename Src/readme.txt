@@ -107,7 +107,7 @@
   common: lwdisp.h
 
 2003-11-08 Perry
- PATCH: [ 838283 ] Simplifiy OnFileSave
+ PATCH: [ 838283 ] Simplify OnFileSave
   WinMerge: MergeDoc.cpp
 
 2003-11-08 WinMerge experimental release 2.1.3.8 (patch demo)
