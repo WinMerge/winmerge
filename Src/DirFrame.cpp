@@ -102,12 +102,11 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}	
 
 	// Dir frame has a floating bar displayed during comparison
-	if (!m_wndCompStateBar.Create(this))
+	if (!CreateStateBar())
 	{
 		TRACE0("Failed to create floating dialog bar\n");
 		return -1;      // fail to create
 	}	
-	m_wndCompStateBar.EnableDocking(0);
 
 	// Directory frame has a status bar
 	if (!m_wndStatusBar.Create(this) ||
@@ -125,6 +124,24 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneText(1, sText, TRUE); 
 	m_wndStatusBar.SetPaneText(2, sText, TRUE);
 	return 0;
+}
+
+/**
+ * @brief Create, or recreate, the floating state bar
+ *
+ * This is the bar with the file counts updated during a directory comparison
+ */
+bool CDirFrame::CreateStateBar()
+{
+	if (IsWindow(m_wndCompStateBar.m_hWnd))
+	{
+		m_wndCompStateBar.DestroyWindow();
+	}
+	// Dir frame has a floating bar displayed during comparison
+	if (!m_wndCompStateBar.Create(this))
+		return false;
+	m_wndCompStateBar.EnableDocking(0);
+	return true;
 }
 
 /**
@@ -159,11 +176,44 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 		nCmdShow = SW_SHOWNORMAL;
 
 	CMDIChildWnd::ActivateFrame(nCmdShow);
-	bFrameIsActive = TRUE;
+	m_bFrameIsActive = TRUE;
 
 	// hide the floating bar
 	ShowProcessingBar(FALSE);
+
 	// and set its initial position (centered at 1/3 of screen)
+	SetStateBarLoc();
+
+	// prepare file path bar to look as a status bar
+	if (m_wndFilePathBar.LookLikeThisWnd(&m_wndStatusBar) == TRUE)
+		RecalcLayout();
+}
+
+/**
+ * @brief Called when language changes
+ */
+void CDirFrame::UpdateResources()
+{
+	// Ensure show state is correct
+	BOOL StateBarVisible = m_bStateBarIsActive;
+
+	CreateStateBar();
+	if (!StateBarVisible)
+		m_wndCompStateBar.ShowWindow(SW_HIDE);
+	SetStateBarLoc();
+	
+	if (StateBarVisible)
+	{
+		m_wndCompStateBar.UpdateElements();
+		ShowProcessingBar(StateBarVisible);
+	}
+}
+
+/**
+ * @brief Set the location of the state control bar
+ */
+void CDirFrame::SetStateBarLoc()
+{
 	CRect rc;
 	GetWindowRect(&rc);
 	CPoint origin;
@@ -174,10 +224,6 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 	origin -= rcBar.CenterPoint();
 	// always call once FloatControlBar for a floating bar
 	FloatControlBar(&m_wndCompStateBar, origin);
-
-	// prepare file path bar to look as a status bar
-	if (m_wndFilePathBar.LookLikeThisWnd(&m_wndStatusBar) == TRUE)
-		RecalcLayout();
 }
 
 void CDirFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
@@ -265,7 +311,7 @@ void CDirFrame::ShowProcessingBar(BOOL bShow)
 	else if (!bShow) 
 		ShowControlBar(&m_wndCompStateBar, FALSE, FALSE);
 
-	bStateBarIsActive = bShow;
+	m_bStateBarIsActive = bShow;
 }
 
 
@@ -276,11 +322,11 @@ void CDirFrame::NotifyHideStateBar()
 {
 	if (GetParentFrame()->GetActiveDocument() != NULL)
 		return;
-	if (!bFrameIsActive)
+	if (!m_bFrameIsActive)
 		// bar hidden because the frame get unactived
 		return;
 	
-	bStateBarIsActive = FALSE;
+	m_bStateBarIsActive = FALSE;
 
 	if (!GetActiveView()->IsWindowEnabled())
 	{
@@ -300,14 +346,14 @@ void CDirFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactiv
 {
 
 	if (bActivate == TRUE)
-		if (bStateBarIsActive)
+		if (m_bStateBarIsActive)
 			ShowControlBar(&m_wndCompStateBar, TRUE, FALSE);		
 
 	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
-	bFrameIsActive = bActivate;
+	m_bFrameIsActive = bActivate;
 	
 	if (bActivate == FALSE)
-		if (bStateBarIsActive)
+		if (m_bStateBarIsActive)
 			ShowControlBar(&m_wndCompStateBar, FALSE, FALSE);
 }
 

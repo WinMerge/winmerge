@@ -376,7 +376,7 @@ void CDirDoc::InitStatusStrings()
 /// Update any language-dependent data
 void CDirDoc::UpdateResources()
 {
-	m_pDirView->UpdateColumnNames();
+	m_pDirView->UpdateResources();
 
 	CString s;
 	VERIFY(s.LoadString(IDS_DIRECTORY_WINDOW_TITLE));

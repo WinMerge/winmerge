@@ -51,13 +51,13 @@ void CDirCompStateBar::ClearStat()
 CDirCompStateBar::CDirCompStateBar(CWnd* pParent /*=NULL*/)
 {
 	ClearStat();
-
-	VERIFY(strAbort.LoadString(IDC_COMPARISON_STOP));
-	VERIFY(strClose.LoadString(IDC_COMPARISON_CLOSE));
 }
 
 BOOL CDirCompStateBar::Create(CWnd* pParentWnd)
 {
+	VERIFY(strAbort.LoadString(IDC_COMPARISON_STOP));
+	VERIFY(strClose.LoadString(IDC_COMPARISON_CLOSE));
+
 	if (! CDialogBar::Create(pParentWnd, CDirCompStateBar::IDD, 
 			WS_VISIBLE|CBRS_SIZE_FIXED|CBRS_FLYBY, 
 			CDirCompStateBar::IDD))
@@ -266,6 +266,28 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 			}
 		}
 	}
+}
+
+/**
+ * @brief Reflow all status counts at current values
+ *
+ * Used when this bar is reloaded for a language change
+ * This duplicates the SetDlgItem calls in AddElement.
+ */
+void CDirCompStateBar::UpdateElements()
+{
+	SetDlgItemInt(IDC_COUNT_LFOLDER, m_nLFolder);
+	SetDlgItemInt(IDC_COUNT_LFILE, m_nLFile);
+	SetDlgItemInt(IDC_COUNT_RFOLDER, m_nRFolder);
+	SetDlgItemInt(IDC_COUNT_RFILE, m_nRFile);
+	SetDlgItemInt(IDC_COUNT_FOLDERSKIP, m_nFolderSkip);
+	SetDlgItemInt(IDC_COUNT_FILESKIP, m_nFileSkip);
+	SetDlgItemInt(IDC_COUNT_ERROR, m_nError);
+	SetDlgItemInt(IDC_COUNT_BINARYSAME, m_nBinarySame);
+	SetDlgItemInt(IDC_COUNT_EQUAL, m_nEqual);
+	SetDlgItemInt(IDC_COUNT_FOLDER, m_nFolder);
+	SetDlgItemInt(IDC_COUNT_BINARYDIFF, m_nBinaryDiff);
+	SetDlgItemInt(IDC_COUNT_NOTEQUAL, m_nNotEqual);
 }
 
 /**

@@ -718,6 +718,7 @@ void CDirView::DoUpdateDirCopyLeftToRight(CCmdUI* pCmdUI, eMenuType menuType)
 void CDirView::UpdateResources()
 {
 	UpdateColumnNames();
+	GetParentFrame()->UpdateResources();
 }
 
 /**

@@ -1,6 +1,9 @@
 2004-07-31 Perry
  PATCH: [ 989288 ] Inno Setup Localization: Italian
   InnoSetup\Languages: Italian.isl
+ PATCH: [ 963429 ] Fix language in floating status bar
+  Src: DirCompStateBar.cpp DirCompStateBar.h DirDoc.cpp DirFrame.cpp DirFrame.h 
+   DirView.cpp
 
 2004-07-31 Kimmo
  PATCH: [ 1000714 ] Don't create difflist or patch file for binary files

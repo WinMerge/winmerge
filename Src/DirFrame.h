@@ -57,6 +57,7 @@ public:
 	void clearStatus();
 	void ShowProcessingBar(BOOL bShow);
 	void NotifyHideStateBar();
+	void UpdateResources();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -75,15 +76,17 @@ protected:
 	 *	<li> the frame is unactive, and the state bar was visible when the frame was active
 	 * </ul>
 	 */
-	BOOL bStateBarIsActive;
+	BOOL m_bStateBarIsActive;
 	/* @brief Track the activity of this frame, without delay.
 	 * This flag must be updated when CMDIChildWnd::OnMDIActivate is called. 
 	 * GetParentFrame()->GetActiveFrame() introduces some delay.
 	 */
-	BOOL bFrameIsActive;
+	BOOL m_bFrameIsActive;
 
 	virtual ~CDirFrame();
 	void ShowControlBar( CControlBar* pBar, BOOL bShow, BOOL bDelay );
+	bool CreateStateBar();
+	void SetStateBarLoc();
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirFrame)

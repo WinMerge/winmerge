@@ -31,6 +31,7 @@ public:
 	BOOL GetDefaultRect( LPRECT lpRect ) const;
 	void UpdateText(CStatic * ctrl, int num) const;
 	void Reset();
+	void UpdateElements();
 
 // Dialog Data
 	//{{AFX_DATA(CDirCompStateBar)
