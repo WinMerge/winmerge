@@ -1,6 +1,11 @@
+2005-04-06 Tim
+ PATCH: [ 1176980 ] Add 'section.autolabel' to user manual (XSL)
+  Manual: Manual.xsl
+  Manual/build: build_html.xsl build_htmlhelp.xsl
+
 2005-04-04 Tim
  RFE: [ 1061015 ] Offline build system for manual
-  Docs/Users/Manual: new directory build
+  Manual: new directory build
 
 2005-03-03 Perry
  Fix typo ("for" => "four")
