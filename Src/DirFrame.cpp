@@ -84,19 +84,6 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CDirFrame message handlers
 
-#ifdef _DEBUG
-void CDirFrame::AssertValid() const
-{
-	CMDIChildWnd::AssertValid();
-}
-
-void CDirFrame::Dump(CDumpContext& dc) const
-{
-	CMDIChildWnd::Dump(dc);
-}
-
-#endif //_DEBUG
-
 /**
  * @brief Create statusbar
  */

@@ -116,20 +116,6 @@ BEGIN_MESSAGE_MAP(CDirDoc, CDocument)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-/////////////////////////////////////////////////////////////////////////////
-// CDirDoc diagnostics
-
-#ifdef _DEBUG
-void CDirDoc::AssertValid() const
-{
-	CDocument::AssertValid();
-}
-
-void CDirDoc::Dump(CDumpContext& dc) const
-{
-	CDocument::Dump(dc);
-}
-#endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc serialization

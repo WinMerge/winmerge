@@ -110,11 +110,6 @@ public:
 	bool IsCurrentScanAbortable() const;
 	void SetDescriptions(CString strLeftDesc, CString strRightDesc);
 
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
-
 protected:
 	CDiffWrapper m_diffWrapper;
 

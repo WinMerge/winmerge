@@ -151,15 +151,6 @@ void CDirView::OnDraw(CDC* /*pDC*/)
 // CDirView diagnostics
 
 #ifdef _DEBUG
-void CDirView::AssertValid() const
-{
-	CListViewEx::AssertValid();
-}
-
-void CDirView::Dump(CDumpContext& dc) const
-{
-	CListViewEx::Dump(dc);
-}
 
 CDirDoc* CDirView::GetDocument() // non-debug version is inline
 {

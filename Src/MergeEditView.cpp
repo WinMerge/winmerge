@@ -144,15 +144,6 @@ END_MESSAGE_MAP()
 // CMergeEditView diagnostics
 
 #ifdef _DEBUG
-void CMergeEditView::AssertValid() const
-{
-	CCrystalEditViewEx::AssertValid();
-}
-
-void CMergeEditView::Dump(CDumpContext& dc) const
-{
-	CCrystalEditViewEx::Dump(dc);
-}
 CMergeDoc* CMergeEditView::GetDocument() // non-debug version is inline
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CMergeDoc)));

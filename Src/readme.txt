@@ -1,6 +1,10 @@
 2004-01-19 Perry
  PATCH: [ 878625 ] Simplify and unify file operations calling diff_2_files.
   src: Diff.cpp DiffWrapper.cpp DiffWrapper.h
+ PATCH: [ 847121 ] Code cleanup (remove unneeded AssertValid & Dump implementations)
+  src: ChildFrm.cpp ChildFrm.h DirDoc.cpp DirDoc.h DirFrame.cpp DirFrame.h
+   DirView.cpp DirView.h MainFrm.cpp MainFrm.h MergeDiffDetailView.cpp 
+   MergeDiffDetailView.h MergeEditView.cpp MergeEditView.h
 
 2004-01-18 Kimmo
  PATCH: 876875 Go To -Dialog

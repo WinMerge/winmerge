@@ -157,10 +157,6 @@ protected:
                                 COLORREF & crText, BOOL & bDrawWhitespace);
 	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz);
 	virtual void OnUpdateCaret();
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
 
 	// Generated message map functions
 protected:

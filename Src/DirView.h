@@ -195,10 +195,6 @@ private:
 // Implementation
 protected:
 	virtual ~CDirView();
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
 	int GetFocusedItem();
 	int GetFirstDifferentItem();
 	int GetLastDifferentItem();

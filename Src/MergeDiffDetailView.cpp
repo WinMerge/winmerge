@@ -57,15 +57,6 @@ END_MESSAGE_MAP()
 // CMergeDiffDetailView diagnostics
 
 #ifdef _DEBUG
-void CMergeDiffDetailView::AssertValid() const
-{
-	CCrystalTextView::AssertValid();
-}
-
-void CMergeDiffDetailView::Dump(CDumpContext& dc) const
-{
-	CCrystalTextView::Dump(dc);
-}
 CMergeDoc* CMergeDiffDetailView::GetDocument() // non-debug version is inline
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CMergeDoc)));

@@ -17,9 +17,14 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// ChildFrm.h : interface of the CChildFrame class
-//
-/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  ChildFrm.h
+ *
+ * @brief interface of the CChildFrame class
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #if !defined(AFX_CHILDFRM_H__BBCD4F8E_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_CHILDFRM_H__BBCD4F8E_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
@@ -97,11 +102,6 @@ public:
 	void SavePosition();
 	virtual ~CChildFrame();
 	void CloseNow();
-
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
 
 // Generated message map functions
 protected:

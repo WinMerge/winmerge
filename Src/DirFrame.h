@@ -70,12 +70,6 @@ public:
 	virtual BOOL DestroyWindow();
 	//}}AFX_VIRTUAL
 
-// Implementation
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
-
 protected:
 	CEditorFilePathBar m_wndFilePathBar;
 	CDirCompStateBar m_wndCompStateBar;
