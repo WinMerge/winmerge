@@ -780,5 +780,8 @@ void CMergeEditView::OnTimer(UINT nIDEvent)
 
 void CMergeEditView::OnRefresh()
 {
-	GetDocument()->FlushAndRescan();
+	CMergeDoc *pd = GetDocument();
+	ASSERT(pd);
+	if (pd->SaveHelper())
+		pd->FlushAndRescan(TRUE);
 }

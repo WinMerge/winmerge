@@ -1,3 +1,7 @@
+2003-04-26 Kimmo
+ PATCH: [ 726330 ] Saving before refresh
+  WinMerge: MergeDoc.h MergeDoc.cpp MergeEditView.cpp
+
 2003-04-25 Kimmo
  PATCH: [ 727104 ] Disable margins for unknown filetypes
   editlib: ccrystaltextview.h ccrystaltextview.cpp

@@ -221,9 +221,15 @@ static void PrepareBufferForRescan(CMergeDoc::CDiffTextBuffer * buf, DWORD delet
 	}
 }
 
-BOOL CMergeDoc::Rescan()
+BOOL CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 {
-	if (!m_bEnableRescan) return TRUE; // What return value ?
+	// When doing forced rescan, delete temp files first
+	// to make sure we compare right files
+	if (bForced)
+		CleanupTempFiles();
+	else
+		if (!m_bEnableRescan) return TRUE; // What return value ?
+
 	m_bNeedIdleRescan = FALSE;
 	m_LastRescan = COleDateTime::GetCurrentTime();
 
@@ -253,7 +259,6 @@ BOOL CMergeDoc::Rescan()
 	struct change *script=NULL;
 	BOOL bResult=FALSE;
 //	int nResumeTopLine=0;
-
 
 	// get the desired files to temp locations so we can edit them dynamically
 	if (!TempFilesExist())
@@ -1385,9 +1390,11 @@ BOOL CMergeDoc::TempFilesExist()
 		&& CFile::GetStatus(m_strTempRightFile, s2));
 }
 
-void CMergeDoc::FlushAndRescan()
+void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 {
-	if (!m_bEnableRescan) return;
+	// Ignore suppressing when forced rescan
+	if (!bForced)
+		if (!m_bEnableRescan) return;
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
 
@@ -1398,13 +1405,13 @@ void CMergeDoc::FlushAndRescan()
 	if(curView)
 	{
 		curView->PushCursor();
-		Rescan();
+		Rescan(bForced);
 		UpdateAllViews(NULL);
 		curView->PopCursor();
 	}
 	else
 	{
-		Rescan();
+		Rescan(bForced);
 		UpdateAllViews(NULL);
 	}
 }

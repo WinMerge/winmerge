@@ -142,7 +142,7 @@ public:
 
 	void SetNeedRescan();
 	void RescanIfNeeded();
-	BOOL Rescan();
+	BOOL Rescan(BOOL bForced = FALSE);
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
 	void FixLastDiffRange(BOOL left);
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
@@ -180,7 +180,7 @@ public:
 	BOOL SaveHelper();
 	std::vector<CMergeEditView*> undoTgt;
 	std::vector<CMergeEditView*>::iterator curUndo;
-	void FlushAndRescan();
+	void FlushAndRescan(BOOL bForced = FALSE);
 	BOOL TempFilesExist();
 	void CleanupTempFiles();
 	BOOL InitTempFiles(const CString& srcPathL, const CString& strPathR);
