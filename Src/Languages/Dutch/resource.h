@@ -344,6 +344,7 @@
 #define IDS_FILEPACK_FAILED_RIGHT       17240
 #define IDS_FILECHANGED_ONDISK          17241
 #define IDS_SAVEREADONLY_MULTI          17242
+#define IDS_FILECHANGED_RESCAN          17243
 
 #define IDS_NOPROJECT                   17264
 #define IDS_VSS_CHECKOUT_STATUS         17265

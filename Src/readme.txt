@@ -1,3 +1,8 @@
+2004-08-31 Kimmo
+ PATCH: [ 1019108 ] Warn if file changed on disk between rescans
+  Src: Merge.rc MergeDoc.cpp MergeDoc.h resource.h
+  Src/Languages: *.rc resource.h
+
 2004-08-27 WinMerge experimental release 2.1.7.12 (cvs)
 
 2004-08-27 Kimmo

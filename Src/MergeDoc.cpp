@@ -321,8 +321,11 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 {
 	DIFFOPTIONS diffOptions = {0};
 	DIFFSTATUS status = {0};
+	DiffFileInfo fileInfo;
 	BOOL diffSuccess;
 	int nResult = RESCAN_OK;
+	BOOL bLeftFileChanged = FALSE;
+	BOOL bRightFileChanged = FALSE;
 
 	if (!bForced)
 	{
@@ -330,6 +333,12 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 			return RESCAN_SUPPRESSED;
 	}
 
+	bLeftFileChanged = IsFileChangedOnDisk(m_strLeftFile, fileInfo,
+		FALSE, TRUE);
+	bRightFileChanged = IsFileChangedOnDisk(m_strRightFile, fileInfo,
+		FALSE, FALSE);
+	m_leftRescanFileInfo.Update(m_strLeftFile);
+	m_rightRescanFileInfo.Update(m_strRightFile);
 	m_LastRescan = COleDateTime::GetCurrentTime();
 
 	// get the desired files to temp locations so we can edit them dynamically
@@ -435,6 +444,19 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 
 		m_bLeftEditAfterRescan = FALSE;
 		m_bRightEditAfterRescan = FALSE;
+	}
+
+	if (bLeftFileChanged)
+	{
+		CString msg;
+		AfxFormatString1(msg, IDS_FILECHANGED_RESCAN, m_strLeftFile);
+		AfxMessageBox(msg, MB_OK | MB_ICONWARNING);
+	}
+	else if (bRightFileChanged)
+	{
+		CString msg;
+		AfxFormatString1(msg, IDS_FILECHANGED_RESCAN, m_strRightFile);
+		AfxMessageBox(msg, MB_OK | MB_ICONWARNING);
 	}
 	return nResult;
 }
@@ -2351,9 +2373,19 @@ BOOL CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 	BOOL bFileChanged = FALSE;
 
 	if (bLeft)
-		fileInfo = &m_leftSaveFileInfo;
+	{
+		if (bSave)
+			fileInfo = &m_leftSaveFileInfo;
+		else
+			fileInfo = &m_leftRescanFileInfo;
+	}
 	else
-		fileInfo = &m_rightSaveFileInfo;
+	{
+		if (bSave)
+			fileInfo = &m_rightSaveFileInfo;
+		else
+			fileInfo = &m_rightRescanFileInfo;
+	}
 
 	dfi.Update(szPath);
 
@@ -2633,6 +2665,8 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		}
 
 		m_leftSaveFileInfo.Update(sLeftFile);
+		m_leftRescanFileInfo.Update(sLeftFile);
+
 		// Load left side file
 		nLeftSuccess = LoadFile(sLeftFile, TRUE, bROLeft, cpleft);
 	}
@@ -2659,6 +2693,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		}
 
 		m_rightSaveFileInfo.Update(sRightFile);
+		m_rightRescanFileInfo.Update(sRightFile);
 		if (nLeftSuccess == FRESULT_OK || nLeftSuccess == FRESULT_BINARY)
 			nRightSuccess = LoadFile(sRightFile, FALSE, bRORight, cpright);
 	}

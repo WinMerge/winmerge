@@ -1554,6 +1554,7 @@ BEGIN
     IDS_FILEPACK_FAILED_RIGHT "Le plugin '%2' ne peut pas empaqueter le fichier modifié (à droite) en '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous sauver la version non empaquetée sous un autre nom ?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
+    IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nIf you want to refresh files close current file compare and load files again."
 END
 
 // VSS

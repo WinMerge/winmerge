@@ -49,10 +49,10 @@ enum
  */
 enum
 {
-	RESCAN_OK = 0,
-	RESCAN_SUPPRESSED,
-	RESCAN_FILE_ERR,
-	RESCAN_TEMP_ERR,
+	RESCAN_OK = 0, /**< Rescan succeeded */
+	RESCAN_SUPPRESSED, /**< Rescan not done - suppressed */
+	RESCAN_FILE_ERR, /**< Error reading file */
+	RESCAN_TEMP_ERR, /**< Error saving to temp file */
 };
 
 /**
@@ -188,6 +188,8 @@ protected: // create from serialization only
 public:	
 	DiffFileInfo m_leftSaveFileInfo;
 	DiffFileInfo m_rightSaveFileInfo;
+	DiffFileInfo m_leftRescanFileInfo;
+	DiffFileInfo m_rightRescanFileInfo;
 	CArray<DIFFRANGE,DIFFRANGE> m_diffs;
 	UINT m_nDiffs; /**< Amount of diffs */
 	UINT m_nTrivialDiffs; /**< Amount of trivial (ignored) diffs */
