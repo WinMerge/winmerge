@@ -178,7 +178,7 @@ BEGIN
         MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
         MENUITEM SEPARATOR
         MENUITEM "KopÌrovaù vöetko vpravo",     ID_ALL_RIGHT
-        MENUITEM "KopÌrovaù v?etko væavo",      ID_ALL_LEFT
+        MENUITEM "KopÌrovaù vöetko væavo",      ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "Copy Diffs in Left Selection to Right", ID_MULTIPLE_RIGHT
         MENUITEM "Copy Diffs in Right Selection to Left", ID_MULTIPLE_LEFT
@@ -1056,11 +1056,11 @@ END
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_EDIT_CLEAR           "Vymazaù v˝ber\nZmazaù"
-    ID_EDIT_CLEAR_ALL       "Zmazaù v?etko\nZmazaù v?etko"
+    ID_EDIT_CLEAR_ALL       "Zmazaù vöetko\nZmazaù vöetko"
     ID_EDIT_COPY            "KopÌrovaù v˝ber do schr·nky\nKopÌrovaù"
     ID_EDIT_CUT             "Presun˙ù v˝ber do schr·nky\nVystrihn˙ù"
     ID_EDIT_FIND            "N·jsù text\nN·jdi"
-    ID_EDIT_PASTE           "Vlo?iù obsah schr·nky\nVlo?iù"
+    ID_EDIT_PASTE           "Vloûiù obsah schr·nky\nVloûiù"
     ID_EDIT_REPEAT          "Opakovaù posledn˙ akciu\nOpakuj"
     ID_EDIT_REPLACE         "Nahradiù text\nNahradiù"
     ID_EDIT_SELECT_ALL      "Vybraù vöetko\nVybraù vöetko"
@@ -1381,4 +1381,3 @@ LANGUAGE LANG_SLOVAK, SUBLANG_DEFAULT
 #endif
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-
