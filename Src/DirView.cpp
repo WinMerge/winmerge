@@ -2289,7 +2289,7 @@ void CDirView::OnCopyLeftPathnames()
 			strPaths += _T("\\");
 			if (!di.isDirectory())
 				strPaths += di.sfilename;
-			strPaths += _T("\n");
+			strPaths += _T("\r\n");
 		}
 	}
 	PutToClipboard(strPaths, mf->GetSafeHwnd());
@@ -2313,7 +2313,7 @@ void CDirView::OnCopyRightPathnames()
 			strPaths += _T("\\");
 			if (!di.isDirectory())
 				strPaths += di.sfilename;
-			strPaths += _T("\n");
+			strPaths += _T("\r\n");
 		}
 	}
 	PutToClipboard(strPaths, mf->GetSafeHwnd());
@@ -2337,7 +2337,7 @@ void CDirView::OnCopyBothPathnames()
 			strPaths += _T("\\");
 			if (!di.isDirectory())
 				strPaths += di.sfilename;
-			strPaths += _T("\n");
+			strPaths += _T("\r\n");
 		}
 
 		if (!di.isSideLeft())
@@ -2346,7 +2346,7 @@ void CDirView::OnCopyBothPathnames()
 			strPaths += _T("\\");
 			if (!di.isDirectory())
 				strPaths += di.sfilename;
-			strPaths += _T("\n");
+			strPaths += _T("\r\n");
 		}
 	}
 	PutToClipboard(strPaths, mf->GetSafeHwnd());
@@ -2357,7 +2357,6 @@ void CDirView::OnCopyBothPathnames()
  */
 void CDirView::OnCopyFilenames()
 {
-	CDiffContext *pCtx = GetDiffContext();
 	CString strPaths;
 	int sel = -1;
 
@@ -2367,7 +2366,7 @@ void CDirView::OnCopyFilenames()
 		if (!di.isDirectory())
 		{
 			strPaths += di.sfilename;
-			strPaths += _T("\n");
+			strPaths += _T("\r\n");
 		}
 	}
 	PutToClipboard(strPaths, mf->GetSafeHwnd());

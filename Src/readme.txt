@@ -1,3 +1,7 @@
+2004-12-04 Kimmo
+ PATCH: [ 1078505 ] Use DOS eol as filename/pathname clipboard separator
+  Src: DirView.cpp
+
 2004-12-03 Kimmo
  PATCH: [ 1068011 ] Partial French translation
   Submitted by Matthieu Pupat
