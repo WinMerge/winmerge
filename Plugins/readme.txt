@@ -1,3 +1,9 @@
+2005-01-27 Kimmo
+ PATCH: [ 1109405 ] Binary diff is totally broken (buffer overwrite)
+  Submitted by Jim Fougeron
+  Plugins\src_VCPP\DisplayBinaryFiles: WinMergeScript.cpp
+  Plugins\dlls: DisplayBinaryFiles.dll
+
 2004-06-21 Laoran
  PATCH: [ 972299 ] Unpacker for comparing binary files
   Plugins: list of sources.txt

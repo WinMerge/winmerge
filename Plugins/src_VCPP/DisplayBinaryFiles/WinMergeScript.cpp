@@ -60,15 +60,15 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 
 	while (len)
 	{
-		if (len > 65536)
-			input.read(buffer, 65536);
-		else
-			input.read(buffer, len);
-		for (int i = 0 ; i < len ; i++)
+		int curlen = len;
+		if (curlen > 65536)
+			curlen = 65536;
+		input.read(buffer, curlen);
+		for (int i = 0 ; i < curlen ; i++)
 			if (buffer[i] == 0)
 				buffer[i] = 0x20;
-		output.write(buffer, input.gcount());
-		len -= input.gcount();
+		output.write(buffer, curlen);
+		len -= curlen;
 	}
 
 	input.close();
