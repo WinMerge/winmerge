@@ -1,3 +1,8 @@
+2004-11-05 Kimmo
+ PATCH: [ 1061155 ] Updated danish translation
+  Submitted by Christian
+  Src/Languages/Danish: MergeDanish.rc
+
 2004-11-03 Kimmo
  PATCH: [ 1058992 ] More flexible whitespaces for file filter files
   Src: FileFilterMgr.cpp
