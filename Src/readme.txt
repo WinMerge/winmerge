@@ -1,3 +1,7 @@
+2004-11-03 Kimmo
+ PATCH: [ 1058992 ] More flexible whitespaces for file filter files
+  Src: FileFilterMgr.cpp
+
 2004-11-02 Kimmo
  PATCH: [ 1058293 ] The finished german language file
   Submitted by Tim Gerundt

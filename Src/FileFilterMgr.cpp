@@ -91,16 +91,26 @@ void FileFilterMgr::DeleteAllFilters()
 // str is a temporary variable (ie, it may be altered)
 static void AddFilterPattern(RegList & reglist, CString & str)
 {
-	str.TrimLeft();
+	LPCTSTR commentLeader = _T("##"); // Starts comment
 	str.MakeUpper();
-	LPCTSTR commentLeader = _T(" ##");
-	// anything from commentLeader to end of line is a comment
-	int comment = str.Find(commentLeader);
-	if (comment >= 0)
-	{
-		str = str.Left(comment);
-	}
-	if (str.IsEmpty()) return;
+	str.TrimLeft();
+
+	// Ignore lines beginning with '##'
+	int pos = str.Find(commentLeader);
+	if (pos == 0)
+		return;
+
+	// Find possible comment-separator '<whitespace>##'
+	while (pos > 0 && !_istspace(str[pos - 1]))
+		pos = str.Find(commentLeader, pos);	
+
+	// Remove comment and whitespaces before it
+	if (pos > 0)
+		str = str.Left(pos);
+	str.TrimRight();
+	if (str.IsEmpty())
+		return;
+
 	CRegExp * regexp = new CRegExp;
 	if (regexp->RegComp(str))
 		reglist.AddTail(regexp);
@@ -120,6 +130,9 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilenam
 	CString sLine;
 	while (file.ReadString(sLine))
 	{
+		sLine.TrimLeft();
+		sLine.TrimRight();
+
 		if (0 == _tcsncmp(sLine, _T("name:"), 5))
 		{
 			// specifies display name
