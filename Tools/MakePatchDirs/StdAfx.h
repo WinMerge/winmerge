@@ -19,6 +19,10 @@ CString MakeStr(LPCTSTR fmt, ...);
 
 CString LoadResString(int id);
 
+#ifndef countof
+#define countof(array)  (sizeof(array)/sizeof((array)[0]))
+#endif /* countof */
+
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.

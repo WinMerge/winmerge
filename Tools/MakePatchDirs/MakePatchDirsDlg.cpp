@@ -2,7 +2,7 @@
  * @file  MakePatchDirsDlg.cpp
  *
  * @date  Created: 2003 (Perry)
- * @date  Edited:  2004-06-08 (Perry)
+ * @date  Edited:  2004-08-01 (Perry)
  * @brief Code for CMakePatchDirsDlg (main dialog) & CAboutDlg classes
  */
 // RCS ID line follows -- this is updated by CVS
@@ -15,6 +15,7 @@
 #include "MakeDirs.h"
 #include "CDirDialog.h"
 #include "AppVersion.h"
+#include "Satellites.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -87,6 +88,7 @@ void CMakePatchDirsDlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CMakePatchDirsDlg)
 	DDX_Control(pDX, IDC_DIR, m_dir);
+	DDX_Control(pDX, IDC_LANGS, m_langs);
 	//}}AFX_DATA_MAP
 }
 
@@ -96,6 +98,7 @@ BEGIN_MESSAGE_MAP(CMakePatchDirsDlg, CDialog)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_DIR_BROWSE, OnDirBrowse)
+	ON_CBN_SELCHANGE(IDC_LANGS, OnSelchangeLangs)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -140,6 +143,13 @@ BOOL CMakePatchDirsDlg::OnInitDialog()
 	m_constraint.SubclassWnd();
 
 	GetDlgItem(IDC_EXCLUDE_VC_STUFF)->SendMessage(BM_SETCHECK, BST_CHECKED, 0);
+
+	if (!PopulateDllList((WORD)-1))
+	{
+		// language changed, need to reload
+		EndDialog(IDOK);
+		return TRUE;
+	}
 	
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -282,5 +292,224 @@ void CMakePatchDirsDlg::OnOK()
 	} catch(CException * pExc) {
 		pExc->ReportError();
 		pExc->Delete();
+	}
+}
+
+static CString
+GetModuleFilepath()
+{
+	TCHAR buff[MAX_PATH+4] = _T("");
+	GetModuleFileName(AfxGetInstanceHandle(), buff, countof(buff));
+	return buff;
+}
+
+/**
+ * @brief Create descriptive string for language
+ */
+static CString
+GetLangDesc(WORD lang)
+{
+	CString desc;
+
+	LCID lcid = MAKELCID(MAKELANGID(lang, SUBLANG_DEFAULT), SORT_DEFAULT);
+	TCHAR buff[512];
+	if (!GetLocaleInfo(lcid, LOCALE_SENGLANGUAGE, buff, countof(buff)))
+		_tcscpy(buff, _T("?"));
+	desc += buff;
+	desc += _T(": ");
+	if (!GetLocaleInfo(lcid, LOCALE_SLANGUAGE , buff, countof(buff)))
+		_tcscpy(buff, _T("?"));
+	desc += buff;
+	return desc;
+}
+
+/**
+ * @brief Return langid for a given locale (or -1)
+ */
+static WORD
+GetLangFromLocale(LCID lcid)
+{
+		TCHAR buff[8];
+		if (GetLocaleInfo(lcid, LOCALE_IDEFAULTLANGUAGE, buff, countof(buff)))
+		{
+			LANGID langid = 0;
+			if (1 == _stscanf(buff, _T("%x"), &langid) && langid)
+				return langid;
+		}
+		return -1;
+}
+
+/**
+ * @brief Look for language for user in array of available languages, fill in langdll
+ */
+static bool
+GetDefaultLang(const LangDllArray &langdlls, LangDll & langdll)
+{
+	CString mydll;
+
+	WORD Lang1 = GetLangFromLocale(GetThreadLocale());
+	if (Lang1 != (WORD)-1)
+	{
+		for (int i=0; i<langdlls.GetSize(); ++i)
+		{
+			if (langdlls[i].m_lang == Lang1)
+			{
+				langdll = langdlls[i];
+				return true;
+			}
+		}
+	}
+	WORD Lang2 = GetLangFromLocale(LOCALE_USER_DEFAULT);
+	if (Lang2 != (WORD)-1 && Lang2 != Lang1)
+	{
+		for (int i=0; i<langdlls.GetSize(); ++i)
+		{
+			if (langdlls[i].m_lang == Lang2)
+			{
+				langdll = langdlls[i];
+				return true;
+			}
+		}
+	}
+	WORD Lang3 = GetLangFromLocale(LOCALE_SYSTEM_DEFAULT);
+	if (Lang3 != (WORD)-1 && Lang3 != Lang2 && Lang3 != Lang1)
+	{
+		for (int i=0; i<langdlls.GetSize(); ++i)
+		{
+			if (langdlls[i].m_lang == Lang3)
+			{
+				langdll = langdlls[i];
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+static HINSTANCE f_inst = 0;
+static WORD f_lang = MAKELANGID(LANG_ENGLISH, SUBLANG_DEFAULT);
+/**
+ * @brief Actually change language, returning true if successful
+ */
+static bool
+SetLang(const LangDllArray &langdlls, WORD langid)
+{
+	LangDll langdll;
+	for (int i=0; i<langdlls.GetSize(); ++i)
+	{
+		if (langdlls[i].m_lang == langid)
+		{
+			langdll = langdlls[i];
+			break;
+		}
+	}
+	if (langdll.dllpath.IsEmpty())
+		return false;
+	// reset the resource handle to point to the current file
+	AfxSetResourceHandle(AfxGetInstanceHandle( ));
+	if (f_inst)
+	{
+		FreeLibrary(f_inst);
+		f_inst = 0;
+	}
+	if (langdll.dllpath != _T("!"))
+	{
+		f_inst = LoadLibrary(langdll.dllpath);
+		if (!f_inst)
+			return false;
+		AfxSetResourceHandle(f_inst);
+	}
+	SetThreadLocale(MAKELCID(langdll.m_lang, SORT_DEFAULT));
+	// dig out info for _tsetlocale(LC_ALL, ...)
+	f_lang = langid;
+	return true;
+}
+
+/**
+ * @brief Fill in array of available languages
+ */
+static void
+LoadSatList(LangDllArray &langdlls)
+{
+	CString filepath = GetModuleFilepath();
+	TCHAR drive[_MAX_DRIVE];
+	TCHAR dir[_MAX_PATH];
+	TCHAR fname[_MAX_FNAME];
+	TCHAR ext[_MAX_EXT];
+	_tsplitpath(filepath, drive, dir, fname, ext);
+	CString spec = (CString)drive + dir + fname + _T("_*.dll");
+	CString spath = (CString)drive + dir;
+
+	Sats_LoadList(spath, spec, langdlls);
+	langdlls.Add(LangDll(MAKELANGID(LANG_ENGLISH, SUBLANG_DEFAULT), _T("!")));
+}
+
+/**
+ * @brief Populate the droplist of available languages (except, return false if we need to reload)
+ */
+bool // return false if language changed
+CMakePatchDirsDlg::PopulateDllList(WORD curlang)
+{
+	int loadedlang = f_lang;
+
+	LangDllArray langdlls;
+	LoadSatList(langdlls);
+
+	if (curlang != (WORD)-1)
+	{
+		if (!SetLang(langdlls, curlang))
+			curlang = (WORD)-1;
+	}
+	if (curlang == (WORD)-1)
+	{
+		LangDll langdll;
+		if (GetDefaultLang(langdlls, langdll))
+		{
+			if (SetLang(langdlls, langdll.m_lang))
+				curlang = langdll.m_lang;
+		}
+	}
+
+	if (loadedlang != f_lang)
+	{
+		// To implement new language, must close & reopen main dialog
+		return false;
+	}
+
+	m_langs.ResetContent();
+	for (int i=0; i<langdlls.GetSize(); ++i)
+	{
+		const LangDll & langdll = langdlls[i];
+		CString langname = GetLangDesc(langdll.m_lang);
+		int index = m_langs.AddString(langname);
+		m_langs.SetItemData(index, langdll.m_lang);
+	}
+	int isel = -1;
+	for (i=0; i<langdlls.GetSize(); ++i)
+	{
+		if (m_langs.GetItemData(i) == curlang)
+			isel = i;
+	}
+
+	m_langs.SetCurSel(isel);
+	return true;
+}
+
+void CMakePatchDirsDlg::OnSelchangeLangs() 
+{
+	int index = m_langs.GetCurSel();
+	if (index == -1) return;
+	WORD newlang = (WORD)m_langs.GetItemData(index);
+	if (newlang == f_lang) return;
+
+	// User has chosen a new language
+	// Need dll array
+	LangDllArray langdlls;
+	LoadSatList(langdlls);
+
+	if (SetLang(langdlls, newlang))
+	{
+		// To implement new language, must close & reopen main dialog
+		EndDialog(IDOK);
 	}
 }

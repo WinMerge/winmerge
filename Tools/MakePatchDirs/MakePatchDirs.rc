@@ -103,6 +103,8 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,25,61,156,10
     CONTROL         "Exclude RCS stuff",IDC_EXCLUDE_RCS_STUFF,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,25,77,156,10
+    COMBOBOX        IDC_LANGS,208,91,83,118,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
 END
 
 

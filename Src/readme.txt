@@ -1,3 +1,9 @@
+2004-08-01 Perry
+ PATCH: [ 967405 ] Add Japanese satellite dll to MakePatchDirs
+  MakePatchDirs: MakePatchDirs.dsp MakePatchDirs.rc
+   MakePatchDirsApp.cpp MakePatchDirsDlg.cpp MakePatchDirsDlg.h
+   resource.h StdAfx.h
+
 2004-07-31 Perry
  PATCH: [ 989288 ] Inno Setup Localization: Italian
   InnoSetup\Languages: Italian.isl

@@ -52,18 +52,16 @@ BOOL CMakePatchDirsApp::InitInstance()
 	Enable3dControlsStatic();	// Call this when linking to MFC statically
 #endif
 
-	CMakePatchDirsDlg dlg;
-	m_pMainWnd = &dlg;
-	int nResponse = dlg.DoModal();
-	if (nResponse == IDOK)
+	// loop so dialog can exit & reenter to reload language
+	while (1)
 	{
-		// TODO: Place code here to handle when the dialog is
-		//  dismissed with OK
-	}
-	else if (nResponse == IDCANCEL)
-	{
-		// TODO: Place code here to handle when the dialog is
-		//  dismissed with Cancel
+		CMakePatchDirsDlg dlg;
+		m_pMainWnd = &dlg;
+		if (dlg.DoModal() != IDOK)
+			break;
+		// Remove the WM_QUIT message
+		MSG msg;
+		::PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE);
 	}
 
 	// Since the dialog has been closed, return FALSE so that we exit the

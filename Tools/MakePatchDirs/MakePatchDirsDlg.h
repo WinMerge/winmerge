@@ -22,10 +22,15 @@ class CMakePatchDirsDlg : public CDialog
 public:
 	CMakePatchDirsDlg(CWnd* pParent = NULL);	// standard constructor
 
+// Implementation methds
+protected:
+	bool PopulateDllList(WORD curlang);
+
 // Dialog Data
 	//{{AFX_DATA(CMakePatchDirsDlg)
 	enum { IDD = IDD_MAKEPATCHDIRS_DIALOG };
-	CDropEdit	m_dir;
+	CDropEdit m_dir;
+	CComboBox m_langs;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
@@ -34,7 +39,8 @@ public:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 	//}}AFX_VIRTUAL
 
-// Implementation
+
+// Implementation data
 protected:
 	HICON m_hIcon;
 	prdlg::CMoveConstraint m_constraint;
@@ -47,6 +53,7 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	afx_msg void OnDirBrowse();
 	virtual void OnOK();
+	afx_msg void OnSelchangeLangs();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
