@@ -1,6 +1,8 @@
 2004-10-23 Kimmo
  BUG: [ 1052283 ] after edit, asks TWICE for rewriting the original file (-e switch)
   Src: MergeDoc.cpp
+ Clarify comment about closing app in CMainFrame::PreTranslateMessage()
+  Src: MainFrm.cpp
 
 2004-10-22 Perry
  PATCH: [ 966908 ] find byte difference in line

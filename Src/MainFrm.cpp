@@ -2580,8 +2580,9 @@ void CMainFrame::SelectFilter()
  * @brief Closes application with ESC.
  *
  * Application is closed if:
- * - 'Close Windows with ESC' option is enabled
- * - there is no open document windows
+ * - 'Close Windows with ESC' option is enabled and
+ *    there is no open document windows
+ * - '-e' commandline switch is given
  */
 BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 {
