@@ -53,7 +53,7 @@ struct FileFilterInfo
 	FileInfo fileinfo;		/**< For tracking if file has been modified */
 };
 
-typedef CArray<FileFilterInfo, FileFilterInfo> FILEFILTER_INFOLIST;
+typedef CArray<FileFilterInfo, FileFilterInfo&> FILEFILTER_INFOLIST;
 
 /// Interface for testing files & directories for exclusion, as diff traverses file tree
 class IDiffFilter

@@ -1,3 +1,7 @@
+2005-03-09 Perry
+ PATCH: [ 1157359 ] Minor change for FILEFILTER_INFOLIST
+  Src: FileFilterHelper.h
+
 2005-03-08 Perry
  Cosmetic: Added & doxygen'd comments, and prefixed members with m_.
   Src: FilepathEdit.cpp FilepathEdit.h
