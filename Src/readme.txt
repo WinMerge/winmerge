@@ -1,3 +1,7 @@
+2004-03-19 Christian
+ PATCH: [ 919134 ] Paths fixed in installer
+  InnoSetup: WinMerge.iss
+
 2004-03-19 Kimmo
  BUG: [ 919090 ] Memory leak in DiffFileData
   Src: DiffWrapper.cpp

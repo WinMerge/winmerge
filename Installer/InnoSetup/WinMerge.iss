@@ -121,7 +121,7 @@ Name: filters; Description: Filters; Types: full
 
 ;Non-English Languages are no longer a default part of a normal installation.  If a user selected a language as part of their last installation
 ;that language will be selected automatically during subsequent installs.
-Name: Catalan_Language; Description: Catalan; Flags: disablenouninstallwarning
+Name: Catalan_Language; Description: Catalan menus and dialogs; Flags: disablenouninstallwarning
 Name: ChineseSimplified_Language; Description: Chinese (Simplified) menus and dialogs; Flags: disablenouninstallwarning
 Name: ChineseTraditional_Language; Description: Chinese (Traditional) menus and dialogs; Flags: disablenouninstallwarning
 Name: Czeck_Language; Description: Czech menus and dialogs; Flags: disablenouninstallwarning
@@ -220,7 +220,7 @@ Name: {app}\Merge7z313U.dll; Type: files
 
 Name: {app}\ShellExtension.dll; Type: files
 
-Name: {app}\MergeBrazilian_Language.lang; Type: files
+Name: {app}\MergeBrazilian.lang; Type: files
 Name: {app}\MergeCatalan.lang; Type: files
 Name: {app}\MergeChineseSimplified.lang; Type: files
 Name: {app}\MergeChineseTraditional.lang; Type: files
@@ -283,7 +283,8 @@ Source: Runtimes\msvcrt.dll; DestDir: {sys}; Flags: restartreplace uninsneveruni
 Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile
 ; end VC system files
 
-Source: ..\ShellExtension\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete
+Source: ..\Build\MergeReleaseMinsize\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete; MinVersion: 4, 0
+Source: ..\Build\MergeUnicodeReleaseMinsize\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete; MinVersion: 0, 4
 
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
 Source: ..\Build\MergeUnicodeRelease\Merge7z313U.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 0, 4; Check: Install7ZipDll(313)
@@ -294,23 +295,23 @@ Source: ..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: ignoreversi
 Source: ..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(312)
 Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(311)
 
-Source: ..\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: Brazilian_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Components: Catalan_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: ChineseSimplified_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: ChineseTraditional_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: Czeck_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: Danish_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: Dutch_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: French_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: German_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: Italian_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: Korean_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Components: Norwegian_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergePolish.lang; DestDir: {app}; Components: Polish_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeRussian.lang; DestDir: {app}; Components: Russian_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: Slovak_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: Brazilian_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Components: Catalan_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: ChineseSimplified_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: ChineseTraditional_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: Czeck_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: Danish_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: Dutch_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: French_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: German_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: Italian_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: Korean_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Components: Norwegian_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Components: Polish_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}; Components: Russian_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: Slovak_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
 
 
 Source: ..\Docs\Users\Guide\*.*; DestDir: {app}\Docs\User's Guide\; Components: docs; Flags: ignoreversion sortfilesbyextension
@@ -843,6 +844,3 @@ begin
     end;
 end;
 
-
-[_ISTool]
-OutputExeFilename=D:\Programming\Visual C++\WinMerge\WinMerge\InnoSetup\Output\WinMerge 2.1.5.13.exe
