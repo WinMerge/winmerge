@@ -1,3 +1,7 @@
+2004-03-01 Kimmo
+ PATCH: [ 906872 ] Change ShellExtension to open directories non-recursive
+  Src: Merge.cpp Merge.h
+
 2004-02-28 WinMerge experimental release 2.1.5.12 (cvs)
 
 2004-02-28 Kimmo

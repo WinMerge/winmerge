@@ -239,8 +239,9 @@ BOOL CMergeApp::InitInstance()
 	UINT nFiles=0;
 	BOOL recurse=FALSE;
 	files.SetSize(2);
-	DWORD dwLeftFlags = 0;
-	DWORD dwRightFlags = 0;
+	DWORD dwLeftFlags = FFILEOPEN_NONE;
+	DWORD dwRightFlags = FFILEOPEN_NONE;
+
 	// Split commandline arguments into files & flags & recursive flag
 	ParseArgs(pMainFrame, files, nFiles, recurse, dwLeftFlags, dwRightFlags);
 
@@ -495,42 +496,45 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 
 /** 
  * @brief Helper function for selecting directory
- * @param [out]path Selected path is returned in this string
+ * @param [out] path Selected path is returned in this string
  * @param [in] root_path Initial path shown when dialog is opened
  * @param [in] title Title for path selection dialog
- * @param [in] filterid 0 or STRING ID for filter string - 0 means "All files (*.*)"
- * @param [in] is_open Selects Open/Save -dialog
- * @todo Use SHFolder* API?
+ * @param [in] hwndOwner Handle to owner window or NULL
+ * @return TRUE if valid folder selected (not cancelled)
  */
 BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/, 
-			 LPCTSTR title /*=NULL*/, 
-			 UINT filterid /*=0*/,
-			 BOOL is_open /*=TRUE*/) 
+			LPCTSTR title /*=NULL*/, 
+			HWND hwndOwner /*=NULL*/) 
 {
-	CString filters;
-	CString dirSelTag;
-	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
-	if (filterid != 0)
-		VERIFY(filters.LoadString(filterid));
-	else
-		VERIFY(filters.LoadString(IDS_ALLFILES));
+	BROWSEINFO bi;
+	LPMALLOC pMalloc;
+	LPITEMIDLIST pidl;
+	TCHAR szPath[MAX_PATH] = {0};
+	BOOL bRet = FALSE;
 	
-	DWORD flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
-	CFileDialog dlg(is_open, NULL, dirSelTag, flags, filters);
-	dlg.m_ofn.lpstrTitle = (LPCTSTR)title;
-	dlg.m_ofn.lpstrInitialDir = (LPTSTR)root_path;
+	bi.hwndOwner = hwndOwner;
+	bi.pidlRoot = NULL;  // Start from desktop folder
+	bi.pszDisplayName = szPath;
+	bi.lpszTitle = title;
+	bi.ulFlags = BIF_RETURNONLYFSDIRS; // | BIF_EDITBOX
+	bi.lpfn = NULL;
+	bi.lParam = NULL;
 
-	if (dlg.DoModal()==IDOK)
+	pidl = SHBrowseForFolder(&bi);
+
+	if (pidl)
 	{
-		CString fullPath;
-		CString tmpPath;
-		fullPath = dlg.GetPathName();
-		SplitFilename(fullPath, &tmpPath, NULL, NULL);
-		path = tmpPath;
-	 	return TRUE;
+		if (SHGetPathFromIDList(pidl, szPath))
+		{
+			path = szPath;
+			bRet = TRUE;
+		}
+
+		SHGetMalloc(&pMalloc);
+		pMalloc->Free(pidl);
+		pMalloc->Release();
 	}
-	path = _T("");
-	return FALSE;
+	return bRet;
 }
 
 BOOL CMergeApp::PreTranslateMessage(MSG* pMsg)

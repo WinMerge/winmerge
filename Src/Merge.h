@@ -142,8 +142,7 @@ BOOL SelectFile(CString& path, LPCTSTR root_path = NULL,
 
 BOOL SelectFolder(CString& path, LPCTSTR root_path = NULL, 
 			 LPCTSTR title = NULL, 
-			 UINT filterid = 0,
-			 BOOL is_open = TRUE);
+			 HWND hwndOwner = NULL);
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
