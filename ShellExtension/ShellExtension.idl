@@ -1,0 +1,38 @@
+// ShellExtension.idl : IDL source for ShellExtension.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ShellExtension.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(64200B75-83AE-464A-88C6-262E175BBA92),
+		dual,
+		helpstring("IWinMergeShell Interface"),
+		pointer_default(unique)
+	]
+	interface IWinMergeShell : IDispatch
+	{
+	};
+
+[
+	uuid(06029E17-28B5-456A-B866-4E79D98612FD),
+	version(1.0),
+	helpstring("ShellExtension 1.0 Type Library")
+]
+library SHELLEXTENSIONLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(4E716236-AA30-4C65-B225-D68BBA81E9C2),
+		helpstring("WinMerge_Shell Extension")
+	]
+	coclass WinMergeShell
+	{
+		[default] interface IWinMergeShell;
+	};
+};

@@ -1,0 +1,47 @@
+HKCR
+{
+	ShellExtension.WinMergeShell.1 = s 'WinMergeShell Class'
+	{
+		CLSID = s '{4E716236-AA30-4C65-B225-D68BBA81E9C2}'
+	}
+	ShellExtension.WinMergeShell = s 'WinMergeShell Class'
+	{
+		CLSID = s '{4E716236-AA30-4C65-B225-D68BBA81E9C2}'
+		CurVer = s 'ShellExtension.WinMergeShell.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {4E716236-AA30-4C65-B225-D68BBA81E9C2} = s 'WinMergeShell Class'
+		{
+			ProgID = s 'ShellExtension.WinMergeShell.1'
+			VersionIndependentProgID = s 'ShellExtension.WinMergeShell'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '06029E17-28B5-456A-B866-4E79D98612FD}'
+		}
+	}
+	NoRemove *
+	{
+		NoRemove ShellEx
+		{
+			NoRemove ContextMenuHandlers
+			{
+				ForceRemove WinMerge = s '{4E716236-AA30-4C65-B225-D68BBA81E9C2}'
+			}
+		}
+	}
+
+	NoRemove Directory
+	{
+		NoRemove ShellEx
+		{
+			NoRemove ContextMenuHandlers
+			{
+				ForceRemove WinMerge = s '{4E716236-AA30-4C65-B225-D68BBA81E9C2}'
+			}
+		}
+	}
+}
