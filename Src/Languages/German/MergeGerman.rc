@@ -1375,6 +1375,7 @@ BEGIN
     IDS_COMPMETHOD_CONTENTS "Inhalt"
     IDS_COMPMETHOD_MODDATE  "Änderungsdatum"
     IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
+    IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
 END
 
 STRINGTABLE DISCARDABLE

@@ -1,6 +1,11 @@
 2004-03-04 Kimmo
  Fix invalid return in paths_IsPathAbsolute()
   paths.cpp
+ PATCH: [ 907898 ] Detect filechange by another app before saving
+  Src: DiffContext.cpp DiffContext.h Merge.dsp Merge.rc MergeDoc.cpp
+   MergeDoc.h resource.h
+  Src new files: DiffFileInfo.cpp DiffFileInfo.h
+  Languages: *.rc resource.h
 
 2004-03-03 Perry
  fix BUG: [ 902430 ] copy&paste comment bug

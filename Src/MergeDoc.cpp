@@ -50,6 +50,8 @@
 #include "UniFile.h"
 #include "locality.h"
 #include "OptionsDef.h"
+#include "DiffFileInfo.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -779,7 +781,21 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, BOOL bLeft,
  */
 BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 {
+	DiffFileInfo fileInfo;
 	CString strSavePath(szPath);
+	BOOL bFileChanged = FALSE;
+
+	bFileChanged = IsFileChangedOnDisk(szPath, fileInfo, TRUE, bLeft);
+	if (bFileChanged)
+	{
+		CString msg;
+		AfxFormatString1(msg, IDS_FILECHANGED_ONDISK, szPath);
+		if (AfxMessageBox(msg, MB_ICONWARNING | MB_YESNO) == IDNO)
+		{
+			bSaveSuccess = SAVE_CANCELLED;
+			return TRUE;
+		}		
+	}
 
 	// use a temp packer
 	// first copy the m_pInfoUnpacker
@@ -846,9 +862,15 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	if (nSaveErrorCode == SAVE_DONE)
 	{
 		if (bLeft)
+		{
+			m_leftSaveFileInfo.Update(strSavePath);
 			m_strLeftFile = strSavePath;
+		}
 		else
+		{
+			m_rightSaveFileInfo.Update(strSavePath);
 			m_strRightFile = strSavePath;
+		}
 		UpdateHeaderPath(bLeft);
 		bSaveSuccess = TRUE;
 		result = TRUE;
@@ -903,9 +925,15 @@ BOOL CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 	if (nSaveErrorCode == SAVE_DONE)
 	{
 		if (bLeft)
+		{
+			m_leftSaveFileInfo.Update(strSavePath);
 			m_strLeftFile = strSavePath;
+		}
 		else
+		{
+			m_rightSaveFileInfo.Update(strSavePath);
 			m_strRightFile = strSavePath;
+		}
 		UpdateHeaderPath(bLeft);
 		bSaveSuccess = TRUE;
 		result = TRUE;
@@ -2116,6 +2144,36 @@ void CMergeDoc::PrimeTextBuffers()
 }
 
 /**
+ * @brief Checks if file has changed since last update (save or rescan).
+ * @param [in] szPath File to check
+ * @param [in] dfi Previous fileinfo of file
+ * @param [in] bSave If TRUE Compare to last save-info, else to rescan-info
+ * @param [in] bLeft If TRUE, compare left file, else right file
+ * @return TRUE if file is changed.
+ */
+BOOL CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
+	BOOL bSave, BOOL bLeft)
+{
+	DiffFileInfo *fileInfo = NULL;
+	BOOL bFileChanged = FALSE;
+
+	if (bLeft)
+		fileInfo = &m_leftSaveFileInfo;
+	else
+		fileInfo = &m_rightSaveFileInfo;
+
+	dfi.Update(szPath);
+
+	
+	if (dfi.mtime != fileInfo->mtime ||
+		dfi.size != fileInfo->size)
+	{
+		bFileChanged = TRUE;
+	}
+	return bFileChanged;
+}
+
+/**
  * @brief Asks and then saves modified files.
  *
  * This function saves modified files. User is asked about saving
@@ -2394,7 +2452,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	if (!sLeftFile.IsEmpty())
 	{
 		m_nLeftBufferType = BUFFER_NORMAL;
-
+		m_leftSaveFileInfo.Update(sLeftFile);
 		// Load left side file
 		nLeftSuccess = LoadFile(sLeftFile, TRUE, bROLeft, cpleft);
 	}
@@ -2411,6 +2469,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	if (!sRightFile.IsEmpty())
 	{
 		m_nRightBufferType = BUFFER_NORMAL;
+		m_rightSaveFileInfo.Update(sRightFile);
 
 		if (nLeftSuccess == FRESULT_OK)
 			nRightSuccess = LoadFile(sRightFile, FALSE, bRORight, cpright);

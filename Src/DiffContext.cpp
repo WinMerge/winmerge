@@ -34,6 +34,8 @@
 #include "paths.h"
 #include "coretools.h"
 #include "UniFile.h"
+#include "DiffFileInfo.h"
+
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -276,14 +278,6 @@ void CDiffContext::UpdateStatusFromDisk(POSITION diffpos)
 }
 
 /**
- * @brief Convert a FILETIME to a long (standard time)
- */
-static __int64 FileTimeToInt64(FILETIME & ft)
-{
-	return CTime(ft).GetTime();
-}
-
-/**
  * @brief Update information from disk (for one side)
  */
 void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
@@ -291,28 +285,7 @@ void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
 	UpdateVersion(di, dfi);
 
 	CString filepath = paths_ConcatPath(dfi.spath, di.sfilename);
-
-	// CFileFind doesn't expose the attributes
-	// CFileStatus doesn't expose 64 bit size
-
-	WIN32_FIND_DATA wfd;
-	HANDLE h = FindFirstFile(filepath, &wfd);
-	__int64 mtime64 = 0;
-	if (h != INVALID_HANDLE_VALUE)
-	{
-		mtime64 = FileTimeToInt64(wfd.ftLastWriteTime);
-		dfi.flags.reset();
-		if (wfd.dwFileAttributes & FILE_ATTRIBUTE_READONLY)
-			dfi.flags.flags += FileFlags::RO;
-		dfi.size = (wfd.nFileSizeHigh << 32) + wfd.nFileSizeLow;
-		FindClose(h);
-	}
-	else
-	{
-		dfi.size = 0;
-		dfi.flags.reset();
-	}
-	dfi.mtime = mtime64;
+	dfi.Update(filepath);
 	GuessEncoding(filepath, &dfi.unicoding, &dfi.codepage);
 }
 

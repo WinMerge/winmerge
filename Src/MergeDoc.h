@@ -32,6 +32,9 @@
 #include <vector>
 #include "DiffWrapper.h"
 
+#ifndef _DIFF_FILE_INFO_H_INCLUDED
+#include "DiffFileInfo.h"
+#endif
 
 /**
  * @brief additionnal action code for WinMerge (reserve 100 first codes for CrystalEdit)
@@ -76,9 +79,12 @@ enum BUFFERTYPE
 	BUFFER_NAMED, /**< Empty buffer saved and name given */
 };
 
+struct DiffFileInfo;
 class CMergeEditView;
 class CMergeDiffDetailView;
 class PackingInfo;
+class CChildFrame;
+class CDirDoc;
 
 //<jtuc 2003-06-28>
 /*
@@ -93,9 +99,6 @@ public:
 };
 */
 //<jtuc>
-
-class CChildFrame;
-class CDirDoc;
 
 /**
  * @brief Document class for merging two files
@@ -220,6 +223,8 @@ protected: // create from serialization only
 	
 	// Operations
 public:	
+	DiffFileInfo m_leftSaveFileInfo;
+	DiffFileInfo m_rightSaveFileInfo;
 	CPtrList m_undoList;
 	CArray<DIFFRANGE,DIFFRANGE> m_diffs;
 	UINT m_nDiffs; /**< Amount of diffs */
@@ -283,6 +288,8 @@ private:
 
 // Implementation
 public:
+	BOOL IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
+		BOOL bSave, BOOL bLeft);
 	BOOL SaveHelper(BOOL bAllowCancel);
 	std::vector<CMergeEditView*> undoTgt;
 	std::vector<CMergeEditView*>::iterator curUndo;

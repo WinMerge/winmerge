@@ -10,57 +10,14 @@
 #define AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_
 #pragma once
 
+#ifndef _DIFF_FILE_INFO_H_INCLUDED
+#include "DiffFileInfo.h"
+#endif
 
 struct dirdata
 {
   char const **names;	/* Sorted names of files in dir, 0-terminated.  */
   char *data;	/* Allocated storage for file names.  */
-};
-
-struct FileFlags
-{
-	int flags;
-	FileFlags() : flags(0) { }
-	void reset() { flags &= 0xFFFFFFFE; }
-	CString toString() const
-		{
-			CString sflags;
-			if (flags & RO)
-				sflags += _T("R");
-			if ((flags & coding) == UTF_8)
-				sflags += _T("8");
-			if ((flags & coding) == UCS_2BE)
-				sflags += _T("B");
-			if ((flags & coding) == UCS_2LE)
-				sflags += _T("L");
-			if ((flags & coding) == UCS_4)
-				sflags += _T("4");
-			return sflags;
-		}
-
-	enum { RO=1, coding=0x7000, UTF_8=0x1000, UCS_4=0x2000, UCS_2BE=0x3000, UCS_2LE=0x4000 };
-};
-
-/**
- * @brief information for file on one side of a diff
- */
-struct DiffFileInfo
-{
-	// storing __time_t if MSVC6 (__MSC_VER<1300)
-	// storing __time64_t if MSVC7 (VC.NET)
-	__int64 ctime; /**< time of creation */
-	__int64 mtime;
-	__int64 size; /**< file size in bytes */
-	CString version; /**< string of fixed file version, eg, 1.2.3.4 */
-	CString spath; /**< fully qualified directory of file */
-	FileFlags flags; /**< file attributes */
-	int codepage; /**< 8bit codepage, if applicable, 0 is unknown or N/A */
-	int unicoding; /**< Unicode encoding (ucr::CODESET) */
-	DiffFileInfo() : ctime(0), mtime(0), size(0), codepage(0), unicoding(0) { }
-
-	CString getEncodingString() const;
-	// We could stash a pointer here to the parent DIFFITEM
-	// but, I ran into trouble with, I think, the DIFFITEM copy constructor
 };
 
 // values for DIFFITEM.code

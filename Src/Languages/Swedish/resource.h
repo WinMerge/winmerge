@@ -180,6 +180,7 @@
 #define IDS_COMPMETHOD_CONTENTS         262
 #define IDS_COMPMETHOD_MODDATE          263
 #define IDS_PATH_NOT_ABSOLUTE           264
+#define IDS_FILECHANGED_ONDISK          265
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
