@@ -259,7 +259,7 @@ void GetFreeFunctionsInScripts(CStringArray & sNamesArray, LPCWSTR Transformatio
  *
  * @return Tells if the text has been changed 
  *
- * @note Event CONTEXT_MENU, ?
+ * @note Event EDITOR_SCRIPT, ?
  */
 BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent, int iFncChosen);
 

@@ -15,7 +15,7 @@
 Option Explicit
 
 Function get_PluginEvent()
-         get_PluginEvent = "CONTEXT_MENU"
+         get_PluginEvent = "EDITOR_SCRIPT"
 End Function
 
 Function get_PluginDescription()

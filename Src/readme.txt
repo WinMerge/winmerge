@@ -1,3 +1,10 @@
+2004-04-02 Laoran
+ Change plugins event title 'CONTEXT_MENU' -> 'EDITOR_SCRIPT'
+  Src: FileTransform.cpp FileTransform.h MergeEditView.cpp Plugins.cpp Plugins.h
+  Plugins/dlls: editor addin.sct insert datetime.sct list.txt
+  Plugins: list of sources.txt readme.txt syntax.txt
+  Plugins/src_VB/ToUpper: WinMergeScript.cls
+
 2004-04-01 Perry
  Remove most of obsolete keywords in rc file (a la Merge.rc 1.149, which didn't have them)
   Src: Merge.rc

@@ -15,7 +15,7 @@ PACK_UNPACK		Transform a file in a viewable format (for example, decompress a fi
 			The unpacker plugin is memorized, and the packing function is used when saving. One integer
 			 value may be passed from the unpacker to the packer (subcode).
 
-CONTEXT_MENU		For WinMerge editor, apply a function to the current selection
+EDITOR_SCRIPT		For WinMerge editor, apply a function to the current selection
 
 
 API
@@ -25,13 +25,13 @@ BUFFER_PREDIFF	    	data are exchanged through a BSTR
 FILE_PACK_UNPACK	data are exchanged through an input and an output file
 BUFFER_PACK_UNPACK      data are exchanged through a SafeArray (BSTR not available as the packed data are
     			possibly not text)
-CONTEXT_MENU	    	data are exchanged through a BSTR
+EDITOR_SCRIPT	    	data are exchanged through a BSTR
 
 
 Plugin selection
 ================
-CONTEXT_MENU
-Right-click in the editor to access a list of functions
+EDITOR_SCRIPT
+In main menu, "Edit"->"Scripts"->
 
 PACK_UNPACK and PREDIFF
 Two modes are available
@@ -62,7 +62,7 @@ Methods
 =======
 API			method name
 
-CONTEXT_MENU		function name is free	    Note : several functions may be defined in one plugin
+EDITOR_SCRIPT		function name is free	    Note : several functions may be defined in one plugin
 
 BUFFER_PREDIFF		PrediffBufferW
 FILE_PREDIFF            PrediffFile

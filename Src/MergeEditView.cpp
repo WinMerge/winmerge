@@ -1552,7 +1552,7 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 {
 	// get scripts list
 	CStringArray functionNamesList;
-	GetFreeFunctionsInScripts(functionNamesList, L"CONTEXT_MENU");
+	GetFreeFunctionsInScripts(functionNamesList, L"EDITOR_SCRIPT");
 
 	// empty the menu
 	int i = GetMenuItemCount(hMenu);
@@ -1889,8 +1889,8 @@ void CMergeEditView::OnScripts(UINT nID )
 	// text is CHAR if compiled without UNICODE, WCHAR with UNICODE
 	CString text = GetSelectedText();
 
-	// transform the text with a script/ActiveX function, event=USER_CONTEXT_MENU
-	BOOL bChanged = TextTransform_Interactive(text, L"CONTEXT_MENU", nID - ID_SCRIPT_FIRST);
+	// transform the text with a script/ActiveX function, event=EDITOR_SCRIPT
+	BOOL bChanged = TextTransform_Interactive(text, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);
 	if (bChanged)
 		// now replace the text
 		ReplaceSelection(text, 0);

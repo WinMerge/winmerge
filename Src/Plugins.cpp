@@ -348,9 +348,9 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 		return -1; 
 	}
 
-	// plugins CONTEXT_MENU : functions names are free
+	// plugins EDITOR_SCRIPT : functions names are free
 	// there may be several functions inside one script, count the number of functions
-	if (wcscmp(transformationEvent, L"CONTEXT_MENU") == 0)
+	if (wcscmp(transformationEvent, L"EDITOR_SCRIPT") == 0)
 	{
 		plugin.nFreeFunctions = CountMethodsInScript(lpDispatch);
 		if (plugin.nFreeFunctions == 0)

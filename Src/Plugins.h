@@ -73,7 +73,7 @@ public:
 	BOOL        bUnicodeMode;
 	BOOL        bAutomatic;
 	RegList*    filters;
-	/// only for plugins with free function names (CONTEXT_MENU)
+	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         nFreeFunctions;
 };
 
@@ -171,7 +171,7 @@ BOOL SearchScriptForFunctionName(LPDISPATCH piDispatch, WCHAR * functionName);
 
 /**
  * @brief Get the number of methods in the script
- * @note For free function scripts (CONTEXT_MENU)
+ * @note For free function scripts (EDITOR_SCRIPT)
  */
 int CountMethodsInScript(LPDISPATCH piDispatch);
 

@@ -5,7 +5,7 @@ Plugins may be written in any format that supports this interface. Examples are 
 	scriptlets (VBS,JS)
 	Delphi
 
-Limitation : scriptlets only work for CONTEXT_MENU plugins.
+Limitation : scriptlets only work for EDITOR_SCRIPT plugins.
 The plugins code is being rewritten, and in the next version, scriptlet will work for any event.
 
 
@@ -35,7 +35,7 @@ VB	Public Property Get PluginIsAutomatic() As Boolean
 
 Methods syntax
 ==============
-CONTEXT_MENU		Functions parameters (function names are free) :
+EDITOR_SCRIPT		Functions parameters (function names are free) :
 			C++	STDMETHOD(MakeUpperVB)([in] BSTR inputText, [out, retval] BSTR * outputText);
 			VB	Public Function MakeUpperVB(text As String)
 			VBS	Function MakeUpperVBS(Text)

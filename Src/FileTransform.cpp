@@ -53,7 +53,7 @@ extern LPCWSTR TransformationCategories[] =
 {
 	L"BUFFER_PREDIFF",
 	L"FILE_PREDIFF",
-	L"CONTEXT_MENU",
+	L"EDITOR_SCRIPT",
 	L"BUFFER_PACK_UNPACK",
 	L"FILE_PACK_UNPACK",
 	NULL,		// last empty : necessary

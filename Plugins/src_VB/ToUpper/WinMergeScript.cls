@@ -15,7 +15,7 @@ Option Explicit
 
 
 Public Property Get PluginEvent() As String
-         PluginEvent = "CONTEXT_MENU"
+         PluginEvent = "EDITOR_SCRIPT"
 End Property
 
 Public Property Get PluginDescription() As String
