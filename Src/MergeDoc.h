@@ -75,9 +75,6 @@ private :
 		BOOL SafeReadFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength);
 		int DetermineCRLFStyle(LPVOID lpBuf, DWORD dwLength);
 		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
-		int ReadEOL(TCHAR *lpLineEnd, DWORD bytesLeft, int nCrlfStyle);
-	    BOOL SafeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength);
-		BOOL SafeReplaceFile(LPCTSTR pszReplaced, LPCTSTR pszReplacement);
 public :
 	      bool curUndoGroup();
 	      void ReplaceLine(int nLine, const CString& strText);

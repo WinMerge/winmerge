@@ -1,3 +1,7 @@
+2003-04-13 Kimmo
+ PATCH: [ 719872 ] Use memory-mapped files when loading files
+  WinMerge: files.h files.cpp Merge.dsp MergeDoc.h MergeDoc.cpp
+
 2003-04-10 Kimmo
  PATCH: [ 717688 ] CrystalEditor optimisations and memleaks
   fix tab bug.

@@ -271,6 +271,10 @@ SOURCE=.\ED.C
 # End Source File
 # Begin Source File
 
+SOURCE=.\files.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\FNMATCH.C
 
 !IF  "$(CFG)" == "Merge - Win32 Release"
@@ -653,6 +657,10 @@ SOURCE=.\DirView.h
 # Begin Source File
 
 SOURCE=.\EditFile.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\files.h
 # End Source File
 # Begin Source File
 

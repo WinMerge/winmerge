@@ -37,6 +37,7 @@
 #include "cs2cs.h"
 #include "childFrm.h"
 #include "dirdoc.h"
+#include "files.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -848,8 +849,6 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 		}
 	}
 	return result;
-
-
 }
 
 
@@ -1137,117 +1136,52 @@ void CMergeDoc::CDiffTextBuffer::ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dw
 	InsertLine(lpLineBegin, dwLineLen);
 }
 
-// Reads different EOL formats and returns length of EOL
-// This function is safe: it first checks that there are unread bytes,
-// so that we do not read past EOF
-int CMergeDoc::CDiffTextBuffer::ReadEOL(TCHAR *lpLineEnd, DWORD bytesLeft, int nCrlfStyle)
-{
-	int eolBytes = 0;
-	
-	// EOL sensitive - ignore '\r' if '\r\n'
-	if (mf->m_bEolSensitive)
-	{
-		// If >1 bytes left, there can be '\n' too
-		if (*lpLineEnd == '\r' && bytesLeft > 1)
-		{
-			if (*(lpLineEnd+1) == '\n')
-			{
-				// '\r\n'
-				*(lpLineEnd+1) = '\0';
-				eolBytes = 2;
-			}
-			else
-			{
-				*(lpLineEnd) = '\0';
-				eolBytes = 1;
-			}
-		}
-		else
-		{
-			*(lpLineEnd) = '\0';
-			eolBytes = 1;
-		}
-	}
-	else
-	{
-		if (bytesLeft > 1)
-		{
-			if ( (*lpLineEnd == '\r') && *(lpLineEnd+1) == '\n')
-				eolBytes = 2;
-			else
-				eolBytes = 1;
-		}
-		else
-			eolBytes = 1;
-
-		*(lpLineEnd) = '\0';
-	}
-	return eolBytes;
-}
-
 BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/)
 {
 	ASSERT(!m_bInit);
 	ASSERT(m_aLines.GetSize() == 0);
-	HANDLE hFile = NULL;
-	BOOL bSuccess = TRUE;
-	LPTSTR pcBuf = NULL;
-	DWORD dwFileSize = 0;
+	MAPPEDFILEDATA fileData = {0};
 	CString sExt;
+	BOOL bSuccess = TRUE;
 
+	// Set encoding based on extension, if we know one
 	SplitFilename(pszFileName, NULL, NULL, &sExt);
 	CCrystalTextView::TextDefinition *def = 
 			CCrystalTextView::GetTextType((LPCTSTR)sExt);
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
 	
-	hFile =::CreateFile(pszFileName, GENERIC_READ,
-		FILE_SHARE_READ, NULL, OPEN_EXISTING,
-		FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL);
+	// Init filedata struct and open file as memory mapped 
+	_tcsncpy(fileData.fileName, pszFileName, sizeof(fileData.fileName));
+	fileData.bWritable = FALSE;
+	fileData.dwOpenFlags = OPEN_EXISTING;
+	bSuccess = files_openFileMapped(&fileData);
 
-	if (hFile != INVALID_HANDLE_VALUE)
-	{
-		dwFileSize = GetFileSize(hFile, NULL);
-		if ( dwFileSize != INVALID_FILE_SIZE )
-			pcBuf = new TCHAR[dwFileSize + 1];
-	}
-
-	// pcBuf is != NULL only if file was opened, size read and
-	// buffer allocated succesfully
-	if (pcBuf)
-	{
-		ZeroMemory( pcBuf, sizeof(TCHAR) * (dwFileSize + 1));
-		if (SafeReadFile(hFile, pcBuf, dwFileSize))
+	if (bSuccess)
 		{
 			//Try to determine current CRLF mode based on first line
 			if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-				nCrlfStyle = DetermineCRLFStyle(pcBuf, dwFileSize);
-		}
-		else
-			bSuccess = FALSE;
-	}
+			nCrlfStyle = DetermineCRLFStyle(fileData.pMapBase, fileData.dwSize);
 
-	if (bSuccess)
-	{
 		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
 		SetCRLFMode(nCrlfStyle);
 		
 		m_aLines.SetSize(0, 4096);
 		
 		DWORD dwBytesRead = 0;
-		TCHAR *lpChar = (TCHAR *) pcBuf;
+		TCHAR *lpChar = (TCHAR *)fileData.pMapBase;
 		TCHAR *lpLineBegin = lpChar;
 		int eolChars = 0;
-		while (dwBytesRead < dwFileSize)
+		while (dwBytesRead < fileData.dwSize)
 		{
 			TCHAR c = *lpChar;
 			
 			// EOL found
 			if (c == '\n' || c == '\r')
 			{
-				eolChars = ReadEOL(lpChar, dwFileSize - dwBytesRead,
-					nCrlfStyle);
+				eolChars = files_readEOL(lpChar, fileData.dwSize - dwBytesRead,
+						mf->m_bEolSensitive);
 				ReadLineFromBuffer(lpLineBegin, lpChar - lpLineBegin);
 					
 				lpChar += eolChars;
@@ -1269,50 +1203,13 @@ BOOL CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		m_nUndoBufSize = 1024; // crystaltextbuffer.cpp - UNDO_BUF_SIZE;
 		m_nSyncPosition = m_nUndoPosition = 0;
 		ASSERT(m_aUndoBuf.GetSize() == 0);
-		bSuccess = TRUE;
 		
 		UpdateViews(NULL, NULL, UPDATE_RESET);
 		m_ptLastChange.x = m_ptLastChange.y = -1;
+		bSuccess = TRUE;
 	}
 	
-	if (pcBuf != NULL)
-		delete[] pcBuf;
-
-	if (hFile != NULL && hFile != INVALID_HANDLE_VALUE)
-		::CloseHandle(hFile);
-	return bSuccess;
-}
-
-BOOL CMergeDoc::CDiffTextBuffer::SafeWriteFile(HANDLE hFile, LPVOID lpBuf, DWORD dwLength)
-{
-	DWORD dwWrittenBytes = 0;
-	if (WriteFile(hFile, lpBuf, dwLength, &dwWrittenBytes, NULL))
-	{
-		if (dwLength == dwWrittenBytes)
-			return TRUE;
-	}
-	return FALSE;
-}
-
-// Replace file with another file
-// Note order of parameters!
-// pszReplaced - this is the file to delete
-// pszReplacement - this file will be renamed to pszReplaced
-BOOL CMergeDoc::CDiffTextBuffer::SafeReplaceFile(LPCTSTR pszReplaced,
-		LPCTSTR pszReplacement)
-{
-	BOOL bSuccess = FALSE;
-	if (pszReplaced && pszReplacement)
-	{
-		// Delete the file we are replacing
-		// This fails if file does not exist, that's ok
-		::DeleteFile(pszReplaced);
-
-		// Rename remaining file to removed file
-		// This (renaming file) should not fail,
-		if (::MoveFile(pszReplacement, pszReplaced))
-			bSuccess = TRUE;
-	}
+	files_closeFileMapped(&fileData, 0xFFFFFFFF, FALSE);
 	return bSuccess;
 }
 
@@ -1369,12 +1266,12 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			LPTSTR pszBuf;
 			iconvert_new((LPCTSTR)text, &pszBuf, 1,
 					m_nSourceEncoding, m_nSourceEncoding == 15);
-			if (!SafeWriteFile(hTempFile, pszBuf, nBufSize))
+			if (!files_safeWriteFile(hTempFile, pszBuf, nBufSize))
 				bWriteFail = TRUE;
 			free(pszBuf);
 		}
 		else
-			if (!SafeWriteFile(hTempFile, (void *)(LPCTSTR)text, nBufSize))
+			if (!files_safeWriteFile(hTempFile, (void *)(LPCTSTR)text, nBufSize))
 				bWriteFail = TRUE;
 
 		// This means user wants to save file - let's play safe and
@@ -1387,7 +1284,7 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		if (bWriteFail == FALSE)
 		{
 			// Write tempfile over original file
-			if (SafeReplaceFile(pszFileName, szTempFileName))
+			if (files_safeReplaceFile(pszFileName, szTempFileName))
 			{
 				if (bClearModifiedFlag)
 				{
