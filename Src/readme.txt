@@ -1,3 +1,8 @@
+2004-01-11 Perry
+ Update Merge7z project files to build to ../Build directories
+ in same fashion as WinMerge project
+  Merge7z: Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp
+
 2004-01-09 Perry
  PATCH: [ 872762 ] Stricter error handling for Plugins
   WinMerge: Plugins.cpp
