@@ -59,7 +59,8 @@ CDirDoc::CDirDoc()
 	m_pDirView = NULL;
 	m_pCtxt=NULL;
 	m_bReuseMergeDocs = TRUE;
-	m_pFilter = NULL;
+	m_pFilterGlobal = NULL;
+	m_pFilterUI = NULL;
 	m_bRecursive = FALSE;
 }
 
@@ -74,8 +75,10 @@ CDirDoc::~CDirDoc()
 		pMergeDoc->DirDocClosing(this);
 	}
 	
-	if (m_pFilter != NULL)
-		delete m_pFilter;
+	if (m_pFilterGlobal != NULL)
+		delete m_pFilterGlobal;
+	if (m_pFilterUI != NULL)
+		delete m_pFilterUI;
 }
 
 // callback we give our frame
@@ -234,10 +237,13 @@ void CDirDoc::Rescan()
 	paths_normalize(m_pCtxt->m_strNormalizedLeft);
 	paths_normalize(m_pCtxt->m_strNormalizedRight);
 
-	if (m_pFilter == NULL)
-		m_pFilter = new DirDocFilter;
+	if (m_pFilterGlobal == NULL)
+		m_pFilterGlobal = new DirDocFilterGlobal;
+	m_pCtxt->m_piFilterGlobal = m_pFilterGlobal;
 
-	m_pCtxt->m_piFilter = m_pFilter;
+	if (m_pFilterUI == NULL)
+		m_pFilterUI = new DirDocFilterByExtension(m_pCtxt->m_strRegExp);
+	m_pCtxt->m_piFilterUI = m_pFilterUI;
 
 	// Empty display before new compare
 	m_pDirView->DeleteAllDisplayItems();
@@ -501,9 +507,12 @@ BOOL CDirDoc::ReusingDirDoc()
 	if (m_pCtxt != NULL)
 		delete m_pCtxt;
 	m_pCtxt = NULL;
-	if (m_pFilter != NULL)
-		delete m_pFilter;
-	m_pFilter = NULL;
+	if (m_pFilterGlobal != NULL)
+		delete m_pFilterGlobal;
+	m_pFilterGlobal = NULL;
+	if (m_pFilterUI != NULL)
+		delete m_pFilterUI;
+	m_pFilterUI = NULL;
 
 	return TRUE;
 }
@@ -632,5 +641,45 @@ void CDirDoc::SetDiffStatus(UINT diffcode, UINT mask, int idx)
 	m_pCtxt->SetDiffStatusCode(diffpos, diffcode, mask);
 	// update DIFFITEM time, and also tell views
 	ReloadItemStatus(idx);
+}
+
+
+BOOL DirDocFilterGlobal::includeDir(LPCTSTR szDirName) 
+{ 
+#ifdef _UNICODE
+	// TODO
+	// regexp has some problem in Unicode ? 2003-09-14
+	return TRUE;
+#endif
+	return theApp.includeDir(szDirName);
+}
+BOOL DirDocFilterGlobal::includeFile(LPCTSTR szFileName) 
+{ 
+#ifdef _UNICODE
+	// TODO
+	// regexp has some problem in Unicode ? 2003-09-14
+	return TRUE;
+#endif
+	return theApp.includeFile(szFileName);
+}
+
+DirDocFilterByExtension::DirDocFilterByExtension(LPCTSTR strRegExp)
+{
+	m_rgx.RegComp( strRegExp );
+}
+
+BOOL DirDocFilterByExtension::includeDir(LPCTSTR szDirName) 
+{ 
+	// directory have no extension
+	return TRUE;
+}
+BOOL DirDocFilterByExtension::includeFile(LPCTSTR szFileName) 
+{ 
+#ifdef _UNICODE
+	// TODO
+	// regexp has some problem in Unicode ? 2003-09-14
+	return TRUE;
+#endif
+	return (! m_rgx.RegFind(szFileName));
 }
 

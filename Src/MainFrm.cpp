@@ -1040,13 +1040,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				pDirDoc->SetReadOnly(TRUE, FALSE);
 				pDirDoc->SetReadOnly(FALSE, FALSE);
 				pDirDoc->SetRecursive(bRecurse);
-				pDirDoc->SetDiffContext(pCtxt);
-#ifdef _UNICODE
-	// TODO
-	// regexp has some problem in Unicode ? 2003-09-14
-#else
 				pCtxt->SetRegExp(strExt);
-#endif
+				pDirDoc->SetDiffContext(pCtxt);
 				pDirDoc->Rescan();
 				if (m_bScrollToFirst)
 				{

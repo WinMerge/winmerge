@@ -160,9 +160,9 @@ public:
 	CString m_strRight;
 	CString m_strNormalizedLeft;
 	CString m_strNormalizedRight;
-	CRegExp m_rgx;
 	CString m_strRegExp;
-	IDiffFilter * m_piFilter;
+	IDiffFilter * m_piFilterUI;
+	IDiffFilter * m_piFilterGlobal;
 	UINT m_msgUpdateStatus;
 	HWND m_hMainFrame;
 

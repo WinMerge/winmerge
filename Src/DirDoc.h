@@ -39,7 +39,8 @@
 
 class CMergeDoc;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocPtrList;
-class DirDocFilter;
+class DirDocFilterGlobal;
+class DirDocFilterByExtension;
 
 /**
  * @brief User-defined Windows-messages
@@ -120,7 +121,8 @@ protected:
 
 	// Implementation data
 private:
-	DirDocFilter * m_pFilter;
+	DirDocFilterGlobal * m_pFilterGlobal;
+	DirDocFilterByExtension * m_pFilterUI;
 	CDirView *m_pDirView;
 	MergeDocPtrList m_MergeDocs;
 	BOOL m_bReuseMergeDocs; // policy to reuse existing merge docs
@@ -129,13 +131,39 @@ private:
 	BOOL m_bRecursive;
 };
 
-/// callback for file/directory filtering during diff
-// actually we just forward these calls to the app, to CMergeApp::includeFile & includeDir
-class DirDocFilter : public IDiffFilter
+/**
+ * @brief callback for file/directory filtering during diff
+ *
+ * @note This one uses the current global filter.
+ */
+class DirDocFilterGlobal : public IDiffFilter
 {
 public:
-	virtual BOOL includeFile(LPCTSTR szFileName) { return theApp.includeFile(szFileName); }
-	virtual BOOL includeDir(LPCTSTR szDirName) { return theApp.includeDir(szDirName); }
+	// implement the interface IDiffFilter
+	/** @brief Return TRUE unless we're suppressing this directory by filter */
+	virtual BOOL includeDir(LPCTSTR szDirName);
+	/** @brief Return TRUE unless we're suppressing this file by filter */
+	virtual BOOL includeFile(LPCTSTR szFileName);
+};
+
+/**
+ * @brief callback for file/directory filtering during diff
+ *
+ * @note This one uses the extension list from the open dialog.
+ * Include only the matching files
+ */
+class DirDocFilterByExtension : public IDiffFilter
+{
+public:
+  DirDocFilterByExtension(LPCTSTR strRegExp);
+
+	// implement the interface IDiffFilter
+	/** @brief Return TRUE unless we're suppressing this directory by filter */
+	virtual BOOL includeDir(LPCTSTR szDirName);
+	/** @brief Return TRUE unless we're suppressing this file by filter */
+	virtual BOOL includeFile(LPCTSTR szFileName);
+private:
+	CRegExp m_rgx;
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -53,7 +53,8 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 
 	pNamesLeft = NULL;
 	pNamesRight = NULL;
-	m_piFilter = 0;
+	m_piFilterUI = 0;
+	m_piFilterGlobal = 0;
 	m_msgUpdateStatus = 0;
 	m_hMainFrame = NULL;
 }
@@ -70,8 +71,8 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	m_strLeft = pszLeft;
 	m_strRight = pszRight;
 	m_pList = src.m_pList;
-	SetRegExp(src.m_strRegExp);
-	m_piFilter = src.m_piFilter;
+	m_piFilterUI = src.m_piFilterUI;
+	m_piFilterGlobal = src.m_piFilterGlobal;
 	m_msgUpdateStatus = src.m_msgUpdateStatus;
 	m_hMainFrame = src.m_hMainFrame;
 
@@ -151,7 +152,6 @@ void CDiffContext::RemoveDiff(POSITION diffpos)
 void CDiffContext::SetRegExp(LPCTSTR pszExp)
 {
 	m_strRegExp = pszExp;
-	m_rgx.RegComp( pszExp );
 }
 
 void CDiffContext::RemoveAll()
