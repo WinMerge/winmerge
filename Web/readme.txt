@@ -1,3 +1,7 @@
+2004-11-18 Tim
+ PATCH: [ 1068542 ] Update Norwegian translation status
+  Web\developer\l10n: status.xml
+
 2004-11-12 Tim
  PATCH: [ 1064765 ] Web: Use always <h1>
   Web: index.php page.inc

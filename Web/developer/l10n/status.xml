@@ -230,14 +230,15 @@
   </language>
   <language>
     <name>Norwegian</name>
-    <status>4</status>
+    <status>2</status>
     <authors>
       <author>
         <name>Hans Fredrik Nordhaug</name>
-        <email>hansfn at gexcon dot com</email>
+        <email>hansfn at users dot sourceforge dot net</email>
       </author>
     </authors>
     <versions>
+      <version>2.2</version>
       <version>2.0</version>
     </versions>
   </language>
