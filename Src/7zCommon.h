@@ -1,8 +1,6 @@
 #include "../Merge7z/Merge7z.h"
 
-#if !defined(AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_)
 #include "DirView.h"
-#endif
 
 extern Merge7z::Proxy Merge7z;
 
@@ -97,3 +95,14 @@ void NTAPI Recall7ZipMismatchError();
 DWORD NTAPI VersionOf7zInstalled();
 DWORD NTAPI VersionOf7zLocal();
 
+HMODULE DllProxyHelper(LPCSTR *, ...);
+
+#ifdef _UNICODE
+#define DECORATE_A
+#define DECORATE_W "W"
+#else
+#define DECORATE_A "A"
+#define DECORATE_W
+#endif
+
+#define DECORATE_AW DECORATE_A DECORATE_W

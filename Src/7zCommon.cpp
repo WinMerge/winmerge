@@ -56,7 +56,8 @@ DATE:		BY:					DESCRIPTION:
 2004/03/15	Jochen Tucht		Fix Visual Studio 2003 build issue
 2004/04/13	Jochen Tucht		Avoid StrNCat to get away with shlwapi 4.71
 2004/08/25	Jochen Tucht		More explicit error message
-
+2004/10/17	Jochen Tucht		Leave decision whether to recurse into folders
+								to enumerator (Mask.Recurse)
 */
 
 // RCS ID line follows -- this is updated by CVS
@@ -117,7 +118,7 @@ int C7ZipMismatchException::FormatVersion(LPTSTR pcText, DWORD dwVersion)
 {
 	return wsprintf
 	(
-		pcText, dwVersion ? _T("%u.%u") : _T("-/-"),
+		pcText, dwVersion ? _T("%u.%02u") : _T("-/-"),
 		UINT HIWORD(dwVersion),
 		UINT LOWORD(dwVersion)
 	);
@@ -139,7 +140,7 @@ BOOL CALLBACK C7ZipMismatchException::DlgProc(HWND hWnd, UINT uMsg, WPARAM wPara
 			wsprintf
 			(
 				cText,
-				sizeof(TCHAR) == sizeof(WCHAR) ? _T("Merge7z%u%uU.dll") : _T("Merge7z%u%u.dll"),
+				sizeof(TCHAR) == sizeof(WCHAR) ? _T("Merge7z%u%02uU.dll") : _T("Merge7z%u%02u.dll"),
 				UINT HIWORD(pThis->m_dwVer7zRecommended),
 				UINT LOWORD(pThis->m_dwVer7zRecommended)
 			);
@@ -315,47 +316,50 @@ CTempPath::CTempPath(LPVOID pOwner)
 }
 
 /**
- * @brief Throw MFC exception to report missing file or dll export.
- */
-static VOID NTAPI ComplainNotFound(LPCSTR name)
-{
-	USES_CONVERSION;
-	AfxThrowFileException(CFileException::fileNotFound, -1, A2CT(name));
-}
-
-/**
  * @brief Load a dll and import a number of functions.
  */
-static HMODULE DllProxyHelper(LPCSTR *export, ...)
+HMODULE DllProxyHelper(LPCSTR *proxy, ...)
 {
 	HMODULE handle = 0;
-	if (LPCSTR format = *export)
+	LPCSTR name;
+	if ((name = *proxy) != NULL)
 	{
-		char path[MAX_PATH];
-		FormatMessageA
-		(
-			FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ARGUMENT_ARRAY,
-			format,
-			0,
-			0,
-			path,
-			sizeof path,
-			(va_list *)(&export + 1)
-		);
-		handle = LoadLibraryA(path);
-		if (handle)
+		if (proxy[1])
 		{
-			*export = 0;
-			while (LPCSTR name = *++export)
+			char path[MAX_PATH];
+			FormatMessageA
+			(
+				FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ARGUMENT_ARRAY,
+				name,
+				0,
+				0,
+				path,
+				sizeof path,
+				(va_list *)(&proxy + 1)
+			);
+			handle = LoadLibraryA(path);
+			if (handle)
 			{
-				*export = (LPCSTR)GetProcAddress(handle, name);
-				if (*export == 0)
+				LPCSTR *export = proxy;
+				*proxy = 0;
+				while ((name = *++export) != NULL)
 				{
-					ComplainNotFound(name);
+					*export = (LPCSTR)GetProcAddress(handle, name);
+					if (*export == 0)
+					{
+						*proxy = name;
+						handle = 0;
+						break;
+					}
 				}
+				*export = (LPCSTR)handle;
 			}
-			*export = (LPCSTR)handle;
 		}
+	}
+	if ((name = *proxy) != NULL)
+	{
+		USES_CONVERSION;
+		AfxThrowFileException(CFileException::fileNotFound, -1, A2CT(name));
 	}
 	return handle;
 }
@@ -371,7 +375,7 @@ DWORD NTAPI VersionOf7zInstalled()
 	TCHAR path[MAX_PATH];
 	DWORD size = sizeof path;
 	SHGetValue(HKEY_LOCAL_MACHINE, szSubKey, szValue, &type, path, &size);
-	PathAppend(path, _T("7-zip"));
+	PathAppend(path, _T("7-zip.dll"));
 	return GetDllVersion_Raw(path);
 }
 
@@ -383,7 +387,8 @@ DWORD NTAPI VersionOf7zLocal()
 	TCHAR path[MAX_PATH];
 	GetModuleFileName(0, path, sizeof path/sizeof*path);
 	PathRemoveFileSpec(path);
-	PathAppend(path, _T("7-zip"));
+	PathAppend(path, _T("7-zip.dll"));
+	// I've seen this fail w/o extension, although docs tell another story.
 	return GetDllVersion_Raw(path);
 }
 
@@ -401,15 +406,29 @@ interface Merge7z *Merge7z::Proxy::operator->()
 			if (DWORD ver = VersionOf7zInstalled())
 			{
 				flags = Initialize::Default;
-				if (DllProxyHelper(Merge7z, UINT HIWORD(ver), UINT LOWORD(ver)))
+				try
+				{
+					DllProxyHelper(Merge7z, UINT HIWORD(ver), UINT LOWORD(ver));
 					break;
+				}
+				catch (CException *e)
+				{
+					e->Delete();
+				}
 			}
 		default:
 			if (DWORD ver = VersionOf7zLocal())
 			{
 				flags = Initialize::Default | Initialize::Local7z;
-				if (DllProxyHelper(Merge7z, UINT HIWORD(ver), UINT LOWORD(ver)))
+				try
+				{
+					DllProxyHelper(Merge7z, UINT HIWORD(ver), UINT LOWORD(ver));
 					break;
+				}
+				catch (CException *e)
+				{
+					e->Delete();
+				}
 			}
 			do
 			{
@@ -460,7 +479,7 @@ UINT CompressSingleFile::Open()
  */
 Merge7z::Envelope *CompressSingleFile::Enum(Item &item)
 {
-	item.Mask.Item = item.Mask.Name|item.Mask.FullPath;
+	item.Mask.Item = item.Mask.Name|item.Mask.FullPath|item.Mask.Recurse;
 	item.Name = Name;
 	item.FullPath = FullPath;
 	return 0;
@@ -661,7 +680,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 		envelope->Name.Insert(0, m_strFolderPrefix);
 	}
 
-	item.Mask.Item = item.Mask.Name|item.Mask.FullPath|item.Mask.CheckIfPresent;
+	item.Mask.Item = item.Mask.Name|item.Mask.FullPath|item.Mask.CheckIfPresent|item.Mask.Recurse;
 	item.Name = envelope->Name;
 	item.FullPath = envelope->FullPath;
 	return envelope;
