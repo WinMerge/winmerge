@@ -1,3 +1,12 @@
+2004-03-30 seier
+  Fixed Swedish Language had a description of Spanish in the installer.  
+  Fixed Swedish was installing along with Spanish rather than the Swedish component description in the installer.  
+     Src: InnoSetup/WinMerge.iss
+  Release Notes Table template created in response to the table located at http://sourceforge.net/project/shownotes.php?release_id=226701.  
+     Src: Docs/Users/Release Notes Template.htm
+  Migration of /UsersGuide --> /Docs/Users/UsersGuide --> /Docs/Users/Guide Documented
+     Src: Docs/Developers/File Migration Log.htm
+
 2004-03-30 Laoran
  PATCH: [ 922724 ] "Don't display again" option for messageboxes
   Src: DirActions.cpp DirView.cpp MainFrm.cpp Merge.cpp Merge.dsp Merge.rc
