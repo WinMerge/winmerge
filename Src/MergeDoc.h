@@ -48,7 +48,6 @@
 /**
  * @brief Return statuses of file rescan
  */
-
 enum
 {
 	RESCAN_OK = 0,
@@ -182,6 +181,7 @@ public:
 	UINT m_nDiffs;
 	CString m_strLeftFile, m_strRightFile;
 
+	void ReadSettings();
 	BOOL OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft = FALSE, BOOL bRORight = FALSE);
 	int LoadFile(CString sFileName, BOOL bLeft);

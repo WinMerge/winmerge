@@ -335,7 +335,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
  */
 void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 {
-ToDoDeleteThisValidateColumnOrdering();
+	ToDoDeleteThisValidateColumnOrdering();
 	CMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 
@@ -716,7 +716,7 @@ int CDirView::GetItemIndex(DWORD key)
 
 	findInfo.flags = LVFI_PARAM;  // Search for itemdata
 	findInfo.lParam = key;
-	return m_pList->FindItem( &findInfo );
+	return m_pList->FindItem(&findInfo);
 }
 
 // User chose (context menu) open left
@@ -735,6 +735,7 @@ void CDirView::OnCtxtDirOpenLeftWith()
 {
 	DoOpenWith(SIDE_LEFT);
 }
+
 // User chose (context menu) open right with
 void CDirView::OnCtxtDirOpenRightWith()
 {
@@ -1171,9 +1172,19 @@ void CDirView::OnUpdateRefresh(CCmdUI* pCmdUI)
 		pCmdUI->Enable(TRUE);
 }
 
+/**
+ * @brief Called when compare thread asks UI update
+ * @note Currently thread asks update after compare is ready
+ */
 void CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 {
-	GetDocument()->Redisplay();
+	CDirDoc * pDoc = GetDocument();
+	ASSERT(pDoc);
+
+	// Currently UI (update) message is sent after compare is ready
+	pDoc->CompareReady();
+	pDoc->Redisplay();
+	
 	if (mf->m_bScrollToFirst)
 		OnFirstdiff();
 }

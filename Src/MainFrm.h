@@ -37,6 +37,9 @@
 
 #define BACKUP_FILE_EXT   _T(".bak")
 
+/**
+ * @brief Flags used when opening files
+ */
 enum
 {
 	FFILEOPEN_NONE		= 0x0000,
@@ -74,7 +77,6 @@ public:
 	BOOL m_bBackup;
 	LOGFONT m_lfDiff;
 	BOOL m_bFontSpecified;
-	BOOL m_bEolSensitive;
 	BOOL m_bReuseDirDoc; // policy to reuse existing dir doc
 	BOOL m_bAutomaticRescan;
 
@@ -113,8 +115,6 @@ protected:
 public:
 	BOOL m_bFirstTime;
 	CString m_strSaveAsPath;
-	BOOL m_bIgnoreBlankLines;
-	BOOL m_bIgnoreCase;
 	BOOL m_bIgnoreRegExp;
 	CString m_sPattern;
 	UINT m_nTabSize;
@@ -124,7 +124,6 @@ public:
 	CString m_strVssPassword;      // BSP - Visual Source Safe Password
 	int m_nVerSys;
 	BOOL m_bHideBak;
-	int m_nIgnoreWhitespace;
 	BOOL m_bScrollToFirst;
 	UINT m_nTabType;
 	BOOL m_bViewWhitespace;

@@ -40,34 +40,41 @@ enum
 };
 
 /**
- * @brief One difference defined by linenumbers
- * @note xxxx1 values are calculated in CMergeDoc::PrimeTextBuffers()
+ * @brief One difference defined by linenumbers.
+ *
+ * This struct defines one set of different lines "diff".
+ * @p begin0, @p end0, @p begin1 & @p end1 are linenumbers
+ * in original files. Other struct members point to linenumbers
+ * calculated by WinMerge after adding empty lines to make diffs
+ * be in line in screen.
+ *
+ * @note @p blank0 & @p blank1 are -1 if there are no blank lines
  */
 typedef struct tagDIFFRANGE
 {
-	UINT begin0,end0,begin1,end1;
-	UINT dbegin0,dend0,dbegin1,dend1;
-	int blank0,blank1;
-	BYTE op;
+	UINT begin0;	/**< First diff line in original file1 */
+	UINT end0;		/**< Last diff line in original file1 */
+	UINT begin1;	/**< First diff line in original file2 */
+	UINT end1;		/**< Last diff line in original file2 */
+	UINT dbegin0;	/**< First deleted line in file1 */
+	UINT dend0;		/**< Last deleted line in file1 */
+	UINT dbegin1;	/**< First deleted line in file2 */
+	UINT dend1;		/**< Last deleted line in file2 */
+	int blank0;		/**< Number of blank lines in file1 */
+	int blank1;		/**< Number of blank lines in file2 */
+	BYTE op;		/**< Operation done with this diff */
 } DIFFRANGE;
 
 /**
- * @brief Diffutils options
- * @note DO NOT add diff-unrelated data here!
+ * @brief Diffutils options users of this class must use
  */
-typedef struct tagDIFFSETTINGS
+typedef struct tagDIFFOPTIONS
 {
-	enum output_style outputStyle;
-	int context;
-	int alwaysText;
-	int horizLines;
-	int ignoreSpaceChange;
-	int ignoreAllSpace;
-	int ignoreBlankLines;
-	int ignoreCase;
-	int heuristic;
-	int recursive;
-} DIFFSETTINGS;
+	int nIgnoreWhitespace;
+	BOOL bIgnoreCase;
+	BOOL bIgnoreBlankLines;
+	BOOL bEolSensitive;
+} DIFFOPTIONS;
 
 /**
  * @brief Diffutils returns this statusdata about files compared
@@ -81,6 +88,26 @@ typedef struct tagDIFFSTATUS
 } DIFFSTATUS;
 
 /**
+ * @brief Internally used diffutils options
+ */
+typedef struct tagDIFFSETTINGS
+{
+	enum output_style outputStyle;
+	int context;
+	int alwaysText;
+	int horizLines;
+	int ignoreSpaceChange;
+	int ignoreAllSpace;
+	int ignoreBlankLines;
+	int ignoreCase;
+	int ignoreEOLDiff;
+	int ignoreSomeChanges;
+	int lengthVaries;
+	int heuristic;
+	int recursive;
+} DIFFSETTINGS;
+
+/**
  * @brief Wrapper class for GNU/diffutils
  */
 class CDiffWrapper
@@ -90,8 +117,8 @@ public:
 	void SetCompareFiles(CString file1, CString file2);
 	void SetPatchFile(CString file);
 	void SetDiffList(CArray<DIFFRANGE,DIFFRANGE> *diffs);
-	void GetOptions(DIFFSETTINGS *options);
-	void SetOptions(DIFFSETTINGS *options);
+	void GetOptions(DIFFOPTIONS *options);
+	void SetOptions(DIFFOPTIONS *options);
 	BOOL GetUseDiffList() const;
 	BOOL SetUseDiffList(BOOL bUseDiffList);
 	BOOL GetAppendFiles() const;
@@ -102,15 +129,21 @@ public:
 	void GetDiffStatus(DIFFSTATUS *status);
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
 	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left);
+	void StartDirectoryDiff();
+	void EndDirectoryDiff();
+	static void ReadDiffOptions(DIFFOPTIONS *options);
+	static void WriteDiffOptions(DIFFOPTIONS *options);
 
 protected:
-	void SwapToInternalOptions();
-	void SwapToGlobalOptions();
+	void InternalGetOptions(DIFFOPTIONS *options);
+	void InternalSetOptions(DIFFOPTIONS *options);
+	void SwapToInternalSettings();
+	void SwapToGlobalSettings();
 	CString FormatSwitchString();
 
 private:
-	DIFFSETTINGS m_options;
-	DIFFSETTINGS m_globalOptions;	// Temp for storing globals
+	DIFFSETTINGS m_settings;
+	DIFFSETTINGS m_globalSettings;	// Temp for storing globals
 	DIFFSTATUS m_status;
 	CString m_sFile1;
 	CString m_sFile2;

@@ -105,6 +105,9 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
+/**
+ * @brief MainFrame statusbar panels/indicators
+ */
 static UINT indicators[] =
 {
 	ID_SEPARATOR,           // status line indicator
@@ -126,9 +129,6 @@ CMainFrame::CMainFrame()
 	m_bFirstTime = TRUE;
 
 	m_bAutomaticRescan = theApp.GetProfileInt(_T("Settings"), _T("AutomaticRescan"), TRUE)!=0;
-	m_bIgnoreBlankLines = theApp.GetProfileInt(_T("Settings"), _T("IgnoreBlankLines"), FALSE)!=0;
-	m_bEolSensitive = theApp.GetProfileInt(_T("Settings"), _T("EolSensitive"), FALSE)!=0;
-	m_bIgnoreCase = theApp.GetProfileInt(_T("Settings"), _T("IgnoreCase"), FALSE)!=0;
 	m_bShowUniqueLeft = theApp.GetProfileInt(_T("Settings"), _T("ShowUniqueLeft"), TRUE)!=0;
 	m_bShowUniqueRight = theApp.GetProfileInt(_T("Settings"), _T("ShowUniqueRight"), TRUE)!=0;
 	m_bShowDiff = theApp.GetProfileInt(_T("Settings"), _T("ShowDifferent"), TRUE)!=0;
@@ -137,7 +137,6 @@ CMainFrame::CMainFrame()
 	m_bBackup = theApp.GetProfileInt(_T("Settings"), _T("BackupFile"), TRUE)!=0;
 	m_bViewWhitespace = theApp.GetProfileInt(_T("Settings"), _T("ViewWhitespace"), FALSE)!=0;
 	m_bScrollToFirst = theApp.GetProfileInt(_T("Settings"), _T("ScrollToFirst"), FALSE)!=0;
-	m_nIgnoreWhitespace = theApp.GetProfileInt(_T("Settings"), _T("IgnoreSpace"), 1);
 	m_bHideBak = theApp.GetProfileInt(_T("Settings"), _T("HideBak"), TRUE)!=0;
 	m_nVerSys = theApp.GetProfileInt(_T("Settings"), _T("VersionSystem"), 0);
 	m_strVssProject = theApp.GetProfileString(_T("Settings"), _T("VssProject"), _T(""));
@@ -195,21 +194,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	mf = this;
-	ignore_space_change_flag = (m_nIgnoreWhitespace==1);
-	ignore_all_space_flag = (m_nIgnoreWhitespace==2);
-	length_varies = (m_nIgnoreWhitespace!=0);
-	ignore_case_flag = m_bIgnoreCase;
-	ignore_blank_lines_flag = m_bIgnoreBlankLines;
-	ignore_eol_diff = !m_bEolSensitive;
-	ignore_some_changes = (m_nIgnoreWhitespace!=0) || m_bIgnoreCase || m_bIgnoreBlankLines || !m_bEolSensitive;
+	
 	// build the initial reg expression list
 	RebuildRegExpList();
-
-	heuristic = 1;
-	output_style = OUTPUT_NORMAL;
-    context = -1;
-    line_end_char = '\n';
-	//ignore_blank_lines_flag = 1;
 	GetFontProperties();
 	
 	if (!m_wndToolBar.CreateEx(this,TBSTYLE_FLAT,WS_CHILD|WS_VISIBLE|CBRS_GRIPPER|CBRS_TOP|CBRS_TOOLTIPS|CBRS_FLYBY|CBRS_SIZE_DYNAMIC) ||
@@ -409,6 +396,7 @@ void CMainFrame::OnUpdateHideBackupFiles(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_bHideBak);
 }
 
+/// Show GNU licence information in notepad (local file) or in Web Browser
 void CMainFrame::OnHelpGnulicense() 
 {
 	CString spath = GetModulePath() + _T("\\Copying");
@@ -669,6 +657,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 
 void CMainFrame::OnOptions() 
 {
+	DIFFOPTIONS diffOptions = {0};
 	CStringList filefilters;
 	CString selectedFilter;
 	theApp.GetFileFilterNameList(filefilters, selectedFilter);
@@ -691,10 +680,10 @@ void CMainFrame::OnOptions()
 	vss.m_strPath = m_strVssPath;
 
 	gen.m_bBackup = m_bBackup;
-	gen.m_nIgnoreWhite = m_nIgnoreWhitespace;
-	gen.m_bIgnoreCase = m_bIgnoreCase;
-	gen.m_bIgnoreBlankLines = m_bIgnoreBlankLines;
-	gen.m_bEolSensitive = m_bEolSensitive;
+	gen.m_nIgnoreWhite = diffOptions.nIgnoreWhitespace;
+	gen.m_bIgnoreCase = diffOptions.bIgnoreCase;
+	gen.m_bIgnoreBlankLines = diffOptions.bIgnoreBlankLines;
+	gen.m_bEolSensitive = diffOptions.bEolSensitive;
 	gen.m_bScroll = m_bScrollToFirst;
 	gen.m_nTabSize = m_nTabSize;
 	gen.m_nTabType = m_nTabType;
@@ -717,15 +706,10 @@ void CMainFrame::OnOptions()
 		theApp.m_bDisableSplash = gen.m_bDisableSplash;
 		m_bAutomaticRescan = gen.m_bAutomaticRescan;
 
-		m_nIgnoreWhitespace = gen.m_nIgnoreWhite;
-		ignore_all_space_flag = (m_nIgnoreWhitespace==2);
-		ignore_space_change_flag = (m_nIgnoreWhitespace==1);
-		ignore_blank_lines_flag = m_bIgnoreBlankLines = gen.m_bIgnoreBlankLines;
-		m_bEolSensitive = gen.m_bEolSensitive;
-		ignore_eol_diff = !m_bEolSensitive;
-		ignore_case_flag = m_bIgnoreCase = gen.m_bIgnoreCase;
-		ignore_some_changes = (m_nIgnoreWhitespace!=0) || m_bIgnoreCase || m_bIgnoreBlankLines || !m_bEolSensitive;
-		length_varies = (m_nIgnoreWhitespace!=0);
+		diffOptions.nIgnoreWhitespace = gen.m_nIgnoreWhite;
+		diffOptions.bIgnoreBlankLines = gen.m_bIgnoreBlankLines;
+		diffOptions.bEolSensitive = gen.m_bEolSensitive;
+		diffOptions.bIgnoreCase = gen.m_bIgnoreCase;
 		
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
 		m_sPattern = filter.m_sPattern;
@@ -739,16 +723,12 @@ void CMainFrame::OnOptions()
 		theApp.SetSelDiffTextColor(colors.m_clrSelDiffText);
 
 		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
-		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreSpace"), m_nIgnoreWhitespace);
 		theApp.WriteProfileInt(_T("Settings"), _T("ScrollToFirst"), m_bScrollToFirst);
 		theApp.WriteProfileInt(_T("Settings"), _T("BackupFile"), m_bBackup);
 		theApp.WriteProfileString(_T("Settings"), _T("VssPath"), m_strVssPath);
 		theApp.WriteProfileInt(_T("Settings"), _T("TabSize"), m_nTabSize);
 		theApp.WriteProfileInt(_T("Settings"), _T("TabType"), m_nTabType);
-		theApp.WriteProfileInt(_T("Settings"), _T("EolSensitive"), m_bEolSensitive);
 		theApp.WriteProfileInt(_T("Settings"), _T("AutomaticRescan"), m_bAutomaticRescan);
-		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreBlankLines"), m_bIgnoreBlankLines);
-		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreCase"), m_bIgnoreCase);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
 		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
 		theApp.WriteProfileInt(_T("Settings"), _T("DisableSplash"), theApp.m_bDisableSplash);
@@ -769,6 +749,9 @@ void CMainFrame::OnOptions()
 			CMergeEditView * pLeft = pMergeDoc->GetLeftView();
 			CMergeEditView * pRight = pMergeDoc->GetRightView();
 
+			// Re-read MergeDoc settings
+			pMergeDoc->ReadSettings();
+			
 			// Enable/disable automatic rescan (rescan after editing)
 			pLeft->EnableRescan(m_bAutomaticRescan);
 			pRight->EnableRescan(m_bAutomaticRescan);
@@ -800,6 +783,16 @@ void CMainFrame::OnOptions()
 		}
 		if (!savedAll)
 			AfxMessageBox(IDS_DIFF_OPEN_NO_SET_PROPS,MB_ICONEXCLAMATION);
+
+		// Update all dirdoc settings
+		DirDocList dirDocs;
+		GetAllDirDocs(&dirDocs);
+
+		while (!dirDocs.IsEmpty())
+		{
+			CDirDoc *pDirDoc = dirDocs.RemoveHead();
+			pDirDoc->ReadSettings();
+		}
 	}
 }
 
@@ -927,7 +920,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  m_nVerSys,
 				  m_strVssPath,
 				  m_bBackup,
-				  m_nIgnoreWhitespace,
 				  m_bScrollToFirst);
 	}
 
@@ -962,6 +954,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	return TRUE;
 }
 
+/// Creates backup before file is saved over
 BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 {
 	// first, make a backup copy of the original
@@ -1125,7 +1118,6 @@ void CMainFrame::UpdateCurrentFileStatus(CDirDoc * pDirDoc, UINT nStatus, int id
 	pDirDoc->m_pCtxt->UpdateStatusCode(diffpos, (BYTE)nStatus);
 	// update DIFFITEM time, and also tell views
 	pDirDoc->ReloadItemStatus(idx);
-	//m_pDirDoc->Redisplay();
 }
 
 void CMainFrame::OnViewSelectfont() 
@@ -1398,7 +1390,7 @@ add_regexp(struct regexp_list **reglist,
   *reglist = r;
 }
 
-// utility function to update CSuperComboBox format MRU
+/// Utility function to update CSuperComboBox format MRU
 void CMainFrame::addToMru(LPCSTR szItem, LPCSTR szRegSubKey, UINT nMaxItems)
 {
 	CString s,s2;
@@ -1447,12 +1439,13 @@ void CMainFrame::OnViewWhitespace()
 	}
 }
 
+/// Enables View/View Whitespace menuitem when merge view is active
 void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_bViewWhitespace);
 }
 
-// get list of MergeDocs (documents underlying edit sessions)
+/// Get list of MergeDocs (documents underlying edit sessions)
 void CMainFrame::GetAllMergeDocs(MergeDocList * pMergeDocs)
 {
 	CMultiDocTemplate * pTemplate = theApp.m_pDiffTemplate;
@@ -1464,7 +1457,7 @@ void CMainFrame::GetAllMergeDocs(MergeDocList * pMergeDocs)
 	}
 }
 
-// get list of DirDocs (documents underlying a scan)
+/// Get list of DirDocs (documents underlying a scan)
 void CMainFrame::GetAllDirDocs(DirDocList * pDirDocs)
 {
 	CMultiDocTemplate * pTemplate = theApp.m_pDirTemplate;
@@ -1476,7 +1469,7 @@ void CMainFrame::GetAllDirDocs(DirDocList * pDirDocs)
 	}
 }
 
-// get pointers to all views into typed lists (both arguments are optional)
+/// Get pointers to all views into typed lists (both arguments are optional)
 void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, DirViewList * pDirViews)
 {
 	for (POSITION pos = AfxGetApp()->GetFirstDocTemplatePosition(); pos; )
@@ -1520,14 +1513,14 @@ void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, DirViewList * pDirV
 	}
 }
 
-// Obtain a merge doc to display a difference in files
+/// Obtain a merge doc to display a difference in files
 CMergeDoc * CMainFrame::GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
 {
 	CMergeDoc * pMergeDoc = pDirDoc->GetMergeDocForDiff(pNew);
 	return pMergeDoc;
 }
 
-// get pointer to a dir doc for displaying a scan
+/// Get pointer to a dir doc for displaying a scan
 CDirDoc * CMainFrame::GetDirDocToShow(BOOL * pNew)
 {
 	CDirDoc * pDirDoc = 0;

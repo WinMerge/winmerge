@@ -33,12 +33,27 @@ extern int recursive;
 
 CDiffWrapper::CDiffWrapper()
 {
+	DIFFOPTIONS options = {0};
+	ZeroMemory(&m_settings, sizeof(DIFFSETTINGS));
+	ZeroMemory(&m_globalSettings, sizeof(DIFFSETTINGS));
 	ZeroMemory(&m_status, sizeof(DIFFSTATUS));
 	m_bCreatePatchFile = FALSE;
 	m_bUseDiffList = FALSE;
 	m_bAddCmdLine = TRUE;
 	m_bAppendFiles = FALSE;
 	m_nDiffs = 0;
+
+	// Read options from registry and convert
+	// to internal format
+	ReadDiffOptions(&options);
+	InternalSetOptions(&options);
+	m_settings.heuristic = 1;
+	m_settings.outputStyle = OUTPUT_NORMAL;
+    m_settings.context = -1;
+    
+	// What is this?
+	line_end_char = '\n';
+	//ignore_blank_lines_flag = 1;
 }
 
 /**
@@ -73,19 +88,19 @@ void CDiffWrapper::SetDiffList(CArray<DIFFRANGE,DIFFRANGE> *diffs)
 /**
  * @brief Returns current set of options used by diff-engine
  */
-void CDiffWrapper::GetOptions(DIFFSETTINGS *options)
+void CDiffWrapper::GetOptions(DIFFOPTIONS *options)
 {
 	ASSERT(options);
-	CopyMemory(options, &m_options, sizeof(DIFFSETTINGS));
+	InternalGetOptions(options);
 }
 
 /**
  * @brief Set options used by diff-engine
  */
-void CDiffWrapper::SetOptions(DIFFSETTINGS *options)
+void CDiffWrapper::SetOptions(DIFFOPTIONS *options)
 {
 	ASSERT(options);
-	CopyMemory(&m_options, options, sizeof(DIFFSETTINGS));
+	InternalSetOptions(options);
 }
 
 /**
@@ -130,7 +145,7 @@ BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
 BOOL CDiffWrapper::RunFileDiff()
 {
 	BOOL bRetStatus = FALSE;
-	SwapToInternalOptions();
+	SwapToInternalSettings();
 
 	if (m_bUseDiffList)
 		m_nDiffs = m_diffs->GetSize();
@@ -347,7 +362,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	if (free1)
 		free (free1);
 
-	SwapToGlobalOptions();
+	SwapToGlobalSettings();
 
 	bRetStatus = !failed;
 	if (failed)
@@ -362,58 +377,105 @@ BOOL CDiffWrapper::RunFileDiff()
 }
 
 /**
+ * @brief Return current diffutils options
+ */
+void CDiffWrapper::InternalGetOptions(DIFFOPTIONS *options)
+{
+	int nIgnoreWhitespace = 0;
+
+	if (m_settings.ignoreAllSpace)
+		nIgnoreWhitespace = 2;
+	else if (m_settings.ignoreSpaceChange)
+		nIgnoreWhitespace = 1;
+
+	options->nIgnoreWhitespace = nIgnoreWhitespace;
+	options->bIgnoreBlankLines = m_settings.ignoreBlankLines;
+	options->bIgnoreCase = m_settings.ignoreCase;
+	options->bEolSensitive = !m_settings.ignoreEOLDiff;
+
+}
+
+/**
+ * @brief Set diffutils options
+ */
+void CDiffWrapper::InternalSetOptions(DIFFOPTIONS *options)
+{
+	m_settings.ignoreAllSpace = (options->nIgnoreWhitespace == 2);
+	m_settings.ignoreSpaceChange = (options->nIgnoreWhitespace == 1);
+	m_settings.ignoreBlankLines = options->bIgnoreBlankLines;
+	m_settings.ignoreEOLDiff = !options->bEolSensitive;
+	m_settings.ignoreCase = options->bIgnoreCase;
+	m_settings.ignoreSomeChanges = (options->nIgnoreWhitespace != 0) ||
+		options->bIgnoreCase || options->bIgnoreBlankLines ||
+		!options->bEolSensitive;
+	m_settings.lengthVaries = (options->nIgnoreWhitespace!=0);
+}
+
+/**
  * @brief Replaces global options used by diff-engine with options in diff-wrapper
  */
-void CDiffWrapper::SwapToInternalOptions()
+void CDiffWrapper::SwapToInternalSettings()
 {
 	// Save current settings to temp variables
-	m_globalOptions.outputStyle = output_style;
-	output_style = m_options.outputStyle;
+	m_globalSettings.outputStyle = output_style;
+	output_style = m_settings.outputStyle;
 	
-	m_globalOptions.context = context;
-	context = m_options.context;
+	m_globalSettings.context = context;
+	context = m_settings.context;
 	
-	m_globalOptions.alwaysText = always_text_flag;
-	always_text_flag = m_options.alwaysText;
+	m_globalSettings.alwaysText = always_text_flag;
+	always_text_flag = m_settings.alwaysText;
 
-	m_globalOptions.horizLines = horizon_lines;
-	horizon_lines = m_options.horizLines;
+	m_globalSettings.horizLines = horizon_lines;
+	horizon_lines = m_settings.horizLines;
 
-	m_globalOptions.ignoreSpaceChange = ignore_space_change_flag;
-	ignore_space_change_flag = m_options.ignoreSpaceChange;
+	m_globalSettings.ignoreSpaceChange = ignore_space_change_flag;
+	ignore_space_change_flag = m_settings.ignoreSpaceChange;
 
-	m_globalOptions.ignoreAllSpace = ignore_all_space_flag;
-	ignore_all_space_flag = m_options.ignoreAllSpace;
+	m_globalSettings.ignoreAllSpace = ignore_all_space_flag;
+	ignore_all_space_flag = m_settings.ignoreAllSpace;
 
-	m_globalOptions.ignoreBlankLines = ignore_blank_lines_flag;
-	ignore_blank_lines_flag = m_options.ignoreBlankLines;
+	m_globalSettings.ignoreBlankLines = ignore_blank_lines_flag;
+	ignore_blank_lines_flag = m_settings.ignoreBlankLines;
 
-	m_globalOptions.ignoreCase = ignore_case_flag;
-	ignore_case_flag = m_options.ignoreCase;
+	m_globalSettings.ignoreCase = ignore_case_flag;
+	ignore_case_flag = m_settings.ignoreCase;
 
-	m_globalOptions.heuristic = heuristic;
-	heuristic = m_options.heuristic;
+	m_globalSettings.ignoreEOLDiff = ignore_eol_diff;
+	ignore_eol_diff = m_settings.ignoreEOLDiff;
 
-	m_globalOptions.recursive = recursive;
-	recursive = m_options.recursive;
+	m_globalSettings.ignoreSomeChanges = ignore_some_changes;
+	ignore_some_changes = m_settings.ignoreSomeChanges;
+
+	m_globalSettings.lengthVaries = length_varies;
+	length_varies = m_settings.lengthVaries;
+
+	m_globalSettings.heuristic = heuristic;
+	heuristic = m_settings.heuristic;
+
+	m_globalSettings.recursive = recursive;
+	recursive = m_settings.recursive;
 }
 
 /**
  * @brief Resumes global options as they were before calling SwapToInternalOptions()
  */
-void CDiffWrapper::SwapToGlobalOptions()
+void CDiffWrapper::SwapToGlobalSettings()
 {
 	// Resume values
-	output_style = m_globalOptions.outputStyle;
-	context = m_globalOptions.context;
-	always_text_flag = m_globalOptions.alwaysText;
-	horizon_lines = m_globalOptions.horizLines;
-	ignore_space_change_flag = m_globalOptions.ignoreSpaceChange;
-	ignore_all_space_flag = m_globalOptions.ignoreAllSpace;
-	ignore_blank_lines_flag = m_globalOptions.ignoreBlankLines;
-	ignore_case_flag = m_globalOptions.ignoreCase;
-	heuristic = m_globalOptions.heuristic;
-	recursive = m_globalOptions.recursive;
+	output_style = m_globalSettings.outputStyle;
+	context = m_globalSettings.context;
+	always_text_flag = m_globalSettings.alwaysText;
+	horizon_lines = m_globalSettings.horizLines;
+	ignore_space_change_flag = m_globalSettings.ignoreSpaceChange;
+	ignore_all_space_flag = m_globalSettings.ignoreAllSpace;
+	ignore_blank_lines_flag = m_globalSettings.ignoreBlankLines;
+	ignore_case_flag = m_globalSettings.ignoreCase;
+	ignore_eol_diff = m_globalSettings.ignoreEOLDiff;
+	ignore_some_changes = m_globalSettings.ignoreSomeChanges;
+	length_varies = m_globalSettings.lengthVaries;
+	heuristic = m_globalSettings.heuristic;
+	recursive = m_globalSettings.recursive;
 }
 
 /**
@@ -506,7 +568,7 @@ CString CDiffWrapper::FormatSwitchString()
 	CString switches;
 	TCHAR tmpNum[5] = {0};
 	
-	switch (m_options.outputStyle)
+	switch (m_settings.outputStyle)
 	{
 	case OUTPUT_CONTEXT:
 		switches = _T(" C");
@@ -534,22 +596,22 @@ CString CDiffWrapper::FormatSwitchString()
 		break;
 	}
 
-	if (m_options.context > 0)
+	if (m_settings.context > 0)
 	{
-		_itot(m_options.context, tmpNum, 10);
+		_itot(m_settings.context, tmpNum, 10);
 		switches += tmpNum;
 	}
 
-	if (m_options.ignoreAllSpace > 0)
+	if (m_settings.ignoreAllSpace > 0)
 		switches += _T("w");
 
-	if (m_options.ignoreBlankLines > 0)
+	if (m_settings.ignoreBlankLines > 0)
 		switches += _T("B");
 
-	if (m_options.ignoreCase > 0)
+	if (m_settings.ignoreCase > 0)
 		switches += _T("i");
 
-	if (m_options.ignoreSpaceChange > 0)
+	if (m_settings.ignoreSpaceChange > 0)
 		switches += _T("b");
 
 	return switches;
@@ -571,4 +633,42 @@ BOOL CDiffWrapper::SetAppendFiles(BOOL bAppendFiles)
 	BOOL temp = m_bAppendFiles;
 	m_bAppendFiles = bAppendFiles;
 	return temp;
+}
+
+/**
+ * @brief Sets options for directory compare
+ */
+void CDiffWrapper::StartDirectoryDiff()
+{
+	SwapToInternalSettings();
+}
+
+/**
+ * @brief resumes options after directory compare
+ */
+void CDiffWrapper::EndDirectoryDiff()
+{
+	SwapToGlobalSettings();
+}
+
+/**
+ * @brief Static function for reading diffoptions from registry
+ */
+void CDiffWrapper::ReadDiffOptions(DIFFOPTIONS *options)
+{
+	options->nIgnoreWhitespace = ::AfxGetApp()->GetProfileInt(_T("Settings"), _T("IgnoreSpace"), 1);
+	options->bIgnoreBlankLines = ::AfxGetApp()->GetProfileInt(_T("Settings"), _T("IgnoreBlankLines"), FALSE)!=0;
+	options->bEolSensitive = ::AfxGetApp()->GetProfileInt(_T("Settings"), _T("EolSensitive"), FALSE)!=0;
+	options->bIgnoreCase = ::AfxGetApp()->GetProfileInt(_T("Settings"), _T("IgnoreCase"), FALSE)!=0;
+}
+
+/**
+ * @brief Static function for writing diffoptions to registry
+ */
+void CDiffWrapper::WriteDiffOptions(DIFFOPTIONS *options)
+{
+	::AfxGetApp()->WriteProfileInt(_T("Settings"), _T("IgnoreSpace"), options->nIgnoreWhitespace);
+	::AfxGetApp()->WriteProfileInt(_T("Settings"), _T("EolSensitive"), options->bEolSensitive);
+	::AfxGetApp()->WriteProfileInt(_T("Settings"), _T("IgnoreBlankLines"), options->bIgnoreBlankLines);
+	::AfxGetApp()->WriteProfileInt(_T("Settings"), _T("IgnoreCase"), options->bIgnoreCase);
 }

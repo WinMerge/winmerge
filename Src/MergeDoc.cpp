@@ -238,8 +238,8 @@ void CMergeDoc::Dump(CDumpContext& dc) const
 */
 int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 {
-	DIFFSETTINGS diffSettings;
-	DIFFSTATUS status;
+	DIFFOPTIONS diffOptions = {0};
+	DIFFSTATUS status = {0};
 	BOOL diffSuccess;
 	int nResult = RESCAN_OK;
 
@@ -278,20 +278,8 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	m_diffWrapper.SetCompareFiles(m_strTempLeftFile, m_strTempRightFile);
 	m_diffWrapper.SetDiffList(&m_diffs);
 	m_diffWrapper.SetUseDiffList(TRUE);		// Add diffs to list
+	m_diffWrapper.GetOptions(&diffOptions);
 	
-	// Global diff-options
-	diffSettings.outputStyle = output_style;
-	diffSettings.context = context;
-	diffSettings.alwaysText = always_text_flag;
-	diffSettings.horizLines = horizon_lines;
-	diffSettings.ignoreSpaceChange = ignore_space_change_flag;
-	diffSettings.ignoreAllSpace = ignore_all_space_flag;
-	diffSettings.ignoreBlankLines = ignore_blank_lines_flag;
-	diffSettings.ignoreCase = ignore_case_flag;
-	diffSettings.heuristic = heuristic;
-	diffSettings.recursive = 0;		// File scan is always non-recursive!
-	m_diffWrapper.SetOptions(&diffSettings);
-
 	// Clear diff list
 	m_diffs.RemoveAll();
 	m_nDiffs = 0;
@@ -307,7 +295,7 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	// If comparing whitespaces and
 	// other file has EOL before EOF and other not...
 	if (status.bLeftMissingNL != status.bRightMissingNL &&
-		!mf->m_nIgnoreWhitespace)
+		!diffOptions.nIgnoreWhitespace)
 	{
 		// ..lasf DIFFRANGE of file which has EOL must be
 		// fixed to contain last line too
@@ -1710,9 +1698,11 @@ static int lastdiff(BOOL case_sensitive, int whitespace, const CString & str1, c
 	}
 }
 
-// Highlight difference in current line
+/// Highlight difference in current line
 void CMergeDoc::Showlinediff(CMergeEditView * pView)
 {
+	DIFFOPTIONS diffOptions = {0};
+	m_diffWrapper.GetOptions(&diffOptions);
 	CMergeEditView * pOther = (pView == m_pLeftView ? m_pRightView : m_pLeftView);
 
 	int line = pView->GetCursorPos().y;
@@ -1721,7 +1711,7 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView)
 	CString str1 = pView->GetLineChars(line);
 	CString str2 = pOther->GetLineChars(line);
 
-	int begin = firstdiff(!mf->m_bIgnoreCase, mf->m_nIgnoreWhitespace, str1, str2);
+	int begin = firstdiff(!diffOptions.bIgnoreCase, diffOptions.nIgnoreWhitespace, str1, str2);
 
 	if (begin<0)
 	{
@@ -1731,7 +1721,7 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView)
 	if (begin>=width)
 		begin = width;
 
-	int end = lastdiff(!mf->m_bIgnoreCase, mf->m_nIgnoreWhitespace, str1, str2)+1;
+	int end = lastdiff(!diffOptions.bIgnoreCase, diffOptions.nIgnoreWhitespace, str1, str2)+1;
 	if (end>=width)
 		end = width;
 
@@ -1812,12 +1802,14 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft)
 BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft, BOOL bRORight)
 {
+	DIFFOPTIONS diffOptions = {0};
 	int nRescanResult = RESCAN_OK;
+	m_diffWrapper.GetOptions(&diffOptions);
 	CChildFrame *pf = GetParentFrame();
 	ASSERT(pf);
 
-	m_ltBuf.SetEolSensitivity(mf->m_bEolSensitive);
-	m_rtBuf.SetEolSensitivity(mf->m_bEolSensitive);
+	m_ltBuf.SetEolSensitivity(diffOptions.bEolSensitive);
+	m_rtBuf.SetEolSensitivity(diffOptions.bEolSensitive);
 	undoTgt.clear();
 	curUndo = undoTgt.begin();
 
@@ -1901,4 +1893,18 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		return FALSE;
 	}
 	return TRUE;
+}
+
+/**
+ * @brief Read doc settings from registry
+ *
+ * @note Currently loads only diffutils settings, but later others too
+ */
+void CMergeDoc::ReadSettings()
+{
+	DIFFOPTIONS diffOptions = {0};
+	
+	// We have to first get current options
+	CDiffWrapper::ReadDiffOptions(&diffOptions);
+	m_diffWrapper.SetOptions(&diffOptions);
 }

@@ -35,6 +35,7 @@
 #include "DirView.h"
 #include "DiffContext.h"
 #include "diffThread.h"
+#include "DiffWrapper.h"
 
 class CMergeDoc;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocPtrList;
@@ -80,6 +81,8 @@ public:
 public:
 	BOOL GetReadOnly(BOOL bLeft) const;
 	void SetReadOnly(BOOL bLeft, BOOL bReadOnly);
+	void ReadSettings();
+	void CompareReady();
 	void UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unified);
 	POSITION FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight);
 	void SetDiffContext(CDiffContext *pCtxt);
@@ -102,6 +105,8 @@ public:
 
 protected:
 	void UpdateScreenItemStatus(UINT nIdx, DIFFITEM di);
+
+	CDiffWrapper m_diffWrapper;
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirDoc)

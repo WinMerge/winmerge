@@ -235,6 +235,8 @@ void CDirDoc::Rescan()
 
 	m_pCtxt->m_piFilter = m_pFilter;
 
+	m_diffWrapper.StartDirectoryDiff();
+	
 	m_diffThread.SetContext(m_pCtxt);
 	m_diffThread.SetHwnd(m_pDirView->GetSafeHwnd());
 	m_diffThread.SetMessageIDs(MSG_UI_UPDATE, MSG_STAT_UPDATE);
@@ -582,6 +584,27 @@ void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight, bool unifie
 
 	// Update view
 	UpdateScreenItemStatus(ind, current);
+}
+
+/**
+ * @brief Cleans up after directory compare
+ */
+void CDirDoc::CompareReady()
+{
+	m_diffWrapper.EndDirectoryDiff();
+}
+
+/**
+ * @brief Read doc settings from registry
+ *
+ * @note Currently loads only diffutils settings, but later others too
+ */
+void CDirDoc::ReadSettings()
+{
+	DIFFOPTIONS options;
+	
+	CDiffWrapper::ReadDiffOptions(&options);
+	m_diffWrapper.SetOptions(&options);
 }
 
 /**

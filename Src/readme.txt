@@ -1,3 +1,8 @@
+2003-08-29 Kimmo
+ PATCH: [ 796756 ] Diff API
+  WinMerge: DiffWrapper.h DiffWrapper.cpp DirDoc.h DirDoc.cpp DirView.cpp
+   MainFrm.h MainFrm.cpp MergeDoc.h MergeDoc.cpp 
+
 2003-08-28 Laoran
  PATCH: [ 794345 ] make visible the changed text when undo/redo
   WinMerge: MergeEditView.cpp
