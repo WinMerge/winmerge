@@ -1,3 +1,7 @@
+2004-03-30 Laoran
+ BUG [ 925202 ] broken feature: after save error, save with another filename
+  Src: MergeDoc.cpp
+
 2004-03-28 Kimmo
  PATCH: [ 913743 ] Icons for menuitems (RFE 873697)
   File/Exit and Help/Contents icons from Tim Gerundt

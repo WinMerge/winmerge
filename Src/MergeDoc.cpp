@@ -936,8 +936,10 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 			nSaveErrorCode = SAVE_NO_FILENAME;
 
 	if (nSaveErrorCode == SAVE_DONE)
+		// We have a filename, just try to save
 		nSaveErrorCode = pBuffer->SaveToFile(strSavePath, FALSE, &infoTempUnpacker);
-	else
+
+	if (nSaveErrorCode != SAVE_DONE)
 	{
 		// Saving failed, user may save to another location if wants to
 		do
