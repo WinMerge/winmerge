@@ -1,3 +1,8 @@
+2004-11-27 Jochen
+ Remove unneeded system.cpp (no longer present in 7z411+) from Merge7z DSPs
+  Merge7z: Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp
+  Merge7z407.dsp Merge7z408.dsp Merge7z409.dsp Merge7z410.dsp Merge7z411.dsp Merge7z412.dsp
+
 2004-11-20 Kimmo
  PATCH: [ 1058142 ] update coloring of batch file
   Submitted by Andre Arpin
