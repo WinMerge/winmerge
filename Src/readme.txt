@@ -1,3 +1,5 @@
+2004-10-24 WinMerge experimental release 2.1.7.16 (cvs) (Perry)
+
 2004-10-24 Perry
  PATCH: [ 1053282 ] Korean translation
  Src/Languages/Korean: MergeKorean.rc
