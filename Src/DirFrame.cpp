@@ -173,7 +173,7 @@ void CDirFrame::SetStatus(LPCTSTR szStatus)
  * @brief Set active filter name to statusbar
  * @param [in] szFilter Filtername to show
  */
-void CDirFrame::SetFilter(LPCTSTR szFilter)
+void CDirFrame::SetFilterStatusDisplay(LPCTSTR szFilter)
 {
 	m_wndStatusBar.SetPaneText(PANE_FILTER, szFilter);
 }
