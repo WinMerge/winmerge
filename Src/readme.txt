@@ -10,6 +10,9 @@
  PATCH: [ 1027183 ] Swedish Translation Update
   Submitted by Hans Eriksson
   Src/Languages/Swedish: MergeSwedish.rc
+ Fix couple of lang names in Swedish translation
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2004-09-12 Kimmo
  Fix Italian lang file build error and remove unneeded \n
