@@ -171,6 +171,7 @@ public:
 	void GotoLine(UINT nLine, BOOL bRealLine, BOOL bLeft);
 	int GetTopLine() { return m_nTopLine; };
 	int GetScreenLines() { return CCrystalTextView::GetScreenLines(); };
+	void RepaintLocationPane();
 
 	// to customize the mergeview menu
 	static HMENU createScriptsSubmenu(HMENU hMenu);

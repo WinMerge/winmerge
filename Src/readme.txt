@@ -1,3 +1,7 @@
+2005-02-02 Kimmo
+ BUG: [ 1039592 ] No differences shown after changing EOL options when loading
+  Src: MergeDoc.cpp MergeEditView.cpp MergeEditView.h
+
 2005-02-01 Kimmo
  Backout fix for bug [ 1110826 ] Regex $ breaks linefilter
   Src: MainFrm.cpp

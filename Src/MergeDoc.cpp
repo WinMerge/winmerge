@@ -2877,6 +2877,12 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		GetParentFrame()->DestroyWindow();
 		return FALSE;
 	}
+
+	// Force repaint of location pane to update it in case we had some warning
+	// dialog visible and it got painted before files were loaded
+	if (m_pLeftView)
+		m_pLeftView->RepaintLocationPane();
+
 	return TRUE;
 }
 

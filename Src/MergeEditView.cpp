@@ -2432,3 +2432,12 @@ void CMergeEditView::OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI)
 {
 	CCrystalEditViewEx::OnUpdateEditCopy(pCmdUI);
 }
+
+/**
+ * @brief Force repaint of location pane
+ */
+void CMergeEditView::RepaintLocationPane()
+{
+	if (m_pLocationView)
+		m_pLocationView->Invalidate();
+}
