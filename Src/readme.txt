@@ -1,3 +1,8 @@
+2005-03-02 Perry
+ PATCH: [ 1154259 ] Non blurred 'error.bmp'
+  New clearer error bitmap from Tim Gerundt
+  Src/Res: error.bmp
+
 2005-03-01 WinMerge experimental release 2.3.1.5 (cvs)
 
 2005-03-01 Kimmo
