@@ -1,3 +1,5 @@
+2003-12-03 WinMerge experimental release 2.1.5.1 (cvs)
+
 2003-12-01 Laoran
  reclassing strings in resource.h in same order as in Merge.rc
   WinMerge: resource.h
