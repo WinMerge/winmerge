@@ -1,3 +1,7 @@
+2003-10-03 Laoran
+ two minor changes for PATCH: [ 813794 ] Fix "ignore blank lines"
+  WinMerge: MergeDiffDetailView.cpp MergeDoc.cpp
+
 2003-10-03 Perry
  PATCH: [ 813794 ] Fix "ignore blank lines"
   WinMerge: analyze.c ColorButton.h Diff.cpp DIFF.H DiffWrapper.cpp 
