@@ -144,7 +144,7 @@ Name: Brazilian_Language; Description: Portuguese (Brazilian) menus and dialogs;
 Name: Russian_Language; Description: Russian menus and dialogs; Flags: disablenouninstallwarning
 Name: Slovak_Language; Description: Slovak menus and dialogs; Flags: disablenouninstallwarning
 Name: Spanish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning
-Name: Swedish_Language; Description: Spanish menus and dialogs; Flags: disablenouninstallwarning
+Name: Swedish_Language; Description: Swedish menus and dialogs; Flags: disablenouninstallwarning
 
 [InstallDelete]
 ;Experimental Versions 2.1.5.10 - WinMerge.2.1.5.13 shipped with the default behavior of creating a folder by the same name
@@ -317,7 +317,7 @@ Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Components: Polis
 Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}; Components: Russian_Language; Flags: ignoreversion
 Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: Slovak_Language; Flags: ignoreversion
 Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
-Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Swedish_Language; Flags: ignoreversion
 
 
 Source: ..\Docs\Users\Guide\*.*; DestDir: {app}\Docs\User's Guide\; Components: docs; Flags: ignoreversion sortfilesbyextension
