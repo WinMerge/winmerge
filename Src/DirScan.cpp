@@ -130,7 +130,8 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			CString newsub = subprefix + leftDirs[i].name;
 			if (!pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
 			{
-				StoreDiffResult(subdir, &leftDirs[i], &rightDirs[j], DIFFCODE::SKIPPED+DIFFCODE::DIR, pCtxt);
+				int nDiffCode = DIFFCODE::BOTH | DIFFCODE::SKIPPED | DIFFCODE::DIR;
+				StoreDiffResult(subdir, &leftDirs[i], &rightDirs[j], nDiffCode, pCtxt);
 			}
 			else
 			{
@@ -139,7 +140,8 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 					// Non-recursive compare
 					// We are only interested about list of subdirectories to show - user can open them
 					// TODO: scan one level deeper to see if directories are identical/different
-					StoreDiffResult(subdir, &leftDirs[i], &rightDirs[j], DIFFCODE::DIR, pCtxt);
+					int nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR;
+					StoreDiffResult(subdir, &leftDirs[i], &rightDirs[j], nDiffCode, pCtxt);
 				}
 				else
 				{
@@ -172,9 +174,11 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 		{
 			// Test against filter
 			CString newsubfile = subprefix + leftFiles[i].name;
+			int nDiffCode = DIFFCODE::LEFT | DIFFCODE::FILE;
 			if (!pCtxt->m_piFilterUI->includeFile(newsubfile) || !pCtxt->m_piFilterGlobal->includeFile(newsubfile))
 			{
-				StoreDiffResult(subdir, &leftFiles[i], 0, DIFFCODE::LEFT | DIFFCODE::FILE | DIFFCODE::SKIPPED, pCtxt);
+				nDiffCode |= DIFFCODE::SKIPPED;
+				StoreDiffResult(subdir, &leftFiles[i], 0, nDiffCode, pCtxt);
 			}
 			else if (mf->m_nCompMethod != 1)
 			{
@@ -182,11 +186,11 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 				CString filepath = sLeftDir + backslash + leftFiles[i].name;
 				DiffFileData diffdata;
 				diffdata.prepAndCompareTwoFiles(pCtxt, filepath, filepath);
-				StoreDiffResult(subdir, &leftFiles[i], 0, DIFFCODE::LEFT | DIFFCODE::FILE, pCtxt, &diffdata);
+				StoreDiffResult(subdir, &leftFiles[i], 0, nDiffCode, pCtxt, &diffdata);
 			}
 			else
 			{
-				StoreDiffResult(subdir, &leftFiles[i], 0, DIFFCODE::LEFT | DIFFCODE::FILE, pCtxt);
+				StoreDiffResult(subdir, &leftFiles[i], 0, nDiffCode, pCtxt);
 			}
 			// Advance left pointer over left-only entry, and then retest with new pointers
 			++i;
@@ -196,9 +200,11 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 		{
 			// Test against filter
 			CString newsubfile = subprefix + rightFiles[j].name;
+			int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::FILE;
 			if (!pCtxt->m_piFilterUI->includeFile(newsubfile) || !pCtxt->m_piFilterGlobal->includeFile(newsubfile))
 			{
-				StoreDiffResult(subdir, 0, &rightFiles[j], DIFFCODE::RIGHT | DIFFCODE::FILE | DIFFCODE::SKIPPED, pCtxt);
+				nDiffCode |= DIFFCODE::SKIPPED;
+				StoreDiffResult(subdir, 0, &rightFiles[j], nDiffCode, pCtxt);
 			}
 			else if (mf->m_nCompMethod != 1)
 			{
@@ -206,11 +212,11 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 				CString filepath = sRightDir + backslash + rightFiles[j].name;
 				DiffFileData diffdata;
 				diffdata.prepAndCompareTwoFiles(pCtxt, filepath, filepath);
-				StoreDiffResult(subdir, 0, &rightFiles[j], DIFFCODE::RIGHT | DIFFCODE::FILE, pCtxt, &diffdata);
+				StoreDiffResult(subdir, 0, &rightFiles[j], nDiffCode, pCtxt, &diffdata);
 			}
 			else
 			{
-				StoreDiffResult(subdir, 0, &rightFiles[j], DIFFCODE::RIGHT | DIFFCODE::FILE, pCtxt);
+				StoreDiffResult(subdir, 0, &rightFiles[j], nDiffCode, pCtxt);
 			}
 			// Advance right pointer over right-only entry, and then retest with new pointers
 			++j;
@@ -220,9 +226,11 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 		{
 			ASSERT(j<rightFiles.GetSize());
 			CString newsubfile = subprefix + leftFiles[i].name;
+			int nDiffCode = DIFFCODE::BOTH | DIFFCODE::FILE;
 			if (!pCtxt->m_piFilterUI->includeFile(newsubfile) || !pCtxt->m_piFilterGlobal->includeFile(newsubfile))
 			{
-				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], DIFFCODE::SKIPPED+DIFFCODE::FILE, pCtxt);
+				nDiffCode |= DIFFCODE::SKIPPED;
+				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], nDiffCode, pCtxt);
 				++i;
 				++j;
 				continue;
@@ -236,11 +244,12 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			if (mf->m_nCompMethod == 1)
 			{
 					// Compare only by modified date
-				int code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
-					if (leftFiles[i].mtime != rightFiles[j].mtime)
-						code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::DIFF;
+				if (leftFiles[i].mtime == rightFiles[j].mtime)
+					nDiffCode |= DIFFCODE::TEXT | DIFFCODE::SAME;
+				else
+					nDiffCode |= DIFFCODE::TEXT | DIFFCODE::DIFF;
 				// report result back to caller
-				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt);
+				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], nDiffCode, pCtxt);
 				++i;
 				++j;
 				continue;
@@ -250,9 +259,9 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			CString filepath2 = sRightDir + backslash + rightname;
 					// Really compare
 			DiffFileData diffdata;
-			int code = diffdata.prepAndCompareTwoFiles(pCtxt, filepath1, filepath2);
+			nDiffCode |= diffdata.prepAndCompareTwoFiles(pCtxt, filepath1, filepath2);
 				// report result back to caller
-			StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], code, pCtxt, &diffdata);
+			StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], nDiffCode, pCtxt, &diffdata);
 			++i;
 			++j;
 			continue;

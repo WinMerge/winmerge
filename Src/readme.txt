@@ -6,6 +6,8 @@
  PATCH: [ 945152 ] Installer: My last revisions
   InnoSetup: WinMerge Localized.iss
   InnoSetup/Languages: *.isl (except Swedish.isl)
+ PATCH: [ 950236 ] Set DIFFCODE::BOTH correctly
+  Src: DirScan.cpp
 
 2004-05-12 Kimmo
  PATCH: [ 948448 ] Remove WinMerge.exe path from system options
