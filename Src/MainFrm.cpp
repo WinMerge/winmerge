@@ -2691,3 +2691,32 @@ void CMainFrame::SelectFilter()
 {
 	OnToolsFilters();
 }
+
+/**
+ * @brief Closes application with ESC.
+ *
+ * Application is closed if:
+ * - 'Close Windows with ESC' option is enabled
+ * - there is no open document windows
+ */
+BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
+{
+	// Check if we got 'ESC pressed' -message
+	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
+	{
+		if (m_options.GetInt(OPT_CLOSE_WITH_ESC))
+		{
+			MergeDocList docs;
+			GetAllMergeDocs(&docs);
+			DirDocList dirDocs;
+			GetAllDirDocs(&dirDocs);
+
+			if (docs.IsEmpty() && dirDocs.IsEmpty())
+			{
+				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
+				return FALSE;
+			}
+		}
+	}
+	return CMDIFrameWnd::PreTranslateMessage(pMsg);
+}
