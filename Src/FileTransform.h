@@ -1,6 +1,7 @@
 #ifndef FileTransform_h
 #define FileTransform_h
 
+#include "resource.h"
 
 class CRegExp;
 typedef CTypedPtrList<CPtrList, CRegExp*>RegList;
@@ -57,13 +58,12 @@ public:
 		fncUnpack = UnpackPass;
 		// and init bAutomatic flag and name according to global variable
 		if (bLocalUnpackerMode == UNPACK_MANUAL)
-		{
-			pluginName = _T("<None>");
+		{			
 			bToBeScanned = FALSE;
 		}
 		else
 		{
-			pluginName = _T("<Automatic>");
+			VERIFY(pluginName.LoadString(IDS_USERCHOICE_AUTOMATIC));
 			bToBeScanned = TRUE;
 		}
 	};

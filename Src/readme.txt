@@ -1,3 +1,8 @@
+2003-11-11 Laoran
+ PATCH: [ 831308 ] File filter selection text "<None>" hardcoded
+  WinMerge: FileTransform.h Merge.cpp Merge.rc PropFilter.cpp SelectUnpackerDlg.cpp
+   resource.h
+
 2003-11-09 Laoran
  PATCH: [ 838574 ] SplitterWndEx OnHScroll
   common: SplitterWndEx.cpp SplitterWndEx.h

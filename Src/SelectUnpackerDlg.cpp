@@ -52,12 +52,12 @@ void CSelectUnpackerDlg::Initialize()
 	noPlugin = new PluginInfo;
 	noPlugin->lpDispatch = NULL;
 	noPlugin->filters = NULL;
-	noPlugin->name = _T("<None>");
+	VERIFY(noPlugin->name.LoadString(IDS_USERCHOICE_NONE));
 	automaticPlugin = new PluginInfo;
 	automaticPlugin->lpDispatch = NULL;
 	automaticPlugin->filters = NULL;
-	automaticPlugin->name = _T("<Automatic>");
-	automaticPlugin->description = _T("Employ the first adapted unpacker (rely on filenames filtering)");
+	VERIFY(automaticPlugin->name.LoadString(IDS_USERCHOICE_AUTOMATIC));
+	VERIFY(automaticPlugin->description.LoadString(ID_UNPACK_AUTO));
 
 	m_pPlugin = noPlugin;
 

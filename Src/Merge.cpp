@@ -661,7 +661,7 @@ void CMergeApp::GetFileFilters(StringPairArray * filters, CString & selected) co
 /** @brief Store current filter (if filter manager validates the name) */
 void CMergeApp::SetFileFilterPath(LPCTSTR szFileFilterPath)
 {
-	m_sFileFilterPath = _T("<None>");
+	VERIFY(m_sFileFilterPath.LoadString(IDS_USERCHOICE_NONE));
 	if (!m_fileFilterMgr) return;
 	m_currentFilter = m_fileFilterMgr->GetFilterByPath(szFileFilterPath);
 	if (m_currentFilter)

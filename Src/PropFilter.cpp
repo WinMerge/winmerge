@@ -88,7 +88,7 @@ int CPropFilter::AddFilter(int i)
 	if (i>=0)
 		name = m_Filters->GetAt(i).second;
 	else
-		name = _T("<None>"); // TODO: Globalize
+		VERIFY(name.LoadString(IDS_USERCHOICE_NONE));
 	int index = m_cboFileFilter.AddString(name);
 	m_cboFileFilter.SetItemData(index, i);
 	return index;
@@ -112,7 +112,7 @@ void CPropFilter::OnSelchangeFileFilter()
 	if (index<=0) // Cannot edit #0 ("<None>")
 	{
 		m_btnEditFileFilter.EnableWindow(FALSE);
-		m_sFileFilterPath = _T("");
+		VERIFY(m_sFileFilterPath.LoadString(IDS_USERCHOICE_NONE));
 	}
 	else
 	{
