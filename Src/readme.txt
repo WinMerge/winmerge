@@ -1,3 +1,7 @@
+2003-10-23 Laoran
+ recovering Czech and Slovak custom characters (they were changed to '?')
+  Languages: Czech.rc Slovak.rc
+
 2003-10-23 Perry
  PATCH: [ 826250 ] New UniMemFile class for memory-mapping
   WinMerge: Merge.dsp MergeDoc.cpp

@@ -82,16 +82,16 @@ BEGIN
         MENUITEM "Kopírovat na druhou stranu",  ID_POPUP_COPYTOOTHERSIDE
         MENUITEM "Kopírovat z druhé strany",    ID_POPUP_COPYFROMOTHERSIDE
         MENUITEM SEPARATOR
-        MENUITEM "Kopírovat v?echny rozdíly na druhou stranu...",
+        MENUITEM "Kopírovat všechny rozdíly na druhou stranu...",
                                                 ID_POPUP_COPYALLDIFFSTOOTHERSIDE
 
-        MENUITEM "Kopírovat v?echny rozdíly z druhé strany...",
+        MENUITEM "Kopírovat všechny rozdíly z druhé strany...",
                                                 ID_POPUP_COPYALLDIFFSFROMOTHERSIDE
 
         MENUITEM SEPARATOR
         MENUITEM "Zpìt",                        ID_UNDO
         MENUITEM SEPARATOR
-        MENUITEM "Ulo?it zmìny...",             ID_POPUP_SAVE
+        MENUITEM "Uložit zmìny...",             ID_POPUP_SAVE
     END
 END
 
@@ -100,7 +100,7 @@ BEGIN
     POPUP "&Soubor"
     BEGIN
         MENUITEM "&Otevøít...\tCtrl+O",         ID_FILE_OPEN
-        MENUITEM "&Ulo?it\tCtrl+S",             ID_FILE_SAVE
+        MENUITEM "&Uložit\tCtrl+S",             ID_FILE_SAVE
         POPUP "Save &Left"
         BEGIN
             MENUITEM "&Save",                       ID_FILE_SAVE_LEFT
@@ -131,7 +131,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "V&yoíznout\tCtrl+X",          ID_EDIT_CUT
         MENUITEM "&Kopírovat\tCtrl+C",          ID_EDIT_COPY
-        MENUITEM "V&lo?it\tCtrl+V",             ID_EDIT_PASTE
+        MENUITEM "V&ložit\tCtrl+V",             ID_EDIT_PASTE
         MENUITEM SEPARATOR
         MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
@@ -153,7 +153,7 @@ BEGIN
         MENUITEM "Skrýt soubory s pøíponou *.&BAK", ID_HIDE_BACKUP_FILES
         MENUITEM SEPARATOR
         MENUITEM "&Zvolit písmo...",            ID_VIEW_SELECTFONT
-        MENUITEM "Pou?ít základní písm&o",      ID_VIEW_USEDEFAULTFONT
+        MENUITEM "Použít základní písm&o",      ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "&View Whitespace",            ID_VIEW_WHITESPACE
         MENUITEM SEPARATOR
@@ -172,14 +172,14 @@ BEGIN
         MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
         MENUITEM "Last &Difference\tAlt+End",   ID_LASTDIFF
         MENUITEM SEPARATOR
-        MENUITEM "Kopírovat vp&ravo\t?ipka vpravo", ID_L2R
-        MENUITEM "Kopírovat vl&evo\t?ipka vlevo", ID_R2L
+        MENUITEM "Kopírovat vp&ravo\tŠipka vpravo", ID_L2R
+        MENUITEM "Kopírovat vl&evo\tŠipka vlevo", ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "Copy to Right and Advance\tAlt+Ctrl+Right", ID_R2LNEXT
         MENUITEM "Copy to Left and Advance\tAlt+Ctrl+Left", ID_L2RNEXT
         MENUITEM SEPARATOR
-        MENUITEM "Kopírovat v?e vpravo",        ID_ALL_RIGHT
-        MENUITEM "Kopírovat v?e vlevo",         ID_ALL_LEFT
+        MENUITEM "Kopírovat vše vpravo",        ID_ALL_RIGHT
+        MENUITEM "Kopírovat vše vlevo",         ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "Copy Diffs in Left Selection to Right", ID_MULTIPLE_RIGHT
         MENUITEM "Copy Diffs in Right Selection to Left", ID_MULTIPLE_LEFT
@@ -200,8 +200,8 @@ BEGIN
     BEGIN
         MENUITEM "Zavøít",                      ID_FILE_CLOSE
         MENUITEM SEPARATOR
-        MENUITEM "Dla?dice &vodorovnì",         ID_WINDOW_TILE_HORZ
-        MENUITEM "Dla?dice &svisle",            ID_WINDOW_TILE_VERT
+        MENUITEM "Dlaždice &vodorovnì",         ID_WINDOW_TILE_HORZ
+        MENUITEM "Dlaždice &svisle",            ID_WINDOW_TILE_VERT
         MENUITEM "&Kaskáda",                    ID_WINDOW_CASCADE
     END
     POPUP "Nápo&vìda"
@@ -308,8 +308,8 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
     LTEXT           "Verze 1.0",IDC_VERSION,63,28,84,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,38,153,8
-    LTEXT           "V?echna práva vyhrazena.",IDC_STATIC,7,60,170,8
-    LTEXT           "Nav?tivte www stránku programu WinMerge!",IDC_WWW,7,107,
+    LTEXT           "Všechna práva vyhrazena.",IDC_STATIC,7,60,170,8
+    LTEXT           "Navštivte www stránku programu WinMerge!",IDC_WWW,7,107,
                     184,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
     LTEXT           "© 2000 Thingamahoochie Software",IDC_COMPANY,7,49,209,8
@@ -945,8 +945,8 @@ BEGIN
     ID_FILE_NEW             "Vytvoøit nový dokument\nNew"
     ID_FILE_OPEN            "Otevøít existující dokument\nOpen"
     ID_FILE_CLOSE           "Zavøít aktivní dokument\nClose"
-    ID_FILE_SAVE            "Ulo?it aktivní dokument\nSave"
-    ID_FILE_SAVE_AS         "Ulo?it aktivní dokument pod novým jménem\nSave As"
+    ID_FILE_SAVE            "Uložit aktivní dokument\nSave"
+    ID_FILE_SAVE_AS         "Uložit aktivní dokument pod novým jménem\nSave As"
     ID_FILE_PAGE_SETUP      "Zmìnit parametry tisku\nPage Setup"
     ID_FILE_PRINT_SETUP     "Zmìnit tiskárnu a parametry tisku\nPrint Setup"
     ID_FILE_PRINT           "Vytisknout aktivní dokument\nPrint"
@@ -957,7 +957,7 @@ END
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_APP_ABOUT            "Zobrazit informace o programu, èíslo verze a copyright\nAbout"
-    ID_APP_EXIT             "Ukonèit program dotazem na ulo?ení souborù\nExit"
+    ID_APP_EXIT             "Ukonèit program dotazem na uložení souborù\nExit"
 END
 
 STRINGTABLE DISCARDABLE
@@ -983,17 +983,17 @@ END
 // ID_NEXT_PANE SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_NEXT_PANE            "Pøepnout na dal?í okno\nNext Pane"
+    ID_NEXT_PANE            "Pøepnout na další okno\nNext Pane"
     ID_PREV_PANE            "Pøepnout na pøedchozí okno\nPrevious Pane"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_WINDOW_NEW           "Otevøít dal?í okno s aktuálním dokumentem\nNew Window"
+    ID_WINDOW_NEW           "Otevøít další okno s aktuálním dokumentem\nNew Window"
     ID_WINDOW_ARRANGE       "Uspoøádat ikony na spodním okraji okna\nArrange Icons"
     ID_WINDOW_CASCADE       "Kaskáda\nCascade Windows"
-    ID_WINDOW_TILE_HORZ     "Dla?dice vodorovnì\nTile Windows"
-    ID_WINDOW_TILE_VERT     "Dla?dice svisle\nTile Windows"
+    ID_WINDOW_TILE_HORZ     "Dlaždice vodorovnì\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Dlaždice svisle\nTile Windows"
     ID_WINDOW_SPLIT         "Rozdìlit aktivní okno\nSplit"
 END
 
@@ -1001,14 +1001,14 @@ END
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_EDIT_CLEAR           "Vymazat výbìr\nErase"
-    ID_EDIT_CLEAR_ALL       "V?e smazat\nErase All"
-    ID_EDIT_COPY            "Kopírovat výbìr a ulo?it do schránky\nCopy"
-    ID_EDIT_CUT             "Vyjmout výbìr a ulo?it do schránky\nCut"
+    ID_EDIT_CLEAR_ALL       "Vše smazat\nErase All"
+    ID_EDIT_COPY            "Kopírovat výbìr a uložit do schránky\nCopy"
+    ID_EDIT_CUT             "Vyjmout výbìr a uložit do schránky\nCut"
     ID_EDIT_FIND            "Najít text\nFind"
-    ID_EDIT_PASTE           "Vlo?it obsah schránky\nPaste"
+    ID_EDIT_PASTE           "Vložit obsah schránky\nPaste"
     ID_EDIT_REPEAT          "Opakovat poslední akci\nRepeat"
     ID_EDIT_REPLACE         "Nahradit zadaný text\nReplace"
-    ID_EDIT_SELECT_ALL      "Vybrat v?e\nSelect All"
+    ID_EDIT_SELECT_ALL      "Vybrat vše\nSelect All"
     ID_EDIT_UNDO            "Odvolat poslední akci\nUndo"
     ID_EDIT_REDO            "Provést poslední odvolanou akci\nRedo"
 END
@@ -1024,10 +1024,10 @@ BEGIN
     AFX_IDS_SCSIZE          "Zmìnit velikost okna"
     AFX_IDS_SCMOVE          "Zmìnit pozici okna"
     AFX_IDS_SCMINIMIZE      "Minimalizovat okno"
-    AFX_IDS_SCMAXIMIZE      "Zvìt?it okno na pùvodní velikost"
-    AFX_IDS_SCNEXTWINDOW    "Pøepnout na dal?í okno"
+    AFX_IDS_SCMAXIMIZE      "Zvìtšit okno na pùvodní velikost"
+    AFX_IDS_SCNEXTWINDOW    "Pøepnout na další okno"
     AFX_IDS_SCPREVWINDOW    "Pøepnout na pøedchozí okno"
-    AFX_IDS_SCCLOSE         "Zavøít aktivní okno s mo?ností ulo?ení dokumentù"
+    AFX_IDS_SCCLOSE         "Zavøít aktivní okno s možností uložení dokumentù"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1052,9 +1052,9 @@ END
 STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
     IDS_VERSION_FMT         "Verze %1 - Cesko"
-    IDS_ALLFILES            "V?echny soubory (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "Opravdu chcete zkopírovat v?echny rozdíly do souboru vlevo?"
-    IDS_CONFIRM_ALL_RIGHT   "Opravdu chcete zkopírovat v?echny rozdíly do souboru vpravo?"
+    IDS_ALLFILES            "Všechny soubory (*.*)|*.*||"
+    IDS_CONFIRM_ALL_LEFT    "Opravdu chcete zkopírovat všechny rozdíly do souboru vlevo?"
+    IDS_CONFIRM_ALL_RIGHT   "Opravdu chcete zkopírovat všechny rozdíly do souboru vpravo?"
     IDS_ERRORS_TITLE        "%1 Error(s)"
     IDS_CONFIRM_COPY2DIR    "Opravdu chcete kopírovat vybraný soubor do %1?"
     IDS_FONT_CHANGE         "Zvolená zmìna písmo se neprojeví v právì zobrazených panelech."
@@ -1070,7 +1070,7 @@ END
 // IDS_SAVE_AS_TITLE SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
-    IDS_SAVE_AS_TITLE       "Ulo?it jako"
+    IDS_SAVE_AS_TITLE       "Uložit jako"
     IDS_SELECT_FILES_OR_FOLDERS
                             "Musíte zvolit buï jenom soubory nebo jenom adresáøe."
     IDS_BACKUP_FAILED_PROMPT "Nelze zálohovat pùvodní soubor.\nPokraèovat?"
@@ -1082,9 +1082,9 @@ BEGIN
     IDS_FILEUNIQUE          "Vybraný soubor neexistuje v obou adresáøích a nelze provést porovnání."
     IDS_FILEERROR           "Bìhem porovnávání se vyskytla chyba."
     IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-    IDS_SAVE_FMT            "Ulo?it zmìny do %1?"
+    IDS_SAVE_FMT            "Uložit zmìny do %1?"
     IDS_FILEBINARY          "Binární soubory nelze porovnat."
-    IDS_SAVEVSS_FMT         "%1 je oznaèen pouze ke ètení. Chcete jej zkontrolovat pomocí SourceSafe nebo ulo?it pod jiným jménem?"
+    IDS_SAVEVSS_FMT         "%1 je oznaèen pouze ke ètení. Chcete jej zkontrolovat pomocí SourceSafe nebo uložit pod jiným jménem?"
     IDS_VSSERROR            "SourceSafe vrátil chybu pøi pokusu zkontrolovat soubor. Nelze pokraèovat..."
     IDS_NOPROJECT           "Musíte nastavit cestu k projektu SourceSafe (napø.: $/MùjProjekt)"
 END
@@ -1209,8 +1209,8 @@ BEGIN
     ID_OPTIONS_SHOWDIFFERENT "Zobrazit rozdílné soubory"
     ID_OPTIONS_SHOWUNIQUE   "Zobrazit soubory existující pouze v jednom adresáøi"
     ID_PREVDIFF             "Skoèit na pøedchozí rozdíl\nPrev Diff (Shift+Tab)"
-    ID_NEXTDIFF             "Skoèit na dal?í rozdíl\nNext Diff (Tab)"
-    ID_OPTIONS_BACKUPORIGINALFILE "Ulo?it zálo?ní kopii souboru\nBackup"
+    ID_NEXTDIFF             "Skoèit na další rozdíl\nNext Diff (Tab)"
+    ID_OPTIONS_BACKUPORIGINALFILE "Uložit záložní kopii souboru\nBackup"
 END
 
 STRINGTABLE DISCARDABLE
@@ -1221,18 +1221,18 @@ BEGIN
     ID_HIDE_BACKUP_FILES    "Skrýt soubory s pøíponou BAK"
     ID_HELP_GNULICENSE      "Zobrazit GNU licenci"
     ID_USEVSS               "Attempts to checkout read-only files from sourcesafe"
-    ID_OPTIONS              "Nastavit mo?nosti programu\nOptions"
-    ID_ALL_LEFT             "Zkopírovat v?echny rozdíly do souboru vlevo\nAll Left"
-    ID_ALL_RIGHT            "Zkopírovat v?echny rozdíly do souboru vpravo\nAll Right"
+    ID_OPTIONS              "Nastavit možnosti programu\nOptions"
+    ID_ALL_LEFT             "Zkopírovat všechny rozdíly do souboru vlevo\nAll Left"
+    ID_ALL_RIGHT            "Zkopírovat všechny rozdíly do souboru vpravo\nAll Right"
     ID_VIEW_SELECTFONT      "Nastavení písma pro zobrazení porovnávaných dokumentù\nSelect Diff Font"
-    ID_VIEW_USEDEFAULTFONT  "Pou?ít systémové písmo pro zobrazení porovnávaných dokumentù\nDefault Font"
+    ID_VIEW_USEDEFAULTFONT  "Použít systémové písmo pro zobrazení porovnávaných dokumentù\nDefault Font"
     ID_DIR_COPY_FILE_TO_LEFT "Kopírovat vybrané soubory do jiného adresáøe"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_DIR_COPY_FILE_TO_RIGHT "Kopírovat vybrané soubory do jiného adresáøe"
-    ID_VIEW_LANGUAGE        "Zvolit jazyk pro u?ivatelské rozhraní\nLanguage"
+    ID_VIEW_LANGUAGE        "Zvolit jazyk pro uživatelské rozhraní\nLanguage"
     ID_HELP_CONTENTS        "Zobrazit nápovìdu pro program WinMerge\nHelp"
     ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff (Alt+Home)"
     ID_CURDIFF              "Scroll to the current difference\nCurrent Diff (Alt+Enter)"
