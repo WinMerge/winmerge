@@ -1723,6 +1723,10 @@ SOURCE=.\editlib\cs2cs.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\editlib\csharp.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\editlib\dcl.cpp
 # End Source File
 # Begin Source File

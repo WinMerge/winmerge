@@ -1,3 +1,9 @@
+2004-05-22 Kimmo
+ PATCH: [ 958122 ] Add C# syntax highlight
+  Src: Merge.dsp
+  Src/editlib: crystaltextview.cpp crystaltextview.h
+  Src/editlib new file: csharp.cpp
+
 2004-05-22 Perry
  Localized language names into French
   Src/Languages: MergeFrench.rc

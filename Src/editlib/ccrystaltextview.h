@@ -593,6 +593,7 @@ public :
     DWORD ParseLineBasic (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
     DWORD ParseLineBatch (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
     DWORD ParseLineC (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
+    DWORD ParseLineCSharp (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
     DWORD ParseLineDcl (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
     DWORD ParseLineFortran (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
     DWORD ParseLineHtml (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems);
@@ -665,6 +666,7 @@ public :
       SRC_BASIC,
       SRC_BATCH,
       SRC_C,
+	  SRC_CSHARP,
       SRC_DCL,
       SRC_FORTRAN,
       SRC_HTML,
@@ -701,7 +703,7 @@ public :
         TCHAR commentline[8];
         DWORD encoding;
       };
-      
+
 #define SRCOPT_INSERTTABS 1
 #define SRCOPT_SHOWTABS 2
 #define SRCOPT_BSATBOL 4

@@ -247,6 +247,7 @@ CCrystalTextView::TextDefinition CCrystalTextView::m_SourceDefs[] =
     CCrystalTextView::SRC_BASIC, _T ("Basic"), _T ("bas,vb,vbs,frm,dsm"), CCrystalTextView::ParseLineBasic, SRCOPT_AUTOINDENT, 4, _T (""), _T (""), _T ("\'"), (DWORD)-1,
     CCrystalTextView::SRC_BATCH, _T ("Batch"), _T ("bat,btm,cmd"), CCrystalTextView::ParseLineBatch, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT, 4, _T (""), _T (""), _T ("rem "), (DWORD)-1,
     CCrystalTextView::SRC_C, _T ("C"), _T ("c,cc,cpp,cxx,h,hpp,hxx,hm,inl,rh,tlh,tli,xs"), CCrystalTextView::ParseLineC, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, 2, _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
+    CCrystalTextView::SRC_CSHARP, _T ("C#"), _T ("cs"), CCrystalTextView::ParseLineCSharp, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, 2, _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
     CCrystalTextView::SRC_DCL, _T ("DCL"), _T ("dcl,dcc"), CCrystalTextView::ParseLineDcl, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, 2, _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
     CCrystalTextView::SRC_FORTRAN, _T ("Fortran"), _T ("f,f90,f9p,fpp,for,f77"), CCrystalTextView::ParseLineFortran, SRCOPT_INSERTTABS|SRCOPT_AUTOINDENT, 8, _T (""), _T (""), _T ("!"), (DWORD)-1,
     CCrystalTextView::SRC_HTML, _T ("HTML"), _T ("html,htm,shtml,ihtml,ssi,stm,stml"), CCrystalTextView::ParseLineHtml, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, 2, _T ("<!--"), _T ("-->"), _T (""), (DWORD)-1,
@@ -490,7 +491,7 @@ CCrystalTextView::~CCrystalTextView ()
   ASSERT (m_hAccel == NULL);
   ASSERT (m_pCacheBitmap == NULL);
   ASSERT (m_pTextBuffer == NULL);   //  Must be correctly detached
-  
+
   if (m_pszLastFindWhat != NULL)
     {
       free (m_pszLastFindWhat);
@@ -662,7 +663,7 @@ ScrollToChar (int nNewOffsetChar, BOOL bNoSmoothScroll /*= FALSE*/ , BOOL bTrack
   if( m_bWordWrap )
     return;
   //END SW
-  
+
   //  For now, ignoring bNoSmoothScroll and m_bSmoothScroll
   if (m_nOffsetChar != nNewOffsetChar)
     {
@@ -913,7 +914,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
              rcBounds.right = rcBounds.left + GetCharWidth() * nCount;
              pdc->ExtTextOut(rcBounds.left, rcBounds.top, ETO_OPAQUE, &rcBounds, NULL, 0, NULL);
            */
-          
+
           // Table of charwidths as CCrystalEditor thinks they are
           // Seems that CrystalEditor's and ExtTextOut()'s charwidths aren't
           // same with some fonts and text is drawn only partially
@@ -1362,14 +1363,14 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
     {
       // Draw all the screen lines of the wrapped line
       ASSERT( anBreaks[0] < nLength );
-    
+
       // draw start of line to first break
       DrawScreenLine(
         pdc, origin, rc,
         pBuf, nBlocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
         pszChars, 0, anBreaks[0], CPoint( 0, nLineIndex ) );
-    
+
       // draw from first break to last break
       for( int i = 0; i < nBreaks - 1; i++ )
         {
@@ -1381,7 +1382,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
             pszChars, anBreaks[i], anBreaks[i + 1] - anBreaks[i],
             CPoint( anBreaks[i], nLineIndex ) );
         }
-    
+
       // draw from last break till end of line
       DrawScreenLine(
         pdc, origin, rc,
@@ -1734,7 +1735,7 @@ UpdateCaret ()
         CreateSolidCaret(GetCharWidth(), GetLineHeight());
       else
         CreateSolidCaret (2, GetLineHeight ());
-      
+
       SetCaretPos (TextToClient (m_ptCursorPos));
       ShowCaret ();
     }
@@ -1991,7 +1992,7 @@ int CCrystalTextView::SubLineEndToCharPos( int nLineIndex, int nSubLineOffset )
 
   // compute character position for end of subline
   ASSERT( nSubLineOffset >= 0 && nSubLineOffset <= nBreaks );
-  
+
   int nReturnVal = anBreaks[nSubLineOffset] - 1;
   delete[] anBreaks;
 
@@ -2018,7 +2019,7 @@ int CCrystalTextView::SubLineHomeToCharPos( int nLineIndex, int nSubLineOffset )
 
   // compute character position for end of subline
   ASSERT( nSubLineOffset > 0 && nSubLineOffset <= nBreaks );
-  
+
   int nReturnVal = anBreaks[nSubLineOffset - 1];
   delete[] anBreaks;
 
@@ -2605,7 +2606,7 @@ GetItalic (int nColorIndex)
   // lets disable it. E.g. "_" chars disappear and last
   // char may be cropped.
   return FALSE;
-  
+
   // return nColorIndex == COLORINDEX_COMMENT;
 }
 
@@ -3380,7 +3381,7 @@ EnsureVisible (CPoint pt)
     nNewTopSubLine = 0;
   if( nNewTopSubLine >= nSubLineCount )
     nNewTopSubLine = nSubLineCount - 1;
-  
+
   // WINMERGE: This line fixes (cursor) slowdown after merges!
   // I don't know exactly why, but propably we are setting
   // m_nTopLine to zero in ResetView() and are not setting to
