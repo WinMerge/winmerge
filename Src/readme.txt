@@ -1,3 +1,5 @@
+2004-05-23 WinMerge experimental release 2.1.7.4 (cvs)
+
 2004-05-23 Laoran
  PATCH: [ 957317 ] Broken menu in Winmerge 2.1.7.3
   Src: Merge.cpp
