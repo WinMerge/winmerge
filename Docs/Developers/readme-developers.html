@@ -26,6 +26,8 @@
 <a href="#UserManual">User Manual in DocBook/XML</a>
 </li><li>
 <a href="#Logging">Logging</a>
+</li><li>
+<a href="#ShellExt">Shell Extension</a>
 </li></ol>
 
 
@@ -489,3 +491,15 @@ Log writing is controlled by registry value:
 </li><li>
 2 - only errormessages and warnings written to log
 </li></ol>
+
+<a name="ShellExt"></a>
+<h3>Shell Extension</h3>
+WinMerge sets executable path (WinMerge.exe) which shellextension starts every
+time when options-dialog is closed. This can cause problems when testing
+several versions of WinMerge. There is registry value to overwrite path to
+WinMerge executable:<br>
+<b><code>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\PriExecutable
+</code></b><br>
+It does not exist by default, so create PriExecutable as string value and type
+path of WinMerge.exe you mainly use as its value. If this value exists
+ShellExtension does not care about another path value.
