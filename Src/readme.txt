@@ -1,3 +1,7 @@
+2005-03-01 Kimmo
+ PATCH: [ 1153870 ] Disable redrawing dir compare view while adding items
+  Src: DirDoc.cpp
+
 2005-03-01 Jochen
  PATCH: [ 1152341 ] Merge7z update (DllBuild_Merge7z_10)
   Merge7z: Merge7z.h Merge7z311.cpp Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp Merge7z407.dsp Merge7z408.dsp

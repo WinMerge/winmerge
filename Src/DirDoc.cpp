@@ -301,7 +301,10 @@ void CDirDoc::Redisplay()
 	int rlen = m_pCtxt->m_strNormalizedRight.GetLength();
 
 	m_pDirView->DeleteAllDisplayItems();
-	
+
+	// Disable redrawing while adding new items
+	m_pDirView->SetRedraw(FALSE);
+
 	// If non-recursive compare, add special item(s)
 	if (!m_bRecursive)
 		cnt += m_pDirView->AddSpecialItems();
@@ -322,6 +325,7 @@ void CDirDoc::Redisplay()
 		}
 	}
 	m_pDirView->SortColumnsAppropriately();
+	m_pDirView->SetRedraw(TRUE);
 }
 
 CDirView * CDirDoc::GetMainView()
