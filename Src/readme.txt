@@ -7,6 +7,8 @@
  RFE: [ 874366 ] Add goto line-number
   Improvement: Show file's current line in Goto-dialog as selected
   Src: MergeEditView.cpp
+ Add contributors.txt
+  Docs: contributors.txt
 
 2004-03-06 WinMerge experimental release 2.1.5.13 (cvs)
 
