@@ -1,3 +1,7 @@
+2004-11-03 Kimmo
+ PATCH: [ 1059007 ] Installer: Don't install Merge7z for old 7zip betas
+  InnoSetup: WinMerge Localized.iss
+
 2004-11-02 Kimmo
  PATCH: [ 1058293 ] The finished german language file
   Submitted by Tim Gerundt
