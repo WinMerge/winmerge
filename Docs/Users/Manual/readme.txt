@@ -1,3 +1,7 @@
+2004-11-29 Kimmo
+ PATCH: [ 1074639 ] Docs: Clarify meaning of Ignore All Whitespaces a bit
+  Manual: Configuration.xml
+
 2004-11-11 Tim
  PATCH: [ 1060973 ] Indent for manual output
   Manual: Manual.xsl

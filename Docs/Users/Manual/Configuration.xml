@@ -57,7 +57,7 @@
           <para>Tab between words:<screen format="linespecific">Two	Words</screen></para>
           <para>No spaces between words:<screen format="linespecific">TwoWords</screen></para>
         </example></para>
-      <para><guilabel>Ignore all whitespace</guilabel> ignores all whitespace characters. All lines in example below are detected as identical.<example>
+      <para><guilabel>Ignore all whitespace</guilabel> ignores all whitespace characters, except linefeeds. WinMerge compares lines, and even when this option is set linefeeds are intact. All lines in example below are detected as identical.<example>
           <title>Ignore all whitespace</title>
           <para>One space between words:<screen format="linespecific">Two Words</screen></para>
           <para>Tab between words:<screen format="linespecific">Two	Words</screen></para>
