@@ -1046,6 +1046,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Open right file with..."
     ID_OPTIONS_SHOWBINARIES "Displays binary files"
     ID_VIEW_WHITESPACE      "Shows whitespace characters"
+    ID_REFRESH              "Refresh display\nRefresh (F5)"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -1053,7 +1054,12 @@ BEGIN
     IDS_FILESAVE_FAILED     "Saving %1 failed. Would you like to save the file under a different name?"
     IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
     IDS_ERROR_INCOMPARABLE  "Select two existing directories or files to compare"
-    ID_REFRESH              "Refresh display\nRefresh (F5)"
+    IDS_STATUS_RESCANNING   "Rescanning"
+    IDS_STATUS_OPENING_SELECTION "Opening selection"
+    IDS_STATUS_COPYL2R      "Copying Left to Right"
+    IDS_STATUS_COPYR2L      "Copying Right to Left"
+    IDS_STATUS_COPYALL2L    "Copying All to Left"
+    IDS_STATUS_COPYALL2R    "Copying All to Right"
 END
 
 #endif    // English (U.S.) resources

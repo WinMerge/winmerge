@@ -91,6 +91,12 @@
 #define IDS_FILESAVE_FAILED             192
 #define IDS_ERROR_FILE_NOT_FOUND        193
 #define IDS_ERROR_INCOMPARABLE          194
+#define IDS_STATUS_RESCANNING           195
+#define IDS_STATUS_OPENING_SELECTION    196
+#define IDS_STATUS_COPYL2R              197
+#define IDS_STATUS_COPYR2L              198
+#define IDS_STATUS_COPYALL2L            199
+#define IDS_STATUS_COPYALL2R            200
 #define IDB_EQUAL                       213
 #define IDB_NOTEQUAL                    214
 #define IDB_RFOLDER                     215

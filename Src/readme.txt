@@ -4,6 +4,8 @@
  PATCH: [ 724309 ] Add WaitStatusCursors
   WinMerge: DirDoc.cpp DirView.cpp MainFrm.cpp Merge.dsp MergeDoc.cpp MergeEditView.cpp 
    WaitStatusCursor.cpp WaitStatusCursor.h
+ PATCH: [ 724473 ] Move WaitStatusCursor strings into RC
+  WinMerge: DirDoc.cpp DirView.cpp MainFrm.cpp MergeDoc.cpp MergeEditView.cpp resource.h StdAfx.cpp StdAfx.h
 
 2003-04-19 Perry
  [ 724280 ] Could use wait cursors at OpenSelection calls

@@ -35,8 +35,7 @@ int xisspecial (int c);
 int xisalpha (int c);
 int xisalnum (int c);
 
-
-
+CString LoadResString(int id);
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.

@@ -1242,9 +1242,7 @@ void CMainFrame::OnUpdateViewUsedefaultfont(CCmdUI* pCmdUI)
 
 void CMainFrame::UpdateResources()
 {
-	CString s;
-	VERIFY(s.LoadString(AFX_IDS_IDLEMESSAGE));
-	m_wndStatusBar.SetPaneText(0, s);
+	m_wndStatusBar.SetPaneText(0, LoadResString(AFX_IDS_IDLEMESSAGE));
 
 	DirDocList dirdocs;
 	GetAllDirDocs(&dirdocs);

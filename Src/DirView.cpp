@@ -213,7 +213,7 @@ void CDirView::OnInitialUpdate()
 
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
-	WaitStatusCursor waitstatus(_T("Opening selection"));
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_OPENING_SELECTION));
 	OpenSelection();
 	CListViewEx::OnLButtonDblClk(nFlags, point);
 }
@@ -486,7 +486,7 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	if(nChar==VK_RETURN)
 	{
-		WaitStatusCursor waitstatus(_T("Opening selection"));
+		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_OPENING_SELECTION));
 		OpenSelection();
 	}
 	CListViewEx::OnChar(nChar, nRepCnt, nFlags);
@@ -513,40 +513,30 @@ void CDirView::OpenSelection()
 			break;
 		case FILE_SAME:
 			{
-				CString s;
-				VERIFY(s.LoadString(IDS_FILESSAME));
-				AfxMessageBox(s, MB_ICONINFORMATION);
+				AfxMessageBox(IDS_FILESSAME, MB_ICONINFORMATION);
 			}
 			break;
 		case FILE_LDIRUNIQUE:
 		case FILE_RDIRUNIQUE:
 			{
-				CString s;
-				VERIFY(s.LoadString(IDS_FILEISDIR));
-				AfxMessageBox(s, MB_ICONINFORMATION);
+				AfxMessageBox(IDS_FILEISDIR, MB_ICONINFORMATION);
 			}
 			break;
 		case FILE_LUNIQUE:
 		case FILE_RUNIQUE:
 			{
-				CString s;
-				VERIFY(s.LoadString(IDS_FILEUNIQUE));
-				AfxMessageBox(s, MB_ICONINFORMATION);
+				AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
 			}
 			break;
 		case FILE_BINDIFF:
 		case FILE_BINSAME:
 			{
-				CString s;
-				VERIFY(s.LoadString(IDS_FILEBINARY));
-				AfxMessageBox(s, MB_ICONSTOP);
+				AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
 			}
 			break;
 		default:
 			{
-				CString s;
-				VERIFY(s.LoadString(IDS_FILEERROR));
-				AfxMessageBox(s, MB_ICONSTOP);
+				AfxMessageBox(IDS_FILEERROR, MB_ICONSTOP);
 			}
 			break;
 		}

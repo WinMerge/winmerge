@@ -589,7 +589,7 @@ void CMergeEditView::UpdateLineLengths()
 
 void CMergeEditView::OnL2r()
 {
-	WaitStatusCursor waitstatus(_T("Copying Left to Right"));
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
 	GetDocument()->ListCopy(true);
 }
 
@@ -600,7 +600,7 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnR2l()
 {
-	WaitStatusCursor waitstatus(_T("Copying Right to Left"));
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
 	GetDocument()->ListCopy(false);
 }
 
@@ -611,7 +611,7 @@ void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnAllLeft()
 {
-	WaitStatusCursor waitstatus(_T("Copying All to Left"));
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYALL2L));
 
 	CMergeDoc* pDoc = GetDocument();
 	// Unfortunately difftools is not designed for this kind
@@ -635,7 +635,7 @@ void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnAllRight()
 {
-	WaitStatusCursor waitstatus(_T("Copying All to Right"));
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYALL2R));
 
 	CMergeDoc* pDoc = GetDocument();
 	// Unfortunately difftools is not designed for this kind

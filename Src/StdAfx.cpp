@@ -49,3 +49,10 @@ xisalnum (int c)
 {
   return isalnum (normch(c)) || xisspecial (normch(c));
 }
+
+CString LoadResString(int id)
+{
+	CString s;
+	VERIFY(s.LoadString(id));
+	return s;
+}

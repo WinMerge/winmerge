@@ -205,7 +205,7 @@ diff_dirs2 (filevec, handle_file, depth)
 
 void CDirDoc::Rescan()
 {
-	WaitStatusCursor waitstatus(_T("Rescanning"));
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
 
 	ASSERT(m_pCtxt != NULL);
 
