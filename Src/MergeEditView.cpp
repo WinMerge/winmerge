@@ -1432,6 +1432,10 @@ BOOL CMergeEditView::MergeModeKeyDown(MSG* pMsg)
 	if (::GetAsyncKeyState(VK_SHIFT))
 		return FALSE;
 
+	// Allow default editor functions when CTRL pressed
+	if (::GetAsyncKeyState(VK_CONTROL))
+		return FALSE;
+
 	// If we are in merging mode (merge with cursor keys)
 	// handle some keys here
 	switch (pMsg->wParam)
