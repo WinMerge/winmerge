@@ -1,3 +1,7 @@
+2004-03-05 Kimmo
+ PATCH: [ 909980 ] Fix buffer types and descriptions
+  Src: MergeDoc.cpp MergeDoc.h
+
 2004-03-04 Kimmo
  Fix invalid return in paths_IsPathAbsolute()
   paths.cpp

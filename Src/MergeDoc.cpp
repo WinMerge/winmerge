@@ -731,12 +731,12 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, BOOL bLeft,
 				{
 					if (bLeft)
 					{
-						m_nLeftBufferType = BUFFER_NAMED;
+						m_nLeftBufferType = BUFFER_UNNAMED_SAVED;
 						m_strLeftDesc.Empty();
 					}
 					else
 					{
-						m_nRightBufferType = BUFFER_NAMED;
+						m_nRightBufferType = BUFFER_UNNAMED_SAVED;
 						m_strRightDesc.Empty();
 					}
 				}
@@ -2451,8 +2451,15 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	int nLeftSuccess = FRESULT_ERROR;
 	if (!sLeftFile.IsEmpty())
 	{
-		m_nLeftBufferType = BUFFER_NORMAL;
-		m_leftSaveFileInfo.Update(sLeftFile);
+		if (mf->m_strLeftDesc.IsEmpty())
+			m_nLeftBufferType = BUFFER_NORMAL;
+		else
+		{
+			m_nLeftBufferType = BUFFER_NORMAL_NAMED;
+			m_strLeftDesc = mf->m_strLeftDesc;
+			mf->m_strLeftDesc.Empty();
+		}
+
 		// Load left side file
 		nLeftSuccess = LoadFile(sLeftFile, TRUE, bROLeft, cpleft);
 	}
@@ -2461,6 +2468,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		m_nLeftBufferType = BUFFER_UNNAMED;
 
 		m_ltBuf.InitNew();
+		m_strLeftDesc = mf->m_strLeftDesc;
 		nLeftSuccess = FRESULT_OK;
 	}
 	
@@ -2468,8 +2476,14 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	int nRightSuccess = FRESULT_ERROR;
 	if (!sRightFile.IsEmpty())
 	{
-		m_nRightBufferType = BUFFER_NORMAL;
-		m_rightSaveFileInfo.Update(sRightFile);
+		if (mf->m_strRightDesc.IsEmpty())
+			m_nRightBufferType = BUFFER_NORMAL;
+		else
+		{
+			m_nRightBufferType = BUFFER_NORMAL_NAMED;
+			m_strRightDesc = mf->m_strRightDesc;
+			mf->m_strRightDesc.Empty();
+		}
 
 		if (nLeftSuccess == FRESULT_OK)
 			nRightSuccess = LoadFile(sRightFile, FALSE, bRORight, cpright);
@@ -2479,6 +2493,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		m_nRightBufferType = BUFFER_UNNAMED;
 
 		m_rtBuf.InitNew();
+		m_strRightDesc = mf->m_strRightDesc;
 		nRightSuccess = FRESULT_OK;
 	}
 
@@ -2586,12 +2601,6 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		pLeft->SetDisableBSAtSOL(FALSE);
 		pRight->SetDisableBSAtSOL(FALSE);
 		
-		// Get description texts from MainFrm proxys and clear proxys
-		m_strLeftDesc = mf->m_strLeftDesc;
-		mf->m_strLeftDesc.Empty();
-		m_strRightDesc = mf->m_strRightDesc;
-		mf->m_strRightDesc.Empty();
-
 		// set the frame window header
 		UpdateHeaderPath(TRUE);
 		UpdateHeaderPath(FALSE);
@@ -2651,8 +2660,11 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 
 	if (bLeft)
 	{
-		if (m_nLeftBufferType == BUFFER_UNNAMED)
+		if (m_nLeftBufferType == BUFFER_UNNAMED ||
+			m_nLeftBufferType == BUFFER_NORMAL_NAMED)
+		{
 			sText = m_strLeftDesc;
+		}
 		else
 			sText = m_strLeftFile;
 		bChanges = m_ltBuf.IsModified();
@@ -2660,8 +2672,11 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 	}
 	else
 	{
-		if (m_nRightBufferType == BUFFER_UNNAMED)
+		if (m_nRightBufferType == BUFFER_UNNAMED ||
+			m_nRightBufferType == BUFFER_NORMAL_NAMED)
+		{
 			sText = m_strRightDesc;
+		}
 		else
 			sText = m_strRightFile;
 		bChanges = m_rtBuf.IsModified();
