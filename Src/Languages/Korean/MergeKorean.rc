@@ -1012,6 +1012,7 @@ IDB_EDIT_SEARCH         BITMAP                  "res\\search.bmp"
 IDB_WINDOW_CASCADE      BITMAP                  "res\\cascade.bmp"
 IDB_WINDOW_HORIZONTAL   BITMAP                  "res\\horizontally.bmp"
 IDB_WINDOW_VERTICAL     BITMAP                  "res\\vertically.bmp"
+IDB_WINDOW_CLOSE        BITMAP                  "res\\close.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

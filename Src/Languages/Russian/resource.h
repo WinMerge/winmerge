@@ -188,6 +188,7 @@
 #define IDB_WINDOW_CASCADE              270
 #define IDB_WINDOW_HORIZONTAL           271
 #define IDB_WINDOW_VERTICAL             272
+#define IDB_WINDOW_CLOSE                273
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

@@ -345,6 +345,7 @@ HMENU CMainFrame::NewDefaultMenu()
 	m_default.ModifyODMenu(NULL, ID_WINDOW_CASCADE, IDB_WINDOW_CASCADE);
 	m_default.ModifyODMenu(NULL, ID_WINDOW_TILE_HORZ, IDB_WINDOW_HORIZONTAL);
 	m_default.ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WINDOW_VERTICAL);
+	m_default.ModifyODMenu(NULL, ID_FILE_CLOSE, IDB_WINDOW_CLOSE);
 
 	m_default.LoadToolbar(IDR_MAINFRAME);
 	return(m_default.Detach());

@@ -4,6 +4,14 @@
   Src/editlib: ini.cpp
  Apply icon change (2004-03-13 Seier) to languages
   Languages/res: Merge.ico
+ PATCH: [ 913743 ] Icons for menuitems (RFE 873697)
+  Submitted by Tim Gerundt
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/res: Toolbar.bmp
+  Src/res new files: close.bmp
+  Languages: *.rc resource.h
+   res/bmp files
+
 
 2004-03-13 Seier
  Add 48*48 icon version (256 & 16 color)

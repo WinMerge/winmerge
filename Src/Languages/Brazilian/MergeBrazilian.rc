@@ -1048,6 +1048,7 @@ IDB_EDIT_SEARCH         BITMAP  DISCARDABLE     "res\\search.bmp"
 IDB_WINDOW_CASCADE      BITMAP  DISCARDABLE     "res\\cascade.bmp"
 IDB_WINDOW_HORIZONTAL   BITMAP  DISCARDABLE     "res\\horizontally.bmp"
 IDB_WINDOW_VERTICAL     BITMAP  DISCARDABLE     "res\\vertically.bmp"
+IDB_WINDOW_CLOSE        BITMAP  DISCARDABLE     "res\\close.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
