@@ -595,14 +595,14 @@ CAPTION "System"
 FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "&Spara borttagna filer i Papperskorgen",IDC_USE_RECYCLE_BIN,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,114,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,134,10
     CONTROL         "Lägg till i Utforskarens popup-meny",
                     IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,17,167,10
     LTEXT           "&WinMerge exekuterbar fil:",IDC_STATIC,7,30,167,8
     EDITTEXT        IDC_WINMERGE_PATH,7,40,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "&Bläddra...",IDC_WINMERGE_PATH_BROWSE,179,40,50,14
-    LTEXT           "Extern Editor:",IDC_STATIC,7,50,167,8
+    LTEXT           "Extern Editor:",IDC_STATIC,7,61,167,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,71,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Bläddra...",IDC_EXT_EDITOR_BROWSE,179,71,50,14
 END
@@ -828,7 +828,7 @@ BEGIN
     CONTROL         "Tillåt blandade EOL-typer",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,29,215,10
     GROUPBOX        "Tabulator",IDC_STATIC,7,44,245,33,WS_GROUP
-    LTEXT           "&Tabulatorsteg:",IDC_STATIC,15,97,30,8
+    LTEXT           "&Tabulatorsteg:",IDC_STATIC,15,58,50,8
     EDITTEXT        IDC_TAB_EDIT,81,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Infoga tabulatorer",IDC_PROP_INSERT_TABS,"Button",
