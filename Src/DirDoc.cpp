@@ -320,6 +320,9 @@ static LPCTSTR GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 	return p;
 }
 
+/**
+ * @brief Empty & reload listview (of files & columns) with comparison results
+ */
 void CDirDoc::Redisplay()
 {
 	m_pDirView->ToDoDeleteThisValidateColumnOrdering();
@@ -349,7 +352,7 @@ void CDirDoc::Redisplay()
 			cnt++;
 		}
 	}
-	m_pDirView->ToDoDeleteThisValidateColumnOrdering();
+	m_pDirView->SortColumnsAppropriately();
 }
 
 CDirView * CDirDoc::GetMainView()

@@ -494,6 +494,9 @@ void CDirView::UpdateResources()
 	UpdateColumnNames();
 }
 
+/**
+ * @brief User just clicked a column, so perform sort
+ */
 void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	// set sort parameters and handle ascending/descending
@@ -509,11 +512,18 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 		// most columns start off ascending, but not dates
 		m_bSortAscending = IsDefaultSortAscending(m_sortColumn);
 	}
-	m_ctlSortHeader.SetSortImage(m_sortColumn, m_bSortAscending);
 
+	SortColumnsAppropriately();
+	*pResult = 0;
+}
+
+void CDirView::SortColumnsAppropriately()
+{
+	if (m_sortColumn == -1) return;
+
+	m_ctlSortHeader.SetSortImage(m_sortColumn, m_bSortAscending);
 	//sort using static CompareFunc comparison function
 	GetListCtrl ().SortItems (CompareFunc, reinterpret_cast<DWORD>(this));//pNMListView->iSubItem);
-	*pResult = 0;
 }
 
 /// Do any last minute work as view closes

@@ -1,3 +1,7 @@
+2003-09-07 Perry
+ PATCH: [ 802132 ] Resort dir columns after redisplay
+  WinMerge: DirView.h DirView.cpp DirDoc.cpp
+
 2003-09-07 Laoran
  PATCH: [ 799464 ] preserve positions during Rescan (2.1)
   WinMerge: GhostTextBuffer.cpp GhostTextView.cpp GhostTextView.h MergeDoc.cpp

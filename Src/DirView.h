@@ -89,6 +89,8 @@ public:
 	void DeleteAllDisplayItems();
 	void SetColumnWidths();
 
+	void SortColumnsAppropriately();
+
 	UINT GetSelectedCount() const;
 	int GetFirstSelectedInd();
 	DIFFITEM GetNextSelectedInd(int &ind);
