@@ -1,3 +1,7 @@
+2005-01-29 Kimmo
+ PATCH: [ 1108716 ] Load lang files from 'Languages' subdirectory
+  Src/Common: LanguageSelect.cpp
+
 2005-01-28 Perry
   Src/Common: unicoder.cpp
    cosmetic: add comments to get_unicode_char

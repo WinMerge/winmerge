@@ -20,6 +20,9 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+// Relative path to WinMerge executable for lang files
+static const TCHAR szRelativePath[] = _T("Languages\\");
+
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect dialog
 
@@ -441,6 +444,8 @@ CString CLanguageSelect::GetPath( LPCTSTR FileName)
 	if (Path.Right(1) != _T('\\')
 		&& Path.Right(1) != _T('/'))
 		Path += _T('\\');
+
+	Path += szRelativePath;
 	
 	return Path;
 }
