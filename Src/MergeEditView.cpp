@@ -2037,11 +2037,20 @@ void CMergeEditView::OnWMGoto()
 	CMergeDoc *pDoc = GetDocument();
 	CPoint pos = GetCursorPos();
 	int nRealLine = 0;
+	int nLastLine = 0;
 
 	if (m_bIsLeft)
+	{
 		nRealLine = pDoc->m_ltBuf.ComputeRealLine(pos.y);
+		int nLineCount = pDoc->m_ltBuf.GetLineCount();
+		nLastLine = pDoc->m_ltBuf.ComputeRealLine(nLineCount - 1);
+	}
 	else
+	{
 		nRealLine = pDoc->m_rtBuf.ComputeRealLine(pos.y);
+		int nLineCount = pDoc->m_rtBuf.GetLineCount();
+		nLastLine = pDoc->m_rtBuf.ComputeRealLine(nLineCount - 1);
+	}
 
 	// Set active file and current line selected in dialog
 	dlg.m_strParam.Format(_T("%d"), nRealLine + 1);
@@ -2071,6 +2080,8 @@ void CMergeEditView::OnWMGoto()
 			int nRealLine = _ttoi(dlg.m_strParam) - 1;
 			if (nRealLine < 0)
 				nRealLine = 0;
+			if (nRealLine > nLastLine)
+				nRealLine = nLastLine;
 
 			GotoLine(nRealLine, TRUE, dlg.m_nFile == 0);
 		}

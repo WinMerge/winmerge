@@ -1,6 +1,8 @@
 2005-02-23 Kimmo
  PATCH: [ 1149081 ] Invalid string compare in CChildFrm.cpp
   Src: ChildFrm.cpp
+ PATCH: [ 1149365 ] Check linenumber to goto for upper limit
+  Src: MergeEditView.cpp
 
 2005-02-22 Kimmo
  PATCH: [ 1145522 ] fix crash on search
