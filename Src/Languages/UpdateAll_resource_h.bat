@@ -1,4 +1,5 @@
 copy ..\resource.h Brazilian
+copy ..\resource.h Bulgarian
 copy ..\resource.h Catalan
 copy ..\resource.h ChineseSimplified
 copy ..\resource.h ChineseTraditional
