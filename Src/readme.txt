@@ -1,3 +1,10 @@
+2004-03-21 Seier
+  -The Installer now also installs WinMerge as the merging application in addition being the differencing application.  
+  -I compressed Splash1.bmp using RLE (Run Length Encoding [Lossless compression]) and named it as Splash2.bmp.  I only modified the English version.  Please
+     test it out and send me an e-mail if it works and I'll create the RLE versions of all the other images.  PS: the file size went from 163 --> 111KB.  
+  -Installer updated to use \ShellExtension\ShellExtension.dll as the new location for that file 
+  -Installer will now remove the ComCtlupd.exe at the end of the installation.  
+
 2004-03-21 Kimmo
  PATCH: [ 918545 ] New Splash Screen
   Submitted and graphics by Dean Grimm
