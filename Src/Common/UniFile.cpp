@@ -3,7 +3,7 @@
  *  @author Perry Rapp, Creator, 2003-2005
  *  @author Kimmo Varis, 2004-2005
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-02-22 (Kimmo Varis)
+ *  @date   Edited:  2005-02-26 (Jochen Tucht)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -375,7 +375,7 @@ static int Append(CString &strBuffer, int cchHead, LPCTSTR pchTail, int cchTail,
 		if (cchBuffer < cchBufferMin)
 			cchBuffer = cchBufferMin;
 	}
-	CopyMemory(strBuffer.GetBufferSetLength(cchBuffer) + cchHead, pchTail, cchTail*sizeof*pchTail);
+	CopyMemory(strBuffer.GetBufferSetLength(cchBuffer) + cchHead, pchTail, cchTail * sizeof(TCHAR));
 	return cchLength;
 }
 
@@ -423,17 +423,18 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 					++m_txtstats.nlfs;
 				}
 				++m_lineno;
-				CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine*sizeof*pchLine);
+				CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine * sizeof(TCHAR));
 				return TRUE;
 			}
 			if (!wch)
 			{
 				++m_txtstats.nzeros;
-				CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine*sizeof*pchLine);
+				CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine * sizeof(TCHAR));
 				return TRUE;
 			}
 			++cchLine;
 		}
+		CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine * sizeof(TCHAR));
 		return TRUE;
 	}
 #else
@@ -468,17 +469,18 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 					++m_txtstats.nlfs;
 				}
 				++m_lineno;
-				CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine*sizeof*pchLine);
+				CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine * sizeof(TCHAR));
 				return TRUE;
 			}
 			if (!ch)
 			{
 				++m_txtstats.nzeros;
-				CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine*sizeof*pchLine);
+				CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine * sizeof(TCHAR));
 				return TRUE;
 			}
 			++cchLine;
 		}
+		CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine * sizeof(TCHAR));
 		return TRUE;
 	}
 #endif
@@ -627,6 +629,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 		}
 		cchLine = Append(line, cchLine, sch, sch.GetLength());
 	}
+	line.ReleaseBuffer(cchLine);
 	return TRUE;
 }
 
