@@ -1715,18 +1715,22 @@ OnDraw (CDC * pdc)
       if( rcCacheLine.top < 0 )
         rcLine.bottom+= rcCacheLine.top;
       //END SW
-      if (nCurrentLine < nLineCount)
+	  if (pdc->RectVisible(rcLine))
         {
-          DrawMargin (&cacheDC, rcCacheMargin, nCurrentLine);
-          DrawSingleLine (&cacheDC, rcCacheLine, nCurrentLine);
-        }
-      else
-        {
-          DrawMargin (&cacheDC, rcCacheMargin, -1);
-          DrawSingleLine (&cacheDC, rcCacheLine, -1);
-        }
+          if (nCurrentLine < nLineCount)
+            {
+              DrawMargin (&cacheDC, rcCacheMargin, nCurrentLine);
+              DrawSingleLine (&cacheDC, rcCacheLine, nCurrentLine);
+            }
+          else
+            {
+              DrawMargin (&cacheDC, rcCacheMargin, -1);
+              DrawSingleLine (&cacheDC, rcCacheLine, -1);
+            }
 
-      VERIFY (pdc->BitBlt (rcLine.left, rcLine.top, rcLine.Width (), rcLine.Height (), &cacheDC, 0, 0, SRCCOPY));
+          VERIFY (pdc->BitBlt (rcLine.left, rcLine.top, rcLine.Width (),
+			  rcLine.Height (), &cacheDC, 0, 0, SRCCOPY));
+        }
 
       nCurrentLine++;
       //BEGIN SW
