@@ -43,6 +43,7 @@ Localization:
 * French:	
   Gil Andre 
   Laurent Ganier
+  Matthieu Pupat
     
 * German:	
   Tim Gerundt

@@ -1,3 +1,9 @@
+2004-12-03 Kimmo
+ PATCH: [ 1068011 ] Partial French translation
+  Submitted by Matthieu Pupat
+  Src/Languages/French: MergeFrench.rc
+  Docs/Users: Contributors.txt
+
 2004-12-01 Kimmo
  PATCH: [ 1075591 ] Disable file filter edit button for no filter selection
   Src: FileFiltersDlg.cpp FileFiltersDlg.h
