@@ -52,6 +52,7 @@ DATE:		BY:					DESCRIPTION:
 2003/12/16	Jochen Tucht		Properly generate .tar.gz and .tar.bz2
 2003/12/16	Jochen Tucht		Obtain long path to temporary folder
 2004/01/20	Jochen Tucht		Complain only once if Merge7z*.dll is missing
+2004/01/25	Jochen Tucht		Fix bad default for OPENFILENAME::nFilterIndex
 
 */
 
@@ -529,7 +530,7 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 			OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_NOREADONLYRETURN,
 			_T_Filter
 		);
-		dlg.m_ofn.nFilterIndex = AfxGetApp()->GetProfileInt(_T_Merge7z, _T_FilterIndex, 0);
+		dlg.m_ofn.nFilterIndex = AfxGetApp()->GetProfileInt(_T_Merge7z, _T_FilterIndex, 1);
 		// Use extension from current filter as default extension:
 		if (int i = dlg.m_ofn.nFilterIndex)
 		{

@@ -1,3 +1,7 @@
+2004-01-25 Jochen
+ Fix bad default for OPENFILENAME::nFilterIndex
+  Src: 7zCommon.cpp
+
 2004-01-24 Perry
  [ 882650 ] Move temp build files out of Build into BuildTmp
   Src: Merge.dsp
@@ -49,7 +53,7 @@
 2004-01-20 Jochen
  Fix bug 880320
   New class CSilentException to be thrown on subsequent failures in proxy linking to merge7z*.dll.
-  src: Merge7zCommon.cpp Merge7zCommon.h MainFrm.cpp
+  src: 7zCommon.cpp 7zCommon.h MainFrm.cpp
   
 2004-01-19 Jochen
  Finish Merge7z integration
