@@ -1,3 +1,8 @@
+2004-09-28 Kimmo
+ PATCH: [ 1034730 ] Font suggestions for manual
+  Submitted by Perry
+  Manual: Compare_files.xml
+
 2004-09-27 Kimmo
  PATCH: [ 1034776 ] New manual sections for encoding and fonts
   Submitted by Perry

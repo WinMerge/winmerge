@@ -176,6 +176,24 @@
   </sect2>
   <sect2>
     <title>Fonts</title>
-    <para>Font used by editor can be changed from <menuchoice><guimenu>View</guimenu><guimenuitem>Select Font...</guimenuitem></menuchoice>. Due to limitations in the editor, only fixed width fonts are supported in WinMerge.</para>
+    <para>Font used by editor can be changed from <menuchoice>
+        <guimenu>View</guimenu>
+        <guimenuitem>Select Font...</guimenuitem>
+      </menuchoice>. Due to limitations in the editor, only fixed width fonts are supported in WinMerge.</para>
+    <para>Font suggestions for use of WinMerge with East Asian languages:</para>
+    <itemizedlist>
+      <listitem>
+        <para>Simplified Chinese texts with the "SimSun" or "SimHei" fixed-width fonts</para>
+      </listitem>
+      <listitem>
+        <para>Traditional Chinesetexts with the "MingLiU" fixed-width font, or</para>
+      </listitem>
+      <listitem>
+        <para>Japanese texts with the "MS Gothic" or "MS Mincho" fixed-width fonts</para>
+      </listitem>
+      <listitem>
+        <para>Korean texts with the "GulimChe" fixed-width font (not Gulim as this variant uses proportional-spacing glyphs that are not centered in grid cells and then poorly aligned in fixed-width mode)</para>
+      </listitem>
+    </itemizedlist>
   </sect2>
 </sect1>
