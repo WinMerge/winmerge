@@ -3,6 +3,8 @@
   Submitted by Perry
   Src: Merge.rc
   Src/Languages: *.rc (except MergeCatalan.rc, MergeItalian.rc & MergeSwedish.rc)
+ PATCH: [ 1002247 ] Remove unneeded CDirView::OnCustomDraw()
+  Src: DirView.cpp DirView.h
 
 2004-09-27 Kimmo
  Add links to DocBook DSSL customisation

@@ -168,7 +168,6 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
-	ON_NOTIFY_REFLECT(NM_CUSTOMDRAW, OnCustomDraw)
 	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
 END_MESSAGE_MAP()
 
@@ -1847,36 +1846,6 @@ void CDirView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	m_ptLastMousePos = point;
 	CListViewEx::OnMouseMove(nFlags, point);
-}
-
-/// Implement custom draw for DirView items
-void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
-{
-	LPNMLVCUSTOMDRAW lplvcd = (LPNMLVCUSTOMDRAW)pNMHDR;
-	DIFFITEM ditem;
-
-	if (GetDllVersion(_T("comctl32.dll")) < PACKVERSION(4,71))
-	{
-		// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
-		*pResult = CDRF_DODEFAULT;
-		return;
-	}
-
-	switch (lplvcd->nmcd.dwDrawStage)
-	{
-	case CDDS_PREPAINT:	// Request prepaint notifications for each item.
-		*pResult = CDRF_NOTIFYITEMDRAW;
-		break;
-
-	case CDDS_ITEMPREPAINT: //Before an item is drawn
-		// Add code here to customise whole line and return:
-		*pResult = CDRF_NEWFONT;			// If no subitems customised
-		//*pResult = CDRF_NOTIFYSUBITEMDRAW;	// To customise subitems
-		break;
-
-	default:
-		*pResult = CDRF_DODEFAULT;
-	}
 }
 
 /**
