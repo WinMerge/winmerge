@@ -1,3 +1,8 @@
+2004-12-03 Kimmo
+ BUG: [ 1077338 ] Help files have grammar and content errors
+  Fixed as suggested by Kevin M
+  Manual: Compare_files.xml Configuration.xml
+
 2004-11-29 Kimmo
  PATCH: [ 1074639 ] Docs: Clarify meaning of Ignore All Whitespaces a bit
   Manual: Configuration.xml

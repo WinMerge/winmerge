@@ -155,8 +155,8 @@ EOL differences.</screen>
     </sect3>
     <sect3>
       <title>External editor</title>
-      <para>WinMerge has pretty good editor for most basic editing needs. But its not nowhere near comparable to many other editors in functionality. So WinMerge allows user to define ones personally preferred editor to external editor. Files can be opened to external editor from directory compare's context menu.</para>
-      <para>Notepad is used as default, because it is found from all Windows machines.</para>
+      <para>WinMerge has a pretty good editor for most basic editing needs. However, it doesn't even compare to many other editors in functionality. WinMerge allows user to define one's personally preferred editor to external editor. Files can be opened in the external editor from the directory compare's context menu.</para>
+      <para>Notepad is used as the default editor, because it is found on all Windows platforms.</para>
       <tip>
         <para>Commandline parameters can be given, in format: <command><replaceable>&lt;path to .exe&gt;</replaceable></command> <option>-option1</option> <option>-option2</option> <option><replaceable>...</replaceable></option></para>
       </tip>
