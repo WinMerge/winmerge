@@ -309,6 +309,7 @@ protected:
 	BOOL OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
 	afx_msg void OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult);
 	afx_msg void OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult);
 
 private:
 	void OpenSelection(PackingInfo * infoUnpacker = NULL);

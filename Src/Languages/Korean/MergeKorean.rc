@@ -1667,6 +1667,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_ELAPSED_TIME        "Elapsed time: %ld ms"
+    IDS_STATUS_SELITEM1     "1 item selected"
+    IDS_STATUS_SELITEMS     "%1 items selected"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS

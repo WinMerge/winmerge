@@ -167,6 +167,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
 	ON_NOTIFY_REFLECT(NM_CUSTOMDRAW, OnCustomDraw)
+	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -2350,4 +2351,33 @@ void CDirView::OnUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI)
 void CDirView::OnUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI) 
 {
 	DoUpdateCtxtDirMoveLeftTo(pCmdUI);
+}
+
+/**
+ * @brief Called when item state is changed.
+ *
+ * Show count of selected items in statusbar.
+ */
+void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	NM_LISTVIEW* pNMListView = (NM_LISTVIEW*)pNMHDR;
+
+	// If item's selected state changed
+	if ((pNMListView->uOldState & LVIS_SELECTED) !=
+		(pNMListView->uNewState & LVIS_SELECTED))
+	{
+		CString msg;
+		int items = GetSelectedCount();
+
+		if (items == 1)
+			VERIFY(msg.LoadString(IDS_STATUS_SELITEM1));
+		else
+		{
+			TCHAR num[8] = {0};
+			_itot(items, num, 10);
+			AfxFormatString1(msg, IDS_STATUS_SELITEMS, num);
+		}
+		GetParentFrame()->SetStatus(msg);
+	}
+	*pResult = 0;
 }

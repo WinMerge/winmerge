@@ -440,6 +440,8 @@
 #define IDS_DIFFERENT                   17738
 
 #define IDS_ELAPSED_TIME                17744
+#define IDS_STATUS_SELITEM1             17745
+#define IDS_STATUS_SELITEMS             17746
 
 #define IDS_COLDESC_FILENAME            17760
 #define IDS_COLDESC_DIR                 17761
