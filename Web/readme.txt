@@ -1,3 +1,8 @@
+2004-12-05 Tim
+ PATCH: [ 1078989 ] Add 'Powered by' images to webserver
+  Web: page.inc
+  Web\images: project-support.jpg sourceforge.png valid-css.gif valid-html401.gif removed redswirl.gif
+
 2004-12-01 Tim
  RFE: [ 1069633 ] Info about submitting WinMerge to other sites
   Web: page.inc WinMergePAD.php
