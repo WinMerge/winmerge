@@ -293,7 +293,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 				// if we don't find it, we insert it 
 				InsertGhostLine (pSource, apparent_ptStartPos.y);
 				// and recompute apparent_ptEndPos
-				apparent_ptEndPos.y = ComputeApparentLine (ur.m_redo_ptEndPos.y, ur.m_redo_ptEndPos_nGhost);
+				apparent_ptEndPos.y = ComputeApparentLine (ur.m_ptEndPos.y, ur.m_ptEndPos_nGhost);
 			} 
 
 		// EndPos defined only for UNDO_INSERT (when we delete)

@@ -7,6 +7,8 @@
 2004-05-30 Laoran
  BUG: [ 909779 ] Uninitialised variable in CGhostTextBuffer::DeleteText() ; fix the fix !
   Src: GhostTextBuffer.cpp
+ PATCH: [ 963118 ] variable name fix in CGhostTextBuffer::Undo
+  Src: GhostTextBuffer.cpp
 
 2004-05-30 Perry
  PATCH: [ 962558 ] Some MBCS fixes from sawanaka
