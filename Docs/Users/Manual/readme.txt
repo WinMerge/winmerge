@@ -3,6 +3,11 @@
   Manual: WinMerge_help.xml
  PATCH: [ 973299 ] Userdocs: add dssl stylesheet
   Manual new file: Manual-html.dsl
+ PATCH: [ 973306 ] Userdocs: add ID property for sect1 tags
+  Manual: About_Doc.xml Command_line.xml Compare_dirs.xml Compare_files.xml
+   Configuration.xml Faq.xml Filters.xml Install.xml Intro_diffs.xml
+   Introduction.xml Locales.xml Plugins.xml Quick_start.xml Shortcut_keys.xml
+   Whatsnew_2_1.xml WinMerge_help.xml
 
 2004-06-03 Kimmo
  PATCH: [ 965144 ] Userdocs: Filters

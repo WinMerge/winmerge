@@ -1,4 +1,4 @@
-<sect1>
+<sect1 id="Filters">
   <title>Filters</title>
   <para>There are two kinds of filters in WinMerge: file filters for filtering files and directories in directory compare and line filters for ignoring lines from files before comparing.</para>
   <sect2>

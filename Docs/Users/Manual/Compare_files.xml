@@ -1,4 +1,4 @@
-<sect1>
+<sect1 id="CompareFiles">
   <title>Comparing files</title>
   <para>File compare window is basically two files opened to editor into two horizontal panes. Editing files is the big difference between 1.7.1 and newer versions. Editing allows user to make changes to files other than just merging differences. Its easy to make little changes when merging. WinMerge is not and can't be as good in editing than most other editor programs are. So WinMerge makes it easy to open selected files from directory compare.</para>
   <mediaobject>

@@ -1,4 +1,4 @@
-<sect1>
+<sect1 id="CommandLine">
   <title>Commandline</title>
   <para>WinMerge can be also used from commandline. There are several commandline switches to ease using WinMerge as external merge/diff application.</para>
   <para>

@@ -1,4 +1,4 @@
-<sect1>
+<sect1 id="CompareDirs">
   <title>Comparing directories</title>
   <para>Directory compare shows all files and subdirectries found from compared directories as list. Directory compare allows synchronising directories by copying and deleting files and subdirectories. Directory compare view can be versatile customised.</para>
   <mediaobject>

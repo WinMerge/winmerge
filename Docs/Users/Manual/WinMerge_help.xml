@@ -8,13 +8,13 @@
 <!ENTITY QuickStart SYSTEM "Quick_start.xml">
 <!ENTITY Introduction SYSTEM "Introduction.xml">
 <!ENTITY Locales SYSTEM "Locales.xml">
-<!ENTITY About_doc SYSTEM "About_Doc.xml">
+<!ENTITY About_doc SYSTEM "About_doc.xml">
 <!ENTITY WhatsNew21 SYSTEM "Whatsnew_2_1.xml">
 <!ENTITY CommandLine SYSTEM "Command_line.xml">
 <!ENTITY ShortCuts SYSTEM "Shortcut_keys.xml">
-<!ENTITY Filters SYSTEM "Filters.xml">
-<!ENTITY CompareFiles SYSTEM "Compare_files.xml">
 <!ENTITY Install SYSTEM "Install.xml">
+<!ENTITY CompareFiles SYSTEM "Compare_files.xml">
+<!ENTITY Filters SYSTEM "Filters.xml">
 ]>
 <article>
   <articleinfo>

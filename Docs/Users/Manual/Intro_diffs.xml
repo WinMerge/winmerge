@@ -1,4 +1,4 @@
-<sect1>
+<sect1 id="IntroDiff">
   <title>File differences - What user should know about comparing files</title>
   <para>Introduction chapter says WinMerge finds and shows differences between files. So user compares two files one knows are different and gets surprised - WinMerge tells there is 5 differences, but there are more different words in one line!</para>
   <sect2>
