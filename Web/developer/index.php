@@ -16,9 +16,9 @@
   <li class="toc">Laurent Ganier</li>
   <li class="toc">Perry Rapp</li>
 </ul>
-<p>Look how to <a href="http://winmerge.org/developer/needed.php" target="_top">develop</a> and 
-<a href="http://winmerge.org/developer/translate.php" target="_top">translate WinMerge</a>
-and get some hints for <a href="http://winmerge.org/developer/wincvs.php" target="_top">WinCVS</a>.</p>
+<p>Look how to <a href="needed.php">develop</a> and 
+<a href="l10n/index.php">translate WinMerge</a>
+and get some hints for <a href="wincvs.php">WinCVS</a>.</p>
 <?php
   $page->printFoot();
 ?>

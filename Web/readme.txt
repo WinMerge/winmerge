@@ -1,3 +1,9 @@
+2004-05-24 Christian
+ PATHC: [ 955458 ] Optimize translations status page
+  Web: .htaccess index.php page.inc
+  Web/developer: index.php deleted translate.php
+  Web/developer/l10n: index.php instructions.php status.php
+
 2004-05-13 Christian
  PATCH: [ 952965 ] updates for localization web page
   Web/developer: translate.php

@@ -123,7 +123,7 @@
       $temp .= "  <a href=\"http://sourceforge.net/cvs/?group_id=13216\" target=\"_top\">CVS Client Access</a><br>\n";
       $temp .= "  <a href=\"http://winmerge.org/developer/wincvs.php\" target=\"_top\">WinCVS Hints</a><br>\n";
       $temp .= "  <a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216\" target=\"_top\">Submit a Patch</a><br>\n";
-      $temp .= "  <a href=\"http://winmerge.org/developer/translate.php\" target=\"_top\">Translate WinMerge!</a>\n";
+      $temp .= "  <a href=\"/developer/l10n/index.php\" target=\"_top\">Translate WinMerge!</a>\n";
       $temp .= "</p>\n";
       $temp .= "<p class=\"lefthead\">Downloads</p>\n";
       $temp .= "<p class=\"lefttext\">\n";

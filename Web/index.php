@@ -69,7 +69,7 @@ to support the continued development of WinMerge.</p>
 you get more information about the development for WinMerge.</p>
 <p>You get a list from the current developers, how to 
 <a href="http://winmerge.org/developer/needed.php" target="_top">develop</a> and 
-<a href="http://winmerge.org/developer/translate.php" target="_top">translate WinMerge</a>
+<a href="developer/l10n/index.php" target="_top">translate WinMerge</a>
 and some hints for <a href="http://winmerge.org/developer/wincvs.php" target="_top">WinCVS</a>.</p>
 <?php
   $page->printFoot();

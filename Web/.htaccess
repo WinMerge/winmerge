@@ -2,3 +2,5 @@
  Order Deny,Allow
  Deny from all
 </FilesMatch>
+
+Redirect permanent /developer/translate.php http://winmerge.sourceforge.net/developer/l10n/index.php
