@@ -1,3 +1,8 @@
+2004-05-01 Laoran
+ PATCH: addon to [ 941623 ] Propose moving IDC_COMPARISON_STOP to block with ...CLOSE
+  Src: Merge.rc
+  Languages: *.rc
+
 2004-05-01 Perry
  PATCH: [ 941979 ] Add cast to suppress VS.NET 2002 warning
   Src: MergeDoc.cpp
