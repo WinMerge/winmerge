@@ -1,4 +1,5 @@
 2004-01-11 Perry
+ PATCH: [ 875237 ] Fix fwrite call in UniStdioFile::WriteString
  Fix byte count and argument order when UniStdioFile::WriteString calls fwrite.
   common: UniFile.cpp
  PATCH: [ 875215 ] Fix UnicodeFileToOlechar obtaining BOM
