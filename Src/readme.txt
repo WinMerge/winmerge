@@ -1,3 +1,7 @@
+2003-09-19 Laoran
+ Modifications in patch-dialog to compile in Unicode
+  WinMerge: PatchDlg.cpp 
+
 2003-09-19 Kimmo
  Select compared files when opening Generate patch-dialog
   WinMerge: MainFrm.cpp PatchDlg.cpp 

@@ -321,12 +321,12 @@ BOOL CPatchDlg::SelectFile(CString& path, LPCTSTR pszFolder)
 	CString s;
 
 	VERIFY(s.LoadString(IDS_ALLFILES));
-	CFileDialog pdlg(TRUE, NULL, "", OFN_NOTESTFILECREATE | OFN_PATHMUSTEXIST, s);
+	CFileDialog pdlg(TRUE, NULL, _T(""), OFN_NOTESTFILECREATE | OFN_PATHMUSTEXIST, s);
 
 	CString title;
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	pdlg.m_ofn.lpstrTitle = (LPCTSTR)title;
-	pdlg.m_ofn.lpstrInitialDir = (LPSTR)pszFolder;
+	pdlg.m_ofn.lpstrInitialDir = (LPCTSTR)pszFolder;
 
 	if (pdlg.DoModal() == IDOK)
 	{
