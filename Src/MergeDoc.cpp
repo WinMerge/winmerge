@@ -1216,7 +1216,8 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	MAPPEDFILEDATA fileData = {0};
 	TCHAR szTempFileDir[_MAX_PATH] = {0};
 	TCHAR szTempFileName[_MAX_PATH] = {0} ;
-	BOOL bSuccess = FALSE;
+	BOOL bOpenSuccess = FALSE;
+	BOOL bSaveSuccess = FALSE;
 	TCHAR drive[_MAX_PATH] = {0};
 	TCHAR dir[_MAX_PATH] = {0};
 
@@ -1249,9 +1250,9 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	fileData.bWritable = TRUE;
 	fileData.dwOpenFlags = CREATE_ALWAYS;
 	fileData.dwSize = nBufSize;
-	bSuccess = files_openFileMapped(&fileData);
+	bOpenSuccess = files_openFileMapped(&fileData);
 
-	if (bSuccess)
+	if (bOpenSuccess)
 	{
 		if (m_nSourceEncoding >= 0)
 		{
@@ -1279,10 +1280,10 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 				SetModified(FALSE);
 				m_nSyncPosition = m_nUndoPosition;
 			}
-			bSuccess = TRUE;
+			bSaveSuccess = TRUE;
 		}
 	}
-	return bSuccess;
+	return bSaveSuccess;
 }
 
 // Replace text of line (no change to eol)
