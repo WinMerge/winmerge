@@ -1,6 +1,9 @@
 2003-10-22 Perry
  Fix compile for MakeResDll
   common: coretools.cpp
+ Ran "cvs admin -kb *.bmp *.ico" to fix incorrectly typed resources
+  Languages: Czech/res Dutch/res French/res German/res 
+   Italian/res Spanish/res
 
 2003-10-22 WinMerge experimental release 2.1.3.4 (cvs)
 
