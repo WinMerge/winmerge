@@ -299,8 +299,8 @@ IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
     POPUP "Prediffer Settings"
     BEGIN
-        MENUITEM "&No prediffer",               ID_PREDIFF_MANUAL
-        MENUITEM "Auto prediffer",              ID_PREDIFF_AUTO
+        MENUITEM "&Ingen prediffer",               ID_PREDIFF_MANUAL
+        MENUITEM "Automatisk prediffer",              ID_PREDIFF_AUTO
     END
 END
 
@@ -707,7 +707,7 @@ CAPTION "Välj Uppackare"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,87,99,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,156,99,50,14
+    PUSHBUTTON      "Avbryt",IDCANCEL,156,99,50,14
     LTEXT           "Fil-uppackare:",IDC_STATIC,7,18,50,10
     COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
@@ -1207,7 +1207,7 @@ BEGIN
     ID_EDIT_REPLACE         "Ersätt den markerade texten med annan text\nErsätt"
     ID_EDIT_SELECT_ALL      "Välj hela dokumentet\nVälj allt"
     ID_EDIT_UNDO            "Ångra den senaste åtgärden\nÅngra"
-    ID_EDIT_REDO            "Gör om den tidligare ångrade åtgärden\nGör om"
+    ID_EDIT_REDO            "Gör om den tidigare ångrade åtgärden\nGör om"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -1280,11 +1280,11 @@ BEGIN
     IDS_FILESSAME           "De valda filerna är identiska."
     IDS_FILEUNIQUE          "Den valda filen finns inte i båda mapparna och kan därför inte jämföras"
     IDS_FILEERROR           "Ett fel inträffade under jämförelsen av filerna."
-    IDS_SAVEREADONLY_FMT    "%1 är skrivskyddad. Vill du skriva över filen (välj Nej för att spara filen under ett annat namn)?"
+    IDS_SAVEREADONLY_FMT    "%1 är skrivskyddad. Vill du skriva över filen (välj Nej för att spara filen med ett annat namn)?"
     IDS_SAVE_FMT            "Spara ändringar i %1?"
     IDS_FILEBINARY          "Binära filer kan inte jämföras visuellt."
-    IDS_SAVEVSS_FMT         "%1 är skrivskyddad. Vill du checka ut filen från ett versionshanteringssystem, eller spara den under ett annat namn?"
-    IDS_VSSERROR            "Versionshanteringssystemet returnerade en fel under försöket att checka ut filen. Det går inte att fortsätta..."
+    IDS_SAVEVSS_FMT         "%1 är skrivskyddad. Vill du checka ut filen från ett versionshanteringssystem, eller spara den med ett annat namn?"
+    IDS_VSSERROR            "Versionshanteringssystemet returnerade ett fel under försöket att checka ut filen. Det går inte att fortsätta..."
     IDS_NOPROJECT           "Du måste ange sökvägen till ett SourceSafe-projekt för att fortsätta (t.ex.:  $/MittProjekt)"
 END
 
@@ -1332,11 +1332,11 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_FILESAVE_FAILED     "Ett fel inträffade när %1 skulle sparas. Vill du spara filen under ett annat namn?"
+    IDS_FILESAVE_FAILED     "Ett fel inträffade när %1 skulle sparas. Vill du spara filen med ett annat namn?"
     IDS_ERROR_FILE_NOT_FOUND "Kan inte hitta: %1"
     IDS_ERROR_INCOMPARABLE  "Välj två existerande mappar eller filer att jämföra"
     IDS_STATUS_RESCANNING   "Söker filer..."
-    IDS_STATUS_OPENING_SELECTION "Öppnar valda"
+    IDS_STATUS_OPENING_SELECTION "Öppnar val"
     IDS_STATUS_COPYL2R      "Kopiera vänster till höger"
     IDS_STATUS_COPYR2L      "Kopiera höger till vänster"
     IDS_STATUS_COPYALL2L    "Kopiera allt till vänster"
@@ -1383,7 +1383,7 @@ BEGIN
                             "Plugin '%2' kan inte packa dina förändringar av den vänstra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILEPACK_FAILED_RIGHT 
                             "Plugin '%2' kan inte packa dina förändringar av den högra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
-    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\ndär:\n /? eller -? visar denna hjälp\n /r eller -r får winmerge att jämföra kataloger rekursivt\n /e eller -e låter WinMerge stängas med en enkel esc tryckning\n /ul eller -ul får winmerge att inte lägga till vänster path till MRU\n /ur eller -ur får winmerge att inte lägga till höger path till MRU\n /ub eller -ub får winmerge att inte lägga till båda paths till MRU\n /dl eller -dl lägger till en visad beskrivning av vänster sida istället för katalog/filnamn\n /dr eller -dr lägger till en visad beskrivning av höger sida istället för katalog/filnamn\n leftpath är katalogen eller filnamnet att öppna på vänster sida\n rightpath är katalogen eller filnamnet att öppna på höger sida\n outputpath är en optionell outputkatalog där du vill att ändrade filer ska \n sparas\n \n Obs: leftpath och rightpath måste båda vara filer eller båda måste vara \n kataloger\n"
+    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\ndär:\n /? eller -? visar denna hjälp\n /r eller -r får WinMerge att jämföra kataloger rekursivt\n /e eller -e låter WinMerge stängas med en enkel esc tryckning\n /ul eller -ul får WinMerge att inte lägga till vänster sökväg till de senast använda filerna\n /ur eller -ur får WinMerge att inte lägga till höger sökväg till de senast använda filerna\n /ub eller -ub får WinMerge att inte lägga till båda sökvägarna till de senast använda filerna\n /dl eller -dl lägger till en visad beskrivning av vänster sida istället för katalog/filnamn\n /dr eller -dr lägger till en visad beskrivning av höger sida istället för katalog/filnamn\n leftpath är katalogen eller filnamnet att öppna på vänster sida\n rightpath är katalogen eller filnamnet att öppna på höger sida\n outputpath är en optionell outputkatalog där du vill att ändrade filer ska \n sparas\n \n Obs: leftpath och rightpath måste båda vara filer eller båda måste vara \n kataloger\n"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -1393,7 +1393,7 @@ BEGIN
     IDS_ERROR_FILE_NOT_UNPACKED "Filen är inte uppackad: %1"
     IDS_USERCHOICE_NONE     "<Ingen>"
     IDS_USERCHOICE_AUTOMATIC "<Automatisk>"
-    IDS_SUGGEST_IGNOREEOL   "Filerna har olika EOL typer.\nMed de aktuella inställningarna , kommer alla rader att vara olika.\nVill du ignorera EOL skillnader för dessa filer ?\n\nAdvanserad användare : om EOL inte är lika i dina filer,\n kan du hellre ställa in inställningen '%1'."
+    IDS_SUGGEST_IGNOREEOL   "Filerna har olika EOL typer.\nMed de aktuella inställningarna , kommer alla rader att vara olika.\nVill du ignorera EOL skillnader för dessa filer ?\n\nAvancerad användare : om EOL inte är lika i dina filer,\n kan du hellre ställa in inställningen '%1'."
     IDS_SUGGEST_PRESERVEEOL "EOL är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika EOL ?"
     IDS_EMPTY_LEFT_FILE     "Namnlös vänster"
     IDS_EMPTY_RIGHT_FILE    "Namnlös höger"
@@ -1414,9 +1414,9 @@ BEGIN
     IDS_SELECT_DESTFOLDER   "Välj destinationskatalog"
     IDS_COMPMETHOD_CONTENTS "Innehåll"
     IDS_COMPMETHOD_MODDATE  "Datum för förändring"
-    IDS_PATH_NOT_ABSOLUTE   "%1\n är inte en absolut path!"
+    IDS_PATH_NOT_ABSOLUTE   "%1\n är inte en absolut sökväg!"
     IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
-    IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
+    IDS_TEMP_FILEERROR      "Temporära filer kunde inte skapas. Kontrollera inställningarna för dina temporära sökvägar."
 END
 
 STRINGTABLE DISCARDABLE
@@ -1451,7 +1451,7 @@ END
 STRINGTABLE 
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
-    IDS_MESSAGEBOX_CANCEL   "&Avbrytl"
+    IDS_MESSAGEBOX_CANCEL   "&Avbryt"
     IDS_MESSAGEBOX_ABORT    "&Avbryt"
     IDS_MESSAGEBOX_RETRY    "&Försök igen"
     IDS_MESSAGEBOX_IGNORE   "&Ignorera"
@@ -1476,10 +1476,10 @@ STRINGTABLE DISCARDABLE
 BEGIN
     ID_L2R                  "Kopiera den valda texten till den högra filen\nKopiera höger (Alt Höger)"
     ID_R2L                  "Kopiera den valda texten till den vänstra filen\nKopiera vänster (Alt Vänster)"
-    ID_OPTIONS_SHOWIDENTICAL "Visa filer som är helt lika"
-    ID_OPTIONS_SHOWDIFFERENT "Visar filer som har skillnader"
-    ID_PREVDIFF             "Rulla till föregående skillnad\nFöregående skillnad (Alt Upp)"
-    ID_NEXTDIFF             "Rulla till nästa skillnad\nNästa skillnad (Alt Ner)"
+    ID_OPTIONS_SHOWIDENTICAL "Visa filer som är identiska"
+    ID_OPTIONS_SHOWDIFFERENT "Visa filer som har skillnader"
+    ID_PREVDIFF             "Gå till föregående skillnad\nFöregående skillnad (Alt Upp)"
+    ID_NEXTDIFF             "Gå till nästa skillnad\nNästa skillnad (Alt Ner)"
     ID_OPTIONS_BACKUPORIGINALFILE 
                             "Spara en kopia av originalet som *.bak\nBackup"
 END
@@ -1487,14 +1487,14 @@ END
 STRINGTABLE DISCARDABLE 
 BEGIN
     ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
-                            "Rulla automatiskt till den första skillnaden\nRulla till första"
+                            "Gå automatiskt till den första skillnaden\nGå till första"
     ID_OPTIONS_IGNOREWHITESPACE "Ignorerar mellanslag vid jämförelse av filer"
     ID_HIDE_BACKUP_FILES    "Gömmer filer med filtyp BAK"
     ID_HELP_GNULICENSE      "Visa GNU General Public License"
     ID_USEVSS               "Försöker att checka ut skrivskyddade filer från SourceSafe"
     ID_OPTIONS              "Ändra programinställningar\nEgenskaper"
     ID_ALL_LEFT             "Kopiera alla skillnader till den vänstra filen\nKopiera allt till vänster"
-    ID_ALL_RIGHT            "Kopiera alla skillnader till den vänstra filen\nKopiera allt till höger"
+    ID_ALL_RIGHT            "Kopiera alla skillnader till den högra filen\nKopiera allt till höger"
     ID_VIEW_SELECTFONT      "Välj teckensnitt för fönstren\nVälj teckensnitt"
     ID_VIEW_USEDEFAULTFONT  "Välj standardteckensnitt för fönstren\nVälj standardteckensnitt"
     ID_DIR_COPY_RIGHT_TO_LEFT "Kopiera den valda filen till den angivna mappen"
@@ -1506,9 +1506,9 @@ BEGIN
                             "Kopiera den valda filen till den angivna mappen"
     ID_VIEW_LANGUAGE        "Välj språk för användargränssnittet\nSpråk"
     ID_HELP_CONTENTS        "Visa hjälpen för WinMerge\nHjälp"
-    ID_FIRSTDIFF            "Bläddra till första skillnaden\nFörsta skillnad (Alt+Home)"
-    ID_CURDIFF              "Bläddra till aktuell skillnad\nAktuell skillnad (Alt+Enter)"
-    ID_LASTDIFF             "Bläddra till sista skillnaden\nSista skillnad (Alt+End)"
+    ID_FIRSTDIFF            "Gå till första skillnaden\nFörsta skillnad (Alt+Home)"
+    ID_CURDIFF              "Gå till aktuell skillnad\nAktuell skillnad (Alt+Enter)"
+    ID_LASTDIFF             "Gå till sista skillnaden\nSista skillnad (Alt+End)"
     ID_DIFFNUM              "Platshållare"
     ID_DIR_DEL_LEFT         "Ta bort valda objekt på vänster sida"
     ID_DIR_DEL_RIGHT        "Ta bort valda objekt på höger sida"
@@ -1523,8 +1523,8 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "Öppna den vänstra filen med ..."
-    ID_OPTIONS_SHOWBINARIES "Visar binära filer"
+    ID_DIR_OPEN_RIGHT_WITH  "Öppna den högra filen med ..."
+    ID_OPTIONS_SHOWBINARIES "Visa binära filer"
     ID_VIEW_WHITESPACE      "Visa ett tecken för mellanslag"
     ID_REFRESH              "Uppdatera innehållet\nUppdatera (F5)"
     ID_SHOWLINEDIFF         "Markera skillnader på aktuell rad\nSkillnader på Aktuell Rad (F4)"
@@ -1569,11 +1569,11 @@ BEGIN
     ID_NO_EDIT_SCRIPTS      "< Tom >"
     ID_RELOAD_PLUGINS       "&Stäng alla plugins och öppna dem igen (för utvecklare)"
     ID_MESSAGE_BOX_ARE_RESET "Alla meddelanderutor visas nu igen."
-    ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
-    ID_PREDIFF_MANUAL       "No prediffer"
-    ID_PREDIFF_AUTO         "Prediff if possible"
-    ID_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-    ID_VIEW_LOCATION_BAR    "Location bar shows overall picture from files"
+    ID_NO_SCT_SCRIPTS       "WSH hittades inte - .sct script är avstängda"
+    ID_PREDIFF_MANUAL       "Ingen prediffer"
+    ID_PREDIFF_AUTO         "Prediff om möjligt"
+    ID_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
+    ID_VIEW_LOCATION_BAR    "Location bar visar en övergripande bild av filerna"
     ID_SUGGESTED_PLUGINS    "Suggested plugins"
     ID_NOT_SUGGESTED_PLUGINS "Others plugins"
     ID_NO_PREDIFFER         "No prediffer (normal)"
