@@ -3,10 +3,12 @@
 //      are changed infrequently
 //
 /**
- * @file  StdAfx.h
+ * @file  Src/StdAfx.h
  *
  * @brief Project-wide includes and declarations
  */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #if !defined(AFX_STDAFX_H__BBCD4F8A_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_STDAFX_H__BBCD4F8A_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
@@ -30,6 +32,15 @@
 #define countof(array)  (sizeof(array)/sizeof((array)[0]))
 #endif /* countof */
 
+/**
+ * @name User-defined Windows-messages
+ */
+/* @{ */
+/// Directory compare thread asks UI (view) update
+const UINT MSG_UI_UPDATE = WM_USER + 1;
+/// New item compared, update statepane
+const UINT MSG_STAT_UPDATE = WM_USER + 2;
+/* @} */
 
 // Miscellaneous functions defined in StdAfx.cpp
 

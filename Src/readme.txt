@@ -1,3 +1,7 @@
+2004-04-04 Kimmo
+ PATCH: [ 914513 ] Move message ids to stdafx.h
+  DirDoc.h StdAfx.h
+
 2004-04-03 Perry
  Move enum ACT_TYPE, struct action, and typedef DeletedItemList inside of 
   struct ActionList, of which they are part. Add header comment for ActionList.
