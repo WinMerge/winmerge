@@ -1,3 +1,8 @@
+2003-07-30 Laoran
+ PATCH: [ 777871 ] New headerbar for the file paths 
+  WinMerge: ChildFrm.cpp ChildFrm.h dllver.cpp dllver.h Merge.dsp Merge.rc resource.h
+  WinMerge new files : EditorFilepathBar.cpp EditorFilepathBar.h FilepathEdit.cpp FilepathEdit.h
+
 2003-07-30 Perry
  PATCH: [ 778379 ] Drag&drop reordering columns
   WinMerge: DirDoc.cpp DirView.cpp DirView.h Merge.dsp dllver.cpp dllver.h

@@ -22,6 +22,8 @@
 #define IDD_PROPPAGE_FILTER             111
 #define IDD_OUTPUT                      112
 #define IDD_PROPPAGE_REGISTRY           113
+#define IDD_EDITOR_HEADERBAR            114
+#define IDR_POPUP_EDITOR_HEADERBAR      115
 #define IDS_VERSION_FMT                 130
 #define IDS_ALLFILES                    131
 #define IDS_CONFIRM_ALL_LEFT            132
@@ -163,6 +165,8 @@
 #define IDC_WINMERGE_PATH_BROWSE        1045
 #define IDC_WINMERGE_PATH               1046
 #define IDC_WINMERGE_PATH_SAVE          1047
+#define IDC_STATIC_TITLE_LEFT           1048
+#define IDC_STATIC_TITLE_RIGHT          1049
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO            8503
@@ -361,15 +365,17 @@
 #define ID_REFRESH                      32819
 #define ID_EDIT_FIND_PREVIOUS           32820
 #define ID_SHOWLINEDIFF                 32821
+#define ID_EDITOR_COPY_PATH             32822
+#define ID_EDITOR_COPY_FILENAME         32823
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        114
+#define _APS_NEXT_RESOURCE_VALUE        116
 #define _APS_NEXT_COMMAND_VALUE         32822
-#define _APS_NEXT_CONTROL_VALUE         1048
+#define _APS_NEXT_CONTROL_VALUE         1050
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

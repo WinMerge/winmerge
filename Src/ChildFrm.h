@@ -30,6 +30,7 @@
 
 #include "SplitterWndEx.h"
 #include "MergeEditStatus.h"
+#include "EditorFilepathBar.h"
 
 class CChildFrame : public CMDIChildWnd
 {
@@ -40,7 +41,7 @@ public:
 // Attributes
 protected:
 	CSplitterWndEx m_wndSplitter;
-	CStatusBar m_wndHdrStatusBar;
+	CEditorFilePathBar m_wndFilePathBar;
 	CStatusBar m_wndStatusBar;
 	// Object that displays status line info for one side of a merge view
 	class MergeStatus : public IMergeEditStatus

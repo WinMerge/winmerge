@@ -19,29 +19,6 @@ static char THIS_FILE[] = __FILE__;
 
 static CMap<CString, LPCTSTR, long, long> f_cache;
 
-// resource pattern for APIs LoadLibrary, FreeLibrary
-struct Library
-{
-	Library() : m_hinst(0) { }
-	~Library() { Unload(); }
-	bool Load(LPCTSTR sz)
-	{
-		Unload();
-		m_hinst = LoadLibrary(sz);
-		return m_hinst != NULL;
-	}
-	void Unload()
-	{
-		if (m_hinst)
-		{
-			FreeLibrary(m_hinst);
-			m_hinst = NULL;
-		}
-	}
-	HINSTANCE Inst() const { return m_hinst; }
-protected:
-	HINSTANCE m_hinst;
-};
 
 // Return major/minor version number from version resource (0 if not found)
 DWORD getFixedModuleVersion(HMODULE hmod)

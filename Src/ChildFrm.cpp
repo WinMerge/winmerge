@@ -48,12 +48,6 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-static UINT indicatorsHdr[] =
-{
-	ID_SEPARATOR,
-	ID_SEPARATOR
-};
-
 static UINT indicatorsBottom[] =
 {
 	ID_SEPARATOR,
@@ -163,19 +157,13 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	ModifyStyle(WS_THICKFRAME,0); // this is necessary to prevent the sizing tab on right
 
 	// Merge frame has a status bar at top
-	if (!m_wndHdrStatusBar.Create(this) ||
-		!m_wndHdrStatusBar.SetIndicators(indicatorsHdr,
-		  sizeof(indicatorsHdr)/sizeof(UINT)))
+	if (!m_wndFilePathBar.Create(this))
 	{
-		TRACE0("Failed to create status bar\n");
+		TRACE0("Failed to create dialog bar\n");
 		return -1;      // fail to create
 	}	
 
 	ModifyStyle(0,WS_THICKFRAME);
-
-	m_wndHdrStatusBar.SetBarStyle(CBRS_ALIGN_TOP);
-	m_wndHdrStatusBar.SetPaneStyle(0, SBPS_NORMAL);
-	m_wndHdrStatusBar.SetPaneStyle(1, SBPS_NORMAL);
 
 	// Merge frame also has a status bar at bottom
 	if (!m_wndStatusBar.Create(this) ||
@@ -210,8 +198,8 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 		m_wndSplitter.SetColumnInfo(0, rc.Width()/2, 10);
 		m_wndSplitter.RecalcLayout();
     }
-	CMDIChildWnd::ActivateFrame(nCmdShow);
 	UpdateHeaderSizes();
+	CMDIChildWnd::ActivateFrame(nCmdShow);
 }
 
 BOOL CChildFrame::DestroyWindow() 
@@ -262,11 +250,21 @@ void CChildFrame::UpdateHeaderSizes()
 	{
 		int w,wmin;
 		m_wndSplitter.GetColumnInfo(0, w, wmin);
+		int w1;
+		m_wndSplitter.GetColumnInfo(1, w1, wmin);
 		if (w<1) w=1; // Perry 2003-01-22 (I don't know why this happens)
-		m_wndHdrStatusBar.SetPaneInfo(0, ID_SEPARATOR, SBPS_NORMAL, w-1);
-		m_wndHdrStatusBar.SetPaneInfo(1, ID_SEPARATOR, SBPS_STRETCH, 0);
+		if (w1<1) w1=1; // Perry 2003-01-22 (I don't know why this happens)
+
+		// for bottom status bar
 		m_wndStatusBar.SetPaneInfo(0, ID_SEPARATOR, SBPS_NORMAL, w-1);
 		m_wndStatusBar.SetPaneInfo(1, ID_SEPARATOR, SBPS_STRETCH, 0);
+
+		// prepare file path bar to look as a status bar
+		if (m_wndFilePathBar.LookLikeThisWnd(&m_wndStatusBar) == TRUE)
+			RecalcLayout();
+
+		// resize controls in header dialog bar
+		m_wndFilePathBar.Resize(w, w1);
 	}
 
 }
@@ -295,7 +293,7 @@ void CChildFrame::OnTimer(UINT nIDEvent)
 
 void CChildFrame::SetHeaderText(int nPane, const CString &text)
 {
-	m_wndHdrStatusBar.SetPaneText(nPane, text);
+	m_wndFilePathBar.SetFilePath(nPane, text);
 }
 
 // document commanding us to close

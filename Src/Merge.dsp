@@ -279,7 +279,15 @@ SOURCE=.\ED.C
 # End Source File
 # Begin Source File
 
+SOURCE=.\EditorFilepathBar.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\FileFilterMgr.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\FilepathEdit.cpp
 # End Source File
 # Begin Source File
 
@@ -688,7 +696,15 @@ SOURCE=.\EditFile.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\EditorFilepathBar.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\FileFilterMgr.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FilepathEdit.h
 # End Source File
 # Begin Source File
 
