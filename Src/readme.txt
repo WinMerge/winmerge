@@ -1,6 +1,8 @@
 2004-05-18 Kimmo
  PATCH: [ 955408 ] Select first item in dir compare
   Src: DirView.cpp
+ PATCH: [ 956044 ] Don't select '..' and don't skip unique folders in dirview
+  Src: DirView.cpp
 
 2004-05-18 Perry
  PATCH: [ 955573 ] Swedish localization of Read Me.rtf

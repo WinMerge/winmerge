@@ -1483,9 +1483,13 @@ int CDirView::GetLastDifferentItem()
 // When navigating differences, do we stop at this one ?
 bool CDirView::IsItemNavigableDiff(const DIFFITEM & di) const
 {
+	// Not a valid diffitem, one of special items (e.g "..")
+	if (di.diffcode == 0)
+		return false;
 	if (di.isResultSkipped() || di.isResultError())
 		return false;
-	if (di.isDirectory())
+	// Skip identical directories
+	if (di.isDirectory() && !di.isSideLeft() && !di.isSideRight())
 		return false;
 	if (di.isResultSame())
 		return false;
