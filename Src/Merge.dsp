@@ -706,7 +706,7 @@ SOURCE=.\CONFIG.H
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\Common\coretools.h
+SOURCE=..\common\coretools.h
 # End Source File
 # Begin Source File
 
@@ -750,15 +750,15 @@ SOURCE=.\FNMATCH.H
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\LanguageSelect.h
+SOURCE=..\common\LanguageSelect.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\listvwex.h
+SOURCE=..\common\listvwex.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\LogFile.h
+SOURCE=..\common\LogFile.h
 # End Source File
 # Begin Source File
 
@@ -790,11 +790,11 @@ SOURCE=.\REGEX.H
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\RegExp.h
+SOURCE=..\common\RegExp.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\Common\RegKey.h
+SOURCE=..\common\RegKey.h
 # End Source File
 # Begin Source File
 
@@ -806,7 +806,7 @@ SOURCE=.\Splash.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\StatLink.h
+SOURCE=..\common\StatLink.h
 # End Source File
 # Begin Source File
 
@@ -814,11 +814,11 @@ SOURCE=.\StdAfx.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\StringEx.h
+SOURCE=..\common\StringEx.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\SuperComboBox.h
+SOURCE=..\common\SuperComboBox.h
 # End Source File
 # Begin Source File
 
@@ -830,7 +830,7 @@ SOURCE=..\Common\textfile.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\version.h
+SOURCE=..\common\version.h
 # End Source File
 # Begin Source File
 
