@@ -15,18 +15,48 @@ The remainder of this file contains specific instructions for each localized lan
 The following languages do not need translating:
 Bulgarian, Czech, Danish, Dutch, French, German, Korean, Norwegian, Russian, Slovenian, and Swedish
 
-[Spanish]
-File=SpanishStd-4.2.1.isl
-LinesToTranslate=2
+[Catalan]
+File=Catalan.isl
+LinesToTranslate=4
 Line1=SelectStartMenuFolderLabel3
 Line2=SelectDirLabel3
+Line3=SelectDirBrowseLabel
+Line4=SelectStartMenuFolderBrowseLabel
 
 [Brazillian/Portuguese]
-File=BrazilianPortuguese-4.2.1.isl
-LineToTranslate=2
+File=Brazilian_Portuguese.isl
+LinesToTranslate=4
 Line1=SelectStartMenuFolderLabel3
 Line2=SelectDirLabel3
+Line3=SelectDirBrowseLabel
+Line4=SelectStartMenuFolderBrowseLabel
 
+[Spanish]
+File=Spanish.isl
+LinesToTranslate=4
+Line1=SelectStartMenuFolderLabel3
+Line2=SelectDirLabel3
+Line3=SelectDirBrowseLabel
+Line4=SelectStartMenuFolderBrowseLabel
+
+[Slovak]
+File=Slovak.isl
+LinesToTranslate=15
+Line1=SelectStartMenuFolderLabel3
+Line2=SelectDirLabel3
+Line3=SelectDirBrowseLabel
+Line4=SelectStartMenuFolderBrowseLabel
+Line5=BrowseDialogLabel
+Line6=BrowseDialogTitle
+Line7=BrowseDialogLabel
+Line8=NewFolderName
+Line9=ButtonWizardBrowse
+Line10=ButtonNewFolder
+Line11=DirNameTooLong
+Line12=InvalidDirName
+Line13=GroupNameTooLong
+Line14=InvalidGroupName
+Line15=UninstallOpenError
 
 
 
