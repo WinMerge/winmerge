@@ -1816,7 +1816,7 @@ void CMainFrame::UpdateResources()
 void CMainFrame::OnHelpContents() 
 {
 	CString spath = GetModulePath(0) + _T("\\Docs\\index.html");
-	CString url = _T("http://winmerge.sourceforge.net/docs20/index.html");
+	CString url = _T("http://winmerge.org/docs20/index.html");
 
 	CFileStatus status;
 	if (CFile::GetStatus(spath, status))

@@ -1,7 +1,10 @@
 2004-03-15 Kimmo
  RFE: [ 874366 ] Add goto line-number
-   Scroll line searched to center of view, as suggested by harry mckame
+  Scroll line searched to center of view, as suggested by harry mckame
   Src: MergeEditView.cpp
+ Change URLs to point http://winmerge.org 
+  (As discussed in BUG #916674 Hardcoded url to help and website from help-menu)
+  MainFrm.cpp Merge.cpp
 
 2004-03-14 Kimmo
  RFE [ 897975 ] Syntax highlighting for INI files

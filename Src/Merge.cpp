@@ -415,7 +415,7 @@ BOOL CAboutDlg::OnInitDialog()
 	}
 
 	m_ctlCompany.SetWindowText(version.GetLegalCopyright());
-	m_ctlWWW.m_link = _T("http://winmerge.sourceforge.net");
+	m_ctlWWW.m_link = _T("http://winmerge.org");
 
 	UpdateData(FALSE);
 	
