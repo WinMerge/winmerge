@@ -1763,7 +1763,7 @@ static int firstdiff(BOOL case_sensitive, int whitespace, const CString & str1, 
 		if (whitespace==2)
 		{
 			// we don't care at all about whitespace
-			// skip all whitespace on boths ides
+			// skip all whitespace on both sides
 			while (i1<str1.GetLength() && isspace(str1[i1]))
 				++i1;
 			while (i2<str2.GetLength() && isspace(str2[i2]))

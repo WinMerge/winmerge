@@ -1,3 +1,7 @@
+2003-07-27 Perry
+ PATCH: [ 778290 ] Typo in comment
+  WinMerge: MergeDoc.cpp
+
 2003-07-26 Kimmo
  BUG: [ 778166 ] Shell integration missing quotes (2.1)
   ShellExtension: WinMergeShell.cpp
