@@ -200,6 +200,8 @@ void COpenDlg::OnOK()
 	m_ctlExt.SaveState(_T("Files\\Ext"));
 
 	theApp.WriteProfileInt(_T("Settings"), _T("Recurse"), m_bRecurse);
+
+	CDialog::OnOK();
 }
 
 /** @brief Handler for WM_INITDIALOG; conventional location to initialize controls */
