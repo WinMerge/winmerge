@@ -1,3 +1,7 @@
+2003-05-14 Kimmo
+ PATCH: [ 737692 ] Scrolling optimisation - significant speedup
+  editlib: ccrystaltextview.cpp
+
 2003-05-13 Kimmo
  PATCH: [ 736443 ] Prpoper Esc fix
   WinMerge: DirView.h DirView.cpp Merge.cpp MergeEditView.h MergeEditView.cpp

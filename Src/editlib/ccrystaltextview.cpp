@@ -656,6 +656,8 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
 		{
 			int nScrollLines = m_nTopSubLine - nNewTopSubLine;
 			m_nTopSubLine = nNewTopSubLine;
+			// OnDraw() uses m_nTopLine to determine topline
+			m_nTopLine = m_nTopSubLine;
 			ScrollWindow(0, nScrollLines * GetLineHeight());
 			UpdateWindow();
 			if (bTrackScrollBar)
