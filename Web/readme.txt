@@ -1,6 +1,8 @@
 2005-01-19 Tim
  PATCH: [ 1104253 ] Web: Rearranged menu items
   Web: page.inc
+ Change email address and username from Perry:
+  Web\developer: developers.xml
 
 2005-01-06 Tim
  PATCH: [ 1096755 ] Web: Use XML file for developers list
