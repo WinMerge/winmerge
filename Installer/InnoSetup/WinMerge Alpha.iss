@@ -18,6 +18,7 @@
 ;
 ;Installer Todo List:
 ; #  Automatically detect and configure WinMerge to work with Visual Source Safe
+; #  We need to add support for Tortoises' SubVersion program mimicing our support settings for TortoiseCVS if possible
 ; #  Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL
 ; #  Add a Desktop.ini file to our \Program Files\WinMerge folder
 ; #  Test and distribute the files contained within "MergePlugins (From 2140).7z" or in the folder MergePlugins of "WinMerge2140-exe.7z"
@@ -37,7 +38,6 @@
 ;     menu location was so that we can remove it if the user chooses to install to a different location.
 ; #  Determine whether NT 3.51 with a 3.0 or higher version of IE can run our application I don't want the system requirements
 ;     in \Docs\Read Me.RTF to be inaccurate.
-; #  Make sure Tortoise CVS also supports WinMerge as the merge application in addition to the differencing one.
 ; #  Create two info pages during installation one for our Contributors and a second one for our Read Me file.
 ;     If this isn't possible then we'll need to use ISPP and somehow programatically combine the two RTF files prior to compilation.
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
@@ -49,6 +49,14 @@
 ; #  Create a switch for the installer to unzip all of the included binaries as if it were a zip file.
 ; #  Perry wanted a Select All button to appear on the components page.  Let's just ask Jordan Russell or Martijn Laan if they'll do it :).
 ; #  Provide the option to or not to assign the Ctrl+Alt+M accelerator to WinMerge.
+; #  Using the registry set the order our icons appear within their group in the start menu.:
+;      1.  WinMerge
+;      2.  Read Me
+;      3.  Users's Guide
+;      4.  WinMerge on the Web
+;      5.  Uninstall WinMerge
+; #  We need to determine if our application can cooperate with WinCVS and if so how
+
 
 
 
@@ -67,7 +75,7 @@ AppUpdatesURL=http://WinMerge.org/
 ;This is in case an older version of the installer happened to be
 DirExistsWarning=No
 
-;This requires IS Pack 4.18(full install).  Once installed you must compile using ISTool, not Inno Setup directly.
+;This requires IS Pack 4.18(full install).
 AppVersion={#AppVersion}
 
 DefaultDirName={pf}\WinMerge
@@ -123,7 +131,7 @@ Name: filters; Description: Filters; Types: full
 
 ;Non-English Languages are no longer a default part of a normal installation.  If a user selected a language as part of their last installation
 ;that language will be selected automatically during subsequent installs.
-Name: Catalan_Language; Description: Catalan; Flags: disablenouninstallwarning
+Name: Catalan_Language; Description: Catalan menus and dialogs; Flags: disablenouninstallwarning
 Name: ChineseSimplified_Language; Description: Chinese (Simplified) menus and dialogs; Flags: disablenouninstallwarning
 Name: ChineseTraditional_Language; Description: Chinese (Traditional) menus and dialogs; Flags: disablenouninstallwarning
 Name: Czeck_Language; Description: Czech menus and dialogs; Flags: disablenouninstallwarning
@@ -222,7 +230,7 @@ Name: {app}\Merge7z313U.dll; Type: files
 
 Name: {app}\ShellExtension.dll; Type: files
 
-Name: {app}\MergeBrazilian_Language.lang; Type: files
+Name: {app}\MergeBrazilian.lang; Type: files
 Name: {app}\MergeCatalan.lang; Type: files
 Name: {app}\MergeChineseSimplified.lang; Type: files
 Name: {app}\MergeChineseTraditional.lang; Type: files
@@ -276,7 +284,7 @@ Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; MinVersion: 
 Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; MinVersion: 4, 0; Components: main; Flags: ignoreversion
 
 ;Installs the ComCtl32.dll update on any system where its DLLs are more recent
-Source: Runtimes\50comupd.exe; DestDir: {tmp}; Check: InstallComCtlUpdate
+Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall; Check: InstallComCtlUpdate
 
 ; begin VC system files
 Source: Runtimes\mfc42.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile
@@ -296,27 +304,27 @@ Source: ..\Build\MergeRelease\Merge7z313.dll; DestDir: {app}; Flags: ignoreversi
 Source: ..\Build\MergeRelease\Merge7z312.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(312)
 Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: ignoreversion; MinVersion: 4, 0; Check: Install7ZipDll(311)
 
-Source: ..\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: Brazilian_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Components: Catalan_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: ChineseSimplified_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: ChineseTraditional_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: Czeck_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: Danish_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: Dutch_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: French_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: German_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: Italian_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: Korean_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Components: Norwegian_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergePolish.lang; DestDir: {app}; Components: Polish_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeRussian.lang; DestDir: {app}; Components: Russian_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: Slovak_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
-Source: ..\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: Brazilian_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Components: Catalan_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: ChineseSimplified_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: ChineseTraditional_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: Czeck_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: Danish_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: Dutch_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: French_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: German_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: Italian_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: Korean_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Components: Norwegian_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Components: Polish_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}; Components: Russian_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: Slovak_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
+Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Spanish_Language; Flags: ignoreversion
 
 
-Source: ..\Docs\Users\UsersGuide\*.*; DestDir: {app}\Docs\User's Guide\; Components: docs; Flags: ignoreversion sortfilesbyextension
-Source: ..\Docs\Users\UsersGuide\Art\*.*; DestDir: {app}\Docs\User's Guide\Art; Components: docs; Flags: ignoreversion sortfilesbyextension
+Source: ..\Docs\Users\Guide\*.*; DestDir: {app}\Docs\User's Guide\; Components: docs; Flags: ignoreversion sortfilesbyextension
+Source: ..\Docs\Users\Guide\Art\*.*; DestDir: {app}\Docs\User's Guide\Art; Components: docs; Flags: ignoreversion sortfilesbyextension
 Source: ..\Filters\*.*; DestDir: {app}\Filters; Components: filters; Flags: ignoreversion sortfilesbyextension
 
 ;Documentation
@@ -394,7 +402,12 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueNa
 Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName}
 Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: DiffAsUnicode; ValueData: $00000001
 
+;Tells TortoiseCVS to use WinMerge as its differencing application (this happens whether or not Tortoise is current installed, that way
+;if it is installed at a later date this will automatically support it)
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Merge Application; ValueData: {app}\{code:ExeName}
+Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: dword; ValueName: MergeAsUnicode; ValueData: $00000001
 
+;Tells WinMerge to integrate with the user's copy of Visual Source Safe
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Settings; ValueType: dword; ValueName: VersionSystem; ValueData: {code:SourceControlAppInt}
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Settings; ValueType: string; ValueName: VssPath; ValueData: {code:SourceControlAppPath}
 
