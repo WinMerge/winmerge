@@ -1,3 +1,7 @@
+2003-06-17 Kimmo
+ PATCH: [ 755918 ] Fix typo in CCrystalTextView extension list
+  editlib: ccrystaltextview.cpp
+
 2003-06-16 Christian
  PATCH [ 754015 ] WinMerge installer imrovements
   InnoSetup: Info.txt WinMerge.iss WinMergeIcon.bmp WinMergeLarge.bmp
