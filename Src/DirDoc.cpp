@@ -485,7 +485,6 @@ void CDirDoc::MergeDocClosing(CMergeDoc * pMergeDoc)
 // in which case this aborts and returns FALSE
 BOOL CDirDoc::ReusingDirDoc()
 {
-
 	// Inform all of our merge docs that we're closing
 	for (POSITION pos = m_MergeDocs.GetHeadPosition(); pos; )
 	{
@@ -497,6 +496,14 @@ BOOL CDirDoc::ReusingDirDoc()
 	// clear diff display
 	ASSERT(m_pDirView);
 	m_pDirView->DeleteAllDisplayItems();
+
+	// delete comparison parameters and results
+	if (m_pCtxt != NULL)
+		delete m_pCtxt;
+	m_pCtxt = NULL;
+	if (m_pFilter != NULL)
+		delete m_pFilter;
+	m_pFilter = NULL;
 
 	return TRUE;
 }
