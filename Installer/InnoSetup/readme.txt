@@ -2,6 +2,8 @@
  BUG: [ 1030727 ] Installer always ask to delete previous start menu
   Fix from Takashi Sawanaka (Merged final fix from 2.2 branch)
   InnoSetup: WinMerge Localized.iss
+ BUG: [ 1044896 ] Error creating INI entry...
+  InnoSetup: WinMerge Localized.iss
 
 2004-10-15 Kimmo
  PATCH: [ 1046583 ] Improved 48x48 icon
