@@ -1,6 +1,8 @@
 2004-05-10 Christian
  PATCH: [ 941187 ] Translation statuspage
   Web/developer: translate.php
+ PATCH: [ 945500 ] Fix CVSROOT in WinCVS help
+  Web/developer: wincvs.php
 
 2004-03-18 Christian
  PATCH: [ 918361 ] favicon as gimmick for the website
