@@ -10,3 +10,15 @@
 #endif
 
 #include <atlimpl.cpp>
+
+/**
+ * @brief Get appropriate clipboard format for TCHAR text
+ */
+int GetClipTcharTextFormat()
+{
+#ifdef _UNICODE
+	return CF_UNICODETEXT;
+#else
+	return CF_TEXT;
+#endif // _UNICODE
+}
