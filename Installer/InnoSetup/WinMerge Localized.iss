@@ -26,15 +26,16 @@
 ; Bugs & Other Priority Items:
 ; #  Get All Inno Setup .ISLs localized
 ; #  Get All Inno Setup CustomMessages Localized
-;
+; #  Add the Windows Scripting Host if the user chooses the plugins (*.SCT)
+; #  UnpackDFM.dll requires ADVAPI32.dll, we'll have to bundle IE or at least display a warning :).  Also figure out if Delphi 4+ /Free Pascal wouldn't
+;    install this to begin with
 ; #  Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL (Use GetCurentFileName)
 ; #  Provide the option to or not to assign the Ctrl+Alt+M accelerator to WinMerge., make sure it's turned on for at least one icon
 ; #  Add WinMerge to the user's path so they can execute comparison's from a Dos Prompt (Cmd.exe/Command.exe)
 ; #  We need to unregister, and delete the ShellExtension Dll if the user doesn't want it, during installation
 ; #  When Explorer.exe is restarted we should record what windows were present before hand and restore them afterwards.
-; #  UnpackDFM.dll requires ADVAPI32.dll, we'll have to bundle IE or at least display a warning :).
 ; #  Figure out how TortoiseCVS got Inno Setup to do the tree view, by using the CVS and checking out their code
-; #  Add the Windows Scripting Host if the user chooses the plugins (*.SCT)
+
 ; #  Display integration options in gray rather than hiding them if the user doesn't have the application in question installed
 ; #  Put Plugins.txt in docs and shortcut to it in \Plugins
 ; #  Distribute AppHelp.dll since it's required by WinMerge.exe, ShellExtension.dll, Merge7zU311.zip
