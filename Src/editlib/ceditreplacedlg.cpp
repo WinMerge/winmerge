@@ -487,7 +487,7 @@ OnEditReplaceAll ()
   strNumber.Format( _T("%d"), nNumReplaced );
   AfxFormatString1(strMessage, IDS_NUM_REPLACED, strNumber);
 
-  AfxMessageBox( strMessage );
+  AfxMessageBox( strMessage, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN, IDS_NUM_REPLACED);
 }
 
 void CEditReplaceDlg::

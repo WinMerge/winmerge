@@ -18,7 +18,7 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-/**
+/** 
  * @file  MainFrm.cpp
  *
  * @brief Implementation of the CMainFrame class
@@ -77,7 +77,7 @@ static char THIS_FILE[] = __FILE__;
 extern CLogFile gLog;
 CMainFrame *mf = NULL;
 
-// add a
+// add a 
 static void add_regexp PARAMS((struct regexp_list **, char const*));
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame
@@ -283,11 +283,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	mf = this;
-
+	
 	// build the initial reg expression list
 	RebuildRegExpList();
 	GetFontProperties();
-
+	
 	if (!m_wndToolBar.CreateEx(this,TBSTYLE_FLAT,WS_CHILD|WS_VISIBLE|CBRS_GRIPPER|CBRS_TOP|CBRS_TOOLTIPS|CBRS_FLYBY|CBRS_SIZE_DYNAMIC) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	{
@@ -302,7 +302,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
 	}
-	m_wndStatusBar.SetPaneInfo(1, ID_DIFFNUM, 0, 150);
+	m_wndStatusBar.SetPaneInfo(1, ID_DIFFNUM, 0, 150); 
 
 	// TODO: Remove this if you don't want tool tips or a resizeable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
@@ -362,7 +362,7 @@ HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
 HMENU CMainFrame::NewDefaultMenu()
 {
 	m_default.LoadMenu(IDR_MAINFRAME);
-
+	
 	// Load bitmaps to menuitems
 	m_default.ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);
 	m_default.ModifyODMenu(NULL, ID_EDIT_CUT, IDB_EDIT_CUT);
@@ -420,8 +420,8 @@ void CMainFrame::OnMeasureItem(int nIDCtl,
 /**
  * @brief This handler ensures that keyboard shortcuts work.
  */
-LRESULT CMainFrame::OnMenuChar(UINT nChar, UINT nFlags,
-	CMenu* pMenu)
+LRESULT CMainFrame::OnMenuChar(UINT nChar, UINT nFlags, 
+	CMenu* pMenu) 
 {
 	LRESULT lresult;
 	if(m_default.IsMenu(pMenu))
@@ -434,10 +434,10 @@ LRESULT CMainFrame::OnMenuChar(UINT nChar, UINT nFlags,
 /**
  * @brief This handler updates the menus from time to time.
  */
-void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
+void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu) 
 {
 	CMDIFrameWnd::OnInitMenuPopup(pPopupMenu, nIndex, bSysMenu);
-
+	
 	if (!bSysMenu)
 	{
 		if (BCMenu::IsMenu(pPopupMenu))
@@ -456,7 +456,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
 
-void CMainFrame::OnFileOpen()
+void CMainFrame::OnFileOpen() 
 {
 	DoFileOpen();
 }
@@ -505,7 +505,7 @@ void CMainFrame::RedisplayAllDirDocs()
 /**
  * @brief Show/Hide different files/directories
  */
-void CMainFrame::OnOptionsShowDifferent()
+void CMainFrame::OnOptionsShowDifferent() 
 {
 	varprop::VariantValue val;
 	val = m_options.Get(OPT_SHOW_DIFFERENT);
@@ -517,7 +517,7 @@ void CMainFrame::OnOptionsShowDifferent()
 /**
  * @brief Show/Hide identical files/directories
  */
-void CMainFrame::OnOptionsShowIdentical()
+void CMainFrame::OnOptionsShowIdentical() 
 {
 	varprop::VariantValue val;
 	val = m_options.Get(OPT_SHOW_IDENTICAL);
@@ -529,7 +529,7 @@ void CMainFrame::OnOptionsShowIdentical()
 /**
  * @brief Show/Hide left-only files/directories
  */
-void CMainFrame::OnOptionsShowUniqueLeft()
+void CMainFrame::OnOptionsShowUniqueLeft() 
 {
 	varprop::VariantValue val;
 	val = m_options.Get(OPT_SHOW_UNIQUE_LEFT);
@@ -541,7 +541,7 @@ void CMainFrame::OnOptionsShowUniqueLeft()
 /**
  * @brief Show/Hide right-only files/directories
  */
-void CMainFrame::OnOptionsShowUniqueRight()
+void CMainFrame::OnOptionsShowUniqueRight() 
 {
 	varprop::VariantValue val;
 	val = m_options.Get(OPT_SHOW_UNIQUE_RIGHT);
@@ -574,27 +574,27 @@ void CMainFrame::OnOptionsShowSkipped()
 	RedisplayAllDirDocs();
 }
 
-void CMainFrame::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_DIFFERENT));
 }
 
-void CMainFrame::OnUpdateOptionsShowidentical(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateOptionsShowidentical(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_IDENTICAL));
 }
 
-void CMainFrame::OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_UNIQUE_LEFT));
 }
 
-void CMainFrame::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT));
 }
 
-void CMainFrame::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_BINARIES));
 }
@@ -607,7 +607,7 @@ void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
 /**
  * @brief Show/Hide backup files
  */
-void CMainFrame::OnHideBackupFiles()
+void CMainFrame::OnHideBackupFiles() 
 {
 	varprop::VariantValue val;
 	val = m_options.Get(OPT_HIDE_BACKUP);
@@ -616,7 +616,7 @@ void CMainFrame::OnHideBackupFiles()
 	RedisplayAllDirDocs();
 }
 
-void CMainFrame::OnUpdateHideBackupFiles(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateHideBackupFiles(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_options.GetInt(OPT_HIDE_BACKUP));
 }
@@ -624,11 +624,11 @@ void CMainFrame::OnUpdateHideBackupFiles(CCmdUI* pCmdUI)
 /**
  * @brief Show GNU licence information in notepad (local file) or in Web Browser
  */
-void CMainFrame::OnHelpGnulicense()
+void CMainFrame::OnHelpGnulicense() 
 {
 	CString spath = GetModulePath() + _T("\\Copying");
 	CString url = _T("http://www.gnu.org/copyleft/gpl.html");
-
+	
 	CFileStatus status;
 	if (CFile::GetStatus(spath, status))
 		ShellExecute(m_hWnd, _T("open"), _T("notepad.exe"), spath, NULL, SW_SHOWNORMAL);
@@ -642,7 +642,7 @@ void CMainFrame::OnHelpGnulicense()
  * Reads words from a file deliminated by charset with one slight twist.
  * If the next char in the file to be read is one of the characters inside the delimiter,
  * then the word returned will be a word consisting only of delimiters.
- *
+ * 
  * @note pfile is not incremented past the word returned
  */
 BOOL CMainFrame::GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset)
@@ -657,7 +657,7 @@ BOOL CMainFrame::GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset)
 	BOOL delimMatch = FALSE;
 
 	ZeroMemory(&cbuffer, sizeof(cbuffer));
-
+	
 	while (numread == sizeof(ctemp) && pfile != INVALID_HANDLE_VALUE && buffercount < sizeof(cbuffer))
 	{
 		if (ReadFile(pfile, (LPVOID)&ctemp, sizeof(ctemp), &numread, NULL) == TRUE)
@@ -693,7 +693,7 @@ BOOL CMainFrame::GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset)
 				else if (delimword == FALSE)
 				{
 					for (pcharset = charset;*pcharset;pcharset++)
-					{
+					{						
 						//if next char is equal to a delimiter or we want delimwords stop the adding
 						if (ctemp == *pcharset)
 						{
@@ -713,7 +713,7 @@ BOOL CMainFrame::GetWordFile(HANDLE pfile, TCHAR * buffer, TCHAR * charset)
 				{
 					delimMatch = FALSE;
 					for (pcharset = charset;*pcharset;pcharset++)
-					{
+					{						
 						//if next char is equal to a delimiter or we want delimwords stop the adding
 						if (ctemp == *pcharset)
 						{
@@ -764,7 +764,7 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 	CString s;
 
 	bFileRO = files_isFileReadOnly(strSavePath, &bFileExists);
-
+	
 	if (bFileExists && bFileRO)
 	{
 		// Version control system used?
@@ -774,11 +774,11 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 		{
 			CString title;
 			VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
-
+			
 			// Prompt for user choice
 			AfxFormatString1(s, IDS_SAVEREADONLY_FMT, strSavePath);
 			userChoice = AfxMessageBox(s, MB_YESNOCANCEL |
-					MB_ICONQUESTION | MB_DEFBUTTON2);
+					MB_ICONQUESTION | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_SAVEREADONLY_FMT);
 			switch (userChoice)
 			{
 			// Overwrite read-only file
@@ -788,7 +788,7 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 				status.m_attribute &= ~CFile::Attribute::readOnly;
 				CFile::SetStatus(strSavePath, status);
 				break;
-
+			
 			// Save to new filename
 			case IDNO:
 				if (SelectFile(s, strSavePath, title, NULL, FALSE))
@@ -796,7 +796,7 @@ BOOL CMainFrame::CheckSavePath(CString& strSavePath)
 				else
 					bRetVal = FALSE;
 				break;
-
+			
 			// Cancel saving
 			case IDCANCEL:
 				bRetVal = FALSE;
@@ -910,7 +910,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			m_strVssUser = dlg.m_strUser;
 			m_strVssPassword = dlg.m_strPassword;
 			m_strVssDatabase = dlg.m_strSelectedDatabase;
-			m_bVCProjSync = dlg.m_bVCProjSync;
+			m_bVCProjSync = dlg.m_bVCProjSync;					
 
 			theApp.WriteProfileString(_T("Settings"), _T("VssDatabase"), m_strVssDatabase);
 			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_strVssProjectBase);
@@ -922,7 +922,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			IVSSItem		m_vssi;
 
 			COleException *eOleException = new COleException;
-
+				
 			// BSP - Create the COM interface pointer to VSS
 			if (FAILED(vssdb.CreateDispatch(_T("SourceSafe"), eOleException)))
 			{
@@ -938,10 +938,10 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			{
 				CString iniPath = m_strVssDatabase + _T("\\srcsafe.ini");
 				// BSP - Open the specific VSS data file  using info from VSS dialog box
-				vssdb.Open(iniPath, m_strVssUser, m_strVssPassword);
+				vssdb.Open(iniPath, m_strVssUser, m_strVssPassword);														
 				bOpened = TRUE;
 			}
-
+			
 			if (bOpened == FALSE)
 			{
 				// BSP - Open the specific VSS data file  using info from VSS dialog box
@@ -978,7 +978,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				if (buffer2[k] == '/')
 					buffer2[k] = '\\';
 			}
-
+			
 			//take out last '\\'
 			int strlb2 = _tcslen(buffer2);
 			if (buffer2[strlb2-1] == '\\')
@@ -989,7 +989,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			if (pdest)
 			{
 				int index  = (int)(pdest - buffer1 + 1);
-
+			
 				_tcscpy(buffer, buffer1);
 				TCHAR * fp = &buffer[int(index + _tcslen(pbuf2))];
 				sname = fp;
@@ -1013,7 +1013,8 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			if (strLocalSpec.CompareNoCase(strSavePath))
 			{
 				// BSP - if the directories are different, let the user confirm the CheckOut
-				int iRes = AfxMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, MB_YESNO);
+				int iRes = AfxMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, 
+				           MB_YESNO | MB_DONT_ASK_AGAIN, IDS_VSSFOLDER_AND_FILE_NOMATCH);
 
 				if (iRes != IDYES)
 				{
@@ -1052,7 +1053,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				WaitForSingleObject(hVss, INFINITE);
 				GetExitCodeProcess(hVss, &code);
 				CloseHandle(hVss);
-
+				
 				if (code != 0)
 				{
 					AfxMessageBox(IDS_VSSERROR, MB_ICONSTOP);
@@ -1079,7 +1080,7 @@ void CMainFrame::SetEOLMixed(BOOL bAllow)
 	ApplyViewWhitespace();
 }
 
-void CMainFrame::OnOptions()
+void CMainFrame::OnOptions() 
 {
 	CString sExtEditor;
 	CString selectedFilter;
@@ -1094,7 +1095,7 @@ void CMainFrame::OnOptions()
 	CPropRegistry regpage;
     CPropCompare compage(&m_options);
 	CPropEditor editor;
-
+   
 	sht.AddPage(&gen);
 	sht.AddPage(&compage);
 	sht.AddPage(&editor);
@@ -1102,7 +1103,7 @@ void CMainFrame::OnOptions()
 	sht.AddPage(&vss);
 	sht.AddPage(&colors);
 	sht.AddPage(&regpage);
-
+	
 	vss.m_nVerSys = m_nVerSys;
 	vss.m_strPath = m_strVssPath;
 	gen.m_bBackup = m_options.GetInt(OPT_CREATE_BACKUPS);
@@ -1125,12 +1126,12 @@ void CMainFrame::OnOptions()
 	editor.m_bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
 	editor.m_bHiliteSyntax = m_options.GetInt(OPT_SYNTAX_HIGHLIGHT);
 	editor.m_bAllowMixedEol = m_options.GetInt(OPT_ALLOW_MIXED_EOL);
-
+	
 	if (sht.DoModal()==IDOK)
 	{
 		m_nVerSys = vss.m_nVerSys;
 		m_strVssPath = vss.m_strPath;
-
+		
 		m_options.SaveOption(OPT_CREATE_BACKUPS, gen.m_bBackup);
 		m_options.SaveOption(OPT_SCROLL_TO_FIRST, gen.m_bScroll);
 		m_options.SaveOption(OPT_DISABLE_SPLASH, gen.m_bDisableSplash);
@@ -1150,7 +1151,7 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CMP_IGNORE_CASE, compage.m_bIgnoreCase);
         m_options.SaveOption(OPT_CMP_METHOD, compage.m_compareMethod);
 		m_options.SaveOption(OPT_CMP_MOVED_BLOCKS, compage.m_bMovedBlocks);
-
+		
 		m_nCompMethod = compage.m_compareMethod;
 
 		m_options.SaveOption(OPT_TAB_SIZE, editor.m_nTabSize);
@@ -1177,7 +1178,7 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_CLR_SELECTED_DIFF_TEXT, colors.m_clrSelDiffText);
 		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF, colors.m_clrTrivial);
 		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, colors.m_clrTrivialDeleted);
-
+		
 		RebuildRegExpList();
 
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
@@ -1194,7 +1195,7 @@ void CMainFrame::OnOptions()
 
 			// Re-read MergeDoc settings
 			pMergeDoc->RefreshOptions();
-
+			
 			// Enable/disable automatic rescan (rescan after editing)
 			pLeft->EnableRescan(m_options.GetInt(OPT_AUTOMATIC_RESCAN));
 			pRight->EnableRescan(m_options.GetInt(OPT_AUTOMATIC_RESCAN));
@@ -1449,7 +1450,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 
 		gLog.Write(LOGLEVEL::LNOTICE, _T("Open files: Left: %s\n\tRight: %s."),
 			strLeft, strRight);
-
+		
 		ShowMergeDoc(pDirDoc, strLeft, strRight, bROLeft, bRORight,
 			cpleft, cpright, &infoUnpacker);
 	}
@@ -1478,7 +1479,8 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 		if (!CopyFile(pszPath, s, FALSE))
 		{
 			if (AfxMessageBox(IDS_BACKUP_FAILED_PROMPT,
-					MB_YESNO | MB_ICONQUESTION) != IDYES)
+					MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, 
+					IDS_BACKUP_FAILED_PROMPT) != IDYES)
 				return FALSE;
 		}
 		return TRUE;
@@ -1514,13 +1516,13 @@ BOOL CMainFrame::SyncFilesToVCS(LPCTSTR pszSrc, LPCTSTR pszDest, CString * psErr
 		psError->LoadString(IDS_ERROR_FILE_WRITEABLE);
 		return FALSE;
 	}
-
+	
 	if (!CreateBackup(strSavePath))
 	{
 		psError->LoadString(IDS_ERROR_BACKUP);
 		return FALSE;
 	}
-
+	
 	// If VC project opened from VSS sync first
 	if (m_bVCProjSync)
 		return ReLinkVCProj(strSavePath, psError);
@@ -1555,7 +1557,7 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
 		if (!_tcscmp(buffer,_T(".vcproj")))
 			bVCPROJ = TRUE;
 		SplitFilename(strSavePath, &spath, NULL, NULL);
-
+		
 		//check if m_strVssProjectBase has leading $\\, if not put them in:
 		if ((m_strVssProjectBase[0] != '$' && m_strVssProjectBase[1] != '\\') ||
 			(m_strVssProjectBase[0] != '$' && m_strVssProjectBase[1] != '/'))
@@ -1576,7 +1578,7 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
 			if (buffer2[k] == '\\')
 				buffer2[k] = '/';
 		}
-
+		
 		//take out last '\\'
 		int strlb2 = _tcslen(buffer2);
 		if (buffer2[strlb2-1] == '/')
@@ -1589,7 +1591,7 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
 		if (pdest)
 		{
 			int index  = (int)(pdest - buffer1 + 1);
-
+		
 			_tcscpy(buffer,buffer1);
 			TCHAR * fp = &buffer[int(index + _tcslen(pbuf2))];
 			m_strVssProjectFull = fp;
@@ -1610,7 +1612,7 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
 		}
 
 		m_strVssProjectFull = m_strVssProjectBase + spath;
-
+		
 		//if sln file, we need to replace ' '  with _T("\\u0020")
 		if (!bVCPROJ)
 		{
@@ -1637,24 +1639,24 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
 		HANDLE hfile;
 		HANDLE tfile;
 		SetFileAttributes(strSavePath, FILE_ATTRIBUTE_NORMAL);
-
+		
 		hfile = CreateFile(strSavePath,
                 GENERIC_ALL,              // open for writing
-                FILE_SHARE_READ,           // share for reading
-                NULL,                      // no security
-                OPEN_EXISTING,             // existing file only
-                FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN,     // normal file
+                FILE_SHARE_READ,           // share for reading 
+                NULL,                      // no security 
+                OPEN_EXISTING,             // existing file only 
+                FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN,     // normal file 
                 NULL);
 		tfile = CreateFile(tempFile,
                 GENERIC_ALL,              // open for writing
-                FILE_SHARE_READ,           // share for reading
-                NULL,                      // no security
-                CREATE_ALWAYS,             // existing file only
-                FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN,     // normal file
-                NULL);
+                FILE_SHARE_READ,           // share for reading 
+                NULL,                      // no security 
+                CREATE_ALWAYS,             // existing file only 
+                FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN,     // normal file 
+                NULL);  
 		static TCHAR charset[] = _T(" \t\n\r=");
 		DWORD numwritten = 0;
-
+	
 		ZeroMemory(&buffer2, nBufferSize * sizeof(TCHAR));
 		while (GetWordFile(hfile, buffer, charset))
 		{
@@ -1666,7 +1668,7 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
 					//nab the equals sign
 					GetWordFile(hfile, buffer, _T("="));
 					WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
-					CString stemp = _T("\"&quot;") + m_strVssProjectFull +
+					CString stemp = _T("\"&quot;") + m_strVssProjectFull + 
 						_T("&quot;");
 					WriteFile(tfile, stemp, stemp.GetLength(),
 						&numwritten, NULL);
@@ -1674,7 +1676,7 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
 					GetWordFile(hfile, buffer, _T(",\n"));//get the next delimiter
 					if (!_tcscmp(buffer, _T("\n")))
 					{
-						WriteFile(tfile, _T("\""), 1, &numwritten, NULL);
+						WriteFile(tfile, _T("\""), 1, &numwritten, NULL);						
 					}
 					WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
 				}
@@ -1690,7 +1692,7 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
 					//nab word
 					GetWordFile(hfile, buffer, _T("\\\n."));
 					while (!_tcsstr(buffer, _T(".")))
-					{
+					{						
 						if (buffer[0] != '\\')
 						{
 							_stprintf(buffer1, _T("%s/%s"), buffer2, buffer);//put append word to file
@@ -1703,7 +1705,7 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
 				}
 				else if (_tcsstr(buffer, _T("SccProjectName")) == buffer)
 				{
-
+					
 					//buffer2 appends
 					CString capp;
 					if (buffer2[0] != '\\' && !_tcsstr(buffer2, _T(".")))
@@ -1727,17 +1729,17 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
 						}
 						_tcslwr(buffer1);
 						capp = buffer1;
-
+						
 						//nab until the no space, and no =
 						GetWordFile(hfile, buffer, _T(" ="));
 						WriteFile(tfile, buffer, _tcslen(buffer), &numwritten, NULL);
 						CString stemp =  _T("\\u0022") + m_strVssProjectFull + capp + _T("\\u0022");
 						WriteFile(tfile, stemp, stemp.GetLength(),
 							&numwritten, NULL);
-
+						
 						//nab until the first backslash
 						GetWordFile(hfile, buffer, _T(","));
-						ZeroMemory(&buffer2, nBufferSize * sizeof(TCHAR));
+						ZeroMemory(&buffer2, nBufferSize * sizeof(TCHAR));						
 					}
 				}
 			}
@@ -1757,7 +1759,7 @@ BOOL CMainFrame::ReLinkVCProj(CString strSavePath,CString * psError)
 	return TRUE;
 }
 
-void CMainFrame::OnViewSelectfont()
+void CMainFrame::OnViewSelectfont() 
 {
 	CHOOSEFONT cf;
 	memset(&cf, 0, sizeof(CHOOSEFONT));
@@ -1785,11 +1787,11 @@ void CMainFrame::OnViewSelectfont()
 		theApp.WriteProfileInt(_T("Font"), _T("PitchAndFamily"), m_lfDiff.lfPitchAndFamily);
 		theApp.WriteProfileString(_T("Font"), _T("FaceName"), m_lfDiff.lfFaceName);
 
-		AfxMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION);
+		AfxMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FONT_CHANGE);
 
 		MergeEditViewList editViews;
 		GetAllViews(&editViews, NULL, NULL);
-
+		
 		// TODO: Update document fonts
 		/*
 		for (POSITION pos = editViews.GetHeadPosition(); pos; editViews.GetNext(pos))
@@ -1819,13 +1821,13 @@ void CMainFrame::GetFontProperties()
 	_tcscpy(m_lfDiff.lfFaceName, theApp.GetProfileString(_T("Font"), _T("FaceName"), _T("Courier")));
 }
 
-void CMainFrame::OnViewUsedefaultfont()
+void CMainFrame::OnViewUsedefaultfont() 
 {
 	m_bFontSpecified=FALSE;
 	theApp.WriteProfileInt(_T("Font"), _T("Specified"), m_bFontSpecified);
 }
 
-void CMainFrame::OnUpdateViewUsedefaultfont(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateViewUsedefaultfont(CCmdUI* pCmdUI) 
 {
 	pCmdUI->Enable(m_bFontSpecified);
 }
@@ -1853,7 +1855,7 @@ void CMainFrame::UpdateResources()
 	}
 }
 
-void CMainFrame::OnHelpContents()
+void CMainFrame::OnHelpContents() 
 {
 	CString spath = GetModulePath(0) + _T("\\Docs\\index.html");
 	CString url = _T("http://winmerge.org/docs20/index.html");
@@ -1866,12 +1868,12 @@ void CMainFrame::OnHelpContents()
 
 }
 
-void CMainFrame::OnUpdateHelpContents(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateHelpContents(CCmdUI* pCmdUI) 
 {
 	pCmdUI->Enable(TRUE);
 }
 
-void CMainFrame::ActivateFrame(int nCmdShow)
+void CMainFrame::ActivateFrame(int nCmdShow) 
 {
 	if (!m_bFirstTime)
 	{
@@ -1898,7 +1900,7 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 	dsk_rc.bottom = dsk_rc.top + ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
 	if (theApp.GetProfileInt(_T("Settings"), _T("MainMax"), FALSE))
 	{
-		CMDIFrameWnd::ActivateFrame(SW_MAXIMIZE);
+		CMDIFrameWnd::ActivateFrame(SW_MAXIMIZE);	
 	}
 	else if (rc.Width() != 0 && rc.Height() != 0)
 	{
@@ -1916,7 +1918,7 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 		CMDIFrameWnd::ActivateFrame(nCmdShow);
 }
 
-void CMainFrame::OnClose()
+void CMainFrame::OnClose() 
 {
 	// save any dirty edit views
 	MergeDocList mergedocs;
@@ -1935,7 +1937,7 @@ void CMainFrame::OnClose()
 			else
 			{
 				// Set modified status to false so that we are not asking
-				// about saving again.
+				// about saving again. 
 				pMergeDoc->m_ltBuf.SetModified(FALSE);
 				pMergeDoc->m_rtBuf.SetModified(FALSE);
 			}
@@ -1963,11 +1965,11 @@ void CMainFrame::OnClose()
 			pMergeDoc->GetParentFrame()->SavePosition();
 	}
 	*/
-
+	
 	// Stop handling status messages from CustomStatusCursors
 	CustomStatusCursor::SetStatusDisplay(0);
 	myStatusDisplay.SetFrame(0);
-
+	
 	CMDIFrameWnd::OnClose();
 }
 
@@ -1994,7 +1996,7 @@ void CMainFrame::RebuildRegExpList()
 	_TCHAR tmp[_MAX_PATH] = {0};
 	_TCHAR* token;
 	_TCHAR sep[] = _T("\r\n");
-
+	
 	// destroy the old list if the it is not NULL
 	FreeRegExpList();
 
@@ -2068,7 +2070,7 @@ void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
 /**
  * @brief Apply tabs and eols settings to all merge documents
  */
-void CMainFrame::ApplyViewWhitespace()
+void CMainFrame::ApplyViewWhitespace() 
 {
 	MergeDocList mergedocs;
 	GetAllMergeDocs(&mergedocs);
@@ -2106,7 +2108,7 @@ void CMainFrame::ApplyViewWhitespace()
 	}
 }
 
-void CMainFrame::OnViewWhitespace()
+void CMainFrame::OnViewWhitespace() 
 {
 	BOOL bViewWhitespace = m_options.GetInt(OPT_VIEW_WHITESPACE);
 	bViewWhitespace = !bViewWhitespace;
@@ -2115,7 +2117,7 @@ void CMainFrame::OnViewWhitespace()
 }
 
 /// Enables View/View Whitespace menuitem when merge view is active
-void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetCheck(m_options.GetInt(OPT_VIEW_WHITESPACE));
 }
@@ -2272,7 +2274,7 @@ void CMainFrame::OnToolsGeneratePatch()
 		if (ind != -1)
 		{
 			DIFFITEM item = pView->GetItemAt(ind);
-
+		
 			if (!item.isBin() && !item.isDirectory() &&	!item.isResultError())
 			{
 				CString leftFile = item.getLeftFilepath();
@@ -2281,7 +2283,7 @@ void CMainFrame::OnToolsGeneratePatch()
 				CString rightFile = item.getRightFilepath();
 				if (!rightFile.IsEmpty())
 					rightFile += _T("\\") + item.sfilename;
-
+				
 				patcher.AddFiles(leftFile, rightFile);
 			}
 		}
@@ -2348,7 +2350,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 		CString expandedFile = ExpandShortcut(files[i]);
 
 		// if that worked, we should have a real file name
-		if (!expandedFile.IsEmpty())
+		if (!expandedFile.IsEmpty()) 
 			files[i] = expandedFile;
 	}
 
@@ -2368,7 +2370,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 	DoFileOpen(files[0], files[1], FFILEOPEN_NONE, FFILEOPEN_NONE, ctrlKey);
 }
 
-BOOL CMainFrame::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
+BOOL CMainFrame::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) 
 {
 	if (CustomStatusCursor::HasWaitCursor())
 	{
@@ -2392,7 +2394,7 @@ void CMainFrame::OnPluginUnpackMode(UINT nID )
 	theApp.WriteProfileInt(_T("Settings"), _T("UnpackerMode"), g_bUnpackerMode);
 }
 
-void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI) 
 {
 	if (pCmdUI->m_nID == ID_UNPACK_MANUAL)
 		pCmdUI->SetRadio(PLUGIN_MANUAL == g_bUnpackerMode);
@@ -2433,7 +2435,7 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 	CString ext;
 	CString sExecutable;
 	CString sCmd;
-
+	
 	sExtEditor = m_options.GetString(OPT_EXT_EDITOR_CMD);
 	GetDecoratedCmdLine(sExtEditor, sCmd, sExecutable);
 
@@ -2495,7 +2497,7 @@ void CMainFrame::OnSaveConfigData()
 	configLog.m_diffOptions.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
 	configLog.m_diffOptions.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);
 	configLog.m_diffOptions.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
-
+	
 	configLog.m_viewSettings.bShowIdent = m_options.GetInt(OPT_SHOW_DIFFERENT);
 	configLog.m_viewSettings.bShowDiff = m_options.GetInt(OPT_SHOW_DIFFERENT);
 	configLog.m_viewSettings.bShowUniqueLeft = m_options.GetInt(OPT_SHOW_UNIQUE_LEFT);
@@ -2519,7 +2521,7 @@ void CMainFrame::OnSaveConfigData()
 
 /**
  * @brief Open two new empty docs, 'Scratchpads'
- *
+ * 
  * Allows user to open two empty docs, to paste text to
  * compare from clipboard.
  * @note File filenames are set emptys and filedescriptors
@@ -2527,7 +2529,7 @@ void CMainFrame::OnSaveConfigData()
  * @sa CMergeDoc::OpenDocs()
  * @sa CMergeDoc::TrySaveAs()
  */
-void CMainFrame::OnFileNew()
+void CMainFrame::OnFileNew() 
 {
 	BOOL docNull;
 	CDirDoc *pDirDoc = GetDirDocToShow(&docNull);
@@ -2544,7 +2546,7 @@ void CMainFrame::OnFileNew()
 		if (!pDirDoc->ReusingDirDoc())
 			return;
 	}
-
+	
 	// Load emptyfile descriptors and open empty docs
 	VERIFY(m_strLeftDesc.LoadString(IDS_EMPTY_LEFT_FILE));
 	VERIFY(m_strRightDesc.LoadString(IDS_EMPTY_RIGHT_FILE));

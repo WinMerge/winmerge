@@ -260,7 +260,7 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 			{
 				CString s;
 				VERIFY(s.LoadString(IDS_QUICKHELP));
-				AfxMessageBox(s, MB_ICONINFORMATION);
+				AfxMessageBox(s, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_QUICKHELP);
 			}
 
 			// -r to compare recursively
@@ -587,10 +587,26 @@ static void AddEnglishResourceHook()
 }
 
 
-int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt) 
+int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
 {
-	// This is just a convenient point for breakpointing
-	return CWinApp::DoMessageBox(lpszPrompt, nType, nIDPrompt);
+	// This is a convenient point for breakpointing !!!
+
+	// Create a handle to store the parent window of the message box.
+	CWnd* pParentWnd = CWnd::GetActiveWindow();
+	
+	// Check whether an active window was retrieved successfully.
+	if ( pParentWnd == NULL )
+	{
+		// Try to retrieve a handle to the last active popup.
+		pParentWnd = GetMainWnd()->GetLastActivePopup();
+	}
+	
+	// Create the message box dialog.
+	CMessageBoxDialog dlgMessage(pParentWnd, lpszPrompt, _T(""), nType,
+		nIDPrompt);
+	
+	// Display the message box dialog an return the result.
+	return (int)dlgMessage.DoModal();
 }
 
 /** 

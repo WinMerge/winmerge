@@ -40,7 +40,7 @@ static BOOL ConfirmMultipleCopy(int count, int total)
 	CString s;
 	ASSERT(count>1);
 	AfxFormatString2(s, IDS_CONFIRM_COPY2DIR, NumToStr(count), NumToStr(total));
-	int rtn = AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION);
+	int rtn = AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION|MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY2DIR);
 	return (rtn==IDYES);
 }
 
@@ -49,7 +49,7 @@ static BOOL ConfirmSingleCopy(LPCTSTR src, LPCTSTR dest)
 {
 	CString s;
 	AfxFormatString2(s, IDS_CONFIRM_COPY_SINGLE, src, dest);
-	int rtn = AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION);
+	int rtn = AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION|MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_SINGLE);
 	return (rtn==IDYES);
 }
 
@@ -58,7 +58,7 @@ static BOOL ConfirmMultipleDelete(int count, int total)
 {
 	CString s;
 	AfxFormatString2(s, IDS_CONFIRM_DELETE_ITEMS, NumToStr(count), NumToStr(total));
-	int rtn = AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION);
+	int rtn = AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION|MB_DONT_ASK_AGAIN, IDS_CONFIRM_DELETE_ITEMS);
 	return (rtn==IDYES);
 }
 
@@ -67,7 +67,7 @@ static BOOL ConfirmSingleDelete(LPCTSTR filepath)
 {
 	CString s;
 	AfxFormatString1(s, IDS_CONFIRM_DELETE_SINGLE, filepath);
-	int rtn = AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION);
+	int rtn = AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION|MB_DONT_ASK_AGAIN, IDS_CONFIRM_DELETE_SINGLE);
 	return (rtn==IDYES);
 }
 

@@ -438,7 +438,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult)
 	{
 	case RESCAN_IDENTICAL:
 		VERIFY(s.LoadString(IDS_FILESSAME));
-		AfxMessageBox(s, MB_ICONINFORMATION);
+		AfxMessageBox(s, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FILESSAME);
 		break;
 
 	case RESCAN_BINARIES:
@@ -2309,7 +2309,7 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 			AfxFormatString1(s, IDS_SAVE_FMT, m_strLeftDesc);
 	
 		bLModified = TRUE;
-		switch (AfxMessageBox(s, nDialogType | MB_ICONQUESTION))
+		switch (AfxMessageBox(s, nDialogType | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, IDS_SAVE_FMT))
 		{
 		case IDYES:
 			if (!DoSave(m_strLeftFile, bLSaveSuccess, TRUE))
@@ -2331,7 +2331,7 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 			AfxFormatString1(s, IDS_SAVE_FMT, m_strRightDesc);
 
 		bRModified = TRUE;
-		switch (AfxMessageBox(s, nDialogType | MB_ICONQUESTION))
+		switch (AfxMessageBox(s, nDialogType | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, IDS_SAVE_FMT))
 		{
 		case IDYES:
 			if (!DoSave(m_strRightFile, bRSaveSuccess, FALSE))
@@ -2484,7 +2484,7 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 		{
 			CString s;
 			AfxFormatString1(s, IDS_SUGGEST_PRESERVEEOL, sFileName); 
-			if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION) == IDYES)
+			if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION|MB_DONT_ASK_AGAIN, IDS_SUGGEST_PRESERVEEOL) == IDYES)
 				// the user wants to keep the original chars
 				mf->SetEOLMixed(TRUE);
 		}
@@ -2632,7 +2632,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		VERIFY(sOptionName.LoadString(IDC_MIXED_EOL));
 		CString s;
 		AfxFormatString1(s, IDS_SUGGEST_IGNOREEOL, sOptionName); 
-		if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION) == IDYES)
+		if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION|MB_DONT_ASK_AGAIN, IDS_SUGGEST_IGNOREEOL) == IDYES)
 		{
 			diffOptions.bEolSensitive = FALSE;
 			m_diffWrapper.SetOptions(&diffOptions);

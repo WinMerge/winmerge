@@ -970,6 +970,10 @@ SOURCE=.\MergeEditView.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\MessageBoxDialog.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\multiformatText.cpp
 # End Source File
 # Begin Source File
@@ -1647,6 +1651,10 @@ SOURCE=.\MergeEditStatus.h
 # Begin Source File
 
 SOURCE=.\MergeEditView.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\MessageBoxDialog.h
 # End Source File
 # Begin Source File
 

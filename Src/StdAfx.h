@@ -61,6 +61,11 @@ struct gLog
 	static UINT DeleteFileFailed(LPCTSTR path);
 };
 
+
+	/** @brief include for the custom dialog boxes, with do not ask/display again */
+#include "MessageBoxDialog.h"
+
+
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 

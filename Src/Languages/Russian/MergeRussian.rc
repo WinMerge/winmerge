@@ -445,6 +445,10 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "&Close compare Statepane automatically",IDC_CMPPANE_AUTOCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,167,57,49,13,NOT 
+                    WS_TABSTOP
+    LTEXT           "Press button to reset all message boxes",IDC_STATIC,7,
+                    59,157,8
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -836,6 +840,11 @@ BEGIN
                     BS_AUTORADIOBUTTON,102,62,59,10
 END
 
+IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1423,6 +1432,30 @@ BEGIN
     IDS_CANNOT_EXECUTE_FILE "Невозможно выполнить %1"
 END
 
+STRINGTABLE 
+BEGIN
+    IDS_MESSAGEBOX_OK       "&Ok"
+    IDS_MESSAGEBOX_CANCEL   "&Cancel"
+    IDS_MESSAGEBOX_ABORT    "&Abort"
+    IDS_MESSAGEBOX_RETRY    "&Retry"
+    IDS_MESSAGEBOX_IGNORE   "&Ignore"
+    IDS_MESSAGEBOX_IGNOREALL "Ignore &all"
+    IDS_MESSAGEBOX_YES      "&Yes"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MESSAGEBOX_YES_TO_ALL "Yes to &all"
+    IDS_MESSAGEBOX_NO       "&No"
+    IDS_MESSAGEBOX_NO_TO_ALL "No to a&ll"
+    IDS_MESSAGEBOX_CONTINUE "&Continue"
+    IDS_MESSAGEBOX_SKIP     "&Skip"
+    IDS_MESSAGEBOX_SKIPALL  "Skip &all"
+    IDS_MESSAGEBOX_HELP     "&Help"
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
+    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
+END
+
 STRINGTABLE DISCARDABLE
 BEGIN
     ID_L2R                  "Скопировать выбранный текст в файл справа\nCopy Right (Alt Right)"
@@ -1520,6 +1553,7 @@ STRINGTABLE DISCARDABLE
 BEGIN
     ID_NO_EDIT_SCRIPTS      "< Empty >"
     ID_RELOAD_PLUGINS       "&Unload all plugins and reload them (for developpers)"
+    ID_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
 END
 
 #endif    // Russian resources

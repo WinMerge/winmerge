@@ -72,9 +72,16 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CPropGeneral, CPropertyPage)
 	//{{AFX_MSG_MAP(CPropGeneral)
+	ON_BN_CLICKED(IDC_RESET_ALL_MESSAGE_BOXES, OnResetAllMessageBoxes)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropGeneral message handlers
 
+
+void CPropGeneral::OnResetAllMessageBoxes() 
+{
+	CMessageBoxDialog::ResetMessageBoxes();
+	AfxMessageBox(ID_MESSAGE_BOX_ARE_RESET, MB_ICONINFORMATION);
+}

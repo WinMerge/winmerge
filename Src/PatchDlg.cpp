@@ -154,7 +154,8 @@ void CPatchDlg::OnOK()
 		// Result file already exists and append not selected
 		if (fileExists && !m_appendFile)
 		{
-			overWrite = AfxMessageBox(IDS_DIFF_FILEOVERWRITE, MB_YESNO);
+			overWrite = AfxMessageBox(IDS_DIFF_FILEOVERWRITE, MB_YESNO|MB_DONT_ASK_AGAIN,
+				          IDS_DIFF_FILEOVERWRITE);
 			if (overWrite == IDNO)
 				fileResultOK = FALSE;
 		}

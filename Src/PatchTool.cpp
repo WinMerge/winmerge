@@ -98,7 +98,8 @@ int CPatchTool::CreatePatch()
 		
 		if (bResult && fileCount > 0)
 		{
-			AfxMessageBox(IDS_DIFF_SUCCEEDED, MB_ICONINFORMATION);
+			AfxMessageBox(IDS_DIFF_SUCCEEDED, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN,
+				            IDS_DIFF_SUCCEEDED);
 			
 			m_sPatchFile = m_dlgPatch.m_fileResult;
 			m_bOpenToEditor = m_dlgPatch.m_openToEditor;

@@ -1,3 +1,11 @@
+2004-03-30 Laoran
+ PATCH: [ 922724 ] "Don't display again" option for messageboxes
+  Src: DirActions.cpp DirView.cpp MainFrm.cpp Merge.cpp Merge.dsp Merge.rc
+       MergeDoc.cpp PatchDlg.cpp PatchTool.cpp PropGeneral.cpp PropGeneral.h StdAfx.h resource.h
+  Src/editlib: ceditreplacedlg.cpp
+  Src/common add: MessageBoxDialog.cpp MessageBoxDialog.h
+  Languages: *.rc resource.h
+
 2004-03-30 Kimmo
  PATCH: [ 925179 ] Remove is_*file() functions from coretools.h/cpp
   Common: coretools.cpp coretools.h

@@ -43,6 +43,7 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(CPropGeneral)
+	afx_msg void OnResetAllMessageBoxes();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

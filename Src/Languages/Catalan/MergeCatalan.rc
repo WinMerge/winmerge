@@ -439,6 +439,10 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "&Close compare Statepane automatically",IDC_CMPPANE_AUTOCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,167,57,49,13,NOT 
+                    WS_TABSTOP
+    LTEXT           "Press button to reset all message boxes",IDC_STATIC,7,
+                    59,157,8
 END
 
 IDD_LANGUAGE_SELECT DIALOG DISCARDABLE  0, 0, 213, 111
@@ -827,6 +831,11 @@ BEGIN
                     BS_AUTORADIOBUTTON,77,62,59,10
 END
 
+IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1432,168 +1441,28 @@ BEGIN
     IDS_CANNOT_EXECUTE_FILE "No es pot executar el %1"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
-    IDS_AFRIKAANS           "Afrikaans"
-    IDS_ALBANIAN            "Albanian"
-    IDS_ARABIC_SAUDI        "Arabic (Saudi Arabian)"
-    IDS_ARABIC_IRAQ         "Arabic (Iraq)"
-    IDS_ARABIC_EGYPT        "Arabic (Egyptian)"
-    IDS_ARABIC_LIBYA        "Arabic (Libyan)"
-    IDS_ARABIC_ALGERIA      "Arabic (Algerian)"
-    IDS_ARABIC_MOROCCO      "Arabic (Moroccan)"
-    IDS_ARABIC_TUNISIA      "Arabic (Tunisian)"
-    IDS_ARABIC_OMAN         "Arabic (Oman)"
-    IDS_ARABIC_YEMEN        "Arabic (Yemen)"
-    IDS_ARABIC_SYRIA        "Arabic (Syrian)"
-    IDS_ARABIC_JORDAN       "Arabic (Jordan)"
+    IDS_MESSAGEBOX_OK       "&Ok"
+    IDS_MESSAGEBOX_CANCEL   "&Cancel"
+    IDS_MESSAGEBOX_ABORT    "&Abort"
+    IDS_MESSAGEBOX_RETRY    "&Retry"
+    IDS_MESSAGEBOX_IGNORE   "&Ignore"
+    IDS_MESSAGEBOX_IGNOREALL "Ignore &all"
+    IDS_MESSAGEBOX_YES      "&Yes"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
-    IDS_ARABIC_LEBANON      "Arabic (Lebanon)"
-    IDS_ARABIC_KUWAIT       "Arabic (Kuwait)"
-    IDS_ARABIC_UAE          "Arabic (UAE)"
-    IDS_ARABIC_BAHRAIN      "Arabic (Bahrain)"
-    IDS_ARABIC_QATAR        "Arabic (Qatar)"
-    IDS_ARMENIAN            "Armenian"
-    IDS_AZERI_LATIN         "Azeri (Latin)"
-    IDS_AZERI_CYRILLIC      "Azeri (Cyrillic)"
-    IDS_BASQUE              "Basque"
-    IDS_BELARUSIAN          "Belarusian"
-    IDS_BULGARIAN           "Bulgarian"
-    IDS_CATALAN             "Catalan"
-    IDS_CHINESE_TRADITIONAL "Chinese (Traditional)"
-    IDS_CHINESE_SIMPLIFIED  "Chinese (Simplified)"
-    IDS_CHINESE_HONGKONG    "Chinese (Hong Kong)"
-    IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    IDS_CHINESE_MACAU       "Chinese (Macau SAR)"
-    IDS_CROATIAN            "Croatian"
-    IDS_CZECH               "Cesko"
-    IDS_DANISH              "Dansk"
-    IDS_DUTCH               "Nederlandse"
-    IDS_DUTCH_BELGIAN       "Nederlandse (Belgium)"
-    IDS_ENGLISH_US          "English (US)"
-    IDS_ENGLISH_UK          "English (UK)"
-    IDS_ENGLISH_AUS         "English (Australian)"
-    IDS_ENGLISH_CAN         "English (Canadian)"
-    IDS_ENGLISH_NZ          "English (New Zealand)"
-    IDS_ENGLISH_EIRE        "English (Irish)"
-    IDS_ENGLISH_SOUTH_AFRICA "English (So. African)"
-    IDS_ENGLISH_JAMAICA     "English (Jamaican)"
-    IDS_ENGLISH_CARIBBEAN   "English (Caribbean)"
-    IDS_ENGLISH_BELIZE      "English (Belize)"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    IDS_ENGLISH_TRINIDAD    "English (Trinidad)"
-    IDS_ENGLISH_ZIMBABWE    "English (Zimbabwe)"
-    IDS_ENGLISH_PHILIPPINES "English (Philippines)"
-    IDS_ESTONIAN            "Eesti"
-    IDS_FAEROESE            "Faeroese"
-    IDS_FARSI               "Farsi"
-    IDS_FINNISH             "Suomi"
-    IDS_FRENCH              "Francais"
-    IDS_FRENCH_BELGIAN      "Francais (Belgique)"
-    IDS_FRENCH_CANADIAN     "Francais (Canada)"
-    IDS_FRENCH_SWISS        "Francais (Suisse)"
-    IDS_FRENCH_LUXEMBOURG   "Francais (Luxembourg)"
-    IDS_FRENCH_MONACO       "Francais (Monaco)"
-    IDS_GEORGIAN            "Georgian"
-    IDS_GERMAN              "Deutsch (Deutschland)"
-    IDS_GERMAN_SWISS        "Deutsch (Schweiz)"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    IDS_GERMAN_AUSTRIAN     "Deutsch (Österreich)"
-    IDS_GERMAN_LUXEMBOURG   "Deutsch (Luxemburg)"
-    IDS_GERMAN_LIECHTENSTEIN "Deutsch (Liechtenstein)"
-    IDS_GREEK               "Greek"
-    IDS_HEBREW              "Hebrew"
-    IDS_HINDI               "Hindi"
-    IDS_HUNGARIAN           "Hungarian"
-    IDS_ICELANDIC           "Icelandic"
-    IDS_INDONESIAN          "Indonesian"
-    IDS_ITALIAN             "Italiano"
-    IDS_ITALIAN_SWISS       "Italiano (Svizzera)"
-    IDS_JAPANESE            "Japanese"
-    IDS_KASHMIRI            "Kashmiri (India)"
-    IDS_KAZAK               "Kazakh"
-    IDS_KOREAN              "Korean"
-    IDS_KOREAN_JOHAB        "Korean (Johab)"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    IDS_LATVIAN             "Latvian"
-    IDS_LITHUANIAN          "Lithuanian"
-    IDS_MALAY_MALAYSIA      "Malay (Malaysian)"
-    IDS_MALAY_BRUNEI_DARUSSALAM "Malay (Brunei Darussalam)"
-    IDS_MANIPURI            "Manipuri"
-    IDS_NORWEGIAN_BOKMAL    "Norsk (Bokmål)"
-    IDS_NORWEGIAN_NYNORSK   "Norsk (Nynorsk)"
-    IDS_POLISH              "Polski"
-    IDS_PORTUGUESE          "Portugese"
-    IDS_PORTUGUESE_BRAZILIAN "Portugese (Brazil)"
-    IDS_ROMANIAN            "Romanian"
-    IDS_RUSSIAN             "Russian"
-    IDS_SANSKRIT            "Sanskrit"
-    IDS_SERBIAN_LATIN       "Serbian (Latin)"
-    IDS_SERBIAN_CYRILLIC    "Serbian (Cyrillic)"
-    IDS_SINDHI              "Sindhi"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    IDS_SLOVAK              "Slovak"
-    IDS_SLOVENIAN           "Slovensko"
-    IDS_SPANISH             "Español"
-    IDS_SPANISH_MEXICAN     "Español (Mexicano)"
-    IDS_SPANISH_MODERN      "Español (Moderno)"
-    IDS_SPANISH_GUATEMALA   "Español (Guatemala)"
-    IDS_SPANISH_COSTA_RICA  "Español (Costa Rica)"
-    IDS_SPANISH_PANAMA      "Español (Panamá)"
-    IDS_SPANISH_DOMINICAN   "Español (Dominicano)"
-    IDS_SPANISH_VENEZUELA   "Español (Venezuela)"
-    IDS_SPANISH_COLOMBIA    "Español (Colombiano)"
-    IDS_SPANISH_PERU        "Español (Peru)"
-    IDS_SPANISH_ARGENTINA   "Español (Argentina)"
-    IDS_SPANISH_ECUADOR     "Español (Ecuador)"
-    IDS_SPANISH_CHILE       "Español (Chile)"
-    IDS_SPANISH_URUGUAY     "Español (Uruguay)"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    IDS_SPANISH_PARAGUAY    "Español (Paraguay)"
-    IDS_SPANISH_BOLIVIA     "Español (Bolivia)"
-    IDS_SPANISH_EL_SALVADOR "Español (El Salvador)"
-    IDS_SPANISH_HONDURAS    "Español (Hondureño)"
-    IDS_SPANISH_NICARAGUA   "Español (Nicaragua)"
-    IDS_SPANISH_PUERTO_RICO "Español (Puerto Rico)"
-    IDS_SWAHILI             "Swahili (Kenya)"
-    IDS_SWEDISH             "Svenska"
-    IDS_SWEDISH_FINLAND     "Svenska (Suomi)"
-    IDS_TAMIL               "Tamil"
-    IDS_TATAR               "Tatar (Tatarstan)"
-    IDS_THAI                "Thai"
-    IDS_TURKISH             "Turkish"
-    IDS_UKRANIAN            "Ukranian"
-    IDS_URDU_PAKISTAN       "Urdu (Pakistan)"
-    IDS_URDU_INDIA          "Urdu (India)"
-END
-
-STRINGTABLE DISCARDABLE
-BEGIN
-    IDS_UZBEK_LATIN         "Uzbek (Latin)"
-    IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
-    IDS_VIETNAMESE          "Vietnamese"
+    IDS_MESSAGEBOX_YES_TO_ALL "Yes to &all"
+    IDS_MESSAGEBOX_NO       "&No"
+    IDS_MESSAGEBOX_NO_TO_ALL "No to a&ll"
+    IDS_MESSAGEBOX_CONTINUE "&Continue"
+    IDS_MESSAGEBOX_SKIP     "&Skip"
+    IDS_MESSAGEBOX_SKIPALL  "Skip &all"
+    IDS_MESSAGEBOX_HELP     "&Help"
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
+    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
 END
 
 STRINGTABLE DISCARDABLE
@@ -1691,6 +1560,7 @@ STRINGTABLE DISCARDABLE
 BEGIN
     ID_NO_EDIT_SCRIPTS      "< Empty >"
     ID_RELOAD_PLUGINS       "&Unload all plugins and reload them (for developpers)"
+    ID_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
 END
 
 #endif    // Catalan resources

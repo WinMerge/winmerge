@@ -762,7 +762,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 
 		}
 		else if (di.isSideLeft() || di.isSideRight())
-			AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
+			AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION | IDS_FILEISDIR);
 		else if (di.isBin())
 			AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
 		else
