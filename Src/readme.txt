@@ -1,3 +1,7 @@
+2003-11-26 Kimmo
+ PATCH: [ 848955 ] Don't ask about saving after user selects 'Cancel'
+  WinMerge: MergeDoc.cpp
+
 2003-11-25 Perry
  PATCH: [ 849138 ] Fix stringdiffs for diff in first word
   (Code was trying to access word#-1 when diff hit in first word)

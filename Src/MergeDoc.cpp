@@ -2120,6 +2120,7 @@ BOOL CMergeDoc::SaveHelper()
 	BOOL bRSaveSuccess = FALSE;
 	BOOL bLModified = FALSE;
 	BOOL bRModified = FALSE;
+	BOOL bCancel = FALSE;
 
 	if (m_ltBuf.IsModified())
 	{
@@ -2138,12 +2139,12 @@ BOOL CMergeDoc::SaveHelper()
 		case IDNO:
 			break;
 		default:  // IDCANCEL
-			result = FALSE;
+			bCancel = TRUE;
 			break;
 		}
 	}
 
-	if (m_rtBuf.IsModified())
+	if (m_rtBuf.IsModified() && !bCancel)
 	{
 		if (!m_strRightFile.IsEmpty())
 			AfxFormatString1(s, IDS_SAVE_FMT, m_strRightFile);
@@ -2160,7 +2161,7 @@ BOOL CMergeDoc::SaveHelper()
 		case IDNO:
 			break;
 		default:  // IDCANCEL
-			result = FALSE;
+			bCancel = TRUE;
 			break;
 		}
 	}
@@ -2177,6 +2178,11 @@ BOOL CMergeDoc::SaveHelper()
 			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile, unified);
 		}
 	}
+
+	// User cancelled, return FALSE even if first file could succeed
+	if (bCancel)
+		result = FALSE;
+
 	return result;
 }
 
