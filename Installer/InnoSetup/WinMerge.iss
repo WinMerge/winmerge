@@ -17,6 +17,7 @@
 ;                           4.  The compiled installer will appear in the \InnoSetup\Output\ directory at currently should be around 1.5MBs in size.
 ;
 ;Installer Todo List:
+; #  Automatically detect and configure WinMerge to work with Visual Source Safe
 ; #  Make the Install7ZipDll() Function automatically work with future versions of Merge7zDLL
 ; #  Test and distribute the files contained within "MergePlugins (From 2140).7z" or in the folder MergePlugins of "WinMerge2140-exe.7z"
 ; #  Bundle 7-Zip with WinMerge or provide on the fly download capability.
