@@ -1,3 +1,5 @@
+2003-09-26 WinMerge experimental release 2.1.3.0 (cvs)
+
 2003-10-11 Perry
  PATCH: [ 821532 ] Fix CmpResults After Delete
   WinMerge: DiffContext.h DirActions.cpp
