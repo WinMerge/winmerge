@@ -1,3 +1,7 @@
+2003-06-08 Kimmo
+ PATCH: [ 750160 ] Char width fix
+   editlib: ccrystaltextview.cpp
+
 2003-06-07 Kimmo
  PATCH: [ 750302 ] Allow *.flt filter files
   WinMerge: Merge.cpp

@@ -873,6 +873,14 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
              rcBounds.right = rcBounds.left + GetCharWidth() * nCount;
              pdc->ExtTextOut(rcBounds.left, rcBounds.top, ETO_OPAQUE, &rcBounds, NULL, 0, NULL);
            */
+          int* pnWidths = new int[nCount];
+          ASSERT(pnWidths);
+
+          if (pnWidths)
+            {
+              for (int i = 0; i < nCount; i++)
+                pnWidths[i] = nCharWidth;
+            }
 
           // Because ExtTextOut() can handle 8192 chars at max.
           // we have to draw longer lines in 8192 char blocks
@@ -891,7 +899,8 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                     dwCharsToDraw = nCount - dwDrawnChars;
 
                   VERIFY(pdc->ExtTextOut(ptDraw.x, ptDraw.y, ETO_CLIPPED,
-                      &rcClip, &szText[dwDrawnChars], dwCharsToDraw, NULL));
+                      &rcClip, &szText[dwDrawnChars], dwCharsToDraw,
+                      &pnWidths[dwDrawnChars]));
 
                   dwDrawnChars += dwCharsToDraw;
                   ptDraw.x += nCharWidth * dwCharsToDraw;
@@ -901,8 +910,11 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
           else
             {
               VERIFY(pdc->ExtTextOut(ptOrigin.x, ptOrigin.y, ETO_CLIPPED,
-                  &rcClip, line, nCount, NULL));
+                  &rcClip, line, nCount, pnWidths));
             }
+
+          if (pnWidths)
+            delete [] pnWidths;
         }
       ptOrigin.x += nCharWidth * lineLen;
     }
