@@ -1474,7 +1474,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 			if (pufile->GetTxtStats().nzeros)
 			{
 				nRetVal = FRESULT_BINARY;
-				InitNew(); // leave crystal editor in valid, empty state
+				ResetInit(); // leave crystal editor in valid, empty state
 				goto LoadFromFileExit;
 			}
 

@@ -2,6 +2,9 @@
  PATCH: [ 962558 ] Some MBCS fixes from sawanaka
   Src: paths.cpp paths.h StdAfx.cpp StdAfx.h
   Src/Common: coretools.cpp
+ PATCH: [ 962539 ] Add ResetInit which handles partly full buffers
+  Src: MergeDoc.cpp
+  Src/editlib: ccrystaltextbuffer.h
 
 2004-05-29 Kimmo
  PATCH: [ 961810 ] Store path for ShellExtension

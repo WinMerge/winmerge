@@ -275,6 +275,8 @@ public :
 
     void FreeAll ();
 
+    void ResetInit() { FreeAll(); InitNew(); } // reset new or used buffer
+
     //  'Dirty' flag
     virtual void SetModified (BOOL bModified = TRUE);
     BOOL IsModified () const;
