@@ -448,13 +448,13 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Farger"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    LTEXT           "Forskjeller:",IDC_STATIC,15,18,36,8
+    LTEXT           "Forskjeller:",IDC_STATIC,15,29,36,8
     CONTROL         "Dif",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,83,15,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,83,29,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    LTEXT           "Valgte forskjeller:",IDC_STATIC,14,36,51,8
+    LTEXT           "Valgte forskjeller:",IDC_STATIC,14,49,51,8
     CONTROL         "Dif",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
-                    WS_TABSTOP,83,33,17,14,WS_EX_TRANSPARENT |
+                    WS_TABSTOP,83,49,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     LTEXT           "Background",IDC_STATIC,86,15,40,8
     LTEXT           "Deleted",IDC_STATIC,137,15,26,8
