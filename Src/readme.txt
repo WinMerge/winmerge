@@ -1,3 +1,8 @@
+2003-07-09 Kimmo
+ PATCH: [ 765768 ] Only one Rescan on AllToLeft
+  Submitted by Perry
+  WinMerge: MergeDoc.h MergeDoc.cpp MergeEditView.cpp
+
 2003-07-08 Kimmo
  PATCH: [ 766473 ] Update identical files
   WinMerge: MergeDoc.cpp

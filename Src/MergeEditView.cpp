@@ -619,19 +619,7 @@ void CMergeEditView::OnAllLeft()
 {
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYALL2L));
 
-	CMergeDoc* pDoc = GetDocument();
-	// Unfortunately difftools is not designed for this kind
-	// of use and sometimes all differences cannot be merged
-	// in one run.
-	while (pDoc->m_nDiffs > 0)
-	{
-		// copy from bottom up is more efficient
-		for(int i = pDoc->m_nDiffs-1; i>=0; --i)
-		{
-			pDoc->SetCurrentDiff(i);
-			pDoc->ListCopy(false);
-		}
-	}
+	GetDocument()->CopyAllList(false);
 }
 
 void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
@@ -643,19 +631,7 @@ void CMergeEditView::OnAllRight()
 {
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYALL2R));
 
-	CMergeDoc* pDoc = GetDocument();
-	// Unfortunately difftools is not designed for this kind
-	// of use and sometimes all differences cannot be merged
-	// in one run.
-	while (pDoc->m_nDiffs > 0)
-	{
-		// copy from bottom up is more efficient
-		for(int i = pDoc->m_nDiffs-1; i>=0; --i)
-		{
-			pDoc->SetCurrentDiff(i);
-			pDoc->ListCopy(true);
-		}
-	}
+	GetDocument()->CopyAllList(true);
 }
 
 void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)

@@ -641,6 +641,26 @@ private:
 	BOOL m_bSuppress;
 };
 
+// Copy all diffs from one side to the other (as specified by caller)
+void CMergeDoc::CopyAllList(bool bSrcLeft)
+{
+	RescanSuppress suppressRescan(*this);
+	// Unfortunately difftools is not designed for this kind
+	// of use and sometimes all differences cannot be merged
+	// in one run.
+	while (m_nDiffs > 0)
+	{
+		// copy from bottom up is more efficient
+		for(int i = m_nDiffs-1; i>=0; --i)
+		{
+			SetCurrentDiff(i);
+			ListCopy(true);
+		}
+	}
+	suppressRescan.Clear(); // done suppress Rescan
+	FlushAndRescan();
+}
+
 void CMergeDoc::ListCopy(bool bSrcLeft)
 {
 	// suppress Rescan during this method
