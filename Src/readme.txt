@@ -1,3 +1,8 @@
+2003-12-01 Laoran
+ reclassing strings in resource.h in same order as in Merge.rc
+  WinMerge: resource.h
+  Languages: resource.h
+
 2003-12-01 Kimmo
  PATCH: [ 852062 ] XML/HTML file filter
  Filters: new file XML_html.flt

@@ -124,11 +124,11 @@
 #define IDB_RFOLDER                     215
 #define IDS_STATUSBAR_READONLY          215
 #define IDB_UNKNOWN                     216
-#define IDS_DIRECTORY_REPORT_TITLE      216
+#define IDS_COLHDR_LENCODING            216
 #define IDB_BINARYSAME                  217
-#define IDS_COLHDR_LENCODING            217
+#define IDS_COLHDR_RENCODING            217
 #define IDB_LFILE                       218
-#define IDS_COLHDR_RENCODING            218
+#define IDS_DIRECTORY_REPORT_TITLE      218
 #define IDB_RFILE                       219
 #define IDB_SPLASH                      220
 #define IDB_WINMERGE                    221
@@ -446,8 +446,8 @@
 #define ID_VIEW_USEDEFAULTFONT          32796
 #define ID_POPUP_COPYALLDIFFSTOOTHERSIDE 32797
 #define ID_POPUP_COPYALLDIFFSFROMOTHERSIDE 32798
-#define ID_DIR_COPY_LEFT_TO_RIGHT       32799
-#define ID_DIR_COPY_RIGHT_TO_LEFT       32800
+#define ID_DIR_COPY_RIGHT_TO_LEFT       32799
+#define ID_DIR_COPY_LEFT_TO_RIGHT       32800
 #define ID_VIEW_LANGUAGE                32801
 #define ID_HELP_CONTENTS                32802
 #define ID_FIRSTDIFF                    32803
