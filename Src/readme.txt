@@ -8,6 +8,8 @@
   (also added a version resource to MakeResDll, as it lacked one)
   Languages: BuildAll.bat BuildDll.bat
   MakeResDll: MakeResDll.cpp MakeResDll.rc
+ Added F4 accelerator to all languages besides English
+  Languages: all *.rc files
 
 2003-07-23 Perry
  PATCH: [ 776046 ] Fixes for <Highlight Line Diff> menu item
