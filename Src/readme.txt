@@ -1,3 +1,8 @@
+2004-12-29 Perry
+ BUG: [ 1064942 ] Copyright notice????
+  Bumped copyright year to continue through 2005
+   Src: Merge.rc
+
 2004-12-17 Kimmo
  PATCH: [ 1086601 ] Dircompare statepane miscounting skipped items
   Src: DirCompStateBar.cpp
