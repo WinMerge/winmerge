@@ -1,3 +1,7 @@
+2004-01-30 Kimmo
+ BUG: [ 887543 ] Word-diff (No difference) messagebox has Cancel-button
+  src: MergeDocLineDiffs.cpp
+
 2004-01-29 Kimmo
  PATCH: [ 885092 ] CMergeDoc::DoSave() cleanup
   src: MergeDoc.h MergeDoc.cpp

@@ -72,7 +72,11 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView)
 
 	if (rc1.top == -1 && rc2.top == -1)
 	{
-		AfxMessageBox(IDS_LINEDIFF_NODIFF, IDS_LINEDIFF_NODIFF_CAPTION, MB_OK);
+		CString caption;
+		CString msg;
+		VERIFY(caption.LoadString(IDS_LINEDIFF_NODIFF_CAPTION));
+		VERIFY(msg.LoadString(IDS_LINEDIFF_NODIFF));
+		MessageBox(pView->GetSafeHwnd(), msg, caption, MB_OK);
 		return;
 	}
 
@@ -91,7 +95,11 @@ void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView)
 
 	if (rc1.top == -1 && rc2.top == -1)
 	{
-		AfxMessageBox(IDS_LINEDIFF_NODIFF, IDS_LINEDIFF_NODIFF_CAPTION, MB_OK);
+		CString caption;
+		CString msg;
+		VERIFY(caption.LoadString(IDS_LINEDIFF_NODIFF_CAPTION));
+		VERIFY(msg.LoadString(IDS_LINEDIFF_NODIFF));
+		MessageBox(pView->GetSafeHwnd(), msg, caption, MB_OK);
 		return;
 	}
 
@@ -283,3 +291,4 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 		lastRc2 = rc2;
 	}
 }
+
