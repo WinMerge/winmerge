@@ -280,7 +280,8 @@ static void SaveBuffForDiff(CMergeDoc::CDiffTextBuffer & buf, const CString & fi
 *
 * @param bForced If TRUE, suppressing is ignored and rescan is done always
 *
-* @return Tells status of rescan done (OK, suppressed, etc)
+* @return Tells status of rescan done (OK, suppressed, etc).
+* If this code is OK, Rescan has detached the views temporarily (positions of cursors have been lost)
 *
 * @note Rescan() ALWAYS compares temp files. Actual user files are not
 * touched by Rescan().
@@ -302,18 +303,6 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 	}
 
 	m_LastRescan = COleDateTime::GetCurrentTime();
-
-	// store modified status
-	BOOL ltMod = m_ltBuf.IsModified();
-	BOOL rtMod = m_rtBuf.IsModified();
-
-	// remove blank lines and clear winmerge flags
-	m_ltBuf.prepareForRescan();
-	m_rtBuf.prepareForRescan();
-
-	// restore modified status
-	m_ltBuf.SetModified(ltMod);
-	m_rtBuf.SetModified(rtMod);
 
 	// get the desired files to temp locations so we can edit them dynamically
 	if (!TempFilesExist())
@@ -367,14 +356,37 @@ int CMergeDoc::Rescan(BOOL bForced /* =FALSE */)
 		if (m_nDiffs == 0)
 			nResult = RESCAN_IDENTICAL;
 
+		// Now update views and buffers for ghost lines
+
+		// Prevent displaying views during this update 
+		// BTW, this solves the problem of double asserts
+		// (during the display of an assert message box, a second assert in one of the 
+		//  display functions happens, and hides the first assert)
+		m_pLeftView->DetachFromBuffer();
+		m_pRightView->DetachFromBuffer();
+		m_pLeftDetailView->DetachFromBuffer();
+		m_pRightDetailView->DetachFromBuffer();
+
+		// Remove blank lines and clear winmerge flags
+		// this operation does not change the modified flag
+		m_ltBuf.prepareForRescan();
+		m_rtBuf.prepareForRescan();
+
 		// Analyse diff-list (updating real line-numbers)
+		// this operation does not change the modified flag
 		PrimeTextBuffers();
 		
-		// Display files
+		// just apply some options to the views
 		m_pLeftView->PrimeListWithFile();
 		m_pRightView->PrimeListWithFile();
 		m_pLeftDetailView->PrimeListWithFile();
 		m_pRightDetailView->PrimeListWithFile();
+
+		// Now buffers data are valid
+		m_pLeftView->ReAttachToBuffer();
+		m_pRightView->ReAttachToBuffer();
+		m_pLeftDetailView->ReAttachToBuffer();
+		m_pRightDetailView->ReAttachToBuffer();
 	}
 	return nResult;
 }
@@ -1092,6 +1104,9 @@ GetLineByteTimeReport(UINT lines, UINT bytes, const COleDateTime & start)
 int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInfo * infoUnpacker, CString sToFindUnpacker, BOOL & readOnly,
 		int nCrlfStyle, int codepage)
 {
+	ASSERT(!m_bInit);
+	ASSERT(m_aLines.GetSize() == 0);
+
 	// Unpacking the file here, save the result in a temporary file
 	CString sFileName = pszFileNameInit;
 	int attrs=0;		// don't care about it, it is for DirScan
@@ -1110,10 +1125,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 	// we will load the transformed file
 	LPCTSTR pszFileName = sFileName;
 
-//	We call FreeAll just before reading m_aLines
-//	ASSERT(!m_bInit);
-//	ASSERT(m_aLines.GetSize() == 0);
-
+	MAPPEDFILEDATA fileData = {0};
 	CString sExt;
 	BOOL bSuccess = FALSE;
 	int nRetVal = FRESULT_OK;
@@ -1553,23 +1565,49 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
 
-	CMDIFrameWnd* mainWnd = dynamic_cast<CMDIFrameWnd*>(AfxGetMainWnd());
-	CMDIChildWnd* diffWnd = dynamic_cast<CMDIChildWnd*>(mainWnd->MDIGetActive());
-	CCrystalEditView* curView = dynamic_cast<CCrystalEditView*>(diffWnd->GetActiveView());
+	CCrystalTextView* curView = dynamic_cast<CCrystalTextView*> (GetParentFrame()->GetActiveView());
+
+	// store cursors and hide caret
+	m_pLeftView->PushCursors();
+	m_pRightView->PushCursors();
+	m_pLeftDetailView->PushCursors();
+	m_pRightDetailView->PushCursors();
+	if (curView)
+		curView->HideCursor();
 
 	int nRescanResult = RESCAN_OK;
 
-	m_pLeftView->PushCursors();
-	m_pRightView->PushCursors();
-
 	nRescanResult = Rescan(bForced);
-	UpdateAllViews(NULL);
 
+	// restore cursors and caret
 	m_pLeftView->PopCursors();
 	m_pRightView->PopCursors();
-
+	m_pLeftDetailView->PopCursors();
+	m_pRightDetailView->PopCursors();
 	if (curView)
+		curView->ShowCursor();
+
+	// because of ghostlines, m_nTopLine may differ just after Rescan
+	// scroll both views to the same top line
+	CMergeEditView * fixedView = m_pLeftView;
+	if (curView == m_pLeftView || curView == m_pRightView)
+		// only one view needs to scroll so do not scroll the active view
+		fixedView = (CMergeEditView*) curView;
+	fixedView->UpdateSiblingScrollPos(FALSE);
+
+	// make sure we see the cursor from the curent view
+	if (curView == m_pRightView || curView == m_pLeftView)
 		curView->EnsureVisible(curView->GetCursorPos());
+
+	// scroll both diff views to the same top line
+	CMergeDiffDetailView * fixedDetailView = m_pLeftDetailView;
+	if (curView == m_pLeftDetailView || curView == m_pRightDetailView)
+		// only one view needs to scroll so do not scroll the active view
+		fixedDetailView = (CMergeDiffDetailView*) curView;
+	fixedDetailView->UpdateSiblingScrollPos(FALSE);
+
+	// Refresh display
+	UpdateAllViews(NULL);
 
 	// Show possible error after updating screen
 	if (nRescanResult != RESCAN_OK &&
@@ -2319,9 +2357,6 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 			sError += ")";
 		}
 
-		// Clear buffer, but don't leave as uninitialised
-		pBuf->FreeAll();
-		pBuf->InitNew();
 		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 	}
 	return retVal;
@@ -2356,6 +2391,17 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	undoTgt.clear();
 	curUndo = undoTgt.begin();
 
+	// Prevent displaying views during LoadFile
+	// Note : attach buffer again only if both loads succeed
+	m_pLeftView->DetachFromBuffer();
+	m_pRightView->DetachFromBuffer();
+	m_pLeftDetailView->DetachFromBuffer();
+	m_pRightDetailView->DetachFromBuffer();
+
+	// free the buffers
+	m_ltBuf.FreeAll ();
+	m_rtBuf.FreeAll ();
+
 	// build the text being filtered, "|" separates files as it is forbidden in filenames
 	m_strBothFilenames = sLeftFile + "|" + sRightFile;
 
@@ -2378,6 +2424,12 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		return FALSE;
 	}
 	
+	// Now buffers data are valid
+	m_pLeftView->AttachToBuffer();
+	m_pRightView->AttachToBuffer();
+	m_pLeftDetailView->AttachToBuffer();
+	m_pRightDetailView->AttachToBuffer();
+		
 	// Set read-only statuses
 	m_ltBuf.SetReadOnly(bROLeft);
 	m_rtBuf.SetReadOnly(bRORight);
@@ -2418,6 +2470,8 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		pRight->SetViewTabs(mf->m_bViewWhitespace);
 		pLeft->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
 		pRight->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
+		pLeft->SetWordWrapping(FALSE);
+		pRight->SetWordWrapping(FALSE);
 
 		pLeftDetail->SetTabSize(mf->m_nTabSize);
 		pRightDetail->SetTabSize(mf->m_nTabSize);
@@ -2425,6 +2479,8 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		pRightDetail->SetViewTabs(mf->m_bViewWhitespace);
 		pLeftDetail->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
 		pRightDetail->SetViewEols(mf->m_bViewWhitespace, mf->m_bAllowMixedEol);
+		pLeftDetail->SetWordWrapping(FALSE);
+		pRightDetail->SetWordWrapping(FALSE);
 
 		// Enable Backspace at beginning of line
 		pLeft->SetDisableBSAtSOL(FALSE);
@@ -2445,11 +2501,10 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	}
 	else
 	{
-		// CMergeDoc::Rescan fails if files are identical, or 
-		// does not exist on both sides or the really arcane case
-		// that the temp files couldn't be created, which is too
-		// obscure to bother reporting if you can't write to your
-		// temp directory, doing nothing is graceful enough for that).
+		// CMergeDoc::Rescan fails if files do not exist on both sides 
+		// or the really arcane case that the temp files couldn't be created, 
+		// which is too obscure to bother reporting if you can't write to 
+		// your temp directory, doing nothing is graceful enough for that).
 		ShowRescanError(nRescanResult);
 		GetParentFrame()->DestroyWindow();
 		return FALSE;

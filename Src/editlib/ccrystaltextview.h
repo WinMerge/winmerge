@@ -754,6 +754,7 @@ public :
 
     // Operations
 public :
+    virtual void ReAttachToBuffer (CCrystalTextBuffer * pBuf = NULL);
     virtual void AttachToBuffer (CCrystalTextBuffer * pBuf = NULL);
     virtual void DetachFromBuffer ();
 

@@ -1,4 +1,8 @@
 2003-10-26 Laoran
+ PATCH: [ 827332 ] detach buffer during load and rescan
+  WinMerge: GhostTextView.cpp GhostTextView.h MergeDiffDetailView.cpp MergeDiffDetailView.h
+   MergeDoc.cpp MergeEditView.cpp MergeEditView.h
+  editlib: ccrystaltextview.cpp ccrystaltextview.h
  PATCH: [ 829895 ] Fixed German translation
  Submitted by Tim Gerundt
   Languages: MergeGerman.rc

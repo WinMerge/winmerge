@@ -2500,6 +2500,38 @@ GetLineChars (int nLineIndex) const
   return m_pTextBuffer->GetLineChars (nLineIndex);
 }
 
+/** 
+ * @brief Reattach buffer after deleting/inserting ghost lines :
+ * no need to reinitialize the horizontal scrollbar
+ */
+void CCrystalTextView::
+ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
+{
+  if (m_pTextBuffer != NULL)
+    m_pTextBuffer->RemoveView (this);
+  if (pBuf == NULL)
+    {
+      pBuf = LocateTextBuffer ();
+      //  ...
+    }
+  m_pTextBuffer = pBuf;
+  if (m_pTextBuffer != NULL)
+    m_pTextBuffer->AddView (this);
+  ResetView ();
+
+  //  Init scrollbars arrows
+  CScrollBar *pVertScrollBarCtrl = GetScrollBarCtrl (SB_VERT);
+  if (pVertScrollBarCtrl != NULL)
+    pVertScrollBarCtrl->EnableScrollBar (GetScreenLines () >= GetLineCount ()?
+                                         ESB_DISABLE_BOTH : ESB_ENABLE_BOTH);
+  //  Update vertical scrollbar only
+  RecalcVertScrollBar ();
+}
+
+/** 
+ * @brief Attach buffer (maybe for the first time)
+ * initialize the view and initialize both scrollbars
+ */
 void CCrystalTextView::
 AttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
 {

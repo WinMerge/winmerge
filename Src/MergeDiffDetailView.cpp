@@ -101,18 +101,13 @@ void CMergeDiffDetailView::UpdateResources()
 
 BOOL CMergeDiffDetailView::PrimeListWithFile()
 {
-	int nResumeTopLine = m_nTopLine;
-
-	ResetView();
-	RecalcVertScrollBar();
+	// Set the tab size now, just in case the options change...
+	// We don't update it at the end of OnOptions, 
+	// we can update it safely now
 	SetTabSize(mf->m_nTabSize);
-
-	ScrollToLine(nResumeTopLine);
 
 	return TRUE;
 }
-
-
 
 int CMergeDiffDetailView::ComputeInitialHeight() 
 {
@@ -161,6 +156,7 @@ void CMergeDiffDetailView::OnInitialUpdate()
 	SetFont(dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff);
 
 	lineBegin = 0;
+	lineEnd = -1;
 	diffLength = 0;
 	displayLength = NROWS_INIT;
 }
@@ -199,13 +195,7 @@ void CMergeDiffDetailView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 			CCrystalTextView::GetLineColors(nLineIndex, crBkgnd,
 				crText, bDrawWhitespace);
 	}
-	if (nLineIndex < lineBegin)
-		{
-			crBkgnd = GetSysColor (COLOR_WINDOW);
-			crText = GetSysColor (COLOR_WINDOW);
-			bDrawWhitespace = FALSE;
-	}
-	if (nLineIndex >= lineBegin + diffLength)
+	if (nLineIndex < lineBegin || nLineIndex > lineEnd)
 		{
 			crBkgnd = GetSysColor (COLOR_WINDOW);
 			crText = GetSysColor (COLOR_WINDOW);
@@ -217,24 +207,25 @@ void CMergeDiffDetailView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 
 void CMergeDiffDetailView::OnDisplayDiff(int nDiff /*=0*/)
 {
-	int newlineBegin, newdiffLength;
+	int newlineBegin, newlineEnd;
 	CMergeDoc *pd = GetDocument();
 	if (nDiff < 0 || nDiff >= pd->m_nDiffs)
 	{
 		newlineBegin = 0;
-		newdiffLength = 0;
+		newlineEnd = -1;
 	}
 	else
 	{
 		newlineBegin = pd->m_diffs[nDiff].dbegin0;
 		ASSERT (newlineBegin >= 0);
-		newdiffLength = pd->m_diffs[nDiff].dend0 - pd->m_diffs[nDiff].dbegin0 + 1;
+		newlineEnd = pd->m_diffs[nDiff].dend0;
 	}
 
-	if (newlineBegin == lineBegin && newdiffLength == diffLength)
+	if (newlineBegin == lineBegin && newlineEnd == lineEnd)
 		return;
 	lineBegin = newlineBegin;
-	diffLength = newdiffLength;
+	lineEnd = newlineEnd;
+	diffLength = lineEnd - lineBegin + 1;
 
 	// scroll to the first line of the first diff
 	ScrollToLine(lineBegin);
@@ -281,9 +272,9 @@ BOOL CMergeDiffDetailView::EnsureInDiff(CPoint & pt)
 		return TRUE;
 	}
 	// not below diff
-	if (pt.y > lineBegin + diffLength - 1)
+	if (pt.y > lineEnd)
 	{
-		pt.y = lineBegin + diffLength - 1;
+		pt.y = lineEnd;
 		pt.x = GetLineLength(pt.y);
 		return TRUE;
 	}
@@ -301,8 +292,8 @@ void CMergeDiffDetailView::ScrollToSubLine (int nNewTopLine, BOOL bNoSmoothScrol
 	{
 		if (nNewTopLine < lineBegin)
 			nNewTopLine = lineBegin;
-		if (nNewTopLine > lineBegin + diffLength - displayLength)
-			nNewTopLine = lineBegin + diffLength - displayLength;
+		if (nNewTopLine + displayLength - 1 > lineEnd)
+			nNewTopLine = lineEnd - displayLength + 1;
 	}
 	m_nTopLine = nNewTopLine;
 	
@@ -357,6 +348,7 @@ void CMergeDiffDetailView::UpdateSiblingScrollPos (BOOL bHorz)
 			// only modification from code in MergeEditView.cpp
 			// Where are we now, are we still in a diff ? So set to no diff
 			nNewTopLine = lineBegin = 0;
+			lineEnd = -1;
 			diffLength = 0;
 
 			ScrollToLine(nNewTopLine);
@@ -473,4 +465,44 @@ void CMergeDiffDetailView::OnUpdateShowlinediff(CCmdUI* pCmdUI)
 	int line = GetCursorPos().y;
 	BOOL enable = GetLineFlags(line) & LF_DIFF;
 	pCmdUI->Enable(enable);
+}
+
+void CMergeDiffDetailView::PushCursors()
+{
+	// push lineBegin and the cursor
+	m_lineBeginPushed = lineBegin;
+	m_ptCursorPosPushed = m_ptCursorPos;
+	// and top line positions
+	m_nTopLinePushed = m_nTopLine;
+}
+
+void CMergeDiffDetailView::PopCursors()
+{
+	lineBegin = m_lineBeginPushed;
+	lineEnd = lineBegin + diffLength - 1;
+
+	m_ptCursorPos = m_ptCursorPosPushed;
+
+	if (lineBegin >= GetLineCount())
+	{
+		// even the first line is invalid, stop displaying the diff
+		lineBegin = m_nTopLine = m_nTopSubLine = 0;
+		lineEnd = -1;
+		diffLength = 0;
+	}
+	else
+		{
+		// just check that all positions all valid
+		lineEnd = min(lineEnd, GetLineCount()-1);
+		diffLength = lineEnd - lineBegin + 1;
+		m_ptCursorPos.y = min(m_ptCursorPos.y, GetLineCount()-1);
+		m_ptCursorPos.x = min(m_ptCursorPos.x, GetLineLength(m_ptCursorPos.y));
+	}
+
+		// restore the scrolling position
+	if (m_nTopLinePushed >= GetLineCount())
+		m_nTopLinePushed = GetLineCount()-1;
+	ScrollToLine(m_nTopLinePushed);
+
+	// other positions are set to (0,0) during ResetView
 }

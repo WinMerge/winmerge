@@ -41,6 +41,18 @@ IMPLEMENT_DYNCREATE (CGhostTextView, CCrystalEditViewEx)
 
 
 void CGhostTextView::
+ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
+{
+	if (pBuf == NULL)
+	{
+		pBuf = LocateTextBuffer ();
+		// ...
+	}
+	m_pGhostTextBuffer = dynamic_cast<CGhostTextBuffer*> (pBuf);
+	CCrystalEditViewEx::ReAttachToBuffer(pBuf);
+}
+
+void CGhostTextView::
 AttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
 {
 	if (pBuf == NULL)
@@ -59,13 +71,6 @@ DetachFromBuffer ()
 		m_pGhostTextBuffer = NULL;
 	CCrystalEditViewEx::DetachFromBuffer();
 }
-
-
-
-
-
-
-
 
 void CGhostTextView::popPosition(SCursorPushed Ssrc, CPoint & pt)
 {
@@ -86,8 +91,7 @@ void CGhostTextView::pushPosition(SCursorPushed & Sdest, CPoint pt)
 	Sdest.y = m_pGhostTextBuffer->ComputeRealLineAndGhostAdjustment(pt.y, Sdest.nToFirstReal);
 }
 
-void CGhostTextView::
-PopCursors ()
+void CGhostTextView::PopCursors ()
 {
 	CPoint ptCursorLast = m_ptCursorLast;
 	popPosition(m_ptCursorPosPushed, ptCursorLast);
@@ -135,10 +139,15 @@ PopCursors ()
 		ASSERT_VALIDTEXTPOS(ptLastChange);
 	}
 	m_pGhostTextBuffer->RestoreLastChangePos(ptLastChange);
+
+	// restore the scrolling position
+	CPoint temp;
+	popPosition(m_nTopLinePushed, temp);
+	ASSERT_VALIDTEXTPOS(temp);
+	ScrollToLine(temp.y);
 }
 
-void CGhostTextView::
-PushCursors ()
+void CGhostTextView::PushCursors ()
 {
 	pushPosition(m_ptCursorPosPushed, m_ptCursorPos);
 	pushPosition(m_ptSelStartPushed, m_ptSelStart);
@@ -150,7 +159,9 @@ PushCursors ()
 		pushPosition(m_ptDraggedTextEndPushed, m_ptDraggedTextEnd);
 	}
 	if (m_bDropPosVisible == TRUE)
+	{
 		pushPosition(m_ptSavedCaretPosPushed, m_ptSavedCaretPos);
+	}
 	if (m_bSelectionPushed == TRUE)
 	{
 		pushPosition(m_ptSavedSelStartPushed, m_ptSavedSelStart);
@@ -158,6 +169,9 @@ PushCursors ()
 	}
 
 	pushPosition(m_ptLastChangePushed, m_pGhostTextBuffer->GetLastChangePos());
+
+	// and top line positions
+	pushPosition(m_nTopLinePushed, CPoint(0, m_nTopLine));
 }
 
 

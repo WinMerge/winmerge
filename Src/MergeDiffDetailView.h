@@ -42,8 +42,21 @@ protected:
 public:
 	BOOL m_bIsLeft;
 protected:
-	int lineBegin, diffLength, displayLength;
+	/// first line of diff (first displayable line)
+	int lineBegin;
+	/// last line of diff (last displayable line)
+	int lineEnd; 
+	/// number of displayed lines
+	int diffLength;
+	/// height (in lines) of the view
+	int displayLength;
 
+	/// memorize first line of diff
+	int m_lineBeginPushed;
+	/// memorize cursor position
+	CPoint m_ptCursorPosPushed;
+	/// memorize top line positions
+	int m_nTopLinePushed;
 
 // Operations
 public:
@@ -55,12 +68,26 @@ public:
 	BOOL PrimeListWithFile();
 	int ComputeInitialHeight(); 
 	void SetDisplayHeight(int h); 
+	virtual void UpdateSiblingScrollPos (BOOL bHorz);
 
 	virtual void EnsureVisible (CPoint pt);
 	virtual void SetSelection (const CPoint & ptStart, const CPoint & ptEnd);
 
 	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 	virtual void OnDisplayDiff(int nDiff=0);
+
+	/* Push cursors before detaching buffer
+	 *
+	 * @note : laoran 2003/10/03 : don't bother with real lines. 
+	 * I tried and it does not work fine
+	 */
+	void PushCursors();
+	/*
+	 * @brief Pop cursors after attaching buffer
+	 *
+	 * @note : also scroll to the old top line
+	 */
+	void PopCursors();
 
 protected:
 	BOOL EnsureInDiff(CPoint & pt);
@@ -80,7 +107,6 @@ protected:
 	virtual ~CMergeDiffDetailView();
 	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
                               COLORREF & crText, BOOL & bDrawWhitespace);
-	virtual void UpdateSiblingScrollPos (BOOL bHorz);
 	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz);
 
 #ifdef _DEBUG

@@ -58,6 +58,11 @@ private:
 	 * For positions which are sometimes invalid, use a flag
 	 */
 	void pushPosition(SCursorPushed & Sdest, CPoint pt);
+	/** 
+	 * @brief Restore cursors after Rescan.
+	 *
+	 * @note : also scroll to the old top line
+	 */
 	void popPosition(SCursorPushed Ssrc, CPoint & pt);
 
 	/// basic cursor
@@ -72,6 +77,8 @@ private:
 	SCursorPushed m_ptSavedCaretPosPushed;
 	/// memorize selected text during OnEditReplace : if (m_bSelectionPushed == TRUE)
 	SCursorPushed m_ptSavedSelStartPushed, m_ptSavedSelEndPushed;
+	/// memorize top line positions
+	SCursorPushed m_nTopLinePushed;
 	/** last change position, in the buffer ; used in insertText
 	 * initialized with (-1,-1), so don't assert for this invalid value
 	 */
@@ -81,6 +88,7 @@ private:
 	//   m_ptDropPos : only used inside one function which does not change the buffer
 
 public:
+	virtual void ReAttachToBuffer (CCrystalTextBuffer * pBuf = NULL);
 	virtual void AttachToBuffer (CCrystalTextBuffer * pBuf = NULL);
 	virtual void DetachFromBuffer ();
 

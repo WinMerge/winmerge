@@ -131,6 +131,7 @@ public:
 	BOOL PrimeListWithFile();
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
 	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
+	virtual void UpdateSiblingScrollPos (BOOL bHorz);
 
 
 // Overrides
@@ -149,7 +150,6 @@ protected:
 	virtual ~CMergeEditView();
     virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, BOOL & bDrawWhitespace);
-	virtual void UpdateSiblingScrollPos (BOOL bHorz);
 	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz);
 	virtual void OnUpdateCaret();
 #ifdef _DEBUG

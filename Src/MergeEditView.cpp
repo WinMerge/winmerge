@@ -183,18 +183,13 @@ void CMergeEditView::UpdateResources()
 
 BOOL CMergeEditView::PrimeListWithFile()
 {
-	int nResumeTopLine = m_nTopLine;
-
-	SetWordWrapping(FALSE);
-	ResetView();
-	RecalcVertScrollBar();
+	// Set the tab size now, just in case the options change...
+	// We don't update it at the end of OnOptions, 
+	// we can update it safely now
 	SetTabSize(mf->m_nTabSize);
-
-	ScrollToLine(nResumeTopLine);
 
 	return TRUE;
 }
-
 /**
  * @brief Return text from line given
  */
