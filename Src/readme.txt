@@ -2,6 +2,8 @@
  PATCH: [ 1058293 ] The finished german language file
   Submitted by Tim Gerundt
   Src/Languages/German: MergeGerman.rc
+ BUG: [ 1057699 ] GetModTime() in DirDoc.cpp is unused
+  Src: DirDoc.cpp
 
 2004-11-01 Kimmo
  PATCH: [ 1057719 ] Add Hungarian translator to Contributors list

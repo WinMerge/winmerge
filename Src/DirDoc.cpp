@@ -340,20 +340,6 @@ CDirView * CDirDoc::GetMainView()
 }
 
 /**
- * @brief Get modification time of specified file
- */
-static long GetModTime(LPCTSTR szPath)
-{
-	struct _stat mystats;
-	bzero(&mystats, sizeof(mystats));
-	int stat_result = _tstat(szPath, &mystats);
-	if (stat_result!=0)
-		return 0;
-	return mystats.st_mtime;
-}
-
-
-/**
  * @brief Update in-memory diffitem status from disk and update view
  * @param nIdx Index of item in UI list
  */
