@@ -1,3 +1,7 @@
+2005-01-20 Kimmo
+ PATCH: [ 1105640 ] Properly update locationpane visible area indicator
+  Src: LocationView.cpp LocationView.h MergeEditView.cpp MergeEditView.h
+
 2005-01-18 Kimmo
  PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
   View scrolling optimisation from Takashi Sawanaka

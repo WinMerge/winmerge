@@ -30,6 +30,7 @@ public:
 	CLocationView();
 	DECLARE_DYNCREATE(CLocationView)
 	void SetConnectMovedBlocks(int displayMovedBlocks);
+	void UpdateVisiblePos(int nTopLine = -1, int nBottomLine = -1);
 
 protected:
 
@@ -39,6 +40,7 @@ protected:
 	public:
 	virtual void OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint);
 	virtual void OnDraw(CDC* pDC);
+	afx_msg void OnClose();
 	//}}AFX_VIRTUAL
 
 	CMergeDoc* GetDocument();
@@ -50,13 +52,19 @@ protected:
 	BOOL GotoLocation(CPoint point);
 	int GetLineFromYPos(int nYCoord, CRect rc, int bar);
 	int IsInsideBar(CRect rc, POINT pt);
-	void DrawVisibleAreaRect();
+	void DrawVisibleAreaRect(int nTopLine = -1, int nBottomLine = -1);
 
 private:
 	CMergeEditView* m_view0;
 	CMergeEditView* m_view1;
 	int m_displayMovedBlocks;
 	double m_pixInLines; //*< How many pixels is one line in bars */
+	UINT m_nLeftBarLeft; //*< Left edge of left-side bar */
+	UINT m_nLeftBarRight; //*< Right edge of left-side bar */
+	UINT m_nRightBarLeft; //*< Left edge of right-side bar */
+	UINT m_nRightBarRight; //*< Right edge of right-side bar */
+	int m_visibleTop; //*< Top visible line for visible area indicator */
+	int m_visibleBottom; //*< Bottom visible line for visible area indicator */
 
 	// Generated message map functions
 protected:

@@ -28,6 +28,7 @@
 
 #include "stdafx.h"
 #include "merge.h"
+#include "LocationView.h"
 #include "MergeEditView.h"
 #include "MergeDiffDetailView.h"
 #include "MergeDoc.h"
@@ -59,6 +60,7 @@ IMPLEMENT_DYNCREATE(CMergeEditView, CCrystalEditViewEx)
 
 CMergeEditView::CMergeEditView()
 {
+	m_pLocationView = NULL;
 	m_bIsLeft = FALSE;
 	m_nModifications = 0;
 	m_piMergeEditStatus = 0;
@@ -165,6 +167,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
 	ON_COMMAND(ID_FILE_CLOSE, OnWindowClose)
+	ON_WM_VSCROLL ()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1618,6 +1621,12 @@ OnUpdateCaret()
 		}
 		m_piMergeEditStatus->SetLineInfo(sLine, column, columns,
 			curChar, chars, sEol);
+
+		if (m_pLocationView)
+		{
+			m_pLocationView->UpdateVisiblePos(m_nTopLine,
+				m_nTopLine + GetScreenChars());
+		}
 	}
 }
 
@@ -2307,4 +2316,70 @@ void CMergeEditView::OnWindowClose()
 		pDoc->m_rtBuf.SetModified(FALSE);
 		GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
 	}
+	m_pLocationView = NULL;
+}
+
+/**
+ * @brief When view is scrolled using scrollbars update location pane.
+ */
+void CMergeEditView::OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
+{
+	CCrystalTextView::OnVScroll (nSBCode, nPos, pScrollBar);
+ 
+	// Note we cannot use nPos because of its 16-bit nature
+	SCROLLINFO si = {0};
+	si.cbSize = sizeof (si);
+	si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE | SIF_TRACKPOS;
+	VERIFY (GetScrollInfo (SB_VERT, &si));
+
+	// Get the minimum and maximum scroll-bar	positions.
+	int nMinPos =	si.nMin;
+	int nMaxPos =	si.nMax;
+
+	// Get the current position of scroll	box.
+	int nCurPos =	si.nPos;
+
+	BOOL bDisableSmooth =	TRUE;
+	switch (nSBCode)
+	{
+	case SB_TOP:			// Scroll to top.
+		nCurPos = nMinPos;
+		bDisableSmooth = FALSE;
+		break;
+
+	case SB_BOTTOM:			// Scroll to bottom.
+		nCurPos =	nMaxPos;
+		bDisableSmooth = FALSE;
+		break;
+
+	case SB_LINEUP:			// Scroll one line up.
+		if (nCurPos >	nMinPos)
+			nCurPos--;
+		break;
+
+	case SB_LINEDOWN:		// Scroll one line down.
+		if (nCurPos <	nMaxPos)
+			nCurPos++;
+		break;
+
+	case SB_PAGEUP:			// Scroll one page up.
+		nCurPos =	max(nMinPos, nCurPos - (int) si.nPage +	1);
+		bDisableSmooth = FALSE;
+		break;
+
+	case SB_PAGEDOWN:		// Scroll one page down.
+		nCurPos =	min(nMaxPos, nCurPos + (int) si.nPage -	1);
+		bDisableSmooth = FALSE;
+		break;
+
+	case SB_THUMBPOSITION:		// Scroll to absolute position.	nPos is	the	position
+		nCurPos =	si.nTrackPos;	// of the scroll box at	the	end	of the drag	operation.
+		break;
+
+	case SB_THUMBTRACK:			// Drag	scroll box to specified	position. nPos is the
+		nCurPos =	si.nTrackPos;	// position	that the scroll	box	has	been dragged to.
+		break;
+	}
+
+	m_pLocationView->UpdateVisiblePos(nCurPos);
 }

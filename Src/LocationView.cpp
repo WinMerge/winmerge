@@ -38,9 +38,9 @@ static const double MAX_LINEPIX = 4.0;
  */
 enum
 {
-	BAR_NONE = 0,
-	BAR_LEFT,
-	BAR_RIGHT,
+	BAR_NONE = 0,	/**< No bar in given coords */
+	BAR_LEFT,		/**< Left side bar in given coords */
+	BAR_RIGHT,		/**< Right side bar in given coords */
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -52,6 +52,8 @@ IMPLEMENT_DYNCREATE(CLocationView, CView)
 CLocationView::CLocationView()
 	: m_view0(0)
 	, m_view1(0)
+	, m_visibleTop(-1)
+	, m_visibleBottom(-1)
 {
 	SetConnectMovedBlocks(mf->m_options.GetInt(OPT_CONNECT_MOVED_BLOCKS));
 }
@@ -60,6 +62,7 @@ BEGIN_MESSAGE_MAP(CLocationView, CView)
 	//{{AFX_MSG_MAP(CLocationView)
 	ON_WM_LBUTTONDBLCLK()
 	ON_WM_CONTEXTMENU()
+	ON_WM_CLOSE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -97,6 +100,11 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
 	CMergeDoc* pDoc = GetDocument();
 	m_view0 = pDoc->GetLeftView();
 	m_view1 = pDoc->GetRightView();
+
+	// Give pointer to MergeEditView
+	m_view0->m_pLocationView = this;
+	m_view1->m_pLocationView = this;
+
 	Invalidate();
 }
 
@@ -122,9 +130,10 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	CMergeDoc *pDoc = GetDocument();
 	const int w = rc.Width() / 4;
-	const int x = (rc.Width() - 2 * w) / 3;
-	const int x2 = 2 * x + w;
-	const int w2 = 2 * x + 2 * w;
+	m_nLeftBarLeft = (rc.Width() - 2 * w) / 3;
+	m_nLeftBarRight = m_nLeftBarLeft + w;
+	m_nRightBarLeft = 2 * m_nLeftBarLeft + w;
+	m_nRightBarRight = m_nRightBarLeft + w;
 	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
 	double nLineInPix = hTotal / nbLines;
@@ -142,6 +151,10 @@ void CLocationView::OnDraw(CDC* pDC)
 		m_pixInLines = 1 / MAX_LINEPIX;
 	}
 
+	// Since we have invalidated locationbar there is no previous
+	// arearect to remove
+	m_visibleTop = -1;
+	m_visibleBottom = -1;
 	DrawVisibleAreaRect();
 
 	while (true)
@@ -161,12 +174,12 @@ void CLocationView::OnDraw(CDC* pDC)
 
 		// Draw left side block
 		m_view0->GetLineColors(nstart0, cr0, crt, bwh);
-		CRect r0(x, nBeginY, x + w, nEndY);
+		CRect r0(m_nLeftBarLeft, nBeginY, m_nLeftBarRight, nEndY);
 		DrawRect(pDC, r0, cr0, ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0));
 		
 		// Draw right side block
 		m_view1->GetLineColors(nstart0, cr1, crt, bwh);
-		CRect r1(x2, nBeginY, w2, nEndY);
+		CRect r1(m_nRightBarLeft, nBeginY, m_nRightBarRight, nEndY);
 		DrawRect(pDC, r1, cr1, ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0));
 
 		// Test if we draw a connector
@@ -203,8 +216,8 @@ void CLocationView::OnDraw(CDC* pDC)
 				const double nBeginY1 = apparent1 * nLineInPix + Y_OFFSET;
 				const double nEndY1 = (blockHeight + apparent1) * nLineInPix + Y_OFFSET;
 			
-				CRect r0bis(x, nBeginY0, x + w, nEndY0);
-				CRect r1bis(x2, nBeginY1, w2, nEndY1);
+				CRect r0bis(m_nLeftBarLeft, nBeginY0, m_nLeftBarRight, nEndY0);
+				CRect r1bis(m_nRightBarLeft, nBeginY1, m_nRightBarRight, nEndY1);
 
 				CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
 				pDC->MoveTo(r0bis.right, r0bis.CenterPoint().y);
@@ -225,8 +238,8 @@ void CLocationView::OnDraw(CDC* pDC)
 				const double nBeginY1 = apparent1 * nLineInPix + Y_OFFSET;
 				const double nEndY1 = (blockHeight + apparent1) * nLineInPix + Y_OFFSET;
 			
-				CRect r0bis(x, nBeginY0, x + w, nEndY0);
-				CRect r1bis(x2, nBeginY1, w2, nEndY1);
+				CRect r0bis(m_nLeftBarLeft, nBeginY0, m_nLeftBarRight, nEndY0);
+				CRect r1bis(m_nRightBarLeft, nBeginY1, m_nRightBarRight, nEndY1);
 
 				CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
 				pDC->MoveTo(r0bis.right, r0bis.CenterPoint().y);
@@ -519,14 +532,20 @@ int CLocationView::IsInsideBar(CRect rc, POINT pt)
 
 /** 
  * @brief Draws rect indicating visible area in file views.
+ *
+ * @param [in] nTopLine New topline for indicator
+ * @param [in] nBottomLine New bottomline for indicator
  * @todo This function dublicates too much DrawRect() code.
  */
-void CLocationView::DrawVisibleAreaRect()
+void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 {
 	CMergeDoc* pDoc = GetDocument();
-	const int nTopLine = pDoc->GetRightView()->GetTopLine();
 	const int nScreenLines = pDoc->GetRightView()->GetScreenLines();
-	const int nBottomLine = nTopLine + nScreenLines;
+	if (nTopLine == -1)
+		nTopLine = pDoc->GetRightView()->GetTopLine();
+	
+	if (nBottomLine == -1)
+		nBottomLine = nTopLine + nScreenLines;;
 
 	CRect rc;
 	GetClientRect(rc);
@@ -540,12 +559,62 @@ void CLocationView::DrawVisibleAreaRect()
 	int nLeftCoord = 2;
 	int nBottomCoord = Y_OFFSET + ((double)(nTopLine + nScreenLines) * nLineInPix);
 	int nRightCoord = rc.Width() - 2;
+	
+	// Visible area was not changed
+	if (m_visibleTop == nTopCoord && m_visibleBottom == nBottomCoord)
+		return;
+
+	// Clear previous visible rect
+	if (m_visibleTop != -1 && m_visibleBottom != -1)
+	{
+		CDC *pClientDC = GetDC();
+		CRect rcVisibleArea(2, m_visibleTop, m_nLeftBarLeft - 2, m_visibleBottom);
+		pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_WINDOW));
+		rcVisibleArea.left = m_nLeftBarRight + 2;
+		rcVisibleArea.right = m_nRightBarLeft - 2;
+		pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_WINDOW));
+		rcVisibleArea.left = m_nRightBarRight + 2;
+		rcVisibleArea.right = rc.Width() - 2;
+		pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_WINDOW));
+		ReleaseDC(pClientDC);
+	}
+
 	const int barBottom = min(nbLines / m_pixInLines + Y_OFFSET, rc.Height() - Y_OFFSET);	
 	// Make sure bottom coord is in bar range
 	nBottomCoord = min(nBottomCoord, barBottom);
 
-	CRect rcVisibleArea(nLeftCoord, nTopCoord, nRightCoord, nBottomCoord);
+	// Store current values for later use (to check if area changes)
+	m_visibleTop = nTopCoord;
+	m_visibleBottom = nBottomCoord;
+
 	CDC *pClientDC = GetDC();
+	CRect rcVisibleArea(2, m_visibleTop, m_nLeftBarLeft - 2, m_visibleBottom);
+	pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_SCROLLBAR));
+	rcVisibleArea.left = m_nLeftBarRight + 2;
+	rcVisibleArea.right = m_nRightBarLeft - 2;
+	pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_SCROLLBAR));
+	rcVisibleArea.left = m_nRightBarRight + 2;
+	rcVisibleArea.right = rc.Width() - 2;
 	pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_SCROLLBAR));
 	ReleaseDC(pClientDC);
+}
+
+/**
+ * @brief Public function for updating visible area indicator.
+ *
+ * @param [in] nTopLine New topline for indicator
+ * @param [in] nBottomLine New bottomline for indicator
+ */
+void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
+{
+	DrawVisibleAreaRect(nTopLine, nBottomLine);
+}
+
+/**
+ * @brief Unset pointers to MergeEditView when location pane is closed.
+ */
+void CLocationView::OnClose()
+{
+	m_view0->m_pLocationView = NULL;
+	m_view1->m_pLocationView = NULL;
 }

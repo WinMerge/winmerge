@@ -94,6 +94,7 @@ enum MERGE_LINEFLAGS
 #include "GhostTextView.h"
 
 class IMergeEditStatus;
+class CLocationView;
 
 /**
 This class is the base class for WinMerge editor panels.
@@ -119,7 +120,8 @@ protected:
 public:
 	BOOL m_bIsLeft;
 	LONG m_nModifications;
-	IMergeEditStatus * m_piMergeEditStatus; // interface to status bar
+	IMergeEditStatus * m_piMergeEditStatus; /**< interface to status bar */
+	CLocationView * m_pLocationView; /**< Pointer to locationview */
 
 protected:
 	/** Controls if rescan is done after edit events */
@@ -267,6 +269,7 @@ protected:
 	afx_msg void OnUpdateMergingMode(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateMergingStatus(CCmdUI* pCmdUI);
 	afx_msg void OnWindowClose();
+	afx_msg void OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
