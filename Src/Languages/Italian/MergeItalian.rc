@@ -1596,6 +1596,8 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "Un'altra applicazione ha aggiornato il file\n%1\nda quando WinMerge lo ha caricato.\n\nSovrascrivere il file modificato?"
     IDS_SAVEREADONLY_MULTI  "%1\nè marcato come di sola lettura. Desideri non tenere conto della voce di Sola lettura?"
     IDS_FILECHANGED_RESCAN  "Un'altra applicazione ha aggiornato il file\n%1\nda quando WinMerge lo ha scansionato.\n\nSe vuoi aggiornare i file chiudi l'attuale sessione di confronto e ricarica i file."
+    IDS_SAVE_LEFT_AS        "Save Left File As"
+    IDS_SAVE_RIGHT_AS       "Save Right File As"
 END
 
 // VSS

@@ -827,7 +827,11 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
 	switch (answer)
 	{
 	case IDYES:
-		VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
+		if (bLeft)
+			VERIFY(title.LoadString(IDS_SAVE_LEFT_AS));
+		else
+			VERIFY(title.LoadString(IDS_SAVE_RIGHT_AS));
+
 		if (SelectFile(s, strPath, title, NULL, FALSE))
 		{
 			CDiffTextBuffer *pBuffer = bLeft ? &m_ltBuf : &m_rtBuf;

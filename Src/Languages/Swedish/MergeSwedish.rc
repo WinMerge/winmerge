@@ -1594,6 +1594,8 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
     IDS_SAVEREADONLY_MULTI  "%1\när markerad bara läsbar. Vill du ändå ändra i den?"
     IDS_FILECHANGED_RESCAN  "Ett annat program har uppdaterat filen\n%1\nsedan WinMerge undersökte den sist.\n\nOm du vill uppdatera filer stäng aktuell filjämförelse och öppna filer igen."
+    IDS_SAVE_LEFT_AS        "Save Left File As"
+    IDS_SAVE_RIGHT_AS       "Save Right File As"
 END
 
 // VSS

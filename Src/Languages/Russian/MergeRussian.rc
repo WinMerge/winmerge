@@ -1492,6 +1492,8 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "Другое приложение изменило файл\n%1\nуже загруженный в WinMerge .\n\nПерезаписать измененный файл?"
     IDS_SAVEREADONLY_MULTI  "%1\nis marked read-only. Would you like to override the read-only item?"
     IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nIf you want to refresh files close current file compare and load files again."
+    IDS_SAVE_LEFT_AS        "Save Left File As"
+    IDS_SAVE_RIGHT_AS       "Save Right File As"
 END
 
 // VSS

@@ -1485,6 +1485,8 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "%1\nこのファイルは WinMerge 以外のアプリケーションで修正されています。修正されたファイルに上書きしますか?"
     IDS_SAVEREADONLY_MULTI  "%1\nは、読み取り専用です。 読み取り専用の項目を上書きしますか?"
     IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nIf you want to refresh files close current file compare and load files again."
+    IDS_SAVE_LEFT_AS        "Save Left File As"
+    IDS_SAVE_RIGHT_AS       "Save Right File As"
 END
 
 // VSS

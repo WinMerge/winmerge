@@ -1498,6 +1498,8 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "Alguna altra aplicació ha actualitzat el fitxer\n%1\ndes de que el WinMerge el va carregar.\n\nVoleu sobreescriure el fitxer?"
     IDS_SAVEREADONLY_MULTI  "%1\nestà marcat com a només de lectura. Voleu substituir l'element només de lectura?"
     IDS_FILECHANGED_RESCAN  "Una altra aplicació ha modificat el fitxer\n%1\ndes que el WinMerge l'analitzà per darrer cop.\n\nSi voleu refrescar els fitxers, tanqueu la comparació de fitxers actual i carregueu-los de bell nou."
+    IDS_SAVE_LEFT_AS        "Save Left File As"
+    IDS_SAVE_RIGHT_AS       "Save Right File As"
 END
 
 // VSS
