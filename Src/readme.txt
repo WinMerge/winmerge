@@ -1,3 +1,7 @@
+2004-03-04 Kimmo
+ Fix invalid return in paths_IsPathAbsolute()
+  paths.cpp
+
 2004-03-03 Perry
  fix BUG: [ 902430 ] copy&paste comment bug
   Src: DirView.cpp

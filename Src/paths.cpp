@@ -281,8 +281,6 @@ BOOL paths_IsPathAbsolute(CString path)
 	// Maybe "X:\blahblah"?
 	if (path[1] == ':' && path[2] == '\\')
 		return TRUE;
-	else
-		return FALSE;
 
 	// So "\\blahblah\"?
 	if (path[0] == '\\' && path[1] == '\\' && pos > 2)
