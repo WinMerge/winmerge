@@ -48,8 +48,8 @@ STDMETHODIMP CWinMergeScript::PackBufferA(SAFEARRAY **pBuffer, INT *pSize, VARIA
 STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL *pbChanged, INT *pSubcode, VARIANT_BOOL *pbSuccess)
 {
 	USES_CONVERSION;
-	ifstream input(W2T(fileSrc), ios::in || ios::binary);
-	ofstream output(W2T(fileDst));
+	ifstream input(W2T(fileSrc), ios::in | ios::binary);
+	ofstream output(W2T(fileDst), ios::out | ios::binary);
 
 	*pSubcode = -1;
 
@@ -90,8 +90,8 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 STDMETHODIMP CWinMergeScript::PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL *pbChanged, INT pSubcode, VARIANT_BOOL *pbSuccess)
 {
 	USES_CONVERSION;
-	ifstream input(W2T(fileSrc), ios::in || ios::binary);
-	ofstream output(W2T(fileDst));
+	ifstream input(W2T(fileSrc), ios::in | ios::binary);
+	ofstream output(W2T(fileDst), ios::out | ios::binary);
 
 	if (pSubcode == -1)
 	{
