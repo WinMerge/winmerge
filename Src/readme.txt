@@ -2,6 +2,9 @@
  RFE: [ 942591 ] Loose filter for Visual Basic
   Submitted by Tim Gerundt
   Filters new file: Merge_VB_loose.flt
+ PATCH: [ 930482 ] Add comments to filter: Merge_GnuC_loose.flt
+  Submitted by Tim Gerundt
+  Filters: Merge_GnuC_loose.flt
 
 2004-04-26 Kimmo
  BUG: [ 940709 ] Dircompare column widths saved only when WinMerge closed
