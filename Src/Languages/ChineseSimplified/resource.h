@@ -155,6 +155,10 @@
 #define IDC_LANGUAGE_LIST               1037
 #define IDC_AUTOMRESCAN_CHECK           1038
 #define IDC_FILE_FILTER                 1039
+#define IDC_DIFFERENCE_TEXT_COLOR       1040
+#define IDC_DIFFERENCE_DELETED_COLOR    1041
+#define IDC_SEL_DIFFERENCE_DELETED_COLOR 1042
+#define IDC_SEL_DIFFERENCE_TEXT_COLOR   1043
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO            8503
@@ -352,6 +356,7 @@
 #define ID_VIEW_WHITESPACE              32818
 #define ID_REFRESH                      32819
 #define ID_EDIT_FIND_PREVIOUS           32820
+#define ID_SHOWLINEDIFF                 32821
 
 // Next default values for new objects
 // 
@@ -359,8 +364,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        114
-#define _APS_NEXT_COMMAND_VALUE         32820
-#define _APS_NEXT_CONTROL_VALUE         1040
+#define _APS_NEXT_COMMAND_VALUE         32822
+#define _APS_NEXT_CONTROL_VALUE         1044
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

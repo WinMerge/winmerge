@@ -74,6 +74,8 @@ BEGIN
         MENUITEM "복사(&C)\tCtrl+C",            ID_EDIT_COPY
         MENUITEM "붙여넣기(&P)\tCtrl+V",        ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
         MENUITEM "다음 다른 부분(&X)\tAlt+Down", ID_NEXTDIFF
         MENUITEM "이전 다른 부분(&V)\tAlt+Up",  ID_PREVDIFF
         MENUITEM SEPARATOR

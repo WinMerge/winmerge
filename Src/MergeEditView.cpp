@@ -879,7 +879,10 @@ void CMergeEditView::OnShowlinediff()
 	GetDocument()->Showlinediff(this);
 }
 
+// Enable highlight menuitem if current line is flagged as having a difference
 void CMergeEditView::OnUpdateShowlinediff(CCmdUI* pCmdUI) 
 {
-	pCmdUI->Enable(TRUE);
+	int line = GetCursorPos().y;
+	BOOL enable = GetLineFlags(line) & LF_DIFF;
+	pCmdUI->Enable(enable);
 }

@@ -111,6 +111,8 @@ BEGIN
         MENUITEM "&KopÌrovaù\tCtrl+C",          ID_EDIT_COPY
         MENUITEM "V&loûiù\tCtrl+V",             ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
         MENUITEM "&N·sleduj˙ci rozdiel\tTAlt+Down", ID_NEXTDIFF
         MENUITEM "&Predch·dzaj˙ci rozdiel\tAlt+Up", ID_PREVDIFF
         MENUITEM SEPARATOR

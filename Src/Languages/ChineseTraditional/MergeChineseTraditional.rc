@@ -107,6 +107,8 @@ BEGIN
         MENUITEM "複製(&C)\tCtrl+C",            ID_EDIT_COPY
         MENUITEM "貼上(&P)\tCtrl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
         MENUITEM "下一不同(&N)\tAlt+Down",      ID_NEXTDIFF
         MENUITEM "上一不同(&P)\tAlt+Up",        ID_PREVDIFF
         MENUITEM SEPARATOR

@@ -110,6 +110,8 @@ BEGIN
         MENUITEM "C&opia\tCtrl+C",              ID_EDIT_COPY
         MENUITEM "I&ncolla\tCtrl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
         MENUITEM "&Differenza successiva\tAlt+Down", ID_NEXTDIFF
         MENUITEM "Di&fferenza precedente\tAlt+Up", ID_PREVDIFF
         MENUITEM SEPARATOR

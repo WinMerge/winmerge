@@ -111,6 +111,8 @@ BEGIN
         MENUITEM "Copi&ar\tCtrl+C",             ID_EDIT_COPY
         MENUITEM "Pe&gar\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
+        MENUITEM SEPARATOR
         MENUITEM "&Diferencia siguiente\tAlt+Down", ID_NEXTDIFF
         MENUITEM "&Diferencia anterior\tAlt+Up",   ID_PREVDIFF
         MENUITEM SEPARATOR

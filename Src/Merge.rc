@@ -111,7 +111,7 @@ BEGIN
         MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
         MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Highlight Line Diff",         ID_SHOWLINEDIFF
+        MENUITEM "Highlight Line Diff\tF4",     ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "Ne&xt Difference\tAlt+Down",  ID_NEXTDIFF
         MENUITEM "Pre&vious Difference\tAlt+Up", ID_PREVDIFF
