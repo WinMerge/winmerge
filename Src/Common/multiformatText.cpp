@@ -599,19 +599,14 @@ BOOL UnicodeFileToOlechar(CString & filepath, LPCTSTR filepathDst, int & nFileCh
 {
 	BOOL bIsUnicode = FALSE;
 	UniMemFile ufile;
-	if (ufile.OpenReadOnly(filepath))
-	{
-		bIsUnicode = ufile.ReadBom();
-		ufile.Close();
-	}
-	if (!bIsUnicode)
-		// not unicode file, nothing to do
-		return TRUE;
+	if (!ufile.OpenReadOnly(filepath) || !ufile.ReadBom())
+		return TRUE; // not unicode file, nothing to do
 
 	int codeOldBOM = ufile.GetUnicoding();
 	if (codeOldBOM == ucr::UCS2LE)
-		// unicode UCS-2LE, nothing to do
-		return TRUE;
+		return TRUE; // unicode UCS-2LE, nothing to do
+	// Finished with examing file contents
+	ufile.Close();
 
 	// Init filedataIn struct and open file as memory mapped (input)
 	BOOL bSuccess;
@@ -689,17 +684,12 @@ BOOL UnicodeFileToOlechar(CString & filepath, LPCTSTR filepathDst, int & nFileCh
 
 BOOL OlecharToUTF8(CString & filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
 {
-	BOOL bIsUnicode = FALSE;
 	UniMemFile ufile;
-	if (ufile.OpenReadOnly(filepath))
-	{
-		bIsUnicode = ufile.ReadBom();
-		ufile.Close();
-	}
-	if (!bIsUnicode)
-		// not unicode file, nothing to do
-		return TRUE;
-
+	if (!ufile.OpenReadOnly(filepath) || !ufile.ReadBom())
+		return TRUE; // not unicode file, nothing to do
+	// Finished with examing file contents
+	ufile.Close();
+	
 	// Init filedataIn struct and open file as memory mapped (input)
 	BOOL bSuccess;
 	MAPPEDFILEDATA fileDataIn = {0};

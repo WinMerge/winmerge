@@ -1,6 +1,8 @@
 2004-01-11 Perry
  Fix byte count and argument order when UniStdioFile::WriteString calls fwrite.
- common: UniFile.cpp
+  common: UniFile.cpp
+ PATCH: [ 875215 ] Fix UnicodeFileToOlechar obtaining BOM
+  common: multiformatText.cpp
 
 2004-01-11 WinMerge experimental release 2.1.5.5 (cvs)
 
