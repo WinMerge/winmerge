@@ -1,3 +1,8 @@
+2003-08-23 Perry
+ PATCH: [ 791487 ] Norwegian (bokmål) translation
+  Corrections#2 Avbrytt->Avbryt and #3 Opdater->Oppdater
+  Languages\Norwegian: MergeNorwegian.rc
+
 2003-08-22 Kimmo
  PATCH: [ 787495 ] Create diffutils class (CDiffWrapper)
   WinMerge: Merge.dsp MergeDoc.h MergeDoc.cpp

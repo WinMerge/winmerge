@@ -129,7 +129,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Egenskaper...",              ID_OPTIONS
         MENUITEM SEPARATOR
-        MENUITEM "&Opdater\tF5",                ID_REFRESH
+        MENUITEM "&Oppdater\tF5",                ID_REFRESH
     END
     POPUP "&Vis"
     BEGIN
@@ -268,7 +268,7 @@ BEGIN
     CONTROL         "Re&kursivt",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,35,77,46,10
     DEFPUSHBUTTON   "OK",IDOK,295,11,50,14
-    PUSHBUTTON      "Avbrytt",IDCANCEL,295,28,50,14
+    PUSHBUTTON      "Avbryt",IDCANCEL,295,28,50,14
     GROUPBOX        "Filer eller mapper som skal sammenlignes",IDC_STATIC,7,
                     7,279,84
 END
@@ -281,7 +281,7 @@ BEGIN
     LTEXT           "",IDC_STATIC,7,7,244,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
     DEFPUSHBUTTON   "Check Out",IDOK,33,121,50,14
-    PUSHBUTTON      "Avbrytt",IDCANCEL,173,121,50,14
+    PUSHBUTTON      "Avbryt",IDCANCEL,173,121,50,14
     PUSHBUTTON      "Lagre som...",IDSAVEAS,103,121,50,14
     LTEXT           "Prosjekt:",IDC_STATIC,9,61,25,8
     COMBOBOX        IDC_PROJECT_COMBO,36,58,215,114,CBS_DROPDOWN |
@@ -348,7 +348,7 @@ CAPTION "Språk"
 FONT 8, "MS Sans Serif"
 BEGIN
     PUSHBUTTON      "OK",IDOK,154,16,52,14
-    PUSHBUTTON      "Avbrytt",IDCANCEL,154,33,52,14
+    PUSHBUTTON      "Avbryt",IDCANCEL,154,33,52,14
     LISTBOX         IDC_LANGUAGE_LIST,5,16,141,141,LBS_NOINTEGRALHEIGHT |
                     WS_VSCROLL | WS_TABSTOP
     LTEXT           "Tilgjengelige språk:",IDC_STATIC,7,7,63,8
@@ -411,7 +411,7 @@ CAPTION "Rational Clearcase"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "CheckOut",IDOK,35,90,50,14
-    PUSHBUTTON      "Avbrytt",IDCANCEL,194,90,50,14
+    PUSHBUTTON      "Avbryt",IDCANCEL,194,90,50,14
     PUSHBUTTON      "Skul som...",IDSAVEAS,114,90,50,14
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
