@@ -229,6 +229,7 @@ void CDirDoc::Redisplay()
 				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
 			{
 				m_pView->AddItem(cnt, DV_NAME, di.filename);
+				m_pView->AddItem(cnt, DV_EXT, di.extension);    // BSP - Add the current file extension
 
 				p = _tcsninc(di.lpath, llen);
 				s = _T(".");
@@ -245,6 +246,7 @@ void CDirDoc::Redisplay()
 				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
 			{
 				m_pView->AddItem(cnt, DV_NAME, di.filename);
+				m_pView->AddItem(cnt, DV_EXT, di.extension);    // BSP - Add the current file extension
 				p = _tcsninc(di.lpath, llen);
 				s = _T(".");
 				s += p;
@@ -262,6 +264,7 @@ void CDirDoc::Redisplay()
 				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
 			{
 				m_pView->AddItem(cnt, DV_NAME, di.filename);
+				m_pView->AddItem(cnt, DV_EXT, di.extension);    // BSP - Add the current file extension
 				
 				if (di.code==FILE_LUNIQUE || di.code==FILE_LDIRUNIQUE)
 					p = _tcsninc(di.lpath, llen);
@@ -280,6 +283,7 @@ void CDirDoc::Redisplay()
 				&& (!mf->m_bHideBak || !FileExtMatches(di.filename,BACKUP_FILE_EXT)))
 			{
 				m_pView->AddItem(cnt, DV_NAME, di.filename);
+				m_pView->AddItem(cnt, DV_EXT, di.extension);    // BSP - Add the current file extension
 				p = _tcsninc(di.lpath, llen);
 				s = _T(".");
 				s += p;
@@ -291,6 +295,7 @@ void CDirDoc::Redisplay()
 			break;
 		default: // error
 			m_pView->AddItem(cnt, DV_NAME, di.filename);
+			m_pView->AddItem(cnt, DV_EXT, di.extension); // BSP - Add the current file extension
 			p = _tcsninc(di.lpath, llen);
 			s = _T(".");
 			s += p;
