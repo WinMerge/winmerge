@@ -159,6 +159,7 @@ protected:
 	afx_msg void OnClose();
 	afx_msg void OnViewWhitespace();
 	afx_msg void OnUpdateViewWhitespace(CCmdUI* pCmdUI);
+	afx_msg void OnDropFiles(HDROP dropInfo);
 
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

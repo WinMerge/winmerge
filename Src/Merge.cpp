@@ -159,6 +159,8 @@ BOOL CMergeApp::InitInstance()
 	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
 		return FALSE;
 	m_pMainWnd = pMainFrame;
+	// Enable drag&drop files
+	pMainFrame->ModifyStyleEx(NULL, WS_EX_ACCEPTFILES);
 
 	pMainFrame->m_hMenuDefault=pMainFrame->NewDefaultMenu();
 

@@ -7,5 +7,6 @@ PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath);
 void paths_normalize(CString & sPath);
 CString paths_GetLongPath(const CString & sPath);
 TCHAR paths_GetCurrentDrive();
+CString ExpandShortcut(CString &inFile);
 
 #endif // paths_h_included

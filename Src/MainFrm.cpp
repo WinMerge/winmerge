@@ -49,6 +49,7 @@
 #include "PropSyntax.h"
 #include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
 #include "multimon.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -94,7 +95,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_CLOSE()
 	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
-
+	ON_WM_DROPFILES()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1423,3 +1424,66 @@ void CMainFrame::ConvertPathToSlashes(LPTSTR path)
 	while (ptr != NULL);
 }
 
+/////////////////////////////////////////////////////////////////////////////
+//
+//	OnDropFiles code from CDropEdit
+//	Copyright 1997 Chris Losinger
+//
+//	shortcut expansion code modified from :
+//	CShortcut, 1996 Rob Warner
+//
+void CMainFrame::OnDropFiles(HDROP dropInfo)
+{
+	// Get the number of pathnames that have been dropped
+	UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
+	CString files[2];
+	int fileCount = 0;
+
+	// get all file names. but we'll only need the first one.
+	for (WORD x = 0 ; x < wNumFilesDropped; x++)
+	{
+		// Get the number of bytes required by the file's full pathname
+		UINT wPathnameSize = DragQueryFile(dropInfo, x, NULL, 0);
+
+		// Allocate memory to contain full pathname & zero byte
+		char * npszFile = (char *) LocalAlloc(LPTR, wPathnameSize += 1);
+
+		// If not enough memory, skip this one
+		if (npszFile == NULL) continue;
+
+		// Copy the pathname into the buffer
+		DragQueryFile(dropInfo, x, npszFile, wPathnameSize);
+
+		if (x < 2)
+		{
+			files[x] = npszFile;
+			fileCount++;
+		}
+		// clean up
+		LocalFree(npszFile);
+	}
+
+	// Free the memory block containing the dropped-file information
+	DragFinish(dropInfo);
+
+	for (int i = 0; i < fileCount; i++)
+	{
+		// if this was a shortcut, we need to expand it to the target path
+		CString expandedFile = ExpandShortcut(files[i]);
+
+		// if that worked, we should have a real file name
+		if (expandedFile != _T("")) 
+			files[i] = expandedFile;
+	}
+
+	if (m_pMergeDoc != NULL)
+	{
+		// Save files and update dirview status if needed
+		if (!m_pMergeDoc->SaveHelper())
+			return;
+	}
+	
+	// If Ctrl pressed, do recursive compare
+	BOOL ctrlKey = ::GetAsyncKeyState(VK_CONTROL);
+	DoFileOpen(files[0], files[1], ctrlKey);
+}

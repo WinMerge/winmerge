@@ -1,6 +1,9 @@
 2003-03-09 Kimmo
  PATCH: [ 699839 ] Add same binaries to dir compare status
   WinMerge: MainFrm.h MainFrm.cpp
+ PATCH: [ 699893 ] Add drag&drop of files/paths to main window
+  Note: Press down Ctrl when dropping dirs for recursive compare
+  WinMerge: MainFrm.h MainFrm.cpp Merge.cpp paths.h paths.cpp
 
 2003-03-07 Perry
  PATCH: [ 699580 ] Fix paths.cpp
