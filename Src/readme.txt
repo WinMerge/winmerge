@@ -1,3 +1,7 @@
+2004-04-17 Kimmo
+ Fix for unicode build after patch #935048 -- add _T() around string
+  Src: DirView.cpp
+
 2004-04-16 Laoran
  PATCH: [ 935048 ] Plugin manager and per-file plugin settings V2
   Src: DiffContext.cpp DiffContext.h DiffWrapper.cpp DiffWrapper.h DirActions.cpp DirDoc.cpp DirDoc.h 
