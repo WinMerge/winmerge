@@ -1,3 +1,6 @@
+2003-03-11 Perry
+  Deleted unused res files: bitmap1.bmp, bmp00001.bmp, ScreenShot.gif, WinMerge.gif
+
 2003-03-11 Christian
  PATCH: [ 700872 ] Esc to close crashes WinMerge
   WinMerge: Merge.cpp
