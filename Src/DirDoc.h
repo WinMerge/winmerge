@@ -55,6 +55,7 @@ public:
 
 // Implementation
 public:
+	BOOL UpdateItemTimes(LPCTSTR pathLeft, LPCTSTR pathRight);
 	BOOL UpdateItemStatus( LPCTSTR pathLeft, LPCTSTR pathRight, UINT status );
 	void SetDiffContext(CDiffContext *pCtxt);
 	void UpdateResources();

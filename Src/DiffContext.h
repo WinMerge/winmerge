@@ -70,6 +70,7 @@ public:
 	// change an existing difference
 	void UpdateStatusCode(POSITION diffpos, BYTE status);
 	void ClearStatus() { m_piStatus=0; }
+	void UpdateTimes(POSITION diffpos, long leftTime, long rightTime);
 
 
 	BOOL m_bRecurse;

@@ -493,17 +493,74 @@ BOOL CDirDoc::UpdateItemStatus(LPCTSTR pathLeft, LPCTSTR pathRight,
 			// Get index at view, update status to context
 			// and tell view to update found item
 			int ind = m_pView->GetItemIndex((DWORD)currentPos);
+			current.code = (BYTE)status;
 			m_pCtxt->UpdateStatusCode(currentPos, (BYTE)status);
-			UpdateItemStatus(ind);
+			UpdateItemStatus(ind, current);
 			found = TRUE;
 		}
 		i++;
 	}
 	return found;
 }
+
 CDirView * CDirDoc::SetView(CDirView * newView)
 {
 	CDirView * currentView = m_pView;
 	m_pView = newView;
 	return currentView;
+}
+
+BOOL CDirDoc::UpdateItemTimes(LPCTSTR pathLeft, LPCTSTR pathRight)
+{
+	POSITION pos = m_pCtxt->GetFirstDiffPosition();
+	POSITION currentPos;
+	DIFFITEM current;
+	int count = m_pCtxt->GetDiffCount();
+	int i = 0;
+	BOOL found = FALSE;
+
+	CString path1, file1;
+	SplitFilename(pathLeft, &path1, &file1, 0);
+	CString path2, file2;
+	SplitFilename(pathRight, &path2, &file2, 0);
+
+	// Filenames must be identical
+	if (file1 != file2)
+		return FALSE;
+
+	// Path can contain (because of difftools?) '/' and '\'
+	// so for comparing purposes, convert whole path to use '\\'
+	path1.Replace('/', '\\');
+	path2.Replace('/', '\\');
+
+	// Get first item
+	current = m_pCtxt->GetDiffAt(pos);
+
+	while (i < count && found == FALSE)
+	{
+		// Save our current pos before getting next
+		currentPos = pos;
+		current = m_pCtxt->GetNextDiffPosition( pos );
+
+		// Path can contain (because of difftools?) '/' and '\'
+		// so for comparing purposes, convert whole path to use '\'
+		current.srpath.Replace('/', '\\');
+		current.slpath.Replace('/', '\\');
+
+		if (path1 == current.slpath &&
+			path2 == current.srpath &&
+			file1 == current.sfilename)
+		{
+			// Right item found!
+			// Get index at view, update filetimes to context
+			// and tell view to update found item
+			int ind = m_pView->GetItemIndex((DWORD) currentPos);
+			UpdateTimes(&current);
+			m_pCtxt->UpdateTimes(currentPos, current.ltime, current.rtime);
+			UpdateItemStatus(ind, current);
+			found = TRUE;
+		}
+		i++;
+	}
+	return found;
 }

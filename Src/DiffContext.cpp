@@ -154,3 +154,11 @@ void CDiffContext::UpdateStatusCode(POSITION diffpos, BYTE status)
 	di.code = status;
 }
 
+void CDiffContext::UpdateTimes(POSITION diffpos, long leftTime, long rightTime)
+{
+	DIFFITEM & di = m_pList->GetAt(diffpos);
+	if (leftTime)
+		di.ltime = leftTime;
+	if (rightTime)
+		di.rtime = rightTime;
+}

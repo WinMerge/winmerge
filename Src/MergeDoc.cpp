@@ -1171,8 +1171,11 @@ void CMergeDoc::OnFileSave()
 	if ((bLModified && bLSaveSuccess) || 
 		(bRModified && bRSaveSuccess))
 	{
-		if (m_nDiffs == 0 && mf->m_pDirDoc)
+		if (mf->m_pDirDoc)
 		{
+			mf->m_pDirDoc->UpdateItemTimes(m_strLeftFile,
+				m_strRightFile);
+			if (m_nDiffs == 0)
 				mf->m_pDirDoc->UpdateItemStatus(m_strLeftFile,
 					m_strRightFile, FILE_SAME);
 		}
@@ -1388,8 +1391,11 @@ BOOL CMergeDoc::SaveHelper()
 	if ((bLModified && bLSaveSuccess) ||
 		 (bRModified && bRSaveSuccess))
 	{
-		if (m_nDiffs == 0 && mf->m_pDirDoc)
+		if (mf->m_pDirDoc)
 		{
+			mf->m_pDirDoc->UpdateItemTimes(m_strLeftFile,
+				m_strRightFile);
+			if (m_nDiffs == 0)
 			mf->m_pDirDoc->UpdateItemStatus(m_strLeftFile,
 				m_strRightFile, FILE_SAME);
 		}
