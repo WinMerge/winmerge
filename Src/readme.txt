@@ -1,3 +1,7 @@
+2004-05-23 Laoran
+ typo in russian language : APTION -> CAPTION
+  Src/Languages/Russian: MergeRussian.rc
+
 2004-05-23 Kimmo
  PATCH: [ 958478 ] Allow ESC close WinMerge if no open docs
   Src: MainFrm.cpp MainFrm.h
