@@ -1,3 +1,8 @@
+2004-09-25 Kimmo
+ PATCH: [ 1034550 ] Catalan translation update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
+
 2004-09-24 Kimmo
  PATCH: [ 1033678 ] Better description for 'Reset messageboxes'
   Src: Merge.rc

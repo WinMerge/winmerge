@@ -233,7 +233,7 @@ BEGIN
         MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
-        MENUITEM "Suport d'&arxivament desabilitat...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "Suport d'&arxivament inhabilitat...",ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Llicència Pública General de &GNU...", ID_HELP_GNULICENSE
         MENUITEM "&Quant al WinMerge...",       ID_APP_ABOUT
@@ -473,7 +473,7 @@ BEGIN
     PUSHBUTTON      "&Navega...",IDC_BROWSE_BUTTON,178,48,50,14
 END
 
-IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 299, 156
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "General"
 FONT 8, "MS Shell Dlg"
@@ -492,10 +492,10 @@ BEGIN
     CONTROL         "&Verifica els trajectes automàticament al diàleg d'Obrir",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,229,10
-    PUSHBUTTON      "Reinicialitza",IDC_RESET_ALL_MESSAGE_BOXES,218,87,50,13,NOT
+    PUSHBUTTON      "Reinicialitza",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press button to make all messageboxes visible again.",
-                    IDC_STATIC,7,79,210,31
+    LTEXT           "El WinMerge permet ocultar alguns quadres de missatges comuns. Premeu el botó per a fer visibles tots els quadres de missatges altre cop.",
+                    IDC_STATIC,7,79,168,31
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
@@ -912,13 +912,13 @@ BEGIN
     CONTROL         "&Preserva els caracters de salt de línia originals",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "Tabulacions",IDC_STATIC,7,54,221,33,WS_GROUP
-    LTEXT           "&Tamany de les tabulacions:",IDC_STATIC,15,68,42,8
-    EDITTEXT        IDC_TAB_EDIT,60,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+    LTEXT           "&Tamany de les tabulacions:",IDC_STATIC,15,68,88,8
+    EDITTEXT        IDC_TAB_EDIT,103,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "&Insereix tabulacions",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,85,63,137,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,128,63,94,10
     CONTROL         "In&sereix espais",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,85,72,137,10
+                    BS_AUTORADIOBUTTON,128,72,94,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -988,11 +988,11 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "WinMerge"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "El suport d'arxivament està desabilitat. Per tal d'habilitar-lo instal·leu una versió del 7-Zip amb la que el WinMerge es pugui enllaçar, i poseu una còpia del connector d'enllaç apropiat (Merge7z*.dll) al directori del WinMerge.",
+    LTEXT           "El suport d'arxivament està inhabilitat. Per tal d'habilitar-lo instal·leu una versió del 7-Zip amb la qual es pugui enllaçar el WinMerge, i poseu una còpia del connector d'enllaç apropiat (Merge7z*.dll) al directori del WinMerge.",
                     IDC_STATIC,2,2,272,32
-    LTEXT           "El WinMerge pot enllaçar-se al 7-Zip 3.11 i superior, si el connector d'enllaç apropiat està disponible. Useu la versió del 7-Zip recomenada a continuació fins que hi hagi connectors d'enllaç disponibles per a versions posteriors.",
+    LTEXT           "El WinMerge pot enllaçar-se al 7-Zip 3.11 i superior si el connector d'enllaç apropiat està disponible. Useu la versió del 7-Zip recomanada a continuació fins que hi hagi connectors d'enllaç disponibles per a versions posteriors.",
                     IDC_STATIC,2,34,272,32
-    LTEXT           "Versió recomenada del 7-Zip:",IDC_STATIC,2,70,131,8
+    LTEXT           "Versió recomanada del 7-Zip:",IDC_STATIC,2,70,131,8
     EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
     LTEXT           "Connector d'enllaç requerit:",IDC_STATIC,2,82,86,8
@@ -1002,8 +1002,8 @@ BEGIN
                     IDC_STATIC,2,98,208,8
     EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Versió dels components del 7-Zip locals trobats al directori del WinMerge:",
-                    IDC_STATIC,2,110,208,8
+    LTEXT           "Versió dels components locals del 7-Zip del directori del WinMerge:",
+                    IDC_STATIC,2,110,212,8
     EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
     LTEXT           "Connectors d'enllaç trobats al directori del WinMerge:",
@@ -1498,8 +1498,8 @@ BEGIN
     IDS_FILECHANGED_ONDISK  "Alguna altra aplicació ha actualitzat el fitxer\n%1\ndes de que el WinMerge el va carregar.\n\nVoleu sobreescriure el fitxer?"
     IDS_SAVEREADONLY_MULTI  "%1\nestà marcat com a només de lectura. Voleu substituir l'element només de lectura?"
     IDS_FILECHANGED_RESCAN  "Una altra aplicació ha modificat el fitxer\n%1\ndes que el WinMerge l'analitzà per darrer cop.\n\nSi voleu refrescar els fitxers, tanqueu la comparació de fitxers actual i carregueu-los de bell nou."
-    IDS_SAVE_LEFT_AS        "Save Left File As"
-    IDS_SAVE_RIGHT_AS       "Save Right File As"
+    IDS_SAVE_LEFT_AS        "Anomena i desa el fitxer de l'esquerra"
+    IDS_SAVE_RIGHT_AS       "Anomena i desa el fitxer de la dreta"
 END
 
 // VSS
@@ -1572,10 +1572,10 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Obre el fitxer de la dreta a un editor extern"
     ID_DIR_OPEN_RIGHT_WITH  "Obre el fitxer de la dreta amb..."
     IDS_CANNOT_EXECUTE_FILE "No es pot executar el %1"
-    ID_DIR_COPY_FILENAMES   "Copia els nomes dels fitxers al Porta-retalls"
-    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
+    ID_DIR_COPY_FILENAMES   "Copia els noms dels fitxers al Porta-retalls"
+    ID_DIR_COPY_PATHNAMES_LEFT "Copia el camí al fitxer de l'esquerra al Porta-retalls"
+    ID_DIR_COPY_PATHNAMES_RIGHT "Copia el camí al fitxer de la dreta al Porta-retalls"
+    ID_DIR_COPY_PATHNAMES_BOTH "Copia els camins als fitxers d'ambdós costats al Porta-retalls"
 END
 
 // DIRECTORY DIFFING : 7ZIP
@@ -2027,7 +2027,7 @@ BEGIN
     ID_PREDIFF_MANUAL       "No prediferenciïs"
     ID_PREDIFF_AUTO         "Prediferencia si és possible"
     ID_NO_EDIT_SCRIPTS      "< Buit >"
-    ID_NO_SCT_SCRIPTS       "No s'ha trobat el WSH - seqüències d'ordres .sct deshabilitades"
+    ID_NO_SCT_SCRIPTS       "No s'ha trobat el WSH - seqüències d'ordres .sct inhabilitades"
     IDS_USERCHOICE_NONE     "<Cap>"
     IDS_USERCHOICE_AUTOMATIC "<Automàtic>"
 END
