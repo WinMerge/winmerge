@@ -3,6 +3,8 @@
   Src: MainFrm.cpp
  PATCH: [ 1043246 ] Fix problem selecting <none> as filefilter
   Src: FileFilterHelper.cpp FileFiltersDlg.cpp
+ PATCH: [ 1043367 ] Change brace indentation automation for C/C++
+  Src/editlib: ccrystaltextview.cpp
 
 2004-10-06 Kimmo
  PATCH: [ 1040041 ] [ 1039640 ] reproducible tooltip ASSERT in debug
