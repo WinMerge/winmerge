@@ -1,7 +1,7 @@
 <sect1 id="VersionControl">
-  <title>Versioncontrol integration</title>
-  <para>WinMerge provides basic integration with Visual SourceSafe and ClearCase versioncontrol systems. Integration means WinMerge checkouts file edited from versioncontrol. User can later checkin changed file with versioncontrol system's tools. WinMerge does not provide history or checkin tools.</para>
-  <para>Versioncontrol support relies on fact that files in versioncontrol system are read-only in local disk. So if local file is read-only and versioncontrol integration is enabled WinMerge assumes file is versioncontrolled and shows checkout dialog.</para>
+  <title>Version control integration</title>
+  <para>WinMerge provides basic integration with Visual SourceSafe and ClearCase version control systems. Integration means WinMerge checkouts file edited from version control. User can later checkin changed file with version control system's tools. WinMerge does not provide history or checkin tools.</para>
+  <para>Version control support relies on fact that files in version control system are read-only in local disk. So if local file is read-only and version control integration is enabled WinMerge assumes file is version controlled and shows checkout dialog.</para>
   <sect2>
     <title>Visual SourceSafe</title>
     <para><inlinemediaobject>
