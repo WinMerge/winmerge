@@ -1,3 +1,8 @@
+2004-01-13 Kimmo
+ PATCH: [ 875567 ] Compile after reorg
+  Submitted by Christian to make WinMerge compile again!
+  Src: Merge.dsp
+
 2004-01-12 Kimmo
  PATCH: [ 874451 ] Update lineposition offpane when navigating diffs
  Fixes wrong linenumber and cursor position in inactive file
