@@ -1,3 +1,7 @@
+2003-06-01 Kimmo
+ PATCH: [ 746319 ] Adjust horiz scrolling width
+  editlib: ccrystaltextview.cpp
+
 2003-05-31 Kimmo
  PATCH: [ 745654 ] Draw long lines
   WinMerge: MergeEditView.cpp

@@ -2836,7 +2836,8 @@ void CCrystalTextView::
 RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
 {
   //  Again, we cannot use nPos because it's 16-bit
-  SCROLLINFO si;
+  SCROLLINFO si = {0};
+  const int nScreenChars = GetScreenChars();
   si.cbSize = sizeof (si);
   if (bPositionOnly)
     {
@@ -2845,7 +2846,7 @@ RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
     }
   else
     {
-      if (GetScreenChars () >= GetMaxLineLength () && m_nOffsetChar > 0)
+      if (nScreenChars >= GetMaxLineLength () && m_nOffsetChar > 0)
         {
           m_nOffsetChar = 0;
           Invalidate ();
@@ -2853,9 +2854,9 @@ RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
         }
       si.fMask = SIF_DISABLENOSCROLL | SIF_PAGE | SIF_POS | SIF_RANGE;
       si.nMin = 0;
-      // Cheat longer line
-      si.nMax = GetMaxLineLength () * 2 - 1;
-      si.nPage = GetScreenChars ();
+      // Horiz scroll limit to longest line + one screenwidth 
+	  si.nMax = GetMaxLineLength () + nScreenChars + 1;      
+      si.nPage = nScreenChars;
       si.nPos = m_nOffsetChar;
     }
   VERIFY (SetScrollInfo (SB_HORZ, &si));
@@ -2866,14 +2867,14 @@ OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 {
   CView::OnHScroll (nSBCode, nPos, pScrollBar);
 
-  SCROLLINFO si;
+  const int nScreenChars = GetScreenChars ();
+  SCROLLINFO si = {0};
   si.cbSize = sizeof (si);
   si.fMask = SIF_ALL;
   VERIFY (GetScrollInfo (SB_HORZ, &si));
 
-  int nPageChars = GetScreenChars ();
-  // Cheat longer line
-  int nMaxLineLength = GetMaxLineLength () * 2;
+  // Horiz scroll limit to longest line + one screenwidth
+  const DWORD nMaxLineLength = GetMaxLineLength () + nScreenChars + 1;
 
   int nNewOffset;
   switch (nSBCode)
@@ -2882,7 +2883,7 @@ OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
       nNewOffset = 0;
       break;
     case SB_BOTTOM:
-      nNewOffset = nMaxLineLength - nPageChars + 1;
+      nNewOffset = nMaxLineLength - nScreenChars + 1;
       break;
     case SB_LINEUP:
       nNewOffset = m_nOffsetChar - 1;
@@ -3389,9 +3390,10 @@ EnsureVisible (CPoint pt)
       nNewOffset = nActualPos;
     }
 
+  // Horiz scroll limit to longest line + one screenwidth
   const int nMaxLineLen = GetMaxLineLength ();
-  if (nNewOffset >= nMaxLineLen * 2)
-    nNewOffset = nMaxLineLen * 2 - 1;
+  if (nNewOffset >= nMaxLineLen + nScreenChars + 1)
+    nNewOffset = nMaxLineLen + nScreenChars;
   if (nNewOffset < 0)
     nNewOffset = 0;
 
