@@ -1,3 +1,6 @@
+2003-07-21 Perry
+ Added ChineseTraditional, ChineseSimplified, Korean, translations.
+
 2003-07-18 Perry
  PATCH: [ 767147 ] Don't clear existing dirdoc until user saves
   WinMerge: DirDoc.cpp
