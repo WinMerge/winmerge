@@ -81,7 +81,7 @@ void CStaticLink::OnClicked()
 	// Call ShellExecute to run the file.
 	// For an URL, this means opening it in the browser.
 	//
-	HINSTANCE h = ShellExecute(NULL, "open", m_link, NULL, NULL, SW_SHOWNORMAL);
+	HINSTANCE h = ShellExecute(NULL, _T("open"), m_link, NULL, NULL, SW_SHOWNORMAL);
 	if ((UINT)h > 32) {
 		m_bVisited = TRUE;	// (not really--might not have found link)
 		Invalidate();			// repaint to show visited color

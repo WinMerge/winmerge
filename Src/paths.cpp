@@ -289,12 +289,11 @@ CString ExpandShortcut(CString &inFile)
         hres = psl->QueryInterface(IID_IPersistFile, (LPVOID*) &ppf);
         if (SUCCEEDED(hres))
         {
-            // Make sure it's ANSI
-            WORD wsz[MAX_PATH];
-            ::MultiByteToWideChar(CP_ACP, 0, inFile, -1, wsz, MAX_PATH);
-
+	     USES_CONVERSION;
+	     LPCTSTR szFile = inFile;
             // Load shortcut
-            hres = ppf->Load(wsz, STGM_READ);
+            hres = ppf->Load(T2CW(szFile), STGM_READ);
+
             if (SUCCEEDED(hres)) {
 				WIN32_FIND_DATA wfd;
 				// find the path from that

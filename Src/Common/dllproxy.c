@@ -177,7 +177,7 @@ static VOID NTAPI Load(HMODULE *phModule)
 			}
 			*ppfn++ = pfn;
 		}
-		*phModule = GetModuleHandle(cPath);
+		*phModule = GetModuleHandleA(cPath);
 	}
 }
 

@@ -43,6 +43,7 @@ struct _RPC_ASYNC_STATE;	// avoid MSC warning C4115
 
 #include <shlobj.h>
 #include <shlwapi.h>
+#include <tchar.h>
 #include "lwdisp.h"
 #include "dllproxy.h"
 
@@ -76,7 +77,25 @@ LPSTR NTAPI ReportError(HRESULT sc, UINT style)
 	return pc;
 }
 
-LPDISPATCH NTAPI CreateDispatchBySource(LPCCH source, LPCCH progid)
+void mycpyt2w(LPCTSTR tsz, wchar_t * wdest, int limit)
+{
+#ifdef _UNICODE
+	wcsncpy(wdest, tsz, limit);
+#else
+	MultiByteToWideChar(CP_ACP, 0, tsz, -1, wdest, limit);
+#endif
+}
+
+void mycpyt2a(LPCTSTR tsz, char * adest, int limit)
+{
+#ifdef _UNICODE
+	WideCharToMultiByte(CP_ACP, 0, tsz, -1, adest, limit, 0, 0);
+#else
+	strncpy(adest, tsz, limit);
+#endif
+}
+
+LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 {
 	void *pv = 0;
 	SCODE sc;
@@ -84,16 +103,16 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCCH source, LPCCH progid)
 	if (source == 0)
 	{
 		CLSID clsid;
-		MultiByteToWideChar(CP_ACP, 0, progid, -1, wc, DIMOF(wc));
+		mycpyt2w(source, wc, DIMOF(wc));
 		if SUCCEEDED(sc=CLSIDFromProgID(wc, &clsid))
 		{
 			sc=CoCreateInstance(&clsid, 0, CLSCTX_ALL, &IID_IDispatch, &pv);
 		}
 	}
-	else if (PathMatchSpecA(source, "*.ocx"))
+	else if (PathMatchSpec(source, _T("*.ocx")))
 	{
 		ITypeLib *piTypeLib;
-		MultiByteToWideChar(CP_ACP, 0, source, -1, wc, DIMOF(wc));
+		mycpyt2w(source, wc, DIMOF(wc));
 		if SUCCEEDED(sc=LoadTypeLib(wc, &piTypeLib))
 		{
 			UINT count = piTypeLib->lpVtbl->GetTypeInfoCount(piTypeLib);
@@ -108,8 +127,8 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCCH source, LPCCH progid)
 						BSTR bstrName = 0;
 						if SUCCEEDED(sc=piTypeInfo->lpVtbl->GetDocumentation(piTypeInfo, MEMBERID_NIL, &bstrName, 0, 0, 0))
 						{
-							LPCCH name = B2A(bstrName);
-							if (pTypeAttr->typekind == TKIND_COCLASS && lstrcmpA(name, progid) == 0)
+							LPCTSTR name = B2T(bstrName);
+							if (pTypeAttr->typekind == TKIND_COCLASS && lstrcmp(name, progid) == 0)
 							{
 								IClassFactory *piClassFactory;
 								EXPORT_DLLPROXY
@@ -117,7 +136,7 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCCH source, LPCCH progid)
 									Dll, "",
 									HRESULT(NTAPI*DllGetClassObject)(REFCLSID,REFIID,IClassFactory**);
 								);
-								lstrcatA(Dll.SIG, source);
+								mycpyt2a(source, Dll.SIG, sizeof(Dll.SIG));
 								if SUCCEEDED(sc=DLLPROXY(Dll)->DllGetClassObject(&pTypeAttr->guid, &IID_IClassFactory, &piClassFactory))
 								{
 									sc=piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
@@ -142,13 +161,16 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCCH source, LPCCH progid)
 		bind_opts.grfMode = STGM_READWRITE;
 		bind_opts.dwTickCountDeadline = 0;
 		// prepend appropriate moniker:
-		if (PathMatchSpecA(source, "*.sct"))
+		if (PathMatchSpec(source, _T("*.sct")))
 		{
 			MultiByteToWideChar(CP_ACP, 0, "script:", -1, wc, DIMOF(wc));
-			MultiByteToWideChar(CP_ACP, 0, source, -1, wc+wcslen(wc), DIMOF(wc));
+
+			mycpyt2w(source, wc+wcslen(wc), DIMOF(wc)-wcslen(wc));
 		}
 		else
-			MultiByteToWideChar(CP_ACP, 0, source, -1, wc, DIMOF(wc));
+		{
+			mycpyt2w(source, wc, DIMOF(wc));
+		}
 		wc[DIMOF(wc)-1] = 0;
 
 		// I observed that CoGetObject() may internally provoke an access
@@ -162,10 +184,10 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCCH source, LPCCH progid)
 			sein.hwnd = 0;
 			// SEE_MASK_FLAG_DDEWAIT: wait until application is ready to listen
 			sein.fMask = SEE_MASK_FLAG_DDEWAIT;
-			sein.lpVerb = "open";
+			sein.lpVerb = _T("open");
 			sein.lpFile = source;
 			sein.lpParameters = 0;
-			sein.lpDirectory = ".";
+			sein.lpDirectory = _T(".");
 			sein.nShow = SW_SHOWNORMAL;
 			if (ShellExecuteEx(&sein))
 			{
@@ -323,6 +345,15 @@ PCH NTAPI B2A(BSTR bcVal)
 		}
 	}
 	return pcVal;
+}
+
+LPCTSTR NTAPI B2T(BSTR bcVal)
+{
+#ifdef _UNICODE
+	return bcVal;
+#else
+	return B2A(bcVal);
+#endif
 }
 
 STDAPI LWDefProc(PVOID UNUSED_ARG(target), HRESULT UNUSED_ARG(sc),

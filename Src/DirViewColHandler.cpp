@@ -211,11 +211,6 @@ void CDirView::LoadColumnOrders()
  */
 void CDirView::ValidateColumnOrdering()
 {
-TRACE(" <%s>\n", COleDateTime::GetCurrentTime().Format());
-for (int k=0; k<m_invcolorder.GetSize();++k)
-	TRACE("invcolorder[%d]=%d\n", k, m_invcolorder[k]);
-for (k=0; k<m_colorder.GetSize();++k)
-	TRACE("colorder[%d]=%d\n", k, m_colorder[k]);
 
 #if _DEBUG
 	ASSERT(m_invcolorder[0]>=0);

@@ -295,7 +295,7 @@ loadDir(DIRENT *dir)
 	if ( DosQFileMode(dir->path, &mode, 0L) ||
 #endif /*__OS2__*/
 #ifdef __NT__
-	if ( ((mode = GetFileAttributes(dir->path)) == 0xFFFFFFFF) ||
+	if ( ((mode = GetFileAttributesA(dir->path)) == 0xFFFFFFFF) ||
 #endif /*__NT__*/
 	     !(mode & FA_DIREC) )
 	{

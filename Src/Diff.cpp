@@ -69,8 +69,9 @@ just_compare_files (LPCTSTR filepath1, LPCTSTR filepath2, int depth)
 	ZeroMemory(&inf[0], sizeof(inf[0]));
 	ZeroMemory(&inf[1], sizeof(inf[1]));
 
-	inf[0].name = filepath1;
-	inf[1].name = filepath2;
+	USES_CONVERSION;
+	inf[0].name = T2CA(filepath1);
+	inf[1].name = T2CA(filepath2);
 
 	inf[0].desc = open(inf[0].name, O_RDONLY|O_BINARY, 0);
 	if (inf[0].desc < 0)

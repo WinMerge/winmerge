@@ -52,9 +52,9 @@ BOOL GetFileTimes(LPCTSTR szFilename,
 long GetFileModTime(LPCTSTR szPath)
 {
 	if (!szPath || !szPath[0]) return 0;
-	struct stat mystats;
+	struct _stat mystats;
 	memset(&mystats, 0, sizeof(mystats));
-	int stat_result = stat(szPath, &mystats);
+	int stat_result = _tstat(szPath, &mystats);
 	if (stat_result!=0)
 		return 0;
 	return mystats.st_mtime;
@@ -252,7 +252,7 @@ CString ConvertPath2PS(LPCTSTR szPath)
 	TCHAR path[_MAX_PATH] = {0};
 	_tcscpy(path,szPath);
 
-	replace_char(path, _T('\\'), _T('//'));
+	replace_char(path, _T('\\'), _T('/'));
 	if (_tcslen(path)>2
 		&& path[1] == _T(':')
 		&& path[2] == _T('/'))
@@ -293,7 +293,7 @@ FileExtMatches(LPCTSTR filename, LPCTSTR ext)
 //   - extension (pExt), with no leading dot
 void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pExt)
 {
-	LPCTSTR pszChar = pathLeft + strlen(pathLeft);
+	LPCTSTR pszChar = pathLeft + _tcslen(pathLeft);
 	LPCTSTR pend=pszChar, extptr=0;
 	bool ext=false;
 	while (pathLeft < --pszChar) 
@@ -321,7 +321,7 @@ void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pE
 				int len = pszChar - pathLeft;
 				if (*pszChar == ':') ++len; // Keep trailing colon ( eg, C:filename.txt)
 				TCHAR* pszDir = pPath->GetBufferSetLength(len);
-				strncpy(pszDir, pathLeft, len);
+				_tcsncpy(pszDir, pathLeft, len);
 				pszDir[len] = '\0'; // strncpy doesn't always zero-terminate
 				pPath->ReleaseBuffer();
 			}

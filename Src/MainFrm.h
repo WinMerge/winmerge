@@ -189,7 +189,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	void addToMru(LPCSTR szItem, LPCSTR szRegSubKey, UINT nMaxItems = 20);
+	void addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems = 20);
 	// builds the regular expression list if the
 	// user choose to ignore Ignore changes affecting only lines 
 	// that match the specified regexp. 

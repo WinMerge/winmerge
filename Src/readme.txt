@@ -5,6 +5,14 @@
    MainFrm.cpp MainFrm.h
  PATCH: [ 805427 ] Delete unused CStdioFile variable in PrimeTextBuffers
   WinMerge: MergeDoc.cpp
+ PATCH: [ 805888 ] Unicode compile of WinMerge
+  common: coretools.cpp dllproxy.c LanguageSelect.cpp LanguageSelect.h
+   LogFile.cpp lwdisp.c lwdisp.h RegExp.cpp RegExp.h StatLink.cpp
+   SuperComboBox.cpp SuperComboBox.h
+  WinMerge: ChildFrm.cpp Diff.cpp DiffWrapper.cpp DirDoc.cpp DIRENT.C DirFrame.cpp
+   DirView.cpp DirViewColHandler.cpp EditorFilepathBar.cpp FilepathEdit.cpp
+   MainFrm.cpp MainFrm.h Merge.cpp Merge.dsp MergeDoc.cpp MergeEditView.cpp
+   OpenDlg.cpp paths.cpp PropColors.cpp
 
 2003-09-13 Perry
  Widen label IDC_PRIVATEBUILD on about box.

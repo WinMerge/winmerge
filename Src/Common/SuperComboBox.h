@@ -41,8 +41,8 @@ public:
 public:
 	void ResetContent();
 	void SetAutoAdd(BOOL bAdd = TRUE, UINT idstrAddText = 0);
-	void SaveState(LPCSTR szRegSubKey, UINT nMaxItems = 20);
-	void LoadState(LPCSTR szRegSubKey, UINT nMaxItems = 20);
+	void SaveState(LPCTSTR szRegSubKey, UINT nMaxItems = 20);
+	void LoadState(LPCTSTR szRegSubKey, UINT nMaxItems = 20);
 	virtual ~CSuperComboBox();
 
 	// Generated message map functions

@@ -1168,7 +1168,7 @@ static UINT NTAPI PopulateMenu(HMENU hMenu, UINT uID, LPDISPATCH piDispatch)
 							if SUCCEEDED(piTypeInfo->GetNames(pFuncDesc->memid,
 								&bstrName, 1, &cNames))
 							{
-								PCH pchName = B2A(bstrName);
+								LPCTSTR pchName = B2T(bstrName);
 								AppendMenu(hMenu, MF_STRING, uID++, pchName);
 								SysFreeString(bstrName);
 							}
@@ -1196,11 +1196,11 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 
 	if (piScript == 0)
 	{
-		char path[MAX_PATH];
-		::GetModuleFileNameA(0, path, sizeof path);
-		::PathRemoveFileSpecA(path);
-		::PathAppendA(path, "contextmenu.sct");
-		piScript = ::CreateDispatchBySource(path, "Scriptlet");
+		TCHAR path[MAX_PATH];
+		::GetModuleFileName(0, path, sizeof path);
+		::PathRemoveFileSpec(path);
+		::PathAppend(path, _T("contextmenu.sct"));
+		piScript = ::CreateDispatchBySource(path, _T("Scriptlet"));
 	}
 
 	if (piScript == 0)
@@ -1209,7 +1209,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	HMENU hMenu = ::CreatePopupMenu();
 	::PopulateMenu(hMenu, 101, piScript);
 	::AppendMenu(hMenu, MF_SEPARATOR, -1, 0);
-	::AppendMenu(hMenu, MF_STRING, 100, "Unload script");
+	::AppendMenu(hMenu, MF_STRING, 100, _T("Unload script"));
 
 	if (short response = ::TrackPopupMenu(hMenu, TPM_RETURNCMD, point.x, point.y, 0, m_hWnd, 0))
 	{

@@ -231,7 +231,7 @@ BOOL  CLanguageSelect::SetLanguage(WORD wLangId)
 		if (idx != -1
 			&& *lang_map[idx].pszLocale != _T('\0'))
 		{
-			setlocale(LC_ALL, lang_map[idx].pszLocale);
+			_tsetlocale(LC_ALL, lang_map[idx].pszLocale);
 		}
 	}
 	
@@ -413,7 +413,7 @@ CString CLanguageSelect::GetPath( LPCTSTR FileName)
 	TCHAR fname[_MAX_FNAME];
 	TCHAR ext[_MAX_EXT];
 	
-	_splitpath( FileName, drive, dir, fname, ext );
+	_tsplitpath( FileName, drive, dir, fname, ext );
 	CString Path = drive;
 	Path += dir;
 
@@ -428,7 +428,7 @@ void CLanguageSelect::GetAvailLangs( CWordArray& wLanguageAry,
 									CStringArray& DllFileNames ) 
 {
 	CString strPath;
-	char filespec[MAX_PATH+1];
+	TCHAR filespec[MAX_PATH+1];
 	WORD wLanguage;
 	
 	if ( GetModuleFileName(m_hModule, filespec, _MAX_PATH ))

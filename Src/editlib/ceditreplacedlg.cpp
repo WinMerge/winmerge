@@ -442,7 +442,7 @@ OnEditReplaceAll ()
   // Let user know how many strings were replaced
   CString strMessage;
   CString strNumber;
-  strNumber.Format( "%d", nNumReplaced );
+  strNumber.Format( _T("%d"), nNumReplaced );
   AfxFormatString1(strMessage, IDS_NUM_REPLACED, strNumber);
 
   AfxMessageBox( strMessage );

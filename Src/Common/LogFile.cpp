@@ -45,10 +45,10 @@ CLogFile::CLogFile(LPCTSTR szLogName, LPCTSTR szLogPath /*= NULL*/, BOOL bDelete
 	// write start banner
 	CTime t = CTime::GetCurrentTime();
 	CString s = t.Format(_T("Begin Log: %A, %B %d, %Y    %H:%M:%S"));
-    Write(_T("\n\n==========================================================================\n"
-		"==========================================================================\n"
-		"%s\n==========================================================================\n"
-		"==========================================================================\n"), s);
+	Write(_T("\n\n==========================================================================\n")
+		_T("==========================================================================\n")
+		_T("%s\n==========================================================================\n")
+		_T("==========================================================================\n"), s);
 	Write(m_strLogPath);
 }
 
@@ -68,15 +68,11 @@ void CLogFile::Write(LPCTSTR pszFormat, ...)
 	if (pszFormat != NULL)
 		_vstprintf(buf, pszFormat, arglist);
 	va_end(arglist);
-    _tcscat(buf, _T("\n"));
+	_tcscat(buf, _T("\n"));
 	//TRACE(buf);
 
 	FILE *f;
-#ifndef _UNICODE
-	if ((f=fopen(m_strLogPath, _T("a"))) != NULL)
-#else
-	if ((f=wfopen(m_strLogPath, L"a")) != NULL)
-#endif
+	if ((f=_tfopen(m_strLogPath, _T("a"))) != NULL)
 	{
 		_fputts(buf, f);
 
@@ -100,7 +96,7 @@ void CLogFile::Write(DWORD idFormatString, ...)
 	{
 		va_list arglist;
 		va_start(arglist, idFormatString);
-		vsprintf(buf, strFormat, arglist);
+		_vstprintf(buf, strFormat, arglist);
 		va_end(arglist);
 		_tcscat(buf, _T("\n"));
 
@@ -130,7 +126,7 @@ void CLogFile::WriteError(CString JobID, CString ProcessID, CString Event, long 
 	
 	CString sWriteString;
 	
-	sWriteString.Format("%s %s %s %ld %s",JobID, ProcessID, Event, ecode, CIndex);
+	sWriteString.Format(_T("%s %s %s %ld %s"),JobID, ProcessID, Event, ecode, CIndex);
 	Write(sWriteString);
 
 }
@@ -143,11 +139,7 @@ void CLogFile::Prune(FILE *f)
 	FILE *tf;
 	GetTempFileName(_T("."),_T("LOG"),0,tempfile);
 	DeleteFile(tempfile);
-#ifndef _UNICODE
-	if ((tf=fopen(tempfile,"w")) != NULL)
-#else
-	if ((tf=wfopen(tempfile,L"w")) != NULL)
-#endif
+	if ((tf=_tfopen(tempfile,_T("w"))) != NULL)
 	{
 		fseek(f, ftell(f)/4, SEEK_SET);
 		_fputts(_T("#### The log has been truncated due to size limits ####\n"), tf);

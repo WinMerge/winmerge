@@ -130,7 +130,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	// Merge frame has also a dockable bar at the very bottom
 	// This is not the client area, but we create it now because we want
 	// to use the CCreateContext
-	if (!m_wndDetailBar.Create(this, "", WS_CHILD | WS_VISIBLE, ID_VIEW_DETAIL_BAR))
+	if (!m_wndDetailBar.Create(this, _T(""), WS_CHILD | WS_VISIBLE, ID_VIEW_DETAIL_BAR))
 	{
 		TRACE0("Failed to create DiffViewBar\n");
 		return FALSE;

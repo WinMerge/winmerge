@@ -122,7 +122,7 @@ int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath)
 		if (lastSlash >= 0)
 			iEndMin = lastSlash+1;
 
-		sFilepath.Insert(iBegin+iEndMin, "\n");
+		sFilepath.Insert(iBegin+iEndMin, _T("\n"));
 		iBegin += iEndMin+2;
 		nLines ++;
 	}

@@ -347,11 +347,14 @@ CDirView * CDirDoc::GetMainView()
 	return (CDirView*)GetNextView(ps2);
 }
 
+/**
+ * @brief Get modification time of specified file
+ */
 static long GetModTime(LPCTSTR szPath)
 {
-	struct stat mystats;
+	struct _stat mystats;
 	bzero(&mystats, sizeof(mystats));
-	int stat_result = stat(szPath, &mystats);
+	int stat_result = _tstat(szPath, &mystats);
 	if (stat_result!=0)
 		return 0;
 	return mystats.st_mtime;
@@ -416,7 +419,7 @@ CString GetPathOnly( const CString& sString )
 			if (nIdx > 1)
 			{
 				LPTSTR pszRet = sReturn.GetBufferSetLength(nIdx + 1);
-				strncpy(pszRet, sString, nIdx);
+				_tcsncpy(pszRet, sString, nIdx);
 				sReturn.ReleaseBuffer(nIdx);
 			}
 		}

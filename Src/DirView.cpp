@@ -332,7 +332,7 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 		ScreenToClient(&insidePt);
 		lhti.pt = insidePt;
 		i = GetListCtrl().HitTest(insidePt);
-		TRACE("i=%d\n", i);
+		TRACE(_T("i=%d\n"), i);
 		if (i<0)
 			return;
 	}

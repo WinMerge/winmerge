@@ -136,7 +136,7 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 
 			// fill in the returned structure
 			CFilepathEdit * pItem = (CFilepathEdit*) GetDlgItem(nID);
-			pTTT->lpszText = (char*) pItem->GetUpdatedTipText(&tempDC, maxWidth);
+			pTTT->lpszText = (TCHAR*) pItem->GetUpdatedTipText(&tempDC, maxWidth);
 
 			// set old font back
 			if (hOldFont)

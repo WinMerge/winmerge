@@ -145,7 +145,7 @@ void CPropColors::LoadCustomColors()
 	for (int i = 0; i < CustomColorsAmount; i++)
 	{
 		CString sEntry;
-		sEntry.Format("%d", i);
+		sEntry.Format(_T("%d"), i);
 		m_cCustColors[i] = ::AfxGetApp()->GetProfileInt(Section,
 			sEntry, RGB(255, 255, 255));
 	}
@@ -156,7 +156,7 @@ void CPropColors::SaveCustomColors()
 	for (int i = 0; i < CustomColorsAmount; i++)
 	{
 		CString sEntry;
-		sEntry.Format("%d", i);
+		sEntry.Format(_T("%d"), i);
 		if (m_cCustColors[i] == RGB(255, 255, 255))
 			::AfxGetApp()->WriteProfileString(Section, sEntry, NULL);
 		else 

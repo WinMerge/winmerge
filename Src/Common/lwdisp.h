@@ -88,7 +88,7 @@ LPSTR NTAPI ReportError(HRESULT, UINT style);
 // if source == 0, create an object of the class registered as *progid*
 // if progid == 0, create an object from file *source*
 // if neither of the above, ask *source* to create an object of class *progid*
-LPDISPATCH NTAPI CreateDispatchBySource(LPCCH source, LPCCH progid);
+LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid);
 
 // invoke helpers
 STDAPI invokeV(LPDISPATCH, VARIANT *, DISPID, LPCCH, VARIANT *);
@@ -110,6 +110,7 @@ STDAPI ValidateArgs(VARIANT *argv, UINT argc, LPCCH pvt);
 
 // in place conversion of BSTR to LPCCH
 PCH NTAPI B2A(BSTR);
+LPCTSTR NTAPI B2T(BSTR);
 
 // callback interface related declarations
 

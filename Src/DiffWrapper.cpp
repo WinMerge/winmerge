@@ -144,6 +144,8 @@ BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
  */
 BOOL CDiffWrapper::RunFileDiff()
 {
+	USES_CONVERSION;
+
 	BOOL bRetStatus = FALSE;
 	SwapToInternalSettings();
 
@@ -169,14 +171,14 @@ BOOL CDiffWrapper::RunFileDiff()
 
 	/* Open the files and record their descriptors.  */
 	if (sdir0.IsEmpty())
-		inf[0].name = sname0;
+		inf[0].name = T2CA(sname0);
 	else
-		inf[0].name = free0 = dir_file_pathname (sdir0, sname0);
+		inf[0].name = free0 = dir_file_pathname (T2CA(sdir0), T2CA(sname0));
 	inf[0].desc = -2;
 	if (sdir1.IsEmpty())
-		inf[1].name = sname1;
+		inf[1].name = T2CA(sname1);
 	else
-		inf[1].name = free1 = dir_file_pathname (sdir1, sname1);
+		inf[1].name = free1 = dir_file_pathname (T2CA(sdir1), T2CA(sname1));
 	inf[1].desc = -2;
 	if (inf[0].desc == -2)
 	{
@@ -208,11 +210,11 @@ BOOL CDiffWrapper::RunFileDiff()
 			// what differences diff-engine sees!
 #ifdef _DEBUG
 			// throw the diff into a temp file
-			char lpBuffer[MAX_PATH] = {0};       // path buffer
+			TCHAR lpBuffer[MAX_PATH] = {0};       // path buffer
 			GetTempPath(MAX_PATH,lpBuffer);		// get path to Temp folder
 			CString path = CString(lpBuffer) + _T("Diff.txt");
 
-			outfile = fopen(path, "w+");
+			outfile = _tfopen(path, _T("w+"));
 			if (outfile != NULL)
 			{
 				print_normal_script(script);
@@ -223,7 +225,7 @@ BOOL CDiffWrapper::RunFileDiff()
 			// Create patch file
 			if (m_bCreatePatchFile)
 			{
-				outfile = fopen(m_sPatchFile, "w+");
+				outfile = _tfopen(m_sPatchFile, _T("w+"));
 
 				if (outfile != NULL)
 				{
@@ -320,7 +322,8 @@ BOOL CDiffWrapper::RunFileDiff()
 							translate_range (&inf[0], first0, last0, &trans_a0, &trans_b0);
 							translate_range (&inf[1], first1, last1, &trans_a1, &trans_b1);
 							AddDiffRange(trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (BYTE)op);
-							TRACE("left=%d,%d   right=%d,%d   op=%d\n",trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+							TRACE(_T("left=%d,%d   right=%d,%d   op=%d\n"),
+								trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 						}
 					}
 					

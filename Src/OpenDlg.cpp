@@ -234,8 +234,8 @@ BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder)
 	CFileDialog pdlg(TRUE, NULL, DIRSEL_TAG, flags, s);
 	CString title;
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
-	pdlg.m_ofn.lpstrTitle = (LPCTSTR)title;
-	pdlg.m_ofn.lpstrInitialDir = (LPSTR)pszFolder;
+	pdlg.m_ofn.lpstrTitle = title;
+	pdlg.m_ofn.lpstrInitialDir = pszFolder;
 
 	if (pdlg.DoModal()==IDOK)
 	{

@@ -10,8 +10,8 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect dialog
-#define LANGUAGE_SECTION  "Locale"
-#define COUNTRY_ENTRY	 "LanguageId"
+#define LANGUAGE_SECTION  _T("Locale")
+#define COUNTRY_ENTRY     _T("LanguageId")
 
 
 class CLanguageSelect : public CDialog

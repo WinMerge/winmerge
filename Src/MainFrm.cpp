@@ -521,7 +521,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			if (!spath.IsEmpty())
 			{
 				_chdrive(toupper(spath[0])-'A'+1);
-				_chdir(spath);
+				_tchdir(spath);
 			}
 			CString args;
 			args.Format(_T("checkout %s/%s"), m_strVssProject, sname);
@@ -571,10 +571,10 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			IVSSItems		m_vssis;
 			IVSSItem		m_vssi;
 
-            COleException *eOleException = new COleException;
+			COleException *eOleException = new COleException;
 				
 			// BSP - Create the COM interface pointer to VSS
-			if (FAILED(vssdb.CreateDispatch("SourceSafe", eOleException)))
+			if (FAILED(vssdb.CreateDispatch(_T("SourceSafe"), eOleException)))
 			{
 				throw eOleException;	// catch block deletes.
 			}
@@ -602,14 +602,14 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			if (strLocalSpec.CompareNoCase(strSavePath))
 			{
 			   // BSP - if the directories are different, let the user confirm the CheckOut
-				int iRes = AfxMessageBox("The VSS Working Folder and the location of the current file do not match.  Continue?", MB_YESNO);
+				int iRes = AfxMessageBox(_T("The VSS Working Folder and the location of the current file do not match.  Continue?"), MB_YESNO);
 
 				if (iRes != IDYES)
 					return FALSE;   // BSP - if not Yes, bail.
 			}
 
             // BSP - Finally! Check out the file!
-			m_vssi.Checkout("", strSavePath, 0);
+			m_vssi.Checkout(_T(""), strSavePath, 0);
 		}
 	}
 	break;
@@ -627,7 +627,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			if (!spath.IsEmpty())
 			{
 				_chdrive(toupper(spath[0])-'A'+1);
-				_chdir(spath);
+				_tchdir(spath);
 			}
 			DWORD code;
 			CString args;
@@ -990,7 +990,12 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				pDirDoc->SetReadOnly(FALSE, FALSE);
 				pDirDoc->SetRecursive(bRecurse);
 				pDirDoc->SetDiffContext(pCtxt);
+#ifdef _UNICODE
+	// TODO
+	// regexp has some problem in Unicode ? 2003-09-14
+#else
 				pCtxt->SetRegExp(strExt);
+#endif
 				pDirDoc->Rescan();
 				if (m_bScrollToFirst)
 				{
@@ -1382,9 +1387,11 @@ void CMainFrame::FreeRegExpList()
 
 void CMainFrame::RebuildRegExpList()
 {
+	USES_CONVERSION;
+
 	_TCHAR tmp[_MAX_PATH] = {0};
 	_TCHAR* token;
-	_TCHAR sep[] = "\r\n";
+	_TCHAR sep[] = _T("\r\n");
 	
 	// destroy the old list if the it is not NULL
 	FreeRegExpList();
@@ -1399,7 +1406,7 @@ void CMainFrame::RebuildRegExpList()
 		token = _tcstok(tmp, sep);
 		while (token)
 		{
-			add_regexp(&ignore_regexp_list, token);
+			add_regexp(&ignore_regexp_list, T2A(token));
 			token = _tcstok(NULL, sep);
 		}
 	}
@@ -1430,11 +1437,13 @@ add_regexp(struct regexp_list **reglist,
   *reglist = r;
 }
 
-/// Utility function to update CSuperComboBox format MRU
-void CMainFrame::addToMru(LPCSTR szItem, LPCSTR szRegSubKey, UINT nMaxItems)
+/**
+ * @brief Utility function to update CSuperComboBox format MRU
+ */
+void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
 {
 	CString s,s2;
-	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, "Count", 0);
+	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
 	++cnt;	// add new string
 	if(cnt>nMaxItems)
 	{
@@ -1443,15 +1452,15 @@ void CMainFrame::addToMru(LPCSTR szItem, LPCSTR szRegSubKey, UINT nMaxItems)
 	// move items down a step
 	for (UINT i=cnt ; i!=0; --i)
 	{
-		s2.Format("Item_%d", i-1);
+		s2.Format(_T("Item_%d"), i-1);
 		s = AfxGetApp()->GetProfileString(szRegSubKey, s2);
-		s2.Format("Item_%d", i);
+		s2.Format(_T("Item_%d"), i);
 		AfxGetApp()->WriteProfileString(szRegSubKey, s2, s);
 	}
 	// add most recent item
-	AfxGetApp()->WriteProfileString(szRegSubKey, "Item_0", szItem);
+	AfxGetApp()->WriteProfileString(szRegSubKey, _T("Item_0"), szItem);
 	// update count
-	AfxGetApp()->WriteProfileInt(szRegSubKey, "Count", cnt);
+	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), cnt);
 }
 
 void CMainFrame::OnViewWhitespace() 

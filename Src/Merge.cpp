@@ -244,7 +244,7 @@ BOOL CMergeApp::InitInstance()
 	else if (nFiles>0)
 	{
 		pMainFrame->m_strSaveAsPath = _T("");
-		pMainFrame->DoFileOpen(files[0], "",
+		pMainFrame->DoFileOpen(files[0], _T(""),
 			dwLeftFlags, dwRightFlags, recurse);
 	}
 	return TRUE;

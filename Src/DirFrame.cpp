@@ -132,7 +132,7 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 
 void CDirFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetText("");
+	pCmdUI->SetText(_T(""));
 }
 
 // Store callback which we check to see if we're allowed to close

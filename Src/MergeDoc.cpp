@@ -964,7 +964,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileName,
 		m_nSourceEncoding = def->encoding;
 	
 	// Init filedata struct and open file as memory mapped 
-	_tcsncpy(fileData.fileName, pszFileName, sizeof(fileData.fileName));
+	_tcsncpy(fileData.fileName, pszFileName, countof(fileData.fileName));
 	fileData.bWritable = FALSE;
 	fileData.dwOpenFlags = OPEN_EXISTING;
 	bSuccess = files_openFileMapped(&fileData);
@@ -1103,7 +1103,7 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		if (nCrlfStyle == CRLF_STYLE_MAC || nCrlfStyle == CRLF_STYLE_AUTOMATIC)
 		{
 			// in place replace
-			LPSTR pbuffer = text.GetBuffer(0);
+			LPTSTR pbuffer = text.GetBuffer(0);
 			TCHAR tchEolMac = * GetStringEol(CRLF_STYLE_MAC);
 			TCHAR tchEolUnix = * GetStringEol(CRLF_STYLE_UNIX);
 			UINT i;
@@ -1126,9 +1126,9 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 
 	// Init filedata struct and open file as memory mapped 
 	if (bTempFile)
-		_tcsncpy(fileData.fileName, pszFileName, sizeof(fileData.fileName));
+		_tcsncpy(fileData.fileName, pszFileName, countof(fileData.fileName));
 	else
-		_tcsncpy(fileData.fileName, szTempFileName, sizeof(fileData.fileName));
+		_tcsncpy(fileData.fileName, szTempFileName, countof(fileData.fileName));
 
 	fileData.bWritable = TRUE;
 	fileData.dwOpenFlags = CREATE_ALWAYS;

@@ -83,13 +83,13 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CSuperComboBox message handlers
 
-void CSuperComboBox::LoadState(LPCSTR szRegSubKey, UINT nMaxItems)
+void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, UINT nMaxItems)
 {
 	CString s,s2;
-	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, "Count", 0);
+	UINT cnt = AfxGetApp()->GetProfileInt(szRegSubKey, _T("Count"), 0);
 	for (UINT i=0; i < cnt && i < nMaxItems; i++)
 	{
-		s2.Format("Item_%d", i);
+		s2.Format(_T("Item_%d"), i);
 		s = AfxGetApp()->GetProfileString(szRegSubKey, s2);
 		if (i==0)
 			SetWindowText(s);
@@ -99,7 +99,7 @@ void CSuperComboBox::LoadState(LPCSTR szRegSubKey, UINT nMaxItems)
 	}
 }
 
-void CSuperComboBox::SaveState(LPCSTR szRegSubKey, UINT nMaxItems)
+void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, UINT nMaxItems)
 {
 	CString strItem,s,s2;
 	int i,idx,cnt = GetCount();
@@ -107,7 +107,7 @@ void CSuperComboBox::SaveState(LPCSTR szRegSubKey, UINT nMaxItems)
 	GetWindowText(strItem);
 	if (!strItem.IsEmpty())
 	{
-		AfxGetApp()->WriteProfileString(szRegSubKey, "Item_0", strItem);
+		AfxGetApp()->WriteProfileString(szRegSubKey, _T("Item_0"), strItem);
 		idx=1;
 	}
 	else
@@ -118,12 +118,12 @@ void CSuperComboBox::SaveState(LPCSTR szRegSubKey, UINT nMaxItems)
 		if (s != strItem
 			&& !s.IsEmpty())
 		{
-			s2.Format("Item_%d", idx);
+			s2.Format(_T("Item_%d"), idx);
 			AfxGetApp()->WriteProfileString(szRegSubKey, s2, s);
 			idx++;
 		}
 	}
-	AfxGetApp()->WriteProfileInt(szRegSubKey, "Count", idx);
+	AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Count"), idx);
 }
 
 
@@ -355,7 +355,11 @@ CString CSuperComboBox::ExpandShortcut(CString &inFile)
         {
             // Make sure it's ANSI
             WORD wsz[MAX_PATH];
+#ifdef _UNICODE
+	     wcsncpy(wsz, lpsz, sizeof(wsz));
+#else
             ::MultiByteToWideChar(CP_ACP, 0, lpsz, -1, wsz, MAX_PATH);
+#endif
 
             // Load shortcut
             hres = ppf->Load(wsz, STGM_READ);
