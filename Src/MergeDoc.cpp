@@ -645,17 +645,15 @@ private:
 void CMergeDoc::CopyAllList(bool bSrcLeft)
 {
 	RescanSuppress suppressRescan(*this);
-	// Unfortunately difftools is not designed for this kind
-	// of use and sometimes all differences cannot be merged
-	// in one run.
-	while (m_nDiffs > 0)
+	
+	// Note we don't care about m_nDiff count to become zero,
+	// because we don't rescan() it does not change
+
+	// copy from bottom up is more efficient
+	for(int i = m_nDiffs-1; i>=0; --i)
 	{
-		// copy from bottom up is more efficient
-		for(int i = m_nDiffs-1; i>=0; --i)
-		{
-			SetCurrentDiff(i);
-			ListCopy(true);
-		}
+		SetCurrentDiff(i);
+		ListCopy(bSrcLeft);
 	}
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
