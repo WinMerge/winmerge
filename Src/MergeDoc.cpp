@@ -1116,8 +1116,6 @@ BOOL CMergeDoc::CDiffTextBuffer::SafeReplaceFile(LPCTSTR pszReplaced,
 	return bSuccess;
 }
 
-#define FLAGSET(f)   ((m_aLines[nLine].m_dwFlags&(f))==(f))
-
 BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 											 int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ ,
 											 BOOL bClearModifiedFlag /*= TRUE*/ )
@@ -1136,80 +1134,64 @@ BOOL CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	if (pszFileName)
 	{
 		_tsplitpath(pszFileName, drive, dir, NULL, NULL);
-		_tcscpy (szTempFileDir, drive);
-		_tcscat (szTempFileDir, dir);
+		_tcscpy(szTempFileDir, drive);
+		_tcscat(szTempFileDir, dir);
 	}
 	else
 		return FALSE;
 
-	if (::GetTempFileName (szTempFileDir, _T ("MRG"), 0, szTempFileName) == 0)
+	if (::GetTempFileName(szTempFileDir, _T("MRG"), 0, szTempFileName) == 0)
 		return FALSE;  //Nothing to do if even tempfile name fails
 
-	hTempFile =::CreateFile (szTempFileName, GENERIC_WRITE, 0, NULL,
-			CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	hTempFile =::CreateFile(szTempFileName, GENERIC_WRITE, 0, NULL,
+		CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (hTempFile != INVALID_HANDLE_VALUE)
 	{
 		if (nCrlfStyle == CRLF_STYLE_AUTOMATIC)
-			nCrlfStyle = m_nCRLFMode;
+			nCrlfStyle = GetCRLFMode();
 
-		ASSERT (nCrlfStyle >= 0 && nCrlfStyle <= 2);
+		ASSERT(nCrlfStyle >= 0 && nCrlfStyle <= 2);
 		LPCTSTR pszCRLF = crlfs[nCrlfStyle];
-		int nCRLFLength = _tcslen (pszCRLF);
+		int nCRLFLength = _tcslen(pszCRLF);
+		int nLineCount = m_aLines.GetSize();
+		CString text;
+		int nLastLength = m_aLines[nLineCount - 1].m_nLength;
 
-		int nLineCount = m_aLines.GetSize ();
-		for (int nLine = 0; nLine < nLineCount; nLine++)
+		UINT nBufSize = GetTextWithoutEmptys(0, 0, nLineCount - 1,
+			nLastLength, text, m_bIsLeft, nCrlfStyle);
+
+		// Remove last CRLF
+		text.Delete(nBufSize - nCRLFLength, nCRLFLength);
+		nBufSize -= nCRLFLength;
+
+		if (m_nSourceEncoding >= 0)
 		{
-			// skip blank diff lines
-			if ((!m_bIsLeft && FLAGSET(LF_LEFT_ONLY)) ||
-				(m_bIsLeft && FLAGSET(LF_RIGHT_ONLY)))
-				continue;
-
-			int nLength = m_aLines[nLine].m_nLength;
-			if (nLength > 0)
-			{
-				LPCTSTR pszLine = m_aLines[nLine].m_pcLine;
-				if (m_nSourceEncoding >= 0)
-				{
-					LPTSTR pszBuf;
-					iconvert_new(pszLine, &pszBuf, 1, m_nSourceEncoding,
-						m_nSourceEncoding == 15);
-					if (!SafeWriteFile(hTempFile, pszBuf, nLength))
-					{
-						free (pszBuf);
-						bWriteFail = TRUE;
-						break;
-					}
-					free (pszBuf);
-				}
-				else
-					if (!SafeWriteFile(hTempFile, (void*)pszLine, nLength))
-					{
-						bWriteFail = TRUE;
-						break;
-					}
-			}
-
-			if (nLine < nLineCount - 1)		//  Last line must not end with CRLF
-			{
-				if (!SafeWriteFile(hTempFile, (void*)pszCRLF, nCRLFLength))
-				{
-					bWriteFail = TRUE;
-					break;
-				}
-			}
+			LPTSTR pszBuf;
+			iconvert_new((LPCTSTR)text, &pszBuf, 1,
+					m_nSourceEncoding, m_nSourceEncoding == 15);
+			if (!SafeWriteFile(hTempFile, pszBuf, nBufSize))
+				bWriteFail = TRUE;
+			free(pszBuf);
 		}
+		else
+			if (!SafeWriteFile(hTempFile, (void *)(LPCTSTR)text, nBufSize))
+				bWriteFail = TRUE;
 
+		// This means user wants to save file - let's play safe and
+		// force flush buffer to disk
+		if (bClearModifiedFlag)
+			FlushFileBuffers(hTempFile);
 		::CloseHandle (hTempFile);
 		hTempFile = INVALID_HANDLE_VALUE;
 
-		if ( bWriteFail == FALSE )
+		if (bWriteFail == FALSE)
 		{
 			// Write tempfile over original file
 			if (SafeReplaceFile(pszFileName, szTempFileName))
 			{
 				if (bClearModifiedFlag)
 				{
-					SetModified (FALSE);
+					SetModified(FALSE);
 					m_nSyncPosition = m_nUndoPosition;
 				}
 				bSuccess = TRUE;
