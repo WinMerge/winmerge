@@ -58,7 +58,7 @@ BEGIN
     END
 END
 
-IDR_MAINFRAME MENU
+IDR_MAINFRAME MENU 
 BEGIN
     POPUP "파일(&F)"
     BEGIN
@@ -204,7 +204,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_DIRVIEW MENU
+IDR_POPUP_DIRVIEW MENU 
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
@@ -254,7 +254,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_EDITOR_HEADERBAR MENU DISCARDABLE
+IDR_POPUP_EDITOR_HEADERBAR MENU 
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -278,7 +278,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS
+IDR_MAINFRAME ACCELERATORS 
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
@@ -648,7 +648,7 @@ BEGIN
                     WS_TABSTOP,WS_EX_STATICEDGE
 END
 
-IDD_DIRCOLS DIALOG DISCARDABLE  0, 0, 283, 143
+IDD_DIRCOLS DIALOG  0, 0, 283, 143
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Display Columns"
 FONT 8, "MS Sans Serif"
@@ -751,7 +751,7 @@ BEGIN
     DEFPUSHBUTTON   "Stop",IDC_COMPARISON_STOP,327,17,83,14
 END
 
-IDD_WMGOTO DIALOG DISCARDABLE  0, 0, 189, 70
+IDD_WMGOTO DIALOG  0, 0, 189, 70
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Go To"
 FONT 8, "MS Sans Serif"
@@ -775,7 +775,7 @@ END
 IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 235, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Compare"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Whitespace",IDC_STATIC,7,7,221,50
     CONTROL         "공백 비교(&W)",IDC_WHITESPACE,"Button",
@@ -801,7 +801,7 @@ END
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Editor"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     CONTROL         "구문 하이라이트",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
@@ -1095,13 +1095,13 @@ IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE PRELOAD DISCARDABLE
+STRINGTABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "준비"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -1112,7 +1112,7 @@ BEGIN
 END
 
 // ID_FILE_NEW SYNCHRO
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl-N)"
     ID_FILE_OPEN            "기존에 만들어진 문서를 엽니다.\n열기 (Ctrl+O)"
@@ -1126,13 +1126,13 @@ BEGIN
 END
 
 // ID_APP_ABOUT SYNCHRO
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_APP_ABOUT            "프로그램 정보, 버전, 카피라이트를 봅니다.\n정보"
     ID_APP_EXIT             "프로그램을 종료합니다.\n종료"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_FILE_MRU_FILE1       "선택한 문서 열기"
     ID_FILE_MRU_FILE2       "선택한 문서 열기"
@@ -1153,13 +1153,13 @@ BEGIN
 END
 
 // ID_NEXT_PANE SYNCHRO
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_NEXT_PANE            "다음 창(pane)으로 이동합니다.\n다음 창(pane)"
     ID_PREV_PANE            "이전 창(pane)으로 이동합니다.\n이전 창(pane)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_WINDOW_NEW           "새 창으로 문서를 엽니다.\n새 창으로"
     ID_WINDOW_ARRANGE       "윈도우 아래에 아이콘을 배열합니다.\n아이콘 배열"
@@ -1170,7 +1170,7 @@ BEGIN
 END
 
 // ID_EDIT_CLEAR SYNCHRO
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_EDIT_CLEAR           "선택 영역을 삭제합니다.\n삭제"
     ID_EDIT_CLEAR_ALL       "모두 삭제합니다.\n모두 삭제"
@@ -1185,13 +1185,15 @@ BEGIN
     ID_EDIT_REDO            "다시 실행합니다.\n다시 실행"
 END
 
-STRINGTABLE DISCARDABLE
+// ID_VIEW_TOOLBAR SYNCHRO
+STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "툴바를 보거나 숨깁니다.\n툴바 보기"
     ID_VIEW_STATUS_BAR      "상태 표시줄을 보거나 숨깁니다.\n상태표시줄 보기"
 END
 
-STRINGTABLE DISCARDABLE
+// AFX_IDS_SCSIZE SYNCHRO
+STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "창의 크기를 조정합니다."
     AFX_IDS_SCMOVE          "창의 위치를 이동합니다."
@@ -1202,19 +1204,19 @@ BEGIN
     AFX_IDS_SCCLOSE         "현재창을 닫습니다."
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     AFX_IDS_SCRESTORE       "창을 이전 크기로 되돌립니다."
     AFX_IDS_SCTASKLIST      "Task List를 활성화합니다."
     AFX_IDS_MDICHILD        "이 창을 활성화합니다."
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "미리보기를 종료합니다.\n미리보기 종료"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
@@ -1223,7 +1225,8 @@ BEGIN
     IDS_ELAPSED_TIME        "Elapsed time: %ld ms"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE
+// IDS_VERSION_FMT SYNCHRO
+STRINGTABLE 
 BEGIN
     IDS_VERSION_FMT         "버전 %1"
     IDS_ALLFILES            "모든 파일 (*.*)|*.*||"
@@ -1242,7 +1245,7 @@ BEGIN
 END
 
 // IDS_SAVE_AS_TITLE SYNCHRO
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_SAVE_AS_TITLE       "다른 이름으로 저장"
     IDS_SELECT_FILES_OR_FOLDERS
@@ -1265,7 +1268,7 @@ BEGIN
 END
 
 // IDS_COLHDR_FILENAME SYNCHRO
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_COLHDR_FILENAME     "파일 이름"
     IDS_COLHDR_DIR          "디렉토리"
@@ -1286,7 +1289,8 @@ BEGIN
     IDS_DEL_LEFT_FMT        "Left (%1)"
 END
 
-STRINGTABLE DISCARDABLE
+// IDS_DEL_RIGHT_FMT SYNCHRO
+STRINGTABLE 
 BEGIN
     IDS_DEL_RIGHT_FMT       "Right (%1)"
     IDS_DELETE_FILE_FAILED  "%1 파일 삭제 실패: %2"
@@ -1306,8 +1310,7 @@ BEGIN
     IDS_BIN_FILES_SAME      "동일한 파일(바이너리 파일)"
 END
 
-// ID_EOL_TO_DOS SYNCHRO
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_FILESAVE_FAILED     "파일 저장 실패 : %1 . 다른 이름으로 저장하시겠습니까?"
     IDS_ERROR_FILE_NOT_FOUND "해당하는 파일이 없습니다 : %1"
@@ -1327,7 +1330,8 @@ BEGIN
     IDS_COLHDR_RVERSION     "Right File Version"
 END
 
-STRINGTABLE DISCARDABLE
+// IDS_LEFTONLY SYNCHRO
+STRINGTABLE 
 BEGIN
     IDS_LEFTONLY            "Left Only"
     IDS_RIGHTONLY           "Right Only"
@@ -1344,7 +1348,8 @@ BEGIN
     IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
-STRINGTABLE DISCARDABLE
+// IDS_PRIVATEBUILD_FMT SYNCHRO
+STRINGTABLE 
 BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
     IDS_FILEWRITE_ERROR     "Could not write to file %1."
@@ -1363,7 +1368,7 @@ BEGIN
     IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:\n /? or -? displays this help\n /r or -r tells winmerge to compare directories recursively\n /e or -e allows WinMerge to be closed with a single esc keypress\n /ul or -ul tells winmerge to not add left path to MRU\n /ur or -ur tells winmerge to not add right path to MRU\n /ub or -ub tells winmerge to not add both paths to MRU\n /dl or -dl adds a description for left side shown instead of directory/filename\n /dr or -dr adds a description for right side shown instead of directory/filename\n leftpath is the directory or filename to open on the left side\n rightpath is the directory or filename to open on the right side\n outputpath is an optional output directory where you want merged files to be \n saved\n \n Note: leftpath and rightpath both has to be files or both has to be \n directories\n"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_LINEDIFF_NODIFF     "No difference"
     IDS_LINEDIFF_NODIFF_CAPTION "Line difference"
@@ -1382,7 +1387,7 @@ BEGIN
     IDS_DIRSEL_TAG          "Directory Selection"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_COPY_LEFT_TO        "Left to... (%1)"
     IDS_COPY_LEFT_TO2       "Left to... (%1 of %2)"
@@ -1399,24 +1404,24 @@ BEGIN
     IDS_DIFFERENT           "Different"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDC_MIXED_EOL           "Preserve original EOL chars"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDC_COMPARISON_STOP     "Stop"
     IDC_COMPARISON_CLOSE    "Press any key"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_NUM_REPLACED        "모두 %1 개를 바꾸었습니다."
     IDS_EDIT_TEXT_NOT_FOUND "해당하는 문자열을 찾을 수 없습니다 : ""%s"""
@@ -1428,6 +1433,7 @@ BEGIN
     IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"
 END
 
+// IDS_MESSAGEBOX_OK SYNCHRO
 STRINGTABLE 
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
@@ -1452,7 +1458,7 @@ BEGIN
     IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_AFRIKAANS           "Afrikaans"
     IDS_ALBANIAN            "Albanian"
@@ -1469,7 +1475,7 @@ BEGIN
     IDS_ARABIC_JORDAN       "Arabic (Jordan)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_ARABIC_LEBANON      "Arabic (Lebanon)"
     IDS_ARABIC_KUWAIT       "Arabic (Kuwait)"
@@ -1489,7 +1495,7 @@ BEGIN
     IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_CHINESE_MACAU       "Chinese (Macau SAR)"
     IDS_CROATIAN            "Croatian"
@@ -1509,7 +1515,7 @@ BEGIN
     IDS_ENGLISH_BELIZE      "English (Belize)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_ENGLISH_TRINIDAD    "English (Trinidad)"
     IDS_ENGLISH_ZIMBABWE    "English (Zimbabwe)"
@@ -1529,7 +1535,7 @@ BEGIN
     IDS_GERMAN_SWISS        "Deutsch (Schweiz)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_GERMAN_AUSTRIAN     "Deutsch (?terreich)"
     IDS_GERMAN_LUXEMBOURG   "Deutsch (Luxemburg)"
@@ -1549,7 +1555,7 @@ BEGIN
     IDS_KOREAN_JOHAB        "Korean (Johab)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_LATVIAN             "Latvian"
     IDS_LITHUANIAN          "Lithuanian"
@@ -1569,7 +1575,7 @@ BEGIN
     IDS_SINDHI              "Sindhi"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_SLOVAK              "Slovak"
     IDS_SLOVENIAN           "Slovensko"
@@ -1589,7 +1595,7 @@ BEGIN
     IDS_SPANISH_URUGUAY     "Espa?l (Uruguay)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_SPANISH_PARAGUAY    "Espa?l (Paraguay)"
     IDS_SPANISH_BOLIVIA     "Espa?l (Bolivia)"
@@ -1609,14 +1615,15 @@ BEGIN
     IDS_URDU_INDIA          "Urdu (India)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDS_UZBEK_LATIN         "Uzbek (Latin)"
     IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
     IDS_VIETNAMESE          "Vietnamese"
 END
 
-STRINGTABLE DISCARDABLE
+// ID_L2R SYNCHRO
+STRINGTABLE 
 BEGIN
     ID_L2R                  "선택 영역을 오른쪽으로 복사합니다.\n오른쪽으로 복사 (Alt Right)"
     ID_R2L                  "선택 영역을 왼쪽으로 복사합니다.\n왼쪽으로 복사 (Alt Left)"
@@ -1627,7 +1634,7 @@ BEGIN
     ID_OPTIONS_BACKUPORIGINALFILE "원본 파일을 백업합니다.\n백업"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE
                             "첫번째 다른 부분으로 자동 이동합니다.\n첫번째 다른부분으로 이동"
@@ -1645,7 +1652,8 @@ BEGIN
                             "선택하신 파일중 오른쪽에만 존재하는 파일을 왼쪽으로 복사합니다."
 END
 
-STRINGTABLE DISCARDABLE
+// ID_DIR_COPY_LEFT_TO_RIGHT SYNCHRO
+STRINGTABLE 
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT
                             "선택하신 파일중 왼쪽에만 존재하는 파일을 오른쪽으로 복사합니다."
@@ -1666,7 +1674,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "오른쪽 파일을 엽니다."
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "오른쪽 파일을 연결 프로그램을 선택해서 엽니다. ..."
     ID_OPTIONS_SHOWBINARIES "바이너리 파일을 봅니다."
@@ -1680,7 +1688,8 @@ BEGIN
     ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
-STRINGTABLE DISCARDABLE
+// ID_EOL_TO_DOS SYNCHRO
+STRINGTABLE 
 BEGIN
     ID_EOL_TO_DOS           "Convert EOL to DOS mode"
     ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
@@ -1695,7 +1704,7 @@ BEGIN
     ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and Advance (Ctrl+Alt+Right)"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
     ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
@@ -1708,7 +1717,7 @@ BEGIN
     ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_NO_EDIT_SCRIPTS      "< Empty >"
     ID_RELOAD_PLUGINS       "&Unload all plugins and reload them (for developpers)"

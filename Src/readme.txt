@@ -1,3 +1,8 @@
+2004-04-25 Perry
+ More removing obsolete keywords to sync languages to English
+  Languages: MergeDutch.rc MergeFrench.rc MergeGerman.rc
+   MergeItalian.rc MergeKorean.rc MergeNorwegian.rc
+
 2004-04-25 Kimmo
  PATCH: [ 941524 ] Reset dircompare column widths
   Src: DirColsDlg.cpp DirColsDlg.h DirView.cpp DirView.h DirViewColHandler.cpp

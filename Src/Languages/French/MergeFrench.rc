@@ -1449,7 +1449,7 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "Click droit pour copier le chemin"
 END
 
-STRINGTABLE DISCARDABLE
+STRINGTABLE 
 BEGIN
     IDC_MIXED_EOL           "Preserve original EOL chars"
 END
