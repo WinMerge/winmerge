@@ -460,6 +460,11 @@ FONT 9, "新細明體", 0, 0, 0x1
 BEGIN
     CONTROL         "關聯到資料夾",IDC_ASSOC_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,7,221,15
+    CONTROL         "Add to explorer context menu",IDC_EXPLORER_CONTEXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,21,108,10
+    EDITTEXT        IDC_WINMERGE_PATH,7,34,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_WINMERGE_PATH_BROWSE,180,34,50,14
+    PUSHBUTTON      "Save path",IDC_WINMERGE_PATH_SAVE,8,51,50,14
 END
 
 

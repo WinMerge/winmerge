@@ -159,6 +159,10 @@
 #define IDC_DIFFERENCE_DELETED_COLOR    1041
 #define IDC_SEL_DIFFERENCE_DELETED_COLOR 1042
 #define IDC_SEL_DIFFERENCE_TEXT_COLOR   1043
+#define IDC_EXPLORER_CONTEXT            1044
+#define IDC_WINMERGE_PATH_BROWSE        1045
+#define IDC_WINMERGE_PATH               1046
+#define IDC_WINMERGE_PATH_SAVE          1047
 #define IDS_NUM_REPLACED                8501
 #define IDS_EDIT_TEXT_NOT_FOUND         8502
 #define IDS_LINE_STATUS_INFO            8503
@@ -365,7 +369,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        114
 #define _APS_NEXT_COMMAND_VALUE         32822
-#define _APS_NEXT_CONTROL_VALUE         1044
+#define _APS_NEXT_CONTROL_VALUE         1048
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif
