@@ -1,4 +1,4 @@
-The .ISL or Inno Setup Language files files are in .ini format, wich means you have a line that looks like this to translate:
+The .ISL or Inno Setup Language files files are in .ini format, which means you have a line that looks like this to translate:
 SomeLabelName=I'm a label's text translate me
 
 If a particular line doesn't already contain a period in it please don't add one, that means Inno Setup will add a period automatically.  If you add a period to that line, then there will be two of them.  
@@ -10,7 +10,7 @@ or
 
 [name], [mb], [name/ver], etc... 
 
-The remainder of this file contains specific instructions for each localized language.  Please look for your langauge within this file.  If it's not listed here or your have any other questions please let Seier Blackburn know at MyPurchases@Yahoo.com.  
+The remainder of this file contains specific instructions for each localized language.  Please look for your language within this file.  If it's not listed here or you have any other questions please let Seier Blackburn know at MyPurchases@Yahoo.com.  
 
 The following languages do not need translating:
 Bulgarian, Chinese (Simplified), Chinese (Traditional), Czech, Danish, Dutch, French, German, Italian, Korean, Norwegian, Polish, Russian, and Swedish

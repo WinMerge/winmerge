@@ -1,3 +1,7 @@
+2004-04-19 Perry
+ Fix English typos in Localization Instructions.txt
+ InnoSetup/Languages/Localization Instructions.txt
+
 2004-04-19 Kimmo
  PATCH [ 937535 ] Updated syntax highlighting for resources files (*.rc)
   Submitted by Tim Gerundt
