@@ -1,3 +1,7 @@
+2004-10-14 Kimmo
+ PATCH: [ 942447 ] CVS organisation doc
+  Docs/Developers new file: Organisation.txt
+
 2004-10-13 Kimmo
  PATCH: [ 1045473 ] Disable Ctrl+Arrow merging in Mergemode
   Src: MergeEditView.cpp

@@ -1,0 +1,116 @@
+
+WinMerge CVS organisation
+=========================
+
+WinMerge/ 
+ - Docs/
+   - Developers/
+     - WinMerge files (Web format)/
+   - Users/
+     - Guide
+     - Manual
+ - Filters
+ - InnoSetup
+   - Art
+   - Languages
+   - Runtimes
+ - MakePatchDirs
+ - MakeResDll
+ - Merge7z
+ - Plugins
+   - Src_Delphi/
+   - Src_VB/
+   - Src_VCPP/
+ - ShellExtension
+ - Src
+   - Common
+   - Languages
+   - diffutils
+   - editlib
+   - res
+ - Web
+ 
+
+WinMerge/ 
+ - Module root, no files to here please.
+ 
+WinMerge/Docs/
+ - Directory containing documentation
+
+WinMerge/Docs/Developers/
+ - Documentation mostly for developer interest.
+ - readme-developers.htm should be read all working with source code,
+   it contains a lot of usefull information about practices of
+   WinMerge developers.
+
+WinMerge/Docs/Developers/WinMerge files (Web format)/
+ - ???
+
+WinMerge/Docs/Users/
+ - Documentation files mostly for users interests
+
+WinMerge/Docs/Users/Guide/
+ - 2.0.x user guide. Not updated anymore.
+
+WinMerge/Docs/Users/Manual/
+ - New 2.2.x userguide. Using Docbook/XML.
+
+WinMerge/Filters/
+ - File filters are here
+
+WinMerge/InnoSetup/
+ - Installer
+
+WinMerge/InnoSetup/Art
+ - Graphics files installer needs
+
+WinMerge/InnoSetup/Languages
+ - Installer translations
+
+WinMerge/InnoSetup/Runtimes
+ - Libraries for WinMerge added to install package
+
+WinMerge/MakePatchDirs/
+ - Tool for creating patches
+
+WinMerge/MakeResDll/
+ - Tool compiling translation files
+
+WinMerge/Merge7z/
+ - 7Zip integration files. Needed to compile WinMerge executable.
+
+WinMerge/Plugins/
+ - Plugins files. Also plugins documentation at the moment.
+
+WinMerge/Plugins/Src_Delphi/
+ - Sources for plugins made with Delphi
+
+WinMerge/Plugins/Src_VB/
+ - Sources for plugins made with Visual Basic
+
+WinMerge/Plugins/Src_VCPP/
+ - Sources for plugins made with Visual C++
+
+WinMerge/ShellExtension/
+ - Files for ShellExtension for WinMerge. Needs also /Src/Common.
+
+WinMerge/Src/
+ - WinMerge executable sources.
+
+WinMerge/Src/Common
+ - Some common components shared by tools etc.
+
+WinMerge/Src/Languages
+ - WinMerge translations sources.
+
+WinMerge/Src/diffutils
+ - GNU/diffutils sources
+
+WinMerge/Src/editlib
+ - CrystalEditor editor component sources.
+
+WinMerge/Src/res
+ - Bitmaps, icons etc.
+
+WinMerge/Web/
+ - Homepages.
