@@ -77,6 +77,12 @@ static CString ColStatusGet(const DIFFITEM & di)
 	case FILE_SAME:
 		VERIFY(s.LoadString(IDS_IDENTICAL));
 		break;
+	case FILE_SKIP:
+		VERIFY(s.LoadString(IDS_FILE_SKIPPED));
+		break;
+	case FILE_DIRSKIP:
+		VERIFY(s.LoadString(IDS_DIR_SKIPPED));
+		break;
 	default: // error
 		VERIFY(s.LoadString(IDS_CANT_COMPARE_FILES));
 		break;
@@ -173,6 +179,8 @@ static CString ColStatusAbbrGet(const DIFFITEM & di)
 	case FILE_RDIRUNIQUE:
 		id = IDS_RIGHTONLY; break;
 	case FILE_SAME: id = IDS_IDENTICAL; break;
+	case FILE_SKIP: id = IDS_FILE_SKIPPED; break;
+	case FILE_DIRSKIP: id = IDS_DIR_SKIPPED; break;
 	default: id = IDS_CANT_COMPARE_FILES;
 	}
 	CString s;

@@ -17,6 +17,8 @@
   WinMerge:: DiffContext.cpp
  Bugfix: Don't prefix subdirectories with dot in ColPathGet.
   WinMerge: DirViewColItems.cpp
+ Bugfix: FILE_SKIP & DIR_SKIP are being labelled as errors
+  WinMerge: DirViewColItems.cpp Merge.rc resource.h
 
 2003-08-22 Kimmo
  PATCH: [ 787495 ] Create diffutils class (CDiffWrapper)

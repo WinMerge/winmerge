@@ -114,7 +114,9 @@
 #define IDS_COLHDR_LATTRIBUTES          211
 #define IDS_COLHDR_RATTRIBUTES          212
 #define IDB_EQUAL                       213
+#define IDS_FILE_SKIPPED                213
 #define IDB_NOTEQUAL                    214
+#define IDS_DIR_SKIPPED                 214
 #define IDB_RFOLDER                     215
 #define IDB_UNKNOWN                     216
 #define IDB_BINARYSAME                  217
