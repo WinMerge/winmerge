@@ -1,3 +1,9 @@
+2004-03-13 Kimmo
+ Add User Manual draft to CVS
+  Docs/Users/Manual: *.*
+ PATCH: [ 915145 ] Delay automatic close of compare pane
+  Src: DirView.cpp
+
 2004-03-13 WinMerge experimental release 2.1.5.15 (cvs)
 
 2004-03-11 Kimmo

@@ -54,6 +54,17 @@ static char THIS_FILE[] = __FILE__;
 
 enum { COLUMN_REORDER=99 };
 
+/**
+ * @brief ID for timer closing Compare Pane after delay
+ */
+const UINT IDT_CMPPANE_CLOSING = 1;
+
+/**
+ * @brief Delay (in milliseconds) for closing Compare Pane
+ * after compare is ready. This delay is only applied if
+ * automatic closing is enabled.
+ */
+const UINT CMPPANE_DELAY = 500;
 
 IMPLEMENT_DYNCREATE(CDirView, CListViewEx)
 
@@ -1494,8 +1505,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	// Close compare pane when compare is ready
 	if (mf->m_options.GetInt(OPT_AUTOCLOSE_CMPPANE))
 	{
-		CDirFrame *pf = GetParentFrame();
-		pf->ShowProcessingBar(FALSE);
+		SetTimer(IDT_CMPPANE_CLOSING, CMPPANE_DELAY, NULL);
 	}
 
 	CDirDoc * pDoc = GetDocument();
@@ -1645,6 +1655,12 @@ void CDirView::OnTimer(UINT nIDEvent)
 		UpdateColumnNames();
 		SetColumnWidths();
 		GetDocument()->Redisplay();
+	}
+	else if (nIDEvent == IDT_CMPPANE_CLOSING)
+	{
+		KillTimer(IDT_CMPPANE_CLOSING);
+		CDirFrame *pf = GetParentFrame();
+		pf->ShowProcessingBar(FALSE);
 	}
 	
 	CListViewEx::OnTimer(nIDEvent);
