@@ -1,7 +1,10 @@
 2004-10-31 Kimmo
  PATCH: [ 1056383 ] Install Merge7z40x.dll
   Install also Merge7z410.dll
-  InnoSetup: WinMerge Localized.iss 
+  InnoSetup: WinMerge Localized.iss
+ PATCH: [ 1053842 ] Hungarian InnoSetup file
+  Submitted by Márton Balázs
+  InnoSetup/Languages new file: Hungarian.isl
   
 2004-10-29 Kimmo
  PATCH: [ 1056383 ] Install Merge7z40x.dll
