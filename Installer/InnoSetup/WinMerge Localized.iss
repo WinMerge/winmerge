@@ -352,7 +352,7 @@ Name: {app}\WinMergeU.exe; Type: files; MinVersion: 0, 4
 ;an operating system that ships with this file.  Microsoft does not allow the distribution of the updated ComCtl32.dll.  So either users have Windows XP
 ;or higher and would need the WinMergeU.manifest or they don't need any .manifest at all.
 ;Since this manifest file is absolutely pointless it should be deleted 100% of the time.
-Name: {app}\WinMerge.exe.manifest; Type: files;
+Name: {app}\WinMerge.exe.manifest; Type: files
 
 ;The other manifest file is legitimate, but is only valid on windows XP or higher, so if the operating system isn't at least windows XP the
 ;Manifest file is indeed removed.
@@ -435,9 +435,7 @@ Name: {app}; Flags: uninsalwaysuninstall
 [Files]
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
 Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Components: Core
-
-;The MinVersion forces Inno Setup to only copy the following file if the user is running Win9X platform system
-Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 4, 0; Components: Core
+Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
 Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe.manifest; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 5.01; Components: Core
@@ -519,7 +517,7 @@ Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; 
 
 [Icons]
 ;Start Menu Icons
-Name: {group}\WinMerge; Filename: {app}\{code:ExeName};
+Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\Read Me.rtf; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\Plugins.txt; Filename: {app}\Docs\Plugins.txt; Check: InstallPluginsText
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\User's Guide\Index.html; IconFileName: {app}\Docs\User's Guide\Art\User's Guide.ico; Components: docs
