@@ -68,7 +68,7 @@ static BOOL ConfirmSingleDelete(LPCTSTR filepath)
 }
 
 // Prompt & copy item from right to left, if legal
-void CDirView::DoCopyFileToLeft()
+void CDirView::DoCopyRightToLeft()
 {
 	ActionList actionList(ACT_COPY);
 	int sel=-1;
@@ -93,7 +93,7 @@ void CDirView::DoCopyFileToLeft()
 	ConfirmAndPerformActions(actionList);
 }
 // Prompt & copy item from left to right, if legal
-void CDirView::DoCopyFileToRight()
+void CDirView::DoCopyLeftToRight()
 {
 	ActionList actionList(ACT_COPY);
 	int sel=-1;

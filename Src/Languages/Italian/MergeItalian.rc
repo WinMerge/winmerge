@@ -218,11 +218,19 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Copia a sinistra",            ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "Copia a destra",              ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "Delete left",                 ID_DIR_DEL_LEFT
-        MENUITEM "Delete right",                ID_DIR_DEL_RIGHT
-        MENUITEM "Delete both",                 ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Open left"
         BEGIN
@@ -1295,12 +1303,12 @@ BEGIN
     ID_ALL_RIGHT            "Copia tutte le differenze dal file di sinistra a quello di destra\nTutto a destra"
     ID_VIEW_SELECTFONT      "Seleziona il carattere per la finestra di visualizzazione delle differenze\nSeleziona carattere"
     ID_VIEW_USEDEFAULTFONT  "Usa il carattere predefinito per la finestra di visualizzazione delle differenze\nCarattere predefinito"
-    ID_DIR_COPY_FILE_TO_LEFT "Copia questo file nella cartella di sinistra"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Copia questo file nella cartella di sinistra"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT "Copia questo file nella cartella di destra"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Copia questo file nella cartella di destra"
     ID_VIEW_LANGUAGE        "Seleziona la lingua dell'interfaccia utente\nLingua"
     ID_HELP_CONTENTS        "Visualizza il manuale utente di WinMerge\nManuale utente"
     ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff (Alt+Home)"

@@ -444,8 +444,8 @@
 #define ID_VIEW_USEDEFAULTFONT          32796
 #define ID_POPUP_COPYALLDIFFSTOOTHERSIDE 32797
 #define ID_POPUP_COPYALLDIFFSFROMOTHERSIDE 32798
-#define ID_DIR_COPY_FILE_TO_LEFT        32799
-#define ID_DIR_COPY_FILE_TO_RIGHT       32800
+#define ID_DIR_COPY_LEFT_TO_RIGHT       32799
+#define ID_DIR_COPY_RIGHT_TO_LEFT       32800
 #define ID_VIEW_LANGUAGE                32801
 #define ID_HELP_CONTENTS                32802
 #define ID_FIRSTDIFF                    32803
@@ -501,6 +501,8 @@
 #define ID_DIR_OPEN_LEFT_WITHEDITOR     32853
 #define ID_DIR_OPEN_RIGHT_WITHEDITOR    32854
 #define ID_HELP_GETCONFIG               32855
+#define ID_DIR_COPY_LEFT_TO_BROWSE      32856
+#define ID_DIR_COPY_RIGHT_TO_BROWSE     32857
 
 // Next default values for new objects
 // 
@@ -508,7 +510,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        121
-#define _APS_NEXT_COMMAND_VALUE         32856
+#define _APS_NEXT_COMMAND_VALUE         32858
 #define _APS_NEXT_CONTROL_VALUE         1108
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

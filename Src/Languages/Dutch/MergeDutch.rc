@@ -222,11 +222,19 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Kopieer bestand naar links",  ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "Kopieer bestand naar rechts", ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "Delete left",                 ID_DIR_DEL_LEFT
-        MENUITEM "Delete right",                ID_DIR_DEL_RIGHT
-        MENUITEM "Delete both",                 ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Open left"
         BEGIN
@@ -1301,13 +1309,13 @@ BEGIN
     ID_ALL_RIGHT            "Kopieer alle verschillen naar het rechter bestand. \nKopieer alles naar rechts"
     ID_VIEW_SELECTFONT      "Selecteer het font voor de verschil vensters\nSelecteer verschil font"
     ID_VIEW_USEDEFAULTFONT  "Terug naar gebruik standaard systeemfont voor verschil vensters \nStandaard font"
-    ID_DIR_COPY_FILE_TO_LEFT
+    ID_DIR_COPY_RIGHT_TO_LEFT
                             "Kopieer geselecteerde bestand naar aangegeven map"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT
+    ID_DIR_COPY_LEFT_TO_RIGHT
                             "Kopieer geselecteerde bestand naar aangegeven map"
     ID_VIEW_LANGUAGE        "Selecteer de gewenste taal. \nTaal"
     ID_HELP_CONTENTS        "Toon de Winmerge gebruikershandleiding\nHelp"

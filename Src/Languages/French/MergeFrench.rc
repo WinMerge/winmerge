@@ -221,13 +221,19 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Copier le fichier vers la gauche",
-                                                ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "Copier le fichier vers la droite",
-                                                ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "Supprimer à gauche",          ID_DIR_DEL_LEFT
-        MENUITEM "Supprimer à droite",          ID_DIR_DEL_RIGHT
-        MENUITEM "Supprimer des deux côtés",    ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Open left"
         BEGIN
@@ -1301,13 +1307,13 @@ BEGIN
     ID_ALL_RIGHT            "Copier toutes les différences vers le fichier de droite\nCopier Tout à Droite"
     ID_VIEW_SELECTFONT      "Sélectionner la police utilisée pour l'affichage des différences\nSélection de la Police Diff"
     ID_VIEW_USEDEFAULTFONT  "Revenir à la police par défaut pour l'affichage des différences\nPolice par Défaut"
-    ID_DIR_COPY_FILE_TO_LEFT
+    ID_DIR_COPY_RIGHT_TO_LEFT
                             "Copier le fichier sélectionné vers le répertoire indiqué"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT
+    ID_DIR_COPY_LEFT_TO_RIGHT
                             "Copier le fichier sélectionné vers le répertoire indiqué"
     ID_VIEW_LANGUAGE        "Sélectionner la langue de l'interface\nLangue"
     ID_HELP_CONTENTS        "Affiche le guide de l'utilisateur de WinMerge\nAide"

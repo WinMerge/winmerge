@@ -221,11 +221,19 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Copy file to left",           ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "Copy file to right",          ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "Delete left",                 ID_DIR_DEL_LEFT
-        MENUITEM "Delete right",                ID_DIR_DEL_RIGHT
-        MENUITEM "Delete both",                 ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Open left"
         BEGIN
@@ -1465,12 +1473,12 @@ BEGIN
     ID_ALL_RIGHT            "Copy all differences to the right file\nAll Right"
     ID_VIEW_SELECTFONT      "Select the font for the diff views\nSelect Diff Font"
     ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for diff views\nDefault Font"
-    ID_DIR_COPY_FILE_TO_LEFT "Copy selected file to named directory"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected file to named directory"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT "Copy selected file to named directory"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected file to named directory"
     ID_VIEW_LANGUAGE        "Select the current user interfacce language\nLanguage"
     ID_HELP_CONTENTS        "Displays the WinMerge User's Guide\nHelp"
     ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff (Alt+Home)"

@@ -133,8 +133,8 @@ private:
 	BOOL IsItemOpenableOnRight(const DIFFITEM & di);
 	BOOL IsItemOpenableOnLeftWith(const DIFFITEM & di);
 	BOOL IsItemOpenableOnRightWith(const DIFFITEM & di);
-	void DoCopyFileToRight();
-	void DoCopyFileToLeft();
+	void DoCopyLeftToRight();
+	void DoCopyRightToLeft();
 	void DoDelLeft();
 	void DoDelRight();
 	void DoDelBoth();
@@ -217,14 +217,14 @@ protected:
 	afx_msg void OnContextMenu(CWnd*, CPoint point);
 	//{{AFX_MSG(CDirView)
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
-	afx_msg void OnDirCopyFileToLeft();
-	afx_msg void OnCtxtDirCopyFileToLeft();
-	afx_msg void OnUpdateDirCopyFileToLeft(CCmdUI* pCmdUI);
-	afx_msg void OnDirCopyFileToRight();
-	afx_msg void OnCtxtDirCopyFileToRight();
-	afx_msg void OnUpdateDirCopyFileToRight(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateCtxtDirCopyFileToLeft(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateCtxtDirCopyFileToRight(CCmdUI* pCmdUI);
+	afx_msg void OnDirCopyRightToLeft();
+	afx_msg void OnCtxtDirCopyRightToLeft();
+	afx_msg void OnUpdateDirCopyRightToLeft(CCmdUI* pCmdUI);
+	afx_msg void OnDirCopyLeftToRight();
+	afx_msg void OnCtxtDirCopyLeftToRight();
+	afx_msg void OnUpdateDirCopyLeftToRight(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateCtxtDirCopyRightToLeft(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateCtxtDirCopyLeftToRight(CCmdUI* pCmdUI);
 	afx_msg void OnCtxtDirDelLeft();
 	afx_msg void OnUpdateCtxtDirDelLeft(CCmdUI* pCmdUI);
 	afx_msg void OnCtxtDirDelRight();
@@ -281,8 +281,8 @@ protected:
 
 private:
 	void OpenSelection(PackingInfo * infoUnpacker = NULL);
-	void DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI, eMenuType menuType);
-	void DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI, eMenuType menuType);
+	void DoUpdateDirCopyRightToLeft(CCmdUI* pCmdUI, eMenuType menuType);
+	void DoUpdateDirCopyLeftToRight(CCmdUI* pCmdUI, eMenuType menuType);
 	void ModifyPopup(CMenu * pPopup, int nStringResource, int nMenuId, LPCTSTR szPath);
 	void DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI);

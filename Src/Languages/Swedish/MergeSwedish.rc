@@ -218,11 +218,19 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Kopiera fil till vänster",    ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "Kopiera fil till höger",      ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "Ta bort vänster fil",         ID_DIR_DEL_LEFT
-        MENUITEM "Ta bort höger fil",           ID_DIR_DEL_RIGHT
-        MENUITEM "Ta bort båda filerna",        ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Öppna vänster"
         BEGIN
@@ -1295,12 +1303,12 @@ BEGIN
     ID_ALL_RIGHT            "Kopiera alla skillnader till den vänstra filen\nKopiera allt till höger"
     ID_VIEW_SELECTFONT      "Välj teckensnitt för fönstren\nVälj teckensnitt"
     ID_VIEW_USEDEFAULTFONT  "Välj standardteckensnitt för fönstren\nVälj standardteckensnitt"
-    ID_DIR_COPY_FILE_TO_LEFT "Kopiera den valda filen till den angivna mappen"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Kopiera den valda filen till den angivna mappen"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT 
+    ID_DIR_COPY_LEFT_TO_RIGHT 
                             "Kopiera den valda filen till den angivna mappen"
     ID_VIEW_LANGUAGE        "Välj språk för användargränssnittet\nSpråk"
     ID_HELP_CONTENTS        "Visa hjälpen för WinMerge\nHjälp"

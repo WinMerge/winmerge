@@ -72,14 +72,14 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_WM_CONTEXTMENU()
 	//{{AFX_MSG_MAP(CDirView)
 	ON_WM_LBUTTONDBLCLK()
-	ON_COMMAND(ID_R2L, OnDirCopyFileToLeft)
-	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateDirCopyFileToLeft)
-	ON_COMMAND(ID_DIR_COPY_FILE_TO_LEFT, OnCtxtDirCopyFileToLeft)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILE_TO_LEFT, OnUpdateCtxtDirCopyFileToLeft)
-	ON_COMMAND(ID_L2R, OnDirCopyFileToRight)
-	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateDirCopyFileToRight)
-	ON_COMMAND(ID_DIR_COPY_FILE_TO_RIGHT, OnCtxtDirCopyFileToRight)
-	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILE_TO_RIGHT, OnUpdateCtxtDirCopyFileToRight)
+	ON_COMMAND(ID_R2L, OnDirCopyRightToLeft)
+	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateDirCopyRightToLeft)
+	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_LEFT, OnCtxtDirCopyRightToLeft)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_LEFT, OnUpdateCtxtDirCopyRightToLeft)
+	ON_COMMAND(ID_L2R, OnDirCopyLeftToRight)
+	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateDirCopyLeftToRight)
+	ON_COMMAND(ID_DIR_COPY_LEFT_TO_RIGHT, OnCtxtDirCopyLeftToRight)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_RIGHT, OnUpdateCtxtDirCopyLeftToRight)
 	ON_COMMAND(ID_DIR_DEL_LEFT, OnCtxtDirDelLeft)
 	ON_UPDATE_COMMAND_UI(ID_DIR_DEL_LEFT, OnUpdateCtxtDirDelLeft)
 	ON_COMMAND(ID_DIR_DEL_RIGHT, OnCtxtDirDelRight)
@@ -442,53 +442,53 @@ void CDirView::ModifyPopup(CMenu * pPopup, int nStringResource, int nMenuId, LPC
 /**
  * @brief User chose (main menu) Copy from right to left
  */
-void CDirView::OnDirCopyFileToLeft()
+void CDirView::OnDirCopyRightToLeft()
 {
-	DoCopyFileToLeft();
+	DoCopyRightToLeft();
 }
 /**
  * @brief User chose (main menu) Copy from left to right
  */
-void CDirView::OnDirCopyFileToRight()
+void CDirView::OnDirCopyLeftToRight()
 {
-	DoCopyFileToRight();
+	DoCopyLeftToRight();
 }
 
 /// User chose (context men) Copy from right to left
-void CDirView::OnCtxtDirCopyFileToLeft()
+void CDirView::OnCtxtDirCopyRightToLeft()
 {
-	DoCopyFileToLeft();
+	DoCopyRightToLeft();
 }
 /// User chose (context menu) Copy from left to right
-void CDirView::OnCtxtDirCopyFileToRight()
+void CDirView::OnCtxtDirCopyLeftToRight()
 {
-	DoCopyFileToRight();
+	DoCopyLeftToRight();
 }
 
 /// Update context menu Copy Right to Left item
-void CDirView::OnUpdateCtxtDirCopyFileToLeft(CCmdUI* pCmdUI) 
+void CDirView::OnUpdateCtxtDirCopyRightToLeft(CCmdUI* pCmdUI) 
 {
-	DoUpdateDirCopyFileToLeft(pCmdUI, eContext);
+	DoUpdateDirCopyRightToLeft(pCmdUI, eContext);
 }
 /// Update context menu Copy Left to Right item
-void CDirView::OnUpdateCtxtDirCopyFileToRight(CCmdUI* pCmdUI) 
+void CDirView::OnUpdateCtxtDirCopyLeftToRight(CCmdUI* pCmdUI) 
 {
-	DoUpdateDirCopyFileToRight(pCmdUI, eContext);
+	DoUpdateDirCopyLeftToRight(pCmdUI, eContext);
 }
 
 /// Update main menu Copy Right to Left item
-void CDirView::OnUpdateDirCopyFileToLeft(CCmdUI* pCmdUI) 
+void CDirView::OnUpdateDirCopyRightToLeft(CCmdUI* pCmdUI) 
 {
-	DoUpdateDirCopyFileToLeft(pCmdUI, eMain);
+	DoUpdateDirCopyRightToLeft(pCmdUI, eMain);
 }
 /// Update main menu Copy Left to Right item
-void CDirView::OnUpdateDirCopyFileToRight(CCmdUI* pCmdUI) 
+void CDirView::OnUpdateDirCopyLeftToRight(CCmdUI* pCmdUI) 
 {
-	DoUpdateDirCopyFileToRight(pCmdUI, eMain);
+	DoUpdateDirCopyLeftToRight(pCmdUI, eMain);
 }
 
 /// Should Copy to Left be enabled or disabled ? (both main menu & context menu use this)
-void CDirView::DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI, eMenuType menuType)
+void CDirView::DoUpdateDirCopyRightToLeft(CCmdUI* pCmdUI, eMenuType menuType)
 {
 	if (GetDocument()->GetReadOnly(TRUE))
 		pCmdUI->Enable(FALSE);
@@ -514,7 +514,7 @@ void CDirView::DoUpdateDirCopyFileToLeft(CCmdUI* pCmdUI, eMenuType menuType)
 }
 
 /// Should Copy to Right be enabled or disabled ? (both main menu & context menu use this)
-void CDirView::DoUpdateDirCopyFileToRight(CCmdUI* pCmdUI, eMenuType menuType)
+void CDirView::DoUpdateDirCopyLeftToRight(CCmdUI* pCmdUI, eMenuType menuType)
 {
 	if (GetDocument()->GetReadOnly(FALSE))
 		pCmdUI->Enable(FALSE);

@@ -185,11 +185,19 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "왼쪽으로 파일 복사",          ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "오른쪽으로 파일 복사",        ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "왼쪽 삭제",                   ID_DIR_DEL_LEFT
-        MENUITEM "오른쪽 삭제",                 ID_DIR_DEL_RIGHT
-        MENUITEM "모두 삭제",                   ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Open left"
         BEGIN
@@ -1428,13 +1436,13 @@ BEGIN
     ID_ALL_RIGHT            "모든 다른 부분을 오른쪽 파일로 복사합니다.\n모두 오른쪽으로"
     ID_VIEW_SELECTFONT      "파일 비교시에 볼 폰트를 선택합니다.\n폰트 선택"
     ID_VIEW_USEDEFAULTFONT  "기본 폰트로 설정을 되돌립니다.\n기본 폰트"
-    ID_DIR_COPY_FILE_TO_LEFT
+    ID_DIR_COPY_RIGHT_TO_LEFT
                             "선택하신 파일중 오른쪽에만 존재하는 파일을 왼쪽으로 복사합니다."
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT
+    ID_DIR_COPY_LEFT_TO_RIGHT
                             "선택하신 파일중 왼쪽에만 존재하는 파일을 오른쪽으로 복사합니다."
     ID_VIEW_LANGUAGE        "언어를 선택합니다.\n언어"
     ID_HELP_CONTENTS        "WinMerge 유저 가이드를 봅니다.\n도움말"

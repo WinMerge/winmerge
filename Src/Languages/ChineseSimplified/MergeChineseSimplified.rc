@@ -216,11 +216,19 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "复制文件到左边",              ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "复制文件到右边",              ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "删除左边",                    ID_DIR_DEL_LEFT
-        MENUITEM "删除右边",                    ID_DIR_DEL_RIGHT
-        MENUITEM "删除两者",                    ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Open left"
         BEGIN
@@ -1165,12 +1173,12 @@ BEGIN
     ID_ALL_RIGHT            "复制所有不同到右边文件\n所有到右边"
     ID_VIEW_SELECTFONT      "选择不同视图的字型\n选择不同视图字型"
     ID_VIEW_USEDEFAULTFONT  "使用预设的系统字型于不同视图\n预设字型"
-    ID_DIR_COPY_FILE_TO_LEFT "复制选择的文件到已命名的文件夹"
+    ID_DIR_COPY_RIGHT_TO_LEFT "复制选择的文件到已命名的文件夹"
 END
 
 STRINGTABLE FIXED IMPURE
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT "复制选择的文件到已命名的文件夹"
+    ID_DIR_COPY_LEFT_TO_RIGHT "复制选择的文件到已命名的文件夹"
     ID_VIEW_LANGUAGE        "选择目前用户接口语言\n语言"
     ID_HELP_CONTENTS        "显示 WinMerge 用户帮助\n帮助"
     ID_FIRSTDIFF            "卷动到第一个不同\n第一个不同 (Alt+Home)"

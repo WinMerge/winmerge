@@ -220,11 +220,19 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "KopÌrovaù s˙bor væavo",       ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "KopÌrovaù s˙bor vpravo",      ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "Zmazaù væavo",                ID_DIR_DEL_LEFT
-        MENUITEM "Zmazaù vpravo",               ID_DIR_DEL_RIGHT
-        MENUITEM "Zmazaù oba",                  ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Open left"
         BEGIN
@@ -1298,12 +1306,12 @@ BEGIN
     ID_ALL_RIGHT            "SkopÌrovaù vöetky rozdiely do s˙boru vpravo\nVöetko vpravo"
     ID_VIEW_SELECTFONT      "Nastavenie pÌsma pre zobrazenie porovn·van˝ch dokumentov\nNastav font pre rozdiely"
     ID_VIEW_USEDEFAULTFONT  "Pouûiù systÈmovÈ pÌsmo pre zobrazenie porovn·van˝ch dokumentov\nNastav font pre norm·lny text"
-    ID_DIR_COPY_FILE_TO_LEFT "KopÌrovaù vybranÈ s˙bory do inÈho adres·ra"
+    ID_DIR_COPY_RIGHT_TO_LEFT "KopÌrovaù vybranÈ s˙bory do inÈho adres·ra"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT "KopÌrovaù vybranÈ s˙bory do inÈho adres·ra"
+    ID_DIR_COPY_LEFT_TO_RIGHT "KopÌrovaù vybranÈ s˙bory do inÈho adres·ra"
     ID_VIEW_LANGUAGE        "Zvoliù jazyk uûivateæskÈho rozhrania\nJazyk"
     ID_HELP_CONTENTS        "Zobraziù help pre program WinMerge\nPomoc"
     ID_FIRSTDIFF            "Presun˙ù na prv˝ rozdiel\nFirst Diff (Alt+Home)"

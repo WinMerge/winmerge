@@ -219,11 +219,19 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Copiar arquivo para a esquerda", ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "Copiar arquivo para a direita", ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "Deletar da Esquerda",         ID_DIR_DEL_LEFT
-        MENUITEM "Deletar da Direita",          ID_DIR_DEL_RIGHT
-        MENUITEM "Deletar ambos os lados",      ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Open left"
         BEGIN
@@ -1300,13 +1308,13 @@ BEGIN
     ID_ALL_RIGHT            "Copiar todas as diferenças para o arquivo da direita\nTodos para a Direita"
     ID_VIEW_SELECTFONT      "Seleciona a fonte usada nos Arquivos Diferentes\nSeleciona Fonte"
     ID_VIEW_USEDEFAULTFONT  "Volta a usar a fonte padrão nos Arquivos Diferentes\nFonte padrão"
-    ID_DIR_COPY_FILE_TO_LEFT
+    ID_DIR_COPY_RIGHT_TO_LEFT
                             "Copiar os arquivos selecionados para o diretório especificado"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT
+    ID_DIR_COPY_LEFT_TO_RIGHT
                             "Copiar o arquivo selecionado para o diretório especificado"
     ID_VIEW_LANGUAGE        "Seleciona o Idioma usado na interface\nLíngua"
     ID_HELP_CONTENTS        "Exibe o Guia do Usuário do WinMerge\nAjuda"

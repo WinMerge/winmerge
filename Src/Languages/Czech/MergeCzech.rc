@@ -221,11 +221,19 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Kopírovat soubor vlevo",      ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "Kopírovat soubor vpravo",     ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "Delete left",                 ID_DIR_DEL_LEFT
-        MENUITEM "Delete right",                ID_DIR_DEL_RIGHT
-        MENUITEM "Delete both",                 ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Open left"
         BEGIN
@@ -1295,12 +1303,12 @@ BEGIN
     ID_ALL_RIGHT            "Zkopírovat všechny rozdíly do souboru vpravo\nAll Right"
     ID_VIEW_SELECTFONT      "Nastavení písma pro zobrazení porovnávaných dokumentù\nSelect Diff Font"
     ID_VIEW_USEDEFAULTFONT  "Použít systémové písmo pro zobrazení porovnávaných dokumentù\nDefault Font"
-    ID_DIR_COPY_FILE_TO_LEFT "Kopírovat vybrané soubory do jiného adresáøe"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Kopírovat vybrané soubory do jiného adresáøe"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT "Kopírovat vybrané soubory do jiného adresáøe"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Kopírovat vybrané soubory do jiného adresáøe"
     ID_VIEW_LANGUAGE        "Zvolit jazyk pro uživatelské rozhraní\nLanguage"
     ID_HELP_CONTENTS        "Zobrazit nápovìdu pro program WinMerge\nHelp"
     ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff (Alt+Home)"

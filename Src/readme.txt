@@ -1,3 +1,9 @@
+2003-11-26 Perry
+ PATCH: [ 842534 ] Move copy & delete ops to submenus in dirview popup
+  First part of patch; moved menu items into popup submenus.
+   WinMerge: DirActions.cpp DirView.cpp DirView.h Merge.rc resource.h
+   Languages: All resource.h and *.rc files.
+
 2003-11-26 Kimmo
  PATCH: [ 848955 ] Don't ask about saving after user selects 'Cancel'
   WinMerge: MergeDoc.cpp

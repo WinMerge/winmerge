@@ -220,11 +220,19 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Copy file to left",           ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "Copy file to right",          ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "Delete left",                 ID_DIR_DEL_LEFT
-        MENUITEM "Delete right",                ID_DIR_DEL_RIGHT
-        MENUITEM "Delete both",                 ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Open left"
         BEGIN
@@ -1297,13 +1305,13 @@ BEGIN
     ID_ALL_RIGHT            "Copiar todas las diferencias al archivo derecho\nTodas Derechas"
     ID_VIEW_SELECTFONT      "Selecione el fuente\nSelect Diff Font"
     ID_VIEW_USEDEFAULTFONT  "Use el fuente del sistema\nDefault Font"
-    ID_DIR_COPY_FILE_TO_LEFT
+    ID_DIR_COPY_RIGHT_TO_LEFT
                             "Copiar el archivo marcado al directorio especificado"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT
+    ID_DIR_COPY_LEFT_TO_RIGHT
                             "Copiar el archivo marcado al directorio especificado"
     ID_VIEW_LANGUAGE        "Especifice a la idioma\nIdioma"
     ID_HELP_CONTENTS        "Enseña a la ventana de ayuda\nContenido"

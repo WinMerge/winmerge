@@ -221,11 +221,19 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Kopier fil til venstre",      ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "Kopier fil til højre",        ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "Slet venstre fil",            ID_DIR_DEL_LEFT
-        MENUITEM "Slet højre fil",              ID_DIR_DEL_RIGHT
-        MENUITEM "Slet begge filer",            ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Open left"
         BEGIN
@@ -1296,12 +1304,12 @@ BEGIN
     ID_ALL_RIGHT            "Kopier alle forskelle til den højre fil\nAlt til højre"
     ID_VIEW_SELECTFONT      "Vælg skrifttype til vinduerne\nVælg skrifttype"
     ID_VIEW_USEDEFAULTFONT  "Brug standard skrifttype til vinduerne\nStandard skrifttype"
-    ID_DIR_COPY_FILE_TO_LEFT "Kopier den valgte fil til den angivne mappe"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Kopier den valgte fil til den angivne mappe"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT "Kopier den valgte fil til den angivne mappe"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Kopier den valgte fil til den angivne mappe"
     ID_VIEW_LANGUAGE        "Vælg sprog til brugerinterfacet\nSprog"
     ID_HELP_CONTENTS        "Vis hjælpen til WinMerge\nHjælp"
     ID_FIRSTDIFF            "Scroll til den første forskel\nFørste forskel (Alt+Home)"

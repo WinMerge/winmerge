@@ -224,11 +224,19 @@ IDR_POPUP_DIRVIEW MENU DISCARDABLE
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Datei nach links kopieren",   ID_DIR_COPY_FILE_TO_LEFT
-        MENUITEM "Datei nach rechts kopieren",  ID_DIR_COPY_FILE_TO_RIGHT
-        MENUITEM "Lösche links",                ID_DIR_DEL_LEFT
-        MENUITEM "Lösche rechts",               ID_DIR_DEL_RIGHT
-        MENUITEM "Lösche beide",                ID_DIR_DEL_BOTH
+        POPUP "Copy"
+        BEGIN
+            MENUITEM "Left to Right",           ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Left to ...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Right to Left",           ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Right to ...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+        END
+        POPUP "Delete"
+        BEGIN
+            MENUITEM "Left",                    ID_DIR_DEL_LEFT
+            MENUITEM "Right",                   ID_DIR_DEL_RIGHT
+            MENUITEM "Both",                    ID_DIR_DEL_BOTH
+        END
         MENUITEM SEPARATOR
         POPUP "Öffne links"
         BEGIN
@@ -1305,13 +1313,13 @@ BEGIN
     ID_ALL_RIGHT            "Kopiert alle Unterschiede in die rechte Datei."
     ID_VIEW_SELECTFONT      "Wählt die Schrift für die Differenz-Anzeigen."
     ID_VIEW_USEDEFAULTFONT  "Stellt die Schrift für die Differenz-Anzeigen zurück auf die Standard-Systemschrift."
-    ID_DIR_COPY_FILE_TO_LEFT
+    ID_DIR_COPY_RIGHT_TO_LEFT
                             "Kopiert ausgewählte Datei in angegebenes Verzeichnis"
 END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_DIR_COPY_FILE_TO_RIGHT
+    ID_DIR_COPY_LEFT_TO_RIGHT
                             "Kopiert ausgewählte Datei in angegebenes Verzeichnis"
     ID_VIEW_LANGUAGE        "Wählt die Sprache der Benutzeroberfläche."
     ID_HELP_CONTENTS        "Öffnet die WinMerge Benutzeranleitung"
