@@ -280,7 +280,7 @@ BOOL COpenDlg::OnInitDialog()
 			LogErrorString(_T("Failed to add string to filters combo list!"));
 	}
 
-	if (!mf->m_options.GetInt(OPT_VERIFY_OPEN_PATHS))
+	if (!mf->m_options.GetBool(OPT_VERIFY_OPEN_PATHS))
 	{
 		m_ctlOk.EnableWindow(TRUE);
 		m_ctlUnpacker.EnableWindow(TRUE);
@@ -313,7 +313,7 @@ void COpenDlg::UpdateButtonStates()
 	
 	// Enable buttons as appropriate
 	PATH_EXISTENCE pathsType = GetPairComparability(m_strLeft, m_strRight);
-	if (mf->m_options.GetInt(OPT_VERIFY_OPEN_PATHS))
+	if (mf->m_options.GetBool(OPT_VERIFY_OPEN_PATHS))
 	{
 		m_ctlOk.EnableWindow(pathsType != DOES_NOT_EXIST);
 		m_ctlUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);

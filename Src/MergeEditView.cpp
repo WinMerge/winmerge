@@ -65,9 +65,9 @@ CMergeEditView::CMergeEditView()
 	SetParser(&m_xParser);
 	m_bAutomaticRescan = FALSE;
 	fTimerWaitingForIdle = 0;
-	m_bCloseWithEsc = mf->m_options.GetInt(OPT_CLOSE_WITH_ESC);
+	m_bCloseWithEsc = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
 
-	m_bSyntaxHighlight = mf->m_options.GetInt(OPT_SYNTAX_HIGHLIGHT);
+	m_bSyntaxHighlight = mf->m_options.GetBool(OPT_SYNTAX_HIGHLIGHT);
 	m_cachedColors.clrDiff = mf->m_options.GetInt(OPT_CLR_DIFF);
 	m_cachedColors.clrSelDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF);
 	m_cachedColors.clrDiffDeleted = mf->m_options.GetInt(OPT_CLR_DIFF_DELETED);
@@ -1608,7 +1608,7 @@ OnUpdateCaret()
 			column = CalculateActualOffset(nScreenLine, cursorPos.x) + 1;
 			columns = CalculateActualOffset(nScreenLine, chars) + 1;
 			chars++;
-			if (mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
+			if (mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL))
 				sEol = GetTextBufferEol(nScreenLine);
 			else
 				sEol = _T("hidden");
@@ -1860,7 +1860,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
  */
 void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
 {
-	if (mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
+	if (mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL))
 		pCmdUI->SetText(_T(""));
 	else
 		GetDocument()->GetLeftView()->OnUpdateIndicatorCRLF(pCmdUI);
@@ -1871,7 +1871,7 @@ void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnUpdateStatusRightEOL(CCmdUI* pCmdUI)
 {
-	if (mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
+	if (mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL))
 		pCmdUI->SetText(_T(""));
 	else
 		GetDocument()->GetRightView()->OnUpdateIndicatorCRLF(pCmdUI);
@@ -1934,7 +1934,7 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 			break;
 	}
 
-	if (mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL) ||
+	if (mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL) ||
 		nStyle != m_pTextBuffer->GetCRLFMode())
 	{
 		pCmdUI->Enable(TRUE);
@@ -2086,9 +2086,9 @@ void CMergeEditView::OnUpdateWMGoto(CCmdUI* pCmdUI)
  */
 void CMergeEditView::RefreshOptions()
 { 
-	m_bCloseWithEsc = mf->m_options.GetInt(OPT_CLOSE_WITH_ESC);
+	m_bCloseWithEsc = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
 
-	m_bSyntaxHighlight = mf->m_options.GetInt(OPT_SYNTAX_HIGHLIGHT);
+	m_bSyntaxHighlight = mf->m_options.GetBool(OPT_SYNTAX_HIGHLIGHT);
 	m_cachedColors.clrDiff = mf->m_options.GetInt(OPT_CLR_DIFF);
 	m_cachedColors.clrSelDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF);
 	m_cachedColors.clrDiffDeleted = mf->m_options.GetInt(OPT_CLR_DIFF_DELETED);

@@ -75,10 +75,12 @@ public:
 	varprop::VariantValue Get(CString name) const;
 	CString GetString(CString name) const;
 	int GetInt(CString name) const;
+	bool GetBool(CString name) const;
 	int Set(CString name, varprop::VariantValue value);
 	int Reset(CString name);
 	int GetDefault(CString name, CString & value) const;
 	int GetDefault(CString name, DWORD & value) const;
+	int GetDefault(CString name, bool & value) const;
 
 private:
 	CMap<CString, LPCTSTR, COption, COption&> m_optionsMap;
@@ -91,12 +93,14 @@ class CRegOptions : public COptionsMgr
 {
 public:
 	int InitOption(CString name, varprop::VariantValue defaultValue);
-	int InitOption(CString name, CString defaultValue);
+	int InitOption(CString name, LPCTSTR defaultValue);
 	int InitOption(CString name, int defaultValue);
+	int InitOption(CString name, bool defaultValue);
 	int SaveOption(CString name);
 	int SaveOption(CString name, varprop::VariantValue value);
 	int SaveOption(CString name, CString value);
 	int SaveOption(CString name, int value);
+	int SaveOption(CString name, bool value);
 	int LoadOption(CString name);
 	int SetRegRootKey(CString path);
 

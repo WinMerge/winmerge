@@ -72,11 +72,11 @@ CDirDoc::CDirDoc()
 	m_statusCursor = NULL;
 	m_bReuseCloses = FALSE;
 
-	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetInt(OPT_CMP_MOVED_BLOCKS));
+	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetBool(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	options.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
-	options.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);
-	options.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
+	options.bIgnoreBlankLines = mf->m_options.GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	options.bIgnoreCase = mf->m_options.GetBool(OPT_CMP_IGNORE_CASE);
+	options.bEolSensitive = mf->m_options.GetBool(OPT_CMP_EOL_SENSITIVE);
 
 	m_diffWrapper.SetOptions(&options);
 }
@@ -189,7 +189,7 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_strNormalizedRight = m_pCtxt->m_strRight;
 	m_pCtxt->m_hDirFrame = pf->GetSafeHwnd();
 	m_pCtxt->m_msgUpdateStatus = MSG_STAT_UPDATE;
-	m_pCtxt->m_bGuessEncoding = mf->m_options.GetInt(OPT_CP_DETECT);
+	m_pCtxt->m_bGuessEncoding = mf->m_options.GetBool(OPT_CP_DETECT);
 	paths_normalize(m_pCtxt->m_strNormalizedLeft);
 	paths_normalize(m_pCtxt->m_strNormalizedRight);
 	UpdateHeaderPath(TRUE);
@@ -239,35 +239,35 @@ LPCTSTR CDirDoc::GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di,
 		// result filters
 		if (di.isResultError() && !mf->m_bShowErrors)
 			return 0;
-		if (di.isResultSkipped() && mf->m_options.GetInt(OPT_SHOW_SKIPPED) == 0)
+		if (di.isResultSkipped() && !mf->m_options.GetBool(OPT_SHOW_SKIPPED))
 			return 0;
 
 		// left/right filters
-		if (di.isSideLeft() && mf->m_options.GetInt(OPT_SHOW_UNIQUE_LEFT) == 0)
+		if (di.isSideLeft() && !mf->m_options.GetBool(OPT_SHOW_UNIQUE_LEFT))
 			return 0;
-		if (di.isSideRight() && mf->m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT) == 0)
+		if (di.isSideRight() && !mf->m_options.GetBool(OPT_SHOW_UNIQUE_RIGHT))
 			return 0;
 	}
 	else
 	{
 		// file type filters
-		if (di.isBin() && mf->m_options.GetInt(OPT_SHOW_BINARIES) == 0)
+		if (di.isBin() && !mf->m_options.GetBool(OPT_SHOW_BINARIES))
 			return 0;
 
 		// result filters
-		if (di.isResultSame() && mf->m_options.GetInt(OPT_SHOW_IDENTICAL) == 0)
+		if (di.isResultSame() && !mf->m_options.GetBool(OPT_SHOW_IDENTICAL))
 			return 0;
 		if (di.isResultError() && !mf->m_bShowErrors)
 			return 0;
-		if (di.isResultSkipped() && mf->m_options.GetInt(OPT_SHOW_SKIPPED) == 0)
+		if (di.isResultSkipped() && !mf->m_options.GetBool(OPT_SHOW_SKIPPED))
 			return 0;
-		if (di.isResultDiff() && mf->m_options.GetInt(OPT_SHOW_DIFFERENT) == 0)
+		if (di.isResultDiff() && !mf->m_options.GetBool(OPT_SHOW_DIFFERENT))
 			return 0;
 
 		// left/right filters
-		if (di.isSideLeft() && mf->m_options.GetInt(OPT_SHOW_UNIQUE_LEFT) == 0)
+		if (di.isSideLeft() && !mf->m_options.GetBool(OPT_SHOW_UNIQUE_LEFT))
 			return 0;
-		if (di.isSideRight() && mf->m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT) == 0)
+		if (di.isSideRight() && !mf->m_options.GetBool(OPT_SHOW_UNIQUE_RIGHT))
 			return 0;
 	}
 
@@ -559,7 +559,11 @@ CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
 
 /**
  * @brief Update changed item's compare status
- * @param unified true if files became identical, false otherwise.
+ * @param [in] pathLeft Left-side path
+ * @param [in] pathRight Right-side path
+ * @param [in] nDiffs Total amount of differences
+ * @param [in] nTrivialDiffs Amount of ignored differences
+ * @param [in] bIdentical TRUE if files became identical, FALSE otherwise.
  * @note Filenames must be same, otherwise function asserts.
  */
 void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight,
@@ -605,11 +609,11 @@ void CDirDoc::RefreshOptions()
 {
 	DIFFOPTIONS options;
 
-	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetInt(OPT_CMP_MOVED_BLOCKS));
-	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	options.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
-	options.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);
-	options.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
+	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetBool(OPT_CMP_MOVED_BLOCKS));
+	options.nIgnoreWhitespace = mf->m_options.GetBool(OPT_CMP_IGNORE_WHITESPACE);
+	options.bIgnoreBlankLines = mf->m_options.GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	options.bIgnoreCase = mf->m_options.GetBool(OPT_CMP_IGNORE_CASE);
+	options.bEolSensitive = mf->m_options.GetBool(OPT_CMP_EOL_SENSITIVE);
 
 	m_diffWrapper.SetOptions(&options);
 	m_pDirView->RefreshOptions();

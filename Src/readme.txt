@@ -1,3 +1,9 @@
+2004-10-29 Kimmo
+ PATCH: [ 1055681 ] Add Bool type for options and convert existing options
+  Src: DirActions.cpp DirDoc.cpp DirView.cpp MainFrm.cpp MergeDiffDetailView.cpp
+   MergeDoc.cpp MergeEditView.cpp OpenDlg.cpp
+  Src/Common: OptionsMgr.cpp OptionsMgr.h varprop.h
+
 2004-10-28 Kimmo
  PATCH: [ 1055551 ] Move cursor to begin of previous line when deleting diff
   Src: MergeDoc.cpp MergeDoc.h MergeEditView.cpp

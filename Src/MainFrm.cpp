@@ -168,73 +168,72 @@ CMainFrame::CMainFrame()
 	m_options.SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
 
 	// Initialise options (name, default value)
-	m_options.InitOption(OPT_SHOW_UNIQUE_LEFT, TRUE);
-	m_options.InitOption(OPT_SHOW_UNIQUE_RIGHT, TRUE);
-	m_options.InitOption(OPT_SHOW_DIFFERENT, TRUE);
-	m_options.InitOption(OPT_SHOW_IDENTICAL, TRUE);
-	m_options.InitOption(OPT_SHOW_BINARIES, TRUE);
-	m_options.InitOption(OPT_SHOW_SKIPPED, TRUE);
-	m_options.InitOption(OPT_HIDE_BACKUP, TRUE);
+	m_options.InitOption(OPT_SHOW_UNIQUE_LEFT, true);
+	m_options.InitOption(OPT_SHOW_UNIQUE_RIGHT, true);
+	m_options.InitOption(OPT_SHOW_DIFFERENT, true);
+	m_options.InitOption(OPT_SHOW_IDENTICAL, true);
+	m_options.InitOption(OPT_SHOW_BINARIES, true);
+	m_options.InitOption(OPT_SHOW_SKIPPED, true);
 
-	m_options.InitOption(OPT_SYNTAX_HIGHLIGHT, TRUE);
-	m_options.InitOption(OPT_DISABLE_SPLASH, FALSE);
-	m_options.InitOption(OPT_CREATE_BACKUPS, TRUE);
-	m_options.InitOption(OPT_VIEW_WHITESPACE, FALSE);
-	m_options.InitOption(OPT_CONNECT_MOVED_BLOCKS, FALSE);
-	m_options.InitOption(OPT_SCROLL_TO_FIRST, FALSE);
-	m_options.InitOption(OPT_VERIFY_OPEN_PATHS, TRUE);
+	m_options.InitOption(OPT_SYNTAX_HIGHLIGHT, true);
+	m_options.InitOption(OPT_DISABLE_SPLASH, false);
+	m_options.InitOption(OPT_CREATE_BACKUPS, true);
+	m_options.InitOption(OPT_VIEW_WHITESPACE, false);
+	m_options.InitOption(OPT_CONNECT_MOVED_BLOCKS, 0);
+	m_options.InitOption(OPT_SCROLL_TO_FIRST, false);
+	m_options.InitOption(OPT_VERIFY_OPEN_PATHS, true);
 
-	m_options.InitOption(OPT_AUTOMATIC_RESCAN, FALSE);
-	m_options.InitOption(OPT_ALLOW_MIXED_EOL, FALSE);
-	m_options.InitOption(OPT_TAB_SIZE, 4);
-	m_options.InitOption(OPT_TAB_TYPE, 0);	// 0 means tabs inserted
+	m_options.InitOption(OPT_AUTOMATIC_RESCAN, false);
+	m_options.InitOption(OPT_ALLOW_MIXED_EOL, false);
+	m_options.InitOption(OPT_TAB_SIZE, (int)4);
+	m_options.InitOption(OPT_TAB_TYPE, (int)0);	// 0 means tabs inserted
 
 	m_options.InitOption(OPT_EXT_EDITOR_CMD, _T(""));
-	m_options.InitOption(OPT_USE_RECYCLE_BIN, TRUE);
-	m_options.InitOption(OPT_AUTOCLOSE_CMPPANE, FALSE);
-	m_options.InitOption(OPT_MERGE_MODE, FALSE);
-	m_options.InitOption(OPT_UNREC_APPLYSYNTAX, FALSE);
-	m_options.InitOption(OPT_CLOSE_WITH_ESC, TRUE);
+	m_options.InitOption(OPT_USE_RECYCLE_BIN, true);
+	m_options.InitOption(OPT_AUTOCLOSE_CMPPANE, false);
+	m_options.InitOption(OPT_MERGE_MODE, false);
+	m_options.InitOption(OPT_UNREC_APPLYSYNTAX, false);
+	m_options.InitOption(OPT_CLOSE_WITH_ESC, true);
 	m_options.InitOption(OPT_LOGGING, 0);
 
-	m_options.InitOption(OPT_CMP_IGNORE_WHITESPACE, 0);
-	m_options.InitOption(OPT_CMP_IGNORE_BLANKLINES, FALSE);
-	m_options.InitOption(OPT_CMP_IGNORE_CASE, FALSE);
-	m_options.InitOption(OPT_CMP_EOL_SENSITIVE, TRUE);
-	m_options.InitOption(OPT_CMP_METHOD, CMP_CONTENT);
-	m_options.InitOption(OPT_CMP_MOVED_BLOCKS, FALSE);
+	m_options.InitOption(OPT_CMP_IGNORE_WHITESPACE, (int)0);
+	m_options.InitOption(OPT_CMP_IGNORE_BLANKLINES, false);
+	m_options.InitOption(OPT_CMP_IGNORE_CASE, false);
+	m_options.InitOption(OPT_CMP_EOL_SENSITIVE, true);
+	m_options.InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT);
+	m_options.InitOption(OPT_CMP_MOVED_BLOCKS, false);
 
 	m_nCompMethod = m_options.GetInt(OPT_CMP_METHOD);
 
-	m_options.InitOption(OPT_CLR_DIFF, RGB(239,203,5));
-	m_options.InitOption(OPT_CLR_SELECTED_DIFF, RGB(239,119,116));
-	m_options.InitOption(OPT_CLR_DIFF_DELETED, RGB(192, 192, 192));
-	m_options.InitOption(OPT_CLR_SELECTED_DIFF_DELETED, RGB(240, 192, 192));
-	m_options.InitOption(OPT_CLR_DIFF_TEXT, RGB(0,0,0));
-	m_options.InitOption(OPT_CLR_SELECTED_DIFF_TEXT, RGB(0,0,0));
-	m_options.InitOption(OPT_CLR_TRIVIAL_DIFF, RGB(251,242,191));
-	m_options.InitOption(OPT_CLR_TRIVIAL_DIFF_DELETED, RGB(233,233,233));
-	m_options.InitOption(OPT_CLR_TRIVIAL_DIFF_TEXT, RGB(0,0,0));
-	m_options.InitOption(OPT_CLR_MOVEDBLOCK, RGB(228,155,82));
-	m_options.InitOption(OPT_CLR_MOVEDBLOCK_DELETED, RGB(192, 192, 192));
-	m_options.InitOption(OPT_CLR_MOVEDBLOCK_TEXT, RGB(0,0,0));
-	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK, RGB(248,112,78));
-	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, RGB(252, 181, 163));
-	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, RGB(0,0,0));
+	m_options.InitOption(OPT_CLR_DIFF, (int)RGB(239,203,5));
+	m_options.InitOption(OPT_CLR_SELECTED_DIFF, (int)RGB(239,119,116));
+	m_options.InitOption(OPT_CLR_DIFF_DELETED, (int)RGB(192, 192, 192));
+	m_options.InitOption(OPT_CLR_SELECTED_DIFF_DELETED, (int)RGB(240, 192, 192));
+	m_options.InitOption(OPT_CLR_DIFF_TEXT, (int)RGB(0,0,0));
+	m_options.InitOption(OPT_CLR_SELECTED_DIFF_TEXT, (int)RGB(0,0,0));
+	m_options.InitOption(OPT_CLR_TRIVIAL_DIFF, (int)RGB(251,242,191));
+	m_options.InitOption(OPT_CLR_TRIVIAL_DIFF_DELETED, (int)RGB(233,233,233));
+	m_options.InitOption(OPT_CLR_TRIVIAL_DIFF_TEXT, (int)RGB(0,0,0));
+	m_options.InitOption(OPT_CLR_MOVEDBLOCK, (int)RGB(228,155,82));
+	m_options.InitOption(OPT_CLR_MOVEDBLOCK_DELETED, (int)RGB(192, 192, 192));
+	m_options.InitOption(OPT_CLR_MOVEDBLOCK_TEXT, (int)RGB(0,0,0));
+	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK, (int)RGB(248,112,78));
+	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, (int)RGB(252, 181, 163));
+	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)RGB(0,0,0));
 
 	// Overwrite WinMerge 2.0 default colors with new colors
 	if (m_options.GetInt(OPT_CLR_DIFF) == RGB(255,255,92))
-		m_options.SaveOption(OPT_CLR_DIFF, RGB(239,203,5));
+		m_options.SaveOption(OPT_CLR_DIFF, (int)RGB(239,203,5));
 	if (m_options.GetInt(OPT_CLR_SELECTED_DIFF) == RGB(255,0,92))
-		m_options.SaveOption(OPT_CLR_SELECTED_DIFF, RGB(239,119,116));
+		m_options.SaveOption(OPT_CLR_SELECTED_DIFF, (int)RGB(239,119,116));
 
-	m_options.InitOption(OPT_LINEFILTER_ENABLED, FALSE);
+	m_options.InitOption(OPT_LINEFILTER_ENABLED, false);
 	m_options.InitOption(OPT_LINEFILTER_REGEXP, _T(""));
 	m_options.InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
 
-	m_options.InitOption(OPT_CP_DEFAULT_MODE, 0);
-	m_options.InitOption(OPT_CP_DEFAULT_CUSTOM, GetACP());
-	m_options.InitOption(OPT_CP_DETECT, FALSE);
+	m_options.InitOption(OPT_CP_DEFAULT_MODE, (int)0);
+	m_options.InitOption(OPT_CP_DEFAULT_CUSTOM, (int)GetACP());
+	m_options.InitOption(OPT_CP_DETECT, false);
 
 	updateDefaultCodepage(&m_options);
 
@@ -558,7 +557,7 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	pMergeDoc->SetUnpacker(infoUnpacker);
 
 	// detect codepage
-	BOOL bGuessEncoding = mf->m_options.GetInt(OPT_CP_DETECT);
+	BOOL bGuessEncoding = mf->m_options.GetBool(OPT_CP_DETECT);
 	if (cpleft == -1)
 	{
 		CString filepath = szLeft;
@@ -619,10 +618,8 @@ void CMainFrame::RedisplayAllDirDocs()
  */
 void CMainFrame::OnOptionsShowDifferent() 
 {
-	varprop::VariantValue val;
-	val = m_options.Get(OPT_SHOW_DIFFERENT);
-	val.SetInt(val.getInt() ? 0 : 1);
-	m_options.SaveOption(OPT_SHOW_DIFFERENT, val);
+	bool val = m_options.GetBool(OPT_SHOW_DIFFERENT);
+	m_options.SaveOption(OPT_SHOW_DIFFERENT, !val); // reverse
 	RedisplayAllDirDocs();
 }
 
@@ -631,10 +628,8 @@ void CMainFrame::OnOptionsShowDifferent()
  */
 void CMainFrame::OnOptionsShowIdentical() 
 {
-	varprop::VariantValue val;
-	val = m_options.Get(OPT_SHOW_IDENTICAL);
-	val.SetInt(val.getInt() ? 0 : 1);
-	m_options.SaveOption(OPT_SHOW_IDENTICAL, val);
+	bool val = m_options.GetBool(OPT_SHOW_IDENTICAL);
+	m_options.SaveOption(OPT_SHOW_IDENTICAL, !val); // reverse
 	RedisplayAllDirDocs();
 }
 
@@ -643,10 +638,8 @@ void CMainFrame::OnOptionsShowIdentical()
  */
 void CMainFrame::OnOptionsShowUniqueLeft() 
 {
-	varprop::VariantValue val;
-	val = m_options.Get(OPT_SHOW_UNIQUE_LEFT);
-	val.SetInt(val.getInt() ? 0 : 1);
-	m_options.SaveOption(OPT_SHOW_UNIQUE_LEFT, val);
+	bool val = m_options.GetBool(OPT_SHOW_UNIQUE_LEFT);
+	m_options.SaveOption(OPT_SHOW_UNIQUE_LEFT, !val); // reverse
 	RedisplayAllDirDocs();
 }
 
@@ -655,10 +648,8 @@ void CMainFrame::OnOptionsShowUniqueLeft()
  */
 void CMainFrame::OnOptionsShowUniqueRight() 
 {
-	varprop::VariantValue val;
-	val = m_options.Get(OPT_SHOW_UNIQUE_RIGHT);
-	val.SetInt(val.getInt() ? 0 : 1);
-	m_options.SaveOption(OPT_SHOW_UNIQUE_RIGHT, val);
+	bool val = m_options.GetBool(OPT_SHOW_UNIQUE_RIGHT);
+	m_options.SaveOption(OPT_SHOW_UNIQUE_RIGHT, !val); // reverse
 	RedisplayAllDirDocs();
 }
 
@@ -667,10 +658,8 @@ void CMainFrame::OnOptionsShowUniqueRight()
  */
 void CMainFrame::OnOptionsShowBinaries()
 {
-	varprop::VariantValue val;
-	val = m_options.Get(OPT_SHOW_BINARIES);
-	val.SetInt(val.getInt() ? 0 : 1);
-	m_options.SaveOption(OPT_SHOW_BINARIES, val);
+	bool val = m_options.GetBool(OPT_SHOW_BINARIES);
+	m_options.SaveOption(OPT_SHOW_BINARIES, !val); // reverse
 	RedisplayAllDirDocs();
 }
 
@@ -679,41 +668,39 @@ void CMainFrame::OnOptionsShowBinaries()
  */
 void CMainFrame::OnOptionsShowSkipped()
 {
-	varprop::VariantValue val;
-	val = m_options.Get(OPT_SHOW_SKIPPED);
-	val.SetInt(val.getInt() ? 0 : 1);
-	m_options.SaveOption(OPT_SHOW_SKIPPED, val);
+	bool val = m_options.GetBool(OPT_SHOW_SKIPPED);
+	m_options.SaveOption(OPT_SHOW_SKIPPED, !val); // reverse
 	RedisplayAllDirDocs();
 }
 
 void CMainFrame::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_DIFFERENT));
+	pCmdUI->SetCheck(m_options.GetBool(OPT_SHOW_DIFFERENT));
 }
 
 void CMainFrame::OnUpdateOptionsShowidentical(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_IDENTICAL));
+	pCmdUI->SetCheck(m_options.GetBool(OPT_SHOW_IDENTICAL));
 }
 
 void CMainFrame::OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_UNIQUE_LEFT));
+	pCmdUI->SetCheck(m_options.GetBool(OPT_SHOW_UNIQUE_LEFT));
 }
 
 void CMainFrame::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT));
+	pCmdUI->SetCheck(m_options.GetBool(OPT_SHOW_UNIQUE_RIGHT));
 }
 
 void CMainFrame::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_BINARIES));
+	pCmdUI->SetCheck(m_options.GetBool(OPT_SHOW_BINARIES));
 }
 
 void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck(m_options.GetInt(OPT_SHOW_SKIPPED));
+	pCmdUI->SetCheck(m_options.GetBool(OPT_SHOW_SKIPPED));
 }
 
 /**
@@ -1136,7 +1123,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 /// Wrapper to set the global option 'm_bAllowMixedEol'
 void CMainFrame::SetEOLMixed(BOOL bAllow)
 {
-	m_options.SaveOption(OPT_ALLOW_MIXED_EOL, bAllow);
+	m_options.SaveOption(OPT_ALLOW_MIXED_EOL, bAllow == TRUE);
 	ApplyViewWhitespace();
 }
 
@@ -1167,43 +1154,44 @@ void CMainFrame::OnOptions()
 	
 	vss.m_nVerSys = m_nVerSys;
 	vss.m_strPath = m_strVssPath;
-	gen.m_bBackup = m_options.GetInt(OPT_CREATE_BACKUPS);
-	gen.m_bScroll = m_options.GetInt(OPT_SCROLL_TO_FIRST);
-	gen.m_bDisableSplash = m_options.GetInt(OPT_DISABLE_SPLASH);
-	gen.m_bAutoCloseCmpPane = m_options.GetInt(OPT_AUTOCLOSE_CMPPANE);
-	gen.m_bVerifyPaths = m_options.GetInt(OPT_VERIFY_OPEN_PATHS);
-	gen.m_bCloseWindowWithEsc = m_options.GetInt(OPT_CLOSE_WITH_ESC);
+	gen.m_bBackup = m_options.GetBool(OPT_CREATE_BACKUPS);
+	gen.m_bScroll = m_options.GetBool(OPT_SCROLL_TO_FIRST);
+	gen.m_bDisableSplash = m_options.GetBool(OPT_DISABLE_SPLASH);
+	gen.m_bAutoCloseCmpPane = m_options.GetBool(OPT_AUTOCLOSE_CMPPANE);
+	gen.m_bVerifyPaths = m_options.GetBool(OPT_VERIFY_OPEN_PATHS);
+	gen.m_bCloseWindowWithEsc = m_options.GetBool(OPT_CLOSE_WITH_ESC);
 	regpage.m_strEditorPath = m_options.GetString(OPT_EXT_EDITOR_CMD);
 	regpage.GetContextRegValues();
-	regpage.m_bUseRecycleBin = m_options.GetInt(OPT_USE_RECYCLE_BIN);
-    compage.m_compareMethod = m_options.GetInt(OPT_CMP_METHOD);
+	regpage.m_bUseRecycleBin = m_options.GetBool(OPT_USE_RECYCLE_BIN);
+	compage.m_compareMethod = m_options.GetInt(OPT_CMP_METHOD);
 	compage.m_nIgnoreWhite = m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	compage.m_bIgnoreBlankLines = m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
-	compage.m_bIgnoreCase = m_options.GetInt(OPT_CMP_IGNORE_CASE);
-	compage.m_bEolSensitive = m_options.GetInt(OPT_CMP_EOL_SENSITIVE) ? FALSE : TRUE; // Reverse
-	compage.m_bMovedBlocks = m_options.GetInt(OPT_CMP_MOVED_BLOCKS);
+	compage.m_bIgnoreBlankLines = m_options.GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	compage.m_bIgnoreCase = m_options.GetBool(OPT_CMP_IGNORE_CASE);
+	compage.m_bEolSensitive = m_options.GetBool(OPT_CMP_EOL_SENSITIVE) ? false : true; // Reverse
+	compage.m_bMovedBlocks = m_options.GetBool(OPT_CMP_MOVED_BLOCKS);
 	editor.m_nTabSize = m_options.GetInt(OPT_TAB_SIZE);
 	editor.m_nTabType = m_options.GetInt(OPT_TAB_TYPE);
-	editor.m_bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
-	editor.m_bHiliteSyntax = m_options.GetInt(OPT_SYNTAX_HIGHLIGHT);
-	editor.m_bAllowMixedEol = m_options.GetInt(OPT_ALLOW_MIXED_EOL);
-	editor.m_bApplySyntax = m_options.GetInt(OPT_UNREC_APPLYSYNTAX);
+	editor.m_bAutomaticRescan = m_options.GetBool(OPT_AUTOMATIC_RESCAN);
+	editor.m_bHiliteSyntax = m_options.GetBool(OPT_SYNTAX_HIGHLIGHT);
+	editor.m_bAllowMixedEol = m_options.GetBool(OPT_ALLOW_MIXED_EOL);
+	editor.m_bApplySyntax = m_options.GetBool(OPT_UNREC_APPLYSYNTAX);
 	codepage.m_nCodepageSystem = m_options.GetInt(OPT_CP_DEFAULT_MODE);
 	codepage.m_nCustomCodepageValue = m_options.GetInt(OPT_CP_DEFAULT_CUSTOM);
-	codepage.m_bDetectCodepage = m_options.GetInt(OPT_CP_DETECT);
+	codepage.m_bDetectCodepage = m_options.GetBool(OPT_CP_DETECT);
 
 	if (sht.DoModal()==IDOK)
 	{
 		m_nVerSys = vss.m_nVerSys;
 		m_strVssPath = vss.m_strPath;
 		
-		m_options.SaveOption(OPT_CREATE_BACKUPS, gen.m_bBackup);
-		m_options.SaveOption(OPT_SCROLL_TO_FIRST, gen.m_bScroll);
-		m_options.SaveOption(OPT_DISABLE_SPLASH, gen.m_bDisableSplash);
-		m_options.SaveOption(OPT_AUTOCLOSE_CMPPANE, gen.m_bAutoCloseCmpPane);
-		m_options.SaveOption(OPT_VERIFY_OPEN_PATHS, gen.m_bVerifyPaths);
-		m_options.SaveOption(OPT_CLOSE_WITH_ESC, gen.m_bCloseWindowWithEsc);
-		m_options.SaveOption(OPT_USE_RECYCLE_BIN, regpage.m_bUseRecycleBin);
+		m_options.SaveOption(OPT_CREATE_BACKUPS, gen.m_bBackup == TRUE);
+		m_options.SaveOption(OPT_SCROLL_TO_FIRST, gen.m_bScroll == TRUE);
+		m_options.SaveOption(OPT_DISABLE_SPLASH, gen.m_bDisableSplash == TRUE);
+		m_options.SaveOption(OPT_AUTOCLOSE_CMPPANE, gen.m_bAutoCloseCmpPane == TRUE);
+		m_options.SaveOption(OPT_VERIFY_OPEN_PATHS, gen.m_bVerifyPaths == TRUE);
+		m_options.SaveOption(OPT_CLOSE_WITH_ESC, gen.m_bCloseWindowWithEsc == TRUE);
+		m_options.SaveOption(OPT_USE_RECYCLE_BIN, regpage.m_bUseRecycleBin == TRUE);
+
 		regpage.SaveMergePath();
 		sExtEditor = regpage.m_strEditorPath;
 		sExtEditor.TrimLeft();
@@ -1213,42 +1201,42 @@ void CMainFrame::OnOptions()
 		m_options.SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
 
 		m_options.SaveOption(OPT_CMP_IGNORE_WHITESPACE, compage.m_nIgnoreWhite);
-		m_options.SaveOption(OPT_CMP_IGNORE_BLANKLINES, compage.m_bIgnoreBlankLines);
-		m_options.SaveOption(OPT_CMP_EOL_SENSITIVE, compage.m_bEolSensitive ? FALSE : TRUE); // Reverse
-		m_options.SaveOption(OPT_CMP_IGNORE_CASE, compage.m_bIgnoreCase);
-        m_options.SaveOption(OPT_CMP_METHOD, compage.m_compareMethod);
-		m_options.SaveOption(OPT_CMP_MOVED_BLOCKS, compage.m_bMovedBlocks);
+		m_options.SaveOption(OPT_CMP_IGNORE_BLANKLINES, compage.m_bIgnoreBlankLines == TRUE);
+		m_options.SaveOption(OPT_CMP_EOL_SENSITIVE, compage.m_bEolSensitive == FALSE); // Reverse
+		m_options.SaveOption(OPT_CMP_IGNORE_CASE, compage.m_bIgnoreCase == TRUE);
+		m_options.SaveOption(OPT_CMP_METHOD, compage.m_compareMethod);
+		m_options.SaveOption(OPT_CMP_MOVED_BLOCKS, compage.m_bMovedBlocks == TRUE);
 		
 		m_nCompMethod = compage.m_compareMethod;
 
-		m_options.SaveOption(OPT_TAB_SIZE, editor.m_nTabSize);
-		m_options.SaveOption(OPT_TAB_TYPE, editor.m_nTabType);
-		m_options.SaveOption(OPT_AUTOMATIC_RESCAN, editor.m_bAutomaticRescan);
-		m_options.SaveOption(OPT_ALLOW_MIXED_EOL, editor.m_bAllowMixedEol);
-		m_options.SaveOption(OPT_SYNTAX_HIGHLIGHT, editor.m_bHiliteSyntax);
-		m_options.SaveOption(OPT_UNREC_APPLYSYNTAX, editor.m_bApplySyntax);
+		m_options.SaveOption(OPT_TAB_SIZE, (int)editor.m_nTabSize);
+		m_options.SaveOption(OPT_TAB_TYPE, (int)editor.m_nTabType);
+		m_options.SaveOption(OPT_AUTOMATIC_RESCAN, editor.m_bAutomaticRescan == TRUE);
+		m_options.SaveOption(OPT_ALLOW_MIXED_EOL, editor.m_bAllowMixedEol == TRUE);
+		m_options.SaveOption(OPT_SYNTAX_HIGHLIGHT, editor.m_bHiliteSyntax == TRUE);
+		m_options.SaveOption(OPT_UNREC_APPLYSYNTAX, editor.m_bApplySyntax == TRUE);
 
 		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
 		theApp.WriteProfileString(_T("Settings"), _T("VssPath"), m_strVssPath);
 
-		m_options.SaveOption(OPT_CLR_DIFF, colors.m_clrDiff);
-		m_options.SaveOption(OPT_CLR_SELECTED_DIFF, colors.m_clrSelDiff);
-		m_options.SaveOption(OPT_CLR_DIFF_DELETED, colors.m_clrDiffDeleted);
-		m_options.SaveOption(OPT_CLR_SELECTED_DIFF_DELETED, colors.m_clrSelDiffDeleted);
-		m_options.SaveOption(OPT_CLR_DIFF_TEXT, colors.m_clrDiffText);
-		m_options.SaveOption(OPT_CLR_SELECTED_DIFF_TEXT, colors.m_clrSelDiffText);
-		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF, colors.m_clrTrivial);
-		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, colors.m_clrTrivialDeleted);
-		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF_TEXT, colors.m_clrTrivialText);
-		m_options.SaveOption(OPT_CLR_MOVEDBLOCK, colors.m_clrMoved);
-		m_options.SaveOption(OPT_CLR_MOVEDBLOCK_DELETED, colors.m_clrMovedDeleted);
-		m_options.SaveOption(OPT_CLR_MOVEDBLOCK_TEXT, colors.m_clrMovedText);
-		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK, colors.m_clrSelMoved);
-		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, colors.m_clrSelMovedDeleted);
-		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, colors.m_clrSelMovedText);
-		m_options.SaveOption(OPT_CP_DEFAULT_MODE, codepage.m_nCodepageSystem);
-		m_options.SaveOption(OPT_CP_DEFAULT_CUSTOM, codepage.m_nCustomCodepageValue);
-		m_options.SaveOption(OPT_CP_DETECT, codepage.m_bDetectCodepage);
+		m_options.SaveOption(OPT_CLR_DIFF, (int)colors.m_clrDiff);
+		m_options.SaveOption(OPT_CLR_SELECTED_DIFF, (int)colors.m_clrSelDiff);
+		m_options.SaveOption(OPT_CLR_DIFF_DELETED, (int)colors.m_clrDiffDeleted);
+		m_options.SaveOption(OPT_CLR_SELECTED_DIFF_DELETED, (int)colors.m_clrSelDiffDeleted);
+		m_options.SaveOption(OPT_CLR_DIFF_TEXT, (int)colors.m_clrDiffText);
+		m_options.SaveOption(OPT_CLR_SELECTED_DIFF_TEXT, (int)colors.m_clrSelDiffText);
+		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF, (int)colors.m_clrTrivial);
+		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, (int)colors.m_clrTrivialDeleted);
+		m_options.SaveOption(OPT_CLR_TRIVIAL_DIFF_TEXT, (int)colors.m_clrTrivialText);
+		m_options.SaveOption(OPT_CLR_MOVEDBLOCK, (int)colors.m_clrMoved);
+		m_options.SaveOption(OPT_CLR_MOVEDBLOCK_DELETED, (int)colors.m_clrMovedDeleted);
+		m_options.SaveOption(OPT_CLR_MOVEDBLOCK_TEXT, (int)colors.m_clrMovedText);
+		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK, (int)colors.m_clrSelMoved);
+		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, (int)colors.m_clrSelMovedDeleted);
+		m_options.SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)colors.m_clrSelMovedText);
+		m_options.SaveOption(OPT_CP_DEFAULT_MODE, (int)codepage.m_nCodepageSystem);
+		m_options.SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)codepage.m_nCustomCodepageValue);
+		m_options.SaveOption(OPT_CP_DETECT, codepage.m_bDetectCodepage == TRUE);
 
 		updateDefaultCodepage(&m_options);
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
@@ -1267,8 +1255,8 @@ void CMainFrame::OnOptions()
 			pMergeDoc->RefreshOptions();
 			
 			// Enable/disable automatic rescan (rescan after editing)
-			pLeft->EnableRescan(m_options.GetInt(OPT_AUTOMATIC_RESCAN));
-			pRight->EnableRescan(m_options.GetInt(OPT_AUTOMATIC_RESCAN));
+			pLeft->EnableRescan(m_options.GetBool(OPT_AUTOMATIC_RESCAN));
+			pRight->EnableRescan(m_options.GetBool(OPT_AUTOMATIC_RESCAN));
 
 			// Set tab type (tabs (==0)/spaces (==1))
 			if (m_options.GetInt(OPT_TAB_TYPE) == 0)
@@ -1369,34 +1357,12 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	{
 		gLog.Write(_T("### Begin Comparison Parameters #############################\r\n")
 				  _T("\tLeft: %s\r\n")
-				   _T("\tRight: %s\r\n")
+				  _T("\tRight: %s\r\n")
 				  _T("\tRecurse: %d\r\n")
-				  _T("\tShowUniqueLeft: %d\r\n")
-				  _T("\tShowUniqueRight: %d\r\n")
-				  _T("\tShowIdentical: %d\r\n")
-				  _T("\tShowDiff: %d\r\n")
-				  _T("\tShowBinaries: %d\r\n")
-				  _T("\tHideBak: %d\r\n")
-				  _T("\tVerSys: %d\r\n")
-				  _T("\tVssPath: %s\r\n")
-				  _T("\tBackups: %d\r\n")
-				  _T("\tAllowMixedEOL: %d\r\n")
-				  _T("\tScrollToFirst: %d\r\n")
 				  _T("### End Comparison Parameters #############################\r\n"),
 				  strLeft,
 				  strRight,
-				  bRecurse,
-				  m_options.GetInt(OPT_SHOW_UNIQUE_LEFT),
-				  m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT),
-				  m_options.GetInt(OPT_SHOW_IDENTICAL),
-				  m_options.GetInt(OPT_SHOW_DIFFERENT),
-				  m_options.GetInt(OPT_SHOW_BINARIES),
-				  m_options.GetInt(OPT_HIDE_BACKUP),
-				  m_nVerSys,
-				  m_strVssPath,
-				  m_options.GetInt(OPT_CREATE_BACKUPS),
-				  m_options.GetInt(OPT_ALLOW_MIXED_EOL),
-				  m_options.GetInt(OPT_SCROLL_TO_FIRST));
+				  bRecurse);
 	}
 
 	try
@@ -1527,7 +1493,7 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 	CFileStatus status;
 
 	// create backup copy of file if destination file exists
-	if (m_options.GetInt(OPT_CREATE_BACKUPS) && CFile::GetStatus(pszPath, status))
+	if (m_options.GetBool(OPT_CREATE_BACKUPS) && CFile::GetStatus(pszPath, status))
 	{
 		// build the backup filename
 		CString spath, sname, sext;
@@ -1873,7 +1839,7 @@ void CMainFrame::RebuildRegExpList(BOOL bShowError)
 
 	// build the new list if the user choose to
 	// ignore lines matching the reg expression patterns
-	if (m_options.GetInt(OPT_LINEFILTER_ENABLED))
+	if (m_options.GetBool(OPT_LINEFILTER_ENABLED))
 	{
 		// find each regular expression and add to list
 		_tcsncpy(tmp, m_options.GetString(OPT_LINEFILTER_REGEXP), _MAX_PATH);
@@ -1980,43 +1946,42 @@ void CMainFrame::ApplyViewWhitespace()
 		CMergeDiffDetailView * pRightDetail = pMergeDoc->GetRightDetailView();
 		if (pLeft)
 		{
-			pLeft->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
-			pLeft->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
-				mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
+			pLeft->SetViewTabs(mf->m_options.GetBool(OPT_VIEW_WHITESPACE));
+			pLeft->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
+				mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
 		}
 		if (pRight)
 		{
-			pRight->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
-			pRight->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
-				mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
+			pRight->SetViewTabs(mf->m_options.GetBool(OPT_VIEW_WHITESPACE));
+			pRight->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
+				mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
 		}
 		if (pLeftDetail)
 		{
-			pLeftDetail->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
-			pLeftDetail->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
-				mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
+			pLeftDetail->SetViewTabs(mf->m_options.GetBool(OPT_VIEW_WHITESPACE));
+			pLeftDetail->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
+				mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
 		}
 		if (pRightDetail)
 		{
-			pRightDetail->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
-			pRightDetail->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
-				mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
+			pRightDetail->SetViewTabs(mf->m_options.GetBool(OPT_VIEW_WHITESPACE));
+			pRightDetail->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
+				mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
 		}
 	}
 }
 
 void CMainFrame::OnViewWhitespace() 
 {
-	BOOL bViewWhitespace = m_options.GetInt(OPT_VIEW_WHITESPACE);
-	bViewWhitespace = !bViewWhitespace;
-	m_options.SaveOption(OPT_VIEW_WHITESPACE, bViewWhitespace);
+	bool bViewWhitespace = m_options.GetBool(OPT_VIEW_WHITESPACE);
+	m_options.SaveOption(OPT_VIEW_WHITESPACE, !bViewWhitespace);
 	ApplyViewWhitespace();
 }
 
 /// Enables View/View Whitespace menuitem when merge view is active
 void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_options.GetInt(OPT_VIEW_WHITESPACE));
+	pCmdUI->SetCheck(m_options.GetBool(OPT_VIEW_WHITESPACE));
 }
 
 /// Get list of MergeDocs (documents underlying edit sessions)
@@ -2430,28 +2395,27 @@ void CMainFrame::OnSaveConfigData()
 	CString sError;
 
 	configLog.m_diffOptions.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	configLog.m_diffOptions.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
-	configLog.m_diffOptions.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);
-	configLog.m_diffOptions.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
+	configLog.m_diffOptions.bIgnoreBlankLines = mf->m_options.GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	configLog.m_diffOptions.bIgnoreCase = mf->m_options.GetBool(OPT_CMP_IGNORE_CASE);
+	configLog.m_diffOptions.bEolSensitive = mf->m_options.GetBool(OPT_CMP_EOL_SENSITIVE);
 	
-	configLog.m_viewSettings.bShowIdent = m_options.GetInt(OPT_SHOW_DIFFERENT);
-	configLog.m_viewSettings.bShowDiff = m_options.GetInt(OPT_SHOW_DIFFERENT);
-	configLog.m_viewSettings.bShowUniqueLeft = m_options.GetInt(OPT_SHOW_UNIQUE_LEFT);
-	configLog.m_viewSettings.bShowUniqueRight = m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT);
-	configLog.m_viewSettings.bShowBinaries = m_options.GetInt(OPT_SHOW_BINARIES);
-	configLog.m_viewSettings.bShowSkipped = m_options.GetInt(OPT_SHOW_SKIPPED);
-	configLog.m_viewSettings.bHideBak = m_options.GetInt(OPT_HIDE_BACKUP);
+	configLog.m_viewSettings.bShowIdent = m_options.GetBool(OPT_SHOW_IDENTICAL);
+	configLog.m_viewSettings.bShowDiff = m_options.GetBool(OPT_SHOW_DIFFERENT);
+	configLog.m_viewSettings.bShowUniqueLeft = m_options.GetBool(OPT_SHOW_UNIQUE_LEFT);
+	configLog.m_viewSettings.bShowUniqueRight = m_options.GetBool(OPT_SHOW_UNIQUE_RIGHT);
+	configLog.m_viewSettings.bShowBinaries = m_options.GetBool(OPT_SHOW_BINARIES);
+	configLog.m_viewSettings.bShowSkipped = m_options.GetBool(OPT_SHOW_SKIPPED);
 
-	configLog.m_miscSettings.bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
-	configLog.m_miscSettings.bAllowMixedEol = m_options.GetInt(OPT_ALLOW_MIXED_EOL);
-	configLog.m_miscSettings.bScrollToFirst = m_options.GetInt(OPT_SCROLL_TO_FIRST);
-	configLog.m_miscSettings.bBackup = m_options.GetInt(OPT_CREATE_BACKUPS);
-	configLog.m_miscSettings.bViewWhitespace = m_options.GetInt(OPT_VIEW_WHITESPACE);
-	configLog.m_miscSettings.bMovedBlocks = m_options.GetInt(OPT_CMP_MOVED_BLOCKS);
+	configLog.m_miscSettings.bAutomaticRescan = m_options.GetBool(OPT_AUTOMATIC_RESCAN);
+	configLog.m_miscSettings.bAllowMixedEol = m_options.GetBool(OPT_ALLOW_MIXED_EOL);
+	configLog.m_miscSettings.bScrollToFirst = m_options.GetBool(OPT_SCROLL_TO_FIRST);
+	configLog.m_miscSettings.bBackup = m_options.GetBool(OPT_CREATE_BACKUPS);
+	configLog.m_miscSettings.bViewWhitespace = m_options.GetBool(OPT_VIEW_WHITESPACE);
+	configLog.m_miscSettings.bMovedBlocks = m_options.GetBool(OPT_CMP_MOVED_BLOCKS);
 
 	configLog.m_cpSettings.nDefaultMode = m_options.GetInt(OPT_CP_DEFAULT_MODE);
 	configLog.m_cpSettings.nDefaultCustomValue = m_options.GetInt(OPT_CP_DEFAULT_CUSTOM);
-	configLog.m_cpSettings.bDetectCodepage = m_options.GetInt(OPT_CP_DETECT);
+	configLog.m_cpSettings.bDetectCodepage = m_options.GetBool(OPT_CP_DETECT);
 
 	configLog.m_fontSettings.nCharset = m_lfDiff.lfCharSet;
 	configLog.m_fontSettings.sFacename = m_lfDiff.lfFaceName;
@@ -2536,7 +2500,7 @@ void CMainFrame::OnToolsFilters()
 	theApp.m_globalFileFilter.GetFileFilters(&fileFilters, selectedFilter);
 	fileFiltersDlg.SetFilterArray(&fileFilters);
 	fileFiltersDlg.SetSelected(selectedFilter);
-	filter.m_bIgnoreRegExp = m_options.GetInt(OPT_LINEFILTER_ENABLED);
+	filter.m_bIgnoreRegExp = m_options.GetBool(OPT_LINEFILTER_ENABLED);
 	filter.m_sPattern = m_options.GetString(OPT_LINEFILTER_REGEXP);
 
 	if (sht.DoModal() == IDOK)
@@ -2561,7 +2525,7 @@ void CMainFrame::OnToolsFilters()
 			CString sFilter = theApp.m_globalFileFilter.GetFilter();
 			m_options.SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
-		m_options.SaveOption(OPT_LINEFILTER_ENABLED, filter.m_bIgnoreRegExp);
+		m_options.SaveOption(OPT_LINEFILTER_ENABLED, filter.m_bIgnoreRegExp == TRUE);
 		m_options.SaveOption(OPT_LINEFILTER_REGEXP, filter.m_sPattern);
 
 		RebuildRegExpList(TRUE);
@@ -2596,7 +2560,7 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 		}
 		else
 		{
-			if (m_options.GetInt(OPT_CLOSE_WITH_ESC))
+			if (m_options.GetBool(OPT_CLOSE_WITH_ESC))
 			{
 				MergeDocList docs;
 				GetAllMergeDocs(&docs);

@@ -3,26 +3,30 @@
 
 namespace varprop {
 
-typedef enum { VT_NULL, VT_INT, VT_FLOAT, VT_STRING, VT_TIME } VT_TYPE;
+typedef enum { VT_NULL, VT_BOOL, VT_INT, VT_FLOAT, VT_STRING, VT_TIME } VT_TYPE;
 
 struct VariantValue
 {
 public:
-	VariantValue() : vtype(VT_NULL), ivalue(0), fvalue(0) { }
+	VariantValue() : vtype(VT_NULL), bvalue(false), ivalue(0), fvalue(0) { }
+	bool isBool() const { return vtype == VT_BOOL; }
 	bool isInt() const { return vtype == VT_INT; }
 	bool isFloat() const { return vtype == VT_FLOAT; }
 	bool isString() const { return vtype == VT_STRING; }
 	bool isTime() const { return vtype == VT_TIME; }
 	VT_TYPE getType() const { return vtype; }
 
+	void SetBool(bool v) { Clear(); vtype = VT_BOOL; bvalue = v; }
 	void SetInt(int v) { Clear(); vtype = VT_INT; ivalue = v; }
 	void SetFloat(double v) { Clear(); vtype = VT_FLOAT; fvalue = v; }
 	void SetString(LPCTSTR sz) { Clear(); vtype = VT_STRING; svalue = sz; }
 	void SetString(const CString & str) { Clear(); vtype = VT_STRING; svalue = str; }
 	void SetTime(const COleDateTime & v) { Clear(); vtype = VT_TIME; tvalue = v; }
 
-	void Clear() { vtype = VT_NULL; ivalue = 0; fvalue = 0; svalue = _T(""); tvalue.m_status = COleDateTime::null;}
+	void Clear() { vtype = VT_NULL; bvalue = false; ivalue = 0; fvalue = 0;
+		svalue = _T(""); tvalue.m_status = COleDateTime::null;}
 
+	bool getBool() const { ASSERT(vtype == VT_BOOL); return bvalue; }
 	int getInt() const { ASSERT(vtype == VT_INT); return ivalue; }
 	double getFloat() const { ASSERT(vtype == VT_FLOAT); return fvalue; }
 	CString getString() const { ASSERT(vtype == VT_STRING); return svalue; }
@@ -30,6 +34,7 @@ public:
 
 private:
 	VT_TYPE vtype;
+	bool bvalue;
 	int ivalue;
 	double fvalue;
 	CString svalue;

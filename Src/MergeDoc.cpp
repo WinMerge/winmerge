@@ -115,15 +115,15 @@ CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
 	m_pInfoUnpacker = new PackingInfo;
 	m_nLeftBufferType = BUFFER_NORMAL;
 	m_nRightBufferType = BUFFER_NORMAL;
-	m_bMergingMode = mf->m_options.GetInt(OPT_MERGE_MODE);
+	m_bMergingMode = mf->m_options.GetBool(OPT_MERGE_MODE);
 	m_bLeftEditAfterRescan = FALSE;
 	m_bRightEditAfterRescan = FALSE;
 
-	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetInt(OPT_CMP_MOVED_BLOCKS));
+	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetBool(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	options.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
-	options.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);
-	options.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
+	options.bIgnoreBlankLines = mf->m_options.GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	options.bIgnoreCase = mf->m_options.GetBool(OPT_CMP_IGNORE_CASE);
+	options.bEolSensitive = mf->m_options.GetBool(OPT_CMP_EOL_SENSITIVE);
 
 	m_diffWrapper.SetOptions(&options);
 	m_diffWrapper.SetPrediffer(NULL);
@@ -1559,7 +1559,7 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		return SAVE_FAILED;	// No filename, cannot save...
 
 	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC &&
-		!mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
+		!mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL))
 	{
 			// get the default nCrlfStyle of the CDiffTextBuffer
 		nCrlfStyle = GetCRLFMode();
@@ -2583,7 +2583,7 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 		retVal = FRESULT_OK;
 		// By default, WinMerge unifies EOL to the most used type (when diffing or saving)
 		// As some info are lost, we request a confirmation from the user
-		if (!mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL))
+		if (!mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL))
 		{
 			CString s;
 			AfxFormatString1(s, IDS_SUGGEST_PRESERVEEOL, sFileName); 
@@ -2592,7 +2592,7 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 			{
 				// the user wants to keep the original chars
 				mf->SetEOLMixed(TRUE);
-				mf->m_options.SaveOption(OPT_ALLOW_MIXED_EOL, TRUE);
+				mf->m_options.SaveOption(OPT_ALLOW_MIXED_EOL, true);
 			}
 		}
 	}
@@ -2733,7 +2733,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 	if (m_ltBuf.GetCRLFMode() != m_rtBuf.GetCRLFMode() &&
-		!mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL) && diffOptions.bEolSensitive)
+		!mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL) && diffOptions.bEolSensitive)
 	{
 		// Options and files not are not compatible :
 		// Sensitive to EOL on, allow mixing EOL off, and files have a different EOL style.
@@ -2747,7 +2747,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		{
 			diffOptions.bEolSensitive = FALSE;
 			m_diffWrapper.SetOptions(&diffOptions);
-			mf->m_options.SaveOption(OPT_CMP_EOL_SENSITIVE, FALSE);
+			mf->m_options.SaveOption(OPT_CMP_EOL_SENSITIVE, false);
 		}
 	}
 
@@ -2787,7 +2787,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		pRightDetail->SetTextType(sextR);
 
 		if (bLeftTyped != bRightTyped &&
-			mf->m_options.GetInt(OPT_UNREC_APPLYSYNTAX))
+			mf->m_options.GetBool(OPT_UNREC_APPLYSYNTAX))
 		{
 			CCrystalTextView::TextDefinition *enuType;
 
@@ -2806,36 +2806,36 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		}
 
 		// scroll to first diff
-		if (mf->m_options.GetInt(OPT_SCROLL_TO_FIRST) &&
+		if (mf->m_options.GetBool(OPT_SCROLL_TO_FIRST) &&
 			m_diffList.GetSize() != 0)
 		{
 			pLeft->SelectDiff(0, TRUE, FALSE);
 		}
 
 		// Enable/disable automatic rescan (rescanning after edit)
-		pLeft->EnableRescan(mf->m_options.GetInt(OPT_AUTOMATIC_RESCAN));
-		pRight->EnableRescan(mf->m_options.GetInt(OPT_AUTOMATIC_RESCAN));
+		pLeft->EnableRescan(mf->m_options.GetBool(OPT_AUTOMATIC_RESCAN));
+		pRight->EnableRescan(mf->m_options.GetBool(OPT_AUTOMATIC_RESCAN));
 
 		// SetTextType will revert to language dependent defaults for tab
 		pLeft->SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));
 		pRight->SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));
-		pLeft->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
-		pRight->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
-		pLeft->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
-			mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
-		pRight->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
-			mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
+		pLeft->SetViewTabs(mf->m_options.GetBool(OPT_VIEW_WHITESPACE));
+		pRight->SetViewTabs(mf->m_options.GetBool(OPT_VIEW_WHITESPACE));
+		pLeft->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
+			mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
+		pRight->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
+			mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
 		pLeft->SetWordWrapping(FALSE);
 		pRight->SetWordWrapping(FALSE);
 
 		pLeftDetail->SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));
 		pRightDetail->SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));
-		pLeftDetail->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
-		pRightDetail->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
-		pLeftDetail->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
-			mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
-		pRightDetail->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
-			mf->m_options.GetInt(OPT_ALLOW_MIXED_EOL));
+		pLeftDetail->SetViewTabs(mf->m_options.GetBool(OPT_VIEW_WHITESPACE));
+		pRightDetail->SetViewTabs(mf->m_options.GetBool(OPT_VIEW_WHITESPACE));
+		pLeftDetail->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
+			mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
+		pRightDetail->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
+			mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
 		pLeftDetail->SetWordWrapping(FALSE);
 		pRightDetail->SetWordWrapping(FALSE);
 
@@ -2940,11 +2940,11 @@ void CMergeDoc::RefreshOptions()
 {
 	DIFFOPTIONS options = {0};
 	
-	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetInt(OPT_CMP_MOVED_BLOCKS));
+	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetBool(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	options.bIgnoreBlankLines = mf->m_options.GetInt(OPT_CMP_IGNORE_BLANKLINES);
-	options.bIgnoreCase = mf->m_options.GetInt(OPT_CMP_IGNORE_CASE);
-	options.bEolSensitive = mf->m_options.GetInt(OPT_CMP_EOL_SENSITIVE);
+	options.bIgnoreBlankLines = mf->m_options.GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	options.bIgnoreCase = mf->m_options.GetBool(OPT_CMP_IGNORE_CASE);
+	options.bEolSensitive = mf->m_options.GetBool(OPT_CMP_EOL_SENSITIVE);
 
 	m_diffWrapper.SetOptions(&options);
 
@@ -3021,7 +3021,7 @@ BOOL CMergeDoc::GetMergingMode() const
 void CMergeDoc::SetMergingMode(BOOL bMergingMode)
 {
 	m_bMergingMode = bMergingMode;
-	mf->m_options.SaveOption(OPT_MERGE_MODE, m_bMergingMode);
+	mf->m_options.SaveOption(OPT_MERGE_MODE, m_bMergingMode == TRUE);
 }
 
 /**
@@ -3032,7 +3032,7 @@ void CMergeDoc::SetDetectMovedBlocks(BOOL bDetectMovedBlocks)
 	if (bDetectMovedBlocks == m_diffWrapper.GetDetectMovedBlocks())
 		return;
 
-	mf->m_options.SaveOption(OPT_CMP_MOVED_BLOCKS, bDetectMovedBlocks);
+	mf->m_options.SaveOption(OPT_CMP_MOVED_BLOCKS, bDetectMovedBlocks == TRUE);
 	m_diffWrapper.SetDetectMovedBlocks(bDetectMovedBlocks);
 	FlushAndRescan();
 }

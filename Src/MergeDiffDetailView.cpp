@@ -184,7 +184,7 @@ void CMergeDiffDetailView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 	else
 	{
 		// If no syntax hilighting
-		if (!mf->m_options.GetInt(OPT_SYNTAX_HIGHLIGHT))
+		if (!mf->m_options.GetBool(OPT_SYNTAX_HIGHLIGHT))
 		{
 			crBkgnd = GetSysColor (COLOR_WINDOW);
 			crText = GetSysColor (COLOR_WINDOWTEXT);

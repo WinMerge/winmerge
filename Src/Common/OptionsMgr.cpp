@@ -52,6 +52,10 @@ int COption::Init(CString optName, varprop::VariantValue defaultValue)
 	case varprop::VT_NULL:
 		retVal = OPT_UNKNOWN_TYPE;
 		break;
+	case varprop::VT_BOOL:
+		m_value.SetBool(defaultValue.getBool());
+		m_valueDef.SetBool(defaultValue.getBool());
+		break;
 	case varprop::VT_INT:
 		m_value.SetInt(defaultValue.getInt());
 		m_valueDef.SetInt(defaultValue.getInt());
@@ -111,6 +115,9 @@ int COption::Set(varprop::VariantValue value)
 	case varprop::VT_NULL:
 		retVal = OPT_UNKNOWN_TYPE;
 		break;
+	case varprop::VT_BOOL:
+		m_value.SetBool(value.getBool());
+		break;
 	case varprop::VT_INT:
 		m_value.SetInt(value.getInt());
 		break;
@@ -150,6 +157,9 @@ int COption::SetDefault(varprop::VariantValue defaultValue)
 	case varprop::VT_NULL:
 		retVal = OPT_UNKNOWN_TYPE;
 		break;
+	case varprop::VT_BOOL:
+		m_valueDef.SetBool(defaultValue.getBool());
+		break;
 	case varprop::VT_INT:
 		m_valueDef.SetInt(defaultValue.getInt());
 		break;
@@ -175,6 +185,9 @@ void COption::Reset()
 {
 	switch (m_value.getType())
 	{
+	case varprop::VT_BOOL:
+		m_value.SetBool(m_valueDef.getBool());
+		break;
 	case varprop::VT_INT:
 		m_value.SetInt(m_valueDef.getInt());
 		break;
@@ -223,7 +236,7 @@ varprop::VariantValue COptionsMgr::Get(CString name) const
 }
 
 /**
- * @brief Return option value
+ * @brief Return string option value
  */
 CString COptionsMgr::GetString(CString name) const
 {
@@ -233,13 +246,23 @@ CString COptionsMgr::GetString(CString name) const
 }
 
 /**
- * @brief Return option value
+ * @brief Return integer option value
  */
 int COptionsMgr::GetInt(CString name) const
 {
 	varprop::VariantValue val;
 	val = Get(name);
 	return val.getInt();
+}
+
+/**
+ * @brief Return boolean option value
+ */
+bool COptionsMgr::GetBool(CString name) const
+{
+	varprop::VariantValue val;
+	val = Get(name);
+	return val.getBool();
 }
 
 /**
@@ -338,6 +361,31 @@ int COptionsMgr::GetDefault(CString name, DWORD & value) const
 }
 
 /**
+ * @brief Return default boolean value
+ */
+int COptionsMgr::GetDefault(CString name, bool & value) const
+{
+	COption tmpOption;
+	BOOL optionFound = FALSE;
+	int retVal = OPT_OK;
+
+	optionFound = m_optionsMap.Lookup(name, tmpOption);
+	if (optionFound == TRUE)
+	{
+		varprop::VariantValue val = tmpOption.GetDefault();
+		if (val.isBool())
+			value = val.getBool();
+		else
+			retVal = OPT_WRONG_TYPE;
+	}
+	else
+	{
+		retVal = OPT_NOTFOUND;
+	}
+	return retVal;
+}
+
+/**
  * @brief Split option name to path (in registry) and
  * valuename (in registry).
  *
@@ -420,12 +468,24 @@ int CRegOptions::LoadValueFromReg(HKEY hKey, CString strName,
 			value.SetString(strValue);
 			retVal = Set(strName, value);
 		}
-		else if (type == REG_DWORD && valType == varprop::VT_INT)
+		else if (type == REG_DWORD)
 		{
-			DWORD dwordValue;
-			CopyMemory(&dwordValue, pData, sizeof(DWORD));
-			value.SetInt(dwordValue);
-			retVal = Set(strName, value);
+			if (valType == varprop::VT_INT)
+			{
+				DWORD dwordValue;
+				CopyMemory(&dwordValue, pData, sizeof(DWORD));
+				value.SetInt(dwordValue);
+				retVal = Set(strName, value);
+			}
+			else if (valType == varprop::VT_BOOL)
+			{
+				DWORD dwordValue;
+				CopyMemory(&dwordValue, pData, sizeof(DWORD));
+				value.SetBool(dwordValue > 0 ? true : false);
+				retVal = Set(strName, value);
+			}
+			else
+				retVal = OPT_WRONG_TYPE;
 		}
 		else
 			retVal = OPT_WRONG_TYPE;
@@ -465,6 +525,12 @@ int CRegOptions::SaveValueToReg(HKEY hKey, CString strValueName,
 	else if (valType == varprop::VT_INT)
 	{
 		DWORD dwordVal = value.getInt();
+		retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_DWORD,
+				(LPBYTE)&dwordVal, sizeof(DWORD));
+	}
+	else if (valType == varprop::VT_BOOL)
+	{
+		DWORD dwordVal = value.getBool() ? 1 : 0;
 		retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_DWORD,
 				(LPBYTE)&dwordVal, sizeof(DWORD));
 	}
@@ -547,12 +613,12 @@ int CRegOptions::InitOption(CString name, varprop::VariantValue defaultValue)
 }
 
 /**
- * @brief Init and add new CString option.
+ * @brief Init and add new string option.
  *
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptions::InitOption(CString name, CString defaultValue)
+int CRegOptions::InitOption(CString name, LPCTSTR defaultValue)
 {
 	varprop::VariantValue defValue;
 	int retVal = OPT_OK;
@@ -574,6 +640,22 @@ int CRegOptions::InitOption(CString name, int defaultValue)
 	int retVal = OPT_OK;
 	
 	defValue.SetInt(defaultValue);
+	retVal = InitOption(name, defValue);
+	return retVal;
+}
+
+/**
+ * @brief Init and add new boolean option.
+ *
+ * Adds new option to list of options. Sets value to default value.
+ * If option does not exist in registry, saves with default value.
+ */
+int CRegOptions::InitOption(CString name, bool defaultValue)
+{
+	varprop::VariantValue defValue;
+	int retVal = OPT_OK;
+	
+	defValue.SetBool(defaultValue);
 	retVal = InitOption(name, defValue);
 	return retVal;
 }
@@ -669,7 +751,7 @@ int CRegOptions::SaveOption(CString name, varprop::VariantValue value)
 }
 
 /**
- * @brief Set new value for option and save option to registry
+ * @brief Set new string value for option and save option to registry
  */
 int CRegOptions::SaveOption(CString name, CString value)
 {
@@ -684,7 +766,7 @@ int CRegOptions::SaveOption(CString name, CString value)
 }
 
 /**
- * @brief Set new value for option and save option to registry
+ * @brief Set new integer value for option and save option to registry
  */
 int CRegOptions::SaveOption(CString name, int value)
 {
@@ -692,6 +774,21 @@ int CRegOptions::SaveOption(CString name, int value)
 	int retVal = OPT_OK;
 
 	val.SetInt(value);
+		retVal = Set(name, val);
+	if (retVal == OPT_OK)
+		retVal = SaveOption(name);
+	return retVal;
+}
+
+/**
+ * @brief Set new boolean value for option and save option to registry
+ */
+int CRegOptions::SaveOption(CString name, bool value)
+{
+	varprop::VariantValue val;
+	int retVal = OPT_OK;
+
+	val.SetBool(value);
 		retVal = Set(name, val);
 	if (retVal == OPT_OK)
 		retVal = SaveOption(name);

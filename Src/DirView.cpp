@@ -76,7 +76,7 @@ CDirView::CDirView()
 , m_pHeaderPopup(NULL)
 {
 	m_pList = NULL;
-	m_bEscCloses = mf->m_options.GetInt(OPT_CLOSE_WITH_ESC);
+	m_bEscCloses = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
 }
 
 CDirView::~CDirView()
@@ -1644,7 +1644,7 @@ void CDirView::OnUpdateRefresh(CCmdUI* pCmdUI)
 LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 {
 	// Close compare pane when compare is ready
-	if (mf->m_options.GetInt(OPT_AUTOCLOSE_CMPPANE))
+	if (mf->m_options.GetBool(OPT_AUTOCLOSE_CMPPANE))
 	{
 		SetTimer(IDT_CMPPANE_CLOSING, CMPPANE_DELAY, NULL);
 	}
@@ -1656,7 +1656,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	pDoc->CompareReady();
 	pDoc->Redisplay();
 	
-	if (mf->m_options.GetInt(OPT_SCROLL_TO_FIRST))
+	if (mf->m_options.GetBool(OPT_SCROLL_TO_FIRST))
 		OnFirstdiff();
 	else
 		MoveSelection(0, 0, 0);
@@ -2268,7 +2268,7 @@ void CDirView::ResetColumnWidths()
  */
 void CDirView::RefreshOptions()
 {
-	m_bEscCloses = mf->m_options.GetInt(OPT_CLOSE_WITH_ESC);
+	m_bEscCloses = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
 }
 
 /**

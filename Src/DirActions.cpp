@@ -534,7 +534,7 @@ void CDirView::PerformActionList(ActionList & actionList)
 	}
 	
 	// Check option and enable putting deleted items to Recycle Bin
-	if (mf->m_options.GetInt(OPT_USE_RECYCLE_BIN) == TRUE)
+	if (mf->m_options.GetBool(OPT_USE_RECYCLE_BIN))
 		operFlags |= FOF_ALLOWUNDO;
 
 	fileOp.SetOperationFlags(operation, this, operFlags);
