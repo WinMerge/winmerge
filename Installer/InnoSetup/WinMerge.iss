@@ -62,7 +62,7 @@ AppUpdatesURL=http://WinMerge.org/
 ;This is in case an older version of the installer happened to be
 DirExistsWarning=No
 
-;This requires IS Pack 4.18(full install).  Once installed you must compile using ISTool, not Inno Setup directly.
+;This requires IS Pack 4.18(full install).
 AppVersion={#AppVersion}
 
 DefaultDirName={pf}\WinMerge
@@ -238,7 +238,7 @@ Name: {app}\MergeSwedish.lang; Type: files
 
 
 Name: {app}\Read Me.rtf; Type: files
-Name: {app}\Dos\Contributors.rtf; Type: files
+Name: {app}\Docs\Contributors.rtf; Type: files
 
 ;Removes the previous start menu items and group in case the user chooses to install to a new start menu location next time
 Name: {commonstartmenu}\Programs\WinMerge\WinMerge.lnk; Type: files
