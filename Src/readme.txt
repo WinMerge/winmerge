@@ -1,6 +1,8 @@
 2003-10-23 Perry
  BUG: [ 828619 ] Prevent closing dir doc whilst scanning
   WinMerge: DirDoc.cpp DirDoc.h
+ BUG: [ 829306 ] Fix unifile code to append last line
+  WinMerge: MergeDoc.cpp
 
 2003-10-23 Kimmo
  BUG: [ 815147 ] Scrollwheel scrolls too far at end of file

@@ -1114,14 +1114,21 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 	{
 		pufile->ReadBom();
 		UINT lineno = 0;
-		CString line, eol;
+		CString line, eol, preveol;
+		bool done = false;
 
 		// Manually grow line array exponentially
 		int arraysize = 500;
 		m_aLines.SetSize(arraysize);
 		
-		while (pufile->ReadString(line, eol))
-		{
+		do {
+			done = !pufile->ReadString(line, eol);
+
+			// if last line had no eol, we can quit
+			if (done && preveol.IsEmpty())
+				break;
+			// but if last line had eol, we add an extra (empty) line to buffer
+
 			// Manually grow line array exponentially
 			if (lineno == arraysize)
 			{
@@ -1133,7 +1140,9 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit, PackingInf
 			line += eol;
 			AppendLine(lineno, line, line.GetLength());
 			++lineno;
-		}
+			preveol = eol;
+		} while (!done);
+
 		// fix array size (due to our manual exponential growth
 		m_aLines.SetSize(lineno);
 	
