@@ -1,3 +1,5 @@
+2004-08-27 WinMerge experimental release 2.1.7.12 (cvs)
+
 2004-08-27 Kimmo
  PATCH: [ 1017294 ] When closing file compare close also empty directory compare
   Src: DirDoc.cpp
