@@ -1,3 +1,7 @@
+2004-05-28 Kimmo
+ BUG: [ 959729 ] View menu show-items disabled in mergeview
+  Src/editlib: editcmd.h
+
 2004-05-28 Laoran
  PATCH: [ 960771 ] disable .. in dirview if upward move is not reversible
   Src: DirView.cpp DirView.h Merge.rc resource.h
