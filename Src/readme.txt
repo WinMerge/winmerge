@@ -1,6 +1,8 @@
 2004-05-13 Perry
  PATCH: [ 950530 ] Remove unneeded cast in DirView.cpp
   Src: DirView.cpp
+ PATCH: [ 945722 ] Two functions are never called
+  Src: DiffContext.cpp DiffContext.h
 
 2004-05-12 Kimmo
  PATCH: [ 948448 ] Remove WinMerge.exe path from system options

@@ -126,15 +126,9 @@ public:
 	void SetRegExp(LPCTSTR pszExp);
 
 	// add & remove differences
-	void AddDiff(const CString &pszFilename, const CString &szSubdir, const CString &pszLeftDir, const CString &pszRightDir
-		, __int64 lmtime, __int64 rmtime, __int64 lctime, __int64 rctime
-		, __int64 lsize, __int64 rsize, int diffcode
-		, int lattrs=0, int rattrs=0
-		, int ndiffs=-1, int ntrivialdiffs=-1);
 	void AddDiff(DIFFITEM & di);
 	void RemoveDiff(POSITION diffpos);
 	void RemoveAll();
-	void UpdateFieldsNeededForNewItems(DIFFITEM & di, DiffFileInfo & dfi);
 	void UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi);
 
 	// to iterate over all differences on list

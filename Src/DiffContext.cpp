@@ -108,40 +108,6 @@ static CString GetFixedFileVersion(const CString & path)
 	return ver.GetFixedFileVersion();
 }
 
-/**
- * @brief Add new diffitem to CDiffContext array
- */
-void CDiffContext::AddDiff(const CString &pszFilename, const CString &szSubdir
-	, const CString &pszLeftDir, const CString &pszRightDir
-	, __int64 lmtime, __int64 rmtime
-	, __int64 lctime, __int64 rctime
-	, __int64 lsize, __int64 rsize
-	, int diffcode
-	, int lattrs, int rattrs
-	, int ndiffs, int ntrivialdiffs
-	)
-{
-	DIFFITEM di;
-	di.sfilename = pszFilename;
-	di.sSubdir = szSubdir;
-	di.left.mtime = lmtime;
-	di.right.mtime = rmtime;
-	di.left.ctime = lctime;
-	di.right.ctime = rctime;
-	di.diffcode = diffcode;
-	di.left.size = lsize;
-	di.right.size = rsize;
-	UpdateFieldsNeededForNewItems(di, di.left);
-	UpdateFieldsNeededForNewItems(di, di.right);
-	di.left.flags.flags += lattrs;
-	di.right.flags.flags += rattrs;
-	if (ndiffs >= 0 && ntrivialdiffs >= 0)
-	{
-		di.nsdiffs = ndiffs - ntrivialdiffs;
-		di.ndiffs = ndiffs;
-	}
-	AddDiff(di);
-}
 
 /**
  * @brief Add new diffitem to CDiffContext array
@@ -238,16 +204,6 @@ void CDiffContext::SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask)
 	ASSERT(! ((~mask) & diffcode) ); // make sure they only set flags in their mask
 	di.diffcode &= (~mask); // remove current data
 	di.diffcode |= diffcode; // add new data
-}
-
-/**
- * @brief Load all fields not provided in initial AddDiff call
- */
-void CDiffContext::UpdateFieldsNeededForNewItems(DIFFITEM & di, DiffFileInfo & dfi)
-{
-	// attributes weren't passed, which means reading the file status
-	// so we may as well do them all
-	UpdateInfoFromDiskHalf(di, dfi);
 }
 
 /**
