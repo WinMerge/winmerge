@@ -1,32 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <sect1 id="VersionControl">
   <title>Version control integration</title>
-  <para>WinMerge provides basic integration with Visual SourceSafe and ClearCase version control systems. Integration means WinMerge checkouts file edited from version control. User can later checkin changed file with version control system's tools. WinMerge does not provide history or checkin tools.</para>
-  <para>Version control support relies on fact that files in version control system are read-only in local disk. So if local file is read-only and version control integration is enabled WinMerge assumes file is version controlled and shows checkout dialog.</para>
+
+  <para>WinMerge provides basic integration with Visual SourceSafe and
+  ClearCase version control systems. Integration means WinMerge checkouts file
+  edited from version control. User can later checkin changed file with
+  version control system's tools. WinMerge does not provide history or checkin
+  tools.</para>
+
+  <para>Version control support relies on fact that files in version control
+  system are read-only in local disk. So if local file is read-only and
+  version control integration is enabled WinMerge assumes file is version
+  controlled and shows checkout dialog.</para>
+
   <sect2>
     <title>Visual SourceSafe</title>
+
+    <para>To enable Visual SourceSafe integration for version controlled
+    directory:</para>
+
+    <orderedlist>
+      <listitem>
+        <para>Enable Visual SourceSafe integration from
+        <guimenu>Edit</guimenu><guimenuitem>Options</guimenuitem><guilabel>
+        Versioning System</guilabel></para>
+      </listitem>
+
+      <listitem>
+        <para>Open version controlled file/directory to WinMerge</para>
+      </listitem>
+
+      <listitem>
+        <para>Edit version controlled file</para>
+      </listitem>
+
+      <listitem>
+        <para>Save changes - now WinMerge detects file is read-only and
+        assumes it is under version control. WinMerge shows following
+        dialog:</para>
+      </listitem>
+    </orderedlist>
+
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/sourcesafe1.gif" format="GIF"/>
+          <imagedata fileref="screenshots/sourcesafe1.gif" format="GIF" />
         </imageobject>
       </inlinemediaobject></para>
-    <para>WinMerge searches for SourceSafe databases from system and fills them to first dropdown list in dialog. So you first have to select right database if there are more than one databases in your system.</para>
-    <para>Project path is file path relative to SourceSafe database base path. Be careful with this since most errors are because of wrong project path. Keep in mind that when you change folder you have to change project path too!</para>
-    <para>WinMerge remembers password for current session, but does not store it. So you don't need to retype password again in same session. But after closing WinMerge you have to retype password. This is to keep your password safe!</para>
-    <para>Apply to all items -checkbox allows to checkout several files when copying files in directory compare. All files must reside in same directory to use this feature.</para>
-    <para>Unfortunately, VSS is horribly silent about error conditions (other than the fact that one occurred). If an operation fails, one of the following conditions could be at fault:</para>
+
+    <para>WinMerge searches for SourceSafe databases from system and fills
+    them to first dropdown list in dialog. So you first have to select right
+    database if there are more than one databases in your system.</para>
+
+    <para>Project path is file path relative to SourceSafe database base path.
+    Be careful with this since most errors are because of wrong project path.
+    Keep in mind that when you change folder you have to change project path
+    too!</para>
+
+    <para>WinMerge remembers password for current session, but does not store
+    it. So you don't need to retype password again in same session. But after
+    closing WinMerge you have to retype password. This is to keep your
+    password safe!</para>
+
+    <para>Apply to all items -checkbox allows to checkout several files when
+    copying files in directory compare. All files must reside in same
+    directory to use this feature.</para>
+
+    <para>Unfortunately, VSS is horribly silent about error conditions (other
+    than the fact that one occurred). If an operation fails, one of the
+    following conditions could be at fault:</para>
+
     <itemizedlist>
       <listitem>
-        <para>Another user may have the file checked out with exclusive access</para>
+        <para>Another user may have the file checked out with exclusive
+        access</para>
       </listitem>
+
       <listitem>
         <para>You may have specified the wrong project</para>
       </listitem>
+
       <listitem>
         <para>You may have entered the project name incorrectly</para>
       </listitem>
+
       <listitem>
-        <para>Did you use VSS path syntax (ie: <envar>$/MyProject/res</envar>)</para>
+        <para>Did you use VSS path syntax (ie:
+        <envar>$/MyProject/res</envar>)</para>
       </listitem>
+
       <listitem>
         <para>Your connection to the VSS server computer may be hosed</para>
       </listitem>
