@@ -1,7 +1,7 @@
 2005-01-22 Jochen
  PATCH: [ 1107467 ] Detect 7-Zip version from 7zip_pad.xml (2)
   Src: 7zCommon.cpp 7zCommon.h ConfigLog.cpp Merge.dsp Merge.rc paths.cpp paths.h 
-  Src new files: charsets.c charsets.h markdown.cpp markdown.h
+  Src new files: charsets.c charsets.h language.c language.h markdown.cpp markdown.h
   Src/Common: version.cpp version.h
 
 2005-02-03 Kimmo
