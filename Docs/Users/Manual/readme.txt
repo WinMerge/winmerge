@@ -3,6 +3,8 @@
   Manual: Locales.xml
  PATCH: [ 1122703 ] Docs: New faq item about printing
   Manual: Faq.xml
+ PATCH: [ 1122740 ] Docs: Better introductory chapter
+  Manual: Introduction.xml
 
 2005-01-24 Kimmo
  Update version to 1.1.0 (for 2.3.x docs), add Perry to contributors

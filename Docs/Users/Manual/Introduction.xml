@@ -1,8 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <sect1 id="Introduction">
   <title>Introduction to WinMerge</title>
-  <para>WinMerge is an Open Source visual text file differencing and merging tool for Win32 platforms. WinMerge can compare directories and files and present differences in easy to understand and handle format.</para>
-  <para>WinMerge is highly useful for determing what has changed between project versions, and then merging changes between versions. WinMerge can be used as external differencing/merging tool or as standalone application.</para>
-  <para>In addition WinMerge has a lot of helping and supporting features making comparing and synching/merging as easy and useful as possible. Several programming languages and other fileformats are syntax highlighted.</para>
-  <para>WinMerge is not an hex-editor. WinMerge can only inform user if binary files are different or identical, but WinMerge does not allow merging or editing binary files.</para>
-  <para>Goal of WinMerge development is to make comparing and synch/merge of directories and files easy and fast. While maintaining maximum reliability. Easiness reduces user errors. Version 2.2 is remarkably better in this goal than version 2.0.</para>
+
+  <para>WinMerge is an <ulink url="http://www.opensource.org/">Open
+  Source</ulink> visual text file differencing and merging tool for Win32
+  platforms. WinMerge can compare directories and files and present
+  differences in easy to understand and handle format.</para>
+
+  <para>WinMerge is highly useful for determing what has changed between
+  project versions, and then merging changes between versions. WinMerge can be
+  used as external differencing/merging tool or as standalone
+  application.</para>
+
+  <para>In addition WinMerge has a lot of helping and supporting features
+  making comparing and synching/merging as easy and useful as possible.
+  Several programming languages and other fileformats are syntax
+  highlighted.</para>
+
+  <para>WinMerge is not an hex-editor. WinMerge can only inform user if binary
+  files are different or identical, but WinMerge does not allow merging or
+  editing binary files.</para>
+
+  <para>Goal of WinMerge development is to make comparing and synch/merge of
+  directories and files easy and fast. While maintaining maximum reliability.
+  Easiness reduces user errors. Version 2.2 is remarkably better in this goal
+  than version 2.0.</para>
+
+  <para>Please note that WinMerge is not freeware, but it is <ulink
+  url="http://www.gnu.org/copyleft/gpl.html">GPL</ulink> licenced.</para>
+
+  <sect2>
+    <title>WinMerge versions</title>
+
+    <para>There are three kind of versions available in <ulink
+    url="https://sourceforge.net/project/showfiles.php?group_id=13216">downloads</ulink>
+    page.</para>
+
+    <sect3>
+      <title>Stable versions</title>
+
+      <para><ulink
+      url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">Stable
+      versions</ulink> are recommended for most users. If you are unsure about
+      what version to use - use latest stable version.</para>
+    </sect3>
+
+    <sect3>
+      <title>Beta versions</title>
+
+      <para><ulink
+      url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158">Beta
+      versions</ulink> are for people who want to test latest features and
+      improvements done after last stable version. Beta versions are not so
+      extensively tested as stable versions are and propably have some
+      bugs.</para>
+    </sect3>
+
+    <sect3>
+      <title>Experimental versions</title>
+
+      <para><ulink
+      url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246">Experimental
+      versions</ulink> are snapshot releases from version control (CVS). They
+      have all the latest features and improvements. Some features may still
+      be buggy and/or incomplete. These releases are made available to allow
+      users to try out the current code without needing to compile, and
+      participate in development discussions concerning new and changing
+      features. We also appreciate any help testing the current code. Use with
+      care and enable backups! And please <ulink
+      url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">report
+      bugs</ulink> you find using these builds, it really helps with WinMerge
+      development!</para>
+    </sect3>
+  </sect2>
+
+  <sect2>
+    <title>Getting support and reporting bugs</title>
+
+    <para><ulink
+    url="http://sourceforge.net/forum/forum.php?forum_id=41637">Open
+    discussion forum</ulink> is the fastest way to get help. Please be
+    patient, it may take some time anybody answers.</para>
+
+    <para>If you have found a bug, please submit it as a <ulink
+    url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug
+    report</ulink>. Please attach as much information as you can, at least the
+    version number of WinMerge you are using. If you can, attach also
+    configuration log which you can see from menu
+    <guimenu>Help</guimenu><guimenuitem>Configuration</guimenuitem>... Good
+    information in bug report means better change for bug to be fixed
+    faster.</para>
+  </sect2>
+
+  <sect2>
+    <title>WinMerge source codes and development</title>
+
+    <para>WinMerge source codes are available in <ulink
+    url="https://sourceforge.net/project/showfiles.php?group_id=13216">downloads</ulink>
+    page and from <ulink
+    url="https://sourceforge.net/cvs/?group_id=13216">public CVS
+    server</ulink>. We welcome everybody to download the sources, study them
+    and alter them. If you find (and fix) bugs, improve something etc, please
+    submit your changes back to us as <ulink
+    url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">patches</ulink>
+    and help improve this product!</para>
+
+    <para>While WinMerge development has been fast in last two years, all this
+    work is done by people in their spare time. Nobody gets paid for improving
+    WinMerge. We try to fix bugs as we find them or somebody reports them to
+    us. We really try - we use WinMerge too. But there is absolutely no
+    promises for new features. We always appreciate any help with WinMerge, be
+    it testing, documenting, translating or coding.</para>
+
+    <sect3>
+      <title>Participating to WinMerge development</title>
+
+      <para>As mentioned above, we look for help in many areas, not just
+      coding. Translations, documentation and testing are important
+      too.</para>
+
+      <para><ulink
+      url="http://sourceforge.net/forum/forum.php?forum_id=41639">Developers-forum</ulink>
+      is best place to discuss about development. If you are interested in
+      helping with WinMerge development, let us know. If you want to fix one
+      of our <ulink
+      url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216"
+      userlevel="">bugs</ulink> or implement a <ulink
+      url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">new
+      feature</ulink>, let us know.</para>
+    </sect3>
+  </sect2>
 </sect1>
