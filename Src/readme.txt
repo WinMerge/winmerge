@@ -1,3 +1,9 @@
+2003-10-21 Kimmo
+ PATCH: [ 826149 ] Improved "Merge.ico" and "MergeDoc.ico"
+  From Tim Gerundt
+  WinMerge/res: Merge.ico MergeDoc.ico
+  All Languages/res: Merge.ico MergeDoc.ico
+
 2003-10-20 Kimmo
  BUG: [ 826645 ] Scrolling to diff does not move cursor to diff
   WinMerge: MergeEditView.cpp
