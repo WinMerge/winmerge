@@ -16,47 +16,47 @@
   <tr>
     <td width="200" valign="top" bgcolor="#c0c0c0">
       <p class="lefthead"><i>WinMerge on </i><br>
-        <a href="http://sourceforge.net/projects/winmerge">
+        <a href="http://sourceforge.net/projects/winmerge" target="_top">
           <IMG src="http://sourceforge.net/sflogo.php?group_id=13216" border="0" alt="SourceForge Logo">
         </a>
       </p>
       <p class="lefthead">Users</p>
-      <p class="lefttext"><A href="docs20/index.html">WinMerge User's Guide</a><br>
-      <a href="http://sourceforge.net/mail/?group_id=13216">Mailing Lists</a><br>
-      <a href="http://sourceforge.net/forum/?group_id=13216">Discussion Forums</a>
+      <p class="lefttext"><A href="http://winmerge.org/docs20/index.html" target="_top">WinMerge User's Guide</a><br>
+      <a href="http://sourceforge.net/mail/?group_id=13216" target="_top">Mailing Lists</a><br>
+      <a href="http://sourceforge.net/forum/?group_id=13216" target="_top">Discussion Forums</a>
       </p>
       <p class="lefttext">
-      <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">Submit a Bug Report</a><br>
-      <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">Submit a Feature Request</a><br>
-      <a href="WinMergeChanges.html">Change History</a><br>
-      <a href="http://sourceforge.net/project/project_donations.php?group_id=13216">Donations</a>
+      <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216" target="_top">Submit a Bug Report</a><br>
+      <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216" target="_top">Submit a Feature Request</a><br>
+      <a href="http://winmerge.org/WinMergeChanges.html" target="_top">Change History</a><br>
+      <a href="http://sourceforge.net/project/project_donations.php?group_id=13216" target="_top">Donations</a>
       </p>
 
       <p class="lefthead">Developers</p>
-      <p class="lefttext"><a href="http://sourceforge.net/projects/winmerge/">Project Home</a><br>
-      <a href="http://cvs.sourceforge.net/viewcvs.py/winmerge/">Go to CVSWeb</a><br>
-      <a href="http://sourceforge.net/cvs/?group_id=13216">CVS Client Access</a><br>
+      <p class="lefttext"><a href="http://sourceforge.net/projects/winmerge/" target="_top">Project Home</a><br>
+      <a href="http://cvs.sourceforge.net/viewcvs.py/winmerge/" target="_top">Go to CVSWeb</a><br>
+      <a href="http://sourceforge.net/cvs/?group_id=13216" target="_top">CVS Client Access</a><br>
       <a href="#UsingWinCVS">WinCVS Hints</a><br>
-      <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">Submit a Patch</a><br>
+      <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216" target="_top">Submit a Patch</a><br>
       <a href="#translate">Translate WinMerge!</a></p>
 
       <p class="lefthead">Downloads</p>
       <p class="lefttext">
-      <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">WinMerge</a><br>
-      <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403">Language DLL's</a><br>
-      <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254">Documentation</a>
+      <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248" target="_top">WinMerge</a><br>
+      <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403" target="_top">Language DLL's</a><br>
+      <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254" target="_top">Documentation</a>
       </p>
       <p class="lefttext">
-      <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158">WinMerge Beta builds</a><br>
-      <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246">WinMerge Experimental builds</a>
+      <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158" target="_top">WinMerge Beta builds</a><br>
+      <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246" target="_top">WinMerge Experimental builds</a>
       </p>
 
 	<p align="center">
-      <a href="http://i3t.org/sponsorship/showaward.jsp?id=1595259">
+      <a href="http://i3t.org/sponsorship/showaward.jsp?id=1595259" target="_top">
         <img src="http://i3t.org/sponsorship/emblem.jsp?id=1595259"
         alt="The I3T Award for Software Excellence">
       </a></p>
-            <p align="center"> <a href="http://validator.w3.org/check/referer">
+            <p align="center"> <a href="http://validator.w3.org/check/referer" target="_top">
               <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88">
             </a> </p>
     </td>
@@ -79,46 +79,48 @@
         <li class="toc">Rudimentary Visual SourceSafe and Rational ClearCase integration 
         <li class="toc">Handles DOS, UNIX and MAC text file formats
         <li class="toc">Localizable interface via resource DLL 
-        <li class="toc">HTML-based <A href="docs20/index.html">User's Guide</a></li>
+        <li class="toc">HTML-based <A href="http://winmerge.org/docs20/index.html" target="_top">User's Guide</a></li>
       </ul>
 
       <img src="images/screenshot.png" alt="Screenshot of WinMerge">
 
       <h2>WinMerge 2.0.2 - latest stable version</h2>
       <p>WinMerge 2.0.2 is the latest stable version, and it is recommended for most users</p>
-      <p><a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup202.exe">Download WinMerge 2.0.2 Installer</a></p>
+      <p><a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup202.exe" target="_top">Download WinMerge 2.0.2 Installer</a></p>
 
       <h2>WinMerge 2.1 - current development version</h2>
       <p>WinMerge 2.1 is the development version, and is only recommended for users that can tolerate possibly losing their files once in a while, because we do not guarantee it to be stable.</p>
       <p>On the other hand, this version has the latest and greatest features in WinMerge.</P>
-      <p><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;release_id=199032">Download WinMerge 2.1</a></p>
+      <p><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;release_id=199032" target="_top">Download WinMerge 2.1</a></p>
 
       <h2>WinMerge 1.7 - older stable version</h2>
-      <p><a href="WinMerge17/index.html">WinMerge 1.7</a> is an older and simpler version, from before the integrated editor was introduced.</p>
-      <p><a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup.exe">Download WinMerge 1.7 Installer</a></p>
+      <p><a href="http://winmerge.sourceforge.net/WinMerge17/index.html" target="_top">WinMerge 1.7</a> is an older and simpler version, from before the integrated editor was introduced.</p>
+      <p><a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup.exe" target="_top">Download WinMerge 1.7 Installer</a></p>
 
 
     <h2>Installation</h2>
     <p>Just download the installer and double-click it.</p>
+        <p>Or you may simply unzip the binary zip package (eg, WinMerge202-exe.zip) into the desired location, and run
+        WinMerge.exe or WinMergeU.exe (the latter is the Unicode version, only for use on NT/2000/XP).</p>
 
     <h2>Using WinMerge</h2>
-    <p>You can use the <a href="docs20/index.html">online User's Guide</a>, or you can 
-    <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254">download</a> a copy.</p>
+    <p>You can use the <a href="http://winmerge.org/docs20/index.html" target="_top">online User's Guide</a>, or you can 
+    <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254" target="_top">download</a> a copy.</p>
 
     <h2>Support</h2>
     <p>WinMerge is an Open Source project, that is covered
-    under the <a href="http://www.gnu.org/copyleft/gpl.html">GNU Public License</a>.
+    under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_top">GNU Public License</a>.
     As such, your main form of support for WinMerge will be through
-    subscription to the <a href="http://lists.sourceforge.net/lists/listinfo/winmerge-support">WinMerge-support mailing list</a>.
+    subscription to the <a href="http://lists.sourceforge.net/lists/listinfo/winmerge-support" target="_top">WinMerge-support mailing list</a>.
     In addition, SourceForge has bug tracking capabilities, so please report any
-    bugs <a href="http://sourceforge.net/bugs/?group_id=13216">here</a>. Wish list items on the 
-    <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">RFE list</a> will also be considered, but we make
+    bugs <a href="http://sourceforge.net/bugs/?group_id=13216" target="_top">here</a>. Wish list items on the 
+    <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216" target="_top">RFE list</a> will also be considered, but we make
     absolutely no promises.</p>
 
-    <p>Here is the current <A href="WinMergeChanges.html">change history</a>.</p>
+    <p>Here is the current <A href="http://winmerge.org/WinMergeChanges.html" target="_top">change history</a>.</p>
 
     <p>Since WinMerge is an Open Source project, you may use it free of charge.
-    But please consider making a <a href="http://sourceforge.net/project/project_donations.php?group_id=13216">donation</a>
+    But please consider making a <a href="http://sourceforge.net/project/project_donations.php?group_id=13216" target="_top">donation</a>
     to support the continued development of WinMerge.</p>
 
     <h2><a name="translate"></a>Localization</h2>
@@ -155,14 +157,14 @@
     <p>One of the reasons WinMerge is on SourceForge is so other
     developers can get involved. If you have some free time, are
     proficient with DeveloperStudio 6 and MFC, and would like to contribute,
-    then <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">check
+    then <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216" target="_top">check
     out the list of items to be done</a>. If you see something in there that you think
     you can handle, <a href="mailto:winmerge-support@lists.sourceforge.net">let us know</a>
     and we'll assign the item to you.
     Then grab a copy of the WinMerge source from
-    <a href="http://sourceforge.net/cvs/?group_id=13216">anonymous CVS</a>
-    or you can download a <a href="http://sourceforge.net/project/showfiles.php?group_id=13216">zipped version</a> of the source,
-    write your code, and then upload the changed code <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">as a patch</a>. 
+    <a href="http://sourceforge.net/cvs/?group_id=13216" target="_top">anonymous CVS</a>
+    or you can download a <a href="http://sourceforge.net/project/showfiles.php?group_id=13216" target="_top">zipped version</a> of the source,
+    write your code, and then upload the changed code <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216" target="_top">as a patch</a>. 
     Then we will merge them back into the main codebase.</p>
 
     <p>If you do decide to join in, please follow these simple guidelines,
@@ -186,7 +188,7 @@
       <li class="toc">Please don't make changes that don't relate to 
         the task at hand. If you come across other issues while handling a 
         task, please submit them as bugs or patches 
-      <li class="toc">Please don't make changes that aren't on the task list or bug list;
+      <li class="toc">Please don't make changes that aren't on the bug or RFE list;
         if everyone just threw in everything they wanted, the product would
         become a hodge-podge</li>
     </ul>
@@ -215,7 +217,7 @@
     anonymous CVS server, do the following (note that this does not require SSH).</p>
 
     <ol>
-      <li>Install <a href="http://www.wincvs.org">WinCVS 1.2</a>
+      <li>Install <a href="http://www.wincvs.org" target="_top">WinCVS 1.2</a>
       <li>Create a directory on your system that will 
         contain the WinMerge and Common repositories (I call it Merge on my 
         system) 

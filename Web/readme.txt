@@ -1,3 +1,7 @@
+2004-03-11 Christian
+ PATCH: [ 913686 ] Home Page on new winmerge.org domain
+  Web: index.php WinMergePAD.xml
+
 2004-02-05 Christian
  PATCH: [ 869654 ] [Website] Use Valid HTML
   Added Tim Gerundt's arrows

@@ -12,7 +12,7 @@
         <State_Province />
         <Zip_Postal_Code />
         <Country />
-        <Company_WebSite_URL>http://winmerge.sourceforge.net/</Company_WebSite_URL>
+        <Company_WebSite_URL>http://winmerge.org/</Company_WebSite_URL>
 <Contact_Info>
         <Author_First_Name>WinMerge team</Author_First_Name>
         <Author_Last_Name></Author_Last_Name>
@@ -83,11 +83,11 @@
 </Program_Descriptions>
 <Web_Info>
 <Application_URLs>
-        <Application_Info_URL>http://winmerge.sourceforge.net/</Application_Info_URL>
-        <Application_Order_URL>http://winmerge.sourceforge.net/</Application_Order_URL>
-        <Application_Screenshot_URL>http://winmerge.sourceforge.net/images/screenshot.png</Application_Screenshot_URL>
-        <Application_Icon_URL>http://winmerge.sourceforge.net/images/winmerge.gif</Application_Icon_URL>
-        <Application_XML_File_URL>http://winmerge.sourceforge.net/WinMergePAD.xml</Application_XML_File_URL>
+        <Application_Info_URL>http://winmerge.org/</Application_Info_URL>
+        <Application_Order_URL>http://winmerge.org/</Application_Order_URL>
+        <Application_Screenshot_URL>http://winmerge.org/images/screenshot.png</Application_Screenshot_URL>
+        <Application_Icon_URL>http://winmerge.org/images/winmerge.gif</Application_Icon_URL>
+        <Application_XML_File_URL>http://winmerge.org/WinMergePAD.xml</Application_XML_File_URL>
     </Application_URLs>
 <Download_URLs>
         <Primary_Download_URL>http://prdownloads.sourceforge.net/winmerge/WinMergeSetup202.exe</Primary_Download_URL>
