@@ -39,6 +39,10 @@
 #include "FileFilterMgr.h"
 #include "resource.h"
 #include "Exceptions.h"
+#include "RegKey.h"
+#include "paths.h"
+#include "logfile.h"
+extern CLogFile gLog;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -52,6 +56,35 @@ static CPtrArray theScriptletHandleList;
 static bool scriptletsLoaded=false;
 static CSemaphore scriptletsSem;
 
+
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * @brief Check for the presence of Windows Script
+ *
+ * .sct plugins require this optional component
+ */
+BOOL IsWindowsScriptThere()
+{
+	CRegKeyEx keyExtension;
+	if (!keyExtension.QueryRegMachine(_T("SOFTWARE\\Classes\\.sct")))
+		return FALSE;
+
+	CString content = keyExtension.ReadString(_T(""), _T(""));
+	keyExtension.Close();
+	if (content.CompareNoCase(_T("scriptletfile")) != 0)
+		return FALSE;
+
+	CRegKeyEx keyFile;
+	if (!keyFile.QueryRegMachine(_T("SOFTWARE\\Classes\\scriptletfile\\AutoRegister")))
+		return FALSE;
+
+	CString filename = keyFile.ReadString(_T(""), _T(""));
+	keyFile.Close();
+	if (filename.IsEmpty())
+		return FALSE;
+
+	return (paths_DoesPathExist(filename) == IS_EXISTING_FILE);
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // scriptlet/activeX support for function names
@@ -469,7 +502,10 @@ static CStringArray & LoadTheScriptletList()
 		CSingleLock lock(&scriptletsSem);
 		CString path = GetModulePath() + _T("\\MergePlugins\\");
 
-		GetScriptletsAt(path, _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
+		if (IsWindowsScriptThere())
+			GetScriptletsAt(path, _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
+		else
+			gLog.Write(LOGLEVEL::LWARNING, _T("\n  .sct plugins disabled (Windows Script Host not found)"));
 		GetScriptletsAt(path, _T(".ocx"), theScriptletList );		// VB COM object
 		GetScriptletsAt(path, _T(".dll"), theScriptletList );		// VC++ COM object
 		scriptletsLoaded = true;

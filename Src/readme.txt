@@ -1,4 +1,8 @@
 2004-04-02 Laoran
+ PATCH [ 925172 ] Check for presence of Windows Script
+ Src: ConfigLog.cpp ConfigLog.h Merge.rc MergeEditView.cpp Plugins.cpp Plugins.h resource.h
+
+2004-04-02 Laoran
  Change plugins event title 'CONTEXT_MENU' -> 'EDITOR_SCRIPT'
   Src: FileTransform.cpp FileTransform.h MergeEditView.cpp Plugins.cpp Plugins.h
   Plugins/dlls: editor addin.sct insert datetime.sct list.txt

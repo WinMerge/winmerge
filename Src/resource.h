@@ -589,6 +589,7 @@
 #define ID_NO_EDIT_SCRIPTS              32865
 #define ID_RELOAD_PLUGINS               32866
 #define ID_MESSAGE_BOX_ARE_RESET        32867
+#define ID_NO_SCT_SCRIPTS               32868
 
 // Next default values for new objects
 // 

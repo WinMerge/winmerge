@@ -63,6 +63,7 @@ public:
 	MISCSETTINGS m_miscSettings;
 
 	CString GetFileName() const;
+	void WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile & file);
 	BOOL WriteLogFile();
 	CString GetWindowsVer();
 	CString GetBuildFlags();

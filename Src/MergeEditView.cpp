@@ -1574,6 +1574,9 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 		functionNamesList.RemoveAll();
 	}
 
+	if (IsWindowsScriptThere() == FALSE)
+		::AppendMenu(hMenu, MF_STRING, ID_NO_SCT_SCRIPTS, LoadResString(ID_NO_SCT_SCRIPTS));
+
 	return hMenu;
 }
 

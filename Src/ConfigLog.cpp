@@ -28,6 +28,7 @@
 #include "DiffWrapper.h"
 #include "ConfigLog.h"
 #include "winnt_supp.h"
+#include "Plugins.h"
 #include "paths.h"
 
 /** 
@@ -36,6 +37,26 @@
 CString CConfigLog::GetFileName() const
 {
 	return m_sFileName;
+}
+
+/** 
+ * @brief Write plugin names
+ */
+void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile & file)
+{
+	// get an array with the available scripts
+	PluginArray * piPluginArray; 
+
+	piPluginArray = 
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(transformationEvent);
+
+	int iPlugin;
+	for (iPlugin = 0 ; iPlugin < piPluginArray->GetSize() ; iPlugin++)
+	{
+		PluginInfo & plugin = piPluginArray->ElementAt(iPlugin);
+		file.WriteString(_T("\n  "));
+		file.WriteString(plugin.name);
+	}
 }
 
 /** 
@@ -214,6 +235,18 @@ BOOL CConfigLog::WriteLogFile()
 		file.WriteString(_T("Yes\n"));
 	else
 		file.WriteString(_T("No\n"));
+
+	file.WriteString(_T("\nPlugins: "));
+	file.WriteString(_T("\n Unpackers: "));
+	WritePluginsInLogFile(L"FILE_PACK_UNPACK", file);
+	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK", file);
+	file.WriteString(_T("\n Prediffers: "));
+	WritePluginsInLogFile(L"FILE_PREDIFF", file);
+	WritePluginsInLogFile(L"BUFFER_PREDIFF", file);
+	file.WriteString(_T("\n Editor scripts: "));
+	WritePluginsInLogFile(L"EDITOR_SCRIPT", file);
+	if (IsWindowsScriptThere() == FALSE)
+		file.WriteString(_T("\n .sct scripts disabled (Windows Script Host not found)\n"));
 
 	file.Close();
 

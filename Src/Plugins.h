@@ -154,6 +154,12 @@ public:
 
 
 /**
+ * @brief Check for the presence of Windows Script
+ *
+ * .sct plugins require this optional component
+ */
+BOOL IsWindowsScriptThere();
+/**
  * @brief Get a list of the function IDs and names in a script or activeX/COM DLL
  *
  * @return Returns the number of functions
