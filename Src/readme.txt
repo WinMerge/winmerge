@@ -1,3 +1,8 @@
+2005-03-02 Perry
+ PATCH: [ 1154259 ] Non blurred 'error.bmp'
+  New clearer error bitmap from Tim Gerundt
+ Languages: res/error.bmp
+
 2005-03-03 Perry
  PATCH: [ 1151951 ] Alter getRightFilepath for root paths
  re: BUG: [ 1105933 ] Problem accessing files in network shares and removables
@@ -373,7 +378,7 @@
    cfindtextdlg.cpp cfindtextdlg.h
 
 2004-12-15 Tim
- RFE: [ 1085099 ] 'fileskip.bmp' looks to similar like 'equal.bmp'
+ RFE: [ 1085099 ] 'fileskip.bmp' looks to similar to 'equal.bmp'
   Src/res: fileskip.bmp
   Languages: fileskip.bmp
 
