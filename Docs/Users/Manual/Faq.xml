@@ -179,8 +179,6 @@
           <para>"Perry-style" patches are zip-files containing original and changed files in different directories. WinMerge has internal support (surprise?) for handling these files. Just select zip file in guestion to left side and right side and WinMerge opens zip files contents to directory compare comparing original and altered files.</para>
         </answer>
       </qandaentry>
-    </qandaset>
-    <qandaset>
       <qandaentry>
         <question>
           <para>I do not want to install 7-zip. Can arhive support use other archive tools (like WinZip or WinRar)?</para>

@@ -2,6 +2,9 @@
  PATCH: [ 1034558 ] Docs: More meta-informations
   Submitted by Tim Gerundt
   Manual: Command_line.xml Faq.xml Shortcut_keys.xml
+ Fix bug in Faq - extra qandaset in markup
+  Found and fixed by Tim Gerundt
+  Manual: Faq.xml
 
 2004-09-14 Kimmo
  PATCH: [ 1027592 ] Docs: Update FAQ
