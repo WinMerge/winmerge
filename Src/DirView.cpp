@@ -101,6 +101,10 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_RIGHT_WITHEDITOR, OnUpdateCtxtDirOpenRightWithEditor)
 	ON_COMMAND(ID_DIR_OPEN_LEFT_WITHEDITOR, OnCtxtDirOpenLeftWithEditor)
 	ON_UPDATE_COMMAND_UI(ID_DIR_OPEN_LEFT_WITHEDITOR, OnUpdateCtxtDirOpenLeftWithEditor)
+	ON_COMMAND(ID_DIR_COPY_LEFT_TO_BROWSE, OnCtxtDirCopyLeftTo)
+	ON_COMMAND(ID_DIR_COPY_RIGHT_TO_BROWSE, OnCtxtDirCopyRightTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_LEFT_TO_BROWSE, OnUpdateCtxtDirCopyLeftTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_BROWSE, OnUpdateCtxtDirCopyRightTo)
 	ON_WM_DESTROY()
 	ON_WM_CHAR()
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
@@ -472,6 +476,18 @@ void CDirView::OnCtxtDirCopyLeftToRight()
 	DoCopyLeftToRight();
 }
 
+/// User chose (context menu) Copy left to...
+void CDirView::OnCtxtDirCopyLeftTo()
+{
+	DoCopyLeftTo();
+}
+
+/// User chose (context menu) Copy from right to...
+void CDirView::OnCtxtDirCopyRightTo()
+{
+	DoCopyRightTo();
+}
+
 /// Update context menu Copy Right to Left item
 void CDirView::OnUpdateCtxtDirCopyRightToLeft(CCmdUI* pCmdUI) 
 {
@@ -806,6 +822,70 @@ void CDirView::DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Enable/disable "Copy | Left to..." and update item text
+ */
+void CDirView::DoUpdateCtxtDirCopyLeftTo(CCmdUI* pCmdUI) 
+{
+	int sel=-1;
+	int count=0, total=0;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (IsItemCopyableToOnLeft(di))
+			++count;
+		++total;
+	}
+	pCmdUI->Enable(count>0);
+
+	CString s;
+	if (count == total)
+		AfxFormatString1(s, IDS_COPY_LEFT_TO, NumToStr(total));
+	else
+		AfxFormatString2(s, IDS_COPY_LEFT_TO2, NumToStr(count), NumToStr(total));
+	pCmdUI->SetText(s);
+}
+
+/**
+ * @brief Enable/disable "Copy | Right to..." and update item text
+ */
+void CDirView::DoUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI) 
+{
+	int sel=-1;
+	int count=0, total=0;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (IsItemCopyableToOnRight(di))
+			++count;
+		++total;
+	}
+	pCmdUI->Enable(count>0);
+
+	CString s;
+	if (count == total)
+		AfxFormatString1(s, IDS_COPY_RIGHT_TO, NumToStr(total));
+	else
+		AfxFormatString2(s, IDS_COPY_RIGHT_TO2, NumToStr(count), NumToStr(total));
+	pCmdUI->SetText(s);
+}
+
+/**
+ * @brief Update "Copy | Right to..." item
+ */
+void CDirView::OnUpdateCtxtDirCopyLeftTo(CCmdUI* pCmdUI)
+{
+	DoUpdateCtxtDirCopyLeftTo(pCmdUI);
+}
+
+/**
+ * @brief Update "Copy | Right to..." item
+ */
+void CDirView::OnUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI)
+{
+	DoUpdateCtxtDirCopyRightTo(pCmdUI);
+}
+
+/**
  * @brief Get keydata associated with item in given index
  * @param idx Item's index to list in UI
  */
@@ -861,24 +941,24 @@ int CDirView::GetItemIndex(DWORD key)
 	return m_pList->FindItem(&findInfo);
 }
 
-// User chose (context menu) open left
+/// User chose (context menu) open left
 void CDirView::OnCtxtDirOpenLeft()
 {
 	DoOpen(SIDE_LEFT);
 }
-// User chose (context menu) open right
+/// User chose (context menu) open right
 void CDirView::OnCtxtDirOpenRight()
 {
 	DoOpen(SIDE_RIGHT);
 }
 
-// User chose (context menu) open left with
+/// User chose (context menu) open left with
 void CDirView::OnCtxtDirOpenLeftWith()
 {
 	DoOpenWith(SIDE_LEFT);
 }
 
-// User chose (context menu) open right with
+/// User chose (context menu) open right with
 void CDirView::OnCtxtDirOpenRightWith()
 {
 	DoOpenWith(SIDE_RIGHT);
@@ -890,6 +970,7 @@ void CDirView::OnCtxtDirOpenRightWithEditor()
 	DoOpenWithEditor(SIDE_RIGHT);
 }
 
+/// Update context menuitem "Open right | with editor"
 void CDirView::OnUpdateCtxtDirOpenRightWithEditor(CCmdUI* pCmdUI)
 {
 	DoUpdateOpenRightWith(pCmdUI);

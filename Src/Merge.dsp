@@ -415,6 +415,10 @@ SOURCE=.\Common\coretools.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\common\CShellFileOp.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\CSubclass.cpp
 # End Source File
 # Begin Source File
@@ -1459,6 +1463,10 @@ SOURCE=.\ConfigLog.h
 # Begin Source File
 
 SOURCE=.\Common\coretools.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\common\CShellFileOp.h
 # End Source File
 # Begin Source File
 

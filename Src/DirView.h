@@ -137,11 +137,15 @@ private:
 	BOOL IsItemOpenableOnRight(const DIFFITEM & di);
 	BOOL IsItemOpenableOnLeftWith(const DIFFITEM & di);
 	BOOL IsItemOpenableOnRightWith(const DIFFITEM & di);
+	BOOL IsItemCopyableToOnLeft(const DIFFITEM & di);
+	BOOL IsItemCopyableToOnRight(const DIFFITEM & di);
 	void DoCopyLeftToRight();
 	void DoCopyRightToLeft();
 	void DoDelLeft();
 	void DoDelRight();
 	void DoDelBoth();
+	void DoCopyLeftTo();
+	void DoCopyRightTo();
 	void DoOpen(SIDE_TYPE stype);
 	void DoOpenWith(SIDE_TYPE stype);
 	void DoOpenWithEditor(SIDE_TYPE stype);
@@ -247,6 +251,10 @@ protected:
 	afx_msg void OnUpdateCtxtDirOpenRightWithEditor(CCmdUI* pCmdUI);
 	afx_msg void OnCtxtDirOpenLeftWithEditor();
 	afx_msg void OnUpdateCtxtDirOpenLeftWithEditor(CCmdUI* pCmdUI);
+	afx_msg void OnCtxtDirCopyLeftTo();
+	afx_msg void OnUpdateCtxtDirCopyLeftTo(CCmdUI* pCmdUI);
+	afx_msg void OnCtxtDirCopyRightTo();
+	afx_msg void OnUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI);
 	afx_msg void OnDestroy();
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnFirstdiff();
@@ -295,6 +303,8 @@ private:
 	void DoUpdateOpenRight(CCmdUI* pCmdUI);
 	void DoUpdateOpenLeftWith(CCmdUI* pCmdUI);
 	void DoUpdateOpenRightWith(CCmdUI* pCmdUI);
+	void DoUpdateCtxtDirCopyLeftTo(CCmdUI* pCmdUI);
+	void DoUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI);
 	POSITION GetItemKeyFromData(DWORD dw) const;
 	DIFFITEM GetDiffItem(int sel);
 	int GetSingleSelectedItem() const;

@@ -1297,6 +1297,15 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
+    IDS_COPY_LEFT_TO        "Left to... (%1)"
+    IDS_COPY_LEFT_TO2       "Left to... (%1 of %2)"
+    IDS_COPY_RIGHT_TO       "Right to... (%1)"
+    IDS_COPY_RIGHT_TO2      "Right to... (%1 of %2)"
+    IDS_SELECT_DESTFOLDER   "Select destination folder"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
     IDC_STATIC_TITLE_LEFT   "Rechtsklick auf den Pfad zum Kopieren."
     IDC_STATIC_TITLE_RIGHT  "Rechtsklick auf den Pfad zum Kopieren."
 END

@@ -450,6 +450,11 @@ BOOL CAboutDlg::OnInitDialog()
 
 /** 
  * @brief Helper function for selecting dir/file
+ * @param [out] path Selected path is returned in this string
+ * @param [in] root_path Initial path (and file) shown when dialog is opened
+ * @param [in] title Title for path selection dialog
+ * @param [in] filterid 0 or STRING ID for filter string - 0 means "All files (*.*)"
+ * @param [in] is_open Selects Open/Save -dialog
  */
 BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/, 
 			 LPCTSTR title /*= _T("Open")*/, 
@@ -471,9 +476,9 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 	
 	CString filters;
 	if (filterid != 0)
-		VERIFY(filters.LoadString(filterid)); 
+		VERIFY(filters.LoadString(filterid));
 	else
-		VERIFY(filters.LoadString(IDS_ALLFILES)); 
+		VERIFY(filters.LoadString(IDS_ALLFILES));
 	DWORD flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
 	CFileDialog dlg(is_open, NULL, sfile, flags, filters);
 	dlg.m_ofn.lpstrTitle = (LPCTSTR)title;
@@ -481,11 +486,51 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 
 	if (dlg.DoModal()==IDOK)
 	{
-	 	path = dlg.GetPathName(); 
+	 	path = dlg.GetPathName();
 	 	return TRUE;
 	}
 	path = _T("");
 	return FALSE;	   
+}
+
+/** 
+ * @brief Helper function for selecting directory
+ * @param [out]path Selected path is returned in this string
+ * @param [in] root_path Initial path shown when dialog is opened
+ * @param [in] title Title for path selection dialog
+ * @param [in] filterid 0 or STRING ID for filter string - 0 means "All files (*.*)"
+ * @param [in] is_open Selects Open/Save -dialog
+ * @todo Use SHFolder* API?
+ */
+BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/, 
+			 LPCTSTR title /*=NULL*/, 
+			 UINT filterid /*=0*/,
+			 BOOL is_open /*=TRUE*/) 
+{
+	CString filters;
+	CString dirSelTag;
+	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
+	if (filterid != 0)
+		VERIFY(filters.LoadString(filterid));
+	else
+		VERIFY(filters.LoadString(IDS_ALLFILES));
+	
+	DWORD flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+	CFileDialog dlg(is_open, NULL, dirSelTag, flags, filters);
+	dlg.m_ofn.lpstrTitle = (LPCTSTR)title;
+	dlg.m_ofn.lpstrInitialDir = (LPTSTR)root_path;
+
+	if (dlg.DoModal()==IDOK)
+	{
+		CString fullPath;
+		CString tmpPath;
+		fullPath = dlg.GetPathName();
+		SplitFilename(fullPath, &tmpPath, NULL, NULL);
+		path = tmpPath;
+	 	return TRUE;
+	}
+	path = _T("");
+	return FALSE;
 }
 
 BOOL CMergeApp::PreTranslateMessage(MSG* pMsg)

@@ -1,3 +1,10 @@
+2004-01-17 Kimmo
+ PATCH: [ 871789 ] Add "Copy to..." items to dirview context menu
+  src/Common: new files CShellOp.h CShellOp.cpp
+  src: DirActions.cpp DirView.h DirView.cpp Merge.cpp Merge.dsp
+   Merge.h Merge.rc resource.h
+  src/Languages: *.rc resource.h
+
 2004-01-16 Perry
  Fix bug in UniFile::WriteString counting of written bytes.
   Src/Common/UniFile.cpp

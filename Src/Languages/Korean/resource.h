@@ -167,6 +167,11 @@
 #define IDS_COPY_TO_RIGHT2              254
 #define IDS_DIRSEL_TAG                  255
 #define IDB_FOLDER                      256
+#define IDS_COPY_LEFT_TO                257
+#define IDS_COPY_LEFT_TO2               258
+#define IDS_COPY_RIGHT_TO               259
+#define IDS_COPY_RIGHT_TO2              260
+#define IDS_SELECT_DESTFOLDER           261
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -519,7 +524,7 @@
 #define ID_WINDOW_CHANGE_PANE           32858
 
 // Next default values for new objects
-// 
+//
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1

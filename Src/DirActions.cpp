@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-//    see Merge.cpp for license (GPLv2+) statement 
+//    see Merge.cpp for license (GPLv2+) statement
 //
 /////////////////////////////////////////////////////////////////////////////
 /**
@@ -23,6 +23,7 @@
 #include "coretools.h"
 #include "OutputDlg.h"
 #include "paths.h"
+#include "CShellFileOp.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -194,10 +195,86 @@ void CDirView::DoDelBoth()
 	ConfirmAndPerformActions(actionList);
 }
 
+/**
+ * @brief Copy selected left-side files to user-specified directory
+ * @note CShellFileOp takes care of much of error handling
+ */
+void CDirView::DoCopyLeftTo()
+{
+	CShellFileOp fileOp;
+	CString destPath;
+	CString startPath;
+	CString msg;
+
+	VERIFY(msg.LoadString(IDS_SELECT_DESTFOLDER));
+	if (!SelectFolder(destPath, startPath, msg))
+		return;
+
+	fileOp.SetOperationFlags(FO_COPY, this, FOF_NOCONFIRMMKDIR);
+	fileOp.AddDestFile(destPath);
+
+	int sel = -1;
+	CString slFile, srFile;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+
+		if (IsItemCopyableToOnLeft(di))
+		{
+			GetItemFileNames(sel, slFile, srFile);
+			fileOp.AddSourceFile(slFile);
+		}
+	}
+
+	BOOL bSuccess = FALSE;
+	BOOL bAPICalled = FALSE;
+	BOOL bAborted = FALSE;
+	int  nAPIReturn = 0;
+	bSuccess = fileOp.Go(&bAPICalled, &nAPIReturn, &bAborted);
+}
+
+/**
+ * @brief Copy selected righ-side files to user-specified directory
+ * @note CShellFileOp takes care of much of error handling
+ */
+void CDirView::DoCopyRightTo()
+{
+	CShellFileOp fileOp;
+	CString destPath;
+	CString startPath;
+	CString msg;
+
+	VERIFY(msg.LoadString(IDS_SELECT_DESTFOLDER));
+	if (!SelectFolder(destPath, startPath, msg))
+		return;
+
+	fileOp.SetOperationFlags(FO_COPY, this, FOF_NOCONFIRMMKDIR);
+	fileOp.AddDestFile(destPath);
+
+	int sel = -1;
+	CString slFile, srFile;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+
+		if (IsItemCopyableToOnRight(di))
+		{
+			GetItemFileNames(sel, slFile, srFile);
+			fileOp.AddSourceFile(slFile);
+		}
+	}
+
+	BOOL bSuccess = FALSE;
+	BOOL bAPICalled = FALSE;
+	BOOL bAborted = FALSE;
+	int  nAPIReturn = 0;
+	bSuccess = fileOp.Go( &bAPICalled, &nAPIReturn, &bAborted );
+}
+
 // Confirm with user, then perform the action list
 void CDirView::ConfirmAndPerformActions(ActionList & actionList)
 {
-	if (!actionList.selcount) // Not sure it is possible to get right-click menu without 
+	if (!actionList.selcount) // Not sure it is possible to get right-click menu without
 		return;    // any selected items, but may as well be safe
 
 	ASSERT(actionList.actions.GetCount()>0); // Or else the update handler got it wrong
@@ -357,7 +434,7 @@ void CDirView::PerformAndRemoveTopAction(ActionList & actionList)
 					actionList.errors.AddTail(s);
 				}
 			}
-			s=_T("");
+			s.Empty();
 			if (actionList.atype==ACT_DEL_RIGHT || actionList.atype==ACT_DEL_BOTH)
 			{
 				CString sFile = act.dest.IsEmpty() ? act.src : act.dest;
@@ -405,7 +482,7 @@ BOOL CDirView::IsItemCopyableToLeft(const DIFFITEM & di)
 	// don't let them mess with error items
 	if (di.isResultError()) return FALSE;
 	// no directory copying right now
-	if (di.isDirectory()) return FALSE; 
+	if (di.isDirectory()) return FALSE;
 	// can't copy same items
 	if (di.isResultSame()) return FALSE;
 	// impossible if only on left
@@ -420,7 +497,7 @@ BOOL CDirView::IsItemCopyableToRight(const DIFFITEM & di)
 	// don't let them mess with error items
 	if (di.isResultError()) return FALSE;
 	// no directory copying right now
-	if (di.isDirectory()) return FALSE; 
+	if (di.isDirectory()) return FALSE;
 	// can't copy same items
 	if (di.isResultSame()) return FALSE;
 	// impossible if only on right
@@ -490,6 +567,28 @@ BOOL CDirView::IsItemOpenableOnRightWith(const DIFFITEM & di)
 {
 	return (!di.isDirectory() && IsItemOpenableOnRight(di));
 }
+/// is it possible to copy to... left item?
+BOOL CDirView::IsItemCopyableToOnLeft(const DIFFITEM & di)
+{
+	// no directory copying right now
+	if (di.isDirectory()) return FALSE;
+	// impossible if only on right
+	if (di.isSideRight()) return FALSE;
+
+	// everything else can be copied to from left
+	return TRUE;
+}
+/// is it possible to copy to... right item?
+BOOL CDirView::IsItemCopyableToOnRight(const DIFFITEM & di)
+{
+	// no directory copying right now
+	if (di.isDirectory()) return FALSE;
+	// impossible if only on left
+	if (di.isSideLeft()) return FALSE;
+
+	// everything else can be copied to from right
+	return TRUE;
+}
 
 /// get the file names on both sides for first selected item
 BOOL CDirView::GetSelectedFileNames(CString& strLeft, CString& strRight) const
@@ -532,7 +631,7 @@ void CDirView::DoOpen(SIDE_TYPE stype)
 	int rtn = (int)ShellExecute(::GetDesktopWindow(), _T("open"), file, 0, 0, SW_SHOWNORMAL);
 	if (rtn==SE_ERR_NOASSOC)
 		DoOpenWith(stype);
-	
+
 }
 
 /// Open with dialog for file on selected side
