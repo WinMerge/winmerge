@@ -1,3 +1,7 @@
+2004-10-16 Kimmo
+ PATCH: [ 1046546 ] Open new manual locally
+  Src: MainFrm.cpp
+
 2004-10-15 Kimmo
  PATCH: [ 1046583 ] Improved 48x48 icon
   Submitted by Tim Gerundt

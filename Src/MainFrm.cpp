@@ -148,7 +148,7 @@ static UINT indicators[] =
 	ID_INDICATOR_SCRL,
 };
 
-static const TCHAR DocsPath[] = _T("\\Docs\\index.html");
+static const TCHAR DocsPath[] = _T("\\Docs\\Manual\\index.html");
 static const TCHAR DocsURL[] = _T("http://winmerge.org/2.2/manual/index.html");
 
 /////////////////////////////////////////////////////////////////////////////
