@@ -1,3 +1,8 @@
+2004-03-16 Kimmo
+ RFE [ 917196 ] Directory Comparison Results baloon annoyance
+  Don't show infotip for filename when whole filename is already shown
+  Src: DirView.cpp
+
 2004-03-15 Perry
  Fix Bulgarian (Cyrillic) spelling of Bulgarian.
  Src/Common: LanguageSelect.cpp

@@ -1683,8 +1683,9 @@ void CDirView::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
 	lvhti.pt = m_ptLastMousePos;
 	m_pList->SubItemHitTest(&lvhti);
 
-	// Values >= 0 are subitem indexes
-	if (lvhti.iSubItem >= 0)
+	// Values > 0 are subitem indexes
+	// 0 is filename which gets infotip automatically by LVS_EX_INFOTIP style
+	if (lvhti.iSubItem > 0)
 	{
 		// Check that we are over icon or label
 		if ((lvhti.flags & LVHT_ONITEMICON) || (lvhti.flags & LVHT_ONITEMLABEL))
