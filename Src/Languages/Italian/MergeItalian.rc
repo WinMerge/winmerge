@@ -82,7 +82,7 @@ BEGIN
         MENUITEM "&Copia a destra",             ID_L2R
         MENUITEM "Co&pia a sinistra",           ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Evidenzia differenze di linee", ID_SHOWLINEDIFF
+        MENUITEM "&Evidenzia differenze nella linea", ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Annulla",                    ID_EDIT_UNDO
         MENUITEM "&Ripristina",                 ID_EDIT_REDO
@@ -124,7 +124,7 @@ BEGIN
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Modalità 'unione'\tF7",      ID_FILE_MERGINGMODE
+        MENUITEM "&Modalità 'Unione'\tF7",      ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "Es&ci",                       ID_APP_EXIT
     END
@@ -139,7 +139,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Selezion&a tutto\tCtrl+A",    ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Evidenzia differenze di linee\tF4",    ID_SHOWLINEDIFF
+        MENUITEM "&Evidenzia differenze nella linea\tF4",    ID_SHOWLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "Tro&va...\tCtrl+F",            ID_EDIT_FIND
         MENUITEM "Sostit&uisci...\tCtrl+H",         ID_EDIT_REPLACE
@@ -233,7 +233,7 @@ BEGIN
         MENUITEM "&Contenuti...\tF1",           ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfigurazione...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "Supporto per gli a&rchivi disattivo...",ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Licenza pubblica GNU...",     ID_HELP_GNULICENSE
         MENUITEM "Infor&mazioni su WinMerge...", ID_APP_ABOUT
@@ -251,10 +251,10 @@ BEGIN
             MENUITEM "Da &Destra a Sinistra",   ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "Destra &in...",           ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "&Move"
+        POPUP "&Sposta"
         BEGIN
-            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
-            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+            MENUITEM "Si&nistra in...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "Destra &in...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
          POPUP "&Elimina"
         BEGIN
@@ -281,10 +281,10 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Zippa"
         BEGIN
-            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
-            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
-            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
-            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "&Sinistra... (%1 su %2)",         ID_DIR_ZIP_LEFT
+            MENUITEM "&Destra... (%1 su %2)",        ID_DIR_ZIP_RIGHT
+            MENUITEM "&Entrambi... (%1 su %2)",         ID_DIR_ZIP_BOTH
+            MENUITEM "Di&fferenze... (%1 su %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
     END
     POPUP "_HDR_POPUP_"
@@ -489,10 +489,10 @@ BEGIN
     CONTROL         "Verifica automaticamente i percorsi nella finestra Apri",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,189,10
-   PUSHBUTTON      "Ripristina",IDC_RESET_ALL_MESSAGE_BOXES,218,77,49,13,NOT
+   PUSHBUTTON      "Ripristina",IDC_RESET_ALL_MESSAGE_BOXES,204,77,49,13,NOT
                     WS_TABSTOP
     LTEXT           "Premi pulsante per ripristinare tutti i messaggi di avviso",IDC_STATIC,7,
-                    79,215,8
+                    79,201,8
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
@@ -863,7 +863,7 @@ BEGIN
                     WS_GROUP,68,38,29,10
     CONTROL         "Di&fferenza",IDC_WMGOTO_TODIFF,"Button",
                     BS_AUTORADIOBUTTON,68,48,49,10
-    DEFPUSHBUTTON   "&Va'",IDOK,132,7,50,14
+    DEFPUSHBUTTON   "&Vai",IDOK,132,7,50,14
     PUSHBUTTON      "Annulla",IDCANCEL,132,24,50,14
 END
 
@@ -909,14 +909,14 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "&Conserva caratteri di fine linea originali",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
-    GROUPBOX        "Tabulazioni",IDC_STATIC,7,54,285,30,WS_GROUP
-    LTEXT           "&Dimensioni:",IDC_STATIC,15,68,30,8
-    EDITTEXT        IDC_TAB_EDIT,47,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+    GROUPBOX        "Tabulazioni",IDC_STATIC,7,54,215,30,WS_GROUP
+    LTEXT           "&Dimensioni:",IDC_STATIC,15,78,30,8
+    EDITTEXT        IDC_TAB_EDIT,47,80,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "&Inserisci tabulazioni",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,77,63,85,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,85,63,85,10
     CONTROL         "In&serisci spazi",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,77,72,59,10
+                    BS_AUTORADIOBUTTON,85,72,59,10
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -964,20 +964,20 @@ END
 IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Codepage"
+CAPTION "Codice di pagina"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Detect codepage info for these files : .html, .rc \nneed to restart session",
+    CONTROL         "Rileva le informazione sul codice di pagina per i file .html, .rc \nnecessario riavvio della sessione",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | 
                     BS_MULTILINE | WS_TABSTOP,13,74,210,19
-    CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
+    CONTROL         "Codice di pagina del sistema",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
-    CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",
+    CONTROL         "In accordo con l'interfaccia di WinMerge",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,33,210,10
-    CONTROL         "Custom codepage :",IDC_CP_CUSTOM,"Button",
+    CONTROL         "Codice personalizzato :",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,46,77,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Default codepage for ANSI files",IDC_STATIC,7,7,221,58
+    GROUPBOX        "Codice di pagina predefinito per file ANSI",IDC_STATIC,7,7,221,58
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 276, 186
@@ -986,29 +986,29 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "WinMerge"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    LTEXT           "Archive support is disabled. In order to enable archive support, please install a version of 7-Zip that WinMerge can interface, and place a copy of the appropriate interface plugin (Merge7z*.dll) in your WinMerge directory.",
+    LTEXT           "Il supporto per gli archivi è disattivo. Per attivarlo, installa per favore una versione di 7-Zip con cui WinMerge possa interfacciarsi e copia il plugin appropriato (Merge7z*.dll) nella tua cartella di WinMerge.",
                     IDC_STATIC,2,2,272,32
-    LTEXT           "WinMerge can interface 7-Zip 3.11 and above, provided the appropriate interface plugin is available. Please use the version of 7-Zip recommended below until interface plugins for later versions become available.",
+    LTEXT           "WinMerge può interfacciarsi con 7-Zip 3.11 e superiore, a patto che il plugin appropriato sia disponibile. Utilizza la versione di 7-Zip raccomandata qui sotto fino alla disponibilità di plugin per versioni successive.",
                     IDC_STATIC,2,34,272,32
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,70,131,8
+    LTEXT           "Versione raccomandata di 7-Zip:",IDC_STATIC,2,70,131,8
     EDITTEXT        101,214,70,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugin required:",IDC_STATIC,2,82,86,8
+    LTEXT           "Plugin richiesto:",IDC_STATIC,2,82,86,8
     EDITTEXT        102,214,82,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of 7-Zip currently installed on your computer:",
+    LTEXT           "Versione di 7-Zip installata attualmente sul tuo computer:",
                     IDC_STATIC,2,98,208,8
     EDITTEXT        103,214,98,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Version of local 7-Zip components found in WinMerge directory:",
+    LTEXT           "Versione componenti del 7-Zip locale trovati nella cartella di WinMerge:",
                     IDC_STATIC,2,110,208,8
     EDITTEXT        104,214,110,60,12,ES_AUTOHSCROLL | ES_READONLY | NOT 
                     WS_BORDER | WS_GROUP | NOT WS_TABSTOP
-    LTEXT           "Interface plugins found in WinMerge directory:",
+    LTEXT           "Plugin trovati nella cartella di WinMerge:",
                     IDC_STATIC,2,130,168,28
     LISTBOX         105,174,130,100,28,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
                     WS_VSCROLL | WS_GROUP
-    CONTROL         "Don't display this &message again.\n(You can allways recall this message from help menu.)",
+    CONTROL         "Non visualizzare più questo &messaggio.\n(Puoi comunque richiamarlo dal menu di Aiuto)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_TABSTOP,2,164,202,20
     DEFPUSHBUTTON   "OK",IDOK,208,170,50,14,WS_GROUP
@@ -1460,11 +1460,11 @@ STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge su questa cartella"
     IDS_VERSION_FMT         "Versione %1 - Italiano"
-    IDS_QUICKHELP           "Sintassi : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl descsx] [/dr descdx] percsx percdx [percoutput]\n\ndove:
+    IDS_QUICKHELP           "Sintassi : WinMerge [/r] [/e] [/f maschera/nome] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl descsx] [/dr descdx] percsx percdx [percoutput]\n\ndove:
       /? o -? visualizza questo aiuto
       /r o -r indica a winmerge di confrontare le cartelle ricorsivamente
       /e o -e permette la chiusura di WinMerge con la semplice pressione di Esc
-      /f or -f sets filemask or filtername for compare
+      /f o -f imposta la maschera di file o il nome del filtro per il confronto
       /ul o -ul indica a  winmerge di non aggiungere il percorso sinistro ai file usati di recente
       /ur o -ur indica a  winmerge di non aggiungere il percorso destro ai file usati di recente
       /ub o -ub indica a  winmerge di non aggiungere entrambi i percorsi ai file usati di recente
@@ -1513,7 +1513,7 @@ END
 // VERSION CONTROL OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_CC_CMD              "&Percorso cleartool.exe :"
+    IDS_CC_CMD              "&Perc. cleartool.exe:"
     IDS_VSS_CMD             "&Percorso di SS.EXE :"
 END
 
@@ -1585,12 +1585,12 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Errore nel controllo sui permessi di scrittura della destinazione"
     IDS_ERROR_BACKUP        "Errore durante il backup del file"
     IDS_BACKUP_FAILED_PROMPT "Impossibile eseguire il backup del file originale.\nVuoi continuare ugualmente?"
-    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
+    IDS_FILESAVE_FAILED     "Salvataggio del file fallito.\n%1\n%2\nDesideri salvare il file con un nome diverso?"
     IDS_FILEPACK_FAILED_LEFT "Il plugin '%2' non può ricompattare nuovamente le tue modifiche al file di sinistra in '%1'.\n\nIl file originale non verrà cambiato.\n\nDesideri salvare la versione non compattata in un altro file?"
     IDS_FILEPACK_FAILED_RIGHT "Il plugin '%2' non può ricompattare nuovamente le tue modifiche al file di destra in '%1'.\n\nIl file originale non verrà cambiato.\n\nDesideri salvare la versione non compattata in un altro file?"
     IDS_FILECHANGED_ONDISK  "Un'altra applicazione ha aggiornato il file\n%1\nda quando WinMerge lo ha caricato.\n\nSovrascrivere il file modificato?"
     IDS_SAVEREADONLY_MULTI  "%1\nè marcato come di sola lettura. Desideri non tenere conto della voce di Sola lettura?"
-    IDS_FILECHANGED_RESCAN  "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nIf you want to refresh files close current file compare and load files again."
+    IDS_FILECHANGED_RESCAN  "Un'altra applicazione ha aggiornato il file\n%1\nda quando WinMerge lo ha scansionato.\n\nSe vuoi aggiornare i file chiudi l'attuale sessione di confronto e ricarica i file."
 END
 
 // VSS
@@ -1647,7 +1647,7 @@ BEGIN
     IDS_CONFIRM_ALL_LEFT    "Sei sicuro di voler copiare tutte le differenze dal file di destra a quello di sinistra?"
     IDS_CONFIRM_ALL_RIGHT   "Sei sicuro di voler copiare tutte le differenze dal file di sinistra a quello di destra?"
     IDS_CONFIRM_COPY_SINGLE "Sei sicuro di voler copiare\n\n%1\nin\n%2 ?"
-    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy %1 of %2 selected item(s)?"
+    IDS_CONFIRM_COPY2DIR    "Sei sicuro di voler copiare %1 elemento(i) selezionato(i) su %2 ?"
     IDS_CONFIRM_DELETE_ITEMS "Sei sicuro di voler eliminare %1 elemento(i) selezionato(i) su %2 ?"
     IDS_CONFIRM_DELETE_DIR  "Eliminare la cartella\n\n%1 ?"
     IDS_CONFIRM_DELETE_SINGLE "Sei sicuro di voler eliminare\n\n%1 ?"
@@ -1738,8 +1738,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_ELAPSED_TIME        "Tempo trascorso: %ld ms"
-    IDS_STATUS_SELITEM1     "1 item selected"
-    IDS_STATUS_SELITEMS     "%1 items selected"
+    IDS_STATUS_SELITEM1     "1 elemento selezionato"
+    IDS_STATUS_SELITEMS     "%1 elementi selezionati"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
@@ -1814,8 +1814,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIFF_SUCCEEDED      "File di patch scritto con successo."
-    IDS_DIFF_ITEM1NOTFOUND  "1. voce non trovata o è una cartella!"
-    IDS_DIFF_ITEM2NOTFOUND  "2. voce non trovata o è una cartella!"
+    IDS_DIFF_ITEM1NOTFOUND  "Prima voce non trovata o è una cartella!"
+    IDS_DIFF_ITEM2NOTFOUND  "Seconda voce non trovata o è una cartella!"
     IDS_DIFF_FILEOVERWRITE  "Il file di patch esiste già. Desideri sovrascriverlo?"
     IDS_DIFF_SELECTEDFILES  "[%1 file selezionati]"
     IDS_DIFF_NORMAL         "Normale"
@@ -1823,16 +1823,16 @@ BEGIN
     IDS_DIFF_UNIFIED        "Unificato"
     IDS_FILEWRITE_ERROR     "Impossibile scrivere nel file %1."
     IDS_PATH_NOT_ABSOLUTE   "%1\n non è un percorso assoluto!"
-    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
-    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
+    IDS_CANNOT_CREATE_BINARYPATCH "Impossibile creare un file di patch da file binari."
+    IDS_CANNOT_CREATE_DIRPATCH "Impossibile creare un file di patch da cartelle."
 END
 
 STRINGTABLE
 BEGIN
     IDS_DIR_RESULTS_EMPTIED "Gli attuali risultati del confronto tra cartelle verranno cancellati."
-    IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\n
-                            All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.
-                            See manual for more info about archive support and how to enable it."
+    IDS_NO_ZIP_SUPPORT      "Il supporto per gli archivi non è attivo.\n
+                            Nessuno dei componenti necessari (7-zip e/o Merge7z*.dll) per il supporto sono stati trovati.\n
+                            Guarda il manuale per ulteriori informazioni sugli archivi e come attivare il supporto per essi.."
 END
 
 // LANGAGE NAMES #1
@@ -1902,7 +1902,7 @@ BEGIN
     IDS_ENGLISH_ZIMBABWE    "Inglese (Zimbabwe)"
     IDS_ENGLISH_PHILIPPINES "Inglese (Filippine)"
     IDS_ESTONIAN            "Estone"
-    IDS_FAEROESE            "Faeroese"
+    IDS_FAEROESE            "Faroese"
     IDS_FARSI               "Farsi"
     IDS_FINNISH             "Finlandese"
     IDS_FRENCH              "Francese"
@@ -1942,8 +1942,8 @@ STRINGTABLE
 BEGIN
     IDS_LATVIAN             "Lettone"
     IDS_LITHUANIAN          "Lituano"
-    IDS_MALAY_MALAYSIA      "Malay (Malaysia)"
-    IDS_MALAY_BRUNEI_DARUSSALAM "Malay (Brunei Darussalam)"
+    IDS_MALAY_MALAYSIA      "Malese (Malaysia)"
+    IDS_MALAY_BRUNEI_DARUSSALAM "Malese (Brunei Darussalam)"
     IDS_MANIPURI            "Manipuri"
     IDS_NORWEGIAN_BOKMAL    "Norvegese (Bokmål)"
     IDS_NORWEGIAN_NYNORSK   "Norvegese (Nynorsk)"
@@ -2027,7 +2027,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEDIFF         "Evidenzia differenza nella linea corrente\nDifferenza nella linea corrente (F4)"
+    ID_SHOWLINEDIFF         "Evidenzia la differenza nella linea corrente\nDifferenza nella linea corrente (F4)"
     ID_EDIT_WMGOTO          "Vai a una linea o una differenza\nVai a (Ctrl+G)"
     ID_OPTIONS              "Imposta le opzioni del programma\nOpzioni"
     ID_REFRESH              "Aggiorna la visualizzazione\nAggiorna (F5)"
