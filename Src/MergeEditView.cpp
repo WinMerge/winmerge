@@ -668,6 +668,7 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 		// (Re)start timer to rescan only when user edits text
 		// If timer starting fails, rescan immediately
 		if (nAction == CE_ACTION_TYPING ||
+			nAction == CE_ACTION_REPLACE ||
 			nAction == CE_ACTION_BACKSPACE ||
 			nAction == CE_ACTION_INDENT)
 		{

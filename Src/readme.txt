@@ -1,3 +1,7 @@
+2003-07-10 Laoran
+ PATCH: [ 768378 ] use Rescan Timer for Replace All 
+  WinMerge: MergeEditView.cpp
+
 2003-07-09 Kimmo
  PATCH: [ 765768 ] Only one Rescan on AllToLeft
   Submitted by Perry
