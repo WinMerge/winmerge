@@ -152,6 +152,8 @@
  PATCH: [ 762529 ] Dirframe trying to clear non-existing pane
   Submitted by jtuc
   WinMerge: DirFrame.cpp
+  
+2003-06-30 WinMerge beta 2.1.0.0 released
 
 2003-06-30 Laoran
  [ 762394 ] update german language
@@ -284,6 +286,8 @@
  BUG: [ 749007 ] "Highlighting" is misspelled as "Hilighting"
   WinMerge: Merge.rc
 
+2003-06-05 WinMerge 2.0.0 Release Candidate 1 released
+
 2003-06-05 Christian
  PATCH: [ 749566 ] Updated resource files
   Languages: all resource.h files and all Merge*.rc files
@@ -337,6 +341,8 @@
 2003-05-22 Perry
  PATCH: [ 741265 ] Fix for bug#741263: 1.9.2.2 crash on refresh
   WinMerge: Diff.cpp DiffContext.cpp DiffContext.h DirDoc.cpp MainFrm.cpp
+
+2003-05-19 WinMerge beta 1.9.2.2 released
 
 2003-05-18 Perry
  PATCH: [ 739529 ] project file & directory filters
@@ -540,6 +546,8 @@
  BUGFIX: [ 711983 ] ClearMergeDoc causing ASSERT
  WinMerge: DirDoc.cpp MergeDoc.cpp
 
+2003-03-26 WinMerge beta 1.9.1.4 released
+
 2003-03-25 Perry
  PATCH: [ 709575 ] Fix sanity check in CChildFrame::UpdateHeaderSizes()
  WinMerge: ChildFrm.cpp
@@ -591,6 +599,8 @@
  PATCH: [ 699893 ] Add drag&drop of files/paths to main window
   Note: Press down Ctrl when dropping dirs for recursive compare
   WinMerge: MainFrm.h MainFrm.cpp Merge.cpp paths.h paths.cpp
+
+2003-03-07 WinMerge beta 1.9.1.3 released
 
 2003-03-07 Perry
  PATCH: [ 699580 ] Fix paths.cpp
@@ -757,7 +767,9 @@
  [ 682505 ] API changes for CLog, CDirView and CDirDoc
  2nd half of [ 679692 ] Update after editing
  
-2003-02-07
+2003-02-07  WinMerge beta 1.9.1.1 released
+
+2003-02-07  Christian
  Added 24 missing languages
  Fixed duplicated strings in Italian rc.
 
@@ -791,6 +803,8 @@
 2003-01-14  Christian
  [ 665993 ] Little optimisation
 
+2002-12-17  WinMerge beta 1.7.2.11 released
+
 2002-11-26  Perry
  Implemented recursive directory delete
  Fix bug in EOL handling in crystaltextbuffer, and add optional EOL sensitivity.
@@ -802,3 +816,4 @@
 2002-12-02  Perry
  Added left files, left dirs, right files, right dirs to status bar feedback
 
+2002-11-18  WinMerge beta 1.7.2.1 released
