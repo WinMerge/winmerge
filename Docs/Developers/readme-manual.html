@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>User Manual in DocBook/XML</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <style type="text/css">
+  <!--
+    pre {
+      margin-left: 25px;
+      margin-right: 25px;
+      padding: 5px;
+      background-color: #EEEEEE;
+      border: 1px solid black;
+    }
+  -->
+  </style>
+</head>
+<body>
+<h2>User Manual in DocBook/XML</h2>
+<p>Our Manual is written in DocBook and can convert to other formats like HTML or CHM.</p>
+
+<h3>Useful DocBook resources:</h3>
+<ul>
+  <li><a href="http://www.docbook.org/">Official DocBook homepage</a></li>
+  <li><a href="http://www.docbook.org/wiki/moin.cgi/">DocBook Wiki</a></li>
+</ul>
+
+<h3>Editing manual</h3>
+<p>The user's manual is XML, so you can use XML editor or your favourite text editor. Note that
+XML requires document to be well formed, unlike HTML, before it can be processed.
+So if possible, make sure your DocBook is well formed before submitting document
+patches.</p>
+
+<p>See these tutorials for editing DocBook:</p>
+<ul>
+  <li><a href="http://newbiedoc.sourceforge.net/metadoc/docbook-guide.html.en">NewbieDoc DocBook guide</a></li>
+  <li><a href="http://www.codeproject.com/winhelp/docbook_howto.asp">Creating HTML help from DocBook</a></li>
+  <li><a href="http://docbook.sourceforge.net/release/dsssl/current/doc/html/">Customising HTML output with DSSL</a></li>
+  <li><a href="http://docbook.sourceforge.net/release/dsssl/current/doc/print/">Customising print formats with DSSL</a></li>
+</ul>
+
+<h3>Installing conversion tools needed:</h3>
+<ul>
+  <li>
+    <p>The hard way: <code>libxml</code> and <code>xsltproc</code></p>
+    <ul>
+      <li>
+        <a href="http://supportweb.cs.bham.ac.uk/documentation/tutorials/docsystem/build/tutorials/docbooksys/segmentedhtml/">Good instructions</a><br>
+        Read ch 3. about how to install Windows environment. Note that only libxml and DocBook DTD are needed for creating HTML documentation.
+      </li>
+      <li><a href="ftp://ftp.zlatkovic.com/pub/libxml/">libxml download</a></li>
+    </ul>
+  </li>
+  <li>
+    <p>Easier with complete command-line environment:</p>
+    <ul>
+      <li><a href="http://www.e-novative.info/software/ede.php">eDE</a> which is easy to setup environment for DocBook, and its GPL.</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="http://www.cygwin.com/">Cygwin</a> contains needed tools too!</p>
+    <ul>
+      <li><a href="http://ourworld.compuserve.com/homepages/hoenicka_markus/cygbook1.html">Long manual for cygwin and XML</a></li>
+      <li><a href="http://www.coin-or.org/Clp/userguide/howto/docbook4clp.html">Shorter and easier manual for cygwin and docbook</a></li>
+    </ul>
+  </li>
+  <li><p><a href="#ownbuildsystem">Own build system</a> which based on Java and Saxon.</p></li>
+</ul>
+
+<h3><a name="ownbuildsystem">Own build system which based on Java and Saxon</a></h3>
+<p>Our own build system uses the following tools:</p>
+<ul>
+  <li><a href="http://java.sun.com/j2se/">Java Runtime Environment</a></li>
+  <li><a href="http://saxon.sourceforge.net/">Saxon</a></li>
+  <li><a href="http://www.docbook.org/xml/">DocBook DTD</a></li>
+  <li><a href="http://sourceforge.net/project/showfiles.php?group_id=21935&amp;package_id=16608">XSL StyleSheets</a></li>
+  <li><a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp">HTML Help Compiler</a></li>
+</ul>
+<p>The easiest way is to install <a href="http://www.e-novative.info/software/ede.php">eDE</a>,
+because it install all required tools (except of Java).</p>
+
+<p>The batch files are located at the <code>build</code> subdirectory at the <code>Manual</code> directory.
+The main file ist <code>build.bat</code>. Paths to the installed tools are written in the <code>configuration.bat</code> file.</p>
+<dl>
+  <dt><code>build.bat html</code></dt>
+  <dd>Creates the HTML files under the <code>html</code> subdirectory at the <code>build</code> directory.</dd>
+  <dt><code>build.bat htmlhelp</code></dt>
+  <dd>Creates the CHM file under the <code>htmlhelp</code> subdirectory at the <code>build</code> directory.</dd>
+  <dt><code>build.bat</code></dt>
+  <dd>Is the same like <code>build.bat html</code>.</dd>
+</dl>
+
+<p><b>Note:</b> If you use a other path than <code>C:\docbook\xsl</code> for the <em>XSL StyleSheets</em>
+you must change the files <code>build_html.xsl</code> and <code>build_htmlhelp.xsl</code>:</p>
+<p>build_html.xsl:</p>
+<pre>&lt;xsl:import href="file:/<b>C:/docbook/xsl/</b>html/chunk.xsl"/&gt;</pre>
+<p>build_htmlhelp.xsl:</p>
+<pre>&lt;xsl:import href="file:/<b>C:/docbook/xsl/</b>htmlhelp/htmlhelp.xsl"/&gt;</pre>
+
+<h3>Docbook support in SourceForge</h3>
+<p>SourceForge has Docbook tools installed, and they can be used from
+shell server. Tools we are interested in:</p>
+<ul>
+  <li><code>docbook2html</code></li>
+  <li><code>docbook2pdf</code></li>
+  <li><code>docbook2txt</code></li>
+  <li>(<code>docbook2rtf</code>)</li>
+</ul>
+
+<h4>Generating HTML documentation</h4>
+<p><code>Manual-html.dsl</code> file is a stylesheet file that defines rules for
+generating HTML. It forces index creation, adding navigation links, CSS stylesheet
+etc. File contains comments for settings so they are not repeated here.</p>
+
+<p>To generate HTML documentation in SF.net shell, copy all XML files, stylesheet
+file and subdirectories to shell server. Then in directory which contains XML
+files, type:</p>
+
+<pre>docbook2html -d Manual-html.dsl WinMerge_help.xml</pre>
+
+<p><b>Note:</b>
+Seems that Sourceforge.net has blocked access to outside world from shell, so to generate
+docs one needs to replace <code>docbook.dtd</code> location in <code>WinMerge_help.xml</code> with
+local path. Replace url in second line <code>"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd"
+</code> with valid path. At the moment it is:</p>
+
+<pre>"/usr/share/sgml/docbook/sgml-dtd-4.2-1.0-24/docbook.dtd"</pre>
+</body>
+</html>
