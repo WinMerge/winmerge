@@ -36,11 +36,11 @@
 #include "resource.h"       // main symbols
 #include "MergeDoc.h"
 #include "languageselect.h"
+#include "FileFilterHelper.h"
 
 class FileFilterMgr;
 struct FileFilter;
 class CAssureScriptsForThread;
-class StringPairArray;
 class CMainFrame;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -60,19 +60,10 @@ public:
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
 	CLanguageSelect m_lang;
+	FileFilterHelper m_globalFileFilter;
 
 	CMergeApp();
 	void SetNeedIdleTimer();
-	CString GetFileFilterPath() const { return m_sFileFilterPath; }
-	void SetFileFilterPath(LPCTSTR szFileFilterPath);
-	void EditFileFilter(LPCTSTR szFileFilterName);
-	void GetFileFilters(StringPairArray * filters, CString & selected) const;
-	CString GetFileFilterName(CString filterPath);
-	CString GetFileFilterPath(CString filterName);
-
-	// implement file/directory filtering, because app currently holds the filter manager
-	BOOL includeFile(LPCTSTR szFileName);
-	BOOL includeDir(LPCTSTR szDirName);
 
 // Implementation
 protected:
@@ -89,7 +80,6 @@ protected:
 
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void InitializeFileFilters();
-	void LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int, int> & patternsLoaded, const CString & sPattern);
 	void ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
 		DWORD & dwLeftFlags, DWORD & dwRightFlags);
 
@@ -101,9 +91,7 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
-	FileFilter * m_currentFilter;
 	FileFilterMgr * m_fileFilterMgr;
-	CString m_sFileFilterPath;
 	CAssureScriptsForThread * m_mainThreadScripts;
 };
 

@@ -57,7 +57,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 
 	pNamesLeft = NULL;
 	pNamesRight = NULL;
-	m_piFilterUI = 0;
 	m_piFilterGlobal = 0;
 	m_piPluginInfos = 0;
 	m_msgUpdateStatus = 0;
@@ -76,7 +75,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	m_strLeft = pszLeft;
 	m_strRight = pszRight;
 	m_pList = src.m_pList;
-	m_piFilterUI = src.m_piFilterUI;
 	m_piFilterGlobal = src.m_piFilterGlobal;
 	m_msgUpdateStatus = src.m_msgUpdateStatus;
 	m_hDirFrame = src.m_hDirFrame;
@@ -121,14 +119,6 @@ void CDiffContext::AddDiff(DIFFITEM & di)
 void CDiffContext::RemoveDiff(POSITION diffpos)
 {
 	m_pList->RemoveAt(diffpos);
-}
-
-/**
- * @brief Sets regular expression for DiffContext
- */
-void CDiffContext::SetRegExp(LPCTSTR pszExp)
-{
-	m_strRegExp = pszExp;
 }
 
 /**

@@ -126,8 +126,6 @@ protected:
 
 	// Implementation data
 private:
-	DirDocFilterGlobal * m_pFilterGlobal;
-	DirDocFilterByExtension * m_pFilterUI;
 	CDirView *m_pDirView;
 	MergeDocPtrList m_MergeDocs;
 	BOOL m_bReuseMergeDocs; // policy to reuse existing merge docs
@@ -138,41 +136,6 @@ private:
 	CString m_strLeftDesc; /**< Left side desription text */
 	CString m_strRightDesc; /**< Left side desription text */
 	PluginManager m_pluginman;
-};
-
-/**
- * @brief callback for file/directory filtering during diff
- *
- * @note This one uses the current global filter.
- */
-class DirDocFilterGlobal : public IDiffFilter
-{
-public:
-	// implement the interface IDiffFilter
-	/** @brief Return TRUE unless we're suppressing this directory by filter */
-	virtual BOOL includeDir(LPCTSTR szDirName);
-	/** @brief Return TRUE unless we're suppressing this file by filter */
-	virtual BOOL includeFile(LPCTSTR szFileName);
-};
-
-/**
- * @brief callback for file/directory filtering during diff
- *
- * @note This one uses the extension list from the open dialog.
- * Include only the matching files
- */
-class DirDocFilterByExtension : public IDiffFilter
-{
-public:
-  DirDocFilterByExtension(LPCTSTR strRegExp);
-
-	// implement the interface IDiffFilter
-	/** @brief Return TRUE unless we're suppressing this directory by filter */
-	virtual BOOL includeDir(LPCTSTR szDirName);
-	/** @brief Return TRUE unless we're suppressing this file by filter */
-	virtual BOOL includeFile(LPCTSTR szFileName);
-private:
-	CRegExp m_rgx;
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -66,8 +66,6 @@ CDirDoc::CDirDoc()
 	m_pDirView = NULL;
 	m_pCtxt=NULL;
 	m_bReuseMergeDocs = TRUE;
-	m_pFilterGlobal = NULL;
-	m_pFilterUI = NULL;
 	m_bROLeft = FALSE;
 	m_bRORight = FALSE;
 	m_bRecursive = FALSE;
@@ -97,8 +95,6 @@ CDirDoc::~CDirDoc()
 		pMergeDoc->DirDocClosing(this);
 	}
 	
-	delete m_pFilterGlobal;
-	delete m_pFilterUI;
 	// Delete all temporary folders belonging to this document
 	CTempPath(this);
 }
@@ -201,13 +197,7 @@ void CDirDoc::Rescan()
 	pf->GetHeaderInterface()->SetActive(0, TRUE);
 	pf->GetHeaderInterface()->SetActive(1, TRUE);
 
-	if (m_pFilterGlobal == NULL)
-		m_pFilterGlobal = new DirDocFilterGlobal;
-	m_pCtxt->m_piFilterGlobal = m_pFilterGlobal;
-
-	if (m_pFilterUI == NULL)
-		m_pFilterUI = new DirDocFilterByExtension(m_pCtxt->m_strRegExp);
-	m_pCtxt->m_piFilterUI = m_pFilterUI;
+	m_pCtxt->m_piFilterGlobal = &theApp.m_globalFileFilter;
 
 	// Empty display before new compare
 	m_pDirView->DeleteAllDisplayItems();
@@ -517,12 +507,6 @@ BOOL CDirDoc::ReusingDirDoc()
 	if (m_pCtxt != NULL)
 		delete m_pCtxt;
 	m_pCtxt = NULL;
-	if (m_pFilterGlobal != NULL)
-		delete m_pFilterGlobal;
-	m_pFilterGlobal = NULL;
-	if (m_pFilterUI != NULL)
-		delete m_pFilterUI;
-	m_pFilterUI = NULL;
 
 	return TRUE;
 }
@@ -554,7 +538,7 @@ CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
 
 /**
  * @brief Update changed item's compare status
- * @param bIdentical TRUE if files became identical, false otherwise.
+ * @param unified true if files became identical, false otherwise.
  * @note Filenames must be same, otherwise function asserts.
  */
 void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight,
@@ -681,68 +665,6 @@ void CDirDoc::SetDiffStatus(UINT diffcode, UINT mask, int idx)
 	m_pCtxt->SetDiffStatusCode(diffpos, diffcode, mask);
 
 	// update DIFFITEM time (and other disk info), and tell views
-}
-
-
-BOOL DirDocFilterGlobal::includeDir(LPCTSTR szDirName) 
-{ 
-#ifdef _UNICODE
-	// TODO
-	// regexp has some problem in Unicode ? 2003-09-14
-	// but 2003-10-24 let's test it
-	// return TRUE;
-#endif
-	// preprend a backslash if there is none
-	CString strDirName;
-	if (strDirName != _T('\\'))
-		strDirName = _T('\\');
-	strDirName += szDirName;
-	return theApp.includeDir(strDirName);
-}
-BOOL DirDocFilterGlobal::includeFile(LPCTSTR szFileName) 
-{ 
-#ifdef _UNICODE
-	// TODO
-	// regexp has some problem in Unicode ? 2003-09-14
-	// but 2003-10-24 let's test it
-	// return TRUE;
-#endif
-	// preprend a backslash if there is none
-	CString strFileName = szFileName;
-	if (strFileName[0] != _T('\\'))
-		strFileName = _T('\\') + strFileName;
-	// append a point if there is no extension
-	if (strFileName.Find(_T('.')) == -1)
-		strFileName = strFileName + _T('.');
-	return theApp.includeFile(strFileName);
-}
-
-DirDocFilterByExtension::DirDocFilterByExtension(LPCTSTR strRegExp)
-{
-	m_rgx.RegComp( strRegExp );
-}
-
-BOOL DirDocFilterByExtension::includeDir(LPCTSTR szDirName) 
-{ 
-	// directory have no extension
-	return TRUE;
-}
-BOOL DirDocFilterByExtension::includeFile(LPCTSTR szFileName) 
-{ 
-#ifdef _UNICODE
-	// TODO
-	// regexp has some problem in Unicode ? 2003-09-14
-	// but 2003-10-24 let's test it
-	// return TRUE;
-#endif
-	// preprend a backslash if there is none
-	CString strFileName = szFileName;
-	if (strFileName[0] != _T('\\'))
-		strFileName = _T('\\') + strFileName;
-	// append a point if there is no extension
-	if (strFileName.Find(_T('.')) == -1)
-		strFileName = strFileName + _T('.');
-	return (! m_rgx.RegFind(strFileName));
 }
 
 /**

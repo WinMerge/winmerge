@@ -235,7 +235,7 @@ CMainFrame::CMainFrame()
 	m_strVssDatabase = theApp.GetProfileString(_T("Settings"), _T("VssDatabase"),_T(""));
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
-	theApp.SetFileFilterPath(theApp.GetProfileString(_T("Settings"), _T("FileFilterPath"), _T("")));
+	theApp.m_globalFileFilter.SetFileFilterPath(theApp.GetProfileString(_T("Settings"), _T("FileFilterPath"), _T("")));
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	// uncomment this when the GUI allows to toggle the mode
 //	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
@@ -1592,7 +1592,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				pDirDoc->SetReadOnly(TRUE, bROLeft);
 				pDirDoc->SetReadOnly(FALSE, bRORight);
 				pDirDoc->SetRecursive(bRecurse);
-				pCtxt->SetRegExp(strExt);
+				theApp.m_globalFileFilter.SetMaskRegExp(strExt);
 				pDirDoc->SetDiffContext(pCtxt);
 				pDirDoc->SetDescriptions(m_strLeftDesc, m_strRightDesc);
 				m_strLeftDesc.Empty();
@@ -2763,7 +2763,7 @@ void CMainFrame::OnToolsFilters()
 	sht.AddPage(&filter);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
-	theApp.GetFileFilters(&fileFilters, selectedFilter);
+	theApp.m_globalFileFilter.GetFileFilters(&fileFilters, selectedFilter);
 	fileFiltersDlg.SetFilterArray(&fileFilters);
 	fileFiltersDlg.SetSelected(selectedFilter);
 	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
@@ -2772,7 +2772,7 @@ void CMainFrame::OnToolsFilters()
 	if (sht.DoModal() == IDOK)
 	{
 		CString path = fileFiltersDlg.GetSelected();
-		theApp.SetFileFilterPath(path);
+		theApp.m_globalFileFilter.SetFileFilterPath(path);
 		theApp.WriteProfileString(_T("Settings"), _T("FileFilterPath"), path);
 
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;

@@ -29,12 +29,6 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#ifndef StringPair_declared
-#define StringPair_declared
-struct StringPair { CString first; CString second; };
-class StringPairArray : public CArray<StringPair, StringPair> { }; // need class so can forward declare
-#endif
-
 /**
  * @brief Class for dialog allowing user to select
  * and edit used file filters

@@ -1,3 +1,10 @@
+2004-07-16 Kimmo
+ PATCH: [ 990976 ] FileFilterHelper (filter code cleanup)
+  Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirDoc.h DirScan.cpp
+   FileFiltersDlg.cpp FileFilterDlg.h MainFrm.cpp Merge.cpp Merge.dsp
+   Merge.h OpenDlg.cpp
+  Src new files: FileFilterHelper.cpp FileFilterHelper.h
+
 2004-07-15 Kimmo
  PATCH: [ 991181 ] Disable 'Goto Line' outside reduced locationpane bars
   Src: LocationView.cpp

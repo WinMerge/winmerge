@@ -196,18 +196,20 @@ void COpenDlg::OnOK()
 	{
 		// Remove prefix + space
 		m_strExt.Delete(0, filterPrefix.GetLength());
-		CString path = theApp.GetFileFilterPath(m_strExt);
+		CString path = theApp.m_globalFileFilter.GetFileFilterPath(m_strExt);
 		m_strParsedExt = EMPTY_EXTENSION;
 		m_bFileFilterSelected = TRUE;
-		theApp.SetFileFilterPath(path);
+		theApp.m_globalFileFilter.SetFileFilterPath(path);
+		theApp.m_globalFileFilter.UseMask(FALSE);
 	}
 	else
 	{
 		CString strNone;
 		VERIFY(strNone.LoadString(IDS_USERCHOICE_NONE));
-		theApp.SetFileFilterPath(strNone);
+		theApp.m_globalFileFilter.SetFileFilterPath(strNone);
 		m_strParsedExt = ParseExtensions(m_strExt);
 		m_bFileFilterSelected = FALSE;
+		theApp.m_globalFileFilter.UseMask(TRUE);
 	}
 
 	m_ctlLeft.SaveState(_T("Files\\Left"));
@@ -262,7 +264,7 @@ BOOL COpenDlg::OnInitDialog()
 	CString strNone;
 	VERIFY(strNone.LoadString(IDS_USERCHOICE_NONE));
 	CString filterFile, filterExt;
-	CString filterPath = theApp.GetFileFilterPath();
+	CString filterPath = theApp.m_globalFileFilter.GetFileFilterPath();
 	SplitFilename(filterPath, NULL, &filterFile, &filterExt);
 	filterFile += _T(".");
 	filterFile += filterExt;
@@ -274,7 +276,7 @@ BOOL COpenDlg::OnInitDialog()
 	{
 		// Filter selected, search filter first from list, add if not found
 		m_bFileFilterSelected = TRUE;
-		CString filterName = theApp.GetFileFilterName(filterPath);
+		CString filterName = theApp.m_globalFileFilter.GetFileFilterName(filterPath);
 		filterName.Insert(0, filterPrefix);
 		int ind = m_ctlExt.FindStringExact(0, filterName);
 		if (ind != CB_ERR)
@@ -479,13 +481,13 @@ void COpenDlg::OnSelectFilter()
 	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
 
 	mf->SelectFilter();
-	CString filter = theApp.GetFileFilterPath();
+	CString filter = theApp.m_globalFileFilter.GetFileFilterPath();
 	
 	if (filter == strNone)
 		SetDlgItemText(IDC_EXT_COMBO, _T("*.*"));
 	else
 	{
-		filterName = theApp.GetFileFilterName(filter);
+		filterName = theApp.m_globalFileFilter.GetFileFilterName(filter);
 		filterName.Insert(0, filterPrefix);
 		SetDlgItemText(IDC_EXT_COMBO, filterName);
 	}

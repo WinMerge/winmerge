@@ -12,6 +12,7 @@
 #include "common/unicoder.h"
 #include "DiffContext.h"
 #include "DiffWrapper.h"
+#include "FileFilterHelper.h"
 #include "logfile.h"
 #include "paths.h"
 #include "FileTransform.h"
@@ -102,7 +103,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 
 			// Test against filter
 			CString newsub = subprefix + leftDirs[i].name;
-			if (!pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
+			if (!pCtxt->m_piFilterGlobal->includeDir(newsub))
 				nDiffCode = DIFFCODE::LEFT | DIFFCODE::DIR | DIFFCODE::SKIPPED;
 
 			// Advance left pointer over left-only entry, and then retest with new pointers
@@ -116,7 +117,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 
 			// Test against filter
 			CString newsub = subprefix + rightDirs[j].name;
-			if (!pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
+			if (!pCtxt->m_piFilterGlobal->includeDir(newsub))
 				nDiffCode = DIFFCODE::RIGHT | DIFFCODE::DIR | DIFFCODE::SKIPPED;
 
 			// Advance right pointer over right-only entry, and then retest with new pointers
@@ -128,7 +129,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 		{
 			ASSERT(j<rightDirs.GetSize());
 			CString newsub = subprefix + leftDirs[i].name;
-			if (!pCtxt->m_piFilterUI->includeDir(newsub) || !pCtxt->m_piFilterGlobal->includeDir(newsub))
+			if (!pCtxt->m_piFilterGlobal->includeDir(newsub))
 			{
 				int nDiffCode = DIFFCODE::BOTH | DIFFCODE::SKIPPED | DIFFCODE::DIR;
 				StoreDiffResult(subdir, &leftDirs[i], &rightDirs[j], nDiffCode, pCtxt);
@@ -175,7 +176,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			// Test against filter
 			CString newsubfile = subprefix + leftFiles[i].name;
 			int nDiffCode = DIFFCODE::LEFT | DIFFCODE::FILE;
-			if (!pCtxt->m_piFilterUI->includeFile(newsubfile) || !pCtxt->m_piFilterGlobal->includeFile(newsubfile))
+			if (!pCtxt->m_piFilterGlobal->includeFile(newsubfile))
 			{
 				nDiffCode |= DIFFCODE::SKIPPED;
 				StoreDiffResult(subdir, &leftFiles[i], 0, nDiffCode, pCtxt);
@@ -201,7 +202,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			// Test against filter
 			CString newsubfile = subprefix + rightFiles[j].name;
 			int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::FILE;
-			if (!pCtxt->m_piFilterUI->includeFile(newsubfile) || !pCtxt->m_piFilterGlobal->includeFile(newsubfile))
+			if (!pCtxt->m_piFilterGlobal->includeFile(newsubfile))
 			{
 				nDiffCode |= DIFFCODE::SKIPPED;
 				StoreDiffResult(subdir, 0, &rightFiles[j], nDiffCode, pCtxt);
@@ -227,7 +228,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			ASSERT(j<rightFiles.GetSize());
 			CString newsubfile = subprefix + leftFiles[i].name;
 			int nDiffCode = DIFFCODE::BOTH | DIFFCODE::FILE;
-			if (!pCtxt->m_piFilterUI->includeFile(newsubfile) || !pCtxt->m_piFilterGlobal->includeFile(newsubfile))
+			if (!pCtxt->m_piFilterGlobal->includeFile(newsubfile))
 			{
 				nDiffCode |= DIFFCODE::SKIPPED;
 				StoreDiffResult(subdir, &leftFiles[i], &rightFiles[j], nDiffCode, pCtxt);

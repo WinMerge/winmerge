@@ -43,6 +43,7 @@
 #include "coretools.h"
 #include "paths.h"
 #include "FileFilterMgr.h"
+#include "FileFilterHelper.h"
 #include "Plugins.h"
 #include "DirScan.h" // for DirScan_InitializeDefaultCodepage
 
@@ -51,12 +52,6 @@
 #define new DEBUG_NEW
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
-#endif
-
-#ifndef StringPair_declared
-#define StringPair_declared
-struct StringPair { CString first; CString second; };
-class StringPairArray : public CArray<StringPair, StringPair> { }; // need class so can forward declare
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
@@ -88,7 +83,6 @@ CMergeApp::CMergeApp() :
 , m_pDirTemplate(0)
 , m_lang(IDR_MAINFRAME, IDR_MAINFRAME)
 , m_fileFilterMgr(0)
-, m_currentFilter(0)
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
@@ -148,6 +142,8 @@ BOOL CMergeApp::InitInstance()
 	LoadStdProfileSettings(0);  // Load standard INI file options (including MRU)
 	BOOL bDisableSplash	= GetProfileInt(_T("Settings"), _T("DisableSplash"), FALSE);
 
+	InitializeFileFilters();
+
 	// CG: The following block was added by the Splash Screen component.
 	{
 		CCommandLineInfo cmdInfo;
@@ -161,8 +157,6 @@ BOOL CMergeApp::InitInstance()
 	m_lang.InitializeLanguage();
 
 	AddEnglishResourceHook(); // Use English string when l10n (foreign) string missing
-
-	InitializeFileFilters();
 
 	m_mainThreadScripts = new CAssureScriptsForThread;
 
@@ -643,151 +637,30 @@ void CMergeApp::InitializeFileFilters()
 	if (!m_fileFilterMgr)
 		m_fileFilterMgr = new FileFilterMgr;
 
+	m_globalFileFilter.SetManager(m_fileFilterMgr);
+
 	// Load filters from all possible subdirectories
 	CMap<CString, LPCTSTR, int, int> patternsLoaded;
 
 	// Application directory
 	CString sPattern = GetModulePath() + _T("\\Filters\\*.flt");
-	LoadFileFilterDirPattern(patternsLoaded, sPattern);
+	m_globalFileFilter.LoadFileFilterDirPattern(patternsLoaded, sPattern);
 
 	// Application data path in user profile directory
 	if (GetAppDataPath(sPattern))
 	{
 		sPattern += _T("\\WinMerge\\Filters\\*.flt");
-		LoadFileFilterDirPattern(patternsLoaded, sPattern);
+		m_globalFileFilter.LoadFileFilterDirPattern(patternsLoaded, sPattern);
 	}
 	// User profile local & roaming settings
 	CString sProfile;
 	if (GetUserProfilePath(sProfile))
 	{
 		sPattern = sProfile + _T("\\Local Settings\\Application Data\\WinMerge\\Filters\\*.flt");
-		LoadFileFilterDirPattern(patternsLoaded, sPattern);
+		m_globalFileFilter.LoadFileFilterDirPattern(patternsLoaded, sPattern);
 		sPattern = sProfile + _T("\\Application Data\\WinMerge\\Filters\\*.flt");
-		LoadFileFilterDirPattern(patternsLoaded, sPattern);
+		m_globalFileFilter.LoadFileFilterDirPattern(patternsLoaded, sPattern);
 	}
-}
-
-/** @brief Load in all filter patterns in a directory (unless already in map) */
-void
-CMergeApp::LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int, int> & patternsLoaded, const CString & sPattern)
-{
-	int n=0;
-	if (!patternsLoaded.Lookup(sPattern, n))
-	{
-		m_fileFilterMgr->LoadFromDirectory(sPattern, _T(".flt"));
-	}
-	patternsLoaded[sPattern] = ++n;
-}
-
-/** @brief fill list with names of known filters */
-void CMergeApp::GetFileFilters(StringPairArray * filters, CString & selected) const
-{
-	if (m_fileFilterMgr)
-	{
-		int count = m_fileFilterMgr->GetFilterCount();
-		filters->SetSize(count);
-		for (int i=0; i<count; ++i)
-		{
-			StringPair pair;
-			pair.first = m_fileFilterMgr->GetFilterPath(i);
-			pair.second = m_fileFilterMgr->GetFilterName(i);
-			filters->SetAt(i, pair);
-		}
-	}
-	selected = m_sFileFilterPath;
-}
-
-/** @brief Store current filter (if filter manager validates the name) */
-void CMergeApp::SetFileFilterPath(LPCTSTR szFileFilterPath)
-{
-	VERIFY(m_sFileFilterPath.LoadString(IDS_USERCHOICE_NONE));
-	if (!m_fileFilterMgr) return;
-	m_currentFilter = m_fileFilterMgr->GetFilterByPath(szFileFilterPath);
-	if (m_currentFilter)
-		m_sFileFilterPath = szFileFilterPath;
-}
-
-/** @brief Bring up file filter in notepad */
-void CMergeApp::EditFileFilter(LPCTSTR szFileFilterPath)
-{
-	FileFilter * filter = m_fileFilterMgr->GetFilterByPath(szFileFilterPath);
-	if (!filter)
-	{
-		ASSERT(0);
-		return;
-	}
-
-	CString cmdLine = (CString)_T("notepad ") + m_fileFilterMgr->GetFullpath(filter);
-	STARTUPINFO stInfo = {0};
-	PROCESS_INFORMATION prInfo;
-	BOOL processSuccess = FALSE;
-	stInfo.cb = sizeof(STARTUPINFO);
-	processSuccess = CreateProcess(NULL, (LPTSTR)(LPCTSTR)cmdLine, NULL,
-		NULL, FALSE, 0, NULL, NULL, &stInfo, &prInfo);
-
-	if (processSuccess == TRUE)
-	{
-		// Wait until process closes down
-		WaitForSingleObject(prInfo.hProcess, INFINITE);
-		CloseHandle(prInfo.hThread);
-		CloseHandle(prInfo.hProcess);
-	}
-	
-	// Reload filter after changing it
-	m_fileFilterMgr->ReloadFilterFromDisk(filter);
-
-}
-
-/** @brief Return name of filter in given file */
-CString CMergeApp::GetFileFilterName(CString filterPath)
-{
-	StringPairArray filters;
-	CString selected;
-	CString name;
-
-	GetFileFilters(&filters, selected);
-	for (int i = 0; i < filters.GetSize(); i++)
-	{
-		if (filters.GetAt(i).first == filterPath)
-		{
-			name = filters.GetAt(i).second;
-			break;
-		}
-	}
-	return name;
-}
-
-/** @brief Return path to filter with given name */
-CString CMergeApp::GetFileFilterPath(CString filterName)
-{
-	StringPairArray filters;
-	CString selected;
-	CString path;
-
-	GetFileFilters(&filters, selected);
-	for (int i = 0; i < filters.GetSize(); i++)
-	{
-		if (filters.GetAt(i).second == filterName)
-		{
-			path = filters.GetAt(i).first;
-			break;
-		}
-	}
-	return path;
-}
-
-/** @brief Return TRUE unless we're suppressing this file by filter */
-BOOL CMergeApp::includeFile(LPCTSTR szFileName)
-{
-	if (!m_fileFilterMgr || !m_currentFilter) return TRUE;
-	return m_fileFilterMgr->TestFileNameAgainstFilter(m_currentFilter, szFileName);
-}
-
-/** @brief Return TRUE unless we're suppressing this directory by filter */
-BOOL CMergeApp::includeDir(LPCTSTR szDirName)
-{
-	if (!m_fileFilterMgr || !m_currentFilter) return TRUE;
-	return m_fileFilterMgr->TestDirNameAgainstFilter(m_currentFilter, szDirName);
 }
 
 /** @brief Open help from mainframe when user presses F1*/

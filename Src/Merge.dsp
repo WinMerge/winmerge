@@ -513,6 +513,10 @@ SOURCE=.\EditorFilepathBar.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\FileFilterHelper.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\FileFilterMgr.cpp
 # End Source File
 # Begin Source File
@@ -1256,6 +1260,10 @@ SOURCE=.\EditorFilepathBar.h
 # Begin Source File
 
 SOURCE=.\Exceptions.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FileFilterHelper.h
 # End Source File
 # Begin Source File
 

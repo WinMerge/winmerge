@@ -16,6 +16,7 @@
 
 class PackingInfo;
 class PrediffingInfo;
+class IDiffFilter;
 
 struct dirdata
 {
@@ -98,14 +99,6 @@ public:
 	virtual void rptFile(BYTE code)=0;
 };
 
-// Interface for testing files & directories for exclusion, as diff traverses file tree
-class IDiffFilter
-{
-public:
-	virtual BOOL includeFile(LPCTSTR szFileName)=0;
-	virtual BOOL includeDir(LPCTSTR szDirName)=0;
-};
-
 /** Interface to a provider of plugin info */
 class IPluginInfos
 {
@@ -122,8 +115,6 @@ public:
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight);
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src);
 	virtual ~CDiffContext();
-
-	void SetRegExp(LPCTSTR pszExp);
 
 	// add & remove differences
 	void AddDiff(DIFFITEM & di);
@@ -154,8 +145,6 @@ public:
 	CString m_strRight;
 	CString m_strNormalizedLeft;
 	CString m_strNormalizedRight;
-	CString m_strRegExp;
-	IDiffFilter * m_piFilterUI;
 	IDiffFilter * m_piFilterGlobal;
 	IPluginInfos * m_piPluginInfos;
 	UINT m_msgUpdateStatus;

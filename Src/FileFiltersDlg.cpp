@@ -190,7 +190,7 @@ void FileFiltersDlg::OnFiltersEditbtn()
 			MAX_PATH);
 		path.ReleaseBuffer();
 
-		theApp.EditFileFilter(path);
+		theApp.m_globalFileFilter.EditFileFilter(path);
 	}
 }
 
