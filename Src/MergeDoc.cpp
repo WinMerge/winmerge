@@ -499,23 +499,48 @@ void CMergeDoc::FixLastDiffRange(BOOL left)
 {
 	DIFFRANGE dr = {0};
 	int count = m_diffs.GetSize();
-	dr = m_diffs.GetAt(count - 1);
-
-	if (left)
+	if (count > 0)
 	{
-		if (dr.op == OP_RIGHTONLY)
-			dr.op = OP_DIFF;
-		dr.end0++;
-	}
-	else
-	{
-		if (dr.op == OP_LEFTONLY)
-			dr.op = OP_DIFF;
-		dr.end1++;
-	}
+		dr = m_diffs.GetAt(count - 1);
 
-	m_diffs.SetAt(count - 1, dr); 
+		if (left)
+		{
+			if (dr.op == OP_RIGHTONLY)
+				dr.op = OP_DIFF;
+			dr.end0++;
+		}
+		else
+		{
+			if (dr.op == OP_LEFTONLY)
+				dr.op = OP_DIFF;
+			dr.end1++;
+		}
+
+		m_diffs.SetAt(count - 1, dr); 
+	}
+	else 
+	{
+		// we have to create the DIFF
+		dr.end0   = m_ltBuf.GetLineCount() - 1;
+		dr.end1   = m_rtBuf.GetLineCount() - 1;
+		if (left)
+		{
+			dr.begin0 = dr.end0;
+			dr.begin1 = dr.end1 + 1;
+			dr.op = OP_LEFTONLY;
+		}
+		else
+		{
+			dr.begin0 = dr.end0 + 1;
+			dr.begin1 = dr.end1;
+			dr.op = OP_RIGHTONLY;
+		}
+		ASSERT(dr.begin0 == dr.begin1);
+
+		AddDiffRange (dr.begin0, dr.end0, dr.begin1, dr.end1, dr.op); 
+	}
 }
+
 
 void CMergeDoc::ShowRescanError(int nRescanResult)
 {

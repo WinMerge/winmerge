@@ -1,4 +1,9 @@
 2003-07-16 Laoran
+ PATCH: [ 765926 ] Merge empty last line to the last diffrange (change)
+ new version
+  WinMerge: MergeDoc.cpp
+
+2003-07-16 Laoran
  PATCH: [ 771525 ] Updating cursor in ListCopy
   WinMerge: MergeDoc.cpp MergeDoc.h
   editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h
