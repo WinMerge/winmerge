@@ -1,3 +1,7 @@
+2004-12-17 Kimmo
+ PATCH: [ 1086601 ] Dircompare statepane miscounting skipped items
+  Src: DirCompStateBar.cpp
+
 2004-12-15 Tim
  RFE: [ 1085099 ] 'fileskip.bmp' looks to similar like 'equal.bmp'
   Src/res: fileskip.bmp

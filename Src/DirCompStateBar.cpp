@@ -181,7 +181,22 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 {
 	DIFFCODE di = diffcode;
 	
-	if (di.isSideLeft())
+	// Test first for skipped so we pick all skipped items as such 
+	if (di.isResultFiltered())
+	{
+		// skipped
+		if (di.isDirectory())
+		{
+			++m_nFolderSkip;
+			SetDlgItemInt(IDC_COUNT_FOLDERSKIP, m_nFolderSkip);
+		}
+		else
+		{
+			++m_nFileSkip;
+			SetDlgItemInt(IDC_COUNT_FILESKIP, m_nFileSkip);
+		}
+	}
+	else if (di.isSideLeft())
 	{
 		// left-only
 		if (di.isDirectory())
@@ -207,20 +222,6 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		{
 			++m_nRFile;
 			SetDlgItemInt(IDC_COUNT_RFILE, m_nRFile);
-		}
-	}
-	else if (di.isResultFiltered())
-	{
-		// skipped
-		if (di.isDirectory())
-		{
-			++m_nFolderSkip;
-			SetDlgItemInt(IDC_COUNT_FOLDERSKIP, m_nFolderSkip);
-		}
-		else
-		{
-			++m_nFileSkip;
-			SetDlgItemInt(IDC_COUNT_FILESKIP, m_nFileSkip);
 		}
 	}
 	else if (di.isResultError())
