@@ -1,3 +1,7 @@
+2004-06-13 Laoran
+ PATCH: [ 971862 ] Various Updates in German Translation ; submitter : Tim Gerundt
+  Src/Languages/German: MergeGerman.rc
+
 2004-06-12 WinMerge experimental release 2.1.7.7 (cvs)
 
 2004-06-11 Laoran
