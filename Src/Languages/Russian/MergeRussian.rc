@@ -418,30 +418,30 @@ BEGIN
                     IDC_FILES_DIRS_GROUP,7,7,298,111
 END
 
-IDD_VSS DIALOGEX 0, 0, 257, 159
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_VSS DIALOGEX 0, 0, 257, 166
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Visual SourceSafe"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    DEFPUSHBUTTON   "Взять под контроль",IDOK,43,132,74,14
-    PUSHBUTTON      "Отмена",IDCANCEL,193,132,50,14
-    PUSHBUTTON      "Сохранить как...",IDC_SAVE_AS,123,132,63,14
-    LTEXT           "Проект:",IDC_STATIC,9,81,25,8
+    LTEXT           "База данных:",IDC_STATIC,7,64,52,8
+    COMBOBOX        IDC_DATABASE_LIST,65,63,185,114,CBS_DROPDOWN | 
+    LTEXT           "Проект:",IDC_STATIC,7,81,36,8
     COMBOBOX        IDC_PROJECT_COMBO,65,78,185,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Пользователь:",IDC_STATIC,10,99,51,8
+    LTEXT           "Пользователь:",IDC_STATIC,7,99,51,8
     EDITTEXT        IDC_USER,65,96,58,14,ES_AUTOHSCROLL
-    LTEXT           "Пароль:",IDC_STATIC,127,99,34,8
+    RTEXT           "Пароль:",IDC_STATIC,127,99,34,8
     EDITTEXT        IDC_PASSWORD,162,97,70,14,ES_PASSWORD | ES_AUTOHSCROLL
-    LTEXT           "База данных:",IDC_STATIC,9,64,52,13
-    COMBOBOX        IDC_DATABASE_LIST,65,63,185,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Применить ко всем элементам",IDC_MULTI_CHECKOUT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,20,117,123,8
     CONTROL         "Путь к проекту VSS",IDC_VCPROJ_SYNC,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,148,117,92,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,115,92,8
+    CONTROL         "Применить ко всем элементам",IDC_MULTI_CHECKOUT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,125,123,8
+    DEFPUSHBUTTON   "Взять под контроль",IDOK,43,145,74,14
+    PUSHBUTTON      "Сохранить как...",IDC_SAVE_AS,123,145,63,14
+    PUSHBUTTON      "Отмена",IDCANCEL,193,145,50,14
 END
 
 IDD_PROP_VSS DIALOG  0, 0, 259, 157

@@ -1,4 +1,9 @@
 2004-05-14 Kimmo
+ PATCH: [ 952825 ] Cleanup VSS dialog layout
+  Src: Merge.rc
+  Src/Languages: *.rc
+
+2004-05-13 Kimmo
  Backout last change to Merge.rc - restore version 1.187
   Src: Merge.rc
  BUG: [ 953232 ] Some lang-files broken
