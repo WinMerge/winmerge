@@ -298,26 +298,26 @@ Name: {app}\Merge7z412U.dll; Type: files; MinVersion: 0, 4
 ;This won't work, because the file has to be unregistered, and explorer closed, first.
 ;Name: {app}\ShellExtension.dll; Type: files; Check: TaskDisabled('ShellExtension')
 
-Name: {app}\MergeBulgarian.lang; Type: files; Check: ComponentDisabled('Bulgarian')
-Name: {app}\MergeBrazilian.lang; Type: files; Check: ComponentDisabled('Portuguese')
-Name: {app}\MergeCatalan.lang; Type: files; Check: ComponentDisabled('Catalan')
-Name: {app}\MergeChineseSimplified.lang; Type: files; Check: ComponentDisabled('Chinese_Simplified')
-Name: {app}\MergeChineseTraditional.lang; Type: files; Check: ComponentDisabled('Chinese_Traditional')
-Name: {app}\MergeCzech.lang; Type: files; Check: ComponentDisabled('Czech')
-Name: {app}\MergeDanish.lang; Type: files; Check: ComponentDisabled('Danish')
-Name: {app}\MergeDutch.lang; Type: files; Check: ComponentDisabled('Dutch')
-Name: {app}\MergeFrench.lang; Type: files; Check: ComponentDisabled('French')
-Name: {app}\MergeGerman.lang; Type: files; Check: ComponentDisabled('German')
-Name: {app}\MergeHungarian.lang; Type: files; Check: ComponentDisabled('Hungarian')
-Name: {app}\MergeItalian.lang; Type: files; Check: ComponentDisabled('Italian')
-Name: {app}\MergeJapanese.lang; Type: files; Check: ComponentDisabled('Japanese')
-Name: {app}\MergeKorean.lang; Type: files; Check: ComponentDisabled('Korean')
-Name: {app}\MergeNorwegian.lang; Type: files; Check: ComponentDisabled('Norwegian')
-Name: {app}\MergePolish.lang; Type: files; Check: ComponentDisabled('Polish')
-Name: {app}\MergeSlovak.lang; Type: files; Check: ComponentDisabled('Slovak')
-Name: {app}\MergeSpanish.lang; Type: files; Check: ComponentDisabled('Spanish')
-Name: {app}\MergeRussian.lang; Type: files; Check: ComponentDisabled('Russian')
-Name: {app}\MergeSwedish.lang; Type: files; Check: ComponentDisabled('Swedish')
+Name: {app}\Languages\MergeBulgarian.lang; Type: files; Check: ComponentDisabled('Bulgarian')
+Name: {app}\Languages\MergeBrazilian.lang; Type: files; Check: ComponentDisabled('Portuguese')
+Name: {app}\Languages\MergeCatalan.lang; Type: files; Check: ComponentDisabled('Catalan')
+Name: {app}\Languages\MergeChineseSimplified.lang; Type: files; Check: ComponentDisabled('Chinese_Simplified')
+Name: {app}\Languages\MergeChineseTraditional.lang; Type: files; Check: ComponentDisabled('Chinese_Traditional')
+Name: {app}\Languages\MergeCzech.lang; Type: files; Check: ComponentDisabled('Czech')
+Name: {app}\Languages\MergeDanish.lang; Type: files; Check: ComponentDisabled('Danish')
+Name: {app}\Languages\MergeDutch.lang; Type: files; Check: ComponentDisabled('Dutch')
+Name: {app}\Languages\MergeFrench.lang; Type: files; Check: ComponentDisabled('French')
+Name: {app}\Languages\MergeGerman.lang; Type: files; Check: ComponentDisabled('German')
+Name: {app}\Languages\MergeHungarian.lang; Type: files; Check: ComponentDisabled('Hungarian')
+Name: {app}\Languages\MergeItalian.lang; Type: files; Check: ComponentDisabled('Italian')
+Name: {app}\Languages\MergeJapanese.lang; Type: files; Check: ComponentDisabled('Japanese')
+Name: {app}\Languages\MergeKorean.lang; Type: files; Check: ComponentDisabled('Korean')
+Name: {app}\Languages\MergeNorwegian.lang; Type: files; Check: ComponentDisabled('Norwegian')
+Name: {app}\Languages\MergePolish.lang; Type: files; Check: ComponentDisabled('Polish')
+Name: {app}\Languages\MergeSlovak.lang; Type: files; Check: ComponentDisabled('Slovak')
+Name: {app}\Languages\MergeSpanish.lang; Type: files; Check: ComponentDisabled('Spanish')
+Name: {app}\Languages\MergeRussian.lang; Type: files; Check: ComponentDisabled('Russian')
+Name: {app}\Languages\MergeSwedish.lang; Type: files; Check: ComponentDisabled('Swedish')
 Name: {app}\MergePlugins\list.txt; Type: files; Check: ComponentDisabled('Plugins')
 
 ;Removes the user's guide icon if the user deselects the user's guide component.
@@ -404,26 +404,26 @@ Source: ..\Build\MergeRelease\Merge7z311.dll; DestDir: {app}; Flags: promptifold
 
 Source: ..\Plugins\dlls\UnpackDFM.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 
-Source: ..\Src\Languages\DLL\MergeBulgarian.lang; DestDir: {app}; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}; Components: Languages\Chinese_Simplified; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}; Components: Languages\Chinese_Traditional; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}; Components: Languages\French; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}; Components: Languages\German; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeHungarian.lang; DestDir: {app}; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeJapanese.lang; DestDir: {app}; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeNorwegian.lang; DestDir: {app}; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeBrazilian.lang; DestDir: {app}; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
-Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeBulgarian.lang; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}\Languages; Components: Languages\Chinese_Simplified; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeChineseTraditional.lang; DestDir: {app}\Languages; Components: Languages\Chinese_Traditional; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeCzech.lang; DestDir: {app}\Languages; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeDanish.lang; DestDir: {app}\Languages; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeDutch.lang; DestDir: {app}\Languages; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeFrench.lang; DestDir: {app}\Languages; Components: Languages\French; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeGerman.lang; DestDir: {app}\Languages; Components: Languages\German; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeHungarian.lang; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeItalian.lang; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeJapanese.lang; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeKorean.lang; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeNorwegian.lang; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergePolish.lang; DestDir: {app}\Languages; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeBrazilian.lang; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
 
 Source: ..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 

@@ -1,3 +1,7 @@
+2005-01-29 Kimmo
+ Install language files to 'Languages' directory
+  InnoSetup: WinMerge Localized.iss
+
 2005-01-24 Kimmo
  Add support for Merge7z414
   InnoSetup: WinMerge Localized.iss
