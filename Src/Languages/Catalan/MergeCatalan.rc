@@ -508,28 +508,28 @@ BEGIN
     LTEXT           "Idiomes disponibles:",IDC_STATIC,7,7,66,8
 END
 
-IDD_EDIT_FIND DIALOGEX 30, 73, 236, 68
+IDD_EDIT_FIND DIALOGEX 30, 73, 283, 74
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Cerca"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    COMBOBOX        IDC_EDIT_FINDTEXT,41,6,135,138,CBS_DROPDOWN |
+    LTEXT           "&Cerca:",IDC_STATIC,7,9,50,8
+    COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "N&omés paraules senceres",IDC_EDIT_WHOLE_WORD,"Button",
-                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,12
     CONTROL         "&Distingeix entre majúscules i minúscules",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,4,37,96,18
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,37,135,18
     CONTROL         "&Expressió regular",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,4,54,77,12
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,55,135,10
+    GROUPBOX        "Direcció",IDC_STATIC,148,23,70,36,WS_GROUP
     CONTROL         "A&munt",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
-                    WS_GROUP,111,36,35,12
+                    WS_GROUP,154,34,57,10
     CONTROL         "A&vall",IDC_EDIT_DIRECTION_DOWN,"Button",
-                    BS_AUTORADIOBUTTON,111,48,35,12
-    DEFPUSHBUTTON   "&Següent",IDOK,182,5,50,14,WS_GROUP
-    PUSHBUTTON      "Cancel·la",IDCANCEL,182,23,50,14
-    LTEXT           "&Cerca:",IDC_STATIC,4,8,36,8
-    GROUPBOX        "Direcció",IDC_STATIC,107,26,68,38,WS_GROUP
+                    BS_AUTORADIOBUTTON,154,44,57,10
+    DEFPUSHBUTTON   "&Següent",IDOK,226,7,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel·la",IDCANCEL,226,24,50,14
 END
 
 IDD_EDIT_REPLACE DIALOGEX  36, 44, 243, 103

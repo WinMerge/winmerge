@@ -508,29 +508,29 @@ BEGIN
     LTEXT           "Idiomas disponíveis:",IDC_STATIC,7,7,65,8
 END
 
-IDD_EDIT_FIND DIALOGEX 30, 73, 266, 69
+IDD_EDIT_FIND DIALOGEX 30, 73, 283, 66
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Localizar"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    COMBOBOX        IDC_EDIT_FINDTEXT,41,6,135,138,CBS_DROPDOWN |
+    LTEXT           "&Localizar:",IDC_STATIC,7,9,50,8
+    COMBOBOX        IDC_EDIT_FINDTEXT,57,7,160,65,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Somente p&alavras iguais",IDC_EDIT_WHOLE_WORD,"Button",
-                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,4,26,100,12
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,10
     CONTROL         "&Diferenciar maiúsculas de minúsculas",
                     IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,4,40,132,12
+                    WS_TABSTOP,7,37,135,10
     CONTROL         "&Expressão regular",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,4,54,77,12
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
+    GROUPBOX        "Direção",IDC_STATIC,148,23,70,36,WS_GROUP
     CONTROL         "A&cima",IDC_EDIT_DIRECTION_UP,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,141,36,45,12
+                    BS_AUTORADIOBUTTON | WS_GROUP,154,34,57,10
     CONTROL         "A&baixo",IDC_EDIT_DIRECTION_DOWN,"Button",
-                    BS_AUTORADIOBUTTON,141,48,35,12
-    DEFPUSHBUTTON   "&Próximo",IDOK,212,5,50,14,WS_GROUP
-    PUSHBUTTON      "Cancelar",IDCANCEL,212,23,50,14
-    LTEXT           "&Localizar:",IDC_STATIC,4,8,36,8
-    GROUPBOX        "Direção",IDC_STATIC,137,26,68,38,WS_GROUP
+                    BS_AUTORADIOBUTTON,154,44,57,10
+    DEFPUSHBUTTON   "&Próximo",IDOK,226,7,50,14,WS_GROUP
+    PUSHBUTTON      "Cancelar",IDCANCEL,226,24,50,14
 END
 
 IDD_EDIT_REPLACE DIALOGEX 36, 44, 285, 103
