@@ -435,6 +435,8 @@ protected:
     virtual void DrawSingleLine (CDC * pdc, const CRect & rect, int nLineIndex);
     virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex);
 
+    int GetCharWidthFromChar(TCHAR ch);
+
 #ifdef _UNICODE
     int GetCharWidthUnicodeChar(wchar_t ch);
 #endif
@@ -789,6 +791,10 @@ public :
                           DWORD dwFlags, BOOL bWrapSearch, CPoint * pptFoundPos);
     BOOL HighlightText (const CPoint & ptStartPos, int nLength, BOOL bReverse = FALSE);
 
+	// IME (input method editor)
+    void UpdateCompositionWindowPos();
+    void UpdateCompositionWindowFont();
+
     //  Overridable: an opportunity for Auto-Indent, Smart-Indent etc.
     virtual void OnEditOperation (int nAction, LPCTSTR pszText);
 
@@ -852,6 +858,7 @@ protected :
     afx_msg void OnChar( UINT nChar, UINT nRepCnt, UINT nFlags );
 
     afx_msg BOOL OnMouseWheel (UINT nFlags, short zDelta, CPoint pt);
+	LRESULT OnImeStartComposition(WPARAM wParam, LPARAM lParam);
     //}}AFX_MSG
     afx_msg void OnFilePageSetup ();
 

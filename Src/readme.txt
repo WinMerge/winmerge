@@ -1,3 +1,8 @@
+2004-09-27 Perry
+ PATCH: [ 968285 ] DBCS fixes from Sawanaka
+  The crystaltextview.cpp portion of patch, with a new method (GetCharWidthFromChar) to reduce ifdefs.
+  Src/EditLib: ccrystaltextview.cpp
+
 2004-09-25 Kimmo
  PATCH: [ 1034550 ] Catalan translation update
   Submitted by Jordi Vilar

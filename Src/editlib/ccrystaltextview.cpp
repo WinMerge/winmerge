@@ -81,6 +81,8 @@
 
 #include "stdafx.h"
 #include <malloc.h>
+#include <imm.h> /* IME */
+#include <mbctype.h>
 #include "editcmd.h"
 #include "editreg.h"
 #include "ccrystaltextview.h"
@@ -158,6 +160,7 @@ ON_COMMAND (ID_EDIT_FIND, OnEditFind)
 ON_COMMAND (ID_EDIT_REPEAT, OnEditRepeat)
 ON_UPDATE_COMMAND_UI (ID_EDIT_REPEAT, OnUpdateEditRepeat)
 ON_WM_MOUSEWHEEL ()
+ON_MESSAGE (WM_IME_STARTCOMPOSITION, OnImeStartComposition) /* IME */
 //}}AFX_MSG_MAP
 ON_COMMAND (ID_EDIT_CHAR_LEFT, OnCharLeft)
 ON_COMMAND (ID_EDIT_EXT_CHAR_LEFT, OnExtCharLeft)
@@ -890,6 +893,20 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line)
 }
 
 /**
+ * @brief Return width of specified character
+ */
+int CCrystalTextView::GetCharWidthFromChar(TCHAR ch)
+{
+  // This assumes a fixed width font
+  // But the UNICODE case handles double-wide glyphs (primarily Chinese characters)
+#ifdef _UNICODE
+  return GetCharWidthUnicodeChar(ch);
+#else
+  return GetCharWidth();
+#endif
+}
+
+/**
  * @brief Draw a chunk of text (one color, one line, full or part of line)
  *
  * @note In ANSI build, this routine is buggy for multibytes or double-width characters
@@ -905,6 +922,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
       ExpandChars (pszChars, nOffset, nCount, line);
       const int lineLen = line.GetLength();
       const int nCharWidth = GetCharWidth();
+      int nSumWidth = 0;
 
       // i the character index, from 0 to lineLen-1
       int i = 0;
@@ -921,11 +939,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
           // stop for i = first visible character, at least partly
           for (  ; i < lineLen; i++)
           {
-#ifdef _UNICODE
-            int pnWidthsCurrent = GetCharWidthUnicodeChar(line[i]);
-#else 
-            int pnWidthsCurrent = nCharWidth;
-#endif
+            int pnWidthsCurrent = GetCharWidthFromChar(line[i]);
             ptOrigin.x += pnWidthsCurrent;
             if (ptOrigin.x >= rcClip.left)
             {
@@ -956,9 +970,14 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               // For wide characters, nCountFit may be overvalued
               int nWidth = rcClip.right - ptOrigin.x;
               int nCount = lineLen - ibegin;
-              int nCountFit = nWidth / nCharWidth + 1;
-              if (nCount > nCountFit)
+              int nCountFit = nWidth / nCharWidth + 2/* wide char */;
+              if (nCount > nCountFit) {
+#ifndef _UNICODE
+                if (_ismbslead((unsigned char *)(LPCSTR)line, (unsigned char *)(LPCSTR)line + nCountFit - 1))
+                  nCountFit++;
+#endif
                 nCount = nCountFit;
+              }
 
               // Table of charwidths as CCrystalEditor thinks they are
               // Seems that CrystalEditor's and ExtTextOut()'s charwidths aren't
@@ -971,11 +990,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                 {
                   for (  ; i < nCount + ibegin ; i++)
                     {
-#ifdef _UNICODE
-                      pnWidths[i-ibegin] = GetCharWidthUnicodeChar(line[i]);
-#else
-                      pnWidths[i-ibegin] = nCharWidth;
-#endif
+                      pnWidths[i-ibegin] = GetCharWidthFromChar(line[i]);
                       nSumWidth += pnWidths[i-ibegin];
                     }
 
@@ -995,12 +1010,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
         
       // Update the final position after the right clipped characters
       for (  ; i < lineLen; i++)
-#ifdef _UNICODE
-        ptOrigin.x += GetCharWidthUnicodeChar(line[i]);
-#else          	
-        ptOrigin.x += nCharWidth;
-#endif
-
+        ptOrigin.x += GetCharWidthFromChar(line[i]);
     }
 }
 
@@ -1777,6 +1787,7 @@ UpdateCaret ()
 
       SetCaretPos (TextToClient (m_ptCursorPos));
       ShowCaret ();
+      UpdateCompositionWindowPos(); /* IME */
     }
   else
     {
@@ -1982,13 +1993,9 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
         }
       else
         {
-#ifdef _UNICODE
-          nXPos += GetCharWidthUnicodeChar(szLine[nIndex]) / GetCharWidth();
-          nCurPos += GetCharWidthUnicodeChar(szLine[nIndex]) / GetCharWidth();
-#else
-          nXPos++;
-          nCurPos++;
-#endif
+          int delta = GetCharWidthFromChar(szLine[nIndex]) / GetCharWidth();
+          nXPos += delta;
+          nCurPos += delta;
         }
 
       if( nXPos > curPoint.x && nYPos == curPoint.y )
@@ -2009,6 +2016,8 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
         bDBCSLeadPrev = IsDBCSLeadByte(szLine[nIndex]);
     }
   delete[] anBreaks;
+
+  if (szLine && m_pTextBuffer->IsMBSTrail(nLineIndex, nIndex)) nIndex--;
 
   return nIndex;	
 }
@@ -3114,11 +3123,7 @@ ClientToText (const CPoint & point)
         }
       else
         {
-#ifdef _UNICODE
-          n += GetCharWidthUnicodeChar(pszLine[nIndex]) / GetCharWidth();
-#else
-          n++;
-#endif
+          n += GetCharWidthFromChar(pszLine[nIndex]) / GetCharWidth();
           nCurPos ++;
         }
 
@@ -3138,6 +3143,8 @@ ClientToText (const CPoint & point)
     }
 
   delete[] anBreaks;
+
+  if (pszLine && m_pTextBuffer->IsMBSTrail(pt.y, nIndex)) nIndex--;
 
   ASSERT(nIndex >= 0 && nIndex <= nLength);
   pt.x = nIndex;
@@ -3259,11 +3266,7 @@ TextToClient (const CPoint & point)
       if (pszLine[nIndex] == _T ('\t'))
         pt.x += (nTabSize - pt.x % nTabSize);
       else
-#ifdef _UNICODE
-        pt.x += GetCharWidthUnicodeChar(pszLine[nIndex]) / GetCharWidth();
-#else
-        pt.x++;
-#endif
+        pt.x += GetCharWidthFromChar(pszLine[nIndex]) / GetCharWidth();
     }
   //BEGIN SW
   pt.x-= nPreOffset;
@@ -3399,11 +3402,7 @@ CalculateActualOffset (int nLineIndex, int nCharIndex)
       if (pszChars[I] == _T ('\t'))
         nOffset += (nTabSize - nOffset % nTabSize);
       else
-#ifdef _UNICODE
-        nOffset += GetCharWidthUnicodeChar(pszChars[I]) / GetCharWidth();
-#else
-        nOffset++;
-#endif
+        nOffset += GetCharWidthFromChar(pszChars[I]) / GetCharWidth();
     }
   //BEGIN SW
   if( nPreBreak == I && nBreaks )
@@ -3768,6 +3767,31 @@ SetCursorPos (const CPoint & ptCursorPos)
   m_ptCursorPos = ptCursorPos;
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   UpdateCaret ();
+}
+
+void CCrystalTextView::
+UpdateCompositionWindowPos() /* IME */
+{
+  HIMC hIMC = ImmGetContext(m_hWnd);
+  COMPOSITIONFORM compform;
+	
+  compform.dwStyle = CFS_FORCE_POSITION;
+  compform.ptCurrentPos = GetCaretPos();
+  ImmSetCompositionWindow(hIMC, &compform);
+
+  ImmReleaseContext(m_hWnd, hIMC);
+}
+
+void CCrystalTextView::
+UpdateCompositionWindowFont() /* IME */
+{
+  HIMC hIMC = ImmGetContext(m_hWnd);
+  LOGFONT logfont;
+
+  GetFont()->GetLogFont(&logfont);
+  ImmSetCompositionFont(hIMC, &logfont);
+
+  ImmReleaseContext(m_hWnd, hIMC);
 }
 
 void CCrystalTextView::
@@ -5231,6 +5255,13 @@ void CCrystalTextView::OnChar( UINT nChar, UINT nRepCnt, UINT nFlags )
   OnEditFindIncremental();
 }
 
+LRESULT CCrystalTextView::OnImeStartComposition(WPARAM wParam, LPARAM lParam) /* IME */
+{
+	UpdateCompositionWindowFont();
+	UpdateCompositionWindowPos();
+
+	return DefWindowProc(WM_IME_STARTCOMPOSITION, wParam, lParam);
+}
 
 void CCrystalTextView::OnEditDeleteBack() 
 {
