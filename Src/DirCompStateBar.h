@@ -1,17 +1,29 @@
+/** 
+ * @file  DirCompStateBar.h
+ *
+ * @brief Declaration file for Directory compare statuspanel class
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #if !defined(AFX_DIRCOMPSTATEDLG_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_)
 #define AFX_DIRCOMPSTATEDLG_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_
 
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
-// DirCompStateBar.h : header file
-//
 
 class CDirFrame;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirCompStateBar dialog
 
+/**
+ * @brief Class for directory compare statuspanel
+ * 
+ * Implements floating statuspanel during directory compares.
+ * Shows statistics from compare and allows stopping compare.
+ */
 class CDirCompStateBar : public CDialogBar
 {
 // Construction
@@ -21,6 +33,8 @@ public:
 	void ClearStat();
 	void AddElement(UINT diffcode);
 	BOOL GetDefaultRect( LPRECT lpRect ) const;
+	void UpdateText(CStatic * ctrl, int num) const;
+	void FirstUpdate();
 
 // Dialog Data
 	//{{AFX_DATA(CDirCompStateBar)
@@ -62,6 +76,9 @@ protected:
 	afx_msg void OnWindowPosChanging( WINDOWPOS* lpwndpos );
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+private:
+	BOOL m_bFirstUpdate; /**< Is first update (all to zeros) done? */
 };
 
 //{{AFX_INSERT_LOCATION}}

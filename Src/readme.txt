@@ -2,7 +2,10 @@
  PATCH: [ 860988 ] Change File from menu (Adds Window/Change Pane)
   WinMerge: Merge.rc MergeEditView.h MergeEditView.cpp resource.h
   Languages: *.rc resource.h
-
+ PATCH: [ 861813 ] Optimise dircompare statuspane updating
+  Fixes bug [ 860204 ] Dir compare statuspane flickers on slower machine
+  WinMerge: DirCompStateBar.h DirCompStateBar.cpp
+  
 2003-12-18 Laoran
  adapt plugins syntax check, consequence of patch #853147 
   WinMerge: Plugins.cpp

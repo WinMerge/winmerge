@@ -1,5 +1,10 @@
-// DirCompStateBar.cpp : implementation file
-//
+/** 
+ * @file  DirCompStateBar.cpp
+ *
+ * @brief Implementation file for Directory compare statuspanel class
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "merge.h"
@@ -17,6 +22,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CDirCompStateBar construction destruction
 
+/**
+ * @brief Set all stats to zero
+ */
 void CDirCompStateBar::ClearStat()
 {
 	//{{AFX_DATA_INIT(CDirCompStateBar)
@@ -37,6 +45,7 @@ void CDirCompStateBar::ClearStat()
 CDirCompStateBar::CDirCompStateBar(CWnd* pParent /*=NULL*/)
 {
 	ClearStat();
+	m_bFirstUpdate = FALSE;
 
 	VERIFY(strAbort.LoadString(IDC_COMPARISON_STOP));
 	VERIFY(strClose.LoadString(IDC_COMPARISON_CLOSE));
@@ -45,8 +54,8 @@ CDirCompStateBar::CDirCompStateBar(CWnd* pParent /*=NULL*/)
 BOOL CDirCompStateBar::Create(CWnd* pParentWnd)
 {
 	if (! CDialogBar::Create(pParentWnd, CDirCompStateBar::IDD, 
-													 WS_VISIBLE|CBRS_SIZE_FIXED|CBRS_FLYBY, 
-													 CDirCompStateBar::IDD))
+			WS_VISIBLE|CBRS_SIZE_FIXED|CBRS_FLYBY, 
+			CDirCompStateBar::IDD))
 		return FALSE;
 
 	return TRUE;
@@ -149,12 +158,21 @@ void CDirCompStateBar::OnUpdateStop(CCmdUI* pCmdUI)
 	pCmdUI->Enable(TRUE);
 }
  
-
-
-// diff completed another file
+/**
+ * @brief Increase given category count by one and update panel
+ *
+ * Diff code calls this function every time it has compeleted comparing
+ * one item.
+ * @todo This could be optimised by letting timer call UI update
+ * couple of times per second.
+ */
 void CDirCompStateBar::AddElement(UINT diffcode)
 {
 	DIFFITEM di;
+	
+	if (!m_bFirstUpdate)
+		FirstUpdate();
+
 	di.diffcode = diffcode;
 	if (di.isSideLeft())
 	{
@@ -162,10 +180,14 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		if (di.isDirectory())
 		{
 			++m_nLFolder;
+			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_LFOLDER);
+			UpdateText(pCtrl, m_nLFolder);
 		}
 		else
 		{
 			++m_nLFile;
+			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_LFILE);
+			UpdateText(pCtrl, m_nLFile);
 		}
 	}
 	else if (di.isSideRight())
@@ -174,6 +196,8 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		if (di.isDirectory())
 		{
 			++m_nRFolder;
+			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_RFOLDER);
+			UpdateText(pCtrl, m_nRFolder);
 		}
 		else
 		{
@@ -186,16 +210,22 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		if (di.isDirectory())
 		{
 			++m_nFolderSkip;
+			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_FOLDERSKIP);
+			UpdateText(pCtrl, m_nFolderSkip);
 		}
 		else
 		{
 			++m_nFileSkip;
+			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_FILESKIP);
+			UpdateText(pCtrl, m_nFileSkip);
 		}
 	}
 	else if (di.isResultError())
 	{
 		// could be directory error ?
 		++m_nUnknown;
+		CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_UNKNOWN);
+		UpdateText(pCtrl, m_nUnknown);
 	}
 	// Now we know it was on both sides & compared!
 	else if (di.isResultSame())
@@ -204,10 +234,14 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 		if (di.isBin())
 		{
 			++m_nBinarySame;
+			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_BINARYSAME);
+			UpdateText(pCtrl, m_nBinarySame);
 		}
 		else
 		{
 			++m_nEqual;
+			CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_EQUAL);
+			UpdateText(pCtrl, m_nEqual);
 		}
 	}
 	else
@@ -223,16 +257,17 @@ void CDirCompStateBar::AddElement(UINT diffcode)
 			if (di.isBin())
 			{
 				++m_nBinaryDiff;
+				CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_BINARYDIFF);
+				UpdateText(pCtrl, m_nBinaryDiff);
 			}
 			else
 			{
 				++m_nNotEqual;
+				CStatic * pCtrl = (CStatic *)GetDlgItem(IDC_COUNT_NOTEQUAL);
+				UpdateText(pCtrl, m_nNotEqual);
 			}
 		}
 	}
-
-
-	UpdateData(FALSE); 
 }
 
 BOOL CDirCompStateBar::PreTranslateMessage(MSG* pMsg)
@@ -264,4 +299,19 @@ void CDirCompStateBar::OnWindowPosChanging( WINDOWPOS* lpwndpos )
 		ASSERT(pDirFrame != NULL);
 		pDirFrame->NotifyHideStateBar();
 	}
+}
+
+void CDirCompStateBar::UpdateText(CStatic * ctrl, int num) const
+{
+	ASSERT(ctrl != NULL);
+	TCHAR strNum[20] = {0};
+	
+	_itot(num, strNum, 10);
+	ctrl->SetWindowText(strNum);
+}
+
+void CDirCompStateBar::FirstUpdate()
+{
+	m_bFirstUpdate = TRUE;
+	UpdateData(FALSE);
 }
