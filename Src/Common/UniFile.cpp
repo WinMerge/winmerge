@@ -2,7 +2,7 @@
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2003-01-05 (Perry)
+ *  @date   Edited:  2004-01-05 (Perry)
  *
  *  @brief Implementation of Memory-Mapped Unicode enabled file class
  */
