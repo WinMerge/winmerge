@@ -1417,7 +1417,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			pufile->SetCodepage(codepage);
 		UINT lineno = 0;
 		CString eol, preveol;
-		CString sline(1024);
+		CString sline;
 		bool done = false;
 		int next_line_report = 100; // for trace messages
 		int next_line_multiple = 5; // for trace messages

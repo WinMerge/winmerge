@@ -6,6 +6,10 @@
  BUG: [ 1029643 ] (Catalan) Options/codepage too crowded
   Moved codepage edit box over 20 units, widened label 10 units
   Languages/Catalan: MergeCatalan.rc
+ PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
+  (Applied UniFile.cpp portion of this patch)
+  Minor adjustment (remove "sline(1024)" which broken VS.NET compilation).
+  Src: MergeDoc.cpp
 
 2005-01-23 Kimmo
  PATCH: [ 1107508 ] Add dirview statusbar panel showing current filter name
