@@ -300,10 +300,10 @@ public:
 // Implementation data
 protected:
 	int m_nCurDiff; /**< 0-based index, -1 if no diff selected */
-	CString m_strTempRightFile;
-	CString m_strTempLeftFile;
-	CMergeEditView * m_pLeftView;
-	CMergeEditView * m_pRightView;
+	CString m_strTempRightFile; /**< Left buffer temp file for diffengine */
+	CString m_strTempLeftFile; /**< Right buffer temp file for diffengine */
+	CMergeEditView * m_pLeftView; /**< Pointer to left view */
+	CMergeEditView * m_pRightView; /**< Pointer to right view */
 	CMergeDiffDetailView * m_pLeftDetailView;
 	CMergeDiffDetailView * m_pRightDetailView;
 	CDirDoc * m_pDirDoc;

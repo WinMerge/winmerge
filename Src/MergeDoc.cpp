@@ -2501,8 +2501,8 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		pRight->EnableRescan(mf->m_options.GetInt(OPT_AUTOMATIC_RESCAN));
 
 		// SetTextType will revert to language dependent defaults for tab
-		pLeft->SetTabSize(mf->m_nTabSize);
-		pRight->SetTabSize(mf->m_nTabSize);
+		pLeft->SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));
+		pRight->SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));
 		pLeft->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
 		pRight->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
 		pLeft->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
@@ -2512,8 +2512,8 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		pLeft->SetWordWrapping(FALSE);
 		pRight->SetWordWrapping(FALSE);
 
-		pLeftDetail->SetTabSize(mf->m_nTabSize);
-		pRightDetail->SetTabSize(mf->m_nTabSize);
+		pLeftDetail->SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));
+		pRightDetail->SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));
 		pLeftDetail->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
 		pRightDetail->SetViewTabs(mf->m_options.GetInt(OPT_VIEW_WHITESPACE));
 		pLeftDetail->SetViewEols(mf->m_options.GetInt(OPT_VIEW_WHITESPACE),
@@ -2538,7 +2538,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		UpdateHeaderPath(FALSE);
 
 		// Set tab type (tabs/spaces)
-		BOOL bInsertTabs = (mf->m_nTabType == 0);
+		BOOL bInsertTabs = (mf->m_options.GetInt(OPT_TAB_TYPE) == 0);
 		pLeft->SetInsertTabs(bInsertTabs);
 		pRight->SetInsertTabs(bInsertTabs);
 

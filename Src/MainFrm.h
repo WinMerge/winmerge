@@ -110,12 +110,11 @@ protected:
 
 // Public implementation data
 public:
-	CRegOptions m_options;
+	CRegOptions m_options; /**< Options manager */
 	BOOL m_bFirstTime;
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bIgnoreRegExp; /**< Are regular expression linefilters enabled? */
 	CString m_sPattern; /**< Regular expression linefilters */
-	UINT m_nTabSize; /**< Tabsize in spaces in editor */
 	CString m_strVssPath;
 	CString m_strVssProjectBase;
 	CString m_strVssUser;      // BSP - Visual Source Safe User ID
@@ -124,14 +123,24 @@ public:
 	CString m_strVssProjectFull;
 
 	int m_nVerSys;
-	UINT m_nTabType; /**< 0-editor inserts tabs, 1-editor inserts spaces */
-	CString m_sExtEditorPath; /**< Path to external editor */
-	CString m_strLeftDesc; /**< Left side description text proxy */
-	CString m_strRightDesc; /**< Right side description text proxy */
 	BOOL m_CheckOutMulti;
 	BOOL m_bVCProjSync;
 
     int m_nCompMethod; /**< CompareMethod : CPropCompare::BY_CONTENTS or CPropCompare::BY_DATE */
+
+	/**
+	 * @name Textual labels/descriptors
+	 * These descriptors overwrite dir/filename usually shown in headerbar
+	 * and can be given from command-line. For example version control
+	 * system can set these to "WinMerge v2.1.2.0" and "WinMerge 2.1.4.0"
+	 * which is more pleasant and informative than temporary paths.
+	 */
+	/*@{*/ 
+	/** Left descriptor */
+	CString m_strLeftDesc;
+	/** Right descriptor */
+	CString m_strRightDesc;
+	/*@}*/
 
 // Implementation data
 

@@ -1,6 +1,9 @@
 2004-0228 Kimmo
  PATCH: [ 906120 ] Improve error handling for dircompare fileoperations
   Src: DirActions.cpp
+ PATCH: [ 906224 ] Convert more options to new system
+  Src: MainFrm.cpp MainFrm.h MergeDiffDetailView.cpp MergeDoc.cpp
+   MergeDoc.h MergeEditView.cpp OptionsDef.h
 
 2004-02-27 Kimmo
  PATCH: [ 905115 ] Put deleted files to Recycle Bin

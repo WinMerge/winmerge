@@ -23,7 +23,10 @@ const TCHAR OPT_SCROLL_TO_FIRST[] =  _T("Settings/ScrollToFirst");
 
 const TCHAR OPT_AUTOMATIC_RESCAN[] = _T("Settings/AutomaticRescan");
 const TCHAR OPT_ALLOW_MIXED_EOL[] = _T("Settings/AllowMixedEOL");
+const TCHAR OPT_TAB_SIZE[] = _T("Settings/TabSize");
+const TCHAR OPT_TAB_TYPE[] = _T("Settings/TabType");
 
+const TCHAR OPT_EXT_EDITOR_CMD[] = _T("Settings/ExternalEditor");
 const TCHAR OPT_USE_RECYCLE_BIN[] = _T("Settings/UseRecycleBin");
 
 #endif // _OPTIONS_DEF_H_

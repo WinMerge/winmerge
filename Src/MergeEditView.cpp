@@ -187,7 +187,7 @@ BOOL CMergeEditView::PrimeListWithFile()
 	// Set the tab size now, just in case the options change...
 	// We don't update it at the end of OnOptions,
 	// we can update it safely now
-	SetTabSize(mf->m_nTabSize);
+	SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));
 
 	return TRUE;
 }

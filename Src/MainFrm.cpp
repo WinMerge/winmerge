@@ -176,7 +176,10 @@ CMainFrame::CMainFrame()
 
 	m_options.InitOption(OPT_AUTOMATIC_RESCAN, FALSE);
 	m_options.InitOption(OPT_ALLOW_MIXED_EOL, FALSE);
+	m_options.InitOption(OPT_TAB_SIZE, 4);
+	m_options.InitOption(OPT_TAB_TYPE, 0);	// 0 means tabs inserted
 
+	m_options.InitOption(OPT_EXT_EDITOR_CMD, _T(""));
 	m_options.InitOption(OPT_USE_RECYCLE_BIN, TRUE);
 
 	m_bShowErrors = TRUE;
@@ -186,12 +189,9 @@ CMainFrame::CMainFrame()
 	m_strVssPassword = theApp.GetProfileString(_T("Settings"), _T("VssPassword"), _T(""));
 	m_strVssPath = theApp.GetProfileString(_T("Settings"), _T("VssPath"), _T(""));
 	m_strVssDatabase = theApp.GetProfileString(_T("Settings"), _T("VssDatabase"),_T(""));
-	m_nTabSize = theApp.GetProfileInt(_T("Settings"), _T("TabSize"), 4);
-	m_nTabType = theApp.GetProfileInt(_T("Settings"), _T("TabType"), 0);
 	m_bIgnoreRegExp = theApp.GetProfileInt(_T("Settings"), _T("IgnoreRegExp"), FALSE);
 	m_sPattern = theApp.GetProfileString(_T("Settings"), _T("RegExps"), NULL);
 	theApp.SetFileFilterPath(theApp.GetProfileString(_T("Settings"), _T("FileFilterPath"), _T("")));
-	m_sExtEditorPath = theApp.GetProfileString(_T("Settings"), _T("ExternalEditor"), _T(""));
 	m_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), UNPACK_MANUAL);
 	m_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PREDIFF_MANUAL);
 
@@ -203,8 +203,8 @@ CMainFrame::CMainFrame()
 	m_bReuseDirDoc = TRUE;
 	// TODO: read preference for logging
 
-	if (m_sExtEditorPath.IsEmpty())
-		m_sExtEditorPath = GetDefaultEditor();
+	if (m_options.GetString(OPT_EXT_EDITOR_CMD).IsEmpty())
+		m_options.SaveOption(OPT_EXT_EDITOR_CMD, GetDefaultEditor());
 
 	if (m_strVssPath.IsEmpty())
 	{
@@ -948,6 +948,7 @@ void CMainFrame::SetEOLMixed(BOOL bAllow)
 void CMainFrame::OnOptions() 
 {
 	DIFFOPTIONS diffOptions = {0};
+	CString sExtEditor;
 	CString selectedFilter;
 	StringPairArray fileFilters;
 	theApp.GetFileFilters(&fileFilters, selectedFilter);
@@ -980,7 +981,7 @@ void CMainFrame::OnOptions()
 	gen.m_bDisableSplash = theApp.m_bDisableSplash;
 	filter.m_bIgnoreRegExp = m_bIgnoreRegExp;
 	filter.m_sPattern = m_sPattern;
-	regpage.m_strEditorPath = m_sExtEditorPath;
+	regpage.m_strEditorPath = m_options.GetString(OPT_EXT_EDITOR_CMD);
 	regpage.GetContextRegValues();
 	regpage.m_bUseRecycleBin = m_options.GetInt(OPT_USE_RECYCLE_BIN);
     compage.m_compareMethod = m_nCompMethod;
@@ -988,8 +989,8 @@ void CMainFrame::OnOptions()
 	compage.m_bIgnoreCase = diffOptions.bIgnoreCase;
 	compage.m_bIgnoreBlankLines = diffOptions.bIgnoreBlankLines;
 	compage.m_bEolSensitive = diffOptions.bEolSensitive;
-	editor.m_nTabSize = m_nTabSize;
-	editor.m_nTabType = m_nTabType;
+	editor.m_nTabSize = m_options.GetInt(OPT_TAB_SIZE);
+	editor.m_nTabType = m_options.GetInt(OPT_TAB_TYPE);
 	editor.m_bAutomaticRescan = m_options.GetInt(OPT_AUTOMATIC_RESCAN);
 	editor.m_bHiliteSyntax = theApp.m_bHiliteSyntax;
 	editor.m_bAllowMixedEol = m_options.GetInt(OPT_ALLOW_MIXED_EOL);
@@ -1004,6 +1005,13 @@ void CMainFrame::OnOptions()
 
 		theApp.m_bDisableSplash = gen.m_bDisableSplash;
 		m_options.SaveOption(OPT_USE_RECYCLE_BIN, regpage.m_bUseRecycleBin);
+		regpage.SaveMergePath();
+		sExtEditor = regpage.m_strEditorPath;
+		sExtEditor.TrimLeft();
+		sExtEditor.TrimRight();
+		if (sExtEditor.IsEmpty())
+			sExtEditor = GetDefaultEditor();
+		m_options.SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
 
 		diffOptions.nIgnoreWhitespace = compage.m_nIgnoreWhite;
 		diffOptions.bIgnoreBlankLines = compage.m_bIgnoreBlankLines;
@@ -1011,8 +1019,8 @@ void CMainFrame::OnOptions()
 		diffOptions.bIgnoreCase = compage.m_bIgnoreCase;
         m_nCompMethod = compage.m_compareMethod;
 
-		m_nTabSize = editor.m_nTabSize;
-		m_nTabType = editor.m_nTabType;
+		m_options.SaveOption(OPT_TAB_SIZE, editor.m_nTabSize);
+		m_options.SaveOption(OPT_TAB_TYPE, editor.m_nTabType);
 		m_options.SaveOption(OPT_AUTOMATIC_RESCAN, editor.m_bAutomaticRescan);
 		m_options.SaveOption(OPT_ALLOW_MIXED_EOL, editor.m_bAllowMixedEol);
 		theApp.m_bHiliteSyntax = editor.m_bHiliteSyntax;
@@ -1020,13 +1028,6 @@ void CMainFrame::OnOptions()
 		m_bIgnoreRegExp = filter.m_bIgnoreRegExp;
 		m_sPattern = filter.m_sPattern;
 		theApp.SetFileFilterPath(filter.m_sFileFilterPath);
-
-		regpage.SaveMergePath();
-		m_sExtEditorPath = regpage.m_strEditorPath;
-		m_sExtEditorPath.TrimLeft();
-		m_sExtEditorPath.TrimRight();
-		if (m_sExtEditorPath.IsEmpty())
-			m_sExtEditorPath = GetDefaultEditor();
 
 		theApp.SetDiffColor(colors.m_clrDiff);
 		theApp.SetSelDiffColor(colors.m_clrSelDiff);
@@ -1039,8 +1040,6 @@ void CMainFrame::OnOptions()
 
 		theApp.WriteProfileInt(_T("Settings"), _T("VersionSystem"), m_nVerSys);
 		theApp.WriteProfileString(_T("Settings"), _T("VssPath"), m_strVssPath);
-		theApp.WriteProfileInt(_T("Settings"), _T("TabSize"), m_nTabSize);
-		theApp.WriteProfileInt(_T("Settings"), _T("TabType"), m_nTabType);
 		theApp.WriteProfileInt(_T("Settings"), _T("IgnoreRegExp"), m_bIgnoreRegExp);
 		theApp.WriteProfileString(_T("Settings"), _T("RegExps"), m_sPattern);
 		theApp.WriteProfileString(_T("Settings"), _T("FileFilterPath"), filter.m_sFileFilterPath);
@@ -1048,7 +1047,6 @@ void CMainFrame::OnOptions()
         theApp.WriteProfileInt(_T("Settings"), _T("CompMethod"), m_nCompMethod);
 
 		theApp.WriteProfileInt(_T("Settings"), _T("HiliteSyntax"), theApp.m_bHiliteSyntax);
-		theApp.WriteProfileString(_T("Settings"), _T("ExternalEditor"), m_sExtEditorPath);
 
 		// use CDiffwrapper static functions to exchange the options with registry
 		CDiffWrapper::WriteDiffOptions(&diffOptions);
@@ -1074,8 +1072,8 @@ void CMainFrame::OnOptions()
 			pLeft->EnableRescan(m_options.GetInt(OPT_AUTOMATIC_RESCAN));
 			pRight->EnableRescan(m_options.GetInt(OPT_AUTOMATIC_RESCAN));
 
-			// Set tab type (tabs/spaces)
-			if (m_nTabType == 0)
+			// Set tab type (tabs (==0)/spaces (==1))
+			if (m_options.GetInt(OPT_TAB_TYPE) == 0)
 			{
 				pLeft->SetInsertTabs(TRUE);
 				pRight->SetInsertTabs(TRUE);
@@ -2280,14 +2278,17 @@ void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI)
  */
 BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 {
+	CString sExtEditor;
 	CString ext;
-	SplitFilename(m_sExtEditorPath, NULL, NULL, &ext);
+	
+	sExtEditor = m_options.GetString(OPT_EXT_EDITOR_CMD);
+	SplitFilename(sExtEditor, NULL, NULL, &ext);
 	ext.MakeLower();
 
 	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
 	{
 		// Format command line
-		CString strCommandLine = _T("\"") + m_sExtEditorPath + _T("\" \"") +
+		CString strCommandLine = _T("\"") + sExtEditor + _T("\" \"") +
 			file + _T("\"");
 
 		BOOL retVal = FALSE;
@@ -2302,14 +2303,14 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 		if (!retVal)
 		{
 			CString msg;
-			AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, m_sExtEditorPath);
+			AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, sExtEditor);
 			AfxMessageBox(msg, MB_ICONSTOP);
 		}
 	}
 	else
 	{
 		CString msg;
-		AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, m_sExtEditorPath);
+		AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, sExtEditor);
 		AfxMessageBox(msg, MB_ICONSTOP);
 	}
 	return TRUE;
