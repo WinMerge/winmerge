@@ -2906,7 +2906,7 @@ void CMergeDoc::CompareBinaries(CString sLeftFile, CString sRightFile, int nLeft
 	if (nLeftSuccess == FRESULT_BINARY && nRightSuccess == FRESULT_BINARY)
 	{
 		bBinary = TRUE; // Compare binary files
-		int nRescanResult = Rescan(bBinary, bIdentical);
+		nRescanResult = Rescan(bBinary, bIdentical);
 	}
 
 	if (nRescanResult == RESCAN_OK)
