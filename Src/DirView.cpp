@@ -497,20 +497,24 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 			++nCopyableToLeft;
 		if (IsItemCopyableToRight(di))
 			++nCopyableToRight;
+
 		if (IsItemDeletableOnLeft(di))
 			++nDeletableOnLeft;
 		if (IsItemDeletableOnRight(di))
 			++nDeletableOnRight;
 		if (IsItemDeletableOnBoth(di))
 			++nDeletableOnBoth;
+
 		if (IsItemOpenableOnLeft(di))
 			++nOpenableOnLeft;
 		if (IsItemOpenableOnRight(di))
 			++nOpenableOnRight;
+
 		if (IsItemOpenableOnLeftWith(di))
 			++nOpenableOnLeftWith;
 		if (IsItemOpenableOnRightWith(di))
 			++nOpenableOnRightWith;
+
 		if (IsItemNavigableDiff(di))
 		{
 			++nDiffItems;
@@ -537,9 +541,9 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		}
 	}
 
-	FormatContextMenu(pPopup, ID_DIR_ZIP_LEFT, nOpenableOnLeftWith, nTotal);
-	FormatContextMenu(pPopup, ID_DIR_ZIP_RIGHT, nOpenableOnRightWith, nTotal);
-	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH, nOpenableOnLeftWith + nOpenableOnRightWith, nTotal);
+	FormatContextMenu(pPopup, ID_DIR_ZIP_LEFT, nOpenableOnLeft, nTotal);
+	FormatContextMenu(pPopup, ID_DIR_ZIP_RIGHT, nOpenableOnRight, nTotal);
+	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH, nOpenableOnLeft, nOpenableOnRight, nTotal);
 	FormatContextMenu(pPopup, ID_DIR_ZIP_BOTH_DIFFS_ONLY, nDiffFiles, nDiffItems, nTotal);
 
 	CheckContextMenu(pPopup, ID_PREDIFF_AUTO, (nPredifferYes > 0));

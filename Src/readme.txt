@@ -2,6 +2,9 @@
  PATCH: [ 982140 ] Merge7z : compress folders
   Submitted by Laoran
   Merge7z: Merge7z311.cpp Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp
+ PATCH: [ 981788 ] modify UI to compress folders
+  Submitted by Laoran
+  Src: DirView.cpp
 
 2004-08-18 Kimmo
  RFE: [ 952959 ] split Are you sure you want to copy into more lines
