@@ -117,9 +117,9 @@ BOOL CPropVss::OnInitDialog()
 void CPropVss::OnSelendokVerSys() 
 {
 	UpdateData(TRUE);
-	CString tempStr((LPCSTR)(m_nVerSys==2?IDS_CC_CMD:IDS_VSS_CMD));
+	CString tempStr((LPCSTR)(m_nVerSys==3?IDS_CC_CMD:IDS_VSS_CMD));
 	m_ctlVssL1.SetWindowText(tempStr);
-	m_ctlPath.EnableWindow(m_nVerSys>0);
-	m_ctlVssL1.EnableWindow(m_nVerSys>0);
-	m_ctlBrowse.EnableWindow(m_nVerSys>0);
+	m_ctlPath.EnableWindow(m_nVerSys==1 || m_nVerSys==3);
+	m_ctlVssL1.EnableWindow(m_nVerSys==1 || m_nVerSys==3);
+	m_ctlBrowse.EnableWindow(m_nVerSys==1 || m_nVerSys==3);
 }
