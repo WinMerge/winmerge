@@ -223,41 +223,52 @@ static bool IsItemHiddenBackup(const DIFFITEM & di)
 
 /**
  * @brief Determines if user wants to see this item
- * @return Path to item, NULL if user does not want to see it
- * @note Preferably left path, but right path if a right-only item
+ * @param [in] pCtxt CDiffContext containing filedata
+ * @param [in] di Item tested
+ * @param [in] llen Lenght of normalised left path
+ * @param [in] rlen Lenght of normalised right path
+ * @return File- or subfolder name of item, NULL if user does not want to see it
+ * @sa CDirDoc::Redisplay()
  */
-static LPCTSTR GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di, int llen, int rlen)
+LPCTSTR CDirDoc::GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di, int llen, int rlen)
 {
-	varprop::VariantValue val;
-	if (IsItemHiddenBackup(di))
-		return NULL;
+	// Subfolders in non-recursive compare can only be skipped or unique
+	if (!m_bRecursive && di.isDirectory())
+	{
+		// result filters
+		if (di.isResultError() && !mf->m_bShowErrors)
+			return 0;
+		if (di.isResultSkipped() && mf->m_options.GetInt(OPT_SHOW_SKIPPED) == 0)
+			return 0;
 
-	// file type filters
-	val = mf->m_options.Get(OPT_SHOW_BINARIES);
-	if (di.isBin() && val.getInt() == 0)
-		return 0;
+		// left/right filters
+		if (di.isSideLeft() && mf->m_options.GetInt(OPT_SHOW_UNIQUE_LEFT) == 0)
+			return 0;
+		if (di.isSideRight() && mf->m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT) == 0)
+			return 0;
+	}
+	else
+	{
+		// file type filters
+		if (di.isBin() && mf->m_options.GetInt(OPT_SHOW_BINARIES) == 0)
+			return 0;
 
-	// result filters
-	val = mf->m_options.Get(OPT_SHOW_IDENTICAL);
-	if (di.isResultSame() && val.getInt() == 0)
-		return 0;
-	if (di.isResultError() && !mf->m_bShowErrors)
-		return 0;
-	val = mf->m_options.Get(OPT_SHOW_SKIPPED);
-	if (di.isResultSkipped() && val.getInt() == 0)
-		return 0;
-	val = mf->m_options.Get(OPT_SHOW_DIFFERENT);
-	if (di.isResultDiff() && val.getInt() == 0)
-		return 0;
+		// result filters
+		if (di.isResultSame() && mf->m_options.GetInt(OPT_SHOW_IDENTICAL) == 0)
+			return 0;
+		if (di.isResultError() && !mf->m_bShowErrors)
+			return 0;
+		if (di.isResultSkipped() && mf->m_options.GetInt(OPT_SHOW_SKIPPED) == 0)
+			return 0;
+		if (di.isResultDiff() && mf->m_options.GetInt(OPT_SHOW_DIFFERENT) == 0)
+			return 0;
 
-	// left/right filters
-	val = mf->m_options.Get(OPT_SHOW_UNIQUE_LEFT);
-	if (di.isSideLeft() && val.getInt() == 0)
-		return 0;
-	val = mf->m_options.Get(OPT_SHOW_UNIQUE_RIGHT);
-	if (di.isSideRight() && val.getInt() == 0)
-		return 0;
-
+		// left/right filters
+		if (di.isSideLeft() && mf->m_options.GetInt(OPT_SHOW_UNIQUE_LEFT) == 0)
+			return 0;
+		if (di.isSideRight() && mf->m_options.GetInt(OPT_SHOW_UNIQUE_RIGHT) == 0)
+			return 0;
+	}
 
 	LPCTSTR p = NULL;
 	if (di.isSideRight())

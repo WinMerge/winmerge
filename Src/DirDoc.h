@@ -114,6 +114,7 @@ public:
 	void SetPluginPrediffSetting(const CString & filteredFilenames, int newsetting);
 	void FetchPluginInfos(const CString& filteredFilenames, 
 	                      PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
+	LPCTSTR GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di, int llen, int rlen);
 
 protected:
 	CDiffWrapper m_diffWrapper;

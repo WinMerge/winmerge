@@ -1,6 +1,9 @@
 2004-07-30 Kimmo
  PATCH: [ 999738 ] Gray out moved block menuitems when moved blocks disabled
   Src: LocationView.cpp
+ PATCH: [ 1000117 ] Hide only skipped subfolders in non-recursive compare
+  Fixes bug #922718 'show different files' off : subdirs not displayed
+  Src: DirDoc.cpp DirDoc.h
 
 2004-07-29 Kimmo
  PATCH: [ 999681 ] Accept filter name from commandline
