@@ -1,3 +1,7 @@
+2003-10-21 Perry
+ Make icons and bitmaps in WinMerge\res directory cvs file type binary (cvs admin -kb)
+ WinMerge: res\*.bmp res\*.ico
+
 2003-10-21 Laoran
  Add a backslash in front of relative path used to test for filter (as in 2.0)
  Undo the previous change (it disturbed the display) and make a new one
