@@ -40,7 +40,6 @@ CStaticLink::CStaticLink()
 //
 HBRUSH CStaticLink::CtlColor(CDC* pDC, UINT /*nCtlColor*/)
 {
-	ASSERT(nCtlColor == CTLCOLOR_STATIC);
 	DWORD dwStyle = GetStyle();
 	if (!(dwStyle & SS_NOTIFY)) {
 		// Turn on notify flag to get mouse messages and STN_CLICKED.
