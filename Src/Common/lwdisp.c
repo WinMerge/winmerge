@@ -159,6 +159,15 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 			}
 			piTypeLib->lpVtbl->Release(piTypeLib);
 		}
+		else
+		{
+			// no error if no interface (normal dll)
+			if (PathMatchSpec(source, _T("*.dll")) && sc == TYPE_E_CANTLOADLIBRARY)
+				sc = 0;
+			// no error if the format is too old
+			if (sc == TYPE_E_UNSUPFORMAT)
+				sc = 0;
+		}
 	}
 	else 
 	{
@@ -201,11 +210,36 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCTSTR progid)
 				sc=CoGetObject(wc, &bind_opts, &IID_IDispatch, &pv);
 			}
 		}
+		// no error if the interface does not exist
+		if (sc == MK_E_INTERMEDIATEINTERFACENOTSUPPORTED || sc == E_UNEXPECTED)
+			sc = 0;
 	}
 	if FAILED(sc)
 	{
+		// report error
+		LPSTR bareErrorText = ReportError(sc, 0);
+		if (source)
+		{
+			// append the source name
+			LPTSTR errorText;
+			errorText = malloc((strlen(bareErrorText)+1+_tcslen(source)+1)*sizeof(TCHAR));
+#ifdef UNICODE
+			MultiByteToWideChar(CP_ACP, 0, bareErrorText, -1, errorText, strlen(bareErrorText)+1);
+#else
+			strcpy(errorText, bareErrorText);
+#endif
+			_tcscat(errorText, "\n");
+			_tcscat(errorText, source);
+			MessageBox(0, errorText, 0, MB_ICONSTOP|MB_TASKMODAL);
+			free (errorText);
+		}
+		else
+		{
+			MessageBoxA(0, bareErrorText, 0, MB_ICONSTOP|MB_TASKMODAL);
+		}
+		LocalFree(bareErrorText);
+		// no valid dispatch
 		pv = 0;
-		ReportError(sc, MB_ICONSTOP|MB_TASKMODAL);
 	}
 	return (LPDISPATCH)pv;
 }

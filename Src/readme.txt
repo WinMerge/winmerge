@@ -1,3 +1,7 @@
+2003-11-03 Laoran
+ PATCH: [ 833188 ] clever and explicit error report in TypeLib
+  common: lwdisp.c
+
 2003-11-03 Kimmo
  PATCH: [ 834526 ] Check that file exist before executing in ShellExtension
   ShellExtension: ShellExtension.dsp WinMergeShell.h WinMergeShell.cpp
