@@ -187,6 +187,8 @@ void COpenDlg::OnOK()
 	m_ctlRight.SaveState(_T("Files\\Right"));
 	m_ctlExt.SaveState(_T("Files\\Ext"));
 
+	theApp.WriteProfileInt(_T("Settings"), _T("Recurse"), m_bRecurse);
+
 	CDialog::OnOK();
 }
 
@@ -201,6 +203,8 @@ BOOL COpenDlg::OnInitDialog()
 	UpdateData(m_strLeft.IsEmpty() && m_strRight.IsEmpty());
 	UpdateButtonStates();
 
+	m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0)==1;
+	UpdateData(FALSE);
 	return TRUE;  
 }
 
