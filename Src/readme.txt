@@ -1,3 +1,7 @@
+2003-03-25 Perry
+ PATCH: [ 709575 ] Fix sanity check in CChildFrame::UpdateHeaderSizes()
+ WinMerge: ChildFrm.cpp
+
 2003-03-25 Christian
  Replace COPYING with corrected version from http://www.gnu.org/licenses/gpl.txt
 
