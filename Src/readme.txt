@@ -3,6 +3,7 @@
   Submitted by Tim Gerundt
    WinMerge: Merge.rc
    res: Toolbar.bmp
+   Languages/res: Toolbar.bmp
 
 2003-11-14 Kimmo
  PATCH: [ 841767 ] Store unique item path
