@@ -10,6 +10,12 @@
       <para>Portuguese (Brazilian)</para>
     </listitem>
     <listitem>
+      <para>Bulgarian</para>
+    </listitem>
+    <listitem>
+      <para>Catalan</para>
+    </listitem>
+    <listitem>
       <para>Chinese (both Simplified and Traditional)</para>
     </listitem>
     <listitem>
@@ -37,10 +43,19 @@
       <para>Norwegian</para>
     </listitem>
     <listitem>
+      <para>Polish</para>
+    </listitem>
+    <listitem>
+      <para>Russian</para>
+    </listitem>
+    <listitem>
       <para>Slovak</para>
     </listitem>
     <listitem>
       <para>Spanish</para>
+    </listitem>
+    <listitem>
+      <para>Swedish</para>
     </listitem>
   </itemizedlist>
   <para>If you would like to add your language to the list, look at the <ulink url="http://winmerge.sourceforge.net/developer/l10n/index.php">on-line documentation</ulink> for the details on how to do it.</para>

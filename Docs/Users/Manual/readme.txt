@@ -5,6 +5,8 @@
   Manual: Whatsnew_2_1.xml
  PATCH: [ 1034681 ] Docs: Add codepage options, improve compare options
   Manual: Configuration.xml
+ PATCH: [ 1034717 ] Docs: Add missing languages to Locales section list
+  Manual: Locales.xml
 
 2004-09-25 Kimmo
  PATCH: [ 1034558 ] Docs: More meta-informations
