@@ -1,3 +1,8 @@
+2003-12-15 Kimmo
+ PATCH: [ 858283 ] Add isResultDiff() to DiffItem
+  Fixes BUG [ 852998 ] Left Only being filtered out if not view different
+  WinMerge: DiffContext.h DirDoc.cpp
+
 2003-12-14 Kimmo
  BUG: [ 833096 ] Left/right-only status overwrites skipped-status
   Apply fix for long result too
