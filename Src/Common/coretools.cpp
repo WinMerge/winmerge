@@ -34,6 +34,10 @@
 #include <winsock.h>
 #include <assert.h>
 
+#ifndef countof
+#define countof(array)  (sizeof(array)/sizeof((array)[0]))
+#endif /* countof */
+
 
 BOOL GetFileTimes(LPCTSTR szFilename, 
 				  LPSYSTEMTIME pMod, 

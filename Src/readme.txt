@@ -1,3 +1,7 @@
+2003-10-22 Perry
+ Fix compile for MakeResDll
+  common: coretools.cpp
+
 2003-10-22 WinMerge experimental release 2.1.3.4 (cvs)
 
 2003-10-22 Kimmo
