@@ -157,7 +157,7 @@ http://sourceforge.net/forum/forum.php?forum_id=41639
 
 1) Multi-doc enabled directory and file compares
    - Important usability improvement
-   - Needs (9) to be done first
+   - Requires (9) to be done first (which is done now)
    - Mostly UI work?
    - Nobody working with this at the moment
    - Not must for 2.2, but if time allows this is nice to have
