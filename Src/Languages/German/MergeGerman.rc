@@ -79,8 +79,8 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Nach rechts kopieren",        ID_L2R
-        MENUITEM "Nach links kopieren",         ID_R2L
+        MENUITEM "&Nach rechts kopieren",       ID_L2R
+        MENUITEM "N&ach links kopieren",        ID_R2L
         MENUITEM SEPARATOR
         MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
         MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
@@ -102,7 +102,7 @@ BEGIN
     BEGIN
         MENUITEM "&Neu\tStrg+N",                ID_FILE_NEW
         MENUITEM "Ö&ffnen...\tStrg+O",          ID_FILE_OPEN
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Projekt öffnen...\tStrg+J",   ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Speichern\tStrg+S",          ID_FILE_SAVE
         POPUP "&Links speichern"
@@ -152,9 +152,9 @@ BEGIN
             MENUITEM "< Leer >",                ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
-        POPUP "Advanced"
+        POPUP "Erweitert"
         BEGIN
-            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
+            MENUITEM "&Kopieren mit Zeilennummern\tStrg+Umschalt+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
         MENUITEM "&Gehe nach...\tStrg+G",       ID_EDIT_WMGOTO
@@ -180,7 +180,7 @@ BEGIN
         MENUITEM "Standard-Schrift &verwenden", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "Leer&zeichen anzeigen",       ID_VIEW_WHITESPACE
-        MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
+        MENUITEM "Zeilenuntersc&hied anzeigen", ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
         MENUITEM "&Symbolleiste",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
@@ -277,7 +277,7 @@ BEGIN
             MENUITEM "&Rechts",                     ID_DIR_DEL_RIGHT
             MENUITEM "&Beide",                      ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "Da&teien verstecken",             ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Ö&ffne links"
         BEGIN
@@ -452,7 +452,7 @@ BEGIN
     PUSHBUTTON      "Abbrechen",IDCANCEL,312,28,50,14
     GROUPBOX        "Zu vergleichende Dateien oder Verzeichnisse",IDC_FILES_DIRS_GROUP,
                     7,7,298,111
-    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,312,56,50,14
+    PUSHBUTTON      "Projekt speich.",IDC_SAVEPROJECT,312,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -675,14 +675,14 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Word Difference:",IDC_STATIC,7,129,90,8
+    RTEXT           "Wortunterschied:",IDC_STATIC,7,129,90,8
     CONTROL         "Dif",IDC_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_WORDDIFFERENCE_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Word Diff:",IDC_STATIC,7,149,90,8
+    RTEXT           "Wortunterschied (Selektiert):",IDC_STATIC,7,149,90,8
     CONTROL         "Dif",IDC_SEL_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,149,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -973,9 +973,9 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,188,114,50,14
+    PUSHBUTTON      "Neu...",IDC_FILTERFILE_NEWBTN,188,114,50,14
     PUSHBUTTON      "Bearbeiten...",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "Löschen...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -1340,7 +1340,7 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Ändert die Druckerkonfiguration.\nDrucker einrichten"
     ID_FILE_PRINT           "Druckt das aktive Dokument.\nDrucken"
     ID_FILE_PRINT_PREVIEW   "Zeigt die Druckvorschau an.\nDruckvorschau"
-    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+    ID_FILE_OPENPROJECT     "Öffnet eine Projektdatei.\nProjektdatei (Strg+J)"
 END
 
 STRINGTABLE
@@ -1520,15 +1520,15 @@ BEGIN
     IDS_OPEN_TITLE          "Öffnen"
     IDS_PROGRAMFILES        "Programme|*.exe;*.bat;*.cmd|Alle Dateien (*.*)|*.*||"
     IDS_ALLFILES            "Alle Dateien (*.*)|*.*||"
-    IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+    IDS_PROJECTFILES        "WinMerge Projektdatei (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
 END
 
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
-    IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    IDS_COMPMETHOD_FULL_CONTENTS "Voller Inhalt"
+    IDS_COMPMETHOD_QUICK_CONTENTS "Schneller Inhalt"
     IDS_COMPMETHOD_MODDATE  "Änderungsdatum"
 END
 
@@ -1539,9 +1539,9 @@ BEGIN
     IDS_FILTERFILE_PATHTITLE "Pfad"
     IDS_FILTER_TITLE        "Filter"
     IDS_FILTER_PREFIX       "[F] "
-    IDS_FILTERFILE_DESCTITLE "Description"
-    IDS_FILEFILTER_SAVENEW  "Select filename for new filter"
-    IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
+    IDS_FILTERFILE_DESCTITLE "Beschreibung"
+    IDS_FILEFILTER_SAVENEW  "Dateinamen für neuen Filter auswählen"
+    IDS_FILEFILTER_FILEMASK "Dateifilter (*.flt)|*.flt|Alle Dateien (*.*)|*.*||"
 END
 
 // VERSION CONTROL OPTIONS
@@ -1645,9 +1645,9 @@ END
 // VSS system
 STRINGTABLE
 BEGIN
-    IDS_VCS_NONE            "None"
-    IDS_VCS_VSS4            "Visual SourceSafe (less than 5.0)"
-    IDS_VCS_VSS5            "Visual SourceSafe (5.0 and above)"
+    IDS_VCS_NONE            "Keines"
+    IDS_VCS_VSS4            "Visual SourceSafe (kleiner als 5.0)"
+    IDS_VCS_VSS5            "Visual SourceSafe (5.0 und höher)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
 END
 
@@ -1661,7 +1661,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "Löscht ausgewähltes Objekt auf der linken Seite."
     ID_DIR_DEL_RIGHT        "Löscht ausgewähltes Objekt auf der rechten Seite."
     ID_DIR_DEL_BOTH         "Löscht ausgewählte Objekte auf beiden Seiten."
-    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
+    ID_DIR_HIDE_FILENAMES   "Versteckt ausgewählte Objekte (dynamischer Filter)"
     IDS_COPY_TO_LEFT        "Rechts nach Links (%1)"
     IDS_COPY_TO_RIGHT       "Links nach Rechts (%1)"
     IDS_COPY_TO_LEFT2       "Rechts nach Links (%1 von %2)"
@@ -2211,7 +2211,7 @@ BEGIN
     ID_EDIT_WMGOTO          "Geht zur Zeile oder zum Unterschied.\nGehe nach (Strg+G)"
     ID_OPTIONS              "Nimmt Programm-Einstellungen vor.\nEinstellungen"
     ID_REFRESH              "Aktualisiert die Anzeige\nAktualisieren (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "Kopiert die ausgewählten Zeilen in die Zwischenablage und fügt Zeilennummern vor den Zeilenanfang."
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2228,14 +2228,14 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
-    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
+    ID_VIEW_SELECTFONT      "Wählt die Schrift für die Anzeige.\nSchrift auswählen"
+    ID_VIEW_USEDEFAULTFONT  "Stellt die Schrift für die Anzeige zurück auf die Standard-Systemschrift.\nStandard-Schrift verwenden"
     ID_VIEW_WHITESPACE      "Zeigt Leerzeichen an."
     ID_VIEW_DETAIL_BAR      "Blendet die Unterschiedsleiste ein oder aus."
     ID_VIEW_LOCATION_BAR    "Die Positionsleiste zeigt gesamte Abbildungen von den Dateien."
     ID_VIEW_DIR_STATEPANE   "Blendet den Vergleichszustand ein oder aus."
     ID_VIEW_LANGUAGE        "Wählt die Sprache der Benutzeroberfläche.\nSprache"
-    ID_VIEW_LINEDIFFS       "Shows differences inside lines with different color\nShow Line Diff"
+    ID_VIEW_LINEDIFFS       "Zeigt Unterschiede innerhalb der Zeilen mit unterschiedlicher Farbe.\nZeilenunterschied anzeigen"
 END
 
 // MERGE MENU

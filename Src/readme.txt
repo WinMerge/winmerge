@@ -1,3 +1,8 @@
+2005-03-21 Kimmo
+ BUG: [ 1162037 ] Missing localization (German)
+  Translation update from Tim Gerundt
+  Src/Languages/German/MergeGerman.rc
+
 2005-03-20 Kimmo
  PATCH: [ 1165515 ] Improve drawing location pane moved block lines
   Src: LocationView.cpp LocationView.h
