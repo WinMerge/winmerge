@@ -228,20 +228,19 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ , int
   li.m_nLength = nLength;
   li.m_nMax = ALIGN_BUF_SIZE (li.m_nLength + 1);
   ASSERT (li.m_nMax >= li.m_nLength + 1);
-  if (li.m_nMax > 0)
-    li.m_pcLine = new TCHAR[li.m_nMax];
+  li.m_pcLine = new TCHAR[li.m_nMax];
   if (li.m_nLength > 0)
     {
       DWORD dwLen = sizeof (TCHAR) * li.m_nLength;
       CopyMemory (li.m_pcLine, pszLine, dwLen);
-      CopyMemory (li.m_pcLine + dwLen, _T("\0"), sizeof (TCHAR));
     }
+  li.m_pcLine[li.m_nLength] = '\0';
 
   int nEols = 0;
   if (nLength>1 && isdoseol(&pszLine[nLength-2]))
-	  nEols = 2;
+    nEols = 2;
   else if (nLength && iseol(pszLine[nLength-1]))
-	  nEols = 1;
+    nEols = 1;
   li.m_nLength -= nEols;
   li.m_nEolChars = nEols;
 
@@ -275,32 +274,30 @@ AppendLine (int nLineIndex, LPCTSTR pszChars, int nLength /*= -1*/ )
 
   register SLineInfo & li = m_aLines[nLineIndex];
   ASSERT(!li.m_nEolChars);
-  int nBufNeeded = li.m_nLength + nLength;
+  int nBufNeeded = li.m_nLength + nLength+1;
   if (nBufNeeded > li.m_nMax)
     {
       li.m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
       ASSERT (li.m_nMax >= li.m_nLength + nLength);
       TCHAR *pcNewBuf = new TCHAR[li.m_nMax];
-      if (li.m_nLength > 0)
-        memcpy (pcNewBuf, li.m_pcLine, sizeof (TCHAR) * li.FullLength());
+      if (li.FullLength() > 0)
+        memcpy (pcNewBuf, li.m_pcLine, sizeof (TCHAR) * (li.FullLength()+1));
       delete[] li.m_pcLine;
       li.m_pcLine = pcNewBuf;
     }
-  memcpy (li.m_pcLine + li.m_nLength, pszChars, sizeof (TCHAR) * nLength);
+  memcpy (li.m_pcLine + li.m_nLength, pszChars, sizeof (TCHAR) * (nLength+1));
   li.m_nLength += nLength;
-  // If the line wasn't terminated, check if it just became so
-  if (!li.m_nEolChars)
-    {
-      if (nLength>1 && isdoseol(&li.m_pcLine[li.m_nLength-2]))
-       {
-         li.m_nEolChars = 2;
-       }
-      else if (iseol(li.m_pcLine[li.m_nLength-1]))
+  li.m_pcLine[li.m_nLength] = '\0';
+  // Did line gain eol ? (We asserted above that it had none at start)
+   if (nLength>1 && isdoseol(&li.m_pcLine[li.m_nLength-2]))
+     {
+       li.m_nEolChars = 2;
+     }
+   else if (iseol(li.m_pcLine[li.m_nLength-1]))
       {
-         li.m_nEolChars = 1;
+       li.m_nEolChars = 1;
       }
-      li.m_nLength -= li.m_nEolChars;
-    }
+   li.m_nLength -= li.m_nEolChars;
   ASSERT (li.m_nLength + li.m_nEolChars <= li.m_nMax);
 }
 
@@ -975,11 +972,11 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, 
     {
       // delete multiple lines
       int nRestCount = m_aLines[nEndLine].FullLength() - nEndChar;
-      LPTSTR pszRestChars = NULL;
+      CString sTail;
       if (nRestCount > 0)
         {
-          pszRestChars = new TCHAR[nRestCount];
-          memcpy (pszRestChars, m_aLines[nEndLine].m_pcLine + nEndChar, nRestCount * sizeof (TCHAR));
+          sTail = m_aLines[nEndLine].m_pcLine + nEndChar;
+	   ASSERT(sTail.GetLength() == nRestCount);
         }
 
       int nDelCount = nEndLine - nStartLine;
@@ -992,8 +989,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar, 
       m_aLines[nStartLine].m_nEolChars = 0;
       if (nRestCount > 0)
         {
-          AppendLine (nStartLine, pszRestChars, nRestCount);
-          delete[] pszRestChars;
+          AppendLine (nStartLine, sTail, nRestCount);
         }
 
 	  if (pSource!=NULL)
@@ -1052,7 +1048,6 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
 
   int nRestCount = GetFullLineLength(nLine) - nPos;
   CString sTail;
-  LPTSTR pszRestChars = NULL;
   if (nRestCount > 0)
     {
       // remove end of line (we'll put it back on afterwards)
@@ -1099,6 +1094,8 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
 
       if (pszText[nTextPos] == 0)
         {
+          // we just finished our insert
+          // now we have to reattach the tail
           if (haseol)
             {
               nEndLine = nCurrentLine+1;
@@ -1116,15 +1113,19 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR psz
               else
                 AppendLine (nCurrentLine, sTail, nRestCount);
             }
+          if (nEndLine == GetLineCount())
+            {
+                 // We left cursor after last screen line
+                 // which is an illegal cursor position
+                 // so manufacture a new trailing ghost line
+		   InsertLine(_T(""));
+            }
           break;
         }
 
       ++nCurrentLine;
       pszText += nTextPos;
     }
-
-  if (pszRestChars != NULL)
-    delete[] pszRestChars;
 
   context.m_ptEnd.x = nEndChar;
   context.m_ptEnd.y = nEndLine;
@@ -1685,70 +1686,30 @@ CPoint CCrystalTextBuffer::GetLastChangePos() const
 
 void CCrystalTextBuffer::DeleteLine(int line)
 {
-	delete[] m_aLines[line].m_pcLine;
-	m_aLines.RemoveAt(line);
+  delete[] m_aLines[line].m_pcLine;
+  m_aLines.RemoveAt(line);
 }
 
 int CCrystalTextBuffer::GetTabSize()
 {
-    ASSERT( m_nTabSize >= 0 && m_nTabSize <= 64 );
-    return m_nTabSize;
+  ASSERT( m_nTabSize >= 0 && m_nTabSize <= 64 );
+  return m_nTabSize;
 }
 
 void CCrystalTextBuffer::SetTabSize(int nTabSize)
 {
-    ASSERT( nTabSize >= 0 && nTabSize <= 64 );
-    m_nTabSize = nTabSize;
-}
-
-// return reality block containing this apparent line (or -1)
-int CCrystalTextBuffer::FindRealityBlocknoFromApparent(int nApparentLine) const
-{
-	int bmax = m_RealityBlocks.GetUpperBound();
-	int blo=0, bhi=bmax;
-	int i;
-	while (blo<=bhi)
-	{
-		i = (blo+bhi)/2;
-		RealityBlock & block = m_RealityBlocks[i];
-		if (nApparentLine < block.nStartApparent)
-			bhi = i-1;
-		else if (nApparentLine >= block.nStartApparent + block.nCount)
-			blo = i+1;
-		else
-			return i;
-	}
-	return -1;
-}
-
-// return reality block containing this real line (or -1)
-int CCrystalTextBuffer::FindRealityBlocknoFromReal(int nRealLine) const
-{
-	int bmax = m_RealityBlocks.GetUpperBound();
-	int blo=0, bhi=bmax;
-	int i;
-	while (blo<=bhi)
-	{
-		i = (blo+bhi)/2;
-		RealityBlock & block = m_RealityBlocks[i];
-		if (nRealLine < block.nStartReal)
-			bhi = i-1;
-		else if (nRealLine >= block.nStartReal + block.nCount)
-			blo = i+1;
-		else
-			return i;
-	}
-	return -1;
+  ASSERT( nTabSize >= 0 && nTabSize <= 64 );
+  m_nTabSize = nTabSize;
 }
 
 // Return highest valid real (file) line
 // Returns -1 if no lines
 int CCrystalTextBuffer::LastRealLine() const
 {
-	int bmax = m_RealityBlocks.GetUpperBound();
-	if (bmax<0) return -1;
-	RealityBlock & block = m_RealityBlocks[bmax];
-	return block.nStartReal + block.nCount;
+  int bmax = m_RealityBlocks.GetUpperBound();
+  if (bmax<0) return -1;
+  RealityBlock & block = m_RealityBlocks[bmax];
+  return block.nStartReal + block.nCount;
 }
 
 // return underlying real line
@@ -1757,71 +1718,117 @@ int CCrystalTextBuffer::LastRealLine() const
 // for argument of 3, return 2
 int CCrystalTextBuffer::ComputeRealLine(int nApparentLine) const
 {
-	int blockno = FindRealityBlocknoFromApparent(nApparentLine);
-	if (blockno == -1) return LastRealLine()+1;
-	RealityBlock & block = m_RealityBlocks[blockno];
-	return (nApparentLine - block.nStartApparent) + block.nStartReal;
+  int bmax = m_RealityBlocks.GetUpperBound();
+  // first get the degenerate cases out of the way
+  // empty file ?
+  if (bmax<0)
+    return 0;
+  // after last block ?
+  RealityBlock & maxblock = m_RealityBlocks[bmax];
+  if (nApparentLine >= maxblock.nStartApparent + maxblock.nCount)
+    return maxblock.nStartReal + maxblock.nCount;
+
+  // binary search to find correct (or nearest block)
+  int blo=0, bhi=bmax;
+  int i;
+  while (blo<=bhi)
+    {
+      i = (blo+bhi)/2;
+      RealityBlock & block = m_RealityBlocks[i];
+      if (nApparentLine < block.nStartApparent)
+        bhi = i-1;
+      else if (nApparentLine >= block.nStartApparent + block.nCount)
+        blo = i+1;
+      else // found it inside this block
+        return (nApparentLine - block.nStartApparent) + block.nStartReal;
+    }
+  // it is a ghost line just before block blo
+  return m_RealityBlocks[blo].nStartReal;
 }
 
 // return apparent line for this underlying real line
 // if real line is out of bounds, returns -1
 int CCrystalTextBuffer::ComputeApparentLine(int nRealLine) const
 {
-	int blockno = FindRealityBlocknoFromReal(nRealLine);
-	if (blockno == -1) return -1;
-	RealityBlock & block = m_RealityBlocks[blockno];
-	return (nRealLine - block.nStartReal) + block.nStartApparent;
+  int bmax = m_RealityBlocks.GetUpperBound();
+  // first get the degenerate cases out of the way
+  // empty file ?
+  if (bmax<0)
+    return 0;
+  // after last block ?
+  // (This can happen with the endline of a paste undo record)
+  RealityBlock & maxblock = m_RealityBlocks[bmax];
+  if (nRealLine >= maxblock.nStartReal + maxblock.nCount)
+    return nRealLine - maxblock.nStartReal + maxblock.nStartApparent;
+
+  // binary search to find correct (or nearest block)
+  int blo=0, bhi=bmax;
+  int i;
+  while (blo<=bhi)
+    {
+      i = (blo+bhi)/2;
+      RealityBlock & block = m_RealityBlocks[i];
+      if (nRealLine < block.nStartReal)
+        bhi = i-1;
+      else if (nRealLine >= block.nStartReal + block.nCount)
+        blo = i+1;
+      else
+        return (nRealLine - block.nStartReal) + block.nStartApparent;
+    }
+  // Should have found it; all real lines should be in a block
+  ASSERT(0);
+  return -1;
 }
 
 // Do what we need to do just after we've been reloaded
 void CCrystalTextBuffer::FinishLoading()
 {
-	if (!m_bInit) return;
-	RecomputeRealityMapping();
+  if (!m_bInit) return;
+  RecomputeRealityMapping();
 }
 
 // Recompute the reality mapping (this is fairly naive)
 void CCrystalTextBuffer::RecomputeRealityMapping()
 {
-	m_RealityBlocks.RemoveAll();
-	int reality=-1; // last encountered real line
-	int i=0; // current line
-	RealityBlock block; // current block being traversed (in state 2)
+  m_RealityBlocks.RemoveAll();
+  int reality=-1; // last encountered real line
+  int i=0; // current line
+  RealityBlock block; // current block being traversed (in state 2)
 
-	// This is a state machine with 2 states
+  // This is a state machine with 2 states
 
-	// state 1, i-1 not real line
+  // state 1, i-1 not real line
 passingGhosts:
-	if (i==GetLineCount())
-			return;
-	if (!GetFullLineLength(i))
-	{
-		++i;
-		goto passingGhosts;
-	}
-	// this is the first line of a reality block
-	block.nStartApparent = i;
-	block.nStartReal = reality+1;
-	++reality;
-	++i;
-	// fall through to other state
+  if (i==GetLineCount())
+    return;
+  if (!GetFullLineLength(i))
+    {
+      ++i;
+      goto passingGhosts;
+    }
+  // this is the first line of a reality block
+  block.nStartApparent = i;
+  block.nStartReal = reality+1;
+  ++reality;
+  ++i;
+  // fall through to other state
 
-	// state 2, i-1 is real line
+  // state 2, i-1 is real line
 inReality:
-	if (i==GetLineCount() || !GetFullLineLength(i))
-	{
-		// i-1 is the last line of a reality block
-		ASSERT(reality >= 0);
-		block.nCount = i - block.nStartApparent;
-		ASSERT(block.nCount > 0);
-		ASSERT(reality+1-block.nStartReal == block.nCount);
-		m_RealityBlocks.Add(block);
-		if (i==GetLineCount())
-				return;
-		++i;
-		goto passingGhosts;
-	}
-	++reality;
-	++i;
-	goto inReality;
+  if (i==GetLineCount() || !GetFullLineLength(i))
+    {
+      // i-1 is the last line of a reality block
+      ASSERT(reality >= 0);
+      block.nCount = i - block.nStartApparent;
+      ASSERT(block.nCount > 0);
+      ASSERT(reality+1-block.nStartReal == block.nCount);
+      m_RealityBlocks.Add(block);
+      if (i==GetLineCount())
+        return;
+      ++i;
+      goto passingGhosts;
+    }
+  ++reality;
+  ++i;
+  goto inReality;
 }

@@ -1,6 +1,8 @@
 2003-06-23 Perry
  PATCH: [ 759533 ] Fix InternalInsertText & InternalDeleteText
   editlib: ccrystaltextbuffer.cpp
+ PATCH: [ 759569 ] Fix Undo/Redo & line mappings
+  editlib: ccrystaltextbuffer.cpp ccrystaltextbuffer.h ccrystaleditview.cpp
 
 2003-06-23 Kimmo
 PATCH: [ 759344 ] Add Copy, Cut & Paste to Edit menu

@@ -218,8 +218,10 @@ public :
 
     //  Lines of text
     CArray < SLineInfo, SLineInfo & >m_aLines;
+    // A RealityBlock is a block of lines with no ghost lines
     struct RealityBlock { int nStartReal; int nStartApparent; int nCount; };
-    CArray < RealityBlock, RealityBlock& > m_RealityBlocks; // ghostfree blocks
+    // The array of reality blocks is kept in order
+    CArray < RealityBlock, RealityBlock& > m_RealityBlocks;
 
     //  Undo
     CArray < SUndoRecord, SUndoRecord & >m_aUndoBuf;
@@ -359,8 +361,6 @@ protected :
     int ComputeRealLine(int nApparentLine) const;
     int ComputeApparentLine(int nRealLine) const;
     int LastRealLine() const;
-    int FindRealityBlocknoFromApparent(int nApparentLine) const;
-    int FindRealityBlocknoFromReal(int nRealLine) const;
     void RecomputeRealityMapping();
 
     // Generated message map functions
