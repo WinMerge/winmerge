@@ -1,4 +1,8 @@
-2003-06-23 Christian
+2003-05-25 Kimmo
+ PATCH: [ 742735 ] Fix CCrystalTextBuffer::InsertLine()
+  edilib: ccrystaltextbuffer.cpp
+
+2003-05-23 Christian
  Made new folder \InnoSetup\ for files related to making WinMerge installer using InnoSetup
 
 2003-05-22 Perry

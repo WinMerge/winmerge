@@ -215,12 +215,16 @@ void CCrystalTextBuffer::InsertLine (LPCTSTR pszLine, int nLength /*= -1*/ , int
 
   SLineInfo li;
   li.m_nLength = nLength;
-  li.m_nMax = ALIGN_BUF_SIZE (li.m_nLength);
-  ASSERT (li.m_nMax >= li.m_nLength);
+  li.m_nMax = ALIGN_BUF_SIZE (li.m_nLength + 1);
+  ASSERT (li.m_nMax >= li.m_nLength + 1);
   if (li.m_nMax > 0)
     li.m_pcLine = new TCHAR[li.m_nMax];
   if (li.m_nLength > 0)
-    memcpy (li.m_pcLine, pszLine, sizeof (TCHAR) * li.m_nLength);
+    {
+      DWORD dwLen = sizeof (TCHAR) * li.m_nLength;
+	  CopyMemory (li.m_pcLine, pszLine, dwLen);
+	  CopyMemory (li.m_pcLine + dwLen, _T("\0"), sizeof (TCHAR));
+    }
 
   if (nPosition == -1)
     m_aLines.Add (li);
