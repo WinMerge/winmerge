@@ -1,3 +1,11 @@
+2005-01-22 Jochen
+ PATCH: [ 1103266 ] Merge7z update (DllBuild_Merge7z_9)
+  Merge7z: Merge7z.h Merge7z311.cpp Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp Merge7z407.dsp Merge7z408.dsp
+   Merge7z409.cpp Merge7z409.dsp Merge7z410.dsp Merge7z411.dsp Merge7z412.dsp Merge7z413.dsp Merge7z414.dsp
+   Merge7zCommon.cpp Merge7zCommon.h revision.txt
+ PATCH: [ 1103274 ] Merge7z interface plugin installer
+  Merge7zInstaller: Files.rc2 Installer.cpp Installer.rc Merge7zInstaller.dsp resource.h
+
 2005-01-21 Perry
  PATCH: [ 1103542 ] Declare _MBCS in ANSI builds
   Src: Merge.dsp
