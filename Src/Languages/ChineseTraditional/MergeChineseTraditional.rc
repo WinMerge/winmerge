@@ -146,7 +146,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Scripts"
         BEGIN
-            MENUITEM SEPARATOR
+            MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
         MENUITEM "&Go To...\tCtrl+G",           ID_EDIT_WMGOTO
@@ -334,7 +334,6 @@ BEGIN
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
-    VK_F3,          ID_EDIT_FIND_PREVIOUS,  VIRTKEY, SHIFT, NOINVERT
     VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
@@ -413,7 +412,7 @@ BEGIN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
     DEFPUSHBUTTON   "Check Out",IDOK,53,132,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,193,132,50,14
-    PUSHBUTTON      "Save As...",IDSAVEAS,123,132,50,14
+    PUSHBUTTON      "Save As...",IDC_SAVE_AS,123,132,50,14
     LTEXT           "Project:",IDC_STATIC,9,81,25,8
     COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
@@ -536,7 +535,7 @@ FONT 9, "新細明體"
 BEGIN
     DEFPUSHBUTTON   "勘試",IDOK,35,90,50,14
     PUSHBUTTON      "取消",IDCANCEL,194,90,50,14
-    PUSHBUTTON      "另存新檔...",IDSAVEAS,114,90,50,14
+    PUSHBUTTON      "另存新檔...",IDC_SAVE_AS,114,90,50,14
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "註解",IDC_STATIC,18,7,34,10
@@ -1146,7 +1145,6 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-// ID_FILE_NEW SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
@@ -1160,7 +1158,6 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "顯示整頁\n預覽列印"
 END
 
-// ID_APP_ABOUT SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_APP_ABOUT            "顯示程式資訊，版本號碼和版權\n關於"
@@ -1187,7 +1184,6 @@ BEGIN
     ID_FILE_MRU_FILE16      "開啟這個文件"
 END
 
-// ID_NEXT_PANE SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_NEXT_PANE            "切換到下一個視窗\n下一視窗"
@@ -1204,7 +1200,6 @@ BEGIN
     ID_WINDOW_SPLIT         "分割目前視窗\n分割"
 END
 
-// ID_EDIT_CLEAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_EDIT_CLEAR           "清除選取的範圍\n刪除"
@@ -1220,14 +1215,12 @@ BEGIN
     ID_EDIT_REDO            "重做之前未完成的動作\n重做"
 END
 
-// ID_VIEW_TOOLBAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "顯示或隱藏工具列\n切換工具列"
     ID_VIEW_STATUS_BAR      "顯示或隱藏狀態列\n切換狀態列"
 END
 
-// AFX_IDS_SCSIZE SYNCHRO
 STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "更改視窗大小"
@@ -1251,155 +1244,66 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "關閉預覽列印模式\n取消預覽"
 END
 
+// WINMERGE INFORMATION
 STRINGTABLE 
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+END
+
+// CUSTOM CONTROLS
+// OPTIONS NAME TO PRESERVE/UNIFY EOL
+STRINGTABLE
+BEGIN
+    IDC_MIXED_EOL           "Preserve original EOL chars"
+END
+
+// DIRECTORY DIFFING : SUMMARY BAR
+STRINGTABLE 
+BEGIN
+    IDC_COMPARISON_STOP     "Stop"
+    IDC_COMPARISON_CLOSE    "Press any key"
+END
+
+// EDITOR : FILENAME BAR
+STRINGTABLE 
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+// IDS_MESSAGEBOX_OK SYNCHRO
+STRINGTABLE 
+BEGIN
+    IDS_MESSAGEBOX_OK       "&Ok"
+    IDS_MESSAGEBOX_CANCEL   "&Cancel"
+    IDS_MESSAGEBOX_ABORT    "&Abort"
+    IDS_MESSAGEBOX_RETRY    "&Retry"
+    IDS_MESSAGEBOX_IGNORE   "&Ignore"
+    IDS_MESSAGEBOX_IGNOREALL "Ignore &all"
+    IDS_MESSAGEBOX_YES      "&Yes"
+END
+
+// "DO NOT SHOW AGAIN" MESSAGEBOXES (2)
+STRINGTABLE 
+BEGIN
+    IDS_MESSAGEBOX_YES_TO_ALL "Yes to &all"
+    IDS_MESSAGEBOX_NO       "&No"
+    IDS_MESSAGEBOX_NO_TO_ALL "No to a&ll"
+    IDS_MESSAGEBOX_CONTINUE "&Continue"
+    IDS_MESSAGEBOX_SKIP     "&Skip"
+    IDS_MESSAGEBOX_SKIPALL  "Skip &all"
+    IDS_MESSAGEBOX_HELP     "&Help"
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
+    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
+END
+
+// WINMERGE CUSTOM STRINGS
+// WINMERGE INFORMATION
+STRINGTABLE 
+BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge 這個資料夾"
-    IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
-    IDS_ELAPSED_TIME        "Elapsed time: %ld ms"
-END
-
-// IDS_VERSION_FMT SYNCHRO
-STRINGTABLE 
-BEGIN
     IDS_VERSION_FMT         "版本 %1"
-    IDS_ALLFILES            "所有檔案 (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "你確定要複製所有不同到左邊檔案嗎？"
-    IDS_CONFIRM_ALL_RIGHT   "你確定要複製所有不同到右邊檔案嗎？"
-    IDS_ERRORS_TITLE        "%1 錯誤"
-    IDS_CONFIRM_COPY2DIR    "你確定要複製 %1 在 %2 選取的項目"
-    IDS_FONT_CHANGE         "選取的字型變更不會套用到任何目前顯現不同的視窗。"
-    IDS_DIRECTORY_WINDOW_TITLE "資料夾比對結果"
-    IDS_DIRECTORY_WINDOW_STATUS_FMT "結果為 %1 和 %2"
-    IDS_FILES_ARE_DIFFERENT "檔案不同"
-    IDS_BIN_FILES_DIFF      "二進制檔案不同"
-    IDS_ONLY_IN_FMT         "只在 %1"
-    IDS_IDENTICAL           "完全相同"
-    IDS_CANT_COMPARE_FILES  "無法比對檔案"
-END
-
-// IDS_SAVE_AS_TITLE SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_SAVE_AS_TITLE       "另存新檔"
-    IDS_SELECT_FILES_OR_FOLDERS "你的選取必須是兩者都是檔案或兩者都是資料夾"
-    IDS_BACKUP_FAILED_PROMPT "無法備份原始的檔案。\n無論如何要繼續嗎？"
-    IDS_OPTIONS_TITLE       "選項"
-    IDS_OPEN_TITLE          "開啟"
-    IDS_CONFIRM_DELETE      "刪除檔案 %1？"
-    IDS_FILESSAME           "選取的檔案完全相同。"
-    IDS_FILEUNIQUE          "選取的檔案不存在於兩邊的資料夾，因此無法比對。"
-    IDS_FILEERROR           "一個錯誤發生於比對檔案時。"
-    IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-    IDS_SAVE_FMT            "儲存更改到 %1？"
-    IDS_FILEBINARY          "二進制檔案無法作視覺的比對。"
-    IDS_SAVEVSS_FMT         "%1 標記為唯讀。 你要從版本系統檢查它，還是以一個不同的名稱儲存它？"
-    IDS_VSSERROR            "嘗試檢查檔案時版本系統返回一個錯誤。 無法繼續..."
-    IDS_NOPROJECT           "你必須指定一個 SourceSafe 專案路徑以便繼續 (例如：  $/MyProject)"
-END
-
-// IDS_COLHDR_FILENAME SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_COLHDR_FILENAME     "檔案名稱"
-    IDS_COLHDR_DIR          "資料夾"
-    IDS_COLHDR_RESULT       "比對結果"
-    IDS_FILE_COMPARISON_TITLE "檔案比對"
-    IDS_DIFF_NUMBER_STATUS_FMT "不同 %1 在 %2"
-    IDS_NO_DIFF_SEL         "%1 不同找到"
-    IDS_FILEISDIR           "資料夾檔案無法做視覺的比對。"
-    IDS_CC_CMD              "cleartool.exe 路徑(&P):"
-    IDS_VSS_CMD             "SS.EXE 路徑(&P):"
-    IDS_VSS_RUN_ERROR       "錯誤執行版本系統指令。"
-    IDS_DIFF_OPEN_NO_SET_PROPS "在目前檔案比對期間已有修改。 在重新啟動目前檔案比對前，一些設定不會生效。"
-    IDS_COLHDR_LTIMEM       "左邊日期"
-    IDS_COLHDR_RTIMEM       "右邊日期"
-    IDS_COLHDR_EXTENSION    "副檔名"
-    IDS_CONFIRM_DELETE_ITEMS "你確定要刪除 %1 在 %2 選取的項目嗎？"
-    IDS_DEL_LEFT_FMT        "Left (%1)"
-END
-
-// IDS_DEL_RIGHT_FMT SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_DEL_RIGHT_FMT       "Right (%1)"
-    IDS_DELETE_FAILED       "刪除檔案 %1 失敗： %2"
-    IDS_CONFIRM_DELETE_DIR  "刪除資料夾 %1？"
-    IDS_REMOVE_DIR_FAILED   "移除資料夾失敗： %1"
-    IDS_COPY_TO_LEFT        "Right to Left (%1)"
-    IDS_DEL_BOTH_FMT        "Both (%1)"
-    IDS_COPY_TO_RIGHT       "Left to Right (%1)"
-    IDS_COLHDR_LSIZE        "Left Size"
-    IDS_DELETE_DIR_FAILED   "刪除資料夾 %1 失敗： %s"
-    IDS_COPY_FILE_FAILED    "正在複製檔案 %1 失敗： %2"
-    IDS_COPY_DIR_FAILED     "正在複製資料夾 %1 失敗： %2"
-    IDS_ERROR_FILE_WRITEABLE "錯誤檢查目標寫入性"
-    IDS_ERROR_BACKUP        "錯誤備份檔案"
-    IDS_CONFIRM_COPY_SINGLE "你確定要複製 %1 到 %2 嗎？"
-    IDS_CONFIRM_DELETE_SINGLE "你確定要刪除 %1 嗎？"
-    IDS_BIN_FILES_SAME      "二進制檔案完全相同"
-END
-
-STRINGTABLE 
-BEGIN
-    IDS_FILESAVE_FAILED     "儲存 %1 失敗。你要以一個不同的名稱儲存檔案嗎？"
-    IDS_ERROR_FILE_NOT_FOUND "檔案找不到: %1"
-    IDS_ERROR_INCOMPARABLE  "選取要比對的兩個現存資料夾或檔案"
-    IDS_STATUS_RESCANNING                     "掃描檔案..."
-    IDS_STATUS_OPENING_SELECTION                     "開啟選取"
-    IDS_STATUS_COPYL2R      "正在複製左邊到右邊"
-    IDS_STATUS_COPYR2L      "正在複製右邊到左邊"
-    IDS_STATUS_COPYALL2L    "正在全部複製到左邊"
-    IDS_STATUS_COPYALL2R    "正在全部複製到右邊"
-    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
-    IDS_COLHDR_RSIZE        "Right Size"
-    IDS_COLHDR_LTIMEC       "Left Creation Time"
-    IDS_COLHDR_RTIMEC       "Right Creation Time"
-    IDS_COLHDR_NEWER        "Newer File"
-    IDS_COLHDR_LVERSION     "Left File Version"
-    IDS_COLHDR_RVERSION     "Right File Version"
-END
-
-// IDS_LEFTONLY SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_LEFTONLY            "Left Only"
-    IDS_RIGHTONLY           "Right Only"
-    IDS_COLHDR_RESULT_ABBR  "Short Result"
-    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
-    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
-    IDS_FILE_SKIPPED        "File skipped"
-    IDS_DIR_SKIPPED         "Directory skipped"
-    IDS_STATUSBAR_READONLY  "RO"
-    IDS_COLHDR_LENCODING    "Left Encoding"
-    IDS_COLHDR_RENCODING    "Right Encoding"
-    IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
-END
-
-STRINGTABLE 
-BEGIN
-    IDS_COLHDR_NDIFFS       "#differences"
-    IDS_COLHDR_NSDIFFS      "#sig. differences"
-END
-
-// IDS_PRIVATEBUILD_FMT SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_PRIVATEBUILD_FMT    "Private Build: %1"
-    IDS_FILEWRITE_ERROR     "Could not write to file %1."
-    IDS_DIFF_SUCCEEDED      "Patch file succesfully written."
-    IDS_DIFF_ITEM1NOTFOUND  "1. item is not found or is directory!"
-    IDS_DIFF_ITEM2NOTFOUND  "2. item is not found or is directory!"
-    IDS_DIFF_FILEOVERWRITE  "The patch file already exists. Do you want to overwrite it?"
-    IDS_DIFF_SELECTEDFILES  "[%1 files selected]"
-    IDS_DIFF_NORMAL         "Normal"
-    IDS_DIFF_CONTEXT        "Context"
-    IDS_DIFF_UNIFIED        "Unified"
-    IDS_FILEPACK_FAILED_LEFT
-                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-    IDS_FILEPACK_FAILED_RIGHT
-                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
       /? or -? displays this help
       /r or -r tells winmerge to compare directories recursively
@@ -1416,54 +1320,31 @@ BEGIN
       outputpath is an optional output directory where you want merged files to be saved"
 END
 
-STRINGTABLE  
+// VARIOUS OPTIONS
+STRINGTABLE
 BEGIN
-    IDS_LINEDIFF_NODIFF     "No difference"
-    IDS_LINEDIFF_NODIFF_CAPTION "Line difference"
-    IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
-    IDS_USERCHOICE_NONE     "<None>"
-    IDS_USERCHOICE_AUTOMATIC "<Automatic>"
-    IDS_SUGGEST_IGNOREEOL   "The files have a different EOL type.\nWith the current options, all lines will differ.\nDo you want to ignore EOL differences for these files ?\n\nAdvanced user : if the EOL are not unified in your files,\n you may rather set the option '%1'."
-    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-    IDS_EMPTY_LEFT_FILE     "Untitled left"
-    IDS_EMPTY_RIGHT_FILE    "Untitled right"
-    IDS_DEL_LEFT_FMT2       "Left (%1 of %2)"
-    IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
-    IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
-    IDS_COPY_TO_LEFT2       "Right to Left (%1 of %2)"
-    IDS_COPY_TO_RIGHT2      "Left to Right (%1 of %2)"
-    IDS_DIRSEL_TAG          "Directory Selection"
+    IDS_OPTIONS_TITLE       "選項"
+    IDS_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
+    IDS_DIFF_OPEN_NO_SET_PROPS "在目前檔案比對期間已有修改。 在重新啟動目前檔案比對前，一些設定不會生效。"
+    IDS_FONT_CHANGE         "選取的字型變更不會套用到任何目前顯現不同的視窗。"
 END
 
-STRINGTABLE 
+// BROWSE FILE
+STRINGTABLE
 BEGIN
-    IDS_COPY_LEFT_TO        "Left to... (%1)"
-    IDS_COPY_LEFT_TO2       "Left to... (%1 of %2)"
-    IDS_COPY_RIGHT_TO       "Right to... (%1)"
-    IDS_COPY_RIGHT_TO2      "Right to... (%1 of %2)"
-    IDS_SELECT_DESTFOLDER   "Select destination folder"
+    IDS_OPEN_TITLE          "開啟"
+    IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+    IDS_ALLFILES            "所有檔案 (*.*)|*.*||"
+END
+
+// COMPARE OPTIONS
+STRINGTABLE
+BEGIN
     IDS_COMPMETHOD_CONTENTS "Contents"
     IDS_COMPMETHOD_MODDATE  "Modified date"
-    IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
-    IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
-    IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
-    IDS_MERGEMODE_MERGING   "Merge"
-    IDS_COLHDR_BINARY       "Binary"
-    IDS_DIFFERENT           "Different"
 END
 
-STRINGTABLE 
-BEGIN
-    IDS_OPEN_FILESDIRS      "Select two directories or two files to compare."
-    IDS_OPEN_LEFTINVALID    "Left path is invalid!"
-    IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
-    IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
-    IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
-    IDS_OPEN_MISMATCH       "Cannot compare file and directory!"
-    IDS_FILE_TO_ITSELF      "The same file is opened in both panels."
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-END
-
+// FILTER OPTIONS
 STRINGTABLE 
 BEGIN
     IDS_FILTERFILE_NAMETITLE "Name"
@@ -1471,171 +1352,371 @@ BEGIN
     IDS_FILTER_TITLE        "Filters"
 END
 
-STRINGTABLE 
+// VERSION CONTROL OPTIONS
+STRINGTABLE
 BEGIN
-    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
-    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+    IDS_CC_CMD              "cleartool.exe 路徑(&P):"
+    IDS_VSS_CMD             "SS.EXE 路徑(&P):"
 END
 
-STRINGTABLE 
+// WINDOWS TITLES
+STRINGTABLE
 BEGIN
-    IDC_MIXED_EOL           "Preserve original EOL chars"
+    IDS_DIRECTORY_WINDOW_TITLE "資料夾比對結果"
+    IDS_FILE_COMPARISON_TITLE "檔案比對"
+    IDS_EMPTY_LEFT_FILE     "Untitled left"
+    IDS_EMPTY_RIGHT_FILE    "Untitled right"
 END
 
-// IDC_COMPARISON_STOP SYNCHRO
-STRINGTABLE 
+// STATUS BAR : CURRENT OPERATION STATUS
+STRINGTABLE
 BEGIN
-    IDC_COMPARISON_STOP     "Stop"
-    IDC_COMPARISON_CLOSE    "Press any key"
+    IDS_STATUS_RESCANNING                     "掃描檔案..."
+    IDS_STATUS_OPENING_SELECTION                     "開啟選取"
+    IDS_STATUS_COPYL2R      "正在複製左邊到右邊"
+    IDS_STATUS_COPYR2L      "正在複製右邊到左邊"
+    IDS_STATUS_COPYALL2L    "正在全部複製到左邊"
+    IDS_STATUS_COPYALL2R    "正在全部複製到右邊"
 END
 
-STRINGTABLE 
+// STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
+STRINGTABLE
 BEGIN
-    IDS_NUM_REPLACED        "已取代 %1 個字串。"
-    IDS_EDIT_TEXT_NOT_FOUND "無法尋找字串「%s」"
     IDS_LINE_STATUS_INFO_EOL "Line: %s Column: %d Characters: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Line: %s Column: %d Characters: %d"
-    IDS_VSSFOLDER_AND_FILE_NOMATCH
-                            "The VSS Working Folder and the location of the current file do not match. Continue?"
+    IDS_MERGEMODE_MERGING   "Merge"
+    IDS_DIFF_NUMBER_STATUS_FMT "不同 %1 在 %2"
+    IDS_NO_DIFF_SEL_FMT         "%1 不同找到"
+    IDS_STATUSBAR_READONLY  "RO"
+END
+
+// OPEN DIALOG
+STRINGTABLE
+BEGIN
+    IDS_ERROR_INCOMPARABLE  "選取要比對的兩個現存資料夾或檔案"
+    IDS_DIRSEL_TAG          "Directory Selection"
+    IDS_OPEN_FILESDIRS      "Select two directories or two files to compare."
+    IDS_OPEN_LEFTINVALID    "Left path is invalid!"
+    IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
+    IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
+    IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
+    IDS_OPEN_MISMATCH       "Cannot compare file and directory!"
+END
+
+// LOADING FILE
+STRINGTABLE
+BEGIN
+    IDS_ERROR_FILE_NOT_FOUND "檔案找不到: %1"
+    IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
+END
+
+// SAVING FILE (+ VERSION CONTROL)
+STRINGTABLE
+BEGIN
+    IDS_SAVE_AS_TITLE       "另存新檔"
+    IDS_SAVE_FMT            "儲存更改到 %1？"
+    IDS_SAVEREADONLY_FMT    "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
+    IDS_ERROR_FILE_WRITEABLE "錯誤檢查目標寫入性"
+    IDS_ERROR_BACKUP        "錯誤備份檔案"
+    IDS_BACKUP_FAILED_PROMPT "無法備份原始的檔案。\n無論如何要繼續嗎？"
+    IDS_NOPROJECT           "你必須指定一個 SourceSafe 專案路徑以便繼續 (例如：  $/MyProject)"
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSSERROR            "嘗試檢查檔案時版本系統返回一個錯誤。 無法繼續..."
+    IDS_VSS_RUN_ERROR       "錯誤執行版本系統指令。"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "The VSS Working Folder and the location of the current file do not match. Continue?"
+    IDS_FILESAVE_FAILED     "儲存 %1 失敗。你要以一個不同的名稱儲存檔案嗎？"
+    IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
+END
+
+// DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
+STRINGTABLE
+BEGIN
+    ID_DIR_COPY_LEFT_TO_RIGHT "複製選取的檔案到已命名的資料夾"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected file to custom directory"
+    ID_DIR_COPY_RIGHT_TO_LEFT "複製選取的檔案到已命名的資料夾"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected file to custom directory"
+    ID_DIR_DEL_LEFT         "刪除在左邊的選取項目"
+    ID_DIR_DEL_RIGHT        "刪除在右邊的選取項目"
+    ID_DIR_DEL_BOTH         "刪除兩邊的選取項目"
+    IDS_COPY_TO_LEFT        "Right to Left (%1)"
+    IDS_COPY_TO_RIGHT       "Left to Right (%1)"
+    IDS_COPY_TO_LEFT2       "Right to Left (%1 of %2)"
+    IDS_COPY_TO_RIGHT2      "Left to Right (%1 of %2)"
+    IDS_COPY_LEFT_TO        "Left to... (%1)"
+    IDS_COPY_RIGHT_TO       "Right to... (%1)"
+    IDS_COPY_LEFT_TO2       "Left to... (%1 of %2)"
+    IDS_COPY_RIGHT_TO2      "Right to... (%1 of %2)"
+    IDS_DEL_LEFT_FMT        "Left (%1)"
+END
+
+// DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
+STRINGTABLE
+BEGIN
+    IDS_DEL_RIGHT_FMT       "Right (%1)"
+    IDS_DEL_BOTH_FMT        "Both (%1)"
+    IDS_DEL_LEFT_FMT2       "Left (%1 of %2)"
+    IDS_DEL_RIGHT_FMT2      "Right (%1 of %2)"
+    IDS_DEL_BOTH_FMT2       "Both (%1 of %2)"
+    IDS_SELECT_DESTFOLDER   "Select destination folder"
+END
+
+// DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
+STRINGTABLE
+BEGIN
+    IDS_CONFIRM_ALL_LEFT    "你確定要複製所有不同到左邊檔案嗎？"
+    IDS_CONFIRM_ALL_RIGHT   "你確定要複製所有不同到右邊檔案嗎？"
+    IDS_CONFIRM_COPY_SINGLE "你確定要複製 %1 到 %2 嗎？"
+    IDS_CONFIRM_COPY2DIR    "你確定要複製 %1 在 %2 選取的項目"
+    IDS_CONFIRM_DELETE_ITEMS "你確定要刪除 %1 在 %2 選取的項目嗎？"
+    IDS_CONFIRM_DELETE_DIR  "刪除資料夾 %1？"
+    IDS_CONFIRM_DELETE_SINGLE "你確定要刪除 %1 嗎？"
+END
+
+// DIRECTORY DIFFING : OPEN FILE
+STRINGTABLE
+BEGIN
+    ID_DIR_OPEN_LEFT        "開啟左邊檔案"
+    ID_DIR_OPEN_LEFT_WITHEDITOR "Open the left file to external editor"
+    ID_DIR_OPEN_LEFT_WITH   "開啟左邊檔案以 ..."
+    ID_DIR_OPEN_RIGHT       "開啟右邊檔案"
+    ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
+    ID_DIR_OPEN_RIGHT_WITH  "開啟右邊檔案以..."
     IDS_CANNOT_EXECUTE_FILE "Cannot execute %1"
 END
 
-// IDS_MESSAGEBOX_OK SYNCHRO
-STRINGTABLE 
+// DIRECTORY DIFFING : 7ZIP
+STRINGTABLE
 BEGIN
-    IDS_MESSAGEBOX_OK       "&Ok"
-    IDS_MESSAGEBOX_CANCEL   "&Cancel"
-    IDS_MESSAGEBOX_ABORT    "&Abort"
-    IDS_MESSAGEBOX_RETRY    "&Retry"
-    IDS_MESSAGEBOX_IGNORE   "&Ignore"
-    IDS_MESSAGEBOX_IGNOREALL "Ignore &all"
-    IDS_MESSAGEBOX_YES      "&Yes"
+    IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
 END
 
-STRINGTABLE 
+// DIRECTORY DIFFING : GENERATE REPORT
+STRINGTABLE
 BEGIN
-    IDS_MESSAGEBOX_YES_TO_ALL "Yes to &all"
-    IDS_MESSAGEBOX_NO       "&No"
-    IDS_MESSAGEBOX_NO_TO_ALL "No to a&ll"
-    IDS_MESSAGEBOX_CONTINUE "&Continue"
-    IDS_MESSAGEBOX_SKIP     "&Skip"
-    IDS_MESSAGEBOX_SKIPALL  "Skip &all"
-    IDS_MESSAGEBOX_HELP     "&Help"
-    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
-    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
+    IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
-// ID_L2R SYNCHRO
-STRINGTABLE 
+// DIRECTORY DIFFING : COLUMN TITLES
+STRINGTABLE
 BEGIN
-    ID_L2R                  "複製選取的文字到右邊檔案\n複製右邊 (Alt + Right)"
-    ID_R2L                  "複製選取的文字到左邊檔案\n複製左邊 (Alt + Left)"
-    ID_OPTIONS_SHOWIDENTICAL "顯示完全相同的檔案"
-    ID_OPTIONS_SHOWDIFFERENT "顯示有不同的檔案"
-    ID_PREVDIFF             "捲動到上一個不同\n上一個不同 (Alt + Up)"
-    ID_NEXTDIFF             "捲動到下一個不同\n下一個不同 (Alt + Down)"
-    ID_OPTIONS_BACKUPORIGINALFILE "儲存的這原始的一個副本為 *.bak\n備份"
+    IDS_COLHDR_FILENAME     "檔案名稱"
+    IDS_COLHDR_DIR          "資料夾"
+    IDS_COLHDR_RESULT       "比對結果"
+    IDS_COLHDR_LTIMEM       "左邊日期"
+    IDS_COLHDR_RTIMEM       "右邊日期"
+    IDS_COLHDR_EXTENSION    "副檔名"
+    IDS_COLHDR_LSIZE        "Left Size"
+    IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_LTIMEC       "Left Creation Time"
+    IDS_COLHDR_RTIMEC       "Right Creation Time"
+    IDS_COLHDR_NEWER        "Newer File"
+    IDS_COLHDR_LVERSION     "Left File Version"
+    IDS_COLHDR_RVERSION     "Right File Version"
+    IDS_COLHDR_RESULT_ABBR  "Short Result"
+    IDS_COLHDR_LATTRIBUTES  "Left Attributes"
+    IDS_COLHDR_RATTRIBUTES  "Right Attributes"
 END
 
-STRINGTABLE 
+// DIRECTORY DIFFING : COLUMN TITLES (2)
+STRINGTABLE
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE "自動地捲動到這第一個不同\n捲動到第一個"
-    ID_OPTIONS_IGNOREWHITESPACE "比對檔案時不管空白和跳格"
-    ID_HIDE_BACKUP_FILES    "隱藏副檔名為 BAK 的檔案"
-    ID_HELP_GNULICENSE      "顯示 GNU 公共授權"
-    ID_USEVSS               "嘗試從 sourcesafe 勘試唯讀檔案"
-    ID_OPTIONS              "設定程式選項\n選項"
-    ID_ALL_LEFT             "複製所有不同到左邊檔案\n所有到左邊"
-    ID_ALL_RIGHT            "複製所有不同到右邊檔案\n所有到右邊"
-    ID_VIEW_SELECTFONT      "選取不同檢視的字型\n選取不同檢視字型"
-    ID_VIEW_USEDEFAULTFONT  "使用預設的系統字型於不同檢視\n預設字型"
-    ID_DIR_COPY_RIGHT_TO_LEFT "複製選取的檔案到已命名的資料夾"
+    IDS_COLHDR_LENCODING    "Left Encoding"
+    IDS_COLHDR_RENCODING    "Right Encoding"
+    IDS_COLHDR_NDIFFS       "#differences"
+    IDS_COLHDR_NSDIFFS      "#sig. differences"
+    IDS_COLHDR_BINARY       "Binary"
 END
 
-// ID_DIR_COPY_LEFT_TO_RIGHT SYNCHRO
-STRINGTABLE 
+// DIRECTORY DIFFING : FILE COMPARISON RESULT, FULL & SHORTENED FORMS
+STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "複製選取的檔案到已命名的資料夾"
-    ID_VIEW_LANGUAGE        "選取目前用戶介面語言\n語言"
-    ID_HELP_CONTENTS        "顯示 WinMerge 用戶指引\n說明"
-    ID_FIRSTDIFF            "捲動到第一個不同\n第一個不同 (Alt+Home)"
-    ID_CURDIFF              "捲動到目前不同\n目前不同 (Alt+Enter)"
-    ID_LASTDIFF             "捲動到上次的不同\n上次的不同 (Alt+End)"
-    ID_DIFFNUM              "預留位置"
-    ID_DIR_DEL_LEFT         "刪除在左邊的選取項目"
-    ID_DIR_DEL_RIGHT        "刪除在右邊的選取項目"
-    ID_DIFFSTATUS           "預留位置為狀態計數"
-    ID_OPTIONS_SHOWUNIQUELEFT "顯示只存在於左邊的檔案"
-    ID_OPTIONS_SHOWUNIQUERIGHT "顯示只存在於右邊的檔案"
-    ID_DIR_DEL_BOTH         "刪除兩邊的選取項目"
-    ID_DIR_OPEN_LEFT        "開啟左邊檔案"
-    ID_DIR_OPEN_LEFT_WITH   "開啟左邊檔案以 ..."
-    ID_DIR_OPEN_RIGHT       "開啟右邊檔案"
+    IDS_CANT_COMPARE_FILES  "無法比對檔案"
+    IDS_FILE_SKIPPED        "File skipped"
+    IDS_DIR_SKIPPED         "Directory skipped"
+    IDS_ONLY_IN_FMT         "只在 %1"
+    IDS_BIN_FILES_SAME      "二進制檔案完全相同"
+    IDS_IDENTICAL           "完全相同"
+    IDS_BIN_FILES_DIFF      "二進制檔案不同"
+    IDS_FILES_ARE_DIFFERENT "檔案不同"
+    IDS_LEFTONLY            "Left Only"
+    IDS_RIGHTONLY           "Right Only"
+    IDS_DIFFERENT           "Different"
 END
 
-STRINGTABLE 
+// DIRECTORY DIFFING : SUMMARY BAR
+STRINGTABLE
 BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "開啟右邊檔案以..."
-    ID_OPTIONS_SHOWBINARIES "顯示二進制檔案"
-    ID_VIEW_WHITESPACE      "顯示空白和跳格字元"
-    ID_REFRESH              "更新顯示\n更新 (F5)"
-    ID_SHOWLINEDIFF         "Highlight difference in current line\nDiff in Current Line (F4)"
+    IDS_ELAPSED_TIME        "Elapsed time: %ld ms"
+END
+
+// FILE COMPARISON RESULT : MESSAGES
+STRINGTABLE
+BEGIN
+    IDS_FILE_TO_ITSELF      "The same file is opened in both panels."
+    IDS_FILESSAME           "選取的檔案完全相同。"
+    IDS_FILEUNIQUE          "選取的檔案不存在於兩邊的資料夾，因此無法比對。"
+    IDS_FILEERROR           "一個錯誤發生於比對檔案時。"
+    IDS_FILEBINARY          "二進制檔案無法作視覺的比對。"
+    IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
+    IDS_FILEISDIR           "資料夾檔案無法做視覺的比對。"
+    IDS_SUGGEST_IGNOREEOL   "The files have a different EOL type.\nWith the current options, all lines will differ.\nDo you want to ignore EOL differences for these files ?\n\nAdvanced user : if the EOL are not unified in your files,\n you may rather set the option '%1'."
+    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
+    IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+END
+
+// EDITOR : SHOW LINE DIFF
+STRINGTABLE
+BEGIN
+    IDS_LINEDIFF_NODIFF     "No difference"
+    IDS_LINEDIFF_NODIFF_CAPTION "Line difference"
+END
+
+// EDITOR : SEARCH/REPLACE DIALOGS
+STRINGTABLE
+BEGIN
+    IDS_NUM_REPLACED        "已取代 %1 個字串。"
+    IDS_EDIT_TEXT_NOT_FOUND "無法尋找字串「%s」"
+END
+
+// EDITOR : FILENAME BAR POPUP
+STRINGTABLE
+BEGIN
     ID_EDITOR_COPY_PATH     "Copy Full Path"
     ID_EDITOR_COPY_FILENAME "Copy Filename"
-    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
-    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
-    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
 END
 
-// ID_EOL_TO_DOS SYNCHRO
-STRINGTABLE 
+// CREATE PATCH
+STRINGTABLE
 BEGIN
-    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
-    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
-    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
-    ID_TOOLS_GENERATEPATCH  "Generate a patch-file"
+    IDS_DIFF_SUCCEEDED      "Patch file succesfully written."
+    IDS_DIFF_ITEM1NOTFOUND  "1. item is not found or is directory!"
+    IDS_DIFF_ITEM2NOTFOUND  "2. item is not found or is directory!"
+    IDS_DIFF_FILEOVERWRITE  "The patch file already exists. Do you want to overwrite it?"
+    IDS_DIFF_SELECTEDFILES  "[%1 files selected]"
+    IDS_DIFF_NORMAL         "Normal"
+    IDS_DIFF_CONTEXT        "Context"
+    IDS_DIFF_UNIFIED        "Unified"
+    IDS_FILEWRITE_ERROR     "Could not write to file %1."
+    IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
+END
+
+// LANGAGE NAME STRINGS : ONLY IN ENGLISH FILE
+
+// MENU STRINGS
+// FILE MENU
+STRINGTABLE
+BEGIN
     ID_FILE_SAVE_LEFT       "Save the left file"
     ID_FILE_SAVE_RIGHT      "Save the right file"
     ID_FILE_SAVEAS_LEFT     "Save the left file with name..."
     ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
-    ID_TOOLS_CUSTOMIZECOLUMNS "Select and reorder directory compare columns"
-    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
-    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and Advance (Ctrl+Alt+Right)"
+    ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
+    ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+    ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
 END
 
-STRINGTABLE 
+// EDIT MENU
+STRINGTABLE
 BEGIN
+    ID_SHOWLINEDIFF         "Highlight difference in current line\nDiff in Current Line (F4)"
+    ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
+    ID_OPTIONS              "設定程式選項\n選項"
+    ID_REFRESH              "更新顯示\n更新 (F5)"
+END
+
+// VIEW MENU (FILE TYPE)
+STRINGTABLE
+BEGIN
+    ID_OPTIONS_SHOWIDENTICAL "顯示完全相同的檔案"
+    ID_OPTIONS_SHOWDIFFERENT "顯示有不同的檔案"
+    ID_OPTIONS_SHOWUNIQUELEFT "顯示只存在於左邊的檔案"
+    ID_OPTIONS_SHOWUNIQUERIGHT "顯示只存在於右邊的檔案"
+    ID_OPTIONS_SHOWBINARIES "顯示二進制檔案"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
+    ID_HIDE_BACKUP_FILES    "隱藏副檔名為 BAK 的檔案"
+END
+
+// VIEW MENU
+STRINGTABLE
+BEGIN
+    ID_VIEW_SELECTFONT      "選取不同檢視的字型\n選取不同檢視字型"
+    ID_VIEW_USEDEFAULTFONT  "使用預設的系統字型於不同檢視\n預設字型"
+    ID_VIEW_WHITESPACE      "顯示空白和跳格字元"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
+    ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
+    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
+    ID_VIEW_LANGUAGE        "選取目前用戶介面語言\n語言"
+END
+
+// MERGE MENU
+STRINGTABLE
+BEGIN
+    ID_PREVDIFF             "捲動到上一個不同\n上一個不同 (Alt + Up)"
+    ID_NEXTDIFF             "捲動到下一個不同\n下一個不同 (Alt + Down)"
+    ID_FIRSTDIFF            "捲動到第一個不同\n第一個不同 (Alt+Home)"
+    ID_CURDIFF              "捲動到目前不同\n目前不同 (Alt+Enter)"
+    ID_LASTDIFF             "捲動到上次的不同\n上次的不同 (Alt+End)"
+    ID_L2R                  "複製選取的文字到右邊檔案\n複製右邊 (Alt + Right)"
+    ID_R2L                  "複製選取的文字到左邊檔案\n複製左邊 (Alt + Left)"
+    ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and Advance (Ctrl+Alt+Right)"
+    ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
+    ID_ALL_RIGHT            "複製所有不同到右邊檔案\n所有到右邊"
+    ID_ALL_LEFT             "複製所有不同到左邊檔案\n所有到左邊"
     ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
     ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
-    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
-    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
-    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
-    ID_DIR_OPEN_LEFT_WITHEDITOR "Open the left file to external editor"
-    ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
-    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
-    ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
-    ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
 END
 
-STRINGTABLE 
+// TOOLS MENU
+STRINGTABLE
 BEGIN
-    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
-    ID_NO_EDIT_SCRIPTS      "< Empty >"
-    ID_RELOAD_PLUGINS       "Unload all plugins and reload them (for developpers)"
-    ID_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
-    ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
-    ID_PREDIFF_MANUAL       "No prediffer"
-    ID_PREDIFF_AUTO         "Prediff if possible"
-    ID_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-    ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
+    ID_TOOLS_CUSTOMIZECOLUMNS "Select and reorder directory compare columns"
+    ID_TOOLS_GENERATEPATCH  "Generate a patch-file"
+    ID_TOOLS_FILTERS        "Select and modify filters"
+END
+
+// PLUGINS MENU
+STRINGTABLE
+BEGIN
+    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
+    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
+    ID_NO_PREDIFFER         "No prediffer (normal)"
     ID_SUGGESTED_PLUGINS    "Suggested plugins"
     ID_NOT_SUGGESTED_PLUGINS "Others plugins"
-    ID_NO_PREDIFFER         "No prediffer (normal)"
+    ID_RELOAD_PLUGINS       "Unload all plugins and reload them (for developpers)"
+END
+
+// WINDOW MENU
+STRINGTABLE
+BEGIN
+    ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
+END
+
+// HELP MENU
+STRINGTABLE
+BEGIN
+    ID_HELP_CONTENTS        "顯示 WinMerge 用戶指引\n說明"
+    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
+    ID_HELP_GNULICENSE      "顯示 GNU 公共授權"
+    IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+END
+
+// PLUGINS DIALOGS AND DYNAMIC MENUS
+STRINGTABLE
+BEGIN
     ID_TITLE_PLUGINS_SETTINGS "Plugin Settings"
-    ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
-    ID_TOOLS_FILTERS        "Select and modify filters"
+    ID_PREDIFF_MANUAL       "No prediffer"
+    ID_PREDIFF_AUTO         "Prediff if possible"
+    ID_NO_EDIT_SCRIPTS      "< Empty >"
+    ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
+    IDS_USERCHOICE_NONE     "<None>"
+    IDS_USERCHOICE_AUTOMATIC "<Automatic>"
 END
 
 // END STRINGS SYNCHRO

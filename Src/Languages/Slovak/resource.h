@@ -2,217 +2,73 @@
 // Microsoft Developer Studio generated include file.
 // Used by Merge.rc
 //
-#define IDSAVEAS                        7
-#define IDD_ABOUTBOX                    100
-#define IDR_POPUP_MERGEVIEW             101
-#define IDR_POPUP_DIRVIEW               102
-#define IDD_PROP_VSS                    103
-#define IDR_MAINFRAME                   104
-#define IDR_MERGETYPE                   105
-#define IDD_OPEN                        106
-#define IDS_WINMERGE_THIS_DIRECTORY     106
-#define IDS_UNKNOWN_ARCHIVE_FORMAT      107
-#define IDD_VSS                         108
-#define IDS_ELAPSED_TIME                108
-#define IDD_PROPPAGE_LARGE              109
-#define IDD_CLEARCASE                   110
-#define IDD_PROPPAGE_FILTER             111
-#define IDD_OUTPUT                      112
-#define IDD_PROPPAGE_REGISTRY           113
-#define IDD_EDITOR_HEADERBAR            114
-#define IDR_POPUP_EDITOR_HEADERBAR      115
-#define IDD_GENERATE_PATCH              116
-#define IDD_DIRCOLS                     117
-#define ID_FILE_VSSDATABASE             118
-#define IDD_SELECTUNPACKER              119
-#define IDD_DIRCOMPSTATE                120
-#define IDD_WMGOTO                      121
-#define IDD_PROPPAGE_COMPARE            122
-#define IDD_PROPPAGE_EDITOR             123
-#define IDB_ERROR                       124
-#define IDR_POPUP_PLUGINS_SETTINGS      125
-#define IDS_VERSION_FMT                 130
-#define IDS_ALLFILES                    131
-#define IDS_CONFIRM_ALL_LEFT            132
-#define IDS_CONFIRM_ALL_RIGHT           133
-#define IDS_ERRORS_TITLE                134
-#define IDS_CONFIRM_COPY2DIR            135
-#define IDS_FONT_CHANGE                 136
-#define IDS_DIRECTORY_WINDOW_TITLE      137
-#define IDS_DIRECTORY_WINDOW_STATUS_FMT 138
-#define IDS_FILES_ARE_DIFFERENT         139
-#define IDS_BIN_FILES_DIFF              140
-#define IDS_ONLY_IN_FMT                 141
-#define IDS_IDENTICAL                   142
-#define IDS_CANT_COMPARE_FILES          143
-#define IDS_SAVE_AS_TITLE               144
-#define IDS_SELECT_FILES_OR_FOLDERS     145
-#define IDS_BACKUP_FAILED_PROMPT        146
-#define IDS_OPTIONS_TITLE               147
-#define IDS_OPEN_TITLE                  148
-#define IDS_CONFIRM_DELETE              149
-#define IDS_CONFIRM_DELETE_FILE         149
-#define IDS_FILESSAME                   151
-#define IDS_FILEUNIQUE                  152
-#define IDS_FILEERROR                   153
-#define IDS_SAVEREADONLY_FMT            154
-#define IDS_SAVE_FMT                    155
-#define IDS_FILEBINARY                  156
-#define IDS_SAVEVSS_FMT                 157
-#define IDS_VSSERROR                    158
-#define IDS_NOPROJECT                   159
-#define IDS_COLHDR_FILENAME             160
-#define IDS_COLHDR_DIR                  161
-#define IDS_COLHDR_RESULT               162
-#define IDS_FILE_COMPARISON_TITLE       163
-#define IDS_DIFF_NUMBER_STATUS_FMT      164
-#define IDS_NO_DIFF_SEL                 165
-#define IDS_NO_DIFF_SEL_FMT             165
-#define IDS_FILEISDIR                   166
-#define IDS_CC_CMD                      167
-#define IDS_VSS_CMD                     168
-#define IDS_VSS_RUN_ERROR               169
-#define IDS_DIFF_OPEN_NO_SET_PROPS      170
-#define IDS_COLHDR_LTIMEM               171
-#define IDS_COLHDR_RTIMEM               172
-#define IDS_COLHDR_EXTENSION            173
-#define IDS_CONFIRM_DELETE_ITEMS        174
-#define IDS_DEL_LEFT_FMT                175
-#define IDS_DEL_RIGHT_FMT               176
-#define IDS_DELETE_FAILED               177
-#define IDS_DELETE_FILE_FAILED          177
-#define IDS_CONFIRM_DELETE_DIR          178
-#define IDS_REMOVE_DIR_FAILED           179
-#define IDS_COPY_TO_LEFT                180
-#define IDS_COPY_TO_LEFT_MAIN           181
-#define IDS_DEL_BOTH_FMT                181
-#define IDS_COPY_TO_RIGHT               182
-#define IDS_COPY_TO_RIGHT_MAIN          183
-#define IDS_COLHDR_LSIZE                183
-#define IDS_DELETE_DIR_FAILED           184
-#define IDS_COPY_FILE_FAILED            185
-#define IDS_COPY_DIR_FAILED             186
-#define IDS_ERROR_FILE_WRITEABLE        187
-#define IDS_ERROR_BACKUP                188
-#define IDS_CONFIRM_COPY_SINGLE         189
-#define IDS_CONFIRM_DELETE_SINGLE       190
-#define IDS_BIN_FILES_SAME              191
-#define IDS_FILESAVE_FAILED             192
-#define IDS_ERROR_FILE_NOT_FOUND        193
-#define IDS_ERROR_INCOMPARABLE          194
-#define IDS_STATUS_RESCANNING           195
-#define IDS_STATUS_OPENING_SELECTION    196
-#define IDS_STATUS_COPYL2R              197
-#define IDS_STATUS_COPYR2L              198
-#define IDS_STATUS_COPYALL2L            199
-#define IDS_STATUS_COPYALL2R            200
-#define IDS_PROGRAMFILES                201
-#define IDS_COLHDR_RSIZE                202
-#define IDS_COLHDR_LTIMEC               203
-#define IDS_COLHDR_RTIMEC               204
-#define IDS_COLHDR_NEWER                205
-#define IDS_COLHDR_LVERSION             206
-#define IDS_COLHDR_RVERSION             207
-#define IDS_LEFTONLY                    208
-#define IDS_RIGHTONLY                   209
-#define IDS_COLHDR_RESULT_ABBR          210
-#define IDS_COLHDR_LATTRIBUTES          211
-#define IDS_COLHDR_RATTRIBUTES          212
-#define IDB_EQUAL                       213
-#define IDS_FILE_SKIPPED                213
-#define IDB_NOTEQUAL                    214
-#define IDS_DIR_SKIPPED                 214
-#define IDB_RFOLDER                     215
-#define IDS_STATUSBAR_READONLY          215
-#define IDB_UNKNOWN                     216
-#define IDS_COLHDR_LENCODING            216
-#define IDB_BINARYSAME                  217
-#define IDS_COLHDR_RENCODING            217
-#define IDB_LFILE                       218
-#define IDS_DIRECTORY_REPORT_TITLE      218
-#define IDB_RFILE                       219
-#define IDB_SPLASH                      220
-#define IDB_WINMERGE                    221
-#define IDB_OLDSPLASH                   222
-#define IDB_LFOLDER                     223
-#define IDB_BINARYDIFF                  224
-#define IDS_PRIVATEBUILD_FMT            225
-#define IDB_FOLDERSKIP                  226
-#define IDB_FILESKIP                    227
-#define IDS_FILEWRITE_ERROR             228
-#define IDS_DIFF_SUCCEEDED              229
-#define IDS_DIFF_ITEM1NOTFOUND          230
-#define IDS_DIFF_ITEM2NOTFOUND          231
-#define IDS_DIFF_FILEOVERWRITE          232
-#define IDS_DIFF_SELECTEDFILES          233
-#define IDS_DIFF_NORMAL                 234
-#define IDS_DIFF_CONTEXT                235
-#define IDS_DIFF_UNIFIED                236
-#define IDS_FILEPACK_FAILED_LEFT        237
-#define IDS_FILEPACK_FAILED_RIGHT       238
-#define IDS_QUICKHELP                   239
-#define IDS_LINEDIFF_NODIFF             240
-#define IDS_LINEDIFF_NODIFF_CAPTION     241
-#define IDS_PLUGIN_FAILED               242
-#define IDS_ERROR_FILE_NOT_UNPACKED     243
-#define IDS_USERCHOICE_NONE             244
-#define IDS_USERCHOICE_AUTOMATIC        245
-#define IDS_SUGGEST_IGNOREEOL           246
-#define IDS_SUGGEST_PRESERVEEOL         247
-#define IDS_EMPTY_LEFT_FILE             248
-#define IDS_EMPTY_RIGHT_FILE            249
-#define IDS_DEL_LEFT_FMT2               250
-#define IDS_DEL_RIGHT_FMT2              251
-#define IDS_DEL_BOTH_FMT2               252
-#define IDS_COPY_TO_LEFT2               253
-#define IDS_COPY_TO_RIGHT2              254
-#define IDS_DIRSEL_TAG                  255
-#define IDB_FOLDER                      256
-#define IDS_COPY_LEFT_TO                257
-#define IDS_COPY_LEFT_TO2               258
-#define IDS_COPY_RIGHT_TO               259
-#define IDS_COPY_RIGHT_TO2              260
-#define IDS_SELECT_DESTFOLDER           261
-#define IDS_COMPMETHOD_CONTENTS         262
-#define IDS_COMPMETHOD_MODDATE          263
-#define IDS_PATH_NOT_ABSOLUTE           264
-#define IDS_FILECHANGED_ONDISK          265
-#define IDB_EDIT_COPY                   266
-#define IDB_EDIT_CUT                    267
-#define IDB_EDIT_PASTE                  268
-#define IDB_EDIT_SEARCH                 269
-#define IDB_WINDOW_CASCADE              270
-#define IDB_WINDOW_HORIZONTAL           271
-#define IDB_WINDOW_VERTICAL             272
-#define IDB_WINDOW_CLOSE                273
-#define IDB_WINDOW_CHANGEPANE           274
-#define IDB_EDIT_GOTO                   275
-#define IDB_EDIT_REPLACE                276
-#define IDB_VIEW_LANGUAGE               277
-#define IDB_VIEW_SELECTFONT             278
-#define IDB_FILE_EXIT                   279
-#define IDB_HELP_CONTENTS               280
-#define IDD_MESSAGE_BOX                 281
-#define IDS_TEMP_FILEERROR              282
-#define IDS_MERGEMODE_MERGING           283
-#define IDS_COLHDR_BINARY               284
-#define IDS_DIFFERENT                   285
-#define IDS_OPEN_FILESDIRS              286
-#define IDS_OPEN_LEFTINVALID            287
-#define IDS_OPEN_RIGHTINVALID           288
-#define IDS_OPEN_BOTHINVALID            289
-#define IDS_OPEN_UNPACKERDISABLED       290
-#define IDS_OPEN_MISMATCH               291
-#define IDS_FILE_TO_ITSELF              292
-#define IDS_VSS_CHECKOUT_STATUS         293
-#define IDD_FILEFILTERS                 304
-#define IDS_FILTERFILE_NAMETITLE        305
-#define IDS_FILTERFILE_PATHTITLE        306
-#define IDS_FILTER_TITLE                307
-#define ID_SCRIPT_FIRST                 900
-#define ID_SCRIPT_LAST                  949
-#define ID_PREDIFFERS_FIRST             950
-#define ID_PREDIFFERS_LAST              999
+
+
+#define IDR_MAINFRAME                   100
+#define IDR_MERGETYPE                   101
+#define IDR_POPUP_EDITOR_HEADERBAR      102
+#define IDR_POPUP_PLUGINS_SETTINGS      103
+#define IDR_POPUP_MERGEVIEW             104
+#define IDR_POPUP_DIRVIEW               105
+
+#define IDD_ABOUTBOX                    107
+#define IDD_PROP_VSS                    108
+#define IDD_OPEN                        109
+#define IDD_EDITFILE                    110
+#define IDD_VSS                         111
+#define IDD_PROPPAGE_LARGE              112
+#define IDD_CLEARCASE                   113
+#define IDD_PROPPAGE_FILTER             114
+#define IDD_OUTPUT                      115
+#define IDD_PROPPAGE_REGISTRY           116
+#define IDD_EDITOR_HEADERBAR            117
+#define IDD_GENERATE_PATCH              118
+#define IDD_DIRCOLS                     119
+#define IDD_SELECTUNPACKER              120
+#define IDD_DIRCOMPSTATE                121
+#define IDD_WMGOTO                      122
+#define IDD_PROPPAGE_COMPARE            123
+#define IDD_PROPPAGE_EDITOR             124
+#define IDD_FILEFILTERS                 125
+#define IDD_MESSAGE_BOX                 126
+#define IDD_EDIT_FIND                   127
+#define IDD_EDIT_REPLACE                128
+#define IDD_PROPPAGE_COLORS             129
+
+#define IDB_ERROR                       131
+#define IDB_EQUAL                       132
+#define IDB_NOTEQUAL                    133
+#define IDB_RFOLDER                     134
+#define IDB_UNKNOWN                     135
+#define IDB_BINARYSAME                  136
+#define IDB_LFILE                       137
+#define IDB_RFILE                       138
+#define IDB_SPLASH                      139
+#define IDB_WINMERGE                    140
+#define IDB_OLDSPLASH                   141
+#define IDB_LFOLDER                     142
+#define IDB_BINARYDIFF                  143
+#define IDB_FOLDERSKIP                  144
+#define IDB_FILESKIP                    145
+#define IDB_FOLDER                      146
+#define IDB_EDIT_COPY                   147
+#define IDB_EDIT_CUT                    148
+#define IDB_EDIT_PASTE                  149
+#define IDB_EDIT_SEARCH                 150
+#define IDB_WINDOW_CASCADE              151
+#define IDB_WINDOW_HORIZONTAL           152
+#define IDB_WINDOW_VERTICAL             153
+#define IDB_WINDOW_CLOSE                154
+#define IDB_WINDOW_CHANGEPANE           155
+#define IDB_EDIT_GOTO                   156
+#define IDB_EDIT_REPLACE                157
+#define IDB_VIEW_LANGUAGE               158
+#define IDB_VIEW_SELECTFONT             159
+#define IDB_FILE_EXIT                   160
+#define IDB_HELP_CONTENTS               161
+
+
+
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -266,8 +122,6 @@
 #define IDC_WINMERGE_PATH_BROWSE        1045
 #define IDC_WINMERGE_PATH               1046
 #define IDC_WINMERGE_PATH_SAVE          1047
-#define IDC_STATIC_TITLE_LEFT           1048
-#define IDC_STATIC_TITLE_RIGHT          1049
 #define IDC_GROUP_SHOW                  1053
 #define IDC_LIST_SHOW                   1054
 #define IDC_UP                          1055
@@ -335,8 +189,6 @@
 #define IDC_USE_RECYCLE_BIN             1117
 #define IDC_COLORDEFAULTS_BTN           1118
 #define IDC_COMPARE_DEFAULTS            1119
-#define IDS_COLHDR_NDIFFS               1120
-#define IDS_COLHDR_NSDIFFS              1121
 #define IDC_DIFF_DEFAULTS               1122
 #define IDC_MOVED_BLOCKS                1123
 #define IDC_RESET_ALL_MESSAGE_BOXES     1124
@@ -347,15 +199,11 @@
 #define IDC_FILTERFILE_EDITBTN          1129
 #define IDC_FILTERFILE_LIST             1130
 #define IDC_ESC_CLOSES_WINDOW           1131
-#define IDS_NUM_REPLACED                8501
-#define IDS_EDIT_TEXT_NOT_FOUND         8502
-#define IDS_LINE_STATUS_INFO_EOL        8503
-#define IDS_EMPTY_LINE_STATUS_INFO      8504
-#define IDS_LINE_STATUS_INFO            8505
-#define IDS_VSSFOLDER_AND_FILE_NOMATCH  8506
-#define IDS_CANNOT_EXECUTE_FILE         8507
-#define IDD_EDIT_FIND                   8601
-#define IDD_EDIT_REPLACE                8602
+#define IDC_SAVE_AS                     1132
+#define IDC_STATIC_TITLE_LEFT           1133
+#define IDC_STATIC_TITLE_RIGHT          1134
+
+
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -369,6 +217,12 @@
 #define IDC_EDIT_SCOPE_SELECTION        8613
 #define IDC_EDIT_SCOPE_WHOLE_FILE       8614
 #define IDC_EDIT_SCOPE_DONT_WRAP        8615
+
+#define IDC_SCRIPT_FIRST                8700
+#define IDC_SCRIPT_LAST                 8749
+#define IDC_PREDIFFERS_FIRST            8750
+#define IDC_PREDIFFERS_LAST             8799
+
 #define IDS_MESSAGEBOX_OK               9001
 #define IDS_MESSAGEBOX_CANCEL           9002
 #define IDS_MESSAGEBOX_ABORT            9003
@@ -385,9 +239,197 @@
 #define IDS_MESSAGEBOX_HELP             9014
 #define IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN 9015
 #define IDS_MESSAGEBOX_DONT_ASK_AGAIN   9016
-#define IDR_MARGIN_CURSOR               22900
+
+
+
+#define IDS_WINMERGE_THIS_DIRECTORY     16384
+#define IDS_VERSION_FMT                 16385
+#define IDS_QUICKHELP                   16386
+
+#define IDS_OPTIONS_TITLE               16400
+#define IDS_MESSAGE_BOX_ARE_RESET       16401
+#define IDS_DIFF_OPEN_NO_SET_PROPS      16402
+#define IDS_FONT_CHANGE                 16403
+
+#define IDS_OPEN_TITLE                  16416
+#define IDS_PROGRAMFILES                16417
+#define IDS_ALLFILES                    16418
+
+#define IDS_COMPMETHOD_CONTENTS         16432
+#define IDS_COMPMETHOD_MODDATE          16433
+
+#define IDS_FILTERFILE_NAMETITLE        16448
+#define IDS_FILTERFILE_PATHTITLE        16449
+#define IDS_FILTER_TITLE                16450
+
+#define IDS_CC_CMD                      16464
+#define IDS_VSS_CMD                     16465
+
+
+#define IDS_DIRECTORY_WINDOW_TITLE      16800
+#define IDS_FILE_COMPARISON_TITLE       16801
+#define IDS_EMPTY_LEFT_FILE             16802
+#define IDS_EMPTY_RIGHT_FILE            16803
+
+#define IDS_STATUS_RESCANNING           16816
+#define IDS_STATUS_OPENING_SELECTION    16817
+#define IDS_STATUS_COPYL2R              16818
+#define IDS_STATUS_COPYR2L              16819
+#define IDS_STATUS_COPYALL2L            16820
+#define IDS_STATUS_COPYALL2R            16821
+
+#define IDS_LINE_STATUS_INFO_EOL        16832
+#define IDS_EMPTY_LINE_STATUS_INFO      16833
+#define IDS_LINE_STATUS_INFO            16834
+#define IDS_MERGEMODE_MERGING           16835
+#define IDS_DIFF_NUMBER_STATUS_FMT      16836
+#define IDS_NO_DIFF_SEL_FMT             16837
+#define IDS_STATUSBAR_READONLY          16838
+
+#define IDS_ERROR_INCOMPARABLE          17200
+#define IDS_DIRSEL_TAG                  17201
+#define IDS_OPEN_FILESDIRS              17202
+#define IDS_OPEN_LEFTINVALID            17203
+#define IDS_OPEN_RIGHTINVALID           17204
+#define IDS_OPEN_BOTHINVALID            17205
+#define IDS_OPEN_UNPACKERDISABLED       17206
+#define IDS_OPEN_MISMATCH               17207
+
+#define IDS_ERROR_FILE_NOT_FOUND        17216
+#define IDS_ERROR_FILE_NOT_UNPACKED     17217
+
+#define IDS_SAVE_AS_TITLE               17232
+#define IDS_SAVE_FMT                    17233
+#define IDS_SAVEREADONLY_FMT            17234
+#define IDS_ERROR_FILE_WRITEABLE        17235
+#define IDS_ERROR_BACKUP                17236
+#define IDS_BACKUP_FAILED_PROMPT        17237
+#define IDS_NOPROJECT                   17238
+#define IDS_VSS_CHECKOUT_STATUS         17239
+#define IDS_VSSERROR                    17240
+#define IDS_VSS_RUN_ERROR               17241
+#define IDS_VSSFOLDER_AND_FILE_NOMATCH  17242
+#define IDS_FILESAVE_FAILED             17243
+#define IDS_FILEPACK_FAILED_LEFT        17244
+#define IDS_FILEPACK_FAILED_RIGHT       17245
+#define IDS_FILECHANGED_ONDISK          17246
+
+#define ID_DIR_COPY_LEFT_TO_RIGHT       17600
+#define ID_DIR_COPY_LEFT_TO_BROWSE      17601
+#define ID_DIR_COPY_RIGHT_TO_LEFT       17602
+#define ID_DIR_COPY_RIGHT_TO_BROWSE     17603
+#define ID_DIR_DEL_LEFT                 17604
+#define ID_DIR_DEL_RIGHT                17605
+#define ID_DIR_DEL_BOTH                 17606
+#define IDS_COPY_TO_LEFT                17607
+#define IDS_COPY_TO_RIGHT               17608
+#define IDS_COPY_TO_LEFT2               17609
+#define IDS_COPY_TO_RIGHT2              17610
+#define IDS_COPY_LEFT_TO                17611
+#define IDS_COPY_RIGHT_TO               17612
+#define IDS_COPY_LEFT_TO2               17613
+#define IDS_COPY_RIGHT_TO2              17614
+#define IDS_DEL_LEFT_FMT                17615
+#define IDS_DEL_RIGHT_FMT               17616
+#define IDS_DEL_BOTH_FMT                17617
+#define IDS_DEL_LEFT_FMT2               17618
+#define IDS_DEL_RIGHT_FMT2              17619
+#define IDS_DEL_BOTH_FMT2               17620
+#define IDS_SELECT_DESTFOLDER           17621
+
+#define IDS_CONFIRM_ALL_LEFT            17632
+#define IDS_CONFIRM_ALL_RIGHT           17633
+#define IDS_CONFIRM_COPY_SINGLE         17634
+#define IDS_CONFIRM_COPY2DIR            17635
+#define IDS_CONFIRM_DELETE_ITEMS        17636
+#define IDS_CONFIRM_DELETE_DIR          17637
+#define IDS_CONFIRM_DELETE_SINGLE       17638
+
+#define ID_DIR_OPEN_LEFT                17648
+#define ID_DIR_OPEN_LEFT_WITHEDITOR     17649
+#define ID_DIR_OPEN_LEFT_WITH           17650
+#define ID_DIR_OPEN_RIGHT               17651
+#define ID_DIR_OPEN_RIGHT_WITHEDITOR    17652
+#define ID_DIR_OPEN_RIGHT_WITH          17653
+#define IDS_CANNOT_EXECUTE_FILE         17654
+
+#define IDS_UNKNOWN_ARCHIVE_FORMAT      17664
+
+#define IDS_DIRECTORY_REPORT_TITLE      17680
+
+#define IDS_COLHDR_FILENAME             17696
+#define IDS_COLHDR_DIR                  17697
+#define IDS_COLHDR_RESULT               17698
+#define IDS_COLHDR_LTIMEM               17699
+#define IDS_COLHDR_RTIMEM               17700
+#define IDS_COLHDR_EXTENSION            17701
+#define IDS_COLHDR_LSIZE                17702
+#define IDS_COLHDR_RSIZE                17703
+#define IDS_COLHDR_LTIMEC               17704
+#define IDS_COLHDR_RTIMEC               17705
+#define IDS_COLHDR_NEWER                17706
+#define IDS_COLHDR_LVERSION             17707
+#define IDS_COLHDR_RVERSION             17708
+#define IDS_COLHDR_RESULT_ABBR          17709
+#define IDS_COLHDR_LATTRIBUTES          17710
+#define IDS_COLHDR_RATTRIBUTES          17711
+
+#define IDS_COLHDR_LENCODING            17712
+#define IDS_COLHDR_RENCODING            17713
+#define IDS_COLHDR_NDIFFS               17714
+#define IDS_COLHDR_NSDIFFS              17715
+#define IDS_COLHDR_BINARY               17716
+
+
+#define IDS_CANT_COMPARE_FILES          17728
+#define IDS_FILE_SKIPPED                17729
+#define IDS_DIR_SKIPPED                 17730
+#define IDS_ONLY_IN_FMT                 17731
+#define IDS_BIN_FILES_SAME              17732
+#define IDS_IDENTICAL                   17733
+#define IDS_BIN_FILES_DIFF              17734
+#define IDS_FILES_ARE_DIFFERENT         17735
+#define IDS_LEFTONLY                    17736
+#define IDS_RIGHTONLY                   17737
+#define IDS_DIFFERENT                   17738
+
+#define IDS_ELAPSED_TIME                17744
+
+#define IDS_FILE_TO_ITSELF              18000
+#define IDS_FILESSAME                   18001
+#define IDS_FILEUNIQUE                  18002
+#define IDS_FILEERROR                   18003
+#define IDS_FILEBINARY                  18004
+#define IDS_TEMP_FILEERROR              18005
+#define IDS_FILEISDIR                   18006
+#define IDS_SUGGEST_IGNOREEOL           18007
+#define IDS_SUGGEST_PRESERVEEOL         18008
+#define IDS_PREDIFFER_ERROR             18009
+
+#define IDS_LINEDIFF_NODIFF             18016
+#define IDS_LINEDIFF_NODIFF_CAPTION     18017
+
+#define IDS_NUM_REPLACED                18032
+#define IDS_EDIT_TEXT_NOT_FOUND         18033
+
+#define ID_EDITOR_COPY_PATH             18048
+#define ID_EDITOR_COPY_FILENAME         18049
+
+#define IDS_DIFF_SUCCEEDED              18400
+#define IDS_DIFF_ITEM1NOTFOUND          18401
+#define IDS_DIFF_ITEM2NOTFOUND          18402
+#define IDS_DIFF_FILEOVERWRITE          18403
+#define IDS_DIFF_SELECTEDFILES          18404
+#define IDS_DIFF_NORMAL                 18405
+#define IDS_DIFF_CONTEXT                18406
+#define IDS_DIFF_UNIFIED                18407
+#define IDS_FILEWRITE_ERROR             18408
+#define IDS_PATH_NOT_ABSOLUTE           18409
+
+
+
+
 #define IDD_LANGUAGE_SELECT             30000
-#define IDD_PROPPAGE_COLORS             30002
 #define IDS_AFRIKAANS                   30003
 #define IDS_ALBANIAN                    30004
 #define IDS_ARABIC_SAUDI                30005
@@ -516,121 +558,116 @@
 #define IDS_UZBEK_LATIN                 30128
 #define IDS_UZBEK_CYRILLIC              30129
 #define IDS_VIETNAMESE                  30130
-#define ID_L2R                          32771
-#define ID_R2L                          32772
-#define ID_UNDO                         32773
-#define ID_OPTIONS_SHOWIDENTICAL        32774
-#define ID_OPTIONS_SHOWDIFFERENT        32775
-#define ID_OPTIONS_SHOWUNIQUE           32776
-#define ID_POPUP_COPYTOOTHERSIDE        32777
-#define ID_POPUP_COPYFROMOTHERSIDE      32778
-#define ID_PREVDIFF                     32779
-#define ID_POPUP_SAVE                   32780
-#define ID_NEXTDIFF                     32781
-#define ID_OPTIONS_BACKUPORIGINALFILE   32782
-#define ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 32784
-#define ID_POPUP_EDITFILE               32787
-#define ID_OPTIONS_IGNOREWHITESPACE     32788
-#define ID_HIDE_BACKUP_FILES            32789
-#define ID_HELP_GNULICENSE              32790
-#define ID_USEVSS                       32791
-#define ID_OPTIONS                      32792
-#define ID_ALL_LEFT                     32793
-#define ID_ALL_RIGHT                    32794
-#define ID_VIEW_SELECTFONT              32795
-#define ID_VIEW_USEDEFAULTFONT          32796
-#define ID_POPUP_COPYALLDIFFSTOOTHERSIDE 32797
-#define ID_POPUP_COPYALLDIFFSFROMOTHERSIDE 32798
-#define ID_DIR_COPY_RIGHT_TO_LEFT       32799
-#define ID_DIR_COPY_LEFT_TO_RIGHT       32800
-#define ID_VIEW_LANGUAGE                32801
-#define ID_HELP_CONTENTS                32802
-#define ID_FIRSTDIFF                    32803
-#define ID_CURDIFF                      32804
-#define ID_LASTDIFF                     32805
-#define ID_DIFFNUM                      32806
-#define ID_DIR_DEL_LEFT                 32807
-#define ID_DIR_DEL_RIGHT                32808
-#define ID_DIFFSTATUS                   32809
-#define ID_OPTIONS_SHOWUNIQUELEFT       32810
-#define ID_OPTIONS_SHOWUNIQUERIGHT      32811
-#define ID_DIR_DEL_BOTH                 32812
-#define ID_DIR_OPEN_LEFT                32813
-#define ID_DIR_OPEN_LEFT_WITH           32814
-#define ID_DIR_OPEN_RIGHT               32815
-#define ID_DIR_OPEN_RIGHT_WITH          32816
-#define ID_OPTIONS_SHOWBINARIES         32817
+
+#define ID_FILE_SAVE_LEFT               32768
+#define ID_FILE_SAVE_RIGHT              32769
+#define ID_FILE_SAVEAS_LEFT             32770
+#define ID_FILE_SAVEAS_RIGHT            32771
+#define ID_FILE_LEFT_READONLY           32772
+#define ID_FILE_RIGHT_READONLY          32773
+#define ID_EOL_TO_DOS                   32774
+#define ID_EOL_TO_UNIX                  32775
+#define ID_EOL_TO_MAC                   32776
+#define ID_FILE_MERGINGMODE             32777
+
+#define ID_SHOWLINEDIFF                 32784
+#define ID_EDIT_WMGOTO                  32785
+#define ID_OPTIONS                      32786
+#define ID_REFRESH                      32787
+
+#define ID_OPTIONS_SHOWIDENTICAL        32800
+#define ID_OPTIONS_SHOWDIFFERENT        32801
+#define ID_OPTIONS_SHOWUNIQUELEFT       32802
+#define ID_OPTIONS_SHOWUNIQUERIGHT      32803
+#define ID_OPTIONS_SHOWBINARIES         32804
+#define ID_OPTIONS_SHOWSKIPPED          32805
+#define ID_HIDE_BACKUP_FILES            32806
+
+#define ID_VIEW_SELECTFONT              32816
+#define ID_VIEW_USEDEFAULTFONT          32817
 #define ID_VIEW_WHITESPACE              32818
-#define ID_REFRESH                      32819
-#define ID_EDIT_FIND_PREVIOUS           32820
-#define ID_SHOWLINEDIFF                 32821
-#define ID_EDITOR_COPY_PATH             32822
-#define ID_EDIT_COLUMNS                 32823
-#define ID_EDITOR_COPY_FILENAME         32824
-#define ID_VIEW_DETAIL_BAR              32825
-#define ID_FILE_LEFT_READONLY           32826
-#define ID_FILE_RIGHT_READONLY          32827
-#define ID_STATUS_RIGHTDIR_RO           32828
-#define ID_STATUS_LEFTDIR_RO            32829
-#define ID_STATUS_RIGHTFILE_RO          32830
-#define ID_STATUS_LEFTFILE_RO           32831
-#define ID_STATUS_RIGHTFILE_INFO        32832
-#define ID_STATUS_LEFTFILE_INFO         32833
-#define ID_STATUS_RIGHTFILE_EOL         32834
-#define ID_STATUS_LEFTFILE_EOL          32835
-#define ID_EOL_TO_DOS                   32836
-#define ID_EOL_TO_UNIX                  32837
-#define ID_EOL_TO_MAC                   32838
-#define ID_OPTIONS_SHOWSKIPPED          32839
-#define ID_TOOLS_GENERATEPATCH          32840
-#define ID_FILE_SAVE_LEFT               32841
-#define ID_FILE_SAVE_RIGHT              32842
-#define ID_FILE_SAVEAS_LEFT             32843
-#define ID_FILE_SAVEAS_RIGHT            32844
-#define ID_TOOLS_CUSTOMIZECOLUMNS       32845
-#define ID_R2LNEXT                      32846
-#define ID_L2RNEXT                      32847
-#define ID_MULTIPLE_RIGHT               32848
-#define ID_MULTIPLE_LEFT                32849
-#define ID_POPUP_OPEN_WITH_UNPACKER     32850
-#define ID_UNPACK_MANUAL                32851
-#define ID_UNPACK_AUTO                  32852
-#define ID_DIR_OPEN_LEFT_WITHEDITOR     32853
-#define ID_DIR_OPEN_RIGHT_WITHEDITOR    32854
-#define ID_HELP_GETCONFIG               32855
-#define ID_DIR_COPY_LEFT_TO_BROWSE      32856
-#define ID_DIR_COPY_RIGHT_TO_BROWSE     32857
-#define ID_WINDOW_CHANGE_PANE           32858
-#define ID_EDIT_WMGOTO                  32859
-#define ID_DIR_ZIP_LEFT                 32860
-#define ID_DIR_ZIP_RIGHT                32861
-#define ID_DIR_ZIP_BOTH                 32862
-#define ID_DIR_ZIP_BOTH_DIFFS_ONLY      32863
-#define ID_VIEW_DIR_STATEPANE           32864
-#define ID_NO_EDIT_SCRIPTS              32865
-#define ID_RELOAD_PLUGINS               32866
-#define ID_MESSAGE_BOX_ARE_RESET        32867
-#define ID_NO_SCT_SCRIPTS               32868
-#define ID_PREDIFF_MANUAL               32869
-#define ID_PREDIFF_AUTO                 32870
-#define ID_PREDIFFER_ERROR              32871
-#define ID_VIEW_LOCATION_BAR            32872
-#define ID_SUGGESTED_PLUGINS            32873
-#define ID_NOT_SUGGESTED_PLUGINS        32874
-#define ID_NO_PREDIFFER                 32875
-#define ID_TITLE_PLUGINS_SETTINGS       32876
-#define ID_FILE_MERGINGMODE             32877
-#define ID_STATUS_MERGINGMODE           32878
-#define ID_TOOLS_FILTERS                32879
+#define ID_VIEW_DETAIL_BAR              32819
+#define ID_VIEW_LOCATION_BAR            32820
+#define ID_VIEW_DIR_STATEPANE           32821
+#define ID_VIEW_LANGUAGE                32822
+
+#define ID_PREVDIFF                     32832
+#define ID_NEXTDIFF                     32833
+#define ID_FIRSTDIFF                    32834
+#define ID_CURDIFF                      32835
+#define ID_LASTDIFF                     32836
+#define ID_L2R                          32837
+#define ID_R2L                          32838
+#define ID_L2RNEXT                      32839
+#define ID_R2LNEXT                      32840
+#define ID_ALL_RIGHT                    32841
+#define ID_ALL_LEFT                     32842
+#define ID_MULTIPLE_RIGHT               32843
+#define ID_MULTIPLE_LEFT                32844
+
+#define ID_TOOLS_CUSTOMIZECOLUMNS       32864
+#define ID_TOOLS_GENERATEPATCH          32865
+#define ID_TOOLS_FILTERS                32866
+
+#define ID_UNPACK_MANUAL                32880
+#define ID_UNPACK_AUTO                  32881
+#define ID_POPUP_OPEN_WITH_UNPACKER     32882
+#define ID_NO_PREDIFFER                 32883
+#define ID_SUGGESTED_PLUGINS            32884
+#define ID_NOT_SUGGESTED_PLUGINS        32885
+#define ID_RELOAD_PLUGINS               32886
+
+#define ID_WINDOW_CHANGE_PANE           32896
+
+#define ID_HELP_CONTENTS                32912
+#define ID_HELP_GETCONFIG               32913
+#define ID_HELP_GNULICENSE              32914
+#define IDS_PRIVATEBUILD_FMT            32915
+
+#define ID_TITLE_PLUGINS_SETTINGS       32928
+#define ID_PREDIFF_MANUAL               32929
+#define ID_PREDIFF_AUTO                 32930
+#define ID_NO_EDIT_SCRIPTS              32931
+#define ID_NO_SCT_SCRIPTS               32932
+#define IDS_USERCHOICE_NONE             32933
+#define IDS_USERCHOICE_AUTOMATIC        32934
+
+#define ID_EDIT_COLUMNS                 32944
+
+#define ID_STATUS_MERGINGMODE           32960
+#define ID_STATUS_DIFFNUM               32961
+#define ID_STATUS_RIGHTDIR_RO           32962
+#define ID_STATUS_LEFTDIR_RO            32963
+#define ID_STATUS_RIGHTFILE_RO          32964
+#define ID_STATUS_LEFTFILE_RO           32965
+#define ID_STATUS_RIGHTFILE_INFO        32966
+#define ID_STATUS_LEFTFILE_INFO         32967
+#define ID_STATUS_RIGHTFILE_EOL         32968
+#define ID_STATUS_LEFTFILE_EOL          32969
+
+#define ID_DIR_ZIP_LEFT                 32976
+#define ID_DIR_ZIP_RIGHT                32977
+#define ID_DIR_ZIP_BOTH                 32978
+#define ID_DIR_ZIP_BOTH_DIFFS_ONLY      32979
+
+#define ID_SCRIPT_FIRST                 32992
+#define ID_SCRIPT_LAST                  33039
+#define ID_PREDIFFERS_FIRST             33040
+#define ID_PREDIFFERS_LAST              33087
+
+
+
+
+
 
 // Next default values for new objects
-// 
+//
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        126
-#define _APS_NEXT_COMMAND_VALUE         32880
-#define _APS_NEXT_CONTROL_VALUE         1132
-#define _APS_NEXT_SYMED_VALUE           108
+#define _APS_NEXT_RESOURCE_VALUE        162
+#define _APS_NEXT_COMMAND_VALUE         33088
+#define _APS_NEXT_CONTROL_VALUE         1135
+#define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif

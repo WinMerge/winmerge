@@ -1,3 +1,11 @@
+2004-05-07 Laoran
+ PATCH: [ 947680 ] Organize resource strings
+  Src: CCPrompt.cpp DiffWrapper.cpp DirFrame.cpp MainFrm.cpp Merge.rc MergeDoc.cpp
+   PropGeneral.cpp VssPrompt.cpp resource.h  
+  Src\editlib: ccrystaltextview.cpp ccrystaltextview.h editcmd.h
+  Src\Common: LanguageSelect.h
+  Src\Languages: *.rc resource.h
+
 2004-05-08 WinMerge experimental release 2.1.7.2 (cvs)
 
 2004-05-07 Laoran

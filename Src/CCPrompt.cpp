@@ -35,7 +35,7 @@ void CCCPrompt::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CCCPrompt, CDialog)
 	//{{AFX_MSG_MAP(CCCPrompt)
-	ON_BN_CLICKED(IDSAVEAS, OnSaveas)
+	ON_BN_CLICKED(IDC_SAVE_AS, OnSaveas)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -44,6 +44,6 @@ END_MESSAGE_MAP()
 
 void CCCPrompt::OnSaveas() 
 {
-	EndDialog(IDSAVEAS);
+	EndDialog(IDC_SAVE_AS);
 }
 

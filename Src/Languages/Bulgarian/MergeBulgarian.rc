@@ -146,7 +146,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Scripts"
         BEGIN
-            MENUITEM SEPARATOR
+            MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
         MENUITEM "От&иди на...\tCtrl+И",           ID_EDIT_WMGOTO
@@ -334,7 +334,6 @@ BEGIN
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
-    VK_F3,          ID_EDIT_FIND_PREVIOUS,  VIRTKEY, SHIFT, NOINVERT
     VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
@@ -416,7 +415,7 @@ BEGIN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
     DEFPUSHBUTTON   "Действай",IDOK,53,132,50,14
     PUSHBUTTON      "Прекрати",IDCANCEL,193,132,50,14
-    PUSHBUTTON      "Съхрани като...",IDSAVEAS,123,132,50,14
+    PUSHBUTTON      "Съхрани като...",IDC_SAVE_AS,123,132,50,14
     LTEXT           "Проект:",IDC_STATIC,9,81,25,8
     COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
@@ -544,7 +543,7 @@ FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "Действай",IDOK,35,90,50,14
     PUSHBUTTON      "Прекрати",IDCANCEL,194,90,50,14
-    PUSHBUTTON      "Съхрани като...",IDSAVEAS,114,90,50,14
+    PUSHBUTTON      "Съхрани като...",IDC_SAVE_AS,114,90,50,14
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Коментари",IDC_STATIC,18,7,34,10
@@ -592,7 +591,7 @@ BEGIN
                     BS_OWNERDRAW | WS_TABSTOP,184,49,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CTEXT           "Текст",IDC_STATIC,178,15,29,8
-    CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW | 
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,98,69,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     RTEXT           "Игнорирани разлики:",IDC_STATIC,13,69,66,8
@@ -1049,7 +1048,6 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-// ID_FILE_NEW SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_FILE_NEW             "Съждай нов документ\nНов документ (Ctrl+N)"
@@ -1063,7 +1061,6 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Представи страницата\nPrint Preview"
 END
 
-// ID_APP_ABOUT SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_APP_ABOUT            "Представя информация за програмата, версията и авторското право\nЗа"
@@ -1090,7 +1087,6 @@ BEGIN
     ID_FILE_MRU_FILE16      "Отваряне на този документ"
 END
 
-// ID_NEXT_PANE SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
@@ -1107,7 +1103,6 @@ BEGIN
     ID_WINDOW_SPLIT         "Разделя текущия прозорец\nРазделя"
 END
 
-// ID_EDIT_CLEAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_EDIT_CLEAR           "Изтрива избраното\nИзтрива"
@@ -1123,14 +1118,12 @@ BEGIN
     ID_EDIT_REDO            "Върни последното действие\nВърни (Ctrl+Р)"
 END
 
-// ID_VIEW_TOOLBAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "Показвай или скривай инструментите\nПоказване на инструментите"
     ID_VIEW_STATUS_BAR      "Показвай или скривай статуса\nСтатус"
 END
 
-// AFX_IDS_SCSIZE SYNCHRO
 STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "Промени големината на прозореца"
@@ -1154,159 +1147,66 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
 END
 
+// WINMERGE INFORMATION
 STRINGTABLE 
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+END
+
+// CUSTOM CONTROLS
+// OPTIONS NAME TO PRESERVE/UNIFY EOL
+STRINGTABLE
+BEGIN
+    IDC_MIXED_EOL           "Preserve original EOL chars"
+END
+
+// DIRECTORY DIFFING : SUMMARY BAR
+STRINGTABLE 
+BEGIN
+    IDC_COMPARISON_STOP     "Спиране"
+    IDC_COMPARISON_CLOSE    "Натисни клавиш"
+END
+
+// EDITOR : FILENAME BAR
+STRINGTABLE 
+BEGIN
+    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
+    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+END
+
+// IDS_MESSAGEBOX_OK SYNCHRO
+STRINGTABLE 
+BEGIN
+    IDS_MESSAGEBOX_OK       "&Ok"
+    IDS_MESSAGEBOX_CANCEL   "&Cancel"
+    IDS_MESSAGEBOX_ABORT    "&Abort"
+    IDS_MESSAGEBOX_RETRY    "&Retry"
+    IDS_MESSAGEBOX_IGNORE   "&Ignore"
+    IDS_MESSAGEBOX_IGNOREALL "Ignore &all"
+    IDS_MESSAGEBOX_YES      "&Yes"
+END
+
+// "DO NOT SHOW AGAIN" MESSAGEBOXES (2)
+STRINGTABLE 
+BEGIN
+    IDS_MESSAGEBOX_YES_TO_ALL "Yes to &all"
+    IDS_MESSAGEBOX_NO       "&No"
+    IDS_MESSAGEBOX_NO_TO_ALL "No to a&ll"
+    IDS_MESSAGEBOX_CONTINUE "&Continue"
+    IDS_MESSAGEBOX_SKIP     "&Skip"
+    IDS_MESSAGEBOX_SKIPALL  "Skip &all"
+    IDS_MESSAGEBOX_HELP     "&Help"
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
+    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
+END
+
+// WINMERGE CUSTOM STRINGS
+// WINMERGE INFORMATION
+STRINGTABLE 
+BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge тази директория"
-    IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
-    IDS_ELAPSED_TIME        "Оставащо време: %ld ms"
-END
-
-// IDS_VERSION_FMT SYNCHRO
-STRINGTABLE 
-BEGIN
     IDS_VERSION_FMT         "Версия %1"
-    IDS_ALLFILES            "Всички файлове (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "Сигурен ли се ,че искаш да се копират всички разлики на левият файл?"
-    IDS_CONFIRM_ALL_RIGHT   "Сигурен ли се ,че искаш да се копират всички разлики на десният файл?"
-    IDS_ERRORS_TITLE        "%1 Грешка(и)"
-    IDS_CONFIRM_COPY2DIR    "Сигурен ли се ,че искаш да се копира %1 към %2 избрани обект(и)"
-    IDS_FONT_CHANGE         "Избрания фонт няма да никои от текущите прозорци."
-    IDS_DIRECTORY_WINDOW_TITLE "Резултати от сравянване на директорията"
-    IDS_DIRECTORY_WINDOW_STATUS_FMT "Резултати за %1 и %2"
-    IDS_FILES_ARE_DIFFERENT "Различни файлове"
-    IDS_BIN_FILES_DIFF      "Бинарните файлове са различни"
-    IDS_ONLY_IN_FMT         "само в %1"
-    IDS_IDENTICAL           "Еднакви"
-    IDS_CANT_COMPARE_FILES  "Не може да сравни файловете"
-END
-
-// IDS_SAVE_AS_TITLE SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_SAVE_AS_TITLE       "Съхрани като"
-    IDS_SELECT_FILES_OR_FOLDERS 
-                            "Твоят избор трябва да е или два файла или две директории"
-    IDS_BACKUP_FAILED_PROMPT 
-                            "Не може да backup първоначалния файл.\nЩе продължите ли?"
-    IDS_OPTIONS_TITLE       "Настроики"
-    IDS_OPEN_TITLE          "Отвори"
-    IDS_CONFIRM_DELETE_FILE "Да изтрие ли файла %1?"
-    IDS_FILESSAME           "Избраните файлове са еднакви."
-    IDS_FILEUNIQUE          "Избраните файлове не съществуват в две директории и не могат да бъдат сравнявани."
-    IDS_FILEERROR           "Получи се грешка при сравняване на файловете."
-    IDS_SAVEREADONLY_FMT    "%1 е read-only. Да запиши ли read-only файла ? (Не ще го запиша с ново име.)"
-    IDS_SAVE_FMT            "Запазва промените на %1?"
-    IDS_FILEBINARY          "Бинарните файлове не могат да се сравняват видимо."
-    IDS_SAVEVSS_FMT         "%1 iе read-only.  Желаете ли да го премахнете от Versioning System, или да го запишете с различно име?"
-    IDS_VSSERROR            "Versioning System върна грешка при опита да провери файла.  Неможе да продължи..."
-    IDS_NOPROJECT           "Вие трябва да изберете SourceSafe проект за да продължите (ie:  $/MyProject)"
-END
-
-// IDS_COLHDR_FILENAME SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_COLHDR_FILENAME     "Име"
-    IDS_COLHDR_DIR          "Директория"
-    IDS_COLHDR_RESULT       "Резултати при сравняване"
-    IDS_FILE_COMPARISON_TITLE "Сравняване на файлове"
-    IDS_DIFF_NUMBER_STATUS_FMT "Разлики %1 от %2"
-    IDS_NO_DIFF_SEL_FMT     "%1 Намерени разлики"
-    IDS_FILEISDIR           "Директориите не могат да бъдат сравнявани видимо."
-    IDS_CC_CMD              "&Път до cleartool.exe :"
-    IDS_VSS_CMD             "&Път до SS.EXE :"
-    IDS_VSS_RUN_ERROR       "Грешка при стартиране на команда от versioning system."
-    IDS_DIFF_OPEN_NO_SET_PROPS 
-                            "Промените се правят на файловете от текущиата сесия на сравнение .  Някои промени ще станат докато се рестартира текущата сесия."
-    IDS_COLHDR_LTIMEM       "Лява дата"
-    IDS_COLHDR_RTIMEM       "Дясна дата"
-    IDS_COLHDR_EXTENSION    "Разширение"
-    IDS_CONFIRM_DELETE_ITEMS 
-                            "Сигурен ли сте ,че искате да изтриите %1 от %2 избрани обект(и) ?"
-    IDS_DEL_LEFT_FMT        "Ляво (%1)"
-END
-
-// IDS_DEL_RIGHT_FMT SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_DEL_RIGHT_FMT       "Дясно (%1)"
-    IDS_DELETE_FILE_FAILED  "Изтриването на  %1 неуспешно: %2"
-    IDS_CONFIRM_DELETE_DIR  "Да изтрие ли директорията %1?"
-    IDS_REMOVE_DIR_FAILED   "Изтриването на директорията неуспешно: %1"
-    IDS_COPY_TO_LEFT        "От дясно към ляво (%1)"
-    IDS_DEL_BOTH_FMT        "Двете(%1)"
-    IDS_COPY_TO_RIGHT       "От ляво към дясно (%1)"
-    IDS_COLHDR_LSIZE        "Размер от ляво"
-    IDS_DELETE_DIR_FAILED   "Изтриването на  %1 неуспешно: %s"
-    IDS_COPY_FILE_FAILED    "Копирането на %1 неуспешно: %2"
-    IDS_COPY_DIR_FAILED     "Копирането на %1 неуспешно: %2"
-    IDS_ERROR_FILE_WRITEABLE "Грешка при проверката за писане"
-    IDS_ERROR_BACKUP        "Error backing up file"
-    IDS_CONFIRM_COPY_SINGLE "Сигурен ли сте ,че искате да копирате %1 на %2?"
-    IDS_CONFIRM_DELETE_SINGLE "Сигурен ли сте ,че искате да изтриите %1?"
-    IDS_BIN_FILES_SAME      "Бинарните файлове са еднакви"
-END
-
-STRINGTABLE 
-BEGIN
-    IDS_FILESAVE_FAILED     "Записването на %1 неуспешно. Желаете ли да запишете файла под различно име?"
-    IDS_ERROR_FILE_NOT_FOUND "Фаила не бе намерен: %1"
-    IDS_ERROR_INCOMPARABLE  "Изберете две съществуващи директории или файлове за сравнение"
-    IDS_STATUS_RESCANNING   "Сканиране на файловете..."
-    IDS_STATUS_OPENING_SELECTION "Отваря избраното"
-    IDS_STATUS_COPYL2R      "Копира от ляво на дясно"
-    IDS_STATUS_COPYR2L      "Копира от дясно на ляво"
-    IDS_STATUS_COPYALL2L    "Копира всичко в ляво"
-    IDS_STATUS_COPYALL2R    "Копира всичко в дясно"
-    IDS_PROGRAMFILES        "Програми|*.exe;*.bat;*.cmd|Всички файлове (*.*)|*.*||"
-    IDS_COLHDR_RSIZE        "Големина на дясната част"
-    IDS_COLHDR_LTIMEC       "Време за направа на лявата част"
-    IDS_COLHDR_RTIMEC       "Време за направа на дясната част"
-    IDS_COLHDR_NEWER        "Нови файлове"
-    IDS_COLHDR_LVERSION     "Версия на левия файл"
-    IDS_COLHDR_RVERSION     "Версия на десния файл"
-END
-
-// IDS_LEFTONLY SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_LEFTONLY            "Само левият"
-    IDS_RIGHTONLY           "Само десният"
-    IDS_COLHDR_RESULT_ABBR  "Бързи резултати"
-    IDS_COLHDR_LATTRIBUTES  "Атрибути от ляво"
-    IDS_COLHDR_RATTRIBUTES  "Атрибути от дясно"
-    IDS_FILE_SKIPPED        "Пропуснат файл"
-    IDS_DIR_SKIPPED         "Пропусната директория"
-    IDS_STATUSBAR_READONLY  "RO"
-    IDS_COLHDR_LENCODING    "Left Encoding"
-    IDS_COLHDR_RENCODING    "Right Encoding"
-    IDS_DIRECTORY_REPORT_TITLE "Сравняване %1 с %2"
-END
-
-STRINGTABLE 
-BEGIN
-    IDS_COLHDR_NDIFFS       "#differences"
-    IDS_COLHDR_NSDIFFS      "#sig. differences"
-END
-
-// IDS_PRIVATEBUILD_FMT SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_PRIVATEBUILD_FMT    "Private Build: %1"
-    IDS_FILEWRITE_ERROR     "Не може да пише върху %1."
-    IDS_DIFF_SUCCEEDED      "Патча е готов."
-    IDS_DIFF_ITEM1NOTFOUND  "1. обекта не е намерен или е директория!"
-    IDS_DIFF_ITEM2NOTFOUND  "2. обекта не е намерен или е директория!"
-    IDS_DIFF_FILEOVERWRITE  "Патча вече съществува. Ще го презапишете ли?"
-    IDS_DIFF_SELECTEDFILES  "[%1 избрани файлове]"
-    IDS_DIFF_NORMAL         "Normal"
-    IDS_DIFF_CONTEXT        "Context"
-    IDS_DIFF_UNIFIED        "Unified"
-    IDS_FILEPACK_FAILED_LEFT 
-                            "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-    IDS_FILEPACK_FAILED_RIGHT 
-                            "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
       /? or -? displays this help
       /r or -r tells winmerge to compare directories recursively
@@ -1323,54 +1223,31 @@ BEGIN
       outputpath is an optional output directory where you want merged files to be saved"
 END
 
-STRINGTABLE 
+// VARIOUS OPTIONS
+STRINGTABLE
 BEGIN
-    IDS_LINEDIFF_NODIFF     "Без разлики"
-    IDS_LINEDIFF_NODIFF_CAPTION "Разлики в линиите"
-    IDS_ERROR_FILE_NOT_UNPACKED "Файла не е разархивиран: %1"
-    IDS_USERCHOICE_NONE     "<None>"
-    IDS_USERCHOICE_AUTOMATIC "<Automatic>"
-    IDS_SUGGEST_IGNOREEOL   "The files have a different EOL type.\nWith the current options, all lines will differ.\nDo you want to ignore EOL differences for these files ?\n\nAdvanced user : if the EOL are not unified in your files,\n you may rather set the option '%1'."
-    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-    IDS_EMPTY_LEFT_FILE     "Без заглавие ляв"
-    IDS_EMPTY_RIGHT_FILE    "Без заглавие десен"
-    IDS_DEL_LEFT_FMT2       "Ляв (%1 от %2)"
-    IDS_DEL_RIGHT_FMT2      "Десен (%1 от %2)"
-    IDS_DEL_BOTH_FMT2       "двете (%1 от %2)"
-    IDS_COPY_TO_LEFT2       "Десен към ляв (%1 oт %2)"
-    IDS_COPY_TO_RIGHT2      "Ляв към десен (%1 oт %2)"
-    IDS_DIRSEL_TAG          "Избор на директория"
+    IDS_OPTIONS_TITLE       "Настроики"
+    IDS_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
+    IDS_DIFF_OPEN_NO_SET_PROPS "Промените се правят на файловете от текущиата сесия на сравнение .  Някои промени ще станат докато се рестартира текущата сесия."
+    IDS_FONT_CHANGE         "Избрания фонт няма да никои от текущите прозорци."
 END
 
-STRINGTABLE 
+// BROWSE FILE
+STRINGTABLE
 BEGIN
-    IDS_COPY_LEFT_TO        "Ляв към... (%1)"
-    IDS_COPY_LEFT_TO2       "Ляв към... (%1 oт %2)"
-    IDS_COPY_RIGHT_TO       "Десен към... (%1)"
-    IDS_COPY_RIGHT_TO2      "Десен към... (%1 oт %2)"
-    IDS_SELECT_DESTFOLDER   "Избери на директория"
+    IDS_OPEN_TITLE          "Отвори"
+    IDS_PROGRAMFILES        "Програми|*.exe;*.bat;*.cmd|Всички файлове (*.*)|*.*||"
+    IDS_ALLFILES            "Всички файлове (*.*)|*.*||"
+END
+
+// COMPARE OPTIONS
+STRINGTABLE
+BEGIN
     IDS_COMPMETHOD_CONTENTS "Съдържание"
     IDS_COMPMETHOD_MODDATE  "Променена дата"
-    IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
-    IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
-    IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
-    IDS_MERGEMODE_MERGING   "Merge"
-    IDS_COLHDR_BINARY       "Binary"
-    IDS_DIFFERENT           "Different"
 END
 
-STRINGTABLE 
-BEGIN
-    IDS_OPEN_FILESDIRS      "Select two directories or two files to compare."
-    IDS_OPEN_LEFTINVALID    "Left path is invalid!"
-    IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
-    IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
-    IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
-    IDS_OPEN_MISMATCH       "Cannot compare file and directory!"
-    IDS_FILE_TO_ITSELF      "The same file is opened in both panels."
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-END
-
+// FILTER OPTIONS
 STRINGTABLE 
 BEGIN
     IDS_FILTERFILE_NAMETITLE "Name"
@@ -1378,174 +1255,371 @@ BEGIN
     IDS_FILTER_TITLE        "Filters"
 END
 
-STRINGTABLE 
+// VERSION CONTROL OPTIONS
+STRINGTABLE
 BEGIN
-    IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
-    IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
+    IDS_CC_CMD              "&Път до cleartool.exe :"
+    IDS_VSS_CMD             "&Път до SS.EXE :"
 END
 
-STRINGTABLE 
+// WINDOWS TITLES
+STRINGTABLE
 BEGIN
-    IDC_MIXED_EOL           "Preserve original EOL chars"
+    IDS_DIRECTORY_WINDOW_TITLE "Резултати от сравянване на директорията"
+    IDS_FILE_COMPARISON_TITLE "Сравняване на файлове"
+    IDS_EMPTY_LEFT_FILE     "Без заглавие ляв"
+    IDS_EMPTY_RIGHT_FILE    "Без заглавие десен"
 END
 
-// IDC_COMPARISON_STOP SYNCHRO
-STRINGTABLE 
+// STATUS BAR : CURRENT OPERATION STATUS
+STRINGTABLE
 BEGIN
-    IDC_COMPARISON_STOP     "Спиране"
-    IDC_COMPARISON_CLOSE    "Натисни клавиш"
+    IDS_STATUS_RESCANNING   "Сканиране на файловете..."
+    IDS_STATUS_OPENING_SELECTION "Отваря избраното"
+    IDS_STATUS_COPYL2R      "Копира от ляво на дясно"
+    IDS_STATUS_COPYR2L      "Копира от дясно на ляво"
+    IDS_STATUS_COPYALL2L    "Копира всичко в ляво"
+    IDS_STATUS_COPYALL2R    "Копира всичко в дясно"
 END
 
-STRINGTABLE 
+// STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
+STRINGTABLE
 BEGIN
-    IDS_NUM_REPLACED        "Заменя %1 низа."
-    IDS_EDIT_TEXT_NOT_FOUND "Неможе да намери низ""%s"""
     IDS_LINE_STATUS_INFO_EOL "Линия: %s Колона: %d Знак: %d EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Линия: %s"
     IDS_LINE_STATUS_INFO    "Линия: %s Колона: %d Знак: %d"
-    IDS_VSSFOLDER_AND_FILE_NOMATCH 
-                            "VSS работна директория и разположението на файла не съвападат. Ще продължите ли?"
+    IDS_MERGEMODE_MERGING   "Merge"
+    IDS_DIFF_NUMBER_STATUS_FMT "Разлики %1 от %2"
+    IDS_NO_DIFF_SEL_FMT     "%1 Намерени разлики"
+    IDS_STATUSBAR_READONLY  "RO"
+END
+
+// OPEN DIALOG
+STRINGTABLE
+BEGIN
+    IDS_ERROR_INCOMPARABLE  "Изберете две съществуващи директории или файлове за сравнение"
+    IDS_DIRSEL_TAG          "Избор на директория"
+    IDS_OPEN_FILESDIRS      "Select two directories or two files to compare."
+    IDS_OPEN_LEFTINVALID    "Left path is invalid!"
+    IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
+    IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
+    IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
+    IDS_OPEN_MISMATCH       "Cannot compare file and directory!"
+END
+
+// LOADING FILE
+STRINGTABLE
+BEGIN
+    IDS_ERROR_FILE_NOT_FOUND "Фаила не бе намерен: %1"
+    IDS_ERROR_FILE_NOT_UNPACKED "Файла не е разархивиран: %1"
+END
+
+// SAVING FILE (+ VERSION CONTROL)
+STRINGTABLE
+BEGIN
+    IDS_SAVE_AS_TITLE       "Съхрани като"
+    IDS_SAVE_FMT            "Запазва промените на %1?"
+    IDS_SAVEREADONLY_FMT    "%1 е read-only. Да запиши ли read-only файла ? (Не ще го запиша с ново име.)"
+    IDS_ERROR_FILE_WRITEABLE "Грешка при проверката за писане"
+    IDS_ERROR_BACKUP        "Error backing up file"
+    IDS_BACKUP_FAILED_PROMPT "Не може да backup първоначалния файл.\nЩе продължите ли?"
+    IDS_NOPROJECT           "Вие трябва да изберете SourceSafe проект за да продължите (ie:  $/MyProject)"
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSSERROR            "Versioning System върна грешка при опита да провери файла.  Неможе да продължи..."
+    IDS_VSS_RUN_ERROR       "Грешка при стартиране на команда от versioning system."
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS работна директория и разположението на файла не съвападат. Ще продължите ли?"
+    IDS_FILESAVE_FAILED     "Записването на %1 неуспешно. Желаете ли да запишете файла под различно име?"
+    IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
+END
+
+// DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
+STRINGTABLE
+BEGIN
+    ID_DIR_COPY_LEFT_TO_RIGHT "Копиране на файловете към избраната директория"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected file to custom directory"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Копиране на файловете към избраната директория"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected file to custom directory"
+    ID_DIR_DEL_LEFT         "Изтриване на избрания обект от ляво"
+    ID_DIR_DEL_RIGHT        "Изтриване на избрания обект от дясно"
+    ID_DIR_DEL_BOTH         "Изтриване на избрания обект(и) от двете страни"
+    IDS_COPY_TO_LEFT        "От дясно към ляво (%1)"
+    IDS_COPY_TO_RIGHT       "От ляво към дясно (%1)"
+    IDS_COPY_TO_LEFT2       "Десен към ляв (%1 oт %2)"
+    IDS_COPY_TO_RIGHT2      "Ляв към десен (%1 oт %2)"
+    IDS_COPY_LEFT_TO        "Ляв към... (%1)"
+    IDS_COPY_RIGHT_TO       "Десен към... (%1)"
+    IDS_COPY_LEFT_TO2       "Ляв към... (%1 oт %2)"
+    IDS_COPY_RIGHT_TO2      "Десен към... (%1 oт %2)"
+    IDS_DEL_LEFT_FMT        "Ляво (%1)"
+END
+
+// DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
+STRINGTABLE
+BEGIN
+    IDS_DEL_RIGHT_FMT       "Дясно (%1)"
+    IDS_DEL_BOTH_FMT        "Двете(%1)"
+    IDS_DEL_LEFT_FMT2       "Ляв (%1 от %2)"
+    IDS_DEL_RIGHT_FMT2      "Десен (%1 от %2)"
+    IDS_DEL_BOTH_FMT2       "двете (%1 от %2)"
+    IDS_SELECT_DESTFOLDER   "Избери на директория"
+END
+
+// DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
+STRINGTABLE
+BEGIN
+    IDS_CONFIRM_ALL_LEFT    "Сигурен ли се ,че искаш да се копират всички разлики на левият файл?"
+    IDS_CONFIRM_ALL_RIGHT   "Сигурен ли се ,че искаш да се копират всички разлики на десният файл?"
+    IDS_CONFIRM_COPY_SINGLE "Сигурен ли сте ,че искате да копирате %1 на %2?"
+    IDS_CONFIRM_COPY2DIR    "Сигурен ли се ,че искаш да се копира %1 към %2 избрани обект(и)"
+    IDS_CONFIRM_DELETE_ITEMS "Сигурен ли сте ,че искате да изтриите %1 от %2 избрани обект(и) ?"
+    IDS_CONFIRM_DELETE_DIR  "Да изтрие ли директорията %1?"
+    IDS_CONFIRM_DELETE_SINGLE "Сигурен ли сте ,че искате да изтриите %1?"
+END
+
+// DIRECTORY DIFFING : OPEN FILE
+STRINGTABLE
+BEGIN
+    ID_DIR_OPEN_LEFT        "Отваряне на левия файл"
+    ID_DIR_OPEN_LEFT_WITHEDITOR "Отваряне на левия файл с външен редактор"
+    ID_DIR_OPEN_LEFT_WITH   "Отваряне на левия файл с..."
+    ID_DIR_OPEN_RIGHT       "Отваряне на десния файл"
+    ID_DIR_OPEN_RIGHT_WITHEDITOR "Отваряне на десния файл с външен редактор"
+    ID_DIR_OPEN_RIGHT_WITH  "Отваряне на десния файл с..."
     IDS_CANNOT_EXECUTE_FILE "Неможе да стартира %1"
 END
 
-// IDS_MESSAGEBOX_OK SYNCHRO
-STRINGTABLE 
+// DIRECTORY DIFFING : 7ZIP
+STRINGTABLE
 BEGIN
-    IDS_MESSAGEBOX_OK       "&Ok"
-    IDS_MESSAGEBOX_CANCEL   "&Cancel"
-    IDS_MESSAGEBOX_ABORT    "&Abort"
-    IDS_MESSAGEBOX_RETRY    "&Retry"
-    IDS_MESSAGEBOX_IGNORE   "&Ignore"
-    IDS_MESSAGEBOX_IGNOREALL "Ignore &all"
-    IDS_MESSAGEBOX_YES      "&Yes"
+    IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
 END
 
-STRINGTABLE 
+// DIRECTORY DIFFING : GENERATE REPORT
+STRINGTABLE
 BEGIN
-    IDS_MESSAGEBOX_YES_TO_ALL "Yes to &all"
-    IDS_MESSAGEBOX_NO       "&No"
-    IDS_MESSAGEBOX_NO_TO_ALL "No to a&ll"
-    IDS_MESSAGEBOX_CONTINUE "&Continue"
-    IDS_MESSAGEBOX_SKIP     "&Skip"
-    IDS_MESSAGEBOX_SKIPALL  "Skip &all"
-    IDS_MESSAGEBOX_HELP     "&Help"
-    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
-    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
+    IDS_DIRECTORY_REPORT_TITLE "Сравняване %1 с %2"
 END
 
-// ID_L2R SYNCHRO
-STRINGTABLE 
+// DIRECTORY DIFFING : COLUMN TITLES
+STRINGTABLE
 BEGIN
-    ID_L2R                  "Копиране на избрания текст в десния файл\nКопиране в дясно (Alt+Right)"
-    ID_R2L                  "Копиране на избрания текст в левия файл\nКопиране в ляво (Alt+Left)"
-    ID_OPTIONS_SHOWIDENTICAL "Показвай файловете които са еднакви"
-    ID_OPTIONS_SHOWDIFFERENT "Показвай файловете с разлики"
-    ID_PREVDIFF             "Предвижи се на предишната разлика\nПредишна разлика (Alt+Up)"
-    ID_NEXTDIFF             "Предвижи се на следващата разлика\nСледваща разлика (Alt+Down)"
-    ID_OPTIONS_BACKUPORIGINALFILE 
-                            "Съхрани копие от оргиналния файл като *.bak\nBackup"
+    IDS_COLHDR_FILENAME     "Име"
+    IDS_COLHDR_DIR          "Директория"
+    IDS_COLHDR_RESULT       "Резултати при сравняване"
+    IDS_COLHDR_LTIMEM       "Лява дата"
+    IDS_COLHDR_RTIMEM       "Дясна дата"
+    IDS_COLHDR_EXTENSION    "Разширение"
+    IDS_COLHDR_LSIZE        "Размер от ляво"
+    IDS_COLHDR_RSIZE        "Големина на дясната част"
+    IDS_COLHDR_LTIMEC       "Време за направа на лявата част"
+    IDS_COLHDR_RTIMEC       "Време за направа на дясната част"
+    IDS_COLHDR_NEWER        "Нови файлове"
+    IDS_COLHDR_LVERSION     "Версия на левия файл"
+    IDS_COLHDR_RVERSION     "Версия на десния файл"
+    IDS_COLHDR_RESULT_ABBR  "Бързи резултати"
+    IDS_COLHDR_LATTRIBUTES  "Атрибути от ляво"
+    IDS_COLHDR_RATTRIBUTES  "Атрибути от дясно"
 END
 
-STRINGTABLE 
+// DIRECTORY DIFFING : COLUMN TITLES (2)
+STRINGTABLE
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
-                            "Автоматично предвижване на първата разлика\nПърва разлика"
-    ID_OPTIONS_IGNOREWHITESPACE "Disregards whitespace when comparing files"
-    ID_HIDE_BACKUP_FILES    "Скриване на файлове с разширение BAK"
-    ID_HELP_GNULICENSE      "Показване на GNU лиценза"
-    ID_USEVSS               "Attempts to checkout read-only files from sourcesafe"
-    ID_OPTIONS              "Нагласяне на програмните настроики\nНастроики"
-    ID_ALL_LEFT             "Копиране на всички разлики в левия файл\nВсичко в ляво"
-    ID_ALL_RIGHT            "Копиране на всички разлики в десния файл\nВсичко в дясно"
-    ID_VIEW_SELECTFONT      "Избиране на фонт за разликите\nФонт за разликите"
-    ID_VIEW_USEDEFAULTFONT  "Връщане към първоначалния фонт показващ разликите\nПървоначален фонт"
-    ID_DIR_COPY_RIGHT_TO_LEFT "Копиране на файловете към избраната директория"
+    IDS_COLHDR_LENCODING    "Left Encoding"
+    IDS_COLHDR_RENCODING    "Right Encoding"
+    IDS_COLHDR_NDIFFS       "#differences"
+    IDS_COLHDR_NSDIFFS      "#sig. differences"
+    IDS_COLHDR_BINARY       "Binary"
 END
 
-// ID_DIR_COPY_LEFT_TO_RIGHT SYNCHRO
-STRINGTABLE 
+// DIRECTORY DIFFING : FILE COMPARISON RESULT, FULL & SHORTENED FORMS
+STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "Копиране на файловете към избраната директория"
-    ID_VIEW_LANGUAGE        "Изберете езика на които да е програмата\nЕзик"
-    ID_HELP_CONTENTS        "Показване на помощния файл на WinMerge\nПомощ"
-    ID_FIRSTDIFF            "Предвижване на първата разлика\nПърва разлика (Alt+Home)"
-    ID_CURDIFF              "Предвижване на текущата разлика\nТекуща разлика (Alt+Enter)"
-    ID_LASTDIFF             "Предвижване на последната разлика\nПоследната разлика (Alt+End)"
-    ID_DIFFNUM              "placeholder"
-    ID_DIR_DEL_LEFT         "Изтриване на избрания обект от ляво"
-    ID_DIR_DEL_RIGHT        "Изтриване на избрания обект от дясно"
-    ID_DIFFSTATUS           "placeholder for status count"
-    ID_OPTIONS_SHOWUNIQUELEFT "Показвай файловете ,които съществуват само в лявата част"
-    ID_OPTIONS_SHOWUNIQUERIGHT 
-                            "Показвай файловете ,които съществуват само в дясната част"
-    ID_DIR_DEL_BOTH         "Изтриване на избрания обект(и) от двете страни"
-    ID_DIR_OPEN_LEFT        "Отваряне на левия файл"
-    ID_DIR_OPEN_LEFT_WITH   "Отваряне на левия файл с..."
-    ID_DIR_OPEN_RIGHT       "Отваряне на десния файл"
+    IDS_CANT_COMPARE_FILES  "Не може да сравни файловете"
+    IDS_FILE_SKIPPED        "Пропуснат файл"
+    IDS_DIR_SKIPPED         "Пропусната директория"
+    IDS_ONLY_IN_FMT         "само в %1"
+    IDS_BIN_FILES_SAME      "Бинарните файлове са еднакви"
+    IDS_IDENTICAL           "Еднакви"
+    IDS_BIN_FILES_DIFF      "Бинарните файлове са различни"
+    IDS_FILES_ARE_DIFFERENT "Различни файлове"
+    IDS_LEFTONLY            "Само левият"
+    IDS_RIGHTONLY           "Само десният"
+    IDS_DIFFERENT           "Different"
 END
 
-STRINGTABLE 
+// DIRECTORY DIFFING : SUMMARY BAR
+STRINGTABLE
 BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "Отваряне на десния файл с..."
-    ID_OPTIONS_SHOWBINARIES "Показване на бинарните файлове"
-    ID_VIEW_WHITESPACE      "Shows whitespace characters"
-    ID_REFRESH              "Refresh display\nRefresh (F5)"
-    ID_SHOWLINEDIFF         "Подчертай разликите в тази графа\nРазлики в графата (F4)"
+    IDS_ELAPSED_TIME        "Оставащо време: %ld ms"
+END
+
+// FILE COMPARISON RESULT : MESSAGES
+STRINGTABLE
+BEGIN
+    IDS_FILE_TO_ITSELF      "The same file is opened in both panels."
+    IDS_FILESSAME           "Избраните файлове са еднакви."
+    IDS_FILEUNIQUE          "Избраните файлове не съществуват в две директории и не могат да бъдат сравнявани."
+    IDS_FILEERROR           "Получи се грешка при сравняване на файловете."
+    IDS_FILEBINARY          "Бинарните файлове не могат да се сравняват видимо."
+    IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
+    IDS_FILEISDIR           "Директориите не могат да бъдат сравнявани видимо."
+    IDS_SUGGEST_IGNOREEOL   "The files have a different EOL type.\nWith the current options, all lines will differ.\nDo you want to ignore EOL differences for these files ?\n\nAdvanced user : if the EOL are not unified in your files,\n you may rather set the option '%1'."
+    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
+    IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+END
+
+// EDITOR : SHOW LINE DIFF
+STRINGTABLE
+BEGIN
+    IDS_LINEDIFF_NODIFF     "Без разлики"
+    IDS_LINEDIFF_NODIFF_CAPTION "Разлики в линиите"
+END
+
+// EDITOR : SEARCH/REPLACE DIALOGS
+STRINGTABLE
+BEGIN
+    IDS_NUM_REPLACED        "Заменя %1 низа."
+    IDS_EDIT_TEXT_NOT_FOUND "Неможе да намери низ""%s"""
+END
+
+// EDITOR : FILENAME BAR POPUP
+STRINGTABLE
+BEGIN
     ID_EDITOR_COPY_PATH     "Копирай пътя"
     ID_EDITOR_COPY_FILENAME "Копирай пътя"
-    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
-    ID_FILE_LEFT_READONLY   "Сменяне на левия файл/директория read-only статуса"
-    ID_FILE_RIGHT_READONLY  "Сменяне на десния файл/директория read-only статуса"
 END
 
-// ID_EOL_TO_DOS SYNCHRO
-STRINGTABLE 
+// CREATE PATCH
+STRINGTABLE
 BEGIN
-    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
-    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
-    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
-    ID_OPTIONS_SHOWSKIPPED  "Показвай пропуснатите файлове"
-    ID_TOOLS_GENERATEPATCH  "Generate a patch-file"
+    IDS_DIFF_SUCCEEDED      "Патча е готов."
+    IDS_DIFF_ITEM1NOTFOUND  "1. обекта не е намерен или е директория!"
+    IDS_DIFF_ITEM2NOTFOUND  "2. обекта не е намерен или е директория!"
+    IDS_DIFF_FILEOVERWRITE  "Патча вече съществува. Ще го презапишете ли?"
+    IDS_DIFF_SELECTEDFILES  "[%1 избрани файлове]"
+    IDS_DIFF_NORMAL         "Normal"
+    IDS_DIFF_CONTEXT        "Context"
+    IDS_DIFF_UNIFIED        "Unified"
+    IDS_FILEWRITE_ERROR     "Не може да пише върху %1."
+    IDS_PATH_NOT_ABSOLUTE   "%1\n is not absolute path!"
+END
+
+// LANGAGE NAME STRINGS : ONLY IN ENGLISH FILE
+
+// MENU STRINGS
+// FILE MENU
+STRINGTABLE
+BEGIN
     ID_FILE_SAVE_LEFT       "Запазване на левия файл"
     ID_FILE_SAVE_RIGHT      "Запазване на десния файл"
     ID_FILE_SAVEAS_LEFT     "Запазване на левия файл като..."
     ID_FILE_SAVEAS_RIGHT    "Запазване на десния файл като..."
-    ID_TOOLS_CUSTOMIZECOLUMNS "Select and reorder directory compare columns"
-    ID_R2LNEXT              "Копиране на разликата в левия файл и предвижване към следващата\nКопиране в ляво и предвижване (Ctrl+Alt+Left)"
-    ID_L2RNEXT              "Копиране на разликата в десния файл и предвижване към следващата\nКопиране в дясно и предвижване (Ctrl+Alt+Right)"
+    ID_FILE_LEFT_READONLY   "Сменяне на левия файл/директория read-only статуса"
+    ID_FILE_RIGHT_READONLY  "Сменяне на десния файл/директория read-only статуса"
+    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
+    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
+    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+    ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
 END
 
-STRINGTABLE 
+// EDIT MENU
+STRINGTABLE
 BEGIN
+    ID_SHOWLINEDIFF         "Подчертай разликите в тази графа\nРазлики в графата (F4)"
+    ID_EDIT_WMGOTO          "Отиди на графа или разлика\nОтиди на (Ctrl+G)"
+    ID_OPTIONS              "Нагласяне на програмните настроики\nНастроики"
+    ID_REFRESH              "Refresh display\nRefresh (F5)"
+END
+
+// VIEW MENU (FILE TYPE)
+STRINGTABLE
+BEGIN
+    ID_OPTIONS_SHOWIDENTICAL "Показвай файловете които са еднакви"
+    ID_OPTIONS_SHOWDIFFERENT "Показвай файловете с разлики"
+    ID_OPTIONS_SHOWUNIQUELEFT "Показвай файловете ,които съществуват само в лявата част"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Показвай файловете ,които съществуват само в дясната част"
+    ID_OPTIONS_SHOWBINARIES "Показване на бинарните файлове"
+    ID_OPTIONS_SHOWSKIPPED  "Показвай пропуснатите файлове"
+    ID_HIDE_BACKUP_FILES    "Скриване на файлове с разширение BAK"
+END
+
+// VIEW MENU
+STRINGTABLE
+BEGIN
+    ID_VIEW_SELECTFONT      "Избиране на фонт за разликите\nФонт за разликите"
+    ID_VIEW_USEDEFAULTFONT  "Връщане към първоначалния фонт показващ разликите\nПървоначален фонт"
+    ID_VIEW_WHITESPACE      "Shows whitespace characters"
+    ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
+    ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
+    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
+    ID_VIEW_LANGUAGE        "Изберете езика на които да е програмата\nЕзик"
+END
+
+// MERGE MENU
+STRINGTABLE
+BEGIN
+    ID_PREVDIFF             "Предвижи се на предишната разлика\nПредишна разлика (Alt+Up)"
+    ID_NEXTDIFF             "Предвижи се на следващата разлика\nСледваща разлика (Alt+Down)"
+    ID_FIRSTDIFF            "Предвижване на първата разлика\nПърва разлика (Alt+Home)"
+    ID_CURDIFF              "Предвижване на текущата разлика\nТекуща разлика (Alt+Enter)"
+    ID_LASTDIFF             "Предвижване на последната разлика\nПоследната разлика (Alt+End)"
+    ID_L2R                  "Копиране на избрания текст в десния файл\nКопиране в дясно (Alt+Right)"
+    ID_R2L                  "Копиране на избрания текст в левия файл\nКопиране в ляво (Alt+Left)"
+    ID_L2RNEXT              "Копиране на разликата в десния файл и предвижване към следващата\nКопиране в дясно и предвижване (Ctrl+Alt+Right)"
+    ID_R2LNEXT              "Копиране на разликата в левия файл и предвижване към следващата\nКопиране в ляво и предвижване (Ctrl+Alt+Left)"
+    ID_ALL_RIGHT            "Копиране на всички разлики в десния файл\nВсичко в дясно"
+    ID_ALL_LEFT             "Копиране на всички разлики в левия файл\nВсичко в ляво"
     ID_MULTIPLE_RIGHT       "Копиране на избрания текст към десния файл"
     ID_MULTIPLE_LEFT        "Копиране на избрания текст към левия файл"
-    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
-    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
-    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
-    ID_DIR_OPEN_LEFT_WITHEDITOR "Отваряне на левия файл с външен редактор"
-    ID_DIR_OPEN_RIGHT_WITHEDITOR "Отваряне на десния файл с външен редактор"
-    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
-    ID_WINDOW_CHANGE_PANE   "Да се вижда следващия файл\nАктивиране на следващия файл"
-    ID_EDIT_WMGOTO          "Отиди на графа или разлика\nОтиди на (Ctrl+G)"
 END
 
-STRINGTABLE 
+// TOOLS MENU
+STRINGTABLE
 BEGIN
-    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
-    ID_NO_EDIT_SCRIPTS      "< Empty >"
-    ID_RELOAD_PLUGINS       "Unload all plugins and reload them (for developpers)"
-    ID_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
-    ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
-    ID_PREDIFF_MANUAL       "No prediffer"
-    ID_PREDIFF_AUTO         "Prediff if possible"
-    ID_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-    ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
+    ID_TOOLS_CUSTOMIZECOLUMNS "Select and reorder directory compare columns"
+    ID_TOOLS_GENERATEPATCH  "Generate a patch-file"
+    ID_TOOLS_FILTERS        "Select and modify filters"
+END
+
+// PLUGINS MENU
+STRINGTABLE
+BEGIN
+    ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
+    ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
+    ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"
+    ID_NO_PREDIFFER         "No prediffer (normal)"
     ID_SUGGESTED_PLUGINS    "Suggested plugins"
     ID_NOT_SUGGESTED_PLUGINS "Others plugins"
-    ID_NO_PREDIFFER         "No prediffer (normal)"
+    ID_RELOAD_PLUGINS       "Unload all plugins and reload them (for developpers)"
+END
+
+// WINDOW MENU
+STRINGTABLE
+BEGIN
+    ID_WINDOW_CHANGE_PANE   "Да се вижда следващия файл\nАктивиране на следващия файл"
+END
+
+// HELP MENU
+STRINGTABLE
+BEGIN
+    ID_HELP_CONTENTS        "Показване на помощния файл на WinMerge\nПомощ"
+    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
+    ID_HELP_GNULICENSE      "Показване на GNU лиценза"
+    IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+END
+
+// PLUGINS DIALOGS AND DYNAMIC MENUS
+STRINGTABLE
+BEGIN
     ID_TITLE_PLUGINS_SETTINGS "Plugin Settings"
-    ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
-    ID_TOOLS_FILTERS        "Select and modify filters"
+    ID_PREDIFF_MANUAL       "No prediffer"
+    ID_PREDIFF_AUTO         "Prediff if possible"
+    ID_NO_EDIT_SCRIPTS      "< Empty >"
+    ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
+    IDS_USERCHOICE_NONE     "<None>"
+    IDS_USERCHOICE_AUTOMATIC "<Automatic>"
 END
 
 // END STRINGS SYNCHRO

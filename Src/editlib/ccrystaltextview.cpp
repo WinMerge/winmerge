@@ -153,8 +153,6 @@ ON_WM_CREATE ()
 ON_COMMAND (ID_EDIT_FIND, OnEditFind)
 ON_COMMAND (ID_EDIT_REPEAT, OnEditRepeat)
 ON_UPDATE_COMMAND_UI (ID_EDIT_REPEAT, OnUpdateEditRepeat)
-ON_COMMAND (ID_EDIT_FIND_PREVIOUS, OnEditFindPrevious)
-ON_UPDATE_COMMAND_UI (ID_EDIT_FIND_PREVIOUS, OnUpdateEditFindPrevious)
 ON_WM_MOUSEWHEEL ()
 //}}AFX_MSG_MAP
 ON_COMMAND (ID_EDIT_CHAR_LEFT, OnCharLeft)
@@ -4441,30 +4439,6 @@ OnEditRepeat ()
 
 void CCrystalTextView::
 OnUpdateEditRepeat (CCmdUI * pCmdUI)
-{
-  BOOL bEnable = m_bLastSearch;
-  if (!bEnable)
-    {
-      CString sText;
-      bEnable = CMemComboBox::groups.Lookup (_T ("FindText"), sText) && !sText.IsEmpty ();
-    }
-  pCmdUI->Enable (bEnable);
-}
-
-void CCrystalTextView::
-OnEditFindPrevious ()
-{
-  DWORD dwSaveSearchFlags = m_dwLastSearchFlags;
-  if ((m_dwLastSearchFlags & FIND_DIRECTION_UP) != 0)
-    m_dwLastSearchFlags &= ~FIND_DIRECTION_UP;
-  else
-    m_dwLastSearchFlags |= FIND_DIRECTION_UP;
-  OnEditRepeat ();
-  m_dwLastSearchFlags = dwSaveSearchFlags;
-}
-
-void CCrystalTextView::
-OnUpdateEditFindPrevious (CCmdUI * pCmdUI)
 {
   BOOL bEnable = m_bLastSearch;
   if (!bEnable)

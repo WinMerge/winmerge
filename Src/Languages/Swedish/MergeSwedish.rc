@@ -145,7 +145,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Script"
         BEGIN
-            MENUITEM SEPARATOR
+            MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
         MENUITEM "&Gå till...\tCtrl+G",           ID_EDIT_WMGOTO
@@ -333,7 +333,6 @@ BEGIN
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
-    VK_F3,          ID_EDIT_FIND_PREVIOUS,  VIRTKEY, SHIFT, NOINVERT
     VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
@@ -415,7 +414,7 @@ BEGIN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
     DEFPUSHBUTTON   "Checka ut",IDOK,33,121,50,14
     PUSHBUTTON      "Avbryt",IDCANCEL,173,121,50,14
-    PUSHBUTTON      "Spara som...",IDSAVEAS,103,121,50,14
+    PUSHBUTTON      "Spara som...",IDC_SAVE_AS,103,121,50,14
     LTEXT           "Projekt:",IDC_STATIC,9,60,25,8
     COMBOBOX        IDC_PROJECT_COMBO,46,58,205,114,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
@@ -540,7 +539,7 @@ FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "Verkställ",IDOK,35,90,50,14
     PUSHBUTTON      "Avbryt",IDCANCEL,194,90,50,14
-    PUSHBUTTON      "Spara som...",IDSAVEAS,114,90,50,14
+    PUSHBUTTON      "Spara som...",IDC_SAVE_AS,114,90,50,14
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Kommentarer",IDC_STATIC,18,7,47,10
@@ -1158,7 +1157,6 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-// ID_FILE_NEW SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_FILE_NEW             "Skapar nya dokument\nNya Dokument (Ctrl+N)"
@@ -1172,7 +1170,6 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Visar helsida\nFörhandsgranska"
 END
 
-// ID_APP_ABOUT SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_APP_ABOUT            "Visar programinformation, versionsnummer och upphovsrätt\nOm"
@@ -1199,7 +1196,6 @@ BEGIN
     ID_FILE_MRU_FILE16      "Öppna det här dokumentet"
 END
 
-// ID_NEXT_PANE SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_NEXT_PANE            "Växla till nästa fönster\nNästa fönster"
@@ -1216,7 +1212,6 @@ BEGIN
     ID_WINDOW_SPLIT         "Dela det aktiva fönstret\nDela"
 END
 
-// ID_EDIT_CLEAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_EDIT_CLEAR           "Ta bort det utvalda\nTa bort"
@@ -1232,14 +1227,12 @@ BEGIN
     ID_EDIT_REDO            "Gör om den tidigare ångrade åtgärden\nGör om"
 END
 
-// ID_VIEW_TOOLBAR SYNCHRO
 STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "Visar eller gömmer verktygsfältet\nVäxla verktygsfält"
     ID_VIEW_STATUS_BAR      "Visar eller gömmer statusfältet\nVäxla statusfältet"
 END
 
-// AFX_IDS_SCSIZE SYNCHRO
 STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "Ändra fönsterstorlek"
@@ -1263,245 +1256,32 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Aktiverar det här fönstret"
 END
 
+// WINMERGE INFORMATION
 STRINGTABLE 
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
-    IDS_WINMERGE_THIS_DIRECTORY "Jämför filerna i den här mappen med WinMerge"
-    IDS_UNKNOWN_ARCHIVE_FORMAT "Okänt arkivformat"
-    IDS_ELAPSED_TIME        "Förfluten tid: %ld ms"
 END
 
-// IDS_VERSION_FMT SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_VERSION_FMT         "Version %1"
-    IDS_ALLFILES            "Alla filer (*.*)|*.*||"
-    IDS_CONFIRM_ALL_LEFT    "Är du säker på att du vill kopiera alla skillnader till den vänstra filen?"
-    IDS_CONFIRM_ALL_RIGHT   "Är du säker på att du vill kopiera alla skillnader till den högra filen?"
-    IDS_ERRORS_TITLE        "%1 fel"
-    IDS_CONFIRM_COPY2DIR    "Är du säker på att du vill kopiera %1 av %2 valda objekt?"
-    IDS_FONT_CHANGE         "Ändringen av teckensnitt kommer inte att synas i redan öppna fönster."
-    IDS_DIRECTORY_WINDOW_TITLE "Resultat för jämförda mappar"
-    IDS_DIRECTORY_WINDOW_STATUS_FMT "Resultat av %1 och %2"
-    IDS_FILES_ARE_DIFFERENT "Filerna är olika"
-    IDS_BIN_FILES_DIFF      "De binära filerna är olika"
-    IDS_ONLY_IN_FMT         "Bara i %1"
-    IDS_IDENTICAL           "Identiska"
-    IDS_CANT_COMPARE_FILES  "Kan inte jämföra filerna"
-END
-
-// IDS_SAVE_AS_TITLE SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_SAVE_AS_TITLE       "Spara som"
-    IDS_SELECT_FILES_OR_FOLDERS 
-                            "Du måste välja antingen bara filer, eller bara mappar."
-    IDS_BACKUP_FAILED_PROMPT 
-                            "Kan inte ta backup på originalfilen.\nVill du fortsätta i alla fall?"
-    IDS_OPTIONS_TITLE       "Egenskaper"
-    IDS_OPEN_TITLE          "Öppna"
-    IDS_CONFIRM_DELETE_FILE "Ta bort fil %1?"
-    IDS_FILESSAME           "De valda filerna är identiska."
-    IDS_FILEUNIQUE          "Den valda filen finns inte i båda mapparna och kan därför inte jämföras"
-    IDS_FILEERROR           "Ett fel inträffade under jämförelsen av filerna."
-    IDS_SAVEREADONLY_FMT    "%1 är skrivskyddad. Vill du skriva över filen (välj Nej för att spara filen med ett annat namn)?"
-    IDS_SAVE_FMT            "Spara ändringar i %1?"
-    IDS_FILEBINARY          "Binära filer kan inte jämföras visuellt."
-    IDS_SAVEVSS_FMT         "%1 är skrivskyddad. Vill du checka ut filen från ett versionshanteringssystem, eller spara den med ett annat namn?"
-    IDS_VSSERROR            "Versionshanteringssystemet returnerade ett fel under försöket att checka ut filen. Det går inte att fortsätta..."
-    IDS_NOPROJECT           "Du måste ange sökvägen till ett SourceSafe-projekt för att fortsätta (t.ex.:  $/MittProjekt)"
-END
-
-// IDS_COLHDR_FILENAME SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_COLHDR_FILENAME     "Filnamn"
-    IDS_COLHDR_DIR          "Mapp"
-    IDS_COLHDR_RESULT       "Resultat av jämförelsen"
-    IDS_FILE_COMPARISON_TITLE "Filjämförelse"
-    IDS_DIFF_NUMBER_STATUS_FMT "Skillnad %1 av %2"
-    IDS_NO_DIFF_SEL_FMT     "%1 skillnader funna"
-    IDS_FILEISDIR           "Mappar kan inte jämföras visuellt."
-    IDS_CC_CMD              "&Sökväg till cleartool.exe:"
-    IDS_VSS_CMD             "&Sökväg till SS.EXE:"
-    IDS_VSS_RUN_ERROR       "Fel vid utförande av kommando för versionshanteringssystem."
-    IDS_DIFF_OPEN_NO_SET_PROPS 
-                            "Ändringar har gjorts i den aktuella filjämförelsesessionen. Vissa inställningar kanske inte syns förrän den aktuella filjämförelsen startas om."
-    IDS_COLHDR_LTIMEM       "Vänster datum"
-    IDS_COLHDR_RTIMEM       "Höger datum"
-    IDS_COLHDR_EXTENSION    "Filtillägg"
-    IDS_CONFIRM_DELETE_ITEMS 
-                            "Är du säker på att du vill ta bort %1 av %2 valda objekt?"
-    IDS_DEL_LEFT_FMT        "Vänster (%1)"
-END
-
-// IDS_DEL_RIGHT_FMT SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_DEL_RIGHT_FMT       "Höger (%1)"
-    IDS_DELETE_FILE_FAILED  "Ta bort fil %1 misslyckades: %2"
-    IDS_CONFIRM_DELETE_DIR  "Ta bort mappen %1?"
-    IDS_REMOVE_DIR_FAILED   "Ta bort mappen misslyckades: %1"
-    IDS_COPY_TO_LEFT        "Höger till vänster (%1)"
-    IDS_DEL_BOTH_FMT        "Båda (%1)"
-    IDS_COPY_TO_RIGHT       "Vänster till höger (%1)"
-    IDS_COLHDR_LSIZE        "Vänster storlek"
-    IDS_DELETE_DIR_FAILED   "Ta bort mappen %1 misslyckades: %s"
-    IDS_COPY_FILE_FAILED    "Kopiering av filen %1 misslyckades: %2"
-    IDS_COPY_DIR_FAILED     "Kopiering av mappen %1 misslyckades: %2"
-    IDS_ERROR_FILE_WRITEABLE "Kontrollera skrivbarhet på destinationen!"
-    IDS_ERROR_BACKUP        "Fel under backup av filen"
-    IDS_CONFIRM_COPY_SINGLE "Är du säker på att du vill kopiera %1 till %2?"
-    IDS_CONFIRM_DELETE_SINGLE "Är du säker på du att vill ta bort %1?"
-    IDS_BIN_FILES_SAME      "De binära filerna är identiska"
-END
-
-STRINGTABLE 
-BEGIN
-    IDS_FILESAVE_FAILED     "Ett fel inträffade när %1 skulle sparas. Vill du spara filen med ett annat namn?"
-    IDS_ERROR_FILE_NOT_FOUND "Kan inte hitta: %1"
-    IDS_ERROR_INCOMPARABLE  "Välj två existerande mappar eller filer att jämföra"
-    IDS_STATUS_RESCANNING   "Söker filer..."
-    IDS_STATUS_OPENING_SELECTION "Öppnar val"
-    IDS_STATUS_COPYL2R      "Kopiera vänster till höger"
-    IDS_STATUS_COPYR2L      "Kopiera höger till vänster"
-    IDS_STATUS_COPYALL2L    "Kopiera allt till vänster"
-    IDS_STATUS_COPYALL2R    "Kopiera allt till höger"
-    IDS_PROGRAMFILES        "Programfiler|*.exe;*.bat;*.cmd|Alla Filer (*.*)|*.*||"
-    IDS_COLHDR_RSIZE        "Höger storlek"
-    IDS_COLHDR_LTIMEC       "Vänster skapaddatum"
-    IDS_COLHDR_RTIMEC       "Höger skapaddatum"
-    IDS_COLHDR_NEWER        "Nyare filer"
-    IDS_COLHDR_LVERSION     "Filversion på vänster fil"
-    IDS_COLHDR_RVERSION     "Filversion på höger fil"
-END
-
-// IDS_LEFTONLY SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_LEFTONLY            "Endast vänster"
-    IDS_RIGHTONLY           "Endast höger"
-    IDS_COLHDR_RESULT_ABBR  "Kort resultat"
-    IDS_COLHDR_LATTRIBUTES  "Vänster attribut"
-    IDS_COLHDR_RATTRIBUTES  "Höger attribut"
-    IDS_FILE_SKIPPED        "Hoppat över filen"
-    IDS_DIR_SKIPPED         "Hoppat över mappen"
-    IDS_STATUSBAR_READONLY  "Skrivskyddad"
-    IDS_COLHDR_LENCODING    "Vänster kodning"
-    IDS_COLHDR_RENCODING    "Höger kodning"
-    IDS_DIRECTORY_REPORT_TITLE "Jämför %1 med %2"
-END
-
-STRINGTABLE 
-BEGIN
-    IDS_COLHDR_NDIFFS       "#skillnader"
-    IDS_COLHDR_NSDIFFS      "#antal skillnader"
-END
-
-// IDS_PRIVATEBUILD_FMT SYNCHRO
-STRINGTABLE 
-BEGIN
-    IDS_PRIVATEBUILD_FMT    "Privat Build: %1"
-    IDS_FILEWRITE_ERROR     "Kunde inte spara filen: %1."
-    IDS_DIFF_SUCCEEDED      "Patchfilen sparad."
-    IDS_DIFF_ITEM1NOTFOUND  "Det gick inte att hitta första filen, eller så är det en mapp!"
-    IDS_DIFF_ITEM2NOTFOUND  "Det gick inte att hitta andra filen, eller så är det en mapp!"
-    IDS_DIFF_FILEOVERWRITE  "Patchfilen finns redan. Vill du skriva över den?"
-    IDS_DIFF_SELECTEDFILES  "[%1 fil(er) valda]"
-    IDS_DIFF_NORMAL         "Normal"
-    IDS_DIFF_CONTEXT        "Omgivande (Context)"
-    IDS_DIFF_UNIFIED        "Förenad (Unified)"
-    IDS_FILEPACK_FAILED_LEFT 
-                            "Plugin '%2' kan inte packa dina förändringar av den vänstra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
-    IDS_FILEPACK_FAILED_RIGHT 
-                            "Plugin '%2' kan inte packa dina förändringar av den högra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
-    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\ndär:\n /? eller -? visar denna hjälp\n /r eller -r får WinMerge att jämföra kataloger rekursivt\n /e eller -e låter WinMerge stängas med en enkel esc tryckning\n /ul eller -ul får WinMerge att inte lägga till vänster sökväg till de senast använda filerna\n /ur eller -ur får WinMerge att inte lägga till höger sökväg till de senast använda filerna\n /ub eller -ub får WinMerge att inte lägga till båda sökvägarna till de senast använda filerna\n /dl eller -dl lägger till en visad beskrivning av vänster sida istället för katalog/filnamn\n /dr eller -dr lägger till en visad beskrivning av höger sida istället för katalog/filnamn\n leftpath är katalogen eller filnamnet att öppna på vänster sida\n rightpath är katalogen eller filnamnet att öppna på höger sida\n outputpath är en optionell outputkatalog där du vill att ändrade filer ska \n sparas\n \n Obs: leftpath och rightpath måste båda vara filer eller båda måste vara \n kataloger\n"
-END
-
-STRINGTABLE 
-BEGIN
-    IDS_LINEDIFF_NODIFF     "Ingen skillnad"
-    IDS_LINEDIFF_NODIFF_CAPTION "Radskillnad"
-    IDS_ERROR_FILE_NOT_UNPACKED "Filen är inte uppackad: %1"
-    IDS_USERCHOICE_NONE     "<Ingen>"
-    IDS_USERCHOICE_AUTOMATIC "<Automatisk>"
-    IDS_SUGGEST_IGNOREEOL   "Filerna har olika EOL typer.\nMed de aktuella inställningarna , kommer alla rader att vara olika.\nVill du ignorera EOL skillnader för dessa filer ?\n\nAvancerad användare : om EOL inte är lika i dina filer,\n kan du hellre ställa in inställningen '%1'."
-    IDS_SUGGEST_PRESERVEEOL "EOL är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika EOL ?"
-    IDS_EMPTY_LEFT_FILE     "Namnlös vänster"
-    IDS_EMPTY_RIGHT_FILE    "Namnlös höger"
-    IDS_DEL_LEFT_FMT2       "Vänster (%1 av %2)"
-    IDS_DEL_RIGHT_FMT2      "Höger (%1 av %2)"
-    IDS_DEL_BOTH_FMT2       "Båda (%1 av %2)"
-    IDS_COPY_TO_LEFT2       "Höger till vänster (%1 av %2)"
-    IDS_COPY_TO_RIGHT2      "Vänster till höger (%1 av %2)"
-    IDS_DIRSEL_TAG          "Val av katalog"
-END
-
-STRINGTABLE 
-BEGIN
-    IDS_COPY_LEFT_TO        "Vänster till... (%1)"
-    IDS_COPY_LEFT_TO2       "Vänster till... (%1 av %2)"
-    IDS_COPY_RIGHT_TO       "Höger till... (%1)"
-    IDS_COPY_RIGHT_TO2      "Höger till... (%1 av %2)"
-    IDS_SELECT_DESTFOLDER   "Välj destinationskatalog"
-    IDS_COMPMETHOD_CONTENTS "Innehåll"
-    IDS_COMPMETHOD_MODDATE  "Datum för förändring"
-    IDS_PATH_NOT_ABSOLUTE   "%1\n är inte en absolut sökväg!"
-    IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
-    IDS_TEMP_FILEERROR      "Temporära filer kunde inte skapas. Kontrollera inställningarna för dina temporära sökvägar."
-    IDS_MERGEMODE_MERGING   "Merge mode"
-    IDS_COLHDR_BINARY       "Binär"
-    IDS_DIFFERENT           "Olika"
-END
-
-STRINGTABLE 
-BEGIN
-    IDS_OPEN_FILESDIRS      "Välj två kataloger eller två filer att jämföra."
-    IDS_OPEN_LEFTINVALID    "Vänster sökväg är felaktig!"
-    IDS_OPEN_RIGHTINVALID   "Höger sökväg är felaktig!"
-    IDS_OPEN_BOTHINVALID    "Båda sökvägarna är felaktiga!"
-    IDS_OPEN_UNPACKERDISABLED "Välj två filer för att starta valet av uppackare."
-    IDS_OPEN_MISMATCH       "Kan inte jämföra en fil med en katalog!"
-    IDS_FILE_TO_ITSELF      "Samma fil är öppnad i vänster och höger panel."
-    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
-END
-
-STRINGTABLE 
-BEGIN
-    IDS_FILTERFILE_NAMETITLE "Namn"
-    IDS_FILTERFILE_PATHTITLE "Sökväg"
-    IDS_FILTER_TITLE        "Filter"
-END
-
-STRINGTABLE 
-BEGIN
-    IDC_STATIC_TITLE_LEFT   "Högerklicka på sökvägen för att kopiera"
-    IDC_STATIC_TITLE_RIGHT  "Högerklicka på sökvägen för att kopiera"
-END
-
-STRINGTABLE 
+// CUSTOM CONTROLS
+// OPTIONS NAME TO PRESERVE/UNIFY EOL
+STRINGTABLE
 BEGIN
     IDC_MIXED_EOL           "Tillåt blandade EOL-typer"
 END
 
-// IDC_COMPARISON_STOP SYNCHRO
+// DIRECTORY DIFFING : SUMMARY BAR
 STRINGTABLE 
 BEGIN
     IDC_COMPARISON_STOP     "Stopp"
     IDC_COMPARISON_CLOSE    "Tryck en tangent"
 END
 
+// EDITOR : FILENAME BAR
 STRINGTABLE 
 BEGIN
-    IDS_NUM_REPLACED        "Ersatt %1 sträng(ar)."
-    IDS_EDIT_TEXT_NOT_FOUND "Kan inte hitta strängen ""%s"""
-    IDS_LINE_STATUS_INFO_EOL "Rad: %s Tecken: %d Tecken: %d EOL: %s"
-    IDS_EMPTY_LINE_STATUS_INFO "Rad: %s"
-    IDS_LINE_STATUS_INFO    "Rad: %s Tecken: %d Tecken: %d"
-    IDS_VSSFOLDER_AND_FILE_NOMATCH 
-                            "VSS arbetskalogen och läget på den aktuella filen matchar inte. Vill du fortsätta ändå?"
-    IDS_CANNOT_EXECUTE_FILE "Kan inte starta %1"
+    IDC_STATIC_TITLE_LEFT   "Högerklicka på sökvägen för att kopiera"
+    IDC_STATIC_TITLE_RIGHT  "Högerklicka på sökvägen för att kopiera"
 END
 
 // IDS_MESSAGEBOX_OK SYNCHRO
@@ -1516,6 +1296,7 @@ BEGIN
     IDS_MESSAGEBOX_YES      "&Ja"
 END
 
+// "DO NOT SHOW AGAIN" MESSAGEBOXES (2)
 STRINGTABLE 
 BEGIN
     IDS_MESSAGEBOX_YES_TO_ALL "Ja till &allt"
@@ -1529,119 +1310,412 @@ BEGIN
     IDS_MESSAGEBOX_DONT_ASK_AGAIN "Fråga inte denna &fråga igen."
 END
 
-// ID_L2R SYNCHRO
+// WINMERGE CUSTOM STRINGS
+// WINMERGE INFORMATION
 STRINGTABLE 
 BEGIN
-    ID_L2R                  "Kopiera den valda texten till den högra filen\nKopiera höger (Alt Höger)"
-    ID_R2L                  "Kopiera den valda texten till den vänstra filen\nKopiera vänster (Alt Vänster)"
-    ID_OPTIONS_SHOWIDENTICAL "Visa filer som är identiska"
-    ID_OPTIONS_SHOWDIFFERENT "Visa filer som har skillnader"
-    ID_PREVDIFF             "Gå till föregående skillnad\nFöregående skillnad (Alt Upp)"
-    ID_NEXTDIFF             "Gå till nästa skillnad\nNästa skillnad (Alt Ner)"
-    ID_OPTIONS_BACKUPORIGINALFILE 
-                            "Spara en kopia av originalet som *.bak\nBackup"
+    IDS_WINMERGE_THIS_DIRECTORY "Jämför filerna i den här mappen med WinMerge"
+    IDS_VERSION_FMT         "Version %1"
+    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\ndär:\n /? eller -? visar denna hjälp\n /r eller -r får WinMerge att jämföra kataloger rekursivt\n /e eller -e låter WinMerge stängas med en enkel esc tryckning\n /ul eller -ul får WinMerge att inte lägga till vänster sökväg till de senast använda filerna\n /ur eller -ur får WinMerge att inte lägga till höger sökväg till de senast använda filerna\n /ub eller -ub får WinMerge att inte lägga till båda sökvägarna till de senast använda filerna\n /dl eller -dl lägger till en visad beskrivning av vänster sida istället för katalog/filnamn\n /dr eller -dr lägger till en visad beskrivning av höger sida istället för katalog/filnamn\n leftpath är katalogen eller filnamnet att öppna på vänster sida\n rightpath är katalogen eller filnamnet att öppna på höger sida\n outputpath är en optionell outputkatalog där du vill att ändrade filer ska \n sparas\n \n Obs: leftpath och rightpath måste båda vara filer eller båda måste vara \n kataloger\n"
 END
 
+// VARIOUS OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_OPTIONS_TITLE       "Egenskaper"
+    IDS_MESSAGE_BOX_ARE_RESET "Alla meddelanderutor visas nu igen."
+    IDS_DIFF_OPEN_NO_SET_PROPS "Ändringar har gjorts i den aktuella filjämförelsesessionen. Vissa inställningar kanske inte syns förrän den aktuella filjämförelsen startas om."
+    IDS_FONT_CHANGE         "Ändringen av teckensnitt kommer inte att synas i redan öppna fönster."
+END
+
+// BROWSE FILE
+STRINGTABLE
+BEGIN
+    IDS_OPEN_TITLE          "Öppna"
+    IDS_PROGRAMFILES        "Programfiler|*.exe;*.bat;*.cmd|Alla Filer (*.*)|*.*||"
+    IDS_ALLFILES            "Alla filer (*.*)|*.*||"
+END
+
+// COMPARE OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_COMPMETHOD_CONTENTS "Innehåll"
+    IDS_COMPMETHOD_MODDATE  "Datum för förändring"
+END
+
+// FILTER OPTIONS
 STRINGTABLE 
 BEGIN
-    ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE 
-                            "Gå automatiskt till den första skillnaden\nGå till första"
-    ID_OPTIONS_IGNOREWHITESPACE "Ignorerar mellanslag vid jämförelse av filer"
-    ID_HIDE_BACKUP_FILES    "Gömmer filer med filtyp BAK"
-    ID_HELP_GNULICENSE      "Visa GNU General Public License"
-    ID_USEVSS               "Försöker att checka ut skrivskyddade filer från SourceSafe"
-    ID_OPTIONS              "Ändra programinställningar\nEgenskaper"
-    ID_ALL_LEFT             "Kopiera alla skillnader till den vänstra filen\nKopiera allt till vänster"
-    ID_ALL_RIGHT            "Kopiera alla skillnader till den högra filen\nKopiera allt till höger"
-    ID_VIEW_SELECTFONT      "Välj teckensnitt för fönstren\nVälj teckensnitt"
-    ID_VIEW_USEDEFAULTFONT  "Välj standardteckensnitt för fönstren\nVälj standardteckensnitt"
+    IDS_FILTERFILE_NAMETITLE "Namn"
+    IDS_FILTERFILE_PATHTITLE "Sökväg"
+    IDS_FILTER_TITLE        "Filter"
+END
+
+// VERSION CONTROL OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_CC_CMD              "&Sökväg till cleartool.exe:"
+    IDS_VSS_CMD             "&Sökväg till SS.EXE:"
+END
+
+// WINDOWS TITLES
+STRINGTABLE
+BEGIN
+    IDS_DIRECTORY_WINDOW_TITLE "Resultat för jämförda mappar"
+    IDS_FILE_COMPARISON_TITLE "Filjämförelse"
+    IDS_EMPTY_LEFT_FILE     "Namnlös vänster"
+    IDS_EMPTY_RIGHT_FILE    "Namnlös höger"
+END
+
+// STATUS BAR : CURRENT OPERATION STATUS
+STRINGTABLE
+BEGIN
+    IDS_STATUS_RESCANNING   "Söker filer..."
+    IDS_STATUS_OPENING_SELECTION "Öppnar val"
+    IDS_STATUS_COPYL2R      "Kopiera vänster till höger"
+    IDS_STATUS_COPYR2L      "Kopiera höger till vänster"
+    IDS_STATUS_COPYALL2L    "Kopiera allt till vänster"
+    IDS_STATUS_COPYALL2R    "Kopiera allt till höger"
+END
+
+// STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
+STRINGTABLE
+BEGIN
+    IDS_LINE_STATUS_INFO_EOL "Rad: %s Tecken: %d Tecken: %d EOL: %s"
+    IDS_EMPTY_LINE_STATUS_INFO "Rad: %s"
+    IDS_LINE_STATUS_INFO    "Rad: %s Tecken: %d Tecken: %d"
+    IDS_MERGEMODE_MERGING   "Merge mode"
+    IDS_DIFF_NUMBER_STATUS_FMT "Skillnad %1 av %2"
+    IDS_NO_DIFF_SEL_FMT     "%1 skillnader funna"
+    IDS_STATUSBAR_READONLY  "Skrivskyddad"
+END
+
+// OPEN DIALOG
+STRINGTABLE
+BEGIN
+    IDS_ERROR_INCOMPARABLE  "Välj två existerande mappar eller filer att jämföra"
+    IDS_DIRSEL_TAG          "Val av katalog"
+    IDS_OPEN_FILESDIRS      "Välj två kataloger eller två filer att jämföra."
+    IDS_OPEN_LEFTINVALID    "Vänster sökväg är felaktig!"
+    IDS_OPEN_RIGHTINVALID   "Höger sökväg är felaktig!"
+    IDS_OPEN_BOTHINVALID    "Båda sökvägarna är felaktiga!"
+    IDS_OPEN_UNPACKERDISABLED "Välj två filer för att starta valet av uppackare."
+    IDS_OPEN_MISMATCH       "Kan inte jämföra en fil med en katalog!"
+END
+
+// LOADING FILE
+STRINGTABLE
+BEGIN
+    IDS_ERROR_FILE_NOT_FOUND "Kan inte hitta: %1"
+    IDS_ERROR_FILE_NOT_UNPACKED "Filen är inte uppackad: %1"
+END
+
+// SAVING FILE (+ VERSION CONTROL)
+STRINGTABLE
+BEGIN
+    IDS_SAVE_AS_TITLE       "Spara som"
+    IDS_SAVE_FMT            "Spara ändringar i %1?"
+    IDS_SAVEREADONLY_FMT    "%1 är skrivskyddad. Vill du skriva över filen (välj Nej för att spara filen med ett annat namn)?"
+    IDS_ERROR_FILE_WRITEABLE "Kontrollera skrivbarhet på destinationen!"
+    IDS_ERROR_BACKUP        "Fel under backup av filen"
+    IDS_BACKUP_FAILED_PROMPT "Kan inte ta backup på originalfilen.\nVill du fortsätta i alla fall?"
+    IDS_NOPROJECT           "Du måste ange sökvägen till ett SourceSafe-projekt för att fortsätta (t.ex.:  $/MittProjekt)"
+    IDS_VSS_CHECKOUT_STATUS "Checkout files from VSS..."
+    IDS_VSSERROR            "Versionshanteringssystemet returnerade ett fel under försöket att checka ut filen. Det går inte att fortsätta..."
+    IDS_VSS_RUN_ERROR       "Fel vid utförande av kommando för versionshanteringssystem."
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS arbetskalogen och läget på den aktuella filen matchar inte. Vill du fortsätta ändå?"
+    IDS_FILESAVE_FAILED     "Ett fel inträffade när %1 skulle sparas. Vill du spara filen med ett annat namn?"
+    IDS_FILEPACK_FAILED_LEFT "Plugin '%2' kan inte packa dina förändringar av den vänstra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
+    IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kan inte packa dina förändringar av den högra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
+    IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
+END
+
+// DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
+STRINGTABLE
+BEGIN
+    ID_DIR_COPY_LEFT_TO_RIGHT "Kopiera den valda filen till den angivna mappen"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected file to custom directory"
     ID_DIR_COPY_RIGHT_TO_LEFT "Kopiera den valda filen till den angivna mappen"
-END
-
-// ID_DIR_COPY_LEFT_TO_RIGHT SYNCHRO
-STRINGTABLE 
-BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT 
-                            "Kopiera den valda filen till den angivna mappen"
-    ID_VIEW_LANGUAGE        "Välj språk för användargränssnittet\nSpråk"
-    ID_HELP_CONTENTS        "Visa hjälpen för WinMerge\nHjälp"
-    ID_FIRSTDIFF            "Gå till första skillnaden\nFörsta skillnad (Alt+Home)"
-    ID_CURDIFF              "Gå till aktuell skillnad\nAktuell skillnad (Alt+Enter)"
-    ID_LASTDIFF             "Gå till sista skillnaden\nSista skillnad (Alt+End)"
-    ID_DIFFNUM              "Platshållare"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected file to custom directory"
     ID_DIR_DEL_LEFT         "Ta bort valda objekt på vänster sida"
     ID_DIR_DEL_RIGHT        "Ta bort valda objekt på höger sida"
-    ID_DIFFSTATUS           "platshållare för statusräknare"
-    ID_OPTIONS_SHOWUNIQUELEFT "Visar filer som bara finns på vänster sida"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Visar filer som bara finns på höger sida"
     ID_DIR_DEL_BOTH         "Ta bort valda objekt på båda sidor"
+    IDS_COPY_TO_LEFT        "Höger till vänster (%1)"
+    IDS_COPY_TO_RIGHT       "Vänster till höger (%1)"
+    IDS_COPY_TO_LEFT2       "Höger till vänster (%1 av %2)"
+    IDS_COPY_TO_RIGHT2      "Vänster till höger (%1 av %2)"
+    IDS_COPY_LEFT_TO        "Vänster till... (%1)"
+    IDS_COPY_RIGHT_TO       "Höger till... (%1)"
+    IDS_COPY_LEFT_TO2       "Vänster till... (%1 av %2)"
+    IDS_COPY_RIGHT_TO2      "Höger till... (%1 av %2)"
+    IDS_DEL_LEFT_FMT        "Vänster (%1)"
+END
+
+// DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
+STRINGTABLE
+BEGIN
+    IDS_DEL_RIGHT_FMT       "Höger (%1)"
+    IDS_DEL_BOTH_FMT        "Båda (%1)"
+    IDS_DEL_LEFT_FMT2       "Vänster (%1 av %2)"
+    IDS_DEL_RIGHT_FMT2      "Höger (%1 av %2)"
+    IDS_DEL_BOTH_FMT2       "Båda (%1 av %2)"
+    IDS_SELECT_DESTFOLDER   "Välj destinationskatalog"
+END
+
+// DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
+STRINGTABLE
+BEGIN
+    IDS_CONFIRM_ALL_LEFT    "Är du säker på att du vill kopiera alla skillnader till den vänstra filen?"
+    IDS_CONFIRM_ALL_RIGHT   "Är du säker på att du vill kopiera alla skillnader till den högra filen?"
+    IDS_CONFIRM_COPY_SINGLE "Är du säker på att du vill kopiera %1 till %2?"
+    IDS_CONFIRM_COPY2DIR    "Är du säker på att du vill kopiera %1 av %2 valda objekt?"
+    IDS_CONFIRM_DELETE_ITEMS "Är du säker på att du vill ta bort %1 av %2 valda objekt?"
+    IDS_CONFIRM_DELETE_DIR  "Ta bort mappen %1?"
+    IDS_CONFIRM_DELETE_SINGLE "Är du säker på du att vill ta bort %1?"
+END
+
+// DIRECTORY DIFFING : OPEN FILE
+STRINGTABLE
+BEGIN
     ID_DIR_OPEN_LEFT        "Öppna den vänstra filen"
+    ID_DIR_OPEN_LEFT_WITHEDITOR "Öppna den vänstra filen med en extern editor"
     ID_DIR_OPEN_LEFT_WITH   "Öppna den vänstra filen med ..."
     ID_DIR_OPEN_RIGHT       "Öppna den högra filen"
+    ID_DIR_OPEN_RIGHT_WITHEDITOR "Öppna den högra filen med en extern editor"
+    ID_DIR_OPEN_RIGHT_WITH  "Öppna den högra filen med ..."
+    IDS_CANNOT_EXECUTE_FILE "Kan inte starta %1"
 END
 
-STRINGTABLE 
+// DIRECTORY DIFFING : 7ZIP
+STRINGTABLE
 BEGIN
-    ID_DIR_OPEN_RIGHT_WITH  "Öppna den högra filen med ..."
-    ID_OPTIONS_SHOWBINARIES "Visa binära filer"
-    ID_VIEW_WHITESPACE      "Visa ett tecken för mellanslag"
-    ID_REFRESH              "Uppdatera innehållet\nUppdatera (F5)"
-    ID_SHOWLINEDIFF         "Markera skillnader på aktuell rad\nSkillnader på Aktuell Rad (F4)"
+    IDS_UNKNOWN_ARCHIVE_FORMAT "Okänt arkivformat"
+END
+
+// DIRECTORY DIFFING : GENERATE REPORT
+STRINGTABLE
+BEGIN
+    IDS_DIRECTORY_REPORT_TITLE "Jämför %1 med %2"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES
+STRINGTABLE
+BEGIN
+    IDS_COLHDR_FILENAME     "Filnamn"
+    IDS_COLHDR_DIR          "Mapp"
+    IDS_COLHDR_RESULT       "Resultat av jämförelsen"
+    IDS_COLHDR_LTIMEM       "Vänster datum"
+    IDS_COLHDR_RTIMEM       "Höger datum"
+    IDS_COLHDR_EXTENSION    "Filtillägg"
+    IDS_COLHDR_LSIZE        "Vänster storlek"
+    IDS_COLHDR_RSIZE        "Höger storlek"
+    IDS_COLHDR_LTIMEC       "Vänster skapaddatum"
+    IDS_COLHDR_RTIMEC       "Höger skapaddatum"
+    IDS_COLHDR_NEWER        "Nyare filer"
+    IDS_COLHDR_LVERSION     "Filversion på vänster fil"
+    IDS_COLHDR_RVERSION     "Filversion på höger fil"
+    IDS_COLHDR_RESULT_ABBR  "Kort resultat"
+    IDS_COLHDR_LATTRIBUTES  "Vänster attribut"
+    IDS_COLHDR_RATTRIBUTES  "Höger attribut"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES (2)
+STRINGTABLE
+BEGIN
+    IDS_COLHDR_LENCODING    "Vänster kodning"
+    IDS_COLHDR_RENCODING    "Höger kodning"
+    IDS_COLHDR_NDIFFS       "#skillnader"
+    IDS_COLHDR_NSDIFFS      "#antal skillnader"
+    IDS_COLHDR_BINARY       "Binär"
+END
+
+// DIRECTORY DIFFING : FILE COMPARISON RESULT, FULL & SHORTENED FORMS
+STRINGTABLE
+BEGIN
+    IDS_CANT_COMPARE_FILES  "Kan inte jämföra filerna"
+    IDS_FILE_SKIPPED        "Hoppat över filen"
+    IDS_DIR_SKIPPED         "Hoppat över mappen"
+    IDS_ONLY_IN_FMT         "Bara i %1"
+    IDS_BIN_FILES_SAME      "De binära filerna är identiska"
+    IDS_IDENTICAL           "Identiska"
+    IDS_BIN_FILES_DIFF      "De binära filerna är olika"
+    IDS_FILES_ARE_DIFFERENT "Filerna är olika"
+    IDS_LEFTONLY            "Endast vänster"
+    IDS_RIGHTONLY           "Endast höger"
+    IDS_DIFFERENT           "Olika"
+END
+
+// DIRECTORY DIFFING : SUMMARY BAR
+STRINGTABLE
+BEGIN
+    IDS_ELAPSED_TIME        "Förfluten tid: %ld ms"
+END
+
+// FILE COMPARISON RESULT : MESSAGES
+STRINGTABLE
+BEGIN
+    IDS_FILE_TO_ITSELF      "Samma fil är öppnad i vänster och höger panel."
+    IDS_FILESSAME           "De valda filerna är identiska."
+    IDS_FILEUNIQUE          "Den valda filen finns inte i båda mapparna och kan därför inte jämföras"
+    IDS_FILEERROR           "Ett fel inträffade under jämförelsen av filerna."
+    IDS_FILEBINARY          "Binära filer kan inte jämföras visuellt."
+    IDS_TEMP_FILEERROR      "Temporära filer kunde inte skapas. Kontrollera inställningarna för dina temporära sökvägar."
+    IDS_FILEISDIR           "Mappar kan inte jämföras visuellt."
+    IDS_SUGGEST_IGNOREEOL   "Filerna har olika EOL typer.\nMed de aktuella inställningarna , kommer alla rader att vara olika.\nVill du ignorera EOL skillnader för dessa filer ?\n\nAvancerad användare : om EOL inte är lika i dina filer,\n kan du hellre ställa in inställningen '%1'."
+    IDS_SUGGEST_PRESERVEEOL "EOL är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika EOL ?"
+    IDS_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
+END
+
+// EDITOR : SHOW LINE DIFF
+STRINGTABLE
+BEGIN
+    IDS_LINEDIFF_NODIFF     "Ingen skillnad"
+    IDS_LINEDIFF_NODIFF_CAPTION "Radskillnad"
+END
+
+// EDITOR : SEARCH/REPLACE DIALOGS
+STRINGTABLE
+BEGIN
+    IDS_NUM_REPLACED        "Ersatt %1 sträng(ar)."
+    IDS_EDIT_TEXT_NOT_FOUND "Kan inte hitta strängen ""%s"""
+END
+
+// EDITOR : FILENAME BAR POPUP
+STRINGTABLE
+BEGIN
     ID_EDITOR_COPY_PATH     "Kopiera hela sökvägen"
     ID_EDITOR_COPY_FILENAME "Kopiera filnamn"
-    ID_VIEW_DETAIL_BAR      "Visa eller göm skillnadsfältet\nVäxla skillnadsfältet"
-    ID_FILE_LEFT_READONLY   "Ändra skrivskydd på vänster fil/mapp"
-    ID_FILE_RIGHT_READONLY  "Ändra skrivskydd på höger fil/mapp"
 END
 
-// ID_EOL_TO_DOS SYNCHRO
-STRINGTABLE 
+// CREATE PATCH
+STRINGTABLE
 BEGIN
-    ID_EOL_TO_DOS           "Konvertera EOL till DOS-format"
-    ID_EOL_TO_UNIX          "Konvertera EOL till UNIX-format"
-    ID_EOL_TO_MAC           "Konvertera EOL till MAC-format"
-    ID_OPTIONS_SHOWSKIPPED  "Visa överhoppade filer"
-    ID_TOOLS_GENERATEPATCH  "Skapa patchfil"
+    IDS_DIFF_SUCCEEDED      "Patchfilen sparad."
+    IDS_DIFF_ITEM1NOTFOUND  "Det gick inte att hitta första filen, eller så är det en mapp!"
+    IDS_DIFF_ITEM2NOTFOUND  "Det gick inte att hitta andra filen, eller så är det en mapp!"
+    IDS_DIFF_FILEOVERWRITE  "Patchfilen finns redan. Vill du skriva över den?"
+    IDS_DIFF_SELECTEDFILES  "[%1 fil(er) valda]"
+    IDS_DIFF_NORMAL         "Normal"
+    IDS_DIFF_CONTEXT        "Omgivande (Context)"
+    IDS_DIFF_UNIFIED        "Förenad (Unified)"
+    IDS_FILEWRITE_ERROR     "Kunde inte spara filen: %1."
+    IDS_PATH_NOT_ABSOLUTE   "%1\n är inte en absolut sökväg!"
+END
+
+// LANGAGE NAME STRINGS : ONLY IN ENGLISH FILE
+
+// MENU STRINGS
+// FILE MENU
+STRINGTABLE
+BEGIN
     ID_FILE_SAVE_LEFT       "Spara den vänstra filen"
     ID_FILE_SAVE_RIGHT      "Spara den högra filen"
     ID_FILE_SAVEAS_LEFT     "Spara den vänstra filen som..."
     ID_FILE_SAVEAS_RIGHT    "Spara den högra filen som..."
-    ID_TOOLS_CUSTOMIZECOLUMNS "Anpassa vilka kolumner som visas"
-    ID_R2LNEXT              "Kopiera skillnad till vänster och gå fram till nästa\nKopiera vänster och gå framåt (Ctrl Alt Left)"
-    ID_L2RNEXT              "Kopiera skillnad till höger och gå fram till nästa\nKopiera höger och gå framåt (Ctrl Alt Right)"
+    ID_FILE_LEFT_READONLY   "Ändra skrivskydd på vänster fil/mapp"
+    ID_FILE_RIGHT_READONLY  "Ändra skrivskydd på höger fil/mapp"
+    ID_EOL_TO_DOS           "Konvertera EOL till DOS-format"
+    ID_EOL_TO_UNIX          "Konvertera EOL till UNIX-format"
+    ID_EOL_TO_MAC           "Konvertera EOL till MAC-format"
+    ID_FILE_MERGINGMODE     "Växla mellan Editera mode och Merge mode"
 END
 
-STRINGTABLE 
+// EDIT MENU
+STRINGTABLE
 BEGIN
+    ID_SHOWLINEDIFF         "Markera skillnader på aktuell rad\nSkillnader på Aktuell Rad (F4)"
+    ID_EDIT_WMGOTO          "Gå till rad eller skillnad\nGå till (Ctrl+G)"
+    ID_OPTIONS              "Ändra programinställningar\nEgenskaper"
+    ID_REFRESH              "Uppdatera innehållet\nUppdatera (F5)"
+END
+
+// VIEW MENU (FILE TYPE)
+STRINGTABLE
+BEGIN
+    ID_OPTIONS_SHOWIDENTICAL "Visa filer som är identiska"
+    ID_OPTIONS_SHOWDIFFERENT "Visa filer som har skillnader"
+    ID_OPTIONS_SHOWUNIQUELEFT "Visar filer som bara finns på vänster sida"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Visar filer som bara finns på höger sida"
+    ID_OPTIONS_SHOWBINARIES "Visa binära filer"
+    ID_OPTIONS_SHOWSKIPPED  "Visa överhoppade filer"
+    ID_HIDE_BACKUP_FILES    "Gömmer filer med filtyp BAK"
+END
+
+// VIEW MENU
+STRINGTABLE
+BEGIN
+    ID_VIEW_SELECTFONT      "Välj teckensnitt för fönstren\nVälj teckensnitt"
+    ID_VIEW_USEDEFAULTFONT  "Välj standardteckensnitt för fönstren\nVälj standardteckensnitt"
+    ID_VIEW_WHITESPACE      "Visa ett tecken för mellanslag"
+    ID_VIEW_DETAIL_BAR      "Visa eller göm skillnadsfältet\nVäxla skillnadsfältet"
+    ID_VIEW_LOCATION_BAR    "Skillnadsbilden visar en övergripande bild av filerna"
+    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
+    ID_VIEW_LANGUAGE        "Välj språk för användargränssnittet\nSpråk"
+END
+
+// MERGE MENU
+STRINGTABLE
+BEGIN
+    ID_PREVDIFF             "Gå till föregående skillnad\nFöregående skillnad (Alt Upp)"
+    ID_NEXTDIFF             "Gå till nästa skillnad\nNästa skillnad (Alt Ner)"
+    ID_FIRSTDIFF            "Gå till första skillnaden\nFörsta skillnad (Alt+Home)"
+    ID_CURDIFF              "Gå till aktuell skillnad\nAktuell skillnad (Alt+Enter)"
+    ID_LASTDIFF             "Gå till sista skillnaden\nSista skillnad (Alt+End)"
+    ID_L2R                  "Kopiera den valda texten till den högra filen\nKopiera höger (Alt Höger)"
+    ID_R2L                  "Kopiera den valda texten till den vänstra filen\nKopiera vänster (Alt Vänster)"
+    ID_L2RNEXT              "Kopiera skillnad till höger och gå fram till nästa\nKopiera höger och gå framåt (Ctrl Alt Right)"
+    ID_R2LNEXT              "Kopiera skillnad till vänster och gå fram till nästa\nKopiera vänster och gå framåt (Ctrl Alt Left)"
+    ID_ALL_RIGHT            "Kopiera alla skillnader till den högra filen\nKopiera allt till höger"
+    ID_ALL_LEFT             "Kopiera alla skillnader till den vänstra filen\nKopiera allt till vänster"
     ID_MULTIPLE_RIGHT       "Kopiera skillnader från den valda texten i den vänstra filen till den högra filen"
     ID_MULTIPLE_LEFT        "Kopiera skillnader från den valda texten i den högra filen till den vänstra filen"
-    ID_POPUP_OPEN_WITH_UNPACKER "Välj en uppackare för att ändra i denna fil"
-    ID_UNPACK_MANUAL        "Användaren väljer uppackare (ingen uppackning när man jämför kataloger)"
-    ID_UNPACK_AUTO          "Den valda uppackaren används för båda filerna (bara en fil behöver ha filändelsen)"
-    ID_DIR_OPEN_LEFT_WITHEDITOR "Öppna den vänstra filen med en extern editor"
-    ID_DIR_OPEN_RIGHT_WITHEDITOR "Öppna den högra filen med en extern editor"
-    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
-    ID_WINDOW_CHANGE_PANE   "Växlar mellan höger och vänster fil\nVäxla fil"
-    ID_EDIT_WMGOTO          "Gå till rad eller skillnad\nGå till (Ctrl+G)"
 END
 
-STRINGTABLE 
+// TOOLS MENU
+STRINGTABLE
 BEGIN
-    ID_VIEW_DIR_STATEPANE   "Show directory compare statepane"
-    ID_NO_EDIT_SCRIPTS      "< Tom >"
-    ID_RELOAD_PLUGINS       "&Stäng alla plugins och öppna dem igen (för utvecklare)"
-    ID_MESSAGE_BOX_ARE_RESET "Alla meddelanderutor visas nu igen."
-    ID_NO_SCT_SCRIPTS       "WSH hittades inte - .sct script är avstängda"
-    ID_PREDIFF_MANUAL       "Ingen prediffer"
-    ID_PREDIFF_AUTO         "Prediff om möjligt"
-    ID_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
-    ID_VIEW_LOCATION_BAR    "Skillnadsbilden visar en övergripande bild av filerna"
+    ID_TOOLS_CUSTOMIZECOLUMNS "Anpassa vilka kolumner som visas"
+    ID_TOOLS_GENERATEPATCH  "Skapa patchfil"
+    ID_TOOLS_FILTERS        "Välj och ändra filter"
+END
+
+// PLUGINS MENU
+STRINGTABLE
+BEGIN
+    ID_UNPACK_MANUAL        "Användaren väljer uppackare (ingen uppackning när man jämför kataloger)"
+    ID_UNPACK_AUTO          "Den valda uppackaren används för båda filerna (bara en fil behöver ha filändelsen)"
+    ID_POPUP_OPEN_WITH_UNPACKER "Välj en uppackare för att ändra i denna fil"
+    ID_NO_PREDIFFER         "Ingen prediffer (standard)"
     ID_SUGGESTED_PLUGINS    "Föreslagna plugins"
     ID_NOT_SUGGESTED_PLUGINS "Andra plugins"
-    ID_NO_PREDIFFER         "Ingen prediffer (standard)"
+    ID_RELOAD_PLUGINS       "&Stäng alla plugins och öppna dem igen (för utvecklare)"
+END
+
+// WINDOW MENU
+STRINGTABLE
+BEGIN
+    ID_WINDOW_CHANGE_PANE   "Växlar mellan höger och vänster fil\nVäxla fil"
+END
+
+// HELP MENU
+STRINGTABLE
+BEGIN
+    ID_HELP_CONTENTS        "Visa hjälpen för WinMerge\nHjälp"
+    ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
+    ID_HELP_GNULICENSE      "Visa GNU General Public License"
+    IDS_PRIVATEBUILD_FMT    "Privat Build: %1"
+END
+
+// PLUGINS DIALOGS AND DYNAMIC MENUS
+STRINGTABLE
+BEGIN
     ID_TITLE_PLUGINS_SETTINGS "Plugin Inställningar"
-    ID_FILE_MERGINGMODE     "Växla mellan Editera mode och Merge mode"
-    ID_TOOLS_FILTERS        "Välj och ändra filter"
+    ID_PREDIFF_MANUAL       "Ingen prediffer"
+    ID_PREDIFF_AUTO         "Prediff om möjligt"
+    ID_NO_EDIT_SCRIPTS      "< Tom >"
+    ID_NO_SCT_SCRIPTS       "WSH hittades inte - .sct script är avstängda"
+    IDS_USERCHOICE_NONE     "<Ingen>"
+    IDS_USERCHOICE_AUTOMATIC "<Automatisk>"
 END
 
 // END STRINGS SYNCHRO

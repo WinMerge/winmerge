@@ -52,7 +52,7 @@ private:
 
 // Dialog Data
 	//{{AFX_DATA(CLanguageSelect)
-	enum { IDD = 30000 };
+	enum { IDD = IDD_LANGUAGE_SELECT };
 	CListBox	m_ctlLangList;
 	CString	m_strLanguage;
 	//}}AFX_DATA

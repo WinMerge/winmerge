@@ -96,5 +96,5 @@ END_MESSAGE_MAP()
 void CPropGeneral::OnResetAllMessageBoxes()
 {
 	CMessageBoxDialog::ResetMessageBoxes();
-	AfxMessageBox(ID_MESSAGE_BOX_ARE_RESET, MB_ICONINFORMATION);
+	AfxMessageBox(IDS_MESSAGE_BOX_ARE_RESET, MB_ICONINFORMATION);
 }

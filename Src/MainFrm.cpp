@@ -311,7 +311,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_MERGINGMODE, 0, 100); 
-	m_wndStatusBar.SetPaneInfo(2, ID_DIFFNUM, 0, 150); 
+	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_DIFFNUM, 0, 150); 
 
 	// TODO: Remove this if you don't want tool tips or a resizeable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |

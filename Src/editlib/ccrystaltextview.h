@@ -841,11 +841,9 @@ protected :
     afx_msg void OnEditFind ();
     afx_msg void OnEditRepeat ();
     afx_msg void OnUpdateEditRepeat (CCmdUI * pCmdUI);
-    afx_msg void OnEditFindPrevious ();   // More search
     afx_msg void OnEditDeleteBack();
     afx_msg void OnChar( UINT nChar, UINT nRepCnt, UINT nFlags );
 
-    afx_msg void OnUpdateEditFindPrevious (CCmdUI * pCmdUI);
     afx_msg BOOL OnMouseWheel (UINT nFlags, short zDelta, CPoint pt);
     //}}AFX_MSG
     afx_msg void OnFilePageSetup ();

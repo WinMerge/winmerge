@@ -76,7 +76,7 @@ void CVssPrompt::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CVssPrompt, CDialog)
 	//{{AFX_MSG_MAP(CVssPrompt)
-	ON_BN_CLICKED(IDSAVEAS, OnSaveas)
+	ON_BN_CLICKED(IDC_SAVE_AS, OnSaveas)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -136,5 +136,5 @@ void CVssPrompt::OnOK()
 
 void CVssPrompt::OnSaveas() 
 {
-	EndDialog(IDSAVEAS);
+	EndDialog(IDC_SAVE_AS);
 }

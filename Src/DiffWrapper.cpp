@@ -231,7 +231,7 @@ BOOL CDiffWrapper::RunFileDiff()
 		{
 			// display a message box
 			CString sError;
-			AfxFormatString2(sError, ID_PREDIFFER_ERROR, strFile1Temp, m_infoPrediffer->pluginName);
+			AfxFormatString2(sError, IDS_PREDIFFER_ERROR, strFile1Temp, m_infoPrediffer->pluginName);
 			AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 			// don't use any more this prediffer
 			m_infoPrediffer->bToBeScanned = FALSE;
@@ -246,7 +246,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	{
 		// display a message box
 		CString sError;
-		AfxFormatString2(sError, ID_PREDIFFER_ERROR, strFile2Temp, m_infoPrediffer->pluginName);
+		AfxFormatString2(sError, IDS_PREDIFFER_ERROR, strFile2Temp, m_infoPrediffer->pluginName);
 		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 		// don't use any more this prediffer
 		m_infoPrediffer->bToBeScanned = FALSE;

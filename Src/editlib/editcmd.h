@@ -3,7 +3,6 @@
 // Used by editres.rc
 //
 #define IDPREVIEW                       3
-#define IDD_ABOUTBOX                    100
 #define IDD_EDFILEOPEN                  101
 #define IDD_EDITOR_PAGE                 102
 #define IDB_LIGHTBULB                   102
