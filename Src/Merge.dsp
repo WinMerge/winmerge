@@ -1081,6 +1081,10 @@ SOURCE=.\SaveClosingDlg.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\sbuffer.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\SelectUnpackerDlg.h
 # End Source File
 # Begin Source File

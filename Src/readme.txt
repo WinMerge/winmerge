@@ -1,3 +1,8 @@
+2004-11-06 Perry
+ PATCH: [ 1053475 ] Exponentially grow long lines when reading
+  Src/Common: UniFile.cpp UniFile.h
+  Src: Merge.dsp MergeDoc.cpp
+
 2004-11-05 Kimmo
  PATCH: [ 1061155 ] Updated danish translation
   Submitted by Christian

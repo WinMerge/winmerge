@@ -2,7 +2,7 @@
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-09-02 (Kimmo Varis)
+ *  @date   Edited:  2004-10-24 (Perry Rapp)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -326,13 +326,26 @@ BOOL UniMemFile::ReadString(CString & line)
 	BOOL ok = ReadString(line, eol);
 	return ok;
 }
-
+BOOL UniMemFile::ReadString(CString & line, CString & eol)
+{
+	sbuffer sline(line.GetLength());
+	sline.Append(line);
+	BOOL b = ReadString(sline, eol);
+	line = sline.GetData();
+	return b;
+}
+BOOL UniMemFile::ReadString(sbuffer & sline)
+{
+	CString eol;
+	BOOL ok = ReadString(sline, eol);
+	return ok;
+}
 /**
  * @brief Read one (DOS or UNIX or Mac) line
  */
-BOOL UniMemFile::ReadString(CString & line, CString & eol)
+BOOL UniMemFile::ReadString(sbuffer & sline, CString & eol)
 {
-	line = _T("");
+	sline.Clear();
 	eol = _T("");
 	// shortcut methods in case file is in the same encoding as our CStrings
 #ifdef _UNICODE
@@ -417,7 +430,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 				++m_txtstats.nzeros;
 				return TRUE;
 			}
-			line += ch;
+			sline.Append(ch);
 		}
 		return TRUE;
 	}
@@ -441,7 +454,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 				++m_txtstats.nzeros;
 		}
 		bool lossy=false;
-		line = ucr::maketstring((LPCSTR)m_current, eolptr-m_current, m_codepage, &lossy);
+		sline.Set(ucr::maketstring((LPCSTR)m_current, eolptr-m_current, m_codepage, &lossy));
 		if (!eof)
 		{
 			eol += (TCHAR)*eolptr;
@@ -564,7 +577,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 				++m_lineno;
 			return TRUE;
 		}
-		line += sch;
+		sline.Append(sch);
 	}
 	return TRUE;
 }
@@ -757,8 +770,17 @@ BOOL UniStdioFile::ReadString(CString & line)
 	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
 	return FALSE;
 }
-
 BOOL UniStdioFile::ReadString(CString & line, CString & eol)
+{
+	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
+	return FALSE;
+}
+BOOL UniStdioFile::ReadString(sbuffer & sline)
+{
+	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
+	return FALSE;
+}
+BOOL UniStdioFile::ReadString(sbuffer & sline, CString & eol)
 {
 	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
 	return FALSE;
@@ -883,18 +905,19 @@ GuessCodepageEncoding(const CString & filepath, int * unicoding, int * codepage,
 static bool
 demoGuessEncoding_html(UniFile * pufile, int * encoding, int * codepage)
 {
-	CString line, eol;
+	CString eol;
+	sbuffer sline(1024);
 	while (1)
 	{
 		if (pufile->GetLineNumber() > 30)
 			break;
-		if (!pufile->ReadString(line, eol))
+		if (!pufile->ReadString(sline, eol))
 			break;
 		static CString metapref = _T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=");
-		if (line.Left(metapref.GetLength()).CompareNoCase(metapref))
+		if (!sline.StartsWithInsensitive(metapref))
 			continue;
 
-		CString cpstring = line.Mid(metapref.GetLength());
+		CString cpstring = sline.Left(metapref.GetLength());
 		int closequote = cpstring.Find('"');
 		if (closequote == -1)
 			break;
@@ -918,15 +941,19 @@ demoGuessEncoding_html(UniFile * pufile, int * encoding, int * codepage)
 static bool
 demoGuessEncoding_rc(UniFile * pufile, int * encoding, int * codepage)
 {
-	CString line, eol;
+	CString eol;
+	sbuffer sline(1024);
 	while (1)
 	{
 		if (pufile->GetLineNumber() > 30)
 			break;
-		if (!pufile->ReadString(line, eol))
+		if (!pufile->ReadString(sline, eol))
 			break;
+		static CString pragmacodepage = _T("#pragma code_page");
+		if (!sline.StartsWithInsensitive(pragmacodepage))
+			continue;
 		int cp=0;
-		if (1 == _stscanf(line, _T("#pragma code_page(%d)"), &cp)
+		if (1 == _stscanf(sline.GetData(), _T("#pragma code_page(%d)"), &cp)
 			&& cp>0)
 		{
 			*codepage = cp;

@@ -53,6 +53,7 @@
 #include "DiffFileInfo.h"
 #include "SaveClosingDlg.h"
 #include "DiffList.h"
+#include "sbuffer.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1411,7 +1412,8 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		if (!pufile->ReadBom())
 			pufile->SetCodepage(codepage);
 		UINT lineno = 0;
-		CString line, eol, preveol;
+		CString eol, preveol;
+		sbuffer sline(1024);
 		bool done = false;
 		int next_line_report = 100; // for trace messages
 		int next_line_multiple = 5; // for trace messages
@@ -1425,7 +1427,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		preveol = "\n";
 		
 		do {
-			done = !pufile->ReadString(line, eol);
+			done = !pufile->ReadString(sline, eol);
 
 
 			if (pufile->GetTxtStats().nzeros)
@@ -1447,8 +1449,8 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 				m_aLines.SetSize(arraysize);
 			}
 
-			line += eol;
-			AppendLine(lineno, line, line.GetLength());
+			sline.Append(eol);
+			AppendLine(lineno, sline.GetData(), sline.GetLength());
 			++lineno;
 			preveol = eol;
 

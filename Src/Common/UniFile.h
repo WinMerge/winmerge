@@ -2,13 +2,17 @@
  *  @file   UniFile.h
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-01-19 (Perry)
+ *  @date   Edited:  2004-10-24 (Perry)
  *
  *  @brief  Declaration of Memory-Mapped Unicode enabled file class
  */
 
 #ifndef UniFile_h_included
 #define UniFile_h_included
+
+#ifndef sbuffer_h_included
+#include "sbuffer.h"
+#endif
 
 /**
  * @brief Interface to file classes in this module
@@ -44,8 +48,12 @@ public:
 	virtual int GetCodepage() const = 0;
 	virtual void SetCodepage(int codepage) = 0;
 
+protected:
 	virtual BOOL ReadString(CString & line) = 0;
 	virtual BOOL ReadString(CString & line, CString & eol) = 0;
+public:
+	virtual BOOL ReadString(sbuffer & line) = 0;
+	virtual BOOL ReadString(sbuffer & line, CString & eol) = 0;
 
 	virtual int GetLineNumber() const = 0;
 	virtual __int64 GetPosition() const = 0;
@@ -132,8 +140,12 @@ public:
 
 	virtual bool ReadBom();
 
+protected:
 	virtual BOOL ReadString(CString & line);
 	virtual BOOL ReadString(CString & line, CString & eol);
+public:
+	virtual BOOL ReadString(sbuffer & line);
+	virtual BOOL ReadString(sbuffer & line, CString & eol);
 
 	virtual __int64 GetPosition() const { return m_current - m_base; }
 
@@ -174,8 +186,12 @@ public:
 
 	virtual bool ReadBom();
 
+protected:
 	virtual BOOL ReadString(CString & line);
 	virtual BOOL ReadString(CString & line, CString & eol);
+public:
+	virtual BOOL ReadString(sbuffer & line);
+	virtual BOOL ReadString(sbuffer & line, CString & eol);
 
 	virtual __int64 GetPosition() const;
 
