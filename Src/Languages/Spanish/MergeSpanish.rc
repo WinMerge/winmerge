@@ -785,7 +785,7 @@ BEGIN
     IDS_VSS_CMD             "&Path to SS.EXE :"
     IDS_VSS_RUN_ERROR       "Error executing versioning system command."
     IDS_DIFF_OPEN_NO_SET_PROPS
-                            "Modifications have been made to the current file comparison session.  Some property settings may not take place until the current file comparison is restarted."
+                            "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
     IDS_LTIME_HEADER        "Left Date"
     IDS_RTIME_HEADER        "Right Date"
     IDS_EXTENSION_HEADER    "Extension"
