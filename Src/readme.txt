@@ -1,3 +1,7 @@
+2003-09-22 Kimmo
+ PATCH: [ 809902 ] Show if file is changed
+  WinMerge: MergeDoc.h MergeDoc.cpp MergeEditView.cpp
+
 2003-09-21 Kimmo
  BUG: [ 807766 ] File filter rules not applied to unique items (2.1)
   WinMerge: DirScan.cpp

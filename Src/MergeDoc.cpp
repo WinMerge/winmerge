@@ -616,7 +616,9 @@ BOOL CMergeDoc::TrySaveAs(CString strPath, BOOL &bSaveSuccess, BOOL bLeft)
 			else
 				bSaveSuccess = m_rtBuf.SaveToFile(strPath, FALSE);
 
-			if (!bSaveSuccess)
+			if (bSaveSuccess)
+				UpdateHeaderPath(bLeft);
+			else
 				result = FALSE;
 		}
 		break;
@@ -681,11 +683,7 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 		{
 			bSaveSuccess = TRUE;
 			m_strLeftFile = strSavePath;
-			CChildFrame *parent = dynamic_cast<CChildFrame*>(dynamic_cast<CMDIFrameWnd*>(AfxGetMainWnd())->MDIGetActive());
-			if(parent)
-			{
-				parent->SetHeaderText(0, m_strLeftFile);
-			}
+			UpdateHeaderPath(TRUE);
 		}
 		else
 		{
@@ -705,11 +703,7 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 		{
 			bSaveSuccess = TRUE;
 			m_strRightFile = strSavePath;
-			CChildFrame *parent = dynamic_cast<CChildFrame*>(dynamic_cast<CMDIFrameWnd*>(AfxGetMainWnd())->MDIGetActive());
-			if(parent)
-			{
-				parent->SetHeaderText(1, m_strRightFile);
-			}
+			UpdateHeaderPath(FALSE);
 		}
 		else
 		{
@@ -1510,6 +1504,10 @@ void CMergeDoc::PrimeTextBuffers()
 	m_rtBuf.FinishLoading();
 }
 
+/**
+ * @brief Saves file if file is modified. If file is
+ * opened from directory compare, status there is updated.
+ */
 BOOL CMergeDoc::SaveHelper()
 {
 	BOOL result = TRUE;
@@ -1581,8 +1579,10 @@ void CMergeDoc::RescanIfNeeded(float timeOutInSecond)
 		FlushAndRescan();
 }
 
-// We have two child views (left & right), so we keep pointers directly
-// at them (the MFC view list doesn't have them both)
+/**
+ * @brief We have two child views (left & right), so we keep pointers directly
+ * at them (the MFC view list doesn't have them both)
+ */
 void CMergeDoc::SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight)
 {
 	ASSERT(pLeft && !m_pLeftView);
@@ -1591,7 +1591,9 @@ void CMergeDoc::SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight)
 	m_pRightView = pRight;
 }
 
-// Someone is giving us pointers to our detail views
+/**
+ * @brief Someone is giving us pointers to our detail views
+ */
 void CMergeDoc::SetMergeDetailViews(CMergeDiffDetailView * pLeft, CMergeDiffDetailView * pRight)
 {
 	ASSERT(pLeft && !m_pLeftDetailView);
@@ -1600,19 +1602,26 @@ void CMergeDoc::SetMergeDetailViews(CMergeDiffDetailView * pLeft, CMergeDiffDeta
 	m_pRightDetailView = pRight;
 }
 
-// DirDoc gives us its identity just after it creates us
+/**
+ * @brief DirDoc gives us its identity just after it creates us
+ */
 void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
 {
 	ASSERT(pDirDoc && !m_pDirDoc);
 	m_pDirDoc = pDirDoc;
 }
 
+/**
+ * @brief Return pointer to parent frame
+ */
 CChildFrame * CMergeDoc::GetParentFrame() 
 {
 	return dynamic_cast<CChildFrame *>(m_pLeftView->GetParentFrame()); 
 }
 
-// DirDoc is closing
+/**
+ * @brief DirDoc is closing
+ */
 void CMergeDoc::DirDocClosing(CDirDoc * pDirDoc)
 {
 	ASSERT(m_pDirDoc == pDirDoc);
@@ -1620,7 +1629,9 @@ void CMergeDoc::DirDocClosing(CDirDoc * pDirDoc)
 	// TODO (Perry 2003-03-30): perhaps merge doc should close now ?
 }
 
-// DirDoc commanding us to close
+/**
+ * @brief DirDoc commanding us to close
+ */
 BOOL CMergeDoc::CloseNow()
 {
 	if (!SaveHelper())
@@ -1630,7 +1641,9 @@ BOOL CMergeDoc::CloseNow()
 	return TRUE;
 }
 
-// return true if characters match
+/**
+ * @brief Return true if characters match
+ */
 static bool casematch(BOOL case_sensitive, TCHAR ch1, TCHAR ch2)
 {
 	if (case_sensitive) 
@@ -1639,9 +1652,11 @@ static bool casematch(BOOL case_sensitive, TCHAR ch1, TCHAR ch2)
 		return toupper(ch1)==toupper(ch2);
 }
 
-// find first difference between str1 and str2
-// whitespace==1 means ignore changes
-// whitespace==2 means ignore all whitespace
+/**
+ * @brief Find first difference between str1 and str2
+ * @param whitespace Value = 1 means ignore changes and
+ * value = 2 means ignore all whitespaces
+ */
 static int firstdiff(BOOL case_sensitive, int whitespace, const CString & str1, const CString & str2)
 {
 	int i1=0, i2=0;
@@ -1697,9 +1712,11 @@ static int firstdiff(BOOL case_sensitive, int whitespace, const CString & str1, 
 	}
 }
 
-// find last difference between str1 and str2
-// whitespace==1 means ignore changes
-// whitespace==2 means ignore all whitespace
+/**
+ * @brief Find last difference between str1 and str2
+ * @param whitespace Value = 1 means ignore changes and
+ * value = 2 means ignore all whitespaces
+ */
 static int lastdiff(BOOL case_sensitive, int whitespace, const CString & str1, const CString & str2)
 {
 	int i1=str1.GetLength()-1, i2=str2.GetLength()-1;
@@ -1755,7 +1772,9 @@ static int lastdiff(BOOL case_sensitive, int whitespace, const CString & str1, c
 	}
 }
 
-/// Highlight difference in current line
+/**
+ * @brief Highlight difference in current line
+ */
 void CMergeDoc::Showlinediff(CMergeEditView * pView)
 {
 	CMergeEditView * pOther = (pView == m_pLeftView ? m_pRightView : m_pLeftView);
@@ -1766,6 +1785,10 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView)
 	pView->SetCursorPos(rectDiff.TopLeft());
 	pView->EnsureVisible(rectDiff.TopLeft());
 }
+
+/**
+ * @brief Highlight difference in diff pane's current line
+ */
 void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView)
 {
 	CMergeDiffDetailView * pOther = (pView == m_pLeftDetailView ? m_pRightDetailView : m_pLeftDetailView);
@@ -1882,8 +1905,6 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	DIFFOPTIONS diffOptions = {0};
 	int nRescanResult = RESCAN_OK;
 	m_diffWrapper.GetOptions(&diffOptions);
-	CChildFrame *pf = GetParentFrame();
-	ASSERT(pf);
 
 	m_ltBuf.SetEolSensitivity(diffOptions.bEolSensitive);
 	m_rtBuf.SetEolSensitivity(diffOptions.bEolSensitive);
@@ -1958,8 +1979,8 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		pRight->SetDisableBSAtSOL(FALSE);
 		
 		// set the frame window header
-		pf->SetHeaderText(0, sLeftFile);
-		pf->SetHeaderText(1, sRightFile);
+		UpdateHeaderPath(TRUE);
+		UpdateHeaderPath(FALSE);
 
 		// Set tab type (tabs/spaces)
 		BOOL bInsertTabs = (mf->m_nTabType == 0);
@@ -1996,4 +2017,35 @@ void CMergeDoc::ReadSettings()
 	// We have to first get current options
 	CDiffWrapper::ReadDiffOptions(&diffOptions);
 	m_diffWrapper.SetOptions(&diffOptions);
+}
+
+/**
+ * @brief Write path and filename to headerbar
+ * @note SetHeaderText() does not repaint unchanged text
+ */
+void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
+{
+	CChildFrame *pf = GetParentFrame();
+	ASSERT(pf);
+	int nPane = 0;
+	CString sText;
+	BOOL bChanges = FALSE;
+
+	if (bLeft)
+	{
+		sText = m_strLeftFile;
+		bChanges = m_ltBuf.IsModified();
+		nPane = 0;
+	}
+	else
+	{
+		sText = m_strRightFile;
+		bChanges = m_rtBuf.IsModified();
+		nPane = 1;
+	}
+
+	if (bChanges)
+		sText.Insert(0, _T("* "));
+
+	pf->SetHeaderText(nPane, sText);
 }

@@ -84,6 +84,10 @@ class CMergeDoc : public CDocument
 {
 // Attributes
 public:
+
+/**
+ * @brief Specialized buffer to save file data
+ */
 class CDiffTextBuffer : public CGhostTextBuffer
 	{
 		friend class CMergeDoc;
@@ -182,6 +186,7 @@ public:
 	UINT m_nDiffs;
 	CString m_strLeftFile, m_strRightFile;
 
+	void UpdateHeaderPath(BOOL bLeft);
 	void ReadSettings();
 	BOOL OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft = FALSE, BOOL bRORight = FALSE);

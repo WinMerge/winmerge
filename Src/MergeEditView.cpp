@@ -182,11 +182,17 @@ BOOL CMergeEditView::PrimeListWithFile()
 	return TRUE;
 }
 
+/**
+ * @brief Return text from line given
+ */
 CString CMergeEditView::GetLineText(int idx)
 {
 	return GetLineChars(idx);
 }
 
+/**
+ * @brief Return text from selection
+ */
 CString CMergeEditView::GetSelectedText()
 {
 	CPoint ptStart, ptEnd;
@@ -220,7 +226,7 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 }
 
 /**
- * @brief Determine text and backgdound color for line
+ * @brief Determine text and background color for line
  */
 void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, BOOL & bDrawWhitespace)
@@ -321,6 +327,9 @@ void CMergeEditView::UpdateSiblingScrollPos (BOOL bHorz)
 	}
 }
 
+/**
+ * @brief Update other panes
+ */
 void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz)
 {
 	if (pUpdateSource != this)
@@ -375,6 +384,9 @@ void CMergeEditView::SelectDiff(int nDiff, BOOL bScroll /*=TRUE*/, BOOL bSelectT
 	pd->GetLeftDetailView()->OnDisplayDiff(nDiff);
 }
 
+/**
+ * @brief Go to active diff
+ */
 void CMergeEditView::OnCurdiff()
 {
 	CMergeDoc *pd = GetDocument();
@@ -397,6 +409,9 @@ void CMergeEditView::OnCurdiff()
 	}
 }
 
+/**
+ * @brief Called when "Current diff" item is updated
+ */
 void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
@@ -413,6 +428,9 @@ void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 		pCmdUI->Enable(TRUE);
 }
 
+/**
+ * @brief Copy selected text to clipboard
+ */
 void CMergeEditView::OnEditCopy()
 {
 	CMergeDoc * pDoc = GetDocument();
@@ -434,11 +452,17 @@ void CMergeEditView::OnEditCopy()
 	PutToClipboard(text);
 }
 
+/**
+ * @brief Called when "Copy" item is updated
+ */
 void CMergeEditView::OnUpdateEditCopy(CCmdUI* pCmdUI)
 {
 	CCrystalEditViewEx::OnUpdateEditCopy(pCmdUI);
 }
 
+/**
+ * @brief Cut current selection to clipboard
+ */
 void CMergeEditView::OnEditCut()
 {
 	if (IsReadOnly(m_bIsLeft))
@@ -479,6 +503,9 @@ void CMergeEditView::OnEditCut()
 	m_pTextBuffer->SetModified(TRUE);
 }
 
+/**
+ * @brief Called when "Cut" item is updated
+ */
 void CMergeEditView::OnUpdateEditCut(CCmdUI* pCmdUI)
 {
 	if (!IsReadOnly(m_bIsLeft))
@@ -487,6 +514,9 @@ void CMergeEditView::OnUpdateEditCut(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
+/**
+ * @brief Paste text from clipboard
+ */
 void CMergeEditView::OnEditPaste()
 {
 	if (IsReadOnly(m_bIsLeft))
@@ -496,6 +526,9 @@ void CMergeEditView::OnEditPaste()
 	m_pTextBuffer->SetModified(TRUE);
 }
 
+/**
+ * @brief Called when "Paste" item is updated
+ */
 void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
 {
 	if (!IsReadOnly(m_bIsLeft))
@@ -504,6 +537,9 @@ void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
 		pCmdUI->Enable(FALSE);
 }
 
+/**
+ * @brief Undo last action
+ */
 void CMergeEditView::OnEditUndo()
 {
 	CMergeDoc* pDoc = GetDocument();
@@ -517,6 +553,7 @@ void CMergeEditView::OnEditUndo()
 		if(CCrystalEditViewEx::DoEditUndo()) 
 		{
 			--pDoc->curUndo;
+			pDoc->UpdateHeaderPath(m_bIsLeft);
 			pDoc->FlushAndRescan();
 		}
 	}
@@ -526,6 +563,9 @@ void CMergeEditView::OnEditUndo()
 	}
 }
 
+/**
+ * @brief Called when "Undo" item is updated
+ */
 void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
@@ -687,13 +727,18 @@ void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 	pCmdUI->Enable(pd->m_nDiffs>0 && pos.y > (long)pd->m_diffs[0].dend0);
 }
 
+/**
+ * @brief Clear selection
+ */
 void CMergeEditView::SelectNone()
 {
 	SetSelection (GetCursorPos(), GetCursorPos());
 	UpdateCaret();
 }
 
-/// Check if line is inside currently selected diff
+/**
+ * @brief Check if line is inside currently selected diff
+ */
 BOOL CMergeEditView::IsLineInCurrentDiff(int nLine)
 {
 	CMergeDoc *pd = GetDocument();
@@ -839,6 +884,9 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 	CCrystalEditViewEx::OnEditOperation(nAction, pszText);
 
 	// augment with additional operations
+	
+	// Change header to inform about changed doc
+	pDoc->UpdateHeaderPath(m_bIsLeft);
 
 	// If automatic rescan enabled, rescan after edit events
 	if (m_bAutomaticRescan)
@@ -872,6 +920,7 @@ void CMergeEditView::OnEditRedo()
 		if(CCrystalEditViewEx::DoEditRedo()) 
 		{
 			++pDoc->curUndo;
+			pDoc->UpdateHeaderPath(m_bIsLeft);
 			pDoc->FlushAndRescan();
 		}
 	}
