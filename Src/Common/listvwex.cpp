@@ -146,11 +146,14 @@ void CListViewEx::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	{
 		clrTextSave=pDC->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
 		clrBkSave=pDC->SetBkColor(::GetSysColor(COLOR_HIGHLIGHT));
-
-		pDC->FillRect(rcAllLabels,&CBrush(::GetSysColor(COLOR_HIGHLIGHT)));
+		CBrush brush(::GetSysColor(COLOR_HIGHLIGHT));
+		pDC->FillRect(rcAllLabels,&brush);
 	}
 	else
-		pDC->FillRect(rcAllLabels,&CBrush(m_clrTextBk));
+	{
+		CBrush brush(m_clrTextBk);
+		pDC->FillRect(rcAllLabels,&brush);
+	}
 
 // set color and mask for the icon
 
@@ -363,19 +366,19 @@ LRESULT CListViewEx::OnSetImageList(WPARAM wParam, LPARAM lParam)
 	return(Default());
 }
 
-LRESULT CListViewEx::OnSetTextColor(WPARAM wParam, LPARAM lParam)
+LRESULT CListViewEx::OnSetTextColor(WPARAM /*wParam*/, LPARAM lParam)
 {
 	m_clrText=(COLORREF)lParam;
 	return(Default());
 }
 
-LRESULT CListViewEx::OnSetTextBkColor(WPARAM wParam, LPARAM lParam)
+LRESULT CListViewEx::OnSetTextBkColor(WPARAM /*wParam*/, LPARAM lParam)
 {
 	m_clrTextBk=(COLORREF)lParam;
 	return(Default());
 }
 
-LRESULT CListViewEx::OnSetBkColor(WPARAM wParam, LPARAM lParam)
+LRESULT CListViewEx::OnSetBkColor(WPARAM /*wParam*/, LPARAM lParam)
 {
 	m_clrBkgnd=(COLORREF)lParam;
 	return(Default());

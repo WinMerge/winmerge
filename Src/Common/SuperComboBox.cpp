@@ -277,7 +277,7 @@ int CSuperComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 {
 	// Get the number of pathnames that have been dropped
-	WORD wNumFilesDropped = DragQueryFile(dropInfo, -1, NULL, 0);
+	UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
 
 	CString firstFile="";
 
@@ -285,7 +285,7 @@ void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 	for (WORD x = 0 ; x < wNumFilesDropped; x++) {
 
 		// Get the number of bytes required by the file's full pathname
-		WORD wPathnameSize = DragQueryFile(dropInfo, x, NULL, 0);
+		UINT wPathnameSize = DragQueryFile(dropInfo, x, NULL, 0);
 
 		// Allocate memory to contain full pathname & zero byte
 		char * npszFile = (char *) LocalAlloc(LPTR, wPathnameSize += 1);

@@ -39,12 +39,12 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 6
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "Release"
-# PROP Intermediate_Dir "Release"
+# PROP Output_Dir "..\Build\MergeRelease"
+# PROP Intermediate_Dir "..\Build\MergeRelease"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W4 /GX /Zi /Od /I "ms" /I "." /I "..\releases\current\common" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W4 /GX /Zi /Od /I "." /I "..\common" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
@@ -54,10 +54,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"Release/WinMerge.exe" /verbose:lib
+# ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=.\Release\WinMerge.exe
+TargetPath=\Programs\Merge\Build\MergeRelease\WinMerge.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -71,12 +71,12 @@ PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 6
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Debug"
-# PROP Intermediate_Dir "Debug"
+# PROP Output_Dir "..\Build\MergeDebug"
+# PROP Intermediate_Dir "..\Build\MergeDebug"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "ms" /I "." /I "..\releases\current\common" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /FR /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "." /I "..\common" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /FR /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
@@ -86,7 +86,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /out:"Debug/WinMerge.exe" /pdbtype:sept
+# ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeDebug/WinMerge.exe" /pdbtype:sept
 
 !ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
 
@@ -98,12 +98,12 @@ LINK32=link.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 6
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Merge___"
-# PROP Intermediate_Dir "Merge___"
+# PROP Output_Dir "..\Build\MergeBC"
+# PROP Intermediate_Dir "..\Build\MergeBC"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /I "ms" /I "." /I "..\releases\current\common" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W3 /GX /ZI /Od /I "ms" /I "." /I "..\releases\current\common" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MDd /W3 /GX /ZI /Od /I "." /I "..\common" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
@@ -113,7 +113,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /out:"Debug/WinMerge.exe" /pdbtype:sept
-# ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /out:"Debug/WinMerge.exe" /pdbtype:sept
+# ADD LINK32 version.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeBC/WinMerge.exe" /pdbtype:sept
 
 !ENDIF 
 
@@ -205,18 +205,7 @@ SOURCE=.\CONTEXT.C
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\coretools.cpp
-
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-!ENDIF 
-
+SOURCE=..\common\coretools.cpp
 # End Source File
 # Begin Source File
 
@@ -428,37 +417,15 @@ SOURCE=.\IO.C
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\LanguageSelect.cpp
+SOURCE=..\common\LanguageSelect.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\listvwex.cpp
-
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-!ENDIF 
-
+SOURCE=..\common\listvwex.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\LogFile.cpp
-
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-!ENDIF 
-
+SOURCE=..\common\LogFile.cpp
 # End Source File
 # Begin Source File
 
@@ -598,22 +565,11 @@ SOURCE=.\REGEX.C
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\RegExp.cpp
+SOURCE=..\common\RegExp.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\RegKey.cpp
-
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-!ENDIF 
-
+SOURCE=..\common\RegKey.cpp
 # End Source File
 # Begin Source File
 
@@ -653,7 +609,7 @@ SOURCE=.\Splash.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\StatLink.cpp
+SOURCE=..\common\StatLink.cpp
 # End Source File
 # Begin Source File
 
@@ -678,26 +634,15 @@ SOURCE=.\StdAfx.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\StringEx.cpp
+SOURCE=..\common\StringEx.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\SuperComboBox.cpp
+SOURCE=..\common\SuperComboBox.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\1.5\Common\textfile.cpp
-
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-!ENDIF 
-
+SOURCE=..\common\textfile.cpp
 # End Source File
 # Begin Source File
 
@@ -722,18 +667,7 @@ SOURCE=.\UTIL.C
 # End Source File
 # Begin Source File
 
-SOURCE=..\Releases\Current\common\version.cpp
-
-!IF  "$(CFG)" == "Merge - Win32 Release"
-
-# SUBTRACT CPP /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Bound Check"
-
-!ENDIF 
-
+SOURCE=..\common\version.cpp
 # End Source File
 # Begin Source File
 

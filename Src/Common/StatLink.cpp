@@ -38,7 +38,7 @@ CStaticLink::CStaticLink()
 // For a text control, use visited/unvisited colors and underline font.
 // For non-text controls, do nothing. Also ensures SS_NOTIFY is on.
 //
-HBRUSH CStaticLink::CtlColor(CDC* pDC, UINT nCtlColor)
+HBRUSH CStaticLink::CtlColor(CDC* pDC, UINT /*nCtlColor*/)
 {
 	ASSERT(nCtlColor == CTLCOLOR_STATIC);
 	DWORD dwStyle = GetStyle();

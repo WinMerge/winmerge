@@ -499,7 +499,7 @@ void CRegExp::regtail(TCHAR *p, TCHAR *val)
 	for (scan = p; (temp = regnext(scan)) != NULL; scan = temp)
 		continue;
 
-	*((short *)(scan+1)) = (OP(scan) == BACK) ? scan - val : val - scan;
+	*((short *)(scan+1)) = (short)((OP(scan) == BACK) ? scan - val : val - scan);
 }
 
 
