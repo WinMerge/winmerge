@@ -3,6 +3,8 @@
   WinMerge: MainFrm.cpp
  PATCH: [ 778384 ] Sync OnDropFiles() from MainFrame to SuperComboBox
   common: SuperComboBox.cpp
+ PATCH: [ 778403 ] Fix accel keys in lang files
+  Languages: ChineseSimplified, ChineseTraditional 
 
 2003-07-27 Perry
  PATCH: [ 778290 ] Typo in comment

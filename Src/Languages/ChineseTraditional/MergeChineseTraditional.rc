@@ -27,18 +27,18 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE DISCARDABLE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE DISCARDABLE
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE DISCARDABLE
 BEGIN
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
@@ -188,8 +188,9 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS FIXED IMPURE 
+IDR_MAINFRAME ACCELERATORS FIXED IMPURE
 BEGIN
+    "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,                  VIRTKEY, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,                  VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,                  VIRTKEY, CONTROL, NOINVERT
@@ -198,6 +199,9 @@ BEGIN
     "P",            ID_FILE_PRINT,                  VIRTKEY, CONTROL, NOINVERT
     "S",            ID_FILE_SAVE,                  VIRTKEY, CONTROL, NOINVERT
     "V",            ID_EDIT_PASTE,                  VIRTKEY, CONTROL, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
     VK_BACK,        ID_EDIT_UNDO,                  VIRTKEY, ALT, NOINVERT
     VK_DELETE,      ID_EDIT_CUT,                  VIRTKEY, SHIFT, NOINVERT
     VK_DOWN,        ID_NEXTDIFF,                  VIRTKEY, ALT, NOINVERT
@@ -215,7 +219,6 @@ BEGIN
     VK_RETURN,      ID_CURDIFF,                  VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2R,                  VIRTKEY, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,                  VIRTKEY, ALT, NOINVERT
-    "X",            ID_EDIT_CUT,                  VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -248,17 +251,17 @@ CAPTION "選取檔案或資料夾..."
 FONT 9, "新細明體"
 BEGIN
     LTEXT           "左邊(&L):",-1,34,24,19,8
-    COMBOBOX        IDC_RIGHT_EDIT,56,22,182,94,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+    COMBOBOX        IDC_RIGHT_EDIT,56,22,182,94,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
     PUSHBUTTON      "瀏覽(&B)...",IDC_LEFT_BUTTON,241,22,38,12
     LTEXT           "右邊(&R):",-1,33,40,20,8
-    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
     PUSHBUTTON      "瀏覽(&W)...",IDC_RIGHT_BUTTON,241,38,38,12
     LTEXT           "副檔名(&X):",-1,16,56,37,8
-    COMBOBOX        IDC_MESSAGE,56,54,151,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+    COMBOBOX        IDC_MESSAGE,56,54,151,95,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "子資料夾(&C)",IDC_WHITESPACE_CHECK,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "子資料夾(&C)",IDC_WHITESPACE_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,35,77,57,10
     DEFPUSHBUTTON   "確定",1,295,11,50,14
     PUSHBUTTON      "取消",CBRS_SIZE_FIXED,295,28,50,14
@@ -276,7 +279,7 @@ BEGIN
     PUSHBUTTON      "取消",CBRS_SIZE_FIXED,173,121,50,14
     PUSHBUTTON      "另存新檔...",IDSAVEAS,103,121,50,14
     LTEXT           "專案:",-1,9,61,25,8
-    COMBOBOX        IDC_RIGHT_COMBO,36,58,215,114,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+    COMBOBOX        IDC_RIGHT_COMBO,36,58,215,114,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP
     LTEXT           "用戶:",-1,13,80,18,8
     EDITTEXT        IDC_USER,36,78,58,14,ES_AUTOHSCROLL
@@ -293,7 +296,7 @@ BEGIN
     LTEXT           "cleartool.exe 路徑(&P):",IDC_SCROLL_CHECK,16,42,68,8
     EDITTEXT        IDC_PATH_EDIT,85,40,116,12,ES_AUTOHSCROLL
     PUSHBUTTON      "瀏覽(&B)...",IDC_BROWSE_BUTTON,206,40,42,12
-    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL | 
+    COMBOBOX        IDC_VER_SYS,85,20,157,41,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "版本系統(&V)",-1,16,22,60,10
 END
@@ -304,21 +307,21 @@ CAPTION "一般"
 FONT 9, "新細明體"
 BEGIN
     GROUPBOX        "設定",-1,7,7,221,94
-    CONTROL         "備份原始的檔案(&B)",IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "備份原始的檔案(&B)",IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,19,83,10
     CONTROL         "自動地捲動到第一個不同(&S)",IDC_SCROLL_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,30,129,10
-    CONTROL         "忽略空白列(&K)",IDC_VERSION,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "忽略空白列(&K)",IDC_VERSION,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,41,71,10
-    CONTROL         "忽略大小寫(&C)",IDC_WWW,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "忽略大小寫(&C)",IDC_WWW,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,52,69,10
-    CONTROL         "敏感對列結束(&E)",IDC_USER,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "敏感對列結束(&E)",IDC_USER,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,63,74,10
-    CONTROL         "停用引人注目的螢幕(&D)",IDC_DISABLE_SPLASH,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "停用引人注目的螢幕(&D)",IDC_DISABLE_SPLASH,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,74,100,10
-    CONTROL         "自動重新掃描(&R)",IDC_AUTOMRESCAN_CHECK,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "自動重新掃描(&R)",IDC_AUTOMRESCAN_CHECK,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,17,85,75,10
-    CONTROL         "比對空白和跳格(&W)",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "比對空白和跳格(&W)",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,125,45,87,10
     CONTROL         "忽略空白和跳格更改(&H)",IDC_WHITE_CHANGE,"Button",
                     BS_AUTORADIOBUTTON,125,56,99,10
@@ -327,7 +330,7 @@ BEGIN
     GROUPBOX        "跳格",-1,7,105,221,30,WS_GROUP
     LTEXT           "跳格大小(&T):",-1,10,119,35,8
     EDITTEXT        IDC_TAB_EDIT,47,117,22,12,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
-    CONTROL         "插入跳格字元(&T)",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "插入跳格字元(&T)",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,79,113,76,10
     CONTROL         "插入空白(&N)",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,79,122,
                     59,10
@@ -340,7 +343,7 @@ FONT 9, "新細明體"
 BEGIN
     PUSHBUTTON      "確定",IDOK,154,16,52,14
     PUSHBUTTON      "取消",IDCANCEL,154,33,52,14
-    LISTBOX         1037,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+    LISTBOX         1037,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "可用的語言:",-1,7,7,66,8
 END
@@ -351,11 +354,11 @@ CAPTION "尋找"
 FONT 9, "新細明體"
 BEGIN
     COMBOBOX        IDC_EDIT_FINDTEXT,46,6,135,135,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "全字拼寫須相符(&W)",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "全字拼寫須相符(&W)",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX |
                     WS_GROUP | WS_TABSTOP,4,26,100,12
-    CONTROL         "大小寫須相符(&C)",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "大小寫須相符(&C)",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,4,40,75,12
-    CONTROL         "一般運算式(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "一般運算式(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,4,54,77,12
     CONTROL         "上移(&U)",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
                     111,36,43,12
@@ -371,15 +374,15 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "取代"
 FONT 9, "新細明體"
 BEGIN
-    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | 
+    COMBOBOX        IDC_EDIT_FINDTEXT,52,7,116,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL |
                     WS_TABSTOP
-    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | 
+    COMBOBOX        IDC_EDIT_REPLACE_WITH,52,24,116,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL |
                     WS_TABSTOP
-    CONTROL         "全字拼寫須相符(&W)",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "全字拼寫須相符(&W)",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX |
                     WS_GROUP | WS_TABSTOP,5,46,91,12
-    CONTROL         "大小寫須相符(&C)",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "大小寫須相符(&C)",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,5,60,73,12
-    CONTROL         "一般運算式(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "一般運算式(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,5,74,77,12
     CONTROL         "選取(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
                     102,57,59,10
@@ -402,7 +405,7 @@ BEGIN
     DEFPUSHBUTTON   "勘試",1,35,90,50,14
     PUSHBUTTON      "取消",CBRS_SIZE_FIXED,194,90,50,14
     PUSHBUTTON      "另存新檔...",IDSAVEAS,114,90,50,14
-    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
+    EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "註解",-1,18,7,34,10
 END
@@ -421,13 +424,13 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "濾鏡"
 FONT 9, "新細明體"
 BEGIN
-    CONTROL         "忽略列符合下列的樣式",IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "忽略列符合下列的樣式",IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,7,221,15
     LTEXT           "一般運算式 (每列一個):",-1,7,28,221,8
-    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | ES_AUTOHSCROLL | 
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | ES_AUTOHSCROLL |
                     ES_WANTRETURN
     LTEXT           "檔案濾鏡:",-1,7,128,60,10
-    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST | WS_VSCROLL | 
+    COMBOBOX        IDC_FILE_FILTER,81,126,136,63,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
 END
 
@@ -458,7 +461,7 @@ STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "登錄"
 FONT 9, "新細明體", 0, 0, 0x1
 BEGIN
-    CONTROL         "關聯到資料夾",IDC_ASSOC_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "關聯到資料夾",IDC_ASSOC_DIRECTORY,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,7,221,15
     CONTROL         "Add to explorer context menu",IDC_EXPLORER_CONTEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,21,108,10
@@ -564,16 +567,16 @@ IDB_BINARYDIFF          BITMAP  DISCARDABLE     "res\\binarydiff.bmp"
 IDD_PROP_VSS DLGINIT
 BEGIN
     1018, 0x403, 5, 0
-0x6f4e, 0x656e, "\000" 
+0x6f4e, 0x656e, "\000"
     1018, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029, 
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029,
     1018, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029, 
+0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065,
+0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029,
     1018, 0x403, 19, 0
-0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
-"\000" 
+0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573,
+"\000"
     0
 END
 
@@ -589,14 +592,14 @@ IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
 // String Table
 //
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
     IDD_OPEN                "WinMerge 這個資料夾"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     CBRS_BORDER_3D          " "
     129                     " "
@@ -616,7 +619,7 @@ BEGIN
     IDS_CANT_COMPARE_FILES  "無法比對檔案"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     IDS_SAVE_AS_TITLE       "另存新檔"
     IDS_SELECT_FILES_OR_FOLDERS "你的選取必須是兩者都是檔案或兩者都是資料夾"
@@ -636,7 +639,7 @@ BEGIN
     IDS_NOPROJECT           "你必須指定一個 SourceSafe 專案路徑以便繼續 (例如：  $/MyProject)"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     IDS_FILENAME_HEADER     "檔案名稱"
     IDS_DIR_HEADER          "資料夾"
@@ -656,7 +659,7 @@ BEGIN
     IDS_DEL_LEFT_FMT        "刪除左邊 %1 在 %2 選取的項目"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     IDS_DEL_RIGHT_FMT       "刪除右邊 %1 在 %2 選取的項目"
     IDS_DELETE_FAILED       "刪除檔案 %1 失敗： %2"
@@ -675,7 +678,7 @@ BEGIN
     IDS_BIN_FILES_SAME      "二進制檔案完全相同"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     IDS_FILESAVE_FAILED     "儲存 %1 失敗。你要以一個不同的名稱儲存檔案嗎？"
     IDS_ERROR_FILE_NOT_FOUND "檔案找不到: %1"
@@ -688,13 +691,13 @@ BEGIN
     IDS_STATUS_COPYALL2R    "正在全部複製到右邊"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     IDS_NUM_REPLACED        "已取代 %1 個字串。"
     IDS_EDIT_TEXT_NOT_FOUND "無法尋找字串「%s」"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     CBRS_ALIGN_BOTTOM       " "
     32769                   " "
@@ -714,7 +717,7 @@ BEGIN
     32783                   " "
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     ID_OPTIONS_SCROLLTOFIRSTDIFFERENCE "自動地捲動到這第一個不同\n捲動到第一個"
     32785                   " "
@@ -734,7 +737,7 @@ BEGIN
     ID_DIR_COPY_FILE_TO_LEFT "複製選取的檔案到已命名的資料夾"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     ID_DIR_COPY_FILE_TO_RIGHT "複製選取的檔案到已命名的資料夾"
     ID_VIEW_LANGUAGE        "選取目前用戶介面語言\n語言"
@@ -754,7 +757,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "開啟右邊檔案"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "開啟右邊檔案以..."
     ID_OPTIONS_SHOWBINARIES "顯示二進制檔案"
@@ -762,7 +765,7 @@ BEGIN
     ID_REFRESH              "更新顯示\n更新 (F5)"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "就緒"
@@ -782,7 +785,7 @@ BEGIN
     57359                   " "
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     ID_FILE_NEW             "建立一個新文件\n新增"
     ID_FILE_OPEN            "開啟一個現存文件\n開啟 (Ctrl+O)"
@@ -802,7 +805,7 @@ BEGIN
     57615                   " "
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     ID_FILE_MRU_FIRST       "開啟這個文件"
     ID_FILE_MRU_FILE2       "開啟這個文件"
@@ -822,7 +825,7 @@ BEGIN
     ID_FILE_MRU_FILE16      "開啟這個文件"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     ID_EDIT_CLEAR           "清除選取的範圍\n刪除"
     ID_EDIT_CLEAR_ALL       "全部刪除\n全部刪除"
@@ -842,7 +845,7 @@ BEGIN
     57647                   " "
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     ID_WINDOW_NEW           "為作用中文件開啟另一個視窗\n新視窗"
     ID_WINDOW_ARRANGE       "排列圖示在視窗的底部\n排列圖示"
@@ -861,7 +864,7 @@ BEGIN
     57662                   " "
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     ID_APP_ABOUT            "顯示程式資訊，版本號碼和版權\n關於"
     ID_APP_EXIT             "離開應用程式；提示要儲存文件\n結束"
@@ -881,13 +884,13 @@ BEGIN
     57679                   " "
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     ID_NEXT_PANE            "切換到下一個視窗\n下一視窗"
     ID_PREV_PANE            "切換回上一個視窗\n上一視窗"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -897,7 +900,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     ID_VIEW_TOOLBAR         "顯示或隱藏工具列\n切換工具列"
     ID_VIEW_STATUS_BAR      "顯示或隱藏狀態列\n切換狀態列"
@@ -917,7 +920,7 @@ BEGIN
     59407                   " "
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     AFX_IDS_SCSIZE          "更改視窗大小"
     AFX_IDS_SCMOVE          "更改視窗位置"
@@ -928,14 +931,14 @@ BEGIN
     AFX_IDS_SCCLOSE         "關閉作用中視窗並提示到儲存這文件"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     AFX_IDS_SCRESTORE       "將視窗還原成標準的大小"
     AFX_IDS_SCTASKLIST      "啟用工作清單"
     AFX_IDS_MDICHILD        "啟用這個視窗"
 END
 
-STRINGTABLE FIXED IMPURE 
+STRINGTABLE FIXED IMPURE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "關閉預覽列印模式\n取消預覽"
 END
