@@ -6,8 +6,8 @@ are :
 	scriptlets (VBS,JS)
 	Delphi
 
-Limitation : because of thread issues, scriptlets only work for CONTEXT_MENU plugins.
-Any help on this point would be welcome.
+Limitation : scriptlets only work for CONTEXT_MENU plugins.
+The plugins code is being rewritten, and in the next version, scriptlet will work for any event.
 
 
 
