@@ -281,3 +281,31 @@ CString FileFilterHelper::ParseExtensions(CString extensions)
 	}
 	return strParsed;
 }
+
+/** 
+ * @brief Set filter.
+ *
+ * Simple-to-use function to select filter. This function determines
+ * filter type so caller doesn't need to care about it.
+ */
+BOOL FileFilterHelper::SetFilter(CString filter)
+{
+	if (filter[0] == '*')
+	{
+		SetMask(filter);
+		UseMask(TRUE);
+	}
+	else
+	{
+		CString path = GetFileFilterPath(filter);
+		if (!path.IsEmpty())
+		{
+			SetFileFilterPath(path);
+			UseMask(FALSE);
+		}
+		else
+			return FALSE;
+	
+	}
+	return TRUE;
+}

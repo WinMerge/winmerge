@@ -324,12 +324,13 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 			{
 				if (i < (__argc - 1))
 				{
-					LPCTSTR pszMask = __targv[i+1];
-					m_globalFileFilter.SetMask(pszMask);
+					CString sFilter = __targv[i+1];
+					sFilter.TrimLeft();
+					sFilter.TrimRight();
+					m_globalFileFilter.SetFilter(sFilter);
 					i++;	// Just read next parameter
 				}
 			}
-
 		}
 		else
 		{
@@ -399,8 +400,6 @@ public:
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
 {
 	//{{AFX_DATA_INIT(CAboutDlg)
-	m_strVersion = _T("");
-	m_strPrivateBuild = _T("");
 	//}}AFX_DATA_INIT
 }
 
@@ -428,6 +427,9 @@ void CMergeApp::OnAppAbout()
 	aboutDlg.DoModal();
 }
 
+/** 
+ * @brief Read version info from resource to dialog.
+ */
 BOOL CAboutDlg::OnInitDialog() 
 {
 	CDialog::OnInitDialog();

@@ -1302,11 +1302,11 @@ STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "このディレクトリをWinMergeで開く"
     IDS_VERSION_FMT         "Version %1 - Japanese"
-    IDS_QUICKHELP           "シンタックス : WinMerge [/r] [/e] [/f mask] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
+    IDS_QUICKHELP           "シンタックス : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
       /? or -? このヘルプを表示します
       /r or -r 再帰的にディレクトリを比較します
       /e or -e Escキーの押下でWinMergeを終了します
-      /f or -f sets filemask for compare
+      /f or -f sets filemask or filtername for compare
       /ul or -ul 左パスをMRUに追加しません
       /ur or -ur 右パスをMRUに追加しません
       /ub or -ub 両方のパスをMRUに追加しません

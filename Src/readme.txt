@@ -1,3 +1,8 @@
+2004-07-29 Kimmo
+ PATCH: [ 999681 ] Accept filter name from commandline
+  Src: FilterHelper.cpp FilterHelper.h Merge.cpp Merge.rc
+  Src/Languages: *.rc
+
 2004-07-28 Kimmo
  Remove suppressing checkbox from commandline help messagebox
   Src: Merge.cpp

@@ -1411,11 +1411,11 @@ STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge su questa cartella"
     IDS_VERSION_FMT         "Versione %1 - italiano"
-    IDS_QUICKHELP           "Sintassi : WinMerge [/r] [/e] [/f mask] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl descsx] [/dr descdx] percsx percdx [percoutput]\n\ndove:
+    IDS_QUICKHELP           "Sintassi : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl descsx] [/dr descdx] percsx percdx [percoutput]\n\ndove:
       /? o -? visualizza questo aiuto
       /r o -r indica a winmerge di confrontare le cartelle ricorsivamente
       /e o -e permette la chiusura di WinMerge con la semplice pressione di Esc
-      /f or -f sets filemask for compare
+      /f or -f sets filemask or filtername for compare
       /ul o -ul indica a  winmerge di non aggiungere il percorso sinistro ai file usati di recente
       /ur o -ur indica a  winmerge di non aggiungere il percorso destro ai file usati di recente
       /ub o -ub indica a  winmerge di non aggiungere entrambi i percorsi ai file usati di recente

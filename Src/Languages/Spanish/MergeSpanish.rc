@@ -1412,11 +1412,11 @@ STRINGTABLE
 BEGIN
     IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
     IDS_VERSION_FMT         "Versión %1 - Español"
-    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
+    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
       /? or -? displays this help
       /r or -r tells winmerge to compare directories recursively
       /e or -e allows WinMerge to be closed with a single esc keypress
-      /f or -f sets filemask for compare
+      /f or -f sets filemask or filtername for compare
       /ul or -ul tells winmerge to not add left path to MRU
       /ur or -ur tells winmerge to not add right path to MRU
       /ub or -ub tells winmerge to not add both paths to MRU

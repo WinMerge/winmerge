@@ -69,6 +69,8 @@ public:
 	void SetMask(LPCTSTR strMask);
 	void SetMaskRegExp(LPCTSTR strRegExp);
 
+	BOOL SetFilter(CString filter);
+
 	BOOL includeFile(LPCTSTR szFileName);
 	BOOL includeDir(LPCTSTR szDirName);
 
