@@ -3,6 +3,9 @@
   Merge all the easy new Japanese string translations
    (Omit major changes to IDD_PROPPAGE_EDITOR & IDD_MERGE7ZMISMATCH.
   Languages: Japanese/MergeJapanese.rc
+ PATCH: [ 1112871 ] new byte_compare function to bypass diffutils
+  Src: DiffContext.h DiffWrapper.cpp DiffWrapper.h DirDoc.cpp DirScan.cpp Merge.dsp
+  Src new files: ByteComparator.cpp ByteComparator.h
 
 2005-03-04 Kimmo
  PATCH: [ 1155319 ] Select font for dir compare view

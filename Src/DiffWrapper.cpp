@@ -35,6 +35,7 @@
 #include "LogFile.h"
 #include "codepage.h"
 #include <shlwapi.h>
+#include "ByteComparator.h"
 
 extern int recursive;
 extern CLogFile gLog;
@@ -987,7 +988,7 @@ void DiffFileData::GuessEncoding(int side, CDiffContext * pCtxt)
 }
 
 /** @brief Compare two specified files */
-int DiffFileData::just_compare_files(int depth)
+int DiffFileData::diffutils_compare_files(int depth)
 {
 	int bin_flag = 0;
 
@@ -1552,7 +1553,7 @@ DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const CString & filep
 	// affects behavior (also, we don't have an icon for unknown type)
 
 	// Actually compare the files
-	// just_compare_files is a fairly thin front-end to diffutils
+	// diffutils_compare_files is a fairly thin front-end to diffutils
 	if (filepathTransformed1 != filepathUnpacked1 || filepathTransformed2 != filepathUnpacked2)
 	{
 		//diffdata.m_sFilepath[0] = filepathTransformed1;
@@ -1561,7 +1562,17 @@ DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const CString & filep
 			goto exitPrepAndCompare;
 	}
 
-	code = just_compare_files(0);
+
+	if (pCtxt->m_nCompMethod == 0)
+	{
+		// use diffutils
+		code = diffutils_compare_files(0);
+	}
+	else
+	{
+		// use our own byte-by-byte compare
+		code = byte_compare_files();
+	}
 
 	if ((code & DIFFCODE::CMPERR) == 0)
 	{
@@ -1616,3 +1627,104 @@ BOOL DiffFileData::Diff2Files(struct change ** diffs, int depth,
 	return bRet;
 }
 
+struct FileHandle
+{
+	FileHandle() : m_fp(0) { }
+	void Assign(FILE * fp) { Close(); m_fp = fp; }
+	void Close() { if (m_fp) { fclose(m_fp); m_fp = 0; } }
+	~FileHandle() { Close(); }
+	FILE * m_fp;
+};
+
+// TODO: Increase WMCMPBUFF (it is set low to help shake out bugs)
+#define WMCMPBUFF 64
+
+/** @brief Compare two specified files, byte-by-byte */
+int DiffFileData::byte_compare_files()
+{
+	// Close any descriptors open for diffutils
+	Reset();
+
+	// TODO
+	// Right now, we assume files are in 8-bit encoding
+	// because transform code converted any UCS-2 files to UTF-8
+	// We could compare directly in UCS-2LE here, as an optimization, in that case
+	char buff[2][WMCMPBUFF]; // buffered access to files
+	FILE * fp[2]; // for files to compare
+	FileHandle fhd[2]; // to ensure file handles fp get closed
+	int i;
+
+	// Open both files
+	for (i=0; i<2; ++i)
+	{
+		fp[i] = _tfopen(m_sFilepath[i], _T("r"));
+		if (!fp[i])
+			return DIFFCODE::CMPERR;
+		fhd[i].Assign(fp[i]);
+	}
+
+	int bfstart[2], bfend[2]; // area of buffer currently holding data
+	bool eof[2]; // if we've finished file
+
+	// initialize our buffer pointers and end of file flags
+	for (i=0; i<2; ++i)
+	{
+		bfstart[i] = bfend[i] = 0;
+		eof[i] = false;
+	}
+
+	ByteComparator comparator(ignore_case_flag, ignore_space_change_flag
+		, ignore_all_space_flag, ignore_eol_diff, ignore_blank_lines_flag);
+
+	while (1)
+	{
+		// load or update buffers as appropriate
+		for (i=0; i<2; ++i)
+		{
+			if (!eof[i] && bfstart[i]==countof(buff[i]))
+			{
+				bfstart[i]=bfend[i] = 0;
+			}
+			if (!eof[i] && bfend[i]<countof(buff[i])-1)
+			{
+				int rtn = fread(buff[i], 1, countof(buff[i]), fp[i]);
+				if (ferror(fp[i]))
+					return DIFFCODE::CMPERR;
+				if (feof(fp[i]))
+					eof[i] = true;
+				bfend[i] += rtn;
+			}
+		}
+
+		// where to start comparing right now
+		LPCSTR ptr0 = &buff[0][bfstart[0]];
+		LPCSTR ptr1 = &buff[1][bfstart[1]];
+
+		// remember where we started
+		LPCSTR orig0 = ptr0, orig1 = ptr1;
+
+		// how far can we go right now?
+		LPCSTR end0 = &buff[0][bfend[0]];
+		LPCSTR end1 = &buff[1][bfend[1]];
+
+		// are these two buffers the same?
+		if (!comparator.CompareBuffers(ptr0, ptr1, end0, end1, eof[0], eof[1]))
+			return DIFFCODE::DIFF;
+
+
+		// did we finish both files?
+		if (eof[0] && eof[1])
+		{
+			if (ptr0 == end0 && ptr1 == end1)
+				return DIFFCODE::SAME;
+			else
+				return DIFFCODE::DIFF;
+		}
+
+		// move our current pointers over what we just compared
+		ASSERT(ptr0 >= orig0);
+		ASSERT(ptr1 >= orig1);
+		bfstart[0] += ptr0-orig0;
+		bfstart[1] += ptr1-orig1;
+	}
+}

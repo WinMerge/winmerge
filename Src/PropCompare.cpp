@@ -70,7 +70,9 @@ BOOL CPropCompare::OnInitDialog()
 	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_COMPAREMETHODCOMBO);
 
 	CString item;
-	VERIFY(item.LoadString(IDS_COMPMETHOD_CONTENTS));
+	VERIFY(item.LoadString(IDS_COMPMETHOD_FULL_CONTENTS));
+	combo->AddString(item);
+	VERIFY(item.LoadString(IDS_COMPMETHOD_QUICK_CONTENTS));
 	combo->AddString(item);
 	VERIFY(item.LoadString(IDS_COMPMETHOD_MODDATE));
 	combo->AddString(item);

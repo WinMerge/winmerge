@@ -160,6 +160,7 @@ public:
 	UINT m_msgUpdateStatus;
 	HWND m_hDirFrame;
 	BOOL m_bGuessEncoding;
+	int m_nCompMethod;
 
 	struct dirdata ddLeft, ddRight;
 	char *pNamesLeft;

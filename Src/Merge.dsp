@@ -113,7 +113,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib shlwapi.lib imm32.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\WinMerge\WinMerge_CVS\WinMerge\Build\MergeRelease\WinMerge.exe
+TargetPath=\dev\sf\wm\cvsver\WinMerge\Build\MergeRelease\WinMerge.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -147,7 +147,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib shlwapi.lib imm32.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease\WinMergeU.exe" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
-TargetPath=\WinMerge\WinMerge_CVS\WinMerge\Build\MergeUnicodeRelease\WinMergeU.exe
+TargetPath=\dev\sf\wm\cvsver\WinMerge\Build\MergeUnicodeRelease\WinMergeU.exe
 SOURCE="$(InputPath)"
 PostBuild_Cmds=StampVer -vstampver.inf -i4 -j4 -o2 $(TargetPath)
 # End Special Build Tool
@@ -173,7 +173,16 @@ SOURCE=.\BCMenu.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ByteComparator.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\CCPrompt.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\charsets.c
+# SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
 
@@ -444,6 +453,11 @@ SOURCE=.\MainFrm.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\markdown.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
 SOURCE=.\Merge.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Debug"
@@ -548,16 +562,6 @@ SOURCE=.\PatchTool.cpp
 # Begin Source File
 
 SOURCE=.\paths.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\charsets.c
-# SUBTRACT CPP /YX /Yc /Yu
-# End Source File
-# Begin Source File
-
-SOURCE=.\markdown.cpp
-# SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
 
@@ -807,7 +811,15 @@ SOURCE=.\BCMenu.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\ByteComparator.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\CCPrompt.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\charsets.h
 # End Source File
 # Begin Source File
 
@@ -987,6 +999,10 @@ SOURCE=.\MainFrm.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\markdown.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Merge.h
 # End Source File
 # Begin Source File
@@ -1044,14 +1060,6 @@ SOURCE=.\PatchTool.h
 # Begin Source File
 
 SOURCE=.\paths.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\charsets.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\markdown.h
 # End Source File
 # Begin Source File
 
@@ -2014,10 +2022,10 @@ SOURCE=.\stampver.inf
 # End Source File
 # End Target
 # End Project
-# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
-# 	1:19:IDR_POPUP_ABOUT_DLG:104
-# End Section
 # Section Merge : {6F747475-446E-6C62-436C-6B0000003100}
 # 	1:10:IDB_SPLASH:103
 # 	2:21:SplashScreenInsertKey:4.0
+# End Section
+# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
+# 	1:19:IDR_POPUP_ABOUT_DLG:104
 # End Section

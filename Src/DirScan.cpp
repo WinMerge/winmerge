@@ -16,7 +16,6 @@
 #include "logfile.h"
 #include "paths.h"
 #include "FileTransform.h"
-#include "mainfrm.h"
 #include "codepage.h"
 
 #ifdef _DEBUG
@@ -184,7 +183,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 				nDiffCode |= DIFFCODE::SKIPPED;
 				StoreDiffResult(subdir, &leftFiles[i], 0, nDiffCode, pCtxt);
 			}
-			else if (mf->m_nCompMethod != 1)
+			else if (pCtxt->m_nCompMethod != 1)
 			{
 				// Compare file to itself to detect encoding
 				CString filepath = sLeftDir + backslash + leftFiles[i].name;
@@ -212,7 +211,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 				nDiffCode |= DIFFCODE::SKIPPED;
 				StoreDiffResult(subdir, 0, &rightFiles[j], nDiffCode, pCtxt);
 			}
-			else if (mf->m_nCompMethod != 1)
+			else if (pCtxt->m_nCompMethod != 1)
 			{
 				// Compare file to itself to detect encoding
 				CString filepath = sRightDir + backslash + rightFiles[j].name;
@@ -252,7 +251,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s"), 
 			  leftname, rightname, (LPCTSTR)sLeftDir, (LPCTSTR)sRightDir);
 
-			if (mf->m_nCompMethod == 1)
+			if (pCtxt->m_nCompMethod == 1)
 			{
 					// Compare only by modified date
 				if (leftFiles[i].mtime == rightFiles[j].mtime)
