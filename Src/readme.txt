@@ -1,3 +1,8 @@
+2004-10-26 Kimmo
+ PATCH: [ 1003457 ] Move difflist to new class DiffList
+  Last minute updates to files I forgot to add (thanks Perry!)
+  Src: DiffList.cpp DiffList.h
+
 2004-10-25 Perry
  PATCH: [ 1003457 ] Move difflist to new class DiffList
   Src: DiffList.cpp DiffList.h

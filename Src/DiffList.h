@@ -64,6 +64,12 @@ enum
 	OP_TRIVIAL
 };
 
+/**
+ * @brief Class for storing differences in files (difflist).
+ *
+ * This class stores diffs in list and also offers diff-related
+ * functions to e.g. check if linenumber is inside diff.
+ */
 class DiffList
 {
 public:
@@ -82,7 +88,7 @@ public:
 	int NextDiffFromLine(UINT nLine) const;
 
 private:
-	CArray<DIFFRANGE,DIFFRANGE> m_diffs;
+	CArray<DIFFRANGE,DIFFRANGE> m_diffs; /**< Difference list */
 };
 
 #endif // _DIFFLIST_H_

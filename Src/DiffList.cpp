@@ -26,26 +26,41 @@
 #include "DiffList.h"
 #include "DiffWrapper.h"
 
+/**
+ * @brief Default constructor, initialises difflist to 64 items.
+ */
 DiffList::DiffList()
 {
 	m_diffs.SetSize(64);
 }
 
+/**
+ * @brief Removes all diffs from list.
+ */
 void DiffList::Clear()
 {
 	m_diffs.RemoveAll();
 }
 
+/**
+ * @brief Returns count of items in diff list.
+ */
 int DiffList::GetSize()
 {
 	return m_diffs.GetSize();
 }
 
+/**
+ * @brief Sets size of diff list.
+ */
 void DiffList::SetSize(UINT nSize)
 {
 	m_diffs.SetSize(nSize);
 }
 
+/**
+ * @brief Adds given diff to end of list.
+ */
 void DiffList::AddDiff(DIFFRANGE di)
 {
 	m_diffs.Add(di);
@@ -73,6 +88,12 @@ BOOL DiffList::GetDiff(int nDiff, DIFFRANGE &di) const
 	}
 }
 
+/**
+ * @brief Replaces diff in list in given index with given diff.
+ *
+ * @param [in] nDiff Index (0-based) of diff to be replaced
+ * @param [in] di Diff to put in list.
+ */
 BOOL DiffList::SetDiff(int nDiff, DIFFRANGE di)
 {
 	if (nDiff < m_diffs.GetSize())
@@ -91,7 +112,7 @@ BOOL DiffList::SetDiff(int nDiff, DIFFRANGE di)
  */
 BOOL DiffList::LineInDiff(UINT nLine, UINT nDiff) const
 {
-	ASSERT(nDiff < m_diffs.GetSize());
+	ASSERT((int)nDiff < m_diffs.GetSize());
 	if (nLine >= m_diffs[nDiff].dbegin0 &&
 			nLine <= m_diffs[nDiff].dend0)
 		return TRUE;
@@ -106,7 +127,8 @@ BOOL DiffList::LineInDiff(UINT nLine, UINT nDiff) const
  */
 int DiffList::LineToDiff(UINT nLine) const
 {
-	for (UINT i = 0; i < m_diffs.GetSize(); i++)
+	const int nDiffCount = m_diffs.GetSize();
+	for (UINT i = 0; i < nDiffCount; i++)
 	{
 		if (LineInDiff(nLine, i))
 			return i;
@@ -114,6 +136,12 @@ int DiffList::LineToDiff(UINT nLine) const
 	return -1;
 }
 
+/**
+ * @brief Return previous diff from given line.
+ * @param [in] nLine First line searched.
+ * @param [out] nDiff Index of diff found.
+ * @return TRUE if line is inside diff, FALSE otherwise.
+ */
 BOOL DiffList::GetPrevDiff(int nLine, int &nDiff) const
 {
 	BOOL bInDiff = TRUE;
@@ -151,7 +179,8 @@ BOOL DiffList::GetNextDiff(int nLine, int &nDiff) const
 	if (numDiff == -1)
 	{
 		bInDiff = FALSE;
-		for (UINT i = 0; i < m_diffs.GetSize(); i++)
+		const int nDiffCount = m_diffs.GetSize();
+		for (UINT i = 0; i < nDiffCount; i++)
 		{
 			if ((int)m_diffs[i].dbegin0 >= nLine)
 			{
@@ -164,6 +193,11 @@ BOOL DiffList::GetNextDiff(int nLine, int &nDiff) const
 	return bInDiff;
 }
 
+/**
+ * @brief Return previous diff index from given line.
+ * @param [in] nLine First line searched.
+ * @return Index for next difference.
+ */
 int DiffList::PrevDiffFromLine(UINT nLine) const
 {
 	int nDiff = -1;
@@ -179,11 +213,17 @@ int DiffList::PrevDiffFromLine(UINT nLine) const
 	return nDiff;
 }
 
+/**
+ * @brief Return next diff index from given line.
+ * @param [in] nLine First line searched.
+ * @return Index for previous difference.
+ */
 int DiffList::NextDiffFromLine(UINT nLine) const
 {
 	int nDiff = -1;
+	const int nDiffCount = m_diffs.GetSize();
 
-	for (UINT i = 0; i < m_diffs.GetSize(); i++)
+	for (UINT i = 0; i < nDiffCount; i++)
 	{
 		if (m_diffs[i].dbegin0 >= nLine)
 		{
