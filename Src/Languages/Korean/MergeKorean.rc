@@ -966,7 +966,7 @@ END
 // ID_FILE_NEW SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_FILE_NEW             "새 문서를 만듭니다.\n새문서"
+    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl-N)"
     ID_FILE_OPEN            "기존에 만들어진 문서를 엽니다.\n열기 (Ctrl+O)"
     ID_FILE_CLOSE           "현재 문서를 닫습니다.\n닫기"
     ID_FILE_SAVE            "현재 문서를 저장합니다.\n저장 (Ctrl+S)"
@@ -1187,6 +1187,7 @@ BEGIN
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_STATUSBAR_READONLY  "RO"
+    IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
 STRINGTABLE DISCARDABLE

@@ -998,7 +998,7 @@ END
 // ID_FILE_NEW SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_FILE_NEW             "Lav et nyt dokument\nNy"
+    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl-N)"
     ID_FILE_OPEN            "≈ben et eksisterende dokument\n≈ben (Ctrl+O)"
     ID_FILE_CLOSE           "Luk det aktive dokument\nLuk"
     ID_FILE_SAVE            "Gem det aktive dokument\nGem (Ctrl+S)"
@@ -1219,6 +1219,7 @@ BEGIN
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_STATUSBAR_READONLY  "RO"
+    IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
 STRINGTABLE DISCARDABLE

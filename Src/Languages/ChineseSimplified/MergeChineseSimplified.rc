@@ -874,7 +874,7 @@ END
 // ID_FILE_NEW SYNCHRO
 STRINGTABLE FIXED IMPURE
 BEGIN
-    ID_FILE_NEW             "Create empty documents\nNew Documents(Ctrl-N)"
+    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl-N)"
     ID_FILE_OPEN            "打开一个现存文件\n打开 (Ctrl+O)"
     ID_FILE_CLOSE           "关闭作用中文件\n关闭"
     ID_FILE_SAVE            "保存作用中文件\n保存 (Ctrl+S)"
@@ -1091,6 +1091,7 @@ BEGIN
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_STATUSBAR_READONLY  "RO"
+    IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
 STRINGTABLE DISCARDABLE

@@ -1004,7 +1004,7 @@ END
 // ID_FILE_NEW SYNCHRO
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_FILE_NEW             "Erstellt ein neues Dokument.\nNeu(Ctrl-N)"
+    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl-N)"
     ID_FILE_OPEN            "Öffnet ein bestehendes Dokument.\nÖffnen"
     ID_FILE_CLOSE           "Schließt das aktive Dokument.\nSchliessen"
     ID_FILE_SAVE            "Speichert das aktive Dokument.\nSpeichern"
@@ -1226,6 +1226,7 @@ BEGIN
     IDS_FILE_SKIPPED        "Datei übersprungen"
     IDS_DIR_SKIPPED         "Verzeichnis übersprungen"
     IDS_STATUSBAR_READONLY  "RO"
+    IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
 STRINGTABLE DISCARDABLE

@@ -126,6 +126,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
 	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
 	ON_COMMAND(ID_TOOLS_CUSTOMIZECOLUMNS, OnCustomizeColumns)
+	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -1589,4 +1590,60 @@ void CDirView::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI)
 		else
 			pCmdUI->Enable(FALSE);
 	}
+}
+/**
+ * @brief Copy the generated diffed report to clipboard
+ */
+void CDirView::OnEditCopy() 
+{
+	PutToClipboard(GenerateReport(), this->m_hWnd);
+}
+
+/**
+ * @brief Create a string report for the viewed diffed directory list
+ * @note This function assumes longest header length is < 160.
+ */
+CString CDirView::GenerateReport()
+{
+	//Initialize
+	int nCols = m_dispcols;
+	int nRows = m_pList->GetItemCount();
+	bool onlySelected = (GetSelectedCount() > 0) ? true : false;
+	const TCHAR cSeparator = '\t';
+	CString report;
+	
+	// Report:Title
+	if (GetDiffContext() != NULL)
+		AfxFormatString2(report, IDS_DIRECTORY_REPORT_TITLE, GetDiffContext()->m_strLeft, GetDiffContext()->m_strRight);
+
+	// Report:Header
+	for (int currCol = 0; currCol < nCols; currCol++)
+	{
+		TCHAR columnName[160]; // Assuming max col header will never be > 160
+		LVCOLUMN lvc;
+		lvc.mask = LVCF_TEXT;
+		lvc.pszText = &columnName[0];
+		m_pList->GetColumn(currCol, &lvc);
+		report += lvc.pszText;
+		report += cSeparator;
+	}
+
+	// Report:Detail. All currently displayed columns will be added
+	for (int currRow = 0;currRow < nRows; currRow++)
+	{
+		if (!onlySelected || (onlySelected && 
+			(m_pList->GetItemState(currRow, LVIS_SELECTED) & LVIS_SELECTED)))
+		{
+			report += _T("\r\n"); // Use DOS-EOL style for reports
+			for (int currCol = 0; currCol < nCols; currCol++)
+			{
+				report += m_pList->GetItemText(currRow, currCol);
+
+				// Add tab-separator, but not after last field
+				if (currCol < nCols - 1)
+					report += cSeparator;
+			}
+		}
+	}
+	return report;
 }

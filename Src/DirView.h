@@ -199,6 +199,7 @@ protected:
 
 // Implementation data
 protected:
+	CString GenerateReport();
 	CSortHeaderCtrl m_ctlSortHeader;
 	CImageList m_imageList;
 	bool m_bSortAscending;  /** < current column sort is ascending ? */
@@ -270,6 +271,7 @@ protected:
 	afx_msg void OnCustomizeColumns();
 	afx_msg void OnCtxtOpenWithUnpacker();
 	afx_msg void OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI);
+	afx_msg void OnEditCopy();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);

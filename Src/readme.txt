@@ -1,3 +1,11 @@
+2003-11-24 Kimmo
+ PATCH: [ 847137 ] Report from dir compare results
+  Submitted by Vikrant
+  common: coretools.h coretools.cpp
+  WinMerge: DirView.h DirView.cpp Merge.rc resource.h
+  Languages: *.rc resource.h
+ Within PATCH: [ 847137 ] - add space to New File item tooltip
+
 2003-11-23 Perry
  Fix Exceptions.h for Unicode build
   WinMerge: Exceptions.h

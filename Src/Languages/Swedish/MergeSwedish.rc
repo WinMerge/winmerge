@@ -1002,7 +1002,7 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    ID_FILE_NEW             "Create empty documents\nNew Documents(Ctrl-N)"
+    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl-N)"
     ID_FILE_OPEN            "Öppna ett befintligt dokument\nÖppna (Ctrl+O)"
     ID_FILE_CLOSE           "Stäng det aktiva dokumentet\nStäng"
     ID_FILE_SAVE            "Spara det aktiva dokumentet\nSpara (Ctrl+S)"
@@ -1218,6 +1218,7 @@ BEGIN
     IDS_FILE_SKIPPED        "Hoppat över filen"
     IDS_DIR_SKIPPED         "Hoppat över mappen"
     IDS_STATUSBAR_READONLY  "Skrivskyddad"
+    IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
 STRINGTABLE DISCARDABLE 

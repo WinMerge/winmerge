@@ -981,7 +981,7 @@ END
 // ID_FILE_NEW SYNCHRO
 STRINGTABLE PRELOAD DISCARDABLE
 BEGIN
-    ID_FILE_NEW             "Create empty documents\nNew Documents(Ctrl-N)"
+    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl-N)"
     ID_FILE_OPEN            "開啟一個現存文件\n開啟 (Ctrl+O)"
     ID_FILE_CLOSE           "關閉作用中文件\n關閉"
     ID_FILE_SAVE            "儲存作用中文件\n儲存 (Ctrl+S)"
@@ -1198,6 +1198,7 @@ BEGIN
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_STATUSBAR_READONLY  "RO"
+    IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
 STRINGTABLE DISCARDABLE

@@ -124,6 +124,7 @@
 #define IDB_RFOLDER                     215
 #define IDS_STATUSBAR_READONLY          215
 #define IDB_UNKNOWN                     216
+#define IDS_DIRECTORY_REPORT_TITLE      216
 #define IDB_BINARYSAME                  217
 #define IDB_LFILE                       218
 #define IDB_RFILE                       219

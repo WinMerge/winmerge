@@ -1021,7 +1021,7 @@ END
 
 STRINGTABLE DISCARDABLE
 BEGIN
-    ID_FILE_NEW             "Create empty documents\nNew Documents(Ctrl-N)"
+    ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl-N)"
     ID_FILE_OPEN            "Obre un document existent\nObrir (Ctrl+O)"
     ID_FILE_CLOSE           "Tanca el document actiu\nTanca"
     ID_FILE_SAVE            "Desa el document actiu\nDesa (Ctrl+S)"
@@ -1237,6 +1237,7 @@ BEGIN
     IDS_FILE_SKIPPED        "Fitxer omès"
     IDS_DIR_SKIPPED         "Directori omès"
     IDS_STATUSBAR_READONLY  "RO"
+    IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
 END
 
 STRINGTABLE DISCARDABLE

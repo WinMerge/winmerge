@@ -157,5 +157,7 @@ BOOL HasExited(HANDLE hProcess, DWORD *pCode = NULL);
 BOOL IsLocalPath(LPCTSTR path);
 BOOL GetAppDataPath(CString &sAppDataPath);
 BOOL GetUserProfilePath(CString &sAppDataPath);
-
+BOOL PutToClipboard(LPCTSTR pszText, HWND currentWindowHandle);
+BOOL GetFromClipboard(CString & text, HWND currentWindowHandle);
+BOOL TextInClipboard();
 #endif
