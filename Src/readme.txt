@@ -4,6 +4,8 @@
   Src/Res: error.bmp
  PATCH: [ 1153127 ] Rename Filepath to FilepathWithEncoding
   Src: DiffWrapper.cpp DiffWrapper.h
+ PATCH: [ 967230 ] Initialize default language from locale
+  Src/Common: LanguageSelect.cpp LanguageSelect.h
 
 
 2005-03-01 WinMerge experimental release 2.3.1.5 (cvs)

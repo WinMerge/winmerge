@@ -39,10 +39,11 @@ private:
 	WORD	   m_wCurLanguage;
 	int GetLanguageArrayIndex( WORD LangId );
 	CStringArray m_DllFileNameAry;
-	BOOL	LoadResourceDLL(LPCTSTR lpDllFileName = NULL);
-	BOOL	SetLanguage(WORD LangId);
-	void	GetDllsAt( LPCTSTR SearchPath, CStringArray& DllAry );
-	BOOL	GetLanguage( const CString& DllName, WORD& uiLanguage ) ;
+	BOOL    LoadResourceDLL(LPCTSTR lpDllFileName = NULL);
+	BOOL    SetLanguage(WORD LangId, bool override=false);
+	BOOL    SetLanguageOverride(WORD LangId) { return SetLanguage(LangId, true); }
+	void    GetDllsAt( LPCTSTR SearchPath, CStringArray& DllAry );
+	BOOL    GetLanguage( const CString& DllName, WORD& uiLanguage ) ;
 	
 	UINT    GetDocResId();
 	CString GetPath( LPCTSTR FileName);

@@ -218,7 +218,7 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect message handlers
-BOOL  CLanguageSelect::SetLanguage(WORD wLangId)
+BOOL  CLanguageSelect::SetLanguage(WORD wLangId, bool override)
 { 
 	BOOL result = FALSE;
 	
@@ -248,7 +248,8 @@ BOOL  CLanguageSelect::SetLanguage(WORD wLangId)
 	if (result)
 	{
 		m_wCurLanguage = wLangId;
-		AfxGetApp()->WriteProfileInt( LANGUAGE_SECTION, COUNTRY_ENTRY, (INT) wLangId );
+		if (override)
+    		AfxGetApp()->WriteProfileInt( LANGUAGE_SECTION, COUNTRY_ENTRY, (INT) wLangId );
 		SetThreadLocale(MAKELCID(m_wCurLanguage, SORT_DEFAULT));
 
 		int idx = GetLanguageArrayIndex(m_wCurLanguage);
@@ -580,7 +581,7 @@ void CLanguageSelect::OnOK()
 	int lang = m_wLangIds[i];
 	if ( lang != m_wCurLanguage )
 	{
-		SetLanguage(lang);
+		SetLanguageOverride(lang);
 
 		updateDefaultCodepage(&mf->m_options);
 
@@ -698,11 +699,63 @@ CString CLanguageSelect::GetNativeLanguageNameString( int idx )
 	return Language;
 }
 
+/**
+ * @brief Find DLL entry in lang_map for language for specified locale
+ */
+static WORD
+GetLangFromLocale(LCID lcid)
+{
+		TCHAR buff[8];
+		if (GetLocaleInfo(lcid, LOCALE_IDEFAULTLANGUAGE, buff, countof(buff)))
+		{
+			LANGID langid = 0;
+			if (1 == _stscanf(buff, _T("%x"), &langid) && langid)
+				return langid;
+		}
+		return -1;
+}
+
 void
 CLanguageSelect::InitializeLanguage()
 {
 	int iLangId = AfxGetApp()->GetProfileInt( LANGUAGE_SECTION, COUNTRY_ENTRY, (INT) -1 );
 	if ( iLangId != -1 )
-		SetLanguage((WORD)iLangId);
+	{
+		// User has set a language override
+		SetLanguageOverride((WORD)iLangId);
+	}
+	else
+	{
+		WORD Lang1 = GetLangFromLocale(GetThreadLocale());
+		if (Lang1 != (WORD)-1)
+		{
+			CString dll = GetDllName(Lang1);
+			if (!dll.IsEmpty() && LoadResourceDLL(dll))
+			{
+				SetLanguage(Lang1);
+				return;
+			}
+		}
+		WORD Lang2 = GetLangFromLocale(LOCALE_USER_DEFAULT);
+		if (Lang2 != (WORD)-1 && Lang2 != Lang1)
+		{
+			CString dll = GetDllName(Lang2);
+			if (!dll.IsEmpty() && LoadResourceDLL(dll))
+			{
+				SetLanguage(Lang2);
+				return;
+			}
+		}
+		WORD Lang3 = GetLangFromLocale(LOCALE_SYSTEM_DEFAULT);
+		if (Lang3 != (WORD)-1 && Lang3 != Lang2 && Lang3 != Lang1)
+		{
+			CString dll = GetDllName(Lang3);
+			if (!dll.IsEmpty() && LoadResourceDLL(dll))
+			{
+				SetLanguage(Lang3);
+				return;
+			}
+		}
+	}
 }
 
