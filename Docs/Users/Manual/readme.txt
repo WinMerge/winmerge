@@ -3,6 +3,8 @@
   Manual: Install.xml
  PATCH: [ 1021482 ] Docs: Add authors, version, copyright etc
   Manual: WinMerge_help.xml
+ PATCH: [ 1021497 ] Docs: Small improvements to whats new
+  Manual: Whatsnew_2_1.xml
 
 2004-08-19 Kimmo
  PATCH: [ 1011283 ] Docs: Copy locale documentation from 2.0 docs

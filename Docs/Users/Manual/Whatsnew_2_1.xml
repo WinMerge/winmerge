@@ -2,11 +2,14 @@
   <title>What's new in 2.2</title>
   <sect2>
     <title>Unicode support</title>
-    <para>WinMerge 2.2 is distributed with ANSI executable (WinMerge.exe) for Windows 95/98/ME and UNICODE executable (WinMergeU.exe) for Windows NT /200/XP. UNICODE executable supports UCS-2 and UTF-8 UNICODE files and UNICODE filenames.</para>
+    <para>WinMerge 2.2 is distributed with Ansi executable (WinMerge.exe) for Windows 95/98/ME and Unicode executable (WinMergeU.exe) for Windows NT /200/XP. Unicode executable supports UCS-2 and UTF-8. files and filenames.</para>
+    <note>
+      <para>It is unfortunate that two executable files are needed. But there is no currently way to get only one executable working. MS Unicode layer does not help WinMerge since WinMerge needs to be comparing files in different codepages.</para>
+    </note>
   </sect2>
   <sect2>
     <title>Archive support</title>
-    <para>WinMerge 2.2 can open and save several archivetypes. Archive support requires installing 7-zip (version 3.10 or later). <ulink url="http://www.7-zip.org/">http://www.7-zip.org/</ulink></para>
+    <para>WinMerge 2.2 can open and save several archivetypes. Archive support requires installing 7-zip. Refer to Read Me.rtf file for info about compatible 7-zip version. 7-zip can be downloaded from <ulink url="http://www.7-zip.org/">http://www.7-zip.org/</ulink></para>
   </sect2>
   <sect2>
     <title>Shell integration</title>
@@ -14,7 +17,7 @@
   </sect2>
   <sect2>
     <title>Selecting filter from commandline</title>
-    <para>New -f commandline switch allows selecting used filter.</para>
+    <para>New -f commandline switch allows selecting used filter or mask for files.</para>
   </sect2>
   <sect2>
     <title>Project files</title>
@@ -42,10 +45,13 @@
         <para>Floating statusbar during compare process, compare can be stopped and files/dirs compared so far are shown</para>
       </listitem>
       <listitem>
-        <para>Newer file/dir is shown with asterisk (*) in date field</para>
+        <para>Newer file/directory is indicated with asterisk (*) in date field</para>
       </listitem>
       <listitem>
-        <para>One or both directories can be set read-only, preventing accidental overwrites</para>
+        <para>One or both directories can be set read-only, preventing accidental overwriting.</para>
+      </listitem>
+      <listitem>
+        <para>Selected items count is shown in statusbar.</para>
       </listitem>
     </itemizedlist>
   </sect2>
@@ -60,13 +66,13 @@
         <para>Fixed "Ignore blank lines" feature</para>
       </listitem>
       <listitem>
-        <para>Enchanged EOL handling (Documents can contain different EOL styles)</para>
+        <para>Enchanged EOL handling (files can contain different EOL styles in one file)</para>
       </listitem>
       <listitem>
         <para>Linenumber, current column and char, line length and char count shown in statusbar</para>
       </listitem>
       <listitem>
-        <para>One ot both files can be set read-only to prevent accidentally changes</para>
+        <para>One ot both files can be set read-only to prevent accidental edits</para>
       </listitem>
       <listitem>
         <para>Copy difference to left/right and advance to next makes merging faster</para>
@@ -88,6 +94,9 @@
       </listitem>
       <listitem>
         <para>Moved lines detection. Moved lines can be shown with different color in file area and location pane.</para>
+      </listitem>
+      <listitem>
+        <para>More color options. Text color, missing line colors and moved line colors can be configured.</para>
       </listitem>
     </itemizedlist>
   </sect2>
