@@ -170,6 +170,7 @@ private:
 	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
 	int ColLogToPhys(int i) const { return m_colorder[i]; } /**< -1 if not displayed */
 	CString GetColDisplayName(int col) const;
+	CString GetColDescription(int col) const;
 	int GetColLogCount() const;
 	void LoadColumnOrders();
 	void ValidateColumnOrdering();

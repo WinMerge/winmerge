@@ -26,20 +26,21 @@ class CDirColsDlg : public CDialog
 public:
 	struct column {
 		CString name;
+		CString desc;
 		int log_col;
 		int phy_col;
 		column() : log_col(-1), phy_col(-1) { } /**< default constructor for use in CArray */
-		column(LPCTSTR sz, int log, int phy) : name(sz), log_col(log), phy_col(phy) { } 
+		column(LPCTSTR sz, LPCTSTR dsc, int log, int phy) : name(sz), desc(dsc), log_col(log), phy_col(phy) { } 
 	};
 	typedef CArray<column, column> ColumnArray;
 
 // Construction
 public:
 	CDirColsDlg(CWnd* pParent = NULL);   // standard constructor
-	void AddColumn(CString name, int log, int phy=-1)
-		{ column c(name, log, phy); m_cols.Add(c); }
+	void AddColumn(CString name, CString desc, int log, int phy=-1)
+		{ column c(name, desc, log, phy); m_cols.Add(c); }
 	void AddDefColumn(CString name, int log, int phy=-1)
-		{ column c(name, log, phy); m_defCols.Add(c); }
+		{ column c(name, _T(""), log, phy); m_defCols.Add(c); }
 	const ColumnArray & GetColumns() const { return m_cols; }
 
 // Dialog Data
@@ -81,6 +82,8 @@ private:
 	afx_msg void OnRemove();
 	virtual void OnOK();
 	afx_msg void OnDefaults();
+	afx_msg void OnLbnSelchangeListShow();
+	afx_msg void OnLbnSelchangeListHide();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

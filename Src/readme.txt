@@ -1,6 +1,10 @@
 2004-05-20 Kimmo
  PATCH: [ 956893 ] Fix toolbar problem with XP themes and VC6
   Src: MainFrm.cpp Merge.cpp
+ PATCH: [ 954991 ] Add directory compare column descriptions
+  Src: DirColsDlg.cpp DirColsDlg.h DirView.h DirViewColHandler.cpp
+   DirViewColItems.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
 
 2004-05-18 Kimmo
  PATCH: [ 955408 ] Select first item in dir compare

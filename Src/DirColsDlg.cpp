@@ -50,6 +50,8 @@ BEGIN_MESSAGE_MAP(CDirColsDlg, CDialog)
 	ON_BN_CLICKED(IDC_REMOVE, OnRemove)
 	ON_BN_CLICKED(IDC_COLDLG_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
+	ON_LBN_SELCHANGE(IDC_LIST_SHOW, OnLbnSelchangeListShow)
+	ON_LBN_SELCHANGE(IDC_LIST_HIDE, OnLbnSelchangeListHide)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -253,4 +255,50 @@ void CDirColsDlg::OnDefaults()
 	m_list_show.ResetContent();
 	m_list_hide.ResetContent();
 	LoadDefLists();
+}
+
+/**
+ * @brief Update description when selected item changes.
+ */
+void CDirColsDlg::OnLbnSelchangeListShow()
+{
+	for (int i=0; i<m_list_show.GetCount(); ++i)
+	{
+		if (m_list_show.GetSel(i))
+		{
+			int data = m_list_show.GetItemData(i);
+			CString str;
+			
+			for (int j = 0; j < m_cols.GetSize(); j++)
+			{
+				if (m_cols.GetAt(j).log_col == data)
+					break;
+			}
+			GetDlgItem(IDC_COLDLG_DESC)->SetWindowText(m_cols[j].desc);
+			break;
+		}
+	}
+}
+
+/**
+ * @brief Update description when selected item changes.
+ */
+void CDirColsDlg::OnLbnSelchangeListHide()
+{
+	for (int i=0; i<m_list_hide.GetCount(); ++i)
+	{
+		if (m_list_hide.GetSel(i))
+		{
+			int data = m_list_hide.GetItemData(i);
+			CString str;
+			
+			for (int j = 0; j < m_cols.GetSize(); j++)
+			{
+				if (m_cols.GetAt(j).log_col == data)
+					break;
+			}
+			GetDlgItem(IDC_COLDLG_DESC)->SetWindowText(m_cols[j].desc);
+			break;
+		}
+	}
 }

@@ -200,6 +200,7 @@
 #define IDC_STATIC_TITLE_LEFT           1133
 #define IDC_STATIC_TITLE_RIGHT          1134
 #define IDC_SELECT_FILTER               1135
+#define IDC_COLDLG_DESC                 1136
 
 
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -396,6 +397,28 @@
 #define IDS_DIFFERENT                   17738
 
 #define IDS_ELAPSED_TIME                17744
+
+#define IDS_COLDESC_FILENAME            17760
+#define IDS_COLDESC_DIR                 17761
+#define IDS_COLDESC_RESULT              17762
+#define IDS_COLDESC_LTIMEM              17763
+#define IDS_COLDESC_RTIMEM              17764
+#define IDS_COLDESC_EXTENSION           17765
+#define IDS_COLDESC_LSIZE               17766
+#define IDS_COLDESC_RSIZE               17767
+#define IDS_COLDESC_LTIMEC              17768
+#define IDS_COLDESC_RTIMEC              17769
+#define IDS_COLDESC_NEWER               17770
+#define IDS_COLDESC_LVERSION            17771
+#define IDS_COLDESC_RVERSION            17772
+#define IDS_COLDESC_RESULT_ABBR         17773
+#define IDS_COLDESC_LATTRIBUTES         17774
+#define IDS_COLDESC_RATTRIBUTES         17775
+#define IDS_COLDESC_LENCODING           17776
+#define IDS_COLDESC_RENCODING           17777
+#define IDS_COLDESC_NDIFFS              17778
+#define IDS_COLDESC_NSDIFFS             17779
+#define IDS_COLDESC_BINARY              17780
 
 #define IDS_FILE_TO_ITSELF              18000
 #define IDS_FILESSAME                   18001
@@ -669,7 +692,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        162
 #define _APS_NEXT_COMMAND_VALUE         33088
-#define _APS_NEXT_CONTROL_VALUE         1136
+#define _APS_NEXT_CONTROL_VALUE         1137
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif

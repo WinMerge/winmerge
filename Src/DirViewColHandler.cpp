@@ -362,6 +362,17 @@ CString CDirView::GetColDisplayName(int col) const
 }
 
 /**
+ * @brief Return description of column
+ */
+CString CDirView::GetColDescription(int col) const
+{
+	const DirColInfo & colinfo = g_cols[col];
+	CString s;
+	s.LoadString(colinfo.idDesc);
+	return s;
+}
+
+/**
  * @brief Return total number of known columns
  */
 int CDirView::GetColLogCount() const
@@ -404,14 +415,14 @@ ToDoDeleteThisValidateColumnOrdering();
 	for (int col=0; col<GetListCtrl().GetHeaderCtrl()->GetItemCount(); ++col)
 	{
 		int l = ColPhysToLog(col);
-		dlg.AddColumn(GetColDisplayName(l), l, col);
+		dlg.AddColumn(GetColDisplayName(l), GetColDescription(l), l, col);
 	}
 	// Now add all the columns not currently displayed
 	for (int l=0; l<GetColLogCount(); ++l)
 	{
 		if (ColLogToPhys(l)==-1)
 		{
-			dlg.AddColumn(GetColDisplayName(l), l);
+			dlg.AddColumn(GetColDisplayName(l), GetColDescription(l), l);
 		}
 	}
 
