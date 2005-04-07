@@ -94,7 +94,8 @@ public:
 
 // Operations
 public:
-	// HMENU NewMenu(); // Uncomment to enable document menus
+	HMENU NewDirViewMenu();
+	HMENU NewMergeViewMenu();
 	HMENU NewDefaultMenu(int ID = 0);
 	HMENU GetScriptsSubmenu(HMENU mainMenu);
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
@@ -171,7 +172,8 @@ protected:  // control bar embedded members
 	CStatusBar  m_wndStatusBar;
 	CToolBar    m_wndToolBar;
 	BCMenu		m_default;
-	// BCMenu		m_menu; // Uncomment to enable document menus
+	BCMenu		m_mergeViewMenu;
+	BCMenu		m_dirViewMenu;
 
 // Generated message map functions
 protected:

@@ -104,6 +104,171 @@ BEGIN
         MENUITEM "열기(&O)...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "끝내기(&X)",                  ID_APP_EXIT
+    END
+    POPUP "편집(&E)"
+    BEGIN
+        MENUITEM "옵션(&O)...",                 ID_OPTIONS
+    END
+    POPUP "보기(&V)"
+    BEGIN
+        MENUITEM "폰트 선택(&F)...",            ID_VIEW_SELECTFONT
+        MENUITEM "기본 폰트 사용(&O)",          ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "툴바(&T)",                    ID_VIEW_TOOLBAR
+        MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "언어(&L)...",                 ID_VIEW_LANGUAGE
+    END
+    POPUP "도구(&T)"
+    BEGIN
+        MENUITEM "필터(&F)",                    ID_TOOLS_FILTERS
+        MENUITEM "패치 생성(&G)",               ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "플러그인(&P)"
+    BEGIN
+        MENUITEM "수동 Unpacking(&M)",           ID_UNPACK_MANUAL
+        MENUITEM "자동 Unpacking(&A)",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "Unpacker 사용 편집(&E)",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "플러그인 다시 로드(&R)",             ID_RELOAD_PLUGINS
+    END
+    POPUP "창(&W)"
+    BEGIN
+        MENUITEM "닫기",                        ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "창(pane) 이동(&P)\tF6",       ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "수직 정렬(&H)",               ID_WINDOW_TILE_HORZ
+        MENUITEM "수평 정렬(&V)",               ID_WINDOW_TILE_VERT
+        MENUITEM "계단식 정렬(&C)",             ID_WINDOW_CASCADE
+    END
+    POPUP "도움말(&H)"
+    BEGIN
+        MENUITEM "목차(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "설정(&O)...",           ID_HELP_GETCONFIG
+        MENUITEM "압축파일 지원에 대하여(&R)...", ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
+        MENUITEM "WinMerge 정보(&A)...",        ID_APP_ABOUT
+    END
+END
+
+IDR_DIRVIEWMENU MENU
+BEGIN
+    POPUP "파일(&F)"
+    BEGIN
+        MENUITEM "새로 만들기&(N)\tCtrl+N",     ID_FILE_NEW
+        MENUITEM "열기(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "왼쪽을 읽기전용으로(E&)",     ID_FILE_LEFT_READONLY
+        MENUITEM "오른쪽을 읽기전용으로(&G)",   ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "끝내기(&X)",                  ID_APP_EXIT
+    END
+    POPUP "편집(&E)"
+    BEGIN
+        MENUITEM "잘라내기(&T)\tCtrl+X",        ID_EDIT_CUT
+        MENUITEM "복사(&C)\tCtrl+C",            ID_EDIT_COPY
+        MENUITEM "붙여넣기(&P)\tCtrl+V",        ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "전체선택(&A)\tCtrl+A",        ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "옵션(&O)...",                 ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "새로 고침(&S)\tF5",           ID_REFRESH
+    END
+    POPUP "보기(&V)"
+    BEGIN
+        MENUITEM "동일한 파일 보기(&I)",        ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "다른 파일 보기(&D)",          ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "왼쪽만 존재하는 디렉토리/파일 보기(&F)",  ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "오른쪽만 존재하는 디렉토리/파일 보기(&G)", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "바이너리 파일 보기(&H)",      ID_OPTIONS_SHOWBINARIES
+        MENUITEM "필터링된 파일 보기(&K)",      ID_OPTIONS_SHOWSKIPPED
+        MENUITEM SEPARATOR
+        MENUITEM "폰트 선택(&F)...",            ID_VIEW_SELECTFONT
+        MENUITEM "기본 폰트 사용(&O)",          ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "툴바(&T)",                    ID_VIEW_TOOLBAR
+        MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
+        MENUITEM "디렉토리 비교 결과 요약(&R)", ID_VIEW_DIR_STATEPANE
+        MENUITEM SEPARATOR
+        MENUITEM "언어(&L)...",                 ID_VIEW_LANGUAGE
+    END
+    POPUP "Merge(&M)"
+    BEGIN
+        MENUITEM "다음 다른 부분(&X)\tAlt+Down", ID_NEXTDIFF
+        MENUITEM "이전 다른 부분(&V)\tAlt+Up",  ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "처음 다른 부분(&F)\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "현재 선택된 다른 부분(&N)\tAlt+Enter", ID_CURDIFF
+        MENUITEM "마지막 다른 부분(&D)\tAlt+End", ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "오른쪽으로 복사(&G)\tAlt+Right", ID_L2R
+        MENUITEM "왼쪽으로 복사(&L)\tAlt+Left", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "모두 오른쪽으로 복사(&A)",    ID_ALL_RIGHT
+        MENUITEM "모두 왼쪽으로 복사(&E)",      ID_ALL_LEFT
+    END
+    POPUP "도구(&T)"
+    BEGIN
+        MENUITEM "디렉토리 비교 설정(&Customize Columns)", ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "필터(&F)",                    ID_TOOLS_FILTERS
+        MENUITEM "패치 생성(&G)",               ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "플러그인(&P)"
+    BEGIN
+        MENUITEM "수동 Unpacking(&M)",           ID_UNPACK_MANUAL
+        MENUITEM "자동 Unpacking(&A)",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "Unpacker 사용 편집(&E)",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "플러그인 다시 로드(&R)",             ID_RELOAD_PLUGINS
+    END
+    POPUP "창(&W)"
+    BEGIN
+        MENUITEM "닫기",                        ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "창(pane) 이동(&P)\tF6",       ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "수직 정렬(&H)",               ID_WINDOW_TILE_HORZ
+        MENUITEM "수평 정렬(&V)",               ID_WINDOW_TILE_VERT
+        MENUITEM "계단식 정렬(&C)",             ID_WINDOW_CASCADE
+    END
+    POPUP "도움말(&H)"
+    BEGIN
+        MENUITEM "목차(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "설정(&O)...",           ID_HELP_GETCONFIG
+        MENUITEM "압축파일 지원에 대하여(&R)...", ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
+        MENUITEM "WinMerge 정보(&A)...",        ID_APP_ABOUT
+    END
+END
+
+IDR_MERGEVIEWMENU MENU
+BEGIN
+    POPUP "파일(&F)"
+    BEGIN
+        MENUITEM "새로 만들기&(N)\tCtrl+N",     ID_FILE_NEW
+        MENUITEM "열기(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
         MENUITEM "저장(&S)\tCtrl+S",            ID_FILE_SAVE
         POPUP "왼쪽 저장(&L)"
         BEGIN
@@ -165,13 +330,6 @@ BEGIN
     END
     POPUP "보기(&V)"
     BEGIN
-        MENUITEM "동일한 파일 보기(&I)",        ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "다른 파일 보기(&D)",          ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "왼쪽만 존재하는 디렉토리/파일 보기(&F)",  ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "오른쪽만 존재하는 디렉토리/파일 보기(&G)", ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "바이너리 파일 보기(&H)",      ID_OPTIONS_SHOWBINARIES
-        MENUITEM "필터링된 파일 보기(&K)",      ID_OPTIONS_SHOWSKIPPED
-        MENUITEM SEPARATOR
         MENUITEM "폰트 선택(&F)...",            ID_VIEW_SELECTFONT
         MENUITEM "기본 폰트 사용(&O)",          ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -182,7 +340,6 @@ BEGIN
         MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
         MENUITEM "선택 비교창 보기(&P)",        ID_VIEW_DETAIL_BAR
         MENUITEM "위치 표시창(&C)",             ID_VIEW_LOCATION_BAR
-        MENUITEM "디렉토리 비교 결과 요약(&R)", ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "언어(&L)...",                 ID_VIEW_LANGUAGE
     END
@@ -209,7 +366,6 @@ BEGIN
     END
     POPUP "도구(&T)"
     BEGIN
-        MENUITEM "디렉토리 비교 설정(&Customize Columns)", ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "필터(&F)",                    ID_TOOLS_FILTERS
         MENUITEM "패치 생성(&G)",               ID_TOOLS_GENERATEPATCH
     END

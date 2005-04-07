@@ -104,6 +104,171 @@ BEGIN
         MENUITEM "&Åpne...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Åpne prosjekt...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "L&ukk",                       ID_APP_EXIT
+    END
+    POPUP "&Rediger"
+    BEGIN
+        MENUITEM "&Innstillinger...",              ID_OPTIONS
+    END
+    POPUP "&Vis"
+    BEGIN
+        MENUITEM "Velg &skrifttype...",         ID_VIEW_SELECTFONT
+        MENUITEM "Bruk standard s&krifttype",   ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Verktøylinje",               ID_VIEW_TOOLBAR
+        MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
+    END
+    POPUP "&Verktøy"
+    BEGIN
+        MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
+        MENUITEM "&Generer rettelse...",        ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Programtillegg"
+    BEGIN
+        MENUITEM "&Manual utpakking",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatisk utpakking",       ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Rediger med utpakker",       ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Forhåndsforskjell"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Oppdater programtillegg",    ID_RELOAD_PLUGINS
+    END
+    POPUP "&Vindu"
+    BEGIN
+        MENUITEM "&Lukk",                        ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Endre vindu\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Horisontale vinduer",        ID_WINDOW_TILE_HORZ
+        MENUITEM "&Vertikale vinduer",          ID_WINDOW_TILE_VERT
+        MENUITEM "&Kaskade",                    ID_WINDOW_CASCADE
+    END
+    POPUP "&Hjelp"
+    BEGIN
+        MENUITEM "&Innhold...\tF1",             ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "K&onfigurasjon...",           ID_HELP_GETCONFIG
+        MENUITEM "A&rkivstøtte deaktivert...",  ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "GNU General Public License...", ID_HELP_GNULICENSE
+        MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
+    END
+END
+
+IDR_DIRVIEWMENU MENU
+BEGIN
+    POPUP "&Filer"
+    BEGIN
+        MENUITEM "&Ny\tCtrl+N",                 ID_FILE_NEW
+        MENUITEM "&Åpne...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Åpne prosjekt...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "V&entsre skrivebeskyttet",    ID_FILE_LEFT_READONLY
+        MENUITEM "H&øyre skrivebeskyttet",      ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "L&ukk",                       ID_APP_EXIT
+    END
+    POPUP "&Rediger"
+    BEGIN
+        MENUITEM "&Klipp ut\tCtrl+X",           ID_EDIT_CUT
+        MENUITEM "Ko&pier\tCtrl+C",             ID_EDIT_COPY
+        MENUITEM "&Lim inn\tCtrl+V",            ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Velg &alt\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Innstillinger...",              ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "&Oppdater\tF5",               ID_REFRESH
+    END
+    POPUP "&Vis"
+    BEGIN
+        MENUITEM "Vis &identiske filer",        ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Vis &forskjellige filer",     ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Vis &venstre unike filer",    ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Vis &høyre unike filer",      ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Vis &binære filer",           ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Vis &utelatte filer",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM SEPARATOR
+        MENUITEM "Velg &skrifttype...",         ID_VIEW_SELECTFONT
+        MENUITEM "Bruk standard s&krifttype",   ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Verktøylinje",               ID_VIEW_TOOLBAR
+        MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
+        MENUITEM "&Sammenligningsvindu",        ID_VIEW_DIR_STATEPANE
+        MENUITEM SEPARATOR
+        MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
+    END
+    POPUP "&Flette"
+    BEGIN
+        MENUITEM "&Neste forskjell\tAlt+Down",  ID_NEXTDIFF
+        MENUITEM "&Forrige forskjell\tAlt+Up",  ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "F&ørste forskjell\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Aktuell forskjell\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Siste forskjell\tAlt+End",   ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Kopier til &høyre\tAlt+Høyre", ID_L2R
+        MENUITEM "Kopier til &venstre\tAlt+Venstre", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Kopier alt &til høyre",       ID_ALL_RIGHT
+        MENUITEM "Kopier alt til ve&nstre",     ID_ALL_LEFT
+    END
+    POPUP "&Verktøy"
+    BEGIN
+        MENUITEM "&Tilpass kolonner...",        ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
+        MENUITEM "&Generer rettelse...",        ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Programtillegg"
+    BEGIN
+        MENUITEM "&Manual utpakking",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatisk utpakking",       ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Rediger med utpakker",       ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Forhåndsforskjell"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Oppdater programtillegg",    ID_RELOAD_PLUGINS
+    END
+    POPUP "&Vindu"
+    BEGIN
+        MENUITEM "&Lukk",                        ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Endre vindu\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Horisontale vinduer",        ID_WINDOW_TILE_HORZ
+        MENUITEM "&Vertikale vinduer",          ID_WINDOW_TILE_VERT
+        MENUITEM "&Kaskade",                    ID_WINDOW_CASCADE
+    END
+    POPUP "&Hjelp"
+    BEGIN
+        MENUITEM "&Innhold...\tF1",             ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "K&onfigurasjon...",           ID_HELP_GETCONFIG
+        MENUITEM "A&rkivstøtte deaktivert...",  ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "GNU General Public License...", ID_HELP_GNULICENSE
+        MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
+    END
+END
+
+IDR_MERGEVIEWMENU MENU
+BEGIN
+    POPUP "&Filer"
+    BEGIN
+        MENUITEM "&Ny\tCtrl+N",                 ID_FILE_NEW
+        MENUITEM "&Åpne...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Åpne prosjekt...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
         MENUITEM "&Lagre\tCtrl+S",              ID_FILE_SAVE
         POPUP "Lagre &venstre"
         BEGIN
@@ -165,13 +330,6 @@ BEGIN
     END
     POPUP "&Vis"
     BEGIN
-        MENUITEM "Vis &identiske filer",        ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Vis &forskjellige filer",     ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Vis &venstre unike filer",    ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Vis &høyre unike filer",      ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Vis &binære filer",           ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Vis &utelatte filer",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM SEPARATOR
         MENUITEM "Velg &skrifttype...",         ID_VIEW_SELECTFONT
         MENUITEM "Bruk standard s&krifttype",   ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -182,7 +340,6 @@ BEGIN
         MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
         MENUITEM "&Forskjellsvindu",            ID_VIEW_DETAIL_BAR
         MENUITEM "&Lokasjonsvindu",             ID_VIEW_LOCATION_BAR
-        MENUITEM "&Sammenligningsvindu",        ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
     END
@@ -209,7 +366,6 @@ BEGIN
     END
     POPUP "&Verktøy"
     BEGIN
-        MENUITEM "&Tilpass kolonner...",        ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
         MENUITEM "&Generer rettelse...",        ID_TOOLS_GENERATEPATCH
     END

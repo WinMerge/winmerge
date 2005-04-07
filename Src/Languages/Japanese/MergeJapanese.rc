@@ -104,6 +104,171 @@ BEGIN
         MENUITEM "開く(&O)...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM "プロジェクトを開く(&J)...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "終了(&X)",                    ID_APP_EXIT
+    END
+    POPUP "編集(&E)"
+    BEGIN
+        MENUITEM "設定(&O)...",                 ID_OPTIONS
+    END
+    POPUP "表示(&V)"
+    BEGIN
+        MENUITEM "フォント選択(&F)...",         ID_VIEW_SELECTFONT
+        MENUITEM "デフォルトフォントを使用(&O)", ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "ツールバー(&T)",              ID_VIEW_TOOLBAR
+        MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "言語(&L)...",                 ID_VIEW_LANGUAGE
+    END
+    POPUP "ツール(&T)"
+    BEGIN
+        MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
+        MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "プラグイン(&P)"
+    BEGIN
+        MENUITEM "手動展開",                    ID_UNPACK_MANUAL
+        MENUITEM "自動展開",                    ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "展開プラグインで開く",        ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "比較前処理プラグイン(&P)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "プラグインの再読込み(&R)",    ID_RELOAD_PLUGINS
+    END
+    POPUP "ウィンドウ(&W)"
+    BEGIN
+        MENUITEM "閉じる(&O)",                  ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "ペインを変更する(&P)\tF6",    ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "上下に並べて表示(&H)",        ID_WINDOW_TILE_HORZ
+        MENUITEM "左右に並べて表示(&V)",        ID_WINDOW_TILE_VERT
+        MENUITEM "重ねて表示(&C)",              ID_WINDOW_CASCADE
+    END
+    POPUP "ヘルプ(&H)"
+    BEGIN
+        MENUITEM "目次(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "設定(&O)...",                 ID_HELP_GETCONFIG
+        MENUITEM "アーカイブサポートが無効です(&R)...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "GNU一般公衆利用許諾契約書(&G)...", ID_HELP_GNULICENSE
+        MENUITEM "WinMergeについて(&A)...",     ID_APP_ABOUT
+    END
+END
+
+IDR_DIRVIEWMENU MENU
+BEGIN
+    POPUP "ファイル(&F)"
+    BEGIN
+        MENUITEM "新規作成(&N)\tCtrl+N",        ID_FILE_NEW
+        MENUITEM "開く(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "プロジェクトを開く(&J)...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "左を読み取り専用(&E)",        ID_FILE_LEFT_READONLY
+        MENUITEM "右を読み取り専用(&I)",        ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "終了(&X)",                    ID_APP_EXIT
+    END
+    POPUP "編集(&E)"
+    BEGIN
+        MENUITEM "切り取り(&T)\tCtrl+X",        ID_EDIT_CUT
+        MENUITEM "コピー(&C)\tCtrl+C",          ID_EDIT_COPY
+        MENUITEM "貼り付け(&P)\tCtrl+V",        ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "すべて選択(&A)\tCtrl+A",      ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "設定(&O)...",                 ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "最新の情報に更新(S)\tF5",     ID_REFRESH
+    END
+    POPUP "表示(&V)"
+    BEGIN
+        MENUITEM "同一ファイルの表示(&I)",      ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "差異ファイルの表示(&D)",      ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "左のみに存在するファイルの表示(&E)", ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "右のみに存在するファイルの表示(&G)", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "バイナリファイルの表示(&H)",  ID_OPTIONS_SHOWBINARIES
+        MENUITEM "スキップされたファイルの表示(&K)", ID_OPTIONS_SHOWSKIPPED
+        MENUITEM SEPARATOR
+        MENUITEM "フォント選択(&F)...",         ID_VIEW_SELECTFONT
+        MENUITEM "デフォルトフォントを使用(&O)", ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "ツールバー(&T)",              ID_VIEW_TOOLBAR
+        MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
+        MENUITEM "比較状態ペイン(&R)",          ID_VIEW_DIR_STATEPANE
+        MENUITEM SEPARATOR
+        MENUITEM "言語(&L)...",                 ID_VIEW_LANGUAGE
+    END
+    POPUP "マージ(&M)"
+    BEGIN
+        MENUITEM "次の差異(&N)\tAlt+Down",      ID_NEXTDIFF
+        MENUITEM "前の差異(&P)\tAlt+Up",        ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "最初の差異(&F)\tAlt+Home",    ID_FIRSTDIFF
+        MENUITEM "現在の差異(&C)\tAlt+Enter",   ID_CURDIFF
+        MENUITEM "最後の差異(&L)\tAlt+End",     ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "右にコピー(&R)\tAlt+Right",   ID_L2R
+        MENUITEM "左にコピー(&E)\tAlt+Left",    ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "全てを右にコピー(&A)",        ID_ALL_RIGHT
+        MENUITEM "全てを左にコピー(&Y)",        ID_ALL_LEFT
+    END
+    POPUP "ツール(&T)"
+    BEGIN
+        MENUITEM "列の設定(&C)...",             ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
+        MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "プラグイン(&P)"
+    BEGIN
+        MENUITEM "手動展開",                    ID_UNPACK_MANUAL
+        MENUITEM "自動展開",                    ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "展開プラグインで開く",        ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "比較前処理プラグイン(&P)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "プラグインの再読込み(&R)",    ID_RELOAD_PLUGINS
+    END
+    POPUP "ウィンドウ(&W)"
+    BEGIN
+        MENUITEM "閉じる(&O)",                  ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "ペインを変更する(&P)\tF6",    ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "上下に並べて表示(&H)",        ID_WINDOW_TILE_HORZ
+        MENUITEM "左右に並べて表示(&V)",        ID_WINDOW_TILE_VERT
+        MENUITEM "重ねて表示(&C)",              ID_WINDOW_CASCADE
+    END
+    POPUP "ヘルプ(&H)"
+    BEGIN
+        MENUITEM "目次(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "設定(&O)...",                 ID_HELP_GETCONFIG
+        MENUITEM "アーカイブサポートが無効です(&R)...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "GNU一般公衆利用許諾契約書(&G)...", ID_HELP_GNULICENSE
+        MENUITEM "WinMergeについて(&A)...",     ID_APP_ABOUT
+    END
+END
+
+IDR_MERGEVIEWMENU MENU
+BEGIN
+    POPUP "ファイル(&F)"
+    BEGIN
+        MENUITEM "新規作成(&N)\tCtrl+N",        ID_FILE_NEW
+        MENUITEM "開く(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "プロジェクトを開く(&J)...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
         MENUITEM "保存(&S)\tCtrl+S",            ID_FILE_SAVE
         POPUP "左のファイルを保存(&L)"
         BEGIN
@@ -165,13 +330,6 @@ BEGIN
     END
     POPUP "表示(&V)"
     BEGIN
-        MENUITEM "同一ファイルの表示(&I)",      ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "差異ファイルの表示(&D)",      ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "左のみに存在するファイルの表示(&E)", ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "右のみに存在するファイルの表示(&G)", ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "バイナリファイルの表示(&H)",  ID_OPTIONS_SHOWBINARIES
-        MENUITEM "スキップされたファイルの表示(&K)", ID_OPTIONS_SHOWSKIPPED
-        MENUITEM SEPARATOR
         MENUITEM "フォント選択(&F)...",         ID_VIEW_SELECTFONT
         MENUITEM "デフォルトフォントを使用(&O)", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -182,7 +340,6 @@ BEGIN
         MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
         MENUITEM "Diffペイン(&P)",              ID_VIEW_DETAIL_BAR
         MENUITEM "ロケーションペイン(&C)",      ID_VIEW_LOCATION_BAR
-        MENUITEM "比較状態ペイン(&R)",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "言語(&L)...",                 ID_VIEW_LANGUAGE
     END
@@ -209,7 +366,6 @@ BEGIN
     END
     POPUP "ツール(&T)"
     BEGIN
-        MENUITEM "列の設定(&C)...",             ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
         MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
     END

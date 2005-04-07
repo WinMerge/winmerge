@@ -1,3 +1,8 @@
+2005-04-07 Kimmo
+ PATCH: [ 1175731 ] Own menus for file- and directory compare
+  Src: MainFrm.cpp MainFrm.h Merge.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2005-04-05 Kimmo
  PATCH: [ 1176040 ] French translation 2.3 branch
   Submitted by Jean-F Jolin

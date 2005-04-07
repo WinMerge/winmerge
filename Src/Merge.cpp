@@ -189,8 +189,8 @@ BOOL CMergeApp::InitInstance()
 
 	// Init menus -- hMenuDefault is for MainFrame, other
 	// two are for dirdoc and mergedoc (commented out for now)
-	// m_pDiffTemplate->m_hMenuShared = pMainFrame->NewMenu();
-	// m_pDirTemplate->m_hMenuShared = pMainFrame->NewMenu();
+	m_pDiffTemplate->m_hMenuShared = pMainFrame->NewMergeViewMenu();
+	m_pDirTemplate->m_hMenuShared = pMainFrame->NewDirViewMenu();
 	pMainFrame->m_hMenuDefault = pMainFrame->NewDefaultMenu();
 
 	// Set the menu

@@ -104,6 +104,171 @@ BEGIN
         MENUITEM "M&egnyitás...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Projekt megnyitása...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "&Kilépés",                       ID_APP_EXIT
+    END
+    POPUP "S&zerkesztés"
+    BEGIN
+        MENUITEM "&Beállítások...",                 ID_OPTIONS
+    END
+    POPUP "&Nézet"
+    BEGIN
+        MENUITEM "Betûtípus...",             ID_VIEW_SELECTFONT
+        MENUITEM "Alapértelmezett betûtípus használata",           ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Eszköztár",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Álapotsor",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Nyelv...",                ID_VIEW_LANGUAGE
+    END
+    POPUP "&Eszközök"
+    BEGIN
+        MENUITEM "&Szûrõk...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Patch generálása...",          ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Bõvítmények"
+    BEGIN
+        MENUITEM "&Kézi kicsomagolás",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatikus kicsomagolás",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Szerkesztés a Kicsomagolóval",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Elõvizsgáló"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Bõvítmények betöltése",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Ablak"
+    BEGIN
+        MENUITEM "&Bezárás",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Panel váltása\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "Elrendezés &vízszintesen",          ID_WINDOW_TILE_HORZ
+        MENUITEM "Elrendezés &függõlegesen",            ID_WINDOW_TILE_VERT
+        MENUITEM "&Felosztás",                    ID_WINDOW_CASCADE
+    END
+    POPUP "&Súgó"
+    BEGIN
+        MENUITEM "&Tartalomjegyzék...\tF1",            ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "&Konfiguráció...",           ID_HELP_GETCONFIG
+        MENUITEM "Ar&chívum támogatás tiltva...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
+        MENUITEM "&A Winmerge névjegye...",          ID_APP_ABOUT
+    END
+END
+
+IDR_DIRVIEWMENU MENU
+BEGIN
+    POPUP "&Fájl"
+    BEGIN
+        MENUITEM "&Új\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "M&egnyitás...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Projekt megnyitása...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "Bal oldal csak &olvasható",             ID_FILE_LEFT_READONLY
+        MENUITEM "Jobb oldal csak o&lvasható",            ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "&Kilépés",                       ID_APP_EXIT
+    END
+    POPUP "S&zerkesztés"
+    BEGIN
+        MENUITEM "&Kivágás\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Másolás\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Beillesztés\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "M&indent kijelöl\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Beállítások...",                 ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "&Frissítés\tF5",                ID_REFRESH
+    END
+    POPUP "&Nézet"
+    BEGIN
+        MENUITEM "&Egyezõ fájlok mutatása",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "E&ltérõ fájlok mutatása",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Csak &Bal oldalon meglévõ fájlok mutatása",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Csak &Jobb oldalon meglévõ fájlok mutatása",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "&Bináris fájlok mutatása",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "&Kihagyott fájlok mutatása",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM SEPARATOR
+        MENUITEM "Betûtípus...",             ID_VIEW_SELECTFONT
+        MENUITEM "Alapértelmezett betûtípus használata",           ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Eszköztár",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Álapotsor",                 ID_VIEW_STATUS_BAR
+        MENUITEM "&Összehasonlító állapotpanel",          ID_VIEW_DIR_STATEPANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Nyelv...",                ID_VIEW_LANGUAGE
+    END
+    POPUP "&Olvasztás"
+    BEGIN
+        MENUITEM "&Következõ eltérés\tAlt+Down",  ID_NEXTDIFF
+        MENUITEM "&Elõzõ eltérés\tAlt+Up", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "E&lsõ eltérés\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Aktuális eltérés\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Utolsó eltérés\tAlt+End",   ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Másolás &Jobbra\tAlt+Right",   ID_L2R
+        MENUITEM "Másolás &Balra\tAlt+Left",     ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "M&inden Jobbra másolása",          ID_ALL_RIGHT
+        MENUITEM "Mi&nden Balra másolása",           ID_ALL_LEFT
+    END
+    POPUP "&Eszközök"
+    BEGIN
+        MENUITEM "&Oszlopok testreszabása...",       ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Szûrõk...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Patch generálása...",          ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Bõvítmények"
+    BEGIN
+        MENUITEM "&Kézi kicsomagolás",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatikus kicsomagolás",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Szerkesztés a Kicsomagolóval",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Elõvizsgáló"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Bõvítmények betöltése",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Ablak"
+    BEGIN
+        MENUITEM "&Bezárás",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Panel váltása\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "Elrendezés &vízszintesen",          ID_WINDOW_TILE_HORZ
+        MENUITEM "Elrendezés &függõlegesen",            ID_WINDOW_TILE_VERT
+        MENUITEM "&Felosztás",                    ID_WINDOW_CASCADE
+    END
+    POPUP "&Súgó"
+    BEGIN
+        MENUITEM "&Tartalomjegyzék...\tF1",            ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "&Konfiguráció...",           ID_HELP_GETCONFIG
+        MENUITEM "Ar&chívum támogatás tiltva...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
+        MENUITEM "&A Winmerge névjegye...",          ID_APP_ABOUT
+    END
+END
+
+IDR_MERGEVIEWMENU MENU
+BEGIN
+    POPUP "&Fájl"
+    BEGIN
+        MENUITEM "&Új\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "M&egnyitás...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Projekt megnyitása...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
         MENUITEM "&Mentés\tCtrl+S",               ID_FILE_SAVE
         POPUP "&Bal oldal mentése"
         BEGIN
@@ -165,13 +330,6 @@ BEGIN
     END
     POPUP "&Nézet"
     BEGIN
-        MENUITEM "&Egyezõ fájlok mutatása",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "E&ltérõ fájlok mutatása",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Csak &Bal oldalon meglévõ fájlok mutatása",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Csak &Jobb oldalon meglévõ fájlok mutatása",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "&Bináris fájlok mutatása",          ID_OPTIONS_SHOWBINARIES
-        MENUITEM "&Kihagyott fájlok mutatása",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM SEPARATOR
         MENUITEM "Betûtípus...",             ID_VIEW_SELECTFONT
         MENUITEM "Alapértelmezett betûtípus használata",           ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -182,7 +340,6 @@ BEGIN
         MENUITEM "&Álapotsor",                 ID_VIEW_STATUS_BAR
         MENUITEM "Eltérés &panel",                  ID_VIEW_DETAIL_BAR
         MENUITEM "&Pozíció panel",              ID_VIEW_LOCATION_BAR
-        MENUITEM "&Összehasonlító állapotpanel",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "&Nyelv...",                ID_VIEW_LANGUAGE
     END
@@ -209,7 +366,6 @@ BEGIN
     END
     POPUP "&Eszközök"
     BEGIN
-        MENUITEM "&Oszlopok testreszabása...",       ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Szûrõk...",                 ID_TOOLS_FILTERS
         MENUITEM "&Patch generálása...",          ID_TOOLS_GENERATEPATCH
     END

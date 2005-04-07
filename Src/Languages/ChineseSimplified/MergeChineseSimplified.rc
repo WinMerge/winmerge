@@ -103,6 +103,171 @@ BEGIN
         MENUITEM "打开(&O)...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "退出(&X)",                    ID_APP_EXIT
+    END
+    POPUP "编辑(&E)"
+    BEGIN
+        MENUITEM "选项(&O)...",                 ID_OPTIONS
+    END
+    POPUP "视图(&V)"
+    BEGIN
+        MENUITEM "选择字型(&F)...",             ID_VIEW_SELECTFONT
+        MENUITEM "使用默认字型(&O)",          ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "工具栏(&T)",                  ID_VIEW_TOOLBAR
+        MENUITEM "状态栏(&S)",                  ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "语言(&L)...",                 ID_VIEW_LANGUAGE
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Edit with Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
+    END
+    POPUP "窗口(&W)"
+    BEGIN
+        MENUITEM "关闭",                        ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "水平并排(&H)",                ID_WINDOW_TILE_HORZ
+        MENUITEM "垂直并排(&V)",                ID_WINDOW_TILE_VERT
+        MENUITEM "重迭(&C)",                    ID_WINDOW_CASCADE
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "用户手册(&C)...\tF1",         ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
+        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "GNU 公共授权...",             ID_HELP_GNULICENSE
+        MENUITEM "关于 WinMerge(&A)...",        ID_APP_ABOUT
+    END
+END
+
+IDR_DIRVIEWMENU MENU
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "打开(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "L&eft Read-only",             ID_FILE_LEFT_READONLY
+        MENUITEM "Ri&ght Read-only",            ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "退出(&X)",                    ID_APP_EXIT
+    END
+    POPUP "编辑(&E)"
+    BEGIN
+        MENUITEM "剪切(&U)\tCtrl+X",            ID_EDIT_CUT
+        MENUITEM "复制(&C)\tCtrl+C",            ID_EDIT_COPY
+        MENUITEM "粘贴(&P)\tCtrl+V",            ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "选项(&O)...",                 ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "更新(&S)\tF5",                ID_REFRESH
+    END
+    POPUP "视图(&V)"
+    BEGIN
+        MENUITEM "显示完全相同的文件(&I)",      ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "显示不同的文件(&D)",          ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "显示左边单一的文件(&F)",      ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "显示右边单一的文件(&G)",      ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "显示二进制文件(&H)",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM SEPARATOR
+        MENUITEM "选择字型(&F)...",             ID_VIEW_SELECTFONT
+        MENUITEM "使用默认字型(&O)",          ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "工具栏(&T)",                  ID_VIEW_TOOLBAR
+        MENUITEM "状态栏(&S)",                  ID_VIEW_STATUS_BAR
+        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
+        MENUITEM SEPARATOR
+        MENUITEM "语言(&L)...",                 ID_VIEW_LANGUAGE
+    END
+    POPUP "&Merge"
+    BEGIN
+        MENUITEM "下一不同(&N)\tAlt+Down",      ID_NEXTDIFF
+        MENUITEM "上一不同(&P)\tAlt+Up",        ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "第一个不同(&F)\tAlt+Home",    ID_FIRSTDIFF
+        MENUITEM "当前不同(&C)\tAlt+Enter",     ID_CURDIFF
+        MENUITEM "上次的不同(&D)\tAlt+End",     ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "复制到右边(&R)\tAlt+Right",   ID_L2R
+        MENUITEM "复制到左边(&L)\tAlt+Left",    ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "全部复制到右边(&A)",          ID_ALL_RIGHT
+        MENUITEM "全部复制到左边(&E)",          ID_ALL_LEFT
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Edit with Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
+    END
+    POPUP "窗口(&W)"
+    BEGIN
+        MENUITEM "关闭",                        ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "水平并排(&H)",                ID_WINDOW_TILE_HORZ
+        MENUITEM "垂直并排(&V)",                ID_WINDOW_TILE_VERT
+        MENUITEM "重迭(&C)",                    ID_WINDOW_CASCADE
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "用户手册(&C)...\tF1",         ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
+        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "GNU 公共授权...",             ID_HELP_GNULICENSE
+        MENUITEM "关于 WinMerge(&A)...",        ID_APP_ABOUT
+    END
+END
+
+IDR_MERGEVIEWMENU MENU
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "打开(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
         MENUITEM "保存(&S)\tCtrl+S",            ID_FILE_SAVE
         POPUP "Save &Left"
         BEGIN
@@ -164,13 +329,6 @@ BEGIN
     END
     POPUP "视图(&V)"
     BEGIN
-        MENUITEM "显示完全相同的文件(&I)",      ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "显示不同的文件(&D)",          ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "显示左边单一的文件(&F)",      ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "显示右边单一的文件(&G)",      ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "显示二进制文件(&H)",          ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM SEPARATOR
         MENUITEM "选择字型(&F)...",             ID_VIEW_SELECTFONT
         MENUITEM "使用默认字型(&O)",          ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -181,7 +339,6 @@ BEGIN
         MENUITEM "状态栏(&S)",                  ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Location &Pane",              ID_VIEW_LOCATION_BAR
-        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "语言(&L)...",                 ID_VIEW_LANGUAGE
     END
@@ -208,7 +365,6 @@ BEGIN
     END
     POPUP "&Tools"
     BEGIN
-        MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
     END

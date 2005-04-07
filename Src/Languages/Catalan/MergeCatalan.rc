@@ -104,6 +104,171 @@ BEGIN
         MENUITEM "&Obre...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Obre un &projecte...\tCtrl+J", ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "&Surt",                       ID_APP_EXIT
+    END
+    POPUP "E&dita"
+    BEGIN
+        MENUITEM "&Opcions...",                 ID_OPTIONS
+    END
+    POPUP "&Visualització"
+    BEGIN
+        MENUITEM "&Tipus de lletra...",         ID_VIEW_SELECTFONT
+        MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "Barra d'ei&nes",              ID_VIEW_TOOLBAR
+        MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
+    END
+    POPUP "&Eines"
+    BEGIN
+        MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Connectors"
+    BEGIN
+        MENUITEM "Desempaquetament &manual",            ID_UNPACK_MANUAL
+        MENUITEM "Desempaquetament &automàtic",         ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Edita amb el desempaquetador",          ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediferenciació"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Recarrega els connectors",   ID_RELOAD_PLUGINS
+    END
+    POPUP "Fi&nestra"
+    BEGIN
+        MENUITEM "&Tanca",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Canvia de &subfinestra\tF6",     ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "Finestres en mosaic &horitzontal", ID_WINDOW_TILE_HORZ
+        MENUITEM "Finestres en mosaic &vertical", ID_WINDOW_TILE_VERT
+        MENUITEM "Finestres en &cascada",       ID_WINDOW_CASCADE
+    END
+    POPUP "&Ajuda"
+    BEGIN
+        MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
+        MENUITEM "Suport d'&arxivament inhabilitat...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "Llicència Pública de &GNU...", ID_HELP_GNULICENSE
+        MENUITEM "&Quant al WinMerge...",       ID_APP_ABOUT
+    END
+END
+
+IDR_DIRVIEWMENU MENU
+BEGIN
+    POPUP "&Fitxer"
+    BEGIN
+        MENUITEM "&Nou\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Obre...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Obre un &projecte...\tCtrl+J", ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "Fes l'es&querra només de lectura", ID_FILE_LEFT_READONLY
+        MENUITEM "Fes la dre&ta només de lectura", ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "&Surt",                       ID_APP_EXIT
+    END
+    POPUP "E&dita"
+    BEGIN
+        MENUITEM "&Retalla\tCtrl+X",            ID_EDIT_CUT
+        MENUITEM "C&opia\tCtrl+C",              ID_EDIT_COPY
+        MENUITEM "Engan&xa\tCtrl+V",            ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Selecciona-ho &tot\tCtrl+A",  ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Opcions...",                 ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "Actualit&za\tF5",             ID_REFRESH
+    END
+    POPUP "&Visualització"
+    BEGIN
+        MENUITEM "Mostra els fitxers &idèntics", ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Mostra els fitxers di&ferents", ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Mostra els fitxers únics de l'&esquerra", ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Mostra els fitxers únics de la &dreta", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Mostra els fitxers &binaris", ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Mostra els fitxers &omesos",  ID_OPTIONS_SHOWSKIPPED
+        MENUITEM SEPARATOR
+        MENUITEM "&Tipus de lletra...",         ID_VIEW_SELECTFONT
+        MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "Barra d'ei&nes",              ID_VIEW_TOOLBAR
+        MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
+        MENUITEM "Subfinestra d'estat de &comparació", ID_VIEW_DIR_STATEPANE
+        MENUITEM SEPARATOR
+        MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
+    END
+    POPUP "Co&mbinació"
+    BEGIN
+        MENUITEM "&Propera diferència\tAlt+Avall", ID_NEXTDIFF
+        MENUITEM "Diferència a&nterior\tAlt+Amunt", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Pri&mera diferència\tAlt+Inici", ID_FIRSTDIFF
+        MENUITEM "Diferència &actual\tAlt+Retorn", ID_CURDIFF
+        MENUITEM "Da&rrera diferència\tAlt+Fi", ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Copia a la &dreta\tAlt+Dreta", ID_L2R
+        MENUITEM "Copia a l'&esquerra\tAlt+Esquerra", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Copia-ho &tot a la dreta",     ID_ALL_RIGHT
+        MENUITEM "Copia-ho t&ot a l'esquerra",   ID_ALL_LEFT
+    END
+    POPUP "&Eines"
+    BEGIN
+        MENUITEM "&Personalitza les columnes...", ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Connectors"
+    BEGIN
+        MENUITEM "Desempaquetament &manual",            ID_UNPACK_MANUAL
+        MENUITEM "Desempaquetament &automàtic",         ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Edita amb el desempaquetador",          ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediferenciació"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Recarrega els connectors",   ID_RELOAD_PLUGINS
+    END
+    POPUP "Fi&nestra"
+    BEGIN
+        MENUITEM "&Tanca",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Canvia de &subfinestra\tF6",     ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "Finestres en mosaic &horitzontal", ID_WINDOW_TILE_HORZ
+        MENUITEM "Finestres en mosaic &vertical", ID_WINDOW_TILE_VERT
+        MENUITEM "Finestres en &cascada",       ID_WINDOW_CASCADE
+    END
+    POPUP "&Ajuda"
+    BEGIN
+        MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
+        MENUITEM "Suport d'&arxivament inhabilitat...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "Llicència Pública de &GNU...", ID_HELP_GNULICENSE
+        MENUITEM "&Quant al WinMerge...",       ID_APP_ABOUT
+    END
+END
+
+IDR_MERGEVIEWMENU MENU
+BEGIN
+    POPUP "&Fitxer"
+    BEGIN
+        MENUITEM "&Nou\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Obre...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Obre un &projecte...\tCtrl+J", ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
         MENUITEM "&Desa\tCtrl+S",               ID_FILE_SAVE
         POPUP "Desa l'&Esquerra"
         BEGIN
@@ -165,13 +330,6 @@ BEGIN
     END
     POPUP "&Visualització"
     BEGIN
-        MENUITEM "Mostra els fitxers &idèntics", ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Mostra els fitxers di&ferents", ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Mostra els fitxers únics de l'&esquerra", ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Mostra els fitxers únics de la &dreta", ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Mostra els fitxers &binaris", ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Mostra els fitxers &omesos",  ID_OPTIONS_SHOWSKIPPED
-        MENUITEM SEPARATOR
         MENUITEM "&Tipus de lletra...",         ID_VIEW_SELECTFONT
         MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -182,7 +340,6 @@ BEGIN
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
         MENUITEM "Subfinest&ra de diferències", ID_VIEW_DETAIL_BAR
         MENUITEM "Subfinestra d'&ubicació",      ID_VIEW_LOCATION_BAR
-        MENUITEM "Subfinestra d'estat de &comparació", ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
     END
@@ -209,7 +366,6 @@ BEGIN
     END
     POPUP "&Eines"
     BEGIN
-        MENUITEM "&Personalitza les columnes...", ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
         MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
     END

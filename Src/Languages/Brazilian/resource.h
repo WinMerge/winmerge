@@ -13,6 +13,8 @@
 #define IDR_POPUP_LOCATIONBAR           106
 #define IDD_SAVECLOSING                 107
 #define IDD_MERGE7ZMISMATCH             108
+#define IDR_MERGEVIEWMENU               109
+#define IDR_DIRVIEWMENU                 110
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
 #define IDD_OPEN                        202
@@ -869,6 +871,6 @@
 #define _APS_NEXT_RESOURCE_VALUE        224
 #define _APS_NEXT_COMMAND_VALUE         33096
 #define _APS_NEXT_CONTROL_VALUE         1151
-#define _APS_NEXT_SYMED_VALUE           108
+#define _APS_NEXT_SYMED_VALUE           111
 #endif
 #endif

@@ -104,6 +104,171 @@ BEGIN
         MENUITEM "&Otevrít...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "&Konec",                      ID_APP_EXIT
+    END
+    POPUP "Úpr&avy"
+    BEGIN
+        MENUITEM "&Vlastnosti",                 ID_OPTIONS
+    END
+    POPUP "&Pohled"
+    BEGIN
+        MENUITEM "&Zvolit písmo...",            ID_VIEW_SELECTFONT
+        MENUITEM "Použít základní písm&o",      ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Panel nástroju",             ID_VIEW_TOOLBAR
+        MENUITEM "&Stavový rádek",              ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Edit with Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Okno"
+    BEGIN
+        MENUITEM "Zavrít",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "Dlaždice &vodorovne",         ID_WINDOW_TILE_HORZ
+        MENUITEM "Dlaždice &svisle",            ID_WINDOW_TILE_VERT
+        MENUITEM "&Kaskáda",                    ID_WINDOW_CASCADE
+    END
+    POPUP "Nápo&veda"
+    BEGIN
+        MENUITEM "O&bsah...\tF1",               ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
+        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "GNU Public License...",       ID_HELP_GNULICENSE
+        MENUITEM "&O programu...",              ID_APP_ABOUT
+    END
+END
+
+IDR_DIRVIEWMENU MENU
+BEGIN
+    POPUP "&Soubor"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Otevrít...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "L&eft Read-only",             ID_FILE_LEFT_READONLY
+        MENUITEM "Ri&ght Read-only",            ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "&Konec",                      ID_APP_EXIT
+    END
+    POPUP "Úpr&avy"
+    BEGIN
+        MENUITEM "V&yoíznout\tCtrl+X",          ID_EDIT_CUT
+        MENUITEM "&Kopírovat\tCtrl+C",          ID_EDIT_COPY
+        MENUITEM "V&ložit\tCtrl+V",             ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Vlastnosti",                 ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "Refre&sh\tF5",                ID_REFRESH
+    END
+    POPUP "&Pohled"
+    BEGIN
+        MENUITEM "Zobrazit &identické soubory", ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Zobrazit roz&dílné soubory",  ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Show Le&ft Unique Files",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Files",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM SEPARATOR
+        MENUITEM "&Zvolit písmo...",            ID_VIEW_SELECTFONT
+        MENUITEM "Použít základní písm&o",      ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Panel nástroju",             ID_VIEW_TOOLBAR
+        MENUITEM "&Stavový rádek",              ID_VIEW_STATUS_BAR
+        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
+    END
+    POPUP "&Merge"
+    BEGIN
+        MENUITEM "&Následující rozdíl\tTAlt+Down", ID_NEXTDIFF
+        MENUITEM "&Predchozí rozdíl\tAlt+Up",   ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Last Difference\tAlt+End",   ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Kopírovat vp&ravo\tŠipka vpravo", ID_L2R
+        MENUITEM "Kopírovat vl&evo\tŠipka vlevo", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Kopírovat vše vpravo",        ID_ALL_RIGHT
+        MENUITEM "Kopírovat vše vlevo",         ID_ALL_LEFT
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Edit with Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Okno"
+    BEGIN
+        MENUITEM "Zavrít",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "Dlaždice &vodorovne",         ID_WINDOW_TILE_HORZ
+        MENUITEM "Dlaždice &svisle",            ID_WINDOW_TILE_VERT
+        MENUITEM "&Kaskáda",                    ID_WINDOW_CASCADE
+    END
+    POPUP "Nápo&veda"
+    BEGIN
+        MENUITEM "O&bsah...\tF1",               ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
+        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "GNU Public License...",       ID_HELP_GNULICENSE
+        MENUITEM "&O programu...",              ID_APP_ABOUT
+    END
+END
+
+IDR_MERGEVIEWMENU MENU
+BEGIN
+    POPUP "&Soubor"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Otevrít...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
         MENUITEM "&Uložit\tCtrl+S",             ID_FILE_SAVE
         POPUP "Save &Left"
         BEGIN
@@ -165,13 +330,6 @@ BEGIN
     END
     POPUP "&Pohled"
     BEGIN
-        MENUITEM "Zobrazit &identické soubory", ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Zobrazit roz&dílné soubory",  ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Show Le&ft Unique Files",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Show Ri&ght Unique Files",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM SEPARATOR
         MENUITEM "&Zvolit písmo...",            ID_VIEW_SELECTFONT
         MENUITEM "Použít základní písm&o",      ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -182,7 +340,6 @@ BEGIN
         MENUITEM "&Stavový rádek",              ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Location &Pane",              ID_VIEW_LOCATION_BAR
-        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
     END
@@ -209,7 +366,6 @@ BEGIN
     END
     POPUP "&Tools"
     BEGIN
-        MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
     END

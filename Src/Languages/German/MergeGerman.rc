@@ -104,6 +104,175 @@ BEGIN
         MENUITEM "Ö&ffnen...\tStrg+O",          ID_FILE_OPEN
         MENUITEM "Projekt öffnen...\tStrg+J",   ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "&Beenden",                    ID_APP_EXIT
+    END
+    POPUP "&Bearbeiten"
+    BEGIN
+        MENUITEM "&Einstellungen...",           ID_OPTIONS
+    END
+    POPUP "&Ansicht"
+    BEGIN
+        MENUITEM "Schrift &auswählen...",       ID_VIEW_SELECTFONT
+        MENUITEM "Standard-Schrift &verwenden", ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "Leer&zeichen anzeigen",       ID_VIEW_WHITESPACE
+        MENUITEM "Zeilenuntersc&hied anzeigen", ID_VIEW_LINEDIFFS
+        MENUITEM SEPARATOR
+        MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
+        MENUITEM "&Patch generieren...",        ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "&Manuell entpacken",          ID_UNPACK_MANUAL
+        MENUITEM "&Automatisch entpacken",      ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "Mit Entpacker &bearbeiten",   ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Plugins &neu laden",          ID_RELOAD_PLUGINS
+    END
+    POPUP "&Fenster"
+    BEGIN
+        MENUITEM "&Schließen",                  ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Ausschnitt wechseln\tF6",    ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Untereinander",              ID_WINDOW_TILE_HORZ
+        MENUITEM "&Nebeneinander",              ID_WINDOW_TILE_VERT
+        MENUITEM "Über&lappend",                ID_WINDOW_CASCADE
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Inhalt\tF1",                 ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
+        MENUITEM "&Archiv-Unterstützung deaktiviert...", ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "&GNU Public Lizenz...",       ID_HELP_GNULICENSE
+        MENUITEM "Ü&ber WinMerge...",           ID_APP_ABOUT
+    END
+END
+
+IDR_DIRVIEWMENU MENU
+BEGIN
+    POPUP "&Datei"
+    BEGIN
+        MENUITEM "&Neu\tStrg+N",                ID_FILE_NEW
+        MENUITEM "Ö&ffnen...\tStrg+O",          ID_FILE_OPEN
+        MENUITEM "Projekt öffnen...\tStrg+J",   ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "L&inks schreibgeschützt",      ID_FILE_LEFT_READONLY
+        MENUITEM "R&echts schreibgeschützt",     ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "&Beenden",                    ID_APP_EXIT
+    END
+    POPUP "&Bearbeiten"
+    BEGIN
+        MENUITEM "Auss&chneiden\tStrg+X",       ID_EDIT_CUT
+        MENUITEM "&Kopieren\tStrg+C",           ID_EDIT_COPY
+        MENUITEM "E&infügen\tStrg+V",           ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Alles &markieren\tStrg+A",    ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Einstellungen...",           ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "&Aktualisieren\tF5",          ID_REFRESH
+    END
+    POPUP "&Ansicht"
+    BEGIN
+        MENUITEM "&Identische Dateien anzeigen", ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "&Unterschiedliche Dateien anzeigen",
+                                                ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Eindeutige Dateien &links anzeigen",
+                                                ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Eindeutige Dateien &rechts anzeigen",
+                                                ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Binär&dateien anzeigen",      ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Übersprun&gene Dateien anzeigen",
+                                                ID_OPTIONS_SHOWSKIPPED
+        MENUITEM SEPARATOR
+        MENUITEM "Schrift &auswählen...",       ID_VIEW_SELECTFONT
+        MENUITEM "Standard-Schrift &verwenden", ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Symbolleiste",               ID_VIEW_TOOLBAR
+        MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
+        MENUITEM "V&ergleichszustand",          ID_VIEW_DIR_STATEPANE
+        MENUITEM SEPARATOR
+        MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
+    END
+    POPUP "&Merge"
+    BEGIN
+        MENUITEM "&Nächster Unterschied\tAlt+Runter", ID_NEXTDIFF
+        MENUITEM "&Voriger Unterschied\tAlt+Hoch", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Erster &Unterschied\tAlt+Pos1", ID_FIRSTDIFF
+        MENUITEM "&Aktueller Unterschied\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Letzter Unterschied\tAlt+Ende", ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Nach rechts kopieren\tAlt+Rechts", ID_L2R
+        MENUITEM "Nach links kopieren\tAlt+Links", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Alles nach rechts kopieren",  ID_ALL_RIGHT
+        MENUITEM "Alles nach links kopieren",   ID_ALL_LEFT
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Spalten anpassen...",        ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
+        MENUITEM "&Patch generieren...",        ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "&Manuell entpacken",          ID_UNPACK_MANUAL
+        MENUITEM "&Automatisch entpacken",      ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "Mit Entpacker &bearbeiten",   ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Plugins &neu laden",          ID_RELOAD_PLUGINS
+    END
+    POPUP "&Fenster"
+    BEGIN
+        MENUITEM "&Schließen",                  ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Ausschnitt wechseln\tF6",    ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Untereinander",              ID_WINDOW_TILE_HORZ
+        MENUITEM "&Nebeneinander",              ID_WINDOW_TILE_VERT
+        MENUITEM "Über&lappend",                ID_WINDOW_CASCADE
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "&Inhalt\tF1",                 ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
+        MENUITEM "&Archiv-Unterstützung deaktiviert...", ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "&GNU Public Lizenz...",       ID_HELP_GNULICENSE
+        MENUITEM "Ü&ber WinMerge...",           ID_APP_ABOUT
+    END
+END
+
+IDR_MERGEVIEWMENU MENU
+BEGIN
+    POPUP "&Datei"
+    BEGIN
+        MENUITEM "&Neu\tStrg+N",                ID_FILE_NEW
+        MENUITEM "Ö&ffnen...\tStrg+O",          ID_FILE_OPEN
+        MENUITEM "Projekt öffnen...\tStrg+J",   ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
         MENUITEM "&Speichern\tStrg+S",          ID_FILE_SAVE
         POPUP "&Links speichern"
         BEGIN
@@ -165,17 +334,6 @@ BEGIN
     END
     POPUP "&Ansicht"
     BEGIN
-        MENUITEM "&Identische Dateien anzeigen", ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "&Unterschiedliche Dateien anzeigen",
-                                                ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Eindeutige Dateien &links anzeigen",
-                                                ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Eindeutige Dateien &rechts anzeigen",
-                                                ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Binär&dateien anzeigen",      ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Übersprun&gene Dateien anzeigen",
-                                                ID_OPTIONS_SHOWSKIPPED
-        MENUITEM SEPARATOR
         MENUITEM "Schrift &auswählen...",       ID_VIEW_SELECTFONT
         MENUITEM "Standard-Schrift &verwenden", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -186,7 +344,6 @@ BEGIN
         MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
         MENUITEM "U&nterschiedsleiste",         ID_VIEW_DETAIL_BAR
         MENUITEM "P&ositionsleiste",            ID_VIEW_LOCATION_BAR
-        MENUITEM "V&ergleichszustand",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
     END
@@ -215,7 +372,6 @@ BEGIN
     END
     POPUP "&Tools"
     BEGIN
-        MENUITEM "&Spalten anpassen...",        ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
         MENUITEM "&Patch generieren...",        ID_TOOLS_GENERATEPATCH
     END

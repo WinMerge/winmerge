@@ -387,17 +387,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
-/* Uncomment to enable document menus
-HMENU CMainFrame::NewMenu()
-{
-	m_menu.LoadMenu(IDR_MAINFRAME);
-	m_menu.ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WIN_VERTICAL);
-	m_menu.LoadToolbar(IDR_MAINFRAME);
-	return(m_menu.Detach());
-}
-*/
-
-/**
+/** 
  * @brief Find the scripts submenu from the main menu
  * As now this is the first submenu in "Edit" menu
  */
@@ -482,6 +472,62 @@ HMENU CMainFrame::NewDefaultMenu(int ID /*=0*/)
 		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
 
 	return(m_default.Detach());
+}
+
+/**
+ * @brief Create new File compare (CMergeEditView) menu
+ */
+HMENU CMainFrame::NewMergeViewMenu()
+{
+	m_mergeViewMenu.LoadMenu(IDR_MERGEVIEWMENU);
+	// Load bitmaps to menuitems
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_CUT, IDB_EDIT_CUT);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_PASTE, IDB_EDIT_PASTE);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_FIND, IDB_EDIT_SEARCH);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_WINDOW_CASCADE, IDB_WINDOW_CASCADE);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_WINDOW_TILE_HORZ, IDB_WINDOW_HORIZONTAL);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WINDOW_VERTICAL);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_FILE_CLOSE, IDB_WINDOW_CLOSE);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_WINDOW_CHANGE_PANE, IDB_WINDOW_CHANGEPANE);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_WMGOTO, IDB_EDIT_GOTO);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_REPLACE, IDB_EDIT_REPLACE);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_VIEW_LANGUAGE, IDB_VIEW_LANGUAGE);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
+
+	m_mergeViewMenu.LoadToolbar(IDR_MAINFRAME);
+
+	// append the scripts submenu
+	HMENU scriptsSubmenu = GetScriptsSubmenu(m_mergeViewMenu.GetSafeHmenu());
+	if (scriptsSubmenu != NULL)
+		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
+
+	return(m_mergeViewMenu.Detach());
+}
+
+/**
+ * @brief Create new Dir compare (CDirView) menu
+ */
+HMENU CMainFrame::NewDirViewMenu()
+{
+	m_dirViewMenu.LoadMenu(IDR_DIRVIEWMENU);
+	// Load bitmaps to menuitems
+	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_CUT, IDB_EDIT_CUT);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_PASTE, IDB_EDIT_PASTE);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_FIND, IDB_EDIT_SEARCH);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_WINDOW_CASCADE, IDB_WINDOW_CASCADE);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_WINDOW_TILE_HORZ, IDB_WINDOW_HORIZONTAL);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WINDOW_VERTICAL);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_FILE_CLOSE, IDB_WINDOW_CLOSE);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_WINDOW_CHANGE_PANE, IDB_WINDOW_CHANGEPANE);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_WMGOTO, IDB_EDIT_GOTO);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_REPLACE, IDB_EDIT_REPLACE);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_VIEW_LANGUAGE, IDB_VIEW_LANGUAGE);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
+
+	m_dirViewMenu.LoadToolbar(IDR_MAINFRAME);
+	return(m_dirViewMenu.Detach());
 }
 
 /**

@@ -103,6 +103,171 @@ BEGIN
         MENUITEM "&Öppna...\tCtrl+O",           ID_FILE_OPEN
         MENUITEM "Öppna Projekt...\tCtrl+J",   ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "&Avsluta",                    ID_APP_EXIT
+    END
+    POPUP "&Redigera"
+    BEGIN
+        MENUITEM "E&genskaper...",              ID_OPTIONS
+    END
+    POPUP "&Visa"
+    BEGIN
+        MENUITEM "Välj tecken&snitt...",        ID_VIEW_SELECTFONT
+        MENUITEM "Använd standardtec&kensnitt", ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "V&erktygsfält",               ID_VIEW_TOOLBAR
+        MENUITEM "S&tatusfält",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
+    END
+    POPUP "Verkt&yg"
+    BEGIN
+        MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "&Manuell Uppackning",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatisk Uppackning",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Ändra med Uppackare",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS
+    END
+    POPUP "F&önster"
+    BEGIN
+        MENUITEM "Stäng",                       ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Växla fil\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Ordna horisontellt",         ID_WINDOW_TILE_HORZ
+        MENUITEM "O&rdna vertikalt",            ID_WINDOW_TILE_VERT
+        MENUITEM "&Överlappande",               ID_WINDOW_CASCADE
+    END
+    POPUP "&Hjälp"
+    BEGIN
+        MENUITEM "&Innehåll...\tF1",            ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "K&onfiguration...",           ID_HELP_GETCONFIG
+        MENUITEM "A&rkivstöd avstängt...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "GNU General Public License...", ID_HELP_GNULICENSE
+        MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
+    END
+END
+
+IDR_DIRVIEWMENU MENU
+BEGIN
+    POPUP "&Arkiv"
+    BEGIN
+        MENUITEM "&Ny\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Öppna...\tCtrl+O",           ID_FILE_OPEN
+        MENUITEM "Öppna Projekt...\tCtrl+J",   ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "V&änster fil skrivskyddad",   ID_FILE_LEFT_READONLY
+        MENUITEM "Hö&ger fil skrivskyddad",     ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "&Avsluta",                    ID_APP_EXIT
+    END
+    POPUP "&Redigera"
+    BEGIN
+        MENUITEM "&Klipp ut\tCtrl+X",           ID_EDIT_CUT
+        MENUITEM "K&opiera\tCtrl+C",            ID_EDIT_COPY
+        MENUITEM "K&listra in\tCtrl+V",         ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Välj &allt\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "E&genskaper...",              ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "&Uppdatera\tF5",              ID_REFRESH
+    END
+    POPUP "&Visa"
+    BEGIN
+        MENUITEM "Visa &identiska filer",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Visa filer som har s&killnader", ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Visa unika filer till &vänster", ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Visa unika filer till &höger", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Visa &binära filer",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Visa &överhoppade filer",     ID_OPTIONS_SHOWSKIPPED
+        MENUITEM SEPARATOR
+        MENUITEM "Välj tecken&snitt...",        ID_VIEW_SELECTFONT
+        MENUITEM "Använd standardtec&kensnitt", ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "V&erktygsfält",               ID_VIEW_TOOLBAR
+        MENUITEM "S&tatusfält",                 ID_VIEW_STATUS_BAR
+        MENUITEM "Jämfö&r Statuspanel",          ID_VIEW_DIR_STATEPANE
+        MENUITEM SEPARATOR
+        MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
+    END
+    POPUP "&Jämför"
+    BEGIN
+        MENUITEM "&Nästa skillnad\tAlt+Ner",    ID_NEXTDIFF
+        MENUITEM "&Föregående skillnad\tAlt+Upp", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Fö&rsta skillnad\tAlt+Home",  ID_FIRSTDIFF
+        MENUITEM "&Aktuell skillnad\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Sista skillnad\tAlt+End",    ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Kopiera till &höger\tAlt+Höger", ID_L2R
+        MENUITEM "Kopiera till &vänster\tAlt+Vänster", ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Kopiera allt &till höger",    ID_ALL_RIGHT
+        MENUITEM "Kopiera allt t&ill vänster",  ID_ALL_LEFT
+    END
+    POPUP "Verkt&yg"
+    BEGIN
+        MENUITEM "&Anpassa kolumner...",        ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Plugins"
+    BEGIN
+        MENUITEM "&Manuell Uppackning",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatisk Uppackning",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Ändra med Uppackare",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS
+    END
+    POPUP "F&önster"
+    BEGIN
+        MENUITEM "Stäng",                       ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Växla fil\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Ordna horisontellt",         ID_WINDOW_TILE_HORZ
+        MENUITEM "O&rdna vertikalt",            ID_WINDOW_TILE_VERT
+        MENUITEM "&Överlappande",               ID_WINDOW_CASCADE
+    END
+    POPUP "&Hjälp"
+    BEGIN
+        MENUITEM "&Innehåll...\tF1",            ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "K&onfiguration...",           ID_HELP_GETCONFIG
+        MENUITEM "A&rkivstöd avstängt...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "GNU General Public License...", ID_HELP_GNULICENSE
+        MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
+    END
+END
+
+IDR_MERGEVIEWMENU MENU
+BEGIN
+    POPUP "&Arkiv"
+    BEGIN
+        MENUITEM "&Ny\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Öppna...\tCtrl+O",           ID_FILE_OPEN
+        MENUITEM "Öppna Projekt...\tCtrl+J",   ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
         MENUITEM "&Spara\tCtrl+S",              ID_FILE_SAVE
         POPUP "Spara &Vänster fil"
         BEGIN
@@ -164,13 +329,6 @@ BEGIN
     END
     POPUP "&Visa"
     BEGIN
-        MENUITEM "Visa &identiska filer",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Visa filer som har s&killnader", ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Visa unika filer till &vänster", ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Visa unika filer till &höger", ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Visa &binära filer",          ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Visa &överhoppade filer",     ID_OPTIONS_SHOWSKIPPED
-        MENUITEM SEPARATOR
         MENUITEM "Välj tecken&snitt...",        ID_VIEW_SELECTFONT
         MENUITEM "Använd standardtec&kensnitt", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -181,7 +339,6 @@ BEGIN
         MENUITEM "S&tatusfält",                 ID_VIEW_STATUS_BAR
         MENUITEM "Skillnadsfält",               ID_VIEW_DETAIL_BAR
         MENUITEM "Skillnadsbild",              ID_VIEW_LOCATION_BAR
-        MENUITEM "Jämfö&r Statuspanel",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
     END
@@ -208,7 +365,6 @@ BEGIN
     END
     POPUP "Verkt&yg"
     BEGIN
-        MENUITEM "&Anpassa kolumner...",        ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
     END

@@ -104,6 +104,171 @@ BEGIN
         MENUITEM "&Отвори...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "И&зход",                      ID_APP_EXIT
+    END
+    POPUP "&Редактиране"
+    BEGIN
+        MENUITEM "&Настройки...",                 ID_OPTIONS
+    END
+    POPUP "&Представяне"
+    BEGIN
+        MENUITEM "Избери &фонт...",             ID_VIEW_SELECTFONT
+        MENUITEM "Използвай ф&онт по подразбиране",           ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Инструменти",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Език...",                ID_VIEW_LANGUAGE
+    END
+    POPUP "&Инструменти"
+    BEGIN
+        MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Създай пач...",          ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Добавки"
+    BEGIN
+        MENUITEM "&Ръчно разархевиране",           ID_UNPACK_MANUAL
+        MENUITEM "&Автоматично разархевиране",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Редактирай с разархиватора",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Прозорци"
+    BEGIN
+        MENUITEM "За&твори",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Смени &листа\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "Подреди &хоризонтално",          ID_WINDOW_TILE_HORZ
+        MENUITEM "Подреди &вертикално",            ID_WINDOW_TILE_VERT
+        MENUITEM "&Каскадно",                    ID_WINDOW_CASCADE
+    END
+    POPUP "&Помощ"
+    BEGIN
+        MENUITEM "&Съдържание...\tF1",          ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "Настрои&ки...",           ID_HELP_GETCONFIG
+        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "&Обществен GNU лиценз...",      ID_HELP_GNULICENSE
+        MENUITEM "&За WinMerge...",          ID_APP_ABOUT
+    END
+END
+
+IDR_DIRVIEWMENU MENU
+BEGIN
+    POPUP "&Файл"
+    BEGIN
+        MENUITEM "&Нов\tCtrl+Н",                ID_FILE_NEW
+        MENUITEM "&Отвори...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "О&т ляво само за четене",             ID_FILE_LEFT_READONLY
+        MENUITEM "От дяс&но само за четене",            ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "И&зход",                      ID_APP_EXIT
+    END
+    POPUP "&Редактиране"
+    BEGIN
+        MENUITEM "Ре&жа\tCtrl+Ж",                ID_EDIT_CUT
+        MENUITEM "К&опирам\tCtrl+О",               ID_EDIT_COPY
+        MENUITEM "По&сатвям\tCtrl+С",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Избери &всичко\tCtrl+В",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Настройки...",                 ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "Обн&ови\tF5",                ID_REFRESH
+    END
+    POPUP "&Представяне"
+    BEGIN
+        MENUITEM "Показвай &еднаквите файлове",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Показвай &различните файлове",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Показвай ле&вите уникални файлове",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Показвай де&сните уникални файлове",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "По&казвай бинарните файлове",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Показвай п&ропуснатите файлове",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM SEPARATOR
+        MENUITEM "Избери &фонт...",             ID_VIEW_SELECTFONT
+        MENUITEM "Използвай ф&онт по подразбиране",           ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Инструменти",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Език...",                ID_VIEW_LANGUAGE
+    END
+    POPUP "&Сравняване"
+    BEGIN
+        MENUITEM "&Следваща разлика\tAlt+Down",  ID_NEXTDIFF
+        MENUITEM "&Предишна разлика\tAlt+Up", ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Първа разлика\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Текуща разлика\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Последна разлика\tAlt+End",   ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "Копирай в &дясно\tAlt+Right",   ID_L2R
+        MENUITEM "Копирай в л&яво\tAlt+Left",     ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Копирай &всичко в дясно",          ID_ALL_RIGHT
+        MENUITEM "Копира&Й всичко в ляво",           ID_ALL_LEFT
+    END
+    POPUP "&Инструменти"
+    BEGIN
+        MENUITEM "&Нагласи колоните...",       ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
+        MENUITEM "&Създай пач...",          ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Добавки"
+    BEGIN
+        MENUITEM "&Ръчно разархевиране",           ID_UNPACK_MANUAL
+        MENUITEM "&Автоматично разархевиране",        ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Редактирай с разархиватора",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Prediffer"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Прозорци"
+    BEGIN
+        MENUITEM "За&твори",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Смени &листа\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "Подреди &хоризонтално",          ID_WINDOW_TILE_HORZ
+        MENUITEM "Подреди &вертикално",            ID_WINDOW_TILE_VERT
+        MENUITEM "&Каскадно",                    ID_WINDOW_CASCADE
+    END
+    POPUP "&Помощ"
+    BEGIN
+        MENUITEM "&Съдържание...\tF1",          ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "Настрои&ки...",           ID_HELP_GETCONFIG
+        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "&Обществен GNU лиценз...",      ID_HELP_GNULICENSE
+        MENUITEM "&За WinMerge...",          ID_APP_ABOUT
+    END
+END
+
+IDR_MERGEVIEWMENU MENU
+BEGIN
+    POPUP "&Файл"
+    BEGIN
+        MENUITEM "&Нов\tCtrl+Н",                ID_FILE_NEW
+        MENUITEM "&Отвори...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
         MENUITEM "&Съхрани\tCtrl+С",               ID_FILE_SAVE
         POPUP "Съхрани &лявата част"
         BEGIN
@@ -165,13 +330,6 @@ BEGIN
     END
     POPUP "&Представяне"
     BEGIN
-        MENUITEM "Показвай &еднаквите файлове",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Показвай &различните файлове",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Показвай ле&вите уникални файлове",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Показвай де&сните уникални файлове",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "По&казвай бинарните файлове",          ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Показвай п&ропуснатите файлове",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM SEPARATOR
         MENUITEM "Избери &фонт...",             ID_VIEW_SELECTFONT
         MENUITEM "Използвай ф&онт по подразбиране",           ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -182,7 +340,6 @@ BEGIN
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Лист с &различията",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Location &Pane",              ID_VIEW_LOCATION_BAR
-        MENUITEM "Compa&re Statepane",          ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "&Език...",                ID_VIEW_LANGUAGE
     END
@@ -209,7 +366,6 @@ BEGIN
     END
     POPUP "&Инструменти"
     BEGIN
-        MENUITEM "&Нагласи колоните...",       ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Създай пач...",          ID_TOOLS_GENERATEPATCH
     END
