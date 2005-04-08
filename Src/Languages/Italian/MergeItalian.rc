@@ -360,9 +360,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copia tutto a destra",        ID_ALL_RIGHT
         MENUITEM "Copia tutto a sinistra",      ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Copia diff. nella selezione sinistra a destra", ID_MULTIPLE_RIGHT
-        MENUITEM "Copia diff. nella selezione destra a sinistra", ID_MULTIPLE_LEFT
     END
     POPUP "&Strumenti"
     BEGIN
@@ -2437,8 +2434,6 @@ BEGIN
     ID_R2LNEXT              "Copia la differenza a sinistra e avanza alla prossima\nCopia a sinistra e avanza (Ctrl+Alt+Sinistra)"
     ID_ALL_RIGHT            "Copia tutte le differenze dal file di sinistra a quello di destra\nTutto a destra"
     ID_ALL_LEFT             "Copia tutte le differenze dal file di destra a quello di sinistra\nTutto a sinistra"
-    ID_MULTIPLE_RIGHT       "Copia differenze dal testo selezionato nel pannello sinistro al file di destra"
-    ID_MULTIPLE_LEFT        "Copia differenze dal testo selezionato nel pannello destro al file di sinistra"
 END
 
 // TOOLS MENU

@@ -360,9 +360,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "全部複製到右邊(&A)",          ID_ALL_RIGHT
         MENUITEM "全部複製到左邊(&E)",          ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Copy Diffs in Left Selection to Right", ID_MULTIPLE_RIGHT
-        MENUITEM "Copy Diffs in Right Selection to Left", ID_MULTIPLE_LEFT
     END
     POPUP "&Tools"
     BEGIN
@@ -2422,8 +2419,6 @@ BEGIN
     ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "複製所有不同到右邊檔案\n所有到右邊"
     ID_ALL_LEFT             "複製所有不同到左邊檔案\n所有到左邊"
-    ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
-    ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
 END
 
 // TOOLS MENU

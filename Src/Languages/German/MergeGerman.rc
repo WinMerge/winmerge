@@ -364,11 +364,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Alles nach rechts kopieren",  ID_ALL_RIGHT
         MENUITEM "Alles nach links kopieren",   ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Kopiere Unterschiede in linker Markierung nach rechts",
-                                                ID_MULTIPLE_RIGHT
-        MENUITEM "Kopiere Unterschiede in rechter Markierung nach links",
-                                                ID_MULTIPLE_LEFT
     END
     POPUP "&Tools"
     BEGIN
@@ -2441,8 +2436,6 @@ BEGIN
     ID_R2LNEXT              "Kopiere Unterschied nach Links und springe zum nächsten Unterschied.\nNach links kopieren und fortschreiten (Strg+Alt+Links)"
     ID_ALL_RIGHT            "Kopiert alle Unterschiede in die rechte Datei.\nAlles nach rechts kopieren"
     ID_ALL_LEFT             "Kopiert alle Unterschiede in die linke Datei.\nAlles nach links kopieren"
-    ID_MULTIPLE_RIGHT       "Kopiert Unterschiede vom markierten Text im linken Fenster in die rechte Datei."
-    ID_MULTIPLE_LEFT        "Kopiert Unterschiede vom markierten Text im rechten Fenster in die linke Datei."
 END
 
 // TOOLS MENU

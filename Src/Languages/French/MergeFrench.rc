@@ -360,9 +360,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Tout cop&ier vers la droite",                                ID_ALL_RIGHT
         MENUITEM "Tout copi&er vers la gauche",                                ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Copier les lignes sélectionnées à gauc&he vers la droite",   ID_MULTIPLE_RIGHT
-        MENUITEM "Copier les lignes sélectionnées à droi&te vers la gauche",   ID_MULTIPLE_LEFT
     END
     POPUP "&Outils"
     BEGIN
@@ -2322,8 +2319,6 @@ BEGIN
     ID_R2LNEXT              "Copier la différence vers la gauche et Avancer\nCopy Left and Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Copier toutes les différences vers le fichier de droite\nCopier Tout à Droite"
     ID_ALL_LEFT             "Copier toutes les différences vers le fichier de gauche\nCopier Tout à Gauche"
-    ID_MULTIPLE_RIGHT       "Copier les lignes de texte sélectionné à gauche vers la droite"
-    ID_MULTIPLE_LEFT        "Copier les lignes de texte sélectionné à droite vers la gauche"
 END
 
 // TOOLS MENU

@@ -154,10 +154,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_L2RNEXT, OnUpdateL2RNext)
 	ON_COMMAND(ID_R2LNEXT, OnR2LNext)
 	ON_UPDATE_COMMAND_UI(ID_R2LNEXT, OnUpdateR2LNext)
-	ON_COMMAND(ID_MULTIPLE_LEFT, OnMultipleLeft)
-	ON_UPDATE_COMMAND_UI(ID_MULTIPLE_LEFT, OnUpdateMultipleLeft)
-	ON_COMMAND(ID_MULTIPLE_RIGHT, OnMultipleRight)
-	ON_UPDATE_COMMAND_UI(ID_MULTIPLE_RIGHT, OnUpdateMultipleRight)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CHANGE_PANE, OnUpdateChangePane)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
@@ -1035,18 +1031,38 @@ void CMergeEditView::UpdateLineLengths()
 
 /**
  * @brief Copy diff from left pane to right pane
+ *
+ * Difference is copied from left to right when
+ * - difference is selected
+ * - difference is inside selection (allows merging multiple differences).
+ *
+ * If there is selected diff outside selection, we copy selected
+ * difference only.
  */
 void CMergeEditView::OnL2r()
 {
 	// Check that right side is not readonly
 	if (IsReadOnly(FALSE))
 		return;
-	// Check that diff is selected
-	if (GetDocument()->GetCurrentDiff() == -1)
-		return;
 
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
-	GetDocument()->ListCopy(true, !!m_bIsLeft);
+	CMergeDoc *pDoc = GetDocument();
+	int currentDiff = pDoc->GetCurrentDiff();
+	int firstDiff, lastDiff;
+	GetFullySelectedDiffs(firstDiff, lastDiff);
+
+	if (lastDiff >= firstDiff)
+	{
+		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
+		if (currentDiff != -1)
+			pDoc->ListCopy(true, !!m_bIsLeft);
+		else
+			pDoc->CopyMultipleList(true, !!m_bIsLeft, firstDiff, lastDiff);
+	}
+	else if (currentDiff != -1)
+	{
+		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
+		pDoc->ListCopy(true, !!m_bIsLeft);
+	}
 }
 
 /**
@@ -1056,25 +1072,55 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 {
 	// Check that right side is not readonly
 	if (!IsReadOnly(FALSE))
-		pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+	{
+		int firstDiff, lastDiff;
+		GetFullySelectedDiffs(firstDiff, lastDiff);
+
+		// If one or more diffs inside selection OR
+		// there is an active diff
+		if (lastDiff >= firstDiff)
+			pCmdUI->Enable(TRUE);
+		else
+			pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+	}
 	else
 		pCmdUI->Enable(FALSE);
 }
 
 /**
  * @brief Copy diff from right pane to left pane
+ *
+ * Difference is copied from left to right when
+ * - difference is selected
+ * - difference is inside selection (allows merging multiple differences).
+ *
+ * If there is selected diff outside selection, we copy selected
+ * difference only.
  */
 void CMergeEditView::OnR2l()
 {
 	// Check that left side is not readonly
 	if (IsReadOnly(TRUE))
 		return;
-	// Check that diff is selected
-	if (GetDocument()->GetCurrentDiff() == -1)
-		return;
 
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
-	GetDocument()->ListCopy(false, !!m_bIsLeft);
+	CMergeDoc *pDoc = GetDocument();
+	int currentDiff = pDoc->GetCurrentDiff();
+	int firstDiff, lastDiff;
+	GetFullySelectedDiffs(firstDiff, lastDiff);
+
+	if (lastDiff >= firstDiff)
+	{
+		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
+		if (currentDiff != -1)
+			pDoc->ListCopy(false, !!m_bIsLeft);
+		else
+			pDoc->CopyMultipleList(false, !!m_bIsLeft, firstDiff, lastDiff);
+	}
+	else if (currentDiff != -1)
+	{
+		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
+		pDoc->ListCopy(false, !!m_bIsLeft);
+	}
 }
 
 /**
@@ -1084,7 +1130,17 @@ void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 {
 	// Check that left side is not readonly
 	if (!IsReadOnly(TRUE))
-		pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+	{
+		int firstDiff, lastDiff;
+		GetFullySelectedDiffs(firstDiff, lastDiff);
+
+		// If one or more diffs inside selection OR
+		// there is an active diff
+		if (lastDiff >= firstDiff)
+			pCmdUI->Enable(TRUE);
+		else
+			pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+	}
 	else
 		pCmdUI->Enable(FALSE);
 }
@@ -1138,100 +1194,6 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 		pCmdUI->Enable(GetDocument()->m_diffList.GetSize() != 0);
 	else
 		pCmdUI->Enable(FALSE);
-}
-
-/**
- * @brief Copy diffs inside selection from right to left
- */
-void CMergeEditView::OnMultipleLeft()
-{
-	if (m_bIsLeft)
-	{
-		// We need the right selection, go to right view
-		GetDocument()->GetRightView()->OnMultipleLeft();
-		return;
-	}
-
-	// Check that left side is not readonly
-	if (IsReadOnly(TRUE))
-		return;
-
-	int firstDiff, lastDiff;
-	GetFullySelectedDiffs(firstDiff, lastDiff);
-	if (lastDiff < firstDiff)
-		return;
-
-	GetDocument()->CopyMultipleList(false, !!m_bIsLeft, firstDiff, lastDiff);
-}
-
-/**
- * @brief Update "Copy diffs in right selection to left" item
- */
-void CMergeEditView::OnUpdateMultipleLeft(CCmdUI* pCmdUI)
-{
-	if (m_bIsLeft)
-	{
-		// We need the right selection, go to right view
-		GetDocument()->GetRightView()->OnUpdateMultipleLeft(pCmdUI);
-		return;
-	}
-
-	// Check that left side is not readonly
-	if (IsReadOnly(TRUE))
-		pCmdUI->Enable(FALSE);
-	else
-	{
-		int firstDiff, lastDiff;
-		GetFullySelectedDiffs(firstDiff, lastDiff);
-		pCmdUI->Enable(lastDiff >= firstDiff);
-	}
-}
-
-/**
- * @brief Copy diffs inside selection from left to right
- */
-void CMergeEditView::OnMultipleRight()
-{
-	if (!m_bIsLeft)
-	{
-		// We need the left selection, go to left view
-		GetDocument()->GetLeftView()->OnMultipleRight();
-		return;
-	}
-
-	// Check that right side is not readonly
-	if (IsReadOnly(FALSE))
-		return;
-
-	int firstDiff, lastDiff;
-	GetFullySelectedDiffs(firstDiff, lastDiff);
-	if (lastDiff < firstDiff)
-		return;
-
-	GetDocument()->CopyMultipleList(true, !!m_bIsLeft, firstDiff, lastDiff);
-}
-
-/**
- * @brief Update "Copy diffs in left selection to right" item
- */
-void CMergeEditView::OnUpdateMultipleRight(CCmdUI* pCmdUI)
-{
-	if (!m_bIsLeft)
-	{
-		// We need the left selection, go to left view
-		GetDocument()->GetLeftView()->OnUpdateMultipleRight(pCmdUI);
-		return;
-	}
-
-		// Check that right side is not readonly
-	if (IsReadOnly(FALSE))
-		pCmdUI->Enable(FALSE);
-	else
-	{
-		int firstDiff, lastDiff;
-		GetFullySelectedDiffs(firstDiff, lastDiff);
-		pCmdUI->Enable(lastDiff >= firstDiff);
-	}
 }
 
 /**

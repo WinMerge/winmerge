@@ -800,8 +800,6 @@
 #define ID_R2LNEXT                      32840
 #define ID_ALL_RIGHT                    32841
 #define ID_ALL_LEFT                     32842
-#define ID_MULTIPLE_RIGHT               32843
-#define ID_MULTIPLE_LEFT                32844
 
 #define ID_TOOLS_CUSTOMIZECOLUMNS       32864
 #define ID_TOOLS_GENERATEPATCH          32865

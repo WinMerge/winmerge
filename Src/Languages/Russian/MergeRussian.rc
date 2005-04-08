@@ -368,11 +368,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Ск&опировать все на правую панель", ID_ALL_RIGHT
         MENUITEM "Скоп&ировать все на левую панель", ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Копировать отличия, в выделенном слева, на правую сторону",
-                                                ID_MULTIPLE_RIGHT
-        MENUITEM "Копировать отличия, в выделенном справа, на левую сторону",
-                                                ID_MULTIPLE_LEFT
     END
     POPUP "&Инструменты"
     BEGIN
@@ -2333,8 +2328,6 @@ BEGIN
     ID_R2LNEXT              "Скопировать отличие на правую панель и перейти к следующему\nCopy Left and advance (Ctrl Alt Left)"
     ID_ALL_RIGHT            "Скопировать все отличия в файл справа\nAll Right"
     ID_ALL_LEFT             "Скопировать все отличия в файл слева\nAll Left"
-    ID_MULTIPLE_RIGHT       "Скопировать отличия из выбранного текста левой панели в файл справа"
-    ID_MULTIPLE_LEFT        "Скопировать отличия из выбранного текста правой панели в файл слева"
 END
 
 // TOOLS MENU

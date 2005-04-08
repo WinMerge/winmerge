@@ -360,9 +360,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copiar todas al lado de&recho", ID_ALL_RIGHT
         MENUITEM "Copiar todas al lado iz&quierdo", ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Copiar selección de la izquierda al lado derec&ho", ID_MULTIPLE_RIGHT
-        MENUITEM "Copiar selección de la derecha al lado izquierd&o", ID_MULTIPLE_LEFT
     END
     POPUP "&Herramientas"
     BEGIN
@@ -2436,8 +2433,6 @@ BEGIN
     ID_R2LNEXT              "Copiar diferencia al lado izquierdo e ir a la siguiente\nCopiar a la izquierda y avanzar (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Copiar todas las diferencias al lado derecho\nTodas a la derecha"
     ID_ALL_LEFT             "Copiar todas las diferencias al lado izquierdo\nTodas a la izquierda"
-    ID_MULTIPLE_RIGHT       "Copiar diferencias del texto seleccionado en el lado izquierdo al lado derecho"
-    ID_MULTIPLE_LEFT        "Copiar diferencias del texto seleccionado en el lado derecho al lado izquierdo"
 END
 
 // TOOLS MENU

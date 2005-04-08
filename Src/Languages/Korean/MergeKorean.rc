@@ -360,9 +360,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "모두 오른쪽으로 복사(&A)",    ID_ALL_RIGHT
         MENUITEM "모두 왼쪽으로 복사(&E)",      ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "선택 영역중 다른 부분 오른쪽으로 복사", ID_MULTIPLE_RIGHT
-        MENUITEM "선택 영역중 다른 부분 왼쪽으로 복사", ID_MULTIPLE_LEFT
     END
     POPUP "도구(&T)"
     BEGIN
@@ -2320,8 +2317,6 @@ BEGIN
     ID_R2LNEXT              "다른 부분을 왼쪽으로 복사하고, 다음 다른 부분으로 이동합니다\n왼쪽으로 복사 - Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "모든 다른 부분을 오른쪽 파일로 복사합니다.\n모두 오른쪽으로"
     ID_ALL_LEFT             "모든 다른 부분을 왼쪽 파일로 복사합니다.\n모두 왼쪽으로"
-    ID_MULTIPLE_RIGHT       "선택 영역중 다른 부분을 오른쪽으로 복사합니다."
-    ID_MULTIPLE_LEFT        "선택 영역중 다른 부분을 왼쪽으로 복사합니다."
 END
 
 // TOOLS MENU

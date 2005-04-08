@@ -360,9 +360,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Copia-ho &tot a la dreta",     ID_ALL_RIGHT
         MENUITEM "Copia-ho t&ot a l'esquerra",   ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Copia les diferències de la &selecció esquerra a la dreta", ID_MULTIPLE_RIGHT
-        MENUITEM "Copia les diferències de la se&lecció dreta a l'esquerra", ID_MULTIPLE_LEFT
     END
     POPUP "&Eines"
     BEGIN
@@ -2339,8 +2336,6 @@ BEGIN
     ID_R2LNEXT              "Copia la diferència a l'esquerra i avança a la següent\nCopia a l'esquerra i avança (Ctrl+Alt+Esquerra)"
     ID_ALL_RIGHT            "Copia totes les diferènces al fitxer de la dreta\nTot a la dreta"
     ID_ALL_LEFT             "Copia totes les diferènces al fitxer de l'esquerra\nTot a l'esquerra"
-    ID_MULTIPLE_RIGHT       "Copia les diferències del text seleccionat a la subfinestra esquerra al fitxer de la dreta"
-    ID_MULTIPLE_LEFT        "Copia les diferències del text seleccionat a la subfinestra dreta al fitxer de l'esquerra"
 END
 
 // TOOLS MENU

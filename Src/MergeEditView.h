@@ -260,10 +260,6 @@ protected:
 	afx_msg void OnUpdateL2RNext(CCmdUI* pCmdUI);
 	afx_msg void OnR2LNext();
 	afx_msg void OnUpdateR2LNext(CCmdUI* pCmdUI);
-	afx_msg void OnMultipleLeft();
-	afx_msg void OnUpdateMultipleLeft(CCmdUI* pCmdUI);
-	afx_msg void OnMultipleRight();
-	afx_msg void OnUpdateMultipleRight(CCmdUI* pCmdUI);
 	afx_msg void OnChangePane();
 	afx_msg void OnUpdateChangePane(CCmdUI* pCmdUI);
 	afx_msg void OnWMGoto();

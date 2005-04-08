@@ -360,9 +360,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Копирай &всичко в дясно",          ID_ALL_RIGHT
         MENUITEM "Копира&Й всичко в ляво",           ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Копирай разликите от лявата част към дясната", ID_MULTIPLE_RIGHT
-        MENUITEM "Копирай разликите от дясната част към лявата", ID_MULTIPLE_LEFT
     END
     POPUP "&Инструменти"
     BEGIN
@@ -2323,8 +2320,6 @@ BEGIN
     ID_R2LNEXT              "Копиране на разликата в левия файл и предвижване към следващата\nКопиране в ляво и предвижване (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Копиране на всички разлики в десния файл\nВсичко в дясно"
     ID_ALL_LEFT             "Копиране на всички разлики в левия файл\nВсичко в ляво"
-    ID_MULTIPLE_RIGHT       "Копиране на избрания текст към десния файл"
-    ID_MULTIPLE_LEFT        "Копиране на избрания текст към левия файл"
 END
 
 // TOOLS MENU

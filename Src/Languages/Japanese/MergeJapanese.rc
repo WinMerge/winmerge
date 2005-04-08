@@ -360,9 +360,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "全てを右にコピー(&A)",        ID_ALL_RIGHT
         MENUITEM "全てを左にコピー(&Y)",        ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "左選択範囲内の差異を右にコピー", ID_MULTIPLE_RIGHT
-        MENUITEM "右選択範囲内の差異を左にコピー", ID_MULTIPLE_LEFT
     END
     POPUP "ツール(&T)"
     BEGIN
@@ -2321,8 +2318,6 @@ BEGIN
     ID_L2RNEXT              "差異を右にコピーし、次の差異に進みます\n右にコピーし次へ (Ctrl+Alt+Right)"
     ID_ALL_RIGHT            "すべての差異を右のファイルにコピーします\n右すべて"
     ID_ALL_LEFT             "すべての差異を左のファイルにコピーします\n左すべて"
-    ID_MULTIPLE_RIGHT       "左パネルの選択されたテキストから差異を右のファイルにコピーします"
-    ID_MULTIPLE_LEFT        "右パネルの選択されたテキストから差異を左のファイルにコピーします"
 END
 
 // TOOLS MENU

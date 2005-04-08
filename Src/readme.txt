@@ -1,3 +1,8 @@
+2005-04-08 Kimmo
+ PATCH: [ 1178885 ] Merge diffs inside selection (with normal merge item)
+  Src: Merge.rc MergeEditView.cpp MergeEditView.h resource.h
+  Src/Languages: *.rc resource.h
+
 2005-04-07 Kimmo
  PATCH: [ 1175731 ] Own menus for file- and directory compare
   Src: MainFrm.cpp MainFrm.h Merge.cpp Merge.rc resource.h
@@ -117,7 +122,6 @@
  Fix typo in IDD_MERGE7ZMISMATCH dialog
   Src: Merge.rc
 
-IDD_MERGE7ZMISMATCH
 2005-03-15 WinMerge beta 2.3.2.0 released
 
 2005-03-15 Kimmo

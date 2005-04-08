@@ -360,9 +360,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Kopírovat vše vpravo",        ID_ALL_RIGHT
         MENUITEM "Kopírovat vše vlevo",         ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Copy Diffs in Left Selection to Right", ID_MULTIPLE_RIGHT
-        MENUITEM "Copy Diffs in Right Selection to Left", ID_MULTIPLE_LEFT
     END
     POPUP "&Tools"
     BEGIN
@@ -2436,8 +2433,6 @@ BEGIN
     ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Zkopírovat všechny rozdíly do souboru vpravo\nAll Right"
     ID_ALL_LEFT             "Zkopírovat všechny rozdíly do souboru vlevo\nAll Left"
-    ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
-    ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
 END
 
 // TOOLS MENU

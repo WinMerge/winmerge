@@ -361,9 +361,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Kopieer alles naar rechts",   ID_ALL_RIGHT
         MENUITEM "Kopieer alles naar links",    ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Copy Diffs in Left Selection to Right", ID_MULTIPLE_RIGHT
-        MENUITEM "Copy Diffs in Right Selection to Left", ID_MULTIPLE_LEFT
     END
     POPUP "&Tools"
     BEGIN
@@ -2439,8 +2436,6 @@ BEGIN
     ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Kopieer alle verschillen naar het rechter bestand. \nKopieer alles naar rechts"
     ID_ALL_LEFT             "Kopieer alle verschillen naar het linker bestand. \nKopieer alles naar links"
-    ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
-    ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
 END
 
 // TOOLS MENU

@@ -359,9 +359,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Kopiera allt &till höger",    ID_ALL_RIGHT
         MENUITEM "Kopiera allt t&ill vänster",  ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Kopiera skillnader i vänstra urvalet till höger", ID_MULTIPLE_RIGHT
-        MENUITEM "Kopiera skillnader i högra urvalet till vänster", ID_MULTIPLE_LEFT
     END
     POPUP "Verkt&yg"
     BEGIN
@@ -2435,8 +2432,6 @@ BEGIN
     ID_R2LNEXT              "Kopierar skillnad till vänster och går fram till nästa\nKopiera vänster och gå framåt (Ctrl Alt Vänster)"
     ID_ALL_RIGHT            "Kopierar alla skillnader till den högra filen\nKopiera allt till höger"
     ID_ALL_LEFT             "Kopierar alla skillnader till den vänstra filen\nKopiera allt till vänster"
-    ID_MULTIPLE_RIGHT       "Kopierar skillnader från den valda texten i den vänstra filen till den högra filen"
-    ID_MULTIPLE_LEFT        "Kopierar skillnader från den valda texten i den högra filen till den vänstra filen"
 END
 
 // TOOLS MENU

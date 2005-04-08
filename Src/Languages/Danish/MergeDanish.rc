@@ -360,9 +360,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Kopier alt &til højre",       ID_ALL_RIGHT
         MENUITEM "Kopier alt til venst&re",     ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Kopier f&orskelle i det valgte fra venstre til højre", ID_MULTIPLE_RIGHT
-        MENUITEM "Kopier fors&kelle i det valgte fra højre til venstre", ID_MULTIPLE_LEFT
     END
     POPUP "Værk&tøjer"
     BEGIN
@@ -2321,8 +2318,6 @@ BEGIN
     ID_R2LNEXT              "Kopier forskel til venstre side og gå til næste forskel\nKopier til venstre og gå til næste (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Kopier alle forskelle til den højre fil\nAlt til højre"
     ID_ALL_LEFT             "Kopier alle forskelle til den venstre fil\nAlt til venstre"
-    ID_MULTIPLE_RIGHT       "Kopier forskellene i den valgte tekst fra den venstre til den højre fil"
-    ID_MULTIPLE_LEFT        "Kopier forskellene i den valgte tekst fra den højre til den venstre fil"
 END
 
 // TOOLS MENU

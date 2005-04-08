@@ -360,9 +360,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "M&inden Jobbra másolása",          ID_ALL_RIGHT
         MENUITEM "Mi&nden Balra másolása",           ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "A kijelölt rész eltéréseinek Jobbra másolása", ID_MULTIPLE_RIGHT
-        MENUITEM "A kijelölt rész eltéréseinek Balra másolása", ID_MULTIPLE_LEFT
     END
     POPUP "&Eszközök"
     BEGIN
@@ -2322,8 +2319,6 @@ BEGIN
     ID_R2LNEXT              "Az eltérés másolása balra és ugrás tovább\nMásolás balra és Ugrás (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Az összes eltérés másolása jobbra\nMind jobbra"
     ID_ALL_LEFT             "Az összes eltérés másolása jobbra\nMind balra"
-    ID_MULTIPLE_RIGHT       "A kijelölt szöveg eltéréseinek másolása a bal oldali panelbõl a jobb oldali fájlba"
-    ID_MULTIPLE_LEFT        "A kijelölt szöveg eltéréseinek másolása a jobb oldali panelbõl a bal oldali fájlba"
 END
 
 // TOOLS MENU
