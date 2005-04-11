@@ -1,3 +1,7 @@
+2005-04-11 Tim
+ BUG: [ 1180893 ] Download points to 2.2.0 instead of 2.2.2
+  Web: page.inc
+
 2005-04-04 Tim
  RFE: [ 1174908 ] Web: translators shouldn't make unnecessary layout changes
   Web\developer\l10n: instructions.php

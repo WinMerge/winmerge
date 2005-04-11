@@ -196,9 +196,9 @@
           $temp .= "<ul>\n";
           $temp .= "  <li>Downloads\n";
           $temp .= "    <ul>\n";
-          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=281675\">WinMerge</a></li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=315042\">WinMerge</a></li>\n";
           $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=283717\">Languages</a></li>\n";
-          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=281681\">Documentation</a></li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=315050\">Documentation</a></li>\n";
           $temp .= "    </ul>\n";
           $temp .= "  </li>\n";
           $temp .= "</ul>\n";
