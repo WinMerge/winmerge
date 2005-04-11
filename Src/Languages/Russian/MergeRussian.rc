@@ -588,7 +588,7 @@ BEGIN
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "&Обзор...",IDC_LEFT_BUTTON,249,22,50,12
-    RTEXT           "&правый:",IDC_STATIC,13,40,47,8
+    RTEXT           "&Правый:",IDC_STATIC,13,40,47,8
     COMBOBOX        IDC_RIGHT_COMBO,64,38,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
@@ -596,7 +596,7 @@ BEGIN
     RTEXT           "&Фильтр:",IDC_STATIC,13,56,47,8
     COMBOBOX        IDC_EXT_COMBO,64,54,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Выбрать...",IDC_SELECT_FILTER,242,54,50,12
+    PUSHBUTTON      "Выбрать...",IDC_SELECT_FILTER,249,54,50,12
     RTEXT           "&Распаковщик:",IDC_STATIC,13,72,49,8
     EDITTEXT        IDC_UNPACKER_EDIT,64,70,181,12,ES_AUTOHSCROLL |
                     ES_READONLY
@@ -666,7 +666,7 @@ BEGIN
     CONTROL         "&Закрывать панель состояния автоматически",
                     IDC_CMPPANE_AUTOCLOSE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,37,206,10
-    CONTROL         "За&крывать окна клавишей",IDC_ESC_CLOSES_WINDOW,"Button",
+    CONTROL         "За&крывать окна клавишей ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
     CONTROL         "Автоматически проверять пути в диалоге отрытия файлов",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
@@ -1240,7 +1240,7 @@ BEGIN
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
                     WS_DISABLED,110,0,235,222
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
-    LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
+    LTEXT           " Категории",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
 END
 
@@ -1556,13 +1556,13 @@ END
 // Options-dialog page captions
 STRINGTABLE
 BEGIN
-	IDS_OPTIONSPG_GENERAL     "General"
-	IDS_OPTIONSPG_COMPARE     "Compare"
-	IDS_OPTIONSPG_EDITOR      "Editor"
-	IDS_OPTIONSPG_COLORS      "Colors"
-	IDS_OPTIONSPG_SYSTEM      "System"
-	IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
-	IDS_OPTIONSPG_CODEPAGE     "Codepage"
+    IDS_OPTIONSPG_GENERAL   "General"
+    IDS_OPTIONSPG_COMPARE   "Сравнение"
+    IDS_OPTIONSPG_EDITOR    "Редактор"
+    IDS_OPTIONSPG_COLORS    "Цвета"
+    IDS_OPTIONSPG_SYSTEM    "Система"
+    IDS_OPTIONSPG_VERSIONCONTROL "Контроль версий"
+    IDS_OPTIONSPG_CODEPAGE  "Кодовая страница"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1622,7 +1622,7 @@ BEGIN
     IDS_FILTER_TITLE        "Фильтры"
     IDS_FILTER_PREFIX       "[F] "
     IDS_FILTERFILE_DESCTITLE "Описание"
-    IDS_FILEFILTER_SAVENEW  "Select filename for new filter"
+    IDS_FILEFILTER_SAVENEW  "Укажите имя файла для нового фильтра"
     IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 END
 
@@ -1678,7 +1678,7 @@ BEGIN
     IDS_OPEN_LEFTINVALID    "Путь слева указан неверно"
     IDS_OPEN_RIGHTINVALID   "Путь справа указан неверно"
     IDS_OPEN_BOTHINVALID    "Оба пути указаны неверно"
-    IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
+    IDS_OPEN_UNPACKERDISABLED "Выберите два файла, чтобы включить выбор распаковщика"
     IDS_OPEN_MISMATCH       "Невозможно сравнения файла и каталога!"
 END
 
@@ -1702,7 +1702,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Ошибка проверки возможности записи в указанное место"
     IDS_ERROR_BACKUP        "Ошибка создания резервной копии"
     IDS_BACKUP_FAILED_PROMPT "Нет возможности создать резервную копию оригинала?\nВсе равно продолжить ?"
-    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nWould you like to save the file under a different name?"
+    IDS_FILESAVE_FAILED     "Не удалось сохранить файл.\n%1\n%2\nХотите сохранить его под другим именем?"
     IDS_FILEPACK_FAILED_LEFT "Плагин '%2' не может запаковать ваши изменения обратно в файл слева '%1'.\n\nОригинал останется не измененным.\n\nХотите сохранить распакованную версию в другой файл?"
     IDS_FILEPACK_FAILED_RIGHT "Плагин '%2' не может запаковать ваши изменения обратно в файл справа '%1'.\n\nОригинал останется не измененным.\n\nХотите сохранить распакованную версию в другой файл?"
     IDS_FILECHANGED_ONDISK  "Другое приложение изменило файл\n%1\nуже загруженный в WinMerge .\n\nПерезаписать измененный файл?"
@@ -1720,16 +1720,16 @@ BEGIN
     IDS_VSSERROR            "Система контроля версий вернула ошибку при попытке взять файл под контроль.  Нет возможности продолжать..."
     IDS_VSS_RUN_ERROR       "Ошибка выполнения системной команды Системы контроля версий."
     IDS_VSSFOLDER_AND_FILE_NOMATCH "Рабочая папка VSS и местоположение текущего файла не совпадают. Продолжить ?"
-    IDS_VSS_NODATABASES     "No VSS database(s) found!"
-    IDS_VSS_ERRORFROM       "Error from VSS:"
+    IDS_VSS_NODATABASES     "Не найдена база данных VSS!"
+    IDS_VSS_ERRORFROM       "Ошибка VSS:"
 END
 
 // VSS system
 STRINGTABLE
 BEGIN
     IDS_VCS_NONE            "None"
-    IDS_VCS_VSS4            "Visual SourceSafe (less than 5.0)"
-    IDS_VCS_VSS5            "Visual SourceSafe (5.0 and above)"
+    IDS_VCS_VSS4            "Visual SourceSafe (младше, чем 5.0)"
+    IDS_VCS_VSS5            "Visual SourceSafe (5.0 и выше)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
 END
 
@@ -1737,9 +1737,9 @@ END
 STRINGTABLE
 BEGIN
     ID_DIR_COPY_LEFT_TO_RIGHT "Скопировать выбранные файлы в указанную папку"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected file to custom directory"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Скопировать выбранные файлы в указанную папку"
     ID_DIR_COPY_RIGHT_TO_LEFT "Скопировать выбранные файлы в указанную папку"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected file to custom directory"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Скопировать выбранные файлы в указанную папку"
     ID_DIR_DEL_LEFT         "Удалить выбранный элемент слева"
     ID_DIR_DEL_RIGHT        "Удалить выбранный элемент справа"
     ID_DIR_DEL_BOTH         "Удалить выбранные элементы с обоих сторон"
@@ -1764,10 +1764,10 @@ BEGIN
     IDS_DEL_RIGHT_FMT2      "Справа (%1 из %2)"
     IDS_DEL_BOTH_FMT2       "Вместе (%1 из %2)"
     IDS_SELECT_DESTFOLDER   "Выберите папку назначения"
-    IDS_MOVE_LEFT_TO        "Left to... (%1)"
-    IDS_MOVE_RIGHT_TO       "Right to... (%1)"
-    IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
-    IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
+    IDS_MOVE_LEFT_TO        "Слева в... (%1)"
+    IDS_MOVE_RIGHT_TO       "Справа в... (%1)"
+    IDS_MOVE_LEFT_TO2       "Слева в... (%1 из %2)"
+    IDS_MOVE_RIGHT_TO2      "Справа в... (%1 из %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1793,19 +1793,19 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITH  "Открыть файл справа с помощью..."
     IDS_CANNOT_EXECUTE_FILE "Невозможно выполнить %1"
     ID_DIR_COPY_FILENAMES   "Скопировать имена файлов в буфер обмена"
-    ID_DIR_COPY_PATHNAMES_LEFT "Copy left side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_RIGHT "Copy right side pathnames to clipboard"
-    ID_DIR_COPY_PATHNAMES_BOTH "Copy both sides pathnames to clipboard"
+    ID_DIR_COPY_PATHNAMES_LEFT "Скопировать имена файлов из левой части в буфер обмена"
+    ID_DIR_COPY_PATHNAMES_RIGHT "Скопировать имена файлов из правой части в буфер обмена"
+    ID_DIR_COPY_PATHNAMES_BOTH "Скопировать имена файлов с обоих панелей в буфер обмена"
 END
 
 // DIRECTORY DIFFING : 7ZIP
 STRINGTABLE
 BEGIN
     IDS_UNKNOWN_ARCHIVE_FORMAT "Неизвестный формат архива"
-    ID_DIR_ZIP_LEFT         "Add items from left side to archive"
-    ID_DIR_ZIP_RIGHT        "Add items from right side to archive"
-    ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
-    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
+    ID_DIR_ZIP_LEFT         "Заархивировать элементы с левой стороны"
+    ID_DIR_ZIP_RIGHT        "Заархивировать элементы с правой стороны"
+    ID_DIR_ZIP_BOTH         "Заархивировать элементы с обоих сторон"
+    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Заархивировать произвольные элементы с обоих сторон"
     ID_DIR_MOVE_LEFT_TO_BROWSE 
                             "Переместить выбранные слева файлы в другую папку"
     ID_DIR_MOVE_RIGHT_TO_BROWSE 
@@ -1869,19 +1869,19 @@ END
 STRINGTABLE
 BEGIN
     IDS_ELAPSED_TIME        "Истекшее время: %ld мс"
-    IDS_STATUS_SELITEM1     "1 item selected"
-    IDS_STATUS_SELITEMS     "%1 items selected"
+    IDS_STATUS_SELITEM1     "Выбран 1 элемент"
+    IDS_STATUS_SELITEMS     "Выбрано элементов: %1"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_FILENAME    "Filename or directory name."
+    IDS_COLDESC_FILENAME    "Имя файла или каталога"
     IDS_COLDESC_DIR         "Subdirectory name when subdirectories are included."
-    IDS_COLDESC_RESULT      "Comparison result, long form."
+    IDS_COLDESC_RESULT      "Результат сравнения, длинная форма."
     IDS_COLDESC_LTIMEM      "Left side modification date."
     IDS_COLDESC_RTIMEM      "Right side modification date."
-    IDS_COLDESC_EXTENSION   "File's extension."
+    IDS_COLDESC_EXTENSION   "Расширение файла"
     IDS_COLDESC_LSIZE       "Left file size in bytes."
     IDS_COLDESC_RSIZE       "Right file size in bytes."
     IDS_COLDESC_LTIMEC      "Left side creation time."
@@ -1982,7 +1982,7 @@ BEGIN
     IDS_REGEXP_OUTOFMEM     "Не хватает памяти"
     IDS_REGEXP_INVALID_PREV_EXP "Invalid preceding regular expression"
     IDS_REGEXP_PREMATURE_END "Premature end of regular expression"
-    IDS_REGEXP_TOO_BIG      "Regular expression too big"
+    IDS_REGEXP_TOO_BIG      "Слишком большое регулярное выражение"
 END
 
 STRINGTABLE
@@ -2342,11 +2342,11 @@ END
 STRINGTABLE
 BEGIN
     ID_UNPACK_MANUAL        "Выбранный пользователем распаковщик (не действует при сравнении каталогов)"
-    ID_UNPACK_AUTO          "Автоматически подобранный распаковщик (необходимо указать расширение только у одного из файлов)"
+    ID_UNPACK_AUTO          "Автоматический подобор распаковщика (укажите расширение хотя бы у одного из файлов)"
     ID_POPUP_OPEN_WITH_UNPACKER "Выберите распаковщик для редактирования этого файла"
     ID_NO_PREDIFFER         "No prediffer (normal)"
     ID_SUGGESTED_PLUGINS    "Suggested plugins"
-    ID_NOT_SUGGESTED_PLUGINS "Others plugins"
+    ID_NOT_SUGGESTED_PLUGINS "Другие плагины"
     ID_RELOAD_PLUGINS       "Выгрузить все плагины и загрузить их снова (для разработчиков)"
 END
 
@@ -2368,11 +2368,11 @@ END
 // PLUGINS DIALOGS AND DYNAMIC MENUS
 STRINGTABLE
 BEGIN
-    ID_TITLE_PLUGINS_SETTINGS "Plugin Settings"
+    ID_TITLE_PLUGINS_SETTINGS "Настройки плагина"
     ID_PREDIFF_MANUAL       "Предсравнение отсутствует"
     ID_PREDIFF_AUTO         "Если возможно, то предсравнение будет произведено"
     ID_NO_EDIT_SCRIPTS      "< Пусто >"
-    ID_NO_SCT_SCRIPTS       "WSH not found - .sct scripts disabled"
+    ID_NO_SCT_SCRIPTS       "WSH не найден - .sct скрипты отключены"
     IDS_USERCHOICE_NONE     "<Нет>"
     IDS_USERCHOICE_AUTOMATIC "<Автоматически>"
 END
@@ -2380,12 +2380,13 @@ END
 // LOCATIONBAR CONTEXT MENU
 STRINGTABLE
 BEGIN
-    ID_DISPLAY_MOVED_NONE   "Do not display moved blocks"
-    ID_DISPLAY_MOVED_ALL    "Display all moved blacks"
+    ID_DISPLAY_MOVED_NONE   "Не отображать перемещенные блоки"
+    ID_DISPLAY_MOVED_ALL    "Отображать все перемещенные блоки"
     ID_DISPLAY_MOVED_FOLLOW_DIFF "Display moved blocks only from current diff"
     ID_LOCBAR_GOTODIFF      "Перейти к отличию под курсором"
-    ID_LOCBAR_GOTODIFF_FMT  "G&oto Diff %1 of %2"
-    ID_LOCBAR_GOTOLINE_FMT  "G&oto Line %1"
+    ID_LOCBAR_GOTODIFF_FMT  "Перейти к &отличию %1 из %2"
+    ID_LOCBAR_GOTOLINE_FMT  "Перейти к &строке %1"
+    ID_FILE_OPENPROJECT     "Открыть файл проекта\nФайл проекта (Ctrl+J)"
 END
 
 // END STRINGS SYNCHRO

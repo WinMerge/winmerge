@@ -1,3 +1,8 @@
+2005-04-11 Kimmo
+ PATCH: [ 1180768 ] Russian translation update
+  Submitted by Dmitriy Aleshkowskiy
+  Src/Languages/Russian: MergeRussian.rc
+
 2005-04-08 Kimmo
  PATCH: [ 1178885 ] Merge diffs inside selection (with normal merge item)
   Src: Merge.rc MergeEditView.cpp MergeEditView.h resource.h
