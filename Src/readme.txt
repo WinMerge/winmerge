@@ -1,3 +1,7 @@
+2005-04-12 Perry
+ Add HTML entity escapes for several language names
+  Src/Common: LanguageSelect.cpp
+
 2005-04-12 WinMerge experimental release 2.3.3.1 (cvs)
 
 2005-04-12 Kimmo
