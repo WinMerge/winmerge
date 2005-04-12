@@ -1410,7 +1410,7 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Изменить настройки принтера и печати\nPrint Setup"
     ID_FILE_PRINT           "Печатать активный документ\nPrint"
     ID_FILE_PRINT_PREVIEW   "Показывать полные страницы\nPrint Preview"
-    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+    ID_FILE_OPENPROJECT     "Открыть файл проекта\nФайл проекта (Ctrl+J)"
 END
 
 STRINGTABLE
@@ -2386,7 +2386,6 @@ BEGIN
     ID_LOCBAR_GOTODIFF      "Перейти к отличию под курсором"
     ID_LOCBAR_GOTODIFF_FMT  "Перейти к &отличию %1 из %2"
     ID_LOCBAR_GOTOLINE_FMT  "Перейти к &строке %1"
-    ID_FILE_OPENPROJECT     "Открыть файл проекта\nФайл проекта (Ctrl+J)"
 END
 
 // END STRINGS SYNCHRO
