@@ -77,6 +77,7 @@
 #include "codepage.h"
 #include "ProjectFile.h"
 #include "PreferencesDlg.h"
+#include "AppSerialize.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1592,20 +1593,8 @@ void CMainFrame::OnViewSelectfont()
 		else
 			m_options.SaveOption(OPT_FONT_FILECMP_USECUSTOM, true);
 
-		theApp.WriteProfileInt(sFontPath, _T("Height"), lf->lfHeight);
-		theApp.WriteProfileInt(sFontPath, _T("Width"), lf->lfWidth);
-		theApp.WriteProfileInt(sFontPath, _T("Escapement"), lf->lfEscapement);
-		theApp.WriteProfileInt(sFontPath, _T("Orientation"), lf->lfOrientation);
-		theApp.WriteProfileInt(sFontPath, _T("Weight"), lf->lfWeight);
-		theApp.WriteProfileInt(sFontPath, _T("Italic"), lf->lfItalic);
-		theApp.WriteProfileInt(sFontPath, _T("Underline"), lf->lfUnderline);
-		theApp.WriteProfileInt(sFontPath, _T("StrikeOut"), lf->lfStrikeOut);
-		theApp.WriteProfileInt(sFontPath, _T("CharSet"), lf->lfCharSet);
-		theApp.WriteProfileInt(sFontPath, _T("OutPrecision"), lf->lfOutPrecision);
-		theApp.WriteProfileInt(sFontPath, _T("ClipPrecision"), lf->lfClipPrecision);
-		theApp.WriteProfileInt(sFontPath, _T("Quality"), lf->lfQuality);
-		theApp.WriteProfileInt(sFontPath, _T("PitchAndFamily"), lf->lfPitchAndFamily);
-		theApp.WriteProfileString(sFontPath, _T("FaceName"), lf->lfFaceName);
+		AppSerialize appser(AppSerialize::Save, sFontPath);
+		appser.SerializeFont(_T(""), *lf); // unnamed font
 
 		DirViewList dirViews;
 		MergeEditViewList editViews;
@@ -1685,20 +1674,9 @@ void CMainFrame::GetFontProperties()
 	// Get MergeView font
 	if (m_options.GetBool(OPT_FONT_FILECMP_USECUSTOM))
 	{
-		lfnew.lfHeight = theApp.GetProfileInt(_T("Font"), _T("Height"), lfDefault.lfHeight);
-		lfnew.lfWidth = theApp.GetProfileInt(_T("Font"), _T("Width"), lfDefault.lfWidth);
-		lfnew.lfEscapement = theApp.GetProfileInt(_T("Font"), _T("Escapement"), lfDefault.lfEscapement);
-		lfnew.lfOrientation = theApp.GetProfileInt(_T("Font"), _T("Orientation"), lfDefault.lfOrientation);
-		lfnew.lfWeight = theApp.GetProfileInt(_T("Font"), _T("Weight"), lfDefault.lfWeight);
-		lfnew.lfItalic = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Italic"), lfDefault.lfItalic);
-		lfnew.lfUnderline = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Underline"), lfDefault.lfUnderline);
-		lfnew.lfStrikeOut = (BYTE)theApp.GetProfileInt(_T("Font"), _T("StrikeOut"), lfDefault.lfStrikeOut);
-		lfnew.lfCharSet = (BYTE)theApp.GetProfileInt(_T("Font"), _T("CharSet"), lfDefault.lfCharSet);
-		lfnew.lfOutPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("OutPrecision"), lfDefault.lfOutPrecision);
-		lfnew.lfClipPrecision = (BYTE)theApp.GetProfileInt(_T("Font"), _T("ClipPrecision"), lfDefault.lfClipPrecision);
-		lfnew.lfQuality = (BYTE)theApp.GetProfileInt(_T("Font"), _T("Quality"), lfDefault.lfQuality);
-		lfnew.lfPitchAndFamily = (BYTE)theApp.GetProfileInt(_T("Font"), _T("PitchAndFamily"), lfDefault.lfPitchAndFamily);
-		_tcscpy(lfnew.lfFaceName, theApp.GetProfileString(_T("Font"), _T("FaceName"), lfDefault.lfFaceName));
+		AppSerialize appser(AppSerialize::Load, _T("Font"));
+		appser.SerializeFont(_T(""), lfnew); // unnamed font 
+
 		m_lfDiff = lfnew;
 	}
 	else
@@ -1708,20 +1686,9 @@ void CMainFrame::GetFontProperties()
 	ZeroMemory(&lfnew, sizeof(LOGFONT));
 	if (m_options.GetBool(OPT_FONT_DIRCMP_USECUSTOM))
 	{
-		lfnew.lfHeight = theApp.GetProfileInt(_T("FontDirCompare"), _T("Height"), lfDefault.lfHeight);
-		lfnew.lfWidth = theApp.GetProfileInt(_T("FontDirCompare"), _T("Width"), lfDefault.lfWidth);
-		lfnew.lfEscapement = theApp.GetProfileInt(_T("FontDirCompare"), _T("Escapement"), lfDefault.lfEscapement);
-		lfnew.lfOrientation = theApp.GetProfileInt(_T("FontDirCompare"), _T("Orientation"), lfDefault.lfOrientation);
-		lfnew.lfWeight = theApp.GetProfileInt(_T("FontDirCompare"), _T("Weight"), lfDefault.lfWeight);
-		lfnew.lfItalic = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("Italic"), lfDefault.lfItalic);
-		lfnew.lfUnderline = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("Underline"), lfDefault.lfUnderline);
-		lfnew.lfStrikeOut = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("StrikeOut"), lfDefault.lfStrikeOut);
-		lfnew.lfCharSet = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("CharSet"), lfDefault.lfCharSet);
-		lfnew.lfOutPrecision = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("OutPrecision"), lfDefault.lfOutPrecision);
-		lfnew.lfClipPrecision = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("ClipPrecision"), lfDefault.lfClipPrecision);
-		lfnew.lfQuality = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("Quality"), lfDefault.lfQuality);
-		lfnew.lfPitchAndFamily = (BYTE)theApp.GetProfileInt(_T("FontDirCompare"), _T("PitchAndFamily"), lfDefault.lfPitchAndFamily);
-		_tcscpy(lfnew.lfFaceName, theApp.GetProfileString(_T("FontDirCompare"), _T("FaceName"), lfDefault.lfFaceName));
+		AppSerialize appser(AppSerialize::Load, _T("FontDirCompare"));
+		appser.SerializeFont(_T(""), lfnew); // unnamed font 
+
 		m_lfDir = lfnew;
 	}
 	else

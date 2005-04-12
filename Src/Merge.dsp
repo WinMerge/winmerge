@@ -169,6 +169,10 @@ SOURCE=.\7zCommon.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\AppSerialize.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\BCMenu.cpp
 # End Source File
 # Begin Source File
@@ -824,6 +828,10 @@ SOURCE=.\WMGotoDlg.cpp
 # Begin Source File
 
 SOURCE=.\7zCommon.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\AppSerialize.h
 # End Source File
 # Begin Source File
 

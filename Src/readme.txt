@@ -1,6 +1,9 @@
 2005-04-12 Perry
  Add HTML entity escapes for several language names
   Src/Common: LanguageSelect.cpp
+ PATCH: [ 1162668 ] Serialize font settings
+  Src: MainFrm.cpp Merge.dsp
+  Src new files: AppSerialize.cpp AppSerialize.h
 
 2005-04-12 WinMerge experimental release 2.3.3.1 (cvs)
 
