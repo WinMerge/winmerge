@@ -4,6 +4,9 @@
   Src: Merge.dsp
   Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
   Src/editlib new file: nsis.cpp
+ PATCH: [ 1181157 ] Swedish translation update
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2005-04-11 Kimmo
  PATCH: [ 1180768 ] Russian translation update

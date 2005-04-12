@@ -1167,45 +1167,45 @@ END
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245
 STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_NOPARENTNOTIFY
-CAPTION "WinMerge - Archive support disabled"
+CAPTION "WinMerge - Arkivstöd är avstängt"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Unable to detect 7-Zip version (not installed?)",107,2,
+    LTEXT           "Kan inte detektera version av 7-Zip (är det inte installerat?)",107,2,
                     2,296,18
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,22,296,1
-    LTEXT           "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\nessential components to be copied to the program directory for standalone operation.",
+    LTEXT           "Arkivstöd kräver antingen att version 3.11 eller högre av 7-Zip är installerat på din dator, eller att dess\nödvändiga komponenter kopieras till WinMerges programkatalog för fristående användning.",
                     IDC_STATIC,2,26,296,26
-    LTEXT           "There must also be an appropriate interface plugin (Merge7z*.dll) on the path.",
+    LTEXT           "Det måste också finnas ett lämligt gränssnitts-plugin (Merge7z*.dll) i sökvägen.",
                     IDC_STATIC,2,52,296,18
-    LTEXT           "Please use the version of 7-Zip recommended below until interface plugins for later\nversions become available.",
+    LTEXT           "Var god och använd den version av 7-Zip som rekommenderas nedanför tills gränssnitts-plugins för senare\nversioner blir tillgängliga.",
                     IDC_STATIC,2,70,296,26
     CTEXT           "Version",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    CTEXT           "Plugin required\n(dllbuild %04u)",102,204,98,94,20,
+    CTEXT           "Plugin krävd\n(dllbuild %04u)",102,204,98,94,20,
                     SS_SUNKEN
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,120,142,10,
+    LTEXT           "Rekommenderad version av 7-Zip:",IDC_STATIC,2,120,142,10,
                     SS_CENTERIMAGE
     CTEXT           "0.00",110,146,120,20,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "present",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "finns",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "Merge7z000U.dll",111,204,120,58,10,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    CTEXT           "present",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "7-Zip software installed on your computer:",IDC_STATIC,
+    CTEXT           "finns",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "7-Zip program installerat på din dator:",IDC_STATIC,
                     2,132,142,10,SS_CENTERIMAGE
-    CTEXT           "none",120,146,132,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "inget",120,146,132,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",121,204,132,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "missing",122,264,132,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "7-Zip components for standalone operation:",IDC_STATIC,
+    CTEXT           "saknas",122,264,132,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "7-Zip komponenter för fristående användning:",IDC_STATIC,
                     2,144,142,10,SS_CENTERIMAGE
-    CTEXT           "none",130,146,144,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "inga",130,146,144,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",131,204,144,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "outdated",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "Plugins on path:",9001,2,160,100,8
-    CONTROL         "Don't display this &message again.\n(You can always recall this message from help menu.)",
+    CTEXT           "utdaterade",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Plugins på sökväg:",9001,2,160,100,8
+    CONTROL         "Visa inte detta &meddelande igen.\n(Du kan alltid få tillbaka detta meddelande från Hjälp-menyn.)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
-    CONTROL         "Plugin Download",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
+    CONTROL         "Ladda ner Plugin",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
                     236,160,62,10
     LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
@@ -1218,14 +1218,14 @@ CAPTION "Options"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,187,237,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,241,237,50,14
-    PUSHBUTTON      "Help",IDC_TREEOPT_HELP,295,237,50,14
-    CONTROL         "Tree1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
+    PUSHBUTTON      "Avbryt",IDCANCEL,241,237,50,14
+    PUSHBUTTON      "Hjälp",IDC_TREEOPT_HELP,295,237,50,14
+    CONTROL         "Träd1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
                     WS_DISABLED,110,0,235,222
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
-    LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
+    LTEXT           " Kategorier",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
 END
 
@@ -1654,12 +1654,12 @@ END
 // Options-dialog page captions
 STRINGTABLE
 BEGIN
-	IDS_OPTIONSPG_GENERAL     "General"
-	IDS_OPTIONSPG_COMPARE     "Compare"
+	IDS_OPTIONSPG_GENERAL     "Generell"
+	IDS_OPTIONSPG_COMPARE     "Jämför"
 	IDS_OPTIONSPG_EDITOR      "Editor"
-	IDS_OPTIONSPG_COLORS      "Colors"
+	IDS_OPTIONSPG_COLORS      "Färger"
 	IDS_OPTIONSPG_SYSTEM      "System"
-	IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
+	IDS_OPTIONSPG_VERSIONCONTROL "Versionskontroll"
 	IDS_OPTIONSPG_CODEPAGE     "Codepage"
 END
 
@@ -1814,7 +1814,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_NOPROJECT           "Du måste ange sökvägen till ett SourceSafe-projekt för att fortsätta (t.ex.:  $/MittProjekt)"
-    IDS_VSS_CHECKOUT_STATUS "Checkout filer från VSS..."
+    IDS_VSS_CHECKOUT_STATUS "Hämtar filer från VSS..."
     IDS_VSSERROR            "Versionshanteringssystemet returnerade ett fel under försöket att checka ut filen. Det går inte att fortsätta..."
     IDS_VSS_RUN_ERROR       "Fel vid utförande av kommando för versionshanteringssystem."
     IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS arbetskalogen och läget på den aktuella filen matchar inte. Vill du fortsätta ändå?"
@@ -2053,8 +2053,8 @@ BEGIN
     IDS_DIFF_FILEOVERWRITE  "Patchfilen finns redan. Vill du skriva över den?"
     IDS_DIFF_SELECTEDFILES  "[%1 fil(er) valda]"
     IDS_DIFF_NORMAL         "Normal"
-    IDS_DIFF_CONTEXT        "Omgivande (Context)"
-    IDS_DIFF_UNIFIED        "Förenad (Unified)"
+    IDS_DIFF_CONTEXT        "Omgivande"
+    IDS_DIFF_UNIFIED        "Förenad"
     IDS_FILEWRITE_ERROR     "Kunde inte spara filen: %1."
     IDS_PATH_NOT_ABSOLUTE   "%1\n är inte en absolut sökväg!"
     IDS_CANNOT_CREATE_BINARYPATCH "Kan inte skapa en patchfil från binära filer."
