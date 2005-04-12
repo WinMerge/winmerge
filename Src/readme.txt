@@ -1,3 +1,5 @@
+2005-04-12 WinMerge experimental release 2.3.3.1 (cvs)
+
 2005-04-12 Kimmo
  PATCH: [ 1179941 ] Syntax highlighting for NSIS files
   Submitted by Tim
