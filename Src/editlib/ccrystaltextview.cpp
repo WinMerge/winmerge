@@ -253,6 +253,7 @@ CCrystalTextView::TextDefinition CCrystalTextView::m_SourceDefs[] =
     CCrystalTextView::SRC_INSTALLSHIELD, _T ("InstallShield"), _T ("rul"), CCrystalTextView::ParseLineIS, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, 2, _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
     CCrystalTextView::SRC_JAVA, _T ("Java"), _T ("java,jav,js"), CCrystalTextView::ParseLineJava, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, 2, _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,
     CCrystalTextView::SRC_LISP, _T ("AutoLISP"), _T ("lsp"), CCrystalTextView::ParseLineLisp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, 2, _T (";|"), _T ("|;"), _T (";"), (DWORD)-1,
+    CCrystalTextView::SRC_NSIS, _T ("NSIS"), _T ("nsi,nsh"), CCrystalTextView::ParseLineNsis, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, 2, _T ("/*"), _T ("*/"), _T (";"), (DWORD)-1,
     CCrystalTextView::SRC_PASCAL, _T ("Pascal"), _T ("pas"), CCrystalTextView::ParseLinePascal, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, 2, _T ("{"), _T ("}"), _T (""), (DWORD)-1,
     CCrystalTextView::SRC_PERL, _T ("Perl"), _T ("pl"), CCrystalTextView::ParseLinePerl, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, 4, _T (""), _T (""), _T ("#"), (DWORD)-1,
     CCrystalTextView::SRC_PHP, _T ("PHP"), _T ("php,php3,php4,php5,phtml"), CCrystalTextView::ParseLinePhp, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, 2, _T ("/*"), _T ("*/"), _T ("//"), (DWORD)-1,

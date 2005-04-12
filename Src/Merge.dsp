@@ -1555,6 +1555,10 @@ SOURCE=.\editlib\memcombo.inl
 # End Source File
 # Begin Source File
 
+SOURCE=.\editlib\nsis.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\editlib\pascal.cpp
 # End Source File
 # Begin Source File
