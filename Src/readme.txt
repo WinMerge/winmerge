@@ -1,3 +1,8 @@
+2005-04-13 Perry
+ BUG: [ 1181906 ] Comment in LoadFromDirectory maybe wrong?
+  (cosmetic)
+  Src: FileFilterMgr.cpp
+
 2005-04-12 Perry
  Add HTML entity escapes for several language names
   Src/Common: LanguageSelect.cpp

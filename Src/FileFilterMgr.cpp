@@ -98,7 +98,7 @@ void FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
 }
 
 /**
- * @brief Load filter file from disk.
+ * @brief Load all filter files matching pattern from disk into internal filter set.
  *
  * @param [in] szPattern Pattern from where to load filters, for example "\\Filters\\*.flt"
  * @param [in] szExt File-extension of filter files
