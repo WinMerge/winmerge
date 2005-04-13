@@ -1,0 +1,34 @@
+.navheader {
+  display: none;
+}
+.navfooter {
+  display: none;
+}
+
+.mediaobject {
+  margin-top: 10px;
+}
+
+.screen {
+  margin-left: 25px;
+  margin-right: 25px;
+  padding: 5px;
+  background-color: #FFFFFF;
+  border: 1px solid black;
+}
+
+.caution {
+  border: 1px solid black;
+}
+.important {
+  border: 1px solid black;
+}
+.note {
+  border: 1px solid black;
+}
+.tip {
+  border: 1px solid black;
+}
+.warning {
+  border: 1px solid black;
+}

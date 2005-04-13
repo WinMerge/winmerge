@@ -1,3 +1,9 @@
+2005-04-13 Tim
+ PATCH: [ 1178042 ] Add CSS to user manual (XSL)
+  Manual: Manual.xsl
+  Manual/build: build_html.bat build_html.xsl build_htmlhelp.bat build_htmlhelp.xsl
+  Manual: new directory css
+
 2005-04-06 Tim
  PATCH: [ 1176980 ] Add 'section.autolabel' to user manual (XSL)
   Manual: Manual.xsl

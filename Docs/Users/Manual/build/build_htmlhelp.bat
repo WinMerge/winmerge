@@ -16,6 +16,10 @@ echo Copy screenshots...
 if not exist "%docbook_outputdir%\screenshots" mkdir "%docbook_outputdir%\screenshots"
 copy "..\screenshots\*.*" "%docbook_outputdir%\screenshots\."
 
+echo Copy stylesheets...
+if not exist "%docbook_outputdir%\css" mkdir "%docbook_outputdir%\css"
+copy "..\css\help.css" "%docbook_outputdir%\css\help.css"
+
 echo Create HTML files...
 %docbook_java_exe% %docbook_java_parameters% -cp %docbook_saxon_jar%;%docbook_saxon_xsl% com.icl.saxon.StyleSheet %docbook_inputfile% %docbook_use_stylesheet% base.dir=%docbook_outputdir%\
 if exist "htmlhelp.hhp" goto compile
@@ -27,6 +31,7 @@ echo Compile HTML Help...
 echo Cleaning...
 deltree /Y "%docbook_outputdir%\images"
 deltree /Y "%docbook_outputdir%\screenshots"
+deltree /Y "%docbook_outputdir%\css"
 del "%docbook_outputdir%\*.html"
 del "htmlhelp.hhp"
 del "toc.hhc"
