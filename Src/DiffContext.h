@@ -76,6 +76,9 @@ class CDiffContext;
  * One dimension is existence: both sides, left only, or right only
  *
  * One dimension is type: directory, or file
+ *
+ * @note times in fileinfo's are seconds since January 1, 1970.
+ * See Dirscan.cpp/fentry and Dirscan.cpp/LoadFiles()
  */
 
 struct DIFFITEM : DIFFCODE
@@ -109,8 +112,13 @@ public:
                                       PrediffingInfo ** infoPrediffer) = 0;
 };
 
-
-class CDiffContext  
+/**
+ * @brief Directory compare context.
+ *
+ * @note If you add new member variables, remember to copy values in
+ * CDiffContext::CDiffContext(..,CDiffContext) constructor!
+ */
+class CDiffContext
 {
 public:
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight);

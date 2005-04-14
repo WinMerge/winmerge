@@ -27,15 +27,16 @@ static char THIS_FILE[] = __FILE__;
 // Static types (ie, types only used locally)
 /**
  * @brief directory or file info for one row in diff result
+ * @note times are seconds since January 1, 1970.
  */
 struct fentry
 {
 	CString name;
 	// storing __time_t if MSVC6 (__MSC_VER<1300)
 	// storing __time64_t if MSVC7 (VC.NET)
-	__int64 mtime;
-	__int64 ctime;
-	_int64 size;
+	__int64 mtime; /**< Last modify time */
+	__int64 ctime; /**< Creation modify time */
+	__int64 size;
 	int attrs;
 };
 typedef CArray<fentry, fentry&> fentryArray;
@@ -183,7 +184,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 				nDiffCode |= DIFFCODE::SKIPPED;
 				StoreDiffResult(subdir, &leftFiles[i], 0, nDiffCode, pCtxt);
 			}
-			else if (pCtxt->m_nCompMethod != 1)
+			else if (pCtxt->m_nCompMethod != CMP_DATE)
 			{
 				// Compare file to itself to detect encoding
 				CString filepath = sLeftDir + backslash + leftFiles[i].name;
@@ -211,7 +212,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 				nDiffCode |= DIFFCODE::SKIPPED;
 				StoreDiffResult(subdir, 0, &rightFiles[j], nDiffCode, pCtxt);
 			}
-			else if (pCtxt->m_nCompMethod != 1)
+			else if (pCtxt->m_nCompMethod != CMP_DATE)
 			{
 				// Compare file to itself to detect encoding
 				CString filepath = sRightDir + backslash + rightFiles[j].name;
@@ -251,7 +252,7 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s"), 
 			  leftname, rightname, (LPCTSTR)sLeftDir, (LPCTSTR)sRightDir);
 
-			if (pCtxt->m_nCompMethod == 1)
+			if (pCtxt->m_nCompMethod == CMP_DATE)
 			{
 					// Compare only by modified date
 				if (leftFiles[i].mtime == rightFiles[j].mtime)
@@ -310,6 +311,7 @@ void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 			if (dwIsDirectory && StrStr(_T(".."), ff.cFileName))
 				continue;
 			fentry ent;
+			// Save filetimes as seconds since January 1, 1970
 			ent.ctime = CTime(ff.ftCreationTime).GetTime();
 			ent.mtime = CTime(ff.ftLastWriteTime).GetTime();
 			if (!dwIsDirectory)

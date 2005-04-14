@@ -1507,15 +1507,21 @@ DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const CString & filep
 	}
 
 
-	if (pCtxt->m_nCompMethod == 0)
+	if (pCtxt->m_nCompMethod == CMP_CONTENT)
 	{
 		// use diffutils
 		code = diffutils_compare_files(0);
 	}
-	else
+	else if (pCtxt->m_nCompMethod == CMP_QUICK_CONTENT)
 	{
 		// use our own byte-by-byte compare
 		code = byte_compare_files();
+	}
+	else
+	{
+		// Print error since we should have handled by date compare earlier
+		_RPTF0(_CRT_ERROR, "Invalid compare type, DiffFileData can't handle it");
+		goto exitPrepAndCompare;
 	}
 
 	if ((code & DIFFCODE::CMPERR) == 0)

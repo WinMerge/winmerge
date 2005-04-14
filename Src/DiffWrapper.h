@@ -39,6 +39,7 @@ struct DiffFileData;
 enum
 {
 	CMP_CONTENT = 0, /**< Normal by content compare */
+	CMP_QUICK_CONTENT, /**< Custom content compare */
 	CMP_DATE, /**< Compare by modified date */
 };
 

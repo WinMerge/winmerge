@@ -1,3 +1,7 @@
+2005-04-14 Kimmo
+ PATCH: [ 1182416 ] Fix Compare by date hang
+  Src: DiffContext.cpp DiffContext.h DiffWrapper.cpp DiffWrapper.h DirScan.cpp 
+
 2005-04-13 Perry
  BUG: [ 1181906 ] Comment in LoadFromDirectory maybe wrong?
   (cosmetic)
