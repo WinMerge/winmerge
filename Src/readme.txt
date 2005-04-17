@@ -1,3 +1,7 @@
+2005-04-17 Perry
+ (Cosmetic) Add HTML entity escapes for Chinese simplified
+  Src/Common: LanguageSelect.cpp
+
 2005-04-14 Kimmo
  PATCH: [ 1182416 ] Fix Compare by date hang
   Src: DiffContext.cpp DiffContext.h DiffWrapper.cpp DiffWrapper.h DirScan.cpp 
@@ -8,7 +12,7 @@
   Src: FileFilterMgr.cpp
 
 2005-04-12 Perry
- Add HTML entity escapes for several language names
+ (Cosmetic) Add HTML entity escapes for several language names
   Src/Common: LanguageSelect.cpp
  PATCH: [ 1162668 ] Serialize font settings
   Src: MainFrm.cpp Merge.dsp
