@@ -1,3 +1,7 @@
+2005-04-17 Tim
+ BUG: [ 1182013 ] Translation instructions don't mention installer or readme
+  Web\developer\l10n: instructions.php
+
 2005-04-11 Tim
  BUG: [ 1180893 ] Download points to 2.2.0 instead of 2.2.2
   Web: page.inc

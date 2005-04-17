@@ -12,6 +12,10 @@
 
 <p>We have a list with the <a href="status.php">status of current translations</a>, so you can check if your language is already available and/or it needs to be updated.</p>
 
+<p class="note">Besides the DLL you could also translate things like the <a href="http://cvs.sourceforge.net/viewcvs.py/winmerge/WinMerge/InnoSetup/Languages/">installer</a>
+(the <acronym title="Inno Setup Language">ISL</acronym> file is just a INI file) and the <a href="http://cvs.sourceforge.net/viewcvs.py/winmerge/WinMerge/Docs/Users/Languages/">readme file</a>
+(at the moment a <acronym title="Rich Text Format">RTF</acronym> file).</p>
+
 <h3>Instructions for those who know CVS and Visual C++</h3>
 <p>Grab a copy of the source from CVS (<a href="../wincvs.php">WinCVS Hints</a>).</p>
 <p>You will need to translate all the strings in <code>Merge.rc</code> to your language. Make a <code>MergeYourLanguage.rc</code> and upload it to SF.net as a patch <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216" target="_top">here</a>.
