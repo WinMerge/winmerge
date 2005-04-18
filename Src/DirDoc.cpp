@@ -559,17 +559,16 @@ CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
 
 /**
  * @brief Update changed item's compare status
- * @param [in] pathLeft Left-side path
- * @param [in] pathRight Right-side path
+ * @param [in] paths Paths for files we update
  * @param [in] nDiffs Total amount of differences
  * @param [in] nTrivialDiffs Amount of ignored differences
  * @param [in] bIdentical TRUE if files became identical, FALSE otherwise.
  * @note Filenames must be same, otherwise function asserts.
  */
-void CDirDoc::UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight,
+void CDirDoc::UpdateChangedItem(PathContext &paths,
 	UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical)
 {
-	POSITION pos = FindItemFromPaths(pathLeft, pathRight);
+	POSITION pos = FindItemFromPaths(paths.GetLeft(), paths.GetRight());
 	ASSERT(pos);
 	int ind = m_pDirView->GetItemIndex((DWORD)pos);
 

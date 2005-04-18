@@ -34,6 +34,10 @@
 #include "DiffList.h"
 #include "stringdiffs.h"
 
+#ifndef _PATH_CONTEXT_H_
+#include "PathContext.h"
+#endif
+
 #ifndef _DIFF_FILE_INFO_H_INCLUDED
 #include "DiffFileInfo.h"
 #endif
@@ -194,7 +198,7 @@ public:
 	DiffFileInfo m_rightRescanFileInfo;
 	DiffList m_diffList;
 	UINT m_nTrivialDiffs; /**< Amount of trivial (ignored) diffs */
-	CString m_strLeftFile, m_strRightFile;
+	PathContext m_filePaths; /**< Filepaths for this document */
 	/// String of concatenated filenames as text to apply plugins filter to
 	CString m_strBothFilenames;
 
@@ -270,7 +274,7 @@ public:
 	void FlushAndRescan(BOOL bForced = FALSE);
 	BOOL TempFilesExist();
 	void CleanupTempFiles();
-	BOOL InitTempFiles(const CString& strPathL, const CString& strPathR);
+	BOOL InitTempFiles(PathContext &paths);
 	void SetCurrentDiff(int nDiff);
 	int GetCurrentDiff() { return m_nCurDiff; }
 	virtual ~CMergeDoc();

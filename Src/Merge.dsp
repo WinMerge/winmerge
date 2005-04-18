@@ -569,6 +569,10 @@ SOURCE=.\PatchTool.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PathContext.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\paths.cpp
 # End Source File
 # Begin Source File
@@ -1088,6 +1092,10 @@ SOURCE=.\PatchDlg.h
 # Begin Source File
 
 SOURCE=.\PatchTool.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PathContext.h
 # End Source File
 # Begin Source File
 

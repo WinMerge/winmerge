@@ -14,6 +14,10 @@
 #include "DiffFileInfo.h"
 #endif
 
+#ifndef _PATH_CONTEXT_H_
+#include "PathContext.h"
+#endif
+
 class PackingInfo;
 class PrediffingInfo;
 class IDiffFilter;
@@ -140,10 +144,10 @@ public:
 	 * Normalized paths are preferred to use - short paths are expanded
 	 * and trailing slashes removed (except from root path).
 	 */
-	const CString & GetLeftPath() const { return m_strLeft; }
-	const CString & GetRightPath() const { return m_strRight; }
-	const CString & GetNormalizedLeft() const { return m_strNormalizedLeft; }
-	const CString & GetNormalizedRight() const { return m_strNormalizedRight; }
+	const CString & GetLeftPath() const { return m_paths.GetLeft(FALSE); }
+	const CString & GetRightPath() const { return m_paths.GetRight(FALSE); }
+	const CString & GetNormalizedLeft() const { return m_paths.GetLeft(); }
+	const CString & GetNormalizedRight() const { return m_paths.GetRight(); }
 	//@}
 
 	// to iterate over all differences on list
@@ -176,11 +180,7 @@ public:
 
 private:
 	CList<DIFFITEM,DIFFITEM> m_dirlist, *m_pList; // master list of differences
-
-	CString m_strLeft;
-	CString m_strRight;
-	CString m_strNormalizedLeft;
-	CString m_strNormalizedRight;
+	PathContext m_paths; /**< (root) paths for this context */
 };
 
 #endif // !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)

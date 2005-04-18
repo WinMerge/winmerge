@@ -89,7 +89,7 @@ public:
 	void SetReadOnly(BOOL bLeft, BOOL bReadOnly);
 	void RefreshOptions();
 	void CompareReady();
-	void UpdateChangedItem(LPCTSTR pathLeft, LPCTSTR pathRight,
+	void UpdateChangedItem(PathContext & paths,
 		UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical);
 	POSITION FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight);
 	void SetDiffSide(UINT diffcode, int idx);

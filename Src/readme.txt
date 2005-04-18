@@ -7,6 +7,10 @@
  PATCH: [ 1183669 ] Updated ReadMe-ChineseTraditional.rtf
   From Koko
   Docs/users/Languages: Read Me-Chinese_Traditional.rtf
+ PATCH: [ 1181092 ] Path context class
+  Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirDoc.h MainFrm.cpp Merge.dsp
+   MergeDoc.cpp MergeDoc.h
+  Src new files: PathContext.cpp PathContext.h
 
 2005-04-17 Perry
  (Cosmetic) Add HTML entity escapes for Chinese simplified

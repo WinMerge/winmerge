@@ -2190,7 +2190,7 @@ void CMainFrame::OnToolsGeneratePatch()
 			{
 				bOpenDialog = FALSE;
 			}
-			patcher.AddFiles(pMergeDoc->m_strLeftFile, pMergeDoc->m_strRightFile);
+			patcher.AddFiles(pMergeDoc->m_filePaths.GetLeft(), pMergeDoc->m_filePaths.GetRight());
 		}
 	}
 	// Dirview active

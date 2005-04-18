@@ -64,14 +64,9 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 , m_hDirFrame(NULL)
 , m_nCompMethod(-1)
 {
-	m_strLeft = pszLeft;
-	m_strRight = pszRight;
+	m_paths.SetLeft(pszLeft);
+	m_paths.SetRight(pszRight);
 	m_pList = &m_dirlist;
-
-	m_strNormalizedLeft = pszLeft;
-	paths_normalize(m_strNormalizedLeft);
-	m_strNormalizedRight = pszRight;
-	paths_normalize(m_strNormalizedRight);
 }
 
 /**
@@ -92,18 +87,13 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	// so the temporary never exists while the user is interacting with the GUI
 
 	m_bRecurse=src.m_bRecurse;
-	m_strLeft = pszLeft;
-	m_strRight = pszRight;
+	m_paths.SetLeft(pszLeft);
+	m_paths.SetRight(pszRight);
 	m_pList = src.m_pList;
 	m_piFilterGlobal = src.m_piFilterGlobal;
 	m_msgUpdateStatus = src.m_msgUpdateStatus;
 	m_hDirFrame = src.m_hDirFrame;
 	m_nCompMethod = src.m_nCompMethod;
-
-	m_strNormalizedLeft = pszLeft;
-	paths_normalize(m_strNormalizedLeft);
-	m_strNormalizedRight = pszRight;
-	paths_normalize(m_strNormalizedRight);
 }
 
 CDiffContext::~CDiffContext()

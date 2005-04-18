@@ -336,16 +336,16 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 			return RESCAN_SUPPRESSED;
 	}
 
-	bLeftFileChanged = IsFileChangedOnDisk(m_strLeftFile, fileInfo,
+	bLeftFileChanged = IsFileChangedOnDisk(m_filePaths.GetLeft(), fileInfo,
 		FALSE, TRUE);
-	bRightFileChanged = IsFileChangedOnDisk(m_strRightFile, fileInfo,
+	bRightFileChanged = IsFileChangedOnDisk(m_filePaths.GetRight(), fileInfo,
 		FALSE, FALSE);
 	m_LastRescan = COleDateTime::GetCurrentTime();
 
 	// get the desired files to temp locations so we can edit them dynamically
 	if (!TempFilesExist())
 	{
-		if (!InitTempFiles(m_strLeftFile, m_strRightFile))
+		if (!InitTempFiles(m_filePaths))
 			return RESCAN_TEMP_ERR;
 	}
 
@@ -445,19 +445,19 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		m_bRightEditAfterRescan = FALSE;
 	}
 
-	m_leftRescanFileInfo.Update(m_strLeftFile);
-	m_rightRescanFileInfo.Update(m_strRightFile);
+	m_leftRescanFileInfo.Update(m_filePaths.GetLeft());
+	m_rightRescanFileInfo.Update(m_filePaths.GetRight());
 
 	if (bLeftFileChanged)
 	{
 		CString msg;
-		AfxFormatString1(msg, IDS_FILECHANGED_RESCAN, m_strLeftFile);
+		AfxFormatString1(msg, IDS_FILECHANGED_RESCAN, m_filePaths.GetLeft());
 		AfxMessageBox(msg, MB_OK | MB_ICONWARNING);
 	}
 	else if (bRightFileChanged)
 	{
 		CString msg;
-		AfxFormatString1(msg, IDS_FILECHANGED_RESCAN, m_strRightFile);
+		AfxFormatString1(msg, IDS_FILECHANGED_RESCAN, m_filePaths.GetRight());
 		AfxMessageBox(msg, MB_OK | MB_ICONWARNING);
 	}
 	return nResult;
@@ -530,8 +530,8 @@ void CMergeDoc::ShowRescanError(int nRescanResult,
 	// Files are not binaries, but they are identical
 	if (bIdentical)
 	{
-		if (!m_strLeftFile.IsEmpty() && !m_strRightFile.IsEmpty() && 
-			m_strLeftFile == m_strRightFile)
+		if (!m_filePaths.GetLeft().IsEmpty() && !m_filePaths.GetRight().IsEmpty() && 
+			m_filePaths.GetLeft() == m_filePaths.GetRight())
 		{
 			// compare file to itself, a custom message so user may hide the message in this case only
 			VERIFY(s.LoadString(IDS_FILE_TO_ITSELF));
@@ -1001,14 +1001,14 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 		if (bLeft)
 		{
 			m_leftSaveFileInfo.Update(strSavePath);
-			m_leftRescanFileInfo.Update(m_strLeftFile);
-			m_strLeftFile = strSavePath;
+			m_leftRescanFileInfo.Update(m_filePaths.GetLeft());
+			m_filePaths.SetLeft(strSavePath);
 		}
 		else
 		{
 			m_rightSaveFileInfo.Update(strSavePath);
-			m_rightRescanFileInfo.Update(m_strRightFile);
-			m_strRightFile = strSavePath;
+			m_rightRescanFileInfo.Update(m_filePaths.GetRight());
+			m_filePaths.SetRight(strSavePath);
 		}
 		UpdateHeaderPath(bLeft);
 		bSaveSuccess = TRUE;
@@ -1067,14 +1067,14 @@ BOOL CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 		if (bLeft)
 		{
 			m_leftSaveFileInfo.Update(strSavePath);
-			m_leftRescanFileInfo.Update(m_strLeftFile);
-			m_strLeftFile = strSavePath;
+			m_leftRescanFileInfo.Update(m_filePaths.GetLeft());
+			m_filePaths.SetLeft(strSavePath);
 		}
 		else
 		{
 			m_rightSaveFileInfo.Update(strSavePath);
-			m_rightRescanFileInfo.Update(m_strRightFile);
-			m_strRightFile = strSavePath;
+			m_rightRescanFileInfo.Update(m_filePaths.GetRight());
+			m_filePaths.SetRight(strSavePath);
 		}
 		UpdateHeaderPath(bLeft);
 		bSaveSuccess = TRUE;
@@ -1751,11 +1751,10 @@ void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int
  *
  * This function gets temp file path from system and generates new
  * unique temp filenames. User files are then copied to temp files.
- * @param srcPathL [in] Left-side userfile path
- * @param strPathR [in] Right-side userfile path
+ * @param [in] paths Paths of user files
  * return TRUE if tempfiles creates successfully.
  */
-BOOL CMergeDoc::InitTempFiles(const CString& strPathL, const CString& strPathR)
+BOOL CMergeDoc::InitTempFiles(PathContext & paths)
 {
 	TCHAR strTempPath[MAX_PATH] = {0};
 
@@ -1781,9 +1780,9 @@ BOOL CMergeDoc::InitTempFiles(const CString& strPathL, const CString& strPathR)
 		}
 		m_strTempLeftFile = name;
 
-		if (!strPathL.IsEmpty())
+		if (!paths.GetLeft().IsEmpty())
 		{
-			if (!::CopyFile(strPathL, m_strTempLeftFile, FALSE))
+			if (!::CopyFile(paths.GetLeft(), m_strTempLeftFile, FALSE))
 			{
 				LogErrorString(Fmt(_T("CopyFile() (copy left-side temp file) failed: %s"),
 					GetSysError(GetLastError())));
@@ -1804,9 +1803,9 @@ BOOL CMergeDoc::InitTempFiles(const CString& strPathL, const CString& strPathR)
 		}
 		m_strTempRightFile = name;
 
-		if (!strPathR.IsEmpty())
+		if (!paths.GetRight().IsEmpty())
 		{
-			if (!::CopyFile(strPathR, m_strTempRightFile, FALSE))
+			if (!::CopyFile(paths.GetRight(), m_strTempRightFile, FALSE))
 			{
 				LogErrorString(Fmt(_T("CopyFile() (copy right-side temp file) failed: %s"),
 					GetSysError(GetLastError())));
@@ -1939,7 +1938,7 @@ void CMergeDoc::OnFileSave()
 		// DoSave will return TRUE if it wrote to something successfully
 		// but we have to know if it overwrote the original file
 		BOOL bSaveOriginal = FALSE;
-		DoSave(m_strLeftFile, bSaveOriginal, TRUE );
+		DoSave(m_filePaths.GetLeft(), bSaveOriginal, TRUE );
 		if (bSaveOriginal)
 			bLChangedOriginal = TRUE;
 	}
@@ -1948,7 +1947,7 @@ void CMergeDoc::OnFileSave()
 	{
 		// See comments above for left case
 		BOOL bSaveOriginal = FALSE;
-		DoSave(m_strRightFile, bSaveOriginal, FALSE);
+		DoSave(m_filePaths.GetRight(), bSaveOriginal, FALSE);
 		if (bSaveOriginal)
 			bRChangedOriginal = TRUE;
 	}
@@ -1964,8 +1963,8 @@ void CMergeDoc::OnFileSave()
 				FlushAndRescan(FALSE);
 
 			BOOL bIdentical = (m_diffList.GetSize() == 0); // True if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile,
-				m_diffList.GetSize(), m_nTrivialDiffs, bIdentical);
+			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSize(),
+					m_nTrivialDiffs, bIdentical);
 		}
 	}
 }
@@ -1981,7 +1980,7 @@ void CMergeDoc::OnFileSaveLeft()
 	if (m_ltBuf.IsModified() && !m_ltBuf.GetReadOnly())
 	{
 		bLModified = TRUE;
-		DoSave(m_strLeftFile, bLSaveSuccess, TRUE );
+		DoSave(m_filePaths.GetLeft(), bLSaveSuccess, TRUE );
 	}
 
 	// If file were modified and saving succeeded,
@@ -1995,8 +1994,8 @@ void CMergeDoc::OnFileSaveLeft()
 				FlushAndRescan(FALSE);
 
 			BOOL bIdentical = (m_diffList.GetSize() == 0); // True if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile,
-				m_diffList.GetSize(), m_nTrivialDiffs, bIdentical);
+			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSize(),
+					m_nTrivialDiffs, bIdentical);
 		}
 	}
 }
@@ -2012,7 +2011,7 @@ void CMergeDoc::OnFileSaveRight()
 	if (m_rtBuf.IsModified() && !m_rtBuf.GetReadOnly())
 	{
 		bRModified = TRUE;
-		DoSave(m_strRightFile, bRSaveSuccess, FALSE);
+		DoSave(m_filePaths.GetRight(), bRSaveSuccess, FALSE);
 	}
 
 	// If file were modified and saving succeeded,
@@ -2026,8 +2025,8 @@ void CMergeDoc::OnFileSaveRight()
 				FlushAndRescan(FALSE);
 
 			BOOL bIdentical = (m_diffList.GetSize() == 0); // True if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile,
-				m_diffList.GetSize(), m_nTrivialDiffs, bIdentical);
+			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSize(),
+					m_nTrivialDiffs, bIdentical);
 		}
 	}
 }
@@ -2038,7 +2037,7 @@ void CMergeDoc::OnFileSaveRight()
 void CMergeDoc::OnFileSaveAsLeft()
 {
 	BOOL bSaveResult = FALSE;
-	DoSaveAs(m_strLeftFile, bSaveResult, TRUE);
+	DoSaveAs(m_filePaths.GetLeft(), bSaveResult, TRUE);
 }
 
 /**
@@ -2047,7 +2046,7 @@ void CMergeDoc::OnFileSaveAsLeft()
 void CMergeDoc::OnFileSaveAsRight()
 {
 	BOOL bSaveResult = FALSE;
-	DoSaveAs(m_strRightFile, bSaveResult, FALSE);
+	DoSaveAs(m_filePaths.GetRight(), bSaveResult, FALSE);
 }
 
 /**
@@ -2406,12 +2405,12 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 	dlg.DoAskFor(bLModified, bRModified);
 	if (!bAllowCancel)
 		dlg.m_bDisableCancel = TRUE;
-	if (!m_strLeftFile.IsEmpty())
-		dlg.m_sLeftFile = m_strLeftFile;
+	if (!m_filePaths.GetLeft().IsEmpty())
+		dlg.m_sLeftFile = m_filePaths.GetLeft();
 	else
 		dlg.m_sLeftFile = m_strLeftDesc;
-	if (!m_strRightFile.IsEmpty())
-		dlg.m_sRightFile = m_strRightFile;
+	if (!m_filePaths.GetRight().IsEmpty())
+		dlg.m_sRightFile = m_filePaths.GetRight();
 	else
 		dlg.m_sRightFile = m_strRightDesc;
 
@@ -2419,13 +2418,13 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 	{
 		if (bLModified && dlg.m_leftSave == 0)
 		{
-			if (!DoSave(m_strLeftFile, bLSaveSuccess, TRUE))
+			if (!DoSave(m_filePaths.GetLeft(), bLSaveSuccess, TRUE))
 				result = FALSE;
 		}
 
 		if (bRModified && dlg.m_rightSave == 0)
 		{
-			if (!DoSave(m_strRightFile, bRSaveSuccess, FALSE))
+			if (!DoSave(m_filePaths.GetRight(), bRSaveSuccess, FALSE))
 				result = FALSE;
 		}
 	}
@@ -2444,8 +2443,8 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 				FlushAndRescan(FALSE);
 
 			BOOL bIdentical = (m_diffList.GetSize() == 0); // True if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_strLeftFile, m_strRightFile,
-				m_diffList.GetSize(), m_nTrivialDiffs, bIdentical);
+			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSize(),
+					m_nTrivialDiffs, bIdentical);
 		}
 	}
 	return result;
@@ -2543,12 +2542,12 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
 	if (bLeft)
 	{
 		pBuf = &m_ltBuf;
-		m_strLeftFile = sFileName;
+		m_filePaths.SetLeft(sFileName);
 	}
 	else
 	{
 		pBuf = &m_rtBuf;
-		m_strRightFile = sFileName;
+		m_filePaths.SetRight(sFileName);
 	}
 
 	int nCrlfStyle = CRLF_STYLE_AUTOMATIC;
@@ -2958,7 +2957,7 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 			sText = m_strLeftDesc;
 		}
 		else
-			sText = m_strLeftFile;
+			sText = m_filePaths.GetLeft();
 		bChanges = m_ltBuf.IsModified();
 		nPane = 0;
 	}
@@ -2970,7 +2969,7 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 			sText = m_strRightDesc;
 		}
 		else
-			sText = m_strRightFile;
+			sText = m_filePaths.GetRight();
 		bChanges = m_rtBuf.IsModified();
 		nPane = 1;
 	}
@@ -3056,10 +3055,10 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 				strTitle = m_strLeftDesc;
 			else
 			{
-				if (PathCompactPathEx(pszLeftFile, m_strLeftFile, CAPTION_PATH_MAX, res))
+				if (PathCompactPathEx(pszLeftFile, m_filePaths.GetLeft(), CAPTION_PATH_MAX, res))
 					strTitle = pszLeftFile;
 				else
-					strTitle = m_strLeftFile;
+					strTitle = m_filePaths.GetLeft();
 			}
 	
 			strTitle += strSeparator;
@@ -3068,10 +3067,10 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 				strTitle += m_strRightDesc;
 			else
 			{
-				if (PathCompactPathEx(pszRightFile, m_strRightFile, CAPTION_PATH_MAX, res))
+				if (PathCompactPathEx(pszRightFile, m_filePaths.GetRight(), CAPTION_PATH_MAX, res))
 					strTitle += pszRightFile;
 				else
-					strTitle += m_strRightFile;
+					strTitle += m_filePaths.GetRight();
 			}
 		}
 		else
