@@ -4,6 +4,9 @@
   Src/Languages/Polish: MergePolish.rc
   Docs/users/Languages: Read Me-Polish.rtf
   InnoSetup/Languages: Pölish.isl
+ PATCH: [ 1183669 ] Updated ReadMe-ChineseTraditional.rtf
+  From Koko
+  Docs/users/Languages: Read Me-Chinese_Traditional.rtf
 
 2005-04-17 Perry
  (Cosmetic) Add HTML entity escapes for Chinese simplified
