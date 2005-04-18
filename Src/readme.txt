@@ -1,3 +1,10 @@
+2005-04-18 Kimmo
+ PATCH: [ 1183481 ] Updated Polish translation
+  From Pawel Wawrzysko
+  Src/Languages/Polish: MergePolish.rc
+  Docs/users/Languages: Read Me-Polish.rtf
+  InnoSetup/Languages: Pölish.isl
+
 2005-04-17 Perry
  (Cosmetic) Add HTML entity escapes for Chinese simplified
   Src/Common: LanguageSelect.cpp
