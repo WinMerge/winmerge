@@ -1,3 +1,7 @@
+2005-04-19 Tim
+ RFE: [ 1185426 ] Add link to Manual's FAQ into sidebar
+  Web: page.inc
+
 2005-04-17 Tim
  BUG: [ 1182013 ] Translation instructions don't mention installer or readme
   Web\developer\l10n: instructions.php

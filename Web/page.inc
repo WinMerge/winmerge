@@ -242,6 +242,16 @@
       $temp .= "<ul>\n";
       $temp .= "  <li><a href=\"http://sourceforge.net/mail/?group_id=13216\">Mailing Lists</a></li>\n";
       $temp .= "  <li><a href=\"http://sourceforge.net/forum/?group_id=13216\">Discussion Forums</a></li>\n";
+      switch ($this->_version) {
+        case WINMERGE_2_0: //if WinMerge 2.0 ...
+          $temp .= "  <li><a href=\"/2.0/docs/faq.htm\" title=\"Frequently asked questions\">FAQ</a></li>\n";
+          break;
+        case WINMERGE_2_2: //if WinMerge 2.2 ...
+        case WINMERGE_USR: //OR if "Users" ...
+        case WINMERGE_DEV: //OR if "Developers" ...
+          $temp .= "  <li><a href=\"/2.2/manual/faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
+          break;
+      }
       $temp .= "</ul>\n";
       $temp .= "<ul>\n";
       $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216\">Submit a Bug Report</a></li>\n";
