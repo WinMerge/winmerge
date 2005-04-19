@@ -1,3 +1,9 @@
+2005-04-19 Kimmo
+ PATCH: [ 1183772 ] Update Italian translation + readme
+  Submitted by Andrea Decorte
+  Src/Languages/Italian: MergeItalian.rc
+  Docs/users/Languages: Read Me-Italian.rtf
+
 2005-04-18 Kimmo
  PATCH: [ 1183481 ] Updated Polish translation
   From Pawel Wawrzysko

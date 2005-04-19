@@ -82,8 +82,8 @@ BEGIN
         MENUITEM "&Copia a destra",             ID_L2R
         MENUITEM "Co&pia a sinistra",           ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
-        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
+        MENUITEM "&Evidenza differenza di parole",   ID_SHOWLINEWORDDIFF
+        MENUITEM "E&videnzia differenza di caratteri",   ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Annulla",                    ID_EDIT_UNDO
         MENUITEM "&Ripristina",                 ID_EDIT_REDO
@@ -102,7 +102,7 @@ BEGIN
     BEGIN
         MENUITEM "&Nuovo\tCtrl+N",              ID_FILE_NEW
         MENUITEM "&Apri...\tCtrl+A",            ID_FILE_OPEN
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Apri pro&getto...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Es&ci",                       ID_APP_EXIT
     END
@@ -141,7 +141,7 @@ BEGIN
     END
     POPUP "Fi&nestra"
     BEGIN
-        MENUITEM "Chiudi",                      ID_FILE_CLOSE
+        MENUITEM "&Chiudi",                      ID_FILE_CLOSE
         MENUITEM SEPARATOR
         MENUITEM "Cambia &pannello\tF6",        ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -167,7 +167,7 @@ BEGIN
     BEGIN
         MENUITEM "&Nuovo\tCtrl+N",              ID_FILE_NEW
         MENUITEM "&Apri...\tCtrl+A",            ID_FILE_OPEN
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Apri progetto...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Fil&e di sinistra di Sola lettura", ID_FILE_LEFT_READONLY
         MENUITEM "F&ile di destra di Sola lettura", ID_FILE_RIGHT_READONLY
@@ -267,7 +267,7 @@ BEGIN
     BEGIN
         MENUITEM "&Nuovo\tCtrl+N",              ID_FILE_NEW
         MENUITEM "&Apri...\tCtrl+A",            ID_FILE_OPEN
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Apri pro&getto...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Salva\tCtrl+S",              ID_FILE_SAVE
         POPUP "Sa&lva sinistro"
@@ -306,8 +306,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Se&leziona tutto\tCtrl+A",    ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
+        MENUITEM "&Evidenzia differenze di parole\tF4", ID_SHOWLINEWORDDIFF
+        MENUITEM "Evidenzia differenze di &caratteri\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "Tro&va...\tCtrl+F",            ID_EDIT_FIND
         MENUITEM "Sostit&uisci...\tCtrl+H",         ID_EDIT_REPLACE
@@ -317,12 +317,12 @@ BEGIN
             MENUITEM "< Vuoto >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
-        POPUP "Advanced"
+        POPUP "Avanzate"
         BEGIN
-            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
+            MENUITEM "&Copia con numeri di linea\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
-        MENUITEM "&Vai a...\tCtrl+G",           ID_EDIT_WMGOTO
+        MENUITEM "Va&i a...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "Op&zioni",                    ID_OPTIONS
         MENUITEM SEPARATOR
@@ -334,7 +334,7 @@ BEGIN
         MENUITEM "&Utilizza carattere predefinito",  ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "&Visualizza spazi bianchi",   ID_VIEW_WHITESPACE
-        MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
+        MENUITEM "Visualizza &differenze nelle linee",      ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
         MENUITEM "Barra degli &strumenti",      ID_VIEW_TOOLBAR
         MENUITEM "&Barra di stato",             ID_VIEW_STATUS_BAR
@@ -424,7 +424,7 @@ BEGIN
             MENUITEM "&Destra",                 ID_DIR_DEL_RIGHT
             MENUITEM "&Entrambi",               ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "&Nascondi file",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Ap&ri file di sinistra"
         BEGIN
@@ -599,7 +599,7 @@ BEGIN
     PUSHBUTTON      "Annulla",IDCANCEL,306,28,50,14
     GROUPBOX        "File o cartelle da confrontare",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
-    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
+    PUSHBUTTON      "Salva progetto",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -821,14 +821,14 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Word Difference:",IDC_STATIC,7,129,90,8
+    RTEXT           "Differenza di parole:",IDC_STATIC,7,129,90,8
     CONTROL         "Dif",IDC_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_WORDDIFFERENCE_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Selected Word Diff:",IDC_STATIC,7,149,90,8
+    RTEXT           "Diff. parole selezionata:",IDC_STATIC,7,149,90,8
     CONTROL         "Dif",IDC_SEL_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,149,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -1070,7 +1070,7 @@ BEGIN
     CONTROL         "Ig&nora le differenze tra maiuscole e minuscole",
                     IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,70,221,10
-    CONTROL         "Igno&ra le differenze nell'andare a capo (DOS/UNIX/MAC)",
+    CONTROL         "Igno&ra le differenze di carriage return (DOS/UNIX/MAC)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,80,221,10
     CONTROL         "Attiva il rilevamento di blocc&hi spostati",IDC_MOVED_BLOCKS,"Button",
@@ -1120,9 +1120,9 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,188,114,50,14
+    PUSHBUTTON      "Nuovo...",IDC_FILTERFILE_NEWBTN,188,114,50,14
     PUSHBUTTON      "Modifica...",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "Elimina...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -1134,16 +1134,16 @@ BEGIN
     GROUPBOX        "File sul lato sinistro",IDC_SAVECLOSING_LEFTFRAME,7,7,248,55
     EDITTEXT        IDC_SAVECLOSING_LEFTFILE,16,19,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "&Salva modifiche",IDC_SAVECLOSING_SAVELEFT,"Button",
+    CONTROL         "&Salva le modifiche",IDC_SAVECLOSING_SAVELEFT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
-    CONTROL         "S&carta modifiche",IDC_SAVECLOSING_DISCARDLEFT,"Button",
+    CONTROL         "S&carta le modifiche",IDC_SAVECLOSING_DISCARDLEFT,"Button",
                     BS_AUTORADIOBUTTON,16,46,230,10
     GROUPBOX        "File sul lato destro",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
     EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
-    CONTROL         "S&alva modifiche",IDC_SAVECLOSING_SAVERIGHT,"Button",
+    CONTROL         "S&alva le modifiche",IDC_SAVECLOSING_SAVERIGHT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
-    CONTROL         "Sca&rta modifiche",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
+    CONTROL         "Sca&rta le modifiche",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
     DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
     PUSHBUTTON      "Annulla",IDCANCEL,205,133,50,14
@@ -1164,51 +1164,51 @@ BEGIN
     CONTROL         "Codice personalizzato :",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,46,90,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,140,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Codice di pagina predefinito per file ANSI",IDC_STATIC,7,7,221,58
+    GROUPBOX        "Codice di pagina predefinito per i file ANSI",IDC_STATIC,7,7,221,58
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245
 STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_NOPARENTNOTIFY
-CAPTION "WinMerge - Archive support disabled"
+CAPTION "WinMerge - Supporto per gli archivi inattivo"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Unable to detect 7-Zip version (not installed?)",107,2,
+    LTEXT           "Impossibile rilevare la versione di 7-Zip (forse non è installato?)",107,2,
                     2,296,18
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,22,296,1
-    LTEXT           "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\nessential components to be copied to the program directory for standalone operation.",
+    LTEXT           "Il supporto per gli archivi all'interno dell'applicazione richiede l'installazione di 7-Zip 3.11 o superiore, o che le\nsue componenti essenziali siano copiate nella cartella del programma.",
                     IDC_STATIC,2,26,296,26
-    LTEXT           "There must also be an appropriate interface plugin (Merge7z*.dll) on the path.",
+    LTEXT           "Ci deve essere un plugin appropriato (Merge7z*.dll) in questo percorso.",
                     IDC_STATIC,2,52,296,18
-    LTEXT           "Please use the version of 7-Zip recommended below until interface plugins for later\nversions become available.",
+    LTEXT           "Utilizza per favore la versione di 7-Zip raccomandata qui sotto fino alla\ndisponbilità di nuove versioni.",
                     IDC_STATIC,2,70,296,26
-    CTEXT           "Version",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE | 
+    CTEXT           "Versione",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE |
                     SS_SUNKEN
-    CTEXT           "Plugin required\n(dllbuild %04u)",102,204,98,94,20,
+    CTEXT           "Plugin richiesto\n(build dll %04u)",102,204,98,94,20,
                     SS_SUNKEN
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,120,142,10,
+    LTEXT           "Versione raccomandata di 7-Zip:",IDC_STATIC,2,120,142,10,
                     SS_CENTERIMAGE
     CTEXT           "0.00",110,146,120,20,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "present",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "presente",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "Merge7z000U.dll",111,204,120,58,10,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    CTEXT           "present",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "7-Zip software installed on your computer:",IDC_STATIC,
+    CTEXT           "presente",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "7-Zip installato sul tuo computer:",IDC_STATIC,
                     2,132,142,10,SS_CENTERIMAGE
-    CTEXT           "none",120,146,132,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "nessuno",120,146,132,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",121,204,132,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "missing",122,264,132,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "7-Zip components for standalone operation:",IDC_STATIC,
+    CTEXT           "mancante",122,264,132,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Componenti 7-Zip per operazioni standalone:",IDC_STATIC,
                     2,144,142,10,SS_CENTERIMAGE
-    CTEXT           "none",130,146,144,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "nessuno",130,146,144,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",131,204,144,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "outdated",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "Plugins on path:",9001,2,160,100,8
-    CONTROL         "Don't display this &message again.\n(You can always recall this message from help menu.)",
+    CTEXT           "non aggiornato",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Plugin trovati nel percorso:",9001,2,160,100,8
+    CONTROL         "Non visualizzare più questo &messaggio.\n(Potrai richiamarlo comunque dal menu di aiuto.)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
-    CONTROL         "Plugin Download",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
+    CONTROL         "Scarica plugin",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
                     236,160,62,10
     LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
@@ -1217,18 +1217,18 @@ END
 IDD_PREFERENCES DIALOGEX 0, 0, 352, 260
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Options"
+CAPTION "Opzioni"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,187,237,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,241,237,50,14
-    PUSHBUTTON      "Help",IDC_TREEOPT_HELP,295,237,50,14
+    PUSHBUTTON      "Annulla",IDCANCEL,241,237,50,14
+    PUSHBUTTON      "Aiuto",IDC_TREEOPT_HELP,295,237,50,14
     CONTROL         "Tree1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
                     WS_DISABLED,110,0,235,222
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
-    LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
+    LTEXT           " Categorie",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
 END
 
@@ -1256,7 +1256,7 @@ BEGIN
     BEGIN
         BLOCK "041004b0"
         BEGIN
-            VALUE "Comments", "Translated originally by Michele Merega, continued by Andrea Decorte(aka Klenje)\0"
+            VALUE "Comments", "Translated by Andrea Decorte(aka Klenje), previously by Michele Merega\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "Applicazione di WinMerge\0"
             VALUE "FileVersion", "000.000.000.000\0"
@@ -1510,7 +1510,7 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Modifica le impostazioni relative alla stampante e alla stampa\nImposta stampante"
     ID_FILE_PRINT           "Stampa il documento attivo\nStampa"
     ID_FILE_PRINT_PREVIEW   "Visualizza le pagine per intero\nAnteprima di stampa"
-    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+    ID_FILE_OPENPROJECT     "Apre un file di progetto\nFile di progetto (Ctrl+J)"
 END
 
 STRINGTABLE
@@ -1656,13 +1656,13 @@ END
 // Options-dialog page captions
 STRINGTABLE
 BEGIN
-	IDS_OPTIONSPG_GENERAL     "General"
-	IDS_OPTIONSPG_COMPARE     "Compare"
+	IDS_OPTIONSPG_GENERAL     "Generale"
+	IDS_OPTIONSPG_COMPARE     "Confronto"
 	IDS_OPTIONSPG_EDITOR      "Editor"
-	IDS_OPTIONSPG_COLORS      "Colors"
-	IDS_OPTIONSPG_SYSTEM      "System"
-	IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
-	IDS_OPTIONSPG_CODEPAGE     "Codepage"
+	IDS_OPTIONSPG_COLORS      "Colori"
+	IDS_OPTIONSPG_SYSTEM      "Sistema"
+	IDS_OPTIONSPG_VERSIONCONTROL "Controllo versioni"
+	IDS_OPTIONSPG_CODEPAGE     "Codice di pagina"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1702,15 +1702,15 @@ BEGIN
     IDS_OPEN_TITLE          "Apri"
     IDS_PROGRAMFILES        "Programmi|*.exe;*.bat;*.cmd|Tutti i file (*.*)|*.*||"
     IDS_ALLFILES            "Tutti i file (*.*)|*.*||"
-    IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+    IDS_PROJECTFILES        "File di progetto di WinMerge (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
 END
 
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
-    IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    IDS_COMPMETHOD_FULL_CONTENTS "Contenuti completi"
+    IDS_COMPMETHOD_QUICK_CONTENTS "Contenuti rapidi"
     IDS_COMPMETHOD_MODDATE  "Data ultima modifica"
 END
 
@@ -1721,9 +1721,9 @@ BEGIN
     IDS_FILTERFILE_PATHTITLE "Percorso"
     IDS_FILTER_TITLE        "Filtri"
     IDS_FILTER_PREFIX       "[F] "
-    IDS_FILTERFILE_DESCTITLE "Description"
-    IDS_FILEFILTER_SAVENEW  "Select filename for new filter"
-    IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
+    IDS_FILTERFILE_DESCTITLE "Descrizione"
+    IDS_FILEFILTER_SAVENEW  "Inserisci il nome del file per il nuovo filtro"
+    IDS_FILEFILTER_FILEMASK "Filtri di file (*.flt)|*.flt|Tutti i file (*.*)|*.*||"
 END
 
 // VERSION CONTROL OPTIONS
@@ -1827,9 +1827,9 @@ END
 // VSS system
 STRINGTABLE
 BEGIN
-    IDS_VCS_NONE            "None"
-    IDS_VCS_VSS4            "Visual SourceSafe (less than 5.0)"
-    IDS_VCS_VSS5            "Visual SourceSafe (5.0 and above)"
+    IDS_VCS_NONE            "Nessuno"
+    IDS_VCS_VSS4            "Visual SourceSafe (precedente a 5.0)"
+    IDS_VCS_VSS5            "Visual SourceSafe (5.0 e superiore)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
 END
 
@@ -1843,7 +1843,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "Elimina la voce selezionata sulla sinistra"
     ID_DIR_DEL_RIGHT        "Elimina la voce selezionata sulla destra"
     ID_DIR_DEL_BOTH         "Elimina gli elementi selezionati in entrambi i lati"
-    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
+    ID_DIR_HIDE_FILENAMES   "Nascondi elementi selezionati (filtro al volo)"
     IDS_COPY_TO_LEFT        "Da Destra a Sinistra (%1)"
     IDS_COPY_TO_RIGHT       "Da Sinistra a Destra (%1)"
     IDS_COPY_TO_LEFT2       "Da Destra a Sinistra  (%1 su %2)"
@@ -2014,12 +2014,12 @@ BEGIN
     IDS_FILEBINARY          "I file di tipo binario non possono essere confrontati visualmente."
     IDS_TEMP_FILEERROR      "Impossibile creare file temporanei. Controlla le impostazioni del percorso per i file temporanei."
     IDS_FILEISDIR           "I file di cartelle non possono essere confrontate visivamente."
-    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
-                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
-                            Note: If you always want to treat all carriage return types \
-                            as equivalent, set the option 'Ignore carriage return \
-                            differences..' in the Compare tab of the options dialog\
-                            (available under Edit/Options)."
+    IDS_SUGGEST_IGNOREEOL   "Questi file usano tipi diversi di carriage return.\n\n\
+                            Desideri trattarli tutti come se fossero equivalenti in questo confronto?\n\n\
+                            Nota: Se vuoi sempre trattare tutti i tipi di carriage return \
+                            come equivalenti, imposta l'opzione 'Ignora le differenze di \
+                            carriage return' nella linguetta Confronto delle Opzioni \
+                            (raggiungibile dal menu Modifica->Opzioni)."
     IDS_SUGGEST_PRESERVEEOL "Gli EOL sono di tipi diversi (DOS/UNIX/MAC) nel file '%1'.\nCon le opzioni correnti, essi verranno unificati nel tipo principale.\nDesideri cambiare le opzioni e conservare gli EOL diversi ?"
     IDS_PREDIFFER_ERROR      "C'è stato un errore nel prediffing del file '%1' con il plugin '%2'. Il prediffing non verrà più applicato."
     IDS_SUGGEST_IGNORECODEPAGE "Il file sinistro (cp%d) e destro (cp%d) non hanno lo stesso codice di pagina.\nLa visualizzazione di ciascun file con il proprio codice di pagina fornirà una migliore visualizzazione ma l'unione/copia sarà pericolosa.\nNoi suggeriamo di lasciare da parte le informazioni sul codice di pagina. Sei d'accordo ?"
@@ -2204,7 +2204,7 @@ STRINGTABLE
 BEGIN
     IDS_LATVIAN             "Lettone"
     IDS_LITHUANIAN          "Lituano"
-    IDS_MALAY_MALAYSIA      "Malese (Malaysia)"
+    IDS_MALAY_MALAYSIA      "Malese (Malesia)"
     IDS_MALAY_BRUNEI_DARUSSALAM "Malese (Brunei Darussalam)"
     IDS_MANIPURI            "Manipuri"
     IDS_NORWEGIAN_BOKMAL    "Norvegese (Bokmål)"
@@ -2273,12 +2273,12 @@ END
 // CODEPAGE GEOGRAPHIC GROUPS
 STRINGTABLE
 BEGIN
-	IDS_CPG_WESTERN_EUROPEAN        "Western European"
-	IDS_CPG_EASTERN_EUROPEAN        "Eastern European"
-	IDS_CPG_EAST_ASIAN              "East Asian"
-	IDS_CPG_SOUTH_ASIAN             "SE & SW Asian"
-	IDS_CPG_MIDDLE_EASTERN          "Middle Eastern"
-	IDS_CPG_NA                      "Not applicable"
+	IDS_CPG_WESTERN_EUROPEAN        "Europa occidentale"
+	IDS_CPG_EASTERN_EUROPEAN        "Europa orientale"
+	IDS_CPG_EAST_ASIAN              "Asia orientale"
+	IDS_CPG_SOUTH_ASIAN             "Asia sud orientale e sud occidentale"
+	IDS_CPG_MIDDLE_EASTERN          "Medio oriente"
+	IDS_CPG_NA                      "Non applicabile"
 END
 
 // CODEPAGE PLATFORM GROUPS
@@ -2288,70 +2288,70 @@ BEGIN
 	IDS_CPP_DOS                     "MS-DOS"
 	IDS_CPP_MACINTOSH               "Macintosh"
 	IDS_CPP_IBM                     "IBM"
-	IDS_CPP_NA                      "Not applicable"
+	IDS_CPP_NA                      "Non applicabile"
 END
 
 // CODEPAGES #1 (IBM)
 STRINGTABLE
 BEGIN
 	IDS_CP_EBCDIC                   "EBCDIC"
-	IDS_CP_IBM_EBCDIC_CYRILLIC      "IBM EBCDIC Cyrillic"
+	IDS_CP_IBM_EBCDIC_CYRILLIC      "IBM EBCDIC Cirillico"
 END
 
 // CODEPAGES #1 (DOS)
 STRINGTABLE
 BEGIN
-	IDS_CP_DOS_US                   "MS-DOS Latin US"
-	IDS_CP_DOS_ARABIC               "MS-DOS Arabic"
-	IDS_CP_DOS_GREEK                "MS-DOS Greek"
-	IDS_CP_DOS_BALTIC               "MS-DOS Baltic Rim"
-	IDS_CP_DOS_LATIN1               "MS-DOS Latin 1"
-	IDS_CP_DOS_GREEK1               "MS-DOS Greek 1"
-	IDS_CP_DOS_LATIN2               "MS-DOS Latin 2"
-	IDS_CP_DOS_CYRILLIC             "MS-DOS Cyrillic"
-	IDS_CP_DOS_TURKISH              "MS-DOS Turkish"
-	IDS_CP_DOS_PORTUGUESE           "MS-DOS Portuguese"
+	IDS_CP_DOS_US                   "MS-DOS Latino USA"
+	IDS_CP_DOS_ARABIC               "MS-DOS Arabo"
+	IDS_CP_DOS_GREEK                "MS-DOS Greco"
+	IDS_CP_DOS_BALTIC               "MS-DOS Baltico"
+	IDS_CP_DOS_LATIN1               "MS-DOS Latino 1"
+	IDS_CP_DOS_GREEK1               "MS-DOS Greco 1"
+	IDS_CP_DOS_LATIN2               "MS-DOS Latino 2"
+	IDS_CP_DOS_CYRILLIC             "MS-DOS Cirillico"
+	IDS_CP_DOS_TURKISH              "MS-DOS Turco"
+	IDS_CP_DOS_PORTUGUESE           "MS-DOS Portoghese"
 END
 
 // CODEPAGES #2 (more DOS)
 STRINGTABLE
 BEGIN
-	IDS_CP_DOS_ICELANDIC            "MS-DOS Icelandic"
-	IDS_CP_DOS_HEBREW               "MS-DOS Hebrew"
-	IDS_CP_DOS_FRENCH_CANADA        "MS-DOS French Canada"
-	IDS_CP_DOS_NORDIC               "MS-DOS Nordic"
-	IDS_CP_DOS_CYRILLIC_CIS1        "MS-DOS Cyrillic CIS 1"
-	IDS_CP_DOS_GREEK2               "MS-DOS Greek 2"
+	IDS_CP_DOS_ICELANDIC            "MS-DOS Islandese"
+	IDS_CP_DOS_HEBREW               "MS-DOS Ebraico"
+	IDS_CP_DOS_FRENCH_CANADA        "MS-DOS Canada francofono"
+	IDS_CP_DOS_NORDIC               "MS-DOS Nordico"
+	IDS_CP_DOS_CYRILLIC_CIS1        "MS-DOS Cirillico CIS 1"
+	IDS_CP_DOS_GREEK2               "MS-DOS Greco 2"
 END
 
 // CODEPAGES #3 (Windows)
 STRINGTABLE
 BEGIN
 	IDS_CP_WINDOWS_THAI             "Windows Thai"
-	IDS_CP_WINDOWS_JAPANESE         "Windows Japanese"
-	IDS_CP_WINDOWS_CHINESE_SIMP     "Windows Simplified Chinese"
-	IDS_CP_WINDOWS_KOREAN           "Windows Korean"
-	IDS_CP_WINDOWS_CHINESE_TRAD     "Windows Traditional Chinese"
-	IDS_CP_WINDOWS_LATIN2           "Windows Latin 2"
-	IDS_CP_WINDOWS_CYRILLIC         "Windows Cyrillic (Slavic)"
-	IDS_CP_WINDOWS_LATIN1           "Windows Latin 1"
-	IDS_CP_WINDOWS_GREEK            "Windows Greek"
-	IDS_CP_WINDOWS_TURKISH          "Windows Latin 5 (Turkish)"
-	IDS_CP_WINDOWS_HEBREW           "Windows Hebrew"
-	IDS_CP_WINDOWS_ARABIC           "Windows Arabic"
-	IDS_CP_WINDOWS_BALTIC           "Windows Baltic Rim"
-	IDS_CP_WINDOWS_VIETNAM          "Windows Vietnamese"
+	IDS_CP_WINDOWS_JAPANESE         "Windows Giapponese"
+	IDS_CP_WINDOWS_CHINESE_SIMP     "Windows Cinese semplificato"
+	IDS_CP_WINDOWS_KOREAN           "Windows Coreano"
+	IDS_CP_WINDOWS_CHINESE_TRAD     "Windows Cinese tradizionale"
+	IDS_CP_WINDOWS_LATIN2           "Windows Latino 2"
+	IDS_CP_WINDOWS_CYRILLIC         "Windows Cirillico (Slavo)"
+	IDS_CP_WINDOWS_LATIN1           "Windows Latino 1"
+	IDS_CP_WINDOWS_GREEK            "Windows Greco"
+	IDS_CP_WINDOWS_TURKISH          "Windows Latino 5 (Turco)"
+	IDS_CP_WINDOWS_HEBREW           "Windows Ebraico"
+	IDS_CP_WINDOWS_ARABIC           "Windows Arabo"
+	IDS_CP_WINDOWS_BALTIC           "Windows Baltico"
+	IDS_CP_WINDOWS_VIETNAM          "Windows Vietnamita"
 END
 
 // CODEPAGES #4 (Macintosh)
 STRINGTABLE
 BEGIN
-	IDS_CP_MACINTOSH_ROMAN          "Macintosh Roman"
-	IDS_CP_MACINTOSH_GREEK          "Macintosh Greek"
-	IDS_CP_MACINTOSH_CYRILLIC       "Macintosh Cyrillic"
+	IDS_CP_MACINTOSH_ROMAN          "Macintosh Latino"
+	IDS_CP_MACINTOSH_GREEK          "Macintosh Greco"
+	IDS_CP_MACINTOSH_CYRILLIC       "Macintosh Cirillico"
 	IDS_CP_MACINTOSH_CENTRAL_EUROPE "Macintosh "
-	IDS_CP_MACINTOSH_ICELANDIC      "Macintosh Central Europe"
-	IDS_CP_MACINTOSH_TURKISH        "Macintosh Turkish"
+	IDS_CP_MACINTOSH_ICELANDIC      "Macintosh Europa centrale"
+	IDS_CP_MACINTOSH_TURKISH        "Macintosh Turco"
 END
 
 // CODEPAGES #5 (Extra (alias) information)
@@ -2360,13 +2360,13 @@ BEGIN
 	IDS_CP_WINDOWS_JAPANESE_EXTRA   ""
 	IDS_CP_WINDOWS_CHINESE_SIMP_EXTRA ""
 	IDS_CP_WINDOWS_KOREAN_EXTRA     ""
-	IDS_CP_WINDOWS_LATIN2_EXTRA     "Approximates ISO-8859-2"
+	IDS_CP_WINDOWS_LATIN2_EXTRA     "Approssima a ISO-8859-2"
 	IDS_CP_WINDOWS_CHINESE_TRAD_EXTRA ""
 	IDS_CP_WINDOWS_CYRILLIC_EXTRA   ""
-	IDS_CP_WINDOWS_LATIN1_EXTRA     "Approximates ISO-8859-1"
-	IDS_CP_WINDOWS_GREEK_EXTRA      "Approximates ISO-8859-7"
-	IDS_CP_WINDOWS_TURKISH_EXTRA    "Approximates ISO-8859-9"
-	IDS_CP_WINDOWS_HEBREW_EXTRA     "Approximates ISO-8859-8"
+	IDS_CP_WINDOWS_LATIN1_EXTRA     "Approssima a ISO-8859-1"
+	IDS_CP_WINDOWS_GREEK_EXTRA      "Approssima a ISO-8859-7"
+	IDS_CP_WINDOWS_TURKISH_EXTRA    "Approssima a ISO-8859-9"
+	IDS_CP_WINDOWS_HEBREW_EXTRA     "Approssima a ISO-8859-8"
 END
 
 // MENU STRINGS
@@ -2388,12 +2388,12 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
-    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
+    ID_SHOWLINEWORDDIFF     "Evidenzia differenze di parole nella linea corrente\nDifferenza di parole in linea corrente (F4)"
+    ID_SHOWLINECHARDIFF     "Evidenzia differenze di caratteri nella linea corrente\nDifferenza di caratteri in linea corrente (Shift+F4)"
     ID_EDIT_WMGOTO          "Vai a una linea o una differenza\nVai a (Ctrl+G)"
     ID_OPTIONS              "Imposta le opzioni del programma\nOpzioni"
     ID_REFRESH              "Aggiorna la visualizzazione\nAggiorna (F5)"
-    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
+    ID_EDIT_COPY_LINENUMBERS "Copia le linee selezionate negli Appunti aggiungendo i numeri di linea all'inizio"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2410,14 +2410,14 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Select the font for the view\nSelect View Font"
-    ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for view\nDefault Font"
+    ID_VIEW_SELECTFONT      "Seleziona il carattere per la visualizzazione\nSeleziona carattere visualizzazione"
+    ID_VIEW_USEDEFAULTFONT  "Ripristina carattere predefinito del sistema per la visualizzazione\nCarattere predefinito"
     ID_VIEW_WHITESPACE      "Mostra gli spazi bianchi"
     ID_VIEW_DETAIL_BAR      "Mostra il pannello delle differenze"
     ID_VIEW_LOCATION_BAR    "Il pannello della locazione mostra un'immagine complessiva dei file"
     ID_VIEW_DIR_STATEPANE   "Mostra pannello di riepilogo rapido del confronto tra cartelle"
     ID_VIEW_LANGUAGE        "Seleziona la lingua dell'interfaccia utente\nLingua"
-    ID_VIEW_LINEDIFFS       "Shows differences inside lines with different color\nShow Line Diff"
+    ID_VIEW_LINEDIFFS       "Mostra le differenze all'interno delle linee con colori diversi\nMostra differenze nelle linee"
 END
 
 // MERGE MENU
