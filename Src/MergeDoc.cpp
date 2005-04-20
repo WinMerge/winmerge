@@ -102,13 +102,14 @@ END_MESSAGE_MAP()
 /**
  * @brief Constructor.
  */
-CMergeDoc::CMergeDoc() : m_ltBuf(this,TRUE), m_rtBuf(this,FALSE)
+CMergeDoc::CMergeDoc()
+: m_ltBuf(this,TRUE)
+, m_rtBuf(this,FALSE)
+, m_pTempFiles(NULL)
 {
 	DIFFOPTIONS options = {0};
 
 	m_nCurDiff=-1;
-	m_strTempLeftFile;
-	m_strTempRightFile;
 	m_bEnableRescan = TRUE;
 	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
@@ -150,6 +151,7 @@ CMergeDoc::~CMergeDoc()
 	}
 
 	delete m_pInfoUnpacker;
+	delete m_pTempFiles;
 }
 
 /**
@@ -160,7 +162,8 @@ void CMergeDoc::DeleteContents ()
 	CDocument::DeleteContents ();
 	m_ltBuf.FreeAll ();
 	m_rtBuf.FreeAll ();
-	CleanupTempFiles();
+	delete m_pTempFiles;
+	m_pTempFiles = NULL;
 }
 
 void CMergeDoc::OnFileEvent (WPARAM /*wEvent*/, LPCTSTR /*pszPathName*/)
@@ -343,21 +346,26 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	m_LastRescan = COleDateTime::GetCurrentTime();
 
 	// get the desired files to temp locations so we can edit them dynamically
-	if (!TempFilesExist())
+	if (m_pTempFiles == NULL)
 	{
-		if (!InitTempFiles(m_filePaths))
+		m_pTempFiles = new TempFileContext;
+		if (m_pTempFiles == NULL)
+			return RESCAN_TEMP_ERR;
+
+		if (!m_pTempFiles->CreateFiles(m_filePaths))
 			return RESCAN_TEMP_ERR;
 	}
 
 	// output buffers to temp files (in UTF-8 if TCHAR=wchar_t or buffer was Unicode)
 	if (bBinary == FALSE)
 	{
-		SaveBuffForDiff(m_ltBuf, m_strTempLeftFile);
-		SaveBuffForDiff(m_rtBuf, m_strTempRightFile);
+		SaveBuffForDiff(m_ltBuf, m_pTempFiles->GetLeft());
+		SaveBuffForDiff(m_rtBuf, m_pTempFiles->GetRight());
 	}
 
 	// Set up DiffWrapper
-	m_diffWrapper.SetCompareFiles(m_strTempLeftFile, m_strTempRightFile);
+	m_diffWrapper.SetCompareFiles(m_pTempFiles->GetLeft(),
+			m_pTempFiles->GetRight());
 	m_diffWrapper.SetDiffList(&m_diffList);
 	m_diffWrapper.SetUseDiffList(TRUE);		// Add diffs to list
 	m_diffWrapper.GetOptions(&diffOptions);
@@ -1744,118 +1752,6 @@ void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int
 	int endl,endc;
 	if (! strText.IsEmpty())
 		InsertText(pSource, nLine, 0, strText, endl,endc, nAction);
-}
-
-/**
- * @brief Get path and name for temporary files and init those files.
- *
- * This function gets temp file path from system and generates new
- * unique temp filenames. User files are then copied to temp files.
- * @param [in] paths Paths of user files
- * return TRUE if tempfiles creates successfully.
- */
-BOOL CMergeDoc::InitTempFiles(PathContext & paths)
-{
-	TCHAR strTempPath[MAX_PATH] = {0};
-
-	if (!::GetTempPath(MAX_PATH, strTempPath))
-	{
-		LogErrorString(Fmt(_T("GetTempPath() failed: %s"),
-			GetSysError(GetLastError())));
-		return FALSE;
-	}
-
-	// Set temp paths for buffers
-	m_ltBuf.SetTempPath(strTempPath);
-	m_rtBuf.SetTempPath(strTempPath);
-
-	if (m_strTempLeftFile.IsEmpty())
-	{
-		TCHAR name[MAX_PATH];
-		if (!::GetTempFileName(strTempPath, _T("_LT"), 0, name))
-		{
-			LogErrorString(Fmt(_T("GetTempFileName() for left-side failed: %s"),
-				GetSysError(GetLastError())));
-			return FALSE;
-		}
-		m_strTempLeftFile = name;
-
-		if (!paths.GetLeft().IsEmpty())
-		{
-			if (!::CopyFile(paths.GetLeft(), m_strTempLeftFile, FALSE))
-			{
-				LogErrorString(Fmt(_T("CopyFile() (copy left-side temp file) failed: %s"),
-					GetSysError(GetLastError())));
-				return FALSE;
-			}
-		}
-		::SetFileAttributes(m_strTempLeftFile, FILE_ATTRIBUTE_NORMAL);
-	}
-	
-	if (m_strTempRightFile.IsEmpty())
-	{
-		TCHAR name[MAX_PATH];
-		if (!::GetTempFileName(strTempPath, _T("_RT"), 0, name))
-		{
-			LogErrorString(Fmt(_T("GetTempFileName() for right-side failed: %s"),
-				strTempPath, GetSysError(GetLastError())));
-			return FALSE;
-		}
-		m_strTempRightFile = name;
-
-		if (!paths.GetRight().IsEmpty())
-		{
-			if (!::CopyFile(paths.GetRight(), m_strTempRightFile, FALSE))
-			{
-				LogErrorString(Fmt(_T("CopyFile() (copy right-side temp file) failed: %s"),
-					GetSysError(GetLastError())));
-				return FALSE;
-			}
-		}
-		::SetFileAttributes(m_strTempRightFile, FILE_ATTRIBUTE_NORMAL);
-	}
-	return TRUE;
-}
-
-/**
- * @brief Remove temporary files.
- * @note Set tempfilenames empty even if deleting fails.
- * So we can create new files when needed. This causes leak
- * of temp files but at least WinMerge works...
- */
-void CMergeDoc::CleanupTempFiles()
-{
-	if (!m_strTempLeftFile.IsEmpty())
-	{
-		if (!::DeleteFile(m_strTempLeftFile))
-		{
-			LogErrorString(Fmt(_T("DeleteFile(%s) (deleting left-side temp file) failed: %s"),
-				m_strTempLeftFile, GetSysError(GetLastError())));
-		}
-		m_strTempLeftFile.Empty();
-
-	}
-	if (!m_strTempRightFile.IsEmpty())
-	{
-		if (!::DeleteFile(m_strTempRightFile))
-		{
-			LogErrorString(Fmt(_T("DeleteFile(%s) (deleting right-side temp file) failed: %s"),
-				m_strTempRightFile, GetSysError(GetLastError())));
-		}
-		m_strTempRightFile.Empty();
-	}
-}
-
-/**
- * @brief Returns TRUE if tempfile already exists
- */
-BOOL CMergeDoc::TempFilesExist()
-{
-	CFileStatus s1,s2;
-	return (!m_strTempLeftFile.IsEmpty() 
-		&& CFile::GetStatus(m_strTempLeftFile, s1)
-		&& !m_strTempRightFile.IsEmpty() 
-		&& CFile::GetStatus(m_strTempRightFile, s2));
 }
 
 /**

@@ -1,3 +1,7 @@
+2005-04-20 Kimmo
+ PATCH: [ 1185489 ] Tempfile path context
+  Src: MergeDoc.cpp MergeDoc.h PathContext.cpp PathContext.h
+
 2005-04-19 Kimmo
  PATCH: [ 1183772 ] Update Italian translation + readme
   Submitted by Andrea Decorte

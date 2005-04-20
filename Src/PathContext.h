@@ -7,8 +7,8 @@
 // $Id$
 
 
-#ifndef _PATH_INFO_H_
-#define _PATH_INFO_H_
+#ifndef _PATH_CONTEXT_H_
+#define _PATH_CONTEXT_H_
 
 /**
  * @brief Information for one path.
@@ -46,4 +46,16 @@ private:
 	PathInfo m_pathRight; /**< Second path (right path at start */
 };
 
-#endif  // _PATH_INFO_H_
+/**
+ * @brief Temp files for compared files
+ */
+class TempFileContext : public PathContext
+{
+public:
+	~TempFileContext();
+	BOOL CreateFiles(const PathContext &paths);
+	BOOL FilesExist();
+	void DeleteFiles();
+};
+
+#endif  // _PATH_CONTEXT_H_

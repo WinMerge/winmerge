@@ -272,9 +272,6 @@ public:
 	std::vector<CMergeEditView*> undoTgt;
 	std::vector<CMergeEditView*>::iterator curUndo;
 	void FlushAndRescan(BOOL bForced = FALSE);
-	BOOL TempFilesExist();
-	void CleanupTempFiles();
-	BOOL InitTempFiles(PathContext &paths);
 	void SetCurrentDiff(int nDiff);
 	int GetCurrentDiff() { return m_nCurDiff; }
 	virtual ~CMergeDoc();
@@ -286,8 +283,6 @@ public:
 // Implementation data
 protected:
 	int m_nCurDiff; /**< Selected diff, 0-based index, -1 if no diff selected */
-	CString m_strTempRightFile; /**< Left buffer temp file for diffengine */
-	CString m_strTempLeftFile; /**< Right buffer temp file for diffengine */
 	CMergeEditView * m_pLeftView; /**< Pointer to left view */
 	CMergeEditView * m_pRightView; /**< Pointer to right view */
 	CMergeDiffDetailView * m_pLeftDetailView;
@@ -305,6 +300,7 @@ protected:
 	BOOL m_bMergingMode; /**< Merging or Edit mode */
 	BOOL m_bLeftEditAfterRescan; /**< Left doc edited after rescanning */
 	BOOL m_bRightEditAfterRescan; /**< Right doc edited after rescanning */
+	TempFileContext * m_pTempFiles; /**< Temp files for compared files */
 
 // friend access
 	friend class RescanSuppress;
