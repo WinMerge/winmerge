@@ -1547,6 +1547,10 @@ SOURCE=.\editlib\ini.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\editlib\innosetup.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\editlib\is.cpp
 # End Source File
 # Begin Source File

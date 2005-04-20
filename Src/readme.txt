@@ -1,6 +1,11 @@
 2005-04-20 Kimmo
  PATCH: [ 1185489 ] Tempfile path context
   Src: MergeDoc.cpp MergeDoc.h PathContext.cpp PathContext.h
+ PATCH: [ 1184023 ] Syntax highlighting for Inno Setup files
+  Submitted by Tim
+  Src: Merge.dsp
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+  Src/editlib new file: innosetup.cpp
 
 2005-04-19 Kimmo
  PATCH: [ 1183772 ] Update Italian translation + readme
