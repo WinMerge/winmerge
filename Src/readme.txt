@@ -7,6 +7,9 @@
    Merge.dsp Merge.h Merge.rc OptionsDef.h PropGeneral.cpp PropGeneral.h resource.h
   Src/Common: PreferencesDlg.cpp
   Src/Languages: resource.h *.rc
+ BUG: [ 1183031 ] Shared file give "parameter not correct error"
+  Fix from Robin Sandlin and Perry
+  Src/Common: UniFile.cpp
 
 2005-04-22 Perry
  BUG: [ 1188063 ] UTF-8 file saving problem, the file header BOM missing.

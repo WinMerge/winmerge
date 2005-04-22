@@ -3,7 +3,7 @@
  *  @author Perry Rapp, Creator, 2003-2005
  *  @author Kimmo Varis, 2004-2005
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-04-22 (Perry Rapp)
+ *  @date   Edited:  2005-04-22 (Kimmo Varis)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -128,14 +128,15 @@ bool UniLocalFile::DoGetFileStatus(HANDLE handle)
 	}
 	m_filepath = status.m_szFullName;
 
-	DWORD sizehi=0;
+	DWORD sizehi = 0;
 	DWORD sizelo = GetFileSize(handle, &sizehi);
-	int errnum = GetLastError();
-	if (errnum != NO_ERROR)
-	{
+	if (sizelo != INVALID_FILE_SIZE)
+	{  // MSDN says errnum will not be NO_ERROR
+		int errnum = GetLastError();
 		LastError(_T("GetFileSize"), errnum);
 		return false;
 	}
+
 	m_filesize = sizelo + (sizehi << 32);
 	m_statusFetched = 1;
 
