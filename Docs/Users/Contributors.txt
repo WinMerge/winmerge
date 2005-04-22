@@ -68,7 +68,7 @@ Localization:
   Hans Fredrik Nordhaug
             
 * Polish:	
-  Pawe Wawrzyszko
+  Pawel Wawrzysko
 
 * Portuguese (Brazilian):	
   Wender Firmino
