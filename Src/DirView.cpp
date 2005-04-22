@@ -819,7 +819,7 @@ void CDirView::OpenParentDirectory()
 			paths_DoesPathExist(rightParent) == IS_EXISTING_DIR &&
 			AllowUpwardDirectory(left, right))
 		mf->DoFileOpen(leftParent, rightParent,
-			FFILEOPEN_NOMRU, FFILEOPEN_NOMRU);
+			FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FALSE, GetDocument());
 }
 
 /**
@@ -833,8 +833,9 @@ void CDirView::OpenParentDirectory()
  */
 void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 {
-	int sel = m_pList->GetNextItem(-1, LVNI_SELECTED);
-	if (sel != -1)
+	int sel = -1;
+
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		DIFFITEM di;
 		POSITION diffpos = GetItemKey(sel);
@@ -847,6 +848,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		if (diffpos == (POSITION) -1)
 		{
 			OpenParentDirectory();
+			break;
 		}		
 		else if (di.isDirectory() && (di.isSideLeft() == di.isSideRight()))
 		{
@@ -859,9 +861,9 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 				// Don't add folders to MRU
 				CString left, right;
 				GetItemFileNames(sel, left, right);
-				mf->DoFileOpen(left, right, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU);
+				mf->DoFileOpen(left, right, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FALSE, pDoc);
 			}
-
+			break;
 		}
 		else if (di.isSideLeft() || di.isSideRight())
 			AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
@@ -870,8 +872,11 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		else
 		{
 			// Close open documents first (ask to save unsaved data)
-			if (!GetDocument()->CloseMergeDocs())
-				return;
+			if (GetDocument()->GetReuseMergeDocs())
+			{
+				if (!GetDocument()->CloseMergeDocs())
+					return;
+			}
 			
 			// Open identical and different files
 			CString left, right;

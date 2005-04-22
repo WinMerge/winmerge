@@ -32,6 +32,7 @@ public:
 	BOOL  m_bScroll;
 	BOOL  m_bDisableSplash;
 	BOOL  m_bAutoCloseCmpPane;
+	BOOL  m_bSingleInstance;
 	BOOL  m_bVerifyPaths;
 	BOOL  m_bCloseWindowWithEsc;
 	//}}AFX_DATA

@@ -658,9 +658,11 @@ BEGIN
                     WS_TABSTOP,7,37,206,10
     CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
-    CONTROL         "Automatically verify paths in Open-dialog",
+    CONTROL         "&Automatically verify paths in Open-dialog",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,206,10
+    CONTROL         "All&ow only one instance to run",IDC_SINGLE_INSTANCE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
     PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
     LTEXT           "WinMerge allows hiding some common messageboxes. Press button to make all messageboxes visible again.",

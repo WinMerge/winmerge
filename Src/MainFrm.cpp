@@ -139,6 +139,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
 	ON_COMMAND(ID_VIEW_TOOLBAR, OnViewToolbar)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenproject)
+	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -201,6 +202,7 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_EXT_EDITOR_CMD, _T(""));
 	m_options.InitOption(OPT_USE_RECYCLE_BIN, true);
 	m_options.InitOption(OPT_AUTOCLOSE_CMPPANE, false);
+	m_options.InitOption(OPT_SINGLE_INSTANCE, false);
 	m_options.InitOption(OPT_MERGE_MODE, false);
 	m_options.InitOption(OPT_UNREC_APPLYSYNTAX, false);
 	m_options.InitOption(OPT_CLOSE_WITH_ESC, true);
@@ -273,7 +275,7 @@ CMainFrame::CMainFrame()
 //	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
 
-	m_bReuseDirDoc = TRUE;
+	m_bReuseDirDoc = FALSE;
 	// TODO: read preference for logging
 
 	if (m_options.GetString(OPT_EXT_EDITOR_CMD).IsEmpty())
@@ -1270,7 +1272,7 @@ void CMainFrame::OnOptions()
  * @brief Begin a diff: open dirdoc if it is directories, else open a mergedoc for editing
  */
 BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/,
-	DWORD dwLeftFlags /*=0*/, DWORD dwRightFlags /*=0*/, BOOL bRecurse /*=FALSE*/)
+	DWORD dwLeftFlags /*=0*/, DWORD dwRightFlags /*=0*/, BOOL bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/)
 {
 	CString strLeft(pszLeft);
 	CString strRight(pszRight);
@@ -1282,11 +1284,9 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	BOOL bROLeft = dwLeftFlags & FFILEOPEN_READONLY;
 	BOOL bRORight = dwRightFlags & FFILEOPEN_READONLY;
 	BOOL docNull;
-	CDirDoc * pDirDoc = GetDirDocToShow(&docNull);
 
 	// If the dirdoc we are supposed to use is busy doing a diff, bail out
-	UINT threadState = pDirDoc->m_diffThread.GetThreadState();
-	if (threadState == THREAD_COMPARING)
+	if (IsComparing())
 		return FALSE;
 
 	// pop up dialog unless arguments exist (and are compatible)
@@ -1324,13 +1324,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			addToMru(pszRight, _T("Files\\Right"));
 	}
 
-	if (!docNull)
-	{
-		// If reusing an existing doc, give it a chance to save its data
-		// and close any merge views, and clear its window
-		if (!pDirDoc->ReusingDirDoc())
-			return FALSE;
-	}
 
 	if (1)
 	{
@@ -1431,6 +1424,27 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		e->Delete();
 	}
 
+	// Determine if we want new a dirview open now that we know if it was
+	// and archive. Don't open new dirview if we are comparing files.
+	if (!pDirDoc)
+	{
+		if (pathsType == IS_EXISTING_DIR)
+			pDirDoc = GetDirDocToShow(&docNull);
+		else
+		{
+			pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->CreateNewDocument();
+			docNull = TRUE;
+		}
+	}		
+
+	if (!docNull)
+	{
+		// If reusing an existing doc, give it a chance to save its data
+		// and close any merge views, and clear its window
+		if (!pDirDoc->ReusingDirDoc())
+			return FALSE;
+	}
+	
 	// open the diff
 	if (pathsType == IS_EXISTING_DIR)
 	{
@@ -1744,6 +1758,20 @@ void CMainFrame::UpdateResources()
 		CMergeDoc * pDoc = mergedocs.RemoveHead();
 		pDoc->UpdateResources();
 	}
+}
+
+BOOL CMainFrame::IsComparing()
+{
+	DirDocList dirdocs;
+	GetAllDirDocs(&dirdocs);
+	while (!dirdocs.IsEmpty())
+	{
+		CDirDoc * pDirDoc = dirdocs.RemoveHead();
+		UINT threadState = pDirDoc->m_diffThread.GetThreadState();
+		if (threadState == THREAD_COMPARING)
+			return TRUE;
+	}
+	return FALSE;
 }
 
 void CMainFrame::OnHelpContents() 
@@ -2144,10 +2172,15 @@ CDirDoc * CMainFrame::GetDirDocToShow(BOOL * pNew)
 	if (m_bReuseDirDoc)
 	{
 		POSITION pos = theApp.m_pDirTemplate->GetFirstDocPosition();
-		if (pos)
-		{
-			pDirDoc = static_cast<CDirDoc *>(theApp.m_pDirTemplate->GetNextDoc(pos));
-			*pNew = FALSE;
+		while (pos)
+		{			
+			CDirDoc *pDirDocTemp = static_cast<CDirDoc *>(theApp.m_pDirTemplate->GetNextDoc(pos));
+			if (pDirDocTemp->HasDirView())
+			{
+				*pNew = FALSE;
+				pDirDoc = pDirDocTemp;
+				break;
+			}
 		}
 	}
 	if (!pDirDoc)
@@ -2512,29 +2545,34 @@ void CMainFrame::OnSaveConfigData()
 void CMainFrame::OnFileNew() 
 {
 	BOOL docNull;
-	CDirDoc *pDirDoc = GetDirDocToShow(&docNull);
+	CDirDoc *pDirDoc;
 
 	// If the dirdoc we are supposed to use is busy doing a diff, bail out
-	UINT threadState = pDirDoc->m_diffThread.GetThreadState();
-	if (threadState == THREAD_COMPARING)
+	if (IsComparing())
 		return;
 
-	if (!docNull)
+	if (m_bReuseDirDoc)
 	{
-		// If dircompare contains results, warn user that they are lost
-		if (pDirDoc->m_pCtxt)
+		pDirDoc = GetDirDocToShow(&docNull);
+		if (!docNull)
 		{
-			int res = AfxMessageBox(IDS_DIR_RESULTS_EMPTIED, MB_OKCANCEL |
-				MB_ICONWARNING | MB_DONT_DISPLAY_AGAIN, IDS_DIR_RESULTS_EMPTIED);
-			if (res == IDCANCEL)
+			// If dircompare contains results, warn user that they are lost
+			if (pDirDoc->m_pCtxt)
+			{
+				int res = AfxMessageBox(IDS_DIR_RESULTS_EMPTIED, MB_OKCANCEL |
+					MB_ICONWARNING | MB_DONT_DISPLAY_AGAIN, IDS_DIR_RESULTS_EMPTIED);
+				if (res == IDCANCEL)
+					return;
+			}
+
+			// If reusing an existing doc, give it a chance to save its data
+			// and close any merge views, and clear its window
+			if (!pDirDoc->ReusingDirDoc())
 				return;
 		}
-
-		// If reusing an existing doc, give it a chance to save its data
-		// and close any merge views, and clear its window
-		if (!pDirDoc->ReusingDirDoc())
-			return;
 	}
+	else
+		pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->CreateNewDocument();
 	
 	// Load emptyfile descriptors and open empty docs
 	// Use default codepage
@@ -2772,4 +2810,31 @@ void CMainFrame::OnFileOpenproject()
 		m_strSaveAsPath = _T("");
 		DoFileOpen(files[0], files[1], dwLeftFlags, dwRightFlags, bRecursive);
 	}
+}
+
+/**
+ * @brief Receive commandline from another instance.
+ *
+ * This function receives commandline when only single-instance
+ * is allowed. New instance tried to start sends its commandline
+ * to here so we can open paths it was meant to.
+ */
+LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
+{
+	COPYDATASTRUCT *pCopyData = (COPYDATASTRUCT*)lParam;
+	LPTSTR p = (LPTSTR)(pCopyData->lpData);
+	int argc = pCopyData->dwData;
+	TCHAR **argv = new (TCHAR *[argc]);
+	
+	for (int i = 0; i < argc; i++)
+	{
+		argv[i] = p;
+		while (*p) p++;
+		p++;
+	}
+	theApp.ParseArgsAndDoOpen(argc, argv, this);
+	
+	delete [] argv;
+
+	return TRUE;
 }

@@ -243,6 +243,7 @@
 #define IDC_TREEOPT_PAGES               1158
 #define IDC_TREEOPT_HOSTFRAME           1159
 #define IDC_TREEOPT_HELP                1160
+#define IDC_SINGLE_INSTANCE             1161
 
 
 #define IDC_EDIT_WHOLE_WORD             8603

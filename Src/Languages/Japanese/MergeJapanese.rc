@@ -102,7 +102,7 @@ BEGIN
     BEGIN
         MENUITEM "新規作成(&N)\tCtrl+N",        ID_FILE_NEW
         MENUITEM "開く(&O)...\tCtrl+O",         ID_FILE_OPEN
-        MENUITEM "プロジェクトを開く(&J)...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "プロジェクトを開く(&J)...\tCtrl+J", ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "終了(&X)",                    ID_APP_EXIT
     END
@@ -272,13 +272,13 @@ BEGIN
         MENUITEM "保存(&S)\tCtrl+S",            ID_FILE_SAVE
         POPUP "左のファイルを保存(&L)"
         BEGIN
-            MENUITEM "保存(&S)",                    ID_FILE_SAVE_LEFT
-            MENUITEM "名前を付けて保存(&A)...",     ID_FILE_SAVEAS_LEFT
+            MENUITEM "保存(&S)",                ID_FILE_SAVE_LEFT
+            MENUITEM "名前を付けて保存(&A)...", ID_FILE_SAVEAS_LEFT
         END
         POPUP "右のファイルを保存(&R)"
         BEGIN
-            MENUITEM "保存(&S)",                    ID_FILE_SAVE_RIGHT
-            MENUITEM "名前を付けて保存(&A)...",     ID_FILE_SAVEAS_RIGHT
+            MENUITEM "保存(&S)",                ID_FILE_SAVE_RIGHT
+            MENUITEM "名前を付けて保存(&A)...", ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
         MENUITEM "左を読み取り専用(&E)",        ID_FILE_LEFT_READONLY
@@ -286,9 +286,9 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "改行コード(&F)"
         BEGIN
-            MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
-            MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
-            MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
+            MENUITEM "&DOS (CRLF)",             ID_EOL_TO_DOS
+            MENUITEM "&UNIX (LF)",              ID_EOL_TO_UNIX
+            MENUITEM "&MAC (CR)",               ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
         MENUITEM "マージモード\tF9",            ID_FILE_MERGINGMODE
@@ -314,15 +314,15 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "スクリプト(&S)"
         BEGIN
-            MENUITEM "< なし >",               ID_NO_EDIT_SCRIPTS
+            MENUITEM "< なし >",                ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
         POPUP "高度な操作"
         BEGIN
             MENUITEM "行番号付きでコピー(&C)\tCtrl+Shift+C",
-                                                    ID_EDIT_COPY_LINENUMBERS
+                                                ID_EDIT_COPY_LINENUMBERS
         END
-        MENUITEM "ジャンプ(&G)...\tCtrl+G",        ID_EDIT_WMGOTO
+        MENUITEM "ジャンプ(&G)...\tCtrl+G",     ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_OPTIONS
         MENUITEM SEPARATOR
@@ -334,7 +334,7 @@ BEGIN
         MENUITEM "デフォルトフォントを使用(&O)", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "空白を表示(&V)",              ID_VIEW_WHITESPACE
-        MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
+        MENUITEM "行内の差異を表示(&W)",        ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
         MENUITEM "ツールバー(&T)",              ID_VIEW_TOOLBAR
         MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
@@ -443,8 +443,8 @@ BEGIN
         POPUP "パス名をコピー(&Y)"
         BEGIN
             MENUITEM "左(&L) (%1 / %2)",            ID_DIR_COPY_PATHNAMES_LEFT
-            MENUITEM "右(&R) (%1 / %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
-            MENUITEM "両側(&B) (%1 / %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+            MENUITEM "右(&R) (%1 / %2)",            ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "両側(&B) (%1 / %2)",          ID_DIR_COPY_PATHNAMES_BOTH
         END
         MENUITEM "ファイル名をコピー(&F)",          ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
@@ -488,7 +488,7 @@ BEGIN
         MENUITEM "移動(&G)...",                 ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "移動ブロック表示なし(&N)",    ID_DISPLAY_MOVED_NONE
-        MENUITEM "全移動ブロック表示(&A)",ID_DISPLAY_MOVED_ALL
+        MENUITEM "全移動ブロック表示(&A)",      ID_DISPLAY_MOVED_ALL
         MENUITEM "現在差異の移動ブロックのみ表示(&C)", ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
 END
@@ -662,6 +662,8 @@ BEGIN
     CONTROL         "開くダイアログで自動的にパスを検査する",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,206,10
+    CONTROL         "複数のインスタンスを起動しない",IDC_SINGLE_INSTANCE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
     PUSHBUTTON      "リセット",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
     LTEXT           "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。 全てのメッセージボックスを再び表示させるには、ボタンを押下してください。",
@@ -1170,45 +1172,45 @@ END
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245
 STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_NOPARENTNOTIFY
-CAPTION "WinMerge - Archive support disabled"
+CAPTION "WinMerge - アーカイブサポートが無効"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Unable to detect 7-Zip version (not installed?)",107,2,
+    LTEXT           "７－Zipのバージョンが検出できません。(インストールされていない?)",107,2,
                     2,296,18
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,22,296,1
-    LTEXT           "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\nessential components to be copied to the program directory for standalone operation.",
+    LTEXT           "アーカイブサポートを有効にするには 7-Zip のバージョン 3.11 以降をインストールするか、\nスタンドアロン操作のために必要なコンポーネントをプログラムディレクトリにコピーしてください。",
                     IDC_STATIC,2,26,296,26
-    LTEXT           "There must also be an appropriate interface plugin (Merge7z*.dll) on the path.",
+    LTEXT           "また、適切なインターフェースプラグイン (Merge7z*.dll) がPATH上に存在していなければなりません。",
                     IDC_STATIC,2,52,296,18
-    LTEXT           "Please use the version of 7-Zip recommended below until interface plugins for later\nversions become available.",
+    LTEXT           "最新のバージョンのインターフェースプラグインが利用可能になるまで、以下の推奨される7-Zip のバージョンを使用してください。",
                     IDC_STATIC,2,70,296,26
-    CTEXT           "Version",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE | 
+    CTEXT           "バージョン",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    CTEXT           "Plugin required\n(dllbuild %04u)",102,204,98,94,20,
+    CTEXT           "必要なプラグイン\n(dllbuild %04u)",102,204,98,94,20,
                     SS_SUNKEN
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,120,142,10,
+    LTEXT           "7-Zip の推奨バージョン:",IDC_STATIC,2,120,142,10,
                     SS_CENTERIMAGE
     CTEXT           "0.00",110,146,120,20,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "present",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "現在",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "Merge7z000U.dll",111,204,120,58,10,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    CTEXT           "present",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "7-Zip software installed on your computer:",IDC_STATIC,
+    CTEXT           "現在",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "インストールされている 7-Zip:",IDC_STATIC,
                     2,132,142,10,SS_CENTERIMAGE
-    CTEXT           "none",120,146,132,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "なし",120,146,132,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",121,204,132,58,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "missing",122,264,132,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "7-Zip components for standalone operation:",IDC_STATIC,
+    LTEXT           "ｽﾀﾝﾄﾞｱﾛﾝ操作に必要な 7-Zip ｺﾝﾎﾟｰﾈﾝﾄ:",IDC_STATIC,
                     2,144,142,10,SS_CENTERIMAGE
     CTEXT           "none",130,146,144,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",131,204,144,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "outdated",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "Plugins on path:",9001,2,160,100,8
-    CONTROL         "Don't display this &message again.\n(You can always recall this message from help menu.)",
+    CTEXT           "旧式",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "PATH上のプラグイン:",9001,2,160,100,8
+    CONTROL         "再度このメッセージを表示しない(&M)。\n(ヘルプメニューからこのメッセージを表示できます。)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
-    CONTROL         "Plugin Download",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
+    CONTROL         "ﾌﾟﾗｸﾞｲﾝﾀﾞｳﾝﾛｰﾄﾞ",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
                     236,160,62,10
     LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
@@ -1221,14 +1223,14 @@ CAPTION "Options"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,187,237,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,241,237,50,14
-    PUSHBUTTON      "Help",IDC_TREEOPT_HELP,295,237,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,241,237,50,14
+    PUSHBUTTON      "ヘルプ",IDC_TREEOPT_HELP,295,237,50,14
     CONTROL         "Tree1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
                     WS_DISABLED,110,0,235,222
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
-    LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
+    LTEXT           " カテゴリ",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
 END
 
@@ -1545,13 +1547,13 @@ END
 // Options-dialog page captions
 STRINGTABLE
 BEGIN
-	IDS_OPTIONSPG_GENERAL     "General"
-	IDS_OPTIONSPG_COMPARE     "Compare"
-	IDS_OPTIONSPG_EDITOR      "Editor"
-	IDS_OPTIONSPG_COLORS      "Colors"
-	IDS_OPTIONSPG_SYSTEM      "System"
-	IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
-	IDS_OPTIONSPG_CODEPAGE     "Codepage"
+	IDS_OPTIONSPG_GENERAL     "一般"
+	IDS_OPTIONSPG_COMPARE     "比較"
+	IDS_OPTIONSPG_EDITOR      "エディタ"
+	IDS_OPTIONSPG_COLORS      "色"
+	IDS_OPTIONSPG_SYSTEM      "システム"
+	IDS_OPTIONSPG_VERSIONCONTROL "バージョン管理"
+	IDS_OPTIONSPG_CODEPAGE     "コードページ"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1598,8 +1600,8 @@ END
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
-    IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    IDS_COMPMETHOD_FULL_CONTENTS "フルコンテンツ"
+    IDS_COMPMETHOD_QUICK_CONTENTS "クイックコンテンツ"
     IDS_COMPMETHOD_MODDATE  "更新日時"
 END
 
@@ -1903,7 +1905,12 @@ BEGIN
     IDS_FILEBINARY          "バイナリファイルは視覚的に比較できません。"
     IDS_TEMP_FILEERROR      "テンポラリファイルが作成できませんでした。テンポラリパス設定を確認してください。"
     IDS_FILEISDIR           "ディレクトリは、ビジュアルに比較できません。"
-    IDS_SUGGEST_IGNOREEOL   "ファイル内に異なるEOLタイプが存在しています。\n現在のオプション設定では、すべての行は、異なったままです。\nファイル内に存在するEOLの違いを無視しますか?\n\n上級者 : ファイル内のEOLが統一されていないのであれば、\n むしろオプション '%1' をセットしたほうがよいかもしれません。"
+    IDS_SUGGEST_IGNOREEOL   "ファイル内に異なる改行タイプが存在しています。\n\n\
+                            ファイル内に存在する改行文字の違いを無視しますか?\n\n\
+                            注意: 常にすべての改行文字タイプを等価なものとみなしたい場合は、\n\
+                            [編集]→[設定]→[比較]の'改行文字の違いを無視する'オプションを\n\
+                            セットしてください。"
+
     IDS_SUGGEST_PRESERVEEOL "ファイル'%1'内に異なるタイプ(DOS/UNIX/MAC)のEOLが存在しています。\n 現在のオプション設定では、主なEOLに統一されます。\n オプションを変更して、異なるEOLを保持するようにしますか?"
     IDS_PREDIFFER_ERROR      "プラグイン'%2'でファイル'%1'の比較前処理の実行中にエラーが発生しました。比較前処理は以降行なわれません。"
     IDS_SUGGEST_IGNORECODEPAGE "両側のファイルは、同じコードページではありません。(cp%d vs cp%d)\n各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\nコードページ情報を無視しますが、よろしいですか?"
@@ -2294,14 +2301,14 @@ END
 // VIEW MENU
 STRINGTABLE
 BEGIN
-    ID_VIEW_SELECTFONT      "Diffビューのフォントを選択します\nDiffフォントの選択"
-    ID_VIEW_USEDEFAULTFONT  "Diffビューのフォントをデフォルトフォントに戻します\nデフォルトフォント"
+    ID_VIEW_SELECTFONT      "表示のためのフォントを選択します\n表示フォント選択"
+    ID_VIEW_USEDEFAULTFONT  "表示フォントをデフォルトシステムフォントに戻します\nデフォルトフォント"
     ID_VIEW_WHITESPACE      "空白文字を表示します"
     ID_VIEW_DETAIL_BAR      "Diffペインの表示/非表示を切り替えます"
     ID_VIEW_LOCATION_BAR    "ロケーションペインはファイルの内容全体をピクチャとして表示します"
     ID_VIEW_DIR_STATEPANE   "ディレクトリ比較状態ペインを表示します"
     ID_VIEW_LANGUAGE        "現在のユーザーインターフェース言語を選択します\n言語"
-    ID_VIEW_LINEDIFFS       "Shows differences inside lines with different color\nShow Line Diff"
+    ID_VIEW_LINEDIFFS       "行内の差異を色を変えて表示します\n行内の差異を表示"
 END
 
 // MERGE MENU
@@ -2314,8 +2321,8 @@ BEGIN
     ID_LASTDIFF             "最後の差異に移動します\n最後の差異 (Alt+End)"
     ID_L2R                  "選択されたテキストを右のファイルにコピーします\n右へコピー (Alt+Right)"
     ID_R2L                  "選択されたテキストを左のファイルにコピーします\n左へコピー (Alt+Left)"
-    ID_R2LNEXT              "差異を左にコピーし、次の差異に進みます\n左にコピーし次へ (Ctrl+Alt+Left)"
     ID_L2RNEXT              "差異を右にコピーし、次の差異に進みます\n右にコピーし次へ (Ctrl+Alt+Right)"
+    ID_R2LNEXT              "差異を左にコピーし、次の差異に進みます\n左にコピーし次へ (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "すべての差異を右のファイルにコピーします\n右すべて"
     ID_ALL_LEFT             "すべての差異を左のファイルにコピーします\n左すべて"
 END

@@ -659,6 +659,8 @@ BEGIN
     CONTROL         "&Verificar rutas automáticamente en la ventana de apertura",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,206,10
+    CONTROL         "&Allow only one instance to run",IDC_SINGLE_INSTANCE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
     PUSHBUTTON      "M&ostrar",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
     LTEXT           "WinMerge permite ocultar algunas ventanas de mensaje habituales. Haga click en el botón para volver a mostrarlas de nuevo.",

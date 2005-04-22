@@ -42,6 +42,7 @@
 #include "logfile.h"
 #include "coretools.h"
 #include "paths.h"
+#include "sinstance.h"
 #include "FileFilterHelper.h"
 #include "Plugins.h"
 #include "DirScan.h" // for DirScan_InitializeDefaultCodepage
@@ -138,6 +139,42 @@ BOOL CMergeApp::InitInstance()
 	// This is the name of the company of the original author (Dean Grimm)
 	SetRegistryKey(_T("Thingamahoochie"));
 
+	BOOL bSingleInstance = GetProfileInt(_T("Settings"), _T("SingleInstance"), FALSE);
+	
+	HANDLE hMutex = NULL;
+	if (bSingleInstance)
+	{
+		hMutex = CreateMutex(NULL, FALSE, _T("WinMerge{05963771-8B2E-11d8-B3B9-000000000000}"));
+		WaitForSingleObject(hMutex, INFINITE);
+	}
+
+	CInstanceChecker instanceChecker(_T("{05963771-8B2E-11d8-B3B9-000000000000}"));
+	if (bSingleInstance)
+	{
+		if (instanceChecker.PreviousInstanceRunning())
+		{
+			// Activate previous instance and send commandline to it
+			HWND hWnd = instanceChecker.ActivatePreviousInstance();
+			
+			TCHAR *pszArgs = new TCHAR[_tcslen(__targv[0]) + _tcslen(m_lpCmdLine) + 3];
+			TCHAR *p = pszArgs;
+			for (int i = 0; i < __argc; i++)
+				p += wsprintf(p, _T("%s"), __targv[i]) + 1;
+			*p++ = _T('\0');
+			COPYDATASTRUCT data = {0};
+			data.cbData = (DWORD)(p - pszArgs) * sizeof(TCHAR);
+			data.lpData = pszArgs;
+			data.dwData = __argc;
+			SendMessage(hWnd, WM_COPYDATA, NULL, (LONG)&data);
+			delete[] pszArgs;
+
+			ReleaseMutex(hMutex);
+			CloseHandle(hMutex);
+
+			return FALSE;
+		}
+	}
+
 	LoadStdProfileSettings(0);  // Load standard INI file options (including MRU)
 	BOOL bDisableSplash	= GetProfileInt(_T("Settings"), _T("DisableSplash"), FALSE);
 
@@ -182,7 +219,14 @@ BOOL CMergeApp::InitInstance()
 	// create main MDI Frame window
 	CMainFrame* pMainFrame = new CMainFrame;
 	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
+	{
+		if (hMutex)
+		{
+			ReleaseMutex(hMutex);
+			CloseHandle(hMutex);
+		}
 		return FALSE;
+	}
 	m_pMainWnd = pMainFrame;
 	// Enable drag&drop files
 	pMainFrame->ModifyStyleEx(NULL, WS_EX_ACCEPTFILES);
@@ -208,11 +252,27 @@ BOOL CMergeApp::InitInstance()
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;*/
 
+	//Track it so any other instances can find it.
+	instanceChecker.TrackFirstInstanceRunning();
+
 	// The main window has been initialized, so show and update it.
 	//pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->ActivateFrame(m_nCmdShow);
 	pMainFrame->UpdateWindow();
 
+	ParseArgsAndDoOpen(__argc, __targv, pMainFrame);
+
+	if (hMutex)
+	{
+		ReleaseMutex(hMutex);
+		CloseHandle(hMutex);
+	}
+
+	return TRUE;
+}
+
+void CMergeApp::ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame)
+{
 	CStringArray files;
 	UINT nFiles=0;
 	BOOL recurse=FALSE;
@@ -221,7 +281,7 @@ BOOL CMergeApp::InitInstance()
 	DWORD dwRightFlags = FFILEOPEN_NONE;
 
 	// Split commandline arguments into files & flags & recursive flag
-	ParseArgs(pMainFrame, files, nFiles, recurse, dwLeftFlags, dwRightFlags);
+	ParseArgs(argc, argv, pMainFrame, files, nFiles, recurse, dwLeftFlags, dwRightFlags);
 
 	if (LoadProjectFile(files, recurse))
 	{
@@ -256,16 +316,15 @@ BOOL CMergeApp::InitInstance()
 		pMainFrame->DoFileOpen(files[0], _T(""),
 			dwLeftFlags, dwRightFlags, recurse);
 	}
-	return TRUE;
 }
 
 /// Process commandline arguments
-void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
+void CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
 		DWORD & dwLeftFlags, DWORD & dwRightFlags)
 {
-	for (int i = 1; i < __argc; i++)
+	for (int i = 1; i < argc; i++)
 	{
-		LPCTSTR pszParam = __targv[i];
+		LPCTSTR pszParam = argv[i];
 		if (pszParam[0] == '-' || pszParam[0] == '/')
 		{
 			// remove flag specifier
@@ -314,9 +373,9 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 			// Shown instead of filename
 			if (!_tcsicmp(pszParam, _T("dl")))
 			{
-				if (i < (__argc - 1))
+				if (i < (argc - 1))
 				{
-					LPCTSTR pszDesc = __targv[i+1];
+					LPCTSTR pszDesc = argv[i+1];
 					pMainFrame->m_strLeftDesc = pszDesc;
 					i++;	// Just read next parameter
 				}
@@ -326,9 +385,9 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 			// Shown instead of filename
 			if (!_tcsicmp(pszParam, _T("dr")))
 			{
-				if (i < (__argc - 1))
+				if (i < (argc - 1))
 				{
-					LPCTSTR pszDesc = __targv[i+1];
+					LPCTSTR pszDesc = argv[i+1];
 					pMainFrame->m_strRightDesc = pszDesc;
 					i++;	// Just read next parameter
 				}
@@ -337,9 +396,9 @@ void CMergeApp::ParseArgs(CMainFrame* pMainFrame, CStringArray & files, UINT & n
 			// -f "mask" - file filter mask ("*.h *.cpp")
 			if (!_tcsicmp(pszParam, _T("f")))
 			{
-				if (i < (__argc - 1))
+				if (i < (argc - 1))
 				{
-					CString sFilter = __targv[i+1];
+					CString sFilter = argv[i+1];
 					sFilter.TrimLeft();
 					sFilter.TrimRight();
 					m_globalFileFilter.SetFilter(sFilter);

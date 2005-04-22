@@ -104,7 +104,7 @@ public:
 	BOOL SyncFileToVCS(LPCTSTR pszSrc, LPCTSTR pszDest,	BOOL &bApplyToAll,
 		CString *psError);
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
-		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE);
+		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE, CDirDoc *pDirDoc = NULL);
 	void ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight, BOOL bROLeft, BOOL bRORight, int cpleft =-1, int cpright =-1, PackingInfo * infoUnpacker = NULL);
 	void UpdateResources();
 	BOOL CreateBackup(LPCTSTR pszPath);
@@ -222,6 +222,7 @@ protected:
 	afx_msg void OnViewStatusBar();
 	afx_msg void OnViewToolbar();
 	afx_msg void OnFileOpenproject();
+	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -236,6 +237,7 @@ private:
 	void GetAllViews(MergeEditViewList * pEditViews, MergeDetailViewList * pDetailViews, DirViewList * pDirViews);
 	void GetAllMergeDocs(MergeDocList * pMergeDocs);
 	void GetAllDirDocs(DirDocList * pDirDocs);
+	BOOL IsComparing();
 	void RedisplayAllDirDocs();
 	CMergeDoc * GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew);
 	CDirDoc * GetDirDocToShow(BOOL * pNew);

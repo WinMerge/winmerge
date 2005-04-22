@@ -87,6 +87,8 @@ public:
 	void SetRecursive(BOOL bRecursive);
 	BOOL GetReadOnly(BOOL bLeft) const;
 	void SetReadOnly(BOOL bLeft, BOOL bReadOnly);
+	BOOL GetReuseMergeDocs() { return m_bReuseMergeDocs; }
+	BOOL HasDirView() { return m_pDirView != NULL; }
 	void RefreshOptions();
 	void CompareReady();
 	void UpdateChangedItem(PathContext & paths,

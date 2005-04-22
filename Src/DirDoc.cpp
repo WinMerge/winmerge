@@ -67,7 +67,7 @@ CDirDoc::CDirDoc()
 
 	m_pDirView = NULL;
 	m_pCtxt=NULL;
-	m_bReuseMergeDocs = TRUE;
+	m_bReuseMergeDocs = FALSE;
 	m_bROLeft = FALSE;
 	m_bRORight = FALSE;
 	m_bRecursive = FALSE;
@@ -286,6 +286,9 @@ ShowItem:
  */
 void CDirDoc::Redisplay()
 {
+	if (!m_pDirView)
+		return;
+
 	m_pDirView->ToDoDeleteThisValidateColumnOrdering();
 
 	if (m_pCtxt == NULL)
@@ -370,7 +373,8 @@ void CDirDoc::InitStatusStrings()
  */
 void CDirDoc::UpdateResources()
 {
-	m_pDirView->UpdateResources();
+	if (m_pDirView)
+		m_pDirView->UpdateResources();
 
 	CString s;
 	VERIFY(s.LoadString(IDS_DIRECTORY_WINDOW_TITLE));
@@ -477,8 +481,11 @@ void CDirDoc::MergeDocClosing(CMergeDoc * pMergeDoc)
 
 	// If dir compare is empty (no compare results) and we are not closing
 	// because of reuse close also dir compare
-	if (m_pCtxt == NULL && !m_bReuseCloses)
-		AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+	if (m_pCtxt == NULL && !m_bReuseCloses && m_pDirView)
+		m_pDirView->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+
+	if (m_MergeDocs.GetCount() == 0 && !m_pDirView)
+		delete this;
 }
 
 /**
@@ -615,7 +622,8 @@ void CDirDoc::RefreshOptions()
 	options.bEolSensitive = mf->m_options.GetBool(OPT_CMP_EOL_SENSITIVE);
 
 	m_diffWrapper.SetOptions(&options);
-	m_pDirView->RefreshOptions();
+	if (m_pDirView)
+		m_pDirView->RefreshOptions();
 }
 
 /**

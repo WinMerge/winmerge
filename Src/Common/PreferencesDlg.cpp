@@ -282,6 +282,7 @@ void CPreferencesDlg::ReadOptions()
 	m_pageGeneral.m_bScroll = m_pOptionsMgr->GetBool(OPT_SCROLL_TO_FIRST);
 	m_pageGeneral.m_bDisableSplash = m_pOptionsMgr->GetBool(OPT_DISABLE_SPLASH);
 	m_pageGeneral.m_bAutoCloseCmpPane = m_pOptionsMgr->GetBool(OPT_AUTOCLOSE_CMPPANE);
+	m_pageGeneral.m_bSingleInstance = m_pOptionsMgr->GetBool(OPT_SINGLE_INSTANCE);
 	m_pageGeneral.m_bVerifyPaths = m_pOptionsMgr->GetBool(OPT_VERIFY_OPEN_PATHS);
 	m_pageGeneral.m_bCloseWindowWithEsc = m_pOptionsMgr->GetBool(OPT_CLOSE_WITH_ESC);
 
@@ -319,6 +320,7 @@ void CPreferencesDlg::SaveOptions()
 	m_pOptionsMgr->SaveOption(OPT_SCROLL_TO_FIRST, m_pageGeneral.m_bScroll == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_DISABLE_SPLASH, m_pageGeneral.m_bDisableSplash == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_AUTOCLOSE_CMPPANE, m_pageGeneral.m_bAutoCloseCmpPane == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_SINGLE_INSTANCE, m_pageGeneral.m_bSingleInstance == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_VERIFY_OPEN_PATHS, m_pageGeneral.m_bVerifyPaths == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_CLOSE_WITH_ESC, m_pageGeneral.m_bCloseWindowWithEsc == TRUE);
 	

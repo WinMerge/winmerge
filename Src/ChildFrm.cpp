@@ -338,7 +338,6 @@ static LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	switch (uMsg) {
 	case WM_NCPAINT:
 	case WM_PAINT:
-	case WM_SIZE:
 		return 0;
 	case WM_NCACTIVATE:
 		return 1;
@@ -350,12 +349,20 @@ static LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	}
 }
 
+static BOOL CALLBACK EnumChildProc(HWND hwnd, LPARAM lParam)
+{
+	::SendMessage(hwnd, WM_SETREDRAW, (WPARAM)lParam, 0);
+	return TRUE;
+}
+
 /**
  * @brief Alternative LockWindowUpdate(hWnd) API. See the comment near the code that calls this function.
  */
 static BOOL MyLockWindowUpdate(HWND hwnd)
 {
 	WNDPROC pfnOldWndProc;
+
+	EnumChildWindows(hwnd, EnumChildProc, FALSE);
 
 	pfnOldWndProc = (WNDPROC)SetWindowLong(hwnd, GWL_WNDPROC, (LONG)WndProc);
 	SetProp(hwnd, _T("OldWndProc"), (HANDLE)pfnOldWndProc);
@@ -370,6 +377,9 @@ static BOOL MyUnlockWindowUpdate(HWND hwnd)
 	WNDPROC pfnOldWndProc = (WNDPROC)RemoveProp(hwnd, _T("OldWndProc"));
 	if (pfnOldWndProc)
 		SetWindowLong(hwnd, GWL_WNDPROC, (LONG)pfnOldWndProc);
+
+	EnumChildWindows(hwnd, EnumChildProc, TRUE);
+
 	return TRUE;
 }
 

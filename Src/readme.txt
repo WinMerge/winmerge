@@ -1,6 +1,12 @@
 2005-04-22 Kimmo
  BUG: [ 1187714 ] Cannot save my newly created text file (add missing line)
   Src: PathContext.h
+ PATCH: [ 1184626 ] Allow only single instance to run. (2)
+  Submitted by Takashi Sawanaka
+  Src: ChildFrm.cpp DirDoc.cpp DirDoc.h DirView.cpp MainFrm.cpp MainFrm.h Merge.cpp
+   Merge.dsp Merge.h Merge.rc OptionsDef.h PropGeneral.cpp PropGeneral.h resource.h
+  Src/Common: PreferencesDlg.cpp
+  Src/Languages: resource.h *.rc
 
 2005-04-22 Perry
  BUG: [ 1188063 ] UTF-8 file saving problem, the file header BOM missing.

@@ -666,6 +666,8 @@ BEGIN
     CONTROL         "Pfade im Öffnen-Dialog automatisch überprüfen",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,206,10
+    CONTROL         "&Allow only one instance to run",IDC_SINGLE_INSTANCE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
     PUSHBUTTON      "Zurücksetzen",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
     LTEXT           "WinMerge erlaubt das Verstecken von einigen häufigen Meldungen. Das Drücken der Schaltfläche macht alle Meldungen wieder sichtbar.",

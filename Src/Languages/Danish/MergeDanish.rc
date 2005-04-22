@@ -661,6 +661,8 @@ BEGIN
     CONTROL         "&Verificer automatisk stinavnene i åben dialogen",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,206,10
+    CONTROL         "&Allow only one instance to run",IDC_SINGLE_INSTANCE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
     PUSHBUTTON      "Nulstil",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
     LTEXT           "WinMerge tillader at man kan afbryde nogle af de almindelige pop-up beskeder. Tryk på nulstil for at få dem allesammen til at dukke op igen.",
