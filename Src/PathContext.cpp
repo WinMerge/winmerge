@@ -101,6 +101,8 @@ BOOL TempFileContext::CreateFiles(const PathContext &paths)
 		return FALSE;
 	}
 
+	m_sTempPath = strTempPath;
+
 	if (GetLeft().IsEmpty())
 	{
 		TCHAR name[MAX_PATH];
