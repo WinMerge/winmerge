@@ -354,6 +354,9 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 
 		if (!m_pTempFiles->CreateFiles(m_filePaths))
 			return RESCAN_TEMP_ERR;
+
+		m_ltBuf.SetTempPath(m_pTempFiles->GetPath());
+		m_rtBuf.SetTempPath(m_pTempFiles->GetPath());
 	}
 
 	// output buffers to temp files (in UTF-8 if TCHAR=wchar_t or buffer was Unicode)

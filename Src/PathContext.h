@@ -56,6 +56,10 @@ public:
 	BOOL CreateFiles(const PathContext &paths);
 	BOOL FilesExist();
 	void DeleteFiles();
+	const CString & GetPath() const { return m_sTempPath; }
+
+private:
+	CString m_sTempPath;
 };
 
 #endif  // _PATH_CONTEXT_H_

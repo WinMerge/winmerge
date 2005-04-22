@@ -1,3 +1,7 @@
+2005-04-22 Kimmo
+ BUG: [ 1187714 ] Cannot save my newly created text file
+  Src: MergeDoc.cpp PathContext.h
+
 2005-04-20 Kimmo
  PATCH: [ 1185489 ] Tempfile path context
   Src: MergeDoc.cpp MergeDoc.h PathContext.cpp PathContext.h
