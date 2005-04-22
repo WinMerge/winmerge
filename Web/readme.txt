@@ -1,3 +1,7 @@
+2005-04-22 Kimmo
+ Correct Polish translator name
+  Web\developer\l10n: status.xml
+
 2005-04-19 Tim
  RFE: [ 1185426 ] Add link to Manual's FAQ into sidebar
   Web: page.inc
