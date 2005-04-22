@@ -1,3 +1,7 @@
+2005-04-22 Perry
+ BUG: [ 1188063 ] UTF-8 file saving problem, the file header BOM missing.
+ Src/Common: UniFile.cpp
+
 2005-04-22 Kimmo
  BUG: [ 1187714 ] Cannot save my newly created text file
   Src: MergeDoc.cpp PathContext.h

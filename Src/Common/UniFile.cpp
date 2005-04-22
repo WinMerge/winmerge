@@ -3,7 +3,7 @@
  *  @author Perry Rapp, Creator, 2003-2005
  *  @author Kimmo Varis, 2004-2005
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-03-13 (Kimmo Varis)
+ *  @date   Edited:  2005-04-22 (Perry Rapp)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -842,11 +842,11 @@ int UniStdioFile::WriteBom()
 		fwrite(bom, 1, 2, m_fp);
 		m_data = 2;
 	}
-	else if (m_unicoding == ucr::UCS2BE)
+	else if (m_unicoding == ucr::UTF8)
 	{
 		unsigned char bom[] = "\xEF\xBB\xBF";
 		fseek(m_fp, 0, SEEK_SET);
-		fwrite(bom, 1, 2, m_fp);
+		fwrite(bom, 1, 3, m_fp);
 		m_data = 3;
 	}
 	else
