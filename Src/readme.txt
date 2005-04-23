@@ -1,3 +1,8 @@
+2005-04-23 Kimmo
+ PATCH: [ 1184626 ] Allow only single instance to run. (2)
+ BUG: [ 1188363 ] Cannot open include file: 'sinstance.h': No such file or dir
+  Src/common new files: sinstance.h sinstance.cpp
+
 2005-04-22 Kimmo
  BUG: [ 1187714 ] Cannot save my newly created text file (add missing line)
   Src: PathContext.h
