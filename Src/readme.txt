@@ -3,6 +3,9 @@
   Src: 7zCommon.cpp DiffContext.cpp DiffContext.h DirActions.cpp DirDoc.cpc
    DirDoc.h DirView.cpp DirView.h DirViewColHandler.cpp DirViewColItems.cpp
    MainFrm.cpp MergeDoc.cpp
+ BUG: [ 1183031 ] Shared file give "parameter not correct error"
+  Additional fix from Perry
+  Src/Common: UniFile.cpp
 
 2005-04-23 Kimmo
  PATCH: [ 1184626 ] Allow only single instance to run. (2)

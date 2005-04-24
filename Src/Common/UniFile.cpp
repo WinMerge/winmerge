@@ -130,7 +130,7 @@ bool UniLocalFile::DoGetFileStatus(HANDLE handle)
 
 	DWORD sizehi = 0;
 	DWORD sizelo = GetFileSize(handle, &sizehi);
-	if (sizelo != INVALID_FILE_SIZE)
+	if (sizelo == INVALID_FILE_SIZE)
 	{  // MSDN says errnum will not be NO_ERROR
 		int errnum = GetLastError();
 		LastError(_T("GetFileSize"), errnum);
