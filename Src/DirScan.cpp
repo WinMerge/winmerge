@@ -254,8 +254,16 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 
 			if (pCtxt->m_nCompMethod == CMP_DATE)
 			{
-					// Compare only by modified date
-				if (leftFiles[i].mtime == rightFiles[j].mtime)
+				// Compare by modified date
+				int nTimeDiff = leftFiles[i].mtime - rightFiles[j].mtime;
+				if (pCtxt->m_bIgnoreSmallTimeDiff)
+				{
+					// If option to ignore small timediffs (couple of seconds)
+					// is set, decrease absolute difference by allowed diff
+					nTimeDiff = abs(nTimeDiff);
+					nTimeDiff -= SmallTimeDiff;
+				}
+				if (nTimeDiff <= 0)
 					nDiffCode |= DIFFCODE::TEXT | DIFFCODE::SAME;
 				else
 					nDiffCode |= DIFFCODE::TEXT | DIFFCODE::DIFF;

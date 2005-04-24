@@ -49,6 +49,7 @@ public:
 	CString	m_strEditorPath;
 	BOOL	m_bUseRecycleBin;
 	BOOL	m_bContextAdvanced;
+	BOOL	m_bIgnoreSmallTimeDiff;
 	//}}AFX_DATA
 
 	// Overrides

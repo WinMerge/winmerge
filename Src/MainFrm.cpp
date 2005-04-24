@@ -168,7 +168,6 @@ static const TCHAR DocsURL[] = _T("http://winmerge.org/2.2/manual/index.html");
  */
 CMainFrame::CMainFrame()
 {
-	m_strSaveAsPath = _T("");
 	m_bFirstTime = TRUE;
 	m_bEscShutdown = FALSE;
 
@@ -207,6 +206,7 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_UNREC_APPLYSYNTAX, false);
 	m_options.InitOption(OPT_CLOSE_WITH_ESC, true);
 	m_options.InitOption(OPT_LOGGING, 0);
+	m_options.InitOption(OPT_IGNORE_SMALL_FILETIME, false);
 
 	m_options.InitOption(OPT_CMP_IGNORE_WHITESPACE, (int)0);
 	m_options.InitOption(OPT_CMP_IGNORE_BLANKLINES, false);

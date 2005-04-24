@@ -289,6 +289,7 @@ void CPreferencesDlg::ReadOptions()
 	m_pageSystem.m_strEditorPath = m_pOptionsMgr->GetString(OPT_EXT_EDITOR_CMD);
 	m_pageSystem.GetContextRegValues();
 	m_pageSystem.m_bUseRecycleBin = m_pOptionsMgr->GetBool(OPT_USE_RECYCLE_BIN);
+	m_pageSystem.m_bIgnoreSmallTimeDiff = m_pOptionsMgr->GetBool(OPT_IGNORE_SMALL_FILETIME);
 
 	m_pageCompare.m_nIgnoreWhite = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	m_pageCompare.m_bIgnoreBlankLines = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_BLANKLINES);
@@ -325,6 +326,8 @@ void CPreferencesDlg::SaveOptions()
 	m_pOptionsMgr->SaveOption(OPT_CLOSE_WITH_ESC, m_pageGeneral.m_bCloseWindowWithEsc == TRUE);
 	
 	m_pOptionsMgr->SaveOption(OPT_USE_RECYCLE_BIN, m_pageSystem.m_bUseRecycleBin == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_pageSystem.m_bIgnoreSmallTimeDiff == TRUE);
+
 
 	m_pageSystem.SaveMergePath();
 	sExtEditor = m_pageSystem.m_strEditorPath;

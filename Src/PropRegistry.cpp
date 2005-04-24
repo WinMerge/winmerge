@@ -56,6 +56,7 @@ CPropRegistry::CPropRegistry()
 	m_bContextAdded = FALSE;
 	m_bUseRecycleBin = TRUE;
 	m_bContextAdvanced = FALSE;
+	m_bIgnoreSmallTimeDiff = FALSE;
 	//}}AFX_DATA_INIT
 }
 
@@ -67,6 +68,7 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EXT_EDITOR_PATH, m_strEditorPath);
 	DDX_Check(pDX, IDC_USE_RECYCLE_BIN, m_bUseRecycleBin);
 	DDX_Check(pDX, IDC_EXPLORER_ADVANCED, m_bContextAdvanced);
+	DDX_Check(pDX, IDC_IGNORE_SMALLTIMEDIFF, m_bIgnoreSmallTimeDiff);
 	//}}AFX_DATA_MAP
 }
 

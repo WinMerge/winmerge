@@ -244,7 +244,7 @@
 #define IDC_TREEOPT_HOSTFRAME           1159
 #define IDC_TREEOPT_HELP                1160
 #define IDC_SINGLE_INSTANCE             1161
-
+#define IDC_IGNORE_SMALLTIMEDIFF        1162
 
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
@@ -869,7 +869,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        224
 #define _APS_NEXT_COMMAND_VALUE         33096
-#define _APS_NEXT_CONTROL_VALUE         1151
+#define _APS_NEXT_CONTROL_VALUE         1163
 #define _APS_NEXT_SYMED_VALUE           111
 #endif
 #endif

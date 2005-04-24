@@ -863,9 +863,12 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
     CONTROL         "拡張メニューを有効にする(&N)",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
-    LTEXT           "外部エディタ(&E):",IDC_STATIC,7,44,222,8
-    EDITTEXT        IDC_EXT_EDITOR_PATH,7,54,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "参照(&B)...",IDC_EXT_EDITOR_BROWSE,179,54,50,14
+    CONTROL         "Ignore time differences less than 3 seconds",
+                    IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,8,39,222,10
+    LTEXT           "外部エディタ(&E):",IDC_STATIC,7,49,222,8
+    EDITTEXT        IDC_EXT_EDITOR_PATH,7,59,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照(&B)...",IDC_EXT_EDITOR_BROWSE,179,59,50,14
 END
 
 IDD_GENERATE_PATCH DIALOGEX 0, 0, 340, 180

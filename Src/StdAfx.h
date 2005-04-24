@@ -42,6 +42,9 @@ const UINT MSG_UI_UPDATE = WM_USER + 1;
 const UINT MSG_STAT_UPDATE = WM_USER + 2;
 /* @} */
 
+/// Seconds ignored in filetime differences if option enabled
+static const UINT SmallTimeDiff = 2;
+
 // Miscellaneous functions defined in StdAfx.cpp
 
 int xisspecial (int c);

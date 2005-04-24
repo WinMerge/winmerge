@@ -172,7 +172,8 @@ public:
 	UINT m_msgUpdateStatus;
 	HWND m_hDirFrame;
 	BOOL m_bGuessEncoding;
-	int m_nCompMethod;
+	int m_nCompMethod; /**< Compare method */
+	BOOL m_bIgnoreSmallTimeDiff; /**< Ignore small timedifferences when comparing by date */
 
 	struct dirdata ddLeft, ddRight;
 	char *pNamesLeft;

@@ -6,6 +6,10 @@
  BUG: [ 1183031 ] Shared file give "parameter not correct error"
   Additional fix from Perry
   Src/Common: UniFile.cpp
+ PATCH: [ 1183368 ] Add option to ignore less than 3 seconds time difference
+  Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirScan.cpp MainFrm.cpp Merge.rc
+   OptionsDef.h PropRegistry.cpp PropRegistry.h resource.h stdafx.h
+  Src/Common: PreferencesDlg.cpp
 
 2005-04-23 Kimmo
  PATCH: [ 1184626 ] Allow only single instance to run. (2)

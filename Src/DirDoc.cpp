@@ -189,6 +189,7 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_msgUpdateStatus = MSG_STAT_UPDATE;
 	m_pCtxt->m_bGuessEncoding = mf->m_options.GetBool(OPT_CP_DETECT);
 	m_pCtxt->m_nCompMethod = mf->m_options.GetInt(OPT_CMP_METHOD);
+	m_pCtxt->m_bIgnoreSmallTimeDiff = mf->m_options.GetBool(OPT_IGNORE_SMALL_FILETIME);
 	UpdateHeaderPath(TRUE);
 	UpdateHeaderPath(FALSE);
 	// draw the headers as active ones
@@ -744,7 +745,7 @@ BOOL CDirDoc::SaveModified()
 /**
  * @brief Send signal to thread to stop current scan
  *
- * @todo: Call this from somewhere in GUI, eg, <escape> button
+ * @sa CDirCompStateBar::OnStop()
  */
 void CDirDoc::AbortCurrentScan()
 {
