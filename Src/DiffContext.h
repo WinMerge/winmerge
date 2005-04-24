@@ -96,8 +96,8 @@ struct DIFFITEM : DIFFCODE
 
 	DIFFITEM() : DIFFCODE(0), ndiffs(-1), nsdiffs(-1) { }
 
-	CString getLeftFilepath(const CDiffContext *) const;
-	CString getRightFilepath(const CDiffContext *) const;
+	CString getLeftFilepath(CString sLeftRoot) const;
+	CString getRightFilepath(CString sRightRoot) const;
 };
 
 // Interface for reporting current file, as diff traverses file tree
@@ -151,11 +151,11 @@ public:
 	//@}
 
 	// to iterate over all differences on list
-	POSITION GetFirstDiffPosition();
-	DIFFITEM GetNextDiffPosition(POSITION & diffpos);
+	POSITION GetFirstDiffPosition() const;
+	DIFFITEM GetNextDiffPosition(POSITION & diffpos) const;
 	const DIFFITEM & GetDiffAt(POSITION diffpos) const;
 //	int GetDiffStatus(POSITION diffpos);
-	int GetDiffCount();
+	int GetDiffCount() const;
 
 	// change an existing difference
 	void SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask);

@@ -57,7 +57,7 @@ enum
 /**
  * @brief Get text for specified column (forwards to specific column handler)
  */
-static CString ColGet(CDiffContext *pCtxt, int col, const DIFFITEM & di)
+static CString ColGet(const CDiffContext *pCtxt, int col, const DIFFITEM & di)
 {
 	// Custom properties have custom get functions
 	if (ColGetFnc fnc = g_cols[col].getfnc)
@@ -71,7 +71,7 @@ static CString ColGet(CDiffContext *pCtxt, int col, const DIFFITEM & di)
 /**
  * @brief Sort two items on specified column (forwards to specific column handler)
  */
-static int ColSort(CDiffContext *pCtxt, int col, const DIFFITEM & ldi, const DIFFITEM &rdi)
+static int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi, const DIFFITEM &rdi)
 {
 	// Custom properties have custom sort functions
 	if (ColSortFnc fnc = g_cols[col].sortfnc)
@@ -126,7 +126,8 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 {
 	// initialize structures to obtain required information
 	CDirView* pView = reinterpret_cast<CDirView*>(lParamSort);
-	CDiffContext *pCtxt = pView->GetDiffContext();
+
+	const CDiffContext &ctxt = pView->GetDocument()->GetDiffContext();
 	// Sort special items always first in dir view
 	if (lParam1 == -1)
 	  return -1;
@@ -135,11 +136,11 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 	
 	POSITION diffposl = pView->GetItemKeyFromData(lParam1);
 	POSITION diffposr = pView->GetItemKeyFromData(lParam2);
-	const DIFFITEM &ldi = pCtxt->GetDiffAt(diffposl);
-	const DIFFITEM &rdi = pCtxt->GetDiffAt(diffposr);
+	const DIFFITEM &ldi = ctxt.GetDiffAt(diffposl);
+	const DIFFITEM &rdi = ctxt.GetDiffAt(diffposr);
 
 	// compare 'left' and 'right' parameters as appropriate
-	int retVal = ColSort(pCtxt, pView->m_sortColumn, ldi, rdi);
+	int retVal = ColSort(&ctxt, pView->m_sortColumn, ldi, rdi);
 
 	// return compare result, considering sort direction
 	return (pView->m_bSortAscending)?retVal:-retVal;
@@ -187,6 +188,11 @@ void CDirView::UpdateDiffItemStatus(UINT nIdx, const DIFFITEM & di)
 	BOOL bRightNewer = FALSE;
 	__int64 lmtime = di.left.mtime;
 	__int64 rmtime = di.right.mtime;
+
+	if (!GetDocument()->HasDiffs())
+		return;
+	const CDiffContext & ctxt = GetDocument()->GetDiffContext();
+
 	if (lmtime && rmtime)
 	{
 		if (lmtime > rmtime)
@@ -203,7 +209,7 @@ void CDirView::UpdateDiffItemStatus(UINT nIdx, const DIFFITEM & di)
 		int phy = ColLogToPhys(i);
 		if (phy>=0)
 		{
-			CString s = ColGet(GetDiffContext(), i, di);
+			CString s = ColGet(&ctxt, i, di);
 			
 			// Add '*' to newer time field
 			if (i == DirCol_LmTime && bLeftNewer) // Left modification time

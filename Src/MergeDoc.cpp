@@ -1856,7 +1856,7 @@ void CMergeDoc::OnFileSave()
 	if (bLChangedOriginal || bRChangedOriginal)
 	{
 		// If DirDoc contains diffs
-		if (m_pDirDoc->m_pCtxt)
+		if (m_pDirDoc->HasDiffs())
 		{
 			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
 				FlushAndRescan(FALSE);
@@ -1887,7 +1887,7 @@ void CMergeDoc::OnFileSaveLeft()
 	if (bLModified && bLSaveSuccess)
 	{
 		// If DirDoc contains compare results
-		if (m_pDirDoc->m_pCtxt)
+		if (m_pDirDoc->HasDiffs())
 		{
 			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
 				FlushAndRescan(FALSE);
@@ -1918,7 +1918,7 @@ void CMergeDoc::OnFileSaveRight()
 	if (bRModified && bRSaveSuccess)
 	{
 		// If DirDoc contains compare results
-		if (m_pDirDoc->m_pCtxt)
+		if (m_pDirDoc->HasDiffs())
 		{
 			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
 				FlushAndRescan(FALSE);
@@ -2336,7 +2336,7 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 		 (bRModified && bRSaveSuccess))
 	{
 		// If directory compare has results
-		if (m_pDirDoc->m_pCtxt)
+		if (m_pDirDoc->HasDiffs())
 		{
 			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
 				FlushAndRescan(FALSE);

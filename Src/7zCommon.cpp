@@ -63,6 +63,7 @@ DATE:		BY:					DESCRIPTION:
 2005/02/26	Jochen Tucht		Add download link to error message
 2005/02/26	Jochen Tucht		Use WinAPI to obtain ISO language/region codes
 2005/02/27	Jochen Tucht		FIX [1152375]
+2005/04/24	Kimmo Varis			Don't use DiffContext exported from DirView
 */
 
 // RCS ID line follows -- this is updated by CVS
@@ -828,7 +829,7 @@ const DIFFITEM &CDirView::DirItemEnumerator::Next()
  */
 Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 {
-	CDiffContext *pCtxt = m_pView->GetDiffContext();
+	CDirDoc * pDoc = m_pView->GetDocument();
 	const DIFFITEM &di = Next();
 
 	if ((m_nFlags & DiffsOnly) && !m_pView->IsItemNavigableDiff(di))
@@ -846,7 +847,9 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 	}
 	envelope->FullPath = di.sfilename;
 	envelope->FullPath.Insert(0, '\\');
-	envelope->FullPath.Insert(0, m_bRight ? di.getRightFilepath(pCtxt) : di.getLeftFilepath(pCtxt));
+	envelope->FullPath.Insert(0, m_bRight ?
+		di.getRightFilepath(pDoc->GetRightBasePath()) :
+		di.getLeftFilepath(pDoc->GetLeftBasePath()));
 
 	if (m_nFlags & BalanceFolders)
 	{
@@ -862,7 +865,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 					// Folder is not implied by some other file, and has
 					// not been enumerated so far, so enumerate it now!
 					envelope->Name = di.sSubdir;
-					envelope->FullPath = di.getLeftFilepath(pCtxt);
+					envelope->FullPath = di.getLeftFilepath(pDoc->GetLeftBasePath());
 					implied = PVOID(2); // Don't enumerate same folder twice!
 				}
 			}
@@ -879,7 +882,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 					// Folder is not implied by some other file, and has
 					// not been enumerated so far, so enumerate it now!
 					envelope->Name = di.sSubdir;
-					envelope->FullPath = di.getRightFilepath(pCtxt);
+					envelope->FullPath = di.getRightFilepath(pDoc->GetRightBasePath());
 					implied = PVOID(2); // Don't enumerate same folder twice!
 				}
 			}
@@ -998,7 +1001,9 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
  */
 void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 {
-	CDiffContext *pCtxt = m_pView->GetDiffContext();
+	CDirDoc *pDoc = m_pView->GetDocument();
+	const CString sLeftRootPath = pDoc->GetLeftBasePath();
+	const CString sRightRootPath = pDoc->GetRightBasePath();
 	UINT i;
 	int cchBuffer = 0;
 	for (i = Open() ; i-- ; )
@@ -1008,7 +1013,7 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 		{
 			cchBuffer +=
 			(
-				m_bRight ? di.getRightFilepath(pCtxt) : di.getLeftFilepath(pCtxt)
+				m_bRight ? di.getRightFilepath(sLeftRootPath) : di.getLeftFilepath(sRightRootPath)
 			).GetLength() + di.sfilename.GetLength() + 2;
 		}
 	}
@@ -1022,7 +1027,7 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 			(
 				pchBuffer,
 				_T("%s\\%s"),
-				m_bRight ? di.getRightFilepath(pCtxt) : di.getLeftFilepath(pCtxt),
+				m_bRight ? di.getRightFilepath(sLeftRootPath) : di.getLeftFilepath(sRightRootPath),
 				di.sfilename
 			) + 1;
 		}

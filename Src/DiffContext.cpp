@@ -144,7 +144,7 @@ void CDiffContext::RemoveAll()
 /**
  * @brief Get position of first item in CDiffContext array
  */
-POSITION CDiffContext::GetFirstDiffPosition()
+POSITION CDiffContext::GetFirstDiffPosition() const
 {
 	return m_pList->GetHeadPosition();
 }
@@ -154,7 +154,7 @@ POSITION CDiffContext::GetFirstDiffPosition()
  * @param diffpos position of current item, updated to next item position
  * @return Diff Item in current position
  */
-DIFFITEM CDiffContext::GetNextDiffPosition(POSITION & diffpos)
+DIFFITEM CDiffContext::GetNextDiffPosition(POSITION & diffpos) const
 {
 	return m_pList->GetNext(diffpos);
 }
@@ -171,7 +171,7 @@ const DIFFITEM & CDiffContext::GetDiffAt(POSITION diffpos) const
 /**
  * @brief Get number of items in CDiffContext array
  */
-int CDiffContext::GetDiffCount()
+int CDiffContext::GetDiffCount() const
 {
 	return m_pList->GetCount();
 }
@@ -239,7 +239,8 @@ void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
 {
 	UpdateVersion(di, dfi);
 	ASSERT(&dfi == &di.left || &dfi == &di.right);
-	CString spath = &dfi == &di.left ? di.getLeftFilepath(this) : di.getRightFilepath(this);
+	CString spath = &dfi == &di.left ? di.getLeftFilepath(GetNormalizedLeft()) :
+			di.getRightFilepath(GetNormalizedRight());
 	CString filepath = paths_ConcatPath(spath, di.sfilename);
 	dfi.Update(filepath);
 	GuessCodepageEncoding(filepath, &dfi.unicoding, &dfi.codepage, m_bGuessEncoding);
@@ -283,44 +284,44 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi) const
 	{
 		if (di.isSideRight())
 			return;
-		spath = di.getLeftFilepath(this);
+		spath = di.getLeftFilepath(GetNormalizedLeft());
 	}
 	else
 	{
 		ASSERT(&dfi == &di.right);
 		if (di.isSideLeft())
 			return;
-		spath = di.getRightFilepath(this);
+		spath = di.getRightFilepath(GetNormalizedRight());
 	}
 	CString filepath = paths_ConcatPath(spath, di.sfilename);
 	dfi.version = GetFixedFileVersion(filepath);
 }
 
 /** @brief Return path to left file, including all but file name */
-CString DIFFITEM::getLeftFilepath(const CDiffContext *pCtxt) const
+CString DIFFITEM::getLeftFilepath(const CString sLeftRoot) const
 {
 	CString sPath;
 	if (!isSideRight())
 	{
-		sPath = pCtxt->GetNormalizedLeft();
+		sPath = sLeftRoot;
 		if (sSubdir.GetLength())
 		{
-            sPath = paths_ConcatPath(sPath, sSubdir);
+			sPath = paths_ConcatPath(sPath, sSubdir);
 		}
 	}
 	return sPath;
 }
 
 /** @brief Return path to right file, including all but file name */
-CString DIFFITEM::getRightFilepath(const CDiffContext *pCtxt) const
+CString DIFFITEM::getRightFilepath(const CString sRightRoot) const
 {
 	CString sPath;
 	if (!isSideLeft())
 	{
-		sPath = pCtxt->GetNormalizedRight();
+		sPath = sRightRoot;
 		if (sSubdir.GetLength())
 		{
-            sPath = paths_ConcatPath(sPath, sSubdir);
+			sPath = paths_ConcatPath(sPath, sSubdir);
 		}
 	}
 	return sPath;

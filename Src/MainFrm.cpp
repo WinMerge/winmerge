@@ -2244,10 +2244,10 @@ void CMainFrame::OnToolsGeneratePatch()
 				AfxMessageBox(IDS_CANNOT_CREATE_DIRPATCH, MB_ICONWARNING |
 					MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_DIRPATCH);
 
-			CString leftFile = item.getLeftFilepath(pDoc->m_pCtxt);
+			CString leftFile = item.getLeftFilepath(pDoc->GetLeftBasePath());
 			if (!leftFile.IsEmpty())
 				leftFile += _T("\\") + item.sfilename;
-			CString rightFile = item.getRightFilepath(pDoc->m_pCtxt);
+			CString rightFile = item.getRightFilepath(pDoc->GetRightBasePath());
 			if (!rightFile.IsEmpty())
 				rightFile += _T("\\") + item.sfilename;
 
@@ -2557,7 +2557,7 @@ void CMainFrame::OnFileNew()
 		if (!docNull)
 		{
 			// If dircompare contains results, warn user that they are lost
-			if (pDirDoc->m_pCtxt)
+			if (pDirDoc->HasDiffs())
 			{
 				int res = AfxMessageBox(IDS_DIR_RESULTS_EMPTIED, MB_OKCANCEL |
 					MB_ICONWARNING | MB_DONT_DISPLAY_AGAIN, IDS_DIR_RESULTS_EMPTIED);

@@ -101,7 +101,6 @@ public:
 	void ReloadItemStatus(UINT nIdx, BOOL bLeft, BOOL bRight);
 	void Redisplay();
 	void Rescan();
-	CDiffContext *m_pCtxt;
 	virtual ~CDirDoc();
 	void SetDirView( CDirView *newView ); // TODO Perry
 	void AddMergeDoc(CMergeDoc * pMergeDoc);
@@ -119,6 +118,13 @@ public:
 	                      PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
 	LPCTSTR GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di, int llen, int rlen);
 
+	BOOL HasDiffs() const { return m_pCtxt != NULL; }
+	const CDiffContext & GetDiffContext() const { return *m_pCtxt; }
+	const DIFFITEM & GetDiffByKey(POSITION key) const { return m_pCtxt->GetDiffAt(key); }
+	const CString & GetLeftBasePath() const { return m_pCtxt->GetNormalizedLeft(); }
+	const CString & GetRightBasePath() const { return m_pCtxt->GetNormalizedRight(); }
+	void RemoveDiffByKey(POSITION key) { m_pCtxt->RemoveDiff(key); }
+
 protected:
 	CDiffWrapper m_diffWrapper;
 
@@ -130,6 +136,7 @@ protected:
 
 	// Implementation data
 private:
+	CDiffContext *m_pCtxt; /**< Pointer to diff-data */
 	CDirView *m_pDirView;
 	MergeDocPtrList m_MergeDocs;
 	BOOL m_bReuseMergeDocs; // policy to reuse existing merge docs

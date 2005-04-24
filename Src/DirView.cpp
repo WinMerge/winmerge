@@ -76,8 +76,8 @@ CDirView::CDirView()
 , m_bSortAscending(true)
 , m_pHeaderPopup(NULL)
 , m_pFont(NULL)
+, m_pList(NULL)
 {
-	m_pList = NULL;
 	m_bEscCloses = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
 }
 
@@ -196,15 +196,6 @@ CDirDoc* CDirView::GetDocument() // non-debug version is inline
 }
 #endif //_DEBUG
 
-CDiffContext * CDirView::GetDiffContext()
-{
-	return GetDocument()->m_pCtxt;
-}
-
-const CDiffContext * CDirView::GetDiffContext() const
-{
-	return GetDocument()->m_pCtxt;
-}
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirView message handlers
@@ -469,6 +460,7 @@ static void NTAPI CheckContextMenu(BCMenu *pPopup, UINT uIDItem, BOOL bCheck)
  */
 void CDirView::ListContextMenu(CPoint point, int /*i*/)
 {
+	CDirDoc *pDoc = GetDocument();
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
@@ -547,8 +539,10 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		// note the prediffer flag for 'files present on both sides and not skipped'
 		if (!di.isDirectory() && !di.isBin() && !di.isSideLeft() && !di.isSideRight() && !di.isResultFiltered())
 		{
-			CString leftPath = di.getLeftFilepath(GetDiffContext()) + _T("\\") + di.sfilename;
-			CString rightPath = di.getRightFilepath(GetDiffContext()) + _T("\\") + di.sfilename;
+			CString leftPath = di.getLeftFilepath(pDoc->GetLeftBasePath()) +
+					_T("\\") + di.sfilename;
+			CString rightPath = di.getRightFilepath(pDoc->GetRightBasePath()) +
+					_T("\\") + di.sfilename;
 			CString filteredFilenames = leftPath + "|" + rightPath;
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
@@ -810,8 +804,8 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
  */
 void CDirView::OpenParentDirectory()
 {
-	const CString & left = GetDocument()->m_pCtxt->GetNormalizedLeft();
-	const CString & right = GetDocument()->m_pCtxt->GetNormalizedRight();
+	const CString & left = GetDocument()->GetLeftBasePath();
+	const CString & right = GetDocument()->GetRightBasePath();
 	CString leftParent = paths_GetParentPath(left);
 	CString rightParent = paths_GetParentPath(right);
 
@@ -819,7 +813,7 @@ void CDirView::OpenParentDirectory()
 			paths_DoesPathExist(rightParent) == IS_EXISTING_DIR &&
 			AllowUpwardDirectory(left, right))
 		mf->DoFileOpen(leftParent, rightParent,
-			FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FALSE, GetDocument());
+			FFILEOPEN_NOMRU, FFILEOPEN_NOMRU);
 }
 
 /**
@@ -841,7 +835,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		POSITION diffpos = GetItemKey(sel);
 
 		if (diffpos != (POSITION) -1)
-			di = GetDiffContext()->GetDiffAt((POSITION)diffpos);
+			di = GetDocument()->GetDiffByKey((POSITION)diffpos);
 
 		// Browse to parent folder(s) selected, -1 is position for
 		// special items, but there is currenly only one (parent folder)
@@ -1155,7 +1149,7 @@ const DIFFITEM &CDirView::GetDiffItem(int sel)
 		static DIFFITEM item;
 		return item;
 	}
-	return GetDiffContext()->GetDiffAt((POSITION)diffpos);
+	return GetDocument()->GetDiffByKey((POSITION)diffpos);
 }
 
 void CDirView::DeleteAllDisplayItems()
@@ -2001,10 +1995,11 @@ CString CDirView::GenerateReport()
 	CString report;
 	
 	// Report:Title
-	if (GetDiffContext() != NULL)
+	if (GetDocument()->HasDiffs())
 	{
-		AfxFormatString2(report, IDS_DIRECTORY_REPORT_TITLE,
-			GetDiffContext()->GetLeftPath(), GetDiffContext()->GetRightPath());
+		const CString & left = GetDocument()->GetLeftBasePath();
+		const CString & right = GetDocument()->GetRightBasePath();
+		AfxFormatString2(report, IDS_DIRECTORY_REPORT_TITLE, left, right);
 	}
 	report += _T("\r\n"); // Use DOS-EOL style for reports
 
@@ -2047,20 +2042,20 @@ CString CDirView::GenerateReport()
 void CDirView::OnDirStatePane()
 {
 	CDirFrame *pf = GetParentFrame();
-	CDiffContext *pCtxt = GetDiffContext();
-	
-	if (pCtxt == NULL)
+	if (!GetDocument()->HasDiffs())
 		return;
+
+	const CDiffContext &ctxt = GetDocument()->GetDiffContext();
 
 	// Clear and recount item numbers
 	pf->clearStatus();
 	DIFFITEM di;
-	POSITION pos = pCtxt->GetFirstDiffPosition();
+	POSITION pos = ctxt.GetFirstDiffPosition();
 	while (pos)
 	{
-		di = pCtxt->GetDiffAt(pos);
+		di = ctxt.GetDiffAt(pos);
 		pf->rptStatus(di.diffcode);
-		pCtxt->GetNextDiffPosition(pos);
+		ctxt.GetNextDiffPosition(pos);
 	}
 
 	pf->ShowProcessingBar(TRUE);
@@ -2071,8 +2066,7 @@ void CDirView::OnDirStatePane()
  */
 void CDirView::OnUpdateDirStatePane(CCmdUI* pCmdUI)
 {
-	CDiffContext *pCtxt = GetDiffContext();
-	pCmdUI->Enable(pCtxt != NULL);
+	pCmdUI->Enable(GetDocument()->HasDiffs());
 }
 
 
@@ -2088,8 +2082,8 @@ int CDirView::AddSpecialItems()
 {
 	CDirDoc *pDoc = GetDocument();
 	int retVal = 0;
-	const CString & leftPath = pDoc->m_pCtxt->GetNormalizedLeft();
-	const CString & rightPath = pDoc->m_pCtxt->GetNormalizedRight();
+	const CString & leftPath = pDoc->GetLeftBasePath();
+	const CString & rightPath = pDoc->GetRightBasePath();
 	CString leftParent = paths_GetParentPath(leftPath);
 	CString rightParent = paths_GetParentPath(rightPath);
 
@@ -2306,7 +2300,6 @@ void CDirView::RefreshOptions()
  */
 void CDirView::OnCopyLeftPathnames()
 {
-	CDiffContext *pCtx = GetDiffContext();
 	CString strPaths;
 	int sel = -1;
 
@@ -2315,7 +2308,7 @@ void CDirView::OnCopyLeftPathnames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.isSideRight())
 		{
-			strPaths += di. getLeftFilepath(pCtx);
+			strPaths += di.getLeftFilepath(GetDocument()->GetLeftBasePath());
 			strPaths += _T("\\");
 			if (!di.isDirectory())
 				strPaths += di.sfilename;
@@ -2330,7 +2323,7 @@ void CDirView::OnCopyLeftPathnames()
  */
 void CDirView::OnCopyRightPathnames()
 {
-	CDiffContext *pCtx = GetDiffContext();
+	CDirDoc *pDoc = GetDocument();
 	CString strPaths;
 	int sel = -1;
 
@@ -2339,7 +2332,7 @@ void CDirView::OnCopyRightPathnames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.isSideLeft())
 		{
-			strPaths += di. getRightFilepath(pCtx);
+			strPaths += di. getRightFilepath(pDoc->GetLeftBasePath());
 			strPaths += _T("\\");
 			if (!di.isDirectory())
 				strPaths += di.sfilename;
@@ -2354,7 +2347,7 @@ void CDirView::OnCopyRightPathnames()
  */
 void CDirView::OnCopyBothPathnames()
 {
-	CDiffContext *pCtx = GetDiffContext();
+	CDirDoc * pDoc = GetDocument();
 	CString strPaths;
 	int sel = -1;
 
@@ -2363,7 +2356,7 @@ void CDirView::OnCopyBothPathnames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.isSideRight())
 		{
-			strPaths += di. getLeftFilepath(pCtx);
+			strPaths += di.getLeftFilepath(pDoc->GetLeftBasePath());
 			strPaths += _T("\\");
 			if (!di.isDirectory())
 				strPaths += di.sfilename;
@@ -2372,7 +2365,7 @@ void CDirView::OnCopyBothPathnames()
 
 		if (!di.isSideLeft())
 		{
-			strPaths += di. getRightFilepath(pCtx);
+			strPaths += di. getRightFilepath(pDoc->GetRightBasePath());
 			strPaths += _T("\\");
 			if (!di.isDirectory())
 				strPaths += di.sfilename;

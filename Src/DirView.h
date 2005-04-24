@@ -38,8 +38,6 @@
 
 struct DIFFITEM;
 
-class CDiffContext;
-
 typedef enum { eMain, eContext } eMenuType;
 
 class CDirDoc;
@@ -65,9 +63,6 @@ protected:
 public:
 	CDirDoc* GetDocument(); // non-debug version is inline
 	const CDirDoc * GetDocument() const { return const_cast<CDirView *>(this)->GetDocument(); }
-private:
-	CDiffContext * GetDiffContext();
-	const CDiffContext * GetDiffContext() const;
 
 // Operations
 public:

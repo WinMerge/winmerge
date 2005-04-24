@@ -670,7 +670,7 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 	{
 		ActionList::action act = actionList.actions.RemoveHead();
 		POSITION diffpos = GetItemKey(act.idx);
-		const DIFFITEM & di = GetDiffContext()->GetDiffAt(diffpos);
+		const DIFFITEM & di = GetDocument()->GetDiffByKey(diffpos);
 
 		if (actionList.atype == ActionList::ACT_COPY)
 		{
@@ -769,7 +769,7 @@ void CDirView::UpdateDeletedItems(ActionList & actionList)
 	{
 		int idx = actionList.deletedItems.RemoveTail();
 		POSITION diffpos = GetItemKey(idx);
-		GetDiffContext()->RemoveDiff(diffpos);
+		GetDocument()->RemoveDiffByKey(diffpos);
 		m_pList->DeleteItem(idx);
 	}
 }
@@ -925,11 +925,10 @@ void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) co
 	}
 	else
 	{
-		const CDiffContext * ctxt = GetDiffContext();
-		const DIFFITEM & di = ctxt->GetDiffAt(diffpos);
+		const DIFFITEM & di = GetDocument()->GetDiffByKey(diffpos);
 		const CString relpath = paths_ConcatPath(di.sSubdir, di.sfilename);
-		const CString & leftpath = ctxt->GetLeftPath();
-		const CString & rightpath = ctxt->GetRightPath();
+		const CString & leftpath = GetDocument()->GetLeftBasePath();
+		const CString & rightpath = GetDocument()->GetRightBasePath();
 		strLeft = paths_ConcatPath(leftpath, relpath);
 		strRight = paths_ConcatPath(rightpath, relpath);
 	}

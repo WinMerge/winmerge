@@ -62,17 +62,16 @@ IMPLEMENT_DYNCREATE(CDirDoc, CDocument)
  * @brief Constructor.
  */
 CDirDoc::CDirDoc()
+: m_pCtxt(NULL)
+, m_pDirView(NULL)
+, m_bROLeft(FALSE)
+, m_bRORight(FALSE)
+, m_bRecursive(FALSE)
+, m_statusCursor(NULL)
+, m_bReuseMergeDocs(FALSE)
+, m_bReuseCloses(FALSE)
 {
 	DIFFOPTIONS options = {0};
-
-	m_pDirView = NULL;
-	m_pCtxt=NULL;
-	m_bReuseMergeDocs = FALSE;
-	m_bROLeft = FALSE;
-	m_bRORight = FALSE;
-	m_bRecursive = FALSE;
-	m_statusCursor = NULL;
-	m_bReuseCloses = FALSE;
 
 	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetBool(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
@@ -273,9 +272,9 @@ LPCTSTR CDirDoc::GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di,
 ShowItem:
 	LPCTSTR p = NULL;
 	if (di.isSideRight())
-		p = _tcsninc(di.getRightFilepath(pCtxt), rlen);
+		p = _tcsninc(di.getRightFilepath(GetLeftBasePath()), rlen);
 	else
-		p = _tcsninc(di.getLeftFilepath(pCtxt), llen);
+		p = _tcsninc(di.getLeftFilepath(GetRightBasePath()), llen);
 
 	return p;
 }
@@ -438,8 +437,8 @@ POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 		currentPos = pos;
 		current = m_pCtxt->GetNextDiffPosition(pos);
 
-		if (path1 == current.getLeftFilepath(m_pCtxt) &&
-			path2 == current.getRightFilepath(m_pCtxt) &&
+		if (path1 == current.getLeftFilepath(GetLeftBasePath()) &&
+			path2 == current.getRightFilepath(GetRightBasePath()) &&
 			file1 == current.sfilename)
 		{
 			return currentPos;

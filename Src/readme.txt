@@ -1,3 +1,9 @@
+2004-04-24 Kimmo
+ PATCH: [ 1186884 ] Restrict access to DirDoc's DiffContext
+  Src: 7zCommon.cpp DiffContext.cpp DiffContext.h DirActions.cpp DirDoc.cpc
+   DirDoc.h DirView.cpp DirView.h DirViewColHandler.cpp DirViewColItems.cpp
+   MainFrm.cpp MergeDoc.cpp
+
 2005-04-23 Kimmo
  PATCH: [ 1184626 ] Allow only single instance to run. (2)
  BUG: [ 1188363 ] Cannot open include file: 'sinstance.h': No such file or dir
