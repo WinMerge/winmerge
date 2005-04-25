@@ -1,4 +1,8 @@
-2004-04-24 Kimmo
+2005-04-25 Kimmo
+ BUG: [ 1179790 ] ReadMe-Hungarian.rtf file is missing
+  docs/Users/Languages new file: Read Me-Hungarian.rtf
+
+2005-04-24 Kimmo
  PATCH: [ 1186884 ] Restrict access to DirDoc's DiffContext
   Src: 7zCommon.cpp DiffContext.cpp DiffContext.h DirActions.cpp DirDoc.cpc
    DirDoc.h DirView.cpp DirView.h DirViewColHandler.cpp DirViewColItems.cpp
