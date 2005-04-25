@@ -1,6 +1,8 @@
 2005-04-25 Kimmo
  BUG: [ 1179790 ] ReadMe-Hungarian.rtf file is missing
   docs/Users/Languages new file: Read Me-Hungarian.rtf
+ PATCH: [ 1183368 ] Add option to ignore less than 3 seconds time difference
+  Src: MergeDoc.cpp
 
 2005-04-24 Kimmo
  PATCH: [ 1186884 ] Restrict access to DirDoc's DiffContext

@@ -2247,6 +2247,10 @@ BOOL CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 {
 	DiffFileInfo *fileInfo = NULL;
 	BOOL bFileChanged = FALSE;
+	BOOL bIgnoreSmallDiff = mf->m_options.GetBool(OPT_IGNORE_SMALL_FILETIME);
+	int tolerance = 0;
+	if (bIgnoreSmallDiff)
+		tolerance = SmallTimeDiff; // From MainFrm.h
 
 	if (bLeft)
 	{
@@ -2265,8 +2269,9 @@ BOOL CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 
 	dfi.Update(szPath);
 
-	
-	if (dfi.mtime != fileInfo->mtime ||
+	int timeDiff = dfi.mtime - fileInfo->mtime;
+	timeDiff = abs(timeDiff);
+	if (timeDiff > tolerance ||
 		dfi.size != fileInfo->size)
 	{
 		bFileChanged = TRUE;
