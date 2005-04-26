@@ -188,6 +188,15 @@ void COpenDlg::OnOK()
 	m_strRight = paths_GetLongPath(m_strRight);
 	m_strLeft = paths_GetLongPath(m_strLeft);
 
+	// Add trailing '\' for directories if its missing
+	if (m_pathsType == IS_EXISTING_DIR)
+	{
+		if (!paths_EndsWithSlash(m_strLeft))
+			m_strLeft += '\\';
+		if (!paths_EndsWithSlash(m_strRight))
+			m_strRight += '\\';
+	}
+
 	UpdateData(FALSE);
 	KillTimer(IDT_CHECKFILES);
 

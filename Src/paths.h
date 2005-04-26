@@ -12,6 +12,7 @@
 typedef enum { DOES_NOT_EXIST, IS_EXISTING_FILE, IS_EXISTING_DIR } PATH_EXISTENCE;
 typedef enum { DIRSLASH, NODIRSLASH } DIRSLASH_TYPE;
 
+bool paths_EndsWithSlash(const CString & s);
 PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath);
 void paths_normalize(CString & sPath);
 CString paths_GetLongPath(const CString & sPath);

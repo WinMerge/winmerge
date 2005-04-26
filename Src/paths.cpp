@@ -22,7 +22,7 @@ bool IsSlash(LPCTSTR pszStart, int nPos)
 #endif
 }
 
-bool EndsWithSlash(const CString & s)
+bool paths_EndsWithSlash(const CString & s)
 {
 	return !s.IsEmpty() && IsSlash(s, s.GetLength()-1);
 }
@@ -68,7 +68,7 @@ void paths_normalize(CString & sPath)
 		return;
 
 	// remove any trailing slash
-	if (EndsWithSlash(sPath))
+	if (paths_EndsWithSlash(sPath))
 		sPath.Delete(sPath.GetLength()-1);
 }
 
@@ -352,7 +352,7 @@ CString paths_ConcatPath(const CString & path, const CString & subpath)
 {
 	if (path.IsEmpty()) return subpath;
 	if (subpath.IsEmpty()) return path;
-	if (EndsWithSlash(path))
+	if (paths_EndsWithSlash(path))
 	{
 		if (IsSlash(subpath, 0))
 		{
