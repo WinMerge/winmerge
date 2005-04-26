@@ -83,8 +83,9 @@ public:
 
 // Implementation
 public:
+	BOOL InitCompare(const PathContext & paths, BOOL bRecursive);
+	void Rescan();
 	BOOL GetRecursive() { return m_bRecursive; }
-	void SetRecursive(BOOL bRecursive);
 	BOOL GetReadOnly(BOOL bLeft) const;
 	void SetReadOnly(BOOL bLeft, BOOL bReadOnly);
 	BOOL GetReuseMergeDocs() { return m_bReuseMergeDocs; }
@@ -100,7 +101,6 @@ public:
 	void InitStatusStrings();
 	void ReloadItemStatus(UINT nIdx, BOOL bLeft, BOOL bRight);
 	void Redisplay();
-	void Rescan();
 	virtual ~CDirDoc();
 	void SetDirView( CDirView *newView ); // TODO Perry
 	void AddMergeDoc(CMergeDoc * pMergeDoc);
@@ -108,7 +108,6 @@ public:
 	CDiffThread m_diffThread;
 	void SetDiffStatus(UINT diffcode, UINT mask, int idx);
 	void SetDiffCounts(UINT diffs, UINT ignored, int idx);
-	void SetDiffContext(CDiffContext *pCtxt);
 	void UpdateHeaderPath(BOOL bLeft);
 	void AbortCurrentScan();
 	bool IsCurrentScanAbortable() const;

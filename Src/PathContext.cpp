@@ -35,6 +35,12 @@ PathContext::PathContext()
 
 }
 
+PathContext::PathContext(CString sLeft, CString sRight)
+{
+	m_pathLeft.SetPath(sLeft);
+	m_pathRight.SetPath(sRight);
+}
+
 /**
  * @brief Return left path.
  * @param [in] sNormalized If TRUE normalized path is returned.

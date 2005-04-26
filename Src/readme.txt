@@ -3,6 +3,8 @@
   Src: MergeDoc.cpp
  PATCH: [ 1189718 ] OpenDlg: add trailing slash to directory names
   Src: OpenDlg.cpp paths.cpp paths.h
+ PATCH: [ 1189692 ] Cleanup Dircompare init
+  Src: DirDoc.cpp DirDoc.h MainFrm.cpp PathContext.cpp PathContext.h
 
 2005-04-25 Kimmo
  BUG: [ 1179790 ] ReadMe-Hungarian.rtf file is missing

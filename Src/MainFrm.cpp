@@ -1450,16 +1450,14 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	{
 		if (pDirDoc)
 		{
-			CDiffContext *pCtxt = new CDiffContext(strLeft, strRight);
-			if (pCtxt != NULL)
+			PathContext paths(strLeft, strRight);
+			if (pDirDoc->InitCompare(paths, bRecurse))
 			{
 				gLog.Write(LOGLEVEL::LNOTICE, _T("Open dirs: Left: %s\n\tRight: %s."),
 					strLeft, strRight);
 
 				pDirDoc->SetReadOnly(TRUE, bROLeft);
 				pDirDoc->SetReadOnly(FALSE, bRORight);
-				pDirDoc->SetRecursive(bRecurse);
-				pDirDoc->SetDiffContext(pCtxt);
 				pDirDoc->SetDescriptions(m_strLeftDesc, m_strRightDesc);
 				pDirDoc->SetTitle(NULL);
 				m_strLeftDesc.Empty();

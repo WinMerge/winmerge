@@ -164,6 +164,34 @@ void CDirDoc::Serialize(CArchive& ar)
 // CDirDoc commands
 
 /**
+ * @brief Initialise directory compare for given paths.
+ *
+ * Initialises directory compare with paths given and recursive choice.
+ * Previous compare context is first free'd.
+ * @param [in] paths Paths to compare
+ * @param [in] bRecursive If TRUE subdirectories are included to compare.
+ * @return TRUE if initialisation succeeds.
+ */
+BOOL CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive)
+{
+	BOOL bRet = FALSE;
+	
+	if (m_pCtxt != NULL)
+		delete m_pCtxt;
+	
+	m_pCtxt = new CDiffContext(paths.GetLeft(), paths.GetRight());
+	
+	if (m_pCtxt != NULL)
+	{
+		m_bRecursive = bRecursive;
+		// All plugin management is done by our plugin manager
+		m_pCtxt->m_piPluginInfos = &m_pluginman;
+		bRet = TRUE;
+	}
+	return bRet;
+}
+
+/**
  * @brief Perform directory comparison again from scratch
  */
 void CDirDoc::Rescan()
@@ -381,20 +409,6 @@ void CDirDoc::UpdateResources()
 	SetTitle(s);
 
 	Redisplay();
-}
-
-/**
- * @brief Sets pointer to DiffContext.
- */
-void CDirDoc::SetDiffContext(CDiffContext *pCtxt)
-{
-	if (m_pCtxt != NULL)
-		delete m_pCtxt;
-
-	m_pCtxt = pCtxt;
-
-	// All plugin management is done by our plugin manager
-	m_pCtxt->m_piPluginInfos = &m_pluginman;
 }
 
 /**
@@ -649,14 +663,6 @@ BOOL CDirDoc::GetReadOnly(BOOL bLeft) const
 		return m_bROLeft;
 	else
 		return m_bRORight;
-}
-
-/**
- * @brief Enable/disable recursive directory compare
- */
-void CDirDoc::SetRecursive(BOOL bRecursive)
-{
-	m_bRecursive = bRecursive;
 }
 
 /**

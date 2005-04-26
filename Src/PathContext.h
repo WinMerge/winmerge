@@ -36,6 +36,7 @@ class PathContext
 {
 public:
 	PathContext();
+	PathContext(CString sLeft, CString sRight);
 	const CString & GetLeft(BOOL bNormalized = TRUE) const;
 	const CString & GetRight(BOOL bNormalized = TRUE) const;
 	void SetLeft(LPCTSTR path);
