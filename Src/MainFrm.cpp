@@ -1608,13 +1608,6 @@ void CMainFrame::OnViewSelectfont()
 		AppSerialize appser(AppSerialize::Save, sFontPath);
 		appser.SerializeFont(_T(""), *lf); // unnamed font
 
-		DirViewList dirViews;
-		MergeEditViewList editViews;
-		GetAllViews(&editViews, NULL, &dirViews);
-
-		if (editViews.GetCount() > 0 || dirViews.GetCount() > 0)
-			AfxMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FONT_CHANGE);
-
 		if (bDirFrame)
 			m_lfDir = *lf;
 		else
@@ -1628,6 +1621,8 @@ void CMainFrame::OnViewSelectfont()
 			// update pEditView for font change
 		}
 		*/
+
+		ShowFontChangeMessage();
 	}
 }
 
@@ -1724,6 +1719,7 @@ void CMainFrame::OnViewUsedefaultfont()
 		m_options.SaveOption(OPT_FONT_FILECMP_USECUSTOM, false);
 
 	GetFontProperties();
+	ShowFontChangeMessage();
 }
 
 /**
@@ -2835,4 +2831,17 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 	delete [] argv;
 
 	return TRUE;
+}
+
+/**
+ * @brief When font is changed open views must be closed.
+ */
+void CMainFrame::ShowFontChangeMessage()
+{
+	DirViewList dirViews;
+	MergeEditViewList editViews;
+	GetAllViews(&editViews, NULL, &dirViews);
+
+	if (editViews.GetCount() > 0 || dirViews.GetCount() > 0)
+		AfxMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FONT_CHANGE);
 }

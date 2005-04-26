@@ -241,6 +241,7 @@ private:
 	void RedisplayAllDirDocs();
 	CMergeDoc * GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew);
 	CDirDoc * GetDirDocToShow(BOOL * pNew);
+	void ShowFontChangeMessage();
 };
 
 extern CMainFrame *mf;

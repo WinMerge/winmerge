@@ -5,6 +5,8 @@
   Src: OpenDlg.cpp paths.cpp paths.h
  PATCH: [ 1189692 ] Cleanup Dircompare init
   Src: DirDoc.cpp DirDoc.h MainFrm.cpp PathContext.cpp PathContext.h
+ BUG: [ 1181883 ] Inconsistent behavior: select font vs. Use default
+  Src: MainFrm.cpp MainFrm.h
 
 2005-04-25 Kimmo
  BUG: [ 1179790 ] ReadMe-Hungarian.rtf file is missing
