@@ -598,7 +598,7 @@ BEGIN
     PUSHBUTTON      "Mégsem",IDCANCEL,306,28,50,14
     GROUPBOX        "Összehasonlítandó fájlok vagy könyvtárak",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
-    PUSHBUTTON      "Projekt mentése",IDC_SAVEPROJECT,306,56,50,14
+    PUSHBUTTON      "Mentés",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -1125,8 +1125,8 @@ BEGIN
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
     PUSHBUTTON      "Új...",IDC_FILTERFILE_NEWBTN,188,114,50,14
-    PUSHBUTTON      "Szerkesztés......",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "Szerkeszt...",IDC_FILTERFILE_EDITBTN,244,114,50,14
+    PUSHBUTTON      "Töröl...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -1177,42 +1177,42 @@ EXSTYLE WS_EX_NOPARENTNOTIFY
 CAPTION "WinMerge - Archive support disabled"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Unable to detect 7-Zip version (not installed?)",107,2,
+    LTEXT           "Nem ismerhetõ fel a 7-Zip verziója (nincs telepítve?)",107,2,
                     2,296,18
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,22,296,1
-    LTEXT           "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\nessential components to be copied to the program directory for standalone operation.",
+    LTEXT           "Az Archívum támogatás a 7-Zip 3.11-es vagy újabb verzióját igényli, melynek telepítve kell lennie a helyi gépen, vagy a\nszükséges komponenseknek megtalálhatóaknak kell lenniük a program könyvtárában.",
                     IDC_STATIC,2,26,296,26
-    LTEXT           "There must also be an appropriate interface plugin (Merge7z*.dll) on the path.",
+    LTEXT           "Szükséges továbbá egy megfelelõ felületi bõvítmény (Merge7z*.dll) az útvonalban.",
                     IDC_STATIC,2,52,296,18
-    LTEXT           "Please use the version of 7-Zip recommended below until interface plugins for later\nversions become available.",
+    LTEXT           "Kérlek használd a 7-Zip lentebb megjelölt verzióját, amíg a felületi bõvítmény újabb\nverziója meg nem jelenik.",
                     IDC_STATIC,2,70,296,26
-    CTEXT           "Version",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE | 
+    CTEXT           "Verzió",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    CTEXT           "Plugin required\n(dllbuild %04u)",102,204,98,94,20,
+    CTEXT           "Szükséges bõvítmény\n(dllbuild %04u)",102,204,98,94,20,
                     SS_SUNKEN
-    LTEXT           "Recommended version of 7-Zip:",IDC_STATIC,2,120,142,10,
+    LTEXT           "A 7-Zip javasolt verziója:",IDC_STATIC,2,120,142,10,
                     SS_CENTERIMAGE
     CTEXT           "0.00",110,146,120,20,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "present",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "megvan",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "Merge7z000U.dll",111,204,120,58,10,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    CTEXT           "present",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "7-Zip software installed on your computer:",IDC_STATIC,
+    CTEXT           "megvan",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "A számítógépen telepített 7-Zip szoftver:",IDC_STATIC,
                     2,132,142,10,SS_CENTERIMAGE
-    CTEXT           "none",120,146,132,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "nincs",120,146,132,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",121,204,132,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "missing",122,264,132,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "7-Zip components for standalone operation:",IDC_STATIC,
+    CTEXT           "hiányzik",122,264,132,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Az önálló mûködéshez szükséges 7-Zip komponensek:",IDC_STATIC,
                     2,144,142,10,SS_CENTERIMAGE
-    CTEXT           "none",130,146,144,56,10,SS_CENTERIMAGE | SS_SUNKEN
+    CTEXT           "nincs",130,146,144,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",131,204,144,58,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "outdated",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    LTEXT           "Plugins on path:",9001,2,160,100,8
-    CONTROL         "Don't display this &message again.\n(You can always recall this message from help menu.)",
+    CTEXT           "lejárt",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Elérhetõ bõvítmények:",9001,2,160,100,8
+    CONTROL         "Ne jelenjen meg ez az &üzenet.\n(A súgó menübõl késõbb visszaállíthatod ezt az üzenetet.)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_TABSTOP,2,225,218,18
-    DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
-    CONTROL         "Plugin Download",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
+    DEFPUSHBUTTON   "Rendben",IDOK,236,226,50,14,WS_GROUP
+    CONTROL         "Bõvítmény letöltése",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
                     236,160,62,10
     LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
@@ -1221,18 +1221,18 @@ END
 IDD_PREFERENCES DIALOGEX 0, 0, 352, 260
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Options"
+CAPTION "Opciók"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,187,237,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,241,237,50,14
-    PUSHBUTTON      "Help",IDC_TREEOPT_HELP,295,237,50,14
+    DEFPUSHBUTTON   "Rendben",IDOK,187,237,50,14
+    PUSHBUTTON      "Mégsem",IDCANCEL,241,237,50,14
+    PUSHBUTTON      "Súgó",IDC_TREEOPT_HELP,295,237,50,14
     CONTROL         "Tree1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
                     WS_DISABLED,110,0,235,222
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
-    LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
+    LTEXT           " Kategóriák",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
 END
 
@@ -1546,13 +1546,13 @@ END
 // Options-dialog page captions
 STRINGTABLE
 BEGIN
-	IDS_OPTIONSPG_GENERAL     "General"
-	IDS_OPTIONSPG_COMPARE     "Compare"
-	IDS_OPTIONSPG_EDITOR      "Editor"
-	IDS_OPTIONSPG_COLORS      "Colors"
-	IDS_OPTIONSPG_SYSTEM      "System"
-	IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
-	IDS_OPTIONSPG_CODEPAGE     "Codepage"
+	IDS_OPTIONSPG_GENERAL     "Általános"
+	IDS_OPTIONSPG_COMPARE     "Összehasonlítás"
+	IDS_OPTIONSPG_EDITOR      "Szerkesztõ"
+	IDS_OPTIONSPG_COLORS      "Színek"
+	IDS_OPTIONSPG_SYSTEM      "Rendszer"
+	IDS_OPTIONSPG_VERSIONCONTROL "Verzió Kontroll"
+	IDS_OPTIONSPG_CODEPAGE     "Kódlap"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1958,7 +1958,7 @@ BEGIN
     IDS_DIR_RESULTS_EMPTIED "A jelenlegi könyvtár összehasonlítási eredmények törlõdnek."
     IDS_NO_ZIP_SUPPORT      "Az Archívum támogatás nem engedélyezett.\n
                             Az ehhez szükséges összetevõk (7-zip és/vagy Merge7z*.dll) nem találhatóak.
-                            Olvasd el a kézikönyv arcívum támogatásról szóló részét."
+                            Olvasd el a kézikönyv archívum támogatásról szóló részét."
 END
 
 // Regular expression errors
@@ -2178,7 +2178,7 @@ BEGIN
 	IDS_CPP_DOS                     "MS-DOS"
 	IDS_CPP_MACINTOSH               "Macintosh"
 	IDS_CPP_IBM                     "IBM"
-	IDS_CPP_NA                      "Not applicable"
+	IDS_CPP_NA                      "Nem alkalmazható"
 END
 
 // CODEPAGES #1 (IBM)

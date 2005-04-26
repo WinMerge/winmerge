@@ -7,6 +7,9 @@
   Src: DirDoc.cpp DirDoc.h MainFrm.cpp PathContext.cpp PathContext.h
  BUG: [ 1181883 ] Inconsistent behavior: select font vs. Use default
   Src: MainFrm.cpp MainFrm.h
+ PATCH: [ 1190173 ] Hungarian translation (based on 2.3.3.1)
+  Submitted by Márton Balázs
+  Src/Languages/Hungarian: MergeHungarian.rc
 
 2005-04-25 Kimmo
  BUG: [ 1179790 ] ReadMe-Hungarian.rtf file is missing
