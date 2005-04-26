@@ -1,3 +1,7 @@
+2005-04-26 Kimmo
+ PATCH: [ 1189875 ] Small cleanup for line replace code
+  Src: MergeDoc.cpp
+
 2005-04-25 Kimmo
  BUG: [ 1179790 ] ReadMe-Hungarian.rtf file is missing
   docs/Users/Languages new file: Read Me-Hungarian.rtf
