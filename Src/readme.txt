@@ -1,3 +1,7 @@
+2005-04-28 Tim
+ PATCH: [ 1190544 ] Translated Read Me-German.rtf
+  Docs/Users/Languages: Read Me-German.rtf
+
 2005-04-28 WinMerge experimental release 2.3.3.2 (cvs)
 
 2005-04-26 Kimmo
@@ -93,6 +97,7 @@
  (Cosmetic) Add HTML entity escapes for Chinese simplified
   Src/Common: LanguageSelect.cpp
 
+>>>>>>> 1.1601
 2005-04-14 Kimmo
  PATCH: [ 1182416 ] Fix Compare by date hang
   Src: DiffContext.cpp DiffContext.h DiffWrapper.cpp DiffWrapper.h DirScan.cpp 
