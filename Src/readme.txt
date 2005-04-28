@@ -1,3 +1,5 @@
+2005-04-28 WinMerge experimental release 2.3.3.2 (cvs)
+
 2005-04-26 Kimmo
  PATCH: [ 1189875 ] Small cleanup for line replace code
   Src: MergeDoc.cpp
