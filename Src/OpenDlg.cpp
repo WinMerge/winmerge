@@ -405,15 +405,6 @@ void COpenDlg::OnSelchangeRightCombo()
 	UpdateButtonStates();
 }
 
-void COpenDlg::RemoveTrailingSlash(CString & s)
-{
-	// Do not remove slash from "X:\"
-	if (s[s.GetLength()-2] == _T(':'))
-		return;
-	while (s.Right(1) == _T('\\') || s.Right(1) == _T('/'))
-		s.Delete(s.GetLength()-1);
-}
-
 /** 
  * @brief Called every time paths are edited.
  */

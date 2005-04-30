@@ -1,6 +1,8 @@
 2005-04-30 Kimmo
  PATCH: [ 1192741 ] Fix panes resetting when right-clicking with mouse
   Src: LocationView.cpp MergeEditView.cpp
+ BUG: [ 1189723 ] COpenDlg::RemoveTrailingSlash() is unused
+  Src: OpenDlg.cpp OpenDlg.h
 
 2005-04-28 Tim
  PATCH: [ 1190544 ] Translated Read Me-German.rtf
