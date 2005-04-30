@@ -1883,9 +1883,6 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	VERIFY(menu.LoadMenu(IDR_POPUP_MERGEVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
 
-	// Make sure window is active
-	GetParentFrame()->ActivateFrame();
-
 	BCMenu *pSub = (BCMenu *)menu.GetSubMenu(0);
 	ASSERT(pSub != NULL);
 

@@ -450,11 +450,11 @@ BOOL CLocationView::GotoLocation(CPoint point, BOOL bRealLine)
 	return TRUE;
 }
 
+/**
+ * Show context menu and handle user selection.
+ */
 void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point) 
 {
-	// Make sure window is active
-	GetParentFrame()->ActivateFrame();
-
 	if (point.x == -1 && point.y == -1)
 	{
 		//keystroke invocation

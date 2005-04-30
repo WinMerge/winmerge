@@ -1,3 +1,7 @@
+2005-04-30 Kimmo
+ PATCH: [ 1192741 ] Fix panes resetting when right-clicking with mouse
+  Src: LocationView.cpp MergeEditView.cpp
+
 2005-04-28 Tim
  PATCH: [ 1190544 ] Translated Read Me-German.rtf
   Docs/Users/Languages: Read Me-German.rtf
