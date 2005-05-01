@@ -1806,7 +1806,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Error comprobando la posibilidad de escritura en destino"
     IDS_ERROR_BACKUP        "Error haciendo copia de seguridad del fichero"
     IDS_BACKUP_FAILED_PROMPT "No pudo guardar el fichero original.\n¿Continuar de todas formas?"
-    IDS_FILESAVE_FAILED     "Escritura de fichero fallida.\n%1\n%2\n¿Desea guardar el fichero con un nombre diferente?"
+    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT "El complemento '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Otra aplicación ha actualizado el fichero\n%1\ndesde que WinMerge lo cargó.\n\n¿Desea sobreescribir el fichero cambiado?"

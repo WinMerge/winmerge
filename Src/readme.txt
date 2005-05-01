@@ -1,3 +1,8 @@
+2005-05-01 Kimmo
+ PATCH: [ 1193033 ] Clarify file saving failed messagebox
+  Src: Merge.rc MergeDoc.cpp
+  Src/Languages: *.rc
+
 2005-04-30 Kimmo
  PATCH: [ 1192741 ] Fix panes resetting when right-clicking with mouse
   Src: LocationView.cpp MergeEditView.cpp

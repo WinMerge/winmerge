@@ -1807,7 +1807,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Errore nel controllo sui permessi di scrittura della destinazione"
     IDS_ERROR_BACKUP        "Errore durante il salvataggio di una copia di backup del file"
     IDS_BACKUP_FAILED_PROMPT "Impossibile creare una copia di backup del file originale.\nVuoi continuare ugualmente?"
-    IDS_FILESAVE_FAILED     "Salvataggio del file fallito.\n%1\n%2\nDesideri salvare il file con un nome diverso?"
+    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT "Il plugin '%2' non può ricompattare nuovamente le tue modifiche al file di sinistra in '%1'.\n\nIl file originale non verrà cambiato.\n\nDesideri salvare la versione non compattata in un altro file?"
     IDS_FILEPACK_FAILED_RIGHT "Il plugin '%2' non può ricompattare nuovamente le tue modifiche al file di destra in '%1'.\n\nIl file originale non verrà cambiato.\n\nDesideri salvare la versione non compattata in un altro file?"
     IDS_FILECHANGED_ONDISK  "Un'altra applicazione ha aggiornato il file\n%1\nda quando WinMerge lo ha caricato.\n\nSovrascrivere il file modificato?"

@@ -1806,7 +1806,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "B³¹d sprawdzania mo¿liwoœci zapisu w miejscu docelowym"
     IDS_ERROR_BACKUP        "B³¹d przy tworzeniu kopii zapasowej pliku"
     IDS_BACKUP_FAILED_PROMPT "Nie mo¿na zrobiæ kopii pliku oryginalnego.\nKontynuowaæ mimo to?"
-    IDS_FILESAVE_FAILED     "Nie mo¿na zachowaæ pliku.\n%1\n%2\nZachowaæ plik pod inn¹ nazw¹?"
+    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT "Wtyczka '%2' nie mo¿e spakowaæ zmian lewego pliku w '%1'.\n\nPlik oryginalny nie zostanie zmieniony.\n\nCzy zachowaæ rozpakowan¹ wersjê w innym pliku?"
     IDS_FILEPACK_FAILED_RIGHT "Wtyczka '%2' nie mo¿e spakowaæ zmian prawego pliku w '%1'.\n\nPlik oryginalny nie zostanie zmieniony.\n\nCzy zachowaæ rozpakowan¹ wersjê w innym pliku?"
     IDS_FILECHANGED_ONDISK  "Inna aplikacja zmieni³a plik\n%1\npo za³adowaniu go przez WinMerge.\n\nNadpisaæ zmieniony plik?"

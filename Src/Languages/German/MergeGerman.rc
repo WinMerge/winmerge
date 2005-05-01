@@ -1809,7 +1809,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Fehler beim Prüfen des Zielverzeichnisses auf Schreibschutz"
     IDS_ERROR_BACKUP        "Fehler beim Erstellen einer Sicherheitskopie"
     IDS_BACKUP_FAILED_PROMPT "Es konnte keine Sicherheitskopie der Originaldatei erzeugt werden.\nWollen Sie trotzdem fortfahren?"
-    IDS_FILESAVE_FAILED     "Speichern der Datei fehlgeschlagen.\n%1\n%2\nMöchten Sie die Datei unter einem anderem Namen speichern?"
+    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' kann Ihre Änderungen der linken Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die ungepackte Version in einer anderen Datei speichern?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kann Ihre Änderungen der rechten Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die ungepackte Version in einer anderen Datei speichern?"
     IDS_FILECHANGED_ONDISK  "Eine andere Anwendung hat die Datei\n%1\naktualisiert, seit WinMerge sie geladen hat.\n\nGeänderte Datei überschreiben?"

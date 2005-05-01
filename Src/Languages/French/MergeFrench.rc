@@ -1694,7 +1694,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE  "Erreur en vérifiant les droits en écriture de la destination"
     IDS_ERROR_BACKUP          "Erreur lors du backup du fichier"
     IDS_BACKUP_FAILED_PROMPT  "Erreur lors du backup du fichier original.\nContinuer quand même ?"
-    IDS_FILESAVE_FAILED       "L'enregistrement a échoué.\n%1\n%2\nVoulez-vous réessayer avec un nom de fichier différent ?"
+    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT  "Le plugiciel '%2' ne peut compressé le fichier modifié de gauche dans '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous enregistrer la version décompressée sous un autre nom ?"
     IDS_FILEPACK_FAILED_RIGHT "Le plugiciel '%2' ne peut compressé le fichier modifié de droite dans '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous enregistrer la version décompressée sous un autre nom ?"
     IDS_FILECHANGED_ONDISK    "Une autre application a mis à jour le fichier\n%1\ndepuis le dernier balayage de WinMerge.\n\nVoulez-vous écraser le fichier mis à jour ?"

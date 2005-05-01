@@ -849,11 +849,11 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
 	// SAVE_NO_FILENAME is temporarily used for scratchpad.
 	// So don't ask about saving in that case.
 	if (nSaveResult != SAVE_NO_FILENAME)
-		answer = AfxMessageBox(s, MB_YESNO | MB_ICONWARNING);
+		answer = AfxMessageBox(s, MB_OKCANCEL | MB_ICONWARNING);
 
 	switch (answer)
 	{
-	case IDYES:
+	case IDOK:
 		if (bLeft)
 			VERIFY(title.LoadString(IDS_SAVE_LEFT_AS));
 		else
@@ -893,7 +893,7 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
 			nSaveResult = SAVE_CANCELLED;
 		break;
 
-	case IDNO:
+	case IDCANCEL:
 		nSaveResult = SAVE_CANCELLED;
 		break;
 	}
@@ -1024,6 +1024,11 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft)
 		UpdateHeaderPath(bLeft);
 		bSaveSuccess = TRUE;
 		result = TRUE;
+	}
+	else if (nSaveErrorCode == SAVE_CANCELLED)
+	{
+		// User cancelled current operation, lets do what user wanted to do
+		result = FALSE;
 	}
 	return result;
 }
