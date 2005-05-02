@@ -181,16 +181,17 @@ void CLocationView::OnDraw(CDC* pDC)
 		// here nstart0 = first line of block
 		int nBeginY = (int) (nstart0 * LineInPix + Y_OFFSET);
 		int nEndY = (int) ((blockHeight + nstart0) * LineInPix + Y_OFFSET);
+		BOOL bInsideDiff = ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0);
 
 		// Draw left side block
 		m_view0->GetLineColors(nstart0, cr0, crt, bwh);
 		CRect r0(m_nLeftBarLeft, nBeginY, m_nLeftBarRight, nEndY);
-		DrawRect(pDC, r0, cr0, ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0));
+		DrawRect(pDC, r0, cr0, bInsideDiff);
 		
 		// Draw right side block
 		m_view1->GetLineColors(nstart0, cr1, crt, bwh);
 		CRect r1(m_nRightBarLeft, nBeginY, m_nRightBarRight, nEndY);
-		DrawRect(pDC, r1, cr1, ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0));
+		DrawRect(pDC, r1, cr1, bInsideDiff);
 
 		// Test if we draw a connector
 		BOOL bDisplayConnectorFromLeft = FALSE;
@@ -200,7 +201,7 @@ void CLocationView::OnDraw(CDC* pDC)
 		{
 		case DISPLAY_MOVED_FOLLOW_DIFF:
 			// display moved block only for current diff
-			if (! ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0))
+			if (!bInsideDiff)
 				break;
 			// two sides may be linked to a block somewhere else
 			bDisplayConnectorFromLeft = TRUE;

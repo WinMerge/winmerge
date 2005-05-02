@@ -2,6 +2,8 @@
  BUG: [ 1193059 ] Problems with the mouse at file comparison
   Don't refresh filecompare every time mouse is clicked
   Src: MergeEditView.cpp
+ PATCH: [ 1193447 ] Optimise location pane update.
+  Src: LocationView.cpp
 
 2005-05-01 Kimmo
  PATCH: [ 1193033 ] Clarify file saving failed messagebox
