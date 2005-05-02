@@ -1004,19 +1004,27 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 }
 
 /**
- * @brief Called when mouse left button is released
+ * @brief Called when mouse left button is released.
+ *
+ * If button is released outside diffs, current diff
+ * is deselected.
  */
 void CMergeEditView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	CMergeDoc *pd = GetDocument();
 	CCrystalEditViewEx::OnLButtonUp(nFlags, point);
 
-	CPoint pos = GetCursorPos();
-	if (!IsLineInCurrentDiff(pos.y))
+	// If we have a selected diff, deselect it
+	int nCurrentDiff = pd->GetCurrentDiff();
+	if (nCurrentDiff != -1)
 	{
-		pd->SetCurrentDiff(-1);
-		Invalidate();
-		pd->UpdateAllViews(this);
+		CPoint pos = GetCursorPos();
+		if (!IsLineInCurrentDiff(pos.y))
+		{
+			pd->SetCurrentDiff(-1);
+			Invalidate();
+			pd->UpdateAllViews(this);
+		}
 	}
 }
 

@@ -1,3 +1,8 @@
+2005-05-02 Kimmo
+ BUG: [ 1193059 ] Problems with the mouse at file comparison
+  Don't refresh filecompare every time mouse is clicked
+  Src: MergeEditView.cpp
+
 2005-05-01 Kimmo
  PATCH: [ 1193033 ] Clarify file saving failed messagebox
   Src: Merge.rc MergeDoc.cpp
