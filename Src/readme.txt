@@ -4,6 +4,8 @@
   Src: MergeEditView.cpp
  PATCH: [ 1193447 ] Optimise location pane update.
   Src: LocationView.cpp
+ BUG: [ 1193260 ] Problems with the current German translation
+  Src/Languages/German: MergeGerman.rc
 
 2005-05-01 Kimmo
  PATCH: [ 1193033 ] Clarify file saving failed messagebox

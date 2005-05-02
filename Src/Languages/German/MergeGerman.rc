@@ -115,8 +115,8 @@ BEGIN
         MENUITEM "Schrift &auswählen...",       ID_VIEW_SELECTFONT
         MENUITEM "Standard-Schrift &verwenden", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "Leer&zeichen anzeigen",       ID_VIEW_WHITESPACE
-        MENUITEM "Zeilenuntersc&hied anzeigen", ID_VIEW_LINEDIFFS
+        MENUITEM "&Symbolleiste",               ID_VIEW_TOOLBAR
+        MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
     END
@@ -647,7 +647,7 @@ BEGIN
 END
 
 IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 260, 156
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Allgemein"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
