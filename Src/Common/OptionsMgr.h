@@ -88,12 +88,14 @@ public:
 	virtual int InitOption(CString name, int defaultValue) = 0;
 	virtual int InitOption(CString name, bool defaultValue) = 0;
 
-
 	virtual int SaveOption(CString name) = 0;
 	virtual int SaveOption(CString name, varprop::VariantValue value) = 0;
 	virtual int SaveOption(CString name, CString value) = 0;
 	virtual int SaveOption(CString name, int value) = 0;
 	virtual int SaveOption(CString name, bool value) = 0;
+	virtual int SaveOption(CString name, UINT value);
+	virtual int SaveOption(CString name, COLORREF value);
+
 
 private:
 	CMap<CString, LPCTSTR, COption, COption&> m_optionsMap;

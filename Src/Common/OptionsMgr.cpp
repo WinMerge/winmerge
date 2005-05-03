@@ -288,6 +288,24 @@ int COptionsMgr::Set(CString name, varprop::VariantValue value)
 	return retVal;
 }
 
+/*
+ * @brief Type-convert and forward to SaveOption(CString, int)
+ */
+int COptionsMgr::SaveOption(CString name, UINT value)
+{
+	int xvalue = value;
+	return SaveOption(name, xvalue);
+}
+
+/*
+ * @brief Type-convert and forward to SaveOption(CString, int)
+ */
+int COptionsMgr::SaveOption(CString name, COLORREF value)
+{
+	int xvalue = value;
+	return SaveOption(name, xvalue);
+}
+
 /**
  * @brief Reset option value to default
  */
@@ -774,7 +792,7 @@ int CRegOptions::SaveOption(CString name, int value)
 	int retVal = OPT_OK;
 
 	val.SetInt(value);
-		retVal = Set(name, val);
+	retVal = Set(name, val);
 	if (retVal == OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;
@@ -789,7 +807,7 @@ int CRegOptions::SaveOption(CString name, bool value)
 	int retVal = OPT_OK;
 
 	val.SetBool(value);
-		retVal = Set(name, val);
+	retVal = Set(name, val);
 	if (retVal == OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;

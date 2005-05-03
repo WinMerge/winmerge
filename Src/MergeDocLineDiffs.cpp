@@ -227,7 +227,8 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 
 	// Make the call to stringdiffs, which does all the hard & tedious computations
 	wdiffarray worddiffs;
-	stringdiffs_Get(str1, str2, casitive, xwhite, &worddiffs);
+	bool breakType = GetBreakType();
+	stringdiffs_Get(str1, str2, casitive, xwhite, breakType, &worddiffs);
 
 	if (!worddiffs.GetSize())
 	{
@@ -343,9 +344,10 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, wdiffarray *pworddiffs)
 	// Options that affect comparison
 	bool casitive = !diffOptions.bIgnoreCase;
 	int xwhite = diffOptions.nIgnoreWhitespace;
+	int breakType = GetBreakType();
 
 	// Make the call to stringdiffs, which does all the hard & tedious computations
-	stringdiffs_Get(str1, str2, casitive, xwhite, pworddiffs);
+	stringdiffs_Get(str1, str2, casitive, xwhite, breakType, pworddiffs);
 
 	return;
 }

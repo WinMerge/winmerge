@@ -34,6 +34,8 @@ const TCHAR OPT_ALLOW_MIXED_EOL[] = _T("Settings/AllowMixedEOL");
 const TCHAR OPT_TAB_SIZE[] = _T("Settings/TabSize");
 const TCHAR OPT_TAB_TYPE[] = _T("Settings/TabType");
 const TCHAR OPT_UNREC_APPLYSYNTAX[] = _T("Settings/ApplyUnrecSyntax");
+const TCHAR OPT_BREAK_ON_WORDS[] = _T("Settings/BreakOnWords");
+const TCHAR OPT_BREAK_TYPE[] = _T("Settings/BreakType");
 
 const TCHAR OPT_EXT_EDITOR_CMD[] = _T("Settings/ExternalEditor");
 const TCHAR OPT_USE_RECYCLE_BIN[] = _T("Settings/UseRecycleBin");

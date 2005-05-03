@@ -1,3 +1,11 @@
+2005-05-03 Perry
+ PATCH: [ 1157486 ] New options for wordbreak characters
+  (Fixed patch to use existing OPT_WORDDIFF_HIGHLIGHT instead of new option)
+  Src: MainFrm.cpp Merge.rc MergeDoc.cpp MergeDoc.h MergeDocLineDiffs.cpp
+   OptionsDef.h PropEditor.cpp PropEditor.h resource.h stringdiffs.cpp
+   stringdiffs.h stringdiffsi.h
+  Src/Languages: *.rc
+
 2005-05-02 Kimmo
  BUG: [ 1193059 ] Problems with the mouse at file comparison
   Don't refresh filecompare every time mouse is clicked

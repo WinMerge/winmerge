@@ -280,6 +280,11 @@ public:
 	void SetMergingMode(BOOL bMergingMode);
 	void SetDetectMovedBlocks(BOOL bDetectMovedBlocks);
 
+// implementation methods
+private:
+	BOOL GetOptionBool(LPCTSTR name) const;
+	bool GetBreakType() const;
+
 // Implementation data
 protected:
 	int m_nCurDiff; /**< Selected diff, 0-based index, -1 if no diff selected */

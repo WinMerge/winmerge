@@ -1106,6 +1106,14 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,105,63,117,10
     CONTROL         "Insertar e&spacios",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,105,72,117,10
+    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,10,97,
+                    218,37
+    CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
+    CONTROL         "Break on words",IDC_BREAK_ON_WORDS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,148,108,73,8
+    COMBOBOX        IDC_BREAK_TYPE,17,120,143,34,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -1835,6 +1843,8 @@ BEGIN
     IDS_VCS_VSS4            "Visual SourceSafe (menor que 5.0)"
     IDS_VCS_VSS5            "Visual SourceSafe (5.0 y superior)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
+    IDS_BREAK_ON_WHITESPACE "Break at whitespace"
+    IDS_BREAK_ON_PUNCTUATION "Break at whitespace or punctuation"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)

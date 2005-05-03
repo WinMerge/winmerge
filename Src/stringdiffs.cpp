@@ -23,16 +23,17 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 static bool isSafeWhitespace(TCHAR ch);
+static bool isWordBreak(int breakType, TCHAR ch);
 
 /**
  * @brief Construct our worker object and tell it to do the work
  */
 void
 stringdiffs_Get(const CString & str1, const CString & str2,
-	bool case_sensitive, int whitespace,
+	bool case_sensitive, int whitespace, int breakType,
 	wdiffarray * pDiffs)
 {
-	stringdiffs sdiffs(str1, str2, case_sensitive, whitespace, pDiffs);
+	stringdiffs sdiffs(str1, str2, case_sensitive, whitespace, breakType, pDiffs);
 	// Hash all words in both lines and then compare them word by word
 	// storing differences into m_wdiffs
 	sdiffs.BuildWordDiffList();
@@ -44,12 +45,13 @@ stringdiffs_Get(const CString & str1, const CString & str2,
  * @brief stringdiffs constructor simply loads all members from arguments
  */
 stringdiffs::stringdiffs(const CString & str1, const CString & str2,
-	bool case_sensitive, int whitespace, 
+	bool case_sensitive, int whitespace, int breakType,
 	wdiffarray * pDiffs)
 : m_str1(str1)
 , m_str2(str2)
 , m_case_sensitive(case_sensitive)
 , m_whitespace(whitespace)
+, m_breakType(breakType)
 , m_pDiffs(pDiffs)
 {
 }
@@ -314,7 +316,8 @@ inspace:
 
 	// state when we are inside a word
 inword:
-	if (i==str.GetLength() || isSafeWhitespace(str[i]))
+	bool atspace=false;
+	if (i==str.GetLength() || (atspace=isSafeWhitespace(str[i])) || isWordBreak(m_breakType, str[i]))
 	{
 		if (begin<i)
 		{
@@ -324,7 +327,24 @@ inword:
 			word wd(begin, e, hash(str, begin, e));
 			words->Add(wd);
 		}
-		goto inspace; // safe even if we're at the end
+		if (i == str.GetLength())
+		{
+			return;
+		}
+		else if (atspace)
+		{
+			goto inspace;
+		}
+		else
+		{
+			// start a new word because we hit a non-whitespace word break (eg, a comma)
+			// but, we have to put each word break character into its own word
+			word wd(i, i, hash(str, i, i));
+			words->Add(wd);
+			++i;
+			begin = i;
+			goto inword;
+		}
 	}
 	++i;
 	goto inword; // safe even if we're at the end or no longer in a word
@@ -451,13 +471,26 @@ static inline bool IsLeadByte(TCHAR ch)
 }
 
 /**
- * @brief Is it whitespace (excludes all lead & trail bytes)
+ * @brief Is it whitespace (excludes all lead & trail bytes)?
  */
 static bool
 isSafeWhitespace(TCHAR ch)
 {
 	return xisspace(ch) && !IsLeadByte(ch);
 }
+
+/**
+ * @brief Is it a non-whitespace wordbreak character (ie, punctuation)?
+ */
+static bool
+isWordBreak(int breakType, TCHAR ch)
+{
+	// breakType==0 means whitespace only
+	if (!breakType) return false;
+	// breakType==1 means break also on punctuation
+	return ch==',' || ch==';' || ch==':';
+}
+
 
 /**
  * @brief Return pointer to last character of specified string (handle MBCS)

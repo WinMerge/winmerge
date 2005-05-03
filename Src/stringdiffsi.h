@@ -17,7 +17,7 @@ class stringdiffs
 {
 public:
 	stringdiffs(const CString & str1, const CString & str2,
-		bool case_sensitive, int whitespace, 
+		bool case_sensitive, int whitespace, int breakType,
 		wdiffarray * pDiffs);
 
 	void BuildWordDiffList();
@@ -53,6 +53,7 @@ private:
 	const CString & m_str2;
 	bool m_case_sensitive;
 	int m_whitespace;
+	int m_breakType;
 	wdiffarray * m_pDiffs;
 	wordarray m_words1;
 	wordarray m_words2;

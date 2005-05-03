@@ -204,6 +204,10 @@ CMainFrame::CMainFrame()
 	m_options.InitOption(OPT_SINGLE_INSTANCE, false);
 	m_options.InitOption(OPT_MERGE_MODE, false);
 	m_options.InitOption(OPT_UNREC_APPLYSYNTAX, false);
+	// OPT_WORDDIFF_HIGHLIGHT is initialized above
+	m_options.InitOption(OPT_BREAK_ON_WORDS, true);
+	m_options.InitOption(OPT_BREAK_TYPE, 0);
+
 	m_options.InitOption(OPT_CLOSE_WITH_ESC, true);
 	m_options.InitOption(OPT_LOGGING, 0);
 	m_options.InitOption(OPT_IGNORE_SMALL_FILETIME, false);

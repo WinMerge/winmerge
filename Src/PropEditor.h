@@ -27,14 +27,21 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CPropEditor)
 	enum { IDD = IDD_PROPPAGE_EDITOR };
-	BOOL	m_bHiliteSyntax;
-	int		m_nTabType;
-	UINT	m_nTabSize;
-	BOOL	m_bAutomaticRescan;
-	BOOL	m_bAllowMixedEol;
-	BOOL	m_bApplySyntax;
+	BOOL    m_bHiliteSyntax;
+	int	    m_nTabType;
+	UINT    m_nTabSize;
+	BOOL    m_bAutomaticRescan;
+	BOOL    m_bAllowMixedEol;
+	BOOL    m_bApplySyntax;
+	BOOL    m_bViewLineDifferences;
+	BOOL    m_bBreakOnWords;
+	int     m_nBreakType;
 	//}}AFX_DATA
 
+private:
+// Implementation methods
+	void LoadBreakTypeStrings();
+	void UpdateDataToWindow() { UpdateData(FALSE); }
 
 // Overrides
 	// ClassWizard generated virtual function overrides

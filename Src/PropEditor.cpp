@@ -32,6 +32,9 @@ CPropEditor::CPropEditor() : CPropertyPage(CPropEditor::IDD)
 	m_bAutomaticRescan = FALSE;
 	m_bAllowMixedEol = FALSE;
 	m_bApplySyntax = FALSE;
+	m_bViewLineDifferences = FALSE;
+	m_bBreakOnWords = FALSE;
+	m_nBreakType = 0;
 	//}}AFX_DATA_INIT
 }
 
@@ -43,10 +46,13 @@ void CPropEditor::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_HILITE_CHECK, m_bHiliteSyntax);
 	DDX_Radio(pDX, IDC_PROP_INSERT_TABS, m_nTabType);
 	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
+	DDV_MinMaxInt(pDX, m_nTabSize, 1, MAX_TABSIZE);
 	DDX_Check(pDX, IDC_AUTOMRESCAN_CHECK, m_bAutomaticRescan);
 	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
 	DDX_Check(pDX, IDC_UNREC_APPLYSYNTAX, m_bApplySyntax);
-	DDV_MinMaxInt(pDX, m_nTabSize, 1, MAX_TABSIZE);
+	DDX_Check(pDX, IDC_VIEW_LINE_DIFFERENCES, m_bViewLineDifferences);
+	DDX_Check(pDX, IDC_BREAK_ON_WORDS, m_bBreakOnWords);
+	DDX_CBIndex(pDX, IDC_BREAK_TYPE, m_nBreakType);
 	//}}AFX_DATA_MAP
 }
 
@@ -82,8 +88,25 @@ BOOL CPropEditor::OnInitDialog()
 		GetDlgItem(IDC_UNREC_APPLYSYNTAX)->EnableWindow(FALSE);
 	}
 
+	LoadBreakTypeStrings();
+	UpdateDataToWindow();
+
+	/// @TODO Need to implement the option controlled by this control, 2005-05-03, Perry
+	GetDlgItem(IDC_BREAK_ON_WORDS)->ShowWindow(SW_HIDE);
+
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+/**
+ * @brief Load strings (from resource) into combobox for break type
+ */
+void CPropEditor::LoadBreakTypeStrings()
+{
+	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_BREAK_TYPE);
+	cbo->AddString(LoadResString(IDS_BREAK_ON_WHITESPACE));
+	cbo->AddString(LoadResString(IDS_BREAK_ON_PUNCTUATION));
 }
 
 /** 

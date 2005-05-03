@@ -304,6 +304,9 @@ void CPreferencesDlg::ReadOptions()
 	m_pageEditor.m_bHiliteSyntax = m_pOptionsMgr->GetBool(OPT_SYNTAX_HIGHLIGHT);
 	m_pageEditor.m_bAllowMixedEol = m_pOptionsMgr->GetBool(OPT_ALLOW_MIXED_EOL);
 	m_pageEditor.m_bApplySyntax = m_pOptionsMgr->GetBool(OPT_UNREC_APPLYSYNTAX);
+	m_pageEditor.m_bViewLineDifferences = m_pOptionsMgr->GetBool(OPT_WORDDIFF_HIGHLIGHT);
+	m_pageEditor.m_bBreakOnWords = m_pOptionsMgr->GetBool(OPT_BREAK_ON_WORDS);
+	m_pageEditor.m_nBreakType = m_pOptionsMgr->GetInt(OPT_BREAK_TYPE);
 
 	m_pageCodepage.m_nCodepageSystem = m_pOptionsMgr->GetInt(OPT_CP_DEFAULT_MODE);
 	m_pageCodepage.m_nCustomCodepageValue = m_pOptionsMgr->GetInt(OPT_CP_DEFAULT_CUSTOM);
@@ -350,29 +353,32 @@ void CPreferencesDlg::SaveOptions()
 	m_pOptionsMgr->SaveOption(OPT_ALLOW_MIXED_EOL, m_pageEditor.m_bAllowMixedEol == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_pageEditor.m_bHiliteSyntax == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_UNREC_APPLYSYNTAX, m_pageEditor.m_bApplySyntax == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !!m_pageEditor.m_bViewLineDifferences);
+	m_pOptionsMgr->SaveOption(OPT_BREAK_ON_WORDS, !!m_pageEditor.m_bBreakOnWords);
+	m_pOptionsMgr->SaveOption(OPT_BREAK_TYPE, m_pageEditor.m_nBreakType);
 
-	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF, (int)m_pageColors.m_clrDiff);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF, (int)m_pageColors.m_clrSelDiff);
-	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF_DELETED, (int)m_pageColors.m_clrDiffDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_DELETED, (int)m_pageColors.m_clrSelDiffDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF_TEXT, (int)m_pageColors.m_clrDiffText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_TEXT, (int)m_pageColors.m_clrSelDiffText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF, (int)m_pageColors.m_clrTrivial);
-	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, (int)m_pageColors.m_clrTrivialDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF_TEXT, (int)m_pageColors.m_clrTrivialText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK, (int)m_pageColors.m_clrMoved);
-	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK_DELETED, (int)m_pageColors.m_clrMovedDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK_TEXT, (int)m_pageColors.m_clrMovedText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK, (int)m_pageColors.m_clrSelMoved);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, (int)m_pageColors.m_clrSelMovedDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)m_pageColors.m_clrSelMovedText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF, (int)m_pageColors.m_clrWordDiff);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF, (int)m_pageColors.m_clrSelWordDiff);
-	m_pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF_TEXT, (int)m_pageColors.m_clrWordDiffText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, (int)m_pageColors.m_clrSelWordDiffText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF, m_pageColors.m_clrDiff);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF, m_pageColors.m_clrSelDiff);
+	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF_DELETED, m_pageColors.m_clrDiffDeleted);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_DELETED, m_pageColors.m_clrSelDiffDeleted);
+	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF_TEXT, m_pageColors.m_clrDiffText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_TEXT, m_pageColors.m_clrSelDiffText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF, m_pageColors.m_clrTrivial);
+	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, m_pageColors.m_clrTrivialDeleted);
+	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF_TEXT, m_pageColors.m_clrTrivialText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK, m_pageColors.m_clrMoved);
+	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK_DELETED, m_pageColors.m_clrMovedDeleted);
+	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK_TEXT, m_pageColors.m_clrMovedText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK, m_pageColors.m_clrSelMoved);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, m_pageColors.m_clrSelMovedDeleted);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, m_pageColors.m_clrSelMovedText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF, m_pageColors.m_clrWordDiff);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF, m_pageColors.m_clrSelWordDiff);
+	m_pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF_TEXT, m_pageColors.m_clrWordDiffText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, m_pageColors.m_clrSelWordDiffText);
 
-	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_MODE, (int)m_pageCodepage.m_nCodepageSystem);
-	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)m_pageCodepage.m_nCustomCodepageValue);
+	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_MODE, m_pageCodepage.m_nCodepageSystem);
+	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_CUSTOM, m_pageCodepage.m_nCustomCodepageValue);
 	m_pOptionsMgr->SaveOption(OPT_CP_DETECT, m_pageCodepage.m_bDetectCodepage == TRUE);
 
 	m_pOptionsMgr->SaveOption(OPT_VCS_SYSTEM, (int)m_pageVss.m_nVerSys);

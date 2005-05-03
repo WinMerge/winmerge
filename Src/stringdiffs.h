@@ -36,7 +36,7 @@ typedef CArray<wdiff, wdiff&> wdiffarray; /**< An array of differences between t
 
 
 void stringdiffs_Get(const CString & str1, const CString & str2,
-                   bool case_sensitive, int whitespace,
+                   bool case_sensitive, int whitespace, int breakType,
                    wdiffarray * pDiffs);
 
 void sd_ComputeByteDiff(CString & str1, CString & str2, 

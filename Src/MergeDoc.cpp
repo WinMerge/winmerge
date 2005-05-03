@@ -3006,3 +3006,17 @@ void CMergeDoc::UpdateResources()
 	GetLeftView()->UpdateResources();
 	GetRightView()->UpdateResources();
 }
+
+
+// Lookup named property and return as BOOL
+BOOL CMergeDoc::GetOptionBool(LPCTSTR name) const
+{
+	// Currently options are held by the main frame, in a subobject called m_options
+	return mf->m_options.GetInt(name);
+}
+
+// Return current word breaking break type setting (whitespace only or include punctuation)
+bool CMergeDoc::GetBreakType() const
+{
+	return !!GetOptionBool(OPT_BREAK_TYPE);
+}
