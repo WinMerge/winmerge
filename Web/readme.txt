@@ -1,3 +1,7 @@
+2005-05-04 Tim
+ RFE: [ 1189256 ] Add 7-zip installer download link to homepage
+  Web: page.inc
+
 2005-04-30 Tim
  RFE: [ 1189253 ] Add Release notes -link for downloads in WinMerge.org
   Web: page.inc
