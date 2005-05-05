@@ -206,8 +206,6 @@ protected:
 	CString GenerateReport();
 	CSortHeaderCtrl m_ctlSortHeader;
 	CImageList m_imageList;
-	bool m_bSortAscending;  /** < current column sort is ascending ? */
-	int m_sortColumn;  /**< index of column currently used for sorting */
 	CListCtrl * m_pList;
 	int m_numcols;
 	int m_dispcols;

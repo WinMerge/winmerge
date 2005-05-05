@@ -19,6 +19,7 @@
 #include "dllver.h"
 #include "DirViewColItems.h"
 #include "DirColsDlg.h"
+#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -140,10 +141,12 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 	const DIFFITEM &rdi = ctxt.GetDiffAt(diffposr);
 
 	// compare 'left' and 'right' parameters as appropriate
-	int retVal = ColSort(&ctxt, pView->m_sortColumn, ldi, rdi);
+	int sortCol = mf->m_options.GetInt(OPT_DIRVIEW_SORT_COLUMN);
+	int retVal = ColSort(&ctxt, sortCol, ldi, rdi);
 
 	// return compare result, considering sort direction
-	return (pView->m_bSortAscending)?retVal:-retVal;
+	bool bSortAscending = mf->m_options.GetBool(OPT_DIRVIEW_SORT_ASCENDING);
+	return (bSortAscending) ? retVal : -retVal;
 }
 
 /// Add new item to list view
@@ -451,6 +454,7 @@ ToDoDeleteThisValidateColumnOrdering();
 	const CDirColsDlg::ColumnArray & cols = dlg.GetColumns();
 	ClearColumnOrders();
 	m_dispcols = 0;
+	const int sortColumn = mf->m_options.GetInt(OPT_DIRVIEW_SORT_COLUMN);
 	for (int i=0; i<cols.GetSize(); ++i)
 	{
 		int log = cols[i].log_col;
@@ -460,6 +464,13 @@ ToDoDeleteThisValidateColumnOrdering();
 		{
 			++m_dispcols;
 			m_invcolorder[phy] = log;
+		}
+
+		// If sorted column was hidden, reset sorting
+		if (log == sortColumn && phy < 0)
+		{
+			mf->m_options.Reset(OPT_DIRVIEW_SORT_COLUMN);
+			mf->m_options.Reset(OPT_DIRVIEW_SORT_ASCENDING);
 		}
 	}
 	if (m_dispcols < 1)

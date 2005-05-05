@@ -73,7 +73,6 @@ IMPLEMENT_DYNCREATE(CDirView, CListViewEx)
 CDirView::CDirView()
 : m_numcols(-1)
 , m_dispcols(-1)
-, m_bSortAscending(true)
 , m_pHeaderPopup(NULL)
 , m_pFont(NULL)
 , m_pList(NULL)
@@ -203,7 +202,6 @@ CDirDoc* CDirView::GetDocument() // non-debug version is inline
 void CDirView::OnInitialUpdate() 
 {
 	CListViewEx::OnInitialUpdate();
-	m_sortColumn = -1;	// start up in no sorted order.
 	m_pList = &GetListCtrl();
 	GetDocument()->SetDirView(this);
 
@@ -749,16 +747,20 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	// set sort parameters and handle ascending/descending
 	NM_LISTVIEW* pNMListView = (NM_LISTVIEW*) pNMHDR;
+	int oldSortColumn = mf->m_options.GetInt(OPT_DIRVIEW_SORT_COLUMN);
 	int sortcol = m_invcolorder[pNMListView->iSubItem];
-	if (sortcol==m_sortColumn)
+	if (sortcol == oldSortColumn)
 	{
-		m_bSortAscending = !m_bSortAscending;
+		// Swap direction
+		bool bSortAscending = mf->m_options.GetBool(OPT_DIRVIEW_SORT_ASCENDING);
+		mf->m_options.SaveOption(OPT_DIRVIEW_SORT_ASCENDING, !bSortAscending);
 	}
 	else
 	{
-		m_sortColumn = sortcol;
+		mf->m_options.SaveOption(OPT_DIRVIEW_SORT_COLUMN, sortcol);
 		// most columns start off ascending, but not dates
-		m_bSortAscending = IsDefaultSortAscending(m_sortColumn);
+		bool bSortAscending = IsDefaultSortAscending(sortcol);
+		mf->m_options.SaveOption(OPT_DIRVIEW_SORT_ASCENDING, bSortAscending);
 	}
 
 	SortColumnsAppropriately();
@@ -767,9 +769,12 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CDirView::SortColumnsAppropriately()
 {
-	if (m_sortColumn == -1) return;
+	int sortCol = mf->m_options.GetInt(OPT_DIRVIEW_SORT_COLUMN);
+	if (sortCol == -1)
+		return;
 
-	m_ctlSortHeader.SetSortImage(ColLogToPhys(m_sortColumn), m_bSortAscending);
+	bool bSortAscending = mf->m_options.GetBool(OPT_DIRVIEW_SORT_ASCENDING);
+	m_ctlSortHeader.SetSortImage(ColLogToPhys(sortCol), bSortAscending);
 	//sort using static CompareFunc comparison function
 	GetListCtrl ().SortItems (CompareFunc, reinterpret_cast<DWORD>(this));//pNMListView->iSubItem);
 }

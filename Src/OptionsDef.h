@@ -29,6 +29,9 @@ const TCHAR OPT_VIEW_WHITESPACE[] =  _T("Settings/ViewWhitespace");
 const TCHAR OPT_CONNECT_MOVED_BLOCKS[] = _T("Settings/ConnectMovedBlocks");
 const TCHAR OPT_SCROLL_TO_FIRST[] =  _T("Settings/ScrollToFirst");
 
+const TCHAR OPT_DIRVIEW_SORT_COLUMN[] =  _T("Settings/DirViewSortCol");
+const TCHAR OPT_DIRVIEW_SORT_ASCENDING[] =  _T("Settings/DirViewSortAscending");
+
 const TCHAR OPT_AUTOMATIC_RESCAN[] = _T("Settings/AutomaticRescan");
 const TCHAR OPT_ALLOW_MIXED_EOL[] = _T("Settings/AllowMixedEOL");
 const TCHAR OPT_TAB_SIZE[] = _T("Settings/TabSize");

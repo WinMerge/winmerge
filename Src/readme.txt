@@ -1,3 +1,7 @@
+2005-05-05 Kimmo
+ PATCH: [ 1195486 ] Remember dircompare sort column
+  Src: DirView.cpp DirView.h DirViewColHandler.cpp MainFrm.cpp OptionsDef.h
+
 2005-05-03 Perry
  PATCH: [ 1157486 ] New options for wordbreak characters
   (Fixed patch to use existing OPT_WORDDIFF_HIGHLIGHT instead of new option)
