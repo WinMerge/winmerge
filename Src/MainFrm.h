@@ -64,6 +64,7 @@ class CDirDoc;
 class CMergeDoc;
 class CMergeEditView;
 class CMergeDiffDetailView;
+class SyntaxColors;
 
 
 // typed lists (homogenous pointer lists)
@@ -139,6 +140,7 @@ public:
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
 	VSSHelper m_vssHelper;
+	SyntaxColors *m_pSyntaxColors; /**< Syntax color container */
 
 	/**
 	 * @name Version Control System (VCS) integration.

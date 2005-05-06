@@ -40,6 +40,7 @@
 class CCrystalTextBuffer;
 class CUpdateContext;
 struct ViewableWhitespaceChars;
+class SyntaxColors;
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -101,6 +102,8 @@ private :
 
     //  Amount of lines/characters that completely fits the client area
     int m_nScreenLines, m_nScreenChars;
+
+    SyntaxColors * m_pColors;
 
     //BEGIN SW
     /**
@@ -178,6 +181,9 @@ public :
     virtual void OnUpdateCaret ();
     BOOL IsTextBufferInitialized () const;
     CString GetTextBufferEol (int nLine) const;
+
+    SyntaxColors * GetSyntaxColors() { return m_pColors; }
+    void SetColorContext(SyntaxColors * pColors) { m_pColors = pColors; }
 
 protected :
     CPoint WordToRight (CPoint pt);
@@ -745,44 +751,6 @@ public :
     virtual bool SetTextType (CCrystalTextView::TextDefinition *def);
     static void LoadSettings ();
     static void SaveSettings ();
-
-    enum
-    {
-      COLORINDEX_NONE,
-      //  Base colors
-      COLORINDEX_WHITESPACE,
-      COLORINDEX_BKGND,
-      COLORINDEX_NORMALTEXT,
-      COLORINDEX_SELMARGIN,
-      COLORINDEX_SELBKGND,
-      COLORINDEX_SELTEXT,
-      //  Syntax colors
-      COLORINDEX_KEYWORD,
-      COLORINDEX_FUNCNAME,
-      COLORINDEX_COMMENT,
-      COLORINDEX_NUMBER,
-      COLORINDEX_OPERATOR,      // [JRT]:
-      COLORINDEX_STRING,
-      COLORINDEX_PREPROCESSOR,
-      COLORINDEX_USER1,
-      COLORINDEX_USER2,
-      //  Compiler/debugger colors
-      COLORINDEX_ERRORBKGND,
-      COLORINDEX_ERRORTEXT,
-      COLORINDEX_EXECUTIONBKGND,
-      COLORINDEX_EXECUTIONTEXT,
-      COLORINDEX_BREAKPOINTBKGND,
-      COLORINDEX_BREAKPOINTTEXT,
-      //
-      COLORINDEX_HIGHLIGHTBKGND1,
-      COLORINDEX_HIGHLIGHTTEXT1,
-      COLORINDEX_HIGHLIGHTBKGND2,
-      COLORINDEX_HIGHLIGHTTEXT2,
-      //
-      COLORINDEX_APPLYFORCE = 0x80000000
-      //  ...
-      //  Expandable: custom elements are allowed.
-    };
 
     // Operations
 public :

@@ -16,6 +16,7 @@
 
 #include "stdafx.h"
 #include "ccrystaltextview.h"
+#include "SyntaxColors.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

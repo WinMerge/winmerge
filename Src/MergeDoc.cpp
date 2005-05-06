@@ -2613,7 +2613,12 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	m_pRightView->AttachToBuffer();
 	m_pLeftDetailView->AttachToBuffer();
 	m_pRightDetailView->AttachToBuffer();
-		
+
+	m_pLeftView->SetColorContext(mf->m_pSyntaxColors);
+	m_pRightView->SetColorContext(mf->m_pSyntaxColors);
+	m_pLeftDetailView->SetColorContext(mf->m_pSyntaxColors);
+	m_pRightDetailView->SetColorContext(mf->m_pSyntaxColors);
+
 	// Set read-only statuses
 	m_ltBuf.SetReadOnly(bROLeft);
 	m_rtBuf.SetReadOnly(bRORight);

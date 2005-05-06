@@ -40,6 +40,7 @@
 #include "MergeEditView.h"
 #include "MergeDiffDetailView.h"
 #include "LocationView.h"
+#include "SyntaxColors.h"
 
 #include "diff.h"
 #include "coretools.h"
@@ -313,6 +314,10 @@ CMainFrame::CMainFrame()
 		else if (logging == 2)
 			gLog.SetMaskLevel(LOGLEVEL::LERROR | LOGLEVEL::LWARNING);
 	}
+
+	m_pSyntaxColors = new SyntaxColors();
+	if (m_pSyntaxColors)
+		m_pSyntaxColors->ReadFromRegistry();
 }
 
 CMainFrame::~CMainFrame()
@@ -323,6 +328,8 @@ CMainFrame::~CMainFrame()
 	FreeRegExpList();
 	// Delete all temporary folders belonging to this process
 	CTempPath(0);
+
+	delete m_pSyntaxColors;
 }
 
 // This is a bridge to implement IStatusDisplay for WaitStatusCursor
@@ -1229,7 +1236,7 @@ void CMainFrame::SetEOLMixed(BOOL bAllow)
  */
 void CMainFrame::OnOptions() 
 {
-	CPreferencesDlg dlg(&m_options);
+	CPreferencesDlg dlg(&m_options, m_pSyntaxColors);
 	dlg.SetDefaultEditor(GetDefaultEditor());
 	int rv = dlg.DoModal();
 

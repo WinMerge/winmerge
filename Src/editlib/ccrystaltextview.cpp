@@ -93,6 +93,7 @@
 #include "registry.h"
 #include "gotodlg.h"
 #include "ViewableWhitespace.h"
+#include "SyntaxColors.h"
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
 // Using C locale gets us direct mapping to Unicode codepoints
@@ -484,6 +485,8 @@ CCrystalTextView::CCrystalTextView ()
   SetTextType (SRC_PLAIN);
   m_bSingle = false; // needed to be set in descendat classes
   m_bRememberLastPos = false;
+
+  m_pColors = NULL;
 }
 
 CCrystalTextView::~CCrystalTextView ()
@@ -1576,51 +1579,13 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 COLORREF CCrystalTextView::
 GetColor (int nColorIndex)
 {
-  switch (nColorIndex & ~COLORINDEX_APPLYFORCE)
+  if (m_pColors)
     {
-    case COLORINDEX_WHITESPACE :
-    case COLORINDEX_BKGND:
-      return::GetSysColor (COLOR_WINDOW);
-    case COLORINDEX_NORMALTEXT:
-      return::GetSysColor (COLOR_WINDOWTEXT);
-    case COLORINDEX_SELMARGIN:
-      return::GetSysColor (COLOR_SCROLLBAR);
-    case COLORINDEX_PREPROCESSOR:
-      return RGB (0, 128, 192);
-    case COLORINDEX_COMMENT:
-      //      return RGB(128, 128, 128);
-      return RGB (0, 128, 0);
-      //  [JRT]: Enabled Support For Numbers...
-    case COLORINDEX_NUMBER:
-      //      return RGB(0x80, 0x00, 0x00);
-      return RGB (0xff, 0x00, 0x00);
-      //  [JRT]: Support For C/C++ Operators
-    case COLORINDEX_OPERATOR:
-      //      return RGB(0x00, 0x00, 0x00);
-      return RGB (96, 96, 96);
-    case COLORINDEX_KEYWORD:
-      return RGB (0, 0, 255);
-    case COLORINDEX_FUNCNAME:
-      return RGB (128, 0, 128);
-    case COLORINDEX_USER1:
-      return RGB (0, 0, 128);
-    case COLORINDEX_USER2:
-      return RGB (0, 128, 192);
-    case COLORINDEX_SELBKGND:
-      return RGB (0, 0, 0);
-    case COLORINDEX_SELTEXT:
-      return RGB (255, 255, 255);
-    case COLORINDEX_HIGHLIGHTBKGND1:
-      return RGB (255, 160, 160);
-    case COLORINDEX_HIGHLIGHTTEXT1:
-      return RGB (0, 0, 0);
-    case COLORINDEX_HIGHLIGHTBKGND2:
-      return RGB (255, 255, 0);
-    case COLORINDEX_HIGHLIGHTTEXT2:
-      return RGB (0, 0, 0);
+      nColorIndex &= ~COLORINDEX_APPLYFORCE;
+      return m_pColors->GetColor(nColorIndex);
     }
-  //  return RGB(255, 0, 0);
-  return RGB (128, 0, 0);
+  else
+    return RGB(0, 0, 0);
 }
 
 DWORD CCrystalTextView::
@@ -2816,8 +2781,13 @@ GetItalic (int nColorIndex)
 BOOL CCrystalTextView::
 GetBold (int nColorIndex)
 {
-  return nColorIndex == COLORINDEX_KEYWORD;
-  //  return FALSE;
+  if (m_pColors)
+    {
+      nColorIndex &= ~COLORINDEX_APPLYFORCE;
+      return m_pColors->GetBold(nColorIndex);
+    }
+  else
+    return FALSE;
 }
 
 int CCrystalTextView::

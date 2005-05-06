@@ -1,6 +1,16 @@
 2005-05-06 Kimmo
  BUG: [ 1193260 ] Problems with the current German translation
   Src: MainFrm.cpp
+ PATCH: [ 1196119 ] Select syntax highlight colors
+  Src: MainFrm.cpp MainFrm.h Merge.dsp Merge.rc MergeDiffDetail.cpp MergeDoc.cpp
+   MergeEditView.cpp resource.h
+  Src new files: PropSyntaxColors.cpp PropSyntaxColors.h Syntaxcolors.cpp SyntaxColors.h
+  Src/Common: PreferencesDlg.cpp PreferencesDlg.h
+  Src/editlib: asp.cpp basic.cpp batch.cpp ccrystaltextview.cpp ccrystaltextview.h
+   cplusplus.cpp csharp.cpp dcl.cpp fortran.cpp html.cpp ini.cpp innosetup.cpp is.cpp
+   java.cpp lisp.cpp nsis.cpp pascal.cpp perl.cpp php.cpp python.cpp rexx.cpp rsrc.cpp
+   sgml.cpp sh.cpp siod.cpp sql.cpp tcl.cpp tex.cpp xml.cpp
+  Src/Languages: *.rc resource.h
 
 2005-05-06 Perry
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)

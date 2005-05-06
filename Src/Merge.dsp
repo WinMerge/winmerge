@@ -642,6 +642,10 @@ SOURCE=.\PropRegistry.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropSyntaxColors.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropVss.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Debug"
@@ -763,6 +767,10 @@ SOURCE=.\stringdiffs.cpp
 # Begin Source File
 
 SOURCE=.\Common\SuperComboBox.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\SyntaxColors.cpp
 # End Source File
 # Begin Source File
 
@@ -1155,6 +1163,10 @@ SOURCE=.\PropRegistry.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropSyntaxColors.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropVss.h
 # End Source File
 # Begin Source File
@@ -1228,6 +1240,10 @@ SOURCE=.\stringdiffsi.h
 # Begin Source File
 
 SOURCE=.\Common\SuperComboBox.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SyntaxColors.h
 # End Source File
 # Begin Source File
 

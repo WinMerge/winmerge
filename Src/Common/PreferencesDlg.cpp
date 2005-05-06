@@ -14,6 +14,7 @@
 #include "resource.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "SyntaxColors.h"
 #include "PreferencesDlg.h"
 
 #include "winclasses.h"
@@ -42,9 +43,10 @@ enum
 };
 const TCHAR PATHDELIM = '>';
 
-CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, UINT nMenuID, CWnd* pParent)   // standard constructor
+CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
+		UINT nMenuID, CWnd* pParent)   // standard constructor
 	: CDialog(IDD_PREFERENCES, pParent), m_pOptionsMgr(regOptions), m_pageCompare(regOptions),
-	m_pageColors(regOptions)
+	m_pageColors(regOptions), m_pSyntaxColors(colors), m_pageSyntaxColors(colors)
 {
 }
 
@@ -85,6 +87,7 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageCompare, IDS_OPTIONSPG_COMPARE);
 	AddPage(&m_pageEditor, IDS_OPTIONSPG_EDITOR);
 	AddPage(&m_pageColors, IDS_OPTIONSPG_COLORS);
+	AddPage(&m_pageSyntaxColors, IDS_OPTIONSPG_SYNTAXCOLORS);
 	AddPage(&m_pageSystem, IDS_OPTIONSPG_SYSTEM);
 	AddPage(&m_pageVss, IDS_OPTIONSPG_VERSIONCONTROL);
 	AddPage(&m_pageCodepage, IDS_OPTIONSPG_CODEPAGE);
@@ -383,4 +386,12 @@ void CPreferencesDlg::SaveOptions()
 
 	m_pOptionsMgr->SaveOption(OPT_VCS_SYSTEM, (int)m_pageVss.m_nVerSys);
 	m_pOptionsMgr->SaveOption(OPT_VSS_PATH, m_pageVss.m_strPath);
+
+	m_pSyntaxColors->Clone(m_pageSyntaxColors.m_pTempColors);
+	m_pSyntaxColors->SaveToRegistry();
+}
+
+void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)
+{
+	m_pSyntaxColors = pColors;
 }

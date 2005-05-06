@@ -18,6 +18,7 @@
 #include "MainFrm.h"
 #include "ChildFrm.h"
 #include "OptionsDef.h"
+#include "SyntaxColors.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

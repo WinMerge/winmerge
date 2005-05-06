@@ -25,10 +25,12 @@
 #include "PropRegistry.h"
 #include "PropColors.h"
 #include "PropCodepage.h"
+#include "PropSyntaxColors.h"
 
 #include "propertypagehost.h"
 
 class COptionsMgr;
+class SyntaxColors;
 
 /////////////////////////////////////////////////////////////////////////////
 // CPreferencesDlg dialog
@@ -38,10 +40,12 @@ class CPreferencesDlg : public CDialog
 // Construction
 public:
 	//CPreferencesDlg(UINT nMenuID = 0, CWnd* pParent = NULL);   // standard constructor
-	CPreferencesDlg(COptionsMgr *optionsMgr, UINT nMenuID = 0, CWnd* pParent = NULL);   // standard constructor
+	CPreferencesDlg(COptionsMgr *optionsMgr, SyntaxColors *colors,
+		UINT nMenuID = 0, CWnd* pParent = NULL);   // standard constructor
 	virtual ~CPreferencesDlg();
 
 	void SetDefaultEditor(LPCTSTR szDefaultEditor);
+	void SetSyntaxColors(SyntaxColors *pColors);
 
 protected:
 // Dialog Data
@@ -58,6 +62,9 @@ protected:
 	CPropRegistry m_pageSystem;
 	CPropColors m_pageColors;
 	CPropCodepage m_pageCodepage;
+	CPropSyntaxColors m_pageSyntaxColors;
+
+	SyntaxColors *m_pSyntaxColors;
 
 	CMapPtrToPtr m_mapPP2HTI;
 

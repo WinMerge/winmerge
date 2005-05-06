@@ -1240,6 +1240,69 @@ BEGIN
                     SS_SUNKEN
 END
 
+IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    RTEXT           "Keywords:",IDC_STATIC,0,20,70,8
+    RTEXT           "Function names:",IDC_STATIC,0,40,70,8
+    RTEXT           "Comments:",IDC_STATIC,0,60,70,8
+    RTEXT           "Numbers:",IDC_STATIC,0,80,70,8
+    RTEXT           "Operators:",IDC_STATIC,0,100,70,8
+    RTEXT           "Strings:",IDC_STATIC,0,120,70,8
+    RTEXT           "Preprocessor:",IDC_STATIC,0,140,70,8
+    RTEXT           "User 1:",IDC_STATIC,0,160,70,8
+    RTEXT           "User 2:",IDC_STATIC,0,180,70,8
+    CTEXT           "Text",IDC_STATIC,73,7,34,8
+    CONTROL         "Button1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,110,21,55,10
+    CONTROL         "Button1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,110,40,55,10
+    CONTROL         "Button1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,110,60,55,10
+    CONTROL         "Button1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,110,80,55,10
+    CONTROL         "Button1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_OPERATORS_BOLD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,110,100,55,10
+    CONTROL         "Button1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,110,120,55,10
+    CONTROL         "Button1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,110,140,55,10
+    CONTROL         "Button1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,110,160,55,10
+    CONTROL         "Button1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT | 
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Bold",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,110,180,55,10
+    PUSHBUTTON      "Defaults",IDC_SCOLORS_BDEFAULTS,182,179,50,14
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1550,13 +1613,14 @@ END
 // Options-dialog page captions
 STRINGTABLE
 BEGIN
-	IDS_OPTIONSPG_GENERAL     "General"
-	IDS_OPTIONSPG_COMPARE     "Compare"
-	IDS_OPTIONSPG_EDITOR      "Editor"
-	IDS_OPTIONSPG_COLORS      "Colors"
-	IDS_OPTIONSPG_SYSTEM      "System"
-	IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
-	IDS_OPTIONSPG_CODEPAGE     "Codepage"
+    IDS_OPTIONSPG_GENERAL   "General"
+    IDS_OPTIONSPG_COMPARE   "Compare"
+    IDS_OPTIONSPG_EDITOR    "Editor"
+    IDS_OPTIONSPG_COLORS    "Colors"
+    IDS_OPTIONSPG_SYSTEM    "System"
+    IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
+    IDS_OPTIONSPG_CODEPAGE  "Codepage"
+    IDS_OPTIONSPG_SYNTAXCOLORS "Syntax colors"
 END
 
 // WINMERGE CUSTOM STRINGS
