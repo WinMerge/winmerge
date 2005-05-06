@@ -1,3 +1,8 @@
+2005-05-06 Perry
+ PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
+  Most of the menu updates from patch; no other updates from patch
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc resource.h
+
 2005-05-05 Kimmo
  PATCH: [ 1195486 ] Remember dircompare sort column
   Src: DirView.cpp DirView.h DirViewColHandler.cpp MainFrm.cpp OptionsDef.h

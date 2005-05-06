@@ -82,8 +82,8 @@ BEGIN
         MENUITEM "複製到右邊(&R)",              ID_L2R
         MENUITEM "複製到左邊(&L)",              ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
-        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
+        MENUITEM "強調列的字不同(&H)",          ID_SHOWLINEWORDDIFF
+        MENUITEM "強調列的字元不同(&I)",        ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "復原(&U)",                    ID_EDIT_UNDO
         MENUITEM "重做(&R)",                    ID_EDIT_REDO
@@ -92,7 +92,7 @@ BEGIN
         MENUITEM "複製(&C)",                    ID_EDIT_COPY
         MENUITEM "貼上(&P)",                    ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "&Goto...",                     ID_EDIT_WMGOTO
+        MENUITEM "移至(&G)...",                 ID_EDIT_WMGOTO
     END
 END
 
@@ -270,28 +270,28 @@ BEGIN
         MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "儲存(&S)\tCtrl+S",            ID_FILE_SAVE
-        POPUP "Save &Left"
+        POPUP "儲存左邊(&L)"
         BEGIN
-            MENUITEM "&Save",                       ID_FILE_SAVE_LEFT
-            MENUITEM "Save &As...",                 ID_FILE_SAVEAS_LEFT
+            MENUITEM "儲存(&S)",                    ID_FILE_SAVE_LEFT
+            MENUITEM "另存新檔(&A)...",             ID_FILE_SAVEAS_LEFT
         END
-        POPUP "Save &Right"
+        POPUP "儲存右邊(&R)"
         BEGIN
-            MENUITEM "&Save",                       ID_FILE_SAVE_RIGHT
-            MENUITEM "Save &As...",                 ID_FILE_SAVEAS_RIGHT
+            MENUITEM "儲存(&S)",                    ID_FILE_SAVE_RIGHT
+            MENUITEM "另存新檔(&A)...",             ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "L&eft Read-only",             ID_FILE_LEFT_READONLY
-        MENUITEM "Ri&ght Read-only",            ID_FILE_RIGHT_READONLY
+        MENUITEM "左邊唯讀(&E)",                ID_FILE_LEFT_READONLY
+        MENUITEM "右邊唯讀(&G)",                ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "&Format for"
+        POPUP "格式於(&F)"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "Merge Mode\tF9",              ID_FILE_MERGINGMODE
+        MENUITEM "合併模式\tF9",                ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "結束(&X)",                    ID_APP_EXIT
     END
@@ -304,25 +304,24 @@ BEGIN
         MENUITEM "複製(&C)\tCtrl+C",            ID_EDIT_COPY
         MENUITEM "貼上(&P)\tCtrl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM "全選(&A)\tCtrl+A",            ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
+        MENUITEM "強調列的字不同(&H)\tF4",      ID_SHOWLINEWORDDIFF
+        MENUITEM "強調列的字元不同(&H)\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "尋找(&I)...\tCtrl+F",         ID_EDIT_FIND
         MENUITEM "取代(&C)...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
-        POPUP "&Scripts"
+        POPUP "指令碼(&S)"
         BEGIN
             MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
-        POPUP "Advanced"
+        POPUP "進階"
         BEGIN
-            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
-                                                    ID_EDIT_COPY_LINENUMBERS
+            MENUITEM "複製連同列號(&C)\tCtrl+Shift+C", ID_EDIT_COPY_LINENUMBERS
         END
-        MENUITEM "&Go To...\tCtrl+G",           ID_EDIT_WMGOTO
+        MENUITEM "移至(&G)...\tCtrl+G",         ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "選項(&O)...",                 ID_OPTIONS
         MENUITEM SEPARATOR
@@ -334,16 +333,16 @@ BEGIN
         MENUITEM "使用預設的字型(&O)",          ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "檢視空白和跳格(&V)",          ID_VIEW_WHITESPACE
-        MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
+        MENUITEM "檢視列不同(&W)",              ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
         MENUITEM "工具列(&T)",                  ID_VIEW_TOOLBAR
         MENUITEM "狀態列(&S)",                  ID_VIEW_STATUS_BAR
-        MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
-        MENUITEM "Location &Pane",              ID_VIEW_LOCATION_BAR
+        MENUITEM "不同窗框(&P)",                ID_VIEW_DETAIL_BAR
+        MENUITEM "位置窗框(&P)",                ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "語言(&L)...",                 ID_VIEW_LANGUAGE
     END
-    POPUP "&Merge"
+    POPUP "合併(&M)"
     BEGIN
         MENUITEM "下一不同(&N)\tAlt+Down",      ID_NEXTDIFF
         MENUITEM "上一不同(&P)\tAlt+Up",        ID_PREVDIFF
@@ -355,36 +354,36 @@ BEGIN
         MENUITEM "複製到右邊(&R)\tAlt+Right",   ID_L2R
         MENUITEM "複製到左邊(&L)\tAlt+Left",    ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "C&opy to Right and Advance\tAlt+Ctrl+Right", ID_L2RNEXT
-        MENUITEM "Copy &to Left and Advance\tAlt+Ctrl+Left", ID_R2LNEXT
+        MENUITEM "複製到右邊和進階(&O)\tAlt+Ctrl+Right", ID_L2RNEXT
+        MENUITEM "複製到左邊和進階(&T)\tAlt+Ctrl+Left", ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "全部複製到右邊(&A)",          ID_ALL_RIGHT
         MENUITEM "全部複製到左邊(&E)",          ID_ALL_LEFT
     END
-    POPUP "&Tools"
+    POPUP "工具(&T)"
     BEGIN
-        MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
-        MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "濾鏡(&F)...",                 ID_TOOLS_FILTERS
+        MENUITEM "產生補丁(&G)...",             ID_TOOLS_GENERATEPATCH
     END
-    POPUP "&Plugins"
+    POPUP "外掛(&P)"
     BEGIN
-        MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
-        MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
+        MENUITEM "手動解封包(&M)",              ID_UNPACK_MANUAL
+        MENUITEM "自動解封包(&A)",              ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "&Edit with Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "編輯解封包(&E)",              ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "&Prediffer"
+        POPUP "前置不同(&P)"
         BEGIN
             MENUITEM SEPARATOR
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
+        MENUITEM "重新載入外掛(&R)",            ID_RELOAD_PLUGINS
     END
     POPUP "視窗(&W)"
     BEGIN
         MENUITEM "關閉",                        ID_FILE_CLOSE
         MENUITEM SEPARATOR
-        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM "變更窗框(&P)\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
         MENUITEM "水平並排(&H)",                ID_WINDOW_TILE_HORZ
         MENUITEM "垂直並排(&V)",                ID_WINDOW_TILE_VERT
@@ -394,8 +393,8 @@ BEGIN
     BEGIN
         MENUITEM "內容(&C)...\tF1",             ID_HELP_CONTENTS
         MENUITEM SEPARATOR
-        MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "組態(&O)...",                 ID_HELP_GETCONFIG
+        MENUITEM "停用保存支援(&R)...",         ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "GNU 公共授權...",             ID_HELP_GNULICENSE
         MENUITEM "關於 WinMerge(&A)...",        ID_APP_ABOUT
@@ -406,58 +405,58 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        POPUP "&Copy"
+        POPUP "複製(&C)"
         BEGIN
-            MENUITEM "&Left to Right",              ID_DIR_COPY_LEFT_TO_RIGHT
-            MENUITEM "L&eft to...",                 ID_DIR_COPY_LEFT_TO_BROWSE
-            MENUITEM "&Right to Left",              ID_DIR_COPY_RIGHT_TO_LEFT
-            MENUITEM "R&ight to...",                ID_DIR_COPY_RIGHT_TO_BROWSE
+            MENUITEM "左邊到右邊(&L)",              ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "左邊到&E)...",                ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "右邊到左邊(&R)",              ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "右邊到(&I)...",               ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "&Move"
+        POPUP "移動(&M)"
         BEGIN
-            MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
-            MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+            MENUITEM "左邊到&L)...",                ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "右邊到(&R)...",               ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
-        POPUP "&Delete"
+        POPUP "刪除(&D)"
         BEGIN
-            MENUITEM "&Left",                       ID_DIR_DEL_LEFT
-            MENUITEM "&Right",                      ID_DIR_DEL_RIGHT
-            MENUITEM "&Both",                       ID_DIR_DEL_BOTH
+            MENUITEM "左邊(&L)",                    ID_DIR_DEL_LEFT
+            MENUITEM "右邊(&R)",                    ID_DIR_DEL_RIGHT
+            MENUITEM "兩這(&B)",                    ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "隱藏檔案(&H)",                ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
-        POPUP "&Open Left"
+        POPUP "開啟左邊(&O)"
         BEGIN
-            MENUITEM "with &Registered Application", ID_DIR_OPEN_LEFT
-            MENUITEM "with &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
-            MENUITEM "&with...",                    ID_DIR_OPEN_LEFT_WITH
+            MENUITEM "以登錄的應用程式(&R)",        ID_DIR_OPEN_LEFT
+            MENUITEM "以外部編輯器(&E)",            ID_DIR_OPEN_LEFT_WITHEDITOR
+            MENUITEM "以(&W)...",                   ID_DIR_OPEN_LEFT_WITH
         END
-        POPUP "O&pen Right"
+        POPUP "開啟右邊(&P)"
         BEGIN
-            MENUITEM "with &Registered Application", ID_DIR_OPEN_RIGHT
-            MENUITEM "with &External Editor",       ID_DIR_OPEN_RIGHT_WITHEDITOR
-            MENUITEM "&with...",                    ID_DIR_OPEN_RIGHT_WITH
+            MENUITEM "以登錄的應用程式(&R)",        ID_DIR_OPEN_RIGHT
+            MENUITEM "以外部編輯器(&E)",            ID_DIR_OPEN_RIGHT_WITHEDITOR
+            MENUITEM "以(&W)...",                   ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
-        POPUP "Cop&y Pathnames"
+        POPUP "複製路徑名稱(&Y)"
         BEGIN
-            MENUITEM "&Left (%1 of %2)",            ID_DIR_COPY_PATHNAMES_LEFT
-            MENUITEM "&Right (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
-            MENUITEM "&Both (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
+            MENUITEM "左邊(&L) (%1 共 %2)",         ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "右邊(&R) (%1 共 %2)",         ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "兩者(&B) (%1 共 %2)",         ID_DIR_COPY_PATHNAMES_BOTH
         END
-        MENUITEM "Copy &Filenames",                 ID_DIR_COPY_FILENAMES
+        MENUITEM "複製檔案名稱(&F)",            ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
-            MENUITEM "&Left... (%1 of %2)",         ID_DIR_ZIP_LEFT
-            MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
-            MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
-            MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "左邊(&L)... (%1 共 %2)",      ID_DIR_ZIP_LEFT
+            MENUITEM "右邊(&R)... (%1 共 %2)",      ID_DIR_ZIP_RIGHT
+            MENUITEM "兩者(&B)... (%1 共 %2)",      ID_DIR_ZIP_BOTH
+            MENUITEM "不同(&D)... (%1 共 %2)",      ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
     END
     POPUP "_HDR_POPUP_"
     BEGIN
-        MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "自訂欄位(&C)...",             ID_TOOLS_CUSTOMIZECOLUMNS
     END
 END
 
@@ -465,17 +464,17 @@ IDR_POPUP_EDITOR_HEADERBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Copy Full Path",             ID_EDITOR_COPY_PATH
-        MENUITEM "Copy &Filename",              ID_EDITOR_COPY_FILENAME
+        MENUITEM "複製完整路徑(&C)",            ID_EDITOR_COPY_PATH
+        MENUITEM "複製檔案名稱(&F)",            ID_EDITOR_COPY_FILENAME
     END
 END
 
 IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
-    POPUP "Prediffer Settings"
+    POPUP "前置不同設定"
     BEGIN
-        MENUITEM "&No prediffer",               ID_PREDIFF_MANUAL
-        MENUITEM "Auto prediffer",              ID_PREDIFF_AUTO
+        MENUITEM "不要前置不同(&N)",            ID_PREDIFF_MANUAL
+        MENUITEM "自動前置不同",                ID_PREDIFF_AUTO
     END
 END
 
