@@ -2,6 +2,9 @@
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
   Most of the menu updates from patch; no other updates from patch
   Src/Languages/ChineseTraditional: MergeChineseTraditional.rc resource.h
+ PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
+  Some of the string table translations
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
 
 2005-05-05 Kimmo
  PATCH: [ 1195486 ] Remember dircompare sort column
