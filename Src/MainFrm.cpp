@@ -504,7 +504,11 @@ HMENU CMainFrame::NewMergeViewMenu()
 	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_REPLACE, IDB_EDIT_REPLACE);
 	m_mergeViewMenu.ModifyODMenu(NULL, ID_VIEW_LANGUAGE, IDB_VIEW_LANGUAGE);
 	m_mergeViewMenu.ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
-
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_APP_EXIT, IDB_FILE_EXIT);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_HELP_CONTENTS, IDB_HELP_CONTENTS);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_SELECT_ALL, IDB_EDIT_SELECTALL);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_TOOLS_FILTERS, IDB_TOOLS_FILTERS);
+	m_mergeViewMenu.ModifyODMenu(NULL, ID_TOOLS_CUSTOMIZECOLUMNS, IDB_TOOLS_COLUMNS);
 	m_mergeViewMenu.LoadToolbar(IDR_MAINFRAME);
 
 	// append the scripts submenu
@@ -535,6 +539,11 @@ HMENU CMainFrame::NewDirViewMenu()
 	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_REPLACE, IDB_EDIT_REPLACE);
 	m_dirViewMenu.ModifyODMenu(NULL, ID_VIEW_LANGUAGE, IDB_VIEW_LANGUAGE);
 	m_dirViewMenu.ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_APP_EXIT, IDB_FILE_EXIT);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_HELP_CONTENTS, IDB_HELP_CONTENTS);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_SELECT_ALL, IDB_EDIT_SELECTALL);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_TOOLS_FILTERS, IDB_TOOLS_FILTERS);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_TOOLS_CUSTOMIZECOLUMNS, IDB_TOOLS_COLUMNS);
 
 	m_dirViewMenu.LoadToolbar(IDR_MAINFRAME);
 	return(m_dirViewMenu.Detach());

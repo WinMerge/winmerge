@@ -1,3 +1,7 @@
+2005-05-06 Kimmo
+ BUG: [ 1193260 ] Problems with the current German translation
+  Src: MainFrm.cpp
+
 2005-05-06 Perry
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
   Most of the menu updates from patch; no other updates from patch
