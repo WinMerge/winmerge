@@ -12,6 +12,12 @@
  BUG: [ 1193562 ] v2.2 charset in MergeGerman wrong
   Src: Merge.rc
   Src/Languages/*: *.rc
+ BUG: [ 1197310 ] Turkish trunk translation is from v2.2
+  Copy all dialogs & string tables from English
+  Also remove some obsolete keywords (PURE, DISCARDABLE, etc)
+  Src/Languages/Turkish: MergeTurkish.rc resource.h
+ BUG: [ 1197397 ] Turkish missing from BuildAll.bat
+  Src/Languages/BuildAll.bat
 
 2005-05-06 Kimmo
  BUG: [ 1193260 ] Problems with the current German translation
