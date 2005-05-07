@@ -1990,7 +1990,7 @@ BEGIN
 
     IDS_SUGGEST_PRESERVEEOL "ファイル'%1'内に異なるタイプ(DOS/UNIX/MAC)のEOLが存在しています。\n 現在のオプション設定では、主なEOLに統一されます。\n オプションを変更して、異なるEOLを保持するようにしますか?"
     IDS_PREDIFFER_ERROR      "プラグイン'%2'でファイル'%1'の比較前処理の実行中にエラーが発生しました。比較前処理は以降行なわれません。"
-    IDS_SUGGEST_IGNORECODEPAGE "両側のファイルは、同じコードページではありません。(cp%d vs cp%d)\n各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\nコードページ情報を無視しますが、よろしいですか?"
+    IDS_SUGGEST_IGNORECODEPAGE "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
 END
 
 // EDITOR : SHOW LINE DIFF

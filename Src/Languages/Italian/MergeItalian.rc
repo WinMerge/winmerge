@@ -2101,7 +2101,7 @@ BEGIN
                             (raggiungibile dal menu Modifica->Opzioni)."
     IDS_SUGGEST_PRESERVEEOL "Gli EOL sono di tipi diversi (DOS/UNIX/MAC) nel file '%1'.\nCon le opzioni correnti, essi verranno unificati nel tipo principale.\nDesideri cambiare le opzioni e conservare gli EOL diversi ?"
     IDS_PREDIFFER_ERROR      "C'è stato un errore nel prediffing del file '%1' con il plugin '%2'. Il prediffing non verrà più applicato."
-    IDS_SUGGEST_IGNORECODEPAGE "Il file sinistro (cp%d) e destro (cp%d) non hanno lo stesso codice di pagina.\nLa visualizzazione di ciascun file con il proprio codice di pagina fornirà una migliore visualizzazione ma l'unione/copia sarà pericolosa.\nNoi suggeriamo di lasciare da parte le informazioni sul codice di pagina. Sei d'accordo ?"
+    IDS_SUGGEST_IGNORECODEPAGE "Il file sinistro (cp%d) e destro (cp%d) non hanno lo stesso codice di pagina.\nLa visualizzazione di ciascun file con il proprio codice di pagina fornirà una migliore visualizzazione ma l'unione/copia sarà pericolosa.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
 END
 
 // EDITOR : SHOW LINE DIFF

@@ -2003,7 +2003,7 @@ BEGIN
                             menú Edita/Opcions...)."
     IDS_SUGGEST_PRESERVEEOL "Els salts de línia són de diferent mena (DOS/UNIX/MAC) al fitxer '%1'.\nAmb les opcions actual, s'unificaran al tipus principal.\nVoleu canviar les opcions i preservar les diferents menes de salt de línia?"
     IDS_PREDIFFER_ERROR     "Hi ha hagut un error prediferenciant el fitxer '%1' amb el connector '%2'. No es tornarà a aplicar la prediferenciació."
-    IDS_SUGGEST_IGNORECODEPAGE "Els fitxers de l'esquerra (cp%d) i de la dreta (cp%d) no tenen la mateixa pàgina de codis.\nEn mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\nVoleu ignorar la informació de pàgina de codis?"
+    IDS_SUGGEST_IGNORECODEPAGE "Els fitxers de l'esquerra (cp%d) i de la dreta (cp%d) no tenen la mateixa pàgina de codis.\nEn mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
 END
 
 // EDITOR : SHOW LINE DIFF

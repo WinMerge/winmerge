@@ -2100,7 +2100,7 @@ BEGIN
                             (dostêpne w Edycja/Opcje)."
     IDS_SUGGEST_PRESERVEEOL "W pliku '%1' znaki EOL maj¹ ró¿ne typy (DOS/UNIX/MAC).\n Przy bie¿¹cych ustawieniach zostan¹ zunifikowane do g³ównego typu.\n Czy zmieniæ opcje i zachowaæ ró¿ne znaki EOL?"
     IDS_PREDIFFER_ERROR      "B³¹d przy wstêpnym porównaniu pliku '%1' za pomoc¹ wtyczki '%2'. Wstêpne porównanie nie zostanie zastosowane."
-    IDS_SUGGEST_IGNORECODEPAGE "Ró¿ne strony kodowe w plikach po lewej (cp%d) i po prawej (cp%d). \nWyœwietlanie ka¿dego pliku w odpowiedniej stronie kodowej da lepsze wyniki, ale scalenie/skopiowanie bêdzie niebezpieczne.\nCzy wymusiæ domyœln¹ stronê kodow¹ dla obu plików (zalecane)?"
+    IDS_SUGGEST_IGNORECODEPAGE "Ró¿ne strony kodowe w plikach po lewej (cp%d) i po prawej (cp%d). \nWyœwietlanie ka¿dego pliku w odpowiedniej stronie kodowej da lepsze wyniki, ale scalenie/skopiowanie bêdzie niebezpieczne.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
 END
 
 // EDITOR : SHOW LINE DIFF

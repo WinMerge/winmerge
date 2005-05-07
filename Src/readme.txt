@@ -6,6 +6,9 @@
   Added ",.xml" to message (replaced all non-1252 messages)
   Src: Merge.rc
   Src/Languages/*: *.rc
+ BUG: [ 1166574 ] IDS_SUGGEST_IGNORECODEPAGE is misleading
+  Src: Merge.rc
+  Src/Languages/*: *.rc
 
 2005-05-06 Kimmo
  BUG: [ 1193260 ] Problems with the current German translation

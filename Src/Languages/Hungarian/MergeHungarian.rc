@@ -1986,7 +1986,7 @@ BEGIN
                             (a Szerkesztés/Opciók menüpont alatt találod meg)."
     IDS_SUGGEST_PRESERVEEOL "Az újsor-karakterek különbözõ formátumúak (DOS/UNIX/MAC) ebben a fájlban: '%1'.\n A jelenlegi beállításokkal a leginkább jellemzõ lesz az alapértelmezett.\n Szeretnéd, ha mégis figyelembe venné az eltérõ újsor-karaktereket?"
     IDS_PREDIFFER_ERROR      "Hiba történt ennek a fájlnak az elõvizsgálata közben: '%1' ebben a bõvítményben: '%2'. Az elõvizsgálat ezután nem fog mûködni."
-    IDS_SUGGEST_IGNORECODEPAGE "A bal (cp%d) és jobb (cp%d) oldali fájlok nem ugyanazt a kódolást használják. \nA különbözõ kódlapokkal történõ kijelzés könnyebben áttekinthetõ de az olvasztás/törlés kockázatos lehet.\nSzeretnéd mindkét fájlt az alapértelmezett kódlappal megjeleníteni (javasolt)?"
+    IDS_SUGGEST_IGNORECODEPAGE "A bal (cp%d) és jobb (cp%d) oldali fájlok nem ugyanazt a kódolást használják. \nA különbözõ kódlapokkal történõ kijelzés könnyebben áttekinthetõ de az olvasztás/törlés kockázatos lehet.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
 END
 
 // EDITOR : SHOW LINE DIFF

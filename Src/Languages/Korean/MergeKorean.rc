@@ -1984,8 +1984,7 @@ BEGIN
                             (available under Edit/Options)."
     IDS_SUGGEST_PRESERVEEOL "'%1'은 서로 다른 EOL(DOS/UNIX/MAC)로 작성되었습니다.\n 현재 옵션으로는 모든 EOL이 하나로 바뀌게 됩니다.\n 원본 EOL을 유지하기 원하십니까 ?"
     IDS_PREDIFFER_ERROR     "'%2' 플러그인으로 '%1'을 prediff하는 중 에러가 발생했습니다. 더 이상 prediff가 수행되지 않습니다."
-    IDS_SUGGEST_IGNORECODEPAGE 
-                            "두 파일은 같은 codepage 로 구성되지 않았습니다. \n각각의 codepage 를 유지하면서 비교하는건 보기는 좋지만 merge/복사가 안전하지 않습니다.\n두 파일을 기본 codepage로 변환하겠습니까(권장)?"
+    IDS_SUGGEST_IGNORECODEPAGE "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
 END
 
 // EDITOR : SHOW LINE DIFF
