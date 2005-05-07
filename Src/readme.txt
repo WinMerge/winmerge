@@ -1,3 +1,9 @@
+2005-05-07 Perry
+ BUG: [ 1197310 ] Turkish fails to compile, current CVS
+ aka
+ BUG: [ 1197310 ] Turkish trunk translation is from v2.2
+  Src/Languages/Turkish: MergeTurkish.rc
+
 2005-05-06 Kimmo
  BUG: [ 1193260 ] Problems with the current German translation
   Src: MainFrm.cpp

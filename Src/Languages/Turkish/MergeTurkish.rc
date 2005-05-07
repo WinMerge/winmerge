@@ -74,14 +74,15 @@ IDR_MERGETYPE           ICON    DISCARDABLE     "res\\MergeDoc.ico"
 // Menu
 //
 
-IDR_POPUP_MERGEVIEW MENU DISCARDABLE 
+IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
         MENUITEM "C&opy to Right",              ID_L2R
         MENUITEM "Cop&y to Left",               ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Diff",        ID_SHOWLINEDIFF
+        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
+        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Undo",                       ID_EDIT_UNDO
         MENUITEM "&Redo",                       ID_EDIT_REDO
@@ -94,61 +95,89 @@ BEGIN
     END
 END
 
-IDR_MAINFRAME MENU DISCARDABLE 
+IDR_MAINFRAME MENU 
 BEGIN
     POPUP "&Dosya"
     BEGIN
         MENUITEM "&Yeni\tCtrl+N",               ID_FILE_NEW
         MENUITEM "&Aç...\tCtrl+O",              ID_FILE_OPEN
-        MENUITEM SEPARATOR
-        MENUITEM "&Kaydet\tCtrl+S",             ID_FILE_SAVE
-        POPUP "S&olu Kaydet "
-        BEGIN
-            MENUITEM "&Kaydet",                     ID_FILE_SAVE_LEFT
-            MENUITEM "&Farklý Kaydet",              ID_FILE_SAVEAS_LEFT
-        END
-        POPUP "&Saðý Kaydet"
-        BEGIN
-            MENUITEM "&Kaydet",                     ID_FILE_SAVE_RIGHT
-            MENUITEM "&Farklý Kaydet",              ID_FILE_SAVEAS_RIGHT
-        END
-        MENUITEM SEPARATOR
-        MENUITEM "Salt Okunur S&ol",            ID_FILE_LEFT_READONLY
-        MENUITEM "Salt Okunu&r Sað",            ID_FILE_RIGHT_READONLY
-        MENUITEM SEPARATOR
-        POPUP "&Biçim Türü"
-        BEGIN
-            MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
-            MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
-            MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
-        END
-        MENUITEM SEPARATOR
-        MENUITEM "Birleþtirme &Durumu\tF9",     ID_FILE_MERGINGMODE
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Çýký&þ",                      ID_APP_EXIT
     END
     POPUP "&Düzen"
     BEGIN
-        MENUITEM "&Geri Al\tCtrl+Z",            ID_EDIT_UNDO
-        MENUITEM "&Geri Alý Geri Al\tCtrl+Y",   ID_EDIT_REDO
+        MENUITEM "&Seçenekler...",              ID_OPTIONS
+    END
+    POPUP "&Görünüm"
+    BEGIN
+        MENUITEM "Fo&nt Seç",                   ID_VIEW_SELECTFONT
+        MENUITEM "&Varsayýlan Fontu Kullan",    ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
+        MENUITEM "Araç Çubuðu",                 ID_VIEW_TOOLBAR
+        MENUITEM "Durum Çubuðu",                ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Dil",                        ID_VIEW_LANGUAGE
+    END
+    POPUP "&Araçlar"
+    BEGIN
+        MENUITEM "&Filtreler",                  ID_TOOLS_FILTERS
+        MENUITEM "&Yama Üret...",               ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Eklentiler"
+    BEGIN
+        MENUITEM "&Manuel Açmak",               ID_UNPACK_MANUAL
+        MENUITEM "&Otomatik Açmak",             ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Açýcýyla Düzenler",          ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Öncelikli Fark"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Eklentileri &Tekrar Yükle",   ID_RELOAD_PLUGINS
+    END
+    POPUP "Pencereler"
+    BEGIN
+        MENUITEM "&Kapat",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Pencere Deðitir\tF6",        ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Yatay Döþe",                 ID_WINDOW_TILE_HORZ
+        MENUITEM "&Dikey Döþe",                 ID_WINDOW_TILE_VERT
+        MENUITEM "&Sýrala",                     ID_WINDOW_CASCADE
+    END
+    POPUP "&Yardým"
+    BEGIN
+        MENUITEM "&Ýçerik...\tF1",              ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "&Ayarlamalar",                ID_HELP_GETCONFIG
+        MENUITEM "&Yedekleme Desteði Kapalý",   ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "&GNU Genel Lisansý.",         ID_HELP_GNULICENSE
+        MENUITEM "&WinMerge Hakkýnda...",       ID_APP_ABOUT
+    END
+END
+
+IDR_DIRVIEWMENU MENU 
+BEGIN
+    POPUP "&Dosya"
+    BEGIN
+        MENUITEM "&Yeni\tCtrl+N",               ID_FILE_NEW
+        MENUITEM "&Aç...\tCtrl+O",              ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "Salt Okunur S&ol",            ID_FILE_LEFT_READONLY
+        MENUITEM "Salt Okunu&r Sað",            ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "Çýký&þ",                      ID_APP_EXIT
+    END
+    POPUP "&Düzen"
+    BEGIN
         MENUITEM "&Kes\tCtrl+X",                ID_EDIT_CUT
         MENUITEM "Ko&pyala\tCtrl+C",            ID_EDIT_COPY
         MENUITEM "&Yapýþtýr\tCtrl+V",           ID_EDIT_PASTE
-        MENUITEM SEPARATOR
-        MENUITEM "&Tümünü Seç\tCtrl+A",         ID_EDIT_SELECT_ALL
-        MENUITEM SEPARATOR
-        MENUITEM "Satýr Farkýný &Ýþaretle\tF4", ID_SHOWLINEDIFF
-        MENUITEM SEPARATOR
-        MENUITEM "&Bul...\tCtrl+F",             ID_EDIT_FIND
-        MENUITEM "&Deðiþtir...\tCtrl+H",        ID_EDIT_REPLACE
-        MENUITEM SEPARATOR
-        POPUP "&Senaryolar(Scripts)"
-        BEGIN
-            MENUITEM "< Boþ >",                     ID_NO_EDIT_SCRIPTS
-        END
-        MENUITEM SEPARATOR
-        MENUITEM "&Git...\tCtrl+G",             ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Seçenekler...",              ID_OPTIONS
         MENUITEM SEPARATOR
@@ -166,12 +195,8 @@ BEGIN
         MENUITEM "Fo&nt Seç",                   ID_VIEW_SELECTFONT
         MENUITEM "&Varsayýlan Fontu Kullan",    ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "&Boþluklarý Göster",          ID_VIEW_WHITESPACE
-        MENUITEM SEPARATOR
         MENUITEM "Araç Çubuðu",                 ID_VIEW_TOOLBAR
         MENUITEM "Durum Çubuðu",                ID_VIEW_STATUS_BAR
-        MENUITEM "Fark Penceresi",              ID_VIEW_DETAIL_BAR
-        MENUITEM "Pozisyon Penceresi",          ID_VIEW_LOCATION_BAR
         MENUITEM "&Karþýlaþtýrma Sonuç Penceresi", ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "&Dil",                        ID_VIEW_LANGUAGE
@@ -188,14 +213,8 @@ BEGIN
         MENUITEM "S&aða Kopyala\tAlt+Right",    ID_L2R
         MENUITEM "So&la Kopyala\tAlt+Left",     ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Geliþmiþ Saða Kopyala\tAlt+Ctrl+Right", ID_L2RNEXT
-        MENUITEM "G&eliþmiþ Sola Kopyala\tAlt+Ctrl+Left", ID_R2LNEXT
-        MENUITEM SEPARATOR
         MENUITEM "&Tümünü Saða Kopyala",        ID_ALL_RIGHT
         MENUITEM "T&ümünü Sola Kopyala",        ID_ALL_LEFT
-        MENUITEM SEPARATOR
-        MENUITEM "Solda Se&çili Farklarý Saða Kopyala", ID_MULTIPLE_RIGHT
-        MENUITEM "Saðdaki Seçili &Farklarý Sola Kopyala", ID_MULTIPLE_LEFT
     END
     POPUP "&Araçlar"
     BEGIN
@@ -239,7 +258,150 @@ BEGIN
     END
 END
 
-IDR_POPUP_DIRVIEW MENU DISCARDABLE 
+IDR_MERGEVIEWMENU MENU 
+BEGIN
+    POPUP "&Dosya"
+    BEGIN
+        MENUITEM "&Yeni\tCtrl+N",               ID_FILE_NEW
+        MENUITEM "&Aç...\tCtrl+O",              ID_FILE_OPEN
+        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "&Kaydet\tCtrl+S",             ID_FILE_SAVE
+        POPUP "S&olu Kaydet "
+        BEGIN
+            MENUITEM "&Kaydet",                     ID_FILE_SAVE_LEFT
+            MENUITEM "&Farklý Kaydet",              ID_FILE_SAVEAS_LEFT
+        END
+        POPUP "&Saðý Kaydet"
+        BEGIN
+            MENUITEM "&Kaydet",                     ID_FILE_SAVE_RIGHT
+            MENUITEM "&Farklý Kaydet",              ID_FILE_SAVEAS_RIGHT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Salt Okunur S&ol",            ID_FILE_LEFT_READONLY
+        MENUITEM "Salt Okunu&r Sað",            ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        POPUP "&Biçim Türü"
+        BEGIN
+            MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
+            MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
+            MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Birleþtirme &Durumu\tF9",     ID_FILE_MERGINGMODE
+        MENUITEM SEPARATOR
+        MENUITEM "Çýký&þ",                      ID_APP_EXIT
+    END
+    POPUP "&Düzen"
+    BEGIN
+        MENUITEM "&Geri Al\tCtrl+Z",            ID_EDIT_UNDO
+        MENUITEM "&Geri Alý Geri Al\tCtrl+Y",   ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "&Kes\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "Ko&pyala\tCtrl+C",            ID_EDIT_COPY
+        MENUITEM "&Yapýþtýr\tCtrl+V",           ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "&Tümünü Seç\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
+        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Bul...\tCtrl+F",             ID_EDIT_FIND
+        MENUITEM "&Deðiþtir...\tCtrl+H",        ID_EDIT_REPLACE
+        MENUITEM SEPARATOR
+        POPUP "&Senaryolar(Scripts)"
+        BEGIN
+            MENUITEM "< Boþ >",                     ID_NO_EDIT_SCRIPTS
+        END
+        MENUITEM SEPARATOR
+        POPUP "Advanced"
+        BEGIN
+            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
+                                                    ID_EDIT_COPY_LINENUMBERS
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Git...\tCtrl+G",             ID_EDIT_WMGOTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Seçenekler...",              ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "Ta&zele\tF5",                 ID_REFRESH
+    END
+    POPUP "&Görünüm"
+    BEGIN
+        MENUITEM "Fo&nt Seç",                   ID_VIEW_SELECTFONT
+        MENUITEM "&Varsayýlan Fontu Kullan",    ID_VIEW_USEDEFAULTFONT
+        MENUITEM SEPARATOR
+        MENUITEM "&Boþluklarý Göster",          ID_VIEW_WHITESPACE
+        MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
+        MENUITEM SEPARATOR
+        MENUITEM "Araç Çubuðu",                 ID_VIEW_TOOLBAR
+        MENUITEM "Durum Çubuðu",                ID_VIEW_STATUS_BAR
+        MENUITEM "Fark Penceresi",              ID_VIEW_DETAIL_BAR
+        MENUITEM "Pozisyon Penceresi",          ID_VIEW_LOCATION_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Dil",                        ID_VIEW_LANGUAGE
+    END
+    POPUP "&Birleþtirme"
+    BEGIN
+        MENUITEM "&Sonraki Fark\tAlt+Down",     ID_NEXTDIFF
+        MENUITEM "&Önceki Fark\tAlt+Up",        ID_PREVDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "&Ýlk Fark\tAlt+Home",         ID_FIRSTDIFF
+        MENUITEM "&Þu Anki Fark\tAlt+Enter",    ID_CURDIFF
+        MENUITEM "S&on Fark\tAlt+End",          ID_LASTDIFF
+        MENUITEM SEPARATOR
+        MENUITEM "S&aða Kopyala\tAlt+Right",    ID_L2R
+        MENUITEM "So&la Kopyala\tAlt+Left",     ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "&Geliþmiþ Saða Kopyala\tAlt+Ctrl+Right", ID_L2RNEXT
+        MENUITEM "G&eliþmiþ Sola Kopyala\tAlt+Ctrl+Left", ID_R2LNEXT
+        MENUITEM SEPARATOR
+        MENUITEM "&Tümünü Saða Kopyala",        ID_ALL_RIGHT
+        MENUITEM "T&ümünü Sola Kopyala",        ID_ALL_LEFT
+        MENUITEM SEPARATOR
+    END
+    POPUP "&Araçlar"
+    BEGIN
+        MENUITEM "&Filtreler",                  ID_TOOLS_FILTERS
+        MENUITEM "&Yama Üret...",               ID_TOOLS_GENERATEPATCH
+    END
+    POPUP "&Eklentiler"
+    BEGIN
+        MENUITEM "&Manuel Açmak",               ID_UNPACK_MANUAL
+        MENUITEM "&Otomatik Açmak",             ID_UNPACK_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Açýcýyla Düzenler",          ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM SEPARATOR
+        POPUP "&Öncelikli Fark"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Eklentileri &Tekrar Yükle",   ID_RELOAD_PLUGINS
+    END
+    POPUP "Pencereler"
+    BEGIN
+        MENUITEM "&Kapat",                      ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Pencere Deðitir\tF6",        ID_WINDOW_CHANGE_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Yatay Döþe",                 ID_WINDOW_TILE_HORZ
+        MENUITEM "&Dikey Döþe",                 ID_WINDOW_TILE_VERT
+        MENUITEM "&Sýrala",                     ID_WINDOW_CASCADE
+    END
+    POPUP "&Yardým"
+    BEGIN
+        MENUITEM "&Ýçerik...\tF1",              ID_HELP_CONTENTS
+        MENUITEM SEPARATOR
+        MENUITEM "&Ayarlamalar",                ID_HELP_GETCONFIG
+        MENUITEM "&Yedekleme Desteði Kapalý",   ID_HELP_MERGE7ZMISMATCH
+        MENUITEM SEPARATOR
+        MENUITEM "&GNU Genel Lisansý.",         ID_HELP_GNULICENSE
+        MENUITEM "&WinMerge Hakkýnda...",       ID_APP_ABOUT
+    END
+END
+
+IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
@@ -309,7 +471,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_EDITOR_HEADERBAR MENU DISCARDABLE 
+IDR_POPUP_EDITOR_HEADERBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -318,7 +480,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_PLUGINS_SETTINGS MENU DISCARDABLE 
+IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
     POPUP "Prediffer Settings"
     BEGIN
@@ -327,7 +489,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_LOCATIONBAR MENU DISCARDABLE 
+IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -371,7 +533,8 @@ BEGIN
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINEDIFF,        VIRTKEY, NOINVERT
+    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
+    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1066,7 +1229,7 @@ END
 // Toolbar
 //
 
-IDR_MAINFRAME TOOLBAR MOVEABLE PURE  16, 15
+IDR_MAINFRAME TOOLBAR MOVEABLE  16, 15
 BEGIN
     BUTTON      ID_FILE_NEW
     BUTTON      ID_FILE_OPEN
@@ -1075,7 +1238,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEDIFF
+    BUTTON      ID_SHOWLINEWORDDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -1104,62 +1267,41 @@ END
 // Bitmap
 //
 
-IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
-IDB_SPLASH              BITMAP  MOVEABLE PURE   "res\\splash1.bmp"
-IDB_LFOLDER             BITMAP  MOVEABLE PURE   "res\\lfolder.bmp"
-IDB_EQUAL               BITMAP  MOVEABLE PURE   "res\\equal.bmp"
-IDB_NOTEQUAL            BITMAP  MOVEABLE PURE   "res\\notequal.bmp"
-IDB_RFOLDER             BITMAP  MOVEABLE PURE   "res\\rfolder.bmp"
-IDB_UNKNOWN             BITMAP  MOVEABLE PURE   "res\\unknown.bmp"
-IDB_BINARYSAME          BITMAP  MOVEABLE PURE   "res\\binary.bmp"
-IDB_LFILE               BITMAP  MOVEABLE PURE   "res\\lfile.bmp"
-IDB_RFILE               BITMAP  MOVEABLE PURE   "res\\rfile.bmp"
-IDB_BINARYDIFF          BITMAP  MOVEABLE PURE   "res\\binarydiff.bmp"
-IDB_FOLDERSKIP          BITMAP  MOVEABLE PURE   "res\\folderskip.bmp"
-IDB_FILESKIP            BITMAP  MOVEABLE PURE   "res\\fileskip.bmp"
-IDB_FOLDER              BITMAP  MOVEABLE PURE   "res\\folder.bmp"
-IDB_EDIT_COPY           BITMAP  MOVEABLE PURE   "res\\copy.bmp"
-IDB_EDIT_CUT            BITMAP  MOVEABLE PURE   "res\\cut.bmp"
-IDB_EDIT_PASTE          BITMAP  MOVEABLE PURE   "res\\paste.bmp"
-IDB_EDIT_SEARCH         BITMAP  MOVEABLE PURE   "res\\search.bmp"
-IDB_WINDOW_CASCADE      BITMAP  MOVEABLE PURE   "res\\cascade.bmp"
-IDB_WINDOW_HORIZONTAL   BITMAP  MOVEABLE PURE   "res\\horizontally.bmp"
-IDB_WINDOW_VERTICAL     BITMAP  MOVEABLE PURE   "res\\vertically.bmp"
-IDB_WINDOW_CLOSE        BITMAP  MOVEABLE PURE   "res\\close.bmp"
-IDB_WINDOW_CHANGEPANE   BITMAP  MOVEABLE PURE   "res\\change_pane.bmp"
-IDB_EDIT_GOTO           BITMAP  MOVEABLE PURE   "res\\go_to.bmp"
-IDB_EDIT_REPLACE        BITMAP  MOVEABLE PURE   "res\\replace.bmp"
-IDB_VIEW_LANGUAGE       BITMAP  MOVEABLE PURE   "res\\language.bmp"
-IDB_VIEW_SELECTFONT     BITMAP  MOVEABLE PURE   "res\\select_font.bmp"
-IDB_FILE_EXIT           BITMAP  MOVEABLE PURE   "res\\exit.bmp"
-IDB_HELP_CONTENTS       BITMAP  MOVEABLE PURE   "res\\help_contents.bmp"
-IDB_ERROR               BITMAP  MOVEABLE PURE   "res\\error.bmp"
-IDB_FOLDERUP            BITMAP  MOVEABLE PURE   "res\\folderup.bmp"
-IDB_FOLDERUP_DISABLE    BITMAP  MOVEABLE PURE   "res\\folderup_disable.bmp"
-IDB_EDIT_SELECTALL      BITMAP  MOVEABLE PURE   "res\\select_all.bmp"
-IDB_TOOLS_FILTERS       BITMAP  MOVEABLE PURE   "res\\filters.bmp"
-IDB_TOOLS_COLUMNS       BITMAP  MOVEABLE PURE   "res\\customize_columns.bmp"
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Dialog Info
-//
-
-IDD_PROP_VSS DLGINIT
-BEGIN
-    IDC_VER_SYS, 0x403, 5, 0
-0x6f4e, 0x656e, "\000" 
-    IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x6c28, 0x7365, 0x2073, 0x6874, 0x6e61, 0x3520, 0x302e, 0x0029, 
-    IDC_VER_SYS, 0x403, 34, 0
-0x6956, 0x7573, 0x6c61, 0x5320, 0x756f, 0x6372, 0x5365, 0x6661, 0x2065, 
-0x3528, 0x302e, 0x6120, 0x646e, 0x6120, 0x6f62, 0x6576, 0x0029, 
-    IDC_VER_SYS, 0x403, 19, 0
-0x6152, 0x6974, 0x6e6f, 0x6c61, 0x4320, 0x656c, 0x7261, 0x6143, 0x6573, 
-"\000" 
-    0
-END
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+IDB_SPLASH              BITMAP                  "res\\splash1.bmp"
+IDB_LFOLDER             BITMAP                  "res\\lfolder.bmp"
+IDB_EQUAL               BITMAP                  "res\\equal.bmp"
+IDB_NOTEQUAL            BITMAP                  "res\\notequal.bmp"
+IDB_RFOLDER             BITMAP                  "res\\rfolder.bmp"
+IDB_UNKNOWN             BITMAP                  "res\\unknown.bmp"
+IDB_BINARYSAME          BITMAP                  "res\\binary.bmp"
+IDB_LFILE               BITMAP                  "res\\lfile.bmp"
+IDB_RFILE               BITMAP                  "res\\rfile.bmp"
+IDB_BINARYDIFF          BITMAP                  "res\\binarydiff.bmp"
+IDB_FOLDERSKIP          BITMAP                  "res\\folderskip.bmp"
+IDB_FILESKIP            BITMAP                  "res\\fileskip.bmp"
+IDB_FOLDER              BITMAP                  "res\\folder.bmp"
+IDB_EDIT_COPY           BITMAP                  "res\\copy.bmp"
+IDB_EDIT_CUT            BITMAP                  "res\\cut.bmp"
+IDB_EDIT_PASTE          BITMAP                  "res\\paste.bmp"
+IDB_EDIT_SEARCH         BITMAP                  "res\\search.bmp"
+IDB_WINDOW_CASCADE      BITMAP                  "res\\cascade.bmp"
+IDB_WINDOW_HORIZONTAL   BITMAP                  "res\\horizontally.bmp"
+IDB_WINDOW_VERTICAL     BITMAP                  "res\\vertically.bmp"
+IDB_WINDOW_CLOSE        BITMAP                  "res\\close.bmp"
+IDB_WINDOW_CHANGEPANE   BITMAP                  "res\\change_pane.bmp"
+IDB_EDIT_GOTO           BITMAP                  "res\\go_to.bmp"
+IDB_EDIT_REPLACE        BITMAP                  "res\\replace.bmp"
+IDB_VIEW_LANGUAGE       BITMAP                  "res\\language.bmp"
+IDB_VIEW_SELECTFONT     BITMAP                  "res\\select_font.bmp"
+IDB_FILE_EXIT           BITMAP                  "res\\exit.bmp"
+IDB_HELP_CONTENTS       BITMAP                  "res\\help_contents.bmp"
+IDB_ERROR               BITMAP                  "res\\error.bmp"
+IDB_FOLDERUP            BITMAP                  "res\\folderup.bmp"
+IDB_FOLDERUP_DISABLE    BITMAP                  "res\\folderup_disable.bmp"
+IDB_EDIT_SELECTALL      BITMAP                  "res\\select_all.bmp"
+IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
+IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1167,20 +1309,20 @@ END
 // Cursor
 //
 
-IDR_MARGIN_CURSOR       CURSOR  DISCARDABLE     "res\\mg_cur.cur"
+IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
     AFX_IDS_IDLEMESSAGE     "Ready"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -1190,7 +1332,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
     ID_FILE_OPEN            "Open an existing document\nOpen (Ctrl+O)"
@@ -1203,7 +1345,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
     ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
@@ -1277,42 +1419,48 @@ BEGIN
     AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCRESTORE       "Restore the window to normal size"
     AFX_IDS_SCTASKLIST      "Activate Task List"
     AFX_IDS_MDICHILD        "Activate this window"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
 END
 
-STRINGTABLE DISCARDABLE 
+// WINMERGE INFORMATION
+STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
     IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
 END
 
-STRINGTABLE DISCARDABLE 
+// CUSTOM CONTROLS
+// OPTIONS NAME TO PRESERVE/UNIFY EOL
+STRINGTABLE
 BEGIN
     IDC_MIXED_EOL           "Preserve original EOL chars"
 END
 
-STRINGTABLE DISCARDABLE 
+// DIRECTORY DIFFING : SUMMARY BAR
+STRINGTABLE
 BEGIN
     IDC_COMPARISON_STOP     "Stop"
     IDC_COMPARISON_CLOSE    "Press any key"
 END
 
-STRINGTABLE DISCARDABLE 
+// EDITOR : FILENAME BAR
+STRINGTABLE
 BEGIN
     IDC_STATIC_TITLE_LEFT   "Right click on the path to copy"
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
-STRINGTABLE DISCARDABLE 
+// "DO NOT SHOW AGAIN" MESSAGEBOXES
+STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
     IDS_MESSAGEBOX_CANCEL   "&Cancel"
@@ -1323,7 +1471,8 @@ BEGIN
     IDS_MESSAGEBOX_YES      "&Yes"
 END
 
-STRINGTABLE DISCARDABLE 
+// "DO NOT SHOW AGAIN" MESSAGEBOXES (2)
+STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_YES_TO_ALL "Yes to &all"
     IDS_MESSAGEBOX_NO       "&No"
@@ -1336,14 +1485,30 @@ BEGIN
     IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
 END
 
-STRINGTABLE DISCARDABLE 
+// WINMERGE CUSTOM STRINGS
+// WINMERGE INFORMATION
+STRINGTABLE
 BEGIN
-    IDS_WINMERGE_THIS_DIRECTORY "WinMerge this directory"
     IDS_VERSION_FMT         "Version %1"
-    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere: \n/? or -? displays this help \n/r or -r tells winmerge to compare directories recursively \n/e or -e allows WinMerge to be closed with a single esc keypress \n/f or -f sets filemask or filtername for compare \n/ul or -ul tells winmerge to not add left path to MRU \n/ur or -ur tells winmerge to not add right path to MRU \n/ub or -ub tells winmerge to not add both paths to MRU \n/wl or -wl initially opens left side as read-only \n/wr or -wr initially opens right side as read-only \n/dl or -dl adds a description for left side shown instead of directory/filename \n/dr or -dr adds a description for right side shown instead of directory/filename \nleftpath is the directory or filename to open on the left side \nrightpath is the directory or filename to open on the right side \noutputpath is an optional output directory where you want merged files to be saved"
+    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
+      /? or -? displays this help
+      /r or -r tells winmerge to compare directories recursively
+      /e or -e allows WinMerge to be closed with a single esc keypress
+      /f or -f sets filemask or filtername for compare
+      /ul or -ul tells winmerge to not add left path to MRU
+      /ur or -ur tells winmerge to not add right path to MRU
+      /ub or -ub tells winmerge to not add both paths to MRU
+      /wl or -wl initially opens left side as read-only
+      /wr or -wr initially opens right side as read-only
+      /dl or -dl adds a description for left side shown instead of directory/filename
+      /dr or -dr adds a description for right side shown instead of directory/filename
+      leftpath is the directory or filename to open on the left side
+      rightpath is the directory or filename to open on the right side
+      outputpath is an optional output directory where you want merged files to be saved"
 END
 
-STRINGTABLE DISCARDABLE 
+// VARIOUS OPTIONS
+STRINGTABLE
 BEGIN
     IDS_OPTIONS_TITLE       "Options"
     IDS_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
@@ -1352,34 +1517,43 @@ BEGIN
     IDS_FONT_CHANGE         "The selected font change will not be applied to any currently visible difference windows."
 END
 
-STRINGTABLE DISCARDABLE 
+// BROWSE FILE
+STRINGTABLE
 BEGIN
     IDS_OPEN_TITLE          "Open"
     IDS_PROGRAMFILES        "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
     IDS_ALLFILES            "All Files (*.*)|*.*||"
 END
 
-STRINGTABLE DISCARDABLE 
+// COMPARE OPTIONS
+STRINGTABLE
 BEGIN
-    IDS_COMPMETHOD_CONTENTS "Contents"
-    IDS_COMPMETHOD_MODDATE  "Modified date"
+    IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
+    IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
+    IDS_COMPMETHOD_MODDATE  "Modified Date"
 END
 
-STRINGTABLE DISCARDABLE 
+// FILTER OPTIONS
+STRINGTABLE
 BEGIN
     IDS_FILTERFILE_NAMETITLE "Name"
     IDS_FILTERFILE_PATHTITLE "Location"
     IDS_FILTER_TITLE        "Filters"
     IDS_FILTER_PREFIX       "[F] "
+    IDS_FILTERFILE_DESCTITLE "Description"
+    IDS_FILEFILTER_SAVENEW  "Select filename for new filter"
+    IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 END
 
-STRINGTABLE DISCARDABLE 
+// VERSION CONTROL OPTIONS
+STRINGTABLE
 BEGIN
     IDS_CC_CMD              "&Path to cleartool.exe :"
     IDS_VSS_CMD             "&Path to SS.EXE :"
 END
 
-STRINGTABLE DISCARDABLE 
+// WINDOWS TITLES
+STRINGTABLE
 BEGIN
     IDS_DIRECTORY_WINDOW_TITLE "Directory Comparison Results"
     IDS_FILE_COMPARISON_TITLE "File Comparison"
@@ -1387,7 +1561,8 @@ BEGIN
     IDS_EMPTY_RIGHT_FILE    "Untitled right"
 END
 
-STRINGTABLE DISCARDABLE 
+// STATUS BAR : CURRENT OPERATION STATUS
+STRINGTABLE
 BEGIN
     IDS_STATUS_RESCANNING   "Scanning files..."
     IDS_STATUS_OPENING_SELECTION "Opening selection"
@@ -1400,7 +1575,8 @@ BEGIN
     IDS_STATUS_MOVEFILES    "Moving files..."
 END
 
-STRINGTABLE DISCARDABLE 
+// STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
+STRINGTABLE
 BEGIN
     IDS_LINE_STATUS_INFO_EOL "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
@@ -1412,7 +1588,8 @@ BEGIN
     IDS_STATUSBAR_READONLY  "RO"
 END
 
-STRINGTABLE DISCARDABLE 
+// OPEN DIALOG
+STRINGTABLE
 BEGIN
     IDS_ERROR_INCOMPARABLE  "Select two existing directories or files to compare"
     IDS_DIRSEL_TAG          "Directory Selection"
@@ -1424,14 +1601,15 @@ BEGIN
     IDS_OPEN_MISMATCH       "Cannot compare file and directory!"
 END
 
-STRINGTABLE DISCARDABLE 
+// LOADING FILE
+STRINGTABLE
 BEGIN
     IDS_ERROR_FILE_NOT_FOUND "File not found: %1"
     IDS_ERROR_FILE_NOT_UNPACKED "File not unpacked: %1"
-    IDS_BINFILES_IDENTICAL  "%1\n%2\n\nare identical binary files."
-    IDS_BINFILES_DIFFERENT  "%1\n%2\n\nare different binary files."
-    IDS_OTHER_IS_BINARY     "%1\n\nis binary file. Cannot compare binary and text files."
-    IDS_ERROR_FILEOPEN      "Cannot open file\n%1\n\n%2"
+    IDS_BINFILES_IDENTICAL   "%1\n%2\n\nare identical binary files."
+    IDS_BINFILES_DIFFERENT   "%1\n%2\n\nare different binary files."
+    IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
+    IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -1890,15 +2068,19 @@ BEGIN
     ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
 END
 
-STRINGTABLE DISCARDABLE 
+// EDIT MENU
+STRINGTABLE
 BEGIN
-    ID_SHOWLINEDIFF         "Highlight difference in current line\nDiff in Current Line (F4)"
+    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
+    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
     ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
     ID_OPTIONS              "Set program options\nOptions"
     ID_REFRESH              "Refresh display\nRefresh (F5)"
+    ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
 END
 
-STRINGTABLE DISCARDABLE 
+// VIEW MENU (FILE TYPE)
+STRINGTABLE
 BEGIN
     ID_OPTIONS_SHOWIDENTICAL "Displays files that are exactly the same"
     ID_OPTIONS_SHOWDIFFERENT "Displays files that have differences"
@@ -1909,7 +2091,8 @@ BEGIN
     ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
 END
 
-STRINGTABLE DISCARDABLE 
+// VIEW MENU
+STRINGTABLE
 BEGIN
     ID_VIEW_SELECTFONT      "Select the font for the diff views\nSelect Diff Font"
     ID_VIEW_USEDEFAULTFONT  "Revert to using the default system font for diff views\nDefault Font"
@@ -1920,7 +2103,8 @@ BEGIN
     ID_VIEW_LANGUAGE        "Select the current user interfacce language\nLanguage"
 END
 
-STRINGTABLE DISCARDABLE 
+// MERGE MENU
+STRINGTABLE
 BEGIN
     ID_PREVDIFF             "Scroll to the previous difference\nPrev Diff (Alt+Up)"
     ID_NEXTDIFF             "Scroll to the next difference\nNext Diff (Alt+Down)"
@@ -1933,18 +2117,18 @@ BEGIN
     ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Copy all differences to the right file\nAll Right"
     ID_ALL_LEFT             "Copy all differences to the left file\nAll Left"
-    ID_MULTIPLE_RIGHT       "Copy differences from the selected text in left panel to the right file"
-    ID_MULTIPLE_LEFT        "Copy differences from the selected text in right panel to the left file"
 END
 
-STRINGTABLE DISCARDABLE 
+// TOOLS MENU
+STRINGTABLE
 BEGIN
     ID_TOOLS_CUSTOMIZECOLUMNS "Select and reorder directory compare columns"
     ID_TOOLS_GENERATEPATCH  "Generate a patch-file"
     ID_TOOLS_FILTERS        "Select and modify filters"
 END
 
-STRINGTABLE DISCARDABLE 
+// PLUGINS MENU
+STRINGTABLE
 BEGIN
     ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
     ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
