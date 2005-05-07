@@ -1165,7 +1165,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Página de códigos"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Detectar página de códigos para estos ficheros : .html, .rc \nEs necesario reiniciar.",
+    CONTROL         "&Detectar página de códigos para estos ficheros : .html, .rc, .xml \nEs necesario reiniciar.",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
     CONTROL         "Página de códigos del &sistema",IDC_CP_SYSTEM,"Button",

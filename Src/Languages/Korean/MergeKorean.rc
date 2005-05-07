@@ -1162,7 +1162,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "다음 파일에서 codepage를 자동 디텍트 : .html, .rc \n(비교를 다시 시작해야합니다)",
+    CONTROL         "Detect codepage info for these files : .html, .rc, .xml \nneed to restart session",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP | 
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
     CONTROL         "시스템 codepage",IDC_CP_SYSTEM,"Button",

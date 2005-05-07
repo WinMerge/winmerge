@@ -1165,7 +1165,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Pàgina de codis"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Detecta la informació de pàgina de codis per a fitxers:\n.html i .rc\nCal reiniciar la sessió",
+    CONTROL         "Detect codepage info for these files : .html, .rc, .xml \nneed to restart session",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,74,220,29
     CONTROL         "Pàgina de codis del sistema",IDC_CP_SYSTEM,"Button",

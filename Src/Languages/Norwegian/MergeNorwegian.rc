@@ -1162,7 +1162,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Tegntabell"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Detekter tegntabellinformasjon for disse filene : .html, .rc \nMå starte programmet på nytt.",
+    CONTROL         "Detekter tegntabellinformasjon for disse filene : .html, .rc, .xml \nMå starte programmet på nytt.",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
     CONTROL         "System tegntabell",IDC_CP_SYSTEM,"Button",

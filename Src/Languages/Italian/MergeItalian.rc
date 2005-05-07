@@ -1167,7 +1167,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Codice di pagina"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Rileva le informazione sul codice di pagina per i file .html, .rc \nnecessario riavvio della sessione",
+    CONTROL         "Rileva le informazione sul codice di pagina per i file .html, .rc, .xml \nnecessario riavvio della sessione",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
     CONTROL         "Codice di pagina del sistema",IDC_CP_SYSTEM,"Button",

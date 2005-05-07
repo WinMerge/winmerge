@@ -1153,7 +1153,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Detect codepage info for these files : .html, .rc \nneed to restart session",
+    CONTROL         "Detect codepage info for these files : .html, .rc, .xml \nneed to restart session",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
     CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",

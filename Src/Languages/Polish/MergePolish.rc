@@ -1165,7 +1165,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Strona kodowa"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Wykryj stronê kodow¹ dla tych plików: .html, .rc \ntrzeba ponownie uruchomiæ program",
+    CONTROL         "Detect codepage info for these files : .html, .rc, .xml \nneed to restart session",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
     CONTROL         "Strona kodowa systemu",IDC_CP_SYSTEM,"Button",
