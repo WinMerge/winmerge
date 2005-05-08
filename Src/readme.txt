@@ -1,3 +1,8 @@
+2005-05-08 Perry
+ BUG: [ 1193163 ] "Gerenate Patch" deletes the original files if UTF-8/16
+  Added argument (areTempFiles) to method SetCompareFiles, and used in RunFileDiff.
+  Src: DiffWrapper.cpp DiffWrapper.h MergeDoc.cpp PatchDlg.cpp PatchTool.cpp
+
 2005-05-07 Perry
  BUG: [ 1197310 ] Turkish fails to compile, current CVS
  BUG: [ 1197310 ] Turkish trunk translation is from v2.2
@@ -12,12 +17,12 @@
  BUG: [ 1193562 ] v2.2 charset in MergeGerman wrong
   Src: Merge.rc
   Src/Languages/*: *.rc
+ BUG: [ 1197397 ] Turkish missing from BuildAll.bat
+  Src/Languages/BuildAll.bat
  BUG: [ 1197310 ] Turkish trunk translation is from v2.2
   Copy all dialogs & string tables from English
   Also remove some obsolete keywords (PURE, DISCARDABLE, etc)
   Src/Languages/Turkish: MergeTurkish.rc resource.h
- BUG: [ 1197397 ] Turkish missing from BuildAll.bat
-  Src/Languages/BuildAll.bat
 
 2005-05-06 Kimmo
  BUG: [ 1193260 ] Problems with the current German translation

@@ -80,6 +80,10 @@ enum
 	DIFF_OUTPUT_SDIFF
 };
 
+typedef enum {
+	YESTEMPFILES // arguments are temp files
+	, NOTEMPFILES // arguments not temp files
+} ARETEMPFILES;
 /**
  * @brief Diffutils options users of this class must use
  */
@@ -141,7 +145,7 @@ class CDiffWrapper
 public:
 	CDiffWrapper();
 	~CDiffWrapper();
-	void SetCompareFiles(CString file1, CString file2);
+	void SetCompareFiles(CString file1, CString file2, ARETEMPFILES areTempFiles);
 	void SetPatchFile(CString file);
 	void SetDiffList(DiffList *diffList);
 	void GetOptions(DIFFOPTIONS *options);
@@ -186,6 +190,7 @@ private:
 	DIFFSTATUS m_status;
 	CString m_sFile1;
 	CString m_sFile2;
+	ARETEMPFILES m_areTempFiles;
 	CString m_sPatchFile;
 	/// prediffer info are stored only for MergeDoc
 	PrediffingInfo * m_infoPrediffer;

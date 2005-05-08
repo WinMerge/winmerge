@@ -82,12 +82,13 @@ CDiffWrapper::~CDiffWrapper()
 /**
  * @brief Sets files to compare
  */
-void CDiffWrapper::SetCompareFiles(CString file1, CString file2)
+void CDiffWrapper::SetCompareFiles(CString file1, CString file2, ARETEMPFILES areTempFiles)
 {
 	m_sFile1 = file1;
 	m_sFile2 = file2;
 	m_sFile1.Replace('/', '\\');
 	m_sFile2.Replace('/', '\\');
+	m_areTempFiles = areTempFiles;
 }
 
 /**
@@ -227,6 +228,9 @@ BOOL CDiffWrapper::RunFileDiff()
 	struct change *e, *p;
 	struct change *script = NULL;
 
+	// Are our working files overwritable (temp)?
+	BOOL bMayOverwrite = (m_areTempFiles == YESTEMPFILES);
+
 	// Do the preprocessing now, overwrite the temp files
 	// NOTE: FileTransform_UCS2ToUTF8() may create new temp
 	// files and return new names, those created temp files
@@ -235,12 +239,12 @@ BOOL CDiffWrapper::RunFileDiff()
 	{
 		// this can only fail if the data can not be saved back (no more place on disk ???)
 		// what to do then ??
-		FileTransform_Prediffing(strFile1Temp, m_sToFindPrediffer, m_infoPrediffer, TRUE);
+		FileTransform_Prediffing(strFile1Temp, m_sToFindPrediffer, m_infoPrediffer, bMayOverwrite);
 	}
 	else
 	{
 		// this can failed if the prediffer has a problem
-		if (FileTransform_Prediffing(strFile1Temp, *m_infoPrediffer, TRUE) == FALSE)
+		if (FileTransform_Prediffing(strFile1Temp, *m_infoPrediffer, bMayOverwrite) == FALSE)
 		{
 			// display a message box
 			CString sError;
@@ -252,10 +256,10 @@ BOOL CDiffWrapper::RunFileDiff()
 		}
 	}
 
-	FileTransform_UCS2ToUTF8(strFile1Temp, TRUE);
+	FileTransform_UCS2ToUTF8(strFile1Temp, bMayOverwrite);
 	// we use the same plugin for both files, so it must be defined before second file
 	ASSERT(m_infoPrediffer->bToBeScanned == FALSE);
-	if (FileTransform_Prediffing(strFile2Temp, *m_infoPrediffer, TRUE) == FALSE)
+	if (FileTransform_Prediffing(strFile2Temp, *m_infoPrediffer, bMayOverwrite) == FALSE)
 	{
 		// display a message box
 		CString sError;
@@ -265,7 +269,7 @@ BOOL CDiffWrapper::RunFileDiff()
 		m_infoPrediffer->bToBeScanned = FALSE;
 		m_infoPrediffer->pluginName = _T("");
 	}
-	FileTransform_UCS2ToUTF8(strFile2Temp, TRUE);
+	FileTransform_UCS2ToUTF8(strFile2Temp, bMayOverwrite);
 
 	DiffFileData diffdata;
 
@@ -1428,7 +1432,8 @@ bool DiffFileData::FilepathWithEncoding::Transform(const CString & filepath, CSt
 	if (unicoding)
 	{
 		// fourth step : prepare for diffing
-		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
+		// may overwrite if we've already copied to temp file
+		BOOL bMayOverwrite = (0 != filepathTransformed.CompareNoCase(filepath));
 		if (!FileTransform_UCS2ToUTF8(filepathTransformed, bMayOverwrite))
 			return false;
 	}

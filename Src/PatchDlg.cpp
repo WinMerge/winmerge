@@ -330,6 +330,7 @@ void CPatchDlg::OnDiffBrowseResult()
 	CString title;
 
 	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
+	folder = m_fileResult;
 	if (SelectFile(s, folder, title, NULL, FALSE))
 	{
 		SplitFilename(s, &folder, &name, NULL);
