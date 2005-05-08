@@ -1,3 +1,8 @@
+2005-05-08 Kimmo
+ PATCH: [ 1196889 ] Move options initializations to own file
+  Src: MainFrm.cpp Merge.dsp
+  Src new file: OptionsInit.cpp
+
 2005-05-08 Perry
  BUG: [ 1193163 ] "Gerenate Patch" deletes the original files if UTF-8/16
   Added argument (areTempFiles) to method SetCompareFiles, and used in RunFileDiff.

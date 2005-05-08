@@ -553,6 +553,10 @@ SOURCE=.\OpenDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\OptionsInit.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\common\OptionsMgr.cpp
 # End Source File
 # Begin Source File
