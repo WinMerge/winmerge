@@ -1,3 +1,5 @@
+2005-05-09 WinMerge experimental release 2.3.3.3 (cvs)
+
 2005-05-09 Kimmo
  BUG: [ 1198235 ] Debug warnings under Unicode Debug
   Fix memory leak from PropSyntaxColors.cpp
