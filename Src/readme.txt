@@ -10,6 +10,7 @@
 2005-05-08 Perry
  BUG: [ 1193163 ] "Gerenate Patch" deletes the original files if UTF-8/16
   Added argument (areTempFiles) to method SetCompareFiles, and used in RunFileDiff.
+ (also BUG [ 1197527 ] Patch Generator browse button not defaulting correctly)
   Src: DiffWrapper.cpp DiffWrapper.h MergeDoc.cpp PatchDlg.cpp PatchTool.cpp
 
 2005-05-07 Perry
