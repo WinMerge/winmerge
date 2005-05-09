@@ -1338,7 +1338,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge\0"
             VALUE "FileVersion", "999.999.999.999\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""

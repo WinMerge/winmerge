@@ -3,6 +3,10 @@
   Src: MainFrm.cpp PatchDlg.cpp StdAfx.cpp StdAfx.h
  BUG: [ 1197972 ] current cvs doesn't compile
   Src: MainFrm.h
+ BUG [ 1193561 ] v2.2, version copyrights not all up-to-date
+  Adjusted all to say 1996-2005 just as English
+  Src/Languages: Merge*.rc
+
 
 2005-05-08 Kimmo
  PATCH: [ 1196889 ] Move options initializations to own file

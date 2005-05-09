@@ -1335,7 +1335,7 @@ BEGIN
             VALUE "FileDescription", "Slovak for WinMerge Application \0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "MergeSlovak\0"
-            VALUE "LegalCopyright", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "MergeSlovak.rc\0"
             VALUE "PrivateBuild", ""
