@@ -1,3 +1,7 @@
+2005-05-09 Perry
+ PATCH: [ 1197727 ] New method ResMsgBox1 to simplify cookie-cutter code
+ Src: MainFrm.cpp PatchDlg.cpp StdAfx.cpp StdAfx.h
+
 2005-05-08 Kimmo
  PATCH: [ 1196889 ] Move options initializations to own file
   Src: MainFrm.cpp Merge.dsp

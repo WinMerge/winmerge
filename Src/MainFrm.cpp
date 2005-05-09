@@ -2382,9 +2382,7 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 	{
 		// Don't know how to invoke external editor (it doesn't end with
 		// an obvious executable extension)
-		CString msg;
-		AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, sExtEditor);
-		AfxMessageBox(msg, MB_ICONSTOP);
+		ResMsgBox1(IDS_CANNOT_EXECUTE_FILE, sExtEditor, MB_ICONSTOP);
 	}
 	return TRUE;
 }

@@ -55,6 +55,9 @@ int xisspace (int c);
 	/** @brief Load string from string resources; shortcut for CString::LoadString */
 CString LoadResString(int id);
 
+	/** @brief Format single-argument resource string and display via AfxMessageBox */
+int ResMsgBox1(int msgid, LPCTSTR arg, UINT nType = MB_OK, UINT nIDHelp = 0);
+
 	/** @brief Retrieve error description from Windows; uses FormatMessage */
 CString GetSysError(int nerr);
 

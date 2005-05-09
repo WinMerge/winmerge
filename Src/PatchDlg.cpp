@@ -140,9 +140,7 @@ void CPatchDlg::OnOK()
 		pathAbsolute = paths_IsPathAbsolute(m_fileResult);
 		if (pathAbsolute == FALSE)
 		{
-			CString msg;
-			AfxFormatString1(msg, IDS_PATH_NOT_ABSOLUTE, m_fileResult);
-			AfxMessageBox(msg, MB_ICONSTOP);
+			ResMsgBox1(IDS_PATH_NOT_ABSOLUTE, m_fileResult, MB_ICONSTOP);
 		}
 	}
 	

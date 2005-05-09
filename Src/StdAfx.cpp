@@ -88,6 +88,16 @@ CString LoadResString(int id)
 	return s;
 }
 
+// Combines AfxFormatString1 with AfxMessageBox
+int
+ResMsgBox1(int msgid, LPCTSTR arg, UINT nType, UINT nIDHelp)
+{
+	CString msg;
+	AfxFormatString1(msg, msgid, arg);
+	if (!nIDHelp) nIDHelp = msgid;
+	return AfxMessageBox(msg, nType, nIDHelp);
+}
+
 // Get user language description of error, if available
 CString GetSysError(int nerr)
 {
