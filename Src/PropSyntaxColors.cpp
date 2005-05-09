@@ -60,6 +60,7 @@ CPropSyntaxColors::CPropSyntaxColors(SyntaxColors *pColors)
 
 CPropSyntaxColors::~CPropSyntaxColors()
 {
+	delete m_pTempColors;
 }
 
 void CPropSyntaxColors::DoDataExchange(CDataExchange* pDX)

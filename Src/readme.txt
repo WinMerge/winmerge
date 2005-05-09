@@ -1,3 +1,8 @@
+2005-05-09 Kimmo
+ BUG: [ 1198235 ] Debug warnings under Unicode Debug
+  Fix memory leak from PropSyntaxColors.cpp
+  Src: PropSyntaxColors.cpp
+
 2005-05-09 Perry
  PATCH: [ 1197727 ] New method ResMsgBox1 to simplify cookie-cutter code
   Src: MainFrm.cpp PatchDlg.cpp StdAfx.cpp StdAfx.h
