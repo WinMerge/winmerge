@@ -1317,7 +1317,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040904b0"
+        BLOCK "040903a8"
         BEGIN
             VALUE "Comments", "Translated by liaobin\0"
             VALUE "FileDescription", "WinMerge Application\0"

@@ -1340,7 +1340,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041f04b0"
+        BLOCK "041f04e6"
         BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "\0"

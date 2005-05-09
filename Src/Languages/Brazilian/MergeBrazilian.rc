@@ -1331,7 +1331,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041604b0"
+        BLOCK "041604e4"
         BEGIN
             VALUE "Comments", "Translated by Wender Cris de Souza Firmino & Noreuzis\0"
             VALUE "CompanyName", "\0"

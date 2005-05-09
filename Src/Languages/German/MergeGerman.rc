@@ -1334,7 +1334,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040704b0"
+        BLOCK "040704e4"
         BEGIN
             VALUE "Comments", "Translated originally by Winfried Peter, continued by Joerg Schneider and Tim Gerundt\0"
             VALUE "FileDescription", "WinMerge Anwendung\0"

@@ -1325,7 +1325,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041404b0"
+        BLOCK "041404e4"
         BEGIN
             VALUE "Comments", "Translated by Hans Fredrik Nordhaug\0"
             VALUE "CompanyName", "\0"

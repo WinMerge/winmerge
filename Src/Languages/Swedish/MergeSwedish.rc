@@ -1327,7 +1327,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041d04b0"
+        BLOCK "041d04e4"
         BEGIN
             VALUE "Comments", "Translated by Göran Håkansson, contributions from Hans Eriksson\0"
             VALUE "CompanyName", "\0"

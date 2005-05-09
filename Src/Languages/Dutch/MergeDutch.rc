@@ -1330,7 +1330,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041304b0"
+        BLOCK "041304e4"
         BEGIN
             VALUE "Comments", "Translated by Ronald Schaap\0"
             VALUE "CompanyName", "\0"

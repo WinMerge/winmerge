@@ -1328,7 +1328,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041b04b0"
+        BLOCK "041b04e2"
         BEGIN
             VALUE "Comments", "Translated by majvan\0"
             VALUE "CompanyName", "\0"

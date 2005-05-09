@@ -1330,7 +1330,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040904b0"
+        BLOCK "040903a4"
         BEGIN
             VALUE "Comments", "Translated by sawanaka@d1.dion.ne.jp\0"
             VALUE "CompanyName", "\0"

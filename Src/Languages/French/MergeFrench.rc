@@ -1329,7 +1329,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040c04b0"
+        BLOCK "040c04e4"
         BEGIN
             VALUE "Comments", "Translated by Gil Andre, continued by Laurent Ganier\0"
             VALUE "CompanyName", "\0"

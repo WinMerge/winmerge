@@ -6,6 +6,9 @@
  BUG [ 1193561 ] v2.2, version copyrights not all up-to-date
   Adjusted all to say 1996-2005 just as English
   Src/Languages: Merge*.rc
+ BUG: [ 1198258 ] Several lang dlls do not have versioninfo
+  Fixed hex-encoded codepage in string portion of versioninfo
+  Src/Languaegs: Merge*.rc
 
 
 2005-05-08 Kimmo

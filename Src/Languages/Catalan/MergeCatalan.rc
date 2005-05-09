@@ -1328,7 +1328,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040304b0"
+        BLOCK "040304e4"
         BEGIN
             VALUE "Comments", "Traducció al català per Jordi Vilar\0"
             VALUE "CompanyName", "\0"
@@ -1343,7 +1343,7 @@ BEGIN
             VALUE "ProductVersion", "000.000.000.000\0"
             VALUE "SpecialBuild", "\0"
         END
-        BLOCK "040904b0"
+        BLOCK "040904e4"
         BEGIN
             VALUE "Comments", "Catalan translation by Jordi Vilar\0"
             VALUE "CompanyName", "\0"

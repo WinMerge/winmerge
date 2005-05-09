@@ -1330,7 +1330,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041004b0"
+        BLOCK "041004e4"
         BEGIN
             VALUE "Comments", "Translated by Andrea Decorte(aka Klenje), previously by Michele Merega\0"
             VALUE "CompanyName", "\0"
