@@ -703,8 +703,14 @@ BOOL OlecharToUTF8(CString & filepath, LPCTSTR filepathDst, int & nFileChanged, 
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(filepath) || !ufile.ReadBom())
 		return TRUE; // not unicode file, nothing to do
+	int unicoding = ufile.GetUnicoding();
 	// Finished with examing file contents
 	ufile.Close();
+
+	// 2005-05-10, Perry: What are we supposed to do here?
+	// This is happening with patch generation for UTF-8 files
+	if (unicoding != ucr::UCS2LE)
+		return FALSE;
 	
 	// Init filedataIn struct and open file as memory mapped (input)
 	BOOL bSuccess;

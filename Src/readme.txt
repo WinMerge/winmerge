@@ -1,5 +1,10 @@
+2005-05-10 Perry
+ BUG [ 1198622 ] Generated patch is broken when comparing UTF8 files
+  Bail out of OlecharToUTF8 if BOM not UCS-2.
+  Src/Common: multiformatText.cpp
+
 2005-05-09 Perry
- [ 1195486 ] Remember dircompare sort column
+ PATCH [ 1195486 ] Remember dircompare sort column
   Fix to save options after editing, so columns don't revert.
   Src: DirView.cpp
 
