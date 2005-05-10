@@ -1,3 +1,8 @@
+2005-05-09 Perry
+ [ 1195486 ] Remember dircompare sort column
+  Fix to save options after editing, so columns don't revert.
+  Src: DirView.cpp
+
 2005-05-09 WinMerge experimental release 2.3.3.3 (cvs)
 
 2005-05-09 Kimmo

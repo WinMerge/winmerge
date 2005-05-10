@@ -1936,7 +1936,8 @@ void CDirView::OnUpdateStatusRightRO(CCmdUI* pCmdUI)
 void CDirView::OnCustomizeColumns()
 {
 	// Located in DirViewColHandler.cpp
-	CDirView::OnEditColumns();
+	OnEditColumns();
+	SaveColumnOrders();
 }
 
 void CDirView::OnCtxtOpenWithUnpacker() 
