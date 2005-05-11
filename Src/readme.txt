@@ -1,6 +1,8 @@
 2005-05-10 Perry
  BUG [ 1198622 ] Generated patch is broken when comparing UTF8 files
-  Bail out of OlecharToUTF8 if BOM not UCS-2.
+  Bail out of OlecharToUTF8 if BOM not UCS-2 (to avoid scrambling text).m
+  Src/Common: multiformatText.cpp
+ Improve comments heading & in OlecharToUTF8
   Src/Common: multiformatText.cpp
 
 2005-05-09 Perry

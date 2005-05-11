@@ -692,11 +692,13 @@ BOOL UnicodeFileToOlechar(CString & filepath, LPCTSTR filepathDst, int & nFileCh
 /**
  * @brief  If file is OLECHAR, then convert it to UTF-8
  *
- * Assumes that input file is either Olechar (UCS-2LE), or not Unicode.
- * That is, if it finds a Unicode BOM (byte order mark), then it assumes file
- * is UCS-2LE, which is the Windows standard Unicode encoding.
+ * If file has UCS-2LE BOM (is Olechar), then convert it to UTF-8.
+ * (No other file conversions are done here; nothing is done to UCS-2BE files)
+ * (UCS-2LE is the Windows standard Unicode encoding)
+ *
  * Returns FALSE if file is Unicode but opening it fails.
- * Returns TRUE if file is not Unicode, or if converted file successfully
+ * Returns FALSE if file has Unicode BOM but is not UCS-2LE.
+ * Returns TRUE if file is not Unicode, or if converted file successfully.
  */
 BOOL OlecharToUTF8(CString & filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
 {
@@ -707,8 +709,7 @@ BOOL OlecharToUTF8(CString & filepath, LPCTSTR filepathDst, int & nFileChanged, 
 	// Finished with examing file contents
 	ufile.Close();
 
-	// 2005-05-10, Perry: What are we supposed to do here?
-	// This is happening with patch generation for UTF-8 files
+	// OlecharToUTF8 only converts UCS-2LE files to UTF-8
 	if (unicoding != ucr::UCS2LE)
 		return FALSE;
 	
