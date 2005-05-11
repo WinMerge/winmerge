@@ -1,3 +1,7 @@
+2005-05-11 Kimmo
+ Options are now initialized in CMainFrame::OptionsInit() in OptionsInit.cpp
+  Developers: Options.html
+
 2005-04-17 Tim
  BUG: [ 1182013 ] Translation instructions don't mention installer or readme
   Developers: readme-developers.html

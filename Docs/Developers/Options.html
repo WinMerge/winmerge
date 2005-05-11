@@ -43,8 +43,8 @@ But that can change in future.</p>
 <ul>
   <li>All options are accessed by constant names, listed in <code>OptionsDef.h</code>.</li>
   <li>
-    Options are initialised in <code>CMainFrame::CMainFrame()</code>. When initialised,
-    type is determined and default value given. If option with that name
+    Options are initialized in <code>CMainFrame::OptionsInit()</code>, located in <code>OptionsInit.cpp</code>.
+    When initialised, type is determined and default value given. If option with that name
     does not yet exist, new one is created.
   </li>
   <li>Option value is read using <code>COptionsMgr::GetBool()</code>, <code>GetInt()</code> or <code>GetString()</code>.</li>
@@ -60,7 +60,7 @@ But that can change in future.</p>
     And use meaningful names for options.
   </li>
   <li>
-    Add option initialiser to <code>CMainFrame::CMainFrame()</code>, with sensible
+    Add option initialiser to <code>CMainFrame::OptionsInit()</code>, with sensible
     default value. Remember default value is what most users see when first
     time using WinMerge or new feature using it. So it really must be good
     for normal use.
