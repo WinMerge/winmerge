@@ -18,5 +18,6 @@ copy ..\resource.h Russian
 copy ..\resource.h Slovak
 copy ..\resource.h Spanish
 copy ..\resource.h Swedish
+copy ..\resource.h Turkish
 
 pause
