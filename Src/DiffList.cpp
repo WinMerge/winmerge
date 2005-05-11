@@ -146,6 +146,8 @@ BOOL DiffList::LineInDiff(UINT nLine, UINT nDiff) const
 int DiffList::LineToDiff(UINT nLine) const
 {
 	const int nDiffCount = m_diffs.GetSize();
+	if (nDiffCount == 0)
+		return -1;
 
 	// First check line is not before first or after last diff
 	if (nLine < m_diffs[0].dbegin0)
