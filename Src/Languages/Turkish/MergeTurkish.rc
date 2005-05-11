@@ -179,6 +179,8 @@ BEGIN
         MENUITEM "Ko&pyala\tCtrl+C",            ID_EDIT_COPY
         MENUITEM "&Yapýþtýr\tCtrl+V",           ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
         MENUITEM "&Seçenekler...",              ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "Ta&zele\tF5",                 ID_REFRESH
@@ -319,7 +321,6 @@ BEGIN
             MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
-        MENUITEM SEPARATOR
         MENUITEM "&Git...\tCtrl+G",             ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Seçenekler...",              ID_OPTIONS
@@ -358,7 +359,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Tümünü Saða Kopyala",        ID_ALL_RIGHT
         MENUITEM "T&ümünü Sola Kopyala",        ID_ALL_LEFT
-        MENUITEM SEPARATOR
     END
     POPUP "&Araçlar"
     BEGIN
@@ -408,20 +408,14 @@ BEGIN
         POPUP "&Copy"
         BEGIN
             MENUITEM "&Left to Right",              ID_DIR_COPY_LEFT_TO_RIGHT
-
             MENUITEM "L&eft to...",                 ID_DIR_COPY_LEFT_TO_BROWSE
-
             MENUITEM "&Right to Left",              ID_DIR_COPY_RIGHT_TO_LEFT
-
             MENUITEM "R&ight to...",                ID_DIR_COPY_RIGHT_TO_BROWSE
-
         END
         POPUP "&Move"
         BEGIN
             MENUITEM "&Left to...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
-
             MENUITEM "&Right to...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
-
         END
         POPUP "&Delete"
         BEGIN
@@ -429,30 +423,26 @@ BEGIN
             MENUITEM "&Right",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Both",                       ID_DIR_DEL_BOTH
         END
+        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Open Left"
         BEGIN
             MENUITEM "with &Registered Application", ID_DIR_OPEN_LEFT
             MENUITEM "with &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
-
             MENUITEM "&with...",                    ID_DIR_OPEN_LEFT_WITH
         END
         POPUP "O&pen Right"
         BEGIN
             MENUITEM "with &Registered Application", ID_DIR_OPEN_RIGHT
             MENUITEM "with &External Editor",       ID_DIR_OPEN_RIGHT_WITHEDITOR
-
             MENUITEM "&with...",                    ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
         POPUP "Cop&y Pathnames"
         BEGIN
             MENUITEM "&Left (%1 of %2)",            ID_DIR_COPY_PATHNAMES_LEFT
-
             MENUITEM "&Right (%1 of %2)",           ID_DIR_COPY_PATHNAMES_RIGHT
-
             MENUITEM "&Both (%1 of %2)",            ID_DIR_COPY_PATHNAMES_BOTH
-
         END
         MENUITEM "Copy &Filenames",             ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
@@ -462,7 +452,6 @@ BEGIN
             MENUITEM "&Right... (%1 of %2)",        ID_DIR_ZIP_RIGHT
             MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
             MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
-
         END
     END
     POPUP "_HDR_POPUP_"
@@ -1168,6 +1157,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
     CONTROL         "Dis&card changes",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
+    PUSHBUTTON      "Discard All",IDC_SAVECLOSING_DISCARDALL,7,133,65,14
     DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,205,133,50,14
 END

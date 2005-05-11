@@ -264,6 +264,7 @@
 #define IDC_SCOLOR_PREPROCESSOR_BOLD    1185
 #define IDC_SCOLOR_USER1_BOLD           1186
 #define IDC_SCOLOR_USER2_BOLD           1187
+#define IDC_SAVECLOSING_DISCARDALL      1188
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605

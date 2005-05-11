@@ -26,6 +26,15 @@
 #ifndef _SAVECLOSINGDLG_H_
 #define _SAVECLOSINGDLG_H_
 
+/** 
+ * @brief Choices for modified files: save/discard changes.
+ */
+enum SAVECLOSING_CHOICE
+{
+	SAVECLOSING_SAVE = 0, //*< Save changes */
+	SAVECLOSING_DISCARD,  //*< Discard changes */
+};
+
 /////////////////////////////////////////////////////////////////////////////
 // SaveClosingDlg dialog
 
@@ -61,6 +70,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(SaveClosingDlg)
 	afx_msg BOOL OnInitDialog();
+	afx_msg void OnDiscardAll();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

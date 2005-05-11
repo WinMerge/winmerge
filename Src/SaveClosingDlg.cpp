@@ -40,8 +40,8 @@ SaveClosingDlg::SaveClosingDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(SaveClosingDlg::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(SaveClosingDlg)
-	m_leftSave = 0; // Default to save
-	m_rightSave = 0;
+	m_leftSave = SAVECLOSING_SAVE; // Default to save
+	m_rightSave = SAVECLOSING_SAVE;
 	m_bAskForLeft = FALSE;
 	m_bAskForRight = FALSE;
 	m_bDisableCancel = FALSE;
@@ -62,6 +62,7 @@ void SaveClosingDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(SaveClosingDlg, CDialog)
 	//{{AFX_MSG_MAP(SaveClosingDlg)
+	ON_BN_CLICKED(IDC_SAVECLOSING_DISCARDALL, OnDiscardAll)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -109,4 +110,15 @@ void SaveClosingDlg::DoAskFor(BOOL bLeft /*= FALSE*/, BOOL bRight /*= FALSE*/)
 {
 	m_bAskForLeft = bLeft;
 	m_bAskForRight = bRight;
+}
+
+/** 
+ * @brief Called when 'Discard All' button is selected.
+ */
+void SaveClosingDlg::OnDiscardAll()
+{
+	m_leftSave = SAVECLOSING_DISCARD;
+	m_rightSave = SAVECLOSING_DISCARD;
+	UpdateData(FALSE);
+	OnOK();
 }

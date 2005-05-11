@@ -1,6 +1,10 @@
 2005-05-11 Kimmo
  PATCH: [ 1199194 ] Optimization for difflist
   Src: DiffList.cpp DiffList.h
+ PATCH: [ 1198955 ] Discard all button on Save modified pane
+  Submitted by Ferenc Kubatovics
+  Src: Merge.rc MergeDoc.cpp resource.h SaveClosingDlg.cpp SaveClosingDlg.h
+  Src/Languages: *.rc resource.h
 
 2005-05-10 Perry
  BUG [ 1198622 ] Generated patch is broken when comparing UTF8 files

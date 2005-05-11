@@ -2324,13 +2324,13 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 
 	if (dlg.DoModal() == IDOK)
 	{
-		if (bLModified && dlg.m_leftSave == 0)
+		if (bLModified && dlg.m_leftSave == SAVECLOSING_SAVE)
 		{
 			if (!DoSave(m_filePaths.GetLeft(), bLSaveSuccess, TRUE))
 				result = FALSE;
 		}
 
-		if (bRModified && dlg.m_rightSave == 0)
+		if (bRModified && dlg.m_rightSave == SAVECLOSING_SAVE)
 		{
 			if (!DoSave(m_filePaths.GetRight(), bRSaveSuccess, FALSE))
 				result = FALSE;
