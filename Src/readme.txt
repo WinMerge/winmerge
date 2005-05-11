@@ -5,6 +5,8 @@
   Submitted by Ferenc Kubatovics
   Src: Merge.rc MergeDoc.cpp resource.h SaveClosingDlg.cpp SaveClosingDlg.h
   Src/Languages: *.rc resource.h
+ Update UpdateAll_resource_h.bat to update Turkish too
+  Src/Languages: UpdateAll_resource_h.bat
 
 2005-05-10 Perry
  BUG [ 1198622 ] Generated patch is broken when comparing UTF8 files
