@@ -87,6 +87,9 @@ Localization:
   Hans Eriksson
   Göran Håkansson
 
+* Turkish:
+  Ozkan UNVER
+
 
 Other Contributors (code, ideas, testing..):
 * Andre Arpin
@@ -94,6 +97,7 @@ Other Contributors (code, ideas, testing..):
 * Hern Chen
 * Jim Fougeron
 * Marvin Gouw
+* Ferenc Kubatovics
 * Vladimir Lukianov
 * Harry Mckame
 * Andreas Morsing
