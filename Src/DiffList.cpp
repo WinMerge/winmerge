@@ -106,6 +106,24 @@ BOOL DiffList::SetDiff(int nDiff, DIFFRANGE di)
 }
 
 /**
+ * @brief Checks if line is before, inside or after diff
+ * @param [in] nLine Linenumber to text buffer (not "real" number)
+ * @param [in] nDiff Index to diff table
+ * @return -1 if line is before diff, 0 if line is in diff and
+ * 1 if line is after diff.
+ */
+int DiffList::LineRelDiff(UINT nLine, UINT nDiff) const
+{
+	ASSERT((int)nDiff < m_diffs.GetSize());
+	if (nLine < m_diffs[nDiff].dbegin0)
+		return -1;
+	else if (nLine > m_diffs[nDiff].dend0)
+		return 1;
+	else
+		return 0;
+}
+
+/**
  * @brief Checks if line is inside given diff
  * @param [in] nLine Linenumber to text buffer (not "real" number)
  * @param [in] nDiff Index to diff table
@@ -121,17 +139,45 @@ BOOL DiffList::LineInDiff(UINT nLine, UINT nDiff) const
 }
 
 /**
- * @brief Checks if given line is inside diff and
+ * @brief Returns diff index for given line.
  * @param [in] nLine Linenumber, 0-based.
- * @return Index to diff table, -1 if line no inside any diff.
+ * @return Index to diff table, -1 if line is not inside any diff.
  */
 int DiffList::LineToDiff(UINT nLine) const
 {
 	const int nDiffCount = m_diffs.GetSize();
-	for (int i = 0; i < nDiffCount; i++)
+
+	// First check line is not before first or after last diff
+	if (nLine < m_diffs[0].dbegin0)
+		return -1;
+	if (nLine > m_diffs[nDiffCount-1].dend0)
+		return -1;
+
+	// Use binary search to search for a diff.
+	int left = 0; // Left limit
+	int middle = 0; // Compared item
+	int right = nDiffCount - 1; // Right limit
+
+	while (left <= right)
 	{
-		if (LineInDiff(nLine, i))
-			return i;
+		middle = (left + right) / 2;
+		int result = LineRelDiff(nLine, middle);
+		switch (result)
+		{
+		case -1: // Line is before diff in file
+			right = middle - 1;
+			break;
+		case 0: // Line is in diff
+			return middle;
+			break;
+		case 1: // Line is after diff in file
+			left = middle + 1;
+			break;
+		default:
+			_RPTF1(_CRT_ERROR, "Invalid return value %d from LineRelDiff(): "
+				"-1, 0 or 1 expected!", result); 
+			break;
+		}
 	}
 	return -1;
 }

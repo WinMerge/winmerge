@@ -1,3 +1,7 @@
+2005-05-11 Kimmo
+ PATCH: [ 1199194 ] Optimization for difflist
+  Src: DiffList.cpp DiffList.h
+
 2005-05-10 Perry
  BUG [ 1198622 ] Generated patch is broken when comparing UTF8 files
   Bail out of OlecharToUTF8 if BOM not UCS-2 (to avoid scrambling text).m

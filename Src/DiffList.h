@@ -80,6 +80,7 @@ public:
 	void AddDiff(DIFFRANGE di);
 	BOOL GetDiff(int nDiff, DIFFRANGE &di) const;
 	BOOL SetDiff(int nDiff, DIFFRANGE di);
+	int LineRelDiff(UINT nLine, UINT nDiff) const;
 	BOOL LineInDiff(UINT nLine, UINT nDiff) const;
 	int LineToDiff(UINT nLine) const;
 	BOOL GetPrevDiff(int nLine, int &nDiff) const;
