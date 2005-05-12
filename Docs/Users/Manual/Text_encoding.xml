@@ -13,8 +13,14 @@
       </listitem>
       <listitem>
         <para>Comparing Unicode files</para>
-        <para>You should use <filename>WinMergeU.exe</filename> (if you are on NT/2000/XP/2003) as it will be at least as fast, and may be faster than <filename>WinMerge.exe</filename>, in this scenario. If you are on Win95/98/ME, or if your files are all in English or a western European language, you may get by with <filename>WinMerge.exe</filename>.
-</para>
+        <para>You should use <filename>WinMergeU.exe</filename> 
+(if you are on NT/2000/XP/2003) as it will be at least as fast, 
+and may be faster than <filename>WinMerge.exe</filename>, in this 
+scenario. Also, <filename>WinMergeU.exe</filename> correctly 
+handles UTF-8 files, unlike <filename>WinMerge.exe</filename>. 
+If you are on Win95/98/ME, or if your files are all in English 
+or a western European language, you may get by with 
+<filename>WinMerge.exe</filename>.</para>
       </listitem>
       <listitem>
         <para>Comparing multilingual files</para>

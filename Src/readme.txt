@@ -1,3 +1,7 @@
+2005-05-12 Perry
+ PATCH: [ 1199600 ] Minor update to text encoding docs in manual
+  Docs/Users/Manual: Text_encoding.xml
+
 2005-05-11 Kimmo
  PATCH: [ 1199194 ] Optimization for difflist
   Src: DiffList.cpp DiffList.h
