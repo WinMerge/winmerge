@@ -483,7 +483,7 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Ugrás &eltérésre"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "Ugrás &eltérésre",                  ID_LOCBAR_GOTODIFF
         MENUITEM "&Ugrás...",                    ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Nem mozgatott blokkok",            ID_DISPLAY_MOVED_NONE

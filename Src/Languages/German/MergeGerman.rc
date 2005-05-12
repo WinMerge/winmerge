@@ -487,7 +487,7 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "G&ehe nach Unterschied"       ID_LOCBAR_GOTODIFF
+        MENUITEM "G&ehe nach Unterschied",      ID_LOCBAR_GOTODIFF
         MENUITEM "&Gehe nach...",               ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Keine verschobene Blöcke",   ID_DISPLAY_MOVED_NONE

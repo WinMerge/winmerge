@@ -483,7 +483,7 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Gå til &forskel"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "Gå til &forskel",                  ID_LOCBAR_GOTODIFF
         MENUITEM "&Gå til...",                    ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Ingen flyttede blokke",            ID_DISPLAY_MOVED_NONE

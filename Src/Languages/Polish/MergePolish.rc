@@ -483,7 +483,7 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "IdŸ &do ró¿nicy"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "IdŸ &do ró¿nicy",                  ID_LOCBAR_GOTODIFF
         MENUITEM "&PrzejdŸ do",                    ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "Bez &przeniesionych bloków",            ID_DISPLAY_MOVED_NONE

@@ -483,7 +483,7 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Vé&s a la diferència"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "Vé&s a la diferència",                  ID_LOCBAR_GOTODIFF
         MENUITEM "&Vés a...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "Blocs &no moguts ",            ID_DISPLAY_MOVED_NONE

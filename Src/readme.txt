@@ -1,3 +1,8 @@
+2005-05-12 Kimmo
+ BUG: [ 1198435 ] Comma missing from ID_LOCBAR_GOTODIFF menuitem
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2005-05-12 Perry
  PATCH: [ 1199600 ] Minor update to text encoding docs in manual
   Docs/Users/Manual: Text_encoding.xml

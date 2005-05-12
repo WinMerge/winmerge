@@ -482,7 +482,7 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "G&oto Diff"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "G&oto Diff",                  ID_LOCBAR_GOTODIFF
         MENUITEM "&Goto...",                    ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
