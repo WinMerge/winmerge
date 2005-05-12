@@ -1,3 +1,7 @@
+2005-05-12 Tim
+ BUG: [ 1199609 ] New File Compare method for docs
+  Manual: Configuration.xml
+
 2005-04-13 Tim
  PATCH: [ 1178042 ] Add CSS to user manual (XSL)
   Manual: Manual.xsl

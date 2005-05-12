@@ -82,13 +82,16 @@
     </sect3>
     <sect3>
       <title>File compare method</title>
-      <para>File compare method has two choises:</para>
+      <para>File compare method has three choises:</para>
       <itemizedlist>
         <listitem>
-          <para><guilabel>Contents</guilabel> - compares files by content of files. This is accurate and recommended compare method.</para>
+          <para><guilabel>Full Contents</guilabel> - full comparison of files by content, with all the bells and whistles. This method invokes plugins and uses diffutils engine for fully accurate differencing and moved block detectioin. This is the most complete and recommended method.</para>
         </listitem>
         <listitem>
-          <para><guilabel>Modified date</guilabel> - compares files by modified date. This can greatly speedup comparing lot of files. But on the other hand results may not be accurate.</para>
+          <para><guilabel>Quick Contents</guilabel> - slimmed down comparison of files by content. This method uses streamlines file comparison code which skips plugins and moved block detection. The only advantage of this method over Full Contents is that this method does not load the files into method, and so is faster.</para>
+        </listitem>
+        <listitem>
+          <para><guilabel>Modified Date</guilabel> - comparison of modification dates on files. This method only examines the modification dates on the files, so it is far faster than either of the contents methods, but obviously is only as accurate as the modification dates.</para>
         </listitem>
       </itemizedlist>
       <para></para>
