@@ -2025,6 +2025,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n er ikke en absolut sti!"
     IDS_CANNOT_CREATE_BINARYPATCH "Kan ikke lave patch filer fra binære filer."
     IDS_CANNOT_CREATE_DIRPATCH "Kan ikke lave patch filer fra mapper."
+    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 END
 
 STRINGTABLE

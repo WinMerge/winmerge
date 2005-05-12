@@ -2030,6 +2030,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n は絶対パスではありません!"
     IDS_CANNOT_CREATE_BINARYPATCH "バイナリファイルからパッチファイルは生成できません。"
     IDS_CANNOT_CREATE_DIRPATCH "ディレクトリからパッチファイルは生成できません。"
+    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 END
 
 STRINGTABLE

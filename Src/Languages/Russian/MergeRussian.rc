@@ -2036,6 +2036,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n Ё“ќ не абсолютный путь!"
     IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
     IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
+    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 END
 
 STRINGTABLE

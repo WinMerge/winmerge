@@ -2026,6 +2026,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n n'est pas un chemin absolu!"
     IDS_CANNOT_CREATE_BINARYPATCH "Ne peut créé un fichier de retouche depuis un fichier binaire."
     IDS_CANNOT_CREATE_DIRPATCH    "Ne peut créé un fichier de retouche depuis des répertoires."
+    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 END
 
 STRINGTABLE

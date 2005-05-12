@@ -2139,6 +2139,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n är inte en absolut sökväg!"
     IDS_CANNOT_CREATE_BINARYPATCH "Kan inte skapa en patchfil från binära filer."
     IDS_CANNOT_CREATE_DIRPATCH "Kan inte skapa en patchfil från kataloger."
+    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 END
 
 STRINGTABLE

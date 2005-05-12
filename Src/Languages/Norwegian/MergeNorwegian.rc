@@ -2137,6 +2137,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n er ikke en absolutt sti!"
     IDS_CANNOT_CREATE_BINARYPATCH "Kan ikke opprette en fil med rettelser for binære filer."
     IDS_CANNOT_CREATE_DIRPATCH "Kan ikke opprette en fil med rettelser for mapper."
+    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 END
 
 STRINGTABLE

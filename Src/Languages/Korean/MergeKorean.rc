@@ -2025,6 +2025,7 @@ BEGIN
     IDS_CANNOT_CREATE_BINARYPATCH 
                             "바이너리 파일에서는 patch 파일을 생성할 수 없습니다."
     IDS_CANNOT_CREATE_DIRPATCH "디렉토리에서는 patch 파일을 생성할 수 없습니다."
+    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 END
 
 STRINGTABLE

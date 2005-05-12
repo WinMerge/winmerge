@@ -2117,7 +2117,11 @@ CString CMainFrame::SetStatus(LPCTSTR status)
 }
 
 /**
- * @brief Generate patch from files selected
+ * @brief Generate patch from files selected.
+ *
+ * Creates a patch from selected files in active directory compare, or
+ * active file compare. Files in file compare must be saved before
+ * creating a patch.
  */
 void CMainFrame::OnToolsGeneratePatch()
 {
@@ -2128,19 +2132,17 @@ void CMainFrame::OnToolsGeneratePatch()
 	// Mergedoc active?
 	if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
 	{
-		// Add open files to patch-list
-		MergeDocList mergedocs;
-		GetAllMergeDocs(&mergedocs);
-		while (!mergedocs.IsEmpty())
+		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
+		// If there are changes in files, tell user to save them first
+		if (pMergeDoc->m_ltBuf.IsModified() || pMergeDoc->m_ltBuf.IsModified())
 		{
-			CMergeDoc * pMergeDoc = mergedocs.RemoveHead();
-
-			// If user cancels, don't open create patch-dialog
-			if (!pMergeDoc->SaveHelper(TRUE))
-			{
-				bOpenDialog = FALSE;
-			}
-			patcher.AddFiles(pMergeDoc->m_filePaths.GetLeft(), pMergeDoc->m_filePaths.GetRight());
+			bOpenDialog = FALSE;
+			AfxMessageBox(IDS_SAVEFILES_FORPATCH, MB_ICONSTOP);
+		}
+		else
+		{
+			patcher.AddFiles(pMergeDoc->m_filePaths.GetLeft(),
+					pMergeDoc->m_filePaths.GetRight());
 		}
 	}
 	// Dirview active

@@ -2140,6 +2140,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "¡%1\n no es una ruta absoluta!"
     IDS_CANNOT_CREATE_BINARYPATCH "No se puede crear un fichero patch a partir de un fichero binario."
     IDS_CANNOT_CREATE_DIRPATCH "No se puede crear un fichero patch a partir de un directorio."
+    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 END
 
 STRINGTABLE

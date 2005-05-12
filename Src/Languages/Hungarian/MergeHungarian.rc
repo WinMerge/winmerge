@@ -2026,6 +2026,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n - ez egy nem abszolút elérési út!"
     IDS_CANNOT_CREATE_BINARYPATCH "Nem lehet patch fájlt létrehozni bináris fájlokból."
     IDS_CANNOT_CREATE_DIRPATCH "Nem lehet patch fájlt létrehozni könyvtárakból."
+    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 END
 
 STRINGTABLE

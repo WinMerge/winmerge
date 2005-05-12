@@ -2,6 +2,9 @@
  BUG: [ 1198435 ] Comma missing from ID_LOCBAR_GOTODIFF menuitem
   Src: Merge.rc
   Src/Languages: *.rc
+ PATCH: [ 1199889 ] Ask to save modified files before creating a patch
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
 
 2005-05-12 Perry
  PATCH: [ 1199600 ] Minor update to text encoding docs in manual
