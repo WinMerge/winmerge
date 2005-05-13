@@ -9,6 +9,8 @@
   Src: MergeEditView.cpp
  PATCH: [ 1201130 ] Fix prediffers menu for multiple menu brokenness
   Src: MainFrm.cpp
+ Cosmetic: Expand header comments on GetScriptsSubmenu & GetPrediffersSubmenu
+  Src: MainFrm.cpp
 
 2005-05-12 Kimmo
  BUG: [ 1198435 ] Comma missing from ID_LOCBAR_GOTODIFF menuitem

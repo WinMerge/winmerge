@@ -307,6 +307,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /** 
  * @brief Find the scripts submenu from the main menu
  * As now this is the first submenu in "Edit" menu
+ * We find the "Edit" menu by looking for a menu 
+ *  starting with ID_EDIT_UNDO.
  */
 HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
 {
@@ -329,6 +331,8 @@ HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
 /**
  * @brief Find the scripts submenu from the main menu
  * As now this is the first submenu in "Plugins" menu
+ * We find the "Plugins" menu by looking for a menu 
+ *  starting with ID_UNPACK_MANUAL.
  */
 HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
 {
