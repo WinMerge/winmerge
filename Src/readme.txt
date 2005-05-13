@@ -1,3 +1,7 @@
+2005-05-13 Perry
+ PATCH: [ 1201029 ] Catalan translation update
+  Src/Languages/Catalan: MergeCatalan.rc
+
 2005-05-12 Kimmo
  BUG: [ 1198435 ] Comma missing from ID_LOCBAR_GOTODIFF menuitem
   Src: Merge.rc
