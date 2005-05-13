@@ -1738,6 +1738,21 @@ void CMergeEditView::OnUpdateStatusRightRO(CCmdUI* pCmdUI)
 	pCmdUI->Enable(bRORight);
 }
 
+/**
+ * @brief Call ::AppendMenu, and if it fails get error string into local variable
+ *
+ * This only provides functionality for debugging.
+ */
+static BOOL DoAppendMenu(HMENU hMenu, UINT uFlags, UINT_PTR uIDNewItem, LPCTSTR lpNewItem)
+{
+	BOOL ok = ::AppendMenu(hMenu, uFlags, uIDNewItem, lpNewItem);
+	if (!ok)
+	{
+		int nerr = GetLastError();
+		CString syserr = GetSysError(nerr);
+	}
+	return ok;
+}
 
 /**
  * @brief Create the dynamic submenu for scripts
@@ -1756,20 +1771,20 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 	if (functionNamesList.GetSize() == 0)
 	{
 		// no script : create a <empty> entry
-		::AppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, LoadResString(ID_NO_EDIT_SCRIPTS));
+		DoAppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, LoadResString(ID_NO_EDIT_SCRIPTS));
 	}
 	else
 	{
 		// or fill in the submenu with the scripts names
 		int ID = ID_SCRIPT_FIRST;	// first ID in menu
 		for (i = 0 ; i < functionNamesList.GetSize() ; i++, ID++)
-			::AppendMenu(hMenu, MF_STRING, ID, functionNamesList[i]);
+			DoAppendMenu(hMenu, MF_STRING, ID, functionNamesList[i]);
 
 		functionNamesList.RemoveAll();
 	}
 
 	if (IsWindowsScriptThere() == FALSE)
-		::AppendMenu(hMenu, MF_STRING, ID_NO_SCT_SCRIPTS, LoadResString(ID_NO_SCT_SCRIPTS));
+		DoAppendMenu(hMenu, MF_STRING, ID_NO_SCT_SCRIPTS, LoadResString(ID_NO_SCT_SCRIPTS));
 
 	return hMenu;
 }
@@ -1798,7 +1813,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	ASSERT(pd);
 
 	// title
-	::AppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, LoadResString(ID_NO_PREDIFFER));
+	DoAppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, LoadResString(ID_NO_PREDIFFER));
 
 	// get the scriptlet files
 	PluginArray * piScriptArray = 
@@ -1808,8 +1823,8 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 
 	// build the menu : first part, suggested plugins
 	// title
-	::AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-	::AppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, LoadResString(ID_SUGGESTED_PLUGINS));
+	DoAppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
+	DoAppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, LoadResString(ID_SUGGESTED_PLUGINS));
 
 	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
 	int iScript;
@@ -1819,7 +1834,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) == FALSE)
 			continue;
 
-		::AppendMenu(hMenu, MF_STRING, ID, plugin.name);
+		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name);
 	}
 	for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
 	{
@@ -1827,13 +1842,13 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) == FALSE)
 			continue;
 
-		::AppendMenu(hMenu, MF_STRING, ID, plugin.name);
+		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name);
 	}
 
 	// build the menu : second part, others plugins
 	// title
-	::AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-	::AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, LoadResString(ID_NOT_SUGGESTED_PLUGINS));
+	DoAppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
+	DoAppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, LoadResString(ID_NOT_SUGGESTED_PLUGINS));
 
 	ID = ID_PREDIFFERS_FIRST;	// first ID in menu
 	for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++, ID ++)
@@ -1842,7 +1857,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) == TRUE)
 			continue;
 
-		::AppendMenu(hMenu, MF_STRING, ID, plugin.name);
+		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name);
 	}
 	for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
 	{
@@ -1850,7 +1865,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) == TRUE)
 			continue;
 
-		::AppendMenu(hMenu, MF_STRING, ID, plugin.name);
+		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name);
 	}
 
 	// compute the m_CurrentPredifferID (to set the radio button)

@@ -5,6 +5,8 @@
   Added English/1252 section to Bulgarian, as MergeCatalan has.
   (Adding English/1251 section did not work on US Windows system.)
   Src/Languages/Bulgarian: MergeBulgarian.rc
+ PATCH: [ 1201125 ] Add checking to AppendMenu calls in building prediffer subme
+  Src: MergeEditView.cpp
 
 2005-05-12 Kimmo
  BUG: [ 1198435 ] Comma missing from ID_LOCBAR_GOTODIFF menuitem
