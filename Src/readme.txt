@@ -1,6 +1,10 @@
 2005-05-13 Perry
  PATCH: [ 1201029 ] Catalan translation update
   Src/Languages/Catalan: MergeCatalan.rc
+ BUG: [ 1197964 ] MergeBulgarian string versioninfo translated
+  Added English/1252 section to Bulgarian, as MergeCatalan has.
+  (Adding English/1251 section did not work on US Windows system.)
+  Src/Languages/Bulgarian: MergeBulgarian.rc
 
 2005-05-12 Kimmo
  BUG: [ 1198435 ] Comma missing from ID_LOCBAR_GOTODIFF menuitem

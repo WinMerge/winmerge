@@ -1333,21 +1333,36 @@ BEGIN
         BEGIN
             VALUE "Коментари", "\0"
             VALUE "Име на компанията", "\0"
-            VALUE "Описание", "WinMerge Application\0"
+            VALUE "Описание", "WinMerge Bulgarian resources\0"
             VALUE "Версия", "000.000.000.000\0"
-            VALUE "Име", "WinMerge\0"
-            VALUE "Авотрско право", "© 1996-2001 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "Име", "MergeBulgarian\0"
+            VALUE "Авотрско право", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "Запазаена марка", "\0"
-            VALUE "Оргинално име", "WinMerge.EXE\0"
-            VALUE "PrivateBuild", ""
+            VALUE "Оргинално име", "MergeBulgarian.lang\0"
+            VALUE "PrivateBuild", "\0"
             VALUE "Име на продукта", "WinMerge\0"
             VALUE "Версия на продукта", "000.000.000.000\0"
+            VALUE "SpecialBuild", "\0"
+        END
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "WinMerge Bulgarian resources\0"
+            VALUE "FileVersion", "000.000.000.000\0"
+            VALUE "InternalName", "MergeBulgarian\0"
+            VALUE "LegalCopyright", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "MergeBulgarian.lang\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "WinMerge\0"
+            VALUE "ProductVersion", "000.000.000.000\0"
             VALUE "SpecialBuild", "\0"
         END
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "Translation", 0x402, 1251
+        VALUE "Translation", 0x402, 1251, 0x409, 1252
     END
 END
 
