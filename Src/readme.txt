@@ -1,3 +1,10 @@
+2005-05-13 Kimmo
+ PATCH: [ 1201434 ] New ReadMe.txt
+  Innosetup: WinMerge Localized.iss
+  Innosetup removed file: Read Me.htm
+  Users/Docs new file: ReadMe.txt
+  Users/Docs removed files: Read me.txt Read Me.rtf
+
 2005-05-13 Perry
  PATCH: [ 1201029 ] Catalan translation update
   Src/Languages/Catalan: MergeCatalan.rc

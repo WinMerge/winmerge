@@ -1,9 +1,0 @@
-Please leave "Read Me.rtf" in RTF format this is necessary for compatiblity with our Inno Setup installer.  Info.rtf is used by the installer on the "information" page during installation.  Please do not add tables or bullets to this file, neither seem to display correctly inside of Inno Setup which has its own bug-ridden engine for displaying RTF files.  Also please leave the font choice, sizes, and color schemes as they are, or ask me for permission to do otherwise providing your reasoning.  Another issue is the creation of hyperlinks.  Don't allow MS Word or whatever you're using to create a hyperlink, just use plain text to represent your URLs.  If you're URL becomes a hyperlink:
-(Word 2000 Instructions)
-1.  Right-click over the blue hyperlink
-2.  Click "Hyperlink >" --> "Remove Hyperlink".  Inno Setup itself will detect that these are URLs and make them hyperlinks.  I will also bug this so Inno Setup will support hyperlinks natively.  
-
-Thanks,
-Seier Blackburn
-MyPurchases@Yahoo.com 
-(All e-mail should contain WinMerge in the title)

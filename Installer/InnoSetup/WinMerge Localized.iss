@@ -109,7 +109,7 @@ DefaultGroupName=WinMerge
 DisableStartupPrompt=yes
 AllowNoIcons=yes
 InfoBeforeFile=..\Docs\users\GPL.rtf
-InfoAfterFile=..\Docs\users\Read Me.rtf
+InfoAfterFile=..\Docs\users\ReadMe.txt
 
 OutputBaseFilename=WinMerge-{#AppVersion}-Setup
 
@@ -147,7 +147,7 @@ Name: English; MessagesFile: Languages\English.isl
 
 ;Localizations:
 Name: Bulgarian; MessagesFile: Languages\Bulgarian.isl
-Name: Catalan; MessagesFile: Languages\Catalan.isl; InfoAfterFile: ..\Docs\Users\Languages\Read Me-Catalan.rtf
+Name: Catalan; MessagesFile: Languages\Catalan.isl
 Name: Chinese_Simplified; MessagesFile: Languages\Chinese_Simplified.isl
 Name: Chinese_Traditional; MessagesFile: Languages\Chinese_Traditional.isl
 Name: Czech; MessagesFile: Languages\Czech.isl
@@ -162,10 +162,10 @@ Name: Korean; MessagesFile: Languages\Korean.isl
 Name: Norwegian; MessagesFile: Languages\Norwegian.isl
 Name: Polish; MessagesFile: Languages\Polish.isl
 Name: Portuguese; MessagesFile: Languages\Brazilian_Portuguese.isl
-Name: Russian; MessagesFile: Languages\Russian.isl; InfoAfterFile: ..\Docs\Users\Languages\Read Me-Russian.rtf
+Name: Russian; MessagesFile: Languages\Russian.isl
 Name: Slovak; MessagesFile: Languages\Slovak.isl
 Name: Spanish; MessagesFile: Languages\Spanish.isl
-Name: Swedish; MessagesFile: Languages\Swedish.isl; InfoAfterFile: ..\Docs\Users\Languages\Read Me-Swedish.rtf
+Name: Swedish; MessagesFile: Languages\Swedish.isl
 
 
 [Messages]
@@ -404,7 +404,7 @@ Source: ..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension co
 Source: ..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 
 ;Documentation
-Source: ..\Docs\Users\Read Me.rtf; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\Build\Manual\*; DestDir: {app}\Docs\Manual\; Flags: overwritereadonly recursesubdirs uninsremovereadonly sortfilesbyextension; Components: docs
 
@@ -424,7 +424,7 @@ Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; 
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
 ;WinMerge (ANSI) for WinMerge.exe in NT-windows
 Name: {group}\WinMerge (ANSI); Filename: {app}\WinMerge.exe; IconIndex: 0; MinVersion: 0,4; Components: core
-Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\Read Me.rtf; IconFileName: {win}\NOTEPAD.EXE
+Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\Plugins.txt; Filename: {app}\Docs\Plugins.txt; Check: InstallPluginsText
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\Manual\index.html; Components: docs
 Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
