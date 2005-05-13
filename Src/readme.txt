@@ -7,6 +7,8 @@
   Src/Languages/Bulgarian: MergeBulgarian.rc
  PATCH: [ 1201125 ] Add checking to AppendMenu calls in building prediffer subme
   Src: MergeEditView.cpp
+ PATCH: [ 1201130 ] Fix prediffers menu for multiple menu brokenness
+  Src: MainFrm.cpp
 
 2005-05-12 Kimmo
  BUG: [ 1198435 ] Comma missing from ID_LOCBAR_GOTODIFF menuitem

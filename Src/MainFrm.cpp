@@ -2326,8 +2326,9 @@ void CMainFrame::OnReloadPlugins()
 
 void CMainFrame::UpdatePrediffersMenu()
 {
-		HMENU prediffersSubmenu = GetPrediffersSubmenu(m_hMenuDefault);
-		if (prediffersSubmenu != NULL)
+	HMENU hMainMenu = GetMenu()->m_hMenu;
+	HMENU prediffersSubmenu = GetPrediffersSubmenu(hMainMenu);
+	if (prediffersSubmenu != NULL)
 	{
 		CMergeEditView * pEditView = dynamic_cast<CMergeEditView*> (GetActiveFrame()->GetActiveView());
 		if (pEditView)
