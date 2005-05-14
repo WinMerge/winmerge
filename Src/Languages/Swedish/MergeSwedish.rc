@@ -313,7 +313,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Script"
         BEGIN
-            MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS
+            MENUITEM "< Inga >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
         POPUP "Avancerat"
@@ -659,7 +659,7 @@ BEGIN
     CONTROL         "Verifiera sökvägar i Öppna-dialogen",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,206,10
-    CONTROL         "&Allow only one instance to run",IDC_SINGLE_INSTANCE,
+    CONTROL         "&Tillåt bara en upplaga att köra",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
     PUSHBUTTON      "Återstarta",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
@@ -764,7 +764,7 @@ END
 
 IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 196
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Färger"
+CAPTION "Kulörer"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     RTEXT           "Skillnader:",IDC_STATIC,7,29,90,8
@@ -860,7 +860,7 @@ BEGIN
                     WS_TABSTOP,7,17,222,10
     CONTROL         "A&nvänd avancerad meny",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
-    CONTROL         "Ignore time differences less than 3 seconds",
+    CONTROL         "Ignorera tidsskillnad mindre än 3 sekunder",
                     IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,8,39,222,10
     LTEXT           "Extern Editor:",IDC_STATIC,7,49,222,8
@@ -1105,11 +1105,11 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,138,63,71,10
     CONTROL         "Infoga mellanslag",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,138,72,71,10
-    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,10,97,
+    GROUPBOX        "Radskillnadskulörer",IDC_LINE_COLORING_GROUP,10,97,
                     218,37
-    CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",
+    CONTROL         "Visa radskillnader",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
-    CONTROL         "Break on words",IDC_BREAK_ON_WORDS,"Button",
+    CONTROL         "Radbryt på ord",IDC_BREAK_ON_WORDS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,148,108,73,8
     COMBOBOX        IDC_BREAK_TYPE,17,120,143,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
@@ -1155,7 +1155,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
     CONTROL         "Ign&orera ändringar",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
-    PUSHBUTTON      "Discard All",IDC_SAVECLOSING_DISCARDALL,7,133,65,14
+    PUSHBUTTON      "Ignorera ändringar",IDC_SAVECLOSING_DISCARDALL,7,133,65,14
     DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
     PUSHBUTTON      "Avbryt",IDCANCEL,205,133,50,14
 END
@@ -1175,7 +1175,7 @@ BEGIN
     CONTROL         "Anpassad codepage :",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,46,77,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Standard codepage för ANSI filer",IDC_STATIC,7,7,221,58
+    GROUPBOX        "Standard-codepage för ANSI-filer",IDC_STATIC,7,7,221,58
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245
@@ -1248,62 +1248,62 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    RTEXT           "Keywords:",IDC_STATIC,0,20,70,8
-    RTEXT           "Function names:",IDC_STATIC,0,40,70,8
-    RTEXT           "Comments:",IDC_STATIC,0,60,70,8
-    RTEXT           "Numbers:",IDC_STATIC,0,80,70,8
-    RTEXT           "Operators:",IDC_STATIC,0,100,70,8
-    RTEXT           "Strings:",IDC_STATIC,0,120,70,8
+    RTEXT           "Nyckelord:",IDC_STATIC,0,20,70,8
+    RTEXT           "Funktionsnamn:",IDC_STATIC,0,40,70,8
+    RTEXT           "Kommentarer:",IDC_STATIC,0,60,70,8
+    RTEXT           "Nummer:",IDC_STATIC,0,80,70,8
+    RTEXT           "Operatorer:",IDC_STATIC,0,100,70,8
+    RTEXT           "Strängar:",IDC_STATIC,0,120,70,8
     RTEXT           "Preprocessor:",IDC_STATIC,0,140,70,8
-    RTEXT           "User 1:",IDC_STATIC,0,160,70,8
-    RTEXT           "User 2:",IDC_STATIC,0,180,70,8
+    RTEXT           "Användare 1:",IDC_STATIC,0,160,70,8
+    RTEXT           "Användare 2:",IDC_STATIC,0,180,70,8
     CTEXT           "Text",IDC_STATIC,73,7,34,8
-    CONTROL         "Button1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Fet",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,21,55,10
-    CONTROL         "Button1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",
+    CONTROL         "Fet",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,40,55,10
-    CONTROL         "Button1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Fet",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,60,55,10
-    CONTROL         "Button1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Fet",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,80,55,10
-    CONTROL         "Button1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_OPERATORS_BOLD,"Button",
+    CONTROL         "Fet",IDC_SCOLOR_OPERATORS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,100,55,10
-    CONTROL         "Button1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Fet",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,120,55,10
-    CONTROL         "Button1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",
+    CONTROL         "Fet",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,140,55,10
-    CONTROL         "Button1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Fet",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,160,55,10
-    CONTROL         "Button1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Fet",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,180,55,10
-    PUSHBUTTON      "Defaults",IDC_SCOLORS_BDEFAULTS,182,179,50,14
+    PUSHBUTTON      "Standard",IDC_SCOLORS_BDEFAULTS,182,179,50,14
 END
 
 
@@ -1734,11 +1734,11 @@ BEGIN
     IDS_OPTIONSPG_GENERAL     "Generell"
     IDS_OPTIONSPG_COMPARE     "Jämför"
     IDS_OPTIONSPG_EDITOR      "Editor"
-    IDS_OPTIONSPG_COLORS      "Färger"
+    IDS_OPTIONSPG_COLORS      "Kulörer"
     IDS_OPTIONSPG_SYSTEM      "System"
     IDS_OPTIONSPG_VERSIONCONTROL "Versionskontroll"
     IDS_OPTIONSPG_CODEPAGE     "Codepage"
-    IDS_OPTIONSPG_SYNTAXCOLORS "Syntax colors"
+    IDS_OPTIONSPG_SYNTAXCOLORS "Syntaxkulörer"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1878,7 +1878,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Kontrollera skrivbarhet på destinationen!"
     IDS_ERROR_BACKUP        "Fel under backup av filen"
     IDS_BACKUP_FAILED_PROMPT "Kan inte ta backup på originalfilen.\nVill du fortsätta i alla fall?"
-    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
+    IDS_FILESAVE_FAILED     "Det gick inte att spara filen.\n%1\n%2\nVill du:\n\t-använda ett annat filnamn (Tryck Ok)\n\t-avbryta sparande av fil (Tryck Avbryt)?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' kan inte packa dina förändringar av den vänstra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kan inte packa dina förändringar av den högra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILECHANGED_ONDISK  "En annan applikation har uppdaterat filen\n%1\nsedan WinMerge har öppnat den.\n\nVill du skriva över den förändrade filen?"
@@ -1907,8 +1907,8 @@ BEGIN
     IDS_VCS_VSS4            "Visual SourceSafe (lägre än 5.0)"
     IDS_VCS_VSS5            "Visual SourceSafe (5.0 eller högre)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
-    IDS_BREAK_ON_WHITESPACE "Break at whitespace"
-    IDS_BREAK_ON_PUNCTUATION "Break at whitespace or punctuation"
+    IDS_BREAK_ON_WHITESPACE "Radbryt på mellanslag"
+    IDS_BREAK_ON_PUNCTUATION "Radbryt på mellanslag eller punkt"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
@@ -2000,7 +2000,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Filnamn"
-    IDS_COLHDR_DIR          "Mapp"
+    IDS_COLHDR_DIR          "Katalog"
     IDS_COLHDR_RESULT       "Resultat av jämförelsen"
     IDS_COLHDR_LTIMEM       "Vänster datum"
     IDS_COLHDR_RTIMEM       "Höger datum"
@@ -2091,7 +2091,7 @@ BEGIN
     IDS_FILEERROR           "Ett fel inträffade under jämförelsen av filerna."
     IDS_FILEBINARY          "Binära filer kan inte jämföras visuellt."
     IDS_TEMP_FILEERROR      "Temporära filer kunde inte skapas. Kontrollera inställningarna för dina temporära sökvägar."
-    IDS_FILEISDIR           "Mappar kan inte jämföras visuellt."
+    IDS_FILEISDIR           "Kataloger kan inte jämföras visuellt."
     IDS_SUGGEST_IGNOREEOL   "Dessa filer har olika radslutstyper.\n\n\
                             Vill du betrakta alla radslutstyper som likvärdiga för denna jämförelse?\n\n\
                             OBS: Om du alltid vill betrakta alla radslutstyper \
@@ -2139,7 +2139,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n är inte en absolut sökväg!"
     IDS_CANNOT_CREATE_BINARYPATCH "Kan inte skapa en patchfil från binära filer."
     IDS_CANNOT_CREATE_DIRPATCH "Kan inte skapa en patchfil från kataloger."
-    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
+    IDS_SAVEFILES_FORPATCH  "Var god och spara ALLA filer först.\n\nAtt skapa en patch kräver att det inte finns några osparade förändringar i filerna."
 END
 
 STRINGTABLE
@@ -2555,9 +2555,9 @@ STRINGTABLE
 BEGIN
     ID_TITLE_PLUGINS_SETTINGS "Plugin Inställningar"
     ID_PREDIFF_MANUAL       "Ingen prediffer"
-    ID_PREDIFF_AUTO         "Prediff om möjligt"
+    ID_PREDIFF_AUTO         "Prediffer om möjligt"
     ID_NO_EDIT_SCRIPTS      "< Tom >"
-    ID_NO_SCT_SCRIPTS       "WSH hittades inte - .sct script är avstängda"
+    ID_NO_SCT_SCRIPTS       "Windows Scripting Host hittades inte - .sct script är avstängda"
     IDS_USERCHOICE_NONE     "<Ingen>"
     IDS_USERCHOICE_AUTOMATIC "<Automatisk>"
 END

@@ -1,3 +1,7 @@
+2005-05-14 Perry
+ PATCH: [ 1201703 ] Swedish MergeSwedish.rc update
+  Src/Languages/MergeSwedish.rc
+
 2005-05-13 Kimmo
  PATCH: [ 1201434 ] New ReadMe.txt
   Innosetup: WinMerge Localized.iss
