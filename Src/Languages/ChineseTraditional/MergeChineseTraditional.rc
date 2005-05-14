@@ -482,12 +482,12 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "G&oto Diff",                  ID_LOCBAR_GOTODIFF
-        MENUITEM "&Goto...",                    ID_EDIT_WMGOTO
+        MENUITEM "移至不同(&O)",                ID_LOCBAR_GOTODIFF
+        MENUITEM "移至(&G)...",                 ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
-        MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
-        MENUITEM "Moved Block for &Current Diff", ID_DISPLAY_MOVED_FOLLOW_DIFF
+        MENUITEM "不要移動區塊(&N)",            ID_DISPLAY_MOVED_NONE
+        MENUITEM "所有移動區塊(&A)",            ID_DISPLAY_MOVED_ALL
+        MENUITEM "移動區塊於目前不同(&C)",      ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
 END
 
@@ -561,9 +561,9 @@ BEGIN
     LTEXT           "拜訪 WinMerge 首頁！",IDC_WWW,7,107,209,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,209,1
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
-    LTEXT           "Contributors are listed in",IDC_STATIC,7,81,208,8
+    LTEXT           "貢獻者列出如下",IDC_STATIC,7,81,208,8
     LTEXT           "Contributors.txt",IDC_STATIC,7,91,153,8
-    PUSHBUTTON      "Show...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
+    PUSHBUTTON      "顯示...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
 END
 
 IDD_OPEN DIALOGEX 0, 0, 364, 126
@@ -580,17 +580,17 @@ BEGIN
     COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
     PUSHBUTTON      "瀏覽(&W)...",IDC_RIGHT_BUTTON,242,38,50,12
-    RTEXT           "&Filter:",IDC_STATIC,13,56,40,8
+    RTEXT           "濾鏡(&F):",IDC_STATIC,13,56,40,8
     COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN | CBS_AUTOHSCROLL |
                     WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Select...",IDC_SELECT_FILTER,242,54,50,12
-    RTEXT           "&Unpacker:",IDC_STATIC,13,72,40,8
+    PUSHBUTTON      "選取...",IDC_SELECT_FILTER,242,54,50,12
+    RTEXT           "解封包(&U):",IDC_STATIC,13,72,40,8
     EDITTEXT        IDC_UNPACKER_EDIT,56,70,181,12,ES_AUTOHSCROLL |
                     ES_READONLY
-    PUSHBUTTON      "&Select...",IDC_SELECT_UNPACKER,242,70,50,12
-    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",
+    PUSHBUTTON      "選取(&S)...",IDC_SELECT_UNPACKER,242,70,50,12
+    CONTROL         "包含子資料夾(&I)",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,56,86,181,10
-    LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
+    LTEXT           "狀態:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "確定",IDOK,306,11,50,14
     PUSHBUTTON      "取消",IDCANCEL,306,28,50,14
     GROUPBOX        "要比對的檔案或資料夾",IDC_FILES_DIRS_GROUP,7,7,292,111
@@ -604,23 +604,23 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    LTEXT           "Database:",IDC_STATIC,7,64,36,8
+    LTEXT           "資料庫:",IDC_STATIC,7,64,36,8
     COMBOBOX        IDC_DATABASE_LIST,48,63,202,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Project:",IDC_STATIC,7,81,36,8
+    LTEXT           "專案:",IDC_STATIC,7,81,36,8
     COMBOBOX        IDC_PROJECT_COMBO,48,78,202,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "User:",IDC_STATIC,7,99,36,8
+    LTEXT           "用戶:",IDC_STATIC,7,99,36,8
     EDITTEXT        IDC_USER,48,96,70,14,ES_AUTOHSCROLL
     RTEXT           "Password:",IDC_STATIC,122,99,55,8
     EDITTEXT        IDC_PASSWORD,180,96,70,14,ES_PASSWORD | ES_AUTOHSCROLL
-    CONTROL         "Link to Destination VSS project",IDC_VCPROJ_SYNC,"Button",
+    CONTROL         "連結到目標 VSS 專案",IDC_VCPROJ_SYNC,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+    CONTROL         "套用到所有項目",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
-    DEFPUSHBUTTON   "Check Out",IDOK,91,145,50,14
-    PUSHBUTTON      "Save As...",IDC_SAVE_AS,145,145,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,200,145,50,14
+    DEFPUSHBUTTON   "勘試",IDOK,91,145,50,14
+    PUSHBUTTON      "另存新檔...",IDC_SAVE_AS,145,145,50,14
+    PUSHBUTTON      "取消",IDCANCEL,200,145,50,14
 END
 
 IDD_PROP_VSS DIALOGEX 0, 0, 235, 157
@@ -647,18 +647,18 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,17,129,10
     CONTROL         "停用引人注目的螢幕(&D)",IDC_DISABLE_SPLASH,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,27,100,10
-    CONTROL         "&Close compare Statepane automatically",IDC_CMPPANE_AUTOCLOSE,
+    CONTROL         "自動地關閉比較狀態窗框(&C)",IDC_CMPPANE_AUTOCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
-    CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",
+    CONTROL         "按下 ESC 時關閉視窗(&O)",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
-    CONTROL         "Automatically verify paths in Open-dialog",
+    CONTROL         "在開啟對話盒自動地驗證路徑",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,206,10
     CONTROL         "&Allow only one instance to run",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
+    PUSHBUTTON      "重設",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press button to make all messageboxes visible again.",
+    LTEXT           "WinMerge 允許隱藏某些一般訊息盒. 按下按鈕可讓所有訊息盒看的到.",
                     IDC_STATIC,7,79,168,31
 END
 
@@ -716,7 +716,7 @@ BEGIN
                     WS_TABSTOP,7,54,135,10
     CONTROL         "一般運算式(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,64,135,10
-    CONTROL         "&Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+    CONTROL         "不要包裹檔案結束(&D)",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
     GROUPBOX        "取代在",IDC_STATIC,149,40,90,36,WS_GROUP
     CONTROL         "選取(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",BS_AUTORADIOBUTTON | WS_GROUP,

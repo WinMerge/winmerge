@@ -3,6 +3,9 @@
   Src/Languages/MergeSwedish.rc
  (Copy update note from this readme to Docs/Users/Manual/readme.txt
   for patch 1199600)
+ PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
+  Applied some dialog translations.
+  Src/Languages: MergeChineseTraditional.rc
 
 2005-05-13 Kimmo
  PATCH: [ 1201434 ] New ReadMe.txt
