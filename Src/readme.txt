@@ -1,6 +1,8 @@
 2005-05-14 Perry
  PATCH: [ 1201703 ] Swedish MergeSwedish.rc update
   Src/Languages/MergeSwedish.rc
+ (Copy update note from this readme to Docs/Users/Manual/readme.txt
+  for patch 1199600)
 
 2005-05-13 Kimmo
  PATCH: [ 1201434 ] New ReadMe.txt
