@@ -8,6 +8,8 @@
   Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
  PATCH: [ 1201961 ] Japanese translation update
   Src/Languages/Japanese: MergeJapanese.rc
+ BUG: [ 1190652 ] warning in cvs code in DirScan.cpp
+  Src: DirScan.cpp
 
 2005-05-13 Kimmo
  PATCH: [ 1201434 ] New ReadMe.txt
