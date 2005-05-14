@@ -855,6 +855,8 @@
  PATCH: [ 1039228 ] add codepage info strings
   Src: codepage.cpp codepage.h Merge.rc resource.h
   Src/Languages: Merge*.rc, resource.h
+ BUG: [ 1162653 ] CMainFrame::ShowVSSError doesn't always log error
+  Src: MainFrm.cpp
 
 2005-01-22 Perry
  PATCH: [ 1107484 ] Fix broken version columns

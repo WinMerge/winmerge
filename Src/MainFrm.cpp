@@ -2634,7 +2634,10 @@ void CMainFrame::ShowVSSError(CException *e, CString strItem)
 		AfxMessageBox(errMsg, MB_ICONSTOP);
 	}
 	else
+	{
+		LogErrorString(_T("VSSError (unable to GetErrorMessage)"));
 		e->ReportError(MB_ICONSTOP, IDS_VSS_RUN_ERROR);
+	}
 }
 
 /**
