@@ -857,6 +857,8 @@
   Src/Languages: Merge*.rc, resource.h
  BUG: [ 1162653 ] CMainFrame::ShowVSSError doesn't always log error
   Src: MainFrm.cpp
+ BUG: [ 1157554 ] MergeKorean IDD_FILEFILTERS not DIALOGEX
+  Src/Languages/Korean: MergeKorean.rc
 
 2005-01-22 Perry
  PATCH: [ 1107484 ] Fix broken version columns
