@@ -863,7 +863,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
     CONTROL         "拡張メニューを有効にする(&N)",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
-    CONTROL         "Ignore time differences less than 3 seconds",
+    CONTROL         "3秒以下の時間差を無視する",
                     IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,8,39,222,10
     LTEXT           "外部エディタ(&E):",IDC_STATIC,7,49,222,8
@@ -1108,11 +1108,11 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,85,63,137,10
     CONTROL         "スペースを挿入(&S)",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,85,72,137,10
-    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,10,97,
+    GROUPBOX        "行内差異の色付け",IDC_LINE_COLORING_GROUP,10,97,
                     218,37
-    CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",
+    CONTROL         "行内差異を表示する",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
-    CONTROL         "Break on words",IDC_BREAK_ON_WORDS,"Button",
+    CONTROL         "単語の区切り",IDC_BREAK_ON_WORDS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,148,108,73,8
     COMBOBOX        IDC_BREAK_TYPE,17,120,143,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
@@ -1158,7 +1158,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
     CONTROL         "変更を破棄する(&C)",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
-    PUSHBUTTON      "Discard All",IDC_SAVECLOSING_DISCARDALL,7,133,65,14
+    PUSHBUTTON      "すべて破棄する",IDC_SAVECLOSING_DISCARDALL,7,133,65,14
     DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
     PUSHBUTTON      "キャンセル",IDCANCEL,205,133,50,14
 END
@@ -1168,7 +1168,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "コードページ"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Detect codepage info for these files : .html, .rc, .xml \nneed to restart session",
+    CONTROL         ".html, .rc, .xml ファイルのコードページ情報を検出する\nセッションの再起動が必要です",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,74,210,29
     CONTROL         "システムコードページ",IDC_CP_SYSTEM,"Button",
@@ -1331,7 +1331,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040903a4"
+        BLOCK "041103a4"
         BEGIN
             VALUE "Comments", "Translated by sawanaka@d1.dion.ne.jp\0"
             VALUE "CompanyName", "\0"
@@ -1769,7 +1769,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "ファイル書き込み可チェックエラー"
     IDS_ERROR_BACKUP        "ファイルバックアップエラー"
     IDS_BACKUP_FAILED_PROMPT "元ファイルをバックアップできません。\n無視して続けますか?"
-    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
+    IDS_FILESAVE_FAILED     "ファイルの保存に失敗しました。\n%1\n%2\n別名で保存する場合はOkを、\n中止する場合は、キャンセルを押してください"
     IDS_FILEPACK_FAILED_LEFT "プラグイン '%2' は、修正内容を左側のファイル '%1' に書き戻すことができません。\n\n元ファイルは変更されません。\n\n展開されたものを別ファイルに保存しますか?"
     IDS_FILEPACK_FAILED_RIGHT "プラグイン '%2' は、修正内容を右側のファイル '%1' に書き戻すことができません。\n\n元ファイルは変更されません。\n\n展開されたものを別ファイルに保存しますか?"
     IDS_FILECHANGED_ONDISK  "%1\nこのファイルは WinMerge 以外のアプリケーションで修正されています。修正されたファイルに上書きしますか?"
@@ -1798,8 +1798,8 @@ BEGIN
     IDS_VCS_VSS4            "Visual SourceSafe (5.0 未満)"
     IDS_VCS_VSS5            "Visual SourceSafe (5.0 以上)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
-    IDS_BREAK_ON_WHITESPACE "Break at whitespace"
-    IDS_BREAK_ON_PUNCTUATION "Break at whitespace or punctuation"
+    IDS_BREAK_ON_WHITESPACE "空白で区切る"
+    IDS_BREAK_ON_PUNCTUATION "空白か句読点で区切る"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
@@ -1991,7 +1991,7 @@ BEGIN
 
     IDS_SUGGEST_PRESERVEEOL "ファイル'%1'内に異なるタイプ(DOS/UNIX/MAC)のEOLが存在しています。\n 現在のオプション設定では、主なEOLに統一されます。\n オプションを変更して、異なるEOLを保持するようにしますか?"
     IDS_PREDIFFER_ERROR      "プラグイン'%2'でファイル'%1'の比較前処理の実行中にエラーが発生しました。比較前処理は以降行なわれません。"
-    IDS_SUGGEST_IGNORECODEPAGE "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
+    IDS_SUGGEST_IGNORECODEPAGE "開いたファイルで異なったコードページが検出されました。左(cp%d)、右(cp%d)\n各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\nコードページをデフォルトコードページとして扱いますが、よろしいですか(推奨)?"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2030,7 +2030,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n は絶対パスではありません!"
     IDS_CANNOT_CREATE_BINARYPATCH "バイナリファイルからパッチファイルは生成できません。"
     IDS_CANNOT_CREATE_DIRPATCH "ディレクトリからパッチファイルは生成できません。"
-    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
+    IDS_SAVEFILES_FORPATCH  "まず先に全てのファイルを保存してください。\n\nパッチ生成には、変更が全て保存されている必要があります。"
 END
 
 STRINGTABLE

@@ -5,7 +5,9 @@
   for patch 1199600)
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
   Applied some dialog translations.
-  Src/Languages: MergeChineseTraditional.rc
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
+ PATCH: [ 1201961 ] Japanese translation update
+  Src/Languages/Japanese: MergeJapanese.rc
 
 2005-05-13 Kimmo
  PATCH: [ 1201434 ] New ReadMe.txt
