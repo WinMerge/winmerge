@@ -64,7 +64,7 @@
   </language>
   <language>
     <name>Chinese (Traditional)</name>
-    <status>4</status>
+    <status>2</status>
     <authors>
       <author>
         <name>Koko</name>
@@ -72,6 +72,8 @@
       </author>
     </authors>
     <versions>
+      <version>2.3</version>
+      <version>2.2</version>
       <version>2.0</version>
     </versions>
   </language>
@@ -104,14 +106,21 @@
   </language>
   <language>
     <name>Dutch</name>
-    <status>3</status>
+    <status>2</status>
     <authors>
       <author>
         <name>Ronald Schaap</name>
         <email>ronald at schaap dot demon dot nl</email>
+        <comment>1.7</comment>
+      </author>
+      <author>
+        <name>Michel Coene</name>
+        <comment>2.3 &amp; 2.2</comment>
       </author>
     </authors>
     <versions>
+      <version>2.3</version>
+      <version>2.2</version>
       <version>1.7</version>
     </versions>
   </language>
@@ -195,10 +204,11 @@
       <author>
         <name>Andrea Decorte (Klenje)</name>
         <email>klenje at users dot sourceforge dot net</email>
-        <comment>2.2 &amp; 2.1</comment>
+        <comment>2.3, 2.2 &amp; 2.1</comment>
       </author>
     </authors>
     <versions>
+      <version>2.3</version>
       <version>2.2</version>
       <version>2.1</version>
       <version>2.0</version>
@@ -256,7 +266,7 @@
   </language>
   <language>
     <name>Polish</name>
-    <status>4</status>
+    <status>2</status>
     <authors>
       <author>
         <name>Pawel Wawrzysko</name>
@@ -264,12 +274,14 @@
       </author>
     </authors>
     <versions>
+      <version>2.3</version>
+      <version>2.2</version>
       <version>2.0</version>
     </versions>
   </language>
   <language>
     <name>Russian</name>
-    <status>2</status>
+    <status>1</status>
     <authors>
       <author>
         <name>Dmitriy S. Aleshkowskiy</name>
@@ -277,6 +289,8 @@
       </author>
     </authors>
     <versions>
+      <version>2.3</version>
+      <version>2.2</version>
       <version>2.1</version>
     </versions>
   </language>
@@ -334,6 +348,20 @@
       <version>2.2</version>
       <version>2.1</version>
       <version>2.0</version>
+    </versions>
+  </language>
+  <language>
+    <name>Turkish</name>
+    <status>2</status>
+    <authors>
+      <author>
+        <name>Ozkan UNVER</name>
+        <email>turquaz37915 at users dot sourceforge dot net</email>
+      </author>
+    </authors>
+    <versions>
+      <version>2.3</version>
+      <version>2.2</version>
     </versions>
   </language>
 </l10n>

@@ -1,3 +1,7 @@
+2005-05-15 Tim
+ PATCH: [ 1201007 ] Web: Status of translations updates
+  Web\developer\l10n: status.xml
+
 2005-05-04 Tim
  RFE: [ 1189256 ] Add 7-zip installer download link to homepage
   Web: page.inc
