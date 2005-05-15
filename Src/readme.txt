@@ -1,3 +1,8 @@
+2005-05-15 Perry
+ PATCH: [ 1201961 ] Japanese translation update
+  (version 2, to translate syntax colors)
+  Src/Languages/Japanese: MergeJapanese.rc
+
 2005-05-14 Perry
  PATCH: [ 1201703 ] Swedish MergeSwedish.rc update
   Src/Languages/MergeSwedish.rc
