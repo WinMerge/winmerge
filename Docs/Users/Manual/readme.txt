@@ -1,3 +1,7 @@
+2005-05-15 Tim
+ PATCH: [ 1201021 ] Add Turkish to the manual (Locales.xml)
+  Manual: Locales.xml
+
 2005-05-12 Tim
  BUG: [ 1199609 ] New File Compare method for docs
   Manual: Configuration.xml
