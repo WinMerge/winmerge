@@ -5,6 +5,8 @@
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
   More dialogs, and most of the strings
   Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
+ PATCH: [ 1202060 ] Recognize .lang files as having versioninfo
+  Src: DiffContext.cpp
 
 2005-05-14 Perry
  PATCH: [ 1201703 ] Swedish MergeSwedish.rc update

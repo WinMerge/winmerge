@@ -255,7 +255,7 @@ static bool CheckFileForVersion(LPCTSTR ext)
 {
 	if (!lstrcmpi(ext, _T(".EXE")) || !lstrcmpi(ext, _T(".DLL")) || !lstrcmpi(ext, _T(".SYS")) ||
 	    !lstrcmpi(ext, _T(".DRV")) || !lstrcmpi(ext, _T(".OCX")) || !lstrcmpi(ext, _T(".CPL")) ||
-	    !lstrcmpi(ext, _T(".SCR")))
+	    !lstrcmpi(ext, _T(".SCR")) || !lstrcmpi(ext, _T(".LANG")))
 	{
 		return true;
 	}
