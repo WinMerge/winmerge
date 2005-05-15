@@ -2,6 +2,9 @@
  PATCH: [ 1201961 ] Japanese translation update
   (version 2, to translate syntax colors)
   Src/Languages/Japanese: MergeJapanese.rc
+ PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
+  More dialogs, and most of the strings
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
 
 2005-05-14 Perry
  PATCH: [ 1201703 ] Swedish MergeSwedish.rc update
