@@ -1,3 +1,7 @@
+2005-05-16 Kimmo
+ Add change to DirView.cpp I missed from patch #1184626 (single instance/multidoc)
+  Src: DirView.cpp
+
 2005-05-15 Perry
  PATCH: [ 1201961 ] Japanese translation update
   (version 2, to translate syntax colors)
