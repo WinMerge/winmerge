@@ -1,3 +1,14 @@
+2005-05-16 Kimmo
+ PATCH: [ 1201945 ] Localization of ShellExtension.dll
+  Submitted by Takashi Sawanaka
+  Adds Turkish translation to installer and localizes "OptionalFeatures"
+  InnoSetup: WinMerge Localized.iss
+  InnoSetup/Languages: Brazilian_Portugese.isl Bulgarian.isl Catalan.isl
+   Chinese_Simplified.isl Chinese_Traditional.isl Czech.isl Danish.isl Dutch.isl
+   English.isl French.isl German.isl Hungarian.isl Italian.isl Japanese.isl
+   Korean.isl Norwegian.isl Polish.isl Russian.isl Slovak.isl Spanish.isl Swedish.isl
+  Innosetup/Languages new file: Turkish.isl
+
 2005-03-01 Kimmo
  PATCH: [ 1153851 ] Remove Merge7z*.dll install from installer
   InnoSetup: WinMerge Localized.iss

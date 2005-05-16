@@ -307,6 +307,7 @@ StatusUninstalling=%1 をアンインストールしています...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 version %2
 AdditionalIcons=追加するアイコン:
+OptionalFeatures=追加する機能:
 CreateDesktopIcon=デスクトップにアイコンを作成する(&D)
 CreateQuickLaunchIcon=クイックランチにアイコンを作成する(&Q)
 ProgramOnTheWeb=%1 on the Web
@@ -353,6 +354,7 @@ RussianLanguage=Russian menus and dialogs
 SlovakLanguage=Slovak menus and dialogs
 SpanishLanguage=Spanish menus and dialogs
 SwedishLanguage=Swedish menus and dialogs
+TurkishLanguage=Turkish menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=エクスプローラのコンテキストメニューに追加(&E)

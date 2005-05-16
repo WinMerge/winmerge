@@ -299,6 +299,7 @@ StatusUninstalling=Probíhá odinstalace produktu %1...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 verze %2
 AdditionalIcons=Další zástupci:
+OptionalFeatures=Optional Features:
 CreateDesktopIcon=Vytvoøit zástupce na &ploše
 CreateQuickLaunchIcon=Vytvoøit zástupce na panelu &Snadné spuštìní
 ProgramOnTheWeb=Aplikace %1 na internetu
@@ -345,6 +346,7 @@ RussianLanguage=Russian menus and dialogs
 SlovakLanguage=Slovak menus and dialogs
 SpanishLanguage=Spanish menus and dialogs
 SwedishLanguage=Swedish menus and dialogs
+TurkishLanguage=Turkish menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Enable Explorer context menu integration

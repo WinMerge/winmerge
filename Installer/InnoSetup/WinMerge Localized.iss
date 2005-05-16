@@ -166,6 +166,7 @@ Name: Russian; MessagesFile: Languages\Russian.isl
 Name: Slovak; MessagesFile: Languages\Slovak.isl
 Name: Spanish; MessagesFile: Languages\Spanish.isl
 Name: Swedish; MessagesFile: Languages\Swedish.isl
+Name: Turkish; MessagesFile: Languages\Turkish.isl
 
 
 [Messages]
@@ -253,9 +254,12 @@ Name: Languages\Spanish; Description: {cm:SpanishLanguage}; Flags: disablenounin
 Name: Languages\Swedish; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Swedish)
 Name: Languages\Swedish; Description: {cm:SwedishLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Swedish
 
+Name: Languages\Turkish; Description: {cm:TurkishLanguage}; Flags: disablenouninstallwarning; Types: full; Check: LanguageDisabled(Turkish)
+Name: Languages\Turkish; Description: {cm:TurkishLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Turkish
+
 [Tasks]
-Name: ShellExtension; Description: {cm:ExplorerContextMenu}; GroupDescription: Optional Features:
-Name: TortoiseCVS; Description: {cm:IntegrateTortoiseCVS}; GroupDescription: Optional Features:; Check: TortoiseCVSInstalled
+Name: ShellExtension; Description: {cm:ExplorerContextMenu}; GroupDescription: {cm:OptionalFeatures}
+Name: TortoiseCVS; Description: {cm:IntegrateTortoiseCVS}; GroupDescription: {cm:OptionalFeatures}; Check: TortoiseCVSInstalled
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
 Name: quicklaunchicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription: {cm:AdditionalIcons}
 
@@ -302,6 +306,7 @@ Name: {app}\Languages\MergeSlovak.lang; Type: files; Check: ComponentDisabled('S
 Name: {app}\Languages\MergeSpanish.lang; Type: files; Check: ComponentDisabled('Spanish')
 Name: {app}\Languages\MergeRussian.lang; Type: files; Check: ComponentDisabled('Russian')
 Name: {app}\Languages\MergeSwedish.lang; Type: files; Check: ComponentDisabled('Swedish')
+Name: {app}\Languages\MergeTurkish.lang; Type: files; Check: ComponentDisabled('Turkish')
 Name: {app}\MergePlugins\list.txt; Type: files; Check: ComponentDisabled('Plugins')
 
 ;Removes the user's guide icon if the user deselects the user's guide component.
@@ -399,6 +404,7 @@ Source: ..\Src\Languages\DLL\MergeRussian.lang; DestDir: {app}\Languages; Compon
 Source: ..\Src\Languages\DLL\MergeSlovak.lang; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeSpanish.lang; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeSwedish.lang; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
+Source: ..\Src\Languages\DLL\MergeTurkish.lang; DestDir: {app}\Languages; Components: Languages\Turkish; Flags: ignoreversion comparetimestamp
 
 Source: ..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 Source: ..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
@@ -442,24 +448,6 @@ Name: {app}\MergePlugins\Plugins.txt; Filename: {app}\Docs\Plugins.txt; Check: I
 [Registry]
 Root: HKCU; Subkey: Software\Thingamahoochie; Flags: uninsdeletekeyifempty
 Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge; Flags: uninsdeletekey
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font
-
-; Set the default font to Courier New size 10
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: string; ValueName: FaceName; ValueData: Courier New
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: Specified; ValueData: 1
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: Height; ValueData: $fffffff3
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: Width; ValueData: 0
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: Escapement; ValueData: 0
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: Orientation; ValueData: 0
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: Weight; ValueData: $190
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: Italic; ValueData: 0
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: Underline; ValueData: 0
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: StrikeOut; ValueData: 0
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: CharSet; ValueData: 0
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: OutPrecision; ValueData: 3
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: ClipPrecision; ValueData: 2
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: Quality; ValueData: 1
-Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Font; ValueType: dword; ValueName: PitchAndFamily; ValueData: $31
 
 ; delete obsolete values
 ;In Inno Setup Version 4.18 ValueData couldn't be null and compile,
@@ -521,6 +509,7 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; 
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000041b; Flags: deletevalue; Languages: Slovak
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000c0a; Flags: deletevalue; Languages: Spanish
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000041D; Flags: deletevalue; Languages: Swedish
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000041f; Flags: deletevalue; Languages: Turkish
 Root: HKCU; SubKey: Software\Microsoft\Windows\CurrentVersion\Explorer\MenuOrder\Start Menu\Programs\{code:RelativeGroupPath}; ValueType: binary; ValueName: Order; ValueData: 08 00 00 00 02 00 00 00 a2 01 00 00 01 00 00 00 05 00 00 00 4c 00 00 00 01 00 00 00 3d 00 00 00 41 75 67 4d 01 00 00 00 01 00 00 00 00 00 00 00 27 00 32 00 2b 05 00 00 95 30 17 80 20 00 52 65 61 64 20 4d 65 2e 6c 6e 6b 00 52 45 41 44 4d 45 7e 31 2e 4c 4e 4b 00 00 00 00 00 00 05 00 00 00 56 00 00 00 04 00 00 00 48 00 00 00 41 75 67 4d 01 00 00 00 01 00 00 00 00 00 00 00 32 00 32 00 be 01 00 00 95 30 17 80 20 00 55 6e 69 6e 73 74 61 6c 6c 20 57 69 6e 4d 65 72 67 65 2e 6c 6e 6b 00 55 4e 49 4e 53 54 7e 31 2e 4c 4e 4b 00 00 00 00 00 05 00 00 00 50 00 00 00 02 00 00 00 42 00 00 00 41 75 67 4d 01 00 00 00 01 00 00 00 00 00 00 00 2c 00 32 00 c9 05 00 00 95 30 17 80 20 00 55 73 65 72 27 73 20 47 75 69 64 65 2e 6c 6e 6b 00 55 53 45 52 27 53 7e 31 2e 4c 4e 4b 00 00 00 00 00 05 00 00 00 58 00 00 00 03 00 00 00 49 00 00 00 41 75 67 4d 01 00 00 00 01 00 00 00 00 00 00 00 33 00 32 00 2e 00 00 00 95 30 17 80 20 00 57 69 6e 4d 65 72 67 65 20 6f 6e 20 74 68 65 20 57 65 62 2e 75 72 6c 00 57 49 4e 4d 45 52 7e 31 2e 55 52 4c 00 00 00 00 00 00 05 00 00 00 4c 00 00 00 00 00 00 00 3e 00 00 00 41 75 67 4d 01 00 00 00 01 00 00 00 00 00 00 00 28 00 32 00 ce 01 00 00 95 30 17 80 20 00 57 69 6e 4d 65 72 67 65 2e 6c 6e 6b 00 57 49 4e 4d 45 52 47 45 2e 4c 4e 4b 00 00 00 00 00 05 00 00 00
 
 

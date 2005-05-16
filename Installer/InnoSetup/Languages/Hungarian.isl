@@ -305,6 +305,7 @@ StatusUninstalling=A(z) %1 eltávolítása...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 - Verziószám: %2
 AdditionalIcons=További ikonok:
+OptionalFeatures=Optional Features:
 CreateDesktopIcon=Ikon létrehozása az &Asztalon
 CreateQuickLaunchIcon=Ikon létrehozása a &Gyorsindítás pulton
 ProgramOnTheWeb=%1 a weben
@@ -340,7 +341,7 @@ DanishLanguage=Dán menük és párbeszédablakok
 DutchLanguage=Holland menük és párbeszédablakok
 FrenchLanguage=Francia menük és párbeszédablakok
 GermanLanguage=Német menük és párbeszédablakok
-HungarianLanguage=Hungarian menus and dialogs
+HungarianLanguage=Magyar menük és párbeszédablakok
 ItalianLanguage=Olasz menük és párbeszédablakok
 JapaneseLanguage=Japán menük és párbeszédablakok
 KoreanLanguage=Koreai menük és párbeszédablakok
@@ -351,6 +352,7 @@ RussianLanguage=Orosz menük és párbeszédablakok
 SlovakLanguage=Szlovák menük és párbeszédablakok
 SpanishLanguage=Spanyol menük és párbeszédablakok
 SwedishLanguage=Svéd menük és párbeszédablakok
+TurkishLanguage=török menük és párbeszédablakok
 
 ;Tasks
 ExplorerContextMenu=Integrálás az Intézõ &context-menüjéhez

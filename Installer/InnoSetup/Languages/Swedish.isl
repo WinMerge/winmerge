@@ -303,6 +303,7 @@ StatusUninstalling=Avinstallerar %1...
 [CustomMessages]
 NameAndVersion=%1 version %2
 AdditionalIcons=Återstående ikoner:
+OptionalFeatures=Optional Features:
 CreateDesktopIcon=Skapa en ikon på Skrivbordet
 CreateQuickLaunchIcon=Skapa en ikon i Snabbstartfältet
 ProgramOnTheWeb=%1 på Webben
@@ -349,6 +350,7 @@ RussianLanguage=Ryska menyer och dialoger
 SlovakLanguage=Slovakiska menyer och dialoger
 SpanishLanguage=Spanska menyer och dialoger
 SwedishLanguage=Svenska menyer och dialoger
+TurkishLanguage=Turkiska menyer och dialoger
 
 ;Tasks
 ExplorerContextMenu=&Möjliggör integration med Explorers menyer

@@ -285,6 +285,7 @@ StatusUninstalling=Verwijderen van %1...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 versie %2
 AdditionalIcons=Extra snelkoppelingen:
+OptionalFeatures=Optional Features:
 CreateDesktopIcon=Maak een snelkoppeling op het &bureaublad
 CreateQuickLaunchIcon=Maak een snelkoppeling op de &Snel starten werkbalk
 ProgramOnTheWeb=%1 op het Web
@@ -331,6 +332,7 @@ RussianLanguage=Russian menus and dialogs
 SlovakLanguage=Slovak menus and dialogs
 SpanishLanguage=Spanish menus and dialogs
 SwedishLanguage=Swedish menus and dialogs
+TurkishLanguage=Turkish menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Enable Explorer context menu integration

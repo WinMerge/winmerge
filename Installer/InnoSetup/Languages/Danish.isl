@@ -308,6 +308,7 @@ StatusUninstalling=Afinstallerer %1...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 version %2
 AdditionalIcons=Additional icons:
+OptionalFeatures=Optional Features:
 CreateDesktopIcon=Create a &desktop icon
 CreateQuickLaunchIcon=Create a &Quick Launch icon
 ProgramOnTheWeb=%1 on the Web
@@ -354,6 +355,7 @@ RussianLanguage=Russian menus and dialogs
 SlovakLanguage=Slovak menus and dialogs
 SpanishLanguage=Spanish menus and dialogs
 SwedishLanguage=Swedish menus and dialogs
+TurkishLanguage=Turkish menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Enable Explorer context menu integration

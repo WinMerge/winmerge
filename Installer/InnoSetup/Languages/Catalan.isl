@@ -297,6 +297,7 @@ StatusUninstalling=Desinstal·lant %1...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 versió %2
 AdditionalIcons=Icones addicionals:
+OptionalFeatures=Optional Features:
 CreateDesktopIcon=Crear una icona a l'&Escriptori
 CreateQuickLaunchIcon=Crear una icona a la &Barra de tasques
 ProgramOnTheWeb=%1 a Internet
@@ -344,6 +345,7 @@ RussianLanguage=Menús i diàlegs en Rus
 SlovakLanguage=Menús i diàlegs en Eslovac
 SpanishLanguage=Menús i diàlegs en Castellà
 SwedishLanguage=Menús i diàlegs en Suec
+TurkishLanguage=Menús i diàlegs en Turc
 
 ;Tasks
 ExplorerContextMenu=&Habilita la integració del menú de contexte a l'Explorador

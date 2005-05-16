@@ -297,6 +297,7 @@ StatusUninstalling=Deinstalacja %1...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 wersja %2
 AdditionalIcons=Dodatkowe ikony:
+OptionalFeatures=Optional Features:
 CreateDesktopIcon=Utwórz ikone na &pulpicie
 CreateQuickLaunchIcon=Utwórz ikone na pasku &szybkiego uruchamiania
 ProgramOnTheWeb=Strona WWW programu %1
@@ -343,6 +344,7 @@ RussianLanguage=Rosyjski interfejs
 SlovakLanguage=Slowacki interfejs
 SpanishLanguage=Hiszpanski interfejs
 SwedishLanguage=Szwedzki interfejs
+TurkishLanguage=turecki interfejs
 
 ;Tasks
 ExplorerContextMenu=&Wlacz integracje z menu Eksploratora
