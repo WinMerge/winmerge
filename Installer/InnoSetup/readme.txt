@@ -1,3 +1,7 @@
+2005-05-17 Kimmo
+ Add Swedish ReadMe-Swedish.txt to installer
+  InnoSetup: WinMerge Localized.iss
+
 2005-05-16 Kimmo
  PATCH: [ 1201945 ] Localization of ShellExtension.dll
   Submitted by Takashi Sawanaka

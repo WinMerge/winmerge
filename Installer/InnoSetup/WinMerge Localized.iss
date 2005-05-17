@@ -166,7 +166,7 @@ Name: Russian; MessagesFile: Languages\Russian.isl
 Name: Slovak; MessagesFile: Languages\Slovak.isl
 Name: Spanish; MessagesFile: Languages\Spanish.isl
 Name: Swedish; MessagesFile: Languages\Swedish.isl
-Name: Turkish; MessagesFile: Languages\Turkish.isl
+Name: Turkish; MessagesFile: Languages\Turkish.isl  InfoAfterFile: ..\Docs\Users\Languages\ReadMe-Swedish.txt
 
 
 [Messages]
