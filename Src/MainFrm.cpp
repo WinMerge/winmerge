@@ -1159,27 +1159,9 @@ void CMainFrame::OnOptions()
 			CMergeEditView * pLeft = pMergeDoc->GetLeftView();
 			CMergeEditView * pRight = pMergeDoc->GetRightView();
 
-			// Re-read MergeDoc settings
+			// Re-read MergeDoc settings (also updates view settings)
+			// and rescan using new options
 			pMergeDoc->RefreshOptions();
-			
-			// Enable/disable automatic rescan (rescan after editing)
-			pLeft->EnableRescan(m_options.GetBool(OPT_AUTOMATIC_RESCAN));
-			pRight->EnableRescan(m_options.GetBool(OPT_AUTOMATIC_RESCAN));
-
-			// Set tab type (tabs (==0)/spaces (==1))
-			if (m_options.GetInt(OPT_TAB_TYPE) == 0)
-			{
-				pLeft->SetInsertTabs(TRUE);
-				pRight->SetInsertTabs(TRUE);
-			}
-			else
-			{
-				pLeft->SetInsertTabs(FALSE);
-				pRight->SetInsertTabs(FALSE);
-			}
-
-			// Allow user to save files or not, cancel is pointless
-			pMergeDoc->SaveHelper(FALSE);
 			pMergeDoc->FlushAndRescan(TRUE);
 		}
 

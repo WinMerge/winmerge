@@ -2169,6 +2169,12 @@ void CMergeEditView::OnUpdateWMGoto(CCmdUI* pCmdUI)
 void CMergeEditView::RefreshOptions()
 { 
 	m_bCloseWithEsc = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
+	m_bAutomaticRescan = mf->m_options.GetBool(OPT_AUTOMATIC_RESCAN);
+
+	if (mf->m_options.GetInt(OPT_TAB_TYPE) == 0)
+		SetInsertTabs(TRUE);
+	else
+		SetInsertTabs(FALSE);
 
 	m_bSyntaxHighlight = mf->m_options.GetBool(OPT_SYNTAX_HIGHLIGHT);
 	m_bWordDiffHighlight = mf->m_options.GetBool(OPT_WORDDIFF_HIGHLIGHT);

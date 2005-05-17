@@ -1,3 +1,7 @@
+2005-05-17 Kimmo
+ PATCH: [ 1203079 ] Don't ask about saving files after options change
+  Src: MainFrm.cpp MergeEditView.cpp
+
 2005-05-16 Kimmo
  Add change to DirView.cpp I missed from patch #1184626 (single instance/multidoc)
   Src: DirView.cpp
