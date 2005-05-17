@@ -4,6 +4,8 @@
  PATCH: [ 1202813 ] Swedish translated ReadMe.txt
   Submitted by Hans Eriksson
   Docs/Users/Languages: ReadMe-Swedish.txt
+ PATCH: [ 1201834 ] Remove old readme-translations
+  Removed files: Docs/Users/Languages: *.rtf Contributors.txt Read me.txt
 
 2005-05-16 Kimmo
  Add change to DirView.cpp I missed from patch #1184626 (single instance/multidoc)
