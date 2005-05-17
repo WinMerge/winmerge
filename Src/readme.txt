@@ -1,3 +1,7 @@
+2005-05-17 Perry
+ PATCH: [ 1203707 ] tiny code rearrangement for debugging
+  Src: MergeDoc.cpp
+
 2005-05-17 Kimmo
  PATCH: [ 1203079 ] Don't ask about saving files after options change
   Src: MainFrm.cpp MergeEditView.cpp
