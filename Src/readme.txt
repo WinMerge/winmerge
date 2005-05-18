@@ -1,3 +1,7 @@
+2005-05-18 Kimmo
+ PATCH: [ 1203680 ] Fix tab adding spaces in unicode builds
+  Src/editlib: ccrystaltextview.cpp
+
 2005-05-18 Perry
  PATCH: [ 1197969 ] New script to update production version in translations
   Src new files: SetResourceVersions.bat SetResourceVersions.wsf
