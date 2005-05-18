@@ -257,12 +257,24 @@ This installer is only used for major releases, for other releases we just zip u
 </ul>
 
 <p>Please remember to put the version number into both executables. You may use
-<a href="http://www.elphin.com/products/stampver.html">StampVer</a> to stamp
-the version number into the executables after they are compiled; Christian is
-familiar with this process. You may also use the old-fashioned process
-of simply copying all the sources, changing the <code>Merge.rc</code> in the copy using
-the MSVC6 resource editor, and compiling that (Perry has been using this
-manual, low-tech process). Whatever method you use, please double-check the
+any of the following three methods at least.
+<ol>
+ <li>
+ You may run Src/SetResourceVersions.bat, which will prompt for the new
+ version number, and set it both in Merge.rc and in all the translated rc files.
+ </li><li>
+ You may use
+ <a href="http://www.elphin.com/products/stampver.html">StampVer</a> to stamp
+ the version number into the executables after they are compiled; Christian is
+ familiar with this process. 
+ </li><li>
+ You may also use the old-fashioned process
+ of simply copying all the sources, changing the <code>Merge.rc</code> in the copy using
+ the MSVC6 resource editor, and compiling that (many releases have been made in this
+ manual, low-tech fashion).
+ </li>
+</ol>
+Whatever method you use, please double-check the
 executable version numbers before uploading and releasing them.</p>
 
 <ul>

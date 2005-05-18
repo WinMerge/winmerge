@@ -1,3 +1,8 @@
+2005-05-18 Perry
+ PATCH: [ 1197969 ] New script to update production version in translations
+  Src new files: SetResourceVersions.bat SetResourceVersions.wsf
+  Docs/Developers/readme-developers.html.
+
 2005-05-17 Perry
  PATCH: [ 1203707 ] tiny code rearrangement for debugging
   Src: MergeDoc.cpp

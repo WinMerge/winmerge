@@ -1,0 +1,375 @@
+<job>
+
+/*
+ SetLanguageVersions.wsf
+ Created: Perry Rapp, 2005-05-08
+*/
+
+<script language="VBScript">
+Function PromptBox(msg, title, defval)
+  PromptBox = InputBox(msg, title, defval)
+End Function
+</script>
+
+
+<script language="JavaScript">
+
+// Globals
+var ErrorFiles
+var SuccessCount
+
+Main();
+
+/***************************************************
+ ** Check arguments and launch main worker
+ ***************************************************/
+function Main()
+{
+
+  // If more than one argument, abort
+  if (WScript.Arguments.Unnamed.Count > 1)
+  {
+    ShowUsage();
+    return;
+  }
+  
+  // If no arguments, prompt for new version
+  var version
+  if (WScript.Arguments.Unnamed.Count == 1)
+  {
+    version = WScript.Arguments.Unnamed(0);
+  }
+  else
+  {
+    var Message = "Enter new version number (eg, 1.2.3.4)";
+    var Title = "Version Number";
+    var defval = "";
+    var result = PromptBox(Message, Title, defval);
+    if (ltrim(result) == "")
+      WScript.Quit();
+    version = result;
+  }
+
+  var params = new Object;
+  if (!DecodeVersion(version, params))
+  {
+      return;
+  }
+
+  // Take specified path, or default to current directory
+  var path = WScript.Arguments.Named("path");
+  if (path == null || path == "")
+    path = GetCurrentDirectory();
+
+  // Parameters for call to GetFileList
+  var filespec = "^Merge.*\.rc$";
+  var filespecExclude = "(Translation)|(bak)";
+  var recurse = true;
+  
+  
+  var filelist = new Array();
+  GetFileList(path, filespec, filespecExclude, recurse, filelist);
+
+  ProcessFiles(filelist, params);
+
+
+  var boxtype = 64;
+  var result = "Applied to " + SuccessCount + " files";
+  if (ErrorFiles.length > 0)
+  {
+    boxtype = 16;
+    result = result + "\n" + "Errors: " + ErrorFiles;
+  }
+  
+  PopupBox("Results", result, boxtype, 20);
+
+}
+
+/***************************************************
+ ** Loop through all candidate files, processing each
+ ***************************************************/
+function ProcessFiles(filelist, params)
+{
+  for (var i=0; i<filelist.length; ++i)
+  {
+    var filepath = filelist[i].path;
+    var filename = filelist[i].name;
+    WScript.Echo("Processing [" + filename + "]");
+    ProcessFile(filepath, filename, params);
+  }
+}
+
+/***************************************************
+ ** Parse version string into four version numbers
+ ***************************************************/
+function DecodeVersion(version, params)
+{
+  var regex = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/;
+  var results= regex.exec(version)
+  if (results == null || results.length!=5)
+  {
+    WScript.Echo("Bad version string (must be format 1.2.3.4): Aborting.");
+    return false;
+  }
+  params.v1 = results[1];
+  params.v2 = results[2];
+  params.v3 = results[3];
+  params.v4 = results[4];
+  return true;  
+}
+
+/***************************************************
+ ** Go through subdirectories retrieving matching files
+ ***************************************************/
+function GetFileList(path, filespec, filespecExclude, recurse, filelist)
+{
+  // Clear totals
+  ErrorFiles = ""
+  SuccessCount = 0
+
+  // Regular expression for our files of interest
+  var fileRegex = new RegExp(filespec);
+  // Regular expression to exclude
+  var nfileRegex = new RegExp(filespecExclude);
+
+  RecurseFileList(path, fileRegex, nfileRegex, recurse, filelist);
+}
+
+/***************************************************
+ ** Go through subdirectories retrieving matching files
+ * This is the recursive workhorse
+ ***************************************************/
+function RecurseFileList(path, fileRegex, nfileRegex, recurse, filelist)
+{
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  var folder = fso.GetFolder(path);
+
+  // Build list of desired files
+  var eFiles = new Enumerator(folder.Files);
+  for ( ; !eFiles.atEnd(); eFiles.moveNext())
+  {
+    var file = eFiles.item();
+    if (file.Name.match(fileRegex) && !file.Name.match(nfileRegex))
+    {
+      var fileentry = new Object;
+      fileentry.name = file.Name;
+      fileentry.path = file.Path;
+      filelist[filelist.length] = fileentry;
+    }
+  }
+
+  if (!recurse)
+    return;
+  
+  var eSubFolders = new Enumerator(folder.SubFolders);
+  for ( ; !eSubFolders.atEnd(); eSubFolders.moveNext())
+  {
+    var subdir = eSubFolders.item();
+    var subpath = subdir.Path;
+    RecurseFileList(subpath, fileRegex, nfileRegex, recurse, filelist);
+  }
+}
+
+/***************************************************
+ ** Actually process RC file
+ ***************************************************/
+function ProcessFile(filepath, filename, params)
+{
+
+  var MainRc
+  if (filename == "Merge.rc")
+    MainRc = true;
+  else
+    MainRc = false;
+
+  var ForReading=1;
+  var ForWriting=2;
+
+  var fso = new ActiveXObject("Scripting.FileSystemObject")
+  
+  var outfilepath = filepath + ".tmp";
+  var bakfilepath = filepath + ".bak";
+
+  var ifile = fso.OpenTextFile(filepath, ForReading, false);
+  var ofile = fso.OpenTextFile(outfilepath, ForWriting, true);
+
+  params.found1=0; // PRODUCTVERSION
+  params.found2=0; // ProductVersion
+  params.found3=0; // FILEVERSIOn
+  params.found4=0; // FileVersion
+  
+  while (!ifile.atEndOfStream)
+  {
+      var line = ifile.ReadLine();
+      line = ProcessLine(MainRc, line, params);
+      ofile.WriteLine(line);
+  }
+  
+  ifile.Close();
+  ofile.Close();
+
+  var ok
+  if (!MainRc)
+  {
+    ok = (params.found1==1 && params.found2>0);
+  }
+  else
+  {
+    ok = (params.found1 == params.found2 == params.found3 == params.found4 == 1);
+  }
+  if (!ok)
+  {
+    if (ErrorFiles.length>0)
+      ErrorFiles = ErrorFiles + ", ";
+    ErrorFiles = ErrorFiles + filename;
+  }
+  else
+  {
+    SuccessCount = SuccessCount + 1;
+    fso.CopyFile(filepath, bakfilepath);
+    fso.CopyFile(outfilepath, filepath);
+    fso.DeleteFile(outfilepath);
+  }
+}
+
+/***************************************************
+ ** Check line for substitutions & apply any
+ ***************************************************/
+function ProcessLine(MainRc, line, params)
+{
+ // Set Product Version value in all RC files
+  var regexFixed = /^ *PRODUCTVERSION *\d+,\d+,\d+,\d+ *$/;
+  if (regexFixed.test(line))
+  {
+    ++params.found1;
+    if (params.found1 != 1)
+    {
+      return line;
+    }
+    var start = line.search(/\d+/);
+    line = line.substring(0, start) 
+      + params.v1 + "," + params.v2 + "," + params.v3 + "," + params.v4;
+    return line;
+  }
+
+  var regexString = /^ *VALUE "ProductVersion", "(\d+).(\d+).(\d+).(\d+)(\\0|)" *$/;
+  if (regexString.test(line))
+  {
+    ++params.found2;
+    // Allow multiple hits on this, as MergeCatalan.rc has more than one
+    var start = line.search(/\d+/);
+    line = line.substring(0, start) 
+      + params.v1 + "." + params.v2 + "." + params.v3 + "." + params.v4 + "\"";
+    return line;
+  }
+
+ // Only set File Version value in main RC file
+  if (MainRc != true)
+    return line;
+
+  var regexFixed = /^ *FILEVERSION *\d+,\d+,\d+,\d+ *$/;
+  if (regexFixed.test(line))
+  {
+    ++params.found3;
+    if (params.found3 != 1)
+    {
+      return line;
+    }
+    var start = line.search(/\d+/);
+    line = line.substring(0, start) 
+      + params.v1 + "," + params.v2 + "," + params.v3 + "," + params.v4;
+    return line;
+  }
+
+  var regexString = /^ *VALUE "FileVersion", "(\d+).(\d+).(\d+).(\d+)(\\0|)" *$/;
+  if (regexString.test(line))
+  {
+    ++params.found4;
+    // Allow multiple hits on this, as MergeCatalan.rc has more than one
+    var start = line.search(/\d+/);
+    line = line.substring(0, start) 
+      + params.v1 + "." + params.v2 + "." + params.v3 + "." + params.v4 + "\"";
+    return line;
+  }
+
+  return line;
+}
+
+/***************************************************
+ ** Display syntax summary
+ ***************************************************/
+function ShowUsage()
+{
+  WScript.Echo("SetLanguageVersions [x.y.z.w]");
+}
+
+/***************************************************
+ ** Retrieve current directory
+ ***************************************************/
+function GetCurrentDirectory()
+{
+  var oShell = WScript.CreateObject("WScript.Shell");
+  return oShell.CurrentDirectory
+}
+
+/***************************************************
+ ** Interactively test expressions
+ ***************************************************/
+function TestRegex(pattern)
+{
+  // Regular expression for our files of interest
+  var regex = new RegExp(pattern);
+  //regex.Pattern = pattern;
+  do
+  {
+    var text
+    text = PromptBox("Enter test text (or hit Cancel to quit)", "Test Regexp", "")
+    if (text == "")
+      return
+    if (text.match(regex))
+      WScript.Echo("Ok");
+    else
+      WScript.Echo("Nope");
+  } while(1);
+}
+
+
+/***************************************************
+ ** Put up message box
+ ***************************************************/
+function PopupBox(title, message, boxtype, timeout)
+{
+  var oShell = WScript.CreateObject("WScript.Shell");
+  return oShell.Popup(message, timeout, title, boxtype);
+}
+
+/****************************************************
+ ** Display syntax summary
+ ***************************************************/
+function ReportError(filepath, filename, message)
+{
+  if (ErrorFiles.length > 0)
+    ErrorFiles = ErrorFiles + "\n";
+  ErrorFiles = ErrorFiles + "[" + filepath + "] " + message;
+  WScript.Echo("ReportError: " + message);
+}
+
+
+/****************************************************
+ ** Return copy with no leading spaces
+ ***************************************************/
+function ltrim(text)
+{
+ // skip leading
+  var x=text;
+  x=x.replace(/^\s*(.*)/, "$1");
+//  x=x.replace(/(.*?)\s*$/, "$1");
+  return x;
+}
+
+/***************************************************
+ ** API constants
+ ***************************************************/
+
+</script>
+</job>
