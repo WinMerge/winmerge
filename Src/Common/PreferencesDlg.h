@@ -72,7 +72,6 @@ protected:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CPreferencesDlg)
 	public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 	virtual void OnOK();
@@ -83,7 +82,7 @@ protected:
 	//{{AFX_MSG(CPreferencesDlg)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnDestroy();
-	afx_msg void OnHelp();
+	afx_msg void OnHelpButton();
 	afx_msg void OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

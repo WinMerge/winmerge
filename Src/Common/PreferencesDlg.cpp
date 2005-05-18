@@ -16,6 +16,7 @@
 #include "OptionsMgr.h"
 #include "SyntaxColors.h"
 #include "PreferencesDlg.h"
+#include "MainFrm.h"
 
 #include "winclasses.h"
 #include "wclassdefines.h"
@@ -29,18 +30,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CPreferencesDlg dialog
 
-// matches order of pages
-enum 
-{ 
-	PAGE_GENERAL, 
-	PAGE_EDITPOR, 
-	PAGE_UI, 
-	PAGE_UITASK, 
-	PAGE_TASK, 
-	PAGE_TASKDEF, 
-	PAGE_TOOL, 
-	PAGE_SHORTCUT 
-};
 const TCHAR PATHDELIM = '>';
 
 CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
@@ -65,7 +54,7 @@ void CPreferencesDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CPreferencesDlg, CDialog)
 	//{{AFX_MSG_MAP(CPreferencesDlg)
 	ON_WM_DESTROY()
-	ON_BN_CLICKED(IDC_TREEOPT_HELP, OnHelp)
+	ON_BN_CLICKED(IDC_TREEOPT_HELP, OnHelpButton)
 	ON_NOTIFY(TVN_SELCHANGED, IDC_TREEOPT_PAGES, OnSelchangedPages)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -120,61 +109,10 @@ void CPreferencesDlg::OnDestroy()
 	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("OptStartPage"), m_pphost.GetActiveIndex());
 }
 
-BOOL CPreferencesDlg::PreTranslateMessage(MSG* pMsg) 
+void CPreferencesDlg::OnHelpButton() 
 {
-	// handle F1 help
-	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_F1)
-	{
-		OnHelp();
-		return TRUE;
-	}
-	
-	return CDialog::PreTranslateMessage(pMsg);
-}
-
-void CPreferencesDlg::OnHelp() 
-{
-	// who is the active page?
-/*	int nSel = m_pphost.GetActiveIndex();
-	CString sHelpPage = "pref.htm";
-
-	switch (nSel)
-	{
-	case PAGE_GEN:
-		sHelpPage += "#gen";
-		break;
-		
-	case PAGE_FILE:
-		sHelpPage += "#file";
-		break;
-		
-	case PAGE_UI:
-		sHelpPage += "#ui";
-		break;
-		
-	case PAGE_UITASK:
-		sHelpPage += "#uitask";
-		break;
-		
-	case PAGE_TASK:
-		sHelpPage += "#tasks";
-		break;
-		
-	case PAGE_TASKDEF:
-		sHelpPage += "#taskdefs";
-		break;
-		
-	case PAGE_TOOL:
-		sHelpPage += "#tools";
-		break;
-		
-	case PAGE_SHORTCUT:
-		sHelpPage += "#shortcut";
-		break;
-	}
-
-	AfxGetApp()->WinHelp((DWORD)(LPCTSTR)sHelpPage);
-*/
+	CMainFrame *pMf = dynamic_cast<CMainFrame*>(AfxGetMainWnd());
+	pMf->ShowHelp();
 }
 
 void CPreferencesDlg::AddPage(CPropertyPage* pPage, UINT nResourceID)

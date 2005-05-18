@@ -1,6 +1,8 @@
 2005-05-18 Kimmo
  PATCH: [ 1203680 ] Fix tab adding spaces in unicode builds
   Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1203615 ] Fix opening manual from new Options-dialog
+  Src/Common: PreferencesDlg.cpp PreferencesDlg.h
 
 2005-05-18 Perry
  PATCH: [ 1197969 ] New script to update production version in translations
