@@ -671,15 +671,16 @@ OnEditTab ()
   // If inserting tabs, then initialize the text to a tab.
   if (m_pTextBuffer->GetInsertTabs())
     {
-      pszText[0] = _T ( '\t' );
-      pszText[1] = _T ('\0');
+      pszText[0] = '\t';
+      pszText[1] = '\0';
     }
   else //...otherwise, built whitespace depending on the location and tab stops
     {
       int nTabSize = GetTabSize ();
       int nChars = nTabSize - ptCursorPos.x % nTabSize;
-      memset(pszText, _T(' '), nChars);
-      pszText[nChars] = _T ('\0');
+      for (int i = 0; i < nChars; i++)
+        pszText[i] = ' ';
+      pszText[nChars] = '\0';
     }
 
   // Indent selected lines (multiple lines selected)
@@ -2026,15 +2027,16 @@ OnEditAutoExpand ()
                           static TCHAR szText[32];
                           if (m_pTextBuffer->GetInsertTabs())
                             {
-                              *szText = _T ('\t');
-                              szText[1] = _T ('\0');
+                              *szText = '\t';
+                              szText[1] = '\0';
                             }
                           else
                             {
                               int nTabSize = GetTabSize ();
                               int nChars = nTabSize - ptCursorPos.x % nTabSize;
-                              memset(szText, _T(' '), nChars);
-                              szText[nChars] = _T ('\0');
+                              for (int i = 0; i < nChars; i++)
+                                szText[i] = ' ';
+                              szText[nChars] = '\0';
                             }
                           m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, szText, y, x, CE_ACTION_AUTOEXPAND);  //  [JRT]
                           ptCursorPos.x = x;
@@ -2047,9 +2049,9 @@ OnEditAutoExpand ()
                     }
                   ptCursorPos = GetCursorPos ();
                   pszExpand = pszSlash + 1;
-                  pszSlash = _tcschr (pszExpand, _T ('\\'));
+                  pszSlash = _tcschr (pszExpand, '\\');
                   if (pszSlash)
-                    *pszSlash++ = _T ('\0');
+                    *pszSlash++ = '\0';
                 }
             }
           sExpand.ReleaseBuffer ();
