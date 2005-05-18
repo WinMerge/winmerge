@@ -767,6 +767,7 @@ public :
     virtual void SetCursorPos (const CPoint & ptCursorPos);
     void ShowCursor ();
     void HideCursor ();
+    void SetNewAnchor (const CPoint & ptNewAnchor) { SetAnchor(ptNewAnchor); }
 
     //  Operations
     virtual void EnsureVisible (CPoint pt);

@@ -34,8 +34,13 @@ HighlightDiffRect(CMergeEditView * pView, const CRect & rc)
 	}
 	else
 	{
+		// select the area
+		// with anchor at left and caret at right
+		// this seems to be conventional behavior in Windows editors
 		pView->SelectArea(rc.TopLeft(), rc.BottomRight());
-		pView->SetCursorPos(rc.TopLeft());
+		pView->SetCursorPos(rc.BottomRight());
+		pView->SetNewAnchor(rc.TopLeft());
+		// try to ensure that selected area is visible
 		pView->EnsureVisible(rc.TopLeft(), rc.BottomRight());
 	}
 }
@@ -56,8 +61,13 @@ HighlightDiffRect(CMergeDiffDetailView * pView, const CRect & rc)
 	}
 	else
 	{
+		// select the area
+		// with anchor at left and caret at right
+		// this seems to be conventional behavior in Windows editors
 		pView->SelectArea(rc.TopLeft(), rc.BottomRight());
-		pView->SetCursorPos(rc.TopLeft());
+		pView->SetCursorPos(rc.BottomRight());
+		pView->SetNewAnchor(rc.TopLeft());
+		// try to ensure that selected area is visible
 		pView->EnsureVisible(rc.TopLeft());
 	}
 }

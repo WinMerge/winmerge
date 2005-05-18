@@ -2,6 +2,9 @@
  PATCH: [ 1197969 ] New script to update production version in translations
   Src new files: SetResourceVersions.bat SetResourceVersions.wsf
   Docs/Developers/readme-developers.html.
+ PATCH: [ 1201804 ] Fix anchor & caret in shift-f4 operation
+  Src: MergeDocLineDiffs.cpp
+  Src/editlib: ccrystaltextview.h
 
 2005-05-17 Perry
  PATCH: [ 1203707 ] tiny code rearrangement for debugging
