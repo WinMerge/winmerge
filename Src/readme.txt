@@ -1,3 +1,5 @@
+2005-05-18 WinMerge experimental release 2.3.3.4 (cvs)
+
 2005-05-18 Kimmo
  PATCH: [ 1203680 ] Fix tab adding spaces in unicode builds
   Src/editlib: ccrystaltextview.cpp
