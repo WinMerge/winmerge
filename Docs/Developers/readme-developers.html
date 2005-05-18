@@ -253,7 +253,7 @@ This installer is only used for major releases, for other releases we just zip u
   <li><code>ShellExtension.dll</code> and <code>register.bat</code> to register it</li>
   <li>All filters from the <code>filters/</code> directory</li>
   <li>All plugins from the <code>plugins/dlls/</code> directory. Create a <code>MergePlugins/</code> directory and copy the plugins to it</li>
-  <li>All <code>*.lang</code> files (currently we have 19 languages, counting both Chinese versions)</li>
+  <li>All <code>*.lang</code> files (currently we have 21 languages, counting both Chinese versions)</li>
 </ul>
 
 <p>Please remember to put the version number into both executables. You may use
@@ -396,12 +396,12 @@ Visual C++ 6 binaries, assuming Visual C++ 6 is correctly installed, set</p>
 <h4>Issues :</h4>
 <ul>
   <li>
-    <p>It is slow and tedious to update 19 languages for just one patch. But reducing the frequency of such updates does not help either:
+    <p>It is slow and tedious to update 21 languages for just one patch. But reducing the frequency of such updates does not help either:
     5 small updates are tedious and frequent, but easy; 1 big update is more infrequent, but much more tedious and difficult.</p>
   </li>
   <li>
     <p><strong>Merging of layout</strong>: translator may change layout, then when developers insert new controls, moved and new controls may overlap.
-    Visual check of 19 dialogs is definitively too long for a single patch update.</p>
+    Visual check of 21 dialogs is definitively too long for a single patch update.</p>
   </li>
   <li>
     <p><strong>Delays in localization</strong>: translators generally need some weeks to translate, so their version is already outdated when

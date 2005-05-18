@@ -5,6 +5,8 @@
  PATCH: [ 1201804 ] Fix anchor & caret in shift-f4 operation
   Src: MergeDocLineDiffs.cpp
   Src/editlib: ccrystaltextview.h
+ Update language count (19->21, three occurrences)
+  Docs/Developers/readme-developers.html.
 
 2005-05-17 Perry
  PATCH: [ 1203707 ] tiny code rearrangement for debugging
