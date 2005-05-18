@@ -7,6 +7,8 @@
   Src/editlib: ccrystaltextview.h
  Update language count (19->21, three occurrences)
   Docs/Developers/readme-developers.html.
+ Note that sourceforge tracker doesn't display tabs.
+  Docs/Developers/readme-developers.html.
 
 2005-05-17 Perry
  PATCH: [ 1203707 ] tiny code rearrangement for debugging
